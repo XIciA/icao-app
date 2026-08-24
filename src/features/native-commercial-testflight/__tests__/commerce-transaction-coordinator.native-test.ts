@@ -5,7 +5,7 @@ import type {
   NativeCommerceProvider,
 } from '../commerce-provider.native';
 import {
-  NATIVE_COMMERCE_INFRASTRUCTURE_ONLY,
+  NATIVE_COMMERCE_COORDINATOR_READY,
   NativeCommerceTransactionCoordinator,
   type CommerceTransactionConsumption,
   type CommerceTransactionConsumer,
@@ -83,8 +83,8 @@ function createProvider(): NativeCommerceProvider & {
 }
 
 describe('native commerce transaction coordinator', () => {
-  it('is explicitly release-gated as infrastructure only', () => {
-    expect(NATIVE_COMMERCE_INFRASTRUCTURE_ONLY).toBe(true);
+  it('is explicitly release-gated as ready for the authenticated runtime', () => {
+    expect(NATIVE_COMMERCE_COORDINATOR_READY).toBe(true);
   });
 
   it('silently reconciles every startup page and finishes only an exact server-verified JWS', async () => {
@@ -111,8 +111,17 @@ describe('native commerce transaction coordinator', () => {
       state: 'succeeded',
       value: {
         observed: 2,
+        observedReferences: ['deferred', 'verified'],
         serverVerified: 1,
+        serverVerifiedReferences: ['verified'],
+        serverVerifiedTransactions: [{
+          transactionReference: 'verified',
+          offeringKey: 'membership_31d_v1',
+          purchasedAt: '2026-08-24T08:00:00.000Z',
+          environment: 'sandbox',
+        }],
         finished: 1,
+        finishedReferences: ['verified'],
         deferred: 1,
         quarantined: 1,
       },

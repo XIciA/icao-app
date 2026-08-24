@@ -14,6 +14,9 @@ const coordinatorPath =
   'src/features/native-commercial-testflight/commerce-transaction-coordinator.native.ts';
 const appleProviderPath =
   'src/features/native-commercial-testflight/apple-storekit-commerce-provider.native.ts';
+const runtimePath =
+  'src/features/native-commercial-testflight/CommerceRuntimeProvider.native.tsx';
+const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
 const gatedReleaseScripts = [
@@ -87,6 +90,8 @@ const provider = await read(providerPath);
 const contract = await read(contractPath);
 const coordinator = await read(coordinatorPath);
 const appleProvider = await read(appleProviderPath);
+const runtime = await read(runtimePath);
+const appRuntime = await read(appRuntimePath);
 for (const [file, content, required] of [
   [providerPath, provider, 'requiresServerVerification: true'],
   [providerPath, provider, 'entitlementGranted: false'],
@@ -126,7 +131,7 @@ if (occurrences(provider, 'this.runNativeCall(') < 7) {
   failures.push(`${providerPath} does not bound every critical StoreKit native call.`);
 }
 for (const required of [
-  'NATIVE_COMMERCE_INFRASTRUCTURE_ONLY = true',
+  'NATIVE_COMMERCE_COORDINATOR_READY = true',
   'start()',
   'restorePurchasesFromUserAction()',
   'server-verified',
@@ -135,8 +140,21 @@ for (const required of [
 ]) {
   if (!coordinator.includes(required)) failures.push(`${coordinatorPath} is missing: ${required}`);
 }
-if (!appleProvider.includes('APPLE_STOREKIT_COMMERCE_INFRASTRUCTURE_ONLY = true')) {
-  failures.push(`${appleProviderPath} is not explicitly marked as infrastructure only.`);
+if (!appleProvider.includes('APPLE_STOREKIT_COMMERCE_RUNTIME_READY = true')) {
+  failures.push(`${appleProviderPath} is not explicitly marked as runtime ready.`);
+}
+for (const required of [
+  'createAppleStoreKitCommerceProvider()',
+  'new NativeCommerceTransactionCoordinator',
+  '/v1/commerce/apple/transactions/verify',
+  '/v1/commerce/entitlements/current',
+  'applicationAccountToken: controller.accountId',
+  'verified.transactionId !== transaction.transactionReference',
+]) {
+  if (!runtime.includes(required)) failures.push(`${runtimePath} is missing: ${required}`);
+}
+if (!appRuntime.includes('<CommerceRuntimeProvider>')) {
+  failures.push(`${appRuntimePath} does not mount the authenticated Native commerce runtime.`);
 }
 
 const releaseHelper = await read(releaseHelperPath);
@@ -232,7 +250,8 @@ async function rejectProductionCommerceActivation(file) {
     relative.includes('/__tests__/') ||
     /-test\.tsx?$/u.test(relative) ||
     relative === coordinatorPath ||
-    relative === appleProviderPath
+    relative === appleProviderPath ||
+    relative === runtimePath
   ) {
     return;
   }
