@@ -1,6 +1,7 @@
 # App Store 简中截图清单
 
-状态：拍摄计划，不包含成品截图。只能在最终候选 Build 上重新拍摄并复核。
+状态：TestFlight 候选包通过后执行的唯一截图清单，不包含成品截图，也不定义任何商店文本字段。
+只能在最终候选 Build 上重新拍摄并复核。
 
 ## 交付规格
 
@@ -54,6 +55,7 @@
 - [ ] 文件均为 Apple 接受的尺寸、PNG/JPEG、无 Alpha。
 - [ ] 截图来自最终候选 Build，路径和功能均可由审核账号复现。
 - [ ] 没有课程、价格承诺、版权风险、真实个人数据或调试元素。
-- [ ] 审核截图与产品页截图分开管理；五档商品的审核截图见 `iap-products.md`。
+- [ ] 审核截图与产品页截图分开管理；五档商品的审核截图要求见
+  [`app-store-connect-final-fields.md`](app-store-connect-final-fields.md#6-五档非自动续期订阅)。
 
 Apple 当前规格：<https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/>
