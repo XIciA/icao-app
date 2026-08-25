@@ -316,6 +316,11 @@ if ! flock -n 9; then
   echo 'Another Ops deployment or rollback is running.' >&2
   exit 1
 fi
+exec 8>/run/lock/icao-production-release-change.lock
+if ! flock -n 8; then
+  echo 'A production database migration or release change is already running.' >&2
+  exit 1
+fi
 
 release_root=/opt/icao/runtime/releases
 release_dir=$release_root/ops-$release_id
