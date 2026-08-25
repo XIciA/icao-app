@@ -1,3 +1,5 @@
+import { CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 } from '@icao/contracts';
+import { createPrivateKey, createPublicKey, timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -12,6 +14,8 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   INVITE_AUTH_SECRET: z.string().min(32),
   ACCOUNT_IDENTITY_HASH_SECRET: z.string().min(32),
+  CONTENT_CREDENTIAL_SIGNING_SECRET: z.string().min(32).optional(),
+  CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY: z.string().min(48).optional(),
   IDENTITY_BENEFIT_DIGEST_SECRET: z.string().min(32).optional(),
   IDENTITY_BENEFIT_DIGEST_KEY_VERSION: z.coerce.number().int().min(1).default(1),
   IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS: z.string().default('{}'),
@@ -103,6 +107,8 @@ export type ApiConfig = {
   supabaseUrl: string;
   inviteAuthSecret: string;
   accountIdentityHashSecret: string;
+  contentCredentialSigningSecret?: string;
+  contentCredentialSigningPrivateKey?: string;
   identityBenefitDigestSecret?: string;
   identityBenefitDigestKeyVersion?: number;
   identityBenefitDigestPreviousKeys?: Array<{ secret: string; version: number }>;
@@ -266,7 +272,31 @@ function validateProductionAiRuntime(
   }
 }
 
-export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiConfig {
+function validateContentCredentialSigningKey(privateKey: string, expectedPublicKeyBase64: string) {
+  try {
+    const publicJwk = createPublicKey(createPrivateKey(privateKey)).export({ format: 'jwk' });
+    const derivedPublicKey = publicJwk.kty === 'OKP' && publicJwk.crv === 'Ed25519' && publicJwk.x
+      ? Buffer.from(publicJwk.x, 'base64url')
+      : Buffer.alloc(0);
+    const expectedPublicKey = Buffer.from(expectedPublicKeyBase64, 'base64');
+    if (
+      derivedPublicKey.length !== 32
+      || expectedPublicKey.length !== 32
+      || !timingSafeEqual(derivedPublicKey, expectedPublicKey)
+    ) invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
+  } catch {
+    invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
+  }
+}
+
+type LoadConfigOptions = {
+  expectedContentCredentialPublicKeyBase64?: string;
+};
+
+export function loadConfig(
+  environment: NodeJS.ProcessEnv = process.env,
+  options: LoadConfigOptions = {},
+): ApiConfig {
   const parsed = schema.safeParse(environment);
   if (!parsed.success) {
     const fields = parsed.error.issues.map((issue) => issue.path.join('.') || 'environment').join(', ');
@@ -293,6 +323,8 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     }
     validateProductionAiRuntime(environment, parsed.data);
     if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
+    if (!parsed.data.CONTENT_CREDENTIAL_SIGNING_SECRET) invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_SECRET');
+    if (!parsed.data.CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY) invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
   }
   if (/^https?:\/\//u.test(parsed.data.TENCENT_ASR_ENDPOINT) || parsed.data.TENCENT_ASR_ENDPOINT.includes('/')) {
     throw new Error('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
@@ -319,7 +351,13 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
       throw new Error('invalid_api_configuration:SUPABASE_SMS_HOOK_SECRET');
     }
   }
-  if (parsed.data.NODE_ENV === 'production') validateAppleRuntime(parsed.data);
+  if (parsed.data.NODE_ENV === 'production') {
+    validateAppleRuntime(parsed.data);
+    validateContentCredentialSigningKey(
+      parsed.data.CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY!.replaceAll('\\n', '\n'),
+      options.expectedContentCredentialPublicKeyBase64 ?? CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
+    );
+  }
 
   return {
     databaseUrl: parsed.data.DATABASE_URL,
@@ -333,6 +371,8 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabaseUrl: parsed.data.SUPABASE_URL,
     inviteAuthSecret: parsed.data.INVITE_AUTH_SECRET,
     accountIdentityHashSecret: parsed.data.ACCOUNT_IDENTITY_HASH_SECRET,
+    contentCredentialSigningSecret: parsed.data.CONTENT_CREDENTIAL_SIGNING_SECRET,
+    contentCredentialSigningPrivateKey: parsed.data.CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     identityBenefitDigestSecret: parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET,
     identityBenefitDigestKeyVersion: parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
     identityBenefitDigestPreviousKeys: previousIdentityHashKeys,

@@ -17,6 +17,7 @@ import {
 import { AppState, Platform } from 'react-native';
 
 import { useAuth } from '@/features/auth/AuthProvider';
+import { activateQuestionBankContentAccount } from '@/features/question-bank/data/member-content-cache';
 import { apiRequest } from '@/platform/api-client';
 
 import { createAppleStoreKitCommerceProvider } from './apple-storekit-commerce-provider.native';
@@ -44,6 +45,12 @@ import {
   type PersistedUncertainPurchase,
 } from './commerce-uncertain-purchase.native';
 import { listMembershipProducts } from './membership-products.native';
+import {
+  activateNativeCommerceEnvironment,
+  confirmNativeCommerceEnvironment,
+  detectNativeDistributionEnvironment,
+  setNativeCommerceEnvironment,
+} from './commerce-environment';
 
 type Controller = Readonly<{
   accountId: string;
@@ -158,6 +165,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     const response = await apiRequest<CommerceEntitlementsResponse>('/v1/commerce/entitlements/current');
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
     const environment = observedEnvironmentRef.current ?? 'production';
+    setNativeCommerceEnvironment(environment);
     setEntitlementEnvironment(environment);
     setEntitlement(response[environment]);
   }, []);
@@ -176,9 +184,11 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     observedEnvironmentRef.current = undefined;
+    setNativeCommerceEnvironment('production');
     workingRef.current = false;
     uncertainPurchaseRef.current = undefined;
     uncertainStorageBlockedRef.current = false;
+    void activateQuestionBankContentAccount(accountId).catch(() => undefined);
     setOfferings([]);
     setEntitlement(undefined);
     setEntitlementEnvironment(undefined);
@@ -195,7 +205,6 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (generation !== generationRef.current) return { state: 'deferred' } as const;
         const environment = verifiedEnvironment(transaction);
         if (!environment) return { state: 'deferred' } as const;
-        observedEnvironmentRef.current = environment;
         try {
           const verified = await apiRequest<VerifyAppleTransactionResponse>(
             '/v1/commerce/apple/transactions/verify',
@@ -210,6 +219,11 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
             verified.transactionId !== transaction.transactionReference
             || verified.entitlement.environment !== environment
           ) return { state: 'deferred' } as const;
+          if (!await confirmNativeCommerceEnvironment(accountId, environment)) {
+            return { state: 'deferred' } as const;
+          }
+          if (generation !== generationRef.current) return { state: 'deferred' } as const;
+          observedEnvironmentRef.current = environment;
           if (generation === generationRef.current) {
             setEntitlementEnvironment(environment);
             setEntitlement(verified.entitlement);
@@ -233,6 +247,14 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     setPhase('loading');
 
     void (async () => {
+      const distributionEnvironment = detectNativeDistributionEnvironment();
+      const rememberedEnvironment = await activateNativeCommerceEnvironment(
+        accountId,
+        distributionEnvironment,
+      );
+      if (generation !== generationRef.current || controllerRef.current !== controller) return;
+      observedEnvironmentRef.current = rememberedEnvironment;
+      setEntitlementEnvironment(rememberedEnvironment);
       const [serverCatalog, storeCatalog, restoredUncertainResult] = await Promise.all([
         apiRequest<CommerceProductCatalogResponse>('/v1/commerce/catalog'),
         provider.listOfferings(),
@@ -437,8 +459,6 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         return ACCOUNT_CHANGED_RESULT;
       }
       uncertainPurchaseRef.current = exactUncertain;
-      const environment = verifiedEnvironment(purchaseResult.value.transaction);
-      if (environment) observedEnvironmentRef.current = environment;
       const report = await controller.coordinator.drainObservedTransactions();
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;

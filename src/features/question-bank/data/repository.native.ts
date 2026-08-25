@@ -1,0 +1,225 @@
+import publicData from './question-bank-public.json';
+import publicRelease from './question-bank-public-release.json';
+import Storage from '@/platform/storage';
+import type {
+  ApiSuccessEnvelope,
+  ContentAccessCredential,
+  ContentAccessScope,
+  QuestionBankRelease,
+  QuestionBankTopicRelease,
+} from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
+
+import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
+import {
+  getNativeCommerceEnvironment,
+  nativeCommerceEnvironmentSnapshot,
+} from '@/features/native-commercial-testflight/commerce-environment';
+import { ApiClientError, apiFetch, apiRequest, getApiBaseUrl } from '@/platform/api-client';
+import {
+  clearQuestionBankMemberContent,
+  currentQuestionBankContentAccountId,
+  getQuestionBankContentDeviceId,
+  questionBankContentAccountGeneration,
+  readMemberTopicCache,
+  writeMemberTopicCache,
+} from './member-content-cache';
+
+const datasets = publicData as QuestionBankDataset[];
+const CATALOG_CACHE_PREFIX = 'icao.content.v3.catalog.';
+const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.'];
+
+type CachedRelease = QuestionBankRelease<QuestionBankDataset> & { cachedAt: string };
+export type QuestionBankSource = 'remote' | 'cache' | 'embedded';
+export type QuestionBankLoadResult = { dataset: QuestionBankDataset; source: QuestionBankSource; warning?: string };
+
+export type QuestionBankRepository = {
+  getDataset(id: QuestionBankId): Promise<QuestionBankDataset | undefined>;
+  getTopic(bankId: QuestionBankId, categoryId: string, topicId: string): Promise<QuestionBankTopic | undefined>;
+};
+
+let legacyCacheCleanup: Promise<void> | undefined;
+
+function contentContext() {
+  return {
+    accountId: currentQuestionBankContentAccountId(),
+    accountGeneration: questionBankContentAccountGeneration(),
+    environment: getNativeCommerceEnvironment(),
+    environmentSnapshot: nativeCommerceEnvironmentSnapshot(),
+  };
+}
+
+function contentContextIsCurrent(context: ReturnType<typeof contentContext>) {
+  return context.accountId === currentQuestionBankContentAccountId()
+    && context.accountGeneration === questionBankContentAccountGeneration()
+    && context.environment === getNativeCommerceEnvironment()
+    && context.environmentSnapshot === nativeCommerceEnvironmentSnapshot();
+}
+
+function assertContentContextCurrent(context: ReturnType<typeof contentContext>) {
+  if (!contentContextIsCurrent(context)) throw new ApiClientError('content_account_changed', 409);
+}
+
+function ensureLegacyFullCacheRemoved() {
+  if (!legacyCacheCleanup) {
+    legacyCacheCleanup = Storage.getAllKeys()
+      .then(async (keys) => {
+        const legacy = keys.filter((key) => LEGACY_CACHE_PREFIXES.some((prefix) => key.startsWith(prefix)));
+        if (legacy.length > 0) await Storage.multiRemove(legacy);
+      })
+      .catch(() => undefined);
+  }
+  return legacyCacheCleanup;
+}
+
+function cacheKey(accountId: string, environment: string, id: QuestionBankId) {
+  return `${CATALOG_CACHE_PREFIX}${accountId}.${environment}.${id}`;
+}
+
+async function readCachedCatalog(accountId: string | undefined, environment: string, id: QuestionBankId) {
+  if (!accountId) return undefined;
+  const value = await Storage.getItem(cacheKey(accountId, environment, id));
+  if (!value) return undefined;
+  try {
+    const cached = JSON.parse(value) as CachedRelease;
+    return cached.dataset?.id === id ? cached : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export const embeddedQuestionBankRepository: QuestionBankRepository = {
+  async getDataset(id) {
+    return datasets.find((dataset) => dataset.id === id);
+  },
+  async getTopic(bankId, categoryId, topicId) {
+    const dataset = datasets.find((item) => item.id === bankId);
+    return dataset?.categories.find((category) => category.id === categoryId)?.topics.find((topic) => topic.id === topicId);
+  },
+};
+
+export const remoteQuestionBankRepository = {
+  async getDataset(id: QuestionBankId, signal?: AbortSignal) {
+    await ensureLegacyFullCacheRemoved();
+    const context = contentContext();
+    const { accountId, environment } = context;
+    const cached = await readCachedCatalog(accountId, environment, id);
+    const accessState = (cached?.dataset as QuestionBankDataset | undefined)?.access?.membershipActive === true ? 'member' : 'free';
+    const headers = {
+      [COMMERCE_ENVIRONMENT_HEADER]: environment,
+      ...(cached ? { 'if-none-match': `"${cached.checksum}.content-access-v1.${accessState}"` } : {}),
+    };
+    const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
+    assertContentContextCurrent(context);
+    if (response.status === 304 && cached) return cached.dataset;
+    if (response.status === 404) return undefined;
+    if (!response.ok) throw new Error(`question_bank_http_${response.status}`);
+    const body = await response.json() as ApiSuccessEnvelope<QuestionBankRelease<QuestionBankDataset>>;
+    assertContentContextCurrent(context);
+    if (!body.data?.dataset || body.data.dataset.id !== id) throw new Error('invalid_question_bank_response');
+    if (accountId && body.data.dataset.access?.membershipActive === false) {
+      await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+    }
+    if (accountId) {
+      await Storage.setItem(
+        cacheKey(accountId, environment, id),
+        JSON.stringify({ ...body.data, cachedAt: new Date().toISOString() } satisfies CachedRelease),
+      );
+    }
+    return body.data.dataset;
+  },
+  async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string) {
+    const context = contentContext();
+    const { accountId, environment } = context;
+    const scope = { bankId, categoryId, topicId } satisfies ContentAccessScope;
+    try {
+      const release = await apiRequest<QuestionBankTopicRelease<QuestionBankTopic>>(
+        `/v1/question-banks/${encodeURIComponent(bankId)}/categories/${encodeURIComponent(categoryId)}/topics/${encodeURIComponent(topicId)}`,
+        { headers: { [COMMERCE_ENVIRONMENT_HEADER]: environment } },
+      );
+      assertContentContextCurrent(context);
+      if (release.bankId !== bankId || release.categoryId !== categoryId || release.topic.id !== topicId) {
+        throw new Error('invalid_question_bank_topic_response');
+      }
+      if (accountId && release.access.membershipActive === false) {
+        await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+      }
+      if (accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
+        const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            [COMMERCE_ENVIRONMENT_HEADER]: environment,
+          },
+          body: JSON.stringify({ deviceId: await getQuestionBankContentDeviceId(), scopes: [scope] }),
+        });
+        assertContentContextCurrent(context);
+        await writeMemberTopicCache(accountId, scope, release.topic, credential);
+      }
+      return release.topic;
+    } catch (error) {
+      const mayUseOffline = !(error instanceof ApiClientError)
+        || error.status === 408
+        || error.status === 429
+        || error.status >= 500;
+      if (accountId && mayUseOffline) {
+        const cached = await readMemberTopicCache(accountId, scope);
+        assertContentContextCurrent(context);
+        if (cached) return cached;
+      }
+      if (
+        accountId
+        && error instanceof ApiClientError
+        && error.code !== 'content_account_changed'
+        && error.status >= 400
+        && error.status < 500
+      ) {
+        await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+      }
+      throw error;
+    }
+  },
+} satisfies QuestionBankRepository;
+
+export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
+  await ensureLegacyFullCacheRemoved();
+  if (getApiBaseUrl()) {
+    try {
+      const remote = await remoteQuestionBankRepository.getDataset(id);
+      if (remote) return { dataset: remote, source: 'remote' };
+    } catch {
+      const cached = await readCachedCatalog(
+        currentQuestionBankContentAccountId(),
+        getNativeCommerceEnvironment(),
+        id,
+      );
+      if (cached) return { dataset: cached.dataset, source: 'cache', warning: 'question_bank_remote_unavailable' };
+      const embedded = await embeddedQuestionBankRepository.getDataset(id);
+      return embedded ? { dataset: embedded, source: 'embedded', warning: 'question_bank_remote_unavailable' } : undefined;
+    }
+  }
+  const embedded = await embeddedQuestionBankRepository.getDataset(id);
+  return embedded ? { dataset: embedded, source: 'embedded' } : undefined;
+}
+
+export const questionBankRepository: QuestionBankRepository = {
+  async getDataset(id) {
+    return (await loadQuestionBank(id))?.dataset;
+  },
+  async getTopic(bankId, categoryId, topicId) {
+    if (getApiBaseUrl()) return remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+    return embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+  },
+};
+
+export function getEmbeddedQuestionBankIds() {
+  return datasets.map((dataset) => dataset.id);
+}
+
+export function getEmbeddedQuestionBanks() {
+  return datasets;
+}
+
+export function getNativePublicQuestionBankRelease() {
+  return publicRelease;
+}

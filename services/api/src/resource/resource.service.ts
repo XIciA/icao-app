@@ -1,11 +1,12 @@
 import { Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq } from 'drizzle-orm';
-import type { ResolvedResource } from '@icao/contracts';
+import type { CommerceEnvironment, ResolvedResource } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { DatabaseService } from '../database/database.service';
 import { resourceObjects } from '../database/schema';
+import { ContentAccessService } from '../content-access/content-access.service';
 
 const EXPIRES_IN_SECONDS = 5 * 60;
 
@@ -15,7 +16,11 @@ export class ResourceService {
   private readonly internalUrl: string;
   private readonly publicUrl: string;
 
-  constructor(@Inject(API_CONFIG) config: ApiConfig, private readonly database: DatabaseService) {
+  constructor(
+    @Inject(API_CONFIG) config: ApiConfig,
+    private readonly database: DatabaseService,
+    private readonly contentAccess: ContentAccessService,
+  ) {
     this.internalUrl = config.supabaseUrl.replace(/\/$/, '');
     this.publicUrl = config.supabasePublicUrl.replace(/\/$/, '');
     this.storage = createClient(config.supabaseUrl, config.supabaseSecretKey, {
@@ -23,11 +28,25 @@ export class ResourceService {
     });
   }
 
-  async resolve(publicPath: string): Promise<ResolvedResource> {
+  async resolve(
+    accountId: string,
+    publicPath: string,
+    sessionId: string,
+    environment: CommerceEnvironment,
+  ): Promise<ResolvedResource> {
     const [resource] = await this.database.db.select().from(resourceObjects)
       .where(and(eq(resourceObjects.sourcePath, publicPath), eq(resourceObjects.status, 'ready')))
       .limit(1);
     if (!resource) throw new NotFoundException('resource_not_found');
+    if (publicPath.startsWith('/question-bank-assets/')) {
+      await this.contentAccess.assertResourceAccess(
+        accountId,
+        resource.module,
+        publicPath,
+        sessionId,
+        environment,
+      );
+    }
     const { data, error } = await this.storage.storage.from(resource.storageBucket).createSignedUrl(resource.objectKey, EXPIRES_IN_SECONDS);
     if (error || !data.signedUrl) throw new ServiceUnavailableException('resource_signing_failed');
     return {

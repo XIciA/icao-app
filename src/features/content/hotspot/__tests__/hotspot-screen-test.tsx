@@ -1,7 +1,9 @@
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { embeddedQuestionBankRepository } from '@/features/question-bank/data/repository';
+import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
+import { questionBankRepository } from '@/features/question-bank/data/repository';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
 
 import { resolveHotspotTopics } from '../build-hotspot-session';
 import { HotspotDetailScreen } from '../HotspotDetailScreen';
@@ -35,10 +37,18 @@ function withSafeArea(screen: React.ReactNode) {
 }
 
 describe('OPI hotspot screens', () => {
+  const completeOpiDataset = (completeQuestionBanks as QuestionBankDataset[]).find((bank) => bank.id === 'opi');
+
   beforeEach(() => {
     mockBack.mockReset();
     mockPush.mockReset();
+    jest.spyOn(questionBankRepository, 'getTopic').mockImplementation(async (_bankId, categoryId, topicId) => (
+      completeOpiDataset?.categories.find((category) => category.id === categoryId)
+        ?.topics.find((topic) => topic.id === topicId)
+    ));
   });
+
+  afterEach(() => jest.restoreAllMocks());
 
   it('opens a dated hotspot from the list through its dedicated route', async () => {
     const brief = loadHotspotBriefs()[0];
@@ -54,7 +64,7 @@ describe('OPI hotspot screens', () => {
 
   it('renders the real OPI questions and starts the matching study route', async () => {
     const brief = loadHotspotBriefs()[0];
-    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
+    const dataset = completeOpiDataset;
     expect(dataset).toBeDefined();
     if (!dataset) return;
     const expectedQuestion = resolveHotspotTopics(brief, dataset)[0].cards[0].audioText;

@@ -3,6 +3,18 @@ jest.mock('react-native-reanimated', () => ({
   ...require('react-native-reanimated/mock'),
   useReducedMotion: () => false,
 }));
+jest.mock('@icao/distribution-environment', () => ({
+  getIcaoDistributionEnvironment: jest.fn(() => 'production'),
+  verifyIcaoEd25519Jws: jest.fn((token: string) => {
+    const payload = token.split('.')[1];
+    if (!payload) return undefined;
+    try {
+      return Buffer.from(payload, 'base64url').toString('utf8');
+    } catch {
+      return undefined;
+    }
+  }),
+}));
 const mockKvStorageValues = new Map<string, string>();
 jest.mock('expo-sqlite/kv-store', () => ({
   clear: jest.fn(async () => mockKvStorageValues.clear()),

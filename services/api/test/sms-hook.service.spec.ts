@@ -167,6 +167,8 @@ describe('Supabase SMS hook', () => {
       SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
       INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
       ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+      CONTENT_CREDENTIAL_SIGNING_SECRET: 'test-content-credential-secret-that-is-long-enough',
+      CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY: 'test-only-content-private-key-placeholder-that-is-never-used',
       IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
       AI_TEXT_PROVIDER: 'deepseek',
       DEEPSEEK_API_KEY: 'test-deepseek-key',

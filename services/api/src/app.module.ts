@@ -33,6 +33,9 @@ import { QuestionBankController } from './question-bank/question-bank.controller
 import { QuestionBankService } from './question-bank/question-bank.service';
 import { ResourceController } from './resource/resource.controller';
 import { ResourceService } from './resource/resource.service';
+import { ContentAccessService } from './content-access/content-access.service';
+import { ContentAccessController } from './content-access/content-access.controller';
+import { ContentAccessRetentionService } from './content-access/content-access-retention.service';
 import { SyncController } from './sync/sync.controller';
 import { SyncService } from './sync/sync.service';
 import { AiController } from './ai/ai.controller';
@@ -56,7 +59,7 @@ import { CommerceService } from './commerce/commerce.service';
 import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -88,6 +91,8 @@ import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/a
     { provide: ACCOUNT_AUTH_ADMIN, useExisting: SupabaseAccountAuthAdmin },
     AccountDeletionService,
     QuestionBankService,
+    ContentAccessService,
+    ContentAccessRetentionService,
     ResourceService,
     EditorialService,
     SyncService,

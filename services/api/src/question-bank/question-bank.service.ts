@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { desc, eq } from 'drizzle-orm';
-import type { QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
+import { Injectable } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
+import type { CommerceEnvironment, QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { questionBankReleases } from '../database/schema';
+import { ContentAccessService } from '../content-access/content-access.service';
 
 type DatasetMetadata = {
   title?: unknown;
@@ -13,7 +14,10 @@ type DatasetMetadata = {
 
 @Injectable()
 export class QuestionBankService {
-  constructor(private readonly database: DatabaseService) {}
+  constructor(
+    private readonly database: DatabaseService,
+    private readonly contentAccess: ContentAccessService,
+  ) {}
 
   async list(): Promise<QuestionBankReleaseSummary[]> {
     const rows = await this.database.db.select().from(questionBankReleases).where(eq(questionBankReleases.active, true)).orderBy(questionBankReleases.bankId);
@@ -30,12 +34,23 @@ export class QuestionBankService {
     });
   }
 
-  async get(bankId: string): Promise<QuestionBankRelease> {
-    const [row] = await this.database.db.select().from(questionBankReleases)
-      .where(eq(questionBankReleases.bankId, bankId))
-      .orderBy(desc(questionBankReleases.version))
-      .limit(1);
-    if (!row || !row.active) throw new NotFoundException('question_bank_not_found');
-    return { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload };
+  async get(
+    bankId: string,
+    accountId: string,
+    sessionId: string,
+    environment: CommerceEnvironment,
+  ): Promise<QuestionBankRelease> {
+    return this.contentAccess.getCatalog(bankId, accountId, sessionId, environment);
+  }
+
+  async getTopic(
+    bankId: string,
+    categoryId: string,
+    topicId: string,
+    accountId: string,
+    sessionId: string,
+    environment: CommerceEnvironment,
+  ) {
+    return this.contentAccess.getTopic(bankId, categoryId, topicId, accountId, sessionId, environment);
   }
 }
