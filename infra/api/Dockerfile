@@ -10,6 +10,7 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY patches patches
+COPY modules/icao-distribution-environment modules/icao-distribution-environment
 COPY packages/contracts/package.json packages/contracts/package.json
 COPY services/api/package.json services/api/package.json
 

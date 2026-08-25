@@ -157,6 +157,8 @@ const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.
 const postgresReplicaService = await readFile('infra/backup/icao-postgres-replica.service', 'utf8');
 const storageReplicaService = await readFile('infra/backup/icao-storage-replica.service', 'utf8');
 const apiDockerfile = await readFile('infra/api/Dockerfile', 'utf8');
+const opsDockerfile = await readFile('infra/ops/Dockerfile', 'utf8');
+const opsApiDockerfile = await readFile('infra/ops/Dockerfile.api', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
@@ -249,6 +251,21 @@ if (
 }
 if (!apiRelease.includes('infra/api infra/backup')) {
   throw new Error('The API release archive must preserve the reviewed production backup tools.');
+}
+if (
+  !apiRelease.includes('modules/icao-distribution-environment')
+  || !migrationRehearsal.includes('modules/icao-distribution-environment')
+) {
+  throw new Error('API release and migration rehearsal archives must include the local distribution module.');
+}
+for (const [name, dockerfile] of [
+  ['API', apiDockerfile],
+  ['Ops Web', opsDockerfile],
+  ['Ops API', opsApiDockerfile],
+]) {
+  if (!dockerfile.includes('COPY modules/icao-distribution-environment modules/icao-distribution-environment')) {
+    throw new Error(`${name} Docker build must materialize the root local dependency before pnpm install.`);
+  }
 }
 for (const requiredRehearsalContract of [
   'check-mainline-release.mjs',
