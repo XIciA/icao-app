@@ -139,7 +139,8 @@ load_postgres_password() {
   if [ "$postgres_password_loaded" = 0 ]; then
     POSTGRES_PASSWORD=$(docker exec supabase-db printenv POSTGRES_PASSWORD)
     test -n "$POSTGRES_PASSWORD"
-    export POSTGRES_PASSWORD
+    PGPASSWORD=$POSTGRES_PASSWORD
+    export POSTGRES_PASSWORD PGPASSWORD
     postgres_password_loaded=1
   fi
 }
@@ -195,7 +196,7 @@ cleanup_on_exit() {
   cleanup_failed=0
   drop_created_database >/dev/null 2>&1 || cleanup_failed=1
   cleanup_files || cleanup_failed=1
-  if [ "$postgres_password_loaded" = 1 ]; then unset POSTGRES_PASSWORD; fi
+  if [ "$postgres_password_loaded" = 1 ]; then unset POSTGRES_PASSWORD PGPASSWORD; fi
   if [ "$cleanup_failed" -ne 0 ]; then
     echo 'migration rehearsal cleanup failed; success evidence was not emitted' >&2
     exit 1
@@ -538,7 +539,7 @@ test "$device_digest_columns" = 0
 drop_created_database
 test "$database_created" = 0
 cleanup_files
-if [ "$postgres_password_loaded" = 1 ]; then unset POSTGRES_PASSWORD; fi
+if [ "$postgres_password_loaded" = 1 ]; then unset POSTGRES_PASSWORD PGPASSWORD; fi
 
 evidence=$evidence_dir/rehearsal-$source_id-$(date -u +%Y%m%dT%H%M%SZ).txt
 evidence_partial=$evidence.partial.$$
