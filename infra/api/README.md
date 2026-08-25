@@ -39,3 +39,22 @@
 
 这套单公钥流程用于 1.0.0 首次生产启用。正式客户端发布后的再次轮换必须先设计兼容旧客户端的
 多公钥/Key ID 过渡，不得直接替换常量和服务端私钥。
+## App Store Server 内部就绪与对账
+
+以下入口只允许在 API 容器内以 root 执行，不对公网开放。三个
+`APPLE_IAP_SERVER_*` 值必须来自 App Store Connect 的独立“App 内购买项目”密钥，不能复用
+Sign in with Apple 密钥；私钥只保存在受保护的运行时环境文件中。
+
+```sh
+# 默认只输出计划，不访问 Apple
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  test-notification --environment sandbox
+
+# 查询 Apple 并报告本地差异，但不修改数据库
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  reconcile --environment sandbox --transaction-id TRANSACTION_ID
+```
+
+发送测试通知必须增加 `--execute`，并按输出提供与环境一致的确认短语。对账写入必须增加 `--apply`
+及对应确认短语。Sandbox 与 Production 的确认短语不同；命令不会自动跨环境重试。对账结果只显示
+内部商品键，不输出 App Store 商品 ID、原始 JWS 或凭据。

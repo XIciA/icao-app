@@ -51,12 +51,38 @@ type CommerceServiceConfig = Partial<Pick<
   'appleIapBundleId' | 'contentCredentialSigningSecret'
 >>;
 
+export type AppleCommerceReconciliationReport = Readonly<{
+  accountId: string;
+  action:
+    | 'blocked_account_closed'
+    | 'create'
+    | 'local_newer'
+    | 'none'
+    | 'record_refund'
+    | 'refresh'
+    | 'refund'
+    | 'restore';
+  appleStatus: 'refunded' | 'verified';
+  applied: boolean;
+  environment: CommerceEnvironment;
+  localStatus: 'missing' | 'refunded' | 'revoked' | 'verified';
+  mismatch: boolean;
+  productKey: string;
+  transactionId: string;
+}>;
+
 function sameDate(left: Date, right: Date) {
   return left.getTime() === right.getTime();
 }
 
 function laterDate(left: Date, right: Date) {
   return left > right ? left : right;
+}
+
+function normalizeAppleOrderStatus(value: string | undefined) {
+  if (value === undefined) return 'missing' as const;
+  if (value === 'verified' || value === 'refunded' || value === 'revoked') return value;
+  throw new Error('apple_order_status_invalid');
 }
 
 @Injectable()
@@ -288,6 +314,195 @@ export class CommerceService {
         transactionId: verified.transactionId,
         entitlement,
       };
+    });
+  }
+
+  async reconcileAppleServerTransaction(
+    signedTransaction: string,
+    expectedEnvironment: CommerceEnvironment,
+    apply: boolean,
+    processedAt = new Date(),
+  ): Promise<AppleCommerceReconciliationReport> {
+    let verified: VerifiedAppleTransaction;
+    try {
+      verified = await this.appleVerifier.verifyTransaction(signedTransaction);
+    } catch (error) {
+      if (
+        isRetryableAppleVerificationError(error)
+        || (error instanceof Error && error.message === 'apple_commerce_not_configured')
+      ) throw new ServiceUnavailableException('apple_commerce_unavailable');
+      throw new BadRequestException('invalid_apple_transaction');
+    }
+    if (verified.environment !== expectedEnvironment) {
+      throw new BadRequestException('apple_transaction_environment_mismatch');
+    }
+    const accountId = verified.appAccountToken?.toLowerCase();
+    if (!accountId) throw new BadRequestException('apple_transaction_account_mismatch');
+    const product = this.validateAppleServerTransaction(verified, accountId, processedAt);
+    const appleStatus = verified.revocationDate ? 'refunded' as const : 'verified' as const;
+
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(
+          hashtextextended(${`apple-transaction:${expectedEnvironment}:${verified.transactionId}`}, 0)
+        )
+      `);
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))
+      `);
+      const [existingTransaction] = await transaction.select()
+        .from(appleTransactions)
+        .where(and(
+          eq(appleTransactions.environment, expectedEnvironment),
+          eq(appleTransactions.transactionId, verified.transactionId),
+        ))
+        .limit(1);
+      const [existingOrder] = existingTransaction
+        ? await transaction.select().from(commerceOrders)
+          .where(eq(commerceOrders.id, existingTransaction.orderId)).limit(1)
+        : [];
+      if (existingTransaction && !existingOrder) throw new Error('commerce_order_not_found');
+      if (existingTransaction) {
+        this.assertNotificationTransactionIdentity(
+          existingTransaction,
+          verified,
+          accountId,
+        );
+        if (
+          sameDate(existingTransaction.signedDate, verified.signedDate)
+          && existingTransaction.signedPayloadHash !== verified.signedPayloadHash
+        ) throw new ConflictException('apple_transaction_signed_version_conflict');
+      }
+
+      const localStatus = normalizeAppleOrderStatus(existingOrder?.status);
+      const accountIsActive = await this.isAccountActive(transaction, accountId);
+      let action: AppleCommerceReconciliationReport['action'];
+      if (!existingTransaction && !accountIsActive) {
+        action = 'blocked_account_closed';
+      } else if (!existingTransaction) {
+        action = appleStatus === 'refunded' ? 'record_refund' : 'create';
+      } else if (verified.signedDate < existingTransaction.signedDate) {
+        action = 'local_newer';
+      } else if (appleStatus === 'refunded' && localStatus === 'verified') {
+        action = 'refund';
+      } else if (
+        appleStatus === 'verified'
+        && (localStatus === 'refunded' || localStatus === 'revoked')
+      ) {
+        action = accountIsActive ? 'restore' : 'blocked_account_closed';
+      } else if (verified.signedDate > existingTransaction.signedDate) {
+        action = 'refresh';
+      } else {
+        action = 'none';
+      }
+
+      const baseReport = {
+        accountId,
+        action,
+        appleStatus,
+        applied: false,
+        environment: expectedEnvironment,
+        localStatus,
+        mismatch: action !== 'none',
+        productKey: product.productKey,
+        transactionId: verified.transactionId,
+      } satisfies AppleCommerceReconciliationReport;
+      if (!apply || ['blocked_account_closed', 'local_newer', 'none'].includes(action)) {
+        return baseReport;
+      }
+
+      if (!existingTransaction) {
+        const cycleKey = appleStatus === 'refunded'
+          ? `reconciliation:${expectedEnvironment}:${verified.transactionId}:${verified.signedDate.getTime()}`
+          : null;
+        const [order] = await transaction.insert(commerceOrders).values({
+          environment: expectedEnvironment,
+          channel: 'apple_app_store',
+          externalOrderId: verified.transactionId,
+          accountId,
+          originalAccountId: accountId,
+          productKey: product.productKey,
+          externalProductId: verified.productId,
+          durationDays: product.durationDays,
+          aiPointRuleVersion: product.aiPointRuleVersion,
+          membershipGrantSource: 'purchase_discovery',
+          membershipEffectiveAt: verified.purchaseDate,
+          membershipContributionMs: product.durationDays * DAY_MS,
+          status: appleStatus,
+          purchasedAt: verified.purchaseDate,
+          revokedAt: verified.revocationDate,
+          revocationCycleKey: cycleKey,
+          createdAt: processedAt,
+          updatedAt: processedAt,
+        }).returning({ id: commerceOrders.id });
+        if (!order) throw new Error('commerce_order_insert_failed');
+        await transaction.insert(appleTransactions).values({
+          environment: expectedEnvironment,
+          transactionId: verified.transactionId,
+          originalTransactionId: verified.originalTransactionId,
+          orderId: order.id,
+          accountId,
+          appAccountToken: accountId,
+          productId: verified.productId,
+          bundleId: verified.bundleId,
+          storefront: verified.storefront,
+          currency: verified.currency,
+          priceMilliunits: verified.priceMilliunits,
+          purchaseDate: verified.purchaseDate,
+          signedDate: verified.signedDate,
+          revocationDate: verified.revocationDate,
+          revocationReason: verified.revocationReason,
+          signedPayloadHash: verified.signedPayloadHash,
+          decodedPayload: verified.decodedPayload,
+          createdAt: processedAt,
+          updatedAt: processedAt,
+        });
+        if (appleStatus === 'verified') {
+          await this.rebuildMembership(transaction, accountId, expectedEnvironment, processedAt);
+        }
+        return { ...baseReport, applied: true };
+      }
+
+      if (verified.signedDate > existingTransaction.signedDate) {
+        await transaction.update(appleTransactions).set({
+          signedDate: verified.signedDate,
+          signedPayloadHash: verified.signedPayloadHash,
+          decodedPayload: verified.decodedPayload,
+          storefront: verified.storefront,
+          currency: verified.currency,
+          priceMilliunits: verified.priceMilliunits,
+          revocationDate: verified.revocationDate ?? null,
+          revocationReason: verified.revocationReason ?? null,
+          updatedAt: processedAt,
+        }).where(eq(appleTransactions.id, existingTransaction.id));
+      }
+      if (action === 'refund') {
+        await this.revokeAppleOrder(transaction, {
+          accountId,
+          cycleKey: `reconciliation:${expectedEnvironment}:${verified.transactionId}:${verified.signedDate.getTime()}`,
+          environment: expectedEnvironment,
+          orderId: existingTransaction.orderId,
+          processedAt,
+          revocationReason: verified.revocationReason,
+          revokedAt: verified.revocationDate ?? verified.signedDate,
+          targetStatus: 'refunded',
+          transactionId: verified.transactionId,
+        });
+      } else if (action === 'restore') {
+        await this.restoreAppleOrder(transaction, {
+          accountId,
+          environment: expectedEnvironment,
+          orderId: existingTransaction.orderId,
+          processedAt,
+          transactionId: verified.transactionId,
+        });
+      } else if (action === 'refresh' && appleStatus === 'refunded') {
+        await transaction.update(commerceOrders).set({
+          revokedAt: verified.revocationDate,
+          updatedAt: processedAt,
+        }).where(eq(commerceOrders.id, existingTransaction.orderId));
+      }
+      return { ...baseReport, applied: true };
     });
   }
 
@@ -546,10 +761,13 @@ export class CommerceService {
         ) {
           await this.revokeAppleOrder(transaction, {
             accountId,
+            cycleKey: `notification:${notification.notificationUuid}`,
             environment,
-            notification,
             orderId,
             processedAt,
+            revocationReason: notification.transaction?.revocationReason,
+            revokedAt: notification.transaction?.revocationDate ?? notification.signedDate,
+            targetStatus: notification.notificationType === 'REVOKE' ? 'revoked' : 'refunded',
             transactionId: verified.transactionId,
           });
         }
@@ -587,6 +805,33 @@ export class CommerceService {
     }
     if (transaction.revocationDate) {
       throw new BadRequestException('apple_transaction_revoked');
+    }
+    if (transaction.productType !== 'non_renewing_subscription') {
+      throw new BadRequestException('apple_transaction_type_invalid');
+    }
+    if (transaction.quantity !== 1) {
+      throw new BadRequestException('apple_transaction_quantity_invalid');
+    }
+    try {
+      return requireMembershipProductByAppleId(transaction.productId);
+    } catch {
+      throw new BadRequestException('apple_transaction_product_unsupported');
+    }
+  }
+
+  private validateAppleServerTransaction(
+    transaction: VerifiedAppleTransaction,
+    accountId: string,
+    processedAt: Date,
+  ) {
+    if (transaction.bundleId !== this.config.appleIapBundleId) {
+      throw new BadRequestException('apple_transaction_bundle_mismatch');
+    }
+    if (!transaction.appAccountToken || transaction.appAccountToken.toLowerCase() !== accountId) {
+      throw new BadRequestException('apple_transaction_account_mismatch');
+    }
+    if (transaction.purchaseDate > processedAt) {
+      throw new BadRequestException('apple_transaction_purchase_date_invalid');
     }
     if (transaction.productType !== 'non_renewing_subscription') {
       throw new BadRequestException('apple_transaction_type_invalid');
@@ -729,10 +974,13 @@ export class CommerceService {
     transaction: CommerceTransaction,
     input: {
       accountId: string;
+      cycleKey: string;
       environment: CommerceEnvironment;
-      notification: VerifiedAppleNotification;
       orderId: string;
       processedAt: Date;
+      revocationReason?: number;
+      revokedAt: Date;
+      targetStatus: 'refunded' | 'revoked';
       transactionId: string;
     },
   ) {
@@ -741,22 +989,16 @@ export class CommerceService {
       .where(eq(commerceOrders.id, input.orderId))
       .limit(1);
     if (!order) throw new Error('commerce_order_not_found');
-    const targetStatus = input.notification.notificationType === 'REVOKE'
-      ? 'revoked' as const
-      : 'refunded' as const;
-    const revokedAt = input.notification.transaction?.revocationDate
-      ?? input.notification.signedDate;
     if (order.status === 'verified') {
-      const cycleKey = `notification:${input.notification.notificationUuid}`;
       await transaction.update(commerceOrders).set({
-        status: targetStatus,
-        revokedAt,
-        revocationCycleKey: cycleKey,
+        status: input.targetStatus,
+        revokedAt: input.revokedAt,
+        revocationCycleKey: input.cycleKey,
         updatedAt: input.processedAt,
       }).where(eq(commerceOrders.id, input.orderId));
       await transaction.update(appleTransactions).set({
-        revocationDate: revokedAt,
-        revocationReason: input.notification.transaction?.revocationReason,
+        revocationDate: input.revokedAt,
+        revocationReason: input.revocationReason,
         updatedAt: input.processedAt,
       }).where(and(
         eq(appleTransactions.environment, input.environment),
@@ -764,7 +1006,7 @@ export class CommerceService {
       ));
       await this.benefits.revokeOrderBenefits(transaction, {
         accountId: input.accountId,
-        cycleKey,
+        cycleKey: input.cycleKey,
         environment: input.environment,
         orderId: input.orderId,
         // The Apple revocation can predate receipt. Local reservation and
@@ -778,7 +1020,7 @@ export class CommerceService {
         input.environment,
         input.processedAt,
       );
-    } else if (targetStatus === 'revoked' && order.status !== 'revoked') {
+    } else if (input.targetStatus === 'revoked' && order.status !== 'revoked') {
       await transaction.update(commerceOrders).set({
         status: 'revoked',
         updatedAt: input.processedAt,

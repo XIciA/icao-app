@@ -170,6 +170,16 @@ const opsDockerfile = await readFile('infra/ops/Dockerfile', 'utf8');
 const opsApiDockerfile = await readFile('infra/ops/Dockerfile.api', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
+const apiEnvironmentExample = await readFile('services/api/.env.example', 'utf8');
+const appleServerApiClient = await readFile(
+  'services/api/src/commerce/apple-store-server-api-client.ts',
+  'utf8',
+);
+const appleServerApiService = await readFile(
+  'services/api/src/commerce/apple-store-server-api.service.ts',
+  'utf8',
+);
+const appleIapServerCli = await readFile('services/api/src/apple-iap-server-cli.ts', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
   'services/api/src/config.ts',
   'services/api/src/app.module.ts',
@@ -921,6 +931,29 @@ if (
   || apiConfigPreflight.includes('tencentCloudSecret')
 ) {
   throw new Error('The production AI configuration preflight is incomplete or unsafe.');
+}
+for (const appleIapServerCredential of [
+  'APPLE_IAP_SERVER_ISSUER_ID',
+  'APPLE_IAP_SERVER_KEY_ID',
+  'APPLE_IAP_SERVER_PRIVATE_KEY',
+]) {
+  if (
+    !apiConfig.includes(appleIapServerCredential)
+    || !apiEnvironmentExample.includes(appleIapServerCredential)
+  ) throw new Error(`The App Store Server API credential gate is missing: ${appleIapServerCredential}`);
+}
+if (
+  !apiConfig.includes('APPLE_IAP_SERVER_CREDENTIAL_REUSE')
+  || !apiConfigPreflight.includes('apple-app-store-server')
+  || !appleServerApiClient.includes('Environment.PRODUCTION')
+  || !appleServerApiClient.includes('Environment.SANDBOX')
+  || !appleServerApiService.includes('ProductType.NON_RENEWABLE')
+  || !appleServerApiService.includes('GetTransactionHistoryVersion.V2')
+  || !appleIapServerCli.includes('apple_iap_server_cli_requires_root')
+  || !appleIapServerCli.includes('REQUEST_APPLE_TEST_NOTIFICATION_PRODUCTION')
+  || !appleIapServerCli.includes('APPLY_APPLE_RECONCILIATION_PRODUCTION')
+) {
+  throw new Error('The App Store Server API reconciliation or readiness gate is incomplete.');
 }
 for (const forbiddenEvidencePath of ['import-ai-live', 'function deviceChecks()']) {
   if (criticalReleaseEvidence.includes(forbiddenEvidencePath)) {
