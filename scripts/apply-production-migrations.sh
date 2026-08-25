@@ -13,7 +13,22 @@ if [ "$SOURCE_GIT_ROOT" != "$SOURCE_ROOT" ]; then
   echo 'ICAO_PRODUCTION_MIGRATION_SOURCE_ROOT must be the root of a Git worktree.' >&2
   exit 1
 fi
-node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
+
+PRINT_CONFIRMATION=0
+case "${1:-}" in
+  --print-confirmation)
+    if [ "$#" -ne 1 ]; then echo 'usage: apply-production-migrations.sh --print-confirmation' >&2; exit 2; fi
+    PRINT_CONFIRMATION=1
+    ;;
+  '') ;;
+  *) echo 'usage: apply-production-migrations.sh [--print-confirmation]' >&2; exit 2 ;;
+esac
+
+if [ "$PRINT_CONFIRMATION" = 1 ]; then
+  node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT" >/dev/null
+else
+  node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
+fi
 
 SOURCE_SHA=$(git -C "$SOURCE_ROOT" rev-parse HEAD)
 SOURCE_ID=$(printf '%.12s' "$SOURCE_SHA")
@@ -21,15 +36,10 @@ EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:18:0}
 EXPECTED_POST_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-33:0:0}
 CONTRACT_TOOL=$SOURCE_ROOT/tools/production-migration-apply-contract.mjs
 
-case "${1:-}" in
-  --print-confirmation)
-    if [ "$#" -ne 1 ]; then echo 'usage: apply-production-migrations.sh --print-confirmation' >&2; exit 2; fi
-    node "$CONTRACT_TOOL" print-confirmation "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN"
-    exit 0
-    ;;
-  '') ;;
-  *) echo 'usage: apply-production-migrations.sh [--print-confirmation]' >&2; exit 2 ;;
-esac
+if [ "$PRINT_CONFIRMATION" = 1 ]; then
+  node "$CONTRACT_TOOL" print-confirmation "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN"
+  exit 0
+fi
 
 CONFIRMATION=${ICAO_PRODUCTION_MIGRATION_CONFIRM:-}
 node "$CONTRACT_TOOL" confirm \
@@ -128,15 +138,51 @@ chmod 600 "$ARCHIVE" "$ARCHIVE.sha256" "$REHEARSAL_LOG"
 
 ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
   "$REMOTE_UPLOAD" "$REMOTE_CHECKSUM" <<'REMOTE_PREPARE'
+# BEGIN production-migration-remote-prepare
 set -eu
 umask 077
 upload=$1
 checksum=$2
 root=/opt/icao/runtime/production-migrations
-case "$upload:$checksum" in
-  "$root"/uploads/source-*.tar.gz:"$root"/uploads/source-*.tar.gz.sha256) ;;
-  *) echo 'production migration upload path escaped its protected root' >&2; exit 1 ;;
+# BEGIN production-migration-upload-name-validation
+upload_identity=${upload#"$root"/uploads/source-}
+if [ "$upload_identity" = "$upload" ]; then
+  echo 'production migration upload path escaped its protected root' >&2
+  exit 1
+fi
+case "$upload_identity" in
+  *.tar.gz) upload_identity=${upload_identity%.tar.gz} ;;
+  *) echo 'production migration upload name is invalid' >&2; exit 1 ;;
 esac
+source_id=${upload_identity%%-*}
+upload_token=${upload_identity#*-}
+case "$source_id" in
+  ''|*[!0123456789abcdef]*) echo 'production migration source id is invalid' >&2; exit 1 ;;
+esac
+if [ "${#source_id}" -ne 12 ]; then
+  echo 'production migration source id is invalid' >&2
+  exit 1
+fi
+case "$upload_token" in
+  ''|*[!0123456789abcdef]*) echo 'production migration upload token is invalid' >&2; exit 1 ;;
+esac
+if [ "${#upload_token}" -ne 32 ]; then
+  echo 'production migration upload token is invalid' >&2
+  exit 1
+fi
+expected_upload=$root/uploads/source-$source_id-$upload_token.tar.gz
+expected_checksum=$expected_upload.sha256
+if [ "$upload" != "$expected_upload" ] || [ "$checksum" != "$expected_checksum" ]; then
+  echo 'production migration upload or checksum path escaped its protected root' >&2
+  exit 1
+fi
+case "$upload:$checksum" in
+  *'/../'*|*'/./'*|*'//'*)
+    echo 'production migration upload or checksum path is not canonical' >&2
+    exit 1
+    ;;
+esac
+# END production-migration-upload-name-validation
 for directory in "$root" "$root/uploads" "$root/evidence"; do
   if [ -e "$directory" ] || [ -L "$directory" ]; then
     test -d "$directory"
@@ -146,11 +192,6 @@ for directory in "$root" "$root/uploads" "$root/evidence"; do
     install -d -m 700 "$directory"
   fi
 done
-case "$(basename "$upload")" in
-  source-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9]*.tar.gz) ;;
-  *) echo 'production migration upload name is invalid' >&2; exit 1 ;;
-esac
-case "$(basename "$upload")" in *[!a-f0-9.-]*) echo 'production migration upload name has unsafe characters' >&2; exit 1 ;; esac
 test ! -e "$upload" && test ! -L "$upload"
 test ! -e "$checksum" && test ! -L "$checksum"
 created_upload=0
@@ -172,6 +213,7 @@ created_checksum=1
 set +C
 chmod 600 "$upload" "$checksum"
 trap - EXIT HUP INT TERM
+# END production-migration-remote-prepare
 REMOTE_PREPARE
 REMOTE_CLEANUP_ARMED=1
 scp -i "$SSH_KEY" -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_UPLOAD"
