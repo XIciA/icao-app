@@ -136,13 +136,62 @@ command -v flock >/dev/null 2>&1 || {
   echo 'The API release lock dependency is missing.' >&2
   exit 1
 }
+[ -d /run/lock ] && [ ! -L /run/lock ] \
+  && [ "$(stat -Lc '%u' /run/lock)" = "$expected_owner" ] || {
+  echo 'The API release lock parent must be a real root-owned directory.' >&2
+  exit 1
+}
+release_lock_parent_mode=$(stat -Lc '%a' /run/lock)
+case "$release_lock_parent_mode" in
+  ''|*[!0-7]*) echo 'The API release lock parent mode is invalid.' >&2; exit 1 ;;
+esac
+release_lock_parent_mode_value=$((0$release_lock_parent_mode))
+if [ $((release_lock_parent_mode_value & 0022)) -ne 0 ] \
+  && [ $((release_lock_parent_mode_value & 01000)) -eq 0 ]; then
+  echo 'The API release lock parent is writable without sticky-bit protection.' >&2
+  exit 1
+fi
 [ ! -L "$release_lock" ] || {
   echo 'The API release lock must not be a symbolic link.' >&2
   exit 1
 }
-exec 9>"$release_lock"
+if [ ! -e "$release_lock" ]; then
+  if ! (umask 077; set -C; : > "$release_lock") 2>/dev/null; then
+    echo 'The API release lock could not be created exclusively.' >&2
+    exit 1
+  fi
+fi
+[ -f "$release_lock" ] && [ ! -L "$release_lock" ] \
+  && [ "$(stat -Lc '%u' "$release_lock")" = "$expected_owner" ] \
+  && [ "$(stat -Lc '%a' "$release_lock")" = 600 ] || {
+  echo 'The API release lock path is not a root-owned 0600 regular file.' >&2
+  exit 1
+}
+exec 9>>"$release_lock"
+release_lock_fd=/proc/$$/fd/9
+[ -e "$release_lock_fd" ] || {
+  echo 'The opened API release lock descriptor is unavailable.' >&2
+  exit 1
+}
+validate_release_lock() {
+  [ -f "$release_lock" ] && [ ! -L "$release_lock" ] || return 1
+  [ "$(stat -Lc '%d:%i' "$release_lock")" = "$(stat -Lc '%d:%i' "$release_lock_fd")" ] \
+    || return 1
+  [ "$(stat -Lc '%u' "$release_lock")" = "$expected_owner" ] \
+    && [ "$(stat -Lc '%u' "$release_lock_fd")" = "$expected_owner" ] || return 1
+  [ "$(stat -Lc '%a' "$release_lock")" = 600 ] \
+    && [ "$(stat -Lc '%a' "$release_lock_fd")" = 600 ] || return 1
+}
+validate_release_lock || {
+  echo 'The opened API release lock failed inode, owner, mode, or file-type validation.' >&2
+  exit 1
+}
 flock -n 9 || {
   echo 'Another API release or content-key provisioning operation is active.' >&2
+  exit 1
+}
+validate_release_lock || {
+  echo 'The acquired API release lock changed after it was opened.' >&2
   exit 1
 }
 
@@ -153,11 +202,7 @@ ICAO_CONTENT_KEY_PROVISION_LIBRARY=1
 . "$source_dir/infra/api/content-signing-key-provision.sh"
 unset ICAO_CONTENT_KEY_PROVISION_LIBRARY
 content_key_cli_boundary "$release_root" "$expected_owner" "$release_lock"
-[ -f "$release_lock" ] && [ ! -L "$release_lock" ] \
-  && [ "$(content_key_read_uid "$release_lock")" = "$expected_owner" ] || {
-  echo 'The acquired API release lock failed owner or file-type revalidation.' >&2
-  exit 1
-}
+content_key_validate_open_lock "$release_lock" "$expected_owner" 9 || exit 1
 content_key_validate_stage \
   "$release_root" "$release_id" "$content_key_upload_token" "$expected_owner" pem absent
 content_key_validate_runtime_env "$runtime_env" "$expected_owner"
@@ -183,7 +228,8 @@ cleanup_release() {
       "$rollback_image" "$runtime_env" "$backup_dir/runtime-env-before" "$expected_owner" \
       "$runtime_compose" "$backup_dir/docker-compose-before.yml" \
       /opt/icao/runtime/source "$backup_dir/source-directory-before" \
-      /opt/icao/runtime/source.next "$running_release_id" "$runtime_source_existed"; then
+      /opt/icao/runtime/source.next "$running_release_id" "$runtime_source_existed" \
+      "$running_image"; then
       cutover_started=0
       runtime_env_update_armed=0
     else
@@ -220,8 +266,19 @@ else
   exit 1
 fi
 running_image=$(docker inspect -f '{{.Image}}' icao-api)
+content_key_validate_image_id "$running_image" || exit 1
 docker image inspect "$running_image" >/dev/null
 docker tag "$running_image" "$rollback_image"
+if ! (set -C; printf '%s\n' "$running_image" > "$backup_dir/running-image-id-before") 2>/dev/null; then
+  echo 'The running API image identity could not be saved without overwriting an existing file.' >&2
+  exit 1
+fi
+chmod 600 "$backup_dir/running-image-id-before"
+content_key_validate_private_file "$backup_dir/running-image-id-before" "$expected_owner"
+[ "$(cat "$backup_dir/running-image-id-before")" = "$running_image" ] || {
+  echo 'The saved running API image identity does not match the inspected container image.' >&2
+  exit 1
+}
 running_release_id=$(docker exec icao-api sh -lc 'printf "%s" "${API_RELEASE_ID:-unversioned}"')
 case "$running_release_id" in
   ''|*[!A-Za-z0-9._-]*)
@@ -302,6 +359,11 @@ cp -a "$source_dir" /opt/icao/runtime/source.next
 if [ -d /opt/icao/runtime/source ]; then mv /opt/icao/runtime/source "$backup_dir/source-directory-before"; fi
 mv /opt/icao/runtime/source.next /opt/icao/runtime/source
 curl -fsS http://127.0.0.1:3101/health/ready
+if ! content_key_cleanup_stage \
+  "$release_root" "$release_id" "$content_key_upload_token" "$expected_owner"; then
+  echo 'Failed to remove the staged content signing key before committing the API release.' >&2
+  exit 1
+fi
 release_succeeded=1
 REMOTE
 

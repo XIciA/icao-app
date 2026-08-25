@@ -551,6 +551,8 @@ if (new Set(archiveHashes).size !== 1) {
 if (
   !apiRelease.includes('ICAO_API_BUILD_NPM_REGISTRY')
   || !apiRelease.includes('--build-arg "ICAO_NPM_REGISTRY=$build_npm_registry"')
+  || !releaseCommon.includes('*[!A-Za-z0-9:/._~%+-]*')
+  || !releaseCommon.includes('cannot be passed to a remote release command')
   || !apiDockerfile.includes('ARG ICAO_NPM_REGISTRY=')
   || !apiDockerfile.includes('COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY"')
   || !apiDockerfile.includes('pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile')
@@ -772,6 +774,9 @@ for (const requiredProvisioningContract of [
   'private_file_mode_must_be_0600',
   'lock_file_symlink_rejected',
   'lock_file_wrong_owner',
+  'lock_file_mode_must_be_0600',
+  'lock_file_opened_inode_mismatch',
+  'lock_parent_unsafe_mode',
   'cleanup_rejected_symlink',
   'runtime_env_invalid_or_duplicate_entry',
   'content_key_prepare_candidate_env()',
@@ -781,6 +786,7 @@ for (const requiredProvisioningContract of [
   'cmp -s "$source_file" "$target_file"',
   'mv "$temporary" "$target_file"',
   'rollback_release_identity_mismatch',
+  'rollback_image_identity_mismatch',
 ]) {
   if (!contentSigningKeyProvision.includes(requiredProvisioningContract)) {
     throw new Error(`The remote content signing-key provisioning boundary is incomplete: ${requiredProvisioningContract}`);
@@ -792,6 +798,10 @@ for (const requiredProvisioningTest of [
   'candidate preflight failure leaves the runtime environment byte-identical and removes secrets',
   'post-cutover rollback restores image, env, compose, source, and verifies old identity',
   'rollback command failure remains a non-zero high-priority failure',
+  'release URLs reject whitespace, CRLF, and remote-shell metacharacters',
+  'release locks preserve existing bytes and reject links, unsafe modes, and inode mismatch',
+  'staged-key cleanup failure remains before the release commit and therefore arms rollback',
+  'rollback rejects a recreated container whose image digest differs from the saved digest',
   'API_RELEASE_ID=old\\r\\n',
   'DATABASE_URL=one\\nDATABASE_URL=two',
 ]) {
@@ -808,6 +818,11 @@ const candidatePreflightIndex = apiRelease.indexOf('config-preflight.js', candid
 const candidateMigrationIndex = apiRelease.indexOf('migration-plan.mjs --require-current', candidatePreflightIndex);
 const runtimeInstallIndex = apiRelease.indexOf('content_key_install_candidate_env', candidateMigrationIndex);
 const cutoverIndex = apiRelease.indexOf('docker compose -f "$runtime_compose" up -d', runtimeInstallIndex);
+const committedStageCleanupIndex = apiRelease.indexOf(
+  'Failed to remove the staged content signing key before committing the API release.',
+  cutoverIndex,
+);
+const releaseSucceededIndex = apiRelease.indexOf('release_succeeded=1', committedStageCleanupIndex);
 if (
   keyStageIndex < 0
   || keyUploadIndex <= keyStageIndex
@@ -818,11 +833,18 @@ if (
   || candidateMigrationIndex <= candidatePreflightIndex
   || runtimeInstallIndex <= candidateMigrationIndex
   || cutoverIndex <= runtimeInstallIndex
+  || committedStageCleanupIndex <= cutoverIndex
+  || releaseSucceededIndex <= committedStageCleanupIndex
   || !apiRelease.includes('REMOTE_CONTENT_KEY_STAGE_ARMED=1')
   || !apiRelease.includes('trap cleanup_remote_content_key_stage EXIT')
   || !apiRelease.includes('cutover_started=1')
   || !apiRelease.includes('content_key_rollback_release')
   || !apiRelease.includes('CRITICAL: the failed API cutover could not be fully rolled back and verified.')
+  || !apiRelease.includes('exec 9>>"$release_lock"')
+  || apiRelease.includes('exec 9>"$release_lock"')
+  || !apiRelease.includes("stat -Lc '%d:%i' \"$release_lock\"")
+  || !apiRelease.includes('running-image-id-before')
+  || !apiRelease.includes("docker inspect -f '{{.Image}}' icao-api")
   || apiRelease.includes('-e "CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY=')
 ) {
   throw new Error('The API release must securely stage, preflight, install, clean, and transactionally roll back its content signing key.');

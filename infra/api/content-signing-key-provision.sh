@@ -16,6 +16,14 @@ content_key_read_mode() {
   stat -c %a "$1" 2>/dev/null || stat -f %Lp "$1"
 }
 
+content_key_read_identity() {
+  stat -Lc '%d:%i' "$1" 2>/dev/null || stat -f '%d:%i' "$1"
+}
+
+content_key_read_inode() {
+  stat -Lc '%i' "$1" 2>/dev/null || stat -f '%i' "$1"
+}
+
 content_key_validate_owner() {
   case "$1" in
     ''|*[!0-9]*) content_key_fail invalid_expected_owner; return 1 ;;
@@ -470,6 +478,21 @@ content_key_cleanup_stage() {
   rmdir "$CONTENT_KEY_UPLOAD_ROOT" 2>/dev/null || true
 }
 
+content_key_validate_image_id() {
+  image_id=$1
+  case "$image_id" in
+    sha256:*) image_digest=${image_id#sha256:} ;;
+    *) content_key_fail rollback_image_id_invalid; return 1 ;;
+  esac
+  case "$image_digest" in
+    ''|*[!a-f0-9]*) content_key_fail rollback_image_id_invalid; return 1 ;;
+  esac
+  if [ "${#image_digest}" -ne 64 ]; then
+    content_key_fail rollback_image_id_invalid
+    return 1
+  fi
+}
+
 content_key_rollback_release() {
   rollback_image=$1
   runtime_env=$2
@@ -482,12 +505,14 @@ content_key_rollback_release() {
   source_next=$9
   expected_release_id=${10}
   runtime_source_existed=${11}
+  expected_image_id=${12}
   rollback_failed=0
 
   case "$runtime_source_existed" in
     0|1) ;;
     *) content_key_fail rollback_source_state_invalid; return 1 ;;
   esac
+  content_key_validate_image_id "$expected_image_id" || return 1
   backup_directory=$(dirname "$backup_env")
   content_key_validate_backup_directory "$backup_directory" "$expected_owner" || return 1
   if [ "$(dirname "$backup_compose")" != "$backup_directory" ]; then
@@ -532,6 +557,11 @@ content_key_rollback_release() {
     content_key_fail rollback_container_restart_failed || true
     rollback_failed=1
   fi
+  restored_image_id=$(docker inspect -f '{{.Image}}' icao-api 2>/dev/null || true)
+  if [ "$restored_image_id" != "$expected_image_id" ]; then
+    content_key_fail rollback_image_identity_mismatch || true
+    rollback_failed=1
+  fi
   rollback_ready=0
   rollback_attempt=1
   while [ "$rollback_attempt" -le 30 ]; do
@@ -557,18 +587,82 @@ content_key_rollback_release() {
   [ "$rollback_failed" = 0 ] || return 1
 }
 
-content_key_acquire_lock() {
-  lock_file=$1
-  expected_owner=$2
-  case "$lock_file" in
-    /*) ;;
-    *) content_key_fail lock_file_must_be_absolute; return 1 ;;
-  esac
-  if [ -L "$lock_file" ]; then
-    content_key_fail lock_file_symlink_rejected
+content_key_lock_fd_path() {
+  lock_fd=$1
+  if [ -e "/proc/$$/fd/$lock_fd" ]; then
+    printf '%s\n' "/proc/$$/fd/$lock_fd"
+  elif [ -e "/dev/fd/$lock_fd" ]; then
+    printf '%s\n' "/dev/fd/$lock_fd"
+  else
+    content_key_fail lock_file_descriptor_unavailable
     return 1
   fi
-  exec 9>"$lock_file" || return 1
+}
+
+content_key_validate_open_lock() {
+  lock_file=$1
+  expected_owner=$2
+  lock_fd=$3
+  if [ ! -f "$lock_file" ] || [ -L "$lock_file" ]; then
+    content_key_fail lock_file_not_regular
+    return 1
+  fi
+  lock_fd_path=$(content_key_lock_fd_path "$lock_fd") || return 1
+  case "$lock_fd_path" in
+    /proc/*)
+      lock_path_identity=$(content_key_read_identity "$lock_file") || return 1
+      lock_fd_identity=$(content_key_read_identity "$lock_fd_path") || return 1
+      ;;
+    /dev/fd/*)
+      # macOS exposes an open descriptor through fdesc with a synthetic device
+      # number, while retaining the underlying inode, owner, and mode.
+      lock_path_identity=$(content_key_read_inode "$lock_file") || return 1
+      lock_fd_identity=$(content_key_read_inode "$lock_fd_path") || return 1
+      ;;
+    *) content_key_fail lock_file_descriptor_unavailable; return 1 ;;
+  esac
+  if [ "$lock_path_identity" != "$lock_fd_identity" ]; then
+    content_key_fail lock_file_opened_inode_mismatch
+    return 1
+  fi
+  if [ "$(content_key_read_uid "$lock_file")" != "$expected_owner" ] \
+    || [ "$(content_key_read_uid "$lock_fd_path")" != "$expected_owner" ]; then
+    content_key_fail lock_file_wrong_owner
+    return 1
+  fi
+  if [ "$(content_key_read_mode "$lock_file")" != 600 ] \
+    || [ "$(content_key_read_mode "$lock_fd_path")" != 600 ]; then
+    content_key_fail lock_file_mode_must_be_0600
+    return 1
+  fi
+}
+
+content_key_validate_lock_parent() {
+  lock_parent=$1
+  expected_owner=$2
+  if [ ! -d "$lock_parent" ] || [ -L "$lock_parent" ]; then
+    content_key_fail lock_parent_not_real_directory
+    return 1
+  fi
+  if [ "$(content_key_read_uid "$lock_parent")" != "$expected_owner" ]; then
+    content_key_fail lock_parent_wrong_owner
+    return 1
+  fi
+  lock_parent_mode=$(content_key_read_mode "$lock_parent") || return 1
+  case "$lock_parent_mode" in
+    ''|*[!0-7]*) content_key_fail lock_parent_unsafe_mode; return 1 ;;
+  esac
+  lock_parent_mode_value=$((0$lock_parent_mode))
+  if [ $((lock_parent_mode_value & 0022)) -ne 0 ] \
+    && [ $((lock_parent_mode_value & 01000)) -eq 0 ]; then
+    content_key_fail lock_parent_unsafe_mode
+    return 1
+  fi
+}
+
+content_key_validate_lock_path() {
+  lock_file=$1
+  expected_owner=$2
   if [ ! -f "$lock_file" ] || [ -L "$lock_file" ]; then
     content_key_fail lock_file_not_regular
     return 1
@@ -577,10 +671,38 @@ content_key_acquire_lock() {
     content_key_fail lock_file_wrong_owner
     return 1
   fi
+  if [ "$(content_key_read_mode "$lock_file")" != 600 ]; then
+    content_key_fail lock_file_mode_must_be_0600
+    return 1
+  fi
+}
+
+content_key_acquire_lock() {
+  lock_file=$1
+  expected_owner=$2
+  case "$lock_file" in
+    /*) ;;
+    *) content_key_fail lock_file_must_be_absolute; return 1 ;;
+  esac
+  content_key_validate_lock_parent "$(dirname "$lock_file")" "$expected_owner" || return 1
+  if [ -L "$lock_file" ]; then
+    content_key_fail lock_file_symlink_rejected
+    return 1
+  fi
+  if [ ! -e "$lock_file" ]; then
+    if ! (umask 077; set -C; : > "$lock_file") 2>/dev/null; then
+      content_key_fail lock_file_create_failed
+      return 1
+    fi
+  fi
+  content_key_validate_lock_path "$lock_file" "$expected_owner" || return 1
+  exec 9>>"$lock_file" || return 1
+  content_key_validate_open_lock "$lock_file" "$expected_owner" 9 || return 1
   if ! flock -n 9; then
     content_key_fail release_lock_busy
     return 1
   fi
+  content_key_validate_open_lock "$lock_file" "$expected_owner" 9 || return 1
 }
 
 content_key_cli_boundary() {
