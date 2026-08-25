@@ -9,11 +9,11 @@ content_key_fail() {
 }
 
 content_key_read_uid() {
-  stat -c %u "$1" 2>/dev/null || stat -f %u "$1"
+  stat -Lc %u "$1" 2>/dev/null || stat -f %u "$1"
 }
 
 content_key_read_mode() {
-  stat -c %a "$1" 2>/dev/null || stat -f %Lp "$1"
+  stat -Lc %a "$1" 2>/dev/null || stat -f %Lp "$1"
 }
 
 content_key_read_identity() {
