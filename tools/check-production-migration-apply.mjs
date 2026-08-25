@@ -1,10 +1,15 @@
 import { readFile } from 'node:fs/promises';
 
+import {
+  PUBLIC_TABLE_ACCESS_CLASSIFICATION,
+  SERVER_ONLY_PUBLIC_TABLES,
+} from '../services/api/scripts/production-schema-contract-data.mjs';
+
 const [
   applySource,
   migrateSource,
   rehearsalSource,
-  schemaContractDataSource,
+  databaseSchemaSource,
   schemaVerifierSource,
   apiReleaseSource,
   opsReleaseSource,
@@ -14,7 +19,7 @@ const [
   readFile('scripts/apply-production-migrations.sh', 'utf8'),
   readFile('services/api/scripts/migrate.mjs', 'utf8'),
   readFile('scripts/rehearse-production-migrations.sh', 'utf8'),
-  readFile('services/api/scripts/production-schema-contract-data.mjs', 'utf8'),
+  readFile('services/api/src/database/schema.ts', 'utf8'),
   readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8'),
   readFile('scripts/deploy-api-release.sh', 'utf8'),
   readFile('scripts/deploy-ops-release.sh', 'utf8'),
@@ -58,17 +63,17 @@ for (const contract of [
   'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan"',
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
-  'business_rows_preserved=1',
-  'auth_users_preserved=1',
-  'business_rows_preservation_check=monotonic_non_decrease_not_content_fingerprint',
-  'auth_users_preservation_check=monotonic_non_decrease_not_content_fingerprint',
+  'business_row_count_observation=non_authoritative_concurrent_activity_allowed',
+  'auth_user_count_observation=non_authoritative_concurrent_activity_allowed',
+  'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint',
   'automatic_production_restore=forbidden',
   'manual_authorization_required_choose_forward_fix_or_verified_restore',
   'restore-isolated.sh',
   'publish_evidence failed',
   'publish_evidence succeeded',
-  'ln "$partial" "$evidence"',
-  'require_root_owned_path file "$evidence" 600',
+  'require_root_owned_path file "$partial" 600',
+  'mv -- "$partial" "$evidence"',
+  'publication_state=complete',
   'production_migration_apply_ok',
 ]) {
   if (!applySource.includes(contract)) {
@@ -150,49 +155,20 @@ for (const contract of [
 if (!schemaVerifierSource.includes("expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME")) {
   throw new Error('production_schema_verifier_database_binding_missing');
 }
-const requiredSensitiveTables = [
-  'account_content_credential_revocations',
-  'account_deletion_auth_users',
-  'account_deletion_jobs',
-  'account_deletion_status_rate_limits',
-  'account_deletion_tombstones',
-  'account_security_events',
-  'accounts',
-  'ai_consent_authorities',
-  'ai_consent_challenges',
-  'ai_point_batches',
-  'ai_point_ledger_entries',
-  'ai_point_reservations',
-  'apple_notification_events',
-  'apple_revocable_credentials',
-  'apple_credential_intakes',
-  'apple_transactions',
-  'commerce_channel_products',
-  'commerce_orders',
-  'commerce_products',
-  'content_access_credentials',
-  'content_environment_session_grants',
-  'lifetime_identity_benefit_claims',
-  'membership_entitlement_segments',
-  'ops_audit_events',
-  'ops_change_previews',
-  'ops_entitlement_adjustments',
-  'ops_staff_accounts',
-  'ops_staff_recovery_codes',
-  'ops_staff_sessions',
-  'phone_otp_intents',
-  'privacy_action_receipts',
-  'recent_auth_challenges',
-  'recent_auth_grants',
-  'sms_delivery_attempts',
-  'sms_usage_counters',
-];
-for (const table of requiredSensitiveTables) {
-  if (!schemaContractDataSource.includes(`'${table}'`)) {
-    throw new Error(`production_schema_sensitive_table_omitted:${table}`);
-  }
+const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'/gu)]
+  .map((match) => match[1])
+  .sort();
+if (
+  schemaPublicTables.length !== 56
+  || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
+  || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
+    !== JSON.stringify(schemaPublicTables)
+  || Object.values(PUBLIC_TABLE_ACCESS_CLASSIFICATION)
+    .some((classification) => classification !== 'server_only')
+) {
+  throw new Error('production_schema_public_table_classification_incomplete');
 }
-if (!schemaVerifierSource.includes('SERVER_ONLY_SENSITIVE_TABLES')) {
+if (!schemaVerifierSource.includes('SERVER_ONLY_PUBLIC_TABLES')) {
   throw new Error('production_schema_verifier_canonical_table_source_missing');
 }
 
@@ -213,23 +189,23 @@ if (
   || evidenceEnd <= evidenceStart
   || !evidenceSource.includes('if ! (set -C; : > "$partial")')
   || !evidenceSource.includes('if ! chmod 600 "$partial" "$confirmation_input"')
-  || !evidenceSource.includes('if ! ln "$partial" "$evidence"')
-  || !evidenceSource.includes('if ! rm -f "$partial"')
-  || !evidenceSource.includes('if ! require_root_owned_path file "$evidence" 600')
+  || !evidenceSource.includes('if ! rm -f "$confirmation_input"')
+  || !evidenceSource.includes('if ! require_root_owned_path file "$partial" 600')
+  || !evidenceSource.includes('if ! mv -- "$partial" "$evidence"')
+  || !evidenceSource.includes('production migration evidence staging cleanup failed')
+  || evidenceSource.includes('ln "$partial" "$evidence"')
+  || evidenceSource.includes('|| true')
 ) {
   throw new Error('production_migration_cleanup_or_evidence_guard_incomplete');
 }
 
-for (const monotonicCheck of [
-  'test "$after_card_states" -ge "$before_card_states"',
-  'test "$after_learning_records" -ge "$before_learning_records"',
-  'test "$after_documents" -ge "$before_documents"',
-  'test "$after_changes" -ge "$before_changes"',
-  'test "$after_auth_users" -ge "$before_auth_users"',
-]) {
-  if (!applySource.includes(monotonicCheck)) {
-    throw new Error(`production_migration_monotonic_check_missing:${monotonicCheck}`);
-  }
+if (
+  /test "\$after_(?:card_states|learning_records|documents|changes|auth_users)" -(?:eq|ge|gt|le|lt) /u
+    .test(applySource)
+  || !applySource.includes('business_row_count_observation=non_authoritative_concurrent_activity_allowed')
+  || !applySource.includes('data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint')
+) {
+  throw new Error('production_migration_live_row_counts_must_be_non_authoritative');
 }
 
 const rollbackBlock = opsReleaseSource.match(/<<'REMOTE_ROLLBACK'\n([\s\S]*?)\nREMOTE_ROLLBACK/u)?.[1];

@@ -220,12 +220,10 @@ before_business_rows=unavailable
 before_auth_users=unavailable
 after_business_rows=unavailable
 after_auth_users=unavailable
-business_rows_preserved=0
-auth_users_preserved=0
 before_migrations=unavailable
 after_migrations=unavailable
 
-for command_name in awk basename cat chmod date dirname docker flock grep install ln rm sed sha256sum stat tar; do
+for command_name in awk basename cat chmod date dirname docker flock grep install mv rm sed sha256sum stat tar; do
   command -v "$command_name" >/dev/null 2>&1 || {
     echo "required remote production migration command is missing: $command_name" >&2
     exit 1
@@ -416,12 +414,29 @@ publish_evidence() (
     echo 'production migration evidence destination already exists' >&2
     exit 1
   fi
-  evidence_linked=0
-  cleanup_evidence_partial() {
-    rm -f "$partial" "$confirmation_input" >/dev/null 2>&1 || true
-    if [ "$evidence_linked" = 1 ]; then rm -f "$evidence" >/dev/null 2>&1 || true; fi
+  evidence_published=0
+  cleanup_evidence_staging() {
+    staging_cleanup_failed=0
+    for staging_path in "$partial" "$confirmation_input"; do
+      if [ -e "$staging_path" ] || [ -L "$staging_path" ]; then
+        if ! rm -f "$staging_path"; then
+          echo "could not remove production migration evidence staging artifact: $staging_path" >&2
+          staging_cleanup_failed=1
+        fi
+      fi
+    done
+    return "$staging_cleanup_failed"
   }
-  trap cleanup_evidence_partial EXIT
+  cleanup_evidence_on_exit() {
+    evidence_exit_status=$?
+    trap - EXIT
+    if [ "$evidence_published" = 0 ] && ! cleanup_evidence_staging; then
+      echo 'production migration evidence staging cleanup failed' >&2
+      evidence_exit_status=1
+    fi
+    exit "$evidence_exit_status"
+  }
+  trap cleanup_evidence_on_exit EXIT
   trap 'exit 1' HUP INT TERM
   if ! (set -C; : > "$partial"); then
     echo 'could not exclusively create production migration evidence staging file' >&2
@@ -451,10 +466,6 @@ publish_evidence() (
     echo 'production migration confirmation hash length is invalid' >&2
     exit 1
   fi
-  if ! rm -f "$confirmation_input"; then
-    echo 'could not remove production migration confirmation hash input' >&2
-    exit 1
-  fi
   if ! printf '%s\n' \
     "status=$evidence_status" \
     "stage=$stage" \
@@ -474,39 +485,49 @@ publish_evidence() (
     "migration_rows_after=$after_migrations" \
     "business_rows_before=$before_business_rows" \
     "business_rows_after=$after_business_rows" \
-    "business_rows_preservation_check=monotonic_non_decrease_not_content_fingerprint" \
-    "business_rows_preserved=$business_rows_preserved" \
+    'business_row_count_observation=non_authoritative_concurrent_activity_allowed' \
     "auth_users_before=$before_auth_users" \
     "auth_users_after=$after_auth_users" \
-    "auth_users_preservation_check=monotonic_non_decrease_not_content_fingerprint" \
-    "auth_users_preserved=$auth_users_preserved" \
+    'auth_user_count_observation=non_authoritative_concurrent_activity_allowed' \
+    'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint' \
     "schema_contract_sha256=$schema_contract_sha" \
     "cleanup_verified=$cleanup_verified" \
     'automatic_production_restore=forbidden' \
     "recovery_validation_command=/bin/sh /opt/icao/runtime/backup-tools/current/restore-isolated.sh $backup" \
     'production_recovery=manual_authorization_required_choose_forward_fix_or_verified_restore' \
+    'publication_state=complete' \
     "completed_at=$completed_at" > "$partial"; then
     echo 'could not write complete production migration evidence' >&2
     exit 1
   fi
-  if ! ln "$partial" "$evidence"; then
+  if ! require_root_owned_path file "$partial" 600; then
+    echo 'production migration evidence staging file failed its final path guard' >&2
+    exit 1
+  fi
+  if ! rm -f "$confirmation_input"; then
+    echo 'could not remove production migration confirmation hash input' >&2
+    exit 1
+  fi
+  if [ -e "$confirmation_input" ] || [ -L "$confirmation_input" ]; then
+    echo 'production migration confirmation staging file survived required cleanup' >&2
+    exit 1
+  fi
+  if [ -e "$evidence" ] || [ -L "$evidence" ]; then
+    echo 'production migration evidence destination appeared before publication' >&2
+    exit 1
+  fi
+  # The protected evidence directory and staging file have both passed their
+  # final guards. A same-directory rename is the only publication step, so a
+  # succeeded filename is never visible while cleanup or validation remains.
+  if ! mv -- "$partial" "$evidence"; then
     echo 'could not atomically publish production migration evidence' >&2
     exit 1
   fi
-  evidence_linked=1
-  if ! rm -f "$partial"; then
-    echo 'could not remove production migration evidence staging link' >&2
-    exit 1
-  fi
-  if ! require_root_owned_path file "$evidence" 600; then
-    echo 'published production migration evidence failed its final path guard' >&2
-    exit 1
-  fi
+  evidence_published=1
   if ! printf '%s\n' "$evidence"; then
     echo 'could not report published production migration evidence' >&2
     exit 1
   fi
-  evidence_linked=0
   trap - EXIT HUP INT TERM
 )
 # END production-migration-evidence-publication
@@ -678,7 +699,7 @@ docker run --rm --network supabase_default --env-file "$runtime_env" \
   node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
 docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
-  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables < 36
+  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables !== 56
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.deviceDigestColumns !== 0) process.exit(1);
@@ -692,14 +713,7 @@ after_changes=$(query_scalar 'select count(*) from public.sync_changes')
 after_auth_users=$(query_scalar 'select count(*) from auth.users')
 after_migrations=$(query_scalar 'select count(*) from drizzle.__drizzle_migrations')
 after_business_rows=$((after_card_states + after_learning_records + after_documents + after_changes))
-test "$after_card_states" -ge "$before_card_states"
-test "$after_learning_records" -ge "$before_learning_records"
-test "$after_documents" -ge "$before_documents"
-test "$after_changes" -ge "$before_changes"
-test "$after_auth_users" -ge "$before_auth_users"
 test "$after_migrations" -eq "${expected_post_plan%%:*}"
-business_rows_preserved=1
-auth_users_preserved=1
 
 stage=cleanup
 cleanup_remote_resources

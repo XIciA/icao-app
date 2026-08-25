@@ -6,13 +6,16 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import {
-  assertMonotonicRowCounts,
   assertProductionMigrationConfirmation,
   parseRehearsalSuccess,
   productionMigrationConfirmation,
+  summarizeNonAuthoritativeRowCounts,
   validatePlanTransition,
 } from './production-migration-apply-lib.mjs';
-import { SERVER_ONLY_SENSITIVE_TABLES } from '../services/api/scripts/production-schema-contract-data.mjs';
+import {
+  PUBLIC_TABLE_ACCESS_CLASSIFICATION,
+  SERVER_ONLY_PUBLIC_TABLES,
+} from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const sourceSha = 'a'.repeat(40);
 const prePlan = '15:18:0';
@@ -50,63 +53,37 @@ test('rejects unsafe or inconsistent expected plans', () => {
   }
 });
 
-test('allows concurrent additions while rejecting any protected row-count decrease', () => {
-  assert.deepEqual(assertMonotonicRowCounts(100, 100, 'users'), {
-    additions: 0,
+test('treats live row counts as non-authoritative across deletion and net-zero turnover', () => {
+  assert.deepEqual(summarizeNonAuthoritativeRowCounts(100, 93, 'users'), {
+    after: 93,
+    before: 100,
+    delta: -7,
+    interpretation: 'non_authoritative_concurrent_activity_allowed',
+  });
+  assert.deepEqual(summarizeNonAuthoritativeRowCounts(100, 100, 'users'), {
     after: 100,
     before: 100,
+    delta: 0,
+    interpretation: 'non_authoritative_concurrent_activity_allowed',
   });
-  assert.deepEqual(assertMonotonicRowCounts(100, 107, 'users'), {
-    additions: 7,
-    after: 107,
-    before: 100,
-  });
-  assert.throws(() => assertMonotonicRowCounts(100, 99, 'users'), /users_decreased/u);
 });
 
-test('keeps the complete sensitive server-only table contract frozen', () => {
-  const mandatoryTables = [
-    'account_content_credential_revocations',
-    'account_deletion_auth_users',
-    'account_deletion_jobs',
-    'account_deletion_status_rate_limits',
-    'account_deletion_tombstones',
-    'account_security_events',
-    'accounts',
-    'ai_consent_authorities',
-    'ai_consent_challenges',
-    'ai_point_batches',
-    'ai_point_ledger_entries',
-    'ai_point_reservations',
-    'apple_credential_intakes',
-    'apple_notification_events',
-    'apple_revocable_credentials',
-    'apple_transactions',
-    'commerce_channel_products',
-    'commerce_orders',
-    'commerce_products',
-    'content_access_credentials',
-    'content_environment_session_grants',
-    'lifetime_identity_benefit_claims',
-    'membership_entitlement_segments',
-    'ops_audit_events',
-    'ops_change_previews',
-    'ops_entitlement_adjustments',
-    'ops_staff_accounts',
-    'ops_staff_recovery_codes',
-    'ops_staff_sessions',
-    'phone_otp_intents',
-    'privacy_action_receipts',
-    'recent_auth_challenges',
-    'recent_auth_grants',
-    'sms_delivery_attempts',
-    'sms_usage_counters',
-  ];
-  for (const table of mandatoryTables) {
-    assert.ok(SERVER_ONLY_SENSITIVE_TABLES.includes(table), `missing sensitive table: ${table}`);
-  }
-  assert.equal(new Set(SERVER_ONLY_SENSITIVE_TABLES).size, SERVER_ONLY_SENSITIVE_TABLES.length);
-  assert.ok(SERVER_ONLY_SENSITIVE_TABLES.includes('ai_point_reservation_allocations'));
+test('classifies every public Drizzle table as server-only with no unclassified additions', async () => {
+  const schemaSource = await readFile(
+    new URL('../services/api/src/database/schema.ts', import.meta.url),
+    'utf8',
+  );
+  const schemaTables = [...schemaSource.matchAll(/pgTable\('([^']+)'/gu)]
+    .map((match) => match[1])
+    .sort();
+  assert.equal(schemaTables.length, 56);
+  assert.deepEqual(SERVER_ONLY_PUBLIC_TABLES, schemaTables);
+  assert.deepEqual(
+    Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort(),
+    schemaTables,
+  );
+  assert.ok(Object.values(PUBLIC_TABLE_ACCESS_CLASSIFICATION)
+    .every((classification) => classification === 'server_only'));
 });
 
 test('accepts exactly one matching rehearsal completion line', () => {
@@ -346,7 +323,7 @@ cleanup_migration_image
   }
 });
 
-test('evidence publication fails closed when protection, linking, or final validation fails', async () => {
+test('evidence publication remains invisible until staging cleanup and validation complete', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
   const start = source.indexOf('# BEGIN production-migration-evidence-publication');
   const endMarker = '# END production-migration-evidence-publication';
@@ -356,7 +333,7 @@ test('evidence publication fails closed when protection, linking, or final valid
   const root = await mkdtemp(join(tmpdir(), 'icao-production-evidence-'));
   try {
     const realChmod = spawnSync('/bin/sh', ['-c', 'command -v chmod'], { encoding: 'utf8' }).stdout.trim();
-    const realLn = spawnSync('/bin/sh', ['-c', 'command -v ln'], { encoding: 'utf8' }).stdout.trim();
+    const realMv = spawnSync('/bin/sh', ['-c', 'command -v mv'], { encoding: 'utf8' }).stdout.trim();
     const realRm = spawnSync('/bin/sh', ['-c', 'command -v rm'], { encoding: 'utf8' }).stdout.trim();
     const run = async (scenario) => {
       const caseRoot = join(root, scenario);
@@ -368,19 +345,16 @@ test('evidence publication fails closed when protection, linking, or final valid
 [ "\${MOCK_EVIDENCE_FAILURE:-}" = chmod ] && exit 41
 exec "\${REAL_CHMOD:?}" "$@"
 `);
-      await writeFile(join(fakeBin, 'ln'), `#!/bin/sh
-[ "\${MOCK_EVIDENCE_FAILURE:-}" = link ] && exit 42
-exec "\${REAL_LN:?}" "$@"
+      await writeFile(join(fakeBin, 'mv'), `#!/bin/sh
+[ "\${MOCK_EVIDENCE_FAILURE:-}" = move ] && exit 42
+exec "\${REAL_MV:?}" "$@"
 `);
       await writeFile(join(fakeBin, 'rm'), `#!/bin/sh
-if [ "\${MOCK_EVIDENCE_FAILURE:-}" = remove ] && [ ! -e "\${MOCK_RM_STATE:?}" ]; then
-  : > "\${MOCK_RM_STATE:?}"
-  exit 43
-fi
+[ "\${MOCK_EVIDENCE_FAILURE:-}" = remove-persistent ] && exit 43
 exec "\${REAL_RM:?}" "$@"
 `);
       await chmod(join(fakeBin, 'chmod'), 0o700);
-      await chmod(join(fakeBin, 'ln'), 0o700);
+      await chmod(join(fakeBin, 'mv'), 0o700);
       await chmod(join(fakeBin, 'rm'), 0o700);
       const result = spawnSync('/bin/sh', ['-c', `
 set -eu
@@ -407,10 +381,8 @@ before_migrations=15
 after_migrations=33
 before_business_rows=100
 after_business_rows=101
-business_rows_preserved=1
 before_auth_users=10
 after_auth_users=11
-auth_users_preserved=1
 schema_contract_sha=${'e'.repeat(64)}
 cleanup_verified=1
 publish_evidence succeeded
@@ -419,10 +391,9 @@ publish_evidence succeeded
         env: {
           ...process.env,
           MOCK_EVIDENCE_FAILURE: scenario,
-          MOCK_RM_STATE: join(caseRoot, 'rm-state'),
           PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
           REAL_CHMOD: realChmod,
-          REAL_LN: realLn,
+          REAL_MV: realMv,
           REAL_RM: realRm,
           TEST_EVIDENCE_DIR: evidenceDir,
         },
@@ -430,10 +401,17 @@ publish_evidence succeeded
       return { files: await readdir(evidenceDir), result };
     };
 
-    for (const scenario of ['chmod', 'link', 'remove', 'guard']) {
+    for (const scenario of ['chmod', 'move', 'remove-persistent', 'guard']) {
       const { files, result } = await run(scenario);
       assert.notEqual(result.status, 0, scenario);
-      assert.deepEqual(files, [], `${scenario} must not leave publishable evidence`);
+      assert.equal(
+        files.some((file) => file.endsWith('-succeeded.txt')),
+        false,
+        `${scenario} must not leave published succeeded evidence`,
+      );
+      if (scenario === 'remove-persistent') {
+        assert.match(result.stderr, /evidence staging cleanup failed/u);
+      }
     }
     const successful = await run('success');
     assert.equal(successful.result.status, 0, successful.result.stderr);

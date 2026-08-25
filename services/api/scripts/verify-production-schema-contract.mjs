@@ -1,6 +1,6 @@
 import postgres from 'postgres';
 
-import { SERVER_ONLY_SENSITIVE_TABLES } from './production-schema-contract-data.mjs';
+import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 
 const databaseUrl = process.env.DATABASE_URL;
 const expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME;
@@ -22,7 +22,7 @@ if (
   throw new Error('production_database_target_invalid');
 }
 
-const serverOnlyTables = SERVER_ONLY_SENSITIVE_TABLES;
+const serverOnlyTables = SERVER_ONLY_PUBLIC_TABLES;
 const requiredTables = serverOnlyTables.map((value) => `public.${value}`);
 const expectedProducts = [
   ['membership_7d_v1', 7, 6800, 'ai-points-v1', 1, 31, 250],

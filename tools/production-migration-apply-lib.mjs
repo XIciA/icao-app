@@ -54,10 +54,14 @@ export function parseRehearsalSuccess(output, { postPlan, prePlan, sourceSha }) 
   return { backupName, evidencePath };
 }
 
-export function assertMonotonicRowCounts(before, after, label = 'row_count') {
+export function summarizeNonAuthoritativeRowCounts(before, after, label = 'row_count') {
   if (!Number.isSafeInteger(before) || before < 0 || !Number.isSafeInteger(after) || after < 0) {
     throw new Error(`${label}_invalid`);
   }
-  if (after < before) throw new Error(`${label}_decreased`);
-  return { additions: after - before, after, before };
+  return {
+    after,
+    before,
+    delta: after - before,
+    interpretation: 'non_authoritative_concurrent_activity_allowed',
+  };
 }

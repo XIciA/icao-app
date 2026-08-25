@@ -27,7 +27,7 @@ import { AppleNotificationReconciliationService } from '../src/commerce/apple-no
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import { AiService } from '../src/ai/ai.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
-import { SERVER_ONLY_SENSITIVE_TABLES } from './production-schema-contract-data.mjs';
+import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-commerce-postgres-'));
@@ -490,9 +490,16 @@ test('content access credentials do not retain a stable device digest column', (
   );
 });
 
-test('server-owned authority, commerce, privacy, and Ops tables are private to client roles', () => {
+test('every public API-owned table is classified and private to client roles', () => {
+  const actualPublicTables = queryScalar(`
+    SELECT string_agg(relation.relname, ',' ORDER BY relation.relname)
+    FROM pg_class relation
+    JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
+    WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
+  `).split(',');
+  assert.deepEqual(actualPublicTables, SERVER_ONLY_PUBLIC_TABLES);
   for (const role of ['anon', 'authenticated']) {
-    for (const table of SERVER_ONLY_SENSITIVE_TABLES) {
+    for (const table of SERVER_ONLY_PUBLIC_TABLES) {
       assert.equal(
         queryScalar(`SELECT has_table_privilege('${role}', '${table}', 'SELECT,INSERT,UPDATE,DELETE')::text`),
         'false',
