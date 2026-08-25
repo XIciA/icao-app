@@ -68,18 +68,23 @@ for (const contract of [
   'preexisting_fingerprint_mismatches',
   'cleanup_verified',
   'expected_image_release_id=production-migration-$source_id',
+  'trusted_python=/usr/bin/python3.10',
+  '# BEGIN production-migration-trusted-python-guard',
+  '# END production-migration-trusted-python-guard',
+  '[ ! -f "$trusted_python" ] || [ -L "$trusted_python" ] || [ ! -x "$trusted_python" ]',
+  "trusted_python_identity=$(stat -c '%u:%a' -- \"$trusted_python\")",
+  '0:555|0:755',
+  '"$trusted_python" -I -c',
   '# BEGIN production-migration-image-identity-guard',
   '# END production-migration-image-identity-guard',
   "docker inspect --type image",
   "--format '{{json .Config.Env}}' \"$image\"",
-  'JSON.parse(fs.readFileSync(process.argv[1], "utf8"))',
-  'Array.isArray(entries)',
-  'typeof entry !== "string"',
-  'entry.startsWith("API_RELEASE_ID=")',
-  'identities.length !== 1 || identities[0] !== expected',
+  '"$trusted_python" -I - "$baked_image_env_file" "$expected_image_release_id"',
+  "entries = json.load(input_file)",
+  "any(type(entry) is not str for entry in entries)",
+  "entry.startswith('API_RELEASE_ID=')",
+  'identities != [expected]',
   'production migration image baked identity is missing, duplicated, or mismatched',
-  '# BEGIN production-migration-runtime-identity-override',
-  '# END production-migration-runtime-identity-override',
   'test "$pre_summary" = "$expected_pre_plan"',
   'test "$post_summary" = "$expected_post_plan"',
   'scripts/migrate.mjs --production-apply',
@@ -111,37 +116,131 @@ for (const contract of [
   }
 }
 
-const applyLines = applySource.split('\n');
-const expectedIdentityOption = '  -e "API_RELEASE_ID=$expected_image_release_id" \\';
-const apiReleaseIdentityOptionPattern = /(?:^|\s)(?:-e|--env)(?:\s+|=)?["']?API_RELEASE_ID/u;
-const apiReleaseIdentityOptions = applyLines
-  .filter((line) => apiReleaseIdentityOptionPattern.test(line));
-if (
-  apiReleaseIdentityOptions.length !== 6
-  || apiReleaseIdentityOptions.some((line) => line !== expectedIdentityOption)
-) {
-  throw new Error('production_migration_runtime_image_identity_override_incomplete');
-}
-const runtimeEnvRunStarts = applyLines
-  .map((line, index) => line === 'docker run --rm --network supabase_default --env-file "$runtime_env" \\'
-    ? index
-    : -1)
-  .filter((index) => index >= 0);
-if (runtimeEnvRunStarts.length !== 6) {
-  throw new Error('production_migration_runtime_env_candidate_run_count_invalid');
-}
-for (const start of runtimeEnvRunStarts) {
-  let imageOption = start + 1;
-  while (imageOption < applyLines.length && !applyLines[imageOption].includes('"$image"')) {
-    imageOption += 1;
+const extractMarkedBlock = (kind, name) => {
+  const startMarker = `# BEGIN production-migration-${kind}-${name}`;
+  const endMarker = `# END production-migration-${kind}-${name}`;
+  const start = applySource.indexOf(startMarker);
+  const end = applySource.indexOf(endMarker);
+  if (start < 0 || end <= start
+    || applySource.lastIndexOf(startMarker) !== start
+    || applySource.lastIndexOf(endMarker) !== end) {
+    throw new Error(`production_migration_marked_command_invalid:${kind}:${name}`);
   }
-  const identityOptions = applyLines.slice(start, imageOption + 1)
-    .filter((line) => apiReleaseIdentityOptionPattern.test(line));
-  if (imageOption >= applyLines.length
-    || identityOptions.length !== 1
-    || identityOptions[0] !== expectedIdentityOption) {
-    throw new Error('production_migration_runtime_env_candidate_identity_binding_invalid');
+  return applySource.slice(start, end + endMarker.length);
+};
+
+const parseDockerRunPrefix = (block) => {
+  const normalized = block
+    .replace(/#[^\n]*(?:\n|$)/gu, ' ')
+    .replace(/\\\n/gu, ' ')
+    .replace(/["']/gu, ' ');
+  const imageIndex = normalized.indexOf('$image');
+  if (imageIndex < 0) throw new Error('production_migration_candidate_image_argument_missing');
+  const tokens = normalized.slice(0, imageIndex).trim().split(/\s+/u);
+  const env = [];
+  const entrypoints = [];
+  let envFileCount = 0;
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (token === '--env-file') {
+      envFileCount += 1;
+      index += 1;
+    } else if (token.startsWith('--env-file=')) {
+      envFileCount += 1;
+    } else if (token === '-e' || token === '--env') {
+      env.push(tokens[index + 1] ?? '');
+      index += 1;
+    } else if (token.startsWith('--env=')) {
+      env.push(token.slice('--env='.length));
+    } else if (token.startsWith('-e') && token !== '-e') {
+      env.push(token.slice(2));
+    } else if (token === '--entrypoint') {
+      entrypoints.push(tokens[index + 1] ?? '');
+      index += 1;
+    } else if (token.startsWith('--entrypoint=')) {
+      entrypoints.push(token.slice('--entrypoint='.length));
+    }
   }
+  return { entrypoints, env, envFileCount };
+};
+
+const assertNodeRuntimeContract = (block, requiresRuntimeBinding) => {
+  const { entrypoints, env, envFileCount } = parseDockerRunPrefix(block);
+  const valuesFor = (name) => env.filter((entry) => entry === name || entry.startsWith(`${name}=`));
+  const expected = new Map([
+    ['NODE_OPTIONS', 'NODE_OPTIONS='],
+    ['NODE_PATH', 'NODE_PATH='],
+    ['LD_PRELOAD', 'LD_PRELOAD='],
+    ['LD_LIBRARY_PATH', 'LD_LIBRARY_PATH='],
+  ]);
+  if (requiresRuntimeBinding) expected.set('API_RELEASE_ID', 'API_RELEASE_ID=$expected_image_release_id');
+  for (const [name, value] of expected) {
+    const matches = valuesFor(name);
+    if (matches.length !== 1 || matches[0] !== value) {
+      throw new Error(`production_migration_candidate_env_override_invalid:${name}`);
+    }
+  }
+  if (!requiresRuntimeBinding && valuesFor('API_RELEASE_ID').length !== 0) {
+    throw new Error('production_migration_evidence_parser_identity_override_forbidden');
+  }
+  if (envFileCount !== (requiresRuntimeBinding ? 1 : 0)) {
+    throw new Error('production_migration_candidate_env_file_contract_invalid');
+  }
+  if (entrypoints.length !== 1 || entrypoints[0] !== '/usr/local/bin/node') {
+    throw new Error('production_migration_candidate_entrypoint_override_invalid');
+  }
+};
+
+for (const name of ['target', 'pre-plan', 'apply', 'post-current', 'post-plan', 'schema']) {
+  assertNodeRuntimeContract(extractMarkedBlock('candidate-run', name), true);
+}
+for (const name of ['pre-plan', 'post-plan', 'schema']) {
+  assertNodeRuntimeContract(extractMarkedBlock('evidence-parser', name), false);
+}
+if ((applySource.match(/docker run --rm --network supabase_default --env-file "\$runtime_env"/gu) ?? [])
+  .length !== 6
+  || (applySource.match(/--entrypoint \/usr\/local\/bin\/node/gu) ?? []).length !== 9) {
+  throw new Error('production_migration_candidate_node_run_inventory_invalid');
+}
+
+const canonicalApplyCommand = extractMarkedBlock('candidate-run', 'apply');
+const exactIdentityOptionLine = '  -e "API_RELEASE_ID=$expected_image_release_id" \\\n';
+const staticAdversarialCommands = [
+  canonicalApplyCommand.replace(
+    exactIdentityOptionLine,
+    `${exactIdentityOptionLine}  -e \\\n    "API_RELEASE_ID=release-old" \\\n`,
+  ),
+  canonicalApplyCommand.replace(
+    exactIdentityOptionLine,
+    `${exactIdentityOptionLine}  "-e" "API_RELEASE_ID=release-old" \\\n`,
+  ),
+  canonicalApplyCommand.replace(
+    exactIdentityOptionLine,
+    `${exactIdentityOptionLine}  -e API_RELEASE_ID \\\n`,
+  ),
+];
+for (const adversarial of staticAdversarialCommands) {
+  if (adversarial === canonicalApplyCommand) {
+    throw new Error('production_migration_static_argv_self_test_setup_failed');
+  }
+  let rejected = false;
+  try {
+    assertNodeRuntimeContract(adversarial, true);
+  } catch {
+    rejected = true;
+  }
+  if (!rejected) throw new Error('production_migration_static_argv_adversarial_not_rejected');
+}
+const canonicalEvidenceParser = extractMarkedBlock('evidence-parser', 'schema');
+const unsafeEvidenceParser = canonicalEvidenceParser.replace(' -e LD_PRELOAD=', '');
+let unsafeEvidenceParserRejected = false;
+try {
+  assertNodeRuntimeContract(unsafeEvidenceParser, false);
+} catch {
+  unsafeEvidenceParserRejected = true;
+}
+if (!unsafeEvidenceParserRejected) {
+  throw new Error('production_migration_static_evidence_parser_adversarial_not_rejected');
 }
 
 const imageIdentityStart = applySource.indexOf('# BEGIN production-migration-image-identity-guard');
@@ -152,8 +251,12 @@ if (
   || imageIdentityEnd <= imageIdentityStart
   || imageIdentitySource.includes('{{println')
   || imageIdentitySource.includes('baked_release_id_count')
+  || imageIdentitySource.includes('docker run')
 ) {
   throw new Error('production_migration_baked_image_env_array_boundary_not_preserved');
+}
+if (applySource.includes('"$image" node')) {
+  throw new Error('production_migration_candidate_image_entrypoint_not_overridden');
 }
 
 if (

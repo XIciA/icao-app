@@ -238,6 +238,60 @@ test('--print-confirmation emits exactly one stdout line and no stderr', async (
   }
 });
 
+test('trusted host Python preflight rejects links, unsafe ownership, modes, and unusable executors', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-trusted-python-guard');
+  const endMarker = '# END production-migration-trusted-python-guard';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const guard = source.slice(start, end + endMarker.length);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-trusted-python-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    const pythonPath = join(root, 'python3');
+    const pythonLink = join(root, 'python3-link');
+    const missing = join(root, 'missing-python3');
+    await mkdir(fakeBin);
+    await writeFile(pythonPath, `#!/bin/sh
+[ "\${1:-}" = -I ]
+[ "\${2:-}" = -c ]
+exit "\${MOCK_PYTHON_STATUS:-0}"
+`);
+    await chmod(pythonPath, 0o755);
+    await symlink(pythonPath, pythonLink);
+    await writeFile(join(fakeBin, 'stat'), `#!/bin/sh
+printf '%s\n' "\${MOCK_STAT_IDENTITY:?}"
+`);
+    await chmod(join(fakeBin, 'stat'), 0o700);
+    const run = (target, identity = '0:755', status = '0') => spawnSync('/bin/sh', ['-c', `
+set -eu
+trusted_python="$TEST_TRUSTED_PYTHON"
+${guard}
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        MOCK_PYTHON_STATUS: status,
+        MOCK_STAT_IDENTITY: identity,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_TRUSTED_PYTHON: target,
+      },
+    });
+
+    assert.equal(run(pythonPath).status, 0);
+    assert.equal(run(pythonPath, '0:555').status, 0);
+    assert.notEqual(run(pythonLink).status, 0);
+    assert.notEqual(run(missing).status, 0);
+    assert.notEqual(run(pythonPath, '1000:755').status, 0);
+    assert.notEqual(run(pythonPath, '0:775').status, 0);
+    assert.notEqual(run(pythonPath, '0:755', '1').status, 0);
+    await chmod(pythonPath, 0o644);
+    assert.notEqual(run(pythonPath).status, 0);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
 test('candidate image guard accepts one exact baked release identity and rejects every other shape', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
   const start = source.indexOf('# BEGIN production-migration-image-identity-guard');
@@ -249,73 +303,71 @@ test('candidate image guard accepts one exact baked release identity and rejects
   try {
     const fakeBin = join(root, 'bin');
     const workDir = join(root, 'work');
+    const dockerCalls = join(root, 'docker-calls');
     await mkdir(fakeBin);
     await mkdir(workDir);
     await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
 set -eu
-case "\${1:-}" in
-  inspect)
-    [ "\${2:-}" = --type ]
-    [ "\${3:-}" = image ]
-    if [ "\${MOCK_DOCKER_SCENARIO:-}" = inspect-fail ]; then exit 71; fi
-    printf '%s' "\${MOCK_IMAGE_ENV_JSON:-}"
-    ;;
-  run)
-    shift
-    mount_source=
-    expected_release_id=
-    while [ "$#" -gt 0 ]; do
-      case "$1" in
-        --rm) shift ;;
-        -v)
-          case "$2" in
-            *:/image-env.json:ro) mount_source=\${2%:/image-env.json:ro} ;;
-            *) exit 72 ;;
-          esac
-          shift 2
-          ;;
-        -e)
-          case "$2" in
-            EXPECTED_IMAGE_RELEASE_ID=*) expected_release_id=\${2#EXPECTED_IMAGE_RELEASE_ID=} ;;
-            *) exit 73 ;;
-          esac
-          shift 2
-          ;;
-        icao-api:*) shift; break ;;
-        *) exit 74 ;;
-      esac
-    done
-    [ "\${1:-}" = node ]
-    [ "\${2:-}" = -e ]
-    [ "\${4:-}" = /image-env.json ]
-    [ -n "$mount_source" ]
-    EXPECTED_IMAGE_RELEASE_ID="$expected_release_id" node -e "$3" "$mount_source"
-    ;;
-  *) exit 75 ;;
-esac
+printf '%s\n' "\${1:-missing}" >> "\${MOCK_DOCKER_CALLS:?}"
+[ "\${1:-}" = inspect ] || { echo 'candidate image was asked to validate itself' >&2; exit 75; }
+[ "\${2:-}" = --type ]
+[ "\${3:-}" = image ]
+if [ "\${MOCK_DOCKER_SCENARIO:-}" = inspect-fail ]; then exit 71; fi
+printf '%s' "\${MOCK_IMAGE_ENV_JSON:-}"
 `);
     await chmod(join(fakeBin, 'docker'), 0o700);
+    const hostPython = spawnSync('/bin/sh', ['-c', 'command -v python3'], { encoding: 'utf8' })
+      .stdout.trim();
+    assert.notEqual(hostPython, '');
     const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
     const run = (imageEnvJson, scenario = 'success') => spawnSync('/bin/sh', ['-c', `
 set -eu
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
+trusted_python="$TEST_HOST_PYTHON"
 ${guard}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
         EXPECTED_RELEASE_ID: expectedReleaseId,
+        MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: scenario,
         MOCK_IMAGE_ENV_JSON: imageEnvJson,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_HOST_PYTHON: hostPython,
         TEST_WORK_DIR: workDir,
       },
     });
 
     const exact = `API_RELEASE_ID=${expectedReleaseId}`;
     assert.equal(run(JSON.stringify(['PATH=/usr/bin', exact, 'NODE_ENV=production'])).status, 0);
+    const hostileNodeOptions = spawnSync('/bin/sh', ['-c', `
+set -eu
+image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
+expected_image_release_id="$EXPECTED_RELEASE_ID"
+work_dir="$TEST_WORK_DIR"
+trusted_python="$TEST_HOST_PYTHON"
+${guard}
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        EXPECTED_RELEASE_ID: expectedReleaseId,
+        MOCK_DOCKER_CALLS: dockerCalls,
+        MOCK_DOCKER_SCENARIO: 'malicious-entrypoint-must-not-run',
+        MOCK_IMAGE_ENV_JSON: JSON.stringify([
+          exact,
+          'NODE_OPTIONS=--import=data:text/javascript,throw%20new%20Error("should-not-run")',
+        ]),
+        NODE_OPTIONS: '--require=/definitely/missing/hostile-node-options.cjs',
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_HOST_PYTHON: hostPython,
+        TEST_WORK_DIR: workDir,
+      },
+    });
+    assert.equal(hostileNodeOptions.status, 0, hostileNodeOptions.stderr);
     for (const [label, imageEnvJson, scenario] of [
       ['stale', JSON.stringify(['API_RELEASE_ID=release-old']), 'success'],
       ['missing', JSON.stringify(['NODE_ENV=production']), 'success'],
@@ -335,142 +387,274 @@ ${guard}
       assert.notEqual(result.status, 0, label);
       assert.notEqual(result.stderr, '', label);
     }
+    const calls = (await readFile(dockerCalls, 'utf8')).trim().split('\n');
+    assert.ok(calls.length > 1);
+    assert.ok(calls.every((call) => call === 'inspect'));
   } finally {
     await rm(root, { force: true, recursive: true });
   }
 });
 
-test('Docker CLI precedence unit model requires one assigned runtime identity override', async () => {
+test('Docker CLI argv model secures all six candidate runs against baked env and entrypoint state', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
-  const start = source.indexOf('# BEGIN production-migration-runtime-identity-override');
-  const endMarker = '# END production-migration-runtime-identity-override';
-  const end = source.indexOf(endMarker);
-  assert.ok(start >= 0 && end > start);
-  const runtimeCommand = source.slice(start, end + endMarker.length);
-  const withoutOverride = runtimeCommand.replace(
-    /\n  -e "API_RELEASE_ID=\$expected_image_release_id" \\/u,
-    '',
-  );
-  assert.notEqual(withoutOverride, runtimeCommand);
+  const candidateNames = ['target', 'pre-plan', 'apply', 'post-current', 'post-plan', 'schema'];
+  const candidateCommands = candidateNames.map((name) => {
+    const startMarker = `# BEGIN production-migration-candidate-run-${name}`;
+    const endMarker = `# END production-migration-candidate-run-${name}`;
+    const start = source.indexOf(startMarker);
+    const end = source.indexOf(endMarker);
+    assert.ok(start >= 0 && end > start, name);
+    return { command: source.slice(start, end + endMarker.length), name };
+  });
+  const evidenceParserNames = ['pre-plan', 'post-plan', 'schema'];
+  const evidenceParserCommands = evidenceParserNames.map((name) => {
+    const startMarker = `# BEGIN production-migration-evidence-parser-${name}`;
+    const endMarker = `# END production-migration-evidence-parser-${name}`;
+    const start = source.indexOf(startMarker);
+    const end = source.indexOf(endMarker);
+    assert.ok(start >= 0 && end > start, name);
+    return { command: source.slice(start, end + endMarker.length), name };
+  });
   const root = await mkdtemp(join(tmpdir(), 'icao-production-runtime-identity-'));
   try {
     const fakeBin = join(root, 'bin');
     const runtimeEnv = join(root, 'runtime.env');
     await mkdir(fakeBin);
-    await writeFile(runtimeEnv, 'API_RELEASE_ID=stale-production-release\nDATABASE_URL=postgresql://unused\n');
+    await writeFile(runtimeEnv, [
+      'API_RELEASE_ID=stale-production-release',
+      'DATABASE_URL=postgresql://unused',
+      'NODE_OPTIONS=--import=data:text/javascript,throw%20new%20Error("baked-node-options")',
+      'NODE_PATH=/malicious/node/path',
+      'LD_PRELOAD=/malicious/preload.so',
+      'LD_LIBRARY_PATH=/malicious/library/path',
+      '',
+    ].join('\n'));
     await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
 set -eu
 [ "\${1:-}" = run ]
 shift
+env_file_count=0
 env_file_release_id=
+env_file_node_options=
+env_file_node_path=
+env_file_ld_preload=
+env_file_ld_library_path=
 api_override_count=0
 api_override_kind=
 api_override_value=
+node_options_override_count=0
+node_options_override_kind=
+node_options_override_value=
+node_path_override_count=0
+node_path_override_kind=
+node_path_override_value=
+ld_preload_override_count=0
+ld_preload_override_kind=
+ld_preload_override_value=
+ld_library_path_override_count=0
+ld_library_path_override_kind=
+ld_library_path_override_value=
+entrypoint_count=0
+entrypoint_value=
 record_override() {
   override=$1
   case "$override" in
     API_RELEASE_ID)
-      api_override_count=$((api_override_count + 1))
-      api_override_kind=bare
+      api_override_count=$((api_override_count + 1)); api_override_kind=bare
       api_override_value=\${API_RELEASE_ID:-}
       ;;
     API_RELEASE_ID=*)
-      api_override_count=$((api_override_count + 1))
-      api_override_kind=assignment
+      api_override_count=$((api_override_count + 1)); api_override_kind=assignment
       api_override_value=\${override#API_RELEASE_ID=}
       ;;
+    NODE_OPTIONS)
+      node_options_override_count=$((node_options_override_count + 1)); node_options_override_kind=bare
+      node_options_override_value=\${NODE_OPTIONS:-}
+      ;;
+    NODE_OPTIONS=*)
+      node_options_override_count=$((node_options_override_count + 1)); node_options_override_kind=assignment
+      node_options_override_value=\${override#NODE_OPTIONS=}
+      ;;
+    NODE_PATH)
+      node_path_override_count=$((node_path_override_count + 1)); node_path_override_kind=bare
+      node_path_override_value=\${NODE_PATH:-}
+      ;;
+    NODE_PATH=*)
+      node_path_override_count=$((node_path_override_count + 1)); node_path_override_kind=assignment
+      node_path_override_value=\${override#NODE_PATH=}
+      ;;
+    LD_PRELOAD)
+      ld_preload_override_count=$((ld_preload_override_count + 1)); ld_preload_override_kind=bare
+      ld_preload_override_value=\${LD_PRELOAD:-}
+      ;;
+    LD_PRELOAD=*)
+      ld_preload_override_count=$((ld_preload_override_count + 1)); ld_preload_override_kind=assignment
+      ld_preload_override_value=\${override#LD_PRELOAD=}
+      ;;
+    LD_LIBRARY_PATH)
+      ld_library_path_override_count=$((ld_library_path_override_count + 1)); ld_library_path_override_kind=bare
+      ld_library_path_override_value=\${LD_LIBRARY_PATH:-}
+      ;;
+    LD_LIBRARY_PATH=*)
+      ld_library_path_override_count=$((ld_library_path_override_count + 1)); ld_library_path_override_kind=assignment
+      ld_library_path_override_value=\${override#LD_LIBRARY_PATH=}
+      ;;
   esac
+}
+load_env_file() {
+  env_file=$1
+  env_file_count=$((env_file_count + 1))
+  env_file_release_id=$(awk -F= '$1 == "API_RELEASE_ID" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
+  env_file_node_options=$(awk -F= '$1 == "NODE_OPTIONS" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
+  env_file_node_path=$(awk -F= '$1 == "NODE_PATH" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
+  env_file_ld_preload=$(awk -F= '$1 == "LD_PRELOAD" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
+  env_file_ld_library_path=$(awk -F= '$1 == "LD_LIBRARY_PATH" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
 }
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --rm) shift ;;
     --network) shift 2 ;;
-    --env-file)
-      env_file_release_id=$(awk -F= '$1 == "API_RELEASE_ID" { value = substr($0, length($1) + 2) } END { print value }' "$2")
-      shift 2
-      ;;
-    --env-file=*)
-      env_file=\${1#--env-file=}
-      env_file_release_id=$(awk -F= '$1 == "API_RELEASE_ID" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
-      shift
-      ;;
-    -e)
-      record_override "$2"
-      shift 2
-      ;;
-    --env)
-      record_override "$2"
-      shift 2
-      ;;
+    -v) shift 2 ;;
+    --env-file) load_env_file "$2"; shift 2 ;;
+    --env-file=*) load_env_file "\${1#--env-file=}"; shift ;;
+    -e|--env) record_override "$2"; shift 2 ;;
     --env=*) record_override "\${1#--env=}"; shift ;;
     -e?*) record_override "\${1#-e}"; shift ;;
-    icao-api:*) break ;;
+    --entrypoint)
+      entrypoint_count=$((entrypoint_count + 1)); entrypoint_value=$2; shift 2
+      ;;
+    --entrypoint=*)
+      entrypoint_count=$((entrypoint_count + 1)); entrypoint_value=\${1#--entrypoint=}; shift
+      ;;
+    icao-api:*) image_value=$1; shift; break ;;
     *) exit 72 ;;
   esac
 done
+case "\${EXPECT_RUNTIME_BINDING:?}" in
+  1)
+    [ "$env_file_count" -eq 1 ] || { echo 'mock candidate env-file contract invalid' >&2; exit 73; }
+    [ "$api_override_count" -eq 1 ] && [ "$api_override_kind" = assignment ] \
+      || { echo 'mock candidate API identity override invalid' >&2; exit 73; }
+    ;;
+  0)
+    [ "$env_file_count" -eq 0 ] && [ "$api_override_count" -eq 0 ] \
+      || { echo 'mock evidence parser runtime binding must be absent' >&2; exit 73; }
+    ;;
+  *) exit 73 ;;
+esac
+[ "$node_options_override_count" -eq 1 ] && [ "$node_options_override_kind" = assignment ] \
+  || { echo 'mock candidate NODE_OPTIONS override invalid' >&2; exit 73; }
+[ "$node_path_override_count" -eq 1 ] && [ "$node_path_override_kind" = assignment ] \
+  || { echo 'mock candidate NODE_PATH override invalid' >&2; exit 73; }
+[ "$ld_preload_override_count" -eq 1 ] && [ "$ld_preload_override_kind" = assignment ] \
+  || { echo 'mock candidate LD_PRELOAD override invalid' >&2; exit 73; }
+[ "$ld_library_path_override_count" -eq 1 ] && [ "$ld_library_path_override_kind" = assignment ] \
+  || { echo 'mock candidate LD_LIBRARY_PATH override invalid' >&2; exit 73; }
+[ "$entrypoint_count" -eq 1 ] && [ "$entrypoint_value" = /usr/local/bin/node ] \
+  || { echo 'mock candidate entrypoint override invalid' >&2; exit 73; }
+# Docker applies explicit --env/-e and --entrypoint overrides after image and
+# env-file defaults, independent of option ordering in the CLI argv.
 release_id=$env_file_release_id
-if [ "$api_override_count" -ne 1 ] || [ "$api_override_kind" != assignment ]; then
-  echo 'mock candidate observed missing, duplicate, or inherited runtime identity override' >&2
-  exit 73
-fi
-# Docker applies all explicit --env/-e overrides after values loaded from every
-# --env-file, independent of their relative CLI position.
-release_id=$api_override_value
-[ "$release_id" = "\${EXPECTED_RELEASE_ID:?}" ] || {
-  echo 'mock candidate observed incorrect runtime identity override' >&2
-  exit 73
-}
+node_options=$env_file_node_options
+node_path=$env_file_node_path
+ld_preload=$env_file_ld_preload
+ld_library_path=$env_file_ld_library_path
+entrypoint=\${MOCK_IMAGE_ENTRYPOINT:-/malicious-entrypoint}
+if [ "$EXPECT_RUNTIME_BINDING" = 1 ]; then release_id=$api_override_value; fi
+node_options=$node_options_override_value
+node_path=$node_path_override_value
+ld_preload=$ld_preload_override_value
+ld_library_path=$ld_library_path_override_value
+entrypoint=$entrypoint_value
+[ "$EXPECT_RUNTIME_BINDING" = 0 ] || [ "$release_id" = "\${EXPECTED_RELEASE_ID:?}" ]
+[ -z "$node_options" ] && [ -z "$node_path" ] \
+  && [ -z "$ld_preload" ] && [ -z "$ld_library_path" ] \
+  && [ "$entrypoint" = /usr/local/bin/node ] \
+  && [ "\${image_value:-}" = "\${EXPECTED_IMAGE:?}" ] \
+  || { echo 'mock candidate final runtime state invalid' >&2; exit 73; }
 `);
     await chmod(join(fakeBin, 'docker'), 0o700);
     const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
-    const run = (command) => spawnSync('/bin/sh', ['-c', `
+    const expectedImage = 'icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb';
+    const run = (command, expectRuntimeBinding = true) => spawnSync('/bin/sh', ['-c', `
 set -eu
 runtime_env="$TEST_RUNTIME_ENV"
 expected_image_release_id="$EXPECTED_RELEASE_ID"
-image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
+image="$EXPECTED_IMAGE"
 source_sha=${sourceSha}
 expected_pre_plan=${prePlan}
 expected_post_plan=${postPlan}
 confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
+pre_plan="$TEST_ROOT/pre-plan.json"
+post_plan="$TEST_ROOT/post-plan.json"
+schema_contract="$TEST_ROOT/schema-contract.json"
 ${command}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
+        API_RELEASE_ID: 'host-inherited-stale-identity',
+        EXPECT_RUNTIME_BINDING: expectRuntimeBinding ? '1' : '0',
+        EXPECTED_IMAGE: expectedImage,
         EXPECTED_RELEASE_ID: expectedReleaseId,
+        NODE_OPTIONS: '',
+        NODE_PATH: '/host/malicious/node/path',
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_ROOT: root,
         TEST_RUNTIME_ENV: runtimeEnv,
       },
     });
+    const exactIdentityLine = '  -e "API_RELEASE_ID=$expected_image_release_id" \\\n';
 
-    const repaired = run(runtimeCommand);
-    assert.equal(repaired.status, 0, repaired.stderr);
+    for (const { command, name } of candidateCommands) {
+      const result = run(command);
+      assert.equal(result.status, 0, `${name}: ${result.stderr}`);
 
-    const overrideBeforeEnvFile = runtimeCommand.replace(
+      const crossLineDuplicate = command.replace(
+        exactIdentityLine,
+        `${exactIdentityLine}  -e \\\n    "API_RELEASE_ID=release-old" \\\n`,
+      );
+      assert.notEqual(crossLineDuplicate, command, name);
+      assert.notEqual(run(crossLineDuplicate).status, 0, `${name}:cross-line`);
+    }
+
+    for (const { command, name } of evidenceParserCommands) {
+      const result = run(command, false);
+      assert.equal(result.status, 0, `${name}: ${result.stderr}`);
+      const missingPreloadClear = command.replace(' -e LD_PRELOAD=', '');
+      assert.notEqual(missingPreloadClear, command, name);
+      assert.notEqual(run(missingPreloadClear, false).status, 0, `${name}:missing-preload-clear`);
+    }
+
+    const applyCommand = candidateCommands.find(({ name }) => name === 'apply').command;
+    const overrideBeforeEnvFile = applyCommand.replace(
       '--env-file "$runtime_env" \\\n  -e "API_RELEASE_ID=$expected_image_release_id" \\',
       '-e "API_RELEASE_ID=$expected_image_release_id" \\\n  --env-file "$runtime_env" \\',
     );
-    assert.notEqual(overrideBeforeEnvFile, runtimeCommand);
+    assert.notEqual(overrideBeforeEnvFile, applyCommand);
     assert.equal(run(overrideBeforeEnvFile).status, 0);
 
-    const regressed = run(withoutOverride);
-    assert.notEqual(regressed.status, 0);
-    assert.match(regressed.stderr, /missing, duplicate, or inherited/u);
-
-    for (const [label, injected] of [
-      ['duplicate-assignment', '  -e API_RELEASE_ID=release-old \\\n'],
-      ['bare-inheritance', '  -e API_RELEASE_ID \\\n'],
-      ['long-option', '  --env=API_RELEASE_ID=release-old \\\n'],
-      ['joined-short-option', '  -eAPI_RELEASE_ID=release-old \\\n'],
+    for (const [label, from, to, failure] of [
+      ['missing-api', exactIdentityLine, '', /API identity/u],
+      ['quoted-option', exactIdentityLine,
+        `${exactIdentityLine}  "-e" "API_RELEASE_ID=release-old" \\\n`, /API identity/u],
+      ['bare-api', exactIdentityLine,
+        `${exactIdentityLine}  -e API_RELEASE_ID \\\n`, /API identity/u],
+      ['wrong-node-options', '  -e NODE_OPTIONS= \\\n',
+        '  -e NODE_OPTIONS=--import=data:text/javascript,throw%20new%20Error \\\n', /final runtime/u],
+      ['bare-node-options', '  -e NODE_OPTIONS= \\\n', '  -e NODE_OPTIONS \\\n', /NODE_OPTIONS/u],
+      ['missing-ld-preload', '  -e LD_PRELOAD= \\\n', '', /LD_PRELOAD/u],
+      ['bare-ld-library-path', '  -e LD_LIBRARY_PATH= \\\n',
+        '  -e LD_LIBRARY_PATH \\\n', /LD_LIBRARY_PATH/u],
+      ['missing-entrypoint', '  --entrypoint /usr/local/bin/node "$image" \\\n', '  "$image" \\\n', /entrypoint/u],
+      ['wrong-entrypoint', '  --entrypoint /usr/local/bin/node "$image" \\\n',
+        '  --entrypoint /malicious-entrypoint "$image" \\\n', /entrypoint/u],
     ]) {
-      const adversarial = runtimeCommand.replace(
-        '  -e "API_RELEASE_ID=$expected_image_release_id" \\\n',
-        `  -e "API_RELEASE_ID=$expected_image_release_id" \\\n${injected}`,
-      );
-      assert.notEqual(adversarial, runtimeCommand, label);
+      const adversarial = applyCommand.replace(from, to);
+      assert.notEqual(adversarial, applyCommand, label);
       const result = run(adversarial);
       assert.notEqual(result.status, 0, label);
-      assert.match(result.stderr, /missing, duplicate, or inherited/u, label);
+      assert.match(result.stderr, failure, label);
     }
   } finally {
     await rm(root, { force: true, recursive: true });

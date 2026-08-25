@@ -245,6 +245,7 @@ checksum=$upload.sha256
 work_dir=$root/.work-$source_id-$upload_token
 evidence_dir=$root/evidence
 runtime_env=/opt/icao/runtime/api/.env
+trusted_python=/usr/bin/python3.10
 backup_root=/opt/icao/backups/postgres
 backup=$backup_root/$backup_name
 image=icao-api:production-migration-$source_id-$token_id
@@ -272,6 +273,23 @@ for command_name in awk basename cat chmod date dirname docker flock grep instal
     exit 1
   }
 done
+
+# BEGIN production-migration-trusted-python-guard
+if [ ! -f "$trusted_python" ] || [ -L "$trusted_python" ] || [ ! -x "$trusted_python" ]; then
+  echo "trusted production migration Python is missing, linked, or not executable: $trusted_python" >&2
+  exit 1
+fi
+trusted_python_identity=$(stat -c '%u:%a' -- "$trusted_python")
+case "$trusted_python_identity" in
+  0:555|0:755) ;;
+  *) echo "trusted production migration Python has unsafe owner or mode: $trusted_python" >&2; exit 1 ;;
+esac
+if ! LD_PRELOAD= LD_LIBRARY_PATH= PYTHONHOME= PYTHONPATH= "$trusted_python" -I -c \
+  'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)'; then
+  echo "trusted production migration Python is unusable: $trusted_python" >&2
+  exit 1
+fi
+# END production-migration-trusted-python-guard
 
 case "$source_sha:$archive_sha:$upload_token" in
   *[!A-Fa-f0-9:]*) echo 'remote production migration identity is invalid' >&2; exit 1 ;;
@@ -675,17 +693,20 @@ if ! docker inspect --type image --format '{{json .Config.Env}}' "$image" \
   exit 1
 fi
 chmod 600 "$baked_image_env_file"
-if ! docker run --rm \
-  -v "$baked_image_env_file:/image-env.json:ro" \
-  -e "EXPECTED_IMAGE_RELEASE_ID=$expected_image_release_id" \
-  "$image" node -e '
-    const fs = require("node:fs");
-    const entries = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
-    const expected = `API_RELEASE_ID=${process.env.EXPECTED_IMAGE_RELEASE_ID}`;
-    if (!Array.isArray(entries) || entries.some((entry) => typeof entry !== "string")) process.exit(1);
-    const identities = entries.filter((entry) => entry.startsWith("API_RELEASE_ID="));
-    if (identities.length !== 1 || identities[0] !== expected) process.exit(1);
-  ' /image-env.json; then
+if ! LD_PRELOAD= LD_LIBRARY_PATH= PYTHONHOME= PYTHONPATH= \
+  "$trusted_python" -I - "$baked_image_env_file" "$expected_image_release_id" <<'PYTHON'; then
+import json
+import sys
+
+with open(sys.argv[1], encoding='utf-8') as input_file:
+    entries = json.load(input_file)
+expected = f'API_RELEASE_ID={sys.argv[2]}'
+if not isinstance(entries, list) or any(type(entry) is not str for entry in entries):
+    raise SystemExit(1)
+identities = [entry for entry in entries if entry.startswith('API_RELEASE_ID=')]
+if identities != [expected]:
+    raise SystemExit(1)
+PYTHON
   echo 'production migration image baked identity is missing, duplicated, or mismatched' >&2
   exit 1
 fi
@@ -694,14 +715,21 @@ fi
 stage=production_target_verification
 docker inspect -f '{{.State.Running}} {{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' supabase-db \
   | grep -Fx 'true healthy' >/dev/null
+# BEGIN production-migration-candidate-run-target
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
-  -e ICAO_PRODUCTION_DATABASE_NAME=postgres "$image" node -e '
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  -e ICAO_PRODUCTION_DATABASE_NAME=postgres \
+  --entrypoint /usr/local/bin/node "$image" -e '
     const url = new URL(process.env.DATABASE_URL);
     if (!["postgres:", "postgresql:"].includes(url.protocol)) process.exit(1);
     if (url.hostname !== "db" || url.pathname !== "/postgres" || url.search || url.hash) process.exit(1);
     process.stdout.write("production_database_target_verified\n");
   '
+# END production-migration-candidate-run-target
 
 query_scalar() {
   production_sql=$1
@@ -716,15 +744,25 @@ query_scalar() {
 
 stage=pre_plan_verification
 pre_plan=$work_dir/pre-plan.json
+# BEGIN production-migration-candidate-run-pre-plan
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
-  "$image" \
-  node services/api/scripts/migration-plan.mjs --json > "$pre_plan"
-pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/scripts/migration-plan.mjs --json > "$pre_plan"
+# END production-migration-candidate-run-pre-plan
+# BEGIN production-migration-evidence-parser-pre-plan
+pre_summary=$(docker run --rm \
+  -e NODE_OPTIONS= -e NODE_PATH= -e LD_PRELOAD= -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node -v "$pre_plan:/evidence.json:ro" "$image" -e '
   const p = require("/evidence.json");
   if (!p.safe || p.driftCount !== 0 || p.pendingCount < 1) process.exit(1);
   process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
 ')
+# END production-migration-evidence-parser-pre-plan
 test "$pre_summary" = "$expected_pre_plan"
 
 before_card_states=$(query_scalar 'select count(*) from public.user_card_states')
@@ -740,42 +778,73 @@ test "$before_migrations" -eq "${expected_pre_plan%%:*}"
 
 stage=production_migration_apply
 migration_started=1
-# BEGIN production-migration-runtime-identity-override
+# BEGIN production-migration-candidate-run-apply
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
   -e ICAO_PRODUCTION_MIGRATION_APPLY="apply:$source_sha:$expected_pre_plan:$expected_post_plan" \
   -e ICAO_PRODUCTION_MIGRATION_CONFIRM="$confirmation" \
   -e ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN="$expected_pre_plan" \
   -e ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan" \
   -e ICAO_PRODUCTION_MIGRATION_SOURCE_SHA="$source_sha" \
-  "$image" node services/api/scripts/migrate.mjs --production-apply
-# END production-migration-runtime-identity-override
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/scripts/migrate.mjs --production-apply
+# END production-migration-candidate-run-apply
 migration_completed=1
 
 stage=post_plan_verification
+# BEGIN production-migration-candidate-run-post-current
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
-  "$image" \
-  node services/api/scripts/migration-plan.mjs --require-current
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/scripts/migration-plan.mjs --require-current
+# END production-migration-candidate-run-post-current
 post_plan=$work_dir/post-plan.json
+# BEGIN production-migration-candidate-run-post-plan
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
-  "$image" \
-  node services/api/scripts/migration-plan.mjs --json --require-current > "$post_plan"
-post_summary=$(docker run --rm -v "$post_plan:/evidence.json:ro" "$image" node -e '
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/scripts/migration-plan.mjs --json --require-current > "$post_plan"
+# END production-migration-candidate-run-post-plan
+# BEGIN production-migration-evidence-parser-post-plan
+post_summary=$(docker run --rm \
+  -e NODE_OPTIONS= -e NODE_PATH= -e LD_PRELOAD= -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node -v "$post_plan:/evidence.json:ro" "$image" -e '
   const p = require("/evidence.json");
   if (!p.current || !p.safe || p.pendingCount !== 0 || p.driftCount !== 0) process.exit(1);
   process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
 ')
+# END production-migration-evidence-parser-post-plan
 test "$post_summary" = "$expected_post_plan"
 
 stage=post_schema_verification
 schema_contract=$work_dir/schema-contract.json
+# BEGIN production-migration-candidate-run-schema
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
-  -e ICAO_PRODUCTION_DATABASE_NAME=postgres "$image" \
-  node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
-docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  -e ICAO_PRODUCTION_DATABASE_NAME=postgres \
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
+# END production-migration-candidate-run-schema
+# BEGIN production-migration-evidence-parser-schema
+docker run --rm \
+  -e NODE_OPTIONS= -e NODE_PATH= -e LD_PRELOAD= -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node -v "$schema_contract:/evidence.json:ro" "$image" -e '
   const p = require("/evidence.json");
   if (p.status !== "verified" || p.readOnly !== true || p.requiredTables !== 56
       || p.expectedPublicTables !== 56 || p.actualPublicTables !== 56
@@ -784,6 +853,7 @@ docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.deviceDigestColumns !== 0) process.exit(1);
 '
+# END production-migration-evidence-parser-schema
 schema_contract_sha=$(sha256sum "$schema_contract" | awk '{ print $1 }')
 
 after_card_states=$(query_scalar 'select count(*) from public.user_card_states')
