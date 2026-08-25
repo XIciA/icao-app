@@ -2,7 +2,8 @@
 
 状态：2026-08-26 核对；隐私自助能力已进入主线，五个正式公开页面已从干净主线发布；生产 API/Ops、
 中国大陆合规、Support URL 联系信息、Apple 付费商务、审核账号、最终候选包和截图门禁未全部通过，
-不可提交；本文件不包含 App Store Connect 登录、字段写入、审核提交、商店发布或任何凭据。
+不可提交；本文件记录已完成的平台字段写入，但不保存任何凭据、验证码或受保护联系人值，也不把字段
+保存等同于审核提交或商店发布。
 
 本文件不定义 App Store 字段值。所有平台录入值只取自
 [`app-store-connect-final-fields.md`](app-store-connect-final-fields.md)。
@@ -45,26 +46,29 @@
 | 迁移演练 | PR #39—#44 已建立并加固备份、隔离恢复、迁移与清理链；成功证据见下一节 | 演练成功不等于生产迁移已执行；生产 schema/API 仍待部署 |
 | 自动发布 | D9 已冻结 `Automatically release this version`；Apple 将其定义为 App Store Connect 的版本级选项 | 2026-08-26 平台只读核验已选中；最终提交前仍须复核没有被改动 |
 
-## Apple 平台只读基线
+## Apple 平台当前状态
 
-2026-08-26 只读核验 App Store Connect 与 Apple Developer，未写入任何字段，也未记录页面上的个人
-邮箱、电话、地址、法律实体编号或其他受保护值：
+2026-08-25 已使用 Account Holder 会话写入下表列明的已确认字段，并以页面回显或 API 请求复核；
+个人邮箱、电话、地址、API 私钥和其他受保护值不进入本文件：
 
 | 平台项 | 当前真实状态 | 收口要求 |
 | --- | --- | --- |
 | App 记录 | Apple ID `6800583111`；Bundle ID `com.readyoufife.ios` | 保持现有记录，不新建重复 App |
-| 商店版本 | iOS `1.0`，状态“准备提交” | 提交前改为冻结版本 `1.0.0` |
+| 商店版本 | iOS `1.0.0`，状态“准备提交” | 已与冻结版本一致 |
 | TestFlight | 最新已验证 Build `3493759`，短版本 `1.0.0`，最低 iOS 15.1，2026-08-23 上传 | 该 Build 早于后续主线收口且版本页未选择；必须从最终 `origin/main` 上传更高 Build |
-| 版本页内容 | 截图 0/10；描述、关键词、Support URL、审核账号、审核联系人和 Notes 均为空；未选择 Build | 以唯一字段包录入，并用最终候选生成 6 张产品页截图和 5 张 IAP 审核截图 |
+| 版本页内容 | 宣传文本、描述、关键词、Support URL、Copyright 和受保护审核联系人已保存；截图 0/10，审核账号、Notes 和 Build 仍为空 | 用最终候选生成 6 张产品页截图和 5 张 IAP 审核截图，再录入两个生产审核账号与最终 Notes |
 | 发布方式 | `Automatically release this version` 已选 | 最终提交前复核仍选中且没有最早发布日期 |
-| App 信息 | 副标题、主分类、次要分类、Content Rights、年龄分级和 ICP 均未设置 | 按唯一字段包和经核实的备案/权利事实录入 |
+| App 信息 | 副标题、教育主分类、工具次分类、Content Rights 和 16+ 覆盖分级已保存；ICP 尚未录入 | 只从正式备案材料录入准确备案号 |
+| 价格与供应 | App 免费，中国大陆为基础地区，175 个国家或地区发布时供应；Mac、Vision Pro 与校园批量购买已关闭 | 最终提交前复核；五档 IAP 另按同一地区范围配置 |
 | Server Notifications | Production 与 Sandbox URL 均未设置 | 生产 API 部署并通过 V2 测试通知后录入同一正式 HTTPS 入口 |
 | App 内购买 | 0 项，只显示创建入口 | Paid Apps Agreement 生效后创建五档非自动续期订阅并与 1.0.0 首次同审 |
-| App 隐私 | 尚未开始；Privacy Policy URL 为空 | 最终归档与生产数据流审计后按 D7 基线完整填写 |
+| App 隐私 | Privacy Policy、Privacy Choices 和 D7 的13类数据申报已发布；全部与用户关联、均不跟踪 | 最终归档与生产数据流审计后反向复核，出现新数据流先修正再提交 |
 | 商务协议 | Free Apps Agreement 有效；Paid Apps Agreement 状态为“新”，平台提示签署前须更新法律实体 | 由 Account Holder 完成真实法律实体、付费协议、银行和税务；不得猜测或代填事实 |
-| DSA | 交易商合规未完成 | 因采用全部国家或地区分发，完成适用的交易商身份与联系方式验证后再提交 |
+| DSA | 交易商流程与 Apple 现有资料已核对，但选择和联系方式未保存，尚未触发或完成电话/邮箱验证码 | 重新选择交易商、核对并保存正式联系方式；本人在浏览器直接完成两项验证码，不把验证码发送到仓库、日志或聊天 |
 | 开发者账号 | 组织账号有效，当前具 Account Holder 权限；Developer Program 续订日 2027-08-12 | 保持账号有效并在提交期间可完成双重认证 |
 | Developer Program 协议 | 最新 Apple Developer Program License Agreement 已于 2026-08-24 接受 | 与尚未签署的 Paid Apps Agreement 严格区分 |
+| 团队 API Key | 已创建 App Manager 职能团队密钥，真实 App Store Connect API 鉴权请求成功 | 私钥位于仓库外 `0600` 受保护目录；不记录私钥或在仓库复制 |
+| App ID 能力 | 正式 Bundle ID 已启用 Sign in with Apple 与 In-App Purchase | 最终归档和签名描述文件继续反向复核 |
 
 ## 生产迁移演练证据
 
@@ -140,9 +144,8 @@
    StoreKit 价格、购买、恢复、AI 和注销都能由审核账号复现。
 5. 从 Apple 审核可能所在网络复查五个 URL；复核版本页已保存 `Automatically release this version`，
    不设置最早发布日期。
-6. 由有权角色在 Apple 平台创建并妥善保存 App Manager 范围的团队 API Key；确认 Apple 登录能力、
-   正式签名、App Store Server Notifications V2 和当前版本记录均配置完成。私钥、密码和验证码不进
-   仓库、日志或聊天，Codex 只能根据平台状态记录完成证据。
+6. App Manager 团队 API Key、Apple 登录能力和当前 `1.0.0` 版本记录已完成；仍须确认最终正式签名
+   和 App Store Server Notifications V2。私钥、密码和验证码不进仓库、日志或聊天。
 7. 为 Ops 首个实际管理员提供公司控制邮箱并完成 TOTP 绑定；密码、TOTP 秘钥和恢复码只进入受保护
    凭据存储，不进入本材料。
 
@@ -176,10 +179,9 @@
   内容不可见、不可达且不产生微信运行时或商店宣传。
 - 自动发布是平台版本开关，不存在可由仓库证明的配置文件；当前只读核验已选中，最终提交前仍须在
   App Store Connect 复核并保存，不能仅依赖本次历史快照。
-- DSA 交易商合规当前未完成；在全部国家或地区分发方案下，必须完成适用身份及联系方式验证，且不
-  得把未核实的地址、公开电话或邮箱提交给 Apple。
-- iPhone/iPad App 默认可能在 Apple 芯片 Mac 与 Apple Vision Pro 分发；1.0.0 未覆盖这两类设备，
-  必须在 Pricing and Availability 中分别取消兼容分发并保存。
+- DSA 交易商流程已核对，但选择和联系方式未保存，电话与邮箱验证码尚未触发；在全部国家或地区
+  分发方案下，必须重新核对正式资料、保存并验证完成后再提交。
+- Apple 芯片 Mac、Apple Vision Pro 和校园批量购买已取消并保存；最终提交前继续复核没有被改回。
 
 ## 材料冲突修正记录
 
