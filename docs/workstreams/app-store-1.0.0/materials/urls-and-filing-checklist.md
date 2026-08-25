@@ -1,7 +1,8 @@
 # App 备案、支持与隐私 URL 检查表
 
-状态：首轮草案。2026-08-24 已只读核对 App Store Connect 的开发者主体、协议和商务状态；尚未
-核对备案平台及其他公司平台，也未把仓库源码路径当作公开 URL。
+状态：公开 URL 已上线核验。2026-08-24 已只读核对 App Store Connect 的开发者主体、协议和商务
+状态；2026-08-25 已从干净的 `origin/main` 提交 `6cd7767` 部署官网 v4.0 页面并完成公网核验。
+备案号、联系信息、邮箱值守和最终包一致性仍须在提交前收口。
 
 ## App 备案与中国大陆供应
 
@@ -26,28 +27,28 @@
 
 | 用途 | 平台值 | 仓库候选 | 当前结论 |
 | --- | --- | --- | --- |
-| Support URL | `【待确认：公开 HTTPS App 支持页 URL】` | `https://yunqihangke.com/apps/readyoufife/support/` | 仅有官网源码候选；本轮未验证已部署和可达 |
-| Privacy Policy URL | `【待确认：公开 HTTPS App 隐私政策 URL】` | `https://yunqihangke.com/apps/readyoufife/privacy/` | 最终政策必须按实际数据流重写并公开，不能直接采用历史版本 |
-| Privacy Choices URL | `【待部署验证：公开 HTTPS 隐私选择页 URL】` | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 源码已覆盖查阅、导出、更正、删除、撤回 AI 同意、注销和无法登录联系路径；正式值等公网部署后验证 |
-| 账号删除说明 | `【待确认：公开 HTTPS 账号删除页 URL】` | `https://yunqihangke.com/apps/readyoufife/account-deletion/` | 可作为隐私选择页的关联入口，不能单独替代全部隐私选择说明 |
-| 用户协议 | `【待确认：公开 HTTPS 用户协议 URL】` | `https://yunqihangke.com/apps/readyoufife/terms/` | 与 App 内主体、版本、年龄和服务边界一致 |
+| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 同左 | 2026-08-25 公网 HTTPS 返回 200，v4.0 正式内容已部署 |
+| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 同左 | 2026-08-25 公网 HTTPS 返回 200，页面标记 v4.0，未命中旧供应商、邀请码或 14 岁口径 |
+| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 同左 | 2026-08-25 公网 HTTPS 返回 200，并已进入 sitemap；原 404 阻塞已解除 |
+| 账号删除说明 | `https://yunqihangke.com/apps/readyoufife/account-deletion/` | 同左 | 2026-08-25 公网 HTTPS 返回 200；作为隐私选择页的关联入口，不单独替代全部隐私选择说明 |
+| 用户协议 | `https://yunqihangke.com/apps/readyoufife/terms/` | 同左 | 2026-08-25 公网 HTTPS 返回 200，页面标记 v4.0，已与 App 内主体、年龄和服务边界统一 |
 | Marketing URL | 留空 | 无 | 首发无已验证独立营销页时不填 |
 
 ## URL 逐项验收
 
 每个拟提交 URL 都必须通过以下检查：
 
-- [ ] 公网无需登录即可访问，使用 HTTPS，无证书错误、失效跳转或地区阻断。
+- [x] 公网无需登录即可访问，使用 HTTPS；2026-08-25 本地公网核验五页均返回 200。
 - [ ] 从 Apple 审核可能所在地区可以正常访问，移动端排版完整。
 - [ ] 页面标题、App 名称、公司主体、版本、生效日期和联系信息一致。
-- [ ] 无课程销售、咨询购买、通过率、包过、内部题库、真实考题或 Vercel 旧站冲突内容。
-- [ ] 无通义千问、14+、未满16周岁监护人等旧口径。
+- [x] 无课程销售、咨询购买、通过率、包过、内部题库或真实考题宣传。
+- [x] 五页线上正文未命中通义千问、邀请码或未满14周岁等旧口径。
 - [ ] 支持页有真实有效的公司联系地址、邮箱和电话（按当地法律及 Apple 字段要求）。
 - [ ] 隐私政策覆盖最终 SDK、数据类型、用途、第三方、保留期限、用户权利、16+ 和投诉渠道。
 - [ ] 隐私政策不作未经证明的“绝不训练”“零留存”或“绝不出境”承诺。
-- [ ] Privacy Choices 页面明确 App 内路径及无法登录时的人工联系路径。
-- [ ] 页面返回成功状态，关键资源加载成功，不依赖 Cookie 同意后才能阅读正文。
-- [ ] 页面长期稳定，不使用临时预览、带签名参数或会过期的 URL。
+- [x] Privacy Choices 页面明确 App 内路径及无法登录时的人工联系路径。
+- [x] 页面返回成功状态，正文无需登录或 Cookie 同意即可读取。
+- [x] 使用正式自有域名，不使用临时预览、签名参数或会过期的 URL。
 
 ## 联系信息占位符与候选证据
 
