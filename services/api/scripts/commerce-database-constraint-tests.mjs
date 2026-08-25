@@ -27,6 +27,7 @@ import { AppleNotificationReconciliationService } from '../src/commerce/apple-no
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import { AiService } from '../src/ai/ai.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
+import { SERVER_ONLY_SENSITIVE_TABLES } from './production-schema-contract-data.mjs';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-commerce-postgres-'));
@@ -490,41 +491,8 @@ test('content access credentials do not retain a stable device digest column', (
 });
 
 test('server-owned authority, commerce, privacy, and Ops tables are private to client roles', () => {
-  const protectedTables = [
-    'accounts',
-    'account_content_credential_revocations',
-    'account_deletion_auth_users',
-    'account_deletion_jobs',
-    'account_deletion_status_rate_limits',
-    'account_deletion_tombstones',
-    'account_security_events',
-    'ai_consent_authorities',
-    'ai_consent_challenges',
-    'ai_point_batches',
-    'ai_point_ledger_entries',
-    'ai_point_reservations',
-    'apple_notification_events',
-    'apple_transactions',
-    'apple_revocable_credentials',
-    'apple_credential_intakes',
-    'content_access_credentials',
-    'content_environment_session_grants',
-    'commerce_channel_products',
-    'commerce_orders',
-    'commerce_products',
-    'lifetime_identity_benefit_claims',
-    'membership_entitlement_segments',
-    'ops_audit_events',
-    'ops_staff_accounts',
-    'phone_otp_intents',
-    'privacy_action_receipts',
-    'recent_auth_challenges',
-    'recent_auth_grants',
-    'sms_delivery_attempts',
-    'sms_usage_counters',
-  ];
   for (const role of ['anon', 'authenticated']) {
-    for (const table of protectedTables) {
+    for (const table of SERVER_ONLY_SENSITIVE_TABLES) {
       assert.equal(
         queryScalar(`SELECT has_table_privilege('${role}', '${table}', 'SELECT,INSERT,UPDATE,DELETE')::text`),
         'false',

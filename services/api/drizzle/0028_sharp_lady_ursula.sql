@@ -16,4 +16,5 @@ CREATE TABLE "content_environment_session_grants" (
 ALTER TABLE "content_environment_session_grants" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 CREATE UNIQUE INDEX "content_environment_session_grants_identity" ON "content_environment_session_grants" USING btree ("environment","session_digest");--> statement-breakpoint
 CREATE INDEX "content_environment_session_grants_account_expiry" ON "content_environment_session_grants" USING btree ("account_id","environment","expires_at");--> statement-breakpoint
-CREATE INDEX "content_environment_session_grants_retention" ON "content_environment_session_grants" USING btree ("retention_at");
+CREATE INDEX "content_environment_session_grants_retention" ON "content_environment_session_grants" USING btree ("retention_at");--> statement-breakpoint
+REVOKE ALL ON TABLE "content_environment_session_grants" FROM anon, authenticated;

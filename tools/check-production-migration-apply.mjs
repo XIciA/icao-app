@@ -1,12 +1,25 @@
 import { readFile } from 'node:fs/promises';
 
-const [applySource, migrateSource, schemaVerifierSource, apiReleaseSource, opsReleaseSource, packageSource] = await Promise.all([
+const [
+  applySource,
+  migrateSource,
+  rehearsalSource,
+  schemaContractDataSource,
+  schemaVerifierSource,
+  apiReleaseSource,
+  opsReleaseSource,
+  packageSource,
+  apiPackageSource,
+] = await Promise.all([
   readFile('scripts/apply-production-migrations.sh', 'utf8'),
   readFile('services/api/scripts/migrate.mjs', 'utf8'),
+  readFile('scripts/rehearse-production-migrations.sh', 'utf8'),
+  readFile('services/api/scripts/production-schema-contract-data.mjs', 'utf8'),
   readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8'),
   readFile('scripts/deploy-api-release.sh', 'utf8'),
   readFile('scripts/deploy-ops-release.sh', 'utf8'),
   readFile('package.json', 'utf8'),
+  readFile('services/api/package.json', 'utf8'),
 ]);
 
 for (const contract of [
@@ -39,10 +52,16 @@ for (const contract of [
   'test "$pre_summary" = "$expected_pre_plan"',
   'test "$post_summary" = "$expected_post_plan"',
   'scripts/migrate.mjs --production-apply',
+  'ICAO_PRODUCTION_MIGRATION_APPLY="apply:$source_sha:$expected_pre_plan:$expected_post_plan"',
+  'ICAO_PRODUCTION_MIGRATION_CONFIRM="$confirmation"',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN="$expected_pre_plan"',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan"',
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
   'business_rows_preserved=1',
   'auth_users_preserved=1',
+  'business_rows_preservation_check=monotonic_non_decrease_not_content_fingerprint',
+  'auth_users_preservation_check=monotonic_non_decrease_not_content_fingerprint',
   'automatic_production_restore=forbidden',
   'manual_authorization_required_choose_forward_fix_or_verified_restore',
   'restore-isolated.sh',
@@ -85,14 +104,30 @@ if ([confirmationCheck, rehearsalStart, remoteStart, migrateStart, postCurrent, 
 }
 
 if (
-  !migrateSource.includes("process.argv.includes('--production-apply')")
+  !migrateSource.includes("'--development-apply'")
+  || !migrateSource.includes("'--isolated-rehearsal'")
+  || !migrateSource.includes("'--production-apply'")
+  || !migrateSource.includes('migration_mode_required')
+  || !migrateSource.includes('development_migration_forbidden_in_production')
   || !migrateSource.includes('production_migration_wrapper_authorization_missing')
+  || !migrateSource.includes('production_migration_confirmation_binding_missing')
   || !migrateSource.includes('production_migration_image_identity_mismatch')
+  || !migrateSource.includes('production_migration_database_target_invalid')
+  || !migrateSource.includes('migration_rehearsal_wrapper_authorization_missing')
+  || !migrateSource.includes('migration_rehearsal_image_identity_mismatch')
+  || !migrateSource.includes('migration_rehearsal_database_target_invalid')
   || !migrateSource.includes('pg_try_advisory_lock')
   || !migrateSource.includes('pg_advisory_unlock')
   || !migrateSource.includes("lock_timeout: '15s'")
 ) {
   throw new Error('database_migrator_production_guard_incomplete');
+}
+if (
+  !apiPackageSource.includes('"migration:apply": "node scripts/migrate.mjs --development-apply"')
+  || !rehearsalSource.includes('scripts/migrate.mjs --isolated-rehearsal')
+  || !rehearsalSource.includes('ICAO_MIGRATION_REHEARSAL_AUTHORIZATION="rehearse:$source_sha:$database_name"')
+) {
+  throw new Error('database_migrator_entrypoint_guard_incomplete');
 }
 
 for (const contract of [
@@ -114,6 +149,98 @@ for (const contract of [
 }
 if (!schemaVerifierSource.includes("expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME")) {
   throw new Error('production_schema_verifier_database_binding_missing');
+}
+const requiredSensitiveTables = [
+  'account_content_credential_revocations',
+  'account_deletion_auth_users',
+  'account_deletion_jobs',
+  'account_deletion_status_rate_limits',
+  'account_deletion_tombstones',
+  'account_security_events',
+  'accounts',
+  'ai_consent_authorities',
+  'ai_consent_challenges',
+  'ai_point_batches',
+  'ai_point_ledger_entries',
+  'ai_point_reservations',
+  'apple_notification_events',
+  'apple_revocable_credentials',
+  'apple_credential_intakes',
+  'apple_transactions',
+  'commerce_channel_products',
+  'commerce_orders',
+  'commerce_products',
+  'content_access_credentials',
+  'content_environment_session_grants',
+  'lifetime_identity_benefit_claims',
+  'membership_entitlement_segments',
+  'ops_audit_events',
+  'ops_change_previews',
+  'ops_entitlement_adjustments',
+  'ops_staff_accounts',
+  'ops_staff_recovery_codes',
+  'ops_staff_sessions',
+  'phone_otp_intents',
+  'privacy_action_receipts',
+  'recent_auth_challenges',
+  'recent_auth_grants',
+  'sms_delivery_attempts',
+  'sms_usage_counters',
+];
+for (const table of requiredSensitiveTables) {
+  if (!schemaContractDataSource.includes(`'${table}'`)) {
+    throw new Error(`production_schema_sensitive_table_omitted:${table}`);
+  }
+}
+if (!schemaVerifierSource.includes('SERVER_ONLY_SENSITIVE_TABLES')) {
+  throw new Error('production_schema_verifier_canonical_table_source_missing');
+}
+
+const imageCleanupStart = applySource.indexOf('# BEGIN production-migration-image-cleanup');
+const imageCleanupEnd = applySource.indexOf('# END production-migration-image-cleanup');
+const imageCleanupSource = applySource.slice(imageCleanupStart, imageCleanupEnd);
+const evidenceStart = applySource.indexOf('# BEGIN production-migration-evidence-publication');
+const evidenceEnd = applySource.indexOf('# END production-migration-evidence-publication');
+const evidenceSource = applySource.slice(evidenceStart, evidenceEnd);
+if (
+  imageCleanupStart < 0
+  || imageCleanupEnd <= imageCleanupStart
+  || !imageCleanupSource.includes('if ! docker image inspect "$image"')
+  || !imageCleanupSource.includes('if ! docker image rm "$image"')
+  || !imageCleanupSource.includes('if ! remaining_images=$(docker image ls')
+  || !imageCleanupSource.includes('production migration image still exists after cleanup:')
+  || evidenceStart < 0
+  || evidenceEnd <= evidenceStart
+  || !evidenceSource.includes('if ! (set -C; : > "$partial")')
+  || !evidenceSource.includes('if ! chmod 600 "$partial" "$confirmation_input"')
+  || !evidenceSource.includes('if ! ln "$partial" "$evidence"')
+  || !evidenceSource.includes('if ! rm -f "$partial"')
+  || !evidenceSource.includes('if ! require_root_owned_path file "$evidence" 600')
+) {
+  throw new Error('production_migration_cleanup_or_evidence_guard_incomplete');
+}
+
+for (const monotonicCheck of [
+  'test "$after_card_states" -ge "$before_card_states"',
+  'test "$after_learning_records" -ge "$before_learning_records"',
+  'test "$after_documents" -ge "$before_documents"',
+  'test "$after_changes" -ge "$before_changes"',
+  'test "$after_auth_users" -ge "$before_auth_users"',
+]) {
+  if (!applySource.includes(monotonicCheck)) {
+    throw new Error(`production_migration_monotonic_check_missing:${monotonicCheck}`);
+  }
+}
+
+const rollbackBlock = opsReleaseSource.match(/<<'REMOTE_ROLLBACK'\n([\s\S]*?)\nREMOTE_ROLLBACK/u)?.[1];
+if (
+  !rollbackBlock
+  || !rollbackBlock.includes('/run/lock/icao-ops-release.lock')
+  || !rollbackBlock.includes('/run/lock/icao-production-release-change.lock')
+  || rollbackBlock.indexOf('/run/lock/icao-ops-release.lock')
+    > rollbackBlock.indexOf('/run/lock/icao-production-release-change.lock')
+) {
+  throw new Error('ops_rollback_shared_release_lock_missing_or_misordered');
 }
 
 for (const releaseSource of [apiReleaseSource, opsReleaseSource]) {

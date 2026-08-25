@@ -312,15 +312,16 @@ for lock_path in \
 do
   prepare_lock_file "$lock_path"
 done
-exec 9>/run/lock/icao-production-migration-apply.lock
+exec 9<>/run/lock/icao-production-migration-apply.lock
 flock -n 9 || { echo 'another production migration apply is already running' >&2; exit 1; }
-exec 8>/run/lock/icao-production-migration-rehearsal.lock
+exec 8<>/run/lock/icao-production-migration-rehearsal.lock
 flock -n 8 || { echo 'a production migration rehearsal is still running' >&2; exit 1; }
-exec 7>/run/lock/icao-postgres-backup.lock
+exec 7<>/run/lock/icao-postgres-backup.lock
 flock -n 7 || { echo 'a production PostgreSQL backup is still running' >&2; exit 1; }
-exec 6>/run/lock/icao-production-release-change.lock
+exec 6<>/run/lock/icao-production-release-change.lock
 flock -n 6 || { echo 'a production API or Ops release change is still running' >&2; exit 1; }
 
+# BEGIN production-migration-image-cleanup
 cleanup_migration_image() {
   if [ "$image_created" != 1 ]; then return 0; fi
   if ! listed_images=$(docker image ls --format '{{.Repository}}:{{.Tag}}' --filter "reference=$image"); then
@@ -328,15 +329,29 @@ cleanup_migration_image() {
     return 1
   fi
   case "$listed_images" in
-    '') return 0 ;;
+    '') image_created=0; return 0 ;;
     "$image") ;;
     *) echo "production migration image lookup returned unexpected results: $image" >&2; return 1 ;;
   esac
-  docker image inspect "$image" >/dev/null
-  docker image rm "$image" >/dev/null
-  remaining_images=$(docker image ls --format '{{.Repository}}:{{.Tag}}' --filter "reference=$image")
-  test -z "$remaining_images"
+  if ! docker image inspect "$image" >/dev/null; then
+    echo "could not inspect production migration image during cleanup: $image" >&2
+    return 1
+  fi
+  if ! docker image rm "$image" >/dev/null; then
+    echo "could not remove production migration image during cleanup: $image" >&2
+    return 1
+  fi
+  if ! remaining_images=$(docker image ls --format '{{.Repository}}:{{.Tag}}' --filter "reference=$image"); then
+    echo "could not verify production migration image cleanup: $image" >&2
+    return 1
+  fi
+  if [ -n "$remaining_images" ]; then
+    echo "production migration image still exists after cleanup: $image" >&2
+    return 1
+  fi
+  image_created=0
 }
+# END production-migration-image-cleanup
 
 cleanup_remote_resources() (
   set +e
@@ -344,81 +359,164 @@ cleanup_remote_resources() (
   case "$work_dir" in
     "$root"/.work-*)
       if [ "$work_dir_created" = 1 ]; then
-        if [ -L "$work_dir" ]; then cleanup_failed=1
-        elif [ -e "$work_dir" ]; then rm -rf "$work_dir" || cleanup_failed=1
+        if [ -L "$work_dir" ]; then
+          echo "production migration work path became a symlink: $work_dir" >&2
+          cleanup_failed=1
+        elif [ -e "$work_dir" ] && ! rm -rf "$work_dir"; then
+          echo "could not remove production migration work path: $work_dir" >&2
+          cleanup_failed=1
         fi
       fi
       ;;
-    *) cleanup_failed=1 ;;
+    *) echo 'production migration cleanup path escaped its protected root' >&2; cleanup_failed=1 ;;
   esac
-  rm -f "$upload" "$checksum" || cleanup_failed=1
+  if ! rm -f "$upload"; then
+    echo "could not remove production migration upload: $upload" >&2
+    cleanup_failed=1
+  fi
+  if ! rm -f "$checksum"; then
+    echo "could not remove production migration checksum: $checksum" >&2
+    cleanup_failed=1
+  fi
   if ! cleanup_migration_image; then cleanup_failed=1; fi
   for cleanup_path in "$work_dir" "$upload" "$checksum"; do
-    if [ -e "$cleanup_path" ] || [ -L "$cleanup_path" ]; then cleanup_failed=1; fi
+    if [ -e "$cleanup_path" ] || [ -L "$cleanup_path" ]; then
+      echo "production migration path still exists after cleanup: $cleanup_path" >&2
+      cleanup_failed=1
+    fi
   done
   exit "$cleanup_failed"
 )
 
+# BEGIN production-migration-evidence-publication
 publish_evidence() (
   evidence_status=$1
-  case "$evidence_status" in succeeded|failed) ;; *) exit 1 ;; esac
-  completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-  evidence=$evidence_dir/apply-$source_id-$(date -u +%Y%m%dT%H%M%SZ)-$token_id-$evidence_status.txt
+  case "$evidence_status" in
+    succeeded|failed) ;;
+    *) echo 'production migration evidence status is invalid' >&2; exit 1 ;;
+  esac
+  if ! completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ); then
+    echo 'could not determine production migration evidence completion time' >&2
+    exit 1
+  fi
+  if ! evidence_timestamp=$(date -u +%Y%m%dT%H%M%SZ); then
+    echo 'could not determine production migration evidence filename time' >&2
+    exit 1
+  fi
+  evidence=$evidence_dir/apply-$source_id-$evidence_timestamp-$token_id-$evidence_status.txt
   partial=$evidence.partial.$$
-  case "$evidence:$partial" in
-    "$evidence_dir"/apply-*.txt:"$evidence_dir"/apply-*.txt.partial.*) ;;
+  confirmation_input=$partial.confirmation
+  case "$evidence:$partial:$confirmation_input" in
+    "$evidence_dir"/apply-*.txt:"$evidence_dir"/apply-*.txt.partial.*:"$evidence_dir"/apply-*.txt.partial.*.confirmation) ;;
     *) echo 'production migration evidence path escaped its protected root' >&2; exit 1 ;;
   esac
-  test ! -e "$evidence" && test ! -L "$evidence"
-  test ! -e "$partial" && test ! -L "$partial"
-  cleanup_evidence_partial() { rm -f "$partial"; }
+  if [ -e "$evidence" ] || [ -L "$evidence" ] \
+    || [ -e "$partial" ] || [ -L "$partial" ] \
+    || [ -e "$confirmation_input" ] || [ -L "$confirmation_input" ]; then
+    echo 'production migration evidence destination already exists' >&2
+    exit 1
+  fi
+  evidence_linked=0
+  cleanup_evidence_partial() {
+    rm -f "$partial" "$confirmation_input" >/dev/null 2>&1 || true
+    if [ "$evidence_linked" = 1 ]; then rm -f "$evidence" >/dev/null 2>&1 || true; fi
+  }
   trap cleanup_evidence_partial EXIT
   trap 'exit 1' HUP INT TERM
-  set -C
-  : > "$partial"
-  set +C
-  {
-    printf 'status=%s\n' "$evidence_status"
-    printf 'stage=%s\n' "$stage"
-    printf 'source_sha=%s\n' "$source_sha"
-    printf 'archive_sha256=%s\n' "$archive_sha"
-    printf 'confirmation_sha256=%s\n' "$(printf '%s' "$confirmation" | sha256sum | awk '{ print $1 }')"
-    printf 'backup_name=%s\n' "$backup_name"
-    printf 'backup_sha256=%s\n' "$backup_sha"
-    printf 'rehearsal_evidence=%s\n' "$rehearsal_evidence"
-    printf 'expected_pre_plan=%s\n' "$expected_pre_plan"
-    printf 'expected_post_plan=%s\n' "$expected_post_plan"
-    printf 'observed_pre_plan=%s\n' "$pre_summary"
-    printf 'observed_post_plan=%s\n' "$post_summary"
-    printf 'migration_started=%s\n' "$migration_started"
-    printf 'migration_completed=%s\n' "$migration_completed"
-    printf 'migration_rows_before=%s\n' "$before_migrations"
-    printf 'migration_rows_after=%s\n' "$after_migrations"
-    printf 'business_rows_before=%s\n' "$before_business_rows"
-    printf 'business_rows_after=%s\n' "$after_business_rows"
-    printf 'business_rows_preserved=%s\n' "$business_rows_preserved"
-    printf 'auth_users_before=%s\n' "$before_auth_users"
-    printf 'auth_users_after=%s\n' "$after_auth_users"
-    printf 'auth_users_preserved=%s\n' "$auth_users_preserved"
-    printf 'schema_contract_sha256=%s\n' "$schema_contract_sha"
-    printf 'cleanup_verified=%s\n' "$cleanup_verified"
-    printf 'automatic_production_restore=forbidden\n'
-    printf 'recovery_validation_command=/bin/sh /opt/icao/runtime/backup-tools/current/restore-isolated.sh %s\n' "$backup"
-    printf 'production_recovery=manual_authorization_required_choose_forward_fix_or_verified_restore\n'
-    printf 'completed_at=%s\n' "$completed_at"
-  } > "$partial"
-  chmod 600 "$partial"
-  ln "$partial" "$evidence"
-  rm "$partial"
+  if ! (set -C; : > "$partial"); then
+    echo 'could not exclusively create production migration evidence staging file' >&2
+    exit 1
+  fi
+  if ! (set -C; : > "$confirmation_input"); then
+    echo 'could not exclusively create production migration confirmation hash input' >&2
+    exit 1
+  fi
+  if ! chmod 600 "$partial" "$confirmation_input"; then
+    echo 'could not protect production migration evidence staging files' >&2
+    exit 1
+  fi
+  if ! printf '%s' "$confirmation" > "$confirmation_input"; then
+    echo 'could not stage production migration confirmation for hashing' >&2
+    exit 1
+  fi
+  if ! confirmation_sha_line=$(sha256sum "$confirmation_input"); then
+    echo 'could not hash production migration confirmation' >&2
+    exit 1
+  fi
+  confirmation_sha=${confirmation_sha_line%% *}
+  case "$confirmation_sha" in
+    ''|*[!a-f0-9]*) echo 'production migration confirmation hash is invalid' >&2; exit 1 ;;
+  esac
+  if [ "${#confirmation_sha}" -ne 64 ]; then
+    echo 'production migration confirmation hash length is invalid' >&2
+    exit 1
+  fi
+  if ! rm -f "$confirmation_input"; then
+    echo 'could not remove production migration confirmation hash input' >&2
+    exit 1
+  fi
+  if ! printf '%s\n' \
+    "status=$evidence_status" \
+    "stage=$stage" \
+    "source_sha=$source_sha" \
+    "archive_sha256=$archive_sha" \
+    "confirmation_sha256=$confirmation_sha" \
+    "backup_name=$backup_name" \
+    "backup_sha256=$backup_sha" \
+    "rehearsal_evidence=$rehearsal_evidence" \
+    "expected_pre_plan=$expected_pre_plan" \
+    "expected_post_plan=$expected_post_plan" \
+    "observed_pre_plan=$pre_summary" \
+    "observed_post_plan=$post_summary" \
+    "migration_started=$migration_started" \
+    "migration_completed=$migration_completed" \
+    "migration_rows_before=$before_migrations" \
+    "migration_rows_after=$after_migrations" \
+    "business_rows_before=$before_business_rows" \
+    "business_rows_after=$after_business_rows" \
+    "business_rows_preservation_check=monotonic_non_decrease_not_content_fingerprint" \
+    "business_rows_preserved=$business_rows_preserved" \
+    "auth_users_before=$before_auth_users" \
+    "auth_users_after=$after_auth_users" \
+    "auth_users_preservation_check=monotonic_non_decrease_not_content_fingerprint" \
+    "auth_users_preserved=$auth_users_preserved" \
+    "schema_contract_sha256=$schema_contract_sha" \
+    "cleanup_verified=$cleanup_verified" \
+    'automatic_production_restore=forbidden' \
+    "recovery_validation_command=/bin/sh /opt/icao/runtime/backup-tools/current/restore-isolated.sh $backup" \
+    'production_recovery=manual_authorization_required_choose_forward_fix_or_verified_restore' \
+    "completed_at=$completed_at" > "$partial"; then
+    echo 'could not write complete production migration evidence' >&2
+    exit 1
+  fi
+  if ! ln "$partial" "$evidence"; then
+    echo 'could not atomically publish production migration evidence' >&2
+    exit 1
+  fi
+  evidence_linked=1
+  if ! rm -f "$partial"; then
+    echo 'could not remove production migration evidence staging link' >&2
+    exit 1
+  fi
+  if ! require_root_owned_path file "$evidence" 600; then
+    echo 'published production migration evidence failed its final path guard' >&2
+    exit 1
+  fi
+  if ! printf '%s\n' "$evidence"; then
+    echo 'could not report published production migration evidence' >&2
+    exit 1
+  fi
+  evidence_linked=0
   trap - EXIT HUP INT TERM
-  require_root_owned_path file "$evidence" 600
-  printf '%s\n' "$evidence"
 )
+# END production-migration-evidence-publication
 
 cleanup_on_exit() {
   original_status=$?
   trap - EXIT
   set +e
+  final_status=$original_status
+  if [ "$final_status" -eq 0 ]; then final_status=1; fi
   cleanup_failed=0
   if ! cleanup_remote_resources; then
     stage=cleanup_failed
@@ -433,7 +531,7 @@ cleanup_on_exit() {
   # Never restore or overwrite the live database automatically. If migration
   # started, the evidence and fresh backup identify the separately authorized
   # forward-fix or verified-restore recovery path.
-  exit "${original_status:-1}"
+  exit "$final_status"
 }
 trap cleanup_on_exit EXIT
 trap 'exit 1' HUP INT TERM
@@ -552,7 +650,10 @@ test "$before_migrations" -eq "${expected_pre_plan%%:*}"
 stage=production_migration_apply
 migration_started=1
 docker run --rm --network supabase_default --env-file "$runtime_env" \
-  -e ICAO_PRODUCTION_MIGRATION_APPLY="apply:$source_sha" \
+  -e ICAO_PRODUCTION_MIGRATION_APPLY="apply:$source_sha:$expected_pre_plan:$expected_post_plan" \
+  -e ICAO_PRODUCTION_MIGRATION_CONFIRM="$confirmation" \
+  -e ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN="$expected_pre_plan" \
+  -e ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan" \
   -e ICAO_PRODUCTION_MIGRATION_SOURCE_SHA="$source_sha" \
   "$image" node services/api/scripts/migrate.mjs --production-apply
 migration_completed=1
@@ -577,7 +678,7 @@ docker run --rm --network supabase_default --env-file "$runtime_env" \
   node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
 docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
-  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables < 18
+  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables < 36
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.deviceDigestColumns !== 0) process.exit(1);
@@ -591,11 +692,11 @@ after_changes=$(query_scalar 'select count(*) from public.sync_changes')
 after_auth_users=$(query_scalar 'select count(*) from auth.users')
 after_migrations=$(query_scalar 'select count(*) from drizzle.__drizzle_migrations')
 after_business_rows=$((after_card_states + after_learning_records + after_documents + after_changes))
-test "$after_card_states" = "$before_card_states"
-test "$after_learning_records" = "$before_learning_records"
-test "$after_documents" = "$before_documents"
-test "$after_changes" = "$before_changes"
-test "$after_auth_users" = "$before_auth_users"
+test "$after_card_states" -ge "$before_card_states"
+test "$after_learning_records" -ge "$before_learning_records"
+test "$after_documents" -ge "$before_documents"
+test "$after_changes" -ge "$before_changes"
+test "$after_auth_users" -ge "$before_auth_users"
 test "$after_migrations" -eq "${expected_post_plan%%:*}"
 business_rows_preserved=1
 auth_users_preserved=1

@@ -53,3 +53,11 @@ export function parseRehearsalSuccess(output, { postPlan, prePlan, sourceSha }) 
   if (!EVIDENCE_PATTERN.test(evidencePath)) throw new Error('rehearsal_evidence_path_invalid');
   return { backupName, evidencePath };
 }
+
+export function assertMonotonicRowCounts(before, after, label = 'row_count') {
+  if (!Number.isSafeInteger(before) || before < 0 || !Number.isSafeInteger(after) || after < 0) {
+    throw new Error(`${label}_invalid`);
+  }
+  if (after < before) throw new Error(`${label}_decreased`);
+  return { additions: after - before, after, before };
+}

@@ -1,5 +1,7 @@
 import postgres from 'postgres';
 
+import { SERVER_ONLY_SENSITIVE_TABLES } from './production-schema-contract-data.mjs';
+
 const databaseUrl = process.env.DATABASE_URL;
 const expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME;
 if (!databaseUrl) throw new Error('missing_DATABASE_URL');
@@ -20,27 +22,8 @@ if (
   throw new Error('production_database_target_invalid');
 }
 
-const requiredTables = [
-  'public.accounts',
-  'public.phone_otp_intents',
-  'public.recent_auth_grants',
-  'public.account_deletion_jobs',
-  'public.commerce_products',
-  'public.commerce_channel_products',
-  'public.commerce_orders',
-  'public.apple_transactions',
-  'public.apple_notification_events',
-  'public.membership_entitlement_segments',
-  'public.ai_point_batches',
-  'public.ai_point_reservations',
-  'public.ai_point_ledger_entries',
-  'public.ai_consent_authorities',
-  'public.content_access_credentials',
-  'public.ops_staff_accounts',
-  'public.ops_audit_events',
-  'public.privacy_action_receipts',
-];
-const serverOnlyTables = requiredTables.map((value) => value.slice('public.'.length));
+const serverOnlyTables = SERVER_ONLY_SENSITIVE_TABLES;
+const requiredTables = serverOnlyTables.map((value) => `public.${value}`);
 const expectedProducts = [
   ['membership_7d_v1', 7, 6800, 'ai-points-v1', 1, 31, 250],
   ['membership_15d_v1', 15, 10800, 'ai-points-v1', 1, 31, 500],

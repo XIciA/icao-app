@@ -71,9 +71,16 @@ release_id=$1
 case "$release_id" in
   ''|*[!A-Za-z0-9._-]*) echo 'Remote Ops rollback release ID is invalid.' >&2; exit 1 ;;
 esac
-exec 9>/run/lock/icao-ops-release.lock
+exec 9<>/run/lock/icao-ops-release.lock
 if ! flock -n 9; then
   echo 'Another Ops deployment or rollback is running.' >&2
+  exit 1
+fi
+# Keep the same lock order as the deploy path: the Ops-specific lock is
+# acquired first, followed by the release-wide lock shared with migrations.
+exec 8<>/run/lock/icao-production-release-change.lock
+if ! flock -n 8; then
+  echo 'A production database migration or release change is already running.' >&2
   exit 1
 fi
 release_dir=/opt/icao/runtime/releases/ops-$release_id
@@ -311,12 +318,12 @@ for command_name in awk basename cat chmod curl date df dirname docker find floc
   }
 done
 
-exec 9>/run/lock/icao-ops-release.lock
+exec 9<>/run/lock/icao-ops-release.lock
 if ! flock -n 9; then
   echo 'Another Ops deployment or rollback is running.' >&2
   exit 1
 fi
-exec 8>/run/lock/icao-production-release-change.lock
+exec 8<>/run/lock/icao-production-release-change.lock
 if ! flock -n 8; then
   echo 'A production database migration or release change is already running.' >&2
   exit 1
