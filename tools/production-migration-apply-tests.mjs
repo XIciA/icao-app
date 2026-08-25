@@ -1,6 +1,16 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { chmod, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import {
+  chmod,
+  mkdir,
+  mkdtemp,
+  readdir,
+  readFile,
+  realpath,
+  rm,
+  symlink,
+  writeFile,
+} from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -108,30 +118,124 @@ test('rejects stale, duplicated, mismatched, or path-injected rehearsal evidence
   }
 });
 
-test('accepts the exact generated migration upload name and rejects malformed names', async () => {
+test('remote prepare creates only exact upload paths and rejects malformed or escaped paths', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
-  const start = source.indexOf('# BEGIN production-migration-upload-name-validation');
-  const endMarker = '# END production-migration-upload-name-validation';
+  const start = source.indexOf('# BEGIN production-migration-remote-prepare');
+  const endMarker = '# END production-migration-remote-prepare';
   const end = source.indexOf(endMarker);
   assert.ok(start >= 0 && end > start);
-  const validation = source.slice(start, end + endMarker.length);
-  const run = (name) => spawnSync('/bin/sh', ['-c', `
-set -eu
-upload="/opt/icao/runtime/production-migrations/uploads/$TEST_UPLOAD_NAME"
-${validation}
-`], {
-    encoding: 'utf8',
-    env: { ...process.env, TEST_UPLOAD_NAME: name },
-  });
-  const valid = `source-${'a'.repeat(12)}-${'b'.repeat(32)}.tar.gz`;
-  assert.equal(run(valid).status, 0);
-  for (const invalid of [
-    `source-${'a'.repeat(11)}-${'b'.repeat(32)}.tar.gz`,
-    `source-${'a'.repeat(12)}-${'b'.repeat(31)}.tar.gz`,
-    `source-${'a'.repeat(12)}-${'g'.repeat(32)}.tar.gz`,
-    `source-${'a'.repeat(12)}-${'b'.repeat(32)};touch.tar.gz`,
-    `source-${'a'.repeat(12)}-${'b'.repeat(32)}.tar.gz.extra`,
-  ]) assert.notEqual(run(invalid).status, 0, invalid);
+  const remotePrepare = source.slice(start, end + endMarker.length)
+    .replace(
+      'root=/opt/icao/runtime/production-migrations',
+      'root=${TEST_REMOTE_ROOT:?}',
+    );
+  const testRoot = await mkdtemp(join(tmpdir(), 'icao-production-migration-prepare-'));
+  const fakeBin = join(testRoot, 'bin');
+  const protectedRoot = join(testRoot, 'protected');
+  const sourceId = 'a'.repeat(12);
+  const uploadToken = 'b'.repeat(32);
+  const validUpload = join(
+    protectedRoot,
+    'uploads',
+    `source-${sourceId}-${uploadToken}.tar.gz`,
+  );
+  const validChecksum = `${validUpload}.sha256`;
+  try {
+    await mkdir(fakeBin);
+    await writeFile(join(fakeBin, 'stat'), '#!/bin/sh\nprintf "%s\\n" "0:700"\n');
+    await chmod(join(fakeBin, 'stat'), 0o700);
+    const run = (upload, checksum) => spawnSync('/bin/sh', ['-s', '--', upload, checksum], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_REMOTE_ROOT: protectedRoot,
+      },
+      input: `${remotePrepare}\n`,
+    });
+
+    const valid = run(validUpload, validChecksum);
+    assert.equal(valid.status, 0, valid.stderr);
+    assert.equal(valid.stdout, '');
+    assert.equal(valid.stderr, '');
+    await rm(validUpload, { force: true });
+    await rm(validChecksum, { force: true });
+
+    const invalidCases = [
+      [
+        join(protectedRoot, 'uploads', `source-${'a'.repeat(11)}-${uploadToken}.tar.gz`),
+        validChecksum,
+      ],
+      [
+        join(protectedRoot, 'uploads', `source-${sourceId}-${'b'.repeat(31)}.tar.gz`),
+        validChecksum,
+      ],
+      [
+        join(protectedRoot, 'uploads', `source-${'a'.repeat(11)}--${uploadToken}.tar.gz`),
+        validChecksum,
+      ],
+      [
+        join(protectedRoot, 'uploads', `source-${sourceId}-B${'b'.repeat(31)}.tar.gz`),
+        validChecksum,
+      ],
+      [join(protectedRoot, 'uploads', 'nested', `source-${sourceId}-${uploadToken}.tar.gz`), validChecksum],
+      [`${protectedRoot}/uploads/../source-${sourceId}-${uploadToken}.tar.gz`, validChecksum],
+      [join(testRoot, `source-${sourceId}-${uploadToken}.tar.gz`), validChecksum],
+      [validUpload, join(protectedRoot, 'uploads', 'nested', `${uploadToken}.sha256`)],
+      [validUpload, join(testRoot, 'outside.sha256')],
+      [validUpload, `${validChecksum}.extra`],
+    ];
+    for (const [upload, checksum] of invalidCases) {
+      const invalid = run(upload, checksum);
+      assert.notEqual(invalid.status, 0, `${upload}:${checksum}`);
+      assert.equal(invalid.stdout, '');
+      assert.notEqual(invalid.stderr, '');
+    }
+    assert.deepEqual(await readdir(join(protectedRoot, 'uploads')), []);
+  } finally {
+    await rm(testRoot, { force: true, recursive: true });
+  }
+});
+
+test('--print-confirmation emits exactly one stdout line and no stderr', async () => {
+  const fixturePath = await mkdtemp(join(tmpdir(), 'icao-production-migration-confirmation-'));
+  const fixture = await realpath(fixturePath);
+  try {
+    for (const directory of ['scripts/lib', 'tools']) await mkdir(join(fixture, directory), { recursive: true });
+    for (const relativePath of [
+      'scripts/apply-production-migrations.sh',
+      'scripts/lib/release-common.sh',
+      'tools/check-mainline-release.mjs',
+      'tools/production-migration-apply-contract.mjs',
+      'tools/production-migration-apply-lib.mjs',
+    ]) {
+      await writeFile(
+        join(fixture, relativePath),
+        await readFile(new URL(`../${relativePath}`, import.meta.url), 'utf8'),
+      );
+    }
+    const git = (...args) => spawnSync('git', args, { cwd: fixture, encoding: 'utf8' });
+    assert.equal(git('init', '-b', 'main').status, 0);
+    assert.equal(git('add', 'scripts', 'tools').status, 0);
+    assert.equal(git('-c', 'user.name=ICAO Test', '-c', 'user.email=icao-test@example.invalid',
+      'commit', '-m', 'test fixture').status, 0);
+    const fixtureSha = git('rev-parse', 'HEAD').stdout.trim();
+    assert.match(fixtureSha, /^[a-f0-9]{40}$/u);
+    assert.equal(git('update-ref', 'refs/remotes/origin/main', fixtureSha).status, 0);
+
+    const result = spawnSync('/bin/sh', [join(fixture, 'scripts/apply-production-migrations.sh'),
+      '--print-confirmation'], {
+      encoding: 'utf8',
+      env: { ...process.env, ICAO_PRODUCTION_MIGRATION_SOURCE_ROOT: fixture },
+    });
+    const expected = `APPLY_PRODUCTION_MIGRATIONS:${fixtureSha}:${prePlan}:${postPlan}\n`;
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout, expected);
+    assert.equal(result.stdout.split('\n').length, 2);
+    assert.equal(result.stderr, '');
+  } finally {
+    await rm(fixturePath, { force: true, recursive: true });
+  }
 });
 
 test('production migrator rejects missing wrapper authorization before any connection attempt', () => {
