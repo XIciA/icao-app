@@ -57,7 +57,9 @@ function auditDatabase(
     select: vi.fn(() => ({
       from: vi.fn(() => ({
         where: vi.fn(() => ({
-          orderBy: vi.fn(async () => records),
+          orderBy: vi.fn(async () => (
+            [...records].sort((left, right) => Number(left.sequence) - Number(right.sequence))
+          )),
         })),
       })),
     })),
@@ -465,6 +467,7 @@ describe('AppleServerReconciliationService', () => {
     expect(error.result).toMatchObject({
       applied: 2,
       checked: 2,
+      cumulativeBatchResult: { applied: 2, completed: 2 },
       failure: {
         code: 'simulated_finalization_audit_failure',
         index: 2,
@@ -485,14 +488,16 @@ describe('AppleServerReconciliationService', () => {
       'apple_server_reconciliation.batch_finalization_failed',
     ]);
 
-    await expect(service.reconcileTransactionHistory({
+    const recovery = await service.reconcileTransactionHistory({
       apply: true,
       environment: 'sandbox',
       resumeBatchId: error.result.batchId,
       transactionId: 'anchor',
-    })).resolves.toMatchObject({
+    });
+    expect(recovery).toMatchObject({
       applied: 0,
       batchId: error.result.batchId,
+      cumulativeBatchResult: { applied: 2, completed: 2 },
       status: 'completed',
     });
     expect(issued).toEqual(new Set(signedTransactions));
@@ -500,7 +505,76 @@ describe('AppleServerReconciliationService', () => {
       'apple_server_reconciliation.batch_resumed',
       'apple_server_reconciliation.batch_completed',
     ]);
+    const terminal = records.find((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ));
+    expect(terminal?.metadata).toMatchObject({
+      applied: 2,
+      completed: [
+        expect.objectContaining({ action: 'create', applied: true }),
+        expect.objectContaining({ action: 'create', applied: true }),
+      ],
+    });
     expect(reconcileAppleServerTransaction.mock.calls.filter((call) => call[2])).toHaveLength(2);
+  });
+
+  it('rejects item evidence whose sequence does not increase with its index', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    const items = fixture.records.filter((record) => (
+      record.action === 'apple_server_reconciliation.item_completed'
+    ));
+    const firstSequence = items[0]!.sequence;
+    items[0]!.sequence = items[1]!.sequence;
+    items[1]!.sequence = firstSequence;
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_incomplete');
+  });
+
+  it('rejects duplicate item indexes even when the item count is complete', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    const items = fixture.records.filter((record) => (
+      record.action === 'apple_server_reconciliation.item_completed'
+    ));
+    items[1]!.metadata = {
+      ...(items[1]!.metadata as Record<string, unknown>),
+      index: 0,
+    };
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_incomplete');
+  });
+
+  it('rejects finalization metadata that disagrees with original item results', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    const finalizationFailure = fixture.records.find((record) => (
+      record.action === 'apple_server_reconciliation.batch_finalization_failed'
+    ))!;
+    const metadata = finalizationFailure.metadata as Record<string, unknown>;
+    const completed = metadata.completed as Array<Record<string, unknown>>;
+    finalizationFailure.metadata = {
+      ...metadata,
+      applied: 1,
+      completed: [
+        completed[0],
+        { ...completed[1], action: 'none', applied: false },
+      ],
+    };
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_incomplete');
   });
 
   it('rejects an arbitrary resume UUID without durable batch evidence', async () => {

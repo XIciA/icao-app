@@ -17,6 +17,10 @@ export type AppleServerReconciliationResult = Readonly<{
   applied: number;
   batchId?: string;
   checked: number;
+  cumulativeBatchResult?: Readonly<{
+    applied: number;
+    completed: number;
+  }>;
   environment: CommerceEnvironment;
   mismatches: number;
   mode: 'apply' | 'dry_run';
@@ -30,6 +34,10 @@ export type AppleServerReconciliationFailureResult = Readonly<{
   applied: number;
   batchId: string;
   checked: number;
+  cumulativeBatchResult?: Readonly<{
+    applied: number;
+    completed: number;
+  }>;
   environment: CommerceEnvironment;
   failure: Readonly<{
     code: string;
@@ -73,8 +81,27 @@ type BatchEvidence = Readonly<{
   accountId: string;
   batchId: string;
   environment: CommerceEnvironment;
-  itemReferences: readonly string[];
+  itemIdentities: readonly Readonly<{
+    appleStatus: AppleCommerceReconciliationReport['appleStatus'];
+    productKey: string;
+    transactionReferenceHash: string;
+  }>[];
   planFingerprint: string;
+}>;
+
+type AuditedReconciliationReport = Readonly<{
+  action: AppleCommerceReconciliationReport['action'];
+  appleStatus: AppleCommerceReconciliationReport['appleStatus'];
+  applied: boolean;
+  localStatus: AppleCommerceReconciliationReport['localStatus'];
+  mismatch: boolean;
+  productKey: string;
+  transactionReferenceHash: string;
+}>;
+
+type CumulativeBatchResult = Readonly<{
+  applied: number;
+  completed: readonly AuditedReconciliationReport[];
 }>;
 
 function transactionReferenceHash(transactionId: string) {
@@ -101,16 +128,72 @@ function metadataRecord(value: unknown) {
   return value as Record<string, unknown>;
 }
 
-function auditReportReferences(value: unknown) {
-  if (!Array.isArray(value)) return null;
-  const references: string[] = [];
-  for (const item of value) {
-    if (!item || typeof item !== 'object' || Array.isArray(item)) return null;
-    const reference = (item as Record<string, unknown>).transactionReferenceHash;
-    if (typeof reference !== 'string') return null;
-    references.push(reference);
+function auditedReport(value: unknown): AuditedReconciliationReport {
+  const report = metadataRecord(value);
+  const actions: readonly AppleCommerceReconciliationReport['action'][] = [
+    'blocked_account_closed',
+    'create',
+    'local_newer',
+    'none',
+    'record_refund',
+    'refresh',
+    'refund',
+    'restore',
+  ];
+  const appleStatuses: readonly AppleCommerceReconciliationReport['appleStatus'][] = [
+    'refunded',
+    'verified',
+  ];
+  const localStatuses: readonly AppleCommerceReconciliationReport['localStatus'][] = [
+    'missing',
+    'refunded',
+    'revoked',
+    'verified',
+  ];
+  if (
+    !actions.includes(report.action as AppleCommerceReconciliationReport['action'])
+    || !appleStatuses.includes(report.appleStatus as AppleCommerceReconciliationReport['appleStatus'])
+    || typeof report.applied !== 'boolean'
+    || !localStatuses.includes(report.localStatus as AppleCommerceReconciliationReport['localStatus'])
+    || typeof report.mismatch !== 'boolean'
+    || typeof report.productKey !== 'string'
+    || !/^[a-f0-9]{64}$/u.test(String(report.transactionReferenceHash))
+  ) {
+    throw new AppleServerReconciliationStateError(
+      'apple_server_reconciliation_resume_evidence_invalid',
+    );
   }
-  return references;
+  return {
+    action: report.action as AppleCommerceReconciliationReport['action'],
+    appleStatus: report.appleStatus as AppleCommerceReconciliationReport['appleStatus'],
+    applied: report.applied,
+    localStatus: report.localStatus as AppleCommerceReconciliationReport['localStatus'],
+    mismatch: report.mismatch,
+    productKey: report.productKey,
+    transactionReferenceHash: String(report.transactionReferenceHash),
+  };
+}
+
+function auditedReports(value: unknown) {
+  if (!Array.isArray(value)) {
+    throw new AppleServerReconciliationStateError(
+      'apple_server_reconciliation_resume_evidence_invalid',
+    );
+  }
+  return value.map(auditedReport);
+}
+
+function sameAuditedReport(
+  left: AuditedReconciliationReport,
+  right: AuditedReconciliationReport,
+) {
+  return left.action === right.action
+    && left.appleStatus === right.appleStatus
+    && left.applied === right.applied
+    && left.localStatus === right.localStatus
+    && left.mismatch === right.mismatch
+    && left.productKey === right.productKey
+    && left.transactionReferenceHash === right.transactionReferenceHash;
 }
 
 @Injectable()
@@ -163,7 +246,11 @@ export class AppleServerReconciliationService {
       accountId: history.accountId,
       batchId: input.resumeBatchId ?? randomUUID(),
       environment: input.environment,
-      itemReferences: plan.map((report) => transactionReferenceHash(report.transactionId)),
+      itemIdentities: plan.map((report) => ({
+        appleStatus: report.appleStatus,
+        productKey: report.productKey,
+        transactionReferenceHash: transactionReferenceHash(report.transactionId),
+      })),
       planFingerprint,
     };
     if (input.resumeBatchId) {
@@ -226,8 +313,11 @@ export class AppleServerReconciliationService {
           ...evidence,
           metadata: {
             action: report.action,
+            appleStatus: report.appleStatus,
             applied: report.applied,
             index,
+            localStatus: report.localStatus,
+            mismatch: report.mismatch,
             productKey: report.productKey,
             transactionReferenceHash: transactionReferenceHash(report.transactionId),
           },
@@ -271,10 +361,17 @@ export class AppleServerReconciliationService {
       }
     }
 
-    await this.completeBatch(history, plan, completed, evidence, false);
+    const batchCompletion = await this.completeBatch(
+      history,
+      plan,
+      completed,
+      evidence,
+      false,
+    );
     return {
       ...this.result(history, input.environment, true, completed),
       batchId: evidence.batchId,
+      cumulativeBatchResult: this.cumulativeSummary(batchCompletion.cumulativeBatchResult),
       status: 'completed',
     };
   }
@@ -285,7 +382,7 @@ export class AppleServerReconciliationService {
     plan: readonly AppleCommerceReconciliationReport[],
     evidence: BatchEvidence,
   ) {
-    const completed = await this.completeBatch(
+    const batchCompletion = await this.completeBatch(
       history,
       plan,
       plan,
@@ -304,8 +401,9 @@ export class AppleServerReconciliationService {
       },
     );
     return {
-      ...this.result(history, environment, true, completed),
+      ...this.result(history, environment, true, batchCompletion.reports),
       batchId: evidence.batchId,
+      cumulativeBatchResult: this.cumulativeSummary(batchCompletion.cumulativeBatchResult),
       status: 'completed' as const,
     };
   }
@@ -320,13 +418,15 @@ export class AppleServerReconciliationService {
   ) {
     let finalPlan = plan;
     let finalCompleted = completed;
+    let cumulativeBatchResult: CumulativeBatchResult | undefined;
     try {
       await this.withBatchLock(evidence.batchId, async (transaction) => {
         const events = await this.batchEvents(evidence.batchId, transaction);
-        this.assertBatchEvidence(events, evidence, {
+        const state = this.assertBatchEvidence(events, evidence, {
           allowCompleted: false,
           requireFinalizationFailure: resume,
         });
+        cumulativeBatchResult = state.cumulativeBatchResult;
         if (resume) {
           finalPlan = await refreshResumePlan!();
           finalCompleted = finalPlan;
@@ -376,12 +476,15 @@ export class AppleServerReconciliationService {
         await this.auditBatch('apple_server_reconciliation.batch_completed', {
           ...evidence,
           metadata: {
-            applied: finalCompleted.filter((report) => report.applied).length,
-            completed: this.auditPlan(finalCompleted),
+            applied: cumulativeBatchResult.applied,
+            completed: cumulativeBatchResult.completed,
           },
         }, transaction);
       });
-      return finalCompleted;
+      return {
+        cumulativeBatchResult: cumulativeBatchResult!,
+        reports: finalCompleted,
+      };
     } catch (error) {
       if (
         error instanceof AppleServerReconciliationApplyError
@@ -401,18 +504,24 @@ export class AppleServerReconciliationService {
             allowCompleted: true,
             requireFinalizationFailure: resume,
           });
+          cumulativeBatchResult = state.cumulativeBatchResult;
           if (state.completed) return 'completed' as const;
           await this.auditBatch('apple_server_reconciliation.batch_finalization_failed', {
             ...evidence,
             metadata: {
-              applied: finalCompleted.filter((report) => report.applied).length,
-              completed: this.auditPlan(finalCompleted),
+              applied: cumulativeBatchResult.applied,
+              completed: cumulativeBatchResult.completed,
               failure,
             },
           }, transaction);
           return 'failure_recorded' as const;
         });
-        if (recovery === 'completed') return finalCompleted;
+        if (recovery === 'completed') {
+          return {
+            cumulativeBatchResult: cumulativeBatchResult!,
+            reports: finalCompleted,
+          };
+        }
         recoveryRecorded = true;
       } catch {
         // If neither the completion nor failure marker can be read durably,
@@ -425,6 +534,9 @@ export class AppleServerReconciliationService {
           applied: finalCompleted.filter((report) => report.applied).length,
           batchId: evidence.batchId,
           checked: finalPlan.length,
+          ...(cumulativeBatchResult
+            ? { cumulativeBatchResult: this.cumulativeSummary(cumulativeBatchResult) }
+            : {}),
           environment: evidence.environment,
           failure,
           mode: 'apply',
@@ -484,10 +596,17 @@ export class AppleServerReconciliationService {
         'apple_server_reconciliation_resume_evidence_incomplete',
       );
     }
-    const startedReferences = auditReportReferences(
-      metadataRecord(started[0]!.metadata).planned,
-    );
-    if (JSON.stringify(startedReferences) !== JSON.stringify(evidence.itemReferences)) {
+    const startedPlan = auditedReports(metadataRecord(started[0]!.metadata).planned);
+    if (
+      startedPlan.length !== evidence.itemIdentities.length
+      || startedPlan.some((report, index) => {
+        const identity = evidence.itemIdentities[index];
+        return !identity
+          || report.appleStatus !== identity.appleStatus
+          || report.productKey !== identity.productKey
+          || report.transactionReferenceHash !== identity.transactionReferenceHash;
+      })
+    ) {
       throw new AppleServerReconciliationStateError(
         'apple_server_reconciliation_resume_evidence_incomplete',
       );
@@ -511,43 +630,64 @@ export class AppleServerReconciliationService {
     const itemEvents = events.filter((event) => (
       event.action === 'apple_server_reconciliation.item_completed'
     ));
-    if (itemEvents.length !== evidence.itemReferences.length) {
+    if (itemEvents.length !== evidence.itemIdentities.length) {
       throw new AppleServerReconciliationStateError(
         'apple_server_reconciliation_resume_evidence_incomplete',
       );
     }
-    for (const [index, reference] of evidence.itemReferences.entries()) {
-      const matching = itemEvents.filter((event) => {
-        const metadata = metadataRecord(event.metadata);
-        return metadata.index === index && metadata.transactionReferenceHash === reference;
-      });
-      if (matching.length !== 1 || matching[0]!.sequence <= started[0]!.sequence) {
+    const itemReports: AuditedReconciliationReport[] = [];
+    let previousSequence = started[0]!.sequence;
+    for (const [index, event] of itemEvents.entries()) {
+      const metadata = metadataRecord(event.metadata);
+      const report = auditedReport(metadata);
+      const identity = evidence.itemIdentities[index];
+      if (
+        metadata.index !== index
+        || event.sequence <= previousSequence
+        || !identity
+        || report.appleStatus !== identity.appleStatus
+        || report.productKey !== identity.productKey
+        || report.transactionReferenceHash !== identity.transactionReferenceHash
+      ) {
         throw new AppleServerReconciliationStateError(
           'apple_server_reconciliation_resume_evidence_incomplete',
         );
       }
+      previousSequence = event.sequence;
+      itemReports.push(report);
     }
-    if (completedEvents.length === 1) {
-      const completedReferences = auditReportReferences(
-        metadataRecord(completedEvents[0]!.metadata).completed,
-      );
-      if (JSON.stringify(completedReferences) !== JSON.stringify(evidence.itemReferences)) {
+    const cumulativeFromMetadata = (metadata: Record<string, unknown>) => {
+      const cumulativeReports = auditedReports(metadata.completed);
+      const applied = metadata.applied;
+      if (
+        !Number.isSafeInteger(applied)
+        || applied !== cumulativeReports.filter((report) => report.applied).length
+        || cumulativeReports.length !== itemReports.length
+        || cumulativeReports.some((report, index) => (
+          !sameAuditedReport(report, itemReports[index]!)
+        ))
+      ) {
         throw new AppleServerReconciliationStateError(
           'apple_server_reconciliation_resume_evidence_incomplete',
         );
       }
+      return { applied: Number(applied), completed: cumulativeReports } as const;
+    };
+    if (completedEvents.length === 1) {
+      const cumulativeBatchResult = cumulativeFromMetadata(
+        metadataRecord(completedEvents[0]!.metadata),
+      );
       if (!options.allowCompleted) {
         throw new AppleServerReconciliationStateError(
           'apple_server_reconciliation_resume_already_completed',
         );
       }
-      return { completed: true } as const;
+      return { completed: true, cumulativeBatchResult } as const;
     }
     if (options.requireFinalizationFailure) {
-      const lastItemSequence = Math.max(...itemEvents.map((event) => event.sequence));
       const finalizationFailures = events.filter((event) => (
         event.action === 'apple_server_reconciliation.batch_finalization_failed'
-        && event.sequence > lastItemSequence
+        && event.sequence > previousSequence
       ));
       if (finalizationFailures.length === 0) {
         throw new AppleServerReconciliationStateError(
@@ -556,20 +696,23 @@ export class AppleServerReconciliationService {
       }
       const latestFailureMetadata = metadataRecord(finalizationFailures.at(-1)!.metadata);
       const failure = metadataRecord(latestFailureMetadata.failure);
-      const failureReferences = auditReportReferences(latestFailureMetadata.completed);
-      if (
-        failure.stage !== 'batch_completed_audit'
-        || !Number.isSafeInteger(latestFailureMetadata.applied)
-        || Number(latestFailureMetadata.applied) < 0
-        || Number(latestFailureMetadata.applied) > evidence.itemReferences.length
-        || JSON.stringify(failureReferences) !== JSON.stringify(evidence.itemReferences)
-      ) {
+      if (failure.stage !== 'batch_completed_audit') {
         throw new AppleServerReconciliationStateError(
           'apple_server_reconciliation_resume_evidence_incomplete',
         );
       }
+      return {
+        completed: false,
+        cumulativeBatchResult: cumulativeFromMetadata(latestFailureMetadata),
+      } as const;
     }
-    return { completed: false } as const;
+    return {
+      completed: false,
+      cumulativeBatchResult: {
+        applied: itemReports.filter((report) => report.applied).length,
+        completed: itemReports,
+      },
+    } as const;
   }
 
   private async batchEvents(
@@ -623,6 +766,7 @@ export class AppleServerReconciliationService {
       appleStatus: report.appleStatus,
       applied: report.applied,
       localStatus: report.localStatus,
+      mismatch: report.mismatch,
       productKey: report.productKey,
       transactionReferenceHash: transactionReferenceHash(report.transactionId),
     }));
@@ -648,6 +792,13 @@ export class AppleServerReconciliationService {
         ...input.metadata,
       },
     });
+  }
+
+  private cumulativeSummary(result: CumulativeBatchResult) {
+    return {
+      applied: result.applied,
+      completed: result.completed.length,
+    } as const;
   }
 
   private result(

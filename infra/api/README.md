@@ -65,6 +65,11 @@ docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
 终态，只在新的 dry-run 全部为 `none` 时补写原批次完成终态；它不再执行权益写入。证据不完整、状态
 已有变化或批次已经完成都会失败关闭，状态有变化时必须启动不带 `--resume-batch-id` 的新批次：
 
+恢复成功时，结果中的 `applied` 表示本次恢复调用的写入数（应为 `0`）；
+`cumulativeBatchResult.applied` 和 `cumulativeBatchResult.completed` 表示从原始项目审计与最新终态失败
+证据还原的整批累计结果。唯一 `batch_completed` 终态也写入这份累计结果，不使用恢复 dry-run 的
+`none` 结果覆盖原批记录。
+
 ```sh
 docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
   reconcile --environment sandbox --transaction-id TRANSACTION_ID --apply \

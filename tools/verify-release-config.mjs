@@ -967,6 +967,9 @@ if (
   || !appleServerReconciliation.includes('pg_advisory_xact_lock')
   || !appleServerReconciliation.includes('assertBatchEvidence')
   || !appleServerReconciliation.includes('apple_server_reconciliation_resume_state_drift')
+  || !appleServerReconciliation.includes('cumulativeBatchResult')
+  || !appleServerReconciliation.includes('event.sequence <= previousSequence')
+  || !appleServerReconciliation.includes('sameAuditedReport')
   || !appleServerReconciliation.includes("status: 'finalization_failed'")
   || !appleServerReconciliation.includes("input.environment,\n        false")
   || !appleReconciliationTerminalMigration.includes(

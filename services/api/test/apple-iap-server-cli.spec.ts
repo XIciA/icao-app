@@ -6,7 +6,7 @@ import { AppleServerReconciliationApplyError } from '../src/commerce/apple-serve
 function dependencies() {
   return {
     isRoot: vi.fn(() => true),
-    reconcile: vi.fn(async () => ({ checked: 1 })),
+    reconcile: vi.fn(async (): Promise<unknown> => ({ checked: 1 })),
     requestTestNotification: vi.fn(async (environment) => ({ environment, testNotificationToken: 'token' })),
     write: vi.fn(),
   };
@@ -159,6 +159,27 @@ describe('root-only Apple IAP Server readiness CLI', () => {
     ], deps);
     expect(deps.reconcile).toHaveBeenCalledWith(expect.objectContaining({
       resumeBatchId: '00000000-0000-4000-8000-000000000099',
+    }));
+  });
+
+  it('prints invocation and cumulative batch results separately after resume', async () => {
+    const deps = dependencies();
+    deps.reconcile.mockResolvedValueOnce({
+      applied: 0,
+      cumulativeBatchResult: { applied: 2, completed: 2 },
+      status: 'completed',
+    });
+    await runAppleIapServerCli([
+      'reconcile', '--environment', 'sandbox', '--transaction-id', '1234', '--apply',
+      '--confirm', 'APPLY_APPLE_RECONCILIATION_SANDBOX',
+      '--resume-batch-id', '00000000-0000-4000-8000-000000000099',
+    ], deps);
+    expect(deps.write).toHaveBeenCalledWith(expect.objectContaining({
+      response: {
+        applied: 0,
+        cumulativeBatchResult: { applied: 2, completed: 2 },
+        status: 'completed',
+      },
     }));
   });
 });
