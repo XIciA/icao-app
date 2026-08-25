@@ -5,11 +5,15 @@ export const accounts = pgTable('accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
   status: text('status').default('active').notNull(),
   mergedIntoAccountId: uuid('merged_into_account_id'),
+  learningDataGeneration: integer('learning_data_generation').default(0).notNull(),
+  aiResultGeneration: integer('ai_result_generation').default(0).notNull(),
   sessionsRevokedAt: timestamp('sessions_revoked_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   check('accounts_status_check', sql`${table.status} IN ('active', 'merging', 'merged', 'deleting', 'deleted')`),
+  check('accounts_learning_data_generation_check', sql`${table.learningDataGeneration} >= 0`),
+  check('accounts_ai_result_generation_check', sql`${table.aiResultGeneration} >= 0`),
 ]).enableRLS();
 
 export const profiles = pgTable('profiles', {

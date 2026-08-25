@@ -95,6 +95,20 @@ const info = await readFile(infoPath, 'utf8');
 for (const fragment of [company, appName, '版本 v4.0', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
 }
+const formalAgreementScope = '听你五个 iOS、Android 正式 App 及其相关服务';
+requireFragment(info, formalAgreementScope, infoPath);
+requireFragment(await readFile(routeToFile('/apps/readyoufife/terms/'), 'utf8'), formalAgreementScope, routeToFile('/apps/readyoufife/terms/'));
+if (info.includes('iOS、Android、Web 产品')) {
+  throw new Error('Formal in-app agreement must not include Web in the iOS/Android App scope.');
+}
+const privacyChoicesPath = routeToFile('/apps/readyoufife/privacy-choices/');
+const privacyChoices = await readFile(privacyChoicesPath, 'utf8');
+for (const fragment of ['设置—账号与隐私', '导出账号和学习数据', '删除全部 AI 结果', '清除学习数据']) {
+  requireFragment(privacyChoices, fragment, privacyChoicesPath);
+}
+if (privacyChoices.includes('1.0.0 暂不提供 App 内自助导出入口')) {
+  throw new Error('Public privacy choices must match the in-App self-service export capability.');
+}
 
 const legalReleasePath = path.join(root, 'src/features/info/legal-release-surface.ts');
 const legalRelease = await readFile(legalReleasePath, 'utf8');

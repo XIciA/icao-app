@@ -14,7 +14,9 @@ import { findQuestionBankCardReference } from '@/features/question-bank/annotati
 import { createEmptyAnnotationStore, replaceAnnotationStoreFromSync } from '@/features/question-bank/annotations/annotation-store';
 import type { QuestionBankAnnotationStore } from '@/features/question-bank/annotations/types';
 import {
+  clearAiResultRecords,
   clearLearningRecords,
+  deleteLearningRecord,
   getLearningRecords,
   LEARNING_RECORDS_KEY,
   upsertLearningRecord,
@@ -42,6 +44,8 @@ type SyncMeta = {
   schemaVersion: 3;
   boundUserId?: string;
   cursor: number;
+  dataGeneration: number;
+  aiResultGeneration: number;
   versions: Record<string, number>;
   lastSyncedAt?: string;
   lastError?: string;
@@ -84,11 +88,19 @@ function parseJson<T>(raw: string | null, fallback: T): T {
 }
 
 function defaultMeta(): SyncMeta {
-  return { schemaVersion: 3, cursor: 0, versions: {} };
+  return { schemaVersion: 3, cursor: 0, dataGeneration: 0, aiResultGeneration: 0, versions: {} };
 }
 
 async function readMeta() {
-  return parseJson<SyncMeta>(await Storage.getItem(META_KEY), defaultMeta());
+  const parsed = parseJson<Partial<SyncMeta>>(await Storage.getItem(META_KEY), defaultMeta());
+  return {
+    ...defaultMeta(),
+    ...parsed,
+    schemaVersion: 3 as const,
+    dataGeneration: Number.isSafeInteger(parsed.dataGeneration) ? parsed.dataGeneration! : 0,
+    aiResultGeneration: Number.isSafeInteger(parsed.aiResultGeneration) ? parsed.aiResultGeneration! : 0,
+    versions: parsed.versions ?? {},
+  };
 }
 
 async function readOutbox() {
@@ -130,6 +142,8 @@ async function replaceQueuedSyncState(meta: SyncMeta, outbox: SyncMutation[]) {
 
 function mergeSyncProgress(target: SyncMeta, source: SyncMeta) {
   target.cursor = Math.max(target.cursor, source.cursor);
+  target.dataGeneration = Math.max(target.dataGeneration, source.dataGeneration);
+  target.aiResultGeneration = Math.max(target.aiResultGeneration, source.aiResultGeneration);
   for (const [key, version] of Object.entries(source.versions)) {
     target.versions[key] = Math.max(target.versions[key] ?? 0, version);
   }
@@ -250,7 +264,14 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
     }
   }
 
-  const meta: SyncMeta = { schemaVersion: 3, boundUserId: userId, cursor: 0, versions };
+  const meta: SyncMeta = {
+    schemaVersion: 3,
+    boundUserId: userId,
+    cursor: 0,
+    dataGeneration: 0,
+    aiResultGeneration: 0,
+    versions,
+  };
   await replaceQueuedSyncState(meta, mutations);
   return runLearningSync(userId);
 }
@@ -262,13 +283,13 @@ export async function bindEmptyLearningSync(userId: string) {
   return bindLearningSync(userId, 'cloud-only');
 }
 
-async function activePersonalKeys() {
+async function activePersonalKeys({ includeAiConsent = true }: { includeAiConsent?: boolean } = {}) {
   return (await Storage.getAllKeys()).filter((key) =>
     key.startsWith(LEGACY_TOPIC_PREFIX)
     || key.startsWith(TOPIC_PREFIX)
     || key.startsWith(MIGRATION_PREFIX)
     || key.startsWith(SNAPSHOT_PREFIX)
-    || key.startsWith('icao.ai.consent.')
+    || (includeAiConsent && key.startsWith('icao.ai.consent.'))
     || [META_KEY, OUTBOX_KEY, LEARNING_RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
 }
 
@@ -285,6 +306,15 @@ async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boole
   await replaceVocabularyStateFromSync(createEmptyVocabularyState());
 }
 
+async function clearLearningPayloadData({ includeAiConsent = true }: { includeAiConsent?: boolean } = {}) {
+  const keys = (await activePersonalKeys({ includeAiConsent }))
+    .filter((key) => ![META_KEY, OUTBOX_KEY, LEARNING_RECORDS_KEY].includes(key));
+  await Storage.multiRemove(keys);
+  await clearLearningRecords();
+  await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
+  await replaceVocabularyStateFromSync(createEmptyVocabularyState());
+}
+
 export async function archiveAndBindEmptyLearningSync(userId: string) {
   const snapshot = await localDataSnapshot();
   await Storage.setItem(`${SNAPSHOT_PREFIX}archive.${Date.now()}`, JSON.stringify(snapshot));
@@ -294,6 +324,45 @@ export async function archiveAndBindEmptyLearningSync(userId: string) {
 
 export async function clearPersonalLearningData() {
   await clearActiveLearningData({ keepSnapshots: false });
+}
+
+function isAiResultMutation(mutation: SyncMutation) {
+  return mutation.kind === 'learning_record' && mutation.payload.record?.recordType === 'ai_result';
+}
+
+export async function deleteLocalAiResult(recordId: string) {
+  await deleteLearningRecord(recordId);
+}
+
+export async function applyPrivacyAiResultReset(response: { aiResultGeneration: number; dataGeneration: number }) {
+  if (running) await running.catch(() => undefined);
+  const aiResultIds = (await getLearningRecords())
+    .filter((record) => record.recordType === 'ai_result')
+    .map((record) => record.id);
+  await clearAiResultRecords();
+  await queuedUpdate((meta, outbox) => {
+    meta.dataGeneration = Math.max(meta.dataGeneration, response.dataGeneration);
+    meta.aiResultGeneration = response.aiResultGeneration;
+    for (let index = outbox.length - 1; index >= 0; index -= 1) {
+      if (isAiResultMutation(outbox[index]!)) outbox.splice(index, 1);
+    }
+    aiResultIds.forEach((recordId) => { delete meta.versions[recordVersionKey(recordId)]; });
+  });
+}
+
+export async function applyPrivacyLearningDataReset(response: { aiResultGeneration: number; dataGeneration: number }) {
+  if (running) await running.catch(() => undefined);
+  const previous = await readMeta();
+  await clearLearningPayloadData({ includeAiConsent: false });
+  await replaceQueuedSyncState({
+    schemaVersion: 3,
+    boundUserId: previous.boundUserId,
+    cursor: previous.cursor,
+    dataGeneration: response.dataGeneration,
+    aiResultGeneration: response.aiResultGeneration,
+    versions: {},
+    lastSyncedAt: new Date().toISOString(),
+  }, []);
 }
 
 export async function enqueueCardState(topicId: string, cardId: string, state: CardLearningState) {
@@ -330,6 +399,7 @@ export async function enqueueLearningRecord(record: LearningRecord) {
       payload: {
         recordId: record.id,
         record: record as unknown as Record<string, unknown>,
+        ...(record.recordType === 'ai_result' ? { aiResultGeneration: meta.aiResultGeneration } : {}),
         occurredAt: record.createdAt,
         version,
         updatedAt: record.updatedAt ?? record.createdAt,
@@ -397,11 +467,13 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
     meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
   } else if (change.kind === 'learning_record') {
     const payload = change.payload as unknown as LearningRecordMutation['payload'];
+    const isAiResult = payload.deleted === true || payload.record?.recordType === 'ai_result';
+    if (isAiResult && (payload.aiResultGeneration ?? 0) < meta.aiResultGeneration) return;
     const version = payload.version ?? 1;
     const versionKey = recordVersionKey(payload.recordId);
     if (version < (meta.versions[versionKey] ?? 0)) return;
-    const incoming = payload.record as unknown as LearningRecord;
-    await upsertLearningRecord(incoming);
+    if (payload.deleted === true) await deleteLearningRecord(payload.recordId);
+    else await upsertLearningRecord(payload.record as unknown as LearningRecord);
     meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, version);
   } else if (change.kind === 'document') {
     const payload = change.payload as unknown as DocumentMutation['payload'];
@@ -429,14 +501,16 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
       version: value.version,
       changedAt: value.updatedAt,
     }, meta);
-  } else if (value.recordId && value.record && value.occurredAt) {
+  } else if (value.recordId && (value.record || value.deleted) && value.occurredAt) {
     await applyChange({
       cursor: meta.cursor,
       kind: 'learning_record',
       entityKey: value.recordId,
       payload: {
         recordId: value.recordId,
-        record: value.record,
+        ...(value.record ? { record: value.record } : {}),
+        ...(value.deleted ? { deleted: true } : {}),
+        ...(value.aiResultGeneration === undefined ? {} : { aiResultGeneration: value.aiResultGeneration }),
         occurredAt: value.occurredAt,
         version: value.version,
         updatedAt: value.updatedAt,
@@ -482,12 +556,36 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           const response = await apiRequest<SyncPushResponse>('/v1/sync/push', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ ownerUserId: expectedUserId, mutations: batch }),
+            body: JSON.stringify({
+              ownerUserId: expectedUserId,
+              cursor: meta.cursor,
+              dataGeneration: meta.dataGeneration,
+              aiResultGeneration: meta.aiResultGeneration,
+              mutations: batch,
+            }),
           });
           assertSyncIdentity(expectedUserId, epoch);
           await writeQueue.catch(() => undefined);
           assertSyncIdentity(expectedUserId, epoch);
           mergeSyncProgress(meta, await readMeta());
+          const responseDataGeneration = response.dataGeneration ?? meta.dataGeneration;
+          const responseAiResultGeneration = response.aiResultGeneration ?? meta.aiResultGeneration;
+          if (response.resetLearningData || responseDataGeneration !== meta.dataGeneration) {
+            await clearLearningPayloadData({ includeAiConsent: false });
+            meta.cursor = response.cursor;
+            meta.dataGeneration = responseDataGeneration;
+            meta.aiResultGeneration = responseAiResultGeneration;
+            meta.versions = {};
+            await replaceQueuedSyncState({ ...meta }, []);
+            continue;
+          }
+          const resetAiResults = Boolean(
+            response.resetAiResults || responseAiResultGeneration !== meta.aiResultGeneration,
+          );
+          if (resetAiResults) {
+            await clearAiResultRecords();
+            meta.aiResultGeneration = responseAiResultGeneration;
+          }
           for (const result of response.results) {
             assertSyncIdentity(expectedUserId, epoch);
             await applyAuthoritative(result, meta);
@@ -497,8 +595,11 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
             assertSyncIdentity(expectedUserId, epoch);
             mergeSyncProgress(latestMeta, meta);
             for (let index = latestOutbox.length - 1; index >= 0; index -= 1) {
-              if (processed.has(latestOutbox[index]!.mutationId)) latestOutbox.splice(index, 1);
+              if (processed.has(latestOutbox[index]!.mutationId)
+                || (resetAiResults && isAiResultMutation(latestOutbox[index]!))) latestOutbox.splice(index, 1);
             }
+            latestMeta.dataGeneration = responseDataGeneration;
+            latestMeta.aiResultGeneration = responseAiResultGeneration;
           });
         }
 
@@ -512,6 +613,24 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           await writeQueue.catch(() => undefined);
           assertSyncIdentity(expectedUserId, epoch);
           mergeSyncProgress(meta, await readMeta());
+          const responseDataGeneration = response.dataGeneration ?? meta.dataGeneration;
+          const responseAiResultGeneration = response.aiResultGeneration ?? meta.aiResultGeneration;
+          if (responseDataGeneration !== meta.dataGeneration) {
+            await clearLearningPayloadData({ includeAiConsent: false });
+            meta.dataGeneration = responseDataGeneration;
+            meta.aiResultGeneration = responseAiResultGeneration;
+            meta.versions = {};
+            await replaceQueuedSyncState({ ...meta }, []);
+          } else if (responseAiResultGeneration !== meta.aiResultGeneration) {
+            await clearAiResultRecords();
+            meta.aiResultGeneration = responseAiResultGeneration;
+            await queuedUpdate((latestMeta, latestOutbox) => {
+              latestMeta.aiResultGeneration = responseAiResultGeneration;
+              for (let index = latestOutbox.length - 1; index >= 0; index -= 1) {
+                if (isAiResultMutation(latestOutbox[index]!)) latestOutbox.splice(index, 1);
+              }
+            });
+          }
           for (const change of response.changes) {
             assertSyncIdentity(expectedUserId, epoch);
             await applyChange(change, meta);

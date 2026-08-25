@@ -210,6 +210,48 @@ export type AccountDeletionStatusRequest = {
   idempotencyKey: string;
 };
 
+export type PrivacyDeletionResponse = {
+  aiResultGeneration: number;
+  dataGeneration: number;
+  deletedCount: number;
+};
+
+export type DeleteAllAiResultsRequest = {
+  confirmation: '删除全部AI结果';
+};
+
+export type ClearLearningDataRequest = {
+  confirmation: '清除学习数据';
+};
+
+export type AccountDataExportResponse = {
+  schemaVersion: 1;
+  exportedAt: string;
+  account: {
+    accountId: string;
+    createdAt: string;
+    phone?: string;
+    providers: Array<'phone' | 'apple'>;
+  };
+  learning: {
+    aiResultGeneration: number;
+    cardStates: Array<{
+      bankId: string;
+      topicId: string;
+      cardId: string;
+      state: SyncCardState;
+      updatedAt: string;
+    }>;
+    dataGeneration: number;
+    documents: Array<{
+      documentKey: string;
+      document: Record<string, unknown>;
+      updatedAt: string;
+    }>;
+    records: Array<Record<string, unknown>>;
+  };
+};
+
 export type HealthStatus = {
   service: 'icao-api';
   status: 'ok';
@@ -569,7 +611,9 @@ export type LearningRecordMutation = {
   kind: 'learning_record';
   payload: {
     recordId: string;
-    record: Record<string, unknown>;
+    record?: Record<string, unknown>;
+    deleted?: boolean;
+    aiResultGeneration?: number;
     occurredAt: string;
     version?: number;
     updatedAt?: string;
@@ -589,11 +633,17 @@ export type DocumentMutation = {
 
 export type SyncMutation = CardStateMutation | LearningRecordMutation | DocumentMutation;
 
-export type SyncPushRequest = { ownerUserId?: string; mutations: SyncMutation[] };
+export type SyncPushRequest = {
+  ownerUserId?: string;
+  cursor?: number;
+  dataGeneration?: number;
+  aiResultGeneration?: number;
+  mutations: SyncMutation[];
+};
 
 export type SyncPushResult = {
   mutationId: string;
-  status: 'accepted' | 'duplicate' | 'conflict';
+  status: 'accepted' | 'duplicate' | 'conflict' | 'discarded';
   authoritative?: {
     bankId?: string;
     topicId?: string;
@@ -603,13 +653,22 @@ export type SyncPushResult = {
     document?: Record<string, unknown>;
     recordId?: string;
     record?: Record<string, unknown>;
+    deleted?: boolean;
+    aiResultGeneration?: number;
     occurredAt?: string;
     version: number;
     updatedAt: string;
   };
 };
 
-export type SyncPushResponse = { results: SyncPushResult[]; cursor: number };
+export type SyncPushResponse = {
+  results: SyncPushResult[];
+  cursor: number;
+  dataGeneration: number;
+  aiResultGeneration: number;
+  resetLearningData?: boolean;
+  resetAiResults?: boolean;
+};
 
 export type SyncChange = {
   cursor: number;
@@ -624,6 +683,8 @@ export type SyncPullResponse = {
   changes: SyncChange[];
   cursor: number;
   hasMore: boolean;
+  dataGeneration: number;
+  aiResultGeneration: number;
 };
 
 export type AiModule = 'listening' | 'sentence900' | 'atc' | 'opi' | 'story';

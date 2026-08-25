@@ -51,6 +51,24 @@ export async function clearLearningRecords() {
   await write;
 }
 
+export async function deleteLearningRecord(recordId: string) {
+  const write = recordWriteQueue.catch(() => undefined).then(async () => {
+    const records = await readStoredRecords();
+    await Storage.setItem(LEARNING_RECORDS_KEY, JSON.stringify(records.filter((record) => record.id !== recordId)));
+  });
+  recordWriteQueue = write;
+  await write;
+}
+
+export async function clearAiResultRecords() {
+  const write = recordWriteQueue.catch(() => undefined).then(async () => {
+    const records = await readStoredRecords();
+    await Storage.setItem(LEARNING_RECORDS_KEY, JSON.stringify(records.filter((record) => record.recordType !== 'ai_result')));
+  });
+  recordWriteQueue = write;
+  await write;
+}
+
 export function resetLearningRecordStorageForTests() {
   recordWriteQueue = Promise.resolve();
 }

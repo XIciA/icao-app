@@ -29,10 +29,24 @@ jest.mock('@/features/question-bank/recording/expo-recorder-adapter', () => ({
   requestMicrophonePermission: jest.fn(async () => ({ granted: false })),
 }));
 
+jest.mock('@/features/question-bank/recording/recording-repository', () => ({
+  recordingRepository: { clearAll: jest.fn() },
+}));
+
+jest.mock('@/features/radio-player/radio-player-storage', () => ({
+  clearRadioPlayerAccountData: jest.fn(),
+}));
+
 jest.mock('@/features/ai/ai-client', () => ({
   getCachedAiConsentHint: jest.fn().mockResolvedValue(false),
   hasAiConsent: jest.fn().mockResolvedValue(false),
   withdrawAiConsent: jest.fn().mockResolvedValue(undefined),
+}));
+
+jest.mock('@/features/account/privacy-self-service', () => ({
+  clearLearningData: jest.fn(),
+  deleteAllAiResults: jest.fn(),
+  exportAccountAndLearningData: jest.fn(),
 }));
 
 jest.mock('@/features/feedback/feedback-client', () => ({
@@ -295,6 +309,28 @@ describe('base flow parity screens', () => {
     mockParams = { slug: 'settings' };
     const screen = await render(withSafeArea(<AccountScreen />));
     expect(screen.getByText(APP_DISPLAY_VERSION)).toBeTruthy();
+  });
+
+  it('exposes the 1.0.0 account and privacy self-service rights in the Native settings flow', async () => {
+    mockParams = { slug: 'privacy' };
+    mockAccount = { accountId: 'user-1', phone: '+8613800138000', phoneBound: true, providers: ['phone'] };
+    const screen = await render(withSafeArea(<AccountScreen />));
+
+    expect(screen.getByText('账号与隐私')).toBeTruthy();
+    expect(screen.getByText('导出账号和学习数据')).toBeTruthy();
+    expect(screen.getByText('删除全部 AI 结果')).toBeTruthy();
+    expect(screen.getByText('清除全部学习数据')).toBeTruthy();
+    expect(screen.getByText('第三方服务清单')).toBeTruthy();
+    expect(screen.getByText('注销整个账号')).toBeTruthy();
+    expect(screen.getByText('privacy@yunqihangke.com')).toBeTruthy();
+  });
+
+  it('limits the formal in-app agreement to the iOS and Android App', async () => {
+    mockParams = { slug: 'agreement' };
+    const screen = await render(withSafeArea(<InfoScreen />));
+
+    expect(screen.getByText(/iOS、Android 正式 App 及其相关服务/u)).toBeTruthy();
+    expect(screen.queryByText(/iOS、Android、Web 产品/u)).toBeNull();
   });
 
   it('shows the shared task timestamp version on the about page', async () => {

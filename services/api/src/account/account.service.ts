@@ -1,5 +1,5 @@
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { AccountSummary, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountDataExportResponse, AccountSummary, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, sql } from 'drizzle-orm';
@@ -64,6 +64,24 @@ export class AccountService {
       phone: resolvedPhone,
       phoneBound: providers.includes('phone'),
       providers,
+    };
+  }
+
+  async exportAccountData(accountId: string, phone?: string): Promise<AccountDataExportResponse['account']> {
+    const [account, summary] = await Promise.all([
+      this.database.db.select({ createdAt: accounts.createdAt })
+        .from(accounts)
+        .where(eq(accounts.id, accountId))
+        .limit(1)
+        .then((rows) => rows[0]),
+      this.summary(accountId, phone),
+    ]);
+    if (!account) throw new ForbiddenException('account_not_active');
+    return {
+      accountId,
+      createdAt: account.createdAt.toISOString(),
+      ...(summary.phone ? { phone: summary.phone } : {}),
+      providers: summary.providers,
     };
   }
 

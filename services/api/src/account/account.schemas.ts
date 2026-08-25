@@ -10,6 +10,14 @@ export const accountDeletionStatusSchema = z.object({
   idempotencyKey: z.uuidv4(),
 }).strict();
 
+export const deleteAllAiResultsSchema = z.object({
+  confirmation: z.literal('删除全部AI结果'),
+}).strict();
+
+export const clearLearningDataSchema = z.object({
+  confirmation: z.literal('清除学习数据'),
+}).strict();
+
 export const bindPhoneSchema = z.object({
   phone: z.string().regex(/^\+861[3-9]\d{9}$/u),
   token: z.string().regex(/^\d{6}$/u),

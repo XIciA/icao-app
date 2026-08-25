@@ -218,6 +218,13 @@
       "when": 1787665133441,
       "tag": "0030_mute_luckman",
       "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1787670023304,
+      "tag": "0031_typical_ares",
+      "breakpoints": true
     }
   ]
 }

@@ -225,4 +225,104 @@ describe('learning sync', () => {
     expect(mockValues.has('icao.learning.v1.records')).toBe(false);
     expect(Array.from(mockValues.keys()).some((key) => key.startsWith('icao.learning.v3.prebind.archive.'))).toBe(true);
   });
+
+  it('drops stale offline learning data when the server advances the data generation', async () => {
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({
+      schemaVersion: 3,
+      boundUserId: 'user-1',
+      cursor: 7,
+      dataGeneration: 0,
+      aiResultGeneration: 0,
+      versions: {},
+    }));
+    mockValues.set(`icao.learning.v2.topic.${topic.id}`, JSON.stringify({ [card.id]: state }));
+    mockValues.set('icao.learning.v1.records', JSON.stringify([learningRecord('stale answer', '2026-07-15T00:00:01.000Z')]));
+    await enqueueCardState(topic.id, card.id, state);
+    mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+      if (path === '/v1/sync/push') {
+        const body = JSON.parse(String(init?.body)) as { cursor: number; dataGeneration: number; mutations: { mutationId: string }[] };
+        expect(body).toMatchObject({ cursor: 7, dataGeneration: 0 });
+        return {
+          aiResultGeneration: 1,
+          dataGeneration: 1,
+          cursor: 7,
+          resetLearningData: true,
+          results: body.mutations.map((mutation) => ({ mutationId: mutation.mutationId, status: 'discarded' })),
+        };
+      }
+      return { aiResultGeneration: 1, dataGeneration: 1, changes: [], cursor: 7, hasMore: false };
+    });
+
+    await runLearningSync('user-1');
+
+    expect(mockValues.has(`icao.learning.v2.topic.${topic.id}`)).toBe(false);
+    expect(JSON.parse(mockValues.get('icao.learning.v1.records') ?? '[]')).toEqual([]);
+    expect(JSON.parse(mockValues.get('icao.learning.v3.sync.outbox') ?? '[]')).toEqual([]);
+    expect(JSON.parse(mockValues.get('icao.learning.v3.sync.meta') ?? '{}')).toMatchObject({
+      dataGeneration: 1,
+      aiResultGeneration: 1,
+      cursor: 7,
+      versions: {},
+    });
+  });
+
+  it('ignores pre-deletion AI changes and applies the current-generation tombstone', async () => {
+    const sessionRecord = { ...learningRecord('session', '2026-07-15T00:00:01.000Z'), id: 'session-1', recordType: 'session' as const, aiResult: undefined };
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({
+      schemaVersion: 3,
+      boundUserId: 'user-1',
+      cursor: 0,
+      dataGeneration: 0,
+      aiResultGeneration: 0,
+      versions: {},
+    }));
+    mockValues.set('icao.learning.v1.records', JSON.stringify([
+      learningRecord('must disappear', '2026-07-15T00:00:01.000Z'),
+      sessionRecord,
+    ]));
+    mockApiRequest.mockResolvedValue({
+      aiResultGeneration: 1,
+      dataGeneration: 0,
+      changes: [
+        {
+          cursor: 1,
+          kind: 'learning_record',
+          entityKey: 'study-session-card-1',
+          payload: {
+            recordId: 'study-session-card-1',
+            record: learningRecord('old cloud answer', '2026-07-15T00:00:01.000Z'),
+            aiResultGeneration: 0,
+            occurredAt: '2026-07-15T00:00:00.000Z',
+            version: 1,
+            updatedAt: '2026-07-15T00:00:01.000Z',
+          },
+          version: 1,
+          changedAt: '2026-07-15T00:00:01.000Z',
+        },
+        {
+          cursor: 2,
+          kind: 'learning_record',
+          entityKey: 'study-session-card-1',
+          payload: {
+            recordId: 'study-session-card-1',
+            deleted: true,
+            aiResultGeneration: 1,
+            occurredAt: '2026-07-15T00:00:00.000Z',
+            version: 2,
+            updatedAt: '2026-07-15T00:00:02.000Z',
+          },
+          version: 2,
+          changedAt: '2026-07-15T00:00:02.000Z',
+        },
+      ],
+      cursor: 2,
+      hasMore: false,
+    });
+
+    await runLearningSync('user-1');
+
+    const records = JSON.parse(mockValues.get('icao.learning.v1.records') ?? '[]') as LearningRecord[];
+    expect(records.map((record) => record.id)).toEqual(['session-1']);
+    expect(JSON.parse(mockValues.get('icao.learning.v3.sync.meta') ?? '{}')).toMatchObject({ aiResultGeneration: 1, cursor: 2 });
+  });
 });

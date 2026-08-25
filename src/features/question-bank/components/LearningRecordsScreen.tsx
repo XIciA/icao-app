@@ -1,10 +1,12 @@
-import { Clock3, History, Sparkles, Target } from '@/components/ui/icons';
+import { Clock3, History, Sparkles, Target, Trash2 } from '@/components/ui/icons';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, spacing } from '@/theme';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { deleteAiResult } from '@/features/account/privacy-self-service';
 
 import { sqliteLearningStore } from '../platform/learning-store';
 import type { LearningRecord } from '../types';
@@ -27,8 +29,32 @@ function savedReview(result: NonNullable<LearningRecord['aiResult']>) {
 }
 
 export function LearningRecordsScreen() {
+  const auth = useAuth();
   const [records, setRecords] = useState<LearningRecord[]>();
+  const [deletingId, setDeletingId] = useState<string>();
+  const [error, setError] = useState('');
   useEffect(() => { void sqliteLearningStore.getRecords().then(setRecords); }, []);
+
+  async function removeAiResult(record: LearningRecord) {
+    if (deletingId) return;
+    setDeletingId(record.id);
+    setError('');
+    try {
+      await deleteAiResult(auth.account?.accountId, record.id);
+      setRecords((current) => current?.filter((item) => item.id !== record.id));
+    } catch {
+      setError('这条 AI 结果暂时无法从云端删除，本机记录已保留，请稍后重试。');
+    } finally {
+      setDeletingId(undefined);
+    }
+  }
+
+  function confirmDelete(record: LearningRecord) {
+    Alert.alert('删除这条 AI 结果？', '删除后会同步到其他设备，不影响其他学习记录。', [
+      { text: '取消', style: 'cancel' },
+      { text: '删除', style: 'destructive', onPress: () => { void removeAiResult(record); } },
+    ]);
+  }
 
   return (
     <Screen scroll contentStyle={styles.screen}>
@@ -36,9 +62,10 @@ export function LearningRecordsScreen() {
       <View style={styles.header}>
         <AppText color={colors.primary} variant="micro">LOCAL HISTORY</AppText>
         <AppText variant="pageTitle">最近学习</AppText>
-        <AppText>学习记录保存在本机。</AppText>
+        <AppText>学习记录会先保存在本机，登录后通过学习数据同步恢复。</AppText>
       </View>
       <View style={styles.list}>
+        {error ? <AppText color={colors.destructive} style={styles.error} variant="caption">{error}</AppText> : null}
         {records?.length ? records.map((record) => (
           <Card key={record.id} style={styles.card}>
             <View style={styles.titleRow}>
@@ -48,6 +75,16 @@ export function LearningRecordsScreen() {
                 <AppText variant="caption">{record.recordType === 'ai_result' ? `我的回答 · ${record.topicTitle}` : record.topicTitle}</AppText>
               </View>
               <Tag tone={record.reason === 'complete' ? 'primary' : 'accent'}>{record.recordType === 'ai_result' ? '已保存' : record.recordType === 'mock_exam' ? record.reason === 'complete' ? '模考完成' : '模考结束' : record.reason === 'complete' ? '已完成' : '中途结束'}</Tag>
+              {record.recordType === 'ai_result' ? (
+                <Pressable
+                  accessibilityLabel={`删除 AI 结果：${record.topicTitle}`}
+                  disabled={Boolean(deletingId)}
+                  onPress={() => confirmDelete(record)}
+                  style={styles.deleteButton}
+                >
+                  <Trash2 color={colors.destructive} size={17} />
+                </Pressable>
+              ) : null}
             </View>
             <View style={styles.metrics}>
               {record.recordType === 'ai_result' ? <View style={styles.metric}><Sparkles color={colors.primary} size={14} /><AppText variant="micro">回答与反馈</AppText></View> : <><View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View><View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View></>}
@@ -68,6 +105,7 @@ const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   header: { gap: spacing[1], paddingHorizontal: spacing[5], paddingVertical: spacing[4] },
   list: { gap: spacing[3], paddingBottom: spacing[6] },
+  error: { paddingHorizontal: spacing[5] },
   card: { gap: spacing[3] },
   titleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   icon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: 14, height: 40, justifyContent: 'center', width: 40 },
@@ -77,4 +115,5 @@ const styles = StyleSheet.create({
   date: { color: colors.mutedForeground, flex: 1, fontFamily: fonts.monoRegular, textAlign: 'right' },
   empty: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[6] },
   aiResult: { backgroundColor: colors.secondary, borderRadius: 14, gap: spacing[2], padding: spacing[3] },
+  deleteButton: { alignItems: 'center', borderColor: colors.border, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, height: 36, justifyContent: 'center', width: 36 },
 });
