@@ -248,6 +248,7 @@ runtime_env=/opt/icao/runtime/api/.env
 backup_root=/opt/icao/backups/postgres
 backup=$backup_root/$backup_name
 image=icao-api:production-migration-$source_id-$token_id
+expected_image_release_id=production-migration-$source_id
 stage=remote_preflight
 migration_started=0
 migration_completed=0
@@ -661,15 +662,33 @@ if docker image inspect "$image" >/dev/null 2>&1; then
   exit 1
 fi
 docker build \
-  --build-arg "ICAO_API_RELEASE_ID=production-migration-$source_id" \
+  --build-arg "ICAO_API_RELEASE_ID=$expected_image_release_id" \
   --build-arg "ICAO_NPM_REGISTRY=$build_npm_registry" \
   -t "$image" -f "$work_dir/infra/api/Dockerfile" "$work_dir"
 image_created=1
+
+# BEGIN production-migration-image-identity-guard
+if ! baked_image_env=$(docker inspect --type image \
+  --format '{{range .Config.Env}}{{println .}}{{end}}' "$image"); then
+  echo "could not inspect production migration image identity: $image" >&2
+  exit 1
+fi
+baked_release_id_count=$(printf '%s\n' "$baked_image_env" \
+  | awk 'index($0, "API_RELEASE_ID=") == 1 { count += 1 } END { print count + 0 }')
+baked_release_id=$(printf '%s\n' "$baked_image_env" \
+  | awk 'index($0, "API_RELEASE_ID=") == 1 { print substr($0, length("API_RELEASE_ID=") + 1) }')
+if [ "$baked_release_id_count" -ne 1 ] \
+  || [ "$baked_release_id" != "$expected_image_release_id" ]; then
+  echo 'production migration image baked identity is missing, duplicated, or mismatched' >&2
+  exit 1
+fi
+# END production-migration-image-identity-guard
 
 stage=production_target_verification
 docker inspect -f '{{.State.Running}} {{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' supabase-db \
   | grep -Fx 'true healthy' >/dev/null
 docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
   -e ICAO_PRODUCTION_DATABASE_NAME=postgres "$image" node -e '
     const url = new URL(process.env.DATABASE_URL);
     if (!["postgres:", "postgresql:"].includes(url.protocol)) process.exit(1);
@@ -690,7 +709,8 @@ query_scalar() {
 
 stage=pre_plan_verification
 pre_plan=$work_dir/pre-plan.json
-docker run --rm --network supabase_default --env-file "$runtime_env" "$image" \
+docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
   node services/api/scripts/migration-plan.mjs --json > "$pre_plan"
 pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
@@ -712,20 +732,25 @@ test "$before_migrations" -eq "${expected_pre_plan%%:*}"
 
 stage=production_migration_apply
 migration_started=1
+# BEGIN production-migration-runtime-identity-override
 docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
   -e ICAO_PRODUCTION_MIGRATION_APPLY="apply:$source_sha:$expected_pre_plan:$expected_post_plan" \
   -e ICAO_PRODUCTION_MIGRATION_CONFIRM="$confirmation" \
   -e ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN="$expected_pre_plan" \
   -e ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan" \
   -e ICAO_PRODUCTION_MIGRATION_SOURCE_SHA="$source_sha" \
   "$image" node services/api/scripts/migrate.mjs --production-apply
+# END production-migration-runtime-identity-override
 migration_completed=1
 
 stage=post_plan_verification
-docker run --rm --network supabase_default --env-file "$runtime_env" "$image" \
+docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
   node services/api/scripts/migration-plan.mjs --require-current
 post_plan=$work_dir/post-plan.json
-docker run --rm --network supabase_default --env-file "$runtime_env" "$image" \
+docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
   node services/api/scripts/migration-plan.mjs --json --require-current > "$post_plan"
 post_summary=$(docker run --rm -v "$post_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
@@ -737,6 +762,7 @@ test "$post_summary" = "$expected_post_plan"
 stage=post_schema_verification
 schema_contract=$work_dir/schema-contract.json
 docker run --rm --network supabase_default --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
   -e ICAO_PRODUCTION_DATABASE_NAME=postgres "$image" \
   node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
 docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '

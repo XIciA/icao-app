@@ -238,6 +238,157 @@ test('--print-confirmation emits exactly one stdout line and no stderr', async (
   }
 });
 
+test('candidate image guard accepts one exact baked release identity and rejects every other shape', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-image-identity-guard');
+  const endMarker = '# END production-migration-image-identity-guard';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const guard = source.slice(start, end + endMarker.length);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-image-identity-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    await mkdir(fakeBin);
+    await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
+set -eu
+[ "\${1:-}" = inspect ]
+[ "\${2:-}" = --type ]
+[ "\${3:-}" = image ]
+if [ "\${MOCK_DOCKER_SCENARIO:-}" = inspect-fail ]; then exit 71; fi
+printf '%s' "\${MOCK_IMAGE_ENV:-}"
+`);
+    await chmod(join(fakeBin, 'docker'), 0o700);
+    const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
+    const run = (imageEnv, scenario = 'success') => spawnSync('/bin/sh', ['-c', `
+set -eu
+image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
+expected_image_release_id="$EXPECTED_RELEASE_ID"
+${guard}
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        EXPECTED_RELEASE_ID: expectedReleaseId,
+        MOCK_DOCKER_SCENARIO: scenario,
+        MOCK_IMAGE_ENV: imageEnv,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+      },
+    });
+
+    assert.equal(run(`PATH=/usr/bin\nAPI_RELEASE_ID=${expectedReleaseId}\nNODE_ENV=production\n`).status, 0);
+    for (const [label, imageEnv, scenario] of [
+      ['stale', `API_RELEASE_ID=release-old\n`, 'success'],
+      ['missing', 'NODE_ENV=production\n', 'success'],
+      ['duplicated', `API_RELEASE_ID=${expectedReleaseId}\nAPI_RELEASE_ID=${expectedReleaseId}\n`, 'success'],
+      ['near-key', `NOT_API_RELEASE_ID=${expectedReleaseId}\n`, 'success'],
+      ['inspect-fail', `API_RELEASE_ID=${expectedReleaseId}\n`, 'inspect-fail'],
+    ]) {
+      const result = run(imageEnv, scenario);
+      assert.notEqual(result.status, 0, label);
+      assert.notEqual(result.stderr, '', label);
+    }
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('explicit runtime identity overrides a stale env-file value before a candidate container runs', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-runtime-identity-override');
+  const endMarker = '# END production-migration-runtime-identity-override';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const runtimeCommand = source.slice(start, end + endMarker.length);
+  const withoutOverride = runtimeCommand.replace(
+    /\n  -e "API_RELEASE_ID=\$expected_image_release_id" \\/u,
+    '',
+  );
+  assert.notEqual(withoutOverride, runtimeCommand);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-runtime-identity-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    const runtimeEnv = join(root, 'runtime.env');
+    await mkdir(fakeBin);
+    await writeFile(runtimeEnv, 'API_RELEASE_ID=stale-production-release\nDATABASE_URL=postgresql://unused\n');
+    await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
+set -eu
+[ "\${1:-}" = run ]
+shift
+release_id=
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --rm) shift ;;
+    --network) shift 2 ;;
+    --env-file)
+      release_id=$(awk -F= '$1 == "API_RELEASE_ID" { print substr($0, length($1) + 2) }' "$2")
+      shift 2
+      ;;
+    -e)
+      case "$2" in API_RELEASE_ID=*) release_id=\${2#API_RELEASE_ID=} ;; esac
+      shift 2
+      ;;
+    icao-api:*) break ;;
+    *) exit 72 ;;
+  esac
+done
+[ "$release_id" = "\${EXPECTED_RELEASE_ID:?}" ] || {
+  echo 'mock candidate observed stale runtime identity' >&2
+  exit 73
+}
+`);
+    await chmod(join(fakeBin, 'docker'), 0o700);
+    const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
+    const run = (command) => spawnSync('/bin/sh', ['-c', `
+set -eu
+runtime_env="$TEST_RUNTIME_ENV"
+expected_image_release_id="$EXPECTED_RELEASE_ID"
+image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
+source_sha=${sourceSha}
+expected_pre_plan=${prePlan}
+expected_post_plan=${postPlan}
+confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
+${command}
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        EXPECTED_RELEASE_ID: expectedReleaseId,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_RUNTIME_ENV: runtimeEnv,
+      },
+    });
+
+    const repaired = run(runtimeCommand);
+    assert.equal(repaired.status, 0, repaired.stderr);
+    const regressed = run(withoutOverride);
+    assert.notEqual(regressed.status, 0);
+    assert.match(regressed.stderr, /stale runtime identity/u);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('production migrator rejects a stale runtime identity before any database connection attempt', () => {
+  const migratePath = new URL('../services/api/scripts/migrate.mjs', import.meta.url);
+  const result = spawnSync(process.execPath, [migratePath.pathname, '--production-apply'], {
+    encoding: 'utf8',
+    env: {
+      ...process.env,
+      API_RELEASE_ID: 'stale-production-release',
+      DATABASE_URL: 'postgresql://postgres:unused@127.0.0.1:1/postgres',
+      ICAO_PRODUCTION_MIGRATION_APPLY: `apply:${sourceSha}:${prePlan}:${postPlan}`,
+      ICAO_PRODUCTION_MIGRATION_CONFIRM: `APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}`,
+      ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN: postPlan,
+      ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN: prePlan,
+      ICAO_PRODUCTION_MIGRATION_SOURCE_SHA: sourceSha,
+      NODE_ENV: 'production',
+    },
+  });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /production_migration_image_identity_mismatch/u);
+  assert.doesNotMatch(result.stderr, /ECONNREFUSED|connection/u);
+});
+
 test('production migrator rejects missing wrapper authorization before any connection attempt', () => {
   const migratePath = new URL('../services/api/scripts/migrate.mjs', import.meta.url);
   const result = spawnSync(process.execPath, [migratePath.pathname, '--production-apply'], {

@@ -67,6 +67,15 @@ for (const contract of [
   'actual_backup_checksum_line=',
   'preexisting_fingerprint_mismatches',
   'cleanup_verified',
+  'expected_image_release_id=production-migration-$source_id',
+  '# BEGIN production-migration-image-identity-guard',
+  '# END production-migration-image-identity-guard',
+  "docker inspect --type image",
+  "--format '{{range .Config.Env}}{{println .}}{{end}}' \"$image\"",
+  'baked_release_id_count',
+  'production migration image baked identity is missing, duplicated, or mismatched',
+  '# BEGIN production-migration-runtime-identity-override',
+  '# END production-migration-runtime-identity-override',
   'test "$pre_summary" = "$expected_pre_plan"',
   'test "$post_summary" = "$expected_post_plan"',
   'scripts/migrate.mjs --production-apply',
@@ -96,6 +105,10 @@ for (const contract of [
   if (!applySource.includes(contract)) {
     throw new Error(`production_migration_apply_contract_missing:${contract}`);
   }
+}
+
+if ((applySource.match(/-e "API_RELEASE_ID=\$expected_image_release_id"/gu) ?? []).length !== 6) {
+  throw new Error('production_migration_runtime_image_identity_override_incomplete');
 }
 
 if (
