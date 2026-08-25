@@ -186,6 +186,53 @@ async function createRecoverableBatch() {
   return { error, fixture };
 }
 
+function rewriteStartedEvidence(
+  records: Array<Record<string, unknown>>,
+  index: number,
+  changes: Record<string, unknown>,
+) {
+  const started = records.find((record) => (
+    record.action === 'apple_server_reconciliation.batch_started'
+  ))!;
+  const metadata = started.metadata as Record<string, unknown>;
+  const planned = metadata.planned as Array<Record<string, unknown>>;
+  started.metadata = {
+    ...metadata,
+    planned: planned.map((report, reportIndex) => (
+      reportIndex === index ? { ...report, ...changes } : report
+    )),
+  };
+}
+
+function rewriteCompletedEvidence(
+  records: Array<Record<string, unknown>>,
+  index: number,
+  changes: Record<string, unknown>,
+) {
+  const items = records.filter((record) => (
+    record.action === 'apple_server_reconciliation.item_completed'
+  ));
+  const item = items[index]!;
+  item.metadata = {
+    ...(item.metadata as Record<string, unknown>),
+    ...changes,
+  };
+
+  const finalizationFailure = records.find((record) => (
+    record.action === 'apple_server_reconciliation.batch_finalization_failed'
+  ))!;
+  const finalizationMetadata = finalizationFailure.metadata as Record<string, unknown>;
+  const completed = (finalizationMetadata.completed as Array<Record<string, unknown>>)
+    .map((report, reportIndex) => (
+      reportIndex === index ? { ...report, ...changes } : report
+    ));
+  finalizationFailure.metadata = {
+    ...finalizationMetadata,
+    applied: completed.filter((report) => report.applied === true).length,
+    completed,
+  };
+}
+
 describe('AppleServerReconciliationService', () => {
   it('reports mismatches in dry-run and never asks commerce to apply them', async () => {
     const appleServer = {
@@ -244,11 +291,15 @@ describe('AppleServerReconciliationService', () => {
       })),
     } as unknown as AppleStoreServerApiService;
     const commerce = {
-      reconcileAppleServerTransaction: vi.fn(async () => ({
+      reconcileAppleServerTransaction: vi.fn(async (
+        _signed: string,
+        _environment: 'sandbox' | 'production',
+        apply: boolean,
+      ) => ({
         accountId: ACCOUNT_ID,
         action: 'refund' as const,
         appleStatus: 'refunded' as const,
-        applied: true,
+        applied: apply,
         environment: 'production' as const,
         localStatus: 'verified' as const,
         mismatch: true,
@@ -575,6 +626,214 @@ describe('AppleServerReconciliationService', () => {
       resumeBatchId: error.result.batchId,
       transactionId: 'anchor',
     })).rejects.toThrow('apple_server_reconciliation_resume_evidence_incomplete');
+  });
+
+  it('rejects a forged started report marked as already applied', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteStartedEvidence(fixture.records, 0, { applied: true });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects started-plan mismatch metadata that disagrees with its action', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteStartedEvidence(fixture.records, 0, { mismatch: false });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it.each([
+    { action: 'blocked_account_closed', localStatus: 'missing' },
+    { action: 'local_newer', localStatus: 'verified' },
+  ] as const)('rejects forbidden $action actions in the started plan', async ({
+    action,
+    localStatus,
+  }) => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteStartedEvidence(fixture.records, 0, {
+      action,
+      applied: false,
+      localStatus,
+      mismatch: true,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects a started action and status combination the planner cannot produce', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteStartedEvidence(fixture.records, 0, {
+      action: 'refund',
+      applied: false,
+      localStatus: 'missing',
+      mismatch: true,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it.each([
+    { action: 'blocked_account_closed', localStatus: 'missing' },
+    { action: 'local_newer', localStatus: 'verified' },
+  ] as const)('rejects forbidden $action actions in completed item evidence', async ({
+    action,
+    localStatus,
+  }) => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, {
+      action,
+      applied: false,
+      localStatus,
+      mismatch: true,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects a completed none action forged as applied', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, {
+      action: 'none',
+      applied: true,
+      localStatus: 'verified',
+      mismatch: false,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects a completed change action forged as not applied', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, {
+      action: 'create',
+      applied: false,
+      localStatus: 'missing',
+      mismatch: true,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects mismatch metadata that disagrees with the completed action', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, { mismatch: false });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it('rejects an action and Apple/local status combination the planner cannot produce', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, {
+      action: 'refund',
+      applied: true,
+      localStatus: 'missing',
+      mismatch: true,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_invalid');
+  });
+
+  it.each([
+    {
+      changes: {
+        action: 'record_refund',
+        appleStatus: 'refunded',
+        applied: true,
+        localStatus: 'missing',
+        mismatch: true,
+      },
+      field: 'Apple status',
+    },
+    { changes: { productKey: 'membership_31d_v1' }, field: 'product' },
+    { changes: { transactionReferenceHash: 'f'.repeat(64) }, field: 'transaction hash' },
+  ])('rejects a completed item whose $field differs from the started identity', async ({
+    changes,
+  }) => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, changes);
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_evidence_incomplete');
+  });
+
+  it('accepts a legal local-state change between the started plan and item completion', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    rewriteCompletedEvidence(fixture.records, 0, {
+      action: 'none',
+      applied: false,
+      localStatus: 'verified',
+      mismatch: false,
+    });
+
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).resolves.toMatchObject({
+      applied: 0,
+      cumulativeBatchResult: { applied: 1, completed: 2 },
+      status: 'completed',
+    });
+    const terminal = fixture.records.find((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ));
+    expect(terminal?.metadata).toMatchObject({
+      applied: 1,
+      completed: [
+        expect.objectContaining({ action: 'none', applied: false, localStatus: 'verified' }),
+        expect.objectContaining({ action: 'create', applied: true, localStatus: 'missing' }),
+      ],
+    });
   });
 
   it('rejects an arbitrary resume UUID without durable batch evidence', async () => {

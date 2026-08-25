@@ -196,6 +196,68 @@ function sameAuditedReport(
     && left.transactionReferenceHash === right.transactionReferenceHash;
 }
 
+function hasLegalReconciliationActionState(report: AuditedReconciliationReport) {
+  switch (report.action) {
+    case 'blocked_account_closed':
+      return report.localStatus === 'missing'
+        || (
+          report.appleStatus === 'verified'
+          && (report.localStatus === 'refunded' || report.localStatus === 'revoked')
+        );
+    case 'create':
+      return report.appleStatus === 'verified' && report.localStatus === 'missing';
+    case 'local_newer':
+      return report.localStatus !== 'missing';
+    case 'none':
+      return (report.appleStatus === 'verified' && report.localStatus === 'verified')
+        || (
+          report.appleStatus === 'refunded'
+          && (report.localStatus === 'refunded' || report.localStatus === 'revoked')
+        );
+    case 'record_refund':
+      return report.appleStatus === 'refunded' && report.localStatus === 'missing';
+    case 'refresh':
+      return (report.appleStatus === 'verified' && report.localStatus === 'verified')
+        || (
+          report.appleStatus === 'refunded'
+          && (report.localStatus === 'refunded' || report.localStatus === 'revoked')
+        );
+    case 'refund':
+      return report.appleStatus === 'refunded' && report.localStatus === 'verified';
+    case 'restore':
+      return report.appleStatus === 'verified'
+        && (report.localStatus === 'refunded' || report.localStatus === 'revoked');
+  }
+}
+
+function assertPlannedReportSemantics(report: AuditedReconciliationReport) {
+  if (
+    report.applied
+    || report.action === 'blocked_account_closed'
+    || report.action === 'local_newer'
+    || report.mismatch !== (report.action !== 'none')
+    || !hasLegalReconciliationActionState(report)
+  ) {
+    throw new AppleServerReconciliationStateError(
+      'apple_server_reconciliation_resume_evidence_invalid',
+    );
+  }
+}
+
+function assertCompletedReportSemantics(report: AuditedReconciliationReport) {
+  if (
+    report.action === 'blocked_account_closed'
+    || report.action === 'local_newer'
+    || report.applied !== (report.action !== 'none')
+    || report.mismatch !== (report.action !== 'none')
+    || !hasLegalReconciliationActionState(report)
+  ) {
+    throw new AppleServerReconciliationStateError(
+      'apple_server_reconciliation_resume_evidence_invalid',
+    );
+  }
+}
+
 @Injectable()
 export class AppleServerReconciliationService {
   constructor(
@@ -597,6 +659,7 @@ export class AppleServerReconciliationService {
       );
     }
     const startedPlan = auditedReports(metadataRecord(started[0]!.metadata).planned);
+    startedPlan.forEach(assertPlannedReportSemantics);
     if (
       startedPlan.length !== evidence.itemIdentities.length
       || startedPlan.some((report, index) => {
@@ -640,6 +703,7 @@ export class AppleServerReconciliationService {
     for (const [index, event] of itemEvents.entries()) {
       const metadata = metadataRecord(event.metadata);
       const report = auditedReport(metadata);
+      assertCompletedReportSemantics(report);
       const identity = evidence.itemIdentities[index];
       if (
         metadata.index !== index

@@ -62,8 +62,10 @@ docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
 如果应用已全部完成、但最终审计写入失败且失败证据已持久化，命令会返回
 `finalization_failed`、完整应用结果和 `resumeBatchId`。确认数据库审计能力恢复后，使用原交易号、
 原环境和该批次号重跑。恢复命令会在批次锁内核对账号、环境、计划指纹、所有项目完成证据以及未完成
-终态，只在新的 dry-run 全部为 `none` 时补写原批次完成终态；它不再执行权益写入。证据不完整、状态
-已有变化或批次已经完成都会失败关闭，状态有变化时必须启动不带 `--resume-batch-id` 的新批次：
+终态；计划和完成证据中的动作、Apple/本地状态、`applied`、`mismatch` 还必须符合真实对账分支，且同一
+项目的 Apple 状态、商品和交易摘要保持一致。它只在新的 dry-run 全部为 `none` 时补写原批次完成终态，
+不再执行权益写入。证据不完整、状态已有变化或批次已经完成都会失败关闭，状态有变化时必须启动不带
+`--resume-batch-id` 的新批次：
 
 恢复成功时，结果中的 `applied` 表示本次恢复调用的写入数（应为 `0`）；
 `cumulativeBatchResult.applied` 和 `cumulativeBatchResult.completed` 表示从原始项目审计与最新终态失败

@@ -970,6 +970,11 @@ if (
   || !appleServerReconciliation.includes('cumulativeBatchResult')
   || !appleServerReconciliation.includes('event.sequence <= previousSequence')
   || !appleServerReconciliation.includes('sameAuditedReport')
+  || !appleServerReconciliation.includes('assertPlannedReportSemantics')
+  || !appleServerReconciliation.includes('assertCompletedReportSemantics')
+  || !appleServerReconciliation.includes("report.applied !== (report.action !== 'none')")
+  || !appleServerReconciliation.includes("case 'record_refund':")
+  || !appleServerReconciliation.includes("case 'restore':")
   || !appleServerReconciliation.includes("status: 'finalization_failed'")
   || !appleServerReconciliation.includes("input.environment,\n        false")
   || !appleReconciliationTerminalMigration.includes(
