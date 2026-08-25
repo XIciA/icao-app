@@ -18,6 +18,8 @@ import { dirname, join, resolve } from 'node:path';
 import test from 'node:test';
 
 const helper = resolve('infra/api/content-signing-key-provision.sh');
+const releaseCommon = resolve('scripts/lib/release-common.sh');
+const apiRelease = resolve('scripts/deploy-api-release.sh');
 const uid = process.getuid?.();
 
 if (!Number.isInteger(uid)) {
@@ -27,6 +29,7 @@ if (!Number.isInteger(uid)) {
 const hash = (content) => createHash('sha256').update(content).digest('hex');
 const mode = async (path) => (await lstat(path)).mode & 0o777;
 const token = (character) => character.repeat(32);
+const oldImageId = `sha256:${'a'.repeat(64)}`;
 
 async function createFixture() {
   const temporary = await realpath(await mkdtemp(join(tmpdir(), 'icao-content-key-provision-')));
@@ -46,6 +49,9 @@ exit "\${ICAO_TEST_FLOCK_EXIT:-0}"
 printf 'docker %s\n' "$*" >> "$ICAO_TEST_COMMAND_LOG"
 if [ "$1" = exec ]; then
   printf '%s' "$ICAO_TEST_ROLLBACK_RELEASE_ID"
+fi
+if [ "$1" = inspect ]; then
+  printf '%s' "$ICAO_TEST_ROLLBACK_IMAGE_ID"
 fi
 if [ "\${ICAO_TEST_DOCKER_FAIL_COMPOSE:-0}" = 1 ] && [ "$1" = compose ]; then
   exit 19
@@ -68,8 +74,42 @@ exit "\${ICAO_TEST_CURL_EXIT:-0}"
       ICAO_TEST_FLOCK_LOG: lockLog,
       ICAO_TEST_COMMAND_LOG: commandLog,
       ICAO_TEST_ROLLBACK_RELEASE_ID: 'old-release',
+      ICAO_TEST_ROLLBACK_IMAGE_ID: oldImageId,
     },
   };
+}
+
+function runPublicUrlValidation(value) {
+  return spawnSync('/bin/sh', [
+    '-c',
+    `set -eu
+. "$1"
+require_public_https_url ICAO_TEST_URL "$2"
+`,
+    'release-url-test',
+    releaseCommon,
+    value,
+  ], { encoding: 'utf8' });
+}
+
+function runOpenLockValidation(fixture, openedFile, checkedFile) {
+  return spawnSync('/bin/sh', [
+    '-c',
+    `set -eu
+exec 8>>"$2"
+ICAO_CONTENT_KEY_PROVISION_LIBRARY=1
+. "$1"
+content_key_validate_open_lock "$3" "$4" 8
+`,
+    'content-key-open-lock-test',
+    helper,
+    openedFile,
+    checkedFile,
+    String(uid),
+  ], {
+    encoding: 'utf8',
+    env: fixture.env,
+  });
 }
 
 function runCli(fixture, command, releaseId, uploadToken, extra = {}) {
@@ -192,6 +232,123 @@ test('staging is unique, private, lock-protected, and cleaned exactly', async ()
   } finally {
     await rm(fixture.temporary, { recursive: true, force: true });
   }
+});
+
+test('release URLs reject whitespace, CRLF, and remote-shell metacharacters', () => {
+  assert.equal(runPublicUrlValidation('https://registry.npmmirror.com').status, 0);
+  for (const malicious of [
+    'https://registry.example.com path',
+    'https://registry.example.com\tpath',
+    'https://registry.example.com\npath',
+    'https://registry.example.com\r\npath',
+    'https://registry.example.com;touch-pwned',
+    'https://registry.example.com$(touch-pwned)',
+    'https://registry.example.com`touch-pwned`',
+    'https://registry.example.com&touch-pwned',
+    'https://registry.example.com|touch-pwned',
+    'https://registry.example.com?token=value',
+  ]) {
+    const rejected = runPublicUrlValidation(malicious);
+    assert.notEqual(rejected.status, 0, `unsafe URL unexpectedly accepted: ${JSON.stringify(malicious)}`);
+    assert.match(rejected.stderr, /cannot be passed to a remote release command/u);
+  }
+});
+
+test('release locks preserve existing bytes and reject links, unsafe modes, and inode mismatch', async () => {
+  const fixture = await createFixture();
+  try {
+    const sentinel = Buffer.from('lock-must-not-be-truncated\n');
+    await writeFile(fixture.lockFile, sentinel, { mode: 0o600 });
+    const staged = runCli(fixture, 'stage', 'lock-preservation', token('1'));
+    assert.equal(staged.status, 0, staged.stderr);
+    assert.equal(hash(await readFile(fixture.lockFile)), hash(sentinel));
+    assert.equal(runCli(fixture, 'cleanup', 'lock-preservation', token('1')).status, 0);
+
+    const externalLock = join(fixture.temporary, 'external-lock');
+    await writeFile(externalLock, sentinel, { mode: 0o600 });
+    await rm(fixture.lockFile);
+    await symlink(externalLock, fixture.lockFile);
+    const linked = runCli(fixture, 'stage', 'lock-link', token('2'));
+    assert.notEqual(linked.status, 0);
+    assert.match(linked.stderr, /lock_file_symlink_rejected/u);
+    assert.equal(hash(await readFile(externalLock)), hash(sentinel));
+
+    await rm(fixture.lockFile);
+    await writeFile(fixture.lockFile, sentinel, { mode: 0o644 });
+    const permissive = runCli(fixture, 'stage', 'lock-mode', token('3'));
+    assert.notEqual(permissive.status, 0);
+    assert.match(permissive.stderr, /lock_file_mode_must_be_0600/u);
+    assert.equal(hash(await readFile(fixture.lockFile)), hash(sentinel));
+
+    await chmod(fixture.lockFile, 0o600);
+    const otherLock = join(fixture.temporary, 'other-lock');
+    await writeFile(otherLock, 'other-inode\n', { mode: 0o600 });
+    const mismatched = runOpenLockValidation(fixture, fixture.lockFile, otherLock);
+    assert.notEqual(mismatched.status, 0);
+    assert.match(mismatched.stderr, /lock_file_opened_inode_mismatch/u);
+
+    await chmod(fixture.temporary, 0o777);
+    const unsafeParent = runCli(fixture, 'stage', 'lock-parent', token('4'));
+    assert.notEqual(unsafeParent.status, 0);
+    assert.match(unsafeParent.stderr, /lock_parent_unsafe_mode/u);
+    await chmod(fixture.temporary, 0o700);
+  } finally {
+    await rm(fixture.temporary, { recursive: true, force: true });
+  }
+});
+
+test('staged-key cleanup failure remains before the release commit and therefore arms rollback', async () => {
+  const source = await readFile(apiRelease, 'utf8');
+  const cutoverIndex = source.indexOf('cutover_started=1');
+  const committedCleanupIndex = source.indexOf(
+    'Failed to remove the staged content signing key before committing the API release.',
+  );
+  const releaseSucceededIndex = source.indexOf('release_succeeded=1', committedCleanupIndex);
+  assert.ok(cutoverIndex >= 0);
+  assert.ok(committedCleanupIndex > cutoverIndex);
+  assert.ok(releaseSucceededIndex > committedCleanupIndex);
+  const exitCleanup = source.slice(
+    source.indexOf('cleanup_release() {'),
+    source.indexOf('trap cleanup_release EXIT'),
+  );
+  assert.match(exitCleanup, /\[ "\$release_succeeded" != 1 \] && \[ "\$cutover_started" = 1 \]/u);
+  assert.match(exitCleanup, /content_key_rollback_release/u);
+
+  const cleanupFunction = source.match(/cleanup_release\(\) \{[\s\S]*?\n\}\ntrap cleanup_release EXIT/u)?.[0]
+    .replace(/\ntrap cleanup_release EXIT$/u, '');
+  assert.ok(cleanupFunction);
+  const cleanupFailure = spawnSync('/bin/sh', [
+    '-c',
+    `set -u
+release_succeeded=0
+cutover_started=1
+runtime_env_update_armed=1
+runtime_source_existed=1
+rollback_image=rollback-image
+runtime_env=/runtime-env
+backup_dir=/backup
+expected_owner=0
+runtime_compose=/runtime-compose
+running_release_id=old-release
+running_image=${oldImageId}
+release_root=/release-root
+release_id=new-release
+content_key_upload_token=${token('5')}
+content_key_rollback_release() {
+  [ "\${12}" = "${oldImageId}" ] || return 1
+  printf 'full_cutover_rollback_called\n'
+}
+content_key_restore_runtime_env() { return 99; }
+content_key_cleanup_stage() { return 41; }
+${cleanupFunction}
+set +e
+false
+cleanup_release
+`,
+  ], { encoding: 'utf8' });
+  assert.equal(cleanupFailure.status, 1);
+  assert.match(cleanupFailure.stdout, /full_cutover_rollback_called/u);
+  assert.doesNotMatch(cleanupFailure.stderr, /CRITICAL:/u);
 });
 
 test('staging rejects unsafe modes, links, owner mismatch, and unsafe cleanup', async () => {
@@ -397,6 +554,7 @@ test('post-cutover rollback restores image, env, compose, source, and verifies o
       sourceNext,
       'old-release',
       '1',
+      oldImageId,
     ]);
     assert.equal(rolledBack.status, 0, rolledBack.stderr);
     assert.equal(hash(await readFile(runtimeEnv)), hash(oldEnv));
@@ -406,6 +564,7 @@ test('post-cutover rollback restores image, env, compose, source, and verifies o
     const commands = await readFile(fixture.commandLog, 'utf8');
     assert.match(commands, /docker tag icao-api:rollback-test icao-api:phase2a/u);
     assert.match(commands, /docker compose .* up -d --force-recreate api/u);
+    assert.match(commands, /docker inspect -f \{\{\.Image\}\} icao-api/u);
     assert.match(commands, /docker exec icao-api/u);
     assert.match(commands, /curl -fsS http:\/\/127\.0\.0\.1:3101\/health\/ready/u);
   } finally {
@@ -444,10 +603,51 @@ test('rollback command failure remains a non-zero high-priority failure', async 
       sourceNext,
       'old-release',
       '1',
+      oldImageId,
     ], { ICAO_TEST_DOCKER_FAIL_COMPOSE: '1' });
     assert.equal(failed.status, 23);
     assert.match(failed.stderr, /rollback_container_restart_failed/u);
     assert.equal(hash(await readFile(runtimeEnv)), hash('API_RELEASE_ID=old-release\n'));
+  } finally {
+    await rm(fixture.temporary, { recursive: true, force: true });
+  }
+});
+
+test('rollback rejects a recreated container whose image digest differs from the saved digest', async () => {
+  const fixture = await createFixture();
+  try {
+    const runtimeDirectory = join(fixture.temporary, 'runtime');
+    const backupDirectory = join(fixture.temporary, 'backup');
+    const runtimeEnv = join(runtimeDirectory, '.env');
+    const backupEnv = join(backupDirectory, 'runtime-env-before');
+    const runtimeCompose = join(runtimeDirectory, 'docker-compose.yml');
+    const backupCompose = join(backupDirectory, 'docker-compose-before.yml');
+    const runtimeSource = join(runtimeDirectory, 'source');
+    const sourceNext = join(runtimeDirectory, 'source.next');
+    await mkdir(runtimeDirectory, { mode: 0o700 });
+    await mkdir(backupDirectory, { mode: 0o700 });
+    await mkdir(runtimeSource, { mode: 0o700 });
+    await writeFile(runtimeEnv, 'API_RELEASE_ID=new-release\n', { mode: 0o600 });
+    await writeFile(backupEnv, 'API_RELEASE_ID=old-release\n', { mode: 0o600 });
+    await writeFile(runtimeCompose, 'new\n', { mode: 0o600 });
+    await writeFile(backupCompose, 'old\n', { mode: 0o600 });
+
+    const failed = runConditionalFunction(fixture, 'content_key_rollback_release', [
+      'icao-api:rollback-test',
+      runtimeEnv,
+      backupEnv,
+      String(uid),
+      runtimeCompose,
+      backupCompose,
+      runtimeSource,
+      join(backupDirectory, 'source-directory-before'),
+      sourceNext,
+      'old-release',
+      '1',
+      oldImageId,
+    ], { ICAO_TEST_ROLLBACK_IMAGE_ID: `sha256:${'b'.repeat(64)}` });
+    assert.equal(failed.status, 23);
+    assert.match(failed.stderr, /rollback_image_identity_mismatch/u);
   } finally {
     await rm(fixture.temporary, { recursive: true, force: true });
   }
