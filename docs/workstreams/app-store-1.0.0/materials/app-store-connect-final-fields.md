@@ -1,10 +1,11 @@
 # App Store Connect 1.0.0 唯一最终字段包
 
-状态：固定字段已定稿，但生产、隐私自助权利、中国大陆合规、支持联系信息、Apple 付费商务、审核
-账号、最终候选包和截图门禁尚未全部通过，不可直接提交；平台专属事实仍按文中门禁当场补入，不在
-仓库保存凭据。
+状态：固定字段已定稿；隐私自助能力已进入主线，五个正式公开页面已从干净主线发布，但生产 API/Ops、
+中国大陆合规、支持联系信息、Apple 付费商务、审核账号、最终候选包和截图等门禁尚未全部通过，不可直接提交；
+平台专属事实仍按文中门禁当场补入，不在仓库保存凭据。
 
-适用范围：中国大陆 iOS App Store，简体中文，版本 `1.0.0`。本文件是平台录入的唯一字段来源；
+适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 使用当前全部可用
+App Store 国家或地区，中国大陆是价格基准地区而不是唯一可用地区。本文件是平台录入的唯一字段来源；
 不存在第二套名称、文案、年龄、隐私或商品草案。
 
 ## 1. App 信息与版本设置
@@ -14,37 +15,40 @@
 | 主要语言 | 简体中文 | 固定 |
 | App 名称 | 见下方名称字段 | 固定；Apple 上限 30 字符 |
 | 副标题 | 见下方副标题字段 | 固定；Apple 上限 30 字符 |
+| Apple ID | `6800583111` | App Store Connect 现有 App 记录 |
 | Bundle ID | `com.readyoufife.ios` | 与 `app.json` 一致 |
 | 用户可见版本 | `1.0.0` | Build 号由最终候选归档提供 |
 | App Store iOS 版本记录 | `1.0.0` | 当前平台已有 `1.0` 草稿；提交前必须改为冻结值 `1.0.0` |
+| 送审 Build | 从最终 `origin/main` 生成且 Build 号高于 `3493759` 的新候选 | 当前已验证 Build `3493759` 于 2026-08-23 上传，未被版本页选择且不含后续主线收口，不作为送审包 |
 | 主要分类 | 教育（Education） | 固定 |
 | 次要分类 | 工具（Utilities） | 固定；中国大陆 App 备案服务分类仍为工具 |
 | App 定价 | 免费 | 会员能力只通过 App 内购买提供 |
 | 分发方式 | Public Distribution | 公开 App Store，不使用 Private 或 Unlisted |
-| App 可用地区 | Specific Countries or Regions：仅中国大陆 | 首发范围；不自动加入未来新增地区 |
+| App 可用地区 | All Countries or Regions（当前全部可用 App Store 国家或地区） | 不新增未经批准的仅中国大陆发行限制；中国大陆备案继续保持工具类 |
 | Apple 芯片 Mac 兼容分发 | 取消选择 `Make this app available` | 1.0.0 未在 Mac 验收 |
 | Apple Vision Pro 兼容分发 | 取消选择 `Make this app available on Apple Vision Pro` | 1.0.0 未在 Vision Pro 验收 |
 | 中国大陆 ICP/App 备案号 | `<ASC_ONLY_ICP_FILING_NUMBER>` | 只在平台录入正式备案材料中的准确值；须与 MIIT 主体、App 名称、Bundle ID 和简中元数据一致 |
-| 中国大陆组织合规 | D-U-N-S、公司中文名和 USCI 均已核实 | Account Holder/Admin 在 Business → Agreements → Compliance → China Mainland 完成；不得用仓库候选值代替 |
+| 中国大陆组织合规 | `<ASC_ONLY_CHINA_MAINLAND_COMPLIANCE_VERIFIED>` | 待 Account Holder/Admin 在 Business → Agreements → Compliance → China Mainland 以正式资料核实 D-U-N-S、公司中文名和 USCI 后当场确认；不得用仓库候选值代替 |
 | 内容版权（Content Rights） | 是，App 包含或访问第三方内容 | 公司或相关权利人已拥有必要权利；不宣称全部原创 |
 | 版权（Copyright） | `2026 云启航科（成都）科技有限公司` | 唯一拟录入值；负责人须先确认该公司是该字段所要求的权利主体 |
 | Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | URL 已上线，但尚未最终合格；真实公司注册地址和公开支持电话须经负责人核实、发布到页面并完成可达性验证 |
-| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 已上线；提交前与最终归档数据流复核 |
-| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 已上线 |
+| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前 `official-site` 自助权利版本已上线并与主线源码一致；最终提交前再与归档和生产数据流复核 |
+| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 自助导出、删除和撤回 AI 同意说明已上线并与主线源码一致；生产 API 完成后再录入 |
 | Marketing URL | 留空 | 首发不填 |
 | 新版本内容（What’s New） | 不适用 | 首个版本不填写 |
 | 分阶段发布 | 不启用 | 首发不使用 phased release |
-| App Store 版本发布 | Automatically release this version | 审核通过后自动发布；不设置最早发布日期 |
+| App Store 版本发布 | Automatically release this version | 当前平台已选择；最终提交前复核仍保持选中且不设置最早发布日期 |
 | Made for Kids | 否 | 不进入儿童分类 |
 
 ### 全部提交门禁
 
 以下各项是并列门禁，不能因固定字段已定稿而标记为可提交：
 
-1. 从干净 `origin/main` 完成生产备份、隔离恢复与全部待执行迁移演练，再部署数据库/API/Ops；生产
-   微信路由消失，Apple Notifications V2 可用，稳定 Device ID 不再发送或保存。
-2. App 内与公开协议主体、平台范围和数据权利一致；完成 D7 冻结的账号/学习数据导出、清除学习数据
-   及删除 AI 结果等用户入口，并通过聚焦验收。
+1. 生产备份、隔离恢复与全部待执行迁移演练已形成成功证据；仍须从干净 `origin/main` 部署数据库、
+   API 和 Ops，并证明生产微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。
+2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
+   当前 `official-site` 五页已发布且与主线源码逐页一致；仍须部署对应生产 API，并在最终候选完成后
+   反向确认线上公开文本与 App 的主体、平台范围、路径和数据权利一致。
 3. 完成下方 Support URL、中国大陆备案与组织合规门禁；所有外部事实以正式材料和平台状态为准。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
@@ -53,7 +57,10 @@
 
 ### Support URL P1 提交门禁
 
-在以下条件全部完成前，本字段包不得标记为可提交：
+Apple 的平台版本字段说明要求 Support URL 指向实际联系信息（如法定地址、邮箱和电话），并说明具体
+展示受适用法律影响；审核指南 1.5 另要求 App 与 Support URL 提供准确、最新且易用的联系方式。本项目
+采用以下保守门禁，并不宣称所有地区绝对强制相同展示格式。在以下条件全部完成前，本字段包不得标记为
+可提交：
 
 1. 负责人用营业执照核实真实公司注册地址；当前已知注册地址只是仓库候选，不是已验证事实。
 2. 负责人提供并核实真实的公开支持电话；不得为了通过门禁编造号码。
@@ -69,10 +76,10 @@
 | Sandbox Server URL | `https://api.readyoufife.com/v1/commerce/apple/notifications/v2` |
 | Sandbox Notifications Version | Version 2 |
 
-生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。当前生产该路径
-仍返回 404，尚未部署当前主线，因此不得先在 App Store Connect 标记完成。部署后先确认无效空请求
-被安全拒绝，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的测试通知状态和
-服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
+生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。最近一次生产
+核验中该路径仍返回 404，尚未部署当前主线，因此不得先在 App Store Connect 标记完成。部署后先
+确认无效空请求被安全拒绝，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的
+测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
 
 ### 名称
 
@@ -268,14 +275,15 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 - 创建位置：Subscriptions → Non-Renewing Subscriptions。
 - 类型：Non-Renewing Subscription；不创建自动续期订阅组。
-- Availability：中国大陆，与 App 首发地区一致。
+- Availability：当前全部可用 App Store 国家或地区，与 App 1.0.0 可用地区一致。
 - Base Country or Region：中国大陆。
 - Tax Category：Match to parent app；如财税专业意见要求不同分类，先由负责人确认再改，不自行猜测。
 - Promotional In-App Purchase：不启用；不上传促销图，不在 App Store 产品页单独推广。
 - 无免费试用、自动续费、自动扣款、年度套餐或独立 AI 加量包。
 - 首次送审：五项全部与 App 1.0.0 加入同一个 submission。
 - 价格：优先选择等于目标价的 Apple 官方价格点；不存在时选择最接近且不高于目标价的价格点，等距
-  仍选较低价。其他地区不做首发手工定价；App 内只显示 StoreKit 实际本地化价格。
+  仍选较低价。其他国家或地区使用 Apple 按中国大陆基准价自动生成的价格，不做首发手工定价；App
+  内只显示 StoreKit 实际本地化价格。
 
 <!-- iap-products:start -->
 | 天数 | Reference Name | Product ID | 简中 Display Name | 简中 Description | 中国大陆目标价 | 服务端权益键 | App Review Screenshot |
@@ -331,6 +339,9 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
   <https://developer.apple.com/help/app-store-connect/reference/app-information/app-information>
 - 宣传文本 170 字符、描述 4,000 字符、关键词 100 字节且单个关键词超过 2 字符：
   <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information>
+- Support URL 的实际联系信息、适用法律说明及审核指南 1.5 的联系方式要求：
+  <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information>；
+  <https://developer.apple.com/app-store/review/guidelines/>
 - IAP Reference Name 64 字符、Product ID 100 字符、Display Name 2—30 字符、Description 45 字符、
   Review Notes 4,000 字符：
   <https://developer.apple.com/help/app-store-connect/reference/in-app-purchases-and-subscriptions/in-app-purchase-information/>
