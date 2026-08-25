@@ -12,6 +12,7 @@ const files = Object.fromEntries(await Promise.all([
   'infra/ops/gateway.env.example',
   'infra/ops/ops-api.env.example',
   'infra/ops/cleanup-ops-uploads.sh',
+  'infra/ops/postgres-password.sh',
   'infra/ops/release-state.sh',
   'infra/ops/rollback-release.sh',
   'infra/ops/verify-ops-absence.sh',
@@ -50,6 +51,7 @@ const syntax = spawnSync('/bin/sh', [
   '-n',
   'scripts/deploy-ops-release.sh',
   'infra/ops/cleanup-ops-uploads.sh',
+  'infra/ops/postgres-password.sh',
   'infra/ops/release-state.sh',
   'infra/ops/rollback-release.sh',
   'infra/ops/verify-ops-absence.sh',
@@ -74,6 +76,15 @@ for (const [name, script] of [
     throw new Error(`ops_${name}_self_test:${result.stderr || result.stdout}`);
   }
 }
+const postgresPasswordTest = spawnSync('/bin/sh', [
+  'infra/ops/postgres-password.sh',
+], {
+  encoding: 'utf8',
+  env: { ...process.env, ICAO_OPS_POSTGRES_PASSWORD_SELF_TEST: '1' },
+});
+if (postgresPasswordTest.status !== 0) {
+  throw new Error(`ops_postgres_password_lifecycle_self_test:${postgresPasswordTest.stderr || postgresPasswordTest.stdout}`);
+}
 
 requireText('scripts/deploy-ops-release.sh', [
   'check-mainline-release.mjs',
@@ -93,6 +104,9 @@ requireText('scripts/deploy-ops-release.sh', [
   'ops-config-preflight.js',
   'backup-postgres.sh',
   'restore-isolated.sh',
+  'postgres-password.sh',
+  'load_ops_postgres_password',
+  'clear_ops_postgres_password',
   'isolated_restore_ok',
   'select pg_database_size(current_database())',
   'required_before_build_bytes',
@@ -130,6 +144,14 @@ if (
     < deployment.indexOf('Public Ops release identity mismatch.')
 ) {
   throw new Error('ops_rollback_pointer_state_order_is_unsafe');
+}
+if (
+  deployment.indexOf('load_ops_postgres_password')
+    > deployment.indexOf('/bin/sh "$restore_script" "$backup_path"')
+  || deployment.indexOf('clear_ops_postgres_password')
+    < deployment.indexOf('/bin/sh "$restore_script" "$backup_path"')
+) {
+  throw new Error('ops_isolated_restore_postgres_password_lifecycle_is_unsafe');
 }
 if (
   deployment.indexOf('cleanup-ops-uploads.sh" cleanup') < deployment.lastIndexOf('if ! flock -n 9; then')
@@ -200,6 +222,24 @@ requireText('infra/ops/cleanup-ops-uploads.sh', [
   'refuses non-regular or linked entries',
   'ran without the held-lock guard',
   'preserve current/recent files or remove stale files',
+  '[ -d "$upload_root" ] && [ ! -L "$upload_root" ]',
+  'accepted a symbolic-link upload root',
+]);
+
+requireText('infra/ops/postgres-password.sh', [
+  'unset POSTGRES_PASSWORD',
+  'POSTGRES_PASSWORD=$(docker exec supabase-db printenv POSTGRES_PASSWORD)',
+  '[ -z "$POSTGRES_PASSWORD" ]',
+  'export POSTGRES_PASSWORD',
+  'clear_ops_postgres_password',
+  'FAKE_POSTGRES_PASSWORD_RESULT=success',
+  'for result in failure empty',
+  'Ops PostgreSQL password lifecycle tests passed.',
+]);
+forbidText('scripts/deploy-ops-release.sh', [
+  '-e POSTGRES_PASSWORD=',
+  'echo "$POSTGRES_PASSWORD"',
+  'printf "$POSTGRES_PASSWORD"',
 ]);
 
 requireText('services/api/scripts/verify-ops-production-readiness.mjs', [

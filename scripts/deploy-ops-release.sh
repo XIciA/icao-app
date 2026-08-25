@@ -226,6 +226,7 @@ rollback_armed=0
 committed=0
 attempt_dir=
 partial_release=
+postgres_password_loaded=0
 
 finish() {
   status=$?
@@ -243,6 +244,10 @@ finish() {
       "$release_root"/ops-*.partial.*) rm -rf "$partial_release" ;;
       *) echo 'Refusing to clean an invalid partial Ops release path.' >&2; status=2 ;;
     esac
+  fi
+  if [ "$postgres_password_loaded" -eq 1 ]; then
+    unset POSTGRES_PASSWORD
+    postgres_password_loaded=0
   fi
   rm -f "$upload" "$checksum"
   exit "$status"
@@ -289,6 +294,7 @@ else
   for required in \
     infra/ops/docker-compose.runtime.yml \
     infra/ops/cleanup-ops-uploads.sh \
+    infra/ops/postgres-password.sh \
     infra/ops/release-state.sh \
     infra/ops/rollback-release.sh \
     infra/ops/verify-ops-absence.sh \
@@ -314,6 +320,7 @@ fi
 ICAO_OPS_UPLOAD_JANITOR_LOCK_HELD=1 \
   /bin/sh "$source_dir/infra/ops/cleanup-ops-uploads.sh" cleanup \
   "$upload_root" "$upload" "$checksum"
+. "$source_dir/infra/ops/postgres-password.sh"
 
 check_private_file() {
   checked_file=$1
@@ -516,7 +523,14 @@ fi
 attempt_id=$(date -u +%Y%m%dT%H%M%SZ)-$$
 attempt_dir=$release_dir/attempts/$attempt_id
 install -d -m 700 "$release_dir/attempts" "$attempt_dir"
-EXPECT_USER_DATA=1 /bin/sh "$restore_script" "$backup_path" > "$attempt_dir/preflight-restore.log"
+load_ops_postgres_password
+if ! EXPECT_USER_DATA=1 /bin/sh "$restore_script" "$backup_path" \
+  > "$attempt_dir/preflight-restore.log"; then
+  clear_ops_postgres_password
+  echo 'The isolated production restore failed.' >&2
+  exit 1
+fi
+clear_ops_postgres_password
 grep -F isolated_restore_ok "$attempt_dir/preflight-restore.log" >/dev/null || {
   echo 'The isolated restore did not produce its success evidence.' >&2
   exit 1

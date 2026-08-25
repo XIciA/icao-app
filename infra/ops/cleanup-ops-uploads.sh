@@ -18,6 +18,10 @@ validate_inputs() {
       return 1
     }
   fi
+  [ -d "$upload_root" ] && [ ! -L "$upload_root" ] || {
+    echo 'The Ops upload root must be a real directory, not a symbolic link.' >&2
+    return 1
+  }
   case "$current_upload:$current_checksum" in
     "$upload_root"/upload-*.tar.gz:"$upload_root"/upload-*.tar.gz.sha256) ;;
     *) echo 'Current Ops upload paths are invalid.' >&2; return 1 ;;
@@ -72,8 +76,10 @@ cleanup_stale_uploads() {
 }
 
 self_test() {
-  test_root=$(mktemp -d "${TMPDIR:-/tmp}/icao-ops-upload-janitor.XXXXXX")
-  trap 'rm -rf "$test_root"' EXIT HUP INT TERM
+  test_parent=$(mktemp -d "${TMPDIR:-/tmp}/icao-ops-upload-janitor.XXXXXX")
+  trap 'rm -rf "$test_parent"' EXIT HUP INT TERM
+  test_root=$test_parent/uploads
+  mkdir "$test_root"
   current_upload=$test_root/upload-current-token.tar.gz
   current_checksum=$current_upload.sha256
   stale_upload=$test_root/upload-stale-token.tar.gz
@@ -114,6 +120,21 @@ self_test() {
   fi
   [ -L "$unsafe_link" ] && [ -f "$current_upload" ] || {
     echo 'The Ops upload janitor changed data while rejecting a linked entry.' >&2
+    return 1
+  }
+  rm -f "$unsafe_link"
+
+  linked_root=$test_parent/linked-uploads
+  ln -s "$test_root" "$linked_root"
+  linked_current=$linked_root/$(basename "$current_upload")
+  linked_checksum=$linked_root/$(basename "$current_checksum")
+  if ICAO_OPS_UPLOAD_JANITOR_LOCK_HELD=1 ICAO_OPS_UPLOAD_JANITOR_TEST_ROOT="$linked_root" \
+    /bin/sh "$0" cleanup "$linked_root" "$linked_current" "$linked_checksum" "$test_now"; then
+    echo 'The Ops upload janitor accepted a symbolic-link upload root.' >&2
+    return 1
+  fi
+  [ -L "$linked_root" ] && [ -f "$current_upload" ] && [ -f "$current_checksum" ] || {
+    echo 'The Ops upload janitor changed data while rejecting a linked root.' >&2
     return 1
   }
   echo 'Ops locked upload janitor tests passed.'
