@@ -146,24 +146,32 @@ load_postgres_password() {
 
 drop_created_database() {
   load_postgres_password
-  existing=$(docker run --rm --network supabase_default \
+  if ! existing=$(docker run --rm --network supabase_default \
     -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"')
+    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"'); then
+    return 1
+  fi
   case "$existing" in
     0) database_created=0; return 0 ;;
     1) ;;
     *) echo 'isolated database ownership check returned an invalid count' >&2; return 1 ;;
   esac
-  docker run --rm --network supabase_default \
+  if ! docker run --rm --network supabase_default \
     -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'dropdb -h db -U supabase_admin --if-exists --force "$RESTORE_DB_NAME"'
-  remaining=$(docker run --rm --network supabase_default \
+    sh -ec 'dropdb -h db -U supabase_admin --if-exists --force "$RESTORE_DB_NAME"'; then
+    return 1
+  fi
+  if ! remaining=$(docker run --rm --network supabase_default \
     -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"')
-  test "$remaining" = 0
+    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"'); then
+    return 1
+  fi
+  if [ "$remaining" != 0 ]; then
+    return 1
+  fi
   database_created=0
 }
 
