@@ -10,7 +10,7 @@ export class DatabaseService implements OnModuleDestroy {
   private readonly client: Sql;
   readonly db: PostgresJsDatabase<typeof schema>;
 
-  constructor(@Inject(API_CONFIG) config: ApiConfig) {
+  constructor(@Inject(API_CONFIG) config: Pick<ApiConfig, 'databaseUrl'>) {
     this.client = postgres(config.databaseUrl, { max: 5, prepare: false });
     this.db = drizzle(this.client, { schema });
   }

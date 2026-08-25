@@ -15,7 +15,7 @@ import { and, asc, eq, lte, sql } from 'drizzle-orm';
 import { createHmac } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
-import type { DatabaseService } from '../database/database.service';
+import { DatabaseService } from '../database/database.service';
 import {
   accounts,
   aiPointBatches,
@@ -25,6 +25,7 @@ import {
   commerceOrders,
   contentEnvironmentSessionGrants,
   membershipEntitlementSegments,
+  opsEntitlementAdjustments,
 } from '../database/schema';
 import {
   APPLE_STORE_VERIFIER,
@@ -45,6 +46,10 @@ const DAY_MS = 24 * 60 * 60 * 1_000;
 const APPLE_NOTIFICATION_RETRY_MS = 60_000;
 const APPLE_NOTIFICATION_RETENTION_MS = 7 * DAY_MS;
 type CommerceTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
+type CommerceServiceConfig = Partial<Pick<
+  ApiConfig,
+  'appleIapBundleId' | 'contentCredentialSigningSecret'
+>>;
 
 function sameDate(left: Date, right: Date) {
   return left.getTime() === right.getTime();
@@ -57,8 +62,8 @@ function laterDate(left: Date, right: Date) {
 @Injectable()
 export class CommerceService {
   constructor(
-    @Inject(API_CONFIG) private readonly config: ApiConfig,
-    private readonly database: DatabaseService,
+    @Inject(API_CONFIG) private readonly config: CommerceServiceConfig,
+    @Inject(DatabaseService) private readonly database: DatabaseService,
     @Inject(APPLE_STORE_VERIFIER) private readonly appleVerifier: AppleStoreVerifier,
     private readonly benefits: PersistentCommerceBenefitsService = new PersistentCommerceBenefitsService(),
   ) {}
@@ -74,6 +79,70 @@ export class CommerceService {
         autoRenews: false,
         recommended: product.durationDays === 31,
       })),
+    };
+  }
+
+  async applyAuditedEntitlementAdjustmentInTransaction(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      aiPoints: number;
+      environment: CommerceEnvironment;
+      expectedBefore: CommerceEntitlementSummary;
+      membershipDays: number;
+      previewId: string;
+      reason: string;
+      staffId: string;
+      appliedAt: Date;
+    },
+  ) {
+    await transaction.execute(sql`
+      select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))
+    `);
+    await this.assertAccountActive(transaction, input.accountId);
+    const before = await this.entitlementInTransaction(
+      transaction,
+      input.accountId,
+      input.environment,
+      input.appliedAt,
+    );
+    if (
+      before.membership.active !== input.expectedBefore.membership.active
+      || before.membership.expiresAt !== input.expectedBefore.membership.expiresAt
+      || before.aiPoints.available !== input.expectedBefore.aiPoints.available
+      || before.aiPoints.nextGrantAt !== input.expectedBefore.aiPoints.nextGrantAt
+    ) throw new ConflictException('ops_entitlement_preview_stale');
+    const [adjustment] = await transaction.insert(opsEntitlementAdjustments).values({
+      previewId: input.previewId,
+      staffId: input.staffId,
+      accountId: input.accountId,
+      environment: input.environment,
+      reason: input.reason,
+      membershipDays: input.membershipDays,
+      aiPoints: input.aiPoints,
+      appliedAt: input.appliedAt,
+      createdAt: input.appliedAt,
+    }).returning({ id: opsEntitlementAdjustments.id });
+    if (!adjustment) throw new Error('ops_entitlement_adjustment_insert_failed');
+    if (input.membershipDays > 0) {
+      await this.rebuildMembership(transaction, input.accountId, input.environment, input.appliedAt);
+    }
+    await this.benefits.grantCompensation(transaction, {
+      accountId: input.accountId,
+      adjustmentId: adjustment.id,
+      environment: input.environment,
+      grantedAt: input.appliedAt,
+      points: input.aiPoints,
+    });
+    return {
+      adjustmentId: adjustment.id,
+      before,
+      entitlement: await this.entitlementInTransaction(
+        transaction,
+        input.accountId,
+        input.environment,
+        input.appliedAt,
+      ),
     };
   }
 
@@ -783,11 +852,14 @@ export class CommerceService {
         eq(membershipEntitlementSegments.environment, environment),
         eq(membershipEntitlementSegments.accountId, accountId),
       ));
-    const maximumRevisionByOrder = new Map<string, number>();
+    const maximumRevisionBySource = new Map<string, number>();
     for (const segment of priorSegments) {
-      maximumRevisionByOrder.set(
-        segment.orderId,
-        Math.max(maximumRevisionByOrder.get(segment.orderId) ?? 0, segment.revision),
+      const sourceKey = segment.orderId
+        ? `order:${segment.orderId}`
+        : `adjustment:${segment.opsAdjustmentId}`;
+      maximumRevisionBySource.set(
+        sourceKey,
+        Math.max(maximumRevisionBySource.get(sourceKey) ?? 0, segment.revision),
       );
     }
     await transaction.update(membershipEntitlementSegments).set({
@@ -811,6 +883,13 @@ export class CommerceService {
         asc(commerceOrders.purchasedAt),
         asc(commerceOrders.id),
       );
+    const adjustments = await transaction.select()
+      .from(opsEntitlementAdjustments)
+      .where(and(
+        eq(opsEntitlementAdjustments.environment, environment),
+        eq(opsEntitlementAdjustments.accountId, accountId),
+        sql`${opsEntitlementAdjustments.membershipDays} > 0`,
+      ));
     const existingBatches = await transaction.select()
       .from(aiPointBatches)
       .where(and(
@@ -824,23 +903,52 @@ export class CommerceService {
         .map((batch) => [`${batch.sourceOrderId}:${batch.ordinal}`, batch]),
     );
 
+    const sources = [
+      ...orders.map((order) => ({
+        type: 'order' as const,
+        id: order.id,
+        effectiveAt: order.membershipEffectiveAt,
+        createdAt: order.purchasedAt,
+        contributionMs: order.membershipContributionMs,
+        order,
+      })),
+      ...adjustments.map((adjustment) => ({
+        type: 'adjustment' as const,
+        id: adjustment.id,
+        effectiveAt: adjustment.appliedAt,
+        createdAt: adjustment.createdAt,
+        contributionMs: adjustment.membershipDays * DAY_MS,
+        adjustment,
+      })),
+    ].sort((left, right) => (
+      left.effectiveAt.getTime() - right.effectiveAt.getTime()
+      || left.createdAt.getTime() - right.createdAt.getTime()
+      || left.id.localeCompare(right.id)
+    ));
+
     let cursor: Date | undefined;
-    for (const order of orders) {
+    for (const source of sources) {
       const startsAt = cursor
-        ? laterDate(cursor, order.membershipEffectiveAt)
-        : order.membershipEffectiveAt;
-      const endsAt = new Date(startsAt.getTime() + order.membershipContributionMs);
+        ? laterDate(cursor, source.effectiveAt)
+        : source.effectiveAt;
+      const endsAt = new Date(startsAt.getTime() + source.contributionMs);
       const [segment] = await transaction.insert(membershipEntitlementSegments).values({
         environment,
         accountId,
-        orderId: order.id,
-        revision: (maximumRevisionByOrder.get(order.id) ?? 0) + 1,
+        orderId: source.type === 'order' ? source.id : null,
+        opsAdjustmentId: source.type === 'adjustment' ? source.id : null,
+        revision: (maximumRevisionBySource.get(`${source.type}:${source.id}`) ?? 0) + 1,
         startsAt,
         endsAt,
         status: 'active',
         createdAt: asOf,
       }).returning({ id: membershipEntitlementSegments.id });
       if (!segment) throw new Error('membership_segment_insert_failed');
+      if (source.type === 'adjustment') {
+        cursor = endsAt;
+        continue;
+      }
+      const order = source.order;
       const product = requireMembershipProductByKey(order.productKey);
       for (const [ordinal, batchDefinition] of product.aiPointBatches.entries()) {
         const scheduledAt = new Date(startsAt.getTime() + (batchDefinition.offsetDays * DAY_MS));

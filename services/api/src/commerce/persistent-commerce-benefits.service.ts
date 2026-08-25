@@ -435,6 +435,45 @@ export class PersistentCommerceBenefitsService {
     return { batchId: batch.id, created: true as const };
   }
 
+  async grantCompensation(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      adjustmentId: string;
+      environment: 'sandbox' | 'production';
+      grantedAt: Date;
+      points: number;
+    },
+  ) {
+    if (input.points <= 0) return { created: false as const };
+    const [batch] = await transaction.insert(aiPointBatches).values({
+      environment: input.environment,
+      accountId: input.accountId,
+      originalAccountId: input.accountId,
+      sourceType: 'compensation',
+      sourceReference: `ops-adjustment:${input.adjustmentId}`,
+      ruleVersion: AI_POINT_RULE_VERSION,
+      ordinal: 0,
+      grantedPoints: input.points,
+      availableAt: input.grantedAt,
+      status: 'available',
+      createdAt: input.grantedAt,
+      updatedAt: input.grantedAt,
+    }).returning({ id: aiPointBatches.id });
+    if (!batch) throw new Error('ai_point_compensation_insert_failed');
+    await transaction.insert(aiPointLedgerEntries).values({
+      environment: input.environment,
+      accountId: input.accountId,
+      batchId: batch.id,
+      operationId: `grant:${batch.id}`,
+      entryType: 'grant',
+      direction: 'credit',
+      points: input.points,
+      createdAt: input.grantedAt,
+    });
+    return { batchId: batch.id, created: true as const };
+  }
+
   async revokeAccountBenefits(
     transaction: CommerceTransaction,
     input: { accountId: string; deletionJobId: string; revokedAt: Date },

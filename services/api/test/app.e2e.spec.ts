@@ -288,6 +288,41 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
 }
 
 describe('API foundation', () => {
+  it('never exposes Ops routes from the ordinary user API process', async () => {
+    const keys = [
+      'OPS_ENABLED',
+      'OPS_SESSION_HASH_SECRET',
+      'OPS_TOTP_ENCRYPTION_KEY',
+      'OPS_TRUSTED_PROXY_SHARED_SECRET',
+    ] as const;
+    const previous = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
+    Object.assign(process.env, {
+      OPS_ENABLED: '1',
+      OPS_SESSION_HASH_SECRET: 'test-ops-session-secret-that-is-long-enough',
+      OPS_TOTP_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
+      OPS_TRUSTED_PROXY_SHARED_SECRET: 'test-ops-proxy-secret-that-is-long-enough',
+    });
+    try {
+      const app = await testApp();
+      const response = await app.inject({
+        method: 'POST',
+        url: '/v1/admin/auth/login',
+        payload: {
+          email: 'owner@example.com',
+          password: 'not-a-real-password',
+          totpCode: '000000',
+        },
+      });
+      expect(response.statusCode).toBe(404);
+      await app.close();
+    } finally {
+      for (const key of keys) {
+        if (previous[key] === undefined) delete process.env[key];
+        else process.env[key] = previous[key];
+      }
+    }
+  });
+
   it('fails closed when required configuration is missing', () => {
     expect(() => loadConfig({ NODE_ENV: 'production' })).toThrow('invalid_api_configuration');
   });

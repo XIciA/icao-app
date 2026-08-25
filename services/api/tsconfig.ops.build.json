@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "outDir": "dist-ops",
+    "rootDir": "src",
+    "sourceMap": false
+  },
+  "include": ["src/main-ops.ts"],
+  "exclude": ["test/**/*.ts", "src/**/*.spec.ts"]
+}

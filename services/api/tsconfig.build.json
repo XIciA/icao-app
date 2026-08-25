@@ -4,5 +4,13 @@
     "declaration": false,
     "sourceMap": false
   },
-  "exclude": ["test/**/*.ts", "src/**/*.spec.ts"]
+  "exclude": [
+    "test/**/*.ts",
+    "src/**/*.spec.ts",
+    "src/admin/**/*.ts",
+    "src/create-ops-app.ts",
+    "src/main-ops.ts",
+    "src/ops-api.module.ts",
+    "src/ops-health.controller.ts"
+  ]
 }
