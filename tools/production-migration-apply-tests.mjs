@@ -71,9 +71,29 @@ const trustedPythonClearedEnvironment = [
   'PYTHONUTF8',
   'PYTHONWARNINGS',
 ];
+const trustedPythonTestSentinel = (name) => `ICAO_TEST_TRUSTED_ENV_${name}`;
+const trustedPythonTestEnvironment = Object.fromEntries(
+  trustedPythonClearedEnvironment.map((name) => [trustedPythonTestSentinel(name), 'hostile']),
+);
 const trustedPythonShellAssertions = trustedPythonClearedEnvironment
-  .map((name) => `[ -z "\${${name}:-}" ] || exit 86`)
+  .map((name) => `[ -z "\${${trustedPythonTestSentinel(name)}:-}" ] || exit 86`)
   .join('\n');
+
+const instrumentTrustedPythonRunner = (source) => {
+  // Dynamic loaders may consume LD_* variables before a shell fixture can observe them.
+  // Pair every real clear with an inert test-only sentinel so mutation tests remain portable.
+  let instrumented = source;
+  for (const name of trustedPythonClearedEnvironment) {
+    const productionAssignment = `  ${name}= \\\n`;
+    if (!instrumented.includes(productionAssignment)) continue;
+    const testAssignment = `  ${trustedPythonTestSentinel(name)}= \\\n`;
+    instrumented = instrumented.replace(
+      productionAssignment,
+      `${productionAssignment}${testAssignment}`,
+    );
+  }
+  return instrumented;
+};
 
 test('binds the destructive confirmation to the full immutable source and exact plan', () => {
   const expected = `APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}`;
@@ -302,21 +322,26 @@ exit "\${MOCK_PYTHON_STATUS:-0}"
     await chmod(pythonPath, 0o755);
     await symlink(pythonPath, pythonLink);
     await writeFile(join(fakeBin, 'stat'), `#!/bin/sh
+[ "$#" -eq 4 ]
+[ "$1" = -c ]
+[ "$2" = '%u:%a' ]
+[ "$3" = -- ]
+[ "$4" = "$MOCK_STAT_TARGET" ]
 printf '%s\n' "\${MOCK_STAT_IDENTITY:?}"
 `);
     await chmod(join(fakeBin, 'stat'), 0o700);
     const run = (target, identity = '0:755', status = '0', guardSource = guard) => spawnSync('/bin/sh', ['-c', `
 set -eu
 trusted_python="$TEST_TRUSTED_PYTHON"
-${guardSource}
+${instrumentTrustedPythonRunner(guardSource)}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
-        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
-        LD_AUDIT: '/definitely/missing/icao-audit.so',
+        ...trustedPythonTestEnvironment,
         MOCK_PYTHON_STATUS: status,
         MOCK_STAT_IDENTITY: identity,
+        MOCK_STAT_TARGET: target,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
         TEST_TRUSTED_PYTHON: target,
       },
@@ -332,6 +357,13 @@ ${guardSource}
     for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
       const mutated = guard.replace(`  ${variable}= \\\n`, '');
       assert.notEqual(mutated, guard, variable);
+      assert.equal(
+        instrumentTrustedPythonRunner(mutated).includes(
+          `  ${trustedPythonTestSentinel(variable)}= \\\n`,
+        ),
+        false,
+        variable,
+      );
       assert.notEqual(run(pythonPath, '0:755', '0', mutated).status, 0, variable);
     }
     await chmod(pythonPath, 0o644);
@@ -386,15 +418,14 @@ image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
 trusted_python="$TEST_FAKE_HOST_PYTHON"
-${runnerSource}
+${instrumentTrustedPythonRunner(runnerSource)}
 ${guard}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
+        ...trustedPythonTestEnvironment,
         EXPECTED_RELEASE_ID: expectedReleaseId,
-        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
-        LD_AUDIT: '/definitely/missing/icao-audit.so',
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: scenario,
         MOCK_IMAGE_ENV_JSON: imageEnvJson,
@@ -413,15 +444,14 @@ image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
 trusted_python="$TEST_FAKE_HOST_PYTHON"
-${runner}
+${instrumentTrustedPythonRunner(runner)}
 ${guard}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
+        ...trustedPythonTestEnvironment,
         EXPECTED_RELEASE_ID: expectedReleaseId,
-        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
-        LD_AUDIT: '/definitely/missing/icao-audit.so',
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: 'malicious-entrypoint-must-not-run',
         MOCK_IMAGE_ENV_JSON: JSON.stringify([
@@ -439,6 +469,13 @@ ${guard}
     for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
       const mutatedRunner = runner.replace(`  ${variable}= \\\n`, '');
       assert.notEqual(mutatedRunner, runner, variable);
+      assert.equal(
+        instrumentTrustedPythonRunner(mutatedRunner).includes(
+          `  ${trustedPythonTestSentinel(variable)}= \\\n`,
+        ),
+        false,
+        variable,
+      );
       assert.notEqual(run(JSON.stringify([exact]), 'success', mutatedRunner).status, 0, variable);
     }
     for (const [label, imageEnvJson, scenario] of [
