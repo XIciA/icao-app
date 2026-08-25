@@ -66,8 +66,9 @@ trap 'exit 1' HUP INT TERM
 (
   cd "$SOURCE_ROOT"
   git archive --format=tar "$SOURCE_SHA" \
-    package.json pnpm-lock.yaml pnpm-workspace.yaml patches packages/contracts \
-    services/api content/vocabulary infra/api \
+    package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
+    modules/icao-distribution-environment packages/contracts services/api \
+    content/vocabulary infra/api \
     | gzip -n > "$ARCHIVE"
 )
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
