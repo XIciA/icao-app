@@ -16,6 +16,19 @@ export const accounts = pgTable('accounts', {
   check('accounts_ai_result_generation_check', sql`${table.aiResultGeneration} >= 0`),
 ]).enableRLS();
 
+export const privacyActionReceipts = pgTable('privacy_action_receipts', {
+  accountId: uuid('account_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  action: text('action').notNull(),
+  idempotencyKey: uuid('idempotency_key').notNull(),
+  requestHash: text('request_hash').notNull(),
+  result: jsonb('result').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.accountId, table.action, table.idempotencyKey] }),
+  check('privacy_action_receipts_action_check', sql`${table.action} IN ('delete_all_ai_results', 'clear_learning_data')`),
+  check('privacy_action_receipts_request_hash_check', sql`${table.requestHash} ~ '^[0-9a-f]{64}$'`),
+]).enableRLS();
+
 export const profiles = pgTable('profiles', {
   userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),

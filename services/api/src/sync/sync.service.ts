@@ -2,6 +2,8 @@ import { BadRequestException, ConflictException, Injectable } from '@nestjs/comm
 import type {
   AccountDataExportResponse,
   CardStateMutation,
+  ClearLearningDataRequest,
+  DeleteAllAiResultsRequest,
   DocumentMutation,
   LearningRecordMutation,
   PrivacyDeletionResponse,
@@ -18,7 +20,7 @@ import { and, asc, desc, eq, gt, lt, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { DatabaseService } from '../database/database.service';
-import { accounts, learningRecords, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
+import { accounts, learningRecords, privacyActionReceipts, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
 import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
 
 const VOCABULARY_DOCUMENT_KEY = 'vocabulary';
@@ -86,8 +88,25 @@ const pushSchema = z.object({
   mutations: z.array(z.discriminatedUnion('kind', [cardMutationSchema, recordMutationSchema, documentMutationSchema])).max(100),
 });
 
+const privacyDeletionResponseSchema = z.object({
+  aiResultGeneration: z.number().int().nonnegative(),
+  dataGeneration: z.number().int().nonnegative(),
+  deletedCount: z.number().int().nonnegative(),
+});
+
+type PrivacyAction = 'delete_all_ai_results' | 'clear_learning_data';
+type PrivacyActionRequest = DeleteAllAiResultsRequest | ClearLearningDataRequest;
+
 function hashMutation(mutation: SyncMutation) {
   return createHash('sha256').update(JSON.stringify(mutation)).digest('hex');
+}
+
+function hashPrivacyRequest(action: PrivacyAction, request: PrivacyActionRequest) {
+  return createHash('sha256').update(JSON.stringify({
+    action,
+    confirmation: request.confirmation,
+    idempotencyKey: request.idempotencyKey,
+  })).digest('hex');
 }
 
 function entityKey(mutation: CardStateMutation) {
@@ -504,9 +523,11 @@ export class SyncService {
     });
   }
 
-  async deleteAllAiResults(userId: string): Promise<PrivacyDeletionResponse> {
-    return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+  async deleteAllAiResults(
+    userId: string,
+    request: DeleteAllAiResultsRequest,
+  ): Promise<PrivacyDeletionResponse> {
+    return this.withPrivacyDeletionReceipt(userId, 'delete_all_ai_results', request, async (tx) => {
       const [account] = await tx.update(accounts).set({
         aiResultGeneration: sql`${accounts.aiResultGeneration} + 1`,
         updatedAt: new Date(),
@@ -527,9 +548,11 @@ export class SyncService {
     });
   }
 
-  async clearLearningData(userId: string): Promise<PrivacyDeletionResponse> {
-    return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+  async clearLearningData(
+    userId: string,
+    request: ClearLearningDataRequest,
+  ): Promise<PrivacyDeletionResponse> {
+    return this.withPrivacyDeletionReceipt(userId, 'clear_learning_data', request, async (tx) => {
       const [account] = await tx.update(accounts).set({
         learningDataGeneration: sql`${accounts.learningDataGeneration} + 1`,
         aiResultGeneration: sql`${accounts.aiResultGeneration} + 1`,
@@ -548,6 +571,41 @@ export class SyncService {
       await tx.delete(syncMutations).where(eq(syncMutations.userId, userId));
       await tx.delete(syncChanges).where(eq(syncChanges.userId, userId));
       return { ...account, deletedCount: cards.length + records.length + documents.length };
+    });
+  }
+
+  private async withPrivacyDeletionReceipt(
+    userId: string,
+    action: PrivacyAction,
+    request: PrivacyActionRequest,
+    operation: (
+      tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
+    ) => Promise<PrivacyDeletionResponse>,
+  ): Promise<PrivacyDeletionResponse> {
+    const requestHash = hashPrivacyRequest(action, request);
+    return this.database.db.transaction(async (tx) => {
+      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+      const target = and(
+        eq(privacyActionReceipts.accountId, userId),
+        eq(privacyActionReceipts.action, action),
+        eq(privacyActionReceipts.idempotencyKey, request.idempotencyKey),
+      );
+      const [existing] = await tx.select().from(privacyActionReceipts).where(target).limit(1);
+      if (existing) {
+        if (existing.requestHash !== requestHash) throw new ConflictException('privacy_idempotency_conflict');
+        const result = privacyDeletionResponseSchema.safeParse(existing.result);
+        if (!result.success) throw new Error('privacy_idempotency_result_invalid');
+        return result.data;
+      }
+      const result = await operation(tx);
+      await tx.insert(privacyActionReceipts).values({
+        accountId: userId,
+        action,
+        idempotencyKey: request.idempotencyKey,
+        requestHash,
+        result,
+      });
+      return result;
     });
   }
 

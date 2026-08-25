@@ -10,6 +10,14 @@ const request = {
   id: 'request-1',
   user: { id: '11111111-1111-4111-8111-111111111111', phone: '+8613800138000' },
 } as AuthenticatedRequest;
+const deleteAllRequest = {
+  confirmation: '删除全部AI结果' as const,
+  idempotencyKey: '20000000-0000-4000-8000-000000000001',
+};
+const clearLearningRequest = {
+  confirmation: '清除学习数据' as const,
+  idempotencyKey: '20000000-0000-4000-8000-000000000002',
+};
 
 function fixture() {
   const generations = { aiResultGeneration: 2, dataGeneration: 3, deletedCount: 4 };
@@ -49,12 +57,12 @@ describe('AccountPrivacyController', () => {
     const { controller, generations, sync } = fixture();
 
     await expect(controller.deleteAiResult('result-1', request)).resolves.toEqual({ requestId: 'request-1', data: generations });
-    await expect(controller.deleteAllAiResults({ confirmation: '删除全部AI结果' }, request)).resolves.toEqual({ requestId: 'request-1', data: generations });
-    await expect(controller.clearLearningData({ confirmation: '清除学习数据' }, request)).resolves.toEqual({ requestId: 'request-1', data: generations });
+    await expect(controller.deleteAllAiResults(deleteAllRequest, request)).resolves.toEqual({ requestId: 'request-1', data: generations });
+    await expect(controller.clearLearningData(clearLearningRequest, request)).resolves.toEqual({ requestId: 'request-1', data: generations });
 
     expect(sync.deleteAiResult).toHaveBeenCalledWith(request.user!.id, 'result-1');
-    expect(sync.deleteAllAiResults).toHaveBeenCalledWith(request.user!.id);
-    expect(sync.clearLearningData).toHaveBeenCalledWith(request.user!.id);
+    expect(sync.deleteAllAiResults).toHaveBeenCalledWith(request.user!.id, deleteAllRequest);
+    expect(sync.clearLearningData).toHaveBeenCalledWith(request.user!.id, clearLearningRequest);
   });
 
   it('rejects malformed destructive confirmations before touching learning data', async () => {
@@ -63,6 +71,8 @@ describe('AccountPrivacyController', () => {
     await expect(controller.deleteAllAiResults({ confirmation: '删除' } as never, request))
       .rejects.toSatisfy((error: unknown) => error instanceof BadRequestException && error.message === 'invalid_privacy_confirmation');
     await expect(controller.clearLearningData({ confirmation: '清除' } as never, request))
+      .rejects.toSatisfy((error: unknown) => error instanceof BadRequestException && error.message === 'invalid_privacy_confirmation');
+    await expect(controller.deleteAllAiResults({ confirmation: '删除全部AI结果', idempotencyKey: 'not-a-uuid' }, request))
       .rejects.toSatisfy((error: unknown) => error instanceof BadRequestException && error.message === 'invalid_privacy_confirmation');
     expect(sync.deleteAllAiResults).not.toHaveBeenCalled();
     expect(sync.clearLearningData).not.toHaveBeenCalled();

@@ -92,7 +92,7 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
 
 const infoPath = path.join(root, 'src/features/info/InfoScreen.tsx');
 const info = await readFile(infoPath, 'utf8');
-for (const fragment of [company, appName, '版本 v4.0', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', 'privacy@yunqihangke.com']) {
+for (const fragment of [company, appName, '版本 v4.0', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据', '在“学习记录”删除单条 AI 结果', '清除学习数据仍保留账号、会员和订单', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
 }
 const formalAgreementScope = '听你五个 iOS、Android 正式 App 及其相关服务';

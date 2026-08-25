@@ -472,7 +472,7 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 55);
+  assert.equal(tableCount, 56);
   assert.equal(rlsCount, tableCount);
 });
 
@@ -684,6 +684,16 @@ test('account deletion durably denies sessions, revokes commerce, deletes active
     COMMIT;
   `);
   assert.equal(reservation.status, 0, reservation.stderr);
+  const privacyReceipt = psql(`
+    INSERT INTO privacy_action_receipts (
+      account_id, action, idempotency_key, request_hash, result
+    ) VALUES (
+      '${accountId}', 'delete_all_ai_results',
+      '70000000-0000-4000-8000-000000000099', repeat('a', 64),
+      '{"aiResultGeneration":1,"dataGeneration":0,"deletedCount":1}'::jsonb
+    );
+  `);
+  assert.equal(privacyReceipt.status, 0, privacyReceipt.stderr);
 
   const input = {
     confirmation: '注销账号',
@@ -702,6 +712,7 @@ test('account deletion durably denies sessions, revokes commerce, deletes active
   assert.equal(queryScalar(`SELECT COUNT(*) FROM account_identities WHERE account_id = '${accountId}'`), '0');
   assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE account_id = '${accountId}'`), '0');
   assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_challenges WHERE account_id = '${accountId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM privacy_action_receipts WHERE account_id = '${accountId}'`), '0');
   assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${unusedGrant.grantId}'`), '0');
   assert.equal(queryScalar(`SELECT status FROM ai_point_batches WHERE id = '${batchId}'`), 'revoked');
   assert.equal(queryScalar(`SELECT status FROM ai_point_reservations WHERE id = '${reservationId}'`), 'released');

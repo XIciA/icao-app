@@ -42,7 +42,7 @@ export class AccountPrivacyController {
     if (!parsed.success) throw new BadRequestException('invalid_privacy_confirmation');
     return {
       requestId: request.id,
-      data: await this.sync.deleteAllAiResults(request.user!.id),
+      data: await this.sync.deleteAllAiResults(request.user!.id, parsed.data),
     };
   }
 
@@ -55,7 +55,7 @@ export class AccountPrivacyController {
     if (!parsed.success) throw new BadRequestException('invalid_privacy_confirmation');
     return {
       requestId: request.id,
-      data: await this.sync.clearLearningData(request.user!.id),
+      data: await this.sync.clearLearningData(request.user!.id, parsed.data),
     };
   }
 

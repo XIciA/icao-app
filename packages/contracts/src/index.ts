@@ -218,10 +218,12 @@ export type PrivacyDeletionResponse = {
 
 export type DeleteAllAiResultsRequest = {
   confirmation: '删除全部AI结果';
+  idempotencyKey: string;
 };
 
 export type ClearLearningDataRequest = {
   confirmation: '清除学习数据';
+  idempotencyKey: string;
 };
 
 export type AccountDataExportResponse = {
