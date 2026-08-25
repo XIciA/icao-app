@@ -27,6 +27,14 @@ if [ ! -d "$attempt_dir" ] || [ -L "$attempt_dir" ]; then
   echo 'Ops rollback evidence directory is missing or unsafe.' >&2
   exit 1
 fi
+release_dir=${attempt_dir%/attempts/*}
+state_script=$release_dir/source/infra/ops/release-state.sh
+if [ ! -f "$state_script" ] || [ -L "$state_script" ]; then
+  echo 'The Ops rollback state controller is missing or unsafe.' >&2
+  exit 1
+fi
+ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$state_script" assert-active "$attempt_dir"
 if [ -e "$attempt_dir/rollback-used" ]; then
   echo 'This Ops rollback snapshot has already been consumed.' >&2
   exit 1
@@ -77,7 +85,11 @@ case "$source_sha" in
 esac
 
 if [ "$previous_state" = running ]; then
-  for required in "$attempt_dir/previous-api-image-tag" "$attempt_dir/previous-web-image-tag"; do
+  for required in \
+    "$attempt_dir/previous-api-image-tag" \
+    "$attempt_dir/previous-web-image-tag" \
+    "$attempt_dir/previous-release-id"
+  do
     if [ ! -f "$required" ] || [ -L "$required" ]; then
       echo 'Ops rollback image snapshot is incomplete.' >&2
       exit 1
@@ -85,6 +97,7 @@ if [ "$previous_state" = running ]; then
   done
   previous_api_image_tag=$(cat "$attempt_dir/previous-api-image-tag")
   previous_web_image_tag=$(cat "$attempt_dir/previous-web-image-tag")
+  previous_release_id=$(cat "$attempt_dir/previous-release-id")
   case "$previous_api_image_tag" in
     icao-ops-api:rollback-*) ;;
     *) echo 'Ops API rollback tag is invalid.' >&2; exit 1 ;;
@@ -92,6 +105,9 @@ if [ "$previous_state" = running ]; then
   case "$previous_web_image_tag" in
     icao-ops-web:rollback-*) ;;
     *) echo 'Ops Web rollback tag is invalid.' >&2; exit 1 ;;
+  esac
+  case "$previous_release_id" in
+    ''|*[!A-Za-z0-9._-]*) echo 'The previous Ops release identity is invalid.' >&2; exit 1 ;;
   esac
   docker image inspect "$previous_api_image_tag" >/dev/null
   docker image inspect "$previous_web_image_tag" >/dev/null
@@ -139,6 +155,41 @@ for attempt in $(seq 1 30); do
 done
 [ "$gateway_ready" -eq 1 ] || rollback_failed=1
 
+if [ "$previous_state" = running ]; then
+  ops_public_ready=0
+  for attempt in $(seq 1 30); do
+    if curl -fsS --max-time 10 -D "$attempt_dir/rollback-public-ready.headers" \
+      -o "$attempt_dir/rollback-public-ready.json" \
+      https://ops.readyoufife.com/health/ready \
+      && curl -fsS --max-time 10 -D "$attempt_dir/rollback-public-web.headers" \
+      -o "$attempt_dir/rollback-public-web.html" https://ops.readyoufife.com/; then
+      ops_public_ready=1
+      break
+    fi
+    sleep 2
+  done
+  if [ "$ops_public_ready" -ne 1 ]; then
+    rollback_failed=1
+  else
+    grep -F '"service":"icao-ops-api"' "$attempt_dir/rollback-public-ready.json" >/dev/null \
+      || rollback_failed=1
+    grep -F '"database":"ok"' "$attempt_dir/rollback-public-ready.json" >/dev/null \
+      || rollback_failed=1
+    grep -Fi 'strict-transport-security:' "$attempt_dir/rollback-public-web.headers" >/dev/null \
+      || rollback_failed=1
+    grep -F '内部运营' "$attempt_dir/rollback-public-web.html" >/dev/null \
+      || rollback_failed=1
+    restored_release_id=$(tr -d '\r' < "$attempt_dir/rollback-public-ready.headers" \
+      | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+    [ "$restored_release_id" = "$previous_release_id" ] || rollback_failed=1
+    chmod 600 \
+      "$attempt_dir/rollback-public-ready.headers" \
+      "$attempt_dir/rollback-public-ready.json" \
+      "$attempt_dir/rollback-public-web.headers" \
+      "$attempt_dir/rollback-public-web.html" || rollback_failed=1
+  fi
+fi
+
 if [ "$rollback_failed" -ne 0 ]; then
   echo 'Ops rollback did not fully restore the previous runtime.' >&2
   exit 1
@@ -146,13 +197,17 @@ fi
 
 rolled_back_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 evidence_tmp=$attempt_dir/rollback-evidence.json.tmp.$$
-printf '{\n  "status": "rolled_back",\n  "reason": "%s",\n  "releaseId": "%s",\n  "sourceSha": "%s",\n  "rolledBackAt": "%s",\n  "previousState": "%s",\n  "publicApiHealth": "verified"\n}\n' \
-  "$reason" "$release_id" "$source_sha" "$rolled_back_at" "$previous_state" > "$evidence_tmp"
+if [ "$previous_state" = running ]; then
+  restored_ops='"publicOpsTls": "verified",\n  "publicOpsPage": "verified",\n  "publicOpsHealth": "verified",\n  "restoredReleaseId": "'"$previous_release_id"'",\n  '
+else
+  restored_ops=''
+fi
+printf '{\n  "status": "rolled_back",\n  "reason": "%s",\n  "releaseId": "%s",\n  "sourceSha": "%s",\n  "rolledBackAt": "%s",\n  "previousState": "%s",\n  %b"publicApiHealth": "verified"\n}\n' \
+  "$reason" "$release_id" "$source_sha" "$rolled_back_at" "$previous_state" \
+  "$restored_ops" > "$evidence_tmp"
 chmod 600 "$evidence_tmp"
 mv "$evidence_tmp" "$attempt_dir/rollback-evidence.json"
-set -C
-: > "$attempt_dir/rollback-used"
-set +C
-chmod 600 "$attempt_dir/rollback-used"
+ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$state_script" consume "$attempt_dir"
 
 echo "Ops runtime rollback completed for release $release_id."

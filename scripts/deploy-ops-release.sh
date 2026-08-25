@@ -23,7 +23,7 @@ fi
 
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 
-for command_name in git gzip node openssl scp shasum ssh; do
+for command_name in git gzip mktemp node openssl scp shasum ssh; do
   require_command "$command_name"
 done
 
@@ -58,8 +58,14 @@ if [ "$MODE" = rollback ]; then
     echo "Set ICAO_OPS_ROLLBACK_CONFIRM=$RELEASE_ID to consume that release's rollback snapshot." >&2
     exit 1
   fi
+  rollback_result=$(mktemp "${TMPDIR:-/tmp}/icao-ops-rollback.XXXXXX")
+  cleanup_rollback_result() {
+    rm -f "$rollback_result"
+  }
+  trap cleanup_rollback_result EXIT
+  trap 'exit 1' HUP INT TERM
   ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
-    "$RELEASE_ID" <<'REMOTE_ROLLBACK'
+    "$RELEASE_ID" > "$rollback_result" <<'REMOTE_ROLLBACK'
 set -eu
 release_id=$1
 case "$release_id" in
@@ -71,21 +77,19 @@ if ! flock -n 9; then
   exit 1
 fi
 release_dir=/opt/icao/runtime/releases/ops-$release_id
-active_file=$release_dir/active-rollback
 rollback_script=$release_dir/source/infra/ops/rollback-release.sh
-if [ ! -f "$active_file" ] || [ -L "$active_file" ] || [ ! -f "$rollback_script" ]; then
+state_script=$release_dir/source/infra/ops/release-state.sh
+if [ ! -f "$rollback_script" ] || [ -L "$rollback_script" ] \
+  || [ ! -f "$state_script" ] || [ -L "$state_script" ]; then
   echo 'The requested release has no usable rollback snapshot.' >&2
   exit 1
 fi
-attempt_dir=$(cat "$active_file")
-case "$attempt_dir" in
-  "$release_dir"/attempts/*) ;;
-  *) echo 'The active rollback path is invalid.' >&2; exit 1 ;;
-esac
-ICAO_OPS_ROLLBACK_INTERNAL=1 /bin/sh "$rollback_script" "$attempt_dir" manual
+attempt_dir=$(ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$state_script" resolve "$release_dir")
+ICAO_OPS_ROLLBACK_INTERNAL=1 /bin/sh "$rollback_script" "$attempt_dir" manual >&2
+printf '%s\n' "$attempt_dir"
 REMOTE_ROLLBACK
-  remote_attempt=$(ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" \
-    "cat '/opt/icao/runtime/releases/ops-$RELEASE_ID/active-rollback'")
+  remote_attempt=$(cat "$rollback_result")
   case "$remote_attempt" in
     /opt/icao/runtime/releases/ops-*/attempts/*) ;;
     *) echo 'Remote rollback evidence path is invalid.' >&2; exit 1 ;;
@@ -136,6 +140,7 @@ trap 'exit 1' HUP INT TERM
   cd "$SOURCE_ROOT"
   git archive --format=tar HEAD -- \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
+    modules/icao-distribution-environment \
     apps/ops packages/contracts services/api infra/ops infra/gateway \
     | gzip -n > "$archive"
 )
@@ -189,7 +194,7 @@ case "$upload_token" in
 esac
 [ "$public_host" = ops.readyoufife.com ] || { echo 'Remote Ops hostname is invalid.' >&2; exit 1; }
 
-for command_name in awk basename cat chmod curl date df docker flock getent grep install mv rm sed seq sha256sum ss stat systemctl tar tr; do
+for command_name in awk basename cat chmod curl date df dirname docker flock getent grep install mv rm sed seq sha256sum sleep ss stat systemctl tar tr; do
   command -v "$command_name" >/dev/null 2>&1 || {
     echo "Required remote command is missing: $command_name" >&2
     exit 1
@@ -226,8 +231,9 @@ finish() {
   status=$?
   trap - EXIT HUP INT TERM
   if [ "$rollback_armed" -eq 1 ] && [ "$committed" -ne 1 ]; then
-    if ! ICAO_OPS_ROLLBACK_INTERNAL=1 \
-      /bin/sh "$source_dir/infra/ops/rollback-release.sh" "$attempt_dir" automatic; then
+    if ! ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+      /bin/sh "$source_dir/infra/ops/release-state.sh" automatic "$attempt_dir" \
+      "$source_dir/infra/ops/rollback-release.sh"; then
       echo 'Automatic Ops rollback failed; inspect the root-only attempt evidence before any retry.' >&2
       status=2
     fi
@@ -282,10 +288,12 @@ else
   tar -xzf "$partial_release/source.tar.gz" -C "$partial_release/source"
   for required in \
     infra/ops/docker-compose.runtime.yml \
+    infra/ops/release-state.sh \
     infra/ops/rollback-release.sh \
     infra/gateway/Caddyfile \
     infra/gateway/docker-compose.yml \
-    services/api/scripts/migration-plan.mjs
+    services/api/scripts/migration-plan.mjs \
+    services/api/scripts/verify-ops-production-readiness.mjs
   do
     [ -f "$partial_release/source/$required" ] || {
       echo "Ops release source is incomplete: $required" >&2
@@ -443,6 +451,24 @@ docker run --rm \
   --env-file "$runtime_env" \
   "$candidate_api" \
   node services/api/scripts/migration-plan.mjs --require-current
+ops_staff_readiness=$(docker run --rm \
+  --network supabase_default \
+  --env-file "$runtime_env" \
+  "$candidate_api" \
+  node services/api/scripts/verify-ops-production-readiness.mjs)
+printf '%s\n' "$ops_staff_readiness" | grep -F '"status":"ready"' >/dev/null || {
+  echo 'The read-only Ops staff readiness result is invalid.' >&2
+  exit 1
+}
+active_admin_count=$(printf '%s\n' "$ops_staff_readiness" \
+  | sed -n 's/.*"activeAdminCount":\([0-9][0-9]*\).*/\1/p')
+case "$active_admin_count" in
+  ''|*[!0-9]*) echo 'The active Ops administrator count is invalid.' >&2; exit 1 ;;
+esac
+[ "$active_admin_count" -ge 1 ] || {
+  echo 'At least one non-disabled Ops administrator is required before cutover.' >&2
+  exit 1
+}
 docker run --rm "$candidate_web" caddy validate --config /etc/caddy/Caddyfile
 docker run --rm \
   --env-file "$gateway_env" \
@@ -502,8 +528,35 @@ else
 fi
 printf '%s\n' "$release_id" > "$attempt_dir/release-id"
 printf '%s\n' "$source_sha" > "$attempt_dir/source-sha"
+printf '%s\n' "$ops_staff_readiness" > "$attempt_dir/ops-staff-readiness.json"
 
 if [ "$api_exists" -eq 1 ]; then
+  previous_release_id=$(read_env_value API_RELEASE_ID "$runtime_env")
+  case "$previous_release_id" in
+    ''|*[!A-Za-z0-9._-]*) echo 'The previous Ops release identity is invalid.' >&2; exit 1 ;;
+  esac
+  case "$previous_release_id" in
+    development|test|unversioned) echo 'The previous Ops release identity is not production-safe.' >&2; exit 1 ;;
+  esac
+  curl -fsS --max-time 10 -D "$attempt_dir/previous-local-ready.headers" \
+    -o "$attempt_dir/previous-local-ready.json" http://127.0.0.1:3102/health/ready
+  curl -fsS --max-time 10 -D "$attempt_dir/previous-public-ready.headers" \
+    -o "$attempt_dir/previous-public-ready.json" "https://$public_host/health/ready"
+  curl -fsS --max-time 10 -D "$attempt_dir/previous-public-web.headers" \
+    -o "$attempt_dir/previous-public-web.html" "https://$public_host/"
+  previous_local_release_id=$(tr -d '\r' < "$attempt_dir/previous-local-ready.headers" \
+    | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+  previous_public_release_id=$(tr -d '\r' < "$attempt_dir/previous-public-ready.headers" \
+    | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+  [ "$previous_local_release_id" = "$previous_release_id" ] \
+    && [ "$previous_public_release_id" = "$previous_release_id" ] || {
+      echo 'The running Ops release identity does not match its production environment.' >&2
+      exit 1
+    }
+  grep -F '"service":"icao-ops-api"' "$attempt_dir/previous-public-ready.json" >/dev/null
+  grep -F '"database":"ok"' "$attempt_dir/previous-public-ready.json" >/dev/null
+  grep -Fi 'strict-transport-security:' "$attempt_dir/previous-public-web.headers" >/dev/null
+  grep -F '内部运营' "$attempt_dir/previous-public-web.html" >/dev/null
   previous_api_tag=icao-ops-api:rollback-$release_id-$attempt_id
   previous_web_tag=icao-ops-web:rollback-$release_id-$attempt_id
   running_api_image=$(docker inspect -f '{{.Image}}' icao-ops-api)
@@ -513,6 +566,7 @@ if [ "$api_exists" -eq 1 ]; then
   docker tag "$running_api_image" "$previous_api_tag"
   docker tag "$running_web_image" "$previous_web_tag"
   printf 'running\n' > "$attempt_dir/previous-state"
+  printf '%s\n' "$previous_release_id" > "$attempt_dir/previous-release-id"
   printf '%s\n' "$previous_api_tag" > "$attempt_dir/previous-api-image-tag"
   printf '%s\n' "$previous_web_tag" > "$attempt_dir/previous-web-image-tag"
 else
@@ -522,15 +576,20 @@ chmod 600 "$attempt_dir"/*
 (
   cd "$attempt_dir"
   set -- runtime-env-before gateway-caddy-before gateway-compose-before \
-    previous-state release-id source-sha
+    previous-state release-id source-sha ops-staff-readiness.json
   if [ -f ops-compose-before ]; then set -- "$@" ops-compose-before; fi
   if [ -f ops-compose-before.absent ]; then set -- "$@" ops-compose-before.absent; fi
   if [ -f previous-api-image-tag ]; then
-    set -- "$@" previous-api-image-tag previous-web-image-tag
+    set -- "$@" previous-api-image-tag previous-web-image-tag previous-release-id \
+      previous-local-ready.headers previous-local-ready.json \
+      previous-public-ready.headers previous-public-ready.json \
+      previous-public-web.headers previous-public-web.html
   fi
   sha256sum "$@" > snapshot-checksums.sha256
 )
 chmod 600 "$attempt_dir/snapshot-checksums.sha256"
+ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$source_dir/infra/ops/release-state.sh" activate "$attempt_dir"
 rollback_armed=1
 
 candidate_runtime_env=$attempt_dir/runtime-env-candidate
@@ -603,18 +662,16 @@ web_image_id=$(docker inspect -f '{{.Image}}' icao-ops-web)
 gateway_config_sha=$(sha256sum "$gateway_caddy" | awk '{ print $1 }')
 deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 evidence_tmp=$release_dir/deployment-evidence.json.tmp.$$
-printf '{\n  "status": "deployed",\n  "releaseId": "%s",\n  "sourceSha": "%s",\n  "archiveSha256": "%s",\n  "deployedAt": "%s",\n  "hostname": "%s",\n  "backup": "%s",\n  "isolatedRestore": "verified",\n  "migrationLedger": "current-read-only",\n  "productionDatabaseBytes": %s,\n  "availableBeforeBuildBytes": %s,\n  "requiredBeforeBuildBytes": %s,\n  "availableBeforeRestoreBytes": %s,\n  "requiredBeforeRestoreBytes": %s,\n  "previousState": "%s",\n  "opsApiImageId": "%s",\n  "opsWebImageId": "%s",\n  "gatewayConfigSha256": "%s",\n  "localHealth": "verified",\n  "publicTlsAndHealth": "verified",\n  "ordinaryApiIsolation": "verified",\n  "rollbackSnapshot": "%s"\n}\n' \
+printf '{\n  "status": "deployed",\n  "releaseId": "%s",\n  "sourceSha": "%s",\n  "archiveSha256": "%s",\n  "deployedAt": "%s",\n  "hostname": "%s",\n  "backup": "%s",\n  "isolatedRestore": "verified",\n  "migrationLedger": "current-read-only",\n  "opsStaffReadiness": "verified-read-only",\n  "activeAdminCount": %s,\n  "productionDatabaseBytes": %s,\n  "availableBeforeBuildBytes": %s,\n  "requiredBeforeBuildBytes": %s,\n  "availableBeforeRestoreBytes": %s,\n  "requiredBeforeRestoreBytes": %s,\n  "previousState": "%s",\n  "opsApiImageId": "%s",\n  "opsWebImageId": "%s",\n  "gatewayConfigSha256": "%s",\n  "localHealth": "verified",\n  "publicTlsAndHealth": "verified",\n  "ordinaryApiIsolation": "verified",\n  "rollbackSnapshot": "%s"\n}\n' \
   "$release_id" "$source_sha" "$archive_sha" "$deployed_at" "$public_host" \
-  "$backup_name" "$production_database_bytes" "$available_before_build_bytes" \
+  "$backup_name" "$active_admin_count" "$production_database_bytes" "$available_before_build_bytes" \
   "$required_before_build_bytes" "$available_before_restore_bytes" \
   "$required_before_restore_bytes" "$(cat "$attempt_dir/previous-state")" "$api_image_id" "$web_image_id" \
   "$gateway_config_sha" "$attempt_dir" > "$evidence_tmp"
 chmod 600 "$evidence_tmp"
+ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$source_dir/infra/ops/release-state.sh" mark-deployed "$attempt_dir"
 mv "$evidence_tmp" "$release_dir/deployment-evidence.json"
-active_tmp=$release_dir/active-rollback.tmp.$$
-printf '%s\n' "$attempt_dir" > "$active_tmp"
-chmod 600 "$active_tmp"
-mv "$active_tmp" "$release_dir/active-rollback"
 
 committed=1
 echo "Ops production deployment verified: release=$release_id source=$source_sha"

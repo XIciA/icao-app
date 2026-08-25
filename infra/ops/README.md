@@ -23,10 +23,11 @@
 4. `/opt/icao/runtime/gateway/.env` 是 root 所有、权限 `0600` 的普通文件，只包含
    `OPS_TRUSTED_PROXY_SHARED_SECRET`。其值必须与 Ops API 文件中的同名值一致；网关覆盖浏览器提供的
    `X-Ops-Client-IP` 和 `X-Ops-Proxy-Secret`，不会把该秘密发给浏览器。
-5. 当前生产备份工具、timer、`supabase_default` 网络和 `icao-gateway` 容器正常。发布会生成新备份、
-   校验 SHA-256，并在隔离临时库完整恢复成功后才允许切换。首次管理员仍按 PR37 的
-   `ops:staff:provision` 一次性交付流程另行创建，不属于部署脚本。
-6. ECS 必须保有足够磁盘空间。脚本以 production 数据库实时大小为基线，在构建前要求可用空间至少
+5. 当前生产备份工具、timer、`supabase_default` 网络和 `icao-gateway` 容器正常。发布会以只读事务
+   确认 `ops_staff_accounts` 至少有一个未禁用 `admin`；缺失时立即停止，部署脚本绝不创建或修改账号。
+   首次管理员仍按 PR37 的 `ops:staff:provision` 一次性交付流程另行创建。
+6. 发布会生成新备份、校验 SHA-256，并在隔离临时库完整恢复成功后才允许切换。
+7. ECS 必须保有足够磁盘空间。脚本以 production 数据库实时大小为基线，在构建前要求可用空间至少
    为数据库大小的两倍再加 4 GiB，并在恢复前再次要求至少为数据库大小再加 1 GiB；不足时不创建
    候选运行时或临时数据库。
 
@@ -51,8 +52,10 @@ ICAO_OPS_EXPECTED_PUBLIC_IP=<当前 ECS 公网 IPv4> \
 
 脚本从 `git archive HEAD` 生成确定性源码包并校验 SHA-256，在 ECS 构建两个候选镜像。切换前依次
 验证秘密文件和白名单、DNS、现有 TLS 网关、普通 API 管理路由隔离、候选生产配置、只读 migration
-账本、Caddy/Compose、数据库备份和隔离恢复。随后保存当前镜像、环境和网关配置，启动 Ops，最后
-才更新公网网关。任何切换后失败都会自动消费本次快照并恢复原状态。
+账本、现存管理员、Caddy/Compose、数据库备份和隔离恢复。随后保存当前镜像、环境和网关配置，并在
+任何运行时或网关切换前原子发布 `active-rollback` 指针，启动 Ops，最后才更新公网网关。切换后失败
+会自动回滚；只有恢复验证全部通过后才消费快照。自动回滚本身若失败，指针保持有效，供同一
+`release-id` 的正式手工入口重试。
 
 成功后，服务器保存 root-only 的源码、回滚快照和 `deployment-evidence.json`；同一份无秘密证据会
 复制到 `.generated/ops-release/<release-id>/deployment-evidence.json`。证据包含 commit、压缩包摘要、
@@ -71,7 +74,8 @@ ICAO_OPS_ROLLBACK_CONFIRM=<release-id> \
 ./scripts/deploy-ops-release.sh rollback <release-id>
 ```
 
-回滚恢复服务器保存的 Ops 环境/Compose、上一组不可变镜像和原网关配置；若这是首次部署，则移除
-两个 Ops 容器并恢复没有 Ops 主机的网关。快照成功使用后会被标记，不能重复消费；回滚证据复制到
+回滚恢复服务器保存的 Ops 环境/Compose、上一组不可变镜像和原网关配置；若已有旧版本，只有公网
+Ops 的 HTTPS、HSTS、页面、健康接口和旧 `x-icao-api-version` 标识全部验证通过，才会生成成功证据并
+消费指针。若这是首次部署，则移除两个 Ops 容器并恢复没有 Ops 主机的网关。快照成功使用后会被标记，不能重复消费；回滚证据复制到
 本机对应 `.generated` 目录。回滚不逆向数据库 migration，因此正式部署门禁要求 production
 schema 在部署前已经正确进入当前状态。
