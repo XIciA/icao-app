@@ -159,10 +159,120 @@ node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 }
 
 remote_upload_root=/opt/icao/runtime/releases/ops-uploads
-remote_upload=$remote_upload_root/upload-$RELEASE_ID-$upload_token.tar.gz
+remote_upload_dir=$remote_upload_root/stage-$RELEASE_ID-$upload_token
+remote_upload=$remote_upload_dir/source.tar.gz
 printf '%s  %s\n' "$archive_sha" "$(basename "$remote_upload")" > "$archive.sha256"
+chmod 600 "$archive" "$archive.sha256"
 ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" \
-  "install -d -m 700 '$remote_upload_root'"
+  sh -s -- "$RELEASE_ID" "$upload_token" <<'REMOTE_STAGE'
+set -eu
+umask 077
+
+release_id=$1
+upload_token=$2
+release_root=${3:-/opt/icao/runtime/releases}
+expected_owner=${4:-0}
+lock_file=${5:-/run/lock/icao-ops-release.lock}
+
+case "$release_id" in
+  ''|*[!A-Za-z0-9._-]*) echo 'Remote Ops staging release ID is invalid.' >&2; exit 1 ;;
+esac
+case "$upload_token" in
+  ''|*[!A-Fa-f0-9]*) echo 'Remote Ops staging token is invalid.' >&2; exit 1 ;;
+esac
+case "$expected_owner" in
+  ''|*[!0-9]*) echo 'Remote Ops staging owner is invalid.' >&2; exit 1 ;;
+esac
+if [ "$release_root" = /opt/icao/runtime/releases ]; then
+  [ "$expected_owner" = 0 ] && [ "$lock_file" = /run/lock/icao-ops-release.lock ] || {
+    echo 'Production Ops staging overrides are forbidden.' >&2
+    exit 1
+  }
+fi
+
+read_uid() {
+  stat -c %u "$1" 2>/dev/null || stat -f %u "$1"
+}
+
+read_mode() {
+  stat -c %a "$1" 2>/dev/null || stat -f %Lp "$1"
+}
+
+validate_release_root() {
+  [ -d "$release_root" ] && [ ! -L "$release_root" ] || {
+    echo 'The fixed Ops release parent must be a real directory.' >&2
+    return 1
+  }
+  [ "$(read_uid "$release_root")" = "$expected_owner" ] || {
+    echo 'The fixed Ops release parent has an unexpected owner.' >&2
+    return 1
+  }
+  case "$(read_mode "$release_root")" in
+    700|710|711|750|751|755) ;;
+    *) echo 'The fixed Ops release parent has unsafe permissions.' >&2; return 1 ;;
+  esac
+}
+
+validate_private_dir() {
+  checked_dir=$1
+  [ -d "$checked_dir" ] && [ ! -L "$checked_dir" ] || return 1
+  [ "$(read_uid "$checked_dir")" = "$expected_owner" ] || return 1
+  [ "$(read_mode "$checked_dir")" = 700 ] || return 1
+}
+
+upload_root=$release_root/ops-uploads
+stage_dir=$upload_root/stage-$release_id-$upload_token
+upload=$stage_dir/source.tar.gz
+checksum=$upload.sha256
+
+# These read-only gates intentionally precede the lock-file open and every target write.
+validate_release_root
+if [ -e "$upload_root" ] || [ -L "$upload_root" ]; then
+  validate_private_dir "$upload_root" || {
+    echo 'The Ops upload root has an unsafe type, owner, or permissions.' >&2
+    exit 1
+  }
+fi
+for command_name in chmod flock mkdir stat; do
+  command -v "$command_name" >/dev/null 2>&1 || {
+    echo "Required remote staging command is missing: $command_name" >&2
+    exit 1
+  }
+done
+
+exec 9>"$lock_file"
+if ! flock -n 9; then
+  echo 'Another Ops deployment or rollback is running.' >&2
+  exit 1
+fi
+
+# Revalidate beneath the lock before atomically establishing the private staging boundary.
+validate_release_root
+if [ -e "$upload_root" ] || [ -L "$upload_root" ]; then
+  validate_private_dir "$upload_root" || {
+    echo 'The Ops upload root has an unsafe type, owner, or permissions.' >&2
+    exit 1
+  }
+else
+  mkdir -m 700 "$upload_root"
+  validate_private_dir "$upload_root" || {
+    echo 'The new Ops upload root failed secure validation.' >&2
+    exit 1
+  }
+fi
+[ ! -e "$stage_dir" ] && [ ! -L "$stage_dir" ] || {
+  echo 'The Ops upload staging directory already exists.' >&2
+  exit 1
+}
+mkdir -m 700 "$stage_dir"
+validate_private_dir "$stage_dir" || {
+  echo 'The new Ops upload staging directory failed secure validation.' >&2
+  exit 1
+}
+: > "$upload"
+: > "$checksum"
+chmod 600 "$upload" "$checksum"
+REMOTE_STAGE
 scp -i "$SSH_KEY" -q "$archive" "$ECS_USER@$ECS_HOST:$remote_upload"
 scp -i "$SSH_KEY" -q "$archive.sha256" "$ECS_USER@$ECS_HOST:$remote_upload.sha256"
 
@@ -194,7 +304,7 @@ case "$upload_token" in
 esac
 [ "$public_host" = ops.readyoufife.com ] || { echo 'Remote Ops hostname is invalid.' >&2; exit 1; }
 
-for command_name in awk basename cat chmod curl date df dirname docker flock getent grep install mv rm sed seq sha256sum sleep ss stat systemctl tar tr; do
+for command_name in awk basename cat chmod curl date df dirname docker find flock getent grep install mv rmdir rm sed seq sha256sum sleep ss stat systemctl tar tr; do
   command -v "$command_name" >/dev/null 2>&1 || {
     echo "Required remote command is missing: $command_name" >&2
     exit 1
@@ -210,7 +320,8 @@ fi
 release_root=/opt/icao/runtime/releases
 release_dir=$release_root/ops-$release_id
 upload_root=$release_root/ops-uploads
-upload=$upload_root/upload-$release_id-$upload_token.tar.gz
+upload_dir=$upload_root/stage-$release_id-$upload_token
+upload=$upload_dir/source.tar.gz
 checksum=$upload.sha256
 source_dir=$release_dir/source
 runtime_root=/opt/icao/runtime/ops
@@ -227,6 +338,49 @@ committed=0
 attempt_dir=
 partial_release=
 postgres_password_loaded=0
+upload_staging_validated=0
+
+check_root_directory() {
+  checked_dir=$1
+  [ -d "$checked_dir" ] && [ ! -L "$checked_dir" ] || return 1
+  [ "$(stat -c %u "$checked_dir")" = 0 ] || return 1
+  case "$(stat -c %a "$checked_dir")" in
+    700|710|711|750|751|755) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+check_private_directory() {
+  checked_dir=$1
+  [ -d "$checked_dir" ] && [ ! -L "$checked_dir" ] || return 1
+  [ "$(stat -c %u "$checked_dir")" = 0 ] || return 1
+  [ "$(stat -c %a "$checked_dir")" = 700 ] || return 1
+}
+
+check_private_upload() {
+  checked_file=$1
+  [ -f "$checked_file" ] && [ ! -L "$checked_file" ] || return 1
+  [ "$(stat -c %u "$checked_file")" = 0 ] || return 1
+  [ "$(stat -c %a "$checked_file")" = 600 ] || return 1
+}
+
+case "$upload_dir" in
+  "$upload_root"/stage-"$release_id"-"$upload_token") ;;
+  *) echo 'Remote upload staging path escaped its root.' >&2; exit 1 ;;
+esac
+check_root_directory "$release_root" || {
+  echo 'The fixed Ops release parent has an unsafe type, owner, or permissions.' >&2
+  exit 1
+}
+check_private_directory "$upload_root" && check_private_directory "$upload_dir" || {
+  echo 'The Ops upload staging boundary has an unsafe type, owner, or permissions.' >&2
+  exit 1
+}
+check_private_upload "$upload" && check_private_upload "$checksum" || {
+  echo 'The remote Ops upload files have an unsafe type, owner, or permissions.' >&2
+  exit 1
+}
+upload_staging_validated=1
 
 finish() {
   status=$?
@@ -249,22 +403,17 @@ finish() {
     unset POSTGRES_PASSWORD
     postgres_password_loaded=0
   fi
-  rm -f "$upload" "$checksum"
+  if [ "$upload_staging_validated" -eq 1 ]; then
+    rm -f "$upload" "$checksum"
+    rmdir "$upload_dir" || status=2
+  fi
   exit "$status"
 }
 trap finish EXIT
 trap 'exit 1' HUP INT TERM
 
-case "$upload" in
-  "$upload_root"/upload-*.tar.gz) ;;
-  *) echo 'Remote upload path escaped its root.' >&2; exit 1 ;;
-esac
-[ -f "$upload" ] && [ ! -L "$upload" ] && [ -f "$checksum" ] && [ ! -L "$checksum" ] || {
-  echo 'Remote Ops upload or checksum is missing.' >&2
-  exit 1
-}
 (
-  cd "$upload_root"
+  cd "$upload_dir"
   sha256sum -c "$(basename "$checksum")"
 )
 actual_archive_sha=$(sha256sum "$upload" | awk '{ print $1 }')

@@ -85,6 +85,12 @@ const postgresPasswordTest = spawnSync('/bin/sh', [
 if (postgresPasswordTest.status !== 0) {
   throw new Error(`ops_postgres_password_lifecycle_self_test:${postgresPasswordTest.stderr || postgresPasswordTest.stdout}`);
 }
+const uploadStagingTest = spawnSync(process.execPath, [
+  'tools/test-ops-upload-staging.mjs',
+], { encoding: 'utf8' });
+if (uploadStagingTest.status !== 0) {
+  throw new Error(`ops_upload_staging_real_caller_test:${uploadStagingTest.stderr || uploadStagingTest.stdout}`);
+}
 
 requireText('scripts/deploy-ops-release.sh', [
   'check-mainline-release.mjs',
@@ -124,6 +130,10 @@ requireText('scripts/deploy-ops-release.sh', [
   '127.0.0.1:3102',
   '127.0.0.1:4180',
   'cleanup-ops-uploads.sh" cleanup',
+  "<<'REMOTE_STAGE'",
+  'validate_release_root',
+  'mkdir -m 700 "$stage_dir"',
+  'check_private_directory "$upload_root" && check_private_directory "$upload_dir"',
 ]);
 forbidText('scripts/deploy-ops-release.sh', [
   'migration:apply',
@@ -137,6 +147,19 @@ forbidText('scripts/deploy-ops-release.sh', [
   'insert into ops_staff_accounts',
 ]);
 const deployment = files['scripts/deploy-ops-release.sh'];
+const stagingBlock = deployment.match(/<<'REMOTE_STAGE'\n([\s\S]*?)\nREMOTE_STAGE/u)?.[1];
+if (!stagingBlock) throw new Error('ops_upload_staging_preflight_missing');
+const stagingWrite = stagingBlock.indexOf('exec 9>"$lock_file"');
+const stagingReadOnlyPreflight = stagingBlock.slice(0, stagingWrite);
+if (
+  stagingWrite < 0
+  || !stagingReadOnlyPreflight.includes('\nvalidate_release_root\n')
+  || !stagingReadOnlyPreflight.includes('validate_private_dir "$upload_root"')
+  || deployment.indexOf("<<'REMOTE_STAGE'") > deployment.indexOf('scp -i "$SSH_KEY" -q "$archive"')
+  || deployment.includes('"install -d -m 700 \'$remote_upload_root\'"')
+) {
+  throw new Error('ops_upload_staging_must_read_only_validate_boundaries_before_any_remote_write');
+}
 if (
   deployment.indexOf('release-state.sh" activate "$attempt_dir"')
     > deployment.indexOf('install -m 600 "$candidate_runtime_env" "$runtime_env"')
@@ -216,13 +239,12 @@ forbidText('infra/ops/verify-ops-absence.sh', ['curl -fsS']);
 
 requireText('infra/ops/cleanup-ops-uploads.sh', [
   'ICAO_OPS_UPLOAD_JANITOR_LOCK_HELD',
-  '[ "$candidate" != "$current_upload" ]',
-  '[ "$candidate" != "$current_checksum" ]',
+  '[ "$candidate" != "$current_stage" ]',
   '[ "$age" -ge 86400 ]',
-  'refuses non-regular or linked entries',
+  'refuses non-regular, linked, or insecure upload files',
   'ran without the held-lock guard',
-  'preserve current/recent files or remove stale files',
-  '[ -d "$upload_root" ] && [ ! -L "$upload_root" ]',
+  'preserve current/recent stages or remove a stale stage',
+  'validate_private_dir "$upload_root" "$expected_owner"',
   'accepted a symbolic-link upload root',
 ]);
 
