@@ -466,6 +466,16 @@ export function loadOpsConfig(
     opsEncryptionKey.byteLength !== 32
     || opsEncryptionKey.toString('base64') !== parsed.data.OPS_TOTP_ENCRYPTION_KEY
   ) throw new Error('invalid_ops_api_configuration:OPS_TOTP_ENCRYPTION_KEY');
+  const opsCorsOrigins = parseCorsOrigins(parsed.data.OPS_CORS_ORIGINS);
+  if (parsed.data.NODE_ENV === 'production') {
+    if (['development', 'test', 'unversioned'].includes(parsed.data.API_RELEASE_ID.toLowerCase())) {
+      throw new Error('invalid_ops_api_configuration:API_RELEASE_ID');
+    }
+    if (
+      opsCorsOrigins.length !== 1
+      || opsCorsOrigins[0] !== 'https://ops.readyoufife.com'
+    ) throw new Error('invalid_ops_api_configuration:OPS_CORS_ORIGINS');
+  }
   return {
     databaseUrl: parsed.data.DATABASE_URL,
     nodeEnv: parsed.data.NODE_ENV,
@@ -474,7 +484,7 @@ export function loadOpsConfig(
     opsEnabled: true,
     opsHost: parsed.data.OPS_HOST,
     opsPort: parsed.data.OPS_PORT,
-    opsCorsOrigins: parseCorsOrigins(parsed.data.OPS_CORS_ORIGINS),
+    opsCorsOrigins,
     opsSessionHashSecret: parsed.data.OPS_SESSION_HASH_SECRET,
     opsTotpEncryptionKey: parsed.data.OPS_TOTP_ENCRYPTION_KEY,
     opsTrustedProxySharedSecret: parsed.data.OPS_TRUSTED_PROXY_SHARED_SECRET,

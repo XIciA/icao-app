@@ -6,6 +6,6 @@
     "rootDir": "src",
     "sourceMap": false
   },
-  "include": ["src/main-ops.ts"],
+  "include": ["src/main-ops.ts", "src/ops-config-preflight.ts"],
   "exclude": ["test/**/*.ts", "src/**/*.spec.ts"]
 }

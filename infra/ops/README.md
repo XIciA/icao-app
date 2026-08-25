@@ -1,72 +1,89 @@
-# Ops console deployment draft
+# Ops Console 生产交付
 
-This directory is repository-only deployment scaffolding for the isolated
-operations console. It does not change the frozen user Web/Vercel project and
-must not be applied from this task branch.
+`ops.readyoufife.com` 是独立的内部运营后台。浏览器只访问同源 HTTPS；`/v1/admin/*` 由 ECS
+网关转发到专用 Ops API，数据库连接只存在于该服务端容器。普通用户 API 不注册管理路由，Ops
+发布失败或回滚不会替换普通 API 镜像。
 
-Production rollout prerequisites:
+本目录不属于冻结的 Vercel 用户 Web，也不生成或发布 EdgeOne 用户 Web 产物。正式执行入口是
+仓库根目录的 `scripts/deploy-ops-release.sh`；不得手工从任务分支复制文件上线。
 
-1. Merge the reviewed code and migration into `origin/main`; back up PostgreSQL
-   and rehearse the complete pending migration suffix on an isolated copy.
-2. Build and run the dedicated Ops API image, not the ordinary user API image.
-   The ordinary API stays on host port `3101`; the Ops API is a separate
-   process/container published only as `127.0.0.1:3102`. The ordinary
-   `AppModule` does not register `/v1/admin/*`, even if Ops secrets are
-   accidentally present in its environment. Keep all Ops secrets exclusively
-   in `/opt/icao/runtime/ops-api/.env` and configure `OPS_ENABLED=1`, a unique
-   `OPS_SESSION_HASH_SECRET`, and a 32-byte base64
-   `OPS_TOTP_ENCRYPTION_KEY`. Also configure a unique 32+ character
-   `OPS_TRUSTED_PROXY_SHARED_SECRET` in both the Ops API secret file and the
-   host Caddy environment. Keep these values in the server secret manager only.
-   The complete allowlist is documented in `ops-api.env.example`: database URL,
-   runtime/release identity, account identity hash secret, and Ops-only fields.
-   This container must not receive Supabase, Apple, AI, content-signing, invite,
-   or SMS credentials; `loadOpsConfig` neither parses nor returns those fields.
-3. Provision the first administrator only after migration rehearsal. Run
-   `pnpm --filter @icao/api ops:staff:provision` on the server with either a
-   private `OPS_PROVISION_INPUT_FILE` (absolute path, mode `0600`, JSON fields
-   `email`, `password`, and `role`) or the equivalent `OPS_PROVISION_EMAIL`,
-   `OPS_PROVISION_PASSWORD`, and `OPS_PROVISION_ROLE` process environment.
-   `OPS_PROVISION_OUTPUT_FILE` is mandatory, must be an absolute path outside
-   the repository in a non-writable-by-others directory, and must not already
-   exist. The command writes the TOTP secret and recovery codes once to that
-   new mode-`0600` file and prints no credentials. Duplicate email creation is
-   rejected. Import the TOTP material into the company password manager, split
-   recovery-code custody as required, verify login, then securely remove the
-   input and delivery files. Never redirect the file contents into logs/chat.
-4. Build `infra/ops/Dockerfile` and `infra/ops/Dockerfile.api`, bind both
-   containers to localhost, and
-   merge the example host into the ECS gateway only after access controls,
-   TLS, backup, restore, and rollback checks pass.
-5. Route only `/v1/admin/*` to the dedicated Ops API on `3102`; never route it
-   to the ordinary API on `3101`. Caddy overwrites `X-Ops-Client-IP` and
-   `X-Ops-Proxy-Secret`; the Ops process has Fastify generic proxy trust disabled
-   and accepts that client address only from a loopback peer with the shared
-   secret. The browser must never receive database credentials, proxy secrets,
-   or connect to PostgreSQL directly.
+## 首次部署前的外部准备
 
-The example keeps the SPA and dedicated admin API same-origin. The Ops process
-fails closed while `OPS_ENABLED` or any independent secret is absent. Worker
-sessions expire after 12 hours, stay in browser session storage, and are
-revocable server-side. Web and Ops API have independent images and containers;
-neither is part of the user API container, so their build or runtime failure
-does not stop user login, learning, payment verification, entitlements, AI, or
-cleanup jobs.
+下列事实不会由仓库猜测，缺一项时发布会在切换流量前失败：
 
-Login anti-abuse for 1.0 is intentionally small and explicit: each Ops API
-instance holds an in-memory fixed-window limiter capped at 4,096 source buckets,
-with 8 attempts per source per 10 minutes and 200 total attempts per minute.
-The gate runs before database lookup, password scrypt, and login-failure audit.
-Expired buckets are pruned and new buckets are rejected at capacity; no
-unbounded rate-limit table exists. Unknown emails perform only rate-limited
-dummy scrypt and never create immutable audit rows. Known-account failures are
-audited only after passing the gate. This assumes a single Ops API instance for
-1.0; before horizontal scaling, replace it with a shared bounded limiter or add
-an equivalent source limit at the trusted gateway.
+1. 代码及所需数据库 migration 已审查、合入 `origin/main`，生产 migration 账本与仓库完全一致。
+   发布脚本只做只读 `--require-current` 检查，绝不应用 migration。
+2. `ops.readyoufife.com` 的 DNS A 记录已指向当前 ECS 公网 IPv4；执行时必须通过
+   `ICAO_OPS_EXPECTED_PUBLIC_IP` 再次明确该地址。Caddy 复用现有 80/443 入口自动申请和续期 TLS，
+   脚本会在切换前验证 DNS 和现有 `api.readyoufife.com` TLS，在切换后验证 Ops 主机证书、HSTS、
+   页面和健康接口。
+3. `/opt/icao/runtime/ops-api/.env` 是 root 所有、权限 `0600` 的普通文件，并严格使用
+   `ops-api.env.example` 中的键；未知键和重复键都会被拒绝。`DATABASE_URL`、账号身份散列密钥和三个
+   Ops 专用秘密只从服务器秘密管理流程写入，不进入 Git、终端历史、部署参数或聊天。
+4. `/opt/icao/runtime/gateway/.env` 是 root 所有、权限 `0600` 的普通文件，只包含
+   `OPS_TRUSTED_PROXY_SHARED_SECRET`。其值必须与 Ops API 文件中的同名值一致；网关覆盖浏览器提供的
+   `X-Ops-Client-IP` 和 `X-Ops-Proxy-Secret`，不会把该秘密发给浏览器。
+5. 当前生产备份工具、timer、`supabase_default` 网络和 `icao-gateway` 容器正常。发布会以只读事务
+   确认 `ops_staff_accounts` 至少有一个未禁用 `admin`；缺失时立即停止，部署脚本绝不创建或修改账号。
+   首次管理员仍按 PR37 的 `ops:staff:provision` 一次性交付流程另行创建。
+6. 发布会生成新备份、校验 SHA-256，并在隔离临时库完整恢复成功后才允许切换。恢复前只从
+   `supabase-db` 容器读取非空 `POSTGRES_PASSWORD`，通过继承的环境变量交给恢复脚本，随后立即
+   `unset`；密码不会进入命令参数、日志或证据文件。
+7. ECS 必须保有足够磁盘空间。脚本以 production 数据库实时大小为基线，在构建前要求可用空间至少
+   为数据库大小的两倍再加 4 GiB，并在恢复前再次要求至少为数据库大小再加 1 GiB；不足时不创建
+   候选运行时或临时数据库。
+8. ECS 在取得 Ops 发布锁后会清理超过 24 小时的陈旧上传；本次上传及校验文件始终排除，锁忙时
+   不执行清理，上传根目录本身或其条目遇到链接、非真实目录或非普通文件时均拒绝继续。
 
-The first release provisions exactly one company-owner administrator. New staff
-remain a server-only operation via `ops:staff:provision`: TOTP and recovery
-materials must be delivered once through the mode-`0600` file and must never be
-shown in the Web page. Later support/admin creation uses the same audited server
-flow. The page can list and disable staff or revoke their sessions; the service
-blocks self-disable and disabling the final active administrator.
+## 运行时结构
+
+- `icao-ops-api`：`127.0.0.1:3102`，只加入 `supabase_default`，使用最小 Ops 环境白名单。
+- `icao-ops-web`：`127.0.0.1:4180`，只提供已构建静态文件。
+- `icao-gateway`：唯一公网入口；仅 Ops 域名的 `/v1/admin/*` 和 `/health/*` 到 `3102`，其余到
+  `4180`。普通 `api.readyoufife.com` 仍只到 `3101`。
+- 两个 Ops 容器使用独立镜像、只读文件系统、最小 capabilities 和健康检查；不存在浏览器到
+  PostgreSQL 的网络配置或凭据。
+
+## 正式执行
+
+必须先获得本次生产部署授权，并在干净、最新的 `main == origin/main` worktree 中运行：
+
+```sh
+ICAO_OPS_PRODUCTION_CONFIRM=ops.readyoufife.com \
+ICAO_OPS_EXPECTED_PUBLIC_IP=<当前 ECS 公网 IPv4> \
+./scripts/deploy-ops-release.sh deploy
+```
+
+脚本从 `git archive HEAD` 生成确定性源码包并校验 SHA-256，在 ECS 构建两个候选镜像。切换前依次
+验证秘密文件和白名单、DNS、现有 TLS 网关、普通 API 管理路由隔离、候选生产配置、只读 migration
+账本、现存管理员、Caddy/Compose、数据库备份和隔离恢复。随后保存当前镜像、环境和网关配置，并在
+任何运行时或网关切换前原子发布 release 根目录唯一的 `ops-active-rollback` 指针，启动 Ops，最后才
+更新公网网关。该全局指针只允许当前切换或当前已部署 release 的手工入口使用，旧 release 不得覆盖
+新 release。切换后失败
+会自动回滚；只有恢复验证全部通过后才消费快照。自动回滚本身若失败，指针保持有效，供同一
+`release-id` 的正式手工入口重试。消费身份保存在各 attempt 自己的 `rollback-used`；同一正式构建
+可以在前一次失败并成功回滚后建立新 attempt，已消费 attempt 则不能再次使用。
+
+成功后，服务器保存 root-only 的源码、回滚快照和 `deployment-evidence.json`；同一份无秘密证据会
+复制到 `.generated/ops-release/<release-id>/deployment-evidence.json`。证据包含 commit、压缩包摘要、
+镜像 ID、备份文件名、migration/恢复/本地健康/公网 TLS 结果和回滚快照路径，不包含环境值、密码、
+数据库 URL 或代理秘密。完成后按仓库正式发布规则为该 commit 创建经确认命名的 annotated tag，
+并把 tag、commit 和证据路径写入人工发布记录；部署脚本不会自行创建或推送 Git tag。
+
+## 手工回滚
+
+自动回滚之外，如需在已成功发布后恢复该次发布前的状态，必须再次获得生产授权，在干净的最新
+`origin/main` 上执行一次性回滚：
+
+```sh
+ICAO_OPS_PRODUCTION_CONFIRM=ops.readyoufife.com \
+ICAO_OPS_ROLLBACK_CONFIRM=<release-id> \
+./scripts/deploy-ops-release.sh rollback <release-id>
+```
+
+回滚恢复服务器保存的 Ops 环境/Compose、上一组不可变镜像和原网关配置；若已有旧版本，只有公网
+Ops 的 HTTPS、HSTS、页面、健康接口和旧 `x-icao-api-version` 标识全部验证通过，才会生成成功证据并
+消费指针。若这是首次部署，则移除两个 Ops 容器并恢复没有 Ops 主机的网关，并连续确认两个容器
+均不存在、Ops 公网页面和健康接口均不可访问。快照成功使用后会被标记，不能重复消费；回滚证据复制到
+本机对应 `.generated` 目录。回滚不逆向数据库 migration，因此正式部署门禁要求 production
+schema 在部署前已经正确进入当前状态。
