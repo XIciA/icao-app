@@ -5,11 +5,28 @@ export const accounts = pgTable('accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
   status: text('status').default('active').notNull(),
   mergedIntoAccountId: uuid('merged_into_account_id'),
+  learningDataGeneration: integer('learning_data_generation').default(0).notNull(),
+  aiResultGeneration: integer('ai_result_generation').default(0).notNull(),
   sessionsRevokedAt: timestamp('sessions_revoked_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   check('accounts_status_check', sql`${table.status} IN ('active', 'merging', 'merged', 'deleting', 'deleted')`),
+  check('accounts_learning_data_generation_check', sql`${table.learningDataGeneration} >= 0`),
+  check('accounts_ai_result_generation_check', sql`${table.aiResultGeneration} >= 0`),
+]).enableRLS();
+
+export const privacyActionReceipts = pgTable('privacy_action_receipts', {
+  accountId: uuid('account_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  action: text('action').notNull(),
+  idempotencyKey: uuid('idempotency_key').notNull(),
+  requestHash: text('request_hash').notNull(),
+  result: jsonb('result').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.accountId, table.action, table.idempotencyKey] }),
+  check('privacy_action_receipts_action_check', sql`${table.action} IN ('delete_all_ai_results', 'clear_learning_data')`),
+  check('privacy_action_receipts_request_hash_check', sql`${table.requestHash} ~ '^[0-9a-f]{64}$'`),
 ]).enableRLS();
 
 export const profiles = pgTable('profiles', {

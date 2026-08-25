@@ -1,4 +1,5 @@
 import { clearProfile } from '@/features/account/profile-store';
+import { clearPendingPrivacyActionsForAccount } from '@/features/account/privacy-action-state';
 import { clearLocalAiConsent } from '@/features/ai/ai-client';
 import { recordingRepository } from '@/features/question-bank/recording/recording-repository';
 import { clearQuestionBankResourceCredentials } from '@/features/question-bank/platform/remote-resource-service';
@@ -7,7 +8,7 @@ import { clearPersonalLearningData } from '@/features/sync/learning-sync';
 import { clearAudioDiagnostics } from '@/platform/audio/audio-diagnostics';
 import { clearSafeDiagnostics } from '@/platform/diagnostics/safe-diagnostic-store';
 
-export async function clearDeletedAccountLocalData() {
+export async function clearDeletedAccountLocalData(accountId?: string) {
   await clearPersonalLearningData();
   await clearLocalAiConsent();
   await clearProfile();
@@ -16,4 +17,5 @@ export async function clearDeletedAccountLocalData() {
   recordingRepository.clearAll();
   clearAudioDiagnostics();
   await clearSafeDiagnostics();
+  await clearPendingPrivacyActionsForAccount(accountId);
 }

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { AUTH_VERIFIER } from './auth/auth.types';
 import { AccountController } from './account/account.controller';
+import { AccountPrivacyController } from './account/account-privacy.controller';
 import { AccountService } from './account/account.service';
 import { AccountIdentityService } from './account/account-identity.service';
 import { AccountDeletionService } from './account/account-deletion.service';
@@ -59,7 +60,7 @@ import { CommerceService } from './commerce/commerce.service';
 import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,

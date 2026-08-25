@@ -1,9 +1,9 @@
 import * as ImagePicker from 'expo-image-picker';
 import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile, type TencentAsrModel } from '@icao/contracts';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { AlertTriangle, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, History, Info, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, UserRound } from '@/components/ui/icons';
+import { AlertTriangle, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, FileText, History, Info, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, Upload, UserRound } from '@/components/ui/icons';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Image, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Linking, Pressable, Share, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppModal } from '@/components/platform/AppModal';
@@ -21,9 +21,10 @@ import { bindLearningSync, getLearningSyncStatus, inspectLearningSyncBinding, ru
 import { colors, radii, spacing } from '@/theme';
 import { SESSION_STORAGE_LABEL } from '@/platform/session-storage-capabilities';
 import { updateProfile, useProfile } from './profile-store';
+import { clearLearningData, deleteAllAiResults, exportAccountAndLearningData } from './privacy-self-service';
 
-type AccountSlug = 'profile' | 'edit-profile' | 'membership' | 'settings' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
-const pages: AccountSlug[] = ['profile', 'edit-profile', 'membership', 'settings', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
+type AccountSlug = 'profile' | 'edit-profile' | 'membership' | 'settings' | 'privacy' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
+const pages: AccountSlug[] = ['profile', 'edit-profile', 'membership', 'settings', 'privacy', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
 
 export function AccountScreen() {
   const { slug } = useLocalSearchParams<{ slug: AccountSlug }>();
@@ -32,6 +33,7 @@ export function AccountScreen() {
   if (page === 'edit-profile') return <EditProfilePage />;
   if (page === 'membership') return <MembershipPage />;
   if (page === 'settings') return <SettingsPage />;
+  if (page === 'privacy') return <PrivacyPage />;
   if (page === 'sync') return <SyncPage />;
   if (page === 'security') return <SecurityPage />;
   if (page === 'bind-phone') return <BindPhonePage />;
@@ -157,20 +159,11 @@ function SettingsPage() {
   const auth = useAuth();
   const [confirm, setConfirm] = useState(false);
   const [signOutError, setSignOutError] = useState('');
-  const [aiConsent, setAiConsent] = useState(false);
   const [asrModel, setSelectedAsrModel] = useState<TencentAsrModel>(DEFAULT_TENCENT_ASR_MODEL);
   const [asrPickerVisible, setAsrPickerVisible] = useState(false);
   useEffect(() => {
     let active = true;
     void getAsrModel().then((model) => { if (active) setSelectedAsrModel(model); });
-    void getCachedAiConsentHint().then((hint) => {
-      if (active) setAiConsent(hint);
-      return hasAiConsent();
-    }).then((consent) => {
-      if (active) setAiConsent(consent);
-    }).catch(() => {
-      if (active) setAiConsent(false);
-    });
     return () => { active = false; };
   }, []);
 
@@ -178,15 +171,6 @@ function SettingsPage() {
     await setAsrModel(model);
     setSelectedAsrModel(model);
     setAsrPickerVisible(false);
-  }
-
-  async function revokeAi() {
-    try {
-      await withdrawAiConsent();
-      setAiConsent(false);
-    } catch {
-      setSignOutError('AI 数据处理同意撤回失败，请登录并稍后重试');
-    }
   }
 
   async function signOut(all = false) {
@@ -208,7 +192,7 @@ function SettingsPage() {
         </Section>
         <Section title="AI 与隐私">
           <Row first hint="切换后从下一次转写开始生效" icon={Cloud} label="腾讯 ASR 模型" onPress={() => setAsrPickerVisible(true)} value={asrModel} />
-          <Row hint={aiConsent ? '撤回后仍可使用录音、回放和非 AI 学习功能' : '首次使用 AI 功能时由你明确确认'} icon={Shield} label={aiConsent ? '撤回 AI 数据处理同意' : 'AI 数据处理同意'} onPress={aiConsent ? () => { void revokeAi(); } : undefined} value={aiConsent ? '已同意' : '未同意'} />
+          <Row hint="同意、删除、清除、导出与注销" icon={Shield} label="账号与隐私" onPress={() => router.push('/account/privacy')} />
         </Section>
         <Section title="通用">
           <Row first icon={Cloud} label="学习数据同步" onPress={() => router.push('/account/sync')} value="自动同步" />
@@ -223,6 +207,159 @@ function SettingsPage() {
       </View>
       <AsrModelSheet current={asrModel} onClose={() => setAsrPickerVisible(false)} onSelect={(model) => { void selectAsrModel(model); }} visible={asrPickerVisible} />
       <LogoutDialog onAll={() => { void signOut(true); }} onCancel={() => setConfirm(false)} onCurrent={() => { void signOut(false); }} visible={confirm} />
+    </Page>
+  );
+}
+
+function PrivacyPage() {
+  const auth = useAuth();
+  const router = useRouter();
+  const [aiConsent, setAiConsent] = useState(false);
+  const [aiResultCount, setAiResultCount] = useState(0);
+  const [busy, setBusy] = useState<'ai' | 'learning' | 'export' | 'consent'>();
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+
+  const refresh = useCallback(async () => {
+    const [hint, records] = await Promise.all([
+      getCachedAiConsentHint().catch(() => false),
+      sqliteLearningStore.getRecords(),
+    ]);
+    setAiConsent(hint);
+    setAiResultCount(records.filter((record) => record.recordType === 'ai_result').length);
+    void hasAiConsent().then(setAiConsent).catch(() => undefined);
+  }, []);
+
+  useEffect(() => { void refresh(); }, [refresh]);
+
+  function requireAccount() {
+    const accountId = auth.account?.accountId;
+    if (accountId) return accountId;
+    router.push('/auth/login');
+    return undefined;
+  }
+
+  async function revokeAi() {
+    if (busy) return;
+    setBusy('consent');
+    setError('');
+    setMessage('');
+    try {
+      await withdrawAiConsent();
+      setAiConsent(false);
+      setMessage('AI 数据处理同意已撤回，不影响非 AI 学习。');
+    } catch {
+      setError('AI 数据处理同意撤回失败，请登录并稍后重试。');
+    } finally {
+      setBusy(undefined);
+    }
+  }
+
+  async function exportData() {
+    const accountId = requireAccount();
+    if (!accountId || busy) return;
+    setBusy('export');
+    setError('');
+    setMessage('');
+    try {
+      const data = await exportAccountAndLearningData(accountId);
+      await Share.share({
+        title: '听你五个账号与学习数据',
+        message: JSON.stringify(data, null, 2),
+      });
+      setMessage('导出内容已生成，请在系统分享面板中选择保存或发送方式。');
+    } catch {
+      setError('数据导出失败，待同步数据已保留，请检查网络后重试。');
+    } finally {
+      setBusy(undefined);
+    }
+  }
+
+  async function removeAllAiResults() {
+    const accountId = requireAccount();
+    if (!accountId || busy) return;
+    setBusy('ai');
+    setError('');
+    setMessage('');
+    try {
+      const result = await deleteAllAiResults(accountId);
+      setAiResultCount(0);
+      setMessage(`已删除 ${result.deletedCount} 条云端 AI 结果，删除会同步到其他设备。`);
+    } catch {
+      setError('全部 AI 结果删除未完成，请保持登录并检查网络后重试。');
+    } finally {
+      setBusy(undefined);
+    }
+  }
+
+  async function removeLearningData() {
+    const accountId = requireAccount();
+    if (!accountId || busy) return;
+    setBusy('learning');
+    setError('');
+    setMessage('');
+    try {
+      const result = await clearLearningData(accountId);
+      setAiResultCount(0);
+      setMessage(`已清除 ${result.deletedCount} 项学习数据；账号、会员和订单仍保留。`);
+    } catch {
+      setError('学习数据清除未完成，请保持登录并重试；旧离线数据不会恢复已完成的云端清除。');
+    } finally {
+      setBusy(undefined);
+    }
+  }
+
+  function confirmDeleteAllAiResults() {
+    Alert.alert(
+      '删除全部 AI 结果？',
+      '将删除已保存的转写、语法反馈和润色结果，但保留其他学习进度、账号、会员和订单。',
+      [
+        { text: '取消', style: 'cancel' },
+        { text: '删除全部AI结果', style: 'destructive', onPress: () => { void removeAllAiResults(); } },
+      ],
+    );
+  }
+
+  function confirmClearLearningData() {
+    Alert.alert(
+      '清除全部学习数据？',
+      '将清除学习进度、记录、收藏、标注、笔记、回答和 AI 结果，并阻止旧离线设备恢复它们。账号、会员和订单不受影响。',
+      [
+        { text: '取消', style: 'cancel' },
+        { text: '清除学习数据', style: 'destructive', onPress: () => { void removeLearningData(); } },
+      ],
+    );
+  }
+
+  return (
+    <Page title="账号与隐私">
+      <View style={styles.content}>
+        <Section title="账号与同意">
+          <Row first hint="绑定手机号、登录方式与会话" icon={Shield} label="账号安全" onPress={() => router.push('/account/security')} />
+          <Row
+            hint={aiConsent ? '撤回后停止新的上传和分析，已有 AI 结果不会自动删除' : '再次使用 AI 功能时可重新确认'}
+            icon={Shield}
+            label={aiConsent ? '撤回 AI 数据处理同意' : 'AI 数据处理同意'}
+            onPress={aiConsent ? () => { void revokeAi(); } : undefined}
+            value={aiConsent ? '已同意' : '未同意'}
+          />
+        </Section>
+        <Section title="数据自助">
+          <Row first hint="包含账号资料、学习进度、记录和用户文档" icon={Upload} label="导出账号和学习数据" onPress={() => { void exportData(); }} value={busy === 'export' ? '生成中…' : undefined} />
+          <Row danger hint="保留其他学习数据" icon={Trash2} label="删除全部 AI 结果" onPress={confirmDeleteAllAiResults} value={`${aiResultCount} 条`} />
+          <Row danger hint="保留账号、会员和订单" icon={Trash2} label="清除全部学习数据" onPress={confirmClearLearningData} value={busy === 'learning' ? '清除中…' : undefined} />
+        </Section>
+        <Section title="政策与联系">
+          <Row first icon={FileText} label="隐私政策" onPress={() => router.push('/info/privacy')} />
+          <Row icon={FileText} label="用户协议" onPress={() => router.push('/info/agreement')} />
+          <Row icon={FileText} label="第三方服务清单" onPress={() => { void Linking.openURL('https://yunqihangke.com/apps/readyoufife/privacy/#third-party-services'); }} />
+          <Row hint="privacy@yunqihangke.com" icon={Info} label="隐私权利联系" onPress={() => { void Linking.openURL('mailto:privacy@yunqihangke.com'); }} />
+        </Section>
+        {message ? <AppText color={colors.primary} variant="caption">{message}</AppText> : null}
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        <Button leading={<Trash2 color={colors.destructive} size={16} />} onPress={() => router.push('/account/delete-account')} variant="outline">注销整个账号</Button>
+        <AppText style={styles.center} variant="micro">单条 AI 结果可在“学习记录”中直接删除。</AppText>
+      </View>
     </Page>
   );
 }
