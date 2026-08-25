@@ -28,8 +28,8 @@ import {
 } from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const sourceSha = 'a'.repeat(40);
-const prePlan = '15:18:0';
-const postPlan = '33:0:0';
+const prePlan = '15:19:0';
+const postPlan = '34:0:0';
 const backupName = 'icao-20260825T165825Z-1151356.dump';
 const evidencePath = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-aaaaaaaaaaaa-20260825T170000Z.txt';
 const successLine = `production_migration_rehearsal_ok source=${sourceSha} backup=${backupName} pre=${prePlan} post=${postPlan} evidence=${evidencePath}`;
@@ -102,7 +102,7 @@ test('binds the destructive confirmation to the full immutable source and exact 
     postPlan,
   }), expected);
   assert.throws(() => assertProductionMigrationConfirmation({
-    confirmation: expected.replace('15:18:0', '15:17:0'),
+    confirmation: expected.replace('15:19:0', '15:17:0'),
     sourceSha,
     prePlan,
     postPlan,
@@ -111,11 +111,11 @@ test('binds the destructive confirmation to the full immutable source and exact 
 
 test('rejects unsafe or inconsistent expected plans', () => {
   for (const plans of [
-    ['15:18:1', '33:0:0'],
+    ['15:19:1', '34:0:0'],
     ['15:0:0', '15:0:0'],
-    ['15:18:0', '32:0:0'],
-    ['15:18:0', '33:1:0'],
-    ['015:18:0', '33:0:0'],
+    ['15:19:0', '32:0:0'],
+    ['15:19:0', '34:1:0'],
+    ['015:19:0', '34:0:0'],
   ]) {
     assert.throws(() => validatePlanTransition(...plans));
   }
@@ -1076,7 +1076,7 @@ post_summary=${postPlan}
 migration_started=1
 migration_completed=1
 before_migrations=15
-after_migrations=33
+after_migrations=34
 before_business_rows=100
 after_business_rows=101
 before_auth_users=10

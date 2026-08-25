@@ -413,8 +413,8 @@ if (
 }
 for (const requiredApplyContract of [
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:18:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-33:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:19:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-34:0:0',
   'scripts/rehearse-production-migrations.sh',
   'icao-production-migration-apply.lock',
   'icao-production-release-change.lock',
