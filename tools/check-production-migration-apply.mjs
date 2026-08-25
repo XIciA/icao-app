@@ -11,6 +11,8 @@ const [
   rehearsalSource,
   databaseSchemaSource,
   schemaVerifierSource,
+  schemaContractLibSource,
+  schemaContractTestSource,
   apiReleaseSource,
   opsReleaseSource,
   packageSource,
@@ -21,6 +23,8 @@ const [
   readFile('scripts/rehearse-production-migrations.sh', 'utf8'),
   readFile('services/api/src/database/schema.ts', 'utf8'),
   readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8'),
+  readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8'),
+  readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8'),
   readFile('scripts/deploy-api-release.sh', 'utf8'),
   readFile('scripts/deploy-ops-release.sh', 'utf8'),
   readFile('package.json', 'utf8'),
@@ -63,6 +67,10 @@ for (const contract of [
   'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan"',
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
+  'p.expectedPublicTables !== 56',
+  'p.actualPublicTables !== 56',
+  'p.unclassifiedPublicTables !== 0',
+  'p.missingPublicTables !== 0',
   'business_row_count_observation=non_authoritative_concurrent_activity_allowed',
   'auth_user_count_observation=non_authoritative_concurrent_activity_allowed',
   'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint',
@@ -141,8 +149,12 @@ for (const contract of [
   "parsedUrl.search !== ''",
   "parsedUrl.pathname !== `/${expectedDatabase}`",
   'production_schema_has_unvalidated_constraints',
-  'production_schema_required_rls_disabled',
-  'production_schema_server_only_table_grant_present',
+  "from information_schema.tables",
+  "table_schema = 'public'",
+  "table_type = 'BASE TABLE'",
+  'actualTables: actualPublicTables',
+  'expectedTables: serverOnlyTables',
+  'assertPublicTableSecurityContract',
   'production_privacy_schema_columns_incomplete',
   'production_content_device_digest_still_present',
   'production_commerce_product_catalog_mismatch',
@@ -154,6 +166,29 @@ for (const contract of [
 }
 if (!schemaVerifierSource.includes("expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME")) {
   throw new Error('production_schema_verifier_database_binding_missing');
+}
+if ((schemaVerifierSource.match(/transaction\.array\(actualPublicTables\)/gu) ?? []).length < 2) {
+  throw new Error('production_schema_verifier_must_check_all_actual_tables');
+}
+for (const failureCode of [
+  'production_schema_unclassified_public_tables:',
+  'production_schema_missing_public_tables:',
+  'production_schema_required_rls_disabled',
+  'production_schema_server_only_table_grant_present',
+]) {
+  if (!schemaContractLibSource.includes(failureCode)) {
+    throw new Error(`production_schema_contract_failure_missing:${failureCode}`);
+  }
+}
+for (const liveFailureContract of [
+  'unexpected_public_table',
+  'production_schema_unclassified_public_tables:1',
+  'clientGrantCount: 1',
+  'production_schema_server_only_table_grant_present',
+]) {
+  if (!schemaContractTestSource.includes(liveFailureContract)) {
+    throw new Error(`production_schema_live_verifier_test_missing:${liveFailureContract}`);
+  }
 }
 const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'/gu)]
   .map((match) => match[1])
@@ -227,6 +262,7 @@ for (const releaseSource of [apiReleaseSource, opsReleaseSource]) {
 if (
   !packageSource.includes('check:production-migration')
   || !packageSource.includes('production-migration-apply-tests.mjs')
+  || !packageSource.includes('production-schema-contract-tests.mjs')
   || !packageSource.includes('check-production-migration-apply.mjs')
   || !packageSource.includes('scripts/apply-production-migrations.sh')
 ) {

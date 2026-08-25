@@ -1,6 +1,10 @@
 import postgres from 'postgres';
 
 import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
+import {
+  assessPublicTableClassification,
+  assertPublicTableSecurityContract,
+} from './production-schema-contract-lib.mjs';
 
 const databaseUrl = process.env.DATABASE_URL;
 const expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME;
@@ -23,7 +27,6 @@ if (
 }
 
 const serverOnlyTables = SERVER_ONLY_PUBLIC_TABLES;
-const requiredTables = serverOnlyTables.map((value) => `public.${value}`);
 const expectedProducts = [
   ['membership_7d_v1', 7, 6800, 'ai-points-v1', 1, 31, 250],
   ['membership_15d_v1', 15, 10800, 'ai-points-v1', 1, 31, 500],
@@ -60,13 +63,18 @@ try {
     assert(identity?.database_name === expectedDatabase, 'production_database_name_mismatch');
     assert(identity?.transaction_read_only === 'on', 'production_schema_verifier_not_read_only');
 
-    const tableRows = await transaction`
-      select required_name, to_regclass(required_name)::text as resolved_name
-      from unnest(${transaction.array(requiredTables)}::text[]) as required(required_name)
-      order by required_name
+    const actualPublicTableRows = await transaction`
+      select table_name
+      from information_schema.tables
+      where table_schema = 'public'
+        and table_type = 'BASE TABLE'
+      order by table_name
     `;
-    const missingTables = tableRows.filter((row) => !row.resolved_name).map((row) => row.required_name);
-    assert(missingTables.length === 0, `production_schema_missing_tables:${missingTables.join(',')}`);
+    const actualPublicTables = actualPublicTableRows.map((row) => row.table_name);
+    const publicTableAssessment = assessPublicTableClassification({
+      actualTables: actualPublicTables,
+      expectedTables: serverOnlyTables,
+    });
 
     const [unvalidated] = await transaction`
       select count(*)::integer as count
@@ -82,14 +90,13 @@ try {
       from pg_class table_state
       join pg_namespace namespace_state on namespace_state.oid = table_state.relnamespace
       where namespace_state.nspname = 'public'
-        and table_state.relname = any(${transaction.array(serverOnlyTables)}::text[])
+        and table_state.relname = any(${transaction.array(actualPublicTables)}::text[])
         and not table_state.relrowsecurity
     `;
-    assert(disabledRls?.count === 0, 'production_schema_required_rls_disabled');
 
     const [clientGrants] = await transaction`
       select count(*)::integer as count
-      from unnest(${transaction.array(serverOnlyTables)}::text[]) as protected_table(table_name)
+      from unnest(${transaction.array(actualPublicTables)}::text[]) as protected_table(table_name)
       cross join (values ('anon'), ('authenticated')) as client_role(role_name)
       where has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'SELECT')
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'INSERT')
@@ -99,7 +106,11 @@ try {
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'REFERENCES')
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'TRIGGER')
     `;
-    assert(clientGrants?.count === 0, 'production_schema_server_only_table_grant_present');
+    const publicTableContract = assertPublicTableSecurityContract({
+      assessment: publicTableAssessment,
+      clientGrantCount: clientGrants?.count,
+      disabledRlsCount: disabledRls?.count,
+    });
 
     const [privacyColumns] = await transaction`
       select count(*)::integer as count
@@ -160,8 +171,8 @@ try {
       appleProductMappings: appleProducts.length,
       commerceProducts: products.length,
       deviceDigestColumns: deviceDigest.count,
-      requiredTables: tableRows.length,
-      serverOnlyClientGrants: clientGrants.count,
+      requiredTables: publicTableContract.expectedPublicTables,
+      ...publicTableContract,
       unvalidatedConstraints: unvalidated.count,
     };
   });

@@ -154,6 +154,8 @@ const backupToolsInstaller = await readFile('scripts/install-production-backup-t
 const migrationRehearsal = await readFile('scripts/rehearse-production-migrations.sh', 'utf8');
 const productionMigrationApply = await readFile('scripts/apply-production-migrations.sh', 'utf8');
 const productionSchemaVerifier = await readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8');
+const productionSchemaContractLib = await readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8');
+const productionSchemaContractTests = await readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
 const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
@@ -407,7 +409,13 @@ if (
   !productionSchemaVerifier.includes('default_transaction_read_only: true')
   || !productionSchemaVerifier.includes("parsedUrl.hostname !== 'db'")
   || !productionSchemaVerifier.includes('production_schema_has_unvalidated_constraints')
-  || !productionSchemaVerifier.includes('production_schema_server_only_table_grant_present')
+  || !productionSchemaVerifier.includes("from information_schema.tables")
+  || !productionSchemaVerifier.includes("table_type = 'BASE TABLE'")
+  || !productionSchemaVerifier.includes('transaction.array(actualPublicTables)')
+  || !productionSchemaContractLib.includes('production_schema_unclassified_public_tables:')
+  || !productionSchemaContractLib.includes('production_schema_server_only_table_grant_present')
+  || !productionSchemaContractTests.includes('unexpected_public_table')
+  || !productionSchemaContractTests.includes('clientGrantCount: 1')
   || !productionSchemaVerifier.includes('production_commerce_product_catalog_mismatch')
 ) {
   throw new Error('The post-migration production schema verifier is incomplete.');
