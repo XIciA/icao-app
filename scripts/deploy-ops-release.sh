@@ -288,8 +288,10 @@ else
   tar -xzf "$partial_release/source.tar.gz" -C "$partial_release/source"
   for required in \
     infra/ops/docker-compose.runtime.yml \
+    infra/ops/cleanup-ops-uploads.sh \
     infra/ops/release-state.sh \
     infra/ops/rollback-release.sh \
+    infra/ops/verify-ops-absence.sh \
     infra/gateway/Caddyfile \
     infra/gateway/docker-compose.yml \
     services/api/scripts/migration-plan.mjs \
@@ -308,6 +310,10 @@ else
   chmod 600 "$partial_release/release-metadata"
   mv "$partial_release" "$release_dir"
 fi
+
+ICAO_OPS_UPLOAD_JANITOR_LOCK_HELD=1 \
+  /bin/sh "$source_dir/infra/ops/cleanup-ops-uploads.sh" cleanup \
+  "$upload_root" "$upload" "$checksum"
 
 check_private_file() {
   checked_file=$1
@@ -572,11 +578,13 @@ if [ "$api_exists" -eq 1 ]; then
 else
   printf 'absent\n' > "$attempt_dir/previous-state"
 fi
+ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
+  /bin/sh "$source_dir/infra/ops/release-state.sh" snapshot-previous "$attempt_dir"
 chmod 600 "$attempt_dir"/*
 (
   cd "$attempt_dir"
   set -- runtime-env-before gateway-caddy-before gateway-compose-before \
-    previous-state release-id source-sha ops-staff-readiness.json
+    previous-state previous-active-attempt release-id source-sha ops-staff-readiness.json
   if [ -f ops-compose-before ]; then set -- "$@" ops-compose-before; fi
   if [ -f ops-compose-before.absent ]; then set -- "$@" ops-compose-before.absent; fi
   if [ -f previous-api-image-tag ]; then

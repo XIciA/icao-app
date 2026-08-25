@@ -30,6 +30,8 @@
 7. ECS 必须保有足够磁盘空间。脚本以 production 数据库实时大小为基线，在构建前要求可用空间至少
    为数据库大小的两倍再加 4 GiB，并在恢复前再次要求至少为数据库大小再加 1 GiB；不足时不创建
    候选运行时或临时数据库。
+8. ECS 在取得 Ops 发布锁后会清理超过 24 小时的陈旧上传；本次上传及校验文件始终排除，锁忙时
+   不执行清理，遇到链接或非普通文件则拒绝继续。
 
 ## 运行时结构
 
@@ -53,9 +55,12 @@ ICAO_OPS_EXPECTED_PUBLIC_IP=<当前 ECS 公网 IPv4> \
 脚本从 `git archive HEAD` 生成确定性源码包并校验 SHA-256，在 ECS 构建两个候选镜像。切换前依次
 验证秘密文件和白名单、DNS、现有 TLS 网关、普通 API 管理路由隔离、候选生产配置、只读 migration
 账本、现存管理员、Caddy/Compose、数据库备份和隔离恢复。随后保存当前镜像、环境和网关配置，并在
-任何运行时或网关切换前原子发布 `active-rollback` 指针，启动 Ops，最后才更新公网网关。切换后失败
+任何运行时或网关切换前原子发布 release 根目录唯一的 `ops-active-rollback` 指针，启动 Ops，最后才
+更新公网网关。该全局指针只允许当前切换或当前已部署 release 的手工入口使用，旧 release 不得覆盖
+新 release。切换后失败
 会自动回滚；只有恢复验证全部通过后才消费快照。自动回滚本身若失败，指针保持有效，供同一
-`release-id` 的正式手工入口重试。
+`release-id` 的正式手工入口重试。消费身份保存在各 attempt 自己的 `rollback-used`；同一正式构建
+可以在前一次失败并成功回滚后建立新 attempt，已消费 attempt 则不能再次使用。
 
 成功后，服务器保存 root-only 的源码、回滚快照和 `deployment-evidence.json`；同一份无秘密证据会
 复制到 `.generated/ops-release/<release-id>/deployment-evidence.json`。证据包含 commit、压缩包摘要、
@@ -76,6 +81,7 @@ ICAO_OPS_ROLLBACK_CONFIRM=<release-id> \
 
 回滚恢复服务器保存的 Ops 环境/Compose、上一组不可变镜像和原网关配置；若已有旧版本，只有公网
 Ops 的 HTTPS、HSTS、页面、健康接口和旧 `x-icao-api-version` 标识全部验证通过，才会生成成功证据并
-消费指针。若这是首次部署，则移除两个 Ops 容器并恢复没有 Ops 主机的网关。快照成功使用后会被标记，不能重复消费；回滚证据复制到
+消费指针。若这是首次部署，则移除两个 Ops 容器并恢复没有 Ops 主机的网关，并连续确认两个容器
+均不存在、Ops 公网页面和健康接口均不可访问。快照成功使用后会被标记，不能重复消费；回滚证据复制到
 本机对应 `.generated` 目录。回滚不逆向数据库 migration，因此正式部署门禁要求 production
 schema 在部署前已经正确进入当前状态。

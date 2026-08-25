@@ -11,8 +11,10 @@ const files = Object.fromEntries(await Promise.all([
   'infra/ops/docker-compose.runtime.yml',
   'infra/ops/gateway.env.example',
   'infra/ops/ops-api.env.example',
+  'infra/ops/cleanup-ops-uploads.sh',
   'infra/ops/release-state.sh',
   'infra/ops/rollback-release.sh',
+  'infra/ops/verify-ops-absence.sh',
   'scripts/deploy-ops-release.sh',
   'services/api/src/config.ts',
   'services/api/src/ops-config-preflight.ts',
@@ -47,8 +49,10 @@ for (const retiredDraft of [
 const syntax = spawnSync('/bin/sh', [
   '-n',
   'scripts/deploy-ops-release.sh',
+  'infra/ops/cleanup-ops-uploads.sh',
   'infra/ops/release-state.sh',
   'infra/ops/rollback-release.sh',
+  'infra/ops/verify-ops-absence.sh',
 ], { encoding: 'utf8' });
 if (syntax.status !== 0) {
   throw new Error(`ops_production_shell_syntax:${syntax.stderr || syntax.stdout}`);
@@ -60,6 +64,15 @@ const rollbackStateTest = spawnSync('/bin/sh', [
 ], { encoding: 'utf8' });
 if (rollbackStateTest.status !== 0) {
   throw new Error(`ops_automatic_rollback_failure_state:${rollbackStateTest.stderr || rollbackStateTest.stdout}`);
+}
+for (const [name, script] of [
+  ['first_deployment_absence', 'infra/ops/verify-ops-absence.sh'],
+  ['locked_upload_janitor', 'infra/ops/cleanup-ops-uploads.sh'],
+]) {
+  const result = spawnSync('/bin/sh', [script, 'self-test'], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    throw new Error(`ops_${name}_self_test:${result.stderr || result.stdout}`);
+  }
 }
 
 requireText('scripts/deploy-ops-release.sh', [
@@ -85,6 +98,7 @@ requireText('scripts/deploy-ops-release.sh', [
   'required_before_build_bytes',
   'required_before_restore_bytes',
   'snapshot-checksums.sha256',
+  'release-state.sh" snapshot-previous "$attempt_dir"',
   'release-state.sh" activate "$attempt_dir"',
   'release-state.sh" mark-deployed "$attempt_dir"',
   'rollback-release.sh',
@@ -95,6 +109,7 @@ requireText('scripts/deploy-ops-release.sh', [
   'ordinaryApiIsolation',
   '127.0.0.1:3102',
   '127.0.0.1:4180',
+  'cleanup-ops-uploads.sh" cleanup',
 ]);
 forbidText('scripts/deploy-ops-release.sh', [
   'migration:apply',
@@ -116,6 +131,13 @@ if (
 ) {
   throw new Error('ops_rollback_pointer_state_order_is_unsafe');
 }
+if (
+  deployment.indexOf('cleanup-ops-uploads.sh" cleanup') < deployment.lastIndexOf('if ! flock -n 9; then')
+  || deployment.indexOf('cleanup-ops-uploads.sh" cleanup')
+    < deployment.indexOf('mv "$partial_release" "$release_dir"')
+) {
+  throw new Error('ops_upload_janitor_must_run_only_after_the_remote_lock_and_source_validation');
+}
 
 requireText('infra/ops/rollback-release.sh', [
   'ICAO_OPS_ROLLBACK_INTERNAL',
@@ -125,6 +147,7 @@ requireText('infra/ops/rollback-release.sh', [
   'gateway-caddy-before',
   'previous-api-image-tag',
   'previous-release-id',
+  'previous-active-attempt',
   'sha256sum -c snapshot-checksums.sha256',
   'docker compose -f "$gateway_compose" up -d --force-recreate caddy',
   'https://api.readyoufife.com/health/ready',
@@ -136,17 +159,47 @@ requireText('infra/ops/rollback-release.sh', [
   'x-icao-api-version:',
   '[ "$restored_release_id" = "$previous_release_id" ]',
   '"$state_script" consume "$attempt_dir"',
+  '"$absence_script" verify',
+  '"opsContainersAbsent": "verified"',
+  '"publicOpsAbsent": "verified"',
   'rollback-evidence.json',
 ]);
 
 requireText('infra/ops/release-state.sh', [
-  'active-rollback.tmp.$$',
+  'ops-active-rollback.tmp.$$',
+  'previous-active-attempt',
+  'snapshot_previous',
   'cutover-pending',
   'mark-deployed',
   'run_automatic',
   'formal manual retry',
-  'last-consumed-rollback',
-  'Ops automatic rollback failure state test passed.',
+  'attempt-scoped consumption identities',
+  'global rollback owner that did not match the running release',
+  'stale release retained manual rollback ownership',
+  'Ops global rollback ownership and same-release retry tests passed.',
+]);
+forbidText('infra/ops/release-state.sh', ['last-consumed-rollback']);
+
+requireText('infra/ops/verify-ops-absence.sh', [
+  'docker inspect icao-ops-api',
+  'docker inspect icao-ops-web',
+  'curl -sS --max-time 5',
+  'https://ops.readyoufife.com/',
+  'https://ops.readyoufife.com/health/ready',
+  'consecutive_absent',
+  'accepted a surviving Ops container',
+  'accepted a surviving public Ops host',
+]);
+forbidText('infra/ops/verify-ops-absence.sh', ['curl -fsS']);
+
+requireText('infra/ops/cleanup-ops-uploads.sh', [
+  'ICAO_OPS_UPLOAD_JANITOR_LOCK_HELD',
+  '[ "$candidate" != "$current_upload" ]',
+  '[ "$candidate" != "$current_checksum" ]',
+  '[ "$age" -ge 86400 ]',
+  'refuses non-regular or linked entries',
+  'ran without the held-lock guard',
+  'preserve current/recent files or remove stale files',
 ]);
 
 requireText('services/api/scripts/verify-ops-production-readiness.mjs', [

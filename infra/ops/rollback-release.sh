@@ -29,8 +29,10 @@ if [ ! -d "$attempt_dir" ] || [ -L "$attempt_dir" ]; then
 fi
 release_dir=${attempt_dir%/attempts/*}
 state_script=$release_dir/source/infra/ops/release-state.sh
-if [ ! -f "$state_script" ] || [ -L "$state_script" ]; then
-  echo 'The Ops rollback state controller is missing or unsafe.' >&2
+absence_script=$release_dir/source/infra/ops/verify-ops-absence.sh
+if [ ! -f "$state_script" ] || [ -L "$state_script" ] \
+  || [ ! -f "$absence_script" ] || [ -L "$absence_script" ]; then
+  echo 'An Ops rollback state or verification helper is missing or unsafe.' >&2
   exit 1
 fi
 ICAO_OPS_RELEASE_STATE_INTERNAL=1 \
@@ -52,6 +54,7 @@ for required in \
   "$attempt_dir/gateway-caddy-before" \
   "$attempt_dir/gateway-compose-before" \
   "$attempt_dir/previous-state" \
+  "$attempt_dir/previous-active-attempt" \
   "$attempt_dir/release-id" \
   "$attempt_dir/source-sha" \
   "$attempt_dir/snapshot-checksums.sha256"
@@ -188,6 +191,10 @@ if [ "$previous_state" = running ]; then
       "$attempt_dir/rollback-public-web.headers" \
       "$attempt_dir/rollback-public-web.html" || rollback_failed=1
   fi
+else
+  if ! ICAO_OPS_ROLLBACK_INTERNAL=1 /bin/sh "$absence_script" verify; then
+    rollback_failed=1
+  fi
 fi
 
 if [ "$rollback_failed" -ne 0 ]; then
@@ -200,7 +207,7 @@ evidence_tmp=$attempt_dir/rollback-evidence.json.tmp.$$
 if [ "$previous_state" = running ]; then
   restored_ops='"publicOpsTls": "verified",\n  "publicOpsPage": "verified",\n  "publicOpsHealth": "verified",\n  "restoredReleaseId": "'"$previous_release_id"'",\n  '
 else
-  restored_ops=''
+  restored_ops='"opsContainersAbsent": "verified",\n  "publicOpsAbsent": "verified",\n  '
 fi
 printf '{\n  "status": "rolled_back",\n  "reason": "%s",\n  "releaseId": "%s",\n  "sourceSha": "%s",\n  "rolledBackAt": "%s",\n  "previousState": "%s",\n  %b"publicApiHealth": "verified"\n}\n' \
   "$reason" "$release_id" "$source_sha" "$rolled_back_at" "$previous_state" \
