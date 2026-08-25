@@ -258,6 +258,9 @@ if (
 ) {
   throw new Error('API release and migration rehearsal archives must include the local distribution module.');
 }
+if (!packageJsonSource.includes('node --test tools/migration-rehearsal-cleanup-tests.mjs')) {
+  throw new Error('The release gate must execute the migration rehearsal cleanup failure tests.');
+}
 for (const [name, dockerfile] of [
   ['API', apiDockerfile],
   ['Ops Web', opsDockerfile],
@@ -277,7 +280,9 @@ for (const requiredRehearsalContract of [
   'createdb -h db',
   '--owner=postgres "$RESTORE_DB_NAME"',
   'pg_get_userbyid(datdba)',
+  "has_database_privilege('\\''postgres'\\'', datname, '\\''CONNECT'\\'')",
   "has_database_privilege('\\''postgres'\\'', datname, '\\''CREATE'\\'')",
+  "has_database_privilege('\\''postgres'\\'', datname, '\\''TEMPORARY'\\'')",
   "nspname = '\\''drizzle'\\''",
   "test \"$database_contract\" = 'postgres|t|t|t|postgres'",
   'isolated_database_contract=',
@@ -317,6 +322,15 @@ for (const requiredRehearsalContract of [
   'remaining_orphans=',
   'REMOTE_CLEANUP_ARMED=1',
   'cleanup_local_resources',
+  'cleanup_rehearsal_image',
+  "--filter \"reference=$image\"",
+  'could not inspect the existing isolated rehearsal image during cleanup:',
+  'isolated rehearsal image still exists after cleanup:',
+  'cleanup_verified=0',
+  'cleanup_verified=1',
+  'cleanup_files\ncleanup_verified=1',
+  'test "$cleanup_verified" = 1',
+  "printf 'cleanup_verified=%s\\n' \"$cleanup_verified\"",
   '/run/icao-migration-rehearsal-',
   'require_public_https_url ICAO_API_BUILD_NPM_REGISTRY',
   'production_migration_rehearsal_ok',
@@ -326,8 +340,17 @@ for (const requiredRehearsalContract of [
   }
 }
 const rehearsalDropStart = migrationRehearsal.indexOf('drop_created_database() {');
-const rehearsalDropEnd = migrationRehearsal.indexOf('\ncleanup_files() (', rehearsalDropStart);
+const rehearsalDropEnd = migrationRehearsal.indexOf(
+  '\n# BEGIN migration-rehearsal-image-cleanup',
+  rehearsalDropStart,
+);
 const rehearsalDropFunction = migrationRehearsal.slice(rehearsalDropStart, rehearsalDropEnd);
+const rehearsalImageCleanupStart = migrationRehearsal.indexOf('# BEGIN migration-rehearsal-image-cleanup');
+const rehearsalImageCleanupEnd = migrationRehearsal.indexOf('# END migration-rehearsal-image-cleanup');
+const rehearsalImageCleanupFunction = migrationRehearsal.slice(
+  rehearsalImageCleanupStart,
+  rehearsalImageCleanupEnd,
+);
 if (
   migrationRehearsal.includes('dropdb -h db -U supabase_admin postgres')
   || !migrationRehearsal.includes('createdb -h db -U supabase_admin --maintenance-db=postgres --owner=postgres "$RESTORE_DB_NAME"')
@@ -338,9 +361,17 @@ if (
   || !rehearsalDropFunction.includes('--if-exists --force "$RESTORE_DB_NAME"')
   || /psql[^\n]*-v db_name="\$RESTORE_DB_NAME"[^\n]*-c/u.test(migrationRehearsal)
   || /drop_created_database[^\n]*(?:>\s*\/dev\/null|2>&1)/u.test(migrationRehearsal)
+  || rehearsalImageCleanupStart < 0
+  || rehearsalImageCleanupEnd < 0
+  || !rehearsalImageCleanupFunction.includes("docker image ls --format '{{.Repository}}:{{.Tag}}'")
+  || !rehearsalImageCleanupFunction.includes('docker image inspect "$image"')
+  || !rehearsalImageCleanupFunction.includes('docker image rm "$image"')
+  || rehearsalImageCleanupFunction.includes('docker image inspect "$image" >/dev/null 2>&1')
   || migrationRehearsal.indexOf('database_created=1') < migrationRehearsal.indexOf('createdb -h db')
   || !migrationRehearsal.includes('case "$database_name" in')
   || migrationRehearsal.indexOf('drop_created_database\n') > migrationRehearsal.indexOf("printf 'isolated_database_removed=1")
+  || migrationRehearsal.indexOf('cleanup_verified=1') > migrationRehearsal.indexOf("printf 'cleanup_verified=%s\\n'")
+  || migrationRehearsal.indexOf('cleanup_verified=1') > migrationRehearsal.indexOf("printf 'production_migration_rehearsal_ok")
 ) {
   throw new Error('The migration rehearsal must protect production and only drop its created isolated database.');
 }
