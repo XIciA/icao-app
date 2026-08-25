@@ -42,7 +42,7 @@ mkdir -p "$ARCHIVE_DIR"
 cd "$SOURCE_ROOT"
 git ls-files -co --exclude-standard -z -- \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
-  patches packages/contracts services/api content/vocabulary infra/api \
+  patches packages/contracts services/api content/vocabulary infra/api infra/backup \
   | COPYFILE_DISABLE=1 tar --null -T - -czf "$ARCHIVE"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"
 

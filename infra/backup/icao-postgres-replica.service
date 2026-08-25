@@ -10,4 +10,4 @@ Nice=10
 IOSchedulingClass=best-effort
 IOSchedulingPriority=7
 TimeoutStartSec=30min
-ExecStart=/bin/sh /opt/icao/runtime/source/infra/backup/replicate-postgres.sh
+ExecStart=/bin/sh /opt/icao/runtime/backup-tools/current/replicate-postgres.sh
