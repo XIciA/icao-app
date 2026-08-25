@@ -79,15 +79,24 @@ const trustedPythonShellAssertions = trustedPythonClearedEnvironment
   .map((name) => `[ -z "\${${trustedPythonTestSentinel(name)}:-}" ] || exit 86`)
   .join('\n');
 
+const trustedPythonUnsetEntry = (productionName, replacementName = productionName) => {
+  const index = trustedPythonClearedEnvironment.indexOf(productionName);
+  assert.notEqual(index, -1, productionName);
+  const suffix = index === trustedPythonClearedEnvironment.length - 1 ? '\n' : ' \\\n';
+  return `    ${replacementName}${suffix}`;
+};
+
 const instrumentTrustedPythonRunner = (source) => {
   // Dynamic loaders may consume LD_* variables before a shell fixture can observe them.
   // Map every real clear to an inert test-only sentinel so mutation tests remain portable.
   let instrumented = source;
   for (const name of trustedPythonClearedEnvironment) {
-    const productionAssignment = `  ${name}= \\\n`;
-    if (!instrumented.includes(productionAssignment)) continue;
-    const testAssignment = `  ${trustedPythonTestSentinel(name)}= \\\n`;
-    instrumented = instrumented.replace(productionAssignment, testAssignment);
+    const productionEntry = trustedPythonUnsetEntry(name);
+    if (!instrumented.includes(productionEntry)) continue;
+    instrumented = instrumented.replace(
+      productionEntry,
+      trustedPythonUnsetEntry(name, trustedPythonTestSentinel(name)),
+    );
   }
   return instrumented;
 };
@@ -368,12 +377,16 @@ ${instrumentTrustedPythonRunner(guardSource)}
     assertRejected('non-root-owner', run(pythonPath, '1000:755'));
     assertRejected('group-writable-mode', run(pythonPath, '0:775'));
     assertRejected('unusable-executor', run(unusablePythonPath));
-    for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
-      const mutated = guard.replace(`  ${variable}= \\\n`, '');
+    for (const variable of trustedPythonClearedEnvironment) {
+      const productionEntry = trustedPythonUnsetEntry(variable);
+      const mutated = guard.replace(
+        productionEntry,
+        trustedPythonUnsetEntry(variable, 'ICAO_TEST_REMOVED_UNSET_ENTRY'),
+      );
       assert.notEqual(mutated, guard, variable);
       assert.equal(
         instrumentTrustedPythonRunner(mutated).includes(
-          `  ${trustedPythonTestSentinel(variable)}= \\\n`,
+          trustedPythonUnsetEntry(variable, trustedPythonTestSentinel(variable)),
         ),
         false,
         variable,
@@ -480,12 +493,15 @@ ${guard}
       },
     });
     assert.equal(hostileNodeOptions.status, 0, hostileNodeOptions.stderr);
-    for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
-      const mutatedRunner = runner.replace(`  ${variable}= \\\n`, '');
+    for (const variable of trustedPythonClearedEnvironment) {
+      const mutatedRunner = runner.replace(
+        trustedPythonUnsetEntry(variable),
+        trustedPythonUnsetEntry(variable, 'ICAO_TEST_REMOVED_UNSET_ENTRY'),
+      );
       assert.notEqual(mutatedRunner, runner, variable);
       assert.equal(
         instrumentTrustedPythonRunner(mutatedRunner).includes(
-          `  ${trustedPythonTestSentinel(variable)}= \\\n`,
+          trustedPythonUnsetEntry(variable, trustedPythonTestSentinel(variable)),
         ),
         false,
         variable,
