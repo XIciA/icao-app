@@ -37,20 +37,151 @@ function transaction(transactionId: string): VerifiedAppleTransaction {
 function auditDatabase(
   records: Array<Record<string, unknown>> = [],
   beforeWrite?: (value: Record<string, unknown>) => void | Promise<void>,
+  afterCommit?: (values: readonly Record<string, unknown>[]) => void | Promise<void>,
 ) {
+  let transactionTail = Promise.resolve();
+  const executor = {
+    execute: vi.fn(async () => undefined),
+    insert: vi.fn(() => ({
+      values: vi.fn(async (value: Record<string, unknown>) => {
+        await beforeWrite?.(value);
+        if (
+          value.action === 'apple_server_reconciliation.batch_completed'
+          && records.some((record) => (
+            record.action === value.action && record.requestId === value.requestId
+          ))
+        ) throw new Error('duplicate_batch_completed');
+        records.push({ sequence: records.length + 1, ...value });
+      }),
+    })),
+    select: vi.fn(() => ({
+      from: vi.fn(() => ({
+        where: vi.fn(() => ({
+          orderBy: vi.fn(async () => records),
+        })),
+      })),
+    })),
+  };
   return {
     database: {
       db: {
-        insert: vi.fn(() => ({
-          values: vi.fn(async (value: Record<string, unknown>) => {
-            await beforeWrite?.(value);
-            records.push(value);
-          }),
-        })),
+        ...executor,
+        transaction: vi.fn(async (operation: (value: typeof executor) => Promise<unknown>) => {
+          const previous = transactionTail;
+          let release = () => {};
+          transactionTail = new Promise<void>((resolve) => { release = resolve; });
+          await previous;
+          const originalLength = records.length;
+          let callbackCompleted = false;
+          try {
+            const result = await operation(executor);
+            callbackCompleted = true;
+            await afterCommit?.(records.slice(originalLength));
+            return result;
+          } catch (error) {
+            if (!callbackCompleted) records.splice(originalLength);
+            throw error;
+          } finally {
+            release();
+          }
+        }),
       },
     } as unknown as DatabaseService,
     records,
   };
+}
+
+function reconciliationFixture(
+  completionFailure: 'after_commit' | 'before_commit' | 'none' = 'before_commit',
+) {
+  let currentAccountId = ACCOUNT_ID;
+  let currentTransactions = ['one', 'two'];
+  let drift = false;
+  const issued = new Set<string>();
+  const appleServer = {
+    loadTransactionHistory: vi.fn(async () => ({
+      accountId: currentAccountId,
+      pages: 1,
+      transactions: currentTransactions.map((signed) => ({
+        accountId: currentAccountId,
+        productKey: 'membership_7d_v1',
+        signedTransaction: signed,
+        transaction: transaction(signed),
+      })),
+    })),
+  } as unknown as AppleStoreServerApiService;
+  const reconcileAppleServerTransaction = vi.fn(async (
+    signed: string,
+    environment: 'sandbox' | 'production',
+    apply: boolean,
+  ) => {
+    const alreadyIssued = issued.has(signed);
+    const action = alreadyIssued ? (drift ? 'refresh' as const : 'none' as const) : 'create' as const;
+    if (apply && !alreadyIssued) issued.add(signed);
+    return {
+      accountId: currentAccountId,
+      action,
+      appleStatus: 'verified' as const,
+      applied: apply && !alreadyIssued,
+      environment,
+      localStatus: alreadyIssued ? 'verified' as const : 'missing' as const,
+      mismatch: action !== 'none',
+      productKey: 'membership_7d_v1',
+      transactionId: signed,
+    };
+  });
+  let failCompletionOnce = completionFailure !== 'none';
+  const shouldFailCompletion = (values: readonly Record<string, unknown>[]) => (
+    failCompletionOnce
+    && values.some((value) => (
+      value.action === 'apple_server_reconciliation.batch_completed'
+    ))
+  );
+  const { database, records } = auditDatabase(
+    [],
+    completionFailure === 'before_commit'
+      ? (value) => {
+        if (shouldFailCompletion([value])) {
+          failCompletionOnce = false;
+          throw new Error('simulated_finalization_audit_failure');
+        }
+      }
+      : undefined,
+    completionFailure === 'after_commit'
+      ? (values) => {
+        if (shouldFailCompletion(values)) {
+          failCompletionOnce = false;
+          throw new Error('simulated_commit_ack_failure');
+        }
+      }
+      : undefined,
+  );
+  return {
+    issued,
+    reconcileAppleServerTransaction,
+    records,
+    service: new AppleServerReconciliationService(
+      appleServer,
+      { reconcileAppleServerTransaction } as unknown as CommerceService,
+      database,
+    ),
+    setAccountId(value: string) { currentAccountId = value; },
+    setDrift(value: boolean) { drift = value; },
+    setTransactions(value: string[]) { currentTransactions = value; },
+  };
+}
+
+async function createRecoverableBatch() {
+  const fixture = reconciliationFixture('before_commit');
+  const error = await fixture.service.reconcileTransactionHistory({
+    apply: true,
+    environment: 'sandbox',
+    transactionId: 'anchor',
+  }).catch((caught) => caught);
+  if (!(error instanceof AppleServerReconciliationApplyError) || !error.result.recovery) {
+    throw new Error('test_recoverable_batch_not_created');
+  }
+  return { error, fixture };
 }
 
 describe('AppleServerReconciliationService', () => {
@@ -365,11 +496,142 @@ describe('AppleServerReconciliationService', () => {
       status: 'completed',
     });
     expect(issued).toEqual(new Set(signedTransactions));
-    expect(records.map((record) => record.action).slice(-4)).toEqual([
+    expect(records.map((record) => record.action).slice(-2)).toEqual([
       'apple_server_reconciliation.batch_resumed',
-      'apple_server_reconciliation.item_completed',
-      'apple_server_reconciliation.item_completed',
       'apple_server_reconciliation.batch_completed',
     ]);
+    expect(reconcileAppleServerTransaction.mock.calls.filter((call) => call[2])).toHaveLength(2);
+  });
+
+  it('rejects an arbitrary resume UUID without durable batch evidence', async () => {
+    const fixture = reconciliationFixture('none');
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: '00000000-0000-4000-8000-000000000099',
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_batch_not_found');
+    expect(fixture.issued.size).toBe(0);
+  });
+
+  it('rejects resume evidence bound to another account', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    fixture.setAccountId('00000000-0000-4000-8000-000000000002');
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_account_mismatch');
+  });
+
+  it('rejects resume evidence bound to another environment', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'production',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_environment_mismatch');
+  });
+
+  it('rejects a resume when the verified transaction plan fingerprint changed', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    fixture.setTransactions(['one', 'two', 'three']);
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).rejects.toThrow('apple_server_reconciliation_resume_plan_mismatch');
+  });
+
+  it('requires a new batch when finalization-only resume detects local state drift', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    fixture.setDrift(true);
+    const rejected = await fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    }).catch((caught) => caught);
+    expect(rejected).toBeInstanceOf(AppleServerReconciliationApplyError);
+    expect(rejected).toMatchObject({
+      message: 'apple_server_reconciliation_resume_state_drift',
+      result: {
+        applied: 0,
+        failure: {
+          code: 'apple_server_reconciliation_resume_requires_new_batch',
+          index: 0,
+          stage: 'plan',
+        },
+        status: 'rejected',
+      },
+    });
+    expect(fixture.records.some((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ))).toBe(false);
+    expect(fixture.reconcileAppleServerTransaction.mock.calls.filter((call) => call[2]))
+      .toHaveLength(2);
+  });
+
+  it('rejects resume after the batch already has its unique completed terminal event', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    const input = {
+      apply: true,
+      environment: 'sandbox' as const,
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    };
+    await expect(fixture.service.reconcileTransactionHistory(input)).resolves.toMatchObject({
+      status: 'completed',
+    });
+    await expect(fixture.service.reconcileTransactionHistory(input))
+      .rejects.toThrow('apple_server_reconciliation_resume_already_completed');
+    expect(fixture.records.filter((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ))).toHaveLength(1);
+  });
+
+  it('serializes concurrent resumes so only one can complete the batch', async () => {
+    const { error, fixture } = await createRecoverableBatch();
+    const input = {
+      apply: true,
+      environment: 'sandbox' as const,
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    };
+    const results = await Promise.allSettled([
+      fixture.service.reconcileTransactionHistory(input),
+      fixture.service.reconcileTransactionHistory(input),
+    ]);
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const rejected = results.find((result) => result.status === 'rejected');
+    expect(rejected).toMatchObject({
+      reason: expect.objectContaining({
+        message: 'apple_server_reconciliation_resume_already_completed',
+      }),
+    });
+    expect(fixture.records.filter((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ))).toHaveLength(1);
+  });
+
+  it('treats a committed batch_completed row as success after a lost commit acknowledgement', async () => {
+    const fixture = reconciliationFixture('after_commit');
+    await expect(fixture.service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      transactionId: 'anchor',
+    })).resolves.toMatchObject({
+      applied: 2,
+      status: 'completed',
+    });
+    expect(fixture.records.filter((record) => (
+      record.action === 'apple_server_reconciliation.batch_completed'
+    ))).toHaveLength(1);
+    expect(fixture.records.some((record) => (
+      record.action === 'apple_server_reconciliation.batch_finalization_failed'
+    ))).toBe(false);
   });
 });

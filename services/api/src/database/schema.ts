@@ -730,6 +730,9 @@ export const opsAuditEvents = pgTable('ops_audit_events', {
 }, (table) => [
   index('ops_audit_events_actor_created').on(table.actorStaffId, table.createdAt),
   index('ops_audit_events_target_created').on(table.targetType, table.targetId, table.createdAt),
+  uniqueIndex('ops_audit_events_apple_reconciliation_completed')
+    .on(table.requestId)
+    .where(sql`${table.action} = 'apple_server_reconciliation.batch_completed'`),
   check('ops_audit_events_actor_role_check', sql`${table.actorRole} IS NULL OR ${table.actorRole} IN ('admin', 'support')`),
   check('ops_audit_events_reason_check', sql`length(btrim(${table.reason})) BETWEEN 3 AND 500`),
 ]).enableRLS();

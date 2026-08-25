@@ -202,12 +202,14 @@ export async function runAppleIapServerCli(
       error: error instanceof AppleServerReconciliationApplyError
         ? {
           code: error.message,
-          ...(error.result.status === 'finalization_failed'
+          ...(error.result.recovery
             ? {
               recoverable: true,
-              resumeBatchId: error.result.batchId,
+              resumeBatchId: error.result.recovery.resumeBatchId,
             }
-            : {}),
+            : error.result.status === 'finalization_failed'
+              ? { recoverable: false }
+              : {}),
           result: error.result,
         }
         : { code: safeCliErrorCode(error) },

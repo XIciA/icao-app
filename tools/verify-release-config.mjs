@@ -184,6 +184,10 @@ const appleServerReconciliation = await readFile(
   'utf8',
 );
 const appleIapServerCli = await readFile('services/api/src/apple-iap-server-cli.ts', 'utf8');
+const appleReconciliationTerminalMigration = await readFile(
+  'services/api/drizzle/0033_medical_preak.sql',
+  'utf8',
+);
 const apiReadme = await readFile('infra/api/README.md', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
   'services/api/src/config.ts',
@@ -960,8 +964,17 @@ if (
   || !appleServerReconciliation.includes('apple_server_reconciliation.batch_started')
   || !appleServerReconciliation.includes('apple_server_reconciliation.batch_failed')
   || !appleServerReconciliation.includes('apple_server_reconciliation.batch_finalization_failed')
+  || !appleServerReconciliation.includes('pg_advisory_xact_lock')
+  || !appleServerReconciliation.includes('assertBatchEvidence')
+  || !appleServerReconciliation.includes('apple_server_reconciliation_resume_state_drift')
   || !appleServerReconciliation.includes("status: 'finalization_failed'")
   || !appleServerReconciliation.includes("input.environment,\n        false")
+  || !appleReconciliationTerminalMigration.includes(
+    'ops_audit_events_apple_reconciliation_completed',
+  )
+  || !productionSchemaVerifier.includes(
+    'production_apple_reconciliation_terminal_index_missing',
+  )
   || !appleIapServerCli.includes('apple_iap_server_cli_requires_root')
   || !appleIapServerCli.includes('resume-batch-id')
   || !apiReadme.includes('--resume-batch-id RESUME_BATCH_ID')

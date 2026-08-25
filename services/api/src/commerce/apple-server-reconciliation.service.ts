@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 
 import { Injectable } from '@nestjs/common';
+import { and, asc, eq, sql } from 'drizzle-orm';
 
 import { opsAuditEvents } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
@@ -55,6 +56,27 @@ export class AppleServerReconciliationApplyError extends Error {
   }
 }
 
+class AppleServerReconciliationStateError extends Error {}
+
+type ReconciliationTransaction = Parameters<
+  Parameters<DatabaseService['db']['transaction']>[0]
+>[0];
+
+type AuditEvent = Readonly<{
+  action: string;
+  metadata: unknown;
+  sequence: number;
+  targetId: string | null;
+}>;
+
+type BatchEvidence = Readonly<{
+  accountId: string;
+  batchId: string;
+  environment: CommerceEnvironment;
+  itemReferences: readonly string[];
+  planFingerprint: string;
+}>;
+
 function transactionReferenceHash(transactionId: string) {
   return createHash('sha256').update(`apple-reconciliation-v1\0${transactionId}`).digest('hex');
 }
@@ -68,6 +90,27 @@ function safeFailureCode(error: unknown) {
 
 function isReconciliationBatchId(value: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u.test(value);
+}
+
+function metadataRecord(value: unknown) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new AppleServerReconciliationStateError(
+      'apple_server_reconciliation_resume_evidence_invalid',
+    );
+  }
+  return value as Record<string, unknown>;
+}
+
+function auditReportReferences(value: unknown) {
+  if (!Array.isArray(value)) return null;
+  const references: string[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return null;
+    const reference = (item as Record<string, unknown>).transactionReferenceHash;
+    if (typeof reference !== 'string') return null;
+    references.push(reference);
+  }
+  return references;
 }
 
 @Injectable()
@@ -97,8 +140,8 @@ export class AppleServerReconciliationService {
         maxTransactions: input.maxTransactions,
       },
     );
-    // Resolve every local action before the first write. Apple network access
-    // has already finished, and no database transaction is held across it.
+    // Apple network access finishes before any batch transaction or advisory
+    // lock. The local plan is also complete before the first business write.
     const plan: AppleCommerceReconciliationReport[] = [];
     for (const item of history.transactions) {
       plan.push(await this.commerce.reconcileAppleServerTransaction(
@@ -111,7 +154,22 @@ export class AppleServerReconciliationService {
       return this.result(history, input.environment, false, plan);
     }
 
-    const batchId = input.resumeBatchId ?? randomUUID();
+    const planFingerprint = this.planFingerprint(
+      history.accountId,
+      input.environment,
+      plan,
+    );
+    const evidence: BatchEvidence = {
+      accountId: history.accountId,
+      batchId: input.resumeBatchId ?? randomUUID(),
+      environment: input.environment,
+      itemReferences: plan.map((report) => transactionReferenceHash(report.transactionId)),
+      planFingerprint,
+    };
+    if (input.resumeBatchId) {
+      return this.resumeFinalization(history, input.environment, plan, evidence);
+    }
+
     const rejectedIndex = plan.findIndex((item) => (
       item.action === 'blocked_account_closed' || item.action === 'local_newer'
     ));
@@ -124,9 +182,7 @@ export class AppleServerReconciliationService {
         transactionReferenceHash: transactionReferenceHash(rejected.transactionId),
       } as const;
       await this.auditBatch('apple_server_reconciliation.batch_rejected', {
-        accountId: history.accountId,
-        batchId,
-        environment: input.environment,
+        ...evidence,
         metadata: { failure, planned: this.auditPlan(plan) },
       });
       throw new AppleServerReconciliationApplyError(
@@ -134,7 +190,7 @@ export class AppleServerReconciliationService {
         {
           accountId: history.accountId,
           applied: 0,
-          batchId,
+          batchId: evidence.batchId,
           checked: plan.length,
           environment: input.environment,
           failure,
@@ -147,20 +203,12 @@ export class AppleServerReconciliationService {
       );
     }
 
-    await this.auditBatch(
-      input.resumeBatchId
-        ? 'apple_server_reconciliation.batch_resumed'
-        : 'apple_server_reconciliation.batch_started',
-      {
-        accountId: history.accountId,
-        batchId,
-        environment: input.environment,
-        metadata: {
-          planned: this.auditPlan(plan),
-          resumed: Boolean(input.resumeBatchId),
-        },
-      },
-    );
+    await this.withBatchLock(evidence.batchId, async (transaction) => {
+      await this.auditBatch('apple_server_reconciliation.batch_started', {
+        ...evidence,
+        metadata: { planned: this.auditPlan(plan) },
+      }, transaction);
+    });
     const completed: AppleCommerceReconciliationReport[] = [];
     for (const [index, item] of history.transactions.entries()) {
       try {
@@ -175,9 +223,7 @@ export class AppleServerReconciliationService {
         ) throw new Error(`apple_server_reconciliation_${report.action}`);
         completed.push(report);
         await this.auditBatch('apple_server_reconciliation.item_completed', {
-          accountId: history.accountId,
-          batchId,
-          environment: input.environment,
+          ...evidence,
           metadata: {
             action: report.action,
             applied: report.applied,
@@ -195,9 +241,7 @@ export class AppleServerReconciliationService {
         };
         try {
           await this.auditBatch('apple_server_reconciliation.batch_failed', {
-            accountId: history.accountId,
-            batchId,
-            environment: input.environment,
+            ...evidence,
             metadata: {
               applied: completed.filter((report) => report.applied).length,
               completed: this.auditPlan(completed),
@@ -205,16 +249,15 @@ export class AppleServerReconciliationService {
             },
           });
         } catch {
-          // The append-only batch_started event remains the durable incomplete
-          // marker. Preserve the per-item CLI report even if the failure audit
-          // cannot be appended during the same infrastructure incident.
+          // The append-only started event remains the durable incomplete
+          // marker. Preserve the per-item CLI report during an audit outage.
         }
         throw new AppleServerReconciliationApplyError(
           'apple_server_reconciliation_apply_failed',
           {
             accountId: history.accountId,
             applied: completed.filter((report) => report.applied).length,
-            batchId,
+            batchId: evidence.batchId,
             checked: plan.length,
             environment: input.environment,
             failure,
@@ -227,61 +270,351 @@ export class AppleServerReconciliationService {
         );
       }
     }
+
+    await this.completeBatch(history, plan, completed, evidence, false);
+    return {
+      ...this.result(history, input.environment, true, completed),
+      batchId: evidence.batchId,
+      status: 'completed',
+    };
+  }
+
+  private async resumeFinalization(
+    history: Awaited<ReturnType<AppleStoreServerApiService['loadTransactionHistory']>>,
+    environment: CommerceEnvironment,
+    plan: readonly AppleCommerceReconciliationReport[],
+    evidence: BatchEvidence,
+  ) {
+    const completed = await this.completeBatch(
+      history,
+      plan,
+      plan,
+      evidence,
+      true,
+      async () => {
+        const lockedPlan: AppleCommerceReconciliationReport[] = [];
+        for (const item of history.transactions) {
+          lockedPlan.push(await this.commerce.reconcileAppleServerTransaction(
+            item.signedTransaction,
+            environment,
+            false,
+          ));
+        }
+        return lockedPlan;
+      },
+    );
+    return {
+      ...this.result(history, environment, true, completed),
+      batchId: evidence.batchId,
+      status: 'completed' as const,
+    };
+  }
+
+  private async completeBatch(
+    history: Readonly<{ accountId: string; pages: number }>,
+    plan: readonly AppleCommerceReconciliationReport[],
+    completed: readonly AppleCommerceReconciliationReport[],
+    evidence: BatchEvidence,
+    resume: boolean,
+    refreshResumePlan?: () => Promise<readonly AppleCommerceReconciliationReport[]>,
+  ) {
+    let finalPlan = plan;
+    let finalCompleted = completed;
     try {
-      await this.auditBatch('apple_server_reconciliation.batch_completed', {
-        accountId: history.accountId,
-        batchId,
-        environment: input.environment,
-        metadata: {
-          applied: completed.filter((report) => report.applied).length,
-          completed: this.auditPlan(completed),
-        },
+      await this.withBatchLock(evidence.batchId, async (transaction) => {
+        const events = await this.batchEvents(evidence.batchId, transaction);
+        this.assertBatchEvidence(events, evidence, {
+          allowCompleted: false,
+          requireFinalizationFailure: resume,
+        });
+        if (resume) {
+          finalPlan = await refreshResumePlan!();
+          finalCompleted = finalPlan;
+          if (this.planFingerprint(
+            history.accountId,
+            evidence.environment,
+            finalPlan,
+          ) !== evidence.planFingerprint) {
+            throw new AppleServerReconciliationStateError(
+              'apple_server_reconciliation_resume_plan_mismatch',
+            );
+          }
+        }
+        const driftIndex = resume
+          ? finalPlan.findIndex((report) => report.action !== 'none')
+          : -1;
+        if (driftIndex >= 0) {
+          const drift = finalPlan[driftIndex]!;
+          throw new AppleServerReconciliationApplyError(
+            'apple_server_reconciliation_resume_state_drift',
+            {
+              accountId: history.accountId,
+              applied: 0,
+              batchId: evidence.batchId,
+              checked: finalPlan.length,
+              environment: evidence.environment,
+              failure: {
+                code: 'apple_server_reconciliation_resume_requires_new_batch',
+                index: driftIndex,
+                stage: 'plan',
+                transactionReferenceHash: transactionReferenceHash(drift.transactionId),
+              },
+              mode: 'apply',
+              pages: history.pages,
+              planned: finalPlan,
+              status: 'rejected',
+              transactions: [],
+            },
+          );
+        }
+        if (resume) {
+          await this.auditBatch('apple_server_reconciliation.batch_resumed', {
+            ...evidence,
+            metadata: { planned: this.auditPlan(finalPlan) },
+          }, transaction);
+        }
+        await this.auditBatch('apple_server_reconciliation.batch_completed', {
+          ...evidence,
+          metadata: {
+            applied: finalCompleted.filter((report) => report.applied).length,
+            completed: this.auditPlan(finalCompleted),
+          },
+        }, transaction);
       });
+      return finalCompleted;
     } catch (error) {
+      if (
+        error instanceof AppleServerReconciliationApplyError
+        || error instanceof AppleServerReconciliationStateError
+      ) throw error;
+
       const failure = {
         code: safeFailureCode(error),
-        index: completed.length,
+        index: finalCompleted.length,
         stage: 'batch_completed_audit' as const,
       };
+      let recoveryRecorded = false;
       try {
-        await this.auditBatch('apple_server_reconciliation.batch_finalization_failed', {
-          accountId: history.accountId,
-          batchId,
-          environment: input.environment,
-          metadata: {
-            applied: completed.filter((report) => report.applied).length,
-            completed: this.auditPlan(completed),
-            failure,
-            recovery: { resumeBatchId: batchId },
-          },
+        const recovery = await this.withBatchLock(evidence.batchId, async (transaction) => {
+          const events = await this.batchEvents(evidence.batchId, transaction);
+          const state = this.assertBatchEvidence(events, evidence, {
+            allowCompleted: true,
+            requireFinalizationFailure: resume,
+          });
+          if (state.completed) return 'completed' as const;
+          await this.auditBatch('apple_server_reconciliation.batch_finalization_failed', {
+            ...evidence,
+            metadata: {
+              applied: finalCompleted.filter((report) => report.applied).length,
+              completed: this.auditPlan(finalCompleted),
+              failure,
+            },
+          }, transaction);
+          return 'failure_recorded' as const;
         });
+        if (recovery === 'completed') return finalCompleted;
+        recoveryRecorded = true;
       } catch {
-        // The started/resumed and per-item events still prove the business
-        // writes completed. Preserve the recovery handle in the CLI result.
+        // If neither the completion nor failure marker can be read durably,
+        // do not advertise the batch as resumable.
       }
       throw new AppleServerReconciliationApplyError(
         'apple_server_reconciliation_finalization_failed',
         {
           accountId: history.accountId,
-          applied: completed.filter((report) => report.applied).length,
-          batchId,
-          checked: plan.length,
-          environment: input.environment,
+          applied: finalCompleted.filter((report) => report.applied).length,
+          batchId: evidence.batchId,
+          checked: finalPlan.length,
+          environment: evidence.environment,
           failure,
           mode: 'apply',
           pages: history.pages,
-          planned: plan,
-          recovery: { resumeBatchId: batchId },
+          planned: finalPlan,
+          ...(recoveryRecorded
+            ? { recovery: { resumeBatchId: evidence.batchId } }
+            : {}),
           status: 'finalization_failed',
-          transactions: completed,
+          transactions: finalCompleted,
         },
       );
     }
-    return {
-      ...this.result(history, input.environment, true, completed),
-      batchId,
-      status: 'completed',
-    };
+  }
+
+  private assertBatchEvidence(
+    events: readonly AuditEvent[],
+    evidence: BatchEvidence,
+    options: Readonly<{
+      allowCompleted: boolean;
+      requireFinalizationFailure: boolean;
+    }>,
+  ) {
+    if (events.length === 0) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_batch_not_found',
+      );
+    }
+    for (const event of events) {
+      if (event.targetId !== evidence.accountId) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_account_mismatch',
+        );
+      }
+      const metadata = metadataRecord(event.metadata);
+      if (metadata.environment !== evidence.environment) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_environment_mismatch',
+        );
+      }
+      if (metadata.batchId !== evidence.batchId) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_evidence_invalid',
+        );
+      }
+      if (metadata.planFingerprint !== evidence.planFingerprint) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_plan_mismatch',
+        );
+      }
+    }
+    const started = events.filter((event) => (
+      event.action === 'apple_server_reconciliation.batch_started'
+    ));
+    if (started.length !== 1) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_evidence_incomplete',
+      );
+    }
+    const startedReferences = auditReportReferences(
+      metadataRecord(started[0]!.metadata).planned,
+    );
+    if (JSON.stringify(startedReferences) !== JSON.stringify(evidence.itemReferences)) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_evidence_incomplete',
+      );
+    }
+    if (events.some((event) => (
+      event.action === 'apple_server_reconciliation.batch_failed'
+      || event.action === 'apple_server_reconciliation.batch_rejected'
+    ))) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_evidence_invalid',
+      );
+    }
+    const completedEvents = events.filter((event) => (
+      event.action === 'apple_server_reconciliation.batch_completed'
+    ));
+    if (completedEvents.length > 1) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_evidence_invalid',
+      );
+    }
+    const itemEvents = events.filter((event) => (
+      event.action === 'apple_server_reconciliation.item_completed'
+    ));
+    if (itemEvents.length !== evidence.itemReferences.length) {
+      throw new AppleServerReconciliationStateError(
+        'apple_server_reconciliation_resume_evidence_incomplete',
+      );
+    }
+    for (const [index, reference] of evidence.itemReferences.entries()) {
+      const matching = itemEvents.filter((event) => {
+        const metadata = metadataRecord(event.metadata);
+        return metadata.index === index && metadata.transactionReferenceHash === reference;
+      });
+      if (matching.length !== 1 || matching[0]!.sequence <= started[0]!.sequence) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_evidence_incomplete',
+        );
+      }
+    }
+    if (completedEvents.length === 1) {
+      const completedReferences = auditReportReferences(
+        metadataRecord(completedEvents[0]!.metadata).completed,
+      );
+      if (JSON.stringify(completedReferences) !== JSON.stringify(evidence.itemReferences)) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_evidence_incomplete',
+        );
+      }
+      if (!options.allowCompleted) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_already_completed',
+        );
+      }
+      return { completed: true } as const;
+    }
+    if (options.requireFinalizationFailure) {
+      const lastItemSequence = Math.max(...itemEvents.map((event) => event.sequence));
+      const finalizationFailures = events.filter((event) => (
+        event.action === 'apple_server_reconciliation.batch_finalization_failed'
+        && event.sequence > lastItemSequence
+      ));
+      if (finalizationFailures.length === 0) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_evidence_incomplete',
+        );
+      }
+      const latestFailureMetadata = metadataRecord(finalizationFailures.at(-1)!.metadata);
+      const failure = metadataRecord(latestFailureMetadata.failure);
+      const failureReferences = auditReportReferences(latestFailureMetadata.completed);
+      if (
+        failure.stage !== 'batch_completed_audit'
+        || !Number.isSafeInteger(latestFailureMetadata.applied)
+        || Number(latestFailureMetadata.applied) < 0
+        || Number(latestFailureMetadata.applied) > evidence.itemReferences.length
+        || JSON.stringify(failureReferences) !== JSON.stringify(evidence.itemReferences)
+      ) {
+        throw new AppleServerReconciliationStateError(
+          'apple_server_reconciliation_resume_evidence_incomplete',
+        );
+      }
+    }
+    return { completed: false } as const;
+  }
+
+  private async batchEvents(
+    batchId: string,
+    database: Pick<ReconciliationTransaction, 'select'>,
+  ): Promise<readonly AuditEvent[]> {
+    return database.select({
+      action: opsAuditEvents.action,
+      metadata: opsAuditEvents.metadata,
+      sequence: opsAuditEvents.sequence,
+      targetId: opsAuditEvents.targetId,
+    }).from(opsAuditEvents).where(and(
+      eq(opsAuditEvents.requestId, batchId),
+      eq(opsAuditEvents.targetType, 'apple_server_reconciliation'),
+    )).orderBy(asc(opsAuditEvents.sequence));
+  }
+
+  private async withBatchLock<T>(
+    batchId: string,
+    operation: (transaction: ReconciliationTransaction) => Promise<T>,
+  ) {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(
+          hashtextextended(${`apple-reconciliation-batch:${batchId}`}, 0)
+        )
+      `);
+      return operation(transaction);
+    });
+  }
+
+  private planFingerprint(
+    accountId: string,
+    environment: CommerceEnvironment,
+    reports: readonly AppleCommerceReconciliationReport[],
+  ) {
+    return createHash('sha256').update(JSON.stringify({
+      accountId,
+      environment,
+      transactions: reports.map((report) => ({
+        appleStatus: report.appleStatus,
+        productKey: report.productKey,
+        transactionReferenceHash: transactionReferenceHash(report.transactionId),
+      })),
+    })).digest('hex');
   }
 
   private auditPlan(reports: readonly AppleCommerceReconciliationReport[]) {
@@ -297,14 +630,10 @@ export class AppleServerReconciliationService {
 
   private async auditBatch(
     action: string,
-    input: Readonly<{
-      accountId: string;
-      batchId: string;
-      environment: CommerceEnvironment;
-      metadata: Record<string, unknown>;
-    }>,
+    input: BatchEvidence & Readonly<{ metadata: Record<string, unknown> }>,
+    database: Pick<ReconciliationTransaction, 'insert'> = this.database.db,
   ) {
-    await this.database.db.insert(opsAuditEvents).values({
+    await database.insert(opsAuditEvents).values({
       requestId: input.batchId,
       actorStaffId: null,
       actorRole: null,
@@ -315,6 +644,7 @@ export class AppleServerReconciliationService {
       metadata: {
         batchId: input.batchId,
         environment: input.environment,
+        planFingerprint: input.planFingerprint,
         ...input.metadata,
       },
     });

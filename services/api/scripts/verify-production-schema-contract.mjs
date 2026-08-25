@@ -134,6 +134,23 @@ try {
     `;
     assert(deviceDigest?.count === 0, 'production_content_device_digest_still_present');
 
+    const [appleReconciliationTerminalIndex] = await transaction`
+      select count(*)::integer as count
+      from pg_index index_state
+      join pg_class index_relation on index_relation.oid = index_state.indexrelid
+      join pg_class table_relation on table_relation.oid = index_state.indrelid
+      join pg_namespace namespace_state on namespace_state.oid = table_relation.relnamespace
+      where namespace_state.nspname = 'public'
+        and table_relation.relname = 'ops_audit_events'
+        and index_relation.relname = 'ops_audit_events_apple_reconciliation_completed'
+        and index_state.indisunique
+        and index_state.indpred is not null
+    `;
+    assert(
+      appleReconciliationTerminalIndex?.count === 1,
+      'production_apple_reconciliation_terminal_index_missing',
+    );
+
     const products = await transaction`
       select product_key, duration_days, base_price_cny_fen, ai_point_rule_version,
              ai_point_batch_count, ai_point_batch_interval_days, ai_points_per_batch
@@ -169,6 +186,7 @@ try {
 
     return {
       appleProductMappings: appleProducts.length,
+      appleReconciliationTerminalIndexes: appleReconciliationTerminalIndex.count,
       commerceProducts: products.length,
       deviceDigestColumns: deviceDigest.count,
       requiredTables: publicTableContract.expectedPublicTables,
