@@ -12,6 +12,7 @@ import type {
   VerifyAppleTransactionResponse,
 } from '@icao/contracts';
 import { and, asc, eq, lte, sql } from 'drizzle-orm';
+import { createHmac } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import type { DatabaseService } from '../database/database.service';
@@ -22,6 +23,7 @@ import {
   appleNotificationEvents,
   appleTransactions,
   commerceOrders,
+  contentEnvironmentSessionGrants,
   membershipEntitlementSegments,
 } from '../database/schema';
 import {
@@ -78,6 +80,7 @@ export class CommerceService {
   async verifyAppleTransaction(
     accountId: string,
     signedTransaction: string,
+    sessionId?: string,
   ): Promise<VerifyAppleTransactionResponse> {
     const processedAt = new Date();
     let verified: VerifiedAppleTransaction;
@@ -170,15 +173,51 @@ export class CommerceService {
         await this.rebuildMembership(transaction, accountId, environment, processedAt);
       }
 
+      const entitlement = await this.entitlementInTransaction(
+        transaction,
+        accountId,
+        environment,
+        processedAt,
+      );
+      if (
+        environment === 'sandbox'
+        && sessionId
+        && entitlement.membership.active
+        && entitlement.membership.expiresAt
+        && this.config.contentCredentialSigningSecret
+      ) {
+        const expiresAt = new Date(entitlement.membership.expiresAt);
+        const sessionDigest = createHmac('sha256', this.config.contentCredentialSigningSecret)
+          .update(`content-session-v1\0${sessionId}`)
+          .digest('hex');
+        await transaction.insert(contentEnvironmentSessionGrants).values({
+          environment,
+          accountId,
+          sessionDigest,
+          verifiedTransactionId: verified.transactionId,
+          expiresAt,
+          retentionAt: new Date(expiresAt.getTime() + 180 * DAY_MS),
+          createdAt: processedAt,
+          updatedAt: processedAt,
+        }).onConflictDoUpdate({
+          target: [
+            contentEnvironmentSessionGrants.environment,
+            contentEnvironmentSessionGrants.sessionDigest,
+          ],
+          set: {
+            accountId,
+            verifiedTransactionId: verified.transactionId,
+            expiresAt,
+            retentionAt: new Date(expiresAt.getTime() + 180 * DAY_MS),
+            updatedAt: processedAt,
+          },
+        });
+      }
+
       return {
         created,
         transactionId: verified.transactionId,
-        entitlement: await this.entitlementInTransaction(
-          transaction,
-          accountId,
-          environment,
-          processedAt,
-        ),
+        entitlement,
       };
     });
   }

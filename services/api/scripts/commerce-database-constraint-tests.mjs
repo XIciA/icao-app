@@ -465,7 +465,7 @@ function deletionService({
   };
 }
 
-test('the cumulative migration enables RLS on all 47 public tables', () => {
+test('the cumulative migration enables RLS on all 49 public tables', () => {
   assert.equal(
     queryScalar(`
       SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
@@ -473,7 +473,7 @@ test('the cumulative migration enables RLS on all 47 public tables', () => {
       JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
       WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
     `),
-    '47:47',
+    '49:49',
   );
 });
 
@@ -489,6 +489,8 @@ test('account-security authority tables are private to the API database role', (
     'ai_consent_challenges',
     'apple_revocable_credentials',
     'apple_credential_intakes',
+    'content_access_credentials',
+    'content_environment_session_grants',
     'lifetime_identity_benefit_claims',
     'phone_otp_intents',
     'recent_auth_challenges',
@@ -3054,6 +3056,7 @@ function persistentCommerceService(signedTransactions, signedNotifications = new
   };
   return new CommerceService({
     appleIapBundleId: 'com.readyoufife.ios',
+    contentCredentialSigningSecret: 's'.repeat(32),
   }, { db: serviceDatabase }, verifier);
 }
 
@@ -3157,7 +3160,7 @@ test('isolates identical transaction ids and entitlement queries across Apple en
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
 
   await commerce.verifyAppleTransaction(accountId, 'production-jws');
-  await commerce.verifyAppleTransaction(accountId, 'sandbox-jws');
+  await commerce.verifyAppleTransaction(accountId, 'sandbox-jws', 'sandbox-session-00000001');
   const entitlements = await commerce.currentEntitlement(accountId);
   const productionEntitlement = entitlements.production;
   const sandboxEntitlement = entitlements.sandbox;
@@ -3174,6 +3177,11 @@ test('isolates identical transaction ids and entitlement queries across Apple en
   assert.deepEqual(
     transactions.map((transaction) => transaction.environment).sort(),
     ['production', 'sandbox'],
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM content_environment_session_grants
+      WHERE account_id = '${accountId}' AND environment = 'sandbox'`),
+    '1',
   );
 });
 

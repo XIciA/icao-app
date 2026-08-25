@@ -1,6 +1,7 @@
 /* eslint-disable import/first */
 import { act, render, waitFor } from '@testing-library/react-native';
 import { Text } from 'react-native';
+import { getIcaoDistributionEnvironment } from '@icao/distribution-environment';
 
 import type {
   CommerceEntitlementsResponse,
@@ -27,6 +28,7 @@ const mockLoadUncertainPurchase = jest.fn(async (accountId: string) => (
 const mockClearUncertainPurchase = jest.fn(async (accountId: string) => {
   mockUncertainPurchaseStore.delete(accountId);
 });
+const mockDistributionEnvironment = jest.mocked(getIcaoDistributionEnvironment);
 
 jest.mock('@/features/auth/AuthProvider', () => ({
   useAuth: () => ({ account: { accountId: mockAccountId } }),
@@ -158,6 +160,7 @@ function Probe() {
 
 describe('<CommerceRuntimeProvider />', () => {
   beforeEach(() => {
+    mockDistributionEnvironment.mockReturnValue('production');
     mockAccountId = firstAccountId;
     mockUncertainPurchaseStore.clear();
     mockLoadUncertainPurchase.mockClear().mockImplementation(async (accountId: string) => (
@@ -239,6 +242,7 @@ describe('<CommerceRuntimeProvider />', () => {
   });
 
   it('selects sandbox entitlement only after StoreKit supplies verified sandbox history', async () => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
     const sandboxTransaction = transaction('sandbox');
     mockCreateProvider.mockReturnValue(provider({
       reconcileTransactions: jest.fn(() => inbox([sandboxTransaction])),
@@ -467,6 +471,7 @@ describe('<CommerceRuntimeProvider />', () => {
   });
 
   it('uses explicit Restore Purchases to clear a matching sandbox lock', async () => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
     const sandboxPurchase = transaction('sandbox', 'sandbox-pending');
     mockUncertainPurchaseStore.set(firstAccountId, {
       accountId: firstAccountId,

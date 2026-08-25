@@ -31,9 +31,9 @@ describe('radio player queue', () => {
   test('embedded shared contract exposes every eligible track with duration', () => {
     const catalogs = getEmbeddedRadioCatalogs();
     expect(catalogs.map((catalog) => [catalog.bankId, catalog.tracks.length])).toEqual([
-      ['listening', 1223],
+      ['listening', 40],
       ['sentences900', 900],
-      ['storytelling', 436],
+      ['storytelling', 3],
     ]);
     expect(catalogs.flatMap((catalog) => catalog.tracks).every((track) => track.durationSeconds > 0)).toBe(true);
   });

@@ -1,9 +1,12 @@
-import { embeddedQuestionBankRepository } from '@/features/question-bank/data/repository';
+import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
 
 import { buildHotspotSession, resolveHotspotTopics } from '../build-hotspot-session';
 import { getHotspotBrief, loadHotspotBriefs } from '../repository';
 
 describe('OPI hotspot data and study session', () => {
+  const dataset = (completeQuestionBanks as QuestionBankDataset[]).find((bank) => bank.id === 'opi');
+
   it('loads unique briefs in descending date order', () => {
     const briefs = loadHotspotBriefs();
     expect(briefs).toHaveLength(16);
@@ -15,7 +18,6 @@ describe('OPI hotspot data and study session', () => {
   });
 
   it('resolves every card from its declared OPI topic and excludes image questions', async () => {
-    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
     expect(dataset).toBeDefined();
     if (!dataset) return;
 
@@ -30,7 +32,6 @@ describe('OPI hotspot data and study session', () => {
   });
 
   it('builds a hotspot session with the shared OPI study behavior and record marker', async () => {
-    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
     expect(dataset).toBeDefined();
     if (!dataset) return;
 
@@ -44,7 +45,6 @@ describe('OPI hotspot data and study session', () => {
   });
 
   it('fails closed when a card is assigned to the wrong topic', async () => {
-    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
     expect(dataset).toBeDefined();
     if (!dataset) return;
 

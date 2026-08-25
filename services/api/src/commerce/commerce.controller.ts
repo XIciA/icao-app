@@ -35,6 +35,7 @@ export class CommerceController {
       data: await this.commerce.verifyAppleTransaction(
         request.user!.id,
         parsed.data.signedTransaction,
+        request.auth!.sessionId,
       ),
     };
   }

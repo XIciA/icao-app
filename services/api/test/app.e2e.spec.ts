@@ -1,6 +1,7 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
+import { generateKeyPairSync } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 
 import { AppModule } from '../src/app.module';
@@ -26,6 +27,17 @@ process.env.SUPABASE_SECRET_KEY = 'test-secret-key-that-is-long-enough';
 process.env.INVITE_AUTH_SECRET = 'test-invite-auth-secret-that-is-long-enough';
 process.env.ACCOUNT_IDENTITY_HASH_SECRET = 'test-account-identity-secret-that-is-long-enough';
 
+const testContentCredentialKeyPair = generateKeyPairSync('ed25519');
+const testContentCredentialPrivateKey = testContentCredentialKeyPair.privateKey.export({
+  format: 'pem',
+  type: 'pkcs8',
+}).toString();
+const testContentCredentialPublicJwk = testContentCredentialKeyPair.publicKey.export({ format: 'jwk' });
+const testContentCredentialPublicKey = Buffer.from(testContentCredentialPublicJwk.x!, 'base64url').toString('base64');
+const testContentCredentialConfigOptions = {
+  expectedContentCredentialPublicKeyBase64: testContentCredentialPublicKey,
+};
+
 function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
   return {
     NODE_ENV: 'production',
@@ -37,6 +49,8 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
     INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
     ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+    CONTENT_CREDENTIAL_SIGNING_SECRET: 'test-content-credential-secret-that-is-long-enough',
+    CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY: testContentCredentialPrivateKey,
     IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
     APPLE_SIGN_IN_CLIENT_ID: 'com.feizhuicao.app',
     APPLE_TEAM_ID: 'TEAMID1234',
@@ -57,6 +71,10 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     AI_ASR_STAGING_BUCKET: 'ai-transcription-inputs',
     ...overrides,
   };
+}
+
+function loadTestProductionConfig(overrides: NodeJS.ProcessEnv = {}) {
+  return loadConfig(productionConfig(overrides), testContentCredentialConfigOptions);
 }
 
 class FakeAuthVerifier implements AuthVerifier {
@@ -292,8 +310,8 @@ describe('API foundation', () => {
   });
 
   it('requires Tencent Cloud credentials to be configured as a pair', () => {
-    expect(loadConfig(productionConfig()).tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
-    expect(() => loadConfig(productionConfig({ TENCENT_CLOUD_SECRET_KEY: undefined })))
+    expect(loadTestProductionConfig().tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
+    expect(() => loadTestProductionConfig({ TENCENT_CLOUD_SECRET_KEY: undefined }))
       .toThrow('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   });
 
@@ -311,12 +329,17 @@ describe('API foundation', () => {
     ]) {
       const environment = productionConfig();
       delete environment[field];
-      expect(() => loadConfig(environment)).toThrow('invalid_api_configuration');
+      expect(() => loadConfig(environment, testContentCredentialConfigOptions)).toThrow('invalid_api_configuration');
     }
   });
 
+  it('rejects a content credential private key that does not match the Native public key', () => {
+    expect(() => loadConfig(productionConfig()))
+      .toThrow('invalid_api_configuration:CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
+  });
+
   it('requires Apple verifier trust roots in production', () => {
-    const configured = loadConfig(productionConfig());
+    const configured = loadTestProductionConfig();
     expect(configured.appleIapBundleId).toBe('com.readyoufife.ios');
     expect(configured.appleIapAppAppleId).toBe(1_234_567_890);
     expect(configured.appleIapRootCertificates).toHaveLength(1);
@@ -328,13 +351,13 @@ describe('API foundation', () => {
       delete environment[field];
       expect(() => loadConfig(environment)).toThrow('invalid_api_configuration');
     }
-    expect(() => loadConfig(productionConfig({
+    expect(() => loadTestProductionConfig({
       APPLE_IAP_ROOT_CERTIFICATES_BASE64: 'not valid base64',
-    }))).toThrow('invalid_api_configuration:APPLE_IAP_ROOT_CERTIFICATES_BASE64');
+    })).toThrow('invalid_api_configuration:APPLE_IAP_ROOT_CERTIFICATES_BASE64');
   });
 
   it('exposes only DeepSeek text AI and Tencent ASR production configuration', () => {
-    const config = loadConfig(productionConfig());
+    const config = loadTestProductionConfig();
     expect(config.aiTextProvider).toBe('deepseek');
     expect(config.deepseekBaseUrl).toBe('https://api.deepseek.com');
     expect(config.tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
@@ -345,11 +368,11 @@ describe('API foundation', () => {
   });
 
   it('rejects unversioned or non-production AI endpoints in production', () => {
-    expect(() => loadConfig(productionConfig({ API_RELEASE_ID: 'unversioned' })))
+    expect(() => loadTestProductionConfig({ API_RELEASE_ID: 'unversioned' }))
       .toThrow('invalid_api_configuration:API_RELEASE_ID');
-    expect(() => loadConfig(productionConfig({ DEEPSEEK_BASE_URL: 'http://api.deepseek.com' })))
+    expect(() => loadTestProductionConfig({ DEEPSEEK_BASE_URL: 'http://api.deepseek.com' }))
       .toThrow('invalid_api_configuration:DEEPSEEK_BASE_URL');
-    expect(() => loadConfig(productionConfig({ TENCENT_ASR_ENDPOINT: 'example.com' })))
+    expect(() => loadTestProductionConfig({ TENCENT_ASR_ENDPOINT: 'example.com' }))
       .toThrow('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
   });
 

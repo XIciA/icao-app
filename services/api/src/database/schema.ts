@@ -761,6 +761,55 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   check('membership_segments_window_check', sql`${table.endsAt} > ${table.startsAt}`),
 ]).enableRLS();
 
+export const contentAccessCredentials = pgTable('content_access_credentials', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  environment: text('environment').default('production').notNull(),
+  accountId: uuid('account_id').notNull(),
+  entitlementSegmentId: uuid('entitlement_segment_id').notNull(),
+  deviceDigest: text('device_digest').notNull(),
+  scopes: jsonb('scopes').notNull(),
+  policyVersion: text('policy_version').notNull(),
+  credentialDigest: text('credential_digest').notNull(),
+  issuedAt: timestamp('issued_at', { withTimezone: true }).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  retentionAt: timestamp('retention_at', { withTimezone: true }).notNull(),
+}, (table) => [
+  uniqueIndex('content_access_credentials_digest').on(table.credentialDigest),
+  index('content_access_credentials_account_expiry').on(table.accountId, table.expiresAt),
+  index('content_access_credentials_retention').on(table.retentionAt),
+  foreignKey({
+    columns: [table.entitlementSegmentId, table.environment, table.accountId],
+    foreignColumns: [
+      membershipEntitlementSegments.id,
+      membershipEntitlementSegments.environment,
+      membershipEntitlementSegments.accountId,
+    ],
+    name: 'content_access_credentials_entitlement_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
+  check('content_access_credentials_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
+  check('content_access_credentials_window_check', sql`${table.expiresAt} > ${table.issuedAt} AND ${table.expiresAt} <= ${table.issuedAt} + interval '72 hours'`),
+  check('content_access_credentials_retention_check', sql`${table.retentionAt} >= ${table.expiresAt}`),
+]).enableRLS();
+
+export const contentEnvironmentSessionGrants = pgTable('content_environment_session_grants', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  environment: text('environment').notNull(),
+  accountId: uuid('account_id').notNull(),
+  sessionDigest: text('session_digest').notNull(),
+  verifiedTransactionId: text('verified_transaction_id').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  retentionAt: timestamp('retention_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('content_environment_session_grants_identity').on(table.environment, table.sessionDigest),
+  index('content_environment_session_grants_account_expiry').on(table.accountId, table.environment, table.expiresAt),
+  index('content_environment_session_grants_retention').on(table.retentionAt),
+  check('content_environment_session_grants_environment_check', sql`${table.environment} = 'sandbox'`),
+  check('content_environment_session_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('content_environment_session_grants_retention_check', sql`${table.retentionAt} >= ${table.expiresAt}`),
+]).enableRLS();
+
 export const aiPointBatches = pgTable('ai_point_batches', {
   id: uuid('id').defaultRandom().primaryKey(),
   environment: text('environment').notNull(),

@@ -232,6 +232,96 @@ export type QuestionBankRelease<T = unknown> = {
   dataset: T;
 };
 
+export const CONTENT_ACCESS_POLICY_VERSION = 'content-access-v1' as const;
+export const CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 = 'CIR9s9aEuf+jKbLYU7s8qCe+w4E8Le4DehIQmoskD30=' as const;
+export const COMMERCE_ENVIRONMENT_HEADER = 'x-icao-commerce-environment' as const;
+
+export type ContentAccessLevel = 'free' | 'member';
+
+export type QuestionBankContentAccess = {
+  level: ContentAccessLevel;
+  availableCardCount: number;
+  declaredCardCount: number;
+};
+
+export type QuestionBankAccessSummary = {
+  policyVersion: typeof CONTENT_ACCESS_POLICY_VERSION;
+  environment: CommerceEnvironment | null;
+  membershipActive: boolean;
+  membershipExpiresAt: string | null;
+};
+
+export type QuestionBankTopicRelease<T = unknown> = {
+  bankId: string;
+  version: number;
+  checksum: string;
+  categoryId: string;
+  topic: T;
+  access: QuestionBankAccessSummary;
+};
+
+export type ContentAccessScope = {
+  bankId: string;
+  categoryId: string;
+  topicId: string;
+};
+
+export type IssueContentCredentialRequest = {
+  deviceId: string;
+  scopes: ContentAccessScope[];
+};
+
+export type ContentAccessCredential = {
+  token: string;
+  issuedAt: string;
+  expiresAt: string;
+  policyVersion: typeof CONTENT_ACCESS_POLICY_VERSION;
+  environment: CommerceEnvironment;
+  scopes: ContentAccessScope[];
+};
+
+const FREE_LISTENING_CARD_IDS = new Set([
+  'listening-main-001', 'listening-main-002', 'listening-main-005', 'listening-main-021',
+  'listening-main-022', 'listening-main-024', 'listening-main-025', 'listening-main-029',
+  'listening-main-041', 'listening-main-042',
+  'listening-main-003', 'listening-main-008', 'listening-main-009', 'listening-main-011',
+  'listening-main-012', 'listening-main-013', 'listening-main-018', 'listening-main-031',
+  'listening-main-032', 'listening-main-033',
+  'listening-main-004', 'listening-main-053', 'listening-main-074', 'listening-main-093',
+  'listening-main-095', 'listening-main-111', 'listening-main-112', 'listening-main-126',
+  'listening-main-127', 'listening-main-128',
+  'listening-main-006', 'listening-main-007', 'listening-main-010', 'listening-main-014',
+  'listening-main-015', 'listening-main-016', 'listening-main-017', 'listening-main-019',
+  'listening-main-020', 'listening-main-023',
+]);
+
+const FREE_RADIOTELEPHONY_TOPIC_IDS = new Set([
+  'atc-scenario-0001',
+  'atc-scenario-0002',
+  'atc-scenario-0003',
+]);
+
+const FREE_OPI_TOPIC_IDS = new Set([
+  'opi-topic-0001',
+  'opi-topic-0002',
+  'opi-topic-0003',
+]);
+
+const FREE_STORYTELLING_CARD_IDS = new Set([
+  'story-wing-001',
+  'story-wing-002',
+  'story-wing-003',
+]);
+
+export function isFreeQuestionBankCard(bankId: string, topicId: string, cardId: string) {
+  if (bankId === 'sentences900') return true;
+  if (bankId === 'listening') return FREE_LISTENING_CARD_IDS.has(cardId);
+  if (bankId === 'radiotelephony') return FREE_RADIOTELEPHONY_TOPIC_IDS.has(topicId);
+  if (bankId === 'opi') return FREE_OPI_TOPIC_IDS.has(topicId);
+  if (bankId === 'storytelling') return FREE_STORYTELLING_CARD_IDS.has(cardId);
+  return false;
+}
+
 export type ResolvedResource = {
   publicPath: string;
   objectKey: string;

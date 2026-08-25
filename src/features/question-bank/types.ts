@@ -1,4 +1,8 @@
-import type { GrammarCorrectionIssue } from '@icao/contracts';
+import type {
+  GrammarCorrectionIssue,
+  QuestionBankAccessSummary,
+  QuestionBankContentAccess,
+} from '@icao/contracts';
 
 export type QuestionBankId = 'listening' | 'sentences900' | 'radiotelephony' | 'opi' | 'storytelling';
 
@@ -73,6 +77,7 @@ export type QuestionBankTopic = {
   nameEn?: string;
   declaredCardCount: number;
   cards: QuestionBankCard[];
+  access?: QuestionBankContentAccess;
 };
 
 export type QuestionBankCategory = {
@@ -101,6 +106,7 @@ export type QuestionBankDataset = {
   study: QuestionBankStudyConfig;
   capabilities?: QuestionBankCapabilities;
   categories: QuestionBankCategory[];
+  access?: QuestionBankAccessSummary;
 };
 
 export type QuestionBankStudyItem = {
