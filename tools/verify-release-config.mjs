@@ -256,17 +256,35 @@ for (const requiredRehearsalContract of [
   'database_created=0',
   'database_created=1',
   'createdb -h db',
+  'drop_created_database',
+  'isolated_database_removed=1',
   'pg_restore -h db',
   'migration-plan.mjs --json',
   'migration-plan.mjs --require-current',
   'scripts/migrate.mjs',
   'business_rows_preserved=',
   'auth_users_preserved=',
+  'table_fingerprints_before',
+  'table_fingerprints_after',
+  'preexisting_tables_fingerprinted=',
+  'preexisting_fingerprint_mismatches=',
+  'jsonb_object_agg',
   'unvalidated_constraints=',
   'device_digest_columns=',
   'expected_checksum_line=',
   'actual_checksum_line=',
-  'ICAO_REHEARSAL_BACKUP_NAME contains unsafe characters',
+  'expected_backup_checksum_line=',
+  'actual_backup_checksum_line=',
+  'backup=$(/bin/sh /opt/icao/runtime/backup-tools/current/backup-postgres.sh)',
+  'backup_age',
+  'required_bytes=',
+  'available_after_restore=',
+  'git archive --format=tar "$SOURCE_SHA"',
+  'orphan_databases=',
+  'remaining_orphans=',
+  'REMOTE_CLEANUP_ARMED=1',
+  'cleanup_local_resources',
+  '/run/icao-migration-rehearsal-',
   'require_public_https_url ICAO_API_BUILD_NPM_REGISTRY',
   'production_migration_rehearsal_ok',
 ]) {
@@ -278,6 +296,7 @@ if (
   migrationRehearsal.includes('dropdb -h db -U supabase_admin postgres')
   || migrationRehearsal.indexOf('database_created=1') < migrationRehearsal.indexOf('createdb -h db')
   || !migrationRehearsal.includes('case "$database_name" in')
+  || migrationRehearsal.indexOf('drop_created_database\n') > migrationRehearsal.indexOf("printf 'isolated_database_removed=1")
 ) {
   throw new Error('The migration rehearsal must protect production and only drop its created isolated database.');
 }
