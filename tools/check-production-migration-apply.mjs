@@ -166,12 +166,17 @@ if (trustedPythonRunnerStart < 0
   || applySource.lastIndexOf('# END production-migration-trusted-python-runner')
     !== trustedPythonRunnerEnd
   || (applySource.match(/run_trusted_python -I /gu) ?? []).length !== 2
-  || !trustedPythonRunnerSource.includes('"$trusted_python" "$@"')) {
+  || !trustedPythonRunnerSource.includes('run_trusted_python() (')
+  || !trustedPythonRunnerSource.includes('  unset \\')
+  || !trustedPythonRunnerSource.includes('  exec "$trusted_python" "$@"')
+  || trustedPythonRunnerSource.includes('/usr/bin/env')
+  || /^\s+(?:LD_|GLIBC_TUNABLES|PYTHON)[A-Z0-9_]*=/mu.test(trustedPythonRunnerSource)) {
   throw new Error('production_migration_trusted_python_runner_contract_invalid');
 }
-for (const variable of trustedPythonClearedEnvironment) {
-  const exactAssignment = `  ${variable}= \\`;
-  if (trustedPythonRunnerSource.split('\n').filter((line) => line === exactAssignment).length !== 1) {
+for (const [index, variable] of trustedPythonClearedEnvironment.entries()) {
+  const suffix = index === trustedPythonClearedEnvironment.length - 1 ? '' : ' \\';
+  const exactUnsetEntry = `    ${variable}${suffix}`;
+  if (trustedPythonRunnerSource.split('\n').filter((line) => line === exactUnsetEntry).length !== 1) {
     throw new Error(`production_migration_trusted_python_environment_not_cleared:${variable}`);
   }
 }

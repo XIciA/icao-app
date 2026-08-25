@@ -276,45 +276,46 @@ done
 
 # BEGIN production-migration-trusted-python-guard
 # BEGIN production-migration-trusted-python-runner
-run_trusted_python() {
-  LD_AUDIT= \
-  GLIBC_TUNABLES= \
-  LD_ASSUME_KERNEL= \
-  LD_BIND_NOW= \
-  LD_BIND_NOT= \
-  LD_DEBUG= \
-  LD_DEBUG_OUTPUT= \
-  LD_DYNAMIC_WEAK= \
-  LD_HWCAP_MASK= \
-  LD_LIBRARY_PATH= \
-  LD_ORIGIN_PATH= \
-  LD_POINTER_GUARD= \
-  LD_PREFER_MAP_32BIT_EXEC= \
-  LD_PRELOAD= \
-  LD_PROFILE= \
-  LD_PROFILE_OUTPUT= \
-  LD_SHOW_AUXV= \
-  LD_TRACE_LOADED_OBJECTS= \
-  LD_USE_LOAD_BIAS= \
-  LD_VERBOSE= \
-  LD_WARN= \
-  PYTHONBREAKPOINT= \
-  PYTHONCOERCECLOCALE= \
-  PYTHONDONTWRITEBYTECODE= \
-  PYTHONHASHSEED= \
-  PYTHONHOME= \
-  PYTHONINSPECT= \
-  PYTHONIOENCODING= \
-  PYTHONNOUSERSITE= \
-  PYTHONPATH= \
-  PYTHONPLATLIBDIR= \
-  PYTHONSAFEPATH= \
-  PYTHONSTARTUP= \
-  PYTHONUSERBASE= \
-  PYTHONUTF8= \
-  PYTHONWARNINGS= \
-  "$trusted_python" "$@"
-}
+run_trusted_python() (
+  unset \
+    LD_AUDIT \
+    GLIBC_TUNABLES \
+    LD_ASSUME_KERNEL \
+    LD_BIND_NOW \
+    LD_BIND_NOT \
+    LD_DEBUG \
+    LD_DEBUG_OUTPUT \
+    LD_DYNAMIC_WEAK \
+    LD_HWCAP_MASK \
+    LD_LIBRARY_PATH \
+    LD_ORIGIN_PATH \
+    LD_POINTER_GUARD \
+    LD_PREFER_MAP_32BIT_EXEC \
+    LD_PRELOAD \
+    LD_PROFILE \
+    LD_PROFILE_OUTPUT \
+    LD_SHOW_AUXV \
+    LD_TRACE_LOADED_OBJECTS \
+    LD_USE_LOAD_BIAS \
+    LD_VERBOSE \
+    LD_WARN \
+    PYTHONBREAKPOINT \
+    PYTHONCOERCECLOCALE \
+    PYTHONDONTWRITEBYTECODE \
+    PYTHONHASHSEED \
+    PYTHONHOME \
+    PYTHONINSPECT \
+    PYTHONIOENCODING \
+    PYTHONNOUSERSITE \
+    PYTHONPATH \
+    PYTHONPLATLIBDIR \
+    PYTHONSAFEPATH \
+    PYTHONSTARTUP \
+    PYTHONUSERBASE \
+    PYTHONUTF8 \
+    PYTHONWARNINGS
+  exec "$trusted_python" "$@"
+)
 # END production-migration-trusted-python-runner
 if [ ! -f "$trusted_python" ] || [ -L "$trusted_python" ] || [ ! -x "$trusted_python" ]; then
   echo "trusted production migration Python is missing, linked, or not executable: $trusted_python" >&2
