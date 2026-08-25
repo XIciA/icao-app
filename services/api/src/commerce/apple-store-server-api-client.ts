@@ -55,7 +55,9 @@ implements AppleStoreServerApiClientFactory {
   ) {
     if (!options.bundleId) throw new Error('apple_iap_server_bundle_id_required');
     if (!options.issuerId) throw new Error('apple_iap_server_issuer_id_required');
-    if (!options.keyId) throw new Error('apple_iap_server_key_id_required');
+    if (!/^[A-Z0-9]{10}$/u.test(options.keyId)) {
+      throw new Error('apple_iap_server_key_id_invalid');
+    }
     if (!options.privateKey) throw new Error('apple_iap_server_private_key_required');
   }
 

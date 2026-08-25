@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { runAppleIapServerCli } from '../src/apple-iap-server-cli';
+import { AppleServerReconciliationApplyError } from '../src/commerce/apple-server-reconciliation.service';
 
 function dependencies() {
   return {
@@ -66,5 +67,40 @@ describe('root-only Apple IAP Server readiness CLI', () => {
       '--confirm', 'APPLY_APPLE_RECONCILIATION_SANDBOX',
     ], apply);
     expect(apply.reconcile).toHaveBeenCalledWith(expect.objectContaining({ apply: true }));
+  });
+
+  it('prints the applied and failed item report before returning a nonzero failure', async () => {
+    const deps = dependencies();
+    const failure = {
+      accountId: '00000000-0000-4000-8000-000000000001',
+      applied: 1,
+      batchId: '00000000-0000-4000-8000-000000000099',
+      checked: 3,
+      environment: 'sandbox' as const,
+      failure: {
+        code: 'simulated_apply_failure',
+        index: 1,
+        transactionReferenceHash: 'a'.repeat(64),
+      },
+      mode: 'apply' as const,
+      pages: 1,
+      planned: [],
+      status: 'failed' as const,
+      transactions: [],
+    };
+    deps.reconcile.mockRejectedValueOnce(new AppleServerReconciliationApplyError(
+      'apple_server_reconciliation_apply_failed',
+      failure,
+    ));
+    await expect(runAppleIapServerCli([
+      'reconcile', '--environment', 'sandbox', '--transaction-id', '1234', '--apply',
+      '--confirm', 'APPLY_APPLE_RECONCILIATION_SANDBOX',
+    ], deps)).rejects.toThrow('apple_server_reconciliation_apply_failed');
+    expect(deps.write).toHaveBeenCalledWith(expect.objectContaining({
+      error: expect.objectContaining({
+        code: 'apple_server_reconciliation_apply_failed',
+        result: failure,
+      }),
+    }));
   });
 });

@@ -1,9 +1,11 @@
+import { createHash, randomUUID } from 'node:crypto';
+
 import { Injectable } from '@nestjs/common';
 
+import { opsAuditEvents } from '../database/schema';
+import { DatabaseService } from '../database/database.service';
 import type { CommerceEnvironment } from './product-catalog';
-import {
-  AppleStoreServerApiService,
-} from './apple-store-server-api.service';
+import { AppleStoreServerApiService } from './apple-store-server-api.service';
 import {
   CommerceService,
   type AppleCommerceReconciliationReport,
@@ -12,19 +14,60 @@ import {
 export type AppleServerReconciliationResult = Readonly<{
   accountId: string;
   applied: number;
+  batchId?: string;
   checked: number;
   environment: CommerceEnvironment;
   mismatches: number;
   mode: 'apply' | 'dry_run';
   pages: number;
+  status: 'completed' | 'dry_run';
   transactions: readonly AppleCommerceReconciliationReport[];
 }>;
+
+export type AppleServerReconciliationFailureResult = Readonly<{
+  accountId: string;
+  applied: number;
+  batchId: string;
+  checked: number;
+  environment: CommerceEnvironment;
+  failure: Readonly<{
+    code: string;
+    index: number;
+    transactionReferenceHash: string;
+  }>;
+  mode: 'apply';
+  pages: number;
+  planned: readonly AppleCommerceReconciliationReport[];
+  status: 'failed' | 'rejected';
+  transactions: readonly AppleCommerceReconciliationReport[];
+}>;
+
+export class AppleServerReconciliationApplyError extends Error {
+  constructor(
+    message: string,
+    readonly result: AppleServerReconciliationFailureResult,
+  ) {
+    super(message);
+  }
+}
+
+function transactionReferenceHash(transactionId: string) {
+  return createHash('sha256').update(`apple-reconciliation-v1\0${transactionId}`).digest('hex');
+}
+
+function safeFailureCode(error: unknown) {
+  const candidate = error instanceof Error ? error.message : '';
+  return /^[a-z0-9_:-]{1,120}$/u.test(candidate)
+    ? candidate
+    : 'apple_server_reconciliation_item_failed';
+}
 
 @Injectable()
 export class AppleServerReconciliationService {
   constructor(
     private readonly appleServer: AppleStoreServerApiService,
     private readonly commerce: CommerceService,
+    private readonly database: DatabaseService,
   ) {}
 
   async reconcileTransactionHistory(input: Readonly<{
@@ -42,15 +85,176 @@ export class AppleServerReconciliationService {
         maxTransactions: input.maxTransactions,
       },
     );
-    const reports: AppleCommerceReconciliationReport[] = [];
+    // Resolve every local action before the first write. Apple network access
+    // has already finished, and no database transaction is held across it.
+    const plan: AppleCommerceReconciliationReport[] = [];
     for (const item of history.transactions) {
-      reports.push(await this.commerce.reconcileAppleServerTransaction(
+      plan.push(await this.commerce.reconcileAppleServerTransaction(
         item.signedTransaction,
         input.environment,
-        input.apply,
+        false,
       ));
     }
-    return this.result(history, input.environment, input.apply, reports);
+    if (!input.apply) {
+      return this.result(history, input.environment, false, plan);
+    }
+
+    const batchId = randomUUID();
+    const rejectedIndex = plan.findIndex((item) => (
+      item.action === 'blocked_account_closed' || item.action === 'local_newer'
+    ));
+    if (rejectedIndex >= 0) {
+      const rejected = plan[rejectedIndex]!;
+      const failure = {
+        code: `apple_server_reconciliation_${rejected.action}`,
+        index: rejectedIndex,
+        transactionReferenceHash: transactionReferenceHash(rejected.transactionId),
+      } as const;
+      await this.auditBatch('apple_server_reconciliation.batch_rejected', {
+        accountId: history.accountId,
+        batchId,
+        environment: input.environment,
+        metadata: { failure, planned: this.auditPlan(plan) },
+      });
+      throw new AppleServerReconciliationApplyError(
+        'apple_server_reconciliation_plan_rejected',
+        {
+          accountId: history.accountId,
+          applied: 0,
+          batchId,
+          checked: plan.length,
+          environment: input.environment,
+          failure,
+          mode: 'apply',
+          pages: history.pages,
+          planned: plan,
+          status: 'rejected',
+          transactions: [],
+        },
+      );
+    }
+
+    await this.auditBatch('apple_server_reconciliation.batch_started', {
+      accountId: history.accountId,
+      batchId,
+      environment: input.environment,
+      metadata: { planned: this.auditPlan(plan) },
+    });
+    const completed: AppleCommerceReconciliationReport[] = [];
+    for (const [index, item] of history.transactions.entries()) {
+      try {
+        const report = await this.commerce.reconcileAppleServerTransaction(
+          item.signedTransaction,
+          input.environment,
+          true,
+        );
+        if (
+          report.action === 'blocked_account_closed'
+          || report.action === 'local_newer'
+        ) throw new Error(`apple_server_reconciliation_${report.action}`);
+        completed.push(report);
+        await this.auditBatch('apple_server_reconciliation.item_completed', {
+          accountId: history.accountId,
+          batchId,
+          environment: input.environment,
+          metadata: {
+            action: report.action,
+            applied: report.applied,
+            index,
+            productKey: report.productKey,
+            transactionReferenceHash: transactionReferenceHash(report.transactionId),
+          },
+        });
+      } catch (error) {
+        const failure = {
+          code: safeFailureCode(error),
+          index,
+          transactionReferenceHash: transactionReferenceHash(item.transaction.transactionId),
+        };
+        try {
+          await this.auditBatch('apple_server_reconciliation.batch_failed', {
+            accountId: history.accountId,
+            batchId,
+            environment: input.environment,
+            metadata: {
+              applied: completed.filter((report) => report.applied).length,
+              completed: this.auditPlan(completed),
+              failure,
+            },
+          });
+        } catch {
+          // The append-only batch_started event remains the durable incomplete
+          // marker. Preserve the per-item CLI report even if the failure audit
+          // cannot be appended during the same infrastructure incident.
+        }
+        throw new AppleServerReconciliationApplyError(
+          'apple_server_reconciliation_apply_failed',
+          {
+            accountId: history.accountId,
+            applied: completed.filter((report) => report.applied).length,
+            batchId,
+            checked: plan.length,
+            environment: input.environment,
+            failure,
+            mode: 'apply',
+            pages: history.pages,
+            planned: plan,
+            status: 'failed',
+            transactions: completed,
+          },
+        );
+      }
+    }
+    await this.auditBatch('apple_server_reconciliation.batch_completed', {
+      accountId: history.accountId,
+      batchId,
+      environment: input.environment,
+      metadata: {
+        applied: completed.filter((report) => report.applied).length,
+        completed: this.auditPlan(completed),
+      },
+    });
+    return {
+      ...this.result(history, input.environment, true, completed),
+      batchId,
+      status: 'completed',
+    };
+  }
+
+  private auditPlan(reports: readonly AppleCommerceReconciliationReport[]) {
+    return reports.map((report) => ({
+      action: report.action,
+      appleStatus: report.appleStatus,
+      applied: report.applied,
+      localStatus: report.localStatus,
+      productKey: report.productKey,
+      transactionReferenceHash: transactionReferenceHash(report.transactionId),
+    }));
+  }
+
+  private async auditBatch(
+    action: string,
+    input: Readonly<{
+      accountId: string;
+      batchId: string;
+      environment: CommerceEnvironment;
+      metadata: Record<string, unknown>;
+    }>,
+  ) {
+    await this.database.db.insert(opsAuditEvents).values({
+      requestId: input.batchId,
+      actorStaffId: null,
+      actorRole: null,
+      action,
+      targetType: 'apple_server_reconciliation',
+      targetId: input.accountId,
+      reason: 'App Store Server verified transaction reconciliation',
+      metadata: {
+        batchId: input.batchId,
+        environment: input.environment,
+        ...input.metadata,
+      },
+    });
   }
 
   private result(
@@ -67,6 +271,7 @@ export class AppleServerReconciliationService {
       mismatches: transactions.filter((item) => item.mismatch).length,
       mode: apply ? 'apply' : 'dry_run',
       pages: history.pages,
+      status: apply ? 'completed' : 'dry_run',
       transactions,
     };
   }

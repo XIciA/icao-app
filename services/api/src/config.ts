@@ -28,7 +28,7 @@ const schema = z.object({
   APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
   APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
   APPLE_IAP_SERVER_ISSUER_ID: z.uuid().optional(),
-  APPLE_IAP_SERVER_KEY_ID: z.string().min(3).max(64).optional(),
+  APPLE_IAP_SERVER_KEY_ID: z.string().trim().regex(/^[A-Z0-9]{10}$/u).optional(),
   APPLE_IAP_SERVER_PRIVATE_KEY: z.string().min(48).optional(),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),

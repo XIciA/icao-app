@@ -59,7 +59,7 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
     APPLE_SIGN_IN_CLIENT_ID: 'com.feizhuicao.app',
     APPLE_TEAM_ID: 'TEAMID1234',
-    APPLE_KEY_ID: 'KEYID1234',
+    APPLE_KEY_ID: 'SIGNKEY123',
     APPLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\ntest-only-not-a-real-key-material\\n-----END PRIVATE KEY-----',
     APPLE_CREDENTIAL_ENCRYPTION_KEY: 'BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc=',
     APPLE_IAP_BUNDLE_ID: 'com.readyoufife.ios',
@@ -415,11 +415,19 @@ describe('API foundation', () => {
         .toThrow(`invalid_api_configuration:${field}`);
     }
     expect(() => loadTestProductionConfig({
-      APPLE_IAP_SERVER_KEY_ID: 'KEYID1234',
+      APPLE_IAP_SERVER_KEY_ID: 'SIGNKEY123',
     })).toThrow('invalid_api_configuration:APPLE_IAP_SERVER_CREDENTIAL_REUSE');
     expect(() => loadTestProductionConfig({
       APPLE_IAP_SERVER_PRIVATE_KEY: productionConfig().APPLE_PRIVATE_KEY,
     })).toThrow('invalid_api_configuration:APPLE_IAP_SERVER_PRIVATE_KEY');
+    expect(loadTestProductionConfig({
+      APPLE_IAP_SERVER_KEY_ID: '  IAPKEY1234  ',
+    }).appleIapServerKeyId).toBe('IAPKEY1234');
+    for (const invalidKeyId of ['iapkey1234', 'IAP-KEY123', 'TOO_SHORT']) {
+      expect(() => loadTestProductionConfig({
+        APPLE_IAP_SERVER_KEY_ID: invalidKeyId,
+      })).toThrow('invalid_api_configuration:APPLE_IAP_SERVER_KEY_ID');
+    }
   });
 
   it('exposes only DeepSeek text AI and Tencent ASR production configuration', () => {

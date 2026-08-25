@@ -138,6 +138,132 @@ describe('AppleStoreServerApiService', () => {
     expect(client.getTransactionHistory).not.toHaveBeenCalled();
   });
 
+  it('prefers a newer refunded transaction-info anchor over stale active history', async () => {
+    const client = {
+      getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'anchor-refunded' })),
+      getTransactionHistory: vi.fn(async () => ({
+        appAppleId: 1_234_567_890,
+        bundleId: BUNDLE_ID,
+        environment: Environment.SANDBOX,
+        hasMore: false,
+        revision: 'complete',
+        signedTransactions: ['anchor-stale-active'],
+      })),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {
+      'anchor-refunded': transaction('anchor', {
+        revocationDate: new Date(6),
+        signedDate: new Date(5),
+        signedPayloadHash: 'f'.repeat(64),
+      }),
+      'anchor-stale-active': transaction('anchor', {
+        signedDate: new Date(3),
+        signedPayloadHash: 'a'.repeat(64),
+      }),
+    });
+
+    await expect(service.transactionHistory('sandbox', 'anchor')).resolves.toMatchObject({
+      transactions: [expect.objectContaining({
+        revoked: true,
+        signedDate: new Date(5).toISOString(),
+        transactionId: 'anchor',
+      })],
+    });
+    const loaded = await service.loadTransactionHistory('sandbox', 'anchor');
+    expect(loaded.transactions[0]?.signedTransaction).toBe('anchor-refunded');
+  });
+
+  it('rejects same-time conflicting anchor and history versions', async () => {
+    const client = {
+      getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'anchor-info' })),
+      getTransactionHistory: vi.fn(async () => ({
+        appAppleId: 1_234_567_890,
+        bundleId: BUNDLE_ID,
+        environment: Environment.SANDBOX,
+        hasMore: false,
+        revision: 'complete',
+        signedTransactions: ['anchor-history'],
+      })),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {
+      'anchor-info': transaction('anchor', {
+        signedDate: new Date(3),
+        signedPayloadHash: 'a'.repeat(64),
+      }),
+      'anchor-history': transaction('anchor', {
+        signedDate: new Date(3),
+        signedPayloadHash: 'b'.repeat(64),
+      }),
+    });
+    await expect(service.transactionHistory('sandbox', 'anchor'))
+      .rejects.toThrow('apple_iap_server_history_signed_version_conflict');
+  });
+
+  it('rejects a transaction without a valid signedDate', async () => {
+    const client = {
+      getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
+      getTransactionHistory: vi.fn(),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {
+      'signed-anchor': transaction('anchor', { signedDate: new Date(Number.NaN) }),
+    });
+    await expect(service.transactionHistory('sandbox', 'anchor'))
+      .rejects.toThrow('apple_iap_server_transaction_signed_date_invalid');
+    expect(client.getTransactionHistory).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['hasMore', { hasMore: undefined }, 'apple_iap_server_history_has_more_invalid'],
+    ['signedTransactions', { signedTransactions: undefined }, 'apple_iap_server_history_transactions_invalid'],
+  ])('rejects a history response without a valid %s field', async (_label, override, code) => {
+    const client = {
+      getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
+      getTransactionHistory: vi.fn(async () => ({
+        appAppleId: 1_234_567_890,
+        bundleId: BUNDLE_ID,
+        environment: Environment.SANDBOX,
+        hasMore: false,
+        revision: 'complete',
+        signedTransactions: ['signed-anchor'],
+        ...override,
+      })),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, { 'signed-anchor': transaction('anchor') });
+    await expect(service.transactionHistory('sandbox', 'anchor')).rejects.toThrow(code);
+  });
+
+  it('requires a nonempty revision that advances every hasMore page', async () => {
+    const getTransactionHistory = vi.fn()
+      .mockResolvedValueOnce({
+        appAppleId: 1_234_567_890,
+        bundleId: BUNDLE_ID,
+        environment: Environment.SANDBOX,
+        hasMore: true,
+        revision: 'revision-1',
+        signedTransactions: ['signed-anchor'],
+      })
+      .mockResolvedValueOnce({
+        appAppleId: 1_234_567_890,
+        bundleId: BUNDLE_ID,
+        environment: Environment.SANDBOX,
+        hasMore: true,
+        revision: 'revision-1',
+        signedTransactions: [],
+      });
+    const client = {
+      getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
+      getTransactionHistory,
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, { 'signed-anchor': transaction('anchor') });
+    await expect(service.transactionHistory('sandbox', 'anchor'))
+      .rejects.toThrow('apple_iap_server_history_revision_invalid');
+  });
+
   it('rejects truncated history instead of applying a partial page set', async () => {
     const client = {
       getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),

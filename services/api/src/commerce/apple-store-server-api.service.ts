@@ -187,6 +187,7 @@ export class AppleStoreServerApiService {
       productTypes: [ProductType.NON_RENEWABLE],
     };
     const byTransactionId = new Map<string, VerifiedServerTransaction>();
+    this.mergeTransactionVersion(byTransactionId, anchor);
     let revision: string | null = null;
     const seenRevisions = new Set<string>();
     let pages = 0;
@@ -204,20 +205,14 @@ export class AppleStoreServerApiService {
         throw normalizeApiError('history', error);
       }
       pages += 1;
-      hasMoreAfterLastPage = response.hasMore === true;
-      this.assertHistoryEnvelope(response, environment);
-      for (const signedTransaction of response.signedTransactions ?? []) {
+      this.assertHistoryEnvelope(response, environment, revision);
+      hasMoreAfterLastPage = response.hasMore;
+      for (const signedTransaction of response.signedTransactions) {
         const candidate = await this.verifyServerTransaction(signedTransaction, environment);
         if (candidate.accountId !== anchor.accountId) {
           throw new Error('apple_iap_server_history_account_mismatch');
         }
-        const existing = byTransactionId.get(candidate.transaction.transactionId);
-        if (!existing || candidate.transaction.signedDate > existing.transaction.signedDate) {
-          byTransactionId.set(candidate.transaction.transactionId, candidate);
-        } else if (
-          candidate.transaction.signedDate.getTime() === existing.transaction.signedDate.getTime()
-          && candidate.transaction.signedPayloadHash !== existing.transaction.signedPayloadHash
-        ) throw new Error('apple_iap_server_history_signed_version_conflict');
+        this.mergeTransactionVersion(byTransactionId, candidate);
         if (byTransactionId.size > maxTransactions) {
           throw new Error('apple_iap_server_history_transaction_limit_exceeded');
         }
@@ -230,12 +225,6 @@ export class AppleStoreServerApiService {
       revision = response.revision;
     }
     if (hasMoreAfterLastPage) throw new Error('apple_iap_server_history_page_limit_exceeded');
-    if (!byTransactionId.has(anchor.transaction.transactionId)) {
-      byTransactionId.set(anchor.transaction.transactionId, anchor);
-      if (byTransactionId.size > maxTransactions) {
-        throw new Error('apple_iap_server_history_transaction_limit_exceeded');
-      }
-    }
     const transactions = [...byTransactionId.values()].sort((left, right) => (
       left.transaction.purchaseDate.getTime() - right.transaction.purchaseDate.getTime()
       || left.transaction.transactionId.localeCompare(right.transaction.transactionId)
@@ -248,9 +237,20 @@ export class AppleStoreServerApiService {
       appAppleId?: number;
       bundleId?: string;
       environment?: string;
+      hasMore?: boolean;
+      revision?: string;
+      signedTransactions?: string[];
     }>,
     environment: CommerceEnvironment,
-  ) {
+    requestedRevision: string | null,
+  ): asserts response is Readonly<{
+    appAppleId?: number;
+    bundleId: string;
+    environment: string;
+    hasMore: boolean;
+    revision?: string;
+    signedTransactions: string[];
+  }> {
     if (normalizeResponseEnvironment(response.environment) !== environment) {
       throw new Error('apple_iap_server_history_environment_mismatch');
     }
@@ -270,6 +270,21 @@ export class AppleStoreServerApiService {
       && this.config.appleIapAppAppleId !== undefined
       && response.appAppleId !== this.config.appleIapAppAppleId
     ) throw new Error('apple_iap_server_history_app_id_mismatch');
+    if (typeof response.hasMore !== 'boolean') {
+      throw new Error('apple_iap_server_history_has_more_invalid');
+    }
+    if (
+      !Array.isArray(response.signedTransactions)
+      || response.signedTransactions.some((item) => typeof item !== 'string' || item.length === 0)
+    ) throw new Error('apple_iap_server_history_transactions_invalid');
+    if (
+      response.revision !== undefined
+      && (typeof response.revision !== 'string' || response.revision.length === 0)
+    ) throw new Error('apple_iap_server_history_revision_invalid');
+    if (
+      response.hasMore
+      && (!response.revision || response.revision === requestedRevision)
+    ) throw new Error('apple_iap_server_history_revision_invalid');
   }
 
   private async verifyServerTransaction(
@@ -277,6 +292,10 @@ export class AppleStoreServerApiService {
     environment: CommerceEnvironment,
   ): Promise<VerifiedServerTransaction> {
     const transaction = await this.verifier.verifyTransaction(signedTransaction);
+    if (
+      !(transaction.signedDate instanceof Date)
+      || !Number.isFinite(transaction.signedDate.getTime())
+    ) throw new Error('apple_iap_server_transaction_signed_date_invalid');
     if (transaction.environment !== environment) {
       throw new Error('apple_iap_server_transaction_environment_mismatch');
     }
@@ -293,5 +312,39 @@ export class AppleStoreServerApiService {
       signedTransaction,
       transaction,
     };
+  }
+
+  private mergeTransactionVersion(
+    transactions: Map<string, VerifiedServerTransaction>,
+    candidate: VerifiedServerTransaction,
+  ) {
+    const existing = transactions.get(candidate.transaction.transactionId);
+    if (!existing) {
+      transactions.set(candidate.transaction.transactionId, candidate);
+      return;
+    }
+    if (
+      existing.accountId !== candidate.accountId
+      || existing.transaction.environment !== candidate.transaction.environment
+      || existing.transaction.originalTransactionId
+        !== candidate.transaction.originalTransactionId
+      || existing.transaction.productId !== candidate.transaction.productId
+      || existing.transaction.bundleId !== candidate.transaction.bundleId
+      || existing.transaction.purchaseDate.getTime()
+        !== candidate.transaction.purchaseDate.getTime()
+      || existing.transaction.productType !== candidate.transaction.productType
+      || existing.transaction.quantity !== candidate.transaction.quantity
+    ) throw new Error('apple_iap_server_history_transaction_identity_conflict');
+    const existingSignedAt = existing.transaction.signedDate.getTime();
+    const candidateSignedAt = candidate.transaction.signedDate.getTime();
+    if (!Number.isFinite(existingSignedAt) || !Number.isFinite(candidateSignedAt)) {
+      throw new Error('apple_iap_server_transaction_signed_date_invalid');
+    }
+    if (candidateSignedAt > existingSignedAt) {
+      transactions.set(candidate.transaction.transactionId, candidate);
+    } else if (
+      candidateSignedAt === existingSignedAt
+      && candidate.transaction.signedPayloadHash !== existing.transaction.signedPayloadHash
+    ) throw new Error('apple_iap_server_history_signed_version_conflict');
   }
 }

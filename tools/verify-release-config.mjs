@@ -179,6 +179,10 @@ const appleServerApiService = await readFile(
   'services/api/src/commerce/apple-store-server-api.service.ts',
   'utf8',
 );
+const appleServerReconciliation = await readFile(
+  'services/api/src/commerce/apple-server-reconciliation.service.ts',
+  'utf8',
+);
 const appleIapServerCli = await readFile('services/api/src/apple-iap-server-cli.ts', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
   'services/api/src/config.ts',
@@ -944,11 +948,17 @@ for (const appleIapServerCredential of [
 }
 if (
   !apiConfig.includes('APPLE_IAP_SERVER_CREDENTIAL_REUSE')
+  || !apiConfig.includes('APPLE_IAP_SERVER_KEY_ID: z.string().trim().regex')
   || !apiConfigPreflight.includes('apple-app-store-server')
   || !appleServerApiClient.includes('Environment.PRODUCTION')
   || !appleServerApiClient.includes('Environment.SANDBOX')
   || !appleServerApiService.includes('ProductType.NON_RENEWABLE')
   || !appleServerApiService.includes('GetTransactionHistoryVersion.V2')
+  || !appleServerApiService.includes('apple_iap_server_history_has_more_invalid')
+  || !appleServerApiService.includes('mergeTransactionVersion(byTransactionId, anchor)')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_started')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_failed')
+  || !appleServerReconciliation.includes("input.environment,\n        false")
   || !appleIapServerCli.includes('apple_iap_server_cli_requires_root')
   || !appleIapServerCli.includes('REQUEST_APPLE_TEST_NOTIFICATION_PRODUCTION')
   || !appleIapServerCli.includes('APPLY_APPLE_RECONCILIATION_PRODUCTION')

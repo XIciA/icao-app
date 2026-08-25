@@ -4,7 +4,10 @@ import {
   configuredAppleStoreServerApiClientFactory,
 } from './commerce/apple-store-server-api-client';
 import { AppleStoreServerApiService } from './commerce/apple-store-server-api.service';
-import { AppleServerReconciliationService } from './commerce/apple-server-reconciliation.service';
+import {
+  AppleServerReconciliationApplyError,
+  AppleServerReconciliationService,
+} from './commerce/apple-server-reconciliation.service';
 import { configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
 import { CommerceService } from './commerce/commerce.service';
 import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
@@ -163,15 +166,35 @@ export async function runAppleIapServerCli(
     command.apply
     && command.confirmation !== RECONCILIATION_CONFIRMATION[command.environment]
   ) throw new Error('apple_iap_server_cli_confirmation_invalid');
-  const response = await dependencies.reconcile(command);
-  const result = {
-    action: 'reconcile_transaction_history',
-    databaseMutationAllowed: command.apply,
-    environment: command.environment,
-    response,
-  } as const;
-  dependencies.write(result);
-  return result;
+  try {
+    const response = await dependencies.reconcile(command);
+    const result = {
+      action: 'reconcile_transaction_history',
+      databaseMutationAllowed: command.apply,
+      environment: command.environment,
+      response,
+    } as const;
+    dependencies.write(result);
+    return result;
+  } catch (error) {
+    const result = {
+      action: 'reconcile_transaction_history',
+      databaseMutationAllowed: command.apply,
+      environment: command.environment,
+      error: error instanceof AppleServerReconciliationApplyError
+        ? { code: error.message, result: error.result }
+        : { code: safeCliErrorCode(error) },
+    } as const;
+    dependencies.write(result);
+    throw error;
+  }
+}
+
+function safeCliErrorCode(error: unknown) {
+  const candidate = error instanceof Error ? error.message : '';
+  return /^[a-z0-9_:-]{1,120}$/u.test(candidate)
+    ? candidate
+    : 'apple_iap_server_cli_failed';
 }
 
 async function main() {
@@ -204,7 +227,11 @@ async function main() {
           configuredAppleStoreServerApiClientFactory(config),
           verifier,
         );
-        const reconciliation = new AppleServerReconciliationService(appleServer, commerce);
+        const reconciliation = new AppleServerReconciliationService(
+          appleServer,
+          commerce,
+          database,
+        );
         return reconciliation.reconcileTransactionHistory(command);
       },
     });
