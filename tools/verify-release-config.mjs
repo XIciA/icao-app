@@ -275,7 +275,18 @@ for (const requiredRehearsalContract of [
   'PGPASSWORD=$POSTGRES_PASSWORD',
   'export POSTGRES_PASSWORD PGPASSWORD',
   'createdb -h db',
+  '--owner=postgres "$RESTORE_DB_NAME"',
+  'pg_get_userbyid(datdba)',
+  "has_database_privilege('\\''postgres'\\'', datname, '\\''CREATE'\\'')",
+  "nspname = '\\''drizzle'\\''",
+  "test \"$database_contract\" = 'postgres|t|t|t|postgres'",
+  'isolated_database_contract=',
   'drop_created_database',
+  'database_drop_attempt=1',
+  'while [ "$database_drop_attempt" -le 3 ]',
+  'printf "%s\\n" "select count(*) from pg_database where datname = :',
+  '-U postgres --maintenance-db=postgres --if-exists --force "$RESTORE_DB_NAME"',
+  'could not remove isolated rehearsal database after 3 attempts:',
   'if ! existing=$(docker run',
   'if ! remaining=$(docker run',
   'if [ "$remaining" != 0 ]',
@@ -314,8 +325,19 @@ for (const requiredRehearsalContract of [
     throw new Error(`Production migration rehearsal contract is incomplete: ${requiredRehearsalContract}`);
   }
 }
+const rehearsalDropStart = migrationRehearsal.indexOf('drop_created_database() {');
+const rehearsalDropEnd = migrationRehearsal.indexOf('\ncleanup_files() (', rehearsalDropStart);
+const rehearsalDropFunction = migrationRehearsal.slice(rehearsalDropStart, rehearsalDropEnd);
 if (
   migrationRehearsal.includes('dropdb -h db -U supabase_admin postgres')
+  || !migrationRehearsal.includes('createdb -h db -U supabase_admin --maintenance-db=postgres --owner=postgres "$RESTORE_DB_NAME"')
+  || rehearsalDropStart < 0
+  || rehearsalDropEnd < 0
+  || rehearsalDropFunction.includes('-U supabase_admin')
+  || !rehearsalDropFunction.includes('-e RESTORE_DB_NAME="$database_name"')
+  || !rehearsalDropFunction.includes('--if-exists --force "$RESTORE_DB_NAME"')
+  || /psql[^\n]*-v db_name="\$RESTORE_DB_NAME"[^\n]*-c/u.test(migrationRehearsal)
+  || /drop_created_database[^\n]*(?:>\s*\/dev\/null|2>&1)/u.test(migrationRehearsal)
   || migrationRehearsal.indexOf('database_created=1') < migrationRehearsal.indexOf('createdb -h db')
   || !migrationRehearsal.includes('case "$database_name" in')
   || migrationRehearsal.indexOf('drop_created_database\n') > migrationRehearsal.indexOf("printf 'isolated_database_removed=1")

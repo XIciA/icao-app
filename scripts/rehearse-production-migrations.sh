@@ -151,27 +151,42 @@ drop_created_database() {
   if ! existing=$(docker run --rm --network supabase_default \
     -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"'); then
+    sh -ec 'printf "%s\n" "select count(*) from pg_database where datname = :'\''db_name'\''" | psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U postgres -d postgres'); then
+    echo "could not inspect isolated rehearsal database before cleanup: $database_name" >&2
     return 1
   fi
   case "$existing" in
     0) database_created=0; return 0 ;;
     1) ;;
-    *) echo 'isolated database ownership check returned an invalid count' >&2; return 1 ;;
+    *) echo "isolated rehearsal database lookup returned an invalid count for: $database_name" >&2; return 1 ;;
   esac
-  if ! docker run --rm --network supabase_default \
-    -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
-    supabase/postgres:17.6.1.136 \
-    sh -ec 'dropdb -h db -U supabase_admin --if-exists --force "$RESTORE_DB_NAME"'; then
+  database_drop_attempt=1
+  database_dropped=0
+  while [ "$database_drop_attempt" -le 3 ]; do
+    if docker run --rm --network supabase_default \
+      -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
+      supabase/postgres:17.6.1.136 \
+      sh -ec 'dropdb -h db -U postgres --maintenance-db=postgres --if-exists --force "$RESTORE_DB_NAME"'; then
+      database_dropped=1
+      break
+    fi
+    echo "isolated rehearsal database cleanup attempt $database_drop_attempt failed for: $database_name" >&2
+    database_drop_attempt=$((database_drop_attempt + 1))
+    if [ "$database_drop_attempt" -le 3 ]; then sleep 1; fi
+  done
+  if [ "$database_dropped" != 1 ]; then
+    echo "could not remove isolated rehearsal database after 3 attempts: $database_name" >&2
     return 1
   fi
   if ! remaining=$(docker run --rm --network supabase_default \
     -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U supabase_admin -d postgres -c "select count(*) from pg_database where datname = :'\''db_name'\''"'); then
+    sh -ec 'printf "%s\n" "select count(*) from pg_database where datname = :'\''db_name'\''" | psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U postgres -d postgres'); then
+    echo "could not verify isolated rehearsal database cleanup: $database_name" >&2
     return 1
   fi
   if [ "$remaining" != 0 ]; then
+    echo "isolated rehearsal database still exists after cleanup: $database_name" >&2
     return 1
   fi
   database_created=0
@@ -195,8 +210,11 @@ cleanup_on_exit() {
   trap - EXIT
   set +e
   cleanup_failed=0
-  drop_created_database >/dev/null 2>&1 || cleanup_failed=1
-  cleanup_files || cleanup_failed=1
+  if ! drop_created_database; then cleanup_failed=1; fi
+  if ! cleanup_files; then
+    echo 'migration rehearsal file or image cleanup failed' >&2
+    cleanup_failed=1
+  fi
   if [ "$postgres_password_loaded" = 1 ]; then unset POSTGRES_PASSWORD PGPASSWORD; fi
   if [ "$cleanup_failed" -ne 0 ]; then
     echo 'migration rehearsal cleanup failed; success evidence was not emitted' >&2
@@ -299,13 +317,19 @@ docker build \
 docker run --rm --network supabase_default \
   -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
   supabase/postgres:17.6.1.136 \
-  sh -ec 'createdb -h db -U supabase_admin "$RESTORE_DB_NAME"'
+  sh -ec 'createdb -h db -U supabase_admin --maintenance-db=postgres --owner=postgres "$RESTORE_DB_NAME"'
 database_created=1
 
 docker run --rm --network supabase_default \
   -v "$backup:/backup.dump:ro" -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
   supabase/postgres:17.6.1.136 \
   sh -ec 'pg_restore -h db -U supabase_admin -d "$RESTORE_DB_NAME" --exit-on-error /backup.dump'
+
+database_contract=$(docker run --rm --network supabase_default \
+  -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
+  supabase/postgres:17.6.1.136 \
+  sh -ec 'printf "%s\n" "select pg_get_userbyid(datdba), has_database_privilege('\''postgres'\'', datname, '\''CONNECT'\''), has_database_privilege('\''postgres'\'', datname, '\''CREATE'\''), has_database_privilege('\''postgres'\'', datname, '\''TEMPORARY'\''), (select pg_get_userbyid(nspowner) from pg_namespace where nspname = '\''drizzle'\'') from pg_database where datname = :'\''db_name'\''" | psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U postgres -d "$RESTORE_DB_NAME"')
+test "$database_contract" = 'postgres|t|t|t|postgres'
 
 available_after_restore=$(df -PB1 /opt/icao | awk 'NR == 2 { print $4 }')
 test "$available_after_restore" -ge $((5 * 1024 * 1024 * 1024))
@@ -561,6 +585,7 @@ evidence_partial=$evidence.partial.$$
   printf 'missing_contracts=%s\n' "$missing_contracts"
   printf 'unvalidated_constraints=%s\n' "$unvalidated_constraints"
   printf 'device_digest_columns=%s\n' "$device_digest_columns"
+  printf 'isolated_database_contract=%s\n' "$database_contract"
   printf 'isolated_database_removed=1\n'
   printf 'cleanup_verified=1\n'
   printf 'capacity_required_bytes=%s\n' "$required_bytes"
