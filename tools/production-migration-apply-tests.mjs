@@ -72,25 +72,22 @@ const trustedPythonClearedEnvironment = [
   'PYTHONWARNINGS',
 ];
 const trustedPythonTestSentinel = (name) => `ICAO_TEST_TRUSTED_ENV_${name}`;
-const trustedPythonTestEnvironment = Object.fromEntries(
-  trustedPythonClearedEnvironment.map((name) => [trustedPythonTestSentinel(name), 'hostile']),
-);
+const trustedPythonTestShellEnvironment = trustedPythonClearedEnvironment
+  .map((name) => `${trustedPythonTestSentinel(name)}=hostile\nexport ${trustedPythonTestSentinel(name)}`)
+  .join('\n');
 const trustedPythonShellAssertions = trustedPythonClearedEnvironment
   .map((name) => `[ -z "\${${trustedPythonTestSentinel(name)}:-}" ] || exit 86`)
   .join('\n');
 
 const instrumentTrustedPythonRunner = (source) => {
   // Dynamic loaders may consume LD_* variables before a shell fixture can observe them.
-  // Pair every real clear with an inert test-only sentinel so mutation tests remain portable.
+  // Map every real clear to an inert test-only sentinel so mutation tests remain portable.
   let instrumented = source;
   for (const name of trustedPythonClearedEnvironment) {
     const productionAssignment = `  ${name}= \\\n`;
     if (!instrumented.includes(productionAssignment)) continue;
     const testAssignment = `  ${trustedPythonTestSentinel(name)}= \\\n`;
-    instrumented = instrumented.replace(
-      productionAssignment,
-      `${productionAssignment}${testAssignment}`,
-    );
+    instrumented = instrumented.replace(productionAssignment, testAssignment);
   }
   return instrumented;
 };
@@ -310,6 +307,7 @@ test('trusted host Python preflight rejects links, unsafe ownership, modes, and 
   try {
     const fakeBin = join(root, 'bin');
     const pythonPath = join(root, 'python3');
+    const unusablePythonPath = join(root, 'python3-unusable');
     const pythonLink = join(root, 'python3-link');
     const missing = join(root, 'missing-python3');
     await mkdir(fakeBin);
@@ -317,9 +315,16 @@ test('trusted host Python preflight rejects links, unsafe ownership, modes, and 
 ${trustedPythonShellAssertions}
 [ "\${1:-}" = -I ]
 [ "\${2:-}" = -c ]
-exit "\${MOCK_PYTHON_STATUS:-0}"
+exit 0
+`);
+    await writeFile(unusablePythonPath, `#!/bin/sh
+${trustedPythonShellAssertions}
+[ "\${1:-}" = -I ]
+[ "\${2:-}" = -c ]
+exit 91
 `);
     await chmod(pythonPath, 0o755);
+    await chmod(unusablePythonPath, 0o755);
     await symlink(pythonPath, pythonLink);
     await writeFile(join(fakeBin, 'stat'), `#!/bin/sh
 [ "$#" -eq 4 ]
@@ -330,16 +335,15 @@ exit "\${MOCK_PYTHON_STATUS:-0}"
 printf '%s\n' "\${MOCK_STAT_IDENTITY:?}"
 `);
     await chmod(join(fakeBin, 'stat'), 0o700);
-    const run = (target, identity = '0:755', status = '0', guardSource = guard) => spawnSync('/bin/sh', ['-c', `
+    const run = (target, identity = '0:755', guardSource = guard) => spawnSync('/bin/sh', ['-c', `
 set -eu
+${trustedPythonTestShellEnvironment}
 trusted_python="$TEST_TRUSTED_PYTHON"
 ${instrumentTrustedPythonRunner(guardSource)}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
-        ...trustedPythonTestEnvironment,
-        MOCK_PYTHON_STATUS: status,
         MOCK_STAT_IDENTITY: identity,
         MOCK_STAT_TARGET: target,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
@@ -347,13 +351,23 @@ ${instrumentTrustedPythonRunner(guardSource)}
       },
     });
 
-    assert.equal(run(pythonPath).status, 0);
-    assert.equal(run(pythonPath, '0:555').status, 0);
-    assert.notEqual(run(pythonLink).status, 0);
-    assert.notEqual(run(missing).status, 0);
-    assert.notEqual(run(pythonPath, '1000:755').status, 0);
-    assert.notEqual(run(pythonPath, '0:775').status, 0);
-    assert.notEqual(run(pythonPath, '0:755', '1').status, 0);
+    const assertAccepted = (label, result) => assert.equal(
+      result.status,
+      0,
+      `${label}: ${result.stderr}`,
+    );
+    const assertRejected = (label, result) => assert.notEqual(
+      result.status,
+      0,
+      `${label}: stdout=${result.stdout} stderr=${result.stderr}`,
+    );
+    assertAccepted('root-owned-mode-755', run(pythonPath));
+    assertAccepted('root-owned-mode-555', run(pythonPath, '0:555'));
+    assertRejected('symlink', run(pythonLink));
+    assertRejected('missing', run(missing));
+    assertRejected('non-root-owner', run(pythonPath, '1000:755'));
+    assertRejected('group-writable-mode', run(pythonPath, '0:775'));
+    assertRejected('unusable-executor', run(unusablePythonPath));
     for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
       const mutated = guard.replace(`  ${variable}= \\\n`, '');
       assert.notEqual(mutated, guard, variable);
@@ -364,10 +378,10 @@ ${instrumentTrustedPythonRunner(guardSource)}
         false,
         variable,
       );
-      assert.notEqual(run(pythonPath, '0:755', '0', mutated).status, 0, variable);
+      assertRejected(`${variable}-clear-removed`, run(pythonPath, '0:755', mutated));
     }
     await chmod(pythonPath, 0o644);
-    assert.notEqual(run(pythonPath).status, 0);
+    assertRejected('not-executable', run(pythonPath));
   } finally {
     await rm(root, { force: true, recursive: true });
   }
@@ -414,6 +428,7 @@ exec "\${REAL_HOST_PYTHON:?}" "$@"
     const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
     const run = (imageEnvJson, scenario = 'success', runnerSource = runner) => spawnSync('/bin/sh', ['-c', `
 set -eu
+${trustedPythonTestShellEnvironment}
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
@@ -424,7 +439,6 @@ ${guard}
       encoding: 'utf8',
       env: {
         ...process.env,
-        ...trustedPythonTestEnvironment,
         EXPECTED_RELEASE_ID: expectedReleaseId,
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: scenario,
@@ -440,6 +454,7 @@ ${guard}
     assert.equal(run(JSON.stringify(['PATH=/usr/bin', exact, 'NODE_ENV=production'])).status, 0);
     const hostileNodeOptions = spawnSync('/bin/sh', ['-c', `
 set -eu
+${trustedPythonTestShellEnvironment}
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
@@ -450,7 +465,6 @@ ${guard}
       encoding: 'utf8',
       env: {
         ...process.env,
-        ...trustedPythonTestEnvironment,
         EXPECTED_RELEASE_ID: expectedReleaseId,
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: 'malicious-entrypoint-must-not-run',
