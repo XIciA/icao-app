@@ -476,6 +476,19 @@ test('the cumulative migration enables RLS on every public table', () => {
   assert.equal(rlsCount, tableCount);
 });
 
+test('content access credentials do not retain a stable device digest column', () => {
+  assert.equal(
+    queryScalar(`
+      SELECT COUNT(*)
+      FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'content_access_credentials'
+        AND column_name = 'device_digest'
+    `),
+    '0',
+  );
+});
+
 test('account-security authority tables are private to the API database role', () => {
   const protectedTables = [
     'account_content_credential_revocations',

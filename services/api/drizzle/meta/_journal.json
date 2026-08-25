@@ -211,6 +211,13 @@
       "when": 1787661670830,
       "tag": "0029_curvy_talon",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1787665133441,
+      "tag": "0030_mute_luckman",
+      "breakpoints": true
     }
   ]
 }

@@ -8,7 +8,7 @@ import type {
   QuestionBankRelease,
   QuestionBankTopicRelease,
 } from '@icao/contracts';
-import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION } from '@icao/contracts';
 
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 import {
@@ -19,7 +19,6 @@ import { ApiClientError, apiFetch, apiRequest, getApiBaseUrl } from '@/platform/
 import {
   clearQuestionBankMemberContent,
   currentQuestionBankContentAccountId,
-  getQuestionBankContentDeviceId,
   questionBankContentAccountGeneration,
   readMemberTopicCache,
   writeMemberTopicCache,
@@ -107,7 +106,7 @@ export const remoteQuestionBankRepository = {
     const accessState = (cached?.dataset as QuestionBankDataset | undefined)?.access?.membershipActive === true ? 'member' : 'free';
     const headers = {
       [COMMERCE_ENVIRONMENT_HEADER]: environment,
-      ...(cached ? { 'if-none-match': `"${cached.checksum}.content-access-v1.${accessState}"` } : {}),
+      ...(cached ? { 'if-none-match': `"${cached.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${accessState}"` } : {}),
     };
     const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
     assertContentContextCurrent(context);
@@ -151,7 +150,7 @@ export const remoteQuestionBankRepository = {
             'content-type': 'application/json',
             [COMMERCE_ENVIRONMENT_HEADER]: environment,
           },
-          body: JSON.stringify({ deviceId: await getQuestionBankContentDeviceId(), scopes: [scope] }),
+          body: JSON.stringify({ scopes: [scope] }),
         });
         assertContentContextCurrent(context);
         await writeMemberTopicCache(accountId, scope, release.topic, credential);

@@ -61,7 +61,7 @@ const dataset = {
   },
   categories: [category],
   access: {
-    policyVersion: 'content-access-v1',
+    policyVersion: 'content-access-v2',
     environment: 'production',
     membershipActive: true,
     membershipExpiresAt: '2026-09-25T00:00:00.000Z',

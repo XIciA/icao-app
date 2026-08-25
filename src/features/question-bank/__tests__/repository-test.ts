@@ -31,7 +31,6 @@ jest.mock('expo-crypto', () => {
     digestStringAsync: jest.fn(async (_algorithm: string, value: string) => `digest-${value.replaceAll('/', '-')}`),
     aesEncryptAsync: jest.fn(async (value: Uint8Array) => ({ combined: async () => encode(value) })),
     aesDecryptAsync: jest.fn(async (value: string) => decode(value)),
-    randomUUID: jest.fn(() => '00000000-0000-4000-8000-000000000010'),
   };
 });
 jest.mock('expo-file-system', () => {
@@ -61,6 +60,7 @@ import {
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
 import { AESEncryptionKey, aesDecryptAsync } from 'expo-crypto';
+import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
 
@@ -72,14 +72,13 @@ function testContentCredential(
   const expiresAtSeconds = issuedAtSeconds + 60 * 60;
   const claims = {
     aud: 'icao-content-offline',
-    did: '00000000-0000-4000-8000-000000000010',
     entitlementSegmentId: '00000000-0000-4000-8000-000000000099',
     environment: 'production' as const,
     exp: expiresAtSeconds,
     iat: issuedAtSeconds,
     iss: 'icao-api',
     jti: '00000000-0000-4000-8000-000000000098',
-    policyVersion: 'content-access-v1' as const,
+    policyVersion: 'content-access-v2' as const,
     scopes: [scope],
     sub: accountId,
   };
@@ -87,7 +86,7 @@ function testContentCredential(
     token: `header.${btoa(JSON.stringify(claims)).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/u, '')}.signature`,
     issuedAt: new Date(issuedAtSeconds * 1_000).toISOString(),
     expiresAt: new Date(expiresAtSeconds * 1_000).toISOString(),
-    policyVersion: 'content-access-v1' as const,
+    policyVersion: 'content-access-v2' as const,
     environment: 'production' as const,
     scopes: [scope],
   };
@@ -98,6 +97,37 @@ describe('embeddedQuestionBankRepository', () => {
   const originalSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
   const originalWebContentBaseUrl = process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL;
   const originalPlatform = Platform.OS;
+
+  it('retries legacy cleanup, removes an orphan device-bound credential, and preserves the later v2 key', async () => {
+    const accountId = '00000000-0000-4000-8000-000000000001';
+    const scope = { bankId: 'opi', categoryId: 'opi-category-01', topicId: 'opi-topic-0004' };
+    const legacyCredentialKey = `icao.content.credential.v1.${accountId}.production.opi.opi-category-01.opi-topic-0004`;
+    const legacyTopicKey = `icao.content.member-topic.v1.${accountId}.production.opi.opi-category-01.opi-topic-0004`;
+    const unrelatedSecureKey = 'unrelated.secure.key';
+    mockSecureValues.set('icao.content.device.v1', '00000000-0000-4000-8000-000000000010');
+    mockSecureValues.set(`icao.content.key.v1.${accountId}`, 'legacy-account-key');
+    mockSecureValues.set(legacyCredentialKey, 'legacy-device-bound-credential');
+    mockSecureValues.set(unrelatedSecureKey, 'must-remain');
+    // Deliberately omit the credential index to reproduce a crash between
+    // SecureStore credential persistence and index registration.
+    mockStorageValues.set(legacyTopicKey, 'legacy-topic');
+    mockFiles.add(`file:///document/icao-member-content/${accountId}/production/legacy.mp3`);
+    (SecureStore.deleteItemAsync as jest.Mock).mockRejectedValueOnce(new Error('transient-keychain-error'));
+
+    await expect(activateQuestionBankContentAccount(accountId)).rejects.toThrow('transient-keychain-error');
+    await expect(readMemberTopicCache(accountId, scope)).resolves.toBeUndefined();
+
+    expect(mockSecureValues.has('icao.content.device.v1')).toBe(false);
+    expect(mockSecureValues.has(`icao.content.key.v1.${accountId}`)).toBe(false);
+    expect(mockSecureValues.has(legacyCredentialKey)).toBe(false);
+    expect(mockSecureValues.get(unrelatedSecureKey)).toBe('must-remain');
+    expect(mockStorageValues.has(legacyTopicKey)).toBe(false);
+    expect([...mockFiles].some((path) => path.includes(`/icao-member-content/${accountId}/`))).toBe(false);
+
+    mockSecureValues.set(`icao.content.key.v1.${accountId}`, 'v2-account-key');
+    await activateQuestionBankContentAccount(accountId);
+    expect(mockSecureValues.get(`icao.content.key.v1.${accountId}`)).toBe('v2-account-key');
+  });
 
   afterEach(async () => {
     await activateQuestionBankContentAccount(undefined);
@@ -246,7 +276,7 @@ describe('embeddedQuestionBankRepository', () => {
         status: 200,
         json: async () => ({ requestId: 'topic', data: {
           bankId: 'listening', categoryId: 'listening-category-01', version: 1, checksum: 'abc', topic,
-          access: { policyVersion: 'content-access-v1', environment: 'production', membershipActive: true, membershipExpiresAt: '2026-09-25T00:00:00.000Z' },
+          access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: true, membershipExpiresAt: '2026-09-25T00:00:00.000Z' },
         } }),
       } as Response)
       .mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ requestId: 'credential', data: credential }) } as Response)
@@ -265,8 +295,8 @@ describe('embeddedQuestionBankRepository', () => {
       } as Response);
 
     await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01')).resolves.toEqual(topic);
-    expect([...mockStorageValues.keys()].some((key) => key.startsWith('icao.content.member-topic.v1.'))).toBe(true);
-    expect([...mockSecureValues.keys()].some((key) => key.startsWith('icao.content.credential.v1.'))).toBe(true);
+    expect([...mockStorageValues.keys()].some((key) => key.startsWith('icao.content.member-topic.v2.'))).toBe(true);
+    expect([...mockSecureValues.keys()].some((key) => key.startsWith('icao.content.credential.v2.'))).toBe(true);
     await expect(resolveRemoteQuestionBankAsset('/question-bank-assets/audio/listening/main/999.mp3', { forceRefresh: true }))
       .resolves.toMatch(/^file:\/\/\/document\/icao-member-content\//u);
     expect(mockFiles.size).toBe(1);
@@ -301,7 +331,7 @@ describe('embeddedQuestionBankRepository', () => {
     )));
 
     expect(generate).toHaveBeenCalledTimes(1);
-    expect([...mockStorageValues.keys()].filter((key) => key.startsWith('icao.content.member-topic.v1.'))).toHaveLength(2);
+    expect([...mockStorageValues.keys()].filter((key) => key.startsWith('icao.content.member-topic.v2.'))).toHaveLength(2);
   });
 
   it('does not let an old account request write member content back after account switching starts', async () => {
@@ -314,7 +344,7 @@ describe('embeddedQuestionBankRepository', () => {
     const started = new Promise<void>((resolve) => { topicWriteStarted = resolve; });
     const release = new Promise<void>((resolve) => { releaseTopicWrite = resolve; });
     jest.spyOn(Storage, 'setItem').mockImplementation(async (key, value) => {
-      if (key.startsWith('icao.content.member-topic.v1.')) {
+      if (key.startsWith('icao.content.member-topic.v2.')) {
         topicWriteStarted();
         await release;
       }

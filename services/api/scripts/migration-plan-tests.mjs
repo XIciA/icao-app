@@ -14,6 +14,8 @@ import {
 const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 const commerceMigrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
 const commerceSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0015_snapshot.json', import.meta.url));
+const contentDeviceIdRemovalMigrationPath = fileURLToPath(new URL('../drizzle/0030_mute_luckman.sql', import.meta.url));
+const contentDeviceIdRemovalSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0030_snapshot.json', import.meta.url));
 const schemaPath = fileURLToPath(new URL('../src/database/schema.ts', import.meta.url));
 const legacyTables = [
   'accounts',
@@ -71,6 +73,25 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
+  assert.equal(migrations.at(-1)?.tag, '0030_mute_luckman');
+  assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
+});
+
+test('0030 removes the stable content device digest from SQL, snapshot, and schema', async () => {
+  const [migrationSql, snapshotJson, schemaSource] = await Promise.all([
+    readFile(contentDeviceIdRemovalMigrationPath, 'utf8'),
+    readFile(contentDeviceIdRemovalSnapshotPath, 'utf8'),
+    readFile(schemaPath, 'utf8'),
+  ]);
+  const snapshot = JSON.parse(snapshotJson);
+  const columns = snapshot.tables['public.content_access_credentials']?.columns;
+
+  assert.equal(
+    migrationSql.trim(),
+    'ALTER TABLE "content_access_credentials" DROP COLUMN "device_digest";',
+  );
+  assert.ok(columns && !Object.hasOwn(columns, 'device_digest'));
+  assert.doesNotMatch(schemaSource, /deviceDigest|device_digest/u);
 });
 
 test('locks all 31 tables behind RLS and keeps commerce tables server-only', async () => {
@@ -227,6 +248,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0027_dazzling_meteorite',
       '0028_sharp_lady_ursula',
       '0029_curvy_talon',
+      '0030_mute_luckman',
     ],
   );
   assert.ok(

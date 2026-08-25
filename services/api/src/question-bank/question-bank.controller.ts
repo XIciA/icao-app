@@ -1,5 +1,5 @@
 import { Controller, Get, Headers, Param, Req, Res, UseGuards } from '@nestjs/common';
-import { COMMERCE_ENVIRONMENT_HEADER, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
 import type { FastifyReply } from 'fastify';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -33,7 +33,7 @@ export class QuestionBankController {
     );
     const access = (release.dataset as { access?: { membershipActive?: unknown } }).access;
     const accessState = access?.membershipActive === true ? 'member' : 'free';
-    const etag = `"${release.checksum}.content-access-v1.${accessState}"`;
+    const etag = `"${release.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${accessState}"`;
     reply.header('etag', etag).header('cache-control', 'private, max-age=300');
     if (ifNoneMatch === etag) {
       reply.status(304);

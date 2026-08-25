@@ -1,0 +1,1 @@
+ALTER TABLE "content_access_credentials" DROP COLUMN "device_digest";

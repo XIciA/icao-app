@@ -12,10 +12,6 @@ export function questionBankContentAccountGeneration() {
 
 export async function activateQuestionBankContentAccount(_accountId: string | undefined) {}
 
-export async function getQuestionBankContentDeviceId() {
-  throw new Error('member_content_native_only');
-}
-
 export async function writeMemberTopicCache(
   _accountId: string,
   _scope: ContentAccessScope,
