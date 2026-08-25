@@ -248,21 +248,59 @@ test('candidate image guard accepts one exact baked release identity and rejects
   const root = await mkdtemp(join(tmpdir(), 'icao-production-image-identity-'));
   try {
     const fakeBin = join(root, 'bin');
+    const workDir = join(root, 'work');
     await mkdir(fakeBin);
+    await mkdir(workDir);
     await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
 set -eu
-[ "\${1:-}" = inspect ]
-[ "\${2:-}" = --type ]
-[ "\${3:-}" = image ]
-if [ "\${MOCK_DOCKER_SCENARIO:-}" = inspect-fail ]; then exit 71; fi
-printf '%s' "\${MOCK_IMAGE_ENV:-}"
+case "\${1:-}" in
+  inspect)
+    [ "\${2:-}" = --type ]
+    [ "\${3:-}" = image ]
+    if [ "\${MOCK_DOCKER_SCENARIO:-}" = inspect-fail ]; then exit 71; fi
+    printf '%s' "\${MOCK_IMAGE_ENV_JSON:-}"
+    ;;
+  run)
+    shift
+    mount_source=
+    expected_release_id=
+    while [ "$#" -gt 0 ]; do
+      case "$1" in
+        --rm) shift ;;
+        -v)
+          case "$2" in
+            *:/image-env.json:ro) mount_source=\${2%:/image-env.json:ro} ;;
+            *) exit 72 ;;
+          esac
+          shift 2
+          ;;
+        -e)
+          case "$2" in
+            EXPECTED_IMAGE_RELEASE_ID=*) expected_release_id=\${2#EXPECTED_IMAGE_RELEASE_ID=} ;;
+            *) exit 73 ;;
+          esac
+          shift 2
+          ;;
+        icao-api:*) shift; break ;;
+        *) exit 74 ;;
+      esac
+    done
+    [ "\${1:-}" = node ]
+    [ "\${2:-}" = -e ]
+    [ "\${4:-}" = /image-env.json ]
+    [ -n "$mount_source" ]
+    EXPECTED_IMAGE_RELEASE_ID="$expected_release_id" node -e "$3" "$mount_source"
+    ;;
+  *) exit 75 ;;
+esac
 `);
     await chmod(join(fakeBin, 'docker'), 0o700);
     const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
-    const run = (imageEnv, scenario = 'success') => spawnSync('/bin/sh', ['-c', `
+    const run = (imageEnvJson, scenario = 'success') => spawnSync('/bin/sh', ['-c', `
 set -eu
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
+work_dir="$TEST_WORK_DIR"
 ${guard}
 `], {
       encoding: 'utf8',
@@ -270,20 +308,30 @@ ${guard}
         ...process.env,
         EXPECTED_RELEASE_ID: expectedReleaseId,
         MOCK_DOCKER_SCENARIO: scenario,
-        MOCK_IMAGE_ENV: imageEnv,
+        MOCK_IMAGE_ENV_JSON: imageEnvJson,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        TEST_WORK_DIR: workDir,
       },
     });
 
-    assert.equal(run(`PATH=/usr/bin\nAPI_RELEASE_ID=${expectedReleaseId}\nNODE_ENV=production\n`).status, 0);
-    for (const [label, imageEnv, scenario] of [
-      ['stale', `API_RELEASE_ID=release-old\n`, 'success'],
-      ['missing', 'NODE_ENV=production\n', 'success'],
-      ['duplicated', `API_RELEASE_ID=${expectedReleaseId}\nAPI_RELEASE_ID=${expectedReleaseId}\n`, 'success'],
-      ['near-key', `NOT_API_RELEASE_ID=${expectedReleaseId}\n`, 'success'],
-      ['inspect-fail', `API_RELEASE_ID=${expectedReleaseId}\n`, 'inspect-fail'],
+    const exact = `API_RELEASE_ID=${expectedReleaseId}`;
+    assert.equal(run(JSON.stringify(['PATH=/usr/bin', exact, 'NODE_ENV=production'])).status, 0);
+    for (const [label, imageEnvJson, scenario] of [
+      ['stale', JSON.stringify(['API_RELEASE_ID=release-old']), 'success'],
+      ['missing', JSON.stringify(['NODE_ENV=production']), 'success'],
+      ['duplicated', JSON.stringify([exact, exact]), 'success'],
+      ['exact-plus-stale', JSON.stringify([exact, 'API_RELEASE_ID=release-old']), 'success'],
+      ['embedded-lf', JSON.stringify([`${exact}\nAPI_RELEASE_ID=release-old`]), 'success'],
+      ['embedded-cr', JSON.stringify([`${exact}\r`]), 'success'],
+      ['trailing-space', JSON.stringify([`${exact} `]), 'success'],
+      ['leading-space', JSON.stringify([` ${exact}`]), 'success'],
+      ['near-key', JSON.stringify([`NOT_${exact}`]), 'success'],
+      ['non-string', JSON.stringify([exact, 7]), 'success'],
+      ['not-array', JSON.stringify({ env: [exact] }), 'success'],
+      ['malformed-json', '[', 'success'],
+      ['inspect-fail', JSON.stringify([exact]), 'inspect-fail'],
     ]) {
-      const result = run(imageEnv, scenario);
+      const result = run(imageEnvJson, scenario);
       assert.notEqual(result.status, 0, label);
       assert.notEqual(result.stderr, '', label);
     }
@@ -292,7 +340,7 @@ ${guard}
   }
 });
 
-test('explicit runtime identity overrides a stale env-file value before a candidate container runs', async () => {
+test('Docker CLI precedence unit model requires one assigned runtime identity override', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
   const start = source.indexOf('# BEGIN production-migration-runtime-identity-override');
   const endMarker = '# END production-migration-runtime-identity-override';
@@ -314,25 +362,62 @@ test('explicit runtime identity overrides a stale env-file value before a candid
 set -eu
 [ "\${1:-}" = run ]
 shift
-release_id=
+env_file_release_id=
+api_override_count=0
+api_override_kind=
+api_override_value=
+record_override() {
+  override=$1
+  case "$override" in
+    API_RELEASE_ID)
+      api_override_count=$((api_override_count + 1))
+      api_override_kind=bare
+      api_override_value=\${API_RELEASE_ID:-}
+      ;;
+    API_RELEASE_ID=*)
+      api_override_count=$((api_override_count + 1))
+      api_override_kind=assignment
+      api_override_value=\${override#API_RELEASE_ID=}
+      ;;
+  esac
+}
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --rm) shift ;;
     --network) shift 2 ;;
     --env-file)
-      release_id=$(awk -F= '$1 == "API_RELEASE_ID" { print substr($0, length($1) + 2) }' "$2")
+      env_file_release_id=$(awk -F= '$1 == "API_RELEASE_ID" { value = substr($0, length($1) + 2) } END { print value }' "$2")
       shift 2
+      ;;
+    --env-file=*)
+      env_file=\${1#--env-file=}
+      env_file_release_id=$(awk -F= '$1 == "API_RELEASE_ID" { value = substr($0, length($1) + 2) } END { print value }' "$env_file")
+      shift
       ;;
     -e)
-      case "$2" in API_RELEASE_ID=*) release_id=\${2#API_RELEASE_ID=} ;; esac
+      record_override "$2"
       shift 2
       ;;
+    --env)
+      record_override "$2"
+      shift 2
+      ;;
+    --env=*) record_override "\${1#--env=}"; shift ;;
+    -e?*) record_override "\${1#-e}"; shift ;;
     icao-api:*) break ;;
     *) exit 72 ;;
   esac
 done
+release_id=$env_file_release_id
+if [ "$api_override_count" -ne 1 ] || [ "$api_override_kind" != assignment ]; then
+  echo 'mock candidate observed missing, duplicate, or inherited runtime identity override' >&2
+  exit 73
+fi
+# Docker applies all explicit --env/-e overrides after values loaded from every
+# --env-file, independent of their relative CLI position.
+release_id=$api_override_value
 [ "$release_id" = "\${EXPECTED_RELEASE_ID:?}" ] || {
-  echo 'mock candidate observed stale runtime identity' >&2
+  echo 'mock candidate observed incorrect runtime identity override' >&2
   exit 73
 }
 `);
@@ -360,9 +445,33 @@ ${command}
 
     const repaired = run(runtimeCommand);
     assert.equal(repaired.status, 0, repaired.stderr);
+
+    const overrideBeforeEnvFile = runtimeCommand.replace(
+      '--env-file "$runtime_env" \\\n  -e "API_RELEASE_ID=$expected_image_release_id" \\',
+      '-e "API_RELEASE_ID=$expected_image_release_id" \\\n  --env-file "$runtime_env" \\',
+    );
+    assert.notEqual(overrideBeforeEnvFile, runtimeCommand);
+    assert.equal(run(overrideBeforeEnvFile).status, 0);
+
     const regressed = run(withoutOverride);
     assert.notEqual(regressed.status, 0);
-    assert.match(regressed.stderr, /stale runtime identity/u);
+    assert.match(regressed.stderr, /missing, duplicate, or inherited/u);
+
+    for (const [label, injected] of [
+      ['duplicate-assignment', '  -e API_RELEASE_ID=release-old \\\n'],
+      ['bare-inheritance', '  -e API_RELEASE_ID \\\n'],
+      ['long-option', '  --env=API_RELEASE_ID=release-old \\\n'],
+      ['joined-short-option', '  -eAPI_RELEASE_ID=release-old \\\n'],
+    ]) {
+      const adversarial = runtimeCommand.replace(
+        '  -e "API_RELEASE_ID=$expected_image_release_id" \\\n',
+        `  -e "API_RELEASE_ID=$expected_image_release_id" \\\n${injected}`,
+      );
+      assert.notEqual(adversarial, runtimeCommand, label);
+      const result = run(adversarial);
+      assert.notEqual(result.status, 0, label);
+      assert.match(result.stderr, /missing, duplicate, or inherited/u, label);
+    }
   } finally {
     await rm(root, { force: true, recursive: true });
   }

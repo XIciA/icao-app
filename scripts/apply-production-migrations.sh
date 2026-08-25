@@ -668,17 +668,24 @@ docker build \
 image_created=1
 
 # BEGIN production-migration-image-identity-guard
-if ! baked_image_env=$(docker inspect --type image \
-  --format '{{range .Config.Env}}{{println .}}{{end}}' "$image"); then
+baked_image_env_file=$work_dir/baked-image-env.json
+if ! docker inspect --type image --format '{{json .Config.Env}}' "$image" \
+  > "$baked_image_env_file"; then
   echo "could not inspect production migration image identity: $image" >&2
   exit 1
 fi
-baked_release_id_count=$(printf '%s\n' "$baked_image_env" \
-  | awk 'index($0, "API_RELEASE_ID=") == 1 { count += 1 } END { print count + 0 }')
-baked_release_id=$(printf '%s\n' "$baked_image_env" \
-  | awk 'index($0, "API_RELEASE_ID=") == 1 { print substr($0, length("API_RELEASE_ID=") + 1) }')
-if [ "$baked_release_id_count" -ne 1 ] \
-  || [ "$baked_release_id" != "$expected_image_release_id" ]; then
+chmod 600 "$baked_image_env_file"
+if ! docker run --rm \
+  -v "$baked_image_env_file:/image-env.json:ro" \
+  -e "EXPECTED_IMAGE_RELEASE_ID=$expected_image_release_id" \
+  "$image" node -e '
+    const fs = require("node:fs");
+    const entries = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+    const expected = `API_RELEASE_ID=${process.env.EXPECTED_IMAGE_RELEASE_ID}`;
+    if (!Array.isArray(entries) || entries.some((entry) => typeof entry !== "string")) process.exit(1);
+    const identities = entries.filter((entry) => entry.startsWith("API_RELEASE_ID="));
+    if (identities.length !== 1 || identities[0] !== expected) process.exit(1);
+  ' /image-env.json; then
   echo 'production migration image baked identity is missing, duplicated, or mismatched' >&2
   exit 1
 fi
@@ -710,7 +717,8 @@ query_scalar() {
 stage=pre_plan_verification
 pre_plan=$work_dir/pre-plan.json
 docker run --rm --network supabase_default --env-file "$runtime_env" \
-  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
+  "$image" \
   node services/api/scripts/migration-plan.mjs --json > "$pre_plan"
 pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
@@ -746,11 +754,13 @@ migration_completed=1
 
 stage=post_plan_verification
 docker run --rm --network supabase_default --env-file "$runtime_env" \
-  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
+  "$image" \
   node services/api/scripts/migration-plan.mjs --require-current
 post_plan=$work_dir/post-plan.json
 docker run --rm --network supabase_default --env-file "$runtime_env" \
-  -e "API_RELEASE_ID=$expected_image_release_id" "$image" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
+  "$image" \
   node services/api/scripts/migration-plan.mjs --json --require-current > "$post_plan"
 post_summary=$(docker run --rm -v "$post_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
