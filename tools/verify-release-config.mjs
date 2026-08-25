@@ -152,6 +152,10 @@ const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 const opsRelease = await readFile('scripts/deploy-ops-release.sh', 'utf8');
 const backupToolsInstaller = await readFile('scripts/install-production-backup-tools.sh', 'utf8');
 const migrationRehearsal = await readFile('scripts/rehearse-production-migrations.sh', 'utf8');
+const productionMigrationApply = await readFile('scripts/apply-production-migrations.sh', 'utf8');
+const productionSchemaVerifier = await readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8');
+const productionSchemaContractLib = await readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8');
+const productionSchemaContractTests = await readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
 const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
@@ -262,6 +266,13 @@ if (
 }
 if (!packageJsonSource.includes('node --test tools/migration-rehearsal-cleanup-tests.mjs')) {
   throw new Error('The release gate must execute the migration rehearsal cleanup failure tests.');
+}
+if (
+  !packageJsonSource.includes('pnpm check:production-migration')
+  || !packageJsonSource.includes('tools/production-migration-apply-tests.mjs')
+  || !packageJsonSource.includes('tools/check-production-migration-apply.mjs')
+) {
+  throw new Error('The release gate must execute the formal production migration apply checks.');
 }
 for (const [name, dockerfile] of [
   ['API', apiDockerfile],
@@ -376,6 +387,38 @@ if (
   || migrationRehearsal.indexOf('cleanup_verified=1') > migrationRehearsal.indexOf("printf 'production_migration_rehearsal_ok")
 ) {
   throw new Error('The migration rehearsal must protect production and only drop its created isolated database.');
+}
+for (const requiredApplyContract of [
+  'APPLY_PRODUCTION_MIGRATIONS:',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:18:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-33:0:0',
+  'scripts/rehearse-production-migrations.sh',
+  'icao-production-migration-apply.lock',
+  'icao-production-release-change.lock',
+  'scripts/migrate.mjs --production-apply',
+  'verify-production-schema-contract.mjs',
+  'automatic_production_restore=forbidden',
+  'manual_authorization_required_choose_forward_fix_or_verified_restore',
+  'production_migration_apply_ok',
+]) {
+  if (!productionMigrationApply.includes(requiredApplyContract)) {
+    throw new Error(`Formal production migration apply contract is incomplete: ${requiredApplyContract}`);
+  }
+}
+if (
+  !productionSchemaVerifier.includes('default_transaction_read_only: true')
+  || !productionSchemaVerifier.includes("parsedUrl.hostname !== 'db'")
+  || !productionSchemaVerifier.includes('production_schema_has_unvalidated_constraints')
+  || !productionSchemaVerifier.includes("from information_schema.tables")
+  || !productionSchemaVerifier.includes("table_type = 'BASE TABLE'")
+  || !productionSchemaVerifier.includes('transaction.array(actualPublicTables)')
+  || !productionSchemaContractLib.includes('production_schema_unclassified_public_tables:')
+  || !productionSchemaContractLib.includes('production_schema_server_only_table_grant_present')
+  || !productionSchemaContractTests.includes('unexpected_public_table')
+  || !productionSchemaContractTests.includes('clientGrantCount: 1')
+  || !productionSchemaVerifier.includes('production_commerce_product_catalog_mismatch')
+) {
+  throw new Error('The post-migration production schema verifier is incomplete.');
 }
 for (const [name, service] of [
   ['PostgreSQL backup', postgresBackupService],

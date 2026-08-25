@@ -11,4 +11,5 @@ CREATE TABLE "privacy_action_receipts" (
 );
 --> statement-breakpoint
 ALTER TABLE "privacy_action_receipts" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
-ALTER TABLE "privacy_action_receipts" ADD CONSTRAINT "privacy_action_receipts_account_id_accounts_id_fk" FOREIGN KEY ("account_id") REFERENCES "public"."accounts"("id") ON DELETE cascade ON UPDATE no action;
+ALTER TABLE "privacy_action_receipts" ADD CONSTRAINT "privacy_action_receipts_account_id_accounts_id_fk" FOREIGN KEY ("account_id") REFERENCES "public"."accounts"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+REVOKE ALL ON TABLE "privacy_action_receipts" FROM anon, authenticated;

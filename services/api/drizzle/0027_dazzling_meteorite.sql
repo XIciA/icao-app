@@ -19,4 +19,5 @@ ALTER TABLE "content_access_credentials" ENABLE ROW LEVEL SECURITY;--> statement
 ALTER TABLE "content_access_credentials" ADD CONSTRAINT "content_access_credentials_entitlement_fk" FOREIGN KEY ("entitlement_segment_id","environment","account_id") REFERENCES "public"."membership_entitlement_segments"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
 CREATE UNIQUE INDEX "content_access_credentials_digest" ON "content_access_credentials" USING btree ("credential_digest");--> statement-breakpoint
 CREATE INDEX "content_access_credentials_account_expiry" ON "content_access_credentials" USING btree ("account_id","expires_at");--> statement-breakpoint
-CREATE INDEX "content_access_credentials_retention" ON "content_access_credentials" USING btree ("retention_at");
+CREATE INDEX "content_access_credentials_retention" ON "content_access_credentials" USING btree ("retention_at");--> statement-breakpoint
+REVOKE ALL ON TABLE "content_access_credentials" FROM anon, authenticated;

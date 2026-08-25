@@ -486,8 +486,11 @@ pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e 
   process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
 ')
 
-docker run --rm --network supabase_default --env-file "$database_env" "$image" \
-  node services/api/scripts/migrate.mjs
+docker run --rm --network supabase_default --env-file "$database_env" \
+  -e ICAO_PRODUCTION_MIGRATION_SOURCE_SHA="$source_sha" \
+  -e ICAO_MIGRATION_REHEARSAL_DATABASE_NAME="$database_name" \
+  -e ICAO_MIGRATION_REHEARSAL_AUTHORIZATION="rehearse:$source_sha:$database_name" \
+  "$image" node services/api/scripts/migrate.mjs --isolated-rehearsal
 docker run --rm --network supabase_default --env-file "$database_env" "$image" \
   node services/api/scripts/migration-plan.mjs --require-current
 

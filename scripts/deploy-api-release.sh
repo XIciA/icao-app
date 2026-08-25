@@ -57,6 +57,11 @@ set -eu
 release_id=$1
 release_dir=$2
 build_npm_registry=$3
+exec 9<>/run/lock/icao-production-release-change.lock
+if ! flock -n 9; then
+  echo 'A production database migration or release change is already running.' >&2
+  exit 1
+fi
 source_dir=$release_dir/source
 rollback_image=icao-api:rollback-$release_id
 candidate_image=icao-api:candidate-$release_id
