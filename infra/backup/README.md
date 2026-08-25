@@ -1,9 +1,15 @@
 # 生产 ECS 内数据库备份
 
 - 每日由 systemd timer 运行 `backup-postgres.sh`。
+- 生产 systemd 服务只从 `/opt/icao/runtime/backup-tools/current` 读取受审备份工具。该路径由
+  `scripts/install-production-backup-tools.sh` 按 `origin/main` 提交原子切换，不依赖会被 API 发布替换的
+  `/opt/icao/runtime/source`。
 - 默认保留 7 天，备份和 SHA-256 位于 `/opt/icao/backups/postgres`，目录和文件仅 root 可读。
+- 手工、安装预检和 systemd timer 共用 `/run/lock/icao-postgres-backup.lock`，并发备份会安全失败，
+  不会竞争同一临时文件或校验和。
 - 备份先写入临时文件，并通过 `pg_restore --list` 校验后才原子发布，失败不会留下可被误用的半成品。
-- `restore-isolated.sh` 在同一 PostgreSQL 实例中新建临时空库，完整恢复并校验 public/auth 表后删除临时库。
+- `restore-isolated.sh` 以独占锁在同一 PostgreSQL 实例中新建唯一临时空库，完整恢复并校验 public/auth、
+  代表性业务表总量、用户和迁移账本后，只删除本次成功创建的临时库；数据库密码不进入命令参数。
 - 当前只启用 ECS 本机 PostgreSQL 7 天循环备份；不启用异机数据库或 Storage 副本。
 - `replicate-postgres.sh` 与 `replicate-storage.sh` 仅作为可选工具保留。没有显式配置
   `BACKUP_REPLICA_TARGET` 或 `STORAGE_REPLICA_TARGET` 时会安全跳过，绝不回退到旧 ECS。

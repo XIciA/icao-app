@@ -1,5 +1,8 @@
-import { access, readFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { access, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
 
 import {
   assertExpoPrebuildCommand,
@@ -146,6 +149,12 @@ const criticalReleaseEvidence = await readFile('tools/critical-capability-releas
 const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
+const backupToolsInstaller = await readFile('scripts/install-production-backup-tools.sh', 'utf8');
+const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
+const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
+const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
+const postgresReplicaService = await readFile('infra/backup/icao-postgres-replica.service', 'utf8');
+const storageReplicaService = await readFile('infra/backup/icao-storage-replica.service', 'utf8');
 const apiDockerfile = await readFile('infra/api/Dockerfile', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
@@ -236,6 +245,133 @@ if (
   || apiRelease.includes('.generated/release/current-manifest.json')
 ) {
   throw new Error('The API release must use materialized current release metadata.');
+}
+if (!apiRelease.includes('infra/api infra/backup')) {
+  throw new Error('The API release archive must preserve the reviewed production backup tools.');
+}
+for (const [name, service] of [
+  ['PostgreSQL backup', postgresBackupService],
+  ['PostgreSQL replica', postgresReplicaService],
+  ['Storage replica', storageReplicaService],
+]) {
+  if (
+    service.includes('/opt/icao/runtime/source/')
+    || !service.includes('/opt/icao/runtime/backup-tools/current/')
+  ) {
+    throw new Error(`${name} service must use the stable backup-tools path.`);
+  }
+}
+for (const requiredBackupContract of [
+  'check-mainline-release.mjs',
+  '/opt/icao/runtime/backup-tools',
+  'systemctl daemon-reload',
+  'systemctl start icao-postgres-backup.service',
+  'systemd-analyze verify',
+  'sha256sum -c',
+  'restore-isolated.sh',
+  'docker exec supabase-db printenv POSTGRES_PASSWORD',
+  'ICAO_BACKUP_EXPECT_USER_DATA:-1',
+  'preflight_restore_verified',
+  'archive_sha256=',
+  'rollback()',
+  'cleanup_partial() (',
+  'unsupported previous backup timer state',
+  'previous_timer_enabled=${previous_timer_enabled:-not-found}',
+  'restored_timer_enabled=${restored_timer_enabled:-not-found}',
+  'git archive --format=tar HEAD infra/backup',
+  '| gzip -n',
+  '$REMOTE_ROOT/uploads/',
+  'openssl rand -hex 16',
+  'expected_checksum_line=',
+  'actual_checksum_line=',
+]) {
+  if (!backupToolsInstaller.includes(requiredBackupContract)) {
+    throw new Error(`Production backup installer contract is incomplete: ${requiredBackupContract}`);
+  }
+}
+if (!isolatedRestore.includes('isolated_restore_ok')) {
+  throw new Error('The production backup restore check must emit isolated restore evidence.');
+}
+for (const restoreContract of [
+  'flock -n 9',
+  'RESTORE_DB_NAME',
+  'created=0',
+  'created=1',
+  'trap cleanup_restore_database EXIT',
+  'business_rows=',
+  'select count(*) from auth.users',
+  'select count(*) from drizzle.__drizzle_migrations',
+  '-e PGPASSWORD',
+]) {
+  if (!isolatedRestore.includes(restoreContract)) {
+    throw new Error(`The isolated restore contract is incomplete: ${restoreContract}`);
+  }
+}
+if (isolatedRestore.includes('-e PGPASSWORD=')) {
+  throw new Error('The isolated restore must not expose the database password in docker arguments.');
+}
+if (!isolatedRestore.includes('concurrent writes to the live database cannot invalidate') || isolatedRestore.includes('SOURCE_CARD_STATES')) {
+  throw new Error('The isolated restore evidence must not compare a dump with later live counts.');
+}
+if (isolatedRestore.indexOf('created=1') > isolatedRestore.indexOf('trap cleanup_restore_database EXIT')) {
+  throw new Error('The isolated restore cleanup must only be armed after creating its unique database.');
+}
+if (
+  !postgresBackup.includes('flock -n 9')
+  || postgresBackup.includes('trap cleanup EXIT HUP INT TERM')
+  || !postgresBackup.includes("trap 'exit 1' HUP INT TERM")
+  || !postgresBackup.includes('published=0')
+  || !postgresBackup.includes('published=1')
+) {
+  throw new Error('The production backup must serialize invocations and publish dump/checksum atomically.');
+}
+if (backupToolsInstaller.includes('cleanup_partial() {')) {
+  throw new Error('The retry cleanup must not disable fail-fast behavior in the caller shell.');
+}
+const cleanupFunction = backupToolsInstaller.match(/cleanup_partial\(\) \([\s\S]*?\n\)\n\nif/u)?.[0].replace(/\n\nif$/u, '');
+if (!cleanupFunction) {
+  throw new Error('The production backup retry cleanup function is missing.');
+}
+const cleanupTestRoot = await mkdtemp(`${tmpdir()}/icao-backup-cleanup-`);
+try {
+  const cleanupTest = spawnSync('/bin/sh', ['-c', `
+set -eu
+partial_dir=$CLEANUP_TEST_ROOT/partial
+upload=$CLEANUP_TEST_ROOT/upload.tar.gz
+checksum=$CLEANUP_TEST_ROOT/upload.tar.gz.sha256
+mkdir -p "$partial_dir"
+: > "$upload"
+: > "$checksum"
+${cleanupFunction}
+cleanup_partial
+false
+printf 'unsafe_retry_continuation\\n'
+`], {
+    encoding: 'utf8',
+    env: { ...process.env, CLEANUP_TEST_ROOT: cleanupTestRoot },
+  });
+  if (cleanupTest.status !== 1 || cleanupTest.stdout.includes('unsafe_retry_continuation')) {
+    throw new Error('The backup retry cleanup disabled fail-fast behavior in its caller.');
+  }
+} finally {
+  await rm(cleanupTestRoot, { force: true, recursive: true });
+}
+const archiveCommand = 'git archive --format=tar HEAD infra/backup | gzip -n';
+const archiveHashes = [];
+for (let attempt = 0; attempt < 2; attempt += 1) {
+  if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 1_100));
+  const archive = spawnSync('/bin/sh', ['-c', archiveCommand], {
+    cwd: process.cwd(),
+    encoding: null,
+    maxBuffer: 10 * 1024 * 1024,
+  });
+  if (archive.status !== 0 || !archive.stdout?.length) {
+    throw new Error(`The deterministic backup archive self-test failed: ${archive.stderr?.toString() ?? ''}`);
+  }
+  archiveHashes.push(createHash('sha256').update(archive.stdout).digest('hex'));
+}
+if (new Set(archiveHashes).size !== 1) {
+  throw new Error('The same origin/main backup tools source produced different archive hashes.');
 }
 if (
   !apiRelease.includes('ICAO_API_BUILD_NPM_REGISTRY')
