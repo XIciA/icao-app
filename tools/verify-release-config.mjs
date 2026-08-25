@@ -255,6 +255,8 @@ for (const requiredRehearsalContract of [
   'icao-production-migration-rehearsal.lock',
   'database_created=0',
   'database_created=1',
+  'PGPASSWORD=$POSTGRES_PASSWORD',
+  'export POSTGRES_PASSWORD PGPASSWORD',
   'createdb -h db',
   'drop_created_database',
   'if ! existing=$(docker run',
