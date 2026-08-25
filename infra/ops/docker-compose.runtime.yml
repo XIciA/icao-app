@@ -1,20 +1,23 @@
+name: icao-ops
+
 services:
   ops-api:
-    build:
-      context: ../..
-      dockerfile: infra/ops/Dockerfile.api
-    image: icao-ops-api:stage3a
+    image: icao-ops-api:production
+    container_name: icao-ops-api
     restart: unless-stopped
     networks:
       - supabase
     ports:
-      - "127.0.0.1:3102:3102"
+      - 127.0.0.1:3102:3102
     env_file:
       - /opt/icao/runtime/ops-api/.env
-    environment:
-      OPS_ENABLED: "1"
-      OPS_HOST: "0.0.0.0"
-      OPS_PORT: "3102"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3102/health/ready').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 10s
@@ -23,20 +26,26 @@ services:
       start_period: 10s
 
   ops-web:
-    build:
-      context: ../..
-      dockerfile: infra/ops/Dockerfile
+    image: icao-ops-web:production
+    container_name: icao-ops-web
     restart: unless-stopped
     ports:
-      - "127.0.0.1:4180:8080"
+      - 127.0.0.1:4180:8080
     read_only: true
     tmpfs:
       - /config
       - /data
+      - /tmp
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
 networks:
   supabase:

@@ -177,6 +177,28 @@ describe('ops login anti-abuse boundary', () => {
     expect('deepseekApiKey' in config).toBe(false);
   });
 
+  it('fails closed for a non-release identity or another production browser origin', () => {
+    const productionEnvironment = {
+      DATABASE_URL: authConfig.databaseUrl,
+      NODE_ENV: 'production',
+      API_RELEASE_ID: 'ops-production-test',
+      ACCOUNT_IDENTITY_HASH_SECRET: authConfig.accountIdentityHashSecret,
+      OPS_ENABLED: '1',
+      OPS_HOST: '0.0.0.0',
+      OPS_PORT: '3102',
+      OPS_CORS_ORIGINS: 'https://ops.readyoufife.com',
+      OPS_SESSION_HASH_SECRET: authConfig.opsSessionHashSecret,
+      OPS_TOTP_ENCRYPTION_KEY: authConfig.opsTotpEncryptionKey,
+      OPS_TRUSTED_PROXY_SHARED_SECRET: authConfig.opsTrustedProxySharedSecret,
+    };
+    expect(() => loadOpsConfig({ ...productionEnvironment, API_RELEASE_ID: 'development' }))
+      .toThrow('invalid_ops_api_configuration:API_RELEASE_ID');
+    expect(() => loadOpsConfig({
+      ...productionEnvironment,
+      OPS_CORS_ORIGINS: 'https://ops.readyoufife.com,https://example.com',
+    })).toThrow('invalid_ops_api_configuration:OPS_CORS_ORIGINS');
+  });
+
   it('keeps ordinary configuration independent from all Ops variables', () => {
     const config = loadConfig({
       DATABASE_URL: authConfig.databaseUrl,
@@ -199,6 +221,7 @@ describe('ops login anti-abuse boundary', () => {
     try {
       const response = await app.inject({ method: 'GET', url: '/health/live' });
       expect(response.statusCode).toBe(200);
+      expect(response.headers['x-icao-api-version']).toBe('ops-test');
       expect(response.json().data.service).toBe('icao-ops-api');
     } finally {
       await app.close();

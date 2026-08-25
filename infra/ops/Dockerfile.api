@@ -24,4 +24,6 @@ RUN pnpm --filter @icao/contracts build && pnpm --filter @icao/api build:ops
 ENV NODE_ENV=production
 ENV API_RELEASE_ID=$ICAO_API_RELEASE_ID
 
+USER node
+
 CMD ["node", "services/api/dist-ops/main-ops.js"]

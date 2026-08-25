@@ -1,6 +1,10 @@
 :8080 {
   root * /srv
   encode zstd gzip
+  @html path / /index.html
+  header @html Cache-Control "no-store"
+  @assets path /assets/*
+  header @assets Cache-Control "public, max-age=31536000, immutable"
   header {
     X-Content-Type-Options nosniff
     X-Frame-Options DENY

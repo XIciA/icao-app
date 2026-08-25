@@ -149,6 +149,7 @@ const criticalReleaseEvidence = await readFile('tools/critical-capability-releas
 const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
+const opsRelease = await readFile('scripts/deploy-ops-release.sh', 'utf8');
 const backupToolsInstaller = await readFile('scripts/install-production-backup-tools.sh', 'utf8');
 const migrationRehearsal = await readFile('scripts/rehearse-production-migrations.sh', 'utf8');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
@@ -221,6 +222,7 @@ for (const [name, source] of [
   ['Android release', androidRelease],
   ['Android standalone', androidStandalone],
   ['API release', apiRelease],
+  ['Ops release', opsRelease],
 ]) {
   if (!source.includes('check-mainline-release.mjs')) {
     throw new Error(`${name} must reject release sources outside origin/main.`);

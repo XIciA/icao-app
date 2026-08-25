@@ -35,3 +35,32 @@ cloud.readyoufife.com {
 		}
 	}
 }
+
+ops.readyoufife.com {
+	import icao_security_headers
+	header {
+		X-Frame-Options "DENY"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+	}
+
+	@ops_health path /health/live /health/ready
+	handle @ops_health {
+		header Cache-Control "no-store"
+		reverse_proxy 127.0.0.1:3102
+	}
+
+	@ops_admin path /v1/admin/*
+	handle @ops_admin {
+		header Cache-Control "no-store"
+		reverse_proxy 127.0.0.1:3102 {
+			header_up -X-Ops-Client-IP
+			header_up -X-Ops-Proxy-Secret
+			header_up X-Ops-Client-IP {remote_host}
+			header_up X-Ops-Proxy-Secret {$OPS_TRUSTED_PROXY_SHARED_SECRET}
+		}
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:4180
+	}
+}
