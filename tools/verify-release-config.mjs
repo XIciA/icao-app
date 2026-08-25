@@ -150,6 +150,7 @@ const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 const backupToolsInstaller = await readFile('scripts/install-production-backup-tools.sh', 'utf8');
+const migrationRehearsal = await readFile('scripts/rehearse-production-migrations.sh', 'utf8');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
 const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
@@ -248,6 +249,37 @@ if (
 }
 if (!apiRelease.includes('infra/api infra/backup')) {
   throw new Error('The API release archive must preserve the reviewed production backup tools.');
+}
+for (const requiredRehearsalContract of [
+  'check-mainline-release.mjs',
+  'icao-production-migration-rehearsal.lock',
+  'database_created=0',
+  'database_created=1',
+  'createdb -h db',
+  'pg_restore -h db',
+  'migration-plan.mjs --json',
+  'migration-plan.mjs --require-current',
+  'scripts/migrate.mjs',
+  'business_rows_preserved=',
+  'auth_users_preserved=',
+  'unvalidated_constraints=',
+  'device_digest_columns=',
+  'expected_checksum_line=',
+  'actual_checksum_line=',
+  'ICAO_REHEARSAL_BACKUP_NAME contains unsafe characters',
+  'require_public_https_url ICAO_API_BUILD_NPM_REGISTRY',
+  'production_migration_rehearsal_ok',
+]) {
+  if (!migrationRehearsal.includes(requiredRehearsalContract)) {
+    throw new Error(`Production migration rehearsal contract is incomplete: ${requiredRehearsalContract}`);
+  }
+}
+if (
+  migrationRehearsal.includes('dropdb -h db -U supabase_admin postgres')
+  || migrationRehearsal.indexOf('database_created=1') < migrationRehearsal.indexOf('createdb -h db')
+  || !migrationRehearsal.includes('case "$database_name" in')
+) {
+  throw new Error('The migration rehearsal must protect production and only drop its created isolated database.');
 }
 for (const [name, service] of [
   ['PostgreSQL backup', postgresBackupService],
