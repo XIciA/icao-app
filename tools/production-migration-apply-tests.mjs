@@ -108,6 +108,32 @@ test('rejects stale, duplicated, mismatched, or path-injected rehearsal evidence
   }
 });
 
+test('accepts the exact generated migration upload name and rejects malformed names', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-upload-name-validation');
+  const endMarker = '# END production-migration-upload-name-validation';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const validation = source.slice(start, end + endMarker.length);
+  const run = (name) => spawnSync('/bin/sh', ['-c', `
+set -eu
+upload="/opt/icao/runtime/production-migrations/uploads/$TEST_UPLOAD_NAME"
+${validation}
+`], {
+    encoding: 'utf8',
+    env: { ...process.env, TEST_UPLOAD_NAME: name },
+  });
+  const valid = `source-${'a'.repeat(12)}-${'b'.repeat(32)}.tar.gz`;
+  assert.equal(run(valid).status, 0);
+  for (const invalid of [
+    `source-${'a'.repeat(11)}-${'b'.repeat(32)}.tar.gz`,
+    `source-${'a'.repeat(12)}-${'b'.repeat(31)}.tar.gz`,
+    `source-${'a'.repeat(12)}-${'g'.repeat(32)}.tar.gz`,
+    `source-${'a'.repeat(12)}-${'b'.repeat(32)};touch.tar.gz`,
+    `source-${'a'.repeat(12)}-${'b'.repeat(32)}.tar.gz.extra`,
+  ]) assert.notEqual(run(invalid).status, 0, invalid);
+});
+
 test('production migrator rejects missing wrapper authorization before any connection attempt', () => {
   const migratePath = new URL('../services/api/scripts/migrate.mjs', import.meta.url);
   const result = spawnSync(process.execPath, [migratePath.pathname, '--production-apply'], {

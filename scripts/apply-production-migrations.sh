@@ -13,7 +13,22 @@ if [ "$SOURCE_GIT_ROOT" != "$SOURCE_ROOT" ]; then
   echo 'ICAO_PRODUCTION_MIGRATION_SOURCE_ROOT must be the root of a Git worktree.' >&2
   exit 1
 fi
-node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
+
+PRINT_CONFIRMATION=0
+case "${1:-}" in
+  --print-confirmation)
+    if [ "$#" -ne 1 ]; then echo 'usage: apply-production-migrations.sh --print-confirmation' >&2; exit 2; fi
+    PRINT_CONFIRMATION=1
+    ;;
+  '') ;;
+  *) echo 'usage: apply-production-migrations.sh [--print-confirmation]' >&2; exit 2 ;;
+esac
+
+if [ "$PRINT_CONFIRMATION" = 1 ]; then
+  node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT" >/dev/null
+else
+  node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
+fi
 
 SOURCE_SHA=$(git -C "$SOURCE_ROOT" rev-parse HEAD)
 SOURCE_ID=$(printf '%.12s' "$SOURCE_SHA")
@@ -21,15 +36,10 @@ EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:18:0}
 EXPECTED_POST_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-33:0:0}
 CONTRACT_TOOL=$SOURCE_ROOT/tools/production-migration-apply-contract.mjs
 
-case "${1:-}" in
-  --print-confirmation)
-    if [ "$#" -ne 1 ]; then echo 'usage: apply-production-migrations.sh --print-confirmation' >&2; exit 2; fi
-    node "$CONTRACT_TOOL" print-confirmation "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN"
-    exit 0
-    ;;
-  '') ;;
-  *) echo 'usage: apply-production-migrations.sh [--print-confirmation]' >&2; exit 2 ;;
-esac
+if [ "$PRINT_CONFIRMATION" = 1 ]; then
+  node "$CONTRACT_TOOL" print-confirmation "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN"
+  exit 0
+fi
 
 CONFIRMATION=${ICAO_PRODUCTION_MIGRATION_CONFIRM:-}
 node "$CONTRACT_TOOL" confirm \
@@ -146,11 +156,18 @@ for directory in "$root" "$root/uploads" "$root/evidence"; do
     install -d -m 700 "$directory"
   fi
 done
-case "$(basename "$upload")" in
-  source-[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]-[a-f0-9]*.tar.gz) ;;
+# BEGIN production-migration-upload-name-validation
+upload_name=$(basename "$upload")
+case "$upload_name" in
+  source-????????????-????????????????????????????????.tar.gz) ;;
   *) echo 'production migration upload name is invalid' >&2; exit 1 ;;
 esac
-case "$(basename "$upload")" in *[!a-f0-9.-]*) echo 'production migration upload name has unsafe characters' >&2; exit 1 ;; esac
+upload_identity=${upload_name#source-}
+upload_identity=${upload_identity%.tar.gz}
+case "$upload_identity" in
+  *[!a-f0-9-]*) echo 'production migration upload name has unsafe characters' >&2; exit 1 ;;
+esac
+# END production-migration-upload-name-validation
 test ! -e "$upload" && test ! -L "$upload"
 test ! -e "$checksum" && test ! -L "$checksum"
 created_upload=0

@@ -43,6 +43,10 @@ for (const contract of [
   'characters unsafe for remote argument transport',
   'git archive --format=tar "$SOURCE_SHA"',
   '/opt/icao/runtime/production-migrations',
+  '# BEGIN production-migration-upload-name-validation',
+  '# END production-migration-upload-name-validation',
+  'source-????????????-????????????????????????????????.tar.gz',
+  'upload_identity=${upload_name#source-}',
   '# BEGIN production-migration-path-guard',
   '# END production-migration-path-guard',
   'stat -c \'%u:%a\'',
@@ -87,6 +91,13 @@ for (const contract of [
   if (!applySource.includes(contract)) {
     throw new Error(`production_migration_apply_contract_missing:${contract}`);
   }
+}
+
+if (
+  !applySource.includes('PRINT_CONFIRMATION=1')
+  || !applySource.includes('check-mainline-release.mjs" --root "$SOURCE_ROOT" >/dev/null')
+) {
+  throw new Error('production_migration_confirmation_stdout_not_unique');
 }
 
 for (const dangerousContract of [
