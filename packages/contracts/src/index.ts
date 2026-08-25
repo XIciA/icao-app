@@ -766,3 +766,140 @@ export type PolishResult = {
   promptVersion: string;
   aiPoints?: AiPointOperationSummary;
 };
+
+export type OpsStaffRole = 'admin' | 'support';
+
+export type OpsLoginRequest = {
+  email: string;
+  password: string;
+  totpCode: string;
+  deviceName?: string;
+};
+
+export type OpsStaffSession = {
+  accessToken: string;
+  expiresAt: string;
+  staff: {
+    id: string;
+    email: string;
+    role: OpsStaffRole;
+  };
+};
+
+export type OpsStaffListItem = {
+  id: string;
+  email: string;
+  role: OpsStaffRole;
+  status: 'active' | 'disabled';
+  activeSessionCount: number;
+  disabledAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OpsStaffActionRequest = { reason: string };
+
+export type OpsStaffDisableResult = {
+  disabled: true;
+  disabledAt: string;
+};
+
+export type OpsStaffSessionRevokeResult = {
+  revoked: true;
+  revokedSessionCount: number;
+};
+
+export type OpsHealthSummary = {
+  service: 'icao-ops-api';
+  status: 'ok';
+  database: 'ok';
+  releaseId: string;
+  counts: {
+    accounts: number;
+    productionOrders: number;
+    pendingFeedback: number;
+    pendingPrivacyRequests: number;
+  };
+};
+
+export type OpsUserSummary = {
+  accountId: string;
+  status: string;
+  providers: Array<'phone' | 'apple'>;
+  phone: string;
+  lastIdentityUsedAt: string | null;
+  sessionsRevokedAt: string | null;
+  createdAt: string;
+};
+
+export type OpsOrderSummary = {
+  id: string;
+  environment: CommerceEnvironment;
+  channel: string;
+  externalOrderReference: string;
+  productKey: string;
+  status: string;
+  purchasedAt: string;
+};
+
+export type OpsAccountCommerceSummary = {
+  accountId: string;
+  entitlements: CommerceEntitlementsResponse;
+  orders: OpsOrderSummary[];
+  pointLedger: Array<{
+    sequence: number;
+    environment: CommerceEnvironment;
+    entryType: string;
+    direction: string;
+    points: number;
+    createdAt: string;
+  }>;
+};
+
+export type OpsFeedbackQueueItem = {
+  ticketNumber: string;
+  accountId: string;
+  category: string;
+  status: string;
+  summary: string;
+  source: string;
+  createdAt: string;
+};
+
+export type OpsPrivacyRequestQueueItem = {
+  id: string;
+  accountId: string;
+  requestType: 'account_deletion';
+  status: string;
+  identityProviderOutcome: string;
+  requestedAt: string;
+  updatedAt: string;
+};
+
+export type OpsEntitlementGrantRequest = {
+  accountId: string;
+  environment: CommerceEnvironment;
+  membershipDays: number;
+  aiPoints: number;
+  reason: string;
+};
+
+export type OpsEntitlementGrantPreview = {
+  previewId: string;
+  confirmationToken: string;
+  expiresAt: string;
+  before: CommerceEntitlementSummary;
+  after: CommerceEntitlementSummary;
+  change: Omit<OpsEntitlementGrantRequest, 'reason'>;
+};
+
+export type OpsEntitlementGrantExecuteRequest = {
+  confirmation: '确认发放';
+  confirmationToken: string;
+};
+
+export type OpsEntitlementGrantResult = {
+  adjustmentId: string;
+  appliedAt: string;
+  entitlement: CommerceEntitlementSummary;
+};

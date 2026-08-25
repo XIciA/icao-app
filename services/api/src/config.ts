@@ -57,6 +57,20 @@ const schema = z.object({
   CORS_ORIGINS: z.string().default('http://localhost:8081,http://127.0.0.1:8081,http://localhost:4173,http://127.0.0.1:4173'),
 });
 
+const opsRuntimeSchema = z.object({
+  DATABASE_URL: z.string().url().startsWith('postgresql://'),
+  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  API_RELEASE_ID: z.string().regex(/^[A-Za-z0-9._-]+$/u).default('development'),
+  ACCOUNT_IDENTITY_HASH_SECRET: z.string().min(32),
+  OPS_ENABLED: z.literal('1'),
+  OPS_HOST: z.string().default('127.0.0.1'),
+  OPS_PORT: z.coerce.number().int().min(1).max(65_535).default(3102),
+  OPS_CORS_ORIGINS: z.string().default('http://localhost:4180,http://127.0.0.1:4180'),
+  OPS_SESSION_HASH_SECRET: z.string().min(32),
+  OPS_TOTP_ENCRYPTION_KEY: z.string(),
+  OPS_TRUSTED_PROXY_SHARED_SECRET: z.string().min(32),
+});
+
 const PRODUCTION_AI_ENVIRONMENT_KEYS = [
   'AI_TEXT_PROVIDER',
   'DEEPSEEK_API_KEY',
@@ -139,7 +153,22 @@ export type ApiConfig = {
   corsOrigins: string[];
 };
 
+export type OpsApiConfig = {
+  databaseUrl: string;
+  nodeEnv: 'development' | 'test' | 'production';
+  apiReleaseId: string;
+  accountIdentityHashSecret: string;
+  opsEnabled: true;
+  opsHost: string;
+  opsPort: number;
+  opsCorsOrigins: string[];
+  opsSessionHashSecret: string;
+  opsTotpEncryptionKey: string;
+  opsTrustedProxySharedSecret: string;
+};
+
 export const API_CONFIG = Symbol('API_CONFIG');
+export const OPS_API_CONFIG = Symbol('OPS_API_CONFIG');
 
 function parseCorsOrigins(value: string): string[] {
   const origins = [...new Set(value.split(',').map((entry) => entry.trim()).filter(Boolean))];
@@ -414,5 +443,40 @@ export function loadConfig(
       phoneDailyLimit: parsed.data.SMS_PHONE_DAILY_LIMIT,
     },
     corsOrigins: parseCorsOrigins(parsed.data.CORS_ORIGINS),
+  };
+}
+
+/**
+ * Ops runtime configuration is parsed only by the dedicated Ops process.
+ * Invalid or partial Ops variables therefore cannot prevent the ordinary user
+ * API from starting.
+ */
+export function loadOpsConfig(
+  environment: NodeJS.ProcessEnv = process.env,
+): OpsApiConfig {
+  const parsed = opsRuntimeSchema.safeParse(environment);
+  if (!parsed.success) {
+    const fields = parsed.error.issues
+      .map((issue) => issue.path.join('.') || 'environment')
+      .join(', ');
+    throw new Error(`invalid_ops_api_configuration:${fields}`);
+  }
+  const opsEncryptionKey = Buffer.from(parsed.data.OPS_TOTP_ENCRYPTION_KEY, 'base64');
+  if (
+    opsEncryptionKey.byteLength !== 32
+    || opsEncryptionKey.toString('base64') !== parsed.data.OPS_TOTP_ENCRYPTION_KEY
+  ) throw new Error('invalid_ops_api_configuration:OPS_TOTP_ENCRYPTION_KEY');
+  return {
+    databaseUrl: parsed.data.DATABASE_URL,
+    nodeEnv: parsed.data.NODE_ENV,
+    apiReleaseId: parsed.data.API_RELEASE_ID,
+    accountIdentityHashSecret: parsed.data.ACCOUNT_IDENTITY_HASH_SECRET,
+    opsEnabled: true,
+    opsHost: parsed.data.OPS_HOST,
+    opsPort: parsed.data.OPS_PORT,
+    opsCorsOrigins: parseCorsOrigins(parsed.data.OPS_CORS_ORIGINS),
+    opsSessionHashSecret: parsed.data.OPS_SESSION_HASH_SECRET,
+    opsTotpEncryptionKey: parsed.data.OPS_TOTP_ENCRYPTION_KEY,
+    opsTrustedProxySharedSecret: parsed.data.OPS_TRUSTED_PROXY_SHARED_SECRET,
   };
 }

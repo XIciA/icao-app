@@ -1,0 +1,29 @@
+# Merge only after the ops image and the same-origin admin API have been
+# validated from an origin/main release. This is a draft; it is not included by
+# the current production gateway configuration.
+ops.readyoufife.com {
+  encode zstd gzip
+
+  @adminApi path /v1/admin/*
+  handle @adminApi {
+    reverse_proxy 127.0.0.1:3102 {
+      # The Ops API ignores X-Forwarded-For. These two headers are accepted
+      # only from loopback and only when this server-held secret matches.
+      header_up -X-Ops-Client-IP
+      header_up -X-Ops-Proxy-Secret
+      header_up X-Ops-Client-IP {remote_host}
+      header_up X-Ops-Proxy-Secret {$OPS_TRUSTED_PROXY_SHARED_SECRET}
+    }
+  }
+
+  handle {
+    reverse_proxy 127.0.0.1:4180
+  }
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    Referrer-Policy no-referrer
+  }
+}

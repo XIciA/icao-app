@@ -226,6 +226,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0026_sad_joshua_kane',
       '0027_dazzling_meteorite',
       '0028_sharp_lady_ursula',
+      '0029_curvy_talon',
     ],
   );
   assert.ok(

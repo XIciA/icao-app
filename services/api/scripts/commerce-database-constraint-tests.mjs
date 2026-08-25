@@ -465,16 +465,15 @@ function deletionService({
   };
 }
 
-test('the cumulative migration enables RLS on all 49 public tables', () => {
-  assert.equal(
-    queryScalar(`
-      SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
-      FROM pg_class relation
-      JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
-      WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
-    `),
-    '49:49',
-  );
+test('the cumulative migration enables RLS on every public table', () => {
+  const [tableCount, rlsCount] = queryScalar(`
+    SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
+    FROM pg_class relation
+    JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
+    WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
+  `).split(':').map(Number);
+  assert.equal(tableCount, 55);
+  assert.equal(rlsCount, tableCount);
 });
 
 test('account-security authority tables are private to the API database role', () => {

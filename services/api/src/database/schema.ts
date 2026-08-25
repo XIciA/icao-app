@@ -598,6 +598,125 @@ export const aiWordCache = pgTable('ai_word_cache', {
   index('ai_word_cache_expiry').on(table.expiresAt),
 ]).enableRLS();
 
+export const opsStaffAccounts = pgTable('ops_staff_accounts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  email: text('email').notNull(),
+  role: text('role').notNull(),
+  passwordHash: text('password_hash').notNull(),
+  totpSecretCiphertext: text('totp_secret_ciphertext').notNull(),
+  totpSecretIv: text('totp_secret_iv').notNull(),
+  totpSecretTag: text('totp_secret_tag').notNull(),
+  totpConfirmedAt: timestamp('totp_confirmed_at', { withTimezone: true }).notNull(),
+  passwordChangedAt: timestamp('password_changed_at', { withTimezone: true }).defaultNow().notNull(),
+  lastTotpStep: bigint('last_totp_step', { mode: 'number' }).default(0).notNull(),
+  disabledAt: timestamp('disabled_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ops_staff_accounts_email').on(table.email),
+  index('ops_staff_accounts_role_active').on(table.role, table.disabledAt),
+  check('ops_staff_accounts_email_check', sql`${table.email} = lower(${table.email}) AND length(${table.email}) BETWEEN 3 AND 254`),
+  check('ops_staff_accounts_role_check', sql`${table.role} IN ('admin', 'support')`),
+  check('ops_staff_accounts_last_totp_step_check', sql`${table.lastTotpStep} >= 0`),
+]).enableRLS();
+
+export const opsStaffRecoveryCodes = pgTable('ops_staff_recovery_codes', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  staffId: uuid('staff_id').notNull()
+    .references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  codeHash: text('code_hash').notNull(),
+  consumedAt: timestamp('consumed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ops_staff_recovery_codes_hash').on(table.codeHash),
+  index('ops_staff_recovery_codes_staff').on(table.staffId, table.consumedAt),
+]).enableRLS();
+
+export const opsStaffSessions = pgTable('ops_staff_sessions', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  staffId: uuid('staff_id').notNull()
+    .references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  tokenHash: text('token_hash').notNull(),
+  deviceName: text('device_name'),
+  totpVerifiedAt: timestamp('totp_verified_at', { withTimezone: true }).notNull(),
+  lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).defaultNow().notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ops_staff_sessions_token_hash').on(table.tokenHash),
+  index('ops_staff_sessions_staff_active').on(table.staffId, table.revokedAt, table.expiresAt),
+  index('ops_staff_sessions_expiry').on(table.expiresAt),
+  check('ops_staff_sessions_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+]).enableRLS();
+
+export const opsChangePreviews = pgTable('ops_change_previews', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  staffId: uuid('staff_id').notNull()
+    .references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  sessionId: uuid('session_id').notNull()
+    .references(() => opsStaffSessions.id, { onDelete: 'restrict' }),
+  changeType: text('change_type').notNull(),
+  targetAccountId: uuid('target_account_id').notNull()
+    .references(() => accounts.id, { onDelete: 'restrict' }),
+  requestPayload: jsonb('request_payload').notNull(),
+  beforeState: jsonb('before_state').notNull(),
+  afterState: jsonb('after_state').notNull(),
+  confirmationHash: text('confirmation_hash').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  executedAt: timestamp('executed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ops_change_previews_confirmation_hash').on(table.confirmationHash),
+  index('ops_change_previews_actor_pending').on(table.staffId, table.sessionId, table.executedAt),
+  index('ops_change_previews_expiry').on(table.expiresAt),
+  check('ops_change_previews_change_type_check', sql`${table.changeType} IN ('grant_review_entitlement')`),
+  check('ops_change_previews_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+]).enableRLS();
+
+export const opsEntitlementAdjustments = pgTable('ops_entitlement_adjustments', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  previewId: uuid('preview_id').notNull()
+    .references(() => opsChangePreviews.id, { onDelete: 'restrict' }),
+  staffId: uuid('staff_id').notNull()
+    .references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  accountId: uuid('account_id').notNull()
+    .references(() => accounts.id, { onDelete: 'restrict' }),
+  environment: text('environment').notNull(),
+  reason: text('reason').notNull(),
+  membershipDays: integer('membership_days').default(0).notNull(),
+  aiPoints: integer('ai_points').default(0).notNull(),
+  appliedAt: timestamp('applied_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ops_entitlement_adjustments_preview').on(table.previewId),
+  index('ops_entitlement_adjustments_account').on(table.environment, table.accountId, table.appliedAt),
+  check('ops_entitlement_adjustments_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
+  check('ops_entitlement_adjustments_reason_check', sql`length(btrim(${table.reason})) BETWEEN 8 AND 500`),
+  check('ops_entitlement_adjustments_values_check', sql`${table.membershipDays} BETWEEN 0 AND 366 AND ${table.aiPoints} BETWEEN 0 AND 100000 AND (${table.membershipDays} > 0 OR ${table.aiPoints} > 0)`),
+]).enableRLS();
+
+export const opsAuditEvents = pgTable('ops_audit_events', {
+  sequence: bigserial('sequence', { mode: 'number' }).primaryKey(),
+  requestId: text('request_id').notNull(),
+  actorStaffId: uuid('actor_staff_id')
+    .references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  actorRole: text('actor_role'),
+  action: text('action').notNull(),
+  targetType: text('target_type').notNull(),
+  targetId: text('target_id'),
+  reason: text('reason').notNull(),
+  beforeState: jsonb('before_state'),
+  afterState: jsonb('after_state'),
+  metadata: jsonb('metadata').default(sql`'{}'::jsonb`).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('ops_audit_events_actor_created').on(table.actorStaffId, table.createdAt),
+  index('ops_audit_events_target_created').on(table.targetType, table.targetId, table.createdAt),
+  check('ops_audit_events_actor_role_check', sql`${table.actorRole} IS NULL OR ${table.actorRole} IN ('admin', 'support')`),
+  check('ops_audit_events_reason_check', sql`length(btrim(${table.reason})) BETWEEN 3 AND 500`),
+]).enableRLS();
+
 export const commerceProducts = pgTable('commerce_products', {
   productKey: text('product_key').primaryKey(),
   displayName: text('display_name').notNull(),
@@ -738,7 +857,9 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   id: uuid('id').defaultRandom().primaryKey(),
   environment: text('environment').notNull(),
   accountId: uuid('account_id').notNull(),
-  orderId: uuid('order_id').notNull(),
+  orderId: uuid('order_id'),
+  opsAdjustmentId: uuid('ops_adjustment_id')
+    .references(() => opsEntitlementAdjustments.id, { onDelete: 'restrict' }),
   revision: integer('revision').notNull(),
   startsAt: timestamp('starts_at', { withTimezone: true }).notNull(),
   endsAt: timestamp('ends_at', { withTimezone: true }).notNull(),
@@ -748,6 +869,7 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('membership_segments_order_revision').on(table.environment, table.orderId, table.revision),
+  uniqueIndex('membership_segments_adjustment_revision').on(table.environment, table.opsAdjustmentId, table.revision),
   unique('membership_segments_identity').on(table.id, table.environment, table.accountId),
   index('membership_segments_account_window').on(table.environment, table.accountId, table.startsAt, table.endsAt),
   index('membership_segments_active').on(table.environment, table.accountId, table.status),
@@ -758,6 +880,7 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   }).onDelete('restrict').onUpdate('cascade'),
   check('membership_segments_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('membership_segments_status_check', sql`${table.status} IN ('active', 'superseded', 'revoked')`),
+  check('membership_segments_source_check', sql`num_nonnulls(${table.orderId}, ${table.opsAdjustmentId}) = 1`),
   check('membership_segments_window_check', sql`${table.endsAt} > ${table.startsAt}`),
 ]).enableRLS();
 

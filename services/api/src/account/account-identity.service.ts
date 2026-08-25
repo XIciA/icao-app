@@ -27,7 +27,7 @@ export class AccountIdentityService {
   private readonly hashKey: string;
 
   constructor(
-    @Inject(API_CONFIG) config: ApiConfig,
+    @Inject(API_CONFIG) config: Pick<ApiConfig, 'accountIdentityHashSecret'>,
     private readonly database: DatabaseService,
     @Optional() digests?: IdentityDigestService,
     @Optional() commerce?: PersistentCommerceBenefitsService,

@@ -11,12 +11,18 @@ export type VersionedIdentityDigest = {
 };
 
 type DigestDomain = 'apple-revocable-credential-v1' | 'lifetime-benefit-v1';
+type IdentityDigestConfig = Pick<ApiConfig, 'accountIdentityHashSecret'> & Partial<Pick<
+  ApiConfig,
+  | 'identityBenefitDigestKeyVersion'
+  | 'identityBenefitDigestPreviousKeys'
+  | 'identityBenefitDigestSecret'
+>>;
 
 @Injectable()
 export class IdentityDigestService {
   private readonly keys: Array<{ secret: string; version: number }>;
 
-  constructor(@Inject(API_CONFIG) config: ApiConfig) {
+  constructor(@Inject(API_CONFIG) config: IdentityDigestConfig) {
     this.keys = [{
       secret: config.identityBenefitDigestSecret ?? config.accountIdentityHashSecret,
       version: config.identityBenefitDigestKeyVersion ?? 1,
