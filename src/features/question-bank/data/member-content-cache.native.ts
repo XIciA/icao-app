@@ -6,7 +6,6 @@ import {
   aesEncryptAsync,
   CryptoDigestAlgorithm,
   digestStringAsync,
-  randomUUID,
 } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
@@ -20,15 +19,19 @@ import {
 import type { QuestionBankTopic } from '../types';
 import { verifyContentAccessCredential } from './content-credential-verifier.native';
 
-const DEVICE_ID_KEY = 'icao.content.device.v1';
+const LEGACY_DEVICE_ID_KEY = 'icao.content.device.v1';
+const LEGACY_CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v1.';
+const LEGACY_CREDENTIAL_INDEX_PREFIX = 'icao.content.credential-index.v1.';
+const LEGACY_TOPIC_CACHE_PREFIX = 'icao.content.member-topic.v1.';
+const LEGACY_RESOURCE_INDEX_PREFIX = 'icao.content.member-resource.v1.';
 const ACCOUNT_KEY_PREFIX = 'icao.content.key.v1.';
-const CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v1.';
-const CREDENTIAL_INDEX_PREFIX = 'icao.content.credential-index.v1.';
-const TOPIC_CACHE_PREFIX = 'icao.content.member-topic.v1.';
-const RESOURCE_INDEX_PREFIX = 'icao.content.member-resource.v1.';
+const CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v2.';
+const CREDENTIAL_INDEX_PREFIX = 'icao.content.credential-index.v2.';
+const TOPIC_CACHE_PREFIX = 'icao.content.member-topic.v2.';
+const RESOURCE_INDEX_PREFIX = 'icao.content.member-resource.v2.';
 
 type EncryptedTopic = {
-  schemaVersion: 1;
+  schemaVersion: 2;
   accountId: string;
   environment: ContentAccessCredential['environment'];
   scope: ContentAccessScope;
@@ -37,7 +40,7 @@ type EncryptedTopic = {
 
 let activeAccountId: string | undefined;
 let activeAccountGeneration = 0;
-let deviceIdPromise: Promise<string> | undefined;
+let legacyCleanupPromise: Promise<void> | undefined;
 const accountOperationTails = new Map<string, Promise<void>>();
 
 type MemberContentContext = {
@@ -127,7 +130,7 @@ function accountKeyName(accountId: string) {
 }
 
 function aad(accountId: string, environment: ContentAccessCredential['environment'], scope: ContentAccessScope) {
-  return new TextEncoder().encode(`icao-member-topic-v1\0${accountId}\0${environment}\0${scopeIdentity(scope)}`);
+  return new TextEncoder().encode(`icao-member-topic-v2\0${accountId}\0${environment}\0${scopeIdentity(scope)}`);
 }
 
 async function contentKey(accountId: string, create: boolean) {
@@ -152,6 +155,98 @@ async function registerCredentialKey(accountId: string, key: string) {
   if (!keys.includes(key)) await Storage.setItem(indexKey, JSON.stringify([...keys, key]));
 }
 
+function legacyCacheOwner(key: string, prefix: string) {
+  const suffix = key.slice(prefix.length);
+  for (const environment of ['production', 'sandbox'] as const) {
+    const marker = `.${environment}.`;
+    const markerIndex = suffix.indexOf(marker);
+    if (markerIndex <= 0) continue;
+    const accountId = suffix.slice(0, markerIndex);
+    if (!/^[A-Za-z0-9_-]{1,128}$/u.test(accountId)) return undefined;
+    return { accountId, environment, suffix };
+  }
+  return undefined;
+}
+
+function isLegacyScope(value: unknown): value is ContentAccessScope {
+  if (!value || typeof value !== 'object') return false;
+  const scope = value as Partial<ContentAccessScope>;
+  return [scope.bankId, scope.categoryId, scope.topicId].every((part) => (
+    typeof part === 'string' && /^[A-Za-z0-9._:-]{1,128}$/u.test(part)
+  ));
+}
+
+async function removeLegacyDeviceBoundMemberContent() {
+  await SecureStore.deleteItemAsync(LEGACY_DEVICE_ID_KEY);
+  const storageKeys = await Storage.getAllKeys();
+  const indexKeys = storageKeys.filter((key) => key.startsWith(LEGACY_CREDENTIAL_INDEX_PREFIX));
+  const cacheKeys = storageKeys.filter((key) => (
+    key.startsWith(LEGACY_TOPIC_CACHE_PREFIX) || key.startsWith(LEGACY_RESOURCE_INDEX_PREFIX)
+  ));
+  const accountIds = new Set<string>();
+  const credentialKeys = new Set<string>();
+  for (const indexKey of indexKeys) {
+    const accountId = indexKey.slice(LEGACY_CREDENTIAL_INDEX_PREFIX.length);
+    if (/^[A-Za-z0-9_-]{1,128}$/u.test(accountId)) accountIds.add(accountId);
+    const indexValue = await Storage.getItem(indexKey);
+    try {
+      const parsed = indexValue ? JSON.parse(indexValue) as unknown : [];
+      if (Array.isArray(parsed)) {
+        parsed.filter((key): key is string => (
+          typeof key === 'string' && key.startsWith(LEGACY_CREDENTIAL_KEY_PREFIX)
+        )).forEach((key) => credentialKeys.add(key));
+      }
+    } catch {
+      // Topic and resource cache metadata below provide an independent cleanup path.
+    }
+  }
+  for (const cacheKey of cacheKeys) {
+    if (cacheKey.startsWith(LEGACY_TOPIC_CACHE_PREFIX)) {
+      const owner = legacyCacheOwner(cacheKey, LEGACY_TOPIC_CACHE_PREFIX);
+      if (!owner) continue;
+      accountIds.add(owner.accountId);
+      credentialKeys.add(`${LEGACY_CREDENTIAL_KEY_PREFIX}${owner.suffix}`);
+      continue;
+    }
+    const owner = legacyCacheOwner(cacheKey, LEGACY_RESOURCE_INDEX_PREFIX);
+    if (!owner) continue;
+    accountIds.add(owner.accountId);
+    const value = await Storage.getItem(cacheKey);
+    try {
+      const scope = value ? JSON.parse(value) as unknown : undefined;
+      if (isLegacyScope(scope)) {
+        credentialKeys.add(
+          `${LEGACY_CREDENTIAL_KEY_PREFIX}${owner.accountId}.${owner.environment}`
+          + `.${scope.bankId}.${scope.categoryId}.${scope.topicId}`,
+        );
+      }
+    } catch {
+      // The matching topic cache or credential index remains the authoritative fallback.
+    }
+  }
+  await Promise.all([
+    ...[...credentialKeys].map((key) => SecureStore.deleteItemAsync(key)),
+    ...[...accountIds].map((accountId) => SecureStore.deleteItemAsync(accountKeyName(accountId))),
+  ]);
+  for (const accountId of accountIds) {
+    const directory = memberResourceAccountDirectory(accountId);
+    if (directory.exists) directory.delete();
+  }
+  if (indexKeys.length > 0 || cacheKeys.length > 0) {
+    await Storage.multiRemove([...indexKeys, ...cacheKeys]);
+  }
+}
+
+function ensureLegacyDeviceBoundContentCleanup() {
+  if (legacyCleanupPromise) return legacyCleanupPromise;
+  const cleanup = removeLegacyDeviceBoundMemberContent();
+  legacyCleanupPromise = cleanup;
+  void cleanup.catch(() => {
+    if (legacyCleanupPromise === cleanup) legacyCleanupPromise = undefined;
+  });
+  return cleanup;
+}
+
 export function currentQuestionBankContentAccountId() {
   return activeAccountId;
 }
@@ -161,26 +256,12 @@ export function questionBankContentAccountGeneration() {
 }
 
 export async function activateQuestionBankContentAccount(accountId: string | undefined) {
+  const legacyCleanup = ensureLegacyDeviceBoundContentCleanup();
   const previous = activeAccountId;
   activeAccountId = accountId;
   activeAccountGeneration += 1;
+  await legacyCleanup;
   if (previous && previous !== accountId) await clearQuestionBankMemberContent(previous);
-}
-
-export async function getQuestionBankContentDeviceId() {
-  if (!deviceIdPromise) {
-    deviceIdPromise = (async () => {
-      const existing = await SecureStore.getItemAsync(DEVICE_ID_KEY);
-      if (existing) return existing;
-      const deviceId = randomUUID();
-      await SecureStore.setItemAsync(DEVICE_ID_KEY, deviceId, secureOptions());
-      return deviceId;
-    })().catch((cause) => {
-      deviceIdPromise = undefined;
-      throw cause;
-    });
-  }
-  return deviceIdPromise;
 }
 
 export async function writeMemberTopicCache(
@@ -189,12 +270,11 @@ export async function writeMemberTopicCache(
   topic: QuestionBankTopic,
   credential: ContentAccessCredential,
 ) {
+  await ensureLegacyDeviceBoundContentCleanup();
   const context = memberContentContext(accountId);
   const { environment } = context;
-  const deviceId = await getQuestionBankContentDeviceId();
-  assertMemberContentContextCurrent(context);
   if (
-    !verifyContentAccessCredential({ accountId, credential, deviceId, environment, scope })
+    !verifyContentAccessCredential({ accountId, credential, environment, scope })
   ) throw new Error('invalid_content_credential');
   await withAccountContentLock(accountId, async () => {
     assertMemberContentContextCurrent(context);
@@ -205,7 +285,7 @@ export async function writeMemberTopicCache(
     });
     assertMemberContentContextCurrent(context);
     const record: EncryptedTopic = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       accountId,
       environment,
       scope,
@@ -229,6 +309,7 @@ export async function writeMemberTopicCache(
 }
 
 export async function readMemberTopicCache(accountId: string, scope: ContentAccessScope) {
+  await ensureLegacyDeviceBoundContentCleanup();
   const context = memberContentContext(accountId);
   const { environment } = context;
   const secureCredentialKey = credentialKey(accountId, environment, scope);
@@ -242,11 +323,9 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
   try {
     const credential = JSON.parse(credentialValue) as ContentAccessCredential;
     const record = JSON.parse(recordValue) as EncryptedTopic;
-    const deviceId = await getQuestionBankContentDeviceId();
-    assertMemberContentContextCurrent(context);
     if (
-      !verifyContentAccessCredential({ accountId, credential, deviceId, environment, scope })
-      || record.schemaVersion !== 1
+      !verifyContentAccessCredential({ accountId, credential, environment, scope })
+      || record.schemaVersion !== 2
       || record.accountId !== accountId
       || record.environment !== environment
       || scopeIdentity(record.scope) !== scopeIdentity(scope)
@@ -291,6 +370,7 @@ export async function clearQuestionBankMemberContent(accountId?: string) {
 }
 
 export async function clearAllQuestionBankMemberContent() {
+  await ensureLegacyDeviceBoundContentCleanup();
   const keys = await Storage.getAllKeys();
   const indexes = keys.filter((key) => key.startsWith(CREDENTIAL_INDEX_PREFIX));
   for (const index of indexes) {

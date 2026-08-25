@@ -889,7 +889,6 @@ export const contentAccessCredentials = pgTable('content_access_credentials', {
   environment: text('environment').default('production').notNull(),
   accountId: uuid('account_id').notNull(),
   entitlementSegmentId: uuid('entitlement_segment_id').notNull(),
-  deviceDigest: text('device_digest').notNull(),
   scopes: jsonb('scopes').notNull(),
   policyVersion: text('policy_version').notNull(),
   credentialDigest: text('credential_digest').notNull(),

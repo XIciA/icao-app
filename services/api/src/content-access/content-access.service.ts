@@ -194,12 +194,8 @@ export class ContentAccessService {
     const expiresAt = new Date(Math.min(membership.expiresAt.getTime(), now.getTime() + 72 * 60 * 60 * 1_000));
     const credentialId = randomUUID();
     const { importPKCS8, SignJWT } = await import('jose');
-    const deviceDigest = createHmac('sha256', signingSecret)
-      .update(`content-device-v1\0${accountId}\0${input.deviceId}`)
-      .digest('hex');
-    await this.assertCredentialRateLimit(accountId, deviceDigest, now);
+    await this.assertCredentialRateLimit(accountId, now);
     const token = await new SignJWT({
-      did: input.deviceId,
       entitlementSegmentId: membership.segmentId,
       environment: membership.environment,
       policyVersion: CONTENT_ACCESS_POLICY_VERSION,
@@ -218,7 +214,6 @@ export class ContentAccessService {
       environment: membership.environment,
       accountId,
       entitlementSegmentId: membership.segmentId,
-      deviceDigest,
       scopes,
       policyVersion: CONTENT_ACCESS_POLICY_VERSION,
       credentialDigest: createHash('sha256').update(token).digest('hex'),
@@ -266,20 +261,13 @@ export class ContentAccessService {
       : { active: false, expiresAt: null, segmentId: null, environment: null };
   }
 
-  private async assertCredentialRateLimit(accountId: string, deviceDigest: string, now: Date) {
+  private async assertCredentialRateLimit(accountId: string, now: Date) {
     const windowStart = new Date(now.getTime() - 15 * 60 * 1_000);
-    const [[deviceWindow], [accountWindow]] = await Promise.all([
-      this.database.db.select({ total: count() }).from(contentAccessCredentials).where(and(
-        eq(contentAccessCredentials.accountId, accountId),
-        eq(contentAccessCredentials.deviceDigest, deviceDigest),
-        gte(contentAccessCredentials.issuedAt, windowStart),
-      )).limit(1),
-      this.database.db.select({ total: count() }).from(contentAccessCredentials).where(and(
-        eq(contentAccessCredentials.accountId, accountId),
-        gte(contentAccessCredentials.issuedAt, windowStart),
-      )).limit(1),
-    ]);
-    if (Number(deviceWindow?.total ?? 0) >= 60 || Number(accountWindow?.total ?? 0) >= 240) {
+    const [accountWindow] = await this.database.db.select({ total: count() }).from(contentAccessCredentials).where(and(
+      eq(contentAccessCredentials.accountId, accountId),
+      gte(contentAccessCredentials.issuedAt, windowStart),
+    )).limit(1);
+    if (Number(accountWindow?.total ?? 0) >= 240) {
       throw new HttpException('content_credential_rate_limited', 429);
     }
   }
@@ -329,7 +317,7 @@ export class ContentAccessService {
   }
 
   private validateScopes(input: IssueContentCredentialRequest): ContentAccessScope[] {
-    if (!input || !/^[A-Za-z0-9._:-]{16,128}$/u.test(input.deviceId) || !Array.isArray(input.scopes)) {
+    if (!input || !Array.isArray(input.scopes)) {
       throw new BadRequestException('invalid_content_credential_request');
     }
     const scopes = input.scopes.filter((scope): scope is ContentAccessScope => Boolean(

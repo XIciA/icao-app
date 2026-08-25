@@ -38,7 +38,7 @@ const dataset: QuestionBankDataset = {
     consoleTabs: ['mine', 'reference', 'notes'],
   },
   access: {
-    policyVersion: 'content-access-v1',
+    policyVersion: 'content-access-v2',
     environment: null,
     membershipActive: false,
     membershipExpiresAt: null,

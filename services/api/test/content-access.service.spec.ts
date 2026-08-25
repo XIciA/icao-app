@@ -108,7 +108,7 @@ describe('versioned content access policy', () => {
     const topic = release.dataset.categories[0]!.topics[0]!;
 
     expect(release.dataset.access).toEqual({
-      policyVersion: 'content-access-v1',
+      policyVersion: 'content-access-v2',
       environment: 'production',
       membershipActive: true,
       membershipExpiresAt: '2026-09-25T00:00:00.000Z',
@@ -172,10 +172,9 @@ describe('versioned content access policy', () => {
     )).resolves.toBeUndefined();
   });
 
-  it('signs a device- and scope-bound credential capped by membership expiry', async () => {
+  it('signs an account- and scope-bound credential capped by membership expiry', async () => {
     const fixture = service(new Date('2026-08-26T00:00:00.000Z'));
     const credential = await fixture.service.issueCredential(ACCOUNT_ID, {
-      deviceId: 'device-0000000000000001',
       scopes: [{
         bankId: 'listening',
         categoryId: 'listening-category-01',
@@ -186,18 +185,43 @@ describe('versioned content access policy', () => {
     expect(credential).toMatchObject({
       expiresAt: '2026-08-26T00:00:00.000Z',
       environment: 'production',
-      policyVersion: 'content-access-v1',
+      policyVersion: 'content-access-v2',
     });
     expect(credential.token.split('.')).toHaveLength(3);
+    const claims = JSON.parse(Buffer.from(credential.token.split('.')[1]!, 'base64url').toString()) as Record<string, unknown>;
+    expect(claims).toMatchObject({
+      sub: ACCOUNT_ID,
+      entitlementSegmentId: '00000000-0000-4000-8000-000000000099',
+      environment: 'production',
+      scopes: [{
+        bankId: 'listening',
+        categoryId: 'listening-category-01',
+        topicId: 'listening-topic-01',
+      }],
+    });
+    expect(claims).not.toHaveProperty('did');
     expect(fixture.values).toHaveLength(1);
     expect(fixture.values[0]).toMatchObject({ accountId: ACCOUNT_ID, environment: 'production' });
     expect(fixture.values[0]).not.toHaveProperty('token');
+    expect(fixture.values[0]).not.toHaveProperty('deviceDigest');
   });
 
-  it('rate limits repeated credential issuance using retained database records', async () => {
-    const fixture = service(new Date('2026-08-26T00:00:00.000Z'), 'production', false, 60);
+  it('caps account credentials at the 72-hour offline window', async () => {
+    const fixture = service(new Date('2026-09-25T00:00:00.000Z'));
+    const credential = await fixture.service.issueCredential(ACCOUNT_ID, {
+      scopes: [{
+        bankId: 'listening',
+        categoryId: 'listening-category-01',
+        topicId: 'listening-topic-01',
+      }],
+    }, SESSION_ID, 'production', NOW);
+
+    expect(credential.expiresAt).toBe('2026-08-28T00:00:00.000Z');
+  });
+
+  it('rate limits repeated credential issuance by account using retained database records', async () => {
+    const fixture = service(new Date('2026-08-26T00:00:00.000Z'), 'production', false, 240);
     await expect(fixture.service.issueCredential(ACCOUNT_ID, {
-      deviceId: 'device-0000000000000001',
       scopes: [{
         bankId: 'listening',
         categoryId: 'listening-category-01',

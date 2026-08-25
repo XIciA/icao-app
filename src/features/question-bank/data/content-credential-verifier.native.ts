@@ -12,7 +12,6 @@ const CLOCK_SKEW_SECONDS = 5 * 60;
 
 type SignedContentCredentialClaims = {
   aud: string | string[];
-  did: string;
   entitlementSegmentId: string;
   environment: CommerceEnvironment;
   exp: number;
@@ -51,7 +50,6 @@ function parseClaims(payload: string): SignedContentCredentialClaims | undefined
       || !(claims.aud === 'icao-content-offline'
         || (Array.isArray(claims.aud) && claims.aud.includes('icao-content-offline')))
       || typeof claims.sub !== 'string'
-      || typeof claims.did !== 'string'
       || typeof claims.entitlementSegmentId !== 'string'
       || typeof claims.jti !== 'string'
       || claims.policyVersion !== CONTENT_ACCESS_POLICY_VERSION
@@ -70,14 +68,12 @@ function parseClaims(payload: string): SignedContentCredentialClaims | undefined
 export function verifyContentAccessCredential({
   accountId,
   credential,
-  deviceId,
   environment,
   now = Date.now(),
   scope,
 }: {
   accountId: string;
   credential: ContentAccessCredential;
-  deviceId: string;
   environment: CommerceEnvironment;
   now?: number;
   scope: ContentAccessScope;
@@ -93,7 +89,6 @@ export function verifyContentAccessCredential({
   const nowSeconds = Math.floor(now / 1_000);
   if (
     claims.sub !== accountId
-    || claims.did !== deviceId
     || claims.environment !== environment
     || claims.iat > nowSeconds + CLOCK_SKEW_SECONDS
     || claims.exp <= nowSeconds

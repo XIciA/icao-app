@@ -232,7 +232,7 @@ export type QuestionBankRelease<T = unknown> = {
   dataset: T;
 };
 
-export const CONTENT_ACCESS_POLICY_VERSION = 'content-access-v1' as const;
+export const CONTENT_ACCESS_POLICY_VERSION = 'content-access-v2' as const;
 export const CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 = 'CIR9s9aEuf+jKbLYU7s8qCe+w4E8Le4DehIQmoskD30=' as const;
 export const COMMERCE_ENVIRONMENT_HEADER = 'x-icao-commerce-environment' as const;
 
@@ -267,7 +267,6 @@ export type ContentAccessScope = {
 };
 
 export type IssueContentCredentialRequest = {
-  deviceId: string;
   scopes: ContentAccessScope[];
 };
 
