@@ -34,12 +34,18 @@ function transaction(transactionId: string): VerifiedAppleTransaction {
   };
 }
 
-function auditDatabase(records: Array<Record<string, unknown>> = []) {
+function auditDatabase(
+  records: Array<Record<string, unknown>> = [],
+  beforeWrite?: (value: Record<string, unknown>) => void | Promise<void>,
+) {
   return {
     database: {
       db: {
         insert: vi.fn(() => ({
-          values: vi.fn(async (value: Record<string, unknown>) => { records.push(value); }),
+          values: vi.fn(async (value: Record<string, unknown>) => {
+            await beforeWrite?.(value);
+            records.push(value);
+          }),
         })),
       },
     } as unknown as DatabaseService,
@@ -267,5 +273,103 @@ describe('AppleServerReconciliationService', () => {
     ]);
     expect(JSON.stringify(records)).not.toContain('one');
     expect(JSON.stringify(records)).not.toContain('two');
+  });
+
+  it('reports finalization failure and resumes the same batch without duplicate benefits', async () => {
+    const signedTransactions = ['one', 'two'];
+    const appleServer = {
+      loadTransactionHistory: vi.fn(async () => ({
+        accountId: ACCOUNT_ID,
+        pages: 1,
+        transactions: signedTransactions.map((signed) => ({
+          accountId: ACCOUNT_ID,
+          productKey: 'membership_7d_v1',
+          signedTransaction: signed,
+          transaction: transaction(signed),
+        })),
+      })),
+    } as unknown as AppleStoreServerApiService;
+    const issued = new Set<string>();
+    const reconcileAppleServerTransaction = vi.fn(async (
+      signed: string,
+      environment: 'sandbox' | 'production',
+      apply: boolean,
+    ) => {
+      const alreadyIssued = issued.has(signed);
+      if (apply && !alreadyIssued) issued.add(signed);
+      return {
+        accountId: ACCOUNT_ID,
+        action: alreadyIssued ? 'none' as const : 'create' as const,
+        appleStatus: 'verified' as const,
+        applied: apply && !alreadyIssued,
+        environment,
+        localStatus: alreadyIssued ? 'verified' as const : 'missing' as const,
+        mismatch: !alreadyIssued,
+        productKey: 'membership_7d_v1',
+        transactionId: signed,
+      };
+    });
+    let failCompletionOnce = true;
+    const { database, records } = auditDatabase([], (value) => {
+      if (
+        value.action === 'apple_server_reconciliation.batch_completed'
+        && failCompletionOnce
+      ) {
+        failCompletionOnce = false;
+        throw new Error('simulated_finalization_audit_failure');
+      }
+    });
+    const service = new AppleServerReconciliationService(
+      appleServer,
+      { reconcileAppleServerTransaction } as unknown as CommerceService,
+      database,
+    );
+
+    const error = await service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      transactionId: 'anchor',
+    }).catch((caught) => caught);
+    expect(error).toBeInstanceOf(AppleServerReconciliationApplyError);
+    expect(error.result).toMatchObject({
+      applied: 2,
+      checked: 2,
+      failure: {
+        code: 'simulated_finalization_audit_failure',
+        index: 2,
+        stage: 'batch_completed_audit',
+      },
+      recovery: { resumeBatchId: error.result.batchId },
+      status: 'finalization_failed',
+      transactions: [
+        expect.objectContaining({ applied: true, transactionId: 'one' }),
+        expect.objectContaining({ applied: true, transactionId: 'two' }),
+      ],
+    });
+    expect(issued).toEqual(new Set(signedTransactions));
+    expect(records.map((record) => record.action)).toEqual([
+      'apple_server_reconciliation.batch_started',
+      'apple_server_reconciliation.item_completed',
+      'apple_server_reconciliation.item_completed',
+      'apple_server_reconciliation.batch_finalization_failed',
+    ]);
+
+    await expect(service.reconcileTransactionHistory({
+      apply: true,
+      environment: 'sandbox',
+      resumeBatchId: error.result.batchId,
+      transactionId: 'anchor',
+    })).resolves.toMatchObject({
+      applied: 0,
+      batchId: error.result.batchId,
+      status: 'completed',
+    });
+    expect(issued).toEqual(new Set(signedTransactions));
+    expect(records.map((record) => record.action).slice(-4)).toEqual([
+      'apple_server_reconciliation.batch_resumed',
+      'apple_server_reconciliation.item_completed',
+      'apple_server_reconciliation.item_completed',
+      'apple_server_reconciliation.batch_completed',
+    ]);
   });
 });

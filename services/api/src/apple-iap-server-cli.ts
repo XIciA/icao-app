@@ -38,6 +38,7 @@ type ReconcileCommand = Readonly<{
   environment: CommerceEnvironment;
   maxPages?: number;
   maxTransactions?: number;
+  resumeBatchId?: string;
   transactionId: string;
 }>;
 
@@ -87,7 +88,14 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
   }
   const allowed = command === 'test-notification'
     ? new Set(['environment', 'confirm'])
-    : new Set(['environment', 'confirm', 'transaction-id', 'max-pages', 'max-transactions']);
+    : new Set([
+      'environment',
+      'confirm',
+      'transaction-id',
+      'max-pages',
+      'max-transactions',
+      'resume-batch-id',
+    ]);
   if ([...flags.keys()].some((key) => !allowed.has(key))) {
     throw new Error('apple_iap_server_cli_argument_invalid');
   }
@@ -113,6 +121,15 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
   if (!/^[A-Za-z0-9._-]{1,128}$/u.test(transactionId)) {
     throw new Error('apple_iap_server_cli_transaction_id_invalid');
   }
+  const resumeBatchId = flags.get('resume-batch-id');
+  if (
+    resumeBatchId
+    && (
+      !switches.has('apply')
+      || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u
+        .test(resumeBatchId)
+    )
+  ) throw new Error('apple_iap_server_cli_resume_batch_id_invalid');
   return {
     apply: switches.has('apply'),
     command,
@@ -126,6 +143,7 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
       flags.get('max-transactions'),
       'apple_iap_server_cli_max_transactions_invalid',
     ),
+    resumeBatchId,
     transactionId,
   };
 }
@@ -182,7 +200,16 @@ export async function runAppleIapServerCli(
       databaseMutationAllowed: command.apply,
       environment: command.environment,
       error: error instanceof AppleServerReconciliationApplyError
-        ? { code: error.message, result: error.result }
+        ? {
+          code: error.message,
+          ...(error.result.status === 'finalization_failed'
+            ? {
+              recoverable: true,
+              resumeBatchId: error.result.batchId,
+            }
+            : {}),
+          result: error.result,
+        }
         : { code: safeCliErrorCode(error) },
     } as const;
     dependencies.write(result);

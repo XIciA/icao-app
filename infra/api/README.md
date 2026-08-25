@@ -58,3 +58,13 @@ docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
 发送测试通知必须增加 `--execute`，并按输出提供与环境一致的确认短语。对账写入必须增加 `--apply`
 及对应确认短语。Sandbox 与 Production 的确认短语不同；命令不会自动跨环境重试。对账结果只显示
 内部商品键，不输出 App Store 商品 ID、原始 JWS 或凭据。
+
+如果应用已全部完成、但最终审计写入失败，命令会返回 `finalization_failed`、完整应用结果和
+`resumeBatchId`。确认数据库审计能力恢复后，使用原交易号、原环境和该批次号重跑；交易写入会走
+同一幂等入口，不重复发放权益，并为原批次补写完成终态：
+
+```sh
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  reconcile --environment sandbox --transaction-id TRANSACTION_ID --apply \
+  --confirm APPLY_APPLE_RECONCILIATION_SANDBOX --resume-batch-id RESUME_BATCH_ID
+```

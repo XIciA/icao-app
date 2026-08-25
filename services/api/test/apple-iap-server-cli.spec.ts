@@ -80,6 +80,7 @@ describe('root-only Apple IAP Server readiness CLI', () => {
       failure: {
         code: 'simulated_apply_failure',
         index: 1,
+        stage: 'apply_item' as const,
         transactionReferenceHash: 'a'.repeat(64),
       },
       mode: 'apply' as const,
@@ -101,6 +102,63 @@ describe('root-only Apple IAP Server readiness CLI', () => {
         code: 'apple_server_reconciliation_apply_failed',
         result: failure,
       }),
+    }));
+  });
+
+  it('prints an explicit recovery handle when only final audit completion failed', async () => {
+    const deps = dependencies();
+    const batchId = '00000000-0000-4000-8000-000000000099';
+    const failure = {
+      accountId: '00000000-0000-4000-8000-000000000001',
+      applied: 2,
+      batchId,
+      checked: 2,
+      environment: 'sandbox' as const,
+      failure: {
+        code: 'simulated_finalization_audit_failure',
+        index: 2,
+        stage: 'batch_completed_audit' as const,
+      },
+      mode: 'apply' as const,
+      pages: 1,
+      planned: [],
+      recovery: { resumeBatchId: batchId },
+      status: 'finalization_failed' as const,
+      transactions: [],
+    };
+    deps.reconcile.mockRejectedValueOnce(new AppleServerReconciliationApplyError(
+      'apple_server_reconciliation_finalization_failed',
+      failure,
+    ));
+
+    await expect(runAppleIapServerCli([
+      'reconcile', '--environment', 'sandbox', '--transaction-id', '1234', '--apply',
+      '--confirm', 'APPLY_APPLE_RECONCILIATION_SANDBOX',
+    ], deps)).rejects.toThrow('apple_server_reconciliation_finalization_failed');
+    expect(deps.write).toHaveBeenCalledWith(expect.objectContaining({
+      error: expect.objectContaining({
+        code: 'apple_server_reconciliation_finalization_failed',
+        recoverable: true,
+        resumeBatchId: batchId,
+        result: failure,
+      }),
+    }));
+  });
+
+  it('only accepts a valid resume batch id for confirmed apply', async () => {
+    const deps = dependencies();
+    await expect(runAppleIapServerCli([
+      'reconcile', '--environment', 'sandbox', '--transaction-id', '1234',
+      '--resume-batch-id', '00000000-0000-4000-8000-000000000099',
+    ], deps)).rejects.toThrow('apple_iap_server_cli_resume_batch_id_invalid');
+
+    await runAppleIapServerCli([
+      'reconcile', '--environment', 'sandbox', '--transaction-id', '1234', '--apply',
+      '--confirm', 'APPLY_APPLE_RECONCILIATION_SANDBOX',
+      '--resume-batch-id', '00000000-0000-4000-8000-000000000099',
+    ], deps);
+    expect(deps.reconcile).toHaveBeenCalledWith(expect.objectContaining({
+      resumeBatchId: '00000000-0000-4000-8000-000000000099',
     }));
   });
 });

@@ -184,6 +184,7 @@ const appleServerReconciliation = await readFile(
   'utf8',
 );
 const appleIapServerCli = await readFile('services/api/src/apple-iap-server-cli.ts', 'utf8');
+const apiReadme = await readFile('infra/api/README.md', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
   'services/api/src/config.ts',
   'services/api/src/app.module.ts',
@@ -958,8 +959,12 @@ if (
   || !appleServerApiService.includes('mergeTransactionVersion(byTransactionId, anchor)')
   || !appleServerReconciliation.includes('apple_server_reconciliation.batch_started')
   || !appleServerReconciliation.includes('apple_server_reconciliation.batch_failed')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_finalization_failed')
+  || !appleServerReconciliation.includes("status: 'finalization_failed'")
   || !appleServerReconciliation.includes("input.environment,\n        false")
   || !appleIapServerCli.includes('apple_iap_server_cli_requires_root')
+  || !appleIapServerCli.includes('resume-batch-id')
+  || !apiReadme.includes('--resume-batch-id RESUME_BATCH_ID')
   || !appleIapServerCli.includes('REQUEST_APPLE_TEST_NOTIFICATION_PRODUCTION')
   || !appleIapServerCli.includes('APPLY_APPLE_RECONCILIATION_PRODUCTION')
 ) {
