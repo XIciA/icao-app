@@ -148,6 +148,10 @@ const iosDevelopment = await readFile('scripts/run-ios-development.sh', 'utf8');
 const criticalReleaseEvidence = await readFile('tools/critical-capability-release-evidence.mjs', 'utf8');
 const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
+const contentSigningKeyTool = await readFile('tools/content-credential-signing-key.mjs', 'utf8');
+const contentSigningKeyTests = await readFile('tools/content-credential-signing-key-tests.mjs', 'utf8');
+const contentSigningKeyProvision = await readFile('infra/api/content-signing-key-provision.sh', 'utf8');
+const contentSigningKeyProvisionTests = await readFile('tools/content-signing-key-provision-tests.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 const opsRelease = await readFile('scripts/deploy-ops-release.sh', 'utf8');
 const backupToolsInstaller = await readFile('scripts/install-production-backup-tools.sh', 'utf8');
@@ -547,6 +551,8 @@ if (new Set(archiveHashes).size !== 1) {
 if (
   !apiRelease.includes('ICAO_API_BUILD_NPM_REGISTRY')
   || !apiRelease.includes('--build-arg "ICAO_NPM_REGISTRY=$build_npm_registry"')
+  || !releaseCommon.includes('*[!A-Za-z0-9:/._~%+-]*')
+  || !releaseCommon.includes('cannot be passed to a remote release command')
   || !apiDockerfile.includes('ARG ICAO_NPM_REGISTRY=')
   || !apiDockerfile.includes('COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY"')
   || !apiDockerfile.includes('pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile')
@@ -751,6 +757,135 @@ if (
   || !apiRelease.includes('x-icao-api-version:')
 ) {
   throw new Error('The production API candidate must verify configuration, migration state, and release identity before cutover.');
+}
+if (
+  !apiRelease.includes('ICAO_CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY_PATH')
+  || !apiRelease.includes('content-credential-signing-key.mjs" verify')
+  || apiRelease.indexOf('content-credential-signing-key.mjs" verify') > apiRelease.indexOf('load_release_runtime')
+  || !apiConfig.includes('validateContentCredentialSigningKey')
+  || !apiConfig.includes('timingSafeEqual(derivedPublicKey, expectedPublicKey)')
+  || !apiConfig.includes("invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY')")
+) {
+  throw new Error('The production API release must fail closed unless its protected Ed25519 key matches the Native public key.');
+}
+for (const requiredProvisioningContract of [
+  'content_key_acquire_lock "$lock_file" "$expected_owner"',
+  'private_directory_mode_must_be_0700',
+  'private_file_mode_must_be_0600',
+  'lock_file_symlink_rejected',
+  'lock_file_wrong_owner',
+  'lock_file_mode_must_be_0600',
+  'lock_file_opened_inode_mismatch',
+  'lock_parent_unsafe_mode',
+  'cleanup_rejected_symlink',
+  'runtime_env_invalid_or_duplicate_entry',
+  'content_key_prepare_candidate_env()',
+  'content_key_install_candidate_env()',
+  'content_key_restore_runtime_env()',
+  'content_key_rollback_release()',
+  'cmp -s "$source_file" "$target_file"',
+  'mv "$temporary" "$target_file"',
+  'rollback_release_identity_mismatch',
+  'rollback_image_identity_mismatch',
+]) {
+  if (!contentSigningKeyProvision.includes(requiredProvisioningContract)) {
+    throw new Error(`The remote content signing-key provisioning boundary is incomplete: ${requiredProvisioningContract}`);
+  }
+}
+for (const requiredProvisioningTest of [
+  'staging is unique, private, lock-protected, and cleaned exactly',
+  'staging rejects unsafe modes, links, owner mismatch, and unsafe cleanup',
+  'candidate preflight failure leaves the runtime environment byte-identical and removes secrets',
+  'post-cutover rollback restores image, env, compose, source, and verifies old identity',
+  'rollback command failure remains a non-zero high-priority failure',
+  'release URLs reject whitespace, CRLF, and remote-shell metacharacters',
+  'release locks preserve existing bytes and reject links, unsafe modes, and inode mismatch',
+  'staged-key cleanup failure remains before the release commit and therefore arms rollback',
+  'rollback rejects a recreated container whose image digest differs from the saved digest',
+  'API_RELEASE_ID=old\\r\\n',
+  'DATABASE_URL=one\\nDATABASE_URL=two',
+]) {
+  if (!contentSigningKeyProvisionTests.includes(requiredProvisioningTest)) {
+    throw new Error(`The remote content signing-key provisioning tests are incomplete: ${requiredProvisioningTest}`);
+  }
+}
+const keyStageIndex = apiRelease.indexOf('stage "$RELEASE_ID" "$CONTENT_KEY_UPLOAD_TOKEN"');
+const keyUploadIndex = apiRelease.indexOf('scp -i "$SSH_KEY" -q "$CONTENT_SIGNING_PRIVATE_KEY_PATH"');
+const remoteLockIndex = apiRelease.indexOf('flock -n 9', keyUploadIndex);
+const remoteStageValidationIndex = apiRelease.indexOf('content_key_validate_stage', remoteLockIndex);
+const candidateEnvironmentIndex = apiRelease.indexOf('content_key_prepare_candidate_env', remoteStageValidationIndex);
+const candidatePreflightIndex = apiRelease.indexOf('config-preflight.js', candidateEnvironmentIndex);
+const candidateMigrationIndex = apiRelease.indexOf('migration-plan.mjs --require-current', candidatePreflightIndex);
+const runtimeInstallIndex = apiRelease.indexOf('content_key_install_candidate_env', candidateMigrationIndex);
+const cutoverIndex = apiRelease.indexOf('docker compose -f "$runtime_compose" up -d', runtimeInstallIndex);
+const committedStageCleanupIndex = apiRelease.indexOf(
+  'Failed to remove the staged content signing key before committing the API release.',
+  cutoverIndex,
+);
+const releaseSucceededIndex = apiRelease.indexOf('release_succeeded=1', committedStageCleanupIndex);
+if (
+  keyStageIndex < 0
+  || keyUploadIndex <= keyStageIndex
+  || remoteLockIndex <= keyUploadIndex
+  || remoteStageValidationIndex <= remoteLockIndex
+  || candidateEnvironmentIndex <= remoteStageValidationIndex
+  || candidatePreflightIndex <= candidateEnvironmentIndex
+  || candidateMigrationIndex <= candidatePreflightIndex
+  || runtimeInstallIndex <= candidateMigrationIndex
+  || cutoverIndex <= runtimeInstallIndex
+  || committedStageCleanupIndex <= cutoverIndex
+  || releaseSucceededIndex <= committedStageCleanupIndex
+  || !apiRelease.includes('REMOTE_CONTENT_KEY_STAGE_ARMED=1')
+  || !apiRelease.includes('trap cleanup_remote_content_key_stage EXIT')
+  || !apiRelease.includes('cutover_started=1')
+  || !apiRelease.includes('content_key_rollback_release')
+  || !apiRelease.includes('CRITICAL: the failed API cutover could not be fully rolled back and verified.')
+  || !apiRelease.includes('exec 9>>"$release_lock"')
+  || apiRelease.includes('exec 9>"$release_lock"')
+  || !apiRelease.includes("stat -Lc '%d:%i' \"$release_lock\"")
+  || !apiRelease.includes('running-image-id-before')
+  || !apiRelease.includes("docker inspect -f '{{.Image}}' icao-api")
+  || apiRelease.includes('-e "CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY=')
+) {
+  throw new Error('The API release must securely stage, preflight, install, clean, and transactionally roll back its content signing key.');
+}
+for (const requiredSigningKeyContract of [
+  "generateKeyPairSync('ed25519')",
+  'private_key_path_must_be_outside_repository',
+  'private_key_parent_mode_must_be_0700',
+  'private_key_mode_must_be_0600',
+  'private_key_path_already_exists',
+  'symlink_path_rejected',
+  'constants.O_EXCL',
+  'constants.O_NOFOLLOW',
+  'timingSafeEqual(derived, expectedBytes)',
+  'CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64',
+]) {
+  if (!contentSigningKeyTool.includes(requiredSigningKeyContract)) {
+    throw new Error(`The content signing-key boundary is incomplete: ${requiredSigningKeyContract}`);
+  }
+}
+for (const requiredSigningKeyTest of [
+  'private_key_path_must_be_outside_repository',
+  'private_key_path_already_exists',
+  'private_key_parent_mode_must_be_0700',
+  'symlink_path_rejected',
+  'private_key_does_not_match_client_public_key',
+  'private_key_mode_must_be_0600',
+  'private_key_must_be_ed25519',
+]) {
+  if (!contentSigningKeyTests.includes(requiredSigningKeyTest)) {
+    throw new Error(`The content signing-key negative tests are incomplete: ${requiredSigningKeyTest}`);
+  }
+}
+if (
+  rootPackage.scripts?.['check:content-signing-key']
+    !== 'node --test tools/content-credential-signing-key-tests.mjs tools/content-signing-key-provision-tests.mjs'
+  || !rootPackage.scripts?.['check:release']?.includes('pnpm check:content-signing-key')
+  || !rootPackage.scripts?.['check:release']?.includes('infra/api/content-signing-key-provision.sh')
+  || !rootPackage.scripts?.['check:release']?.includes('pnpm check:app-store-materials')
+) {
+  throw new Error('The Release gate must compose content signing-key and App Store materials verification.');
 }
 for (const requiredAiRuntimeField of [
   'AI_TEXT_PROVIDER',

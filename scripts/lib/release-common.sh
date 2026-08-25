@@ -22,6 +22,12 @@ require_public_https_url() {
   case "$value" in
     */) echo "$name must not end with a slash." >&2; exit 1 ;;
   esac
+  case "$value" in
+    *[!A-Za-z0-9:/._~%+-]*)
+      echo "$name contains whitespace, control characters, or shell metacharacters and cannot be passed to a remote release command." >&2
+      exit 1
+      ;;
+  esac
   if printf '%s\n' "$value" | grep -Eq '^https://(localhost([/:]|$)|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|\[::1\])'; then
     echo "$name must not use localhost, loopback, or a private-LAN address." >&2
     exit 1
