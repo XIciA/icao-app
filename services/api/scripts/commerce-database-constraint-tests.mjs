@@ -477,6 +477,42 @@ test('the cumulative migration enables RLS on every public table', () => {
   assert.equal(rlsCount, tableCount);
 });
 
+test('Apple reconciliation batches have one database-enforced completed terminal event', () => {
+  assert.equal(
+    queryScalar(`
+      SELECT COUNT(*)
+      FROM pg_index index_state
+      JOIN pg_class index_relation ON index_relation.oid = index_state.indexrelid
+      WHERE index_relation.relname = 'ops_audit_events_apple_reconciliation_completed'
+        AND index_state.indisunique
+        AND index_state.indpred IS NOT NULL
+    `),
+    '1',
+  );
+  const requestId = 'apple-reconciliation-terminal-uniqueness-test';
+  const first = psql(`
+    INSERT INTO ops_audit_events (
+      request_id, action, target_type, target_id, reason, metadata
+    ) VALUES (
+      '${requestId}', 'apple_server_reconciliation.batch_completed',
+      'apple_server_reconciliation', '00000000-0000-4000-8000-000000000001',
+      'test reconciliation completion uniqueness', '{}'
+    );
+  `);
+  assert.equal(first.status, 0, first.stderr);
+  const duplicate = psql(`
+    INSERT INTO ops_audit_events (
+      request_id, action, target_type, target_id, reason, metadata
+    ) VALUES (
+      '${requestId}', 'apple_server_reconciliation.batch_completed',
+      'apple_server_reconciliation', '00000000-0000-4000-8000-000000000001',
+      'test duplicate reconciliation completion', '{}'
+    );
+  `);
+  assert.notEqual(duplicate.status, 0);
+  assert.match(duplicate.stderr, /ops_audit_events_apple_reconciliation_completed/u);
+});
+
 test('content access credentials do not retain a stable device digest column', () => {
   assert.equal(
     queryScalar(`

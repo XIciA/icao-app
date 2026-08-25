@@ -39,3 +39,41 @@
 
 这套单公钥流程用于 1.0.0 首次生产启用。正式客户端发布后的再次轮换必须先设计兼容旧客户端的
 多公钥/Key ID 过渡，不得直接替换常量和服务端私钥。
+## App Store Server 内部就绪与对账
+
+以下入口只允许在 API 容器内以 root 执行，不对公网开放。三个
+`APPLE_IAP_SERVER_*` 值必须来自 App Store Connect 的独立“App 内购买项目”密钥，不能复用
+Sign in with Apple 密钥；私钥只保存在受保护的运行时环境文件中。
+
+```sh
+# 默认只输出计划，不访问 Apple
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  test-notification --environment sandbox
+
+# 查询 Apple 并报告本地差异，但不修改数据库
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  reconcile --environment sandbox --transaction-id TRANSACTION_ID
+```
+
+发送测试通知必须增加 `--execute`，并按输出提供与环境一致的确认短语。对账写入必须增加 `--apply`
+及对应确认短语。Sandbox 与 Production 的确认短语不同；命令不会自动跨环境重试。对账结果只显示
+内部商品键，不输出 App Store 商品 ID、原始 JWS 或凭据。
+
+如果应用已全部完成、但最终审计写入失败且失败证据已持久化，命令会返回
+`finalization_failed`、完整应用结果和 `resumeBatchId`。确认数据库审计能力恢复后，使用原交易号、
+原环境和该批次号重跑。恢复命令会在批次锁内核对账号、环境、计划指纹、所有项目完成证据以及未完成
+终态；计划和完成证据中的动作、Apple/本地状态、`applied`、`mismatch` 还必须符合真实对账分支，且同一
+项目的 Apple 状态、商品和交易摘要保持一致。它只在新的 dry-run 全部为 `none` 时补写原批次完成终态，
+不再执行权益写入。证据不完整、状态已有变化或批次已经完成都会失败关闭，状态有变化时必须启动不带
+`--resume-batch-id` 的新批次：
+
+恢复成功时，结果中的 `applied` 表示本次恢复调用的写入数（应为 `0`）；
+`cumulativeBatchResult.applied` 和 `cumulativeBatchResult.completed` 表示从原始项目审计与最新终态失败
+证据还原的整批累计结果。唯一 `batch_completed` 终态也写入这份累计结果，不使用恢复 dry-run 的
+`none` 结果覆盖原批记录。
+
+```sh
+docker exec icao-api node services/api/dist/src/apple-iap-server-cli.js \
+  reconcile --environment sandbox --transaction-id TRANSACTION_ID --apply \
+  --confirm APPLY_APPLE_RECONCILIATION_SANDBOX --resume-batch-id RESUME_BATCH_ID
+```

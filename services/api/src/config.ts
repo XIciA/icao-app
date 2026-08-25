@@ -27,6 +27,9 @@ const schema = z.object({
   APPLE_IAP_BUNDLE_ID: z.literal('com.readyoufife.ios').default('com.readyoufife.ios'),
   APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
   APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
+  APPLE_IAP_SERVER_ISSUER_ID: z.uuid().optional(),
+  APPLE_IAP_SERVER_KEY_ID: z.string().trim().regex(/^[A-Z0-9]{10}$/u).optional(),
+  APPLE_IAP_SERVER_PRIVATE_KEY: z.string().min(48).optional(),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),
   DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
@@ -134,6 +137,9 @@ export type ApiConfig = {
   appleIapBundleId: 'com.readyoufife.ios';
   appleIapAppAppleId?: number;
   appleIapRootCertificates: Buffer[];
+  appleIapServerIssuerId?: string;
+  appleIapServerKeyId?: string;
+  appleIapServerPrivateKey?: string;
   aiTextProvider: 'deepseek';
   deepseekApiKey?: string;
   deepseekBaseUrl: string;
@@ -254,6 +260,36 @@ function validateAppleRuntime(data: z.infer<typeof schema>) {
   if (!data.APPLE_IAP_ROOT_CERTIFICATES_BASE64?.trim()) {
     invalidConfiguration('APPLE_IAP_ROOT_CERTIFICATES_BASE64');
   }
+  validateAppleIapServerCredentials(data, true);
+}
+
+function validateAppleIapServerCredentials(
+  data: z.infer<typeof schema>,
+  required: boolean,
+) {
+  const fields = [
+    'APPLE_IAP_SERVER_ISSUER_ID',
+    'APPLE_IAP_SERVER_KEY_ID',
+    'APPLE_IAP_SERVER_PRIVATE_KEY',
+  ] as const;
+  const configured = fields.filter((field) => Boolean(data[field]?.trim()));
+  if (configured.length === 0 && !required) return;
+  const missing = fields.filter((field) => !data[field]?.trim());
+  if (missing.length > 0) invalidConfiguration(...missing);
+
+  const privateKey = data.APPLE_IAP_SERVER_PRIVATE_KEY!.replaceAll('\\n', '\n');
+  try {
+    const privateJwk = createPrivateKey(privateKey).export({ format: 'jwk' });
+    if (privateJwk.kty !== 'EC' || privateJwk.crv !== 'P-256' || !privateJwk.d) {
+      invalidConfiguration('APPLE_IAP_SERVER_PRIVATE_KEY');
+    }
+  } catch {
+    invalidConfiguration('APPLE_IAP_SERVER_PRIVATE_KEY');
+  }
+  if (
+    data.APPLE_IAP_SERVER_KEY_ID === data.APPLE_KEY_ID
+    || privateKey === data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n')
+  ) invalidConfiguration('APPLE_IAP_SERVER_CREDENTIAL_REUSE');
 }
 
 function parseAppleRootCertificates(value: string | undefined) {
@@ -341,6 +377,7 @@ export function loadConfig(
   const appleIapRootCertificates = parseAppleRootCertificates(
     parsed.data.APPLE_IAP_ROOT_CERTIFICATES_BASE64,
   );
+  validateAppleIapServerCredentials(parsed.data, false);
   if (parsed.data.NODE_ENV === 'production') {
     const fixedOtpKeys = [
       'GOTRUE_SMS_TEST_OTP',
@@ -413,6 +450,9 @@ export function loadConfig(
     appleIapBundleId: parsed.data.APPLE_IAP_BUNDLE_ID,
     appleIapAppAppleId: parsed.data.APPLE_IAP_APP_APPLE_ID,
     appleIapRootCertificates,
+    appleIapServerIssuerId: parsed.data.APPLE_IAP_SERVER_ISSUER_ID,
+    appleIapServerKeyId: parsed.data.APPLE_IAP_SERVER_KEY_ID,
+    appleIapServerPrivateKey: parsed.data.APPLE_IAP_SERVER_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     aiTextProvider: parsed.data.AI_TEXT_PROVIDER,
     deepseekApiKey: parsed.data.DEEPSEEK_API_KEY,
     deepseekBaseUrl: parsed.data.DEEPSEEK_BASE_URL,

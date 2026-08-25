@@ -58,6 +58,12 @@ import { AppleNotificationReconciliationService } from './commerce/apple-notific
 import { CommerceController } from './commerce/commerce.controller';
 import { CommerceService } from './commerce/commerce.service';
 import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
+import {
+  APPLE_STORE_SERVER_API_CLIENT_FACTORY,
+  configuredAppleStoreServerApiClientFactory,
+} from './commerce/apple-store-server-api-client';
+import { AppleStoreServerApiService } from './commerce/apple-store-server-api.service';
+import { AppleServerReconciliationService } from './commerce/apple-server-reconciliation.service';
 
 @Module({
   controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
@@ -71,7 +77,14 @@ import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/a
     IdentityDigestService,
     PersistentCommerceBenefitsService,
     { provide: APPLE_STORE_VERIFIER, inject: [API_CONFIG], useFactory: configuredAppleStoreVerifier },
+    {
+      provide: APPLE_STORE_SERVER_API_CLIENT_FACTORY,
+      inject: [API_CONFIG],
+      useFactory: configuredAppleStoreServerApiClientFactory,
+    },
+    AppleStoreServerApiService,
     CommerceService,
+    AppleServerReconciliationService,
     AppleNotificationReconciliationService,
     RequireAuthGuard,
     AliyunSmsProvider,

@@ -56,7 +56,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.ok(migrations.length >= 16);
+  assert.equal(migrations.length, 34);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -73,7 +73,7 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-1)?.tag, '0032_aromatic_puma');
+  assert.equal(migrations.at(-1)?.tag, '0033_medical_preak');
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
 
@@ -251,6 +251,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0030_mute_luckman',
       '0031_typical_ares',
       '0032_aromatic_puma',
+      '0033_medical_preak',
     ],
   );
   assert.ok(

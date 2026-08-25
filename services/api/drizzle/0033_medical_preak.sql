@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "ops_audit_events_apple_reconciliation_completed" ON "ops_audit_events" USING btree ("request_id") WHERE "ops_audit_events"."action" = 'apple_server_reconciliation.batch_completed';

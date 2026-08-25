@@ -170,6 +170,25 @@ const opsDockerfile = await readFile('infra/ops/Dockerfile', 'utf8');
 const opsApiDockerfile = await readFile('infra/ops/Dockerfile.api', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
+const apiEnvironmentExample = await readFile('services/api/.env.example', 'utf8');
+const appleServerApiClient = await readFile(
+  'services/api/src/commerce/apple-store-server-api-client.ts',
+  'utf8',
+);
+const appleServerApiService = await readFile(
+  'services/api/src/commerce/apple-store-server-api.service.ts',
+  'utf8',
+);
+const appleServerReconciliation = await readFile(
+  'services/api/src/commerce/apple-server-reconciliation.service.ts',
+  'utf8',
+);
+const appleIapServerCli = await readFile('services/api/src/apple-iap-server-cli.ts', 'utf8');
+const appleReconciliationTerminalMigration = await readFile(
+  'services/api/drizzle/0033_medical_preak.sql',
+  'utf8',
+);
+const apiReadme = await readFile('infra/api/README.md', 'utf8');
 const apiAiRuntimeSources = (await Promise.all([
   'services/api/src/config.ts',
   'services/api/src/app.module.ts',
@@ -394,8 +413,8 @@ if (
 }
 for (const requiredApplyContract of [
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:18:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-33:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:19:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-34:0:0',
   'scripts/rehearse-production-migrations.sh',
   'icao-production-migration-apply.lock',
   'icao-production-release-change.lock',
@@ -921,6 +940,56 @@ if (
   || apiConfigPreflight.includes('tencentCloudSecret')
 ) {
   throw new Error('The production AI configuration preflight is incomplete or unsafe.');
+}
+for (const appleIapServerCredential of [
+  'APPLE_IAP_SERVER_ISSUER_ID',
+  'APPLE_IAP_SERVER_KEY_ID',
+  'APPLE_IAP_SERVER_PRIVATE_KEY',
+]) {
+  if (
+    !apiConfig.includes(appleIapServerCredential)
+    || !apiEnvironmentExample.includes(appleIapServerCredential)
+  ) throw new Error(`The App Store Server API credential gate is missing: ${appleIapServerCredential}`);
+}
+if (
+  !apiConfig.includes('APPLE_IAP_SERVER_CREDENTIAL_REUSE')
+  || !apiConfig.includes('APPLE_IAP_SERVER_KEY_ID: z.string().trim().regex')
+  || !apiConfigPreflight.includes('apple-app-store-server')
+  || !appleServerApiClient.includes('Environment.PRODUCTION')
+  || !appleServerApiClient.includes('Environment.SANDBOX')
+  || !appleServerApiService.includes('ProductType.NON_RENEWABLE')
+  || !appleServerApiService.includes('GetTransactionHistoryVersion.V2')
+  || !appleServerApiService.includes('apple_iap_server_history_has_more_invalid')
+  || !appleServerApiService.includes('mergeTransactionVersion(byTransactionId, anchor)')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_started')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_failed')
+  || !appleServerReconciliation.includes('apple_server_reconciliation.batch_finalization_failed')
+  || !appleServerReconciliation.includes('pg_advisory_xact_lock')
+  || !appleServerReconciliation.includes('assertBatchEvidence')
+  || !appleServerReconciliation.includes('apple_server_reconciliation_resume_state_drift')
+  || !appleServerReconciliation.includes('cumulativeBatchResult')
+  || !appleServerReconciliation.includes('event.sequence <= previousSequence')
+  || !appleServerReconciliation.includes('sameAuditedReport')
+  || !appleServerReconciliation.includes('assertPlannedReportSemantics')
+  || !appleServerReconciliation.includes('assertCompletedReportSemantics')
+  || !appleServerReconciliation.includes("report.applied !== (report.action !== 'none')")
+  || !appleServerReconciliation.includes("case 'record_refund':")
+  || !appleServerReconciliation.includes("case 'restore':")
+  || !appleServerReconciliation.includes("status: 'finalization_failed'")
+  || !appleServerReconciliation.includes("input.environment,\n        false")
+  || !appleReconciliationTerminalMigration.includes(
+    'ops_audit_events_apple_reconciliation_completed',
+  )
+  || !productionSchemaVerifier.includes(
+    'production_apple_reconciliation_terminal_index_missing',
+  )
+  || !appleIapServerCli.includes('apple_iap_server_cli_requires_root')
+  || !appleIapServerCli.includes('resume-batch-id')
+  || !apiReadme.includes('--resume-batch-id RESUME_BATCH_ID')
+  || !appleIapServerCli.includes('REQUEST_APPLE_TEST_NOTIFICATION_PRODUCTION')
+  || !appleIapServerCli.includes('APPLY_APPLE_RECONCILIATION_PRODUCTION')
+) {
+  throw new Error('The App Store Server API reconciliation or readiness gate is incomplete.');
 }
 for (const forbiddenEvidencePath of ['import-ai-live', 'function deviceChecks()']) {
   if (criticalReleaseEvidence.includes(forbiddenEvidencePath)) {

@@ -70,6 +70,10 @@ describe('ops staff security primitives', () => {
 describe('ops high-risk request gates', () => {
   it('keeps ops tables server-only and audit/adjustment rows append-only in migration SQL', async () => {
     const migration = await readFile(resolve(process.cwd(), 'drizzle/0029_curvy_talon.sql'), 'utf8');
+    const reconciliationMigration = await readFile(
+      resolve(process.cwd(), 'drizzle/0033_medical_preak.sql'),
+      'utf8',
+    );
     expect(migration).toContain('ops_audit_events_append_only');
     expect(migration).toContain('ops_entitlement_adjustments_append_only');
     expect(migration).toContain('REVOKE ALL ON TABLE "ops_staff_accounts" FROM anon, authenticated;');
@@ -77,6 +81,12 @@ describe('ops high-risk request gates', () => {
     expect(migration).toContain('membership_segments_source_check');
     expect(migration).not.toContain('failed_login_count');
     expect(migration).not.toContain('locked_until');
+    expect(reconciliationMigration).toContain(
+      'CREATE UNIQUE INDEX "ops_audit_events_apple_reconciliation_completed"',
+    );
+    expect(reconciliationMigration).toContain(
+      'WHERE "ops_audit_events"."action" = \'apple_server_reconciliation.batch_completed\'',
+    );
   });
 
   it('requires a meaningful reason and a non-zero grant', () => {

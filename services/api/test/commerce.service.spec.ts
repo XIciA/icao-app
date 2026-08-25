@@ -3,6 +3,7 @@ import type { DatabaseService } from '../src/database/database.service';
 import type { AppleStoreVerifier } from '../src/commerce/apple-store-verifier';
 import type { VerifiedAppleNotification, VerifiedAppleTransaction } from '../src/commerce/commerce-domain';
 import { CommerceService } from '../src/commerce/commerce.service';
+import type { PersistentCommerceBenefitsService } from '../src/commerce/persistent-commerce-benefits.service';
 import { VerificationException, VerificationStatus } from '@apple/app-store-server-library';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -55,6 +56,55 @@ function service(verified: VerifiedAppleTransaction) {
   const transactionSpy = vi.fn();
   const database = { db: { transaction: transactionSpy } } as unknown as DatabaseService;
   return { instance: new CommerceService(config(), database, verifier), transactionSpy };
+}
+
+function reconciliationService(verified: VerifiedAppleTransaction, status: 'refunded' | 'revoked' | 'verified') {
+  const verifier: AppleStoreVerifier = {
+    verifyTransaction: vi.fn(async () => verified),
+    verifyNotification: vi.fn(async () => { throw new Error('not_used'); }),
+  };
+  const existingTransaction = {
+    id: '00000000-0000-4000-8000-000000000010',
+    orderId: '00000000-0000-4000-8000-000000000011',
+    accountId: ACCOUNT_ID,
+    appAccountToken: ACCOUNT_ID,
+    productId: verified.productId,
+    originalTransactionId: verified.originalTransactionId,
+    bundleId: verified.bundleId,
+    purchaseDate: verified.purchaseDate,
+    signedDate: new Date(0),
+    signedPayloadHash: 'a'.repeat(64),
+  };
+  const existingOrder = { id: existingTransaction.orderId, status };
+  const selections = [
+    [existingTransaction],
+    [existingOrder],
+    [{ status: 'active' }],
+    [existingOrder],
+  ];
+  const updateWhere = vi.fn(async () => []);
+  const update = vi.fn(() => ({ set: vi.fn(() => ({ where: updateWhere })) }));
+  const transactionContext = {
+    execute: vi.fn(async () => []),
+    select: vi.fn(() => ({
+      from: vi.fn(() => ({
+        where: vi.fn(() => ({
+          limit: vi.fn(async () => selections.shift() ?? []),
+        })),
+      })),
+    })),
+    update,
+  };
+  const database = {
+    db: { transaction: vi.fn(async (operation) => operation(transactionContext)) },
+  } as unknown as DatabaseService;
+  const revokeOrderBenefits = vi.fn(async () => undefined);
+  const benefits = { revokeOrderBenefits } as unknown as PersistentCommerceBenefitsService;
+  const instance = new CommerceService(config(), database, verifier, benefits);
+  Object.defineProperty(instance, 'rebuildMembership', {
+    value: vi.fn(async () => undefined),
+  });
+  return { instance, revokeOrderBenefits, update };
 }
 
 describe('CommerceService validation and catalog', () => {
@@ -187,5 +237,48 @@ describe('CommerceService validation and catalog', () => {
         response: { message: 'apple_commerce_unavailable', statusCode: 503 },
       });
     expect(transactionSpy).not.toHaveBeenCalled();
+  });
+
+  it('reports a server refund without writes in dry-run, then reuses refund idempotency on apply', async () => {
+    const refunded = transaction({
+      revocationDate: new Date(2),
+      signedDate: new Date(3),
+      signedPayloadHash: 'c'.repeat(64),
+    });
+    const dryRun = reconciliationService(refunded, 'verified');
+    await expect(dryRun.instance.reconcileAppleServerTransaction(
+      'signed-refund',
+      'production',
+      false,
+    )).resolves.toMatchObject({
+      action: 'refund',
+      appleStatus: 'refunded',
+      applied: false,
+      localStatus: 'verified',
+      mismatch: true,
+    });
+    expect(dryRun.update).not.toHaveBeenCalled();
+    expect(dryRun.revokeOrderBenefits).not.toHaveBeenCalled();
+
+    const apply = reconciliationService(refunded, 'verified');
+    await expect(apply.instance.reconcileAppleServerTransaction(
+      'signed-refund',
+      'production',
+      true,
+    )).resolves.toMatchObject({ action: 'refund', applied: true });
+    expect(apply.update).toHaveBeenCalled();
+    expect(apply.revokeOrderBenefits).toHaveBeenCalledTimes(1);
+  });
+
+  it('treats an already-current server transaction as a replay without writes', async () => {
+    const replay = reconciliationService(transaction(), 'verified');
+    await expect(replay.instance.reconcileAppleServerTransaction(
+      'signed-transaction',
+      'production',
+      true,
+      new Date(10),
+    )).resolves.toMatchObject({ action: 'none', applied: false, mismatch: false });
+    expect(replay.update).not.toHaveBeenCalled();
+    expect(replay.revokeOrderBenefits).not.toHaveBeenCalled();
   });
 });
