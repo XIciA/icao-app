@@ -71,15 +71,17 @@ for (const contract of [
   'trusted_python=/usr/bin/python3.10',
   '# BEGIN production-migration-trusted-python-guard',
   '# END production-migration-trusted-python-guard',
+  '# BEGIN production-migration-trusted-python-runner',
+  '# END production-migration-trusted-python-runner',
   '[ ! -f "$trusted_python" ] || [ -L "$trusted_python" ] || [ ! -x "$trusted_python" ]',
   "trusted_python_identity=$(stat -c '%u:%a' -- \"$trusted_python\")",
   '0:555|0:755',
-  '"$trusted_python" -I -c',
+  'run_trusted_python -I -c',
   '# BEGIN production-migration-image-identity-guard',
   '# END production-migration-image-identity-guard',
   "docker inspect --type image",
   "--format '{{json .Config.Env}}' \"$image\"",
-  '"$trusted_python" -I - "$baked_image_env_file" "$expected_image_release_id"',
+  'run_trusted_python -I - "$baked_image_env_file" "$expected_image_release_id"',
   "entries = json.load(input_file)",
   "any(type(entry) is not str for entry in entries)",
   "entry.startswith('API_RELEASE_ID=')",
@@ -113,6 +115,64 @@ for (const contract of [
 ]) {
   if (!applySource.includes(contract)) {
     throw new Error(`production_migration_apply_contract_missing:${contract}`);
+  }
+}
+
+const trustedPythonRunnerStart = applySource.indexOf('# BEGIN production-migration-trusted-python-runner');
+const trustedPythonRunnerEnd = applySource.indexOf('# END production-migration-trusted-python-runner');
+const trustedPythonRunnerSource = applySource.slice(trustedPythonRunnerStart, trustedPythonRunnerEnd);
+const trustedPythonClearedEnvironment = [
+  'LD_AUDIT',
+  'GLIBC_TUNABLES',
+  'LD_ASSUME_KERNEL',
+  'LD_BIND_NOW',
+  'LD_BIND_NOT',
+  'LD_DEBUG',
+  'LD_DEBUG_OUTPUT',
+  'LD_DYNAMIC_WEAK',
+  'LD_HWCAP_MASK',
+  'LD_LIBRARY_PATH',
+  'LD_ORIGIN_PATH',
+  'LD_POINTER_GUARD',
+  'LD_PREFER_MAP_32BIT_EXEC',
+  'LD_PRELOAD',
+  'LD_PROFILE',
+  'LD_PROFILE_OUTPUT',
+  'LD_SHOW_AUXV',
+  'LD_TRACE_LOADED_OBJECTS',
+  'LD_USE_LOAD_BIAS',
+  'LD_VERBOSE',
+  'LD_WARN',
+  'PYTHONBREAKPOINT',
+  'PYTHONCOERCECLOCALE',
+  'PYTHONDONTWRITEBYTECODE',
+  'PYTHONHASHSEED',
+  'PYTHONHOME',
+  'PYTHONINSPECT',
+  'PYTHONIOENCODING',
+  'PYTHONNOUSERSITE',
+  'PYTHONPATH',
+  'PYTHONPLATLIBDIR',
+  'PYTHONSAFEPATH',
+  'PYTHONSTARTUP',
+  'PYTHONUSERBASE',
+  'PYTHONUTF8',
+  'PYTHONWARNINGS',
+];
+if (trustedPythonRunnerStart < 0
+  || trustedPythonRunnerEnd <= trustedPythonRunnerStart
+  || applySource.lastIndexOf('# BEGIN production-migration-trusted-python-runner')
+    !== trustedPythonRunnerStart
+  || applySource.lastIndexOf('# END production-migration-trusted-python-runner')
+    !== trustedPythonRunnerEnd
+  || (applySource.match(/run_trusted_python -I /gu) ?? []).length !== 2
+  || !trustedPythonRunnerSource.includes('"$trusted_python" "$@"')) {
+  throw new Error('production_migration_trusted_python_runner_contract_invalid');
+}
+for (const variable of trustedPythonClearedEnvironment) {
+  const exactAssignment = `  ${variable}= \\`;
+  if (trustedPythonRunnerSource.split('\n').filter((line) => line === exactAssignment).length !== 1) {
+    throw new Error(`production_migration_trusted_python_environment_not_cleared:${variable}`);
   }
 }
 

@@ -33,6 +33,47 @@ const postPlan = '33:0:0';
 const backupName = 'icao-20260825T165825Z-1151356.dump';
 const evidencePath = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-aaaaaaaaaaaa-20260825T170000Z.txt';
 const successLine = `production_migration_rehearsal_ok source=${sourceSha} backup=${backupName} pre=${prePlan} post=${postPlan} evidence=${evidencePath}`;
+const trustedPythonClearedEnvironment = [
+  'LD_AUDIT',
+  'GLIBC_TUNABLES',
+  'LD_ASSUME_KERNEL',
+  'LD_BIND_NOW',
+  'LD_BIND_NOT',
+  'LD_DEBUG',
+  'LD_DEBUG_OUTPUT',
+  'LD_DYNAMIC_WEAK',
+  'LD_HWCAP_MASK',
+  'LD_LIBRARY_PATH',
+  'LD_ORIGIN_PATH',
+  'LD_POINTER_GUARD',
+  'LD_PREFER_MAP_32BIT_EXEC',
+  'LD_PRELOAD',
+  'LD_PROFILE',
+  'LD_PROFILE_OUTPUT',
+  'LD_SHOW_AUXV',
+  'LD_TRACE_LOADED_OBJECTS',
+  'LD_USE_LOAD_BIAS',
+  'LD_VERBOSE',
+  'LD_WARN',
+  'PYTHONBREAKPOINT',
+  'PYTHONCOERCECLOCALE',
+  'PYTHONDONTWRITEBYTECODE',
+  'PYTHONHASHSEED',
+  'PYTHONHOME',
+  'PYTHONINSPECT',
+  'PYTHONIOENCODING',
+  'PYTHONNOUSERSITE',
+  'PYTHONPATH',
+  'PYTHONPLATLIBDIR',
+  'PYTHONSAFEPATH',
+  'PYTHONSTARTUP',
+  'PYTHONUSERBASE',
+  'PYTHONUTF8',
+  'PYTHONWARNINGS',
+];
+const trustedPythonShellAssertions = trustedPythonClearedEnvironment
+  .map((name) => `[ -z "\${${name}:-}" ] || exit 86`)
+  .join('\n');
 
 test('binds the destructive confirmation to the full immutable source and exact plan', () => {
   const expected = `APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}`;
@@ -253,6 +294,7 @@ test('trusted host Python preflight rejects links, unsafe ownership, modes, and 
     const missing = join(root, 'missing-python3');
     await mkdir(fakeBin);
     await writeFile(pythonPath, `#!/bin/sh
+${trustedPythonShellAssertions}
 [ "\${1:-}" = -I ]
 [ "\${2:-}" = -c ]
 exit "\${MOCK_PYTHON_STATUS:-0}"
@@ -263,14 +305,16 @@ exit "\${MOCK_PYTHON_STATUS:-0}"
 printf '%s\n' "\${MOCK_STAT_IDENTITY:?}"
 `);
     await chmod(join(fakeBin, 'stat'), 0o700);
-    const run = (target, identity = '0:755', status = '0') => spawnSync('/bin/sh', ['-c', `
+    const run = (target, identity = '0:755', status = '0', guardSource = guard) => spawnSync('/bin/sh', ['-c', `
 set -eu
 trusted_python="$TEST_TRUSTED_PYTHON"
-${guard}
+${guardSource}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
+        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
+        LD_AUDIT: '/definitely/missing/icao-audit.so',
         MOCK_PYTHON_STATUS: status,
         MOCK_STAT_IDENTITY: identity,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
@@ -285,6 +329,11 @@ ${guard}
     assert.notEqual(run(pythonPath, '1000:755').status, 0);
     assert.notEqual(run(pythonPath, '0:775').status, 0);
     assert.notEqual(run(pythonPath, '0:755', '1').status, 0);
+    for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
+      const mutated = guard.replace(`  ${variable}= \\\n`, '');
+      assert.notEqual(mutated, guard, variable);
+      assert.notEqual(run(pythonPath, '0:755', '0', mutated).status, 0, variable);
+    }
     await chmod(pythonPath, 0o644);
     assert.notEqual(run(pythonPath).status, 0);
   } finally {
@@ -299,11 +348,17 @@ test('candidate image guard accepts one exact baked release identity and rejects
   const end = source.indexOf(endMarker);
   assert.ok(start >= 0 && end > start);
   const guard = source.slice(start, end + endMarker.length);
+  const runnerStart = source.indexOf('# BEGIN production-migration-trusted-python-runner');
+  const runnerEndMarker = '# END production-migration-trusted-python-runner';
+  const runnerEnd = source.indexOf(runnerEndMarker);
+  assert.ok(runnerStart >= 0 && runnerEnd > runnerStart);
+  const runner = source.slice(runnerStart, runnerEnd + runnerEndMarker.length);
   const root = await mkdtemp(join(tmpdir(), 'icao-production-image-identity-'));
   try {
     const fakeBin = join(root, 'bin');
     const workDir = join(root, 'work');
     const dockerCalls = join(root, 'docker-calls');
+    const fakeHostPython = join(root, 'trusted-python');
     await mkdir(fakeBin);
     await mkdir(workDir);
     await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
@@ -319,24 +374,33 @@ printf '%s' "\${MOCK_IMAGE_ENV_JSON:-}"
     const hostPython = spawnSync('/bin/sh', ['-c', 'command -v python3'], { encoding: 'utf8' })
       .stdout.trim();
     assert.notEqual(hostPython, '');
+    await writeFile(fakeHostPython, `#!/bin/sh
+${trustedPythonShellAssertions}
+exec "\${REAL_HOST_PYTHON:?}" "$@"
+`);
+    await chmod(fakeHostPython, 0o700);
     const expectedReleaseId = `production-migration-${sourceSha.slice(0, 12)}`;
-    const run = (imageEnvJson, scenario = 'success') => spawnSync('/bin/sh', ['-c', `
+    const run = (imageEnvJson, scenario = 'success', runnerSource = runner) => spawnSync('/bin/sh', ['-c', `
 set -eu
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
-trusted_python="$TEST_HOST_PYTHON"
+trusted_python="$TEST_FAKE_HOST_PYTHON"
+${runnerSource}
 ${guard}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
         EXPECTED_RELEASE_ID: expectedReleaseId,
+        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
+        LD_AUDIT: '/definitely/missing/icao-audit.so',
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: scenario,
         MOCK_IMAGE_ENV_JSON: imageEnvJson,
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
-        TEST_HOST_PYTHON: hostPython,
+        REAL_HOST_PYTHON: hostPython,
+        TEST_FAKE_HOST_PYTHON: fakeHostPython,
         TEST_WORK_DIR: workDir,
       },
     });
@@ -348,13 +412,16 @@ set -eu
 image=icao-api:production-migration-aaaaaaaaaaaa-bbbbbbbbbbbb
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 work_dir="$TEST_WORK_DIR"
-trusted_python="$TEST_HOST_PYTHON"
+trusted_python="$TEST_FAKE_HOST_PYTHON"
+${runner}
 ${guard}
 `], {
       encoding: 'utf8',
       env: {
         ...process.env,
         EXPECTED_RELEASE_ID: expectedReleaseId,
+        GLIBC_TUNABLES: 'glibc.malloc.trim_threshold=1',
+        LD_AUDIT: '/definitely/missing/icao-audit.so',
         MOCK_DOCKER_CALLS: dockerCalls,
         MOCK_DOCKER_SCENARIO: 'malicious-entrypoint-must-not-run',
         MOCK_IMAGE_ENV_JSON: JSON.stringify([
@@ -363,11 +430,17 @@ ${guard}
         ]),
         NODE_OPTIONS: '--require=/definitely/missing/hostile-node-options.cjs',
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
-        TEST_HOST_PYTHON: hostPython,
+        REAL_HOST_PYTHON: hostPython,
+        TEST_FAKE_HOST_PYTHON: fakeHostPython,
         TEST_WORK_DIR: workDir,
       },
     });
     assert.equal(hostileNodeOptions.status, 0, hostileNodeOptions.stderr);
+    for (const variable of ['LD_AUDIT', 'GLIBC_TUNABLES']) {
+      const mutatedRunner = runner.replace(`  ${variable}= \\\n`, '');
+      assert.notEqual(mutatedRunner, runner, variable);
+      assert.notEqual(run(JSON.stringify([exact]), 'success', mutatedRunner).status, 0, variable);
+    }
     for (const [label, imageEnvJson, scenario] of [
       ['stale', JSON.stringify(['API_RELEASE_ID=release-old']), 'success'],
       ['missing', JSON.stringify(['NODE_ENV=production']), 'success'],

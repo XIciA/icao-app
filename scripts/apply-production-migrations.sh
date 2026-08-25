@@ -275,6 +275,47 @@ for command_name in awk basename cat chmod date dirname docker flock grep instal
 done
 
 # BEGIN production-migration-trusted-python-guard
+# BEGIN production-migration-trusted-python-runner
+run_trusted_python() {
+  LD_AUDIT= \
+  GLIBC_TUNABLES= \
+  LD_ASSUME_KERNEL= \
+  LD_BIND_NOW= \
+  LD_BIND_NOT= \
+  LD_DEBUG= \
+  LD_DEBUG_OUTPUT= \
+  LD_DYNAMIC_WEAK= \
+  LD_HWCAP_MASK= \
+  LD_LIBRARY_PATH= \
+  LD_ORIGIN_PATH= \
+  LD_POINTER_GUARD= \
+  LD_PREFER_MAP_32BIT_EXEC= \
+  LD_PRELOAD= \
+  LD_PROFILE= \
+  LD_PROFILE_OUTPUT= \
+  LD_SHOW_AUXV= \
+  LD_TRACE_LOADED_OBJECTS= \
+  LD_USE_LOAD_BIAS= \
+  LD_VERBOSE= \
+  LD_WARN= \
+  PYTHONBREAKPOINT= \
+  PYTHONCOERCECLOCALE= \
+  PYTHONDONTWRITEBYTECODE= \
+  PYTHONHASHSEED= \
+  PYTHONHOME= \
+  PYTHONINSPECT= \
+  PYTHONIOENCODING= \
+  PYTHONNOUSERSITE= \
+  PYTHONPATH= \
+  PYTHONPLATLIBDIR= \
+  PYTHONSAFEPATH= \
+  PYTHONSTARTUP= \
+  PYTHONUSERBASE= \
+  PYTHONUTF8= \
+  PYTHONWARNINGS= \
+  "$trusted_python" "$@"
+}
+# END production-migration-trusted-python-runner
 if [ ! -f "$trusted_python" ] || [ -L "$trusted_python" ] || [ ! -x "$trusted_python" ]; then
   echo "trusted production migration Python is missing, linked, or not executable: $trusted_python" >&2
   exit 1
@@ -284,7 +325,7 @@ case "$trusted_python_identity" in
   0:555|0:755) ;;
   *) echo "trusted production migration Python has unsafe owner or mode: $trusted_python" >&2; exit 1 ;;
 esac
-if ! LD_PRELOAD= LD_LIBRARY_PATH= PYTHONHOME= PYTHONPATH= "$trusted_python" -I -c \
+if ! run_trusted_python -I -c \
   'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)'; then
   echo "trusted production migration Python is unusable: $trusted_python" >&2
   exit 1
@@ -693,8 +734,7 @@ if ! docker inspect --type image --format '{{json .Config.Env}}' "$image" \
   exit 1
 fi
 chmod 600 "$baked_image_env_file"
-if ! LD_PRELOAD= LD_LIBRARY_PATH= PYTHONHOME= PYTHONPATH= \
-  "$trusted_python" -I - "$baked_image_env_file" "$expected_image_release_id" <<'PYTHON'; then
+if ! run_trusted_python -I - "$baked_image_env_file" "$expected_image_release_id" <<'PYTHON'; then
 import json
 import sys
 
