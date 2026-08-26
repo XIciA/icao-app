@@ -4,7 +4,10 @@ import { basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
+import {
+  cleanupTemporaryBusinessAccount,
+  createTemporaryPhoneAuthUser,
+} from './live-verifier-account-fixture.mjs';
 
 const apiBase = (process.env.API_BASE ?? 'http://127.0.0.1:3101').replace(/\/$/u, '');
 const audioFile = process.env.AI_VERIFY_AUDIO_FILE
@@ -67,9 +70,8 @@ const options = {
 const auth = createClient(supabaseUrl, publishableKey, options);
 const admin = createClient(supabaseUrl, secretKey, options);
 const database = postgres(databaseUrl, { prepare: false, max: 1 });
-const suffix = `${Date.now()}-${randomBytes(4).toString('hex')}`;
-const email = `asr-verify-${suffix}@example.test`;
 const password = `Icao-${randomBytes(18).toString('base64url')}!7`;
+let phone;
 let userId;
 let verification;
 let cleanupComplete = false;
@@ -131,10 +133,9 @@ async function removeStagedObjectsForRequest(requestId) {
 }
 
 try {
-  const created = await admin.auth.admin.createUser({ email, password, email_confirm: true });
-  if (created.error) throw created.error;
-  assert(created.data.user?.id, 'create_user_failed');
-  userId = created.data.user.id;
+  const temporaryUser = await createTemporaryPhoneAuthUser({ admin, password });
+  phone = temporaryUser.phone;
+  userId = temporaryUser.authUserId;
   await database`
     insert into accounts (id, status)
     values (${userId}, 'active')
@@ -144,19 +145,19 @@ try {
     values (
       ${userId},
       ${userId},
-      'apple',
-      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0apple\0live-asr-${suffix}`).digest('hex')}
+      'phone',
+      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0phone\0${phone}`).digest('hex')}
     )
   `;
 
-  const signedIn = await auth.auth.signInWithPassword({ email, password });
+  const signedIn = await auth.auth.signInWithPassword({ phone, password });
   if (signedIn.error) throw signedIn.error;
   const token = signedIn.data.session?.access_token;
   assert(token, 'sign_in_failed');
 
-  // The temporary email session is intentionally pre-linked through
+  // The temporary supported phone session is intentionally pre-linked through
   // account_identities.auth_user_id; this validates business-account
-  // resolution without pretending to exercise Apple OAuth itself.
+  // resolution without sending SMS or pretending to exercise Apple OAuth.
   const me = await api('/v1/me', token);
   assert(me.data?.id === userId, 'business_account_resolution_failed');
 
@@ -191,7 +192,22 @@ try {
   const result = transcribeResponse.data;
   transcribeRequestId = transcribeResponse.requestId;
   assert(typeof result.transcript === 'string' && result.transcript.trim().length > 0, 'empty_transcript');
-  assert(JSON.stringify(Object.keys(result).sort()) === JSON.stringify(['transcript']), 'public_contract_leaks_internal_fields');
+  assert(
+    JSON.stringify(Object.keys(result).sort()) === JSON.stringify(['aiPoints', 'transcript']),
+    'public_contract_leaks_internal_fields',
+  );
+  assert(
+    typeof result.aiPoints?.operationId === 'string'
+      && result.aiPoints.operationId.length > 0
+      && result.aiPoints.ruleVersion === 'ai-points-v1'
+      && Number.isInteger(result.aiPoints.estimated)
+      && result.aiPoints.estimated >= 0
+      && Number.isInteger(result.aiPoints.charged)
+      && result.aiPoints.charged >= 0
+      && Number.isInteger(result.aiPoints.remaining)
+      && result.aiPoints.remaining >= 0,
+    'public_ai_points_contract_invalid',
+  );
 
   const usage = await database`
     select attempt_count, failure_code, model, prompt_version, status, upstream_status
@@ -219,7 +235,7 @@ try {
     workflow: expectedWorkflow,
     transcriptCharacters: result.transcript.length,
     temporaryAudioRemoved: true,
-    publicContract: ['transcript'],
+    publicContract: ['aiPoints', 'transcript'],
     requestObserved: true,
   };
 } catch (error) {

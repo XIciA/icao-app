@@ -1,7 +1,10 @@
 import { createHmac, randomBytes } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
+import {
+  cleanupTemporaryBusinessAccount,
+  createTemporaryPhoneAuthUser,
+} from './live-verifier-account-fixture.mjs';
 
 const apiBase = (process.env.API_BASE ?? 'http://127.0.0.1:3101').replace(/\/$/u, '');
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -54,9 +57,8 @@ const options = {
 const auth = createClient(supabaseUrl, publishableKey, options);
 const admin = createClient(supabaseUrl, secretKey, options);
 const database = postgres(databaseUrl, { prepare: false, max: 1 });
-const suffix = `${Date.now()}-${randomBytes(4).toString('hex')}`;
-const email = `review-verify-${suffix}@example.test`;
 const password = `Icao-${randomBytes(18).toString('base64url')}!7`;
+let phone;
 let authUserId;
 let accountId;
 let verification;
@@ -87,14 +89,9 @@ function preservesAviationTerms(value) {
 }
 
 try {
-  const created = await admin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: true,
-  });
-  if (created.error) throw created.error;
-  assert(created.data.user?.id, 'create_user_failed');
-  authUserId = created.data.user.id;
+  const temporaryUser = await createTemporaryPhoneAuthUser({ admin, password });
+  phone = temporaryUser.phone;
+  authUserId = temporaryUser.authUserId;
   accountId = authUserId;
   await database`
     insert into accounts (id, status)
@@ -105,19 +102,19 @@ try {
     values (
       ${accountId},
       ${authUserId},
-      'apple',
-      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0apple\0live-review-${suffix}`).digest('hex')}
+      'phone',
+      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0phone\0${phone}`).digest('hex')}
     )
   `;
 
-  const signedIn = await auth.auth.signInWithPassword({ email, password });
+  const signedIn = await auth.auth.signInWithPassword({ phone, password });
   if (signedIn.error) throw signedIn.error;
   const token = signedIn.data.session?.access_token;
   assert(token, 'sign_in_failed');
 
-  // The temporary email session is intentionally pre-linked through
+  // The temporary supported phone session is intentionally pre-linked through
   // account_identities.auth_user_id; this validates business-account
-  // resolution without pretending to exercise Apple OAuth itself.
+  // resolution without sending SMS or pretending to exercise Apple OAuth.
   const me = await api('/v1/me', token);
   assert(me.data?.id === accountId, 'business_account_resolution_failed');
 
