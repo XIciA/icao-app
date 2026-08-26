@@ -341,6 +341,7 @@ describe('AppleServerReconciliationService', () => {
         revision: 'complete',
         signedTransactions: ['history-active'],
       })),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const values = {

@@ -1,3 +1,4 @@
+import { SendAttemptResult } from '@apple/app-store-server-library';
 import { describe, expect, it, vi } from 'vitest';
 
 import { runAppleIapServerCli } from '../src/apple-iap-server-cli';
@@ -5,6 +6,13 @@ import { AppleServerReconciliationApplyError } from '../src/commerce/apple-serve
 
 function dependencies() {
   return {
+    getTestNotificationStatus: vi.fn(async (environment) => ({
+      environment,
+      sendAttempts: [{
+        attemptDate: '2026-08-26T01:02:03.000Z',
+        sendAttemptResult: SendAttemptResult.SUCCESS,
+      }],
+    })),
     isRoot: vi.fn(() => true),
     reconcile: vi.fn(async (): Promise<unknown> => ({ checked: 1 })),
     requestTestNotification: vi.fn(async (environment) => ({ environment, testNotificationToken: 'token' })),
@@ -20,7 +28,19 @@ describe('root-only Apple IAP Server readiness CLI', () => {
       'test-notification', '--environment', 'sandbox',
     ], deps)).rejects.toThrow('apple_iap_server_cli_requires_root');
     expect(deps.requestTestNotification).not.toHaveBeenCalled();
+    expect(deps.getTestNotificationStatus).not.toHaveBeenCalled();
     expect(deps.reconcile).not.toHaveBeenCalled();
+  });
+
+  it('requires root before checking a test notification status', async () => {
+    const deps = dependencies();
+    deps.isRoot.mockReturnValue(false);
+    await expect(runAppleIapServerCli([
+      'test-notification-status',
+      '--environment', 'sandbox',
+      '--test-notification-token', '8cd2974c-f905-492a-bf9a-b2f47c791d19',
+    ], deps)).rejects.toThrow('apple_iap_server_cli_requires_root');
+    expect(deps.getTestNotificationStatus).not.toHaveBeenCalled();
   });
 
   it('defaults test notification to an offline dry-run', async () => {
@@ -49,6 +69,54 @@ describe('root-only Apple IAP Server readiness CLI', () => {
       '--confirm', 'REQUEST_APPLE_TEST_NOTIFICATION_PRODUCTION',
     ], deps);
     expect(deps.requestTestNotification).toHaveBeenCalledWith('production');
+  });
+
+  it('checks status with a canonical token and prints only the redacted summary', async () => {
+    const deps = dependencies();
+    const token = '8cd2974c-f905-492a-bf9a-b2f47c791d19';
+    const result = await runAppleIapServerCli([
+      'test-notification-status',
+      '--environment', 'production',
+      '--test-notification-token', token,
+    ], deps);
+
+    expect(deps.getTestNotificationStatus).toHaveBeenCalledWith('production', token);
+    expect(result).toEqual({
+      environment: 'production',
+      sendAttempts: [{
+        attemptDate: '2026-08-26T01:02:03.000Z',
+        sendAttemptResult: SendAttemptResult.SUCCESS,
+      }],
+    });
+    const output = JSON.stringify(deps.write.mock.calls);
+    expect(output).not.toContain(token);
+    expect(output).not.toContain('signedPayload');
+    expect(output).not.toContain('testNotificationToken');
+  });
+
+  it.each([
+    [
+      ['test-notification-status', '--environment', 'staging', '--test-notification-token',
+        '8cd2974c-f905-492a-bf9a-b2f47c791d19'],
+      'apple_iap_server_cli_environment_invalid',
+    ],
+    [
+      ['test-notification-status', '--environment', 'sandbox', '--test-notification-token', '../token'],
+      'apple_iap_server_cli_test_notification_token_invalid',
+    ],
+    [
+      ['test-notification-status', '--environment', 'sandbox'],
+      'apple_iap_server_cli_test_notification_token_required',
+    ],
+    [
+      ['test-notification-status', '--environment', 'sandbox', '--test-notification-token',
+        '8cd2974c-f905-492a-bf9a-b2f47c791d19', '--execute'],
+      'apple_iap_server_cli_argument_invalid',
+    ],
+  ])('rejects invalid status arguments before the Apple call', async (argv, code) => {
+    const deps = dependencies();
+    await expect(runAppleIapServerCli(argv, deps)).rejects.toThrow(code);
+    expect(deps.getTestNotificationStatus).not.toHaveBeenCalled();
   });
 
   it('keeps reconciliation dry-run by default and confirms apply explicitly', async () => {

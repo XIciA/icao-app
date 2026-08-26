@@ -1,5 +1,6 @@
 import {
   AppStoreServerAPIClient,
+  type CheckTestNotificationResponse,
   Environment,
   type GetTransactionHistoryVersion,
   type HistoryResponse,
@@ -16,6 +17,9 @@ export const APPLE_STORE_SERVER_API_CLIENT_FACTORY = Symbol(
 );
 
 export interface AppleStoreServerApiClient {
+  getTestNotificationStatus(
+    testNotificationToken: string,
+  ): Promise<CheckTestNotificationResponse>;
   getTransactionInfo(transactionId: string): Promise<TransactionInfoResponse>;
   getTransactionHistory(
     transactionId: string,

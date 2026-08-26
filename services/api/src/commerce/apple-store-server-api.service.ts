@@ -5,6 +5,7 @@ import {
   GetTransactionHistoryVersion,
   Order,
   ProductType,
+  SendAttemptResult,
   type TransactionHistoryRequest,
 } from '@apple/app-store-server-library';
 
@@ -58,14 +59,75 @@ export type AppleServerHistoryResult = Readonly<{
   transactions: readonly AppleServerTransactionSummary[];
 }>;
 
+export type AppleTestNotificationStatusSummary = Readonly<{
+  environment: CommerceEnvironment;
+  sendAttempts: readonly Readonly<{
+    attemptDate?: string;
+    sendAttemptResult?: SendAttemptResult;
+  }>[];
+}>;
+
 export class AppleStoreServerApiRequestError extends Error {
   constructor(
-    readonly operation: 'history' | 'test_notification' | 'transaction_info',
+    readonly operation:
+      | 'history'
+      | 'test_notification'
+      | 'test_notification_status'
+      | 'transaction_info',
     readonly httpStatusCode?: number,
     readonly apiError?: number,
   ) {
     super(`apple_iap_server_${operation}_failed`);
   }
+}
+
+const APPLE_TEST_NOTIFICATION_TOKEN_PATTERN = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/iu;
+const APPLE_SEND_ATTEMPT_RESULTS = new Set<string>(Object.values(SendAttemptResult));
+
+export function isAppleTestNotificationToken(value: string) {
+  return APPLE_TEST_NOTIFICATION_TOKEN_PATTERN.test(value);
+}
+
+function requireAppleTestNotificationToken(testNotificationToken: string) {
+  if (!isAppleTestNotificationToken(testNotificationToken)) {
+    throw new Error('apple_iap_server_test_notification_token_invalid');
+  }
+  return testNotificationToken;
+}
+
+function summarizeTestNotificationAttempts(
+  sendAttempts: Readonly<{
+    attemptDate?: number;
+    sendAttemptResult?: SendAttemptResult | string;
+  }>[] | undefined,
+) {
+  if (sendAttempts === undefined) return [];
+  if (!Array.isArray(sendAttempts) || sendAttempts.length > 6) {
+    throw new Error('apple_iap_server_test_notification_status_attempts_invalid');
+  }
+  return sendAttempts.map((attempt) => {
+    const result: {
+      attemptDate?: string;
+      sendAttemptResult?: SendAttemptResult;
+    } = {};
+    if (attempt.attemptDate !== undefined) {
+      if (!Number.isSafeInteger(attempt.attemptDate)) {
+        throw new Error('apple_iap_server_test_notification_status_attempts_invalid');
+      }
+      const date = new Date(attempt.attemptDate);
+      if (!Number.isFinite(date.getTime())) {
+        throw new Error('apple_iap_server_test_notification_status_attempts_invalid');
+      }
+      result.attemptDate = date.toISOString();
+    }
+    if (attempt.sendAttemptResult !== undefined) {
+      if (!APPLE_SEND_ATTEMPT_RESULTS.has(attempt.sendAttemptResult)) {
+        throw new Error('apple_iap_server_test_notification_status_attempts_invalid');
+      }
+      result.sendAttemptResult = attempt.sendAttemptResult as SendAttemptResult;
+    }
+    return result;
+  });
 }
 
 function normalizeResponseEnvironment(value: unknown): CommerceEnvironment {
@@ -136,6 +198,23 @@ export class AppleStoreServerApiService {
       } as const;
     } catch (error) {
       throw normalizeApiError('test_notification', error);
+    }
+  }
+
+  async testNotificationStatus(
+    environment: CommerceEnvironment,
+    testNotificationToken: string,
+  ): Promise<AppleTestNotificationStatusSummary> {
+    try {
+      const response = await this.clients.forEnvironment(environment).getTestNotificationStatus(
+        requireAppleTestNotificationToken(testNotificationToken),
+      );
+      return {
+        environment,
+        sendAttempts: summarizeTestNotificationAttempts(response.sendAttempts),
+      };
+    } catch (error) {
+      throw normalizeApiError('test_notification_status', error);
     }
   }
 
