@@ -108,13 +108,19 @@ const iosIntegrityScript = iosIntegrityPlugin.createShellScript({
   version: app.expo.version,
   buildNumber: app.expo.ios.buildNumber,
 });
+const canonicalIosPlist = iosIntegrityPlugin.applyCanonicalIosUrlScheme({
+  CFBundleURLTypes: [{ CFBundleURLSchemes: ['readyoufife', app.expo.ios.bundleIdentifier] }],
+}, app.expo.scheme);
 if (
   !iosIntegrityScript.includes('CFBundleVersion') ||
   !iosIntegrityScript.includes('_expo._tcp') ||
   !iosIntegrityScript.includes('Expo Dev Launcher') ||
-  iosIntegrityPlugin.INFO_PLIST_INPUT !== '"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"'
+  iosIntegrityPlugin.INFO_PLIST_INPUT !== '"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"' ||
+  JSON.stringify(canonicalIosPlist.CFBundleURLTypes) !== JSON.stringify([
+    { CFBundleURLSchemes: ['readyoufife'] },
+  ])
 ) {
-  throw new Error('The iOS Release metadata or local-network integrity gate is incomplete.');
+  throw new Error('The iOS Release metadata, URL scheme, or local-network integrity gate is incomplete.');
 }
 const audioPlugin = app.expo.plugins.find((entry) => Array.isArray(entry) && entry[0] === 'expo-audio');
 if (!audioPlugin?.[1]?.microphonePermission?.includes('口语练习')) {

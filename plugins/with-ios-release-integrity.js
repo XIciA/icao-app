@@ -1,10 +1,20 @@
-const { withXcodeProject } = require('expo/config-plugins');
+const { withInfoPlist, withXcodeProject } = require('expo/config-plugins');
 
 const PHASE_NAME = '[Read You 5] Enforce Release Info.plist';
 const INFO_PLIST_INPUT = '"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"';
 
 function shellQuote(value) {
   return `'${String(value).replace(/'/g, `'"'"'`)}'`;
+}
+
+function applyCanonicalIosUrlScheme(infoPlist, scheme) {
+  if (typeof scheme !== 'string' || !scheme) {
+    throw new Error('iOS Release integrity requires one canonical URL scheme.');
+  }
+  return {
+    ...infoPlist,
+    CFBundleURLTypes: [{ CFBundleURLSchemes: [scheme] }],
+  };
 }
 
 function createShellScript({ version, buildNumber }) {
@@ -113,8 +123,16 @@ function applyReleaseIntegrity(project, options) {
 module.exports = function withIosReleaseIntegrity(config) {
   const version = config.version;
   const buildNumber = config.ios?.buildNumber;
-  if (!version || !buildNumber) {
-    throw new Error('iOS Release integrity requires expo.version and expo.ios.buildNumber.');
+  const scheme = config.scheme;
+  if (!version || !buildNumber || typeof scheme !== 'string' || !scheme) {
+    throw new Error('iOS Release integrity requires expo.version, expo.ios.buildNumber, and one URL scheme.');
+  }
+
+  if (scheme === 'readyoufife') {
+    config = withInfoPlist(config, (infoPlistConfig) => {
+      infoPlistConfig.modResults = applyCanonicalIosUrlScheme(infoPlistConfig.modResults, scheme);
+      return infoPlistConfig;
+    });
   }
 
   return withXcodeProject(config, (xcodeConfig) => {
@@ -123,6 +141,7 @@ module.exports = function withIosReleaseIntegrity(config) {
   });
 };
 
+module.exports.applyCanonicalIosUrlScheme = applyCanonicalIosUrlScheme;
 module.exports.applyReleaseIntegrity = applyReleaseIntegrity;
 module.exports.createShellScript = createShellScript;
 module.exports.INFO_PLIST_INPUT = INFO_PLIST_INPUT;
