@@ -3,6 +3,7 @@ import {
   Environment,
   GetTransactionHistoryVersion,
   ProductType,
+  SendAttemptResult,
 } from '@apple/app-store-server-library';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -69,6 +70,88 @@ function apiService(
 }
 
 describe('AppleStoreServerApiService', () => {
+  it('returns only a redacted test-notification delivery summary', async () => {
+    const token = '8cd2974c-f905-492a-bf9a-b2f47c791d19';
+    const client = {
+      getTestNotificationStatus: vi.fn(async () => ({
+        signedPayload: 'sensitive-signed-payload',
+        sendAttempts: [
+          {
+            attemptDate: 1_698_148_900_000,
+            sendAttemptResult: SendAttemptResult.NO_RESPONSE,
+          },
+          {
+            attemptDate: 1_698_148_950_000,
+            sendAttemptResult: SendAttemptResult.SUCCESS,
+          },
+        ],
+      })),
+      getTransactionInfo: vi.fn(),
+      getTransactionHistory: vi.fn(),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {});
+
+    const result = await service.testNotificationStatus('sandbox', token);
+
+    expect(client.getTestNotificationStatus).toHaveBeenCalledWith(token);
+    expect(result).toEqual({
+      environment: 'sandbox',
+      sendAttempts: [
+        {
+          attemptDate: '2023-10-24T12:01:40.000Z',
+          sendAttemptResult: SendAttemptResult.NO_RESPONSE,
+        },
+        {
+          attemptDate: '2023-10-24T12:02:30.000Z',
+          sendAttemptResult: SendAttemptResult.SUCCESS,
+        },
+      ],
+    });
+    expect(JSON.stringify(result)).not.toContain(token);
+    expect(JSON.stringify(result)).not.toContain('sensitive-signed-payload');
+    expect(JSON.stringify(result)).not.toContain('signedPayload');
+  });
+
+  it('validates a test-notification token before an Apple call', async () => {
+    const client = {
+      getTestNotificationStatus: vi.fn(),
+      getTransactionInfo: vi.fn(),
+      getTransactionHistory: vi.fn(),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {});
+
+    await expect(service.testNotificationStatus('production', '../token'))
+      .rejects.toThrow('apple_iap_server_test_notification_token_invalid');
+    expect(client.getTestNotificationStatus).not.toHaveBeenCalled();
+  });
+
+  it('normalizes Apple status errors without leaking upstream details', async () => {
+    const client = {
+      getTestNotificationStatus: vi.fn(async () => {
+        throw new APIException(404, 4_040_008, 'upstream-sensitive-status-detail');
+      }),
+      getTransactionInfo: vi.fn(),
+      getTransactionHistory: vi.fn(),
+      requestTestNotification: vi.fn(),
+    } as AppleStoreServerApiClient;
+    const service = apiService(client, {});
+    const error = await service.testNotificationStatus(
+      'production',
+      '8cd2974c-f905-492a-bf9a-b2f47c791d19',
+    ).catch((caught) => caught);
+
+    expect(error).toBeInstanceOf(AppleStoreServerApiRequestError);
+    expect(error).toMatchObject({
+      apiError: 4_040_008,
+      httpStatusCode: 404,
+      message: 'apple_iap_server_test_notification_status_failed',
+      operation: 'test_notification_status',
+    });
+    expect(JSON.stringify(error)).not.toContain('upstream-sensitive-status-detail');
+  });
+
   it('queries transaction info and bounded V2 NON_RENEWABLE history with replay deduplication', async () => {
     const getTransactionHistory = vi.fn()
       .mockResolvedValueOnce({
@@ -90,6 +173,7 @@ describe('AppleStoreServerApiService', () => {
     const client = {
       getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
       getTransactionHistory,
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, {
@@ -128,6 +212,7 @@ describe('AppleStoreServerApiService', () => {
     const client = {
       getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
       getTransactionHistory: vi.fn(),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, {
@@ -149,6 +234,7 @@ describe('AppleStoreServerApiService', () => {
         revision: 'complete',
         signedTransactions: ['anchor-stale-active'],
       })),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, {
@@ -185,6 +271,7 @@ describe('AppleStoreServerApiService', () => {
         revision: 'complete',
         signedTransactions: ['anchor-history'],
       })),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, {
@@ -205,6 +292,7 @@ describe('AppleStoreServerApiService', () => {
     const client = {
       getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
       getTransactionHistory: vi.fn(),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, {
@@ -230,6 +318,7 @@ describe('AppleStoreServerApiService', () => {
         signedTransactions: ['signed-anchor'],
         ...override,
       })),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, { 'signed-anchor': transaction('anchor') });
@@ -257,6 +346,7 @@ describe('AppleStoreServerApiService', () => {
     const client = {
       getTransactionInfo: vi.fn(async () => ({ signedTransactionInfo: 'signed-anchor' })),
       getTransactionHistory,
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, { 'signed-anchor': transaction('anchor') });
@@ -275,6 +365,7 @@ describe('AppleStoreServerApiService', () => {
         revision: 'revision-1',
         signedTransactions: ['signed-anchor'],
       })),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(),
     } as AppleStoreServerApiClient;
     const service = apiService(client, { 'signed-anchor': transaction('anchor') });
@@ -286,6 +377,7 @@ describe('AppleStoreServerApiService', () => {
     const client = {
       getTransactionInfo: vi.fn(),
       getTransactionHistory: vi.fn(),
+      getTestNotificationStatus: vi.fn(),
       requestTestNotification: vi.fn(async () => {
         throw new APIException(500, 5_000_000, 'upstream-sensitive-detail');
       }),

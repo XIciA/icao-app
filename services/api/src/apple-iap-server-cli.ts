@@ -3,7 +3,11 @@ import 'reflect-metadata';
 import {
   configuredAppleStoreServerApiClientFactory,
 } from './commerce/apple-store-server-api-client';
-import { AppleStoreServerApiService } from './commerce/apple-store-server-api.service';
+import {
+  AppleStoreServerApiService,
+  isAppleTestNotificationToken,
+  type AppleTestNotificationStatusSummary,
+} from './commerce/apple-store-server-api.service';
 import {
   AppleServerReconciliationApplyError,
   AppleServerReconciliationService,
@@ -31,6 +35,12 @@ type TestNotificationCommand = Readonly<{
   execute: boolean;
 }>;
 
+type TestNotificationStatusCommand = Readonly<{
+  command: 'test-notification-status';
+  environment: CommerceEnvironment;
+  testNotificationToken: string;
+}>;
+
 type ReconcileCommand = Readonly<{
   apply: boolean;
   command: 'reconcile';
@@ -42,9 +52,16 @@ type ReconcileCommand = Readonly<{
   transactionId: string;
 }>;
 
-export type AppleIapServerCliCommand = TestNotificationCommand | ReconcileCommand;
+export type AppleIapServerCliCommand =
+  | TestNotificationCommand
+  | TestNotificationStatusCommand
+  | ReconcileCommand;
 
 type AppleIapServerCliDependencies = Readonly<{
+  getTestNotificationStatus: (
+    environment: CommerceEnvironment,
+    testNotificationToken: string,
+  ) => Promise<AppleTestNotificationStatusSummary>;
   isRoot: () => boolean;
   reconcile: (input: ReconcileCommand) => Promise<unknown>;
   requestTestNotification: (environment: CommerceEnvironment) => Promise<unknown>;
@@ -66,7 +83,11 @@ function positiveInteger(value: string | undefined, code: string) {
 
 export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIapServerCliCommand {
   const command = argv[0];
-  if (command !== 'test-notification' && command !== 'reconcile') {
+  if (
+    command !== 'test-notification'
+    && command !== 'test-notification-status'
+    && command !== 'reconcile'
+  ) {
     throw new Error('apple_iap_server_cli_command_invalid');
   }
   const flags = new Map<string, string>();
@@ -88,14 +109,16 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
   }
   const allowed = command === 'test-notification'
     ? new Set(['environment', 'confirm'])
-    : new Set([
-      'environment',
-      'confirm',
-      'transaction-id',
-      'max-pages',
-      'max-transactions',
-      'resume-batch-id',
-    ]);
+    : command === 'test-notification-status'
+      ? new Set(['environment', 'test-notification-token'])
+      : new Set([
+        'environment',
+        'confirm',
+        'transaction-id',
+        'max-pages',
+        'max-transactions',
+        'resume-batch-id',
+      ]);
   if ([...flags.keys()].some((key) => !allowed.has(key))) {
     throw new Error('apple_iap_server_cli_argument_invalid');
   }
@@ -103,6 +126,9 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
     throw new Error('apple_iap_server_cli_argument_invalid');
   }
   if (command === 'reconcile' && switches.has('execute')) {
+    throw new Error('apple_iap_server_cli_argument_invalid');
+  }
+  if (command === 'test-notification-status' && switches.size > 0) {
     throw new Error('apple_iap_server_cli_argument_invalid');
   }
   const environment = requiredValue(flags, 'environment');
@@ -115,6 +141,17 @@ export function parseAppleIapServerCliCommand(argv: readonly string[]): AppleIap
       confirmation: flags.get('confirm'),
       environment,
       execute: switches.has('execute'),
+    };
+  }
+  if (command === 'test-notification-status') {
+    const testNotificationToken = requiredValue(flags, 'test-notification-token');
+    if (!isAppleTestNotificationToken(testNotificationToken)) {
+      throw new Error('apple_iap_server_cli_test_notification_token_invalid');
+    }
+    return {
+      command,
+      environment,
+      testNotificationToken,
     };
   }
   const transactionId = requiredValue(flags, 'transaction-id');
@@ -180,6 +217,23 @@ export async function runAppleIapServerCli(
     dependencies.write(result);
     return result;
   }
+  if (command.command === 'test-notification-status') {
+    const response = await dependencies.getTestNotificationStatus(
+      command.environment,
+      command.testNotificationToken,
+    );
+    const result = {
+      environment: command.environment,
+      sendAttempts: response.sendAttempts.map((attempt) => ({
+        ...(attempt.attemptDate === undefined ? {} : { attemptDate: attempt.attemptDate }),
+        ...(attempt.sendAttemptResult === undefined
+          ? {}
+          : { sendAttemptResult: attempt.sendAttemptResult }),
+      })),
+    } as const;
+    dependencies.write(result);
+    return result;
+  }
   if (
     command.apply
     && command.confirmation !== RECONCILIATION_CONFIRMATION[command.environment]
@@ -232,6 +286,15 @@ async function main() {
     await runAppleIapServerCli(process.argv.slice(2), {
       isRoot: () => process.getuid?.() === 0,
       write: (value) => console.log(JSON.stringify(value, null, 2)),
+      getTestNotificationStatus: async (environment, testNotificationToken) => {
+        const config = loadConfig();
+        const service = new AppleStoreServerApiService(
+          config,
+          configuredAppleStoreServerApiClientFactory(config),
+          configuredAppleStoreVerifier(config),
+        );
+        return service.testNotificationStatus(environment, testNotificationToken);
+      },
       requestTestNotification: async (environment) => {
         const config = loadConfig();
         const service = new AppleStoreServerApiService(
@@ -271,8 +334,7 @@ async function main() {
 
 if (require.main === module) {
   void main().catch((error: unknown) => {
-    const code = error instanceof Error ? error.message : 'apple_iap_server_cli_failed';
-    console.error(code);
+    console.error(safeCliErrorCode(error));
     process.exitCode = 1;
   });
 }
