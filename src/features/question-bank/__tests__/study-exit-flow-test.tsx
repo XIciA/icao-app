@@ -1,11 +1,12 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
+import { Platform } from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-handler/jest-utils';
 
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
-import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
+import type { CardLearningState, LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 
 const mockFinish = jest.fn();
 const mockGoTo = jest.fn();
@@ -16,6 +17,8 @@ let mockPreventRemoveHandler: (() => void) | undefined;
 let mockTaskKind: 'choices' | 'recording' = 'choices';
 let mockAnnotationTarget: unknown;
 let mockWorkbenchProps: { persistAiResult?: boolean } | undefined;
+let mockSessionOverride: ((input: { studyPackage?: QuestionBankStudyPackage }) => Record<string, unknown>) | undefined;
+let mockAnswerCardProps: { marked: Set<number>; markedLabel?: string; onSelect: (index: number) => void; total: number; unmarkedLabel?: string } | undefined;
 
 jest.mock('@react-navigation/native', () => ({
   usePreventRemove: (_prevent: boolean, handler: () => void) => { mockPreventRemoveHandler = handler; },
@@ -76,23 +79,26 @@ jest.mock('../components/AnnotationToolbar', () => ({ AnnotationToolbar: () => n
 jest.mock('../components/AnswerCardSheet', () => {
   const { Pressable: MockPressable, Text: MockText, View: MockView } = jest.requireActual('react-native');
   return {
-    AnswerCardSheet: ({ onSelect, visible }: { onSelect: (index: number) => void; visible: boolean }) => visible ? (
-      <MockView><MockPressable accessibilityLabel="答题卡选择第2题" onPress={() => onSelect(1)}><MockText>第2题</MockText></MockPressable></MockView>
-    ) : null,
+    AnswerCardSheet: (props: { marked: Set<number>; markedLabel?: string; onSelect: (index: number) => void; total: number; unmarkedLabel?: string; visible: boolean }) => {
+      mockAnswerCardProps = props;
+      return props.visible ? (
+        <MockView><MockPressable accessibilityLabel="答题卡选择第2题" onPress={() => props.onSelect(1)}><MockText>第2题</MockText></MockPressable></MockView>
+      ) : null;
+    },
   };
 });
 jest.mock('../components/InteractiveStudyText', () => ({ InteractiveStudyText: () => null }));
 jest.mock('../components/StudyAudioPlayer', () => {
-  const { Text: MockText, View: MockView } = jest.requireActual('react-native');
-  return { StudyAudioPlayer: ({ practiceControls, variant = 'default' }: { practiceControls?: React.ReactNode; variant?: string }) => <MockView><MockText>{`audio-layout:${variant}`}</MockText>{practiceControls}</MockView> };
+  const { Pressable: MockPressable, Text: MockText, View: MockView } = jest.requireActual('react-native');
+  return { StudyAudioPlayer: ({ onManualPlay, practiceControls, variant = 'default' }: { onManualPlay?: () => void; practiceControls?: React.ReactNode; variant?: string }) => <MockView><MockText>{`audio-layout:${variant}`}</MockText><MockPressable accessibilityLabel="手动播放" onPress={onManualPlay} />{practiceControls}</MockView> };
 });
 jest.mock('../components/StudyCardStack', () => {
   const { View: MockView } = jest.requireActual('react-native');
   return { StudyCardStack: ({ primary, workbench }: { primary: React.ReactNode; workbench: React.ReactNode }) => <MockView>{primary}{workbench}</MockView> };
 });
 jest.mock('../components/StudyTaskRenderer', () => {
-  const { Text: MockText } = jest.requireActual('react-native');
-  return { StudyTaskRenderer: ({ variant = 'default' }: { variant?: string }) => <MockText>{`task-layout:${variant}`}</MockText> };
+  const { Pressable: MockPressable, Text: MockText, View: MockView } = jest.requireActual('react-native');
+  return { StudyTaskRenderer: ({ choiceReadOnly = false, onChoose, revealed, variant = 'default' }: { choiceReadOnly?: boolean; onChoose: (index: number) => void; revealed: boolean; variant?: string }) => <MockView><MockText>{`task-layout:${variant}`}</MockText><MockText>{`task-revealed:${revealed}`}</MockText><MockText>{`task-read-only:${choiceReadOnly}`}</MockText><MockPressable accessibilityLabel="选择正确答案" disabled={choiceReadOnly} onPress={() => onChoose(0)} /><MockPressable accessibilityLabel="选择错误答案" disabled={choiceReadOnly} onPress={() => onChoose(1)} /></MockView> };
 });
 jest.mock('../components/StudyWorkbench', () => {
   const { forwardRef: mockForwardRef, useImperativeHandle: mockUseImperativeHandle } = jest.requireActual('react');
@@ -128,6 +134,142 @@ function report(reason: 'abort' | 'complete'): LearningRecord {
   return { schemaVersion: 2, id: 'report', bankId: dataset.id, bankTitle: dataset.title, categoryTitle: category.name, topicTitle: topic.name, completedCount: 0, totalCount: 1, correctCount: 0, annotationCount: 0, noteCount: 0, feedbackCount: 0, durationSeconds: 1, reason, createdAt: '2026-07-12T00:00:00.000Z' };
 }
 
+function listeningExamPackage(includeFollowingModule = false): QuestionBankStudyPackage {
+  const listeningItems: QuestionBankStudyItem[] = Array.from({ length: 20 }, (_, index) => {
+    const card = {
+      id: `listening-card-${index + 1}`,
+      taskTitle: `Listening ${index + 1}`,
+      audioText: 'Question',
+      choices: ['Correct', 'Wrong'],
+      correctChoiceIndex: 0,
+    };
+    return { id: `listening-item-${index + 1}`, dataset, category, topic, card };
+  });
+  const followingDataset: QuestionBankDataset = {
+    ...dataset,
+    id: 'opi',
+    title: 'OPI',
+    study: {
+      ...dataset.study,
+      interaction: 'speaking',
+      tools: { ...dataset.study.tools, choices: false, recorder: true },
+    },
+  };
+  const followingItems: QuestionBankStudyItem[] = includeFollowingModule ? [{
+    id: 'opi-item-1',
+    dataset: followingDataset,
+    category,
+    topic,
+    card: { id: 'opi-card-1', taskTitle: 'OPI', audioText: 'Question' },
+  }] : [];
+  return {
+    id: 'vercel-listening-exam',
+    startedAt: '2026-08-26T00:00:00.000Z',
+    progressMode: 'session-only',
+    items: [...listeningItems, ...followingItems],
+    record: {
+      bankId: 'mock_exam',
+      bankTitle: 'AI 模考',
+      categoryTitle: 'ICAO 4 初考',
+      topicTitle: '按考试规则组卷',
+      recordType: 'mock_exam',
+    },
+  };
+}
+
+function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPackage }) {
+  const items = input.studyPackage!.items;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [states, setStates] = useState<Record<string, CardLearningState>>({});
+  const [visitedIndexes, setVisitedIndexes] = useState<Set<number>>(() => new Set([0]));
+  const [studyReport, setStudyReport] = useState<LearningRecord>();
+  const currentItem = items[currentIndex];
+  const currentState = states[currentItem.id];
+  const goTo = (index: number) => {
+    mockGoTo(index);
+    setCurrentIndex(index);
+    setVisitedIndexes((current) => new Set(current).add(index));
+  };
+  const chooseOption = (choiceIndex: number, revealAnswer = true) => {
+    setStates((current) => ({
+      ...current,
+      [currentItem.id]: {
+        visited: true,
+        completed: true,
+        selectedChoiceIndex: choiceIndex,
+        note: '',
+        updatedAt: '2026-08-26T00:00:00.000Z',
+      },
+    }));
+    if (revealAnswer) {
+      // The test observes the explicit flag passed by the Vercel exam screen.
+    }
+  };
+  const markCompleted = (itemId: string) => setStates((current) => ({
+    ...current,
+    [itemId]: {
+      ...current[itemId],
+      visited: true,
+      completed: true,
+      note: current[itemId]?.note ?? '',
+      updatedAt: '2026-08-26T00:00:00.000Z',
+    },
+  }));
+  return {
+    hydrated: true,
+    report: studyReport,
+    items,
+    item: currentItem,
+    card: currentItem.card,
+    cardState: currentState,
+    states,
+    behavior: { taskKind: currentItem.dataset.id === 'listening' ? 'choices' : 'recording', recordingMode: 'speaking', transcriptLabel: '音频原文', referenceLabel: '参考答案', workbenchTabs: ['notes'] },
+    currentIndex,
+    visitedIndexes,
+    completedCardIds: new Set(Object.entries(states).flatMap(([id, state]) => state.completed ? [id] : [])),
+    revealed: false,
+    toolMode: undefined,
+    activeTab: 'notes',
+    answerText: '',
+    playRequestToken: 0,
+    finish: async (reason: 'abort' | 'complete') => {
+      mockFinish(reason);
+      setStudyReport(report(reason));
+    },
+    goTo,
+    chooseOption,
+    markCompleted,
+    toggleAnswers: jest.fn(),
+    setToolMode: jest.fn(),
+    collapseAnswers: jest.fn(),
+    revealCurrent: jest.fn(),
+    clearRecording: jest.fn(),
+    recordAnswer: jest.fn(),
+    updateAnswer: jest.fn(),
+    markFeedback: jest.fn(),
+    setActiveTab: jest.fn(),
+  };
+}
+
+function useMockPersistentLearningSession() {
+  const items = topic.cards.map((card) => ({ id: card.id, dataset, category, topic, card }));
+  return useMockListeningExamSession({
+    studyPackage: {
+      id: 'persistent-learning-test',
+      startedAt: '2026-08-26T00:00:00.000Z',
+      progressMode: 'persistent',
+      items,
+      record: {
+        bankId: dataset.id,
+        bankTitle: dataset.title,
+        categoryTitle: category.name,
+        topicTitle: topic.name,
+        recordType: 'session',
+      },
+    },
+  });
+}
+
 describe('study exit flow', () => {
   beforeEach(() => {
     mockFinish.mockReset();
@@ -138,8 +280,11 @@ describe('study exit flow', () => {
     mockPreventRemoveHandler = undefined;
     mockAnnotationTarget = undefined;
     mockWorkbenchProps = undefined;
+    mockSessionOverride = undefined;
+    mockAnswerCardProps = undefined;
     mockTaskKind = 'choices';
     (useStudySession as jest.Mock).mockImplementation((input: { studyPackage?: QuestionBankStudyPackage }) => {
+      if (mockSessionOverride) return mockSessionOverride(input);
       const [studyReport, setStudyReport] = useState<LearningRecord>();
       const items = input.studyPackage?.items ?? topic.cards.map((card) => ({ id: card.id, dataset, category, topic, card }));
       const currentItem = items[0];
@@ -154,6 +299,7 @@ describe('study exit flow', () => {
         currentIndex: 0,
         visitedIndexes: new Set([0]),
         completedCardIds: new Set<string>(),
+        states: {},
         revealed: false,
         toolMode: undefined,
         activeTab: 'notes',
@@ -361,5 +507,67 @@ describe('study exit flow', () => {
     expect(speakingScreen.getByText('audio-layout:integrated-recording')).toBeTruthy();
     expect(speakingScreen.getByText('task-layout:integrated')).toBeTruthy();
     expect(speakingScreen.queryByText('task-layout:default')).toBeNull();
+  });
+
+  it('settles the 20-question Vercel listening exam before read-only review and continuation', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    mockSessionOverride = useMockListeningExamSession;
+    const studyPackage = listeningExamPackage(true);
+
+    try {
+      const screen = await render(<QuestionBankStudyScreen onReturn={jest.fn()} returnLabel="返回 AI 模考" studyPackage={studyPackage} />);
+
+      for (let index = 0; index < 20; index += 1) {
+        expect(screen.getByText('task-revealed:false')).toBeTruthy();
+        if (index === 0) {
+          await act(async () => { fireEvent.press(screen.getByLabelText('选择错误答案')); });
+          expect(screen.getByText('task-revealed:false')).toBeTruthy();
+        }
+        if (index === 19) {
+          expect(screen.queryByLabelText('听力成绩 50 分 6 级')).toBeNull();
+          await act(async () => { fireEvent.press(screen.getByLabelText('检查答题')); });
+          expect(mockAnswerCardProps?.marked.size).toBe(19);
+        }
+        await act(async () => { fireEvent.press(screen.getByLabelText('选择正确答案')); });
+        if (index === 0) {
+          await act(async () => { fireEvent.press(screen.getByLabelText('打开答题卡')); });
+          expect(mockAnswerCardProps).toMatchObject({ markedLabel: '已答', total: 20, unmarkedLabel: '未答' });
+          expect(mockAnswerCardProps?.marked).toEqual(new Set([0]));
+          await act(async () => { mockAnswerCardProps?.onSelect(0); });
+        }
+        if (index < 19) {
+          await act(async () => { fireEvent.press(screen.getByLabelText('下一题')); });
+        }
+      }
+
+      await waitFor(() => expect(screen.getByLabelText('听力成绩 50 分 6 级')).toBeTruthy());
+      expect(screen.getByText('task-revealed:true')).toBeTruthy();
+      expect(screen.getByText('task-read-only:true')).toBeTruthy();
+
+      await act(async () => { mockAnswerCardProps?.onSelect(19); });
+      await act(async () => { fireEvent.press(screen.getByLabelText('继续考试')); });
+      await waitFor(() => expect(mockGoTo).toHaveBeenLastCalledWith(20));
+      expect(screen.queryByLabelText('听力成绩 50 分 6 级')).toBeNull();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
+  });
+
+  it('marks a Vercel question learned on manual play and reflects it in the answer card', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    mockSessionOverride = useMockPersistentLearningSession;
+
+    try {
+      const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+      await act(async () => { fireEvent.press(screen.getByLabelText('手动播放')); });
+      await act(async () => { fireEvent.press(screen.getByLabelText('打开答题卡')); });
+
+      expect(mockAnswerCardProps).toMatchObject({ markedLabel: '已学', total: 2, unmarkedLabel: '未学' });
+      expect(mockAnswerCardProps?.marked).toEqual(new Set([0]));
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 });

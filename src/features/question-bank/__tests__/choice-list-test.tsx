@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import { StyleSheet } from 'react-native';
 
 import { colors } from '@/theme';
@@ -138,6 +138,18 @@ describe('<ChoiceList />', () => {
     );
 
     expect(screen.getByLabelText('选项 A：Alpha')).toBeTruthy();
+  });
+
+  it('keeps reviewed choices visible but read-only', async () => {
+    const onSelect = jest.fn();
+    const screen = await render(
+      <ChoiceList choices={['Alpha', 'Bravo']} correctChoiceIndex={1} onSelect={onSelect} readOnly selectedChoiceIndex={0} showResult />,
+    );
+
+    fireEvent.press(screen.getByLabelText('选项 A：Alpha'));
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('正确答案')).toBeTruthy();
+    expect(screen.getByLabelText('错误答案')).toBeTruthy();
   });
 
 });

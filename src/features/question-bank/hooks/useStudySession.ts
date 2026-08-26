@@ -253,24 +253,24 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (mode === 'highlight' && !revealed) revealCurrent(false);
   }, [revealCurrent, revealed]);
 
-  const goTo = useCallback((nextIndex: number) => {
+  const goTo = useCallback((nextIndex: number, requestAutoPlay = true) => {
     if (nextIndex < 0 || nextIndex >= items.length || nextIndex === currentIndex) return;
     const nextItem = items[nextIndex];
     const nextBehavior = getStudyBehavior(nextItem.dataset);
     setCurrentIndex(nextIndex);
     setVisitedIndexes((current) => new Set(current).add(nextIndex));
-    setPlayRequestToken((current) => current + 1);
+    if (requestAutoPlay) setPlayRequestToken((current) => current + 1);
     setToolModeState(undefined);
     setActiveTab(preferredWorkbenchTab(nextBehavior.workbenchTabs));
     setRevealed(autoReveal);
     if (autoReveal) markCompleted(nextItem.id);
   }, [autoReveal, currentIndex, items, markCompleted]);
 
-  const chooseOption = useCallback((choiceIndex: number) => {
+  const chooseOption = useCallback((choiceIndex: number, revealAnswer = true) => {
     if (!item) return;
     persistCard(item.id, { selectedChoiceIndex: choiceIndex, completed: true });
     setCompletedCardIds((current) => new Set(current).add(item.id));
-    setRevealed(true);
+    if (revealAnswer) setRevealed(true);
   }, [item, persistCard]);
 
   const recordAnswer = useCallback((recording: RecordingAsset) => {

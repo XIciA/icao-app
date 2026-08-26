@@ -57,6 +57,7 @@ type StudyAudioPlayerProps = {
   dismissControlsRequest?: number;
   pauseRequest?: number;
   onPlaybackStart?: () => void;
+  onManualPlay?: () => void;
   onReady?: () => void;
   practiceControls?: ReactNode;
   durationHint?: number;
@@ -143,6 +144,7 @@ export function StudyAudioPlayer({
   dismissControlsRequest = 0,
   pauseRequest = 0,
   onPlaybackStart,
+  onManualPlay,
   onReady,
   practiceControls,
   durationHint,
@@ -561,15 +563,20 @@ export function StudyAudioPlayer({
 
   function toggle() {
     const media = mediaRef.current;
-    if (!media || !uri) return;
     if (
+      media
+      && uri
+      && (
       playback.phase === 'playing'
       || playback.phase === 'buffering'
       || (playback.phase === 'starting' && !media.paused)
+      )
     ) {
       pauseAndRelease();
       return;
     }
+    onManualPlay?.();
+    if (!media || !uri) return;
     startPlaybackFromGesture();
   }
 

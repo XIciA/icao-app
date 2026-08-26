@@ -1,4 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { Platform } from 'react-native';
 
 import { MockExamScreen } from '@/features/content/MockExamScreen';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
@@ -46,5 +47,16 @@ describe('MockExamScreen', () => {
     fireEvent.press(screen.getByLabelText('返回 AI 模考'));
     await waitFor(() => expect(screen.getByText('开始完整模考')).toBeTruthy());
     expect(screen.queryByText('共享题库学习页')).toBeNull();
+  });
+
+  it('shows deferred listening-score guidance only on the Vercel Web surface', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    try {
+      const screen = await render(<MockExamScreen />);
+      expect(screen.getByText('听力20题完成后统一显示50分制成绩、等级和逐题复盘；其他板块保持现有学习流程。')).toBeTruthy();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 });
