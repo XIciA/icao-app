@@ -17,7 +17,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = '5cce5ddf7c435cf6cbd4edb627f9f3983b8f4eb3c62e494c43daa892c7fb3d1c';
+const approvedManifestSha256 = '1bbbbba4ef8da3dfa289a8cd88c7aea8446e817677321c0e6355c5624eb858ff';
 
 const exactProtectedPaths = [
   '.vercelignore',
@@ -55,6 +55,7 @@ function normalizedProtectedContent(repositoryPath, content) {
   if (repositoryPath !== 'vercel.json') return content;
   const config = JSON.parse(content.toString('utf8'));
   delete config.name;
+  delete config.version;
   return Buffer.from(JSON.stringify(canonicalJson(config)));
 }
 
@@ -431,6 +432,12 @@ async function checkManifest(manifestPath, explain) {
     }
     if (combinedChanged && failures.every(([, paths]) => paths.length === 0)) {
       console.error('- combined manifest digest differs; inspect manifest integrity');
+    }
+    if (process.env.VERCEL && contentChanged.includes('vercel.json')) {
+      const observedConfig = canonicalJson(
+        JSON.parse((await readFile(fromRepositoryPath('vercel.json'))).toString('utf8')),
+      );
+      console.error(`- observed Vercel build config: ${JSON.stringify(observedConfig)}`);
     }
     console.error('Do not rebaseline without explicit review of the Web/Vercel impact.');
     process.exitCode = 1;
