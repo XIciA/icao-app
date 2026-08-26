@@ -17,7 +17,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = 'c887c80b80e28939f3b5e0589ed4fb226ee1866762a7071dc0a450d52d2d4a64';
+const approvedManifestSha256 = '4478addfa5cd4df8cf2fbda461a3ad21e743f909f0e2fa8455ad6b0c3f76a027';
 
 const exactProtectedPaths = [
   '.vercelignore',
