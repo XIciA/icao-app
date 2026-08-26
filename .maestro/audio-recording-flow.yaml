@@ -13,10 +13,14 @@ appId: ${APP_ID}
 - openLink: "readyoufife-dev://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
 - runFlow:
     when:
-      visible: "在.*中打开"
+      visible: "打开"
     commands:
-      - tapOn:
-          point: "68%,54%"
+      - tapOn: "打开"
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn: "Open"
 - extendedWaitUntil:
     visible: "Continue"
     timeout: 30000
