@@ -14,6 +14,7 @@ function verify(actualTables, overrides = {}) {
     clientDefaultGrantCount: 0,
     clientGrantCount: 0,
     disabledRlsCount: 0,
+    unexpectedOwnerCount: 0,
     ...overrides,
   });
 }
@@ -26,6 +27,7 @@ test('live verifier accepts only an exact classified public-table set', () => {
     serverOnlyClientGrants: 0,
     serverOnlyClientDefaultTableGrants: 0,
     unclassifiedPublicTables: 0,
+    unexpectedPublicTableOwners: 0,
   });
   assert.throws(
     () => verify(['accounts', 'profiles', 'unexpected_public_table']),
@@ -49,5 +51,9 @@ test('live verifier rejects any RLS gap or anon/authenticated table grant', () =
   assert.throws(
     () => verify(expectedTables, { clientDefaultGrantCount: 1 }),
     /production_schema_server_only_default_table_grant_present/u,
+  );
+  assert.throws(
+    () => verify(expectedTables, { unexpectedOwnerCount: 1 }),
+    /production_schema_unexpected_public_table_owner/u,
   );
 });

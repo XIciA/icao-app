@@ -27,6 +27,7 @@ export function assertPublicTableSecurityContract({
   clientDefaultGrantCount,
   clientGrantCount,
   disabledRlsCount,
+  unexpectedOwnerCount,
 }) {
   if (!assessment || !Array.isArray(assessment.actualTables)
     || !Array.isArray(assessment.expectedTables)
@@ -49,6 +50,9 @@ export function assertPublicTableSecurityContract({
   if (!Number.isSafeInteger(clientDefaultGrantCount) || clientDefaultGrantCount !== 0) {
     throw new Error('production_schema_server_only_default_table_grant_present');
   }
+  if (!Number.isSafeInteger(unexpectedOwnerCount) || unexpectedOwnerCount !== 0) {
+    throw new Error('production_schema_unexpected_public_table_owner');
+  }
   return {
     actualPublicTables: assessment.actualTables.length,
     expectedPublicTables: assessment.expectedTables.length,
@@ -56,5 +60,6 @@ export function assertPublicTableSecurityContract({
     serverOnlyClientGrants: 0,
     serverOnlyClientDefaultTableGrants: 0,
     unclassifiedPublicTables: 0,
+    unexpectedPublicTableOwners: 0,
   };
 }

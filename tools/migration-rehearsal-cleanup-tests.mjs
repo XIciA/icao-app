@@ -29,7 +29,8 @@ function assertSchemaContractGate(source) {
     'p.status !== "verified"',
     'p.readOnly !== true',
     'p.serverOnlyClientGrants !== 0',
-    'p.defaultAclOwners !== 2',
+    'p.unexpectedPublicTableOwners !== 0',
+    'p.defaultAclOwners !== 1',
     'p.serverOnlyClientDefaultTableGrants !== 0',
     'schema_contract_sha=$(sha256sum',
   ]) {
@@ -67,6 +68,20 @@ test('requires the same read-only client-grant schema gate before rehearsal succ
       'false',
     )),
     /serverOnlyClientDefaultTableGrants/u,
+  );
+  assert.throws(
+    () => assertSchemaContractGate(rehearsalSource.replace(
+      'p.unexpectedPublicTableOwners !== 0',
+      'false',
+    )),
+    /unexpectedPublicTableOwners/u,
+  );
+  assert.throws(
+    () => assertSchemaContractGate(rehearsalSource.replace(
+      'p.defaultAclOwners !== 1',
+      'false',
+    )),
+    /defaultAclOwners/u,
   );
 });
 

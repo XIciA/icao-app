@@ -106,12 +106,22 @@ try {
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'REFERENCES')
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'TRIGGER')
     `;
+    const [unexpectedPublicTableOwners] = await transaction`
+      select count(*)::integer as count
+      from pg_class table_state
+      join pg_namespace namespace_state on namespace_state.oid = table_state.relnamespace
+      join pg_roles owner_role on owner_role.oid = table_state.relowner
+      where namespace_state.nspname = 'public'
+        and table_state.relkind = 'r'
+        and table_state.relname = any(${transaction.array(actualPublicTables)}::text[])
+        and owner_role.rolname <> 'postgres'
+    `;
     const [defaultAclOwners] = await transaction`
       select count(*)::integer as count
       from pg_roles owner_role
-      where owner_role.rolname in ('postgres', 'supabase_admin')
+      where owner_role.rolname = 'postgres'
     `;
-    assert(defaultAclOwners?.count === 2, 'production_schema_default_acl_owner_missing');
+    assert(defaultAclOwners?.count === 1, 'production_schema_default_acl_owner_missing');
 
     const [clientDefaultTableGrants] = await transaction`
       select count(*)::integer as count
@@ -120,7 +130,7 @@ try {
       join pg_roles owner_role on owner_role.oid = default_acl.defaclrole
       cross join lateral aclexplode(default_acl.defaclacl) privilege
       where namespace_state.nspname = 'public'
-        and owner_role.rolname in ('postgres', 'supabase_admin')
+        and owner_role.rolname = 'postgres'
         and default_acl.defaclobjtype = 'r'
         and (
           privilege.grantee = 0
@@ -136,6 +146,7 @@ try {
       clientDefaultGrantCount: clientDefaultTableGrants?.count,
       clientGrantCount: clientGrants?.count,
       disabledRlsCount: disabledRls?.count,
+      unexpectedOwnerCount: unexpectedPublicTableOwners?.count,
     });
 
     const [privacyColumns] = await transaction`
