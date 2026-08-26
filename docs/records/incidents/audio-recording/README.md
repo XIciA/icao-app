@@ -98,7 +98,7 @@ permission
 文件、释放 recording lease，并以 `operationId` / `runtimeEpoch` 隔离迟到结果。被污染的 runtime
 只能在迟到 Promise 完成后重建；未知错误不得盲目重试，整个过程不得删除上一份已提交录音。
 
-Audio owner 的 `deactivate()` 必须可重复调用并等待真实暂停完成。原生 session 切换或 owner 暂停超过上限后，orchestrator 在迟到调用真正结束前会让后续请求立即返回同一稳定超时码，禁止后续操作永久等待或越过迟到调用。迟到调用完成后，下一次显式重试会重新执行幂等暂停和 profile 切换；若底层调用始终不返回，只能由用户重启 App 重新建立原生音频会话，不能在同一进程内盲目解除保护。
+Audio owner 的 `deactivate()` 必须可重复调用并等待真实暂停完成。原生 session 切换或 owner 暂停超过上限后，orchestrator 在迟到调用真正结束前会让后续请求立即返回同一稳定超时码，禁止后续操作永久等待或越过迟到调用。迟到暂停成功时只清除匹配的旧 lease，并在 idle/inactive 对账完成后允许显式重试；迟到失败或底层调用始终不返回时保持 fail-closed，只能由用户重启 App 重新建立原生音频会话，不能在同一进程内盲目解除保护。
 
 原生文件错误按以下优先级区分：
 
@@ -241,7 +241,30 @@ git diff --check
 - 候选：显示版本 `v2026.08.20.0016`、TestFlight build `3470181`、commit `a0ca177`。
   自动化和上传已完成，真实麦克风、回放和转写仍必须分别以该候选真机验收。
 
-## 10. 唯一文档维护规则
+## 10. 播放暂停后录音音轨近零时长（2026-08-27）
+
+- 环境：iPhone TestFlight `1.0.0 (3493760)`；900句冷启动首次录音可用，进入无线电陆空通话或
+  OPI 后录音报 `recording_media_duration_mismatch`，随后返回900句仍失败，强制结束 App 后暂时恢复。
+- 阶段证据：失败文件仍是可解析 M4A，但真实音轨时长远短于按住操作时长；严格容器、解码和时长
+  交叉校验正确拒绝了文件。三类题库共用同一 `QuestionBankStudyScreen`、题目播放器和 Recording
+  Engine，因此题库数据不是差异来源。
+- 根因：Expo Audio iOS 播放器默认在 `pause()` 后延迟约100毫秒尝试关闭进程级音频会话，且该原生
+  判断未计入活跃 recorder。题目音频和录音预览在按住录音前暂停，迟到的 session deactivation
+  可在 recorder 已确认启动后截断真实采集；冷启动较慢时该回调可能先于 prepare 完成，所以形成
+  “首次可用、热路径失败、重启恢复”的时序差异。
+- 长期修复：所有正式 Native Expo Audio 播放器统一通过受控 factory/hook 创建并保持 session
+  active，只有 `AudioSessionOrchestrator` 能切换 profile 和最终显式激活、停用 session；采集时长从原生 start 确认到 stop 调用前
+  计算，不再包含 start/finalization 等待；stop 成功后不二次 cancel；原生输出合同失败后轮换
+  runtime，使下一次录音无需重启 App。
+- 防复发：静态门禁禁止绕过受控播放器入口；自动化覆盖受控构造参数、延迟 start/finalization 的
+  时长边界、输出时长不匹配后的 runtime 重建、旧资产保留及下一次录音成功。严格媒体校验、M4A/AAC
+  preset 和唯一 session owner 均保留。
+- 候选：显示版本 `1.0.0`、计划 TestFlight build `3493761`。聚焦录音 134 项、App 669 项、API
+  501 项测试以及 iOS 确定性录音/回放/转写 E2E 已通过，独立终审无剩余 P0/P1/P2。
+- 验收状态：上述仅是自动化证据；build 上传后仍须由负责人用手机本体分别确认真实麦克风、回放
+  和转写，确认前不记为真机通过。
+
+## 11. 唯一文档维护规则
 
 - 新故障直接在本文追加“日期、环境、证据、根因、修复、门禁、真机状态”，不再新增现行 incident 文件。
 - 架构不变量只写在主音频指南；本文只保留排障、诊断和事故结论。

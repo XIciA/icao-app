@@ -58,6 +58,22 @@ idle → starting → recording → stopping/finalizing → ready
 录音。底层 Promise 超时后将该 runtime 标记为污染，等待迟到结果完成清理，再通过 keyed
 RuntimeHost 重建 recorder；不能在同一个不确定 runtime 上继续尝试。
 
+Native 中所有 Expo Audio 播放器必须通过 `session-managed-player` 创建，并固定
+`keepAudioSessionActive: true`。播放器的暂停、完成和销毁只改变播放器自身状态，不得直接关闭
+进程级音频会话；播放与录音 profile 的切换以及最终显式激活、停用仍只由
+`AudioSessionOrchestrator` 完成。静态门禁必须
+阻止正式 Native 代码绕过该入口直接创建 Expo Audio 播放器。
+owner 暂停或原生 session 切换超时后，后续 owner 必须 fail-closed，直到迟到操作完成且 session
+已对账为 idle/inactive；迟到暂停失败或原生调用不结束时不得在同一进程内猜测恢复。
+
+采集时长只从 recorder 已确认开始采集后计时，并在调用原生 stop 之前截止。权限、session、prepare、
+原生 start 等待和 stop/finalization 等待不得计入采集时长；启动延迟、采集时长、recorder 时长、
+媒体音轨时长和 finalization 延迟必须作为不同阶段诊断。原生 stop 既已成功后，Repository 校验或
+提交失败不得再次调用 recorder cancel/stop。原生输出合同失败或音频服务重置必须轮换
+`runtimeEpoch`；原生 recorder 主动报告错误或意外结束时也必须轮换 runtime。用户主动退到后台且
+原生 recorder 未报告失效时可按正常中断清理。上述恢复让用户无需重启 App 即可用新 recorder
+重试，同时保留上一份已提交资产。
+
 Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；
 `record()` 后仍必须等待明确的 `isRecording` 才发布 recording 状态。prepare 拒绝只保留
 `audio-session-configuration | native-recorder-prepare | unknown-native-prepare` 三类脱敏原因，
@@ -102,6 +118,7 @@ Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一
 
 - 录音实现：`src/features/question-bank/recording/`
 - 全局音频会话：`src/platform/audio/audio-session-orchestrator.ts`
+- 受控 Expo Audio 播放器：`src/platform/audio/session-managed-player.ts`
 - 学习会话中的录音替换：`src/features/question-bank/hooks/useStudySession.ts`
 - 音频边界门禁：`tools/check-audio-boundaries.mjs`
 - 聚焦录音验证：`pnpm test:recording`、`pnpm check:ios:testflight`

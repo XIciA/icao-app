@@ -1,4 +1,4 @@
-import { setAudioModeAsync } from 'expo-audio';
+import { setAudioModeAsync, setIsAudioActiveAsync } from 'expo-audio';
 
 import { emitAudioDiagnostic } from './audio-diagnostics';
 
@@ -66,7 +66,10 @@ export class AudioSessionOrchestrator {
           throw new AudioSessionError('owner_pause_failed', 'The active audio owner is not registered.');
         }
         try {
-          await this.boundedTransition(Promise.resolve(client.deactivate(reason)), 'owner_pause_timeout', 'owner_pause_failed');
+          await this.boundedOwnerDeactivation(
+            Promise.resolve(client.deactivate(reason)),
+            previous,
+          );
         } catch (error) {
           const code = error instanceof AudioSessionError ? error.code : 'owner_pause_failed';
           emitAudioDiagnostic({ code, level: 'error', owner: previous.owner, reason, scope: 'session' });
@@ -74,7 +77,18 @@ export class AudioSessionOrchestrator {
         }
       }
       try {
-        await this.boundedTransition(setAudioModeAsync(profiles[owner]), 'mode_switch_timeout', 'mode_switch_failed');
+        await this.boundedTransition(
+          setAudioModeAsync(profiles[owner]),
+          'mode_switch_timeout',
+          'mode_switch_failed',
+          true,
+        );
+        await this.boundedTransition(
+          setIsAudioActiveAsync(true),
+          'mode_switch_timeout',
+          'mode_switch_failed',
+          true,
+        );
       } catch (error) {
         const code = error instanceof AudioSessionError ? error.code : 'mode_switch_failed';
         emitAudioDiagnostic({ code, level: 'error', owner, scope: 'session' });
@@ -93,7 +107,18 @@ export class AudioSessionOrchestrator {
     return this.enqueue(async () => {
       if (this.active?.token !== lease.token || this.active.owner !== lease.owner) return;
       try {
-        await this.boundedTransition(setAudioModeAsync(profiles.idle), 'mode_switch_timeout', 'mode_switch_failed');
+        await this.boundedTransition(
+          setAudioModeAsync(profiles.idle),
+          'mode_switch_timeout',
+          'mode_switch_failed',
+          true,
+        );
+        await this.boundedTransition(
+          setIsAudioActiveAsync(false),
+          'mode_switch_timeout',
+          'mode_switch_failed',
+          true,
+        );
       } catch (error) {
         this.active = undefined;
         const code = error instanceof AudioSessionError ? error.code : 'mode_switch_failed';
@@ -142,6 +167,7 @@ export class AudioSessionOrchestrator {
     operation: Promise<T>,
     timeoutCode: AudioSessionErrorCode,
     failureCode: AudioSessionErrorCode,
+    recoverSession = false,
   ) {
     return new Promise<T>((resolve, reject) => {
       let finished = false;
@@ -150,14 +176,7 @@ export class AudioSessionOrchestrator {
         if (finished) return;
         finished = true;
         const error = new AudioSessionError(timeoutCode, timeoutCode);
-        const token = this.nextBlockedToken++;
-        this.blockedTransition = { error, token };
-        // A timed-out native operation cannot be cancelled. Until it really settles,
-        // fail later requests immediately so they neither hang forever nor let a late
-        // result overwrite a newer owner's audio profile.
-        void settlement.finally(() => {
-          if (this.blockedTransition?.token === token) this.blockedTransition = undefined;
-        });
+        this.blockUntilSettled(error, settlement, recoverSession);
         reject(error);
       }, TRANSITION_TIMEOUT_MS);
       operation.then(
@@ -171,10 +190,93 @@ export class AudioSessionOrchestrator {
           if (finished) return;
           finished = true;
           clearTimeout(timeout);
-          reject(new AudioSessionError(failureCode, failureCode));
+          const error = new AudioSessionError(failureCode, failureCode);
+          if (recoverSession) this.blockUntilSettled(error, Promise.resolve(), true);
+          reject(error);
         },
       );
     });
+  }
+
+  private boundedOwnerDeactivation(operation: Promise<void>, previous: AudioLease) {
+    return new Promise<void>((resolve, reject) => {
+      let finished = false;
+      const timeout = setTimeout(() => {
+        if (finished) return;
+        finished = true;
+        const error = new AudioSessionError('owner_pause_timeout', 'owner_pause_timeout');
+        this.blockUntilOwnerPauseSettled(error, operation, previous);
+        reject(error);
+      }, TRANSITION_TIMEOUT_MS);
+      operation.then(
+        () => {
+          if (finished) return;
+          finished = true;
+          clearTimeout(timeout);
+          resolve();
+        },
+        () => {
+          if (finished) return;
+          finished = true;
+          clearTimeout(timeout);
+          reject(new AudioSessionError('owner_pause_failed', 'owner_pause_failed'));
+        },
+      );
+    });
+  }
+
+  private blockUntilSettled(
+    error: AudioSessionError,
+    settlement: Promise<void>,
+    recoverSession: boolean,
+  ) {
+    const token = this.nextBlockedToken++;
+    const block = { error, token };
+    this.blockedTransition = block;
+    // A timed-out native operation cannot be cancelled. Session-changing operations
+    // must settle first, then reconcile to idle/inactive before a new owner can enter.
+    const recovery = settlement.then(() => (
+      recoverSession ? this.reconcileIdleSession() : undefined
+    ));
+    void recovery.then(
+      () => {
+        if (this.blockedTransition === block) this.blockedTransition = undefined;
+      },
+      () => {
+        // If reconciliation cannot be proven, remain fail-closed until App restart.
+      },
+    );
+  }
+
+  private blockUntilOwnerPauseSettled(
+    error: AudioSessionError,
+    settlement: Promise<void>,
+    previous: AudioLease,
+  ) {
+    const token = this.nextBlockedToken++;
+    const block = { error, token };
+    this.blockedTransition = block;
+    // A late successful pause means the old client is no longer an audio owner.
+    // Remove only that exact lease, then prove the native session is idle before
+    // another owner can acquire it. A late rejection remains fail-closed.
+    void settlement.then(
+      async () => {
+        if (this.blockedTransition !== block) return;
+        if (this.active?.token === previous.token && this.active.owner === previous.owner) {
+          this.active = undefined;
+        }
+        await this.reconcileIdleSession();
+        if (this.blockedTransition === block) this.blockedTransition = undefined;
+      },
+      () => {
+        // The old client never confirmed it paused, so ownership remains blocked.
+      },
+    );
+  }
+
+  private async reconcileIdleSession() {
+    await setAudioModeAsync(profiles.idle);
+    await setIsAudioActiveAsync(false);
   }
 }
 

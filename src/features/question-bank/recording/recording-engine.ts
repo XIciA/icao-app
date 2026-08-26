@@ -82,6 +82,8 @@ export type RecordingEngineDependencies = {
 
 type ActiveOperation = RecordingOperationContext & {
   cancelled: boolean;
+  captureEndedAt?: number;
+  captureStartedAt?: number;
   cardId: string;
   diagnosticId: string;
   failureAfterCleanup?: RecordingFailureCode;
@@ -90,8 +92,9 @@ type ActiveOperation = RecordingOperationContext & {
   prepareAttempted: boolean;
   releaseRequested: boolean;
   runtime: RecorderPort;
+  runtimeInvalidated: boolean;
+  startRequestedAt?: number;
   started: boolean;
-  startedAt?: number;
   stopRequested: boolean;
   sessionId: string;
   timedOut: boolean;
@@ -111,6 +114,18 @@ const WEB_COMPATIBILITY_FAILURES = new Set<RecordingFailureCode>([
   'record_stop_failed',
   'recording_file_incomplete',
   'recording_finalization_timeout',
+]);
+
+const NATIVE_RUNTIME_OUTPUT_FAILURES = new Set<RecordingFailureCode>([
+  'record_stop_failed',
+  'recording_container_invalid',
+  'recording_file_incomplete',
+  'recording_finalization_timeout',
+  'recording_media_duration_mismatch',
+  'recording_media_services_reset',
+  'recording_media_unreadable',
+  'recording_source_missing',
+  'recording_stop_timeout',
 ]);
 
 const FAILURE_MESSAGES: Record<RecordingFailureCode, string> = {
@@ -307,6 +322,7 @@ export class RecordingEngine {
       releaseRequested: false,
       runtime,
       runtimeEpoch: this.state.runtimeEpoch,
+      runtimeInvalidated: false,
       sessionId: this.config.sessionId,
       started: false,
       stopRequested: false,
@@ -498,10 +514,10 @@ export class RecordingEngine {
         this.rebuildPreparedRuntime(operation);
         return;
       }
-      operation.startedAt = this.now();
       this.report('recorder_prepared', 'prepare', operation, 'info');
       fallback = operation.runtime.isWeb ? 'record_start_failed' : 'recording_native_start_failed';
       this.report('recorder_start_requested', 'start', operation, 'info');
+      operation.startRequestedAt = this.now();
       const startPromise = operation.runtime.start(operation);
       await this.withTimeout(
         startPromise,
@@ -511,13 +527,20 @@ export class RecordingEngine {
         async () => this.cleanupOperation(operation),
       );
       operation.started = true;
+      operation.captureStartedAt = this.now();
       if (!this.isCurrent(operation) || operation.releaseRequested) {
         await this.stopOperation(operation, false);
         return;
       }
       this.update({ phase: 'recording' });
       this.startDurationTimers(operation);
-      this.report('recording_started', 'recording', operation, 'info');
+      this.report(
+        'recording_started',
+        'recording',
+        operation,
+        'info',
+        Math.max(0, operation.captureStartedAt - (operation.startRequestedAt ?? operation.captureStartedAt)),
+      );
     } catch (error) {
       const code = codeForError(error, fallback);
       if (!operation.timedOut) {
@@ -537,6 +560,7 @@ export class RecordingEngine {
   ) {
     if (this.stopPromise) return this.stopPromise;
     operation.stopRequested = true;
+    operation.captureEndedAt = this.now();
     this.stopDurationTimers();
     this.update({ phase: 'finalizing' });
     const promise = this.runStop(operation, commit, failureAfterCleanup).finally(() => {
@@ -552,6 +576,7 @@ export class RecordingEngine {
     failureAfterCleanup?: RecordingFailureCode,
   ) {
     let raw: RawRecording | undefined;
+    let stopCompleted = false;
     try {
       this.report('record_stop_requested', 'stop', operation, 'info');
       const stopPromise = operation.runtime.stop(operation);
@@ -565,16 +590,31 @@ export class RecordingEngine {
           await this.releaseLease(operation);
         },
       );
-      const operationDurationMs = Math.max(0, this.now() - (operation.startedAt ?? this.now()));
+      stopCompleted = true;
+      const finalizedAt = this.now();
+      const operationDurationMs = Math.max(
+        0,
+        (operation.captureEndedAt ?? finalizedAt) - (operation.captureStartedAt ?? finalizedAt),
+      );
       if (raw.recorderDurationMs && !durationsAgree(raw.recorderDurationMs, operationDurationMs)) {
         this.report('duration_contract_mismatch', 'duration', operation, 'warning', operationDurationMs);
       }
       this.report('recording_stopped', 'stop', operation, 'info', operationDurationMs);
+      this.report(
+        'recording_finalized',
+        'finalization',
+        operation,
+        'info',
+        Math.max(0, finalizedAt - (operation.captureEndedAt ?? finalizedAt)),
+      );
       await this.releaseLease(operation);
       if (!commit || operation.cancelled || !this.isCurrent(operation)) {
         this.repository.discardRaw(raw);
         this.finishOperation(operation);
         const cleanupFailure = failureAfterCleanup ?? operation.failureAfterCleanup;
+        if (cleanupFailure && this.shouldRebuildNativeRuntime(operation, cleanupFailure, stopCompleted)) {
+          this.rebuildRuntime(operation);
+        }
         if (cleanupFailure) this.fail(cleanupFailure, operation.diagnosticId, operation);
         return;
       }
@@ -597,6 +637,9 @@ export class RecordingEngine {
         this.repository.discard(asset);
         this.finishOperation(operation);
         const cleanupFailure = failureAfterCleanup ?? operation.failureAfterCleanup;
+        if (cleanupFailure && this.shouldRebuildNativeRuntime(operation, cleanupFailure, stopCompleted)) {
+          this.rebuildRuntime(operation);
+        }
         if (cleanupFailure) this.fail(cleanupFailure, operation.diagnosticId, operation);
         return;
       }
@@ -608,6 +651,7 @@ export class RecordingEngine {
       }
       this.compatibilityFailure = undefined;
       this.finishOperation(operation);
+      if (!operation.runtime.isWeb && operation.runtimeInvalidated) this.rebuildRuntime(operation);
       this.update({
         asset,
         compatibilityVisible: false,
@@ -624,11 +668,16 @@ export class RecordingEngine {
         ?? codeForError(error, 'record_stop_failed');
       if (raw) this.repository.discardRaw(raw);
       if (!operation.timedOut) {
-        const cancelled = await operation.runtime.cancel(operation).catch(() => undefined);
-        if (cancelled) this.repository.discardRaw(cancelled);
+        if (!stopCompleted) {
+          const cancelled = await operation.runtime.cancel(operation).catch(() => undefined);
+          if (cancelled) this.repository.discardRaw(cancelled);
+        }
         await this.releaseLease(operation);
       }
       this.finishOperation(operation);
+      if (!operation.timedOut && this.shouldRebuildNativeRuntime(operation, code, stopCompleted)) {
+        this.rebuildRuntime(operation);
+      }
       this.fail(code, operation.diagnosticId, operation);
     }
   }
@@ -697,6 +746,15 @@ export class RecordingEngine {
     else this.finishOperation(operation);
   }
 
+  private shouldRebuildNativeRuntime(
+    operation: ActiveOperation,
+    code: RecordingFailureCode,
+    stopCompleted: boolean,
+  ) {
+    return !operation.runtime.isWeb
+      && (operation.runtimeInvalidated || !stopCompleted || NATIVE_RUNTIME_OUTPUT_FAILURES.has(code));
+  }
+
   private async cleanupOperation(operation: ActiveOperation) {
     const raw = await operation.runtime.cancel(operation).catch(() => undefined);
     if (raw) this.repository.discardRaw(raw);
@@ -729,8 +787,8 @@ export class RecordingEngine {
   private startDurationTimers(operation: ActiveOperation) {
     this.stopDurationTimers();
     this.durationTimer = this.scheduler.setInterval(() => {
-      if (!this.isCurrent(operation) || operation.startedAt === undefined) return;
-      this.update({ durationMillis: Math.max(0, this.now() - operation.startedAt) });
+      if (!this.isCurrent(operation) || operation.captureStartedAt === undefined) return;
+      this.update({ durationMillis: Math.max(0, this.now() - operation.captureStartedAt) });
     }, DURATION_TICK_MS);
     this.maximumTimer = this.scheduler.setTimeout(() => {
       if (this.isCurrent(operation) && !operation.stopRequested) void this.stopOperation(operation, true);
@@ -756,8 +814,13 @@ export class RecordingEngine {
   ) {
     const operation = this.activeOperation;
     if (!operation || operation.runtime !== runtime || operation.runtimeEpoch !== runtimeEpoch) return;
-    if (!isSameContext(event.context, operation) || operation.stopRequested || operation.timedOut) return;
+    if (!isSameContext(event.context, operation) || operation.timedOut) return;
     if (event.type === 'status') return;
+    if (operation.stopRequested) {
+      if (event.type === 'error' || event.type === 'interrupted') operation.runtimeInvalidated = true;
+      return;
+    }
+    operation.runtimeInvalidated = true;
     if (event.type === 'error') {
       operation.cancelled = true;
       void this.interruptWithCode(operation, event.code ?? 'recording_interrupted');

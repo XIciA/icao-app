@@ -2,16 +2,24 @@ import { AudioSessionOrchestrator } from '../audio-session-orchestrator';
 import { resetAudioDiagnosticsForTests, setAudioDiagnosticSink } from '../audio-diagnostics';
 
 const mockSetAudioModeAsync = jest.fn(async (_mode: unknown) => undefined);
+const mockSetIsAudioActiveAsync = jest.fn(async (_active: boolean) => undefined);
 
 jest.mock('expo-audio', () => ({
   setAudioModeAsync: (mode: unknown) => mockSetAudioModeAsync(mode),
+  setIsAudioActiveAsync: (active: boolean) => mockSetIsAudioActiveAsync(active),
 }));
+
+async function flush() {
+  for (let index = 0; index < 10; index += 1) await Promise.resolve();
+}
 
 describe('AudioSessionOrchestrator', () => {
   beforeEach(() => {
     resetAudioDiagnosticsForTests();
     mockSetAudioModeAsync.mockReset();
     mockSetAudioModeAsync.mockResolvedValue(undefined);
+    mockSetIsAudioActiveAsync.mockReset();
+    mockSetIsAudioActiveAsync.mockResolvedValue(undefined);
   });
 
   afterEach(() => resetAudioDiagnosticsForTests());
@@ -36,12 +44,13 @@ describe('AudioSessionOrchestrator', () => {
       },
     });
     mockSetAudioModeAsync.mockImplementation(async () => { events.push('mode-set'); });
+    mockSetIsAudioActiveAsync.mockImplementation(async (active) => { events.push(active ? 'session-active' : 'session-inactive'); });
     await session.acquire('radio', 'initial');
     events.length = 0;
 
     await session.acquire('study', 'study-play');
 
-    expect(events).toEqual(['radio-paused', 'mode-set']);
+    expect(events).toEqual(['radio-paused', 'mode-set', 'session-active']);
   });
 
   it('rejects playback while recording owns the session', async () => {
@@ -64,6 +73,7 @@ describe('AudioSessionOrchestrator', () => {
 
     expect(session.getActiveLeaseForTests()).toBeUndefined();
     expect(mockSetAudioModeAsync).toHaveBeenLastCalledWith(expect.objectContaining({ allowsRecording: false, shouldPlayInBackground: false }));
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
   });
 
   it('fails closed when the previous owner does not pause in time', async () => {
@@ -79,14 +89,12 @@ describe('AudioSessionOrchestrator', () => {
     jest.useRealTimers();
   });
 
-  it('reconciles a late owner pause by requiring the idempotent pause again on retry', async () => {
+  it('reconciles a late owner pause to idle before allowing a retry', async () => {
     jest.useFakeTimers();
     const session = new AudioSessionOrchestrator();
     let finishLatePause!: () => void;
     const latePause = new Promise<void>((resolve) => { finishLatePause = resolve; });
-    const deactivate = jest.fn()
-      .mockImplementationOnce(() => latePause)
-      .mockResolvedValueOnce(undefined);
+    const deactivate = jest.fn(() => latePause);
     session.register('radio', { deactivate });
     await session.acquire('radio', 'initial');
 
@@ -97,9 +105,34 @@ describe('AudioSessionOrchestrator', () => {
 
     finishLatePause();
     await latePause;
-    await Promise.resolve();
+    await flush();
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    expect(mockSetAudioModeAsync).toHaveBeenLastCalledWith(expect.objectContaining({ allowsRecording: false }));
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
     await expect(session.acquire('study', 'study-play-retry')).resolves.toMatchObject({ owner: 'study' });
-    expect(deactivate).toHaveBeenCalledTimes(2);
+    expect(deactivate).toHaveBeenCalledTimes(1);
+    jest.useRealTimers();
+  });
+
+  it('remains fail-closed when a timed-out owner pause later rejects', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    let rejectLatePause!: (error: Error) => void;
+    const latePause = new Promise<void>((_resolve, reject) => { rejectLatePause = reject; });
+    session.register('radio', { deactivate: () => latePause });
+    await session.acquire('radio', 'initial');
+
+    const first = session.acquire('study', 'study-play');
+    await jest.advanceTimersByTimeAsync(2_000);
+    await expect(first).rejects.toMatchObject({ code: 'owner_pause_timeout' });
+    rejectLatePause(new Error('native pause failed'));
+    await latePause.catch(() => undefined);
+    await flush();
+
+    expect(session.getActiveLeaseForTests()?.owner).toBe('radio');
+    await expect(session.acquire('study', 'study-play-retry')).rejects.toMatchObject({
+      code: 'owner_pause_timeout',
+    });
     jest.useRealTimers();
   });
 
@@ -109,6 +142,56 @@ describe('AudioSessionOrchestrator', () => {
 
     await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
     expect(session.getActiveLeaseForTests()).toBeUndefined();
+    await flush();
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
+  });
+
+  it('does not publish a new owner when explicit session activation fails', async () => {
+    const session = new AudioSessionOrchestrator();
+    mockSetIsAudioActiveAsync.mockRejectedValueOnce(new Error('native activation failure'));
+
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    await flush();
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
+  });
+
+  it('reconciles a late activation before allowing a new owner', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    let finishLateActivation!: () => void;
+    const lateActivation = new Promise<undefined>((resolve) => {
+      finishLateActivation = () => resolve(undefined);
+    });
+    mockSetIsAudioActiveAsync
+      .mockImplementationOnce(() => lateActivation)
+      .mockResolvedValue(undefined);
+
+    const first = session.acquire('recording', 'recording-start');
+    await jest.advanceTimersByTimeAsync(2_000);
+    await expect(first).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+
+    finishLateActivation();
+    await lateActivation;
+    await flush();
+    expect(mockSetAudioModeAsync).toHaveBeenLastCalledWith(expect.objectContaining({ allowsRecording: false }));
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
+    await expect(session.acquire('study', 'study-play-retry')).resolves.toMatchObject({ owner: 'study' });
+    jest.useRealTimers();
+  });
+
+  it('reconciles a rejected final deactivation before allowing a new owner', async () => {
+    const session = new AudioSessionOrchestrator();
+    const lease = await session.acquire('recording', 'recording-start');
+    mockSetIsAudioActiveAsync.mockRejectedValueOnce(new Error('native deactivation failure'));
+
+    await expect(session.release(lease)).rejects.toMatchObject({ code: 'mode_switch_failed' });
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    await flush();
+    expect(mockSetAudioModeAsync).toHaveBeenLastCalledWith(expect.objectContaining({ allowsRecording: false }));
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
+    await expect(session.acquire('study', 'study-play-retry')).resolves.toMatchObject({ owner: 'study' });
   });
 
   it('distinguishes a native mode switch timeout from an immediate failure', async () => {
@@ -121,6 +204,21 @@ describe('AudioSessionOrchestrator', () => {
 
     await expect(transition).rejects.toMatchObject({ code: 'mode_switch_timeout' });
     expect(session.getActiveLeaseForTests()).toBeUndefined();
+    jest.useRealTimers();
+  });
+
+  it('fails closed when final session deactivation does not settle', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    const lease = await session.acquire('recording', 'recording-start');
+    mockSetIsAudioActiveAsync.mockImplementationOnce(() => new Promise<undefined>(() => undefined));
+
+    const release = session.release(lease);
+    await jest.advanceTimersByTimeAsync(2_000);
+
+    await expect(release).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_timeout' });
     jest.useRealTimers();
   });
 
@@ -144,9 +242,9 @@ describe('AudioSessionOrchestrator', () => {
 
     finishLateSwitch();
     await lateSwitch;
-    await Promise.resolve();
+    await flush();
     await expect(session.acquire('study', 'study-play')).resolves.toMatchObject({ owner: 'study' });
-    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(2);
+    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(3);
     jest.useRealTimers();
   });
 
@@ -196,5 +294,6 @@ describe('AudioSessionOrchestrator', () => {
     expect(deactivateRadio).toHaveBeenCalledTimes(1);
     expect(session.getActiveLeaseForTests()).toBeUndefined();
     expect(mockSetAudioModeAsync).toHaveBeenLastCalledWith(expect.objectContaining({ allowsRecording: false, shouldPlayInBackground: false }));
+    expect(mockSetIsAudioActiveAsync).toHaveBeenLastCalledWith(false);
   });
 });
