@@ -4,6 +4,14 @@ appId: ${APP_ID}
     clearState: true
 - runFlow:
     when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "http://.*:8081"
+          timeout: 120000
+      - tapOn: "http://.*:8081"
+- runFlow:
+    when:
       visible: "http://.*:8081"
     commands:
       - tapOn: "http://.*:8081"
@@ -13,14 +21,11 @@ appId: ${APP_ID}
 - openLink: "readyoufife-dev://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
 - runFlow:
     when:
-      visible: "打开"
+      platform: iOS
+      visible: "打开|Open"
     commands:
-      - tapOn: "打开"
-- runFlow:
-    when:
-      visible: "Open"
-    commands:
-      - tapOn: "Open"
+      - tapOn:
+          point: "68%,54%"
 - extendedWaitUntil:
     visible: "Continue"
     timeout: 30000
