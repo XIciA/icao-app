@@ -6,6 +6,8 @@ const app = JSON.parse(await readFile(path.join(root, 'app.json'), 'utf8'));
 const releaseScriptPath = path.join(root, 'scripts/release-ios-testflight.sh');
 await access(releaseScriptPath);
 const releaseScript = await readFile(releaseScriptPath, 'utf8');
+const archiveAudit = await readFile(path.join(root, 'tools/audit-ios-archive.mjs'), 'utf8');
+const candidateEvidence = await readFile(path.join(root, 'tools/create-testflight-candidate.mjs'), 'utf8');
 const apiClient = await readFile(path.join(root, 'src/platform/api-client.ts'), 'utf8');
 const aiClient = await readFile(path.join(root, 'src/features/ai/ai-client.ts'), 'utf8');
 const audioE2eScript = await readFile(path.join(root, 'scripts/run-audio-e2e.sh'), 'utf8');
@@ -16,6 +18,12 @@ if (app.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios') failures.push('Une
 if (!/^\d+$/u.test(String(app.expo.ios?.buildNumber ?? ''))) failures.push('iOS build number must be an integer string.');
 const audioPlugin = app.expo.plugins?.find((plugin) => Array.isArray(plugin) && plugin[0] === 'expo-audio');
 if (!audioPlugin?.[1]?.microphonePermission) failures.push('Expo Audio microphone permission text is missing.');
+const secureStorePlugin = app.expo.plugins?.find(
+  (plugin) => Array.isArray(plugin) && plugin[0] === 'expo-secure-store',
+);
+if (secureStorePlugin?.[1]?.faceIDPermission !== false) {
+  failures.push('Expo Secure Store must not declare unused Face ID permission.');
+}
 
 for (const required of [
   'ICAO_APP_VARIANT=production',
@@ -36,9 +44,25 @@ for (const required of [
   'verify_ios_storekit_dependencies',
   'git diff --check',
   'create-testflight-candidate.mjs',
+  'audit-ios-archive.mjs "$APP_PATH" "$ARCHIVE_AUDIT_PATH"',
   'assign-groups',
 ]) {
   if (!releaseScript.includes(required)) failures.push(`TestFlight release script is missing: ${required}`);
+}
+for (const required of [
+  "entry.name.endsWith('.xcprivacy')",
+  'NSPrivacyAccessedAPITypes',
+  'NSPrivacyAccessedAPITypeReasons',
+  "entry.name.endsWith('.framework')",
+  "entry.name.endsWith('.dylib')",
+  "['--verify', '--strict', codePath]",
+  'allowedUsageDescriptions',
+  'MinimumOSVersion',
+]) {
+  if (!archiveAudit.includes(required)) failures.push(`iOS archive audit is missing: ${required}`);
+}
+if (!candidateEvidence.includes('archiveAuditSha256')) {
+  failures.push('TestFlight candidate evidence does not bind the archive audit.');
 }
 for (const forbidden of [
   'devicectl',

@@ -6,13 +6,22 @@ import path from 'node:path';
 const root = process.cwd();
 const archivePath = process.argv[2];
 const ipaPath = process.argv[3];
-if (!archivePath || !ipaPath) throw new Error('Archive and IPA paths are required.');
+const archiveAuditPath = process.argv[4];
+if (!archivePath || !ipaPath || !archiveAuditPath) {
+  throw new Error('Archive, IPA, and archive-audit paths are required.');
+}
 
 async function checksum(file) {
   return createHash('sha256').update(await readFile(file)).digest('hex');
 }
 
 const app = JSON.parse(await readFile(path.join(root, 'app.json'), 'utf8'));
+const archiveAudit = JSON.parse(await readFile(archiveAuditPath, 'utf8'));
+if (archiveAudit.bundleIdentifier !== app.expo.ios.bundleIdentifier
+  || archiveAudit.marketingVersion !== app.expo.version
+  || String(archiveAudit.buildNumber) !== String(app.expo.ios.buildNumber)) {
+  throw new Error('The archive audit identity does not match the TestFlight candidate.');
+}
 const criticalFiles = [
   'src/features/question-bank/recording/recording-engine.ts',
   'src/features/question-bank/recording/expo-recorder-adapter.ts',
@@ -37,6 +46,7 @@ const candidate = {
   buildNumber: app.expo.ios.buildNumber,
   codeFingerprints,
   archiveInfoSha256: await checksum(archiveInfo),
+  archiveAuditSha256: await checksum(archiveAuditPath),
   ipaSha256: await checksum(ipaPath),
 };
 const output = path.join(root, '.generated/testflight/candidate.json');

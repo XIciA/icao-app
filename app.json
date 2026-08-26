@@ -11,7 +11,7 @@
       "icon": "./assets/images/icon.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3493759",
+      "buildNumber": "3493760",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -52,7 +52,12 @@
         }
       ],
       "expo-sqlite",
-      "expo-secure-store",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": false
+        }
+      ],
       "expo-asset",
       [
         "expo-image-picker",
