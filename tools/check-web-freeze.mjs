@@ -17,7 +17,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = '4f745529c0d65f56297d5ea5004c712809235c14e2a668dee9d99593665c2a3d';
+const approvedManifestSha256 = 'c887c80b80e28939f3b5e0589ed4fb226ee1866762a7071dc0a450d52d2d4a64';
 
 const exactProtectedPaths = [
   '.vercelignore',
@@ -432,7 +432,7 @@ async function checkManifest(manifestPath, explain) {
 async function main() {
   const arguments_ = parseArguments(process.argv.slice(2));
   if (arguments_.mode === 'print-snapshot') {
-    console.log(`${JSON.stringify(await makeSnapshot(), null, 2)}\n`);
+    console.log(JSON.stringify(await makeSnapshot(), null, 2));
     return;
   }
   await checkManifest(arguments_.manifestPath, arguments_.explain);

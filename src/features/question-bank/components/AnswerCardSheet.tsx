@@ -15,24 +15,26 @@ type Props = {
   visible: boolean;
   total: number;
   current: number;
-  visited: Set<number>;
+  marked: Set<number>;
+  markedLabel?: string;
+  unmarkedLabel?: string;
   onSelect: (index: number) => void;
   onClose: () => void;
 };
 
-export function AnswerCardSheet({ visible, total, current, visited, onSelect, onClose }: Props) {
+export function AnswerCardSheet({ visible, total, current, marked, markedLabel = '已学', unmarkedLabel = '未学', onSelect, onClose }: Props) {
   return (
     <BottomSheet accessibilityLabel="答题卡" onClose={onClose} visible={visible}>
       <View style={styles.header}><AppText variant="sectionTitle">答题卡</AppText><Pressable accessibilityLabel="关闭答题卡" onPress={onClose} style={styles.close}><X color={colors.foreground} size={20} /></Pressable></View>
       <View style={styles.legend}>
         <Legend color={colors.primary} label="当前" />
-        <Legend color={colors.primary10} label="已学" />
-        <Legend color={colors.background} label="未学" outlined />
+        <Legend color={colors.primary10} label={markedLabel} />
+        <Legend color={colors.background} label={unmarkedLabel} outlined />
       </View>
       <View style={[styles.grid, Platform.OS === 'web' ? answerCardWebGridStyle : null]}>
         {Array.from({ length: total }, (_, index) => {
           const isCurrent = index === current;
-          const isVisited = visited.has(index);
+          const isMarked = marked.has(index);
           return (
             <Pressable
               accessibilityLabel={`第 ${index + 1} 题`}
@@ -42,18 +44,18 @@ export function AnswerCardSheet({ visible, total, current, visited, onSelect, on
               style={({ pressed }) => [
                 styles.number,
                 Platform.OS === 'web' ? answerCardWebNumberStyle : null,
-                isCurrent ? styles.numberCurrent : isVisited ? styles.numberVisited : null,
+                isCurrent ? styles.numberCurrent : isMarked ? styles.numberMarked : null,
                 pressed ? styles.pressed : null,
               ]}
             >
               <AppText
-                color={isCurrent ? colors.primaryForeground : isVisited ? colors.primary : colors.foreground}
+                color={isCurrent ? colors.primaryForeground : isMarked ? colors.primary : colors.foreground}
                 style={styles.numberText}
                 variant="button"
               >
                 {index + 1}
               </AppText>
-              {isVisited && !isCurrent ? <Check color={colors.primary} size={10} style={styles.check} /> : null}
+              {isMarked && !isCurrent ? <Check color={colors.primary} size={10} style={styles.check} /> : null}
             </Pressable>
           );
         })}
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3], maxWidth: ANSWER_CARD_GRID_MAX_WIDTH, paddingBottom: spacing[5], paddingTop: spacing[4], width: '100%' },
   number: { alignItems: 'center', backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: ANSWER_CARD_NUMBER_HEIGHT, justifyContent: 'center', position: 'relative', width: '17%' },
   numberCurrent: { backgroundColor: colors.primary, borderColor: colors.primary },
-  numberVisited: { backgroundColor: colors.primary10, borderColor: colors.primary20 },
+  numberMarked: { backgroundColor: colors.primary10, borderColor: colors.primary20 },
   numberText: { fontFamily: fonts.monoRegular, height: ANSWER_CARD_NUMBER_HEIGHT, includeFontPadding: false, lineHeight: ANSWER_CARD_NUMBER_HEIGHT, textAlign: 'center', textAlignVertical: 'center', width: '100%' },
   check: { position: 'absolute', right: 4, top: 4 },
   pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },

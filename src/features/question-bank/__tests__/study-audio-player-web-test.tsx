@@ -140,6 +140,26 @@ describe('StudyAudioPlayer.web', () => {
     await flushPromises();
   });
 
+  it('reports only an explicit play press as a manual learning intent', async () => {
+    const onManualPlay = jest.fn();
+    const screen = await render(
+      <StudyAudioPlayer
+        autoPlayRequest={1}
+        label="Sentence18"
+        onManualPlay={onManualPlay}
+        playbackKey="sentence-18"
+        uri="https://audio.example.test/018.mp3"
+      />,
+    );
+
+    expect(onManualPlay).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByLabelText('播放'));
+    expect(onManualPlay).toHaveBeenCalledTimes(1);
+    await act(async () => currentAudio().emit('playing'));
+    await fireEvent.press(screen.getByLabelText('暂停'));
+    expect(onManualPlay).toHaveBeenCalledTimes(1);
+  });
+
   it('calls native play synchronously before the study lease promise settles', async () => {
     let resolveLease!: (lease: { owner: string; token: number }) => void;
     mockAcquire.mockReturnValueOnce(new Promise((resolve) => {
@@ -189,9 +209,11 @@ describe('StudyAudioPlayer.web', () => {
   });
 
   it('returns NotAllowedError to a retryable play button without a network error', async () => {
+    const onManualPlay = jest.fn();
     const screen = await render(
       <StudyAudioPlayer
         label="Sentence18"
+        onManualPlay={onManualPlay}
         playbackKey="sentence-18"
         uri="https://audio.example.test/018.mp3"
       />,
@@ -204,6 +226,7 @@ describe('StudyAudioPlayer.web', () => {
     await flushPromises();
 
     expect(screen.getByLabelText('播放')).toBeTruthy();
+    expect(onManualPlay).toHaveBeenCalledTimes(1);
     expect(screen.queryByText('音频网络错误')).toBeNull();
     expect(mockRelease).toHaveBeenCalled();
   });

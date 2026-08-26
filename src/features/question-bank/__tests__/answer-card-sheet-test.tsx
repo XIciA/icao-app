@@ -14,7 +14,7 @@ describe('<AnswerCardSheet />', () => {
   it('uses a five-column capped grid with vertically centered question labels', async () => {
     const screen = await render(
       <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 375, height: 812 }, insets: { top: 0, right: 0, bottom: 0, left: 0 } }}>
-        <AnswerCardSheet current={0} onClose={jest.fn()} onSelect={jest.fn()} total={12} visible visited={new Set([0])} />
+        <AnswerCardSheet current={0} marked={new Set([0])} onClose={jest.fn()} onSelect={jest.fn()} total={12} visible />
       </SafeAreaProvider>,
     );
 

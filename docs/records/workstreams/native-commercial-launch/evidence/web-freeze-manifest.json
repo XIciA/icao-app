@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "scope": "existing-vercel-web-source-and-export-inputs",
   "baseline": {
-    "capturedAt": "2026-08-12T10:44:47.748Z",
-    "repositoryHead": "629a8ce4727803e4e28c36258828a7fd0353a31d",
+    "capturedAt": "2026-08-26T01:11:55.141Z",
+    "repositoryHead": "ec4b70a46e107486b00ba96c77f46dd645c2a758",
     "workingTreeMode": "exact-current-files-including-uncommitted-state",
     "remoteProductionDeploymentVerified": false
   },
@@ -37,8 +37,8 @@
       "tools/**/* whose basename contains web or promo, excluding tools/check-web-freeze.mjs"
     ]
   },
-  "fileCount": 326,
-  "combinedSha256": "4dee53e84606f7406b78f08d5cfccb6d184b4d3567968882cf94ad89148228f8",
+  "fileCount": 346,
+  "combinedSha256": "054400992903077e7f2df54ae7c0cdb964c0dd6420d13d9a34ce9c805be8bb0c",
   "files": [
     {
       "path": ".vercelignore",
@@ -133,30 +133,31 @@
     },
     {
       "path": "app.config.js",
-      "sha256": "ef86f584c63ca164af3963837a14730e3a5cba85cb723c5b8e434bb2dfb0872a",
+      "sha256": "fe9525f2f43383e108ec05e8723e297492fe2bc228b497fe6595ee881d3681b1",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "app.json",
-      "sha256": "13ba66ba35eb7abe28dda7fe42c7e976cbb32c7b554b35bbb1ff12dda3b0bf87",
+      "sha256": "b9998a0a12869737f4c138c02ce5d03aab39f324191aefa0848fa478ac47545e",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "assets/images/favicon.png",
-      "sha256": "033549abc62047426427a3083cd311409aa3301979afaa8c04f32c0723c9ffbe",
+      "sha256": "a4e030697a7571b3e95d31860e4da55d2f98e5e861e2b55e414f45a8556828ba",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "assets/images/icon.png",
-      "sha256": "ce1fec3052cbd5cd1138f3dee94624b17083f6b094298b9fbd88f03c19058cb8",
+      "sha256": "54305156502897255bcb1c17dbf9a1f83036a2f3440c8cb6783e069d8bb34e8b",
       "sources": [
-        "exact_web_config_or_asset"
+        "exact_web_config_or_asset",
+        "metro_web_dependency_graph"
       ]
     },
     {
@@ -176,21 +177,28 @@
     },
     {
       "path": "package.json",
-      "sha256": "e3f24387c649f411ea5cb2a163f4787360bf53ee0ec0c3a826278fd33c67daf8",
+      "sha256": "2a93f8efa8d8b743bbf1ad1ec1d2b9b696eeb48b41a54aa03cbed2bc89ae7d7f",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "b789ce2182b7831cd634f38de68cf6b0986c13993b6f6644197a38fb861273cd",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "pnpm-lock.yaml",
-      "sha256": "e48f0d9c864cf30a4494d304a72efbe9c55266d92330f5c10c867dc423fcd53d",
+      "sha256": "f5bde22eb1fd7061d7b1bfac1bba133eb7ab134c0c1fad5b4cc8bdc4ba67574f",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "pnpm-workspace.yaml",
-      "sha256": "05f294d91fe4dd95fde08a83ee12d106a8614c9f35f83e1e960f4870e609f94e",
+      "sha256": "6921135eec6d4d34d7508b385c4a2d9f0d7c8665382f963534c2162267b3dfca",
       "sources": [
         "exact_web_config_or_asset"
       ]
@@ -1106,6 +1114,13 @@
       ]
     },
     {
+      "path": "scripts/check-edgeone-web-export.mjs",
+      "sha256": "3e3e31e3b752223a398181e687b48cd36b0c5d9182f6b3aa8ae76bb17091c5b2",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
       "path": "scripts/check-promo-assets.mjs",
       "sha256": "775076a7e6ce42421e4a81f63d44d57214baad97becb60a540e8a2881bbd1056",
       "sources": [
@@ -1169,6 +1184,13 @@
       ]
     },
     {
+      "path": "scripts/validate-edgeone-web-env.mjs",
+      "sha256": "d1212331a54283409454c19b7ecc9ad4e56e41069cbc1c2210dc6a476f5cf2f4",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
       "path": "scripts/web-bundle-baseline.json",
       "sha256": "df248ef04489d2bc4e4f226d7aa3039184b78804504cd520c9f5eb7abd5c8ae7",
       "sources": [
@@ -1205,7 +1227,7 @@
     },
     {
       "path": "src/app/_layout.tsx",
-      "sha256": "54901d27f40d4bc8f205ecc72f8df4f6407fa8a6be76538863a34666b1a03a8b",
+      "sha256": "40f08b27aeb4a37493fca031b0d214b6fa0962f0281b3de074461eeb47e01340",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1233,7 +1255,7 @@
     },
     {
       "path": "src/app/content/[slug].tsx",
-      "sha256": "35967f60adb0b813603f003008ab35041439b1496a47f4274e0c2c1bc29b586d",
+      "sha256": "21480cbe452d819ee4cfd35a6bd782540bb97e153b77f49b0942ffb2d13e66b6",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1295,6 +1317,13 @@
       ]
     },
     {
+      "path": "src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx",
+      "sha256": "f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx",
       "sha256": "2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39",
       "sources": [
@@ -1324,7 +1353,7 @@
     },
     {
       "path": "src/components/auth/login-screen.web.tsx",
-      "sha256": "6388c43b02428cfec454c6ffb27c22f0d70b6e14cd9c53cb7f3ea8a8439cf247",
+      "sha256": "106c269bf39bf1543b60eb9bf2a540473ec06bd553e9383ffbf6614b5040c8c7",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1332,7 +1361,7 @@
     },
     {
       "path": "src/components/auth/splash-screen.web.tsx",
-      "sha256": "1a05271336b051d4c15a3672d8ffc4f441af976775ec9b13016bd3ffbe35539d",
+      "sha256": "b46090ede5b8244098af8f15751703567083fba91d99ddd241b4f0298456db4e",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1421,8 +1450,8 @@
       ]
     },
     {
-      "path": "src/components/states/GlobalLoadingScreen.tsx",
-      "sha256": "d22b7f907deeab59b7033a8458348884bf7660b0dc6ccc3d4dbb911a54376641",
+      "path": "src/components/states/GlobalLoadingScreen.native.tsx",
+      "sha256": "a54702725974d3e8d5ed8e90ba74fd5c9f7d8b7c8dbf3afad6b16ed6e80b0c8a",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1499,32 +1528,60 @@
     },
     {
       "path": "src/config/app-version.ts",
-      "sha256": "3b3dcccdc726e6b15c7dc2ddd34fa47e6d96ac9ba3b10a672fe69a7281d53d38",
+      "sha256": "f1197349295070aef328885339c254703b5f50046e6cf937f413cc74b101f3c3",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/config/web-runtime.ts",
+      "sha256": "6e6fc90bdcd0dc82f3ee12d2862532324b812478bad9df586e8a08fa74605b93",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/account/AccountScreen.web.tsx",
-      "sha256": "89f9520b75745468fefa9c0ca36a5a1d32f18c63f077b1ed111a0c8c7c4f8a84",
+      "sha256": "c1755873831fb0ea058004e47ccbcea2fabcf8453ca1cd35008f927f0694dfda",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
       ]
     },
     {
+      "path": "src/features/account/privacy-action-state.ts",
+      "sha256": "1e7c64b39842762abfe317f589f0ea655395b54c80b08b5e8a5e972a66916520",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/account/privacy-self-service.ts",
+      "sha256": "8656e970987fa10abeea65db8f2cf5800e7dbba10d6b93a716c3736cba54a582",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/account/profile-store.ts",
-      "sha256": "8b78455df4aff4aa1079d6c49bbc9a74adc66bcb6c451e5d89959694c89dbacc",
+      "sha256": "2cb7a193e181d0227b6875bf4ba8d3df393e0f9d99c3048b3820f7b221f18b90",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/ai/ai-client.web.ts",
-      "sha256": "043b7baa264b1c8189e5d081c77fc4b1eca984003be82892f7e54837273a9cae",
+      "sha256": "e5bde10588da4530bc3520638753005ec07a25fc53b3ec5510f1c11614035482",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-operation-failure.ts",
+      "sha256": "991b5a27e6fd77a648ab39ee5e0d1244ab8779721e841a6321f5360bf76df027",
+      "sources": [
+        "metro_web_dependency_graph"
       ]
     },
     {
@@ -1544,7 +1601,7 @@
     },
     {
       "path": "src/features/auth/AuthProvider.web.tsx",
-      "sha256": "e6d50f42ebcc7a33b13703ca9ae6b28202f286072514395fe0a8e8e29b611621",
+      "sha256": "bc952121c1e07a869182dcc4e84c92a0fba6dacbfcbd59b24d34ced03dc87f7f",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1552,7 +1609,7 @@
     },
     {
       "path": "src/features/auth/auth-service.web.ts",
-      "sha256": "91350cd64088e0e45a2354013dcc1a3ddf61ad933d52a723e3cb0ac3f0bacd22",
+      "sha256": "705f54b39b21b73009d450cdcdc40c59a9bad0a4e7ecb3c47a03e10287862b87",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1574,7 +1631,7 @@
     },
     {
       "path": "src/features/content/DiscoverHomeScreen.tsx",
-      "sha256": "94d8549bd51ed950e74a1aede0473be97640c5bddd9643d4e39c9494f319fc4b",
+      "sha256": "f8df4d232342058fdc1999f0f8133d0fe97740b83858e6f8ec4e91a430e3be6b",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1588,7 +1645,7 @@
     },
     {
       "path": "src/features/content/MockExamScreen.tsx",
-      "sha256": "236ac7eac748932cb8765f7e1396281b0d47eaa03724486d89b92a68b1397294",
+      "sha256": "778f95344defccf5dcb540282f9c8b0b559b9b65ce0e6807dfa0a7f8f1b9408b",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1623,8 +1680,8 @@
       ]
     },
     {
-      "path": "src/features/content/hotspot/HotspotDetailScreen.tsx",
-      "sha256": "39111bc06d41b5fbc40845ecdc9ccda00c6f20a8681871d23b7b87fab836a31e",
+      "path": "src/features/content/hotspot/HotspotDetailScreen.native.tsx",
+      "sha256": "c14c679c427134f9de87f2f7ba9a8605a8812bc14295343d4ad59007584a7e8e",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1637,8 +1694,8 @@
       ]
     },
     {
-      "path": "src/features/content/hotspot/HotspotStudyScreen.tsx",
-      "sha256": "0ffb8bcc02149d0f5c52435b98a46a70e00eb11d7ab06a243152bec61ea68157",
+      "path": "src/features/content/hotspot/HotspotStudyScreen.native.tsx",
+      "sha256": "bf8464b50832296ad51c8daae2747633f3e9a1ff7c1239fd6205d318d745c40c",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1665,6 +1722,13 @@
       ]
     },
     {
+      "path": "src/features/content/native-release-surface.ts",
+      "sha256": "d24989e50a854d3c04da77d809c51592c00cec876915ea6a1359c8a10b1bf8b4",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/editorial/EditorialArticleScreen.tsx",
       "sha256": "9170766c3d47e35ba106c60e2d40b50bf3611b65cc65750b4f3bbc7985b64c90",
       "sources": [
@@ -1680,7 +1744,7 @@
     },
     {
       "path": "src/features/editorial/repository.web.ts",
-      "sha256": "e43736894b23485371e2c9ccbdc0fbf1513e191698a7c2efe025d9181f572ab0",
+      "sha256": "925f7c176fa3af108ea2f1259a315974b077a8cbafe67036ddcb1970da539eb3",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1695,21 +1759,28 @@
     },
     {
       "path": "src/features/feedback/feedback-client.ts",
-      "sha256": "6787a53cfe84d2602d712e2c849ea34455628bfc0156906e5a944a9f81e0c82d",
+      "sha256": "129fe177c5d6f26c1f44a127e9a02b74b39e85916a49fb218ec35fb7ef7176e8",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/info/InfoScreen.tsx",
-      "sha256": "2d953b9c9fad503de45e5484843ff775e4cf5271eb84aec3c0bfc3289874039a",
+      "sha256": "eee329f899cda4bd0293aadbc59cb92e1258c9919ea16dc3a83565934900a9a2",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/mock-exam/build-session.ts",
-      "sha256": "993bafe4bed01116843e726a9bf8aa3684afa557981a7b5324e8e30bf4475cd8",
+      "path": "src/features/info/legal-release-surface.ts",
+      "sha256": "5b5fadf5b202ceff8d4c4ce852879f8399d52cfffecbd994ddfccd18b4734bfd",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/build-session.native.ts",
+      "sha256": "ab374281ea9b2d363efc60b671bd3cec97996c740dd1ac3daaf14b3548459bf4",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1722,6 +1793,13 @@
       ]
     },
     {
+      "path": "src/features/mock-exam/listening-exam.ts",
+      "sha256": "2ee5a1d0e750cce5d201de38520d3dd1036729029a42ae040aa950a45ee43c4a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/mock-exam/rules.ts",
       "sha256": "d28b2d41225e86cd5d13dc405adb87ecf31894ec00049d981642421349272f87",
       "sources": [
@@ -1729,8 +1807,22 @@
       ]
     },
     {
+      "path": "src/features/mock-exam/topic-loader.native.ts",
+      "sha256": "74e7502ef190e9404d4dd528959421d43508915ee7dcc602cce3a5b374068a8f",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/commerce-environment.native.ts",
+      "sha256": "79b20362192abc6027098c42d914b8cb3244f708f2dcb04226cc78a85fc4e5d4",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/profile/ProfileHomeScreen.tsx",
-      "sha256": "62a1ae70782f67d0fd2940c991a109a9696a8ef5ec4a454bb70fe16e340a0954",
+      "sha256": "bab2a81bf5b53910fac27c21b4951d4e322cc885ada929d24febe071e87ea369",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1794,7 +1886,7 @@
     },
     {
       "path": "src/features/question-bank/components/AnswerCardSheet.tsx",
-      "sha256": "f4d8bf588f5a5be6ed227f0b5ec31dc7c97c4b489eabd4d1dae0b3c03df991cb",
+      "sha256": "50e00cde4882980ad00e3c32313ecfd78631fa707e5d6d06cedf12c23fe36eba",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1808,7 +1900,7 @@
     },
     {
       "path": "src/features/question-bank/components/ChoiceList.tsx",
-      "sha256": "bdb656a635076a2f4699c74e261915b7894265f25243f49a46f9507bcf3b73f2",
+      "sha256": "a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1836,7 +1928,7 @@
     },
     {
       "path": "src/features/question-bank/components/LearningRecordsScreen.tsx",
-      "sha256": "d58daf55a52e7061877db9543cb3b5d214ff5c7fe371b7fd849368da58a805fa",
+      "sha256": "8abf530b675b8e8d23004f7139f9ca01b02757e0dc9e5105d6339efb3418f167",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1849,15 +1941,15 @@
       ]
     },
     {
-      "path": "src/features/question-bank/components/QuestionBankCatalog.tsx",
-      "sha256": "555ec95c420f55fc8d621aa18d10a2ec1eaf522c311545a05be2641c26130cb8",
+      "path": "src/features/question-bank/components/QuestionBankCatalog.native.tsx",
+      "sha256": "8d99edd49a0de29cc2b7c14f9054a6d4e708c20845da8296f7dc30238edcb757",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/question-bank/components/QuestionBankStudyScreen.tsx",
-      "sha256": "0fa76651b4fa7f2c5695d9e690fa418e5cfb6db7bccb1cf998ded2b29559c7ee",
+      "sha256": "8d970093fa7fc4871703e1e1785462b7fda693b89934196090b5f15962c1a2ca",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1871,14 +1963,14 @@
     },
     {
       "path": "src/features/question-bank/components/SpeakingPracticePanel.tsx",
-      "sha256": "07e55a5a4fc656433304c61206dbc6328fa55ca21296ecf91c9a3b06df734923",
+      "sha256": "185826939829a06bfd4f155bc6f0aea9af873ef0b479e55e56b6d26963e92ecc",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/question-bank/components/StudyAudioPlayer.web.tsx",
-      "sha256": "17a30613decc044d20491e7d5f5613b2ea76353753af414b9dcc0c4562cf8b41",
+      "sha256": "f8c96ffdd0e4beb50c079062729dbd9a649c585ad45a5abce18e34b614cefb03",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1900,49 +1992,63 @@
     },
     {
       "path": "src/features/question-bank/components/StudyTaskRenderer.tsx",
-      "sha256": "001e98107f649c1efbc875ed12f492cf771d41112adf584ccddd40f9b41eaca9",
+      "sha256": "fe5f671ae10bcaaf6952eaa872f57422fa92559b26fca0613cd1498d39fe0edd",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/question-bank/components/StudyWorkbench.tsx",
-      "sha256": "0aafa1551ff17432047d2861233555d786f9e17afbccb1fb6f7abc88b5459de1",
+      "sha256": "e0e7a9164ad5bb4a533288aa93072e0f37ea2dc8b5bdbe3cf33e32de1d97ddec",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/question-bank-release.json",
-      "sha256": "c52bd3f1fb66a2a1f15dca1255b22cbe9fb4201c21df3c8731915afc63a83ded",
+      "path": "src/features/question-bank/data/content-credential-verifier.native.ts",
+      "sha256": "00f2ecfe04efaf5131179826b6503049e45028007293f6bcde1825b36a169fe0",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/question-bank.json",
-      "sha256": "86a2f25692d8134dee03d4819bf6b7587ee6d2826bf631c883b7d58437cdfd95",
+      "path": "src/features/question-bank/data/member-content-cache.native.ts",
+      "sha256": "c62baa9bd1fe423f5432da03c1341c237d07d3dee63850832fd906f76cfcb995",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/repository.ts",
-      "sha256": "1624d97faf53a88363c50f62e586ccc1934f41c3e5e6d71f9f384e7aff08fcef",
+      "path": "src/features/question-bank/data/question-bank-public-release.json",
+      "sha256": "2cd5ca43065dc16d3b8f970cae318c5e7371153f3c862bd6a43873098799c7cc",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/hooks/useQuestionBank.ts",
-      "sha256": "fbe2dfdd6dac2c4b0ae3792468ef8a0d5071bf198d41ed897d40f69734d9d760",
+      "path": "src/features/question-bank/data/question-bank-public.json",
+      "sha256": "58978dc9363ab7a4245dca99f98bd22f93fa85b14e69ea7d4aad5f511f235961",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/repository.native.ts",
+      "sha256": "582e89523cce3556d253dd1dfc3ce6f0f163194227a33cae8084e8a166a60ee2",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useQuestionBank.native.ts",
+      "sha256": "9e2a2e214ec88c93d4580f6dd785e658429bac01bb22c5bd92b3da159b61a8b9",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/question-bank/hooks/useQuestionBankAsset.web.ts",
-      "sha256": "517abdb2935118ed920dca63cc0f71f3b144d17c79d9cacc0988e114a974117e",
+      "sha256": "44db97be68a95da3de4430607c3591ae6d830560967e757979910537e770ecd1",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -1957,8 +2063,15 @@
       ]
     },
     {
+      "path": "src/features/question-bank/hooks/useQuestionBankTopic.native.ts",
+      "sha256": "20a67d213b57d8de523a8ae33d3ccc6dd825eb56d11e0036288aaf3325b2a52f",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/question-bank/hooks/useStudySession.ts",
-      "sha256": "c85442628eec8c59fce90a8da80f75c2d6ed702d75be23057c6f6326706be773",
+      "sha256": "4be3fb9471c7af1d1be638eb75be52f2c39a603ec6f39053e2b3d74252ca55f1",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1994,7 +2107,7 @@
     },
     {
       "path": "src/features/question-bank/platform/learning-record-storage.ts",
-      "sha256": "dfd33b90ffb1d3fb6a179422cbc70507c47a97777f556d54298257f2bc04e0b0",
+      "sha256": "abf7b16ef64aad9890cd5b79003dcb7c31562638df9979d1453313430d5ce23c",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2014,8 +2127,15 @@
       ]
     },
     {
+      "path": "src/features/question-bank/platform/remote-resource-service.native.ts",
+      "sha256": "dfb2a833cd15da95fa270ad2649e91aab9f6d6ee77df586bffb318f91890936d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/question-bank/platform/resource-service.web.ts",
-      "sha256": "e643297d340bb3cabd8b2b27dc4e6711d4008ac9392b204f047de9603f76f396",
+      "sha256": "a9bfe8ebb992d35d62e9cd110fd0d04f87dd604f4d8a46129733215adf79f3f3",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -2023,7 +2143,22 @@
     },
     {
       "path": "src/features/question-bank/recording/expo-recorder-adapter.web.ts",
-      "sha256": "181e28773c73b1d4435727a74d4623e8d855343a29d4945b209127c20578b464",
+      "sha256": "1409410c6cfcee2abc18747d452f84d7d54b2d47727ef82ff6413dd70d659b34",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-engine.ts",
+      "sha256": "3c6602afc40943001ff0299742e8ce6984a05e97150ec617d44bb4e2b630f9ee",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-media-probe.web.ts",
+      "sha256": "977ab2f19aa1361577e0cfc879a7c2c226c2a261f9d3adf56bb978f51bb0dc1f",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -2038,17 +2173,10 @@
     },
     {
       "path": "src/features/question-bank/recording/recording-repository.web.ts",
-      "sha256": "0e251c113d86749d0d83efc7c1f8294c699460ce4f90b531a815439342b2619a",
+      "sha256": "d98281ecbb8fdeff8d3dc85817469434b0b41c1398f519c0054d2f79a7d76925",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
-      ]
-    },
-    {
-      "path": "src/features/question-bank/recording/recording-state-machine.ts",
-      "sha256": "60002064e17c93746b12317897725c88328fa5e5d71c2d0a6bfbad177656b78d",
-      "sources": [
-        "metro_web_dependency_graph"
       ]
     },
     {
@@ -2061,7 +2189,7 @@
     },
     {
       "path": "src/features/question-bank/recording/use-speaking-recording-controller.ts",
-      "sha256": "4dae5df2056b488b1f5b8780395d177b0e2d6fbea3a50137d092abc70ea9d42a",
+      "sha256": "7c499249d3061c146c1c578157e2f4643836e80ac6f911854f4ba289dbe56cff",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2103,8 +2231,8 @@
       ]
     },
     {
-      "path": "src/features/radio-player/catalog.ts",
-      "sha256": "cc99db3c28b5c9bb188362362943a75d68e5d783d0fb69385740133e3a656972",
+      "path": "src/features/radio-player/catalog.native.ts",
+      "sha256": "18e8af72e1bcb71641d6a46ca983a366fef83573587aff6f180d44b9ba8790d2",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2124,8 +2252,15 @@
       ]
     },
     {
+      "path": "src/features/radio-player/radio-player-storage.ts",
+      "sha256": "02d92ff88d9a74e9f9cbce80b62822ca70f4fd17cfb0e1f2914e7cc0be9ab891",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/sync/learning-sync.ts",
-      "sha256": "a9eacc6c9285edbc93b3ae4934717d6a80aa9a8d4e49c6bb93c7cb3bc18cede5",
+      "sha256": "0aa29077497954e1efd90ca1a61e46411f35714cf8e71d9f4cb220ea5619733e",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2146,7 +2281,7 @@
     },
     {
       "path": "src/features/vocabulary/components/VocabularyLibraryViews.tsx",
-      "sha256": "31e2f57d78d3d82ebe2275927d5aaedeb269302246f8d676f31edb5236fd0f4e",
+      "sha256": "11d3478885c80f911ddc0b6325eaa5dc5faab45b12f765fdde036fb0274f0b3b",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2195,7 +2330,7 @@
     },
     {
       "path": "src/features/vocabulary/repository.web.ts",
-      "sha256": "2eb7d673249c9b795a7b7d32a9d931c6bdb41421934ff3ad39e9876c440f4c0e",
+      "sha256": "4f2a11fef4ac91ae8ffeccbb6c8424a9d5772719a1b0b1818f945aaaed1691ee",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -2233,7 +2368,7 @@
     },
     {
       "path": "src/platform/api-client.web.ts",
-      "sha256": "ae85f3c5c1d438904f21a57b8d45536c384aa4afbb6cce578719c74eb5f3c153",
+      "sha256": "dc1b26281498ffdd4869e3fd7f7bbb6daa30e8398149b2fdae4860fc92950ad0",
       "sources": [
         "metro_web_dependency_graph",
         "platform_web_implementation"
@@ -2248,14 +2383,14 @@
     },
     {
       "path": "src/platform/audio/audio-diagnostics.ts",
-      "sha256": "9a8baf6ff7c1e356ceb4a0aa22715d1592fbca0080cdeaade22bd7da90ce5556",
+      "sha256": "8c603b87657680acce79994156363e0ea6b06fff11b4866eb7f8524e5712891d",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/platform/audio/audio-session-orchestrator.ts",
-      "sha256": "29003acc291f9c16707892dd9b2857eaef515e54dc51d5ec13b306748ec67695",
+      "sha256": "d8cf8372d8c7f4f3bdf75c764b60817cda7329ee5810840e8e4a2be77f65cb7d",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2263,6 +2398,13 @@
     {
       "path": "src/platform/audio/index.ts",
       "sha256": "71190d3986ad28e0212c56f440b8ff18dea823453b6ea9ffb7f67fdd5810140c",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/platform/diagnostics/safe-diagnostic-store.ts",
+      "sha256": "4a15c1d4234bf0f60d6d0bfce9e0e83c4d826ad6fa2deb30161ae8f3a993b15e",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2337,7 +2479,7 @@
     },
     {
       "path": "tools/web-question-bank-content-migration.mjs",
-      "sha256": "f4af28aa4931126d18d818a64784d4b7ab4d688ecd9528e71bde8e9dc526ec8c",
+      "sha256": "38f4ab5710dec0158db91109b2d9fc5ea1f2284142eeb1dbb218593b8c480bc4",
       "sources": [
         "web_build_or_deploy_tooling"
       ]

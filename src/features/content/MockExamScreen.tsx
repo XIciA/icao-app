@@ -1,6 +1,6 @@
 import { BookOpenText, Check, Headphones, MessageSquareQuote, Mic2, RadioTower, Sparkles } from '@/components/ui/icons';
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen } from '@/components/ui';
@@ -11,12 +11,14 @@ import type { MockExamModuleId, MockExamType } from '@/features/mock-exam/types'
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
 import type { QuestionBankStudyPackage } from '@/features/question-bank/types';
 import { colors, radii, spacing } from '@/theme';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
 
 const modules: { id: MockExamModuleId; title: string; icon: typeof Headphones }[] = [
   { id: 'listening', title: '听力', icon: Headphones }, { id: 'sentences900', title: '900 句', icon: MessageSquareQuote }, { id: 'radiotelephony', title: '陆空通话', icon: RadioTower }, { id: 'storytelling', title: '故事复诵', icon: BookOpenText }, { id: 'opi', title: 'OPI', icon: Mic2 },
 ];
 
 export function MockExamScreen() {
+  const vercelLegacyWeb = isVercelLegacyWeb(Platform.OS);
   const [examType, setExamType] = useState<MockExamType>('icao4-first');
   const [selected, setSelected] = useState<Set<MockExamModuleId>>(() => new Set(MOCK_EXAM_MODULES['icao4-first']));
   const [studyPackage, setStudyPackage] = useState<QuestionBankStudyPackage>();
@@ -30,10 +32,10 @@ export function MockExamScreen() {
   const start = async () => { if (!selectedIds.length) return; setBusy(true); setError(undefined); try { setStudyPackage(toQuestionBankStudyPackage(await buildMockExamSession({ examType, modules: selectedIds }))); } catch (value) { setError(value instanceof Error ? value.message : '试卷生成失败，请重试。'); } finally { setBusy(false); } };
   if (studyPackage) return <QuestionBankStudyScreen onReturn={() => setStudyPackage(undefined)} returnLabel="返回 AI 模考" sourceRoute="/content/mock-exam" studyPackage={studyPackage} />;
   return <Screen scroll contentStyle={styles.screen}><TopBar title="AI 模考" /><View style={styles.setup}>
-    <View style={styles.hero}><AppText color={colors.primary} variant="micro">LEARNING MOCK EXAM</AppText><AppText variant="pageTitle">学习型模考</AppText><AppText>按考试规则组卷，作答和复盘沿用题库学习页。本功能不提供官方等级或评分。</AppText></View>
+    <View style={styles.hero}><AppText color={colors.primary} variant="micro">LEARNING MOCK EXAM</AppText><AppText variant="pageTitle">学习型模考</AppText><AppText>{vercelLegacyWeb ? '听力20题完成后统一显示50分制成绩、等级和逐题复盘；其他板块保持现有学习流程。' : '按考试规则组卷，作答和复盘沿用题库学习页。本功能不提供官方等级或评分。'}</AppText></View>
     <Section title="考试类型"><View style={styles.types}>{(Object.keys(MOCK_EXAM_MODULES) as MockExamType[]).map((id) => <Pressable key={id} onPress={() => chooseType(id)} style={[styles.type, examType === id && styles.active]}>{examType === id ? <View style={styles.typeCheck}><Check color={colors.primaryForeground} size={10} /></View> : null}<AppText style={styles.center} variant="sectionTitle">{MOCK_EXAM_TYPE_LABELS[id].replace(' 初考', '').replace(' 复考', '')}</AppText><AppText color={examType === id ? colors.primary : colors.mutedForeground} variant="caption">{id.endsWith('recert') ? '复考' : '初考'}</AppText></Pressable>)}</View></Section>
     <Section right={`已选 ${selectedIds.length}/${allowed.length}`} title="考试板块"><View style={styles.moduleGrid}>{modules.filter((entry) => allowed.includes(entry.id)).map((entry) => { const Icon = entry.icon; const checked = selected.has(entry.id); return <Pressable key={entry.id} onPress={() => setSelected((current) => { const next = new Set(current); if (next.has(entry.id)) next.delete(entry.id); else next.add(entry.id); return next; })} style={[styles.module, checked && styles.active]}><View style={styles.moduleIcon}><Icon color={checked ? colors.primary : colors.mutedForeground} size={18} /></View><AppText style={styles.copy} variant="button">{entry.title}</AppText><View style={[styles.checkBox, checked && styles.checkBoxActive]}>{checked ? <Check color={colors.primaryForeground} size={11} /> : null}</View></Pressable>; })}</View><AppText variant="micro">{complete ? '已选择全部规则板块，将生成一套完整练习卷。' : '当前为自选模考，学习记录会保留所选板块。'}</AppText></Section>
-    <Card style={styles.notice}><AppText variant="button">本次说明</AppText><AppText variant="caption">题目从共享题库无放回抽取；试卷目录按本套题目分组，可自由跳题。单题答案与复盘保持学习页行为，结束后只生成一条模考学习记录。</AppText></Card>
+    <Card style={styles.notice}><AppText variant="button">本次说明</AppText><AppText variant="caption">{vercelLegacyWeb ? '题目从共享题库无放回抽取。听力作答期间不显示对错，20题全部作答后立即结算并进入复盘；结束后只生成一条模考学习记录。' : '题目从共享题库无放回抽取；试卷目录按本套题目分组，可自由跳题。单题答案与复盘保持学习页行为，结束后只生成一条模考学习记录。'}</AppText></Card>
     {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={!selectedIds.length || busy} leading={<Sparkles color={colors.primaryForeground} size={18} />} onPress={() => void start()} size="lg">{busy ? '正在生成试卷…' : selectedIds.length ? `开始${complete ? '完整' : '自选'}模考` : '请至少选择一个板块'}</Button>
   </View></Screen>;
 }

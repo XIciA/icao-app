@@ -33,6 +33,7 @@ export function StudyAudioPlayer({
   dismissControlsRequest = 0,
   pauseRequest = 0,
   onPlaybackStart,
+  onManualPlay,
   onReady,
   practiceControls,
   durationHint,
@@ -51,6 +52,7 @@ export function StudyAudioPlayer({
   dismissControlsRequest?: number;
   pauseRequest?: number;
   onPlaybackStart?: () => void;
+  onManualPlay?: () => void;
   onReady?: () => void;
   practiceControls?: ReactNode;
   durationHint?: number;
@@ -362,9 +364,11 @@ export function StudyAudioPlayer({
       await releaseAudioLease();
     }
     else if (Platform.OS === 'web') {
+      onManualPlay?.();
       startWebPlaybackFromGesture();
     }
     else {
+      onManualPlay?.();
       if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await trySeekPlayer(0);
       const operationGeneration = playGeneration.current + 1;
       playGeneration.current = operationGeneration;

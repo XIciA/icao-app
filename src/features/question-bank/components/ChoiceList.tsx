@@ -16,25 +16,27 @@ type Props = {
   selectedChoiceIndex?: number;
   showResult?: boolean;
   showTranslations?: boolean;
+  readOnly?: boolean;
   onSelect: (index: number) => void;
   onLookupWord?: (word: string) => void;
   isLookupAvailable?: (word: string) => boolean;
   lookupInteraction?: WordLookupInteraction;
 };
 
-type ChoiceRowProps = Pick<Props, 'correctChoiceIndex' | 'selectedChoiceIndex' | 'showResult' | 'showTranslations' | 'onSelect' | 'onLookupWord' | 'isLookupAvailable' | 'lookupInteraction'> & {
+type ChoiceRowProps = Pick<Props, 'correctChoiceIndex' | 'selectedChoiceIndex' | 'showResult' | 'showTranslations' | 'readOnly' | 'onSelect' | 'onLookupWord' | 'isLookupAvailable' | 'lookupInteraction'> & {
   choice: string;
   choiceZh?: string;
   index: number;
 };
 
-function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, showResult, showTranslations, onSelect, onLookupWord, isLookupAvailable, lookupInteraction = 'long-press', index }: ChoiceRowProps) {
+function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, showResult, showTranslations, readOnly = false, onSelect, onLookupWord, isLookupAvailable, lookupInteraction = 'long-press', index }: ChoiceRowProps) {
   const lookupHandled = useRef(false);
   const selected = selectedChoiceIndex === index;
   const correct = showResult && correctChoiceIndex === index;
   const incorrect = showResult && selected && correctChoiceIndex !== undefined && correctChoiceIndex !== index;
   const translationVisible = Boolean(showTranslations && choiceZh);
   const choose = () => {
+    if (readOnly) return;
     if (lookupHandled.current) {
       lookupHandled.current = false;
       return;
@@ -47,6 +49,7 @@ function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, 
       accessibilityLabel={`选项 ${String.fromCharCode(65 + index)}：${choice}${translationVisible ? `；翻译：${choiceZh}` : ''}`}
       accessible={lookupInteraction === 'tap' && Boolean(onLookupWord) ? false : undefined}
       accessibilityState={{ selected }}
+      disabled={readOnly}
       onPress={choose}
       style={({ pressed }) => [
         styles.choice,
@@ -98,10 +101,10 @@ function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, 
   );
 }
 
-export function ChoiceList({ choices, choicesZh, correctChoiceIndex, selectedChoiceIndex, showResult = false, showTranslations = false, onSelect, onLookupWord, isLookupAvailable, lookupInteraction }: Props) {
+export function ChoiceList({ choices, choicesZh, correctChoiceIndex, selectedChoiceIndex, showResult = false, showTranslations = false, readOnly = false, onSelect, onLookupWord, isLookupAvailable, lookupInteraction }: Props) {
   return (
     <View style={styles.list}>
-      {choices.map((choice, index) => <ChoiceRow choice={choice} choiceZh={choicesZh?.[index]} correctChoiceIndex={correctChoiceIndex} index={index} isLookupAvailable={isLookupAvailable} key={`${index}:${choice}`} lookupInteraction={lookupInteraction} onLookupWord={onLookupWord} onSelect={onSelect} selectedChoiceIndex={selectedChoiceIndex} showResult={showResult} showTranslations={showTranslations} />)}
+      {choices.map((choice, index) => <ChoiceRow choice={choice} choiceZh={choicesZh?.[index]} correctChoiceIndex={correctChoiceIndex} index={index} isLookupAvailable={isLookupAvailable} key={`${index}:${choice}`} lookupInteraction={lookupInteraction} onLookupWord={onLookupWord} onSelect={onSelect} readOnly={readOnly} selectedChoiceIndex={selectedChoiceIndex} showResult={showResult} showTranslations={showTranslations} />)}
     </View>
   );
 }

@@ -12,6 +12,7 @@ export function StudyTaskRenderer({
   sessionId,
   selectedChoiceIndex,
   revealed,
+  choiceReadOnly = false,
   recording,
   onChoose,
   onLookupWord,
@@ -32,6 +33,7 @@ export function StudyTaskRenderer({
   sessionId: string;
   selectedChoiceIndex?: number;
   revealed: boolean;
+  choiceReadOnly?: boolean;
   recording?: RecordingAsset;
   onChoose: (index: number) => void;
   onLookupWord?: (word: string) => void;
@@ -57,6 +59,7 @@ export function StudyTaskRenderer({
         lookupInteraction={lookupInteraction}
         onLookupWord={onLookupWord}
         onSelect={onChoose}
+        readOnly={choiceReadOnly}
         selectedChoiceIndex={selectedChoiceIndex}
         showResult={revealed && selectedChoiceIndex !== undefined}
         showTranslations={revealed}

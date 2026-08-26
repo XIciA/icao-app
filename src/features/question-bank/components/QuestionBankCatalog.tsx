@@ -1,12 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { BookOpenText, Check, ChevronDown, ChevronRight, CloudLightning, Cog, Compass, Headphones, Library, MessageSquareQuote, Mic2, RadioTower, UserRound, Wrench, type LucideIcon } from '@/components/ui/icons';
-import { useEffect, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-progress';
@@ -26,6 +27,7 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   const router = useRouter();
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
+  const vercelLegacyWeb = isVercelLegacyWeb(Platform.OS);
   const switcherItems = useMemo(() => getEmbeddedQuestionBanks().map((item) => ({
     icon: bankIcons[item.icon],
     label: item.title,
@@ -34,6 +36,7 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   })), []);
 
   useEffect(() => {
+    if (vercelLegacyWeb) return;
     let active = true;
     const topics = dataset.categories.flatMap((category) => category.topics);
     void loadCatalogProgress(topics).then((nextProgress) => {
@@ -42,7 +45,19 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
     return () => {
       active = false;
     };
-  }, [dataset]);
+  }, [dataset, vercelLegacyWeb]);
+
+  useFocusEffect(useCallback(() => {
+    if (!vercelLegacyWeb) return undefined;
+    let active = true;
+    const topics = dataset.categories.flatMap((category) => category.topics);
+    void loadCatalogProgress(topics).then((nextProgress) => {
+      if (active) setProgress(nextProgress);
+    });
+    return () => {
+      active = false;
+    };
+  }, [dataset, vercelLegacyWeb]));
 
   function openTopic(category: QuestionBankCategory, topicId: string) {
     router.push({
