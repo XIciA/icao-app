@@ -93,10 +93,8 @@ test('0034 revokes every client table grant without changing service-role access
     migrationSql,
     /ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;/u,
   );
-  assert.match(
-    migrationSql,
-    /ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;/u,
-  );
+  assert.equal((migrationSql.match(/ALTER DEFAULT PRIVILEGES/gu) ?? []).length, 1);
+  assert.doesNotMatch(migrationSql, /ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin/u);
   assert.doesNotMatch(migrationSql, /service_role/u);
 });
 

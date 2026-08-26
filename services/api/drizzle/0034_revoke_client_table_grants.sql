@@ -54,5 +54,4 @@ REVOKE ALL PRIVILEGES ON TABLE "public"."sync_changes" FROM anon, authenticated;
 REVOKE ALL PRIVILEGES ON TABLE "public"."sync_mutations" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL PRIVILEGES ON TABLE "public"."user_card_states" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL PRIVILEGES ON TABLE "public"."user_documents" FROM anon, authenticated;--> statement-breakpoint
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;--> statement-breakpoint
-ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;

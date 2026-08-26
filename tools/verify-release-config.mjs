@@ -420,6 +420,8 @@ for (const requiredRehearsalSchemaContract of [
   'services/api/scripts/verify-production-schema-contract.mjs',
   '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
   'p.serverOnlyClientGrants !== 0',
+  'p.unexpectedPublicTableOwners !== 0',
+  'p.defaultAclOwners !== 1',
   'p.serverOnlyClientDefaultTableGrants !== 0',
   "printf 'schema_contract_verified=1\\n'",
   "printf 'schema_contract_sha256=%s\\n' \"$schema_contract_sha\"",
@@ -437,6 +439,8 @@ for (const requiredApplyContract of [
   'icao-production-release-change.lock',
   'scripts/migrate.mjs --production-apply',
   'verify-production-schema-contract.mjs',
+  'p.unexpectedPublicTableOwners !== 0',
+  'p.defaultAclOwners !== 1',
   'p.serverOnlyClientDefaultTableGrants !== 0',
   'test "$(evidence_value schema_contract_verified)" = 1',
   'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
@@ -455,16 +459,23 @@ if (
   || !productionSchemaVerifier.includes("from information_schema.tables")
   || !productionSchemaVerifier.includes("table_type = 'BASE TABLE'")
   || !productionSchemaVerifier.includes('transaction.array(actualPublicTables)')
+  || !productionSchemaVerifier.includes('join pg_roles owner_role on owner_role.oid = table_state.relowner')
+  || !productionSchemaVerifier.includes("owner_role.rolname <> 'postgres'")
+  || !productionSchemaVerifier.includes('unexpectedOwnerCount: unexpectedPublicTableOwners?.count')
   || !productionSchemaVerifier.includes('from pg_default_acl default_acl')
   || !productionSchemaVerifier.includes('aclexplode(default_acl.defaclacl)')
-  || !productionSchemaVerifier.includes("owner_role.rolname in ('postgres', 'supabase_admin')")
+  || (productionSchemaVerifier.match(/owner_role\.rolname = 'postgres'/gu) ?? []).length !== 2
+  || productionSchemaVerifier.includes('supabase_admin')
   || !productionSchemaVerifier.includes('privilege.grantee = 0')
+  || !productionSchemaVerifier.includes("client_role.rolname in ('anon', 'authenticated')")
   || !productionSchemaContractLib.includes('production_schema_unclassified_public_tables:')
   || !productionSchemaContractLib.includes('production_schema_server_only_table_grant_present')
   || !productionSchemaContractLib.includes('production_schema_server_only_default_table_grant_present')
+  || !productionSchemaContractLib.includes('production_schema_unexpected_public_table_owner')
   || !productionSchemaContractTests.includes('unexpected_public_table')
   || !productionSchemaContractTests.includes('clientGrantCount: 1')
   || !productionSchemaContractTests.includes('clientDefaultGrantCount: 1')
+  || !productionSchemaContractTests.includes('unexpectedOwnerCount: 1')
   || !productionSchemaVerifier.includes('production_commerce_product_catalog_mismatch')
 ) {
   throw new Error('The post-migration production schema verifier is incomplete.');
@@ -472,14 +483,13 @@ if (
 const revokedClientTables = [...clientTableGrantRevocation.matchAll(
   /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
 )].map((match) => match[1]).sort();
+const defaultAclStatements = clientTableGrantRevocation.match(/ALTER DEFAULT PRIVILEGES[^;]*;/gu) ?? [];
+const postgresDefaultAclRevocation = 'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;';
 if (
   JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
-  || !clientTableGrantRevocation.includes(
-    'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
-  )
-  || !clientTableGrantRevocation.includes(
-    'ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
-  )
+  || defaultAclStatements.length !== 1
+  || defaultAclStatements[0] !== postgresDefaultAclRevocation
+  || clientTableGrantRevocation.includes('ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin')
   || clientTableGrantRevocation.includes('FROM service_role')
 ) {
   throw new Error('The production client-table grant revocation migration is incomplete.');

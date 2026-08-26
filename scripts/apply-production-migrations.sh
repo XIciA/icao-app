@@ -900,7 +900,8 @@ docker run --rm \
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
-      || p.defaultAclOwners !== 2 || p.serverOnlyClientDefaultTableGrants !== 0
+      || p.unexpectedPublicTableOwners !== 0 || p.defaultAclOwners !== 1
+      || p.serverOnlyClientDefaultTableGrants !== 0
       || p.deviceDigestColumns !== 0) process.exit(1);
 '
 # END production-migration-evidence-parser-schema

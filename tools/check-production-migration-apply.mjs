@@ -102,6 +102,8 @@ for (const contract of [
   'p.actualPublicTables !== 56',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
+  'p.unexpectedPublicTableOwners !== 0',
+  'p.defaultAclOwners !== 1',
   'p.serverOnlyClientDefaultTableGrants !== 0',
   'business_row_count_observation=non_authoritative_concurrent_activity_allowed',
   'auth_user_count_observation=non_authoritative_concurrent_activity_allowed',
@@ -127,7 +129,8 @@ for (const contract of [
   'services/api/scripts/verify-production-schema-contract.mjs',
   '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
   'p.serverOnlyClientGrants !== 0',
-  'p.defaultAclOwners !== 2',
+  'p.unexpectedPublicTableOwners !== 0',
+  'p.defaultAclOwners !== 1',
   'p.serverOnlyClientDefaultTableGrants !== 0',
   "printf 'schema_contract_verified=1\\n'",
   "printf 'schema_contract_sha256=%s\\n' \"$schema_contract_sha\"",
@@ -425,10 +428,14 @@ for (const contract of [
   'actualTables: actualPublicTables',
   'expectedTables: serverOnlyTables',
   'assertPublicTableSecurityContract',
+  'join pg_roles owner_role on owner_role.oid = table_state.relowner',
+  "owner_role.rolname <> 'postgres'",
+  'unexpectedOwnerCount: unexpectedPublicTableOwners?.count',
   'from pg_default_acl default_acl',
   'aclexplode(default_acl.defaclacl)',
-  "owner_role.rolname in ('postgres', 'supabase_admin')",
+  "owner_role.rolname = 'postgres'",
   'privilege.grantee = 0',
+  "client_role.rolname in ('anon', 'authenticated')",
   'production_privacy_schema_columns_incomplete',
   'production_content_device_digest_still_present',
   'production_commerce_product_catalog_mismatch',
@@ -441,8 +448,38 @@ for (const contract of [
 if (!schemaVerifierSource.includes("expectedDatabase = process.env.ICAO_PRODUCTION_DATABASE_NAME")) {
   throw new Error('production_schema_verifier_database_binding_missing');
 }
-if ((schemaVerifierSource.match(/transaction\.array\(actualPublicTables\)/gu) ?? []).length < 2) {
+if ((schemaVerifierSource.match(/transaction\.array\(actualPublicTables\)/gu) ?? []).length < 3) {
   throw new Error('production_schema_verifier_must_check_all_actual_tables');
+}
+const assertSchemaVerifierOwnerScope = (source) => {
+  if (
+    (source.match(/owner_role\.rolname = 'postgres'/gu) ?? []).length !== 2
+    || source.includes('supabase_admin')
+    || !source.includes("owner_role.rolname <> 'postgres'")
+    || !source.includes('unexpectedOwnerCount: unexpectedPublicTableOwners?.count')
+    || !source.includes('assert(defaultAclOwners?.count === 1')
+    || !source.includes('privilege.grantee = 0')
+    || !source.includes("client_role.rolname in ('anon', 'authenticated')")
+  ) {
+    throw new Error('production_schema_verifier_default_acl_owner_scope_invalid');
+  }
+};
+assertSchemaVerifierOwnerScope(schemaVerifierSource);
+for (const unsafeMutation of [
+  schemaVerifierSource.replace(
+    "owner_role.rolname = 'postgres'",
+    "owner_role.rolname in ('postgres', 'supabase_admin')",
+  ),
+  schemaVerifierSource.replace("owner_role.rolname <> 'postgres'", 'false'),
+  schemaVerifierSource.replace('privilege.grantee = 0', 'false'),
+]) {
+  let rejected = false;
+  try {
+    assertSchemaVerifierOwnerScope(unsafeMutation);
+  } catch {
+    rejected = true;
+  }
+  if (!rejected) throw new Error('production_schema_verifier_owner_scope_mutation_accepted');
 }
 for (const failureCode of [
   'production_schema_unclassified_public_tables:',
@@ -450,6 +487,7 @@ for (const failureCode of [
   'production_schema_required_rls_disabled',
   'production_schema_server_only_table_grant_present',
   'production_schema_server_only_default_table_grant_present',
+  'production_schema_unexpected_public_table_owner',
 ]) {
   if (!schemaContractLibSource.includes(failureCode)) {
     throw new Error(`production_schema_contract_failure_missing:${failureCode}`);
@@ -462,6 +500,8 @@ for (const liveFailureContract of [
   'production_schema_server_only_table_grant_present',
   'clientDefaultGrantCount: 1',
   'production_schema_server_only_default_table_grant_present',
+  'unexpectedOwnerCount: 1',
+  'production_schema_unexpected_public_table_owner',
 ]) {
   if (!schemaContractTestSource.includes(liveFailureContract)) {
     throw new Error(`production_schema_live_verifier_test_missing:${liveFailureContract}`);
@@ -483,20 +523,37 @@ if (
 if (!schemaVerifierSource.includes('SERVER_ONLY_PUBLIC_TABLES')) {
   throw new Error('production_schema_verifier_canonical_table_source_missing');
 }
-const revokedClientTables = [...clientTableGrantRevocationSource.matchAll(
-  /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
-)].map((match) => match[1]).sort();
-if (
-  JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
-  || !clientTableGrantRevocationSource.includes(
-    'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
-  )
-  || !clientTableGrantRevocationSource.includes(
-    'ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
-  )
-  || clientTableGrantRevocationSource.includes('FROM service_role')
-) {
-  throw new Error('production_schema_client_table_grant_revocation_incomplete');
+const postgresDefaultAclRevocation = 'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;';
+const assertClientTableGrantRevocationContract = (source) => {
+  const revokedClientTables = [...source.matchAll(
+    /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
+  )].map((match) => match[1]).sort();
+  const defaultAclStatements = source.match(/ALTER DEFAULT PRIVILEGES[^;]*;/gu) ?? [];
+  if (
+    JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
+    || defaultAclStatements.length !== 1
+    || defaultAclStatements[0] !== postgresDefaultAclRevocation
+    || source.includes('ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin')
+    || source.includes('FROM service_role')
+  ) {
+    throw new Error('production_schema_client_table_grant_revocation_incomplete');
+  }
+};
+assertClientTableGrantRevocationContract(clientTableGrantRevocationSource);
+for (const unsafeMutation of [
+  clientTableGrantRevocationSource.replace(
+    postgresDefaultAclRevocation,
+    `${postgresDefaultAclRevocation}\nALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;`,
+  ),
+  clientTableGrantRevocationSource.replace('FROM anon, authenticated;', 'FROM anon, authenticated, service_role;'),
+]) {
+  let rejected = false;
+  try {
+    assertClientTableGrantRevocationContract(unsafeMutation);
+  } catch {
+    rejected = true;
+  }
+  if (!rejected) throw new Error('production_schema_client_table_grant_revocation_mutation_accepted');
 }
 
 const imageCleanupStart = applySource.indexOf('# BEGIN production-migration-image-cleanup');
