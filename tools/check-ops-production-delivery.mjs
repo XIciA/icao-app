@@ -18,6 +18,7 @@ const files = Object.fromEntries(await Promise.all([
   'infra/ops/verify-ops-absence.sh',
   'scripts/deploy-ops-release.sh',
   'services/api/src/config.ts',
+  'services/api/src/admin/admin-provisioning.ts',
   'services/api/src/ops-config-preflight.ts',
   'services/api/src/ops-health.controller.ts',
   'services/api/scripts/provision-ops-staff.ts',
@@ -100,6 +101,13 @@ requireText('services/api/scripts/provision-ops-staff.ts', [
 ]);
 forbidText('services/api/scripts/provision-ops-staff.ts', [
   'await runOpsStaffProvision()',
+]);
+requireText('services/api/src/admin/admin-provisioning.ts', [
+  'insert into ops_staff_recovery_codes',
+  "transaction(recoveryRows, 'id', 'staff_id', 'code_hash')",
+]);
+forbidText('services/api/src/admin/admin-provisioning.ts', [
+  'insert into ops_staff_recovery_codes (id, staff_id, code_hash)',
 ]);
 
 requireText('scripts/deploy-ops-release.sh', [
