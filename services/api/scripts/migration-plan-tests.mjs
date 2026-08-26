@@ -10,12 +10,16 @@ import {
   isMigrationPlanCurrent,
   loadLocalMigrations,
 } from './migration-plan-lib.mjs';
+import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 
 const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 const commerceMigrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
 const commerceSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0015_snapshot.json', import.meta.url));
 const contentDeviceIdRemovalMigrationPath = fileURLToPath(new URL('../drizzle/0030_mute_luckman.sql', import.meta.url));
 const contentDeviceIdRemovalSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0030_snapshot.json', import.meta.url));
+const clientTableGrantRevocationMigrationPath = fileURLToPath(
+  new URL('../drizzle/0034_revoke_client_table_grants.sql', import.meta.url),
+);
 const schemaPath = fileURLToPath(new URL('../src/database/schema.ts', import.meta.url));
 const legacyTables = [
   'accounts',
@@ -56,7 +60,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 34);
+  assert.equal(migrations.length, 35);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -73,8 +77,27 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-1)?.tag, '0033_medical_preak');
+  assert.equal(migrations.at(-1)?.tag, '0034_revoke_client_table_grants');
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
+});
+
+test('0034 revokes every client table grant without changing service-role access', async () => {
+  const migrationSql = await readFile(clientTableGrantRevocationMigrationPath, 'utf8');
+  const revokedTables = [...migrationSql.matchAll(
+    /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
+  )].map((match) => match[1]).sort();
+
+  assert.equal(revokedTables.length, 56);
+  assert.deepEqual(revokedTables, SERVER_ONLY_PUBLIC_TABLES);
+  assert.match(
+    migrationSql,
+    /ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;/u,
+  );
+  assert.match(
+    migrationSql,
+    /ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;/u,
+  );
+  assert.doesNotMatch(migrationSql, /service_role/u);
 });
 
 test('0030 removes the stable content device digest from SQL, snapshot, and schema', async () => {
@@ -252,6 +275,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0031_typical_ares',
       '0032_aromatic_puma',
       '0033_medical_preak',
+      '0034_revoke_client_table_grants',
     ],
   );
   assert.ok(

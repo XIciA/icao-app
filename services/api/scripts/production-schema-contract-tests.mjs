@@ -11,6 +11,7 @@ const expectedTables = ['accounts', 'profiles'];
 function verify(actualTables, overrides = {}) {
   return assertPublicTableSecurityContract({
     assessment: assessPublicTableClassification({ actualTables, expectedTables }),
+    clientDefaultGrantCount: 0,
     clientGrantCount: 0,
     disabledRlsCount: 0,
     ...overrides,
@@ -23,6 +24,7 @@ test('live verifier accepts only an exact classified public-table set', () => {
     expectedPublicTables: 2,
     missingPublicTables: 0,
     serverOnlyClientGrants: 0,
+    serverOnlyClientDefaultTableGrants: 0,
     unclassifiedPublicTables: 0,
   });
   assert.throws(
@@ -43,5 +45,9 @@ test('live verifier rejects any RLS gap or anon/authenticated table grant', () =
   assert.throws(
     () => verify(expectedTables, { clientGrantCount: 1 }),
     /production_schema_server_only_table_grant_present/u,
+  );
+  assert.throws(
+    () => verify(expectedTables, { clientDefaultGrantCount: 1 }),
+    /production_schema_server_only_default_table_grant_present/u,
   );
 });

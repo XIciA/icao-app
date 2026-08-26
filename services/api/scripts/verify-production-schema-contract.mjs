@@ -106,8 +106,34 @@ try {
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'REFERENCES')
          or has_table_privilege(client_role.role_name, format('public.%I', protected_table.table_name), 'TRIGGER')
     `;
+    const [defaultAclOwners] = await transaction`
+      select count(*)::integer as count
+      from pg_roles owner_role
+      where owner_role.rolname in ('postgres', 'supabase_admin')
+    `;
+    assert(defaultAclOwners?.count === 2, 'production_schema_default_acl_owner_missing');
+
+    const [clientDefaultTableGrants] = await transaction`
+      select count(*)::integer as count
+      from pg_default_acl default_acl
+      join pg_namespace namespace_state on namespace_state.oid = default_acl.defaclnamespace
+      join pg_roles owner_role on owner_role.oid = default_acl.defaclrole
+      cross join lateral aclexplode(default_acl.defaclacl) privilege
+      where namespace_state.nspname = 'public'
+        and owner_role.rolname in ('postgres', 'supabase_admin')
+        and default_acl.defaclobjtype = 'r'
+        and (
+          privilege.grantee = 0
+          or privilege.grantee in (
+            select client_role.oid
+            from pg_roles client_role
+            where client_role.rolname in ('anon', 'authenticated')
+          )
+        )
+    `;
     const publicTableContract = assertPublicTableSecurityContract({
       assessment: publicTableAssessment,
+      clientDefaultGrantCount: clientDefaultTableGrants?.count,
       clientGrantCount: clientGrants?.count,
       disabledRlsCount: disabledRls?.count,
     });
@@ -189,6 +215,7 @@ try {
       appleReconciliationTerminalIndexes: appleReconciliationTerminalIndex.count,
       commerceProducts: products.length,
       deviceDigestColumns: deviceDigest.count,
+      defaultAclOwners: defaultAclOwners.count,
       requiredTables: publicTableContract.expectedPublicTables,
       ...publicTableContract,
       unvalidatedConstraints: unvalidated.count,

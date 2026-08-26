@@ -15,6 +15,60 @@ const start = rehearsalSource.indexOf(startMarker);
 const end = rehearsalSource.indexOf(endMarker);
 assert.ok(start >= 0 && end > start, 'migration rehearsal image cleanup markers are missing');
 const cleanupFunction = rehearsalSource.slice(start + startMarker.length, end);
+const schemaGateStartMarker = '# BEGIN migration-rehearsal-schema-contract-verification';
+const schemaGateEndMarker = '# END migration-rehearsal-schema-contract-verification';
+
+function assertSchemaContractGate(source) {
+  const gateStart = source.indexOf(schemaGateStartMarker);
+  const gateEnd = source.indexOf(schemaGateEndMarker);
+  assert.ok(gateStart >= 0 && gateEnd > gateStart, 'migration rehearsal schema gate markers are missing');
+  const gate = source.slice(gateStart + schemaGateStartMarker.length, gateEnd);
+  for (const contract of [
+    'services/api/scripts/verify-production-schema-contract.mjs',
+    '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
+    'p.status !== "verified"',
+    'p.readOnly !== true',
+    'p.serverOnlyClientGrants !== 0',
+    'p.defaultAclOwners !== 2',
+    'p.serverOnlyClientDefaultTableGrants !== 0',
+    'schema_contract_sha=$(sha256sum',
+  ]) {
+    assert.ok(gate.includes(contract), `migration rehearsal schema gate is missing: ${contract}`);
+  }
+  assert.ok(
+    source.includes("printf 'schema_contract_verified=1\\n'"),
+    'migration rehearsal evidence must record successful schema verification',
+  );
+  assert.ok(
+    source.includes("printf 'schema_contract_sha256=%s\\n' \"$schema_contract_sha\""),
+    'migration rehearsal evidence must bind the verified schema contract',
+  );
+}
+
+test('requires the same read-only client-grant schema gate before rehearsal success', () => {
+  assert.doesNotThrow(() => assertSchemaContractGate(rehearsalSource));
+  assert.throws(
+    () => assertSchemaContractGate(rehearsalSource.replace(
+      'node services/api/scripts/verify-production-schema-contract.mjs',
+      'node services/api/scripts/migration-plan.mjs',
+    )),
+    /verify-production-schema-contract/u,
+  );
+  assert.throws(
+    () => assertSchemaContractGate(rehearsalSource.replace(
+      'p.serverOnlyClientGrants !== 0',
+      'false',
+    )),
+    /serverOnlyClientGrants/u,
+  );
+  assert.throws(
+    () => assertSchemaContractGate(rehearsalSource.replace(
+      'p.serverOnlyClientDefaultTableGrants !== 0',
+      'false',
+    )),
+    /serverOnlyClientDefaultTableGrants/u,
+  );
+});
 
 async function runScenario(scenario, imageExists) {
   const scratch = await mkdtemp(join(tmpdir(), 'icao-rehearsal-cleanup-test-'));

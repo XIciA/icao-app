@@ -10,6 +10,7 @@ const [
   migrateSource,
   rehearsalSource,
   databaseSchemaSource,
+  clientTableGrantRevocationSource,
   schemaVerifierSource,
   schemaContractLibSource,
   schemaContractTestSource,
@@ -22,6 +23,7 @@ const [
   readFile('services/api/scripts/migrate.mjs', 'utf8'),
   readFile('scripts/rehearse-production-migrations.sh', 'utf8'),
   readFile('services/api/src/database/schema.ts', 'utf8'),
+  readFile('services/api/drizzle/0034_revoke_client_table_grants.sql', 'utf8'),
   readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8'),
   readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8'),
   readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8'),
@@ -36,8 +38,8 @@ for (const contract of [
   '--print-confirmation',
   'ICAO_PRODUCTION_MIGRATION_CONFIRM',
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:19:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-34:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0',
   'rehearse-production-migrations.sh',
   'parse-rehearsal',
   'characters unsafe for remote argument transport',
@@ -100,6 +102,7 @@ for (const contract of [
   'p.actualPublicTables !== 56',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
+  'p.serverOnlyClientDefaultTableGrants !== 0',
   'business_row_count_observation=non_authoritative_concurrent_activity_allowed',
   'auth_user_count_observation=non_authoritative_concurrent_activity_allowed',
   'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint',
@@ -115,6 +118,31 @@ for (const contract of [
 ]) {
   if (!applySource.includes(contract)) {
     throw new Error(`production_migration_apply_contract_missing:${contract}`);
+  }
+}
+
+for (const contract of [
+  '# BEGIN migration-rehearsal-schema-contract-verification',
+  '# END migration-rehearsal-schema-contract-verification',
+  'services/api/scripts/verify-production-schema-contract.mjs',
+  '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
+  'p.serverOnlyClientGrants !== 0',
+  'p.defaultAclOwners !== 2',
+  'p.serverOnlyClientDefaultTableGrants !== 0',
+  "printf 'schema_contract_verified=1\\n'",
+  "printf 'schema_contract_sha256=%s\\n' \"$schema_contract_sha\"",
+]) {
+  if (!rehearsalSource.includes(contract)) {
+    throw new Error(`production_migration_rehearsal_schema_contract_missing:${contract}`);
+  }
+}
+for (const contract of [
+  'test "$(evidence_value schema_contract_verified)" = 1',
+  'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
+  'rehearsal_schema_contract_sha256=$rehearsal_schema_contract_sha',
+]) {
+  if (!applySource.includes(contract)) {
+    throw new Error(`production_migration_apply_rehearsal_schema_evidence_missing:${contract}`);
   }
 }
 
@@ -397,6 +425,10 @@ for (const contract of [
   'actualTables: actualPublicTables',
   'expectedTables: serverOnlyTables',
   'assertPublicTableSecurityContract',
+  'from pg_default_acl default_acl',
+  'aclexplode(default_acl.defaclacl)',
+  "owner_role.rolname in ('postgres', 'supabase_admin')",
+  'privilege.grantee = 0',
   'production_privacy_schema_columns_incomplete',
   'production_content_device_digest_still_present',
   'production_commerce_product_catalog_mismatch',
@@ -417,6 +449,7 @@ for (const failureCode of [
   'production_schema_missing_public_tables:',
   'production_schema_required_rls_disabled',
   'production_schema_server_only_table_grant_present',
+  'production_schema_server_only_default_table_grant_present',
 ]) {
   if (!schemaContractLibSource.includes(failureCode)) {
     throw new Error(`production_schema_contract_failure_missing:${failureCode}`);
@@ -427,6 +460,8 @@ for (const liveFailureContract of [
   'production_schema_unclassified_public_tables:1',
   'clientGrantCount: 1',
   'production_schema_server_only_table_grant_present',
+  'clientDefaultGrantCount: 1',
+  'production_schema_server_only_default_table_grant_present',
 ]) {
   if (!schemaContractTestSource.includes(liveFailureContract)) {
     throw new Error(`production_schema_live_verifier_test_missing:${liveFailureContract}`);
@@ -447,6 +482,21 @@ if (
 }
 if (!schemaVerifierSource.includes('SERVER_ONLY_PUBLIC_TABLES')) {
   throw new Error('production_schema_verifier_canonical_table_source_missing');
+}
+const revokedClientTables = [...clientTableGrantRevocationSource.matchAll(
+  /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
+)].map((match) => match[1]).sort();
+if (
+  JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
+  || !clientTableGrantRevocationSource.includes(
+    'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
+  )
+  || !clientTableGrantRevocationSource.includes(
+    'ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
+  )
+  || clientTableGrantRevocationSource.includes('FROM service_role')
+) {
+  throw new Error('production_schema_client_table_grant_revocation_incomplete');
 }
 
 const imageCleanupStart = applySource.indexOf('# BEGIN production-migration-image-cleanup');

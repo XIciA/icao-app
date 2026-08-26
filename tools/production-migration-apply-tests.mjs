@@ -28,8 +28,8 @@ import {
 } from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const sourceSha = 'a'.repeat(40);
-const prePlan = '15:19:0';
-const postPlan = '34:0:0';
+const prePlan = '34:1:0';
+const postPlan = '35:0:0';
 const backupName = 'icao-20260825T165825Z-1151356.dump';
 const evidencePath = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-aaaaaaaaaaaa-20260825T170000Z.txt';
 const successLine = `production_migration_rehearsal_ok source=${sourceSha} backup=${backupName} pre=${prePlan} post=${postPlan} evidence=${evidencePath}`;
@@ -101,6 +101,37 @@ const instrumentTrustedPythonRunner = (source) => {
   return instrumented;
 };
 
+function assertRehearsalSchemaEvidenceBinding(source) {
+  for (const contract of [
+    'test "$(evidence_value schema_contract_verified)" = 1',
+    'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
+    'rehearsal schema contract SHA is invalid',
+    'test "${#rehearsal_schema_contract_sha}" -eq 64',
+    'rehearsal_schema_contract_sha256=$rehearsal_schema_contract_sha',
+  ]) {
+    assert.ok(source.includes(contract), `formal apply is missing rehearsal schema evidence: ${contract}`);
+  }
+}
+
+test('formal apply binds the successful rehearsal client-grant verifier evidence', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  assert.doesNotThrow(() => assertRehearsalSchemaEvidenceBinding(source));
+  assert.throws(
+    () => assertRehearsalSchemaEvidenceBinding(source.replace(
+      'test "$(evidence_value schema_contract_verified)" = 1',
+      ':',
+    )),
+    /schema_contract_verified/u,
+  );
+  assert.throws(
+    () => assertRehearsalSchemaEvidenceBinding(source.replace(
+      'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
+      'rehearsal_schema_contract_sha=unverified',
+    )),
+    /schema_contract_sha256/u,
+  );
+});
+
 test('binds the destructive confirmation to the full immutable source and exact plan', () => {
   const expected = `APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}`;
   assert.equal(productionMigrationConfirmation({ sourceSha, prePlan, postPlan }), expected);
@@ -111,7 +142,7 @@ test('binds the destructive confirmation to the full immutable source and exact 
     postPlan,
   }), expected);
   assert.throws(() => assertProductionMigrationConfirmation({
-    confirmation: expected.replace('15:19:0', '15:17:0'),
+    confirmation: expected.replace('34:1:0', '34:2:0'),
     sourceSha,
     prePlan,
     postPlan,
@@ -120,11 +151,11 @@ test('binds the destructive confirmation to the full immutable source and exact 
 
 test('rejects unsafe or inconsistent expected plans', () => {
   for (const plans of [
-    ['15:19:1', '34:0:0'],
-    ['15:0:0', '15:0:0'],
-    ['15:19:0', '32:0:0'],
-    ['15:19:0', '34:1:0'],
-    ['015:19:0', '34:0:0'],
+    ['34:1:1', '35:0:0'],
+    ['34:0:0', '35:0:0'],
+    ['34:1:0', '34:0:0'],
+    ['34:1:0', '35:1:0'],
+    ['034:1:0', '35:0:0'],
   ]) {
     assert.throws(() => validatePlanTransition(...plans));
   }
@@ -1091,12 +1122,13 @@ pre_summary=${prePlan}
 post_summary=${postPlan}
 migration_started=1
 migration_completed=1
-before_migrations=15
-after_migrations=34
+before_migrations=34
+after_migrations=35
 before_business_rows=100
 after_business_rows=101
 before_auth_users=10
 after_auth_users=11
+rehearsal_schema_contract_sha=${'f'.repeat(64)}
 schema_contract_sha=${'e'.repeat(64)}
 cleanup_verified=1
 publish_evidence succeeded

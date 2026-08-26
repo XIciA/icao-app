@@ -32,8 +32,8 @@ fi
 
 SOURCE_SHA=$(git -C "$SOURCE_ROOT" rev-parse HEAD)
 SOURCE_ID=$(printf '%.12s' "$SOURCE_SHA")
-EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:19:0}
-EXPECTED_POST_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-34:0:0}
+EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0}
+EXPECTED_POST_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0}
 CONTRACT_TOOL=$SOURCE_ROOT/tools/production-migration-apply-contract.mjs
 
 if [ "$PRINT_CONFIRMATION" = 1 ]; then
@@ -260,6 +260,7 @@ pre_summary=unavailable
 post_summary=unavailable
 backup_sha=unavailable
 schema_contract_sha=unavailable
+rehearsal_schema_contract_sha=unavailable
 before_business_rows=unavailable
 before_auth_users=unavailable
 after_business_rows=unavailable
@@ -593,6 +594,7 @@ publish_evidence() (
     "auth_users_after=$after_auth_users" \
     'auth_user_count_observation=non_authoritative_concurrent_activity_allowed' \
     'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint' \
+    "rehearsal_schema_contract_sha256=$rehearsal_schema_contract_sha" \
     "schema_contract_sha256=$schema_contract_sha" \
     "cleanup_verified=$cleanup_verified" \
     'automatic_production_restore=forbidden' \
@@ -688,6 +690,12 @@ test "$(evidence_value preexisting_fingerprint_mismatches)" = 0
 test "$(evidence_value missing_contracts)" = 0
 test "$(evidence_value unvalidated_constraints)" = 0
 test "$(evidence_value device_digest_columns)" = 0
+test "$(evidence_value schema_contract_verified)" = 1
+rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)
+case "$rehearsal_schema_contract_sha" in
+  ''|*[!a-f0-9]*) echo 'rehearsal schema contract SHA is invalid' >&2; exit 1 ;;
+esac
+test "${#rehearsal_schema_contract_sha}" -eq 64
 backup_sha=$(evidence_value backup_sha256)
 case "$backup_sha" in ''|*[!A-Fa-f0-9]*) echo 'rehearsal backup SHA is invalid' >&2; exit 1 ;; esac
 test "$(evidence_value archive_sha256)" = "$archive_sha"
@@ -892,6 +900,7 @@ docker run --rm \
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
+      || p.defaultAclOwners !== 2 || p.serverOnlyClientDefaultTableGrants !== 0
       || p.deviceDigestColumns !== 0) process.exit(1);
 '
 # END production-migration-evidence-parser-schema
