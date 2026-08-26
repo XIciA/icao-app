@@ -108,17 +108,18 @@ for (const required of [
 
 for (const requiredGate of [
   '门禁尚未全部通过，不可直接提交',
-  '生产备份、隔离恢复与全部待执行迁移演练',
+  '生产备份、隔离恢复、数据库迁移和 API 发布已从干净',
   '稳定 Device ID 不再发送或保存',
   'D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线',
   'Paid Apps Agreement、银行和税务有效',
   'Apple Production 与 Sandbox 测试通知',
-  '当前已知注册地址只是仓库候选，不是已验证事实',
-  '不得为了通过门禁编造号码',
-  '将核实后的注册地址与公开支持电话发布到 Support URL，并验证页面在目标网络可访问、电话可接通',
-  'App Store Connect 受保护审核联系人电话不能替代 Support URL 的公开支持电话',
+  'Support URL 提供准确、最新且易用的联系方式',
+  '无需为了增加字段而编造或在该页面重复公开地址、电话',
+  '本 App 面向欧盟分发且公司属于交易商时',
+  '负责人须在 App Store Connect 使用正式资料完成 DSA 保存和电话/邮箱验证',
+  '仓库候选地址或未验证号码均不能替代 DSA 资料',
 ]) {
-  if (!source.includes(requiredGate)) fail(`missing_support_url_gate:${requiredGate}`);
+  if (!source.includes(requiredGate)) fail(`missing_contact_gate:${requiredGate}`);
 }
 
 for (const reviewPath of [

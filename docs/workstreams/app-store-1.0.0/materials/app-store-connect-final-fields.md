@@ -1,7 +1,7 @@
 # App Store Connect 1.0.0 唯一最终字段包
 
-状态：固定字段已定稿；隐私自助能力已进入主线，五个正式公开页面已从干净主线发布，但生产 API/Ops、
-中国大陆合规、支持联系信息、Apple 付费商务、审核账号、最终候选包和截图等门禁尚未全部通过，不可直接提交；
+状态：固定字段已定稿；隐私自助能力、生产数据库/API 和五个正式公开页面已从干净主线发布，但 Ops、
+中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号、最终候选包和截图等门禁尚未全部通过，不可直接提交；
 平台专属事实仍按文中门禁当场补入，不在仓库保存凭据。
 
 适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 使用当前全部可用
@@ -18,7 +18,7 @@ App Store 国家或地区，中国大陆是价格基准地区而不是唯一可�
 | Apple ID | `6800583111` | App Store Connect 现有 App 记录 |
 | Bundle ID | `com.readyoufife.ios` | 与 `app.json` 一致 |
 | 用户可见版本 | `1.0.0` | Build 号由最终候选归档提供 |
-| App Store iOS 版本记录 | `1.0.0` | 当前平台已有 `1.0` 草稿；提交前必须改为冻结值 `1.0.0` |
+| App Store iOS 版本记录 | `1.0.0` | 平台草稿已保存为冻结值 `1.0.0` |
 | 送审 Build | 从最终 `origin/main` 生成且 Build 号高于 `3493759` 的新候选 | 当前已验证 Build `3493759` 于 2026-08-23 上传，未被版本页选择且不含后续主线收口，不作为送审包 |
 | 主要分类 | 教育（Education） | 固定 |
 | 次要分类 | 工具（Utilities） | 固定；中国大陆 App 备案服务分类仍为工具 |
@@ -31,9 +31,9 @@ App Store 国家或地区，中国大陆是价格基准地区而不是唯一可�
 | 中国大陆组织合规 | `<ASC_ONLY_CHINA_MAINLAND_COMPLIANCE_VERIFIED>` | 待 Account Holder/Admin 在 Business → Agreements → Compliance → China Mainland 以正式资料核实 D-U-N-S、公司中文名和 USCI 后当场确认；不得用仓库候选值代替 |
 | 内容版权（Content Rights） | 是，App 包含或访问第三方内容 | 公司或相关权利人已拥有必要权利；不宣称全部原创 |
 | 版权（Copyright） | `2026 云启航科（成都）科技有限公司` | 唯一拟录入值；负责人须先确认该公司是该字段所要求的权利主体 |
-| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | URL 已上线，但尚未最终合格；真实公司注册地址和公开支持电话须经负责人核实、发布到页面并完成可达性验证 |
+| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 已上线并提供 App 内反馈路径和产品支持邮箱；提交前验证邮箱可投递、收件和回复，DSA 交易商地址/电话/邮箱按平台流程另行核实 |
 | Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前 `official-site` 自助权利版本已上线并与主线源码一致；最终提交前再与归档和生产数据流复核 |
-| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 自助导出、删除和撤回 AI 同意说明已上线并与主线源码一致；生产 API 完成后再录入 |
+| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 自助导出、删除和撤回 AI 同意说明已上线并与主线源码、生产 API 一致；平台字段已保存 |
 | Marketing URL | 留空 | 首发不填 |
 | 新版本内容（What’s New） | 不适用 | 首个版本不填写 |
 | 分阶段发布 | 不启用 | 首发不使用 phased release |
@@ -44,28 +44,26 @@ App Store 国家或地区，中国大陆是价格基准地区而不是唯一可�
 
 以下各项是并列门禁，不能因固定字段已定稿而标记为可提交：
 
-1. 生产备份、隔离恢复与全部待执行迁移演练已形成成功证据；仍须从干净 `origin/main` 部署数据库、
-   API 和 Ops，并证明生产微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。
+1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；仍须部署 Ops，并在最终
+   候选中复核生产微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。
 2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
-   当前 `official-site` 五页已发布且与主线源码逐页一致；仍须部署对应生产 API，并在最终候选完成后
-   反向确认线上公开文本与 App 的主体、平台范围、路径和数据权利一致。
-3. 完成下方 Support URL、中国大陆备案与组织合规门禁；所有外部事实以正式材料和平台状态为准。
+   当前 `official-site` 五页和对应生产 API 已发布；仍须在最终候选完成后反向确认线上公开文本与 App
+   的主体、平台范围、路径和数据权利一致。
+3. 完成下方 Support URL 可达性、DSA、中国大陆备案与组织合规门禁；所有外部事实以正式材料和平台状态为准。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
 5. 两个 Production 审核账号、最终 Build、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
    负责人 TestFlight 真机验收全部完成。
 
-### Support URL P1 提交门禁
+### Support URL 与 DSA 联系信息门禁
 
-Apple 的平台版本字段说明要求 Support URL 指向实际联系信息（如法定地址、邮箱和电话），并说明具体
-展示受适用法律影响；审核指南 1.5 另要求 App 与 Support URL 提供准确、最新且易用的联系方式。本项目
-采用以下保守门禁，并不宣称所有地区绝对强制相同展示格式。在以下条件全部完成前，本字段包不得标记为
-可提交：
+Apple 要求 App 和 Support URL 提供准确、最新且易用的联系方式。当前页面提供 App 内反馈路径和
+`support@yunqihangke.com`，无需为了增加字段而编造或在该页面重复公开地址、电话。提交前验证页面可从
+目标网络访问，并验证支持邮箱真实可投递、收件和回复。
 
-1. 负责人用营业执照核实真实公司注册地址；当前已知注册地址只是仓库候选，不是已验证事实。
-2. 负责人提供并核实真实的公开支持电话；不得为了通过门禁编造号码。
-3. 将核实后的注册地址与公开支持电话发布到 Support URL，并验证页面在目标网络可访问、电话可接通。
-4. App Store Connect 受保护审核联系人电话不能替代 Support URL 的公开支持电话。
+本 App 面向欧盟分发且公司属于交易商时，DSA 另行要求由 Apple 核实并在欧盟产品页展示地址、电话和
+邮箱。负责人须在 App Store Connect 使用正式资料完成 DSA 保存和电话/邮箱验证；受保护审核联系人、
+仓库候选地址或未验证号码均不能替代 DSA 资料。
 
 ### App Store Server Notifications V2
 
@@ -76,9 +74,9 @@ Apple 的平台版本字段说明要求 Support URL 指向实际联系信息（�
 | Sandbox Server URL | `https://api.readyoufife.com/v1/commerce/apple/notifications/v2` |
 | Sandbox Notifications Version | Version 2 |
 
-生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。最近一次生产
-核验中该路径仍返回 404，尚未部署当前主线，因此不得先在 App Store Connect 标记完成。部署后先
-确认无效空请求被安全拒绝，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的
+生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。2026-08-26 已从
+干净主线部署生产 API；无效空请求返回 400，证明入口存在且被安全拒绝。仍须在 App Store Connect
+保存两套 Version 2 URL，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的
 测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
 
 ### 名称

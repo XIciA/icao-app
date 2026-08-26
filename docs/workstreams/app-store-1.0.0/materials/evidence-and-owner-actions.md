@@ -1,7 +1,7 @@
 # 商店材料证据、负责人最小事实与最终门禁
 
 状态：2026-08-26 核对；隐私自助能力、生产数据库与 API 已从干净主线发布，五个正式公开页面已上线；
-Ops、中国大陆合规、Support URL 联系信息、Apple 付费商务、审核账号、最终候选包和截图门禁未全部通过，
+Ops、中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号、最终候选包和截图门禁未全部通过，
 不可提交；本文件记录已完成的平台字段写入，但不保存任何凭据、验证码或受保护联系人值，也不把字段
 保存等同于审核提交或商店发布。
 
@@ -17,14 +17,14 @@ Ops、中国大陆合规、Support URL 联系信息、Apple 付费商务、审�
 
 | 用途 | 正式 URL | 当前页面事实 |
 | --- | --- | --- |
-| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | SHA256 `4f903331ba3f1952096a8bd93f115eb463e04133ca11946d6fe82d68bc201aec`；当前页面列出支持邮箱，但仍缺经核实的真实公司注册地址和公开支持电话 |
+| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | SHA256 `4f903331ba3f1952096a8bd93f115eb463e04133ca11946d6fe82d68bc201aec`；页面提供 App 内反馈路径和 `support@yunqihangke.com`，提交前仍须验证邮箱实际可投递、收件和回复 |
 | Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | SHA256 `52c65eb8f841a638116f4addc37061195d22a9a967bfddf8c1fd07374579678d`；包含16+、腾讯云语音识别、DeepSeek、非自动续期、无微信和隐私自助权利 |
 | Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | SHA256 `12cee18b3cd9d92ddef693a9f7835f7ecc294cf5086b29ea4804ce78790f646b`；包含自助导出、清除、AI 结果删除和撤回同意路径 |
 | 账号删除说明 | `https://yunqihangke.com/apps/readyoufife/account-deletion/` | SHA256 `7614a7db069975b9266ae6db7afb9555a2eb5c2d5eeaf0d51422ba95c3481e87`；真实路径为“我的”—“设置”—“账号安全”—“注销账号” |
 | 用户协议 | `https://yunqihangke.com/apps/readyoufife/terms/` | SHA256 `9cc3e322a30efbd73507599f90e1a36c2df4fff96993be753b0b115c7a934e34`；明确只覆盖 iOS、Android 正式 App，包含16+和五档非自动续期口径 |
 
-此次检查只证明当前网络位置可访问且正文与主线源码逐字节一致，不证明 Apple 审核所在网络、邮箱投递
-链路或公开支持电话可用，也不证明注册地址真实。下方 Support URL P1 门禁完成前不可提交；最终候选
+此次检查只证明当前网络位置可访问且正文与主线源码逐字节一致，不证明 Apple 审核所在网络或邮箱投递
+链路可用，也不证明 DSA 地址、电话和邮箱已经核实。下方联系信息门禁完成前不可提交；最终候选
 包形成后仍须反向核对页面、App 和生产数据流。
 
 ## 源码与配置反向核对
@@ -42,7 +42,7 @@ Ops、中国大陆合规、Support URL 联系信息、Apple 付费商务、审�
 | 不收集 Device ID | PR #38 / `c9bea40` 已移除内容访问链路中的稳定设备 UUID、`did`、`deviceDigest` 和设备级限流；v1 设备绑定缓存与凭据有升级清理和失败重试 | 当前源码与隐私标签“不选择 Device ID”一致；最终归档仍须扫描第三方 SDK 与生产网络数据流 |
 | 隐私自助权利 | PR #43 / `8434bae` 已实现导出账号与学习数据、删除单条/全部 AI 结果、清除学习数据和撤回 AI 同意；破坏性操作具备持久幂等与跨设备删除传播 | Native/API、已上线的五个 `official-site` 页面和生产 API 已对齐；未认证隐私导出探针按预期返回 401 |
 | 注销审核路径 | `ProfileHomeScreen` 的“我的”页进入“设置”，`AccountScreen` 的设置页进入“账号安全”，再进入“注销账号” | 中英文审核备注均使用真实路径“我的→设置→账号安全→注销账号”；不存在审核专用路径 |
-| 独立运营后台 | PR #37 / `8861683` 已建立 Ops Web/API；PR #45 / `6132b9f` 增加从干净主线部署、TLS/健康/管理员门禁、可重试回滚和证据链 | 代码与聚焦安全审计已完成；尚未执行生产迁移、初始化实际管理员或部署 `ops.readyoufife.com` |
+| 独立运营后台 | PR #37 / `8861683` 已建立 Ops Web/API；PR #45 / `6132b9f` 增加从干净主线部署、TLS/健康/管理员门禁、可重试回滚和证据链 | 代码与聚焦安全审计已完成；生产数据库已含 Ops 表，实际管理员初始化和 `ops.readyoufife.com` 部署仍在进行 |
 | 迁移与发布 | PR #39—#44 已建立并加固备份、隔离恢复、迁移与清理链；PR #55—#57 收口生产权限与 owner 门禁 | 生产 schema 已为 35/35，API `1.0.0-ec4b70a` 已部署；Ops 仍待部署 |
 | 自动发布 | D9 已冻结 `Automatically release this version`；Apple 将其定义为 App Store Connect 的版本级选项 | 2026-08-26 平台只读核验已选中；最终提交前仍须复核没有被改动 |
 
@@ -60,7 +60,7 @@ Ops、中国大陆合规、Support URL 联系信息、Apple 付费商务、审�
 | 发布方式 | `Automatically release this version` 已选 | 最终提交前复核仍选中且没有最早发布日期 |
 | App 信息 | 副标题、教育主分类、工具次分类、Content Rights 和 16+ 覆盖分级已保存；ICP 尚未录入 | 只从正式备案材料录入准确备案号 |
 | 价格与供应 | App 免费，中国大陆为基础地区，175 个国家或地区发布时供应；Mac、Vision Pro 与校园批量购买已关闭 | 最终提交前复核；五档 IAP 另按同一地区范围配置 |
-| Server Notifications | Production 与 Sandbox URL 均未设置 | 生产 API 部署并通过 V2 测试通知后录入同一正式 HTTPS 入口 |
+| Server Notifications | Production 与 Sandbox URL 均未设置；正式入口无效载荷探针返回 400 | 录入同一正式 HTTPS 入口，再分别完成 Apple Production 与 Sandbox V2 测试通知 |
 | App 内购买 | 0 项，只显示创建入口 | Paid Apps Agreement 生效后创建五档非自动续期订阅并与 1.0.0 首次同审 |
 | App 隐私 | Privacy Policy、Privacy Choices 和 D7 的13类数据申报已发布；全部与用户关联、均不跟踪 | 最终归档与生产数据流审计后反向复核，出现新数据流先修正再提交 |
 | 商务协议 | Free Apps Agreement 有效；Paid Apps Agreement 状态为“新”，平台提示签署前须更新法律实体 | 由 Account Holder 完成真实法律实体、付费协议、银行和税务；不得猜测或代填事实 |
@@ -133,11 +133,9 @@ Notifications V2 路由已存在，但 App Store Connect 的 Production/Sandbox 
 
 1. 备案已由负责人确认成功；仍须从正式备案材料准确抄录 App 备案号，并确认 Apple 中国大陆供应
    信息、MIIT 主体、App 名称、Bundle ID、简中元数据和备案工具类口径一致。
-2. 用营业执照核实真实公司注册地址；当前已知注册地址只是仓库候选，不得未经核实写成正式事实。
-3. Apple 的字段说明要求 Support URL 指向实际联系信息（如法定地址、邮箱和电话），并说明具体展示
-   受适用法律影响；审核指南 1.5 另要求联系信息准确、最新且易用。本项目采用更保守的提交门禁：提供
-   并核实真实公开支持电话，将核实后的注册地址和电话发布到 Support URL，验证页面在目标网络可访问
-   且电话可接通。不得编造；App Store Connect 受保护审核联系人电话不能替代该公开电话。
+2. 用营业执照核实真实公司注册地址；当前已知注册地址只是仓库候选，不得未经核实当作 DSA 正式事实。
+3. 验证 Support URL 可访问且 `support@yunqihangke.com` 可以真实投递、收件和回复。Support URL 已有
+   易用联系路径，无需为了材料完整而编造或重复公开电话；DSA 所需电话、地址和邮箱按第 7 项处理。
 4. 确认 `2026 云启航科（成都）科技有限公司` 是 Apple Copyright 字段要求的权利主体。
 5. 对 `support@yunqihangke.com`、`privacy@yunqihangke.com`、`legal@yunqihangke.com` 分别完成真实
    投递、收件、回复和值守确认。线上出现邮箱不等于邮箱可达。
@@ -174,11 +172,9 @@ Notifications V2 路由已存在，但 App Store Connect 的 Production/Sandbox 
 
 ## 剩余风险与提交阻断条件
 
-- **P1 Support URL 阻断：** 当前页面缺少经负责人核实并发布的真实公司注册地址和公开支持电话。
-  当前已知注册地址只是仓库候选，必须与营业执照核实；公开电话不得编造。两项发布后还须验证页面
-  可访问、电话可接通。App Store Connect 受保护审核联系人电话不能替代公开支持电话；此门禁通过前
-  不得提交。这是本项目基于 Apple 所列联系信息与适用法律要求采取的保守门禁，不表示所有地区必须
-  采用完全相同的公开展示格式。
+- **联系信息阻断：** Support URL 已提供 App 内反馈和支持邮箱，不再要求把电话重复公开到该页面；
+  但支持邮箱尚未完成真实收发和值守验收，DSA 交易商地址、电话和邮箱尚未在平台保存并验证。面向
+  欧盟分发时 Apple 会展示经核实的交易商信息，这两项完成前不得提交。
 - 三个公开邮箱的真实投递、收件、回复和值守尚未由本任务核验；完成运营验收前不应提交。
 - D7 隐私标签是批准基线，不是最终归档事实的替代。最终 SDK、权限、网络请求、生产配置或第三方处理
   新增任何数据类型时，必须同步修正公开政策和 App Store Connect 后再提交。
