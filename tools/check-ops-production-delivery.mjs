@@ -20,6 +20,7 @@ const files = Object.fromEntries(await Promise.all([
   'services/api/src/config.ts',
   'services/api/src/ops-config-preflight.ts',
   'services/api/src/ops-health.controller.ts',
+  'services/api/scripts/provision-ops-staff.ts',
   'services/api/scripts/ops-production-readiness-lib.mjs',
   'services/api/scripts/verify-ops-production-readiness.mjs',
 ].map(async (path) => [path, await readFile(path, 'utf8')])));
@@ -91,6 +92,15 @@ const uploadStagingTest = spawnSync(process.execPath, [
 if (uploadStagingTest.status !== 0) {
   throw new Error(`ops_upload_staging_real_caller_test:${uploadStagingTest.stderr || uploadStagingTest.stdout}`);
 }
+
+requireText('services/api/scripts/provision-ops-staff.ts', [
+  'runOpsStaffProvision().then(',
+  "process.stderr.write('ops_staff_provision_failed\\n')",
+  'process.exitCode = 1',
+]);
+forbidText('services/api/scripts/provision-ops-staff.ts', [
+  'await runOpsStaffProvision()',
+]);
 
 requireText('scripts/deploy-ops-release.sh', [
   'check-mainline-release.mjs',
