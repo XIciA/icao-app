@@ -1,4 +1,9 @@
 import { runOpsStaffProvision } from '../src/admin/admin-provisioning';
 
-await runOpsStaffProvision();
-process.stdout.write('ops_staff_provisioned\n');
+runOpsStaffProvision().then(
+  () => process.stdout.write('ops_staff_provisioned\n'),
+  () => {
+    process.stderr.write('ops_staff_provision_failed\n');
+    process.exitCode = 1;
+  },
+);
