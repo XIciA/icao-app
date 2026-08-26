@@ -38,7 +38,7 @@ Ops、中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号�
 | Vercel 冻结 | Vercel legacy 法律与课程实现继续由运行时边界隔离，本轮只允许更新正式 App 使用的 `official-site` 页面 | 不修改、不构建、不部署 Vercel；最终归档不得引用其课程或旧法律口径 |
 | 16+ | `src/features/auth/login-release-surface.ts` 的正式 App 登录勾选为已满16周岁；`src/features/info/legal-release-surface.ts` 使用同一口径 | 已对齐；Vercel legacy 文案是隔离分支，不属于正式 App |
 | 腾讯云 ASR + DeepSeek | API 配置把 `AI_TEXT_PROVIDER` 固定为 `deepseek`，生产预检要求 DeepSeek 与腾讯云 ASR；正式法律文案相同 | 已对齐；生产 API `1.0.0-ec4b70a` 配置预检已证明两者可用 |
-| 五档非自动续期 | Native 商品映射和服务端目录固定 7/15/31/62/93 天；StoreKit provider 拒绝非 `non-renewing-subscription` 类型；会员页明确不会自动续期 | 已对齐；平台商品尚待创建 |
+| 五档非自动续期 | Native 商品映射和服务端目录固定 7/15/31/62/93 天；StoreKit provider 拒绝非 `non-renewing-subscription` 类型；会员页明确不会自动续期 | 已对齐；平台五项均为 `NON_RENEWING_SUBSCRIPTION`，简中本地化已创建 |
 | 不收集 Device ID | PR #38 / `c9bea40` 已移除内容访问链路中的稳定设备 UUID、`did`、`deviceDigest` 和设备级限流；v1 设备绑定缓存与凭据有升级清理和失败重试 | 当前源码与隐私标签“不选择 Device ID”一致；最终归档仍须扫描第三方 SDK 与生产网络数据流 |
 | 隐私自助权利 | PR #43 / `8434bae` 已实现导出账号与学习数据、删除单条/全部 AI 结果、清除学习数据和撤回 AI 同意；破坏性操作具备持久幂等与跨设备删除传播 | Native/API、已上线的五个 `official-site` 页面和生产 API 已对齐；未认证隐私导出探针按预期返回 401 |
 | 注销审核路径 | `ProfileHomeScreen` 的“我的”页进入“设置”，`AccountScreen` 的设置页进入“账号安全”，再进入“注销账号” | 中英文审核备注均使用真实路径“我的→设置→账号安全→注销账号”；不存在审核专用路径 |
@@ -59,9 +59,9 @@ Ops、中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号�
 | 版本页内容 | 宣传文本、描述、关键词、Support URL、Copyright 和受保护审核联系人已保存；截图 0/10，审核账号、Notes 和 Build 仍为空 | 用最终候选生成 6 张产品页截图和 5 张 IAP 审核截图，再录入两个生产审核账号与最终 Notes |
 | 发布方式 | `Automatically release this version` 已选 | 最终提交前复核仍选中且没有最早发布日期 |
 | App 信息 | 副标题、教育主分类、工具次分类、Content Rights 和 16+ 覆盖分级已保存；ICP 尚未录入 | 只从正式备案材料录入准确备案号 |
-| 价格与供应 | App 免费，中国大陆为基础地区，175 个国家或地区发布时供应；Mac、Vision Pro 与校园批量购买已关闭 | 最终提交前复核；五档 IAP 另按同一地区范围配置 |
-| Server Notifications | Production 与 Sandbox URL 均未设置；正式入口无效载荷探针返回 400 | 录入同一正式 HTTPS 入口，再分别完成 Apple Production 与 Sandbox V2 测试通知 |
-| App 内购买 | 0 项，只显示创建入口 | Paid Apps Agreement 生效后创建五档非自动续期订阅并与 1.0.0 首次同审 |
+| 价格与供应 | App 免费，中国大陆为基础地区，175 个国家或地区发布时供应；Mac、Vision Pro 与校园批量购买已关闭 | 五档 IAP 已采用同一 175 地区范围并自动覆盖以后新增地区；最终提交前复核 |
+| Server Notifications | Production 与 Sandbox 均已保存同一正式 HTTPS 入口及 Version 2，并由 API 反查确认；正式入口无效载荷探针返回 400 | 分别完成 Apple Production 与 Sandbox V2 测试通知及服务端幂等审计 |
+| App 内购买 | 5 项；Product ID、非自动续期类型、简中名称/说明、175 地区和中国大陆价格均已由 API 反查确认；当前状态均为 `MISSING_METADATA` | 补五张最终候选审核截图；Paid Apps Agreement 生效后完成 Sandbox/TestFlight 购买与首次同审 |
 | App 隐私 | Privacy Policy、Privacy Choices 和 D7 的13类数据申报已发布；全部与用户关联、均不跟踪 | 最终归档与生产数据流审计后反向复核，出现新数据流先修正再提交 |
 | 商务协议 | Free Apps Agreement 有效；Paid Apps Agreement 状态为“新”，平台提示签署前须更新法律实体 | 由 Account Holder 完成真实法律实体、付费协议、银行和税务；不得猜测或代填事实 |
 | DSA | 交易商流程与 Apple 现有资料已核对，但选择和联系方式未保存，尚未触发或完成电话/邮箱验证码 | 重新选择交易商、核对并保存正式联系方式；本人在浏览器直接完成两项验证码，不把验证码发送到仓库、日志或聊天 |
@@ -103,13 +103,13 @@ API 发布：
 | 受保护配置 | 17 个受管理键各出现一次；临时私钥传输目录 0；不记录任何值 |
 
 保留的发布目录、候选镜像标签和回滚镜像标签用于可追溯发布与快速回退，不属于临时私钥残留。Apple
-Notifications V2 路由已存在，但 App Store Connect 的 Production/Sandbox URL 仍需保存并完成 Apple
-测试通知；真实购买、恢复和退款仍受 Paid Apps Agreement 与商品创建状态约束。
+Notifications V2 路由已存在，App Store Connect 的 Production/Sandbox Version 2 URL 已保存并反查
+确认，仍需完成 Apple 测试通知；真实购买、恢复和退款仍受 Paid Apps Agreement 状态约束。
 
 ## 当前生产与代码阻断
 
 - 生产数据库迁移与 API 发布阻断已解除；Apple Notifications V2 路由已上线且旧微信路由已移除。
-  App Store Connect 尚未配置 Production/Sandbox 通知 URL，也未完成 Apple 测试通知。
+  App Store Connect 的 Production/Sandbox Version 2 通知 URL 已保存并反查确认，尚未完成 Apple 测试通知。
 - PR #38 已消除当前源码和生产 API 自建内容访问链路的稳定设备标识；最终 iOS Build、升级清理和生产
   网络请求尚未形成最终归档闭环证据，完成前不能把“不选择 Device ID”视为最终提交事实。
 - PR #43 的隐私自助 API 与公开页面已上线；仍需用最终候选和两个审核账号完成真实登录后的导出、

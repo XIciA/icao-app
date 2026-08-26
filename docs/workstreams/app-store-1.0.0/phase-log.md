@@ -60,6 +60,10 @@
   联系资料保存，具体个人值不进入仓库。
 - App 本体已设为免费，中国大陆为基础地区，175 个国家或地区均在发布时供应；Apple 芯片 Mac、
   Apple Vision Pro 和校园批量购买优惠已关闭，公开分发保持不变。
+- 2026-08-26 已通过受保护的 App Manager 团队 API Key 创建五档非自动续期商品及简体中文本地化；
+  五项均覆盖当前 175 个地区并自动包含以后新增地区，中国大陆基准价格反查为
+  `¥68 / ¥108 / ¥168 / ¥298 / ¥398`。当前五项均为 `MISSING_METADATA`，只待最终候选生成的五张
+  IAP 审核截图等首次同审材料；密钥和凭据未进入仓库或日志。
 - 已创建 App Manager 职能的团队 App Store Connect API Key，并完成真实 API 鉴权请求；私钥只保存
   在仓库外的本机受保护目录且权限为 `0600`。Apple Developer 正式 App ID 已核对启用 Sign in with
   Apple 和 In-App Purchase。
@@ -104,8 +108,8 @@
 - App Store Connect 当前版本为 iOS `1.0.0` 准备提交；固定元数据、分类、16+、内容权利、隐私 URL
   和隐私标签已保存并发布，App 免费且面向175个国家或地区。最新已验证 TestFlight Build 仍为
   `3493759`（短版本1.0.0、最低 iOS 15.1、2026-08-23上传），但版本页未选择且早于后续主线收口。
-  截图、最终 Build、审核账号、Notes、ICP、通知 URL 和五档 IAP 仍未配置；最终候选必须使用更高
-  Build。
+  截图、最终 Build、审核账号、Notes、ICP、Apple 测试通知和五档 IAP 审核截图仍未完成；通知 URL、五档商品本体、
+  简中本地化、地区和价格已完成，最终候选必须使用更高 Build。
 - Apple Developer 组织账号有效、具 Account Holder 权限，Developer Program 续订日至 2027-08-12，
   最新 Program License Agreement 已于2026-08-24接受。Free Apps Agreement 有效；Paid Apps
   Agreement 仍为“新”且要求先更新法律实体，银行与税务仍待本人按真实材料完成。中国法律合规状态

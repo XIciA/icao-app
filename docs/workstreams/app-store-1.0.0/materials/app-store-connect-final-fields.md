@@ -76,8 +76,8 @@ Apple 要求 App 和 Support URL 提供准确、最新且易用的联系方式�
 
 生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。2026-08-26 已从
 干净主线部署生产 API；无效空请求返回 400，证明入口存在且被安全拒绝。仍须在 App Store Connect
-保存两套 Version 2 URL，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的
-测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
+2026-08-26 已保存并反查确认两套 Version 2 URL。下一步完成 Apple Production 与 Sandbox 测试通知，
+并以 Apple 返回的测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
 
 ### 名称
 
@@ -271,6 +271,8 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 ### 五项共同设置
 
+- 平台状态：五项商品、简体中文本地化、175 个地区可用范围和中国大陆基准价格已创建；当前
+  `MISSING_METADATA` 只待最终候选生成的五张 App Review Screenshot 等送审材料。
 - 创建位置：Subscriptions → Non-Renewing Subscriptions。
 - 类型：Non-Renewing Subscription；不创建自动续期订阅组。
 - Availability：当前全部可用 App Store 国家或地区，与 App 1.0.0 可用地区一致。

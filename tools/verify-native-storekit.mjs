@@ -19,6 +19,8 @@ const runtimePath =
 const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
+const appStoreConnectIapPath = 'tools/app-store-connect-iap.mjs';
+const appStoreConnectApiPath = 'tools/lib/app-store-connect-api.mjs';
 const gatedReleaseScripts = [
   'scripts/archive-ios-testflight.sh',
   'scripts/build-standalone-ios.sh',
@@ -51,6 +53,32 @@ for (const [businessKey, productId] of Object.entries(expectedProducts)) {
   if (occurrences(mapping, `'${productId}'`) !== 1) {
     failures.push(`${mappingPath} must map the Apple product ID exactly once: ${productId}`);
   }
+}
+
+const appStoreConnectIap = await read(appStoreConnectIapPath);
+const appStoreConnectApi = await read(appStoreConnectApiPath);
+for (const required of [
+  '<!-- iap-products:start -->',
+  'result.links?.next',
+  'candidate.value <= targetPriceCny',
+  "inAppPurchaseType: 'NON_RENEWING_SUBSCRIPTION'",
+  'availableInNewTerritories: true',
+  "process.env.ICAO_APP_STORE_CONNECT_WRITE !== '1'",
+  'existingPrice !== selected.value',
+  "existingBaseTerritory !== 'CHN'",
+  'filter%5Bterritory%5D=CHN',
+  'sameTerritories(currentTerritories, territoryCatalog)',
+  'price.attributes?.startDate == null',
+  'included.id === pricePointId',
+  "subscriptionStatusUrlVersion: 'V2'",
+  "subscriptionStatusUrlVersionForSandbox: 'V2'",
+]) {
+  if (!appStoreConnectIap.includes(required)) {
+    failures.push(`${appStoreConnectIapPath} is missing: ${required}`);
+  }
+}
+if (!appStoreConnectApi.includes('acceptedStatuses.includes(response.status)')) {
+  failures.push(`${appStoreConnectApiPath} must explicitly handle accepted non-success statuses.`);
 }
 if (occurrences(mapping, 'recommended: true') !== 1 || !mapping.includes("key: 'membership_31d_v1'")) {
   failures.push('Exactly the 31-day StoreKit product must be recommended.');
