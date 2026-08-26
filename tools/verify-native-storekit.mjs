@@ -65,7 +65,11 @@ for (const required of [
   'availableInNewTerritories: true',
   "process.env.ICAO_APP_STORE_CONNECT_WRITE !== '1'",
   'existingPrice !== selected.value',
+  "existingBaseTerritory !== 'CHN'",
   'filter%5Bterritory%5D=CHN',
+  'sameTerritories(currentTerritories, territoryCatalog)',
+  'price.attributes?.startDate == null',
+  'included.id === pricePointId',
   "subscriptionStatusUrlVersion: 'V2'",
   "subscriptionStatusUrlVersionForSandbox: 'V2'",
 ]) {

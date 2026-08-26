@@ -128,10 +128,39 @@ async function scheduleChinaPrice(credentials, scheduleId) {
     credentials,
     `/v1/inAppPurchasePriceSchedules/${encodeURIComponent(scheduleId)}/manualPrices?filter%5Bterritory%5D=CHN&include=inAppPurchasePricePoint&limit=200`,
   );
+  const currentPrices = (manualPrices.data ?? [])
+    .filter((price) => price.attributes?.startDate == null);
+  if (currentPrices.length > 1) {
+    throw new Error('App Store Connect returned multiple current China mainland manual prices.');
+  }
+  const pricePointId = currentPrices[0]?.relationships?.inAppPurchasePricePoint?.data?.id;
   const value = (manualPrices.included ?? [])
-    .find((included) => included.type === 'inAppPurchasePricePoints')
+    .find((included) => included.type === 'inAppPurchasePricePoints' && included.id === pricePointId)
     ?.attributes?.customerPrice;
   return value == null ? null : Number(value);
+}
+
+async function scheduleBaseTerritory(credentials, scheduleId) {
+  if (!scheduleId) return null;
+  const base = await api(
+    credentials,
+    `/v1/inAppPurchasePriceSchedules/${encodeURIComponent(scheduleId)}/baseTerritory`,
+  );
+  return base.data?.id ?? null;
+}
+
+async function availabilityTerritories(credentials, availabilityId) {
+  if (!availabilityId) return [];
+  return paged(
+    credentials,
+    `/v1/inAppPurchaseAvailabilities/${encodeURIComponent(availabilityId)}/relationships/availableTerritories?limit=200`,
+  );
+}
+
+function sameTerritories(actual, expected) {
+  if (actual.length !== expected.length) return false;
+  const expectedIds = new Set(expected.map((territory) => territory.id));
+  return actual.every((territory) => expectedIds.has(territory.id));
 }
 
 function createProductBody(appId, product) {
@@ -305,6 +334,7 @@ async function syncCommercial(credentials, appId, contract) {
   const byProductId = new Map(remote.map((product) => [product.attributes?.productId, product]));
   const territoryCatalog = await territories(credentials);
   let availabilityCreated = 0;
+  let availabilityUpdated = 0;
   let pricesCreated = 0;
   let pricesUpdated = 0;
   const actualPrices = [];
@@ -317,20 +347,27 @@ async function syncCommercial(credentials, appId, contract) {
       credentials,
       `/v2/inAppPurchases/${encodeURIComponent(current.id)}/inAppPurchaseAvailability`,
     );
-    if (!availability?.data) {
+    const currentTerritories = await availabilityTerritories(credentials, availability?.data?.id);
+    const availabilityMatches = availability?.data?.attributes?.availableInNewTerritories === true
+      && sameTerritories(currentTerritories, territoryCatalog);
+    if (!availabilityMatches) {
       await api(credentials, '/v1/inAppPurchaseAvailabilities', {
         method: 'POST',
         body: JSON.stringify(availabilityBody(current.id, territoryCatalog)),
       });
-      availabilityCreated += 1;
+      if (availability?.data) availabilityUpdated += 1;
+      else availabilityCreated += 1;
     }
     const schedule = await optionalRelationship(
       credentials,
       `/v2/inAppPurchases/${encodeURIComponent(current.id)}/iapPriceSchedule`,
     );
     const existingPrice = await scheduleChinaPrice(credentials, schedule?.data?.id);
+    const existingBaseTerritory = await scheduleBaseTerritory(credentials, schedule?.data?.id);
     const selected = await chinaPricePoint(credentials, current.id, product.targetPriceCny);
-    if (!Number.isFinite(existingPrice) || existingPrice !== selected.value) {
+    if (!Number.isFinite(existingPrice)
+      || existingPrice !== selected.value
+      || existingBaseTerritory !== 'CHN') {
       await api(credentials, '/v1/inAppPurchasePriceSchedules', {
         method: 'POST',
         body: JSON.stringify(priceScheduleBody(current.id, selected.pricePoint.id)),
@@ -342,6 +379,7 @@ async function syncCommercial(credentials, appId, contract) {
   }
   console.log(JSON.stringify({
     availabilityCreated,
+    availabilityUpdated,
     pricesCreated,
     pricesUpdated,
     actualPrices,
@@ -363,12 +401,7 @@ async function commercialStatus(credentials, appId, contract) {
       credentials,
       `/v2/inAppPurchases/${encodeURIComponent(current.id)}/inAppPurchaseAvailability`,
     );
-    const availableTerritories = availability?.data
-      ? await api(
-        credentials,
-        `/v1/inAppPurchaseAvailabilities/${encodeURIComponent(availability.data.id)}/relationships/availableTerritories?limit=200`,
-      )
-      : undefined;
+    const availableTerritories = await availabilityTerritories(credentials, availability?.data?.id);
     const schedule = await optionalRelationship(
       credentials,
       `/v2/inAppPurchases/${encodeURIComponent(current.id)}/iapPriceSchedule`,
@@ -378,18 +411,14 @@ async function commercialStatus(credentials, appId, contract) {
     const selected = await chinaPricePoint(credentials, current.id, product.targetPriceCny);
     if (schedule?.data) {
       priceCny = await scheduleChinaPrice(credentials, schedule.data.id);
-      const base = await api(
-        credentials,
-        `/v1/inAppPurchasePriceSchedules/${encodeURIComponent(schedule.data.id)}/baseTerritory`,
-      );
-      baseTerritory = base.data?.id ?? null;
+      baseTerritory = await scheduleBaseTerritory(credentials, schedule.data.id);
     }
     products.push({
       productId: product.productId,
       exists: true,
       state: current.attributes?.state ?? null,
       availableInNewTerritories: availability?.data?.attributes?.availableInNewTerritories ?? null,
-      availableTerritoryCount: availableTerritories?.data?.length ?? 0,
+      availableTerritoryCount: availableTerritories.length,
       baseTerritory,
       priceCny,
       plannedPriceCny: selected.value,
