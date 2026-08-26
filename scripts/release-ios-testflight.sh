@@ -88,6 +88,7 @@ CANDIDATE_STAMP=$(date -u '+%Y%m%dT%H%M%SZ')
 ARCHIVE_PATH=$ARCHIVE_ROOT/ICAO-${IOS_BUILD_NUMBER}-${CANDIDATE_STAMP}.xcarchive
 EXPORT_PATH=$ARCHIVE_ROOT/export-${IOS_BUILD_NUMBER}-${CANDIDATE_STAMP}
 EXPORT_OPTIONS=$ARCHIVE_ROOT/ExportOptions-${IOS_BUILD_NUMBER}-${CANDIDATE_STAMP}.plist
+ARCHIVE_AUDIT_PATH=$ARCHIVE_ROOT/archive-audit-${IOS_BUILD_NUMBER}-${CANDIDATE_STAMP}.json
 
 mkdir -p "$ARCHIVE_ROOT" "$EXPORT_PATH"
 plutil -create xml1 "$EXPORT_OPTIONS"
@@ -165,6 +166,7 @@ if grep -aEq '127\.0\.0\.1:(3101|8000)|https?://(10\.[0-9.]+|192\.168\.[0-9.]+|1
   exit 1
 fi
 codesign --verify --deep --strict "$APP_PATH"
+node tools/audit-ios-archive.mjs "$APP_PATH" "$ARCHIVE_AUDIT_PATH"
 
 xcodebuild \
   -exportArchive \
@@ -182,7 +184,7 @@ if [ -z "$IPA_PATH" ]; then
   echo 'The exported TestFlight IPA was not found.' >&2
   exit 1
 fi
-node tools/create-testflight-candidate.mjs "$ARCHIVE_PATH" "$IPA_PATH"
+node tools/create-testflight-candidate.mjs "$ARCHIVE_PATH" "$IPA_PATH" "$ARCHIVE_AUDIT_PATH"
 
 xcrun altool --validate-app "$IPA_PATH" --type ios \
   --api-key "$APP_STORE_CONNECT_KEY_ID" \
