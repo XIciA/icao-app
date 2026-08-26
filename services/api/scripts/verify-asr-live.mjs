@@ -7,6 +7,7 @@ import postgres from 'postgres';
 import {
   cleanupTemporaryBusinessAccount,
   createTemporaryPhoneAuthUser,
+  lifetimeBenefitAccountContext,
 } from './live-verifier-account-fixture.mjs';
 
 const apiBase = (process.env.API_BASE ?? 'http://127.0.0.1:3101').replace(/\/$/u, '');
@@ -21,6 +22,7 @@ const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
 const databaseUrl = process.env.DATABASE_URL;
 const identitySecret = process.env.ACCOUNT_IDENTITY_HASH_SECRET;
+const identityBenefitSecret = process.env.IDENTITY_BENEFIT_DIGEST_SECRET ?? identitySecret;
 const REQUIRED_API_ORIGIN = 'https://api.readyoufife.com';
 const REQUIRED_SUPABASE_ORIGIN = 'https://cloud.readyoufife.com';
 const FETCH_TIMEOUT_MILLISECONDS = 45_000;
@@ -258,6 +260,9 @@ cleanupErrors.push(...await cleanupTemporaryBusinessAccount({
   authUserId: userId,
   database,
   errorPrefix: 'asr',
+  lifetimeClaimContextDigest: userId
+    ? lifetimeBenefitAccountContext(userId, identityBenefitSecret)
+    : undefined,
 }));
 try {
   await database.end({ timeout: 5 });

@@ -1,4 +1,4 @@
-import { randomBytes } from 'node:crypto';
+import { createHmac, randomBytes } from 'node:crypto';
 
 function cleanupError(code, cause) {
   return new Error(code, { cause });
@@ -21,6 +21,30 @@ export function temporaryChinaMobile(bytes = randomBytes(4)) {
     + bytes[3]
   ) % 100_000_000;
   return `+86199${String(suffix).padStart(8, '0')}`;
+}
+
+export function lifetimeBenefitAccountContext(accountId, secret) {
+  if (!accountId || !secret) throw new Error('temporary_benefit_context_configuration_invalid');
+  return createHmac('sha256', secret)
+    .update(`lifetime-benefit-account-context-v1\0${accountId}`)
+    .digest('hex');
+}
+
+async function deleteTemporaryCommerce(database, accountId, lifetimeClaimContextDigest) {
+  await database.begin(async (transaction) => {
+    if (accountId) {
+      await transaction`delete from ai_point_ledger_entries where account_id = ${accountId}`;
+      await transaction`delete from ai_point_reservation_allocations where account_id = ${accountId}`;
+      await transaction`delete from ai_point_reservations where account_id = ${accountId}`;
+      await transaction`delete from ai_point_batches where account_id = ${accountId}`;
+    }
+    if (lifetimeClaimContextDigest) {
+      await transaction`
+        delete from lifetime_identity_benefit_claims
+        where claim_context_digest = ${lifetimeClaimContextDigest}
+      `;
+    }
+  });
 }
 
 export async function createTemporaryPhoneAuthUser({
@@ -63,10 +87,20 @@ export async function cleanupTemporaryBusinessAccount({
   authUserId,
   database,
   errorPrefix,
+  lifetimeClaimContextDigest,
 }) {
   const errors = [];
   let accountDeleteFailed = false;
   let authDeleteFailed = false;
+  let commerceDeleteFailed = false;
+
+  if (accountId || lifetimeClaimContextDigest) {
+    try {
+      await deleteTemporaryCommerce(database, accountId, lifetimeClaimContextDigest);
+    } catch {
+      commerceDeleteFailed = true;
+    }
+  }
 
   if (accountId) {
     try {
@@ -103,7 +137,16 @@ export async function cleanupTemporaryBusinessAccount({
     }
   }
 
-  if (!accountId && !authUserId) return errors;
+  if ((accountId || lifetimeClaimContextDigest) && commerceDeleteFailed) {
+    try {
+      await deleteTemporaryCommerce(database, accountId, lifetimeClaimContextDigest);
+      commerceDeleteFailed = false;
+    } catch (error) {
+      errors.push(cleanupError(`${errorPrefix}_cleanup_commerce_failed`, error));
+    }
+  }
+
+  if (!accountId && !authUserId && !lifetimeClaimContextDigest) return errors;
 
   try {
     const [remnants] = await database`
@@ -118,9 +161,16 @@ export async function cleanupTemporaryBusinessAccount({
         ${accountId ? database`exists(select 1 from ai_usage_logs where user_id = ${accountId})` : false} as usage_exists,
         ${accountId ? database`exists(select 1 from ai_quota_buckets where user_id = ${accountId})` : false} as quota_exists,
         ${accountId ? database`exists(select 1 from ai_word_cache where user_id = ${accountId})` : false} as word_cache_exists,
+        ${accountId ? database`exists(select 1 from ai_point_batches where account_id = ${accountId})` : false} as point_batch_exists,
+        ${accountId ? database`exists(select 1 from ai_point_reservations where account_id = ${accountId})` : false} as point_reservation_exists,
+        ${accountId ? database`exists(select 1 from ai_point_reservation_allocations where account_id = ${accountId})` : false} as point_allocation_exists,
+        ${accountId ? database`exists(select 1 from ai_point_ledger_entries where account_id = ${accountId})` : false} as point_ledger_exists,
         ${authUserId
           ? database`exists(select 1 from account_session_revocations where user_id = ${authUserId})`
-          : false} as revocation_exists
+          : false} as revocation_exists,
+        ${lifetimeClaimContextDigest
+          ? database`exists(select 1 from lifetime_identity_benefit_claims where claim_context_digest = ${lifetimeClaimContextDigest})`
+          : false} as lifetime_claim_exists
     `;
     if (!remnants || Object.values(remnants).some(Boolean)) {
       errors.push(cleanupError(`${errorPrefix}_cleanup_postcondition_failed`, remnants));
