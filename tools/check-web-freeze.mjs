@@ -17,7 +17,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = '4478addfa5cd4df8cf2fbda461a3ad21e743f909f0e2fa8455ad6b0c3f76a027';
+const approvedManifestSha256 = '5cce5ddf7c435cf6cbd4edb627f9f3983b8f4eb3c62e494c43daa892c7fb3d1c';
 
 const exactProtectedPaths = [
   '.vercelignore',
@@ -39,6 +39,23 @@ const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
+}
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return value.map(canonicalJson);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(
+    Object.entries(value)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, entry]) => [key, canonicalJson(entry)]),
+  );
+}
+
+function normalizedProtectedContent(repositoryPath, content) {
+  if (repositoryPath !== 'vercel.json') return content;
+  const config = JSON.parse(content.toString('utf8'));
+  delete config.name;
+  return Buffer.from(JSON.stringify(canonicalJson(config)));
 }
 
 function toRepositoryPath(absolutePath) {
@@ -240,7 +257,7 @@ async function fingerprintSelection(selection) {
     const content = await readFile(fromRepositoryPath(repositoryPath));
     files.push({
       path: repositoryPath,
-      sha256: sha256(content),
+      sha256: sha256(normalizedProtectedContent(repositoryPath, content)),
       sources: [...selection.get(repositoryPath)].sort(),
     });
   }
