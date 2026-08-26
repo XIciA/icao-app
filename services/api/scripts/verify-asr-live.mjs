@@ -22,7 +22,7 @@ const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
 const databaseUrl = process.env.DATABASE_URL;
 const identitySecret = process.env.ACCOUNT_IDENTITY_HASH_SECRET;
-const identityBenefitSecret = process.env.IDENTITY_BENEFIT_DIGEST_SECRET ?? identitySecret;
+const identityBenefitSecret = process.env.IDENTITY_BENEFIT_DIGEST_SECRET;
 const REQUIRED_API_ORIGIN = 'https://api.readyoufife.com';
 const REQUIRED_SUPABASE_ORIGIN = 'https://cloud.readyoufife.com';
 const FETCH_TIMEOUT_MILLISECONDS = 45_000;
@@ -52,7 +52,14 @@ requireExactProductionOrigin(
   'asr_live_requires_production_supabase_origin',
 );
 
-if (!supabaseUrl || !publishableKey || !secretKey || !databaseUrl || !identitySecret) {
+if (
+  !supabaseUrl
+  || !publishableKey
+  || !secretKey
+  || !databaseUrl
+  || !identitySecret
+  || !identityBenefitSecret
+) {
   throw new Error('missing_live_verification_configuration');
 }
 if (!['audio/mp4', 'audio/m4a', 'audio/x-m4a'].includes(audioMimeType)) {
