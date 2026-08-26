@@ -13,6 +13,7 @@ const EVIDENCE_ROOT = path.join(ROOT, '.generated', 'critical-capabilities');
 const AUDIO_RUNBOOK = 'docs/records/incidents/audio-recording/README.md';
 const AI_RUNBOOK = 'docs/records/incidents/ai-learning-runtime/README.md';
 const AI_LIVE_VERIFIER_FILES = [
+  'services/api/scripts/live-verifier-account-fixture.mjs',
   'services/api/scripts/verify-ai-live.mjs',
   'services/api/scripts/verify-asr-live.mjs',
   'services/api/scripts/verify-review-live.mjs',
@@ -44,6 +45,8 @@ const CRITICAL_PREFIXES = [
   'services/api/src/feedback/',
   'services/api/scripts/verify-asr-live.mjs',
   'services/api/scripts/verify-ai-live.mjs',
+  'services/api/scripts/verify-review-live.mjs',
+  'services/api/scripts/live-verifier-account-fixture.mjs',
   'src/features/ai/',
   'src/components/auth/',
   'src/features/account/',

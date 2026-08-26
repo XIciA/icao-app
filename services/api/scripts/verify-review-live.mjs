@@ -1,7 +1,11 @@
 import { createHmac, randomBytes } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
+import {
+  cleanupTemporaryBusinessAccount,
+  createTemporaryPhoneAuthUser,
+  lifetimeBenefitAccountContext,
+} from './live-verifier-account-fixture.mjs';
 
 const apiBase = (process.env.API_BASE ?? 'http://127.0.0.1:3101').replace(/\/$/u, '');
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -9,6 +13,7 @@ const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
 const databaseUrl = process.env.DATABASE_URL;
 const identitySecret = process.env.ACCOUNT_IDENTITY_HASH_SECRET;
+const identityBenefitSecret = process.env.IDENTITY_BENEFIT_DIGEST_SECRET;
 const REQUIRED_API_ORIGIN = 'https://api.readyoufife.com';
 const REQUIRED_SUPABASE_ORIGIN = 'https://cloud.readyoufife.com';
 const FETCH_TIMEOUT_MILLISECONDS = 45_000;
@@ -37,7 +42,14 @@ requireExactProductionOrigin(
   'review_live_requires_production_supabase_origin',
 );
 
-if (!supabaseUrl || !publishableKey || !secretKey || !databaseUrl || !identitySecret) {
+if (
+  !supabaseUrl
+  || !publishableKey
+  || !secretKey
+  || !databaseUrl
+  || !identitySecret
+  || !identityBenefitSecret
+) {
   throw new Error('missing_live_verification_configuration');
 }
 
@@ -54,9 +66,8 @@ const options = {
 const auth = createClient(supabaseUrl, publishableKey, options);
 const admin = createClient(supabaseUrl, secretKey, options);
 const database = postgres(databaseUrl, { prepare: false, max: 1 });
-const suffix = `${Date.now()}-${randomBytes(4).toString('hex')}`;
-const email = `review-verify-${suffix}@example.test`;
 const password = `Icao-${randomBytes(18).toString('base64url')}!7`;
+let phone;
 let authUserId;
 let accountId;
 let verification;
@@ -87,14 +98,9 @@ function preservesAviationTerms(value) {
 }
 
 try {
-  const created = await admin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: true,
-  });
-  if (created.error) throw created.error;
-  assert(created.data.user?.id, 'create_user_failed');
-  authUserId = created.data.user.id;
+  const temporaryUser = await createTemporaryPhoneAuthUser({ admin, password });
+  phone = temporaryUser.phone;
+  authUserId = temporaryUser.authUserId;
   accountId = authUserId;
   await database`
     insert into accounts (id, status)
@@ -105,19 +111,19 @@ try {
     values (
       ${accountId},
       ${authUserId},
-      'apple',
-      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0apple\0live-review-${suffix}`).digest('hex')}
+      'phone',
+      ${createHmac('sha256', identitySecret).update(`account-identity-v1\0phone\0${phone}`).digest('hex')}
     )
   `;
 
-  const signedIn = await auth.auth.signInWithPassword({ email, password });
+  const signedIn = await auth.auth.signInWithPassword({ phone, password });
   if (signedIn.error) throw signedIn.error;
   const token = signedIn.data.session?.access_token;
   assert(token, 'sign_in_failed');
 
-  // The temporary email session is intentionally pre-linked through
+  // The temporary supported phone session is intentionally pre-linked through
   // account_identities.auth_user_id; this validates business-account
-  // resolution without pretending to exercise Apple OAuth itself.
+  // resolution without sending SMS or pretending to exercise Apple OAuth.
   const me = await api('/v1/me', token);
   assert(me.data?.id === accountId, 'business_account_resolution_failed');
 
@@ -203,6 +209,9 @@ cleanupErrors.push(...await cleanupTemporaryBusinessAccount({
   authUserId,
   database,
   errorPrefix: 'review',
+  lifetimeClaimContextDigest: accountId
+    ? lifetimeBenefitAccountContext(accountId, identityBenefitSecret)
+    : undefined,
 }));
 try {
   await database.end({ timeout: 5 });
