@@ -60,7 +60,7 @@ Ops、中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号�
 | 发布方式 | `Automatically release this version` 已选 | 最终提交前复核仍选中且没有最早发布日期 |
 | App 信息 | 副标题、教育主分类、工具次分类、Content Rights 和 16+ 覆盖分级已保存；ICP 尚未录入 | 只从正式备案材料录入准确备案号 |
 | 价格与供应 | App 免费，中国大陆为基础地区，175 个国家或地区发布时供应；Mac、Vision Pro 与校园批量购买已关闭 | 五档 IAP 已采用同一 175 地区范围并自动覆盖以后新增地区；最终提交前复核 |
-| Server Notifications | Production 与 Sandbox URL 均未设置；正式入口无效载荷探针返回 400 | 录入同一正式 HTTPS 入口，再分别完成 Apple Production 与 Sandbox V2 测试通知 |
+| Server Notifications | Production 与 Sandbox 均已保存同一正式 HTTPS 入口及 Version 2，并由 API 反查确认；正式入口无效载荷探针返回 400 | 分别完成 Apple Production 与 Sandbox V2 测试通知及服务端幂等审计 |
 | App 内购买 | 5 项；Product ID、非自动续期类型、简中名称/说明、175 地区和中国大陆价格均已由 API 反查确认；当前状态均为 `MISSING_METADATA` | 补五张最终候选审核截图；Paid Apps Agreement 生效后完成 Sandbox/TestFlight 购买与首次同审 |
 | App 隐私 | Privacy Policy、Privacy Choices 和 D7 的13类数据申报已发布；全部与用户关联、均不跟踪 | 最终归档与生产数据流审计后反向复核，出现新数据流先修正再提交 |
 | 商务协议 | Free Apps Agreement 有效；Paid Apps Agreement 状态为“新”，平台提示签署前须更新法律实体 | 由 Account Holder 完成真实法律实体、付费协议、银行和税务；不得猜测或代填事实 |
@@ -103,13 +103,13 @@ API 发布：
 | 受保护配置 | 17 个受管理键各出现一次；临时私钥传输目录 0；不记录任何值 |
 
 保留的发布目录、候选镜像标签和回滚镜像标签用于可追溯发布与快速回退，不属于临时私钥残留。Apple
-Notifications V2 路由已存在，但 App Store Connect 的 Production/Sandbox URL 仍需保存并完成 Apple
-测试通知；真实购买、恢复和退款仍受 Paid Apps Agreement 与商品创建状态约束。
+Notifications V2 路由已存在，App Store Connect 的 Production/Sandbox Version 2 URL 已保存并反查
+确认，仍需完成 Apple 测试通知；真实购买、恢复和退款仍受 Paid Apps Agreement 状态约束。
 
 ## 当前生产与代码阻断
 
 - 生产数据库迁移与 API 发布阻断已解除；Apple Notifications V2 路由已上线且旧微信路由已移除。
-  App Store Connect 尚未配置 Production/Sandbox 通知 URL，也未完成 Apple 测试通知。
+  App Store Connect 的 Production/Sandbox Version 2 通知 URL 已保存并反查确认，尚未完成 Apple 测试通知。
 - PR #38 已消除当前源码和生产 API 自建内容访问链路的稳定设备标识；最终 iOS Build、升级清理和生产
   网络请求尚未形成最终归档闭环证据，完成前不能把“不选择 Device ID”视为最终提交事实。
 - PR #43 的隐私自助 API 与公开页面已上线；仍需用最终候选和两个审核账号完成真实登录后的导出、

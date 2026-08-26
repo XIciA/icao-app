@@ -66,6 +66,8 @@ for (const required of [
   "process.env.ICAO_APP_STORE_CONNECT_WRITE !== '1'",
   'existingPrice !== selected.value',
   'filter%5Bterritory%5D=CHN',
+  "subscriptionStatusUrlVersion: 'V2'",
+  "subscriptionStatusUrlVersionForSandbox: 'V2'",
 ]) {
   if (!appStoreConnectIap.includes(required)) {
     failures.push(`${appStoreConnectIapPath} is missing: ${required}`);

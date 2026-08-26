@@ -108,7 +108,7 @@
 - App Store Connect 当前版本为 iOS `1.0.0` 准备提交；固定元数据、分类、16+、内容权利、隐私 URL
   和隐私标签已保存并发布，App 免费且面向175个国家或地区。最新已验证 TestFlight Build 仍为
   `3493759`（短版本1.0.0、最低 iOS 15.1、2026-08-23上传），但版本页未选择且早于后续主线收口。
-  截图、最终 Build、审核账号、Notes、ICP、通知 URL 和五档 IAP 审核截图仍未配置；五档商品本体、
+  截图、最终 Build、审核账号、Notes、ICP、Apple 测试通知和五档 IAP 审核截图仍未完成；通知 URL、五档商品本体、
   简中本地化、地区和价格已完成，最终候选必须使用更高 Build。
 - Apple Developer 组织账号有效、具 Account Holder 权限，Developer Program 续订日至 2027-08-12，
   最新 Program License Agreement 已于2026-08-24接受。Free Apps Agreement 有效；Paid Apps

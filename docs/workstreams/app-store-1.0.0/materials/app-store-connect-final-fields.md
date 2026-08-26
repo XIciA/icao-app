@@ -76,8 +76,8 @@ Apple 要求 App 和 Support URL 提供准确、最新且易用的联系方式�
 
 生产与 Sandbox 使用同一 HTTPS 入口，由服务端验证 Apple JWS 中的环境并严格隔离。2026-08-26 已从
 干净主线部署生产 API；无效空请求返回 400，证明入口存在且被安全拒绝。仍须在 App Store Connect
-保存两套 Version 2 URL，再分别请求 Apple Production 与 Sandbox 测试通知，并以 Apple 返回的
-测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
+2026-08-26 已保存并反查确认两套 Version 2 URL。下一步完成 Apple Production 与 Sandbox 测试通知，
+并以 Apple 返回的测试通知状态和服务端幂等审计记录证明成功；TestFlight 使用 Sandbox 环境。
 
 ### 名称
 

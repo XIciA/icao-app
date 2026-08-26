@@ -12,11 +12,22 @@ const fieldsPath = path.join(
   root,
   'docs/workstreams/app-store-1.0.0/materials/app-store-connect-final-fields.md',
 );
+const notificationUrl = 'https://api.readyoufife.com/v1/commerce/apple/notifications/v2';
 
 async function paged(credentials, pathname) {
   const data = [];
   let nextPath = pathname;
+  const visited = new Set();
+  let pageCount = 0;
   while (nextPath) {
+    if (visited.has(nextPath)) {
+      throw new Error('App Store Connect returned a pagination loop.');
+    }
+    if (pageCount >= 50) {
+      throw new Error('App Store Connect pagination exceeded the 50-page safety limit.');
+    }
+    visited.add(nextPath);
+    pageCount += 1;
     const result = await api(credentials, nextPath);
     data.push(...(result.data ?? []));
     const next = result.links?.next;
@@ -388,6 +399,72 @@ async function commercialStatus(credentials, appId, contract) {
   console.log(JSON.stringify({ products }));
 }
 
+async function readNotificationAttributes(credentials, appId) {
+  const fields = [
+    'subscriptionStatusUrl',
+    'subscriptionStatusUrlVersion',
+    'subscriptionStatusUrlForSandbox',
+    'subscriptionStatusUrlVersionForSandbox',
+  ].join('%2C');
+  const result = await api(credentials, `/v1/apps/${encodeURIComponent(appId)}?fields%5Bapps%5D=${fields}`);
+  return result.data?.attributes ?? {};
+}
+
+function notificationSummary(attributes) {
+  return {
+    productionUrl: attributes.subscriptionStatusUrl ?? null,
+    productionVersion: attributes.subscriptionStatusUrlVersion ?? null,
+    sandboxUrl: attributes.subscriptionStatusUrlForSandbox ?? null,
+    sandboxVersion: attributes.subscriptionStatusUrlVersionForSandbox ?? null,
+  };
+}
+
+function notificationsMatch(attributes) {
+  return attributes.subscriptionStatusUrl === notificationUrl
+    && attributes.subscriptionStatusUrlVersion === 'V2'
+    && attributes.subscriptionStatusUrlForSandbox === notificationUrl
+    && attributes.subscriptionStatusUrlVersionForSandbox === 'V2';
+}
+
+async function notificationStatus(credentials, appId) {
+  const attributes = await readNotificationAttributes(credentials, appId);
+  console.log(JSON.stringify({
+    ...notificationSummary(attributes),
+  }));
+  return attributes;
+}
+
+async function syncNotifications(credentials, appId) {
+  if (process.env.ICAO_APP_STORE_CONNECT_WRITE !== '1') {
+    throw new Error('Set ICAO_APP_STORE_CONNECT_WRITE=1 to configure App Store notifications.');
+  }
+  await api(credentials, `/v1/apps/${encodeURIComponent(appId)}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      data: {
+        type: 'apps',
+        id: appId,
+        attributes: {
+          subscriptionStatusUrl: notificationUrl,
+          subscriptionStatusUrlVersion: 'V2',
+          subscriptionStatusUrlForSandbox: notificationUrl,
+          subscriptionStatusUrlVersionForSandbox: 'V2',
+        },
+      },
+    }),
+  });
+  let attributes;
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    attributes = await readNotificationAttributes(credentials, appId);
+    if (notificationsMatch(attributes)) break;
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+  }
+  if (!notificationsMatch(attributes ?? {})) {
+    throw new Error('App Store Server Notifications V2 did not persist the frozen production settings.');
+  }
+  console.log(JSON.stringify(notificationSummary(attributes)));
+}
+
 const source = await readFile(fieldsPath, 'utf8');
 const contract = productContract(source);
 const credentials = await appStoreConnectCredentials();
@@ -397,4 +474,6 @@ if (command === 'status') await status(credentials, appId, contract);
 else if (command === 'sync-products') await syncProducts(credentials, appId, contract);
 else if (command === 'sync-commercial') await syncCommercial(credentials, appId, contract);
 else if (command === 'commercial-status') await commercialStatus(credentials, appId, contract);
-else throw new Error('Usage: node tools/app-store-connect-iap.mjs <status|sync-products|sync-commercial|commercial-status>');
+else if (command === 'notification-status') await notificationStatus(credentials, appId);
+else if (command === 'sync-notifications') await syncNotifications(credentials, appId);
+else throw new Error('Usage: node tools/app-store-connect-iap.mjs <status|sync-products|sync-commercial|commercial-status|notification-status|sync-notifications>');
