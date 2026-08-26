@@ -190,7 +190,7 @@ export async function runOpsStaffProvision(
         )
       `;
       await transaction`
-        insert into ops_staff_recovery_codes (id, staff_id, code_hash)
+        insert into ops_staff_recovery_codes
         ${transaction(recoveryRows, 'id', 'staff_id', 'code_hash')}
       `;
       await transaction`
