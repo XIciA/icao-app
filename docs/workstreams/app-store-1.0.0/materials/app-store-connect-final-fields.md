@@ -271,6 +271,8 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 ### 五项共同设置
 
+- 平台状态：五项商品、简体中文本地化、175 个地区可用范围和中国大陆基准价格已创建；当前
+  `MISSING_METADATA` 只待最终候选生成的五张 App Review Screenshot 等送审材料。
 - 创建位置：Subscriptions → Non-Renewing Subscriptions。
 - 类型：Non-Renewing Subscription；不创建自动续期订阅组。
 - Availability：当前全部可用 App Store 国家或地区，与 App 1.0.0 可用地区一致。
