@@ -24,6 +24,7 @@ export function assessPublicTableClassification({ actualTables, expectedTables }
 
 export function assertPublicTableSecurityContract({
   assessment,
+  clientDefaultGrantCount,
   clientGrantCount,
   disabledRlsCount,
 }) {
@@ -45,11 +46,15 @@ export function assertPublicTableSecurityContract({
   if (!Number.isSafeInteger(clientGrantCount) || clientGrantCount !== 0) {
     throw new Error('production_schema_server_only_table_grant_present');
   }
+  if (!Number.isSafeInteger(clientDefaultGrantCount) || clientDefaultGrantCount !== 0) {
+    throw new Error('production_schema_server_only_default_table_grant_present');
+  }
   return {
     actualPublicTables: assessment.actualTables.length,
     expectedPublicTables: assessment.expectedTables.length,
     missingPublicTables: 0,
     serverOnlyClientGrants: 0,
+    serverOnlyClientDefaultTableGrants: 0,
     unclassifiedPublicTables: 0,
   };
 }

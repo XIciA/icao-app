@@ -8,6 +8,7 @@ import {
   assertExpoPrebuildCommand,
   runReleaseCommandContractSelfTest,
 } from './release-command-contract.mjs';
+import { SERVER_ONLY_PUBLIC_TABLES } from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const require = createRequire(import.meta.url);
 const app = JSON.parse(await readFile('app.json', 'utf8'));
@@ -160,6 +161,10 @@ const productionMigrationApply = await readFile('scripts/apply-production-migrat
 const productionSchemaVerifier = await readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8');
 const productionSchemaContractLib = await readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8');
 const productionSchemaContractTests = await readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8');
+const clientTableGrantRevocation = await readFile(
+  'services/api/drizzle/0034_revoke_client_table_grants.sql',
+  'utf8',
+);
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
 const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
@@ -411,15 +416,30 @@ if (
 ) {
   throw new Error('The migration rehearsal must protect production and only drop its created isolated database.');
 }
+for (const requiredRehearsalSchemaContract of [
+  'services/api/scripts/verify-production-schema-contract.mjs',
+  '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
+  'p.serverOnlyClientGrants !== 0',
+  'p.serverOnlyClientDefaultTableGrants !== 0',
+  "printf 'schema_contract_verified=1\\n'",
+  "printf 'schema_contract_sha256=%s\\n' \"$schema_contract_sha\"",
+]) {
+  if (!migrationRehearsal.includes(requiredRehearsalSchemaContract)) {
+    throw new Error(`Migration rehearsal schema contract is incomplete: ${requiredRehearsalSchemaContract}`);
+  }
+}
 for (const requiredApplyContract of [
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-15:19:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-34:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0',
   'scripts/rehearse-production-migrations.sh',
   'icao-production-migration-apply.lock',
   'icao-production-release-change.lock',
   'scripts/migrate.mjs --production-apply',
   'verify-production-schema-contract.mjs',
+  'p.serverOnlyClientDefaultTableGrants !== 0',
+  'test "$(evidence_value schema_contract_verified)" = 1',
+  'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
   'automatic_production_restore=forbidden',
   'manual_authorization_required_choose_forward_fix_or_verified_restore',
   'production_migration_apply_ok',
@@ -435,13 +455,34 @@ if (
   || !productionSchemaVerifier.includes("from information_schema.tables")
   || !productionSchemaVerifier.includes("table_type = 'BASE TABLE'")
   || !productionSchemaVerifier.includes('transaction.array(actualPublicTables)')
+  || !productionSchemaVerifier.includes('from pg_default_acl default_acl')
+  || !productionSchemaVerifier.includes('aclexplode(default_acl.defaclacl)')
+  || !productionSchemaVerifier.includes("owner_role.rolname in ('postgres', 'supabase_admin')")
+  || !productionSchemaVerifier.includes('privilege.grantee = 0')
   || !productionSchemaContractLib.includes('production_schema_unclassified_public_tables:')
   || !productionSchemaContractLib.includes('production_schema_server_only_table_grant_present')
+  || !productionSchemaContractLib.includes('production_schema_server_only_default_table_grant_present')
   || !productionSchemaContractTests.includes('unexpected_public_table')
   || !productionSchemaContractTests.includes('clientGrantCount: 1')
+  || !productionSchemaContractTests.includes('clientDefaultGrantCount: 1')
   || !productionSchemaVerifier.includes('production_commerce_product_catalog_mismatch')
 ) {
   throw new Error('The post-migration production schema verifier is incomplete.');
+}
+const revokedClientTables = [...clientTableGrantRevocation.matchAll(
+  /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
+)].map((match) => match[1]).sort();
+if (
+  JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
+  || !clientTableGrantRevocation.includes(
+    'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
+  )
+  || !clientTableGrantRevocation.includes(
+    'ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;',
+  )
+  || clientTableGrantRevocation.includes('FROM service_role')
+) {
+  throw new Error('The production client-table grant revocation migration is incomplete.');
 }
 for (const [name, service] of [
   ['PostgreSQL backup', postgresBackupService],

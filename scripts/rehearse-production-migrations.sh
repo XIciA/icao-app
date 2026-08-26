@@ -503,6 +503,28 @@ post_summary=$(docker run --rm -v "$post_plan:/evidence.json:ro" "$image" node -
   process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
 ')
 
+# BEGIN migration-rehearsal-schema-contract-verification
+schema_contract=$work_dir/schema-contract.json
+docker run --rm --network supabase_default --env-file "$database_env" \
+  -e ICAO_PRODUCTION_DATABASE_NAME="$database_name" "$image" \
+  node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
+docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
+  const p = require("/evidence.json");
+  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables !== 56
+      || p.expectedPublicTables !== 56 || p.actualPublicTables !== 56
+      || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
+      || p.commerceProducts !== 5 || p.appleProductMappings !== 5
+      || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
+      || p.defaultAclOwners !== 2 || p.serverOnlyClientDefaultTableGrants !== 0
+      || p.deviceDigestColumns !== 0) process.exit(1);
+'
+schema_contract_sha=$(sha256sum "$schema_contract" | awk '{ print $1 }')
+case "$schema_contract_sha" in
+  ''|*[!a-f0-9]*) echo 'isolated rehearsal schema contract SHA is invalid' >&2; exit 1 ;;
+esac
+test "${#schema_contract_sha}" -eq 64
+# END migration-rehearsal-schema-contract-verification
+
 fingerprint_after_sql=$work_dir/fingerprint-after.sql
 cat > "$fingerprint_after_sql" <<'SQL'
 CREATE TABLE icao_rehearsal.table_fingerprints_after (
@@ -629,6 +651,8 @@ test "$cleanup_verified" = 1
   printf 'missing_contracts=%s\n' "$missing_contracts"
   printf 'unvalidated_constraints=%s\n' "$unvalidated_constraints"
   printf 'device_digest_columns=%s\n' "$device_digest_columns"
+  printf 'schema_contract_verified=1\n'
+  printf 'schema_contract_sha256=%s\n' "$schema_contract_sha"
   printf 'isolated_database_contract=%s\n' "$database_contract"
   printf 'isolated_database_removed=1\n'
   printf 'cleanup_verified=%s\n' "$cleanup_verified"

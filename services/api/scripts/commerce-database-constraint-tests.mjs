@@ -185,6 +185,13 @@ before(async () => {
   const bootstrap = psql(`
     CREATE ROLE anon;
     CREATE ROLE authenticated;
+    CREATE ROLE service_role;
+    CREATE ROLE supabase_admin;
+    GRANT USAGE, CREATE ON SCHEMA public TO supabase_admin;
+    ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+      GRANT ALL PRIVILEGES ON TABLES TO anon, authenticated, service_role;
+    ALTER DEFAULT PRIVILEGES FOR ROLE supabase_admin IN SCHEMA public
+      GRANT ALL PRIVILEGES ON TABLES TO anon, authenticated, service_role;
     CREATE SCHEMA auth;
     CREATE TABLE auth.users (id uuid PRIMARY KEY);
     CREATE TABLE auth.sessions (id uuid PRIMARY KEY, user_id uuid NOT NULL);
@@ -232,6 +239,13 @@ before(async () => {
         );
       `);
       assert.equal(legacyConsent.status, 0, legacyConsent.stderr);
+    }
+    if (name === '0034_revoke_client_table_grants.sql') {
+      const productionGrantRegression = psql(`
+        GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO anon, authenticated;
+        GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO service_role;
+      `);
+      assert.equal(productionGrantRegression.status, 0, productionGrantRegression.stderr);
     }
     const migration = psql(
       readFileSync(join(migrationsDirectory, name), 'utf8')
@@ -534,15 +548,76 @@ test('every public API-owned table is classified and private to client roles', (
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(',');
   assert.deepEqual(actualPublicTables, SERVER_ONLY_PUBLIC_TABLES);
-  for (const role of ['anon', 'authenticated']) {
-    for (const table of SERVER_ONLY_PUBLIC_TABLES) {
-      assert.equal(
-        queryScalar(`SELECT has_table_privilege('${role}', '${table}', 'SELECT,INSERT,UPDATE,DELETE')::text`),
-        'false',
-        `${role} must not access ${table}`,
-      );
-    }
-  }
+  const tablePrivileges = [
+    'SELECT',
+    'INSERT',
+    'UPDATE',
+    'DELETE',
+    'TRUNCATE',
+    'REFERENCES',
+    'TRIGGER',
+  ];
+  const protectedTableArray = `ARRAY[${SERVER_ONLY_PUBLIC_TABLES.map((table) => `'${table}'`).join(',')}]::text[]`;
+  const privilegeArray = `ARRAY[${tablePrivileges.map((privilege) => `'${privilege}'`).join(',')}]::text[]`;
+  assert.equal(queryScalar(`
+    SELECT COUNT(*)
+    FROM unnest(${protectedTableArray}) AS protected_table(table_name)
+    CROSS JOIN unnest(ARRAY['anon', 'authenticated']::text[]) AS client_role(role_name)
+    CROSS JOIN unnest(${privilegeArray}) AS table_privilege(privilege_name)
+    WHERE has_table_privilege(
+      client_role.role_name,
+      format('public.%I', protected_table.table_name),
+      table_privilege.privilege_name
+    )
+  `), '0');
+  assert.equal(queryScalar(`
+    SELECT COUNT(*)
+    FROM unnest(${protectedTableArray}) AS protected_table(table_name)
+    CROSS JOIN unnest(${privilegeArray}) AS table_privilege(privilege_name)
+    WHERE has_table_privilege(
+      'service_role',
+      format('public.%I', protected_table.table_name),
+      table_privilege.privilege_name
+    )
+  `), String(SERVER_ONLY_PUBLIC_TABLES.length * tablePrivileges.length));
+  const defaultPrivilegeProbe = psql(`
+    CREATE TABLE public.client_grant_default_probe (id integer);
+    SET ROLE supabase_admin;
+    CREATE TABLE public.client_grant_supabase_admin_probe (id integer);
+    RESET ROLE;
+  `);
+  assert.equal(defaultPrivilegeProbe.status, 0, defaultPrivilegeProbe.stderr);
+  assert.equal(queryScalar(`
+    SELECT COUNT(*)
+    FROM unnest(ARRAY['anon', 'authenticated']::text[]) AS client_role(role_name)
+    CROSS JOIN unnest(ARRAY[
+      'public.client_grant_default_probe',
+      'public.client_grant_supabase_admin_probe'
+    ]::text[]) AS probe_table(table_name)
+    CROSS JOIN unnest(${privilegeArray}) AS table_privilege(privilege_name)
+    WHERE has_table_privilege(
+      client_role.role_name,
+      probe_table.table_name,
+      table_privilege.privilege_name
+    )
+  `), '0');
+  assert.equal(queryScalar(`
+    SELECT COUNT(*)
+    FROM unnest(ARRAY[
+      'public.client_grant_default_probe',
+      'public.client_grant_supabase_admin_probe'
+    ]::text[]) AS probe_table(table_name)
+    CROSS JOIN unnest(${privilegeArray}) AS table_privilege(privilege_name)
+    WHERE has_table_privilege(
+      'service_role',
+      probe_table.table_name,
+      table_privilege.privilege_name
+    )
+  `), String(2 * tablePrivileges.length));
+  assert.equal(psql(`
+    DROP TABLE public.client_grant_default_probe;
+    DROP TABLE public.client_grant_supabase_admin_probe;
+  `).status, 0);
 });
 
 test('lifetime identity claims survive account deletion and remain globally single-use', () => {
