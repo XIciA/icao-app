@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "scope": "existing-vercel-web-source-and-export-inputs",
   "baseline": {
-    "capturedAt": "2026-08-26T02:10:47.507Z",
-    "repositoryHead": "807a0860ce6e25ebc6629b978a46eba807ca935c",
+    "capturedAt": "2026-08-26T02:19:14.136Z",
+    "repositoryHead": "dbf6e0cebf6dab86b2b3edcd514f4a7eabe8b835",
     "workingTreeMode": "exact-current-files-including-uncommitted-state",
     "remoteProductionDeploymentVerified": false
   },
@@ -38,7 +38,7 @@
     ]
   },
   "fileCount": 346,
-  "combinedSha256": "845836c28616721f1af070f798d8246f2e745a1665a4c7af9c10572df21d3c2e",
+  "combinedSha256": "6518cffc3b57dc957c7c278abb3f9b03e0b6097a25226bb2ef60b7ff1e1894e0",
   "files": [
     {
       "path": ".vercelignore",
@@ -140,7 +140,7 @@
     },
     {
       "path": "app.json",
-      "sha256": "b9998a0a12869737f4c138c02ce5d03aab39f324191aefa0848fa478ac47545e",
+      "sha256": "b0c5785702022a3676e9c293bd2d7e61ea67c232cc54a28b5805a3d449c6526a",
       "sources": [
         "exact_web_config_or_asset"
       ]
