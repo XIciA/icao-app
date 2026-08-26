@@ -9,6 +9,7 @@ import {
 } from '../components/StudyAudioPlayer';
 
 const mockSetAudioModeAsync = jest.fn(async (_mode: unknown): Promise<void> => undefined);
+const mockSetIsAudioActiveAsync = jest.fn(async (_active: boolean): Promise<void> => undefined);
 
 const mockPlayer = {
   pause: jest.fn(),
@@ -46,6 +47,7 @@ jest.mock('lucide-react-native', () => {
 
 jest.mock('expo-audio', () => ({
   setAudioModeAsync: (mode: unknown) => mockSetAudioModeAsync(mode),
+  setIsAudioActiveAsync: (active: boolean) => mockSetIsAudioActiveAsync(active),
   useAudioPlayer: () => mockPlayer,
   useAudioPlayerStatus: () => mockStatus,
 }));
@@ -55,6 +57,7 @@ describe('StudyAudioPlayer', () => {
     jest.clearAllMocks();
     audioSessionOrchestrator.resetForTests();
     mockSetAudioModeAsync.mockResolvedValue(undefined);
+    mockSetIsAudioActiveAsync.mockResolvedValue(undefined);
     mockPlayer.pause.mockImplementation(() => undefined);
     mockPlayer.play.mockImplementation(() => undefined);
     mockPlayer.replace.mockImplementation(() => undefined);

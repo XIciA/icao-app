@@ -1,4 +1,6 @@
-import { createAudioPlayer, type AudioStatus } from 'expo-audio';
+import { type AudioStatus } from 'expo-audio';
+
+import { createSessionManagedAudioPlayer } from '@/platform/audio';
 
 import type { RawRecording } from './types';
 
@@ -23,7 +25,7 @@ function validDuration(status: AudioStatus) {
 export const recordingMediaProbe: RecordingMediaProbe = {
   async probe(raw) {
     if (raw.kind !== 'native-file') throw new Error('recording_media_unreadable');
-    const player = createAudioPlayer(raw.uri, { updateInterval: 100 });
+    const player = createSessionManagedAudioPlayer(raw.uri, { updateInterval: 100 });
     let subscription: { remove(): void } | undefined;
     let timeout: ReturnType<typeof setTimeout> | undefined;
     try {

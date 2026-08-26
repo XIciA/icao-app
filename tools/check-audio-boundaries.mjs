@@ -4,6 +4,8 @@ import path from 'node:path';
 const root = process.cwd();
 const sourceRoot = path.join(root, 'src');
 const orchestrator = 'src/platform/audio/audio-session-orchestrator.ts';
+const sessionManagedPlayer = 'src/platform/audio/session-managed-player.ts';
+const webRadioPlayer = 'src/features/radio-player/RadioPlayerProvider.web.tsx';
 const recorderAdapter = 'src/features/question-bank/recording/expo-recorder-adapter.ts';
 const recorderAdapterWeb = 'src/features/question-bank/recording/expo-recorder-adapter.web.ts';
 const repository = 'src/features/question-bank/recording/recording-repository.ts';
@@ -45,6 +47,28 @@ for (const file of files) {
     failures.push(`${name}: RecordingEngine is the only recording lifecycle owner; do not restore the retired reducer`);
   }
   reject(file, content, /\bsetAudioModeAsync\b/, [orchestrator], 'setAudioModeAsync is owned by AudioSessionOrchestrator');
+  reject(file, content, /\bsetIsAudioActiveAsync\b/, [orchestrator], 'setIsAudioActiveAsync is owned by AudioSessionOrchestrator');
+  reject(
+    file,
+    content,
+    /import\s*\{[^}]*\b(?:createAudioPlayer|useAudioPlayer)\b[^}]*\}\s*from\s*['"]expo-audio['"]/s,
+    [sessionManagedPlayer, webRadioPlayer],
+    'Expo Audio players must use the session-managed factory or hook so pause cannot deactivate a recording session',
+  );
+  reject(
+    file,
+    content,
+    /\b(?:createAudioPlayer|useAudioPlayer)\s*\(/,
+    [sessionManagedPlayer, webRadioPlayer],
+    'Expo Audio player construction must stay behind the session-managed boundary',
+  );
+  reject(
+    file,
+    content,
+    /(?:import\s*\*\s*as\s+\w+\s*from|require\s*\(|import\s*\()\s*['"]expo-audio['"]\s*\)?/,
+    [orchestrator, sessionManagedPlayer, recorderAdapter, recorderAdapterWeb, webRadioPlayer],
+    'namespace, require, or dynamic Expo Audio access may not bypass the audio ownership boundaries',
+  );
   reject(
     file,
     content,
@@ -85,7 +109,14 @@ for (const file of files) {
   if (name === containerValidator && !/mediaDurationMs/.test(content)) {
     failures.push(`${name}: container validation must expose real audio-track duration`);
   }
-  if (name === mediaProbe && !/createAudioPlayer/.test(content)) {
+  if (name === sessionManagedPlayer && (
+    !/keepAudioSessionActive\s*:\s*true/.test(content)
+    || !/useAudioPlayer\(source,\s*withManagedAudioSession\(options\)\)/.test(content)
+    || !/createAudioPlayer\(source,\s*withManagedAudioSession\(options\)\)/.test(content)
+  )) {
+    failures.push(`${name}: every managed player must keep the native session active; AudioSessionOrchestrator owns activation and profile changes`);
+  }
+  if (name === mediaProbe && !/createSessionManagedAudioPlayer/.test(content)) {
     failures.push(`${name}: native media probing must use the platform decoder without playing`);
   }
   if (name.startsWith('src/features/question-bank/recording/')

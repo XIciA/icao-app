@@ -1,8 +1,13 @@
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { useAudioPlayerStatus } from 'expo-audio';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
-import { audioSessionOrchestrator, emitAudioDiagnostic, type AudioLease } from '@/platform/audio';
+import {
+  audioSessionOrchestrator,
+  emitAudioDiagnostic,
+  type AudioLease,
+  useSessionManagedAudioPlayer,
+} from '@/platform/audio';
 
 import { recordingRepository } from './recording-repository';
 import type { RecordingAsset } from './types';
@@ -12,7 +17,7 @@ const LOAD_TIMEOUT_MS = 4_000;
 export type RecordingPlaybackError = 'asset_missing' | 'playback_load_failed' | 'playback_start_failed';
 
 export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
-  const player = useAudioPlayer(null, { updateInterval: 100 });
+  const player = useSessionManagedAudioPlayer(null, { updateInterval: 100 });
   const status = useAudioPlayerStatus(player);
   const [error, setError] = useState<RecordingPlaybackError>();
   const [retryToken, setRetryToken] = useState(0);

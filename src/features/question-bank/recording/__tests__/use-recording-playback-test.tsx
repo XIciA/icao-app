@@ -32,6 +32,7 @@ jest.mock('@/platform/audio', () => ({
     release: (lease: unknown) => mockRelease(lease),
   },
   emitAudioDiagnostic: (event: unknown) => mockEmitDiagnostic(event),
+  useSessionManagedAudioPlayer: () => mockPlayer,
 }));
 jest.mock('../recording-repository', () => ({
   recordingRepository: { assetExists: () => true },

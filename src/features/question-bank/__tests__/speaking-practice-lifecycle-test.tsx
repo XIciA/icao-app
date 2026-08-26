@@ -100,6 +100,7 @@ jest.mock('@/platform/audio', () => ({
     release: (lease: unknown) => mockRelease(lease),
   },
   emitAudioDiagnostic: jest.fn(),
+  useSessionManagedAudioPlayer: () => mockPlayback,
 }));
 
 jest.mock('../recording/expo-recorder-adapter', () => ({

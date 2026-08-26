@@ -1,4 +1,5 @@
 import { RecordingEngine } from '../recording-engine';
+import { RecordingRepositoryError } from '../recording-repository-error';
 import type {
   RawRecording,
   RecorderPort,
@@ -213,6 +214,33 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(engine.getSnapshot().phase).toBe('ready');
   });
 
+  it('rebuilds after a native error arrives while a valid stop is finalizing', async () => {
+    const stopped = deferred<RawRecording>();
+    const { engine, onRecorded, repository, runtime, setNow } = setup();
+    runtime.stop.mockReturnValue(stopped.promise);
+    engine.pressIn();
+    await flush();
+    setNow(1_000);
+    const release = engine.pressOut();
+    await flush();
+
+    runtime.emit({
+      code: 'recording_interrupted',
+      context: { operationId: 1, runtimeEpoch: 0 },
+      type: 'error',
+    });
+    stopped.resolve(rawRecording);
+    await release;
+
+    expect(repository.commitRaw).toHaveBeenCalledTimes(1);
+    expect(onRecorded).toHaveBeenCalledWith(committedAsset);
+    expect(engine.getSnapshot()).toMatchObject({
+      asset: committedAsset,
+      phase: 'ready',
+      runtimeEpoch: 1,
+    });
+  });
+
   it('turns recorder self-finish into interruption and preserves the old asset', async () => {
     const { engine, onRecorded, repository, runtime, setNow } = setup(committedAsset);
     engine.pressIn();
@@ -224,7 +252,24 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(repository.discardRaw).toHaveBeenCalled();
     expect(repository.commitRaw).not.toHaveBeenCalled();
     expect(onRecorded).not.toHaveBeenCalled();
-    expect(engine.getSnapshot()).toMatchObject({ asset: committedAsset, phase: 'ready' });
+    expect(engine.getSnapshot()).toMatchObject({ asset: committedAsset, phase: 'ready', runtimeEpoch: 1 });
+    expect(engine.getSnapshot().error?.code).toBe('recording_interrupted');
+  });
+
+  it('does not rebuild a healthy runtime for a user-requested interruption', async () => {
+    const { engine, runtime, setNow } = setup(committedAsset);
+    engine.pressIn();
+    await flush();
+    setNow(1_000);
+
+    await engine.interrupt();
+
+    expect(runtime.stop).toHaveBeenCalledTimes(1);
+    expect(engine.getSnapshot()).toMatchObject({
+      asset: committedAsset,
+      phase: 'ready',
+      runtimeEpoch: 0,
+    });
     expect(engine.getSnapshot().error?.code).toBe('recording_interrupted');
   });
 
@@ -290,16 +335,86 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(engine.getSnapshot().error?.code).toBe('recording_commit_failed');
   });
 
-  it('does not ask the Engine to discard a Raw after commit ownership transferred', async () => {
-    const { engine, repository, setNow } = setup();
-    repository.commitRaw.mockRejectedValueOnce(new Error('copy failed'));
+  it('does not cancel the recorder after stop succeeded and commit ownership transferred', async () => {
+    const { engine, repository, runtime, setNow } = setup();
+    repository.commitRaw.mockRejectedValueOnce(new RecordingRepositoryError('recording_commit_failed'));
     engine.pressIn();
     await flush();
     setNow(1_000);
     await engine.pressOut();
     expect(repository.commitRaw).toHaveBeenCalledTimes(1);
     expect(repository.discardRaw).not.toHaveBeenCalled();
-    expect(engine.getSnapshot().error?.code).toBe('record_stop_failed');
+    expect(runtime.cancel).not.toHaveBeenCalled();
+    expect(engine.getSnapshot().error?.code).toBe('recording_commit_failed');
+    expect(engine.getSnapshot().runtimeEpoch).toBe(0);
+  });
+
+  it('measures confirmed capture time without native start or finalization latency', async () => {
+    const started = deferred<undefined>();
+    const stopped = deferred<RawRecording>();
+    const { engine, repository, runtime, setNow } = setup();
+    runtime.start.mockReturnValue(started.promise);
+    runtime.stop.mockReturnValue(stopped.promise);
+
+    engine.pressIn();
+    await flush();
+    setNow(800);
+    started.resolve(undefined);
+    await flush();
+    expect(engine.getSnapshot().phase).toBe('recording');
+
+    setNow(1_800);
+    const release = engine.pressOut();
+    await flush();
+    setNow(2_600);
+    stopped.resolve(rawRecording);
+    await release;
+
+    expect(repository.commitRaw).toHaveBeenCalledWith(expect.objectContaining({
+      operationDurationMs: 1_000,
+    }));
+    expect(mockEmitAudioDiagnostic).toHaveBeenCalledWith(expect.objectContaining({
+      code: 'recording_started',
+      durationMillis: 800,
+    }));
+    expect(mockEmitAudioDiagnostic).toHaveBeenCalledWith(expect.objectContaining({
+      code: 'recording_finalized',
+      durationMillis: 800,
+    }));
+  });
+
+  it('rebuilds after a media output contract failure and succeeds on the next runtime', async () => {
+    const { engine, onRecorded, repository, runtime, setNow } = setup(committedAsset);
+    repository.commitRaw.mockRejectedValueOnce(
+      new RecordingRepositoryError('recording_media_duration_mismatch'),
+    );
+
+    engine.pressIn();
+    await flush();
+    setNow(1_000);
+    await engine.pressOut();
+
+    expect(runtime.stop).toHaveBeenCalledTimes(1);
+    expect(runtime.cancel).not.toHaveBeenCalled();
+    expect(engine.getSnapshot()).toMatchObject({
+      asset: committedAsset,
+      runtimeEpoch: 1,
+      runtimeTainted: false,
+    });
+    expect(engine.getSnapshot().error?.code).toBe('recording_media_duration_mismatch');
+
+    const replacementRuntime = new FakeRuntime();
+    engine.attachRuntime(replacementRuntime, 1);
+    engine.pressIn();
+    await flush();
+    setNow(2_000);
+    await engine.pressOut();
+
+    expect(replacementRuntime.stop).toHaveBeenCalledTimes(1);
+    expect(repository.commitRaw).toHaveBeenCalledTimes(2);
+    expect(onRecorded).toHaveBeenCalledWith(committedAsset);
+    expect(engine.getSnapshot()).toMatchObject({ phase: 'ready', runtimeEpoch: 1 });
+    expect(engine.getSnapshot().error).toBeUndefined();
   });
 
   it('taints a timed-out stop, blocks retry, cleans the late Raw, then requests a new runtime epoch', async () => {
