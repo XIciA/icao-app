@@ -1,10 +1,11 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
-import type {
-  AccountDataExportResponse,
-  ApiSuccessEnvelope,
-  ClearLearningDataRequest,
-  DeleteAllAiResultsRequest,
-  PrivacyDeletionResponse,
+import {
+  discloseAiGeneratedExportRecord,
+  type AccountDataExportResponse,
+  type ApiSuccessEnvelope,
+  type ClearLearningDataRequest,
+  type DeleteAllAiResultsRequest,
+  type PrivacyDeletionResponse,
 } from '@icao/contracts';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -70,7 +71,15 @@ export class AccountPrivacyController {
     ]);
     return {
       requestId: request.id,
-      data: { schemaVersion: 1, exportedAt, account, learning },
+      data: {
+        schemaVersion: 1,
+        exportedAt,
+        account,
+        learning: {
+          ...learning,
+          records: learning.records.map(discloseAiGeneratedExportRecord),
+        },
+      },
     };
   }
 }

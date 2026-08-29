@@ -445,6 +445,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     textAiDescription,
     thirdPartyDescription,
     aiRecordsDescription,
+    aiGeneratedContentDescription,
     minorDescription,
   } = resolveLegalRuntimeCopy(Platform.OS);
   const intro = isAgreement
@@ -454,6 +455,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     ['协议主体与适用范围', '本协议是您与云启航科（成都）科技有限公司就使用听你五个 iOS、Android 正式 App 及其相关服务达成的约定。您开始使用服务即表示已阅读并同意本协议及隐私政策。'],
     ['账号与登录', agreementAccountDescription],
     ['学习服务与 AI 边界', '本应用提供航空英语题库、音频、录音、转写和 AI 辅助反馈。练习结果仅供学习参考，不代表 ICAO、民航监管机构、考试机构或用人单位的官方评分、认证或专业结论。'],
+    ...(aiGeneratedContentDescription ? [['AI 生成内容标识', aiGeneratedContentDescription]] : []),
     ['内容与知识产权', agreementContentDescription],
     ['用户内容与反馈', '您应确保提交的回答、录音、文字、图片和联系方式合法且不侵犯他人权益。您授权我们在提供转写、分析、同步、客服和故障处理所必需的范围内处理这些内容，具体规则见隐私政策。'],
     ['使用规范', '不得利用本服务实施违法活动、攻击或绕过访问控制、干扰服务器、冒用他人身份、传播恶意程序，或以自动化方式消耗超出正常学习所需的资源。'],
@@ -476,7 +478,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     <Page title={isAgreement ? '用户协议' : '隐私政策'}>
       <View style={styles.legal}>
         <AppText variant="pageTitle">{isAgreement ? '用户服务协议' : '隐私政策'}</AppText>
-        <AppText variant="micro">版本 v4.0 · 更新于 2026-08-25 · 生效于 2026-08-25</AppText>
+        <AppText variant="micro">版本 v4.1 · 更新于 2026-08-29 · 生效于 2026-08-29</AppText>
         <Card style={styles.intro}><AppText>{intro}</AppText></Card>
         {clauses.map(([title, body], index) => (
           <View key={title} style={styles.clause}>

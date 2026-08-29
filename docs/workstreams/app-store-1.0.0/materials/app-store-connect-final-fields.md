@@ -1,7 +1,8 @@
 # App Store Connect 1.0.0 唯一最终字段包
 
-状态：固定字段已定稿；隐私自助能力、生产数据库/API、候选 Build 和五个正式公开页面已经就绪，但
-中国大陆合规、Apple 付费商务、审核账号、IAP验收和截图等门禁尚未全部通过，不可直接提交；
+状态：固定字段已定稿；隐私自助能力、生产数据库/API 和五个正式公开页面的上一版已经就绪，
+本轮 AI 标识与模型备案 v4.1 源码尚待从最终主线发布；中国大陆合规、Apple 付费商务、审核账号、
+IAP 验收和截图等门禁尚未全部通过，不可直接提交；
 平台专属事实仍按文中门禁当场补入，不在仓库保存凭据。
 
 适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 只在中国大陆销售，
@@ -17,9 +18,9 @@
 | 副标题 | 见下方副标题字段 | 固定；Apple 上限 30 字符 |
 | Apple ID | `6800583111` | App Store Connect 现有 App 记录 |
 | Bundle ID | `com.readyoufife.ios` | 与 `app.json` 一致 |
-| 用户可见版本 | `1.0.0` | 候选归档 Build `3493761` |
+| 用户可见版本 | `1.0.0` | 新候选预留 Build `3493762` |
 | App Store iOS 版本记录 | `1.0.0` | 平台草稿已保存为冻结值 `1.0.0` |
-| 送审 Build | `3493761` | 对应提交 `fca7436d497430db88cf1a29410d61878fd85fc5`，状态 `VALID` 且已关联1.0.0；只有真实代码缺陷才换更高 Build |
+| 送审 Build | `3493762` | 须从整合分支合入后的干净 `origin/main` 归档和上传；旧 Build `3493761` 仅作历史录音修复候选保留 |
 | 主要分类 | 教育（Education） | 固定 |
 | 次要分类 | 工具（Utilities） | 固定；中国大陆 App 备案服务分类仍为工具 |
 | App 定价 | 免费 | 会员能力只通过 App 内购买提供 |
@@ -32,8 +33,8 @@
 | 内容版权（Content Rights） | 是，App 包含或访问第三方内容 | 公司或相关权利人已拥有必要权利；不宣称全部原创 |
 | 版权（Copyright） | `2026 云启航科（成都）科技有限公司` | 唯一拟录入值；负责人须先确认该公司是该字段所要求的权利主体 |
 | Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 已上线并提供 App 内反馈路径和产品支持邮箱；提交前验证邮箱可投递、收件和回复 |
-| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前 `official-site` 自助权利版本已上线并与主线源码一致；最终提交前再与归档和生产数据流复核 |
-| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 自助导出、删除和撤回 AI 同意说明已上线并与主线源码、生产 API 一致；平台字段已保存 |
+| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前线上为上一版；包含 AI 标识与模型备案口径的 v4.1 源码须从最终主线发布后，才能与归档和生产数据流复核 |
+| Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 当前线上为上一版；包含 AI 导出标识与模型备案口径的源码须从最终主线发布；平台字段已保存 |
 | Marketing URL | 留空 | 首发不填 |
 | 新版本内容（What’s New） | 不适用 | 首个版本不填写 |
 | 分阶段发布 | 不启用 | 首发不使用 phased release |
@@ -47,12 +48,12 @@
 1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；在最终候选中复核生产
    微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后。
 2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
-   当前 `official-site` 五页和对应生产 API 已发布；仍须在最终候选完成后反向确认线上公开文本与 App
-   的主体、平台范围、路径和数据权利一致。
+   当前 `official-site` 上一版五页和对应生产 API 已发布；本轮 v4.1 AI 标识/模型备案源码须从最终主线重新发布，
+   且在最终候选完成后反向确认线上公开文本与 App 的主体、平台范围、路径和数据权利一致。
 3. 完成下方 Support URL 可达性、中国大陆备案与组织合规门禁；App只在中国大陆销售，本次不做DSA。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
-5. 一个 Production 审核账号、Build 3493761、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
+5. 一个 Production 审核账号、新 Build 3493762、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
    负责人 TestFlight 真机验收全部完成。
 
 ### Support URL 联系信息与地区门禁
@@ -114,7 +115,7 @@ Apple 要求 App 和 Support URL 提供准确、最新且易用的联系方式�
 • 收藏、标注、笔记并查看学习记录
 • 登录后同步支持跨设备恢复的学习数据
 
-资源模块、900句及部分题库内容可免费使用，更多题库内容需要会员权限。部分智能功能会消耗 AI 点数，操作前会显示预计消耗。会员采用一次购买、到期不自动续费的方式，并提供恢复购买入口。
+资源模块、900句及部分题库内容可免费使用，更多题库内容需要会员权限。部分智能功能会消耗 AI 点数，操作前会显示预计消耗。文本纠错和表达优化由 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）提供；生成或改写结果在即时结果区和学习记录中持续显示“AI 辅助生成”，个人数据导出为每条 AI 结果保留该内容标识、模型和备案信息。会员采用一次购买、到期不自动续费的方式，并提供恢复购买入口。
 
 听你五个是独立的航空英语学习工具，不提供官方考试评分、认证或通过承诺。
 ```
@@ -244,7 +245,7 @@ Audio Data。
 
 【五档内购】路径：“我的”→“会员与购买”。7、15、31、62、93天均为非自动续期订阅；31天标记“推荐”。价格由 StoreKit 返回，重复购买顺延，服务端验证交易。“恢复购买”位于同页。请用当前账号完成沙盒购买，不会真实扣款。
 
-【录音与 AI】路径：“题库”→任一可用口语练习题。首次主动录音时才申请麦克风权限；录音仅在审核员点击“转写”并同意 AI 数据处理后上传。语音转写使用腾讯云语音识别，文本纠错和表达优化使用 DeepSeek。转写和“分析表达”会在操作前显示 AI 点数，结果会标明为 AI 转写或 AI 辅助内容。
+【录音与 AI】路径：“题库”→任一可用口语练习题。首次主动录音时才申请麦克风权限；录音仅在审核员点击“转写”并同意 AI 数据处理后上传。语音转写使用腾讯云语音识别；文本纠错和表达优化使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）。转写和“分析表达”会在操作前显示 AI 点数。生成或改写结果在即时结果区及“学习记录”持续显示“AI 辅助生成”；“我的”→“设置”→“账号与隐私”的个人数据导出为每条 AI 结果保留 contentLabel“AI辅助生成”、模型和备案信息。
 
 【注销】请在完成其他功能检查后，最后进入“我的”→“设置”→“账号安全”→“注销账号”。确认页说明将放弃账号、学习数据、剩余会员和 AI 点数。该账号已设置密码，可输入当前密码完成重新验证，无需短信或客服协助。
 
@@ -258,7 +259,7 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 [Membership and IAP] Go to Me > Membership & Purchases. The 7, 15, 31, 62, and 93-day products are non-renewing; 31 days is Recommended. StoreKit supplies prices, repeat purchases extend expiry, and the server verifies transactions. Restore Purchases is on this page. Use the current account for a sandbox purchase with no real charge.
 
-[Recording and AI] Open Question Banks > a speaking item. Microphone access starts only on recording; audio uploads only after Transcribe and AI consent. Tencent Cloud ASR transcribes; DeepSeek corrects and improves text. Costs appear before use and results are labeled as AI output.
+[Recording and AI] Open Question Banks > a speaking item. Microphone access starts only on recording; audio uploads only after Transcribe and AI consent. Tencent Cloud ASR transcribes. Text correction and improvement use DeepSeek-V4-Flash-0731 (Deepseek Chat, filing No. Beijing-DeepseekChat-202404280016). Costs appear before use. Generated or rewritten results continuously show “AI 辅助生成” in the immediate result and Learning Records; the personal-data export under Me > Settings > Account & Privacy retains contentLabel “AI辅助生成”, model, and filing information for every AI result.
 
 [Account deletion] After all other checks, go to Me > Settings > Account Security > Delete Account last. The screen explains the lost account, learning data, membership, and AI points. Enter the current password to reauthenticate and delete without SMS or customer-support intervention.
 ```

@@ -333,13 +333,16 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText(/iOS、Android、Web 产品/u)).toBeNull();
   });
 
-  it('keeps the v4.0 in-app privacy rights aligned with the public self-service policy', async () => {
+  it('keeps the v4.1 in-app privacy rights and AI disclosure aligned with the public policy source', async () => {
     mockParams = { slug: 'privacy' };
     const screen = await render(withSafeArea(<InfoScreen />));
 
     expect(screen.getByText(/导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据/u)).toBeTruthy();
     expect(screen.getByText(/在“学习记录”删除单条 AI 结果/u)).toBeTruthy();
     expect(screen.getByText(/清除学习数据仍保留账号、会员和订单/u)).toBeTruthy();
+    expect(screen.getAllByText(/DeepSeek-V4-Flash-0731/u).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Beijing-DeepseekChat-202404280016/u).length).toBeGreaterThan(0);
+    expect(screen.getByText(/即时结果区和学习记录中持续显示“AI 辅助生成”/u)).toBeTruthy();
   });
 
   it('shows the shared task timestamp version on the about page', async () => {

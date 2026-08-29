@@ -446,6 +446,12 @@ describe('API foundation', () => {
       .toThrow('invalid_api_configuration:API_RELEASE_ID');
     expect(() => loadTestProductionConfig({ DEEPSEEK_BASE_URL: 'http://api.deepseek.com' }))
       .toThrow('invalid_api_configuration:DEEPSEEK_BASE_URL');
+    expect(() => loadTestProductionConfig({ DEEPSEEK_BASE_URL: 'https://example.com/deepseek' }))
+      .toThrow('invalid_api_configuration:DEEPSEEK_BASE_URL');
+    expect(() => loadTestProductionConfig({ AI_GRAMMAR_MODEL: 'different-model' }))
+      .toThrow('invalid_api_configuration:AI_GRAMMAR_MODEL');
+    expect(() => loadTestProductionConfig({ AI_POLISH_MODEL: 'different-model' }))
+      .toThrow('invalid_api_configuration:AI_POLISH_MODEL');
     expect(() => loadTestProductionConfig({ TENCENT_ASR_ENDPOINT: 'example.com' }))
       .toThrow('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
   });

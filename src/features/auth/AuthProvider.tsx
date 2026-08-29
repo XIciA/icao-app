@@ -24,6 +24,7 @@ const ACCOUNT_DELETION_AMBIGUITY_WINDOW_MS = 60_000;
 type AuthContextValue = {
   configured: boolean;
   accountReady: boolean;
+  accountRestoreUnavailable: boolean;
   canAccessApp: boolean;
   restoring: boolean;
   accountDeletionPending: boolean;
@@ -49,6 +50,7 @@ type AuthContextValue = {
   signOut(): Promise<void>;
   signOutAll(): Promise<void>;
   requestAccountDeletionPhoneOtp(): Promise<void>;
+  retryAccountRestore(): Promise<void>;
   resumeAccountDeletion(): Promise<void>;
   deleteAccount(authentication?: AccountDeletionAuthentication): Promise<void>;
 };
@@ -57,6 +59,7 @@ const unavailable = async () => { throw new Error('auth_not_configured'); };
 const AuthContext = createContext<AuthContextValue>({
   configured: false,
   accountReady: false,
+  accountRestoreUnavailable: false,
   accountDeletionPending: false,
   canAccessApp: false,
   restoring: false,
@@ -80,6 +83,7 @@ const AuthContext = createContext<AuthContextValue>({
   signOut: unavailable,
   signOutAll: unavailable,
   requestAccountDeletionPhoneOtp: unavailable,
+  retryAccountRestore: unavailable,
   resumeAccountDeletion: unavailable,
   deleteAccount: unavailable,
 });
@@ -88,6 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const service = useMemo(() => getAuthService(), []);
   const [restoring, setRestoring] = useState(Boolean(service));
   const [accountDeletionPending, setAccountDeletionPending] = useState(false);
+  const [accountRestoreUnavailable, setAccountRestoreUnavailable] = useState(false);
   const [session, setSession] = useState<AppSession>();
   const [account, setAccount] = useState<AccountSummary>();
   const [passwordAuthorization, setPasswordAuthorization] = useState<{
@@ -107,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
   const sessionRef = useRef<AppSession | undefined>(undefined);
   const accountDeletionPendingRef = useRef(false);
-  const accountDeletionInspectionRef = useRef<Promise<'completed' | 'none' | 'pending'> | undefined>(undefined);
+  const accountDeletionInspectionRef = useRef<Promise<'completed' | 'none' | 'pending' | 'unavailable'> | undefined>(undefined);
   const accountDeletionFinalizationRef = useRef<Promise<void> | undefined>(undefined);
   const accountDeletionSubmissionRef = useRef(false);
   const accountInitializationRef = useRef<{
@@ -137,6 +142,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     let finalization!: Promise<void>;
     finalization = (async () => {
       setAccountDeletionState(true);
+      setAccountRestoreUnavailable(false);
       setSessionSnapshot(undefined, true);
       setPasswordAuthorization(undefined);
       await clearDeletedAccountLocalData();
@@ -155,11 +161,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const inspectPendingAccountDeletion = useCallback((acceptRecentNotFound = false) => {
     if (accountDeletionSubmissionRef.current) return Promise.resolve('pending' as const);
     if (accountDeletionInspectionRef.current) return accountDeletionInspectionRef.current;
-    let inspection!: Promise<'completed' | 'none' | 'pending'>;
+    let inspection!: Promise<'completed' | 'none' | 'pending' | 'unavailable'>;
     inspection = (async () => {
-      const pending = await readPendingAccountDeletion();
+      let pending: Awaited<ReturnType<typeof readPendingAccountDeletion>>;
+      try {
+        pending = await readPendingAccountDeletion();
+      } catch {
+        setSessionSnapshot(undefined, true);
+        setAccountDeletionState(false);
+        setAccountRestoreUnavailable(true);
+        return 'unavailable' as const;
+      }
       if (!pending) {
         setAccountDeletionState(false);
+        setAccountRestoreUnavailable(false);
         return 'none' as const;
       }
       let status: DeleteAccountResponse;
@@ -174,22 +189,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           if (acceptRecentNotFound || Date.now() - pending.createdAt >= ACCOUNT_DELETION_AMBIGUITY_WINDOW_MS) {
             await clearPendingAccountDeletion();
             setAccountDeletionState(false);
+            setAccountRestoreUnavailable(false);
             return 'none' as const;
           }
           setSessionSnapshot(undefined, true);
           setAccountDeletionState(true);
+          setAccountRestoreUnavailable(false);
           return 'pending' as const;
         }
         setSessionSnapshot(undefined, true);
-        setAccountDeletionState(true);
-        return 'pending' as const;
+        setAccountDeletionState(false);
+        setAccountRestoreUnavailable(true);
+        return 'unavailable' as const;
       }
       if (status.status === 'completed') {
+        setAccountRestoreUnavailable(false);
         await finalizeAccountDeletion();
         return 'completed' as const;
       }
       setSessionSnapshot(undefined, true);
       setAccountDeletionState(true);
+      setAccountRestoreUnavailable(false);
       return 'pending' as const;
     })().finally(() => {
       if (accountDeletionInspectionRef.current === inspection) {
@@ -212,7 +232,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return promise;
   }, []);
 
-  const acceptAuthenticatedSession = useCallback(async (next: AppSession) => {
+  const acceptAuthenticatedSession = useCallback(async (next: AppSession, preserveSessionOnFailure = false) => {
     setSessionSnapshot(next);
     try {
       const resolved = await initializeInternalAccount(next);
@@ -221,13 +241,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLearningSyncActiveUser(resolved.accountId);
       return next;
     } catch {
-      if (!sessionRef.current || sessionRef.current.user.id === next.user.id) {
+      if (!preserveSessionOnFailure && (!sessionRef.current || sessionRef.current.user.id === next.user.id)) {
         await service?.signOut('local').catch(() => undefined);
         setSessionSnapshot(undefined, true);
       }
       throw new Error('auth_service_unavailable');
     }
   }, [initializeInternalAccount, service, setSessionSnapshot]);
+
+  const restorePersistedAccount = useCallback(async () => {
+    if (!service) return;
+    try {
+      const deletionState = await inspectPendingAccountDeletion();
+      if (deletionState !== 'none') return;
+      const next = await service.getSession();
+      if (!next) {
+        setSessionSnapshot(undefined, true);
+        setAccountRestoreUnavailable(false);
+        return;
+      }
+      await acceptAuthenticatedSession(next, true);
+      setAccountRestoreUnavailable(false);
+    } catch {
+      if (accountDeletionPendingRef.current) return;
+      setSessionSnapshot(undefined, true);
+      setAccountRestoreUnavailable(true);
+    }
+  }, [acceptAuthenticatedSession, inspectPendingAccountDeletion, service, setSessionSnapshot]);
 
   useEffect(() => {
     if (!service) return;
@@ -255,18 +295,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       }
     });
-    void inspectPendingAccountDeletion().then(async (deletionState) => {
-      if (deletionState !== 'none' || !active) return;
-      const next = await service.getSession();
-      if (!active) return;
-      if (!next) {
-        setSessionSnapshot(undefined, true);
-        return;
-      }
-      await acceptAuthenticatedSession(next).catch(() => undefined);
-    }).catch(() => {
-      if (active) setAccountDeletionState(true);
-    }).finally(() => { if (active) setRestoring(false); });
+    void restorePersistedAccount().finally(() => { if (active) setRestoring(false); });
     if (AppState.currentState === 'active') service.startAutoRefresh();
     const appState = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
@@ -283,7 +312,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setApiAccessTokenProvider(undefined);
       setApiAuthRecovery(undefined);
     };
-  }, [acceptAuthenticatedSession, inspectPendingAccountDeletion, service, setAccountDeletionState, setSessionSnapshot]);
+  }, [acceptAuthenticatedSession, restorePersistedAccount, service, setSessionSnapshot]);
 
   useEffect(() => {
     if (!accountDeletionPending) return;
@@ -380,6 +409,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     configured: Boolean(service),
     accountReady,
     accountDeletionPending,
+    accountRestoreUnavailable,
     account,
     canAccessApp: Boolean(session && account) || uiAcceptanceMode,
     restoring,
@@ -491,6 +521,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!service) return unavailable();
       await service.requestAccountDeletionPhoneOtp();
     },
+    async retryAccountRestore() {
+      setRestoring(true);
+      try {
+        await restorePersistedAccount();
+      } finally {
+        setRestoring(false);
+      }
+    },
     async resumeAccountDeletion() {
       await inspectPendingAccountDeletion();
     },
@@ -508,6 +546,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       const pending = await pendingAccountDeletionFor(account.accountId);
       accountDeletionSubmissionRef.current = true;
+      setAccountRestoreUnavailable(false);
       setAccountDeletionState(true);
       try {
         const response = await apiRequest<DeleteAccountResponse>('/v1/account', {
@@ -533,7 +572,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (await inspectPendingAccountDeletion(deterministicRejection) === 'none') throw error;
       }
     },
-  }), [acceptAuthenticatedSession, account, accountDeletionPending, accountReady, finalizeAccountDeletion, inspectPendingAccountDeletion, passwordAuthorization, pendingPath, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
+  }), [acceptAuthenticatedSession, account, accountDeletionPending, accountReady, accountRestoreUnavailable, finalizeAccountDeletion, inspectPendingAccountDeletion, passwordAuthorization, pendingPath, restorePersistedAccount, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
 
   return <AuthContext.Provider value={value}>{children}<AppModal animationType="fade" onRequestClose={() => undefined} transparent visible={bindingPrompt}><View style={styles.overlay}><View style={styles.dialog}><AppText variant="sectionTitle">选择本机学习数据归属</AppText><AppText>此设备已有旧版或其他账号的本机数据。继续前必须选择导入当前账号并同步，或保存本地归档并从当前账号的云端数据开始。</AppText>{bindingError ? <AppText color={colors.destructive} variant="caption">{bindingError}</AppText> : null}<Button disabled={binding} onPress={() => void confirmBinding()}>{binding ? '正在处理…' : '导入当前账号并同步'}</Button><Button disabled={binding} onPress={() => void archiveBinding()} variant="outline">本地归档并从云端开始</Button></View></View></AppModal></AuthContext.Provider>;
 }

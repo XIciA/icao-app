@@ -202,6 +202,43 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(mockSignOut).toHaveBeenCalledWith('local');
   });
 
+  it('reports secure-store startup failures without claiming that account deletion is in progress', async () => {
+    mockReadPendingAccountDeletion.mockRejectedValueOnce(new Error('secure_storage_unavailable'));
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+
+    expect(screen.getByTestId('auth-state').props.children).toBe('closed');
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+    expect(mockGetSession).not.toHaveBeenCalled();
+
+    await act(async () => { await currentAuth.retryAccountRestore(); });
+
+    expect(currentAuth.accountRestoreUnavailable).toBe(false);
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(mockGetSession).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports a temporary deletion-status outage as unavailable without discarding the receipt', async () => {
+    mockReadPendingAccountDeletion.mockResolvedValueOnce({
+      accountId: 'account-deleting',
+      createdAt: 1,
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    });
+    mockApiRequest.mockRejectedValueOnce(new Error('network_temporarily_unavailable'));
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+
+    expect(screen.getByTestId('auth-state').props.children).toBe('closed');
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+    expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
+    expect(mockGetSession).not.toHaveBeenCalled();
+  });
+
   it('retains the deletion receipt and retries completed cleanup when local sign-out fails', async () => {
     mockReadPendingAccountDeletion.mockResolvedValue({
       accountId: 'account-deleting',
@@ -494,7 +531,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(mockSignOut).not.toHaveBeenCalledWith('local');
   });
 
-  it('locks the app and checks the persisted receipt when the DELETE response is lost', async () => {
+  it('keeps the app closed and reports an unavailable account state when the DELETE response and status check are lost', async () => {
     const pending = {
       accountId: 'phone-auth-user',
       createdAt: Date.now(),
@@ -514,13 +551,37 @@ describe('<AuthProvider /> internal-account gate', () => {
       await currentAuth.deleteAccount({ password: 'password10' });
     });
 
-    expect(currentAuth.accountDeletionPending).toBe(true);
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
     expect(currentAuth.session).toBeUndefined();
     expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
     expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
     expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account/deletion/status', expect.objectContaining({
       body: JSON.stringify({ idempotencyKey: pending.idempotencyKey }),
     }));
+  });
+
+  it('does not claim deletion is processing when secure storage fails after a lost DELETE response', async () => {
+    mockReadPendingAccountDeletion
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error('secure_storage_unavailable'));
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockRejectedValueOnce(new Error('network_response_lost'));
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+
+    await act(async () => {
+      await currentAuth.deleteAccount({ password: 'password10' });
+    });
+
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+    expect(currentAuth.session).toBeUndefined();
+    expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
   });
 
   it('does not let status polling clear the receipt while the DELETE request is still in flight', async () => {

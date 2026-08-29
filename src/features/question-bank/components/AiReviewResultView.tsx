@@ -2,11 +2,13 @@ import type { AiReviewResult } from '@icao/contracts';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/ui';
+import { AiGeneratedContentLabel } from '@/features/ai/AiGeneratedContentLabel';
 import { colors, spacing } from '@/theme';
 
 export function AiReviewResultView({ result }: { result: AiReviewResult }) {
   return (
     <View style={styles.root} testID="study-workbench-review-result">
+      <AiGeneratedContentLabel />
       <AppText testID="study-workbench-grammar-title" variant="button">语法纠错</AppText>
       {result.grammar.issues.length ? <View style={styles.issues}>
         {result.grammar.issues.map((issue, index) => (

@@ -38,7 +38,14 @@ function fixture() {
       cardStates: [],
       dataGeneration: 3,
       documents: [],
-      records: [],
+      records: [
+        {
+          id: 'legacy-ai-result',
+          recordType: 'ai_result',
+          aiResult: { transcript: 'Legacy transcript.', polishedText: 'Legacy generated text.' },
+        },
+        { id: 'ordinary-session', recordType: 'session' },
+      ],
     }),
   };
   return {
@@ -86,8 +93,22 @@ describe('AccountPrivacyController', () => {
     expect(response.data).toMatchObject({
       schemaVersion: 1,
       account: { accountId: request.user!.id, phone: request.user!.phone },
-      learning: { dataGeneration: 3, aiResultGeneration: 2 },
+      learning: {
+        dataGeneration: 3,
+        aiResultGeneration: 2,
+        records: [
+          {
+            id: 'legacy-ai-result',
+            contentLabel: 'AI辅助生成',
+            model: 'DeepSeek-V4-Flash-0731',
+            service: 'Deepseek Chat',
+            filingNumber: 'Beijing-DeepseekChat-202404280016',
+          },
+          { id: 'ordinary-session', recordType: 'session' },
+        ],
+      },
     });
+    expect(response.data.learning.records[1]).not.toHaveProperty('contentLabel');
     expect(account.exportAccountData).toHaveBeenCalledWith(request.user!.id, request.user!.phone);
     expect(sync.exportLearningData).toHaveBeenCalledWith(request.user!.id);
   });

@@ -11,6 +11,11 @@ describe('legal copy release surface', () => {
 
     expect(combined).toContain('16周岁');
     expect(combined).toContain('DeepSeek 开放平台');
+    expect(combined).toContain('DeepSeek-V4-Flash-0731');
+    expect(combined).toContain('Deepseek Chat');
+    expect(combined).toContain('Beijing-DeepseekChat-202404280016');
+    expect(combined).toContain('AI 辅助生成');
+    expect(combined).toContain('不得恶意删除、遮挡或隐匿该标识');
     expect(combined).toContain('腾讯云语音识别');
     expect(combined).toContain('Apple App Store 以非自动续期方式购买');
     expect(combined).toContain('手机号密码或 Apple 登录');
@@ -28,5 +33,6 @@ describe('legal copy release surface', () => {
     expect(combined).toContain('运营阶段提供的授权方式');
     expect(combined).toContain('题库、音频、课程、文章');
     expect(combined).not.toContain('非自动续期方式购买');
+    expect(combined).not.toContain('DeepSeek-V4-Flash-0731');
   });
 });

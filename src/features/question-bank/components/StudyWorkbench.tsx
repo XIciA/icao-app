@@ -1,4 +1,9 @@
-import type { AiPointOperationSummary, AiReviewResult } from '@icao/contracts';
+import {
+  AI_GENERATED_CONTENT_LABEL,
+  DEEPSEEK_MODEL_FILING_DISCLOSURE,
+  type AiPointOperationSummary,
+  type AiReviewResult,
+} from '@icao/contracts';
 import { randomUUID } from 'expo-crypto';
 import { useRouter } from 'expo-router';
 import {
@@ -589,7 +594,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
                 ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
                 : Platform.OS === 'web'
                   ? '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'
-                  : '继续后，本次回答文本会经听你五个服务器发送至 DeepSeek，用于语法纠错和表达润色。'}
+                  : `继续后，本次回答文本会经听你五个服务器发送至 ${DEEPSEEK_MODEL_FILING_DISCLOSURE}，用于语法纠错和表达润色。结果会持续显示“${AI_GENERATED_CONTENT_LABEL}”标识。`}
             </AppText>
             <AppText color={colors.mutedForeground} variant="caption">AI 服务使用日志仅记录功能、状态、模型、耗时和用量；回答与分析结果仍可能作为学习记录同步到你的账号。你可在“设置—AI 与隐私”撤回同意。</AppText>
             <Button onPress={() => completeAiConsent(true)}>同意并继续</Button>

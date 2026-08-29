@@ -247,6 +247,8 @@ describe('study workbench natural layout', () => {
     expect(screen.getByText('情态表达需要补充 should。')).toBeTruthy();
     expect(screen.getByText('正确句子')).toBeTruthy();
     expect(screen.getByText('The crew should request an amended heading.')).toBeTruthy();
+    expect(screen.getByLabelText('AI 辅助生成')).toBeTruthy();
+    expect(screen.getAllByTestId('ai-generated-content-label')).toHaveLength(1);
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
   });
 
@@ -300,11 +302,13 @@ describe('study workbench natural layout', () => {
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
     await waitFor(() => expect(screen.getByText('Previous validated result.')).toBeTruthy());
+    expect(screen.getByLabelText('AI 辅助生成')).toBeTruthy();
 
     mockReviewExpression.mockRejectedValueOnce(new Error('offline'));
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
     await waitFor(() => expect(screen.getByText(/AI 请求失败，请检查网络后重试。.*A-/u)).toBeTruthy());
     expect(screen.getByText('Previous validated result.')).toBeTruthy();
+    expect(screen.getAllByTestId('ai-generated-content-label')).toHaveLength(1);
   });
 
   it('uses compact dots for multi-section navigation and keeps the active state accessible', async () => {

@@ -94,6 +94,9 @@ for (const required of [
   '腾讯云语音识别',
   'Tencent Cloud ASR',
   'DeepSeek',
+  'DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）',
+  'AI 辅助生成',
+  'contentLabel“AI辅助生成”',
   'https://api.readyoufife.com/v1/commerce/apple/notifications/v2',
   '| Production Notifications Version | Version 2 |',
   '| Sandbox Notifications Version | Version 2 |',
@@ -134,6 +137,15 @@ for (const reviewPath of [
   'Me > Settings > Account Security > Delete Account',
 ]) {
   if (!reviewNotes.includes(reviewPath)) fail(`missing_review_path:${reviewPath}`);
+}
+
+for (const aiDisclosure of [
+  'DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）',
+  '即时结果区及“学习记录”持续显示“AI 辅助生成”',
+  'contentLabel“AI辅助生成”、模型和备案信息',
+  'DeepSeek-V4-Flash-0731 (Deepseek Chat, filing No. Beijing-DeepseekChat-202404280016)',
+]) {
+  if (!reviewNotes.includes(aiDisclosure)) fail(`missing_ai_review_disclosure:${aiDisclosure}`);
 }
 
 for (const sourcePath of [

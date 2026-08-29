@@ -692,6 +692,28 @@ export type SyncPullResponse = {
 export type AiModule = 'listening' | 'sentence900' | 'atc' | 'opi' | 'story';
 export type AiCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish' | 'review';
 
+export const AI_GENERATED_CONTENT_LABEL = 'AI 辅助生成' as const;
+export const AI_GENERATED_CONTENT_EXPORT_LABEL = 'AI辅助生成' as const;
+export const DEEPSEEK_RUNTIME_MODEL_ID = 'deepseek-v4-flash' as const;
+export const DEEPSEEK_PUBLIC_MODEL_NAME = 'DeepSeek-V4-Flash-0731' as const;
+export const DEEPSEEK_GENERATIVE_AI_SERVICE_NAME = 'Deepseek Chat' as const;
+export const DEEPSEEK_GENERATIVE_AI_FILING_NUMBER = 'Beijing-DeepseekChat-202404280016' as const;
+export const DEEPSEEK_API_BASE_URL = 'https://api.deepseek.com' as const;
+export const DEEPSEEK_MODEL_FILING_DISCLOSURE = `${DEEPSEEK_PUBLIC_MODEL_NAME}（${DEEPSEEK_GENERATIVE_AI_SERVICE_NAME}，备案号 ${DEEPSEEK_GENERATIVE_AI_FILING_NUMBER}）` as const;
+
+export const AI_GENERATED_CONTENT_EXPORT_DISCLOSURE = Object.freeze({
+  contentLabel: AI_GENERATED_CONTENT_EXPORT_LABEL,
+  model: DEEPSEEK_PUBLIC_MODEL_NAME,
+  service: DEEPSEEK_GENERATIVE_AI_SERVICE_NAME,
+  filingNumber: DEEPSEEK_GENERATIVE_AI_FILING_NUMBER,
+});
+
+export function discloseAiGeneratedExportRecord(record: Record<string, unknown>) {
+  return record.recordType === 'ai_result'
+    ? { ...record, ...AI_GENERATED_CONTENT_EXPORT_DISCLOSURE }
+    : record;
+}
+
 export const TENCENT_ASR_MODELS = ['16k_zh_en_2.0', '16k_en_large', '16k_en'] as const;
 export type TencentAsrModel = typeof TENCENT_ASR_MODELS[number];
 export const DEFAULT_TENCENT_ASR_MODEL: TencentAsrModel = '16k_en';

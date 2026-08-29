@@ -1,4 +1,8 @@
-import { CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 } from '@icao/contracts';
+import {
+  CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
+  DEEPSEEK_API_BASE_URL,
+  DEEPSEEK_RUNTIME_MODEL_ID,
+} from '@icao/contracts';
 import { createPrivateKey, createPublicKey, timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
 
@@ -32,9 +36,9 @@ const schema = z.object({
   APPLE_IAP_SERVER_PRIVATE_KEY: z.string().min(48).optional(),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),
-  DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
-  AI_GRAMMAR_MODEL: z.string().min(1).default('deepseek-v4-flash'),
-  AI_POLISH_MODEL: z.string().min(1).default('deepseek-v4-flash'),
+  DEEPSEEK_BASE_URL: z.string().url().default(DEEPSEEK_API_BASE_URL),
+  AI_GRAMMAR_MODEL: z.literal(DEEPSEEK_RUNTIME_MODEL_ID).default(DEEPSEEK_RUNTIME_MODEL_ID),
+  AI_POLISH_MODEL: z.literal(DEEPSEEK_RUNTIME_MODEL_ID).default(DEEPSEEK_RUNTIME_MODEL_ID),
   AI_REVIEW_MAX_CONCURRENCY: z.coerce.number().int().min(1).max(2_500).default(50),
   TENCENT_CLOUD_SECRET_ID: z.string().min(10).optional(),
   TENCENT_CLOUD_SECRET_KEY: z.string().min(10).optional(),
@@ -143,8 +147,8 @@ export type ApiConfig = {
   aiTextProvider: 'deepseek';
   deepseekApiKey?: string;
   deepseekBaseUrl: string;
-  aiGrammarModel: string;
-  aiPolishModel: string;
+  aiGrammarModel: typeof DEEPSEEK_RUNTIME_MODEL_ID;
+  aiPolishModel: typeof DEEPSEEK_RUNTIME_MODEL_ID;
   aiReviewMaxConcurrency: number;
   tencentCloudSecretId?: string;
   tencentCloudSecretKey?: string;
@@ -328,6 +332,9 @@ function validateProductionAiRuntime(
   }
   requireProductionHttpsUrl('DEEPSEEK_BASE_URL', data.DEEPSEEK_BASE_URL);
   requireProductionHttpsUrl('SUPABASE_PUBLIC_URL', data.SUPABASE_PUBLIC_URL);
+  if (data.DEEPSEEK_BASE_URL !== DEEPSEEK_API_BASE_URL) {
+    invalidConfiguration('DEEPSEEK_BASE_URL');
+  }
   if (data.DEEPSEEK_BASE_URL.endsWith('/')) invalidConfiguration('DEEPSEEK_BASE_URL');
   if (data.TENCENT_ASR_ENDPOINT !== 'asr.tencentcloudapi.com') {
     invalidConfiguration('TENCENT_ASR_ENDPOINT');

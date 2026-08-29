@@ -57,6 +57,16 @@ export function AppStack() {
   }, [auth, pathname]);
 
   if (auth.restoring) return <GlobalLoadingScreen />;
+  if (auth.accountRestoreUnavailable) {
+    return (
+      <CenteredState
+        actionLabel="重新检查"
+        description="暂时无法读取本机安全登录状态，或无法向服务器确认账号请求。为保护账号与本机数据，确认成功前不会进入业务页面。"
+        onAction={() => { void auth.retryAccountRestore().catch(() => undefined); }}
+        title="暂时无法确认账号状态"
+      />
+    );
+  }
   if (auth.accountDeletionPending) {
     return (
       <CenteredState
