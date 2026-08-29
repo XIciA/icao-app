@@ -20,6 +20,10 @@ const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
 const appStoreConnectIapPath = 'tools/app-store-connect-iap.mjs';
+const appStoreConnectIapAvailabilityPath =
+  'tools/lib/app-store-connect-iap-availability.mjs';
+const appStoreConnectIapAvailabilityTestsPath =
+  'tools/app-store-connect-iap-availability-tests.mjs';
 const appStoreConnectApiPath = 'tools/lib/app-store-connect-api.mjs';
 const gatedReleaseScripts = [
   'scripts/archive-ios-testflight.sh',
@@ -56,18 +60,20 @@ for (const [businessKey, productId] of Object.entries(expectedProducts)) {
 }
 
 const appStoreConnectIap = await read(appStoreConnectIapPath);
+const appStoreConnectIapAvailability = await read(appStoreConnectIapAvailabilityPath);
 const appStoreConnectApi = await read(appStoreConnectApiPath);
 for (const required of [
   '<!-- iap-products:start -->',
   'result.links?.next',
   'candidate.value <= targetPriceCny',
   "inAppPurchaseType: 'NON_RENEWING_SUBSCRIPTION'",
-  'availableInNewTerritories: true',
+  'createChinaMainlandAvailabilityBody(current.id)',
+  'matchesChinaMainlandAvailability(',
   "process.env.ICAO_APP_STORE_CONNECT_WRITE !== '1'",
   'existingPrice !== selected.value',
   "existingBaseTerritory !== 'CHN'",
   'filter%5Bterritory%5D=CHN',
-  'sameTerritories(currentTerritories, territoryCatalog)',
+  'territoryIds: [CHINA_MAINLAND_TERRITORY_ID]',
   'price.attributes?.startDate == null',
   'included.id === pricePointId',
   "subscriptionStatusUrlVersion: 'V2'",
@@ -75,6 +81,23 @@ for (const required of [
 ]) {
   if (!appStoreConnectIap.includes(required)) {
     failures.push(`${appStoreConnectIapPath} is missing: ${required}`);
+  }
+}
+for (const required of [
+  "CHINA_MAINLAND_TERRITORY_ID = 'CHN'",
+  'availableInNewTerritories: false',
+  'availableTerritories.length === 1',
+]) {
+  if (!appStoreConnectIapAvailability.includes(required)) {
+    failures.push(`${appStoreConnectIapAvailabilityPath} is missing: ${required}`);
+  }
+}
+for (const [file, content] of [
+  [appStoreConnectIapPath, appStoreConnectIap],
+  [appStoreConnectIapAvailabilityPath, appStoreConnectIapAvailability],
+]) {
+  if (content.includes('availableInNewTerritories: true')) {
+    failures.push(`${file} must not opt IAP products into future territories.`);
   }
 }
 if (!appStoreConnectApi.includes('acceptedStatuses.includes(response.status)')) {
@@ -234,6 +257,17 @@ const iosCngSelfTest = spawnSync(process.execPath, [path.join(root, iosCngGatePa
 if (iosCngSelfTest.status !== 0) {
   failures.push(
     `${iosCngGatePath} did not reject a reproducible stale ignored iOS workspace/project: ${iosCngSelfTest.stderr.trim()}`,
+  );
+}
+
+const availabilityTest = spawnSync(
+  process.execPath,
+  ['--test', path.join(root, appStoreConnectIapAvailabilityTestsPath)],
+  { encoding: 'utf8' },
+);
+if (availabilityTest.status !== 0) {
+  failures.push(
+    `${appStoreConnectIapAvailabilityTestsPath} failed: ${availabilityTest.stderr.trim()}`,
   );
 }
 

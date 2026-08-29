@@ -5,6 +5,11 @@ import {
   appStoreConnectAppContext,
   appStoreConnectCredentials,
 } from './lib/app-store-connect-api.mjs';
+import {
+  CHINA_MAINLAND_TERRITORY_ID,
+  createChinaMainlandAvailabilityBody,
+  matchesChinaMainlandAvailability,
+} from './lib/app-store-connect-iap-availability.mjs';
 
 const root = process.cwd();
 const command = process.argv[2];
@@ -99,14 +104,6 @@ async function optionalRelationship(credentials, pathname) {
   return api(credentials, pathname, { acceptedStatuses: [404] });
 }
 
-async function territories(credentials) {
-  const values = await paged(credentials, '/v1/territories?limit=200');
-  if (values.length < 150 || !values.some((territory) => territory.id === 'CHN')) {
-    throw new Error('App Store Connect returned an incomplete territory catalog.');
-  }
-  return values;
-}
-
 async function chinaPricePoint(credentials, productId, targetPriceCny) {
   const pricePoints = await paged(
     credentials,
@@ -157,12 +154,6 @@ async function availabilityTerritories(credentials, availabilityId) {
   );
 }
 
-function sameTerritories(actual, expected) {
-  if (actual.length !== expected.length) return false;
-  const expectedIds = new Set(expected.map((territory) => territory.id));
-  return actual.every((territory) => expectedIds.has(territory.id));
-}
-
 function createProductBody(appId, product) {
   return {
     data: {
@@ -205,21 +196,6 @@ function updateLocalizationBody(localizationId, product) {
       attributes: {
         name: product.displayName,
         description: product.description,
-      },
-    },
-  };
-}
-
-function availabilityBody(productId, territoryCatalog) {
-  return {
-    data: {
-      type: 'inAppPurchaseAvailabilities',
-      attributes: { availableInNewTerritories: true },
-      relationships: {
-        inAppPurchase: { data: { type: 'inAppPurchases', id: productId } },
-        availableTerritories: {
-          data: territoryCatalog.map((territory) => ({ type: 'territories', id: territory.id })),
-        },
       },
     },
   };
@@ -332,7 +308,6 @@ async function syncCommercial(credentials, appId, contract) {
   }
   const remote = await listProducts(credentials, appId);
   const byProductId = new Map(remote.map((product) => [product.attributes?.productId, product]));
-  const territoryCatalog = await territories(credentials);
   let availabilityCreated = 0;
   let availabilityUpdated = 0;
   let pricesCreated = 0;
@@ -348,12 +323,14 @@ async function syncCommercial(credentials, appId, contract) {
       `/v2/inAppPurchases/${encodeURIComponent(current.id)}/inAppPurchaseAvailability`,
     );
     const currentTerritories = await availabilityTerritories(credentials, availability?.data?.id);
-    const availabilityMatches = availability?.data?.attributes?.availableInNewTerritories === true
-      && sameTerritories(currentTerritories, territoryCatalog);
+    const availabilityMatches = matchesChinaMainlandAvailability(
+      availability,
+      currentTerritories,
+    );
     if (!availabilityMatches) {
       await api(credentials, '/v1/inAppPurchaseAvailabilities', {
         method: 'POST',
-        body: JSON.stringify(availabilityBody(current.id, territoryCatalog)),
+        body: JSON.stringify(createChinaMainlandAvailabilityBody(current.id)),
       });
       if (availability?.data) availabilityUpdated += 1;
       else availabilityCreated += 1;
@@ -383,7 +360,8 @@ async function syncCommercial(credentials, appId, contract) {
     pricesCreated,
     pricesUpdated,
     actualPrices,
-    territoryCount: territoryCatalog.length,
+    territoryCount: 1,
+    territoryIds: [CHINA_MAINLAND_TERRITORY_ID],
   }));
 }
 
@@ -419,6 +397,7 @@ async function commercialStatus(credentials, appId, contract) {
       state: current.attributes?.state ?? null,
       availableInNewTerritories: availability?.data?.attributes?.availableInNewTerritories ?? null,
       availableTerritoryCount: availableTerritories.length,
+      chinaMainlandOnly: matchesChinaMainlandAvailability(availability, availableTerritories),
       baseTerritory,
       priceCny,
       plannedPriceCny: selected.value,
