@@ -76,7 +76,13 @@ if (/微信|WeChat/u.test(`${promotionalText}\n${description}\n${keywords}\n${re
 }
 
 for (const staleContract of [
-  '| App 可用地区 | Specific Countries or Regions：仅中国大陆',
+  'All Countries or Regions（当前全部可用 App Store 国家或地区）',
+  '账号 A',
+  '账号 B',
+  '<ASC_ONLY_ACCOUNT_A_PHONE>',
+  '<ASC_ONLY_ACCOUNT_A_PASSWORD>',
+  '<ASC_ONLY_ACCOUNT_B_PHONE>',
+  '<ASC_ONLY_ACCOUNT_B_PASSWORD>',
   '| 中国大陆组织合规 | D-U-N-S、公司中文名和 USCI 均已核实',
 ]) {
   if (source.includes(staleContract)) fail(`stale_platform_contract:${staleContract}`);
@@ -91,11 +97,12 @@ for (const required of [
   'https://api.readyoufife.com/v1/commerce/apple/notifications/v2',
   '| Production Notifications Version | Version 2 |',
   '| Sandbox Notifications Version | Version 2 |',
-  'All Countries or Regions（当前全部可用 App Store 国家或地区）',
+  'Specific Countries or Regions：仅中国大陆',
+  '关闭自动在新增地区供应',
   '| Apple ID | `6800583111` |',
   '取消选择 `Make this app available`',
   '取消选择 `Make this app available on Apple Vision Pro`',
-  '<ASC_ONLY_ICP_FILING_NUMBER>',
+  '蜀ICP备2026045996号-1A',
   '<ASC_ONLY_CHINA_MAINLAND_COMPLIANCE_VERIFIED>',
   '| Audio Data | Yes | No | App Functionality |',
   '| Purchase History | Yes | No | App Functionality |',
@@ -115,9 +122,9 @@ for (const requiredGate of [
   'Apple Production 与 Sandbox 测试通知',
   'Support URL 提供准确、最新且易用的联系方式',
   '无需为了增加字段而编造或在该页面重复公开地址、电话',
-  '本 App 面向欧盟分发且公司属于交易商时',
-  '负责人须在 App Store Connect 使用正式资料完成 DSA 保存和电话/邮箱验证',
-  '仓库候选地址或未验证号码均不能替代 DSA 资料',
+  '本次只在中国大陆销售，欧盟不在范围，DSA 交易商验证不适用',
+  '可视化 Ops 延后到上架后',
+  '一个 Production 审核账号',
 ]) {
   if (!source.includes(requiredGate)) fail(`missing_contact_gate:${requiredGate}`);
 }
@@ -138,21 +145,14 @@ for (const sourcePath of [
   if (!sourcePath[0].includes(sourcePath[1])) fail(`native_review_path_drift:${sourcePath[1]}`);
 }
 
-for (const token of ['<ASC_ONLY_ACCOUNT_B_PHONE>', '<ASC_ONLY_ACCOUNT_B_PASSWORD>']) {
-  if (!reviewNotes.includes(token)) fail(`missing_platform_token:${token}`);
-}
-
 const allowedPlatformTokens = new Set([
-  '<ASC_ONLY_ICP_FILING_NUMBER>',
   '<ASC_ONLY_CHINA_MAINLAND_COMPLIANCE_VERIFIED>',
   '<ASC_ONLY_REVIEW_CONTACT_FIRST_NAME>',
   '<ASC_ONLY_REVIEW_CONTACT_LAST_NAME>',
   '<ASC_ONLY_REVIEW_CONTACT_PHONE>',
   '<ASC_ONLY_REVIEW_CONTACT_EMAIL>',
-  '<ASC_ONLY_ACCOUNT_A_PHONE>',
-  '<ASC_ONLY_ACCOUNT_A_PASSWORD>',
-  '<ASC_ONLY_ACCOUNT_B_PHONE>',
-  '<ASC_ONLY_ACCOUNT_B_PASSWORD>',
+  '<ASC_ONLY_REVIEW_ACCOUNT_PHONE>',
+  '<ASC_ONLY_REVIEW_ACCOUNT_PASSWORD>',
 ]);
 const observedPlatformTokens = new Set(source.match(/<ASC_ONLY_[A-Z0-9_]+>/gu) ?? []);
 for (const token of allowedPlatformTokens) {

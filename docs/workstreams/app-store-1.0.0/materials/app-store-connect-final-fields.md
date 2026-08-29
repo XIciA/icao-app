@@ -1,11 +1,11 @@
 # App Store Connect 1.0.0 唯一最终字段包
 
-状态：固定字段已定稿；隐私自助能力、生产数据库/API 和五个正式公开页面已从干净主线发布，但 Ops、
-中国大陆合规、DSA 联系信息、Apple 付费商务、审核账号、最终候选包和截图等门禁尚未全部通过，不可直接提交；
+状态：固定字段已定稿；隐私自助能力、生产数据库/API、候选 Build 和五个正式公开页面已经就绪，但
+中国大陆合规、Apple 付费商务、审核账号、IAP验收和截图等门禁尚未全部通过，不可直接提交；
 平台专属事实仍按文中门禁当场补入，不在仓库保存凭据。
 
-适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 使用当前全部可用
-App Store 国家或地区，中国大陆是价格基准地区而不是唯一可用地区。本文件是平台录入的唯一字段来源；
+适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 只在中国大陆销售，
+并关闭自动在新增地区供应。本文件是平台录入的唯一字段来源；
 不存在第二套名称、文案、年龄、隐私或商品草案。
 
 ## 1. App 信息与版本设置
@@ -17,21 +17,21 @@ App Store 国家或地区，中国大陆是价格基准地区而不是唯一可�
 | 副标题 | 见下方副标题字段 | 固定；Apple 上限 30 字符 |
 | Apple ID | `6800583111` | App Store Connect 现有 App 记录 |
 | Bundle ID | `com.readyoufife.ios` | 与 `app.json` 一致 |
-| 用户可见版本 | `1.0.0` | Build 号由最终候选归档提供 |
+| 用户可见版本 | `1.0.0` | 候选归档 Build `3493761` |
 | App Store iOS 版本记录 | `1.0.0` | 平台草稿已保存为冻结值 `1.0.0` |
-| 送审 Build | 从最终 `origin/main` 生成且 Build 号高于 `3493759` 的新候选 | 当前已验证 Build `3493759` 于 2026-08-23 上传，未被版本页选择且不含后续主线收口，不作为送审包 |
+| 送审 Build | `3493761` | 对应提交 `fca7436d497430db88cf1a29410d61878fd85fc5`，状态 `VALID` 且已关联1.0.0；只有真实代码缺陷才换更高 Build |
 | 主要分类 | 教育（Education） | 固定 |
 | 次要分类 | 工具（Utilities） | 固定；中国大陆 App 备案服务分类仍为工具 |
 | App 定价 | 免费 | 会员能力只通过 App 内购买提供 |
 | 分发方式 | Public Distribution | 公开 App Store，不使用 Private 或 Unlisted |
-| App 可用地区 | All Countries or Regions（当前全部可用 App Store 国家或地区） | 不新增未经批准的仅中国大陆发行限制；中国大陆备案继续保持工具类 |
+| App 可用地区 | Specific Countries or Regions：仅中国大陆 | 关闭自动在新增地区供应；备案服务分类继续保持工具 |
 | Apple 芯片 Mac 兼容分发 | 取消选择 `Make this app available` | 1.0.0 未在 Mac 验收 |
 | Apple Vision Pro 兼容分发 | 取消选择 `Make this app available on Apple Vision Pro` | 1.0.0 未在 Vision Pro 验收 |
-| 中国大陆 ICP/App 备案号 | `<ASC_ONLY_ICP_FILING_NUMBER>` | 只在平台录入正式备案材料中的准确值；须与 MIIT 主体、App 名称、Bundle ID 和简中元数据一致 |
+| 中国大陆 ICP/App 备案号 | `蜀ICP备2026045996号-1A` | 已由正式备案材料核对；录入时再与主体、App 名称、Bundle ID 和简中元数据反查 |
 | 中国大陆组织合规 | `<ASC_ONLY_CHINA_MAINLAND_COMPLIANCE_VERIFIED>` | 待 Account Holder/Admin 在 Business → Agreements → Compliance → China Mainland 以正式资料核实 D-U-N-S、公司中文名和 USCI 后当场确认；不得用仓库候选值代替 |
 | 内容版权（Content Rights） | 是，App 包含或访问第三方内容 | 公司或相关权利人已拥有必要权利；不宣称全部原创 |
 | 版权（Copyright） | `2026 云启航科（成都）科技有限公司` | 唯一拟录入值；负责人须先确认该公司是该字段所要求的权利主体 |
-| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 已上线并提供 App 内反馈路径和产品支持邮箱；提交前验证邮箱可投递、收件和回复，DSA 交易商地址/电话/邮箱按平台流程另行核实 |
+| Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 已上线并提供 App 内反馈路径和产品支持邮箱；提交前验证邮箱可投递、收件和回复 |
 | Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前 `official-site` 自助权利版本已上线并与主线源码一致；最终提交前再与归档和生产数据流复核 |
 | Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 自助导出、删除和撤回 AI 同意说明已上线并与主线源码、生产 API 一致；平台字段已保存 |
 | Marketing URL | 留空 | 首发不填 |
@@ -44,26 +44,25 @@ App Store 国家或地区，中国大陆是价格基准地区而不是唯一可�
 
 以下各项是并列门禁，不能因固定字段已定稿而标记为可提交：
 
-1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；仍须部署 Ops，并在最终
-   候选中复核生产微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。
+1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；在最终候选中复核生产
+   微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后。
 2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
    当前 `official-site` 五页和对应生产 API 已发布；仍须在最终候选完成后反向确认线上公开文本与 App
    的主体、平台范围、路径和数据权利一致。
-3. 完成下方 Support URL 可达性、DSA、中国大陆备案与组织合规门禁；所有外部事实以正式材料和平台状态为准。
+3. 完成下方 Support URL 可达性、中国大陆备案与组织合规门禁；App只在中国大陆销售，本次不做DSA。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
-5. 两个 Production 审核账号、最终 Build、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
+5. 一个 Production 审核账号、Build 3493761、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
    负责人 TestFlight 真机验收全部完成。
 
-### Support URL 与 DSA 联系信息门禁
+### Support URL 联系信息与地区门禁
 
 Apple 要求 App 和 Support URL 提供准确、最新且易用的联系方式。当前页面提供 App 内反馈路径和
 `support@yunqihangke.com`，无需为了增加字段而编造或在该页面重复公开地址、电话。提交前验证页面可从
 目标网络访问，并验证支持邮箱真实可投递、收件和回复。
 
-本 App 面向欧盟分发且公司属于交易商时，DSA 另行要求由 Apple 核实并在欧盟产品页展示地址、电话和
-邮箱。负责人须在 App Store Connect 使用正式资料完成 DSA 保存和电话/邮箱验证；受保护审核联系人、
-仓库候选地址或未验证号码均不能替代 DSA 资料。
+本次只在中国大陆销售，欧盟不在范围，DSA 交易商验证不适用。以后扩展到欧盟前，必须重新完成地区、
+税务、隐私、内容和 DSA 合规审查，不沿用本次结论直接扩区。
 
 ### App Store Server Notifications V2
 
@@ -227,11 +226,11 @@ Audio Data。
 | Contact Phone | `<ASC_ONLY_REVIEW_CONTACT_PHONE>` |
 | Contact Email | `<ASC_ONLY_REVIEW_CONTACT_EMAIL>` |
 | Sign-in required | Yes |
-| Username | `<ASC_ONLY_ACCOUNT_A_PHONE>` |
-| Password | `<ASC_ONLY_ACCOUNT_A_PASSWORD>` |
+| Username | `<ASC_ONLY_REVIEW_ACCOUNT_PHONE>` |
+| Password | `<ASC_ONLY_REVIEW_ACCOUNT_PASSWORD>` |
 
-账号 A 是正常 Production 完整体验账号，须有覆盖审核期的会员权益和足够 AI 点数。账号 B 是正常
-Production 购买与注销账号，手机号和密码只在下面 Notes 字段复制前当场替换；仓库永远不保存真实值。
+只使用一个正常 Production 审核账号：以新账号100点完成非付费 AI 验收，通过真实 Sandbox/TestFlight
+购买获得会员权益，并覆盖购买、恢复和注销；注销最后执行。仓库永远不保存真实手机号或密码。
 
 ### 审核备注（Notes，中英双语）
 
@@ -239,15 +238,15 @@ Production 购买与注销账号，手机号和密码只在下面 Notes 字段�
 ```text
 感谢审核“听你五个”1.0.0。本 App 是独立的航空英语练习工具，不代表 ICAO、监管或考试机构，不提供官方评分、认证或通过承诺。
 
-【登录】请在登录页勾选已满16周岁并同意协议，然后选择“密码登录”。主要登录字段中的账号 A 用于完整体验。账号 B 用于购买与注销：手机号 <ASC_ONLY_ACCOUNT_B_PHONE>，密码 <ASC_ONLY_ACCOUNT_B_PASSWORD>。两个账号均为正常 Production 账号，不需要审核员接收短信或使用个人 Apple ID。
+【登录】请在登录页勾选已满16周岁并同意协议，然后选择“密码登录”，使用主要登录字段中的唯一审核账号。该账号为正常 Production 账号，不需要审核员接收短信或使用个人 Apple ID。
 
 【题库与会员】“题库”页含听力、900句、陆空通话、OPI 和故事复诵。资源模块和900句免费；其他题库含免费内容，锁定内容会引导至会员页。
 
-【五档内购】路径：“我的”→“会员与购买”。7、15、31、62、93天均为非自动续期订阅；31天标记“推荐”。价格由 StoreKit 返回，重复购买顺延，服务端验证交易。“恢复购买”位于同页。请用账号 B 沙盒购买，不会真实扣款。
+【五档内购】路径：“我的”→“会员与购买”。7、15、31、62、93天均为非自动续期订阅；31天标记“推荐”。价格由 StoreKit 返回，重复购买顺延，服务端验证交易。“恢复购买”位于同页。请用当前账号完成沙盒购买，不会真实扣款。
 
 【录音与 AI】路径：“题库”→任一可用口语练习题。首次主动录音时才申请麦克风权限；录音仅在审核员点击“转写”并同意 AI 数据处理后上传。语音转写使用腾讯云语音识别，文本纠错和表达优化使用 DeepSeek。转写和“分析表达”会在操作前显示 AI 点数，结果会标明为 AI 转写或 AI 辅助内容。
 
-【注销】请用账号 B 进入“我的”→“设置”→“账号安全”→“注销账号”。确认页说明将放弃账号、学习数据、剩余会员和 AI 点数。该账号已设置密码，可输入当前密码完成重新验证，无需短信或客服协助。
+【注销】请在完成其他功能检查后，最后进入“我的”→“设置”→“账号安全”→“注销账号”。确认页说明将放弃账号、学习数据、剩余会员和 AI 点数。该账号已设置密码，可输入当前密码完成重新验证，无需短信或客服协助。
 
 Support: https://yunqihangke.com/apps/readyoufife/support/
 Privacy Policy: https://yunqihangke.com/apps/readyoufife/privacy/
@@ -255,35 +254,33 @@ Privacy Choices: https://yunqihangke.com/apps/readyoufife/privacy-choices/
 
 Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, not affiliated with ICAO or an authority/exam provider, and offers no official score, certification, or pass guarantee.
 
-[Sign-in] Accept the 16+ declaration and policies, then choose Password Login. Account A is in the primary sign-in fields. Account B is for purchase and deletion: phone <ASC_ONLY_ACCOUNT_B_PHONE>, password <ASC_ONLY_ACCOUNT_B_PASSWORD>. Both are normal Production accounts; no SMS or reviewer Apple ID is required.
+[Sign-in] Accept the 16+ declaration and policies, then choose Password Login with the single account in the primary sign-in fields. It is a normal Production account; no SMS or reviewer Apple ID is required.
 
-[Membership and IAP] Go to Me > Membership & Purchases. The 7, 15, 31, 62, and 93-day products are non-renewing; 31 days is Recommended. StoreKit supplies prices, repeat purchases extend expiry, and the server verifies transactions. Restore Purchases is on this page. Use Account B for a sandbox purchase with no real charge.
+[Membership and IAP] Go to Me > Membership & Purchases. The 7, 15, 31, 62, and 93-day products are non-renewing; 31 days is Recommended. StoreKit supplies prices, repeat purchases extend expiry, and the server verifies transactions. Restore Purchases is on this page. Use the current account for a sandbox purchase with no real charge.
 
 [Recording and AI] Open Question Banks > a speaking item. Microphone access starts only on recording; audio uploads only after Transcribe and AI consent. Tencent Cloud ASR transcribes; DeepSeek corrects and improves text. Costs appear before use and results are labeled as AI output.
 
-[Account deletion] With Account B, go to Me > Settings > Account Security > Delete Account. The screen explains the lost account, learning data, membership, and AI points. Enter the current password to reauthenticate and delete without SMS or customer-support intervention.
+[Account deletion] After all other checks, go to Me > Settings > Account Security > Delete Account last. The screen explains the lost account, learning data, membership, and AI points. Enter the current password to reauthenticate and delete without SMS or customer-support intervention.
 ```
 
-复制前必须把两个 `<ASC_ONLY_ACCOUNT_B_...>` 替换为平台内的真实凭据；复制后再次搜索，Notes 中不得
-残留任何 token。账号 A 凭据只填专用 Username/Password 字段，不在 Notes 重复。
+唯一审核账号凭据只填专用 Username/Password 字段，不在 Notes 重复，也不回填本文件。
 
 ## 6. 五档非自动续期订阅
 
 ### 五项共同设置
 
-- 平台状态：五项商品、简体中文本地化、175 个地区可用范围和中国大陆基准价格已创建；当前
-  `MISSING_METADATA` 只待最终候选生成的五张 App Review Screenshot 等送审材料。
+- 平台状态：五项商品、简体中文本地化和中国大陆基准价格已创建；当前仍覆盖175个地区且自动包含
+  新增地区，必须收缩为仅中国大陆并关闭自动新增地区；`MISSING_METADATA` 还缺五张审核截图。
 - 创建位置：Subscriptions → Non-Renewing Subscriptions。
 - 类型：Non-Renewing Subscription；不创建自动续期订阅组。
-- Availability：当前全部可用 App Store 国家或地区，与 App 1.0.0 可用地区一致。
+- Availability：Specific Countries or Regions，仅中国大陆；关闭自动在新增地区供应。
 - Base Country or Region：中国大陆。
 - Tax Category：Match to parent app；如财税专业意见要求不同分类，先由负责人确认再改，不自行猜测。
 - Promotional In-App Purchase：不启用；不上传促销图，不在 App Store 产品页单独推广。
 - 无免费试用、自动续费、自动扣款、年度套餐或独立 AI 加量包。
 - 首次送审：五项全部与 App 1.0.0 加入同一个 submission。
 - 价格：优先选择等于目标价的 Apple 官方价格点；不存在时选择最接近且不高于目标价的价格点，等距
-  仍选较低价。其他国家或地区使用 Apple 按中国大陆基准价自动生成的价格，不做首发手工定价；App
-  内只显示 StoreKit 实际本地化价格。
+  仍选较低价。App 内只显示 StoreKit 实际本地化价格。
 
 <!-- iap-products:start -->
 | 天数 | Reference Name | Product ID | 简中 Display Name | 简中 Description | 中国大陆目标价 | 服务端权益键 | App Review Screenshot |
