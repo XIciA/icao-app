@@ -46,11 +46,13 @@ IAP 验收和截图等门禁尚未全部通过，不可直接提交；
 以下各项是并列门禁，不能因固定字段已定稿而标记为可提交：
 
 1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；在最终候选中复核生产
-   微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后。
+   微信路由消失、Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后，
+   不是提交、审核或发布门禁。
 2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
    当前 `official-site` 上一版五页和对应生产 API 已发布；本轮 v4.1 AI 标识/模型备案源码须从最终主线重新发布，
    且在最终候选完成后反向确认线上公开文本与 App 的主体、平台范围、路径和数据权利一致。
-3. 完成下方 Support URL 可达性、中国大陆备案与组织合规门禁；App只在中国大陆销售，本次不做DSA。
+3. 完成下方 Support URL 可达性、中国大陆备案与组织合规门禁；App 与五档 IAP 只在中国大陆销售，
+   欧盟不在范围，DSA 交易商验证不适用。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
 5. 一个 Production 审核账号、新 Build 3493763、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
@@ -230,8 +232,9 @@ Audio Data。
 | Username | `<ASC_ONLY_REVIEW_ACCOUNT_PHONE>` |
 | Password | `<ASC_ONLY_REVIEW_ACCOUNT_PASSWORD>` |
 
-只使用一个正常 Production 审核账号：以新账号100点完成非付费 AI 验收，通过真实 Sandbox/TestFlight
-购买获得会员权益，并覆盖购买、恢复和注销；注销最后执行。仓库永远不保存真实手机号或密码。
+只使用一个正常 Production 审核账号：审核顺序固定为完整体验→购买→恢复→最后注销。先以新账号100点
+完成非付费 AI 和完整功能体验，再通过真实 Sandbox/TestFlight 购买获得会员权益并验证恢复购买，最后
+执行注销；注销后不再安排其他审核步骤。仓库永远不保存真实手机号或密码。
 
 ### 审核备注（Notes，中英双语）
 
@@ -243,9 +246,9 @@ Audio Data。
 
 【题库与会员】“题库”页含听力、900句、陆空通话、OPI 和故事复诵。资源模块和900句免费；其他题库含免费内容，锁定内容会引导至会员页。
 
-【五档内购】路径：“我的”→“会员与购买”。7、15、31、62、93天均为非自动续期订阅；31天标记“推荐”。价格由 StoreKit 返回，重复购买顺延，服务端验证交易。“恢复购买”位于同页。请用当前账号完成沙盒购买，不会真实扣款。
-
 【录音与 AI】路径：“题库”→任一可用口语练习题。首次主动录音时才申请麦克风权限；录音仅在审核员点击“转写”并同意 AI 数据处理后上传。语音转写使用腾讯云语音识别；文本纠错和表达优化使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）。转写和“分析表达”会在操作前显示 AI 点数。生成或改写结果在即时结果区及“学习记录”持续显示“AI 辅助生成”；“我的”→“设置”→“账号与隐私”的个人数据导出为每条 AI 结果保留 contentLabel“AI辅助生成”、模型和备案信息。
+
+【五档内购】路径：“我的”→“会员与购买”。7、15、31、62、93天均为非自动续期订阅；31天标记“推荐”。价格由 StoreKit 返回，重复购买顺延，服务端验证交易。请先用当前账号完成沙盒购买，不会真实扣款；购买成功后点击同页“恢复购买”确认可恢复状态。
 
 【注销】请在完成其他功能检查后，最后进入“我的”→“设置”→“账号安全”→“注销账号”。确认页说明将放弃账号、学习数据、剩余会员和 AI 点数。该账号已设置密码，可输入当前密码完成重新验证，无需短信或客服协助。
 
@@ -257,9 +260,9 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 [Sign-in] Accept the 16+ declaration and policies, then choose Password Login with the single account in the primary sign-in fields. It is a normal Production account; no SMS or reviewer Apple ID is required.
 
-[Membership and IAP] Go to Me > Membership & Purchases. The 7, 15, 31, 62, and 93-day products are non-renewing; 31 days is Recommended. StoreKit supplies prices, repeat purchases extend expiry, and the server verifies transactions. Restore Purchases is on this page. Use the current account for a sandbox purchase with no real charge.
-
 [Recording and AI] Open Question Banks > a speaking item. Microphone access starts only on recording; audio uploads only after Transcribe and AI consent. Tencent Cloud ASR transcribes. Text correction and improvement use DeepSeek-V4-Flash-0731 (Deepseek Chat, filing No. Beijing-DeepseekChat-202404280016). Costs appear before use. Generated or rewritten results continuously show “AI 辅助生成” in the immediate result and Learning Records; the personal-data export under Me > Settings > Account & Privacy retains contentLabel “AI辅助生成”, model, and filing information for every AI result.
+
+[Membership and IAP] Go to Me > Membership & Purchases. The 7, 15, 31, 62, and 93-day products are non-renewing; 31 days is Recommended. StoreKit supplies prices, repeat purchases extend expiry, and the server verifies transactions. First use the current account for a sandbox purchase with no real charge; after it succeeds, tap Restore Purchases on the same page.
 
 [Account deletion] After all other checks, go to Me > Settings > Account Security > Delete Account last. The screen explains the lost account, learning data, membership, and AI points. Enter the current password to reauthenticate and delete without SMS or customer-support intervention.
 ```
@@ -270,8 +273,8 @@ Thank you for reviewing Ting Ni Wu Ge (听你五个) 1.0.0. It is independent, n
 
 ### 五项共同设置
 
-- 平台状态：五项商品、简体中文本地化和中国大陆基准价格已创建；当前仍覆盖175个地区且自动包含
-  新增地区，必须收缩为仅中国大陆并关闭自动新增地区；`MISSING_METADATA` 还缺五张审核截图。
+- 平台状态：五项商品、简体中文本地化和中国大陆基准价格已创建；当前地区设置仍须收缩为仅中国大陆
+  并关闭自动新增地区；`MISSING_METADATA` 还缺五张审核截图。
 - 创建位置：Subscriptions → Non-Renewing Subscriptions。
 - 类型：Non-Renewing Subscription；不创建自动续期订阅组。
 - Availability：Specific Countries or Regions，仅中国大陆；关闭自动在新增地区供应。
