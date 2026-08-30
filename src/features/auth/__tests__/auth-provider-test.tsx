@@ -16,11 +16,15 @@ const mockSignInWithApple = jest.fn();
 const mockSignOut = jest.fn();
 const mockUpdatePassword = jest.fn();
 const mockVerifyPhoneOtp = jest.fn();
+let mockSessionChangeListener: ((session: AppSession | undefined, event: string) => void) | undefined;
 
 jest.mock('../auth-service', () => ({
   getAuthService: () => ({
     getSession: (...args: unknown[]) => mockGetSession(...args),
-    onSessionChange: () => () => undefined,
+    onSessionChange: (listener: (session: AppSession | undefined, event: string) => void) => {
+      mockSessionChangeListener = listener;
+      return () => { mockSessionChangeListener = undefined; };
+    },
     refreshSession: (...args: unknown[]) => mockRefreshSession(...args),
     authorizePasswordRecovery: (...args: unknown[]) => mockAuthorizePasswordRecovery(...args),
     authorizeAccountDeletionWithPassword: (...args: unknown[]) => mockAuthorizeAccountDeletionWithPassword(...args),
@@ -126,6 +130,7 @@ function AuthStateProbe() {
 
 describe('<AuthProvider /> internal-account gate', () => {
   beforeEach(() => {
+    mockSessionChangeListener = undefined;
     mockApiRequest.mockReset();
     mockGetSession.mockReset().mockResolvedValue(undefined);
     mockRefreshSession.mockReset().mockResolvedValue(undefined);
@@ -175,6 +180,52 @@ describe('<AuthProvider /> internal-account gate', () => {
       await login;
     });
     expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+  });
+
+  it('does not let a stale startup restore clear a newer OTP login', async () => {
+    let resolveStartupSession!: (value: AppSession | undefined) => void;
+    mockGetSession.mockImplementationOnce(() => new Promise((resolve) => { resolveStartupSession = resolve; }));
+    mockApiRequest.mockResolvedValueOnce({
+      accountId: 'phone-auth-user',
+      phone: '+8613800138000',
+      phoneBound: true,
+      providers: ['phone'],
+    });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+    });
+    expect(currentAuth.canAccessApp).toBe(true);
+
+    await act(async () => {
+      resolveStartupSession(undefined);
+      await Promise.resolve();
+    });
+
+    expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+    expect(currentAuth.session?.user.id).toBe('phone-auth-user');
+    expect(mockSignOut).not.toHaveBeenCalled();
+  });
+
+  it('ignores a delayed Supabase INITIAL_SESSION event after OTP login', async () => {
+    mockApiRequest.mockResolvedValueOnce({
+      accountId: 'phone-auth-user',
+      phone: '+8613800138000',
+      phoneBound: true,
+      providers: ['phone'],
+    });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+      mockSessionChangeListener?.(undefined, 'INITIAL_SESSION');
+    });
+
+    expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+    expect(currentAuth.session?.user.id).toBe('phone-auth-user');
+    expect(mockSignOut).not.toHaveBeenCalled();
   });
 
   it('resumes a completed deletion before restoring any persisted login session', async () => {
@@ -287,7 +338,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(mockSignOut).not.toHaveBeenCalled();
   });
 
-  it('closes and clears a social session when account initialization fails', async () => {
+  it('preserves a verified session behind the restore gate when account initialization fails', async () => {
     mockApiRequest.mockRejectedValueOnce(new Error('api_http_503'));
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
@@ -302,8 +353,9 @@ describe('<AuthProvider /> internal-account gate', () => {
     });
 
     expect(failure).toEqual(expect.objectContaining({ message: 'auth_service_unavailable' }));
-    expect(mockSignOut).toHaveBeenCalledWith('local');
-    expect(currentAuth.session).toBeUndefined();
+    expect(mockSignOut).not.toHaveBeenCalled();
+    expect(currentAuth.session?.user.id).toBe('apple-auth-user');
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
     expect(screen.getByTestId('auth-state').props.children).toBe('closed');
   });
 

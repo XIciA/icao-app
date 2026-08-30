@@ -10,8 +10,19 @@ jest.mock('expo-secure-store', () => ({
 
 import { secureSessionStorage } from '../secure-session-storage';
 
+const secureStore = jest.requireMock('expo-secure-store') as {
+  getItemAsync: jest.Mock;
+  setItemAsync: jest.Mock;
+  deleteItemAsync: jest.Mock;
+};
+
 describe('secure session storage', () => {
-  beforeEach(() => mockValues.clear());
+  beforeEach(() => {
+    mockValues.clear();
+    secureStore.getItemAsync.mockReset().mockImplementation(async (key: string) => mockValues.get(key) ?? null);
+    secureStore.setItemAsync.mockReset().mockImplementation(async (key: string, value: string) => { mockValues.set(key, value); });
+    secureStore.deleteItemAsync.mockReset().mockImplementation(async (key: string) => { mockValues.delete(key); });
+  });
 
   it('round-trips a session larger than a single SecureStore value', async () => {
     const session = 'session'.repeat(1_200);
@@ -29,5 +40,46 @@ describe('secure session storage', () => {
 
     await secureSessionStorage.removeItem('session');
     expect(await secureSessionStorage.getItem('session')).toBeNull();
+  });
+
+  it('serializes a read behind an in-flight write for the same session key', async () => {
+    await secureSessionStorage.setItem('session', 'old');
+    let releaseWrite!: () => void;
+    secureStore.setItemAsync.mockImplementationOnce(async (key: string, value: string) => {
+      await new Promise<void>((resolve) => { releaseWrite = resolve; });
+      mockValues.set(key, value);
+    });
+
+    const write = secureSessionStorage.setItem('session', 'new');
+    for (let attempt = 0; attempt < 10 && !releaseWrite; attempt += 1) await Promise.resolve();
+    expect(releaseWrite).toBeDefined();
+    const read = secureSessionStorage.getItem('session');
+    let readCompleted = false;
+    void read.then(() => { readCompleted = true; });
+    await Promise.resolve();
+    expect(readCompleted).toBe(false);
+
+    releaseWrite();
+    await write;
+    await expect(read).resolves.toBe('new');
+  });
+
+  it('does not let an older removal delete a later session write', async () => {
+    await secureSessionStorage.setItem('session', 'old');
+    let releaseRemoval!: () => void;
+    secureStore.deleteItemAsync.mockImplementationOnce(async (key: string) => {
+      await new Promise<void>((resolve) => { releaseRemoval = resolve; });
+      mockValues.delete(key);
+    });
+
+    const removal = secureSessionStorage.removeItem('session');
+    for (let attempt = 0; attempt < 10 && !releaseRemoval; attempt += 1) await Promise.resolve();
+    expect(releaseRemoval).toBeDefined();
+    const write = secureSessionStorage.setItem('session', 'new');
+    releaseRemoval();
+    await removal;
+    await write;
+
+    await expect(secureSessionStorage.getItem('session')).resolves.toBe('new');
   });
 });
