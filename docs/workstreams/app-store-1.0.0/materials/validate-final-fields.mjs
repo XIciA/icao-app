@@ -18,6 +18,12 @@ const [source, appJsonSource, nativeProducts, serverProducts, profileSource, acc
   readFile(new URL('./screenshots.md', import.meta.url), 'utf8'),
   readFile(new URL('./evidence-and-owner-actions.md', import.meta.url), 'utf8'),
 ]);
+const [d2Source, d4Source, d7Source, d8Source] = await Promise.all([
+  readFile(new URL('docs/rules/decisions/d2-login-methods.md', root), 'utf8'),
+  readFile(new URL('docs/rules/decisions/d4-membership-and-pricing.md', root), 'utf8'),
+  readFile(new URL('docs/rules/decisions/d7-data-privacy-and-retention.md', root), 'utf8'),
+  readFile(new URL('docs/rules/decisions/d8-operations-console-structure.md', root), 'utf8'),
+]);
 const encoder = new TextEncoder();
 
 function fail(message) {
@@ -46,6 +52,15 @@ function assertAtMost(name, value, maximum) {
 function assertBytesAtMost(name, value, maximum) {
   const actual = encoder.encode(value).byteLength;
   if (actual > maximum) fail(`${name}_bytes:${actual}>${maximum}`);
+}
+
+function assertOrdered(name, value, markers) {
+  let previous = -1;
+  for (const marker of markers) {
+    const current = value.indexOf(marker);
+    if (current <= previous) fail(`${name}:${marker}`);
+    previous = current;
+  }
 }
 
 const appName = field('app-name');
@@ -80,6 +95,54 @@ const releaseSourceContracts = [
 for (const [name, releaseSource, contracts] of releaseSourceContracts) {
   for (const contract of contracts) {
     if (!releaseSource.includes(contract)) fail(`release_candidate_drift:${name}:${contract}`);
+  }
+}
+
+const submissionScopeContracts = [
+  ['d2', d2Source, ['只准备一个由公司长期控制的中国大陆手机号', '审核顺序固定为同一账号先完成', '最后执行账号注销']],
+  ['d4', d4Source, ['销售地区都只选择中国大陆', '不定义其他国家或地区的可用性和销售价', '不作为 App Store 提交、审核或发布门禁']],
+  ['d7', d7Source, ['可视化后台首次投产时的角色仅为管理员和客服', '延后到 App Store 1.0.0 上架后', '审核或发布门禁']],
+  ['d8', d8Source, ['可视化后台首次投产时', '1.0.0 上架后，不是 TestFlight', '提交、审核或发布门禁']],
+  ['d9', releaseSources[0], ['五档 IAP 都只选择中国大陆', 'DSA 交易商验证不适用于本次提交', '审核流程固定为同一账号先完成完整体验', '提交、审核或发布门禁']],
+  ['materials-readme', releaseSources[6], ['App 与五档 IAP 只在中国大陆销售', 'DSA 不适用', '完整体验→购买→恢复→最后注销', '不是提交、审核或发布门禁']],
+  ['final-fields', source, ['Specific Countries or Regions：仅中国大陆', 'DSA 交易商验证不适用', '完整体验→购买→恢复→最后注销', '不是提交、审核或发布门禁']],
+  ['evidence', releaseSources[8], ['App与五档IAP都只供应中国大陆', '本次不适用；以后扩区前重新审查', '完整体验→购买→恢复→最后注销', '不是1.0.0提交、审核或发布门禁']],
+];
+for (const [name, scopeSource, contracts] of submissionScopeContracts) {
+  for (const contract of contracts) {
+    if (!scopeSource.includes(contract)) fail(`submission_scope_drift:${name}:${contract}`);
+  }
+}
+
+const submissionScopeSources = submissionScopeContracts.map(([name, scopeSource]) => [name, scopeSource]);
+for (const staleContract of [
+  'All Countries or Regions',
+  '全部可用 App Store 国家或地区',
+  '175个',
+  '175 个',
+  '全球供应',
+  '账号 A 用于',
+  '账号 B 用于',
+  'Account A',
+  'Account B',
+  '两个审核账号',
+  '两个 App Store 审核账号',
+  '两个 Production 审核账号',
+  '<ASC_ONLY_ACCOUNT_A_PHONE>',
+  '<ASC_ONLY_ACCOUNT_A_PASSWORD>',
+  '<ASC_ONLY_ACCOUNT_B_PHONE>',
+  '<ASC_ONLY_ACCOUNT_B_PASSWORD>',
+  'DSA 联系信息门禁',
+  '完成 App Store DSA 交易商合规',
+  '完成 DSA 保存和电话/邮箱验证',
+  '重新选择交易商',
+  '仍须部署 Ops',
+  'Ops 仍待部署',
+  '首发基础可视化运营后台方案已最终批准',
+  '可视化 Ops 后台是 Native App 1.0.0 的正式运营门槛',
+]) {
+  for (const [name, scopeSource] of submissionScopeSources) {
+    if (scopeSource.includes(staleContract)) fail(`stale_submission_scope:${name}:${staleContract}`);
   }
 }
 
@@ -171,6 +234,26 @@ for (const reviewPath of [
   if (!reviewNotes.includes(reviewPath)) fail(`missing_review_path:${reviewPath}`);
 }
 
+assertOrdered('review_notes_chinese_flow', reviewNotes, [
+  '【登录】',
+  '【题库与会员】',
+  '【录音与 AI】',
+  '【五档内购】',
+  '请先用当前账号完成沙盒购买',
+  '购买成功后点击同页“恢复购买”',
+  '【注销】',
+  '最后进入“我的”→“设置”→“账号安全”→“注销账号”',
+]);
+assertOrdered('review_notes_english_flow', reviewNotes, [
+  '[Sign-in]',
+  '[Recording and AI]',
+  '[Membership and IAP]',
+  'First use the current account for a sandbox purchase',
+  'after it succeeds, tap Restore Purchases',
+  '[Account deletion]',
+  'Delete Account last',
+]);
+
 for (const aiDisclosure of [
   'DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016）',
   '即时结果区及“学习记录”持续显示“AI 辅助生成”',
@@ -244,7 +327,8 @@ for (const row of productRows) {
 if (/【待|首轮草案|非自动续期商品材料/u.test(source)) fail('legacy_draft_marker');
 
 process.stdout.write([
-  'App Store final field structure verified; submission remains blocked by the complete release gates.',
+  'App Store final fields verified: China-only, DSA not applicable, single review account with deletion last, and Ops post-launch.',
+  'Submission remains blocked only by the remaining release gates listed in the material.',
   `name=${codePoints(appName)}/30 chars`,
   `subtitle=${codePoints(subtitle)}/30 chars`,
   `promotionalText=${codePoints(promotionalText)}/170 chars`,
