@@ -1,13 +1,22 @@
 import { readFile } from 'node:fs/promises';
 
 const root = new URL('../../../../', import.meta.url);
-const [source, appJsonSource, nativeProducts, serverProducts, profileSource, accountSource] = await Promise.all([
+const [source, appJsonSource, nativeProducts, serverProducts, profileSource, accountSource, ...releaseSources] = await Promise.all([
   readFile(new URL('./app-store-connect-final-fields.md', import.meta.url), 'utf8'),
   readFile(new URL('app.json', root), 'utf8'),
   readFile(new URL('src/features/native-commercial-testflight/membership-products.native.ts', root), 'utf8'),
   readFile(new URL('services/api/src/commerce/product-catalog.ts', root), 'utf8'),
   readFile(new URL('src/features/profile/ProfileHomeScreen.tsx', root), 'utf8'),
   readFile(new URL('src/features/account/AccountScreen.tsx', root), 'utf8'),
+  readFile(new URL('docs/rules/decisions/d9-release-channels.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0/requirements.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0/roadmap.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0/technical-plan.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0/technical-audit.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0/phase-log.md', root), 'utf8'),
+  readFile(new URL('./README.md', import.meta.url), 'utf8'),
+  readFile(new URL('./screenshots.md', import.meta.url), 'utf8'),
+  readFile(new URL('./evidence-and-owner-actions.md', import.meta.url), 'utf8'),
 ]);
 const encoder = new TextEncoder();
 
@@ -47,8 +56,31 @@ const keywords = field('keywords');
 const reviewNotes = field('review-notes');
 const appJson = JSON.parse(appJsonSource);
 
-if (appJson.expo.name !== appName || appJson.expo.version !== '1.0.0' || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios') {
+if (
+  appJson.expo.name !== appName
+  || appJson.expo.version !== '1.0.0'
+  || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
+  || appJson.expo.ios?.buildNumber !== '3493762'
+  || appJson.expo.android?.versionCode !== 3493762
+) {
   fail('native_app_identity_drift');
+}
+
+const releaseSourceContracts = [
+  ['d9', releaseSources[0], ['新送审候选预留 iOS Build `3493762`', 'Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 只作已完成录音回归的历史候选保留']],
+  ['requirements', releaseSources[1], ['最终候选必须是本轮代码合入后从干净 `origin/main` 归档的 `1.0.0 (3493762)`', '截图、归档证据和送审均不得沿用 `3493761`']],
+  ['roadmap', releaseSources[2], ['Build 3493761 仅作历史候选冻结', '从干净主线归档 Build 3493762 并重新真机验收']],
+  ['technical-plan', releaseSources[3], ['Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 冻结为历史录音候选', '从干净 `origin/main` 归档 Build `3493762`']],
+  ['technical-audit', releaseSources[4], ['最终候选必须是从本轮代码合入后的干净 `origin/main` 归档的 `1.0.0 (3493762)`', '不得用于最终提审']],
+  ['phase-log', releaseSources[5], ['当前整合分支已准备 Build 3493762', '不得用于最终截图、TestFlight 验收或提审']],
+  ['materials-readme', releaseSources[6], ['Build `3493761` 仅作历史录音候选保留', '只从干净 `origin/main` 归档并上传 Build `3493762`']],
+  ['screenshots', releaseSources[7], ['Build `3493762` 的唯一截图清单', 'Build `3493761` 仅作历史候选保留，不得用于任何最终产品页或 IAP 审核截图']],
+  ['evidence', releaseSources[8], ['| Build | `3493762` |', '新 Build 3493762 处理完成后替换版本页 Build']],
+];
+for (const [name, releaseSource, contracts] of releaseSourceContracts) {
+  for (const contract of contracts) {
+    if (!releaseSource.includes(contract)) fail(`release_candidate_drift:${name}:${contract}`);
+  }
 }
 
 if (codePoints(appName) < 2) fail('app_name_too_short');

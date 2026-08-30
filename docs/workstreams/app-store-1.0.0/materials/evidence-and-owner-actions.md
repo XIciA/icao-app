@@ -46,7 +46,7 @@
 | 平台项 | 当前事实 | 收口要求 |
 | --- | --- | --- |
 | App | Apple ID `6800583111`；Bundle ID `com.readyoufife.ios` | 不新建重复App |
-| 版本页 | iOS 1.0.0，`PREPARE_FOR_SUBMISSION`；Build 3493761已选 | 保持自动发布且不设置最早日期 |
+| 版本页 | iOS 1.0.0，`PREPARE_FOR_SUBMISSION`；历史 Build 3493761 仍已选 | 新 Build 3493762 处理完成后替换版本页 Build，保持自动发布且不设置最早日期 |
 | 产品截图 | 0张 | 上传6张1320×2868简中iPhone截图 |
 | 审核信息 | 联系字段已有基础值；唯一审核账号、密码和Notes未完成 | 真实值只进受保护字段 |
 | App隐私 | 隐私政策、Privacy Choices和隐私标签已发布 | 最终归档后反查 |
