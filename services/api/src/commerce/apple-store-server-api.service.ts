@@ -81,7 +81,10 @@ export class AppleStoreServerApiRequestError extends Error {
   }
 }
 
-const APPLE_TEST_NOTIFICATION_TOKEN_PATTERN = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/iu;
+// Apple documents this value as an opaque string. Older responses used a bare UUID,
+// while current responses can append an underscore and a millisecond timestamp.
+// Keep the root-only CLI path-safe without coupling it to either representation.
+const APPLE_TEST_NOTIFICATION_TOKEN_PATTERN = /^[A-Za-z0-9._-]{1,256}$/u;
 const APPLE_SEND_ATTEMPT_RESULTS = new Set<string>(Object.values(SendAttemptResult));
 
 export function isAppleTestNotificationToken(value: string) {

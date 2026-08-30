@@ -71,9 +71,11 @@ describe('root-only Apple IAP Server readiness CLI', () => {
     expect(deps.requestTestNotification).toHaveBeenCalledWith('production');
   });
 
-  it('checks status with a canonical token and prints only the redacted summary', async () => {
+  it.each([
+    '8cd2974c-f905-492a-bf9a-b2f47c791d19',
+    '8cd2974c-f905-492a-bf9a-b2f47c791d19_1788055084255',
+  ])('checks status with an opaque Apple token and prints only the redacted summary', async (token) => {
     const deps = dependencies();
-    const token = '8cd2974c-f905-492a-bf9a-b2f47c791d19';
     const result = await runAppleIapServerCli([
       'test-notification-status',
       '--environment', 'production',
