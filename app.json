@@ -11,7 +11,7 @@
       "icon": "./assets/images/icon.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3493762",
+      "buildNumber": "3493763",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -25,7 +25,7 @@
       "icon": "./assets/images/icon.png",
       "predictiveBackGestureEnabled": false,
       "package": "com.readyoufife.app",
-      "versionCode": 3493762
+      "versionCode": 3493763
     },
     "web": {
       "output": "single",
