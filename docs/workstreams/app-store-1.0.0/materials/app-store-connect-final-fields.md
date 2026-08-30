@@ -18,9 +18,9 @@ IAP 验收和截图等门禁尚未全部通过，不可直接提交；
 | 副标题 | 见下方副标题字段 | 固定；Apple 上限 30 字符 |
 | Apple ID | `6800583111` | App Store Connect 现有 App 记录 |
 | Bundle ID | `com.readyoufife.ios` | 与 `app.json` 一致 |
-| 用户可见版本 | `1.0.0` | 新候选预留 Build `3493763` |
+| 用户可见版本 | `1.0.0` | 新候选预留 Build `3493764` |
 | App Store iOS 版本记录 | `1.0.0` | 平台草稿已保存为冻结值 `1.0.0` |
-| 送审 Build | `3493763` | 须从整合分支合入后的干净 `origin/main` 归档和上传；旧 Build `3493761` 仅作历史录音修复候选保留 |
+| 送审 Build | `3493764` | 须从整合分支合入后的干净 `origin/main` 归档和上传；旧 Build `3493761` 仅作历史录音修复候选保留 |
 | 主要分类 | 教育（Education） | 固定 |
 | 次要分类 | 工具（Utilities） | 固定；中国大陆 App 备案服务分类仍为工具 |
 | App 定价 | 免费 | 会员能力只通过 App 内购买提供 |
@@ -55,7 +55,7 @@ IAP 验收和截图等门禁尚未全部通过，不可直接提交；
    欧盟不在范围，DSA 交易商验证不适用。
 4. Paid Apps Agreement、银行和税务有效，五档商品已创建并通过 Sandbox/TestFlight 购买、恢复、重购、
    退款、通知和环境隔离验收。
-5. 一个 Production 审核账号、新 Build 3493763、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
+5. 一个 Production 审核账号、新 Build 3493764、六张产品页截图、五张 IAP 审核截图、最终归档隐私审计和
    负责人 TestFlight 真机验收全部完成。
 
 ### Support URL 联系信息与地区门禁

@@ -75,22 +75,22 @@ if (
   appJson.expo.name !== appName
   || appJson.expo.version !== '1.0.0'
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
-  || appJson.expo.ios?.buildNumber !== '3493763'
-  || appJson.expo.android?.versionCode !== 3493763
+  || appJson.expo.ios?.buildNumber !== '3493764'
+  || appJson.expo.android?.versionCode !== 3493764
 ) {
   fail('native_app_identity_drift');
 }
 
 const releaseSourceContracts = [
-  ['d9', releaseSources[0], ['新送审候选预留 iOS Build `3493763`', 'Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 只作已完成录音回归的历史候选保留']],
-  ['requirements', releaseSources[1], ['最终候选必须是本轮代码合入后从干净 `origin/main` 归档的 `1.0.0 (3493763)`', '截图、归档证据和送审均不得沿用 `3493761`']],
-  ['roadmap', releaseSources[2], ['Build 3493761 仅作历史候选冻结', '从干净主线归档 Build 3493763 并重新真机验收']],
-  ['technical-plan', releaseSources[3], ['Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 冻结为历史录音候选', '从干净 `origin/main` 归档 Build `3493763`']],
-  ['technical-audit', releaseSources[4], ['最终候选必须是从本轮代码合入后的干净 `origin/main` 归档的 `1.0.0 (3493763)`', '不得用于最终提审']],
-  ['phase-log', releaseSources[5], ['当前整合分支已准备 Build 3493763', '不得用于最终截图、TestFlight 验收或提审']],
-  ['materials-readme', releaseSources[6], ['Build `3493761` 仅作历史录音候选保留', '只从干净 `origin/main` 归档并上传 Build `3493763`']],
-  ['screenshots', releaseSources[7], ['Build `3493763` 的唯一截图清单', 'Build `3493761` 仅作历史候选保留，不得用于任何最终产品页或 IAP 审核截图']],
-  ['evidence', releaseSources[8], ['| Build | `3493763` |', '新 Build 3493763 处理完成后替换版本页 Build']],
+  ['d9', releaseSources[0], ['新送审候选预留 iOS Build `3493764`', 'Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 只作已完成录音回归的历史候选保留']],
+  ['requirements', releaseSources[1], ['最终候选必须是本轮代码合入后从干净 `origin/main` 归档的 `1.0.0 (3493764)`', '截图、归档证据和送审均不得沿用 `3493761`']],
+  ['roadmap', releaseSources[2], ['Build 3493761 仅作历史候选冻结', '从干净主线归档 Build 3493764 并重新真机验收']],
+  ['technical-plan', releaseSources[3], ['Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 冻结为历史录音候选', '从干净 `origin/main` 归档 Build `3493764`']],
+  ['technical-audit', releaseSources[4], ['最终候选必须是从本轮代码合入后的干净 `origin/main` 归档的 `1.0.0 (3493764)`', '不得用于最终提审']],
+  ['phase-log', releaseSources[5], ['当前修复分支已准备 Build 3493764', '不得用于最终截图、TestFlight 验收或提审']],
+  ['materials-readme', releaseSources[6], ['Build `3493761` 仅作历史录音候选保留', '只从干净 `origin/main` 归档并上传 Build `3493764`']],
+  ['screenshots', releaseSources[7], ['Build `3493764` 的唯一截图清单', 'Build `3493761` 仅作历史候选保留，不得用于任何最终产品页或 IAP 审核截图']],
+  ['evidence', releaseSources[8], ['| Build | `3493764` |', '新 Build 3493764 处理完成后替换版本页 Build']],
 ];
 for (const [name, releaseSource, contracts] of releaseSourceContracts) {
   for (const contract of contracts) {

@@ -119,6 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     promise: Promise<AccountSummary>;
     userId: string;
   } | undefined>(undefined);
+  const sessionMutationRef = useRef(0);
 
   const setSessionSnapshot = useCallback((next: AppSession | undefined, resetAccount = false) => {
     const userChanged = sessionRef.current?.user.id !== next?.user.id;
@@ -238,23 +239,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const resolved = await initializeInternalAccount(next);
       if (sessionRef.current?.user.id !== next.user.id) throw new Error('auth_request_not_completed');
       setAccount(resolved);
+      setAccountRestoreUnavailable(false);
       setLearningSyncActiveUser(resolved.accountId);
       return next;
     } catch {
-      if (!preserveSessionOnFailure && (!sessionRef.current || sessionRef.current.user.id === next.user.id)) {
-        await service?.signOut('local').catch(() => undefined);
-        setSessionSnapshot(undefined, true);
+      if (!preserveSessionOnFailure && sessionRef.current?.user.id === next.user.id) {
+        // A temporary account-profile failure must not destroy a verified auth
+        // session. The root gate keeps business data closed and offers retry.
+        setAccountRestoreUnavailable(true);
       }
       throw new Error('auth_service_unavailable');
     }
-  }, [initializeInternalAccount, service, setSessionSnapshot]);
+  }, [initializeInternalAccount, setSessionSnapshot]);
 
   const restorePersistedAccount = useCallback(async () => {
     if (!service) return;
+    const expectedMutation = sessionMutationRef.current;
     try {
       const deletionState = await inspectPendingAccountDeletion();
       if (deletionState !== 'none') return;
       const next = await service.getSession();
+      if (sessionMutationRef.current !== expectedMutation) return;
       if (!next) {
         setSessionSnapshot(undefined, true);
         setAccountRestoreUnavailable(false);
@@ -263,6 +268,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await acceptAuthenticatedSession(next, true);
       setAccountRestoreUnavailable(false);
     } catch {
+      if (sessionMutationRef.current !== expectedMutation) return;
       if (accountDeletionPendingRef.current) return;
       setSessionSnapshot(undefined, true);
       setAccountRestoreUnavailable(true);
@@ -272,7 +278,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!service) return;
     let active = true;
-    setApiAccessTokenProvider(async () => (await service.getSession())?.accessToken);
+    setApiAccessTokenProvider(async () => sessionRef.current?.accessToken ?? (await service.getSession())?.accessToken);
     setApiAuthRecovery({
       refresh: async () => {
         const next = await service.refreshSession();
@@ -286,8 +292,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setPasswordAuthorization(undefined);
       },
     });
-    const unsubscribe = service.onSessionChange((next) => {
+    const unsubscribe = service.onSessionChange((next, event) => {
       if (active && !accountDeletionPendingRef.current) {
+        // Initial restoration is owned by restorePersistedAccount so a delayed
+        // INITIAL_SESSION event cannot overwrite a newer interactive login.
+        if (event === 'INITIAL_SESSION') return;
+        sessionMutationRef.current += 1;
         setSessionSnapshot(next);
         if (next) setUiAcceptanceMode(false);
         if (next && !accountInitializationRef.current) {
@@ -436,6 +446,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
     async signInWithApple() {
       if (!service) return unavailable();
+      sessionMutationRef.current += 1;
       setAccountReady(false);
       setUiAcceptanceMode(false);
       setPasswordAuthorization(undefined);
@@ -446,6 +457,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async requestPasswordRecoveryOtp(phone) { if (!service) return unavailable(); await service.requestPasswordRecoveryOtp(phone); },
     async verifyPhoneOtp(phone, token, purpose = 'login') {
       if (!service) return unavailable();
+      sessionMutationRef.current += 1;
       setAccountReady(false);
       setUiAcceptanceMode(false);
       const next = await service.verifyPhoneOtp(phone, token);
@@ -472,6 +484,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     async signInWithPhonePassword(phone, password) {
       if (!service) return unavailable();
+      sessionMutationRef.current += 1;
       setAccountReady(false);
       setUiAcceptanceMode(false);
       setPasswordAuthorization(undefined);

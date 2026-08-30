@@ -1,4 +1,4 @@
-import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient, type AuthChangeEvent, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, RecentAuthGrantResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import * as AppleAuthentication from 'expo-apple-authentication';
@@ -46,7 +46,7 @@ export type AuthService = {
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification>;
   signInWithInviteCode(inviteCode: string): Promise<AppSession>;
   signOut(scope?: 'local' | 'global' | 'others'): Promise<void>;
-  onSessionChange(listener: (session: AppSession | undefined) => void): () => void;
+  onSessionChange(listener: (session: AppSession | undefined, event: AuthChangeEvent) => void): () => void;
   startAutoRefresh(): void;
   stopAutoRefresh(): void;
 };
@@ -387,8 +387,8 @@ export class SupabasePhoneAuthService implements AuthService {
     if (error) throw authError(error);
   }
 
-  onSessionChange(listener: (session: AppSession | undefined) => void) {
-    const { data } = this.client.auth.onAuthStateChange((_event, session) => listener(appSession(session)));
+  onSessionChange(listener: (session: AppSession | undefined, event: AuthChangeEvent) => void) {
+    const { data } = this.client.auth.onAuthStateChange((event, session) => listener(appSession(session), event));
     return () => data.subscription.unsubscribe();
   }
 
