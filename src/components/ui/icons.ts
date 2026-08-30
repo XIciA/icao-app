@@ -21,7 +21,6 @@ export { default as CheckCircle2 } from 'lucide-react-native/icons/circle-check'
 export { default as ChevronDown } from 'lucide-react-native/icons/chevron-down';
 export { default as ChevronLeft } from 'lucide-react-native/icons/chevron-left';
 export { default as ChevronRight } from 'lucide-react-native/icons/chevron-right';
-export { default as ChevronsUpDown } from 'lucide-react-native/icons/chevrons-up-down';
 export { default as Clock } from 'lucide-react-native/icons/clock';
 export { default as Clock3 } from 'lucide-react-native/icons/clock-3';
 export { default as Cloud } from 'lucide-react-native/icons/cloud';
