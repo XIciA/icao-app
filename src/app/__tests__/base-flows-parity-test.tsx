@@ -181,7 +181,7 @@ describe('base flow parity screens', () => {
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.press(screen.getByText('获取验证码'));
 
-    expect(screen.getByText(/重新使用 Apple 登录验证身份/u)).toBeTruthy();
+    expect(screen.getByText(/重新使用当前第三方方式登录/u)).toBeTruthy();
     expect(screen.getByText('重新验证身份')).toBeTruthy();
     expect(screen.queryByText(/已有账号|归并/u)).toBeNull();
   });
@@ -327,7 +327,7 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText(/iOS、Android、Web 产品/u)).toBeNull();
   });
 
-  it('keeps the v4.1 in-app privacy rights and AI disclosure aligned with the public policy source', async () => {
+  it('keeps the v4.2 in-app privacy rights and AI disclosure aligned with the public policy source', async () => {
     mockParams = { slug: 'privacy' };
     const screen = await render(withSafeArea(<InfoScreen />));
 

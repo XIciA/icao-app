@@ -3,7 +3,7 @@ import { createHmac, randomBytes } from 'node:crypto';
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, RecentAuthGrantResponse, StartWechatAuthResponse } from '@icao/contracts';
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js';
-import { and, eq, gt, lte, sql } from 'drizzle-orm';
+import { and, eq, gt, sql } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';
 import { API_CONFIG, type ApiConfig } from '../config';

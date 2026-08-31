@@ -103,7 +103,7 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
 
 const infoPath = path.join(root, 'src/features/info/InfoScreen.tsx');
 const info = await readFile(infoPath, 'utf8');
-for (const fragment of [company, appName, '版本 v4.1', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', 'AI 生成内容标识', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据', '在“学习记录”删除单条 AI 结果', '清除学习数据仍保留账号、会员和订单', 'privacy@yunqihangke.com']) {
+for (const fragment of [company, appName, '版本 v4.2', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', 'AI 生成内容标识', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据', '在“学习记录”删除单条 AI 结果', '清除学习数据仍保留账号、会员和订单', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
 }
 const formalAgreementScope = '听你五个 iOS、Android 正式 App 及其相关服务';
@@ -131,7 +131,7 @@ if (formalStart < 0 || legacyStart <= formalStart) {
   throw new Error('Formal and Vercel legacy legal copy boundaries are missing.');
 }
 const formalLegalRelease = legalRelease.slice(formalStart, legacyStart);
-for (const fragment of ['16周岁', '腾讯云 EdgeOne', '腾讯云语音识别', 'DeepSeek 开放平台', '杭州深度求索人工智能基础技术研究有限公司', 'DEEPSEEK_MODEL_FILING_DISCLOSURE', 'AI_GENERATED_CONTENT_LABEL', '不得恶意删除、遮挡或隐匿该标识', '本地静态词典查词不调用文本 AI、不消耗 AI 点数']) {
+for (const fragment of ['16周岁', '微信登录', '微信 OpenSDK', '不包含微信支付能力', '腾讯云 EdgeOne', '腾讯云语音识别', 'DeepSeek 开放平台', '杭州深度求索人工智能基础技术研究有限公司', 'DEEPSEEK_MODEL_FILING_DISCLOSURE', 'AI_GENERATED_CONTENT_LABEL', '不得恶意删除、遮挡或隐匿该标识', '本地静态词典查词不调用文本 AI、不消耗 AI 点数']) {
   requireFragment(formalLegalRelease, fragment, legalReleasePath);
 }
 for (const retiredProvider of ['阿里云百炼', '通义千问', 'qwen']) {
