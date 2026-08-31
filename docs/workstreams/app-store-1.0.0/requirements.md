@@ -1,5 +1,9 @@
 # Native App 1.0.0 正式商业上线总需求
 
+> 历史工作流：现行执行入口已于 2026-08-31 迁移至
+> [`../app-store-1.0.0-final-release/requirements.md`](../app-store-1.0.0-final-release/requirements.md)。
+> 本文仅保留历史事实和追溯记录，不再作为当前范围、状态或门禁来源。
+
 状态：已确认，执行中
 初次确认日期：2026-08-24
 最近确认日期：2026-08-30
