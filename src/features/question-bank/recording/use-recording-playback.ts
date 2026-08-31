@@ -1,5 +1,5 @@
-import { useAudioPlayerStatus } from 'expo-audio';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import type { AudioStatus } from 'expo-audio';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import {
@@ -14,13 +14,43 @@ import type { RecordingAsset } from './types';
 
 const LOAD_TIMEOUT_MS = 4_000;
 
+type RecordingPlaybackStatus = Pick<
+  AudioStatus,
+  'currentTime' | 'didJustFinish' | 'duration' | 'isLoaded' | 'playbackState' | 'playing'
+>;
+
+const LOADING_STATUS: RecordingPlaybackStatus = {
+  currentTime: 0,
+  didJustFinish: false,
+  duration: 0,
+  isLoaded: false,
+  playbackState: 'loading',
+  playing: false,
+};
+
 export type RecordingPlaybackError = 'asset_missing' | 'playback_load_failed' | 'playback_start_failed';
 
 export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
-  const player = useSessionManagedAudioPlayer(null, { updateInterval: 100 });
-  const status = useAudioPlayerStatus(player);
-  const [error, setError] = useState<RecordingPlaybackError>();
   const [retryToken, setRetryToken] = useState(0);
+  const sourceKey = asset ? `${asset.id}:${asset.uri}:${retryToken}` : `empty:${retryToken}`;
+  const playerSource = useMemo(() => asset ? {
+    name: `recording-${asset.id}-${retryToken}`,
+    uri: asset.uri,
+  } : null, [asset?.id, asset?.uri, retryToken]);
+  const player = useSessionManagedAudioPlayer(playerSource, { updateInterval: 100 });
+  const [statusSnapshot, setStatusSnapshot] = useState<{
+    playerId: string;
+    sourceKey: string;
+    status: RecordingPlaybackStatus;
+  }>();
+  const [errorSnapshot, setErrorSnapshot] = useState<{
+    error: RecordingPlaybackError;
+    sourceKey: string;
+  }>();
+  const status = statusSnapshot?.sourceKey === sourceKey && statusSnapshot.playerId === player.id
+    ? statusSnapshot.status
+    : LOADING_STATUS;
+  const error = errorSnapshot?.sourceKey === sourceKey ? errorSnapshot.error : undefined;
   const leaseRef = useRef<AudioLease | undefined>(undefined);
   const resumeAfterScrub = useRef(false);
   const operationGeneration = useRef(0);
@@ -32,6 +62,29 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
     sawProgress: boolean;
   } | undefined>(undefined);
   const appStateRef = useRef(AppState.currentState || 'active');
+
+  const setCurrentError = useCallback((next?: RecordingPlaybackError) => {
+    setErrorSnapshot(next ? { error: next, sourceKey } : undefined);
+  }, [sourceKey]);
+
+  useEffect(() => {
+    let active = true;
+    const acceptStatus = (next: AudioStatus) => {
+      if (!active) return;
+      setStatusSnapshot({ playerId: player.id, sourceKey, status: next });
+    };
+    const subscription = player.addListener('playbackStatusUpdate', acceptStatus);
+    try {
+      const currentStatus = player.currentStatus;
+      if (currentStatus) acceptStatus(currentStatus);
+    } catch {
+      // The source remains explicitly loading until this player emits a status.
+    }
+    return () => {
+      active = false;
+      subscription.remove();
+    };
+  }, [player, sourceKey]);
 
   const tryPausePlayer = useCallback(() => {
     try {
@@ -76,37 +129,15 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   useEffect(() => {
     pause();
     sourceGeneration.current += 1;
-    setError(undefined);
-    if (!asset) {
-      // useAudioPlayer owns this shared object's lifetime. Calling remove() here
-      // deregisters the still-mounted native player, so a later recording can
-      // be replaced into an object that no longer receives normal lifecycle
-      // handling or status updates.
-      return;
-    }
-    try {
-      player.replace(asset.uri);
-    } catch {
-      setError(!recordingRepository.assetExists(asset) ? 'asset_missing' : 'playback_load_failed');
-    }
-  }, [asset, pause, player, retryToken]);
+    setCurrentError(undefined);
+  }, [asset, pause, player, retryToken, setCurrentError]);
 
   useEffect(() => {
     if (!asset) return;
     const generation = sourceGeneration.current;
     const timeout = setTimeout(() => {
       if (generation !== sourceGeneration.current) return;
-      let loaded = { duration: status.duration, isLoaded: status.isLoaded };
-      try {
-        const currentStatus = player.currentStatus;
-        // expo-audio can transiently expose no snapshot while the shared
-        // player is being replaced or released. Keep the hook snapshot as the
-        // fallback instead of turning a normal lifecycle transition into an
-        // asynchronous TypeError.
-        if (currentStatus) loaded = currentStatus;
-      } catch {
-        // The regular load timeout handles an unavailable player status.
-      }
+      const loaded = status;
       if (!loaded.isLoaded || !Number.isFinite(loaded.duration) || loaded.duration <= 0) return;
       const playbackDurationMillis = loaded.duration * 1_000;
       const tolerance = Math.max(500, Math.max(playbackDurationMillis, asset.durationMillis) * 0.2);
@@ -118,7 +149,7 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
         scope: 'playback',
       });
       if (Math.abs(playbackDurationMillis - asset.durationMillis) <= tolerance) return;
-      setError('playback_load_failed');
+      setCurrentError('playback_load_failed');
       emitAudioDiagnostic({
         code: 'playback_duration_mismatch',
         durationMillis: asset.durationMillis,
@@ -129,25 +160,25 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       });
     }, 150);
     return () => clearTimeout(timeout);
-  }, [asset, player, retryToken, status.duration, status.isLoaded]);
+  }, [asset, retryToken, setCurrentError, status.duration, status.isLoaded]);
 
   useEffect(() => {
     if (!asset || status.isLoaded) return;
     const timeout = setTimeout(() => {
       const next = recordingRepository.assetExists(asset) ? 'playback_load_failed' : 'asset_missing';
-      setError(next);
+      setCurrentError(next);
       emitAudioDiagnostic({ code: next, level: 'error', phase: 'loading', scope: 'playback' });
     }, LOAD_TIMEOUT_MS);
     return () => clearTimeout(timeout);
-  }, [asset, retryToken, status.isLoaded]);
+  }, [asset, retryToken, setCurrentError, status.isLoaded]);
 
   useEffect(() => {
     if (!asset || status.playbackState !== 'error') return;
     pause();
     const next = recordingRepository.assetExists(asset) ? 'playback_load_failed' : 'asset_missing';
-    setError(next);
+    setCurrentError(next);
     emitAudioDiagnostic({ code: next, level: 'error', phase: 'loading', scope: 'playback' });
-  }, [asset, pause, status.playbackState]);
+  }, [asset, pause, setCurrentError, status.playbackState]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (next) => {
@@ -185,7 +216,7 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   const play = useCallback(async () => {
     if (!asset || error === 'asset_missing') return false;
     if (!status.isLoaded) {
-      setError('playback_load_failed');
+      setCurrentError('playback_load_failed');
       return false;
     }
     const generation = operationGeneration.current + 1;
@@ -208,17 +239,17 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
         startedAt: status.currentTime,
       };
       player.play();
-      setError(undefined);
+      setCurrentError(undefined);
       emitAudioDiagnostic({ code: 'playback_started', level: 'info', phase: 'playing', scope: 'playback' });
       return true;
     } catch {
       if (activePlayback.current?.generation === generation) activePlayback.current = undefined;
       if (lease) await releaseLease(lease);
-      setError('playback_start_failed');
+      setCurrentError('playback_start_failed');
       emitAudioDiagnostic({ code: 'playback_start_failed', level: 'error', phase: 'ready', scope: 'playback' });
       return false;
     }
-  }, [asset, error, player, releaseLease, status.currentTime, status.didJustFinish, status.duration, status.isLoaded, trySeekPlayer]);
+  }, [asset, error, player, releaseLease, setCurrentError, status.currentTime, status.didJustFinish, status.duration, status.isLoaded, trySeekPlayer]);
 
   return {
     beginScrub() {
@@ -237,7 +268,7 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       resumeAfterScrub.current = false;
       if (!await trySeekPlayer(position)) {
         await releaseLease();
-        setError('playback_start_failed');
+        setCurrentError('playback_start_failed');
         return;
       }
       if (!shouldResume || appStateRef.current !== 'active') return;
