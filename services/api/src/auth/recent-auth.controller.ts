@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest, PhoneRecentAuthRequest, RecentAuthGrantResponse, StartPhoneOtpResponse, StartPhoneRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts';
+import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest, PhoneRecentAuthRequest, RecentAuthGrantResponse, StartPhoneOtpResponse, StartPhoneRecentAuthRequest, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts';
 
 import { AppleAuthService } from './apple-auth.service';
 import { appleRecentAuthSchema } from './apple-auth.schemas';
@@ -8,6 +8,7 @@ import { PhoneAuthService } from './phone-auth.service';
 import { RecentAuthService } from './recent-auth.service';
 import { passwordRecentAuthSchema, phoneRecentAuthSchema, wechatRecentAuthSchema } from './recent-auth.schemas';
 import { RequireAuthGuard } from './require-auth.guard';
+import { WechatAuthService } from './wechat-auth.service';
 
 @Controller('v1/account/recent-auth')
 @UseGuards(RequireAuthGuard)
@@ -16,6 +17,7 @@ export class RecentAuthController {
     private readonly recentAuth: RecentAuthService,
     private readonly appleAuth: AppleAuthService,
     private readonly phoneAuth: PhoneAuthService,
+    private readonly wechatAuth: WechatAuthService,
   ) {}
 
   @Post('password')
@@ -75,6 +77,22 @@ export class RecentAuthController {
     };
   }
 
+  @Post('wechat/start')
+  async startWechat(
+    @Body() body: StartWechatRecentAuthRequest,
+    @Req() request: AuthenticatedRequest,
+  ): Promise<ApiSuccessEnvelope<StartWechatAuthResponse>> {
+    const parsed = phoneRecentAuthSchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
+    return {
+      requestId: request.id,
+      data: await this.wechatAuth.startRecentAuth(
+        request.auth!,
+        (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+      ),
+    };
+  }
+
   @Post('wechat')
   async wechat(
     @Body() body: WechatRecentAuthRequest,
@@ -84,7 +102,11 @@ export class RecentAuthController {
     if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
     return {
       requestId: request.id,
-      data: await this.recentAuth.issueWechatGrant(request.auth!, parsed.data.purpose),
+      data: await this.wechatAuth.completeRecentAuth(
+        request.auth!,
+        parsed.data,
+        (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+      ),
     };
   }
 }

@@ -36,7 +36,7 @@
 | Ops | Web/API、RBAC、TOTP、审计和数据库表已存在；可视化生产部署未完成 | 延后到上架后，不是1.0.0提交、审核或发布门禁 |
 
 生产数据库迁移和 API 已从干净主线发布。公网 `/health/ready` 返回200；Apple Notifications V2入口
-存在，旧微信路由404，未认证隐私导出401。五个正式页面均返回200：
+存在，未认证隐私导出401。微信登录生产路由、AASA 和真机闭环须在最终候选按真实平台配置复核；五个正式页面均返回200：
 
 - `https://yunqihangke.com/apps/readyoufife/privacy/`
 - `https://yunqihangke.com/apps/readyoufife/terms/`

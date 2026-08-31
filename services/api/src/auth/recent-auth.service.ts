@@ -16,7 +16,6 @@ import {
 
 const RECENT_AUTH_GRANT_TTL_MS = 5 * 60 * 1_000;
 const RECENT_AUTH_RESERVATION_TTL_MS = RECENT_AUTH_GRANT_TTL_MS;
-const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
 
 export type RecentAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
@@ -52,20 +51,6 @@ export class RecentAuthService {
     });
   }
 
-  async issueWechatGrant(
-    source: VerifiedAuthSession,
-    purpose: 'account_delete',
-    now = new Date(),
-  ) {
-    const nowSeconds = Math.floor(now.getTime() / 1_000);
-    if (
-      !source.user.providers?.includes('wechat')
-      || source.issuedAt > nowSeconds + 60
-      || nowSeconds - source.issuedAt > RECENT_SOCIAL_AUTH_WINDOW_SECONDS
-    ) throw new ForbiddenException('wechat_reauthentication_required');
-    return this.issueVerifiedGrant(source, 'wechat', purpose, now);
-  }
-
   async issueVerifiedGrant(
     source: VerifiedAuthSession,
     method: RecentAuthMethod,
@@ -78,7 +63,7 @@ export class RecentAuthService {
     ));
   }
 
-  private async issueVerifiedGrantInTransaction(
+  async issueVerifiedGrantInTransaction(
     transaction: RecentAuthTransaction,
     source: VerifiedAuthSession,
     method: RecentAuthMethod,

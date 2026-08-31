@@ -1,13 +1,13 @@
 import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 
-import { apiRequest } from '@/platform/api-client';
+import { apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import {
   SupabasePhoneAuthService,
   authError,
   isValidPhonePassword,
 } from '../auth-service';
 
-jest.mock('@/platform/api-client', () => ({ apiRequest: jest.fn() }));
+jest.mock('@/platform/api-client', () => ({ apiRequest: jest.fn(), apiRequestWithAccessToken: jest.fn() }));
 
 const mockAppleSignIn = jest.fn();
 jest.mock('expo-apple-authentication', () => ({
@@ -22,6 +22,7 @@ jest.mock('expo-crypto', () => ({
 }));
 
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;
+const mockApiRequestWithAccessToken = apiRequestWithAccessToken as jest.MockedFunction<typeof apiRequestWithAccessToken>;
 
 const phone = '+8613800138000';
 const loginChallenge = {
@@ -82,6 +83,7 @@ function authClient() {
 describe('SupabasePhoneAuthService', () => {
   beforeEach(() => {
     mockApiRequest.mockReset();
+    mockApiRequestWithAccessToken.mockReset();
     mockAppleSignIn.mockReset().mockResolvedValue({
       authorizationCode: 'apple-authorization-code',
       identityToken: 'apple-identity-token',
@@ -160,15 +162,17 @@ describe('SupabasePhoneAuthService', () => {
 
   it('starts and consumes a phone OTP before obtaining an account deletion grant', async () => {
     const { auth, client } = authClient();
+    const { auth: transientAuth, client: transientClient } = authClient();
     mockApiRequest
       .mockResolvedValueOnce({ accepted: true })
-      .mockResolvedValueOnce({
-        expiresAt: Date.now() + 300_000,
-        grantId: '10000000-0000-4000-8000-000000000003',
-        method: 'phone_otp',
-        purpose: 'account_delete',
-      });
-    const service = new SupabasePhoneAuthService(client);
+      ;
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
+      expiresAt: Date.now() + 300_000,
+      grantId: '10000000-0000-4000-8000-000000000003',
+      method: 'phone_otp',
+      purpose: 'account_delete',
+    });
+    const service = new SupabasePhoneAuthService(client, transientClient);
 
     await service.requestAccountDeletionPhoneOtp();
     const authorization = await service.authorizeAccountDeletionWithPhoneOtp('123456');
@@ -179,14 +183,20 @@ describe('SupabasePhoneAuthService', () => {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ purpose: 'account_delete' }),
       }],
-      ['/v1/account/recent-auth/phone', {
+    ]);
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith(
+      '/v1/account/recent-auth/phone',
+      'access-token',
+      {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ purpose: 'account_delete' }),
-      }],
-    ]);
-    expect(auth.verifyOtp).toHaveBeenCalledWith({ phone, token: '123456', type: 'sms' });
-    expect(authorization.session.user.id).toBe('user-1');
+      },
+    );
+    expect(transientAuth.verifyOtp).toHaveBeenCalledWith({ phone, token: '123456', type: 'sms' });
+    expect(auth.verifyOtp).not.toHaveBeenCalled();
+    expect(auth.setSession).not.toHaveBeenCalled();
+    expect(authorization.grantId).toBe('10000000-0000-4000-8000-000000000003');
   });
 
   it('obtains an Apple deletion grant without replacing the current session', async () => {
@@ -332,13 +342,14 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.setSession).not.toHaveBeenCalled();
   });
 
-  it('signs out a password result that belongs to a non-China phone identity', async () => {
+  it('rejects a password result that belongs to a non-China phone identity without clearing another session', async () => {
     const { auth, client } = authClient();
     const foreignSession = session({ phone: '+12025550123' });
     auth.signInWithPassword.mockResolvedValueOnce({ data: { session: foreignSession, user: foreignSession.user }, error: null });
+    auth.setSession.mockResolvedValueOnce({ data: { session: foreignSession, user: foreignSession.user }, error: null });
     await expect(new SupabasePhoneAuthService(client).signInWithPhonePassword(phone, 'password10'))
       .rejects.toThrow('phone_account_required');
-    expect(auth.signOut).toHaveBeenCalledWith({ scope: 'local' });
+    expect(auth.signOut).not.toHaveBeenCalled();
   });
 
   it('starts phone binding through the authenticated server without probing phone occupancy', async () => {

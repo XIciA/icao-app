@@ -237,8 +237,13 @@ export type AppleRecentAuthRequest = AppleCredentialRequest & {
 };
 
 export type WechatRecentAuthRequest = {
+  challengeId: string;
+  code: string;
   purpose: 'account_delete';
+  state: string;
 };
+
+export type StartWechatRecentAuthRequest = Pick<WechatRecentAuthRequest, 'purpose'>;
 
 export type RegisterAppleCredentialResponse = {
   registered: true;

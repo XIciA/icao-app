@@ -73,9 +73,10 @@ if (
   rootPackage.dependencies?.['react-native-iap'] !== '16.3.2' ||
   rootPackage.dependencies?.['react-native-nitro-modules'] !== '0.36.5' ||
   apiPackage.dependencies?.['@apple/app-store-server-library'] !== '3.1.0' ||
+  rootPackage.dependencies?.['@icao/wechat-auth'] !== 'file:modules/icao-wechat-auth' ||
   Object.hasOwn(rootPackage.dependencies ?? {}, 'expo-native-wechat')
 ) {
-  throw new Error('The StoreKit dependency set and WeChat runtime freeze must remain composed.');
+  throw new Error('The StoreKit and approved WeChat NoPay dependency set must remain composed.');
 }
 const originalVariant = process.env.ICAO_APP_VARIANT;
 process.env.ICAO_APP_VARIANT = 'development';
@@ -98,9 +99,8 @@ if (
   productionConfig.name !== app.expo.name ||
   productionConfig.scheme !== 'readyoufife' ||
   productionConfig.ios.usesAppleSignIn !== true ||
-  Object.hasOwn(productionConfig.ios, 'associatedDomains') ||
   !productionPluginNames.includes('expo-apple-authentication') ||
-  productionPluginNames.some((name) => /wechat|weixin/iu.test(String(name)))
+  !productionPluginNames.includes('./plugins/with-wechat-auth')
 ) {
   throw new Error('The production app identity must remain unchanged.');
 }
@@ -149,7 +149,7 @@ const iosTestFlightArchive = await readFile('scripts/archive-ios-testflight.sh',
 const iosReleaseProduct = await readFile('scripts/lib/ios-release-product.sh', 'utf8');
 const androidStandalone = await readFile('scripts/build-standalone-android.sh', 'utf8');
 const releaseCommon = await readFile('scripts/lib/release-common.sh', 'utf8');
-const wechatRuntimeFreeze = await readFile('tools/check-wechat-runtime-freeze.mjs', 'utf8');
+const wechatLoginRuntime = await readFile('tools/check-wechat-login-runtime.mjs', 'utf8');
 const packageJsonSource = await readFile('package.json', 'utf8');
 const iosDevelopment = await readFile('scripts/run-ios-development.sh', 'utf8');
 const criticalReleaseEvidence = await readFile('tools/critical-capability-release-evidence.mjs', 'utf8');
@@ -167,10 +167,10 @@ const productionMigrationApply = await readFile('scripts/apply-production-migrat
 const productionSchemaVerifier = await readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8');
 const productionSchemaContractLib = await readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8');
 const productionSchemaContractTests = await readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8');
-const clientTableGrantRevocation = await readFile(
+const clientTableGrantRevocation = (await Promise.all([
   'services/api/drizzle/0034_revoke_client_table_grants.sql',
-  'utf8',
-);
+  'services/api/drizzle/0035_lowly_microbe.sql',
+].map((file) => readFile(file, 'utf8')))).join('\n');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
 const postgresBackupService = await readFile('infra/backup/icao-postgres-backup.service', 'utf8');
@@ -728,9 +728,9 @@ if (
   !iosReleaseProduct.includes('com.apple.developer.applesignin') ||
   !iosReleaseProduct.includes('com.apple.developer.associated-domains') ||
   !iosReleaseProduct.includes('WechatOpenSDK') ||
-  !iosReleaseProduct.includes('api\\.weixin\\.qq\\.com')
+  !iosReleaseProduct.includes('PayReq|WXPay|WechatOpenSDK_WithPay')
 ) {
-  throw new Error('The shared iOS Release product integrity gate must compose StoreKit and no-WeChat checks.');
+  throw new Error('The shared iOS Release product integrity gate must compose StoreKit and WeChat NoPay checks.');
 }
 if (
   !iosTestFlightArchive.includes("-destination 'generic/platform=iOS'") ||
@@ -745,33 +745,33 @@ if (
   throw new Error('The TestFlight archive is missing its production identity or product integrity gate.');
 }
 if (
-  !releaseCommon.includes('tools/check-wechat-runtime-freeze.mjs') ||
+  !releaseCommon.includes('tools/check-wechat-login-runtime.mjs') ||
   !releaseCommon.includes('settings.external?.phone !== true') ||
   !releaseCommon.includes('settings.phone_autoconfirm === true') ||
   !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true') ||
-  !releaseCommon.includes('settings.external?.wechat === true') ||
-  !releaseCommon.includes('/v1/auth/wechat/session') ||
-  !releaseCommon.includes('retiredWechat.status !== 404')
+  !releaseCommon.includes('/v1/auth/wechat/challenge') ||
+  !releaseCommon.includes("wechatBody?.data?.status !== 'available'")
 ) {
-  throw new Error('The Release runtime gate must verify enabled providers and retired WeChat surfaces.');
+  throw new Error('The Release runtime gate must verify phone, Apple, and production WeChat login readiness.');
 }
-for (const freezeContract of [
-  'expo-native-wechat',
+for (const loginContract of [
+  'OpenSDK2.0.7_NoPay.zip',
+  '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258',
+  'wechat-sdk-android-without-mta:6.8.0',
   'services/api/src/auth/wechat-auth.controller.ts',
-  'services/api/src',
-  'src/features/auth',
-  'production_scheme_invalid',
-  'associated_domains_present',
+  'WECHAT_APP_SECRET',
+  'payment_marker',
+  'candidate_universal_link_missing',
 ]) {
-  if (!wechatRuntimeFreeze.includes(freezeContract)) {
-    throw new Error(`The WeChat runtime freeze contract is incomplete: ${freezeContract}`);
+  if (!wechatLoginRuntime.includes(loginContract)) {
+    throw new Error(`The WeChat NoPay login contract is incomplete: ${loginContract}`);
   }
 }
 if (
   !packageJsonSource.includes('pnpm check:ios:storekit') ||
-  !packageJsonSource.includes('tools/check-wechat-runtime-freeze.mjs')
+  !packageJsonSource.includes('tools/check-wechat-login-runtime.mjs')
 ) {
-  throw new Error('The Release self-test must compose StoreKit and WeChat-freeze verification.');
+  throw new Error('The Release self-test must compose StoreKit and WeChat NoPay login verification.');
 }
 if (iosTestFlightArchive.includes('ICAO_SKIP_AUDIO_E2E')) {
   throw new Error('The TestFlight archive must not allow its audio evidence gate to be bypassed.');

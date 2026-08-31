@@ -10,7 +10,8 @@ const [
   migrateSource,
   rehearsalSource,
   databaseSchemaSource,
-  clientTableGrantRevocationSource,
+  clientTableGrantRevocationBase,
+  clientTableGrantRevocationExtension,
   schemaVerifierSource,
   schemaContractLibSource,
   schemaContractTestSource,
@@ -24,6 +25,7 @@ const [
   readFile('scripts/rehearse-production-migrations.sh', 'utf8'),
   readFile('services/api/src/database/schema.ts', 'utf8'),
   readFile('services/api/drizzle/0034_revoke_client_table_grants.sql', 'utf8'),
+  readFile('services/api/drizzle/0035_lowly_microbe.sql', 'utf8'),
   readFile('services/api/scripts/verify-production-schema-contract.mjs', 'utf8'),
   readFile('services/api/scripts/production-schema-contract-lib.mjs', 'utf8'),
   readFile('services/api/scripts/production-schema-contract-tests.mjs', 'utf8'),
@@ -32,6 +34,7 @@ const [
   readFile('package.json', 'utf8'),
   readFile('services/api/package.json', 'utf8'),
 ]);
+const clientTableGrantRevocationSource = `${clientTableGrantRevocationBase}\n${clientTableGrantRevocationExtension}`;
 
 for (const contract of [
   'check-mainline-release.mjs',
@@ -98,8 +101,8 @@ for (const contract of [
   'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan"',
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
-  'p.expectedPublicTables !== 56',
-  'p.actualPublicTables !== 56',
+  'p.expectedPublicTables !== 59',
+  'p.actualPublicTables !== 59',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
   'p.unexpectedPublicTableOwners !== 0',
@@ -511,7 +514,7 @@ const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'
   .map((match) => match[1])
   .sort();
 if (
-  schemaPublicTables.length !== 56
+  schemaPublicTables.length !== 59
   || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
   || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
     !== JSON.stringify(schemaPublicTables)

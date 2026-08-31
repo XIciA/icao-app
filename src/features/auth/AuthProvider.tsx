@@ -617,15 +617,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (session?.user.providers.includes('apple')) {
         grantId = (await service.authorizeAccountDeletionWithApple()).grantId;
       } else if (session?.user.providers.includes('wechat')) {
-        const authorization = await service.authorizeAccountDeletionWithWechat(account.accountId);
-        setSessionSnapshot(authorization.session);
-        grantId = authorization.grant.grantId;
+        grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId)).grantId;
       } else if (session?.user.hasPassword) {
         grantId = (await service.authorizeAccountDeletionWithPassword(authentication.password ?? '')).grantId;
       } else {
-        const authorization = await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '');
-        setSessionSnapshot(authorization.session);
-        grantId = authorization.grant.grantId;
+        grantId = (await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '')).grantId;
       }
       const pending = await pendingAccountDeletionFor(account.accountId);
       accountDeletionSubmissionRef.current = true;

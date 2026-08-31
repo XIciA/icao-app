@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { sql } from 'drizzle-orm';
 
-import { phoneOtpIntents, recentAuthChallenges, recentAuthGrants, smsDeliveryAttempts, smsUsageCounters } from '../database/schema';
+import { authUsageCounters, phoneOtpIntents, recentAuthChallenges, recentAuthGrants, smsDeliveryAttempts, smsUsageCounters, wechatAuthChallenges } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 
 const CLEANUP_INTERVAL_MS = 60 * 60 * 1_000;
@@ -27,6 +27,18 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
 
   async cleanup(now = new Date()) {
     const nowIso = now.toISOString();
+    await this.database.db.execute(sql`
+      UPDATE ${wechatAuthChallenges}
+      SET status = 'failed', verification_expires_at = NULL
+      WHERE ${wechatAuthChallenges.status} = 'verifying'
+        AND ${wechatAuthChallenges.verificationExpiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      UPDATE ${wechatAuthChallenges}
+      SET status = 'expired', verification_expires_at = NULL
+      WHERE ${wechatAuthChallenges.status} IN ('pending', 'verified')
+        AND ${wechatAuthChallenges.expiresAt} <= ${nowIso}::timestamptz
+    `);
     await this.database.db.execute(sql`
       DELETE FROM ${phoneOtpIntents}
       WHERE ${phoneOtpIntents.id} IN (
@@ -78,6 +90,26 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
         LIMIT ${CLEANUP_BATCH_SIZE}
       )
       AND ${smsUsageCounters.expiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${authUsageCounters}
+      WHERE ${authUsageCounters.scopeKey} IN (
+        SELECT ${authUsageCounters.scopeKey} FROM ${authUsageCounters}
+        WHERE ${authUsageCounters.expiresAt} <= ${nowIso}::timestamptz
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${authUsageCounters.expiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${wechatAuthChallenges}
+      WHERE ${wechatAuthChallenges.id} IN (
+        SELECT ${wechatAuthChallenges.id} FROM ${wechatAuthChallenges}
+        WHERE ${wechatAuthChallenges.expiresAt} <= ${nowIso}::timestamptz
+          AND ${wechatAuthChallenges.status} IN ('consumed', 'failed', 'expired')
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${wechatAuthChallenges.expiresAt} <= ${nowIso}::timestamptz
+      AND ${wechatAuthChallenges.status} IN ('consumed', 'failed', 'expired')
     `);
   }
 }

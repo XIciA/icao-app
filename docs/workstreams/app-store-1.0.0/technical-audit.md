@@ -14,7 +14,7 @@
 - 最终候选必须是从本轮代码合入后的干净 `origin/main` 归档的 `1.0.0 (3493764)`；该 Build 尚未归档、上传或真机验收。
 - Apple/手机号登录、密码近期认证、注销、100点防重复、StoreKit 2、Apple JWS验签、Notifications V2、
   五档商品合同、订单/权益/点数账本、内容权限、最长72小时离线授权及隐私自助均已进入主线。
-- 生产数据库迁移和 API 已发布；腾讯云 ASR、DeepSeek、Apple 登录/IAP、内容签名和旧微信路由404等
+- 生产数据库迁移和 API 已发布；腾讯云 ASR、DeepSeek、Apple 登录/IAP、内容签名等
   生产预检已通过。五个正式法律与支持页面均返回200。
 - 五档非自动续期商品、简中名称/说明及中国大陆基准价格已经创建；Production/Sandbox Notifications V2
   URL 已配置。App Store 1.0.0 版本页仍是 `PREPARE_FOR_SUBMISSION`。
@@ -51,4 +51,5 @@
 - 任何真实交易都先在 Sandbox/TestFlight；Production 与 Sandbox 必须分账，客户端成功不能直接永久授权。
 - 敏感法律、银行、税务、验证码和账号密码只进入 Apple 或受保护凭据界面，不写入仓库、日志或聊天。
 - DeepSeek 训练/改进证据缺口与题库权利默认前提继续按已确认口径记录，不改写成绝对保证。
-- 最终归档必须继续证明无微信 SDK/入口/路由/数据流，体系课程和学习报告不可达；Vercel保持冻结。
+- 最终归档必须证明微信登录使用锁定 NoPay SDK、AppSecret 仅在服务端、Universal Link/AASA 与生产
+  配置一致且不存在微信支付；体系课程和学习报告不可达；Vercel保持冻结。

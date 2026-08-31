@@ -60,7 +60,7 @@ const CRITICAL_PREFIXES = [
   'tools/app-store-connect-testflight.mjs',
   'tools/check-audio-boundaries.mjs',
   'tools/check-ios-testflight.mjs',
-  'tools/check-wechat-runtime-freeze.mjs',
+  'tools/check-wechat-login-runtime.mjs',
   'tools/create-testflight-candidate.mjs',
   'tools/critical-capability-release-evidence.mjs',
   'tools/verify-release-config.mjs',

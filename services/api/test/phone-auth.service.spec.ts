@@ -1,4 +1,4 @@
-import { ServiceUnavailableException } from '@nestjs/common';
+import { ForbiddenException, ServiceUnavailableException } from '@nestjs/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
@@ -140,5 +140,64 @@ describe('PhoneAuthService', () => {
     await expect(instance.start('+8613800138000', '203.0.113.8'))
       .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
         && error.message === 'phone_auth_unavailable');
+  });
+
+  it('commits every invalid attempt before rejecting and marks the terminal attempt outside the transaction', async () => {
+    const transactionSet = vi.fn();
+    const terminalSet = vi.fn();
+    const transaction = {
+      execute: vi.fn().mockResolvedValue(undefined),
+      select: vi.fn(() => ({
+        from: vi.fn(() => ({
+          where: vi.fn(() => ({
+            limit: vi.fn(() => ({
+              for: vi.fn().mockResolvedValue([{
+                attemptCount: 5,
+                createdAt: new Date(),
+                expiresAt: new Date(Date.now() + 60_000),
+                id: '10000000-0000-4000-8000-000000000010',
+                status: 'pending',
+              }]),
+            })),
+          })),
+        })),
+      })),
+      update: vi.fn(() => ({
+        set: vi.fn((value: unknown) => {
+          transactionSet(value);
+          return { where: vi.fn().mockResolvedValue(undefined) };
+        }),
+      })),
+    };
+    const database = {
+      db: {
+        transaction: vi.fn(async (operation: (value: typeof transaction) => Promise<unknown>) => operation(transaction)),
+        update: vi.fn(() => ({
+          set: vi.fn((value: unknown) => {
+            terminalSet(value);
+            return { where: vi.fn().mockResolvedValue(undefined) };
+          }),
+        })),
+      },
+    } as unknown as DatabaseService;
+    const verifyOtp = vi.fn().mockResolvedValue({
+      data: { session: null, user: null },
+      error: { code: 'otp_expired', message: 'invalid' },
+    });
+    supabase.createClient.mockReturnValueOnce({ auth: { verifyOtp } });
+    const instance = new PhoneAuthService(config, database);
+
+    await expect(instance.verifyLogin({
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      phone: '+8613800138000',
+      purpose: 'login',
+      token: '123456',
+    }, '203.0.113.8')).rejects.toBeInstanceOf(ForbiddenException);
+
+    expect(transactionSet).toHaveBeenCalledWith(expect.objectContaining({
+      attemptCount: 6,
+      lastAttemptAt: expect.any(Date),
+    }));
+    expect(terminalSet).toHaveBeenCalledWith({ status: 'failed' });
   });
 });

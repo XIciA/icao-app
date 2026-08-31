@@ -213,31 +213,19 @@ export class PhoneAuthService {
   ): Promise<StartPhoneOtpResponse> {
     const phoneDigest = this.phoneDigest(phone);
     const challengeId = await this.database.db.transaction(async (transaction) => {
-      const scope = `${phoneDigest}:${purpose}:${accountId ?? 'unbound'}`;
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-intent:${scope}`}, 0))`);
-      const accountCondition = accountId
-        ? eq(phoneOtpIntents.accountId, accountId)
-        : isNull(phoneOtpIntents.accountId);
-      const [newerIntent] = await transaction.select({ id: phoneOtpIntents.id })
-        .from(phoneOtpIntents)
-        .where(and(
-          eq(phoneOtpIntents.phoneDigest, phoneDigest),
-          eq(phoneOtpIntents.purpose, purpose),
-          accountCondition,
-          eq(phoneOtpIntents.status, 'pending'),
-          gt(phoneOtpIntents.createdAt, startedAt),
-        ))
-        .limit(1);
-      if (newerIntent) return newerIntent.id;
+      // Supabase OTP codes are scoped to the phone rather than our business
+      // purpose. Keep exactly one pending generation for the phone across
+      // login, recovery, binding and deletion so a token can never be reused
+      // with a challenge issued for another purpose. The transaction is
+      // ordered by provider completion, and every response returns the row it
+      // actually persisted instead of borrowing a concurrent challenge id.
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-intent:${phoneDigest}`}, 0))`);
       await transaction.update(phoneOtpIntents).set({
         consumedAt: startedAt,
         status: 'superseded',
       }).where(and(
         eq(phoneOtpIntents.phoneDigest, phoneDigest),
-        eq(phoneOtpIntents.purpose, purpose),
-        accountCondition,
         eq(phoneOtpIntents.status, 'pending'),
-        lte(phoneOtpIntents.createdAt, startedAt),
       ));
       const [created] = await transaction.insert(phoneOtpIntents).values({
         accountId,
@@ -261,7 +249,11 @@ export class PhoneAuthService {
     sourceIp: string,
   ): Promise<SocialAuthSessionResponse> {
     const now = new Date();
-    return this.database.db.transaction(async (transaction) => {
+    // Reserve and persist the attempt before contacting the OTP supplier. The
+    // supplier call must not live in the database transaction: throwing after
+    // an invalid code would otherwise roll back both the attempt counter and
+    // the terminal `failed` state, allowing an unlimited number of guesses.
+    const reserved = await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-verify:${challengeId}`}, 0))`);
       const accountCondition = purpose === 'login' || purpose === 'password_recovery'
         ? isNull(phoneOtpIntents.accountId)
@@ -289,18 +281,21 @@ export class PhoneAuthService {
         attemptCount: intent.attemptCount + 1,
         lastAttemptAt: now,
       }).where(eq(phoneOtpIntents.id, intent.id));
+      return {
+        attemptCount: intent.attemptCount + 1,
+        createdAt: intent.createdAt,
+        id: intent.id,
+      };
+    });
 
-      const { data, error } = await this.client(sourceIp).auth.verifyOtp({ phone, token, type: 'sms' });
-      if (error || !data.session || data.user?.phone !== phone) {
-        if (intent.attemptCount + 1 >= PHONE_OTP_MAX_ATTEMPTS) {
-          await transaction.update(phoneOtpIntents).set({ status: 'failed' })
-            .where(eq(phoneOtpIntents.id, intent.id));
-        }
-        if (error && this.isRateLimit(error.code?.toLowerCase())) {
-          throw new HttpException('phone_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
-        }
-        throw new ForbiddenException('invalid_phone_otp');
+    const { data, error } = await this.client(sourceIp).auth.verifyOtp({ phone, token, type: 'sms' });
+    if (error || !data.session || data.user?.phone !== phone) {
+      await this.markFailedAttempt(reserved.id, reserved.attemptCount);
+      if (error && this.isRateLimit(error.code?.toLowerCase())) {
+        throw new HttpException('phone_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
       }
+      throw new ForbiddenException('invalid_phone_otp');
+    }
       const otpTimestamp = Math.max(...((data.session as unknown as { user?: { amr?: Array<{ method?: string; timestamp?: number }> } }).user?.amr ?? [])
         .filter((entry) => entry.method === 'otp' && typeof entry.timestamp === 'number')
         .map((entry) => entry.timestamp!), Number.NEGATIVE_INFINITY);
@@ -308,18 +303,38 @@ export class PhoneAuthService {
       // AMR is checked when available; the explicit challenge id remains the
       // authoritative resend generation and prevents a stale UI challenge from
       // consuming a newer request.
-      if (Number.isFinite(otpTimestamp) && otpTimestamp * 1_000 + 1_000 < intent.createdAt.getTime()) {
+      if (Number.isFinite(otpTimestamp) && otpTimestamp * 1_000 + 1_000 < reserved.createdAt.getTime()) {
+        await this.markFailedAttempt(reserved.id, reserved.attemptCount);
         throw new ForbiddenException('invalid_phone_otp');
       }
-      await transaction.update(phoneOtpIntents).set({
+
+    const consumed = await this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-verify:${challengeId}`}, 0))`);
+      const [updated] = await transaction.update(phoneOtpIntents).set({
         consumedAt: now,
         status: 'consumed',
-      }).where(and(eq(phoneOtpIntents.id, intent.id), eq(phoneOtpIntents.status, 'pending')));
-      return {
-        accessToken: data.session.access_token,
-        expiresAt: data.session.expires_at,
-        refreshToken: data.session.refresh_token,
-      };
+      }).where(and(
+        eq(phoneOtpIntents.id, reserved.id),
+        eq(phoneOtpIntents.status, 'pending'),
+        eq(phoneOtpIntents.attemptCount, reserved.attemptCount),
+        gt(phoneOtpIntents.expiresAt, now),
+      )).returning({ id: phoneOtpIntents.id });
+      return Boolean(updated);
     });
+    if (!consumed) throw new ForbiddenException('invalid_phone_otp');
+    return {
+      accessToken: data.session.access_token,
+      expiresAt: data.session.expires_at,
+      refreshToken: data.session.refresh_token,
+    };
+  }
+
+  private async markFailedAttempt(challengeId: string, reservedAttemptCount: number) {
+    if (reservedAttemptCount < PHONE_OTP_MAX_ATTEMPTS) return;
+    await this.database.db.update(phoneOtpIntents).set({ status: 'failed' }).where(and(
+      eq(phoneOtpIntents.id, challengeId),
+      eq(phoneOtpIntents.status, 'pending'),
+      eq(phoneOtpIntents.attemptCount, reservedAttemptCount),
+    ));
   }
 }

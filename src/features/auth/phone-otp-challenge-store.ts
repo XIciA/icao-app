@@ -80,7 +80,10 @@ export async function readPhoneOtpChallenge(now = Date.now()) {
   } catch {
     throw new Error('auth_session_storage_unavailable');
   }
-  if (!raw) return undefined;
+  if (!raw) {
+    await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+    return undefined;
+  }
   let parsed: unknown;
   try {
     parsed = JSON.parse(raw);

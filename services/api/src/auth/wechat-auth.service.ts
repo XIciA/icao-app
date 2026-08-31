@@ -1,21 +1,24 @@
 import { createHmac, randomBytes } from 'node:crypto';
 
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, StartWechatAuthResponse } from '@icao/contracts';
+import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, RecentAuthGrantResponse, StartWechatAuthResponse } from '@icao/contracts';
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js';
-import { and, eq, gt, sql } from 'drizzle-orm';
+import { and, eq, gt, lte, sql } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
+import { accountIdentities, authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import type { VerifiedAuthSession } from './auth.types';
+import { RecentAuthService } from './recent-auth.service';
 import { WECHAT_AUTH_HTTP, type WechatAuthHttp } from './wechat-auth-http';
 
 const CHALLENGE_TTL_MS = 5 * 60 * 1_000;
 const START_LIMIT_PER_HOUR = 30;
 const COMPLETE_LIMIT_PER_HOUR = 60;
 const MAX_CHALLENGE_ATTEMPTS = 5;
+const VERIFICATION_LEASE_MS = 60 * 1_000;
+type WechatChallengePurpose = 'login' | 'account_delete';
 
 function jwtClaims(token: string) {
   try {
@@ -43,6 +46,7 @@ export class WechatAuthService {
     @Inject(WECHAT_AUTH_HTTP) private readonly http: WechatAuthHttp,
     private readonly database: DatabaseService,
     private readonly identities: AccountIdentityService,
+    private readonly recentAuth: RecentAuthService,
   ) {
     this.admin = createClient(config.supabaseUrl, config.supabaseSecretKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
@@ -53,11 +57,26 @@ export class WechatAuthService {
   }
 
   async start(sourceIp: string): Promise<StartWechatAuthResponse> {
+    return this.startChallenge('login', sourceIp);
+  }
+
+  async startRecentAuth(source: VerifiedAuthSession, sourceIp: string): Promise<StartWechatAuthResponse> {
+    return this.startChallenge('account_delete', sourceIp, source);
+  }
+
+  private async startChallenge(
+    purpose: WechatChallengePurpose,
+    sourceIp: string,
+    source?: VerifiedAuthSession,
+  ): Promise<StartWechatAuthResponse> {
     await this.consumeRate(`wechat-start:${this.digest('ip', sourceIp)}`, START_LIMIT_PER_HOUR, 60 * 60 * 1_000);
     const issuedAt = Date.now();
     const state = randomBytes(32).toString('base64url');
     const [challenge] = await this.database.db.insert(wechatAuthChallenges).values({
+      accountId: source?.user.id,
+      authUserId: source?.authUserId,
       expiresAt: new Date(issuedAt + CHALLENGE_TTL_MS),
+      purpose,
       stateDigest: this.digest('state', state),
     }).returning({ id: wechatAuthChallenges.id });
     if (!challenge) throw new ServiceUnavailableException('wechat_auth_unavailable');
@@ -81,63 +100,7 @@ export class WechatAuthService {
       throw new ServiceUnavailableException('wechat_auth_configuration_pending');
     }
     await this.consumeRate(`wechat-complete:${this.digest('ip', sourceIp)}`, COMPLETE_LIMIT_PER_HOUR, 60 * 60 * 1_000);
-    const codeDigest = this.digest('code', input.code);
-    const now = new Date();
-    await this.database.db.transaction(async (transaction) => {
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat-challenge:${input.challengeId}`}, 0))`);
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat-code:${codeDigest}`}, 0))`);
-      const [challenge] = await transaction.select({
-        attemptCount: wechatAuthChallenges.attemptCount,
-        id: wechatAuthChallenges.id,
-        stateDigest: wechatAuthChallenges.stateDigest,
-        status: wechatAuthChallenges.status,
-      }).from(wechatAuthChallenges).where(and(
-        eq(wechatAuthChallenges.id, input.challengeId),
-        gt(wechatAuthChallenges.expiresAt, now),
-        eq(wechatAuthChallenges.status, 'pending'),
-      )).limit(1).for('update');
-      if (
-        !challenge
-        || challenge.stateDigest !== this.digest('state', input.state)
-        || challenge.attemptCount >= MAX_CHALLENGE_ATTEMPTS
-      ) throw new ForbiddenException('invalid_wechat_auth_response');
-      const [replayed] = await transaction.select({ id: wechatAuthChallenges.id })
-        .from(wechatAuthChallenges)
-        .where(and(eq(wechatAuthChallenges.codeDigest, codeDigest), sql`${wechatAuthChallenges.id} <> ${challenge.id}::uuid`))
-        .limit(1);
-      if (replayed) throw new ForbiddenException('invalid_wechat_auth_response');
-      await transaction.update(wechatAuthChallenges).set({
-        attemptCount: challenge.attemptCount + 1,
-        codeDigest,
-        lastAttemptAt: now,
-        status: 'verifying',
-      }).where(eq(wechatAuthChallenges.id, challenge.id));
-    });
-
-    let tokenResponse;
-    try {
-      tokenResponse = await this.http.exchangeCode({
-        appId: this.config.wechatAppId,
-        appSecret: this.config.wechatAppSecret,
-        code: input.code,
-      });
-    } catch {
-      await this.resetTransientChallenge(input.challengeId, codeDigest);
-      throw new ServiceUnavailableException('wechat_provider_unavailable');
-    }
-    if (
-      tokenResponse.errcode
-      || !tokenResponse.openid
-      || !tokenResponse.access_token
-    ) {
-      await this.failChallenge(input.challengeId, codeDigest);
-      throw new ForbiddenException('invalid_wechat_auth_response');
-    }
-
-    const stableSubject = tokenResponse.unionid
-      ? `unionid:${tokenResponse.unionid}`
-      : `openid:${this.config.wechatAppId}:${tokenResponse.openid}`;
-    const subjectDigest = this.digest('subject', stableSubject);
+    const { codeDigest, subjectDigest } = await this.verifyProviderSubject(input, 'login');
     const authUser = await this.ensureAuthUser(subjectDigest);
     const session = await this.issueSession(authUser, subjectDigest);
     const verified = this.verifiedSession(session.access_token, session.user, subjectDigest);
@@ -150,7 +113,7 @@ export class WechatAuthService {
     }).where(and(
       eq(wechatAuthChallenges.id, input.challengeId),
       eq(wechatAuthChallenges.codeDigest, codeDigest),
-      eq(wechatAuthChallenges.status, 'verifying'),
+      eq(wechatAuthChallenges.status, 'verified'),
     )).returning({ id: wechatAuthChallenges.id });
     if (!consumed) {
       throw new ConflictException('wechat_auth_state_conflict');
@@ -168,6 +131,189 @@ export class WechatAuthService {
         refreshToken: session.refresh_token,
       },
     };
+  }
+
+  async completeRecentAuth(
+    source: VerifiedAuthSession,
+    input: CompleteWechatAuthRequest,
+    sourceIp: string,
+  ): Promise<RecentAuthGrantResponse> {
+    if (!this.config.wechatAppId || !this.config.wechatAppSecret || !this.config.wechatUniversalLink) {
+      throw new ServiceUnavailableException('wechat_auth_configuration_pending');
+    }
+    await this.consumeRate(`wechat-complete:${this.digest('ip', sourceIp)}`, COMPLETE_LIMIT_PER_HOUR, 60 * 60 * 1_000);
+    const { codeDigest, subjectDigest } = await this.verifyProviderSubject(input, 'account_delete', source);
+    const now = new Date();
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat-challenge:${input.challengeId}`}, 0))`);
+      const [challenge] = await transaction.select({
+        accountId: wechatAuthChallenges.accountId,
+        authUserId: wechatAuthChallenges.authUserId,
+        id: wechatAuthChallenges.id,
+        status: wechatAuthChallenges.status,
+        subjectDigest: wechatAuthChallenges.subjectDigest,
+      }).from(wechatAuthChallenges).where(and(
+        eq(wechatAuthChallenges.id, input.challengeId),
+        eq(wechatAuthChallenges.codeDigest, codeDigest),
+        eq(wechatAuthChallenges.purpose, 'account_delete'),
+        gt(wechatAuthChallenges.expiresAt, now),
+      )).limit(1).for('update');
+      if (
+        !challenge
+        || challenge.status !== 'verified'
+        || challenge.accountId !== source.user.id
+        || challenge.authUserId !== source.authUserId
+        || challenge.subjectDigest !== subjectDigest
+      ) throw new ForbiddenException('wechat_reauthentication_required');
+
+      const [principal] = await transaction.select({ authUserId: wechatAuthPrincipals.authUserId })
+        .from(wechatAuthPrincipals)
+        .where(eq(wechatAuthPrincipals.subjectDigest, subjectDigest))
+        .limit(1);
+      if (!principal) throw new ForbiddenException('wechat_reauthentication_required');
+      const [identity] = await transaction.select({ accountId: accountIdentities.accountId })
+        .from(accountIdentities)
+        .where(and(
+          eq(accountIdentities.accountId, source.user.id),
+          eq(accountIdentities.authUserId, principal.authUserId),
+          eq(accountIdentities.provider, 'wechat'),
+          eq(accountIdentities.subjectHash, this.identities.hashIdentity('wechat', subjectDigest)),
+        ))
+        .limit(1);
+      if (!identity) throw new ForbiddenException('wechat_reauthentication_required');
+
+      const grant = await this.recentAuth.issueVerifiedGrantInTransaction(
+        transaction,
+        source,
+        'wechat',
+        'account_delete',
+        now,
+      );
+      const [consumed] = await transaction.update(wechatAuthChallenges).set({
+        consumedAt: now,
+        status: 'consumed',
+      }).where(and(
+        eq(wechatAuthChallenges.id, challenge.id),
+        eq(wechatAuthChallenges.status, 'verified'),
+      )).returning({ id: wechatAuthChallenges.id });
+      if (!consumed) throw new ConflictException('wechat_auth_state_conflict');
+      return grant;
+    });
+  }
+
+  private async verifyProviderSubject(
+    input: CompleteWechatAuthRequest,
+    purpose: WechatChallengePurpose,
+    source?: VerifiedAuthSession,
+  ) {
+    const appId = this.config.wechatAppId;
+    const appSecret = this.config.wechatAppSecret;
+    if (!appId || !appSecret) throw new ServiceUnavailableException('wechat_auth_configuration_pending');
+    const codeDigest = this.digest('code', input.code);
+    const now = new Date();
+    const reservation = await this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat-challenge:${input.challengeId}`}, 0))`);
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat-code:${codeDigest}`}, 0))`);
+      const [challenge] = await transaction.select({
+        accountId: wechatAuthChallenges.accountId,
+        attemptCount: wechatAuthChallenges.attemptCount,
+        authUserId: wechatAuthChallenges.authUserId,
+        codeDigest: wechatAuthChallenges.codeDigest,
+        id: wechatAuthChallenges.id,
+        purpose: wechatAuthChallenges.purpose,
+        stateDigest: wechatAuthChallenges.stateDigest,
+        status: wechatAuthChallenges.status,
+        subjectDigest: wechatAuthChallenges.subjectDigest,
+        verificationExpiresAt: wechatAuthChallenges.verificationExpiresAt,
+      }).from(wechatAuthChallenges).where(and(
+        eq(wechatAuthChallenges.id, input.challengeId),
+        gt(wechatAuthChallenges.expiresAt, now),
+      )).limit(1).for('update');
+      const sourceMatches = purpose === 'login'
+        ? challenge?.accountId === null && challenge?.authUserId === null
+        : challenge?.accountId === source?.user.id && challenge?.authUserId === source?.authUserId;
+      if (
+        !challenge
+        || challenge.purpose !== purpose
+        || !sourceMatches
+        || challenge.stateDigest !== this.digest('state', input.state)
+        || challenge.attemptCount >= MAX_CHALLENGE_ATTEMPTS
+      ) throw new ForbiddenException('invalid_wechat_auth_response');
+
+      if (
+        challenge.status === 'verified'
+        && challenge.codeDigest === codeDigest
+        && challenge.subjectDigest
+      ) return { subjectDigest: challenge.subjectDigest, shouldExchange: false };
+
+      if (
+        challenge.status === 'verifying'
+        && challenge.verificationExpiresAt
+        && challenge.verificationExpiresAt <= now
+      ) {
+        await transaction.update(wechatAuthChallenges).set({
+          status: 'failed',
+          verificationExpiresAt: null,
+        }).where(and(
+          eq(wechatAuthChallenges.id, challenge.id),
+          eq(wechatAuthChallenges.status, 'verifying'),
+        ));
+        return { shouldExchange: false };
+      }
+      if (challenge.status !== 'pending') throw new ForbiddenException('invalid_wechat_auth_response');
+      const [replayed] = await transaction.select({ id: wechatAuthChallenges.id })
+        .from(wechatAuthChallenges)
+        .where(and(eq(wechatAuthChallenges.codeDigest, codeDigest), sql`${wechatAuthChallenges.id} <> ${challenge.id}::uuid`))
+        .limit(1);
+      if (replayed) throw new ForbiddenException('invalid_wechat_auth_response');
+      const [reserved] = await transaction.update(wechatAuthChallenges).set({
+        attemptCount: challenge.attemptCount + 1,
+        codeDigest,
+        lastAttemptAt: now,
+        status: 'verifying',
+        verificationExpiresAt: new Date(now.getTime() + VERIFICATION_LEASE_MS),
+      }).where(and(
+        eq(wechatAuthChallenges.id, challenge.id),
+        eq(wechatAuthChallenges.status, 'pending'),
+      )).returning({ id: wechatAuthChallenges.id });
+      if (!reserved) throw new ConflictException('wechat_auth_state_conflict');
+      return { shouldExchange: true };
+    });
+    if (!reservation.shouldExchange) {
+      if (reservation.subjectDigest) return { codeDigest, subjectDigest: reservation.subjectDigest };
+      throw new ForbiddenException('invalid_wechat_auth_response');
+    }
+
+    let tokenResponse;
+    try {
+      tokenResponse = await this.http.exchangeCode({
+        appId,
+        appSecret,
+        code: input.code,
+      });
+    } catch {
+      await this.failChallenge(input.challengeId, codeDigest);
+      throw new ServiceUnavailableException('wechat_provider_unavailable');
+    }
+    if (tokenResponse.errcode || !tokenResponse.openid || !tokenResponse.access_token) {
+      await this.failChallenge(input.challengeId, codeDigest);
+      throw new ForbiddenException('invalid_wechat_auth_response');
+    }
+    const stableSubject = tokenResponse.unionid
+      ? `unionid:${tokenResponse.unionid}`
+      : `openid:${appId}:${tokenResponse.openid}`;
+    const subjectDigest = this.digest('subject', stableSubject);
+    const [verified] = await this.database.db.update(wechatAuthChallenges).set({
+      status: 'verified',
+      subjectDigest,
+      verificationExpiresAt: null,
+    }).where(and(
+      eq(wechatAuthChallenges.id, input.challengeId),
+      eq(wechatAuthChallenges.codeDigest, codeDigest),
+      eq(wechatAuthChallenges.status, 'verifying'),
+    )).returning({ id: wechatAuthChallenges.id });
+    if (!verified) throw new ConflictException('wechat_auth_state_conflict');
+    return { codeDigest, subjectDigest };
   }
 
   private async ensureAuthUser(subjectDigest: string): Promise<User> {
@@ -265,16 +411,11 @@ export class WechatAuthService {
     };
   }
 
-  private async resetTransientChallenge(challengeId: string, codeDigest: string) {
-    await this.database.db.update(wechatAuthChallenges).set({ status: 'pending' }).where(and(
-      eq(wechatAuthChallenges.id, challengeId),
-      eq(wechatAuthChallenges.codeDigest, codeDigest),
-      eq(wechatAuthChallenges.status, 'verifying'),
-    ));
-  }
-
   private async failChallenge(challengeId: string, codeDigest: string) {
-    await this.database.db.update(wechatAuthChallenges).set({ status: 'failed' }).where(and(
+    await this.database.db.update(wechatAuthChallenges).set({
+      status: 'failed',
+      verificationExpiresAt: null,
+    }).where(and(
       eq(wechatAuthChallenges.id, challengeId),
       eq(wechatAuthChallenges.codeDigest, codeDigest),
       eq(wechatAuthChallenges.status, 'verifying'),

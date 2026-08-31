@@ -135,7 +135,9 @@ verify_ios_release_app() {
     process.stdin.on("end", () => {
       const plist = JSON.parse(source);
       const schemes = (plist.CFBundleURLTypes ?? []).flatMap((entry) => entry.CFBundleURLSchemes ?? []).sort();
-      if (schemes.length !== 1 || schemes[0] !== "readyoufife") process.exit(1);
+      const appId = process.env.ICAO_WECHAT_APP_ID;
+      const expected = ["readyoufife", appId].filter(Boolean).sort();
+      if (JSON.stringify(schemes) !== JSON.stringify(expected)) process.exit(1);
     });
   '; then
     echo 'The Release app must contain only the readyoufife URL scheme.' >&2
@@ -153,12 +155,12 @@ verify_ios_release_app() {
     echo 'The Release app still contains an Expo development resource bundle.' >&2
     exit 1
   fi
-  if find "$app_path" -print | grep -Eiq '/[^/]*(wechat|weixin|wxapi)'; then
-    echo 'The Release app contains a retired WeChat SDK file or resource.' >&2
+  if ! find "$app_path" -print | grep -Eiq '/[^/]*WechatOpenSDK'; then
+    echo 'The Release app is missing the approved WeChat NoPay SDK.' >&2
     exit 1
   fi
-  if grep -aERl 'WXApi|WXApiObject|WechatOpenSDK|WeChatSDK|api\.weixin\.qq\.com|open\.weixin\.qq\.com|sns/oauth2/access_token|expo-native-wechat' "$app_path" >/dev/null 2>&1; then
-    echo 'The Release app contains a retired WeChat framework, class, privacy, or network marker.' >&2
+  if grep -aERl 'PayReq|WXPay|WechatOpenSDK_WithPay|wechat-sdk-android-with-mta' "$app_path" >/dev/null 2>&1; then
+    echo 'The Release app contains a forbidden WeChat payment or tracking marker.' >&2
     exit 1
   fi
 
@@ -175,9 +177,10 @@ verify_ios_release_app() {
     echo 'The Release app is missing the Sign in with Apple entitlement.' >&2
     exit 1
   fi
-  if /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" >/dev/null 2>&1; then
+  wechat_host=$(printf '%s' "${ICAO_WECHAT_UNIVERSAL_LINK:-}" | sed -E 's#^https://([^/]+)/.*#\1#')
+  if [ -z "$wechat_host" ] || ! /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" 2>/dev/null | grep -Fxq "    applinks:$wechat_host"; then
     rm -f "$entitlements_path"
-    echo 'The Release app must not contain associated-domain entitlements.' >&2
+    echo 'The Release app is missing the WeChat Universal Link associated domain.' >&2
     exit 1
   fi
   rm -f "$entitlements_path"

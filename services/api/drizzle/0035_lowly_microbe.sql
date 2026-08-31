@@ -58,4 +58,7 @@ ALTER TABLE "lifetime_identity_benefit_claims" ADD CONSTRAINT "lifetime_identity
 ALTER TABLE "phone_otp_intents" ADD CONSTRAINT "phone_otp_intents_attempt_count_check" CHECK ("phone_otp_intents"."attempt_count" >= 0 AND "phone_otp_intents"."attempt_count" <= 10);--> statement-breakpoint
 ALTER TABLE "phone_otp_intents" ADD CONSTRAINT "phone_otp_intents_status_check" CHECK ("phone_otp_intents"."status" IN ('pending', 'consumed', 'superseded', 'failed'));--> statement-breakpoint
 ALTER TABLE "recent_auth_challenges" ADD CONSTRAINT "recent_auth_challenges_method_check" CHECK ("recent_auth_challenges"."method" IN ('password', 'phone_otp', 'apple', 'wechat'));--> statement-breakpoint
-ALTER TABLE "recent_auth_grants" ADD CONSTRAINT "recent_auth_grants_method_check" CHECK ("recent_auth_grants"."method" IN ('password', 'phone_otp', 'apple', 'wechat'));
+ALTER TABLE "recent_auth_grants" ADD CONSTRAINT "recent_auth_grants_method_check" CHECK ("recent_auth_grants"."method" IN ('password', 'phone_otp', 'apple', 'wechat'));--> statement-breakpoint
+REVOKE ALL PRIVILEGES ON TABLE "public"."auth_usage_counters" FROM anon, authenticated;--> statement-breakpoint
+REVOKE ALL PRIVILEGES ON TABLE "public"."wechat_auth_challenges" FROM anon, authenticated;--> statement-breakpoint
+REVOKE ALL PRIVILEGES ON TABLE "public"."wechat_auth_principals" FROM anon, authenticated;

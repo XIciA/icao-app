@@ -239,6 +239,7 @@ export const wechatAuthChallenges = pgTable('wechat_auth_challenges', {
   attemptCount: integer('attempt_count').default(0).notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
   lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
+  verificationExpiresAt: timestamp('verification_expires_at', { withTimezone: true }),
   consumedAt: timestamp('consumed_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
@@ -246,13 +247,17 @@ export const wechatAuthChallenges = pgTable('wechat_auth_challenges', {
   uniqueIndex('wechat_auth_challenges_code').on(table.codeDigest),
   index('wechat_auth_challenges_expiry').on(table.expiresAt),
   index('wechat_auth_challenges_account').on(table.accountId, table.status),
-  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding')`),
-  check('wechat_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verifying', 'consumed', 'failed', 'expired')`),
+  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding', 'account_delete')`),
+  check('wechat_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verifying', 'verified', 'consumed', 'failed', 'expired')`),
   check('wechat_auth_challenges_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('wechat_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('wechat_auth_challenges_binding_check', sql`(
     (${table.purpose} = 'login' AND ${table.accountId} IS NULL AND ${table.authUserId} IS NULL)
-    OR (${table.purpose} = 'binding' AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
+    OR (${table.purpose} IN ('binding', 'account_delete') AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
+  )`),
+  check('wechat_auth_challenges_verification_lease_check', sql`(
+    (${table.status} = 'verifying' AND ${table.verificationExpiresAt} IS NOT NULL)
+    OR (${table.status} <> 'verifying' AND ${table.verificationExpiresAt} IS NULL)
   )`),
   check('wechat_auth_challenges_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
 ]).enableRLS();

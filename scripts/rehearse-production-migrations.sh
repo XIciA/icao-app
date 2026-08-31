@@ -511,7 +511,7 @@ docker run --rm --network supabase_default --env-file "$database_env" \
 docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
   if (p.status !== "verified" || p.readOnly !== true || p.requiredTables !== 56
-      || p.expectedPublicTables !== 56 || p.actualPublicTables !== 56
+      || p.expectedPublicTables !== 59 || p.actualPublicTables !== 59
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0

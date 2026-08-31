@@ -35,9 +35,9 @@ export type AuthService = {
   signInWithApple(): Promise<AppSession>;
   signInWithWechat(): Promise<AppSession>;
   authorizeAccountDeletionWithApple(): Promise<RecentAuthGrantResponse>;
-  authorizeAccountDeletionWithWechat(accountId: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
+  authorizeAccountDeletionWithWechat(accountId: string): Promise<RecentAuthGrantResponse>;
   authorizeAccountDeletionWithPassword(password: string): Promise<RecentAuthGrantResponse>;
-  authorizeAccountDeletionWithPhoneOtp(token: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
+  authorizeAccountDeletionWithPhoneOtp(token: string): Promise<RecentAuthGrantResponse>;
   requestAccountDeletionPhoneOtp(): Promise<StartPhoneOtpResponse>;
   requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
   requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
@@ -127,7 +127,61 @@ export function authError(error: { message: string; code?: string } | null) {
 }
 
 export class SupabasePhoneAuthService implements AuthService {
-  constructor(private readonly client: SupabaseClient) {}
+  private authGeneration = 0;
+  private sessionCommitTail: Promise<void> = Promise.resolve();
+
+  constructor(
+    private readonly client: SupabaseClient,
+    private readonly transientClient: SupabaseClient = client,
+  ) {}
+
+  private beginSessionMutation() {
+    this.authGeneration += 1;
+    return this.authGeneration;
+  }
+
+  private async withSessionCommitLock<T>(operation: () => Promise<T>) {
+    const previous = this.sessionCommitTail;
+    let release!: () => void;
+    this.sessionCommitTail = new Promise<void>((resolve) => { release = resolve; });
+    await previous;
+    try {
+      return await operation();
+    } finally {
+      release();
+    }
+  }
+
+  private async commitSession(
+    tokens: { accessToken: string; refreshToken: string },
+    generation: number,
+    validate?: (session: AppSession | undefined) => boolean,
+  ) {
+    return this.withSessionCommitLock(async () => {
+      if (generation !== this.authGeneration) throw new Error('auth_request_not_completed');
+      const previous = await this.client.auth.getSession();
+      if (previous.error) throw authError(previous.error);
+      const { data, error } = await this.client.auth.setSession({
+        access_token: tokens.accessToken,
+        refresh_token: tokens.refreshToken,
+      });
+      if (error || !data.session) throw authError(error);
+      const mapped = appSession(data.session);
+      if (generation !== this.authGeneration || (validate && !validate(mapped))) {
+        if (previous.data.session) {
+          await this.client.auth.setSession({
+            access_token: previous.data.session.access_token,
+            refresh_token: previous.data.session.refresh_token,
+          }).catch(() => undefined);
+        } else {
+          await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
+        }
+        if (generation !== this.authGeneration) throw new Error('auth_request_not_completed');
+        throw new Error('auth_session_identity_mismatch');
+      }
+      return data.session;
+    });
+  }
 
   async getSession() {
     const { data, error } = await this.client.auth.getSession();
@@ -138,9 +192,19 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async refreshSession() {
-    const { data, error } = await this.client.auth.refreshSession();
+    const generation = this.authGeneration;
+    const current = await this.client.auth.getSession();
+    if (current.error) throw authError(current.error);
+    if (!current.data.session) return undefined;
+    const { data, error } = await this.transientClient.auth.refreshSession({
+      refresh_token: current.data.session.refresh_token,
+    });
     if (error) throw authError(error);
-    const session = appSession(data.session);
+    if (!data.session || generation !== this.authGeneration) return this.getSession();
+    const session = appSession(await this.commitSession({
+      accessToken: data.session.access_token,
+      refreshToken: data.session.refresh_token,
+    }, generation));
     if (data.session && !session) await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
     return session;
   }
@@ -155,23 +219,27 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async signInWithApple() {
+    const generation = this.beginSessionMutation();
     const credential = await this.appleCredential(true);
-    const { data, error } = await this.client.auth.signInWithIdToken({
+    const { data, error } = await this.transientClient.auth.signInWithIdToken({
       provider: 'apple',
       token: credential.identityToken,
       nonce: credential.rawNonce,
     });
     if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
+    const session = appSession(await this.commitSession({
+      accessToken: data.session.access_token,
+      refreshToken: data.session.refresh_token,
+    }, generation));
     if (!session || !session.user.providers.includes('apple')) throw new Error('apple_auth_failed');
     return session;
   }
 
   async signInWithWechat() {
-    return (await this.wechatSession()).session;
+    return (await this.wechatSession(this.beginSessionMutation())).session;
   }
 
-  private async wechatSession() {
+  private async wechatSession(generation: number) {
     const challenge = await apiRequest<StartWechatAuthResponse>('/v1/auth/wechat/challenge', {
       method: 'POST',
     });
@@ -187,16 +255,11 @@ export class SupabasePhoneAuthService implements AuthService {
         state: nativeResponse.state,
       }),
     });
-    const { data, error } = await this.client.auth.setSession({
-      access_token: response.session.accessToken,
-      refresh_token: response.session.refreshToken,
-    });
-    if (error) throw authError(error);
-    const session = appSession(data.session);
-    if (!session?.user.providers.includes('wechat')) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
-      throw new Error('wechat_auth_failed');
-    }
+    const session = appSession(await this.commitSession({
+      accessToken: response.session.accessToken,
+      refreshToken: response.session.refreshToken,
+    }, generation, (candidate) => candidate?.user.providers.includes('wechat') === true));
+    if (!session) throw new Error('wechat_auth_failed');
     return { account: response.account, session };
   }
 
@@ -217,21 +280,34 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async authorizeAccountDeletionWithWechat(accountId: string) {
-    const authenticated = await this.wechatSession();
-    if (authenticated.account.accountId !== accountId) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
-      throw new Error('identity_already_in_use');
-    }
-    const grant = await apiRequestWithAccessToken<RecentAuthGrantResponse>(
-      '/v1/account/recent-auth/wechat',
-      authenticated.session.accessToken,
+    const current = await this.getSession();
+    if (!current || current.user.id !== accountId) throw new Error('wechat_reauthentication_required');
+    const challenge = await apiRequestWithAccessToken<StartWechatAuthResponse>(
+      '/v1/account/recent-auth/wechat/start',
+      current.accessToken,
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ purpose: 'account_delete' }),
       },
     );
-    return { grant, session: authenticated.session };
+    if (challenge.status !== 'available') throw new Error('wechat_auth_configuration_pending');
+    const nativeResponse = await authorizeWithWechatNative(challenge.state);
+    if (nativeResponse.state !== challenge.state) throw new Error('invalid_wechat_auth_response');
+    return apiRequestWithAccessToken<RecentAuthGrantResponse>(
+      '/v1/account/recent-auth/wechat',
+      current.accessToken,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          challengeId: challenge.challengeId,
+          code: nativeResponse.code,
+          purpose: 'account_delete',
+          state: nativeResponse.state,
+        }),
+      },
+    );
   }
 
   async authorizeAccountDeletionWithPassword(password: string) {
@@ -259,7 +335,7 @@ export class SupabasePhoneAuthService implements AuthService {
     if (!current?.user.phone || !current.user.providers.includes('phone')) {
       throw new Error('phone_reauthentication_required');
     }
-    const { data, error } = await this.client.auth.verifyOtp({
+    const { data, error } = await this.transientClient.auth.verifyOtp({
       phone: current.user.phone,
       token,
       type: 'sms',
@@ -272,15 +348,17 @@ export class SupabasePhoneAuthService implements AuthService {
       || session.user.phone !== current.user.phone
       || !session.user.providers.includes('phone')
     ) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
       throw new Error('phone_reauthentication_required');
     }
-    const grant = await apiRequest<RecentAuthGrantResponse>('/v1/account/recent-auth/phone', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ purpose: 'account_delete' }),
-    });
-    return { grant, session };
+    return apiRequestWithAccessToken<RecentAuthGrantResponse>(
+      '/v1/account/recent-auth/phone',
+      session.accessToken,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ purpose: 'account_delete' }),
+      },
+    );
   }
 
   private async appleCredential(requestProfile: boolean) {
@@ -333,6 +411,7 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async verifyPhoneOtp(challenge: { challengeId: string; phone: string; purpose: 'login' | 'recovery' }, token: string) {
+    const generation = this.beginSessionMutation();
     const phone = normalizeChinaMobile(challenge.phone);
     if (!phone) throw new Error('invalid_phone_number');
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
@@ -346,16 +425,11 @@ export class SupabasePhoneAuthService implements AuthService {
         token,
       }),
     });
-    const { data, error } = await this.client.auth.setSession({
-      access_token: response.session.accessToken,
-      refresh_token: response.session.refreshToken,
-    });
-    if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
-    if (!session || session.user.phone !== phone) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
-      throw new Error('phone_account_required');
-    }
+    const session = appSession(await this.commitSession({
+      accessToken: response.session.accessToken,
+      refreshToken: response.session.refreshToken,
+    }, generation, (candidate) => candidate?.user.phone === phone));
+    if (!session) throw new Error('phone_account_required');
     return session;
   }
 
@@ -370,20 +444,24 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async signInWithPhonePassword(input: string, password: string) {
+    const generation = this.beginSessionMutation();
     const phone = normalizeChinaMobile(input);
     if (!phone) throw new Error('invalid_phone_number');
     if (!password) throw new Error('invalid_phone_or_password');
-    const { data, error } = await this.client.auth.signInWithPassword({ phone, password });
+    const { data, error } = await this.transientClient.auth.signInWithPassword({ phone, password });
     if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
-    if (!session || session.user.phone !== phone) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
-      throw new Error('phone_account_required');
-    }
+    const transientSession = appSession(data.session);
+    if (!transientSession || transientSession.user.phone !== phone) throw new Error('phone_account_required');
+    const session = appSession(await this.commitSession({
+      accessToken: data.session.access_token,
+      refreshToken: data.session.refresh_token,
+    }, generation, (candidate) => candidate?.user.phone === phone));
+    if (!session) throw new Error('phone_account_required');
     return session;
   }
 
   async updatePassword(password: string, currentPassword?: string, recoveryGrantId?: string) {
+    const generation = this.beginSessionMutation();
     if (!isValidPhonePassword(password)) throw new Error('invalid_phone_password');
     const { data: sessionData, error: sessionError } = await this.client.auth.getSession();
     if (sessionError) throw authError(sessionError);
@@ -402,21 +480,16 @@ export class SupabasePhoneAuthService implements AuthService {
       }),
     });
     if (!response.updated) throw new Error('phone_auth_unavailable');
-    const { data, error } = await this.client.auth.setSession({
-      access_token: response.session.accessToken,
-      refresh_token: response.session.refreshToken,
-    });
-    if (error) throw authError(error);
-    const refreshed = appSession(data.session);
-    if (
-      !refreshed
-      || refreshed.user.id !== currentSession.user.id
-      || refreshed.user.phone !== currentSession.user.phone
-      || !isChinaMobileE164(refreshed.user.phone)
-    ) {
-      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
-      throw new Error('phone_account_required');
-    }
+    const refreshed = appSession(await this.commitSession({
+      accessToken: response.session.accessToken,
+      refreshToken: response.session.refreshToken,
+    }, generation, (candidate) => Boolean(
+      candidate
+      && candidate.user.id === currentSession.user.id
+      && candidate.user.phone === currentSession.user.phone
+      && isChinaMobileE164(candidate.user.phone),
+    )));
+    if (!refreshed) throw new Error('phone_account_required');
     return refreshed;
   }
 
@@ -442,18 +515,17 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification> {
+    const generation = this.beginSessionMutation();
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
     const response = await apiRequest<BindPhoneResponse>('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone: challenge.phone, token }),
     });
-    const { data, error } = await this.client.auth.setSession({
-      access_token: response.session.accessToken,
-      refresh_token: response.session.refreshToken,
-    });
-    if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
+    const session = appSession(await this.commitSession({
+      accessToken: response.session.accessToken,
+      refreshToken: response.session.refreshToken,
+    }, generation));
     if (!session || session.user.phone !== challenge.phone) throw new Error('phone_binding_failed');
     return { account: response.account, challenge, session };
   }
@@ -463,8 +535,11 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async signOut(scope: 'local' | 'global' | 'others' = 'local') {
-    const { error } = await this.client.auth.signOut({ scope });
-    if (error) throw authError(error);
+    this.beginSessionMutation();
+    await this.withSessionCommitLock(async () => {
+      const { error } = await this.client.auth.signOut({ scope });
+      if (error) throw authError(error);
+    });
   }
 
   onSessionChange(listener: (session: AppSession | undefined, event: AuthChangeEvent) => void) {
@@ -495,6 +570,13 @@ export function getAuthService() {
       flowType: 'pkce',
       persistSession: true,
       storage: secureSessionStorage,
+    },
+  }), createClient(url, publishableKey, {
+    auth: {
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+      flowType: 'pkce',
+      persistSession: false,
     },
   }));
   return singleton;
