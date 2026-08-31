@@ -33,7 +33,10 @@ export function MembershipPage() {
   const purchasePending = commerce.phase === 'pending';
   const loading = commerce.phase === 'loading';
   const purchaseDisabled = commerce.phase !== 'ready';
-  const managementDisabled = loading || working || reconciling;
+  // Pending reconciliation owns the StoreKit inbox and uncertain-purchase
+  // marker. Do not let refresh/restore appear actionable while that background
+  // operation can still be draining.
+  const managementDisabled = loading || working || reconciling || purchasePending;
   const active = commerce.entitlement?.membership.active === true;
   const statusMessage = commerce.error?.userMessage ?? commerce.message;
 

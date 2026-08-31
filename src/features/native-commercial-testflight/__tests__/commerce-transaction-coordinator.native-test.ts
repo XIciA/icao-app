@@ -330,4 +330,88 @@ describe('native commerce transaction coordinator', () => {
       jest.useRealTimers();
     }
   });
+
+  it('keeps the single-flight lock until a timed-out native restore physically drains', async () => {
+    jest.useFakeTimers();
+    try {
+      const provider = createProvider();
+      let resolveNativeRestore!: (value: Awaited<ReturnType<typeof inbox>>) => void;
+      provider.restorePurchases.mockImplementationOnce(() => new Promise((resolve) => {
+        resolveNativeRestore = resolve;
+      }));
+      const consumer: CommerceTransactionConsumer = {
+        consume: jest.fn(async () => ({ state: 'deferred' as const })),
+      };
+      const coordinator = new NativeCommerceTransactionCoordinator(
+        provider,
+        consumer,
+        { deadlineMs: 100 },
+      );
+
+      const restore = coordinator.restorePurchasesFromUserAction();
+      const draining = coordinator.whenIdle();
+      await jest.advanceTimersByTimeAsync(100);
+
+      await expect(restore).resolves.toMatchObject({
+        ok: false,
+        code: 'commerce_reconciliation_timed_out',
+      });
+      await expect(coordinator.start()).resolves.toMatchObject({
+        ok: false,
+        code: 'commerce_operation_busy',
+      });
+      expect(provider.reconcileTransactions).not.toHaveBeenCalled();
+
+      resolveNativeRestore(await inbox([transaction('late-restore')]));
+      await draining;
+
+      expect(consumer.consume).not.toHaveBeenCalled();
+      expect(provider.markServerVerified).not.toHaveBeenCalled();
+      expect(provider.finishTransaction).not.toHaveBeenCalled();
+      await expect(coordinator.start()).resolves.toMatchObject({ ok: true });
+      expect(provider.reconcileTransactions).toHaveBeenCalledTimes(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('discards a late server-verification result without acknowledging or finishing it', async () => {
+    jest.useFakeTimers();
+    try {
+      const provider = createProvider();
+      provider.restorePurchases.mockImplementationOnce(() => inbox([transaction('late-verify')]));
+      let resolveConsumption!: (value: CommerceTransactionConsumption) => void;
+      const consumer: CommerceTransactionConsumer = {
+        consume: jest.fn(() => new Promise((resolve) => {
+          resolveConsumption = resolve;
+        })),
+      };
+      const coordinator = new NativeCommerceTransactionCoordinator(
+        provider,
+        consumer,
+        { deadlineMs: 100 },
+      );
+
+      const restore = coordinator.restorePurchasesFromUserAction();
+      await Promise.resolve();
+      const draining = coordinator.whenIdle();
+      await jest.advanceTimersByTimeAsync(100);
+      await expect(restore).resolves.toMatchObject({
+        ok: false,
+        code: 'commerce_reconciliation_timed_out',
+      });
+
+      resolveConsumption({
+        state: 'server-verified',
+        transactionReference: 'late-verify',
+        signedTransaction: 'jws-late-verify',
+      });
+      await draining;
+
+      expect(provider.markServerVerified).not.toHaveBeenCalled();
+      expect(provider.finishTransaction).not.toHaveBeenCalled();
+    } finally {
+      jest.useRealTimers();
+    }
+  });
 });

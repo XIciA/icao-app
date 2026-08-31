@@ -58,6 +58,7 @@ import {
   CommerceRuntimeProvider,
   useCommerceRuntime,
 } from '../CommerceRuntimeProvider.native';
+import { subscribeCommerceEntitlementChanges } from '../commerce-entitlement-events';
 
 const PRODUCTS: CommerceProductOffering[] = [
   ['membership_7d_v1', '7d', '7天会员', 7, false],
@@ -200,6 +201,29 @@ describe('<CommerceRuntimeProvider />', () => {
     });
     expect(currentCommerce.entitlementEnvironment).toBe('production');
     expect(currentCommerce.entitlement).toEqual(ENTITLEMENTS.production);
+  });
+
+  it('reloads both server and StoreKit catalogs after the initial catalog read fails', async () => {
+    const fakeProvider = provider({
+      listOfferings: jest.fn()
+        .mockRejectedValueOnce(new Error('store_unavailable'))
+        .mockResolvedValue({
+          ok: true,
+          state: 'succeeded',
+          value: { offerings: storeOfferings() },
+        }),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(screen.getByTestId('phase').props.children).toBe('error'));
+    expect(currentCommerce.offerings).toHaveLength(0);
+
+    await act(async () => { await currentCommerce.refresh(); });
+
+    expect(currentCommerce.phase).toBe('ready');
+    expect(currentCommerce.offerings).toHaveLength(5);
+    expect(fakeProvider.listOfferings).toHaveBeenCalledTimes(2);
+    expect(mockApiRequest.mock.calls.filter(([path]) => path === '/v1/commerce/catalog')).toHaveLength(2);
   });
 
   it('verifies and finishes a purchase before presenting the server entitlement', async () => {
@@ -737,6 +761,29 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(currentCommerce.entitlementChange?.revision).toBeGreaterThan(initialRevision);
   });
 
+  it('publishes the subscribable entitlement contract and stops after cleanup', async () => {
+    const observed = jest.fn();
+    const unsubscribe = subscribeCommerceEntitlementChanges(observed);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+
+    await act(async () => { await currentCommerce.refresh(); });
+    const manualEvent = observed.mock.calls
+      .map(([event]) => event)
+      .find((event) => event.reason === 'manual-refresh');
+    expect(manualEvent).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'manual-refresh',
+    });
+    expect(manualEvent.revision).toBeGreaterThan(0);
+
+    const callsBeforeCleanup = observed.mock.calls.length;
+    unsubscribe();
+    await act(async () => { await currentCommerce.refresh(); });
+    expect(observed).toHaveBeenCalledTimes(callsBeforeCleanup);
+  });
+
   it('does not queue a user restore while startup reconciliation is active', async () => {
     let resolveStartup!: () => void;
     const fakeProvider = provider({
@@ -825,6 +872,60 @@ describe('<CommerceRuntimeProvider />', () => {
         error: { code: 'restore-timed-out', operation: 'restore' },
       });
       expect(currentCommerce.phase).toBe('error');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('times out a never-settling storage clear and blocks immediate restore reentry until drain', async () => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
+    const sandboxPurchase = transaction('sandbox', 'sandbox-storage-hang');
+    mockUncertainPurchaseStore.set(firstAccountId, {
+      accountId: firstAccountId,
+      offeringKey: sandboxPurchase.offeringKey,
+      startedAt: '2026-08-24T07:00:00.000Z',
+      baselineTransactionReferences: [],
+      transactionReference: sandboxPurchase.transactionReference,
+      environment: 'sandbox',
+    });
+    const fakeProvider = provider({
+      restorePurchases: jest.fn(() => inbox([sandboxPurchase])),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    mockClearUncertainPurchase.mockImplementation(() => new Promise<void>(() => undefined));
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') return Promise.resolve(ENTITLEMENTS);
+      if (path === '/v1/commerce/apple/transactions/verify') {
+        return Promise.resolve({
+          created: false,
+          transactionId: sandboxPurchase.transactionReference,
+          entitlement: entitlement('sandbox', true),
+        } satisfies VerifyAppleTransactionResponse);
+      }
+      throw new Error(`unexpected_api:${path}`);
+    });
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('pending'));
+
+    jest.useFakeTimers();
+    try {
+      let restore!: ReturnType<typeof currentCommerce.restorePurchases>;
+      await act(async () => {
+        restore = currentCommerce.restorePurchases();
+        await Promise.resolve();
+      });
+      await act(async () => { await jest.advanceTimersByTimeAsync(60_000); });
+
+      await expect(restore).resolves.toMatchObject({
+        ok: false,
+        error: { code: 'restore-timed-out' },
+      });
+      expect(currentCommerce.phase).toBe('pending');
+      let retry!: Awaited<ReturnType<typeof currentCommerce.restorePurchases>>;
+      await act(async () => { retry = await currentCommerce.restorePurchases(); });
+      expect(retry).toMatchObject({ ok: false, error: { code: 'operation-busy' } });
+      expect(fakeProvider.restorePurchases).toHaveBeenCalledTimes(1);
     } finally {
       jest.useRealTimers();
     }

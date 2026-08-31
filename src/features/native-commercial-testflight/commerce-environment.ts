@@ -28,8 +28,9 @@ export async function activateNativeCommerceEnvironment(
 export async function confirmNativeCommerceEnvironment(
   _accountId: string,
   _environment: CommerceEnvironment,
+  _options: Readonly<{ signal?: AbortSignal }> = {},
 ) {
-  return _environment === 'production';
+  return !_options.signal?.aborted && _environment === 'production';
 }
 
 export async function clearNativeCommerceEnvironment(_accountId?: string) {}

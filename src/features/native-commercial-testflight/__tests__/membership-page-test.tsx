@@ -110,29 +110,46 @@ describe('<MembershipPage />', () => {
     },
   );
 
-  it.each(['pending', 'error'] as const)(
-    'keeps safe recovery actions available but purchase disabled during %s',
-    async (phase) => {
+  it('disables purchase and management actions while pending reconciliation owns the inbox', async () => {
+    mockUseCommerceRuntime.mockReturnValue({
+      ...mockUseCommerceRuntime(),
+      phase: 'pending',
+      error: {
+        code: 'uncertain-purchase',
+        operation: 'reconciliation',
+        userMessage: '上一笔购买仍在核对，请勿重复下单。',
+        retryable: true,
+        chargeStatus: 'unknown',
+      },
+    });
+    const screen = await render(<MembershipPage />);
+
+    fireEvent.press(screen.getAllByText('等待确认')[0]);
+    fireEvent.press(screen.getByText('刷新会员与点数'));
+    fireEvent.press(screen.getByText('恢复购买'));
+
+    expect(mockPurchase).not.toHaveBeenCalled();
+    expect(mockRefresh).not.toHaveBeenCalled();
+    expect(mockRestore).not.toHaveBeenCalled();
+    expect(screen.getByText('上一笔购买仍在核对，请勿重复下单。')).toBeTruthy();
+  });
+
+  it('keeps recovery actions available after a terminal error', async () => {
+      const phase = 'error';
       mockUseCommerceRuntime.mockReturnValue({
         ...mockUseCommerceRuntime(),
         phase,
       });
       const screen = await render(<MembershipPage />);
 
-      const purchaseLabel = phase === 'pending' ? '等待确认' : '¥58.00';
-      fireEvent.press(
-        phase === 'pending'
-          ? screen.getAllByText(purchaseLabel)[0]
-          : screen.getByText(purchaseLabel),
-      );
+      fireEvent.press(screen.getByText('¥58.00'));
       await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
       await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
 
       expect(mockPurchase).not.toHaveBeenCalled();
       expect(mockRefresh).toHaveBeenCalledTimes(1);
       expect(mockRestore).toHaveBeenCalledTimes(1);
-    },
-  );
+  });
 
   it('renders the public structured error without exposing internal StoreKit codes', async () => {
     mockUseCommerceRuntime.mockReturnValue({
