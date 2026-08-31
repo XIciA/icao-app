@@ -1,10 +1,11 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
+import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, spacing } from '@/theme';
-import { BrandMark, TextLink } from './auth-ui';
+import { TextLink } from './auth-ui';
 
 export function SplashScreen() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export function SplashScreen() {
     <Screen contentStyle={styles.splash}>
       <SoftGlow intensity={0.9} size={350} style={styles.glow} />
       <View style={styles.splashMain}>
-        <BrandMark large />
+        <AppBrandLogo accessibilityLabel="听你五个 App 标志" size="md" testID="welcome-brand-logo" />
         <AppText style={styles.brandName} variant="pageTitle">听你五个</AppText>
         <AppText color={colors.primary} style={styles.brandEnglish} variant="micro">READ YOU 5 · AVIATION ENGLISH</AppText>
         <AppText style={styles.slogan} variant="caption">在职飞行员一站一站学，助你稳稳拿下{'\n'}ICAO 4 级</AppText>

@@ -25,6 +25,7 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, Image, Linking, Platform, Pressable, Share, StyleSheet, View } from 'react-native';
 
+import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
@@ -413,7 +414,11 @@ function AboutPage() {
   return (
     <Page title="关于听你五个">
       <View style={styles.aboutHero}>
-        <View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View>
+        {Platform.OS === 'web' ? (
+          <View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View>
+        ) : (
+          <AppBrandLogo accessibilityLabel="听你五个 App 标志" size="md" testID="info-brand-logo" />
+        )}
         <AppText variant="sectionTitle">听你五个</AppText>
         <AppText variant="micro">Read You 5</AppText>
         <AppText variant="caption">航空英语 · 陆空通话备考助手</AppText>
