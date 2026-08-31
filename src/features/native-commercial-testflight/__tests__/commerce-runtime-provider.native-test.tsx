@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 import { act, render, waitFor } from '@testing-library/react-native';
-import { Text } from 'react-native';
+import { AppState, type AppStateStatus, Text } from 'react-native';
 import { getIcaoDistributionEnvironment } from '@icao/distribution-environment';
 
 import type {
@@ -29,6 +29,7 @@ const mockClearUncertainPurchase = jest.fn(async (accountId: string) => {
   mockUncertainPurchaseStore.delete(accountId);
 });
 const mockDistributionEnvironment = jest.mocked(getIcaoDistributionEnvironment);
+let mockAppStateHandler: ((state: AppStateStatus) => void) | undefined;
 
 jest.mock('@/features/auth/AuthProvider', () => ({
   useAuth: () => ({
@@ -57,6 +58,7 @@ import {
   CommerceRuntimeProvider,
   useCommerceRuntime,
 } from '../CommerceRuntimeProvider.native';
+import { subscribeCommerceEntitlementChanges } from '../commerce-entitlement-events';
 
 const PRODUCTS: CommerceProductOffering[] = [
   ['membership_7d_v1', '7d', '7天会员', 7, false],
@@ -163,6 +165,11 @@ function Probe() {
 
 describe('<CommerceRuntimeProvider />', () => {
   beforeEach(() => {
+    mockAppStateHandler = undefined;
+    jest.mocked(AppState.addEventListener).mockImplementation((type, listener) => {
+      if (type === 'change') mockAppStateHandler = listener;
+      return { remove: jest.fn() };
+    });
     mockDistributionEnvironment.mockReturnValue('production');
     mockAccountId = firstAccountId;
     mockUncertainPurchaseStore.clear();
@@ -194,6 +201,29 @@ describe('<CommerceRuntimeProvider />', () => {
     });
     expect(currentCommerce.entitlementEnvironment).toBe('production');
     expect(currentCommerce.entitlement).toEqual(ENTITLEMENTS.production);
+  });
+
+  it('reloads both server and StoreKit catalogs after the initial catalog read fails', async () => {
+    const fakeProvider = provider({
+      listOfferings: jest.fn()
+        .mockRejectedValueOnce(new Error('store_unavailable'))
+        .mockResolvedValue({
+          ok: true,
+          state: 'succeeded',
+          value: { offerings: storeOfferings() },
+        }),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(screen.getByTestId('phase').props.children).toBe('error'));
+    expect(currentCommerce.offerings).toHaveLength(0);
+
+    await act(async () => { await currentCommerce.refresh(); });
+
+    expect(currentCommerce.phase).toBe('ready');
+    expect(currentCommerce.offerings).toHaveLength(5);
+    expect(fakeProvider.listOfferings).toHaveBeenCalledTimes(2);
+    expect(mockApiRequest.mock.calls.filter(([path]) => path === '/v1/commerce/catalog')).toHaveLength(2);
   });
 
   it('verifies and finishes a purchase before presenting the server entitlement', async () => {
@@ -229,19 +259,31 @@ describe('<CommerceRuntimeProvider />', () => {
     await act(async () => { result = await currentCommerce.purchase('membership_31d_v1'); });
 
     expect(result).toEqual({ ok: true, message: '购买成功，会员权益已到账。' });
-    expect(fakeProvider.purchase).toHaveBeenCalledWith({
-      offeringKey: 'membership_31d_v1',
-      applicationAccountToken: mockAccountId,
-    });
+    expect(fakeProvider.purchase).toHaveBeenCalledWith(
+      {
+        offeringKey: 'membership_31d_v1',
+        applicationAccountToken: mockAccountId,
+      },
+      expect.objectContaining({ lifecycle: expect.anything() }),
+    );
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/commerce/apple/transactions/verify', expect.objectContaining({
       body: JSON.stringify({ signedTransaction: purchased.signedTransaction }),
     }));
-    expect(fakeProvider.markServerVerified).toHaveBeenCalledWith({
-      transactionReference: purchased.transactionReference,
-      signedTransaction: purchased.signedTransaction,
-    });
+    expect(fakeProvider.markServerVerified).toHaveBeenCalledWith(
+      {
+        transactionReference: purchased.transactionReference,
+        signedTransaction: purchased.signedTransaction,
+      },
+      expect.objectContaining({ lifecycle: expect.anything() }),
+    );
     expect(fakeProvider.finishTransaction).toHaveBeenCalledTimes(1);
     expect(currentCommerce.entitlement?.membership.active).toBe(true);
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'purchase',
+      snapshot: expect.objectContaining({ membership: expect.objectContaining({ active: true }) }),
+    });
   });
 
   it('selects sandbox entitlement only after StoreKit supplies verified sandbox history', async () => {
@@ -270,6 +312,11 @@ describe('<CommerceRuntimeProvider />', () => {
 
     expect(currentCommerce.entitlementEnvironment).toBe('sandbox');
     expect(currentCommerce.entitlement?.membership.active).toBe(true);
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'sandbox',
+      snapshot: expect.objectContaining({ membership: expect.objectContaining({ active: true }) }),
+    });
   });
 
   it('fails closed when the server and StoreKit catalogs diverge', async () => {
@@ -285,7 +332,12 @@ describe('<CommerceRuntimeProvider />', () => {
     await waitFor(() => expect(currentCommerce.phase).toBe('error'));
 
     expect(currentCommerce.offerings).toEqual([]);
-    expect(currentCommerce.message).toContain('暂时无法连接 App Store');
+    expect(currentCommerce.error).toMatchObject({
+      code: 'catalog-invalid',
+      operation: 'catalog',
+      retryable: false,
+    });
+    expect(currentCommerce.message).toContain('商品信息尚未完全同步');
   });
 
   it('keeps every purchase entry locked while App Store reports a pending purchase', async () => {
@@ -510,6 +562,11 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(currentCommerce.phase).toBe('ready');
     expect(currentCommerce.entitlementEnvironment).toBe('sandbox');
     expect(fakeProvider.restorePurchases).toHaveBeenCalledTimes(1);
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'sandbox',
+      reason: 'restore',
+    });
   });
 
   it('does not clear an exact sandbox lock from a production transaction collision', async () => {
@@ -587,9 +644,10 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(result?.message).toContain('本次交易正在继续核对');
     expect(currentCommerce.phase).toBe('pending');
     expect(fakeProvider.markServerVerified).toHaveBeenCalledTimes(1);
-    expect(fakeProvider.markServerVerified).toHaveBeenCalledWith(expect.objectContaining({
-      transactionReference: older.transactionReference,
-    }));
+    expect(fakeProvider.markServerVerified).toHaveBeenCalledWith(
+      expect.objectContaining({ transactionReference: older.transactionReference }),
+      expect.objectContaining({ lifecycle: expect.anything() }),
+    );
   });
 
   it('does not let a purchase from the previous account overwrite the new account state', async () => {
@@ -615,7 +673,8 @@ describe('<CommerceRuntimeProvider />', () => {
     await act(async () => {
       screen.rerender(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
     });
-    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    await waitFor(() => expect(currentCommerce.phase).toBe('loading'));
+    expect(newProvider.listOfferings).not.toHaveBeenCalled();
     await act(async () => {
       resolvePurchase({
         ok: true,
@@ -624,7 +683,8 @@ describe('<CommerceRuntimeProvider />', () => {
       });
     });
 
-    await expect(pendingPurchase).resolves.toEqual(ACCOUNT_CHANGED_RESULT_FOR_TEST);
+    await expect(pendingPurchase).resolves.toMatchObject(ACCOUNT_CHANGED_RESULT_FOR_TEST);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
     expect(currentCommerce.phase).toBe('ready');
     expect(currentCommerce.entitlement).toEqual(ENTITLEMENTS.production);
     expect(oldProvider.drainTransactionInbox).not.toHaveBeenCalled();
@@ -637,6 +697,314 @@ describe('<CommerceRuntimeProvider />', () => {
     await act(async () => { await currentCommerce.purchase('membership_31d_v1'); });
     expect(oldProvider.purchase).toHaveBeenCalledTimes(1);
     expect(newProvider.purchase).not.toHaveBeenCalled();
+  });
+
+  it('does not activate the next account until a late raw verification request drains', async () => {
+    const purchased = transaction('production', 'late-verification');
+    const oldProvider = provider({
+      purchase: jest.fn(async () => ({
+        ok: true,
+        state: 'succeeded',
+        value: { transaction: purchased, entitlementGranted: false, transactionFinished: false },
+      } as const)),
+      drainTransactionInbox: jest.fn(() => inbox([purchased])),
+    });
+    const newProvider = provider();
+    mockCreateProvider.mockReturnValueOnce(oldProvider).mockReturnValue(newProvider);
+    let resolveVerification!: (value: VerifyAppleTransactionResponse) => void;
+    const rawVerification = new Promise<VerifyAppleTransactionResponse>((resolve) => {
+      resolveVerification = resolve;
+    });
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') return Promise.resolve(ENTITLEMENTS);
+      if (path === '/v1/commerce/apple/transactions/verify') return rawVerification;
+      throw new Error(`unexpected_api:${path}`);
+    });
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    let oldPurchase!: ReturnType<typeof currentCommerce.purchase>;
+    await act(async () => {
+      oldPurchase = currentCommerce.purchase('membership_31d_v1');
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(mockApiRequest).toHaveBeenCalledWith(
+      '/v1/commerce/apple/transactions/verify',
+      expect.anything(),
+    ));
+
+    mockAccountId = '10000000-0000-4000-8000-000000000202';
+    await act(async () => {
+      screen.rerender(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    });
+
+    await expect(oldPurchase).resolves.toMatchObject(ACCOUNT_CHANGED_RESULT_FOR_TEST);
+    expect(currentCommerce.phase).toBe('loading');
+    expect(newProvider.listOfferings).not.toHaveBeenCalled();
+    resolveVerification({
+      created: true,
+      transactionId: purchased.transactionReference,
+      entitlement: entitlement('production', true),
+    });
+    await rawVerification;
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.entitlement).toEqual(ENTITLEMENTS.production);
+  });
+
+  it('publishes a monotonic entitlement snapshot after manual refresh detects expiry or refund', async () => {
+    let active = true;
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') return Promise.resolve({
+        ...ENTITLEMENTS,
+        production: entitlement('production', active),
+      });
+      throw new Error(`unexpected_api:${path}`);
+    });
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    const initialChange = currentCommerce.entitlementChange;
+
+    expect(initialChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'startup-reconciliation',
+      snapshot: expect.objectContaining({ membership: expect.objectContaining({ active: true }) }),
+    });
+    active = false;
+    await act(async () => { await currentCommerce.refresh(); });
+
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'manual-refresh',
+      snapshot: expect.objectContaining({ membership: expect.objectContaining({ active: false }) }),
+    });
+    expect(currentCommerce.entitlementChange?.revision).toBeGreaterThan(
+      initialChange?.revision ?? 0,
+    );
+  });
+
+  it('publishes the new account generation and never reuses the previous snapshot', async () => {
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    const oldRevision = currentCommerce.entitlementChange?.revision ?? 0;
+
+    mockAccountId = '10000000-0000-4000-8000-000000000202';
+    await act(async () => {
+      screen.rerender(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: mockAccountId,
+      environment: 'production',
+      snapshot: ENTITLEMENTS.production,
+    });
+    expect(currentCommerce.entitlementChange?.revision).toBeGreaterThan(oldRevision);
+  });
+
+  it('publishes foreground reconciliation so downstream content can invalidate immediately', async () => {
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    const initialRevision = currentCommerce.entitlementChange?.revision ?? 0;
+
+    await act(async () => {
+      mockAppStateHandler?.('active');
+    });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+
+    expect(currentCommerce.entitlementChange).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'foreground-reconciliation',
+    });
+    expect(currentCommerce.entitlementChange?.revision).toBeGreaterThan(initialRevision);
+  });
+
+  it('publishes the subscribable entitlement contract and stops after cleanup', async () => {
+    const observed = jest.fn();
+    const unsubscribe = subscribeCommerceEntitlementChanges(observed);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+
+    await act(async () => { await currentCommerce.refresh(); });
+    const manualEvent = observed.mock.calls
+      .map(([event]) => event)
+      .find((event) => event.reason === 'manual-refresh');
+    expect(manualEvent).toMatchObject({
+      accountId: firstAccountId,
+      environment: 'production',
+      reason: 'manual-refresh',
+    });
+    expect(manualEvent.revision).toBeGreaterThan(0);
+
+    const callsBeforeCleanup = observed.mock.calls.length;
+    unsubscribe();
+    await act(async () => { await currentCommerce.refresh(); });
+    expect(observed).toHaveBeenCalledTimes(callsBeforeCleanup);
+  });
+
+  it('does not queue a user restore while startup reconciliation is active', async () => {
+    let resolveStartup!: () => void;
+    const fakeProvider = provider({
+      reconcileTransactions: jest.fn(() => new Promise((resolve) => {
+        resolveStartup = () => resolve({
+          ok: true,
+          state: 'succeeded',
+          value: {
+            transactions: [],
+            quarantinedTransactions: [],
+            overflowed: false,
+            entitlementGranted: false,
+          },
+        });
+      })),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('loading'));
+
+    await expect(currentCommerce.restorePurchases()).resolves.toMatchObject({
+      ok: false,
+      error: { code: 'operation-busy' },
+    });
+    expect(fakeProvider.restorePurchases).not.toHaveBeenCalled();
+
+    resolveStartup();
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+  });
+
+  it('cancels an in-flight restore when the signed-in account changes', async () => {
+    let resolveRestore!: (value: Awaited<ReturnType<NativeCommerceProvider['restorePurchases']>>) => void;
+    const oldProvider = provider({
+      restorePurchases: jest.fn(() => new Promise((resolve) => { resolveRestore = resolve; })),
+    });
+    const newProvider = provider();
+    mockCreateProvider.mockReturnValueOnce(oldProvider).mockReturnValue(newProvider);
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    let oldRestore!: ReturnType<typeof currentCommerce.restorePurchases>;
+    await act(async () => {
+      oldRestore = currentCommerce.restorePurchases();
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(currentCommerce.phase).toBe('restoring'));
+
+    mockAccountId = '10000000-0000-4000-8000-000000000202';
+    await act(async () => {
+      screen.rerender(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    });
+
+    await expect(oldRestore).resolves.toMatchObject(ACCOUNT_CHANGED_RESULT_FOR_TEST);
+    expect(currentCommerce.phase).toBe('loading');
+    expect(newProvider.listOfferings).not.toHaveBeenCalled();
+    await act(async () => {
+      resolveRestore({
+        ok: true,
+        state: 'succeeded',
+        value: {
+          transactions: [],
+          quarantinedTransactions: [],
+          overflowed: false,
+          entitlementGranted: false,
+        },
+      });
+    });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(newProvider.restorePurchases).not.toHaveBeenCalled();
+  });
+
+  it('applies one full-operation deadline when entitlement refresh hangs after restore', async () => {
+    const fakeProvider = provider();
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    let entitlementReads = 0;
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') {
+        entitlementReads += 1;
+        return entitlementReads === 1
+          ? Promise.resolve(ENTITLEMENTS)
+          : new Promise(() => undefined);
+      }
+      throw new Error(`unexpected_api:${path}`);
+    });
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+
+    jest.useFakeTimers();
+    try {
+      let restore!: ReturnType<typeof currentCommerce.restorePurchases>;
+      await act(async () => {
+        restore = currentCommerce.restorePurchases();
+        await Promise.resolve();
+      });
+      await act(async () => {
+        await jest.advanceTimersByTimeAsync(60_000);
+      });
+
+      await expect(restore).resolves.toMatchObject({
+        ok: false,
+        error: { code: 'restore-timed-out', operation: 'restore' },
+      });
+      expect(currentCommerce.phase).toBe('error');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('times out a never-settling storage clear and blocks immediate restore reentry until drain', async () => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
+    const sandboxPurchase = transaction('sandbox', 'sandbox-storage-hang');
+    mockUncertainPurchaseStore.set(firstAccountId, {
+      accountId: firstAccountId,
+      offeringKey: sandboxPurchase.offeringKey,
+      startedAt: '2026-08-24T07:00:00.000Z',
+      baselineTransactionReferences: [],
+      transactionReference: sandboxPurchase.transactionReference,
+      environment: 'sandbox',
+    });
+    const fakeProvider = provider({
+      restorePurchases: jest.fn(() => inbox([sandboxPurchase])),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    mockClearUncertainPurchase.mockImplementation(() => new Promise<void>(() => undefined));
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') return Promise.resolve(ENTITLEMENTS);
+      if (path === '/v1/commerce/apple/transactions/verify') {
+        return Promise.resolve({
+          created: false,
+          transactionId: sandboxPurchase.transactionReference,
+          entitlement: entitlement('sandbox', true),
+        } satisfies VerifyAppleTransactionResponse);
+      }
+      throw new Error(`unexpected_api:${path}`);
+    });
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('pending'));
+
+    jest.useFakeTimers();
+    try {
+      let restore!: ReturnType<typeof currentCommerce.restorePurchases>;
+      await act(async () => {
+        restore = currentCommerce.restorePurchases();
+        await Promise.resolve();
+      });
+      await act(async () => { await jest.advanceTimersByTimeAsync(60_000); });
+
+      await expect(restore).resolves.toMatchObject({
+        ok: false,
+        error: { code: 'restore-timed-out' },
+      });
+      expect(currentCommerce.phase).toBe('pending');
+      let retry!: Awaited<ReturnType<typeof currentCommerce.restorePurchases>>;
+      await act(async () => { retry = await currentCommerce.restorePurchases(); });
+      expect(retry).toMatchObject({ ok: false, error: { code: 'operation-busy' } });
+      expect(fakeProvider.restorePurchases).toHaveBeenCalledTimes(1);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });
 

@@ -17,7 +17,10 @@ import {
   nativeCommerceEnvironmentSnapshot,
 } from '@/features/native-commercial-testflight/commerce-environment';
 import type { QuestionBankTopic } from '../types';
-import { verifyContentAccessCredential } from './content-credential-verifier.native';
+import {
+  inspectContentAccessCredential,
+  verifyContentAccessCredential,
+} from './content-credential-verifier.native';
 
 const LEGACY_DEVICE_ID_KEY = 'icao.content.device.v1';
 const LEGACY_CREDENTIAL_KEY_PREFIX = 'icao.content.credential.v1.';
@@ -364,16 +367,20 @@ export async function inspectOfflineMemberTopicAccess(
   try {
     const credential = JSON.parse(credentialValue) as ContentAccessCredential;
     const record = JSON.parse(recordValue) as EncryptedTopic;
-    const expiresAt = Date.parse(credential.expiresAt);
-    if (Number.isFinite(expiresAt) && expiresAt <= now) return 'expired';
     if (
-      !verifyContentAccessCredential({ accountId, credential, environment, now, scope })
-      || record.schemaVersion !== 2
+      record.schemaVersion !== 2
       || record.accountId !== accountId
       || record.environment !== environment
       || scopeIdentity(record.scope) !== scopeIdentity(scope)
     ) return 'invalid';
-    return 'valid';
+    const inspection = inspectContentAccessCredential({
+      accountId,
+      credential,
+      environment,
+      now,
+      scope,
+    });
+    return inspection.status;
   } catch {
     return 'invalid';
   }

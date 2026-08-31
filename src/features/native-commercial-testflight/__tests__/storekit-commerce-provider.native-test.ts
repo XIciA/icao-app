@@ -17,6 +17,7 @@ import type {
   StoreKitProduct,
   StoreKitTransaction,
 } from '../storekit-client.native';
+import { CommerceRuntimeOperationGate } from '../commerce-runtime-operation.native';
 
 const ACCOUNT_TOKEN = '12345678-1234-4234-8234-123456789abc';
 const NOW = Date.UTC(2026, 7, 24, 8);
@@ -95,6 +96,11 @@ class FakeStoreKitClient implements StoreKitClient {
   readonly finishStarted = new Promise<void>((resolve) => {
     this.finishStartedResolve = resolve;
   });
+  private resolveNativeRequest?: () => void;
+
+  settleNativeRequest() {
+    this.resolveNativeRequest?.();
+  }
 
   async connect(handlers: StoreKitEventHandlers): Promise<void> {
     this.connectStartedResolve();
@@ -117,7 +123,9 @@ class FakeStoreKitClient implements StoreKitClient {
     this.requestStartedResolve();
     if (this.requestError) throw new Error('request failed');
     this.onRequest?.(input);
-    if (this.requestNeverResolves) await new Promise<void>(() => undefined);
+    if (this.requestNeverResolves) {
+      await new Promise<void>((resolve) => { this.resolveNativeRequest = resolve; });
+    }
   }
 
   async getTransactions(): Promise<readonly StoreKitTransaction[]> {
@@ -766,6 +774,32 @@ describe('StoreKit native commerce provider', () => {
         applicationAccountToken: ACCOUNT_TOKEN,
       }),
     ).resolves.toEqual(expect.objectContaining({ code: 'commerce_purchase_cancelled' }));
+  });
+
+  it('returns the provider timeout but holds runtime single-flight until raw requestPurchase settles', async () => {
+    const client = new FakeStoreKitClient();
+    client.requestNeverResolves = true;
+    const { provider, runtime } = createProvider(client);
+    const gate = new CommerceRuntimeOperationGate();
+    const operation = gate.begin()!;
+    const purchase = operation.wait(provider.purchase({
+      offeringKey: 'membership_31d_v1',
+      applicationAccountToken: ACCOUNT_TOKEN,
+    }, { lifecycle: operation }));
+    await client.requestStarted;
+
+    runtime.fireTimeouts();
+    await expect(purchase).resolves.toEqual(expect.objectContaining({
+      code: 'commerce_purchase_timed_out',
+      charged: 'unknown',
+    }));
+    operation.finish();
+    expect(gate.busy).toBe(true);
+    expect(gate.begin()).toBeUndefined();
+
+    client.settleNativeRequest();
+    await gate.whenIdle();
+    expect(gate.busy).toBe(false);
   });
 
   it('bounds a connection that never resolves and disposes without waiting for it', async () => {

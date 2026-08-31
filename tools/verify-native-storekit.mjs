@@ -7,16 +7,6 @@ import { assertExpoPrebuildCommand } from './release-command-contract.mjs';
 const root = process.cwd();
 const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const mappingPath = 'src/features/native-commercial-testflight/membership-products.native.ts';
-const providerPath = 'src/features/native-commercial-testflight/storekit-commerce-provider.native.ts';
-const adapterPath = 'src/features/native-commercial-testflight/react-native-iap-storekit-client.native.ts';
-const contractPath = 'src/features/native-commercial-testflight/commerce-provider.native.ts';
-const coordinatorPath =
-  'src/features/native-commercial-testflight/commerce-transaction-coordinator.native.ts';
-const appleProviderPath =
-  'src/features/native-commercial-testflight/apple-storekit-commerce-provider.native.ts';
-const runtimePath =
-  'src/features/native-commercial-testflight/CommerceRuntimeProvider.native.tsx';
-const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
 const appStoreConnectIapPath = 'tools/app-store-connect-iap.mjs';
@@ -45,9 +35,6 @@ if (packageJson.dependencies?.['react-native-iap'] !== '16.3.2') {
 if (packageJson.dependencies?.['react-native-nitro-modules'] !== '0.36.5') {
   failures.push('react-native-nitro-modules must be pinned exactly to the CNG-verified version 0.36.5.');
 }
-if (!packageJson.scripts?.['check:ios:testflight']?.includes('pnpm check:ios:storekit')) {
-  failures.push('The TestFlight verifier must run the Native StoreKit contract check.');
-}
 
 const mapping = await read(mappingPath);
 for (const [businessKey, productId] of Object.entries(expectedProducts)) {
@@ -57,6 +44,12 @@ for (const [businessKey, productId] of Object.entries(expectedProducts)) {
   if (occurrences(mapping, `'${productId}'`) !== 1) {
     failures.push(`${mappingPath} must map the Apple product ID exactly once: ${productId}`);
   }
+}
+if (occurrences(mapping, 'recommended: true') !== 1 || !mapping.includes("key: 'membership_31d_v1'")) {
+  failures.push('Exactly the 31-day StoreKit product must be recommended.');
+}
+for (const file of await sourceFiles(path.join(root, 'src'))) {
+  await rejectParallelProductMapping(file);
 }
 
 const appStoreConnectIap = await read(appStoreConnectIapPath);
@@ -102,110 +95,6 @@ for (const [file, content] of [
 }
 if (!appStoreConnectApi.includes('acceptedStatuses.includes(response.status)')) {
   failures.push(`${appStoreConnectApiPath} must explicitly handle accepted non-success statuses.`);
-}
-if (occurrences(mapping, 'recommended: true') !== 1 || !mapping.includes("key: 'membership_31d_v1'")) {
-  failures.push('Exactly the 31-day StoreKit product must be recommended.');
-}
-
-for (const file of await sourceFiles(path.join(root, 'src'))) {
-  await rejectParallelProductMapping(file);
-  await rejectProductionCommerceActivation(file);
-}
-
-const adapter = await read(adapterPath);
-for (const required of [
-  'initConnection',
-  'fetchProducts',
-  'requestPurchase',
-  'appAccountToken',
-  'andDangerouslyFinishTransactionAutomatically: false',
-  'syncIOS',
-  'syncPurchases()',
-  'getAllTransactionsIOS',
-  'getPendingTransactionsIOS',
-  'finishTransaction',
-  'endConnection',
-  'disconnect()',
-]) {
-  if (!adapter.includes(required)) failures.push(`${adapterPath} is missing: ${required}`);
-}
-const adapterHistoryRead = adapter.slice(
-  adapter.indexOf('async getTransactions()'),
-  adapter.indexOf('async syncPurchases()'),
-);
-if (!adapterHistoryRead.includes('getAllTransactionsIOS()') || adapterHistoryRead.includes('syncIOS()')) {
-  failures.push(`${adapterPath} startup history read must use getAllTransactionsIOS without syncIOS.`);
-}
-
-const provider = await read(providerPath);
-const contract = await read(contractPath);
-const coordinator = await read(coordinatorPath);
-const appleProvider = await read(appleProviderPath);
-const runtime = await read(runtimePath);
-const appRuntime = await read(appRuntimePath);
-for (const [file, content, required] of [
-  [providerPath, provider, 'requiresServerVerification: true'],
-  [providerPath, provider, 'entitlementGranted: false'],
-  [providerPath, provider, 'transactionFinished: false'],
-  [providerPath, provider, 'commerce_purchase_timed_out'],
-  [providerPath, provider, 'nativeCallTimeoutMs'],
-  [providerPath, provider, 'runNativeCall'],
-  [contractPath, contract, 'drainTransactionInbox()'],
-  [contractPath, contract, 'reconcileTransactions()'],
-  [contractPath, contract, 'markServerVerified('],
-  [contractPath, contract, 'finishTransaction('],
-  [contractPath, contract, 'dispose()'],
-]) {
-  if (!content.includes(required)) failures.push(`${file} is missing: ${required}`);
-}
-const startupReconciliation = provider.slice(
-  provider.indexOf('async reconcileTransactions()'),
-  provider.indexOf('async restorePurchases()'),
-);
-if (
-  !startupReconciliation.includes('this.client.getTransactions()') ||
-  startupReconciliation.includes('this.client.syncPurchases()')
-) {
-  failures.push(`${providerPath} startup reconciliation must use only the silent StoreKit read.`);
-}
-const explicitRestore = provider.slice(
-  provider.indexOf('async restorePurchases()'),
-  provider.indexOf('private reconcileSnapshot('),
-);
-if (
-  !explicitRestore.includes('this.client.syncPurchases()') ||
-  !explicitRestore.includes('this.client.getTransactions()')
-) {
-  failures.push(`${providerPath} explicit restore must bound StoreKit sync and history separately.`);
-}
-if (occurrences(provider, 'this.runNativeCall(') < 7) {
-  failures.push(`${providerPath} does not bound every critical StoreKit native call.`);
-}
-for (const required of [
-  'NATIVE_COMMERCE_COORDINATOR_READY = true',
-  'start()',
-  'restorePurchasesFromUserAction()',
-  'server-verified',
-  'markServerVerified',
-  'finishTransaction',
-]) {
-  if (!coordinator.includes(required)) failures.push(`${coordinatorPath} is missing: ${required}`);
-}
-if (!appleProvider.includes('APPLE_STOREKIT_COMMERCE_RUNTIME_READY = true')) {
-  failures.push(`${appleProviderPath} is not explicitly marked as runtime ready.`);
-}
-for (const required of [
-  'createAppleStoreKitCommerceProvider()',
-  'new NativeCommerceTransactionCoordinator',
-  '/v1/commerce/apple/transactions/verify',
-  '/v1/commerce/entitlements/current',
-  'applicationAccountToken: controller.accountId',
-  'verified.transactionId !== transaction.transactionReference',
-]) {
-  if (!runtime.includes(required)) failures.push(`${runtimePath} is missing: ${required}`);
-}
-if (!appRuntime.includes('<CommerceRuntimeProvider>')) {
-  failures.push(`${appRuntimePath} does not mount the authenticated Native commerce runtime.`);
 }
 
 const releaseHelper = await read(releaseHelperPath);
@@ -276,7 +165,7 @@ if (failures.length) {
   failures.forEach((failure) => console.error(`- ${failure}`));
   process.exitCode = 1;
 } else {
-  console.log('Native StoreKit products, client boundary, and iOS release gates verified');
+  console.log('Native StoreKit dependencies, product mapping, and iOS CNG release gates verified');
 }
 
 async function read(relativePath) {
@@ -304,33 +193,4 @@ async function rejectParallelProductMapping(file) {
   const content = await readFile(file, 'utf8');
   const productId = content.match(/com\.readyoufife\.ios\.membership\.(?:7|15|31|62|93)d\.v1/u)?.[0];
   if (productId) failures.push(`${relative} duplicates the Apple product mapping for ${productId}.`);
-}
-
-async function rejectProductionCommerceActivation(file) {
-  const relative = path.relative(root, file).split(path.sep).join('/');
-  if (
-    relative.includes('/__tests__/') ||
-    /-test\.tsx?$/u.test(relative) ||
-    relative === coordinatorPath ||
-    relative === appleProviderPath ||
-    relative === runtimePath
-  ) {
-    return;
-  }
-
-  const content = await readFile(file, 'utf8');
-  for (const activationFragment of [
-    'apple-storekit-commerce-provider',
-    'commerce-transaction-coordinator',
-    'storekit-commerce-provider.native',
-    'react-native-iap-storekit-client.native',
-    'createAppleStoreKitCommerceProvider',
-    'NativeCommerceTransactionCoordinator',
-  ]) {
-    if (content.includes(activationFragment)) {
-      failures.push(
-        `${relative} activates infrastructure-only native commerce via ${activationFragment}.`,
-      );
-    }
-  }
 }

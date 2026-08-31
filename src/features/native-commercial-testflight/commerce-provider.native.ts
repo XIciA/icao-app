@@ -1,3 +1,5 @@
+import type { CommerceOperationLifecycle } from './commerce-runtime-operation.native';
+
 export const TESTFLIGHT_COMMERCE_DISABLED_CODE = 'commerce_disabled_testflight' as const;
 
 export const MEMBERSHIP_OFFERING_KEYS = [
@@ -25,6 +27,10 @@ export type CommerceFailureCode =
   | 'commerce_purchase_timed_out'
   | 'commerce_purchase_failed'
   | 'commerce_restore_failed'
+  | 'commerce_operation_busy'
+  | 'commerce_operation_cancelled'
+  | 'commerce_reconciliation_timed_out'
+  | 'commerce_reconciliation_budget_exceeded'
   | 'commerce_provider_disposed'
   | 'commerce_verification_required'
   | 'commerce_transaction_unknown'
@@ -179,26 +185,41 @@ export type CommerceFinish = Readonly<{
   completion: 'finished' | 'already-finished';
 }>;
 
+export type CommerceProviderOperationOptions = Readonly<{
+  lifecycle?: CommerceOperationLifecycle;
+}>;
+
 /** Stable business boundary. StoreKit and channel product types stay behind it. */
 export interface NativeCommerceProvider {
-  listOfferings(): Promise<CommerceResult<CommerceCatalog>>;
-  purchase(request: CommercePurchaseRequest): Promise<CommerceResult<CommercePurchase>>;
+  listOfferings(options?: CommerceProviderOperationOptions): Promise<CommerceResult<CommerceCatalog>>;
+  purchase(
+    request: CommercePurchaseRequest,
+    options?: CommerceProviderOperationOptions,
+  ): Promise<CommerceResult<CommercePurchase>>;
   /** Drains native events already observed by this provider. */
-  drainTransactionInbox(): Promise<CommerceResult<CommerceTransactionInbox>>;
+  drainTransactionInbox(
+    options?: CommerceProviderOperationOptions,
+  ): Promise<CommerceResult<CommerceTransactionInbox>>;
   /**
    * Must run on every app start. This is a silent history read and never invokes
    * StoreKit account sync. If overflowed is true, verify this page and call again
    * until false so every StoreKit history entry is delivered boundedly.
    */
-  reconcileTransactions(): Promise<CommerceResult<CommerceTransactionInbox>>;
+  reconcileTransactions(
+    options?: CommerceProviderOperationOptions,
+  ): Promise<CommerceResult<CommerceTransactionInbox>>;
   /** Explicit user action only. This is the sole provider path allowed to sync StoreKit. */
-  restorePurchases(): Promise<CommerceResult<CommerceRestore>>;
+  restorePurchases(options?: CommerceProviderOperationOptions): Promise<CommerceResult<CommerceRestore>>;
   /** Call only after the service has verified and durably recorded the exact JWS. */
   markServerVerified(
     request: CommerceServerVerificationRequest,
+    options?: CommerceProviderOperationOptions,
   ): Promise<CommerceResult<CommerceServerVerifiedAcknowledgement>>;
-  finishTransaction(request: CommerceFinishRequest): Promise<CommerceResult<CommerceFinish>>;
-  dispose(): Promise<void>;
+  finishTransaction(
+    request: CommerceFinishRequest,
+    options?: CommerceProviderOperationOptions,
+  ): Promise<CommerceResult<CommerceFinish>>;
+  dispose(options?: CommerceProviderOperationOptions): Promise<void>;
 }
 
 export const TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT: CommerceUnavailableResult = Object.freeze({

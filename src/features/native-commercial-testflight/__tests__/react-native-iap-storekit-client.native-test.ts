@@ -1,6 +1,7 @@
-import type { PurchaseError, PurchaseIOS } from 'react-native-iap';
+import type { ProductOrSubscription, PurchaseError, PurchaseIOS } from 'react-native-iap';
 import {
   endConnection,
+  fetchProducts,
   finishTransaction,
   getAllTransactionsIOS,
   getPendingTransactionsIOS,
@@ -11,7 +12,11 @@ import {
   syncIOS,
 } from 'react-native-iap';
 
-import { ReactNativeIapStoreKitClient } from '../react-native-iap-storekit-client.native';
+import {
+  ReactNativeIapStoreKitClient,
+  resetReactNativeIapConnectionForTests,
+} from '../react-native-iap-storekit-client.native';
+import type { CommerceOperationLifecycle } from '../commerce-runtime-operation.native';
 
 type ActiveListener<T> = {
   active: boolean;
@@ -77,14 +82,58 @@ function createHandlers() {
 
 describe('react-native-iap StoreKit client', () => {
   beforeEach(() => {
+    resetReactNativeIapConnectionForTests();
     jest.clearAllMocks();
     mockPurchaseUpdatedListeners.length = 0;
     mockPurchaseErrorListeners.length = 0;
     jest.mocked(initConnection).mockResolvedValue(true);
+    jest.mocked(endConnection).mockResolvedValue(true);
     jest.mocked(getAllTransactionsIOS).mockResolvedValue([]);
     jest.mocked(getPendingTransactionsIOS).mockResolvedValue([]);
     jest.mocked(syncIOS).mockResolvedValue(true);
     jest.mocked(finishTransaction).mockResolvedValue(undefined);
+    jest.mocked(fetchProducts).mockResolvedValue([]);
+    jest.mocked(requestPurchase).mockResolvedValue(null);
+  });
+
+  it('queries and accepts only iOS non-renewing subscriptions', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    const valid = {
+      platform: 'ios',
+      type: 'subs',
+      typeIOS: 'non-renewing-subscription',
+      id: PURCHASE.productId,
+      displayPrice: '¥168.00',
+      currency: 'CNY',
+    } as ProductOrSubscription;
+    const wrongOpenIapType = {
+      ...valid,
+      id: 'wrong.openiap.type',
+      type: 'in-app',
+    } as ProductOrSubscription;
+    const wrongIosType = {
+      ...valid,
+      id: 'wrong.ios.type',
+      typeIOS: 'auto-renewable-subscription',
+    } as ProductOrSubscription;
+    jest.mocked(fetchProducts).mockResolvedValue([
+      valid,
+      wrongOpenIapType,
+      wrongIosType,
+    ]);
+
+    await client.connect(createHandlers());
+    await expect(client.fetchProducts([PURCHASE.productId])).resolves.toEqual([{
+      productId: PURCHASE.productId,
+      localizedPrice: '¥168.00',
+      currencyCode: 'CNY',
+      productTypeIOS: 'non-renewing-subscription',
+    }]);
+
+    expect(fetchProducts).toHaveBeenCalledWith({
+      skus: [PURCHASE.productId],
+      type: 'subs',
+    });
   });
 
   it('rebuilds an unfinished transaction after app restart before finishing it', async () => {
@@ -193,8 +242,169 @@ describe('react-native-iap StoreKit client', () => {
           andDangerouslyFinishTransactionAutomatically: false,
         },
       },
-      type: 'in-app',
+      type: 'subs',
     });
+  });
+
+  it('registers the original native requestPurchase promise with the runtime lifecycle', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    await client.connect(createHandlers());
+    let settleRequest!: () => void;
+    const rawRequest = new Promise<null>((resolve) => {
+      settleRequest = () => resolve(null);
+    });
+    jest.mocked(requestPurchase).mockReturnValue(rawRequest);
+    const trackedRaw: Promise<unknown>[] = [];
+    const lifecycle: CommerceOperationLifecycle = {
+      signal: new AbortController().signal,
+      trackRaw<T>(promise: Promise<T>) {
+        trackedRaw.push(promise);
+        return promise;
+      },
+      drain: jest.fn(),
+    };
+
+    const request = client.requestPurchase({
+      productId: PURCHASE.productId,
+      applicationAccountToken: PURCHASE.appAccountToken as string,
+    }, { lifecycle });
+
+    expect(trackedRaw).toContain(rawRequest);
+    settleRequest();
+    await request;
+  });
+
+  it('registers every original react-native-iap promise with the shared runtime lifecycle', async () => {
+    const rawInit = Promise.resolve(true);
+    const rawProducts = Promise.resolve([] as ProductOrSubscription[]);
+    const rawPurchase = Promise.resolve(null);
+    const rawHistory = Promise.resolve([] as PurchaseIOS[]);
+    const rawSync = Promise.resolve(true);
+    const rawPending = Promise.resolve([] as PurchaseIOS[]);
+    const rawFinish = Promise.resolve(undefined);
+    const rawEnd = Promise.resolve(true);
+    jest.mocked(initConnection).mockReturnValue(rawInit);
+    jest.mocked(fetchProducts).mockReturnValue(rawProducts);
+    jest.mocked(requestPurchase).mockReturnValue(rawPurchase);
+    jest.mocked(getAllTransactionsIOS).mockReturnValue(rawHistory);
+    jest.mocked(syncIOS).mockReturnValue(rawSync);
+    jest.mocked(getPendingTransactionsIOS).mockReturnValue(rawPending);
+    jest.mocked(finishTransaction).mockReturnValue(rawFinish);
+    jest.mocked(endConnection).mockReturnValue(rawEnd);
+    const trackedRaw: Promise<unknown>[] = [];
+    const lifecycle: CommerceOperationLifecycle = {
+      signal: new AbortController().signal,
+      trackRaw<T>(promise: Promise<T>) {
+        trackedRaw.push(promise);
+        return promise;
+      },
+      drain: jest.fn(),
+    };
+    const client = new ReactNativeIapStoreKitClient();
+
+    await client.connect(createHandlers(), { lifecycle });
+    await client.fetchProducts([PURCHASE.productId], { lifecycle });
+    await client.requestPurchase({
+      productId: PURCHASE.productId,
+      applicationAccountToken: PURCHASE.appAccountToken as string,
+    }, { lifecycle });
+    await client.getTransactions({ lifecycle });
+    await client.syncPurchases({ lifecycle });
+    emitPurchase(PURCHASE);
+    await client.finishTransaction(PURCHASE.transactionId, { lifecycle });
+    await expect(client.finishTransaction('unknown-transaction', { lifecycle })).rejects.toThrow(
+      'storekit_transaction_unknown',
+    );
+    await client.disconnect({ lifecycle });
+
+    expect(trackedRaw).toEqual(expect.arrayContaining([
+      rawInit,
+      rawProducts,
+      rawPurchase,
+      rawHistory,
+      rawSync,
+      rawPending,
+      rawFinish,
+      rawEnd,
+    ]));
+    expect(trackedRaw.filter((promise) => promise === rawHistory)).toHaveLength(2);
+  });
+
+  it('keeps the global connection open while a replacement owner is attached', async () => {
+    const oldClient = new ReactNativeIapStoreKitClient();
+    const newClient = new ReactNativeIapStoreKitClient();
+    await oldClient.connect(createHandlers());
+    await newClient.connect(createHandlers());
+
+    await oldClient.disconnect();
+
+    expect(initConnection).toHaveBeenCalledTimes(1);
+    expect(endConnection).not.toHaveBeenCalled();
+    await newClient.disconnect();
+    expect(endConnection).toHaveBeenCalledTimes(1);
+  });
+
+  it('serializes a replacement connect behind a late native endConnection', async () => {
+    const oldClient = new ReactNativeIapStoreKitClient();
+    await oldClient.connect(createHandlers());
+    let settleEnd!: () => void;
+    const rawEnd = new Promise<boolean>((resolve) => { settleEnd = () => resolve(true); });
+    jest.mocked(endConnection).mockReturnValue(rawEnd);
+    const disconnecting = oldClient.disconnect();
+    await Promise.resolve();
+
+    const newClient = new ReactNativeIapStoreKitClient();
+    const connecting = newClient.connect(createHandlers());
+    await Promise.resolve();
+    expect(initConnection).toHaveBeenCalledTimes(1);
+
+    settleEnd();
+    await disconnecting;
+    await connecting;
+    expect(initConnection).toHaveBeenCalledTimes(2);
+    expect(jest.mocked(endConnection).mock.invocationCallOrder[0]).toBeLessThan(
+      jest.mocked(initConnection).mock.invocationCallOrder[1]!,
+    );
+    jest.mocked(endConnection).mockResolvedValue(true);
+    await newClient.disconnect();
+  });
+
+  it('reconnects after a late native endConnection rejection without leaking an unhandled rejection', async () => {
+    const oldClient = new ReactNativeIapStoreKitClient();
+    await oldClient.connect(createHandlers());
+    let rejectEnd!: (error: Error) => void;
+    const rawEnd = new Promise<boolean>((_resolve, reject) => { rejectEnd = reject; });
+    jest.mocked(endConnection).mockReturnValue(rawEnd);
+    const unhandledRejection = jest.fn();
+    process.on('unhandledRejection', unhandledRejection);
+
+    try {
+      const disconnectResult = oldClient.disconnect().catch((error: unknown) => error);
+      await Promise.resolve();
+
+      const newClient = new ReactNativeIapStoreKitClient();
+      const connecting = newClient.connect(createHandlers());
+      await Promise.resolve();
+      expect(initConnection).toHaveBeenCalledTimes(1);
+
+      rejectEnd(new Error('native_end_connection_failed'));
+      await expect(disconnectResult).resolves.toEqual(
+        expect.objectContaining({ message: 'native_end_connection_failed' }),
+      );
+      await expect(connecting).resolves.toBeUndefined();
+      await new Promise<void>((resolve) => setImmediate(resolve));
+
+      expect(unhandledRejection).not.toHaveBeenCalled();
+      expect(initConnection).toHaveBeenCalledTimes(2);
+      expect(jest.mocked(endConnection).mock.invocationCallOrder[0]).toBeLessThan(
+        jest.mocked(initConnection).mock.invocationCallOrder[1]!,
+      );
+
+      jest.mocked(endConnection).mockResolvedValue(true);
+      await newClient.disconnect();
+    } finally {
+      process.off('unhandledRejection', unhandledRejection);
+    }
   });
 
   it('removes both listeners, ends the native connection once, and never duplicates callbacks', async () => {
@@ -243,10 +453,15 @@ describe('react-native-iap StoreKit client', () => {
     );
     const client = new ReactNativeIapStoreKitClient();
     const connection = client.connect(createHandlers());
+    const connectionResult = connection.catch((error: unknown) => error);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const disconnection = client.disconnect();
 
-    await expect(client.disconnect()).resolves.toBeUndefined();
     resolveConnection(true);
-    await expect(connection).rejects.toThrow('storekit_client_disconnected');
+    await expect(connectionResult).resolves.toEqual(
+      expect.objectContaining({ message: 'storekit_client_disconnected' }),
+    );
+    await expect(disconnection).resolves.toBeUndefined();
 
     expect(purchaseUpdatedListener).not.toHaveBeenCalled();
     expect(purchaseErrorListener).not.toHaveBeenCalled();

@@ -90,4 +90,19 @@ describe('OPI hotspot restricted states', () => {
     expect(screen.queryByText(/https?:\/\//u)).toBeNull();
     expect(screen.queryByText(/content-unavailable|content_unavailable/u)).toBeNull();
   });
+
+  it.each([
+    [{ brief, status: 'membership-required' }, '完整练习需会员'],
+    [{ brief, status: 'offline-authorization-expired' }, '需要联网验证会员状态'],
+    [{ brief, status: 'network-error' }, '网络连接不稳定'],
+    [{ status: 'not-found' }, '无法打开热点资讯'],
+    [{ brief, status: 'content-unavailable' }, '热点内容暂不可用'],
+    [{ brief, status: 'ready', topics: [], session: {} }, '涵盖话题与问题（0）'],
+  ] as const)('renders the six-state access view for %s', async (state, expectedText) => {
+    mockState = state as HotspotAccessResult;
+
+    const screen = await render(withSafeArea(<HotspotDetailScreen briefId={brief.id} />));
+
+    expect(screen.getByText(expectedText)).toBeTruthy();
+  });
 });
