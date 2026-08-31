@@ -54,10 +54,10 @@ import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestio
 import {
   activateQuestionBankContentAccount,
   clearQuestionBankMemberContent,
-  inspectOfflineMemberTopicAccess,
   readMemberTopicCache,
   writeMemberTopicCache,
-} from '../data/member-content-cache';
+  inspectOfflineMemberTopicAccess,
+} from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
 import { AESEncryptionKey, aesDecryptAsync } from 'expo-crypto';

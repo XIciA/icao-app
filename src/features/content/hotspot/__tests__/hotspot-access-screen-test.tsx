@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import type { HotspotAccessResult } from '../access-state';
+import type { HotspotAccessResult } from '../access-state.native';
 import { HotspotDetailScreen } from '../HotspotDetailScreen';
 import { HotspotStudyScreen } from '../HotspotStudyScreen';
 import { loadHotspotBriefs } from '../repository';
@@ -22,7 +22,7 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ back: mockBack, canGoBack: () => true, push: mockPush }),
 }));
 
-jest.mock('../use-hotspot-access', () => ({
+jest.mock('../use-hotspot-access.native', () => ({
   useHotspotAccess: (briefId: string) => {
     mockUseHotspotAccess(briefId);
     return { retry: mockRetry, state: mockState };

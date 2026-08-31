@@ -25,7 +25,7 @@ const standardFeatures: Entry[] = [
 ];
 const reportEntry: Entry = { slug: 'ai-report', title: '学习报告', en: 'Report', description: '个性化能力分析建议', icon: LineChart, mock: true };
 const resourceEntries: Entry[] = [
-  { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日考点话题与抽样练习', icon: Flame },
+  { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日各考点真实考题资讯', icon: Flame },
   { slug: 'resources', title: '资源分享', en: 'Resources', description: '备考资料与实用工具合集', icon: FolderOpen },
 ];
 const courseEntry: Entry = {
@@ -69,7 +69,7 @@ function Feature({ entry, onPress }: { entry: Entry; onPress: () => void }) {
 }
 function ListEntry({ entry, onPress, emphasis }: { entry: Entry; onPress: () => void; emphasis?: boolean }) {
   const Icon = entry.icon;
-  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => pressed ? styles.pressed : null}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 23 : 20} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={2} variant="caption">{entry.description}</AppText></View><ChevronRight color={colors.mutedForeground} size={17} /></Card></Pressable>;
+  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => pressed ? styles.pressed : null}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 23 : 20} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={1} variant="caption">{entry.description}</AppText></View><ChevronRight color={colors.mutedForeground} size={17} /></Card></Pressable>;
 }
 
 const styles = StyleSheet.create({

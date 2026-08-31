@@ -1,7 +1,7 @@
 import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
 import {
   inspectOfflineMemberTopicAccess,
-} from '@/features/question-bank/data/member-content-cache';
+} from '@/features/question-bank/data/member-content-cache.native';
 import {
   loadQuestionBank,
   questionBankRepository,
@@ -13,7 +13,7 @@ import { ApiClientError } from '@/platform/api-client';
 import { loadHotspotAccess } from '../access-loader.native';
 import { loadHotspotBriefs } from '../repository';
 
-jest.mock('@/features/question-bank/data/member-content-cache', () => ({
+jest.mock('@/features/question-bank/data/member-content-cache.native', () => ({
   inspectOfflineMemberTopicAccess: jest.fn(),
 }));
 jest.mock('@/features/question-bank/data/repository', () => ({
@@ -100,6 +100,29 @@ describe('native OPI hotspot access loader', () => {
     const networkResult = await loadHotspotAccess(brief.id);
     expect(networkResult.status).toBe('network-error');
     expect(JSON.stringify(networkResult)).not.toContain('private.example');
+  });
+
+  it('returns a terminal network state when connectivity inspection rejects', async () => {
+    mockLoadQuestionBank.mockResolvedValue({ dataset: catalogWithoutRequestedCards(), source: 'cache' });
+    mockGetTopic.mockRejectedValue(new TypeError('network transport failed'));
+    mockGetConnectivity.mockRejectedValue(new Error('network inspection failed'));
+
+    await expect(loadHotspotAccess(brief.id)).resolves.toMatchObject({
+      brief: { id: brief.id },
+      status: 'network-error',
+    });
+  });
+
+  it('returns a terminal network state when offline cache inspection rejects', async () => {
+    mockLoadQuestionBank.mockResolvedValue({ dataset: catalogWithoutRequestedCards(), source: 'cache' });
+    mockGetTopic.mockRejectedValue(new TypeError('network transport failed'));
+    mockGetConnectivity.mockResolvedValue('offline');
+    mockInspectOfflineAccess.mockRejectedValue(new Error('secure cache inspection failed'));
+
+    await expect(loadHotspotAccess(brief.id)).resolves.toMatchObject({
+      brief: { id: brief.id },
+      status: 'network-error',
+    });
   });
 
   it('returns a safe not-found state for an unknown brief', async () => {

@@ -12,7 +12,7 @@ import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Button, Card, Tag } from '@/components/ui';
 import { colors, fonts, spacing } from '@/theme';
 
-import type { HotspotAccessResult } from './access-state';
+import type { HotspotAccessResult } from './access-state.native';
 import type { OpiHotspotBrief } from './types';
 
 type UnavailableResult = Exclude<HotspotAccessResult, { status: 'ready' }>;

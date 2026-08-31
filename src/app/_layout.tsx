@@ -10,6 +10,7 @@ import { ModalHost } from '@/components/platform/ModalHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AppText } from '@/components/ui';
+import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { useAppFonts } from '@/platform/use-app-fonts';
@@ -118,11 +119,15 @@ export function AppStack() {
               <Stack.Screen name="annotations" />
               <Stack.Screen name="word-favorites" />
               <Stack.Screen name="content/[slug]" />
-              <Stack.Screen name="content/hotspot/[briefId]" />
-              <Stack.Screen
-                name="content/hotspot/[briefId]/study"
-                options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
-              />
+              {includeNativeProtectedRoutes ? (
+                <>
+                  <Stack.Screen name="content/hotspot/[briefId]" />
+                  <Stack.Screen
+                    name="content/hotspot/[briefId]/study"
+                    options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                  />
+                </>
+              ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />
               <Stack.Screen name="account/[slug]" />
               <Stack.Screen name="info/[slug]" />
@@ -152,13 +157,13 @@ function UiAcceptanceBadge() {
   );
 }
 
-export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   return (
     <SafeAreaProvider>
       <View style={styles.errorRoot}>
         <CenteredState
           actionLabel="重新加载"
-          description="页面遇到异常，请稍后重新加载。"
+          description={appErrorBoundaryDescription(error)}
           onAction={retry}
           title="页面加载失败"
           tone="destructive"

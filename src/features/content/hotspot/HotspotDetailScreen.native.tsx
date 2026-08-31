@@ -7,8 +7,8 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
-import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView';
-import { useHotspotAccess } from './use-hotspot-access';
+import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
+import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotDetailScreen({ briefId }: { briefId: string }) {
   const router = useRouter();

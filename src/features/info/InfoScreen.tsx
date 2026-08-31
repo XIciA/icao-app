@@ -563,7 +563,7 @@ function Row({
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingBottom: spacing[8], paddingHorizontal: 0 },
+  screen: { paddingHorizontal: 0 },
   content: { gap: spacing[5], padding: spacing[4] },
   section: { gap: spacing[2] },
   rows: { padding: 0 },

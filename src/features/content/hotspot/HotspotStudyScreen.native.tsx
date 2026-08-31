@@ -8,8 +8,8 @@ import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
 import { spacing } from '@/theme';
 
-import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView';
-import { useHotspotAccess } from './use-hotspot-access';
+import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
+import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotStudyScreen({ briefId }: { briefId: string }) {
   const router = useRouter();

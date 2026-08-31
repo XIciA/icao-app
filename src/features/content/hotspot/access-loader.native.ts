@@ -2,7 +2,7 @@ import type { ContentAccessScope } from '@icao/contracts';
 
 import {
   inspectOfflineMemberTopicAccess,
-} from '@/features/question-bank/data/member-content-cache';
+} from '@/features/question-bank/data/member-content-cache.native';
 import {
   loadQuestionBank,
   questionBankRepository,
@@ -19,7 +19,7 @@ import {
   isHotspotNetworkFailure,
   safeHotspotRequestId,
   type HotspotAccessResult,
-} from './access-state';
+} from './access-state.native';
 import { getHotspotBrief } from './repository';
 import type { OpiHotspotBrief } from './types';
 
@@ -83,6 +83,28 @@ async function hasExpiredOfflineAuthorization(targets: Map<string, TopicTarget>)
   return states.includes('expired');
 }
 
+async function resolveHotspotFailure(
+  brief: OpiHotspotBrief,
+  targets: Map<string, TopicTarget> | undefined,
+  error: unknown,
+): Promise<Exclude<HotspotAccessResult, { status: 'ready' } | { status: 'not-found' }>> {
+  if (targets && isHotspotNetworkFailure(error)) {
+    try {
+      if (await hasExpiredOfflineAuthorization(targets)) {
+        return {
+          status: 'offline-authorization-expired',
+          brief,
+          requestId: safeHotspotRequestId(error),
+        };
+      }
+    } catch {
+      // Cache and connectivity inspection are diagnostic only. Their failure
+      // must not reject the user-facing loader or leave its consumer loading.
+    }
+  }
+  return classifyHotspotFailure(brief, error);
+}
+
 export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessResult> {
   const brief = getHotspotBrief(briefId);
   if (!brief) return { status: 'not-found' };
@@ -103,13 +125,6 @@ export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessR
       session: buildHotspotSession(brief, dataset),
     };
   } catch (error) {
-    if (targets && isHotspotNetworkFailure(error) && await hasExpiredOfflineAuthorization(targets)) {
-      return {
-        status: 'offline-authorization-expired',
-        brief,
-        requestId: safeHotspotRequestId(error),
-      };
-    }
-    return classifyHotspotFailure(brief, error);
+    return resolveHotspotFailure(brief, targets, error);
   }
 }

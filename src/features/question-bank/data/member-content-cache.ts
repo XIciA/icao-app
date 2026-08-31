@@ -23,13 +23,6 @@ export async function readMemberTopicCache(_accountId: string, _scope: ContentAc
   return undefined;
 }
 
-export async function inspectOfflineMemberTopicAccess(
-  _scope: ContentAccessScope,
-  _now = Date.now(),
-): Promise<'missing' | 'valid' | 'expired' | 'invalid'> {
-  return 'missing' as const;
-}
-
 export async function cacheMemberResource(_publicPath: string, _url: string) {
   return undefined;
 }

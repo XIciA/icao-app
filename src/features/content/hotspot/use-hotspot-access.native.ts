@@ -1,31 +1,50 @@
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import {
-  nativeCommerceEnvironmentSnapshot,
-  subscribeNativeCommerceEnvironment,
-} from '@/features/native-commercial-testflight/commerce-environment';
-
-import { loadHotspotAccess } from './access-loader';
-import type { HotspotAccessResult } from './access-state';
+  hotspotAccessInvalidationSnapshot,
+  subscribeHotspotAccessInvalidation,
+} from './access-invalidation.native';
+import { loadHotspotAccess } from './access-loader.native';
+import type { HotspotAccessResult } from './access-state.native';
+import { getHotspotBrief } from './repository';
 
 type State = { status: 'loading' } | HotspotAccessResult;
 
+function unexpectedHotspotAccessResult(briefId: string): HotspotAccessResult {
+  try {
+    const brief = getHotspotBrief(briefId);
+    return brief ? { status: 'content-unavailable', brief } : { status: 'not-found' };
+  } catch {
+    return { status: 'not-found' };
+  }
+}
+
 export function useHotspotAccess(briefId: string) {
   const environmentSnapshot = useSyncExternalStore(
-    subscribeNativeCommerceEnvironment,
-    nativeCommerceEnvironmentSnapshot,
-    nativeCommerceEnvironmentSnapshot,
+    subscribeHotspotAccessInvalidation,
+    hotspotAccessInvalidationSnapshot,
+    hotspotAccessInvalidationSnapshot,
   );
   const [attempt, setAttempt] = useState(0);
   const [state, setState] = useState<State>({ status: 'loading' });
+  const loadGeneration = useRef(0);
 
   useEffect(() => {
-    let active = true;
+    const generation = loadGeneration.current + 1;
+    loadGeneration.current = generation;
     setState({ status: 'loading' });
-    void loadHotspotAccess(briefId).then((result) => {
-      if (active) setState(result);
-    });
-    return () => { active = false; };
+    void loadHotspotAccess(briefId)
+      .then((result) => {
+        if (loadGeneration.current === generation) setState(result);
+      })
+      .catch(() => {
+        if (loadGeneration.current === generation) {
+          setState(unexpectedHotspotAccessResult(briefId));
+        }
+      });
+    return () => {
+      if (loadGeneration.current === generation) loadGeneration.current += 1;
+    };
   }, [attempt, briefId, environmentSnapshot]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);

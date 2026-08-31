@@ -1,15 +1,6 @@
 import { isFormalAppSurface, type WebRuntime, WEB_RUNTIME } from '@/config/web-runtime';
 
 const HIDDEN_FORMAL_APP_CONTENT_SLUGS = new Set(['ai-report', 'courses']);
-const KNOWN_CONTENT_SLUGS = new Set([
-  'ai-report',
-  'courses',
-  'hotspot',
-  'mock-exam',
-  'radio',
-  'resources',
-  'vocab',
-]);
 
 export type MockExamDiscoverCopy = Readonly<{
   title: string;
@@ -35,10 +26,6 @@ export function isContentAvailableOnPlatform(
   runtime: WebRuntime = WEB_RUNTIME,
 ) {
   return !isFormalAppSurface(platform, runtime) || !HIDDEN_FORMAL_APP_CONTENT_SLUGS.has(slug);
-}
-
-export function isKnownContentSlug(slug: string) {
-  return KNOWN_CONTENT_SLUGS.has(slug);
 }
 
 export function resolveMockExamDiscoverCopy(

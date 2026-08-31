@@ -5,6 +5,10 @@ import { MockExamScreen } from '@/features/content/MockExamScreen';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
 import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
 
+const { MockExamScreen: WebMockExamScreen } = jest.requireActual(
+  '@/features/content/MockExamScreen.tsx',
+) as { MockExamScreen: typeof MockExamScreen };
+
 jest.mock('@/features/mock-exam/build-session', () => ({
   buildMockExamSession: jest.fn(async () => ({ id: 'session' })),
   toQuestionBankStudyPackage: jest.fn(() => ({ id: 'package' })),
@@ -54,7 +58,7 @@ describe('MockExamScreen', () => {
     const originalPlatform = Platform.OS;
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     try {
-      const screen = await render(<MockExamScreen />);
+      const screen = await render(<WebMockExamScreen />);
       expect(screen.getByText('听力20题完成后统一显示50分制成绩、等级和逐题复盘；其他板块保持现有学习流程。')).toBeTruthy();
     } finally {
       Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
