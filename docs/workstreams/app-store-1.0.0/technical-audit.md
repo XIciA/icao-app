@@ -1,5 +1,9 @@
 # Native App 1.0.0 技术现状审计
 
+> 历史工作流：现行执行入口已于 2026-08-31 迁移至
+> [`../app-store-1.0.0-final-release/technical-audit.md`](../app-store-1.0.0-final-release/technical-audit.md)。
+> 本文仅保留历史事实和追溯记录，不再作为当前范围、状态或门禁来源。
+
 审计日期：2026-08-30
 历史基线：`origin/main` `fca7436d497430db88cf1a29410d61878fd85fc5`（Build 3493761）；Build 3493762 因首页课程缺陷在归档前被覆盖；Build 3493763 因 OTP 登录会话竞态被覆盖；当前修复分支预留 Build 3493764，最终基线待合入 `origin/main` 后固化。
 
