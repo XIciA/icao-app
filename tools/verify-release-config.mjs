@@ -877,6 +877,7 @@ for (const requiredProvisioningTest of [
   'release URLs reject whitespace, CRLF, and remote-shell metacharacters',
   'release locks preserve existing bytes and reject links, unsafe modes, and inode mismatch',
   'staged-key cleanup failure remains before the release commit and therefore arms rollback',
+  'API deployment reuses one SSH control connection for staging, upload, and cutover',
   'rollback rejects a recreated container whose image digest differs from the saved digest',
   'API_RELEASE_ID=old\\r\\n',
   'DATABASE_URL=one\\nDATABASE_URL=two',
@@ -886,7 +887,7 @@ for (const requiredProvisioningTest of [
   }
 }
 const keyStageIndex = apiRelease.indexOf('stage "$RELEASE_ID" "$CONTENT_KEY_UPLOAD_TOKEN"');
-const keyUploadIndex = apiRelease.indexOf('scp -i "$SSH_KEY" -q "$CONTENT_SIGNING_PRIVATE_KEY_PATH"');
+const keyUploadIndex = apiRelease.indexOf('release_scp -q "$CONTENT_SIGNING_PRIVATE_KEY_PATH"');
 const remoteLockIndex = apiRelease.indexOf('flock -n 9', keyUploadIndex);
 const remoteStageValidationIndex = apiRelease.indexOf('content_key_validate_stage', remoteLockIndex);
 const candidateEnvironmentIndex = apiRelease.indexOf('content_key_prepare_candidate_env', remoteStageValidationIndex);
@@ -912,6 +913,10 @@ if (
   || committedStageCleanupIndex <= cutoverIndex
   || releaseSucceededIndex <= committedStageCleanupIndex
   || !apiRelease.includes('REMOTE_CONTENT_KEY_STAGE_ARMED=1')
+  || !apiRelease.includes('-o ControlMaster=yes')
+  || !apiRelease.includes('-o ControlPath="$SSH_CONTROL_PATH" -o ControlPersist=600')
+  || !apiRelease.includes('release_ssh() {')
+  || !apiRelease.includes('release_scp() {')
   || !apiRelease.includes('trap cleanup_remote_content_key_stage EXIT')
   || !apiRelease.includes('cutover_started=1')
   || !apiRelease.includes('content_key_rollback_release')

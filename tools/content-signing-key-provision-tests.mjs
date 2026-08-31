@@ -351,6 +351,18 @@ cleanup_release
   assert.doesNotMatch(cleanupFailure.stderr, /CRITICAL:/u);
 });
 
+test('API deployment reuses one SSH control connection for staging, upload, and cutover', async () => {
+  const source = await readFile(apiRelease, 'utf8');
+  assert.match(source, /mktemp -d \/tmp\/icao-api-release-ssh\.XXXXXX/u);
+  assert.match(source, /-o ControlMaster=yes/u);
+  assert.match(source, /-o ControlPath="\$SSH_CONTROL_PATH" -o ControlPersist=600/u);
+  assert.match(source, /release_ssh\(\) \{/u);
+  assert.match(source, /release_scp\(\) \{/u);
+  assert.match(source, /-O exit "\$ECS_USER@\$ECS_HOST"/u);
+  assert.match(source, /rm -f "\$SSH_CONTROL_PATH"/u);
+  assert.match(source, /rmdir "\$SSH_CONTROL_DIRECTORY"/u);
+});
+
 test('staging rejects unsafe modes, links, owner mismatch, and unsafe cleanup', async () => {
   const fixture = await createFixture();
   try {
