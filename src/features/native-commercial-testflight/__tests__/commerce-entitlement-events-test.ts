@@ -1,44 +1,54 @@
 import {
+  beginCommerceEntitlementGeneration,
+  getCommerceEntitlementSnapshot,
   publishCommerceEntitlementChange,
+  resetCommerceEntitlementEventsForTests,
   subscribeCommerceEntitlementChanges,
 } from '../commerce-entitlement-events';
 import type { CommerceEntitlementChange } from '../commerce-runtime-types';
 
-describe('commerce entitlement event contract', () => {
-  const change = (overrides: Partial<CommerceEntitlementChange> = {}): CommerceEntitlementChange => ({
-    accountId: '10000000-0000-4000-8000-000000000101',
-    environment: 'production',
-    revision: 1,
-    reason: 'manual-refresh',
-    ...overrides,
-  });
+describe('commerce entitlement external-store contract', () => {
+  beforeEach(() => resetCommerceEntitlementEventsForTests());
 
-  it('delivers account, environment and monotonic revision and supports cleanup', () => {
+  it('replays a current snapshot and assigns monotonic revision across remount generations', () => {
+    const accountId = '10000000-0000-4000-8000-000000000101';
     const observed: CommerceEntitlementChange[] = [];
     const unsubscribe = subscribeCommerceEntitlementChanges((event) => observed.push(event));
 
-    publishCommerceEntitlementChange(change());
-    publishCommerceEntitlementChange(change({
-      accountId: '10000000-0000-4000-8000-000000000202',
-      environment: 'sandbox',
-      revision: 2,
-      reason: 'account-change',
-    }));
-    unsubscribe();
-    publishCommerceEntitlementChange(change({ revision: 3 }));
+    const firstOwner = beginCommerceEntitlementGeneration(accountId);
+    const firstSnapshot = publishCommerceEntitlementChange({
+      accountId,
+      environment: 'production',
+      generation: firstOwner.generation,
+      reason: 'manual-refresh',
+    });
+    const remountedOwner = beginCommerceEntitlementGeneration(accountId);
 
-    expect(observed).toEqual([
-      expect.objectContaining({
-        accountId: '10000000-0000-4000-8000-000000000101',
-        environment: 'production',
-        revision: 1,
-      }),
-      expect.objectContaining({
-        accountId: '10000000-0000-4000-8000-000000000202',
-        environment: 'sandbox',
-        revision: 2,
-      }),
-    ]);
+    expect(getCommerceEntitlementSnapshot()).toBe(remountedOwner);
+    expect(firstOwner.revision).toBeLessThan(firstSnapshot!.revision);
+    expect(firstSnapshot!.revision).toBeLessThan(remountedOwner.revision);
+    expect(firstOwner.generation).toBeLessThan(remountedOwner.generation);
+    expect(observed).toEqual([firstOwner, firstSnapshot, remountedOwner]);
+    unsubscribe();
+  });
+
+  it('rejects a late publication from an old account generation', () => {
+    const first = beginCommerceEntitlementGeneration(
+      '10000000-0000-4000-8000-000000000101',
+      'sandbox',
+    );
+    const second = beginCommerceEntitlementGeneration(
+      '10000000-0000-4000-8000-000000000202',
+      'production',
+    );
+
+    expect(publishCommerceEntitlementChange({
+      accountId: first.accountId,
+      environment: first.environment,
+      generation: first.generation,
+      reason: 'transaction-verification',
+    })).toBe(second);
+    expect(getCommerceEntitlementSnapshot()).toBe(second);
   });
 
   it('isolates a failing listener from other subscribers', () => {
@@ -48,8 +58,10 @@ describe('commerce entitlement event contract', () => {
     });
     const unsubscribeObserved = subscribeCommerceEntitlementChanges(observed);
 
-    expect(() => publishCommerceEntitlementChange(change())).not.toThrow();
-    expect(observed).toHaveBeenCalledWith(change());
+    expect(() => beginCommerceEntitlementGeneration(
+      '10000000-0000-4000-8000-000000000101',
+    )).not.toThrow();
+    expect(observed).toHaveBeenCalledWith(getCommerceEntitlementSnapshot());
 
     unsubscribeFailing();
     unsubscribeObserved();

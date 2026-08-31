@@ -6,6 +6,7 @@ import type {
   CommerceTransactionInbox,
   NativeCommerceProvider,
 } from './commerce-provider.native';
+import type { CommerceOperationLifecycle } from './commerce-runtime-operation.native';
 
 /** Release gate marker: the coordinator is ready for the authenticated iOS runtime. */
 export const NATIVE_COMMERCE_COORDINATOR_READY = true as const;
@@ -21,7 +22,10 @@ export type CommerceTransactionConsumption =
 export interface CommerceTransactionConsumer {
   consume(
     transaction: CommerceTransaction,
-    options?: Readonly<{ signal: AbortSignal }>,
+    options?: Readonly<{
+      signal: AbortSignal;
+      lifecycle?: CommerceOperationLifecycle;
+    }>,
   ): Promise<CommerceTransactionConsumption>;
   observeQuarantined?(transaction: CommerceQuarantinedTransaction): Promise<void>;
 }
@@ -46,6 +50,7 @@ export type CommerceTransactionCoordinationReport = Readonly<{
 type InboxResult = Promise<CommerceResult<CommerceTransactionInbox>>;
 
 export type CommerceCoordinationOptions = Readonly<{
+  lifecycle?: CommerceOperationLifecycle;
   signal?: AbortSignal;
 }>;
 
@@ -68,6 +73,7 @@ type CoordinationOperation = {
   completePublic?: (value: CommerceErrorResult) => void;
   deadlineAt: number;
   generation: number;
+  lifecycle?: CommerceOperationLifecycle;
   signal?: AbortSignal;
 };
 
@@ -121,7 +127,10 @@ export class NativeCommerceTransactionCoordinator {
     options: CommerceCoordinationOptions = {},
   ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
     return this.runExclusive(
-      (operation) => this.consumePages(() => this.provider.reconcileTransactions(), operation),
+      (operation) => this.consumePages(
+        () => this.provider.reconcileTransactions({ lifecycle: operation.lifecycle }),
+        operation,
+      ),
       options,
     );
   }
@@ -137,9 +146,9 @@ export class NativeCommerceTransactionCoordinator {
       return this.consumePages(() => {
         if (firstPage) {
           firstPage = false;
-          return this.provider.restorePurchases();
+          return this.provider.restorePurchases({ lifecycle: operation.lifecycle });
         }
-        return this.provider.reconcileTransactions();
+        return this.provider.reconcileTransactions({ lifecycle: operation.lifecycle });
       }, operation);
     }, options);
   }
@@ -152,14 +161,14 @@ export class NativeCommerceTransactionCoordinator {
       return this.consumePages(() => {
         if (firstPage) {
           firstPage = false;
-          return this.provider.drainTransactionInbox();
+          return this.provider.drainTransactionInbox({ lifecycle: operation.lifecycle });
         }
-        return this.provider.reconcileTransactions();
+        return this.provider.reconcileTransactions({ lifecycle: operation.lifecycle });
       }, operation);
     }, options);
   }
 
-  dispose(): Promise<void> {
+  dispose(options: Readonly<{ lifecycle?: CommerceOperationLifecycle }> = {}): Promise<void> {
     this.disposed = true;
     this.generation += 1;
     if (this.activeOperation) {
@@ -169,7 +178,7 @@ export class NativeCommerceTransactionCoordinator {
         coordinationFailure('commerce_operation_cancelled', true),
       );
     }
-    return this.provider.dispose();
+    return this.provider.dispose(options);
   }
 
   /**
@@ -253,7 +262,10 @@ export class NativeCommerceTransactionCoordinator {
         report.observed += 1;
         report.observedReferences.push(transaction.transactionReference);
         const consumption = await this.consumer
-          .consume(transaction, { signal: operation.abortController.signal })
+          .consume(transaction, {
+            signal: operation.abortController.signal,
+            lifecycle: operation.lifecycle,
+          })
           .catch((): CommerceTransactionConsumption => ({ state: 'deferred' }));
         const afterConsumption = this.operationFailure(operation);
         if (afterConsumption) return afterConsumption;
@@ -269,7 +281,7 @@ export class NativeCommerceTransactionCoordinator {
         const acknowledgement = await this.provider.markServerVerified({
           transactionReference: consumption.transactionReference,
           signedTransaction: consumption.signedTransaction,
-        });
+        }, { lifecycle: operation.lifecycle });
         const afterAcknowledgement = this.operationFailure(operation);
         if (afterAcknowledgement) return afterAcknowledgement;
         if (!acknowledgement.ok) {
@@ -286,7 +298,7 @@ export class NativeCommerceTransactionCoordinator {
         });
         const finish = await this.provider.finishTransaction({
           acknowledgement: acknowledgement.value,
-        });
+        }, { lifecycle: operation.lifecycle });
         const afterFinish = this.operationFailure(operation);
         if (afterFinish) return afterFinish;
         if (finish.ok) {
@@ -317,6 +329,7 @@ export class NativeCommerceTransactionCoordinator {
       cancelled: false,
       deadlineAt: this.runtime.now() + this.deadlineMs,
       generation: this.generation,
+      ...(options.lifecycle ? { lifecycle: options.lifecycle } : {}),
       ...(options.signal ? { signal: options.signal } : {}),
     };
     this.activeOperation = operation;

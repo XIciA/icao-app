@@ -8,7 +8,7 @@ export function getNativeCommerceEnvironment(): CommerceEnvironment {
   return 'production';
 }
 
-export function setNativeCommerceEnvironment(_environment: CommerceEnvironment) {}
+export function deactivateNativeCommerceEnvironment(_accountId?: string) {}
 
 export function nativeCommerceEnvironmentSnapshot() {
   return 'production:0';
@@ -21,6 +21,7 @@ export function subscribeNativeCommerceEnvironment(_listener: () => void) {
 export async function activateNativeCommerceEnvironment(
   _accountId: string,
   _distributionEnvironment: CommerceEnvironment,
+  _options: Readonly<{ signal?: AbortSignal }> = {},
 ) {
   return 'production' as const;
 }

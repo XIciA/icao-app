@@ -12,6 +12,19 @@ type RuntimeOperationOptions = Readonly<{
 }>;
 
 /**
+ * Drain owner shared by the runtime, provider and native StoreKit adapter.
+ *
+ * Public wrappers may time out or abort, but every raw native/network promise
+ * must be registered here so the runtime cannot start another account's work
+ * until the underlying side effect has physically settled.
+ */
+export interface CommerceOperationLifecycle {
+  readonly signal: AbortSignal;
+  trackRaw<T>(promise: Promise<T>): Promise<T>;
+  drain(promise: Promise<unknown>): void;
+}
+
+/**
  * One public commerce operation and every asynchronous dependency it started.
  *
  * A deadline rejects the public wait promptly, but it deliberately does not
@@ -19,7 +32,7 @@ type RuntimeOperationOptions = Readonly<{
  * The scope remains occupied until every tracked promise has physically
  * settled, preventing a second operation from racing late native side effects.
  */
-export class CommerceRuntimeOperationScope {
+export class CommerceRuntimeOperationScope implements CommerceOperationLifecycle {
   private closed = false;
   private readonly controller = new AbortController();
   private readonly pending = new Set<Promise<unknown>>();
@@ -44,8 +57,7 @@ export class CommerceRuntimeOperationScope {
 
   /** Await within the shared operation deadline while retaining the raw drain. */
   wait<T>(promise: Promise<T>): Promise<T> {
-    const raw = Promise.resolve(promise);
-    this.track(raw);
+    const raw = this.trackRaw(Promise.resolve(promise));
     if (this.controller.signal.aborted) return Promise.reject(this.abortError());
     return new Promise<T>((resolve, reject) => {
       let publicSettled = false;
@@ -66,7 +78,13 @@ export class CommerceRuntimeOperationScope {
 
   /** Retain a non-awaited native/storage cleanup in the physical drain set. */
   drain(promise: Promise<unknown>) {
-    this.track(Promise.resolve(promise));
+    this.trackRaw(Promise.resolve(promise));
+  }
+
+  /** Register the original promise without changing its public settlement. */
+  trackRaw<T>(promise: Promise<T>): Promise<T> {
+    this.track(promise);
+    return promise;
   }
 
   /** End the public operation; the single-flight lock releases only when drained. */
@@ -111,6 +129,7 @@ export class CommerceRuntimeOperationScope {
 
 export class CommerceRuntimeOperationGate {
   private active?: CommerceRuntimeOperationScope;
+  private readonly idleWaiters = new Set<() => void>();
 
   get busy() {
     return Boolean(this.active);
@@ -121,17 +140,41 @@ export class CommerceRuntimeOperationGate {
     const operation = new CommerceRuntimeOperationScope({
       ...options,
       onRelease: () => {
-        if (this.active === operation) this.active = undefined;
+        if (this.active !== operation) return;
+        this.active = undefined;
+        for (const waiter of this.idleWaiters) waiter();
+        this.idleWaiters.clear();
       },
     });
     this.active = operation;
     return operation;
   }
 
-  /** Detach an old account's isolated provider while aborting its public work. */
-  abortAndDetach() {
-    const operation = this.active;
-    this.active = undefined;
-    operation?.abort();
+  whenIdle(): Promise<void> {
+    if (!this.active) return Promise.resolve();
+    return new Promise((resolve) => this.idleWaiters.add(resolve));
+  }
+
+  /**
+   * Abort the old public operation while retaining its raw work and provider
+   * disposal in the same single-flight slot. A new account cannot enter until
+   * both the operation and disconnect chain have physically drained.
+   */
+  abortAndDrain(
+    dispose?: (lifecycle: CommerceOperationLifecycle) => Promise<unknown>,
+  ) {
+    let operation = this.active;
+    if (!operation) {
+      operation = this.begin();
+      if (!operation) return;
+    }
+    if (dispose) {
+      try {
+        operation.drain(dispose(operation));
+      } catch {
+        // Synchronous disposal failures still close the slot safely.
+      }
+    }
+    operation.abort();
   }
 }

@@ -73,6 +73,8 @@ export type CommerceEntitlementChangeReason =
 export type CommerceEntitlementChange = Readonly<{
   accountId: string;
   environment: 'sandbox' | 'production';
+  /** Monotonic owner generation; changes across account/environment runtime activation. */
+  generation: number;
   revision: number;
   snapshot?: CommerceEntitlementSummary;
   reason: CommerceEntitlementChangeReason;

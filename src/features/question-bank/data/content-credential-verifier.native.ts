@@ -78,20 +78,51 @@ export function verifyContentAccessCredential({
   now?: number;
   scope: ContentAccessScope;
 }): SignedContentCredentialClaims | undefined {
+  const inspection = inspectContentAccessCredential({
+    accountId,
+    credential,
+    environment,
+    now,
+    scope,
+  });
+  return inspection.status === 'valid' ? inspection.claims : undefined;
+}
+
+export type ContentAccessCredentialInspection =
+  | Readonly<{ status: 'valid'; claims: SignedContentCredentialClaims }>
+  | Readonly<{ status: 'expired'; claims: SignedContentCredentialClaims }>
+  | Readonly<{ status: 'invalid' }>;
+
+/**
+ * Verifies signature and every owner/scope/outer-field binding before time is
+ * classified. Only an otherwise valid credential can be reported expired.
+ */
+export function inspectContentAccessCredential({
+  accountId,
+  credential,
+  environment,
+  now = Date.now(),
+  scope,
+}: {
+  accountId: string;
+  credential: ContentAccessCredential;
+  environment: CommerceEnvironment;
+  now?: number;
+  scope: ContentAccessScope;
+}): ContentAccessCredentialInspection {
   const payload = verifyIcaoEd25519Jws(
     credential.token,
     CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
   );
-  if (!payload) return undefined;
+  if (!payload) return { status: 'invalid' };
   const claims = parseClaims(payload);
-  if (!claims) return undefined;
+  if (!claims) return { status: 'invalid' };
 
   const nowSeconds = Math.floor(now / 1_000);
   if (
     claims.sub !== accountId
     || claims.environment !== environment
     || claims.iat > nowSeconds + CLOCK_SKEW_SECONDS
-    || claims.exp <= nowSeconds
     || claims.exp <= claims.iat
     || claims.exp - claims.iat > MAX_OFFLINE_SECONDS
     || credential.policyVersion !== claims.policyVersion
@@ -100,7 +131,9 @@ export function verifyContentAccessCredential({
     || credential.expiresAt !== new Date(claims.exp * 1_000).toISOString()
     || !sameScopes(credential.scopes, claims.scopes)
     || !claims.scopes.some((candidate) => scopeIdentity(candidate) === scopeIdentity(scope))
-  ) return undefined;
+  ) return { status: 'invalid' };
 
-  return claims;
+  return claims.exp <= nowSeconds
+    ? { status: 'expired', claims }
+    : { status: 'valid', claims };
 }

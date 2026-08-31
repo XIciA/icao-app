@@ -18,6 +18,10 @@ const runtimePath =
   'src/features/native-commercial-testflight/CommerceRuntimeProvider.native.tsx';
 const runtimeOperationPath =
   'src/features/native-commercial-testflight/commerce-runtime-operation.native.ts';
+const entitlementEventsPath =
+  'src/features/native-commercial-testflight/commerce-entitlement-events.ts';
+const hotspotInvalidationPath =
+  'src/features/content/hotspot/access-invalidation.native.ts';
 const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
@@ -122,12 +126,12 @@ for (const required of [
   'appAccountToken',
   'andDangerouslyFinishTransactionAutomatically: false',
   'syncIOS',
-  'syncPurchases()',
+  'syncPurchases(',
   'getAllTransactionsIOS',
   'getPendingTransactionsIOS',
   'finishTransaction',
   'endConnection',
-  'disconnect()',
+  'disconnect(',
   'product.type !== APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE',
   'product.typeIOS !== APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE',
 ]) {
@@ -151,7 +155,7 @@ const adapterProductQuery = adapter.slice(
 );
 const adapterPurchaseRequest = adapter.slice(
   adapter.indexOf('async requestPurchase('),
-  adapter.indexOf('async getTransactions()'),
+  adapter.indexOf('async getTransactions('),
 );
 for (const [label, content] of [
   ['product query', adapterProductQuery],
@@ -165,11 +169,41 @@ for (const [label, content] of [
   }
 }
 const adapterHistoryRead = adapter.slice(
-  adapter.indexOf('async getTransactions()'),
-  adapter.indexOf('async syncPurchases()'),
+  adapter.indexOf('async getTransactions('),
+  adapter.indexOf('async syncPurchases('),
 );
 if (!adapterHistoryRead.includes('getAllTransactionsIOS()') || adapterHistoryRead.includes('syncIOS()')) {
   failures.push(`${adapterPath} startup history read must use getAllTransactionsIOS without syncIOS.`);
+}
+for (const [nativeCall, expectedTrackedCalls] of [
+  ['initConnection', 1],
+  ['fetchProducts', 1],
+  ['requestPurchase', 1],
+  ['getAllTransactionsIOS', 2],
+  ['syncIOS', 1],
+  ['getPendingTransactionsIOS', 1],
+  ['finishTransaction', 1],
+  ['endConnection', 1],
+]) {
+  const trackedCalls = matches(
+    adapter,
+    new RegExp(`trackNative\\(\\s*Promise\\.resolve\\(\\s*${nativeCall}\\(`, 'gu'),
+  );
+  if (trackedCalls !== expectedTrackedCalls) {
+    failures.push(
+      `${adapterPath} must register every raw ${nativeCall} promise directly with trackNative (${trackedCalls}/${expectedTrackedCalls}).`,
+    );
+  }
+}
+for (const required of [
+  'const connectionOwners = new Set<symbol>()',
+  'let connectionQueue: Promise<void> = Promise.resolve()',
+  'return serializeConnection(async () =>',
+  'if (!connectionEstablished || connectionOwners.size > 0) return',
+]) {
+  if (!adapter.includes(required)) {
+    failures.push(`${adapterPath} is missing the process-global serialized connection lease: ${required}`);
+  }
 }
 
 const provider = await read(providerPath);
@@ -178,6 +212,8 @@ const coordinator = await read(coordinatorPath);
 const appleProvider = await read(appleProviderPath);
 const runtime = await read(runtimePath);
 const runtimeOperation = await read(runtimeOperationPath);
+const entitlementEvents = await read(entitlementEventsPath);
+const hotspotInvalidation = await read(hotspotInvalidationPath);
 const appRuntime = await read(appRuntimePath);
 for (const [file, content, required] of [
   [providerPath, provider, 'requiresServerVerification: true'],
@@ -186,36 +222,46 @@ for (const [file, content, required] of [
   [providerPath, provider, 'commerce_purchase_timed_out'],
   [providerPath, provider, 'nativeCallTimeoutMs'],
   [providerPath, provider, 'runNativeCall'],
-  [contractPath, contract, 'drainTransactionInbox()'],
-  [contractPath, contract, 'reconcileTransactions()'],
+  [contractPath, contract, 'drainTransactionInbox('],
+  [contractPath, contract, 'reconcileTransactions('],
   [contractPath, contract, 'markServerVerified('],
   [contractPath, contract, 'finishTransaction('],
-  [contractPath, contract, 'dispose()'],
+  [contractPath, contract, 'dispose('],
 ]) {
   if (!content.includes(required)) failures.push(`${file} is missing: ${required}`);
 }
 const startupReconciliation = provider.slice(
-  provider.indexOf('async reconcileTransactions()'),
-  provider.indexOf('async restorePurchases()'),
+  provider.indexOf('async reconcileTransactions('),
+  provider.indexOf('async restorePurchases('),
 );
 if (
-  !startupReconciliation.includes('this.client.getTransactions()') ||
-  startupReconciliation.includes('this.client.syncPurchases()')
+  !startupReconciliation.includes('this.client.getTransactions(options)') ||
+  startupReconciliation.includes('this.client.syncPurchases(options)')
 ) {
   failures.push(`${providerPath} startup reconciliation must use only the silent StoreKit read.`);
 }
 const explicitRestore = provider.slice(
-  provider.indexOf('async restorePurchases()'),
+  provider.indexOf('async restorePurchases('),
   provider.indexOf('private reconcileSnapshot('),
 );
 if (
-  !explicitRestore.includes('this.client.syncPurchases()') ||
-  !explicitRestore.includes('this.client.getTransactions()')
+  !explicitRestore.includes('this.client.syncPurchases(options)') ||
+  !explicitRestore.includes('this.client.getTransactions(options)')
 ) {
   failures.push(`${providerPath} explicit restore must bound StoreKit sync and history separately.`);
 }
 if (occurrences(provider, 'this.runNativeCall(') < 7) {
   failures.push(`${providerPath} does not bound every critical StoreKit native call.`);
+}
+for (const required of [
+  'options.lifecycle?.trackRaw(nativeCall)',
+  'if (options.lifecycle) options.lifecycle.drain(dispatch)',
+  'this.client.requestPurchase({',
+  '}, options)',
+]) {
+  if (!provider.includes(required)) {
+    failures.push(`${providerPath} does not retain the raw StoreKit lifecycle: ${required}`);
+  }
 }
 for (const required of [
   'NATIVE_COMMERCE_COORDINATOR_READY = true',
@@ -245,12 +291,16 @@ for (const required of [
   'applicationAccountToken: controller.accountId',
   'verified.transactionId !== transaction.transactionReference',
   'entitlementChange',
-  'entitlementRevisionRef',
+  'beginCommerceEntitlementGeneration',
+  'getCommerceEntitlementSnapshot',
   'foreground-reconciliation',
   'pending-reconciliation',
   'COMMERCE_RUNTIME_OPERATION_DEADLINE_MS',
   'operation.wait(',
   'operation.drain(controller.coordinator.whenIdle())',
+  'options?.lifecycle?.trackRaw(verificationRequest)',
+  'operationGate.whenIdle()',
+  'operationGate.abortAndDrain(',
 ]) {
   if (!runtime.includes(required)) failures.push(`${runtimePath} is missing: ${required}`);
 }
@@ -259,9 +309,30 @@ for (const required of [
   'CommerceRuntimeOperationDeadlineError',
   'this.pending.size > 0',
   'this.controller.abort()',
+  'trackRaw<T>(promise: Promise<T>)',
+  'whenIdle(): Promise<void>',
+  'abortAndDrain(',
 ]) {
   if (!runtimeOperation.includes(required)) {
     failures.push(`${runtimeOperationPath} is missing: ${required}`);
+  }
+}
+for (const required of [
+  'beginCommerceEntitlementGeneration(',
+  'getCommerceEntitlementSnapshot()',
+  'change.generation !== activeGeneration',
+  'revision += 1',
+]) {
+  if (!entitlementEvents.includes(required)) {
+    failures.push(`${entitlementEventsPath} is missing the replayable monotonic contract: ${required}`);
+  }
+}
+for (const required of [
+  'subscribeCommerceEntitlementChanges',
+  'commerceEntitlementSnapshotVersion',
+]) {
+  if (!hotspotInvalidation.includes(required)) {
+    failures.push(`${hotspotInvalidationPath} is not wired to commerce entitlement invalidation: ${required}`);
   }
 }
 if (!appRuntime.includes('<CommerceRuntimeProvider>')) {
@@ -345,6 +416,10 @@ async function read(relativePath) {
 
 function occurrences(content, fragment) {
   return content.split(fragment).length - 1;
+}
+
+function matches(content, pattern) {
+  return [...content.matchAll(pattern)].length;
 }
 
 async function sourceFiles(directory) {

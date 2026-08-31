@@ -2,8 +2,25 @@ import {
   nativeCommerceEnvironmentSnapshot,
   subscribeNativeCommerceEnvironment,
 } from '@/features/native-commercial-testflight/commerce-environment';
+import {
+  commerceEntitlementSnapshotVersion,
+  subscribeCommerceEntitlementChanges,
+} from '@/features/native-commercial-testflight/commerce-entitlement-events';
 
-// Integration seam for verified entitlement-change events. Until the
-// commercial workstream lands, environment changes remain the only trigger.
-export const hotspotAccessInvalidationSnapshot = nativeCommerceEnvironmentSnapshot;
-export const subscribeHotspotAccessInvalidation = subscribeNativeCommerceEnvironment;
+export function hotspotAccessInvalidationSnapshot() {
+  return `${nativeCommerceEnvironmentSnapshot()}|${commerceEntitlementSnapshotVersion()}`;
+}
+
+/**
+ * Hotspot authorization follows the same verified entitlement external store
+ * as membership. Purchase, restore, refund/manual refresh, account and
+ * environment changes all invalidate the loader without a page-local bridge.
+ */
+export function subscribeHotspotAccessInvalidation(listener: () => void) {
+  const unsubscribeEnvironment = subscribeNativeCommerceEnvironment(listener);
+  const unsubscribeEntitlement = subscribeCommerceEntitlementChanges(() => listener());
+  return () => {
+    unsubscribeEntitlement();
+    unsubscribeEnvironment();
+  };
+}

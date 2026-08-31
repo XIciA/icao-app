@@ -47,7 +47,12 @@ import {
   CommerceRuntimeOperationGate,
   type CommerceRuntimeOperationScope,
 } from './commerce-runtime-operation.native';
-import { publishCommerceEntitlementChange } from './commerce-entitlement-events';
+import {
+  beginCommerceEntitlementGeneration,
+  clearCommerceEntitlementGeneration,
+  getCommerceEntitlementSnapshot,
+  publishCommerceEntitlementChange,
+} from './commerce-entitlement-events';
 import {
   clearUncertainPurchase,
   loadUncertainPurchase,
@@ -58,13 +63,15 @@ import { listMembershipProducts } from './membership-products.native';
 import {
   activateNativeCommerceEnvironment,
   confirmNativeCommerceEnvironment,
+  deactivateNativeCommerceEnvironment,
   detectNativeDistributionEnvironment,
-  setNativeCommerceEnvironment,
+  getNativeCommerceEnvironment,
 } from './commerce-environment';
 
 type Controller = Readonly<{
   accountId: string;
   coordinator: NativeCommerceTransactionCoordinator;
+  entitlementGeneration: number;
   provider: NativeCommerceProvider;
 }>;
 
@@ -269,9 +276,9 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   const [phase, setPhase] = useState<CommerceRuntimePhase>('unavailable');
   const [offerings, setOfferings] = useState<readonly CommerceRuntimeOffering[]>([]);
-  const [entitlement, setEntitlement] = useState<CommerceRuntimeValue['entitlement']>();
-  const [entitlementEnvironment, setEntitlementEnvironment] = useState<'sandbox' | 'production'>();
-  const [entitlementChange, setEntitlementChange] = useState<CommerceEntitlementChange>();
+  const [entitlementChange, setEntitlementChange] = useState<CommerceEntitlementChange | undefined>(
+    getCommerceEntitlementSnapshot,
+  );
   const [error, setError] = useState<CommerceRuntimeError>();
   const [message, setMessage] = useState<string>();
   const controllerRef = useRef<Controller | undefined>(undefined);
@@ -279,8 +286,6 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   const observedEnvironmentRef = useRef<'sandbox' | 'production' | undefined>(undefined);
   const operationGateRef = useRef(new CommerceRuntimeOperationGate());
   const catalogReadyRef = useRef(false);
-  const entitlementRevisionRef = useRef(0);
-  const entitlementChangeRef = useRef<CommerceEntitlementChange | undefined>(undefined);
   const uncertainPurchaseRef = useRef<PersistedUncertainPurchase | undefined>(undefined);
   const uncertainStorageBlockedRef = useRef(false);
 
@@ -292,24 +297,15 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     reason: CommerceEntitlementChangeReason,
   ) => {
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
-    const previous = entitlementChangeRef.current;
-    const effectiveReason = previous && (
-      previous.accountId !== controller.accountId || previous.environment !== environment
-    ) ? (previous.accountId === controller.accountId ? 'environment-change' : 'account-change') : reason;
-    const next: CommerceEntitlementChange = {
+    const next = publishCommerceEntitlementChange({
       accountId: controller.accountId,
       environment,
-      revision: entitlementRevisionRef.current + 1,
+      generation: controller.entitlementGeneration,
       ...(snapshot ? { snapshot } : {}),
-      reason: effectiveReason,
-    };
-    entitlementRevisionRef.current = next.revision;
-    entitlementChangeRef.current = next;
-    setNativeCommerceEnvironment(environment);
-    setEntitlementEnvironment(environment);
-    setEntitlement(snapshot);
+      reason,
+    });
+    if (!next || next.generation !== controller.entitlementGeneration) return;
     setEntitlementChange(next);
-    publishCommerceEntitlementChange(next);
   }, []);
 
   const refreshEntitlement = useCallback(async (
@@ -341,7 +337,10 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     }
     let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['start']>>;
     try {
-      report = await operation.wait(controller.coordinator.start({ signal: operation.signal }));
+      report = await operation.wait(controller.coordinator.start({
+        lifecycle: operation,
+        signal: operation.signal,
+      }));
     } finally {
       // Coordinator public timeouts do not cancel the underlying StoreKit call.
       // Keep this runtime operation occupied until that physical chain drains.
@@ -364,7 +363,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         '/v1/commerce/catalog',
         { signal: operation.signal },
       )),
-      operation.wait(controller.provider.listOfferings()),
+      operation.wait(controller.provider.listOfferings({ lifecycle: operation })),
     ]);
     if (generation !== generationRef.current || controllerRef.current !== controller) {
       throw new Error('commerce_account_changed');
@@ -378,39 +377,36 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const operationGate = operationGateRef.current;
-    operationGate.abortAndDetach();
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     observedEnvironmentRef.current = undefined;
-    setNativeCommerceEnvironment('production');
     catalogReadyRef.current = false;
     uncertainPurchaseRef.current = undefined;
     uncertainStorageBlockedRef.current = false;
     void activateQuestionBankContentAccount(accountId).catch(() => undefined);
     setOfferings([]);
-    setEntitlement(undefined);
-    setEntitlementEnvironment(undefined);
     setError(undefined);
     setMessage(undefined);
+    setPhase(accountId && Platform.OS === 'ios' ? 'loading' : 'unavailable');
     if (Platform.OS !== 'ios' || !accountId) {
-      const previous = entitlementChangeRef.current;
-      if (previous) {
-        const next: CommerceEntitlementChange = {
-          accountId: previous.accountId,
-          environment: previous.environment,
-          revision: entitlementRevisionRef.current + 1,
-          reason: 'account-change',
-        };
-        entitlementRevisionRef.current = next.revision;
-        entitlementChangeRef.current = next;
-        setEntitlementChange(next);
-        publishCommerceEntitlementChange(next);
-      }
+      deactivateNativeCommerceEnvironment();
+      setEntitlementChange(clearCommerceEntitlementGeneration('account-change'));
       controllerRef.current = undefined;
       setPhase('unavailable');
       return;
     }
 
+    const ownerChange = beginCommerceEntitlementGeneration(
+      accountId,
+      'production',
+      'account-change',
+    );
+    setEntitlementChange(ownerChange);
+    const distributionEnvironment = detectNativeDistributionEnvironment();
+    const environmentActivation = activateNativeCommerceEnvironment(
+      accountId,
+      distributionEnvironment,
+    );
     const provider = createAppleStoreKitCommerceProvider();
     const consumer: CommerceTransactionConsumer = {
       consume: async (transaction, options) => {
@@ -418,16 +414,18 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         const environment = verifiedEnvironment(transaction);
         if (!environment) return { state: 'deferred' } as const;
         try {
+          const verificationRequest = apiRequest<VerifyAppleTransactionResponse>(
+            '/v1/commerce/apple/transactions/verify',
+            {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ signedTransaction: transaction.signedTransaction }),
+              ...(options?.signal ? { signal: options.signal } : {}),
+            },
+          );
+          options?.lifecycle?.trackRaw(verificationRequest);
           const verified = await withAbortSignal(
-            apiRequest<VerifyAppleTransactionResponse>(
-              '/v1/commerce/apple/transactions/verify',
-              {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ signedTransaction: transaction.signedTransaction }),
-                ...(options?.signal ? { signal: options.signal } : {}),
-              },
-            ),
+            verificationRequest,
             options?.signal,
           );
           if (options?.signal?.aborted || generation !== generationRef.current) {
@@ -471,108 +469,120 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       accountId,
       provider,
       coordinator: new NativeCommerceTransactionCoordinator(provider, consumer),
+      entitlementGeneration: ownerChange.generation,
     };
     controllerRef.current = controller;
-    publishEntitlement(controller, generation, 'production', undefined, 'account-change');
-    const startupOperation = operationGate.begin({
-      deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
-    });
-    if (!startupOperation) throw new Error('commerce_runtime_startup_operation_busy');
-    setPhase('loading');
+    let startupStarted = false;
 
     void (async () => {
-      const distributionEnvironment = detectNativeDistributionEnvironment();
-      const [rememberedEnvironment, restoredUncertainResult] = await Promise.all([
-        startupOperation.wait(activateNativeCommerceEnvironment(accountId, distributionEnvironment)),
-        startupOperation.wait(loadUncertainPurchase(accountId)),
-        reloadCatalog(controller, generation, startupOperation),
-      ]);
+      await operationGate.whenIdle();
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
-      observedEnvironmentRef.current = rememberedEnvironment;
-      publishEntitlement(
-        controller,
-        generation,
-        rememberedEnvironment,
-        undefined,
-        'environment-change',
-      );
-      if (restoredUncertainResult.state === 'invalid') {
-        uncertainStorageBlockedRef.current = true;
-      }
-      const restoredUncertain = restoredUncertainResult.state === 'pending'
-        ? restoredUncertainResult.purchase
-        : undefined;
-      uncertainPurchaseRef.current = restoredUncertain;
-      const report = await reconcileAndRefresh(
-        controller,
-        generation,
-        'startup-reconciliation',
-        startupOperation,
-      );
-      if (generation !== generationRef.current) return;
-      if (!report.ok) throw new Error(report.code);
-      if (uncertainStorageBlockedRef.current) {
-        const nextError = uncertainPurchaseError(
-          'reconciliation',
-          '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',
-        );
-        setError(nextError);
-        setMessage(nextError.userMessage);
-        setPhase('pending');
-        return;
-      }
-      if (restoredUncertain && !reportConfirmsPurchase(report.value, restoredUncertain)) {
-        const nextError = uncertainPurchaseError(
-          'reconciliation',
-          '上一笔购买仍在等待 App Store 或服务器确认，请勿重复下单。',
-        );
-        setError(nextError);
-        setMessage(nextError.userMessage);
-        setPhase('pending');
-        return;
-      }
-      if (restoredUncertain) {
-        await startupOperation.wait(clearUncertainPurchase(accountId));
+      const startupOperation = operationGate.begin({
+        deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+      });
+      if (!startupOperation) throw new Error('commerce_runtime_startup_operation_busy');
+      startupStarted = true;
+      setPhase('loading');
+      try {
+        const [rememberedEnvironment, restoredUncertainResult] = await Promise.all([
+          startupOperation.wait(environmentActivation),
+          startupOperation.wait(loadUncertainPurchase(accountId)),
+          reloadCatalog(controller, generation, startupOperation),
+        ]);
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
-        uncertainPurchaseRef.current = undefined;
-      }
-      setMessage(report.value.deferred > 0 ? '有购买正在后台核对，权益到账后会自动更新。' : undefined);
-      setError(undefined);
-      setPhase('ready');
-    })().catch((caught: unknown) => {
-      if (generation !== generationRef.current) return;
-      if (uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
-        const nextError = uncertainPurchaseError(
-          'reconciliation',
-          '上一笔购买仍在核对，请勿重复下单。',
+        observedEnvironmentRef.current = rememberedEnvironment;
+        publishEntitlement(
+          controller,
+          generation,
+          rememberedEnvironment,
+          undefined,
+          'environment-change',
         );
-        setError(nextError);
-        setMessage(nextError.userMessage);
-        setPhase('pending');
-      } else {
-        const internalCode = caught instanceof Error ? caught.message : '';
-        const invalidCatalog = [
-          'commerce_catalog_incomplete',
-          'commerce_catalog_invalid',
-          'commerce_catalog_mismatch',
-          'commerce_catalog_price_source_invalid',
-        ].includes(internalCode);
-        const nextError = runtimeError(
-          invalidCatalog ? 'catalog-invalid' : 'catalog-unavailable',
-          'catalog',
-          invalidCatalog
-            ? 'App Store 商品信息尚未完全同步，请稍后再查看。'
-            : '暂时无法连接 App Store 或读取会员信息，请稍后重试。',
-          { retryable: !invalidCatalog, chargeStatus: 'not-applicable' },
+        if (restoredUncertainResult.state === 'invalid') {
+          uncertainStorageBlockedRef.current = true;
+        }
+        const restoredUncertain = restoredUncertainResult.state === 'pending'
+          ? restoredUncertainResult.purchase
+          : undefined;
+        uncertainPurchaseRef.current = restoredUncertain;
+        const report = await reconcileAndRefresh(
+          controller,
+          generation,
+          'startup-reconciliation',
+          startupOperation,
         );
-        setError(nextError);
-        setMessage(nextError.userMessage);
-        setPhase('error');
+        if (generation !== generationRef.current) return;
+        if (!report.ok) throw new Error(report.code);
+        if (uncertainStorageBlockedRef.current) {
+          const nextError = uncertainPurchaseError(
+            'reconciliation',
+            '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',
+          );
+          setError(nextError);
+          setMessage(nextError.userMessage);
+          setPhase('pending');
+          return;
+        }
+        if (restoredUncertain && !reportConfirmsPurchase(report.value, restoredUncertain)) {
+          const nextError = uncertainPurchaseError(
+            'reconciliation',
+            '上一笔购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+          );
+          setError(nextError);
+          setMessage(nextError.userMessage);
+          setPhase('pending');
+          return;
+        }
+        if (restoredUncertain) {
+          await startupOperation.wait(clearUncertainPurchase(accountId));
+          if (generation !== generationRef.current || controllerRef.current !== controller) return;
+          uncertainPurchaseRef.current = undefined;
+        }
+        setMessage(report.value.deferred > 0 ? '有购买正在后台核对，权益到账后会自动更新。' : undefined);
+        setError(undefined);
+        setPhase('ready');
+      } catch (caught: unknown) {
+        if (generation !== generationRef.current) return;
+        if (uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
+          const nextError = uncertainPurchaseError(
+            'reconciliation',
+            '上一笔购买仍在核对，请勿重复下单。',
+          );
+          setError(nextError);
+          setMessage(nextError.userMessage);
+          setPhase('pending');
+        } else {
+          const internalCode = caught instanceof Error ? caught.message : '';
+          const invalidCatalog = [
+            'commerce_catalog_incomplete',
+            'commerce_catalog_invalid',
+            'commerce_catalog_mismatch',
+            'commerce_catalog_price_source_invalid',
+          ].includes(internalCode);
+          const nextError = runtimeError(
+            invalidCatalog ? 'catalog-invalid' : 'catalog-unavailable',
+            'catalog',
+            invalidCatalog
+              ? 'App Store 商品信息尚未完全同步，请稍后再查看。'
+              : '暂时无法连接 App Store 或读取会员信息，请稍后重试。',
+            { retryable: !invalidCatalog, chargeStatus: 'not-applicable' },
+          );
+          setError(nextError);
+          setMessage(nextError.userMessage);
+          setPhase('error');
+        }
+      } finally {
+        startupOperation.finish();
       }
-    }).finally(() => startupOperation.finish());
+    })().catch(() => undefined);
 
     const appState = AppState.addEventListener('change', (state) => {
-      if (state !== 'active' || generation !== generationRef.current) return;
+      if (
+        state !== 'active'
+        || !startupStarted
+        || generation !== generationRef.current
+        || controllerRef.current !== controller
+      ) return;
       const operation = operationGate.begin({
         deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
       });
@@ -624,10 +634,13 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     });
     return () => {
       appState.remove();
-      operationGate.abortAndDetach();
       if (generationRef.current === generation) generationRef.current += 1;
       if (controllerRef.current === controller) controllerRef.current = undefined;
-      void controller.coordinator.dispose();
+      deactivateNativeCommerceEnvironment(controller.accountId);
+      operationGate.abortAndDrain((lifecycle) => {
+        lifecycle.drain(environmentActivation.catch(() => undefined));
+        return controller.coordinator.dispose({ lifecycle });
+      });
     };
   }, [accountId, publishEntitlement, reconcileAndRefresh, reloadCatalog]);
 
@@ -830,7 +843,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       const purchaseResult = await operation.wait(controller.provider.purchase({
         offeringKey: productKey,
         applicationAccountToken: controller.accountId,
-      }));
+      }, { lifecycle: operation }));
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -865,6 +878,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['drainObservedTransactions']>>;
       try {
         report = await operation.wait(controller.coordinator.drainObservedTransactions({
+          lifecycle: operation,
           signal: operation.signal,
         }));
       } finally {
@@ -986,6 +1000,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['restorePurchasesFromUserAction']>>;
       try {
         report = await operation.wait(controller.coordinator.restorePurchasesFromUserAction({
+          lifecycle: operation,
           signal: operation.signal,
         }));
       } finally {
@@ -1073,19 +1088,24 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     }
   }, [phase, refreshEntitlement]);
 
+  const activeEntitlementChange = entitlementChange
+    && entitlementChange.accountId === accountId
+    && entitlementChange.environment === getNativeCommerceEnvironment()
+      ? entitlementChange
+      : undefined;
   const value = useMemo<CommerceRuntimeValue>(() => ({
     supported: Platform.OS === 'ios' && Boolean(accountId),
     phase,
     offerings,
-    entitlement,
-    entitlementEnvironment,
-    entitlementChange,
+    entitlement: activeEntitlementChange?.snapshot,
+    entitlementEnvironment: activeEntitlementChange?.environment,
+    entitlementChange: activeEntitlementChange,
     error,
     message,
     purchase,
     refresh,
     restorePurchases,
-  }), [accountId, entitlement, entitlementChange, entitlementEnvironment, error, message, offerings, phase, purchase, refresh, restorePurchases]);
+  }), [accountId, activeEntitlementChange, error, message, offerings, phase, purchase, refresh, restorePurchases]);
 
   return <CommerceRuntimeContext.Provider value={value}>{children}</CommerceRuntimeContext.Provider>;
 }

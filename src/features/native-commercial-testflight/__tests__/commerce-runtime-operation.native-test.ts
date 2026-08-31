@@ -55,4 +55,27 @@ describe('CommerceRuntimeOperationGate', () => {
     operation.finish();
     expect(gate.busy).toBe(true);
   });
+
+  it('keeps account-switch disposal in the same slot until old raw work drains', async () => {
+    let settleRaw!: () => void;
+    let settleDispose!: () => void;
+    const raw = new Promise<void>((resolve) => { settleRaw = resolve; });
+    const disposal = new Promise<void>((resolve) => { settleDispose = resolve; });
+    const gate = new CommerceRuntimeOperationGate();
+    const operation = gate.begin()!;
+    operation.trackRaw(raw);
+
+    gate.abortAndDrain((lifecycle) => {
+      expect(lifecycle).toBe(operation);
+      return disposal;
+    });
+
+    expect(gate.begin()).toBeUndefined();
+    settleRaw();
+    await raw;
+    expect(gate.busy).toBe(true);
+    settleDispose();
+    await gate.whenIdle();
+    expect(gate.busy).toBe(false);
+  });
 });

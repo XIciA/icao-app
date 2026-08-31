@@ -130,10 +130,13 @@ describe('native commerce transaction coordinator', () => {
     expect(provider.restorePurchases).not.toHaveBeenCalled();
     expect(provider.reconcileTransactions).toHaveBeenCalledTimes(2);
     expect(provider.markServerVerified).toHaveBeenCalledTimes(1);
-    expect(provider.markServerVerified).toHaveBeenCalledWith({
-      transactionReference: 'verified',
-      signedTransaction: 'jws-verified',
-    });
+    expect(provider.markServerVerified).toHaveBeenCalledWith(
+      {
+        transactionReference: 'verified',
+        signedTransaction: 'jws-verified',
+      },
+      { lifecycle: undefined },
+    );
     expect(provider.finishTransaction).toHaveBeenCalledTimes(1);
     expect(consumer.observeQuarantined).toHaveBeenCalledWith(quarantined);
   });
