@@ -32,11 +32,13 @@ export type RecordingPlaybackError = 'asset_missing' | 'playback_load_failed' | 
 
 export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   const [retryToken, setRetryToken] = useState(0);
+  const assetId = asset?.id;
+  const assetUri = asset?.uri;
   const sourceKey = asset ? `${asset.id}:${asset.uri}:${retryToken}` : `empty:${retryToken}`;
-  const playerSource = useMemo(() => asset ? {
-    name: `recording-${asset.id}-${retryToken}`,
-    uri: asset.uri,
-  } : null, [asset?.id, asset?.uri, retryToken]);
+  const playerSource = useMemo(() => assetId && assetUri ? {
+    name: `recording-${assetId}-${retryToken}`,
+    uri: assetUri,
+  } : null, [assetId, assetUri, retryToken]);
   const player = useSessionManagedAudioPlayer(playerSource, { updateInterval: 100 });
   const [statusSnapshot, setStatusSnapshot] = useState<{
     playerId: string;
@@ -135,11 +137,12 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   useEffect(() => {
     if (!asset) return;
     const generation = sourceGeneration.current;
+    const loadedDuration = status.duration;
+    const loadedIsLoaded = status.isLoaded;
     const timeout = setTimeout(() => {
       if (generation !== sourceGeneration.current) return;
-      const loaded = status;
-      if (!loaded.isLoaded || !Number.isFinite(loaded.duration) || loaded.duration <= 0) return;
-      const playbackDurationMillis = loaded.duration * 1_000;
+      if (!loadedIsLoaded || !Number.isFinite(loadedDuration) || loadedDuration <= 0) return;
+      const playbackDurationMillis = loadedDuration * 1_000;
       const tolerance = Math.max(500, Math.max(playbackDurationMillis, asset.durationMillis) * 0.2);
       emitAudioDiagnostic({
         code: 'playback_media_loaded',
