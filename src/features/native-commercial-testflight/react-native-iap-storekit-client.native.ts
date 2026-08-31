@@ -70,8 +70,15 @@ function releaseConnection(
   return serializeConnection(async () => {
     connectionOwners.delete(owner);
     if (!connectionEstablished || connectionOwners.size > 0) return;
-    await trackNative(Promise.resolve(endConnection()), options);
-    connectionEstablished = false;
+    try {
+      await trackNative(Promise.resolve(endConnection()), options);
+    } finally {
+      // The serialized lease queue prevents a replacement owner from acquiring
+      // the process-global connection until this native close has settled. Even
+      // when react-native-iap rejects the close, the old connection is no longer
+      // trustworthy and the next owner must establish a fresh one.
+      connectionEstablished = false;
+    }
   });
 }
 

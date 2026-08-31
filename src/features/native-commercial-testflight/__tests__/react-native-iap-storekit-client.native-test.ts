@@ -274,6 +274,62 @@ describe('react-native-iap StoreKit client', () => {
     await request;
   });
 
+  it('registers every original react-native-iap promise with the shared runtime lifecycle', async () => {
+    const rawInit = Promise.resolve(true);
+    const rawProducts = Promise.resolve([] as ProductOrSubscription[]);
+    const rawPurchase = Promise.resolve(null);
+    const rawHistory = Promise.resolve([] as PurchaseIOS[]);
+    const rawSync = Promise.resolve(true);
+    const rawPending = Promise.resolve([] as PurchaseIOS[]);
+    const rawFinish = Promise.resolve(undefined);
+    const rawEnd = Promise.resolve(true);
+    jest.mocked(initConnection).mockReturnValue(rawInit);
+    jest.mocked(fetchProducts).mockReturnValue(rawProducts);
+    jest.mocked(requestPurchase).mockReturnValue(rawPurchase);
+    jest.mocked(getAllTransactionsIOS).mockReturnValue(rawHistory);
+    jest.mocked(syncIOS).mockReturnValue(rawSync);
+    jest.mocked(getPendingTransactionsIOS).mockReturnValue(rawPending);
+    jest.mocked(finishTransaction).mockReturnValue(rawFinish);
+    jest.mocked(endConnection).mockReturnValue(rawEnd);
+    const trackedRaw: Promise<unknown>[] = [];
+    const lifecycle: CommerceOperationLifecycle = {
+      signal: new AbortController().signal,
+      trackRaw<T>(promise: Promise<T>) {
+        trackedRaw.push(promise);
+        return promise;
+      },
+      drain: jest.fn(),
+    };
+    const client = new ReactNativeIapStoreKitClient();
+
+    await client.connect(createHandlers(), { lifecycle });
+    await client.fetchProducts([PURCHASE.productId], { lifecycle });
+    await client.requestPurchase({
+      productId: PURCHASE.productId,
+      applicationAccountToken: PURCHASE.appAccountToken as string,
+    }, { lifecycle });
+    await client.getTransactions({ lifecycle });
+    await client.syncPurchases({ lifecycle });
+    emitPurchase(PURCHASE);
+    await client.finishTransaction(PURCHASE.transactionId, { lifecycle });
+    await expect(client.finishTransaction('unknown-transaction', { lifecycle })).rejects.toThrow(
+      'storekit_transaction_unknown',
+    );
+    await client.disconnect({ lifecycle });
+
+    expect(trackedRaw).toEqual(expect.arrayContaining([
+      rawInit,
+      rawProducts,
+      rawPurchase,
+      rawHistory,
+      rawSync,
+      rawPending,
+      rawFinish,
+      rawEnd,
+    ]));
+    expect(trackedRaw.filter((promise) => promise === rawHistory)).toHaveLength(2);
+  });
+
   it('keeps the global connection open while a replacement owner is attached', async () => {
     const oldClient = new ReactNativeIapStoreKitClient();
     const newClient = new ReactNativeIapStoreKitClient();
@@ -311,6 +367,44 @@ describe('react-native-iap StoreKit client', () => {
     );
     jest.mocked(endConnection).mockResolvedValue(true);
     await newClient.disconnect();
+  });
+
+  it('reconnects after a late native endConnection rejection without leaking an unhandled rejection', async () => {
+    const oldClient = new ReactNativeIapStoreKitClient();
+    await oldClient.connect(createHandlers());
+    let rejectEnd!: (error: Error) => void;
+    const rawEnd = new Promise<boolean>((_resolve, reject) => { rejectEnd = reject; });
+    jest.mocked(endConnection).mockReturnValue(rawEnd);
+    const unhandledRejection = jest.fn();
+    process.on('unhandledRejection', unhandledRejection);
+
+    try {
+      const disconnectResult = oldClient.disconnect().catch((error: unknown) => error);
+      await Promise.resolve();
+
+      const newClient = new ReactNativeIapStoreKitClient();
+      const connecting = newClient.connect(createHandlers());
+      await Promise.resolve();
+      expect(initConnection).toHaveBeenCalledTimes(1);
+
+      rejectEnd(new Error('native_end_connection_failed'));
+      await expect(disconnectResult).resolves.toEqual(
+        expect.objectContaining({ message: 'native_end_connection_failed' }),
+      );
+      await expect(connecting).resolves.toBeUndefined();
+      await new Promise<void>((resolve) => setImmediate(resolve));
+
+      expect(unhandledRejection).not.toHaveBeenCalled();
+      expect(initConnection).toHaveBeenCalledTimes(2);
+      expect(jest.mocked(endConnection).mock.invocationCallOrder[0]).toBeLessThan(
+        jest.mocked(initConnection).mock.invocationCallOrder[1]!,
+      );
+
+      jest.mocked(endConnection).mockResolvedValue(true);
+      await newClient.disconnect();
+    } finally {
+      process.off('unhandledRejection', unhandledRejection);
+    }
   });
 
   it('removes both listeners, ends the native connection once, and never duplicates callbacks', async () => {
