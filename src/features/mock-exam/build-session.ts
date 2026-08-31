@@ -1,4 +1,6 @@
 import { questionBankRepository } from '@/features/question-bank/data/repository';
+import { Platform } from 'react-native';
+import { resolveMockExamDiscoverCopy } from '@/features/content/native-release-surface';
 import type {
   QuestionBankCard,
   QuestionBankCategory,
@@ -51,6 +53,7 @@ export async function buildMockExamSession(config: MockExamConfig, providedSeed?
 
 export function toQuestionBankStudyPackage(session: MockExamSession): QuestionBankStudyPackage {
   const sectionTitles = new Map(session.sections.map((entry) => [entry.id, entry.title]));
+  const featureTitle = resolveMockExamDiscoverCopy(Platform.OS).title;
 
   return {
     id: session.id,
@@ -68,11 +71,11 @@ export function toQuestionBankStudyPackage(session: MockExamSession): QuestionBa
     record: {
       id: `mock-exam-record-${session.id}`,
       bankId: 'mock_exam',
-      bankTitle: 'AI 模考',
+      bankTitle: featureTitle,
       categoryTitle: MOCK_EXAM_TYPE_LABELS[session.config.examType],
       topicTitle: session.mode === 'complete'
         ? '按考试规则组卷'
-        : `自选模考 · ${session.config.modules.map((id) => MOCK_EXAM_MODULE_LABELS[id]).join('、')}`,
+        : `自选${featureTitle === '模拟练习' ? '练习' : '模考'} · ${session.config.modules.map((id) => MOCK_EXAM_MODULE_LABELS[id]).join('、')}`,
       recordType: 'mock_exam',
       mockExam: {
         examType: session.config.examType,

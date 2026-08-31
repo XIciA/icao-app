@@ -31,7 +31,7 @@ describe('buildMockExamSession', () => {
       record: {
         id: `mock-exam-record-${session.id}`,
         bankId: 'mock_exam',
-        bankTitle: 'AI 模考',
+        bankTitle: '模拟练习',
         categoryTitle: 'ICAO 4 复考',
         topicTitle: '按考试规则组卷',
         recordType: 'mock_exam',
@@ -51,7 +51,7 @@ describe('buildMockExamSession', () => {
     const session = await buildMockExamSession({ examType: 'icao5-first', modules: ['listening', 'opi'] }, 76);
     const studyPackage = toQuestionBankStudyPackage(session);
 
-    expect(studyPackage.record.topicTitle).toBe('自选模考 · 听力、OPI 口语面试');
+    expect(studyPackage.record.topicTitle).toBe('自选练习 · 听力、OPI 口语面试');
     expect(studyPackage.record.mockExam).toMatchObject({
       examType: 'icao5-first',
       mode: 'custom',

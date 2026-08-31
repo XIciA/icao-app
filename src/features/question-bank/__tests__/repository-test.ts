@@ -54,6 +54,7 @@ import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestio
 import {
   activateQuestionBankContentAccount,
   clearQuestionBankMemberContent,
+  inspectOfflineMemberTopicAccess,
   readMemberTopicCache,
   writeMemberTopicCache,
 } from '../data/member-content-cache';
@@ -312,6 +313,25 @@ describe('embeddedQuestionBankRepository', () => {
     jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
 
     await expect(questionBankRepository.getTopic('opi', 'opi-category-01', 'opi-topic-0004')).resolves.toEqual(cached);
+  });
+
+  it('reports an expired offline authorization without decrypting or returning member content', async () => {
+    const accountId = '00000000-0000-4000-8000-000000000001';
+    const scope = { bankId: 'opi', categoryId: 'opi-category-01', topicId: 'opi-topic-0004' };
+    const credential = testContentCredential(accountId, scope);
+    await activateQuestionBankContentAccount(accountId);
+    await writeMemberTopicCache(
+      accountId,
+      scope,
+      { id: scope.topicId, name: 'member topic', declaredCardCount: 1, cards: [] },
+      credential,
+    );
+
+    await expect(inspectOfflineMemberTopicAccess(scope)).resolves.toBe('valid');
+    await expect(inspectOfflineMemberTopicAccess(
+      scope,
+      Date.parse(credential.expiresAt) + 1,
+    )).resolves.toBe('expired');
   });
 
   it('creates one stable account encryption key when topics are cached concurrently', async () => {

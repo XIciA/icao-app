@@ -344,6 +344,41 @@ export async function readMemberTopicCache(accountId: string, scope: ContentAcce
   }
 }
 
+export type OfflineMemberTopicAccess = 'missing' | 'valid' | 'expired' | 'invalid';
+
+export async function inspectOfflineMemberTopicAccess(
+  scope: ContentAccessScope,
+  now = Date.now(),
+): Promise<OfflineMemberTopicAccess> {
+  await ensureLegacyDeviceBoundContentCleanup();
+  const accountId = activeAccountId;
+  if (!accountId) return 'missing';
+  const context = memberContentContext(accountId);
+  const { environment } = context;
+  const [credentialValue, recordValue] = await Promise.all([
+    SecureStore.getItemAsync(credentialKey(accountId, environment, scope)),
+    Storage.getItem(topicCacheKey(accountId, environment, scope)),
+  ]);
+  assertMemberContentContextCurrent(context);
+  if (!credentialValue || !recordValue) return 'missing';
+  try {
+    const credential = JSON.parse(credentialValue) as ContentAccessCredential;
+    const record = JSON.parse(recordValue) as EncryptedTopic;
+    const expiresAt = Date.parse(credential.expiresAt);
+    if (Number.isFinite(expiresAt) && expiresAt <= now) return 'expired';
+    if (
+      !verifyContentAccessCredential({ accountId, credential, environment, now, scope })
+      || record.schemaVersion !== 2
+      || record.accountId !== accountId
+      || record.environment !== environment
+      || scopeIdentity(record.scope) !== scopeIdentity(scope)
+    ) return 'invalid';
+    return 'valid';
+  } catch {
+    return 'invalid';
+  }
+}
+
 export async function clearQuestionBankMemberContent(accountId?: string) {
   if (!accountId) return;
   if (activeAccountId === accountId) activeAccountGeneration += 1;

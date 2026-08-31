@@ -118,6 +118,11 @@ export function AppStack() {
               <Stack.Screen name="annotations" />
               <Stack.Screen name="word-favorites" />
               <Stack.Screen name="content/[slug]" />
+              <Stack.Screen name="content/hotspot/[briefId]" />
+              <Stack.Screen
+                name="content/hotspot/[briefId]/study"
+                options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+              />
               <Stack.Screen name="content/resources/[articleSlug]" />
               <Stack.Screen name="account/[slug]" />
               <Stack.Screen name="info/[slug]" />
@@ -147,13 +152,13 @@ function UiAcceptanceBadge() {
   );
 }
 
-export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
   return (
     <SafeAreaProvider>
       <View style={styles.errorRoot}>
         <CenteredState
           actionLabel="重新加载"
-          description={__DEV__ ? error.message : '页面遇到异常，请稍后重新加载。'}
+          description="页面遇到异常，请稍后重新加载。"
           onAction={retry}
           title="页面加载失败"
           tone="destructive"

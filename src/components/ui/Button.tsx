@@ -47,7 +47,7 @@ export function Button({
       ) : (
         <View style={styles.content}>
           {leading}
-          <AppText variant="button" color={foreground} numberOfLines={1}>
+          <AppText variant="button" color={foreground} style={styles.label}>
             {children}
           </AppText>
         </View>
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   lg: { minHeight: 50, paddingHorizontal: spacing[5] },
   icon: { height: 40, paddingHorizontal: 0, width: 40 },
   content: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
+  label: { flexShrink: 1, textAlign: 'center' },
   primary: { backgroundColor: colors.primary, borderColor: colors.primary },
   outline: { backgroundColor: colors.background, borderColor: colors.border },
   secondary: { backgroundColor: colors.secondary, borderColor: 'transparent' },

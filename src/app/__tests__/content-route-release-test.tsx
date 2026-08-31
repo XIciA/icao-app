@@ -1,14 +1,22 @@
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import ContentRoute from '../content/[slug]';
 
 const mockSlug = jest.fn<string, []>();
+const mockReplace = jest.fn();
+
+jest.mock('lucide-react-native', () => {
+  const { View } = jest.requireActual('react-native');
+  const Icon = (props: object) => <View {...props} />;
+  return new Proxy({}, { get: () => Icon });
+});
 
 jest.mock('expo-router', () => {
   const { Text } = jest.requireActual('react-native');
   return {
     Redirect: ({ href }: { href: string }) => <Text>{`redirect:${href}`}</Text>,
     useLocalSearchParams: () => ({ slug: mockSlug() }),
+    useRouter: () => ({ back: jest.fn(), canGoBack: () => false, replace: mockReplace }),
   };
 });
 jest.mock('@/features/content/ContentLibraryScreen', () => {
@@ -33,6 +41,8 @@ jest.mock('@/features/content/VocabScreen', () => {
 });
 
 describe('<ContentRoute /> Native 1.0.0 gates', () => {
+  beforeEach(() => mockReplace.mockClear());
+
   it.each(['courses', 'ai-report'])('redirects a direct %s route before rendering hidden content', async (slug) => {
     mockSlug.mockReturnValue(slug);
     const screen = await render(<ContentRoute />);
@@ -45,5 +55,15 @@ describe('<ContentRoute /> Native 1.0.0 gates', () => {
   it('keeps the launch vocabulary route reachable', async () => {
     mockSlug.mockReturnValue('vocab');
     expect((await render(<ContentRoute />)).getByText('vocab')).toBeTruthy();
+  });
+
+  it('renders a safe recovery state instead of a blank screen for an unknown content route', async () => {
+    mockSlug.mockReturnValue('unknown-private-content');
+    const screen = await render(<ContentRoute />);
+
+    expect(screen.getByText('无法打开此内容')).toBeTruthy();
+    expect(screen.queryByText('library:unknown-private-content')).toBeNull();
+    await fireEvent.press(screen.getByText('返回发现'));
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/discover');
   });
 });

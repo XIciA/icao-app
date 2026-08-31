@@ -125,11 +125,11 @@ export function toQuestionBankStudyPackage(session: MockExamSession): QuestionBa
     record: {
       id: `mock-exam-record-${session.id}`,
       bankId: 'mock_exam',
-      bankTitle: 'AI 模考',
+      bankTitle: '模拟练习',
       categoryTitle: MOCK_EXAM_TYPE_LABELS[session.config.examType],
       topicTitle: session.mode === 'complete'
         ? '按考试规则组卷'
-        : `自选模考 · ${session.config.modules.map((id) => MOCK_EXAM_MODULE_LABELS[id]).join('、')}`,
+        : `自选练习 · ${session.config.modules.map((id) => MOCK_EXAM_MODULE_LABELS[id]).join('、')}`,
       recordType: 'mock_exam',
       mockExam: {
         examType: session.config.examType,

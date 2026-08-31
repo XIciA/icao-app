@@ -62,7 +62,7 @@ function studyPackage(): QuestionBankStudyPackage {
       bankId: 'mock_exam',
       bankTitle: 'AI 模考',
       categoryTitle: 'ICAO 4 初考',
-      topicTitle: '自选模考 · 听力',
+      topicTitle: '自选练习 · 听力',
       recordType: 'mock_exam',
     },
   };

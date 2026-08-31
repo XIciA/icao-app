@@ -1,8 +1,9 @@
 import { CheckCircle2, Clock3, Flag, Highlighter, NotebookPen, Sparkles, Target } from '@/components/ui/icons';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
+import { resolveMockExamDiscoverCopy } from '@/features/content/native-release-surface';
 
 import type { LearningRecord, StudyInteraction } from '../types';
 
@@ -13,6 +14,8 @@ function formatDuration(total: number) {
 
 export function StudyReport({ record, noteCount, onReturn, interaction, returnLabel }: { record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
   const mockExam = record.recordType === 'mock_exam';
+  const mockExamTitle = resolveMockExamDiscoverCopy(Platform.OS).title;
+  const mockExamTerm = mockExamTitle === '模拟练习' ? '练习' : '模考';
   const completed = record.reason === 'complete' && record.completedCount >= record.totalCount;
   const progress = record.totalCount ? (record.completedCount / record.totalCount) * 100 : 0;
   return (
@@ -21,8 +24,8 @@ export function StudyReport({ record, noteCount, onReturn, interaction, returnLa
         <View style={styles.iconBox}>
           {completed ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}
         </View>
-        <Tag tone={completed ? 'primary' : 'accent'}>{mockExam ? completed ? '模考完成' : '模考结束' : completed ? '全部完成' : '中途结束'}</Tag>
-        <AppText style={styles.center} variant="pageTitle">{mockExam ? completed ? '本次模考完成' : '本次模考已结束' : completed ? '本次学习完成' : '本次学习已结束'}</AppText>
+        <Tag tone={completed ? 'primary' : 'accent'}>{mockExam ? completed ? `${mockExamTerm}完成` : `${mockExamTerm}结束` : completed ? '全部完成' : '中途结束'}</Tag>
+        <AppText style={styles.center} variant="pageTitle">{mockExam ? completed ? `本次${mockExamTerm}完成` : `本次${mockExamTerm}已结束` : completed ? '本次学习完成' : '本次学习已结束'}</AppText>
         <AppText style={styles.center}>{record.bankTitle} · {record.categoryTitle} · {record.topicTitle}</AppText>
       </View>
       <Card elevated style={styles.reportCard}>
@@ -42,7 +45,7 @@ export function StudyReport({ record, noteCount, onReturn, interaction, returnLa
           <Metric icon={Sparkles} label="反馈次数" value={String(record.feedbackCount ?? 0)} />
         </View>
       </Card>
-      <Button onPress={onReturn} size="lg" style={styles.button}>{returnLabel ?? (mockExam ? '返回 AI 模考' : '返回题库目录')}</Button>
+      <Button onPress={onReturn} size="lg" style={styles.button}>{returnLabel ?? (mockExam ? `返回${mockExamTitle}` : '返回题库目录')}</Button>
     </Screen>
   );
 }
