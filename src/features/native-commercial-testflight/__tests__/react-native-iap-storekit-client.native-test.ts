@@ -1,6 +1,7 @@
-import type { PurchaseError, PurchaseIOS } from 'react-native-iap';
+import type { ProductOrSubscription, PurchaseError, PurchaseIOS } from 'react-native-iap';
 import {
   endConnection,
+  fetchProducts,
   finishTransaction,
   getAllTransactionsIOS,
   getPendingTransactionsIOS,
@@ -85,6 +86,47 @@ describe('react-native-iap StoreKit client', () => {
     jest.mocked(getPendingTransactionsIOS).mockResolvedValue([]);
     jest.mocked(syncIOS).mockResolvedValue(true);
     jest.mocked(finishTransaction).mockResolvedValue(undefined);
+    jest.mocked(fetchProducts).mockResolvedValue([]);
+  });
+
+  it('queries and accepts only iOS non-renewing subscriptions', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    const valid = {
+      platform: 'ios',
+      type: 'subs',
+      typeIOS: 'non-renewing-subscription',
+      id: PURCHASE.productId,
+      displayPrice: '¥168.00',
+      currency: 'CNY',
+    } as ProductOrSubscription;
+    const wrongOpenIapType = {
+      ...valid,
+      id: 'wrong.openiap.type',
+      type: 'in-app',
+    } as ProductOrSubscription;
+    const wrongIosType = {
+      ...valid,
+      id: 'wrong.ios.type',
+      typeIOS: 'auto-renewable-subscription',
+    } as ProductOrSubscription;
+    jest.mocked(fetchProducts).mockResolvedValue([
+      valid,
+      wrongOpenIapType,
+      wrongIosType,
+    ]);
+
+    await client.connect(createHandlers());
+    await expect(client.fetchProducts([PURCHASE.productId])).resolves.toEqual([{
+      productId: PURCHASE.productId,
+      localizedPrice: '¥168.00',
+      currencyCode: 'CNY',
+      productTypeIOS: 'non-renewing-subscription',
+    }]);
+
+    expect(fetchProducts).toHaveBeenCalledWith({
+      skus: [PURCHASE.productId],
+      type: 'subs',
+    });
   });
 
   it('rebuilds an unfinished transaction after app restart before finishing it', async () => {
@@ -193,7 +235,7 @@ describe('react-native-iap StoreKit client', () => {
           andDangerouslyFinishTransactionAutomatically: false,
         },
       },
-      type: 'in-app',
+      type: 'subs',
     });
   });
 

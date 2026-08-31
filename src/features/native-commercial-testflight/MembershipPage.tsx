@@ -29,9 +29,13 @@ function formatDate(value: string | null | undefined) {
 export function MembershipPage() {
   const commerce = useCommerceRuntime();
   const working = commerce.phase === 'purchasing' || commerce.phase === 'restoring';
+  const reconciling = commerce.phase === 'reconciling';
   const purchasePending = commerce.phase === 'pending';
   const loading = commerce.phase === 'loading';
+  const purchaseDisabled = commerce.phase !== 'ready';
+  const managementDisabled = loading || working || reconciling;
   const active = commerce.entitlement?.membership.active === true;
+  const statusMessage = commerce.error?.userMessage ?? commerce.message;
 
   return (
     <AccountScreen>
@@ -74,7 +78,7 @@ export function MembershipPage() {
               <AppText variant="caption">购买后增加 {offering.durationDays} 天使用时间；重复购买会顺延。</AppText>
             </View>
             <Button
-              disabled={working || loading || purchasePending}
+              disabled={purchaseDisabled}
               onPress={() => { void commerce.purchase(offering.productKey); }}
               size="sm"
             >
@@ -92,27 +96,41 @@ export function MembershipPage() {
         ) : null}
         {commerce.supported && commerce.offerings.length === 0 ? (
           <Card style={styles.notice}>
-            <AppText variant="button">{loading ? '正在读取 App Store 商品…' : '商品暂时不可用'}</AppText>
-            <AppText variant="caption">请检查网络与 App Store 登录状态后刷新。</AppText>
+            <AppText variant="button">
+              {loading
+                ? '正在读取 App Store 商品…'
+                : commerce.error?.code === 'catalog-invalid'
+                  ? 'App Store 商品配置正在同步'
+                  : '暂时无法读取 App Store 商品'}
+            </AppText>
+            <AppText variant="caption">
+              {commerce.error?.retryable === false
+                ? '商品信息尚未完全生效，请稍后再查看。'
+                : '请确认网络和 App Store 账号状态后刷新。'}
+            </AppText>
           </Card>
         ) : null}
       </View>
 
-      {commerce.message ? <AppText style={styles.message} variant="caption">{commerce.message}</AppText> : null}
+      {reconciling ? (
+        <AppText style={styles.message} variant="caption">正在核对会员与购买记录…</AppText>
+      ) : statusMessage ? (
+        <AppText style={styles.message} variant="caption">{statusMessage}</AppText>
+      ) : null}
 
       <SectionLabel title="购买管理" />
       <RowGroup>
         <Row
           icon={RefreshCcw}
           isLast={false}
-          label="刷新会员与点数"
-          onPress={working ? undefined : () => { void commerce.refresh(); }}
+          label={reconciling ? '正在核对会员与点数…' : '刷新会员与点数'}
+          onPress={managementDisabled ? undefined : () => { void commerce.refresh(); }}
         />
         <Row
           icon={Zap}
           isLast
           label={commerce.phase === 'restoring' ? '正在恢复购买…' : '恢复购买'}
-          onPress={working ? undefined : () => { void commerce.restorePurchases(); }}
+          onPress={managementDisabled ? undefined : () => { void commerce.restorePurchases(); }}
         />
       </RowGroup>
 

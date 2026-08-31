@@ -7,11 +7,33 @@ const UNAVAILABLE: CommerceRuntimeValue = {
   phase: 'unavailable',
   offerings: [],
   async purchase() {
-    return { ok: false, message: '当前平台暂不支持 App Store 购买。' };
+    const userMessage = '当前平台暂不支持 App Store 购买。';
+    return {
+      ok: false,
+      message: userMessage,
+      error: {
+        code: 'not-supported',
+        operation: 'purchase',
+        userMessage,
+        retryable: false,
+        chargeStatus: 'not-applicable',
+      },
+    };
   },
   async refresh() {},
   async restorePurchases() {
-    return { ok: false, message: '当前平台暂不支持恢复购买。' };
+    const userMessage = '当前平台暂不支持恢复购买。';
+    return {
+      ok: false,
+      message: userMessage,
+      error: {
+        code: 'not-supported',
+        operation: 'restore',
+        userMessage,
+        retryable: false,
+        chargeStatus: 'not-applicable',
+      },
+    };
   },
 };
 
