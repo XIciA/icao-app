@@ -31,7 +31,10 @@ const mockClearUncertainPurchase = jest.fn(async (accountId: string) => {
 const mockDistributionEnvironment = jest.mocked(getIcaoDistributionEnvironment);
 
 jest.mock('@/features/auth/AuthProvider', () => ({
-  useAuth: () => ({ account: { accountId: mockAccountId } }),
+  useAuth: () => ({
+    account: { accountId: mockAccountId },
+    accountReady: true,
+  }),
 }));
 
 jest.mock('@/platform/api-client', () => ({

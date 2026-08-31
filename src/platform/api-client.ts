@@ -2,7 +2,9 @@ import type { ApiErrorEnvelope, ApiSuccessEnvelope } from '@icao/contracts';
 
 let accessTokenProvider: (() => Promise<string | undefined>) | undefined;
 let accessTokenRefresher: (() => Promise<string | undefined>) | undefined;
-let sessionInvalidatedHandler: (() => Promise<void> | void) | undefined;
+let sessionInvalidatedHandler: ((rejectedToken: string) => Promise<void> | void) | undefined;
+let refreshInFlight: Promise<string | undefined> | undefined;
+let invalidationInFlight: { promise: Promise<void>; token: string } | undefined;
 let recentApiError: { code: string; requestId?: string; occurredAt: number } | undefined;
 
 export class ApiClientError extends Error {
@@ -32,10 +34,12 @@ export function setApiAccessTokenProvider(provider: (() => Promise<string | unde
 
 export function setApiAuthRecovery(options?: {
   refresh: () => Promise<string | undefined>;
-  onInvalidated: () => Promise<void> | void;
+  onInvalidated: (rejectedToken: string) => Promise<void> | void;
 }) {
   accessTokenRefresher = options?.refresh;
   sessionInvalidatedHandler = options?.onInvalidated;
+  refreshInFlight = undefined;
+  invalidationInFlight = undefined;
 }
 
 export function getApiBaseUrl() {
@@ -86,18 +90,60 @@ async function fetchOnce(path: string, init: RequestInit, token?: string) {
 }
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
-  let response = await fetchOnce(path, init, await accessTokenProvider?.());
-  return recoverApiUnauthorized(response, (token) => fetchOnce(path, init, token));
+  const token = await accessTokenProvider?.();
+  const response = await fetchOnce(path, init, token);
+  return recoverApiUnauthorized(response, (nextToken) => fetchOnce(path, init, nextToken), token);
 }
 
 export async function recoverApiUnauthorized(
   response: Response,
   retry: (token: string) => Promise<Response>,
+  requestToken?: string,
 ) {
   if (response.status !== 401) return response;
-  const refreshed = await accessTokenRefresher?.().catch(() => undefined);
-  if (refreshed) response = await retry(refreshed);
-  if (response.status === 401) await sessionInvalidatedHandler?.();
+
+  let rejectedToken = requestToken;
+  const currentBeforeRefresh = await accessTokenProvider?.().catch(() => undefined);
+  if (currentBeforeRefresh && currentBeforeRefresh !== rejectedToken) {
+    response = await retry(currentBeforeRefresh);
+    rejectedToken = currentBeforeRefresh;
+    if (response.status !== 401) return response;
+  }
+
+  if (!refreshInFlight && accessTokenRefresher) {
+    let refresh!: Promise<string | undefined>;
+    refresh = accessTokenRefresher().catch(() => undefined).finally(() => {
+      if (refreshInFlight === refresh) refreshInFlight = undefined;
+    });
+    refreshInFlight = refresh;
+  }
+  const refreshed = await refreshInFlight;
+  if (refreshed) {
+    response = await retry(refreshed);
+    rejectedToken = refreshed;
+    if (response.status !== 401) return response;
+  }
+
+  const currentAfterRefresh = await accessTokenProvider?.().catch(() => undefined);
+  if (currentAfterRefresh && currentAfterRefresh !== rejectedToken) {
+    response = await retry(currentAfterRefresh);
+    rejectedToken = currentAfterRefresh;
+    if (response.status !== 401) return response;
+  }
+
+  // Only the token that was actually rejected may invalidate the matching
+  // current session. A late 401 from an older request must never sign out a
+  // newly established or refreshed login.
+  if (response.status === 401 && rejectedToken && currentAfterRefresh === rejectedToken) {
+    if (!invalidationInFlight || invalidationInFlight.token !== rejectedToken) {
+      let invalidation!: Promise<void>;
+      invalidation = Promise.resolve(sessionInvalidatedHandler?.(rejectedToken)).finally(() => {
+        if (invalidationInFlight?.promise === invalidation) invalidationInFlight = undefined;
+      });
+      invalidationInFlight = { promise: invalidation, token: rejectedToken };
+    }
+    await invalidationInFlight.promise;
+  }
   return response;
 }
 
@@ -106,7 +152,8 @@ export async function apiAccessToken() {
 }
 
 export async function invalidateApiSession() {
-  await sessionInvalidatedHandler?.();
+  const token = await accessTokenProvider?.();
+  if (token) await sessionInvalidatedHandler?.(token);
 }
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}) {

@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
-import type { AccountSummary, DeleteAccountResponse } from '@icao/contracts';
+import type { AccountSummary, DeleteAccountResponse, StartPhoneOtpResponse } from '@icao/contracts';
 
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
@@ -38,8 +38,8 @@ type AuthContextValue = {
   exitUiAcceptanceMode(): void;
   rememberPendingPath(path: string): void;
   signInWithApple(): Promise<void>;
-  requestPhoneOtp(phone: string): Promise<void>;
-  requestPasswordRecoveryOtp(phone: string): Promise<void>;
+  requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
+  requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
   verifyPhoneOtp(phone: string, token: string, purpose?: 'login' | 'recovery'): Promise<AppSession>;
   signInWithPhonePassword(phone: string, password: string): Promise<void>;
   updatePassword(password: string, currentPassword?: string): Promise<void>;
@@ -233,7 +233,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return promise;
   }, []);
 
-  const acceptAuthenticatedSession = useCallback(async (next: AppSession, preserveSessionOnFailure = false) => {
+  const acceptAuthenticatedSession = useCallback(async (next: AppSession) => {
     setSessionSnapshot(next);
     try {
       const resolved = await initializeInternalAccount(next);
@@ -243,7 +243,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLearningSyncActiveUser(resolved.accountId);
       return next;
     } catch {
-      if (!preserveSessionOnFailure && sessionRef.current?.user.id === next.user.id) {
+      if (sessionRef.current?.user.id === next.user.id) {
         // A temporary account-profile failure must not destroy a verified auth
         // session. The root gate keeps business data closed and offers retry.
         setAccountRestoreUnavailable(true);
@@ -258,19 +258,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const deletionState = await inspectPendingAccountDeletion();
       if (deletionState !== 'none') return;
-      const next = await service.getSession();
+      const next = sessionRef.current ?? await service.getSession();
       if (sessionMutationRef.current !== expectedMutation) return;
       if (!next) {
         setSessionSnapshot(undefined, true);
         setAccountRestoreUnavailable(false);
         return;
       }
-      await acceptAuthenticatedSession(next, true);
+      await acceptAuthenticatedSession(next);
       setAccountRestoreUnavailable(false);
     } catch {
       if (sessionMutationRef.current !== expectedMutation) return;
       if (accountDeletionPendingRef.current) return;
-      setSessionSnapshot(undefined, true);
       setAccountRestoreUnavailable(true);
     }
   }, [acceptAuthenticatedSession, inspectPendingAccountDeletion, service, setSessionSnapshot]);
@@ -278,14 +277,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!service) return;
     let active = true;
-    setApiAccessTokenProvider(async () => sessionRef.current?.accessToken ?? (await service.getSession())?.accessToken);
+    setApiAccessTokenProvider(async () => sessionRef.current?.accessToken);
     setApiAuthRecovery({
       refresh: async () => {
+        const expectedToken = sessionRef.current?.accessToken;
         const next = await service.refreshSession();
-        setSessionSnapshot(next);
-        return next?.accessToken;
+        const current = sessionRef.current;
+        if (current?.accessToken !== expectedToken) return current?.accessToken;
+        if (next) setSessionSnapshot(next);
+        return next?.accessToken ?? current?.accessToken;
       },
-      onInvalidated: async () => {
+      onInvalidated: async (rejectedToken) => {
+        if (sessionRef.current?.accessToken !== rejectedToken) return;
+        const persisted = await service.getSession().catch(() => undefined);
+        if (persisted?.accessToken && persisted.accessToken !== rejectedToken) {
+          setSessionSnapshot(persisted);
+          return;
+        }
+        if (sessionRef.current?.accessToken !== rejectedToken) return;
         await service.signOut('local').catch(() => undefined);
         await clearLocalAiConsent().catch(() => undefined);
         setSessionSnapshot(undefined, true);
@@ -453,8 +462,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setAccount(undefined);
       await acceptAuthenticatedSession(await service.signInWithApple());
     },
-    async requestPhoneOtp(phone) { if (!service) return unavailable(); await service.requestPhoneOtp(phone); },
-    async requestPasswordRecoveryOtp(phone) { if (!service) return unavailable(); await service.requestPasswordRecoveryOtp(phone); },
+    async requestPhoneOtp(phone) { if (!service) return unavailable(); return service.requestPhoneOtp(phone); },
+    async requestPasswordRecoveryOtp(phone) { if (!service) return unavailable(); return service.requestPasswordRecoveryOtp(phone); },
     async verifyPhoneOtp(phone, token, purpose = 'login') {
       if (!service) return unavailable();
       sessionMutationRef.current += 1;
@@ -472,6 +481,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             purpose: passwordPurpose,
             userId: next.user.id,
           });
+          setPendingPath('/account/password?mode=recovery');
         } catch (error) {
           await service.signOut('local').catch(() => undefined);
           setPasswordAuthorization(undefined);

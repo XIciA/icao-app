@@ -9,9 +9,11 @@ let mockAccountDeletionPending = false;
 let mockAccountRestoreUnavailable = false;
 let mockUiAcceptanceMode = false;
 const mockRememberPendingPath = jest.fn();
+const mockConsumePendingPath = jest.fn();
 const mockExitUiAcceptanceMode = jest.fn();
 const mockRetryAccountRestore = jest.fn();
 const mockReplace = jest.fn();
+let mockPathname = '/';
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -25,6 +27,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     accountDeletionPending: mockAccountDeletionPending,
     accountRestoreUnavailable: mockAccountRestoreUnavailable,
     canAccessApp: mockCanAccessApp,
+    consumePendingPath: mockConsumePendingPath,
     exitUiAcceptanceMode: mockExitUiAcceptanceMode,
     rememberPendingPath: mockRememberPendingPath,
     retryAccountRestore: mockRetryAccountRestore,
@@ -59,7 +62,7 @@ jest.mock('expo-router', () => {
       preventAutoHideAsync: jest.fn().mockResolvedValue(undefined),
     },
     Stack,
-    usePathname: () => '/',
+    usePathname: () => mockPathname,
     useRouter: () => ({ replace: mockReplace }),
   };
 });
@@ -67,6 +70,7 @@ jest.mock('expo-router', () => {
 describe('authentication routing', () => {
   beforeEach(() => {
     mockRememberPendingPath.mockClear();
+    mockConsumePendingPath.mockReset().mockReturnValue(undefined);
     mockExitUiAcceptanceMode.mockClear();
     mockReplace.mockClear();
     mockCanAccessApp = false;
@@ -75,6 +79,7 @@ describe('authentication routing', () => {
     mockSession = undefined;
     mockUiAcceptanceMode = false;
     mockRetryAccountRestore.mockReset().mockResolvedValue(undefined);
+    mockPathname = '/';
   });
 
   it('keeps the neutral index route available during a signed-in cold start', async () => {
@@ -133,5 +138,16 @@ describe('authentication routing', () => {
     const screen = await render(<IndexRoute />);
 
     expect(screen.getByTestId('redirect-href').props.children).toBe(expectedHref);
+  });
+
+  it('enters the remembered destination only after the authenticated guard is ready', async () => {
+    mockCanAccessApp = true;
+    mockPathname = '/auth/login';
+    mockConsumePendingPath.mockReturnValue('/question-bank/900/study/3/3');
+
+    await render(<AppStack />);
+
+    expect(mockReplace).toHaveBeenCalledWith('/question-bank/900/study/3/3');
+    expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
 });

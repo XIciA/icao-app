@@ -359,6 +359,31 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(screen.getByTestId('auth-state').props.children).toBe('closed');
   });
 
+  it('retains and retries a persisted session when cold-start account bootstrap is temporarily unavailable', async () => {
+    mockGetSession.mockResolvedValueOnce(phoneSession).mockResolvedValueOnce(phoneSession);
+    mockApiRequest
+      .mockRejectedValueOnce(new Error('api_http_503'))
+      .mockResolvedValueOnce({
+        accountId: 'phone-auth-user',
+        phone: '+8613800138000',
+        phoneBound: true,
+        providers: ['phone'],
+      });
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+
+    expect(currentAuth.session?.user.id).toBe('phone-auth-user');
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+    expect(mockSignOut).not.toHaveBeenCalled();
+
+    await act(async () => { await currentAuth.retryAccountRestore(); });
+
+    expect(currentAuth.accountRestoreUnavailable).toBe(false);
+    expect(currentAuth.account?.accountId).toBe('phone-auth-user');
+    expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+  });
+
   it('authorizes a verified recovery OTP and adopts the password update session without refreshing the old token', async () => {
     mockApiRequest.mockResolvedValueOnce({
       accountId: 'phone-auth-user',
@@ -380,6 +405,9 @@ describe('<AuthProvider /> internal-account gate', () => {
     });
     expect(mockAuthorizePasswordRecovery).toHaveBeenCalledTimes(1);
     expect(currentAuth.passwordChangePurpose).toBe('recovery');
+    let recoveryPath: string | undefined;
+    await act(async () => { recoveryPath = currentAuth.consumePendingPath(); });
+    expect(recoveryPath).toBe('/account/password?mode=recovery');
 
     await act(async () => {
       await currentAuth.updatePassword('newpassword10');

@@ -166,9 +166,9 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     })
     .overrideProvider(PhoneAuthService)
     .useValue({
-      start: async () => ({ accepted: true }),
-      startRecovery: async () => ({ accepted: true }),
-      startRecentAuth: async () => ({ accepted: true }),
+      start: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
+      startRecovery: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
+      startRecentAuth: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
     })
     .overrideProvider(RecentAuthService)
     .useValue({
@@ -709,9 +709,9 @@ describe('API foundation', () => {
       payload: { password: 'newpassword10' },
     });
     expect(started.statusCode).toBe(201);
-    expect(started.json().data).toEqual({ accepted: true });
+    expect(started.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
     expect(recovery.statusCode).toBe(202);
-    expect(recovery.json().data).toEqual({ accepted: true });
+    expect(recovery.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
     expect(invalid.statusCode).toBe(400);
     expect(invalid.json().error.code).toBe('invalid_phone_number');
     expect(password.statusCode).toBe(201);
@@ -726,7 +726,7 @@ describe('API foundation', () => {
       grantId: '00000000-0000-4000-8000-000000000096',
     });
     expect(recentPhoneStart.statusCode).toBe(201);
-    expect(recentPhoneStart.json().data).toEqual({ accepted: true });
+    expect(recentPhoneStart.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
     expect(recentPhone.statusCode).toBe(201);
     expect(recentPhone.json().data).toEqual({
       expiresAt: 1_800_000_300_000,
