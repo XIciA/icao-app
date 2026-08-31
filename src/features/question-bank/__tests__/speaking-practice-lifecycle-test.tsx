@@ -54,6 +54,9 @@ const mockRecorder = {
   }),
 };
 const mockPlayback = {
+  addListener: jest.fn(() => ({ remove: jest.fn() })),
+  get currentStatus() { return mockPlaybackStatus; },
+  id: 'speaking-practice-playback',
   pause: jest.fn(),
   play: jest.fn(),
   remove: jest.fn(),
@@ -62,6 +65,7 @@ const mockPlayback = {
 };
 
 let mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 0, isLoaded: false, playbackState: 'loading', playing: false };
+let mockPlaybackSources: unknown[] = [];
 const mockCommitRaw = jest.fn(async (_input?: unknown) => committedAsset);
 const mockDiscard = jest.fn((_asset?: unknown) => undefined);
 const mockDiscardRaw = jest.fn((_uri?: unknown) => undefined);
@@ -100,7 +104,10 @@ jest.mock('@/platform/audio', () => ({
     release: (lease: unknown) => mockRelease(lease),
   },
   emitAudioDiagnostic: jest.fn(),
-  useSessionManagedAudioPlayer: () => mockPlayback,
+  useSessionManagedAudioPlayer: (source: unknown) => {
+    mockPlaybackSources.push(source);
+    return mockPlayback;
+  },
 }));
 
 jest.mock('../recording/expo-recorder-adapter', () => ({
@@ -160,6 +167,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
       return rawRecording;
     });
     mockPlayback.pause.mockImplementation(() => undefined);
+    mockPlayback.addListener.mockImplementation(() => ({ remove: jest.fn() }));
     mockPlayback.play.mockImplementation(() => undefined);
     mockPlayback.remove.mockImplementation(() => undefined);
     mockPlayback.replace.mockImplementation(() => undefined);
@@ -168,6 +176,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockRelease.mockResolvedValue(undefined);
     mockCommitRaw.mockResolvedValue(committedAsset);
     mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 0, isLoaded: false, playbackState: 'loading', playing: false };
+    mockPlaybackSources = [];
   });
 
   afterEach(async () => {
@@ -216,7 +225,10 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     await screen.rerender(<SpeakingPracticePanel {...commonProps} recording={committedAsset} variant="integrated" />);
 
-    await waitFor(() => expect(mockPlayback.replace).toHaveBeenCalledWith(committedAsset.uri));
+    await waitFor(() => expect(mockPlaybackSources).toContainEqual(expect.objectContaining({
+      uri: committedAsset.uri,
+    })));
+    expect(mockPlayback.replace).not.toHaveBeenCalled();
     expect(mockPlayback.remove).not.toHaveBeenCalled();
     await screen.unmount();
   });
