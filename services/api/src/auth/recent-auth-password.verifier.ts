@@ -1,5 +1,5 @@
 import { ForbiddenException, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import { isChinaMobileE164 } from '@icao/contracts';
+import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -39,7 +39,7 @@ export class SupabaseRecentAuthPasswordVerifier implements RecentAuthPasswordVer
       error
       || !data.session
       || data.user.id !== source.authUserId
-      || data.user.phone !== source.user.phone
+      || normalizeChinaMobile(data.user.phone ?? '') !== source.user.phone
     ) {
       if (data.session) {
         await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
