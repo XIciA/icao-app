@@ -6,6 +6,7 @@ import {
   type CommerceFinishRequest,
   type CommerceOffering,
   type CommercePendingResult,
+  type CommerceProviderOperationOptions,
   type CommercePurchase,
   type CommercePurchaseRequest,
   type CommerceQuarantinedTransaction,
@@ -203,14 +204,14 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     );
   }
 
-  private async connect(): Promise<boolean> {
+  private async connect(options: CommerceProviderOperationOptions = {}): Promise<boolean> {
     if (this.disposed) return false;
     if (!this.connectPromise) {
       this.connectPromise = this.client
         .connect({
           onPurchaseUpdated: (transaction) => this.handlePurchaseUpdated(transaction),
           onPurchaseError: (error) => this.handlePurchaseError(error),
-        })
+        }, options)
         .catch((error: unknown) => {
           this.connectPromise = undefined;
           throw error;
@@ -218,7 +219,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     }
 
     const connection = this.connectPromise;
-    const outcome = await this.runNativeCall(() => connection);
+    const outcome = await this.runNativeCall(() => connection, options);
     return outcome.state === 'succeeded' && !this.disposed;
   }
 
@@ -226,14 +227,17 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     return errorResult('commerce_provider_disposed', { retryable: false });
   }
 
-  async listOfferings(): Promise<CommerceResult<CommerceCatalog>> {
+  async listOfferings(
+    options: CommerceProviderOperationOptions = {},
+  ): Promise<CommerceResult<CommerceCatalog>> {
     if (this.disposed) return this.disposedResult();
-    if (!(await this.connect())) {
+    if (!(await this.connect(options))) {
       return this.disposed ? this.disposedResult() : connectionFailure();
     }
 
     const productQuery = await this.runNativeCall(() =>
-      this.client.fetchProducts(APPLE_MEMBERSHIP_PRODUCT_IDS),
+      this.client.fetchProducts(APPLE_MEMBERSHIP_PRODUCT_IDS, options),
+      options,
     );
     if (productQuery.state !== 'succeeded') {
       return errorResult('commerce_catalog_query_failed', { retryable: true });
@@ -275,6 +279,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
 
   async purchase(
     request: CommercePurchaseRequest,
+    options: CommerceProviderOperationOptions = {},
   ): Promise<CommerceResult<CommercePurchase>> {
     if (this.disposed) return this.disposedResult();
     const product = getMembershipProductByKey(request.offeringKey);
@@ -310,26 +315,35 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
         }),
       );
     });
-    void this.beginPurchase(pendingPurchase);
+    const dispatch = this.beginPurchase(pendingPurchase, options);
+    if (options.lifecycle) options.lifecycle.drain(dispatch);
+    else void dispatch;
 
     return resultPromise;
   }
 
-  async drainTransactionInbox(): Promise<CommerceResult<CommerceTransactionInbox>> {
+  async drainTransactionInbox(
+    options: CommerceProviderOperationOptions = {},
+  ): Promise<CommerceResult<CommerceTransactionInbox>> {
     if (this.disposed) return this.disposedResult();
-    if (!(await this.connect())) {
+    if (!(await this.connect(options))) {
       return this.disposed ? this.disposedResult() : connectionFailure();
     }
     return success(this.drainInbox());
   }
 
-  async reconcileTransactions(): Promise<CommerceResult<CommerceTransactionInbox>> {
+  async reconcileTransactions(
+    options: CommerceProviderOperationOptions = {},
+  ): Promise<CommerceResult<CommerceTransactionInbox>> {
     if (this.disposed) return this.disposedResult();
-    if (!(await this.connect())) {
+    if (!(await this.connect(options))) {
       return this.disposed ? this.disposedResult() : connectionFailure();
     }
 
-    const history = await this.runNativeCall(() => this.client.getTransactions());
+    const history = await this.runNativeCall(
+      () => this.client.getTransactions(options),
+      options,
+    );
     if (history.state !== 'succeeded') {
       return errorResult('commerce_restore_failed', { retryable: true });
     }
@@ -337,17 +351,22 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     return success(this.reconcileSnapshot(history.value, this.drainInbox()));
   }
 
-  async restorePurchases(): Promise<CommerceResult<CommerceRestore>> {
+  async restorePurchases(
+    options: CommerceProviderOperationOptions = {},
+  ): Promise<CommerceResult<CommerceRestore>> {
     if (this.disposed) return this.disposedResult();
-    if (!(await this.connect())) {
+    if (!(await this.connect(options))) {
       return this.disposed ? this.disposedResult() : connectionFailure();
     }
 
-    const sync = await this.runNativeCall(() => this.client.syncPurchases());
+    const sync = await this.runNativeCall(() => this.client.syncPurchases(options), options);
     if (sync.state !== 'succeeded') {
       return errorResult('commerce_restore_failed', { retryable: true });
     }
-    const history = await this.runNativeCall(() => this.client.getTransactions());
+    const history = await this.runNativeCall(
+      () => this.client.getTransactions(options),
+      options,
+    );
     if (history.state !== 'succeeded') {
       return errorResult('commerce_restore_failed', { retryable: true });
     }
@@ -432,6 +451,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
 
   async markServerVerified(
     request: CommerceServerVerificationRequest,
+    _options: CommerceProviderOperationOptions = {},
   ): Promise<CommerceResult<CommerceServerVerifiedAcknowledgement>> {
     if (this.disposed) return this.disposedResult();
     const transaction = this.observedTransactions.get(request.transactionReference);
@@ -459,6 +479,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
 
   async finishTransaction(
     request: CommerceFinishRequest,
+    options: CommerceProviderOperationOptions = {},
   ): Promise<CommerceResult<CommerceFinish>> {
     if (this.disposed) return this.disposedResult();
     const acknowledgement = request.acknowledgement;
@@ -483,12 +504,13 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     }
 
     const transactionReference = acknowledgement.transactionReference;
-    if (!(await this.connect())) {
+    if (!(await this.connect(options))) {
       return this.disposed ? this.disposedResult() : connectionFailure();
     }
 
     const finish = await this.runNativeCall(() =>
-      this.client.finishTransaction(transactionReference),
+      this.client.finishTransaction(transactionReference, options),
+      options,
     );
     if (finish.state === 'succeeded') {
       this.acknowledgementsByReference.delete(transactionReference);
@@ -509,7 +531,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     return errorResult(code, { retryable: code === 'commerce_finish_failed' });
   }
 
-  async dispose(): Promise<void> {
+  async dispose(options: CommerceProviderOperationOptions = {}): Promise<void> {
     if (this.disposed) return;
     this.disposed = true;
     const pendingPurchase = this.pendingPurchase;
@@ -522,7 +544,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
         }),
       );
     }
-    await this.runNativeCall(() => this.client.disconnect());
+    await this.runNativeCall(() => this.client.disconnect(options), options);
     this.connectPromise = undefined;
     this.transactionInbox.clear();
     this.quarantineInbox.clear();
@@ -534,8 +556,11 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     this.reconciliationDeliveredKeys.clear();
   }
 
-  private async beginPurchase(pendingPurchase: PendingPurchase): Promise<void> {
-    if (!(await this.connect())) {
+  private async beginPurchase(
+    pendingPurchase: PendingPurchase,
+    options: CommerceProviderOperationOptions,
+  ): Promise<void> {
+    if (!(await this.connect(options))) {
       this.completePendingPurchase(
         pendingPurchase,
         this.disposed ? this.disposedResult() : connectionFailure(),
@@ -550,7 +575,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
       await this.client.requestPurchase({
         productId: pendingPurchase.productId,
         applicationAccountToken: pendingPurchase.applicationAccountToken,
-      });
+      }, options);
     } catch {
       this.completePendingPurchase(
         pendingPurchase,
@@ -562,7 +587,10 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     }
   }
 
-  private runNativeCall<T>(call: () => Promise<T>): Promise<NativeCallOutcome<T>> {
+  private runNativeCall<T>(
+    call: () => Promise<T>,
+    options: CommerceProviderOperationOptions = {},
+  ): Promise<NativeCallOutcome<T>> {
     return new Promise((resolve) => {
       let completed = false;
       let cancelTimeout: () => void = () => undefined;
@@ -584,6 +612,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
         complete({ state: 'failed', error });
         return;
       }
+      options.lifecycle?.trackRaw(nativeCall);
       void nativeCall.then(
         (value) => complete({ state: 'succeeded', value }),
         (error) => complete({ state: 'failed', error }),

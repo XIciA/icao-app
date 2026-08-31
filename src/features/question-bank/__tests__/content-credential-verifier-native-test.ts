@@ -1,6 +1,9 @@
 import type { ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
 
-import { verifyContentAccessCredential } from '../data/content-credential-verifier.native';
+import {
+  inspectContentAccessCredential,
+  verifyContentAccessCredential,
+} from '../data/content-credential-verifier.native';
 
 const ACCOUNT_ID = '00000000-0000-4000-8000-000000000001';
 const NOW_SECONDS = 1_777_000_000;
@@ -70,5 +73,23 @@ describe('offline member content credential verification', () => {
       exp: 'not-a-number',
     })).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/u, '');
     expect(verify({ ...malformed, token: `header.${payload}.signature` })).toBeUndefined();
+  });
+
+  it('classifies expiry only after signature and bindings are valid', () => {
+    const expired = credential({ iat: NOW_SECONDS - 3_600, exp: NOW_SECONDS - 1 });
+    expect(inspectContentAccessCredential({
+      accountId: ACCOUNT_ID,
+      credential: expired,
+      environment: 'production',
+      now: NOW_SECONDS * 1_000,
+      scope: SCOPE,
+    }).status).toBe('expired');
+    expect(inspectContentAccessCredential({
+      accountId: ACCOUNT_ID,
+      credential: { ...expired, token: 'invalid-signature', expiresAt: '2020-01-01T00:00:00.000Z' },
+      environment: 'production',
+      now: NOW_SECONDS * 1_000,
+      scope: SCOPE,
+    }).status).toBe('invalid');
   });
 });

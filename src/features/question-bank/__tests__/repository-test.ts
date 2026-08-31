@@ -334,6 +334,30 @@ describe('embeddedQuestionBankRepository', () => {
     )).resolves.toBe('expired');
   });
 
+  it('does not misclassify an invalid signature with a past expiresAt as expired', async () => {
+    const accountId = '00000000-0000-4000-8000-000000000001';
+    const scope = { bankId: 'opi', categoryId: 'opi-category-01', topicId: 'opi-topic-0004' };
+    const validCredential = testContentCredential(accountId, scope);
+    await activateQuestionBankContentAccount(accountId);
+    await writeMemberTopicCache(
+      accountId,
+      scope,
+      { id: scope.topicId, name: 'member topic', declaredCardCount: 1, cards: [] },
+      validCredential,
+    );
+    const storedCredentialKey = [...mockSecureValues.keys()]
+      .find((key) => key.startsWith('icao.content.credential.v2.'))!;
+    mockSecureValues.set(storedCredentialKey, JSON.stringify({
+      ...validCredential,
+      token: 'invalid-signature',
+      expiresAt: '2020-01-01T00:00:00.000Z',
+    }));
+    const decryptCallsBeforeInspection = jest.mocked(aesDecryptAsync).mock.calls.length;
+
+    await expect(inspectOfflineMemberTopicAccess(scope)).resolves.toBe('invalid');
+    expect(jest.mocked(aesDecryptAsync).mock.calls).toHaveLength(decryptCallsBeforeInspection);
+  });
+
   it('creates one stable account encryption key when topics are cached concurrently', async () => {
     const accountId = '00000000-0000-4000-8000-000000000001';
     await activateQuestionBankContentAccount(accountId);

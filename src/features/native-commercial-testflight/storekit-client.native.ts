@@ -1,3 +1,5 @@
+import type { CommerceOperationLifecycle } from './commerce-runtime-operation.native';
+
 export type StoreKitProduct = Readonly<{
   productId: string;
   localizedPrice: string;
@@ -28,16 +30,28 @@ export type StoreKitEventHandlers = Readonly<{
 }>;
 
 export interface StoreKitClient {
-  connect(handlers: StoreKitEventHandlers): Promise<void>;
-  fetchProducts(productIds: readonly string[]): Promise<readonly StoreKitProduct[]>;
+  connect(
+    handlers: StoreKitEventHandlers,
+    options?: StoreKitClientOperationOptions,
+  ): Promise<void>;
+  fetchProducts(
+    productIds: readonly string[],
+    options?: StoreKitClientOperationOptions,
+  ): Promise<readonly StoreKitProduct[]>;
   requestPurchase(input: {
     productId: string;
     applicationAccountToken: string;
-  }): Promise<void>;
+  }, options?: StoreKitClientOperationOptions): Promise<void>;
   /** Reads StoreKit history without presenting an App Store account sync flow. */
-  getTransactions(): Promise<readonly StoreKitTransaction[]>;
+  getTransactions(options?: StoreKitClientOperationOptions): Promise<readonly StoreKitTransaction[]>;
   /** Explicit user-initiated Restore Purchases step. This is the only sync path. */
-  syncPurchases(): Promise<void>;
-  finishTransaction(transactionReference: string): Promise<StoreKitFinishCompletion>;
-  disconnect(): Promise<void>;
+  syncPurchases(options?: StoreKitClientOperationOptions): Promise<void>;
+  finishTransaction(
+    transactionReference: string,
+    options?: StoreKitClientOperationOptions,
+  ): Promise<StoreKitFinishCompletion>;
+  disconnect(options?: StoreKitClientOperationOptions): Promise<void>;
 }
+export type StoreKitClientOperationOptions = Readonly<{
+  lifecycle?: CommerceOperationLifecycle;
+}>;

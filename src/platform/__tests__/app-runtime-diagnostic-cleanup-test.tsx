@@ -5,6 +5,7 @@ import { AppRuntime } from '../AppRuntime';
 
 const mockCleanupRecordings = jest.fn();
 const mockPurgeDiagnostics = jest.fn(async () => undefined);
+const mockCommerceRuntimeProvider = jest.fn();
 
 jest.mock('@/features/question-bank/recording/recording-repository', () => ({
   recordingRepository: { cleanupExpired: () => mockCleanupRecordings() },
@@ -13,6 +14,12 @@ jest.mock('@/features/question-bank/recording/recording-repository', () => ({
 jest.mock('@/features/radio-player/RadioMiniPlayer', () => ({ RadioMiniPlayer: () => null }));
 jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
   RadioPlayerProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({
+  CommerceRuntimeProvider: ({ children }: { children: React.ReactNode }) => {
+    mockCommerceRuntimeProvider();
+    return children;
+  },
 }));
 jest.mock('@/platform/diagnostics/safe-diagnostic-store', () => ({
   purgeExpiredSafeDiagnostics: () => mockPurgeDiagnostics(),
@@ -40,6 +47,7 @@ describe('AppRuntime diagnostic retention', () => {
     const screen = await render(<AppRuntime><View testID="content" /></AppRuntime>);
 
     await act(async () => { await Promise.resolve(); });
+    expect(mockCommerceRuntimeProvider).toHaveBeenCalledTimes(1);
     expect(mockPurgeDiagnostics).toHaveBeenCalledTimes(1);
     expect(mockCleanupRecordings).toHaveBeenCalledTimes(1);
 
