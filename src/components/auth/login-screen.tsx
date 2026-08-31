@@ -1,22 +1,25 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { type Href, useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
+import {
+  clearPhoneOtpChallenge,
+  phoneOtpChallenge,
+  readPhoneOtpChallenge,
+  type PersistedPhoneOtpChallenge,
+  writePhoneOtpChallenge,
+} from '@/features/auth/phone-otp-challenge-store';
 import { colors, radii, spacing } from '@/theme';
 
 import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui';
 
 type EntryView = 'login' | 'recovery';
 type LoginMethod = 'otp' | 'password';
-type CodePurpose = 'login' | 'recovery';
-
-const RESEND_INTERVAL_MS = 60_000;
-
 export function loginErrorMessage(code: string) {
   switch (code) {
     case 'invalid_phone_number': return '请输入正确的中国大陆手机号。';
@@ -48,53 +51,84 @@ export function LoginScreen() {
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
   const [entryView, setEntryView] = useState<EntryView>(mode === 'recovery' ? 'recovery' : 'login');
   const [loginMethod, setLoginMethod] = useState<LoginMethod>('otp');
-  const [codePurpose, setCodePurpose] = useState<CodePurpose>();
+  const [challenge, setChallenge] = useState<PersistedPhoneOtpChallenge>();
+  const [challengeRestoring, setChallengeRestoring] = useState(true);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [code, setCode] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [resendDeadline, setResendDeadline] = useState(0);
   const [clockNow, setClockNow] = useState(() => Date.now());
+  const actionInFlightRef = useRef(false);
+
+  const codePurpose = challenge?.purpose;
+  const resendDeadline = challenge?.resendAllowedAt ?? 0;
 
   useEffect(() => {
-    if (!resendDeadline) return undefined;
+    let active = true;
+    void readPhoneOtpChallenge().then((restored) => {
+      if (!active || !restored) return;
+      setChallenge(restored);
+      setPhone(restored.phone.slice(3));
+      setEntryView(restored.purpose === 'recovery' ? 'recovery' : 'login');
+      setClockNow(Date.now());
+    }).catch((value: unknown) => {
+      if (active) setError(loginErrorMessage(value instanceof Error ? value.message : 'auth_session_storage_unavailable'));
+    }).finally(() => {
+      if (active) setChallengeRestoring(false);
+    });
+    return () => { active = false; };
+  }, []);
+
+  useEffect(() => {
+    const deadline = challenge?.expiresAt ?? resendDeadline;
+    if (!deadline) return undefined;
     const timer = setInterval(() => {
       const next = Date.now();
       setClockNow(next);
-      if (next >= resendDeadline) clearInterval(timer);
+      if (next >= deadline) clearInterval(timer);
     }, 250);
     return () => clearInterval(timer);
-  }, [resendDeadline]);
+  }, [challenge?.expiresAt, resendDeadline]);
 
   const remainingSeconds = Math.max(0, Math.ceil((resendDeadline - clockNow) / 1000));
+  const challengeExpired = Boolean(challenge && clockNow >= challenge.expiresAt);
 
   function updatePhone(value: string) {
     const digits = value.replace(/\D/gu, '');
     setPhone((digits.startsWith('86') && digits.length > 11 ? digits.slice(2) : digits).slice(0, 11));
   }
 
-  function startCountdown() {
-    const now = Date.now();
-    setClockNow(now);
-    setResendDeadline(now + RESEND_INTERVAL_MS);
+  function beginAction() {
+    if (actionInFlightRef.current) return false;
+    actionInFlightRef.current = true;
+    setSubmitting(true);
+    return true;
+  }
+
+  function finishAction() {
+    actionInFlightRef.current = false;
+    setSubmitting(false);
   }
 
   function showLogin(method: LoginMethod = loginMethod) {
     setEntryView('login');
     setLoginMethod(method);
-    setCodePurpose(undefined);
+    setChallenge(undefined);
     setCode('');
     setPassword('');
     setError('');
+    void clearPhoneOtpChallenge().catch(() => undefined);
   }
 
-  function showCode(purpose: CodePurpose) {
-    setCodePurpose(purpose);
+  async function showCode(next: PersistedPhoneOtpChallenge) {
+    setChallenge(next);
+    setPhone(next.phone.slice(3));
     setCode('');
     setError('');
-    startCountdown();
+    setClockNow(Date.now());
+    await writePhoneOtpChallenge(next);
   }
 
   function showError(value: unknown) {
@@ -114,107 +148,112 @@ export function LoginScreen() {
     return false;
   }
 
-  function enterApp() {
-    router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
-  }
-
   async function socialLogin() {
     if (!requireConsent()) return;
+    if (!beginAction()) return;
     setError('');
-    setSubmitting(true);
     try {
       await auth.signInWithApple();
-      enterApp();
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   async function requestLoginCode() {
     if (!validatePhone() || !requireConsent()) return;
+    if (!beginAction()) return;
     setError('');
-    setSubmitting(true);
+    const requestedPhone = normalizeChinaMobile(phone)!;
     try {
-      await auth.requestPhoneOtp(phone);
-      showCode('login');
+      const response = await auth.requestPhoneOtp(requestedPhone);
+      await showCode(phoneOtpChallenge(requestedPhone, 'login', response));
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   async function submitPasswordLogin() {
     if (!validatePhone() || !requireConsent()) return;
     if (!password) { setError('请输入登录密码。'); return; }
+    if (!beginAction()) return;
     setError('');
-    setSubmitting(true);
+    const requestedPhone = normalizeChinaMobile(phone)!;
     try {
-      await auth.signInWithPhonePassword(phone, password);
+      await auth.signInWithPhonePassword(requestedPhone, password);
       setPassword('');
-      enterApp();
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   async function requestRecoveryCode() {
     if (!validatePhone()) return;
+    if (!beginAction()) return;
     setError('');
-    setSubmitting(true);
+    const requestedPhone = normalizeChinaMobile(phone)!;
     try {
-      await auth.requestPasswordRecoveryOtp(phone);
-      showCode('recovery');
+      const response = await auth.requestPasswordRecoveryOtp(requestedPhone);
+      await showCode(phoneOtpChallenge(requestedPhone, 'recovery', response));
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   async function resendCode() {
-    if (!codePurpose || remainingSeconds > 0) return;
+    if (!challenge || remainingSeconds > 0 || !beginAction()) return;
     setError('');
-    setSubmitting(true);
     try {
-      if (codePurpose === 'recovery') await auth.requestPasswordRecoveryOtp(phone);
-      else await auth.requestPhoneOtp(phone);
-      setCode('');
-      startCountdown();
+      const response = challenge.purpose === 'recovery'
+        ? await auth.requestPasswordRecoveryOtp(challenge.phone)
+        : await auth.requestPhoneOtp(challenge.phone);
+      await showCode(phoneOtpChallenge(challenge.phone, challenge.purpose, response));
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   async function verifyCode() {
-    if (!codePurpose) return;
+    if (!challenge) return;
+    if (Date.now() >= challenge.expiresAt) {
+      setClockNow(Date.now());
+      setError('验证码已过期，请重新获取。');
+      return;
+    }
     if (!/^\d{6}$/u.test(code)) { setError('请输入6位短信验证码。'); return; }
+    if (!beginAction()) return;
     setError('');
-    setSubmitting(true);
     try {
-      await auth.verifyPhoneOtp(phone, code, codePurpose);
-      if (codePurpose === 'recovery') router.replace('/account/password?mode=recovery');
-      else enterApp();
+      await auth.verifyPhoneOtp(challenge.phone, code, challenge.purpose);
+      await clearPhoneOtpChallenge().catch(() => undefined);
+      setChallenge(undefined);
     } catch (value) {
       showError(value);
     } finally {
-      setSubmitting(false);
+      finishAction();
     }
   }
 
   function changePhone() {
-    const purpose = codePurpose;
-    setCodePurpose(undefined);
+    const purpose = challenge?.purpose;
+    setChallenge(undefined);
     setCode('');
     setError('');
-    setResendDeadline(0);
     setEntryView(purpose === 'recovery' ? 'recovery' : 'login');
+    void clearPhoneOtpChallenge().catch(() => undefined);
+  }
+
+  if (challengeRestoring) {
+    return <AuthShell><AuthHeading title="正在恢复验证" subtitle="正在安全读取尚未完成的手机号验证…" /></AuthShell>;
   }
 
   if (codePurpose) {
@@ -224,9 +263,11 @@ export function LoginScreen() {
         <AuthHeading title={recovery ? '验证手机号' : '输入验证码'} subtitle={`验证码已发送至 ${maskChinaMobile(normalizeChinaMobile(phone))}`} />
         <View style={styles.form}>
           <CodeField onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))} value={code} />
-          <AppText variant="caption">验证码5分钟内有效，请勿转发给他人。</AppText>
+          <AppText color={challengeExpired ? colors.destructive : undefined} variant="caption">
+            {challengeExpired ? '验证码已过期，请重新获取。' : '验证码5分钟内有效，请勿转发给他人。'}
+          </AppText>
           {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-          <Button disabled={submitting || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">
+          <Button disabled={submitting || challengeExpired || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">
             {recovery ? '继续重置密码' : '验证并进入'}
           </Button>
           <Button disabled={submitting || remainingSeconds > 0} onPress={() => void resendCode()} variant="outline">
@@ -271,7 +312,7 @@ export function LoginScreen() {
         ) : null}
       </View>
       <Divider label="或使用手机号" />
-      <LoginMethodTabs method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
+      <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
         {loginMethod === 'otp' ? (
@@ -300,7 +341,7 @@ function PhoneField({ value, onChangeText }: { value: string; onChangeText: (val
   return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="中国大陆手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
 }
 
-function LoginMethodTabs({ method, onChange }: { method: LoginMethod; onChange: (method: LoginMethod) => void }) {
+function LoginMethodTabs({ disabled, method, onChange }: { disabled: boolean; method: LoginMethod; onChange: (method: LoginMethod) => void }) {
   return (
     <View accessibilityRole="tablist" style={styles.methodTabs}>
       {(['otp', 'password'] as const).map((item) => {
@@ -309,6 +350,7 @@ function LoginMethodTabs({ method, onChange }: { method: LoginMethod; onChange: 
           <Pressable
             accessibilityRole="tab"
             accessibilityState={{ selected }}
+            disabled={disabled}
             key={item}
             onPress={() => onChange(item)}
             style={[styles.methodTab, selected && styles.methodTabSelected]}

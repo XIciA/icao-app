@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
@@ -9,6 +9,9 @@ const mockVerifyPhoneOtp = jest.fn();
 const mockSignInWithPhonePassword = jest.fn();
 const mockSignInWithApple = jest.fn();
 const mockConsumePendingPath = jest.fn();
+const mockReadPhoneOtpChallenge = jest.fn();
+const mockWritePhoneOtpChallenge = jest.fn();
+const mockClearPhoneOtpChallenge = jest.fn();
 const mockBack = jest.fn();
 const mockCanGoBack = jest.fn();
 const mockPush = jest.fn();
@@ -37,25 +40,46 @@ jest.mock('@/features/auth/AuthProvider', () => ({
   }),
 }));
 
+jest.mock('@/features/auth/phone-otp-challenge-store', () => ({
+  clearPhoneOtpChallenge: (...args: unknown[]) => mockClearPhoneOtpChallenge(...args),
+  phoneOtpChallenge: (phone: string, purpose: 'login' | 'recovery', response: { expiresAt: number; issuedAt: number; resendAllowedAt: number }) => ({
+    expiresAt: response.expiresAt,
+    issuedAt: response.issuedAt,
+    phone,
+    purpose,
+    resendAllowedAt: response.resendAllowedAt,
+    version: 1,
+  }),
+  readPhoneOtpChallenge: (...args: unknown[]) => mockReadPhoneOtpChallenge(...args),
+  writePhoneOtpChallenge: (...args: unknown[]) => mockWritePhoneOtpChallenge(...args),
+}));
+
 async function renderLoginScreen() {
-  return render(
+  const screen = await render(
     <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
       <LoginScreen />
     </SafeAreaProvider>,
   );
+  await waitFor(() => expect(screen.queryByText('正在恢复验证')).toBeNull());
+  return screen;
 }
 
 describe('<LoginScreen />', () => {
   beforeEach(() => {
     mockParams = { slug: 'login' };
-    mockRequestPhoneOtp.mockReset().mockResolvedValue(undefined);
-    mockRequestPasswordRecoveryOtp.mockReset().mockResolvedValue(undefined);
+    const now = Date.now();
+    const response = { accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 };
+    mockRequestPhoneOtp.mockReset().mockResolvedValue(response);
+    mockRequestPasswordRecoveryOtp.mockReset().mockResolvedValue(response);
     mockVerifyPhoneOtp.mockReset().mockResolvedValue({
       user: { registrationPending: false },
     });
     mockSignInWithPhonePassword.mockReset().mockResolvedValue(undefined);
     mockSignInWithApple.mockReset().mockResolvedValue(undefined);
     mockConsumePendingPath.mockReset().mockReturnValue(undefined);
+    mockReadPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockClearPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
     mockBack.mockClear();
     mockCanGoBack.mockReset();
     mockPush.mockClear();
@@ -127,7 +151,7 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
     await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
 
-    expect(mockRequestPhoneOtp).toHaveBeenCalledWith('13800138000');
+    expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
     expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
 
     const codeInput = screen.getByLabelText('短信验证码');
@@ -141,8 +165,8 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.changeText(codeInput, '123456'); });
     await act(async () => { fireEvent.press(screen.getByText('验证并进入')); });
 
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('13800138000', '123456', 'login');
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
+    expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
   });
 
   it('requires consent and auto-registers with phone OTP without forcing password setup', async () => {
@@ -155,14 +179,14 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
     await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
 
-    expect(mockRequestPhoneOtp).toHaveBeenCalledWith('13800138000');
+    expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
     expect(screen.getByText('输入验证码')).toBeTruthy();
     expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
 
     await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
     await act(async () => { fireEvent.press(screen.getByText('验证并进入')); });
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('13800138000', '123456', 'login');
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
+    expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=setup');
   });
 
@@ -171,7 +195,7 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
     await act(async () => { fireEvent.press(screen.getByTestId('apple-sign-in')); });
     expect(mockSignInWithApple).toHaveBeenCalledTimes(1);
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
   });
 
   it('signs in with the phone and password using the same account entry', async () => {
@@ -184,8 +208,8 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
     await act(async () => { fireEvent.press(screen.getByRole('button', { name: '密码登录' })); });
 
-    expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('13800138000', 'Flight2026safe');
-    expect(mockReplace).toHaveBeenCalledWith('/question-bank');
+    expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('+8613800138000', 'Flight2026safe');
+    expect(mockReplace).not.toHaveBeenCalledWith('/question-bank');
   });
 
   it('verifies an existing phone before routing to password recovery', async () => {
@@ -199,13 +223,47 @@ describe('<LoginScreen />', () => {
     expect(screen.queryByRole('checkbox')).toBeNull();
     await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
     await act(async () => { fireEvent.press(screen.getByText('获取重置验证码')); });
-    expect(mockRequestPasswordRecoveryOtp).toHaveBeenCalledWith('13800138000');
+    expect(mockRequestPasswordRecoveryOtp).toHaveBeenCalledWith('+8613800138000');
 
     await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '654321'); });
     await act(async () => { fireEvent.press(screen.getByText('继续重置密码')); });
 
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('13800138000', '654321', 'recovery');
-    expect(mockReplace).toHaveBeenCalledWith('/account/password?mode=recovery');
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '654321', 'recovery');
+    expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=recovery');
+  });
+
+  it('restores an unexpired OTP challenge after the screen is reopened', async () => {
+    const now = Date.now();
+    mockReadPhoneOtpChallenge.mockResolvedValueOnce({
+      expiresAt: now + 240_000,
+      issuedAt: now - 60_000,
+      phone: '+8613800138000',
+      purpose: 'login',
+      resendAllowedAt: now,
+      version: 1,
+    });
+
+    const screen = await renderLoginScreen();
+
+    expect(screen.getByText('输入验证码')).toBeTruthy();
+    expect(screen.getByText(/138\*{4}8000/u)).toBeTruthy();
+    expect(screen.getByText('重新获取验证码')).toBeTruthy();
+    expect(mockRequestPhoneOtp).not.toHaveBeenCalled();
+  });
+
+  it('deduplicates rapid OTP requests before React can disable the button', async () => {
+    let resolveRequest!: (value: { accepted: true; expiresAt: number; issuedAt: number; resendAllowedAt: number }) => void;
+    mockRequestPhoneOtp.mockImplementationOnce(() => new Promise((resolve) => { resolveRequest = resolve; }));
+    const screen = await renderLoginScreen();
+    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
+    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
+
+    fireEvent.press(screen.getByText('获取验证码'));
+    fireEvent.press(screen.getByText('获取验证码'));
+    expect(mockRequestPhoneOtp).toHaveBeenCalledTimes(1);
+
+    const now = Date.now();
+    await act(async () => resolveRequest({ accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 }));
   });
 
   it('maps dual-auth failures to actionable and non-enumerating messages', () => {

@@ -1,6 +1,6 @@
-import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps } from 'expo-router';
+import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -49,12 +49,24 @@ export default function RootLayout() {
 export function AppStack() {
   const auth = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
+  const authRedirectInFlightRef = useRef(false);
 
   useEffect(() => {
     if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
       auth.rememberPendingPath(pathname);
     }
   }, [auth, pathname]);
+
+  useEffect(() => {
+    if (!auth.restoring && auth.canAccessApp && pathname?.startsWith('/auth/')) {
+      if (authRedirectInFlightRef.current) return;
+      authRedirectInFlightRef.current = true;
+      router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
+      return;
+    }
+    authRedirectInFlightRef.current = false;
+  }, [auth, pathname, router]);
 
   if (auth.restoring) return <GlobalLoadingScreen />;
   if (auth.accountRestoreUnavailable) {

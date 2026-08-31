@@ -50,6 +50,9 @@ export type StartPhoneOtpRequest = {
 
 export type StartPhoneOtpResponse = {
   accepted: true;
+  expiresAt: number;
+  issuedAt: number;
+  resendAllowedAt: number;
 };
 
 export type AuthorizePasswordRecoveryResponse = {

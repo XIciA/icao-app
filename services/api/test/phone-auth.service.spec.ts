@@ -52,7 +52,12 @@ describe('PhoneAuthService', () => {
 
   it('starts native +86 OTP registration with the trusted source IP', async () => {
     const { instance, signInWithOtp } = service();
-    await expect(instance.start('+8613800138000', '203.0.113.8')).resolves.toEqual({ accepted: true });
+    await expect(instance.start('+8613800138000', '203.0.113.8')).resolves.toEqual(expect.objectContaining({
+      accepted: true,
+      expiresAt: expect.any(Number),
+      issuedAt: expect.any(Number),
+      resendAllowedAt: expect.any(Number),
+    }));
     expect(supabase.createClient).toHaveBeenCalledWith(
       config.supabaseUrl,
       config.supabasePublishableKey,
@@ -76,18 +81,18 @@ describe('PhoneAuthService', () => {
   it('returns the same accepted recovery shape when the phone is unknown', async () => {
     const { instance } = service({ code: 'otp_disabled', message: 'Signups not allowed for otp' });
     const startedAt = Date.now();
-    await expect(instance.startRecovery('+8613800138000', '203.0.113.8')).resolves.toEqual({ accepted: true });
+    await expect(instance.startRecovery('+8613800138000', '203.0.113.8')).resolves.toEqual(expect.objectContaining({ accepted: true }));
     expect(Date.now() - startedAt).toBeGreaterThanOrEqual(300);
   });
 
   it('hides rate limits and other supplier errors behind the same recovery response', async () => {
     const rateLimited = service({ code: 'over_sms_send_rate_limit', message: 'supplier detail' }).instance;
     await expect(rateLimited.startRecovery('+8613800138000', '203.0.113.8'))
-      .resolves.toEqual({ accepted: true });
+      .resolves.toEqual(expect.objectContaining({ accepted: true }));
 
     supabase.createClient.mockReset();
     const unavailable = service({ code: 'sms_send_failed', message: 'supplier detail' }).instance;
-    await expect(unavailable.startRecovery('+8613800138000', '203.0.113.8')).resolves.toEqual({ accepted: true });
+    await expect(unavailable.startRecovery('+8613800138000', '203.0.113.8')).resolves.toEqual(expect.objectContaining({ accepted: true }));
   });
 
   it('persists purpose-bound login and recovery intents without storing the raw phone', async () => {
@@ -99,6 +104,7 @@ describe('PhoneAuthService', () => {
     expect(login.values).toHaveBeenCalledWith(expect.objectContaining({
       accountId: undefined,
       createdAt: new Date(now),
+      expiresAt: new Date(now + 5 * 60 * 1_000),
       otpNotBefore: new Date(Math.floor(now / 1_000) * 1_000),
       phoneDigest: expect.stringMatching(/^[a-f0-9]{64}$/u),
       purpose: 'login',

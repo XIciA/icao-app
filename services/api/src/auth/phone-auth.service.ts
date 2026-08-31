@@ -12,7 +12,8 @@ import { DatabaseService } from '../database/database.service';
 import type { VerifiedAuthSession } from './auth.types';
 
 const RECOVERY_RESPONSE_FLOOR_MS = 350;
-const OTP_INTENT_TTL_MS = 10 * 60 * 1_000;
+export const PHONE_OTP_RESEND_INTERVAL_MS = 60 * 1_000;
+export const PHONE_OTP_TTL_MS = 5 * 60 * 1_000;
 type PhoneOtpPurpose = 'login' | RecentAuthPurpose;
 export type PhoneAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
@@ -47,7 +48,7 @@ export class PhoneAuthService {
     });
     if (error) this.throwStartError(error.code);
     await this.recordIntent(phone, 'login', undefined, startedAt);
-    return { accepted: true };
+    return this.challengeWindow(startedAt);
   }
 
   async startRecovery(phone: string, sourceIp: string): Promise<StartPhoneOtpResponse> {
@@ -60,7 +61,7 @@ export class PhoneAuthService {
       await this.recordIntent(phone, 'password_recovery', undefined, new Date(startedAt));
     }
     await this.waitForRecoveryFloor(startedAt);
-    return { accepted: true };
+    return this.challengeWindow(new Date(startedAt));
   }
 
   async startRecentAuth(
@@ -79,7 +80,7 @@ export class PhoneAuthService {
     });
     if (error) this.throwStartError(error.code);
     await this.recordIntent(phone, purpose, source.user.id, startedAt);
-    return { accepted: true };
+    return this.challengeWindow(startedAt);
   }
 
   async startBinding(source: VerifiedAuthSession, phone: string, sourceIp: string) {
@@ -183,6 +184,16 @@ export class PhoneAuthService {
       .digest('hex');
   }
 
+  private challengeWindow(startedAt: Date): StartPhoneOtpResponse {
+    const issuedAt = startedAt.getTime();
+    return {
+      accepted: true,
+      expiresAt: issuedAt + PHONE_OTP_TTL_MS,
+      issuedAt,
+      resendAllowedAt: issuedAt + PHONE_OTP_RESEND_INTERVAL_MS,
+    };
+  }
+
   private async recordIntent(
     phone: string,
     purpose: PhoneOtpPurpose,
@@ -220,7 +231,7 @@ export class PhoneAuthService {
       await transaction.insert(phoneOtpIntents).values({
         accountId,
         createdAt: startedAt,
-        expiresAt: new Date(startedAt.getTime() + OTP_INTENT_TTL_MS),
+        expiresAt: new Date(startedAt.getTime() + PHONE_OTP_TTL_MS),
         otpNotBefore: new Date(Math.floor(startedAt.getTime() / 1_000) * 1_000),
         phoneDigest,
         purpose,

@@ -34,9 +34,9 @@ export type AuthService = {
   authorizeAccountDeletionWithApple(): Promise<RecentAuthGrantResponse>;
   authorizeAccountDeletionWithPassword(password: string): Promise<RecentAuthGrantResponse>;
   authorizeAccountDeletionWithPhoneOtp(token: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
-  requestAccountDeletionPhoneOtp(): Promise<void>;
-  requestPhoneOtp(phone: string): Promise<void>;
-  requestPasswordRecoveryOtp(phone: string): Promise<void>;
+  requestAccountDeletionPhoneOtp(): Promise<StartPhoneOtpResponse>;
+  requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
+  requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
   verifyPhoneOtp(phone: string, token: string): Promise<AppSession>;
   authorizePasswordRecovery(): Promise<AuthorizePasswordRecoveryResponse>;
   signInWithPhonePassword(phone: string, password: string): Promise<AppSession>;
@@ -186,6 +186,7 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({ purpose: 'account_delete' }),
     });
     if (!response.accepted) throw new Error('phone_otp_delivery_failed');
+    return response;
   }
 
   async authorizeAccountDeletionWithPhoneOtp(token: string) {
@@ -252,6 +253,7 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({ phone }),
     });
     if (!response.accepted) throw new Error('phone_auth_unavailable');
+    return response;
   }
 
   async requestPasswordRecoveryOtp(input: string) {
@@ -263,6 +265,7 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({ phone }),
     });
     if (!response.accepted) throw new Error('phone_auth_unavailable');
+    return response;
   }
 
   async verifyPhoneOtp(input: string, token: string) {

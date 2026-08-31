@@ -147,7 +147,10 @@ function reportConfirmsPurchase(
 
 export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
-  const accountId = auth.account?.accountId;
+  // Commerce is an optional authenticated subsystem. It starts only after the
+  // core account and learning-data ownership gate are ready, so an early
+  // catalog request can never race a newly established auth session.
+  const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   const [phase, setPhase] = useState<CommerceRuntimePhase>('unavailable');
   const [offerings, setOfferings] = useState<readonly CommerceRuntimeOffering[]>([]);
   const [entitlement, setEntitlement] = useState<CommerceRuntimeValue['entitlement']>();
