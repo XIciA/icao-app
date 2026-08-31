@@ -54,7 +54,7 @@ describe('<MembershipPage />', () => {
   it('uses StoreKit localized prices and states the non-renewing duration rules', async () => {
     const screen = await render(<MembershipPage />);
 
-    expect(screen.getByText('TestFlight 沙盒')).toBeTruthy();
+    expect(screen.getByText('沙盒环境')).toBeTruthy();
     expect(screen.getByText('¥18.00')).toBeTruthy();
     expect(screen.getByText('¥58.00')).toBeTruthy();
     expect(screen.getByText('购买后增加 31 天使用时间；重复购买会顺延。')).toBeTruthy();

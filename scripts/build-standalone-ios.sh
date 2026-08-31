@@ -34,6 +34,7 @@ echo 'Building and installing an iOS Release app with its JavaScript bundle embe
 
 cd "$PROJECT_ROOT"
 ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install
+verify_ios_cng_brand_assets "$PROJECT_ROOT"
 (
   cd "$PROJECT_ROOT/ios"
   pod install

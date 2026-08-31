@@ -45,6 +45,7 @@ echo 'The publishable key is available only to the build process and is not prin
 
 cd "$PROJECT_ROOT"
 ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install
+verify_ios_cng_brand_assets "$PROJECT_ROOT"
 (
   cd "$PROJECT_ROOT/ios"
   pod install

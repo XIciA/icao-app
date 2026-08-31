@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AccountScreen } from '@/features/account/AccountScreen';
@@ -89,7 +89,10 @@ function withSafeArea(node: React.ReactNode) {
 }
 
 describe('base flow parity screens', () => {
+  let consoleErrorSpy: jest.SpyInstance;
+
   beforeEach(() => {
+    consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     mockParams = { slug: '' };
     mockAuthSession = undefined;
     mockAccount = undefined;
@@ -103,6 +106,15 @@ describe('base flow parity screens', () => {
     mockRouterReplace.mockReset();
     mockRequestPhoneBindingOtp.mockReset();
     mockVerifyPhoneBindingOtp.mockReset().mockResolvedValue(undefined);
+  });
+
+  afterEach(async () => {
+    await cleanup();
+    const unexpectedErrors = consoleErrorSpy.mock.calls.map((args) => args.map(String).join(' '));
+    consoleErrorSpy.mockRestore();
+    if (unexpectedErrors.length > 0) {
+      throw new Error(`Unexpected console.error during base flow test:\n${unexpectedErrors.join('\n')}`);
+    }
   });
 
   it('covers the account security and future-service boundary', async () => {
@@ -129,9 +141,7 @@ describe('base flow parity screens', () => {
     const screen = await render(withSafeArea(<AccountScreen />));
 
     expect(screen.getByText('短信验证后设置，可使用手机号和密码登录')).toBeTruthy();
-    await act(async () => {
-      fireEvent.press(screen.getByText('设置登录密码'));
-    });
+    await fireEvent.press(screen.getByText('设置登录密码'));
 
     await waitFor(() => expect(mockSignOut).toHaveBeenCalledTimes(1));
     expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login?mode=recovery');
@@ -148,13 +158,13 @@ describe('base flow parity screens', () => {
     });
     const screen = await render(withSafeArea(<AccountScreen />));
 
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取验证码'));
     expect(screen.getByText('验证码已发送至 +86 138****8000')).toBeTruthy();
     expect(screen.getByText(/学习记录与权益保持不变/u)).toBeTruthy();
     expect(screen.queryByText(/已有账号|归并|合并/u)).toBeNull();
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
-    await act(async () => { fireEvent.press(screen.getByText('验证并完成绑定')); });
+    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
+    await fireEvent.press(screen.getByText('验证并完成绑定'));
     expect(mockVerifyPhoneBindingOtp).toHaveBeenCalledWith({ phone: '+8613800138000' }, '123456');
     expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
   });
@@ -168,8 +178,8 @@ describe('base flow parity screens', () => {
     mockRequestPhoneBindingOtp.mockRejectedValue(new Error('recent_social_auth_required'));
     const screen = await render(withSafeArea(<AccountScreen />));
 
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取验证码'));
 
     expect(screen.getByText(/重新使用 Apple 登录验证身份/u)).toBeTruthy();
     expect(screen.getByText('重新验证身份')).toBeTruthy();
@@ -186,15 +196,15 @@ describe('base flow parity screens', () => {
     mockVerifyPhoneBindingOtp.mockRejectedValueOnce(new Error('phone_already_registered'));
     const screen = await render(withSafeArea(<AccountScreen />));
 
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
-    await act(async () => { fireEvent.press(screen.getByText('验证并完成绑定')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取验证码'));
+    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
+    await fireEvent.press(screen.getByText('验证并完成绑定'));
 
     expect(screen.getByText('该手机号已有账号，请退出后使用手机号登录')).toBeTruthy();
     expect(screen.getByText('退出并使用手机号登录')).toBeTruthy();
     expect(mockSignOut).not.toHaveBeenCalled();
-    await act(async () => { fireEvent.press(screen.getByText('退出并使用手机号登录')); });
+    await fireEvent.press(screen.getByText('退出并使用手机号登录'));
     expect(mockSignOut).toHaveBeenCalledTimes(1);
     expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login');
   });
@@ -209,29 +219,21 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText('当前密码')).toBeNull();
     expect(submit.props.accessibilityState?.disabled).toBe(true);
 
-    await act(async () => {
-      fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), '😀😀😀😀a1');
-      fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), '😀😀😀😀a1');
-    });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), '😀😀😀😀a1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), '😀😀😀😀a1');
     await waitFor(() => expect(screen.getByText('密码长度需要为 10–64 位')).toBeTruthy());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(true);
 
-    await act(async () => {
-      fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'abcdefghij');
-      fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'abcdefghij');
-    });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'abcdefghij');
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'abcdefghij');
     await waitFor(() => expect(screen.getByText('密码必须同时包含字母和数字')).toBeTruthy());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(true);
 
-    await act(async () => {
-      fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
-      fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck2');
-    });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck2');
     await waitFor(() => expect(screen.getByText('两次输入的密码不一致')).toBeTruthy());
 
-    await act(async () => {
-      fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
-    });
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
     await waitFor(() => expect(screen.queryByText('两次输入的密码不一致')).toBeNull());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(false);
   });
@@ -265,9 +267,7 @@ describe('base flow parity screens', () => {
     const screen = await render(withSafeArea(<AccountScreen />));
 
     expect(screen.getByText('当前密码')).toBeTruthy();
-    await act(async () => {
-      fireEvent.press(screen.getByText('忘记当前密码？使用短信验证'));
-    });
+    await fireEvent.press(screen.getByText('忘记当前密码？使用短信验证'));
 
     await waitFor(() => expect(mockSignOut).toHaveBeenCalledTimes(1));
     expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login?mode=recovery');
@@ -281,19 +281,13 @@ describe('base flow parity screens', () => {
     expect(screen.getByText('手机号验证已通过，设置登录密码即可完成注册。')).toBeTruthy();
     expect(screen.queryByText('当前密码')).toBeNull();
 
-    await act(async () => {
-      fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
-      fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
-    });
-    await act(async () => {
-      fireEvent.press(screen.getByTestId('password-submit'));
-    });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
+    await fireEvent.press(screen.getByTestId('password-submit'));
 
     await waitFor(() => expect(mockUpdatePassword).toHaveBeenCalledWith('flightdeck1', undefined));
     await waitFor(() => expect(screen.getByText('注册完成')).toBeTruthy());
-    await act(async () => {
-      fireEvent.press(screen.getByText('进入 App'));
-    });
+    await fireEvent.press(screen.getByText('进入 App'));
     expect(mockRouterReplace).toHaveBeenCalledWith('/(tabs)');
   });
 
@@ -363,12 +357,9 @@ describe('base flow parity screens', () => {
     const screen = await render(withSafeArea(<InfoScreen />));
 
     expect(screen.getByText('功能建议')).toBeTruthy();
-    fireEvent.changeText(screen.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '希望优化题库检索体验');
+    await fireEvent.changeText(screen.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '希望优化题库检索体验');
     await waitFor(() => expect(screen.getByTestId('feedback-submit').props.accessibilityState?.disabled).toBe(false));
-    await act(async () => {
-      fireEvent.press(screen.getByTestId('feedback-submit'));
-      await Promise.resolve();
-    });
+    await fireEvent.press(screen.getByTestId('feedback-submit'));
 
     await waitFor(() => expect(mockSubmitFeedback).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(screen.getByText('FB-260723-A8K4Q2')).toBeTruthy());
@@ -397,10 +388,7 @@ describe('base flow parity screens', () => {
     expect(screen.getByText('将附带本次故障的脱敏诊断')).toBeTruthy();
     expect(screen.getByDisplayValue('录音功能出现异常，请协助排查。')).toBeTruthy();
     expect(screen.getByText(/不包含录音、回答、文件地址、Token 或账号信息/u)).toBeTruthy();
-    await act(async () => {
-      fireEvent.press(screen.getByTestId('feedback-submit'));
-      await Promise.resolve();
-    });
+    await fireEvent.press(screen.getByTestId('feedback-submit'));
 
     await waitFor(() => expect(mockSubmitFeedback).toHaveBeenCalledWith(expect.objectContaining({
       category: 'other',
@@ -435,12 +423,9 @@ describe('base flow parity screens', () => {
 
     expect(screen.getByText('已关联当前题目')).toBeTruthy();
     expect(screen.getByText('内容纠错')).toBeTruthy();
-    await act(async () => {
-      fireEvent.press(screen.getByLabelText('添加反馈图片'));
-      await Promise.resolve();
-    });
+    await fireEvent.press(screen.getByLabelText('添加反馈图片'));
     await waitFor(() => expect(screen.getByLabelText('反馈图片 1')).toBeTruthy());
-    fireEvent.press(screen.getByLabelText('移除反馈图片 1'));
+    await fireEvent.press(screen.getByLabelText('移除反馈图片 1'));
     await waitFor(() => expect(screen.queryByLabelText('反馈图片 1')).toBeNull());
   });
 });

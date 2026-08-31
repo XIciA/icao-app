@@ -31,7 +31,13 @@
       "expo": "55.0.27",
       "expoSplashScreen": "55.0.22"
     },
-    "trackedDerivedAssets": [],
+    "nativeTreePolicy": {
+      "authority": "clean-prebuild-only",
+      "trackedDerivedAssets": [],
+      "ignoredGeneratedRoots": ["ios", "android"],
+      "releasePrebuildCommand": "ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install",
+      "releaseVerificationCommand": "node tools/check-native-brand-assets.mjs --prebuild-root . --platform ios"
+    },
     "splash": {
       "backgroundColor": "#FFFFFF",
       "imageWidth": 160,
@@ -63,6 +69,10 @@
     "assets/images/android-icon-foreground.png",
     "assets/images/android-icon-monochrome.png"
   ],
+  "inventory": {
+    "candidateRoots": ["assets", "ios", "android", "official-site", "public"],
+    "nonProductControlFiles": ["assets/native-brand-manifest.json"]
+  },
   "frozenExternalAssets": [
     {
       "path": "assets/images/favicon.png",

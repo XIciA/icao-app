@@ -90,7 +90,7 @@ describe('<LoginScreen />', () => {
     mockCanGoBack.mockReturnValue(false);
     const screen = await renderLoginScreen();
 
-    await act(async () => { fireEvent.press(screen.getByLabelText('返回')); });
+    await fireEvent.press(screen.getByLabelText('返回'));
 
     expect(mockBack).not.toHaveBeenCalled();
     expect(mockReplace).toHaveBeenCalledWith('/auth/splash');
@@ -100,7 +100,7 @@ describe('<LoginScreen />', () => {
     mockCanGoBack.mockReturnValue(true);
     const screen = await renderLoginScreen();
 
-    await act(async () => { fireEvent.press(screen.getByLabelText('返回')); });
+    await fireEvent.press(screen.getByLabelText('返回'));
 
     expect(mockBack).toHaveBeenCalledTimes(1);
     expect(mockReplace).not.toHaveBeenCalled();
@@ -117,7 +117,7 @@ describe('<LoginScreen />', () => {
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
 
-    await act(async () => { fireEvent.press(screen.getByRole('tab', { name: '密码登录' })); });
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
 
     expect(screen.getByText('登录密码')).toBeTruthy();
     expect(screen.getByText('忘记密码')).toBeTruthy();
@@ -130,7 +130,7 @@ describe('<LoginScreen />', () => {
     const phoneField = screen.getByPlaceholderText('请输入11位手机号');
 
     expect(phoneField.props.maxLength).toBe(14);
-    await act(async () => { fireEvent.changeText(phoneField, '+8613800138000'); });
+    await fireEvent.changeText(phoneField, '+8613800138000');
 
     expect(screen.getByPlaceholderText('请输入11位手机号').props.value).toBe('13800138000');
   });
@@ -147,9 +147,9 @@ describe('<LoginScreen />', () => {
   it('logs an existing account in with a six-digit SMS code and starts a real-time countdown', async () => {
     const screen = await renderLoginScreen();
 
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByText('获取验证码'));
 
     expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
     expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
@@ -162,8 +162,8 @@ describe('<LoginScreen />', () => {
     expect(codeInput.props.textContentType).toBe('oneTimeCode');
     expect(codeInput.props.autoComplete).toBeUndefined();
 
-    await act(async () => { fireEvent.changeText(codeInput, '123456'); });
-    await act(async () => { fireEvent.press(screen.getByText('验证并进入')); });
+    await fireEvent.changeText(codeInput, '123456');
+    await fireEvent.press(screen.getByText('验证并进入'));
 
     expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
@@ -171,20 +171,20 @@ describe('<LoginScreen />', () => {
 
   it('requires consent and auto-registers with phone OTP without forcing password setup', async () => {
     const screen = await renderLoginScreen();
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取验证码'));
     expect(screen.getByText('请确认已满16周岁，并同意用户协议与隐私政策。')).toBeTruthy();
     expect(mockRequestPhoneOtp).not.toHaveBeenCalled();
 
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByText('获取验证码'));
 
     expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
     expect(screen.getByText('输入验证码')).toBeTruthy();
     expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
 
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
-    await act(async () => { fireEvent.press(screen.getByText('验证并进入')); });
+    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
+    await fireEvent.press(screen.getByText('验证并进入'));
     expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=setup');
@@ -192,8 +192,8 @@ describe('<LoginScreen />', () => {
 
   it('uses Apple as an auto-registration login after consent', async () => {
     const screen = await renderLoginScreen();
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByTestId('apple-sign-in')); });
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByTestId('apple-sign-in'));
     expect(mockSignInWithApple).toHaveBeenCalledTimes(1);
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
   });
@@ -202,11 +202,11 @@ describe('<LoginScreen />', () => {
     mockConsumePendingPath.mockReturnValue('/question-bank');
     const screen = await renderLoginScreen();
 
-    await act(async () => { fireEvent.press(screen.getByRole('tab', { name: '密码登录' })); });
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), 'Flight2026safe'); });
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByRole('button', { name: '密码登录' })); });
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), 'Flight2026safe');
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByRole('button', { name: '密码登录' }));
 
     expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('+8613800138000', 'Flight2026safe');
     expect(mockReplace).not.toHaveBeenCalledWith('/question-bank');
@@ -215,18 +215,18 @@ describe('<LoginScreen />', () => {
   it('verifies an existing phone before routing to password recovery', async () => {
     const screen = await renderLoginScreen();
 
-    await act(async () => { fireEvent.press(screen.getByRole('tab', { name: '密码登录' })); });
-    await act(async () => { fireEvent.press(screen.getByText('忘记密码')); });
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('忘记密码'));
 
     expect(screen.getByText('重置密码')).toBeTruthy();
     expect(screen.getByText('找回密码不会为未知手机号创建新账号。')).toBeTruthy();
     expect(screen.queryByRole('checkbox')).toBeNull();
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByText('获取重置验证码')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取重置验证码'));
     expect(mockRequestPasswordRecoveryOtp).toHaveBeenCalledWith('+8613800138000');
 
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '654321'); });
-    await act(async () => { fireEvent.press(screen.getByText('继续重置密码')); });
+    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '654321');
+    await fireEvent.press(screen.getByText('继续重置密码'));
 
     expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '654321', 'recovery');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=recovery');
@@ -255,15 +255,23 @@ describe('<LoginScreen />', () => {
     let resolveRequest!: (value: { accepted: true; expiresAt: number; issuedAt: number; resendAllowedAt: number }) => void;
     mockRequestPhoneOtp.mockImplementationOnce(() => new Promise((resolve) => { resolveRequest = resolve; }));
     const screen = await renderLoginScreen();
-    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByRole('checkbox'));
 
-    fireEvent.press(screen.getByText('获取验证码'));
-    fireEvent.press(screen.getByText('获取验证码'));
-    expect(mockRequestPhoneOtp).toHaveBeenCalledTimes(1);
-
+    let buttonFiber = screen.getByText('获取验证码').unstable_fiber;
+    while (buttonFiber?.return && typeof buttonFiber.memoizedProps?.onPress !== 'function') {
+      buttonFiber = buttonFiber.return;
+    }
+    const press = buttonFiber?.memoizedProps?.onPress;
+    if (typeof press !== 'function') throw new Error('OTP request button has no press handler');
     const now = Date.now();
-    await act(async () => resolveRequest({ accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 }));
+    await act(async () => {
+      const firstRequest = press();
+      const secondRequest = press();
+      expect(mockRequestPhoneOtp).toHaveBeenCalledTimes(1);
+      resolveRequest({ accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 });
+      await Promise.all([firstRequest, secondRequest]);
+    });
   });
 
   it('maps dual-auth failures to actionable and non-enumerating messages', () => {
