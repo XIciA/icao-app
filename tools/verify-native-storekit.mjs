@@ -16,6 +16,8 @@ const appleProviderPath =
   'src/features/native-commercial-testflight/apple-storekit-commerce-provider.native.ts';
 const runtimePath =
   'src/features/native-commercial-testflight/CommerceRuntimeProvider.native.tsx';
+const runtimeOperationPath =
+  'src/features/native-commercial-testflight/commerce-runtime-operation.native.ts';
 const appRuntimePath = 'src/platform/AppRuntime.tsx';
 const releaseHelperPath = 'scripts/lib/ios-release-product.sh';
 const iosCngGatePath = 'tools/verify-ios-cng-product.mjs';
@@ -126,12 +128,22 @@ for (const required of [
   'finishTransaction',
   'endConnection',
   'disconnect()',
-  "APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE = 'subs'",
-  "APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE =\n  'non-renewing-subscription'",
   'product.type !== APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE',
   'product.typeIOS !== APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE',
 ]) {
   if (!adapter.includes(required)) failures.push(`${adapterPath} is missing: ${required}`);
+}
+for (const [constantName, expectedValue] of [
+  ['APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE', 'subs'],
+  ['APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE', 'non-renewing-subscription'],
+]) {
+  const stableConstantContract = new RegExp(
+    `const\\s+${constantName}\\s*=\\s*['\"]${expectedValue}['\"](?:\\s+as\\s+const)?\\s*;`,
+    'u',
+  );
+  if (!stableConstantContract.test(adapter)) {
+    failures.push(`${adapterPath} must declare ${constantName} as ${expectedValue}.`);
+  }
 }
 const adapterProductQuery = adapter.slice(
   adapter.indexOf('async fetchProducts('),
@@ -165,6 +177,7 @@ const contract = await read(contractPath);
 const coordinator = await read(coordinatorPath);
 const appleProvider = await read(appleProviderPath);
 const runtime = await read(runtimePath);
+const runtimeOperation = await read(runtimeOperationPath);
 const appRuntime = await read(appRuntimePath);
 for (const [file, content, required] of [
   [providerPath, provider, 'requiresServerVerification: true'],
@@ -235,9 +248,21 @@ for (const required of [
   'entitlementRevisionRef',
   'foreground-reconciliation',
   'pending-reconciliation',
-  'RESTORE_OPERATION_DEADLINE_MS',
+  'COMMERCE_RUNTIME_OPERATION_DEADLINE_MS',
+  'operation.wait(',
+  'operation.drain(controller.coordinator.whenIdle())',
 ]) {
   if (!runtime.includes(required)) failures.push(`${runtimePath} is missing: ${required}`);
+}
+for (const required of [
+  'CommerceRuntimeOperationGate',
+  'CommerceRuntimeOperationDeadlineError',
+  'this.pending.size > 0',
+  'this.controller.abort()',
+]) {
+  if (!runtimeOperation.includes(required)) {
+    failures.push(`${runtimeOperationPath} is missing: ${required}`);
+  }
 }
 if (!appRuntime.includes('<CommerceRuntimeProvider>')) {
   failures.push(`${appRuntimePath} does not mount the authenticated Native commerce runtime.`);

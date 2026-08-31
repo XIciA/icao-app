@@ -65,7 +65,7 @@ export type CommerceTransactionCoordinatorOptions = Readonly<{
 type CoordinationOperation = {
   abortController: AbortController;
   cancelled: boolean;
-  complete?: (value: CommerceErrorResult) => void;
+  completePublic?: (value: CommerceErrorResult) => void;
   deadlineAt: number;
   generation: number;
   signal?: AbortSignal;
@@ -94,6 +94,7 @@ export class NativeCommerceTransactionCoordinator {
   private activeOperation?: CoordinationOperation;
   private disposed = false;
   private generation = 0;
+  private readonly idleWaiters = new Set<() => void>();
   private readonly deadlineMs: number;
   private readonly maxPages: number;
   private readonly maxTransactions: number;
@@ -164,11 +165,22 @@ export class NativeCommerceTransactionCoordinator {
     if (this.activeOperation) {
       this.activeOperation.cancelled = true;
       this.activeOperation.abortController.abort();
-      this.activeOperation.complete?.(
+      this.activeOperation.completePublic?.(
         coordinationFailure('commerce_operation_cancelled', true),
       );
     }
     return this.provider.dispose();
+  }
+
+  /**
+   * Resolves only after the underlying provider/consumer chain has physically
+   * settled. A public timeout intentionally does not make the coordinator idle:
+   * native promises cannot be cancelled, so starting another operation before
+   * this resolves would allow two StoreKit histories to mutate the same inbox.
+   */
+  whenIdle(): Promise<void> {
+    if (!this.activeOperation) return Promise.resolve();
+    return new Promise((resolve) => this.idleWaiters.add(resolve));
   }
 
   private async consumePages(
@@ -311,38 +323,51 @@ export class NativeCommerceTransactionCoordinator {
 
     const result = new Promise<CommerceResult<CommerceTransactionCoordinationReport>>(
       (resolve) => {
-        let settled = false;
+        let publicSettled = false;
         let cancelDeadline: () => void = () => undefined;
-        const finish = (value: CommerceResult<CommerceTransactionCoordinationReport>) => {
-          if (settled) return;
-          settled = true;
+        const finishPublic = (value: CommerceResult<CommerceTransactionCoordinationReport>) => {
+          if (publicSettled) return;
+          publicSettled = true;
           cancelDeadline();
           options.signal?.removeEventListener('abort', onAbort);
-          if (this.activeOperation === operation) this.activeOperation = undefined;
           resolve(value);
         };
         const onAbort = () => {
           operation.cancelled = true;
           operation.abortController.abort();
-          finish(coordinationFailure('commerce_operation_cancelled', true));
+          finishPublic(coordinationFailure('commerce_operation_cancelled', true));
         };
-        operation.complete = finish;
+        operation.completePublic = finishPublic;
         cancelDeadline = this.runtime.schedule(this.deadlineMs, () => {
           operation.cancelled = true;
           operation.abortController.abort();
-          finish(coordinationFailure('commerce_reconciliation_timed_out', true));
+          finishPublic(coordinationFailure('commerce_reconciliation_timed_out', true));
         });
         if (options.signal?.aborted) {
           onAbort();
+          this.releaseOperation(operation);
           return;
         }
         options.signal?.addEventListener('abort', onAbort, { once: true });
-        void work(operation).then(finish, () => {
-          finish(coordinationFailure('commerce_restore_failed', true));
+        void work(operation).then(
+          (value) => finishPublic(value),
+          () => finishPublic(coordinationFailure('commerce_restore_failed', true)),
+        ).finally(() => {
+          // The public caller may already have received a timeout/cancellation.
+          // Keep the single-flight lock until the uncancellable native chain has
+          // drained, then let a future operation use the provider again.
+          this.releaseOperation(operation);
         });
       },
     );
     return result;
+  }
+
+  private releaseOperation(operation: CoordinationOperation) {
+    if (this.activeOperation !== operation) return;
+    this.activeOperation = undefined;
+    for (const waiter of this.idleWaiters) waiter();
+    this.idleWaiters.clear();
   }
 
   private operationFailure(operation: CoordinationOperation): CommerceErrorResult | undefined {

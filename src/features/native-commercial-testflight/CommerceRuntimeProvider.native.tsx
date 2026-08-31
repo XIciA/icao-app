@@ -43,6 +43,12 @@ import type {
   CommerceRuntimeValue,
 } from './commerce-runtime-types';
 import {
+  CommerceRuntimeOperationDeadlineError,
+  CommerceRuntimeOperationGate,
+  type CommerceRuntimeOperationScope,
+} from './commerce-runtime-operation.native';
+import { publishCommerceEntitlementChange } from './commerce-entitlement-events';
+import {
   clearUncertainPurchase,
   loadUncertainPurchase,
   persistUncertainPurchase,
@@ -63,7 +69,7 @@ type Controller = Readonly<{
 }>;
 
 const CommerceRuntimeContext = createContext<CommerceRuntimeValue | undefined>(undefined);
-const RESTORE_OPERATION_DEADLINE_MS = 60_000;
+const COMMERCE_RUNTIME_OPERATION_DEADLINE_MS = 60_000;
 
 function withAbortSignal<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
   if (!signal) return promise;
@@ -271,8 +277,8 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   const controllerRef = useRef<Controller | undefined>(undefined);
   const generationRef = useRef(0);
   const observedEnvironmentRef = useRef<'sandbox' | 'production' | undefined>(undefined);
-  const workingRef = useRef(false);
-  const operationAbortRef = useRef<AbortController | undefined>(undefined);
+  const operationGateRef = useRef(new CommerceRuntimeOperationGate());
+  const catalogReadyRef = useRef(false);
   const entitlementRevisionRef = useRef(0);
   const entitlementChangeRef = useRef<CommerceEntitlementChange | undefined>(undefined);
   const uncertainPurchaseRef = useRef<PersistedUncertainPurchase | undefined>(undefined);
@@ -303,21 +309,21 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     setEntitlementEnvironment(environment);
     setEntitlement(snapshot);
     setEntitlementChange(next);
+    publishCommerceEntitlementChange(next);
   }, []);
 
   const refreshEntitlement = useCallback(async (
     controller: Controller,
     generation: number,
     reason: CommerceEntitlementChangeReason,
-    signal?: AbortSignal,
+    operation: CommerceRuntimeOperationScope,
   ) => {
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
-    const response = await withAbortSignal(
+    const response = await operation.wait(
       apiRequest<CommerceEntitlementsResponse>(
         '/v1/commerce/entitlements/current',
-        signal ? { signal } : undefined,
+        { signal: operation.signal },
       ),
-      signal,
     );
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
     const environment = observedEnvironmentRef.current ?? 'production';
@@ -328,25 +334,56 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     controller: Controller,
     generation: number,
     reason: CommerceEntitlementChangeReason,
-    signal?: AbortSignal,
+    operation: CommerceRuntimeOperationScope,
   ) => {
     if (generation !== generationRef.current || controllerRef.current !== controller) {
       return { ok: false, state: 'failed', code: 'commerce_account_changed', charged: 'no' } as const;
     }
-    const report = await controller.coordinator.start(signal ? { signal } : undefined);
+    let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['start']>>;
+    try {
+      report = await operation.wait(controller.coordinator.start({ signal: operation.signal }));
+    } finally {
+      // Coordinator public timeouts do not cancel the underlying StoreKit call.
+      // Keep this runtime operation occupied until that physical chain drains.
+      operation.drain(controller.coordinator.whenIdle());
+    }
     if (generation !== generationRef.current || controllerRef.current !== controller) return report;
-    await refreshEntitlement(controller, generation, reason, signal);
+    await refreshEntitlement(controller, generation, reason, operation);
     return report;
   }, [refreshEntitlement]);
 
+  const reloadCatalog = useCallback(async (
+    controller: Controller,
+    generation: number,
+    operation: CommerceRuntimeOperationScope,
+  ) => {
+    catalogReadyRef.current = false;
+    if (generation === generationRef.current && controllerRef.current === controller) setOfferings([]);
+    const [serverCatalog, storeCatalog] = await Promise.all([
+      operation.wait(apiRequest<CommerceProductCatalogResponse>(
+        '/v1/commerce/catalog',
+        { signal: operation.signal },
+      )),
+      operation.wait(controller.provider.listOfferings()),
+    ]);
+    if (generation !== generationRef.current || controllerRef.current !== controller) {
+      throw new Error('commerce_account_changed');
+    }
+    if (!storeCatalog.ok) throw new Error(storeCatalog.code);
+    const nextOfferings = validatedOfferings(serverCatalog, storeCatalog.value.offerings);
+    catalogReadyRef.current = true;
+    setOfferings(nextOfferings);
+    return nextOfferings;
+  }, []);
+
   useEffect(() => {
-    operationAbortRef.current?.abort();
-    operationAbortRef.current = undefined;
+    const operationGate = operationGateRef.current;
+    operationGate.abortAndDetach();
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     observedEnvironmentRef.current = undefined;
     setNativeCommerceEnvironment('production');
-    workingRef.current = false;
+    catalogReadyRef.current = false;
     uncertainPurchaseRef.current = undefined;
     uncertainStorageBlockedRef.current = false;
     void activateQuestionBankContentAccount(accountId).catch(() => undefined);
@@ -367,6 +404,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         entitlementRevisionRef.current = next.revision;
         entitlementChangeRef.current = next;
         setEntitlementChange(next);
+        publishCommerceEntitlementChange(next);
       }
       controllerRef.current = undefined;
       setPhase('unavailable');
@@ -392,15 +430,23 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
             ),
             options?.signal,
           );
-          if (generation !== generationRef.current) return { state: 'deferred' } as const;
+          if (options?.signal?.aborted || generation !== generationRef.current) {
+            return { state: 'deferred' } as const;
+          }
           if (
             verified.transactionId !== transaction.transactionReference
             || verified.entitlement.environment !== environment
           ) return { state: 'deferred' } as const;
-          if (!await confirmNativeCommerceEnvironment(accountId, environment)) {
+          if (!await confirmNativeCommerceEnvironment(
+            accountId,
+            environment,
+            { signal: options?.signal },
+          )) {
             return { state: 'deferred' } as const;
           }
-          if (generation !== generationRef.current) return { state: 'deferred' } as const;
+          if (options?.signal?.aborted || generation !== generationRef.current) {
+            return { state: 'deferred' } as const;
+          }
           observedEnvironmentRef.current = environment;
           const activeController = controllerRef.current;
           if (!activeController) return { state: 'deferred' } as const;
@@ -428,15 +474,19 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     };
     controllerRef.current = controller;
     publishEntitlement(controller, generation, 'production', undefined, 'account-change');
-    workingRef.current = true;
+    const startupOperation = operationGate.begin({
+      deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+    });
+    if (!startupOperation) throw new Error('commerce_runtime_startup_operation_busy');
     setPhase('loading');
 
     void (async () => {
       const distributionEnvironment = detectNativeDistributionEnvironment();
-      const rememberedEnvironment = await activateNativeCommerceEnvironment(
-        accountId,
-        distributionEnvironment,
-      );
+      const [rememberedEnvironment, restoredUncertainResult] = await Promise.all([
+        startupOperation.wait(activateNativeCommerceEnvironment(accountId, distributionEnvironment)),
+        startupOperation.wait(loadUncertainPurchase(accountId)),
+        reloadCatalog(controller, generation, startupOperation),
+      ]);
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       observedEnvironmentRef.current = rememberedEnvironment;
       publishEntitlement(
@@ -446,12 +496,6 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         undefined,
         'environment-change',
       );
-      const [serverCatalog, storeCatalog, restoredUncertainResult] = await Promise.all([
-        apiRequest<CommerceProductCatalogResponse>('/v1/commerce/catalog'),
-        provider.listOfferings(),
-        loadUncertainPurchase(accountId),
-      ]);
-      if (generation !== generationRef.current || controllerRef.current !== controller) return;
       if (restoredUncertainResult.state === 'invalid') {
         uncertainStorageBlockedRef.current = true;
       }
@@ -459,16 +503,14 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         ? restoredUncertainResult.purchase
         : undefined;
       uncertainPurchaseRef.current = restoredUncertain;
-      if (!storeCatalog.ok) throw new Error(storeCatalog.code);
-      const nextOfferings = validatedOfferings(serverCatalog, storeCatalog.value.offerings);
       const report = await reconcileAndRefresh(
         controller,
         generation,
         'startup-reconciliation',
+        startupOperation,
       );
       if (generation !== generationRef.current) return;
       if (!report.ok) throw new Error(report.code);
-      setOfferings(nextOfferings);
       if (uncertainStorageBlockedRef.current) {
         const nextError = uncertainPurchaseError(
           'reconciliation',
@@ -490,7 +532,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         return;
       }
       if (restoredUncertain) {
-        await clearUncertainPurchase(accountId);
+        await startupOperation.wait(clearUncertainPurchase(accountId));
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         uncertainPurchaseRef.current = undefined;
       }
@@ -527,22 +569,24 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setMessage(nextError.userMessage);
         setPhase('error');
       }
-    }).finally(() => {
-      if (generation === generationRef.current && controllerRef.current === controller) {
-        workingRef.current = false;
-      }
-    });
+    }).finally(() => startupOperation.finish());
 
     const appState = AppState.addEventListener('change', (state) => {
-      if (state !== 'active' || generation !== generationRef.current || workingRef.current) return;
-      workingRef.current = true;
+      if (state !== 'active' || generation !== generationRef.current) return;
+      const operation = operationGate.begin({
+        deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+      });
+      if (!operation) return;
       setPhase('reconciling');
       setError(undefined);
-      void reconcileAndRefresh(
-        controller,
-        generation,
-        'foreground-reconciliation',
-      ).then(async (report) => {
+      void (async () => {
+        if (!catalogReadyRef.current) await reloadCatalog(controller, generation, operation);
+        const report = await reconcileAndRefresh(
+          controller,
+          generation,
+          'foreground-reconciliation',
+          operation,
+        );
         if (!report.ok || generation !== generationRef.current) throw new Error('reconciliation_failed');
         const uncertain = uncertainPurchaseRef.current;
         if (!uncertain) {
@@ -559,13 +603,13 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
           setPhase('pending');
           return;
         }
-        await clearUncertainPurchase(controller.accountId);
+        await operation.wait(clearUncertainPurchase(controller.accountId));
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         uncertainPurchaseRef.current = undefined;
         setMessage('购买已完成核对，会员权益已更新。');
         setError(undefined);
         setPhase('ready');
-      }).catch(() => {
+      })().catch(() => {
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         const nextError = runtimeError(
           'refresh-failed',
@@ -576,21 +620,16 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setError(nextError);
         setMessage(nextError.userMessage);
         setPhase(uncertainPurchaseRef.current ? 'pending' : 'error');
-      }).finally(() => {
-        if (generation === generationRef.current && controllerRef.current === controller) {
-          workingRef.current = false;
-        }
-      });
+      }).finally(() => operation.finish());
     });
     return () => {
       appState.remove();
-      operationAbortRef.current?.abort();
-      operationAbortRef.current = undefined;
+      operationGate.abortAndDetach();
       if (generationRef.current === generation) generationRef.current += 1;
       if (controllerRef.current === controller) controllerRef.current = undefined;
       void controller.coordinator.dispose();
     };
-  }, [accountId, publishEntitlement, reconcileAndRefresh]);
+  }, [accountId, publishEntitlement, reconcileAndRefresh, reloadCatalog]);
 
   useEffect(() => {
     if (phase !== 'pending') return;
@@ -598,12 +637,16 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       const controller = controllerRef.current;
       const uncertain = uncertainPurchaseRef.current;
       const generation = generationRef.current;
-      if (!controller || !uncertain || workingRef.current) return;
-      workingRef.current = true;
+      if (!controller || !uncertain) return;
+      const operation = operationGateRef.current.begin({
+        deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+      });
+      if (!operation) return;
       void reconcileAndRefresh(
         controller,
         generation,
         'pending-reconciliation',
+        operation,
       ).then(async (report) => {
         if (
           !report.ok
@@ -611,34 +654,45 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
           || controllerRef.current !== controller
           || !reportConfirmsPurchase(report.value, uncertain)
         ) return;
-        await clearUncertainPurchase(controller.accountId);
+        await operation.wait(clearUncertainPurchase(controller.accountId));
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         uncertainPurchaseRef.current = undefined;
         setMessage('购买已完成核对，会员权益已更新。');
         setError(undefined);
         setPhase('ready');
-      }).catch(() => undefined).finally(() => {
-        if (generation === generationRef.current && controllerRef.current === controller) {
-          workingRef.current = false;
-        }
-      });
+      }).catch(() => undefined).finally(() => operation.finish());
     }, 5_000);
     return () => clearInterval(timer);
   }, [phase, reconcileAndRefresh]);
 
   const refresh = useCallback(async () => {
     const controller = controllerRef.current;
-    if (!controller || workingRef.current) return;
+    if (!controller) return;
+    const operation = operationGateRef.current.begin({
+      deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+    });
+    if (!operation) {
+      const nextError = runtimeError(
+        'operation-busy',
+        'refresh',
+        '已有购买或核对操作仍在完成，请稍候。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      setError(nextError);
+      setMessage(nextError.userMessage);
+      return;
+    }
     const generation = generationRef.current;
-    workingRef.current = true;
     setPhase('reconciling');
     setError(undefined);
     setMessage(undefined);
     try {
+      await reloadCatalog(controller, generation, operation);
       const report = await reconcileAndRefresh(
         controller,
         generation,
         'manual-refresh',
+        operation,
       );
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       if (!report.ok) throw new Error(report.code);
@@ -663,7 +717,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setPhase('pending');
         return;
       }
-      if (uncertain) await clearUncertainPurchase(controller.accountId);
+      if (uncertain) await operation.wait(clearUncertainPurchase(controller.accountId));
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       uncertainPurchaseRef.current = undefined;
       setMessage(report.value.deferred > 0 ? '仍有购买等待网络核对，请稍后再试。' : '会员与点数状态已更新。');
@@ -691,17 +745,15 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setPhase('error');
       }
     } finally {
-      if (generation === generationRef.current && controllerRef.current === controller) {
-        workingRef.current = false;
-      }
+      operation.finish();
     }
-  }, [reconcileAndRefresh]);
+  }, [reconcileAndRefresh, reloadCatalog]);
 
   const purchase = useCallback(async (
     productKey: CommerceProductOffering['productKey'],
   ): Promise<CommerceActionResult> => {
     const controller = controllerRef.current;
-    if (!controller || workingRef.current) {
+    if (!controller) {
       const nextError = runtimeError(
         'operation-busy',
         'purchase',
@@ -726,14 +778,27 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       );
       return { ok: false, message: nextError.userMessage, error: nextError };
     }
+    const operation = operationGateRef.current.begin({
+      deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+    });
+    if (!operation) {
+      const nextError = runtimeError(
+        'operation-busy',
+        'purchase',
+        '上一项购买或核对操作仍在完成，请稍候。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      setError(nextError);
+      setMessage(nextError.userMessage);
+      return { ok: false, message: nextError.userMessage, error: nextError };
+    }
     const generation = generationRef.current;
     let purchaseDispatched = false;
-    workingRef.current = true;
     setPhase('purchasing');
     setError(undefined);
     setMessage(undefined);
     try {
-      const baseline = await reconcileAndRefresh(controller, generation, 'purchase');
+      const baseline = await reconcileAndRefresh(controller, generation, 'purchase', operation);
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -744,17 +809,28 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         startedAt: new Date().toISOString(),
         baselineTransactionReferences: baseline.value.observedReferences,
       };
-      await persistUncertainPurchase(uncertain);
+      const baselinePersist = persistUncertainPurchase(uncertain);
+      try {
+        await operation.wait(baselinePersist);
+      } catch (caught: unknown) {
+        // A late baseline marker must not survive when StoreKit was never
+        // dispatched. Keep the operation locked through compensating cleanup.
+        operation.drain(baselinePersist.then(
+          () => clearUncertainPurchase(controller.accountId),
+          () => undefined,
+        ));
+        throw caught;
+      }
       if (generation !== generationRef.current || controllerRef.current !== controller) {
-        await clearUncertainPurchase(controller.accountId).catch(() => undefined);
+        operation.drain(clearUncertainPurchase(controller.accountId).catch(() => undefined));
         return ACCOUNT_CHANGED_RESULT;
       }
       uncertainPurchaseRef.current = uncertain;
       purchaseDispatched = true;
-      const purchaseResult = await controller.provider.purchase({
+      const purchaseResult = await operation.wait(controller.provider.purchase({
         offeringKey: productKey,
         applicationAccountToken: controller.accountId,
-      });
+      }));
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -766,7 +842,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (purchaseResult.state === 'pending' || purchaseResult.charged === 'unknown') {
           setPhase('pending');
         } else {
-          await clearUncertainPurchase(controller.accountId);
+          await operation.wait(clearUncertainPurchase(controller.accountId));
           if (generation !== generationRef.current || controllerRef.current !== controller) {
             return ACCOUNT_CHANGED_RESULT;
           }
@@ -781,16 +857,23 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         transactionReference,
         environment: verifiedEnvironment(purchaseResult.value.transaction),
       };
-      await persistUncertainPurchase(exactUncertain);
+      await operation.wait(persistUncertainPurchase(exactUncertain));
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
       uncertainPurchaseRef.current = exactUncertain;
-      const report = await controller.coordinator.drainObservedTransactions();
+      let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['drainObservedTransactions']>>;
+      try {
+        report = await operation.wait(controller.coordinator.drainObservedTransactions({
+          signal: operation.signal,
+        }));
+      } finally {
+        operation.drain(controller.coordinator.whenIdle());
+      }
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
-      await refreshEntitlement(controller, generation, 'purchase');
+      await refreshEntitlement(controller, generation, 'purchase', operation);
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -816,7 +899,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setPhase('pending');
         return result;
       }
-      await clearUncertainPurchase(controller.accountId);
+      await operation.wait(clearUncertainPurchase(controller.accountId));
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -831,15 +914,18 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       setError(undefined);
       setPhase('ready');
       return result;
-    } catch {
+    } catch (caught: unknown) {
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
       if (!purchaseDispatched) {
+        const timedOut = caught instanceof CommerceRuntimeOperationDeadlineError;
         const nextError = runtimeError(
           'purchase-failed',
           'purchase',
-          '购买前状态核对失败，未发起扣款，请稍后重试。',
+          timedOut
+            ? '购买前准备等待超时，未发起扣款，请稍后重试。'
+            : '购买前状态核对失败，未发起扣款，请稍后重试。',
           { retryable: true, chargeStatus: 'not-started' },
         );
         const result = { ok: false, message: nextError.userMessage, error: nextError };
@@ -860,9 +946,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       setPhase('pending');
       return result;
     } finally {
-      if (generation === generationRef.current && controllerRef.current === controller) {
-        workingRef.current = false;
-      }
+      operation.finish();
     }
   }, [phase, reconcileAndRefresh, refreshEntitlement]);
 
@@ -870,7 +954,6 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     const controller = controllerRef.current;
     if (
       !controller
-      || workingRef.current
       || !(['ready', 'pending', 'error'] as CommerceRuntimePhase[]).includes(phase)
     ) {
       const nextError = runtimeError(
@@ -881,22 +964,33 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       );
       return { ok: false, message: nextError.userMessage, error: nextError };
     }
+    const operation = operationGateRef.current.begin({
+      deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS,
+    });
+    if (!operation) {
+      const nextError = runtimeError(
+        'operation-busy',
+        'restore',
+        '上一项购买或核对操作仍在完成，请稍候。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      setError(nextError);
+      setMessage(nextError.userMessage);
+      return { ok: false, message: nextError.userMessage, error: nextError };
+    }
     const generation = generationRef.current;
-    const operationController = new AbortController();
-    operationAbortRef.current = operationController;
-    let deadlineElapsed = false;
-    const deadline = setTimeout(() => {
-      deadlineElapsed = true;
-      operationController.abort();
-    }, RESTORE_OPERATION_DEADLINE_MS);
-    workingRef.current = true;
     setPhase('restoring');
     setError(undefined);
     setMessage(undefined);
     try {
-      const report = await controller.coordinator.restorePurchasesFromUserAction({
-        signal: operationController.signal,
-      });
+      let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['restorePurchasesFromUserAction']>>;
+      try {
+        report = await operation.wait(controller.coordinator.restorePurchasesFromUserAction({
+          signal: operation.signal,
+        }));
+      } finally {
+        operation.drain(controller.coordinator.whenIdle());
+      }
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -912,7 +1006,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         controller,
         generation,
         'restore',
-        operationController.signal,
+        operation,
       );
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
@@ -940,7 +1034,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         setPhase('pending');
         return result;
       }
-      if (uncertain) await clearUncertainPurchase(controller.accountId);
+      if (uncertain) await operation.wait(clearUncertainPurchase(controller.accountId));
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -955,16 +1049,16 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       setError(undefined);
       setPhase('ready');
       return result;
-    } catch {
+    } catch (caught: unknown) {
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
       const nextError = runtimeError(
-        deadlineElapsed ? 'restore-timed-out' : 'restore-failed',
+        caught instanceof CommerceRuntimeOperationDeadlineError ? 'restore-timed-out' : 'restore-failed',
         'restore',
         uncertainStorageBlockedRef.current || uncertainPurchaseRef.current
           ? '恢复失败，未决交易仍在核对，请勿重复下单。'
-          : deadlineElapsed
+          : caught instanceof CommerceRuntimeOperationDeadlineError
             ? '恢复购买等待超时，请稍后重试。'
             : '恢复购买失败，请检查网络后重试。',
         { retryable: true, chargeStatus: 'not-applicable' },
@@ -975,11 +1069,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       setPhase(uncertainStorageBlockedRef.current || uncertainPurchaseRef.current ? 'pending' : 'error');
       return result;
     } finally {
-      clearTimeout(deadline);
-      if (operationAbortRef.current === operationController) operationAbortRef.current = undefined;
-      if (generation === generationRef.current && controllerRef.current === controller) {
-        workingRef.current = false;
-      }
+      operation.finish();
     }
   }, [phase, refreshEntitlement]);
 
