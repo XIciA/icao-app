@@ -82,4 +82,36 @@ describe('phone OTP challenge persistence', () => {
     deleteItemAsync.mockRejectedValueOnce(new Error('keychain unavailable'));
     await expect(clearPhoneOtpChallenge()).rejects.toThrow('auth_session_storage_unavailable');
   });
+
+  it('does not let a late response overwrite a newer persisted challenge generation', async () => {
+    const now = Date.now();
+    const newer = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '20000000-0000-4000-8000-000000000020',
+      expiresAt: now + 301_000,
+      issuedAt: now + 1_000,
+      resendAllowedAt: now + 61_000,
+      serverTime: now + 1_000,
+    }, now + 1_000);
+    const older = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: now + 300_000,
+      issuedAt: now,
+      resendAllowedAt: now + 60_000,
+      serverTime: now,
+    }, now);
+    getItemAsync
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(JSON.stringify(newer));
+
+    await expect(writePhoneOtpChallenge(newer)).resolves.toBe(true);
+    await expect(writePhoneOtpChallenge(older)).resolves.toBe(false);
+    expect(setItemAsync).toHaveBeenCalledTimes(1);
+    expect(setItemAsync).toHaveBeenCalledWith(
+      expect.any(String),
+      JSON.stringify(newer),
+      expect.any(Object),
+    );
+  });
 });

@@ -25,7 +25,9 @@ function service(error: { code?: string; message: string } | null = null) {
     insert: vi.fn(() => ({ values })),
     select: vi.fn(() => ({
       from: vi.fn(() => ({
-        where: vi.fn(() => ({ limit: vi.fn().mockResolvedValue([]) })),
+        where: vi.fn(() => ({
+          limit: vi.fn(() => ({ for: vi.fn().mockResolvedValue([{ status: 'pending' }]) })),
+        })),
       })),
     })),
     update: vi.fn(() => ({

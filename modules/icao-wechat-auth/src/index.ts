@@ -5,6 +5,7 @@ export type WechatNativeStatus = { configured: boolean; installed: boolean; supp
 
 export type IcaoWechatAuthNativeModule = {
   authorize(state: string): Promise<WechatNativeAuthorization>;
+  cancelAuthorization(state: string): void;
   getStatus(): WechatNativeStatus;
 };
 

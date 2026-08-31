@@ -22,7 +22,7 @@ export type AuthenticatedUser = {
   providers?: AuthIdentityProvider[];
 };
 
-export type AuthIdentityProvider = 'phone' | 'apple' | 'wechat';
+export type AuthIdentityProvider = 'phone' | 'apple';
 
 export type AccountSummary = {
   accountId: string;
@@ -41,11 +41,6 @@ export type StartPhoneBindingRequest = {
 };
 
 export type StartPhoneBindingResponse = {
-  challengeId: string;
-  expiresAt: number;
-  issuedAt: number;
-  resendAllowedAt: number;
-  serverTime: number;
   sent: true;
 };
 
@@ -55,47 +50,9 @@ export type StartPhoneOtpRequest = {
 
 export type StartPhoneOtpResponse = {
   accepted: true;
-  challengeId: string;
   expiresAt: number;
   issuedAt: number;
   resendAllowedAt: number;
-  serverTime: number;
-};
-
-export type PhoneOtpPurpose = 'login' | 'recovery';
-
-export type VerifyPhoneOtpRequest = {
-  challengeId: string;
-  phone: string;
-  purpose: PhoneOtpPurpose;
-  token: string;
-};
-
-export type VerifyPhoneOtpResponse = {
-  session: SocialAuthSessionResponse;
-  verified: true;
-};
-
-export type WechatAuthAvailability = 'available' | 'configuration_pending';
-
-export type StartWechatAuthResponse = {
-  appId?: string;
-  challengeId: string;
-  expiresAt: number;
-  issuedAt: number;
-  state: string;
-  status: WechatAuthAvailability;
-};
-
-export type CompleteWechatAuthRequest = {
-  challengeId: string;
-  code: string;
-  state: string;
-};
-
-export type CompleteWechatAuthResponse = {
-  account: AccountSummary;
-  session: SocialAuthSessionResponse;
 };
 
 export type AuthorizePasswordRecoveryResponse = {
@@ -207,7 +164,7 @@ export type VerifyAppleTransactionResponse = {
 };
 
 export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding';
-export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple' | 'wechat';
+export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple';
 
 export type PasswordRecentAuthRequest = {
   password: string;
@@ -235,15 +192,6 @@ export type AppleCredentialRequest = {
 export type AppleRecentAuthRequest = AppleCredentialRequest & {
   purpose: 'account_delete';
 };
-
-export type WechatRecentAuthRequest = {
-  challengeId: string;
-  code: string;
-  purpose: 'account_delete';
-  state: string;
-};
-
-export type StartWechatRecentAuthRequest = Pick<WechatRecentAuthRequest, 'purpose'>;
 
 export type RegisterAppleCredentialResponse = {
   registered: true;
@@ -288,7 +236,7 @@ export type AccountDataExportResponse = {
     accountId: string;
     createdAt: string;
     phone?: string;
-    providers: AuthIdentityProvider[];
+    providers: Array<'phone' | 'apple'>;
   };
   learning: {
     aiResultGeneration: number;
@@ -964,7 +912,7 @@ export type OpsHealthSummary = {
 export type OpsUserSummary = {
   accountId: string;
   status: string;
-  providers: AuthIdentityProvider[];
+  providers: Array<'phone' | 'apple'>;
   phone: string;
   lastIdentityUsedAt: string | null;
   sessionsRevokedAt: string | null;

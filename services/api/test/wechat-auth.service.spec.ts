@@ -127,7 +127,97 @@ describe('WechatAuthService challenge recovery', () => {
 
     await expect((service as unknown as { verifyProviderSubject(value: typeof input, purpose: 'login'): Promise<unknown> })
       .verifyProviderSubject(input, 'login'))
-      .resolves.toEqual({ codeDigest: digest('code', input.code), subjectDigest });
+      .resolves.toEqual({ alreadyConsumed: false, codeDigest: digest('code', input.code), subjectDigest });
     expect(provider.exchangeCode).not.toHaveBeenCalled();
+  });
+
+  it('replays a completed login challenge idempotently without exchanging its one-time code again', async () => {
+    const input = { challengeId: '10000000-0000-4000-8000-000000000003', code: 'single-use-code', state: 'opaque-state' };
+    const subjectDigest = digest('subject', 'unionid:completed-login');
+    const provider = { exchangeCode: vi.fn() } as unknown as WechatAuthHttp;
+    const { service } = fixture({
+      accountId: null,
+      attemptCount: 1,
+      authUserId: null,
+      codeDigest: digest('code', input.code),
+      id: input.challengeId,
+      purpose: 'login',
+      stateDigest: digest('state', input.state),
+      status: 'consumed',
+      subjectDigest,
+      verificationExpiresAt: null,
+    }, provider);
+
+    await expect((service as unknown as { verifyProviderSubject(value: typeof input, purpose: 'login'): Promise<unknown> })
+      .verifyProviderSubject(input, 'login'))
+      .resolves.toEqual({ alreadyConsumed: true, codeDigest: digest('code', input.code), subjectDigest });
+    expect(provider.exchangeCode).not.toHaveBeenCalled();
+  });
+
+  it('commits a deterministic principal reservation before creating the external auth user and resumes after failure', async () => {
+    const subjectDigest = digest('subject', 'unionid:recoverable-user');
+    const getUserById = vi.fn().mockResolvedValue({ data: { user: null }, error: { status: 404 } });
+    const recoveredUser = {
+      id: '',
+      email: `wx-${subjectDigest.slice(0, 40)}@wechat-auth.invalid`,
+      app_metadata: { icao_identity_provider: 'wechat', icao_wechat_subject: subjectDigest },
+    };
+    const createUser = vi.fn()
+      .mockResolvedValueOnce({ data: { user: null }, error: { message: 'temporary failure' } })
+      .mockImplementationOnce(({ id }: { id: string }) => {
+        recoveredUser.id = id;
+        return Promise.resolve({ data: { user: recoveredUser }, error: null });
+      });
+    supabase.createClient
+      .mockReset()
+      .mockReturnValueOnce({ auth: { admin: { createUser, getUserById } } })
+      .mockReturnValueOnce({ auth: {} });
+    let principalId: string | undefined;
+    const insertValues = vi.fn((value: { authUserId: string }) => {
+      principalId = value.authUserId;
+      return {
+        onConflictDoNothing: () => ({ returning: () => Promise.resolve([{ authUserId: value.authUserId }]) }),
+      };
+    });
+    const transaction = {
+      execute: vi.fn().mockResolvedValue(undefined),
+      insert: vi.fn(() => ({ values: insertValues })),
+      select: vi.fn(() => query([])),
+    };
+    const update = vi.fn(() => query([]));
+    const database = {
+      db: {
+        transaction: vi.fn(async (operation: (tx: typeof transaction) => Promise<unknown>) => operation(transaction)),
+        update,
+      },
+    } as unknown as DatabaseService;
+    const instance = new WechatAuthService(config, {} as WechatAuthHttp, database, {} as never, {} as never);
+    const ensure = () => (instance as unknown as { ensureAuthUser(value: string): Promise<{ id: string }> })
+      .ensureAuthUser(subjectDigest);
+
+    await expect(ensure()).rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException);
+    await expect(ensure()).resolves.toEqual(expect.objectContaining({ id: principalId }));
+    expect(principalId).toMatch(/^[0-9a-f-]{36}$/u);
+    expect(createUser).toHaveBeenNthCalledWith(1, expect.objectContaining({ id: principalId }));
+    expect(createUser).toHaveBeenNthCalledWith(2, expect.objectContaining({ id: principalId }));
+    expect(insertValues.mock.invocationCallOrder[0]).toBeLessThan(createUser.mock.invocationCallOrder[0]!);
+  });
+
+  it('does not create an external auth user when the principal reservation transaction fails', async () => {
+    const getUserById = vi.fn();
+    const createUser = vi.fn();
+    supabase.createClient
+      .mockReset()
+      .mockReturnValueOnce({ auth: { admin: { createUser, getUserById } } })
+      .mockReturnValueOnce({ auth: {} });
+    const database = {
+      db: { transaction: vi.fn().mockRejectedValue(new Error('database commit failed')) },
+    } as unknown as DatabaseService;
+    const instance = new WechatAuthService(config, {} as WechatAuthHttp, database, {} as never, {} as never);
+
+    await expect((instance as unknown as { ensureAuthUser(value: string): Promise<unknown> })
+      .ensureAuthUser(digest('subject', 'unionid:no-orphan'))).rejects.toThrow('database commit failed');
+    expect(createUser).not.toHaveBeenCalled();
+    expect(getUserById).not.toHaveBeenCalled();
   });
 });

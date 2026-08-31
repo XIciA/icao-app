@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Post, Req } from '@nestjs/common';
-import type { ApiSuccessEnvelope, CompleteWechatAuthRequest, CompleteWechatAuthResponse, StartWechatAuthResponse } from '@icao/contracts';
+import type { ApiSuccessEnvelope } from '@icao/contracts';
+import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, StartWechatAuthResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from './auth.types';
 import { WechatAuthService } from './wechat-auth.service';

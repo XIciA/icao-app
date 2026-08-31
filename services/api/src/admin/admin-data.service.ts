@@ -4,9 +4,9 @@ import type {
   OpsFeedbackQueueItem,
   OpsHealthSummary,
   OpsPrivacyRequestQueueItem,
-  OpsUserSummary,
 } from '@icao/contracts';
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
+import type { NativeOpsUserSummary as OpsUserSummary } from '@icao/contracts/native-auth';
 import { count, desc, eq, inArray, or } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';

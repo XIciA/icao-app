@@ -1,7 +1,7 @@
 import { createHmac } from 'node:crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
-import type { AuthIdentityProvider } from '@icao/contracts';
+import type { NativeAuthIdentityProvider as AuthIdentityProvider } from '@icao/contracts/native-auth';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 

@@ -8,6 +8,7 @@ const {
   withAndroidManifest,
   withDangerousMod,
   withEntitlementsPlist,
+  withGradleProperties,
   withInfoPlist,
 } = require('expo/config-plugins');
 
@@ -108,6 +109,13 @@ function upsertAndroidManifestEntry(application, key, value) {
   ];
 }
 
+function upsertGradleProperty(properties, key, value) {
+  return [
+    ...properties.filter((entry) => !(entry.type === 'property' && entry.key === key)),
+    { type: 'property', key, value },
+  ];
+}
+
 function androidCallbackSource(packageName) {
   return `package ${packageName}.wxapi
 
@@ -134,7 +142,7 @@ class WXEntryActivity : Activity(), IWXAPIEventHandler {
 
   private fun handleWechatIntent(intent: Intent?) {
     if (intent == null || IcaoWechatAuthCoordinator.api(this)?.handleIntent(intent, this) != true) {
-      IcaoWechatAuthCoordinator.cancelPending()
+      // An unrecognized or stale callback must not cancel a newer authorization generation.
       finish()
     }
   }
@@ -205,6 +213,19 @@ module.exports = function withWechatAuth(config, properties) {
       { $: { 'android:name': 'com.tencent.mm' } },
     ];
     manifest.queries = queries;
+    return mod;
+  });
+  config = withGradleProperties(config, (mod) => {
+    mod.modResults = upsertGradleProperty(
+      mod.modResults,
+      'android.enableMinifyInReleaseBuilds',
+      'true',
+    );
+    mod.modResults = upsertGradleProperty(
+      mod.modResults,
+      'android.enableShrinkResourcesInReleaseBuilds',
+      'true',
+    );
     return mod;
   });
   config = withDangerousMod(config, ['android', (mod) => {

@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest, PhoneRecentAuthRequest, RecentAuthGrantResponse, StartPhoneOtpResponse, StartPhoneRecentAuthRequest, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts';
+import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest, PhoneRecentAuthRequest, StartPhoneRecentAuthRequest } from '@icao/contracts';
+import type { NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
 
 import { AppleAuthService } from './apple-auth.service';
 import { appleRecentAuthSchema } from './apple-auth.schemas';

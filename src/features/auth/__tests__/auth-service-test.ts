@@ -67,6 +67,7 @@ function authClient() {
   const currentSession = session();
   const auth = {
     getSession: jest.fn().mockResolvedValue({ data: { session: currentSession }, error: null }),
+    getUser: jest.fn().mockResolvedValue({ data: { user: currentSession.user }, error: null }),
     refreshSession: jest.fn().mockResolvedValue({ data: { session: currentSession }, error: null }),
     resend: jest.fn().mockResolvedValue({ data: { user: null, session: null }, error: null }),
     signInWithIdToken: jest.fn().mockResolvedValue({ data: { session: currentSession, user: currentSession.user }, error: null }),
@@ -397,6 +398,45 @@ describe('SupabasePhoneAuthService', () => {
 
     expect(auth.setSession).not.toHaveBeenCalled();
     expect(auth.signOut).not.toHaveBeenCalled();
+  });
+
+  it('never persists a late successful login after a newer login generation has already failed', async () => {
+    const { auth, client } = authClient();
+    const { auth: transientAuth, client: transientClient } = authClient();
+    let resolveFirst!: (value: unknown) => void;
+    const first = new Promise((resolve) => { resolveFirst = resolve; });
+    transientAuth.signInWithPassword
+      .mockImplementationOnce(() => first)
+      .mockResolvedValueOnce({ data: { session: null, user: null }, error: { code: 'invalid_credentials', message: 'invalid' } });
+    const service = new SupabasePhoneAuthService(client, transientClient);
+
+    const late = service.signInWithPhonePassword(phone, 'password10');
+    await Promise.resolve();
+    const newer = service.signInWithPhonePassword(phone, 'wrongpassword10');
+    await expect(newer).rejects.toThrow('invalid_phone_or_password');
+    const lateSession = session();
+    resolveFirst({ data: { session: lateSession, user: lateSession.user }, error: null });
+
+    await expect(late).rejects.toThrow('auth_request_not_completed');
+    expect(auth.setSession).not.toHaveBeenCalled();
+  });
+
+  it('reports a persistent-session restore failure instead of swallowing it', async () => {
+    const { auth, client } = authClient();
+    const { auth: transientAuth, client: transientClient } = authClient();
+    const foreign = session({ id: 'foreign-user', phone: '+12025550123' });
+    auth.setSession
+      .mockResolvedValueOnce({ data: { session: foreign, user: foreign.user }, error: null })
+      .mockResolvedValueOnce({ data: { session: null, user: null }, error: { code: 'storage_failure', message: 'storage failed' } });
+    transientAuth.getUser.mockResolvedValueOnce({ data: { user: user() }, error: null });
+    mockApiRequest.mockResolvedValueOnce({
+      session: { accessToken: 'otp-access', refreshToken: 'otp-refresh' },
+      verified: true,
+    });
+
+    await expect(new SupabasePhoneAuthService(client, transientClient).verifyPhoneOtp(loginChallenge, '123456'))
+      .rejects.toThrow('auth_session_restore_failed');
+    expect(auth.setSession).toHaveBeenCalledTimes(2);
   });
 
   it('resends binding codes through the same neutral server endpoint', async () => {

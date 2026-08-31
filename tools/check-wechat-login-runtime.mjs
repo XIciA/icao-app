@@ -9,6 +9,18 @@ const require = createRequire(import.meta.url);
 const EXPECTED_IOS_SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
 const EXPECTED_IOS_SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
 const EXPECTED_ANDROID_DEPENDENCY = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0';
+const candidateConfiguration = process.argv.some((value) => [
+  '--candidate',
+  '--candidate-config',
+  '--candidate-android-project',
+  '--candidate-android-artifact',
+  '--candidate-ios-artifact',
+].includes(value));
+
+function argumentAfter(flag) {
+  const index = process.argv.indexOf(flag);
+  return index < 0 ? undefined : process.argv[index + 1];
+}
 
 function fail(message) {
   throw new Error(`wechat_login_runtime:${message}`);
@@ -66,6 +78,11 @@ for (const [platform, source] of [['ios', iosBridge], ['android', androidBridge]
   if (!source.includes('cancelAuthorization')) fail(`${platform}_authorization_cancel_missing`);
   if (!source.includes('wechat_auth_timeout')) fail(`${platform}_authorization_timeout_missing`);
 }
+if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_timeout_generation_guard_missing');
+if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_callback_generation_guard_missing');
+if (!androidBridge.includes('takePending(responseState)')) fail('android_callback_generation_guard_missing');
+if (!androidBridge.includes('takePending(state)')) fail('android_timeout_generation_guard_missing');
+if (/takePending\(\s*\)/u.test(`${iosBridge}\n${androidBridge}`)) fail('native_unguarded_pending_take_present');
 
 const packageJson = JSON.parse(await readFile(path.join(ROOT, 'package.json'), 'utf8'));
 if (packageJson.dependencies?.['@icao/wechat-auth'] !== 'file:modules/icao-wechat-auth') {
@@ -105,7 +122,11 @@ const clientFiles = [
 const forbiddenClientSecrets = [/WECHAT_APP_SECRET/u, /EXPO_PUBLIC_[A-Z0-9_]*WECHAT[A-Z0-9_]*SECRET/u];
 const forbiddenPaymentMarkers = [
   /\bPayReq\b/u,
+  /\bPayResp\b/u,
   /\bWXPay\b/u,
+  /WXPayEntryActivity/u,
+  /\bmerchant[_-]?(?:id|key)\b/iu,
+  /\bmch[_-]?id\b/iu,
   /wechat-sdk-android-with-mta(?:['":]|$)/u,
   /WechatOpenSDK_WithPay/iu,
   /\bwechat[_-]?pay\b/iu,
@@ -127,19 +148,29 @@ const aasaController = await readFile(path.join(ROOT, 'services/api/src/wechat-u
 if (!aasaController.includes("@Get('apple-app-site-association')")) fail('aasa_endpoint_missing');
 if (!aasaController.includes("header('content-type', 'application/json')")) fail('aasa_content_type_missing');
 
-if (process.argv.includes('--candidate')) {
+if (candidateConfiguration) {
   const appId = process.env.ICAO_WECHAT_APP_ID?.trim();
   const universalLink = process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim();
   const archive = process.env.ICAO_WECHAT_SDK_ARCHIVE?.trim();
-  const teamId = process.env.ICAO_APPLE_TEAM_ID?.trim();
-  if (!appId || !/^wx[0-9a-z]+$/iu.test(appId)) fail('candidate_app_id_missing');
+  const teamId = (process.env.ICAO_APPLE_TEAM_ID || process.env.ICAO_IOS_TEAM_ID)?.trim();
+  if (!appId || !/^wx[0-9a-z]+$/iu.test(appId)) fail('WAITING_HUMAN:candidate_app_id_missing');
   if (!universalLink || !universalLink.startsWith('https://') || !universalLink.endsWith('/')) {
-    fail('candidate_universal_link_missing');
+    fail('WAITING_HUMAN:candidate_universal_link_missing');
   }
-  if (!archive) fail('candidate_sdk_archive_missing');
-  const archiveDigest = createHash('sha256').update(await readFile(path.resolve(archive))).digest('hex');
-  if (archiveDigest !== EXPECTED_IOS_SDK_SHA256) fail('candidate_sdk_archive_checksum_mismatch');
-  if (!teamId) fail('candidate_apple_team_id_missing');
+  if (archive) {
+    const archiveDigest = createHash('sha256').update(await readFile(path.resolve(archive))).digest('hex');
+    if (archiveDigest !== EXPECTED_IOS_SDK_SHA256) fail('candidate_sdk_archive_checksum_mismatch');
+  }
+  if (!teamId) fail('WAITING_HUMAN:candidate_apple_team_id_missing');
+  if (
+    (process.argv.includes('--candidate') || process.argv.includes('--candidate-config') || process.argv.includes('--candidate-ios-artifact'))
+    && !await exists('modules/icao-wechat-auth/ios/Vendor/WechatOpenSDK.xcframework')
+  ) {
+    fail('candidate_materialized_official_sdk_missing');
+  }
+  if (process.argv.includes('--candidate') || process.argv.includes('--candidate-config') || process.argv.includes('--candidate-ios-artifact')) {
+    plugin.verifyMaterializedNoPaySdk(materializedSdk);
+  }
 
   const aasaUrl = new URL('/.well-known/apple-app-site-association', universalLink);
   const aasaResponse = await fetch(aasaUrl, { redirect: 'manual', signal: AbortSignal.timeout(10_000) });
@@ -155,6 +186,9 @@ if (process.argv.includes('--candidate')) {
     && entry.paths.includes(expectedPath)
   ))) fail('candidate_aasa_application_or_path_mismatch');
 
+}
+
+if (process.argv.includes('--candidate') || process.argv.includes('--candidate-android-project') || process.argv.includes('--candidate-android-artifact')) {
   if (!await exists('android/gradlew')) fail('candidate_android_project_missing');
   const dependencyReport = execFileSync('./gradlew', [':app:dependencies', '--configuration', 'releaseRuntimeClasspath'], {
     cwd: path.join(ROOT, 'android'),
@@ -163,6 +197,59 @@ if (process.argv.includes('--candidate')) {
   });
   if (!dependencyReport.includes(EXPECTED_ANDROID_DEPENDENCY)) fail('candidate_android_resolved_nopay_sdk_missing');
   if (/wechat-sdk-android-with-mta(?!:)/u.test(dependencyReport)) fail('candidate_android_tracking_sdk_resolved');
+  const gradleProperties = await readFile(path.join(ROOT, 'android/gradle.properties'), 'utf8');
+  if (!/^android\.enableMinifyInReleaseBuilds=true$/mu.test(gradleProperties)) fail('candidate_android_release_minify_disabled');
+  if (!/^android\.enableShrinkResourcesInReleaseBuilds=true$/mu.test(gradleProperties)) fail('candidate_android_release_resource_shrink_disabled');
 }
 
-process.stdout.write(`WeChat NoPay login runtime verified (${process.argv.includes('--candidate') ? 'candidate' : 'static'} gate).\n`);
+const androidArtifact = argumentAfter('--candidate-android-artifact');
+if (androidArtifact) {
+  const artifact = path.resolve(androidArtifact);
+  await access(artifact);
+  const entries = execFileSync('unzip', ['-Z1', artifact], { encoding: 'utf8' }).split('\n');
+  const bundleEntry = entries.find((entry) => /(^|\/)index\.android\.bundle$/u.test(entry));
+  if (!bundleEntry) fail('candidate_android_javascript_bundle_missing');
+  const bundle = execFileSync('unzip', ['-p', artifact, bundleEntry], { encoding: 'utf8', maxBuffer: 128 * 1024 * 1024 });
+  for (const marker of forbiddenPaymentMarkers) {
+    if (marker.test(bundle)) fail('candidate_android_reachable_payment_marker');
+  }
+  const analyzer = process.env.ICAO_APKANALYZER?.trim();
+  if (!analyzer) fail('candidate_android_apkanalyzer_missing');
+  const manifest = execFileSync(analyzer, ['manifest', 'print', artifact], { encoding: 'utf8' });
+  if (/WXPayEntryActivity|merchant[_-]?(?:id|key)|mch[_-]?id/iu.test(manifest)) {
+    fail('candidate_android_payment_manifest_present');
+  }
+  const dexPackages = execFileSync(analyzer, ['dex', 'packages', artifact], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (/com\.tencent\.mm\.opensdk\.modelpay|WXPayEntryActivity|WXJointPay|WXNontaxPay/iu.test(dexPackages)) {
+    fail('candidate_android_payment_class_retained');
+  }
+  const usagePath = path.join(ROOT, 'android/app/build/outputs/mapping/release/usage.txt');
+  if (!await access(usagePath).then(() => true, () => false)) fail('candidate_android_r8_usage_evidence_missing');
+  const removedUsage = await readFile(usagePath, 'utf8');
+  if (!/com\.tencent\.mm\.opensdk\.modelpay\.(?:PayReq|PayResp)/u.test(removedUsage)) {
+    fail('candidate_android_payment_class_removal_unproven');
+  }
+}
+
+const iosArtifact = argumentAfter('--candidate-ios-artifact');
+if (iosArtifact) {
+  const app = path.resolve(iosArtifact);
+  const infoPlist = path.join(app, 'Info.plist');
+  const executableName = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :CFBundleExecutable', infoPlist], { encoding: 'utf8' }).trim();
+  const configuredAppId = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :ICAOWechatAppId', infoPlist], { encoding: 'utf8' }).trim();
+  const configuredLink = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :ICAOWechatUniversalLink', infoPlist], { encoding: 'utf8' }).trim();
+  if (configuredAppId !== process.env.ICAO_WECHAT_APP_ID?.trim() || configuredLink !== process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim()) {
+    fail('candidate_ios_wechat_configuration_mismatch');
+  }
+  const executableSymbols = execFileSync('nm', ['-u', path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  if (/PayReq|PayResp|WXPay|WXNontaxPay|WXJointPay/u.test(executableSymbols)) fail('candidate_ios_reachable_payment_symbol');
+  const bundle = await readFile(path.join(app, 'main.jsbundle'), 'utf8');
+  for (const marker of forbiddenPaymentMarkers) {
+    if (marker.test(bundle)) fail('candidate_ios_reachable_payment_marker');
+  }
+}
+
+process.stdout.write(`Official WeChat SendAuth runtime verified (${candidateConfiguration ? 'candidate' : 'static'} gate; no application-reachable payment capability).\n`);

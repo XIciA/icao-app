@@ -1,4 +1,5 @@
-import { isChinaMobileE164, normalizeChinaMobile, type PhoneOtpPurpose, type StartPhoneOtpResponse } from '@icao/contracts';
+import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
+import type { NativeStartPhoneOtpResponse, PhoneOtpPurpose } from '@icao/contracts/native-auth';
 import * as SecureStore from 'expo-secure-store';
 
 export type PersistedPhoneOtpChallenge = {
@@ -18,6 +19,19 @@ const MAX_RESTORE_AGE_MS = 24 * 60 * 60 * 1_000;
 const OPTIONS: SecureStore.SecureStoreOptions = {
   keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
 };
+let writeTail: Promise<void> = Promise.resolve();
+
+async function withWriteLock<T>(operation: () => Promise<T>) {
+  const previous = writeTail;
+  let release!: () => void;
+  writeTail = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    return await operation();
+  } finally {
+    release();
+  }
+}
 
 function validTimestamp(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
@@ -54,7 +68,7 @@ export function phoneOtpServerNow(challenge: PersistedPhoneOtpChallenge, deviceN
 export function phoneOtpChallenge(
   phoneInput: string,
   purpose: PhoneOtpPurpose,
-  response: StartPhoneOtpResponse,
+  response: NativeStartPhoneOtpResponse,
   receivedAt = Date.now(),
 ): PersistedPhoneOtpChallenge {
   const phone = normalizeChinaMobile(phoneInput);
@@ -100,12 +114,26 @@ export async function writePhoneOtpChallenge(challenge: PersistedPhoneOtpChallen
   if (!parsePhoneOtpChallenge(challenge, Date.now())) {
     throw new Error('auth_service_unavailable');
   }
-  try {
-    await SecureStore.setItemAsync(KEY, JSON.stringify(challenge), OPTIONS);
-    await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
-  } catch {
-    throw new Error('auth_session_storage_unavailable');
-  }
+  return withWriteLock(async () => {
+    try {
+      const currentRaw = await SecureStore.getItemAsync(KEY, OPTIONS);
+      const current = currentRaw
+        ? parsePhoneOtpChallenge(JSON.parse(currentRaw) as unknown, Date.now())
+        : undefined;
+      if (
+        current
+        && (
+          current.issuedAt > challenge.issuedAt
+          || (current.issuedAt === challenge.issuedAt && current.challengeId !== challenge.challengeId)
+        )
+      ) return false;
+      await SecureStore.setItemAsync(KEY, JSON.stringify(challenge), OPTIONS);
+      await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+      return true;
+    } catch {
+      throw new Error('auth_session_storage_unavailable');
+    }
+  });
 }
 
 export async function clearPhoneOtpChallenge() {

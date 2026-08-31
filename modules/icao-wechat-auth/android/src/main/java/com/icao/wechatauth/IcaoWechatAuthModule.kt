@@ -95,16 +95,8 @@ object IcaoWechatAuthCoordinator {
   @Synchronized
   fun handleResponse(response: BaseResp) {
     val authorization = response as? SendAuth.Resp ?: return
-    val active = takePending() ?: return
-
-    if (authorization.state != active.state) {
-      active.promise.reject(
-        "invalid_wechat_auth_response",
-        "WeChat returned a mismatched authorization state",
-        null
-      )
-      return
-    }
+    val responseState = authorization.state ?: return
+    val active = takePending(responseState) ?: return
     when (authorization.errCode) {
       BaseResp.ErrCode.ERR_OK -> {
         val code = authorization.code
@@ -124,8 +116,8 @@ object IcaoWechatAuthCoordinator {
   }
 
   @Synchronized
-  fun cancelPending() {
-    val active = takePending() ?: return
+  fun cancelPending(state: String) {
+    val active = takePending(state) ?: return
     active.promise.reject("social_auth_cancelled", "WeChat authorization was cancelled", null)
   }
 
@@ -169,12 +161,9 @@ class IcaoWechatAuthModule : Module() {
       }
     }
 
-    Function("cancelAuthorization") {
-      IcaoWechatAuthCoordinator.cancelPending()
+    Function("cancelAuthorization") { state: String ->
+      IcaoWechatAuthCoordinator.cancelPending(state)
     }
 
-    OnActivityDestroys {
-      IcaoWechatAuthCoordinator.cancelPending()
-    }
   }
 }

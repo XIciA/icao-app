@@ -45,6 +45,7 @@ load_release_runtime() {
   ECS_HOST=${ICAO_ECS_HOST:-47.108.90.19}
   ECS_USER=${ICAO_ECS_USER:-root}
   SSH_KEY=${ICAO_ECS_SSH_KEY:-${HOME:?}/.ssh/icao_app_codex}
+  ICAO_IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
 
   require_public_https_url EXPO_PUBLIC_ICAO_API_URL "$API_URL"
   require_public_https_url EXPO_PUBLIC_SUPABASE_URL "$SUPABASE_URL"
@@ -62,7 +63,7 @@ load_release_runtime() {
     exit 1
   fi
 
-  export API_URL SUPABASE_URL PUBLISHABLE_KEY ECS_HOST ECS_USER SSH_KEY
+  export API_URL SUPABASE_URL PUBLISHABLE_KEY ECS_HOST ECS_USER SSH_KEY ICAO_IOS_TEAM_ID
   export EXPO_PUBLIC_ICAO_API_URL=$API_URL
   export EXPO_PUBLIC_SUPABASE_URL=$SUPABASE_URL
   export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY
@@ -112,4 +113,26 @@ for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']
   }
 }
 NODE
+}
+
+check_wechat_candidate_configuration() {
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-config
+}
+
+check_wechat_android_project() {
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-project
+}
+
+check_wechat_android_artifact() {
+  artifact=$1
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-artifact "$artifact"
+}
+
+check_wechat_ios_artifact() {
+  artifact=$1
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-ios-artifact "$artifact"
 }

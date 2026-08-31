@@ -101,7 +101,7 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
   throw new Error('App name or native identifiers no longer match the public legal pages.');
 }
 
-const infoPath = path.join(root, 'src/features/info/InfoScreen.tsx');
+const infoPath = path.join(root, 'src/features/info/InfoScreen.native.tsx');
 const info = await readFile(infoPath, 'utf8');
 for (const fragment of [company, appName, '版本 v4.2', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', 'AI 生成内容标识', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据', '在“学习记录”删除单条 AI 结果', '清除学习数据仍保留账号、会员和订单', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
@@ -121,7 +121,7 @@ if (privacyChoices.includes('1.0.0 暂不提供 App 内自助导出入口')) {
   throw new Error('Public privacy choices must match the in-App self-service export capability.');
 }
 
-const legalReleasePath = path.join(root, 'src/features/info/legal-release-surface.ts');
+const legalReleasePath = path.join(root, 'src/features/info/legal-release-surface.native.ts');
 const legalRelease = await readFile(legalReleasePath, 'utf8');
 const formalMarker = 'export const FORMAL_APP_LEGAL_COPY';
 const legacyMarker = 'export const VERCEL_LEGACY_LEGAL_COPY';

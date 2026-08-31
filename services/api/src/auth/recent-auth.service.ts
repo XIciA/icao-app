@@ -1,7 +1,8 @@
 import { createHmac, randomUUID } from 'node:crypto';
 
 import { ForbiddenException, Inject, Injectable, Optional } from '@nestjs/common';
-import type { RecentAuthGrantResponse, RecentAuthMethod, RecentAuthPurpose } from '@icao/contracts';
+import type { RecentAuthPurpose } from '@icao/contracts';
+import type { NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeRecentAuthMethod as RecentAuthMethod } from '@icao/contracts/native-auth';
 import { and, eq, gt, isNull, lte, or } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';

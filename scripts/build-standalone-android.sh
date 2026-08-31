@@ -37,11 +37,8 @@ fi
 
 echo 'Generating the Android native project from the checked Expo configuration...'
 cd "$PROJECT_ROOT"
-if [ "${ICAO_ANDROID_CLEAN_PREBUILD:-0}" = '1' ]; then
-  ./scripts/with-android-env.sh pnpm exec expo prebuild --platform android --clean --no-install
-else
-  ./scripts/with-android-env.sh pnpm exec expo prebuild --platform android --no-install
-fi
+./scripts/with-android-env.sh pnpm exec expo prebuild --platform android --clean --no-install
+check_wechat_android_project
 
 echo 'Building the signed Android Release APK...'
 cd "$PROJECT_ROOT/android"
@@ -52,6 +49,7 @@ if [ ! -f "$SOURCE_APK" ]; then
   echo "Release APK is missing: $SOURCE_APK" >&2
   exit 1
 fi
+ICAO_APKANALYZER=$APKANALYZER check_wechat_android_artifact "$SOURCE_APK"
 
 PACKAGE_ID=$($APKANALYZER manifest application-id "$SOURCE_APK")
 VERSION_CODE=$($APKANALYZER manifest version-code "$SOURCE_APK")

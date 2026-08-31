@@ -1,6 +1,7 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
-import type { AccountSummary, DeleteAccountResponse, StartPhoneOtpResponse } from '@icao/contracts';
+import type { DeleteAccountResponse } from '@icao/contracts';
+import type { NativeAccountSummary, NativeStartPhoneOtpResponse } from '@icao/contracts/native-auth';
 
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
@@ -29,7 +30,7 @@ type AuthContextValue = {
   canAccessApp: boolean;
   restoring: boolean;
   accountDeletionPending: boolean;
-  account?: AccountSummary;
+  account?: NativeAccountSummary;
   session?: AppSession;
   passwordChangePurpose?: 'recovery' | 'setup';
   uiAcceptanceAvailable: boolean;
@@ -40,8 +41,8 @@ type AuthContextValue = {
   rememberPendingPath(path: string): void;
   signInWithApple(): Promise<void>;
   signInWithWechat(): Promise<void>;
-  requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
-  requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
+  requestPhoneOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
+  requestPasswordRecoveryOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   verifyPhoneOtp(challenge: PersistedPhoneOtpChallenge, token: string): Promise<AppSession>;
   signInWithPhonePassword(phone: string, password: string): Promise<void>;
   updatePassword(password: string, currentPassword?: string): Promise<void>;
@@ -97,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [accountDeletionPending, setAccountDeletionPending] = useState(false);
   const [accountRestoreUnavailable, setAccountRestoreUnavailable] = useState(false);
   const [session, setSession] = useState<AppSession>();
-  const [account, setAccount] = useState<AccountSummary>();
+  const [account, setAccount] = useState<NativeAccountSummary>();
   const [passwordAuthorization, setPasswordAuthorization] = useState<{
     accessToken: string;
     expiresAt: number;
@@ -119,7 +120,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const accountDeletionFinalizationRef = useRef<Promise<void> | undefined>(undefined);
   const accountDeletionSubmissionRef = useRef(false);
   const accountInitializationRef = useRef<{
-    promise: Promise<AccountSummary>;
+    promise: Promise<NativeAccountSummary>;
     userId: string;
   } | undefined>(undefined);
   const sessionMutationRef = useRef(0);
@@ -242,7 +243,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (accountInitializationRef.current?.userId === next.user.id) {
       return accountInitializationRef.current.promise;
     }
-    const promise = apiRequest<AccountSummary>('/v1/account');
+    const promise = apiRequest<NativeAccountSummary>('/v1/account');
     accountInitializationRef.current = { promise, userId: next.user.id };
     void promise.catch(() => {
       if (accountInitializationRef.current?.promise === promise) accountInitializationRef.current = undefined;
@@ -316,13 +317,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
       onInvalidated: async (rejectedToken) => {
         if (sessionRef.current?.accessToken !== rejectedToken) return;
-        const persisted = await service.getSession().catch(() => undefined);
+        let persisted: AppSession | undefined;
+        try {
+          persisted = await service.getSession();
+        } catch {
+          setAccountRestoreUnavailable(true);
+          return;
+        }
         if (persisted?.accessToken && persisted.accessToken !== rejectedToken) {
           setSessionSnapshot(persisted);
           return;
         }
         if (sessionRef.current?.accessToken !== rejectedToken) return;
-        await service.signOut('local').catch(() => undefined);
+        try {
+          await service.signOut('local');
+        } catch {
+          setAccountRestoreUnavailable(true);
+          return;
+        }
         await clearLocalAiConsent().catch(() => undefined);
         setSessionSnapshot(undefined, true);
         setPasswordAuthorization(undefined);
@@ -351,7 +363,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (sessionRef.current?.accessToken === persisted.accessToken) return;
         setUiAcceptanceMode(false);
         await acceptAuthenticatedSession(persisted).catch(() => undefined);
-      }).catch(() => undefined);
+      }).catch(() => {
+        if (active) setAccountRestoreUnavailable(true);
+      });
     });
     void restorePersistedAccount().finally(() => { if (active) setRestoring(false); });
     if (AppState.currentState === 'active') service.startAutoRefresh();

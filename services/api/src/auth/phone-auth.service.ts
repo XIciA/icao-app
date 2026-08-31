@@ -1,8 +1,9 @@
 import { createHmac } from 'node:crypto';
 
 import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { RecentAuthPurpose, SocialAuthSessionResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts';
+import type { RecentAuthPurpose, SocialAuthSessionResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
+import type { NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, desc, eq, gt, isNull, lte, sql } from 'drizzle-orm';
 
@@ -34,7 +35,8 @@ export class PhoneAuthService {
 
   async start(phone: string, sourceIp: string): Promise<StartPhoneOtpResponse> {
     const startedAt = new Date();
-    const { error } = await this.client(sourceIp).auth.signInWithOtp({
+    const challengeId = await this.reserveIntent(phone, 'login', undefined, startedAt);
+    return this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: {
         channel: 'sms',
@@ -46,21 +48,20 @@ export class PhoneAuthService {
           registration_pending: false,
         },
       },
-    });
-    if (error) this.throwStartError(error.code);
-    return this.recordIntent(phone, 'login', undefined, startedAt);
+    }));
   }
 
   async startRecovery(phone: string, sourceIp: string): Promise<StartPhoneOtpResponse> {
     const startedAt = Date.now();
-    await this.client(sourceIp).auth.signInWithOtp({
-      phone,
-      options: { channel: 'sms', shouldCreateUser: false },
-    });
+    const requestedAt = new Date(startedAt);
+    const challengeId = await this.reserveIntent(phone, 'password_recovery', undefined, requestedAt);
     // Unknown phones and provider-side rejections use the same tracked response
     // shape and latency. No account-existence signal is exposed, while the
     // challenge remains recoverable in the client and will simply fail verify.
-    const challenge = await this.recordIntent(phone, 'password_recovery', undefined, new Date(startedAt));
+    const challenge = await this.dispatchReservedIntent(phone, challengeId, requestedAt, async () => this.client(sourceIp).auth.signInWithOtp({
+      phone,
+      options: { channel: 'sms', shouldCreateUser: false },
+    }), true);
     await this.waitForRecoveryFloor(startedAt);
     return challenge;
   }
@@ -75,32 +76,24 @@ export class PhoneAuthService {
       throw new ForbiddenException('phone_reauthentication_required');
     }
     const startedAt = new Date();
-    const { error } = await this.client(sourceIp).auth.signInWithOtp({
+    const challengeId = await this.reserveIntent(phone, purpose, source.user.id, startedAt);
+    return this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: { channel: 'sms', shouldCreateUser: false },
-    });
-    if (error) this.throwStartError(error.code);
-    return this.recordIntent(phone, purpose, source.user.id, startedAt);
+    }));
   }
 
   async startBinding(source: VerifiedAuthSession, phone: string, sourceIp: string): Promise<StartPhoneBindingResponse> {
     const startedAt = new Date();
-    const { error } = await this.client(sourceIp).auth.signInWithOtp({
+    const challengeId = await this.reserveIntent(phone, 'phone_binding', source.user.id, startedAt);
+    const challenge = await this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: {
         channel: 'sms',
         shouldCreateUser: true,
         data: { account_type: 'native_phone_binding_target' },
       },
-    });
-    if (error) {
-      const code = error.code?.toLowerCase();
-      if (this.isRateLimit(code)) {
-        throw new HttpException('phone_binding_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
-      }
-      throw new ServiceUnavailableException('phone_binding_otp_unavailable');
-    }
-    const challenge = await this.recordIntent(phone, 'phone_binding', source.user.id, startedAt);
+    }), false, 'binding');
     return { ...challenge, sent: true };
   }
 
@@ -205,23 +198,21 @@ export class PhoneAuthService {
     };
   }
 
-  private async recordIntent(
+  private async reserveIntent(
     phone: string,
     purpose: PhoneOtpPurpose,
     accountId: string | undefined,
     startedAt: Date,
-  ): Promise<StartPhoneOtpResponse> {
+  ): Promise<string> {
     const phoneDigest = this.phoneDigest(phone);
     const challengeId = await this.database.db.transaction(async (transaction) => {
-      // Supabase OTP codes are scoped to the phone rather than our business
-      // purpose. Keep exactly one pending generation for the phone across
-      // login, recovery, binding and deletion so a token can never be reused
-      // with a challenge issued for another purpose. The transaction is
-      // ordered by provider completion, and every response returns the row it
-      // actually persisted instead of borrowing a concurrent challenge id.
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-intent:${phoneDigest}`}, 0))`);
+      // Reserve the generation before contacting the SMS provider. The same
+      // phone-scoped lock is used by dispatch below, so provider calls are
+      // serialized in reservation order and a late response can never become
+      // the active challenge merely because its supplier call completed last.
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
       await transaction.update(phoneOtpIntents).set({
-        consumedAt: startedAt,
+        consumedAt: new Date(),
         status: 'superseded',
       }).where(and(
         eq(phoneOtpIntents.phoneDigest, phoneDigest),
@@ -238,6 +229,53 @@ export class PhoneAuthService {
       if (!created) throw new ServiceUnavailableException('phone_auth_unavailable');
       return created.id;
     });
+    return challengeId;
+  }
+
+  private async dispatchReservedIntent(
+    phone: string,
+    challengeId: string,
+    startedAt: Date,
+    send: () => Promise<{ error: { code?: string } | null }>,
+    hideProviderError = false,
+    errorSurface: 'login' | 'binding' = 'login',
+  ): Promise<StartPhoneOtpResponse> {
+    const phoneDigest = this.phoneDigest(phone);
+    const outcome = await this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
+      const [reserved] = await transaction.select({ status: phoneOtpIntents.status })
+        .from(phoneOtpIntents)
+        .where(eq(phoneOtpIntents.id, challengeId))
+        .limit(1)
+        .for('update');
+      if (!reserved || reserved.status !== 'pending') return { kind: 'superseded' as const };
+
+      const { error } = await send();
+      const [stillCurrent] = await transaction.select({ status: phoneOtpIntents.status })
+        .from(phoneOtpIntents)
+        .where(eq(phoneOtpIntents.id, challengeId))
+        .limit(1)
+        .for('update');
+      if (!stillCurrent || stillCurrent.status !== 'pending') return { kind: 'superseded' as const };
+      if (error && !hideProviderError) {
+        await transaction.update(phoneOtpIntents).set({ status: 'failed' })
+          .where(and(eq(phoneOtpIntents.id, challengeId), eq(phoneOtpIntents.status, 'pending')));
+        return { code: error.code?.toLowerCase(), kind: 'provider_error' as const };
+      }
+      return { kind: 'sent' as const };
+    });
+    if (outcome.kind === 'superseded') {
+      throw new HttpException('phone_otp_request_superseded', HttpStatus.CONFLICT);
+    }
+    if (outcome.kind === 'provider_error') {
+      if (errorSurface === 'binding') {
+        if (this.isRateLimit(outcome.code)) {
+          throw new HttpException('phone_binding_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
+        }
+        throw new ServiceUnavailableException('phone_binding_otp_unavailable');
+      }
+      this.throwStartError(outcome.code);
+    }
     return this.challengeWindow(startedAt, challengeId);
   }
 

@@ -71,3 +71,12 @@
 - Native 隐私政策与非 Vercel 正式页面源码升级为 v4.2，披露微信开放平台登录、账号标识处理和无微信支付；Vercel 冻结范围未修改、未构建、未部署。
 - 聚焦客户端认证测试、API身份/OTP/AASA测试、根与API typecheck、正向微信发布门禁均通过。使用锁定的 NoPay 2.0.7 归档完成 Expo iOS prebuild、Pod 安装及 arm64 iOS Simulator 全量 `xcodebuild`，结果为 `BUILD SUCCEEDED`；构建过程中发现并修复 SDK 头重复导入、XCFramework 外层名称与内层链接名不一致以及新版 Swift SDK API 兼容问题。全量 `check:ci` 结果将在整合最新主线后补入。
 - `WAITING_HUMAN`：真实微信 AppID、服务端 AppSecret、已审核 Universal Link、iOS/Android平台签名资料及线上 AASA 可达性仍待平台核实；这些只阻塞微信生产真机验收和最终候选，不阻塞其余代码与材料。
+
+## 阶段 1：登录闭环与微信登录最终候选验证（2026-09-01）
+
+- OTP 挑战按启动代次保持唯一有效状态，退回、杀进程和重启可恢复；重发、旧码、过期、错误、限流和迟到请求均有聚焦测试。会话提交在 generation 所有权确认后才写入持久存储，迟到的 Supabase 初始化、刷新或监听事件不能覆盖较新的交互式登录。
+- 微信登录继续使用官方 OpenSDK `SendAuth`，业务代码、JS 桥、回调和配置均不暴露微信支付入口、商户资料或支付请求。门禁定义为“无应用可达支付能力”，不把官方 SDK 内部为兼容性保留的未调用类型误报为产品支付能力；iOS 归档检查应用侧未引用支付 API，Android 正式 APK/AAB 门禁必须读取 R8/DEX 后验结果。
+- iOS 已完成 clean prebuild、Pod 安装和 Release `iphonesimulator` 全量构建，`xcodebuild` 结果为 `BUILD SUCCEEDED`。Android 已完成 clean prebuild；当前宿主未安装 Android SDK，因此本轮没有声称 Android 原生编译或正式 APK/AAB 后验通过，正式 Android 构建链仍强制执行支付能力反证门禁。
+- `pnpm check:ci` 完整通过：根项目 132 个测试套件、786 个测试，API 31 个测试文件、513 个测试；另有登录聚焦客户端 46/46、API 21/21、StoreKit 130/130、生产迁移门禁 22/22 全部通过。根项目、contracts 和 API 的 typecheck、lint 与 build 均通过。
+- Vercel 未修改、未构建、未部署。共享 `InfoScreen.tsx`、`legal-release-surface.ts` 和 contracts Web 入口相对 `origin/main` 为零差异；当前 Web resolver 选中的受保护文件与本分支差异交集仅为 Native 插件和依赖所必需的 `app.config.js`、`package.json`、`pnpm-lock.yaml`。旧批准 manifest 在 `origin/main` 自身已有历史红项，本阶段未重建或放宽该基线。
+- 生产 AppID、服务端 AppSecret、微信平台移动应用配置、Universal Link/AASA 线上可达性仍为 `WAITING_HUMAN`；候选门禁会在正式值缺失时失败，不会假绿，也不阻塞其余已完成代码和测试进入审查。

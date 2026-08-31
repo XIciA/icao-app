@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
-import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, BindPhoneRequest, BindPhoneResponse, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, BindPhoneRequest, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { NativeAccountSummary as AccountSummary, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';

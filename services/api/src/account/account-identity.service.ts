@@ -1,8 +1,8 @@
 import { createHmac } from 'node:crypto';
 
 import { Inject, Injectable, Optional, UnauthorizedException } from '@nestjs/common';
-import type { AuthIdentityProvider, AuthenticatedUser } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
+import type { NativeAuthenticatedUser as AuthenticatedUser, NativeAuthIdentityProvider as AuthIdentityProvider } from '@icao/contracts/native-auth';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';

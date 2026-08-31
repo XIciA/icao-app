@@ -56,7 +56,7 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
       return
     }
     let timeout = DispatchWorkItem { [weak self] in
-      guard let pending = self?.takePending() else { return }
+      guard let pending = self?.takePending(expectedState: state) else { return }
       pending.promise.reject("wechat_auth_timeout", "WeChat authorization timed out")
     }
     pending = PendingAuthorization(state: state, promise: promise, timeout: timeout)
@@ -66,7 +66,7 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
     request.state = state
     WXApi.sendAuthReq(request, viewController: controller, delegate: self) { [weak self] sent in
       DispatchQueue.main.async {
-        guard !sent, let pending = self?.takePending() else { return }
+        guard !sent, let pending = self?.takePending(expectedState: state) else { return }
         pending.promise.reject("wechat_auth_unavailable", "WeChat authorization could not be started")
       }
     }
@@ -81,11 +81,11 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
   }
 
   private func handleResponse(_ response: BaseResp) {
-    guard let authorization = response as? SendAuthResp, let pending = takePending() else { return }
-    guard authorization.state == pending.state else {
-      pending.promise.reject("invalid_wechat_auth_response", "WeChat returned a mismatched authorization state")
-      return
-    }
+    guard
+      let authorization = response as? SendAuthResp,
+      let state = authorization.state,
+      let pending = takePending(expectedState: state)
+    else { return }
     if authorization.errCode == 0, let code = authorization.code, !code.isEmpty {
       pending.promise.resolve(["code": code, "state": pending.state])
     } else if authorization.errCode == -2 {
@@ -95,15 +95,16 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
     }
   }
 
-  func cancel() {
+  func cancel(state: String) {
     DispatchQueue.main.async { [weak self] in
-      guard let pending = self?.takePending() else { return }
+      guard let pending = self?.takePending(expectedState: state) else { return }
       pending.promise.reject("social_auth_cancelled", "WeChat authorization was cancelled")
     }
   }
 
-  private func takePending() -> PendingAuthorization? {
+  private func takePending(expectedState: String) -> PendingAuthorization? {
     guard let pending else { return nil }
+    guard pending.state == expectedState else { return nil }
     self.pending = nil
     pending.timeout.cancel()
     return pending
@@ -136,8 +137,8 @@ public final class IcaoWechatAuthModule: Module {
       IcaoWechatAuthCoordinator.shared.authorize(state: state, promise: promise)
     }.runOnQueue(.main)
 
-    Function("cancelAuthorization") {
-      IcaoWechatAuthCoordinator.shared.cancel()
+    Function("cancelAuthorization") { (state: String) in
+      IcaoWechatAuthCoordinator.shared.cancel(state: state)
     }
   }
 }

@@ -91,7 +91,7 @@ describe('<LoginScreen />', () => {
     mockSignInWithWechat.mockReset().mockResolvedValue(undefined);
     mockConsumePendingPath.mockReset().mockReturnValue(undefined);
     mockReadPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
-    mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(true);
     mockClearPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
     mockBack.mockClear();
     mockCanGoBack.mockReset();

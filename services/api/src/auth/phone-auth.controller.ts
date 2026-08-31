@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, HttpCode, Post, Req } from '@nestjs/common';
-import type { ApiSuccessEnvelope, StartPhoneOtpRequest, StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts';
+import type { ApiSuccessEnvelope, StartPhoneOtpRequest } from '@icao/contracts';
+import type { NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from './auth.types';
 import { PhoneAuthService } from './phone-auth.service';

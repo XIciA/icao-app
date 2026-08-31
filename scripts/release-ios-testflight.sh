@@ -105,6 +105,7 @@ verify_ios_cng_brand_assets "$PROJECT_ROOT"
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+check_wechat_candidate_configuration
 configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
@@ -168,6 +169,7 @@ if grep -aEq '127\.0\.0\.1:(3101|8000)|https?://(10\.[0-9.]+|192\.168\.[0-9.]+|1
 fi
 codesign --verify --deep --strict "$APP_PATH"
 node tools/audit-ios-archive.mjs "$APP_PATH" "$ARCHIVE_AUDIT_PATH"
+check_wechat_ios_artifact "$APP_PATH"
 
 xcodebuild \
   -exportArchive \

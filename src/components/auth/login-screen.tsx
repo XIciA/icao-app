@@ -1,11 +1,11 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, TextField } from '@/components/ui';
-import { MessageCircle } from '@/components/ui/icons';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
 import {
@@ -80,11 +80,14 @@ export function LoginScreen() {
   const [submitting, setSubmitting] = useState(false);
   const [clockNow, setClockNow] = useState(() => Date.now());
   const actionGateRef = useRef(createAuthActionGate());
+  const challengeRequestRef = useRef(0);
+  const mountedRef = useRef(true);
 
   const codePurpose = challenge?.purpose;
   const resendDeadline = challenge?.resendAllowedAt ?? 0;
 
   useEffect(() => {
+    mountedRef.current = true;
     let active = true;
     void readPhoneOtpChallenge().then((restored) => {
       if (!active || !restored) return;
@@ -98,7 +101,11 @@ export function LoginScreen() {
     }).finally(() => {
       if (active) setChallengeRestoring(false);
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+      mountedRef.current = false;
+      challengeRequestRef.current += 1;
+    };
   }, []);
 
   useEffect(() => {
@@ -120,6 +127,7 @@ export function LoginScreen() {
     const next = (digits.startsWith('86') && digits.length > 11 ? digits.slice(2) : digits).slice(0, 11);
     setPhone(next);
     if (challenge?.purpose === 'login' && normalizeChinaMobile(next) !== challenge.phone) {
+      challengeRequestRef.current += 1;
       setChallenge(undefined);
       setCode('');
       void clearPhoneOtpChallenge().catch(() => undefined);
@@ -138,6 +146,7 @@ export function LoginScreen() {
   }
 
   function showLogin(method: LoginMethod = loginMethod) {
+    challengeRequestRef.current += 1;
     setEntryView('login');
     setLoginMethod(method);
     setChallenge(undefined);
@@ -147,13 +156,14 @@ export function LoginScreen() {
     void clearPhoneOtpChallenge().catch(() => undefined);
   }
 
-  async function showCode(next: PersistedPhoneOtpChallenge) {
+  async function showCode(next: PersistedPhoneOtpChallenge, requestGeneration: number) {
+    const persisted = await writePhoneOtpChallenge(next);
+    if (!persisted || !mountedRef.current || requestGeneration !== challengeRequestRef.current) return;
     setChallenge(next);
     setPhone(next.phone.slice(3));
     setCode('');
     setError('');
     setClockNow(Date.now());
-    await writePhoneOtpChallenge(next);
   }
 
   function showError(value: unknown) {
@@ -192,9 +202,10 @@ export function LoginScreen() {
     if (!beginAction()) return;
     setError('');
     const requestedPhone = normalizeChinaMobile(phone)!;
+    const requestGeneration = ++challengeRequestRef.current;
     try {
       const response = await auth.requestPhoneOtp(requestedPhone);
-      await showCode(phoneOtpChallenge(requestedPhone, 'login', response));
+      await showCode(phoneOtpChallenge(requestedPhone, 'login', response), requestGeneration);
     } catch (value) {
       showError(value);
     } finally {
@@ -223,9 +234,10 @@ export function LoginScreen() {
     if (!beginAction()) return;
     setError('');
     const requestedPhone = normalizeChinaMobile(phone)!;
+    const requestGeneration = ++challengeRequestRef.current;
     try {
       const response = await auth.requestPasswordRecoveryOtp(requestedPhone);
-      await showCode(phoneOtpChallenge(requestedPhone, 'recovery', response));
+      await showCode(phoneOtpChallenge(requestedPhone, 'recovery', response), requestGeneration);
     } catch (value) {
       showError(value);
     } finally {
@@ -236,11 +248,12 @@ export function LoginScreen() {
   async function resendCode() {
     if (!challenge || remainingSeconds > 0 || !beginAction()) return;
     setError('');
+    const requestGeneration = ++challengeRequestRef.current;
     try {
       const response = challenge.purpose === 'recovery'
         ? await auth.requestPasswordRecoveryOtp(challenge.phone)
         : await auth.requestPhoneOtp(challenge.phone);
-      await showCode(phoneOtpChallenge(challenge.phone, challenge.purpose, response));
+      await showCode(phoneOtpChallenge(challenge.phone, challenge.purpose, response), requestGeneration);
     } catch (value) {
       showError(value);
     } finally {
@@ -270,6 +283,7 @@ export function LoginScreen() {
   }
 
   function changePhone() {
+    challengeRequestRef.current += 1;
     const purpose = challenge?.purpose;
     setChallenge(undefined);
     setCode('');
@@ -390,8 +404,8 @@ function SocialButton({ accessibilityLabel, kind, onPress }: { accessibilityLabe
   return (
     <Pressable accessibilityLabel={accessibilityLabel} accessibilityRole="button" onPress={onPress} style={[styles.socialButton, kind === 'apple' && styles.appleSocialButton]} testID={`${kind}-sign-in`}>
       {kind === 'apple'
-        ? <AppText color={colors.primaryForeground} style={styles.appleGlyph}></AppText>
-        : <MessageCircle color={colors.foreground} size={25} />}
+        ? <Ionicons color={colors.primaryForeground} name="logo-apple" size={25} />
+        : <MaterialCommunityIcons color={colors.foreground} name="wechat" size={27} />}
     </Pressable>
   );
 }
@@ -441,7 +455,6 @@ const styles = StyleSheet.create({
   socialSection: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], justifyContent: 'center' },
   socialButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: 28, borderWidth: 1, height: 56, justifyContent: 'center', width: 56 },
   appleSocialButton: { backgroundColor: colors.foreground, borderColor: colors.foreground },
-  appleGlyph: { fontSize: 19, lineHeight: 22 },
   methodTabs: { backgroundColor: colors.secondary, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
   methodTab: { alignItems: 'center', borderRadius: radii.md, flex: 1, minHeight: 42, justifyContent: 'center' },
   methodTabSelected: { backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1 },

@@ -1,6 +1,7 @@
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { AccountDataExportResponse, AccountSummary, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AuthorizePasswordRecoveryResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
+import type { NativeAccountDataExportResponse, NativeAccountSummary as AccountSummary, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
@@ -67,7 +68,7 @@ export class AccountService {
     };
   }
 
-  async exportAccountData(accountId: string, phone?: string): Promise<AccountDataExportResponse['account']> {
+  async exportAccountData(accountId: string, phone?: string): Promise<NativeAccountDataExportResponse['account']> {
     const [account, summary] = await Promise.all([
       this.database.db.select({ createdAt: accounts.createdAt })
         .from(accounts)

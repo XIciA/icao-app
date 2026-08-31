@@ -483,7 +483,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     <Page title={isAgreement ? '用户协议' : '隐私政策'}>
       <View style={styles.legal}>
         <AppText variant="pageTitle">{isAgreement ? '用户服务协议' : '隐私政策'}</AppText>
-        <AppText variant="micro">版本 v4.2 · 更新于 2026-09-01 · 生效于 2026-09-01</AppText>
+        <AppText variant="micro">版本 v4.1 · 更新于 2026-08-29 · 生效于 2026-08-29</AppText>
         <Card style={styles.intro}><AppText>{intro}</AppText></Card>
         {clauses.map(([title, body], index) => (
           <View key={title} style={styles.clause}>
