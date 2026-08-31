@@ -235,4 +235,53 @@ describe('Recording playback source contract', () => {
     expect(mockCurrentPlayer().play).not.toHaveBeenCalled();
     hook.unmount();
   });
+
+  it('does not start an old source when replacement happens while its rewind is pending', async () => {
+    let resolveSeek: (() => void) | undefined;
+    mockInitialStatus = { ...mockInitialStatus, currentTime: 3, didJustFinish: true };
+    let currentAsset = asset;
+    const hook = await renderHook(() => useRecordingPlayback(currentAsset));
+    const playerA = mockCurrentPlayer();
+    playerA.seekTo.mockImplementationOnce(() => new Promise<undefined>((resolve) => {
+      resolveSeek = () => resolve(undefined);
+    }));
+
+    let playResult: boolean | undefined;
+    await act(async () => {
+      const pendingPlay = hook.result.current.play().then((result) => { playResult = result; });
+      await Promise.resolve();
+      currentAsset = assetB;
+      await hook.rerender({});
+      resolveSeek?.();
+      await pendingPlay;
+    });
+
+    expect(playResult).toBe(false);
+    expect(playerA.play).not.toHaveBeenCalled();
+    expect(mockRelease).toHaveBeenCalled();
+    hook.unmount();
+  });
+
+  it('does not start a released source when unmount happens while rewind is pending', async () => {
+    let resolveSeek: (() => void) | undefined;
+    mockInitialStatus = { ...mockInitialStatus, currentTime: 3, didJustFinish: true };
+    const hook = await renderHook(() => useRecordingPlayback(asset));
+    const player = mockCurrentPlayer();
+    player.seekTo.mockImplementationOnce(() => new Promise<undefined>((resolve) => {
+      resolveSeek = () => resolve(undefined);
+    }));
+
+    let playResult: boolean | undefined;
+    await act(async () => {
+      const pendingPlay = hook.result.current.play().then((result) => { playResult = result; });
+      await Promise.resolve();
+      hook.unmount();
+      resolveSeek?.();
+      await pendingPlay;
+    });
+
+    expect(playResult).toBe(false);
+    expect(player.play).not.toHaveBeenCalled();
+    expect(mockRelease).toHaveBeenCalled();
+  });
 });

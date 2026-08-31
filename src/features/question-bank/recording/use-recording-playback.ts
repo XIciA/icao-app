@@ -224,10 +224,13 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
     }
     const generation = operationGeneration.current + 1;
     operationGeneration.current = generation;
+    const playbackSourceGeneration = sourceGeneration.current;
     let lease: AudioLease | undefined;
     try {
       lease = await audioSessionOrchestrator.acquire('recordingPlayback', 'recording-preview');
-      if (generation !== operationGeneration.current || appStateRef.current !== 'active') {
+      if (generation !== operationGeneration.current
+        || playbackSourceGeneration !== sourceGeneration.current
+        || appStateRef.current !== 'active') {
         await releaseLease(lease);
         return false;
       }
@@ -235,10 +238,16 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       if ((status.didJustFinish || status.currentTime >= status.duration) && !await trySeekPlayer(0)) {
         throw new Error('recording_playback_seek_failed');
       }
+      if (generation !== operationGeneration.current
+        || playbackSourceGeneration !== sourceGeneration.current
+        || appStateRef.current !== 'active') {
+        await releaseLease(lease);
+        return false;
+      }
       activePlayback.current = {
         generation,
         sawProgress: false,
-        sourceGeneration: sourceGeneration.current,
+        sourceGeneration: playbackSourceGeneration,
         startedAt: status.currentTime,
       };
       player.play();
