@@ -71,25 +71,47 @@ esac
 CONTENT_KEY_PROVISION_SCRIPT=$SOURCE_ROOT/infra/api/content-signing-key-provision.sh
 REMOTE_RELEASE_ROOT=/opt/icao/runtime/releases
 REMOTE_API_RELEASE_LOCK=/run/lock/icao-api-release.lock
-REMOTE_CONTENT_KEY_STAGE_ARMED=1
+SSH_CONTROL_DIRECTORY=$(mktemp -d /tmp/icao-api-release-ssh.XXXXXX)
+SSH_CONTROL_PATH=$SSH_CONTROL_DIRECTORY/control
+SSH_CONTROL_MASTER_ARMED=0
+REMOTE_CONTENT_KEY_STAGE_ARMED=0
+release_ssh() {
+  ssh -i "$SSH_KEY" -o BatchMode=yes -o ControlPath="$SSH_CONTROL_PATH" \
+    "$ECS_USER@$ECS_HOST" "$@"
+}
+release_scp() {
+  scp -i "$SSH_KEY" -o BatchMode=yes -o ControlPath="$SSH_CONTROL_PATH" "$@"
+}
 cleanup_remote_content_key_stage() {
   cleanup_status=$?
   trap - EXIT HUP INT TERM
   if [ "$REMOTE_CONTENT_KEY_STAGE_ARMED" = 1 ]; then
-    if ! ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+    if ! release_ssh sh -s -- \
       cleanup "$RELEASE_ID" "$CONTENT_KEY_UPLOAD_TOKEN" "$REMOTE_RELEASE_ROOT" 0 \
       "$REMOTE_API_RELEASE_LOCK" < "$CONTENT_KEY_PROVISION_SCRIPT" >/dev/null; then
       echo 'Remote content signing-key staging cleanup failed.' >&2
       cleanup_status=1
     fi
   fi
+  if [ "$SSH_CONTROL_MASTER_ARMED" = 1 ]; then
+    ssh -i "$SSH_KEY" -o BatchMode=yes -o ControlPath="$SSH_CONTROL_PATH" \
+      -O exit "$ECS_USER@$ECS_HOST" >/dev/null 2>&1 || true
+  fi
+  rm -f "$SSH_CONTROL_PATH"
+  rmdir "$SSH_CONTROL_DIRECTORY" 2>/dev/null || true
   exit "$cleanup_status"
 }
 trap cleanup_remote_content_key_stage EXIT
 trap 'exit 1' HUP INT TERM
 
+ssh -i "$SSH_KEY" -o BatchMode=yes -o ControlMaster=yes \
+  -o ControlPath="$SSH_CONTROL_PATH" -o ControlPersist=600 \
+  -fnNT "$ECS_USER@$ECS_HOST"
+SSH_CONTROL_MASTER_ARMED=1
+REMOTE_CONTENT_KEY_STAGE_ARMED=1
+
 REMOTE_CONTENT_SIGNING_PRIVATE_KEY=$(
-  ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+  release_ssh sh -s -- \
     stage "$RELEASE_ID" "$CONTENT_KEY_UPLOAD_TOKEN" "$REMOTE_RELEASE_ROOT" 0 \
     "$REMOTE_API_RELEASE_LOCK" < "$CONTENT_KEY_PROVISION_SCRIPT"
 )
@@ -98,18 +120,18 @@ expected_remote_content_key=$REMOTE_RELEASE_ROOT/api-secret-uploads/stage-$RELEA
   echo 'Remote content signing-key staging returned an unexpected path.' >&2
   exit 1
 }
-scp -i "$SSH_KEY" -q "$CONTENT_SIGNING_PRIVATE_KEY_PATH" \
+release_scp -q "$CONTENT_SIGNING_PRIVATE_KEY_PATH" \
   "$ECS_USER@$ECS_HOST:$REMOTE_CONTENT_SIGNING_PRIVATE_KEY"
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+release_ssh sh -s -- \
   validate "$RELEASE_ID" "$CONTENT_KEY_UPLOAD_TOKEN" "$REMOTE_RELEASE_ROOT" 0 \
   "$REMOTE_API_RELEASE_LOCK" < "$CONTENT_KEY_PROVISION_SCRIPT"
 
 REMOTE_RELEASE=/opt/icao/runtime/releases/api-$RELEASE_ID
 REMOTE_ARCHIVE=$REMOTE_RELEASE/source.tar.gz
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" "mkdir -p '$REMOTE_RELEASE'"
-scp -i "$SSH_KEY" -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_ARCHIVE"
+release_ssh "mkdir -p '$REMOTE_RELEASE'"
+release_scp -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_ARCHIVE"
 
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- \
+release_ssh sh -s -- \
   "$RELEASE_ID" "$REMOTE_RELEASE" "$BUILD_NPM_REGISTRY" "$CONTENT_KEY_UPLOAD_TOKEN" <<'REMOTE'
 set -eu
 umask 077
