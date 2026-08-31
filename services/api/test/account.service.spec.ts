@@ -65,7 +65,8 @@ function fixture(options: {
       },
       user: {
         id: '22222222-2222-4222-8222-222222222222',
-        phone: '+8613800138000',
+        // GoTrue persists Chinese phone identities without the leading plus.
+        phone: '8613800138000',
       },
     },
     error: null,
@@ -83,7 +84,7 @@ function fixture(options: {
       },
       user: {
         id: '22222222-2222-4222-8222-222222222222',
-        phone: '+8613800138000',
+        phone: '8613800138000',
       },
     },
     error: null,
@@ -374,7 +375,7 @@ describe('AccountService phone binding', () => {
     expect(Math.floor(verifiedAt.getTime() / 1_000)).toBeGreaterThanOrEqual(beforeVerification);
   });
 
-  it('binds an unused verified phone to the existing social account without changing its accountId', async () => {
+  it('normalizes the GoTrue phone representation before binding it to the social account', async () => {
     const rows = [
       [{ status: 'active' }],
       [],

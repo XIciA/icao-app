@@ -1,6 +1,6 @@
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { AccountDataExportResponse, AccountSummary, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
-import { isChinaMobileE164 } from '@icao/contracts';
+import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
@@ -56,7 +56,7 @@ export class AccountService {
         .limit(1);
       if (phoneIdentity) {
         const { data } = await this.adminAuth.auth.admin.getUserById(phoneIdentity.authUserId);
-        if (isChinaMobileE164(data.user?.phone)) resolvedPhone = data.user.phone;
+        resolvedPhone = normalizeChinaMobile(data.user?.phone ?? '') ?? resolvedPhone;
       }
     }
     return {
@@ -176,7 +176,7 @@ export class AccountService {
       signInError
       || !next.session
       || next.user.id !== source.authUserId
-      || next.user.phone !== source.user.phone
+      || normalizeChinaMobile(next.user.phone ?? '') !== source.user.phone
     ) {
       if (next.session) {
         await this.adminAuth.auth.admin.signOut(next.session.access_token, 'local').catch(() => undefined);
@@ -219,7 +219,7 @@ export class AccountService {
     if (error || !data.session) {
       throw new ForbiddenException('invalid_phone_otp');
     }
-    if (!data.user || data.user.phone !== phone) {
+    if (!data.user || normalizeChinaMobile(data.user.phone ?? '') !== phone) {
       await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
       throw new ForbiddenException('invalid_phone_otp');
     }
