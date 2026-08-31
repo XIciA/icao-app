@@ -31,6 +31,47 @@
       "expo": "55.0.27",
       "expoSplashScreen": "55.0.22"
     },
+    "derivationBinding": {
+      "masterSha256": "54305156502897255bcb1c17dbf9a1f83036a2f3440c8cb6783e069d8bb34e8b",
+      "ios": [
+        {
+          "role": "app-icon",
+          "directorySuffix": "AppIcon.appiconset",
+          "file": "App-Icon-1024x1024@1x.png",
+          "sha256": "c76918fb3a2c0d6b29be354fbb98bc0f556aa47d0a7d1673fe7ff37ce854b8a0",
+          "width": 1024,
+          "height": 1024,
+          "hasAlpha": false
+        },
+        {
+          "role": "splash-1x",
+          "directorySuffix": "SplashScreenLogo.imageset",
+          "file": "image.png",
+          "sha256": "0e2fd0c90e890b59b54890918ffed093834a15ae61f29268dbf2007161564a7a",
+          "width": 160,
+          "height": 160,
+          "hasAlpha": true
+        },
+        {
+          "role": "splash-2x",
+          "directorySuffix": "SplashScreenLogo.imageset",
+          "file": "image@2x.png",
+          "sha256": "1c016a6e5df516431921c9e07f7515731ff6d9ef1c9acf0d1c2eebc4e438556d",
+          "width": 320,
+          "height": 320,
+          "hasAlpha": true
+        },
+        {
+          "role": "splash-3x",
+          "directorySuffix": "SplashScreenLogo.imageset",
+          "file": "image@3x.png",
+          "sha256": "580526234ed3ff054e9e90a59a9b41b5a14bdf37bef6667408e0b032af853934",
+          "width": 480,
+          "height": 480,
+          "hasAlpha": true
+        }
+      ]
+    },
     "nativeTreePolicy": {
       "authority": "clean-prebuild-only",
       "trackedDerivedAssets": [],
@@ -70,7 +111,7 @@
     "assets/images/android-icon-monochrome.png"
   ],
   "inventory": {
-    "candidateRoots": ["assets", "ios", "android", "official-site", "public"],
+    "candidateRoots": ["assets", "src", "ios", "android", "official-site", "public"],
     "nonProductControlFiles": ["assets/native-brand-manifest.json"]
   },
   "frozenExternalAssets": [

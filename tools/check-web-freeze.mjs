@@ -12,7 +12,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const execFile = promisify(execFileCallback);
 const require = createRequire(import.meta.url);
-const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const scriptRepositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repositoryRoot = process.env.ICAO_WEB_FREEZE_TEST_ROOT
+  ? path.resolve(process.env.ICAO_WEB_FREEZE_TEST_ROOT)
+  : scriptRepositoryRoot;
 const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
@@ -24,6 +27,7 @@ const exactProtectedPaths = [
   'app.config.js',
   'app.json',
   'assets/images/favicon.png',
+  'assets/images/icon.png',
   'index.js',
   'metro.config.js',
   'package.json',
@@ -35,40 +39,8 @@ const exactProtectedPaths = [
 
 const protectedTrees = ['api', 'public'];
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
-const nativeImplementationPattern = /\.(?:native|ios|android)\.(?:[cm]?[jt]sx?)$/u;
 
-export function isNativeOnlyFreezePath(repositoryPath) {
-  return nativeImplementationPattern.test(repositoryPath)
-    || repositoryPath === 'assets/images/icon.png'
-    || repositoryPath.startsWith('ios/')
-    || repositoryPath.startsWith('android/');
-}
-
-export function projectFreezeFiles(files) {
-  return files.filter((file) => !isNativeOnlyFreezePath(file.path));
-}
-
-export function compareFreezeFiles(expectedFiles, currentFiles) {
-  const expected = projectFreezeFiles(expectedFiles);
-  const current = projectFreezeFiles(currentFiles);
-  const expectedByPath = new Map(expected.map((file) => [file.path, file]));
-  const currentByPath = new Map(current.map((file) => [file.path, file]));
-  return {
-    selectionAdded: current.filter((file) => !expectedByPath.has(file.path)).map((file) => file.path),
-    selectionRemoved: expected.filter((file) => !currentByPath.has(file.path)).map((file) => file.path),
-    contentChanged: current
-      .filter((file) => expectedByPath.get(file.path)?.sha256 !== file.sha256 && expectedByPath.has(file.path))
-      .map((file) => file.path),
-    ownershipChanged: current
-      .filter((file) => {
-        const expectedFile = expectedByPath.get(file.path);
-        return expectedFile && expectedFile.sources.join('\0') !== file.sources.join('\0');
-      })
-      .map((file) => file.path),
-  };
-}
-
-export function expoResolutionContext(context, platform) {
+function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
 
@@ -185,7 +157,9 @@ async function resolveWebGraphFiles() {
   metroConfig.resolver = { ...metroConfig.resolver };
   metroConfig.resolver.useWatchman = false;
   metroConfig.resetCache = false;
-  metroConfig.watchFolders = [...new Set([...(metroConfig.watchFolders ?? []), repositoryRoot])];
+  metroConfig.watchFolders = [
+    ...new Set([...(metroConfig.watchFolders ?? []), repositoryRoot, scriptRepositoryRoot]),
+  ];
   metroConfig.watcher = {
     ...metroConfig.watcher,
     unstable_lazySha1: false,
@@ -195,6 +169,8 @@ async function resolveWebGraphFiles() {
       ...(metroConfig.resolver.nodeModulesPaths ?? []),
       path.join(repositoryRoot, 'node_modules'),
       path.join(repositoryRoot, 'node_modules/.pnpm/node_modules'),
+      path.join(scriptRepositoryRoot, 'node_modules'),
+      path.join(scriptRepositoryRoot, 'node_modules/.pnpm/node_modules'),
     ]),
   ];
 
@@ -250,7 +226,7 @@ async function resolveWebGraphFiles() {
     ) {
       continue;
     }
-    files.push(toRepositoryPath(canonicalPath));
+    files.push(relativePath.split(path.sep).join('/'));
   }
 
   return [...new Set(files)].sort();
@@ -288,7 +264,9 @@ async function collectCurrentSelection() {
   }
 
   for (const repositoryPath of await resolveWebGraphFiles()) {
-    if (isNativeOnlyFreezePath(repositoryPath)) continue;
+    // The resolver is authoritative. Do not discard platform-suffixed files
+    // after resolution: an explicit import is real Web behavior and must stay
+    // protected. Normal Native fallbacks are excluded by the Web context above.
     await addExistingFile(selection, repositoryPath, 'metro_web_dependency_graph');
   }
 
@@ -445,13 +423,26 @@ async function checkManifest(manifestPath, explain) {
   validateManifest(manifest);
 
   const current = await fingerprintSelection(await collectCurrentSelection());
-  const expected = projectFreezeFiles(manifest.files);
-  const {
-    selectionAdded,
-    selectionRemoved,
-    contentChanged,
-    ownershipChanged,
-  } = compareFreezeFiles(expected, current.files);
+  const expected = manifest.files;
+  const expectedByPath = new Map(expected.map((file) => [file.path, file]));
+  const currentByPath = new Map(current.files.map((file) => [file.path, file]));
+  const selectionAdded = current.files
+    .filter((file) => !expectedByPath.has(file.path))
+    .map((file) => file.path);
+  const selectionRemoved = expected
+    .filter((file) => !currentByPath.has(file.path))
+    .map((file) => file.path);
+  const contentChanged = current.files
+    .filter((file) => expectedByPath.has(file.path)
+      && expectedByPath.get(file.path).sha256 !== file.sha256)
+    .map((file) => file.path);
+  const ownershipChanged = current.files
+    .filter((file) => {
+      const expectedFile = expectedByPath.get(file.path);
+      return expectedFile
+        && expectedFile.sources.join('\0') !== file.sources.join('\0');
+    })
+    .map((file) => file.path);
   const combinedChanged = combinedSha256(expected) !== current.combinedSha256;
 
   const failures = [
