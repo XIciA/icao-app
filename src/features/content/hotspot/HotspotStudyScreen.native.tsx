@@ -1,65 +1,54 @@
 import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
-import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
+import { spacing } from '@/theme';
 
-import { buildHotspotSession, type HotspotSessionResult } from './build-hotspot-session';
-import { loadNativeHotspotDataset } from './HotspotDetailScreen.native';
-import { getHotspotBrief } from './repository';
+import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
+import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotStudyScreen({ briefId }: { briefId: string }) {
   const router = useRouter();
-  const brief = getHotspotBrief(briefId);
-  const [session, setSession] = useState<HotspotSessionResult>();
-  const [error, setError] = useState<string>();
+  const { retry, state } = useHotspotAccess(briefId);
+  if (state.status === 'loading') return <GlobalLoadingScreen />;
 
-  const load = useCallback(async () => {
-    if (!brief) return;
-    setError(undefined);
-    try {
-      setSession(buildHotspotSession(brief, await loadNativeHotspotDataset(brief)));
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : '热点练习包读取失败。');
-    }
-  }, [brief]);
-
-  useEffect(() => { void load(); }, [load]);
-
-  if (!brief) {
+  if (state.status !== 'ready') {
     return (
-      <Screen>
-        <TopBar onBack={() => router.back()} title="OPI 热点" />
-        <CenteredState description="该热点资讯不存在或已经下线。" title="无法开始热点学习" tone="destructive" />
+      <Screen contentStyle={styles.screen} scroll>
+        <TopBar onBack={() => router.back()} title={state.brief?.title ?? 'OPI 热点'} />
+        <View style={styles.body}>
+          {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
+          <HotspotAccessNotice
+            onMembership={() => router.push('/account/membership')}
+            onRetry={retry}
+            result={state}
+          />
+        </View>
       </Screen>
     );
   }
-  if (error) {
-    return (
-      <Screen>
-        <TopBar onBack={() => router.back()} title={brief.title} />
-        <CenteredState actionLabel="重新加载" description={error} onAction={() => void load()} title="热点练习包读取失败" tone="destructive" />
-      </Screen>
-    );
-  }
-  if (!session) return <GlobalLoadingScreen />;
 
   const returnHref: Href = {
     pathname: '/content/hotspot/[briefId]',
-    params: { briefId: brief.id },
+    params: { briefId: state.brief.id },
   };
   return (
     <QuestionBankStudyScreen
-      category={session.category}
-      dataset={session.dataset}
+      category={state.session.category}
+      dataset={state.session.dataset}
       returnHref={returnHref}
       returnLabel="返回热点详情"
-      sourceRoute={`/content/hotspot/${brief.id}/study`}
-      topic={session.topic}
+      sourceRoute={`/content/hotspot/${state.brief.id}/study`}
+      topic={state.session.topic}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  screen: { paddingHorizontal: 0 },
+  body: { gap: spacing[4], paddingBottom: spacing[10], paddingHorizontal: spacing[4] },
+});

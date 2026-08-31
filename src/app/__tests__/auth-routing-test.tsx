@@ -91,6 +91,8 @@ describe('authentication routing', () => {
     expect(screen.getByTestId('screen-index')).toBeTruthy();
     expect(screen.getByTestId('screen-(tabs)')).toBeTruthy();
     expect(screen.getByTestId('screen-word-favorites')).toBeTruthy();
+    expect(screen.getByTestId('screen-content/hotspot/[briefId]')).toBeTruthy();
+    expect(screen.getByTestId('screen-content/hotspot/[briefId]/study')).toBeTruthy();
     expect(screen.queryByTestId('screen-auth/[slug]')).toBeNull();
     expect(screen.queryByTestId('screen-auth/callback')).toBeNull();
   });
@@ -102,6 +104,8 @@ describe('authentication routing', () => {
     expect(screen.getByTestId('screen-auth/[slug]')).toBeTruthy();
     expect(screen.queryByTestId('screen-(tabs)')).toBeNull();
     expect(screen.queryByTestId('screen-word-favorites')).toBeNull();
+    expect(screen.queryByTestId('screen-content/hotspot/[briefId]')).toBeNull();
+    expect(screen.queryByTestId('screen-content/hotspot/[briefId]/study')).toBeNull();
     expect(screen.queryByTestId('screen-auth/callback')).toBeNull();
   });
 
@@ -143,11 +147,11 @@ describe('authentication routing', () => {
   it('enters the remembered destination only after the authenticated guard is ready', async () => {
     mockCanAccessApp = true;
     mockPathname = '/auth/login';
-    mockConsumePendingPath.mockReturnValue('/question-bank/900/study/3/3');
+    mockConsumePendingPath.mockReturnValue('/content/hotspot/hotspot-2026-07-10/study');
 
     await render(<AppStack />);
 
-    expect(mockReplace).toHaveBeenCalledWith('/question-bank/900/study/3/3');
+    expect(mockReplace).toHaveBeenCalledWith('/content/hotspot/hotspot-2026-07-10/study');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
 });

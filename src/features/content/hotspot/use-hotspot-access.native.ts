@@ -1,0 +1,52 @@
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+
+import {
+  hotspotAccessInvalidationSnapshot,
+  subscribeHotspotAccessInvalidation,
+} from './access-invalidation.native';
+import { loadHotspotAccess } from './access-loader.native';
+import type { HotspotAccessResult } from './access-state.native';
+import { getHotspotBrief } from './repository';
+
+type State = { status: 'loading' } | HotspotAccessResult;
+
+function unexpectedHotspotAccessResult(briefId: string): HotspotAccessResult {
+  try {
+    const brief = getHotspotBrief(briefId);
+    return brief ? { status: 'content-unavailable', brief } : { status: 'not-found' };
+  } catch {
+    return { status: 'not-found' };
+  }
+}
+
+export function useHotspotAccess(briefId: string) {
+  const environmentSnapshot = useSyncExternalStore(
+    subscribeHotspotAccessInvalidation,
+    hotspotAccessInvalidationSnapshot,
+    hotspotAccessInvalidationSnapshot,
+  );
+  const [attempt, setAttempt] = useState(0);
+  const [state, setState] = useState<State>({ status: 'loading' });
+  const loadGeneration = useRef(0);
+
+  useEffect(() => {
+    const generation = loadGeneration.current + 1;
+    loadGeneration.current = generation;
+    setState({ status: 'loading' });
+    void loadHotspotAccess(briefId)
+      .then((result) => {
+        if (loadGeneration.current === generation) setState(result);
+      })
+      .catch(() => {
+        if (loadGeneration.current === generation) {
+          setState(unexpectedHotspotAccessResult(briefId));
+        }
+      });
+    return () => {
+      if (loadGeneration.current === generation) loadGeneration.current += 1;
+    };
+  }, [attempt, briefId, environmentSnapshot]);
+
+  const retry = useCallback(() => setAttempt((value) => value + 1), []);
+  return { retry, state };
+}

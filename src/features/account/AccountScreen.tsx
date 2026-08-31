@@ -22,6 +22,7 @@ import { colors, radii, spacing } from '@/theme';
 import { SESSION_STORAGE_LABEL } from '@/platform/session-storage-capabilities';
 import { updateProfile, useProfile } from './profile-store';
 import { clearLearningData, deleteAllAiResults, exportAccountAndLearningData } from './privacy-self-service';
+import { accountDisplayNameHint } from './account-release-copy';
 
 type AccountSlug = 'profile' | 'edit-profile' | 'membership' | 'settings' | 'privacy' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
 const pages: AccountSlug[] = ['profile', 'edit-profile', 'membership', 'settings', 'privacy', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
@@ -138,7 +139,7 @@ function EditProfilePage() {
       </View>
       <View style={styles.form}>
         <TextField editable={false} label="账户名称" value={auth.session?.user.displayName ?? '飞行学员'} />
-        <AppText variant="micro">TestFlight 阶段暂用默认账户名称，不影响手机号登录和数据同步。</AppText>
+        <AppText variant="micro">{accountDisplayNameHint}</AppText>
         <Choice label="性别" onChange={setGender} options={['男', '女', '保密']} value={gender} />
         <TextField label="所在地区" onChangeText={setRegion} value={region} />
         <Choice compact label="目标等级" onChange={setTargetLevel} options={['ICAO 4 级', 'ICAO 5 级', 'ICAO 6 级']} value={targetLevel} />
