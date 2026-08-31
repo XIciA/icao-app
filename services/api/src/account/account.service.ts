@@ -224,10 +224,19 @@ export class AccountService {
       throw new ForbiddenException('invalid_phone_otp');
     }
     try {
+      // verifyOtp is the authoritative proof that this request just completed an
+      // SMS challenge. GoTrue can retain the original OTP timestamp in `amr`
+      // when the same phone retries account binding, so relying on the JWT's
+      // historical timestamp rejects a newly verified code as stale.
+      const otpVerifiedAt = new Date();
       const phoneSession = await this.verifier.verify(data.session.access_token);
       if (phoneSession.authUserId !== data.user.id || phoneSession.user.phone !== phone) {
         throw new ForbiddenException('invalid_phone_otp');
       }
+      phoneSession.authenticationMethods = [
+        ...phoneSession.authenticationMethods.filter((entry) => entry.method !== 'otp'),
+        { method: 'otp', timestamp: Math.floor(otpVerifiedAt.getTime() / 1_000) },
+      ];
       phoneSession.user = {
         ...phoneSession.user,
         authUserId: phoneSession.authUserId,
@@ -236,7 +245,7 @@ export class AccountService {
       };
       // Consume the verified challenge before attempting the binding transaction.
       // A conflict must not roll the challenge back and make the same OTP replayable.
-      await this.phoneAuth.consumeOtpIntent(phoneSession, 'phone_binding', new Date(), source.user.id);
+      await this.phoneAuth.consumeOtpIntent(phoneSession, 'phone_binding', otpVerifiedAt, source.user.id);
       const binding = await this.attachNewPhoneIdentity(source, phoneSession, phone);
       if (binding.status === 'conflict') throw new ConflictException('phone_already_registered');
       return {

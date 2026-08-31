@@ -353,6 +353,27 @@ describe('AccountService phone binding', () => {
     expect(signOut).toHaveBeenCalledWith('phone-session-access-token', 'local');
   });
 
+  it('uses the server verification time when a repeated OTP session carries a stale AMR timestamp', async () => {
+    const source = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      providers: ['apple'],
+    });
+    const { phoneAuth, service, target } = fixture();
+    target.authenticationMethods = [{ method: 'otp', timestamp: Math.floor(Date.now() / 1_000) - 3_600 }];
+    const beforeVerification = Math.floor(Date.now() / 1_000);
+
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
+      .rejects.toThrow('binding_transaction_failed');
+
+    const verifiedSession = phoneAuth.consumeOtpIntent.mock.calls[0]?.[0] as VerifiedAuthSession;
+    const verifiedAt = phoneAuth.consumeOtpIntent.mock.calls[0]?.[2] as Date;
+    expect(verifiedSession.authenticationMethods).toEqual([
+      { method: 'otp', timestamp: Math.floor(verifiedAt.getTime() / 1_000) },
+    ]);
+    expect(Math.floor(verifiedAt.getTime() / 1_000)).toBeGreaterThanOrEqual(beforeVerification);
+  });
+
   it('binds an unused verified phone to the existing social account without changing its accountId', async () => {
     const rows = [
       [{ status: 'active' }],
