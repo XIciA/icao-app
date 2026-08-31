@@ -1,0 +1,112 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import {
+  appendFileSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import test from 'node:test';
+import { fileURLToPath } from 'node:url';
+
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const cliPath = path.join(repositoryRoot, 'tools/check-web-freeze.mjs');
+
+function runCli(fixtureRoot, args) {
+  return spawnSync(process.execPath, [cliPath, ...args], {
+    cwd: fixtureRoot,
+    encoding: 'utf8',
+    env: {
+      ...process.env,
+      ICAO_WEB_FREEZE_TEST_ROOT: fixtureRoot,
+    },
+  });
+}
+
+function requireSuccess(result, label) {
+  assert.equal(
+    result.status,
+    0,
+    `${label}\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`,
+  );
+}
+
+test('the real Web resolver and CLI protect every selected input without post-filtering', () => {
+  const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'icao-web-freeze-'));
+  const fixtureRoot = path.join(temporaryRoot, 'fixture');
+  const fixtureDirectory = path.join(fixtureRoot, 'src/__web_freeze_fixture__');
+  const fixtureManifest = path.join(temporaryRoot, 'manifest.json');
+  const worktree = spawnSync(
+    'git',
+    ['worktree', 'add', '--detach', fixtureRoot, 'HEAD'],
+    { cwd: repositoryRoot, encoding: 'utf8' },
+  );
+  requireSuccess(worktree, 'failed to create the isolated Web freeze fixture worktree');
+
+  try {
+    symlinkSync(path.join(repositoryRoot, 'node_modules'), path.join(fixtureRoot, 'node_modules'), 'dir');
+    mkdirSync(fixtureDirectory, { recursive: true });
+    writeFileSync(
+      path.join(fixtureDirectory, 'entry.ts'),
+      "import { selected } from './selected';\nimport { explicit } from './explicit.native';\nexport const fixture = `${selected}:${explicit}`;\n",
+    );
+    writeFileSync(path.join(fixtureDirectory, 'selected.ts'), "export const selected = 'web';\n");
+    writeFileSync(path.join(fixtureDirectory, 'selected.native.ts'), "export const selected = 'native';\n");
+    writeFileSync(path.join(fixtureDirectory, 'explicit.native.ts'), "export const explicit = 'explicit';\n");
+    appendFileSync(path.join(fixtureRoot, 'index.js'), "\nimport './src/__web_freeze_fixture__/entry';\n");
+
+    const snapshotResult = runCli(fixtureRoot, ['--print-snapshot']);
+    requireSuccess(snapshotResult, 'real Web graph snapshot failed');
+    const snapshot = JSON.parse(snapshotResult.stdout);
+    const selectedPaths = new Set(snapshot.files.map((file) => file.path));
+    assert.equal(selectedPaths.has('src/__web_freeze_fixture__/selected.ts'), true);
+    assert.equal(selectedPaths.has('src/__web_freeze_fixture__/selected.native.ts'), false);
+    assert.equal(
+      selectedPaths.has('src/__web_freeze_fixture__/explicit.native.ts'),
+      true,
+      'an explicitly imported platform-suffixed dependency must not be post-filtered',
+    );
+    assert.equal(
+      selectedPaths.has('assets/images/icon.png'),
+      true,
+      'the shared product master must remain an exact Web freeze input',
+    );
+    writeFileSync(fixtureManifest, JSON.stringify(snapshot));
+
+    requireSuccess(
+      runCli(fixtureRoot, ['--manifest', fixtureManifest]),
+      'unchanged fixture must pass the CLI',
+    );
+
+    appendFileSync(path.join(fixtureDirectory, 'selected.native.ts'), '// Native fallback only\n');
+    requireSuccess(
+      runCli(fixtureRoot, ['--manifest', fixtureManifest]),
+      'an unselected Native fallback change must not affect the Web freeze',
+    );
+
+    appendFileSync(path.join(fixtureDirectory, 'selected.ts'), '// real Web behavior change\n');
+    const webMutation = runCli(fixtureRoot, ['--manifest', fixtureManifest]);
+    assert.equal(webMutation.status, 1);
+    assert.match(webMutation.stderr, /content changed: src\/__web_freeze_fixture__\/selected\.ts/u);
+    writeFileSync(path.join(fixtureDirectory, 'selected.ts'), "export const selected = 'web';\n");
+
+    const iconPath = path.join(fixtureRoot, 'assets/images/icon.png');
+    const icon = readFileSync(iconPath);
+    appendFileSync(iconPath, Buffer.from([0]));
+    const sharedLogoMutation = runCli(fixtureRoot, ['--manifest', fixtureManifest]);
+    assert.equal(sharedLogoMutation.status, 1);
+    assert.match(sharedLogoMutation.stderr, /content changed: assets\/images\/icon\.png/u);
+    writeFileSync(iconPath, icon);
+  } finally {
+    spawnSync('git', ['worktree', 'remove', '--force', fixtureRoot], {
+      cwd: repositoryRoot,
+      encoding: 'utf8',
+    });
+    rmSync(temporaryRoot, { force: true, recursive: true });
+  }
+});

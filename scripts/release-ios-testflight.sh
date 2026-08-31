@@ -100,6 +100,7 @@ plutil -insert uploadSymbols -bool YES "$EXPORT_OPTIONS"
 
 export NODE_BINARY=${NODE_BINARY:-$(command -v node)}
 ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install
+verify_ios_cng_brand_assets "$PROJECT_ROOT"
 (
   cd "$PROJECT_ROOT/ios"
   pod install

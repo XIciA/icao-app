@@ -1,6 +1,13 @@
 #!/bin/sh
 
 # Resolve the one cleanly generated Expo CNG workspace, scheme, and product.
+verify_ios_cng_brand_assets() {
+  prebuild_root=$1
+  node "$PROJECT_ROOT/tools/check-native-brand-assets.mjs" \
+    --prebuild-root "$prebuild_root" \
+    --platform ios
+}
+
 configure_ios_cng_product() {
   ios_root=$1
   if [ -n "${ICAO_IOS_WORKSPACE:-}${ICAO_IOS_SCHEME:-}${ICAO_IOS_PRODUCT_NAME:-}" ]; then

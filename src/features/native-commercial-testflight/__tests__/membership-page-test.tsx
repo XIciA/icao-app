@@ -59,7 +59,7 @@ describe('<MembershipPage />', () => {
   it('uses StoreKit localized prices and states the non-renewing duration rules', async () => {
     const screen = await render(<MembershipPage />);
 
-    expect(screen.getByText('TestFlight 沙盒')).toBeTruthy();
+    expect(screen.getByText('沙盒环境')).toBeTruthy();
     expect(screen.getByText('¥18.00')).toBeTruthy();
     expect(screen.getByText('¥58.00')).toBeTruthy();
     expect(screen.getByText('购买后增加 31 天使用时间；重复购买会顺延。')).toBeTruthy();
@@ -135,17 +135,17 @@ describe('<MembershipPage />', () => {
   });
 
   it('keeps recovery actions available after a terminal error', async () => {
-      const phase = 'error';
-      mockUseCommerceRuntime.mockReturnValue(runtimeValue({ phase }));
-      const screen = await render(<MembershipPage />);
+    const phase = 'error';
+    mockUseCommerceRuntime.mockReturnValue(runtimeValue({ phase }));
+    const screen = await render(<MembershipPage />);
 
-      fireEvent.press(screen.getByText('¥58.00'));
-      await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
-      await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
+    fireEvent.press(screen.getByText('¥58.00'));
+    await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
+    await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
 
-      expect(mockPurchase).not.toHaveBeenCalled();
-      expect(mockRefresh).toHaveBeenCalledTimes(1);
-      expect(mockRestore).toHaveBeenCalledTimes(1);
+    expect(mockPurchase).not.toHaveBeenCalled();
+    expect(mockRefresh).toHaveBeenCalledTimes(1);
+    expect(mockRestore).toHaveBeenCalledTimes(1);
   });
 
   it('renders the public structured error without exposing internal StoreKit codes', async () => {
@@ -166,5 +166,19 @@ describe('<MembershipPage />', () => {
     expect(screen.getByText('App Store 商品配置正在同步')).toBeTruthy();
     expect(screen.getByText('App Store 商品信息尚未完全同步，请稍后再查看。')).toBeTruthy();
     expect(screen.queryByText('internal_should_not_render')).toBeNull();
+  });
+
+  it('uses neutral release copy when Native in-app purchase is unavailable', async () => {
+    mockUseCommerceRuntime.mockReturnValue(runtimeValue({
+      supported: false,
+      phase: 'unavailable',
+      offerings: [],
+      entitlementEnvironment: 'production',
+    }));
+    const screen = await render(<MembershipPage />);
+
+    expect(screen.getByText('当前设备暂不支持应用内购买')).toBeTruthy();
+    expect(screen.getByText('你仍可使用账号与已开放的学习内容；购买功能可在支持的设备上使用。')).toBeTruthy();
+    expect(screen.queryByText(/iPhone|TestFlight/u)).toBeNull();
   });
 });

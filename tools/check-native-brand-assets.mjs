@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { Buffer } from 'node:buffer';
+import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
@@ -29,6 +30,23 @@ function repositoryPath(absolutePath) {
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
+}
+
+function isBrandAssetCandidate(file) {
+  const candidateRoots = manifest.inventory.candidateRoots.map((root) => `${root}/`);
+  if (!candidateRoots.some((root) => file.startsWith(root))) return false;
+  const segments = file.split('/');
+  const basename = segments.at(-1) ?? '';
+  const isImage = /\.(?:jpe?g|png|webp|svg)$/iu.test(basename);
+  const isBrandControlFile = /\.(?:json|xml|storyboard)$/iu.test(basename);
+  const brandTerms = /(?:brand|branding|favicon|icon|logo|mark|splash|symbol|wordmark|emblem|badge|identity)/iu;
+  const isGenericBrandImageName = /^(?:app|asset|image|master|product)(?:[-_.][a-z0-9]+)*\.(?:jpe?g|png|webp|svg)$/iu.test(basename);
+  const genericImageRoot = file.startsWith('assets/images/') || file.startsWith('src/');
+  return (isImage && (genericImageRoot || isGenericBrandImageName))
+    || ((isImage || isBrandControlFile) && (
+      brandTerms.test(basename)
+      || segments.some((segment) => brandTerms.test(segment))
+    ));
 }
 
 function parsePng(buffer, fileLabel) {
@@ -234,6 +252,12 @@ function validateCngConfig() {
   if (!packageJson.dependencies?.['expo-splash-screen']?.startsWith('~55.')) fail('Brand CNG manifest requires expo-splash-screen 55.');
   const lockfile = readFileSync(path.join(repositoryRoot, 'pnpm-lock.yaml'), 'utf8');
   const versions = manifest.cng.generatorVersions;
+  if (manifest.cng.derivationBinding?.masterSha256 !== manifest.master.sha256) {
+    fail('CNG derivation binding is not attached to the current unique brand master.');
+  }
+  if (!Array.isArray(manifest.cng.derivationBinding?.ios) || manifest.cng.derivationBinding.ios.length === 0) {
+    fail('CNG derivation binding must enumerate the approved generated iOS brand products.');
+  }
   if (!lockfile.includes(`version: ${versions.expo}(`)) fail(`pnpm-lock.yaml does not lock Expo ${versions.expo}.`);
   if (!lockfile.includes(`version: ${versions.expoSplashScreen}(expo@${versions.expo})`)) {
     fail(`pnpm-lock.yaml does not lock expo-splash-screen ${versions.expoSplashScreen} with Expo ${versions.expo}.`);
@@ -337,7 +361,7 @@ function validateRuntimeBoundary() {
   const violations = [];
   const componentPath = path.join(repositoryRoot, manifest.runtime.component);
   const sourceFiles = listSourceFiles(path.join(repositoryRoot, 'src'));
-  const brandAssetPattern = /assets\/images\/[A-Za-z0-9._/-]*(?:brand|favicon|icon|logo|splash)[A-Za-z0-9._/-]*/giu;
+  const brandAssetPattern = /assets\/images\/[A-Za-z0-9._/-]*(?:brand|favicon|icon|logo|mark|splash|symbol|wordmark|emblem)[A-Za-z0-9._/-]*/giu;
 
   for (const filePath of sourceFiles) {
     const source = readFileSync(filePath, 'utf8');
@@ -372,17 +396,61 @@ function validateAssetInventory() {
   for (const external of manifest.frozenExternalAssets) {
     if (!existsSync(path.join(repositoryRoot, external.path))) fail(`Classified frozen external asset is missing: ${external.path}`);
   }
-  if (manifest.cng.trackedDerivedAssets.length !== 0) fail('CNG brand derivatives must remain generated and untracked.');
+  const nativeTreePolicy = manifest.cng.nativeTreePolicy;
+  if (nativeTreePolicy.authority !== 'clean-prebuild-only') {
+    fail('Native brand release authority must remain clean-prebuild-only.');
+  }
+  if (nativeTreePolicy.trackedDerivedAssets.length !== 0) {
+    fail('CNG brand derivatives must remain generated and untracked.');
+  }
+  if (!nativeTreePolicy.releasePrebuildCommand.includes('--clean')) {
+    fail('Native brand release prebuild must remain clean.');
+  }
+  if (!nativeTreePolicy.releaseVerificationCommand.includes('--platform ios')) {
+    fail('Native brand release verification must explicitly validate the generated iOS assets.');
+  }
 
-  const allowed = new Set([
+  const tracked = spawnSync('git', ['ls-files', '-z'], {
+    cwd: repositoryRoot,
+    encoding: 'utf8',
+  });
+  if (tracked.status !== 0) fail('Unable to inventory tracked brand asset candidates.');
+  const trackedFiles = tracked.stdout.split('\0').filter(Boolean);
+  const ignoredGeneratedRoots = nativeTreePolicy.ignoredGeneratedRoots.map((root) => `${root}/`);
+  for (const root of nativeTreePolicy.ignoredGeneratedRoots) {
+    const ignored = spawnSync(
+      'git',
+      ['check-ignore', '--quiet', '--no-index', '--', `${root}/__native_brand_probe__`],
+      { cwd: repositoryRoot, encoding: 'utf8' },
+    );
+    if (ignored.status !== 0) {
+      fail(`git check-ignore does not classify the generated Native root as ignored: ${root}/`);
+    }
+  }
+  for (const repositoryPath of trackedFiles) {
+    if (ignoredGeneratedRoots.some((root) => repositoryPath.startsWith(root))) {
+      fail(`Generated Native project tree must remain untracked: ${repositoryPath}`);
+    }
+  }
+
+  const allowedPaths = new Set([
     manifest.master.path,
-    ...manifest.frozenExternalAssets.map((entry) => entry.path),
+    ...manifest.inventory.nonProductControlFiles,
   ]);
-  const imageRoot = path.join(repositoryRoot, 'assets/images');
-  for (const entry of readdirSync(imageRoot, { withFileTypes: true })) {
-    if (!entry.isFile() || !/(?:brand|favicon|icon|logo|splash)/iu.test(entry.name)) continue;
-    const candidate = `assets/images/${entry.name}`;
-    if (!allowed.has(candidate)) fail(`Unclassified competing brand asset found: ${candidate}`);
+  const allowedRoots = manifest.frozenExternalAssets.map((entry) => entry.path);
+  const candidateFiles = new Set(trackedFiles.filter(isBrandAssetCandidate));
+  for (const root of manifest.inventory.candidateRoots) {
+    if (nativeTreePolicy.ignoredGeneratedRoots.includes(root)) continue;
+    const absoluteRoot = path.join(repositoryRoot, root);
+    for (const file of findFiles(absoluteRoot, () => true)) {
+      const candidate = repositoryPath(file);
+      if (isBrandAssetCandidate(candidate)) candidateFiles.add(candidate);
+    }
+  }
+  for (const candidate of [...candidateFiles].sort()) {
+    const classified = allowedPaths.has(candidate)
+      || allowedRoots.some((root) => candidate === root || candidate.startsWith(`${root}/`));
+    if (!classified) fail(`Unclassified competing brand asset found: ${candidate}`);
   }
 }
 
@@ -449,6 +517,40 @@ function validateGeneratedIos(prebuildRoot) {
   if (expected.some((size) => !splashSizes.includes(size))) {
     fail(`Generated iOS splash widths ${splashSizes.join(', ')} do not include ${expected.join(', ')}.`);
   }
+
+  const binding = manifest.cng.derivationBinding;
+  if (binding.masterSha256 !== manifest.master.sha256) {
+    fail('CNG derivation binding is not attached to the current unique brand master.');
+  }
+  const generatedDirectories = new Map([
+    ['AppIcon.appiconset', appIconSet],
+    ['SplashScreenLogo.imageset', splashSet],
+  ]);
+  const referencedFiles = new Map([
+    ['AppIcon.appiconset', new Set(appIconFiles)],
+    ['SplashScreenLogo.imageset', new Set(splashFiles)],
+  ]);
+  for (const artifact of binding.ios) {
+    const directory = generatedDirectories.get(artifact.directorySuffix);
+    if (!directory) fail(`Unknown iOS brand derivative directory: ${artifact.directorySuffix}`);
+    const artifactPath = path.join(directory, artifact.file);
+    if (!existsSync(artifactPath)) fail(`Expected generated ${artifact.role} is missing: ${artifact.file}`);
+    if (!referencedFiles.get(artifact.directorySuffix)?.has(artifact.file)) {
+      fail(`Generated ${artifact.role} is not referenced by its iOS asset catalog: ${artifact.file}`);
+    }
+    const source = readFileSync(artifactPath);
+    const actualHash = sha256(source);
+    if (actualHash !== artifact.sha256) {
+      fail(`Generated ${artifact.role} is not the approved derivative of master ${binding.masterSha256}: expected ${artifact.sha256}, received ${actualHash}.`);
+    }
+    const png = parsePng(source, `generated ${artifact.role}`);
+    for (const key of ['width', 'height', 'hasAlpha']) {
+      if (png[key] !== artifact[key]) {
+        fail(`Generated ${artifact.role} ${key} changed: expected ${artifact[key]}, received ${png[key]}.`);
+      }
+    }
+    validateOpaque(png, `generated ${artifact.role}`);
+  }
 }
 
 function validateGeneratedAndroid(prebuildRoot) {
@@ -489,6 +591,10 @@ function selfTest() {
   if (brandImpersonationViolations(failure, path.join(repositoryRoot, 'fixture.tsx')).length !== 1) fail('Brand gate self-test did not reject a rotated Plane logo.');
   if (brandImpersonationViolations(webOnly, path.join(repositoryRoot, 'fixture.tsx')).length !== 0) fail('Brand gate self-test rejected an explicit Web-only legacy mark.');
   if (brandImpersonationViolations(functional, path.join(repositoryRoot, 'fixture.tsx')).length !== 0) fail('Brand gate self-test rejected a functional Upload icon.');
+  for (const candidate of ['assets/images/mark.png', 'assets/images/image.png', 'src/features/account/art.png', 'public/image.png']) {
+    if (!isBrandAssetCandidate(candidate)) fail(`Brand inventory self-test missed generic candidate ${candidate}.`);
+  }
+  if (isBrandAssetCandidate('assets/audio/mark.mp3')) fail('Brand inventory self-test classified non-image media.');
 }
 
 try {
@@ -497,14 +603,31 @@ try {
   validateCngConfig();
   validateRuntimeBoundary();
   validateAssetInventory();
-  const prebuildFlag = process.argv.indexOf('--prebuild-root');
+  const args = process.argv.slice(2);
+  let prebuildRootValue;
+  let platform = 'all';
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index] === '--prebuild-root') {
+      prebuildRootValue = args[index + 1];
+      if (!prebuildRootValue) fail('--prebuild-root requires a directory.');
+      index += 1;
+      continue;
+    }
+    if (args[index] === '--platform') {
+      platform = args[index + 1];
+      if (!['ios', 'android', 'all'].includes(platform)) fail('--platform must be ios, android, or all.');
+      index += 1;
+      continue;
+    }
+    fail(`Unknown argument: ${args[index]}`);
+  }
+  if (platform !== 'all' && !prebuildRootValue) fail('--platform requires --prebuild-root.');
+  const prebuildFlag = args.indexOf('--prebuild-root');
   if (prebuildFlag >= 0) {
-    const value = process.argv[prebuildFlag + 1];
-    if (!value) fail('Usage: check-native-brand-assets.mjs [--prebuild-root <directory>]');
-    const prebuildRoot = path.resolve(value);
-    validateGeneratedIos(prebuildRoot);
-    validateGeneratedAndroid(prebuildRoot);
-    console.log(`Native brand CNG products verified in ${prebuildRoot}.`);
+    const prebuildRoot = path.resolve(prebuildRootValue);
+    if (platform === 'ios' || platform === 'all') validateGeneratedIos(prebuildRoot);
+    if (platform === 'android' || platform === 'all') validateGeneratedAndroid(prebuildRoot);
+    console.log(`Native brand CNG ${platform} products verified in ${prebuildRoot}.`);
   }
   const clear = Object.values(master.clearFractions).map((value) => `${(value * 100).toFixed(1)}%`).join('/');
   console.log(`Native brand boundary OK (${manifest.master.sha256}; clear edges ${clear}).`);

@@ -12,6 +12,7 @@ import { AppText, Button, Card, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 
 import { useCommerceRuntime } from './CommerceRuntimeProvider';
+import { membershipReleaseCopy } from './membership-release-copy';
 
 function formatDate(value: string | null | undefined) {
   if (!value) return '未开通';
@@ -47,7 +48,7 @@ export function MembershipPage() {
         <View style={styles.flex}>
           <View style={styles.titleRow}>
             <AppText variant="sectionTitle">{active ? '会员已生效' : '开通会员'}</AppText>
-            {commerce.entitlementEnvironment === 'sandbox' ? <Tag>TestFlight 沙盒</Tag> : null}
+            {commerce.entitlementEnvironment === 'sandbox' ? <Tag>{membershipReleaseCopy.sandboxLabel}</Tag> : null}
           </View>
           <AppText variant="caption">
             {active
@@ -92,8 +93,8 @@ export function MembershipPage() {
         ))}
         {!commerce.supported ? (
           <Card style={styles.notice}>
-            <AppText variant="button">当前平台暂不支持 App Store 购买</AppText>
-            <AppText variant="caption">iPhone 正式版与 TestFlight 包会在登录后显示五档本地化价格。</AppText>
+            <AppText variant="button">{membershipReleaseCopy.unsupportedTitle}</AppText>
+            <AppText variant="caption">{membershipReleaseCopy.unsupportedDescription}</AppText>
           </Card>
         ) : null}
         {commerce.supported && commerce.offerings.length === 0 ? (

@@ -8,11 +8,14 @@ import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { promisify } from 'node:util';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const execFile = promisify(execFileCallback);
 const require = createRequire(import.meta.url);
-const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const scriptRepositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repositoryRoot = process.env.ICAO_WEB_FREEZE_TEST_ROOT
+  ? path.resolve(process.env.ICAO_WEB_FREEZE_TEST_ROOT)
+  : scriptRepositoryRoot;
 const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
@@ -36,6 +39,10 @@ const exactProtectedPaths = [
 
 const protectedTrees = ['api', 'public'];
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
+
+function expoResolutionContext(context, platform) {
+  return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
+}
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
@@ -150,7 +157,9 @@ async function resolveWebGraphFiles() {
   metroConfig.resolver = { ...metroConfig.resolver };
   metroConfig.resolver.useWatchman = false;
   metroConfig.resetCache = false;
-  metroConfig.watchFolders = [...new Set([...(metroConfig.watchFolders ?? []), repositoryRoot])];
+  metroConfig.watchFolders = [
+    ...new Set([...(metroConfig.watchFolders ?? []), repositoryRoot, scriptRepositoryRoot]),
+  ];
   metroConfig.watcher = {
     ...metroConfig.watcher,
     unstable_lazySha1: false,
@@ -160,29 +169,36 @@ async function resolveWebGraphFiles() {
       ...(metroConfig.resolver.nodeModulesPaths ?? []),
       path.join(repositoryRoot, 'node_modules'),
       path.join(repositoryRoot, 'node_modules/.pnpm/node_modules'),
+      path.join(scriptRepositoryRoot, 'node_modules'),
+      path.join(scriptRepositoryRoot, 'node_modules/.pnpm/node_modules'),
     ]),
   ];
 
   const existingResolveRequest = metroConfig.resolver.resolveRequest;
   metroConfig.resolver.resolveRequest = (context, moduleName, platform) => {
+    // Expo CLI disables Metro's `.native.*` fallback while exporting Web. A raw
+    // Metro graph leaves `preferNativePlatform` enabled and therefore treats
+    // Native-only implementations as Vercel inputs even though `expo export
+    // --platform web` does not. Keep this graph aligned with the actual exporter.
+    const platformContext = expoResolutionContext(context, platform);
     if (moduleName.startsWith('@/assets/')) {
       return metroResolver.resolve(
-        context,
+        platformContext,
         path.join(repositoryRoot, 'assets', moduleName.slice('@/assets/'.length)),
         platform,
       );
     }
     if (moduleName.startsWith('@/')) {
       return metroResolver.resolve(
-        context,
+        platformContext,
         path.join(repositoryRoot, 'src', moduleName.slice('@/'.length)),
         platform,
       );
     }
     if (existingResolveRequest) {
-      return existingResolveRequest(context, moduleName, platform);
+      return existingResolveRequest(platformContext, moduleName, platform);
     }
-    return metroResolver.resolve(context, moduleName, platform);
+    return metroResolver.resolve(platformContext, moduleName, platform);
   };
 
   const graph = await metro.buildGraph(metroConfig, {
@@ -210,7 +226,7 @@ async function resolveWebGraphFiles() {
     ) {
       continue;
     }
-    files.push(toRepositoryPath(canonicalPath));
+    files.push(relativePath.split(path.sep).join('/'));
   }
 
   return [...new Set(files)].sort();
@@ -240,12 +256,17 @@ async function collectCurrentSelection() {
       const repositoryPath = toRepositoryPath(absolutePath);
       const basename = path.basename(repositoryPath).toLowerCase();
       const isWebOwned = basename.includes('web') || basename.includes('promo');
-      if (!isWebOwned || repositoryPath === 'tools/check-web-freeze.mjs') continue;
+      const isFreezeControl = repositoryPath === 'tools/check-web-freeze.mjs'
+        || repositoryPath === 'tools/check-web-freeze-tests.mjs';
+      if (!isWebOwned || isFreezeControl) continue;
       await addExistingFile(selection, repositoryPath, 'web_build_or_deploy_tooling');
     }
   }
 
   for (const repositoryPath of await resolveWebGraphFiles()) {
+    // The resolver is authoritative. Do not discard platform-suffixed files
+    // after resolution: an explicit import is real Web behavior and must stay
+    // protected. Normal Native fallbacks are excluded by the Web context above.
     await addExistingFile(selection, repositoryPath, 'metro_web_dependency_graph');
   }
 
@@ -269,6 +290,13 @@ async function fingerprintSelection(selection) {
     files,
     combinedSha256: sha256(Buffer.from(combinedInput)),
   };
+}
+
+function combinedSha256(files) {
+  const combinedInput = files
+    .map((file) => `${file.path}\0${file.sha256}\0${file.sources.join(',')}\n`)
+    .join('');
+  return sha256(Buffer.from(combinedInput));
 }
 
 async function currentHead() {
@@ -395,27 +423,27 @@ async function checkManifest(manifestPath, explain) {
   validateManifest(manifest);
 
   const current = await fingerprintSelection(await collectCurrentSelection());
-  const expectedByPath = new Map(manifest.files.map((file) => [file.path, file]));
+  const expected = manifest.files;
+  const expectedByPath = new Map(expected.map((file) => [file.path, file]));
   const currentByPath = new Map(current.files.map((file) => [file.path, file]));
   const selectionAdded = current.files
     .filter((file) => !expectedByPath.has(file.path))
     .map((file) => file.path);
-  const selectionRemoved = manifest.files
+  const selectionRemoved = expected
     .filter((file) => !currentByPath.has(file.path))
     .map((file) => file.path);
   const contentChanged = current.files
-    .filter((file) => {
-      const expected = expectedByPath.get(file.path);
-      return expected && expected.sha256 !== file.sha256;
-    })
+    .filter((file) => expectedByPath.has(file.path)
+      && expectedByPath.get(file.path).sha256 !== file.sha256)
     .map((file) => file.path);
   const ownershipChanged = current.files
     .filter((file) => {
-      const expected = expectedByPath.get(file.path);
-      return expected && expected.sources.join('\0') !== file.sources.join('\0');
+      const expectedFile = expectedByPath.get(file.path);
+      return expectedFile
+        && expectedFile.sources.join('\0') !== file.sources.join('\0');
     })
     .map((file) => file.path);
-  const combinedChanged = manifest.combinedSha256 !== current.combinedSha256;
+  const combinedChanged = combinedSha256(expected) !== current.combinedSha256;
 
   const failures = [
     ['newly protected path', selectionAdded],
@@ -462,7 +490,9 @@ async function main() {
   await checkManifest(arguments_.manifestPath, arguments_.explain);
 }
 
-main().catch((error) => {
-  console.error(`Web freeze check could not run: ${error instanceof Error ? error.message : String(error)}`);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(`Web freeze check could not run: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+  });
+}
