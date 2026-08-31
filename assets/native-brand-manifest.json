@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "master": {
+    "path": "assets/images/icon.png",
+    "sha256": "54305156502897255bcb1c17dbf9a1f83036a2f3440c8cb6783e069d8bb34e8b",
+    "png": {
+      "width": 1254,
+      "height": 1254,
+      "bitDepth": 8,
+      "colorType": "rgb",
+      "hasAlpha": false
+    },
+    "safeArea": {
+      "backgroundRgb": [255, 255, 255],
+      "backgroundTolerance": 10,
+      "minimumClearEdgeFraction": 0.04
+    }
+  },
+  "runtime": {
+    "component": "src/components/brand/AppBrandLogo.tsx",
+    "surfaces": [
+      "src/components/auth/splash-screen.tsx",
+      "src/components/states/GlobalLoadingScreen.native.tsx",
+      "src/features/info/InfoScreen.tsx"
+    ]
+  },
+  "cng": {
+    "config": "app.json",
+    "generator": "Expo 55 CNG / expo-splash-screen 55",
+    "generatorVersions": {
+      "expo": "55.0.27",
+      "expoSplashScreen": "55.0.22"
+    },
+    "trackedDerivedAssets": [],
+    "splash": {
+      "backgroundColor": "#FFFFFF",
+      "imageWidth": 160,
+      "androidImageWidth": 120,
+      "resizeMode": "contain"
+    },
+    "generatedTargets": [
+      {
+        "platform": "ios",
+        "paths": [
+          "ios/*/Images.xcassets/AppIcon.appiconset",
+          "ios/*/Images.xcassets/SplashScreenLogo.imageset",
+          "ios/*/SplashScreen.storyboard"
+        ]
+      },
+      {
+        "platform": "android",
+        "paths": [
+          "android/app/src/main/res/mipmap-*/ic_launcher*.webp",
+          "android/app/src/main/res/drawable-*/splashscreen_logo.png",
+          "android/app/src/main/res/values/styles.xml"
+        ]
+      }
+    ]
+  },
+  "retiredNativeAssets": [
+    "assets/images/splash-icon.png",
+    "assets/images/android-icon-background.png",
+    "assets/images/android-icon-foreground.png",
+    "assets/images/android-icon-monochrome.png"
+  ],
+  "frozenExternalAssets": [
+    {
+      "path": "assets/images/favicon.png",
+      "owner": "Expo Web / frozen Vercel surface"
+    },
+    {
+      "path": "official-site",
+      "owner": "frozen public website"
+    },
+    {
+      "path": "public/promo",
+      "owner": "frozen promotional website"
+    }
+  ]
+}

@@ -348,6 +348,8 @@ describe('base flow parity screens', () => {
   it('shows the shared task timestamp version on the about page', async () => {
     mockParams = { slug: 'about' };
     const screen = await render(withSafeArea(<InfoScreen />));
+    expect(screen.getByTestId('info-brand-logo')).toBeTruthy();
+    expect(screen.getByLabelText('听你五个 App 标志')).toBeTruthy();
     expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
   });
 
