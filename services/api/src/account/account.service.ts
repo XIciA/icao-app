@@ -18,10 +18,10 @@ import { AccountIdentityService } from './account-identity.service';
 const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
 
 function sortedProviders(providers: Iterable<string>): AccountSummary['providers'] {
-  const supported = new Set(['phone', 'apple']);
+  const supported = new Set(['phone', 'apple', 'wechat']);
   return [...new Set(providers)]
     .filter((provider): provider is AccountSummary['providers'][number] => supported.has(provider))
-    .sort((left, right) => ['phone', 'apple'].indexOf(left) - ['phone', 'apple'].indexOf(right));
+    .sort((left, right) => ['phone', 'apple', 'wechat'].indexOf(left) - ['phone', 'apple', 'wechat'].indexOf(right));
 }
 
 @Injectable()
@@ -337,7 +337,7 @@ export class AccountService {
   private assertSocialPhoneBindingAllowed(source: VerifiedAuthSession) {
     const providers = source.user.providers ?? [];
     if (providers.includes('phone')) throw new ConflictException('invalid_phone_binding');
-    if (!providers.includes('apple')) {
+    if (!providers.includes('apple') && !providers.includes('wechat')) {
       throw new ForbiddenException('social_identity_required');
     }
     const appleAuthenticatedAt = Math.max(
@@ -357,6 +357,12 @@ export class AccountService {
       && now - appleAuthenticatedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS,
     );
     if (appleIsRecent) return 'apple' as const;
+    const wechatIsRecent = Boolean(
+      providers.includes('wechat')
+      && source.issuedAt <= now + 60
+      && now - source.issuedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS
+    );
+    if (wechatIsRecent) return 'wechat' as const;
     throw new ForbiddenException('recent_social_auth_required');
   }
 

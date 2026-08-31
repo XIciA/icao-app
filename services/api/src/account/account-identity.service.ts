@@ -17,7 +17,7 @@ export type IdentityCandidate = {
   subject: string;
 };
 
-const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple']);
+const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple', 'wechat']);
 const FREE_TRIAL_BENEFIT_KEY = 'free-trial-100-v1';
 
 @Injectable()
@@ -193,7 +193,7 @@ export class AccountIdentityService {
     return rows
       .map((row) => row.provider)
       .filter((provider): provider is AuthIdentityProvider => SUPPORTED_PROVIDERS.has(provider as AuthIdentityProvider))
-      .sort((left, right) => ['phone', 'apple'].indexOf(left) - ['phone', 'apple'].indexOf(right));
+      .sort((left, right) => ['phone', 'apple', 'wechat'].indexOf(left) - ['phone', 'apple', 'wechat'].indexOf(right));
   }
 
   async authUserIdsForAccount(accountId: string) {

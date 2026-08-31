@@ -27,6 +27,10 @@ import { AliyunSmsProvider } from './auth/sms/aliyun-sms.provider';
 import { SupabaseSmsHookController } from './auth/sms/supabase-sms-hook.controller';
 import { SupabaseSmsHookService } from './auth/sms/supabase-sms-hook.service';
 import { SmsDeliveryAuthority } from './auth/sms/sms-delivery-authority';
+import { WechatAuthController } from './auth/wechat-auth.controller';
+import { FetchWechatAuthHttp, WECHAT_AUTH_HTTP } from './auth/wechat-auth-http';
+import { WechatAuthService } from './auth/wechat-auth.service';
+import { WechatUniversalLinkController } from './wechat-universal-link.controller';
 import { API_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
 import { HealthController } from './health.controller';
@@ -66,7 +70,7 @@ import { AppleStoreServerApiService } from './commerce/apple-store-server-api.se
 import { AppleServerReconciliationService } from './commerce/apple-server-reconciliation.service';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
+  controllers: [HealthController, WechatUniversalLinkController, MeController, PhoneAuthController, WechatAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -91,6 +95,9 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     SmsDeliveryAuthority,
     SupabaseSmsHookService,
     PhoneAuthService,
+    FetchWechatAuthHttp,
+    { provide: WECHAT_AUTH_HTTP, useExisting: FetchWechatAuthHttp },
+    WechatAuthService,
     PhoneSecurityRetentionService,
     SupabaseRecentAuthPasswordVerifier,
     { provide: RECENT_AUTH_PASSWORD_VERIFIER, useExisting: SupabaseRecentAuthPasswordVerifier },

@@ -8,3 +8,5 @@ export const passwordRecentAuthSchema = z.object({
 export const phoneRecentAuthSchema = z.object({
   purpose: z.literal('account_delete'),
 }).strict();
+
+export const wechatRecentAuthSchema = phoneRecentAuthSchema;

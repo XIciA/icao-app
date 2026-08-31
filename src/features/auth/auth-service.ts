@@ -1,11 +1,12 @@
 import { createClient, type AuthChangeEvent, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, RecentAuthGrantResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, CompleteWechatAuthResponse, RecentAuthGrantResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, StartWechatAuthResponse, UpdatePhonePasswordResponse, VerifyPhoneOtpResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
 
-import { apiRequest } from '@/platform/api-client';
+import { apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import { secureSessionStorage } from './secure-session-storage';
+import { authorizeWithWechatNative, getWechatNativeStatus } from './wechat-native-auth';
 
 export type AppSession = {
   accessToken: string;
@@ -30,14 +31,17 @@ export type AuthService = {
   getSession(): Promise<AppSession | undefined>;
   refreshSession(): Promise<AppSession | undefined>;
   isAppleSignInAvailable(): Promise<boolean>;
+  isWechatSignInAvailable(): Promise<boolean>;
   signInWithApple(): Promise<AppSession>;
+  signInWithWechat(): Promise<AppSession>;
   authorizeAccountDeletionWithApple(): Promise<RecentAuthGrantResponse>;
+  authorizeAccountDeletionWithWechat(accountId: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
   authorizeAccountDeletionWithPassword(password: string): Promise<RecentAuthGrantResponse>;
   authorizeAccountDeletionWithPhoneOtp(token: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
   requestAccountDeletionPhoneOtp(): Promise<StartPhoneOtpResponse>;
   requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
   requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
-  verifyPhoneOtp(phone: string, token: string): Promise<AppSession>;
+  verifyPhoneOtp(challenge: { challengeId: string; phone: string; purpose: 'login' | 'recovery' }, token: string): Promise<AppSession>;
   authorizePasswordRecovery(): Promise<AuthorizePasswordRecoveryResponse>;
   signInWithPhonePassword(phone: string, password: string): Promise<AppSession>;
   updatePassword(password: string, currentPassword?: string, recoveryGrantId?: string): Promise<AppSession>;
@@ -58,6 +62,10 @@ function appSession(session: Session | null): AppSession | undefined {
   for (const identity of session.user.identities ?? []) {
     if (identity.provider === 'phone' || identity.provider === 'apple') providers.add(identity.provider);
   }
+  if (
+    session.user.app_metadata?.icao_identity_provider === 'wechat'
+    && typeof session.user.app_metadata?.icao_wechat_subject === 'string'
+  ) providers.add('wechat');
   if (providers.size === 0) return undefined;
   return {
     accessToken: session.access_token,
@@ -141,6 +149,11 @@ export class SupabasePhoneAuthService implements AuthService {
     return AppleAuthentication.isAvailableAsync();
   }
 
+  async isWechatSignInAvailable() {
+    const status = getWechatNativeStatus();
+    return status.supported && status.configured;
+  }
+
   async signInWithApple() {
     const credential = await this.appleCredential(true);
     const { data, error } = await this.client.auth.signInWithIdToken({
@@ -152,6 +165,39 @@ export class SupabasePhoneAuthService implements AuthService {
     const session = appSession(data.session);
     if (!session || !session.user.providers.includes('apple')) throw new Error('apple_auth_failed');
     return session;
+  }
+
+  async signInWithWechat() {
+    return (await this.wechatSession()).session;
+  }
+
+  private async wechatSession() {
+    const challenge = await apiRequest<StartWechatAuthResponse>('/v1/auth/wechat/challenge', {
+      method: 'POST',
+    });
+    if (challenge.status !== 'available') throw new Error('wechat_auth_configuration_pending');
+    const nativeResponse = await authorizeWithWechatNative(challenge.state);
+    if (nativeResponse.state !== challenge.state) throw new Error('invalid_wechat_auth_response');
+    const response = await apiRequest<CompleteWechatAuthResponse>('/v1/auth/wechat/session', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        challengeId: challenge.challengeId,
+        code: nativeResponse.code,
+        state: nativeResponse.state,
+      }),
+    });
+    const { data, error } = await this.client.auth.setSession({
+      access_token: response.session.accessToken,
+      refresh_token: response.session.refreshToken,
+    });
+    if (error) throw authError(error);
+    const session = appSession(data.session);
+    if (!session?.user.providers.includes('wechat')) {
+      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
+      throw new Error('wechat_auth_failed');
+    }
+    return { account: response.account, session };
   }
 
   async authorizeAccountDeletionWithApple() {
@@ -168,6 +214,24 @@ export class SupabasePhoneAuthService implements AuthService {
         rawNonce: credential.rawNonce,
       }),
     });
+  }
+
+  async authorizeAccountDeletionWithWechat(accountId: string) {
+    const authenticated = await this.wechatSession();
+    if (authenticated.account.accountId !== accountId) {
+      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
+      throw new Error('identity_already_in_use');
+    }
+    const grant = await apiRequestWithAccessToken<RecentAuthGrantResponse>(
+      '/v1/account/recent-auth/wechat',
+      authenticated.session.accessToken,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ purpose: 'account_delete' }),
+      },
+    );
+    return { grant, session: authenticated.session };
   }
 
   async authorizeAccountDeletionWithPassword(password: string) {
@@ -268,11 +332,24 @@ export class SupabasePhoneAuthService implements AuthService {
     return response;
   }
 
-  async verifyPhoneOtp(input: string, token: string) {
-    const phone = normalizeChinaMobile(input);
+  async verifyPhoneOtp(challenge: { challengeId: string; phone: string; purpose: 'login' | 'recovery' }, token: string) {
+    const phone = normalizeChinaMobile(challenge.phone);
     if (!phone) throw new Error('invalid_phone_number');
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
-    const { data, error } = await this.client.auth.verifyOtp({ phone, token, type: 'sms' });
+    const response = await apiRequest<VerifyPhoneOtpResponse>('/v1/auth/phone/otp/verify', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        challengeId: challenge.challengeId,
+        phone,
+        purpose: challenge.purpose,
+        token,
+      }),
+    });
+    const { data, error } = await this.client.auth.setSession({
+      access_token: response.session.accessToken,
+      refresh_token: response.session.refreshToken,
+    });
     if (error || !data.session) throw authError(error);
     const session = appSession(data.session);
     if (!session || session.user.phone !== phone) {

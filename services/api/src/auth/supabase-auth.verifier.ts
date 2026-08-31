@@ -57,16 +57,24 @@ export class SupabaseAuthVerifier implements AuthVerifier {
     if (error || !data.user) throw new UnauthorizedException('invalid_access_token');
     const claims = jwtClaims(token);
     if (typeof claims.session_id !== 'string' || typeof claims.iat !== 'number') throw new UnauthorizedException('invalid_access_token');
+    const identities = (data.user.identities ?? [])
+      .filter((identity) => typeof identity.provider === 'string')
+      .map((identity) => ({
+        provider: identity.provider,
+        subject: identity.identity_id ?? identity.id,
+      }));
+    if (
+      data.user.app_metadata?.icao_identity_provider === 'wechat'
+      && typeof data.user.app_metadata?.icao_wechat_subject === 'string'
+      && /^[0-9a-f]{64}$/u.test(data.user.app_metadata.icao_wechat_subject)
+    ) {
+      identities.push({ provider: 'wechat', subject: data.user.app_metadata.icao_wechat_subject });
+    }
     return {
       accessToken: token,
       authenticationMethods: authenticationMethods(claims.amr),
       authUserId: data.user.id,
-      identities: (data.user.identities ?? [])
-        .filter((identity) => typeof identity.provider === 'string')
-        .map((identity) => ({
-          provider: identity.provider,
-          subject: identity.identity_id ?? identity.id,
-        })),
+      identities,
       issuedAt: claims.iat,
       passwordSet: typeof data.user.user_metadata?.password_set === 'boolean'
         ? data.user.user_metadata.password_set
@@ -76,6 +84,11 @@ export class SupabaseAuthVerifier implements AuthVerifier {
         id: data.user.id,
         email: data.user.email,
         phone: typeof data.user.phone === 'string' ? normalizeChinaMobile(data.user.phone) : undefined,
+        providers: identities
+          .map((identity) => identity.provider)
+          .filter((provider): provider is 'phone' | 'apple' | 'wechat' => (
+            provider === 'phone' || provider === 'apple' || provider === 'wechat'
+          )),
       },
     };
   }

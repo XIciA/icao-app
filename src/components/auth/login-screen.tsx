@@ -1,15 +1,17 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
-import * as AppleAuthentication from 'expo-apple-authentication';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
-import { AppText, Button } from '@/components/ui';
+import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
+import { AppText, Button, TextField } from '@/components/ui';
+import { MessageCircle } from '@/components/ui/icons';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
 import {
   clearPhoneOtpChallenge,
   phoneOtpChallenge,
+  phoneOtpServerNow,
   readPhoneOtpChallenge,
   type PersistedPhoneOtpChallenge,
   writePhoneOtpChallenge,
@@ -20,6 +22,19 @@ import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, Passwo
 
 type EntryView = 'login' | 'recovery';
 type LoginMethod = 'otp' | 'password';
+
+export function createAuthActionGate() {
+  let active = false;
+  return {
+    begin() {
+      if (active) return false;
+      active = true;
+      return true;
+    },
+    end() { active = false; },
+  };
+}
+
 export function loginErrorMessage(code: string) {
   switch (code) {
     case 'invalid_phone_number': return '请输入正确的中国大陆手机号。';
@@ -33,6 +48,10 @@ export function loginErrorMessage(code: string) {
     case 'apple_auth_unavailable': return '当前设备暂不支持 Apple 登录。';
     case 'apple_auth_failed':
     case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';
+    case 'wechat_not_installed': return '当前设备未安装微信，请改用其他方式登录。';
+    case 'wechat_auth_configuration_pending': return '微信登录正在配置，请改用手机号或 Apple 登录。';
+    case 'wechat_auth_failed':
+    case 'invalid_wechat_auth_response': return '微信登录未完成，请重试或改用其他方式。';
     case 'social_auth_cancelled': return '已取消登录。';
     case 'social_auth_unavailable': return '该登录方式暂时不可用，请改用其他方式。';
     case 'auth_network_error': return '网络连接失败，请检查网络后重试。';
@@ -60,7 +79,7 @@ export function LoginScreen() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [clockNow, setClockNow] = useState(() => Date.now());
-  const actionInFlightRef = useRef(false);
+  const actionGateRef = useRef(createAuthActionGate());
 
   const codePurpose = challenge?.purpose;
   const resendDeadline = challenge?.resendAllowedAt ?? 0;
@@ -72,6 +91,7 @@ export function LoginScreen() {
       setChallenge(restored);
       setPhone(restored.phone.slice(3));
       setEntryView(restored.purpose === 'recovery' ? 'recovery' : 'login');
+      setLoginMethod('otp');
       setClockNow(Date.now());
     }).catch((value: unknown) => {
       if (active) setError(loginErrorMessage(value instanceof Error ? value.message : 'auth_session_storage_unavailable'));
@@ -92,23 +112,28 @@ export function LoginScreen() {
     return () => clearInterval(timer);
   }, [challenge?.expiresAt, resendDeadline]);
 
-  const remainingSeconds = Math.max(0, Math.ceil((resendDeadline - clockNow) / 1000));
-  const challengeExpired = Boolean(challenge && clockNow >= challenge.expiresAt);
+  const remainingSeconds = Math.max(0, Math.ceil((resendDeadline - (challenge ? phoneOtpServerNow(challenge, clockNow) : clockNow)) / 1000));
+  const challengeExpired = Boolean(challenge && phoneOtpServerNow(challenge, clockNow) >= challenge.expiresAt);
 
   function updatePhone(value: string) {
     const digits = value.replace(/\D/gu, '');
-    setPhone((digits.startsWith('86') && digits.length > 11 ? digits.slice(2) : digits).slice(0, 11));
+    const next = (digits.startsWith('86') && digits.length > 11 ? digits.slice(2) : digits).slice(0, 11);
+    setPhone(next);
+    if (challenge?.purpose === 'login' && normalizeChinaMobile(next) !== challenge.phone) {
+      setChallenge(undefined);
+      setCode('');
+      void clearPhoneOtpChallenge().catch(() => undefined);
+    }
   }
 
   function beginAction() {
-    if (actionInFlightRef.current) return false;
-    actionInFlightRef.current = true;
+    if (!actionGateRef.current.begin()) return false;
     setSubmitting(true);
     return true;
   }
 
   function finishAction() {
-    actionInFlightRef.current = false;
+    actionGateRef.current.end();
     setSubmitting(false);
   }
 
@@ -148,12 +173,13 @@ export function LoginScreen() {
     return false;
   }
 
-  async function socialLogin() {
+  async function socialLogin(provider: 'apple' | 'wechat') {
     if (!requireConsent()) return;
     if (!beginAction()) return;
     setError('');
     try {
-      await auth.signInWithApple();
+      if (provider === 'apple') await auth.signInWithApple();
+      else await auth.signInWithWechat();
     } catch (value) {
       showError(value);
     } finally {
@@ -224,7 +250,7 @@ export function LoginScreen() {
 
   async function verifyCode() {
     if (!challenge) return;
-    if (Date.now() >= challenge.expiresAt) {
+    if (phoneOtpServerNow(challenge) >= challenge.expiresAt) {
       setClockNow(Date.now());
       setError('验证码已过期，请重新获取。');
       return;
@@ -233,7 +259,7 @@ export function LoginScreen() {
     if (!beginAction()) return;
     setError('');
     try {
-      await auth.verifyPhoneOtp(challenge.phone, code, challenge.purpose);
+      await auth.verifyPhoneOtp(challenge, code);
       await clearPhoneOtpChallenge().catch(() => undefined);
       setChallenge(undefined);
     } catch (value) {
@@ -256,8 +282,8 @@ export function LoginScreen() {
     return <AuthShell><AuthHeading title="正在恢复验证" subtitle="正在安全读取尚未完成的手机号验证…" /></AuthShell>;
   }
 
-  if (codePurpose) {
-    const recovery = codePurpose === 'recovery';
+  if (codePurpose === 'recovery') {
+    const recovery = true;
     return (
       <AuthShell>
         <AuthHeading title={recovery ? '验证手机号' : '输入验证码'} subtitle={`验证码已发送至 ${maskChinaMobile(normalizeChinaMobile(phone))}`} />
@@ -298,28 +324,44 @@ export function LoginScreen() {
 
   return (
     <AuthShell>
-      <AuthHeading title="登录 / 注册" subtitle="选择一种方式继续你的 ICAO 备考进度" />
-      <View style={styles.socialSection}>
-        {Platform.OS === 'ios' ? (
-          <AppleAuthentication.AppleAuthenticationButton
-            buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-            buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
-            cornerRadius={radii.md}
-            onPress={() => { if (!submitting) void socialLogin(); }}
-            style={styles.appleButton}
-            testID="apple-sign-in"
-          />
-        ) : null}
+      <View style={styles.brandRow}>
+        <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
+        <AuthHeading title="登录 / 注册" subtitle="继续你的 ICAO 备考进度" />
       </View>
-      <Divider label="或使用手机号" />
       <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
         {loginMethod === 'otp' ? (
           <>
+            <TextField
+              accessibilityLabel="短信验证码"
+              autoComplete={Platform.OS === 'android' ? 'sms-otp' : undefined}
+              editable={Boolean(challenge) && !submitting}
+              inputMode="numeric"
+              keyboardType="number-pad"
+              label="验证码"
+              maxLength={6}
+              onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))}
+              placeholder={challenge ? '请输入6位验证码' : '请先获取验证码'}
+              textContentType={Platform.OS === 'ios' ? 'oneTimeCode' : undefined}
+              trailing={(
+                <Pressable
+                  accessibilityLabel={challenge && remainingSeconds > 0 ? `${remainingSeconds}秒后可重新获取` : '获取短信验证码'}
+                  disabled={submitting || Boolean(challenge && remainingSeconds > 0)}
+                  hitSlop={8}
+                  onPress={() => void (challenge ? resendCode() : requestLoginCode())}
+                >
+                  <AppText color={challenge && remainingSeconds > 0 ? colors.mutedForeground : colors.primary} variant="caption">
+                    {challenge && remainingSeconds > 0 ? `${remainingSeconds}s` : challenge ? '重新获取' : '获取验证码'}
+                  </AppText>
+                </Pressable>
+              )}
+              value={code}
+            />
             <AppText variant="caption">未注册手机号验证成功后会自动创建账号。</AppText>
+            {challengeExpired ? <AppText color={colors.destructive} variant="caption">验证码已过期，请重新获取。</AppText> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            <Button disabled={submitting} loading={submitting} onPress={() => void requestLoginCode()} size="lg">获取验证码</Button>
+            <Button disabled={submitting || !challenge || challengeExpired || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">登录 / 注册</Button>
           </>
         ) : (
           <>
@@ -332,8 +374,25 @@ export function LoginScreen() {
         <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => setAccepted((value) => !value)} />
         <LegalLinks router={router} />
       </View>
-      <AppText style={styles.scopeNote} variant="caption">Apple 登录后可直接进入，手机号可稍后在账号安全中绑定。</AppText>
+      <Divider label="第三方快捷登录" />
+      <View style={styles.socialSection}>
+        {Platform.OS === 'ios' ? (
+          <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
+        ) : null}
+        <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
+      </View>
+      <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>
     </AuthShell>
+  );
+}
+
+function SocialButton({ accessibilityLabel, kind, onPress }: { accessibilityLabel: string; kind: 'apple' | 'wechat'; onPress: () => void }) {
+  return (
+    <Pressable accessibilityLabel={accessibilityLabel} accessibilityRole="button" onPress={onPress} style={[styles.socialButton, kind === 'apple' && styles.appleSocialButton]} testID={`${kind}-sign-in`}>
+      {kind === 'apple'
+        ? <AppText color={colors.primaryForeground} style={styles.appleGlyph}></AppText>
+        : <MessageCircle color={colors.foreground} size={25} />}
+    </Pressable>
   );
 }
 
@@ -378,8 +437,11 @@ function ScopeNote() {
 }
 
 const styles = StyleSheet.create({
-  socialSection: { gap: spacing[3], marginTop: spacing[6] },
-  appleButton: { height: 48, width: '100%' },
+  brandRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], marginTop: spacing[1] },
+  socialSection: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], justifyContent: 'center' },
+  socialButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: 28, borderWidth: 1, height: 56, justifyContent: 'center', width: 56 },
+  appleSocialButton: { backgroundColor: colors.foreground, borderColor: colors.foreground },
+  appleGlyph: { fontSize: 19, lineHeight: 22 },
   methodTabs: { backgroundColor: colors.secondary, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
   methodTab: { alignItems: 'center', borderRadius: radii.md, flex: 1, minHeight: 42, justifyContent: 'center' },
   methodTabSelected: { backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1 },

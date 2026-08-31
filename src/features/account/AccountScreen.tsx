@@ -424,7 +424,9 @@ function SecurityPage() {
   const router = useRouter();
   const hasPassword = auth.session?.user.hasPassword === true;
   const phoneBound = auth.account?.phoneBound === true;
-  const providerLabel = auth.account?.providers.map((provider) => provider === 'apple' ? 'Apple' : '手机号').join(' + ') || '正在同步';
+  const providerLabel = auth.account?.providers.map((provider) => (
+    provider === 'apple' ? 'Apple' : provider === 'wechat' ? '微信' : '手机号'
+  )).join(' + ') || '正在同步';
   const [startingPasswordSetup, setStartingPasswordSetup] = useState(false);
   const [passwordSetupError, setPasswordSetupError] = useState('');
 
@@ -456,7 +458,7 @@ function SecurityPage() {
         <Section title="登录与绑定">
           <Row first icon={Shield} label="已绑定方式" value={providerLabel} />
           <Row
-            hint={phoneBound ? '用于找回密码和敏感操作验证' : '推荐绑定，稍后也可以继续使用 Apple 登录'}
+            hint={phoneBound ? '用于找回密码和敏感操作验证' : '可选绑定，稍后仍可使用已有第三方方式登录'}
             icon={UserRound}
             label="绑定手机号"
             onPress={phoneBound ? undefined : () => router.push('/account/bind-phone')}
@@ -529,7 +531,7 @@ function BindPhonePage() {
       const code = cause instanceof Error ? cause.message : '';
       setRecentAuthRequired(code === 'recent_social_auth_required');
       setError(code === 'recent_social_auth_required'
-        ? '为保护账号安全，请先重新使用 Apple 登录验证身份，再绑定手机号'
+        ? '为保护账号安全，请先重新使用当前第三方方式登录，再绑定手机号'
         : '暂时无法发送验证码，请检查手机号或稍后重试');
     } finally {
       setSubmitting(false);
@@ -565,7 +567,7 @@ function BindPhonePage() {
       setError(code === 'phone_already_registered'
         ? '该手机号已有账号，请退出后使用手机号登录'
         : code === 'recent_social_auth_required'
-          ? '为保护账号安全，请先重新使用 Apple 登录验证身份，再绑定手机号'
+          ? '为保护账号安全，请先重新使用当前第三方方式登录，再绑定手机号'
         : code === 'invalid_phone_otp'
           ? '验证码错误或已过期，请重新输入'
           : '绑定未完成，请稍后重试');
@@ -805,9 +807,10 @@ function DeleteAccountPage() {
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
   const hasApple = auth.session?.user.providers.includes('apple') === true;
+  const hasWechat = auth.session?.user.providers.includes('wechat') === true;
   const hasPassword = auth.session?.user.hasPassword === true;
-  const needsPhoneOtp = !hasApple && !hasPassword;
-  const authenticationReady = hasApple || (hasPassword ? password.length > 0 : /^\d{6}$/u.test(phoneOtp));
+  const needsPhoneOtp = !hasApple && !hasWechat && !hasPassword;
+  const authenticationReady = hasApple || hasWechat || (hasPassword ? password.length > 0 : /^\d{6}$/u.test(phoneOtp));
   const ready = agreed && confirmation === '注销账号' && authenticationReady;
   const risks = [
     '学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃系统删除',
@@ -836,7 +839,7 @@ function DeleteAccountPage() {
     setError('');
     try {
       await auth.deleteAccount({
-        ...(hasPassword && !hasApple ? { password } : {}),
+        ...(hasPassword && !hasApple && !hasWechat ? { password } : {}),
         ...(needsPhoneOtp ? { phoneOtp } : {}),
       });
       router.replace('/auth/login');
@@ -844,7 +847,8 @@ function DeleteAccountPage() {
       const code = cause instanceof Error ? cause.message : '';
       if (code === 'invalid_phone_or_password' || code === 'invalid_credentials') setError('登录密码不正确，请重新输入');
       else if (code === 'invalid_phone_otp') setError('验证码错误或已过期，请重新获取');
-      else if (code === 'social_auth_cancelled') setError('已取消 Apple 身份验证，账号未注销');
+      else if (code === 'social_auth_cancelled') setError('已取消身份验证，账号未注销');
+      else if (code === 'identity_already_in_use') setError('当前第三方身份与本账号不一致，账号未注销');
       else setError('暂时无法确认注销请求，请检查网络后重试；重复提交不会重复删除');
     } finally {
       setDeleting(false);
@@ -861,7 +865,8 @@ function DeleteAccountPage() {
         </View>
         <Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card>
         {hasApple ? <AppText variant="caption">提交时将由 Apple 弹窗再次验证你的身份。</AppText> : null}
-        {!hasApple && hasPassword ? <TextField label="登录密码" onChangeText={setPassword} secureTextEntry value={password} /> : null}
+        {hasWechat ? <AppText variant="caption">提交时将跳转微信再次验证你的身份。</AppText> : null}
+        {!hasApple && !hasWechat && hasPassword ? <TextField label="登录密码" onChangeText={setPassword} secureTextEntry value={password} /> : null}
         {needsPhoneOtp ? (
           <View style={styles.formNoPad}>
             <Button disabled={otpSending || deleting} onPress={() => void requestOtp()} variant="outline">{otpSending ? '正在发送…' : otpSent ? '重新发送验证码' : '发送短信验证码'}</Button>
@@ -871,7 +876,7 @@ function DeleteAccountPage() {
         <TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} />
         <Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-        <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在验证并注销…' : hasApple ? '通过 Apple 验证并注销' : '验证身份并永久注销'}</Button>
+        <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在验证并注销…' : hasApple ? '通过 Apple 验证并注销' : hasWechat ? '通过微信验证并注销' : '验证身份并永久注销'}</Button>
         <Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button>
       </View>
     </Page>

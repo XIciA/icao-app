@@ -85,7 +85,7 @@ export const recentAuthChallenges = pgTable('recent_auth_challenges', {
 }, (table) => [
   index('recent_auth_challenges_account_session').on(table.accountId, table.sessionId, table.purpose, table.status),
   index('recent_auth_challenges_expiry').on(table.expiresAt),
-  check('recent_auth_challenges_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple')`),
+  check('recent_auth_challenges_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
   check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
   check('recent_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verified', 'consumed', 'expired')`),
   check('recent_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
@@ -112,7 +112,7 @@ export const recentAuthGrants = pgTable('recent_auth_grants', {
   uniqueIndex('recent_auth_grants_challenge').on(table.challengeId),
   index('recent_auth_grants_account_session').on(table.accountId, table.sessionId, table.purpose),
   index('recent_auth_grants_expiry').on(table.expiresAt),
-  check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple')`),
+  check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
   check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
   check('recent_auth_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('recent_auth_grants_reservation_check', sql`(
@@ -196,7 +196,7 @@ export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_
 }, (table) => [
   primaryKey({ columns: [table.benefitKey, table.identityDigest] }),
   index('lifetime_identity_benefit_claims_claimed').on(table.benefitKey, table.claimedAt),
-  check('lifetime_identity_benefit_claims_provider_check', sql`${table.provider} IN ('phone', 'apple')`),
+  check('lifetime_identity_benefit_claims_provider_check', sql`${table.provider} IN ('phone', 'apple', 'wechat')`),
   check('lifetime_identity_benefit_claims_key_version_check', sql`${table.digestKeyVersion} > 0`),
 ]).enableRLS();
 
@@ -205,6 +205,8 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   phoneDigest: text('phone_digest').notNull(),
   purpose: text('purpose').notNull(),
   accountId: uuid('account_id'),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
   status: text('status').default('pending').notNull(),
   otpNotBefore: timestamp('otp_not_before', { withTimezone: true }).notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
@@ -214,7 +216,8 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   index('phone_otp_intents_lookup').on(table.phoneDigest, table.purpose, table.accountId, table.status),
   index('phone_otp_intents_expiry').on(table.expiresAt),
   check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
-  check('phone_otp_intents_status_check', sql`${table.status} IN ('pending', 'consumed')`),
+  check('phone_otp_intents_status_check', sql`${table.status} IN ('pending', 'consumed', 'superseded', 'failed')`),
+  check('phone_otp_intents_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= date_trunc('second', ${table.createdAt})`),
   check('phone_otp_intents_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
@@ -222,6 +225,56 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
     OR (${table.purpose} IN ('account_delete', 'phone_binding') AND ${table.accountId} IS NOT NULL)
   )`),
+]).enableRLS();
+
+export const wechatAuthChallenges = pgTable('wechat_auth_challenges', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id'),
+  authUserId: uuid('auth_user_id'),
+  purpose: text('purpose').default('login').notNull(),
+  stateDigest: text('state_digest').notNull(),
+  codeDigest: text('code_digest'),
+  subjectDigest: text('subject_digest'),
+  status: text('status').default('pending').notNull(),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
+  consumedAt: timestamp('consumed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('wechat_auth_challenges_state').on(table.stateDigest),
+  uniqueIndex('wechat_auth_challenges_code').on(table.codeDigest),
+  index('wechat_auth_challenges_expiry').on(table.expiresAt),
+  index('wechat_auth_challenges_account').on(table.accountId, table.status),
+  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding')`),
+  check('wechat_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verifying', 'consumed', 'failed', 'expired')`),
+  check('wechat_auth_challenges_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
+  check('wechat_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('wechat_auth_challenges_binding_check', sql`(
+    (${table.purpose} = 'login' AND ${table.accountId} IS NULL AND ${table.authUserId} IS NULL)
+    OR (${table.purpose} = 'binding' AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
+  )`),
+  check('wechat_auth_challenges_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
+]).enableRLS();
+
+export const wechatAuthPrincipals = pgTable('wechat_auth_principals', {
+  subjectDigest: text('subject_digest').primaryKey(),
+  authUserId: uuid('auth_user_id').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  lastUsedAt: timestamp('last_used_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('wechat_auth_principals_auth_user').on(table.authUserId),
+  check('wechat_auth_principals_subject_digest_check', sql`${table.subjectDigest} ~ '^[0-9a-f]{64}$'`),
+]).enableRLS();
+
+export const authUsageCounters = pgTable('auth_usage_counters', {
+  scopeKey: text('scope_key').primaryKey(),
+  count: integer('count').default(0).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('auth_usage_counters_expiry').on(table.expiresAt),
+  check('auth_usage_counters_count_check', sql`${table.count} >= 0`),
 ]).enableRLS();
 
 export const smsUsageCounters = pgTable('sms_usage_counters', {

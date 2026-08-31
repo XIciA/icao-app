@@ -17,7 +17,9 @@ const config = {
 
 function service(error: { code?: string; message: string } | null = null) {
   const signInWithOtp = vi.fn().mockResolvedValue({ data: { session: null, user: null }, error });
-  const values = vi.fn().mockResolvedValue(undefined);
+  const values = vi.fn(() => ({
+    returning: vi.fn().mockResolvedValue([{ id: '10000000-0000-4000-8000-000000000010' }]),
+  }));
   const transactionApi = {
     execute: vi.fn().mockResolvedValue(undefined),
     insert: vi.fn(() => ({ values })),
@@ -54,9 +56,11 @@ describe('PhoneAuthService', () => {
     const { instance, signInWithOtp } = service();
     await expect(instance.start('+8613800138000', '203.0.113.8')).resolves.toEqual(expect.objectContaining({
       accepted: true,
+      challengeId: '10000000-0000-4000-8000-000000000010',
       expiresAt: expect.any(Number),
       issuedAt: expect.any(Number),
       resendAllowedAt: expect.any(Number),
+      serverTime: expect.any(Number),
     }));
     expect(supabase.createClient).toHaveBeenCalledWith(
       config.supabaseUrl,
@@ -121,11 +125,14 @@ describe('PhoneAuthService', () => {
     }));
   });
 
-  it('does not persist a recovery intent when the unknown-phone send was rejected upstream', async () => {
+  it('persists a neutral recovery challenge even when the unknown-phone send was rejected upstream', async () => {
     const now = 1_800_000_000_000;
     const { instance, values } = service({ code: 'otp_disabled', message: 'Signups not allowed for otp' });
     await startRecoveryAt(instance, now);
-    expect(values).not.toHaveBeenCalled();
+    expect(values).toHaveBeenCalledWith(expect.objectContaining({
+      accountId: undefined,
+      purpose: 'password_recovery',
+    }));
   });
 
   it('fails closed when the normal OTP start cannot reach the supplier', async () => {

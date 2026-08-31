@@ -117,6 +117,18 @@ const phoneSession: AppSession = {
   },
 };
 
+const phoneChallenge = {
+  challengeId: '10000000-0000-4000-8000-000000000020',
+  expiresAt: Date.now() + 300_000,
+  issuedAt: Date.now(),
+  phone: '+8613800138000',
+  purpose: 'login' as const,
+  resendAllowedAt: Date.now() + 60_000,
+  serverTimeOffsetMs: 0,
+  version: 2 as const,
+};
+const recoveryChallenge = { ...phoneChallenge, purpose: 'recovery' as const };
+
 let currentAuth: ReturnType<typeof useAuth>;
 
 function AuthStateProbe() {
@@ -194,7 +206,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+      await currentAuth.verifyPhoneOtp(phoneChallenge, '123456');
     });
     expect(currentAuth.canAccessApp).toBe(true);
 
@@ -219,7 +231,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(currentAuth.restoring).toBe(false));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+      await currentAuth.verifyPhoneOtp(phoneChallenge, '123456');
       mockSessionChangeListener?.(undefined, 'INITIAL_SESSION');
     });
 
@@ -401,7 +413,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+      await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
     });
     expect(mockAuthorizePasswordRecovery).toHaveBeenCalledTimes(1);
     expect(currentAuth.passwordChangePurpose).toBe('recovery');
@@ -431,7 +443,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     let failure: unknown;
     await act(async () => {
       try {
-        await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+        await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
       } catch (error) {
         failure = error;
       }
@@ -459,7 +471,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+      await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
     });
     let failure: unknown;
     await act(async () => {
@@ -491,7 +503,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+      await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
       await currentAuth.signInWithApple();
     });
 
@@ -520,7 +532,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+      await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
     });
     let firstFailure: unknown;
     await act(async () => {
@@ -563,7 +575,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+      await currentAuth.verifyPhoneOtp(phoneChallenge, '123456');
     });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
     await act(async () => {
@@ -598,7 +610,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
 
     await act(async () => {
-      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+      await currentAuth.verifyPhoneOtp(phoneChallenge, '123456');
     });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
     await act(async () => {
@@ -624,7 +636,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       .mockRejectedValueOnce(new Error('network_still_unavailable'));
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
-    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await act(async () => { await currentAuth.verifyPhoneOtp(phoneChallenge, '123456'); });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
 
     await act(async () => {
@@ -650,7 +662,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       .mockRejectedValueOnce(new Error('network_response_lost'));
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
-    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await act(async () => { await currentAuth.verifyPhoneOtp(phoneChallenge, '123456'); });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
 
     await act(async () => {
@@ -672,7 +684,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       .mockImplementationOnce(() => deletionResponse as never);
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
-    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await act(async () => { await currentAuth.verifyPhoneOtp(phoneChallenge, '123456'); });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
 
     let deletion!: Promise<void>;
@@ -709,7 +721,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       .mockRejectedValueOnce(new ApiClientError('account_deletion_job_not_found', 404));
     const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
     await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
-    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await act(async () => { await currentAuth.verifyPhoneOtp(phoneChallenge, '123456'); });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
     let failure: unknown;
 

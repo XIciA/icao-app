@@ -123,7 +123,9 @@ export class AdminDataService {
     const result = rows.map((row) => {
       const matches = identityRows.filter((identity) => identity.accountId === row.id);
       const providers = [...new Set(matches.map((identity) => identity.provider))]
-        .filter((provider): provider is 'phone' | 'apple' => provider === 'phone' || provider === 'apple');
+        .filter((provider): provider is 'phone' | 'apple' | 'wechat' => (
+          provider === 'phone' || provider === 'apple' || provider === 'wechat'
+        ));
       const lastIdentityUsedAt = matches.reduce<Date | undefined>(
         (latest, identity) => !latest || identity.lastUsedAt > latest ? identity.lastUsedAt : latest,
         undefined,

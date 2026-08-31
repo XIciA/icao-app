@@ -24,6 +24,11 @@ jest.mock('expo-crypto', () => ({
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;
 
 const phone = '+8613800138000';
+const loginChallenge = {
+  challengeId: '10000000-0000-4000-8000-000000000010',
+  phone,
+  purpose: 'login' as const,
+};
 
 function user(overrides: Partial<User> = {}): User {
   return {
@@ -231,7 +236,11 @@ describe('SupabasePhoneAuthService', () => {
   it('returns the same +86 identity for OTP and password login', async () => {
     const { client } = authClient();
     const service = new SupabasePhoneAuthService(client);
-    const otpSession = await service.verifyPhoneOtp(phone, '123456');
+    mockApiRequest.mockResolvedValueOnce({
+      verified: true,
+      session: { accessToken: 'access-token', refreshToken: 'refresh-token' },
+    });
+    const otpSession = await service.verifyPhoneOtp(loginChallenge, '123456');
     const passwordSession = await service.signInWithPhonePassword(phone, 'password10');
     expect(otpSession.user).toEqual(expect.objectContaining({ id: 'user-1', phone, hasPassword: true, registrationPending: false }));
     expect(passwordSession.user).toEqual(expect.objectContaining({ id: 'user-1', phone, hasPassword: true, registrationPending: false }));
@@ -240,8 +249,12 @@ describe('SupabasePhoneAuthService', () => {
   it('lets an OTP-first account enter without forcing password setup', async () => {
     const { auth, client } = authClient();
     const pendingSession = session({ user_metadata: { password_set: false, registration_pending: false } });
-    auth.verifyOtp.mockResolvedValueOnce({ data: { session: pendingSession, user: pendingSession.user }, error: null });
-    const verified = await new SupabasePhoneAuthService(client).verifyPhoneOtp(phone, '123456');
+    auth.setSession.mockResolvedValueOnce({ data: { session: pendingSession, user: pendingSession.user }, error: null });
+    mockApiRequest.mockResolvedValueOnce({
+      verified: true,
+      session: { accessToken: 'access-token', refreshToken: 'refresh-token' },
+    });
+    const verified = await new SupabasePhoneAuthService(client).verifyPhoneOtp(loginChallenge, '123456');
     expect(verified.user).toEqual(expect.objectContaining({
       hasPassword: false,
       registrationPending: false,

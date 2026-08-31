@@ -28,6 +28,9 @@ const schema = z.object({
   APPLE_KEY_ID: z.string().min(3).optional(),
   APPLE_PRIVATE_KEY: z.string().min(32).optional(),
   APPLE_CREDENTIAL_ENCRYPTION_KEY: z.string().optional(),
+  WECHAT_APP_ID: z.string().regex(/^wx[a-zA-Z0-9]{6,32}$/u).optional(),
+  WECHAT_APP_SECRET: z.string().min(16).optional(),
+  WECHAT_UNIVERSAL_LINK: z.string().url().startsWith('https://').optional(),
   APPLE_IAP_BUNDLE_ID: z.literal('com.readyoufife.ios').default('com.readyoufife.ios'),
   APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
   APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
@@ -138,6 +141,9 @@ export type ApiConfig = {
   appleKeyId?: string;
   applePrivateKey?: string;
   appleCredentialEncryptionKey?: string;
+  wechatAppId?: string;
+  wechatAppSecret?: string;
+  wechatUniversalLink?: string;
   appleIapBundleId: 'com.readyoufife.ios';
   appleIapAppAppleId?: number;
   appleIapRootCertificates: Buffer[];
@@ -377,6 +383,23 @@ export function loadConfig(
   if (Boolean(parsed.data.TENCENT_CLOUD_SECRET_ID) !== Boolean(parsed.data.TENCENT_CLOUD_SECRET_KEY)) {
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
+  const wechatRuntimeFields = [
+    parsed.data.WECHAT_APP_ID,
+    parsed.data.WECHAT_APP_SECRET,
+    parsed.data.WECHAT_UNIVERSAL_LINK,
+  ];
+  if (wechatRuntimeFields.some(Boolean) && !wechatRuntimeFields.every(Boolean)) {
+    throw new Error('invalid_api_configuration:WECHAT_RUNTIME');
+  }
+  if (parsed.data.WECHAT_UNIVERSAL_LINK) {
+    const wechatUniversalLink = new URL(parsed.data.WECHAT_UNIVERSAL_LINK);
+    if (
+      wechatUniversalLink.protocol !== 'https:'
+      || !wechatUniversalLink.pathname.endsWith('/')
+      || Boolean(wechatUniversalLink.search)
+      || Boolean(wechatUniversalLink.hash)
+    ) invalidConfiguration('WECHAT_UNIVERSAL_LINK');
+  }
   const previousIdentityHashKeys = parsePreviousIdentityHashKeys(
     parsed.data.IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS,
     parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
@@ -454,6 +477,9 @@ export function loadConfig(
     appleKeyId: parsed.data.APPLE_KEY_ID,
     applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
+    wechatAppId: parsed.data.WECHAT_APP_ID,
+    wechatAppSecret: parsed.data.WECHAT_APP_SECRET,
+    wechatUniversalLink: parsed.data.WECHAT_UNIVERSAL_LINK,
     appleIapBundleId: parsed.data.APPLE_IAP_BUNDLE_ID,
     appleIapAppAppleId: parsed.data.APPLE_IAP_APP_APPLE_ID,
     appleIapRootCertificates,

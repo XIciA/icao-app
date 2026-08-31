@@ -10,6 +10,7 @@ import { AccountDeletionService } from '../src/account/account-deletion.service'
 import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
+import { WechatAuthService } from '../src/auth/wechat-auth.service';
 import { RecentAuthService } from '../src/auth/recent-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
@@ -166,9 +167,32 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     })
     .overrideProvider(PhoneAuthService)
     .useValue({
-      start: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
-      startRecovery: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
-      startRecentAuth: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
+      start: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000010', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      startRecovery: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000011', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      startRecentAuth: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000012', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      verifyLogin: async () => ({
+        verified: true,
+        session: { accessToken: 'otp-access-token', refreshToken: 'otp-refresh-token' },
+      }),
+    })
+    .overrideProvider(WechatAuthService)
+    .useValue({
+      start: async () => ({
+        appId: 'wx12345678',
+        challengeId: '10000000-0000-4000-8000-000000000020',
+        expiresAt: 1_800_000_300_000,
+        issuedAt: 1_800_000_000_000,
+        state: 'test-wechat-state-that-is-long-enough',
+        status: 'available',
+      }),
+      complete: async () => ({
+        account: {
+          accountId: '00000000-0000-4000-8000-000000000005',
+          phoneBound: false,
+          providers: ['wechat'],
+        },
+        session: { accessToken: 'wechat-access-token', refreshToken: 'wechat-refresh-token' },
+      }),
     })
     .overrideProvider(RecentAuthService)
     .useValue({
@@ -709,9 +733,9 @@ describe('API foundation', () => {
       payload: { password: 'newpassword10' },
     });
     expect(started.statusCode).toBe(201);
-    expect(started.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(started.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000010', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(recovery.statusCode).toBe(202);
-    expect(recovery.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(recovery.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000011', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(invalid.statusCode).toBe(400);
     expect(invalid.json().error.code).toBe('invalid_phone_number');
     expect(password.statusCode).toBe(201);
@@ -726,7 +750,7 @@ describe('API foundation', () => {
       grantId: '00000000-0000-4000-8000-000000000096',
     });
     expect(recentPhoneStart.statusCode).toBe(201);
-    expect(recentPhoneStart.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(recentPhoneStart.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000012', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(recentPhone.statusCode).toBe(201);
     expect(recentPhone.json().data).toEqual({
       expiresAt: 1_800_000_300_000,
@@ -750,14 +774,24 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('does not register the retired WeChat session endpoint', async () => {
+  it('registers the guarded WeChat challenge and session endpoints', async () => {
     const app = await testApp();
+    const challenge = await app.inject({ method: 'POST', url: '/v1/auth/wechat/challenge' });
     const response = await app.inject({
       method: 'POST',
       url: '/v1/auth/wechat/session',
-      payload: {},
+      payload: {
+        challengeId: '10000000-0000-4000-8000-000000000020',
+        code: 'wechat-code',
+        state: 'test-wechat-state-that-is-long-enough',
+      },
     });
-    expect(response.statusCode).toBe(404);
+    const malformed = await app.inject({ method: 'POST', url: '/v1/auth/wechat/session', payload: {} });
+    expect(challenge.statusCode).toBe(201);
+    expect(challenge.json().data.status).toBe('available');
+    expect(response.statusCode).toBe(201);
+    expect(response.json().data.account.providers).toEqual(['wechat']);
+    expect(malformed.statusCode).toBe(400);
     await app.close();
   });
 

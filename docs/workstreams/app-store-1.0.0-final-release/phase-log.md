@@ -50,3 +50,24 @@
 ## 阶段判断
 
 - 文档进入 `origin/main` 且工作区恢复干净后，可进入阶段 1 并行实现与审计。
+
+## 阶段 1：登录闭环与微信登录技术审计（2026-09-01）
+
+- 执行基线：`origin/main` `47ab26200b458d4612d1dc8a361b48e1b7ed476f`；本阶段只在短期分支实现，不执行生产迁移、部署或合并。
+- 现有手机号 OTP 由服务端记录 `phone_otp_intents`，但客户端验证仍直接调用 Supabase 且没有显式 `challengeId`；客户端 SecureStore 仅保存倒计时，不保存手机号、签发时间和重发代次。这会让退回、重启、重发旧码和近期认证依赖隐式时间推断。
+- 现有登录页把“获取验证码”和“输入验证码”拆成两个不可恢复页面；返回动作会主动清除挑战。它与已冻结的同屏 OTP/密码切换方案不一致。
+- `AuthProvider` 已尝试忽略 `INITIAL_SESSION`，但其他迟到的 Supabase 会话事件仍可覆盖刚写入的新会话；恢复、刷新和交互式登录缺少统一 generation/epoch 归属。
+- 身份模型、合同和账号摘要只正式暴露手机号/Apple；数据库 `account_identities` 虽能存 `wechat`，终身 100 点约束、近期认证、导出和管理摘要仍拒绝微信。
+- 仓库没有微信原生桥、回调或服务端 code 交换；发布门禁仍把任意微信运行时视为失败。需要改为锁定 NoPay OpenSDK 2.0.7 与校验和、禁止客户端 AppSecret 和微信支付的正向门禁。
+- 当前没有可安全写入仓库的生产 AppID、AppSecret、Universal Link 真值；它们登记为 `WAITING_HUMAN`，不得阻塞独立代码、测试和材料工作。
+
+## 阶段 1：登录闭环与微信登录实现进展（2026-09-01）
+
+- 手机号 OTP 已改为显式、可恢复的 challenge 状态机；客户端在 SecureStore 保存 challenge 身份与服务端时间窗，重发会产生新 challenge，成功登录后原子清除。OTP/密码同屏切换、未勾选条款、圆形 Apple/微信快捷入口与唯一 AppBrandLogo 已进入方案 A 页面。
+- `AuthProvider` 以 session generation/epoch 隔离初始化、前后台恢复、刷新和交互式登录；迟到的 `INITIAL_SESSION` 或 AppState 异步结果不再能清除新会话或造成跨账号污染。
+- 服务端新增微信一次性 state/code 交换、不可逆摘要去重、持久化限流、UnionID 优先/OpenID+AppID 回退、事务化身份/账号/会话建立和近期认证；100点按微信身份终身防重复，不使用内存重放表或客户端秘密。
+- iOS 锁定 NoPay OpenSDK 2.0.7 源地址与 SHA256，并通过 Expo prebuild/Pod 集成；Android 提供同一业务接口的 NoPay 原生桥、回调 Activity 和可编译配置。发布门禁已从“微信必须不存在”改为检查精确 NoPay SDK、服务端 AppSecret、无微信支付和隐私材料一致。
+- 正式 API 源码新增 `/.well-known/apple-app-site-association`，只在完整微信配置下返回窄路径 JSON；最终生产门禁必须验证 HTTPS、无重定向、正确 Content-Type、AppID/path 与微信平台一致。
+- Native 隐私政策与非 Vercel 正式页面源码升级为 v4.2，披露微信开放平台登录、账号标识处理和无微信支付；Vercel 冻结范围未修改、未构建、未部署。
+- 聚焦客户端认证测试、API身份/OTP/AASA测试、根与API typecheck、正向微信发布门禁均通过。使用锁定的 NoPay 2.0.7 归档完成 Expo iOS prebuild、Pod 安装及 arm64 iOS Simulator 全量 `xcodebuild`，结果为 `BUILD SUCCEEDED`；构建过程中发现并修复 SDK 头重复导入、XCFramework 外层名称与内层链接名不一致以及新版 Swift SDK API 兼容问题。全量 `check:ci` 结果将在整合最新主线后补入。
+- `WAITING_HUMAN`：真实微信 AppID、服务端 AppSecret、已审核 Universal Link、iOS/Android平台签名资料及线上 AASA 可达性仍待平台核实；这些只阻塞微信生产真机验收和最终候选，不阻塞其余代码与材料。

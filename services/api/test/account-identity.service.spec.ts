@@ -121,7 +121,7 @@ function authSession(overrides: Partial<VerifiedAuthSession> = {}): VerifiedAuth
   };
 }
 
-function identityHash(provider: 'apple' | 'phone', subject: string) {
+function identityHash(provider: 'apple' | 'phone' | 'wechat', subject: string) {
   return createHmac('sha256', hashSecret)
     .update(`account-identity-v1\0${provider}\0${subject}`)
     .digest('hex');
@@ -244,7 +244,7 @@ describe('AccountIdentityService', () => {
     await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
       authUserId: auth.authUserId,
       id: accountId,
-      providers: [provider],
+      providers: provider === 'phone' ? ['phone', 'wechat'] : ['apple', 'wechat'],
     }));
     expect(fixture.mutations).toContainEqual(expect.objectContaining({
       kind: 'update',
@@ -322,37 +322,47 @@ describe('AccountIdentityService', () => {
     expect(fixture.mutations).toHaveLength(0);
   });
 
-  it('rejects a valid legacy WeChat session before consulting or mutating its historical identity row', async () => {
+  it('resolves an existing WeChat identity to the same durable account without creating a parallel account', async () => {
+    const accountId = '22222222-2222-4222-8222-222222222222';
+    const subject = 'legacy-wechat-openid';
     const auth = authSession({
       accessToken: 'valid-legacy-wechat-token',
-      identities: [{ provider: 'wechat', subject: 'legacy-wechat-openid' }],
+      identities: [{ provider: 'wechat', subject }],
       user: {
         id: '11111111-1111-4111-8111-111111111111',
+        providers: ['wechat'],
       },
     });
     const fixture = databaseFixture({
-      transactionSelects: [[{ accountId: '22222222-2222-4222-8222-222222222222' }]],
+      distinctSelects: [[{ provider: 'wechat' }]],
+      transactionSelects: [
+        [{ accountId }],
+        [{ accountId }],
+        [{ sessionsRevokedAt: null, status: 'active' }],
+        [{ accountId, provider: 'wechat', subjectHash: identityHash('wechat', subject) }],
+      ],
     });
     const service = new AccountIdentityService(config, fixture.database);
 
-    await expect(service.resolve(auth))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
-        && error.message === 'unsupported_auth_identity');
-    expect(fixture.db.transaction).not.toHaveBeenCalled();
-    expect(fixture.transaction.execute).not.toHaveBeenCalled();
-    expect(fixture.transaction.select).not.toHaveBeenCalled();
-    expect(fixture.mutations).toHaveLength(0);
-    expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
+    await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
+      authUserId: auth.authUserId,
+      id: accountId,
+      providers: ['wechat'],
+    }));
+    expect(fixture.mutations).toContainEqual(expect.objectContaining({
+      kind: 'update',
+      set: { lastUsedAt: expect.any(Date) },
+    }));
   });
 
-  it('filters but does not mutate preserved legacy provider rows when listing supported providers', async () => {
+  it('lists all supported identity providers in deterministic order', async () => {
     const fixture = databaseFixture({
       distinctSelects: [[{ provider: 'wechat' }, { provider: 'apple' }, { provider: 'phone' }]],
     });
     const service = new AccountIdentityService(config, fixture.database);
 
     await expect(service.providersForAccount('22222222-2222-4222-8222-222222222222'))
-      .resolves.toEqual(['phone', 'apple']);
+      .resolves.toEqual(['phone', 'apple', 'wechat']);
     expect(fixture.db.transaction).not.toHaveBeenCalled();
     expect(fixture.mutations).toHaveLength(0);
   });

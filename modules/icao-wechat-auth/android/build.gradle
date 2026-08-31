@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'expo-module-gradle-plugin'
+
+group = 'com.icao.wechatauth'
+version = '1.0.0'
+
+android {
+  namespace "com.icao.wechatauth"
+  defaultConfig {
+    minSdkVersion 24
+    targetSdkVersion 36
+  }
+}
+
+dependencies {
+  implementation project(':expo-modules-core')
+  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
+}

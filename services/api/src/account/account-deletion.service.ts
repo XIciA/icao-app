@@ -36,6 +36,7 @@ import {
   syncMutations,
   userCardStates,
   userDocuments,
+  wechatAuthPrincipals,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { FeedbackService } from '../feedback/feedback.service';
@@ -287,6 +288,11 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
           return this.markRetryable(job, leaseToken, 'auth_user_delete_failed', now);
         }
         if (!await this.ownsLease(job.id, leaseToken)) return this.responseFor(await this.requireJob(jobId));
+        // A WeChat principal points at the provider-specific Supabase auth user. Remove that
+        // mapping only after the external auth user is gone, so a later authorization can create
+        // a fresh account while lifetime trial claims continue to be enforced by their digest.
+        await this.database.db.delete(wechatAuthPrincipals)
+          .where(eq(wechatAuthPrincipals.authUserId, authUser.authUserId));
         await this.database.db.update(accountDeletionAuthUsers).set({
           status: 'deleted',
           attemptCount: authUser.attemptCount + 1,

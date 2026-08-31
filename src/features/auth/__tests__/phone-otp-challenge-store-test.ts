@@ -26,22 +26,25 @@ describe('phone OTP challenge persistence', () => {
   });
 
   it('round-trips only challenge metadata and never stores the OTP', async () => {
+    const receivedAt = Date.now();
     const challenge = phoneOtpChallenge('13800138000', 'login', {
       accepted: true,
-      expiresAt: 1_700_000_300_000,
-      issuedAt: 1_700_000_000_000,
-      resendAllowedAt: 1_700_000_060_000,
-    });
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: receivedAt + 300_000,
+      issuedAt: receivedAt,
+      resendAllowedAt: receivedAt + 60_000,
+      serverTime: receivedAt,
+    }, receivedAt);
     await writePhoneOtpChallenge(challenge);
     const serialized = setItemAsync.mock.calls[0]?.[1];
     expect(serialized).toContain('+8613800138000');
     expect(serialized).not.toContain('123456');
 
     getItemAsync.mockResolvedValueOnce(serialized ?? null);
-    await expect(readPhoneOtpChallenge(1_700_000_001_000)).resolves.toEqual(challenge);
+    await expect(readPhoneOtpChallenge(receivedAt + 1_000)).resolves.toEqual(challenge);
   });
 
-  it('removes an expired or malformed challenge instead of restoring it', async () => {
+  it('removes a legacy or malformed challenge instead of restoring it', async () => {
     getItemAsync.mockResolvedValueOnce(JSON.stringify({
       expiresAt: 1_700_000_300_000,
       issuedAt: 1_700_000_000_000,
@@ -52,7 +55,24 @@ describe('phone OTP challenge persistence', () => {
     }));
 
     await expect(readPhoneOtpChallenge(1_700_000_300_000)).resolves.toBeUndefined();
-    expect(deleteItemAsync).toHaveBeenCalledTimes(1);
+    expect(deleteItemAsync).toHaveBeenCalledTimes(2);
+  });
+
+  it('restores a recently expired challenge so the UI preserves the correct entry state', async () => {
+    const serialized = JSON.stringify({
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: 1_700_000_300_000,
+      issuedAt: 1_700_000_000_000,
+      phone: '+8613800138000',
+      purpose: 'login',
+      resendAllowedAt: 1_700_000_060_000,
+      serverTimeOffsetMs: 0,
+      version: 2,
+    });
+    getItemAsync.mockResolvedValueOnce(serialized);
+
+    await expect(readPhoneOtpChallenge(1_700_000_301_000)).resolves.toEqual(JSON.parse(serialized));
+    expect(deleteItemAsync).not.toHaveBeenCalled();
   });
 
   it('surfaces secure-storage failures without exposing or corrupting challenge data', async () => {
