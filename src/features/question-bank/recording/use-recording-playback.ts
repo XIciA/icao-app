@@ -98,7 +98,12 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       if (generation !== sourceGeneration.current) return;
       let loaded = { duration: status.duration, isLoaded: status.isLoaded };
       try {
-        loaded = player.currentStatus;
+        const currentStatus = player.currentStatus;
+        // expo-audio can transiently expose no snapshot while the shared
+        // player is being replaced or released. Keep the hook snapshot as the
+        // fallback instead of turning a normal lifecycle transition into an
+        // asynchronous TypeError.
+        if (currentStatus) loaded = currentStatus;
       } catch {
         // The regular load timeout handles an unavailable player status.
       }

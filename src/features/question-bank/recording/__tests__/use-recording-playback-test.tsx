@@ -10,9 +10,10 @@ let mockStatus = {
   playbackState: 'ready',
   playing: false,
 };
+let mockCurrentStatusAvailable = true;
 
 const mockPlayer = {
-  get currentStatus() { return mockStatus; },
+  get currentStatus() { return (mockCurrentStatusAvailable ? mockStatus : undefined) as typeof mockStatus; },
   pause: jest.fn(),
   play: jest.fn(),
   replace: jest.fn(),
@@ -65,6 +66,7 @@ describe('Recording playback source contract', () => {
       playbackState: 'ready',
       playing: false,
     };
+    mockCurrentStatusAvailable = true;
   });
 
   it('ignores a stale finish when the current playback attempt has not progressed', async () => {
@@ -83,6 +85,19 @@ describe('Recording playback source contract', () => {
     const hook = await renderHook(() => useRecordingPlayback(asset));
     await act(async () => { await jest.advanceTimersByTimeAsync(150); });
     expect(hook.result.current.error).toBe('playback_load_failed');
+    hook.unmount();
+    jest.useRealTimers();
+  });
+
+  it('keeps the hook snapshot when the native player has no current status during replacement', async () => {
+    jest.useFakeTimers();
+    mockStatus = { ...mockStatus, duration: 0, isLoaded: false, playbackState: 'loading' };
+    mockCurrentStatusAvailable = false;
+
+    const hook = await renderHook(() => useRecordingPlayback(asset));
+    await act(async () => { await jest.advanceTimersByTimeAsync(150); });
+
+    expect(hook.result.current.error).toBeUndefined();
     hook.unmount();
     jest.useRealTimers();
   });
