@@ -34,7 +34,11 @@ import {
 } from './commerce-transaction-coordinator.native';
 import type {
   CommerceActionResult,
+  CommerceEntitlementChange,
+  CommerceEntitlementChangeReason,
   CommerceRuntimeOffering,
+  CommerceRuntimeError,
+  CommerceRuntimeOperation,
   CommerceRuntimePhase,
   CommerceRuntimeValue,
 } from './commerce-runtime-types';
@@ -59,23 +63,123 @@ type Controller = Readonly<{
 }>;
 
 const CommerceRuntimeContext = createContext<CommerceRuntimeValue | undefined>(undefined);
+const RESTORE_OPERATION_DEADLINE_MS = 60_000;
+
+function withAbortSignal<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
+  if (!signal) return promise;
+  if (signal.aborted) return Promise.reject(new Error('commerce_operation_cancelled'));
+  return new Promise<T>((resolve, reject) => {
+    let settled = false;
+    const finish = (callback: () => void) => {
+      if (settled) return;
+      settled = true;
+      signal.removeEventListener('abort', onAbort);
+      callback();
+    };
+    const onAbort = () => finish(() => reject(new Error('commerce_operation_cancelled')));
+    signal.addEventListener('abort', onAbort, { once: true });
+    void promise.then(
+      (value) => finish(() => resolve(value)),
+      (error) => finish(() => reject(error)),
+    );
+  });
+}
+
+function runtimeError(
+  code: CommerceRuntimeError['code'],
+  operation: CommerceRuntimeOperation,
+  userMessage: string,
+  options: Pick<CommerceRuntimeError, 'retryable' | 'chargeStatus'>,
+): CommerceRuntimeError {
+  return { code, operation, userMessage, ...options };
+}
+
+function uncertainPurchaseError(
+  operation: CommerceRuntimeOperation,
+  userMessage: string,
+): CommerceRuntimeError {
+  return runtimeError('uncertain-purchase', operation, userMessage, {
+    retryable: true,
+    chargeStatus: 'unknown',
+  });
+}
+
+function failureRuntimeError(
+  failure: CommerceFailureResult,
+  operation: CommerceRuntimeOperation,
+): CommerceRuntimeError {
+  if (failure.state === 'cancelled') {
+    return runtimeError('purchase-cancelled', operation, '已取消购买，未产生扣款。', {
+      retryable: true,
+      chargeStatus: 'cancelled',
+    });
+  }
+  if (failure.state === 'pending') {
+    return runtimeError(
+      'purchase-pending',
+      operation,
+      '购买正在等待 App Store 确认，完成后会自动到账。',
+      { retryable: false, chargeStatus: 'pending' },
+    );
+  }
+  if (failure.code === 'commerce_operation_busy') {
+    return runtimeError('operation-busy', operation, '已有购买或核对操作正在进行，请稍候。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_operation_cancelled') {
+    return runtimeError('operation-cancelled', operation, '账号或购买环境已变化，请重新查看当前状态。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_reconciliation_timed_out') {
+    return runtimeError('restore-timed-out', operation, '核对购买记录超时，请稍后重试。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_reconciliation_budget_exceeded') {
+    return runtimeError('restore-failed', operation, '购买记录较多，暂时无法完成核对，请联系支持。', {
+      retryable: false,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_restore_failed') {
+    return runtimeError('restore-failed', operation, '恢复购买失败，请检查网络后重试。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_store_connection_failed') {
+    return runtimeError('catalog-unavailable', operation, '暂时无法连接 App Store，请检查网络后重试。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.code === 'commerce_purchase_busy') {
+    return runtimeError('operation-busy', operation, '已有购买正在处理中，请稍候。', {
+      retryable: true,
+      chargeStatus: 'not-applicable',
+    });
+  }
+  if (failure.charged === 'unknown') {
+    return runtimeError(
+      'purchase-unconfirmed',
+      operation,
+      '购买结果尚未确认，App 会自动继续核对，请勿重复购买。',
+      { retryable: false, chargeStatus: 'unknown' },
+    );
+  }
+  return runtimeError('purchase-failed', operation, '购买暂时未完成，请稍后重试。', {
+    retryable: failure.retryable,
+    chargeStatus: 'not-started',
+  });
+}
 
 function failureMessage(failure: CommerceFailureResult) {
-  switch (failure.state) {
-    case 'cancelled':
-      return '已取消购买，未产生扣款。';
-    case 'pending':
-      return '购买正在等待 App Store 确认，完成后会自动到账。';
-    case 'unavailable':
-      return failure.code === 'commerce_store_connection_failed'
-        ? '暂时无法连接 App Store，请检查网络后重试。'
-        : '当前设备暂不支持 App Store 购买。';
-    default:
-      if (failure.code === 'commerce_purchase_busy') return '已有购买正在处理中，请稍候。';
-      if (failure.code === 'commerce_restore_failed') return '恢复购买失败，请检查网络后重试。';
-      if (failure.charged === 'unknown') return '购买结果尚未确认，App 会自动继续核对，请勿重复购买。';
-      return '购买暂时未完成，请稍后重试。';
-  }
+  return failureRuntimeError(failure, 'purchase').userMessage;
 }
 
 function validatedOfferings(
@@ -125,6 +229,12 @@ function verifiedEnvironment(transaction: CommerceTransaction) {
 const ACCOUNT_CHANGED_RESULT: CommerceActionResult = {
   ok: false,
   message: '账号已切换，请在当前账号重新查看会员状态。',
+  error: runtimeError(
+    'account-changed',
+    'reconciliation',
+    '账号已切换，请在当前账号重新查看会员状态。',
+    { retryable: true, chargeStatus: 'not-applicable' },
+  ),
 };
 
 function reportConfirmsPurchase(
@@ -155,35 +265,83 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   const [offerings, setOfferings] = useState<readonly CommerceRuntimeOffering[]>([]);
   const [entitlement, setEntitlement] = useState<CommerceRuntimeValue['entitlement']>();
   const [entitlementEnvironment, setEntitlementEnvironment] = useState<'sandbox' | 'production'>();
+  const [entitlementChange, setEntitlementChange] = useState<CommerceEntitlementChange>();
+  const [error, setError] = useState<CommerceRuntimeError>();
   const [message, setMessage] = useState<string>();
   const controllerRef = useRef<Controller | undefined>(undefined);
   const generationRef = useRef(0);
   const observedEnvironmentRef = useRef<'sandbox' | 'production' | undefined>(undefined);
   const workingRef = useRef(false);
+  const operationAbortRef = useRef<AbortController | undefined>(undefined);
+  const entitlementRevisionRef = useRef(0);
+  const entitlementChangeRef = useRef<CommerceEntitlementChange | undefined>(undefined);
   const uncertainPurchaseRef = useRef<PersistedUncertainPurchase | undefined>(undefined);
   const uncertainStorageBlockedRef = useRef(false);
 
-  const refreshEntitlement = useCallback(async (controller: Controller, generation: number) => {
+  const publishEntitlement = useCallback((
+    controller: Controller,
+    generation: number,
+    environment: 'sandbox' | 'production',
+    snapshot: CommerceRuntimeValue['entitlement'],
+    reason: CommerceEntitlementChangeReason,
+  ) => {
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
-    const response = await apiRequest<CommerceEntitlementsResponse>('/v1/commerce/entitlements/current');
-    if (generation !== generationRef.current || controllerRef.current !== controller) return;
-    const environment = observedEnvironmentRef.current ?? 'production';
+    const previous = entitlementChangeRef.current;
+    const effectiveReason = previous && (
+      previous.accountId !== controller.accountId || previous.environment !== environment
+    ) ? (previous.accountId === controller.accountId ? 'environment-change' : 'account-change') : reason;
+    const next: CommerceEntitlementChange = {
+      accountId: controller.accountId,
+      environment,
+      revision: entitlementRevisionRef.current + 1,
+      ...(snapshot ? { snapshot } : {}),
+      reason: effectiveReason,
+    };
+    entitlementRevisionRef.current = next.revision;
+    entitlementChangeRef.current = next;
     setNativeCommerceEnvironment(environment);
     setEntitlementEnvironment(environment);
-    setEntitlement(response[environment]);
+    setEntitlement(snapshot);
+    setEntitlementChange(next);
   }, []);
 
-  const reconcileAndRefresh = useCallback(async (controller: Controller, generation: number) => {
+  const refreshEntitlement = useCallback(async (
+    controller: Controller,
+    generation: number,
+    reason: CommerceEntitlementChangeReason,
+    signal?: AbortSignal,
+  ) => {
+    if (generation !== generationRef.current || controllerRef.current !== controller) return;
+    const response = await withAbortSignal(
+      apiRequest<CommerceEntitlementsResponse>(
+        '/v1/commerce/entitlements/current',
+        signal ? { signal } : undefined,
+      ),
+      signal,
+    );
+    if (generation !== generationRef.current || controllerRef.current !== controller) return;
+    const environment = observedEnvironmentRef.current ?? 'production';
+    publishEntitlement(controller, generation, environment, response[environment], reason);
+  }, [publishEntitlement]);
+
+  const reconcileAndRefresh = useCallback(async (
+    controller: Controller,
+    generation: number,
+    reason: CommerceEntitlementChangeReason,
+    signal?: AbortSignal,
+  ) => {
     if (generation !== generationRef.current || controllerRef.current !== controller) {
       return { ok: false, state: 'failed', code: 'commerce_account_changed', charged: 'no' } as const;
     }
-    const report = await controller.coordinator.start();
+    const report = await controller.coordinator.start(signal ? { signal } : undefined);
     if (generation !== generationRef.current || controllerRef.current !== controller) return report;
-    await refreshEntitlement(controller, generation);
+    await refreshEntitlement(controller, generation, reason, signal);
     return report;
   }, [refreshEntitlement]);
 
   useEffect(() => {
+    operationAbortRef.current?.abort();
+    operationAbortRef.current = undefined;
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     observedEnvironmentRef.current = undefined;
@@ -195,8 +353,21 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     setOfferings([]);
     setEntitlement(undefined);
     setEntitlementEnvironment(undefined);
+    setError(undefined);
     setMessage(undefined);
     if (Platform.OS !== 'ios' || !accountId) {
+      const previous = entitlementChangeRef.current;
+      if (previous) {
+        const next: CommerceEntitlementChange = {
+          accountId: previous.accountId,
+          environment: previous.environment,
+          revision: entitlementRevisionRef.current + 1,
+          reason: 'account-change',
+        };
+        entitlementRevisionRef.current = next.revision;
+        entitlementChangeRef.current = next;
+        setEntitlementChange(next);
+      }
       controllerRef.current = undefined;
       setPhase('unavailable');
       return;
@@ -204,18 +375,22 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
 
     const provider = createAppleStoreKitCommerceProvider();
     const consumer: CommerceTransactionConsumer = {
-      consume: async (transaction) => {
+      consume: async (transaction, options) => {
         if (generation !== generationRef.current) return { state: 'deferred' } as const;
         const environment = verifiedEnvironment(transaction);
         if (!environment) return { state: 'deferred' } as const;
         try {
-          const verified = await apiRequest<VerifyAppleTransactionResponse>(
-            '/v1/commerce/apple/transactions/verify',
-            {
-              method: 'POST',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify({ signedTransaction: transaction.signedTransaction }),
-            },
+          const verified = await withAbortSignal(
+            apiRequest<VerifyAppleTransactionResponse>(
+              '/v1/commerce/apple/transactions/verify',
+              {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ signedTransaction: transaction.signedTransaction }),
+                ...(options?.signal ? { signal: options.signal } : {}),
+              },
+            ),
+            options?.signal,
           );
           if (generation !== generationRef.current) return { state: 'deferred' } as const;
           if (
@@ -227,10 +402,15 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
           }
           if (generation !== generationRef.current) return { state: 'deferred' } as const;
           observedEnvironmentRef.current = environment;
-          if (generation === generationRef.current) {
-            setEntitlementEnvironment(environment);
-            setEntitlement(verified.entitlement);
-          }
+          const activeController = controllerRef.current;
+          if (!activeController) return { state: 'deferred' } as const;
+          publishEntitlement(
+            activeController,
+            generation,
+            environment,
+            verified.entitlement,
+            'transaction-verification',
+          );
           return {
             state: 'server-verified',
             transactionReference: transaction.transactionReference,
@@ -247,6 +427,8 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       coordinator: new NativeCommerceTransactionCoordinator(provider, consumer),
     };
     controllerRef.current = controller;
+    publishEntitlement(controller, generation, 'production', undefined, 'account-change');
+    workingRef.current = true;
     setPhase('loading');
 
     void (async () => {
@@ -257,7 +439,13 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       );
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       observedEnvironmentRef.current = rememberedEnvironment;
-      setEntitlementEnvironment(rememberedEnvironment);
+      publishEntitlement(
+        controller,
+        generation,
+        rememberedEnvironment,
+        undefined,
+        'environment-change',
+      );
       const [serverCatalog, storeCatalog, restoredUncertainResult] = await Promise.all([
         apiRequest<CommerceProductCatalogResponse>('/v1/commerce/catalog'),
         provider.listOfferings(),
@@ -273,17 +461,31 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       uncertainPurchaseRef.current = restoredUncertain;
       if (!storeCatalog.ok) throw new Error(storeCatalog.code);
       const nextOfferings = validatedOfferings(serverCatalog, storeCatalog.value.offerings);
-      const report = await reconcileAndRefresh(controller, generation);
+      const report = await reconcileAndRefresh(
+        controller,
+        generation,
+        'startup-reconciliation',
+      );
       if (generation !== generationRef.current) return;
       if (!report.ok) throw new Error(report.code);
       setOfferings(nextOfferings);
       if (uncertainStorageBlockedRef.current) {
-        setMessage('本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。');
+        const nextError = uncertainPurchaseError(
+          'reconciliation',
+          '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
         return;
       }
       if (restoredUncertain && !reportConfirmsPurchase(report.value, restoredUncertain)) {
-        setMessage('上一笔购买仍在等待 App Store 或服务器确认，请勿重复下单。');
+        const nextError = uncertainPurchaseError(
+          'reconciliation',
+          '上一笔购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
         return;
       }
@@ -293,38 +495,102 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         uncertainPurchaseRef.current = undefined;
       }
       setMessage(report.value.deferred > 0 ? '有购买正在后台核对，权益到账后会自动更新。' : undefined);
+      setError(undefined);
       setPhase('ready');
-    })().catch(() => {
+    })().catch((caught: unknown) => {
       if (generation !== generationRef.current) return;
       if (uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
-        setMessage('上一笔购买仍在核对，请勿重复下单。');
+        const nextError = uncertainPurchaseError(
+          'reconciliation',
+          '上一笔购买仍在核对，请勿重复下单。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
       } else {
-        setMessage('暂时无法连接 App Store 或读取会员信息，请稍后重试。');
+        const internalCode = caught instanceof Error ? caught.message : '';
+        const invalidCatalog = [
+          'commerce_catalog_incomplete',
+          'commerce_catalog_invalid',
+          'commerce_catalog_mismatch',
+          'commerce_catalog_price_source_invalid',
+        ].includes(internalCode);
+        const nextError = runtimeError(
+          invalidCatalog ? 'catalog-invalid' : 'catalog-unavailable',
+          'catalog',
+          invalidCatalog
+            ? 'App Store 商品信息尚未完全同步，请稍后再查看。'
+            : '暂时无法连接 App Store 或读取会员信息，请稍后重试。',
+          { retryable: !invalidCatalog, chargeStatus: 'not-applicable' },
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('error');
+      }
+    }).finally(() => {
+      if (generation === generationRef.current && controllerRef.current === controller) {
+        workingRef.current = false;
       }
     });
 
     const appState = AppState.addEventListener('change', (state) => {
       if (state !== 'active' || generation !== generationRef.current || workingRef.current) return;
-      void reconcileAndRefresh(controller, generation).then(async (report) => {
-        if (!report.ok || generation !== generationRef.current) return;
+      workingRef.current = true;
+      setPhase('reconciling');
+      setError(undefined);
+      void reconcileAndRefresh(
+        controller,
+        generation,
+        'foreground-reconciliation',
+      ).then(async (report) => {
+        if (!report.ok || generation !== generationRef.current) throw new Error('reconciliation_failed');
         const uncertain = uncertainPurchaseRef.current;
-        if (!uncertain || !reportConfirmsPurchase(report.value, uncertain)) return;
+        if (!uncertain) {
+          setPhase('ready');
+          return;
+        }
+        if (!reportConfirmsPurchase(report.value, uncertain)) {
+          const nextError = uncertainPurchaseError(
+            'reconciliation',
+            '购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+          );
+          setError(nextError);
+          setMessage(nextError.userMessage);
+          setPhase('pending');
+          return;
+        }
         await clearUncertainPurchase(controller.accountId);
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         uncertainPurchaseRef.current = undefined;
         setMessage('购买已完成核对，会员权益已更新。');
+        setError(undefined);
         setPhase('ready');
-      }).catch(() => undefined);
+      }).catch(() => {
+        if (generation !== generationRef.current || controllerRef.current !== controller) return;
+        const nextError = runtimeError(
+          'refresh-failed',
+          'reconciliation',
+          '自动核对暂时失败，可稍后手动刷新。',
+          { retryable: true, chargeStatus: 'not-applicable' },
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
+        setPhase(uncertainPurchaseRef.current ? 'pending' : 'error');
+      }).finally(() => {
+        if (generation === generationRef.current && controllerRef.current === controller) {
+          workingRef.current = false;
+        }
+      });
     });
     return () => {
       appState.remove();
+      operationAbortRef.current?.abort();
+      operationAbortRef.current = undefined;
       if (generationRef.current === generation) generationRef.current += 1;
       if (controllerRef.current === controller) controllerRef.current = undefined;
       void controller.coordinator.dispose();
     };
-  }, [accountId, reconcileAndRefresh]);
+  }, [accountId, publishEntitlement, reconcileAndRefresh]);
 
   useEffect(() => {
     if (phase !== 'pending') return;
@@ -334,7 +600,11 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       const generation = generationRef.current;
       if (!controller || !uncertain || workingRef.current) return;
       workingRef.current = true;
-      void reconcileAndRefresh(controller, generation).then(async (report) => {
+      void reconcileAndRefresh(
+        controller,
+        generation,
+        'pending-reconciliation',
+      ).then(async (report) => {
         if (
           !report.ok
           || generation !== generationRef.current
@@ -345,6 +615,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (generation !== generationRef.current || controllerRef.current !== controller) return;
         uncertainPurchaseRef.current = undefined;
         setMessage('购买已完成核对，会员权益已更新。');
+        setError(undefined);
         setPhase('ready');
       }).catch(() => undefined).finally(() => {
         if (generation === generationRef.current && controllerRef.current === controller) {
@@ -360,19 +631,35 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     if (!controller || workingRef.current) return;
     const generation = generationRef.current;
     workingRef.current = true;
+    setPhase('reconciling');
+    setError(undefined);
     setMessage(undefined);
     try {
-      const report = await reconcileAndRefresh(controller, generation);
+      const report = await reconcileAndRefresh(
+        controller,
+        generation,
+        'manual-refresh',
+      );
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       if (!report.ok) throw new Error(report.code);
       if (uncertainStorageBlockedRef.current) {
-        setMessage('本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。');
+        const nextError = uncertainPurchaseError(
+          'refresh',
+          '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
         return;
       }
       const uncertain = uncertainPurchaseRef.current;
       if (uncertain && !reportConfirmsPurchase(report.value, uncertain)) {
-        setMessage('购买仍在等待 App Store 或服务器确认，请勿重复下单。');
+        const nextError = uncertainPurchaseError(
+          'refresh',
+          '购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
         return;
       }
@@ -380,14 +667,27 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       uncertainPurchaseRef.current = undefined;
       setMessage(report.value.deferred > 0 ? '仍有购买等待网络核对，请稍后再试。' : '会员与点数状态已更新。');
+      setError(undefined);
       setPhase('ready');
     } catch {
       if (generation !== generationRef.current || controllerRef.current !== controller) return;
       if (uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
-        setMessage('暂时无法完成购买核对，请勿重复下单。');
+        const nextError = uncertainPurchaseError(
+          'refresh',
+          '暂时无法完成购买核对，请勿重复下单。',
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('pending');
       } else {
-        setMessage('状态更新失败，请检查网络后重试。');
+        const nextError = runtimeError(
+          'refresh-failed',
+          'refresh',
+          '状态更新失败，请检查网络后重试。',
+          { retryable: true, chargeStatus: 'not-applicable' },
+        );
+        setError(nextError);
+        setMessage(nextError.userMessage);
         setPhase('error');
       }
     } finally {
@@ -401,17 +701,39 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     productKey: CommerceProductOffering['productKey'],
   ): Promise<CommerceActionResult> => {
     const controller = controllerRef.current;
-    if (!controller || workingRef.current) return { ok: false, message: '购买功能正在准备或已有操作进行中。' };
-    if (phase !== 'ready' || uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
-      return { ok: false, message: '上一笔购买仍在核对，请勿重复下单。' };
+    if (!controller || workingRef.current) {
+      const nextError = runtimeError(
+        'operation-busy',
+        'purchase',
+        '购买功能正在准备或已有操作进行中。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      return { ok: false, message: nextError.userMessage, error: nextError };
+    }
+    if (uncertainStorageBlockedRef.current || uncertainPurchaseRef.current) {
+      const nextError = uncertainPurchaseError(
+        'purchase',
+        '上一笔购买仍在核对，请勿重复下单。',
+      );
+      return { ok: false, message: nextError.userMessage, error: nextError };
+    }
+    if (phase !== 'ready') {
+      const nextError = runtimeError(
+        'operation-busy',
+        'purchase',
+        '购买功能正在准备或已有操作进行中。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      return { ok: false, message: nextError.userMessage, error: nextError };
     }
     const generation = generationRef.current;
     let purchaseDispatched = false;
     workingRef.current = true;
     setPhase('purchasing');
+    setError(undefined);
     setMessage(undefined);
     try {
-      const baseline = await reconcileAndRefresh(controller, generation);
+      const baseline = await reconcileAndRefresh(controller, generation, 'purchase');
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -437,7 +759,9 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         return ACCOUNT_CHANGED_RESULT;
       }
       if (!purchaseResult.ok) {
-        const result = { ok: false, message: failureMessage(purchaseResult) };
+        const nextError = failureRuntimeError(purchaseResult, 'purchase');
+        const result = { ok: false, message: failureMessage(purchaseResult), error: nextError };
+        setError(nextError);
         setMessage(result.message);
         if (purchaseResult.state === 'pending' || purchaseResult.charged === 'unknown') {
           setPhase('pending');
@@ -466,18 +790,28 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
-      await refreshEntitlement(controller, generation);
+      await refreshEntitlement(controller, generation, 'purchase');
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
       if (!report.ok || report.value.serverVerified === 0) {
-        const result = { ok: false, message: 'App Store 已返回购买结果，服务器正在继续核对，请勿重复购买。' };
+        const nextError = uncertainPurchaseError(
+          'purchase',
+          'App Store 已返回购买结果，服务器正在继续核对，请勿重复购买。',
+        );
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
         setPhase('pending');
         return result;
       }
       if (!reportConfirmsPurchase(report.value, exactUncertain)) {
-        const result = { ok: false, message: 'App Store 已返回购买结果，本次交易正在继续核对，请勿重复购买。' };
+        const nextError = uncertainPurchaseError(
+          'purchase',
+          'App Store 已返回购买结果，本次交易正在继续核对，请勿重复购买。',
+        );
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
         setPhase('pending');
         return result;
@@ -494,6 +828,7 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
           : '会员权益已到账，App Store 确认将在后台自动完成。',
       };
       setMessage(result.message);
+      setError(undefined);
       setPhase('ready');
       return result;
     } catch {
@@ -501,12 +836,26 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
         return ACCOUNT_CHANGED_RESULT;
       }
       if (!purchaseDispatched) {
-        const result = { ok: false, message: '购买前状态核对失败，未发起扣款，请稍后重试。' };
+        const nextError = runtimeError(
+          'purchase-failed',
+          'purchase',
+          '购买前状态核对失败，未发起扣款，请稍后重试。',
+          { retryable: true, chargeStatus: 'not-started' },
+        );
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
         setPhase('error');
         return result;
       }
-      const result = { ok: false, message: '购买结果尚未确认，App 会自动继续核对，请勿重复购买。' };
+      const nextError = runtimeError(
+        'purchase-unconfirmed',
+        'purchase',
+        '购买结果尚未确认，App 会自动继续核对，请勿重复购买。',
+        { retryable: false, chargeStatus: 'unknown' },
+      );
+      const result = { ok: false, message: nextError.userMessage, error: nextError };
+      setError(nextError);
       setMessage(result.message);
       setPhase('pending');
       return result;
@@ -519,35 +868,74 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
 
   const restorePurchases = useCallback(async (): Promise<CommerceActionResult> => {
     const controller = controllerRef.current;
-    if (!controller || workingRef.current) return { ok: false, message: '恢复购买正在准备或已有操作进行中。' };
+    if (
+      !controller
+      || workingRef.current
+      || !(['ready', 'pending', 'error'] as CommerceRuntimePhase[]).includes(phase)
+    ) {
+      const nextError = runtimeError(
+        'operation-busy',
+        'restore',
+        '恢复购买正在准备或已有操作进行中。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      return { ok: false, message: nextError.userMessage, error: nextError };
+    }
     const generation = generationRef.current;
+    const operationController = new AbortController();
+    operationAbortRef.current = operationController;
+    let deadlineElapsed = false;
+    const deadline = setTimeout(() => {
+      deadlineElapsed = true;
+      operationController.abort();
+    }, RESTORE_OPERATION_DEADLINE_MS);
     workingRef.current = true;
     setPhase('restoring');
+    setError(undefined);
     setMessage(undefined);
     try {
-      const report = await controller.coordinator.restorePurchasesFromUserAction();
-      if (generation !== generationRef.current || controllerRef.current !== controller) {
-        return ACCOUNT_CHANGED_RESULT;
-      }
-      await refreshEntitlement(controller, generation);
+      const report = await controller.coordinator.restorePurchasesFromUserAction({
+        signal: operationController.signal,
+      });
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
       if (!report.ok) {
-        const result = { ok: false, message: failureMessage(report) };
+        const nextError = failureRuntimeError(report, 'restore');
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
-        setPhase(uncertainStorageBlockedRef.current || uncertainPurchaseRef.current ? 'pending' : 'ready');
+        setPhase(uncertainStorageBlockedRef.current || uncertainPurchaseRef.current ? 'pending' : 'error');
         return result;
       }
+      await refreshEntitlement(
+        controller,
+        generation,
+        'restore',
+        operationController.signal,
+      );
+      if (generation !== generationRef.current || controllerRef.current !== controller) {
+        return ACCOUNT_CHANGED_RESULT;
+      }
       if (uncertainStorageBlockedRef.current) {
-        const result = { ok: false, message: '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。' };
+        const nextError = uncertainPurchaseError(
+          'restore',
+          '本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',
+        );
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
         setPhase('pending');
         return result;
       }
       const uncertain = uncertainPurchaseRef.current;
       if (uncertain && !reportConfirmsPurchase(report.value, uncertain)) {
-        const result = { ok: false, message: '已读取购买记录，未决交易仍在核对，请勿重复下单。' };
+        const nextError = uncertainPurchaseError(
+          'restore',
+          '已读取购买记录，未决交易仍在核对，请勿重复下单。',
+        );
+        const result = { ok: false, message: nextError.userMessage, error: nextError };
+        setError(nextError);
         setMessage(result.message);
         setPhase('pending');
         return result;
@@ -564,27 +952,36 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
           : '购买记录与会员权益已恢复。',
       };
       setMessage(result.message);
+      setError(undefined);
       setPhase('ready');
       return result;
     } catch {
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
-      const result = {
-        ok: false,
-        message: uncertainStorageBlockedRef.current || uncertainPurchaseRef.current
+      const nextError = runtimeError(
+        deadlineElapsed ? 'restore-timed-out' : 'restore-failed',
+        'restore',
+        uncertainStorageBlockedRef.current || uncertainPurchaseRef.current
           ? '恢复失败，未决交易仍在核对，请勿重复下单。'
-          : '恢复购买失败，请检查网络后重试。',
-      };
+          : deadlineElapsed
+            ? '恢复购买等待超时，请稍后重试。'
+            : '恢复购买失败，请检查网络后重试。',
+        { retryable: true, chargeStatus: 'not-applicable' },
+      );
+      const result = { ok: false, message: nextError.userMessage, error: nextError };
+      setError(nextError);
       setMessage(result.message);
       setPhase(uncertainStorageBlockedRef.current || uncertainPurchaseRef.current ? 'pending' : 'error');
       return result;
     } finally {
+      clearTimeout(deadline);
+      if (operationAbortRef.current === operationController) operationAbortRef.current = undefined;
       if (generation === generationRef.current && controllerRef.current === controller) {
         workingRef.current = false;
       }
     }
-  }, [refreshEntitlement]);
+  }, [phase, refreshEntitlement]);
 
   const value = useMemo<CommerceRuntimeValue>(() => ({
     supported: Platform.OS === 'ios' && Boolean(accountId),
@@ -592,11 +989,13 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     offerings,
     entitlement,
     entitlementEnvironment,
+    entitlementChange,
+    error,
     message,
     purchase,
     refresh,
     restorePurchases,
-  }), [accountId, entitlement, entitlementEnvironment, message, offerings, phase, purchase, refresh, restorePurchases]);
+  }), [accountId, entitlement, entitlementChange, entitlementEnvironment, error, message, offerings, phase, purchase, refresh, restorePurchases]);
 
   return <CommerceRuntimeContext.Provider value={value}>{children}</CommerceRuntimeContext.Provider>;
 }

@@ -25,9 +25,16 @@ import type {
 } from './storekit-client.native';
 
 const MAX_TRANSACTION_CACHE_ENTRIES = 256;
+const APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE = 'subs' as const;
+const APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE =
+  'non-renewing-subscription' as const;
 
 function toStoreKitProduct(product: ProductOrSubscription): StoreKitProduct | undefined {
-  if (product.platform !== 'ios' || product.type !== 'in-app') return undefined;
+  if (
+    product.platform !== 'ios'
+    || product.type !== APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE
+    || product.typeIOS !== APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE
+  ) return undefined;
 
   return {
     productId: product.id,
@@ -108,7 +115,10 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
   }
 
   async fetchProducts(productIds: readonly string[]): Promise<readonly StoreKitProduct[]> {
-    const products = await fetchProducts({ skus: [...productIds], type: 'in-app' });
+    const products = await fetchProducts({
+      skus: [...productIds],
+      type: APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE,
+    });
     return (products ?? []).flatMap((product) => {
       const storeKitProduct = toStoreKitProduct(product);
       return storeKitProduct ? [storeKitProduct] : [];
@@ -127,7 +137,7 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
           andDangerouslyFinishTransactionAutomatically: false,
         },
       },
-      type: 'in-app',
+      type: APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE,
     });
   }
 

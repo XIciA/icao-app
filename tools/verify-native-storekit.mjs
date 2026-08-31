@@ -126,8 +126,31 @@ for (const required of [
   'finishTransaction',
   'endConnection',
   'disconnect()',
+  "APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE = 'subs'",
+  "APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE =\n  'non-renewing-subscription'",
+  'product.type !== APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE',
+  'product.typeIOS !== APPLE_NON_RENEWING_SUBSCRIPTION_PRODUCT_TYPE',
 ]) {
   if (!adapter.includes(required)) failures.push(`${adapterPath} is missing: ${required}`);
+}
+const adapterProductQuery = adapter.slice(
+  adapter.indexOf('async fetchProducts('),
+  adapter.indexOf('async requestPurchase('),
+);
+const adapterPurchaseRequest = adapter.slice(
+  adapter.indexOf('async requestPurchase('),
+  adapter.indexOf('async getTransactions()'),
+);
+for (const [label, content] of [
+  ['product query', adapterProductQuery],
+  ['purchase request', adapterPurchaseRequest],
+]) {
+  if (!content.includes('type: APPLE_NON_RENEWING_SUBSCRIPTION_QUERY_TYPE')) {
+    failures.push(`${adapterPath} ${label} must use the OpenIAP subscription query type.`);
+  }
+  if (content.includes("type: 'in-app'")) {
+    failures.push(`${adapterPath} ${label} must reject the incorrect in-app product path.`);
+  }
 }
 const adapterHistoryRead = adapter.slice(
   adapter.indexOf('async getTransactions()'),
@@ -183,11 +206,18 @@ if (occurrences(provider, 'this.runNativeCall(') < 7) {
 }
 for (const required of [
   'NATIVE_COMMERCE_COORDINATOR_READY = true',
-  'start()',
-  'restorePurchasesFromUserAction()',
+  'start(',
+  'restorePurchasesFromUserAction(',
   'server-verified',
   'markServerVerified',
   'finishTransaction',
+  'DEFAULT_COORDINATION_DEADLINE_MS',
+  'DEFAULT_MAX_PAGES',
+  'DEFAULT_MAX_TRANSACTIONS',
+  'commerce_reconciliation_budget_exceeded',
+  'commerce_reconciliation_timed_out',
+  'commerce_operation_busy',
+  'commerce_operation_cancelled',
 ]) {
   if (!coordinator.includes(required)) failures.push(`${coordinatorPath} is missing: ${required}`);
 }
@@ -201,6 +231,11 @@ for (const required of [
   '/v1/commerce/entitlements/current',
   'applicationAccountToken: controller.accountId',
   'verified.transactionId !== transaction.transactionReference',
+  'entitlementChange',
+  'entitlementRevisionRef',
+  'foreground-reconciliation',
+  'pending-reconciliation',
+  'RESTORE_OPERATION_DEADLINE_MS',
 ]) {
   if (!runtime.includes(required)) failures.push(`${runtimePath} is missing: ${required}`);
 }

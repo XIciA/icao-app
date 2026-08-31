@@ -87,4 +87,71 @@ describe('<MembershipPage />', () => {
     expect(mockPurchase).not.toHaveBeenCalled();
     expect(screen.getByText('上一笔购买仍在核对。')).toBeTruthy();
   });
+
+  it.each(['loading', 'reconciling', 'restoring'] as const)(
+    'disables purchase, refresh and restore during %s',
+    async (phase) => {
+      mockUseCommerceRuntime.mockReturnValue({
+        ...mockUseCommerceRuntime(),
+        phase,
+      });
+      const screen = await render(<MembershipPage />);
+
+      fireEvent.press(screen.getByText('¥58.00'));
+      const refreshLabel = phase === 'reconciling'
+        ? '正在核对会员与点数…'
+        : '刷新会员与点数';
+      fireEvent.press(screen.getByText(refreshLabel));
+      fireEvent.press(screen.getByText(phase === 'restoring' ? '正在恢复购买…' : '恢复购买'));
+
+      expect(mockPurchase).not.toHaveBeenCalled();
+      expect(mockRefresh).not.toHaveBeenCalled();
+      expect(mockRestore).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(['pending', 'error'] as const)(
+    'keeps safe recovery actions available but purchase disabled during %s',
+    async (phase) => {
+      mockUseCommerceRuntime.mockReturnValue({
+        ...mockUseCommerceRuntime(),
+        phase,
+      });
+      const screen = await render(<MembershipPage />);
+
+      const purchaseLabel = phase === 'pending' ? '等待确认' : '¥58.00';
+      fireEvent.press(
+        phase === 'pending'
+          ? screen.getAllByText(purchaseLabel)[0]
+          : screen.getByText(purchaseLabel),
+      );
+      await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
+      await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
+
+      expect(mockPurchase).not.toHaveBeenCalled();
+      expect(mockRefresh).toHaveBeenCalledTimes(1);
+      expect(mockRestore).toHaveBeenCalledTimes(1);
+    },
+  );
+
+  it('renders the public structured error without exposing internal StoreKit codes', async () => {
+    mockUseCommerceRuntime.mockReturnValue({
+      ...mockUseCommerceRuntime(),
+      phase: 'error',
+      offerings: [],
+      message: 'internal_should_not_render',
+      error: {
+        code: 'catalog-invalid',
+        operation: 'catalog',
+        userMessage: 'App Store 商品信息尚未完全同步，请稍后再查看。',
+        retryable: false,
+        chargeStatus: 'not-applicable',
+      },
+    });
+    const screen = await render(<MembershipPage />);
+
+    expect(screen.getByText('App Store 商品配置正在同步')).toBeTruthy();
+    expect(screen.getByText('App Store 商品信息尚未完全同步，请稍后再查看。')).toBeTruthy();
+    expect(screen.queryByText('internal_should_not_render')).toBeNull();
+  });
 });

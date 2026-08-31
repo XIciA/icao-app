@@ -1,4 +1,5 @@
 import type {
+  CommerceErrorResult,
   CommerceQuarantinedTransaction,
   CommerceResult,
   CommerceTransaction,
@@ -18,7 +19,10 @@ export type CommerceTransactionConsumption =
     }>;
 
 export interface CommerceTransactionConsumer {
-  consume(transaction: CommerceTransaction): Promise<CommerceTransactionConsumption>;
+  consume(
+    transaction: CommerceTransaction,
+    options?: Readonly<{ signal: AbortSignal }>,
+  ): Promise<CommerceTransactionConsumption>;
   observeQuarantined?(transaction: CommerceQuarantinedTransaction): Promise<void>;
 }
 
@@ -41,24 +45,93 @@ export type CommerceTransactionCoordinationReport = Readonly<{
 
 type InboxResult = Promise<CommerceResult<CommerceTransactionInbox>>;
 
+export type CommerceCoordinationOptions = Readonly<{
+  signal?: AbortSignal;
+}>;
+
+export type CommerceCoordinationRuntime = Readonly<{
+  now(): number;
+  schedule(delayMs: number, callback: () => void): () => void;
+}>;
+
+export type CommerceTransactionCoordinatorOptions = Readonly<{
+  deadlineMs?: number;
+  maxPages?: number;
+  maxTransactions?: number;
+  maxQuarantinedTransactions?: number;
+  runtime?: CommerceCoordinationRuntime;
+}>;
+
+type CoordinationOperation = {
+  abortController: AbortController;
+  cancelled: boolean;
+  complete?: (value: CommerceErrorResult) => void;
+  deadlineAt: number;
+  generation: number;
+  signal?: AbortSignal;
+};
+
+const DEFAULT_COORDINATION_DEADLINE_MS = 45_000;
+const DEFAULT_MAX_PAGES = 8;
+const DEFAULT_MAX_TRANSACTIONS = 1_024;
+const DEFAULT_MAX_QUARANTINED_TRANSACTIONS = 1_024;
+const DEFAULT_RUNTIME: CommerceCoordinationRuntime = {
+  now: () => Date.now(),
+  schedule: (delayMs, callback) => {
+    const timeout = setTimeout(callback, delayMs);
+    return () => clearTimeout(timeout);
+  },
+};
+
+function coordinationFailure(
+  code: CommerceErrorResult['code'],
+  retryable: boolean,
+): CommerceErrorResult {
+  return { ok: false, state: 'error', code, charged: false, retryable };
+}
+
 export class NativeCommerceTransactionCoordinator {
-  private currentRun: Promise<void> = Promise.resolve();
+  private activeOperation?: CoordinationOperation;
+  private disposed = false;
+  private generation = 0;
+  private readonly deadlineMs: number;
+  private readonly maxPages: number;
+  private readonly maxTransactions: number;
+  private readonly maxQuarantinedTransactions: number;
+  private readonly runtime: CommerceCoordinationRuntime;
 
   constructor(
     private readonly provider: NativeCommerceProvider,
     private readonly consumer: CommerceTransactionConsumer,
-  ) {}
+    options: CommerceTransactionCoordinatorOptions = {},
+  ) {
+    this.deadlineMs = Math.max(1, options.deadlineMs ?? DEFAULT_COORDINATION_DEADLINE_MS);
+    this.maxPages = Math.max(1, options.maxPages ?? DEFAULT_MAX_PAGES);
+    this.maxTransactions = Math.max(1, options.maxTransactions ?? DEFAULT_MAX_TRANSACTIONS);
+    this.maxQuarantinedTransactions = Math.max(
+      1,
+      options.maxQuarantinedTransactions ?? DEFAULT_MAX_QUARANTINED_TRANSACTIONS,
+    );
+    this.runtime = options.runtime ?? DEFAULT_RUNTIME;
+  }
 
   /** Silent app-start reconciliation. This path never invokes Restore Purchases. */
-  start(): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
-    return this.serialize(() => this.consumePages(() => this.provider.reconcileTransactions()));
+  start(
+    options: CommerceCoordinationOptions = {},
+  ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
+    return this.runExclusive(
+      (operation) => this.consumePages(() => this.provider.reconcileTransactions(), operation),
+      options,
+    );
   }
 
   /** The only coordinator entry point intended for an explicit Restore Purchases action. */
-  restorePurchasesFromUserAction(): Promise<
+  restorePurchasesFromUserAction(
+    options: CommerceCoordinationOptions = {},
+  ): Promise<
     CommerceResult<CommerceTransactionCoordinationReport>
   > {
-    return this.serialize(async () => {
+    return this.runExclusive(async (operation) => {
       let firstPage = true;
       return this.consumePages(() => {
         if (firstPage) {
@@ -66,12 +139,14 @@ export class NativeCommerceTransactionCoordinator {
           return this.provider.restorePurchases();
         }
         return this.provider.reconcileTransactions();
-      });
-    });
+      }, operation);
+    }, options);
   }
 
-  drainObservedTransactions(): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
-    return this.serialize(async () => {
+  drainObservedTransactions(
+    options: CommerceCoordinationOptions = {},
+  ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
+    return this.runExclusive(async (operation) => {
       let firstPage = true;
       return this.consumePages(() => {
         if (firstPage) {
@@ -79,16 +154,26 @@ export class NativeCommerceTransactionCoordinator {
           return this.provider.drainTransactionInbox();
         }
         return this.provider.reconcileTransactions();
-      });
-    });
+      }, operation);
+    }, options);
   }
 
   dispose(): Promise<void> {
+    this.disposed = true;
+    this.generation += 1;
+    if (this.activeOperation) {
+      this.activeOperation.cancelled = true;
+      this.activeOperation.abortController.abort();
+      this.activeOperation.complete?.(
+        coordinationFailure('commerce_operation_cancelled', true),
+      );
+    }
     return this.provider.dispose();
   }
 
   private async consumePages(
     nextPage: () => InboxResult,
+    operation: CoordinationOperation,
   ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
     const report = {
       observed: 0,
@@ -108,13 +193,35 @@ export class NativeCommerceTransactionCoordinator {
     };
     const observedReferences = new Set<string>();
     const quarantinedKeys = new Set<string>();
+    let pages = 0;
+    let scannedTransactions = 0;
+    let scannedQuarantinedTransactions = 0;
 
     let overflowed: boolean;
     do {
+      const beforePage = this.operationFailure(operation);
+      if (beforePage) return beforePage;
+      if (pages >= this.maxPages) {
+        return coordinationFailure('commerce_reconciliation_budget_exceeded', false);
+      }
       const page = await nextPage();
+      const afterPage = this.operationFailure(operation);
+      if (afterPage) return afterPage;
       if (!page.ok) return page;
+      pages += 1;
+      scannedTransactions +=
+        page.value.transactions.length + page.value.quarantinedTransactions.length;
+      scannedQuarantinedTransactions += page.value.quarantinedTransactions.length;
+      if (
+        scannedTransactions > this.maxTransactions
+        || scannedQuarantinedTransactions > this.maxQuarantinedTransactions
+      ) {
+        return coordinationFailure('commerce_reconciliation_budget_exceeded', false);
+      }
       overflowed = page.value.overflowed;
       for (const transaction of page.value.quarantinedTransactions) {
+        const beforeQuarantined = this.operationFailure(operation);
+        if (beforeQuarantined) return beforeQuarantined;
         const quarantineKey = [
           transaction.transactionReference ?? '',
           transaction.productId,
@@ -127,13 +234,17 @@ export class NativeCommerceTransactionCoordinator {
         await this.consumer.observeQuarantined?.(transaction).catch(() => undefined);
       }
       for (const transaction of page.value.transactions) {
+        const beforeTransaction = this.operationFailure(operation);
+        if (beforeTransaction) return beforeTransaction;
         if (observedReferences.has(transaction.transactionReference)) continue;
         observedReferences.add(transaction.transactionReference);
         report.observed += 1;
         report.observedReferences.push(transaction.transactionReference);
         const consumption = await this.consumer
-          .consume(transaction)
+          .consume(transaction, { signal: operation.abortController.signal })
           .catch((): CommerceTransactionConsumption => ({ state: 'deferred' }));
+        const afterConsumption = this.operationFailure(operation);
+        if (afterConsumption) return afterConsumption;
         if (
           consumption.state !== 'server-verified' ||
           consumption.transactionReference !== transaction.transactionReference ||
@@ -147,6 +258,8 @@ export class NativeCommerceTransactionCoordinator {
           transactionReference: consumption.transactionReference,
           signedTransaction: consumption.signedTransaction,
         });
+        const afterAcknowledgement = this.operationFailure(operation);
+        if (afterAcknowledgement) return afterAcknowledgement;
         if (!acknowledgement.ok) {
           report.deferred += 1;
           continue;
@@ -162,6 +275,8 @@ export class NativeCommerceTransactionCoordinator {
         const finish = await this.provider.finishTransaction({
           acknowledgement: acknowledgement.value,
         });
+        const afterFinish = this.operationFailure(operation);
+        if (afterFinish) return afterFinish;
         if (finish.ok) {
           report.finished += 1;
           report.finishedReferences.push(transaction.transactionReference);
@@ -173,12 +288,76 @@ export class NativeCommerceTransactionCoordinator {
     return { ok: true, state: 'succeeded', value: report };
   }
 
-  private serialize<T>(work: () => Promise<T>): Promise<T> {
-    const result = this.currentRun.then(work, work);
-    this.currentRun = result.then(
-      () => undefined,
-      () => undefined,
+  private runExclusive(
+    work: (
+      operation: CoordinationOperation,
+    ) => Promise<CommerceResult<CommerceTransactionCoordinationReport>>,
+    options: CommerceCoordinationOptions,
+  ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
+    if (this.disposed) {
+      return Promise.resolve(coordinationFailure('commerce_provider_disposed', false));
+    }
+    if (this.activeOperation) {
+      return Promise.resolve(coordinationFailure('commerce_operation_busy', true));
+    }
+    const operation: CoordinationOperation = {
+      abortController: new AbortController(),
+      cancelled: false,
+      deadlineAt: this.runtime.now() + this.deadlineMs,
+      generation: this.generation,
+      ...(options.signal ? { signal: options.signal } : {}),
+    };
+    this.activeOperation = operation;
+
+    const result = new Promise<CommerceResult<CommerceTransactionCoordinationReport>>(
+      (resolve) => {
+        let settled = false;
+        let cancelDeadline: () => void = () => undefined;
+        const finish = (value: CommerceResult<CommerceTransactionCoordinationReport>) => {
+          if (settled) return;
+          settled = true;
+          cancelDeadline();
+          options.signal?.removeEventListener('abort', onAbort);
+          if (this.activeOperation === operation) this.activeOperation = undefined;
+          resolve(value);
+        };
+        const onAbort = () => {
+          operation.cancelled = true;
+          operation.abortController.abort();
+          finish(coordinationFailure('commerce_operation_cancelled', true));
+        };
+        operation.complete = finish;
+        cancelDeadline = this.runtime.schedule(this.deadlineMs, () => {
+          operation.cancelled = true;
+          operation.abortController.abort();
+          finish(coordinationFailure('commerce_reconciliation_timed_out', true));
+        });
+        if (options.signal?.aborted) {
+          onAbort();
+          return;
+        }
+        options.signal?.addEventListener('abort', onAbort, { once: true });
+        void work(operation).then(finish, () => {
+          finish(coordinationFailure('commerce_restore_failed', true));
+        });
+      },
     );
     return result;
+  }
+
+  private operationFailure(operation: CoordinationOperation): CommerceErrorResult | undefined {
+    if (
+      operation.cancelled
+      || operation.signal?.aborted
+      || operation.generation !== this.generation
+      || this.disposed
+    ) {
+      return coordinationFailure('commerce_operation_cancelled', true);
+    }
+    if (this.runtime.now() >= operation.deadlineAt) {
+      operation.cancelled = true;
+      return coordinationFailure('commerce_reconciliation_timed_out', true);
+    }
+    return undefined;
   }
 }
