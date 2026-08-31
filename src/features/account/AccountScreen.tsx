@@ -13,7 +13,7 @@ import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { isValidPhonePassword, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
-import { MembershipPage } from '@/features/native-commercial-testflight/MembershipPage';
+import { MembershipRoutePage } from '@/features/native-commercial-testflight/MembershipRoutePage';
 import { ASR_MODEL_OPTIONS, getAsrModel, setAsrModel } from '@/features/ai/asr-model-preference';
 import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
@@ -32,7 +32,7 @@ export function AccountScreen() {
   const page: AccountSlug = pages.includes(slug) ? slug : 'profile';
   if (page === 'profile') return <ProfilePage />;
   if (page === 'edit-profile') return <EditProfilePage />;
-  if (page === 'membership') return <MembershipPage />;
+  if (page === 'membership') return <MembershipRoutePage />;
   if (page === 'settings') return <SettingsPage />;
   if (page === 'privacy') return <PrivacyPage />;
   if (page === 'sync') return <SyncPage />;

@@ -1,17 +1,53 @@
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import { assertExpoPrebuildCommand } from './release-command-contract.mjs';
+
 const root = process.cwd();
 const app = JSON.parse(await readFile(path.join(root, 'app.json'), 'utf8'));
 const releaseScriptPath = path.join(root, 'scripts/release-ios-testflight.sh');
 await access(releaseScriptPath);
 const releaseScript = await readFile(releaseScriptPath, 'utf8');
+const releaseHelper = await readFile(path.join(root, 'scripts/lib/ios-release-product.sh'), 'utf8');
+const gatedReleaseScripts = [
+  'scripts/release-ios-testflight.sh',
+  'scripts/archive-ios-testflight.sh',
+  'scripts/build-standalone-ios.sh',
+];
 const archiveAudit = await readFile(path.join(root, 'tools/audit-ios-archive.mjs'), 'utf8');
 const candidateEvidence = await readFile(path.join(root, 'tools/create-testflight-candidate.mjs'), 'utf8');
 const apiClient = await readFile(path.join(root, 'src/platform/api-client.ts'), 'utf8');
 const aiClient = await readFile(path.join(root, 'src/features/ai/ai-client.ts'), 'utf8');
 const audioE2eScript = await readFile(path.join(root, 'scripts/run-audio-e2e.sh'), 'utf8');
 const failures = [];
+
+for (const releasePath of gatedReleaseScripts) {
+  const source = await readFile(path.join(root, releasePath), 'utf8');
+  try {
+    assertExpoPrebuildCommand(source, {
+      label: releasePath,
+      platform: 'ios',
+      requireClean: true,
+      requireNoInstall: true,
+    });
+  } catch (error) {
+    failures.push(error instanceof Error ? error.message : String(error));
+  }
+  const prebuildIndex = source.indexOf('pnpm exec expo prebuild');
+  const brandIndex = source.indexOf('verify_ios_cng_brand_assets "$PROJECT_ROOT"');
+  const buildIndex = source.indexOf('\nxcodebuild \\', prebuildIndex);
+  if (brandIndex < prebuildIndex || (buildIndex >= 0 && brandIndex > buildIndex)) {
+    failures.push(`${releasePath} must validate generated iOS brand assets after clean prebuild and before xcodebuild.`);
+  }
+}
+for (const required of [
+  'verify_ios_cng_brand_assets()',
+  'check-native-brand-assets.mjs',
+  '--prebuild-root "$prebuild_root"',
+  '--platform ios',
+]) {
+  if (!releaseHelper.includes(required)) failures.push(`iOS release helper is missing: ${required}`);
+}
 
 if (app.expo.version !== '1.0.0') failures.push('Marketing Version must remain 1.0.0.');
 if (app.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios') failures.push('Unexpected iOS Bundle ID.');
