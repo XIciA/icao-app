@@ -421,6 +421,47 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.setSession).not.toHaveBeenCalled();
   });
 
+  it('restores the previous persistent snapshot when a newer failed login starts during deferred setSession', async () => {
+    const { auth, client } = authClient();
+    const { auth: transientAuth, client: transientClient } = authClient();
+    const previous = {
+      ...session(),
+      access_token: 'previous-access',
+      refresh_token: 'previous-refresh',
+    };
+    const candidate = {
+      ...session(),
+      access_token: 'candidate-access',
+      refresh_token: 'candidate-refresh',
+    };
+    auth.getSession.mockResolvedValue({ data: { session: previous }, error: null });
+    transientAuth.signInWithPassword
+      .mockResolvedValueOnce({ data: { session: candidate, user: candidate.user }, error: null })
+      .mockResolvedValueOnce({ data: { session: null, user: null }, error: { code: 'invalid_credentials', message: 'invalid' } });
+    transientAuth.getUser.mockResolvedValue({ data: { user: candidate.user }, error: null });
+    let resolveCandidateWrite!: (value: unknown) => void;
+    const candidateWrite = new Promise((resolve) => { resolveCandidateWrite = resolve; });
+    auth.setSession
+      .mockImplementationOnce(() => candidateWrite)
+      .mockResolvedValueOnce({ data: { session: previous, user: previous.user }, error: null });
+    const service = new SupabasePhoneAuthService(client, transientClient);
+
+    const first = service.signInWithPhonePassword(phone, 'password10');
+    for (let attempt = 0; attempt < 20 && auth.setSession.mock.calls.length === 0; attempt += 1) {
+      await Promise.resolve();
+    }
+    expect(auth.setSession).toHaveBeenCalledTimes(1);
+    const newer = service.signInWithPhonePassword(phone, 'wrongpassword10');
+    await expect(newer).rejects.toThrow('invalid_phone_or_password');
+    resolveCandidateWrite({ data: { session: candidate, user: candidate.user }, error: null });
+
+    await expect(first).rejects.toThrow('auth_request_not_completed');
+    expect(auth.setSession).toHaveBeenNthCalledWith(2, {
+      access_token: 'previous-access',
+      refresh_token: 'previous-refresh',
+    });
+  });
+
   it('reports a persistent-session restore failure instead of swallowing it', async () => {
     const { auth, client } = authClient();
     const { auth: transientAuth, client: transientClient } = authClient();

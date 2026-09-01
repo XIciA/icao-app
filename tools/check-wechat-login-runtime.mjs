@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const EXPECTED_IOS_SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
 const EXPECTED_IOS_SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
 const EXPECTED_ANDROID_DEPENDENCY = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0';
+const APPROVED_RELEASE_CONFIG_PATH = 'config/release/wechat-login.json';
 const candidateConfiguration = process.argv.some((value) => [
   '--candidate',
   '--candidate-config',
@@ -93,6 +94,15 @@ if (packageJson.dependencies?.['expo-native-wechat'] || packageJson.devDependenc
 }
 
 const appJson = JSON.parse(await readFile(path.join(ROOT, 'app.json'), 'utf8'));
+const approvedRelease = JSON.parse(await readFile(path.join(ROOT, APPROVED_RELEASE_CONFIG_PATH), 'utf8'));
+if (
+  approvedRelease?.schemaVersion !== 1
+  || !['WAITING_HUMAN', 'approved'].includes(approvedRelease?.status)
+  || (approvedRelease.status === 'WAITING_HUMAN' && (approvedRelease.appId !== null || approvedRelease.universalLink !== null))
+  || approvedRelease?.ios?.teamId !== '3FX69S3S8P'
+  || approvedRelease?.ios?.bundleId !== appJson.expo.ios.bundleIdentifier
+  || approvedRelease?.android?.packageName !== appJson.expo.android.package
+) fail('approved_release_identity_invalid');
 const appConfig = require('../app.config.js');
 const previous = {
   appId: process.env.ICAO_WECHAT_APP_ID,
@@ -151,17 +161,32 @@ if (!aasaController.includes("header('content-type', 'application/json')")) fail
 if (candidateConfiguration) {
   const appId = process.env.ICAO_WECHAT_APP_ID?.trim();
   const universalLink = process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim();
+  const approvedAppId = typeof approvedRelease.appId === 'string' ? approvedRelease.appId.trim() : '';
+  const approvedUniversalLink = typeof approvedRelease.universalLink === 'string'
+    ? approvedRelease.universalLink.trim()
+    : '';
+  const productionApiUrl = (process.env.EXPO_PUBLIC_ICAO_API_URL || process.env.API_URL)?.trim();
   const archive = process.env.ICAO_WECHAT_SDK_ARCHIVE?.trim();
   const teamId = (process.env.ICAO_APPLE_TEAM_ID || process.env.ICAO_IOS_TEAM_ID)?.trim();
   if (!appId || !/^wx[0-9a-z]+$/iu.test(appId)) fail('WAITING_HUMAN:candidate_app_id_missing');
   if (!universalLink || !universalLink.startsWith('https://') || !universalLink.endsWith('/')) {
     fail('WAITING_HUMAN:candidate_universal_link_missing');
   }
+  if (approvedRelease.status !== 'approved' || !approvedAppId || approvedAppId !== appId) {
+    fail('WAITING_HUMAN:tracked_candidate_app_id_not_approved_or_mismatch');
+  }
+  if (!approvedUniversalLink || approvedUniversalLink !== universalLink) {
+    fail('WAITING_HUMAN:tracked_candidate_universal_link_not_approved_or_mismatch');
+  }
+  if (!productionApiUrl || new URL(universalLink).origin !== new URL(productionApiUrl).origin) {
+    fail('candidate_universal_link_api_origin_mismatch');
+  }
   if (archive) {
     const archiveDigest = createHash('sha256').update(await readFile(path.resolve(archive))).digest('hex');
     if (archiveDigest !== EXPECTED_IOS_SDK_SHA256) fail('candidate_sdk_archive_checksum_mismatch');
   }
   if (!teamId) fail('WAITING_HUMAN:candidate_apple_team_id_missing');
+  if (teamId !== approvedRelease.ios.teamId) fail('candidate_apple_team_id_not_approved');
   if (
     (process.argv.includes('--candidate') || process.argv.includes('--candidate-config') || process.argv.includes('--candidate-ios-artifact'))
     && !await exists('modules/icao-wechat-auth/ios/Vendor/WechatOpenSDK.xcframework')
@@ -183,7 +208,8 @@ if (candidateConfiguration) {
   if (!Array.isArray(details) || !details.some((entry) => (
     entry?.appID === expectedApplicationId
     && Array.isArray(entry.paths)
-    && entry.paths.includes(expectedPath)
+    && entry.paths.length === 1
+    && entry.paths[0] === expectedPath
   ))) fail('candidate_aasa_application_or_path_mismatch');
 
 }
@@ -219,18 +245,15 @@ if (androidArtifact) {
   if (/WXPayEntryActivity|merchant[_-]?(?:id|key)|mch[_-]?id/iu.test(manifest)) {
     fail('candidate_android_payment_manifest_present');
   }
-  const dexPackages = execFileSync(analyzer, ['dex', 'packages', artifact], {
-    encoding: 'utf8',
-    maxBuffer: 64 * 1024 * 1024,
-  });
-  if (/com\.tencent\.mm\.opensdk\.modelpay|WXPayEntryActivity|WXJointPay|WXNontaxPay/iu.test(dexPackages)) {
-    fail('candidate_android_payment_class_retained');
-  }
-  const usagePath = path.join(ROOT, 'android/app/build/outputs/mapping/release/usage.txt');
-  if (!await access(usagePath).then(() => true, () => false)) fail('candidate_android_r8_usage_evidence_missing');
-  const removedUsage = await readFile(usagePath, 'utf8');
-  if (!/com\.tencent\.mm\.opensdk\.modelpay\.(?:PayReq|PayResp)/u.test(removedUsage)) {
-    fail('candidate_android_payment_class_removal_unproven');
+  const applicationId = execFileSync(analyzer, ['manifest', 'application-id', artifact], { encoding: 'utf8' }).trim();
+  const expectedAppId = process.env.ICAO_WECHAT_APP_ID?.trim();
+  if (!expectedAppId || !new RegExp(
+    `<meta-data[^>]+android:name=["']com\\.icao\\.wechatauth\\.APP_ID["'][^>]+android:value=["']${expectedAppId}["']`,
+    'iu',
+  ).test(manifest)) fail('candidate_android_wechat_app_id_mismatch');
+  const expectedCallback = `${applicationId}.wxapi.WXEntryActivity`;
+  if (!manifest.includes(expectedCallback) || !/WXEntryActivity[^>]+android:exported=["']true["']/iu.test(manifest)) {
+    fail('candidate_android_wechat_callback_mismatch');
   }
 }
 
@@ -244,8 +267,10 @@ if (iosArtifact) {
   if (configuredAppId !== process.env.ICAO_WECHAT_APP_ID?.trim() || configuredLink !== process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim()) {
     fail('candidate_ios_wechat_configuration_mismatch');
   }
-  const executableSymbols = execFileSync('nm', ['-u', path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-  if (/PayReq|PayResp|WXPay|WXNontaxPay|WXJointPay/u.test(executableSymbols)) fail('candidate_ios_reachable_payment_symbol');
+  const executableSymbols = execFileSync('nm', [path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  if (!/sendAuthReq|SendAuthReq/u.test(executableSymbols)) fail('candidate_ios_sendauth_symbol_missing');
+  const unresolvedSymbols = execFileSync('nm', ['-u', path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  if (/PayReq|PayResp|WXPay|WXNontaxPay|WXJointPay/u.test(unresolvedSymbols)) fail('candidate_ios_application_payment_reference');
   const bundle = await readFile(path.join(app, 'main.jsbundle'), 'utf8');
   for (const marker of forbiddenPaymentMarkers) {
     if (marker.test(bundle)) fail('candidate_ios_reachable_payment_marker');

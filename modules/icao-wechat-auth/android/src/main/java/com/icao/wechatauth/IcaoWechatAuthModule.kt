@@ -76,9 +76,11 @@ object IcaoWechatAuthCoordinator {
     }
   }
 
-  fun status(context: Context): Map<String, Boolean> {
+  fun status(context: Context): Map<String, Any> {
+    val configuredAppId = appId(context)
     val api = api(context)
     return mapOf(
+      "appId" to (configuredAppId ?: ""),
       "configured" to (api != null),
       "installed" to (api?.isWXAppInstalled == true),
       "supported" to ((api?.wxAppSupportAPI ?: 0) > 0)
@@ -146,7 +148,7 @@ class IcaoWechatAuthModule : Module() {
     Function("getStatus") {
       val context = appContext.reactContext
       if (context == null) {
-        mapOf("configured" to false, "installed" to false, "supported" to false)
+        mapOf("appId" to "", "configured" to false, "installed" to false, "supported" to false)
       } else {
         IcaoWechatAuthCoordinator.status(context)
       }

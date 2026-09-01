@@ -63,7 +63,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 37);
+  assert.equal(migrations.length, 38);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -80,8 +80,9 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-2)?.tag, '0035_lowly_microbe');
-  assert.equal(migrations.at(-1)?.tag, '0036_bright_cannonball');
+  assert.equal(migrations.at(-3)?.tag, '0035_lowly_microbe');
+  assert.equal(migrations.at(-2)?.tag, '0036_bright_cannonball');
+  assert.equal(migrations.at(-1)?.tag, '0037_cool_stellaris');
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
 
@@ -284,6 +285,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0034_revoke_client_table_grants',
       '0035_lowly_microbe',
       '0036_bright_cannonball',
+      '0037_cool_stellaris',
     ],
   );
   assert.ok(

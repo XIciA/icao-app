@@ -2,6 +2,7 @@ import { requireOptionalNativeModule } from 'expo-modules-core';
 
 export type NativeWechatAuthResult = { code: string; state: string };
 export type NativeWechatAuthStatus = {
+  appId?: string;
   configured: boolean;
   installed: boolean;
   supported: boolean;
@@ -21,7 +22,7 @@ export function createWechatNativeAuthBoundary(
 ) {
   return {
     getStatus(): NativeWechatAuthStatus {
-      return nativeModule?.getStatus() ?? { configured: false, installed: false, supported: false };
+      return nativeModule?.getStatus() ?? { appId: undefined, configured: false, installed: false, supported: false };
     },
     async authorize(state: string) {
       if (!nativeModule) throw new Error('wechat_auth_unavailable');
@@ -60,4 +61,18 @@ export function getWechatNativeStatus() {
 
 export function authorizeWithWechatNative(state: string) {
   return nativeBoundary.authorize(state);
+}
+
+/**
+ * Bind a server-created challenge to the App ID compiled into this exact binary. This prevents a
+ * valid challenge from a differently configured API deployment from being handed to OpenSDK.
+ */
+export function assertWechatChallengeMatchesNativeApp(
+  challengeAppId: string | undefined,
+  status: NativeWechatAuthStatus = getWechatNativeStatus(),
+) {
+  const nativeAppId = status.appId?.trim();
+  if (!challengeAppId || !nativeAppId || challengeAppId !== nativeAppId) {
+    throw new Error('wechat_auth_configuration_mismatch');
+  }
 }

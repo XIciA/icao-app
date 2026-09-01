@@ -202,11 +202,17 @@ export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_
 
 export const phoneOtpIntents = pgTable('phone_otp_intents', {
   id: uuid('id').defaultRandom().primaryKey(),
+  dispatchSequence: bigserial('dispatch_sequence', { mode: 'number' }).notNull(),
   phoneDigest: text('phone_digest').notNull(),
   purpose: text('purpose').notNull(),
   accountId: uuid('account_id'),
   attemptCount: integer('attempt_count').default(0).notNull(),
   lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
+  dispatchLeaseUntil: timestamp('dispatch_lease_until', { withTimezone: true }),
+  providerCompletedAt: timestamp('provider_completed_at', { withTimezone: true }),
+  // `pending` remains the compatibility default for migrations, fixtures, and audited maintenance
+  // flows that materialize an already-delivered intent. The delivery service always writes
+  // `queued` explicitly before it contacts the provider.
   status: text('status').default('pending').notNull(),
   otpNotBefore: timestamp('otp_not_before', { withTimezone: true }).notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
@@ -214,13 +220,18 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   index('phone_otp_intents_lookup').on(table.phoneDigest, table.purpose, table.accountId, table.status),
+  index('phone_otp_intents_dispatch').on(table.phoneDigest, table.status, table.dispatchSequence),
   index('phone_otp_intents_expiry').on(table.expiresAt),
   check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
-  check('phone_otp_intents_status_check', sql`${table.status} IN ('pending', 'consumed', 'superseded', 'failed')`),
+  check('phone_otp_intents_status_check', sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'pending', 'consumed', 'superseded', 'failed')`),
   check('phone_otp_intents_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= date_trunc('second', ${table.createdAt})`),
   check('phone_otp_intents_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
+  check('phone_otp_intents_dispatch_lease_check', sql`(
+    (${table.status} IN ('queued', 'dispatching', 'quarantined') AND ${table.dispatchLeaseUntil} IS NOT NULL)
+    OR (${table.status} NOT IN ('queued', 'dispatching', 'quarantined') AND ${table.dispatchLeaseUntil} IS NULL)
+  )`),
   check('phone_otp_intents_account_check', sql`(
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
     OR (${table.purpose} IN ('account_delete', 'phone_binding') AND ${table.accountId} IS NOT NULL)

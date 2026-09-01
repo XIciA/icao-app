@@ -7,7 +7,7 @@ import * as Crypto from 'expo-crypto';
 
 import { apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import { secureSessionStorage } from './secure-session-storage';
-import { authorizeWithWechatNative, getWechatNativeStatus } from './wechat-native-auth';
+import { assertWechatChallengeMatchesNativeApp, authorizeWithWechatNative, getWechatNativeStatus } from './wechat-native-auth';
 
 export type AppSession = {
   accessToken: string;
@@ -148,11 +148,12 @@ export class SupabasePhoneAuthService implements AuthService {
     }
   }
 
-  private async beginSessionMutation() {
-    return this.withSessionCommitLock(async () => {
-      this.authGeneration += 1;
-      return this.authGeneration;
-    });
+  private beginSessionMutation() {
+    // Claim the generation synchronously when the public operation starts.
+    // Waiting for the commit tail here lets an older request that is already
+    // inside setSession remain the owner until its write completes.
+    this.authGeneration += 1;
+    return this.authGeneration;
   }
 
   private async inspectSession(tokens: { accessToken: string; refreshToken: string }) {
@@ -189,6 +190,16 @@ export class SupabasePhoneAuthService implements AuthService {
         refresh_token: tokens.refreshToken,
       });
       if (error || !data.session) throw authError(error);
+      if (generation !== this.authGeneration) {
+        const restored = previous.data.session
+          ? await this.client.auth.setSession({
+            access_token: previous.data.session.access_token,
+            refresh_token: previous.data.session.refresh_token,
+          })
+          : await this.client.auth.signOut({ scope: 'local' });
+        if (restored.error) throw new Error('auth_session_restore_failed');
+        throw new Error('auth_request_not_completed');
+      }
       const mapped = appSession(data.session);
       if (!mapped || (validate && !validate(mapped))) {
         const restored = previous.data.session
@@ -274,6 +285,7 @@ export class SupabasePhoneAuthService implements AuthService {
       method: 'POST',
     });
     if (challenge.status !== 'available') throw new Error('wechat_auth_configuration_pending');
+    assertWechatChallengeMatchesNativeApp(challenge.appId);
     const nativeResponse = await authorizeWithWechatNative(challenge.state);
     if (nativeResponse.state !== challenge.state) throw new Error('invalid_wechat_auth_response');
     const response = await apiRequest<CompleteWechatAuthResponse>('/v1/auth/wechat/session', {
@@ -322,6 +334,7 @@ export class SupabasePhoneAuthService implements AuthService {
       },
     );
     if (challenge.status !== 'available') throw new Error('wechat_auth_configuration_pending');
+    assertWechatChallengeMatchesNativeApp(challenge.appId);
     const nativeResponse = await authorizeWithWechatNative(challenge.state);
     if (nativeResponse.state !== challenge.state) throw new Error('invalid_wechat_auth_response');
     return apiRequestWithAccessToken<RecentAuthGrantResponse>(

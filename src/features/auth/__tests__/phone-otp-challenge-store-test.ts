@@ -114,4 +114,38 @@ describe('phone OTP challenge persistence', () => {
       expect.any(Object),
     );
   });
+
+  it('serializes a deferred write, tombstone clear, and remount read without resurrecting the challenge', async () => {
+    const storage = new Map<string, string>();
+    let releaseWrite!: () => void;
+    const writeStarted = new Promise<void>((resolve) => {
+      setItemAsync.mockImplementationOnce(async (key, value) => {
+        resolve();
+        await new Promise<void>((release) => { releaseWrite = release; });
+        storage.set(key, value);
+      });
+    });
+    getItemAsync.mockImplementation(async (key) => storage.get(key) ?? null);
+    deleteItemAsync.mockImplementation(async (key) => { storage.delete(key); });
+
+    const now = Date.now();
+    const challenge = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '30000000-0000-4000-8000-000000000030',
+      expiresAt: now + 300_000,
+      issuedAt: now,
+      resendAllowedAt: now + 60_000,
+      serverTime: now,
+    }, now);
+    const write = writePhoneOtpChallenge(challenge);
+    await writeStarted;
+    const clear = clearPhoneOtpChallenge();
+    const remountRead = readPhoneOtpChallenge(now + 1_000);
+    releaseWrite();
+
+    await expect(write).resolves.toBe(false);
+    await expect(clear).resolves.toBeUndefined();
+    await expect(remountRead).resolves.toBeUndefined();
+    expect(storage.size).toBe(0);
+  });
 });

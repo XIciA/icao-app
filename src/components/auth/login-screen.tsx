@@ -9,7 +9,9 @@ import { AppText, Button, TextField } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
 import {
+  beginPhoneOtpChallengeMutation,
   clearPhoneOtpChallenge,
+  invalidatePhoneOtpChallengeMutation,
   phoneOtpChallenge,
   phoneOtpServerNow,
   readPhoneOtpChallenge,
@@ -105,6 +107,7 @@ export function LoginScreen() {
       active = false;
       mountedRef.current = false;
       challengeRequestRef.current += 1;
+      invalidatePhoneOtpChallengeMutation();
     };
   }, []);
 
@@ -156,8 +159,13 @@ export function LoginScreen() {
     void clearPhoneOtpChallenge().catch(() => undefined);
   }
 
-  async function showCode(next: PersistedPhoneOtpChallenge, requestGeneration: number) {
-    const persisted = await writePhoneOtpChallenge(next);
+  async function showCode(
+    next: PersistedPhoneOtpChallenge,
+    requestGeneration: number,
+    storageGeneration: number,
+  ) {
+    if (!mountedRef.current || requestGeneration !== challengeRequestRef.current) return;
+    const persisted = await writePhoneOtpChallenge(next, storageGeneration);
     if (!persisted || !mountedRef.current || requestGeneration !== challengeRequestRef.current) return;
     setChallenge(next);
     setPhone(next.phone.slice(3));
@@ -203,9 +211,10 @@ export function LoginScreen() {
     setError('');
     const requestedPhone = normalizeChinaMobile(phone)!;
     const requestGeneration = ++challengeRequestRef.current;
+    const storageGeneration = beginPhoneOtpChallengeMutation();
     try {
       const response = await auth.requestPhoneOtp(requestedPhone);
-      await showCode(phoneOtpChallenge(requestedPhone, 'login', response), requestGeneration);
+      await showCode(phoneOtpChallenge(requestedPhone, 'login', response), requestGeneration, storageGeneration);
     } catch (value) {
       showError(value);
     } finally {
@@ -235,9 +244,10 @@ export function LoginScreen() {
     setError('');
     const requestedPhone = normalizeChinaMobile(phone)!;
     const requestGeneration = ++challengeRequestRef.current;
+    const storageGeneration = beginPhoneOtpChallengeMutation();
     try {
       const response = await auth.requestPasswordRecoveryOtp(requestedPhone);
-      await showCode(phoneOtpChallenge(requestedPhone, 'recovery', response), requestGeneration);
+      await showCode(phoneOtpChallenge(requestedPhone, 'recovery', response), requestGeneration, storageGeneration);
     } catch (value) {
       showError(value);
     } finally {
@@ -249,11 +259,12 @@ export function LoginScreen() {
     if (!challenge || remainingSeconds > 0 || !beginAction()) return;
     setError('');
     const requestGeneration = ++challengeRequestRef.current;
+    const storageGeneration = beginPhoneOtpChallengeMutation();
     try {
       const response = challenge.purpose === 'recovery'
         ? await auth.requestPasswordRecoveryOtp(challenge.phone)
         : await auth.requestPhoneOtp(challenge.phone);
-      await showCode(phoneOtpChallenge(challenge.phone, challenge.purpose, response), requestGeneration);
+      await showCode(phoneOtpChallenge(challenge.phone, challenge.purpose, response), requestGeneration, storageGeneration);
     } catch (value) {
       showError(value);
     } finally {

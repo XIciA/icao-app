@@ -13,6 +13,8 @@ const mockConsumePendingPath = jest.fn();
 const mockReadPhoneOtpChallenge = jest.fn();
 const mockWritePhoneOtpChallenge = jest.fn();
 const mockClearPhoneOtpChallenge = jest.fn();
+const mockBeginPhoneOtpChallengeMutation = jest.fn();
+const mockInvalidatePhoneOtpChallengeMutation = jest.fn();
 const mockBack = jest.fn();
 const mockCanGoBack = jest.fn();
 const mockPush = jest.fn();
@@ -43,7 +45,9 @@ jest.mock('@/features/auth/AuthProvider', () => ({
 }));
 
 jest.mock('@/features/auth/phone-otp-challenge-store', () => ({
+  beginPhoneOtpChallengeMutation: (...args: unknown[]) => mockBeginPhoneOtpChallengeMutation(...args),
   clearPhoneOtpChallenge: (...args: unknown[]) => mockClearPhoneOtpChallenge(...args),
+  invalidatePhoneOtpChallengeMutation: (...args: unknown[]) => mockInvalidatePhoneOtpChallengeMutation(...args),
   phoneOtpChallenge: (phone: string, purpose: 'login' | 'recovery', response: { challengeId: string; expiresAt: number; issuedAt: number; resendAllowedAt: number; serverTime: number }) => ({
     challengeId: response.challengeId,
     expiresAt: response.expiresAt,
@@ -93,6 +97,8 @@ describe('<LoginScreen />', () => {
     mockReadPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
     mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(true);
     mockClearPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockBeginPhoneOtpChallengeMutation.mockReset().mockReturnValue(1);
+    mockInvalidatePhoneOtpChallengeMutation.mockReset().mockReturnValue(2);
     mockBack.mockClear();
     mockCanGoBack.mockReset();
     mockPush.mockClear();
@@ -247,6 +253,42 @@ describe('<LoginScreen />', () => {
 
     expect(mockVerifyPhoneOtp).toHaveBeenCalledWith(expect.objectContaining({ phone: '+8613800138000', purpose: 'recovery' }), '654321');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=recovery');
+  });
+
+  it('does not persist a late recovery challenge after returning to password login', async () => {
+    let resolveRecovery!: (value: {
+      accepted: true;
+      challengeId: string;
+      expiresAt: number;
+      issuedAt: number;
+      resendAllowedAt: number;
+      serverTime: number;
+    }) => void;
+    mockRequestPasswordRecoveryOtp.mockImplementationOnce(() => new Promise((resolve) => {
+      resolveRecovery = resolve;
+    }));
+    const screen = await renderLoginScreen();
+
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('忘记密码'));
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取重置验证码'));
+    await fireEvent.press(screen.getByText('返回密码登录'));
+    const now = Date.now();
+    await act(async () => {
+      resolveRecovery({
+        accepted: true,
+        challengeId: '40000000-0000-4000-8000-000000000040',
+        expiresAt: now + 300_000,
+        issuedAt: now,
+        resendAllowedAt: now + 60_000,
+        serverTime: now,
+      });
+      await Promise.resolve();
+    });
+
+    expect(screen.getByPlaceholderText('请输入登录密码')).toBeTruthy();
+    expect(mockWritePhoneOtpChallenge).not.toHaveBeenCalled();
   });
 
   it('restores an unexpired OTP challenge after the screen is reopened', async () => {

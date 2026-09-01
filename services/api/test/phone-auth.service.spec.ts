@@ -20,25 +20,66 @@ function service(error: { code?: string; message: string } | null = null) {
   const values = vi.fn(() => ({
     returning: vi.fn().mockResolvedValue([{ id: '10000000-0000-4000-8000-000000000010' }]),
   }));
+  let selectCall = 0;
+  const selectResults = [
+    [],
+    [{
+      dispatchLeaseUntil: new Date('2100-01-01T00:00:00.000Z'),
+      dispatchSequence: 1,
+      lastAttemptAt: null,
+      status: 'queued',
+    }],
+    [{ dispatchSequence: 1, status: 'dispatching' }],
+    [],
+    [{
+      dispatchLeaseUntil: new Date('2100-01-01T00:00:00.000Z'),
+      dispatchSequence: 2,
+      lastAttemptAt: null,
+      status: 'queued',
+    }],
+    [{ dispatchSequence: 2, status: 'dispatching' }],
+    [],
+  ];
   const transactionApi = {
     execute: vi.fn().mockResolvedValue(undefined),
     insert: vi.fn(() => ({ values })),
-    select: vi.fn(() => ({
-      from: vi.fn(() => ({
+    select: vi.fn(() => {
+      const result = selectResults[selectCall++] ?? [];
+      const terminal = { for: vi.fn().mockResolvedValue(result) };
+      const limit = vi.fn(() => terminal);
+      const orderBy = vi.fn(() => ({ limit }));
+      return {
+        from: vi.fn(() => ({
+          where: vi.fn(() => ({ limit, orderBy })),
+        })),
+      };
+    }),
+    update: vi.fn(() => ({
+      set: vi.fn(() => ({
         where: vi.fn(() => ({
-          limit: vi.fn(() => ({ for: vi.fn().mockResolvedValue([{ status: 'pending' }]) })),
+          returning: vi.fn().mockResolvedValue([{ id: '10000000-0000-4000-8000-000000000010' }]),
         })),
       })),
     })),
-    update: vi.fn(() => ({
-      set: vi.fn(() => ({ where: vi.fn().mockResolvedValue(undefined) })),
-    })),
   };
+  let activeTransactions = 0;
   const database = {
-    db: { transaction: vi.fn(async (operation: (transaction: typeof transactionApi) => unknown) => operation(transactionApi)) },
+    db: { transaction: vi.fn(async (operation: (transaction: typeof transactionApi) => unknown) => {
+      activeTransactions += 1;
+      try {
+        return await operation(transactionApi);
+      } finally {
+        activeTransactions -= 1;
+      }
+    }) },
   } as unknown as DatabaseService;
-  supabase.createClient.mockReturnValueOnce({ auth: { signInWithOtp } });
-  return { instance: new PhoneAuthService(config, database), signInWithOtp, values };
+  supabase.createClient.mockReturnValue({ auth: { signInWithOtp } });
+  return {
+    activeTransactions: () => activeTransactions,
+    instance: new PhoneAuthService(config, database),
+    signInWithOtp,
+    values,
+  };
 }
 
 async function startRecoveryAt(instance: PhoneAuthService, now: number) {
@@ -110,10 +151,12 @@ describe('PhoneAuthService', () => {
     expect(login.values).toHaveBeenCalledWith(expect.objectContaining({
       accountId: undefined,
       createdAt: new Date(now),
-      expiresAt: new Date(now + 5 * 60 * 1_000),
+      dispatchLeaseUntil: new Date(now + 30 * 1_000),
+      expiresAt: new Date(now + 30 * 1_000 + 5 * 60 * 1_000),
       otpNotBefore: new Date(Math.floor(now / 1_000) * 1_000),
       phoneDigest: expect.stringMatching(/^[a-f0-9]{64}$/u),
       purpose: 'login',
+      status: 'queued',
     }));
     expect(JSON.stringify(login.values.mock.calls)).not.toContain('+8613800138000');
     vi.useRealTimers();
@@ -142,6 +185,91 @@ describe('PhoneAuthService', () => {
     await expect(instance.start('+8613800138000', '203.0.113.8'))
       .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
         && error.message === 'phone_auth_unavailable');
+  });
+
+  it('does not hold a database transaction while the SMS provider is pending', async () => {
+    const { activeTransactions, instance, signInWithOtp } = service();
+    let completeSend!: () => void;
+    signInWithOtp.mockImplementationOnce(() => new Promise((resolve) => {
+      completeSend = () => resolve({ data: { session: null, user: null }, error: null });
+    }));
+
+    const pending = instance.start('+8613800138000', '203.0.113.8');
+    for (let attempt = 0; attempt < 20 && signInWithOtp.mock.calls.length === 0; attempt += 1) {
+      await Promise.resolve();
+    }
+    expect(signInWithOtp).toHaveBeenCalledTimes(1);
+    expect(activeTransactions()).toBe(0);
+    completeSend();
+    await expect(pending).resolves.toEqual(expect.objectContaining({ accepted: true }));
+  });
+
+  it('starts the five-minute challenge TTL when provider delivery completes', async () => {
+    vi.useFakeTimers();
+    const startedAt = 1_800_000_000_000;
+    vi.setSystemTime(startedAt);
+    const { instance, signInWithOtp } = service();
+    signInWithOtp.mockImplementationOnce(() => new Promise((resolve) => {
+      setTimeout(() => resolve({ data: { session: null, user: null }, error: null }), 10_000);
+    }));
+
+    const pending = instance.start('+8613800138000', '203.0.113.8');
+    await vi.advanceTimersByTimeAsync(10_000);
+    await expect(pending).resolves.toEqual(expect.objectContaining({
+      expiresAt: startedAt + 10_000 + 5 * 60 * 1_000,
+      issuedAt: startedAt + 10_000,
+      resendAllowedAt: startedAt + 10_000 + 60 * 1_000,
+    }));
+  });
+
+  it('hard-times out an ambiguous provider send after releasing every database connection', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(1_800_000_000_000);
+    const { activeTransactions, instance, signInWithOtp } = service();
+    signInWithOtp.mockImplementationOnce(() => new Promise(() => undefined));
+
+    const pending = instance.start('+8613800138000', '203.0.113.8');
+    const rejection = expect(pending).rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+      && error.message === 'phone_auth_unavailable');
+    await vi.advanceTimersByTimeAsync(15_000);
+    await rejection;
+    expect(activeTransactions()).toBe(0);
+
+    await expect(instance.start('+8613800138000', '203.0.113.8'))
+      .rejects.toSatisfy((error: unknown) => error instanceof Error && error.message === 'phone_otp_rate_limited');
+    expect(signInWithOtp).toHaveBeenCalledTimes(1);
+
+    await vi.advanceTimersByTimeAsync(5 * 60 * 1_000 + 1);
+    await expect(instance.start('+8613800138000', '203.0.113.8'))
+      .resolves.toEqual(expect.objectContaining({ accepted: true }));
+    expect(signInWithOtp).toHaveBeenCalledTimes(2);
+  });
+
+  it('releases database connections before five independent hanging supplier calls', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(1_800_000_000_000);
+    const fixtures = Array.from({ length: 5 }, () => service());
+    for (const fixture of fixtures) {
+      fixture.signInWithOtp.mockImplementationOnce(() => new Promise(() => undefined));
+    }
+    supabase.createClient.mockReset();
+    for (const fixture of fixtures) {
+      supabase.createClient.mockReturnValueOnce({ auth: { signInWithOtp: fixture.signInWithOtp } });
+    }
+
+    const pending = fixtures.map((fixture, index) => fixture.instance.start(
+      `+8613800138${String(index).padStart(3, '0')}`,
+      '203.0.113.8',
+    ));
+    const rejections = pending.map((request) => expect(request).rejects.toSatisfy((error: unknown) => (
+      error instanceof ServiceUnavailableException && error.message === 'phone_auth_unavailable'
+    )));
+    for (let attempt = 0; attempt < 30 && fixtures.some((fixture) => fixture.signInWithOtp.mock.calls.length === 0); attempt += 1) {
+      await Promise.resolve();
+    }
+    expect(fixtures.map((fixture) => fixture.activeTransactions())).toEqual([0, 0, 0, 0, 0]);
+    await vi.advanceTimersByTimeAsync(15_000);
+    await Promise.all(rejections);
   });
 
   it('commits every invalid attempt before rejecting and marks the terminal attempt outside the transaction', async () => {

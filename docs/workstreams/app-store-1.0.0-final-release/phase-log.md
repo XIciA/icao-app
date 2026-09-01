@@ -75,8 +75,9 @@
 ## 阶段 1：登录闭环与微信登录最终候选验证（2026-09-01）
 
 - OTP 挑战按启动代次保持唯一有效状态，退回、杀进程和重启可恢复；重发、旧码、过期、错误、限流和迟到请求均有聚焦测试。会话提交在 generation 所有权确认后才写入持久存储，迟到的 Supabase 初始化、刷新或监听事件不能覆盖较新的交互式登录。
+- OTP 供应商调用已移出数据库事务：短事务只负责手机号级持久 reservation/lease，发送使用 15 秒硬超时；超时后按完整验证码有效期隔离该手机号，成功后的五分钟有效期从供应商完成时间起算。客户端 challenge 的写入、清除和卸载共用 generation/tombstone 串行协议，迟到响应不能复活已清理状态。
 - 微信登录继续使用官方 OpenSDK `SendAuth`，业务代码、JS 桥、回调和配置均不暴露微信支付入口、商户资料或支付请求。门禁定义为“无应用可达支付能力”，不把官方 SDK 内部为兼容性保留的未调用类型误报为产品支付能力；iOS 归档检查应用侧未引用支付 API，Android 正式 APK/AAB 门禁必须读取 R8/DEX 后验结果。
 - iOS 已完成 clean prebuild、Pod 安装和 Release `iphonesimulator` 全量构建，`xcodebuild` 结果为 `BUILD SUCCEEDED`。Android 已完成 clean prebuild；当前宿主未安装 Android SDK，因此本轮没有声称 Android 原生编译或正式 APK/AAB 后验通过，正式 Android 构建链仍强制执行支付能力反证门禁。
-- `pnpm check:ci` 完整通过：根项目 132 个测试套件、786 个测试，API 31 个测试文件、513 个测试；另有登录聚焦客户端 46/46、API 21/21、StoreKit 130/130、生产迁移门禁 22/22 全部通过。根项目、contracts 和 API 的 typecheck、lint 与 build 均通过。
+- `pnpm check:ci` 完整通过：根项目 132 个测试套件、790 个测试，API 31 个测试文件、517 个测试；迁移清单精确校验 38 项并包含 0037，StoreKit 130/130、生产迁移门禁 22/22 全部通过。根项目、contracts 和 API 的 typecheck、lint 与 build 均通过。
 - Vercel 未修改、未构建、未部署。共享 `InfoScreen.tsx`、`legal-release-surface.ts` 和 contracts Web 入口相对 `origin/main` 为零差异；当前 Web resolver 选中的受保护文件与本分支差异交集仅为 Native 插件和依赖所必需的 `app.config.js`、`package.json`、`pnpm-lock.yaml`。旧批准 manifest 在 `origin/main` 自身已有历史红项，本阶段未重建或放宽该基线。
-- 生产 AppID、服务端 AppSecret、微信平台移动应用配置、Universal Link/AASA 线上可达性仍为 `WAITING_HUMAN`；候选门禁会在正式值缺失时失败，不会假绿，也不阻塞其余已完成代码和测试进入审查。
+- 生产 AppID、服务端 AppSecret、微信平台移动应用配置、Universal Link/AASA 线上可达性仍为 `WAITING_HUMAN`；非密钥批准真值由受版本控制的 `config/release/wechat-login.json` 单一维护，正式候选把该来源与构建 AppID/Universal Link、生产 challenge、API origin、AASA Team+Bundle+path 四向核对。当前缺真值的负向自测按预期失败，不会假绿，也不阻塞其余已完成代码和测试进入审查。

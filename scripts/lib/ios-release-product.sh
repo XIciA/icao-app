@@ -155,15 +155,6 @@ verify_ios_release_app() {
     echo 'The Release app still contains an Expo development resource bundle.' >&2
     exit 1
   fi
-  if ! find "$app_path" -print | grep -Eiq '/[^/]*WechatOpenSDK'; then
-    echo 'The Release app is missing the approved WeChat NoPay SDK.' >&2
-    exit 1
-  fi
-  if grep -aERl 'PayReq|WXPay|WechatOpenSDK_WithPay|wechat-sdk-android-with-mta' "$app_path" >/dev/null 2>&1; then
-    echo 'The Release app contains a forbidden WeChat payment or tracking marker.' >&2
-    exit 1
-  fi
-
   codesign --verify --deep --strict "$app_path"
 
   entitlements_path=$(mktemp "${TMPDIR:-/tmp}/icao-ios-entitlements.XXXXXX")

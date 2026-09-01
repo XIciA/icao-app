@@ -1,4 +1,8 @@
-import { createWechatNativeAuthBoundary, type NativeWechatAuthModule } from '../wechat-native-auth';
+import {
+  assertWechatChallengeMatchesNativeApp,
+  createWechatNativeAuthBoundary,
+  type NativeWechatAuthModule,
+} from '../wechat-native-auth';
 
 describe('WeChat native authorization boundary', () => {
   beforeEach(() => {
@@ -7,7 +11,23 @@ describe('WeChat native authorization boundary', () => {
 
   it('returns the audited native capability status', () => {
     const nativeModule = nativeModuleDouble();
-    expect(createWechatNativeAuthBoundary(nativeModule).getStatus()).toEqual({ configured: true, installed: true, supported: true });
+    expect(createWechatNativeAuthBoundary(nativeModule).getStatus()).toEqual({
+      appId: 'wx12345678',
+      configured: true,
+      installed: true,
+      supported: true,
+    });
+  });
+
+  it('rejects a production challenge from an App ID other than the one compiled into the app', () => {
+    const status = nativeModuleDouble().getStatus();
+    expect(() => assertWechatChallengeMatchesNativeApp('wx-different-app', status)).toThrow(
+      'wechat_auth_configuration_mismatch',
+    );
+    expect(() => assertWechatChallengeMatchesNativeApp(undefined, status)).toThrow(
+      'wechat_auth_configuration_mismatch',
+    );
+    expect(() => assertWechatChallengeMatchesNativeApp('wx12345678', status)).not.toThrow();
   });
 
   it('cancels only the timed-out request generation and a later request still succeeds', async () => {
@@ -46,6 +66,11 @@ function nativeModuleDouble(): jest.Mocked<NativeWechatAuthModule> {
   return {
     authorize: jest.fn(),
     cancelAuthorization: jest.fn(),
-    getStatus: jest.fn(() => ({ configured: true, installed: true, supported: true })),
+    getStatus: jest.fn(() => ({
+      appId: 'wx12345678',
+      configured: true,
+      installed: true,
+      supported: true,
+    })),
   };
 }

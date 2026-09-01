@@ -5,7 +5,7 @@ import type { RecentAuthPurpose, SocialAuthSessionResponse } from '@icao/contrac
 import { isChinaMobileE164 } from '@icao/contracts';
 import type { NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { and, desc, eq, gt, isNull, lte, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, inArray, isNull, lte, sql } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { phoneOtpIntents } from '../database/schema';
@@ -16,6 +16,8 @@ const RECOVERY_RESPONSE_FLOOR_MS = 350;
 export const PHONE_OTP_RESEND_INTERVAL_MS = 60 * 1_000;
 export const PHONE_OTP_TTL_MS = 5 * 60 * 1_000;
 export const PHONE_OTP_MAX_ATTEMPTS = 6;
+export const PHONE_OTP_PROVIDER_TIMEOUT_MS = 15 * 1_000;
+const PHONE_OTP_QUEUE_LEASE_MS = 30 * 1_000;
 type PhoneOtpPurpose = 'login' | RecentAuthPurpose;
 export type PhoneAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
@@ -36,7 +38,7 @@ export class PhoneAuthService {
   async start(phone: string, sourceIp: string): Promise<StartPhoneOtpResponse> {
     const startedAt = new Date();
     const challengeId = await this.reserveIntent(phone, 'login', undefined, startedAt);
-    return this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
+    return this.dispatchReservedIntent(phone, challengeId, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: {
         channel: 'sms',
@@ -58,7 +60,7 @@ export class PhoneAuthService {
     // Unknown phones and provider-side rejections use the same tracked response
     // shape and latency. No account-existence signal is exposed, while the
     // challenge remains recoverable in the client and will simply fail verify.
-    const challenge = await this.dispatchReservedIntent(phone, challengeId, requestedAt, async () => this.client(sourceIp).auth.signInWithOtp({
+    const challenge = await this.dispatchReservedIntent(phone, challengeId, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: { channel: 'sms', shouldCreateUser: false },
     }), true);
@@ -77,7 +79,7 @@ export class PhoneAuthService {
     }
     const startedAt = new Date();
     const challengeId = await this.reserveIntent(phone, purpose, source.user.id, startedAt);
-    return this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
+    return this.dispatchReservedIntent(phone, challengeId, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: { channel: 'sms', shouldCreateUser: false },
     }));
@@ -86,7 +88,7 @@ export class PhoneAuthService {
   async startBinding(source: VerifiedAuthSession, phone: string, sourceIp: string): Promise<StartPhoneBindingResponse> {
     const startedAt = new Date();
     const challengeId = await this.reserveIntent(phone, 'phone_binding', source.user.id, startedAt);
-    const challenge = await this.dispatchReservedIntent(phone, challengeId, startedAt, async () => this.client(sourceIp).auth.signInWithOtp({
+    const challenge = await this.dispatchReservedIntent(phone, challengeId, async () => this.client(sourceIp).auth.signInWithOtp({
       phone,
       options: {
         channel: 'sms',
@@ -186,8 +188,8 @@ export class PhoneAuthService {
       .digest('hex');
   }
 
-  private challengeWindow(startedAt: Date, challengeId: string): StartPhoneOtpResponse {
-    const issuedAt = startedAt.getTime();
+  private challengeWindow(sentAt: Date, challengeId: string): StartPhoneOtpResponse {
+    const issuedAt = sentAt.getTime();
     return {
       accepted: true,
       challengeId,
@@ -205,65 +207,85 @@ export class PhoneAuthService {
     startedAt: Date,
   ): Promise<string> {
     const phoneDigest = this.phoneDigest(phone);
-    const challengeId = await this.database.db.transaction(async (transaction) => {
-      // Reserve the generation before contacting the SMS provider. The same
-      // phone-scoped lock is used by dispatch below, so provider calls are
-      // serialized in reservation order and a late response can never become
-      // the active challenge merely because its supplier call completed last.
+    const reservation = await this.database.db.transaction(async (transaction) => {
+      // Reservation is intentionally short. Provider I/O happens later,
+      // outside every database transaction and connection lease.
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
       await transaction.update(phoneOtpIntents).set({
+        dispatchLeaseUntil: null,
+        status: 'failed',
+      }).where(and(
+        eq(phoneOtpIntents.phoneDigest, phoneDigest),
+        inArray(phoneOtpIntents.status, ['queued', 'dispatching', 'quarantined']),
+        lte(phoneOtpIntents.dispatchLeaseUntil, startedAt),
+      ));
+      const [activeDispatch] = await transaction.select({ id: phoneOtpIntents.id })
+        .from(phoneOtpIntents).where(and(
+          eq(phoneOtpIntents.phoneDigest, phoneDigest),
+          inArray(phoneOtpIntents.status, ['dispatching', 'quarantined']),
+          gt(phoneOtpIntents.dispatchLeaseUntil, startedAt),
+        )).limit(1).for('update');
+      if (activeDispatch) return { blocked: true as const };
+      await transaction.update(phoneOtpIntents).set({
         consumedAt: new Date(),
+        dispatchLeaseUntil: null,
         status: 'superseded',
       }).where(and(
         eq(phoneOtpIntents.phoneDigest, phoneDigest),
-        eq(phoneOtpIntents.status, 'pending'),
+        inArray(phoneOtpIntents.status, ['queued', 'pending']),
       ));
       const [created] = await transaction.insert(phoneOtpIntents).values({
         accountId,
         createdAt: startedAt,
-        expiresAt: new Date(startedAt.getTime() + PHONE_OTP_TTL_MS),
+        dispatchLeaseUntil: new Date(startedAt.getTime() + PHONE_OTP_QUEUE_LEASE_MS),
+        expiresAt: new Date(startedAt.getTime() + PHONE_OTP_QUEUE_LEASE_MS + PHONE_OTP_TTL_MS),
         otpNotBefore: new Date(Math.floor(startedAt.getTime() / 1_000) * 1_000),
         phoneDigest,
         purpose,
+        status: 'queued',
       }).returning({ id: phoneOtpIntents.id });
       if (!created) throw new ServiceUnavailableException('phone_auth_unavailable');
-      return created.id;
+      return { blocked: false as const, challengeId: created.id };
     });
-    return challengeId;
+    if (reservation.blocked) {
+      throw new HttpException('phone_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
+    }
+    return reservation.challengeId;
   }
 
   private async dispatchReservedIntent(
     phone: string,
     challengeId: string,
-    startedAt: Date,
     send: () => Promise<{ error: { code?: string } | null }>,
     hideProviderError = false,
     errorSurface: 'login' | 'binding' = 'login',
   ): Promise<StartPhoneOtpResponse> {
     const phoneDigest = this.phoneDigest(phone);
-    const outcome = await this.database.db.transaction(async (transaction) => {
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
-      const [reserved] = await transaction.select({ status: phoneOtpIntents.status })
-        .from(phoneOtpIntents)
-        .where(eq(phoneOtpIntents.id, challengeId))
-        .limit(1)
-        .for('update');
-      if (!reserved || reserved.status !== 'pending') return { kind: 'superseded' as const };
+    const claim = await this.claimDispatch(phoneDigest, challengeId, new Date());
+    if (claim === 'superseded') {
+      throw new HttpException('phone_otp_request_superseded', HttpStatus.CONFLICT);
+    }
+    if (claim === 'quarantined') {
+      throw new HttpException('phone_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
+    }
 
-      const { error } = await send();
-      const [stillCurrent] = await transaction.select({ status: phoneOtpIntents.status })
-        .from(phoneOtpIntents)
-        .where(eq(phoneOtpIntents.id, challengeId))
-        .limit(1)
-        .for('update');
-      if (!stillCurrent || stillCurrent.status !== 'pending') return { kind: 'superseded' as const };
-      if (error && !hideProviderError) {
-        await transaction.update(phoneOtpIntents).set({ status: 'failed' })
-          .where(and(eq(phoneOtpIntents.id, challengeId), eq(phoneOtpIntents.status, 'pending')));
-        return { code: error.code?.toLowerCase(), kind: 'provider_error' as const };
-      }
-      return { kind: 'sent' as const };
-    });
+    const provider = await this.sendWithHardTimeout(send);
+    if (provider.kind === 'timeout') {
+      // The supplier may still deliver after our timeout. Keep this phone
+      // generation quarantined for a complete OTP validity window; a newer
+      // request must never race a possibly-late supplier send.
+      await this.quarantineDispatch(phoneDigest, challengeId, new Date());
+      throw new ServiceUnavailableException('phone_auth_unavailable');
+    }
+    const completedAt = new Date();
+    const outcome = await this.finalizeDispatch(
+      phoneDigest,
+      challengeId,
+      completedAt,
+      provider.kind === 'provider_error',
+      provider.kind === 'provider_error' ? provider.code : undefined,
+      hideProviderError,
+    );
     if (outcome.kind === 'superseded') {
       throw new HttpException('phone_otp_request_superseded', HttpStatus.CONFLICT);
     }
@@ -276,7 +298,123 @@ export class PhoneAuthService {
       }
       this.throwStartError(outcome.code);
     }
-    return this.challengeWindow(startedAt, challengeId);
+    return this.challengeWindow(completedAt, challengeId);
+  }
+
+  private async claimDispatch(phoneDigest: string, challengeId: string, now: Date) {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
+      const [reserved] = await transaction.select({
+        dispatchLeaseUntil: phoneOtpIntents.dispatchLeaseUntil,
+        dispatchSequence: phoneOtpIntents.dispatchSequence,
+        lastAttemptAt: phoneOtpIntents.lastAttemptAt,
+        status: phoneOtpIntents.status,
+      }).from(phoneOtpIntents)
+        .where(eq(phoneOtpIntents.id, challengeId))
+        .limit(1)
+        .for('update');
+      if (!reserved || ['failed', 'superseded', 'consumed', 'pending'].includes(reserved.status)) {
+        return 'superseded' as const;
+      }
+      if (reserved.status === 'dispatching' || reserved.status === 'quarantined') {
+        return reserved.dispatchLeaseUntil && reserved.dispatchLeaseUntil > now
+          ? 'quarantined' as const
+          : 'superseded' as const;
+      }
+      if (reserved.status !== 'queued' || !reserved.dispatchLeaseUntil || reserved.dispatchLeaseUntil <= now) {
+        return 'superseded' as const;
+      }
+      const [claimed] = await transaction.update(phoneOtpIntents).set({
+        dispatchLeaseUntil: new Date(now.getTime() + PHONE_OTP_PROVIDER_TIMEOUT_MS + PHONE_OTP_TTL_MS),
+        lastAttemptAt: now,
+        status: 'dispatching',
+      }).where(and(
+        eq(phoneOtpIntents.id, challengeId),
+        eq(phoneOtpIntents.status, 'queued'),
+      )).returning({ id: phoneOtpIntents.id });
+      return claimed ? 'claimed' as const : 'superseded' as const;
+    });
+  }
+
+  private async quarantineDispatch(phoneDigest: string, challengeId: string, timedOutAt: Date) {
+    await this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
+      await transaction.update(phoneOtpIntents).set({
+        dispatchLeaseUntil: new Date(timedOutAt.getTime() + PHONE_OTP_TTL_MS),
+        expiresAt: new Date(timedOutAt.getTime() + PHONE_OTP_TTL_MS),
+        status: 'quarantined',
+      }).where(and(
+        eq(phoneOtpIntents.id, challengeId),
+        eq(phoneOtpIntents.status, 'dispatching'),
+      ));
+    });
+  }
+
+  private async sendWithHardTimeout(send: () => Promise<{ error: { code?: string } | null }>) {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const provider = send().then(
+      ({ error }) => error
+        ? { code: error.code?.toLowerCase(), kind: 'provider_error' as const }
+        : { kind: 'sent' as const },
+      () => ({ code: undefined, kind: 'provider_error' as const }),
+    );
+    const timeout = new Promise<{ kind: 'timeout' }>((resolve) => {
+      timer = setTimeout(() => resolve({ kind: 'timeout' }), PHONE_OTP_PROVIDER_TIMEOUT_MS);
+    });
+    try {
+      return await Promise.race([provider, timeout]);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+
+  private async finalizeDispatch(
+    phoneDigest: string,
+    challengeId: string,
+    completedAt: Date,
+    providerFailed: boolean,
+    providerErrorCode: string | undefined,
+    hideProviderError: boolean,
+  ) {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
+      const [reserved] = await transaction.select({
+        dispatchSequence: phoneOtpIntents.dispatchSequence,
+        status: phoneOtpIntents.status,
+      }).from(phoneOtpIntents).where(eq(phoneOtpIntents.id, challengeId)).limit(1).for('update');
+      if (!reserved || reserved.status !== 'dispatching') return { kind: 'superseded' as const };
+      const [newer] = await transaction.select({ id: phoneOtpIntents.id })
+        .from(phoneOtpIntents).where(and(
+          eq(phoneOtpIntents.phoneDigest, phoneDigest),
+          eq(phoneOtpIntents.status, 'queued'),
+          gt(phoneOtpIntents.dispatchSequence, reserved.dispatchSequence),
+        )).orderBy(asc(phoneOtpIntents.dispatchSequence)).limit(1).for('update');
+      if (newer) {
+        await transaction.update(phoneOtpIntents).set({
+          consumedAt: completedAt,
+          dispatchLeaseUntil: null,
+          providerCompletedAt: completedAt,
+          status: 'superseded',
+        }).where(eq(phoneOtpIntents.id, challengeId));
+        return { kind: 'superseded' as const };
+      }
+      if (providerFailed && !hideProviderError) {
+        await transaction.update(phoneOtpIntents).set({
+          dispatchLeaseUntil: null,
+          providerCompletedAt: completedAt,
+          status: 'failed',
+        }).where(eq(phoneOtpIntents.id, challengeId));
+        return { code: providerErrorCode, kind: 'provider_error' as const };
+      }
+      await transaction.update(phoneOtpIntents).set({
+        dispatchLeaseUntil: null,
+        expiresAt: new Date(completedAt.getTime() + PHONE_OTP_TTL_MS),
+        otpNotBefore: new Date(Math.floor(completedAt.getTime() / 1_000) * 1_000),
+        providerCompletedAt: completedAt,
+        status: 'pending',
+      }).where(eq(phoneOtpIntents.id, challengeId));
+      return { kind: 'sent' as const };
+    });
   }
 
   private async verifyChallenge(
@@ -298,9 +436,9 @@ export class PhoneAuthService {
         : sql`true`;
       const [intent] = await transaction.select({
         attemptCount: phoneOtpIntents.attemptCount,
-        createdAt: phoneOtpIntents.createdAt,
         expiresAt: phoneOtpIntents.expiresAt,
         id: phoneOtpIntents.id,
+        otpNotBefore: phoneOtpIntents.otpNotBefore,
         status: phoneOtpIntents.status,
       }).from(phoneOtpIntents).where(and(
         eq(phoneOtpIntents.id, challengeId),
@@ -321,8 +459,8 @@ export class PhoneAuthService {
       }).where(eq(phoneOtpIntents.id, intent.id));
       return {
         attemptCount: intent.attemptCount + 1,
-        createdAt: intent.createdAt,
         id: intent.id,
+        otpNotBefore: intent.otpNotBefore,
       };
     });
 
@@ -341,7 +479,7 @@ export class PhoneAuthService {
       // AMR is checked when available; the explicit challenge id remains the
       // authoritative resend generation and prevents a stale UI challenge from
       // consuming a newer request.
-      if (Number.isFinite(otpTimestamp) && otpTimestamp * 1_000 + 1_000 < reserved.createdAt.getTime()) {
+      if (Number.isFinite(otpTimestamp) && otpTimestamp * 1_000 + 1_000 < reserved.otpNotBefore.getTime()) {
         await this.markFailedAttempt(reserved.id, reserved.attemptCount);
         throw new ForbiddenException('invalid_phone_otp');
       }

@@ -125,12 +125,13 @@ public final class IcaoWechatAuthModule: Module {
     Name("IcaoWechatAuth")
 
     Function("getStatus") {
-      let configured = IcaoWechatAuthCoordinator.shared.configuration != nil
+      let configuration = IcaoWechatAuthCoordinator.shared.configuration
       return [
-        "configured": configured,
+        "appId": configuration?.appId ?? "",
+        "configured": configuration != nil,
         "installed": WXApi.isWXAppInstalled(),
         "supported": WXApi.isWXAppSupport()
-      ]
+      ] as [String : Any]
     }
 
     AsyncFunction("authorize") { (state: String, promise: Promise) in

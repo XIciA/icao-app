@@ -726,11 +726,9 @@ if (
   !iosReleaseProduct.includes('TeamIdentifier=') ||
   !iosReleaseProduct.includes('application-identifier') ||
   !iosReleaseProduct.includes('com.apple.developer.applesignin') ||
-  !iosReleaseProduct.includes('com.apple.developer.associated-domains') ||
-  !iosReleaseProduct.includes('WechatOpenSDK') ||
-  !iosReleaseProduct.includes('PayReq|WXPay|WechatOpenSDK_WithPay')
+  !iosReleaseProduct.includes('com.apple.developer.associated-domains')
 ) {
-  throw new Error('The shared iOS Release product integrity gate must compose StoreKit and WeChat NoPay checks.');
+  throw new Error('The shared iOS Release product integrity gate must compose StoreKit and Native entitlement checks.');
 }
 if (
   !iosTestFlightArchive.includes("-destination 'generic/platform=iOS'") ||
@@ -750,9 +748,32 @@ if (
   !releaseCommon.includes('settings.phone_autoconfirm === true') ||
   !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true') ||
   !releaseCommon.includes('/v1/auth/wechat/challenge') ||
-  !releaseCommon.includes("wechatBody?.data?.status !== 'available'")
+  !releaseCommon.includes("wechatBody?.data?.status !== 'available'") ||
+  !releaseCommon.includes('wechatBody?.data?.appId !== process.env.CHECK_WECHAT_APP_ID')
 ) {
   throw new Error('The Release runtime gate must verify phone, Apple, and production WeChat login readiness.');
+}
+for (const helper of [
+  'check_wechat_candidate_configuration()',
+  'check_wechat_android_project()',
+  'check_wechat_android_artifact()',
+  'check_wechat_ios_artifact()',
+]) {
+  if (!releaseCommon.includes(helper)) {
+    throw new Error(`The shared Release runtime is missing the formal WeChat candidate helper: ${helper}`);
+  }
+}
+for (const [name, source, invocations] of [
+  ['standalone iOS', iosStandalone, ['check_wechat_candidate_configuration', 'check_wechat_ios_artifact']],
+  ['TestFlight archive', iosTestFlightArchive, ['check_wechat_candidate_configuration', 'check_wechat_ios_artifact']],
+  ['TestFlight release', iosTestFlightRelease, ['check_wechat_candidate_configuration', 'check_wechat_ios_artifact']],
+  ['standalone Android', androidStandalone, ['check_wechat_android_project', 'check_wechat_android_artifact']],
+]) {
+  for (const invocation of invocations) {
+    if (!source.includes(invocation)) {
+      throw new Error(`${name} is missing its formal WeChat candidate gate: ${invocation}`);
+    }
+  }
 }
 for (const loginContract of [
   'OpenSDK2.0.7_NoPay.zip',
@@ -762,9 +783,22 @@ for (const loginContract of [
   'WECHAT_APP_SECRET',
   'payment_marker',
   'candidate_universal_link_missing',
+  'config/release/wechat-login.json',
+  'tracked_candidate_app_id_not_approved_or_mismatch',
+  'candidate_universal_link_api_origin_mismatch',
+  'candidate_android_wechat_callback_mismatch',
+  'candidate_ios_sendauth_symbol_missing',
 ]) {
   if (!wechatLoginRuntime.includes(loginContract)) {
     throw new Error(`The WeChat NoPay login contract is incomplete: ${loginContract}`);
+  }
+}
+for (const forbiddenFalsePositiveGate of [
+  'candidate_android_payment_class_retained',
+  'candidate_android_payment_class_removal_unproven',
+]) {
+  if (wechatLoginRuntime.includes(forbiddenFalsePositiveGate)) {
+    throw new Error(`Official OpenSDK compatibility classes must not be treated as app payment capability: ${forbiddenFalsePositiveGate}`);
   }
 }
 if (
