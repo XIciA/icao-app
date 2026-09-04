@@ -11,6 +11,7 @@ const {
   withGradleProperties,
   withInfoPlist,
 } = require('expo/config-plugins');
+const { normalizeWechatLoginCredentials } = require('../config/release/wechat-login-contract.cjs');
 
 const SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
 const SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
@@ -34,20 +35,12 @@ function addUnique(values, value) {
 }
 
 function normalizedConfiguration(properties = {}) {
-  const appId = String(properties.appId || '').trim();
-  const universalLink = String(properties.universalLink || '').trim();
-  if (Boolean(appId) !== Boolean(universalLink)) {
-    throw new Error('ICAO_WECHAT_APP_ID and ICAO_WECHAT_UNIVERSAL_LINK must be configured together');
+  try {
+    return normalizeWechatLoginCredentials(properties);
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : 'invalid';
+    throw new Error(`Invalid WeChat login configuration: ${reason}`);
   }
-  if (appId && !/^wx[0-9a-z]+$/iu.test(appId)) throw new Error('ICAO_WECHAT_APP_ID is invalid');
-  if (universalLink) {
-    const parsed = new URL(universalLink);
-    if (parsed.protocol !== 'https:') throw new Error('ICAO_WECHAT_UNIVERSAL_LINK must use https');
-    if (!parsed.pathname.endsWith('/') || parsed.search || parsed.hash) {
-      throw new Error('ICAO_WECHAT_UNIVERSAL_LINK must be a query-free HTTPS directory ending in /');
-    }
-  }
-  return { appId, universalLink };
 }
 
 function sha256File(file) {

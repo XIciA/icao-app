@@ -372,6 +372,8 @@ describe('base flow parity screens', () => {
     expect(screen.getByTestId('info-brand-logo')).toBeTruthy();
     expect(screen.getByLabelText('听你五个 App 标志')).toBeTruthy();
     expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
+    expect(screen.getByText('App 备案信息')).toBeTruthy();
+    expect(screen.getByText(/蜀ICP备2026045996号-1A/u)).toBeTruthy();
   });
 
   it('submits a profile feedback form and shows only the ticket number', async () => {

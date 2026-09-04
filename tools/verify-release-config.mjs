@@ -76,7 +76,7 @@ if (
   rootPackage.dependencies?.['@icao/wechat-auth'] !== 'file:modules/icao-wechat-auth' ||
   Object.hasOwn(rootPackage.dependencies ?? {}, 'expo-native-wechat')
 ) {
-  throw new Error('The StoreKit and approved WeChat NoPay dependency set must remain composed.');
+  throw new Error('The StoreKit and formal WeChat NoPay dependency set must remain composed.');
 }
 const originalVariant = process.env.ICAO_APP_VARIANT;
 process.env.ICAO_APP_VARIANT = 'development';
@@ -770,7 +770,10 @@ if (
   !iosReleaseProduct.includes('TeamIdentifier=') ||
   !iosReleaseProduct.includes('application-identifier') ||
   !iosReleaseProduct.includes('com.apple.developer.applesignin') ||
-  !iosReleaseProduct.includes('com.apple.developer.associated-domains')
+  !iosReleaseProduct.includes('com.apple.developer.associated-domains') ||
+  !iosReleaseProduct.includes("wechat_release_mode\" = 'approved'") ||
+  !iosReleaseProduct.includes("wechat_release_mode\" = 'pending'") ||
+  !iosReleaseProduct.includes('The pending Release app must not contain a WeChat associated domain.')
 ) {
   throw new Error('The shared iOS Release product integrity gate must compose StoreKit and Native entitlement checks.');
 }
@@ -792,7 +795,9 @@ if (
   !releaseCommon.includes('settings.phone_autoconfirm === true') ||
   !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true') ||
   !releaseCommon.includes('/v1/auth/wechat/challenge') ||
+  !releaseCommon.includes('CHECK_WECHAT_RELEASE_MODE') ||
   !releaseCommon.includes("wechatBody?.data?.status !== 'available'") ||
+  !releaseCommon.includes("wechatBody?.data?.status !== 'configuration_pending'") ||
   !releaseCommon.includes('wechatBody?.data?.appId !== process.env.CHECK_WECHAT_APP_ID')
 ) {
   throw new Error('The Release runtime gate must verify phone, Apple, and production WeChat login readiness.');
@@ -828,7 +833,7 @@ for (const loginContract of [
   'payment_marker',
   'candidate_universal_link_missing',
   'config/release/wechat-login.json',
-  'tracked_candidate_app_id_not_approved_or_mismatch',
+  'pending_release_must_not_embed_wechat_configuration',
   'candidate_universal_link_api_origin_mismatch',
   'candidate_android_wechat_callback_mismatch',
   'candidate_ios_sendauth_symbol_missing',

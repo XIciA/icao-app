@@ -5,10 +5,58 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const RUNTIME_CHECK = path.join(ROOT, 'tools/check-wechat-login-runtime.mjs');
 const RELEASE_COMMON = path.join(ROOT, 'scripts/lib/release-common.sh');
+const require = createRequire(import.meta.url);
+const {
+  normalizeWechatLoginCredentials,
+  resolveWechatLoginReleaseCapability,
+} = require('../config/release/wechat-login-contract.cjs');
+
+test('the shared WeChat release contract rejects ambiguous candidate credentials', () => {
+  assert.deepEqual(resolveWechatLoginReleaseCapability({
+    appId: null,
+    schemaVersion: 1,
+    status: 'WAITING_HUMAN',
+    universalLink: null,
+  }), {
+    appId: '',
+    enabled: false,
+    mode: 'pending',
+    universalLink: '',
+  });
+  assert.deepEqual(resolveWechatLoginReleaseCapability({
+    appId: 'wx1234567890abcdef',
+    schemaVersion: 1,
+    status: 'approved',
+    universalLink: 'https://api.readyoufife.com/wechat-auth/',
+  }), {
+    appId: 'wx1234567890abcdef',
+    enabled: true,
+    mode: 'approved',
+    universalLink: 'https://api.readyoufife.com/wechat-auth/',
+  });
+
+  for (const configuration of [
+    { appId: 'wxshort', universalLink: 'https://api.readyoufife.com/wechat-auth/' },
+    { appId: 'wx1234567890abcdef', universalLink: 'http://api.readyoufife.com/wechat-auth/' },
+    { appId: 'wx1234567890abcdef', universalLink: 'https://user:password@api.readyoufife.com/wechat-auth/' },
+    { appId: 'wx1234567890abcdef', universalLink: 'https://api.readyoufife.com/wechat-auth/?mode=test' },
+    { appId: 'wx1234567890abcdef', universalLink: 'https://api.readyoufife.com/wechat-auth/#callback' },
+    { appId: 'wx1234567890abcdef', universalLink: 'https://api.readyoufife.com/wechat-auth' },
+  ]) {
+    assert.throws(() => normalizeWechatLoginCredentials(configuration));
+  }
+  assert.throws(() => resolveWechatLoginReleaseCapability({
+    appId: 'wx1234567890abcdef',
+    schemaVersion: 1,
+    status: 'WAITING_HUMAN',
+    universalLink: 'https://api.readyoufife.com/wechat-auth/',
+  }));
+});
 
 test('the static WeChat runtime check resolves the repository from its own location', () => {
   const result = spawnSync(process.execPath, [RUNTIME_CHECK], {

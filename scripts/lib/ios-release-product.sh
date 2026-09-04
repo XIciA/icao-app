@@ -168,10 +168,23 @@ verify_ios_release_app() {
     echo 'The Release app is missing the Sign in with Apple entitlement.' >&2
     exit 1
   fi
-  wechat_host=$(printf '%s' "${ICAO_WECHAT_UNIVERSAL_LINK:-}" | sed -E 's#^https://([^/]+)/.*#\1#')
-  if [ -z "$wechat_host" ] || ! /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" 2>/dev/null | grep -Fxq "    applinks:$wechat_host"; then
+  wechat_release_mode=$("${NODE_BINARY:-node}" -p "require('$PROJECT_ROOT/config/release/wechat-login-contract.cjs').resolveWechatLoginReleaseCapability(require('$PROJECT_ROOT/config/release/wechat-login.json')).mode")
+  if [ "$wechat_release_mode" = 'approved' ]; then
+    wechat_host=$(printf '%s' "${ICAO_WECHAT_UNIVERSAL_LINK:-}" | sed -E 's#^https://([^/]+)/.*#\1#')
+    if [ -z "$wechat_host" ] || ! /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" 2>/dev/null | grep -Fxq "    applinks:$wechat_host"; then
+      rm -f "$entitlements_path"
+      echo 'The Release app is missing the WeChat Universal Link associated domain.' >&2
+      exit 1
+    fi
+  elif [ "$wechat_release_mode" = 'pending' ]; then
+    if /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" >/dev/null 2>&1; then
+      rm -f "$entitlements_path"
+      echo 'The pending Release app must not contain a WeChat associated domain.' >&2
+      exit 1
+    fi
+  else
     rm -f "$entitlements_path"
-    echo 'The Release app is missing the WeChat Universal Link associated domain.' >&2
+    echo 'The tracked WeChat release status is unsupported.' >&2
     exit 1
   fi
   rm -f "$entitlements_path"

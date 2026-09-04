@@ -1,8 +1,9 @@
 # App Store Connect 1.0.0 唯一最终字段包
 
 状态：固定字段已定稿；隐私自助能力、生产数据库/API 和五个正式公开页面的上一版已经就绪，
-本轮 AI 标识、模型备案与微信登录隐私披露 v4.2 源码尚待从最终主线发布；Apple 付费协议、银行和税务
-已经有效，中国大陆平台终检、真实微信配置、审核账号、IAP 验收和截图等门禁尚未全部通过，不可直接提交；
+本轮 AI 标识、模型备案与微信隐藏态源码尚待从最终主线发布；Apple 付费协议、银行和税务已经有效，
+中国大陆平台终检、审核账号、IAP 验收和截图等门禁尚未全部通过，不可直接提交；微信平台审核不再是
+1.0.0 门禁；
 平台专属事实仍按文中门禁当场补入，不在仓库保存凭据。
 
 适用范围：iOS App Store 1.0.0 简体中文字段包（含中国大陆合规）；App 与五档 IAP 只在中国大陆销售，
@@ -33,7 +34,7 @@
 | 内容版权（Content Rights） | 是，App 包含或访问第三方内容 | 公司或相关权利人已拥有必要权利；不宣称全部原创 |
 | 版权（Copyright） | `2026 云启航科（成都）科技有限公司` | 唯一拟录入值；负责人须先确认该公司是该字段所要求的权利主体 |
 | Support URL | `https://yunqihangke.com/apps/readyoufife/support/` | 已上线并提供 App 内反馈路径和产品支持邮箱；提交前验证邮箱可投递、收件和回复 |
-| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前线上为上一版；包含 AI 标识、模型备案与微信登录披露的 v4.2 源码须从最终主线发布后，才能与归档和生产数据流复核 |
+| Privacy Policy URL | `https://yunqihangke.com/apps/readyoufife/privacy/` | 当前线上页面可继续使用；最终归档按实际内嵌 SDK 与数据流反查披露，不因隐藏微信入口而删除必要的 SDK 披露 |
 | Privacy Choices URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 当前线上为上一版；包含 AI 导出标识与模型备案口径的源码须从最终主线发布；平台字段已保存 |
 | Marketing URL | 留空 | 首发不填 |
 | 新版本内容（What’s New） | 不适用 | 首个版本不填写 |
@@ -45,11 +46,11 @@
 
 以下各项是并列门禁，不能因固定字段已定稿而标记为可提交：
 
-1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；在最终候选中复核生产
-   微信登录生产路由、NoPay OpenSDK、Universal Link/AASA 可用，且不存在微信支付或客户端 AppSecret；同时复核 Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后，
+1. 生产备份、隔离恢复、数据库迁移和 API 发布已从干净 `origin/main` 完成；在最终候选中复核微信
+   入口隐藏、未嵌入 AppID/Universal Link、不存在微信支付或客户端 AppSecret；同时复核 Apple Notifications V2 可用、稳定 Device ID 不再发送或保存。可视化 Ops 延后到上架后，
    不是提交、审核或发布门禁。
 2. D7 冻结的账号/学习数据导出、清除学习数据及删除 AI 结果等用户入口已进入主线并通过聚焦验收，
-   当前 `official-site` 上一版五页和对应生产 API 已发布；本轮 v4.2 AI 标识、模型备案与微信登录披露源码须从最终主线重新发布，
+   当前 `official-site` 上一版五页和对应生产 API 已发布；本轮 Native AI 标识、模型备案与微信隐藏态源码须从最终主线发布，
    且在最终候选完成后反向确认线上公开文本与 App 的主体、平台范围、路径和数据权利一致。
 3. 完成下方 Support URL 可达性、中国大陆备案与组织合规门禁；App 与五档 IAP 只在中国大陆销售，
    欧盟不在范围，DSA 交易商验证不适用。
@@ -214,8 +215,8 @@ Nudity、Violence 和 Chance-Based Activities 分组。按下表逐项录入；�
 解释边界：Apple 处理且本产品及合作方不可访问的支付账户凭据不作为 Payment Info 申报；商品、订单、
 交易标识、退款和权益仍作为 Purchase History 申报。用户主动选择并提交反馈图片仍作为 Photos or
 Videos 申报，即使不申请完整相册权限。原始语音只在用户主动转写时上传且短期处理，仍主动申报
-Audio Data。微信 OpenSDK 仅用于用户主动发起的移动应用登录；微信账号标识属于已申报的 User ID，
-不用于跟踪或广告，且 1.0.0 不含微信支付。
+Audio Data。1.0.0 的微信入口在开放平台审核通过前隐藏；若最终归档仍内嵌微信 OpenSDK，则继续按
+User ID 和第三方 SDK 真实数据流披露，不用于跟踪或广告，且不含微信支付。
 
 ## 5. App Review Information
 
@@ -245,7 +246,7 @@ Audio Data。微信 OpenSDK 仅用于用户主动发起的移动应用登录；�
 
 【登录】请在登录页勾选已满16周岁并同意协议，然后选择“密码登录”，使用主要登录字段中的唯一审核账号。该账号为正常 Production 账号，不需要审核员接收短信或使用个人 Apple ID。
 
-【其他登录方式】也提供 Apple 与微信快捷登录；微信仅用于登录，不含微信支付。审核请使用上述密码账号。
+【其他登录方式】iOS 也提供 Apple 快捷登录。微信开放平台移动应用仍在审核，因此本版本不展示微信入口。审核请使用上述密码账号。
 
 【题库与会员】“题库”含听力、900句、陆空通话、OPI 和故事复诵。900句免费；锁定内容引导至会员页。
 
