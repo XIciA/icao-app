@@ -43,8 +43,8 @@
 
 ## 当前工作
 
-- App Store Connect 当前最高已上传 Build 为 `3493764`；源码和材料中的最终候选已为 `3493765`，
-  真实微信配置完成并通过发布门禁后，才允许从干净 `origin/main` 归档上传。
+- App Store Connect 当前最高已上传 Build 为 `3493764`；已把源码和材料候选递增为 `3493765`，真实
+  微信配置完成并通过发布门禁后，才允许从干净 `origin/main` 归档上传。
 - 真实微信 AppID、Universal Link 与服务端 AppSecret 继续保持 `WAITING_HUMAN`，不得以占位值制作候选；
   等待期间继续推进不依赖这些真值的材料、门禁和平台核对。
 
