@@ -44,7 +44,7 @@ test('the stale absolute baseline can pass only through the exact reviewed Nativ
     env: process.env,
   });
   requireSuccess(result, 'strict Native-only incremental proof failed');
-  assert.match(result.stdout, /5 exact reviewed deltas/u);
+  assert.match(result.stdout, /6 exact reviewed deltas/u);
   assert.match(result.stdout, /app\.json: identical after removing the matching Native build identifiers/u);
   assert.match(result.stdout, /contracts index: identical emitted JavaScript/u);
 });

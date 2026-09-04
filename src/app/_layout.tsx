@@ -119,14 +119,12 @@ export function AppStack() {
               <Stack.Screen name="annotations" />
               <Stack.Screen name="word-favorites" />
               <Stack.Screen name="content/[slug]" />
+              {includeNativeProtectedRoutes ? <Stack.Screen name="content/hotspot/[briefId]" /> : null}
               {includeNativeProtectedRoutes ? (
-                <>
-                  <Stack.Screen name="content/hotspot/[briefId]" />
-                  <Stack.Screen
-                    name="content/hotspot/[briefId]/study"
-                    options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
-                  />
-                </>
+                <Stack.Screen
+                  name="content/hotspot/[briefId]/study"
+                  options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />
               <Stack.Screen name="account/[slug]" />

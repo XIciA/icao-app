@@ -27,6 +27,7 @@ const approvedNativeIncrementHashes = new Map([
   ['package.json', 'cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e'],
   ['packages/contracts/src/index.ts', '8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4'],
   ['pnpm-lock.yaml', '96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9'],
+  ['src/app/_layout.tsx', '6e1e6c63667d5bff4816d0d195e71383fbca7d406d5a63120bdc32c2053dc732'],
 ]);
 const approvedNativeIncrementPaths = new Set([
   ...approvedNativeIncrementHashes.keys(),
