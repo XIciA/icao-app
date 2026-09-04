@@ -465,8 +465,10 @@ for (const requiredRehearsalSchemaContract of [
 }
 for (const requiredApplyContract of [
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN is required and must come from the read-only production ledger plan.',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN is derived from the immutable migration journal and must not be overridden.',
+  'node "$CONTRACT_TOOL" derive-post',
+  'services/api/drizzle/meta/_journal.json',
   'scripts/rehearse-production-migrations.sh',
   'icao-production-migration-apply.lock',
   'icao-production-release-change.lock',
@@ -478,7 +480,7 @@ for (const requiredApplyContract of [
   'test "$(evidence_value schema_contract_verified)" = 1',
   'rehearsal_schema_contract_sha=$(evidence_value schema_contract_sha256)',
   'automatic_production_restore=forbidden',
-  'manual_authorization_required_choose_forward_fix_or_verified_restore',
+  'after_migration_start_roll_forward_only_keep_old_api_closed',
   'production_migration_apply_ok',
 ]) {
   if (!productionMigrationApply.includes(requiredApplyContract)) {
