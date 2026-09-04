@@ -41,8 +41,10 @@ for (const contract of [
   '--print-confirmation',
   'ICAO_PRODUCTION_MIGRATION_CONFIRM',
   'APPLY_PRODUCTION_MIGRATIONS:',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0',
-  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN is required and must come from the read-only production ledger plan.',
+  'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN is derived from the immutable migration journal and must not be overridden.',
+  'node "$CONTRACT_TOOL" derive-post',
+  'services/api/drizzle/meta/_journal.json',
   'rehearse-production-migrations.sh',
   'parse-rehearsal',
   'characters unsafe for remote argument transport',
@@ -67,12 +69,31 @@ for (const contract of [
   'icao-production-migration-rehearsal.lock',
   'icao-postgres-backup.lock',
   'icao-production-release-change.lock',
+  '# BEGIN production-migration-cutover-locks',
+  '# END production-migration-cutover-locks',
   'backup_age',
   'rehearsal_age',
   'actual_backup_checksum_line=',
   'preexisting_fingerprint_mismatches',
   'cleanup_verified',
   'expected_image_release_id=production-migration-$source_id',
+  'candidate_runtime_root=/run/icao-production-migrations',
+  'candidate_runtime_env=$candidate_runtime_root/candidate-$source_id-$token_id.env',
+  'candidate_runtime_env_created=1',
+  'runtime_env_next=$runtime_api_dir/.env.next-$source_id-$token_id',
+  'runtime_compose_next=$runtime_api_dir/docker-compose.yml.next-$source_id-$token_id',
+  'runtime_source_next=$runtime_source.next',
+  'install -m 600 "$candidate_runtime_env" "$runtime_env_next"',
+  'install -m 600 "$work_dir/infra/api/docker-compose.runtime.yml" "$runtime_compose_next"',
+  'mv -- "$runtime_env_next" "$runtime_env"',
+  'mv -- "$runtime_compose_next" "$runtime_compose"',
+  'rm -f "$baked_image_env_file" "$pre_plan" "$post_plan" "$schema_contract"',
+  'cp -a "$work_dir" "$runtime_source_next"',
+  '# BEGIN production-migration-remote-cleanup',
+  '# END production-migration-remote-cleanup',
+  'could not remove protected candidate runtime environment:',
+  'could not remove staged live runtime file:',
+  'runtime source staging cleanup path is invalid',
   'trusted_python=/usr/bin/python3.10',
   '# BEGIN production-migration-trusted-python-guard',
   '# END production-migration-trusted-python-guard',
@@ -112,8 +133,39 @@ for (const contract of [
   'auth_user_count_observation=non_authoritative_concurrent_activity_allowed',
   'data_preservation_authority=isolated_rehearsal_preexisting_table_fingerprint',
   'automatic_production_restore=forbidden',
-  'manual_authorization_required_choose_forward_fix_or_verified_restore',
+  'after_migration_start_roll_forward_only_keep_old_api_closed',
+  '# BEGIN production-migration-candidate-run-config-preflight',
+  '# END production-migration-candidate-run-config-preflight',
+  'services/api/dist/src/config-preflight.js',
+  'stage=candidate_compose_preflight',
+  'docker compose --env-file "$runtime_env_next" -f "$runtime_compose_next" config',
+  '# BEGIN production-migration-cutover-drain-and-backup',
+  '# END production-migration-cutover-drain-and-backup',
+  'docker stop --time 60 icao-api',
+  "test \"$old_api_state\" = 'true healthy'",
+  'expected_old_image=$(docker image inspect --format',
+  'test "$old_running_image" = "$expected_old_image"',
+  'test "$observed_old_release_id" = "$old_running_release_id"',
+  "'0 false'|'143 false'",
+  'old API did not complete a graceful non-OOM drain:',
+  'cutover_backup=$(/bin/sh "$backup_tool")',
+  'test "$cutover_backup_mtime" -ge "$drain_completed_epoch"',
+  '# BEGIN production-migration-cutover-failure-policy',
+  '# END production-migration-cutover-failure-policy',
+  'Apply a reviewed forward-fix from a newer origin/main.',
+  '# BEGIN production-migration-cutover-cleanup-on-exit',
+  '# END production-migration-cutover-cleanup-on-exit',
+  "trap '' HUP INT TERM",
+  'cleanup_in_progress=1',
+  'post_cutover_housekeeping_failure_new_api_left_active',
+  'post_migration_roll_forward_only_api_closed',
+  'failure_origin_stage=$stage',
+  '# BEGIN production-migration-cutover-new-api',
+  '# END production-migration-cutover-new-api',
+  'docker compose -f "$runtime_compose" up -d --force-recreate api',
+  'cutover_committed=1',
   'restore-isolated.sh',
+  'unavailable_post_drain_backup_not_created',
   'publish_evidence failed',
   'publish_evidence succeeded',
   'require_root_owned_path file "$partial" 600',
@@ -290,18 +342,12 @@ const assertNodeRuntimeContract = (block, requiresRuntimeBinding) => {
   }
 };
 
-for (const name of ['target', 'pre-plan', 'apply', 'post-current', 'post-plan', 'schema']) {
+for (const name of ['config-preflight', 'target', 'pre-plan', 'apply', 'post-current', 'post-plan', 'schema']) {
   assertNodeRuntimeContract(extractMarkedBlock('candidate-run', name), true);
 }
 for (const name of ['pre-plan', 'post-plan', 'schema']) {
   assertNodeRuntimeContract(extractMarkedBlock('evidence-parser', name), false);
 }
-if ((applySource.match(/docker run --rm --network supabase_default --env-file "\$runtime_env"/gu) ?? [])
-  .length !== 6
-  || (applySource.match(/--entrypoint \/usr\/local\/bin\/node/gu) ?? []).length !== 9) {
-  throw new Error('production_migration_candidate_node_run_inventory_invalid');
-}
-
 const canonicalApplyCommand = extractMarkedBlock('candidate-run', 'apply');
 const exactIdentityOptionLine = '  -e "API_RELEASE_ID=$expected_image_release_id" \\\n';
 const staticAdversarialCommands = [
@@ -380,15 +426,44 @@ const migrateStart = applySource.indexOf('scripts/migrate.mjs --production-apply
 const confirmationCheck = applySource.indexOf('node "$CONTRACT_TOOL" confirm');
 const rehearsalStart = applySource.indexOf('scripts/rehearse-production-migrations.sh');
 const remoteStart = applySource.indexOf("<<'REMOTE'");
+const configPreflight = applySource.indexOf('stage=candidate_configuration_preflight', remoteStart);
+const composePreflight = applySource.indexOf('stage=candidate_compose_preflight', configPreflight);
+const runtimeEnvStage = applySource.indexOf('install -m 600 "$candidate_runtime_env" "$runtime_env_next"', composePreflight);
+const runtimeComposeStage = applySource.indexOf('install -m 600 "$work_dir/infra/api/docker-compose.runtime.yml" "$runtime_compose_next"', runtimeEnvStage);
+const composeConfigValidation = applySource.indexOf('docker compose --env-file "$runtime_env_next" -f "$runtime_compose_next" config', runtimeComposeStage);
+const drain = applySource.indexOf('stage=old_api_drain', composePreflight);
+const recoveryBackup = applySource.indexOf('stage=post_drain_backup', drain);
 const postCurrent = applySource.indexOf('migration-plan.mjs --require-current', migrateStart);
 const schemaVerification = applySource.indexOf('verify-production-schema-contract.mjs', postCurrent);
-const cleanup = applySource.indexOf('cleanup_remote_resources\ncleanup_verified=1', schemaVerification);
+const newApiCutover = applySource.indexOf('stage=new_api_cutover', schemaVerification);
+const runtimeEnvCommit = applySource.indexOf('mv -- "$runtime_env_next" "$runtime_env"', newApiCutover);
+const runtimeComposeCommit = applySource.indexOf('mv -- "$runtime_compose_next" "$runtime_compose"', runtimeEnvCommit);
+const newApiLiveVerifier = applySource.indexOf('services/api/scripts/verify-live.mjs', newApiCutover);
+const newApiReleaseHeader = applySource.indexOf('test "$active_release_id" = "$expected_image_release_id"', newApiLiveVerifier);
+const cutoverCommit = applySource.indexOf('cutover_committed=1', newApiCutover);
+const sourceHousekeeping = applySource.indexOf('stage=runtime_source_housekeeping', cutoverCommit);
+const generatedArtifactCleanup = applySource.indexOf('rm -f "$baked_image_env_file" "$pre_plan" "$post_plan" "$schema_contract"', sourceHousekeeping);
+const runtimeSourceCopy = applySource.indexOf('cp -a "$work_dir" "$runtime_source_next"', generatedArtifactCleanup);
+const cleanup = applySource.indexOf('cleanup_remote_resources\ncleanup_verified=1', cutoverCommit);
 const success = applySource.indexOf('publish_evidence succeeded', cleanup);
-if ([confirmationCheck, rehearsalStart, remoteStart, migrateStart, postCurrent, schemaVerification, cleanup, success]
+if ([confirmationCheck, rehearsalStart, remoteStart, configPreflight, composePreflight, runtimeEnvStage,
+  runtimeComposeStage, composeConfigValidation, drain, recoveryBackup,
+  migrateStart, postCurrent, schemaVerification, newApiCutover, newApiLiveVerifier, newApiReleaseHeader,
+  runtimeEnvCommit, runtimeComposeCommit, cutoverCommit, sourceHousekeeping, generatedArtifactCleanup,
+  runtimeSourceCopy, cleanup, success]
   .some((value) => value < 0)
-    || !(confirmationCheck < rehearsalStart && rehearsalStart < remoteStart && remoteStart < migrateStart)
+    || !(confirmationCheck < rehearsalStart && rehearsalStart < remoteStart
+      && remoteStart < configPreflight && configPreflight < composePreflight
+      && composePreflight < runtimeEnvStage && runtimeEnvStage < runtimeComposeStage
+      && runtimeComposeStage < composeConfigValidation && composeConfigValidation < drain
+      && drain < recoveryBackup
+      && recoveryBackup < migrateStart)
     || !(migrateStart < postCurrent && postCurrent < schemaVerification
-      && schemaVerification < cleanup && cleanup < success)) {
+      && schemaVerification < newApiCutover && newApiCutover < runtimeEnvCommit
+      && runtimeEnvCommit < runtimeComposeCommit && runtimeComposeCommit < newApiLiveVerifier
+      && newApiLiveVerifier < newApiReleaseHeader && newApiReleaseHeader < cutoverCommit
+      && cutoverCommit < sourceHousekeeping && sourceHousekeeping < generatedArtifactCleanup
+      && generatedArtifactCleanup < runtimeSourceCopy && runtimeSourceCopy < cleanup && cleanup < success)) {
   throw new Error('production_migration_apply_success_order_invalid');
 }
 

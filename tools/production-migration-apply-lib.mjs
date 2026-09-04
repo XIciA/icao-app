@@ -24,6 +24,29 @@ export function validatePlanTransition(preValue, postValue) {
   return { post, pre };
 }
 
+export function deriveJournalBoundPostPlan(preValue, journal) {
+  const pre = parsePlan(preValue, 'expected_pre_plan');
+  if (pre.pending < 1) throw new Error('expected_pre_plan_requires_pending_migrations');
+  if (journal?.dialect !== 'postgresql' || !Array.isArray(journal.entries)) {
+    throw new Error('migration_journal_invalid');
+  }
+  journal.entries.forEach((entry, index) => {
+    if (entry?.idx !== index
+      || !Number.isSafeInteger(entry.when)
+      || typeof entry.tag !== 'string'
+      || entry.tag.length === 0) {
+      throw new Error(`migration_journal_entry_invalid:${index}`);
+    }
+  });
+  const migrationCount = journal.entries.length;
+  if (pre.applied + pre.pending !== migrationCount) {
+    throw new Error(
+      `expected_pre_plan_not_bound_to_journal:${pre.applied}:${pre.pending}:${migrationCount}`,
+    );
+  }
+  return `${migrationCount}:0:0`;
+}
+
 export function productionMigrationConfirmation({ postPlan, prePlan, sourceSha }) {
   if (!SHA_PATTERN.test(sourceSha)) throw new Error('source_sha_invalid');
   validatePlanTransition(prePlan, postPlan);

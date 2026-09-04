@@ -210,6 +210,34 @@ OTP 子状态统一为：
 
 ## 六、App Store 与发布技术方案
 
+### 6.0 生产数据库与 API 原子切换
+
+- 正式迁移确认不再包含写死的历史计划。操作人先从候选提交对生产 ledger 的只读计划取得
+  `applied:pending:drift`；脚本用同一提交内的 Drizzle journal 推导唯一终点，并拒绝不等于
+  `journal.entries.length:0:0` 的计划。当前 `0034 -> 0041` 的完整候选应为
+  `35:7:0 -> 42:0:0`，但该示例不能代替执行时重新读取 ledger。
+- 候选镜像在任何正式写库前，必须使用即将安装的完整候选环境执行 `config-preflight`。生产
+  `SUPABASE_URL` 必须是 API 所在私网可达的 HTTP origin；公网或与公开 API origin 相同的地址直接阻断。
+  候选环境只允许存在于 root-only 的 `/run/icao-production-migrations` 临时文件，不能进入 staged source、
+  runtime source 或 tar，并由成功/失败清理路径删除；drain 前还必须执行候选 compose 的只读 `config` 预检。
+  即将生效的 live env 与 compose 先写入其各自目标目录内的 `0600` 临时文件，通过预检后才以同文件系统
+  原子重命名替换；`runtime_source.next` 复制前删除所有本轮生成物，成功和失败路径都必须清理残留。
+- 同一 `icao-production-release-change.lock` 覆盖候选预检、旧 API 停止接流量与优雅 drain、drain 后即时
+  二次 PostgreSQL 备份和 checksum、迁移、schema 合同验证、新 API 启动与 readiness。第二份备份的
+  mtime 必须不早于 drain 完成时间；演练前备份只用于隔离演练，不作为 cutover 的权威恢复点。drain 前
+  必须复核运行中旧 API 的镜像 ID、健康状态、readiness 与 release header 一致。
+- 在任何迁移写入前失败，可且只能恢复旧 API：先用完整 60 秒窗口幂等停止并记录 exit/OOM 状态，再仅
+  启动一次，独立等待 readiness，最后验证原镜像 ID、`Running` 与原 release header；不能把守护进程仍在
+  异步完成的旧 stop 误判为可直接启动。一旦迁移命令开始，0041 协议升级进入
+  roll-forward-only，旧 API 保持关闭，禁止自动或无声恢复旧备份。后续只允许从新的 `origin/main`
+  提交执行经过复核的 forward-fix；数据库恢复仍需单独授权并先完成隔离恢复验证。
+- 发布证据分别记录演练备份与 post-drain 备份、drain 时间、旧/新 API 身份、迁移前后计划、失败阶段、
+  `roll_forward_only`、失败语义和 cutover 提交状态。cutover 已提交后的清理失败必须明确保留新 API，不能
+  误报为迁移失败关闭；新 API 只有 readiness、live verifier 与 release header 三者均通过后才立即提交
+  cutover 状态，随后 runtime source 整理失败也不得停止这个健康实例。失败清理入口会屏蔽后续终止信号，
+  保留原始失败阶段，并保证恢复策略、清理和失败证据不中途再次中断。
+  仓库测试或文档不得把尚未实际执行的迁移写成生产证据。
+
 ### 6.1 候选包
 
 - 2026-09-04 已确认 App Store Connect 当前最高已上传 Build 为 `3493764`；本轮正式产物候选固定递增为
