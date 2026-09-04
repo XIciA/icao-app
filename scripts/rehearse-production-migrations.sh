@@ -511,14 +511,18 @@ docker run --rm --network supabase_default --env-file "$database_env" \
   node services/api/scripts/verify-production-schema-contract.mjs > "$schema_contract"
 docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
-  if (p.status !== "verified" || p.readOnly !== true || p.requiredTables !== 56
+  if (p.status !== "verified" || p.readOnly !== true
+      || p.requiredTables !== p.expectedPublicTables
       || p.expectedPublicTables !== 59 || p.actualPublicTables !== 59
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
       || p.commerceProducts !== 5 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.unexpectedPublicTableOwners !== 0 || p.defaultAclOwners !== 1
       || p.serverOnlyClientDefaultTableGrants !== 0
-      || p.deviceDigestColumns !== 0) process.exit(1);
+      || p.deviceDigestColumns !== 0) {
+    console.error("migration_rehearsal_schema_contract_mismatch");
+    process.exit(1);
+  }
 '
 schema_contract_sha=$(sha256sum "$schema_contract" | awk '{ print $1 }')
 case "$schema_contract_sha" in

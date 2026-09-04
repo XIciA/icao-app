@@ -122,8 +122,10 @@ for (const contract of [
   'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN="$expected_post_plan"',
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
+  'p.requiredTables !== p.expectedPublicTables',
   'p.expectedPublicTables !== 59',
   'p.actualPublicTables !== 59',
+  'production_migration_schema_contract_mismatch',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
   'p.unexpectedPublicTableOwners !== 0',
@@ -183,6 +185,10 @@ for (const contract of [
   '# END migration-rehearsal-schema-contract-verification',
   'services/api/scripts/verify-production-schema-contract.mjs',
   '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
+  'p.requiredTables !== p.expectedPublicTables',
+  'p.expectedPublicTables !== 59',
+  'p.actualPublicTables !== 59',
+  'migration_rehearsal_schema_contract_mismatch',
   'p.serverOnlyClientGrants !== 0',
   'p.unexpectedPublicTableOwners !== 0',
   'p.defaultAclOwners !== 1',
@@ -193,6 +199,9 @@ for (const contract of [
   if (!rehearsalSource.includes(contract)) {
     throw new Error(`production_migration_rehearsal_schema_contract_missing:${contract}`);
   }
+}
+if (applySource.includes('p.requiredTables !== 56') || rehearsalSource.includes('p.requiredTables !== 56')) {
+  throw new Error('production_migration_schema_contract_stale_required_table_count');
 }
 for (const contract of [
   'test "$(evidence_value schema_contract_verified)" = 1',
