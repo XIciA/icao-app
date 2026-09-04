@@ -68,6 +68,16 @@ test('the static WeChat runtime check resolves the repository from its own locat
   assert.match(result.stdout, /Official WeChat SendAuth runtime verified \(static gate/u);
 });
 
+test('the iOS candidate audit requires the SendAuth source call and Objective-C metadata', () => {
+  const result = spawnSync(process.execPath, [RUNTIME_CHECK, '--self-test-ios-macho-metadata'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /iOS WeChat source and Mach-O metadata self-test passed/u);
+});
+
 test('the Android project helper injects the release Android environment from an android cwd', async () => {
   const fixtureRoot = await mkdtemp(path.join(tmpdir(), 'icao-wechat-release-helper-'));
   try {
