@@ -63,6 +63,29 @@
 - Build `3493765` 版本与材料 PR 通过后可合入；只有真实微信配置完成并通过候选发布门禁后，才能从
   干净 `origin/main` 归档上传最终 TestFlight 包。
 
+## 生产迁移 cutover 候选实现（2026-09-04，未执行）
+
+- 实现基线：`origin/main` `8b130ad8d26be249d666839dd1d645e5893d7439`；短期分支
+  `codex/app-store-1.0.0-migration-cutover`。本记录只说明代码候选，不代表已连接生产、已迁移、已部署或
+  已取得生产证据。
+- 正式迁移计划改为“生产只读 ledger 起点 + 当前提交 migration journal 终点”的双向绑定，不再默认
+  `34:1:0 -> 35:0:0`。代码与测试覆盖 `0034 -> 0041` 的 `35:7:0 -> 42:0:0`，以及部分应用后从
+  实际剩余 suffix 继续 forward-fix。
+- 候选镜像以即将安装的完整 runtime env 在所有写库前执行不可跳过的 `config-preflight`；现有生产配置
+  规则会拒绝公开或与 API 同源的 `SUPABASE_URL`。
+- 正式脚本把共享发布锁、旧 API 优雅 drain、drain 后即时备份/checksum、迁移、schema 验证和新 API
+  readiness/live verifier/release header 收敛为一个 cutover。迁移前恢复会先完成一次 60 秒幂等停止，
+  记录 exit/OOM，再单次启动并复核原镜像、Running、readiness 与原 release header；迁移开始后失败保持 API 关闭，并明确
+  `roll-forward-only`，不自动恢复数据库。
+- 新增/加强的聚焦测试覆盖：journal 动态终点、0041 minimum schema 绑定、共享锁竞争、候选临时环境清理、
+  候选预检顺序、live 配置同目录原子替换、第二终止信号、旧在途请求先于备份完成、备份时间点、备份失败、
+  快时钟完整 grace window 后才 settle 的旧 API 恢复、原镜像/release 不一致拒绝、迁移后 fail-closed、cutover 提交后
+  source housekeeping 失败语义和部分迁移后的 forward-fix 计划。本地隔离聚焦测试于 2026-09-04
+  通过；这不代表生产迁移或部署已经执行。
+- 正式执行继续受 [仓库与 GitHub 管理规则](../../rules/repository-and-github-management.md)、
+  [交付与验收规则](../../rules/problem-solving-and-maintenance/delivery-and-acceptance.md) 约束：只能从已进入
+  干净 `origin/main` 的提交执行，并仍需生产迁移/部署的明确授权。Vercel 不在本候选范围内。
+
 ## 阶段 1：登录闭环与微信登录技术审计（2026-09-01）
 
 - 执行基线：`origin/main` `47ab26200b458d4612d1dc8a361b48e1b7ed476f`；本阶段只在短期分支实现，不执行生产迁移、部署或合并。

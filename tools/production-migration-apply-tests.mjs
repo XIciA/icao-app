@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import {
   chmod,
   mkdir,
@@ -17,6 +18,7 @@ import test from 'node:test';
 
 import {
   assertProductionMigrationConfirmation,
+  deriveJournalBoundPostPlan,
   parseRehearsalSuccess,
   productionMigrationConfirmation,
   summarizeNonAuthoritativeRowCounts,
@@ -28,8 +30,8 @@ import {
 } from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const sourceSha = 'a'.repeat(40);
-const prePlan = '34:1:0';
-const postPlan = '35:0:0';
+const prePlan = '35:7:0';
+const postPlan = '42:0:0';
 const backupName = 'icao-20260825T165825Z-1151356.dump';
 const evidencePath = '/opt/icao/runtime/migration-rehearsals/evidence/rehearsal-aaaaaaaaaaaa-20260825T170000Z.txt';
 const successLine = `production_migration_rehearsal_ok source=${sourceSha} backup=${backupName} pre=${prePlan} post=${postPlan} evidence=${evidencePath}`;
@@ -142,7 +144,7 @@ test('binds the destructive confirmation to the full immutable source and exact 
     postPlan,
   }), expected);
   assert.throws(() => assertProductionMigrationConfirmation({
-    confirmation: expected.replace('34:1:0', '34:2:0'),
+    confirmation: expected.replace(prePlan, '35:6:0'),
     sourceSha,
     prePlan,
     postPlan,
@@ -159,6 +161,39 @@ test('rejects unsafe or inconsistent expected plans', () => {
   ]) {
     assert.throws(() => validatePlanTransition(...plans));
   }
+});
+
+test('derives the target from the immutable journal and binds 0034 through 0041 exactly', () => {
+  const journal = {
+    dialect: 'postgresql',
+    entries: Array.from({ length: 42 }, (_, idx) => ({ idx, tag: `${idx}`, when: idx + 1 })),
+  };
+  assert.equal(deriveJournalBoundPostPlan('35:7:0', journal), '42:0:0');
+  assert.equal(deriveJournalBoundPostPlan('39:3:0', journal), '42:0:0');
+  assert.throws(() => deriveJournalBoundPostPlan('34:1:0', journal), /not_bound_to_journal/u);
+  assert.throws(() => deriveJournalBoundPostPlan('42:0:0', journal), /requires_pending/u);
+  assert.throws(() => deriveJournalBoundPostPlan('35:7:0', {
+    ...journal,
+    entries: journal.entries.map((entry) => ({ ...entry })).with(41, {
+      ...journal.entries[41], idx: 40,
+    }),
+  }), /entry_invalid/u);
+});
+
+test('binds minimumSchemaVersion to the exact roll-forward-only 0041 journal entry', async () => {
+  const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
+    readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0041_jazzy_blazing_skull.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
+  ]);
+  const journal = JSON.parse(journalSource);
+  const entry = journal.entries.at(-1);
+  const hash = createHash('sha256').update(migrationSource).digest('hex');
+  assert.equal(entry.idx, 41);
+  assert.equal(entry.tag, '0041_jazzy_blazing_skull');
+  assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
+  assert.ok(databaseServiceSource.includes('createdAt: 1_788_504_217_004'));
+  assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 
 test('treats live row counts as non-authoritative across deletion and net-zero turnover', () => {
@@ -299,7 +334,9 @@ test('--print-confirmation emits exactly one stdout line and no stderr', async (
   const fixturePath = await mkdtemp(join(tmpdir(), 'icao-production-migration-confirmation-'));
   const fixture = await realpath(fixturePath);
   try {
-    for (const directory of ['scripts/lib', 'tools']) await mkdir(join(fixture, directory), { recursive: true });
+    for (const directory of ['scripts/lib', 'tools', 'services/api/drizzle/meta']) {
+      await mkdir(join(fixture, directory), { recursive: true });
+    }
     for (const relativePath of [
       'scripts/apply-production-migrations.sh',
       'scripts/lib/release-common.sh',
@@ -312,9 +349,13 @@ test('--print-confirmation emits exactly one stdout line and no stderr', async (
         await readFile(new URL(`../${relativePath}`, import.meta.url), 'utf8'),
       );
     }
+    await writeFile(join(fixture, 'services/api/drizzle/meta/_journal.json'), JSON.stringify({
+      dialect: 'postgresql',
+      entries: Array.from({ length: 42 }, (_, idx) => ({ idx, tag: `${idx}`, when: idx + 1 })),
+    }));
     const git = (...args) => spawnSync('git', args, { cwd: fixture, encoding: 'utf8' });
     assert.equal(git('init', '-b', 'main').status, 0);
-    assert.equal(git('add', 'scripts', 'tools').status, 0);
+    assert.equal(git('add', 'scripts', 'tools', 'services').status, 0);
     assert.equal(git('-c', 'user.name=ICAO Test', '-c', 'user.email=icao-test@example.invalid',
       'commit', '-m', 'test fixture').status, 0);
     const fixtureSha = git('rev-parse', 'HEAD').stdout.trim();
@@ -324,7 +365,11 @@ test('--print-confirmation emits exactly one stdout line and no stderr', async (
     const result = spawnSync('/bin/sh', [join(fixture, 'scripts/apply-production-migrations.sh'),
       '--print-confirmation'], {
       encoding: 'utf8',
-      env: { ...process.env, ICAO_PRODUCTION_MIGRATION_SOURCE_ROOT: fixture },
+      env: {
+        ...process.env,
+        ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN: prePlan,
+        ICAO_PRODUCTION_MIGRATION_SOURCE_ROOT: fixture,
+      },
     });
     const expected = `APPLY_PRODUCTION_MIGRATIONS:${fixtureSha}:${prePlan}:${postPlan}\n`;
     assert.equal(result.status, 0, result.stderr);
@@ -566,9 +611,17 @@ ${guard}
   }
 });
 
-test('Docker CLI argv model secures all six candidate runs against baked env and entrypoint state', async () => {
+test('Docker CLI argv model secures all seven candidate runs against baked env and entrypoint state', async () => {
   const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
-  const candidateNames = ['target', 'pre-plan', 'apply', 'post-current', 'post-plan', 'schema'];
+  const candidateNames = [
+    'config-preflight',
+    'target',
+    'pre-plan',
+    'apply',
+    'post-current',
+    'post-plan',
+    'schema',
+  ];
   const candidateCommands = candidateNames.map((name) => {
     const startMarker = `# BEGIN production-migration-candidate-run-${name}`;
     const endMarker = `# END production-migration-candidate-run-${name}`;
@@ -750,6 +803,7 @@ entrypoint=$entrypoint_value
     const run = (command, expectRuntimeBinding = true) => spawnSync('/bin/sh', ['-c', `
 set -eu
 runtime_env="$TEST_RUNTIME_ENV"
+candidate_runtime_env="$TEST_RUNTIME_ENV"
 expected_image_release_id="$EXPECTED_RELEASE_ID"
 image="$EXPECTED_IMAGE"
 source_sha=${sourceSha}
@@ -1115,6 +1169,22 @@ confirmation="APPLY_PRODUCTION_MIGRATIONS:${sourceSha}:${prePlan}:${postPlan}"
 backup_name=${backupName}
 backup_sha=${'d'.repeat(64)}
 backup="/opt/icao/backups/postgres/${backupName}"
+backup_root=/opt/icao/backups/postgres
+cutover_backup_name=icao-20260904T010203Z-42.dump
+cutover_backup_sha=${'9'.repeat(64)}
+drain_completed_at=2026-09-04T01:02:02Z
+cutover_backup_completed_at=2026-09-04T01:02:04Z
+old_running_image=sha256:${'8'.repeat(64)}
+old_running_release_id=previous-release
+old_api_exit_state='143 false'
+old_api_drain_started=1
+old_api_drained=1
+old_api_restart_verified=0
+new_api_started=1
+cutover_committed=1
+roll_forward_only=0
+failure_semantics=not_applicable
+failure_origin_stage=unavailable
 rehearsal_evidence="${evidencePath}"
 expected_pre_plan=${prePlan}
 expected_post_plan=${postPlan}
@@ -1131,6 +1201,7 @@ after_auth_users=11
 rehearsal_schema_contract_sha=${'f'.repeat(64)}
 schema_contract_sha=${'e'.repeat(64)}
 cleanup_verified=1
+cleanup_in_progress=0
 publish_evidence succeeded
 `], {
         encoding: 'utf8',
@@ -1162,6 +1233,478 @@ publish_evidence succeeded
     const successful = await run('success');
     assert.equal(successful.result.status, 0, successful.result.stderr);
     assert.equal(successful.files.length, 1);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('the candidate runtime environment is outside staged source and removed by cleanup', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const startMarker = '# BEGIN production-migration-remote-cleanup';
+  const endMarker = '# END production-migration-remote-cleanup';
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  assert.ok(source.includes('candidate_runtime_root=/run/icao-production-migrations'));
+  assert.equal(source.includes('candidate_runtime_env=$work_dir/'), false);
+  const cleanup = source.slice(start, end + endMarker.length);
+  const fixture = await mkdtemp(join(tmpdir(), 'icao-production-candidate-env-'));
+  try {
+    const root = join(fixture, 'runtime');
+    const candidateRuntimeRoot = join(fixture, 'run');
+    const runtimeApiDir = join(fixture, 'runtime-api');
+    const runtimeEnvNext = join(runtimeApiDir, '.env.next-aaaaaaaaaaaa-bbbbbbbbbbbb');
+    const runtimeComposeNext = join(runtimeApiDir, 'docker-compose.yml.next-aaaaaaaaaaaa-bbbbbbbbbbbb');
+    const runtimeSource = join(fixture, 'source');
+    const runtimeSourceNext = `${runtimeSource}.next`;
+    const candidateRuntimeEnv = join(candidateRuntimeRoot, 'candidate-aaaaaaaaaaaa-bbbbbbbbbbbb.env');
+    await mkdir(root);
+    await mkdir(candidateRuntimeRoot);
+    await mkdir(runtimeApiDir);
+    await writeFile(candidateRuntimeEnv, 'SECRET=not-archived\n');
+    await writeFile(runtimeEnvNext, 'SECRET=staged\n');
+    await writeFile(runtimeComposeNext, 'services: {}\n');
+    await mkdir(runtimeSourceNext);
+    await writeFile(join(runtimeSourceNext, 'partial-generated-file'), 'remove me\n');
+    const result = spawnSync('/bin/sh', ['-c', `
+set -eu
+${cleanup}
+cleanup_migration_image() { :; }
+root="$TEST_ROOT"
+work_dir="$root/.work-test"
+work_dir_created=0
+upload="$root/upload.tar.gz"
+checksum="$upload.sha256"
+candidate_runtime_root="$TEST_CANDIDATE_ROOT"
+candidate_runtime_env="$TEST_CANDIDATE_ENV"
+candidate_runtime_env_created=1
+runtime_api_dir="$TEST_RUNTIME_API_DIR"
+runtime_env_next="$TEST_RUNTIME_ENV_NEXT"
+runtime_env_next_created=1
+runtime_compose_next="$TEST_RUNTIME_COMPOSE_NEXT"
+runtime_compose_next_created=1
+runtime_source="$TEST_RUNTIME_SOURCE"
+runtime_source_next="$TEST_RUNTIME_SOURCE_NEXT"
+runtime_source_next_created=1
+trap cleanup_remote_resources EXIT
+exit 47
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        TEST_CANDIDATE_ENV: candidateRuntimeEnv,
+        TEST_CANDIDATE_ROOT: candidateRuntimeRoot,
+        TEST_ROOT: root,
+        TEST_RUNTIME_API_DIR: runtimeApiDir,
+        TEST_RUNTIME_COMPOSE_NEXT: runtimeComposeNext,
+        TEST_RUNTIME_ENV_NEXT: runtimeEnvNext,
+        TEST_RUNTIME_SOURCE: runtimeSource,
+        TEST_RUNTIME_SOURCE_NEXT: runtimeSourceNext,
+      },
+    });
+    assert.equal(result.status, 47, result.stderr);
+    await assert.rejects(readFile(candidateRuntimeEnv, 'utf8'), /ENOENT/u);
+    await assert.rejects(readFile(runtimeEnvNext, 'utf8'), /ENOENT/u);
+    await assert.rejects(readFile(runtimeComposeNext, 'utf8'), /ENOENT/u);
+    await assert.rejects(readFile(runtimeSourceNext, 'utf8'), /ENOENT/u);
+  } finally {
+    await rm(fixture, { force: true, recursive: true });
+  }
+});
+
+test('the shared cutover lock fails closed under real lock contention', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const startMarker = '# BEGIN production-migration-cutover-locks';
+  const endMarker = '# END production-migration-cutover-locks';
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-cutover-lock-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    await mkdir(fakeBin);
+    await writeFile(join(fakeBin, 'flock'), `#!/usr/bin/python3
+import fcntl
+import sys
+
+fd = int(sys.argv[-1])
+fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+`);
+    await chmod(join(fakeBin, 'flock'), 0o700);
+    const lockNames = [
+      'icao-production-migration-apply.lock',
+      'icao-production-migration-rehearsal.lock',
+      'icao-postgres-backup.lock',
+      'icao-production-release-change.lock',
+    ];
+    let block = source.slice(start + startMarker.length, end);
+    for (const name of lockNames) {
+      block = block.replaceAll(`/run/lock/${name}`, join(root, name));
+    }
+    const releaseLock = join(root, 'icao-production-release-change.lock');
+    const result = spawnSync('/bin/sh', ['-c', `
+set -eu
+prepare_lock_file() { : > "$1"; }
+exec 5<>"$RELEASE_LOCK"
+flock -n 5
+${block}
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        RELEASE_LOCK: releaseLock,
+      },
+    });
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /production API or Ops release change is still running/u);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('cutover failure policy settles one stop window before restart and fails closed after migration starts', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-cutover-failure-policy');
+  const endMarker = '# END production-migration-cutover-failure-policy';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const policy = source.slice(start, end + endMarker.length);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-cutover-policy-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    const stateFile = join(root, 'running-state');
+    const callsFile = join(root, 'calls');
+    const clockFile = join(root, 'clock');
+    await mkdir(fakeBin);
+    await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
+set -eu
+printf '%s\n' "$*" >> "$MOCK_CALLS_FILE"
+case "$1" in
+  start)
+    [ "\${MOCK_START_FAIL:-0}" != 1 ] || exit 71
+    printf 'true\n' > "$MOCK_STATE_FILE"
+    ;;
+  stop)
+    case "$2:$3" in --time:60|--time:30) ;; *) exit 70 ;; esac
+    printf 'stop_begin_%s\n' "$3" >> "$MOCK_CALLS_FILE"
+    if [ "\${MOCK_FULL_GRACE:-0}" = 1 ] && [ "$3" = 60 ]; then sleep 60; fi
+    printf 'false\n' > "$MOCK_STATE_FILE"
+    printf 'stop_settled_%s\n' "$3" >> "$MOCK_CALLS_FILE"
+    ;;
+  inspect)
+    if [ "\${2:-}" = icao-api ]; then exit 0; fi
+    [ "$2" = -f ]
+    case "$3" in
+      *Image*) printf '%s\n' "$MOCK_OBSERVED_IMAGE" ;;
+      *Running*) cat "$MOCK_STATE_FILE" ;;
+      *ExitCode*) printf '%s\n' "$MOCK_OBSERVED_EXIT_STATE" ;;
+      *) exit 72 ;;
+    esac
+    ;;
+  *) exit 73 ;;
+esac
+`);
+    await writeFile(join(fakeBin, 'curl'), `#!/bin/sh
+case "$*" in
+  *'-D -'*) printf 'HTTP/1.1 200 OK\r\nX-ICAO-API-Version: %s\r\n\r\n' "$MOCK_OBSERVED_RELEASE" ;;
+esac
+exit 0
+`);
+    await writeFile(join(fakeBin, 'sleep'), `#!/bin/sh
+set -eu
+clock=$(cat "$MOCK_CLOCK_FILE")
+printf '%s\n' "$((clock + $1))" > "$MOCK_CLOCK_FILE"
+printf 'sleep_%s\n' "$1" >> "$MOCK_CALLS_FILE"
+`);
+    await chmod(join(fakeBin, 'docker'), 0o700);
+    await chmod(join(fakeBin, 'curl'), 0o700);
+    await chmod(join(fakeBin, 'sleep'), 0o700);
+    const oldImage = `sha256:${'a'.repeat(64)}`;
+    const run = (migrationStarted, {
+      committed = 0,
+      fullGrace = 0,
+      initialState = migrationStarted === 1 ? 'true' : 'false',
+      observedExitState = '0 false',
+      observedImage = oldImage,
+      observedRelease = 'old-release',
+      startFail = 0,
+    } = {}) => {
+      spawnSync('/bin/sh', ['-c', `printf '${initialState}\\n' > "$MOCK_STATE_FILE"; printf '0\\n' > "$MOCK_CLOCK_FILE"; : > "$MOCK_CALLS_FILE"`], {
+        env: {
+          ...process.env,
+          MOCK_CALLS_FILE: callsFile,
+          MOCK_CLOCK_FILE: clockFile,
+          MOCK_STATE_FILE: stateFile,
+        },
+      });
+      return spawnSync('/bin/sh', ['-c', `
+set -eu
+${policy}
+old_api_drained=1
+old_api_drain_started=1
+cutover_committed=${committed}
+migration_started=${migrationStarted}
+old_running_image="$MOCK_OLD_IMAGE"
+old_running_release_id=old-release
+old_api_restart_verified=0
+old_api_exit_state=unavailable
+roll_forward_only=0
+failure_semantics=not_applicable
+stage=test
+enforce_cutover_failure_policy
+printf 'restart=%s roll_forward=%s drained=%s state=%s\n' \
+  "$old_api_restart_verified" "$roll_forward_only" "$old_api_drained" "$(cat "$MOCK_STATE_FILE")"
+printf 'semantics=%s\n' "$failure_semantics"
+printf 'exit_state=%s\n' "$old_api_exit_state"
+`], {
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          MOCK_CALLS_FILE: callsFile,
+          MOCK_CLOCK_FILE: clockFile,
+          MOCK_FULL_GRACE: String(fullGrace),
+          MOCK_OBSERVED_EXIT_STATE: observedExitState,
+          MOCK_OBSERVED_IMAGE: observedImage,
+          MOCK_OBSERVED_RELEASE: observedRelease,
+          MOCK_OLD_IMAGE: oldImage,
+          MOCK_START_FAIL: String(startFail),
+          MOCK_STATE_FILE: stateFile,
+          PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+        },
+      });
+    };
+
+    const beforeMigration = run(0);
+    assert.equal(beforeMigration.status, 0, beforeMigration.stderr);
+    assert.match(beforeMigration.stdout, /restart=1 roll_forward=0 drained=0 state=true/u);
+    assert.match(beforeMigration.stdout, /semantics=pre_migration_failure_old_api_restored/u);
+    assert.match(beforeMigration.stdout, /exit_state=0 false/u);
+    assert.match(await readFile(callsFile, 'utf8'), /^stop --time 60 icao-api[\s\S]*stop_settled_60[\s\S]*inspect -f .*Running.* icao-api[\s\S]*inspect -f .*ExitCode.* icao-api[\s\S]*start icao-api/mu);
+
+    const fullGraceStop = run(0, { fullGrace: 1, initialState: 'true', observedExitState: '137 false' });
+    assert.equal(fullGraceStop.status, 0, fullGraceStop.stderr);
+    assert.match(fullGraceStop.stdout, /restart=1 roll_forward=0 drained=0 state=true/u);
+    assert.match(fullGraceStop.stdout, /exit_state=137 false/u);
+    assert.equal((await readFile(clockFile, 'utf8')).trim(), '60');
+    assert.match(await readFile(callsFile, 'utf8'), /stop_begin_60[\s\S]*sleep_60[\s\S]*stop_settled_60[\s\S]*start icao-api/u);
+
+    const imageMismatch = run(0, { observedImage: `sha256:${'b'.repeat(64)}` });
+    assert.notEqual(imageMismatch.status, 0);
+    assert.match(imageMismatch.stderr, /image does not match the drained image/u);
+
+    const releaseMismatch = run(0, { observedRelease: 'wrong-release' });
+    assert.notEqual(releaseMismatch.status, 0);
+    assert.match(releaseMismatch.stderr, /release header does not match the drained release/u);
+
+    const afterMigration = run(1);
+    assert.equal(afterMigration.status, 0, afterMigration.stderr);
+    assert.match(afterMigration.stdout, /restart=0 roll_forward=1 drained=1 state=false/u);
+    assert.match(afterMigration.stdout, /semantics=post_migration_roll_forward_only_api_closed/u);
+    assert.match(afterMigration.stderr, /old API remains closed/u);
+    assert.equal((await readFile(callsFile, 'utf8')).includes('start icao-api'), false);
+
+    const committed = run(1, { committed: 1 });
+    assert.equal(committed.status, 0, committed.stderr);
+    assert.match(committed.stdout, /semantics=post_cutover_housekeeping_failure_new_api_left_active/u);
+    assert.equal(await readFile(callsFile, 'utf8'), '');
+
+    const restartFailure = run(0, { startFail: 1 });
+    assert.notEqual(restartFailure.status, 0);
+    assert.match(restartFailure.stderr, /could not be restarted after reaching a stopped state/u);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('cleanup ignores a second termination signal and distinguishes post-commit failure', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const startMarker = '# BEGIN production-migration-cutover-cleanup-on-exit';
+  const endMarker = '# END production-migration-cutover-cleanup-on-exit';
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const cleanup = source.slice(start, end + endMarker.length);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-cleanup-signal-'));
+  try {
+    const events = join(root, 'events');
+    const run = (committed) => spawnSync('/bin/sh', ['-c', `
+set -eu
+${cleanup}
+enforce_cutover_failure_policy() {
+  printf 'cleanup_entered\n' >> "$TEST_EVENTS"
+  kill -TERM "$$"
+  printf 'cleanup_survived_second_signal\n' >> "$TEST_EVENTS"
+  stage=policy_internal_stage
+}
+cleanup_remote_resources() {
+  stage=remote_cleanup_internal_stage
+  printf 'remote_cleanup_completed\n' >> "$TEST_EVENTS"
+}
+publish_evidence() {
+  printf 'failure_origin_stage=%s\n' "$failure_origin_stage" >> "$TEST_EVENTS"
+  printf 'failure_evidence_published\n' >> "$TEST_EVENTS"
+  printf '/tmp/evidence\n'
+}
+stage=test
+cleanup_verified=0
+cutover_committed=${committed}
+trap cleanup_on_exit EXIT
+trap 'exit 1' HUP INT TERM
+kill -TERM "$$"
+`], {
+      encoding: 'utf8',
+      env: { ...process.env, TEST_EVENTS: events },
+    });
+
+    const preCommit = run(0);
+    assert.notEqual(preCommit.status, 0);
+    assert.match(await readFile(events, 'utf8'), /cleanup_survived_second_signal/u);
+
+    await writeFile(events, '');
+    const postCommit = run(1);
+    assert.notEqual(postCommit.status, 0);
+    assert.match(postCommit.stderr, /cutover committed; post-commit housekeeping failed/u);
+    assert.doesNotMatch(postCommit.stderr, /failed closed/u);
+    assert.deepEqual((await readFile(events, 'utf8')).trim().split('\n'), [
+      'cleanup_entered',
+      'cleanup_survived_second_signal',
+      'remote_cleanup_completed',
+      'failure_origin_stage=test',
+      'failure_evidence_published',
+    ]);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('drain waits for old in-flight work and the authoritative backup is created afterward', async () => {
+  const source = await readFile(new URL('../scripts/apply-production-migrations.sh', import.meta.url), 'utf8');
+  const start = source.indexOf('# BEGIN production-migration-cutover-drain-and-backup');
+  const endMarker = '# END production-migration-cutover-drain-and-backup';
+  const end = source.indexOf(endMarker);
+  assert.ok(start >= 0 && end > start);
+  const block = source.slice(start, end + endMarker.length);
+  const root = await mkdtemp(join(tmpdir(), 'icao-production-cutover-drain-'));
+  try {
+    const fakeBin = join(root, 'bin');
+    const backupRoot = join(root, 'backups');
+    const cutoverRecordDir = join(root, 'cutover-record');
+    const runtimeEnv = join(root, 'runtime.env');
+    const runtimeCompose = join(root, 'compose.yml');
+    const backupTool = join(root, 'backup.sh');
+    const stateFile = join(root, 'running-state');
+    const orderFile = join(root, 'order');
+    await mkdir(fakeBin);
+    await mkdir(backupRoot);
+    await writeFile(runtimeEnv, 'NODE_ENV=production\n');
+    await writeFile(runtimeCompose, 'services: {}\n');
+    await writeFile(stateFile, 'true\n');
+    await writeFile(orderFile, '');
+    await writeFile(join(fakeBin, 'docker'), `#!/bin/sh
+set -eu
+case "$1" in
+  image)
+    [ "$2" = inspect ]
+    printf 'sha256:%064d\n' 0
+    ;;
+  inspect)
+    [ "$2" = -f ]
+    case "$3" in
+      *Image*) printf 'sha256:%064d\n' 0 ;;
+      *Health*) printf 'true healthy\n' ;;
+      *Running*) cat "$MOCK_STATE_FILE" ;;
+      *ExitCode*) printf '%s\n' "$MOCK_EXIT_STATE" ;;
+      *) exit 81 ;;
+    esac
+    ;;
+  exec) printf 'old-release\n' ;;
+  stop)
+    printf 'old_inflight_request_completed\n' >> "$MOCK_ORDER_FILE"
+    printf 'false\n' > "$MOCK_STATE_FILE"
+    ;;
+  *) exit 82 ;;
+esac
+`);
+    await writeFile(join(fakeBin, 'curl'), `#!/bin/sh
+case "$*" in
+  *'-D -'*) printf 'HTTP/1.1 200 OK\r\nX-ICAO-API-Version: old-release\r\n\r\n' ;;
+esac
+exit 0
+`);
+    await writeFile(backupTool, `#!/bin/sh
+set -eu
+test "$(cat "$MOCK_STATE_FILE")" = false
+printf 'backup_started_after_drain\n' >> "$MOCK_ORDER_FILE"
+target="$MOCK_BACKUP_ROOT/icao-20260904T010203Z-42.dump"
+printf 'isolated fixture\n' > "$target"
+if [ "\${MOCK_STALE_BACKUP:-0}" = 1 ]; then touch -t 200001010000 "$target"; fi
+digest=$(sha256sum "$target" | awk '{ print $1 }')
+printf '%s  %s\n' "$digest" "$(basename "$target")" > "$target.sha256"
+chmod 600 "$target" "$target.sha256"
+printf '%s\n' "$target"
+`);
+    await writeFile(join(fakeBin, 'stat'), `#!/bin/sh
+set -eu
+[ "$1" = -c ]
+[ "$2" = %Y ]
+if [ "\${MOCK_STALE_BACKUP:-0}" = 1 ]; then printf '1\n'; else date +%s; fi
+`);
+    await chmod(join(fakeBin, 'docker'), 0o700);
+    await chmod(join(fakeBin, 'curl'), 0o700);
+    await chmod(join(fakeBin, 'stat'), 0o700);
+    await chmod(backupTool, 0o700);
+    const run = ({ exitState = '143 false', stale = 0 } = {}) => spawnSync('/bin/sh', ['-c', `
+set -eu
+require_root_owned_path() { :; }
+cutover_record_dir="$MOCK_CUTOVER_RECORD_DIR"
+runtime_env="$MOCK_RUNTIME_ENV"
+runtime_compose="$MOCK_RUNTIME_COMPOSE"
+backup_tool="$MOCK_BACKUP_TOOL"
+backup_root="$MOCK_BACKUP_ROOT"
+old_api_drained=0
+old_api_drain_started=0
+stage=test
+${block}
+printf 'drained=%s backup=%s sha=%s\n' "$old_api_drained" "$cutover_backup_name" "$cutover_backup_sha"
+`], {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        MOCK_BACKUP_ROOT: backupRoot,
+        MOCK_BACKUP_TOOL: backupTool,
+        MOCK_CUTOVER_RECORD_DIR: cutoverRecordDir,
+        MOCK_EXIT_STATE: exitState,
+        MOCK_ORDER_FILE: orderFile,
+        MOCK_RUNTIME_COMPOSE: runtimeCompose,
+        MOCK_RUNTIME_ENV: runtimeEnv,
+        MOCK_STALE_BACKUP: String(stale),
+        MOCK_STATE_FILE: stateFile,
+        PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
+      },
+    });
+
+    const success = run();
+    assert.equal(success.status, 0, success.stderr);
+    assert.match(success.stdout, /drained=1 backup=icao-20260904T010203Z-42.dump sha=[a-f0-9]{64}/u);
+    assert.deepEqual((await readFile(orderFile, 'utf8')).trim().split('\n'), [
+      'old_inflight_request_completed',
+      'backup_started_after_drain',
+    ]);
+
+    await rm(cutoverRecordDir, { force: true, recursive: true });
+    await rm(join(backupRoot, 'icao-20260904T010203Z-42.dump'), { force: true });
+    await rm(join(backupRoot, 'icao-20260904T010203Z-42.dump.sha256'), { force: true });
+    await writeFile(stateFile, 'true\n');
+    await writeFile(orderFile, '');
+    const stale = run({ stale: 1 });
+    assert.notEqual(stale.status, 0);
+
+    await rm(cutoverRecordDir, { force: true, recursive: true });
+    await writeFile(stateFile, 'true\n');
+    const forcedKill = run({ exitState: '137 false' });
+    assert.notEqual(forcedKill.status, 0);
+    assert.match(forcedKill.stderr, /did not complete a graceful/u);
   } finally {
     await rm(root, { force: true, recursive: true });
   }

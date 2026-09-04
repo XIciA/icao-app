@@ -32,9 +32,18 @@ fi
 
 SOURCE_SHA=$(git -C "$SOURCE_ROOT" rev-parse HEAD)
 SOURCE_ID=$(printf '%.12s' "$SOURCE_SHA")
-EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-34:1:0}
-EXPECTED_POST_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-35:0:0}
 CONTRACT_TOOL=$SOURCE_ROOT/tools/production-migration-apply-contract.mjs
+EXPECTED_PRE_PLAN=${ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN:-}
+if [ -z "$EXPECTED_PRE_PLAN" ]; then
+  echo 'ICAO_PRODUCTION_MIGRATION_EXPECTED_PRE_PLAN is required and must come from the read-only production ledger plan.' >&2
+  exit 1
+fi
+if [ -n "${ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN:-}" ]; then
+  echo 'ICAO_PRODUCTION_MIGRATION_EXPECTED_POST_PLAN is derived from the immutable migration journal and must not be overridden.' >&2
+  exit 1
+fi
+EXPECTED_POST_PLAN=$(node "$CONTRACT_TOOL" derive-post "$EXPECTED_PRE_PLAN" \
+  "$SOURCE_ROOT/services/api/drizzle/meta/_journal.json")
 
 if [ "$PRINT_CONFIRMATION" = 1 ]; then
   node "$CONTRACT_TOOL" print-confirmation "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN"
@@ -250,15 +259,46 @@ backup_root=/opt/icao/backups/postgres
 backup=$backup_root/$backup_name
 image=icao-api:production-migration-$source_id-$token_id
 expected_image_release_id=production-migration-$source_id
+runtime_compose=/opt/icao/runtime/api/docker-compose.yml
+runtime_source=/opt/icao/runtime/source
+runtime_api_dir=$(dirname "$runtime_env")
+runtime_env_next=$runtime_api_dir/.env.next-$source_id-$token_id
+runtime_compose_next=$runtime_api_dir/docker-compose.yml.next-$source_id-$token_id
+runtime_source_next=$runtime_source.next
+candidate_runtime_root=/run/icao-production-migrations
+candidate_runtime_env=$candidate_runtime_root/candidate-$source_id-$token_id.env
+cutover_root=$root/cutovers
+cutover_record_dir=$cutover_root/cutover-$source_id-$token_id
+backup_tool=/opt/icao/runtime/backup-tools/current/backup-postgres.sh
 stage=remote_preflight
 migration_started=0
 migration_completed=0
+old_api_drain_started=0
+old_api_drained=0
+old_api_restart_verified=0
+roll_forward_only=0
+new_api_started=0
+cutover_committed=0
 cleanup_verified=0
+cleanup_in_progress=0
 image_created=0
 work_dir_created=0
+candidate_runtime_env_created=0
+runtime_env_next_created=0
+runtime_compose_next_created=0
+runtime_source_next_created=0
+failure_semantics=not_applicable
+failure_origin_stage=unavailable
 pre_summary=unavailable
 post_summary=unavailable
 backup_sha=unavailable
+cutover_backup_name=unavailable
+cutover_backup_sha=unavailable
+drain_completed_at=unavailable
+cutover_backup_completed_at=unavailable
+old_running_image=unavailable
+old_running_release_id=unavailable
+old_api_exit_state=unavailable
 schema_contract_sha=unavailable
 rehearsal_schema_contract_sha=unavailable
 before_business_rows=unavailable
@@ -268,7 +308,7 @@ after_auth_users=unavailable
 before_migrations=unavailable
 after_migrations=unavailable
 
-for command_name in awk basename cat chmod date dirname docker flock grep install mv rm sed sha256sum stat tar; do
+for command_name in awk basename cat chmod cp curl date dirname docker flock grep install mv rm sed seq sha256sum sleep stat tar tr; do
   command -v "$command_name" >/dev/null 2>&1 || {
     echo "required remote production migration command is missing: $command_name" >&2
     exit 1
@@ -394,18 +434,30 @@ prepare_lock_file() {
 }
 # END production-migration-lock-guard
 
-for directory in "$root" "$root/uploads" "$evidence_dir" "$backup_root" \
+for directory in "$root" "$root/uploads" "$evidence_dir" "$backup_root" "$runtime_api_dir" \
   "$(dirname "$rehearsal_evidence")"; do
   require_root_owned_path directory "$directory" 700
 done
-for protected_file in "$upload" "$checksum" "$runtime_env" "$backup" "$backup.sha256" \
+if [ -e "$cutover_root" ] || [ -L "$cutover_root" ]; then
+  require_root_owned_path directory "$cutover_root" 700
+else
+  install -d -m 700 "$cutover_root"
+fi
+if [ -e "$candidate_runtime_root" ] || [ -L "$candidate_runtime_root" ]; then
+  require_root_owned_path directory "$candidate_runtime_root" 700
+else
+  install -d -m 700 "$candidate_runtime_root"
+fi
+for protected_file in "$upload" "$checksum" "$runtime_env" "$runtime_compose" "$backup" "$backup.sha256" \
   "$rehearsal_evidence"; do
   require_root_owned_path file "$protected_file" 600
 done
 
-# Serialize production migration, rehearsals, scheduled backups, and API/Ops
-# release cutovers. The backup and rehearsal already completed before these
-# locks are taken; a competing operation makes this invocation fail closed.
+# Serialize production migration, rehearsals, and API/Ops release cutovers.
+# The post-drain backup obtains the backup lock itself while this shared release
+# lock remains held; this avoids nested-flock deadlock and still fails closed
+# against a scheduled backup.
+# BEGIN production-migration-cutover-locks
 for lock_path in \
   /run/lock/icao-production-migration-apply.lock \
   /run/lock/icao-production-migration-rehearsal.lock \
@@ -418,10 +470,9 @@ exec 9<>/run/lock/icao-production-migration-apply.lock
 flock -n 9 || { echo 'another production migration apply is already running' >&2; exit 1; }
 exec 8<>/run/lock/icao-production-migration-rehearsal.lock
 flock -n 8 || { echo 'a production migration rehearsal is still running' >&2; exit 1; }
-exec 7<>/run/lock/icao-postgres-backup.lock
-flock -n 7 || { echo 'a production PostgreSQL backup is still running' >&2; exit 1; }
 exec 6<>/run/lock/icao-production-release-change.lock
 flock -n 6 || { echo 'a production API or Ops release change is still running' >&2; exit 1; }
+# END production-migration-cutover-locks
 
 # BEGIN production-migration-image-cleanup
 cleanup_migration_image() {
@@ -455,6 +506,7 @@ cleanup_migration_image() {
 }
 # END production-migration-image-cleanup
 
+# BEGIN production-migration-remote-cleanup
 cleanup_remote_resources() (
   set +e
   cleanup_failed=0
@@ -480,8 +532,55 @@ cleanup_remote_resources() (
     echo "could not remove production migration checksum: $checksum" >&2
     cleanup_failed=1
   fi
+  case "$candidate_runtime_env" in
+    "$candidate_runtime_root"/candidate-*.env)
+      if [ "$candidate_runtime_env_created" = 1 ] \
+        && ! rm -f "$candidate_runtime_env"; then
+        echo "could not remove protected candidate runtime environment: $candidate_runtime_env" >&2
+        cleanup_failed=1
+      fi
+      ;;
+    *)
+      echo 'candidate runtime environment cleanup path escaped its protected root' >&2
+      cleanup_failed=1
+      ;;
+  esac
+  for staged_runtime_file in "$runtime_env_next:$runtime_env_next_created" \
+    "$runtime_compose_next:$runtime_compose_next_created"; do
+    staged_path=${staged_runtime_file%:*}
+    staged_created=${staged_runtime_file##*:}
+    case "$staged_path" in
+      "$runtime_api_dir"/.env.next-*|"$runtime_api_dir"/docker-compose.yml.next-*)
+        if [ "$staged_created" = 1 ] && ! rm -f "$staged_path"; then
+          echo "could not remove staged live runtime file: $staged_path" >&2
+          cleanup_failed=1
+        fi
+        ;;
+      *)
+        echo 'staged live runtime cleanup path escaped its protected directory' >&2
+        cleanup_failed=1
+        ;;
+    esac
+  done
+  if [ "$runtime_source_next" != "$runtime_source.next" ]; then
+    echo 'runtime source staging cleanup path is invalid' >&2
+    cleanup_failed=1
+  elif [ "$runtime_source_next_created" = 1 ]; then
+    if [ -L "$runtime_source_next" ]; then
+      rm -f "$runtime_source_next" || cleanup_failed=1
+      echo 'runtime source staging path became a symlink' >&2
+      cleanup_failed=1
+    elif [ -d "$runtime_source_next" ]; then
+      rm -rf "$runtime_source_next" || cleanup_failed=1
+    elif [ -e "$runtime_source_next" ]; then
+      rm -f "$runtime_source_next" || cleanup_failed=1
+      echo 'runtime source staging path had an unexpected type' >&2
+      cleanup_failed=1
+    fi
+  fi
   if ! cleanup_migration_image; then cleanup_failed=1; fi
-  for cleanup_path in "$work_dir" "$upload" "$checksum"; do
+  for cleanup_path in "$work_dir" "$upload" "$checksum" "$candidate_runtime_env" \
+    "$runtime_env_next" "$runtime_compose_next" "$runtime_source_next"; do
     if [ -e "$cleanup_path" ] || [ -L "$cleanup_path" ]; then
       echo "production migration path still exists after cleanup: $cleanup_path" >&2
       cleanup_failed=1
@@ -489,6 +588,7 @@ cleanup_remote_resources() (
   done
   exit "$cleanup_failed"
 )
+# END production-migration-remote-cleanup
 
 # BEGIN production-migration-evidence-publication
 publish_evidence() (
@@ -505,6 +605,12 @@ publish_evidence() (
     echo 'could not determine production migration evidence filename time' >&2
     exit 1
   fi
+  recovery_validation_command=unavailable_post_drain_backup_not_created
+  case "$cutover_backup_name" in
+    icao-*.dump)
+      recovery_validation_command="/bin/sh /opt/icao/runtime/backup-tools/current/restore-isolated.sh $backup_root/$cutover_backup_name"
+      ;;
+  esac
   evidence=$evidence_dir/apply-$source_id-$evidence_timestamp-$token_id-$evidence_status.txt
   partial=$evidence.partial.$$
   confirmation_input=$partial.confirmation
@@ -541,7 +647,11 @@ publish_evidence() (
     exit "$evidence_exit_status"
   }
   trap cleanup_evidence_on_exit EXIT
-  trap 'exit 1' HUP INT TERM
+  if [ "$cleanup_in_progress" = 1 ]; then
+    trap '' HUP INT TERM
+  else
+    trap 'exit 1' HUP INT TERM
+  fi
   if ! (set -C; : > "$partial"); then
     echo 'could not exclusively create production migration evidence staging file' >&2
     exit 1
@@ -578,6 +688,22 @@ publish_evidence() (
     "confirmation_sha256=$confirmation_sha" \
     "backup_name=$backup_name" \
     "backup_sha256=$backup_sha" \
+    'backup_role=pre_cutover_isolated_rehearsal_only' \
+    "cutover_backup_name=$cutover_backup_name" \
+    "cutover_backup_sha256=$cutover_backup_sha" \
+    "drain_completed_at=$drain_completed_at" \
+    "cutover_backup_completed_at=$cutover_backup_completed_at" \
+    "old_running_image=$old_running_image" \
+    "old_running_release_id=$old_running_release_id" \
+    "old_api_exit_state=$old_api_exit_state" \
+    "old_api_drain_started=$old_api_drain_started" \
+    "old_api_drained=$old_api_drained" \
+    "old_api_restart_verified=$old_api_restart_verified" \
+    "new_api_started=$new_api_started" \
+    "cutover_committed=$cutover_committed" \
+    "roll_forward_only=$roll_forward_only" \
+    "failure_semantics=$failure_semantics" \
+    "failure_origin_stage=$failure_origin_stage" \
     "rehearsal_evidence=$rehearsal_evidence" \
     "expected_pre_plan=$expected_pre_plan" \
     "expected_post_plan=$expected_post_plan" \
@@ -598,8 +724,8 @@ publish_evidence() (
     "schema_contract_sha256=$schema_contract_sha" \
     "cleanup_verified=$cleanup_verified" \
     'automatic_production_restore=forbidden' \
-    "recovery_validation_command=/bin/sh /opt/icao/runtime/backup-tools/current/restore-isolated.sh $backup" \
-    'production_recovery=manual_authorization_required_choose_forward_fix_or_verified_restore' \
+    "recovery_validation_command=$recovery_validation_command" \
+    'production_recovery=pre_migration_failure_may_restart_old_api;after_migration_start_roll_forward_only_keep_old_api_closed' \
     'publication_state=complete' \
     "completed_at=$completed_at" > "$partial"; then
     echo 'could not write complete production migration evidence' >&2
@@ -637,20 +763,103 @@ publish_evidence() (
 )
 # END production-migration-evidence-publication
 
+# BEGIN production-migration-cutover-failure-policy
+enforce_cutover_failure_policy() {
+  if [ "$cutover_committed" = 1 ]; then
+    failure_semantics=post_cutover_housekeeping_failure_new_api_left_active
+    return 0
+  fi
+  if [ "$old_api_drain_started" != 1 ]; then
+    failure_semantics=pre_drain_failure_old_api_unchanged
+    return 0
+  fi
+  if [ "$migration_started" = 0 ]; then
+    stage=pre_migration_old_api_restart
+    # A client-side interruption can leave dockerd completing the original
+    # stop asynchronously. Finish one full idempotent stop before restarting;
+    # never mix repeated Running observations with start attempts.
+    docker stop --time 60 icao-api >/dev/null || {
+      echo 'CRITICAL: the pre-migration API could not be brought to a stopped state before recovery.' >&2
+      return 1; }
+    [ "$(docker inspect -f '{{.State.Running}}' icao-api 2>/dev/null || true)" = false ] || {
+      echo 'CRITICAL: the pre-migration API is still running after its recovery stop window.' >&2
+      return 1; }
+    old_api_exit_state=$(docker inspect -f '{{.State.ExitCode}} {{.State.OOMKilled}}' icao-api 2>/dev/null || true)
+    printf '%s\n' "$old_api_exit_state" | grep -Eq '^[0-9]+ (true|false)$' || {
+      echo 'CRITICAL: the pre-migration API recovery exit/OOM state is invalid.' >&2
+      return 1; }
+    docker start icao-api >/dev/null || {
+      echo 'CRITICAL: the pre-migration API could not be restarted after reaching a stopped state.' >&2
+      return 1; }
+    ready=0
+    for attempt in $(seq 1 30); do
+      if curl -fsS http://127.0.0.1:3101/health/ready >/dev/null; then ready=1; break; fi
+      sleep 2
+    done
+    [ "$ready" = 1 ] || {
+      echo 'CRITICAL: the pre-migration API did not become ready after restart.' >&2
+      return 1; }
+    [ "$(docker inspect -f '{{.Image}}' icao-api 2>/dev/null || true)" = "$old_running_image" ] || {
+      echo 'CRITICAL: the pre-migration API image does not match the drained image.' >&2
+      return 1; }
+    [ "$(docker inspect -f '{{.State.Running}}' icao-api 2>/dev/null || true)" = true ] || {
+      echo 'CRITICAL: the pre-migration API is not running after readiness succeeded.' >&2
+      return 1; }
+    recovered_release_id=$(curl -fsS -D - -o /dev/null http://127.0.0.1:3101/health/ready \
+      | tr -d '\r' \
+      | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+    [ "$recovered_release_id" = "$old_running_release_id" ] || {
+      echo 'CRITICAL: the pre-migration API release header does not match the drained release.' >&2
+      return 1; }
+    old_api_restart_verified=1
+    old_api_drained=0
+    failure_semantics=pre_migration_failure_old_api_restored
+    return 0
+  fi
+
+  # 0041 is roll-forward-only. Once any migration write may have occurred, the
+  # previous API must never be restarted against the changed schema and no
+  # backup may be restored automatically.
+  stage=post_migration_fail_closed
+  roll_forward_only=1
+  failure_semantics=post_migration_roll_forward_only_api_closed
+  if docker inspect icao-api >/dev/null 2>&1; then
+    running_state=$(docker inspect -f '{{.State.Running}}' icao-api)
+    if [ "$running_state" = true ]; then docker stop --time 30 icao-api >/dev/null; fi
+    test "$(docker inspect -f '{{.State.Running}}' icao-api)" = false
+  fi
+  echo 'CRITICAL: migration may have started; the old API remains closed. Apply a reviewed forward-fix from a newer origin/main. Automatic database restore is forbidden.' >&2
+}
+# END production-migration-cutover-failure-policy
+
+# BEGIN production-migration-cutover-cleanup-on-exit
 cleanup_on_exit() {
   original_status=$?
+  trap '' HUP INT TERM
   trap - EXIT
   set +e
+  cleanup_in_progress=1
+  failure_origin_stage=$stage
   final_status=$original_status
   if [ "$final_status" -eq 0 ]; then final_status=1; fi
   cleanup_failed=0
+  if ! enforce_cutover_failure_policy; then
+    stage=cutover_failure_policy_failed
+    cleanup_failed=1
+  fi
   if ! cleanup_remote_resources; then
     stage=cleanup_failed
     cleanup_failed=1
   fi
   if [ "$cleanup_failed" = 0 ]; then cleanup_verified=1; fi
   if ! failure_evidence=$(publish_evidence failed); then
-    echo 'production migration failed and failure evidence could not be published' >&2
+    if [ "$cutover_committed" = 1 ]; then
+      echo 'production migration cutover committed, but post-commit failure evidence could not be published; the new API remains active.' >&2
+    else
+      echo 'production migration failed and failure evidence could not be published' >&2
+    fi
+  elif [ "$cutover_committed" = 1 ]; then
+    echo "production migration cutover committed; post-commit housekeeping failed and the new API remains active; evidence=$failure_evidence" >&2
   else
     echo "production migration failed closed; evidence=$failure_evidence" >&2
   fi
@@ -659,6 +868,7 @@ cleanup_on_exit() {
   # forward-fix or verified-restore recovery path.
   exit "$final_status"
 }
+# END production-migration-cutover-cleanup-on-exit
 trap cleanup_on_exit EXIT
 trap 'exit 1' HUP INT TERM
 
@@ -761,6 +971,43 @@ PYTHON
 fi
 # END production-migration-image-identity-guard
 
+# Build the exact environment that the candidate API will receive after the
+# cutover. This preflight is intentionally before drain, backup, and every
+# database write. services/api/src/config.ts rejects public or same-origin
+# SUPABASE_URL values in production, so a public data-plane target fails here.
+stage=candidate_configuration_preflight
+test ! -e "$candidate_runtime_env" && test ! -L "$candidate_runtime_env"
+candidate_runtime_env_created=1
+set -C
+exec 5>"$candidate_runtime_env"
+set +C
+chmod 600 "$candidate_runtime_env"
+awk '$0 !~ /^API_RELEASE_ID=/' "$runtime_env" >&5
+printf 'API_RELEASE_ID=%s\n' "$expected_image_release_id" >&5
+exec 5>&-
+require_root_owned_path file "$candidate_runtime_env" 600
+# BEGIN production-migration-candidate-run-config-preflight
+docker run --rm --network supabase_default --env-file "$candidate_runtime_env" \
+  -e "API_RELEASE_ID=$expected_image_release_id" \
+  -e NODE_OPTIONS= \
+  -e NODE_PATH= \
+  -e LD_PRELOAD= \
+  -e LD_LIBRARY_PATH= \
+  --entrypoint /usr/local/bin/node "$image" \
+  services/api/dist/src/config-preflight.js
+# END production-migration-candidate-run-config-preflight
+
+stage=candidate_compose_preflight
+test ! -e "$runtime_env_next" && test ! -L "$runtime_env_next"
+test ! -e "$runtime_compose_next" && test ! -L "$runtime_compose_next"
+runtime_env_next_created=1
+install -m 600 "$candidate_runtime_env" "$runtime_env_next"
+runtime_compose_next_created=1
+install -m 600 "$work_dir/infra/api/docker-compose.runtime.yml" "$runtime_compose_next"
+require_root_owned_path file "$runtime_env_next" 600
+require_root_owned_path file "$runtime_compose_next" 600
+docker compose --env-file "$runtime_env_next" -f "$runtime_compose_next" config >/dev/null
+
 stage=production_target_verification
 docker inspect -f '{{.State.Running}} {{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' supabase-db \
   | grep -Fx 'true healthy' >/dev/null
@@ -825,8 +1072,87 @@ test "$before_business_rows" -gt 0
 test "$before_auth_users" -gt 0
 test "$before_migrations" -eq "${expected_pre_plan%%:*}"
 
+# BEGIN production-migration-cutover-drain-and-backup
+# The running API is the only public writer. `docker stop` does not return until
+# its graceful-stop window has completed, so no old in-flight request can cross
+# the recovery point or migration boundary.
+stage=cutover_preparation
+test ! -e "$cutover_record_dir" && test ! -L "$cutover_record_dir"
+install -d -m 700 "$cutover_record_dir"
+old_api_state=$(docker inspect -f '{{.State.Running}} {{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' icao-api)
+test "$old_api_state" = 'true healthy'
+old_running_image=$(docker inspect -f '{{.Image}}' icao-api)
+expected_old_image=$(docker image inspect --format '{{.Id}}' icao-api:phase2a)
+test "$old_running_image" = "$expected_old_image"
+old_running_image_digest=${old_running_image#sha256:}
+case "$old_running_image_digest" in
+  ''|*[!a-f0-9]*) echo 'running API image identity is invalid before migration cutover' >&2; exit 1 ;;
+esac
+test "$old_running_image" = "sha256:$old_running_image_digest"
+test "${#old_running_image_digest}" -eq 64
+old_running_release_id=$(docker exec icao-api sh -lc 'printf "%s" "${API_RELEASE_ID:-unversioned}"')
+case "$old_running_release_id" in
+  ''|*[!A-Za-z0-9._-]*) echo 'running API release identity is invalid before migration cutover' >&2; exit 1 ;;
+esac
+curl -fsS http://127.0.0.1:3101/health/ready >/dev/null
+observed_old_release_id=$(curl -fsS -D - -o /dev/null http://127.0.0.1:3101/health/ready \
+  | tr -d '\r' \
+  | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+test "$observed_old_release_id" = "$old_running_release_id"
+printf '%s\n' "$old_running_image" > "$cutover_record_dir/old-api-image-id"
+printf '%s\n' "$old_running_release_id" > "$cutover_record_dir/old-api-release-id"
+cp "$runtime_compose" "$cutover_record_dir/docker-compose-before.yml"
+chmod 600 "$cutover_record_dir"/*
+
+stage=old_api_drain
+old_api_drain_started=1
+docker stop --time 60 icao-api >/dev/null
+test "$(docker inspect -f '{{.State.Running}}' icao-api)" = false
+old_api_exit_state=$(docker inspect -f '{{.State.ExitCode}} {{.State.OOMKilled}}' icao-api)
+case "$old_api_exit_state" in
+  '0 false'|'143 false') ;;
+  *) echo "old API did not complete a graceful non-OOM drain: $old_api_exit_state" >&2; exit 1 ;;
+esac
+old_api_drained=1
+drain_completed_epoch=$(date +%s)
+drain_completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+stage=post_drain_backup
+test -f "$backup_tool" && test ! -L "$backup_tool"
+cutover_backup=$(/bin/sh "$backup_tool")
+case "$cutover_backup" in
+  "$backup_root"/icao-*.dump) ;;
+  *) echo 'post-drain production backup path escaped its protected root' >&2; exit 1 ;;
+esac
+cutover_backup_name=$(basename "$cutover_backup")
+printf '%s\n' "$cutover_backup_name" \
+  | grep -Eq '^icao-[0-9]{8}T[0-9]{6}Z-[0-9]+\.dump$' \
+  || { echo 'post-drain production backup name is invalid' >&2; exit 1; }
+require_root_owned_path file "$cutover_backup" 600
+require_root_owned_path file "$cutover_backup.sha256" 600
+cutover_backup_checksum_line=$(cat "$cutover_backup.sha256")
+cutover_backup_sha=${cutover_backup_checksum_line%% *}
+test "$cutover_backup_checksum_line" = "$cutover_backup_sha  $cutover_backup_name"
+case "$cutover_backup_sha" in
+  ''|*[!a-f0-9]*) echo 'post-drain production backup checksum is invalid' >&2; exit 1 ;;
+esac
+test "${#cutover_backup_sha}" -eq 64
+(
+  cd "$backup_root"
+  sha256sum -c "$cutover_backup_name.sha256"
+)
+cutover_backup_mtime=$(stat -c %Y "$cutover_backup")
+test "$cutover_backup_mtime" -ge "$drain_completed_epoch"
+cutover_backup_completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+printf '%s\n' "$cutover_backup_name" > "$cutover_record_dir/post-drain-backup-name"
+printf '%s\n' "$cutover_backup_sha" > "$cutover_record_dir/post-drain-backup-sha256"
+printf '%s\n' "$drain_completed_at" > "$cutover_record_dir/drain-completed-at"
+printf '%s\n' "$cutover_backup_completed_at" > "$cutover_record_dir/post-drain-backup-completed-at"
+chmod 600 "$cutover_record_dir"/*
+# END production-migration-cutover-drain-and-backup
+
 stage=production_migration_apply
-migration_started=1
+roll_forward_only=1 migration_started=1
 # BEGIN production-migration-candidate-run-apply
 docker run --rm --network supabase_default --env-file "$runtime_env" \
   -e "API_RELEASE_ID=$expected_image_release_id" \
@@ -915,6 +1241,47 @@ after_auth_users=$(query_scalar 'select count(*) from auth.users')
 after_migrations=$(query_scalar 'select count(*) from drizzle.__drizzle_migrations')
 after_business_rows=$((after_card_states + after_learning_records + after_documents + after_changes))
 test "$after_migrations" -eq "${expected_post_plan%%:*}"
+
+# BEGIN production-migration-cutover-new-api
+# From this point onward there is deliberately no rollback to the old API or to
+# a pre-migration database image. Any failure is handled by the fail-closed
+# policy above and a reviewed forward-fix from a newer origin/main.
+stage=new_api_cutover
+mv -- "$runtime_env_next" "$runtime_env"
+runtime_env_next_created=0
+mv -- "$runtime_compose_next" "$runtime_compose"
+runtime_compose_next_created=0
+require_root_owned_path file "$runtime_env" 600
+require_root_owned_path file "$runtime_compose" 600
+docker tag "$image" icao-api:phase2a
+docker compose -f "$runtime_compose" up -d --force-recreate api
+
+ready=0
+for attempt in $(seq 1 30); do
+  if curl -fsS http://127.0.0.1:3101/health/ready >/dev/null; then ready=1; break; fi
+  sleep 2
+done
+test "$ready" = 1
+docker exec -e ICAO_LIVE_VERIFY_MODE=readiness icao-api \
+  node services/api/scripts/verify-live.mjs
+active_release_id=$(curl -fsS -D - -o /dev/null http://127.0.0.1:3101/health/ready \
+  | tr -d '\r' \
+  | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+test "$active_release_id" = "$expected_image_release_id"
+cutover_committed=1 new_api_started=1
+stage=cutover_committed
+
+stage=runtime_source_housekeeping
+rm -f "$baked_image_env_file" "$pre_plan" "$post_plan" "$schema_contract"
+test ! -e "$runtime_source_next" && test ! -L "$runtime_source_next"
+runtime_source_next_created=1
+cp -a "$work_dir" "$runtime_source_next"
+if [ -d "$runtime_source" ]; then
+  mv "$runtime_source" "$cutover_record_dir/source-directory-before"
+fi
+mv "$runtime_source_next" "$runtime_source"
+runtime_source_next_created=0
+# END production-migration-cutover-new-api
 
 stage=cleanup
 cleanup_remote_resources
