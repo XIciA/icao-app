@@ -319,11 +319,24 @@ if (
 if (!apiRelease.includes('infra/api infra/backup')) {
   throw new Error('The API release archive must preserve the reviewed production backup tools.');
 }
-if (
-  !apiRelease.includes('modules/icao-distribution-environment')
-  || !migrationRehearsal.includes('modules/icao-distribution-environment')
-) {
-  throw new Error('API release and migration rehearsal archives must include the local distribution module.');
+const rootLocalModulePaths = Object.values({
+  ...(rootPackage.dependencies ?? {}),
+  ...(rootPackage.devDependencies ?? {}),
+  ...(rootPackage.optionalDependencies ?? {}),
+})
+  .filter((value) => typeof value === 'string' && value.startsWith('file:modules/'))
+  .map((value) => value.slice('file:'.length));
+for (const [name, archiveSource] of [
+  ['API release', apiRelease],
+  ['Ops release', opsRelease],
+  ['migration rehearsal', migrationRehearsal],
+  ['production migration', productionMigrationApply],
+]) {
+  for (const modulePath of rootLocalModulePaths) {
+    if (!archiveSource.includes(modulePath)) {
+      throw new Error(`${name} archive must include root local module ${modulePath}.`);
+    }
+  }
 }
 if (!packageJsonSource.includes('node --test tools/migration-rehearsal-cleanup-tests.mjs')) {
   throw new Error('The release gate must execute the migration rehearsal cleanup failure tests.');
@@ -340,8 +353,10 @@ for (const [name, dockerfile] of [
   ['Ops Web', opsDockerfile],
   ['Ops API', opsApiDockerfile],
 ]) {
-  if (!dockerfile.includes('COPY modules/icao-distribution-environment modules/icao-distribution-environment')) {
-    throw new Error(`${name} Docker build must materialize the root local dependency before pnpm install.`);
+  for (const modulePath of rootLocalModulePaths) {
+    if (!dockerfile.includes(`COPY ${modulePath} ${modulePath}`)) {
+      throw new Error(`${name} Docker build must materialize root local module ${modulePath} before pnpm install.`);
+    }
   }
 }
 for (const requiredRehearsalContract of [

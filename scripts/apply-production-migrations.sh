@@ -135,7 +135,8 @@ fi
   cd "$SOURCE_ROOT"
   git archive --format=tar "$SOURCE_SHA" \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
-    modules/icao-distribution-environment packages/contracts services/api \
+    modules/icao-distribution-environment modules/icao-wechat-auth \
+    packages/contracts services/api \
     content/vocabulary infra/api \
     | gzip -n > "$ARCHIVE"
 )

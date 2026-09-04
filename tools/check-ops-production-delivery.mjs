@@ -114,6 +114,7 @@ requireText('scripts/deploy-ops-release.sh', [
   'check-mainline-release.mjs',
   'git archive --format=tar HEAD',
   'modules/icao-distribution-environment',
+  'modules/icao-wechat-auth',
   '| gzip -n',
   'ICAO_OPS_PRODUCTION_CONFIRM',
   'ICAO_OPS_EXPECTED_PUBLIC_IP',
@@ -329,11 +330,13 @@ requireText('infra/gateway/docker-compose.yml', ['/opt/icao/runtime/gateway/.env
 requireText('infra/ops/Dockerfile', [
   'caddy:2.11.4-alpine',
   'COPY modules/icao-distribution-environment modules/icao-distribution-environment',
+  'COPY modules/icao-wechat-auth modules/icao-wechat-auth',
   'corepack prepare pnpm@11.7.0 --activate',
   '--frozen-lockfile',
 ]);
 requireText('infra/ops/Dockerfile.api', [
   'COPY modules/icao-distribution-environment modules/icao-distribution-environment',
+  'COPY modules/icao-wechat-auth modules/icao-wechat-auth',
   'USER node',
   'build:ops',
 ]);
