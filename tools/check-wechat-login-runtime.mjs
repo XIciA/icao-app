@@ -33,6 +33,54 @@ function fail(message) {
   throw new Error(`wechat_login_runtime:${message}`);
 }
 
+function hasRequiredIOSSendAuthRuntime(objectiveCMetadata) {
+  return [
+    /\bSendAuthReq\b/u,
+    /sendAuthReq:viewController:delegate:completion:/u,
+    /IcaoWechatAuthModule/u,
+  ].every((marker) => marker.test(objectiveCMetadata));
+}
+
+function hasRequiredIOSSendAuthSource(source) {
+  return [
+    'let request = SendAuthReq()',
+    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+  ].every((anchor) => source.includes(anchor));
+}
+
+if (process.argv.includes('--self-test-ios-macho-metadata')) {
+  const completeMetadata = [
+    'name _TtC14IcaoWechatAuth20IcaoWechatAuthModule',
+    'type @"SendAuthReq"',
+    'sendAuthReq:viewController:delegate:completion:',
+  ].join('\n');
+  if (!hasRequiredIOSSendAuthRuntime(completeMetadata)) fail('ios_macho_metadata_positive_self_test');
+  for (const missingMarker of [
+    /IcaoWechatAuthModule/u,
+    /SendAuthReq/u,
+    /sendAuthReq:viewController:delegate:completion:/u,
+  ]) {
+    if (hasRequiredIOSSendAuthRuntime(completeMetadata.replace(missingMarker, ''))) {
+      fail('ios_macho_metadata_negative_self_test');
+    }
+  }
+  const completeSource = [
+    'let request = SendAuthReq()',
+    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+  ].join('\n');
+  if (!hasRequiredIOSSendAuthSource(completeSource)) fail('ios_sendauth_source_positive_self_test');
+  for (const missingAnchor of [
+    'let request = SendAuthReq()',
+    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+  ]) {
+    if (hasRequiredIOSSendAuthSource(completeSource.replace(missingAnchor, ''))) {
+      fail('ios_sendauth_source_negative_self_test');
+    }
+  }
+  process.stdout.write('iOS WeChat source and Mach-O metadata self-test passed.\n');
+  process.exit(0);
+}
+
 async function exists(relativePath) {
   return access(path.join(ROOT, relativePath)).then(() => true, (error) => {
     if (error?.code === 'ENOENT') return false;
@@ -144,6 +192,7 @@ for (const [platform, source] of [['ios', iosBridge], ['android', androidBridge]
 }
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_timeout_generation_guard_missing');
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_callback_generation_guard_missing');
+if (!hasRequiredIOSSendAuthSource(iosBridge)) fail('ios_sendauth_call_chain_missing');
 if (!androidBridge.includes('takePending(responseState)')) fail('android_callback_generation_guard_missing');
 if (!androidBridge.includes('takePending(state)')) fail('android_timeout_generation_guard_missing');
 if (/takePending\(\s*\)/u.test(`${iosBridge}\n${androidBridge}`)) fail('native_unguarded_pending_take_present');
@@ -354,8 +403,14 @@ if (iosArtifact) {
   } else if (configuredAppId || configuredLink) {
     fail('pending_ios_artifact_exposes_wechat_configuration');
   }
-  const executableSymbols = execFileSync('nm', [path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-  if (!/sendAuthReq|SendAuthReq/u.test(executableSymbols)) fail('candidate_ios_sendauth_symbol_missing');
+  // Release archives strip local Objective-C method names from the exported symbol table.
+  // The source-level bridge call chain is checked above; the final Mach-O metadata must
+  // independently retain the bridge, request class, and concrete login selector.
+  const objectiveCMetadata = execFileSync('otool', ['-ov', path.join(app, executableName)], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (!hasRequiredIOSSendAuthRuntime(objectiveCMetadata)) fail('candidate_ios_sendauth_symbol_missing');
   const unresolvedSymbols = execFileSync('nm', ['-u', path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   if (/PayReq|PayResp|WXPay|WXNontaxPay|WXJointPay/u.test(unresolvedSymbols)) fail('candidate_ios_application_payment_reference');
   const bundle = await readFile(path.join(app, 'main.jsbundle'), 'utf8');
