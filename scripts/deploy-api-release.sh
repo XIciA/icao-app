@@ -55,7 +55,8 @@ mkdir -p "$ARCHIVE_DIR"
 cd "$SOURCE_ROOT"
 git ls-files -co --exclude-standard -z -- \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
-  patches modules/icao-distribution-environment packages/contracts services/api \
+  patches modules/icao-distribution-environment modules/icao-wechat-auth \
+  packages/contracts services/api \
   content/vocabulary infra/api infra/backup \
   | COPYFILE_DISABLE=1 tar --null -T - -czf "$ARCHIVE"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"

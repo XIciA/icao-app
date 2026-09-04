@@ -147,7 +147,7 @@ trap 'exit 1' HUP INT TERM
   cd "$SOURCE_ROOT"
   git archive --format=tar HEAD -- \
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
-    modules/icao-distribution-environment \
+    modules/icao-distribution-environment modules/icao-wechat-auth \
     apps/ops packages/contracts services/api infra/ops infra/gateway \
     | gzip -n > "$archive"
 )
