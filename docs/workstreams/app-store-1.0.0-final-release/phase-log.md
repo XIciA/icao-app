@@ -2,9 +2,10 @@
 
 ## 当前阶段
 
-- 阶段 3：生产 API/数据库已切换，等待微信真值与最终候选 Build 收口。
+- 阶段 3：生产 API/数据库已切换，微信入口按首发决定隐藏，正在收口最终候选 Build。
 - 启动日期：2026-08-31。
-- 当前主线基线：`origin/main` `a2e99460502079f276ec8448e1727f330929cab7`。
+- 当前修复分支基于 `origin/main` `eab148068866ca0c053be25d8206aa7f464ddb4d`；最终基线以 PR 合入后的
+  `origin/main` 为准。
 
 ## 已完成
 
@@ -21,8 +22,9 @@
   `59/59`，五档商品及五个 Apple 映射均存在；公开和 ECS 本机 readiness 均为 HTTP 200，release
   为 `production-migration-a2e994605020`。独立只读验收 P0/P1/P2 均为 0。
 - App Store Connect 已反查：付费协议有效、银行可用、两份税务表使用中；1.0.0 仍为
-  `PREPARE_FOR_SUBMISSION`，最高 Build 仍为 `3493764`，五档 IAP 的中国区价格和可售范围正确，但因
-  最终审核截图缺失仍为 `MISSING_METADATA`。已仅同步最终中文描述与审核备注，未触碰审核账号字段。
+  `PREPARE_FOR_SUBMISSION`，Build `3493765` 已上传并关联，五档 IAP 的中国区价格和可售范围正确，但因
+  最终审核截图缺失仍为 `MISSING_METADATA`。最终中文描述、审核备注及唯一审核账号凭据均已保存，真实
+  密码不进入仓库或日志。
 - 2026-09-01 在 `origin/main` `47ab262` 上完成 UI/Logo P2 候选：删除 Expo 图标编辑器遗留，品牌
   manifest 与门禁明确 `assets/images/icon.png` 为唯一产品母版，`ios/`、`android/` 仅是被忽略且
   不可跟踪的 CNG 生成树；门禁使用 `git check-ignore` 验证忽略事实，并盘点 `mark`、通用图片名和
@@ -43,10 +45,10 @@
 
 ## 当前工作
 
-- App Store Connect 当前最高已上传 Build 为 `3493764`；已把源码和材料候选递增为 `3493765`，真实
-  微信配置完成并通过发布门禁后，才允许从干净 `origin/main` 归档上传。
-- 真实微信 AppID、Universal Link 与服务端 AppSecret 继续保持 `WAITING_HUMAN`，不得以占位值制作候选；
-  等待期间继续推进不依赖这些真值的材料、门禁和平台核对。
+- App Store Connect 当前最高已上传并关联版本页的 Build 为 `3493765`；生产账号密码认证虽返回 HTTP
+  200，但客户端会错误拒绝 GoTrue 返回的无前导 `+` 手机号。已把修复候选递增为 `3493766`。
+- 微信实现保留、入口隐藏；AppID、Universal Link、AppSecret 与 AASA 仅在以后启用入口时收口，不再
+  阻塞1.0.0候选、材料、门禁或提交。
 
 ## 验证结果
 
@@ -66,15 +68,16 @@
 
 - 微信开放平台真实移动应用 AppID、已审核 Universal Link、服务端 AppSecret 和生产 AASA 仍待平台
   核实；仅直接依赖节点保持 `WAITING_HUMAN`。
-- Build `3493765` 尚未归档、上传或真机验收；六张产品截图、五张 IAP 审核截图和唯一审核账号仍须
-  使用最终候选收口。
+- Build `3493765` 已上传但因生产手机号会话规范化缺陷退出候选；Build `3493766` 尚未归档、上传或
+  真机验收，六张产品截图与五张 IAP 审核截图仍须使用新候选收口。唯一 Production 审核账号已创建、
+  密码登录已验证到认证服务器并已写入 App Store Connect 受保护字段。
 - Vercel 正式法律页仍是 v4.1，而仓库和 Native 已为含微信披露的 v4.2；按冻结规则，只有用户明确
   授权 Vercel 修改与部署后才可同步。
 
 ## 阶段判断
 
-- 生产迁移和 API 部署已完成。只有真实微信配置完成并通过候选发布门禁后，才能从干净
-  `origin/main` 归档上传最终 TestFlight 包；随后完成真实审核账号、真机验收、十一张最终截图与五档
+- 生产迁移和 API 部署已完成。手机号会话规范化修复通过候选发布门禁后，从干净 `origin/main` 归档
+  上传最终 TestFlight 包；随后完成真机验收、十一张最终截图与五档
   IAP 关联，方可执行不可逆的 App Store 提交。
 
 ## 生产迁移 cutover 候选实现（2026-09-04，历史记录；后续已执行）

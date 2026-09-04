@@ -64,10 +64,16 @@ export type AuthService = {
 
 function appSession(session: Session | null): AppSession | undefined {
   if (!session) return undefined;
+  // GoTrue stores and returns phone identities in its canonical digits-only
+  // form (for example `8613800138000`) in some self-hosted deployments. Keep
+  // the app boundary canonical by accepting either representation and always
+  // exposing the E.164 `+86...` value to the rest of the product.
+  const phone = normalizeChinaMobile(session.user.phone ?? '');
   const providers = new Set<NativeAuthIdentityProvider>();
-  if (isChinaMobileE164(session.user.phone)) providers.add('phone');
+  if (phone) providers.add('phone');
   for (const identity of session.user.identities ?? []) {
-    if (identity.provider === 'phone' || identity.provider === 'apple') providers.add(identity.provider);
+    if (identity.provider === 'apple') providers.add('apple');
+    if (identity.provider === 'phone' && phone) providers.add('phone');
   }
   if (
     session.user.app_metadata?.icao_identity_provider === 'wechat'
@@ -81,7 +87,7 @@ function appSession(session: Session | null): AppSession | undefined {
     user: {
       id: session.user.id,
       authUserId: session.user.id,
-      phone: session.user.phone,
+      phone,
       displayName: typeof session.user.user_metadata?.display_name === 'string' ? session.user.user_metadata.display_name : undefined,
       hasPassword: session.user.user_metadata?.password_set === true,
       phoneBound: providers.has('phone'),

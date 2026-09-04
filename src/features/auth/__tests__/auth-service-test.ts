@@ -338,6 +338,25 @@ describe('SupabasePhoneAuthService', () => {
     expect(passwordSession.user).toEqual(expect.objectContaining({ id: 'user-1', phone, hasPassword: true, registrationPending: false }));
   });
 
+  it('normalizes the digits-only phone representation returned by production GoTrue', async () => {
+    const { auth, client } = authClient();
+    const productionSession = session({ phone: phone.slice(1) });
+    auth.signInWithPassword.mockResolvedValueOnce({
+      data: { session: productionSession, user: productionSession.user },
+      error: null,
+    });
+    auth.getUser.mockResolvedValueOnce({ data: { user: productionSession.user }, error: null });
+    auth.setSession.mockResolvedValueOnce({
+      data: { session: productionSession, user: productionSession.user },
+      error: null,
+    });
+
+    await expect(new SupabasePhoneAuthService(client).signInWithPhonePassword(phone, 'password10'))
+      .resolves.toEqual(expect.objectContaining({
+        user: expect.objectContaining({ phone, phoneBound: true }),
+      }));
+  });
+
   it('lets an OTP-first account enter without forcing password setup', async () => {
     const { auth, client } = authClient();
     const pendingSession = session({ user_metadata: { password_set: false, registration_pending: false } });

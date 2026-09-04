@@ -75,22 +75,22 @@ if (
   appJson.expo.name !== appName
   || appJson.expo.version !== '1.0.0'
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
-  || appJson.expo.ios?.buildNumber !== '3493765'
-  || appJson.expo.android?.versionCode !== 3493765
+  || appJson.expo.ios?.buildNumber !== '3493766'
+  || appJson.expo.android?.versionCode !== 3493766
 ) {
   fail('native_app_identity_drift');
 }
 
 const releaseSourceContracts = [
-  ['d9', releaseSources[0], ['当前最高已上传 Build 为 `3493764`', '下一送审候选预留为 Build `3493765`', '最终候选由 Build `3493765` 覆盖']],
+  ['d9', releaseSources[0], ['当前最高已上传 Build 为 `3493765`', '下一送审候选预留为', 'Build `3493766`', '最终候选由 Build `3493766` 覆盖']],
   ['requirements', releaseSources[1], ['内部 Build 必须在已上传 Build 基础上单调递增', '旧 Build 和旧截图不得作为最终证据']],
   ['roadmap', releaseSources[2], ['从 App Store Connect 读取最高 Build，更新为严格递增值，经 PR 合入 `main`', '从干净 `origin/main` 归档并上传 TestFlight']],
-  ['technical-plan', releaseSources[3], ['当前最高已上传 Build 为 `3493764`', '本轮正式产物候选固定递增为', '`3493765`']],
-  ['technical-audit', releaseSources[4], ['当前最高已上传 Build 为 `3493764`', '下一候选必须严格递增为 Build `3493765`', '不得用于最终截图或 App Store 提交']],
-  ['phase-log', releaseSources[5], ['当前最高已上传 Build 为 `3493764`', '把源码和材料候选递增为', '`3493765`']],
-  ['materials-readme', releaseSources[6], ['`3493761` 与', '`3493764` 仅作历史候选保留', '最终候选递增为 Build `3493765`']],
-  ['screenshots', releaseSources[7], ['Build `3493765` 的唯一截图清单', '`3493761` 与 `3493764` 仅作历史候选保留']],
-  ['evidence', releaseSources[8], ['| Build | `3493765` |', 'Build 3493765 处理完成后选入版本页', 'Paid Apps Agreement 有效']],
+  ['technical-plan', releaseSources[3], ['当前最高已上传 Build 为 `3493765`', '本轮正式产物候选固定递增为 `3493766`']],
+  ['technical-audit', releaseSources[4], ['当前最高已上传 Build 为 `3493765`', '下一候选必须严格递增为 Build `3493766`', '不得用于最终截图或 App Store 提交']],
+  ['phase-log', releaseSources[5], ['当前最高已上传并关联版本页的 Build 为 `3493765`', '已把修复候选递增为 `3493766`']],
+  ['materials-readme', releaseSources[6], ['`3493761`、', '`3493764` 与 `3493765` 仅作历史候选保留', '最终候选递增为 Build `3493766`']],
+  ['screenshots', releaseSources[7], ['Build `3493766` 的唯一截图清单', '`3493761`、`3493764` 与 `3493765` 仅作历史候选保留']],
+  ['evidence', releaseSources[8], ['| Build | `3493766` |', 'Build 3493766 处理完成后替换版本页构建', 'Paid Apps Agreement 有效']],
 ];
 for (const [name, releaseSource, contracts] of releaseSourceContracts) {
   for (const contract of contracts) {
