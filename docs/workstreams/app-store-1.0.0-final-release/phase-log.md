@@ -2,9 +2,9 @@
 
 ## 当前阶段
 
-- 阶段 2：生产配置前置与最终候选 Build 准备。
+- 阶段 3：生产 API/数据库已切换，等待微信真值与最终候选 Build 收口。
 - 启动日期：2026-08-31。
-- 当前主线基线：`origin/main` `8e90bdda30a3c0610e079dc7f373e97235c8b70e`。
+- 当前主线基线：`origin/main` `a2e99460502079f276ec8448e1727f330929cab7`。
 
 ## 已完成
 
@@ -16,6 +16,13 @@
   PR #87、#86、#88、#89、#90 合入 `origin/main`；登录闭环最终基线为 `8e90bdd`。
 - 付费 App 协议有效、工行账户可用，两份美国非居民税务表均为使用中；旧银行/税务待办不再是现行
   阻塞，仅在最终提交前读取 Apple 状态反查。
+- 2026-09-04 已从精确主线 `a2e99460502079f276ec8448e1727f330929cab7` 完成生产迁移和 API 原子
+  cutover：迁移账本由 `35 applied / 7 pending / 0 drift` 变为 `42 / 0 / 0`，schema contract 为
+  `59/59`，五档商品及五个 Apple 映射均存在；公开和 ECS 本机 readiness 均为 HTTP 200，release
+  为 `production-migration-a2e994605020`。独立只读验收 P0/P1/P2 均为 0。
+- App Store Connect 已反查：付费协议有效、银行可用、两份税务表使用中；1.0.0 仍为
+  `PREPARE_FOR_SUBMISSION`，最高 Build 仍为 `3493764`，五档 IAP 的中国区价格和可售范围正确，但因
+  最终审核截图缺失仍为 `MISSING_METADATA`。已仅同步最终中文描述与审核备注，未触碰审核账号字段。
 - 2026-09-01 在 `origin/main` `47ab262` 上完成 UI/Logo P2 候选：删除 Expo 图标编辑器遗留，品牌
   manifest 与门禁明确 `assets/images/icon.png` 为唯一产品母版，`ios/`、`android/` 仅是被忽略且
   不可跟踪的 CNG 生成树；门禁使用 `git check-ignore` 验证忽略事实，并盘点 `mark`、通用图片名和
@@ -36,8 +43,8 @@
 
 ## 当前工作
 
-- App Store Connect 当前最高已上传 Build 为 `3493764`；在短期分支把源码和材料候选递增为
-  `3493765`，通过门禁、PR 和主线合入后才允许归档。
+- App Store Connect 当前最高已上传 Build 为 `3493764`；已把源码和材料候选递增为 `3493765`，真实
+  微信配置完成并通过发布门禁后，才允许从干净 `origin/main` 归档上传。
 - 真实微信 AppID、Universal Link 与服务端 AppSecret 继续保持 `WAITING_HUMAN`，不得以占位值制作候选；
   等待期间继续推进不依赖这些真值的材料、门禁和平台核对。
 
@@ -48,22 +55,29 @@
 - Build `3493765` 的 `pnpm check:release` 完整通过：Native 品牌、微信登录、账号绑定、内容访问、
   生产迁移合同、iOS StoreKit 130 项、TestFlight 合同、法律页和 App Store 材料门禁均通过。
 - `pnpm check:app-store-materials` 单独复跑通过；`git diff --check` 通过。
+- 生产迁移成功证据为
+  `/opt/icao/runtime/production-migrations/evidence/apply-a2e994605020-20260904T124948Z-1138168c31b1-succeeded.txt`；
+  cutover 前备份 `icao-20260904T123546Z-1010229.dump` 与 drain 后备份
+  `icao-20260904T124932Z-1053718.dump` 均为 root `0600` 且 SHA-256 sidecar 复核一致；13 类临时资源
+  清理计数均为 0。
 - Vercel 未修改、未构建、未部署。
 
 ## 剩余风险
 
 - 微信开放平台真实移动应用 AppID、已审核 Universal Link、服务端 AppSecret 和生产 AASA 仍待平台
   核实；仅直接依赖节点保持 `WAITING_HUMAN`。
-- Build `3493765` 尚未合入、归档、上传或真机验收；六张产品截图、五张 IAP 审核截图和唯一审核账号
-  仍须使用最终候选收口。
-- 本阶段不执行生产迁移、部署、TestFlight 上传或 App Store 提交。
+- Build `3493765` 尚未归档、上传或真机验收；六张产品截图、五张 IAP 审核截图和唯一审核账号仍须
+  使用最终候选收口。
+- Vercel 正式法律页仍是 v4.1，而仓库和 Native 已为含微信披露的 v4.2；按冻结规则，只有用户明确
+  授权 Vercel 修改与部署后才可同步。
 
 ## 阶段判断
 
-- Build `3493765` 版本与材料 PR 通过后可合入；只有真实微信配置完成并通过候选发布门禁后，才能从
-  干净 `origin/main` 归档上传最终 TestFlight 包。
+- 生产迁移和 API 部署已完成。只有真实微信配置完成并通过候选发布门禁后，才能从干净
+  `origin/main` 归档上传最终 TestFlight 包；随后完成真实审核账号、真机验收、十一张最终截图与五档
+  IAP 关联，方可执行不可逆的 App Store 提交。
 
-## 生产迁移 cutover 候选实现（2026-09-04，未执行）
+## 生产迁移 cutover 候选实现（2026-09-04，历史记录；后续已执行）
 
 - 实现基线：`origin/main` `8b130ad8d26be249d666839dd1d645e5893d7439`；短期分支
   `codex/app-store-1.0.0-migration-cutover`。本记录只说明代码候选，不代表已连接生产、已迁移、已部署或
