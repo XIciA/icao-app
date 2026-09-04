@@ -3,8 +3,10 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = process.cwd();
+const TOOL_PATH = fileURLToPath(import.meta.url);
+const ROOT = path.resolve(path.dirname(TOOL_PATH), '..');
 const require = createRequire(import.meta.url);
 const EXPECTED_IOS_SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
 const EXPECTED_IOS_SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
@@ -214,7 +216,7 @@ if (candidateConfiguration) {
 
 }
 
-if (process.argv.includes('--candidate') || process.argv.includes('--candidate-android-project') || process.argv.includes('--candidate-android-artifact')) {
+if (process.argv.includes('--candidate') || process.argv.includes('--candidate-android-project')) {
   if (!await exists('android/gradlew')) fail('candidate_android_project_missing');
   const dependencyReport = execFileSync('./gradlew', [':app:dependencies', '--configuration', 'releaseRuntimeClasspath'], {
     cwd: path.join(ROOT, 'android'),

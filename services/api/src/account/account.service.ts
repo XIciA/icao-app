@@ -28,7 +28,6 @@ function sortedProviders(providers: Iterable<string>): AccountSummary['providers
 @Injectable()
 export class AccountService {
   private readonly adminAuth: SupabaseClient;
-  private readonly publicAuth: SupabaseClient;
 
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
@@ -40,9 +39,6 @@ export class AccountService {
     private readonly sessions: SessionSecurityService,
   ) {
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
-      auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
-    });
-    this.publicAuth = createClient(config.supabaseUrl, config.supabasePublishableKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
     });
   }
@@ -111,7 +107,7 @@ export class AccountService {
     if (currentPassword === undefined) {
       const isFirstPasswordSetup = source.passwordSet === false;
       if (isFirstPasswordSetup) {
-        await this.phoneAuth.consumeOtpIntent(source, 'login');
+        this.assertRecentPhoneOtp(source);
       } else {
         if (!recoveryGrantId) throw new ForbiddenException('phone_reauthentication_required');
         recoveryReservationToken = await this.recentAuth.reserve(
@@ -197,8 +193,24 @@ export class AccountService {
     };
   }
 
-  async authorizePasswordRecovery(source: VerifiedAuthSession): Promise<AuthorizePasswordRecoveryResponse> {
-    const grant = await this.recentAuth.issuePhoneOtpGrant(source, 'password_recovery');
+  async authorizePasswordRecovery(
+    source: VerifiedAuthSession,
+    challengeId: string,
+  ): Promise<AuthorizePasswordRecoveryResponse> {
+    const grant = await this.database.db.transaction(async (transaction) => {
+      await this.phoneAuth.redeemRecoveryIntentInTransaction(
+        transaction,
+        source,
+        challengeId,
+      );
+      return this.recentAuth.issueVerifiedGrantInTransaction(
+        transaction,
+        source,
+        'phone_otp',
+        'password_recovery',
+        new Date(),
+      );
+    });
     return { authorized: true, expiresAt: grant.expiresAt, grantId: grant.grantId };
   }
 
@@ -214,52 +226,56 @@ export class AccountService {
     }
   }
 
-  async bindPhoneWithOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<BindPhoneResponse> {
+  async bindPhoneWithOtp(
+    source: VerifiedAuthSession,
+    challengeId: string,
+    phone: string,
+    token: string,
+    sourceIp = '127.0.0.1',
+  ): Promise<BindPhoneResponse> {
     this.assertSocialPhoneBindingAllowed(source);
-    const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
-    if (error || !data.session) {
-      throw new ForbiddenException('invalid_phone_otp');
-    }
-    if (!data.user || normalizeChinaMobile(data.user.phone ?? '') !== phone) {
-      await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
-      throw new ForbiddenException('invalid_phone_otp');
-    }
+    const verified = await this.phoneAuth.verifyBindingChallenge(
+      source,
+      challengeId,
+      phone,
+      token,
+      sourceIp,
+    );
     try {
-      // verifyOtp is the authoritative proof that this request just completed an
-      // SMS challenge. GoTrue can retain the original OTP timestamp in `amr`
-      // when the same phone retries account binding, so relying on the JWT's
-      // historical timestamp rejects a newly verified code as stale.
-      const otpVerifiedAt = new Date();
-      const phoneSession = await this.verifier.verify(data.session.access_token);
-      if (phoneSession.authUserId !== data.user.id || phoneSession.user.phone !== phone) {
+      const phoneSession = await this.verifier.verify(verified.accessToken);
+      if (phoneSession.user.phone !== phone || !phoneSession.user.providers?.includes('phone')) {
         throw new ForbiddenException('invalid_phone_otp');
       }
-      phoneSession.authenticationMethods = [
-        ...phoneSession.authenticationMethods.filter((entry) => entry.method !== 'otp'),
-        { method: 'otp', timestamp: Math.floor(otpVerifiedAt.getTime() / 1_000) },
-      ];
-      phoneSession.user = {
-        ...phoneSession.user,
-        authUserId: phoneSession.authUserId,
-        phone,
-        providers: ['phone'],
-      };
-      // Consume the verified challenge before attempting the binding transaction.
-      // A conflict must not roll the challenge back and make the same OTP replayable.
-      await this.phoneAuth.consumeOtpIntent(phoneSession, 'phone_binding', otpVerifiedAt, source.user.id);
       const binding = await this.attachNewPhoneIdentity(source, phoneSession, phone);
       if (binding.status === 'conflict') throw new ConflictException('phone_already_registered');
       return {
         account: binding.account,
         session: {
-          accessToken: data.session.access_token,
-          refreshToken: data.session.refresh_token,
-          expiresAt: data.session.expires_at,
+          accessToken: verified.accessToken,
+          refreshToken: verified.refreshToken,
+          expiresAt: verified.expiresAt,
         },
       };
     } catch (cause) {
-      await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
+      await this.adminAuth.auth.admin.signOut(verified.accessToken, 'local').catch(() => undefined);
       throw cause;
+    }
+  }
+
+  private assertRecentPhoneOtp(source: VerifiedAuthSession) {
+    const now = Math.floor(Date.now() / 1_000);
+    const otpAuthenticatedAt = Math.max(
+      0,
+      ...source.authenticationMethods
+        .filter((entry) => entry.method === 'otp')
+        .map((entry) => entry.timestamp),
+    );
+    if (
+      !otpAuthenticatedAt
+      || otpAuthenticatedAt > now + 60
+      || now - otpAuthenticatedAt > RECENT_SOCIAL_AUTH_WINDOW_SECONDS
+    ) {
+      throw new ForbiddenException('phone_reauthentication_required');
     }
   }
 

@@ -5,8 +5,14 @@ export const passwordRecentAuthSchema = z.object({
   purpose: z.literal('account_delete'),
 }).strict();
 
-export const phoneRecentAuthSchema = z.object({
+export const startPhoneRecentAuthSchema = z.object({
   purpose: z.literal('account_delete'),
+}).strict();
+
+export const phoneRecentAuthSchema = z.object({
+  challengeId: z.uuid(),
+  purpose: z.literal('account_delete'),
+  token: z.string().regex(/^\d{6}$/u),
 }).strict();
 
 export const wechatRecentAuthSchema = z.object({
@@ -14,4 +20,8 @@ export const wechatRecentAuthSchema = z.object({
   code: z.string().trim().min(6).max(512),
   purpose: z.literal('account_delete'),
   state: z.string().trim().min(24).max(256),
+}).strict();
+
+export const startWechatRecentAuthSchema = z.object({
+  purpose: z.literal('account_delete'),
 }).strict();

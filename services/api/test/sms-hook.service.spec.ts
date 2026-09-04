@@ -1,8 +1,12 @@
 import { describe, expect, it, vi } from 'vitest';
 import { Webhook } from 'standardwebhooks';
-import { ServiceUnavailableException } from '@nestjs/common';
+import { HttpException, ServiceUnavailableException } from '@nestjs/common';
 
-import { submitAliyunOtp, type AliyunSmsProvider } from '../src/auth/sms/aliyun-sms.provider';
+import {
+  DefinitiveSmsSubmissionError,
+  submitAliyunOtp,
+  type AliyunSmsProvider,
+} from '../src/auth/sms/aliyun-sms.provider';
 import type { SmsDeliveryAuthority } from '../src/auth/sms/sms-delivery-authority';
 import { SupabaseSmsHookController } from '../src/auth/sms/supabase-sms-hook.controller';
 import { SupabaseSmsHookService } from '../src/auth/sms/supabase-sms-hook.service';
@@ -48,7 +52,14 @@ function smsPayload(phone = '+8613800138000', otp = '123456') {
   return { user: { id: 'user-1', phone }, sms: { otp, phone } };
 }
 
-function hookService(apiConfig: ApiConfig, provider: AliyunSmsProvider) {
+function hookService(
+  apiConfig: ApiConfig,
+  provider: AliyunSmsProvider,
+  authorityOverrides: Partial<SmsDeliveryAuthority> = {},
+) {
+  if (typeof provider.prepare !== 'function') {
+    Object.assign(provider, { prepare: vi.fn() });
+  }
   const deliveries = new Map<string, 'processing' | 'completed'>();
   const authority = {
     claim: vi.fn(async (dedupeKey: string) => {
@@ -56,10 +67,28 @@ function hookService(apiConfig: ApiConfig, provider: AliyunSmsProvider) {
       if (existing === 'completed') return { outcome: 'duplicate_completed' as const };
       if (existing === 'processing') return { outcome: 'duplicate_inflight' as const };
       deliveries.set(dedupeKey, 'processing');
-      return { leaseToken: '11111111-1111-4111-8111-111111111111', outcome: 'claimed' as const, rules: [] };
+      return {
+        leaseToken: '11111111-1111-4111-8111-111111111111',
+        otpDispatchSequence: 1,
+        otpIntentId: '10000000-0000-4000-8000-000000000010',
+        outcome: 'claimed' as const,
+        rules: [],
+      };
     }),
-    complete: vi.fn(async (dedupeKey: string) => { deliveries.set(dedupeKey, 'completed'); }),
-    fail: vi.fn(async (dedupeKey: string) => { deliveries.delete(dedupeKey); }),
+    authorizeSubmission: vi.fn().mockResolvedValue({
+      submissionStartedAt: new Date('2026-09-01T00:00:00.000Z'),
+    }),
+    complete: vi.fn(async (dedupeKey: string) => {
+      deliveries.set(dedupeKey, 'completed');
+      return true;
+    }),
+    fail: vi.fn(async (dedupeKey: string) => {
+      deliveries.delete(dedupeKey);
+      return true;
+    }),
+    markAmbiguous: vi.fn().mockResolvedValue(true),
+    rejectBeforeAcceptance: vi.fn().mockResolvedValue(true),
+    ...authorityOverrides,
   };
   return new SupabaseSmsHookService(apiConfig, provider, authority as unknown as SmsDeliveryAuthority);
 }
@@ -93,12 +122,15 @@ describe('Supabase SMS hook', () => {
 
     const firstOperation = service.handle(first.rawBody, first.headers);
     const retryOperation = service.handle(retry.rawBody, retry.headers);
-    const retryExpectation = expect(retryOperation).rejects.toSatisfy((error: unknown) => (
-      error instanceof ServiceUnavailableException && error.message === 'sms_delivery_in_progress'
-    ));
+    const retryResult = retryOperation.then(
+      () => undefined,
+      (error: unknown) => error,
+    );
     await vi.waitFor(() => expect(provider.sendOtp).toHaveBeenCalledTimes(1));
     completeSubmission?.({ requestId: 'request-1' });
-    await retryExpectation;
+    expect(await retryResult).toSatisfy((error: unknown) => (
+      error instanceof ServiceUnavailableException && error.message === 'sms_delivery_in_progress'
+    ));
     await firstOperation;
 
     expect(provider.sendOtp).toHaveBeenCalledTimes(1);
@@ -118,6 +150,148 @@ describe('Supabase SMS hook', () => {
       phone: '+8613800138000',
       otp: '123456',
     }));
+  });
+
+  it('fails before Aliyun when the hook is not bound to the active OTP generation', async () => {
+    const provider = { sendOtp: vi.fn() };
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      claim: vi.fn().mockResolvedValue({ outcome: 'unauthorized_generation' }),
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_stale_generation');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_generation_not_dispatching');
+    expect(provider.sendOtp).not.toHaveBeenCalled();
+  });
+
+  it('surfaces a durably recorded local rate limit without contacting Aliyun', async () => {
+    const provider = { sendOtp: vi.fn() };
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      claim: vi.fn().mockResolvedValue({ outcome: 'local_rate_limited' }),
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_local_rate_limit');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof HttpException
+        && error.getStatus() === 429
+        && error.message === 'sms_rate_limited');
+    expect(provider.sendOtp).not.toHaveBeenCalled();
+  });
+
+  it('fails before Aliyun when the exact generation loses its submission fence', async () => {
+    const provider = { sendOtp: vi.fn() };
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      authorizeSubmission: vi.fn().mockResolvedValue(false),
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_lost_fence_before_send');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_generation_not_dispatching');
+    expect(provider.sendOtp).not.toHaveBeenCalled();
+  });
+
+  it('records provider preparation failures as exact pre-submission rejections', async () => {
+    const provider = {
+      prepare: vi.fn(() => { throw new ServiceUnavailableException('sms_provider_unavailable'); }),
+      sendOtp: vi.fn(),
+    };
+    const rejectBeforeAcceptance = vi.fn().mockResolvedValue(true);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      rejectBeforeAcceptance,
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_prepare_failure');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_provider_unavailable');
+    expect(rejectBeforeAcceptance).toHaveBeenCalledOnce();
+    expect(provider.sendOtp).not.toHaveBeenCalled();
+  });
+
+  it('returns non-2xx when Aliyun accepted but completion lost the generation fence', async () => {
+    const provider = { sendOtp: vi.fn().mockResolvedValue({ bizId: 'biz-1', requestId: 'request-1' }) };
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      complete: vi.fn().mockResolvedValue(false),
+      fail: vi.fn().mockResolvedValue(false),
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_lost_fence_after_send');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_delivery_fencing_lost');
+    expect(provider.sendOtp).toHaveBeenCalledOnce();
+  });
+
+  it('never resubmits an ambiguous delivery when reconciliation has no positive evidence', async () => {
+    const provider = {
+      reconcileOtpSubmission: vi.fn().mockResolvedValue({ found: false }),
+      sendOtp: vi.fn(),
+    };
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      claim: vi.fn().mockResolvedValue({
+        leaseToken: '11111111-1111-4111-8111-111111111111',
+        otpDispatchSequence: 1,
+        otpIntentId: '10000000-0000-4000-8000-000000000010',
+        outcome: 'reconcile_required',
+        submissionStartedAt: new Date('2026-09-01T00:00:00.000Z'),
+      }),
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_ambiguous_restart');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_delivery_reconciliation_pending');
+    expect(provider.reconcileOtpSubmission).toHaveBeenCalledOnce();
+    expect(provider.sendOtp).not.toHaveBeenCalled();
+  });
+
+  it('quarantines a transport-ambiguous SendSms result and never retries it', async () => {
+    const provider = {
+      reconcileOtpSubmission: vi.fn().mockResolvedValue({ found: false }),
+      sendOtp: vi.fn().mockRejectedValue(new Error('socket closed after write')),
+    };
+    const markAmbiguous = vi.fn().mockResolvedValue(true);
+    const fail = vi.fn().mockResolvedValue(true);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      fail,
+      markAmbiguous,
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_ambiguous_send');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+        && error.message === 'sms_delivery_reconciliation_pending');
+    expect(provider.sendOtp).toHaveBeenCalledOnce();
+    expect(provider.reconcileOtpSubmission).toHaveBeenCalledOnce();
+    expect(markAmbiguous).toHaveBeenCalledOnce();
+    expect(fail).not.toHaveBeenCalled();
+  });
+
+  it('releases only an explicit Aliyun rejection, not a transport ambiguity', async () => {
+    const provider = {
+      reconcileOtpSubmission: vi.fn(),
+      sendOtp: vi.fn().mockRejectedValue(
+        new DefinitiveSmsSubmissionError('sms_rate_limited', 429),
+      ),
+    };
+    const fail = vi.fn().mockResolvedValue(true);
+    const markAmbiguous = vi.fn().mockResolvedValue(true);
+    const rejectBeforeAcceptance = vi.fn().mockResolvedValue(true);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider, {
+      fail,
+      markAmbiguous,
+      rejectBeforeAcceptance,
+    } as Partial<SmsDeliveryAuthority>);
+    const hook = signedHook(smsPayload(), 'msg_definitive_rejection');
+
+    await expect(service.handle(hook.rawBody, hook.headers))
+      .rejects.toSatisfy((error: unknown) => error instanceof DefinitiveSmsSubmissionError);
+    expect(fail).not.toHaveBeenCalled();
+    expect(rejectBeforeAcceptance).toHaveBeenCalledOnce();
+    expect(markAmbiguous).not.toHaveBeenCalled();
+    expect(provider.reconcileOtpSubmission).not.toHaveBeenCalled();
   });
 
   it('rejects a hook when user.phone and sms.phone disagree', async () => {
@@ -259,5 +433,17 @@ describe('Aliyun SMS adapter', () => {
       templateParam: '{"code":"123456"}',
     });
     expect(result).toEqual({ bizId: 'biz-1', requestId: 'request-1' });
+  });
+
+  it('treats a malformed fulfilled provider response as ambiguous', async () => {
+    const sendSms = vi.fn().mockResolvedValue({ body: {} });
+    await expect(submitAliyunOtp({ sendSms }, {
+      outId: 'msg_test_malformed',
+      phone: '+8613800138000',
+      signName: '云启航科成都',
+      templateCode: 'SMS_123456789',
+      otp: '123456',
+    })).rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
+      && !(error instanceof DefinitiveSmsSubmissionError));
   });
 });

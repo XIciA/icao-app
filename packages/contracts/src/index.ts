@@ -61,6 +61,10 @@ export type AuthorizePasswordRecoveryResponse = {
   grantId: string;
 };
 
+export type AuthorizePasswordRecoveryRequest = {
+  challengeId: string;
+};
+
 export type UpdatePhonePasswordRequest = {
   password: string;
   currentPassword?: string;

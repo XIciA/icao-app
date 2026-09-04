@@ -1,7 +1,7 @@
 import { createClient, type AuthChangeEvent, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import type { AuthorizePasswordRecoveryResponse, RecentAuthGrantResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AuthorizePasswordRecoveryResponse, RecentAuthGrantResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
-import type { CompleteWechatAuthResponse, NativeAccountSummary, NativeAuthIdentityProvider, NativeBindPhoneResponse as BindPhoneResponse, NativeRecentAuthGrantResponse, NativeStartPhoneOtpResponse, StartWechatAuthResponse, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
+import type { CompleteWechatAuthResponse, NativeAccountSummary, NativeAuthIdentityProvider, NativeBindPhoneResponse as BindPhoneResponse, NativeRecentAuthGrantResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse, StartWechatAuthResponse, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
 
@@ -25,7 +25,12 @@ export type AppSession = {
   };
 };
 
-export type PhoneBindingChallenge = { phone: string };
+export type PhoneBindingChallenge = {
+  challengeId: string;
+  expiresAt: number;
+  phone: string;
+  resendAllowedAt: number;
+};
 export type PhoneBindingVerification = { account: NativeAccountSummary; challenge: PhoneBindingChallenge; session: AppSession };
 
 export type AuthService = {
@@ -43,11 +48,11 @@ export type AuthService = {
   requestPhoneOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   requestPasswordRecoveryOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   verifyPhoneOtp(challenge: { challengeId: string; phone: string; purpose: 'login' | 'recovery' }, token: string): Promise<AppSession>;
-  authorizePasswordRecovery(): Promise<AuthorizePasswordRecoveryResponse>;
+  authorizePasswordRecovery(challengeId: string, accessToken: string): Promise<AuthorizePasswordRecoveryResponse>;
   signInWithPhonePassword(phone: string, password: string): Promise<AppSession>;
   updatePassword(password: string, currentPassword?: string, recoveryGrantId?: string): Promise<AppSession>;
   requestPhoneBindingOtp(phone: string): Promise<PhoneBindingChallenge>;
-  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<void>;
+  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge>;
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification>;
   signInWithInviteCode(inviteCode: string): Promise<AppSession>;
   signOut(scope?: 'local' | 'global' | 'others'): Promise<void>;
@@ -128,6 +133,7 @@ export function authError(error: { message: string; code?: string } | null) {
 }
 
 export class SupabasePhoneAuthService implements AuthService {
+  private accountDeletionPhoneChallenge?: NativeStartPhoneOtpResponse;
   private authGeneration = 0;
   private sessionCommitTail: Promise<void> = Promise.resolve();
 
@@ -369,39 +375,35 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({ purpose: 'account_delete' }),
     });
     if (!response.accepted) throw new Error('phone_otp_delivery_failed');
+    this.accountDeletionPhoneChallenge = response;
     return response;
   }
 
   async authorizeAccountDeletionWithPhoneOtp(token: string) {
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
     const current = await this.getSession();
+    const challenge = this.accountDeletionPhoneChallenge;
     if (!current?.user.phone || !current.user.providers.includes('phone')) {
       throw new Error('phone_reauthentication_required');
     }
-    const { data, error } = await this.transientClient.auth.verifyOtp({
-      phone: current.user.phone,
-      token,
-      type: 'sms',
-    });
-    if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
-    if (
-      !session
-      || session.user.id !== current.user.id
-      || session.user.phone !== current.user.phone
-      || !session.user.providers.includes('phone')
-    ) {
+    if (!challenge?.accepted || challenge.expiresAt <= Date.now()) {
       throw new Error('phone_reauthentication_required');
     }
-    return apiRequestWithAccessToken<RecentAuthGrantResponse>(
+    const grant = await apiRequestWithAccessToken<RecentAuthGrantResponse>(
       '/v1/account/recent-auth/phone',
-      session.accessToken,
+      current.accessToken,
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ purpose: 'account_delete' }),
+        body: JSON.stringify({
+          challengeId: challenge.challengeId,
+          purpose: 'account_delete',
+          token,
+        }),
       },
     );
+    this.accountDeletionPhoneChallenge = undefined;
+    return grant;
   }
 
   private async appleCredential(requestProfile: boolean) {
@@ -476,10 +478,16 @@ export class SupabasePhoneAuthService implements AuthService {
     return session;
   }
 
-  async authorizePasswordRecovery() {
-    const response = await apiRequest<AuthorizePasswordRecoveryResponse>('/v1/account/password/recovery/authorize', {
+  async authorizePasswordRecovery(challengeId: string, accessToken: string) {
+    const response = await apiRequestWithAccessToken<AuthorizePasswordRecoveryResponse>(
+      '/v1/account/password/recovery/authorize',
+      accessToken,
+      {
       method: 'POST',
-    });
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ challengeId }),
+      },
+    );
     if (!response.authorized || !response.grantId || response.expiresAt <= Date.now()) {
       throw new Error('phone_reauthentication_required');
     }
@@ -545,16 +553,27 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({ phone }),
     });
     if (!response.sent) throw new Error('phone_binding_otp_unavailable');
-    return { phone };
+    return {
+      challengeId: response.challengeId,
+      expiresAt: response.expiresAt,
+      phone,
+      resendAllowedAt: response.resendAllowedAt,
+    };
   }
 
-  async resendPhoneBindingOtp(challenge: PhoneBindingChallenge) {
+  async resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge> {
     const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone: challenge.phone }),
     });
     if (!response.sent) throw new Error('phone_binding_otp_unavailable');
+    return {
+      challengeId: response.challengeId,
+      expiresAt: response.expiresAt,
+      phone: challenge.phone,
+      resendAllowedAt: response.resendAllowedAt,
+    };
   }
 
   async verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification> {
@@ -563,7 +582,7 @@ export class SupabasePhoneAuthService implements AuthService {
     const response = await apiRequest<BindPhoneResponse>('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ phone: challenge.phone, token }),
+      body: JSON.stringify({ challengeId: challenge.challengeId, phone: challenge.phone, token }),
     });
     const session = appSession(await this.commitSession({
       accessToken: response.session.accessToken,

@@ -416,6 +416,10 @@ describe('<AuthProvider /> internal-account gate', () => {
       await currentAuth.verifyPhoneOtp(recoveryChallenge, '123456');
     });
     expect(mockAuthorizePasswordRecovery).toHaveBeenCalledTimes(1);
+    expect(mockAuthorizePasswordRecovery).toHaveBeenCalledWith(
+      recoveryChallenge.challengeId,
+      phoneSession.accessToken,
+    );
     expect(currentAuth.passwordChangePurpose).toBe('recovery');
     let recoveryPath: string | undefined;
     await act(async () => { recoveryPath = currentAuth.consumePendingPath(); });

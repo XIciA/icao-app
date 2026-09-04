@@ -125,7 +125,8 @@ check_wechat_candidate_configuration() {
 
 check_wechat_android_project() {
   node_binary=${NODE_BINARY:-$(command -v node)}
-  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-project
+  "$PROJECT_ROOT/scripts/with-android-env.sh" "$node_binary" \
+    "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-project
 }
 
 check_wechat_android_artifact() {

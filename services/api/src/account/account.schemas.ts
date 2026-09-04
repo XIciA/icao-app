@@ -21,8 +21,13 @@ export const clearLearningDataSchema = z.object({
 }).strict();
 
 export const bindPhoneSchema = z.object({
+  challengeId: z.uuid(),
   phone: z.string().regex(/^\+861[3-9]\d{9}$/u),
   token: z.string().regex(/^\d{6}$/u),
+}).strict();
+
+export const authorizePasswordRecoverySchema = z.object({
+  challengeId: z.uuid(),
 }).strict();
 
 export const startPhoneBindingSchema = z.object({

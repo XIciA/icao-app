@@ -170,6 +170,8 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
       start: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000010', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
       startRecovery: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000011', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
       startRecentAuth: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000012', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      verifyBindingChallenge: async () => ({ accessToken: 'target-access-token', refreshToken: 'target-refresh-token' }),
+      verifyRecentChallenge: async () => undefined,
       verifyLogin: async () => ({
         verified: true,
         session: { accessToken: 'otp-access-token', refreshToken: 'otp-refresh-token' },
@@ -197,6 +199,12 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .overrideProvider(RecentAuthService)
     .useValue({
       issuePhoneOtpGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000095',
+        method: 'phone_otp',
+        purpose: 'account_delete',
+      }),
+      issueVerifiedGrant: async () => ({
         expiresAt: 1_800_000_300_000,
         grantId: '00000000-0000-4000-8000-000000000095',
         method: 'phone_otp',
@@ -636,7 +644,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/phone-binding/verify',
       headers: { authorization: 'Bearer apple-token' },
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000013', phone: '+8613800138000', token: '123456' },
     });
     const legacyStarted = await app.inject({
       method: 'POST',
@@ -648,7 +656,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/merge/phone',
       headers: { authorization: 'Bearer apple-token' },
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000014', phone: '+8613800138000', token: '123456' },
     });
     const malformed = await app.inject({
       method: 'POST',
@@ -659,7 +667,7 @@ describe('API foundation', () => {
     const unauthenticated = await app.inject({
       method: 'POST',
       url: '/v1/account/merge/phone',
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000014', phone: '+8613800138000', token: '123456' },
     });
     expect(started.statusCode).toBe(201);
     expect(started.json().data).toEqual({ sent: true });
@@ -710,6 +718,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/password/recovery/authorize',
       headers: { authorization: 'Bearer valid-token' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000011' },
     });
     const recentPhoneStart = await app.inject({
       method: 'POST',
@@ -721,7 +730,11 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/recent-auth/phone',
       headers: { authorization: 'Bearer valid-token' },
-      payload: { purpose: 'account_delete' },
+      payload: {
+        challengeId: '10000000-0000-4000-8000-000000000012',
+        purpose: 'account_delete',
+        token: '123456',
+      },
     });
     const unauthenticatedRecovery = await app.inject({
       method: 'POST',

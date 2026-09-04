@@ -2,6 +2,8 @@ import { createHmac } from 'node:crypto';
 
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Inject,
   Injectable,
   Logger,
@@ -13,7 +15,7 @@ import { Webhook } from 'standardwebhooks';
 import { z } from 'zod';
 
 import { API_CONFIG, type ApiConfig, DISABLED_SMS_CONFIG } from '../../config';
-import { AliyunSmsProvider } from './aliyun-sms.provider';
+import { AliyunSmsProvider, DefinitiveSmsSubmissionError } from './aliyun-sms.provider';
 import { SmsDeliveryAuthority } from './sms-delivery-authority';
 
 const payloadSchema = z.object({
@@ -58,6 +60,15 @@ export class SupabaseSmsHookService {
     return createHmac('sha256', secret)
       .update('icao:sms-dedupe:v1\0')
       .update(phone)
+      .update('\0')
+      .update(otp)
+      .digest('hex');
+  }
+
+  private otpTokenDigest(otpIntentId: string, otp: string) {
+    return createHmac('sha256', this.config.accountIdentityHashSecret)
+      .update('phone-otp-token-v1\0')
+      .update(otpIntentId)
       .update('\0')
       .update(otp)
       .digest('hex');
@@ -118,16 +129,91 @@ export class SupabaseSmsHookService {
     }
     const input = this.verify(rawBody, headers);
     const claimed = await this.authority.claim(input.dedupeKey, input.phone);
+    if (claimed.outcome === 'local_rate_limited') {
+      throw new HttpException('sms_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
+    }
     if (claimed.outcome === 'duplicate_completed') return;
     if (claimed.outcome === 'duplicate_inflight') {
       throw new ServiceUnavailableException('sms_delivery_in_progress');
     }
+    if (claimed.outcome === 'unauthorized_generation') {
+      throw new ServiceUnavailableException('sms_generation_not_dispatching');
+    }
+    if (claimed.outcome === 'reconcile_required') {
+      let reconciled;
+      try {
+        reconciled = await this.provider.reconcileOtpSubmission({
+          outId: input.dedupeKey,
+          phone: input.phone,
+          submissionStartedAt: claimed.submissionStartedAt,
+        });
+      } catch {
+        await this.authority.markAmbiguous(input.dedupeKey, claimed.leaseToken).catch(() => false);
+        throw new ServiceUnavailableException('sms_delivery_reconciliation_pending');
+      }
+      if (!reconciled.found) {
+        await this.authority.markAmbiguous(input.dedupeKey, claimed.leaseToken).catch(() => false);
+        throw new ServiceUnavailableException('sms_delivery_reconciliation_pending');
+      }
+      const completed = await this.authority.complete(input.dedupeKey, claimed.leaseToken, reconciled.submission);
+      if (!completed) throw new ServiceUnavailableException('sms_delivery_fencing_lost');
+      return;
+    }
+
     try {
-      await this.provider.sendOtp({ outId: input.dedupeKey, phone: input.phone, otp: input.otp });
-      await this.authority.complete(input.dedupeKey, claimed.leaseToken);
+      this.provider.prepare();
     } catch (error) {
-      await this.authority.fail(input.dedupeKey, claimed.leaseToken, claimed.rules).catch(() => undefined);
+      const rejected = await this.authority.rejectBeforeAcceptance(input.dedupeKey, claimed.leaseToken).catch(() => false);
+      if (!rejected) throw new ServiceUnavailableException('sms_delivery_fencing_lost');
       throw error;
     }
+
+    const authorized = await this.authority.authorizeSubmission(
+      input.dedupeKey,
+      claimed.leaseToken,
+      claimed.otpIntentId,
+      this.otpTokenDigest(claimed.otpIntentId, input.otp),
+    );
+    if (!authorized) {
+      await this.authority.fail(input.dedupeKey, claimed.leaseToken, claimed.rules).catch(() => false);
+      throw new ServiceUnavailableException('sms_generation_not_dispatching');
+    }
+
+    let submission;
+    try {
+      submission = await this.provider.sendOtp({ outId: input.dedupeKey, phone: input.phone, otp: input.otp });
+    } catch (error) {
+      if (error instanceof DefinitiveSmsSubmissionError) {
+        const rejected = await this.authority.rejectBeforeAcceptance(input.dedupeKey, claimed.leaseToken).catch(() => false);
+        if (!rejected) throw new ServiceUnavailableException('sms_delivery_fencing_lost');
+        throw error;
+      }
+
+      // A transport failure after SendSms begins is ambiguous: Aliyun has no
+      // idempotency key. A positive OutId query may prove acceptance; absence
+      // is not proof of non-delivery and must never authorize a resend.
+      let reconciled;
+      try {
+        reconciled = await this.provider.reconcileOtpSubmission({
+          outId: input.dedupeKey,
+          phone: input.phone,
+          submissionStartedAt: authorized.submissionStartedAt,
+        });
+      } catch {
+        // Query failures remain ambiguous just like a negative query.
+        await this.authority.markAmbiguous(input.dedupeKey, claimed.leaseToken).catch(() => false);
+        throw new ServiceUnavailableException('sms_delivery_reconciliation_pending');
+      }
+      if (reconciled.found) {
+        const completed = await this.authority.complete(input.dedupeKey, claimed.leaseToken, reconciled.submission);
+        if (!completed) throw new ServiceUnavailableException('sms_delivery_fencing_lost');
+        return;
+      }
+      await this.authority.markAmbiguous(input.dedupeKey, claimed.leaseToken).catch(() => false);
+      throw new ServiceUnavailableException('sms_delivery_reconciliation_pending');
+    }
+
+    const completed = await this.authority.complete(input.dedupeKey, claimed.leaseToken, submission);
+    if (!completed) throw new ServiceUnavailableException('sms_delivery_fencing_lost');
   }
 }

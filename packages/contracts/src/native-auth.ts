@@ -27,6 +27,12 @@ export type NativeBindPhoneResponse = {
   session: SocialAuthSessionResponse;
 };
 
+export type NativeBindPhoneRequest = {
+  challengeId: string;
+  phone: string;
+  token: string;
+};
+
 export type NativeStartPhoneBindingResponse = StartPhoneBindingResponse & {
   challengeId: string;
   expiresAt: number;
@@ -81,6 +87,14 @@ export type NativeRecentAuthMethod = RecentAuthMethod | 'wechat';
 export type NativeRecentAuthGrantResponse = Omit<RecentAuthGrantResponse, 'method'> & {
   method: NativeRecentAuthMethod;
 };
+
+export type NativePhoneRecentAuthRequest = {
+  challengeId: string;
+  purpose: 'account_delete';
+  token: string;
+};
+
+export type NativeStartPhoneRecentAuthRequest = Pick<NativePhoneRecentAuthRequest, 'purpose'>;
 
 export type WechatRecentAuthRequest = {
   challengeId: string;

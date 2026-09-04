@@ -30,6 +30,12 @@ const loginChallenge = {
   phone,
   purpose: 'login' as const,
 };
+const bindingChallenge = {
+  challengeId: '10000000-0000-4000-8000-000000000011',
+  expiresAt: 1_800_000_300_000,
+  phone,
+  resendAllowedAt: 1_800_000_060_000,
+};
 
 function user(overrides: Partial<User> = {}): User {
   return {
@@ -127,20 +133,30 @@ describe('SupabasePhoneAuthService', () => {
 
   it('authorizes password recovery only through the authenticated server session', async () => {
     const { client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       authorized: true,
       expiresAt: Date.now() + 600_000,
       grantId: '10000000-0000-4000-8000-000000000001',
     });
 
-    await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery())
+    await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery(
+      '10000000-0000-4000-8000-000000000010',
+      'fresh-recovery-access-token',
+    ))
       .resolves.toEqual(expect.objectContaining({
         authorized: true,
         grantId: '10000000-0000-4000-8000-000000000001',
       }));
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password/recovery/authorize', {
-      method: 'POST',
-    });
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith(
+      '/v1/account/password/recovery/authorize',
+      'fresh-recovery-access-token',
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ challengeId: '10000000-0000-4000-8000-000000000010' }),
+      },
+    );
+    expect(mockApiRequest).not.toHaveBeenCalled();
   });
 
   it('uses the current password to obtain a one-time account deletion grant', async () => {
@@ -165,7 +181,14 @@ describe('SupabasePhoneAuthService', () => {
     const { auth, client } = authClient();
     const { auth: transientAuth, client: transientClient } = authClient();
     mockApiRequest
-      .mockResolvedValueOnce({ accepted: true })
+      .mockResolvedValueOnce({
+        accepted: true,
+        challengeId: '10000000-0000-4000-8000-000000000010',
+        expiresAt: Date.now() + 300_000,
+        issuedAt: Date.now(),
+        resendAllowedAt: Date.now() + 60_000,
+        serverTime: Date.now(),
+      })
       ;
     mockApiRequestWithAccessToken.mockResolvedValueOnce({
       expiresAt: Date.now() + 300_000,
@@ -191,10 +214,14 @@ describe('SupabasePhoneAuthService', () => {
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ purpose: 'account_delete' }),
+        body: JSON.stringify({
+          challengeId: '10000000-0000-4000-8000-000000000010',
+          purpose: 'account_delete',
+          token: '123456',
+        }),
       },
     );
-    expect(transientAuth.verifyOtp).toHaveBeenCalledWith({ phone, token: '123456', type: 'sms' });
+    expect(transientAuth.verifyOtp).not.toHaveBeenCalled();
     expect(auth.verifyOtp).not.toHaveBeenCalled();
     expect(auth.setSession).not.toHaveBeenCalled();
     expect(authorization.grantId).toBe('10000000-0000-4000-8000-000000000003');
@@ -238,9 +265,12 @@ describe('SupabasePhoneAuthService', () => {
     { authorized: true, expiresAt: Date.now() - 1, grantId: '10000000-0000-4000-8000-000000000001' },
   ])('rejects a missing or expired password recovery grant', async (response) => {
     const { client } = authClient();
-    mockApiRequest.mockResolvedValueOnce(response as never);
+    mockApiRequestWithAccessToken.mockResolvedValueOnce(response as never);
 
-    await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery())
+    await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery(
+      '10000000-0000-4000-8000-000000000010',
+      'fresh-recovery-access-token',
+    ))
       .rejects.toThrow('phone_reauthentication_required');
   });
 
@@ -355,7 +385,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('starts phone binding through the authenticated server without probing phone occupancy', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({ sent: true });
+    mockApiRequest.mockResolvedValueOnce({ ...bindingChallenge, sent: true });
 
     const challenge = await new SupabasePhoneAuthService(client).requestPhoneBindingOtp('13800138000');
 
@@ -366,7 +396,7 @@ describe('SupabasePhoneAuthService', () => {
     });
     expect(auth.updateUser).not.toHaveBeenCalled();
     expect(auth.signInWithOtp).not.toHaveBeenCalled();
-    expect(challenge).toEqual({ phone });
+    expect(challenge).toEqual(bindingChallenge);
   });
 
   it('lets the server bind an unused phone before switching the local session', async () => {
@@ -375,11 +405,11 @@ describe('SupabasePhoneAuthService', () => {
       account: { accountId: 'account-1', phone, phoneBound: true, providers: ['phone', 'apple'] },
       session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
     });
-    const result = await new SupabasePhoneAuthService(client).verifyPhoneBindingOtp({ phone }, '123456');
+    const result = await new SupabasePhoneAuthService(client).verifyPhoneBindingOtp(bindingChallenge, '123456');
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ phone, token: '123456' }),
+      body: JSON.stringify({ challengeId: bindingChallenge.challengeId, phone, token: '123456' }),
     });
     expect(auth.verifyOtp).not.toHaveBeenCalled();
     expect(auth.setSession).toHaveBeenCalledWith({
@@ -393,7 +423,7 @@ describe('SupabasePhoneAuthService', () => {
     const { auth, client } = authClient();
     mockApiRequest.mockRejectedValueOnce(new Error('phone_already_registered'));
 
-    await expect(new SupabasePhoneAuthService(client).verifyPhoneBindingOtp({ phone }, '123456'))
+    await expect(new SupabasePhoneAuthService(client).verifyPhoneBindingOtp(bindingChallenge, '123456'))
       .rejects.toThrow('phone_already_registered');
 
     expect(auth.setSession).not.toHaveBeenCalled();
@@ -482,9 +512,16 @@ describe('SupabasePhoneAuthService', () => {
 
   it('resends binding codes through the same neutral server endpoint', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({ sent: true });
+    mockApiRequest.mockResolvedValueOnce({
+      ...bindingChallenge,
+      challengeId: '10000000-0000-4000-8000-000000000012',
+      sent: true,
+    });
     const service = new SupabasePhoneAuthService(client);
-    await service.resendPhoneBindingOtp({ phone });
+    await expect(service.resendPhoneBindingOtp(bindingChallenge)).resolves.toEqual({
+      ...bindingChallenge,
+      challengeId: '10000000-0000-4000-8000-000000000012',
+    });
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },

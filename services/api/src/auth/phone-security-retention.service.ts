@@ -40,15 +40,6 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
         AND ${wechatAuthChallenges.expiresAt} <= ${nowIso}::timestamptz
     `);
     await this.database.db.execute(sql`
-      DELETE FROM ${phoneOtpIntents}
-      WHERE ${phoneOtpIntents.id} IN (
-        SELECT ${phoneOtpIntents.id} FROM ${phoneOtpIntents}
-        WHERE ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
-        LIMIT ${CLEANUP_BATCH_SIZE}
-      )
-      AND ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
-    `);
-    await this.database.db.execute(sql`
       DELETE FROM ${recentAuthGrants}
       WHERE ${recentAuthGrants.id} IN (
         SELECT ${recentAuthGrants.id} FROM ${recentAuthGrants}
@@ -76,11 +67,52 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
       WHERE ${smsDeliveryAttempts.dedupeKey} IN (
         SELECT ${smsDeliveryAttempts.dedupeKey} FROM ${smsDeliveryAttempts}
         WHERE ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
-          AND (${smsDeliveryAttempts.status} <> 'processing' OR ${smsDeliveryAttempts.leaseUntil} <= ${nowIso}::timestamptz)
+          AND (
+            ${smsDeliveryAttempts.status} = 'completed'
+            OR (
+              ${smsDeliveryAttempts.status} IN ('retryable', 'rejected')
+              AND NOT EXISTS (
+                SELECT 1 FROM ${phoneOtpIntents}
+                WHERE ${phoneOtpIntents.id} = ${smsDeliveryAttempts.otpIntentId}
+                  AND ${phoneOtpIntents.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying')
+                  AND ${phoneOtpIntents.expiresAt} > ${nowIso}::timestamptz
+              )
+            )
+          )
         LIMIT ${CLEANUP_BATCH_SIZE}
       )
       AND ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
-      AND (${smsDeliveryAttempts.status} <> 'processing' OR ${smsDeliveryAttempts.leaseUntil} <= ${nowIso}::timestamptz)
+      AND (
+        ${smsDeliveryAttempts.status} = 'completed'
+        OR (
+          ${smsDeliveryAttempts.status} IN ('retryable', 'rejected')
+          AND NOT EXISTS (
+            SELECT 1 FROM ${phoneOtpIntents}
+            WHERE ${phoneOtpIntents.id} = ${smsDeliveryAttempts.otpIntentId}
+              AND ${phoneOtpIntents.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying')
+              AND ${phoneOtpIntents.expiresAt} > ${nowIso}::timestamptz
+          )
+        )
+      )
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${phoneOtpIntents}
+      WHERE ${phoneOtpIntents.id} IN (
+        SELECT ${phoneOtpIntents.id} FROM ${phoneOtpIntents}
+        WHERE ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
+          AND ${phoneOtpIntents.status} IN ('ready', 'consumed', 'redeemed', 'superseded', 'failed')
+          AND NOT EXISTS (
+            SELECT 1 FROM ${smsDeliveryAttempts}
+            WHERE ${smsDeliveryAttempts.otpIntentId} = ${phoneOtpIntents.id}
+          )
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
+      AND ${phoneOtpIntents.status} IN ('ready', 'consumed', 'redeemed', 'superseded', 'failed')
+      AND NOT EXISTS (
+        SELECT 1 FROM ${smsDeliveryAttempts}
+        WHERE ${smsDeliveryAttempts.otpIntentId} = ${phoneOtpIntents.id}
+      )
     `);
     await this.database.db.execute(sql`
       DELETE FROM ${smsUsageCounters}

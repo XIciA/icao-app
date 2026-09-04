@@ -47,7 +47,7 @@ type AuthContextValue = {
   signInWithPhonePassword(phone: string, password: string): Promise<void>;
   updatePassword(password: string, currentPassword?: string): Promise<void>;
   requestPhoneBindingOtp(phone: string): Promise<PhoneBindingChallenge>;
-  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<void>;
+  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge>;
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<void>;
   signIn(inviteCode: string): Promise<void>;
   signOut(): Promise<void>;
@@ -537,7 +537,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const next = await service.verifyPhoneOtp(challenge, token);
         const passwordPurpose = challenge.purpose === 'recovery' ? 'recovery' : undefined;
         if (passwordPurpose) {
-          const authorization = await service.authorizePasswordRecovery();
+          // The newly verified recovery session has not been adopted by the
+          // provider yet. Authorize against that exact token explicitly rather
+          // than the global token provider, which may still be empty or stale.
+          const authorization = await service.authorizePasswordRecovery(
+            challenge.challengeId,
+            next.accessToken,
+          );
           setPasswordAuthorization({
             accessToken: next.accessToken,
             expiresAt: authorization.expiresAt,
@@ -597,7 +603,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     async resendPhoneBindingOtp(challenge) {
       if (!service) return unavailable();
-      await service.resendPhoneBindingOtp(challenge);
+      return service.resendPhoneBindingOtp(challenge);
     },
     async verifyPhoneBindingOtp(challenge, token) {
       if (!service) return unavailable();

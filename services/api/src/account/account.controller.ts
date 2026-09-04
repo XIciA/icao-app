@@ -1,12 +1,12 @@
 import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, BindPhoneRequest, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
-import type { NativeAccountSummary as AccountSummary, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
+import type { ApiSuccessEnvelope, AuthorizePasswordRecoveryRequest, AuthorizePasswordRecoveryResponse, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { NativeAccountSummary as AccountSummary, NativeBindPhoneRequest as BindPhoneRequest, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AccountService } from './account.service';
 import { AccountDeletionService } from './account-deletion.service';
-import { bindPhoneSchema, deleteAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
+import { authorizePasswordRecoverySchema, bindPhoneSchema, deleteAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
 
 @Controller('v1/account')
 @UseGuards(RequireAuthGuard)
@@ -46,9 +46,15 @@ export class AccountController {
 
   @Post('password/recovery/authorize')
   async authorizePasswordRecovery(
+    @Body() body: AuthorizePasswordRecoveryRequest,
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<AuthorizePasswordRecoveryResponse>> {
-    return { requestId: request.id, data: await this.account.authorizePasswordRecovery(request.auth!) };
+    const parsed = authorizePasswordRecoverySchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_password_recovery');
+    return {
+      requestId: request.id,
+      data: await this.account.authorizePasswordRecovery(request.auth!, parsed.data.challengeId),
+    };
   }
 
   @Post(['phone-binding/start', 'merge/phone/start'])
@@ -72,7 +78,16 @@ export class AccountController {
   async verifyPhoneBinding(@Body() body: BindPhoneRequest, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<BindPhoneResponse>> {
     const parsed = bindPhoneSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_phone_binding');
-    return { requestId: request.id, data: await this.account.bindPhoneWithOtp(request.auth!, parsed.data.phone, parsed.data.token) };
+    return {
+      requestId: request.id,
+      data: await this.account.bindPhoneWithOtp(
+        request.auth!,
+        parsed.data.challengeId,
+        parsed.data.phone,
+        parsed.data.token,
+        (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+      ),
+    };
   }
 
   @Delete()

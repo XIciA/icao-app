@@ -544,7 +544,7 @@ function BindPhonePage() {
     setError('');
     setRecentAuthRequired(false);
     try {
-      await auth.resendPhoneBindingOtp(challenge);
+      setChallenge(await auth.resendPhoneBindingOtp(challenge));
       setCode('');
       startCountdown();
     } catch {

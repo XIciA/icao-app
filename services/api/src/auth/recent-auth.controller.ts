@@ -1,13 +1,13 @@
 import { BadRequestException, Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest, PhoneRecentAuthRequest, StartPhoneRecentAuthRequest } from '@icao/contracts';
-import type { NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
+import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest } from '@icao/contracts';
+import type { NativePhoneRecentAuthRequest as PhoneRecentAuthRequest, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, NativeStartPhoneRecentAuthRequest as StartPhoneRecentAuthRequest, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
 
 import { AppleAuthService } from './apple-auth.service';
 import { appleRecentAuthSchema } from './apple-auth.schemas';
 import type { AuthenticatedRequest } from './auth.types';
 import { PhoneAuthService } from './phone-auth.service';
 import { RecentAuthService } from './recent-auth.service';
-import { passwordRecentAuthSchema, phoneRecentAuthSchema, wechatRecentAuthSchema } from './recent-auth.schemas';
+import { passwordRecentAuthSchema, phoneRecentAuthSchema, startPhoneRecentAuthSchema, startWechatRecentAuthSchema, wechatRecentAuthSchema } from './recent-auth.schemas';
 import { RequireAuthGuard } from './require-auth.guard';
 import { WechatAuthService } from './wechat-auth.service';
 
@@ -39,7 +39,7 @@ export class RecentAuthController {
     @Body() body: StartPhoneRecentAuthRequest,
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<StartPhoneOtpResponse>> {
-    const parsed = phoneRecentAuthSchema.safeParse(body);
+    const parsed = startPhoneRecentAuthSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
     return {
       requestId: request.id,
@@ -58,9 +58,16 @@ export class RecentAuthController {
   ): Promise<ApiSuccessEnvelope<RecentAuthGrantResponse>> {
     const parsed = phoneRecentAuthSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
+    await this.phoneAuth.verifyRecentChallenge(
+      request.auth!,
+      parsed.data.challengeId,
+      parsed.data.token,
+      parsed.data.purpose,
+      (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+    );
     return {
       requestId: request.id,
-      data: await this.recentAuth.issuePhoneOtpGrant(request.auth!, parsed.data.purpose),
+      data: await this.recentAuth.issueVerifiedGrant(request.auth!, 'phone_otp', parsed.data.purpose),
     };
   }
 
@@ -83,7 +90,7 @@ export class RecentAuthController {
     @Body() body: StartWechatRecentAuthRequest,
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<StartWechatAuthResponse>> {
-    const parsed = phoneRecentAuthSchema.safeParse(body);
+    const parsed = startWechatRecentAuthSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
     return {
       requestId: request.id,

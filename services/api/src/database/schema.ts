@@ -210,10 +210,17 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
   dispatchLeaseUntil: timestamp('dispatch_lease_until', { withTimezone: true }),
   providerCompletedAt: timestamp('provider_completed_at', { withTimezone: true }),
-  // `pending` remains the compatibility default for migrations, fixtures, and audited maintenance
-  // flows that materialize an already-delivered intent. The delivery service always writes
-  // `queued` explicitly before it contacts the provider.
-  status: text('status').default('pending').notNull(),
+  otpTokenDigest: text('otp_token_digest'),
+  providerRejected: boolean('provider_rejected').default(false).notNull(),
+  verifiedAuthUserId: uuid('verified_auth_user_id'),
+  // A correct locally-bound token moves the intent to `verifying` before the
+  // state-changing provider call. The random token is the exact completion
+  // fence for that single call; it is never released by a clock because a
+  // timed-out verify may still have consumed the OTP upstream.
+  verificationToken: uuid('verification_token'),
+  // Every writer must name a v2 state explicitly. In particular, do not retain the
+  // legacy `pending` default: a rolled-back binary must fail closed after cutover.
+  status: text('status').notNull(),
   otpNotBefore: timestamp('otp_not_before', { withTimezone: true }).notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
   consumedAt: timestamp('consumed_at', { withTimezone: true }),
@@ -222,8 +229,10 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   index('phone_otp_intents_lookup').on(table.phoneDigest, table.purpose, table.accountId, table.status),
   index('phone_otp_intents_dispatch').on(table.phoneDigest, table.status, table.dispatchSequence),
   index('phone_otp_intents_expiry').on(table.expiresAt),
+  uniqueIndex('phone_otp_intents_active_phone').on(table.phoneDigest)
+    .where(sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying')`),
   check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
-  check('phone_otp_intents_status_check', sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'pending', 'consumed', 'superseded', 'failed')`),
+  check('phone_otp_intents_status_check', sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying', 'consumed', 'redeemed', 'superseded', 'failed')`),
   check('phone_otp_intents_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= date_trunc('second', ${table.createdAt})`),
@@ -231,6 +240,22 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   check('phone_otp_intents_dispatch_lease_check', sql`(
     (${table.status} IN ('queued', 'dispatching', 'quarantined') AND ${table.dispatchLeaseUntil} IS NOT NULL)
     OR (${table.status} NOT IN ('queued', 'dispatching', 'quarantined') AND ${table.dispatchLeaseUntil} IS NULL)
+  )`),
+  check('phone_otp_intents_verification_fence_check', sql`(
+    (${table.status} = 'verifying' AND ${table.verificationToken} IS NOT NULL)
+    OR (${table.status} <> 'verifying' AND ${table.verificationToken} IS NULL)
+  )`),
+  check('phone_otp_intents_verified_user_check', sql`(
+    ${table.verifiedAuthUserId} IS NULL
+    OR ${table.status} IN ('consumed', 'redeemed')
+  )`),
+  check('phone_otp_intents_redeemed_purpose_check', sql`(
+    ${table.status} <> 'redeemed'
+    OR ${table.purpose} = 'password_recovery'
+  )`),
+  check('phone_otp_intents_provider_rejected_check', sql`(
+    ${table.providerRejected} = false
+    OR ${table.purpose} = 'password_recovery'
   )`),
   check('phone_otp_intents_account_check', sql`(
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
@@ -306,6 +331,18 @@ export const smsUsageCounters = pgTable('sms_usage_counters', {
 export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
   dedupeKey: text('dedupe_key').primaryKey(),
   phoneDigest: text('phone_digest').notNull(),
+  // These exact-generation fields intentionally have no database default.
+  // A rolled-back v1 hook cannot omit them and still send a v2 OTP.
+  otpIntentId: uuid('otp_intent_id').notNull().references(() => phoneOtpIntents.id, { onDelete: 'restrict' }),
+  otpDispatchSequence: bigint('otp_dispatch_sequence', { mode: 'number' }).notNull(),
+  providerOutId: text('provider_out_id'),
+  providerRequestId: text('provider_request_id'),
+  providerBizId: text('provider_biz_id'),
+  // This is written immediately before calling Aliyun. It is intentionally
+  // not evidence that Aliyun accepted the request; a lost response remains
+  // ambiguous until a positive provider reconciliation or the original call
+  // settles.
+  submissionStartedAt: timestamp('submission_started_at', { withTimezone: true }),
   status: text('status').default('processing').notNull(),
   leaseToken: uuid('lease_token').notNull(),
   leaseUntil: timestamp('lease_until', { withTimezone: true }).notNull(),
@@ -318,7 +355,9 @@ export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
 }, (table) => [
   index('sms_delivery_attempts_expiry').on(table.expiresAt),
   index('sms_delivery_attempts_lease').on(table.status, table.leaseUntil),
-  check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing', 'retryable', 'completed')`),
+  index('sms_delivery_attempts_otp_intent').on(table.otpIntentId, table.status),
+  uniqueIndex('sms_delivery_attempts_one_per_otp_intent').on(table.otpIntentId),
+  check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing', 'retryable', 'rejected', 'completed')`),
   check('sms_delivery_attempts_attempts_check', sql`${table.attemptCount} > 0`),
   check('sms_delivery_attempts_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('sms_delivery_attempts_lease_time_check', sql`${table.leaseUntil} >= ${table.createdAt}`),
