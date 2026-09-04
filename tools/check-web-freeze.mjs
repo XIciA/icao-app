@@ -28,6 +28,10 @@ const approvedNativeIncrementHashes = new Map([
   ['packages/contracts/src/index.ts', '8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4'],
   ['pnpm-lock.yaml', '96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9'],
 ]);
+const approvedNativeIncrementPaths = new Set([
+  ...approvedNativeIncrementHashes.keys(),
+  'app.json',
+]);
 
 const exactProtectedPaths = [
   '.vercelignore',
@@ -63,6 +67,47 @@ function canonicalJson(value) {
       .sort(([left], [right]) => left.localeCompare(right))
       .map(([key, entry]) => [key, canonicalJson(entry)]),
   );
+}
+
+export function assertNativeBuildOnlyAppJsonDelta(baseApp, currentApp) {
+  const baseBuildNumber = baseApp?.expo?.ios?.buildNumber;
+  const currentBuildNumber = currentApp?.expo?.ios?.buildNumber;
+  const baseVersionCode = baseApp?.expo?.android?.versionCode;
+  const currentVersionCode = currentApp?.expo?.android?.versionCode;
+  if (
+    !/^\d+$/u.test(String(baseBuildNumber ?? ''))
+    || !/^\d+$/u.test(String(currentBuildNumber ?? ''))
+    || !Number.isSafeInteger(baseVersionCode)
+    || !Number.isSafeInteger(currentVersionCode)
+  ) {
+    throw new Error('app.json Native build identifiers must be positive decimal integers');
+  }
+  const baseBuild = Number(baseBuildNumber);
+  const currentBuild = Number(currentBuildNumber);
+  if (
+    !Number.isSafeInteger(baseBuild)
+    || !Number.isSafeInteger(currentBuild)
+    || baseBuild <= 0
+    || currentBuild <= baseBuild
+    || baseVersionCode <= 0
+    || currentVersionCode <= baseVersionCode
+    || currentBuild !== currentVersionCode
+  ) {
+    throw new Error('app.json must advance matching iOS and Android build identifiers');
+  }
+
+  const stripNativeBuildIdentifiers = (app) => {
+    const normalized = structuredClone(app);
+    delete normalized.expo.ios.buildNumber;
+    delete normalized.expo.android.versionCode;
+    return canonicalJson(normalized);
+  };
+  if (
+    JSON.stringify(stripNativeBuildIdentifiers(baseApp))
+    !== JSON.stringify(stripNativeBuildIdentifiers(currentApp))
+  ) {
+    throw new Error('app.json changes more than the reviewed Native build identifiers');
+  }
 }
 
 function normalizedProtectedContent(repositoryPath, content) {
@@ -404,8 +449,8 @@ async function assertApprovedNativeIncrement(currentFiles) {
     throw new Error(`deleted shared Web candidate: ${deletedSharedSource.filter(Boolean).join(', ')}`);
   }
   if (
-    changedProtectedPaths.length !== approvedNativeIncrementHashes.size
-    || changedProtectedPaths.some((repositoryPath) => !approvedNativeIncrementHashes.has(repositoryPath))
+    changedProtectedPaths.length !== approvedNativeIncrementPaths.size
+    || changedProtectedPaths.some((repositoryPath) => !approvedNativeIncrementPaths.has(repositoryPath))
   ) {
     throw new Error(`unapproved protected-input delta: ${changedProtectedPaths.join(', ')}`);
   }
@@ -424,7 +469,9 @@ async function assertApprovedNativeIncrement(currentFiles) {
     });
     return stdout;
   };
-  const [baseAppConfig, currentAppConfig, basePackage, currentPackage, baseContracts, currentContracts] = await Promise.all([
+  const [baseApp, currentApp, baseAppConfig, currentAppConfig, basePackage, currentPackage, baseContracts, currentContracts] = await Promise.all([
+    readBaseFile('app.json').then(JSON.parse),
+    readFile(fromRepositoryPath('app.json'), 'utf8').then(JSON.parse),
     readBaseFile('app.config.js'),
     readFile(fromRepositoryPath('app.config.js'), 'utf8'),
     readBaseFile('package.json').then(JSON.parse),
@@ -432,6 +479,7 @@ async function assertApprovedNativeIncrement(currentFiles) {
     readBaseFile('packages/contracts/src/index.ts'),
     readFile(fromRepositoryPath('packages/contracts/src/index.ts'), 'utf8'),
   ]);
+  assertNativeBuildOnlyAppJsonDelta(baseApp, currentApp);
   for (const variant of [undefined, 'development']) {
     const baseConfigured = evaluateExpoConfig(baseAppConfig, { ICAO_APP_VARIANT: variant });
     const currentConfigured = evaluateExpoConfig(currentAppConfig, {
@@ -613,6 +661,7 @@ async function checkManifest(manifestPath, explain) {
             console.log(`- reviewed Native-only protected input: ${repositoryPath}`);
           }
           console.log('- app.config.js: identical after removing the Native WeChat config plugin');
+          console.log('- app.json: identical after removing the matching Native build identifiers');
           console.log('- package.json: identical Web dependency and Web script surface');
           console.log('- contracts index: identical emitted JavaScript');
           console.log('- pnpm lockfile: exact reviewed digest');
