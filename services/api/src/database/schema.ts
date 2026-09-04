@@ -86,7 +86,7 @@ export const recentAuthChallenges = pgTable('recent_auth_challenges', {
   index('recent_auth_challenges_account_session').on(table.accountId, table.sessionId, table.purpose, table.status),
   index('recent_auth_challenges_expiry').on(table.expiresAt),
   check('recent_auth_challenges_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
-  check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
+  check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
   check('recent_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verified', 'consumed', 'expired')`),
   check('recent_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('recent_auth_challenges_verified_check', sql`${table.verifiedAt} IS NULL OR ${table.verifiedAt} >= ${table.createdAt}`),
@@ -113,7 +113,7 @@ export const recentAuthGrants = pgTable('recent_auth_grants', {
   index('recent_auth_grants_account_session').on(table.accountId, table.sessionId, table.purpose),
   index('recent_auth_grants_expiry').on(table.expiresAt),
   check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
-  check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
+  check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
   check('recent_auth_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('recent_auth_grants_reservation_check', sql`(
     (${table.reservationToken} IS NULL AND ${table.reservationExpiresAt} IS NULL)
@@ -231,7 +231,7 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   index('phone_otp_intents_expiry').on(table.expiresAt),
   uniqueIndex('phone_otp_intents_active_phone').on(table.phoneDigest)
     .where(sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying')`),
-  check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
+  check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
   check('phone_otp_intents_status_check', sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying', 'consumed', 'redeemed', 'superseded', 'failed')`),
   check('phone_otp_intents_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
@@ -259,7 +259,7 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   )`),
   check('phone_otp_intents_account_check', sql`(
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
-    OR (${table.purpose} IN ('account_delete', 'phone_binding') AND ${table.accountId} IS NOT NULL)
+    OR (${table.purpose} IN ('account_delete', 'phone_binding', 'session_revoke_all') AND ${table.accountId} IS NOT NULL)
   )`),
 ]).enableRLS();
 
@@ -283,13 +283,13 @@ export const wechatAuthChallenges = pgTable('wechat_auth_challenges', {
   uniqueIndex('wechat_auth_challenges_code').on(table.codeDigest),
   index('wechat_auth_challenges_expiry').on(table.expiresAt),
   index('wechat_auth_challenges_account').on(table.accountId, table.status),
-  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding', 'account_delete')`),
+  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding', 'account_delete', 'session_revoke_all')`),
   check('wechat_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verifying', 'verified', 'consumed', 'failed', 'expired')`),
   check('wechat_auth_challenges_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('wechat_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('wechat_auth_challenges_binding_check', sql`(
     (${table.purpose} = 'login' AND ${table.accountId} IS NULL AND ${table.authUserId} IS NULL)
-    OR (${table.purpose} IN ('binding', 'account_delete') AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
+    OR (${table.purpose} IN ('binding', 'account_delete', 'session_revoke_all') AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
   )`),
   check('wechat_auth_challenges_verification_lease_check', sql`(
     (${table.status} = 'verifying' AND ${table.verificationExpiresAt} IS NOT NULL)
@@ -343,7 +343,10 @@ export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
   // ambiguous until a positive provider reconciliation or the original call
   // settles.
   submissionStartedAt: timestamp('submission_started_at', { withTimezone: true }),
-  status: text('status').default('processing').notNull(),
+  // The v2 namespace is a deliberate roll-forward fence. A rolled-back hook
+  // binary still writes the legacy status literals and is rejected by the
+  // database before it can claim or resubmit a v2 delivery generation.
+  status: text('status').default('processing_v2').notNull(),
   leaseToken: uuid('lease_token').notNull(),
   leaseUntil: timestamp('lease_until', { withTimezone: true }).notNull(),
   attemptCount: integer('attempt_count').default(1).notNull(),
@@ -357,14 +360,14 @@ export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
   index('sms_delivery_attempts_lease').on(table.status, table.leaseUntil),
   index('sms_delivery_attempts_otp_intent').on(table.otpIntentId, table.status),
   uniqueIndex('sms_delivery_attempts_one_per_otp_intent').on(table.otpIntentId),
-  check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing', 'retryable', 'rejected', 'completed')`),
+  check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing_v2', 'retryable_v2', 'rejected_v2', 'completed_v2')`),
   check('sms_delivery_attempts_attempts_check', sql`${table.attemptCount} > 0`),
   check('sms_delivery_attempts_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('sms_delivery_attempts_lease_time_check', sql`${table.leaseUntil} >= ${table.createdAt}`),
   check('sms_delivery_attempts_completed_time_check', sql`${table.completedAt} IS NULL OR ${table.completedAt} >= ${table.createdAt}`),
   check('sms_delivery_attempts_state_time_check', sql`(
-    (${table.status} = 'completed' AND ${table.completedAt} IS NOT NULL)
-    OR (${table.status} <> 'completed' AND ${table.completedAt} IS NULL)
+    (${table.status} = 'completed_v2' AND ${table.completedAt} IS NOT NULL)
+    OR (${table.status} <> 'completed_v2' AND ${table.completedAt} IS NULL)
   )`),
 ]).enableRLS();
 

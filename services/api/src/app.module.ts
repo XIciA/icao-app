@@ -6,6 +6,7 @@ import { AccountPrivacyController } from './account/account-privacy.controller';
 import { AccountService } from './account/account.service';
 import { AccountIdentityService } from './account/account-identity.service';
 import { AccountDeletionService } from './account/account-deletion.service';
+import { AccountPhoneIdentityService } from './account/account-phone-identity.service';
 import { AccountDeletionStatusController } from './account/account-deletion-status.controller';
 import { ACCOUNT_AUTH_ADMIN, SupabaseAccountAuthAdmin } from './account/account-auth-admin';
 import { IdentityDigestService } from './account/identity-digest.service';
@@ -107,6 +108,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     JoseAppleIdTokenVerifier,
     { provide: APPLE_ID_TOKEN_VERIFIER, useExisting: JoseAppleIdTokenVerifier },
     AppleAuthService,
+    AccountPhoneIdentityService,
     AccountService,
     SupabaseAccountAuthAdmin,
     { provide: ACCOUNT_AUTH_ADMIN, useExisting: SupabaseAccountAuthAdmin },

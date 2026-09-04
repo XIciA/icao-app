@@ -31,7 +31,7 @@ import {
 import { opsGrantExecuteSchema, opsGrantPreviewSchema } from '../src/admin/admin.schemas';
 import { loadConfig, loadOpsConfig, type OpsApiConfig } from '../src/config';
 import { createOpsApp } from '../src/create-ops-app';
-import type { DatabaseService } from '../src/database/database.service';
+import { DatabaseService } from '../src/database/database.service';
 
 describe('ops staff security primitives', () => {
   it('stores passwords as salted scrypt hashes and rejects another password', async () => {
@@ -227,14 +227,21 @@ describe('ops login anti-abuse boundary', () => {
   });
 
   it('bootstraps the real isolated Nest application without ordinary API providers', async () => {
-    const app = await createOpsApp(authConfig);
+    // Schema-version enforcement has its own real-Postgres suite. This test
+    // keeps the Ops module-isolation assertion independent of a developer's
+    // local migration state while retaining the real DatabaseService wiring.
+    const schemaGate = vi.spyOn(DatabaseService.prototype, 'assertMinimumSchemaVersion')
+      .mockResolvedValueOnce(undefined);
+    let app: Awaited<ReturnType<typeof createOpsApp>> | undefined;
     try {
+      app = await createOpsApp(authConfig);
       const response = await app.inject({ method: 'GET', url: '/health/live' });
       expect(response.statusCode).toBe(200);
       expect(response.headers['x-icao-api-version']).toBe('ops-test');
       expect(response.json().data.service).toBe('icao-ops-api');
     } finally {
-      await app.close();
+      await app?.close();
+      schemaGate.mockRestore();
     }
   });
 

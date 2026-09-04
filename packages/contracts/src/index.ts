@@ -38,6 +38,7 @@ export type BindPhoneRequest = {
 
 export type StartPhoneBindingRequest = {
   phone: string;
+  recentAuthGrantId?: string;
 };
 
 export type StartPhoneBindingResponse = {
@@ -167,16 +168,16 @@ export type VerifyAppleTransactionResponse = {
   entitlement: CommerceEntitlementSummary;
 };
 
-export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding';
+export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding' | 'session_revoke_all';
 export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple';
 
 export type PasswordRecentAuthRequest = {
   password: string;
-  purpose: 'account_delete';
+  purpose: 'account_delete' | 'session_revoke_all';
 };
 
 export type PhoneRecentAuthRequest = {
-  purpose: 'account_delete';
+  purpose: 'account_delete' | 'session_revoke_all';
 };
 
 export type StartPhoneRecentAuthRequest = PhoneRecentAuthRequest;
@@ -194,7 +195,11 @@ export type AppleCredentialRequest = {
 };
 
 export type AppleRecentAuthRequest = AppleCredentialRequest & {
-  purpose: 'account_delete';
+  purpose: 'account_delete' | 'session_revoke_all';
+};
+
+export type RevokeAllSessionsRequest = {
+  grantId: string;
 };
 
 export type RegisterAppleCredentialResponse = {

@@ -4,6 +4,8 @@ import { ForbiddenException, ServiceUnavailableException } from '@nestjs/common'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
+import type { AccountPhoneIdentityService } from '../src/account/account-phone-identity.service';
+import type { VerifiedAuthSession } from '../src/auth/auth.types';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
 
@@ -21,7 +23,8 @@ function service(
   error: { code?: string; message: string } | null = null,
   keepAmbiguousGenerationActive = false,
   intentPurpose: 'login' | 'password_recovery' = 'login',
-  deliveryStatus?: 'processing' | 'retryable' | 'rejected' | 'completed',
+  deliveryStatus?: 'processing_v2' | 'retryable_v2' | 'rejected_v2' | 'completed_v2',
+  accountPhones?: AccountPhoneIdentityService,
 ) {
   const signInWithOtp = vi.fn().mockResolvedValue({ data: { session: null, user: null }, error });
   const values = vi.fn(() => ({
@@ -40,6 +43,7 @@ function service(
     }],
     [{
       createdAt: new Date('2027-01-15T08:00:00.000Z'),
+      dispatchLeaseUntil: new Date('2100-01-01T00:00:00.000Z'),
       dispatchSequence,
       purpose: intentPurpose,
       status: 'dispatching',
@@ -47,7 +51,7 @@ function service(
     [], // newer generation
     ...(error ? [[deliveryStatus ? {
       status: deliveryStatus,
-      submissionStartedAt: deliveryStatus === 'rejected' ? null : new Date('2027-01-15T08:00:00.000Z'),
+      submissionStartedAt: deliveryStatus === 'rejected_v2' ? null : new Date('2027-01-15T08:00:00.000Z'),
     } : undefined].filter(Boolean)] : []),
   ];
   const selectResults = [...cycle(1), ...cycle(2)];
@@ -93,7 +97,7 @@ function service(
   supabase.createClient.mockReturnValue({ auth: { signInWithOtp } });
   return {
     activeTransactions: () => activeTransactions,
-    instance: new PhoneAuthService(config, database),
+    instance: new PhoneAuthService(config, database, accountPhones),
     signInWithOtp,
     updateSet,
     values,
@@ -109,7 +113,7 @@ async function startRecoveryAt(instance: PhoneAuthService, now: number) {
   vi.useRealTimers();
 }
 
-function verificationService() {
+function verificationService(accountPhones?: AccountPhoneIdentityService) {
   const challengeId = '10000000-0000-4000-8000-000000000010';
   const phone = '+8613800138000';
   const token = '123456';
@@ -175,7 +179,7 @@ function verificationService() {
   supabase.createClient.mockReturnValue({ auth: { verifyOtp } });
   return {
     challengeId,
-    instance: new PhoneAuthService(config, database),
+    instance: new PhoneAuthService(config, database, accountPhones),
     phone,
     state,
     token,
@@ -215,6 +219,49 @@ describe('PhoneAuthService', () => {
         },
       },
     });
+  });
+
+  it('uses the account-bound phone principal for OTP reauthentication from a WeChat session', async () => {
+    const targetAuthUserId = '10000000-0000-4000-8000-000000000020';
+    const accountPhones = {
+      resolve: vi.fn().mockResolvedValue({
+        authUserId: targetAuthUserId,
+        passwordSet: true,
+        phone: '+8613800138000',
+      }),
+    } as unknown as AccountPhoneIdentityService;
+    const fixture = verificationService(accountPhones);
+    fixture.verifyOtp.mockResolvedValue({
+      data: {
+        session: { access_token: 'access', expires_at: 1_900_000_000, refresh_token: 'refresh' },
+        user: { id: targetAuthUserId, phone: fixture.phone },
+      },
+      error: null,
+    });
+    const socialSource = {
+      accessToken: 'wechat-access',
+      authenticationMethods: [{ method: 'wechat', timestamp: Math.floor(Date.now() / 1_000) }],
+      authUserId: '20000000-0000-4000-8000-000000000020',
+      identities: [{ provider: 'wechat', subject: 'wechat-subject' }],
+      issuedAt: Math.floor(Date.now() / 1_000),
+      sessionId: '30000000-0000-4000-8000-000000000020',
+      user: {
+        id: '40000000-0000-4000-8000-000000000020',
+        providers: ['wechat', 'phone'],
+      },
+    } satisfies VerifiedAuthSession;
+
+    await expect(fixture.instance.verifyRecentChallenge(
+      socialSource,
+      fixture.challengeId,
+      fixture.token,
+      'account_delete',
+      '203.0.113.8',
+    )).resolves.toBeUndefined();
+
+    expect(accountPhones.resolve).toHaveBeenCalledWith(socialSource.user.id);
+    expect(fixture.verifyOtp).toHaveBeenCalledWith({ phone: fixture.phone, token: fixture.token, type: 'sms' });
+    expect(fixture.state.status).toBe('consumed');
   });
 
   it('returns the same delayed recovery challenge when the phone is unknown', async () => {
@@ -514,7 +561,7 @@ describe('PhoneAuthService', () => {
   it('hard-times out an ambiguous provider send after releasing every database connection', async () => {
     vi.useFakeTimers();
     vi.setSystemTime(1_800_000_000_000);
-    const { activeTransactions, instance, signInWithOtp } = service(null, true);
+    const { activeTransactions, instance, signInWithOtp, updateSet } = service(null, true);
     signInWithOtp.mockImplementationOnce(() => new Promise(() => undefined));
 
     const pending = instance.start('+8613800138000', '203.0.113.8');
@@ -523,6 +570,12 @@ describe('PhoneAuthService', () => {
     await vi.advanceTimersByTimeAsync(15_000);
     await rejection;
     expect(activeTransactions()).toBe(0);
+    const dispatchClaim = updateSet.mock.calls.find(([value]) => (
+      value as { status?: string }
+    ).status === 'dispatching')?.[0] as { dispatchLeaseUntil?: Date } | undefined;
+    expect(dispatchClaim?.dispatchLeaseUntil?.getTime()).toBe(
+      1_800_000_000_000 + 15_000 + 5 * 60 * 1_000 + 2 * 60 * 1_000,
+    );
 
     await expect(instance.start('+8613800138000', '203.0.113.8'))
       .rejects.toSatisfy((error: unknown) => error instanceof Error && error.message === 'phone_otp_rate_limited');
@@ -639,7 +692,7 @@ describe('PhoneAuthService', () => {
       { code: 'sms_send_failed', message: 'outer transaction rolled back' },
       false,
       'login',
-      'completed',
+      'completed_v2',
     );
 
     await expect(fixture.instance.start('+8613800138000', '203.0.113.8'))
@@ -652,7 +705,7 @@ describe('PhoneAuthService', () => {
       { code: 'hook_failed', message: 'local counter rejected before Aliyun' },
       false,
       'password_recovery',
-      'rejected',
+      'rejected_v2',
     );
 
     await expect(fixture.instance.startRecovery('+8613800138000', '203.0.113.8'))

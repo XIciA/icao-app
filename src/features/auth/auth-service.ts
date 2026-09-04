@@ -29,6 +29,7 @@ export type PhoneBindingChallenge = {
   challengeId: string;
   expiresAt: number;
   phone: string;
+  recentAuthGrantId?: string;
   resendAllowedAt: number;
 };
 export type PhoneBindingVerification = { account: NativeAccountSummary; challenge: PhoneBindingChallenge; session: AppSession };
@@ -40,11 +41,11 @@ export type AuthService = {
   isWechatSignInAvailable(): Promise<boolean>;
   signInWithApple(): Promise<AppSession>;
   signInWithWechat(): Promise<AppSession>;
-  authorizeAccountDeletionWithApple(): Promise<RecentAuthGrantResponse>;
-  authorizeAccountDeletionWithWechat(accountId: string): Promise<NativeRecentAuthGrantResponse>;
-  authorizeAccountDeletionWithPassword(password: string): Promise<RecentAuthGrantResponse>;
-  authorizeAccountDeletionWithPhoneOtp(token: string): Promise<RecentAuthGrantResponse>;
-  requestAccountDeletionPhoneOtp(): Promise<NativeStartPhoneOtpResponse>;
+  authorizeAccountDeletionWithApple(purpose?: 'account_delete' | 'session_revoke_all'): Promise<RecentAuthGrantResponse>;
+  authorizeAccountDeletionWithWechat(accountId: string, purpose?: 'account_delete' | 'session_revoke_all'): Promise<NativeRecentAuthGrantResponse>;
+  authorizeAccountDeletionWithPassword(password: string, purpose?: 'account_delete' | 'session_revoke_all'): Promise<RecentAuthGrantResponse>;
+  authorizeAccountDeletionWithPhoneOtp(token: string, purpose?: 'account_delete' | 'session_revoke_all'): Promise<RecentAuthGrantResponse>;
+  requestAccountDeletionPhoneOtp(purpose?: 'account_delete' | 'session_revoke_all'): Promise<NativeStartPhoneOtpResponse>;
   requestPhoneOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   requestPasswordRecoveryOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   verifyPhoneOtp(challenge: { challengeId: string; phone: string; purpose: 'login' | 'recovery' }, token: string): Promise<AppSession>;
@@ -133,7 +134,10 @@ export function authError(error: { message: string; code?: string } | null) {
 }
 
 export class SupabasePhoneAuthService implements AuthService {
-  private accountDeletionPhoneChallenge?: NativeStartPhoneOtpResponse;
+  private accountDeletionPhoneChallenge?: {
+    purpose: 'account_delete' | 'session_revoke_all';
+    response: NativeStartPhoneOtpResponse;
+  };
   private authGeneration = 0;
   private sessionCommitTail: Promise<void> = Promise.resolve();
 
@@ -311,7 +315,7 @@ export class SupabasePhoneAuthService implements AuthService {
     return { account: response.account, session };
   }
 
-  async authorizeAccountDeletionWithApple() {
+  async authorizeAccountDeletionWithApple(purpose: 'account_delete' | 'session_revoke_all' = 'account_delete') {
     const current = await this.getSession();
     if (!current?.user.providers.includes('apple')) throw new Error('apple_reauthentication_required');
     const credential = await this.appleCredential(false);
@@ -321,29 +325,40 @@ export class SupabasePhoneAuthService implements AuthService {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         authorizationCode: credential.authorizationCode,
-        purpose: 'account_delete',
+        purpose,
         rawNonce: credential.rawNonce,
       }),
     });
   }
 
-  async authorizeAccountDeletionWithWechat(accountId: string) {
+  async authorizeAccountDeletionWithWechat(
+    accountId: string,
+    purpose: 'account_delete' | 'session_revoke_all' = 'account_delete',
+  ) {
     const current = await this.getSession();
     if (!current || current.user.id !== accountId) throw new Error('wechat_reauthentication_required');
+    return this.authorizeWithWechat(current, purpose);
+  }
+
+  private async authorizeWithWechat(
+    current: AppSession,
+    purpose: 'account_delete' | 'phone_binding' | 'session_revoke_all',
+  ) {
+    if (!current.user.providers.includes('wechat')) throw new Error('wechat_reauthentication_required');
     const challenge = await apiRequestWithAccessToken<StartWechatAuthResponse>(
       '/v1/account/recent-auth/wechat/start',
       current.accessToken,
       {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ purpose: 'account_delete' }),
+        body: JSON.stringify({ purpose }),
       },
     );
     if (challenge.status !== 'available') throw new Error('wechat_auth_configuration_pending');
     assertWechatChallengeMatchesNativeApp(challenge.appId);
     const nativeResponse = await authorizeWithWechatNative(challenge.state);
     if (nativeResponse.state !== challenge.state) throw new Error('invalid_wechat_auth_response');
-    return apiRequestWithAccessToken<RecentAuthGrantResponse>(
+    return apiRequestWithAccessToken<NativeRecentAuthGrantResponse>(
       '/v1/account/recent-auth/wechat',
       current.accessToken,
       {
@@ -352,41 +367,50 @@ export class SupabasePhoneAuthService implements AuthService {
         body: JSON.stringify({
           challengeId: challenge.challengeId,
           code: nativeResponse.code,
-          purpose: 'account_delete',
+          purpose,
           state: nativeResponse.state,
         }),
       },
     );
   }
 
-  async authorizeAccountDeletionWithPassword(password: string) {
+  async authorizeAccountDeletionWithPassword(
+    password: string,
+    purpose: 'account_delete' | 'session_revoke_all' = 'account_delete',
+  ) {
     if (!password) throw new Error('account_deletion_password_required');
     return apiRequest<RecentAuthGrantResponse>('/v1/account/recent-auth/password', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ password, purpose: 'account_delete' }),
+      body: JSON.stringify({ password, purpose }),
     });
   }
 
-  async requestAccountDeletionPhoneOtp() {
+  async requestAccountDeletionPhoneOtp(
+    purpose: 'account_delete' | 'session_revoke_all' = 'account_delete',
+  ) {
     const response = await apiRequest<NativeStartPhoneOtpResponse>('/v1/account/recent-auth/phone/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ purpose: 'account_delete' }),
+      body: JSON.stringify({ purpose }),
     });
     if (!response.accepted) throw new Error('phone_otp_delivery_failed');
-    this.accountDeletionPhoneChallenge = response;
+    this.accountDeletionPhoneChallenge = { purpose, response };
     return response;
   }
 
-  async authorizeAccountDeletionWithPhoneOtp(token: string) {
+  async authorizeAccountDeletionWithPhoneOtp(
+    token: string,
+    purpose: 'account_delete' | 'session_revoke_all' = 'account_delete',
+  ) {
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
     const current = await this.getSession();
     const challenge = this.accountDeletionPhoneChallenge;
-    if (!current?.user.phone || !current.user.providers.includes('phone')) {
-      throw new Error('phone_reauthentication_required');
-    }
-    if (!challenge?.accepted || challenge.expiresAt <= Date.now()) {
+    // The active Supabase principal may be Apple or WeChat while the durable
+    // account owns a separate phone principal. The API resolves and verifies
+    // that bound identity; the client only proves it still owns this session.
+    if (!current) throw new Error('phone_reauthentication_required');
+    if (!challenge || challenge.purpose !== purpose || !challenge.response.accepted || challenge.response.expiresAt <= Date.now()) {
       throw new Error('phone_reauthentication_required');
     }
     const grant = await apiRequestWithAccessToken<RecentAuthGrantResponse>(
@@ -396,8 +420,8 @@ export class SupabasePhoneAuthService implements AuthService {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          challengeId: challenge.challengeId,
-          purpose: 'account_delete',
+          challengeId: challenge.response.challengeId,
+          purpose,
           token,
         }),
       },
@@ -547,31 +571,44 @@ export class SupabasePhoneAuthService implements AuthService {
   async requestPhoneBindingOtp(input: string): Promise<PhoneBindingChallenge> {
     const phone = normalizeChinaMobile(input);
     if (!phone) throw new Error('invalid_phone_number');
-    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ phone }),
-    });
+    let recentAuthGrantId: string | undefined;
+    let response: StartPhoneBindingResponse;
+    try {
+      response = await this.startPhoneBinding(phone);
+    } catch (cause) {
+      if (!(cause instanceof Error) || cause.message !== 'recent_social_auth_required') throw cause;
+      const current = await this.getSession();
+      if (!current?.user.providers.includes('wechat')) throw cause;
+      const grant = await this.authorizeWithWechat(current, 'phone_binding');
+      recentAuthGrantId = grant.grantId;
+      response = await this.startPhoneBinding(phone, recentAuthGrantId);
+    }
     if (!response.sent) throw new Error('phone_binding_otp_unavailable');
     return {
       challengeId: response.challengeId,
       expiresAt: response.expiresAt,
       phone,
+      ...(recentAuthGrantId ? { recentAuthGrantId } : {}),
       resendAllowedAt: response.resendAllowedAt,
     };
   }
 
-  async resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge> {
-    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
+  private startPhoneBinding(phone: string, recentAuthGrantId?: string) {
+    return apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ phone: challenge.phone }),
+      body: JSON.stringify({ phone, ...(recentAuthGrantId ? { recentAuthGrantId } : {}) }),
     });
+  }
+
+  async resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge> {
+    const response = await this.startPhoneBinding(challenge.phone, challenge.recentAuthGrantId);
     if (!response.sent) throw new Error('phone_binding_otp_unavailable');
     return {
       challengeId: response.challengeId,
       expiresAt: response.expiresAt,
       phone: challenge.phone,
+      ...(challenge.recentAuthGrantId ? { recentAuthGrantId: challenge.recentAuthGrantId } : {}),
       resendAllowedAt: response.resendAllowedAt,
     };
   }
@@ -582,7 +619,12 @@ export class SupabasePhoneAuthService implements AuthService {
     const response = await apiRequest<BindPhoneResponse>('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ challengeId: challenge.challengeId, phone: challenge.phone, token }),
+      body: JSON.stringify({
+        challengeId: challenge.challengeId,
+        phone: challenge.phone,
+        ...(challenge.recentAuthGrantId ? { recentAuthGrantId: challenge.recentAuthGrantId } : {}),
+        token,
+      }),
     });
     const session = appSession(await this.commitSession({
       accessToken: response.session.accessToken,

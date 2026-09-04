@@ -31,7 +31,7 @@ export class OpsHealthController {
   ) {
     this.setReleaseHeader(reply);
     try {
-      await this.database.ping();
+      await this.database.assertMinimumSchemaVersion();
       return {
         requestId: request.id,
         data: { service: 'icao-ops-api', status: 'ok', database: 'ok' },

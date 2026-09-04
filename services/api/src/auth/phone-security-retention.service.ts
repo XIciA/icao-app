@@ -68,9 +68,9 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
         SELECT ${smsDeliveryAttempts.dedupeKey} FROM ${smsDeliveryAttempts}
         WHERE ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
           AND (
-            ${smsDeliveryAttempts.status} = 'completed'
+            ${smsDeliveryAttempts.status} = 'completed_v2'
             OR (
-              ${smsDeliveryAttempts.status} IN ('retryable', 'rejected')
+              ${smsDeliveryAttempts.status} IN ('retryable_v2', 'rejected_v2')
               AND NOT EXISTS (
                 SELECT 1 FROM ${phoneOtpIntents}
                 WHERE ${phoneOtpIntents.id} = ${smsDeliveryAttempts.otpIntentId}
@@ -83,9 +83,9 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
       )
       AND ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
       AND (
-        ${smsDeliveryAttempts.status} = 'completed'
+        ${smsDeliveryAttempts.status} = 'completed_v2'
         OR (
-          ${smsDeliveryAttempts.status} IN ('retryable', 'rejected')
+          ${smsDeliveryAttempts.status} IN ('retryable_v2', 'rejected_v2')
           AND NOT EXISTS (
             SELECT 1 FROM ${phoneOtpIntents}
             WHERE ${phoneOtpIntents.id} = ${smsDeliveryAttempts.otpIntentId}

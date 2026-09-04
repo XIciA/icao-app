@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { HttpErrorFilter } from './http-error.filter';
 import multipart from '@fastify/multipart';
 import { loadConfig, type ApiConfig } from './config';
+import { DatabaseService } from './database/database.service';
 
 export async function createApp(config: ApiConfig = loadConfig()) {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({
@@ -28,6 +29,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
     limits: { fileSize: 8 * 1024 * 1024, files: 3, fields: 8, parts: 12 },
   });
   app.enableShutdownHooks();
+  await app.get(DatabaseService).assertMinimumSchemaVersion();
   await app.init();
   await app.getHttpAdapter().getInstance().ready();
   return app;

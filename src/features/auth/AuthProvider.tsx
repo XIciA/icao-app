@@ -16,7 +16,8 @@ import { clearPendingAccountDeletion, pendingAccountDeletionFor, readPendingAcco
 import type { PersistedPhoneOtpChallenge } from './phone-otp-challenge-store';
 import { UI_ACCEPTANCE_MODE_AVAILABLE } from './ui-acceptance-mode';
 
-type AccountDeletionAuthentication = {
+export type AccountDeletionAuthentication = {
+  method: 'apple' | 'password' | 'phone_otp' | 'wechat';
   password?: string;
   phoneOtp?: string;
 };
@@ -51,11 +52,11 @@ type AuthContextValue = {
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<void>;
   signIn(inviteCode: string): Promise<void>;
   signOut(): Promise<void>;
-  signOutAll(): Promise<void>;
-  requestAccountDeletionPhoneOtp(): Promise<void>;
+  signOutAll(authentication: AccountDeletionAuthentication): Promise<void>;
+  requestAccountDeletionPhoneOtp(purpose?: 'account_delete' | 'session_revoke_all'): Promise<void>;
   retryAccountRestore(): Promise<void>;
   resumeAccountDeletion(): Promise<void>;
-  deleteAccount(authentication?: AccountDeletionAuthentication): Promise<void>;
+  deleteAccount(authentication: AccountDeletionAuthentication): Promise<void>;
 };
 
 const unavailable = async () => { throw new Error('auth_not_configured'); };
@@ -469,10 +470,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const revokeAllAndClear = useCallback(async () => {
-    await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', { method: 'POST' });
+  const revokeAllAndClear = useCallback(async (grantId: string) => {
+    await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ grantId }),
+    });
     await service?.signOut('local').catch(() => undefined);
-    await clearLocalAiConsent().catch(() => undefined);
+    await Promise.resolve(clearLocalAiConsent()).catch(() => undefined);
     setPasswordAuthorization(undefined);
     setSessionSnapshot(undefined, true);
   }, [service, setSessionSnapshot]);
@@ -615,10 +620,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     async signIn() { throw new Error('invite_login_removed'); },
     async signOut() { if (!service) return unavailable(); sessionMutationRef.current += 1; interactiveAuthRef.current = undefined; await service.signOut('local'); await clearLocalAiConsent().catch(() => undefined); setPasswordAuthorization(undefined); setSessionSnapshot(undefined, true); },
-    async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
-    async requestAccountDeletionPhoneOtp() {
+    async signOutAll(authentication) {
+      if (!service || !account) return unavailable();
+      let grantId: string;
+      switch (authentication.method) {
+        case 'apple':
+          grantId = (await service.authorizeAccountDeletionWithApple('session_revoke_all')).grantId;
+          break;
+        case 'wechat':
+          grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId, 'session_revoke_all')).grantId;
+          break;
+        case 'password':
+          grantId = (await service.authorizeAccountDeletionWithPassword(
+            authentication.password ?? '',
+            'session_revoke_all',
+          )).grantId;
+          break;
+        case 'phone_otp':
+          grantId = (await service.authorizeAccountDeletionWithPhoneOtp(
+            authentication.phoneOtp ?? '',
+            'session_revoke_all',
+          )).grantId;
+          break;
+      }
+      await revokeAllAndClear(grantId);
+    },
+    async requestAccountDeletionPhoneOtp(purpose = 'account_delete') {
       if (!service) return unavailable();
-      await service.requestAccountDeletionPhoneOtp();
+      await service.requestAccountDeletionPhoneOtp(purpose);
     },
     async retryAccountRestore() {
       setRestoring(true);
@@ -631,17 +660,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async resumeAccountDeletion() {
       await inspectPendingAccountDeletion();
     },
-    async deleteAccount(authentication = {}) {
+    async deleteAccount(authentication) {
       if (!service || !account) return unavailable();
       let grantId: string;
-      if (session?.user.providers.includes('apple')) {
-        grantId = (await service.authorizeAccountDeletionWithApple()).grantId;
-      } else if (session?.user.providers.includes('wechat')) {
-        grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId)).grantId;
-      } else if (session?.user.hasPassword) {
-        grantId = (await service.authorizeAccountDeletionWithPassword(authentication.password ?? '')).grantId;
-      } else {
-        grantId = (await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '')).grantId;
+      switch (authentication.method) {
+        case 'apple':
+          grantId = (await service.authorizeAccountDeletionWithApple()).grantId;
+          break;
+        case 'wechat':
+          grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId)).grantId;
+          break;
+        case 'password':
+          grantId = (await service.authorizeAccountDeletionWithPassword(authentication.password ?? '')).grantId;
+          break;
+        case 'phone_otp':
+          grantId = (await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '')).grantId;
+          break;
       }
       const pending = await pendingAccountDeletionFor(account.accountId);
       accountDeletionSubmissionRef.current = true;

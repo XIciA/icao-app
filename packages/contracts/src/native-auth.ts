@@ -19,6 +19,8 @@ export type NativeAuthenticatedUser = Omit<AuthenticatedUser, 'providers'> & {
 };
 
 export type NativeAccountSummary = Omit<AccountSummary, 'providers'> & {
+  /** Whether the bound phone principal has a usable password credential. */
+  hasPassword?: boolean;
   providers: NativeAuthIdentityProvider[];
 };
 
@@ -30,6 +32,7 @@ export type NativeBindPhoneResponse = {
 export type NativeBindPhoneRequest = {
   challengeId: string;
   phone: string;
+  recentAuthGrantId?: string;
   token: string;
 };
 
@@ -90,7 +93,7 @@ export type NativeRecentAuthGrantResponse = Omit<RecentAuthGrantResponse, 'metho
 
 export type NativePhoneRecentAuthRequest = {
   challengeId: string;
-  purpose: 'account_delete';
+  purpose: 'account_delete' | 'session_revoke_all';
   token: string;
 };
 
@@ -99,7 +102,7 @@ export type NativeStartPhoneRecentAuthRequest = Pick<NativePhoneRecentAuthReques
 export type WechatRecentAuthRequest = {
   challengeId: string;
   code: string;
-  purpose: 'account_delete';
+  purpose: 'account_delete' | 'phone_binding' | 'session_revoke_all';
   state: string;
 };
 

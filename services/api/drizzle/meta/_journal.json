@@ -288,6 +288,13 @@
       "when": 1788499204536,
       "tag": "0040_stiff_wonder_man",
       "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1788504217004,
+      "tag": "0041_jazzy_blazing_skull",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 
-import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, ServiceUnavailableException } from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, Optional, ServiceUnavailableException } from '@nestjs/common';
 import type { RecentAuthPurpose, SocialAuthSessionResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import type { NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
@@ -10,6 +10,7 @@ import { and, asc, desc, eq, gt, inArray, isNull, lte, sql } from 'drizzle-orm';
 import { API_CONFIG, type ApiConfig } from '../config';
 import { phoneOtpIntents, smsDeliveryAttempts } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
+import { AccountPhoneIdentityService } from '../account/account-phone-identity.service';
 import type { VerifiedAuthSession } from './auth.types';
 
 const RECOVERY_RESPONSE_FLOOR_MS = 350;
@@ -18,6 +19,7 @@ export const PHONE_OTP_RESEND_INTERVAL_MS = 60 * 1_000;
 export const PHONE_OTP_TTL_MS = 5 * 60 * 1_000;
 export const PHONE_OTP_MAX_ATTEMPTS = 6;
 export const PHONE_OTP_PROVIDER_TIMEOUT_MS = 15 * 1_000;
+export const PHONE_OTP_LATE_CALLBACK_WINDOW_MS = 2 * 60 * 1_000;
 const PHONE_OTP_QUEUE_LEASE_MS = 30 * 1_000;
 type PhoneOtpPurpose = 'login' | RecentAuthPurpose;
 export type PhoneAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
@@ -29,6 +31,7 @@ export class PhoneAuthService {
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     private readonly database: DatabaseService,
+    @Optional() private readonly accountPhones?: AccountPhoneIdentityService,
   ) {}
 
   private client(sourceIp: string): SupabaseClient {
@@ -79,10 +82,7 @@ export class PhoneAuthService {
     purpose: Exclude<RecentAuthPurpose, 'password_recovery'>,
     sourceIp: string,
   ): Promise<StartPhoneOtpResponse> {
-    const phone = source.user.phone;
-    if (!isChinaMobileE164(phone) || !source.user.providers?.includes('phone')) {
-      throw new ForbiddenException('phone_reauthentication_required');
-    }
+    const { phone } = await this.recentAuthPhoneIdentity(source);
     const startedAt = new Date();
     const { challengeId } = await this.reserveIntent(phone, purpose, source.user.id, startedAt);
     return this.dispatchReservedIntent(phone, challengeId, async () => this.client(sourceIp).auth.signInWithOtp({
@@ -129,10 +129,7 @@ export class PhoneAuthService {
     purpose: Exclude<RecentAuthPurpose, 'password_recovery'>,
     sourceIp: string,
   ) {
-    const phone = source.user.phone;
-    if (!isChinaMobileE164(phone) || !source.user.providers?.includes('phone')) {
-      throw new ForbiddenException('phone_reauthentication_required');
-    }
+    const { authUserId, phone } = await this.recentAuthPhoneIdentity(source);
     await this.verifyChallenge(
       challengeId,
       phone,
@@ -140,7 +137,7 @@ export class PhoneAuthService {
       purpose,
       sourceIp,
       source.user.id,
-      source.authUserId,
+      authUserId,
     );
   }
 
@@ -159,6 +156,16 @@ export class PhoneAuthService {
       sourceIp,
       source.user.id,
     );
+  }
+
+  private async recentAuthPhoneIdentity(source: VerifiedAuthSession) {
+    if (isChinaMobileE164(source.user.phone) && source.user.providers?.includes('phone')) {
+      return { authUserId: source.authUserId, phone: source.user.phone };
+    }
+    if (!source.user.providers?.includes('phone') || !this.accountPhones) {
+      throw new ForbiddenException('phone_reauthentication_required');
+    }
+    return this.accountPhones.resolve(source.user.id);
   }
 
   async consumeOtpIntent(
@@ -329,6 +336,22 @@ export class PhoneAuthService {
         eq(phoneOtpIntents.status, 'queued'),
         lte(phoneOtpIntents.dispatchLeaseUntil, startedAt),
       ));
+      await transaction.update(phoneOtpIntents).set({
+        dispatchLeaseUntil: null,
+        status: 'failed',
+      }).where(and(
+        eq(phoneOtpIntents.phoneDigest, phoneDigest),
+        inArray(phoneOtpIntents.status, ['dispatching', 'quarantined']),
+        lte(phoneOtpIntents.dispatchLeaseUntil, startedAt),
+      ));
+      await transaction.update(phoneOtpIntents).set({
+        status: 'failed',
+        verificationToken: null,
+      }).where(and(
+        eq(phoneOtpIntents.phoneDigest, phoneDigest),
+        eq(phoneOtpIntents.status, 'verifying'),
+        lte(phoneOtpIntents.expiresAt, new Date(startedAt.getTime() - PHONE_OTP_LATE_CALLBACK_WINDOW_MS)),
+      ));
       const [activeDispatch] = await transaction.select({ id: phoneOtpIntents.id })
         .from(phoneOtpIntents).where(and(
           eq(phoneOtpIntents.phoneDigest, phoneDigest),
@@ -405,9 +428,9 @@ export class PhoneAuthService {
     const provider = await this.sendWithHardTimeout(send);
     if (provider.first.kind === 'timeout') {
       // A timeout is ambiguous: the Supabase request (and therefore its SMS
-      // hook) may still complete. Quarantine is never released by a clock.
-      // Keep an observed continuation so a definitive late success/failure
-      // settles this exact generation without an unhandled rejection.
+      // hook) may still complete. Keep this exact generation quarantined for
+      // the OTP lifetime plus the bounded callback window; after that point a
+      // late callback is fenced out and a new generation may safely begin.
       const timedOutAt = new Date();
       await this.quarantineDispatch(phoneDigest, challengeId, timedOutAt);
       void provider.settlement.then(async (lateOutcome) => {
@@ -469,7 +492,15 @@ export class PhoneAuthService {
         return 'superseded' as const;
       }
       const [claimed] = await transaction.update(phoneOtpIntents).set({
-        dispatchLeaseUntil: new Date(now.getTime() + PHONE_OTP_PROVIDER_TIMEOUT_MS + PHONE_OTP_TTL_MS),
+        // The process may die after provider submission but before it can
+        // quarantine the row. Keep the original generation fenced for the
+        // same bounded late-callback window even in that crash boundary.
+        dispatchLeaseUntil: new Date(
+          now.getTime()
+            + PHONE_OTP_PROVIDER_TIMEOUT_MS
+            + PHONE_OTP_TTL_MS
+            + PHONE_OTP_LATE_CALLBACK_WINDOW_MS,
+        ),
         lastAttemptAt: now,
         status: 'dispatching',
       }).where(and(
@@ -484,7 +515,9 @@ export class PhoneAuthService {
     await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-dispatch:${phoneDigest}`}, 0))`);
       await transaction.update(phoneOtpIntents).set({
-        dispatchLeaseUntil: new Date(timedOutAt.getTime() + PHONE_OTP_TTL_MS),
+        dispatchLeaseUntil: new Date(
+          timedOutAt.getTime() + PHONE_OTP_TTL_MS + PHONE_OTP_LATE_CALLBACK_WINDOW_MS,
+        ),
         expiresAt: new Date(timedOutAt.getTime() + PHONE_OTP_TTL_MS),
         status: 'quarantined',
       }).where(and(
@@ -530,8 +563,20 @@ export class PhoneAuthService {
         dispatchSequence: phoneOtpIntents.dispatchSequence,
         purpose: phoneOtpIntents.purpose,
         status: phoneOtpIntents.status,
+        dispatchLeaseUntil: phoneOtpIntents.dispatchLeaseUntil,
       }).from(phoneOtpIntents).where(eq(phoneOtpIntents.id, challengeId)).limit(1).for('update');
       if (!reserved || !['dispatching', 'quarantined'].includes(reserved.status)) {
+        return { kind: 'superseded' as const };
+      }
+      if (!reserved.dispatchLeaseUntil || reserved.dispatchLeaseUntil <= completedAt) {
+        await transaction.update(phoneOtpIntents).set({
+          dispatchLeaseUntil: null,
+          status: 'failed',
+        }).where(and(
+          eq(phoneOtpIntents.id, challengeId),
+          inArray(phoneOtpIntents.status, ['dispatching', 'quarantined']),
+          lte(phoneOtpIntents.dispatchLeaseUntil, completedAt),
+        ));
         return { kind: 'superseded' as const };
       }
       const [newer] = await transaction.select({ id: phoneOtpIntents.id })
@@ -557,7 +602,7 @@ export class PhoneAuthService {
           .where(eq(smsDeliveryAttempts.otpIntentId, challengeId))
           .limit(1)
           .for('update');
-        const exactPreSubmissionRejection = delivery?.status === 'rejected'
+        const exactPreSubmissionRejection = delivery?.status === 'rejected_v2'
           && !delivery.submissionStartedAt;
         if (
           (delivery && !exactPreSubmissionRejection)
@@ -712,7 +757,8 @@ export class PhoneAuthService {
     }
     if (provider.first.outcome.kind !== 'response') {
       // A transport failure cannot prove whether the provider consumed the
-      // OTP. Preserve `verifying` forever rather than permit a second call.
+      // OTP. Preserve `verifying` through the bounded late-callback window;
+      // reserveIntent terminalizes this exact generation after that fence.
       throw new ServiceUnavailableException('phone_auth_unavailable');
     }
     const providerResponse = provider.first.outcome.value;
@@ -752,8 +798,12 @@ export class PhoneAuthService {
       reserved.id,
       reserved.verificationToken,
       data.user!.id,
+      new Date(),
     );
-    if (!consumed) throw new ForbiddenException('invalid_phone_otp');
+    if (!consumed) {
+      await this.failVerification(reserved.id, reserved.verificationToken);
+      throw new ForbiddenException('invalid_phone_otp');
+    }
     return {
       accessToken: data.session.access_token,
       expiresAt: data.session.expires_at,
@@ -798,15 +848,22 @@ export class PhoneAuthService {
       && normalizeChinaMobile(data.user?.phone ?? '') === phone
       && (!expectedAuthUserId || data.user?.id === expectedAuthUserId)
       && (!Number.isFinite(otpTimestamp) || otpTimestamp * 1_000 + 1_000 >= otpNotBefore.getTime());
-    return valid
-      ? this.consumeVerification(challengeId, verificationToken, data.user!.id)
-      : this.failVerification(challengeId, verificationToken);
+    if (!valid) return this.failVerification(challengeId, verificationToken);
+    const consumed = await this.consumeVerification(
+      challengeId,
+      verificationToken,
+      data.user!.id,
+      new Date(),
+    );
+    if (consumed) return true;
+    return this.failVerification(challengeId, verificationToken);
   }
 
   private async consumeVerification(
     challengeId: string,
     verificationToken: string,
     verifiedAuthUserId: string,
+    settledAt: Date,
   ) {
     const [updated] = await this.database.db.update(phoneOtpIntents).set({
       consumedAt: new Date(),
@@ -817,6 +874,7 @@ export class PhoneAuthService {
       eq(phoneOtpIntents.id, challengeId),
       eq(phoneOtpIntents.status, 'verifying'),
       eq(phoneOtpIntents.verificationToken, verificationToken),
+      gt(phoneOtpIntents.expiresAt, new Date(settledAt.getTime() - PHONE_OTP_LATE_CALLBACK_WINDOW_MS)),
     )).returning({ id: phoneOtpIntents.id });
     return Boolean(updated);
   }

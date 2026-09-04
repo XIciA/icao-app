@@ -118,7 +118,10 @@ class FakeAuthVerifier implements AuthVerifier {
 async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
   const module = await Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(DatabaseService)
-    .useValue({ ping: async () => undefined })
+    .useValue({
+      assertMinimumSchemaVersion: async () => undefined,
+      ping: async () => undefined,
+    })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
     .overrideProvider(AccountIdentityService)
@@ -408,6 +411,18 @@ describe('API foundation', () => {
     }
   });
 
+  it('requires the API to verify OTPs through a non-public Supabase service origin', () => {
+    expect(loadTestProductionConfig().supabaseUrl).toBe('http://supabase.internal:8000');
+    for (const supabaseUrl of [
+      'https://cloud.readyoufife.com',
+      'https://auth.example.com',
+      'http://auth.example.com',
+    ]) {
+      expect(() => loadTestProductionConfig({ SUPABASE_URL: supabaseUrl }))
+        .toThrow('invalid_api_configuration:SUPABASE_URL');
+    }
+  });
+
   it('rejects a content credential private key that does not match the Native public key', () => {
     expect(() => loadConfig(productionConfig()))
       .toThrow('invalid_api_configuration:CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
@@ -581,7 +596,13 @@ describe('API foundation', () => {
   it('supports global session revocation and validated account deletion', async () => {
     const app = await testApp();
     const headers = { authorization: 'Bearer valid-token' };
-    const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
+    const missingRevokeGrant = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
+    const revoked = await app.inject({
+      method: 'POST',
+      url: '/v1/account/sessions/revoke-all',
+      headers,
+      payload: { grantId: '00000000-0000-4000-8000-000000000096' },
+    });
     const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
     const nonV4Deletion = await app.inject({
       method: 'DELETE',
@@ -615,6 +636,8 @@ describe('API foundation', () => {
     });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json().data).toEqual({ revoked: true });
+    expect(missingRevokeGrant.statusCode).toBe(400);
+    expect(missingRevokeGrant.json().error.code).toBe('invalid_session_revocation');
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
     expect(nonV4Deletion.statusCode).toBe(400);

@@ -217,6 +217,26 @@ function invalidConfiguration(...fields: string[]): never {
   throw new Error(`invalid_api_configuration:${fields.join(', ')}`);
 }
 
+function isPrivateServiceOrigin(rawUrl: string) {
+  const url = new URL(rawUrl);
+  const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/gu, '');
+  if (url.protocol !== 'http:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
+    return false;
+  }
+  if (
+    hostname === 'localhost'
+    || hostname === '::1'
+    || hostname.endsWith('.internal')
+    || hostname.endsWith('.local')
+    || /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/u.test(hostname)
+    || /^127\./u.test(hostname)
+    || /^10\./u.test(hostname)
+    || /^192\.168\./u.test(hostname)
+  ) return true;
+  const private172 = hostname.match(/^172\.(\d{1,3})\./u)?.[1];
+  return private172 !== undefined && Number(private172) >= 16 && Number(private172) <= 31;
+}
+
 function parsePreviousIdentityHashKeys(value: string, currentVersion: number) {
   let candidate: unknown;
   try {
@@ -417,6 +437,10 @@ export function loadConfig(
     if (fixedOtpKeys.some((key) => environment[key]?.trim())) {
       invalidConfiguration('FIXED_SMS_OTP');
     }
+    if (
+      parsed.data.SUPABASE_URL === parsed.data.SUPABASE_PUBLIC_URL
+      || !isPrivateServiceOrigin(parsed.data.SUPABASE_URL)
+    ) invalidConfiguration('SUPABASE_URL');
     validateProductionAiRuntime(environment, parsed.data);
     if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
     if (!parsed.data.CONTENT_CREDENTIAL_SIGNING_SECRET) invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_SECRET');

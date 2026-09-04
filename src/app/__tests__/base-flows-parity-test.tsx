@@ -14,8 +14,8 @@ const mockRequestPhoneBindingOtp = jest.fn();
 const mockResendPhoneBindingOtp = jest.fn();
 const mockVerifyPhoneBindingOtp = jest.fn();
 const mockRouterReplace = jest.fn();
-let mockAuthSession: { user: { hasPassword: boolean; id: string; phone?: string; registrationPending: boolean } } | undefined;
-let mockAccount: { accountId: string; phone?: string; phoneBound: boolean; providers: ('phone' | 'apple')[] } | undefined;
+let mockAuthSession: { user: { hasPassword: boolean; id: string; phone?: string; providers?: ('phone' | 'apple' | 'wechat')[]; registrationPending: boolean } } | undefined;
+let mockAccount: { accountId: string; hasPassword?: boolean; phone?: string; phoneBound: boolean; providers: ('phone' | 'apple' | 'wechat')[] } | undefined;
 let mockPasswordChangePurpose: 'recovery' | 'setup' | undefined;
 
 jest.mock('lucide-react-native', () => {
@@ -125,6 +125,33 @@ describe('base flow parity screens', () => {
     expect(screen.getByText('设置登录密码')).toBeTruthy();
     expect(screen.getByText('未绑定')).toBeTruthy();
     expect(screen.getByText('注销账号')).toBeTruthy();
+  });
+
+  it('lets a multi-identity user explicitly choose a phone fallback for account deletion', async () => {
+    mockParams = { slug: 'delete-account' };
+    mockAuthSession = {
+      user: {
+        hasPassword: false,
+        id: 'apple-auth-1',
+        providers: ['apple'],
+        registrationPending: false,
+      },
+    };
+    mockAccount = {
+      accountId: 'account-multi',
+      hasPassword: true,
+      phone: '+8613800138000',
+      phoneBound: true,
+      providers: ['phone', 'apple'],
+    };
+    const screen = await render(withSafeArea(<AccountScreen />));
+
+    expect(screen.getByText('Apple')).toBeTruthy();
+    expect(screen.getByText('登录密码')).toBeTruthy();
+    expect(screen.getByText('短信验证码')).toBeTruthy();
+    await fireEvent.press(screen.getByText('登录密码'));
+    expect(screen.getByLabelText('登录密码')).toBeTruthy();
+    expect(screen.queryByText('提交时将由 Apple 弹窗再次验证你的身份。')).toBeNull();
   });
 
   it('requires SMS verification before an OTP-only account sets its first password', async () => {

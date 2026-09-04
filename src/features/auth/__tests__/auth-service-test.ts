@@ -10,6 +10,7 @@ import {
 jest.mock('@/platform/api-client', () => ({ apiRequest: jest.fn(), apiRequestWithAccessToken: jest.fn() }));
 
 const mockAppleSignIn = jest.fn();
+const mockWechatAuthorize = jest.fn();
 jest.mock('expo-apple-authentication', () => ({
   AppleAuthenticationScope: { EMAIL: 1, FULL_NAME: 0 },
   isAvailableAsync: jest.fn().mockResolvedValue(true),
@@ -19,6 +20,16 @@ jest.mock('expo-crypto', () => ({
   CryptoDigestAlgorithm: { SHA256: 'SHA-256' },
   digestStringAsync: jest.fn().mockResolvedValue('hashed-nonce'),
   randomUUID: jest.fn().mockReturnValue('10000000-0000-4000-8000-000000000099'),
+}));
+jest.mock('../wechat-native-auth', () => ({
+  assertWechatChallengeMatchesNativeApp: jest.fn(),
+  authorizeWithWechatNative: (...args: unknown[]) => mockWechatAuthorize(...args),
+  getWechatNativeStatus: jest.fn().mockReturnValue({
+    appId: 'wx1234567890abcdef',
+    configured: true,
+    installed: true,
+    supported: true,
+  }),
 }));
 
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;
@@ -95,6 +106,7 @@ describe('SupabasePhoneAuthService', () => {
       authorizationCode: 'apple-authorization-code',
       identityToken: 'apple-identity-token',
     });
+    mockWechatAuthorize.mockReset();
   });
 
   it('accepts only 10-64 character passwords containing a letter and a digit', () => {
@@ -225,6 +237,45 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.verifyOtp).not.toHaveBeenCalled();
     expect(auth.setSession).not.toHaveBeenCalled();
     expect(authorization.grantId).toBe('10000000-0000-4000-8000-000000000003');
+  });
+
+  it('uses the account-bound phone OTP fallback from an active Apple session', async () => {
+    const { auth, client } = authClient();
+    const appleUser = user({
+      app_metadata: { provider: 'apple', providers: ['apple'] },
+      identities: [{
+        id: 'apple-identity', identity_id: 'apple-identity', user_id: 'user-1', provider: 'apple',
+        identity_data: { sub: 'apple-subject' }, created_at: '2026-08-12T00:00:00.000Z',
+        updated_at: '2026-08-12T00:00:00.000Z', last_sign_in_at: '2026-08-12T00:00:00.000Z',
+      }],
+      phone: undefined,
+    });
+    auth.getSession.mockResolvedValue({ data: { session: session(appleUser) }, error: null });
+    mockApiRequest.mockResolvedValueOnce({
+      accepted: true,
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: Date.now() + 300_000,
+      issuedAt: Date.now(),
+      resendAllowedAt: Date.now() + 60_000,
+      serverTime: Date.now(),
+    });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
+      expiresAt: Date.now() + 300_000,
+      grantId: '10000000-0000-4000-8000-000000000003',
+      method: 'phone_otp',
+      purpose: 'account_delete',
+    });
+    const service = new SupabasePhoneAuthService(client);
+
+    await service.requestAccountDeletionPhoneOtp();
+    await expect(service.authorizeAccountDeletionWithPhoneOtp('123456')).resolves.toEqual(
+      expect.objectContaining({ grantId: '10000000-0000-4000-8000-000000000003' }),
+    );
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith(
+      '/v1/account/recent-auth/phone',
+      'access-token',
+      expect.objectContaining({ method: 'POST' }),
+    );
   });
 
   it('obtains an Apple deletion grant without replacing the current session', async () => {
@@ -397,6 +448,94 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.updateUser).not.toHaveBeenCalled();
     expect(auth.signInWithOtp).not.toHaveBeenCalled();
     expect(challenge).toEqual(bindingChallenge);
+  });
+
+  it('reauthenticates WeChat and binds the resulting purpose grant to phone-binding requests', async () => {
+    const { auth, client } = authClient();
+    const wechatUser = user({
+      app_metadata: {
+        icao_identity_provider: 'wechat',
+        icao_wechat_subject: 'wechat-subject-digest',
+      },
+      identities: [],
+      phone: undefined,
+    });
+    auth.getSession.mockResolvedValue({ data: { session: session(wechatUser) }, error: null });
+    mockApiRequest
+      .mockRejectedValueOnce(new Error('recent_social_auth_required'))
+      .mockResolvedValueOnce({ ...bindingChallenge, sent: true });
+    mockApiRequestWithAccessToken
+      .mockResolvedValueOnce({
+        appId: 'wx1234567890abcdef',
+        challengeId: '10000000-0000-4000-8000-000000000020',
+        expiresAt: Date.now() + 300_000,
+        issuedAt: Date.now(),
+        state: 'wechat-phone-binding-state',
+        status: 'available',
+      })
+      .mockResolvedValueOnce({
+        expiresAt: Date.now() + 600_000,
+        grantId: '10000000-0000-4000-8000-000000000021',
+        method: 'wechat',
+        purpose: 'phone_binding',
+      });
+    mockWechatAuthorize.mockResolvedValue({
+      code: 'wechat-phone-binding-code',
+      state: 'wechat-phone-binding-state',
+    });
+
+    const challenge = await new SupabasePhoneAuthService(client).requestPhoneBindingOtp('13800138000');
+
+    expect(mockApiRequestWithAccessToken.mock.calls).toEqual([
+      ['/v1/account/recent-auth/wechat/start', 'access-token', expect.objectContaining({
+        body: JSON.stringify({ purpose: 'phone_binding' }),
+      })],
+      ['/v1/account/recent-auth/wechat', 'access-token', expect.objectContaining({
+        body: JSON.stringify({
+          challengeId: '10000000-0000-4000-8000-000000000020',
+          code: 'wechat-phone-binding-code',
+          purpose: 'phone_binding',
+          state: 'wechat-phone-binding-state',
+        }),
+      })],
+    ]);
+    expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account/phone-binding/start', expect.objectContaining({
+      body: JSON.stringify({
+        phone,
+        recentAuthGrantId: '10000000-0000-4000-8000-000000000021',
+      }),
+    }));
+    expect(challenge.recentAuthGrantId).toBe('10000000-0000-4000-8000-000000000021');
+  });
+
+  it('carries the WeChat reauthentication grant through resend and final verification', async () => {
+    const { client } = authClient();
+    const challenge = {
+      ...bindingChallenge,
+      recentAuthGrantId: '10000000-0000-4000-8000-000000000021',
+    };
+    mockApiRequest
+      .mockResolvedValueOnce({ ...bindingChallenge, sent: true })
+      .mockResolvedValueOnce({
+        account: { accountId: 'account-1', phone, phoneBound: true, providers: ['phone', 'wechat'] },
+        session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
+      });
+    const service = new SupabasePhoneAuthService(client);
+
+    const resent = await service.resendPhoneBindingOtp(challenge);
+    await service.verifyPhoneBindingOtp(resent, '123456');
+
+    expect(mockApiRequest).toHaveBeenNthCalledWith(1, '/v1/account/phone-binding/start', expect.objectContaining({
+      body: JSON.stringify({ phone, recentAuthGrantId: challenge.recentAuthGrantId }),
+    }));
+    expect(mockApiRequest).toHaveBeenNthCalledWith(2, '/v1/account/phone-binding/verify', expect.objectContaining({
+      body: JSON.stringify({
+        challengeId: bindingChallenge.challengeId,
+        phone,
+        recentAuthGrantId: challenge.recentAuthGrantId,
+        token: '123456',
+      }),
+    }));
   });
 
   it('lets the server bind an unused phone before switching the local session', async () => {

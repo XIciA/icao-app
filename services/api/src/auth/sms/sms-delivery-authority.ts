@@ -80,6 +80,7 @@ export class SmsDeliveryAuthority {
       }).from(phoneOtpIntents).where(and(
         eq(phoneOtpIntents.phoneDigest, phoneDigest),
         inArray(phoneOtpIntents.status, ['dispatching', 'quarantined']),
+        gt(phoneOtpIntents.dispatchLeaseUntil, now),
       )).limit(1).for('update');
       if (!activeIntent) return { outcome: 'unauthorized_generation' };
 
@@ -96,10 +97,10 @@ export class SmsDeliveryAuthority {
       if (activeIntent.status === 'quarantined' && !existing?.submissionStartedAt) {
         return { outcome: 'unauthorized_generation' };
       }
-      if (existing && existing.expiresAt > now && existing.status === 'completed') {
+      if (existing && existing.expiresAt > now && existing.status === 'completed_v2') {
         return { outcome: 'duplicate_completed' };
       }
-      if (existing && existing.status === 'processing' && existing.leaseUntil > now) {
+      if (existing && existing.status === 'processing_v2' && existing.leaseUntil > now) {
         return { outcome: 'duplicate_inflight' };
       }
       if (existing?.submissionStartedAt) {
@@ -142,7 +143,7 @@ export class SmsDeliveryAuthority {
           providerBizId: null,
           providerOutId: dedupeKey,
           providerRequestId: null,
-          status: 'rejected',
+          status: 'rejected_v2',
           submissionStartedAt: null,
           updatedAt: now,
         } as const;
@@ -194,7 +195,7 @@ export class SmsDeliveryAuthority {
         providerBizId: null,
         providerOutId: dedupeKey,
         providerRequestId: null,
-        status: 'processing',
+        status: 'processing_v2',
         submissionStartedAt: null,
         updatedAt: now,
       } as const;
@@ -243,7 +244,7 @@ export class SmsDeliveryAuthority {
           eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
           eq(smsDeliveryAttempts.leaseToken, leaseToken),
           eq(smsDeliveryAttempts.otpIntentId, otpIntentId),
-          eq(smsDeliveryAttempts.status, 'processing'),
+          eq(smsDeliveryAttempts.status, 'processing_v2'),
           gt(smsDeliveryAttempts.leaseUntil, now),
         )).limit(1).for('update');
       if (!attempt) return false;
@@ -262,7 +263,7 @@ export class SmsDeliveryAuthority {
         eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
         eq(smsDeliveryAttempts.leaseToken, leaseToken),
         eq(smsDeliveryAttempts.otpIntentId, otpIntentId),
-        eq(smsDeliveryAttempts.status, 'processing'),
+        eq(smsDeliveryAttempts.status, 'processing_v2'),
         gt(smsDeliveryAttempts.leaseUntil, now),
       ));
       return { submissionStartedAt: now };
@@ -278,7 +279,7 @@ export class SmsDeliveryAuthority {
         .from(smsDeliveryAttempts).where(and(
           eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
           eq(smsDeliveryAttempts.leaseToken, leaseToken),
-          eq(smsDeliveryAttempts.status, 'processing'),
+          eq(smsDeliveryAttempts.status, 'processing_v2'),
         )).limit(1);
       if (!attempt?.otpIntentId || !attempt.submissionStartedAt) return false;
       const [binding] = await transaction.select({ phoneDigest: phoneOtpIntents.phoneDigest })
@@ -302,12 +303,12 @@ export class SmsDeliveryAuthority {
         leaseUntil: now,
         providerBizId: submission.bizId ?? null,
         providerRequestId: submission.requestId ?? null,
-        status: 'completed',
+        status: 'completed_v2',
         updatedAt: now,
       }).where(and(
         eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
         eq(smsDeliveryAttempts.leaseToken, leaseToken),
-        eq(smsDeliveryAttempts.status, 'processing'),
+        eq(smsDeliveryAttempts.status, 'processing_v2'),
         gt(smsDeliveryAttempts.leaseUntil, now),
       )).returning({ dedupeKey: smsDeliveryAttempts.dedupeKey });
       return Boolean(completed);
@@ -322,19 +323,19 @@ export class SmsDeliveryAuthority {
         .where(and(
           eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
           eq(smsDeliveryAttempts.leaseToken, leaseToken),
-          eq(smsDeliveryAttempts.status, 'processing'),
+          eq(smsDeliveryAttempts.status, 'processing_v2'),
         )).limit(1);
       if (!owned) return false;
       const [failed] = await transaction.update(smsDeliveryAttempts).set({
         lastErrorCode: 'sms_delivery_failed',
         leaseUntil: now,
-        status: 'retryable',
+        status: 'retryable_v2',
         submissionStartedAt: null,
         updatedAt: now,
       }).where(and(
         eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
         eq(smsDeliveryAttempts.leaseToken, leaseToken),
-        eq(smsDeliveryAttempts.status, 'processing'),
+        eq(smsDeliveryAttempts.status, 'processing_v2'),
       )).returning({ dedupeKey: smsDeliveryAttempts.dedupeKey });
       return Boolean(failed);
     });
@@ -346,7 +347,7 @@ export class SmsDeliveryAuthority {
       const [rejected] = await transaction.update(smsDeliveryAttempts).set({
         lastErrorCode: 'sms_provider_rejected',
         leaseUntil: now,
-        status: 'rejected',
+        status: 'rejected_v2',
         // A synchronous provider rejection proves that Aliyun did not accept
         // the request. Clear the pre-call marker so outer settlement can
         // distinguish this result from transport-ambiguous submission.
@@ -355,7 +356,7 @@ export class SmsDeliveryAuthority {
       }).where(and(
         eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
         eq(smsDeliveryAttempts.leaseToken, leaseToken),
-        eq(smsDeliveryAttempts.status, 'processing'),
+        eq(smsDeliveryAttempts.status, 'processing_v2'),
       )).returning({ dedupeKey: smsDeliveryAttempts.dedupeKey });
       return Boolean(rejected);
     });
@@ -374,7 +375,7 @@ export class SmsDeliveryAuthority {
       }).where(and(
         eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
         eq(smsDeliveryAttempts.leaseToken, leaseToken),
-        eq(smsDeliveryAttempts.status, 'processing'),
+        eq(smsDeliveryAttempts.status, 'processing_v2'),
       )).returning({ dedupeKey: smsDeliveryAttempts.dedupeKey });
       return Boolean(marked);
     });

@@ -37,6 +37,13 @@ jobs:
           cache: pnpm
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install PostgreSQL constraint-test runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql
+          echo "$(pg_config --bindir)" >> "$GITHUB_PATH"
+      - name: Run database authority constraint tests
+        run: pnpm --filter @icao/api test:commerce-db
       - name: Run repository checks
         run: pnpm check:ci
       - name: Verify EdgeOne production export

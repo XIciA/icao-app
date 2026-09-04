@@ -10,6 +10,7 @@ const mockRefreshSession = jest.fn();
 const mockAuthorizePasswordRecovery = jest.fn();
 const mockAuthorizeAccountDeletionWithPassword = jest.fn();
 const mockAuthorizeAccountDeletionWithApple = jest.fn();
+const mockAuthorizeAccountDeletionWithWechat = jest.fn();
 const mockAuthorizeAccountDeletionWithPhoneOtp = jest.fn();
 const mockRequestAccountDeletionPhoneOtp = jest.fn();
 const mockSignInWithApple = jest.fn();
@@ -29,6 +30,7 @@ jest.mock('../auth-service', () => ({
     authorizePasswordRecovery: (...args: unknown[]) => mockAuthorizePasswordRecovery(...args),
     authorizeAccountDeletionWithPassword: (...args: unknown[]) => mockAuthorizeAccountDeletionWithPassword(...args),
     authorizeAccountDeletionWithApple: (...args: unknown[]) => mockAuthorizeAccountDeletionWithApple(...args),
+    authorizeAccountDeletionWithWechat: (...args: unknown[]) => mockAuthorizeAccountDeletionWithWechat(...args),
     authorizeAccountDeletionWithPhoneOtp: (...args: unknown[]) => mockAuthorizeAccountDeletionWithPhoneOtp(...args),
     requestAccountDeletionPhoneOtp: (...args: unknown[]) => mockRequestAccountDeletionPhoneOtp(...args),
     signInWithApple: (...args: unknown[]) => mockSignInWithApple(...args),
@@ -158,6 +160,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       purpose: 'account_delete',
     });
     mockAuthorizeAccountDeletionWithApple.mockReset();
+    mockAuthorizeAccountDeletionWithWechat.mockReset();
     mockAuthorizeAccountDeletionWithPhoneOtp.mockReset();
     mockRequestAccountDeletionPhoneOtp.mockReset();
     mockClearDeletedAccountLocalData.mockReset().mockResolvedValue(undefined);
@@ -583,7 +586,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
     await act(async () => {
-      await currentAuth.deleteAccount({ password: 'password10' });
+      await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
     });
 
     expect(mockAuthorizeAccountDeletionWithPassword).toHaveBeenCalledWith('password10');
@@ -602,6 +605,65 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(currentAuth.accountDeletionPending).toBe(false);
   });
 
+  it('honors the explicitly selected password method on a multi-identity Apple session', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({
+        accountId: 'account-multi',
+        hasPassword: true,
+        phone: '+8613800138000',
+        phoneBound: true,
+        providers: ['phone', 'apple'],
+      })
+      .mockResolvedValueOnce({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '10000000-0000-4000-8000-000000000012',
+        status: 'completed',
+      });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => { await currentAuth.signInWithApple(); });
+    await act(async () => {
+      await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
+    });
+
+    expect(mockAuthorizeAccountDeletionWithPassword).toHaveBeenCalledWith('password10');
+    expect(mockAuthorizeAccountDeletionWithApple).not.toHaveBeenCalled();
+    expect(mockAuthorizeAccountDeletionWithPhoneOtp).not.toHaveBeenCalled();
+  });
+
+  it('requires and forwards a dedicated recent-auth grant before signing out every device', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({
+        accountId: 'phone-auth-user',
+        hasPassword: true,
+        phone: '+8613800138000',
+        phoneBound: true,
+        providers: ['phone'],
+      })
+      .mockResolvedValueOnce({ revoked: true });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => { await currentAuth.verifyPhoneOtp(phoneChallenge, '123456'); });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+    await act(async () => {
+      await currentAuth.signOutAll({ method: 'password', password: 'password10' });
+    });
+
+    expect(mockAuthorizeAccountDeletionWithPassword).toHaveBeenCalledWith(
+      'password10',
+      'session_revoke_all',
+    );
+    expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account/sessions/revoke-all', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ grantId: '10000000-0000-4000-8000-000000000010' }),
+    });
+    expect(mockSignOut).toHaveBeenCalledWith('local');
+    expect(currentAuth.session).toBeUndefined();
+  });
+
   it('blocks the app and preserves local data while an accepted deletion is still processing', async () => {
     mockApiRequest
       .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
@@ -618,7 +680,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     });
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
     await act(async () => {
-      await currentAuth.deleteAccount({ password: 'password10' });
+      await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
     });
 
     expect(currentAuth.accountDeletionPending).toBe(true);
@@ -644,7 +706,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
 
     await act(async () => {
-      await currentAuth.deleteAccount({ password: 'password10' });
+      await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
     });
 
     expect(currentAuth.accountDeletionPending).toBe(false);
@@ -670,7 +732,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
 
     await act(async () => {
-      await currentAuth.deleteAccount({ password: 'password10' });
+      await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
     });
 
     expect(currentAuth.accountDeletionPending).toBe(false);
@@ -693,7 +755,7 @@ describe('<AuthProvider /> internal-account gate', () => {
 
     let deletion!: Promise<void>;
     await act(async () => {
-      deletion = currentAuth.deleteAccount({ password: 'password10' });
+      deletion = currentAuth.deleteAccount({ method: 'password', password: 'password10' });
       await Promise.resolve();
       await Promise.resolve();
     });
@@ -731,7 +793,7 @@ describe('<AuthProvider /> internal-account gate', () => {
 
     await act(async () => {
       try {
-        await currentAuth.deleteAccount({ password: 'password10' });
+        await currentAuth.deleteAccount({ method: 'password', password: 'password10' });
       } catch (error) {
         failure = error;
       }

@@ -6,6 +6,10 @@ export const deleteAccountSchema = z.object({
   idempotencyKey: z.uuidv4(),
 }).strict();
 
+export const revokeAllSessionsSchema = z.object({
+  grantId: z.uuid(),
+}).strict();
+
 export const accountDeletionStatusSchema = z.object({
   idempotencyKey: z.uuidv4(),
 }).strict();
@@ -23,6 +27,7 @@ export const clearLearningDataSchema = z.object({
 export const bindPhoneSchema = z.object({
   challengeId: z.uuid(),
   phone: z.string().regex(/^\+861[3-9]\d{9}$/u),
+  recentAuthGrantId: z.uuid().optional(),
   token: z.string().regex(/^\d{6}$/u),
 }).strict();
 
@@ -32,6 +37,7 @@ export const authorizePasswordRecoverySchema = z.object({
 
 export const startPhoneBindingSchema = z.object({
   phone: z.string().regex(/^\+861[3-9]\d{9}$/u),
+  recentAuthGrantId: z.uuid().optional(),
 }).strict();
 
 export const updatePhonePasswordSchema = z.object({

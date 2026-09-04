@@ -2,7 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile, type TencentAsrModel } from '@icao/contracts';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AlertTriangle, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, FileText, History, Info, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, Upload, UserRound } from '@/components/ui/icons';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, Image, Linking, Pressable, Share, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
@@ -10,7 +10,7 @@ import { AppModal } from '@/components/platform/AppModal';
 import { AuthField, CodeField, PasswordField } from '@/components/auth/auth-ui';
 import { AppText, BottomSheet, Button, Card, Screen, Tag, TextField } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
-import { useAuth } from '@/features/auth/AuthProvider';
+import { useAuth, type AccountDeletionAuthentication } from '@/features/auth/AuthProvider';
 import { isValidPhonePassword, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { MembershipRoutePage } from '@/features/native-commercial-testflight/MembershipRoutePage';
@@ -159,6 +159,12 @@ function SettingsPage() {
   const router = useRouter();
   const auth = useAuth();
   const [confirm, setConfirm] = useState(false);
+  const [allDevicesMode, setAllDevicesMode] = useState(false);
+  const [authenticationMethod, setAuthenticationMethod] = useState<AccountDeletionAuthentication['method']>();
+  const [reauthPassword, setReauthPassword] = useState('');
+  const [reauthOtp, setReauthOtp] = useState('');
+  const [reauthOtpSent, setReauthOtpSent] = useState(false);
+  const [reauthOtpSending, setReauthOtpSending] = useState(false);
   const [signOutError, setSignOutError] = useState('');
   const [asrModel, setSelectedAsrModel] = useState<TencentAsrModel>(DEFAULT_TENCENT_ASR_MODEL);
   const [asrPickerVisible, setAsrPickerVisible] = useState(false);
@@ -167,6 +173,30 @@ function SettingsPage() {
     void getAsrModel().then((model) => { if (active) setSelectedAsrModel(model); });
     return () => { active = false; };
   }, []);
+  const hasApple = auth.session?.user.providers.includes('apple') === true
+    && auth.account?.providers.includes('apple') === true;
+  const hasWechat = auth.session?.user.providers.includes('wechat') === true
+    && auth.account?.providers.includes('wechat') === true;
+  const hasPassword = auth.account?.hasPassword === true
+    || (auth.session?.user.providers.includes('phone') === true && auth.session.user.hasPassword);
+  const hasPhoneOtp = auth.account?.phoneBound === true;
+  const authenticationOptions = useMemo<{ label: string; method: AccountDeletionAuthentication['method'] }[]>(() => [
+    ...(hasApple ? [{ label: 'Apple', method: 'apple' as const }] : []),
+    ...(hasWechat ? [{ label: '微信', method: 'wechat' as const }] : []),
+    ...(hasPassword ? [{ label: '登录密码', method: 'password' as const }] : []),
+    ...(hasPhoneOtp ? [{ label: '短信验证码', method: 'phone_otp' as const }] : []),
+  ], [hasApple, hasPassword, hasPhoneOtp, hasWechat]);
+  const selectedAuthentication = authenticationOptions.find(({ method }) => method === authenticationMethod);
+  const allDevicesReady = authenticationMethod === 'apple'
+    || authenticationMethod === 'wechat'
+    || (authenticationMethod === 'password' && reauthPassword.length > 0)
+    || (authenticationMethod === 'phone_otp' && reauthOtpSent && /^\d{6}$/u.test(reauthOtp));
+
+  useEffect(() => {
+    if (!confirm || !allDevicesMode) return;
+    if (authenticationOptions.some(({ method }) => method === authenticationMethod)) return;
+    setAuthenticationMethod(authenticationOptions[0]?.method);
+  }, [allDevicesMode, authenticationMethod, authenticationOptions, confirm]);
 
   async function selectAsrModel(model: TencentAsrModel) {
     await setAsrModel(model);
@@ -176,12 +206,38 @@ function SettingsPage() {
 
   async function signOut(all = false) {
     try {
-      if (all) await auth.signOutAll();
+      if (all) {
+        if (!authenticationMethod || !allDevicesReady) return;
+        await auth.signOutAll({
+          method: authenticationMethod,
+          ...(authenticationMethod === 'password' ? { password: reauthPassword } : {}),
+          ...(authenticationMethod === 'phone_otp' ? { phoneOtp: reauthOtp } : {}),
+        });
+      }
       else await auth.signOut();
       setConfirm(false);
+      setAllDevicesMode(false);
       router.replace('/auth/login');
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : '';
+      setSignOutError(code === 'invalid_phone_or_password'
+        ? '登录密码不正确，请重新输入'
+        : code === 'invalid_phone_otp'
+          ? '验证码错误或已过期，请重新获取'
+          : '退出失败，请稍后重试');
+    }
+  }
+
+  async function requestAllDevicesOtp() {
+    setReauthOtpSending(true);
+    setSignOutError('');
+    try {
+      await auth.requestAccountDeletionPhoneOtp('session_revoke_all');
+      setReauthOtpSent(true);
     } catch {
-      setSignOutError('退出失败，请稍后重试');
+      setSignOutError('验证码发送失败，请稍后重试');
+    } finally {
+      setReauthOtpSending(false);
     }
   }
 
@@ -207,7 +263,28 @@ function SettingsPage() {
         <AppText style={styles.center} variant="micro">© 2026 听你五个</AppText>
       </View>
       <AsrModelSheet current={asrModel} onClose={() => setAsrPickerVisible(false)} onSelect={(model) => { void selectAsrModel(model); }} visible={asrPickerVisible} />
-      <LogoutDialog onAll={() => { void signOut(true); }} onCancel={() => setConfirm(false)} onCurrent={() => { void signOut(false); }} visible={confirm} />
+      <LogoutDialog
+        allDevicesMode={allDevicesMode}
+        allDevicesReady={allDevicesReady}
+        authenticationMethod={authenticationMethod}
+        authenticationOptions={authenticationOptions}
+        error={signOutError}
+        onAll={() => setAllDevicesMode(true)}
+        onAllConfirm={() => { void signOut(true); }}
+        onBack={() => setAllDevicesMode(false)}
+        onCancel={() => { setAllDevicesMode(false); setConfirm(false); }}
+        onCurrent={() => { void signOut(false); }}
+        onMethod={setAuthenticationMethod}
+        onOtp={setReauthOtp}
+        onPassword={setReauthPassword}
+        onRequestOtp={() => { void requestAllDevicesOtp(); }}
+        otp={reauthOtp}
+        otpSending={reauthOtpSending}
+        otpSent={reauthOtpSent}
+        password={reauthPassword}
+        selectedAuthenticationLabel={selectedAuthentication?.label ?? ''}
+        visible={confirm}
+      />
     </Page>
   );
 }
@@ -804,13 +881,27 @@ function DeleteAccountPage() {
   const [phoneOtp, setPhoneOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpSending, setOtpSending] = useState(false);
+  const [authenticationMethod, setAuthenticationMethod] = useState<AccountDeletionAuthentication['method']>();
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
-  const hasApple = auth.session?.user.providers.includes('apple') === true;
-  const hasWechat = auth.session?.user.providers.includes('wechat') === true;
-  const hasPassword = auth.session?.user.hasPassword === true;
-  const needsPhoneOtp = !hasApple && !hasWechat && !hasPassword;
-  const authenticationReady = hasApple || hasWechat || (hasPassword ? password.length > 0 : /^\d{6}$/u.test(phoneOtp));
+  const hasApple = auth.session?.user.providers.includes('apple') === true
+    && auth.account?.providers.includes('apple') === true;
+  const hasWechat = auth.session?.user.providers.includes('wechat') === true
+    && auth.account?.providers.includes('wechat') === true;
+  const hasPassword = auth.account?.hasPassword === true
+    || (auth.session?.user.providers.includes('phone') === true && auth.session.user.hasPassword);
+  const hasPhoneOtp = auth.account?.phoneBound === true;
+  const authenticationOptions = useMemo<{ label: string; method: AccountDeletionAuthentication['method'] }[]>(() => [
+    ...(hasApple ? [{ label: 'Apple', method: 'apple' as const }] : []),
+    ...(hasWechat ? [{ label: '微信', method: 'wechat' as const }] : []),
+    ...(hasPassword ? [{ label: '登录密码', method: 'password' as const }] : []),
+    ...(hasPhoneOtp ? [{ label: '短信验证码', method: 'phone_otp' as const }] : []),
+  ], [hasApple, hasPassword, hasPhoneOtp, hasWechat]);
+  const selectedAuthentication = authenticationOptions.find(({ method }) => method === authenticationMethod);
+  const authenticationReady = authenticationMethod === 'apple'
+    || authenticationMethod === 'wechat'
+    || (authenticationMethod === 'password' && password.length > 0)
+    || (authenticationMethod === 'phone_otp' && /^\d{6}$/u.test(phoneOtp));
   const ready = agreed && confirmation === '注销账号' && authenticationReady;
   const risks = [
     '学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃系统删除',
@@ -818,6 +909,11 @@ function DeleteAccountPage() {
     '服务端完成删除后，本机个人资料、录音、会话与待同步队列将清除',
     '操作不可撤销；重新注册会获得新的独立账号',
   ];
+
+  useEffect(() => {
+    if (authenticationOptions.some(({ method }) => method === authenticationMethod)) return;
+    setAuthenticationMethod(authenticationOptions[0]?.method);
+  }, [authenticationMethod, authenticationOptions]);
 
   async function requestOtp() {
     setOtpSending(true);
@@ -839,8 +935,9 @@ function DeleteAccountPage() {
     setError('');
     try {
       await auth.deleteAccount({
-        ...(hasPassword && !hasApple && !hasWechat ? { password } : {}),
-        ...(needsPhoneOtp ? { phoneOtp } : {}),
+        method: authenticationMethod!,
+        ...(authenticationMethod === 'password' ? { password } : {}),
+        ...(authenticationMethod === 'phone_otp' ? { phoneOtp } : {}),
       });
       router.replace('/auth/login');
     } catch (cause) {
@@ -864,10 +961,18 @@ function DeleteAccountPage() {
           <AppText style={styles.center}>注销账号会永久删除当前账号及其活跃数据。</AppText>
         </View>
         <Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card>
-        {hasApple ? <AppText variant="caption">提交时将由 Apple 弹窗再次验证你的身份。</AppText> : null}
-        {hasWechat ? <AppText variant="caption">提交时将跳转微信再次验证你的身份。</AppText> : null}
-        {!hasApple && !hasWechat && hasPassword ? <TextField label="登录密码" onChangeText={setPassword} secureTextEntry value={password} /> : null}
-        {needsPhoneOtp ? (
+        {authenticationOptions.length > 0 ? (
+          <Choice
+            label="验证方式"
+            onChange={(label) => setAuthenticationMethod(authenticationOptions.find((option) => option.label === label)?.method)}
+            options={authenticationOptions.map(({ label }) => label)}
+            value={selectedAuthentication?.label ?? ''}
+          />
+        ) : <AppText color={colors.destructive} variant="caption">当前账号没有可用的身份验证方式，请联系客服。</AppText>}
+        {authenticationMethod === 'apple' ? <AppText variant="caption">提交时将由 Apple 弹窗再次验证你的身份。</AppText> : null}
+        {authenticationMethod === 'wechat' ? <AppText variant="caption">提交时将跳转微信再次验证你的身份。</AppText> : null}
+        {authenticationMethod === 'password' ? <TextField accessibilityLabel="登录密码" label="登录密码" onChangeText={setPassword} secureTextEntry value={password} /> : null}
+        {authenticationMethod === 'phone_otp' ? (
           <View style={styles.formNoPad}>
             <Button disabled={otpSending || deleting} onPress={() => void requestOtp()} variant="outline">{otpSending ? '正在发送…' : otpSent ? '重新发送验证码' : '发送短信验证码'}</Button>
             <TextField keyboardType="number-pad" label="短信验证码" maxLength={6} onChangeText={setPhoneOtp} value={phoneOtp} />
@@ -876,7 +981,7 @@ function DeleteAccountPage() {
         <TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} />
         <Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-        <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在验证并注销…' : hasApple ? '通过 Apple 验证并注销' : hasWechat ? '通过微信验证并注销' : '验证身份并永久注销'}</Button>
+        <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在验证并注销…' : '验证身份并永久注销'}</Button>
         <Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button>
       </View>
     </Page>
@@ -903,7 +1008,94 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant="button">{label}</AppText>{hint ? <AppText variant="micro">{hint}</AppText> : null}</View>{value ? <AppText variant="caption">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }
 function SheetResult({ title, body, actionLabel = '我知道了', onPress }: { title: string; body: string; actionLabel?: string; onPress: () => void }) { return <View style={styles.sheet}><CheckCircle2 color={colors.primary} size={38} /><AppText variant="sectionTitle">{title}</AppText><AppText style={styles.center}>{body}</AppText><Button onPress={onPress}>{actionLabel}</Button></View>; }
 function AsrModelSheet({ visible, current, onClose, onSelect }: { visible: boolean; current: TencentAsrModel; onClose: () => void; onSelect: (model: TencentAsrModel) => void }) { return <BottomSheet accessibilityLabel="选择腾讯 ASR 模型" onClose={onClose} visible={visible}><View style={styles.modelSheet}><AppText variant="sectionTitle">选择转写模型</AppText><AppText variant="caption">选择只保存在本机，并从下一次转写开始生效。</AppText><View style={styles.modelOptions}>{ASR_MODEL_OPTIONS.map((option) => { const selected = option.model === current; return <Pressable accessibilityLabel={`使用 ${option.model}`} accessibilityState={{ selected }} key={option.model} onPress={() => onSelect(option.model)} style={[styles.modelOption, selected && styles.modelOptionSelected]}><View style={styles.flex}><AppText color={selected ? colors.primary : colors.foreground} variant="button">{option.model}</AppText><AppText variant="micro">{option.title} · {option.description}</AppText></View>{selected ? <Check color={colors.primary} size={18} /> : null}</Pressable>; })}</View><AppText variant="micro">当前未启用热词、词汇替换、自学习模型或航空规则化脚本。</AppText></View></BottomSheet>; }
-function LogoutDialog({ visible, onCancel, onCurrent, onAll }: { visible: boolean; onCancel: () => void; onCurrent: () => void; onAll: () => void }) { return <AppModal animationType="slide" onRequestClose={onCancel} transparent visible={visible}><Pressable onPress={onCancel} style={styles.overlay}><Pressable onPress={() => undefined} style={styles.logout}><View style={styles.handle} /><View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View><AppText variant="sectionTitle">退出登录</AppText><AppText style={styles.center}>退出不会删除学习数据；未同步变更会保留在本机。</AppText><Button onPress={onCurrent} size="lg">仅退出当前设备</Button><Button onPress={onAll} size="lg" variant="destructive">退出全部设备</Button><Button onPress={onCancel} size="lg" variant="outline">取消</Button></Pressable></Pressable></AppModal>; }
+function LogoutDialog({
+  allDevicesMode,
+  allDevicesReady,
+  authenticationMethod,
+  authenticationOptions,
+  error,
+  onAll,
+  onAllConfirm,
+  onBack,
+  onCancel,
+  onCurrent,
+  onMethod,
+  onOtp,
+  onPassword,
+  onRequestOtp,
+  otp,
+  otpSending,
+  otpSent,
+  password,
+  selectedAuthenticationLabel,
+  visible,
+}: {
+  allDevicesMode: boolean;
+  allDevicesReady: boolean;
+  authenticationMethod?: AccountDeletionAuthentication['method'];
+  authenticationOptions: { label: string; method: AccountDeletionAuthentication['method'] }[];
+  error: string;
+  onAll: () => void;
+  onAllConfirm: () => void;
+  onBack: () => void;
+  onCancel: () => void;
+  onCurrent: () => void;
+  onMethod: (method: AccountDeletionAuthentication['method'] | undefined) => void;
+  onOtp: (value: string) => void;
+  onPassword: (value: string) => void;
+  onRequestOtp: () => void;
+  otp: string;
+  otpSending: boolean;
+  otpSent: boolean;
+  password: string;
+  selectedAuthenticationLabel: string;
+  visible: boolean;
+}) {
+  return (
+    <AppModal animationType="slide" onRequestClose={onCancel} transparent visible={visible}>
+      <Pressable onPress={onCancel} style={styles.overlay}>
+        <Pressable onPress={() => undefined} style={styles.logout}>
+          <View style={styles.handle} />
+          <View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View>
+          <AppText variant="sectionTitle">{allDevicesMode ? '验证后退出全部设备' : '退出登录'}</AppText>
+          <AppText style={styles.center}>退出不会删除学习数据；未同步变更会保留在本机。</AppText>
+          {allDevicesMode ? (
+            <>
+              {authenticationOptions.length > 0 ? (
+                <Choice
+                  label="验证方式"
+                  onChange={(label) => onMethod(authenticationOptions.find((option) => option.label === label)?.method)}
+                  options={authenticationOptions.map(({ label }) => label)}
+                  value={selectedAuthenticationLabel}
+                />
+              ) : <AppText color={colors.destructive} variant="caption">当前账号没有可用的身份验证方式，请联系客服。</AppText>}
+              {authenticationMethod === 'apple' ? <AppText variant="caption">继续后将由 Apple 弹窗再次验证身份。</AppText> : null}
+              {authenticationMethod === 'wechat' ? <AppText variant="caption">继续后将跳转微信再次验证身份。</AppText> : null}
+              {authenticationMethod === 'password' ? <TextField accessibilityLabel="登录密码" label="登录密码" onChangeText={onPassword} secureTextEntry value={password} /> : null}
+              {authenticationMethod === 'phone_otp' ? (
+                <View style={styles.formNoPad}>
+                  <Button disabled={otpSending} onPress={onRequestOtp} variant="outline">
+                    {otpSending ? '正在发送…' : otpSent ? '重新发送验证码' : '发送短信验证码'}
+                  </Button>
+                  <TextField keyboardType="number-pad" label="短信验证码" maxLength={6} onChangeText={onOtp} value={otp} />
+                </View>
+              ) : null}
+              {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+              <Button disabled={!allDevicesReady} onPress={onAllConfirm} size="lg" variant="destructive">验证并退出全部设备</Button>
+              <Button onPress={onBack} size="lg" variant="outline">返回</Button>
+            </>
+          ) : (
+            <>
+              <Button onPress={onCurrent} size="lg">仅退出当前设备</Button>
+              <Button onPress={onAll} size="lg" variant="destructive">退出全部设备</Button>
+              <Button onPress={onCancel} size="lg" variant="outline">取消</Button>
+            </>
+          )}
+        </Pressable>
+      </Pressable>
+    </AppModal>
+  );
+}
 
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', overflow: 'hidden', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, avatarImage: { borderRadius: radii.full, height: 74, width: 74 }, avatarSmallImage: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20, zIndex: 2 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, passwordForm: { gap: spacing[4], padding: spacing[5] }, passwordIntro: { gap: spacing[2] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, modelSheet: { gap: spacing[4] }, modelOptions: { gap: spacing[2] }, modelOption: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 68, padding: spacing[3] }, modelOptionSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },

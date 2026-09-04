@@ -97,6 +97,7 @@ export class RecentAuthController {
       data: await this.wechatAuth.startRecentAuth(
         request.auth!,
         (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+        parsed.data.purpose,
       ),
     };
   }

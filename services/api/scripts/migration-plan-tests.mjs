@@ -66,7 +66,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 41);
+  assert.equal(migrations.length, 42);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -83,11 +83,11 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-5)?.tag, '0036_bright_cannonball');
-  assert.equal(migrations.at(-4)?.tag, '0037_cool_stellaris');
-  assert.equal(migrations.at(-3)?.tag, '0038_natural_orphan');
-  assert.equal(migrations.at(-2)?.tag, '0039_sparkling_tombstone');
-  assert.equal(migrations.at(-1)?.tag, '0040_stiff_wonder_man');
+  assert.equal(migrations.at(-5)?.tag, '0037_cool_stellaris');
+  assert.equal(migrations.at(-4)?.tag, '0038_natural_orphan');
+  assert.equal(migrations.at(-3)?.tag, '0039_sparkling_tombstone');
+  assert.equal(migrations.at(-2)?.tag, '0040_stiff_wonder_man');
+  assert.equal(migrations.at(-1)?.tag, '0041_jazzy_blazing_skull');
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
 
@@ -307,6 +307,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0038_natural_orphan',
       '0039_sparkling_tombstone',
       '0040_stiff_wonder_man',
+      '0041_jazzy_blazing_skull',
     ],
   );
   assert.ok(

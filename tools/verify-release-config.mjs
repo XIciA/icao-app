@@ -217,9 +217,36 @@ if (caddy.includes('api.feizhuicao.com') || caddy.includes('cloud.feizhuicao.com
 if (/download\./.test(caddy) || /file_server/.test(caddy)) {
   throw new Error('The production gateway must not expose a website or APK download host.');
 }
-for (const protectedAuthPath of ['/auth/v1/otp', '/auth/v1/resend', '/auth/v1/signup']) {
-  if (!caddy.includes(protectedAuthPath)) {
-    throw new Error(`The production gateway must block direct Native Auth start route: ${protectedAuthPath}`);
+const blockedAuthMatcher = caddy.match(/^\s*@blocked_auth_start\s+path\s+([^\n]+)$/mu)?.[1]
+  ?.trim().split(/\s+/u) ?? [];
+const blockedAuthPaths = new Set(blockedAuthMatcher);
+for (const protectedAuthPath of [
+  '/auth/v1/otp',
+  '/auth/v1/otp/',
+  '/auth/v1/resend',
+  '/auth/v1/resend/',
+  '/auth/v1/signup',
+  '/auth/v1/signup/',
+  '/auth/v1/verify',
+  '/auth/v1/verify/',
+]) {
+  if (!blockedAuthPaths.has(protectedAuthPath)) {
+    throw new Error(`The production gateway must block direct Native Auth route: ${protectedAuthPath}`);
+  }
+}
+// Treat the parsed Caddy matcher as a black-box route contract. Session
+// refresh remains public, while every direct phone OTP issue/verify spelling
+// is rejected before the request can reach GoTrue.
+for (const [path, expectedBlocked] of [
+  ['/auth/v1/verify', true],
+  ['/auth/v1/verify/', true],
+  ['/auth/v1/otp', true],
+  ['/auth/v1/token?grant_type=refresh_token', false],
+  ['/auth/v1/user', false],
+]) {
+  const pathname = path.split('?')[0];
+  if (blockedAuthPaths.has(pathname) !== expectedBlocked) {
+    throw new Error(`The production gateway Auth route matrix is unsafe for ${path}`);
   }
 }
 if (

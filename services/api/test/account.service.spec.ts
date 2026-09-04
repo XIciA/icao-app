@@ -2,6 +2,7 @@ import { ConflictException, ForbiddenException, HttpException, ServiceUnavailabl
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { AccountIdentityService } from '../src/account/account-identity.service';
+import type { AccountPhoneIdentityService } from '../src/account/account-phone-identity.service';
 import { AccountService } from '../src/account/account.service';
 import type { AuthVerifier, VerifiedAuthSession } from '../src/auth/auth.types';
 import type { PhoneAuthService } from '../src/auth/phone-auth.service';
@@ -27,7 +28,7 @@ function session(options: {
   issuedAt?: number;
   passwordSet?: boolean;
   phone?: string;
-  providers: Array<'apple' | 'phone'>;
+  providers: Array<'apple' | 'phone' | 'wechat'>;
 }): VerifiedAuthSession {
   const timestamp = options.issuedAt ?? Math.floor(Date.now() / 1_000);
   const defaultMethod = options.providers.includes('apple') ? 'oauth' : 'otp';
@@ -54,6 +55,7 @@ function fixture(options: {
   phoneAccountId?: string | null;
   signInWithOtp?: ReturnType<typeof vi.fn>;
   signInWithPassword?: ReturnType<typeof vi.fn>;
+  signOut?: ReturnType<typeof vi.fn>;
   startBindingError?: Error;
   transaction?: ReturnType<typeof vi.fn>;
   verifyBindingError?: Error;
@@ -92,7 +94,7 @@ function fixture(options: {
     },
     error: null,
   });
-  const signOut = vi.fn().mockResolvedValue({ error: null });
+  const signOut = options.signOut ?? vi.fn().mockResolvedValue({ error: null });
   supabase.createClient
     .mockReturnValueOnce({ auth: { admin: { signOut } } })
     .mockReturnValueOnce({ auth: { signInWithOtp, signInWithPassword, verifyOtp } })
@@ -122,6 +124,14 @@ function fixture(options: {
   const sessions = {
     assertActive: vi.fn().mockResolvedValue(undefined),
     revokeAll: vi.fn().mockResolvedValue(undefined),
+    revokeAllInTransaction: vi.fn().mockResolvedValue(undefined),
+  };
+  const accountPhones = {
+    resolve: vi.fn().mockResolvedValue({
+      authUserId: '22222222-2222-4222-8222-222222222222',
+      passwordSet: true,
+      phone: '+8613800138000',
+    }),
   };
   const phoneAuth = {
     consumeOtpIntent: options.consumeOtpIntentError
@@ -143,6 +153,7 @@ function fixture(options: {
       }),
   };
   const recentAuth = {
+    assertValid: vi.fn().mockResolvedValue(undefined),
     reserve: options.hasRecoveryGrant === false
       ? vi.fn().mockRejectedValue(new ForbiddenException('phone_reauthentication_required'))
       : vi.fn().mockResolvedValue('44444444-4444-4444-8444-444444444444'),
@@ -160,9 +171,13 @@ function fixture(options: {
       method: 'phone_otp',
       purpose: 'password_recovery',
     }),
+    consumeInTransaction: vi.fn().mockResolvedValue(undefined),
+    consume: vi.fn().mockResolvedValue(undefined),
   };
   const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('binding_transaction_failed'));
-  const database = { db: { transaction } };
+  const updateWhere = vi.fn().mockResolvedValue(undefined);
+  const updateSet = vi.fn().mockReturnValue({ where: updateWhere });
+  const database = { db: { transaction, update: vi.fn().mockReturnValue({ set: updateSet }) } };
   const service = new AccountService(
     {
       supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
@@ -175,8 +190,10 @@ function fixture(options: {
     phoneAuth as unknown as PhoneAuthService,
     recentAuth as unknown as RecentAuthService,
     sessions as unknown as SessionSecurityService,
+    accountPhones as unknown as AccountPhoneIdentityService,
   );
   return {
+    accountPhones,
     identities,
     phoneAuth,
     recentAuth,
@@ -187,6 +204,7 @@ function fixture(options: {
     signOut,
     target,
     transaction,
+    updateWhere,
     verifier,
     verifyOtp,
   };
@@ -198,6 +216,48 @@ describe('AccountService phone binding', () => {
   });
 
   afterEach(() => vi.unstubAllGlobals());
+
+  it('requires and consumes a session-bound grant before revoking every linked principal', async () => {
+    const source = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      providers: ['wechat'],
+    });
+    const transactionApi = {
+      update: vi.fn().mockReturnValue({
+        set: vi.fn().mockReturnValue({ where: vi.fn().mockResolvedValue(undefined) }),
+      }),
+    };
+    const transaction = vi.fn(async (operation: (value: typeof transactionApi) => Promise<unknown>) => (
+      operation(transactionApi)
+    ));
+    const result = fixture({ transaction });
+    result.identities.authUserIdsForAccount.mockResolvedValue([
+      source.authUserId,
+      '22222222-2222-4222-8222-222222222222',
+    ]);
+
+    await expect(result.service.revokeAll(
+      source,
+      '33333333-3333-4333-8333-333333333333',
+    )).resolves.toEqual({ revoked: true });
+
+    expect(result.recentAuth.consumeInTransaction).toHaveBeenCalledWith(
+      transactionApi,
+      source,
+      '33333333-3333-4333-8333-333333333333',
+      'session_revoke_all',
+    );
+    expect(result.sessions.revokeAllInTransaction).toHaveBeenNthCalledWith(1, transactionApi, source.authUserId);
+    expect(result.sessions.revokeAllInTransaction).toHaveBeenCalledWith(
+      transactionApi,
+      '22222222-2222-4222-8222-222222222222',
+    );
+    expect(result.recentAuth.consumeInTransaction.mock.invocationCallOrder[0]).toBeLessThan(
+      result.sessions.revokeAllInTransaction.mock.invocationCallOrder[0]!,
+    );
+    expect(result.sessions.revokeAll).not.toHaveBeenCalled();
+  });
 
   it('rejects a source that already has a phone without consuming another OTP', async () => {
     const source = session({
@@ -257,6 +317,40 @@ describe('AccountService phone binding', () => {
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
+  });
+
+  it('does not mistake a refreshed WeChat access token for recent user authentication', async () => {
+    const source = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authenticationMethods: [],
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      issuedAt: Math.floor(Date.now() / 1_000),
+      providers: ['wechat'],
+    });
+    const { phoneAuth, recentAuth, service } = fixture();
+
+    await expect(service.startPhoneBinding(source, '+8613800138000'))
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
+        && error.message === 'recent_social_auth_required');
+    expect(recentAuth.assertValid).not.toHaveBeenCalled();
+    expect(phoneAuth.startBinding).not.toHaveBeenCalled();
+  });
+
+  it('accepts a session-bound WeChat phone-binding grant without relying on access-token iat', async () => {
+    const source = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authenticationMethods: [],
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      issuedAt: Math.floor(Date.now() / 1_000),
+      providers: ['wechat'],
+    });
+    const { phoneAuth, recentAuth, service } = fixture();
+    const grantId = '66666666-6666-4666-8666-666666666666';
+
+    await expect(service.startPhoneBinding(source, '+8613800138000', '203.0.113.9', grantId))
+      .resolves.toEqual({ sent: true });
+    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', 'wechat');
+    expect(phoneAuth.startBinding).toHaveBeenCalledWith(source, '+8613800138000', '203.0.113.9');
   });
 
   it('does not accept a new TOTP step as a recent Apple login', async () => {
@@ -427,22 +521,31 @@ describe('AccountService phone binding', () => {
       execute: vi.fn().mockResolvedValue(undefined),
       insert: vi.fn(() => fluent(undefined)),
       select: vi.fn(() => fluent(rows.shift() ?? [])),
-      selectDistinct: vi.fn(() => fluent([{ provider: 'apple' }, { provider: 'phone' }])),
+      selectDistinct: vi.fn(() => fluent([{ provider: 'wechat' }, { provider: 'phone' }])),
     };
     const transaction = vi.fn(async (operation: (value: typeof transactionApi) => Promise<unknown>) => operation(transactionApi));
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
-      providers: ['apple'],
+      providers: ['wechat'],
     });
-    const { identities, phoneAuth, service, signOut } = fixture({ phoneAccountId: null, transaction });
+    const { identities, phoneAuth, recentAuth, service, signOut } = fixture({ phoneAccountId: null, transaction });
+    const grantId = '66666666-6666-4666-8666-666666666666';
 
-    await expect(service.bindPhoneWithOtp(source, PHONE_BINDING_CHALLENGE_ID, '+8613800138000', '123456')).resolves.toEqual({
+    await expect(service.bindPhoneWithOtp(
+      source,
+      PHONE_BINDING_CHALLENGE_ID,
+      '+8613800138000',
+      '123456',
+      '127.0.0.1',
+      grantId,
+    )).resolves.toEqual({
       account: {
         accountId: source.user.id,
         phone: '+8613800138000',
         phoneBound: true,
-        providers: ['phone', 'apple'],
+        hasPassword: false,
+        providers: ['phone', 'wechat'],
       },
       session: {
         accessToken: 'phone-session-access-token',
@@ -463,6 +566,13 @@ describe('AccountService phone binding', () => {
       source.user.id,
       expect.any(Date),
       false,
+    );
+    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', 'wechat');
+    expect(recentAuth.consumeInTransaction).toHaveBeenCalledWith(
+      transactionApi,
+      source,
+      grantId,
+      'phone_binding',
     );
     expect(phoneAuth.verifyBindingChallenge).toHaveBeenCalledOnce();
     expect(phoneAuth.consumeOtpIntent).not.toHaveBeenCalled();
@@ -731,8 +841,9 @@ describe('AccountService phone binding', () => {
     expect(signInWithPassword).not.toHaveBeenCalled();
   });
 
-  it('globally revokes old sessions before signing in after a password recovery', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+  it('locally revokes old sessions before provider cleanup and signing in after password recovery', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal('fetch', fetchMock);
     const source = session({
       accountId: '22222222-2222-4222-8222-222222222222',
       authUserId: '22222222-2222-4222-8222-222222222222',
@@ -762,8 +873,45 @@ describe('AccountService phone binding', () => {
     expect(sessions.revokeAll).toHaveBeenCalledWith(source.authUserId);
     expect(signInWithPassword).toHaveBeenCalledWith({ phone: '+8613800138000', password: 'newpassword10' });
     expect(signOut).not.toHaveBeenCalledWith(source.accessToken, 'local');
+    expect(sessions.revokeAll.mock.invocationCallOrder[0]).toBeLessThan(fetchMock.mock.invocationCallOrder[0]!);
+    expect(sessions.revokeAll.mock.invocationCallOrder[0]).toBeLessThan(signOut.mock.invocationCallOrder[0]!);
     expect(signOut.mock.invocationCallOrder[0]).toBeLessThan(signInWithPassword.mock.invocationCallOrder[0]!);
     expect(sessions.revokeAll.mock.invocationCallOrder[0]).toBeLessThan(signInWithPassword.mock.invocationCallOrder[0]!);
+  });
+
+  it('keeps the old bearer locally revoked when every provider sign-out retry fails', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+    const source = session({
+      accountId: '22222222-2222-4222-8222-222222222222',
+      authUserId: '22222222-2222-4222-8222-222222222222',
+      passwordSet: true,
+      phone: '+8613800138000',
+      providers: ['phone'],
+    });
+    let oldBearerRevoked = false;
+    const signOut = vi.fn().mockImplementation(async () => {
+      expect(oldBearerRevoked).toBe(true);
+      return { error: { message: 'provider unavailable' } };
+    });
+    const fixtureResult = fixture({ signOut });
+    fixtureResult.sessions.revokeAll.mockImplementation(async () => {
+      oldBearerRevoked = true;
+    });
+
+    await expect(fixtureResult.service.updatePassword(
+      source,
+      'newpassword10',
+      undefined,
+      '33333333-3333-4333-8333-333333333333',
+    )).resolves.toEqual(expect.objectContaining({
+      session: expect.objectContaining({ accessToken: 'new-password-access-token' }),
+      updated: true,
+    }));
+
+    expect(oldBearerRevoked).toBe(true);
+    expect(signOut).toHaveBeenCalledTimes(3);
+    expect(fixtureResult.sessions.revokeAll).toHaveBeenCalledWith(source.authUserId);
+    expect(fixtureResult.signInWithPassword).toHaveBeenCalledOnce();
   });
 
   it('releases a recovery grant reservation when the password update fails upstream', async () => {
@@ -778,7 +926,7 @@ describe('AccountService phone binding', () => {
       phone: '+8613800138000',
       providers: ['phone'],
     });
-    const { recentAuth, service } = fixture();
+    const { recentAuth, service, sessions } = fixture();
 
     await expect(service.updatePassword(
       source,
@@ -792,6 +940,7 @@ describe('AccountService phone binding', () => {
       '44444444-4444-4444-8444-444444444444',
     );
     expect(recentAuth.commitReservation).not.toHaveBeenCalled();
+    expect(sessions.revokeAll).toHaveBeenCalledWith(source.authUserId);
   });
 
   it('maps upstream reauthentication requirements to the stable recovery error', async () => {

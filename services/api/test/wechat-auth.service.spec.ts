@@ -1,6 +1,6 @@
 import { createHmac } from 'node:crypto';
 
-import { ServiceUnavailableException } from '@nestjs/common';
+import { ForbiddenException, ServiceUnavailableException } from '@nestjs/common';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { WechatAuthService } from '../src/auth/wechat-auth.service';
@@ -127,11 +127,11 @@ describe('WechatAuthService challenge recovery', () => {
 
     await expect((service as unknown as { verifyProviderSubject(value: typeof input, purpose: 'login'): Promise<unknown> })
       .verifyProviderSubject(input, 'login'))
-      .resolves.toEqual({ alreadyConsumed: false, codeDigest: digest('code', input.code), subjectDigest });
+      .resolves.toEqual({ codeDigest: digest('code', input.code), subjectDigest });
     expect(provider.exchangeCode).not.toHaveBeenCalled();
   });
 
-  it('replays a completed login challenge idempotently without exchanging its one-time code again', async () => {
+  it('rejects a completed login challenge without exchanging its one-time code again', async () => {
     const input = { challengeId: '10000000-0000-4000-8000-000000000003', code: 'single-use-code', state: 'opaque-state' };
     const subjectDigest = digest('subject', 'unionid:completed-login');
     const provider = { exchangeCode: vi.fn() } as unknown as WechatAuthHttp;
@@ -150,8 +150,103 @@ describe('WechatAuthService challenge recovery', () => {
 
     await expect((service as unknown as { verifyProviderSubject(value: typeof input, purpose: 'login'): Promise<unknown> })
       .verifyProviderSubject(input, 'login'))
-      .resolves.toEqual({ alreadyConsumed: true, codeDigest: digest('code', input.code), subjectDigest });
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
+        && error.message === 'invalid_wechat_auth_response');
     expect(provider.exchangeCode).not.toHaveBeenCalled();
+  });
+
+  it('consumes a verified login challenge before creating a user or issuing a session', async () => {
+    const input = { challengeId: '10000000-0000-4000-8000-000000000004', code: 'single-use-code', state: 'opaque-state' };
+    const subjectDigest = digest('subject', 'unionid:single-session');
+    const provider = { exchangeCode: vi.fn() } as unknown as WechatAuthHttp;
+    const { service } = fixture({}, provider);
+    const internals = service as unknown as {
+      consumeLoginChallenge(challengeId: string, codeDigest: string, subjectDigest: string): Promise<void>;
+      consumeRate(): Promise<void>;
+      ensureAuthUser(subjectDigest: string): Promise<unknown>;
+      issueSession(): Promise<unknown>;
+      verifyProviderSubject(): Promise<{ codeDigest: string; subjectDigest: string }>;
+    };
+    vi.spyOn(internals, 'consumeRate').mockResolvedValue(undefined);
+    vi.spyOn(internals, 'verifyProviderSubject').mockResolvedValue({
+      codeDigest: digest('code', input.code),
+      subjectDigest,
+    });
+    vi.spyOn(internals, 'consumeLoginChallenge').mockRejectedValue(new ForbiddenException('invalid_wechat_auth_response'));
+    const ensureAuthUser = vi.spyOn(internals, 'ensureAuthUser');
+    const issueSession = vi.spyOn(internals, 'issueSession');
+
+    await expect(service.complete(input, '203.0.113.8'))
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
+        && error.message === 'invalid_wechat_auth_response');
+    expect(ensureAuthUser).not.toHaveBeenCalled();
+    expect(issueSession).not.toHaveBeenCalled();
+  });
+
+  it('issues a ten-minute purpose- and session-bound grant for WeChat phone binding', async () => {
+    const input = {
+      challengeId: '10000000-0000-4000-8000-000000000005',
+      code: 'phone-binding-code',
+      purpose: 'phone_binding' as const,
+      state: 'phone-binding-state-that-is-long-enough',
+    };
+    const source = {
+      accessToken: 'source-access-token',
+      authenticationMethods: [],
+      authUserId: '20000000-0000-4000-8000-000000000002',
+      identities: [{ provider: 'wechat', subject: 'wechat-subject' }],
+      issuedAt: 1_800_000_000,
+      sessionId: '20000000-0000-4000-8000-000000000003',
+      user: { id: '20000000-0000-4000-8000-000000000001', providers: ['wechat'] },
+    } as const;
+    const subjectDigest = digest('subject', 'unionid:phone-binding');
+    const recentAuth = {
+      issueVerifiedGrantInTransaction: vi.fn().mockResolvedValue({
+        expiresAt: Date.now() + 600_000,
+        grantId: '30000000-0000-4000-8000-000000000001',
+        method: 'wechat',
+        purpose: 'phone_binding',
+      }),
+    };
+    const selects = [
+      [{
+        accountId: source.user.id,
+        authUserId: source.authUserId,
+        id: input.challengeId,
+        status: 'verified',
+        subjectDigest,
+      }],
+      [{ authUserId: source.authUserId }],
+      [{ accountId: source.user.id }],
+    ];
+    const transaction = {
+      execute: vi.fn().mockResolvedValue(undefined),
+      select: vi.fn(() => query(selects.shift() ?? [])),
+      update: vi.fn(() => query([{ id: input.challengeId }])),
+    };
+    const database = {
+      db: {
+        transaction: vi.fn(async (operation: (value: typeof transaction) => Promise<unknown>) => operation(transaction)),
+      },
+    } as unknown as DatabaseService;
+    const identities = { hashIdentity: vi.fn().mockReturnValue('identity-hash') };
+    const service = new WechatAuthService(config, {} as WechatAuthHttp, database, identities as never, recentAuth as never);
+    const internals = service as unknown as {
+      consumeRate(): Promise<void>;
+      verifyProviderSubject(): Promise<{ codeDigest: string; subjectDigest: string }>;
+    };
+    vi.spyOn(internals, 'consumeRate').mockResolvedValue(undefined);
+    vi.spyOn(internals, 'verifyProviderSubject').mockResolvedValue({
+      codeDigest: digest('code', input.code),
+      subjectDigest,
+    });
+
+    await service.completeRecentAuth(source as never, input, '203.0.113.8');
+
+    const grantCall = recentAuth.issueVerifiedGrantInTransaction.mock.calls[0];
+    expect(grantCall?.slice(1, 5)).toEqual([source, 'wechat', 'phone_binding', expect.any(Date)]);
+    expect(grantCall?.[5]).toBeInstanceOf(Date);
+    expect((grantCall?.[5] as Date).getTime() - (grantCall?.[4] as Date).getTime()).toBe(600_000);
   });
 
   it('commits a deterministic principal reservation before creating the external auth user and resumes after failure', async () => {
