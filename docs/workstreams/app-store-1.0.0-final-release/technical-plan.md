@@ -240,8 +240,9 @@ OTP 子状态统一为：
 
 ### 6.1 候选包
 
-- 2026-09-04 已确认 App Store Connect 当前最高已上传 Build 为 `3493764`；本轮正式产物候选固定递增为
-  `3493765`，先通过短期分支与 PR 进入 `origin/main`，不得覆盖或复用旧 Build。
+- 2026-09-05 已确认 App Store Connect 当前最高已上传 Build 为 `3493765`；生产账号验收发现手机号会话
+  规范化缺陷，本轮正式产物候选固定递增为 `3493766`，先通过短期分支与 PR 进入 `origin/main`，不得
+  覆盖或复用旧 Build。
 - 四个关键问题、微信原生配置、隐私清单和发布门禁合入主线后，执行聚焦测试、`pnpm check`、生产预检
   和归档反查，再从干净 `origin/main` 归档上传。
 - 归档反查 Bundle ID、1.0.0、Build、Git SHA、签名、Entitlements、URL Scheme、Associated Domains、
