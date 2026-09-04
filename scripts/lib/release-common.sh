@@ -73,7 +73,8 @@ check_release_runtime() {
   required_social_provider=${1:-}
   node_binary=${NODE_BINARY:-$(command -v node)}
   "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs"
-  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider CHECK_WECHAT_APP_ID=${ICAO_WECHAT_APP_ID:-} "$node_binary" <<'NODE'
+  wechat_release_mode=$("$node_binary" -p "require('$PROJECT_ROOT/config/release/wechat-login-contract.cjs').resolveWechatLoginReleaseCapability(require('$PROJECT_ROOT/config/release/wechat-login.json')).mode")
+  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider CHECK_WECHAT_APP_ID=${ICAO_WECHAT_APP_ID:-} CHECK_WECHAT_RELEASE_MODE=$wechat_release_mode "$node_binary" <<'NODE'
 const api = await fetch(`${process.env.CHECK_API_URL}/health/ready`, {
   signal: AbortSignal.timeout(10_000),
 });
@@ -96,11 +97,24 @@ const wechatChallenge = await fetch(`${process.env.CHECK_API_URL}/v1/auth/wechat
   signal: AbortSignal.timeout(10_000),
 });
 const wechatBody = await wechatChallenge.json().catch(() => undefined);
-if (!wechatChallenge.ok || wechatBody?.data?.status !== 'available') {
-  throw new Error('The production WeChat login challenge is not available.');
-}
-if (!process.env.CHECK_WECHAT_APP_ID || wechatBody?.data?.appId !== process.env.CHECK_WECHAT_APP_ID) {
-  throw new Error('The production WeChat login challenge App ID does not match the candidate build.');
+if (process.env.CHECK_WECHAT_RELEASE_MODE === 'approved') {
+  if (!wechatChallenge.ok || wechatBody?.data?.status !== 'available') {
+    throw new Error('The production WeChat login challenge is not available.');
+  }
+  if (!process.env.CHECK_WECHAT_APP_ID || wechatBody?.data?.appId !== process.env.CHECK_WECHAT_APP_ID) {
+    throw new Error('The production WeChat login challenge App ID does not match the candidate build.');
+  }
+} else if (process.env.CHECK_WECHAT_RELEASE_MODE === 'pending') {
+  if (
+    !wechatChallenge.ok
+    || wechatBody?.data?.status !== 'configuration_pending'
+    || wechatBody?.data?.appId
+    || process.env.CHECK_WECHAT_APP_ID
+  ) {
+    throw new Error('The pending release must keep WeChat unconfigured in both production and the candidate build.');
+  }
+} else {
+  throw new Error(`Unsupported tracked WeChat release mode: ${process.env.CHECK_WECHAT_RELEASE_MODE}`);
 }
 
 for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']) {

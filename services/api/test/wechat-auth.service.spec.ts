@@ -75,6 +75,25 @@ describe('WechatAuthService challenge recovery', () => {
     supabase.createClient.mockReturnValue({ auth: { admin: {} } });
   });
 
+  it('returns a deterministic pending capability without touching challenge storage when WeChat is unconfigured', async () => {
+    const insert = vi.fn(() => { throw new Error('challenge storage must remain unused'); });
+    const service = new WechatAuthService(
+      { ...config, wechatAppId: '', wechatAppSecret: '', wechatUniversalLink: '' },
+      {} as WechatAuthHttp,
+      { db: { insert } } as unknown as DatabaseService,
+      {} as never,
+      {} as never,
+    );
+
+    const result = await service.start('203.0.113.9');
+    expect(result).toMatchObject({
+      challengeId: expect.stringMatching(/^[0-9a-f-]{36}$/u),
+      status: 'configuration_pending',
+    });
+    expect(result).not.toHaveProperty('appId');
+    expect(insert).not.toHaveBeenCalled();
+  });
+
   it('persists a terminal failure when the provider exchange fails instead of leaving verifying state', async () => {
     const input = { challengeId: '10000000-0000-4000-8000-000000000001', code: 'single-use-code', state: 'opaque-state' };
     const provider = { exchangeCode: vi.fn().mockRejectedValue(new Error('timeout')) } as WechatAuthHttp;

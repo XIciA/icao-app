@@ -18,9 +18,11 @@ describe('legal copy release surface', () => {
     expect(combined).toContain('不得恶意删除、遮挡或隐匿该标识');
     expect(combined).toContain('腾讯云语音识别');
     expect(combined).toContain('Apple App Store 以非自动续期方式购买');
-    expect(combined).toContain('手机号密码、Apple 登录或微信登录');
-    expect(combined).toContain('微信 OpenSDK');
-    expect(combined).toContain('不包含微信支付能力');
+    expect(combined).toContain('手机号密码或 Apple 登录');
+    expect(copy.agreementAccountDescription).not.toContain('微信登录');
+    expect(copy.thirdPartyDescription).toContain('内嵌不含支付能力的微信 OpenSDK');
+    expect(copy.thirdPartyDescription).toContain('不发起微信授权');
+    expect(copy.privacyAccountDescription).not.toContain('微信');
     expect(combined).toContain('或相关权利人依法享有权利');
     expect(combined).toContain('本地静态词典查词不调用文本 AI、不消耗 AI 点数');
     expect(combined).not.toMatch(/阿里云百炼|通义千问/u);

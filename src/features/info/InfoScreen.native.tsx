@@ -29,6 +29,7 @@ import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
+import { APP_FILING_NUMBER, APP_FILING_QUERY_URL } from '@/config/native-compliance';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import {
   createClientSubmissionId,
@@ -411,6 +412,12 @@ function AboutPage() {
     Alert.alert('检查更新', `当前版本为 ${APP_DISPLAY_VERSION}。请前往对应应用商店查看是否有可用更新。`);
   }
 
+  async function handleFilingQuery() {
+    const can = await Linking.canOpenURL(APP_FILING_QUERY_URL).catch(() => false);
+    if (can) await Linking.openURL(APP_FILING_QUERY_URL);
+    else Alert.alert('暂时无法打开备案查询', `App 备案号：${APP_FILING_NUMBER}`);
+  }
+
   return (
     <Page title="关于听你五个">
       <View style={styles.aboutHero}>
@@ -433,6 +440,7 @@ function AboutPage() {
         <Section>
           <Row first icon={FileText} label="用户协议" onPress={() => router.push('/info/agreement')} />
           <Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} />
+          <Row hint={`${APP_FILING_NUMBER} · 点击查询`} icon={Info} label="App 备案信息" onPress={() => void handleFilingQuery()} />
         </Section>
         <AppText style={styles.copyright} variant="micro">Copyright © 2026 听你五个{`\n`}All rights reserved</AppText>
       </View>

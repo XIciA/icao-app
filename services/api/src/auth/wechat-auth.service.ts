@@ -1,4 +1,4 @@
-import { createHash, createHmac, randomBytes } from 'node:crypto';
+import { createHash, createHmac, randomBytes, randomUUID } from 'node:crypto';
 
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, StartWechatAuthResponse, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
@@ -75,9 +75,24 @@ export class WechatAuthService {
     sourceIp: string,
     source?: VerifiedAuthSession,
   ): Promise<StartWechatAuthResponse> {
-    await this.consumeRate(`wechat-start:${this.digest('ip', sourceIp)}`, START_LIMIT_PER_HOUR, 60 * 60 * 1_000);
     const issuedAt = Date.now();
     const state = randomBytes(32).toString('base64url');
+    const configured = Boolean(
+      this.config.wechatAppId
+      && this.config.wechatAppSecret
+      && this.config.wechatUniversalLink,
+    );
+    if (!configured) {
+      return {
+        challengeId: randomUUID(),
+        expiresAt: issuedAt + CHALLENGE_TTL_MS,
+        issuedAt,
+        state,
+        status: 'configuration_pending',
+      };
+    }
+
+    await this.consumeRate(`wechat-start:${this.digest('ip', sourceIp)}`, START_LIMIT_PER_HOUR, 60 * 60 * 1_000);
     const [challenge] = await this.database.db.insert(wechatAuthChallenges).values({
       accountId: source?.user.id,
       authUserId: source?.authUserId,
@@ -86,18 +101,13 @@ export class WechatAuthService {
       stateDigest: this.digest('state', state),
     }).returning({ id: wechatAuthChallenges.id });
     if (!challenge) throw new ServiceUnavailableException('wechat_auth_unavailable');
-    const configured = Boolean(
-      this.config.wechatAppId
-      && this.config.wechatAppSecret
-      && this.config.wechatUniversalLink,
-    );
     return {
-      ...(configured ? { appId: this.config.wechatAppId } : {}),
+      appId: this.config.wechatAppId,
       challengeId: challenge.id,
       expiresAt: issuedAt + CHALLENGE_TTL_MS,
       issuedAt,
       state,
-      status: configured ? 'available' : 'configuration_pending',
+      status: 'available',
     };
   }
 

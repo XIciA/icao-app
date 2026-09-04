@@ -8,6 +8,10 @@ import { fileURLToPath } from 'node:url';
 const TOOL_PATH = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(TOOL_PATH), '..');
 const require = createRequire(import.meta.url);
+const {
+  normalizeWechatLoginCredentials,
+  resolveWechatLoginReleaseCapability,
+} = require('../config/release/wechat-login-contract.cjs');
 const EXPECTED_IOS_SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
 const EXPECTED_IOS_SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
 const EXPECTED_ANDROID_DEPENDENCY = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0';
@@ -58,11 +62,68 @@ const requiredFiles = [
   'services/api/src/auth/wechat-auth.controller.ts',
   'services/api/src/auth/wechat-auth.service.ts',
   'services/api/src/wechat-universal-link.controller.ts',
+  'src/components/auth/login-screen.native.tsx',
   'src/features/auth/wechat-native-auth.ts',
+  'src/features/auth/wechat-release-capability.ts',
+  'src/features/info/legal-release-surface.native.ts',
 ];
 for (const file of requiredFiles) {
   if (!await exists(file)) fail(`required_file_missing:${file}`);
 }
+
+const baseLoginScreen = await readFile(path.join(ROOT, 'src/components/auth/login-screen.tsx'), 'utf8');
+const nativeLoginScreen = await readFile(path.join(ROOT, 'src/components/auth/login-screen.native.tsx'), 'utf8');
+const capabilityImportAnchor = "import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';\n";
+const capabilityStateAnchor = "  const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);\n";
+const baseSocialSurface = `      <Divider label="第三方快捷登录" />
+      <View style={styles.socialSection}>
+        {Platform.OS === 'ios' ? (
+          <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
+        ) : null}
+        <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
+      </View>
+      <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>`;
+if (
+  !baseLoginScreen.includes(capabilityImportAnchor)
+  || !baseLoginScreen.includes(capabilityStateAnchor)
+  || !baseLoginScreen.includes(baseSocialSurface)
+) fail('native_login_parity_anchor_missing');
+const expectedNativeLoginScreen = baseLoginScreen
+  .replace(capabilityImportAnchor, `${capabilityImportAnchor}import { WECHAT_LOGIN_ENABLED } from '@/features/auth/wechat-release-capability';\n`)
+  .replace(capabilityStateAnchor, `${capabilityStateAnchor}  const thirdPartyLoginAvailable = Platform.OS === 'ios' || WECHAT_LOGIN_ENABLED;\n`)
+  .replace(baseSocialSurface, `{thirdPartyLoginAvailable ? (
+        <>
+          <Divider label="第三方快捷登录" />
+          <View style={styles.socialSection}>
+            {Platform.OS === 'ios' ? (
+              <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
+            ) : null}
+            {WECHAT_LOGIN_ENABLED ? (
+              <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
+            ) : null}
+          </View>
+          <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>
+        </>
+      ) : null}`);
+if (nativeLoginScreen !== expectedNativeLoginScreen) fail('native_login_surface_drift');
+
+const capabilitySource = await readFile(path.join(ROOT, 'src/features/auth/wechat-release-capability.ts'), 'utf8');
+if (
+  !capabilitySource.includes('config/release/wechat-login.json')
+  || !capabilitySource.includes('resolveWechatLoginReleaseCapability')
+) {
+  fail('native_release_capability_not_config_owned');
+}
+const nativeLegalSurface = await readFile(path.join(ROOT, 'src/features/info/legal-release-surface.native.ts'), 'utf8');
+if (!nativeLegalSurface.includes('WECHAT_LOGIN_ENABLED')) fail('native_legal_surface_not_capability_gated');
+const iosReleaseProduct = await readFile(path.join(ROOT, 'scripts/lib/ios-release-product.sh'), 'utf8');
+if (
+  !iosReleaseProduct.includes("wechat_release_mode=\$(\"\${NODE_BINARY:-node}\" -p")
+  || !iosReleaseProduct.includes('wechat-login-contract.cjs')
+  || !iosReleaseProduct.includes("[ \"$wechat_release_mode\" = 'approved' ]")
+  || !iosReleaseProduct.includes("[ \"$wechat_release_mode\" = 'pending' ]")
+  || !iosReleaseProduct.includes('The pending Release app must not contain a WeChat associated domain.')
+) fail('ios_release_associated_domain_not_capability_gated');
 
 const plugin = require('../plugins/with-wechat-auth.js');
 if (plugin.SDK_URL !== EXPECTED_IOS_SDK_URL) fail('ios_nopay_sdk_url_unlocked');
@@ -97,14 +158,18 @@ if (packageJson.dependencies?.['expo-native-wechat'] || packageJson.devDependenc
 
 const appJson = JSON.parse(await readFile(path.join(ROOT, 'app.json'), 'utf8'));
 const approvedRelease = JSON.parse(await readFile(path.join(ROOT, APPROVED_RELEASE_CONFIG_PATH), 'utf8'));
+let releaseCapability;
+try {
+  releaseCapability = resolveWechatLoginReleaseCapability(approvedRelease);
+} catch (error) {
+  fail(`approved_release_configuration_invalid:${error instanceof Error ? error.message : 'unknown'}`);
+}
 if (
-  approvedRelease?.schemaVersion !== 1
-  || !['WAITING_HUMAN', 'approved'].includes(approvedRelease?.status)
-  || (approvedRelease.status === 'WAITING_HUMAN' && (approvedRelease.appId !== null || approvedRelease.universalLink !== null))
-  || approvedRelease?.ios?.teamId !== '3FX69S3S8P'
+  approvedRelease?.ios?.teamId !== '3FX69S3S8P'
   || approvedRelease?.ios?.bundleId !== appJson.expo.ios.bundleIdentifier
   || approvedRelease?.android?.packageName !== appJson.expo.android.package
 ) fail('approved_release_identity_invalid');
+const wechatEnabledForRelease = releaseCapability.enabled;
 const appConfig = require('../app.config.js');
 const previous = {
   appId: process.env.ICAO_WECHAT_APP_ID,
@@ -161,27 +226,31 @@ if (!aasaController.includes("@Get('apple-app-site-association')")) fail('aasa_e
 if (!aasaController.includes("header('content-type', 'application/json')")) fail('aasa_content_type_missing');
 
 if (candidateConfiguration) {
-  const appId = process.env.ICAO_WECHAT_APP_ID?.trim();
-  const universalLink = process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim();
-  const approvedAppId = typeof approvedRelease.appId === 'string' ? approvedRelease.appId.trim() : '';
-  const approvedUniversalLink = typeof approvedRelease.universalLink === 'string'
-    ? approvedRelease.universalLink.trim()
-    : '';
+  let candidateCredentials;
+  try {
+    candidateCredentials = normalizeWechatLoginCredentials({
+      appId: process.env.ICAO_WECHAT_APP_ID,
+      universalLink: process.env.ICAO_WECHAT_UNIVERSAL_LINK,
+    });
+  } catch (error) {
+    fail(`candidate_configuration_invalid:${error instanceof Error ? error.message : 'unknown'}`);
+  }
+  const { appId, universalLink } = candidateCredentials;
   const productionApiUrl = (process.env.EXPO_PUBLIC_ICAO_API_URL || process.env.API_URL)?.trim();
   const archive = process.env.ICAO_WECHAT_SDK_ARCHIVE?.trim();
   const teamId = (process.env.ICAO_APPLE_TEAM_ID || process.env.ICAO_IOS_TEAM_ID)?.trim();
-  if (!appId || !/^wx[0-9a-z]+$/iu.test(appId)) fail('WAITING_HUMAN:candidate_app_id_missing');
-  if (!universalLink || !universalLink.startsWith('https://') || !universalLink.endsWith('/')) {
-    fail('WAITING_HUMAN:candidate_universal_link_missing');
-  }
-  if (approvedRelease.status !== 'approved' || !approvedAppId || approvedAppId !== appId) {
-    fail('WAITING_HUMAN:tracked_candidate_app_id_not_approved_or_mismatch');
-  }
-  if (!approvedUniversalLink || approvedUniversalLink !== universalLink) {
-    fail('WAITING_HUMAN:tracked_candidate_universal_link_not_approved_or_mismatch');
-  }
-  if (!productionApiUrl || new URL(universalLink).origin !== new URL(productionApiUrl).origin) {
-    fail('candidate_universal_link_api_origin_mismatch');
+  if (wechatEnabledForRelease) {
+    if (!appId) fail('candidate_app_id_missing');
+    if (!universalLink) fail('candidate_universal_link_missing');
+    if (releaseCapability.appId !== appId) fail('tracked_candidate_app_id_mismatch');
+    if (releaseCapability.universalLink !== universalLink) {
+      fail('tracked_candidate_universal_link_mismatch');
+    }
+    if (!productionApiUrl || new URL(universalLink).origin !== new URL(productionApiUrl).origin) {
+      fail('candidate_universal_link_api_origin_mismatch');
+    }
+  } else if (appId || universalLink) {
+    fail('pending_release_must_not_embed_wechat_configuration');
   }
   if (archive) {
     const archiveDigest = createHash('sha256').update(await readFile(path.resolve(archive))).digest('hex');
@@ -199,21 +268,22 @@ if (candidateConfiguration) {
     plugin.verifyMaterializedNoPaySdk(materializedSdk);
   }
 
-  const aasaUrl = new URL('/.well-known/apple-app-site-association', universalLink);
-  const aasaResponse = await fetch(aasaUrl, { redirect: 'manual', signal: AbortSignal.timeout(10_000) });
-  if (!aasaResponse.ok || aasaResponse.status >= 300 && aasaResponse.status < 400) fail('candidate_aasa_unreachable_or_redirected');
-  if (!aasaResponse.headers.get('content-type')?.toLowerCase().includes('application/json')) fail('candidate_aasa_content_type_invalid');
-  const association = await aasaResponse.json().catch(() => undefined);
-  const expectedApplicationId = `${teamId}.${appJson.expo.ios.bundleIdentifier}`;
-  const expectedPath = `${new URL(universalLink).pathname}*`;
-  const details = association?.applinks?.details;
-  if (!Array.isArray(details) || !details.some((entry) => (
-    entry?.appID === expectedApplicationId
-    && Array.isArray(entry.paths)
-    && entry.paths.length === 1
-    && entry.paths[0] === expectedPath
-  ))) fail('candidate_aasa_application_or_path_mismatch');
-
+  if (wechatEnabledForRelease) {
+    const aasaUrl = new URL('/.well-known/apple-app-site-association', universalLink);
+    const aasaResponse = await fetch(aasaUrl, { redirect: 'manual', signal: AbortSignal.timeout(10_000) });
+    if (!aasaResponse.ok || aasaResponse.status >= 300 && aasaResponse.status < 400) fail('candidate_aasa_unreachable_or_redirected');
+    if (!aasaResponse.headers.get('content-type')?.toLowerCase().includes('application/json')) fail('candidate_aasa_content_type_invalid');
+    const association = await aasaResponse.json().catch(() => undefined);
+    const expectedApplicationId = `${teamId}.${appJson.expo.ios.bundleIdentifier}`;
+    const expectedPath = `${new URL(universalLink).pathname}*`;
+    const details = association?.applinks?.details;
+    if (!Array.isArray(details) || !details.some((entry) => (
+      entry?.appID === expectedApplicationId
+      && Array.isArray(entry.paths)
+      && entry.paths.length === 1
+      && entry.paths[0] === expectedPath
+    ))) fail('candidate_aasa_application_or_path_mismatch');
+  }
 }
 
 if (process.argv.includes('--candidate') || process.argv.includes('--candidate-android-project')) {
@@ -248,14 +318,18 @@ if (androidArtifact) {
     fail('candidate_android_payment_manifest_present');
   }
   const applicationId = execFileSync(analyzer, ['manifest', 'application-id', artifact], { encoding: 'utf8' }).trim();
-  const expectedAppId = process.env.ICAO_WECHAT_APP_ID?.trim();
-  if (!expectedAppId || !new RegExp(
-    `<meta-data[^>]+android:name=["']com\\.icao\\.wechatauth\\.APP_ID["'][^>]+android:value=["']${expectedAppId}["']`,
-    'iu',
-  ).test(manifest)) fail('candidate_android_wechat_app_id_mismatch');
-  const expectedCallback = `${applicationId}.wxapi.WXEntryActivity`;
-  if (!manifest.includes(expectedCallback) || !/WXEntryActivity[^>]+android:exported=["']true["']/iu.test(manifest)) {
-    fail('candidate_android_wechat_callback_mismatch');
+  if (wechatEnabledForRelease) {
+    const expectedAppId = process.env.ICAO_WECHAT_APP_ID?.trim();
+    if (!expectedAppId || !new RegExp(
+      `<meta-data[^>]+android:name=["']com\\.icao\\.wechatauth\\.APP_ID["'][^>]+android:value=["']${expectedAppId}["']`,
+      'iu',
+    ).test(manifest)) fail('candidate_android_wechat_app_id_mismatch');
+    const expectedCallback = `${applicationId}.wxapi.WXEntryActivity`;
+    if (!manifest.includes(expectedCallback) || !/WXEntryActivity[^>]+android:exported=["']true["']/iu.test(manifest)) {
+      fail('candidate_android_wechat_callback_mismatch');
+    }
+  } else if (/com\.icao\.wechatauth\.APP_ID|\.wxapi\.WXEntryActivity/iu.test(manifest)) {
+    fail('pending_android_artifact_exposes_wechat_configuration');
   }
 }
 
@@ -264,10 +338,21 @@ if (iosArtifact) {
   const app = path.resolve(iosArtifact);
   const infoPlist = path.join(app, 'Info.plist');
   const executableName = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :CFBundleExecutable', infoPlist], { encoding: 'utf8' }).trim();
-  const configuredAppId = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :ICAOWechatAppId', infoPlist], { encoding: 'utf8' }).trim();
-  const configuredLink = execFileSync('/usr/libexec/PlistBuddy', ['-c', 'Print :ICAOWechatUniversalLink', infoPlist], { encoding: 'utf8' }).trim();
-  if (configuredAppId !== process.env.ICAO_WECHAT_APP_ID?.trim() || configuredLink !== process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim()) {
-    fail('candidate_ios_wechat_configuration_mismatch');
+  const optionalPlistValue = (key) => {
+    try {
+      return execFileSync('/usr/libexec/PlistBuddy', ['-c', `Print :${key}`, infoPlist], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    } catch {
+      return '';
+    }
+  };
+  const configuredAppId = optionalPlistValue('ICAOWechatAppId');
+  const configuredLink = optionalPlistValue('ICAOWechatUniversalLink');
+  if (wechatEnabledForRelease) {
+    if (configuredAppId !== process.env.ICAO_WECHAT_APP_ID?.trim() || configuredLink !== process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim()) {
+      fail('candidate_ios_wechat_configuration_mismatch');
+    }
+  } else if (configuredAppId || configuredLink) {
+    fail('pending_ios_artifact_exposes_wechat_configuration');
   }
   const executableSymbols = execFileSync('nm', [path.join(app, executableName)], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   if (!/sendAuthReq|SendAuthReq/u.test(executableSymbols)) fail('candidate_ios_sendauth_symbol_missing');
@@ -279,4 +364,5 @@ if (iosArtifact) {
   }
 }
 
-process.stdout.write(`Official WeChat SendAuth runtime verified (${candidateConfiguration ? 'candidate' : 'static'} gate; no application-reachable payment capability).\n`);
+const releaseMode = wechatEnabledForRelease ? 'enabled' : 'hidden-pending-approval';
+process.stdout.write(`Official WeChat SendAuth runtime verified (${candidateConfiguration ? 'candidate' : 'static'} gate; ${releaseMode}; no application-reachable payment capability).\n`);

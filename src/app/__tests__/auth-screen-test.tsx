@@ -125,13 +125,13 @@ describe('<LoginScreen />', () => {
     expect(mockReplace).not.toHaveBeenCalled();
   });
 
-  it('offers social, OTP, and password login with one registration consent', async () => {
+  it('offers Apple, OTP, and password login while pending WeChat approval', async () => {
     const screen = await renderLoginScreen();
 
     expect(screen.getByText('验证码登录')).toBeTruthy();
     expect(screen.getByText('密码登录')).toBeTruthy();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
-    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
     expect(screen.getByText('未注册手机号验证成功后会自动创建账号。')).toBeTruthy();
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
@@ -212,13 +212,6 @@ describe('<LoginScreen />', () => {
     await fireEvent.press(screen.getByTestId('apple-sign-in'));
     expect(mockSignInWithApple).toHaveBeenCalledTimes(1);
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
-  });
-
-  it('uses WeChat as an auto-registration login after consent', async () => {
-    const screen = await renderLoginScreen();
-    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByTestId('wechat-sign-in')); });
-    expect(mockSignInWithWechat).toHaveBeenCalledTimes(1);
   });
 
   it('signs in with the phone and password using the same account entry', async () => {

@@ -7,6 +7,22 @@
 技术盘点：[technical-audit.md](technical-audit.md)
 人工事项：[manual-actions.md](manual-actions.md)
 
+## 2026-09-05 当前发布覆盖状态
+
+- 当前目标已从早期“内部 TestFlight 技术预览”提升为 iOS 1.0.0 正式上架；下文 2026-08-13 快照仅作
+  历史证据，不再代表现行完成度或授权边界。
+- 登录、商业、唯一 Logo/UI 和热点四条主线已经进入最终候选收口。微信移动应用仍在平台审核，代码
+  保留、首发入口隐藏，不阻塞其他主线或 1.0.0；Vercel/Web 仍严格冻结。
+- 当前变更尚需独立审计、PR/CI 合入 `origin/main`、从主线部署生产 API，并上传 Build 3493765 或更高
+  的 TestFlight 候选。Build 3493764 因绑定请求合同过时退出候选。
+- App 备案已经完成，备案号为 `蜀ICP备2026045996号-1A`；Native 关于页须展示并链接工信部备案查询。
+- 自动化和平台材料继续由 Codex 推进；真正需要负责人介入的汇合门只保留最终 TestFlight 真机验收、
+  沙盒购买确认，以及 Apple 官方界面临时要求的登录/2FA。
+
+现行完整路线以
+[`docs/workstreams/app-store-1.0.0-final-release/roadmap.md`](../../../workstreams/app-store-1.0.0-final-release/roadmap.md)
+为准。
+
 ## 1. 执行原则
 
 路线按技术依赖和风险排序，不按 D1—D9 的决策顺序开发。每个阶段都必须交付一个可独立验证、可
