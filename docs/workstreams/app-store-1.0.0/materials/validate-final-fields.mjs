@@ -9,11 +9,11 @@ const [source, appJsonSource, nativeProducts, serverProducts, profileSource, acc
   readFile(new URL('src/features/profile/ProfileHomeScreen.tsx', root), 'utf8'),
   readFile(new URL('src/features/account/AccountScreen.tsx', root), 'utf8'),
   readFile(new URL('docs/rules/decisions/d9-release-channels.md', root), 'utf8'),
-  readFile(new URL('docs/workstreams/app-store-1.0.0/requirements.md', root), 'utf8'),
-  readFile(new URL('docs/workstreams/app-store-1.0.0/roadmap.md', root), 'utf8'),
-  readFile(new URL('docs/workstreams/app-store-1.0.0/technical-plan.md', root), 'utf8'),
-  readFile(new URL('docs/workstreams/app-store-1.0.0/technical-audit.md', root), 'utf8'),
-  readFile(new URL('docs/workstreams/app-store-1.0.0/phase-log.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/requirements.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/roadmap.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/technical-plan.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/technical-audit.md', root), 'utf8'),
+  readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/phase-log.md', root), 'utf8'),
   readFile(new URL('./README.md', import.meta.url), 'utf8'),
   readFile(new URL('./screenshots.md', import.meta.url), 'utf8'),
   readFile(new URL('./evidence-and-owner-actions.md', import.meta.url), 'utf8'),
@@ -75,22 +75,22 @@ if (
   appJson.expo.name !== appName
   || appJson.expo.version !== '1.0.0'
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
-  || appJson.expo.ios?.buildNumber !== '3493764'
-  || appJson.expo.android?.versionCode !== 3493764
+  || appJson.expo.ios?.buildNumber !== '3493765'
+  || appJson.expo.android?.versionCode !== 3493765
 ) {
   fail('native_app_identity_drift');
 }
 
 const releaseSourceContracts = [
-  ['d9', releaseSources[0], ['新送审候选预留 iOS Build `3493764`', 'Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 只作已完成录音回归的历史候选保留']],
-  ['requirements', releaseSources[1], ['最终候选必须是本轮代码合入后从干净 `origin/main` 归档的 `1.0.0 (3493764)`', '截图、归档证据和送审均不得沿用 `3493761`']],
-  ['roadmap', releaseSources[2], ['Build 3493761 仅作历史候选冻结', '从干净主线归档 Build 3493764 并重新真机验收']],
-  ['technical-plan', releaseSources[3], ['Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 冻结为历史录音候选', '从干净 `origin/main` 归档 Build `3493764`']],
-  ['technical-audit', releaseSources[4], ['最终候选必须是从本轮代码合入后的干净 `origin/main` 归档的 `1.0.0 (3493764)`', '不得用于最终提审']],
-  ['phase-log', releaseSources[5], ['当前修复分支已准备 Build 3493764', '不得用于最终截图、TestFlight 验收或提审']],
-  ['materials-readme', releaseSources[6], ['Build `3493761` 仅作历史录音候选保留', '只从干净 `origin/main` 归档并上传 Build `3493764`']],
-  ['screenshots', releaseSources[7], ['Build `3493764` 的唯一截图清单', 'Build `3493761` 仅作历史候选保留，不得用于任何最终产品页或 IAP 审核截图']],
-  ['evidence', releaseSources[8], ['| Build | `3493764` |', '新 Build 3493764 处理完成后替换版本页 Build']],
+  ['d9', releaseSources[0], ['当前最高已上传 Build 为 `3493764`', '下一送审候选预留为 Build `3493765`', '最终候选由 Build `3493765` 覆盖']],
+  ['requirements', releaseSources[1], ['内部 Build 必须在已上传 Build 基础上单调递增', '旧 Build 和旧截图不得作为最终证据']],
+  ['roadmap', releaseSources[2], ['从 App Store Connect 读取最高 Build，更新为严格递增值，经 PR 合入 `main`', '从干净 `origin/main` 归档并上传 TestFlight']],
+  ['technical-plan', releaseSources[3], ['当前最高已上传 Build 为 `3493764`', '本轮正式产物候选固定递增为', '`3493765`']],
+  ['technical-audit', releaseSources[4], ['当前最高已上传 Build 为 `3493764`', '下一候选必须严格递增为 Build `3493765`', '不得用于最终截图或 App Store 提交']],
+  ['phase-log', releaseSources[5], ['当前最高已上传 Build 为 `3493764`', '把源码和材料候选递增为', '`3493765`']],
+  ['materials-readme', releaseSources[6], ['`3493761` 与', '`3493764` 仅作历史候选保留', '最终候选递增为 Build `3493765`']],
+  ['screenshots', releaseSources[7], ['Build `3493765` 的唯一截图清单', '`3493761` 与 `3493764` 仅作历史候选保留']],
+  ['evidence', releaseSources[8], ['| Build | `3493765` |', 'Build 3493765 处理完成后选入版本页', 'Paid Apps Agreement 有效']],
 ];
 for (const [name, releaseSource, contracts] of releaseSourceContracts) {
   for (const contract of contracts) {
