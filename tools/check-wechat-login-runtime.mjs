@@ -13,7 +13,7 @@ const {
   resolveWechatLoginReleaseCapability,
 } = require('../config/release/wechat-login-contract.cjs');
 const EXPECTED_IOS_SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
-const EXPECTED_IOS_SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
+const EXPECTED_IOS_SDK_SHA256 = 'ce1cb4736d56adb9423561c40504f6ffdf841024dc2196bd38542228fbd7587d';
 const EXPECTED_ANDROID_DEPENDENCY = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0';
 const APPROVED_RELEASE_CONFIG_PATH = 'config/release/wechat-login.json';
 const candidateConfiguration = process.argv.some((value) => [

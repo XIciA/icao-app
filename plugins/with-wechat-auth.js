@@ -14,7 +14,10 @@ const {
 const { normalizeWechatLoginCredentials } = require('../config/release/wechat-login-contract.cjs');
 
 const SDK_URL = 'https://dldir1.qq.com/WechatWebDev/opensdk/XCFramework/OpenSDK2.0.7_NoPay.zip';
-const SDK_SHA256 = '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258';
+// Tencent republished the same 2.0.7 NoPay URL on 2026-09-02. Keep the archive
+// and every materialized build input pinned together so a future silent update
+// fails closed until it is reviewed again.
+const SDK_SHA256 = 'ce1cb4736d56adb9423561c40504f6ffdf841024dc2196bd38542228fbd7587d';
 const ARCHIVE_SDK_DIRECTORY = 'WechatOpenSDK-NoPay.xcframework';
 // CocoaPods derives the linker framework name from the XCFramework directory.
 // The approved NoPay archive's inner framework is named WechatOpenSDK, so the
@@ -23,11 +26,23 @@ const ARCHIVE_SDK_DIRECTORY = 'WechatOpenSDK-NoPay.xcframework';
 const SDK_DIRECTORY = 'WechatOpenSDK.xcframework';
 const ANDROID_APP_ID_METADATA_KEY = 'com.icao.wechatauth.APP_ID';
 const MATERIALIZED_SDK_SHA256 = Object.freeze({
-  'Info.plist': 'f8da2753bcf3448b3dce6813137b6e7e5850a6af52f08d07c9f449b4e25dbb8d',
+  'Info.plist': '73e7b04a733a6941c7af0664e2f4ded5d6247e18151dc9a6656052d1b0d8e9ee',
   'PrivacyInfo.xcprivacy': 'dc8d7e1f9a7da7f3381f30746b59206ee62ce225b69fe3bcbb66234f8459be35',
-  'README.txt': 'c67913985038c1024343beb0ed94ae2042947f3f1748e55d1b182ca29e85275b',
-  'ios-arm64/WechatOpenSDK.framework/WechatOpenSDK': 'd762a75ab8129fe5331de39c3a01370dc3f0284897baefb6339422c56c668e45',
-  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/WechatOpenSDK': '8bc77e5a56f9bdbaab69c51fae7b003f28ce64e21befcf0255fc8fde8a2b4b07',
+  'README.txt': '7e23dc1822b938a35e6365d869aa21f5041cae7208037cbf4282f5a9c654c89e',
+  'ios-arm64/WechatOpenSDK.framework/Headers/WXApi.h': '124f15d10fece25f2517ac55a82d8dd17457bf3c79e901a7e710d40e6968778f',
+  'ios-arm64/WechatOpenSDK.framework/Headers/WXApiObject.h': '140af3b6b76a0bacc5cb0ff0533175f1752a5c7c3f2e8af3730a535742536a4d',
+  'ios-arm64/WechatOpenSDK.framework/Headers/WechatAuthSDK.h': '797e9cb595b590b961c3f85334d58e24f8f40698301c6c237b80a374604a03e7',
+  'ios-arm64/WechatOpenSDK.framework/Headers/WechatOpenSDK.h': '4fe88232acfe06245a21a04f18959dd7e762af4947e711dba5df0ce222da5520',
+  'ios-arm64/WechatOpenSDK.framework/Info.plist': 'bb08b10ae4a3ffa049761720f5c51a5c2979301a90e4531b86a2e45bb33894c1',
+  'ios-arm64/WechatOpenSDK.framework/Modules/module.modulemap': '21b015268e0a8321610ba0cc57c226d68365f7e70110bb945f3f0f13d346158f',
+  'ios-arm64/WechatOpenSDK.framework/WechatOpenSDK': '178b7b0cc71d044bd6c03bdf7704cdf916340fb1a553f7bcde03a4c3ad4dc2da',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Headers/WXApi.h': '124f15d10fece25f2517ac55a82d8dd17457bf3c79e901a7e710d40e6968778f',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Headers/WXApiObject.h': '140af3b6b76a0bacc5cb0ff0533175f1752a5c7c3f2e8af3730a535742536a4d',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Headers/WechatAuthSDK.h': '797e9cb595b590b961c3f85334d58e24f8f40698301c6c237b80a374604a03e7',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Headers/WechatOpenSDK.h': '4fe88232acfe06245a21a04f18959dd7e762af4947e711dba5df0ce222da5520',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Info.plist': 'bb08b10ae4a3ffa049761720f5c51a5c2979301a90e4531b86a2e45bb33894c1',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/Modules/module.modulemap': '21b015268e0a8321610ba0cc57c226d68365f7e70110bb945f3f0f13d346158f',
+  'ios-arm64_x86_64-simulator/WechatOpenSDK.framework/WechatOpenSDK': '1a3cda7b2efa735d895f78e9b94adebe580bd732a03517eee85a8b37430bdee4',
 });
 
 function addUnique(values, value) {
