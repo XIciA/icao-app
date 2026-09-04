@@ -97,7 +97,7 @@
     "check:ios:testflight": "bash -n scripts/release-ios-testflight.sh && pnpm check:ios:storekit && node tools/check-ios-testflight.mjs",
     "check:legal": "node tools/verify-native-legal-pages.mjs",
     "check:app-store-materials": "node docs/workstreams/app-store-1.0.0/materials/validate-final-fields.mjs",
-    "check:account-binding": "node tools/check-account-binding-freeze.mjs",
+    "check:account-binding": "node tools/check-account-binding-freeze.mjs && node --test tools/check-account-binding-freeze-tests.mjs",
     "check:content-access": "pnpm content:public:check && node tools/verify-native-content-access.mjs",
     "check:content-signing-key": "node --test tools/content-credential-signing-key-tests.mjs tools/content-signing-key-provision-tests.mjs",
     "test": "jest --runInBand",
