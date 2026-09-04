@@ -49,7 +49,13 @@ jest.mock('expo-router', () => {
     return React.createElement(Text, { testID: `screen-${name}` }, name);
   }
   function MockProtected({ children, guard }: { children: React.ReactNode; guard: boolean }) {
-    return guard ? children : null;
+    if (!guard) return null;
+    React.Children.forEach(children, (child: React.ReactNode) => {
+      if ((child as React.ReactElement | null)?.type === React.Fragment) {
+        throw new Error('Stack.Protected children must be direct Stack.Screen elements.');
+      }
+    });
+    return children;
   }
 
   Stack.Screen = MockScreen;
