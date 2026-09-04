@@ -13,6 +13,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { assertNativeBuildOnlyAppJsonDelta } from './check-web-freeze.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cliPath = path.join(repositoryRoot, 'tools/check-web-freeze.mjs');
@@ -43,8 +44,38 @@ test('the stale absolute baseline can pass only through the exact reviewed Nativ
     env: process.env,
   });
   requireSuccess(result, 'strict Native-only incremental proof failed');
-  assert.match(result.stdout, /4 exact reviewed deltas/u);
+  assert.match(result.stdout, /5 exact reviewed deltas/u);
+  assert.match(result.stdout, /app\.json: identical after removing the matching Native build identifiers/u);
   assert.match(result.stdout, /contracts index: identical emitted JavaScript/u);
+});
+
+test('the Native app config proof accepts only matching advanced build identifiers', () => {
+  const base = {
+    expo: {
+      name: '听你五个',
+      ios: { buildNumber: '3493764', bundleIdentifier: 'com.readyoufife.ios' },
+      android: { versionCode: 3493764, package: 'com.readyoufife.app' },
+      web: { output: 'single' },
+    },
+  };
+  const candidate = structuredClone(base);
+  candidate.expo.ios.buildNumber = '3493765';
+  candidate.expo.android.versionCode = 3493765;
+  assert.doesNotThrow(() => assertNativeBuildOnlyAppJsonDelta(base, candidate));
+
+  const webMutation = structuredClone(candidate);
+  webMutation.expo.web.output = 'static';
+  assert.throws(
+    () => assertNativeBuildOnlyAppJsonDelta(base, webMutation),
+    /changes more than the reviewed Native build identifiers/u,
+  );
+
+  const mismatchedBuild = structuredClone(candidate);
+  mismatchedBuild.expo.android.versionCode = 3493766;
+  assert.throws(
+    () => assertNativeBuildOnlyAppJsonDelta(base, mismatchedBuild),
+    /matching iOS and Android build identifiers/u,
+  );
 });
 
 test('the real Web resolver and CLI protect every selected input without post-filtering', () => {

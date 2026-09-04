@@ -2,9 +2,9 @@
 
 ## 当前阶段
 
-- 阶段 0：基线、规则与工作区冻结。
+- 阶段 2：生产配置前置与最终候选 Build 准备。
 - 启动日期：2026-08-31。
-- 主线基线：`origin/main` `88f301b816eab4f8719fff7259ae5ad6888b89b6`。
+- 当前主线基线：`origin/main` `8e90bdda30a3c0610e079dc7f373e97235c8b70e`。
 
 ## 已完成
 
@@ -12,6 +12,10 @@
 - D2、D4、D7、D9 已更新为：1.0.0 启用微信登录、禁用微信支付。
 - 建立非阻塞人工队列、动态 Agent 接管和独立审计门禁。
 - 旧 `app-store-1.0.0` 工作流已标记为历史入口。
+- 热点正式权限状态、五档会员购买闭环、唯一 Logo/UI 门禁、录音代次修复和登录/微信闭环已分别通过
+  PR #87、#86、#88、#89、#90 合入 `origin/main`；登录闭环最终基线为 `8e90bdd`。
+- 付费 App 协议有效、工行账户可用，两份美国非居民税务表均为使用中；旧银行/税务待办不再是现行
+  阻塞，仅在最终提交前读取 Apple 状态反查。
 - 2026-09-01 在 `origin/main` `47ab262` 上完成 UI/Logo P2 候选：删除 Expo 图标编辑器遗留，品牌
   manifest 与门禁明确 `assets/images/icon.png` 为唯一产品母版，`ios/`、`android/` 仅是被忽略且
   不可跟踪的 CNG 生成树；门禁使用 `git check-ignore` 验证忽略事实，并盘点 `mark`、通用图片名和
@@ -32,24 +36,32 @@
 
 ## 当前工作
 
-- 将确认后的文档和长期规则通过短期分支、PR 合入 `main`。
-- 合入后重新读取代码、Apple、微信和生产事实，拆分阶段 1 的三个独立执行闭环。
+- App Store Connect 当前最高已上传 Build 为 `3493764`；在短期分支把源码和材料候选递增为
+  `3493765`，通过门禁、PR 和主线合入后才允许归档。
+- 真实微信 AppID、Universal Link 与服务端 AppSecret 继续保持 `WAITING_HUMAN`，不得以占位值制作候选；
+  等待期间继续推进不依赖这些真值的材料、门禁和平台核对。
 
 ## 验证结果
 
-- Markdown 相对链接检查通过。
-- `git diff --check` 通过。
-- 文档未包含审核手机号、密码、验证码、银行账号或平台密钥。
+- PR #90 最终候选验证：`pnpm check:ci` 全量通过，根项目 796 项、API 551 项；iOS Release Simulator
+  构建成功；独立审计 P0/P1 已关闭。
+- Build `3493765` 的 `pnpm check:release` 完整通过：Native 品牌、微信登录、账号绑定、内容访问、
+  生产迁移合同、iOS StoreKit 130 项、TestFlight 合同、法律页和 App Store 材料门禁均通过。
+- `pnpm check:app-store-materials` 单独复跑通过；`git diff --check` 通过。
+- Vercel 未修改、未构建、未部署。
 
 ## 剩余风险
 
-- 微信开放平台账号可访问，但移动应用创建、认证、AppID、Universal Link 和登录权限状态待读取。
-- App Store Connect 当前最高 Build、五档 IAP 状态及最终材料仍需重新读取。
-- 当前阶段尚未修改代码、构建、部署或提交审核。
+- 微信开放平台真实移动应用 AppID、已审核 Universal Link、服务端 AppSecret 和生产 AASA 仍待平台
+  核实；仅直接依赖节点保持 `WAITING_HUMAN`。
+- Build `3493765` 尚未合入、归档、上传或真机验收；六张产品截图、五张 IAP 审核截图和唯一审核账号
+  仍须使用最终候选收口。
+- 本阶段不执行生产迁移、部署、TestFlight 上传或 App Store 提交。
 
 ## 阶段判断
 
-- 文档进入 `origin/main` 且工作区恢复干净后，可进入阶段 1 并行实现与审计。
+- Build `3493765` 版本与材料 PR 通过后可合入；只有真实微信配置完成并通过候选发布门禁后，才能从
+  干净 `origin/main` 归档上传最终 TestFlight 包。
 
 ## 阶段 1：登录闭环与微信登录技术审计（2026-09-01）
 
