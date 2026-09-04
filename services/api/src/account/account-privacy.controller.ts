@@ -1,12 +1,12 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
 import {
   discloseAiGeneratedExportRecord,
-  type AccountDataExportResponse,
   type ApiSuccessEnvelope,
   type ClearLearningDataRequest,
   type DeleteAllAiResultsRequest,
   type PrivacyDeletionResponse,
 } from '@icao/contracts';
+import type { NativeAccountDataExportResponse as AccountDataExportResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';

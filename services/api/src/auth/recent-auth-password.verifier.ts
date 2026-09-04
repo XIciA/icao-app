@@ -1,8 +1,9 @@
-import { ForbiddenException, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
+import { ForbiddenException, Inject, Injectable, Optional, ServiceUnavailableException } from '@nestjs/common';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 import { API_CONFIG, type ApiConfig } from '../config';
+import { AccountPhoneIdentityService } from '../account/account-phone-identity.service';
 import type { VerifiedAuthSession } from './auth.types';
 
 export const RECENT_AUTH_PASSWORD_VERIFIER = Symbol('RECENT_AUTH_PASSWORD_VERIFIER');
@@ -16,30 +17,40 @@ export class SupabaseRecentAuthPasswordVerifier implements RecentAuthPasswordVer
   private readonly adminAuth: SupabaseClient;
   private readonly publicAuth: SupabaseClient;
 
-  constructor(@Inject(API_CONFIG) config: ApiConfig) {
+  constructor(
+    @Inject(API_CONFIG) config: ApiConfig,
+    @Optional() private readonly accountPhones?: AccountPhoneIdentityService,
+  ) {
     const authOptions = { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false };
     this.publicAuth = createClient(config.supabaseUrl, config.supabasePublishableKey, { auth: authOptions });
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, { auth: authOptions });
   }
 
   async verify(source: VerifiedAuthSession, password: string) {
-    if (
-      !isChinaMobileE164(source.user.phone)
-      || !source.user.providers?.includes('phone')
-      || source.passwordSet === false
-    ) {
+    if (!source.user.providers?.includes('phone')) {
       throw new ForbiddenException('password_reauthentication_unavailable');
     }
+    const identity = isChinaMobileE164(source.user.phone) && source.authUserId
+      ? {
+        authUserId: source.authUserId,
+        passwordSet: source.passwordSet === true,
+        phone: source.user.phone,
+      }
+      : this.accountPhones
+        ? await this.accountPhones.resolve(source.user.id)
+        : undefined;
+    if (!identity) throw new ForbiddenException('password_reauthentication_unavailable');
+    if (!identity.passwordSet) throw new ForbiddenException('password_reauthentication_unavailable');
 
     const { data, error } = await this.publicAuth.auth.signInWithPassword({
-      phone: source.user.phone,
+      phone: identity.phone,
       password,
     });
     if (
       error
       || !data.session
-      || data.user.id !== source.authUserId
-      || normalizeChinaMobile(data.user.phone ?? '') !== source.user.phone
+      || data.user.id !== identity.authUserId
+      || normalizeChinaMobile(data.user.phone ?? '') !== identity.phone
     ) {
       if (data.session) {
         await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);

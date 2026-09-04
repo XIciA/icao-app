@@ -166,7 +166,7 @@ for (const forbidden of ['体系课程', '学习报告', '包过', '通过率', 
   }
 }
 
-if (/微信|WeChat/u.test(`${promotionalText}\n${description}\n${keywords}\n${reviewNotes}`)) {
+if (/微信|WeChat/u.test(`${promotionalText}\n${description}\n${keywords}`)) {
   fail('wechat_reference_in_public_fields');
 }
 

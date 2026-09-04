@@ -28,6 +28,9 @@ const schema = z.object({
   APPLE_KEY_ID: z.string().min(3).optional(),
   APPLE_PRIVATE_KEY: z.string().min(32).optional(),
   APPLE_CREDENTIAL_ENCRYPTION_KEY: z.string().optional(),
+  WECHAT_APP_ID: z.string().regex(/^wx[a-zA-Z0-9]{6,32}$/u).optional(),
+  WECHAT_APP_SECRET: z.string().min(16).optional(),
+  WECHAT_UNIVERSAL_LINK: z.string().url().startsWith('https://').optional(),
   APPLE_IAP_BUNDLE_ID: z.literal('com.readyoufife.ios').default('com.readyoufife.ios'),
   APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
   APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
@@ -138,6 +141,9 @@ export type ApiConfig = {
   appleKeyId?: string;
   applePrivateKey?: string;
   appleCredentialEncryptionKey?: string;
+  wechatAppId?: string;
+  wechatAppSecret?: string;
+  wechatUniversalLink?: string;
   appleIapBundleId: 'com.readyoufife.ios';
   appleIapAppAppleId?: number;
   appleIapRootCertificates: Buffer[];
@@ -209,6 +215,26 @@ function isValidSupabaseSmsHookSecret(value: string) {
 
 function invalidConfiguration(...fields: string[]): never {
   throw new Error(`invalid_api_configuration:${fields.join(', ')}`);
+}
+
+function isPrivateServiceOrigin(rawUrl: string) {
+  const url = new URL(rawUrl);
+  const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/gu, '');
+  if (url.protocol !== 'http:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
+    return false;
+  }
+  if (
+    hostname === 'localhost'
+    || hostname === '::1'
+    || hostname.endsWith('.internal')
+    || hostname.endsWith('.local')
+    || /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/u.test(hostname)
+    || /^127\./u.test(hostname)
+    || /^10\./u.test(hostname)
+    || /^192\.168\./u.test(hostname)
+  ) return true;
+  const private172 = hostname.match(/^172\.(\d{1,3})\./u)?.[1];
+  return private172 !== undefined && Number(private172) >= 16 && Number(private172) <= 31;
 }
 
 function parsePreviousIdentityHashKeys(value: string, currentVersion: number) {
@@ -377,6 +403,23 @@ export function loadConfig(
   if (Boolean(parsed.data.TENCENT_CLOUD_SECRET_ID) !== Boolean(parsed.data.TENCENT_CLOUD_SECRET_KEY)) {
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
+  const wechatRuntimeFields = [
+    parsed.data.WECHAT_APP_ID,
+    parsed.data.WECHAT_APP_SECRET,
+    parsed.data.WECHAT_UNIVERSAL_LINK,
+  ];
+  if (wechatRuntimeFields.some(Boolean) && !wechatRuntimeFields.every(Boolean)) {
+    throw new Error('invalid_api_configuration:WECHAT_RUNTIME');
+  }
+  if (parsed.data.WECHAT_UNIVERSAL_LINK) {
+    const wechatUniversalLink = new URL(parsed.data.WECHAT_UNIVERSAL_LINK);
+    if (
+      wechatUniversalLink.protocol !== 'https:'
+      || !wechatUniversalLink.pathname.endsWith('/')
+      || Boolean(wechatUniversalLink.search)
+      || Boolean(wechatUniversalLink.hash)
+    ) invalidConfiguration('WECHAT_UNIVERSAL_LINK');
+  }
   const previousIdentityHashKeys = parsePreviousIdentityHashKeys(
     parsed.data.IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS,
     parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
@@ -394,6 +437,10 @@ export function loadConfig(
     if (fixedOtpKeys.some((key) => environment[key]?.trim())) {
       invalidConfiguration('FIXED_SMS_OTP');
     }
+    if (
+      parsed.data.SUPABASE_URL === parsed.data.SUPABASE_PUBLIC_URL
+      || !isPrivateServiceOrigin(parsed.data.SUPABASE_URL)
+    ) invalidConfiguration('SUPABASE_URL');
     validateProductionAiRuntime(environment, parsed.data);
     if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
     if (!parsed.data.CONTENT_CREDENTIAL_SIGNING_SECRET) invalidConfiguration('CONTENT_CREDENTIAL_SIGNING_SECRET');
@@ -454,6 +501,9 @@ export function loadConfig(
     appleKeyId: parsed.data.APPLE_KEY_ID,
     applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
+    wechatAppId: parsed.data.WECHAT_APP_ID,
+    wechatAppSecret: parsed.data.WECHAT_APP_SECRET,
+    wechatUniversalLink: parsed.data.WECHAT_UNIVERSAL_LINK,
     appleIapBundleId: parsed.data.APPLE_IAP_BUNDLE_ID,
     appleIapAppAppleId: parsed.data.APPLE_IAP_APP_APPLE_ID,
     appleIapRootCertificates,

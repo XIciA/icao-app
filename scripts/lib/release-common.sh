@@ -45,6 +45,7 @@ load_release_runtime() {
   ECS_HOST=${ICAO_ECS_HOST:-47.108.90.19}
   ECS_USER=${ICAO_ECS_USER:-root}
   SSH_KEY=${ICAO_ECS_SSH_KEY:-${HOME:?}/.ssh/icao_app_codex}
+  ICAO_IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
 
   require_public_https_url EXPO_PUBLIC_ICAO_API_URL "$API_URL"
   require_public_https_url EXPO_PUBLIC_SUPABASE_URL "$SUPABASE_URL"
@@ -62,7 +63,7 @@ load_release_runtime() {
     exit 1
   fi
 
-  export API_URL SUPABASE_URL PUBLISHABLE_KEY ECS_HOST ECS_USER SSH_KEY
+  export API_URL SUPABASE_URL PUBLISHABLE_KEY ECS_HOST ECS_USER SSH_KEY ICAO_IOS_TEAM_ID
   export EXPO_PUBLIC_ICAO_API_URL=$API_URL
   export EXPO_PUBLIC_SUPABASE_URL=$SUPABASE_URL
   export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY
@@ -71,8 +72,8 @@ load_release_runtime() {
 check_release_runtime() {
   required_social_provider=${1:-}
   node_binary=${NODE_BINARY:-$(command -v node)}
-  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-runtime-freeze.mjs"
-  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider "$node_binary" <<'NODE'
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs"
+  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider CHECK_WECHAT_APP_ID=${ICAO_WECHAT_APP_ID:-} "$node_binary" <<'NODE'
 const api = await fetch(`${process.env.CHECK_API_URL}/health/ready`, {
   signal: AbortSignal.timeout(10_000),
 });
@@ -90,18 +91,16 @@ if (settings.disable_signup === true || settings.external?.phone !== true || set
 if (process.env.CHECK_SOCIAL_PROVIDER && settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true) {
   throw new Error(`Supabase Auth provider is not enabled: ${process.env.CHECK_SOCIAL_PROVIDER}`);
 }
-if (settings.external?.wechat === true) {
-  throw new Error('Supabase Auth must not enable the retired WeChat provider.');
-}
-
-const retiredWechat = await fetch(`${process.env.CHECK_API_URL}/v1/auth/wechat/session`, {
+const wechatChallenge = await fetch(`${process.env.CHECK_API_URL}/v1/auth/wechat/challenge`, {
   method: 'POST',
-  headers: { 'content-type': 'application/json' },
-  body: '{}',
   signal: AbortSignal.timeout(10_000),
 });
-if (retiredWechat.status !== 404) {
-  throw new Error('The retired WeChat session route is still registered.');
+const wechatBody = await wechatChallenge.json().catch(() => undefined);
+if (!wechatChallenge.ok || wechatBody?.data?.status !== 'available') {
+  throw new Error('The production WeChat login challenge is not available.');
+}
+if (!process.env.CHECK_WECHAT_APP_ID || wechatBody?.data?.appId !== process.env.CHECK_WECHAT_APP_ID) {
+  throw new Error('The production WeChat login challenge App ID does not match the candidate build.');
 }
 
 for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']) {
@@ -117,4 +116,27 @@ for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']
   }
 }
 NODE
+}
+
+check_wechat_candidate_configuration() {
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-config
+}
+
+check_wechat_android_project() {
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$PROJECT_ROOT/scripts/with-android-env.sh" "$node_binary" \
+    "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-project
+}
+
+check_wechat_android_artifact() {
+  artifact=$1
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-android-artifact "$artifact"
+}
+
+check_wechat_ios_artifact() {
+  artifact=$1
+  node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-login-runtime.mjs" --candidate-ios-artifact "$artifact"
 }

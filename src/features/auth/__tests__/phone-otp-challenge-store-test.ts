@@ -26,22 +26,25 @@ describe('phone OTP challenge persistence', () => {
   });
 
   it('round-trips only challenge metadata and never stores the OTP', async () => {
+    const receivedAt = Date.now();
     const challenge = phoneOtpChallenge('13800138000', 'login', {
       accepted: true,
-      expiresAt: 1_700_000_300_000,
-      issuedAt: 1_700_000_000_000,
-      resendAllowedAt: 1_700_000_060_000,
-    });
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: receivedAt + 300_000,
+      issuedAt: receivedAt,
+      resendAllowedAt: receivedAt + 60_000,
+      serverTime: receivedAt,
+    }, receivedAt);
     await writePhoneOtpChallenge(challenge);
     const serialized = setItemAsync.mock.calls[0]?.[1];
     expect(serialized).toContain('+8613800138000');
     expect(serialized).not.toContain('123456');
 
     getItemAsync.mockResolvedValueOnce(serialized ?? null);
-    await expect(readPhoneOtpChallenge(1_700_000_001_000)).resolves.toEqual(challenge);
+    await expect(readPhoneOtpChallenge(receivedAt + 1_000)).resolves.toEqual(challenge);
   });
 
-  it('removes an expired or malformed challenge instead of restoring it', async () => {
+  it('removes a legacy or malformed challenge instead of restoring it', async () => {
     getItemAsync.mockResolvedValueOnce(JSON.stringify({
       expiresAt: 1_700_000_300_000,
       issuedAt: 1_700_000_000_000,
@@ -52,7 +55,24 @@ describe('phone OTP challenge persistence', () => {
     }));
 
     await expect(readPhoneOtpChallenge(1_700_000_300_000)).resolves.toBeUndefined();
-    expect(deleteItemAsync).toHaveBeenCalledTimes(1);
+    expect(deleteItemAsync).toHaveBeenCalledTimes(2);
+  });
+
+  it('restores a recently expired challenge so the UI preserves the correct entry state', async () => {
+    const serialized = JSON.stringify({
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: 1_700_000_300_000,
+      issuedAt: 1_700_000_000_000,
+      phone: '+8613800138000',
+      purpose: 'login',
+      resendAllowedAt: 1_700_000_060_000,
+      serverTimeOffsetMs: 0,
+      version: 2,
+    });
+    getItemAsync.mockResolvedValueOnce(serialized);
+
+    await expect(readPhoneOtpChallenge(1_700_000_301_000)).resolves.toEqual(JSON.parse(serialized));
+    expect(deleteItemAsync).not.toHaveBeenCalled();
   });
 
   it('surfaces secure-storage failures without exposing or corrupting challenge data', async () => {
@@ -61,5 +81,71 @@ describe('phone OTP challenge persistence', () => {
 
     deleteItemAsync.mockRejectedValueOnce(new Error('keychain unavailable'));
     await expect(clearPhoneOtpChallenge()).rejects.toThrow('auth_session_storage_unavailable');
+  });
+
+  it('does not let a late response overwrite a newer persisted challenge generation', async () => {
+    const now = Date.now();
+    const newer = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '20000000-0000-4000-8000-000000000020',
+      expiresAt: now + 301_000,
+      issuedAt: now + 1_000,
+      resendAllowedAt: now + 61_000,
+      serverTime: now + 1_000,
+    }, now + 1_000);
+    const older = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: now + 300_000,
+      issuedAt: now,
+      resendAllowedAt: now + 60_000,
+      serverTime: now,
+    }, now);
+    getItemAsync
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(JSON.stringify(newer));
+
+    await expect(writePhoneOtpChallenge(newer)).resolves.toBe(true);
+    await expect(writePhoneOtpChallenge(older)).resolves.toBe(false);
+    expect(setItemAsync).toHaveBeenCalledTimes(1);
+    expect(setItemAsync).toHaveBeenCalledWith(
+      expect.any(String),
+      JSON.stringify(newer),
+      expect.any(Object),
+    );
+  });
+
+  it('serializes a deferred write, tombstone clear, and remount read without resurrecting the challenge', async () => {
+    const storage = new Map<string, string>();
+    let releaseWrite!: () => void;
+    const writeStarted = new Promise<void>((resolve) => {
+      setItemAsync.mockImplementationOnce(async (key, value) => {
+        resolve();
+        await new Promise<void>((release) => { releaseWrite = release; });
+        storage.set(key, value);
+      });
+    });
+    getItemAsync.mockImplementation(async (key) => storage.get(key) ?? null);
+    deleteItemAsync.mockImplementation(async (key) => { storage.delete(key); });
+
+    const now = Date.now();
+    const challenge = phoneOtpChallenge('13800138000', 'login', {
+      accepted: true,
+      challengeId: '30000000-0000-4000-8000-000000000030',
+      expiresAt: now + 300_000,
+      issuedAt: now,
+      resendAllowedAt: now + 60_000,
+      serverTime: now,
+    }, now);
+    const write = writePhoneOtpChallenge(challenge);
+    await writeStarted;
+    const clear = clearPhoneOtpChallenge();
+    const remountRead = readPhoneOtpChallenge(now + 1_000);
+    releaseWrite();
+
+    await expect(write).resolves.toBe(false);
+    await expect(clear).resolves.toBeUndefined();
+    await expect(remountRead).resolves.toBeUndefined();
+    expect(storage.size).toBe(0);
   });
 });

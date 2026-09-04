@@ -39,6 +39,7 @@ verify_ios_cng_brand_assets "$PROJECT_ROOT"
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+check_wechat_candidate_configuration
 configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 xcodebuild \
@@ -64,6 +65,7 @@ verify_ios_release_app \
   "$MARKETING_VERSION" \
   "$IOS_BUILD_NUMBER" \
   "$IOS_TEAM_ID"
+check_wechat_ios_artifact "$APP_PATH"
 xcrun devicectl device install app --device "$IOS_DEVICE" "$APP_PATH"
 if ! xcrun devicectl device process launch --device "$IOS_DEVICE" "$IOS_BUNDLE_ID"; then
   echo 'The Release app was installed but iOS did not allow it to launch.' >&2

@@ -1,8 +1,8 @@
 import { createHmac } from 'node:crypto';
 
 import { Inject, Injectable, Optional, UnauthorizedException } from '@nestjs/common';
-import type { AuthIdentityProvider, AuthenticatedUser } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
+import type { NativeAuthenticatedUser as AuthenticatedUser, NativeAuthIdentityProvider as AuthIdentityProvider } from '@icao/contracts/native-auth';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';
@@ -17,7 +17,7 @@ export type IdentityCandidate = {
   subject: string;
 };
 
-const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple']);
+const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple', 'wechat']);
 const FREE_TRIAL_BENEFIT_KEY = 'free-trial-100-v1';
 
 @Injectable()
@@ -193,7 +193,7 @@ export class AccountIdentityService {
     return rows
       .map((row) => row.provider)
       .filter((provider): provider is AuthIdentityProvider => SUPPORTED_PROVIDERS.has(provider as AuthIdentityProvider))
-      .sort((left, right) => ['phone', 'apple'].indexOf(left) - ['phone', 'apple'].indexOf(right));
+      .sort((left, right) => ['phone', 'apple', 'wechat'].indexOf(left) - ['phone', 'apple', 'wechat'].indexOf(right));
   }
 
   async authUserIdsForAccount(accountId: string) {

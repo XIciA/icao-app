@@ -1,4 +1,4 @@
-import type { AuthenticatedUser } from '@icao/contracts';
+import type { NativeAuthenticatedUser as AuthenticatedUser } from '@icao/contracts/native-auth';
 
 export const AUTH_VERIFIER = Symbol('AUTH_VERIFIER');
 

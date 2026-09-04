@@ -18,7 +18,7 @@ api.readyoufife.com {
 
 cloud.readyoufife.com {
 	import icao_security_headers
-	@blocked_auth_start path /auth/v1/otp /auth/v1/otp/ /auth/v1/resend /auth/v1/resend/ /auth/v1/signup /auth/v1/signup/
+	@blocked_auth_start path /auth/v1/otp /auth/v1/otp/ /auth/v1/resend /auth/v1/resend/ /auth/v1/signup /auth/v1/signup/ /auth/v1/verify /auth/v1/verify/
 	handle @blocked_auth_start {
 		respond 404
 	}

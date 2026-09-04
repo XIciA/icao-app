@@ -246,6 +246,55 @@
       "when": 1787703462961,
       "tag": "0034_revoke_client_table_grants",
       "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1788201374204,
+      "tag": "0035_lowly_microbe",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1788208874142,
+      "tag": "0036_bright_cannonball",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1788218857306,
+      "tag": "0037_cool_stellaris",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1788221970710,
+      "tag": "0038_natural_orphan",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1788497889107,
+      "tag": "0039_sparkling_tombstone",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1788499204536,
+      "tag": "0040_stiff_wonder_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1788504217004,
+      "tag": "0041_jazzy_blazing_skull",
+      "breakpoints": true
     }
   ]
 }

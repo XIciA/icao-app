@@ -21,6 +21,13 @@ const defaultManifestPath = path.join(
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
 const approvedManifestSha256 = '4a7ac536065af93599d3562b27e20a617476a903225b34c6a5d5ae4c7f9dd46d';
+const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
+const approvedNativeIncrementHashes = new Map([
+  ['app.config.js', 'a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2'],
+  ['package.json', 'cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e'],
+  ['packages/contracts/src/index.ts', '8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4'],
+  ['pnpm-lock.yaml', '96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9'],
+]);
 
 const exactProtectedPaths = [
   '.vercelignore',
@@ -299,6 +306,160 @@ function combinedSha256(files) {
   return sha256(Buffer.from(combinedInput));
 }
 
+function fingerprintDifferences(expected, current) {
+  const expectedByPath = new Map(expected.map((file) => [file.path, file]));
+  const currentByPath = new Map(current.map((file) => [file.path, file]));
+  return {
+    selectionAdded: current.filter((file) => !expectedByPath.has(file.path)).map((file) => file.path),
+    selectionRemoved: expected.filter((file) => !currentByPath.has(file.path)).map((file) => file.path),
+    contentChanged: current.filter((file) => expectedByPath.has(file.path)
+      && expectedByPath.get(file.path).sha256 !== file.sha256).map((file) => file.path),
+    ownershipChanged: current.filter((file) => {
+      const expectedFile = expectedByPath.get(file.path);
+      return expectedFile && expectedFile.sources.join('\0') !== file.sources.join('\0');
+    }).map((file) => file.path),
+  };
+}
+
+function evaluateExpoConfig(source, environment) {
+  const module = { exports: {} };
+  const execute = new Function('module', 'exports', 'process', source);
+  execute(module, module.exports, { env: environment });
+  const configure = module.exports;
+  if (typeof configure !== 'function') throw new Error('app.config.js no longer exports a function');
+  const configured = configure({
+    config: {
+      name: '听你五个',
+      scheme: 'readyoufife',
+      ios: { bundleIdentifier: 'com.readyoufife.ios' },
+      plugins: ['expo-apple-authentication', ['expo-dev-client', { addGeneratedScheme: false }]],
+    },
+  });
+  configured.plugins = configured.plugins.filter((entry) => {
+    const name = Array.isArray(entry) ? entry[0] : entry;
+    return name !== './plugins/with-wechat-auth';
+  });
+  return canonicalJson(configured);
+}
+
+function webPackageSurface(packageJson) {
+  const nativeOnlyDependencies = new Set([
+    '@expo/vector-icons',
+    '@icao/wechat-auth',
+    'expo-modules-core',
+  ]);
+  return canonicalJson({
+    dependencies: Object.fromEntries(Object.entries(packageJson.dependencies ?? {})
+      .filter(([name]) => !nativeOnlyDependencies.has(name))),
+    devDependencies: packageJson.devDependencies,
+    engines: packageJson.engines,
+    jest: packageJson.jest,
+    main: packageJson.main,
+    name: packageJson.name,
+    packageManager: packageJson.packageManager,
+    private: packageJson.private,
+    version: packageJson.version,
+    webScripts: Object.fromEntries(Object.entries(packageJson.scripts ?? {})
+      .filter(([name]) => name === 'web' || name.startsWith('web:') || name.startsWith('check:web'))),
+  });
+}
+
+async function assertApprovedNativeIncrement(currentFiles) {
+  await execFile(
+    'git',
+    ['merge-base', '--is-ancestor', approvedNativeIncrementBase, 'HEAD'],
+    { cwd: repositoryRoot, encoding: 'utf8' },
+  );
+  const [{ stdout: changedOutput }, { stdout: untrackedOutput }] = await Promise.all([
+    execFile('git', ['diff', '--name-only', '--no-renames', approvedNativeIncrementBase, '--'], {
+      cwd: repositoryRoot,
+      encoding: 'utf8',
+    }),
+    execFile('git', ['ls-files', '--others', '--exclude-standard'], {
+      cwd: repositoryRoot,
+      encoding: 'utf8',
+    }),
+  ]);
+  const selected = new Set(currentFiles.map(({ path: repositoryPath }) => repositoryPath));
+  const changedPaths = [...new Set([
+    ...changedOutput.trim().split('\n'),
+    ...untrackedOutput.trim().split('\n'),
+  ].filter(Boolean))];
+  const changedProtectedPaths = changedPaths.filter((repositoryPath) => selected.has(repositoryPath));
+  const deletedSharedSource = await Promise.all(changedPaths
+    .filter((repositoryPath) => repositoryPath.startsWith('src/')
+      && !/\.(?:native|ios|android)\.[cm]?[jt]sx?$/u.test(repositoryPath))
+    .map(async (repositoryPath) => {
+      if (existsSync(fromRepositoryPath(repositoryPath))) return undefined;
+      try {
+        await execFile('git', ['cat-file', '-e', `${approvedNativeIncrementBase}:${repositoryPath}`], {
+          cwd: repositoryRoot,
+        });
+        return repositoryPath;
+      } catch {
+        return undefined;
+      }
+    }));
+  if (deletedSharedSource.some(Boolean)) {
+    throw new Error(`deleted shared Web candidate: ${deletedSharedSource.filter(Boolean).join(', ')}`);
+  }
+  if (
+    changedProtectedPaths.length !== approvedNativeIncrementHashes.size
+    || changedProtectedPaths.some((repositoryPath) => !approvedNativeIncrementHashes.has(repositoryPath))
+  ) {
+    throw new Error(`unapproved protected-input delta: ${changedProtectedPaths.join(', ')}`);
+  }
+  for (const [repositoryPath, expectedHash] of approvedNativeIncrementHashes) {
+    const file = currentFiles.find(({ path: candidate }) => candidate === repositoryPath);
+    if (!file || file.sha256 !== expectedHash) {
+      throw new Error(`approved Native-only input changed without review: ${repositoryPath}`);
+    }
+  }
+
+  const readBaseFile = async (repositoryPath) => {
+    const { stdout } = await execFile('git', ['show', `${approvedNativeIncrementBase}:${repositoryPath}`], {
+      cwd: repositoryRoot,
+      encoding: 'utf8',
+      maxBuffer: 16 * 1024 * 1024,
+    });
+    return stdout;
+  };
+  const [baseAppConfig, currentAppConfig, basePackage, currentPackage, baseContracts, currentContracts] = await Promise.all([
+    readBaseFile('app.config.js'),
+    readFile(fromRepositoryPath('app.config.js'), 'utf8'),
+    readBaseFile('package.json').then(JSON.parse),
+    readFile(fromRepositoryPath('package.json'), 'utf8').then(JSON.parse),
+    readBaseFile('packages/contracts/src/index.ts'),
+    readFile(fromRepositoryPath('packages/contracts/src/index.ts'), 'utf8'),
+  ]);
+  for (const variant of [undefined, 'development']) {
+    const baseConfigured = evaluateExpoConfig(baseAppConfig, { ICAO_APP_VARIANT: variant });
+    const currentConfigured = evaluateExpoConfig(currentAppConfig, {
+      ICAO_APP_VARIANT: variant,
+      ICAO_WECHAT_APP_ID: 'review-only-native-app-id',
+      ICAO_WECHAT_UNIVERSAL_LINK: 'https://native.example.invalid/app/',
+    });
+    if (JSON.stringify(baseConfigured) !== JSON.stringify(currentConfigured)) {
+      throw new Error('app.config.js changes more than the reviewed Native WeChat config plugin');
+    }
+  }
+  if (JSON.stringify(webPackageSurface(basePackage)) !== JSON.stringify(webPackageSurface(currentPackage))) {
+    throw new Error('package.json changes the Web dependency or script surface');
+  }
+  const typescript = require('typescript');
+  const transpile = (source) => typescript.transpileModule(source, {
+    compilerOptions: {
+      module: typescript.ModuleKind.ESNext,
+      removeComments: true,
+      target: typescript.ScriptTarget.ES2022,
+    },
+  }).outputText.trim();
+  if (transpile(baseContracts) !== transpile(currentContracts)) {
+    throw new Error('contracts index changes emitted Web runtime JavaScript');
+  }
+  return { contentChanged: changedProtectedPaths };
+}
+
 async function currentHead() {
   try {
     const { stdout } = await execFile('git', ['rev-parse', 'HEAD'], {
@@ -424,25 +585,12 @@ async function checkManifest(manifestPath, explain) {
 
   const current = await fingerprintSelection(await collectCurrentSelection());
   const expected = manifest.files;
-  const expectedByPath = new Map(expected.map((file) => [file.path, file]));
-  const currentByPath = new Map(current.files.map((file) => [file.path, file]));
-  const selectionAdded = current.files
-    .filter((file) => !expectedByPath.has(file.path))
-    .map((file) => file.path);
-  const selectionRemoved = expected
-    .filter((file) => !currentByPath.has(file.path))
-    .map((file) => file.path);
-  const contentChanged = current.files
-    .filter((file) => expectedByPath.has(file.path)
-      && expectedByPath.get(file.path).sha256 !== file.sha256)
-    .map((file) => file.path);
-  const ownershipChanged = current.files
-    .filter((file) => {
-      const expectedFile = expectedByPath.get(file.path);
-      return expectedFile
-        && expectedFile.sources.join('\0') !== file.sources.join('\0');
-    })
-    .map((file) => file.path);
+  const {
+    contentChanged,
+    ownershipChanged,
+    selectionAdded,
+    selectionRemoved,
+  } = fingerprintDifferences(expected, current.files);
   const combinedChanged = combinedSha256(expected) !== current.combinedSha256;
 
   const failures = [
@@ -454,6 +602,26 @@ async function checkManifest(manifestPath, explain) {
   const hasFailure = combinedChanged || failures.some(([, paths]) => paths.length > 0);
 
   if (hasFailure) {
+    if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)) {
+      try {
+        const increment = await assertApprovedNativeIncrement(current.files);
+        console.log(
+          `Web freeze check passed by strict Native-only increment proof from ${approvedNativeIncrementBase}: ${current.files.length} protected files, ${increment.contentChanged.length} exact reviewed deltas.`,
+        );
+        if (explain) {
+          for (const repositoryPath of increment.contentChanged) {
+            console.log(`- reviewed Native-only protected input: ${repositoryPath}`);
+          }
+          console.log('- app.config.js: identical after removing the Native WeChat config plugin');
+          console.log('- package.json: identical Web dependency and Web script surface');
+          console.log('- contracts index: identical emitted JavaScript');
+          console.log('- pnpm lockfile: exact reviewed digest');
+        }
+        return;
+      } catch (error) {
+        console.error(`Strict Native-only increment proof failed: ${error instanceof Error ? error.message : String(error)}`);
+      }
+    }
     console.error('Web freeze check failed. Existing Web/Vercel inputs no longer match the approved baseline.');
     for (const [label, paths] of failures) {
       for (const repositoryPath of paths) console.error(`- ${label}: ${repositoryPath}`);

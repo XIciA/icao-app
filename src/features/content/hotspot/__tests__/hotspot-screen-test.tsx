@@ -2,7 +2,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
-import { questionBankRepository } from '@/features/question-bank/data/repository';
+import * as questionBankDataRepository from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 
 import { resolveHotspotTopics } from '../build-hotspot-session';
@@ -42,9 +42,10 @@ describe('OPI hotspot screens', () => {
   beforeEach(() => {
     mockBack.mockReset();
     mockPush.mockReset();
-    jest.spyOn(questionBankRepository, 'getTopic').mockImplementation(async (_bankId, categoryId, topicId) => (
-      completeOpiDataset?.categories.find((category) => category.id === categoryId)
-        ?.topics.find((topic) => topic.id === topicId)
+    jest.spyOn(questionBankDataRepository, 'loadQuestionBank').mockImplementation(async (bankId) => (
+      bankId === 'opi' && completeOpiDataset
+        ? { dataset: completeOpiDataset, source: 'embedded' }
+        : undefined
     ));
   });
 

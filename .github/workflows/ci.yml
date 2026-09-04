@@ -26,6 +26,10 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v7
+        with:
+          # The Web-freeze gate verifies an immutable reviewed ancestor and
+          # must not silently fall back when the default shallow clone omits it.
+          fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:
@@ -37,6 +41,13 @@ jobs:
           cache: pnpm
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install PostgreSQL constraint-test runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql
+          echo "$(pg_config --bindir)" >> "$GITHUB_PATH"
+      - name: Run database authority constraint tests
+        run: pnpm --filter @icao/api test:commerce-db
       - name: Run repository checks
         run: pnpm check:ci
       - name: Verify EdgeOne production export

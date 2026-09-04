@@ -36,6 +36,17 @@ function requireSuccess(result, label) {
   );
 }
 
+test('the stale absolute baseline can pass only through the exact reviewed Native-only increment', () => {
+  const result = spawnSync(process.execPath, [cliPath, '--explain'], {
+    cwd: repositoryRoot,
+    encoding: 'utf8',
+    env: process.env,
+  });
+  requireSuccess(result, 'strict Native-only incremental proof failed');
+  assert.match(result.stdout, /4 exact reviewed deltas/u);
+  assert.match(result.stdout, /contracts index: identical emitted JavaScript/u);
+});
+
 test('the real Web resolver and CLI protect every selected input without post-filtering', () => {
   const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'icao-web-freeze-'));
   const fixtureRoot = path.join(temporaryRoot, 'fixture');

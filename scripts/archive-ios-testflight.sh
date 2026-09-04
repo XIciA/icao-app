@@ -50,6 +50,7 @@ verify_ios_cng_brand_assets "$PROJECT_ROOT"
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+check_wechat_candidate_configuration
 configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
@@ -78,6 +79,7 @@ verify_ios_release_app \
   "$MARKETING_VERSION" \
   "$IOS_BUILD_NUMBER" \
   "$IOS_TEAM_ID"
+check_wechat_ios_artifact "$APP_PATH"
 
 ARCHIVE_INFO="$ARCHIVE_PATH/Info.plist"
 if [ ! -f "$ARCHIVE_INFO" ]; then

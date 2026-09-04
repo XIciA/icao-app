@@ -1,7 +1,8 @@
 import { createHmac, randomUUID } from 'node:crypto';
 
 import { ForbiddenException, Inject, Injectable, Optional } from '@nestjs/common';
-import type { RecentAuthGrantResponse, RecentAuthMethod, RecentAuthPurpose } from '@icao/contracts';
+import type { RecentAuthPurpose } from '@icao/contracts';
+import type { NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeRecentAuthMethod as RecentAuthMethod } from '@icao/contracts/native-auth';
 import { and, eq, gt, isNull, lte, or } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -31,7 +32,7 @@ export class RecentAuthService {
 
   async issuePasswordGrant(
     source: VerifiedAuthSession,
-    purpose: 'account_delete',
+    purpose: 'account_delete' | 'session_revoke_all',
     password: string,
   ) {
     await this.passwordVerifier.verify(source, password);
@@ -63,7 +64,7 @@ export class RecentAuthService {
     ));
   }
 
-  private async issueVerifiedGrantInTransaction(
+  async issueVerifiedGrantInTransaction(
     transaction: RecentAuthTransaction,
     source: VerifiedAuthSession,
     method: RecentAuthMethod,
@@ -115,6 +116,35 @@ export class RecentAuthService {
     return this.database.db.transaction((transaction) => (
       this.consumeInTransaction(transaction, source, grantId, purpose, now)
     ));
+  }
+
+  async assertValid(
+    source: VerifiedAuthSession,
+    grantId: string,
+    purpose: RecentAuthPurpose,
+    method: RecentAuthMethod,
+    now = new Date(),
+  ) {
+    const targetDigest = this.targetDigest(source.user.id, purpose);
+    const [grant] = await this.database.db.select({ id: recentAuthGrants.id })
+      .from(recentAuthGrants)
+      .where(and(
+        eq(recentAuthGrants.id, grantId),
+        eq(recentAuthGrants.accountId, source.user.id),
+        eq(recentAuthGrants.authUserId, source.authUserId),
+        eq(recentAuthGrants.sessionId, source.sessionId),
+        eq(recentAuthGrants.method, method),
+        eq(recentAuthGrants.purpose, purpose),
+        eq(recentAuthGrants.targetDigest, targetDigest),
+        gt(recentAuthGrants.expiresAt, now),
+        isNull(recentAuthGrants.consumedAt),
+        or(
+          isNull(recentAuthGrants.reservationToken),
+          lte(recentAuthGrants.reservationExpiresAt, now),
+        ),
+      ))
+      .limit(1);
+    if (!grant) throw new ForbiddenException('recent_auth_required');
   }
 
   async reserve(

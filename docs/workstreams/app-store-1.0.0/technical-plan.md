@@ -22,7 +22,7 @@
 
 - Build `3493761` / commit `fca7436d497430db88cf1a29410d61878fd85fc5` 冻结为历史录音候选，不用于最终提审。将首页课程入口移除、AI 生成内容
   持续标识、模型备案口径和注销恢复稳健性修正合入后，从干净 `origin/main` 归档 Build `3493764`，再完成
-  身份、签名、权限、PrivacyInfo、SDK、生产 API、无微信和隐藏路由的反向核对。
+  身份、签名、权限、PrivacyInfo、SDK、生产 API、微信登录正向能力/无微信支付和隐藏路由的反向核对。
 - App 和五档 IAP 的可用地区都设为中国大陆，`availableInNewTerritories=false`；中国大陆继续作为价格
   基准，App 内只显示 StoreKit 本地化价格。欧盟不在范围，不执行 DSA 交易商流程。
 - 只建立一个正常 Production 审核账号并设置密码；使用100点验收非付费 AI，以真实 Sandbox/TestFlight

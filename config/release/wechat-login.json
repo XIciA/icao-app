@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "status": "WAITING_HUMAN",
+  "appId": null,
+  "universalLink": null,
+  "ios": {
+    "teamId": "3FX69S3S8P",
+    "bundleId": "com.readyoufife.ios"
+  },
+  "android": {
+    "packageName": "com.readyoufife.app"
+  }
+}

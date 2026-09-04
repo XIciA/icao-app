@@ -1,6 +1,7 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
-import type { AccountSummary, DeleteAccountResponse, StartPhoneOtpResponse } from '@icao/contracts';
+import type { DeleteAccountResponse } from '@icao/contracts';
+import type { NativeAccountSummary, NativeStartPhoneOtpResponse } from '@icao/contracts/native-auth';
 
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
@@ -12,9 +13,11 @@ import { colors, radii, spacing } from '@/theme';
 import { getAuthService, type AppSession, type PhoneBindingChallenge } from './auth-service';
 import { clearDeletedAccountLocalData } from './account-deletion-local-cleanup';
 import { clearPendingAccountDeletion, pendingAccountDeletionFor, readPendingAccountDeletion } from './account-deletion-state';
+import type { PersistedPhoneOtpChallenge } from './phone-otp-challenge-store';
 import { UI_ACCEPTANCE_MODE_AVAILABLE } from './ui-acceptance-mode';
 
-type AccountDeletionAuthentication = {
+export type AccountDeletionAuthentication = {
+  method: 'apple' | 'password' | 'phone_otp' | 'wechat';
   password?: string;
   phoneOtp?: string;
 };
@@ -28,7 +31,7 @@ type AuthContextValue = {
   canAccessApp: boolean;
   restoring: boolean;
   accountDeletionPending: boolean;
-  account?: AccountSummary;
+  account?: NativeAccountSummary;
   session?: AppSession;
   passwordChangePurpose?: 'recovery' | 'setup';
   uiAcceptanceAvailable: boolean;
@@ -38,21 +41,22 @@ type AuthContextValue = {
   exitUiAcceptanceMode(): void;
   rememberPendingPath(path: string): void;
   signInWithApple(): Promise<void>;
-  requestPhoneOtp(phone: string): Promise<StartPhoneOtpResponse>;
-  requestPasswordRecoveryOtp(phone: string): Promise<StartPhoneOtpResponse>;
-  verifyPhoneOtp(phone: string, token: string, purpose?: 'login' | 'recovery'): Promise<AppSession>;
+  signInWithWechat(): Promise<void>;
+  requestPhoneOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
+  requestPasswordRecoveryOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
+  verifyPhoneOtp(challenge: PersistedPhoneOtpChallenge, token: string): Promise<AppSession>;
   signInWithPhonePassword(phone: string, password: string): Promise<void>;
   updatePassword(password: string, currentPassword?: string): Promise<void>;
   requestPhoneBindingOtp(phone: string): Promise<PhoneBindingChallenge>;
-  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<void>;
+  resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<PhoneBindingChallenge>;
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<void>;
   signIn(inviteCode: string): Promise<void>;
   signOut(): Promise<void>;
-  signOutAll(): Promise<void>;
-  requestAccountDeletionPhoneOtp(): Promise<void>;
+  signOutAll(authentication: AccountDeletionAuthentication): Promise<void>;
+  requestAccountDeletionPhoneOtp(purpose?: 'account_delete' | 'session_revoke_all'): Promise<void>;
   retryAccountRestore(): Promise<void>;
   resumeAccountDeletion(): Promise<void>;
-  deleteAccount(authentication?: AccountDeletionAuthentication): Promise<void>;
+  deleteAccount(authentication: AccountDeletionAuthentication): Promise<void>;
 };
 
 const unavailable = async () => { throw new Error('auth_not_configured'); };
@@ -71,6 +75,7 @@ const AuthContext = createContext<AuthContextValue>({
   exitUiAcceptanceMode: () => undefined,
   rememberPendingPath: () => undefined,
   signInWithApple: unavailable,
+  signInWithWechat: unavailable,
   requestPhoneOtp: unavailable,
   requestPasswordRecoveryOtp: unavailable,
   verifyPhoneOtp: unavailable,
@@ -94,7 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [accountDeletionPending, setAccountDeletionPending] = useState(false);
   const [accountRestoreUnavailable, setAccountRestoreUnavailable] = useState(false);
   const [session, setSession] = useState<AppSession>();
-  const [account, setAccount] = useState<AccountSummary>();
+  const [account, setAccount] = useState<NativeAccountSummary>();
   const [passwordAuthorization, setPasswordAuthorization] = useState<{
     accessToken: string;
     expiresAt: number;
@@ -116,10 +121,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const accountDeletionFinalizationRef = useRef<Promise<void> | undefined>(undefined);
   const accountDeletionSubmissionRef = useRef(false);
   const accountInitializationRef = useRef<{
-    promise: Promise<AccountSummary>;
+    promise: Promise<NativeAccountSummary>;
     userId: string;
   } | undefined>(undefined);
   const sessionMutationRef = useRef(0);
+  const interactiveAuthRef = useRef<number | undefined>(undefined);
 
   const setSessionSnapshot = useCallback((next: AppSession | undefined, resetAccount = false) => {
     const userChanged = sessionRef.current?.user.id !== next?.user.id;
@@ -131,6 +137,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setAccountReady(false);
     }
     setSession(next);
+  }, []);
+
+  const beginInteractiveAuth = useCallback(() => {
+    const epoch = sessionMutationRef.current + 1;
+    sessionMutationRef.current = epoch;
+    interactiveAuthRef.current = epoch;
+    setAccountReady(false);
+    setUiAcceptanceMode(false);
+    return epoch;
+  }, []);
+
+  const finishInteractiveAuth = useCallback((epoch: number) => {
+    if (interactiveAuthRef.current === epoch) interactiveAuthRef.current = undefined;
   }, []);
 
   const setAccountDeletionState = useCallback((pending: boolean) => {
@@ -225,7 +244,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (accountInitializationRef.current?.userId === next.user.id) {
       return accountInitializationRef.current.promise;
     }
-    const promise = apiRequest<AccountSummary>('/v1/account');
+    const promise = apiRequest<NativeAccountSummary>('/v1/account');
     accountInitializationRef.current = { promise, userId: next.user.id };
     void promise.catch(() => {
       if (accountInitializationRef.current?.promise === promise) accountInitializationRef.current = undefined;
@@ -233,10 +252,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return promise;
   }, []);
 
-  const acceptAuthenticatedSession = useCallback(async (next: AppSession) => {
+  const acceptAuthenticatedSession = useCallback(async (next: AppSession, expectedEpoch?: number) => {
+    if (expectedEpoch !== undefined && sessionMutationRef.current !== expectedEpoch) {
+      throw new Error('auth_request_not_completed');
+    }
     setSessionSnapshot(next);
     try {
       const resolved = await initializeInternalAccount(next);
+      if (expectedEpoch !== undefined && sessionMutationRef.current !== expectedEpoch) {
+        throw new Error('auth_request_not_completed');
+      }
       if (sessionRef.current?.user.id !== next.user.id) throw new Error('auth_request_not_completed');
       setAccount(resolved);
       setAccountRestoreUnavailable(false);
@@ -280,39 +305,68 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setApiAccessTokenProvider(async () => sessionRef.current?.accessToken);
     setApiAuthRecovery({
       refresh: async () => {
+        const expectedMutation = sessionMutationRef.current;
         const expectedToken = sessionRef.current?.accessToken;
         const next = await service.refreshSession();
         const current = sessionRef.current;
+        if (sessionMutationRef.current !== expectedMutation || interactiveAuthRef.current !== undefined) {
+          return current?.accessToken;
+        }
         if (current?.accessToken !== expectedToken) return current?.accessToken;
         if (next) setSessionSnapshot(next);
         return next?.accessToken ?? current?.accessToken;
       },
       onInvalidated: async (rejectedToken) => {
         if (sessionRef.current?.accessToken !== rejectedToken) return;
-        const persisted = await service.getSession().catch(() => undefined);
+        let persisted: AppSession | undefined;
+        try {
+          persisted = await service.getSession();
+        } catch {
+          setAccountRestoreUnavailable(true);
+          return;
+        }
         if (persisted?.accessToken && persisted.accessToken !== rejectedToken) {
           setSessionSnapshot(persisted);
           return;
         }
         if (sessionRef.current?.accessToken !== rejectedToken) return;
-        await service.signOut('local').catch(() => undefined);
+        try {
+          await service.signOut('local');
+        } catch {
+          setAccountRestoreUnavailable(true);
+          return;
+        }
         await clearLocalAiConsent().catch(() => undefined);
         setSessionSnapshot(undefined, true);
         setPasswordAuthorization(undefined);
       },
     });
     const unsubscribe = service.onSessionChange((next, event) => {
-      if (active && !accountDeletionPendingRef.current) {
-        // Initial restoration is owned by restorePersistedAccount so a delayed
-        // INITIAL_SESSION event cannot overwrite a newer interactive login.
-        if (event === 'INITIAL_SESSION') return;
-        sessionMutationRef.current += 1;
-        setSessionSnapshot(next);
-        if (next) setUiAcceptanceMode(false);
-        if (next && !accountInitializationRef.current) {
-          void acceptAuthenticatedSession(next).catch(() => undefined);
+      if (!active || accountDeletionPendingRef.current || event === 'INITIAL_SESSION') return;
+      const observedMutation = sessionMutationRef.current;
+      if (interactiveAuthRef.current !== undefined) return;
+      // Supabase can deliver a queued old-account event after a newer login.
+      // The persisted session is authoritative; an event that no longer
+      // matches it is stale and must never clear or replace the current user.
+      void service.getSession().then(async (persisted) => {
+        if (
+          !active
+          || accountDeletionPendingRef.current
+          || sessionMutationRef.current !== observedMutation
+          || interactiveAuthRef.current !== undefined
+        ) return;
+        if (persisted?.accessToken !== next?.accessToken) return;
+        if (!persisted) {
+          setSessionSnapshot(undefined, true);
+          setPasswordAuthorization(undefined);
+          return;
         }
-      }
+        if (sessionRef.current?.accessToken === persisted.accessToken) return;
+        setUiAcceptanceMode(false);
+        await acceptAuthenticatedSession(persisted).catch(() => undefined);
+      }).catch(() => {
+        if (active) setAccountRestoreUnavailable(true);
+      });
     });
     void restorePersistedAccount().finally(() => { if (active) setRestoring(false); });
     if (AppState.currentState === 'active') service.startAutoRefresh();
@@ -416,10 +470,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const revokeAllAndClear = useCallback(async () => {
-    await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', { method: 'POST' });
+  const revokeAllAndClear = useCallback(async (grantId: string) => {
+    await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ grantId }),
+    });
     await service?.signOut('local').catch(() => undefined);
-    await clearLocalAiConsent().catch(() => undefined);
+    await Promise.resolve(clearLocalAiConsent()).catch(() => undefined);
     setPasswordAuthorization(undefined);
     setSessionSnapshot(undefined, true);
   }, [service, setSessionSnapshot]);
@@ -455,25 +513,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
     async signInWithApple() {
       if (!service) return unavailable();
-      sessionMutationRef.current += 1;
-      setAccountReady(false);
-      setUiAcceptanceMode(false);
+      const epoch = beginInteractiveAuth();
       setPasswordAuthorization(undefined);
       setAccount(undefined);
-      await acceptAuthenticatedSession(await service.signInWithApple());
+      try {
+        await acceptAuthenticatedSession(await service.signInWithApple(), epoch);
+      } finally {
+        finishInteractiveAuth(epoch);
+      }
+    },
+    async signInWithWechat() {
+      if (!service) return unavailable();
+      const epoch = beginInteractiveAuth();
+      setPasswordAuthorization(undefined);
+      setAccount(undefined);
+      try {
+        await acceptAuthenticatedSession(await service.signInWithWechat(), epoch);
+      } finally {
+        finishInteractiveAuth(epoch);
+      }
     },
     async requestPhoneOtp(phone) { if (!service) return unavailable(); return service.requestPhoneOtp(phone); },
     async requestPasswordRecoveryOtp(phone) { if (!service) return unavailable(); return service.requestPasswordRecoveryOtp(phone); },
-    async verifyPhoneOtp(phone, token, purpose = 'login') {
+    async verifyPhoneOtp(challenge, token) {
       if (!service) return unavailable();
-      sessionMutationRef.current += 1;
-      setAccountReady(false);
-      setUiAcceptanceMode(false);
-      const next = await service.verifyPhoneOtp(phone, token);
-      const passwordPurpose = purpose === 'recovery' ? 'recovery' : undefined;
-      if (passwordPurpose) {
-        try {
-          const authorization = await service.authorizePasswordRecovery();
+      const epoch = beginInteractiveAuth();
+      try {
+        const next = await service.verifyPhoneOtp(challenge, token);
+        const passwordPurpose = challenge.purpose === 'recovery' ? 'recovery' : undefined;
+        if (passwordPurpose) {
+          // The newly verified recovery session has not been adopted by the
+          // provider yet. Authorize against that exact token explicitly rather
+          // than the global token provider, which may still be empty or stale.
+          const authorization = await service.authorizePasswordRecovery(
+            challenge.challengeId,
+            next.accessToken,
+          );
           setPasswordAuthorization({
             accessToken: next.accessToken,
             expiresAt: authorization.expiresAt,
@@ -482,23 +557,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             userId: next.user.id,
           });
           setPendingPath('/account/password?mode=recovery');
-        } catch (error) {
+        } else setPasswordAuthorization(undefined);
+        await acceptAuthenticatedSession(next, epoch);
+        return next;
+      } catch (error) {
+        if (challenge.purpose === 'recovery') {
           await service.signOut('local').catch(() => undefined);
           setPasswordAuthorization(undefined);
           setSessionSnapshot(undefined, true);
-          throw error;
         }
-      } else setPasswordAuthorization(undefined);
-      await acceptAuthenticatedSession(next);
-      return next;
+        throw error;
+      } finally {
+        finishInteractiveAuth(epoch);
+      }
     },
     async signInWithPhonePassword(phone, password) {
       if (!service) return unavailable();
-      sessionMutationRef.current += 1;
-      setAccountReady(false);
-      setUiAcceptanceMode(false);
+      const epoch = beginInteractiveAuth();
       setPasswordAuthorization(undefined);
-      await acceptAuthenticatedSession(await service.signInWithPhonePassword(phone, password));
+      try {
+        await acceptAuthenticatedSession(await service.signInWithPhonePassword(phone, password), epoch);
+      } finally {
+        finishInteractiveAuth(epoch);
+      }
     },
     async updatePassword(password, currentPassword) {
       if (!service) return unavailable();
@@ -527,7 +608,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     async resendPhoneBindingOtp(challenge) {
       if (!service) return unavailable();
-      await service.resendPhoneBindingOtp(challenge);
+      return service.resendPhoneBindingOtp(challenge);
     },
     async verifyPhoneBindingOtp(challenge, token) {
       if (!service) return unavailable();
@@ -538,11 +619,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLearningSyncActiveUser(verified.account.accountId);
     },
     async signIn() { throw new Error('invite_login_removed'); },
-    async signOut() { if (!service) return unavailable(); await service.signOut('local'); await clearLocalAiConsent().catch(() => undefined); setPasswordAuthorization(undefined); setSessionSnapshot(undefined, true); },
-    async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
-    async requestAccountDeletionPhoneOtp() {
+    async signOut() { if (!service) return unavailable(); sessionMutationRef.current += 1; interactiveAuthRef.current = undefined; await service.signOut('local'); await clearLocalAiConsent().catch(() => undefined); setPasswordAuthorization(undefined); setSessionSnapshot(undefined, true); },
+    async signOutAll(authentication) {
+      if (!service || !account) return unavailable();
+      let grantId: string;
+      switch (authentication.method) {
+        case 'apple':
+          grantId = (await service.authorizeAccountDeletionWithApple('session_revoke_all')).grantId;
+          break;
+        case 'wechat':
+          grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId, 'session_revoke_all')).grantId;
+          break;
+        case 'password':
+          grantId = (await service.authorizeAccountDeletionWithPassword(
+            authentication.password ?? '',
+            'session_revoke_all',
+          )).grantId;
+          break;
+        case 'phone_otp':
+          grantId = (await service.authorizeAccountDeletionWithPhoneOtp(
+            authentication.phoneOtp ?? '',
+            'session_revoke_all',
+          )).grantId;
+          break;
+      }
+      await revokeAllAndClear(grantId);
+    },
+    async requestAccountDeletionPhoneOtp(purpose = 'account_delete') {
       if (!service) return unavailable();
-      await service.requestAccountDeletionPhoneOtp();
+      await service.requestAccountDeletionPhoneOtp(purpose);
     },
     async retryAccountRestore() {
       setRestoring(true);
@@ -555,17 +660,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async resumeAccountDeletion() {
       await inspectPendingAccountDeletion();
     },
-    async deleteAccount(authentication = {}) {
+    async deleteAccount(authentication) {
       if (!service || !account) return unavailable();
       let grantId: string;
-      if (session?.user.providers.includes('apple')) {
-        grantId = (await service.authorizeAccountDeletionWithApple()).grantId;
-      } else if (session?.user.hasPassword) {
-        grantId = (await service.authorizeAccountDeletionWithPassword(authentication.password ?? '')).grantId;
-      } else {
-        const authorization = await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '');
-        setSessionSnapshot(authorization.session);
-        grantId = authorization.grant.grantId;
+      switch (authentication.method) {
+        case 'apple':
+          grantId = (await service.authorizeAccountDeletionWithApple()).grantId;
+          break;
+        case 'wechat':
+          grantId = (await service.authorizeAccountDeletionWithWechat(account.accountId)).grantId;
+          break;
+        case 'password':
+          grantId = (await service.authorizeAccountDeletionWithPassword(authentication.password ?? '')).grantId;
+          break;
+        case 'phone_otp':
+          grantId = (await service.authorizeAccountDeletionWithPhoneOtp(authentication.phoneOtp ?? '')).grantId;
+          break;
       }
       const pending = await pendingAccountDeletionFor(account.accountId);
       accountDeletionSubmissionRef.current = true;
@@ -595,7 +705,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (await inspectPendingAccountDeletion(deterministicRejection) === 'none') throw error;
       }
     },
-  }), [acceptAuthenticatedSession, account, accountDeletionPending, accountReady, accountRestoreUnavailable, finalizeAccountDeletion, inspectPendingAccountDeletion, passwordAuthorization, pendingPath, restorePersistedAccount, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
+  }), [acceptAuthenticatedSession, account, accountDeletionPending, accountReady, accountRestoreUnavailable, beginInteractiveAuth, finalizeAccountDeletion, finishInteractiveAuth, inspectPendingAccountDeletion, passwordAuthorization, pendingPath, restorePersistedAccount, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
 
   return <AuthContext.Provider value={value}>{children}<AppModal animationType="fade" onRequestClose={() => undefined} transparent visible={bindingPrompt}><View style={styles.overlay}><View style={styles.dialog}><AppText variant="sectionTitle">选择本机学习数据归属</AppText><AppText>此设备已有旧版或其他账号的本机数据。继续前必须选择导入当前账号并同步，或保存本地归档并从当前账号的云端数据开始。</AppText>{bindingError ? <AppText color={colors.destructive} variant="caption">{bindingError}</AppText> : null}<Button disabled={binding} onPress={() => void confirmBinding()}>{binding ? '正在处理…' : '导入当前账号并同步'}</Button><Button disabled={binding} onPress={() => void archiveBinding()} variant="outline">本地归档并从云端开始</Button></View></View></AppModal></AuthContext.Provider>;
 }

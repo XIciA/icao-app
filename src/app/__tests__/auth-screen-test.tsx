@@ -1,17 +1,20 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
+import { createAuthActionGate, LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
 
 const mockRequestPhoneOtp = jest.fn();
 const mockRequestPasswordRecoveryOtp = jest.fn();
 const mockVerifyPhoneOtp = jest.fn();
 const mockSignInWithPhonePassword = jest.fn();
 const mockSignInWithApple = jest.fn();
+const mockSignInWithWechat = jest.fn();
 const mockConsumePendingPath = jest.fn();
 const mockReadPhoneOtpChallenge = jest.fn();
 const mockWritePhoneOtpChallenge = jest.fn();
 const mockClearPhoneOtpChallenge = jest.fn();
+const mockBeginPhoneOtpChallengeMutation = jest.fn();
+const mockInvalidatePhoneOtpChallengeMutation = jest.fn();
 const mockBack = jest.fn();
 const mockCanGoBack = jest.fn();
 const mockPush = jest.fn();
@@ -36,20 +39,26 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     requestPasswordRecoveryOtp: mockRequestPasswordRecoveryOtp,
     signInWithPhonePassword: mockSignInWithPhonePassword,
     signInWithApple: mockSignInWithApple,
+    signInWithWechat: mockSignInWithWechat,
     verifyPhoneOtp: mockVerifyPhoneOtp,
   }),
 }));
 
 jest.mock('@/features/auth/phone-otp-challenge-store', () => ({
+  beginPhoneOtpChallengeMutation: (...args: unknown[]) => mockBeginPhoneOtpChallengeMutation(...args),
   clearPhoneOtpChallenge: (...args: unknown[]) => mockClearPhoneOtpChallenge(...args),
-  phoneOtpChallenge: (phone: string, purpose: 'login' | 'recovery', response: { expiresAt: number; issuedAt: number; resendAllowedAt: number }) => ({
+  invalidatePhoneOtpChallengeMutation: (...args: unknown[]) => mockInvalidatePhoneOtpChallengeMutation(...args),
+  phoneOtpChallenge: (phone: string, purpose: 'login' | 'recovery', response: { challengeId: string; expiresAt: number; issuedAt: number; resendAllowedAt: number; serverTime: number }) => ({
+    challengeId: response.challengeId,
     expiresAt: response.expiresAt,
     issuedAt: response.issuedAt,
     phone,
     purpose,
     resendAllowedAt: response.resendAllowedAt,
-    version: 1,
+    serverTimeOffsetMs: response.serverTime - Date.now(),
+    version: 2,
   }),
+  phoneOtpServerNow: (challenge: { serverTimeOffsetMs: number }, now = Date.now()) => now + challenge.serverTimeOffsetMs,
   readPhoneOtpChallenge: (...args: unknown[]) => mockReadPhoneOtpChallenge(...args),
   writePhoneOtpChallenge: (...args: unknown[]) => mockWritePhoneOtpChallenge(...args),
 }));
@@ -68,7 +77,14 @@ describe('<LoginScreen />', () => {
   beforeEach(() => {
     mockParams = { slug: 'login' };
     const now = Date.now();
-    const response = { accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 };
+    const response = {
+      accepted: true,
+      challengeId: '10000000-0000-4000-8000-000000000010',
+      expiresAt: now + 300_000,
+      issuedAt: now,
+      resendAllowedAt: now + 60_000,
+      serverTime: now,
+    };
     mockRequestPhoneOtp.mockReset().mockResolvedValue(response);
     mockRequestPasswordRecoveryOtp.mockReset().mockResolvedValue(response);
     mockVerifyPhoneOtp.mockReset().mockResolvedValue({
@@ -76,10 +92,13 @@ describe('<LoginScreen />', () => {
     });
     mockSignInWithPhonePassword.mockReset().mockResolvedValue(undefined);
     mockSignInWithApple.mockReset().mockResolvedValue(undefined);
+    mockSignInWithWechat.mockReset().mockResolvedValue(undefined);
     mockConsumePendingPath.mockReset().mockReturnValue(undefined);
     mockReadPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
-    mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(true);
     mockClearPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
+    mockBeginPhoneOtpChallengeMutation.mockReset().mockReturnValue(1);
+    mockInvalidatePhoneOtpChallengeMutation.mockReset().mockReturnValue(2);
     mockBack.mockClear();
     mockCanGoBack.mockReset();
     mockPush.mockClear();
@@ -111,8 +130,8 @@ describe('<LoginScreen />', () => {
 
     expect(screen.getByText('验证码登录')).toBeTruthy();
     expect(screen.getByText('密码登录')).toBeTruthy();
-    expect(screen.queryByText('微信登录')).toBeNull();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
+    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
     expect(screen.getByText('未注册手机号验证成功后会自动创建账号。')).toBeTruthy();
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
@@ -152,20 +171,18 @@ describe('<LoginScreen />', () => {
     await fireEvent.press(screen.getByText('获取验证码'));
 
     expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
-    expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
+    expect(screen.getByText('60s')).toBeTruthy();
 
     const codeInput = screen.getByLabelText('短信验证码');
-    expect(codeInput.props.autoFocus).toBe(true);
     expect(codeInput.props.keyboardType).toBe('number-pad');
     expect(codeInput.props.inputMode).toBe('numeric');
-    expect(codeInput.props.showSoftInputOnFocus).toBe(true);
     expect(codeInput.props.textContentType).toBe('oneTimeCode');
     expect(codeInput.props.autoComplete).toBeUndefined();
 
-    await fireEvent.changeText(codeInput, '123456');
-    await fireEvent.press(screen.getByText('验证并进入'));
+    await act(async () => { fireEvent.changeText(codeInput, '123456'); });
+    await act(async () => { fireEvent.press(screen.getByRole('button', { name: '登录 / 注册' })); });
 
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith(expect.objectContaining({ challengeId: '10000000-0000-4000-8000-000000000010', phone: '+8613800138000', purpose: 'login' }), '123456');
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
   });
 
@@ -180,12 +197,11 @@ describe('<LoginScreen />', () => {
     await fireEvent.press(screen.getByText('获取验证码'));
 
     expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
-    expect(screen.getByText('输入验证码')).toBeTruthy();
-    expect(screen.getByText('60 秒后可重新获取')).toBeTruthy();
+    expect(screen.getByText('60s')).toBeTruthy();
 
-    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
-    await fireEvent.press(screen.getByText('验证并进入'));
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '123456', 'login');
+    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
+    await act(async () => { fireEvent.press(screen.getByRole('button', { name: '登录 / 注册' })); });
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith(expect.objectContaining({ phone: '+8613800138000', purpose: 'login' }), '123456');
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=setup');
   });
@@ -196,6 +212,13 @@ describe('<LoginScreen />', () => {
     await fireEvent.press(screen.getByTestId('apple-sign-in'));
     expect(mockSignInWithApple).toHaveBeenCalledTimes(1);
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
+  });
+
+  it('uses WeChat as an auto-registration login after consent', async () => {
+    const screen = await renderLoginScreen();
+    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
+    await act(async () => { fireEvent.press(screen.getByTestId('wechat-sign-in')); });
+    expect(mockSignInWithWechat).toHaveBeenCalledTimes(1);
   });
 
   it('signs in with the phone and password using the same account entry', async () => {
@@ -228,31 +251,68 @@ describe('<LoginScreen />', () => {
     await fireEvent.changeText(screen.getByLabelText('短信验证码'), '654321');
     await fireEvent.press(screen.getByText('继续重置密码'));
 
-    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith('+8613800138000', '654321', 'recovery');
+    expect(mockVerifyPhoneOtp).toHaveBeenCalledWith(expect.objectContaining({ phone: '+8613800138000', purpose: 'recovery' }), '654321');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=recovery');
+  });
+
+  it('does not persist a late recovery challenge after returning to password login', async () => {
+    let resolveRecovery!: (value: {
+      accepted: true;
+      challengeId: string;
+      expiresAt: number;
+      issuedAt: number;
+      resendAllowedAt: number;
+      serverTime: number;
+    }) => void;
+    mockRequestPasswordRecoveryOtp.mockImplementationOnce(() => new Promise((resolve) => {
+      resolveRecovery = resolve;
+    }));
+    const screen = await renderLoginScreen();
+
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('忘记密码'));
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.press(screen.getByText('获取重置验证码'));
+    await fireEvent.press(screen.getByText('返回密码登录'));
+    const now = Date.now();
+    await act(async () => {
+      resolveRecovery({
+        accepted: true,
+        challengeId: '40000000-0000-4000-8000-000000000040',
+        expiresAt: now + 300_000,
+        issuedAt: now,
+        resendAllowedAt: now + 60_000,
+        serverTime: now,
+      });
+      await Promise.resolve();
+    });
+
+    expect(screen.getByPlaceholderText('请输入登录密码')).toBeTruthy();
+    expect(mockWritePhoneOtpChallenge).not.toHaveBeenCalled();
   });
 
   it('restores an unexpired OTP challenge after the screen is reopened', async () => {
     const now = Date.now();
     mockReadPhoneOtpChallenge.mockResolvedValueOnce({
+      challengeId: '10000000-0000-4000-8000-000000000011',
       expiresAt: now + 240_000,
       issuedAt: now - 60_000,
       phone: '+8613800138000',
       purpose: 'login',
       resendAllowedAt: now,
-      version: 1,
+      serverTimeOffsetMs: 0,
+      version: 2,
     });
 
     const screen = await renderLoginScreen();
 
-    expect(screen.getByText('输入验证码')).toBeTruthy();
-    expect(screen.getByText(/138\*{4}8000/u)).toBeTruthy();
-    expect(screen.getByText('重新获取验证码')).toBeTruthy();
+    expect(screen.getByPlaceholderText('请输入11位手机号').props.value).toBe('13800138000');
+    expect(screen.getByText('重新获取')).toBeTruthy();
     expect(mockRequestPhoneOtp).not.toHaveBeenCalled();
   });
 
   it('deduplicates rapid OTP requests before React can disable the button', async () => {
-    let resolveRequest!: (value: { accepted: true; expiresAt: number; issuedAt: number; resendAllowedAt: number }) => void;
+    let resolveRequest!: (value: { accepted: true; challengeId: string; expiresAt: number; issuedAt: number; resendAllowedAt: number; serverTime: number }) => void;
     mockRequestPhoneOtp.mockImplementationOnce(() => new Promise((resolve) => { resolveRequest = resolve; }));
     const screen = await renderLoginScreen();
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
@@ -269,9 +329,24 @@ describe('<LoginScreen />', () => {
       const firstRequest = press();
       const secondRequest = press();
       expect(mockRequestPhoneOtp).toHaveBeenCalledTimes(1);
-      resolveRequest({ accepted: true, expiresAt: now + 300_000, issuedAt: now, resendAllowedAt: now + 60_000 });
+      resolveRequest({
+        accepted: true,
+        challengeId: '10000000-0000-4000-8000-000000000012',
+        expiresAt: now + 300_000,
+        issuedAt: now,
+        resendAllowedAt: now + 60_000,
+        serverTime: now,
+      });
       await Promise.all([firstRequest, secondRequest]);
     });
+  });
+
+  it('deduplicates rapid auth actions before React can disable the control', () => {
+    const gate = createAuthActionGate();
+    expect(gate.begin()).toBe(true);
+    expect(gate.begin()).toBe(false);
+    gate.end();
+    expect(gate.begin()).toBe(true);
   });
 
   it('maps dual-auth failures to actionable and non-enumerating messages', () => {
@@ -286,5 +361,7 @@ describe('<LoginScreen />', () => {
     expect(loginErrorMessage('phone_otp_rate_limited')).toContain('请求过于频繁');
     expect(loginErrorMessage('auth_network_error')).toBe('网络连接失败，请检查网络后重试。');
     expect(loginErrorMessage('auth_service_unavailable')).toBe('认证服务暂时不可用，请稍后重试。');
+    expect(loginErrorMessage('wechat_auth_configuration_pending')).toContain('微信登录正在配置');
+    expect(loginErrorMessage('wechat_not_installed')).toContain('微信');
   });
 });

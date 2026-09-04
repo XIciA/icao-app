@@ -27,6 +27,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   apple_notification_events: 'server_only',
   apple_revocable_credentials: 'server_only',
   apple_transactions: 'server_only',
+  auth_usage_counters: 'server_only',
   commerce_channel_products: 'server_only',
   commerce_orders: 'server_only',
   commerce_products: 'server_only',
@@ -59,6 +60,8 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   sync_mutations: 'server_only',
   user_card_states: 'server_only',
   user_documents: 'server_only',
+  wechat_auth_challenges: 'server_only',
+  wechat_auth_principals: 'server_only',
 });
 
 export const SERVER_ONLY_PUBLIC_TABLES = Object.freeze(

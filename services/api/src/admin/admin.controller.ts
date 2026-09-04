@@ -28,8 +28,8 @@ import type {
   OpsStaffDisableResult,
   OpsStaffListItem,
   OpsStaffSessionRevokeResult,
-  OpsUserSummary,
 } from '@icao/contracts';
+import type { NativeOpsUserSummary as OpsUserSummary } from '@icao/contracts/native-auth';
 import { z } from 'zod';
 
 import { OPS_API_CONFIG, type OpsApiConfig } from '../config';

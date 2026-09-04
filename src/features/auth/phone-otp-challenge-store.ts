@@ -1,21 +1,54 @@
-import { isChinaMobileE164, normalizeChinaMobile, type StartPhoneOtpResponse } from '@icao/contracts';
+import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
+import type { NativeStartPhoneOtpResponse, PhoneOtpPurpose } from '@icao/contracts/native-auth';
 import * as SecureStore from 'expo-secure-store';
 
-export type PhoneOtpPurpose = 'login' | 'recovery';
-
 export type PersistedPhoneOtpChallenge = {
+  challengeId: string;
   expiresAt: number;
   issuedAt: number;
   phone: string;
   purpose: PhoneOtpPurpose;
   resendAllowedAt: number;
-  version: 1;
+  serverTimeOffsetMs: number;
+  version: 2;
 };
 
-const KEY = 'icao.auth.phone-otp-challenge.v1';
+const KEY = 'icao.auth.phone-otp-challenge.v2';
+const LEGACY_KEY = 'icao.auth.phone-otp-challenge.v1';
+const MAX_RESTORE_AGE_MS = 24 * 60 * 60 * 1_000;
 const OPTIONS: SecureStore.SecureStoreOptions = {
   keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
 };
+let mutationTail: Promise<void> = Promise.resolve();
+let mutationGeneration = 0;
+
+async function withMutationLock<T>(operation: () => Promise<T>) {
+  const previous = mutationTail;
+  let release!: () => void;
+  mutationTail = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    return await operation();
+  } finally {
+    release();
+  }
+}
+
+/**
+ * Allocates a storage generation when an OTP request starts, rather than when
+ * its network response happens to finish. A response may only persist its
+ * challenge while this generation is still current.
+ */
+export function beginPhoneOtpChallengeMutation() {
+  mutationGeneration += 1;
+  return mutationGeneration;
+}
+
+/** Invalidates an in-flight response without deleting a valid saved challenge. */
+export function invalidatePhoneOtpChallengeMutation() {
+  mutationGeneration += 1;
+  return mutationGeneration;
+}
 
 function validTimestamp(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
@@ -23,78 +56,132 @@ function validTimestamp(value: unknown): value is number {
 
 export function parsePhoneOtpChallenge(
   value: unknown,
-  now = Date.now(),
+  deviceNow = Date.now(),
 ): PersistedPhoneOtpChallenge | undefined {
   if (!value || typeof value !== 'object') return undefined;
   const candidate = value as Partial<PersistedPhoneOtpChallenge>;
   if (
-    candidate.version !== 1
+    candidate.version !== 2
+    || typeof candidate.challengeId !== 'string'
+    || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(candidate.challengeId)
     || (candidate.purpose !== 'login' && candidate.purpose !== 'recovery')
     || !isChinaMobileE164(candidate.phone)
     || !validTimestamp(candidate.issuedAt)
     || !validTimestamp(candidate.resendAllowedAt)
     || !validTimestamp(candidate.expiresAt)
+    || typeof candidate.serverTimeOffsetMs !== 'number'
+    || !Number.isSafeInteger(candidate.serverTimeOffsetMs)
     || candidate.issuedAt > candidate.resendAllowedAt
     || candidate.resendAllowedAt > candidate.expiresAt
-    || candidate.expiresAt <= now
+    || deviceNow + candidate.serverTimeOffsetMs - candidate.expiresAt > MAX_RESTORE_AGE_MS
   ) return undefined;
   return candidate as PersistedPhoneOtpChallenge;
+}
+
+export function phoneOtpServerNow(challenge: PersistedPhoneOtpChallenge, deviceNow = Date.now()) {
+  return deviceNow + challenge.serverTimeOffsetMs;
 }
 
 export function phoneOtpChallenge(
   phoneInput: string,
   purpose: PhoneOtpPurpose,
-  response: StartPhoneOtpResponse,
+  response: NativeStartPhoneOtpResponse,
+  receivedAt = Date.now(),
 ): PersistedPhoneOtpChallenge {
   const phone = normalizeChinaMobile(phoneInput);
   if (!phone) throw new Error('invalid_phone_number');
   const challenge = parsePhoneOtpChallenge({
+    challengeId: response.challengeId,
     expiresAt: response.expiresAt,
     issuedAt: response.issuedAt,
     phone,
     purpose,
     resendAllowedAt: response.resendAllowedAt,
-    version: 1,
-  }, response.issuedAt - 1);
+    serverTimeOffsetMs: response.serverTime - receivedAt,
+    version: 2,
+  }, receivedAt);
   if (!challenge) throw new Error('auth_service_unavailable');
   return challenge;
 }
 
 export async function readPhoneOtpChallenge(now = Date.now()) {
-  let raw: string | null;
-  try {
-    raw = await SecureStore.getItemAsync(KEY, OPTIONS);
-  } catch {
-    throw new Error('auth_session_storage_unavailable');
-  }
-  if (!raw) return undefined;
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(raw);
-  } catch {
-    parsed = undefined;
-  }
-  const challenge = parsePhoneOtpChallenge(parsed, now);
-  if (challenge) return challenge;
-  await clearPhoneOtpChallenge();
-  return undefined;
+  return withMutationLock(async () => {
+    let raw: string | null;
+    try {
+      raw = await SecureStore.getItemAsync(KEY, OPTIONS);
+    } catch {
+      throw new Error('auth_session_storage_unavailable');
+    }
+    if (!raw) {
+      await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+      return undefined;
+    }
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = undefined;
+    }
+    const challenge = parsePhoneOtpChallenge(parsed, now);
+    if (challenge) return challenge;
+    try {
+      await Promise.all([
+        SecureStore.deleteItemAsync(KEY, OPTIONS),
+        SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS),
+      ]);
+    } catch {
+      throw new Error('auth_session_storage_unavailable');
+    }
+    return undefined;
+  });
 }
 
-export async function writePhoneOtpChallenge(challenge: PersistedPhoneOtpChallenge) {
-  if (!parsePhoneOtpChallenge(challenge, challenge.issuedAt - 1)) {
+export async function writePhoneOtpChallenge(
+  challenge: PersistedPhoneOtpChallenge,
+  generation = beginPhoneOtpChallengeMutation(),
+) {
+  if (!parsePhoneOtpChallenge(challenge, Date.now())) {
     throw new Error('auth_service_unavailable');
   }
-  try {
-    await SecureStore.setItemAsync(KEY, JSON.stringify(challenge), OPTIONS);
-  } catch {
-    throw new Error('auth_session_storage_unavailable');
-  }
+  return withMutationLock(async () => {
+    if (generation !== mutationGeneration) return false;
+    let currentRaw: string | null = null;
+    try {
+      currentRaw = await SecureStore.getItemAsync(KEY, OPTIONS);
+      const current = currentRaw
+        ? parsePhoneOtpChallenge(JSON.parse(currentRaw) as unknown, Date.now())
+        : undefined;
+      if (
+        current
+        && (
+          current.issuedAt > challenge.issuedAt
+          || (current.issuedAt === challenge.issuedAt && current.challengeId !== challenge.challengeId)
+        )
+      ) return false;
+      await SecureStore.setItemAsync(KEY, JSON.stringify(challenge), OPTIONS);
+      if (generation !== mutationGeneration) {
+        if (currentRaw) await SecureStore.setItemAsync(KEY, currentRaw, OPTIONS);
+        else await SecureStore.deleteItemAsync(KEY, OPTIONS);
+        return false;
+      }
+      await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+      return true;
+    } catch {
+      throw new Error('auth_session_storage_unavailable');
+    }
+  });
 }
 
 export async function clearPhoneOtpChallenge() {
-  try {
-    await SecureStore.deleteItemAsync(KEY, OPTIONS);
-  } catch {
-    throw new Error('auth_session_storage_unavailable');
-  }
+  beginPhoneOtpChallengeMutation();
+  return withMutationLock(async () => {
+    try {
+      await Promise.all([
+        SecureStore.deleteItemAsync(KEY, OPTIONS),
+        SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS),
+      ]);
+    } catch {
+      throw new Error('auth_session_storage_unavailable');
+    }
+  });
 }

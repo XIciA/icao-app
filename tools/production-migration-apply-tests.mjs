@@ -184,7 +184,7 @@ test('classifies every public Drizzle table as server-only with no unclassified 
   const schemaTables = [...schemaSource.matchAll(/pgTable\('([^']+)'/gu)]
     .map((match) => match[1])
     .sort();
-  assert.equal(schemaTables.length, 56);
+  assert.equal(schemaTables.length, 59);
   assert.deepEqual(SERVER_ONLY_PUBLIC_TABLES, schemaTables);
   assert.deepEqual(
     Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort(),

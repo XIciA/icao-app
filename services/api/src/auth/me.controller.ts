@@ -1,5 +1,6 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AuthenticatedUser } from '@icao/contracts';
+import type { ApiSuccessEnvelope } from '@icao/contracts';
+import type { NativeAuthenticatedUser as AuthenticatedUser } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from './auth.types';
 import { RequireAuthGuard } from './require-auth.guard';

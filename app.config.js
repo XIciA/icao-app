@@ -8,6 +8,8 @@ module.exports = ({ config }) => {
     return !['expo-dev-client', 'expo-apple-authentication'].includes(pluginName);
   });
   const appScheme = isDevelopment ? 'readyoufife-dev' : config.scheme;
+  const wechatAppId = process.env.ICAO_WECHAT_APP_ID?.trim() || '';
+  const wechatUniversalLink = process.env.ICAO_WECHAT_UNIVERSAL_LINK?.trim() || '';
 
   return {
     ...config,
@@ -22,6 +24,13 @@ module.exports = ({ config }) => {
     },
     plugins: [
       ...plugins,
+      [
+        './plugins/with-wechat-auth',
+        {
+          appId: wechatAppId,
+          universalLink: wechatUniversalLink,
+        },
+      ],
       'expo-apple-authentication',
       [
         'expo-dev-client',

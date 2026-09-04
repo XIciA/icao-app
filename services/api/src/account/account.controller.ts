@@ -1,11 +1,12 @@
 import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
-import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, BindPhoneRequest, BindPhoneResponse, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { ApiSuccessEnvelope, AuthorizePasswordRecoveryRequest, AuthorizePasswordRecoveryResponse, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsRequest, RevokeAllSessionsResponse, StartPhoneBindingRequest, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { NativeAccountSummary as AccountSummary, NativeBindPhoneRequest as BindPhoneRequest, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AccountService } from './account.service';
 import { AccountDeletionService } from './account-deletion.service';
-import { bindPhoneSchema, deleteAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
+import { authorizePasswordRecoverySchema, bindPhoneSchema, deleteAccountSchema, revokeAllSessionsSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
 
 @Controller('v1/account')
 @UseGuards(RequireAuthGuard)
@@ -21,8 +22,13 @@ export class AccountController {
   }
 
   @Post('sessions/revoke-all')
-  async revokeAll(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<RevokeAllSessionsResponse>> {
-    return { requestId: request.id, data: await this.account.revokeAll(request.user!.id, request.auth!.accessToken) };
+  async revokeAll(
+    @Body() body: RevokeAllSessionsRequest,
+    @Req() request: AuthenticatedRequest,
+  ): Promise<ApiSuccessEnvelope<RevokeAllSessionsResponse>> {
+    const parsed = revokeAllSessionsSchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_session_revocation');
+    return { requestId: request.id, data: await this.account.revokeAll(request.auth!, parsed.data.grantId) };
   }
 
   @Post('password')
@@ -45,9 +51,15 @@ export class AccountController {
 
   @Post('password/recovery/authorize')
   async authorizePasswordRecovery(
+    @Body() body: AuthorizePasswordRecoveryRequest,
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<AuthorizePasswordRecoveryResponse>> {
-    return { requestId: request.id, data: await this.account.authorizePasswordRecovery(request.auth!) };
+    const parsed = authorizePasswordRecoverySchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_password_recovery');
+    return {
+      requestId: request.id,
+      data: await this.account.authorizePasswordRecovery(request.auth!, parsed.data.challengeId),
+    };
   }
 
   @Post(['phone-binding/start', 'merge/phone/start'])
@@ -63,6 +75,7 @@ export class AccountController {
         request.auth!,
         parsed.data.phone,
         (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+        parsed.data.recentAuthGrantId,
       ),
     };
   }
@@ -71,7 +84,17 @@ export class AccountController {
   async verifyPhoneBinding(@Body() body: BindPhoneRequest, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<BindPhoneResponse>> {
     const parsed = bindPhoneSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_phone_binding');
-    return { requestId: request.id, data: await this.account.bindPhoneWithOtp(request.auth!, parsed.data.phone, parsed.data.token) };
+    return {
+      requestId: request.id,
+      data: await this.account.bindPhoneWithOtp(
+        request.auth!,
+        parsed.data.challengeId,
+        parsed.data.phone,
+        parsed.data.token,
+        (request as AuthenticatedRequest & { ip?: string }).ip ?? '127.0.0.1',
+        parsed.data.recentAuthGrantId,
+      ),
+    };
   }
 
   @Delete()

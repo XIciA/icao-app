@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./native-auth": "./src/native-auth.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

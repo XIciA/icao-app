@@ -53,6 +53,7 @@ app-example
 # generated native folders
 /ios
 /android
+/modules/icao-wechat-auth/ios/Vendor/
 
 # large local workflow snapshots and resumable caches
 /.generated/

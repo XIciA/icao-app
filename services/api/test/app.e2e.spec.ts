@@ -10,6 +10,7 @@ import { AccountDeletionService } from '../src/account/account-deletion.service'
 import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
+import { WechatAuthService } from '../src/auth/wechat-auth.service';
 import { RecentAuthService } from '../src/auth/recent-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
@@ -117,7 +118,10 @@ class FakeAuthVerifier implements AuthVerifier {
 async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
   const module = await Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(DatabaseService)
-    .useValue({ ping: async () => undefined })
+    .useValue({
+      assertMinimumSchemaVersion: async () => undefined,
+      ping: async () => undefined,
+    })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
     .overrideProvider(AccountIdentityService)
@@ -166,13 +170,44 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     })
     .overrideProvider(PhoneAuthService)
     .useValue({
-      start: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
-      startRecovery: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
-      startRecentAuth: async () => ({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 }),
+      start: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000010', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      startRecovery: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000011', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      startRecentAuth: async () => ({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000012', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 }),
+      verifyBindingChallenge: async () => ({ accessToken: 'target-access-token', refreshToken: 'target-refresh-token' }),
+      verifyRecentChallenge: async () => undefined,
+      verifyLogin: async () => ({
+        verified: true,
+        session: { accessToken: 'otp-access-token', refreshToken: 'otp-refresh-token' },
+      }),
+    })
+    .overrideProvider(WechatAuthService)
+    .useValue({
+      start: async () => ({
+        appId: 'wx12345678',
+        challengeId: '10000000-0000-4000-8000-000000000020',
+        expiresAt: 1_800_000_300_000,
+        issuedAt: 1_800_000_000_000,
+        state: 'test-wechat-state-that-is-long-enough',
+        status: 'available',
+      }),
+      complete: async () => ({
+        account: {
+          accountId: '00000000-0000-4000-8000-000000000005',
+          phoneBound: false,
+          providers: ['wechat'],
+        },
+        session: { accessToken: 'wechat-access-token', refreshToken: 'wechat-refresh-token' },
+      }),
     })
     .overrideProvider(RecentAuthService)
     .useValue({
       issuePhoneOtpGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000095',
+        method: 'phone_otp',
+        purpose: 'account_delete',
+      }),
+      issueVerifiedGrant: async () => ({
         expiresAt: 1_800_000_300_000,
         grantId: '00000000-0000-4000-8000-000000000095',
         method: 'phone_otp',
@@ -376,6 +411,18 @@ describe('API foundation', () => {
     }
   });
 
+  it('requires the API to verify OTPs through a non-public Supabase service origin', () => {
+    expect(loadTestProductionConfig().supabaseUrl).toBe('http://supabase.internal:8000');
+    for (const supabaseUrl of [
+      'https://cloud.readyoufife.com',
+      'https://auth.example.com',
+      'http://auth.example.com',
+    ]) {
+      expect(() => loadTestProductionConfig({ SUPABASE_URL: supabaseUrl }))
+        .toThrow('invalid_api_configuration:SUPABASE_URL');
+    }
+  });
+
   it('rejects a content credential private key that does not match the Native public key', () => {
     expect(() => loadConfig(productionConfig()))
       .toThrow('invalid_api_configuration:CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY');
@@ -549,7 +596,13 @@ describe('API foundation', () => {
   it('supports global session revocation and validated account deletion', async () => {
     const app = await testApp();
     const headers = { authorization: 'Bearer valid-token' };
-    const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
+    const missingRevokeGrant = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
+    const revoked = await app.inject({
+      method: 'POST',
+      url: '/v1/account/sessions/revoke-all',
+      headers,
+      payload: { grantId: '00000000-0000-4000-8000-000000000096' },
+    });
     const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
     const nonV4Deletion = await app.inject({
       method: 'DELETE',
@@ -583,6 +636,8 @@ describe('API foundation', () => {
     });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json().data).toEqual({ revoked: true });
+    expect(missingRevokeGrant.statusCode).toBe(400);
+    expect(missingRevokeGrant.json().error.code).toBe('invalid_session_revocation');
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
     expect(nonV4Deletion.statusCode).toBe(400);
@@ -612,7 +667,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/phone-binding/verify',
       headers: { authorization: 'Bearer apple-token' },
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000013', phone: '+8613800138000', token: '123456' },
     });
     const legacyStarted = await app.inject({
       method: 'POST',
@@ -624,7 +679,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/merge/phone',
       headers: { authorization: 'Bearer apple-token' },
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000014', phone: '+8613800138000', token: '123456' },
     });
     const malformed = await app.inject({
       method: 'POST',
@@ -635,7 +690,7 @@ describe('API foundation', () => {
     const unauthenticated = await app.inject({
       method: 'POST',
       url: '/v1/account/merge/phone',
-      payload: { phone: '+8613800138000', token: '123456' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000014', phone: '+8613800138000', token: '123456' },
     });
     expect(started.statusCode).toBe(201);
     expect(started.json().data).toEqual({ sent: true });
@@ -686,6 +741,7 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/password/recovery/authorize',
       headers: { authorization: 'Bearer valid-token' },
+      payload: { challengeId: '10000000-0000-4000-8000-000000000011' },
     });
     const recentPhoneStart = await app.inject({
       method: 'POST',
@@ -697,7 +753,11 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/account/recent-auth/phone',
       headers: { authorization: 'Bearer valid-token' },
-      payload: { purpose: 'account_delete' },
+      payload: {
+        challengeId: '10000000-0000-4000-8000-000000000012',
+        purpose: 'account_delete',
+        token: '123456',
+      },
     });
     const unauthenticatedRecovery = await app.inject({
       method: 'POST',
@@ -709,9 +769,9 @@ describe('API foundation', () => {
       payload: { password: 'newpassword10' },
     });
     expect(started.statusCode).toBe(201);
-    expect(started.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(started.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000010', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(recovery.statusCode).toBe(202);
-    expect(recovery.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(recovery.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000011', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(invalid.statusCode).toBe(400);
     expect(invalid.json().error.code).toBe('invalid_phone_number');
     expect(password.statusCode).toBe(201);
@@ -726,7 +786,7 @@ describe('API foundation', () => {
       grantId: '00000000-0000-4000-8000-000000000096',
     });
     expect(recentPhoneStart.statusCode).toBe(201);
-    expect(recentPhoneStart.json().data).toEqual({ accepted: true, expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000 });
+    expect(recentPhoneStart.json().data).toEqual({ accepted: true, challengeId: '10000000-0000-4000-8000-000000000012', expiresAt: 1_800_000_300_000, issuedAt: 1_800_000_000_000, resendAllowedAt: 1_800_000_060_000, serverTime: 1_800_000_000_100 });
     expect(recentPhone.statusCode).toBe(201);
     expect(recentPhone.json().data).toEqual({
       expiresAt: 1_800_000_300_000,
@@ -750,14 +810,24 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('does not register the retired WeChat session endpoint', async () => {
+  it('registers the guarded WeChat challenge and session endpoints', async () => {
     const app = await testApp();
+    const challenge = await app.inject({ method: 'POST', url: '/v1/auth/wechat/challenge' });
     const response = await app.inject({
       method: 'POST',
       url: '/v1/auth/wechat/session',
-      payload: {},
+      payload: {
+        challengeId: '10000000-0000-4000-8000-000000000020',
+        code: 'wechat-code',
+        state: 'test-wechat-state-that-is-long-enough',
+      },
     });
-    expect(response.statusCode).toBe(404);
+    const malformed = await app.inject({ method: 'POST', url: '/v1/auth/wechat/session', payload: {} });
+    expect(challenge.statusCode).toBe(201);
+    expect(challenge.json().data.status).toBe('available');
+    expect(response.statusCode).toBe(201);
+    expect(response.json().data.account.providers).toEqual(['wechat']);
+    expect(malformed.statusCode).toBe(400);
     await app.close();
   });
 

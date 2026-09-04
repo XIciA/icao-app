@@ -4,6 +4,7 @@ import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fa
 import { loadOpsConfig, type OpsApiConfig } from './config';
 import { HttpErrorFilter } from './http-error.filter';
 import { OpsApiModule } from './ops-api.module';
+import { DatabaseService } from './database/database.service';
 
 export async function createOpsApp(config: OpsApiConfig = loadOpsConfig()) {
   if (!config.opsEnabled) throw new Error('ops_console_disabled');
@@ -28,6 +29,7 @@ export async function createOpsApp(config: OpsApiConfig = loadOpsConfig()) {
   });
   app.useGlobalFilters(new HttpErrorFilter());
   app.enableShutdownHooks();
+  await app.get(DatabaseService).assertMinimumSchemaVersion();
   await app.init();
   await app.getHttpAdapter().getInstance().ready();
   return app;

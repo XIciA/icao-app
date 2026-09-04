@@ -1,9 +1,10 @@
 import { BadRequestException, Body, Controller, HttpCode, Post, Req } from '@nestjs/common';
-import type { ApiSuccessEnvelope, StartPhoneOtpRequest, StartPhoneOtpResponse } from '@icao/contracts';
+import type { ApiSuccessEnvelope, StartPhoneOtpRequest } from '@icao/contracts';
+import type { NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from './auth.types';
 import { PhoneAuthService } from './phone-auth.service';
-import { startPhoneOtpSchema } from './phone-auth.schemas';
+import { startPhoneOtpSchema, verifyPhoneOtpSchema } from './phone-auth.schemas';
 
 type PhoneAuthRequest = AuthenticatedRequest & { ip?: string };
 
@@ -30,5 +31,18 @@ export class PhoneAuthController {
     const parsed = startPhoneOtpSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_phone_number');
     return { requestId: request.id, data: await this.phoneAuth.startRecovery(parsed.data.phone, request.ip ?? '127.0.0.1') };
+  }
+
+  @Post('otp/verify')
+  async verify(
+    @Body() body: VerifyPhoneOtpRequest,
+    @Req() request: PhoneAuthRequest,
+  ): Promise<ApiSuccessEnvelope<VerifyPhoneOtpResponse>> {
+    const parsed = verifyPhoneOtpSchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_phone_otp');
+    return {
+      requestId: request.id,
+      data: await this.phoneAuth.verifyLogin(parsed.data, request.ip ?? '127.0.0.1'),
+    };
   }
 }

@@ -188,3 +188,15 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}) {
   }
   return body.data;
 }
+
+export async function apiRequestWithAccessToken<T>(path: string, accessToken: string, init: RequestInit = {}) {
+  if (!accessToken) throw new Error('auth_request_not_completed');
+  const response = await fetchOnce(path, init, accessToken);
+  const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;
+  if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);
+  if (!response.ok || 'error' in body) {
+    const code = 'error' in body ? body.error.code : `api_http_${response.status}`;
+    throw rememberApiError(code, response.status, body.requestId);
+  }
+  return body.data;
+}

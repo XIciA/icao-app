@@ -27,7 +27,8 @@
 
 ## 验证基线
 
-- 归档核对 Bundle ID、1.0.0、Build 3493764、最终 `origin/main` SHA、签名、权限、PrivacyInfo、SDK、生产 URL、无微信及隐藏路由。
+- 归档核对 Bundle ID、1.0.0、最终 Build、`origin/main` SHA、签名、权限、PrivacyInfo、生产 URL、
+  微信 NoPay SDK/Universal Link/AASA/服务端真值一致且无微信支付，以及体系课程和学习报告隐藏路由。
 - 平台核对 Paid Agreement、银行/税务、CHN地区、自动新增地区关闭、备案、通知、截图、审核账号和 Notes。
 - TestFlight 核对登录、录音、AI、点数、免费/会员边界、五档购买、恢复、重购、退款、注销及后台恢复。
 - 提交前反向核对 App、五个公开页面、隐私标签、截图、IAP 与审核说明；审核通过后自动发布。

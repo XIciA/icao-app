@@ -20,6 +20,12 @@ const contentDeviceIdRemovalSnapshotPath = fileURLToPath(new URL('../drizzle/met
 const clientTableGrantRevocationMigrationPath = fileURLToPath(
   new URL('../drizzle/0034_revoke_client_table_grants.sql', import.meta.url),
 );
+const authTableGrantRevocationMigrationPath = fileURLToPath(
+  new URL('../drizzle/0035_lowly_microbe.sql', import.meta.url),
+);
+const otpProtocolFenceMigrationPath = fileURLToPath(
+  new URL('../drizzle/0040_stiff_wonder_man.sql', import.meta.url),
+);
 const schemaPath = fileURLToPath(new URL('../src/database/schema.ts', import.meta.url));
 const legacyTables = [
   'accounts',
@@ -60,7 +66,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 35);
+  assert.equal(migrations.length, 42);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -77,17 +83,38 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-1)?.tag, '0034_revoke_client_table_grants');
+  assert.equal(migrations.at(-5)?.tag, '0037_cool_stellaris');
+  assert.equal(migrations.at(-4)?.tag, '0038_natural_orphan');
+  assert.equal(migrations.at(-3)?.tag, '0039_sparkling_tombstone');
+  assert.equal(migrations.at(-2)?.tag, '0040_stiff_wonder_man');
+  assert.equal(migrations.at(-1)?.tag, '0041_jazzy_blazing_skull');
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
 
-test('0034 revokes every client table grant without changing service-role access', async () => {
-  const migrationSql = await readFile(clientTableGrantRevocationMigrationPath, 'utf8');
+test('0040 atomically fences pre-v2 OTP state and rolled-back SMS hooks', async () => {
+  const migrationSql = await readFile(otpProtocolFenceMigrationPath, 'utf8');
+  assert.match(migrationSql, /DELETE FROM "sms_delivery_attempts"/u);
+  assert.match(migrationSql, /WHERE "status" IN \('queued', 'dispatching', 'quarantined', 'pending', 'verifying'\)/u);
+  assert.match(migrationSql, /ALTER COLUMN "otp_intent_id" SET NOT NULL/u);
+  assert.match(migrationSql, /ALTER COLUMN "otp_dispatch_sequence" SET NOT NULL/u);
+  assert.match(migrationSql, /ALTER COLUMN "status" DROP DEFAULT/u);
+  assert.doesNotMatch(
+    migrationSql,
+    /ADD CONSTRAINT "phone_otp_intents_status_check"[^;]*'pending'/u,
+  );
+});
+
+test('0034 and 0035 revoke every client table grant without changing service-role access', async () => {
+  const migrationSql = (await Promise.all([
+    readFile(clientTableGrantRevocationMigrationPath, 'utf8'),
+    readFile(authTableGrantRevocationMigrationPath, 'utf8'),
+  ])).join('\n');
   const revokedTables = [...migrationSql.matchAll(
     /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
   )].map((match) => match[1]).sort();
 
-  assert.equal(revokedTables.length, 56);
+  assert.equal(SERVER_ONLY_PUBLIC_TABLES.length, 59);
+  assert.equal(revokedTables.length, SERVER_ONLY_PUBLIC_TABLES.length);
   assert.deepEqual(revokedTables, SERVER_ONLY_PUBLIC_TABLES);
   assert.match(
     migrationSql,
@@ -274,6 +301,13 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0032_aromatic_puma',
       '0033_medical_preak',
       '0034_revoke_client_table_grants',
+      '0035_lowly_microbe',
+      '0036_bright_cannonball',
+      '0037_cool_stellaris',
+      '0038_natural_orphan',
+      '0039_sparkling_tombstone',
+      '0040_stiff_wonder_man',
+      '0041_jazzy_blazing_skull',
     ],
   );
   assert.ok(

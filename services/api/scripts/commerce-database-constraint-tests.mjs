@@ -13,7 +13,12 @@ import postgres from 'postgres';
 import { exportJWK, SignJWT } from 'jose';
 
 import { RecentAuthService } from '../src/auth/recent-auth.service.ts';
-import { PhoneAuthService } from '../src/auth/phone-auth.service.ts';
+import { SessionSecurityService } from '../src/auth/session-security.service.ts';
+import { WechatAuthService } from '../src/auth/wechat-auth.service.ts';
+import {
+  PHONE_OTP_LATE_CALLBACK_WINDOW_MS,
+  PhoneAuthService,
+} from '../src/auth/phone-auth.service.ts';
 import { PhoneSecurityRetentionService } from '../src/auth/phone-security-retention.service.ts';
 import { SmsDeliveryAuthority } from '../src/auth/sms/sms-delivery-authority.ts';
 import { AppleAuthHttpError } from '../src/auth/apple-auth-http.ts';
@@ -26,10 +31,15 @@ import { CommerceService } from '../src/commerce/commerce.service.ts';
 import { AppleNotificationReconciliationService } from '../src/commerce/apple-notification-reconciliation.service.ts';
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import { AiService } from '../src/ai/ai.service.ts';
+import {
+  DatabaseService,
+  MINIMUM_DATABASE_MIGRATION,
+} from '../src/database/database.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
+const migrationJournal = JSON.parse(readFileSync(join(migrationsDirectory, 'meta/_journal.json'), 'utf8'));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-commerce-postgres-'));
 const dataDirectory = join(clusterRoot, 'data');
 const socketDirectory = join(clusterRoot, 'socket');
@@ -187,6 +197,12 @@ before(async () => {
     CREATE ROLE authenticated;
     CREATE ROLE service_role;
     CREATE ROLE supabase_admin;
+    CREATE SCHEMA drizzle;
+    CREATE TABLE drizzle.__drizzle_migrations (
+      id serial PRIMARY KEY,
+      hash text NOT NULL,
+      created_at bigint
+    );
     GRANT USAGE, CREATE ON SCHEMA public TO supabase_admin;
     ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
       GRANT ALL PRIVILEGES ON TABLES TO anon, authenticated, service_role;
@@ -247,11 +263,17 @@ before(async () => {
       `);
       assert.equal(productionGrantRegression.status, 0, productionGrantRegression.stderr);
     }
-    const migration = psql(
-      readFileSync(join(migrationsDirectory, name), 'utf8')
-        .replaceAll('--> statement-breakpoint', ''),
-    );
+    const migrationSource = readFileSync(join(migrationsDirectory, name), 'utf8');
+    const migration = psql(migrationSource.replaceAll('--> statement-breakpoint', ''));
     assert.equal(migration.status, 0, `${name}:${migration.stderr}`);
+    const migrationTag = name.slice(0, -4);
+    const journalEntry = migrationJournal.entries.find(({ tag }) => tag === migrationTag);
+    assert.ok(journalEntry, `missing migration journal entry: ${migrationTag}`);
+    const registration = psql(`
+      INSERT INTO drizzle.__drizzle_migrations (hash, created_at)
+      VALUES ('${createHash('sha256').update(migrationSource).digest('hex')}', ${journalEntry.when});
+    `);
+    assert.equal(registration.status, 0, registration.stderr);
     if (name === '0024_apple_notification_retry_queue.sql') {
       notificationMigrationScrubEvidence = queryScalar(`
         SELECT string_agg(
@@ -341,6 +363,48 @@ test('0025 keeps AI withdrawal fail-closed across an API rollback', () => {
     legacyReacceptRejected: true,
     migrated: 'true:1:1',
   });
+});
+
+test('API startup requires the exact roll-forward OTP schema migration', async () => {
+  const database = new DatabaseService({
+    databaseUrl: `postgresql://postgres@127.0.0.1:${port}/postgres`,
+  });
+  try {
+    await assert.doesNotReject(() => database.assertMinimumSchemaVersion());
+    const tampered = psql(`
+      UPDATE drizzle.__drizzle_migrations
+      SET hash = repeat('0', 64)
+      WHERE created_at = ${MINIMUM_DATABASE_MIGRATION.createdAt};
+    `);
+    assert.equal(tampered.status, 0, tampered.stderr);
+    await assert.rejects(
+      () => database.assertMinimumSchemaVersion(),
+      /database_schema_too_old/u,
+    );
+  } finally {
+    const restored = psql(`
+      UPDATE drizzle.__drizzle_migrations
+      SET hash = '${MINIMUM_DATABASE_MIGRATION.hash}'
+      WHERE created_at = ${MINIMUM_DATABASE_MIGRATION.createdAt};
+    `);
+    assert.equal(restored.status, 0, restored.stderr);
+    await database.onModuleDestroy();
+  }
+});
+
+test('the local session fence rejects an old bearer immediately', async () => {
+  const authUserId = '30010000-0000-4000-8000-000000000001';
+  const sessionId = '30010000-0000-4000-8000-000000000002';
+  const inserted = psql(`
+    INSERT INTO auth.users (id) VALUES ('${authUserId}');
+    INSERT INTO auth.sessions (id, user_id) VALUES ('${sessionId}', '${authUserId}');
+  `);
+  assert.equal(inserted.status, 0, inserted.stderr);
+  const security = new SessionSecurityService({ db: serviceDatabase });
+  const source = authSession({ accountId: authUserId, authUserId, sessionId });
+  await assert.doesNotReject(() => security.assertActive(source));
+  await security.revokeAll(authUserId);
+  await assert.rejects(() => security.assertActive(source), /session_revoked/u);
 });
 
 function authSession({
@@ -487,7 +551,7 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 56);
+  assert.equal(tableCount, 59, 'the exact production schema inventory must remain classified');
   assert.equal(rlsCount, tableCount);
 });
 
@@ -1259,9 +1323,9 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
     .digest('hex');
   const intent = psql(`
     INSERT INTO phone_otp_intents (
-      phone_digest, purpose, account_id, otp_not_before, expires_at, created_at
+      phone_digest, purpose, account_id, status, otp_not_before, expires_at, created_at
     ) VALUES (
-      '${phoneDigest}', 'account_delete', '${accountId}',
+      '${phoneDigest}', 'account_delete', '${accountId}', 'ready',
       '${new Date(startedAt.getTime() + 1_000).toISOString()}',
       '${new Date(startedAt.getTime() + 10 * 60 * 1_000).toISOString()}',
       '${startedAt.toISOString()}'
@@ -1305,7 +1369,7 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
   assert.equal(removeFailureTrigger.status, 0, removeFailureTrigger.stderr);
   assert.equal(
     queryScalar(`SELECT status || ':' || (consumed_at IS NULL)::text FROM phone_otp_intents WHERE phone_digest = '${phoneDigest}'`),
-    'pending:true',
+    'ready:true',
     'grant persistence failure must roll back OTP intent consumption',
   );
   const attempts = await Promise.allSettled([
@@ -1325,9 +1389,9 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
 
   const recoveryIntent = psql(`
     INSERT INTO phone_otp_intents (
-      phone_digest, purpose, account_id, otp_not_before, expires_at, created_at
+      phone_digest, purpose, account_id, status, otp_not_before, expires_at, created_at
     ) VALUES (
-      '${phoneDigest}', 'password_recovery', NULL,
+      '${phoneDigest}', 'password_recovery', NULL, 'ready',
       '${new Date(startedAt.getTime() + 1_000).toISOString()}',
       '${new Date(startedAt.getTime() + 10 * 60 * 1_000).toISOString()}',
       '${startedAt.toISOString()}'
@@ -1348,9 +1412,9 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
 
   const bindingIntent = psql(`
     INSERT INTO phone_otp_intents (
-      phone_digest, purpose, account_id, otp_not_before, expires_at, created_at
+      phone_digest, purpose, account_id, status, otp_not_before, expires_at, created_at
     ) VALUES (
-      '${phoneDigest}', 'phone_binding', '${accountId}',
+      '${phoneDigest}', 'phone_binding', '${accountId}', 'ready',
       '${new Date(startedAt.getTime() + 1_000).toISOString()}',
       '${new Date(startedAt.getTime() + 10 * 60 * 1_000).toISOString()}',
       '${startedAt.toISOString()}'
@@ -1363,54 +1427,307 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
   );
   await firstPhone.consumeOtpIntent(source, 'phone_binding', otpAt, accountId);
 
-  const exactSecond = Math.floor(Date.now() / 1_000) * 1_000;
-  const earlierStart = new Date(exactSecond + 100);
-  const laterStart = new Date(exactSecond + 700);
-  await Promise.all([
-    firstPhone.recordIntent(source.user.phone, 'phone_binding', accountId, laterStart),
-    secondPhone.recordIntent(source.user.phone, 'phone_binding', accountId, earlierStart),
-  ]);
-  assert.equal(
-    queryScalar(`
-      SELECT COUNT(*)::text || ':' ||
-        floor(extract(epoch from min(created_at)) * 1000)::bigint::text || ':' ||
-        floor(extract(epoch from min(otp_not_before)) * 1000)::bigint::text
-      FROM phone_otp_intents
-      WHERE phone_digest = '${phoneDigest}' AND purpose = 'phone_binding' AND status = 'pending'
-    `),
-    `1:${laterStart.getTime()}:${exactSecond}`,
-    'concurrent starts must retain only the newest request while accepting an OTP issued in that same second',
-  );
-  source.authenticationMethods = [{ method: 'otp', timestamp: exactSecond / 1_000 }];
-  const consumeAt = new Date(exactSecond + 2_000);
-  await assert.rejects(
-    serviceDatabase.transaction(async (transaction) => {
-      await firstPhone.consumeOtpIntentInTransaction(
-        transaction,
-        source,
-        'phone_binding',
-        consumeAt,
-        accountId,
+});
+
+test('OTP v2 dispatch, verification, and rollback fences fail closed', () => {
+  const activeStatuses = ['queued', 'dispatching', 'quarantined', 'ready', 'verifying'];
+  for (const [index, status] of activeStatuses.entries()) {
+    const digest = createHmac('sha256', 'rollback-guard-test')
+      .update(status)
+      .digest('hex');
+    const activeId = `72500000-0000-4000-8000-${String(index + 1).padStart(12, '0')}`;
+    const active = psql(`
+      INSERT INTO phone_otp_intents (
+        id, phone_digest, purpose, status, dispatch_lease_until,
+        verification_token, otp_not_before, expires_at, created_at
+      ) VALUES (
+        '${activeId}', '${digest}', 'login', '${status}',
+        ${['queued', 'dispatching', 'quarantined'].includes(status) ? "now() + interval '1 hour'" : 'NULL'},
+        ${status === 'verifying' ? `'72500000-0000-4000-8000-${String(index + 100).padStart(12, '0')}'` : 'NULL'},
+        date_trunc('second', now()), now() + interval '1 hour', now()
       );
-      throw new Error('simulated_phone_binding_failure');
-    }),
-    /simulated_phone_binding_failure/u,
+    `);
+    assert.equal(active.status, 0, active.stderr);
+    const legacyPending = psql(`
+      INSERT INTO phone_otp_intents (
+        phone_digest, purpose, status, dispatch_lease_until,
+        otp_not_before, expires_at, created_at
+      ) VALUES (
+        '${digest}', 'login', 'pending', NULL,
+        date_trunc('second', now()), now() + interval '1 hour', now()
+      );
+    `);
+    assert.notEqual(legacyPending.status, 0, `legacy pending insert must fail after the v2 cutover while ${status} is active`);
+    assert.match(legacyPending.stderr, /phone_otp_intents_status_check/u);
+  }
+
+  const pendingWithFence = psql(`
+    INSERT INTO phone_otp_intents (
+      phone_digest, purpose, status, verification_token,
+      otp_not_before, expires_at, created_at
+    ) VALUES (
+      '${'9'.repeat(64)}', 'login', 'pending', '72500000-0000-4000-8000-000000000999',
+      date_trunc('second', now()), now() + interval '1 hour', now()
+    );
+  `);
+  assert.notEqual(pendingWithFence.status, 0);
+  assert.match(pendingWithFence.stderr, /phone_otp_intents_status_check/u);
+
+  const verifyingWithoutFence = psql(`
+    INSERT INTO phone_otp_intents (
+      phone_digest, purpose, status,
+      otp_not_before, expires_at, created_at
+    ) VALUES (
+      '${'8'.repeat(64)}', 'login', 'verifying',
+      date_trunc('second', now()), now() + interval '1 hour', now()
+    );
+  `);
+  assert.notEqual(verifyingWithoutFence.status, 0);
+  assert.match(verifyingWithoutFence.stderr, /phone_otp_intents_verification_fence_check/u);
+
+  const rollbackDigest = '6'.repeat(64);
+  const readyId = '72500000-0000-4000-8000-000000000777';
+  const ready = psql(`
+    INSERT INTO phone_otp_intents (
+      id, phone_digest, purpose, status, otp_token_digest,
+      otp_not_before, expires_at, created_at
+    ) VALUES (
+      '${readyId}', '${rollbackDigest}', 'login', 'ready', '${'5'.repeat(64)}',
+      date_trunc('second', now()), now() + interval '1 hour', now()
+    );
+  `);
+  assert.equal(ready.status, 0, ready.stderr);
+  const oldHookInsert = psql(`
+    INSERT INTO sms_delivery_attempts (
+      dedupe_key, phone_digest, status, lease_token, lease_until,
+      expires_at, created_at, updated_at
+    ) VALUES (
+      'rollback-old-hook', '${rollbackDigest}', 'processing',
+      '72500000-0000-4000-8000-000000000778', now() + interval '1 minute',
+      now() + interval '10 minutes', now(), now()
+    );
+  `);
+  assert.notEqual(oldHookInsert.status, 0, 'old hook must fail when exact-generation columns are omitted');
+  assert.match(oldHookInsert.stderr, /otp_intent_id/u);
+  const v2HookAttempt = psql(`
+    INSERT INTO sms_delivery_attempts (
+      dedupe_key, phone_digest, otp_intent_id, otp_dispatch_sequence,
+      status, lease_token, lease_until, attempt_count,
+      expires_at, created_at, updated_at
+    ) VALUES (
+      'rollback-v2-hook', '${rollbackDigest}', '${readyId}',
+      (SELECT dispatch_sequence FROM phone_otp_intents WHERE id = '${readyId}'),
+      'processing_v2', '72500000-0000-4000-8000-000000000779',
+      now() + interval '1 minute', 1, now() + interval '10 minutes', now(), now()
+    );
+  `);
+  assert.equal(v2HookAttempt.status, 0, v2HookAttempt.stderr);
+  let rolledBackProviderCalls = 0;
+  const oldHookClaim = psql(`
+    UPDATE sms_delivery_attempts
+    SET status = 'processing',
+        lease_token = '72500000-0000-4000-8000-000000000780',
+        lease_until = now() + interval '1 minute',
+        updated_at = now()
+    WHERE dedupe_key = 'rollback-v2-hook';
+  `);
+  if (oldHookClaim.status === 0) rolledBackProviderCalls += 1;
+  assert.notEqual(
+    oldHookClaim.status,
+    0,
+    'a rolled-back hook must fail its legacy state write before provider I/O',
+  );
+  assert.match(oldHookClaim.stderr, /sms_delivery_attempts_status_check/u);
+  assert.equal(rolledBackProviderCalls, 0, 'a rolled-back hook must make zero provider calls');
+  assert.equal(
+    queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'rollback-v2-hook'`),
+    'processing_v2',
   );
   assert.equal(
-    queryScalar(`SELECT COUNT(*) FROM phone_otp_intents
-      WHERE phone_digest = '${phoneDigest}' AND purpose = 'phone_binding'
-        AND status = 'pending' AND consumed_at IS NULL`),
-    '1',
-    'a downstream phone-binding failure must roll back proof consumption',
+    queryScalar(`UPDATE phone_otp_intents SET status = 'consumed' WHERE id = '${readyId}' AND status = 'pending' RETURNING id`),
+    '',
+    'old verifier only knows pending and cannot consume a v2 ready challenge',
   );
-  await firstPhone.consumeOtpIntent(source, 'phone_binding', consumeAt, accountId);
+  const oldReserve = psql(`
+    INSERT INTO phone_otp_intents (
+      phone_digest, purpose, status, otp_not_before, expires_at, created_at
+    ) VALUES (
+      '${rollbackDigest}', 'login', 'pending', date_trunc('second', now()),
+      now() + interval '1 hour', now()
+    );
+  `);
+  assert.notEqual(oldReserve.status, 0, 'old reserve cannot create any legacy pending challenge after the v2 cutover');
+  assert.match(oldReserve.stderr, /phone_otp_intents_status_check/u);
+
+  const oldReserveWithoutStatus = psql(`
+    INSERT INTO phone_otp_intents (
+      phone_digest, purpose, otp_not_before, expires_at, created_at
+    ) VALUES (
+      '${'4'.repeat(64)}', 'login', date_trunc('second', now()),
+      now() + interval '1 hour', now()
+    );
+  `);
+  assert.notEqual(oldReserveWithoutStatus.status, 0, 'legacy inserts cannot rely on the removed pending default');
+  assert.match(oldReserveWithoutStatus.stderr, /status/u);
+});
+
+test('expired OTP dispatch and verification fences terminate without accepting late settlement', async () => {
+  const config = appleConfig();
+  const phone = new PhoneAuthService(config, { db: serviceDatabase });
+  const now = new Date('2026-09-04T02:00:00.000Z');
+  const cases = [
+    { id: '72510000-0000-4000-8000-000000000001', status: 'dispatching' },
+    { id: '72510000-0000-4000-8000-000000000002', status: 'quarantined' },
+    {
+      id: '72510000-0000-4000-8000-000000000003',
+      status: 'verifying',
+      verificationToken: '72510000-0000-4000-8000-000000000103',
+    },
+  ];
+  for (const [index, candidate] of cases.entries()) {
+    const targetPhone = `+861381119000${index}`;
+    const phoneDigest = createHmac('sha256', config.accountIdentityHashSecret)
+      .update(`phone-otp-intent-v1\0${targetPhone}`)
+      .digest('hex');
+    const createdAt = new Date(now.getTime() - 10 * 60 * 1_000);
+    const expiresAt = candidate.status === 'verifying'
+      ? new Date(now.getTime() - PHONE_OTP_LATE_CALLBACK_WINDOW_MS)
+      : new Date(now.getTime() - 1_000);
+    const setup = psql(`
+      INSERT INTO phone_otp_intents (
+        id, phone_digest, purpose, status, dispatch_lease_until,
+        verification_token, otp_not_before, expires_at, created_at
+      ) VALUES (
+        '${candidate.id}', '${phoneDigest}', 'login', '${candidate.status}',
+        ${candidate.status === 'verifying' ? 'NULL' : `'${new Date(now.getTime() - 1_000).toISOString()}'`},
+        ${candidate.verificationToken ? `'${candidate.verificationToken}'` : 'NULL'},
+        '${createdAt.toISOString()}', '${expiresAt.toISOString()}', '${createdAt.toISOString()}'
+      );
+    `);
+    assert.equal(setup.status, 0, setup.stderr);
+
+    const next = await phone.reserveIntent(targetPhone, 'login', undefined, now);
+    assert.equal(next.shouldDispatch, true);
+    assert.notEqual(next.challengeId, candidate.id);
+    assert.equal(
+      queryScalar(`SELECT status || ':' || (dispatch_lease_until IS NULL)::text || ':' || (verification_token IS NULL)::text FROM phone_otp_intents WHERE id = '${candidate.id}'`),
+      'failed:true:true',
+    );
+
+    if (candidate.verificationToken) {
+      assert.equal(
+        await phone.consumeVerification(
+          candidate.id,
+          candidate.verificationToken,
+          '72510000-0000-4000-8000-000000000203',
+          new Date(now.getTime() + 1_000),
+        ),
+        false,
+      );
+    } else {
+      assert.deepEqual(
+        await phone.finalizeDispatch(
+          phoneDigest,
+          candidate.id,
+          new Date(now.getTime() + 1_000),
+          false,
+          undefined,
+        ),
+        { kind: 'superseded' },
+      );
+    }
+    assert.equal(
+      queryScalar(`SELECT status FROM phone_otp_intents WHERE id = '${next.challengeId}'`),
+      'queued',
+      'late settlement for an expired generation must not mutate its replacement',
+    );
+    const cleanup = psql(`
+      UPDATE phone_otp_intents
+      SET status = 'failed', dispatch_lease_until = NULL
+      WHERE id = '${next.challengeId}';
+    `);
+    assert.equal(cleanup.status, 0, cleanup.stderr);
+  }
+});
+
+test('password recovery redeems one exact consumed challenge atomically', async () => {
+  const config = appleConfig();
+  const accountId = '72600000-0000-4000-8000-000000000001';
+  const authUserId = '72600000-0000-4000-8000-000000000002';
+  const challengeId = '72600000-0000-4000-8000-000000000003';
+  const now = new Date();
+  const source = authSession({
+    accountId,
+    authUserId,
+    sessionId: '72600000-0000-4000-8000-000000000004',
+  });
+  source.authenticationMethods = [{ method: 'otp', timestamp: Math.floor(now.getTime() / 1_000) }];
+  const phoneDigest = createHmac('sha256', config.accountIdentityHashSecret)
+    .update(`phone-otp-intent-v1\0${source.user.phone}`)
+    .digest('hex');
+  const setup = psql(`
+    INSERT INTO accounts (id) VALUES ('${accountId}') ON CONFLICT (id) DO NOTHING;
+    INSERT INTO phone_otp_intents (
+      id, phone_digest, purpose, status, verified_auth_user_id,
+      otp_not_before, expires_at, consumed_at, created_at
+    ) VALUES (
+      '${challengeId}', '${phoneDigest}', 'password_recovery', 'consumed', '${authUserId}',
+      '${new Date(now.getTime() - 1_000).toISOString()}',
+      '${new Date(now.getTime() + 5 * 60 * 1_000).toISOString()}',
+      '${now.toISOString()}', '${new Date(now.getTime() - 2_000).toISOString()}'
+    );
+  `);
+  assert.equal(setup.status, 0, setup.stderr);
+  const phone = new PhoneAuthService(config, { db: serviceDatabase });
+  const recent = recentAuthService();
+  const redeem = () => serviceDatabase.transaction(async (transaction) => {
+    await phone.redeemRecoveryIntentInTransaction(transaction, source, challengeId, now);
+    return recent.issueVerifiedGrantInTransaction(
+      transaction,
+      source,
+      'phone_otp',
+      'password_recovery',
+      now,
+    );
+  });
+  const outcomes = await Promise.allSettled([redeem(), redeem()]);
+  assert.equal(outcomes.filter(({ status }) => status === 'fulfilled').length, 1);
+  assert.equal(outcomes.filter(({ status }) => status === 'rejected').length, 1);
+  assert.equal(queryScalar(`SELECT status FROM phone_otp_intents WHERE id = '${challengeId}'`), 'redeemed');
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE account_id = '${accountId}' AND purpose = 'password_recovery' AND method = 'phone_otp'`),
+    '1',
+  );
+  await assert.rejects(redeem(), /phone_reauthentication_required/u);
 });
 
 test('SMS delivery authority persists dedupe, rate limits, and lease fencing across instances', async () => {
   const phone = '+8613811112222';
   const now = new Date('2026-08-24T10:00:00.000Z');
+  let intentOrdinal = 0;
+  const createDispatchingIntent = (targetPhone) => {
+    intentOrdinal += 1;
+    const intentId = `73000000-0000-4000-8000-${String(intentOrdinal).padStart(12, '0')}`;
+    const phoneDigest = createHmac('sha256', smsAuthorityConfig().accountIdentityHashSecret)
+      .update(`phone-otp-intent-v1\0${targetPhone}`)
+      .digest('hex');
+    const inserted = psql(`
+      INSERT INTO phone_otp_intents (
+        id, phone_digest, purpose, status, dispatch_lease_until,
+        otp_not_before, expires_at, created_at
+      ) VALUES (
+        '${intentId}', '${phoneDigest}', 'login', 'dispatching',
+        '${new Date(now.getTime() + 60 * 60 * 1_000).toISOString()}',
+        '${now.toISOString()}', '${new Date(now.getTime() + 60 * 60 * 1_000).toISOString()}',
+        '${new Date(now.getTime() - 1_000).toISOString()}'
+      );
+    `);
+    assert.equal(inserted.status, 0, inserted.stderr);
+    return intentId;
+  };
   const first = new SmsDeliveryAuthority(smsAuthorityConfig(), { db: serviceDatabase });
   const second = new SmsDeliveryAuthority(smsAuthorityConfig(), { db: serviceDatabase });
+  const concurrentIntentId = createDispatchingIntent(phone);
   const [left, right] = await Promise.all([
     first.claim('sms-dedupe-concurrent', phone, now),
     second.claim('sms-dedupe-concurrent', phone, now),
@@ -1418,58 +1735,108 @@ test('SMS delivery authority persists dedupe, rate limits, and lease fencing acr
   const claimed = [left, right].find(({ outcome }) => outcome === 'claimed');
   assert.ok(claimed && claimed.outcome === 'claimed');
   assert.equal([left, right].filter(({ outcome }) => outcome === 'duplicate_inflight').length, 1);
-  await first.complete('sms-dedupe-concurrent', '00000000-0000-4000-8000-000000000099', now);
-  assert.equal(queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'sms-dedupe-concurrent'`), 'processing');
-  await first.complete('sms-dedupe-concurrent', claimed.leaseToken, now);
+  await first.complete('sms-dedupe-concurrent', '00000000-0000-4000-8000-000000000099', {}, now);
+  assert.equal(queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'sms-dedupe-concurrent'`), 'processing_v2');
+  assert.deepEqual(await first.authorizeSubmission(
+    'sms-dedupe-concurrent',
+    claimed.leaseToken,
+    concurrentIntentId,
+    'a'.repeat(64),
+    now,
+  ), { submissionStartedAt: now });
+  await first.complete('sms-dedupe-concurrent', claimed.leaseToken, { bizId: 'biz-concurrent' }, now);
   assert.equal((await second.claim('sms-dedupe-concurrent', phone, new Date(now.getTime() + 1_000))).outcome, 'duplicate_completed');
 
-  const expiring = await first.claim('sms-dedupe-expired-lease', '+8613811113333', now);
+  const expiringPhone = '+8613811113333';
+  const expiringIntentId = createDispatchingIntent(expiringPhone);
+  const expiring = await first.claim('sms-dedupe-expired-lease', expiringPhone, now);
   assert.equal(expiring.outcome, 'claimed');
   assert.ok(expiring.outcome === 'claimed');
   const replacement = await second.claim(
     'sms-dedupe-expired-lease',
-    '+8613811113333',
+    expiringPhone,
     new Date(now.getTime() + 3 * 60 * 1_000),
   );
   assert.equal(replacement.outcome, 'claimed');
   assert.ok(replacement.outcome === 'claimed');
   const counterTotalBeforeStaleFailure = queryScalar('SELECT SUM(count) FROM sms_usage_counters');
   await first.fail('sms-dedupe-expired-lease', expiring.leaseToken, expiring.rules, new Date(now.getTime() + 3 * 60 * 1_000));
-  await first.complete('sms-dedupe-expired-lease', expiring.leaseToken, new Date(now.getTime() + 3 * 60 * 1_000));
+  await first.complete('sms-dedupe-expired-lease', expiring.leaseToken, {}, new Date(now.getTime() + 3 * 60 * 1_000));
   assert.equal(queryScalar('SELECT SUM(count) FROM sms_usage_counters'), counterTotalBeforeStaleFailure);
   assert.equal(
     queryScalar(`SELECT status || ':' || lease_token::text FROM sms_delivery_attempts WHERE dedupe_key = 'sms-dedupe-expired-lease'`),
-    `processing:${replacement.leaseToken}`,
+    `processing_v2:${replacement.leaseToken}`,
   );
-  await second.complete('sms-dedupe-expired-lease', replacement.leaseToken, new Date(now.getTime() + 3 * 60 * 1_000));
+  const replacementNow = new Date(now.getTime() + 3 * 60 * 1_000);
+  assert.deepEqual(await second.authorizeSubmission(
+    'sms-dedupe-expired-lease',
+    replacement.leaseToken,
+    expiringIntentId,
+    'b'.repeat(64),
+    replacementNow,
+  ), { submissionStartedAt: replacementNow });
+  await second.complete('sms-dedupe-expired-lease', replacement.leaseToken, {}, replacementNow);
 
   const limitedConfig = smsAuthorityConfig({ phoneDailyLimit: 1, phoneHourlyLimit: 1 });
   const limited = new SmsDeliveryAuthority(limitedConfig, { db: serviceDatabase });
   const limitedPhone = '+8613811114444';
+  createDispatchingIntent(limitedPhone);
   const budget = await limited.claim('sms-budget-first', limitedPhone, now);
   assert.equal(budget.outcome, 'claimed');
   assert.ok(budget.outcome === 'claimed');
   await limited.fail('sms-budget-first', budget.leaseToken, budget.rules, now);
-  await assert.rejects(
-    limited.claim('sms-budget-second', limitedPhone, now),
-    /sms_rate_limited/u,
-  );
+  const firstLimitedIntent = queryScalar(`SELECT id FROM phone_otp_intents WHERE phone_digest = '${createHmac('sha256', limitedConfig.accountIdentityHashSecret).update(`phone-otp-intent-v1\0${limitedPhone}`).digest('hex')}'`);
+  assert.equal(psql(`UPDATE phone_otp_intents SET status = 'failed', dispatch_lease_until = NULL WHERE id = '${firstLimitedIntent}'`).status, 0);
+  const secondLimitedIntent = createDispatchingIntent(limitedPhone);
+  assert.equal((await limited.claim('sms-budget-second', limitedPhone, now)).outcome, 'local_rate_limited');
   assert.equal(
-    queryScalar(`SELECT COUNT(*) FROM sms_delivery_attempts WHERE dedupe_key = 'sms-budget-second'`),
-    '0',
+    queryScalar(`SELECT status || ':' || (submission_started_at IS NULL)::text || ':' || (otp_intent_id = '${secondLimitedIntent}')::text FROM sms_delivery_attempts WHERE dedupe_key = 'sms-budget-second'`),
+    'rejected_v2:true:true',
   );
 
-  const failed = await first.claim('sms-failed-retry', '+8613811115555', now);
+  const failedPhone = '+8613811115555';
+  createDispatchingIntent(failedPhone);
+  const failed = await first.claim('sms-failed-retry', failedPhone, now);
   assert.ok(failed.outcome === 'claimed');
   await first.fail('sms-failed-retry', failed.leaseToken, failed.rules, now);
   assert.equal(
     queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'sms-failed-retry'`),
-    'retryable',
+    'retryable_v2',
   );
   assert.equal(
-    (await second.claim('sms-failed-retry', '+8613811115555', new Date(now.getTime() + 1_000))).outcome,
+    (await second.claim('sms-failed-retry', failedPhone, new Date(now.getTime() + 1_000))).outcome,
     'claimed',
     'a provider failure may retry delivery but must not refund the abuse budget',
+  );
+
+  const ambiguousPhone = '+8613811116666';
+  const ambiguousIntentId = createDispatchingIntent(ambiguousPhone);
+  const ambiguous = await first.claim('sms-ambiguous-no-resend', ambiguousPhone, now);
+  assert.ok(ambiguous.outcome === 'claimed');
+  assert.deepEqual(await first.authorizeSubmission(
+    'sms-ambiguous-no-resend',
+    ambiguous.leaseToken,
+    ambiguousIntentId,
+    'c'.repeat(64),
+    now,
+  ), { submissionStartedAt: now });
+  assert.equal(await first.markAmbiguous('sms-ambiguous-no-resend', ambiguous.leaseToken, now), true);
+  const quarantined = psql(`
+    UPDATE phone_otp_intents
+    SET status = 'quarantined', dispatch_lease_until = '${new Date(now.getTime() + 5 * 60 * 1_000).toISOString()}'
+    WHERE id = '${ambiguousIntentId}';
+  `);
+  assert.equal(quarantined.status, 0, quarantined.stderr);
+  const afterEveryLeaseAndTtl = await second.claim(
+    'sms-ambiguous-no-resend',
+    ambiguousPhone,
+    new Date(now.getTime() + 24 * 60 * 60 * 1_000),
+  );
+  assert.equal(afterEveryLeaseAndTtl.outcome, 'unauthorized_generation');
+  assert.equal(
+    queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'sms-ambiguous-no-resend'`),
+    'processing_v2',
+    'an expired generation must reject late hooks without making its ambiguous provider call resendable',
   );
 });
 
@@ -1504,20 +1871,54 @@ test('phone and SMS retention cleanup removes only expired, non-active authority
       '${new Date(now.getTime() - 10 * 60 * 1_000).toISOString()}',
       '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}'
     );
+    INSERT INTO phone_otp_intents (
+      id, phone_digest, purpose, status, verification_token,
+      otp_not_before, expires_at, created_at
+    ) VALUES (
+      '72000000-0000-4000-8000-000000000009', '${'7'.repeat(64)}', 'login', 'verifying',
+      '72000000-0000-4000-8000-000000000008',
+      '${new Date(now.getTime() - 19 * 60 * 1_000).toISOString()}',
+      '${new Date(now.getTime() - 10 * 60 * 1_000).toISOString()}',
+      '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}'
+    );
+    INSERT INTO phone_otp_intents (
+      id, phone_digest, purpose, status, provider_rejected, otp_not_before, expires_at, created_at
+    ) VALUES
+      ('72000000-0000-4000-8000-000000000020', '${'d'.repeat(64)}', 'login', 'consumed', false,
+       '${new Date(now.getTime() - 19 * 60 * 1_000).toISOString()}',
+       '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}'),
+      ('72000000-0000-4000-8000-000000000021', '${'e'.repeat(64)}', 'login', 'consumed', false,
+       '${new Date(now.getTime() - 19 * 60 * 1_000).toISOString()}',
+       '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}'),
+      ('72000000-0000-4000-8000-000000000022', '${'f'.repeat(64)}', 'login', 'consumed', false,
+       '${new Date(now.getTime() - 19 * 60 * 1_000).toISOString()}',
+       '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}'),
+      ('72000000-0000-4000-8000-000000000023', '${'a'.repeat(64)}', 'password_recovery', 'ready', true,
+       '${new Date(now.getTime() - 19 * 60 * 1_000).toISOString()}',
+       '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}');
     INSERT INTO sms_delivery_attempts (
-      dedupe_key, phone_digest, status, lease_token, lease_until, attempt_count,
+      dedupe_key, phone_digest, otp_intent_id, otp_dispatch_sequence,
+      status, lease_token, lease_until, attempt_count,
       completed_at, expires_at, created_at, updated_at
     ) VALUES
-      ('sms-retention-completed', '${'d'.repeat(64)}', 'completed',
+      ('sms-retention-completed', '${'d'.repeat(64)}', '72000000-0000-4000-8000-000000000020',
+       (SELECT dispatch_sequence FROM phone_otp_intents WHERE id = '72000000-0000-4000-8000-000000000020'), 'completed_v2',
        '72000000-0000-4000-8000-000000000002', '${new Date(now.getTime() - 1_000).toISOString()}', 1,
        '${new Date(now.getTime() - 2_000).toISOString()}',
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}'),
-      ('sms-retention-expired-lease', '${'e'.repeat(64)}', 'processing',
+      ('sms-retention-expired-lease', '${'e'.repeat(64)}', '72000000-0000-4000-8000-000000000021',
+       (SELECT dispatch_sequence FROM phone_otp_intents WHERE id = '72000000-0000-4000-8000-000000000021'), 'processing_v2',
        '72000000-0000-4000-8000-000000000003', '${new Date(now.getTime() - 1_000).toISOString()}', 1,
        NULL,
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}'),
-      ('sms-retention-active-lease', '${'f'.repeat(64)}', 'processing',
+      ('sms-retention-active-lease', '${'f'.repeat(64)}', '72000000-0000-4000-8000-000000000022',
+       (SELECT dispatch_sequence FROM phone_otp_intents WHERE id = '72000000-0000-4000-8000-000000000022'), 'processing_v2',
        '72000000-0000-4000-8000-000000000004', '${new Date(now.getTime() + 60_000).toISOString()}', 1,
+       NULL,
+       '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}'),
+      ('sms-retention-rejected', '${'a'.repeat(64)}', '72000000-0000-4000-8000-000000000023',
+       (SELECT dispatch_sequence FROM phone_otp_intents WHERE id = '72000000-0000-4000-8000-000000000023'), 'rejected_v2',
+       '72000000-0000-4000-8000-000000000005', '${new Date(now.getTime() - 1_000).toISOString()}', 1,
        NULL,
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}');
     INSERT INTO sms_usage_counters (scope_key, count, expires_at)
@@ -1530,8 +1931,14 @@ test('phone and SMS retention cleanup removes only expired, non-active authority
     '0',
   );
   assert.equal(
+    queryScalar(`SELECT status || ':' || (verification_token IS NOT NULL)::text FROM phone_otp_intents WHERE id = '72000000-0000-4000-8000-000000000009'`),
+    'verifying:true',
+    'an ambiguous verification fence must not become reusable or deletable by clock expiry',
+  );
+  assert.equal(
     queryScalar(`SELECT string_agg(dedupe_key, ',' ORDER BY dedupe_key) FROM sms_delivery_attempts WHERE dedupe_key LIKE 'sms-retention-%'`),
-    'sms-retention-active-lease',
+    'sms-retention-active-lease,sms-retention-expired-lease',
+    'ambiguous processing attempts survive lease expiry until positive reconciliation',
   );
   assert.equal(
     queryScalar(`SELECT COUNT(*) FROM sms_usage_counters WHERE scope_key = 'sms-retention-expired-counter'`),
@@ -1663,6 +2070,91 @@ test('recent-auth grants survive service restarts and atomically reject replay, 
   await assert.rejects(
     restartedInstance.consume(source, expiredGrant.grantId, 'account_delete'),
     /recent_auth_required/u,
+  );
+});
+
+test('phone-binding recent-auth grants stay purpose- and session-bound across access-token refreshes', async () => {
+  const service = recentAuthService();
+  const source = authSession({
+    accountId: '40000000-0000-4000-8000-000000000021',
+    authUserId: '40000000-0000-4000-8000-000000000022',
+    sessionId: '40000000-0000-4000-8000-000000000023',
+  });
+  const refreshedSource = {
+    ...source,
+    accessToken: 'refreshed-access-token',
+    issuedAt: source.issuedAt + 3_600,
+  };
+  const grant = await service.issueVerifiedGrant(source, 'wechat', 'phone_binding');
+
+  await service.assertValid(refreshedSource, grant.grantId, 'phone_binding', 'wechat');
+  await assert.rejects(
+    service.assertValid(
+      authSession({
+        accountId: source.user.id,
+        authUserId: source.authUserId,
+        sessionId: '40000000-0000-4000-8000-000000000024',
+      }),
+      grant.grantId,
+      'phone_binding',
+      'wechat',
+    ),
+    /recent_auth_required/,
+  );
+  await assert.rejects(
+    service.assertValid(refreshedSource, grant.grantId, 'account_delete', 'wechat'),
+    /recent_auth_required/,
+  );
+  await assert.rejects(
+    service.assertValid(refreshedSource, grant.grantId, 'phone_binding', 'apple'),
+    /recent_auth_required/,
+  );
+  await service.consume(refreshedSource, grant.grantId, 'phone_binding');
+  await assert.rejects(
+    service.assertValid(refreshedSource, grant.grantId, 'phone_binding', 'wechat'),
+    /recent_auth_required/,
+  );
+});
+
+test('a verified WeChat login challenge can authorize exactly one session issuance path', async () => {
+  const challengeId = '40000000-0000-4000-8000-000000000031';
+  const codeDigest = 'a'.repeat(64);
+  const subjectDigest = 'b'.repeat(64);
+  const inserted = psql(`
+    INSERT INTO wechat_auth_challenges (
+      id, purpose, state_digest, code_digest, subject_digest, status, attempt_count, expires_at
+    ) VALUES (
+      '${challengeId}', 'login', '${'c'.repeat(64)}', '${codeDigest}', '${subjectDigest}',
+      'verified', 1, now() + interval '5 minutes'
+    );
+  `);
+  assert.equal(inserted.status, 0, inserted.stderr);
+  const service = new WechatAuthService(
+    {
+      accountIdentityHashSecret: 'recent-auth-integration-secret-32-bytes',
+      supabasePublishableKey: 'integration-publishable-key',
+      supabaseSecretKey: 'integration-secret-key',
+      supabaseUrl: 'http://127.0.0.1:1',
+      wechatAppId: 'wx1234567890abcdef',
+      wechatAppSecret: 'integration-wechat-secret',
+      wechatUniversalLink: 'https://api.example.com/wechat-auth/',
+    },
+    {},
+    { db: serviceDatabase },
+    {},
+    {},
+  );
+
+  const results = await Promise.allSettled([
+    service.consumeLoginChallenge(challengeId, codeDigest, subjectDigest),
+    service.consumeLoginChallenge(challengeId, codeDigest, subjectDigest),
+  ]);
+
+  assert.equal(results.filter(({ status }) => status === 'fulfilled').length, 1);
+  assert.equal(results.filter(({ status }) => status === 'rejected').length, 1);
+  assert.equal(
+    queryScalar(`SELECT status || ':' || (consumed_at IS NOT NULL)::text FROM wechat_auth_challenges WHERE id = '${challengeId}'`),
+    'consumed:true',
   );
 });
 
