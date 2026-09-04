@@ -826,7 +826,7 @@ for (const [name, source, invocations] of [
 }
 for (const loginContract of [
   'OpenSDK2.0.7_NoPay.zip',
-  '882d99dabd26aceb6ad3e7a12c4b7da8a37626e68a04c8b89740c2275db24258',
+  'ce1cb4736d56adb9423561c40504f6ffdf841024dc2196bd38542228fbd7587d',
   'wechat-sdk-android-without-mta:6.8.0',
   'services/api/src/auth/wechat-auth.controller.ts',
   'WECHAT_APP_SECRET',
