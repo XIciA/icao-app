@@ -946,9 +946,31 @@ for (const requiredProvisioningContract of [
     throw new Error(`The remote content signing-key provisioning boundary is incomplete: ${requiredProvisioningContract}`);
   }
 }
+const runtimeParentContractStart = contentSigningKeyProvision.indexOf(
+  'content_key_validate_runtime_parent() {',
+);
+const runtimeParentContractEnd = contentSigningKeyProvision.indexOf(
+  '\n}\n\ncontent_key_validate_runtime_env() {',
+  runtimeParentContractStart,
+);
+const runtimeParentContract = contentSigningKeyProvision.slice(
+  runtimeParentContractStart,
+  runtimeParentContractEnd,
+);
+if (
+  runtimeParentContractStart < 0
+  || runtimeParentContractEnd <= runtimeParentContractStart
+  || !runtimeParentContract.includes('[ "$(content_key_read_mode "$runtime_parent")" != 700 ]')
+  || /710|711|750|751|755/u.test(runtimeParentContract)
+  || !productionMigrationApply.includes('"$runtime_api_dir"')
+  || !productionMigrationApply.includes('require_root_owned_path directory "$directory" 700')
+) {
+  throw new Error('The API deploy and production migration paths must require an exact 0700 runtime parent.');
+}
 for (const requiredProvisioningTest of [
   'staging is unique, private, lock-protected, and cleaned exactly',
   'staging rejects unsafe modes, links, owner mismatch, and unsafe cleanup',
+  'runtime parent requires its expected owner, a real directory, and exact 0700 mode',
   'candidate preflight failure leaves the runtime environment byte-identical and removes secrets',
   'post-cutover rollback restores image, env, compose, source, and verifies old identity',
   'rollback command failure remains a non-zero high-priority failure',

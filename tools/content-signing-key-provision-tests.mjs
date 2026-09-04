@@ -417,6 +417,41 @@ test('staging rejects unsafe modes, links, owner mismatch, and unsafe cleanup', 
   }
 });
 
+test('runtime parent requires its expected owner, a real directory, and exact 0700 mode', async () => {
+  const fixture = await createFixture();
+  try {
+    const runtimeDirectory = join(fixture.temporary, 'runtime-parent');
+    const runtimeLink = join(fixture.temporary, 'runtime-parent-link');
+    await mkdir(runtimeDirectory, { mode: 0o700 });
+
+    assert.equal(runFunction(fixture, 'content_key_validate_runtime_parent', [
+      runtimeDirectory,
+      String(uid),
+    ]).status, 0);
+    assert.notEqual(runFunction(fixture, 'content_key_validate_runtime_parent', [
+      runtimeDirectory,
+      String(uid + 1),
+    ]).status, 0);
+
+    for (const unsafeMode of [0o710, 0o711, 0o750, 0o751, 0o755]) {
+      await chmod(runtimeDirectory, unsafeMode);
+      assert.notEqual(runFunction(fixture, 'content_key_validate_runtime_parent', [
+        runtimeDirectory,
+        String(uid),
+      ]).status, 0);
+    }
+
+    await chmod(runtimeDirectory, 0o700);
+    await symlink(runtimeDirectory, runtimeLink);
+    assert.notEqual(runFunction(fixture, 'content_key_validate_runtime_parent', [
+      runtimeLink,
+      String(uid),
+    ]).status, 0);
+  } finally {
+    await rm(fixture.temporary, { recursive: true, force: true });
+  }
+});
+
 test('candidate preflight failure leaves the runtime environment byte-identical and removes secrets', async () => {
   const fixture = await createFixture();
   try {

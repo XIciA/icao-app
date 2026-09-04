@@ -242,10 +242,10 @@ content_key_validate_runtime_parent() {
     content_key_fail runtime_parent_wrong_owner
     return 1
   fi
-  case "$(content_key_read_mode "$runtime_parent")" in
-    700|710|711|750|751|755) ;;
-    *) content_key_fail runtime_parent_unsafe_mode; return 1 ;;
-  esac
+  if [ "$(content_key_read_mode "$runtime_parent")" != 700 ]; then
+    content_key_fail runtime_parent_unsafe_mode
+    return 1
+  fi
 }
 
 content_key_validate_runtime_env() {

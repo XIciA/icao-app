@@ -996,10 +996,10 @@ test('remote path guard rejects symlinks and abnormal mode while accepting a pro
     await mkdir(fakeBin);
     await writeFile(join(fakeBin, 'stat'), '#!/bin/sh\nprintf "%s\\n" "${MOCK_STAT_RESULT:?}"\n');
     await chmod(join(fakeBin, 'stat'), 0o700);
-    const run = (target, identity, kind = 'file') => spawnSync('/bin/sh', ['-c', `
+    const run = (target, identity, kind = 'file', requiredMode = '600') => spawnSync('/bin/sh', ['-c', `
 set -eu
 ${guard}
-require_root_owned_path "$PATH_KIND" "$PROTECTED_TARGET" 600
+require_root_owned_path "$PATH_KIND" "$PROTECTED_TARGET" "$REQUIRED_MODE"
 `], {
       encoding: 'utf8',
       env: {
@@ -1008,6 +1008,7 @@ require_root_owned_path "$PATH_KIND" "$PROTECTED_TARGET" 600
         PATH: `${fakeBin}:${process.env.PATH ?? ''}`,
         PATH_KIND: kind,
         PROTECTED_TARGET: target,
+        REQUIRED_MODE: requiredMode,
       },
     });
     assert.equal(run(file, '0:600').status, 0);
@@ -1015,6 +1016,8 @@ require_root_owned_path "$PATH_KIND" "$PROTECTED_TARGET" 600
     assert.notEqual(run(file, '1000:600').status, 0);
     assert.notEqual(run(link, '0:600').status, 0);
     assert.notEqual(run(file, '0:600', 'directory').status, 0);
+    assert.equal(run(root, '0:700', 'directory', '700').status, 0);
+    assert.notEqual(run(root, '0:755', 'directory', '700').status, 0);
   } finally {
     await rm(root, { force: true, recursive: true });
   }
