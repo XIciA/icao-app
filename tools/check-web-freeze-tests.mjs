@@ -37,16 +37,15 @@ function requireSuccess(result, label) {
   );
 }
 
-test('the stale absolute baseline can pass only through the exact reviewed Native-only increment', () => {
+test('the approved Vercel snapshot matches exactly without a Native-only fallback', () => {
   const result = spawnSync(process.execPath, [cliPath, '--explain'], {
     cwd: repositoryRoot,
     encoding: 'utf8',
     env: process.env,
   });
-  requireSuccess(result, 'strict Native-only incremental proof failed');
-  assert.match(result.stdout, /6 exact reviewed deltas/u);
-  assert.match(result.stdout, /app\.json: identical after removing the matching Native build identifiers/u);
-  assert.match(result.stdout, /contracts index: identical emitted JavaScript/u);
+  requireSuccess(result, 'approved Vercel snapshot no longer matches');
+  assert.match(result.stdout, /Web freeze check passed: \d+ protected files match the baseline\./u);
+  assert.doesNotMatch(result.stdout, /Native-only increment proof/u);
 });
 
 test('the Native app config proof accepts only matching advanced build identifiers', () => {
