@@ -1,5 +1,6 @@
 import type {
   CardLearningState,
+  LearningRecord,
   QuestionBankCategory,
   QuestionBankDataset,
   QuestionBankStudyItem,
@@ -12,6 +13,7 @@ import {
   resolveVercelListeningExamRange,
   scoreListeningExam,
 } from '../listening-exam';
+import { captureListeningReview, hasListeningReview, toListeningReviewPackage } from '../listening-review';
 
 const dataset: QuestionBankDataset = {
   id: 'listening',
@@ -79,6 +81,38 @@ function state(selectedChoiceIndex: number): CardLearningState {
 }
 
 describe('Vercel listening exam', () => {
+  it('persists only this paper and freezes choices and text across a JSON round trip', () => {
+    const input = studyPackage();
+    const states = Object.fromEntries(input.items.map((item, index) => [item.id, state(index % 2)]));
+    const snapshot = captureListeningReview(input, states, 'web', 'vercel-legacy')!;
+    expect(snapshot.result).toMatchObject({ answeredCount: 20, correctCount: 10, score: 25, level: 4 });
+    expect(snapshot.items.every((item) => !item.dataset.categories.length && !item.category.topics.length && !item.topic.cards.length)).toBe(true);
+    input.items[0].card.choices![0] = 'Changed after the exam';
+    states[input.items[0].id].selectedChoiceIndex = 1;
+    const record = JSON.parse(JSON.stringify({
+      ...input.record, id: 'saved', completedCount: 20, totalCount: 20, correctCount: 10,
+      durationSeconds: 60, reason: 'complete', createdAt: snapshot.completedAt, vercelListeningReview: snapshot,
+    })) as LearningRecord;
+    expect(hasListeningReview(record)).toBe(true);
+    const restored = toListeningReviewPackage(record, 'web', 'vercel-legacy')!;
+    expect(restored.items.map((item) => item.id)).toEqual(input.items.map((item) => item.id));
+    expect(restored.items[0].card.choices![0]).toBe('A');
+    expect(record.vercelListeningReview!.items[0].selectedChoiceIndex).toBe(0);
+    expect(restored.listeningReviewRecord).toBe(record);
+    for (const platform of ['ios', 'android']) {
+      expect(captureListeningReview(input, states, platform, 'vercel-legacy')).toBeUndefined();
+      expect(toListeningReviewPackage(record, platform, 'vercel-legacy')).toBeUndefined();
+    }
+    expect(captureListeningReview(input, states, 'web', 'edgeone-production')).toBeUndefined();
+    expect(toListeningReviewPackage(record, 'web', 'edgeone-production')).toBeUndefined();
+  });
+
+  it('does not offer full review for an incomplete paper or legacy summary', () => {
+    const input = studyPackage();
+    expect(captureListeningReview(input, { [input.items[0].id]: state(0) }, 'web')).toBeUndefined();
+    expect(hasListeningReview({ recordType: 'mock_exam' } as LearningRecord)).toBe(false);
+  });
+
   it('is enabled only for a 20-question Vercel legacy mock-exam segment', () => {
     const input = studyPackage();
     expect(resolveVercelListeningExamRange(input, 'web', 'vercel-legacy')).toMatchObject({

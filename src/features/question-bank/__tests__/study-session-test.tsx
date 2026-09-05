@@ -1,5 +1,6 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { Pressable, Text, View } from 'react-native';
+import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react-native';
+import { Platform, Pressable, Text, View } from 'react-native';
+import { toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 
 import { useStudySession } from '../hooks/useStudySession';
 import type { LearningStore } from '../platform/learning-store';
@@ -9,6 +10,7 @@ import type {
   QuestionBankDataset,
   QuestionBankStudyPackage,
   QuestionBankTopic,
+  LearningRecord,
 } from '../types';
 
 jest.mock('../recording/recording-repository', () => ({
@@ -151,6 +153,73 @@ function PackageHarness({ packageValue, store }: { packageValue: QuestionBankStu
 describe('useStudySession', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  it('saves a listening checkpoint, keeps one record on finish, and reopens immutable answers without writes', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    try {
+      const packageValue = studyPackage();
+      const item = packageValue.items[1];
+      packageValue.items = Array.from({ length: 20 }, (_, index) => ({ ...item, id: `listening-${index}` }));
+      const store = createStore();
+      const hook = await renderHook(() => useStudySession({ studyPackage: packageValue, store }));
+      for (let index = 0; index < 20; index += 1) {
+        await act(async () => { hook.result.current.goTo(index, false); });
+        await act(async () => { hook.result.current.chooseOption(index % 2, false); });
+      }
+      await act(async () => { await hook.result.current.saveListeningResult(); });
+      expect(hook.result.current.report).toBeUndefined();
+      expect(store.addRecord).toHaveBeenCalledTimes(1);
+      const checkpoint = (store.addRecord as jest.Mock).mock.calls[0][0] as LearningRecord;
+      expect(checkpoint.vercelListeningReview?.result.score).toBe(25);
+      expect(checkpoint.completedCount).toBe(20);
+      await act(async () => { await hook.result.current.finish('complete'); });
+      const finished = (store.addRecord as jest.Mock).mock.calls[1][0] as LearningRecord;
+      expect(finished.id).toBe(checkpoint.id);
+      expect(finished.vercelListeningReview).toEqual(checkpoint.vercelListeningReview);
+      await hook.unmount();
+
+      const saved = JSON.parse(JSON.stringify(finished)) as LearningRecord;
+      const reviewPackage = toListeningReviewPackage(saved, 'web')!;
+      const reviewStore = createStore();
+      const review = await renderHook(() => useStudySession({ studyPackage: reviewPackage, store: reviewStore }));
+      expect(review.result.current.states['listening-0'].selectedChoiceIndex).toBe(0);
+      await act(async () => { review.result.current.chooseOption(1); });
+      expect(review.result.current.states['listening-0'].selectedChoiceIndex).toBe(0);
+      await act(async () => { review.result.current.goTo(19, false); });
+      expect(review.result.current.cardState?.selectedChoiceIndex).toBe(1);
+      await act(async () => { await review.result.current.finish('complete'); });
+      await act(async () => { await review.result.current.saveListeningResult(); });
+      expect(reviewStore.addRecord).not.toHaveBeenCalled();
+      expect(reviewStore.saveCardState).not.toHaveBeenCalled();
+      expect(review.result.current.report).toBeUndefined();
+      expect(review.result.current.historyRecord).toEqual(saved);
+      await review.unmount();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
+  });
+
+  it.each(['ios', 'android'] as const)('does not add listening history to a complete %s paper', async (platform) => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+    try {
+      const packageValue = studyPackage();
+      const item = packageValue.items[1];
+      packageValue.items = Array.from({ length: 20 }, (_, index) => ({ ...item, id: `listening-${index}` }));
+      const store = createStore();
+      const hook = await renderHook(() => useStudySession({ studyPackage: packageValue, store }));
+      for (let index = 0; index < 20; index += 1) {
+        await act(async () => { hook.result.current.goTo(index, false); });
+        await act(async () => { hook.result.current.chooseOption(1); });
+      }
+      await act(async () => { await hook.result.current.finish('complete'); });
+      expect((store.addRecord as jest.Mock).mock.calls[0][0].vercelListeningReview).toBeUndefined();
+      await hook.unmount();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 
   it('keeps visits separate from completion and carries auto reveal across navigation', async () => {

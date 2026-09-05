@@ -20,7 +20,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = '4a7ac536065af93599d3562b27e20a617476a903225b34c6a5d5ae4c7f9dd46d';
+const approvedManifestSha256 = 'b2768bc4bbf7022ff18b9d59380f55e7bf2c9eb40df85467346aea4f2d87b483';
 const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
 const approvedNativeIncrementHashes = new Map([
   ['app.config.js', 'a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2'],

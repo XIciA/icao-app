@@ -3,6 +3,7 @@ import type {
   QuestionBankAccessSummary,
   QuestionBankContentAccess,
 } from '@icao/contracts';
+import type { VercelListeningReview } from '@/features/mock-exam/listening-review';
 
 export type QuestionBankId = 'listening' | 'sentences900' | 'radiotelephony' | 'opi' | 'storytelling';
 
@@ -159,6 +160,7 @@ export type QuestionBankStudyPackage = {
   items: QuestionBankStudyItem[];
   progressMode: 'persistent' | 'session-only';
   record: QuestionBankStudyRecordDescriptor;
+  listeningReviewRecord?: LearningRecord;
 };
 
 export type LearningRecord = {
@@ -182,6 +184,7 @@ export type LearningRecord = {
   updatedAt?: string;
   recordType?: 'session' | 'ai_result' | 'mock_exam';
   mockExam?: MockExamRecordMeta;
+  vercelListeningReview?: VercelListeningReview;
   aiResult?: {
     questionId: string;
     rawTranscript?: string;

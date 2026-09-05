@@ -1,4 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Platform } from 'react-native';
+
+import { isVercelLegacyWeb } from '@/config/web-runtime';
+import { captureListeningReview, hasListeningReview, listeningReviewStates, type VercelListeningReview } from '@/features/mock-exam/listening-review';
 
 import { sqliteLearningStore, type LearningStore, migrateLegacyCardState } from '../platform/learning-store';
 import type {
@@ -76,6 +80,9 @@ export function preferredWorkbenchTab(tabs: StudyConsoleTab[]) {
 
 export function useStudySession(options: UseStudySessionOptions) {
   const packageInput = 'studyPackage' in options ? options.studyPackage : undefined;
+  const reviewCandidate = packageInput?.listeningReviewRecord;
+  const historyRecord = isVercelLegacyWeb(Platform.OS) && reviewCandidate && hasListeningReview(reviewCandidate)
+    ? reviewCandidate : undefined;
   const legacyDataset = 'studyPackage' in options ? undefined : options.dataset;
   const legacyCategory = 'studyPackage' in options ? undefined : options.category;
   const legacyTopic = 'studyPackage' in options ? undefined : options.topic;
@@ -116,6 +123,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   ).current;
   const finishedAt = useRef<string | undefined>(undefined);
   const committedReport = useRef<LearningRecord | undefined>(undefined);
+  const listeningSnapshot = useRef<VercelListeningReview | undefined>(undefined);
   const [states, setStates] = useState<Record<string, CardLearningState>>({});
   const statesRef = useRef(states);
   const [hydrated, setHydrated] = useState(false);
@@ -153,13 +161,14 @@ export function useStudySession(options: UseStudySessionOptions) {
     setLoadError(undefined);
 
     if (progressMode === 'session-only') {
-      statesRef.current = {};
-      setStates({});
+      const saved = historyRecord ? listeningReviewStates(historyRecord) : {};
+      statesRef.current = saved;
+      setStates(saved);
       setCurrentIndex(startingIndex);
       setVisitedIndexes(new Set([startingIndex]));
-      setCompletedCardIds(new Set());
-      setRevealed(false);
-      setAutoReveal(false);
+      setCompletedCardIds(new Set(Object.keys(saved)));
+      setRevealed(Boolean(historyRecord));
+      setAutoReveal(Boolean(historyRecord));
       setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
       setHydrated(true);
       return () => { active = false; };
@@ -182,7 +191,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
+  }, [historyRecord, initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
 
   const resolveItem = useCallback((itemOrCardId: string) => {
     if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
@@ -193,6 +202,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   const persistCard = useCallback((itemOrCardId: string, patch: Partial<CardLearningState>) => {
     const target = resolveItem(itemOrCardId);
     if (!target) return undefined;
+    if (historyRecord) return statesRef.current[target.id];
     const current = statesRef.current[target.id] ?? createEmptyCardState();
     const next = migrateLegacyCardState({
       ...current,
@@ -210,7 +220,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       });
     }
     return next;
-  }, [progressMode, resolveItem, store]);
+  }, [historyRecord, progressMode, resolveItem, store]);
 
   const retrySave = useCallback(() => {
     if (!saveFailure || progressMode !== 'persistent') return;
@@ -306,11 +316,15 @@ export function useStudySession(options: UseStudySessionOptions) {
     setFeedbackCardIds((current) => new Set(current).add(item.id));
   }, [item]);
 
-  const finish = useCallback(async (
+  const saveReport = useCallback(async (
     reason: 'abort' | 'complete',
     metrics?: { annotationCount?: number; noteCount?: number },
+    checkpoint = false,
   ) => {
+    if (historyRecord) return historyRecord;
     if (committedReport.current) return committedReport.current;
+    listeningSnapshot.current ??= captureListeningReview(packageInput, statesRef.current, Platform.OS);
+    if (checkpoint && !listeningSnapshot.current) return undefined;
     const sessionItemIds = new Set(
       Array.from(visitedIndexes).flatMap((index) => items[index]?.id ?? []),
     );
@@ -355,18 +369,28 @@ export function useStudySession(options: UseStudySessionOptions) {
       updatedAt,
       recordType: descriptor.recordType ?? (descriptor.mockExam ? 'mock_exam' : 'session'),
       ...(descriptor.mockExam ? { mockExam: descriptor.mockExam } : {}),
+      ...(listeningSnapshot.current ? { vercelListeningReview: listeningSnapshot.current } : {}),
     };
     await store.addRecord(nextReport);
+    if (checkpoint) return nextReport;
     committedReport.current = nextReport;
     setReport(nextReport);
     recordingRepository.cleanupSession(sessionId);
     return nextReport;
-  }, [completedCardIds.size, feedbackCardIds.size, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, packageInput, recordDescriptor, sessionId, startedAt, store, visitedIndexes]);
+  }, [completedCardIds.size, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, packageInput, recordDescriptor, sessionId, startedAt, store, visitedIndexes]);
+
+  const finish = useCallback((reason: 'abort' | 'complete', metrics?: { annotationCount?: number; noteCount?: number }) => (
+    saveReport(reason, metrics)
+  ), [saveReport]);
+  const saveListeningResult = useCallback(() => (
+    saveReport(items.every((entry) => statesRef.current[entry.id]?.completed) ? 'complete' : 'abort', undefined, true)
+  ), [items, saveReport]);
 
   useEffect(() => () => recordingRepository.cleanupSession(sessionId), [sessionId]);
 
   return {
     behavior,
+    historyRecord,
     sessionId,
     sessionStartedAt,
     hydrated,
@@ -406,5 +430,6 @@ export function useStudySession(options: UseStudySessionOptions) {
     updateAnswer,
     markFeedback,
     finish,
+    saveListeningResult,
   };
 }
