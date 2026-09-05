@@ -6,9 +6,11 @@ import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-han
 
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
+import { captureListeningReview, listeningReviewStates, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 import type { CardLearningState, LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 
 const mockFinish = jest.fn();
+const mockSaveListeningResult = jest.fn(async () => undefined);
 const mockGoTo = jest.fn();
 const mockFlush = jest.fn(async () => true);
 const mockDismissTo = jest.fn();
@@ -180,7 +182,8 @@ function listeningExamPackage(includeFollowingModule = false): QuestionBankStudy
 function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPackage }) {
   const items = input.studyPackage!.items;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [states, setStates] = useState<Record<string, CardLearningState>>({});
+  const historyRecord = input.studyPackage?.listeningReviewRecord;
+  const [states, setStates] = useState<Record<string, CardLearningState>>(() => historyRecord ? listeningReviewStates(historyRecord) : {});
   const [visitedIndexes, setVisitedIndexes] = useState<Set<number>>(() => new Set([0]));
   const [studyReport, setStudyReport] = useState<LearningRecord>();
   const currentItem = items[currentIndex];
@@ -217,6 +220,7 @@ function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPa
   }));
   return {
     hydrated: true,
+    historyRecord,
     report: studyReport,
     items,
     item: currentItem,
@@ -236,6 +240,7 @@ function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPa
       mockFinish(reason);
       setStudyReport(report(reason));
     },
+    saveListeningResult: mockSaveListeningResult,
     goTo,
     chooseOption,
     markCompleted,
@@ -273,6 +278,7 @@ function useMockPersistentLearningSession() {
 describe('study exit flow', () => {
   beforeEach(() => {
     mockFinish.mockReset();
+    mockSaveListeningResult.mockReset().mockResolvedValue(undefined);
     mockGoTo.mockReset();
     mockFlush.mockReset().mockResolvedValue(true);
     mockDismissTo.mockReset();
@@ -514,6 +520,7 @@ describe('study exit flow', () => {
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     mockSessionOverride = useMockListeningExamSession;
     const studyPackage = listeningExamPackage(true);
+    mockSaveListeningResult.mockRejectedValueOnce(new Error('storage_full'));
 
     try {
       const screen = await render(<QuestionBankStudyScreen onReturn={jest.fn()} returnLabel="返回 AI 模考" studyPackage={studyPackage} />);
@@ -544,11 +551,44 @@ describe('study exit flow', () => {
       await waitFor(() => expect(screen.getByLabelText('听力成绩 50 分 6 级')).toBeTruthy());
       expect(screen.getByText('task-revealed:true')).toBeTruthy();
       expect(screen.getByText('task-read-only:true')).toBeTruthy();
+      expect(mockSaveListeningResult).toHaveBeenCalledTimes(1);
+      await waitFor(() => expect(screen.getByText('听力复盘尚未保存，请重试后再离开。')).toBeTruthy());
+      await act(async () => { fireEvent.press(screen.getByLabelText('重试保存复盘')); });
+      expect(mockSaveListeningResult).toHaveBeenCalledTimes(2);
+      expect(screen.queryByText('听力复盘尚未保存，请重试后再离开。')).toBeNull();
 
       await act(async () => { mockAnswerCardProps?.onSelect(19); });
       await act(async () => { fireEvent.press(screen.getByLabelText('继续考试')); });
       await waitFor(() => expect(mockGoTo).toHaveBeenLastCalledWith(20));
       expect(screen.queryByLabelText('听力成绩 50 分 6 级')).toBeNull();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
+  });
+
+  it('opens saved listening results locked and returns to history without finishing or saving again', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    mockSessionOverride = useMockListeningExamSession;
+    try {
+      const input = listeningExamPackage();
+      const states = Object.fromEntries(input.items.map((item, index) => [item.id, {
+        visited: true, completed: true, selectedChoiceIndex: index % 2, note: '', updatedAt: input.startedAt,
+      }]));
+      const record: LearningRecord = {
+        ...report('complete'), ...input.record, id: 'saved-listening',
+        vercelListeningReview: captureListeningReview(input, states, 'web'),
+      };
+      const onReturn = jest.fn();
+      const screen = await render(<QuestionBankStudyScreen onReturn={onReturn} studyPackage={toListeningReviewPackage(record, 'web')!} />);
+      expect(screen.getByLabelText('听力成绩 25 分 4 级')).toBeTruthy();
+      expect(screen.getByText('task-read-only:true')).toBeTruthy();
+      await act(async () => { fireEvent.press(screen.getByLabelText('选择错误答案')); });
+      expect(screen.getByLabelText('听力成绩 25 分 4 级')).toBeTruthy();
+      await act(async () => { fireEvent.press(screen.getByLabelText('返回记录')); });
+      expect(onReturn).toHaveBeenCalledTimes(1);
+      expect(mockFinish).not.toHaveBeenCalled();
+      expect(mockSaveListeningResult).not.toHaveBeenCalled();
     } finally {
       Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
     }

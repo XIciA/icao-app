@@ -1,17 +1,21 @@
 import { Clock3, History, Sparkles, Target, Trash2 } from '@/components/ui/icons';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Alert, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
-import { AppText, Card, Screen, Tag } from '@/components/ui';
+import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
+import { hasListeningReview, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 import { colors, fonts, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { deleteAiResult } from '@/features/account/privacy-self-service';
 import { AiGeneratedContentLabel } from '@/features/ai/AiGeneratedContentLabel';
 
 import { sqliteLearningStore } from '../platform/learning-store';
-import type { LearningRecord } from '../types';
+import type { LearningRecord, QuestionBankStudyPackage } from '../types';
 import { AiReviewResultView } from './AiReviewResultView';
+
+const ListeningHistoryScreen = lazy(() => import('./QuestionBankStudyScreen').then((module) => ({ default: module.QuestionBankStudyScreen })));
 
 function duration(value: number) {
   return value < 60 ? `${value} 秒` : `${Math.floor(value / 60)} 分 ${value % 60} 秒`;
@@ -59,6 +63,8 @@ function SavedAiResult({ result }: { result: NonNullable<LearningRecord['aiResul
 export function LearningRecordsScreen() {
   const auth = useAuth();
   const [records, setRecords] = useState<LearningRecord[]>();
+  const [reviewPackage, setReviewPackage] = useState<QuestionBankStudyPackage>();
+  const vercelLegacyWeb = isVercelLegacyWeb(Platform.OS);
   const [deletingId, setDeletingId] = useState<string>();
   const [error, setError] = useState('');
   useEffect(() => { void sqliteLearningStore.getRecords().then(setRecords); }, []);
@@ -83,6 +89,12 @@ export function LearningRecordsScreen() {
       { text: '删除', style: 'destructive', onPress: () => { void removeAiResult(record); } },
     ]);
   }
+
+  if (vercelLegacyWeb && reviewPackage) return (
+    <Suspense fallback={<Screen><AppText>正在打开听力复盘…</AppText></Screen>}>
+      <ListeningHistoryScreen key={reviewPackage.id} onReturn={() => setReviewPackage(undefined)} returnLabel="返回学习记录" sourceRoute="/learning-records" studyPackage={reviewPackage} />
+    </Suspense>
+  );
 
   return (
     <Screen scroll contentStyle={styles.screen}>
@@ -120,6 +132,11 @@ export function LearningRecordsScreen() {
             </View>
             {record.recordType === 'ai_result' && record.aiResult ? <SavedAiResult result={record.aiResult} /> : null}
             {record.recordType === 'mock_exam' && record.mockExam ? <AppText color={colors.mutedForeground} variant="caption">{record.mockExam.mode === 'complete' ? '按考试规则组卷' : '自选板块'} · {record.mockExam.moduleIds.length} 个板块</AppText> : null}
+            {vercelLegacyWeb && record.recordType === 'mock_exam' && record.mockExam?.moduleIds.includes('listening') ? (
+              hasListeningReview(record)
+                ? <Button onPress={() => setReviewPackage(toListeningReviewPackage(record, Platform.OS))}>查看听力复盘</Button>
+                : <AppText color={colors.mutedForeground} variant="caption">此记录未保存逐题详情</AppText>
+            ) : null}
           </Card>
         )) : records ? (
           <Card style={styles.empty}><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText>完成或中途结束一次学习后会显示在这里。</AppText></Card>

@@ -111,6 +111,7 @@ export function QuestionBankStudyScreen(props: Props) {
   const [readyAudioItemId, setReadyAudioItemId] = useState<string>();
   const [listeningReviewStarted, setListeningReviewStarted] = useState(false);
   const [listeningFlowCompleted, setListeningFlowCompleted] = useState(false);
+  const [listeningSaveError, setListeningSaveError] = useState<string>();
   const finishInFlight = useRef(false);
   const cardTransitionInFlight = useRef(false);
   const workbenchRef = useRef<StudyWorkbenchHandle>(null);
@@ -128,16 +129,17 @@ export function QuestionBankStudyScreen(props: Props) {
     [props.studyPackage],
   );
   const listeningExamResult = useMemo(
-    () => listeningExamRange ? scoreListeningExam(listeningExamRange, session.states) : undefined,
-    [listeningExamRange, session.states],
+    () => session.historyRecord?.vercelListeningReview?.result
+      ?? (listeningExamRange ? scoreListeningExam(listeningExamRange, session.states) : undefined),
+    [listeningExamRange, session.historyRecord, session.states],
   );
   const currentInListeningExam = Boolean(
     listeningExamRange
     && session.currentIndex >= listeningExamRange.startIndex
     && session.currentIndex <= listeningExamRange.endIndex,
   );
-  const listeningExamActive = currentInListeningExam && !listeningReviewStarted;
-  const listeningReviewActive = currentInListeningExam && listeningReviewStarted;
+  const listeningExamActive = currentInListeningExam && !listeningReviewStarted && !session.historyRecord;
+  const listeningReviewActive = currentInListeningExam && (listeningReviewStarted || Boolean(session.historyRecord));
   const listeningSegmentNavigationActive = Boolean(listeningExamRange && !listeningFlowCompleted);
   const navigationStartIndex = listeningSegmentNavigationActive ? listeningExamRange!.startIndex : 0;
   const navigationEndIndex = listeningSegmentNavigationActive ? listeningExamRange!.endIndex : totalItems - 1;
@@ -219,6 +221,14 @@ export function QuestionBankStudyScreen(props: Props) {
     Keyboard.dismiss();
   }, []);
 
+  const persistListeningResult = session.saveListeningResult;
+  const saveListeningResult = useCallback(() => {
+    setListeningSaveError(undefined);
+    void persistListeningResult().catch(() => {
+      setListeningSaveError('听力复盘尚未保存，请重试后再离开。');
+    });
+  }, [persistListeningResult]);
+
   useEffect(() => {
     if (
       !listeningExamRange
@@ -230,10 +240,11 @@ export function QuestionBankStudyScreen(props: Props) {
     setRecordingPreviewPauseRequest((request) => request + 1);
     setDismissMediaControlsRequest((request) => request + 1);
     setListeningReviewStarted(true);
+    if (!session.historyRecord) saveListeningResult();
     if (session.currentIndex !== listeningExamRange.startIndex) {
       session.goTo(listeningExamRange.startIndex, false);
     }
-  }, [finishWorkbenchEditing, listeningExamRange, listeningExamResult?.answeredCount, listeningReviewStarted, session]);
+  }, [finishWorkbenchEditing, listeningExamRange, listeningExamResult?.answeredCount, listeningReviewStarted, saveListeningResult, session]);
 
   const handleBodyScrollBegin = useCallback(() => {
     finishWorkbenchEditing();
@@ -553,6 +564,10 @@ export function QuestionBankStudyScreen(props: Props) {
   }
 
   async function finish(reason: 'abort' | 'complete') {
+    if (session.historyRecord) {
+      await leaveStudy();
+      return;
+    }
     if (taskInteractionActive) {
       setFinishError('录音正在保存，请稍候再结束。');
       return;
@@ -632,6 +647,8 @@ export function QuestionBankStudyScreen(props: Props) {
   );
   const footerPrimaryLabel = !atNavigationEnd
     ? '下一题'
+    : session.historyRecord
+      ? '返回学习记录'
     : listeningSegmentNavigationActive && !listeningReviewStarted
       ? '检查答题'
       : listeningSegmentNavigationActive && hasModulesAfterListening
@@ -704,6 +721,10 @@ export function QuestionBankStudyScreen(props: Props) {
                 </View>
               </View>
             ) : null}
+            {listeningSaveError ? <View style={styles.listeningSaveError}>
+              <AppText color={colors.destructive} variant="caption">{listeningSaveError}</AppText>
+              <Button onPress={saveListeningResult} size="sm">重试保存复盘</Button>
+            </View> : null}
             {card.kind === 'image' ? (
               <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />
             ) : (
@@ -717,7 +738,7 @@ export function QuestionBankStudyScreen(props: Props) {
       <View style={[styles.footerShell, { paddingBottom: Math.max(insets.bottom, spacing[2]) }]}>
         {finishError ? <AppText color={colors.destructive} style={styles.finishError} variant="caption">{finishError}</AppText> : null}
         <View style={styles.footer}>
-          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '生成中…' : '结束'}</Button>
+          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '生成中…' : session.historyRecord ? '返回记录' : '结束'}</Button>
           <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === navigationStartIndex} leading={<ChevronLeft color={colors.foreground} size={20} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" style={styles.footerPrevious} testID="study-footer-previous" variant="outline">上一题</Button>
           <Button accessibilityLabel={footerPrimaryLabel} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={handleFooterPrimary} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : footerPrimaryLabel} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
         </View>
@@ -755,6 +776,7 @@ export function QuestionBankStudyScreen(props: Props) {
 }
 
 const styles = StyleSheet.create({
+  listeningSaveError: { gap: spacing[2], marginBottom: spacing[3] },
   root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, contentFrame: { flex: 1, position: 'relative' }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], minHeight: 48, paddingBottom: spacing[1], paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topBarPressed: { opacity: 0.65 }, topSpacer: { flex: 1 }, correctionButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 34, paddingHorizontal: spacing[2] }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counterPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { paddingHorizontal: spacing[5], paddingVertical: spacing[2.5], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, toolPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[2] }, listeningResult: { alignItems: 'center', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between', marginBottom: spacing[4], padding: spacing[4] }, listeningResultCopy: { flex: 1, gap: spacing[1] }, listeningResultScore: { alignItems: 'flex-end', gap: spacing[1] }, listeningScoreNumber: { fontFamily: fonts.monoRegular, fontSize: 24, lineHeight: 30 }, primaryContent: { gap: spacing[4] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, fontSize: 13, lineHeight: 21, marginTop: spacing[3], paddingTop: spacing[3] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { backgroundColor: colors.background, gap: spacing[1], paddingTop: spacing[2], shadowColor: colors.foreground, shadowOffset: { height: -4, width: 0 }, shadowOpacity: 0.025, shadowRadius: 12, elevation: 3 }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerFinish: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, minHeight: 48, paddingHorizontal: spacing[4] }, footerPrevious: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, footerPrimary: { borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, lookupTitleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' }, lookupTitle: { flex: 1 }, lookupFavorite: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 }, lookupFavoritePressed: { backgroundColor: colors.secondary, transform: [{ scale: 0.95 }] },
   returnToRadioButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 38, paddingHorizontal: spacing[2] },
 });

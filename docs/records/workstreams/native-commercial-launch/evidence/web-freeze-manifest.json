@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "scope": "existing-vercel-web-source-and-export-inputs",
   "baseline": {
-    "capturedAt": "2026-08-26T02:19:14.136Z",
-    "repositoryHead": "dbf6e0cebf6dab86b2b3edcd514f4a7eabe8b835",
+    "capturedAt": "2026-09-05T12:18:17.892Z",
+    "repositoryHead": "91a0afe3aca67fcafab0eec34ba4a66789e0cd08",
     "workingTreeMode": "exact-current-files-including-uncommitted-state",
     "remoteProductionDeploymentVerified": false
   },
@@ -37,8 +37,8 @@
       "tools/**/* whose basename contains web or promo, excluding tools/check-web-freeze.mjs"
     ]
   },
-  "fileCount": 346,
-  "combinedSha256": "6518cffc3b57dc957c7c278abb3f9b03e0b6097a25226bb2ef60b7ff1e1894e0",
+  "fileCount": 349,
+  "combinedSha256": "9b2bffcdac5b87e171f9cba31a64176d8dab969aa013a1591c91fa34178c7f1b",
   "files": [
     {
       "path": ".vercelignore",
@@ -133,14 +133,14 @@
     },
     {
       "path": "app.config.js",
-      "sha256": "fe9525f2f43383e108ec05e8723e297492fe2bc228b497fe6595ee881d3681b1",
+      "sha256": "a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "app.json",
-      "sha256": "b0c5785702022a3676e9c293bd2d7e61ea67c232cc54a28b5805a3d449c6526a",
+      "sha256": "255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3",
       "sources": [
         "exact_web_config_or_asset"
       ]
@@ -177,21 +177,21 @@
     },
     {
       "path": "package.json",
-      "sha256": "2a93f8efa8d8b743bbf1ad1ec1d2b9b696eeb48b41a54aa03cbed2bc89ae7d7f",
+      "sha256": "cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e",
       "sources": [
         "exact_web_config_or_asset"
       ]
     },
     {
       "path": "packages/contracts/src/index.ts",
-      "sha256": "b789ce2182b7831cd634f38de68cf6b0986c13993b6f6644197a38fb861273cd",
+      "sha256": "8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "f5bde22eb1fd7061d7b1bfac1bba133eb7ab134c0c1fad5b4cc8bdc4ba67574f",
+      "sha256": "96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9",
       "sources": [
         "exact_web_config_or_asset"
       ]
@@ -1213,7 +1213,7 @@
     },
     {
       "path": "src/app/(tabs)/index.tsx",
-      "sha256": "c891280815fe2825f17c5fa62e69c0ada981ad24b1ae2d0a792a4a864071f1cc",
+      "sha256": "1db0d65bd730db78b7a8d9593f268031e093f4c02c85049b79a363adcdeda3ca",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1227,7 +1227,7 @@
     },
     {
       "path": "src/app/_layout.tsx",
-      "sha256": "40f08b27aeb4a37493fca031b0d214b6fa0962f0281b3de074461eeb47e01340",
+      "sha256": "6e1e6c63667d5bff4816d0d195e71383fbca7d406d5a63120bdc32c2053dc732",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1249,6 +1249,13 @@
     {
       "path": "src/app/auth/[slug].tsx",
       "sha256": "86b7b730e0666e166b11c849b598376d13e821c8c75cdd8f1c1709950155c871",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/content/[slug].native.tsx",
+      "sha256": "acfd42af3f57657d0e64e3011348c8a94eb5b15df47d493fe3753c50eea35b86",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1368,6 +1375,13 @@
       ]
     },
     {
+      "path": "src/components/brand/AppBrandLogo.tsx",
+      "sha256": "d56680841139d0232e3524d53d8b9ffd9cd2b80b3e124ce22e0cbde8842727e4",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/components/navigation/FloatingTabBar.tsx",
       "sha256": "c06a968802279863c22a201b549f18b36e1b347899ff8bf84d7d3f39680ed898",
       "sources": [
@@ -1450,8 +1464,8 @@
       ]
     },
     {
-      "path": "src/components/states/GlobalLoadingScreen.native.tsx",
-      "sha256": "a54702725974d3e8d5ed8e90ba74fd5c9f7d8b7c8dbf3afad6b16ed6e80b0c8a",
+      "path": "src/components/states/GlobalLoadingScreen.tsx",
+      "sha256": "d22b7f907deeab59b7033a8458348884bf7660b0dc6ccc3d4dbb911a54376641",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1507,7 +1521,7 @@
     },
     {
       "path": "src/components/ui/icons.ts",
-      "sha256": "d7c1505c2b5965fed28fdd8af486346419901c957de72c8c0eb43a5fd5e6f217",
+      "sha256": "f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1529,6 +1543,13 @@
     {
       "path": "src/config/app-version.ts",
       "sha256": "f1197349295070aef328885339c254703b5f50046e6cf937f413cc74b101f3c3",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/config/native-route-surface.ts",
+      "sha256": "49d1b98648d190b2252d4d605a786c0a99582aca9ceec965140205b19189d38e",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1565,6 +1586,13 @@
     {
       "path": "src/features/account/profile-store.ts",
       "sha256": "2cb7a193e181d0227b6875bf4ba8d3df393e0f9d99c3048b3820f7b221f18b90",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/ai/AiGeneratedContentLabel.tsx",
+      "sha256": "130ba7d16073589a99343c9b2c5bd542af319bcc291cece97e3c23d8d79ef0eb",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1680,8 +1708,8 @@
       ]
     },
     {
-      "path": "src/features/content/hotspot/HotspotDetailScreen.native.tsx",
-      "sha256": "c14c679c427134f9de87f2f7ba9a8605a8812bc14295343d4ad59007584a7e8e",
+      "path": "src/features/content/hotspot/HotspotDetailScreen.tsx",
+      "sha256": "39111bc06d41b5fbc40845ecdc9ccda00c6f20a8681871d23b7b87fab836a31e",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1694,8 +1722,8 @@
       ]
     },
     {
-      "path": "src/features/content/hotspot/HotspotStudyScreen.native.tsx",
-      "sha256": "bf8464b50832296ad51c8daae2747633f3e9a1ff7c1239fd6205d318d745c40c",
+      "path": "src/features/content/hotspot/HotspotStudyScreen.tsx",
+      "sha256": "0ffb8bcc02149d0f5c52435b98a46a70e00eb11d7ab06a243152bec61ea68157",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1766,21 +1794,21 @@
     },
     {
       "path": "src/features/info/InfoScreen.tsx",
-      "sha256": "eee329f899cda4bd0293aadbc59cb92e1258c9919ea16dc3a83565934900a9a2",
+      "sha256": "dec6c9f798fb769a3003dcefabf7196337e5b42b84e4482c05bc583197e1d69a",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/info/legal-release-surface.ts",
-      "sha256": "5b5fadf5b202ceff8d4c4ce852879f8399d52cfffecbd994ddfccd18b4734bfd",
+      "sha256": "0a5a4ee4fcba08ab1c1bf7b0de1442cfb2f82b0a839b51b04c5548fac734b27d",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/mock-exam/build-session.native.ts",
-      "sha256": "ab374281ea9b2d363efc60b671bd3cec97996c740dd1ac3daaf14b3548459bf4",
+      "path": "src/features/mock-exam/build-session.ts",
+      "sha256": "993bafe4bed01116843e726a9bf8aa3684afa557981a7b5324e8e30bf4475cd8",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1800,6 +1828,13 @@
       ]
     },
     {
+      "path": "src/features/mock-exam/listening-review.ts",
+      "sha256": "5b7be0e45e5b4694fb7bbeb6c7072726a8e13e44359a074838b0ac717577c58b",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/mock-exam/rules.ts",
       "sha256": "d28b2d41225e86cd5d13dc405adb87ecf31894ec00049d981642421349272f87",
       "sources": [
@@ -1807,15 +1842,8 @@
       ]
     },
     {
-      "path": "src/features/mock-exam/topic-loader.native.ts",
-      "sha256": "74e7502ef190e9404d4dd528959421d43508915ee7dcc602cce3a5b374068a8f",
-      "sources": [
-        "metro_web_dependency_graph"
-      ]
-    },
-    {
-      "path": "src/features/native-commercial-testflight/commerce-environment.native.ts",
-      "sha256": "79b20362192abc6027098c42d914b8cb3244f708f2dcb04226cc78a85fc4e5d4",
+      "path": "src/features/native-commercial-testflight/commerce-environment.ts",
+      "sha256": "7f3bc40848909f4d61352fd6ea097e5f79c8db8c1303ef8d301ba08276250331",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1878,8 +1906,8 @@
       ]
     },
     {
-      "path": "src/features/question-bank/components/AnnotationToolbar.native.tsx",
-      "sha256": "96f467bfbfdeaa0d83fcb569f199a852b4fefa67c245f60f90d0a48e9ff788f4",
+      "path": "src/features/question-bank/components/AnnotationToolbar.tsx",
+      "sha256": "9302abc5e438c1902a8b7236bd07da2085cfedb2c1744f84ca6b70aac9d99064",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1928,7 +1956,7 @@
     },
     {
       "path": "src/features/question-bank/components/LearningRecordsScreen.tsx",
-      "sha256": "8abf530b675b8e8d23004f7139f9ca01b02757e0dc9e5105d6339efb3418f167",
+      "sha256": "881488276d21497907acb60d34b99da0636c21a9badf97e75472176794df2dc3",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1941,15 +1969,15 @@
       ]
     },
     {
-      "path": "src/features/question-bank/components/QuestionBankCatalog.native.tsx",
-      "sha256": "8d99edd49a0de29cc2b7c14f9054a6d4e708c20845da8296f7dc30238edcb757",
+      "path": "src/features/question-bank/components/QuestionBankCatalog.tsx",
+      "sha256": "c7fcc6050fefd3ac11c7026ca5de90c1fb8a5b6d51d8f9b5a142c524cd543da2",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/features/question-bank/components/QuestionBankStudyScreen.tsx",
-      "sha256": "8d970093fa7fc4871703e1e1785462b7fda693b89934196090b5f15962c1a2ca",
+      "sha256": "cada7326ca18f2b9911b830225e40e2b7722b5164416a61eb02122e48ccacc17",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1999,49 +2027,35 @@
     },
     {
       "path": "src/features/question-bank/components/StudyWorkbench.tsx",
-      "sha256": "e0e7a9164ad5bb4a533288aa93072e0f37ea2dc8b5bdbe3cf33e32de1d97ddec",
+      "sha256": "2654f912edba1c017a4ee563d3dabb1d8c2a587185ebd5e053468223ea9ab9b9",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/content-credential-verifier.native.ts",
-      "sha256": "00f2ecfe04efaf5131179826b6503049e45028007293f6bcde1825b36a169fe0",
+      "path": "src/features/question-bank/data/question-bank-release.json",
+      "sha256": "c52bd3f1fb66a2a1f15dca1255b22cbe9fb4201c21df3c8731915afc63a83ded",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/member-content-cache.native.ts",
-      "sha256": "c62baa9bd1fe423f5432da03c1341c237d07d3dee63850832fd906f76cfcb995",
+      "path": "src/features/question-bank/data/question-bank.json",
+      "sha256": "95a1f95962f3868233e3dc8089bf9388c56998a393f0ad2a9dc9cad94485198a",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/question-bank-public-release.json",
-      "sha256": "2cd5ca43065dc16d3b8f970cae318c5e7371153f3c862bd6a43873098799c7cc",
+      "path": "src/features/question-bank/data/repository.ts",
+      "sha256": "0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
-      "path": "src/features/question-bank/data/question-bank-public.json",
-      "sha256": "58978dc9363ab7a4245dca99f98bd22f93fa85b14e69ea7d4aad5f511f235961",
-      "sources": [
-        "metro_web_dependency_graph"
-      ]
-    },
-    {
-      "path": "src/features/question-bank/data/repository.native.ts",
-      "sha256": "582e89523cce3556d253dd1dfc3ce6f0f163194227a33cae8084e8a166a60ee2",
-      "sources": [
-        "metro_web_dependency_graph"
-      ]
-    },
-    {
-      "path": "src/features/question-bank/hooks/useQuestionBank.native.ts",
-      "sha256": "9e2a2e214ec88c93d4580f6dd785e658429bac01bb22c5bd92b3da159b61a8b9",
+      "path": "src/features/question-bank/hooks/useQuestionBank.ts",
+      "sha256": "fbe2dfdd6dac2c4b0ae3792468ef8a0d5071bf198d41ed897d40f69734d9d760",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2071,7 +2085,7 @@
     },
     {
       "path": "src/features/question-bank/hooks/useStudySession.ts",
-      "sha256": "4be3fb9471c7af1d1be638eb75be52f2c39a603ec6f39053e2b3d74252ca55f1",
+      "sha256": "d9683f3204f9ed9194c8ba206bacdb4d1a770e3686153c74bffe13089f963017",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2127,8 +2141,8 @@
       ]
     },
     {
-      "path": "src/features/question-bank/platform/remote-resource-service.native.ts",
-      "sha256": "dfb2a833cd15da95fa270ad2649e91aab9f6d6ee77df586bffb318f91890936d",
+      "path": "src/features/question-bank/platform/remote-resource-service.ts",
+      "sha256": "1b2488048d38866a50cf98d0b12f2ca34691cfb4bd1d7b74c190b7981da21a1a",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2151,7 +2165,7 @@
     },
     {
       "path": "src/features/question-bank/recording/recording-engine.ts",
-      "sha256": "3c6602afc40943001ff0299742e8ce6984a05e97150ec617d44bb4e2b630f9ee",
+      "sha256": "de59e2b3c90f2f88b551ed02848f67a14c02ab16bd89733295cc592fb5d5403a",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2231,8 +2245,8 @@
       ]
     },
     {
-      "path": "src/features/radio-player/catalog.native.ts",
-      "sha256": "18e8af72e1bcb71641d6a46ca983a366fef83573587aff6f180d44b9ba8790d2",
+      "path": "src/features/radio-player/catalog.ts",
+      "sha256": "cc99db3c28b5c9bb188362362943a75d68e5d783d0fb69385740133e3a656972",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2390,14 +2404,21 @@
     },
     {
       "path": "src/platform/audio/audio-session-orchestrator.ts",
-      "sha256": "d8cf8372d8c7f4f3bdf75c764b60817cda7329ee5810840e8e4a2be77f65cb7d",
+      "sha256": "d7ee1cedd46e9b9a4964ab1b25195ff0568ede69f387b8ce487e46cb1874b516",
       "sources": [
         "metro_web_dependency_graph"
       ]
     },
     {
       "path": "src/platform/audio/index.ts",
-      "sha256": "71190d3986ad28e0212c56f440b8ff18dea823453b6ea9ffb7f67fdd5810140c",
+      "sha256": "9438d909fb9cc42804e4ecc6ce2c7a4806b7f9c1b440c0972149bdf9b08ecd07",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/platform/audio/session-managed-player.ts",
+      "sha256": "35fcf49ee531d7fb0cd6299dea8ae4d7249be9a5752c44570b1ed7beaf67a1ae",
       "sources": [
         "metro_web_dependency_graph"
       ]
