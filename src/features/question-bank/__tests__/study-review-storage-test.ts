@@ -78,5 +78,5 @@ it('keeps a large real topic out of the history list and captures only the selec
   expect(parsed).toHaveLength(100);
   expect(detail.items).toHaveLength(items.length);
   expect(detail.items.every(item => !item.dataset.categories.length && !item.category.topics.length && !item.topic.cards.length)).toBe(true);
-  console.info('History size sample', { questions: items.length, detailBytes: Buffer.byteLength(JSON.stringify(detail)), hundredSummariesBytes: Buffer.byteLength(summaries), captureMs: Math.round(captureMs * 100) / 100, listParseMs: Math.round(listParseMs * 100) / 100 });
+  console.info('History size sample', { questions: items.length, detailBytes: encodeURIComponent(JSON.stringify(detail)).replace(/%[A-F\d]{2}/gu, '_').length, hundredSummariesBytes: encodeURIComponent(summaries).replace(/%[A-F\d]{2}/gu, '_').length, captureMs: Math.round(captureMs * 100) / 100, listParseMs: Math.round(listParseMs * 100) / 100 });
 });
