@@ -26,7 +26,7 @@ jest.mock('../platform/learning-store', () => ({
 jest.mock('../components/QuestionBankStudyScreen', () => {
   const { Pressable, Text, View } = jest.requireActual('react-native');
   return { QuestionBankStudyScreen: ({ onReturn, studyPackage }: { onReturn: () => void; studyPackage: QuestionBankStudyPackage }) => (
-    <View><Text>{`saved-choice:${studyPackage.listeningReviewRecord?.vercelListeningReview?.items[0].selectedChoiceIndex}`}</Text><Pressable accessibilityLabel="返回历史列表" onPress={onReturn} /></View>
+    <View><Text>{`saved-choice:${studyPackage.studyReviewRecord?.vercelListeningReview?.items[0].selectedChoiceIndex}`}</Text><Pressable accessibilityLabel="返回历史列表" onPress={onReturn} /></View>
   ) };
 });
 

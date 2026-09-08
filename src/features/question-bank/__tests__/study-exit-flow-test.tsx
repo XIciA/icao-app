@@ -4,9 +4,10 @@ import { Platform } from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-handler/jest-utils';
 
+import { captureStudyReview, getStudyReview, toStudyReviewPackage } from '../lib/study-review';
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
-import { captureListeningReview, listeningReviewStates, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
+import { captureListeningReview, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 import type { CardLearningState, LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 
 const mockFinish = jest.fn();
@@ -182,8 +183,9 @@ function listeningExamPackage(includeFollowingModule = false): QuestionBankStudy
 function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPackage }) {
   const items = input.studyPackage!.items;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const historyRecord = input.studyPackage?.listeningReviewRecord;
-  const [states, setStates] = useState<Record<string, CardLearningState>>(() => historyRecord ? listeningReviewStates(historyRecord) : {});
+  const historyRecord = input.studyPackage?.studyReviewRecord ?? input.studyPackage?.listeningReviewRecord;
+  const historyReview = historyRecord ? getStudyReview(historyRecord) : undefined;
+  const [states, setStates] = useState<Record<string, CardLearningState>>(() => historyReview?.states ?? {});
   const [visitedIndexes, setVisitedIndexes] = useState<Set<number>>(() => new Set([0]));
   const [studyReport, setStudyReport] = useState<LearningRecord>();
   const currentItem = items[currentIndex];
@@ -221,6 +223,7 @@ function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPa
   return {
     hydrated: true,
     historyRecord,
+    historyReview,
     report: studyReport,
     items,
     item: currentItem,
@@ -234,7 +237,7 @@ function useMockListeningExamSession(input: { studyPackage?: QuestionBankStudyPa
     revealed: false,
     toolMode: undefined,
     activeTab: 'notes',
-    answerText: '',
+    answerText: historyReview?.answers[currentItem.id] ?? '',
     playRequestToken: 0,
     finish: async (reason: 'abort' | 'complete') => {
       mockFinish(reason);
@@ -318,6 +321,39 @@ describe('study exit flow', () => {
         goTo: mockGoTo, toggleAnswers: jest.fn(), setToolMode: jest.fn(), collapseAnswers: jest.fn(), revealCurrent: jest.fn(), chooseOption: jest.fn(), clearRecording: jest.fn(), recordAnswer: jest.fn(), updateAnswer: jest.fn(), markFeedback: jest.fn(), setActiveTab: jest.fn(), markCompleted: jest.fn(),
       };
     });
+  });
+
+  it('reviews an incomplete mixed paper without scoring it, hiding unanswered items, or mounting the recorder/editor', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    try {
+      const pkg = listeningExamPackage(true);
+      const saved: LearningRecord = { ...report('abort'), ...pkg.record, id: 'partial-review',
+        vercelStudyReview: captureStudyReview(pkg.items, {
+          [pkg.items[0].id]: { visited: true, completed: true, selectedChoiceIndex: 1, note: '', updatedAt: '2026-09-08' },
+        }, { 'opi-item-1': 'Original spoken topic text answer' }, 'web'),
+      };
+      mockSessionOverride = useMockListeningExamSession;
+      const onReturn = jest.fn();
+      const screen = await render(<QuestionBankStudyScreen studyPackage={toStudyReviewPackage(saved, 'web')!} onReturn={onReturn} />);
+      expect(screen.getByText('学习复盘 · 未完成')).toBeTruthy();
+      expect(screen.queryByText('听力成绩')).toBeNull();
+      expect(screen.getByText('task-read-only:true')).toBeTruthy();
+      expect(mockWorkbenchProps).toBeUndefined();
+      expect(mockAnswerCardProps?.total).toBe(21);
+      await act(async () => { mockAnswerCardProps!.onSelect(1); });
+      await waitFor(() => expect(screen.getByText('本题未作答')).toBeTruthy());
+      await act(async () => { mockAnswerCardProps!.onSelect(20); });
+      await waitFor(() => expect(screen.getByText('Original spoken topic text answer')).toBeTruthy());
+      expect(screen.queryByText('task-layout:integrated')).toBeNull();
+      expect(mockWorkbenchProps).toBeUndefined();
+      await fireEvent.press(screen.getByLabelText('返回学习记录'));
+      await waitFor(() => expect(onReturn).toHaveBeenCalledTimes(1));
+      expect(mockFinish).not.toHaveBeenCalled();
+      expect(mockSaveListeningResult).not.toHaveBeenCalled();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 
   it('ends from the footer and shows the report without a confirmation sheet', async () => {

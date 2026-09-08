@@ -44,6 +44,7 @@ import type {
   QuestionBankStudyPackage,
   QuestionBankTopic,
 } from '../types';
+import { wasAnswered } from '../lib/study-review';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar';
 import { AnswerCardSheet } from './AnswerCardSheet';
@@ -140,7 +141,7 @@ export function QuestionBankStudyScreen(props: Props) {
   );
   const listeningExamActive = currentInListeningExam && !listeningReviewStarted && !session.historyRecord;
   const listeningReviewActive = currentInListeningExam && (listeningReviewStarted || Boolean(session.historyRecord));
-  const listeningSegmentNavigationActive = Boolean(listeningExamRange && !listeningFlowCompleted);
+  const listeningSegmentNavigationActive = Boolean(listeningExamRange && !listeningFlowCompleted && !session.historyRecord);
   const navigationStartIndex = listeningSegmentNavigationActive ? listeningExamRange!.startIndex : 0;
   const navigationEndIndex = listeningSegmentNavigationActive ? listeningExamRange!.endIndex : totalItems - 1;
   const navigationItemCount = Math.max(0, navigationEndIndex - navigationStartIndex + 1);
@@ -154,7 +155,7 @@ export function QuestionBankStudyScreen(props: Props) {
     session.currentIndex,
     Platform.OS === 'web' && readyAudioItemId === item?.id,
   );
-  const target = item && card && !imageCard ? {
+  const target = item && card && !imageCard && !session.historyRecord ? {
     bankId: item.dataset.id,
     categoryId: item.category.id,
     topicId: item.topic.id,
@@ -232,6 +233,7 @@ export function QuestionBankStudyScreen(props: Props) {
   useEffect(() => {
     if (
       !listeningExamRange
+      || session.historyRecord
       || listeningReviewStarted
       || listeningExamResult?.answeredCount !== LISTENING_EXAM_ITEM_COUNT
     ) return;
@@ -448,6 +450,9 @@ export function QuestionBankStudyScreen(props: Props) {
     return definition ? [annotationToneColors[definition.color]] : [];
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
   const answerCardMarked = useMemo(() => {
+    if (session.historyReview) {
+      return new Set(session.items.flatMap((entry, index) => wasAnswered(session.historyReview!, entry.id) ? [index] : []));
+    }
     if (listeningSegmentNavigationActive && listeningExamRange) {
       return new Set(listeningExamRange.items.flatMap((entry, index) => (
         session.states?.[entry.id]?.selectedChoiceIndex !== undefined ? [index] : []
@@ -459,9 +464,9 @@ export function QuestionBankStudyScreen(props: Props) {
       )));
     }
     return session.visitedIndexes;
-  }, [listeningExamRange, listeningSegmentNavigationActive, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
-  const answerCardMarkedLabel = listeningSegmentNavigationActive ? '已答' : '已学';
-  const answerCardUnmarkedLabel = listeningSegmentNavigationActive ? '未答' : '未学';
+  }, [listeningExamRange, listeningSegmentNavigationActive, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
+  const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
+  const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
   const dictionaryMode = lookupInteraction === 'tap';
   const nativeAnnotationMode = Platform.OS !== 'web' && (session.toolMode === 'highlight' || session.toolMode === 'tags')
@@ -615,8 +620,10 @@ export function QuestionBankStudyScreen(props: Props) {
       {card.referenceTextZh ? <AppText style={styles.translation}>{card.referenceTextZh}</AppText> : null}
     </View>
   );
-  const integratedRecordingLayout = session.behavior.taskKind === 'recording';
-  const taskContent = (
+  const integratedRecordingLayout = session.behavior.taskKind === 'recording' && !session.historyRecord;
+  const taskContent = session.historyRecord && session.behavior.taskKind === 'recording' ? (
+    <AppText variant="caption">{session.cardState?.recorded ? '本次录音未保留，可查看已保存的文字回答。' : '历史复盘 · 仅查看当次作答'}</AppText>
+  ) : (
     <StudyTaskRenderer
       behavior={session.behavior}
       blockedExternalGesture={questionSwipeGesture}
@@ -634,8 +641,8 @@ export function QuestionBankStudyScreen(props: Props) {
       onRecordingIntent={handleRecordingIntent}
       previewPauseRequest={recordingPreviewPauseRequest}
       recording={session.recording}
-      choiceReadOnly={listeningReviewActive}
-      revealed={session.revealed || forceListeningReveal}
+      choiceReadOnly={listeningReviewActive || Boolean(session.historyRecord)}
+      revealed={session.revealed || forceListeningReveal || Boolean(session.historyRecord)}
       selectedChoiceIndex={session.cardState?.selectedChoiceIndex}
       sessionId={session.sessionId}
       variant={integratedRecordingLayout ? 'integrated' : 'default'}
@@ -658,6 +665,10 @@ export function QuestionBankStudyScreen(props: Props) {
   function handleFooterPrimary() {
     if (!atNavigationEnd) {
       void goToCard(session.currentIndex + 1, 1);
+      return;
+    }
+    if (session.historyRecord) {
+      void finish('complete');
       return;
     }
     if (listeningSegmentNavigationActive && !listeningReviewStarted) {
@@ -683,11 +694,11 @@ export function QuestionBankStudyScreen(props: Props) {
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
-      {!imageCard && !listeningExamActive ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
+      {!imageCard && !listeningExamActive && !session.historyRecord ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
         <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={listeningReviewActive ? undefined : <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} />
       </View> : null}
 
-      {!imageCard && !listeningExamActive && annotationPanelTop !== undefined ? (
+      {!imageCard && !listeningExamActive && !session.historyRecord && annotationPanelTop !== undefined ? (
         <AnnotationFloatingPanel
           activeHighlightId={activeHighlightId}
           highlightDefinitions={annotations.highlightDefinitions}
@@ -708,7 +719,16 @@ export function QuestionBankStudyScreen(props: Props) {
       <GestureDetector gesture={questionSwipeGesture}>
         <Animated.View style={[styles.bodyGesture, questionBodyAnimatedStyle]}>
           <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} ref={bodyScrollRef} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
-            {listeningReviewActive && listeningExamResult ? (
+            {session.historyReview && session.historyRecord ? (
+              <View style={styles.historySummary}>
+                <AppText variant="sectionTitle">学习复盘{session.historyReview.items.some((entry) => !wasAnswered(session.historyReview!, entry.id) && !(entry.card.kind === 'image' && session.historyReview!.states[entry.id]?.completed)) ? ' · 未完成' : ''}</AppText>
+                <AppText variant="caption">当次题包与作答已锁定</AppText>
+                <AppText color={wasAnswered(session.historyReview, item.id) ? colors.primary : colors.mutedForeground} variant="button">
+                  {wasAnswered(session.historyReview, item.id) ? '本题已作答' : '本题未作答'}
+                </AppText>
+              </View>
+            ) : null}
+            {listeningReviewActive && listeningExamResult?.answeredCount === LISTENING_EXAM_ITEM_COUNT ? (
               <View accessibilityLabel={`听力成绩 ${listeningExamResult.score} 分 ${listeningExamResult.level} 级`} style={styles.listeningResult}>
                 <View style={styles.listeningResultCopy}>
                   <AppText color={colors.primary} variant="micro">LISTENING RESULT</AppText>
@@ -728,7 +748,13 @@ export function QuestionBankStudyScreen(props: Props) {
             {card.kind === 'image' ? (
               <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive) session.revealCurrent(true); }} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
+              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive && !session.historyRecord) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive && !session.historyRecord) session.revealCurrent(true); }} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={session.historyRecord ? <View style={styles.historySummary}>
+                {session.behavior.taskKind === 'recording' ? <>
+                  <AppText variant="button">我的回答</AppText>
+                  <AppText>{session.answerText.trim() ? session.answerText : session.cardState?.recorded ? '本题仅录音，未保存文字答案' : '未作答'}</AppText>
+                </> : null}
+                {referenceContent ? <><AppText variant="button">{session.behavior.referenceLabel}</AppText>{referenceContent}</> : null}
+              </View> : <StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
             )}
           </ScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
@@ -776,6 +802,7 @@ export function QuestionBankStudyScreen(props: Props) {
 }
 
 const styles = StyleSheet.create({
+  historySummary: { gap: spacing[2], paddingVertical: spacing[3] },
   listeningSaveError: { gap: spacing[2], marginBottom: spacing[3] },
   root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, contentFrame: { flex: 1, position: 'relative' }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], minHeight: 48, paddingBottom: spacing[1], paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topBarPressed: { opacity: 0.65 }, topSpacer: { flex: 1 }, correctionButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 34, paddingHorizontal: spacing[2] }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counterPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { paddingHorizontal: spacing[5], paddingVertical: spacing[2.5], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, toolPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[2] }, listeningResult: { alignItems: 'center', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between', marginBottom: spacing[4], padding: spacing[4] }, listeningResultCopy: { flex: 1, gap: spacing[1] }, listeningResultScore: { alignItems: 'flex-end', gap: spacing[1] }, listeningScoreNumber: { fontFamily: fonts.monoRegular, fontSize: 24, lineHeight: 30 }, primaryContent: { gap: spacing[4] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, fontSize: 13, lineHeight: 21, marginTop: spacing[3], paddingTop: spacing[3] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { backgroundColor: colors.background, gap: spacing[1], paddingTop: spacing[2], shadowColor: colors.foreground, shadowOffset: { height: -4, width: 0 }, shadowOpacity: 0.025, shadowRadius: 12, elevation: 3 }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerFinish: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, minHeight: 48, paddingHorizontal: spacing[4] }, footerPrevious: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, footerPrimary: { borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, lookupTitleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' }, lookupTitle: { flex: 1 }, lookupFavorite: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 }, lookupFavoritePressed: { backgroundColor: colors.secondary, transform: [{ scale: 0.95 }] },
   returnToRadioButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 38, paddingHorizontal: spacing[2] },

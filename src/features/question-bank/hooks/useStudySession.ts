@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 
 import { isVercelLegacyWeb } from '@/config/web-runtime';
-import { captureListeningReview, hasListeningReview, listeningReviewStates, type VercelListeningReview } from '@/features/mock-exam/listening-review';
+import { captureListeningReview, type VercelListeningReview } from '@/features/mock-exam/listening-review';
 
 import { sqliteLearningStore, type LearningStore, migrateLegacyCardState } from '../platform/learning-store';
 import type {
@@ -18,6 +18,7 @@ import type {
   StudyConsoleTab,
   StudyToolMode,
 } from '../types';
+import { captureStudyReview, getStudyReview } from '../lib/study-review';
 import { getStudyBehavior } from '../lib/study-behavior';
 import { recordingRepository } from '../recording/recording-repository';
 import type { RecordingAsset } from '../recording/types';
@@ -80,9 +81,10 @@ export function preferredWorkbenchTab(tabs: StudyConsoleTab[]) {
 
 export function useStudySession(options: UseStudySessionOptions) {
   const packageInput = 'studyPackage' in options ? options.studyPackage : undefined;
-  const reviewCandidate = packageInput?.listeningReviewRecord;
-  const historyRecord = isVercelLegacyWeb(Platform.OS) && reviewCandidate && hasListeningReview(reviewCandidate)
-    ? reviewCandidate : undefined;
+  const reviewCandidate = packageInput?.studyReviewRecord ?? packageInput?.listeningReviewRecord;
+  const historyReview = useMemo(() => isVercelLegacyWeb(Platform.OS) && reviewCandidate
+    ? getStudyReview(reviewCandidate) : undefined, [reviewCandidate]);
+  const historyRecord = historyReview ? reviewCandidate : undefined;
   const legacyDataset = 'studyPackage' in options ? undefined : options.dataset;
   const legacyCategory = 'studyPackage' in options ? undefined : options.category;
   const legacyTopic = 'studyPackage' in options ? undefined : options.topic;
@@ -126,6 +128,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   const listeningSnapshot = useRef<VercelListeningReview | undefined>(undefined);
   const [states, setStates] = useState<Record<string, CardLearningState>>({});
   const statesRef = useRef(states);
+  const attemptStates = useRef<Record<string, CardLearningState>>({});
   const [hydrated, setHydrated] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [loadError, setLoadError] = useState<string>();
@@ -138,12 +141,14 @@ export function useStudySession(options: UseStudySessionOptions) {
   const [activeTab, setActiveTab] = useState<StudyConsoleTab>(() => preferredWorkbenchTab(initialBehavior.workbenchTabs));
   const [toolMode, setToolModeState] = useState<StudyToolMode>();
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const answersRef = useRef(answers);
   const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>({});
   const recordingsRef = useRef(recordings);
   const [feedbackCardIds, setFeedbackCardIds] = useState<Set<string>>(() => new Set());
   const [playRequestToken, setPlayRequestToken] = useState(1);
   const [report, setReport] = useState<LearningRecord>();
 
+  answersRef.current = answers;
   statesRef.current = states;
   recordingsRef.current = recordings;
 
@@ -160,13 +165,15 @@ export function useStudySession(options: UseStudySessionOptions) {
     setHydrated(false);
     setLoadError(undefined);
 
-    if (progressMode === 'session-only') {
-      const saved = historyRecord ? listeningReviewStates(historyRecord) : {};
+    if (historyReview || progressMode === 'session-only') {
+      const saved = historyReview?.states ?? {};
+      answersRef.current = historyReview?.answers ?? {};
+      setAnswers(answersRef.current);
       statesRef.current = saved;
       setStates(saved);
       setCurrentIndex(startingIndex);
       setVisitedIndexes(new Set([startingIndex]));
-      setCompletedCardIds(new Set(Object.keys(saved)));
+      setCompletedCardIds(new Set(Object.keys(saved).filter((id) => saved[id].completed)));
       setRevealed(Boolean(historyRecord));
       setAutoReveal(Boolean(historyRecord));
       setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
@@ -191,7 +198,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [historyRecord, initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
+  }, [historyRecord, historyReview, initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
 
   const resolveItem = useCallback((itemOrCardId: string) => {
     if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
@@ -210,6 +217,12 @@ export function useStudySession(options: UseStudySessionOptions) {
       visited: current.visited || Boolean(patch.visited) || Object.keys(patch).length > 0,
       updatedAt: new Date().toISOString(),
     });
+    if (isVercelLegacyWeb(Platform.OS)) {
+      attemptStates.current[target.id] = {
+        ...(attemptStates.current[target.id] ?? createEmptyCardState()), ...patch,
+        visited: true, updatedAt: next.updatedAt,
+      };
+    }
     const nextStates = { ...statesRef.current, [target.id]: next };
     statesRef.current = nextStates;
     setStates(nextStates);
@@ -235,10 +248,10 @@ export function useStudySession(options: UseStudySessionOptions) {
 
   const markCompleted = useCallback((itemOrCardId: string) => {
     const target = resolveItem(itemOrCardId);
-    if (!target) return;
+    if (!target || historyRecord) return;
     setCompletedCardIds((current) => new Set(current).add(target.id));
     persistCard(target.id, { completed: true });
-  }, [persistCard, resolveItem]);
+  }, [historyRecord, persistCard, resolveItem]);
 
   const revealCurrent = useCallback((persistAcrossCards = false) => {
     if (!item) return;
@@ -277,14 +290,14 @@ export function useStudySession(options: UseStudySessionOptions) {
   }, [autoReveal, currentIndex, items, markCompleted]);
 
   const chooseOption = useCallback((choiceIndex: number, revealAnswer = true) => {
-    if (!item) return;
+    if (!item || historyRecord) return;
     persistCard(item.id, { selectedChoiceIndex: choiceIndex, completed: true });
     setCompletedCardIds((current) => new Set(current).add(item.id));
     if (revealAnswer) setRevealed(true);
-  }, [item, persistCard]);
+  }, [historyRecord, item, persistCard]);
 
   const recordAnswer = useCallback((recording: RecordingAsset) => {
-    if (!item) return;
+    if (!item || historyRecord) return;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current, [item.id]: recording };
     recordingsRef.current = nextRecordings;
@@ -294,22 +307,23 @@ export function useStudySession(options: UseStudySessionOptions) {
     setRevealed(true);
     if (behavior.workbenchTabs.includes('mine')) setActiveTab('mine');
     if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
-  }, [behavior.workbenchTabs, item, persistCard]);
+  }, [behavior.workbenchTabs, historyRecord, item, persistCard]);
 
   const clearRecording = useCallback(() => {
-    if (!item) return;
+    if (!item || historyRecord) return;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current };
     delete nextRecordings[item.id];
     recordingsRef.current = nextRecordings;
     setRecordings(nextRecordings);
     if (previous) recordingRepository.discard(previous);
-  }, [item]);
+  }, [historyRecord, item]);
 
   const updateAnswer = useCallback((text: string) => {
-    if (!item) return;
-    setAnswers((current) => ({ ...current, [item.id]: text }));
-  }, [item]);
+    if (!item || historyRecord) return;
+    answersRef.current = { ...answersRef.current, [item.id]: text };
+    setAnswers(answersRef.current);
+  }, [historyRecord, item]);
 
   const markFeedback = useCallback(() => {
     if (!item) return;
@@ -349,6 +363,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       topicTitle: legacyTopic?.name ?? '',
       recordType: 'session' as const,
     };
+    const studyReview = captureStudyReview(items, attemptStates.current, answersRef.current, Platform.OS);
     const nextReport: LearningRecord = {
       schemaVersion: 3,
       id: descriptor.id ?? `session-${sessionId}`,
@@ -369,6 +384,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       updatedAt,
       recordType: descriptor.recordType ?? (descriptor.mockExam ? 'mock_exam' : 'session'),
       ...(descriptor.mockExam ? { mockExam: descriptor.mockExam } : {}),
+      ...(studyReview ? { vercelStudyReview: studyReview } : {}),
       ...(listeningSnapshot.current ? { vercelListeningReview: listeningSnapshot.current } : {}),
     };
     await store.addRecord(nextReport);
@@ -391,6 +407,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   return {
     behavior,
     historyRecord,
+    historyReview,
     sessionId,
     sessionStartedAt,
     hydrated,

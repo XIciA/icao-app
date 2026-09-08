@@ -61,7 +61,7 @@ export function StudyTaskRenderer({
         onSelect={onChoose}
         readOnly={choiceReadOnly}
         selectedChoiceIndex={selectedChoiceIndex}
-        showResult={revealed && selectedChoiceIndex !== undefined}
+        showResult={revealed && (selectedChoiceIndex !== undefined || choiceReadOnly)}
         showTranslations={revealed}
       />
     ) : null;
