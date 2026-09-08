@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "scope": "existing-vercel-web-source-and-export-inputs",
   "baseline": {
-    "capturedAt": "2026-09-05T12:18:17.892Z",
-    "repositoryHead": "91a0afe3aca67fcafab0eec34ba4a66789e0cd08",
+    "capturedAt": "2026-09-08T15:49:00.411Z",
+    "repositoryHead": "c26661d4c478c5202f102367c9b00b97d5c38367",
     "workingTreeMode": "exact-current-files-including-uncommitted-state",
     "remoteProductionDeploymentVerified": false
   },
@@ -37,8 +37,8 @@
       "tools/**/* whose basename contains web or promo, excluding tools/check-web-freeze.mjs"
     ]
   },
-  "fileCount": 349,
-  "combinedSha256": "9b2bffcdac5b87e171f9cba31a64176d8dab969aa013a1591c91fa34178c7f1b",
+  "fileCount": 350,
+  "combinedSha256": "56b6914d00a75a6e7868c30c5468a2b68a00578d5c0ffe64c540f7c5f04ddc5b",
   "files": [
     {
       "path": ".vercelignore",
@@ -1956,7 +1956,7 @@
     },
     {
       "path": "src/features/question-bank/components/LearningRecordsScreen.tsx",
-      "sha256": "881488276d21497907acb60d34b99da0636c21a9badf97e75472176794df2dc3",
+      "sha256": "adb9e7e5a42d7d67bc2e3494fb0f21bf460bd430030ddd7c653a30c41f4ec2fb",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1977,7 +1977,7 @@
     },
     {
       "path": "src/features/question-bank/components/QuestionBankStudyScreen.tsx",
-      "sha256": "cada7326ca18f2b9911b830225e40e2b7722b5164416a61eb02122e48ccacc17",
+      "sha256": "b0d2abef18998f5312cc00a24b8f1fbbefe954746b56006ce34025e91268ee31",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2020,7 +2020,7 @@
     },
     {
       "path": "src/features/question-bank/components/StudyTaskRenderer.tsx",
-      "sha256": "fe5f671ae10bcaaf6952eaa872f57422fa92559b26fca0613cd1498d39fe0edd",
+      "sha256": "7f88fa74d7538be5812ce8c893cdb8f08b6d960499f49a3c128f9e611dc42543",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2085,7 +2085,7 @@
     },
     {
       "path": "src/features/question-bank/hooks/useStudySession.ts",
-      "sha256": "d9683f3204f9ed9194c8ba206bacdb4d1a770e3686153c74bffe13089f963017",
+      "sha256": "4a192c259c0b1a5c8290c7d6a66f72a9c672c5b1395e186bfcf5ca65f0cb3725",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2113,6 +2113,13 @@
       ]
     },
     {
+      "path": "src/features/question-bank/lib/study-review.ts",
+      "sha256": "a34c3df76eccc518321d322dd3716572d840c92473abc8cd5de229074e0917e1",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/question-bank/lib/word-lookup-interaction.ts",
       "sha256": "0770b4359e4925a5017d266d597e7e2e0957a7735f3c06073a4b3d5bde0f8964",
       "sources": [
@@ -2121,7 +2128,7 @@
     },
     {
       "path": "src/features/question-bank/platform/learning-record-storage.ts",
-      "sha256": "abf7b16ef64aad9890cd5b79003dcb7c31562638df9979d1453313430d5ce23c",
+      "sha256": "5e99c93e4c0fd861ee383980865520f50ea10e1e979c91f77187928eb2b773c5",
       "sources": [
         "metro_web_dependency_graph"
       ]

@@ -2,6 +2,7 @@ import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/re
 import { Platform, Pressable, Text, View } from 'react-native';
 import { toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 
+import { toStudyReviewPackage } from '../lib/study-review';
 import { useStudySession } from '../hooks/useStudySession';
 import type { LearningStore } from '../platform/learning-store';
 import type { RecordingAsset } from '../recording/types';
@@ -368,5 +369,77 @@ describe('useStudySession', () => {
     await act(async () => { fireEvent.press(screen.getByLabelText('package-finish')); await Promise.resolve(); });
     await waitFor(() => expect(store.addRecord).toHaveBeenCalledTimes(1));
     expect(mockRecordingRepository.cleanupSession).toHaveBeenCalledWith(packageValue.id);
+  });
+});
+
+
+describe('Vercel partial and ordinary study history', () => {
+  const originalPlatform = Platform.OS;
+  beforeEach(() => { jest.clearAllMocks(); Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' }); });
+  afterEach(() => { Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform }); });
+
+  it('saves a partial mixed package, restores text and choices, and never saves or records during review', async () => {
+    const store = createStore();
+    const pkg = studyPackage();
+    pkg.items.push({ ...pkg.items[1], id: 'unanswered' });
+    const hook = await renderHook(() => useStudySession({ studyPackage: pkg, store }));
+    await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+    await act(() => { hook.result.current.updateAnswer('My original answer'); });
+    await act(() => { hook.result.current.goTo(1); });
+    await act(() => { hook.result.current.chooseOption(0); });
+    await act(async () => { await hook.result.current.finish('abort'); });
+    const saved = (store.addRecord as jest.Mock).mock.calls[0][0] as LearningRecord;
+    expect(saved.vercelStudyReview?.items.map((item) => item.id)).toEqual(['speaking-item', 'listening-item', 'unanswered']);
+    expect(saved.vercelStudyReview?.answers['speaking-item']).toBe('My original answer');
+    expect(saved.vercelStudyReview?.states['unanswered']).toBeUndefined();
+    expect(saved.vercelListeningReview).toBeUndefined();
+    const before = JSON.stringify(saved);
+    const reviewStore = createStore();
+    const reviewPackage = toStudyReviewPackage(saved, 'web')!;
+    const review = await renderHook(() => useStudySession({ studyPackage: reviewPackage, store: reviewStore }));
+    await waitFor(() => expect(review.result.current.hydrated).toBe(true));
+    expect(review.result.current.answerText).toBe('My original answer');
+    await act(() => { review.result.current.updateAnswer('changed'); review.result.current.recordAnswer(recording('not-allowed')); });
+    expect(review.result.current.answerText).toBe('My original answer');
+    expect(review.result.current.recording).toBeUndefined();
+    await act(() => { review.result.current.goTo(1); });
+    await act(() => { review.result.current.chooseOption(1); });
+    expect(review.result.current.cardState?.selectedChoiceIndex).toBe(0);
+    await act(() => { review.result.current.goTo(2); review.result.current.revealCurrent(); });
+    expect(review.result.current.cardState).toBeUndefined();
+    await act(async () => { await review.result.current.finish('complete'); });
+    expect(reviewStore.getTopicStates).not.toHaveBeenCalled();
+    expect(reviewStore.saveCardState).not.toHaveBeenCalled();
+    expect(reviewStore.addRecord).not.toHaveBeenCalled();
+    expect(JSON.stringify(saved)).toBe(before);
+  });
+
+  it('ordinary history excludes previous attempts, even when an old answer is revealed', async () => {
+    const store = createStore();
+    const oldState = { visited: true, completed: true, selectedChoiceIndex: 1, note: '', updatedAt: '2026-01-01' };
+    (store.getTopicStates as jest.Mock).mockResolvedValue({ [listeningTopic.cards[0].id]: oldState });
+    const hook = await renderHook(() => useStudySession({ dataset: listeningDataset, category: listeningCategory, topic: listeningTopic, store }));
+    await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+    expect(hook.result.current.cardState?.selectedChoiceIndex).toBe(1);
+    await act(() => { hook.result.current.revealCurrent(); });
+    await act(async () => { await hook.result.current.finish('abort'); });
+    const saved = (store.addRecord as jest.Mock).mock.calls[0][0] as LearningRecord;
+    expect(saved.vercelStudyReview?.states[listeningTopic.cards[0].id]?.selectedChoiceIndex).toBeUndefined();
+    expect(saved.vercelStudyReview?.items).toHaveLength(listeningTopic.cards.length);
+  });
+
+  it('preserves the package after an immediate finish and retries failed writes with the same id', async () => {
+    const store = createStore();
+    (store.addRecord as jest.Mock).mockRejectedValueOnce(new Error('quota')).mockResolvedValue(undefined);
+    const pkg = studyPackage();
+    const hook = await renderHook(() => useStudySession({ studyPackage: pkg, store }));
+    await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+    await act(async () => { await expect(hook.result.current.finish('abort')).rejects.toThrow('quota'); });
+    expect(hook.result.current.report).toBeUndefined();
+    await act(async () => { await hook.result.current.finish('abort'); });
+    const calls = (store.addRecord as jest.Mock).mock.calls;
+    expect(calls[0][0].id).toBe(calls[1][0].id);
+    expect(calls[1][0].vercelStudyReview.items).toHaveLength(2);
+    expect(calls[1][0].vercelStudyReview.states).toEqual({});
   });
 });

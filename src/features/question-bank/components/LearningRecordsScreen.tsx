@@ -5,17 +5,18 @@ import { Alert, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { isVercelLegacyWeb } from '@/config/web-runtime';
-import { hasListeningReview, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
+import { getStudyReview, toStudyReviewPackage } from '../lib/study-review';
 import { colors, fonts, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { deleteAiResult } from '@/features/account/privacy-self-service';
 import { AiGeneratedContentLabel } from '@/features/ai/AiGeneratedContentLabel';
 
+import { loadLearningRecordReview } from '../platform/learning-record-storage';
 import { sqliteLearningStore } from '../platform/learning-store';
 import type { LearningRecord, QuestionBankStudyPackage } from '../types';
 import { AiReviewResultView } from './AiReviewResultView';
 
-const ListeningHistoryScreen = lazy(() => import('./QuestionBankStudyScreen').then((module) => ({ default: module.QuestionBankStudyScreen })));
+const StudyHistoryScreen = lazy(() => import('./QuestionBankStudyScreen').then((module) => ({ default: module.QuestionBankStudyScreen })));
 
 function duration(value: number) {
   return value < 60 ? `${value} 秒` : `${Math.floor(value / 60)} 分 ${value % 60} 秒`;
@@ -65,9 +66,26 @@ export function LearningRecordsScreen() {
   const [records, setRecords] = useState<LearningRecord[]>();
   const [reviewPackage, setReviewPackage] = useState<QuestionBankStudyPackage>();
   const vercelLegacyWeb = isVercelLegacyWeb(Platform.OS);
+  const [openingId, setOpeningId] = useState<string>();
   const [deletingId, setDeletingId] = useState<string>();
   const [error, setError] = useState('');
   useEffect(() => { void sqliteLearningStore.getRecords().then(setRecords); }, []);
+
+  async function openReview(record: LearningRecord) {
+    if (openingId) return;
+    setOpeningId(record.id);
+    setError('');
+    try {
+      const saved = await loadLearningRecordReview(record);
+      const next = toStudyReviewPackage(saved, Platform.OS);
+      if (!next) throw new Error('study_review_invalid');
+      setReviewPackage(next);
+    } catch {
+      setError('这次学习的逐题详情暂时无法读取，请重试。');
+    } finally {
+      setOpeningId(undefined);
+    }
+  }
 
   async function removeAiResult(record: LearningRecord) {
     if (deletingId) return;
@@ -91,8 +109,8 @@ export function LearningRecordsScreen() {
   }
 
   if (vercelLegacyWeb && reviewPackage) return (
-    <Suspense fallback={<Screen><AppText>正在打开听力复盘…</AppText></Screen>}>
-      <ListeningHistoryScreen key={reviewPackage.id} onReturn={() => setReviewPackage(undefined)} returnLabel="返回学习记录" sourceRoute="/learning-records" studyPackage={reviewPackage} />
+    <Suspense fallback={<Screen><AppText>正在打开学习复盘…</AppText></Screen>}>
+      <StudyHistoryScreen key={reviewPackage.id} onReturn={() => setReviewPackage(undefined)} returnLabel="返回学习记录" sourceRoute="/learning-records" studyPackage={reviewPackage} />
     </Suspense>
   );
 
@@ -132,9 +150,9 @@ export function LearningRecordsScreen() {
             </View>
             {record.recordType === 'ai_result' && record.aiResult ? <SavedAiResult result={record.aiResult} /> : null}
             {record.recordType === 'mock_exam' && record.mockExam ? <AppText color={colors.mutedForeground} variant="caption">{record.mockExam.mode === 'complete' ? '按考试规则组卷' : '自选板块'} · {record.mockExam.moduleIds.length} 个板块</AppText> : null}
-            {vercelLegacyWeb && record.recordType === 'mock_exam' && record.mockExam?.moduleIds.includes('listening') ? (
-              hasListeningReview(record)
-                ? <Button onPress={() => setReviewPackage(toListeningReviewPackage(record, Platform.OS))}>查看听力复盘</Button>
+            {vercelLegacyWeb && record.recordType !== 'ai_result' ? (
+              record.vercelStudyReviewSaved || getStudyReview(record)
+                ? <Button disabled={Boolean(openingId)} onPress={() => { void openReview(record); }}>{openingId === record.id ? '正在打开…' : record.vercelStudyReviewSaved || record.vercelStudyReview ? '查看学习复盘' : '查看听力复盘'}</Button>
                 : <AppText color={colors.mutedForeground} variant="caption">此记录未保存逐题详情</AppText>
             ) : null}
           </Card>
