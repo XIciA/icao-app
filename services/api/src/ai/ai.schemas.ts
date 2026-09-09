@@ -39,6 +39,11 @@ export const reviewSchema = z.object({
   }
 });
 
+export const transcribeReviewSchema = z.object({
+  mode: z.enum(['grammar', 'opi']), module: z.enum(['atc', 'story', 'opi']),
+  questionId: z.string().trim().min(1).max(160),
+}).strict().refine((value) => value.mode !== 'opi' || value.module === 'opi', { path: ['module'], message: 'opi_mode_requires_opi_module' });
+
 export const grammarResultSchema = z.object({
   correctedText: z.string().trim().min(1).max(5000),
   issues: z.array(z.string().trim().min(1).max(1200)).max(30),

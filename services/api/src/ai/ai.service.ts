@@ -1,12 +1,14 @@
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
-import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiPointOperationSummary, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiReviewRequest, type GrammarReviewRequest, type PolishRequest, type TencentAsrModel } from '@icao/contracts';
+
+import type { AiOperationLookup, AiRuleCosts, AiUsageOperationSummary as AiPointOperationSummary, MeteredAiReviewResult as AiReviewResult, MeteredPolishResult as PolishResult, TranscribeReviewRequest, TranscribeReviewResult } from '@icao/contracts/commerce-rules';
 
 import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
 import type { BillableAiCapability } from '../commerce/commerce-domain';
 import { DatabaseService } from '../database/database.service';
-import { aiConsentAuthorities, aiConsentChallenges, aiConsents, aiUsageLogs } from '../database/schema';
+import { accounts, aiConsentAuthorities, aiConsentChallenges, aiConsents, aiPointReservations, aiUsageLogs } from '../database/schema';
 import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
 import { TencentAsrService } from './tencent-asr.service';
 import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
@@ -22,6 +24,7 @@ const AI_OPERATION_QUEUE_TIMEOUT_MS = 45 * 1000;
 
 export type AiOperationGrant = {
   userId: string;
+  environment?: 'production' | 'sandbox';
   policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
   consentRevision: number;
   nonce: string;
@@ -63,6 +66,30 @@ export class AiService {
     private readonly asr: TencentAsrService,
     private readonly commerce: PersistentCommerceBenefitsService = new PersistentCommerceBenefitsService(),
   ) {}
+
+  async operationResult(userId: string, environment: 'production' | 'sandbox', operationId: string): Promise<AiOperationLookup> {
+    return this.database.db.transaction(async (tx) => {
+    await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+    const [owner] = await tx.select().from(accounts).where(eq(accounts.id, userId)).limit(1);
+    const [operation] = await tx.select().from(aiPointReservations).where(and(
+      eq(aiPointReservations.accountId, userId),
+      eq(aiPointReservations.environment, environment),
+      eq(aiPointReservations.operationId, operationId),
+    )).limit(1);
+    if (!owner || owner.status !== 'active' || !operation || operation.resultDeletedAt || operation.aiResultGeneration !== owner.aiResultGeneration) return { state: 'missing' };
+    if (operation.status === 'released') return { state: 'released' };
+    if (operation.status === 'reserved') {
+      return { state: operation.leaseUntil && operation.leaseUntil.getTime() > Date.now() ? 'pending' : 'released' };
+    }
+    // Privacy deletion clears the body but retains the financial ledger.
+    if (!operation.resultPayload) return { state: 'missing' };
+    const payload = operation.resultPayload as Record<string, unknown>;
+    const result = operation.capability === 'grammar_correction' || operation.capability === 'opi_refinement'
+      ? { ...payload, promptVersion: REVIEW_PROMPT_VERSION } : payload;
+    return { state: 'completed', capability: operation.capability as keyof AiRuleCosts,
+      result: result as Extract<AiOperationLookup, { state: 'completed' }>['result'] };
+    });
+  }
 
   async consentStatus(userId: string): Promise<AiConsentStatus> {
     return this.database.db.transaction(async (transaction) => {
@@ -216,7 +243,7 @@ export class AiService {
     });
   }
 
-  async admitOperation(userId: string): Promise<AiOperationGrant> {
+  async admitOperation(userId: string, environment: 'production' | 'sandbox' = 'production'): Promise<AiOperationGrant> {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
       const [authority] = await transaction.select().from(aiConsentAuthorities)
@@ -225,6 +252,7 @@ export class AiService {
       if (!isCurrentConsent(consent, authority)) throw new HttpException('ai_consent_required', 428);
       return {
         userId,
+        environment,
         policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
         consentRevision: consent!.revision,
         nonce: randomUUID(),
@@ -313,6 +341,7 @@ export class AiService {
 
   private async reservePoints<T>(input: {
     userId: string;
+    environment: 'production' | 'sandbox';
     operationId: string;
     pointCapability: BillableAiCapability;
     requestDigest: string;
@@ -325,7 +354,7 @@ export class AiService {
         reservation = await this.database.db.transaction((transaction) => this.commerce.reserveAiPoints<T>(transaction, {
           accountId: input.userId,
           capability: input.pointCapability,
-          environment: 'production',
+          environment: input.environment,
           operationId: input.operationId,
           requestDigest: input.requestDigest,
           reservedAt: new Date(),
@@ -333,6 +362,7 @@ export class AiService {
       } catch (error) {
         const code = error instanceof Error ? error.message : 'ai_points_unavailable';
         if (code === 'insufficient_ai_points') throw new HttpException(code, 402);
+        if (code === 'ai_operation_result_deleted') throw new HttpException(code, 410);
         if (code === 'ai_operation_idempotency_conflict') throw new HttpException(code, 409);
         if (code === 'ai_operation_lease_expired' || code === 'ai_operation_released') {
           throw new HttpException('ai_operation_released', 409);
@@ -353,6 +383,7 @@ export class AiService {
   }): Promise<T & { aiPoints: AiPointOperationSummary }> {
     const reservation = await this.reservePoints<T & { aiPoints: AiPointOperationSummary }>({
       userId: input.userId,
+      environment: input.grant.environment ?? 'production',
       operationId: input.operationId,
       pointCapability: input.pointCapability,
       requestDigest: input.requestDigest,
@@ -371,12 +402,12 @@ export class AiService {
       const result = await this.withAuthorizedOperation(input.userId, input.grant, input.action);
       const data = await this.database.db.transaction((transaction) => this.commerce.settleAiPoints(transaction, {
         accountId: input.userId,
-        environment: 'production',
+        environment: input.grant.environment ?? 'production',
         operationId: input.operationId,
         result: result.data,
         settledAt: new Date(),
       }));
-      await this.logUsage({ ...usage, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta })
+      await this.logUsage({ ...usage, status: 'success', latencyMs: Date.now() - started, quotaUnits: data.aiPoints.charged, meta: result.meta })
         .catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=success`));
       return data;
     } catch (error) {
@@ -399,7 +430,7 @@ export class AiService {
       }).catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=failed metered=${meteredFailure}`));
       await this.database.db.transaction((transaction) => this.commerce.releaseAiPoints(transaction, {
         accountId: input.userId,
-        environment: 'production',
+        environment: input.grant.environment ?? 'production',
         failureCode: observation.failureCode,
         operationId: input.operationId,
         releasedAt: new Date(),
@@ -428,6 +459,34 @@ export class AiService {
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
         return { data: { transcript: result.rawTranscript }, meta: result.meta };
+      },
+    });
+  }
+
+  async transcribeReview(
+    userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel,
+    input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId,
+  ): Promise<TranscribeReviewResult> {
+    if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
+    const pointCapability = input.mode === 'opi' ? 'transcription_opi' : 'transcription_grammar';
+    return this.run({
+      userId, requestId, capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
+      provider: 'deepseek', model: this.reviewProvider.textModel(input.mode),
+      promptVersion: REVIEW_PROMPT_VERSION, units: 1, grant, operationId, pointCapability, signal,
+      requestDigest: this.requestDigest([pointCapability, mimeType, model, JSON.stringify(input), audio]),
+      action: async () => {
+        const started = Date.now();
+        const transcription = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
+        // Provider usage is recorded separately; the user has one reservation for the whole result.
+        await this.logUsage({
+          userId, requestId, capability: 'transcribe', status: 'success', model,
+          promptVersion: 'tencent-asr:raw:v1', latencyMs: Date.now() - started,
+          quotaUnits: 0, meta: transcription.meta,
+        }).catch(() => this.logger.error('ai_usage_log_failed capability=transcribe status=success'));
+        const transcript = transcription.rawTranscript.trim();
+        if (!transcript || transcript.length > 4_000) throw new BadRequestException('invalid_transcript');
+        const result = await this.generateReview(userId, { ...input, transcript }, signal);
+        return { data: { transcript, review: withReviewPromptVersion(result.data) }, meta: result.meta };
       },
     });
   }

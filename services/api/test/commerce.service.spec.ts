@@ -118,11 +118,11 @@ describe('CommerceService validation and catalog', () => {
           storeProductId: 'com.readyoufife.ios.membership.31d.v1',
           durationDays: 31,
           autoRenews: false,
-          recommended: true,
+          recommended: false,
         }),
       ]),
     });
-    expect(instance.catalog().products).toHaveLength(5);
+    expect(instance.catalog().products.map((product) => product.durationDays)).toEqual([7, 31, 93]);
     expect(instance.catalog().products.every((product) => !('price' in product))).toBe(true);
   });
 

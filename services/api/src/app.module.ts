@@ -1,9 +1,21 @@
+import { WechatMerchantClient } from './commerce/wechat-merchant-client';
+import { WechatPayService } from './commerce/wechat-pay.service';
+import { WechatPayController, WechatPayNotificationController } from './commerce/wechat-pay.controller';
+import { AppContentController } from './app-content/app-content.controller';
+import { AppContentService } from './app-content/app-content.service';
+import { LegalConsentController } from './app-content/legal-consent.controller';
+import { LegalConsentService } from './app-content/legal-consent.service';
+import { AiAllowanceService } from './commerce/ai-allowance.service';
+import { AiUsageRulesService } from './commerce/ai-usage-rules.service';
+import { CommerceRulesController } from './commerce/commerce-rules.controller';
 import { Module } from '@nestjs/common';
 
 import { AUTH_VERIFIER } from './auth/auth.types';
 import { AccountController } from './account/account.controller';
 import { AccountPrivacyController } from './account/account-privacy.controller';
 import { AccountService } from './account/account.service';
+import { AccountLoginMethodsController } from './account/account-login-methods.controller';
+import { AccountLoginMethodsService } from './account/account-login-methods.service';
 import { AccountIdentityService } from './account/account-identity.service';
 import { AccountDeletionService } from './account/account-deletion.service';
 import { AccountPhoneIdentityService } from './account/account-phone-identity.service';
@@ -71,15 +83,19 @@ import { AppleStoreServerApiService } from './commerce/apple-store-server-api.se
 import { AppleServerReconciliationService } from './commerce/apple-server-reconciliation.service';
 
 @Module({
-  controllers: [HealthController, WechatUniversalLinkController, MeController, PhoneAuthController, WechatAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
-  providers: [
+  controllers: [WechatPayController, WechatPayNotificationController,AccountLoginMethodsController, LegalConsentController, AppContentController, CommerceRulesController, HealthController, WechatUniversalLinkController, MeController, PhoneAuthController, WechatAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
+  providers: [WechatMerchantClient, WechatPayService,
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
+    AppContentService,
+    LegalConsentService,
     SupabaseAuthVerifier,
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
     SessionSecurityService,
     AccountIdentityService,
     IdentityDigestService,
+    AiUsageRulesService,
+    AiAllowanceService,
     PersistentCommerceBenefitsService,
     { provide: APPLE_STORE_VERIFIER, inject: [API_CONFIG], useFactory: configuredAppleStoreVerifier },
     {
@@ -110,6 +126,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     AppleAuthService,
     AccountPhoneIdentityService,
     AccountService,
+    AccountLoginMethodsService,
     SupabaseAccountAuthAdmin,
     { provide: ACCOUNT_AUTH_ADMIN, useExisting: SupabaseAccountAuthAdmin },
     AccountDeletionService,

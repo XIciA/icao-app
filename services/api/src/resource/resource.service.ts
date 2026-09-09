@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { and, eq } from 'drizzle-orm';
+import { and, desc, eq, inArray } from 'drizzle-orm';
 import type { CommerceEnvironment, ResolvedResource } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -33,9 +33,13 @@ export class ResourceService {
     publicPath: string,
     sessionId: string,
     environment: CommerceEnvironment,
+    checksum?: string,
   ): Promise<ResolvedResource> {
     const [resource] = await this.database.db.select().from(resourceObjects)
-      .where(and(eq(resourceObjects.sourcePath, publicPath), eq(resourceObjects.status, 'ready')))
+      .where(and(eq(resourceObjects.sourcePath, publicPath), checksum
+        ? and(eq(resourceObjects.checksum, checksum), inArray(resourceObjects.status, ['ready', 'superseded']))
+        : eq(resourceObjects.status, 'ready')))
+      .orderBy(desc(resourceObjects.createdAt))
       .limit(1);
     if (!resource) throw new NotFoundException('resource_not_found');
     if (publicPath.startsWith('/question-bank-assets/')) {

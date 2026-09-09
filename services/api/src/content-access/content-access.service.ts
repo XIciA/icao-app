@@ -131,10 +131,11 @@ export class ContentAccessService {
     sessionId: string,
     environment: CommerceEnvironment,
     now = new Date(),
+    expected?: { version: number; checksum?: string },
   ) {
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, now);
     const [release, membership] = await Promise.all([
-      this.activeRelease(bankId),
+      this.activeRelease(bankId, expected),
       this.membership(accountId, environment, now),
     ]);
     const category = release.dataset.categories.find((candidate) => candidate.id === categoryId);
@@ -163,11 +164,15 @@ export class ContentAccessService {
     await this.assertEnvironmentAuthorized(accountId, sessionId, environment, now);
     const membership = await this.membership(accountId, environment, now);
     if (membership.active) return;
-    const release = await this.activeRelease(bankId);
-    for (const category of release.dataset.categories) {
-      for (const topic of category.topics) {
-        for (const card of topic.cards) {
-          if (isFreeQuestionBankCard(bankId, topic.id, card.id) && this.cardUsesResource(card, publicPath)) return;
+    const releases = await this.database.db.select({ payload: questionBankReleases.payload }).from(questionBankReleases)
+      .where(eq(questionBankReleases.bankId, bankId));
+    for (const release of releases) {
+      if (!isContentDataset(release.payload)) continue;
+      for (const category of release.payload.categories) {
+        for (const topic of category.topics) {
+          for (const card of topic.cards) {
+            if (isFreeQuestionBankCard(bankId, topic.id, card.id) && this.cardUsesResource(card, publicPath)) return;
+          }
         }
       }
     }
@@ -272,7 +277,7 @@ export class ContentAccessService {
     }
   }
 
-  private async assertEnvironmentAuthorized(
+  async assertEnvironmentAuthorized(
     accountId: string,
     sessionId: string,
     environment: CommerceEnvironment,
@@ -296,14 +301,15 @@ export class ContentAccessService {
     if (!grant) throw new ForbiddenException('sandbox_environment_not_authorized');
   }
 
-  private async activeRelease(bankId: string): Promise<ActiveRelease> {
+  private async activeRelease(bankId: string, expected?: { version: number; checksum?: string }): Promise<ActiveRelease> {
     const [row] = await this.database.db.select().from(questionBankReleases)
-      .where(and(eq(questionBankReleases.bankId, bankId), eq(questionBankReleases.active, true)))
+      .where(and(eq(questionBankReleases.bankId, bankId), expected ? eq(questionBankReleases.version, expected.version) : eq(questionBankReleases.active, true)))
       .orderBy(desc(questionBankReleases.version))
       .limit(1);
     if (!row || !isContentDataset(row.payload) || row.payload.id !== bankId) {
       throw new NotFoundException('question_bank_not_found');
     }
+    if (expected?.checksum && row.checksum !== expected.checksum) throw new BadRequestException('content_release_mismatch');
     return { bankId: row.bankId, version: row.version, checksum: row.checksum, dataset: row.payload };
   }
 
@@ -327,7 +333,9 @@ export class ContentAccessService {
       && typeof scope.topicId === 'string'
       && /^[A-Za-z0-9_-]{1,96}$/u.test(scope.bankId)
       && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.categoryId)
-      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.topicId),
+      && /^[A-Za-z0-9_-]{1,128}$/u.test(scope.topicId)
+      && ((scope as ContentAccessScope & { version?: number }).version === undefined
+        || (Number.isSafeInteger((scope as ContentAccessScope & { version?: number }).version) && Number((scope as ContentAccessScope & { version?: number }).version) > 0)),
     ));
     const unique = [...new Map(scopes.map((scope) => [`${scope.bankId}/${scope.categoryId}/${scope.topicId}`, scope])).values()];
     if (unique.length === 0 || unique.length !== input.scopes.length || unique.length > 24) {
@@ -337,7 +345,8 @@ export class ContentAccessService {
   }
 
   private async assertScopeExists(scope: ContentAccessScope) {
-    const release = await this.activeRelease(scope.bankId);
+    const version = (scope as ContentAccessScope & { version?: number }).version;
+    const release = await this.activeRelease(scope.bankId, version ? { version } : undefined);
     const topic = release.dataset.categories
       .find((category) => category.id === scope.categoryId)
       ?.topics.find((candidate) => candidate.id === scope.topicId);

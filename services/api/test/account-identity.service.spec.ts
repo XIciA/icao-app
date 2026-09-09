@@ -75,7 +75,7 @@ function databaseFixture(options: {
   distinctSelects?: unknown[][];
   transactionSelects?: unknown[][];
 }) {
-  const transactionSelects = [...(options.transactionSelects ?? [])];
+  const transactionSelects = [[], ...(options.transactionSelects ?? [])];
   const distinctSelects = [...(options.distinctSelects ?? [])];
   const mutations: RecordedMutation[] = [];
   const transaction = {
@@ -143,7 +143,7 @@ describe('AccountIdentityService', () => {
         }],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     const resolved = await service.resolve(auth);
 
@@ -188,7 +188,7 @@ describe('AccountIdentityService', () => {
         [],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
@@ -239,7 +239,7 @@ describe('AccountIdentityService', () => {
         [{ accountId, provider, subjectHash: hash }],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
       authUserId: auth.authUserId,
@@ -272,7 +272,7 @@ describe('AccountIdentityService', () => {
         }],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
@@ -295,7 +295,7 @@ describe('AccountIdentityService', () => {
         [{ accountId: '22222222-2222-4222-8222-222222222222' }],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
@@ -313,7 +313,7 @@ describe('AccountIdentityService', () => {
       },
     });
     const fixture = databaseFixture({ transactionSelects: [[]] });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
@@ -342,7 +342,7 @@ describe('AccountIdentityService', () => {
         [{ accountId, provider: 'wechat', subjectHash: identityHash('wechat', subject) }],
       ],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
       authUserId: auth.authUserId,
@@ -359,7 +359,7 @@ describe('AccountIdentityService', () => {
     const fixture = databaseFixture({
       distinctSelects: [[{ provider: 'wechat' }, { provider: 'apple' }, { provider: 'phone' }]],
     });
-    const service = new AccountIdentityService(config, fixture.database);
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
 
     await expect(service.providersForAccount('22222222-2222-4222-8222-222222222222'))
       .resolves.toEqual(['phone', 'apple', 'wechat']);

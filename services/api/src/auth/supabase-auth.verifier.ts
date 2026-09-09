@@ -59,10 +59,16 @@ export class SupabaseAuthVerifier implements AuthVerifier {
     if (typeof claims.session_id !== 'string' || typeof claims.iat !== 'number') throw new UnauthorizedException('invalid_access_token');
     const identities = (data.user.identities ?? [])
       .filter((identity) => typeof identity.provider === 'string')
-      .map((identity) => ({
-        provider: identity.provider,
-        subject: identity.identity_id ?? identity.id,
-      }));
+      .map((identity) => {
+        // identity_id is GoTrue's internal row UUID, not the OAuth subject.
+        const subject = typeof identity.identity_data?.sub === 'string' ? identity.identity_data.sub : identity.id;
+        return {
+          provider: identity.provider,
+          subject,
+          ...(identity.provider === 'apple' && identity.identity_id && identity.identity_id !== subject
+            ? { legacySubject: identity.identity_id } : {}),
+        };
+      });
     if (
       data.user.app_metadata?.icao_identity_provider === 'wechat'
       && typeof data.user.app_metadata?.icao_wechat_subject === 'string'

@@ -11,7 +11,7 @@ import type {
   CommerceProductCatalogResponse,
   VerifyAppleTransactionResponse,
 } from '@icao/contracts';
-import { and, asc, eq, lte, sql } from 'drizzle-orm';
+import { and, asc, eq, sql } from 'drizzle-orm';
 import { createHmac } from 'node:crypto';
 
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -36,11 +36,13 @@ import type { VerifiedAppleTransaction } from './commerce-domain';
 import type { VerifiedAppleNotification } from './commerce-domain';
 import { PersistentCommerceBenefitsService } from './persistent-commerce-benefits.service';
 import {
-  MEMBERSHIP_PRODUCTS,
+  ACTIVE_MEMBERSHIP_PRODUCTS,
   requireMembershipProductByAppleId,
   requireMembershipProductByKey,
   type CommerceEnvironment,
 } from './product-catalog';
+import { AiUsageRulesService } from './ai-usage-rules.service';
+import { AiAllowanceService } from './ai-allowance.service';
 
 const DAY_MS = 24 * 60 * 60 * 1_000;
 const APPLE_NOTIFICATION_RETRY_MS = 60_000;
@@ -87,6 +89,8 @@ function normalizeAppleOrderStatus(value: string | undefined) {
 
 @Injectable()
 export class CommerceService {
+  private readonly rules = new AiUsageRulesService();
+  private readonly allowance = new AiAllowanceService(this.rules);
   constructor(
     @Inject(API_CONFIG) private readonly config: CommerceServiceConfig,
     @Inject(DatabaseService) private readonly database: DatabaseService,
@@ -97,13 +101,13 @@ export class CommerceService {
   catalog(): CommerceProductCatalogResponse {
     return {
       priceSource: 'storekit',
-      products: MEMBERSHIP_PRODUCTS.map((product) => ({
+      products: ACTIVE_MEMBERSHIP_PRODUCTS.map((product) => ({
         productKey: product.productKey,
         storeProductId: product.appleProductId,
         displayName: product.displayName,
         durationDays: product.durationDays,
         autoRenews: false,
-        recommended: product.durationDays === 31,
+        recommended: false,
       })),
     };
   }
@@ -236,7 +240,7 @@ export class CommerceService {
           productKey: product.productKey,
           externalProductId: verified.productId,
           durationDays: product.durationDays,
-          aiPointRuleVersion: product.aiPointRuleVersion,
+          ...await this.rules.purchaseTerms(transaction, product.productKey, verified.purchaseDate),
           membershipGrantSource: 'purchase_discovery',
           membershipEffectiveAt: verified.purchaseDate,
           membershipContributionMs: product.durationDays * DAY_MS,
@@ -424,7 +428,7 @@ export class CommerceService {
           productKey: product.productKey,
           externalProductId: verified.productId,
           durationDays: product.durationDays,
-          aiPointRuleVersion: product.aiPointRuleVersion,
+          ...await this.rules.purchaseTerms(transaction, product.productKey, verified.purchaseDate),
           membershipGrantSource: 'purchase_discovery',
           membershipEffectiveAt: verified.purchaseDate,
           membershipContributionMs: product.durationDays * DAY_MS,
@@ -700,7 +704,7 @@ export class CommerceService {
           productKey: product.productKey,
           externalProductId: verified.productId,
           durationDays: product.durationDays,
-          aiPointRuleVersion: product.aiPointRuleVersion,
+          ...await this.rules.purchaseTerms(transaction, product.productKey, verified.purchaseDate),
           membershipGrantSource: 'purchase_discovery',
           membershipEffectiveAt: verified.purchaseDate,
           membershipContributionMs: product.durationDays * DAY_MS,
@@ -970,6 +974,54 @@ export class CommerceService {
     ));
   }
 
+  /** Verified WeChat transport joins the same order owner and membership rebuild as StoreKit. */
+  async fulfillWechatPayment(transaction: CommerceTransaction, input: {
+    accountId: string; transactionId: string; productKey: string; durationDays: number;
+    ruleVersionId: string; paidAt: Date;
+  }) {
+    await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))`);
+    const active = await this.isAccountActive(transaction, input.accountId);
+    const [existing] = await transaction.select().from(commerceOrders).where(and(
+      eq(commerceOrders.environment, 'production'), eq(commerceOrders.channel, 'wechat_pay'),
+      eq(commerceOrders.externalOrderId, input.transactionId),
+    )).limit(1);
+    if (existing && (existing.accountId !== input.accountId || existing.productKey !== input.productKey)) {
+      throw new ConflictException('wechat_pay_order_owner_mismatch');
+    }
+    if (!existing) {
+      await transaction.insert(commerceOrders).values({
+        environment: 'production', channel: 'wechat_pay', externalOrderId: input.transactionId,
+        status: active ? 'verified' : 'revoked', revokedAt: active ? null : new Date(),
+        accountId: input.accountId, originalAccountId: input.accountId, productKey: input.productKey,
+        externalProductId: input.productKey, durationDays: input.durationDays,
+        aiPointRuleVersion: 'ai-weekly-v1', aiUsageRuleVersionId: input.ruleVersionId,
+        membershipGrantSource: 'purchase_discovery', membershipEffectiveAt: input.paidAt,
+        membershipContributionMs: input.durationDays * DAY_MS, purchasedAt: input.paidAt,
+      });
+      if (active) await this.rebuildMembership(transaction, input.accountId, 'production', new Date());
+    }
+  }
+
+  async refundWechatPayment(transaction: CommerceTransaction, input: {
+    accountId: string; transactionId: string; refundId: string; refundedAt: Date;
+  }) {
+    await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))`);
+    const [order] = await transaction.select().from(commerceOrders).where(and(
+      eq(commerceOrders.environment, 'production'), eq(commerceOrders.channel, 'wechat_pay'),
+      eq(commerceOrders.externalOrderId, input.transactionId), eq(commerceOrders.accountId, input.accountId),
+    )).limit(1);
+    if (!order) throw new ConflictException('wechat_pay_order_not_found');
+    if (order.status !== 'verified') return;
+    const now = new Date();
+    const cycleKey = `wechat-refund:${input.refundId}`;
+    await transaction.update(commerceOrders).set({ status: 'refunded', revokedAt: input.refundedAt,
+      revocationCycleKey: cycleKey, updatedAt: now }).where(eq(commerceOrders.id, order.id));
+    await this.benefits.revokeOrderBenefits(transaction, { accountId: input.accountId, cycleKey,
+      environment: 'production', orderId: order.id, revokedAt: now });
+    // Deleted accounts retain financial records but never regain entitlement from a late callback.
+    if (await this.isAccountActive(transaction, input.accountId)) await this.rebuildMembership(transaction, input.accountId, 'production', now);
+  }
+
   private async revokeAppleOrder(
     transaction: CommerceTransaction,
     input: {
@@ -1191,6 +1243,10 @@ export class CommerceService {
         continue;
       }
       const order = source.order;
+      if (order.aiUsageRuleVersionId) {
+        cursor = endsAt;
+        continue;
+      }
       const product = requireMembershipProductByKey(order.productKey);
       for (const [ordinal, batchDefinition] of product.aiPointBatches.entries()) {
         const scheduledAt = new Date(startsAt.getTime() + (batchDefinition.offsetDays * DAY_MS));
@@ -1285,67 +1341,18 @@ export class CommerceService {
     environment: CommerceEnvironment,
     now: Date,
   ): Promise<CommerceEntitlementSummary> {
-    const due = await transaction.select()
-      .from(aiPointBatches)
-      .where(and(
-        eq(aiPointBatches.environment, environment),
-        eq(aiPointBatches.accountId, accountId),
-        eq(aiPointBatches.status, 'scheduled'),
-        lte(aiPointBatches.availableAt, now),
-      ));
-    for (const batch of due) {
-      await transaction.update(aiPointBatches).set({
-        status: 'available',
-        updatedAt: now,
-      }).where(and(eq(aiPointBatches.id, batch.id), eq(aiPointBatches.status, 'scheduled')));
-      await this.ensureGrantLedger(transaction, {
-        id: batch.id,
-        environment,
-        accountId,
-        points: batch.grantedPoints,
-        availableAt: batch.availableAt,
-      });
-    }
-
-    const segments = await transaction.select({ endsAt: membershipEntitlementSegments.endsAt })
-      .from(membershipEntitlementSegments)
-      .where(and(
-        eq(membershipEntitlementSegments.environment, environment),
-        eq(membershipEntitlementSegments.accountId, accountId),
-        eq(membershipEntitlementSegments.status, 'active'),
-      ));
-    const batches = await transaction.select()
-      .from(aiPointBatches)
-      .where(and(
-        eq(aiPointBatches.environment, environment),
-        eq(aiPointBatches.accountId, accountId),
-      ));
-    const membershipExpiresAt = segments.reduce<Date | undefined>(
-      (latest, segment) => !latest || segment.endsAt > latest ? segment.endsAt : latest,
-      undefined,
-    );
-    const available = batches
-      .filter((batch) => batch.status === 'available' && batch.availableAt <= now)
-      .reduce(
-        (total, batch) => total + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints,
-        0,
-      );
-    const nextGrantAt = batches
-      .filter((batch) => batch.status === 'scheduled' && batch.availableAt > now)
-      .reduce<Date | undefined>(
-        (earliest, batch) => !earliest || batch.availableAt < earliest ? batch.availableAt : earliest,
-        undefined,
-      );
+    const context = await this.allowance.summary(transaction, accountId, environment, now);
+    const membershipExpiresAt = context.summary.membershipExpiresAt;
     return {
       environment,
       serverTime: now.toISOString(),
       membership: {
-        active: Boolean(membershipExpiresAt && membershipExpiresAt > now),
-        expiresAt: membershipExpiresAt?.toISOString() ?? null,
+        active: context.summary.mode === 'weekly',
+        expiresAt: membershipExpiresAt,
       },
       aiPoints: {
-        available,
-        nextGrantAt: nextGrantAt?.toISOString() ?? null,
+        available: context.available,
+        nextGrantAt: context.summary.resetAt,
       },
     };
   }

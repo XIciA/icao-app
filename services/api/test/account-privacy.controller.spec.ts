@@ -2,7 +2,6 @@ import { BadRequestException } from '@nestjs/common';
 import { describe, expect, it, vi } from 'vitest';
 
 import { AccountPrivacyController } from '../src/account/account-privacy.controller';
-import type { AccountService } from '../src/account/account.service';
 import type { AuthenticatedRequest } from '../src/auth/auth.types';
 import type { SyncService } from '../src/sync/sync.service';
 
@@ -21,37 +20,14 @@ const clearLearningRequest = {
 
 function fixture() {
   const generations = { aiResultGeneration: 2, dataGeneration: 3, deletedCount: 4 };
-  const account = {
-    exportAccountData: vi.fn().mockResolvedValue({
-      accountId: request.user!.id,
-      createdAt: '2026-08-01T00:00:00.000Z',
-      phone: request.user!.phone,
-      providers: ['phone'],
-    }),
-  };
   const sync = {
     clearLearningData: vi.fn().mockResolvedValue(generations),
     deleteAiResult: vi.fn().mockResolvedValue(generations),
     deleteAllAiResults: vi.fn().mockResolvedValue(generations),
-    exportLearningData: vi.fn().mockResolvedValue({
-      aiResultGeneration: 2,
-      cardStates: [],
-      dataGeneration: 3,
-      documents: [],
-      records: [
-        {
-          id: 'legacy-ai-result',
-          recordType: 'ai_result',
-          aiResult: { transcript: 'Legacy transcript.', polishedText: 'Legacy generated text.' },
-        },
-        { id: 'ordinary-session', recordType: 'session' },
-      ],
-    }),
+
   };
   return {
-    account,
     controller: new AccountPrivacyController(
-      account as unknown as AccountService,
       sync as unknown as SyncService,
     ),
     generations,
@@ -85,31 +61,4 @@ describe('AccountPrivacyController', () => {
     expect(sync.clearLearningData).not.toHaveBeenCalled();
   });
 
-  it('exports account and learning snapshots without exposing another account selector', async () => {
-    const { account, controller, sync } = fixture();
-
-    const response = await controller.exportData(request);
-
-    expect(response.data).toMatchObject({
-      schemaVersion: 1,
-      account: { accountId: request.user!.id, phone: request.user!.phone },
-      learning: {
-        dataGeneration: 3,
-        aiResultGeneration: 2,
-        records: [
-          {
-            id: 'legacy-ai-result',
-            contentLabel: 'AI辅助生成',
-            model: 'DeepSeek-V4-Flash-0731',
-            service: 'Deepseek Chat',
-            filingNumber: 'Beijing-DeepseekChat-202404280016',
-          },
-          { id: 'ordinary-session', recordType: 'session' },
-        ],
-      },
-    });
-    expect(response.data.learning.records[1]).not.toHaveProperty('contentLabel');
-    expect(account.exportAccountData).toHaveBeenCalledWith(request.user!.id, request.user!.phone);
-    expect(sync.exportLearningData).toHaveBeenCalledWith(request.user!.id);
-  });
 });

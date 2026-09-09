@@ -37,6 +37,8 @@ import {
 } from '../src/database/database.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
+import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
+import { INITIAL_AI_RULE_ID } from '../src/commerce/ai-allowance-domain.ts';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const migrationJournal = JSON.parse(readFileSync(join(migrationsDirectory, 'meta/_journal.json'), 'utf8'));
@@ -551,7 +553,7 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 59, 'the exact production schema inventory must remain classified');
+  assert.equal(tableCount, 64, 'the exact production schema inventory must remain classified');
   assert.equal(rlsCount, tableCount);
 });
 
@@ -3701,16 +3703,16 @@ function persistentCommerceService(signedTransactions, signedNotifications = new
   }, { db: serviceDatabase }, verifier);
 }
 
-test('persists first purchase, exact replay, sequential membership and point batches atomically', async () => {
+test('persists current purchases and exact replay with sequential membership and one shared weekly allowance', async () => {
   const accountId = '81000000-0000-4000-8000-000000000001';
-  const firstPurchaseAt = new Date(Date.now() - 2_000);
-  const secondPurchaseAt = new Date(Date.now() - 1_000);
+  const firstPurchaseAt = new Date();
+  const secondPurchaseAt = new Date(firstPurchaseAt.getTime() + 1);
   const signedTransactions = new Map([
     ['first-jws', verifiedCommerceTransaction({ accountId, transactionId: 'persistent-first', purchaseDate: firstPurchaseAt })],
     ['second-jws', verifiedCommerceTransaction({
       accountId,
       transactionId: 'persistent-second',
-      productId: 'com.readyoufife.ios.membership.15d.v1',
+      productId: 'com.readyoufife.ios.membership.31d.v1',
       purchaseDate: secondPurchaseAt,
     })],
   ]);
@@ -3724,7 +3726,9 @@ test('persists first purchase, exact replay, sequential membership and point bat
   assert.equal(replay.created, false);
   assert.equal(second.created, true);
   assert.equal(second.entitlement.membership.active, true);
-  assert.equal(second.entitlement.aiPoints.available, 250);
+  assert.equal(first.entitlement.aiPoints.available, 500);
+  assert.equal(second.entitlement.aiPoints.available, 500);
+  assert.equal(second.entitlement.aiPoints.nextGrantAt, first.entitlement.aiPoints.nextGrantAt);
   assert.ok(second.entitlement.aiPoints.nextGrantAt);
 
   const orders = await serviceDatabase.select().from(databaseSchema.commerceOrders)
@@ -3750,7 +3754,7 @@ test('persists first purchase, exact replay, sequential membership and point bat
   assert.equal(sortedSegments[1].startsAt.getTime(), sortedSegments[0].endsAt.getTime());
   assert.equal(
     sortedSegments[1].endsAt.getTime() - sortedSegments[0].startsAt.getTime(),
-    22 * 24 * 60 * 60 * 1_000,
+    38 * 24 * 60 * 60 * 1_000,
   );
 });
 
@@ -3760,6 +3764,7 @@ test('serializes concurrent replay without duplicate orders or benefits', async 
     accountId,
     transactionId: 'persistent-concurrent',
     productId: 'com.readyoufife.ios.membership.31d.v1',
+    purchaseDate: new Date(),
   });
   const commerce = persistentCommerceService(new Map([['concurrent-jws', transaction]]));
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
@@ -3777,22 +3782,25 @@ test('serializes concurrent replay without duplicate orders or benefits', async 
     .where(and(
       eq(databaseSchema.aiPointBatches.environment, 'production'),
       eq(databaseSchema.aiPointBatches.accountId, accountId),
-      eq(databaseSchema.aiPointBatches.sourceType, 'membership'),
+      eq(databaseSchema.aiPointBatches.sourceType, 'weekly_membership'),
     ));
   assert.equal(orders.length, 1);
   assert.equal(batches.length, 1);
-  assert.equal(results.at(-1).entitlement.aiPoints.available, 1_000);
+  assert.equal(results.at(-1).entitlement.aiPoints.available, 500);
+  assert.equal(batches[0].grantedPoints, 500);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM ai_allowance_accounts WHERE account_id = '${accountId}'`), '1');
 });
 
 test('isolates identical transaction ids and entitlement queries across Apple environments', async () => {
   const accountId = '81000000-0000-4000-8000-000000000003';
   const transactionId = 'same-id-both-environments';
-  const productionTransaction = verifiedCommerceTransaction({ accountId, transactionId });
+  const productionTransaction = verifiedCommerceTransaction({ accountId, transactionId, purchaseDate: new Date() });
   const sandboxTransaction = verifiedCommerceTransaction({
     accountId,
     environment: 'sandbox',
     transactionId,
-    productId: 'com.readyoufife.ios.membership.15d.v1',
+    productId: 'com.readyoufife.ios.membership.31d.v1',
+    purchaseDate: new Date(),
   });
   const commerce = persistentCommerceService(new Map([
     ['production-jws', productionTransaction],
@@ -3807,7 +3815,7 @@ test('isolates identical transaction ids and entitlement queries across Apple en
   const sandboxEntitlement = entitlements.sandbox;
   assert.equal(productionEntitlement.environment, 'production');
   assert.equal(sandboxEntitlement.environment, 'sandbox');
-  assert.equal(productionEntitlement.aiPoints.available, 250);
+  assert.equal(productionEntitlement.aiPoints.available, 500);
   assert.equal(sandboxEntitlement.aiPoints.available, 500);
   assert.ok(
     new Date(sandboxEntitlement.membership.expiresAt).getTime()
@@ -3826,7 +3834,7 @@ test('isolates identical transaction ids and entitlement queries across Apple en
   );
 });
 
-test('persists long membership point batches with only due points spendable', async () => {
+test('preserves restorable legacy 62-day batches separately from the displayed weekly allowance', async () => {
   const accountId = '81000000-0000-4000-8000-000000000004';
   const transaction = verifiedCommerceTransaction({
     accountId,
@@ -3842,7 +3850,7 @@ test('persists long membership point batches with only due points spendable', as
       eq(databaseSchema.aiPointBatches.accountId, accountId),
       eq(databaseSchema.aiPointBatches.sourceType, 'membership'),
     ));
-  assert.equal(result.entitlement.aiPoints.available, 1_000);
+  assert.equal(result.entitlement.aiPoints.available, 500);
   assert.ok(result.entitlement.aiPoints.nextGrantAt);
   assert.deepEqual(
     batches.sort((left, right) => left.ordinal - right.ordinal)
@@ -3880,12 +3888,15 @@ test('late purchase discovery rebuilds from Apple purchase time without refillin
       eq(databaseSchema.commerceOrders.externalOrderId, 'late-discovery-expired'),
     ));
   assert.equal(historicalOrder[0].membershipEffectiveAt.getTime(), expiredPurchaseAt.getTime());
-  assert.equal(after.entitlement.aiPoints.available, 750);
+  assert.equal(after.entitlement.aiPoints.available, 500);
+  assert.equal(before.entitlement.aiPoints.available, 500);
 });
 
-test('processes refund, duplicate, reversal and stale notifications without double-changing benefits', async () => {
+test('processes legacy credit refunds, duplicates, reversals and stale notifications without duplicating the weekly allowance', async () => {
   const accountId = '82000000-0000-4000-8000-000000000001';
-  const purchaseDate = new Date(Date.now() - 10_000);
+  const [initialRule] = await serviceDatabase.select().from(databaseSchema.aiUsageRuleVersions)
+    .where(eq(databaseSchema.aiUsageRuleVersions.id, INITIAL_AI_RULE_ID));
+  const purchaseDate = new Date(initialRule.createdAt.getTime() - 1_000);
   const refundDate = new Date(Date.now() - 5_000);
   const reversalDate = new Date(Date.now() - 2_000);
   const purchase = verifiedCommerceTransaction({
@@ -3940,7 +3951,7 @@ test('processes refund, duplicate, reversal and stale notifications without doub
   const commerce = persistentCommerceService(new Map([['purchase-jws', purchase]]), notifications);
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
   const purchaseResult = await commerce.verifyAppleTransaction(accountId, 'purchase-jws');
-  assert.equal(purchaseResult.entitlement.aiPoints.available, 1_000);
+  assert.equal(purchaseResult.entitlement.aiPoints.available, 500);
 
   const [batch] = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
     .where(and(
@@ -3953,6 +3964,7 @@ test('processes refund, duplicate, reversal and stale notifications without doub
       )[0].id),
     ));
   assert.ok(batch);
+  assert.equal(batch.grantedPoints, 1_000, 'a pre-migration purchase retains its original credits');
   const reservationId = '82000000-0000-4000-8000-000000000021';
   await serviceDatabase.transaction(async (transaction) => {
     await transaction.insert(databaseSchema.aiPointReservations).values({
@@ -4006,12 +4018,12 @@ test('processes refund, duplicate, reversal and stale notifications without doub
   await commerce.processAppleNotification('reversal-jws');
   entitlement = await commerce.currentEntitlement(accountId);
   assert.equal(entitlement.production.membership.active, true);
-  assert.equal(entitlement.production.aiPoints.available, 1_000);
+  assert.equal(entitlement.production.aiPoints.available, 500);
 
   await commerce.processAppleNotification('stale-refund-jws');
   entitlement = await commerce.currentEntitlement(accountId);
   assert.equal(entitlement.production.membership.active, true);
-  assert.equal(entitlement.production.aiPoints.available, 1_000);
+  assert.equal(entitlement.production.aiPoints.available, 500);
   const events = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
     .where(eq(databaseSchema.appleNotificationEvents.environment, 'production'));
   assert.equal(events.filter((event) => event.notificationUuid.startsWith('82000000-')).length, 3);
@@ -4059,7 +4071,7 @@ test('keeps notification effects isolated between Sandbox and Production', async
   await commerce.processAppleNotification('sandbox-refund-jws');
   const entitlement = await commerce.currentEntitlement(accountId);
   assert.equal(entitlement.production.membership.active, true);
-  assert.equal(entitlement.production.aiPoints.available, 250);
+  assert.equal(entitlement.production.aiPoints.available, 500);
   assert.equal(entitlement.sandbox.membership.active, false);
   assert.equal(entitlement.sandbox.aiPoints.available, 0);
 });
@@ -4877,7 +4889,7 @@ test('five concurrent AI requests release the five-connection pool before provid
   assert.equal(entered, 5);
 });
 
-test('AI point runtime reserves, settles, replays, and spends membership before trial', async () => {
+test('AI runtime reserves, settles and replays the priced weekly allowance without consuming lifetime trial', async () => {
   const accountId = '86000000-0000-4000-8000-000000000001';
   const operationId = '86000000-0000-4000-8000-000000000002';
   const now = new Date();
@@ -4897,18 +4909,15 @@ test('AI point runtime reserves, settles, replays, and spends membership before 
     revokedAt: null,
     updatedAt: now,
   });
-  await serviceDatabase.insert(databaseSchema.aiPointBatches).values([
-    {
+  await serviceDatabase.insert(databaseSchema.aiPointBatches).values({
       environment: 'production', accountId, originalAccountId: accountId,
       sourceType: 'trial', sourceReference: `trial:${accountId}`, ruleVersion: 'ai-points-v1',
       ordinal: 0, grantedPoints: 100, availableAt: now, status: 'available', createdAt: now, updatedAt: now,
-    },
-    {
-      environment: 'production', accountId, originalAccountId: accountId,
-      sourceType: 'membership', sourceReference: `membership:${accountId}`, ruleVersion: 'ai-points-v1',
-      ordinal: 0, grantedPoints: 10, availableAt: now, status: 'available', createdAt: now, updatedAt: now,
-    },
-  ]);
+  });
+  const purchase = verifiedCommerceTransaction({ accountId, transactionId: 'weekly-runtime-purchase',
+    productId: 'com.readyoufife.ios.membership.31d.v1', purchaseDate: now });
+  await persistentCommerceService(new Map([['weekly-runtime-jws', purchase]]))
+    .verifyAppleTransaction(accountId, 'weekly-runtime-jws');
   let providerCalls = 0;
   const ai = new AiService(
     { db: serviceDatabase },
@@ -4951,10 +4960,10 @@ test('AI point runtime reserves, settles, replays, and spends membership before 
   assert.deepEqual(replay, first);
   assert.deepEqual(first.aiPoints, {
     operationId,
-    ruleVersion: 'ai-points-v1',
+    ruleVersion: INITIAL_AI_RULE_ID,
     estimated: 3,
     charged: 3,
-    remaining: 107,
+    remaining: 497,
   });
   assert.equal(
     queryScalar(`
@@ -4964,8 +4973,10 @@ test('AI point runtime reserves, settles, replays, and spends membership before 
       JOIN ai_point_reservations reservation ON reservation.id = allocation.reservation_id
       WHERE reservation.operation_id = '${operationId}'
     `),
-    'membership:3',
+    'weekly_membership:3',
   );
+  assert.equal(queryScalar(`SELECT consumed_points FROM ai_point_batches
+    WHERE account_id = '${accountId}' AND source_type = 'trial'`), '0');
   assert.equal(
     queryScalar(`SELECT COUNT(*) FROM ai_point_ledger_entries WHERE operation_id = '${operationId}'`),
     '2',
@@ -4983,6 +4994,20 @@ test('AI point runtime reserves, settles, replays, and spends membership before 
     (error) => error?.getStatus?.() === 409 && error?.message === 'ai_operation_idempotency_conflict',
   );
   assert.equal(providerCalls, 1);
+});
+
+test('the live verifier removes only its temporary account weekly anchor and checks for remnants', async () => {
+  const accountId = '87000000-0000-4000-8000-000000000001';
+  const otherId = '87000000-0000-4000-8000-000000000002';
+  await serviceDatabase.insert(databaseSchema.accounts).values([{ id: accountId }, { id: otherId }]);
+  await serviceDatabase.insert(databaseSchema.aiAllowanceAccounts).values([accountId, otherId].map((id) => ({
+    accountId: id, environment: 'production', anchorAt: new Date(),
+  })));
+  const errors = await cleanupTemporaryBusinessAccount({ accountId, database: serviceDatabaseClient,
+    admin: {}, errorPrefix: 'test-fixture' });
+  assert.deepEqual(errors, []);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM ai_allowance_accounts WHERE account_id = '${accountId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM ai_allowance_accounts WHERE account_id = '${otherId}'`), '1');
 });
 
 test('AI point runtime releases a failed provider reservation and never charges it', async () => {

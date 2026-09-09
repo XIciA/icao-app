@@ -1,6 +1,8 @@
 import { BadRequestException, Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AppleRecentAuthRequest, PasswordRecentAuthRequest } from '@icao/contracts';
-import type { NativePhoneRecentAuthRequest as PhoneRecentAuthRequest, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, NativeStartPhoneRecentAuthRequest as StartPhoneRecentAuthRequest, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
+import type { ApiSuccessEnvelope } from '@icao/contracts';
+import type { NativeAppleRecentAuthRequest as AppleRecentAuthRequest, NativePasswordRecentAuthRequest as PasswordRecentAuthRequest, NativePhoneRecentAuthRequest as PhoneRecentAuthRequest, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, NativeStartPhoneRecentAuthRequest as StartPhoneRecentAuthRequest, StartWechatAuthResponse, StartWechatRecentAuthRequest, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
+
+import { AccountLoginMethodsService } from '../account/account-login-methods.service';
 
 import { AppleAuthService } from './apple-auth.service';
 import { appleRecentAuthSchema } from './apple-auth.schemas';
@@ -19,6 +21,7 @@ export class RecentAuthController {
     private readonly appleAuth: AppleAuthService,
     private readonly phoneAuth: PhoneAuthService,
     private readonly wechatAuth: WechatAuthService,
+    private readonly loginMethods: AccountLoginMethodsService,
   ) {}
 
   @Post('password')
@@ -78,7 +81,10 @@ export class RecentAuthController {
   ): Promise<ApiSuccessEnvelope<RecentAuthGrantResponse>> {
     const parsed = appleRecentAuthSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_recent_auth_request');
-    await this.appleAuth.registerCredential(request.auth!, parsed.data);
+    const appleSource = parsed.data.providerAccessToken
+      ? await this.loginMethods.verifiedBoundApple(request.auth!, parsed.data.providerAccessToken)
+      : request.auth!;
+    await this.appleAuth.registerCredential(appleSource, parsed.data);
     return {
       requestId: request.id,
       data: await this.recentAuth.issueVerifiedGrant(request.auth!, 'apple', parsed.data.purpose),

@@ -65,6 +65,7 @@ function database(
             limit: () => rows(table),
           }),
           limit: () => rows(table),
+          then: (resolve: (value: unknown) => unknown) => rows(table).then(resolve),
         }),
       }),
     }),

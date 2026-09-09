@@ -50,6 +50,22 @@ export const accountIdentities = pgTable('account_identities', {
   index('account_identities_auth_user').on(table.authUserId),
 ]).enableRLS();
 
+export const accountLoginMethodRemovals = pgTable('account_login_method_removals', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  authUserId: uuid('auth_user_id').notNull(),
+  provider: text('provider').notNull(),
+  status: text('status').default('pending').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  completedAt: timestamp('completed_at', { withTimezone: true }),
+}, (table) => [
+  uniqueIndex('account_login_method_removals_auth_user').on(table.authUserId),
+  index('account_login_method_removals_pending').on(table.status),
+  check('account_login_method_removals_provider_check', sql`${table.provider} IN ('phone', 'apple', 'wechat')`),
+  check('account_login_method_removals_status_check', sql`${table.status} IN ('pending', 'completed')`),
+  check('account_login_method_removals_completion_check', sql`(${table.status} = 'pending' AND ${table.completedAt} IS NULL) OR (${table.status} = 'completed' AND ${table.completedAt} IS NOT NULL)`),
+]).enableRLS();
+
 export const accountMerges = pgTable('account_merges', {
   id: uuid('id').defaultRandom().primaryKey(),
   sourceAccountId: uuid('source_account_id').notNull(),
@@ -86,7 +102,7 @@ export const recentAuthChallenges = pgTable('recent_auth_challenges', {
   index('recent_auth_challenges_account_session').on(table.accountId, table.sessionId, table.purpose, table.status),
   index('recent_auth_challenges_expiry').on(table.expiresAt),
   check('recent_auth_challenges_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
-  check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
+  check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding')`),
   check('recent_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verified', 'consumed', 'expired')`),
   check('recent_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('recent_auth_challenges_verified_check', sql`${table.verifiedAt} IS NULL OR ${table.verifiedAt} >= ${table.createdAt}`),
@@ -113,7 +129,7 @@ export const recentAuthGrants = pgTable('recent_auth_grants', {
   index('recent_auth_grants_account_session').on(table.accountId, table.sessionId, table.purpose),
   index('recent_auth_grants_expiry').on(table.expiresAt),
   check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple', 'wechat')`),
-  check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
+  check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding')`),
   check('recent_auth_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('recent_auth_grants_reservation_check', sql`(
     (${table.reservationToken} IS NULL AND ${table.reservationExpiresAt} IS NULL)
@@ -231,7 +247,7 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   index('phone_otp_intents_expiry').on(table.expiresAt),
   uniqueIndex('phone_otp_intents_active_phone').on(table.phoneDigest)
     .where(sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying')`),
-  check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all')`),
+  check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding')`),
   check('phone_otp_intents_status_check', sql`${table.status} IN ('queued', 'dispatching', 'quarantined', 'ready', 'verifying', 'consumed', 'redeemed', 'superseded', 'failed')`),
   check('phone_otp_intents_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
@@ -259,7 +275,7 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   )`),
   check('phone_otp_intents_account_check', sql`(
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
-    OR (${table.purpose} IN ('account_delete', 'phone_binding', 'session_revoke_all') AND ${table.accountId} IS NOT NULL)
+    OR (${table.purpose} IN ('account_delete', 'phone_binding', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding') AND ${table.accountId} IS NOT NULL)
   )`),
 ]).enableRLS();
 
@@ -283,13 +299,13 @@ export const wechatAuthChallenges = pgTable('wechat_auth_challenges', {
   uniqueIndex('wechat_auth_challenges_code').on(table.codeDigest),
   index('wechat_auth_challenges_expiry').on(table.expiresAt),
   index('wechat_auth_challenges_account').on(table.accountId, table.status),
-  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding', 'account_delete', 'session_revoke_all')`),
+  check('wechat_auth_challenges_purpose_check', sql`${table.purpose} IN ('login', 'binding', 'account_delete', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding', 'wechat_identity_binding')`),
   check('wechat_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verifying', 'verified', 'consumed', 'failed', 'expired')`),
   check('wechat_auth_challenges_attempt_count_check', sql`${table.attemptCount} >= 0 AND ${table.attemptCount} <= 10`),
   check('wechat_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
   check('wechat_auth_challenges_binding_check', sql`(
     (${table.purpose} = 'login' AND ${table.accountId} IS NULL AND ${table.authUserId} IS NULL)
-    OR (${table.purpose} IN ('binding', 'account_delete', 'session_revoke_all') AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
+    OR (${table.purpose} IN ('binding', 'account_delete', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding', 'wechat_identity_binding') AND ${table.accountId} IS NOT NULL AND ${table.authUserId} IS NOT NULL)
   )`),
   check('wechat_auth_challenges_verification_lease_check', sql`(
     (${table.status} = 'verifying' AND ${table.verificationExpiresAt} IS NOT NULL)
@@ -848,6 +864,35 @@ export const opsAuditEvents = pgTable('ops_audit_events', {
   check('ops_audit_events_reason_check', sql`length(btrim(${table.reason})) BETWEEN 3 AND 500`),
 ]).enableRLS();
 
+export const aiUsageRuleVersions = pgTable('ai_usage_rule_versions', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  weeklyAllowance: integer('weekly_allowance').notNull(),
+  trialAllowance: integer('trial_allowance').notNull(),
+  costs: jsonb('costs').notNull(),
+  effectiveAt: timestamp('effective_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  actorId: uuid('actor_id').references(() => opsStaffAccounts.id, { onDelete: 'restrict' }),
+  previousVersionId: uuid('previous_version_id'),
+  idempotencyKey: uuid('idempotency_key').notNull(),
+  requestDigest: text('request_digest').notNull(),
+}, (table) => [
+  uniqueIndex('ai_usage_rules_idempotency').on(table.idempotencyKey),
+  index('ai_usage_rules_effective').on(table.effectiveAt, table.createdAt),
+  check('ai_usage_rules_weekly_range', sql`${table.weeklyAllowance} BETWEEN 1 AND 1000000`),
+  check('ai_usage_rules_trial_range', sql`${table.trialAllowance} BETWEEN 0 AND 1000000`),
+]).enableRLS();
+
+export const aiAllowanceAccounts = pgTable('ai_allowance_accounts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  environment: text('environment').notNull(),
+  accountId: uuid('account_id').notNull(),
+  anchorAt: timestamp('anchor_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ai_allowance_accounts_owner').on(table.environment, table.accountId),
+  check('ai_allowance_accounts_environment', sql`${table.environment} IN ('sandbox', 'production')`),
+]).enableRLS();
+
 export const commerceProducts = pgTable('commerce_products', {
   productKey: text('product_key').primaryKey(),
   displayName: text('display_name').notNull(),
@@ -895,6 +940,8 @@ export const commerceOrders = pgTable('commerce_orders', {
   externalProductId: text('external_product_id').notNull(),
   durationDays: integer('duration_days').notNull(),
   aiPointRuleVersion: text('ai_point_rule_version').notNull(),
+  aiUsageRuleVersionId: uuid('ai_usage_rule_version_id')
+    .references(() => aiUsageRuleVersions.id, { onDelete: 'restrict' }),
   membershipGrantSource: text('membership_grant_source').notNull(),
   membershipEffectiveAt: timestamp('membership_effective_at', { withTimezone: true }).notNull(),
   membershipContributionMs: bigint('membership_contribution_ms', { mode: 'number' }).notNull(),
@@ -1103,7 +1150,7 @@ export const aiPointBatches = pgTable('ai_point_batches', {
     name: 'ai_point_batches_segment_environment_account_fk',
   }).onDelete('restrict').onUpdate('cascade'),
   check('ai_point_batches_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
-  check('ai_point_batches_source_check', sql`${table.sourceType} IN ('trial', 'membership', 'compensation')`),
+  check('ai_point_batches_source_check', sql`${table.sourceType} IN ('trial', 'membership', 'weekly_membership', 'compensation')`),
   check('ai_point_batches_status_check', sql`${table.status} IN ('scheduled', 'available', 'expired', 'revoked', 'merged')`),
   check('ai_point_batches_grant_positive', sql`${table.grantedPoints} >= 0`),
   check('ai_point_batches_consumed_nonnegative', sql`${table.consumedPoints} >= 0`),
@@ -1123,6 +1170,8 @@ export const aiPointReservations = pgTable('ai_point_reservations', {
   status: text('status').default('reserved').notNull(),
   leaseUntil: timestamp('lease_until', { withTimezone: true }),
   resultPayload: jsonb('result_payload'),
+  aiResultGeneration: integer('ai_result_generation').default(0).notNull(),
+  resultDeletedAt: timestamp('result_deleted_at', { withTimezone: true }),
   failureCode: text('failure_code'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   settledAt: timestamp('settled_at', { withTimezone: true }),
@@ -1205,4 +1254,44 @@ export const aiPointLedgerEntries = pgTable('ai_point_ledger_entries', {
     OR (${table.entryType} = 'settle' AND ${table.direction} = 'neutral')
   )`),
   check('ai_point_ledger_points_nonnegative', sql`${table.points} >= 0`),
+]).enableRLS();
+
+// Fixed text/reference releases. Never stores executable UI or paid question bodies.
+export const appContentReleases = pgTable('app_content_releases', {
+  version: integer('version').primaryKey(),
+  checksum: text('checksum').notNull(),
+  payload: jsonb('payload').notNull(),
+  active: boolean('active').default(false).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('app_content_releases_one_active').on(table.active).where(sql`${table.active} = true`),
+  check('app_content_releases_version_positive', sql`${table.version} > 0`),
+  check('app_content_releases_checksum_sha256', sql`${table.checksum} ~ '^[a-f0-9]{64}$'`),
+]).enableRLS();
+
+// Checkout transport state only. Verified money and entitlement remain in commerce_orders.
+export const wechatPaymentAttempts = pgTable('wechat_payment_attempts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull().references(() => accounts.id),
+  idempotencyKey: uuid('idempotency_key').notNull(),
+  productKey: text('product_key').notNull(),
+  description: text('description').notNull(),
+  durationDays: integer('duration_days').notNull(),
+  amountFen: integer('amount_fen').notNull(),
+  aiUsageRuleVersionId: uuid('ai_usage_rule_version_id').notNull().references(() => aiUsageRuleVersions.id),
+  state: text('state').default('pending').notNull(),
+  prepayId: text('prepay_id'),
+  transactionId: text('transaction_id'),
+  paidAt: timestamp('paid_at', { withTimezone: true }),
+  refundId: text('refund_id'),
+  refundNumber: text('refund_number'),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('wechat_payment_attempts_idempotency').on(table.accountId, table.idempotencyKey),
+  uniqueIndex('wechat_payment_attempts_transaction').on(table.transactionId),
+  index('wechat_payment_attempts_account_state').on(table.accountId, table.state),
+  check('wechat_payment_attempts_state_check', sql`${table.state} IN ('pending','paid','closed','refund_pending','refunded')`),
+  check('wechat_payment_attempts_amount_check', sql`${table.amountFen} > 0 AND ${table.durationDays} > 0`),
 ]).enableRLS();

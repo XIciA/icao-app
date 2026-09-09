@@ -1,13 +1,13 @@
 import { createHash, createHmac, randomBytes, randomUUID } from 'node:crypto';
 
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { CompleteWechatAuthRequest, CompleteWechatAuthResponse, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, StartWechatAuthResponse, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
+import type { LoginMethodActionPurpose, CompleteWechatAuthRequest, CompleteWechatAuthResponse, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, StartWechatAuthResponse, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js';
 import { and, eq, gt, sql } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
+import { accountIdentities, accountLoginMethodRemovals, authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import type { VerifiedAuthSession } from './auth.types';
 import { RecentAuthService } from './recent-auth.service';
@@ -19,8 +19,8 @@ const COMPLETE_LIMIT_PER_HOUR = 60;
 const MAX_CHALLENGE_ATTEMPTS = 5;
 const VERIFICATION_LEASE_MS = 60 * 1_000;
 const PHONE_BINDING_REAUTH_TTL_MS = 10 * 60 * 1_000;
-type WechatChallengePurpose = 'login' | 'account_delete' | 'binding' | 'session_revoke_all';
-type WechatRecentAuthPurpose = 'account_delete' | 'phone_binding' | 'session_revoke_all';
+type WechatChallengePurpose = 'login' | 'account_delete' | 'binding' | 'session_revoke_all' | LoginMethodActionPurpose | 'wechat_identity_binding';
+type WechatRecentAuthPurpose = 'account_delete' | 'phone_binding' | 'session_revoke_all' | LoginMethodActionPurpose;
 
 function jwtClaims(token: string) {
   try {
@@ -68,6 +68,30 @@ export class WechatAuthService {
     purpose: WechatRecentAuthPurpose = 'account_delete',
   ): Promise<StartWechatAuthResponse> {
     return this.startChallenge(this.challengePurpose(purpose), sourceIp, source);
+  }
+
+  startIdentityBinding(source: VerifiedAuthSession, sourceIp: string) {
+    return this.startChallenge('wechat_identity_binding', sourceIp, source);
+  }
+
+  /** Consumes the provider code before ownership errors; never issues or switches a login session. */
+  async verifyIdentityBinding(source: VerifiedAuthSession, input: CompleteWechatAuthRequest, sourceIp: string) {
+    await this.consumeRate(`wechat-complete:${this.digest('ip', sourceIp)}`, COMPLETE_LIMIT_PER_HOUR, 60 * 60 * 1_000);
+    const { codeDigest, subjectDigest } = await this.verifyProviderSubject(input, 'wechat_identity_binding', source);
+    const [consumed] = await this.database.db.update(wechatAuthChallenges).set({
+      status: 'consumed', consumedAt: new Date(),
+    }).where(and(
+      eq(wechatAuthChallenges.id, input.challengeId),
+      eq(wechatAuthChallenges.accountId, source.user.id),
+      eq(wechatAuthChallenges.authUserId, source.authUserId),
+      eq(wechatAuthChallenges.purpose, 'wechat_identity_binding'),
+      eq(wechatAuthChallenges.codeDigest, codeDigest),
+      eq(wechatAuthChallenges.status, 'verified'),
+      gt(wechatAuthChallenges.expiresAt, new Date()),
+    )).returning({ id: wechatAuthChallenges.id });
+    if (!consumed) throw new ForbiddenException('invalid_wechat_auth_response');
+    const authUser = await this.ensureAuthUser(subjectDigest);
+    return { authUserId: authUser.id, provider: 'wechat' as const, subject: subjectDigest };
   }
 
   private async startChallenge(
@@ -195,7 +219,7 @@ export class WechatAuthService {
         'wechat',
         purpose,
         now,
-        purpose === 'phone_binding'
+        ['phone_binding', 'apple_binding', 'wechat_binding'].includes(purpose)
           ? new Date(now.getTime() + PHONE_BINDING_REAUTH_TTL_MS)
           : undefined,
       );
@@ -362,7 +386,17 @@ export class WechatAuthService {
         .from(wechatAuthPrincipals)
         .where(eq(wechatAuthPrincipals.subjectDigest, subjectDigest))
         .limit(1);
-      if (principal) return principal.authUserId;
+      if (principal) {
+        const [removal] = await transaction.select({ status: accountLoginMethodRemovals.status })
+          .from(accountLoginMethodRemovals).where(eq(accountLoginMethodRemovals.authUserId, principal.authUserId)).limit(1);
+        if (!removal) return principal.authUserId;
+        if (removal.status !== 'completed') throw new ServiceUnavailableException('login_method_removal_pending');
+        // A new authorization after cleanup gets a new principal, never the old account.
+        const replacementId = randomUUID();
+        await transaction.update(wechatAuthPrincipals).set({ authUserId: replacementId, lastUsedAt: new Date() })
+          .where(eq(wechatAuthPrincipals.subjectDigest, subjectDigest));
+        return replacementId;
+      }
       const deterministicId = this.principalAuthUserId(subjectDigest);
       const [reserved] = await transaction.insert(wechatAuthPrincipals).values({
         authUserId: deterministicId,
@@ -383,7 +417,7 @@ export class WechatAuthService {
       if (existing.error && existing.error.status !== 404) {
         throw new ServiceUnavailableException('wechat_session_unavailable');
       }
-      const privateEmail = `wx-${subjectDigest.slice(0, 40)}@wechat-auth.invalid`;
+      const privateEmail = `wx-${subjectDigest.slice(0, 24)}-${authUserId.replaceAll('-', '')}@wechat-auth.invalid`;
       const created = await this.admin.auth.admin.createUser({
         app_metadata: {
           icao_identity_provider: 'wechat',
@@ -503,8 +537,8 @@ export class WechatAuthService {
     }).onConflictDoUpdate({
       target: authUsageCounters.scopeKey,
       set: {
-        count: sql`CASE WHEN ${authUsageCounters.expiresAt} <= ${now} THEN 1 ELSE ${authUsageCounters.count} + 1 END`,
-        expiresAt: sql`CASE WHEN ${authUsageCounters.expiresAt} <= ${now} THEN ${expiresAt} ELSE ${authUsageCounters.expiresAt} END`,
+        count: sql`CASE WHEN ${authUsageCounters.expiresAt} <= ${now.toISOString()}::timestamptz THEN 1 ELSE ${authUsageCounters.count} + 1 END`,
+        expiresAt: sql`CASE WHEN ${authUsageCounters.expiresAt} <= ${now.toISOString()}::timestamptz THEN ${expiresAt.toISOString()}::timestamptz ELSE ${authUsageCounters.expiresAt} END`,
         updatedAt: now,
       },
     }).returning({ count: authUsageCounters.count, expiresAt: authUsageCounters.expiresAt });

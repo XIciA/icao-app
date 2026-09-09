@@ -66,7 +66,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 42);
+  assert.equal(migrations.length, 47);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -83,11 +83,15 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
-  assert.equal(migrations.at(-5)?.tag, '0037_cool_stellaris');
-  assert.equal(migrations.at(-4)?.tag, '0038_natural_orphan');
-  assert.equal(migrations.at(-3)?.tag, '0039_sparkling_tombstone');
-  assert.equal(migrations.at(-2)?.tag, '0040_stiff_wonder_man');
-  assert.equal(migrations.at(-1)?.tag, '0041_jazzy_blazing_skull');
+  assert.equal(migrations[37]?.tag, '0037_cool_stellaris');
+  assert.equal(migrations[38]?.tag, '0038_natural_orphan');
+  assert.equal(migrations[39]?.tag, '0039_sparkling_tombstone');
+  assert.equal(migrations[40]?.tag, '0040_stiff_wonder_man');
+  assert.equal(migrations[41]?.tag, '0041_jazzy_blazing_skull');
+  assert.deepEqual(migrations.slice(42).map(migration => migration.tag), [
+    '0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods',
+    '0045_ai_operation_privacy', '0046_wechat_payment_attempts',
+  ]);
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
 
@@ -104,16 +108,17 @@ test('0040 atomically fences pre-v2 OTP state and rolled-back SMS hooks', async 
   );
 });
 
-test('0034 and 0035 revoke every client table grant without changing service-role access', async () => {
+test('cumulative migrations revoke every client table grant without changing service-role access', async () => {
   const migrationSql = (await Promise.all([
     readFile(clientTableGrantRevocationMigrationPath, 'utf8'),
     readFile(authTableGrantRevocationMigrationPath, 'utf8'),
+    ...['0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods', '0046_wechat_payment_attempts'].map(tag => readFile(join(migrationsFolder, `${tag}.sql`), 'utf8')),
   ])).join('\n');
-  const revokedTables = [...migrationSql.matchAll(
-    /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
-  )].map((match) => match[1]).sort();
+  const revokedTables = [...new Set([...migrationSql.matchAll(
+    /^REVOKE ALL(?: PRIVILEGES)? ON (?:TABLE )?([^;]+?) FROM anon, authenticated;/gmu,
+  )].flatMap((match) => match[1].split(',').map(table => table.trim().replace(/^"?public"?\./u, '').replaceAll('"', ''))))].sort();
 
-  assert.equal(SERVER_ONLY_PUBLIC_TABLES.length, 59);
+  assert.equal(SERVER_ONLY_PUBLIC_TABLES.length, 64);
   assert.equal(revokedTables.length, SERVER_ONLY_PUBLIC_TABLES.length);
   assert.deepEqual(revokedTables, SERVER_ONLY_PUBLIC_TABLES);
   assert.match(
@@ -308,6 +313,11 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0039_sparkling_tombstone',
       '0040_stiff_wonder_man',
       '0041_jazzy_blazing_skull',
+      '0042_weekly_ai_allowance',
+      '0043_app_content_releases',
+      '0044_account_login_methods',
+      '0045_ai_operation_privacy',
+      '0046_wechat_payment_attempts',
     ],
   );
   assert.ok(

@@ -1,13 +1,15 @@
 import type { ApiErrorEnvelope, ApiSuccessEnvelope, OpsStaffSession } from '@icao/contracts';
 
 const SESSION_KEY = 'icao-ops-session-v1';
+export const OPS_SESSION_EXPIRED = 'icao-ops-session-expired';
 
 export function readSession() {
   const raw = sessionStorage.getItem(SESSION_KEY);
   if (!raw) return undefined;
   try {
     const session = JSON.parse(raw) as OpsStaffSession;
-    if (new Date(session.expiresAt) <= new Date()) {
+    if (!session?.staff?.id || !session.staff.email || !session.accessToken
+      || !Number.isFinite(Date.parse(session.expiresAt)) || new Date(session.expiresAt) <= new Date()) {
       clearSession();
       return undefined;
     }
@@ -32,6 +34,13 @@ export async function opsApi<T>(
   options: RequestInit = {},
   authenticated = true,
 ): Promise<T> {
+  const response = await opsResponse(path, options, authenticated);
+  const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;
+  if (!body || 'error' in body || !('data' in body)) throw new Error('invalid_ops_response');
+  return body.data;
+}
+
+export async function opsResponse(path: string, options: RequestInit = {}, authenticated = true) {
   const session = readSession();
   const response = await fetch(path, {
     ...options,
@@ -42,11 +51,13 @@ export async function opsApi<T>(
       ...options.headers,
     },
   });
-  const body = await response.json() as ApiSuccessEnvelope<T> | ApiErrorEnvelope;
-  if (!response.ok || 'error' in body) {
-    const code = 'error' in body ? body.error.code : 'request_failed';
-    if (response.status === 401 && authenticated) clearSession();
+  if (!response.ok) {
+    const body = await response.json().catch(() => undefined) as ApiErrorEnvelope | undefined;
+    const code = body && 'error' in body ? body.error.code : 'request_failed';
+    if (response.status === 401 && authenticated) {
+      clearSession(); window.dispatchEvent(new Event(OPS_SESSION_EXPIRED));
+    }
     throw new Error(code);
   }
-  return body.data;
+  return response;
 }

@@ -20,6 +20,8 @@ RUN pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile --filter @ica
 COPY packages/contracts packages/contracts
 COPY services/api services/api
 COPY content/vocabulary content/vocabulary
+COPY content/app-content/text.json content/app-content/text.json
+COPY content/question-banks/opi-hotspots.json content/question-banks/opi-hotspots.json
 
 RUN pnpm --filter @icao/contracts build && pnpm --filter @icao/api build
 

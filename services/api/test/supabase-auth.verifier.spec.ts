@@ -24,7 +24,7 @@ function verifier(userMetadata?: Record<string, unknown>, phone?: string) {
     data: {
       user: {
         id: '11111111-1111-4111-8111-111111111111',
-        identities: [{ id: 'apple-subject', provider: 'apple' }],
+        identities: [{ id: 'apple-subject', identity_id: 'internal-row-uuid', identity_data: { sub: 'apple-subject' }, provider: 'apple' }],
         phone,
         user_metadata: userMetadata,
       },
@@ -54,6 +54,7 @@ describe('SupabaseAuthVerifier authentication time', () => {
 
     await expect(service.verify(accessToken)).resolves.toEqual(expect.objectContaining({
       authenticationMethods: [{ method: 'oauth', provider: 'apple', timestamp: 1_800_000_000 }],
+      identities: [{ provider: 'apple', subject: 'apple-subject', legacySubject: 'internal-row-uuid' }],
       issuedAt: 1_800_003_600,
     }));
     expect(getUser).toHaveBeenCalledWith(accessToken);

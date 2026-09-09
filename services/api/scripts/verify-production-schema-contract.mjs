@@ -29,12 +29,12 @@ if (
 const serverOnlyTables = SERVER_ONLY_PUBLIC_TABLES;
 const expectedProducts = [
   ['membership_7d_v1', 7, 6800, 'ai-points-v1', 1, 31, 250],
-  ['membership_15d_v1', 15, 10800, 'ai-points-v1', 1, 31, 500],
-  ['membership_31d_v1', 31, 16800, 'ai-points-v1', 1, 31, 1000],
-  ['membership_62d_v1', 62, 29800, 'ai-points-v1', 2, 31, 1000],
-  ['membership_93d_v1', 93, 39800, 'ai-points-v1', 3, 31, 1000],
+  ['membership_31d_v1', 31, 15800, 'ai-points-v1', 1, 31, 1000],
+  ['membership_93d_v1', 93, 35800, 'ai-points-v1', 3, 31, 1000],
 ];
-const expectedAppleProducts = expectedProducts.map(([productKey]) => [
+// Inactive legacy mappings must remain available to restore previous purchases.
+const expectedAppleProducts = ['membership_7d_v1', 'membership_15d_v1',
+  'membership_31d_v1', 'membership_62d_v1', 'membership_93d_v1'].map((productKey) => [
   `com.readyoufife.ios.membership.${productKey.match(/membership_(\d+)d/u)?.[1]}d.v1`,
   productKey,
 ]);
@@ -206,7 +206,7 @@ try {
     ])) === JSON.stringify(expectedProducts), 'production_commerce_product_catalog_mismatch');
 
     const appleProducts = await transaction`
-      select external_product_id, product_key
+      select external_product_id, product_key, active
       from commerce_channel_products
       where channel = 'apple_app_store'
       order by product_key
@@ -220,6 +220,10 @@ try {
       JSON.stringify(normalizedAppleProducts) === JSON.stringify(normalizedExpectedAppleProducts),
       'production_apple_product_mapping_mismatch',
     );
+
+    const activeAppleKeys = appleProducts.filter(row => row.active).map(row => row.product_key).sort();
+    assert(JSON.stringify(activeAppleKeys) === JSON.stringify(expectedProducts.map(row => row[0]).sort()),
+      'production_apple_active_product_mapping_mismatch');
 
     return {
       appleProductMappings: appleProducts.length,

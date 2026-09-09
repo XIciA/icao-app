@@ -177,7 +177,9 @@ function fixture(options: {
   const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('binding_transaction_failed'));
   const updateWhere = vi.fn().mockResolvedValue(undefined);
   const updateSet = vi.fn().mockReturnValue({ where: updateWhere });
-  const database = { db: { transaction, update: vi.fn().mockReturnValue({ set: updateSet }) } };
+  const preselect = { from: vi.fn(), where: vi.fn(), limit: vi.fn().mockResolvedValue([]) };
+  preselect.from.mockReturnValue(preselect); preselect.where.mockReturnValue(preselect);
+  const database = { db: { select: vi.fn().mockReturnValue(preselect), transaction, update: vi.fn().mockReturnValue({ set: updateSet }) } };
   const service = new AccountService(
     {
       supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
@@ -259,7 +261,7 @@ describe('AccountService phone binding', () => {
     expect(result.sessions.revokeAll).not.toHaveBeenCalled();
   });
 
-  it('rejects a source that already has a phone without consuming another OTP', async () => {
+  it('requires a source grant before replacing a bound phone or consuming its new OTP', async () => {
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
@@ -269,8 +271,8 @@ describe('AccountService phone binding', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.bindPhoneWithOtp(source, PHONE_BINDING_CHALLENGE_ID, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof ConflictException
-        && error.message === 'invalid_phone_binding');
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
+        && error.message === 'phone_reauthentication_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
 
@@ -349,7 +351,7 @@ describe('AccountService phone binding', () => {
 
     await expect(service.startPhoneBinding(source, '+8613800138000', '203.0.113.9', grantId))
       .resolves.toEqual({ sent: true });
-    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', 'wechat');
+    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', undefined);
     expect(phoneAuth.startBinding).toHaveBeenCalledWith(source, '+8613800138000', '203.0.113.9');
   });
 
@@ -495,8 +497,8 @@ describe('AccountService phone binding', () => {
   it('normalizes the GoTrue phone representation before binding it to the social account', async () => {
     const rows = [
       [{ status: 'active' }],
-      [],
-      [],
+      [{ id: 'source-identity', authUserId: '11111111-1111-4111-8111-111111111111', provider: 'wechat' }],
+      [], [], [],
     ];
     const inserted: unknown[] = [];
     const fluent = <T,>(result: T) => {
@@ -567,7 +569,7 @@ describe('AccountService phone binding', () => {
       expect.any(Date),
       false,
     );
-    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', 'wechat');
+    expect(recentAuth.assertValid).toHaveBeenCalledWith(source, grantId, 'phone_binding', undefined);
     expect(recentAuth.consumeInTransaction).toHaveBeenCalledWith(
       transactionApi,
       source,
@@ -590,12 +592,13 @@ describe('AccountService phone binding', () => {
       rows: [[{ status: 'active' }], [], [{ accountId: 'occupied-account' }], []],
     },
     {
-      name: 'source acquired a phone concurrently',
+      name: 'verified target identity is pending removal',
       rows: [[{ status: 'active' }], [], [], [{ accountId: 'source-account' }]],
     },
   ])('consumes the OTP and returns the same neutral conflict when $name', async ({ rows }) => {
     const inserted: unknown[] = [];
-    const results = [...rows];
+    const sourceIdentities = [{ id: 'source-identity', authUserId: '11111111-1111-4111-8111-111111111111', provider: 'apple' }];
+    const results = [rows[0], sourceIdentities, ...rows.slice(1)];
     const fluent = <T,>(result: T) => {
       const query = {
         from: vi.fn(),
@@ -672,7 +675,11 @@ describe('AccountService phone binding', () => {
           select: vi.fn(() => {
             selectCall += 1;
             if (selectCall === 1) return fluent([{ status: 'active' }]);
-            if (selectCall === 2) return fluent(occupied ? [{ accountId: 'winner' }] : []);
+            if (selectCall === 2) return fluent([
+              { id: 'source-1', authUserId: '11111111-1111-4111-8111-111111111111', provider: 'apple' },
+              { id: 'source-2', authUserId: '33333333-3333-4333-8333-333333333333', provider: 'apple' },
+            ]);
+            if (selectCall === 3) return fluent(occupied ? [{ accountId: 'winner' }] : []);
             return fluent([]);
           }),
           selectDistinct: vi.fn(() => fluent([{ provider: 'apple' }, { provider: 'phone' }])),

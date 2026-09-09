@@ -50,7 +50,8 @@ export class QuestionBankService {
     accountId: string,
     sessionId: string,
     environment: CommerceEnvironment,
+    expected?: { version: number; checksum?: string },
   ) {
-    return this.contentAccess.getTopic(bankId, categoryId, topicId, accountId, sessionId, environment);
+    return this.contentAccess.getTopic(bankId, categoryId, topicId, accountId, sessionId, environment, new Date(), expected);
   }
 }

@@ -57,6 +57,8 @@ export const feedbackSubmissionSchema = z.object({
     categoryId: identifier,
     topicId: identifier,
     cardId: identifier,
+    bankVersion: z.number().int().positive().optional(),
+    bankChecksum: z.string().regex(/^[a-f0-9]{64}$/u).optional(),
   }).optional(),
   error: z.object({
     code: z.string().trim().min(1).max(120),

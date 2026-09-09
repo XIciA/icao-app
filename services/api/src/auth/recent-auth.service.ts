@@ -1,7 +1,7 @@
 import { createHmac, randomUUID } from 'node:crypto';
 
 import { ForbiddenException, Inject, Injectable, Optional } from '@nestjs/common';
-import type { RecentAuthPurpose } from '@icao/contracts';
+import type { NativeRecentAuthPurpose as RecentAuthPurpose, LoginMethodActionPurpose } from '@icao/contracts/native-auth';
 import type { NativeRecentAuthGrantResponse as RecentAuthGrantResponse, NativeRecentAuthMethod as RecentAuthMethod } from '@icao/contracts/native-auth';
 import { and, eq, gt, isNull, lte, or } from 'drizzle-orm';
 
@@ -32,7 +32,7 @@ export class RecentAuthService {
 
   async issuePasswordGrant(
     source: VerifiedAuthSession,
-    purpose: 'account_delete' | 'session_revoke_all',
+    purpose: 'account_delete' | 'session_revoke_all' | LoginMethodActionPurpose,
     password: string,
   ) {
     await this.passwordVerifier.verify(source, password);
@@ -122,7 +122,7 @@ export class RecentAuthService {
     source: VerifiedAuthSession,
     grantId: string,
     purpose: RecentAuthPurpose,
-    method: RecentAuthMethod,
+    method: RecentAuthMethod | undefined,
     now = new Date(),
   ) {
     const targetDigest = this.targetDigest(source.user.id, purpose);
@@ -133,7 +133,7 @@ export class RecentAuthService {
         eq(recentAuthGrants.accountId, source.user.id),
         eq(recentAuthGrants.authUserId, source.authUserId),
         eq(recentAuthGrants.sessionId, source.sessionId),
-        eq(recentAuthGrants.method, method),
+        method === undefined ? undefined : eq(recentAuthGrants.method, method),
         eq(recentAuthGrants.purpose, purpose),
         eq(recentAuthGrants.targetDigest, targetDigest),
         gt(recentAuthGrants.expiresAt, now),

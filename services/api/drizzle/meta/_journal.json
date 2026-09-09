@@ -295,6 +295,41 @@
       "when": 1788504217004,
       "tag": "0041_jazzy_blazing_skull",
       "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "7",
+      "when": 1788968508930,
+      "tag": "0042_weekly_ai_allowance",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "7",
+      "when": 1788969697438,
+      "tag": "0043_app_content_releases",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "7",
+      "when": 1788970709245,
+      "tag": "0044_account_login_methods",
+      "breakpoints": true
+    },
+    {
+      "idx": 45,
+      "version": "7",
+      "when": 1788973557118,
+      "tag": "0045_ai_operation_privacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 46,
+      "version": "7",
+      "when": 1788973871425,
+      "tag": "0046_wechat_payment_attempts",
+      "breakpoints": true
     }
   ]
 }

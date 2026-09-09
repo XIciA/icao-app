@@ -9,10 +9,13 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   account_deletion_status_rate_limits: 'server_only',
   account_deletion_tombstones: 'server_only',
   account_identities: 'server_only',
+  account_login_method_removals: 'server_only',
   account_merges: 'server_only',
   account_security_events: 'server_only',
   account_session_revocations: 'server_only',
   accounts: 'server_only',
+  ai_allowance_accounts: 'server_only',
+  ai_usage_rule_versions: 'server_only',
   ai_consent_authorities: 'server_only',
   ai_consent_challenges: 'server_only',
   ai_consents: 'server_only',
@@ -23,6 +26,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   ai_quota_buckets: 'server_only',
   ai_usage_logs: 'server_only',
   ai_word_cache: 'server_only',
+  app_content_releases: 'server_only',
   apple_credential_intakes: 'server_only',
   apple_notification_events: 'server_only',
   apple_revocable_credentials: 'server_only',
@@ -62,6 +66,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   user_documents: 'server_only',
   wechat_auth_challenges: 'server_only',
   wechat_auth_principals: 'server_only',
+  wechat_payment_attempts: 'server_only',
 });
 
 export const SERVER_ONLY_PUBLIC_TABLES = Object.freeze(
