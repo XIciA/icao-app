@@ -47,6 +47,8 @@ describe('OPI hotspot screens', () => {
   beforeEach(() => {
     mockBack.mockReset();
     mockPush.mockReset();
+    // The screen fixture uses bundled briefs and questions, independent of the live content service.
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('offline_test_fixture'));
     jest.spyOn(questionBankDataRepository, 'loadQuestionBank').mockImplementation(async (bankId) => (
       bankId === 'opi' && completeOpiDataset
         ? { dataset: completeOpiDataset, source: 'embedded' }

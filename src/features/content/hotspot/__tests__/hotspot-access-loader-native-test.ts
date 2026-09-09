@@ -50,9 +50,13 @@ describe('native OPI hotspot access loader', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
+    // Keep bundled hotspot fixtures stable instead of waiting for a real content request.
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('offline_test_fixture'));
     mockGetConnectivity.mockResolvedValue('online');
     mockInspectOfflineAccess.mockResolvedValue('missing');
   });
+
+  afterEach(() => jest.restoreAllMocks());
 
   it('returns ready only after resolving the requested questions', async () => {
     expect(completeOpiDataset).toBeDefined();
