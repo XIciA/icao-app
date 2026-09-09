@@ -8,6 +8,7 @@ import {
   assertExpoPrebuildCommand,
   runReleaseCommandContractSelfTest,
 } from './release-command-contract.mjs';
+import { assertIosReleaseWechatPlist } from './ios-release-plist-contract.mjs';
 import { SERVER_ONLY_PUBLIC_TABLES } from '../services/api/scripts/production-schema-contract-data.mjs';
 
 const require = createRequire(import.meta.url);
@@ -111,6 +112,16 @@ const iosIntegrityScript = iosIntegrityPlugin.createShellScript({
 const canonicalIosPlist = iosIntegrityPlugin.applyCanonicalIosUrlScheme({
   CFBundleURLTypes: [{ CFBundleURLSchemes: ['readyoufife', app.expo.ios.bundleIdentifier] }],
 }, app.expo.scheme);
+const approvedWechatRelease = require('../config/release/wechat-login.json');
+const { resolveWechatLoginReleaseCapability } = require('../config/release/wechat-login-contract.cjs');
+const approvedWechat = resolveWechatLoginReleaseCapability(approvedWechatRelease);
+const canonicalWechatPlist = iosIntegrityPlugin.applyCanonicalIosUrlScheme({
+  ...canonicalIosPlist,
+  ICAOWechatAppId: approvedWechat.appId,
+  ICAOWechatUniversalLink: approvedWechat.universalLink,
+  LSApplicationQueriesSchemes: ['wechat', 'weixin', 'weixinULAPI'],
+}, app.expo.scheme, approvedWechat);
+assertIosReleaseWechatPlist(canonicalWechatPlist, app.expo.scheme, approvedWechatRelease);
 if (
   !iosIntegrityScript.includes('CFBundleVersion') ||
   !iosIntegrityScript.includes('_expo._tcp') ||
@@ -845,6 +856,7 @@ for (const loginContract of [
   'candidate_universal_link_api_origin_mismatch',
   'candidate_android_wechat_callback_mismatch',
   'candidate_ios_sendauth_symbol_missing',
+  'await verifyGeneratedIosWechatPlist(ROOT)',
 ]) {
   if (!wechatLoginRuntime.includes(loginContract)) {
     throw new Error(`The WeChat NoPay login contract is incomplete: ${loginContract}`);

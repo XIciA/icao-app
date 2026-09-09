@@ -140,7 +140,7 @@ verify_ios_release_app() {
       if (JSON.stringify(schemes) !== JSON.stringify(expected)) process.exit(1);
     });
   '; then
-    echo 'The Release app must contain only the readyoufife URL scheme.' >&2
+    echo 'The Release app URL schemes must match the canonical app scheme and configured WeChat AppID exactly.' >&2
     exit 1
   fi
   if /usr/libexec/PlistBuddy -c 'Print :NSBonjourServices' "$info_plist_path" 2>/dev/null | grep -Fq '_expo._tcp'; then
