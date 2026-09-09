@@ -1,0 +1,5 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["IcaoProfileAvatarModule"] },
+  "android": { "modules": ["com.icao.profileavatar.IcaoProfileAvatarModule"] }
+}

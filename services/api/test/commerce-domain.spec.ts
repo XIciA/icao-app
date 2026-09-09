@@ -15,6 +15,7 @@ import {
 } from '../src/commerce/commerce-domain';
 import {
   COMMERCE_CHANNEL_PRODUCTS,
+  ACTIVE_MEMBERSHIP_PRODUCTS,
   MEMBERSHIP_PRODUCTS,
   type CommerceEnvironment,
 } from '../src/commerce/product-catalog';
@@ -81,7 +82,7 @@ function appleNotification(input: {
 }
 
 describe('commercial product catalog', () => {
-  it('freezes the five approved product IDs, days, CNY targets, and AI batches', () => {
+  it('retains five restorable IDs and legacy grants, with only three current sale prices', () => {
     expect(MEMBERSHIP_PRODUCTS.map((product) => ({
       key: product.productKey,
       apple: product.appleProductId,
@@ -110,7 +111,7 @@ describe('commercial product catalog', () => {
         key: 'membership_31d_v1',
         apple: 'com.readyoufife.ios.membership.31d.v1',
         days: 31,
-        fen: 16_800,
+        fen: 15_800,
         cadence: 31,
         batches: [[0, 1_000]],
       },
@@ -126,7 +127,7 @@ describe('commercial product catalog', () => {
         key: 'membership_93d_v1',
         apple: 'com.readyoufife.ios.membership.93d.v1',
         days: 93,
-        fen: 39_800,
+        fen: 35_800,
         cadence: 31,
         batches: [[0, 1_000], [31, 1_000], [62, 1_000]],
       },
@@ -136,6 +137,8 @@ describe('commercial product catalog', () => {
       externalProductId: product.appleProductId,
       productKey: product.productKey,
     })));
+    expect(ACTIVE_MEMBERSHIP_PRODUCTS.map((product) => [product.durationDays, product.basePriceCnyFen]))
+      .toEqual([[7, 6_800], [31, 15_800], [93, 35_800]]);
   });
 });
 
@@ -805,8 +808,9 @@ describe('AppleCommerceFoundationBoundary', () => {
 });
 
 describe('commercial migration contract', () => {
-  it('seeds the same frozen catalog into migration 0015', () => {
+  it('preserves the historical 0015 catalog without rewriting it to current sale prices', () => {
     const migration = readFileSync(join(process.cwd(), 'drizzle/0015_commerce_domain.sql'), 'utf8');
+    const historicalPrices: Record<number, number> = { 7: 6_800, 15: 10_800, 31: 16_800, 62: 29_800, 93: 39_800 };
     for (const product of MEMBERSHIP_PRODUCTS) {
       const pointsPerBatch = product.aiPointBatches[0]!.points;
       expect(product.aiPointBatches.every((batch) => batch.points === pointsPerBatch)).toBe(true);
@@ -815,7 +819,7 @@ describe('commercial migration contract', () => {
       ))).toBe(true);
       expect(migration).toContain(
         `('${product.productKey}', '${product.displayName}', ${product.durationDays}, `
-        + `${product.basePriceCnyFen}, '${product.aiPointRuleVersion}', `
+        + `${historicalPrices[product.durationDays]}, '${product.aiPointRuleVersion}', `
         + `${product.aiPointBatches.length}, ${product.aiPointBatchIntervalDays}, ${pointsPerBatch})`,
       );
       expect(migration).toContain(

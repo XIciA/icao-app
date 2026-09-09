@@ -1,13 +1,13 @@
-import { Inject, Injectable } from '@nestjs/common';
+import type { OpsFeedbackListResponse, OpsFeedbackDetail } from '@icao/contracts/feedback-ops';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type {
   OpsAccountCommerceSummary,
-  OpsFeedbackQueueItem,
   OpsHealthSummary,
   OpsPrivacyRequestQueueItem,
 } from '@icao/contracts';
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import type { NativeOpsUserSummary as OpsUserSummary } from '@icao/contracts/native-auth';
-import { count, desc, eq, inArray, or } from 'drizzle-orm';
+import { and, count, desc, eq, gt, inArray, isNull, lt, or } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';
 import { CommerceService } from '../commerce/commerce.service';
@@ -19,6 +19,7 @@ import {
   aiPointLedgerEntries,
   commerceOrders,
   feedbackTickets,
+  feedbackAttachments,
   opsAuditEvents,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
@@ -209,27 +210,87 @@ export class AdminDataService {
     reason: string,
     staff: OpsAuthenticatedStaff,
     requestId: string,
-  ): Promise<OpsFeedbackQueueItem[]> {
-    const rows = await this.database.db.select().from(feedbackTickets)
-      .orderBy(desc(feedbackTickets.createdAt)).limit(100);
+    cursor?: string,
+    limit = 30,
+  ): Promise<OpsFeedbackListResponse> {
+    let before: { createdAt: Date; id: string } | undefined;
+    if (cursor) {
+      try {
+        const value = JSON.parse(Buffer.from(cursor, 'base64url').toString('utf8'));
+        if (!value || typeof value.createdAt !== 'string' || !Number.isFinite(Date.parse(value.createdAt))
+          || typeof value.id !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/iu.test(value.id)) throw new Error();
+        before = { createdAt: new Date(value.createdAt), id: value.id };
+      } catch { throw new BadRequestException('invalid_feedback_cursor'); }
+    }
+    const pageSize = Math.max(1, Math.min(50, limit));
+    const rows = await this.database.db.select().from(feedbackTickets).where(and(
+      gt(feedbackTickets.retentionAt, new Date()),
+      before ? or(lt(feedbackTickets.createdAt, before.createdAt), and(
+        eq(feedbackTickets.createdAt, before.createdAt), lt(feedbackTickets.id, before.id),
+      )) : undefined,
+    )).orderBy(desc(feedbackTickets.createdAt), desc(feedbackTickets.id)).limit(pageSize + 1);
+    const items = rows.slice(0, pageSize);
     await this.audit.record({
-      requestId,
-      actorStaffId: staff.id,
-      actorRole: staff.role,
-      action: 'ops.feedback.read',
-      targetType: 'feedback_queue',
-      reason,
-      metadata: { resultCount: rows.length },
+      requestId, actorStaffId: staff.id, actorRole: staff.role,
+      action: 'ops.feedback.read', targetType: 'feedback_queue', reason,
+      metadata: { resultCount: items.length },
     });
-    return rows.map((ticket) => ({
-      ticketNumber: ticket.ticketNumber,
-      accountId: ticket.userId,
-      category: ticket.category,
-      status: ticket.status,
-      summary: feedbackSummary(ticket.description),
-      source: ticket.source,
-      createdAt: ticket.createdAt.toISOString(),
-    }));
+    const last = items.at(-1);
+    return {
+      items: items.map((ticket) => ({
+        ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
+        status: ticket.status, summary: feedbackSummary(ticket.description), source: ticket.source,
+        createdAt: ticket.createdAt.toISOString(),
+      })),
+      nextCursor: rows.length > pageSize && last
+        ? Buffer.from(JSON.stringify({ createdAt: last.createdAt.toISOString(), id: last.id })).toString('base64url')
+        : null,
+    };
+  }
+
+  async feedbackDetail(ticketNumber: string, staff: OpsAuthenticatedStaff, requestId: string): Promise<OpsFeedbackDetail> {
+    const [ticket] = await this.database.db.select().from(feedbackTickets).where(and(
+      eq(feedbackTickets.ticketNumber, ticketNumber), gt(feedbackTickets.retentionAt, new Date()),
+    )).limit(1);
+    if (!ticket) throw new NotFoundException('feedback_not_found');
+    const attachments = await this.database.db.select({
+      id: feedbackAttachments.id, mimeType: feedbackAttachments.mimeType, sizeBytes: feedbackAttachments.sizeBytes,
+    }).from(feedbackAttachments).where(and(
+      eq(feedbackAttachments.ticketId, ticket.id), gt(feedbackAttachments.expiresAt, new Date()), isNull(feedbackAttachments.deletedAt),
+    )).orderBy(feedbackAttachments.createdAt, feedbackAttachments.id);
+    await this.audit.record({
+      requestId, actorStaffId: staff.id, actorRole: staff.role, action: 'ops.feedback.detail.read',
+      targetType: 'feedback_ticket', targetId: ticket.id, reason: '查看用户提交的反馈详情',
+      metadata: { attachmentCount: attachments.length },
+    });
+    return {
+      ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
+      status: ticket.status, source: ticket.source, summary: feedbackSummary(ticket.description),
+      description: ticket.description, contact: ticket.contact, createdAt: ticket.createdAt.toISOString(),
+      sourceRoute: ticket.sourceRoute, appDisplayVersion: ticket.appDisplayVersion,
+      platform: ticket.platform, osName: ticket.osName, osVersion: ticket.osVersion,
+      question: ticket.bankId && ticket.categoryId && ticket.topicId && ticket.cardId ? {
+        bankId: ticket.bankId, categoryId: ticket.categoryId, topicId: ticket.topicId, cardId: ticket.cardId,
+        bankVersion: ticket.bankVersion ?? undefined, bankChecksum: ticket.bankChecksum ?? undefined,
+        verified: ticket.questionVerified,
+      } : null,
+      attachments,
+    };
+  }
+
+  async feedbackAttachment(ticketNumber: string, attachmentId: string, staff: OpsAuthenticatedStaff, requestId: string) {
+    const [image] = await this.database.db.select({
+      objectKey: feedbackAttachments.objectKey, mimeType: feedbackAttachments.mimeType,
+      sizeBytes: feedbackAttachments.sizeBytes, checksum: feedbackAttachments.checksum,
+    }).from(feedbackAttachments).innerJoin(feedbackTickets, eq(feedbackTickets.id, feedbackAttachments.ticketId))
+      .where(and(eq(feedbackTickets.ticketNumber, ticketNumber), eq(feedbackAttachments.id, attachmentId),
+        gt(feedbackTickets.retentionAt, new Date()), gt(feedbackAttachments.expiresAt, new Date()), isNull(feedbackAttachments.deletedAt))).limit(1);
+    if (!image) throw new NotFoundException('feedback_attachment_not_found');
+    await this.audit.record({
+      requestId, actorStaffId: staff.id, actorRole: staff.role, action: 'ops.feedback.attachment.read',
+      targetType: 'feedback_attachment', targetId: attachmentId, reason: '查看用户提交的反馈图片', metadata: {},
+    });
+    return image;
   }
 
   async privacyQueue(

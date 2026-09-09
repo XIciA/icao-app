@@ -6,5 +6,6 @@ export const appleCredentialSchema = z.object({
 }).strict();
 
 export const appleRecentAuthSchema = appleCredentialSchema.extend({
-  purpose: z.enum(['account_delete', 'session_revoke_all']),
+  providerAccessToken: z.string().min(16).max(16_384).optional(),
+  purpose: z.enum(['account_delete', 'phone_binding', 'session_revoke_all', 'apple_binding', 'wechat_binding', 'apple_unbinding', 'wechat_unbinding']),
 }).strict();

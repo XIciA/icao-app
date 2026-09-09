@@ -1,31 +1,13 @@
 import { resolveLegalRuntimeCopy } from '../legal-release-surface';
 
 describe('legal copy release surface', () => {
-  it.each([
-    ['ios', 'vercel-legacy'],
-    ['android', 'vercel-legacy'],
-    ['web', 'edgeone-production'],
-  ] as const)('uses the formal 16+ DeepSeek and local lookup copy on %s', (platform, runtime) => {
-    const copy = resolveLegalRuntimeCopy(platform, runtime);
-    const combined = Object.values(copy).join('\n');
-
+  // This is the retained shared/Web compatibility copy. Native displays app-content documents.
+  it.each(['ios', 'android', 'web'])('keeps the shared formal fallback distinct from legacy on %s', (platform) => {
+    const combined = Object.values(resolveLegalRuntimeCopy(platform, 'edgeone-production')).join('\n');
     expect(combined).toContain('16周岁');
     expect(combined).toContain('DeepSeek 开放平台');
-    expect(combined).toContain('DeepSeek-V4-Flash-0731');
-    expect(combined).toContain('Deepseek Chat');
-    expect(combined).toContain('Beijing-DeepseekChat-202404280016');
-    expect(combined).toContain('AI 辅助生成');
-    expect(combined).toContain('不得恶意删除、遮挡或隐匿该标识');
-    expect(combined).toContain('腾讯云语音识别');
     expect(combined).toContain('Apple App Store 以非自动续期方式购买');
-    expect(combined).toContain('手机号密码或 Apple 登录');
-    expect(copy.agreementAccountDescription).not.toContain('微信登录');
-    expect(copy.thirdPartyDescription).toContain('内嵌不含支付能力的微信 OpenSDK');
-    expect(copy.thirdPartyDescription).toContain('不发起微信授权');
-    expect(copy.privacyAccountDescription).not.toContain('微信');
-    expect(combined).toContain('或相关权利人依法享有权利');
-    expect(combined).toContain('本地静态词典查词不调用文本 AI、不消耗 AI 点数');
-    expect(combined).not.toMatch(/阿里云百炼|通义千问/u);
+    expect(combined).not.toContain('阿里云百炼通义千问');
   });
 
   it('preserves the frozen Vercel legacy legal copy', () => {

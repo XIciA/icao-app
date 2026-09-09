@@ -1,3 +1,4 @@
+import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 
@@ -43,7 +44,7 @@ export async function hydrateRadioCatalogTopic(
     || topic.cards.length >= topic.access.declaredCardCount
   ) return datasets;
   try {
-    const hydrated = await questionBankRepository.getTopic(dataset.id, category.id, topic.id);
+    const hydrated = await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset));
     if (!hydrated || hydrated.id !== topic.id) return datasets;
     return datasets.map((candidate) => candidate.id !== dataset.id ? candidate : {
       ...candidate,

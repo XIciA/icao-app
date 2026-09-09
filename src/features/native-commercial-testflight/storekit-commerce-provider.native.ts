@@ -283,7 +283,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
   ): Promise<CommerceResult<CommercePurchase>> {
     if (this.disposed) return this.disposedResult();
     const product = getMembershipProductByKey(request.offeringKey);
-    if (!product) {
+    if (!product || !listMembershipProducts().includes(product)) {
       return errorResult('commerce_offering_unknown', { retryable: false });
     }
     if (!APPLICATION_ACCOUNT_TOKEN_PATTERN.test(request.applicationAccountToken)) {

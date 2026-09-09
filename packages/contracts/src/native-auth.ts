@@ -6,6 +6,7 @@ import type {
   OpsUserSummary,
   RecentAuthGrantResponse,
   RecentAuthMethod,
+  RecentAuthPurpose,
   SocialAuthSessionResponse,
   StartPhoneBindingResponse,
   StartPhoneOtpResponse,
@@ -87,13 +88,26 @@ export type CompleteWechatAuthResponse = {
 
 export type NativeRecentAuthMethod = RecentAuthMethod | 'wechat';
 
-export type NativeRecentAuthGrantResponse = Omit<RecentAuthGrantResponse, 'method'> & {
+export type LoginMethodActionPurpose = 'phone_binding' | 'apple_binding' | 'wechat_binding' | 'apple_unbinding' | 'wechat_unbinding';
+export type NativeRecentAuthPurpose = RecentAuthPurpose | LoginMethodActionPurpose;
+export type NativeRecentAuthGrantResponse = Omit<RecentAuthGrantResponse, 'method' | 'purpose'> & {
   method: NativeRecentAuthMethod;
+  purpose: NativeRecentAuthPurpose;
 };
+export type LoginMethodChangeResponse = {
+  accountId: string;
+  providers: NativeAuthIdentityProvider[];
+  sessionEnded: boolean;
+};
+export type BindAppleLoginMethodRequest = { providerAccessToken: string; recentAuthGrantId: string };
+export type BindWechatLoginMethodRequest = CompleteWechatAuthRequest & { recentAuthGrantId: string };
+export type UnbindLoginMethodRequest = { recentAuthGrantId: string };
+export type NativePasswordRecentAuthRequest = { password: string; purpose: 'account_delete' | 'session_revoke_all' | LoginMethodActionPurpose };
+export type NativeAppleRecentAuthRequest = { authorizationCode: string; rawNonce: string; providerAccessToken?: string; purpose: 'account_delete' | 'session_revoke_all' | LoginMethodActionPurpose };
 
 export type NativePhoneRecentAuthRequest = {
   challengeId: string;
-  purpose: 'account_delete' | 'session_revoke_all';
+  purpose: 'account_delete' | 'session_revoke_all' | LoginMethodActionPurpose;
   token: string;
 };
 
@@ -102,7 +116,7 @@ export type NativeStartPhoneRecentAuthRequest = Pick<NativePhoneRecentAuthReques
 export type WechatRecentAuthRequest = {
   challengeId: string;
   code: string;
-  purpose: 'account_delete' | 'phone_binding' | 'session_revoke_all';
+  purpose: 'account_delete' | 'phone_binding' | 'session_revoke_all' | LoginMethodActionPurpose;
   state: string;
 };
 

@@ -1,7 +1,7 @@
-import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, ServiceUnavailableException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, Optional, ServiceUnavailableException } from '@nestjs/common';
 import type { AuthorizePasswordRecoveryResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
-import type { NativeAccountDataExportResponse, NativeAccountSummary as AccountSummary, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
+import type { NativeAccountSummary as AccountSummary, NativeBindPhoneResponse as BindPhoneResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
@@ -11,11 +11,13 @@ import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
   accountIdentities,
+  accountLoginMethodRemovals,
   accounts,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { AccountIdentityService } from './account-identity.service';
 import { AccountPhoneIdentityService } from './account-phone-identity.service';
+import { AccountLoginMethodsService } from './account-login-methods.service';
 
 const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
 
@@ -40,6 +42,7 @@ export class AccountService {
     private readonly recentAuth: RecentAuthService,
     private readonly sessions: SessionSecurityService,
     private readonly accountPhones: AccountPhoneIdentityService,
+    @Optional() private readonly loginMethods?: AccountLoginMethodsService,
   ) {
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
@@ -61,24 +64,6 @@ export class AccountService {
       phone: resolvedPhone,
       phoneBound: providers.includes('phone'),
       providers,
-    };
-  }
-
-  async exportAccountData(accountId: string, phone?: string): Promise<NativeAccountDataExportResponse['account']> {
-    const [account, summary] = await Promise.all([
-      this.database.db.select({ createdAt: accounts.createdAt })
-        .from(accounts)
-        .where(eq(accounts.id, accountId))
-        .limit(1)
-        .then((rows) => rows[0]),
-      this.summary(accountId, phone),
-    ]);
-    if (!account) throw new ForbiddenException('account_not_active');
-    return {
-      accountId,
-      createdAt: account.createdAt.toISOString(),
-      ...(summary.phone ? { phone: summary.phone } : {}),
-      providers: summary.providers,
     };
   }
 
@@ -280,13 +265,17 @@ export class AccountService {
       if (phoneSession.user.phone !== phone || !phoneSession.user.providers?.includes('phone')) {
         throw new ForbiddenException('invalid_phone_otp');
       }
+      if (phoneSession.identities.some(({ provider }) => provider !== 'phone')) {
+        throw new ConflictException('phone_already_registered');
+      }
       const binding = await this.attachNewPhoneIdentity(
         source,
         phoneSession,
         phone,
-        authorization === 'wechat' ? recentAuthGrantId : undefined,
+        authorization === 'grant' ? recentAuthGrantId : undefined,
       );
       if (binding.status === 'conflict') throw new ConflictException('phone_already_registered');
+      if (binding.removal) await this.loginMethods?.completeIdentityRemoval(binding.removal.id, binding.removal.authUserId);
       return {
         account: binding.account,
         session: {
@@ -326,11 +315,16 @@ export class AccountService {
     phoneAuth: VerifiedAuthSession,
     phone: string,
     recentAuthGrantId?: string,
-  ): Promise<{ account: AccountSummary; status: 'bound' } | { status: 'conflict' }> {
+  ): Promise<{ account: AccountSummary; status: 'bound'; removal?: { id: string; authUserId: string } } | { status: 'conflict' }> {
     const sourceAccountId = source.user.id;
     const phoneAuthUserId = phoneAuth.authUserId;
+    const [previousPhone] = await this.database.db.select({ authUserId: accountIdentities.authUserId })
+      .from(accountIdentities).where(and(eq(accountIdentities.accountId, sourceAccountId), eq(accountIdentities.provider, 'phone'))).limit(1);
     return this.database.db.transaction(async (transaction) => {
-      const lockIds = [`account:${sourceAccountId}`, `auth:${phoneAuthUserId}`, `phone:${phone}`].sort();
+      // Auth principals precede the account lock, matching identity resolution
+      // and unlinking. Never let a concurrent login claim the replacement.
+      const lockIds = [...new Set([phoneAuthUserId, ...(previousPhone ? [previousPhone.authUserId] : [])])].sort().map((id) => `auth:${id}`);
+      lockIds.push(`account:${sourceAccountId}`, `phone:${phone}`);
       for (const lockId of lockIds) {
         await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${lockId}, 0))`);
       }
@@ -342,11 +336,17 @@ export class AccountService {
           'phone_binding',
         );
       }
-      const [sourceAccount] = await transaction.select({ status: accounts.status })
+      const [sourceAccount] = await transaction.select({ status: accounts.status, sessionsRevokedAt: accounts.sessionsRevokedAt })
         .from(accounts)
         .where(eq(accounts.id, sourceAccountId))
         .limit(1);
       if (!sourceAccount || sourceAccount.status !== 'active') throw new ConflictException('invalid_phone_binding');
+      if (sourceAccount.sessionsRevokedAt && source.issuedAt <= Math.floor(sourceAccount.sessionsRevokedAt.getTime() / 1_000)) {
+        throw new ForbiddenException('session_revoked');
+      }
+      const sourceIdentities = await transaction.select({ id: accountIdentities.id, authUserId: accountIdentities.authUserId, provider: accountIdentities.provider })
+        .from(accountIdentities).where(eq(accountIdentities.accountId, sourceAccountId));
+      if (!sourceIdentities.some(({ authUserId }) => authUserId === source.authUserId)) throw new ForbiddenException('session_revoked');
       const phoneSubjectHash = this.identities.hashIdentity('phone', phone);
       const [existingPhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)
@@ -359,15 +359,28 @@ export class AccountService {
         .from(accountIdentities)
         .where(eq(accountIdentities.authUserId, phoneAuthUserId))
         .limit(1);
-      const [existingSourcePhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
-        .from(accountIdentities)
-        .where(and(
-          eq(accountIdentities.accountId, sourceAccountId),
-          eq(accountIdentities.provider, 'phone'),
-        ))
-        .limit(1);
-      if (existingPhoneIdentity || existingAuthIdentity || existingSourcePhoneIdentity) {
+      const oldPhone = sourceIdentities.find(({ provider }) => provider === 'phone');
+      const [removedTarget] = await transaction.select({ id: accountLoginMethodRemovals.id }).from(accountLoginMethodRemovals)
+        .where(eq(accountLoginMethodRemovals.authUserId, phoneAuthUserId)).limit(1);
+      if (existingPhoneIdentity || existingAuthIdentity || removedTarget) {
         return { status: 'conflict' as const };
+      }
+      let removal: { id: string; authUserId: string } | undefined;
+      if (oldPhone) {
+        if (!recentAuthGrantId || oldPhone.authUserId !== previousPhone?.authUserId) throw new ForbiddenException('phone_reauthentication_required');
+        const owners = await transaction.select({ id: accountIdentities.id }).from(accountIdentities)
+          .where(eq(accountIdentities.authUserId, oldPhone.authUserId));
+        if (owners.length !== 1) throw new ConflictException('login_method_shared_principal');
+        // The source proof has already authorized this replacement. Stage the
+        // old identity fence and the new mapping in one transaction; target
+        // occupancy or any database failure leaves the old identity intact.
+        const [queued] = await transaction.insert(accountLoginMethodRemovals).values({
+          accountId: sourceAccountId, authUserId: oldPhone.authUserId, provider: 'phone', status: 'pending',
+        }).returning({ id: accountLoginMethodRemovals.id });
+        if (!queued) throw new Error('phone_identity_removal_not_created');
+        removal = { id: queued.id, authUserId: oldPhone.authUserId };
+        await this.sessions.revokeAllInTransaction(transaction, oldPhone.authUserId);
+        await transaction.delete(accountIdentities).where(eq(accountIdentities.id, oldPhone.id));
       }
       await transaction.insert(accountIdentities).values({
         accountId: sourceAccountId,
@@ -394,6 +407,7 @@ export class AccountService {
           providers: sortedProviders(providers.map((row) => row.provider)),
         },
         status: 'bound' as const,
+        ...(removal ? { removal } : {}),
       };
     });
   }
@@ -410,7 +424,18 @@ export class AccountService {
 
   private async assertSocialPhoneBindingAllowed(source: VerifiedAuthSession, recentAuthGrantId?: string) {
     const providers = source.user.providers ?? [];
-    if (providers.includes('phone')) throw new ConflictException('invalid_phone_binding');
+    if (recentAuthGrantId) {
+      try {
+        await this.recentAuth.assertValid(source, recentAuthGrantId, 'phone_binding', undefined);
+      } catch (cause) {
+        if (cause instanceof ForbiddenException && cause.message === 'recent_auth_required') {
+          throw new ForbiddenException('recent_social_auth_required');
+        }
+        throw cause;
+      }
+      return 'grant' as const;
+    }
+    if (providers.includes('phone')) throw new ForbiddenException('phone_reauthentication_required');
     if (!providers.includes('apple') && !providers.includes('wechat')) {
       throw new ForbiddenException('social_identity_required');
     }
@@ -431,17 +456,6 @@ export class AccountService {
       && now - appleAuthenticatedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS,
     );
     if (appleIsRecent) return 'apple' as const;
-    if (providers.includes('wechat') && recentAuthGrantId) {
-      try {
-        await this.recentAuth.assertValid(source, recentAuthGrantId, 'phone_binding', 'wechat');
-      } catch (cause) {
-        if (cause instanceof ForbiddenException && cause.message === 'recent_auth_required') {
-          throw new ForbiddenException('recent_social_auth_required');
-        }
-        throw cause;
-      }
-      return 'wechat' as const;
-    }
     throw new ForbiddenException('recent_social_auth_required');
   }
 

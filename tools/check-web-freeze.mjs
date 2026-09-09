@@ -21,6 +21,7 @@ const defaultManifestPath = path.join(
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
 const approvedManifestSha256 = 'fb991a77a14ec06820e7660a7cfaa8d0fec915e138178379dce7b891572e8cb1';
+const approvedNativeBuildBase = 'bc44f5f26ea45b8ecb89669452aaf480b62f2957';
 const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
 const approvedNativeIncrementHashes = new Map([
   ['app.config.js', 'a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2'],
@@ -651,6 +652,30 @@ async function checkManifest(manifestPath, explain) {
   const hasFailure = combinedChanged || failures.some(([, paths]) => paths.length > 0);
 
   if (hasFailure) {
+    if (
+      path.resolve(manifestPath) === path.resolve(defaultManifestPath)
+      && contentChanged.length === 1 && contentChanged[0] === 'app.json'
+      && ownershipChanged.length === 0 && selectionAdded.length === 0 && selectionRemoved.length === 0
+    ) {
+      try {
+        await execFile('git', ['merge-base', '--is-ancestor', approvedNativeBuildBase, 'HEAD'], {
+          cwd: repositoryRoot,
+        });
+        const { stdout: baseApp } = await execFile('git', ['show', `${approvedNativeBuildBase}:app.json`], {
+          cwd: repositoryRoot, encoding: 'utf8',
+        });
+        if (sha256(Buffer.from(baseApp)) !== expected.find((file) => file.path === 'app.json')?.sha256) {
+          throw new Error('Native build reference does not match the pinned Web manifest');
+        }
+        assertNativeBuildOnlyAppJsonDelta(
+          JSON.parse(baseApp), JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')),
+        );
+        console.log(`Web freeze check passed: ${current.files.length - 1} protected files match the baseline exactly; app.json differs only in matching advanced Native build identifiers.`);
+        return;
+      } catch (error) {
+        console.error(`Native build identifier proof failed: ${error instanceof Error ? error.message : String(error)}`);
+      }
+    }
     if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)) {
       try {
         const increment = await assertApprovedNativeIncrement(current.files);

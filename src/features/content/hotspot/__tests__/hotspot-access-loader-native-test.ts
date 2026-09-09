@@ -50,9 +50,13 @@ describe('native OPI hotspot access loader', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
+    // Keep bundled hotspot fixtures stable instead of waiting for a real content request.
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('offline_test_fixture'));
     mockGetConnectivity.mockResolvedValue('online');
     mockInspectOfflineAccess.mockResolvedValue('missing');
   });
+
+  afterEach(() => jest.restoreAllMocks());
 
   it('returns ready only after resolving the requested questions', async () => {
     expect(completeOpiDataset).toBeDefined();
@@ -64,7 +68,7 @@ describe('native OPI hotspot access loader', () => {
     expect(result.status).toBe('ready');
     if (result.status !== 'ready') return;
     expect(result.topics).toHaveLength(brief.topics.length);
-    expect(result.session.topic.cards).toHaveLength(
+    expect(result.session.items).toHaveLength(
       brief.topics.reduce((count, topic) => count + topic.cardIds.length, 0),
     );
     expect(mockGetTopic).not.toHaveBeenCalled();

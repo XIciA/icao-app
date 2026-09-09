@@ -28,6 +28,7 @@ jest.mock('expo-crypto', () => {
     AESEncryptionKey: TestKey,
     AESSealedData: { fromCombined: (value: string) => value },
     CryptoDigestAlgorithm: { SHA256: 'SHA-256' },
+    digest: jest.fn(async () => new Uint8Array(32).fill(0xab)),
     digestStringAsync: jest.fn(async (_algorithm: string, value: string) => `digest-${value.replaceAll('/', '-')}`),
     aesEncryptAsync: jest.fn(async (value: Uint8Array) => ({ combined: async () => encode(value) })),
     aesDecryptAsync: jest.fn(async (value: string) => decode(value)),
@@ -45,6 +46,9 @@ jest.mock('expo-file-system', () => {
     uri: string;
     constructor(first: MockDirectory | string, ...parts: string[]) { this.uri = [typeof first === 'string' ? first : first.uri, ...parts].join('/'); }
     get exists() { return mockFiles.has(this.uri); }
+    get size() { return 10; }
+    async bytes() { return new Uint8Array(10); }
+    delete() { mockFiles.delete(this.uri); }
     static async downloadFileAsync(_url: string, file: MockFile) { mockFiles.add(file.uri); return file; }
   }
   return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document') } };
@@ -237,7 +241,7 @@ describe('embeddedQuestionBankRepository', () => {
     jest.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
       status: 200,
-      json: async () => ({ requestId: 'test', data: { bankId: 'listening', version: 1, checksum: 'abc', dataset } }),
+      json: async () => ({ requestId: 'test', data: { bankId: 'listening', version: 1, checksum: 'ab'.repeat(32), dataset } }),
     } as Response);
 
     const result = await loadQuestionBank('listening');
@@ -276,7 +280,7 @@ describe('embeddedQuestionBankRepository', () => {
         ok: true,
         status: 200,
         json: async () => ({ requestId: 'topic', data: {
-          bankId: 'listening', categoryId: 'listening-category-01', version: 1, checksum: 'abc', topic,
+          bankId: 'listening', categoryId: 'listening-category-01', version: 1, checksum: 'ab'.repeat(32), topic,
           access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: true, membershipExpiresAt: '2026-09-25T00:00:00.000Z' },
         } }),
       } as Response)
@@ -287,7 +291,7 @@ describe('embeddedQuestionBankRepository', () => {
         json: async () => ({ requestId: 'resource', data: {
           publicPath: '/question-bank-assets/audio/listening/main/999.mp3',
           objectKey: 'v1/audio/listening/main/999.mp3',
-          checksum: 'resource-checksum',
+          checksum: 'ab'.repeat(32),
           sizeBytes: 10,
           mimeType: 'audio/mpeg',
           url: 'https://cloud.readyoufife.com/storage/signed/999.mp3',
@@ -295,7 +299,9 @@ describe('embeddedQuestionBankRepository', () => {
         } }),
       } as Response);
 
-    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01')).resolves.toEqual(topic);
+    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01')).resolves.toEqual({
+      ...topic, contentRelease: { bankId: 'listening', version: 1, checksum: 'ab'.repeat(32) },
+    });
     expect([...mockStorageValues.keys()].some((key) => key.startsWith('icao.content.member-topic.v2.'))).toBe(true);
     expect([...mockSecureValues.keys()].some((key) => key.startsWith('icao.content.credential.v2.'))).toBe(true);
     await expect(resolveRemoteQuestionBankAsset('/question-bank-assets/audio/listening/main/999.mp3', { forceRefresh: true }))
@@ -445,8 +451,8 @@ describe('embeddedQuestionBankRepository', () => {
       json: async () => ({ requestId: 'resource', data: {
         publicPath: path,
         objectKey: 'v1/audio/listening/main/001.mp3',
-        checksum: 'test',
-        sizeBytes: 1,
+        checksum: 'ab'.repeat(32),
+        sizeBytes: 10,
         mimeType: 'audio/mpeg',
         url: 'http://127.0.0.1:8000/storage/v1/object/sign/question-bank-assets/v1/audio/listening/main/001.mp3?token=signed',
         expiresIn: 900,
@@ -476,8 +482,8 @@ describe('embeddedQuestionBankRepository', () => {
       json: async () => ({ requestId: 'resource', data: {
         publicPath: path,
         objectKey: 'v1/audio/listening/main/999.mp3',
-        checksum: 'test',
-        sizeBytes: 1,
+        checksum: 'ab'.repeat(32),
+        sizeBytes: 10,
         mimeType: 'audio/mpeg',
         url: 'https://cloud.readyoufife.com/storage/signed/999.mp3',
         expiresIn: 10_000,

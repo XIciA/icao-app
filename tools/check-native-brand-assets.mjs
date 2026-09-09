@@ -168,7 +168,7 @@ function clearEdgeFractions(png, bounds) {
 }
 
 function validateClearEdges(png, minimum, label) {
-  const safe = manifest.master.safeArea;
+  const safe = manifest.cng.splash.safeArea;
   const bounds = contentBounds(png, safe.backgroundRgb, safe.backgroundTolerance);
   const fractions = clearEdgeFractions(png, bounds);
   for (const [edge, fraction] of Object.entries(fractions)) {
@@ -181,6 +181,18 @@ function validateOpaque(png, label) {
   if (!png.hasAlpha) return;
   for (let offset = png.channels - 1; offset < png.pixels.length; offset += png.channels) {
     if (png.pixels[offset] !== 255) fail(`${label} unexpectedly contains transparent pixels.`);
+  }
+}
+
+function validateFullBleed(png, label) {
+  validateOpaque(png, label);
+  const edgePixels = [];
+  for (let x = 0; x < png.width; x += 1) edgePixels.push(x, (png.height - 1) * png.width + x);
+  for (let y = 1; y < png.height - 1; y += 1) edgePixels.push(y * png.width, (y + 1) * png.width - 1);
+  for (const pixel of edgePixels) {
+    const offset = pixel * png.channels;
+    const [r, g, b] = png.pixels.subarray(offset, offset + 3);
+    if (b < r + 12 || b < g) fail(`${label} must retain the approved blue full-bleed edges, without a white frame.`);
   }
 }
 
@@ -200,15 +212,9 @@ function validateMaster() {
   }
   if (png.width !== png.height) fail('Brand master must remain square.');
 
-  const safe = manifest.master.safeArea;
-  const bounds = contentBounds(png, safe.backgroundRgb, safe.backgroundTolerance);
-  const clearFractions = clearEdgeFractions(png, bounds);
-  for (const [edge, fraction] of Object.entries(clearFractions)) {
-    if (fraction < safe.minimumClearEdgeFraction) {
-      fail(`Brand master ${edge} clear edge is ${(fraction * 100).toFixed(2)}%; expected at least ${(safe.minimumClearEdgeFraction * 100).toFixed(2)}%.`);
-    }
-  }
-  return { bounds, clearFractions, png };
+  if (!manifest.master.fullBleed) fail('The approved Native brand master must be full bleed.');
+  validateFullBleed(png, manifest.master.path);
+  return { png };
 }
 
 function findSplashPlugin(appConfig) {
@@ -219,13 +225,18 @@ function findSplashPlugin(appConfig) {
 
 function validateCngConfig() {
   const appConfig = JSON.parse(readFileSync(path.join(repositoryRoot, manifest.cng.config), 'utf8'));
-  const master = `./${manifest.master.path}`;
+  const master = `./${manifest.cng.frozenWebIcon}`;
   for (const [label, value] of [
     ['expo.icon', appConfig.expo.icon],
     ['expo.ios.icon', appConfig.expo.ios?.icon],
     ['expo.android.icon', appConfig.expo.android?.icon],
   ]) {
-    if (value !== master) fail(`${label} must reference ${master}.`);
+    if (value !== master) fail(`${label} frozen Web fallback must reference ${master}; Native products are supplied by the CNG plugin.`);
+  }
+  const nativePlugin = readFileSync(path.join(repositoryRoot, manifest.cng.nativeBrandPlugin), 'utf8');
+  if (!nativePlugin.includes(manifest.master.path) || !nativePlugin.includes(manifest.master.sha256)) fail('Native brand plugin is not bound to the approved master.');
+  for (const [pluginPath, platform] of [['plugins/with-ios-release-integrity.js', 'ios'], ['plugins/with-android-release-signing.js', 'android']]) {
+    if (!readFileSync(path.join(repositoryRoot, pluginPath), 'utf8').includes(`withNativeBrandAssets(config, '${platform}')`)) fail(`${platform} prebuild does not apply the Native brand products.`);
   }
 
   const splash = findSplashPlugin(appConfig);
@@ -499,7 +510,7 @@ function validateGeneratedIos(prebuildRoot) {
   }
   for (const [index, appIcon] of appIcons.entries()) {
     validateOpaque(appIcon, `iOS AppIcon ${appIconFiles[index]}`);
-    validateClearEdges(appIcon, manifest.master.safeArea.minimumClearEdgeFraction, `iOS AppIcon ${appIconFiles[index]}`);
+    validateFullBleed(appIcon, `iOS AppIcon ${appIconFiles[index]}`);
   }
 
   const splashContents = JSON.parse(readFileSync(path.join(splashSet, 'Contents.json'), 'utf8'));
@@ -508,7 +519,7 @@ function validateGeneratedIos(prebuildRoot) {
   const splashImages = splashFiles.map((file) => parsePng(readFileSync(path.join(splashSet, file)), `iOS splash ${file}`));
   for (const [index, splashImage] of splashImages.entries()) {
     validateOpaque(splashImage, `iOS splash ${splashFiles[index]}`);
-    validateClearEdges(splashImage, manifest.master.safeArea.minimumClearEdgeFraction, `iOS splash ${splashFiles[index]}`);
+    validateFullBleed(splashImage, `iOS splash ${splashFiles[index]}`);
   }
   const splashSizes = splashImages
     .map((image) => image.width)
@@ -599,7 +610,7 @@ function selfTest() {
 
 try {
   selfTest();
-  const master = validateMaster();
+  validateMaster();
   validateCngConfig();
   validateRuntimeBoundary();
   validateAssetInventory();
@@ -629,8 +640,7 @@ try {
     if (platform === 'android' || platform === 'all') validateGeneratedAndroid(prebuildRoot);
     console.log(`Native brand CNG ${platform} products verified in ${prebuildRoot}.`);
   }
-  const clear = Object.values(master.clearFractions).map((value) => `${(value * 100).toFixed(1)}%`).join('/');
-  console.log(`Native brand boundary OK (${manifest.master.sha256}; clear edges ${clear}).`);
+  console.log(`Native brand boundary OK (${manifest.master.sha256}; approved full-bleed source).`);
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exitCode = 1;

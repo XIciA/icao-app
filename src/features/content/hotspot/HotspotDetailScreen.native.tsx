@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
@@ -11,14 +12,19 @@ import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.nativ
 import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotDetailScreen({ briefId }: { briefId: string }) {
+  return <NativeScreenBoundary title="OPI 热点" fallbackHref="/content/hotspot" resetKey={briefId}><HotspotDetailContent briefId={briefId} /></NativeScreenBoundary>;
+}
+
+function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
   const { retry, state } = useHotspotAccess(briefId);
-  if (state.status === 'loading') return <GlobalLoadingScreen />;
+  const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
 
   const totalQuestions = state.brief?.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0) ?? 0;
   return (
     <Screen contentStyle={styles.screen} scroll>
-      <TopBar onBack={() => router.back()} title={state.brief?.title ?? 'OPI 热点'} />
+      <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
       <View style={styles.body}>
         {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
 
@@ -62,7 +68,7 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
           </>
         ) : (
           <HotspotAccessNotice
-            onMembership={() => router.push('/account/membership')}
+            onMembership={() => router.push({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } })}
             onRetry={retry}
             result={state}
           />

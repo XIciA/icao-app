@@ -173,7 +173,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('uses the current password to obtain a one-time account deletion grant', async () => {
     const { client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       expiresAt: Date.now() + 300_000,
       grantId: '10000000-0000-4000-8000-000000000002',
       method: 'password',
@@ -182,7 +182,7 @@ describe('SupabasePhoneAuthService', () => {
 
     await new SupabasePhoneAuthService(client).authorizeAccountDeletionWithPassword('password10');
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/recent-auth/password', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/recent-auth/password', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ password: 'password10', purpose: 'account_delete' }),
@@ -192,7 +192,7 @@ describe('SupabasePhoneAuthService', () => {
   it('starts and consumes a phone OTP before obtaining an account deletion grant', async () => {
     const { auth, client } = authClient();
     const { auth: transientAuth, client: transientClient } = authClient();
-    mockApiRequest
+    mockApiRequestWithAccessToken
       .mockResolvedValueOnce({
         accepted: true,
         challengeId: '10000000-0000-4000-8000-000000000010',
@@ -213,8 +213,8 @@ describe('SupabasePhoneAuthService', () => {
     await service.requestAccountDeletionPhoneOtp();
     const authorization = await service.authorizeAccountDeletionWithPhoneOtp('123456');
 
-    expect(mockApiRequest.mock.calls).toEqual([
-      ['/v1/account/recent-auth/phone/start', {
+    expect(mockApiRequestWithAccessToken.mock.calls.slice(0, 1)).toEqual([
+      ['/v1/account/recent-auth/phone/start', 'access-token', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ purpose: 'account_delete' }),
@@ -251,7 +251,7 @@ describe('SupabasePhoneAuthService', () => {
       phone: undefined,
     });
     auth.getSession.mockResolvedValue({ data: { session: session(appleUser) }, error: null });
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       accepted: true,
       challengeId: '10000000-0000-4000-8000-000000000010',
       expiresAt: Date.now() + 300_000,
@@ -280,6 +280,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('obtains an Apple deletion grant without replacing the current session', async () => {
     const { auth, client } = authClient();
+    const transient = authClient();
     const appleUser = user({
       app_metadata: { provider: 'apple', providers: ['apple'] },
       identities: [{
@@ -290,25 +291,28 @@ describe('SupabasePhoneAuthService', () => {
       phone: undefined,
     });
     auth.getSession.mockResolvedValueOnce({ data: { session: session(appleUser) }, error: null });
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       expiresAt: Date.now() + 300_000,
       grantId: '10000000-0000-4000-8000-000000000004',
       method: 'apple',
       purpose: 'account_delete',
     });
 
-    await new SupabasePhoneAuthService(client).authorizeAccountDeletionWithApple();
+    await new SupabasePhoneAuthService(client, transient.client).authorizeAccountDeletionWithApple();
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/recent-auth/apple', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/recent-auth/apple', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         authorizationCode: 'apple-authorization-code',
+        providerAccessToken: 'access-token',
         purpose: 'account_delete',
         rawNonce: '10000000-0000-4000-8000-000000000099',
       }),
     });
     expect(auth.signInWithIdToken).not.toHaveBeenCalled();
+    expect(auth.setSession).not.toHaveBeenCalled();
+    expect(transient.auth.signInWithIdToken).toHaveBeenCalledTimes(1);
   });
 
   it.each([
@@ -380,13 +384,13 @@ describe('SupabasePhoneAuthService', () => {
       refresh_token: 'next-refresh-token',
     };
     auth.setSession.mockResolvedValueOnce({ data: { session: nextSession, user: nextSession.user }, error: null });
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       session: { accessToken: 'next-access-token', refreshToken: 'next-refresh-token' },
       updated: true,
     });
     await expect(new SupabasePhoneAuthService(client).updatePassword('newpassword10', 'oldpassword10'))
       .resolves.toEqual(expect.objectContaining({ accessToken: 'next-access-token', refreshToken: 'next-refresh-token' }));
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/password', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ password: 'newpassword10', currentPassword: 'oldpassword10' }),
@@ -402,7 +406,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('passes the one-time recovery grant when replacing a forgotten password', async () => {
     const { client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       session: { accessToken: 'next-access-token', refreshToken: 'next-refresh-token' },
       updated: true,
     });
@@ -413,7 +417,7 @@ describe('SupabasePhoneAuthService', () => {
       '10000000-0000-4000-8000-000000000001',
     );
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/password', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
@@ -423,9 +427,43 @@ describe('SupabasePhoneAuthService', () => {
     });
   });
 
+  it.each(['apple', 'wechat'] as const)('changes a bound phone password from %s only after proving the same permanent account', async (provider) => {
+    const current = authClient(); const transient = authClient();
+    const social = session({ id: 'social-user', phone: undefined,
+      identities: provider === 'apple' ? [{ provider: 'apple' } as NonNullable<User['identities']>[number]] : [],
+      app_metadata: provider === 'wechat' ? { icao_identity_provider: 'wechat', icao_wechat_subject: 'subject' } : {},
+    });
+    current.auth.getSession.mockResolvedValue({ data: { session: { ...social, access_token: 'social-token' } }, error: null });
+    const next = { ...session(), access_token: 'updated-phone-token', refresh_token: 'updated-phone-refresh' };
+    current.auth.setSession.mockResolvedValue({ data: { session: next }, error: null });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ accountId: 'permanent-account', phone, phoneBound: true })
+      .mockResolvedValueOnce({ accountId: 'permanent-account', phone, phoneBound: true })
+      .mockResolvedValueOnce({ updated: true, session: { accessToken: next.access_token, refreshToken: next.refresh_token } });
+    const result = await new SupabasePhoneAuthService(current.client, transient.client).updatePassword('newpassword10', 'oldpassword10');
+    expect(result.user.id).toBe('user-1');
+    expect(transient.auth.signInWithPassword).toHaveBeenCalledWith({ phone, password: 'oldpassword10' });
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(1, '/v1/account', 'social-token');
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(2, '/v1/account', 'access-token');
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(3, '/v1/account/password', 'access-token', expect.objectContaining({ method: 'POST' }));
+    expect(current.auth.signInWithPassword).not.toHaveBeenCalled();
+    expect(current.auth.signOut).not.toHaveBeenCalled();
+    expect(current.auth.setSession).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps a social login unchanged when its bound phone now resolves to another account', async () => {
+    const current = authClient(); const transient = authClient();
+    current.auth.getSession.mockResolvedValue({ data: { session: session({ phone: undefined, identities: [{ provider: 'apple' } as NonNullable<User['identities']>[number]] }) }, error: null });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ accountId: 'owner', phone, phoneBound: true })
+      .mockResolvedValueOnce({ accountId: 'another-owner', phone, phoneBound: true });
+    await expect(new SupabasePhoneAuthService(current.client, transient.client).updatePassword('newpassword10', 'oldpassword10')).rejects.toThrow('auth_session_identity_mismatch');
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledTimes(2);
+    expect(current.auth.setSession).not.toHaveBeenCalled();
+    expect(current.auth.signOut).not.toHaveBeenCalled();
+  });
+
   it('does not update a password when current-password reauthentication fails', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockRejectedValueOnce(new Error('invalid_phone_or_password'));
+    mockApiRequestWithAccessToken.mockRejectedValueOnce(new Error('invalid_phone_or_password'));
 
     await expect(new SupabasePhoneAuthService(client).updatePassword('newpassword10', 'wrongpassword10'))
       .rejects.toThrow('invalid_phone_or_password');
@@ -435,7 +473,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('maps an atomic current-password mismatch returned during the update', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockRejectedValueOnce(new Error('invalid_phone_or_password'));
+    mockApiRequestWithAccessToken.mockRejectedValueOnce(new Error('invalid_phone_or_password'));
 
     await expect(new SupabasePhoneAuthService(client).updatePassword('newpassword10', 'oldpassword10'))
       .rejects.toThrow('invalid_phone_or_password');
@@ -455,11 +493,11 @@ describe('SupabasePhoneAuthService', () => {
 
   it('starts phone binding through the authenticated server without probing phone occupancy', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({ ...bindingChallenge, sent: true });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ ...bindingChallenge, sent: true });
 
     const challenge = await new SupabasePhoneAuthService(client).requestPhoneBindingOtp('13800138000');
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/start', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/phone-binding/start', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone }),
@@ -480,10 +518,8 @@ describe('SupabasePhoneAuthService', () => {
       phone: undefined,
     });
     auth.getSession.mockResolvedValue({ data: { session: session(wechatUser) }, error: null });
-    mockApiRequest
-      .mockRejectedValueOnce(new Error('recent_social_auth_required'))
-      .mockResolvedValueOnce({ ...bindingChallenge, sent: true });
     mockApiRequestWithAccessToken
+      .mockRejectedValueOnce(new Error('recent_social_auth_required'))
       .mockResolvedValueOnce({
         appId: 'wx1234567890abcdef',
         challengeId: '10000000-0000-4000-8000-000000000020',
@@ -497,7 +533,8 @@ describe('SupabasePhoneAuthService', () => {
         grantId: '10000000-0000-4000-8000-000000000021',
         method: 'wechat',
         purpose: 'phone_binding',
-      });
+      })
+      .mockResolvedValueOnce({ ...bindingChallenge, sent: true });
     mockWechatAuthorize.mockResolvedValue({
       code: 'wechat-phone-binding-code',
       state: 'wechat-phone-binding-state',
@@ -505,7 +542,7 @@ describe('SupabasePhoneAuthService', () => {
 
     const challenge = await new SupabasePhoneAuthService(client).requestPhoneBindingOtp('13800138000');
 
-    expect(mockApiRequestWithAccessToken.mock.calls).toEqual([
+    expect(mockApiRequestWithAccessToken.mock.calls.slice(1, 3)).toEqual([
       ['/v1/account/recent-auth/wechat/start', 'access-token', expect.objectContaining({
         body: JSON.stringify({ purpose: 'phone_binding' }),
       })],
@@ -518,7 +555,7 @@ describe('SupabasePhoneAuthService', () => {
         }),
       })],
     ]);
-    expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account/phone-binding/start', expect.objectContaining({
+    expect(mockApiRequestWithAccessToken).toHaveBeenLastCalledWith('/v1/account/phone-binding/start', 'access-token', expect.objectContaining({
       body: JSON.stringify({
         phone,
         recentAuthGrantId: '10000000-0000-4000-8000-000000000021',
@@ -533,7 +570,7 @@ describe('SupabasePhoneAuthService', () => {
       ...bindingChallenge,
       recentAuthGrantId: '10000000-0000-4000-8000-000000000021',
     };
-    mockApiRequest
+    mockApiRequestWithAccessToken
       .mockResolvedValueOnce({ ...bindingChallenge, sent: true })
       .mockResolvedValueOnce({
         account: { accountId: 'account-1', phone, phoneBound: true, providers: ['phone', 'wechat'] },
@@ -544,10 +581,10 @@ describe('SupabasePhoneAuthService', () => {
     const resent = await service.resendPhoneBindingOtp(challenge);
     await service.verifyPhoneBindingOtp(resent, '123456');
 
-    expect(mockApiRequest).toHaveBeenNthCalledWith(1, '/v1/account/phone-binding/start', expect.objectContaining({
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(1, '/v1/account/phone-binding/start', 'access-token', expect.objectContaining({
       body: JSON.stringify({ phone, recentAuthGrantId: challenge.recentAuthGrantId }),
     }));
-    expect(mockApiRequest).toHaveBeenNthCalledWith(2, '/v1/account/phone-binding/verify', expect.objectContaining({
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(2, '/v1/account/phone-binding/verify', 'access-token', expect.objectContaining({
       body: JSON.stringify({
         challengeId: bindingChallenge.challengeId,
         phone,
@@ -559,12 +596,12 @@ describe('SupabasePhoneAuthService', () => {
 
   it('lets the server bind an unused phone before switching the local session', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       account: { accountId: 'account-1', phone, phoneBound: true, providers: ['phone', 'apple'] },
       session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
     });
     const result = await new SupabasePhoneAuthService(client).verifyPhoneBindingOtp(bindingChallenge, '123456');
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/verify', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/phone-binding/verify', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ challengeId: bindingChallenge.challengeId, phone, token: '123456' }),
@@ -579,7 +616,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('keeps the current Apple session when the verified phone already has an account', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockRejectedValueOnce(new Error('phone_already_registered'));
+    mockApiRequestWithAccessToken.mockRejectedValueOnce(new Error('phone_already_registered'));
 
     await expect(new SupabasePhoneAuthService(client).verifyPhoneBindingOtp(bindingChallenge, '123456'))
       .rejects.toThrow('phone_already_registered');
@@ -670,7 +707,7 @@ describe('SupabasePhoneAuthService', () => {
 
   it('resends binding codes through the same neutral server endpoint', async () => {
     const { auth, client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({
       ...bindingChallenge,
       challengeId: '10000000-0000-4000-8000-000000000012',
       sent: true,
@@ -680,7 +717,7 @@ describe('SupabasePhoneAuthService', () => {
       ...bindingChallenge,
       challengeId: '10000000-0000-4000-8000-000000000012',
     });
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/start', {
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/phone-binding/start', 'access-token', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone }),
@@ -688,13 +725,146 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.resend).not.toHaveBeenCalled();
     expect(auth.signInWithOtp).not.toHaveBeenCalled();
   });
+
+  it.each([
+    ['password', (service: SupabasePhoneAuthService) => service.updatePassword('newpassword10', 'oldpassword10')],
+    ['phone start', (service: SupabasePhoneAuthService) => service.requestPhoneBindingOtp(phone)],
+    ['phone resend', (service: SupabasePhoneAuthService) => service.resendPhoneBindingOtp(bindingChallenge)],
+    ['phone verify', (service: SupabasePhoneAuthService) => service.verifyPhoneBindingOtp(bindingChallenge, '123456')],
+    ['password reauthentication', (service: SupabasePhoneAuthService) => service.authorizeAccountDeletionWithPassword('password10')],
+    ['phone reauthentication', (service: SupabasePhoneAuthService) => service.requestAccountDeletionPhoneOtp()],
+  ] as const)('never replays %s against another account after a late 401', async (_label, action) => {
+    const actual = jest.requireActual<typeof import('@/platform/api-client')>('@/platform/api-client');
+    const originalFetch = global.fetch;
+    const originalBaseUrl = process.env.EXPO_PUBLIC_ICAO_API_URL;
+    const current = authClient();
+    let activeToken = 'access-token';
+    const refresh = jest.fn().mockResolvedValue('account-b-token');
+    const invalidated = jest.fn();
+    actual.setApiAccessTokenProvider(async () => activeToken);
+    actual.setApiAuthRecovery({ refresh, onInvalidated: invalidated });
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'https://api.test.invalid';
+    mockApiRequest.mockImplementation(actual.apiRequest);
+    mockApiRequestWithAccessToken.mockImplementation(actual.apiRequestWithAccessToken);
+    const fetchMock = jest.fn().mockImplementation(async () => {
+      activeToken = 'account-b-token';
+      current.auth.getSession.mockResolvedValue({ data: { session: { ...session({ id: 'account-b' }), access_token: activeToken } }, error: null });
+      return { status: 401, ok: false, json: async () => ({ error: { code: 'session_revoked' } }) };
+    });
+    global.fetch = fetchMock;
+    try {
+      await expect(action(new SupabasePhoneAuthService(current.client))).rejects.toThrow('session_revoked');
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect((fetchMock.mock.calls[0][1].headers as Headers).get('authorization')).toBe('Bearer access-token');
+      expect(refresh).not.toHaveBeenCalled();
+      expect(invalidated).not.toHaveBeenCalled();
+      expect(current.auth.setSession).not.toHaveBeenCalled();
+    } finally {
+      actual.setApiAccessTokenProvider(undefined);
+      actual.setApiAuthRecovery(undefined);
+      global.fetch = originalFetch;
+      if (originalBaseUrl === undefined) delete process.env.EXPO_PUBLIC_ICAO_API_URL;
+      else process.env.EXPO_PUBLIC_ICAO_API_URL = originalBaseUrl;
+    }
+  });
+
+  it('renews a stale Apple proof for phone binding without replacing the active session', async () => {
+    const current = authClient(); const transient = authClient();
+    const apple = session({ phone: undefined, identities: [{ provider: 'apple' } as NonNullable<User['identities']>[number]] });
+    current.auth.getSession.mockResolvedValue({ data: { session: apple }, error: null });
+    mockApiRequestWithAccessToken.mockRejectedValueOnce(new Error('recent_social_auth_required'))
+      .mockResolvedValueOnce({ grantId: 'apple-phone-binding-grant', purpose: 'phone_binding', method: 'apple' })
+      .mockResolvedValueOnce({ ...bindingChallenge, sent: true });
+    const result = await new SupabasePhoneAuthService(current.client, transient.client).requestPhoneBindingOtp(phone);
+    expect(result.recentAuthGrantId).toBe('apple-phone-binding-grant');
+    expect(mockApiRequestWithAccessToken).toHaveBeenNthCalledWith(2, '/v1/account/recent-auth/apple', 'access-token', expect.objectContaining({
+      body: expect.stringContaining('"purpose":"phone_binding"'),
+    }));
+    expect(current.auth.setSession).not.toHaveBeenCalled();
+    expect(current.auth.signOut).not.toHaveBeenCalled();
+  });
 });
 
 describe('dual phone auth error mapping', () => {
+  beforeEach(() => {
+    mockApiRequestWithAccessToken.mockReset();
+    mockApiRequestWithAccessToken.mockReset();
+    mockAppleSignIn.mockReset().mockResolvedValue({ authorizationCode: 'apple-authorization-code', identityToken: 'apple-identity-token' });
+    mockWechatAuthorize.mockReset();
+  });
   it('classifies password and account errors without passing supplier text through', () => {
     expect(authError({ code: 'weak_password', message: 'weak' }).message).toBe('invalid_phone_password');
     expect(authError({ code: 'invalid_credentials', message: 'invalid login credentials' }).message).toBe('invalid_phone_or_password');
     expect(authError({ code: 'phone_exists', message: 'already registered' }).message).toBe('phone_account_already_exists');
     expect(authError({ code: 'user_not_found', message: 'not found' }).message).toBe('phone_account_not_found');
   });
+  it('binds Apple with a transient proof while preserving the active phone session on conflicts', async () => {
+    const current = authClient(); const transient = authClient();
+    mockApiRequestWithAccessToken.mockRejectedValueOnce(new Error('login_method_already_owned'));
+    const service = new SupabasePhoneAuthService(current.client, transient.client);
+    await expect(service.bindApple('grant-apple-binding')).rejects.toThrow('login_method_already_owned');
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledWith('/v1/account/login-methods/apple/bind', 'access-token', expect.objectContaining({
+      body: JSON.stringify({ providerAccessToken: 'access-token', recentAuthGrantId: 'grant-apple-binding' }),
+    }));
+    expect(current.auth.setSession).not.toHaveBeenCalled(); expect(current.auth.signOut).not.toHaveBeenCalled();
+    expect(current.auth.signInWithIdToken).not.toHaveBeenCalled();
+  });
+
+  it('rejects a mismatched WeChat binding callback without changing the current account', async () => {
+    const current = authClient();
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ status: 'available', appId: 'wx1234567890abcdef', challengeId: 'challenge', state: 'expected-state' });
+    mockWechatAuthorize.mockResolvedValueOnce({ code: 'code', state: 'another-state' });
+    await expect(new SupabasePhoneAuthService(current.client).bindWechat('grant')).rejects.toThrow('invalid_wechat_auth_response');
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledTimes(1);
+    expect(current.auth.setSession).not.toHaveBeenCalled(); expect(current.auth.signOut).not.toHaveBeenCalled();
+  });
+
+  it('does not submit a late Apple binding proof after the user signs out', async () => {
+    const current = authClient(); const transient = authClient();
+    let authorize!: (value: unknown) => void;
+    mockAppleSignIn.mockImplementationOnce(() => new Promise((resolve) => { authorize = resolve; }));
+    const service = new SupabasePhoneAuthService(current.client, transient.client);
+    const pending = service.bindApple('grant');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await service.signOut();
+    authorize({ authorizationCode: 'code', identityToken: 'apple-token' });
+    await expect(pending).rejects.toThrow('auth_request_not_completed');
+    expect(mockApiRequestWithAccessToken).not.toHaveBeenCalled();
+  });
+
+  it('keeps the current session when a recovery code resolves to a different business account', async () => {
+    const current = authClient(); const transient = authClient();
+    mockApiRequest.mockResolvedValueOnce({ verified: true, session: { accessToken: 'recovery-access', refreshToken: 'recovery-refresh' } });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ accountId: 'another-account', phone, phoneBound: true, providers: ['phone'] });
+    const service = new SupabasePhoneAuthService(current.client, transient.client);
+    await expect(service.verifyCurrentAccountRecoveryOtp({ challengeId: 'challenge', phone }, '123456', 'current-account')).rejects.toThrow('auth_session_identity_mismatch');
+    expect(current.auth.signOut).not.toHaveBeenCalled(); expect(current.auth.setSession).not.toHaveBeenCalled();
+    expect(mockApiRequestWithAccessToken).toHaveBeenCalledTimes(1);
+  });
+
+  it('commits current-account password recovery only after account ownership and the recovery grant are validated', async () => {
+    const current = authClient(); const transient = authClient();
+    const authorization = { authorized: true, grantId: 'recovery-grant', expiresAt: Date.now() + 300_000 };
+    mockApiRequest.mockResolvedValueOnce({ verified: true, session: { accessToken: 'recovery-access', refreshToken: 'recovery-refresh' } });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ accountId: 'current-account', phone, phoneBound: true, providers: ['phone', 'wechat'], hasPassword: true })
+      .mockResolvedValueOnce(authorization);
+    const service = new SupabasePhoneAuthService(current.client, transient.client);
+    const result = await service.verifyCurrentAccountRecoveryOtp({ challengeId: 'challenge', phone }, '123456', 'current-account');
+    expect(result).toMatchObject({ authorization, session: { user: { id: 'user-1', authUserId: 'user-1', providers: ['phone'] } } });
+    expect((await service.getSession())?.user.id).toBe(result.session.user.id);
+    expect((await service.refreshSession())?.user.id).toBe(result.session.user.id);
+    expect(current.auth.setSession).toHaveBeenCalledWith({ access_token: 'recovery-access', refresh_token: 'recovery-refresh' });
+    expect(current.auth.signOut).not.toHaveBeenCalled();
+    expect(mockApiRequestWithAccessToken.mock.invocationCallOrder[1]).toBeLessThan(current.auth.setSession.mock.invocationCallOrder[0]);
+  });
+
+  it('does not replace a session when the server cannot authorize password recovery', async () => {
+    const current = authClient(); const transient = authClient();
+    mockApiRequest.mockResolvedValueOnce({ verified: true, session: { accessToken: 'recovery-access', refreshToken: 'recovery-refresh' } });
+    mockApiRequestWithAccessToken.mockResolvedValueOnce({ accountId: 'current-account', phone, phoneBound: true, providers: ['phone'] })
+      .mockRejectedValueOnce(new Error('recent_auth_required'));
+    await expect(new SupabasePhoneAuthService(current.client, transient.client).verifyCurrentAccountRecoveryOtp({ challengeId: 'challenge', phone }, '123456', 'current-account')).rejects.toThrow('recent_auth_required');
+    expect(current.auth.setSession).not.toHaveBeenCalled(); expect(current.auth.signOut).not.toHaveBeenCalled();
+  });
+
 });

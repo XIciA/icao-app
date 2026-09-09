@@ -37,6 +37,7 @@ async function deleteTemporaryCommerce(database, accountId, lifetimeClaimContext
       await transaction`delete from ai_point_reservation_allocations where account_id = ${accountId}`;
       await transaction`delete from ai_point_reservations where account_id = ${accountId}`;
       await transaction`delete from ai_point_batches where account_id = ${accountId}`;
+      await transaction`delete from ai_allowance_accounts where account_id = ${accountId}`;
     }
     if (lifetimeClaimContextDigest) {
       await transaction`
@@ -165,6 +166,7 @@ export async function cleanupTemporaryBusinessAccount({
         ${accountId ? database`exists(select 1 from ai_point_reservations where account_id = ${accountId})` : false} as point_reservation_exists,
         ${accountId ? database`exists(select 1 from ai_point_reservation_allocations where account_id = ${accountId})` : false} as point_allocation_exists,
         ${accountId ? database`exists(select 1 from ai_point_ledger_entries where account_id = ${accountId})` : false} as point_ledger_exists,
+        ${accountId ? database`exists(select 1 from ai_allowance_accounts where account_id = ${accountId})` : false} as allowance_anchor_exists,
         ${authUserId
           ? database`exists(select 1 from account_session_revocations where user_id = ${authUserId})`
           : false} as revocation_exists,

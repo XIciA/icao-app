@@ -15,7 +15,7 @@ export type MembershipProduct = Readonly<{
   productKey: MembershipProductKey;
   displayName: string;
   durationDays: 7 | 15 | 31 | 62 | 93;
-  basePriceCnyFen: 6_800 | 10_800 | 16_800 | 29_800 | 39_800;
+  basePriceCnyFen: number;
   appleProductId: string;
   aiPointRuleVersion: typeof AI_POINT_RULE_VERSION;
   aiPointBatchIntervalDays: typeof AI_POINT_BATCH_INTERVAL_DAYS;
@@ -50,7 +50,7 @@ export const MEMBERSHIP_PRODUCTS = [
     productKey: 'membership_31d_v1',
     displayName: '31天会员',
     durationDays: 31,
-    basePriceCnyFen: 16_800,
+    basePriceCnyFen: 15_800,
     appleProductId: 'com.readyoufife.ios.membership.31d.v1',
     aiPointRuleVersion: AI_POINT_RULE_VERSION,
     aiPointBatchIntervalDays: AI_POINT_BATCH_INTERVAL_DAYS,
@@ -73,7 +73,7 @@ export const MEMBERSHIP_PRODUCTS = [
     productKey: 'membership_93d_v1',
     displayName: '93天会员',
     durationDays: 93,
-    basePriceCnyFen: 39_800,
+    basePriceCnyFen: 35_800,
     appleProductId: 'com.readyoufife.ios.membership.93d.v1',
     aiPointRuleVersion: AI_POINT_RULE_VERSION,
     aiPointBatchIntervalDays: AI_POINT_BATCH_INTERVAL_DAYS,
@@ -84,6 +84,11 @@ export const MEMBERSHIP_PRODUCTS = [
     ],
   },
 ] as const satisfies readonly MembershipProduct[];
+
+/** Historical IDs stay verifiable; these are the only offerings still sold. */
+export const ACTIVE_MEMBERSHIP_PRODUCTS = MEMBERSHIP_PRODUCTS.filter(
+  (product) => [7, 31, 93].includes(product.durationDays),
+);
 
 export const COMMERCE_CHANNEL_PRODUCTS = MEMBERSHIP_PRODUCTS.map((product) => ({
   channel: 'apple_app_store' as const,

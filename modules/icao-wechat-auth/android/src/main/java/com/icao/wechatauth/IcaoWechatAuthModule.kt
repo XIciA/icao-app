@@ -163,6 +163,14 @@ class IcaoWechatAuthModule : Module() {
       }
     }
 
+    AsyncFunction("pay") { id: String, fields: Map<String, String>, promise: Promise ->
+      val context = appContext.reactContext
+      if (context == null) promise.reject("wechat_pay_unavailable", "React context is unavailable", null)
+      else IcaoWechatPayCoordinator.pay(context, id, fields, promise)
+    }
+
+    Function("cancelPayment") { id: String -> IcaoWechatPayCoordinator.cancel(id) }
+
     Function("cancelAuthorization") { state: String ->
       IcaoWechatAuthCoordinator.cancelPending(state)
     }

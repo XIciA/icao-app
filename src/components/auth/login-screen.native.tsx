@@ -1,12 +1,17 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
-import { AppText, Button, TextField } from '@/components/ui';
-import { useAuth } from '@/features/auth/AuthProvider';
+import { AppText, Button, Screen, TextField } from '@/components/ui';
+import { useAuth, type LoginLegalDocuments } from '@/features/auth/AuthProvider';
+import { builtinAppContent, loadLegalDocuments } from '@/features/app-content/repository.native';
+import { LegalDocumentBody } from '@/features/app-content/LegalDocumentBody.native';
+import { AppModal } from '@/components/platform/AppModal';
+import { TopBar } from '@/components/navigation/TopBar';
+import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
 import { WECHAT_LOGIN_ENABLED } from '@/features/auth/wechat-release-capability';
 import {
@@ -21,7 +26,7 @@ import {
 } from '@/features/auth/phone-otp-challenge-store';
 import { colors, radii, spacing } from '@/theme';
 
-import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui';
+import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui-native';
 
 type EntryView = 'login' | 'recovery';
 type LoginMethod = 'otp' | 'password';
@@ -67,7 +72,10 @@ export function loginErrorMessage(code: string) {
 }
 
 export function LoginScreen() {
-  const router = useRouter();
+  return <NativeScreenBoundary title="登录 / 注册" allowExit={false}><LoginContent /></NativeScreenBoundary>;
+}
+
+function LoginContent() {
   const { mode } = useLocalSearchParams<{ mode?: string }>();
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
@@ -86,6 +94,17 @@ export function LoginScreen() {
   const actionGateRef = useRef(createAuthActionGate());
   const challengeRequestRef = useRef(0);
   const mountedRef = useRef(true);
+  const consentPromiseRef = useRef<Promise<boolean> | undefined>(undefined);
+  const acceptedRef = useRef(false);
+  const [legalDocuments, setLegalDocuments] = useState<LoginLegalDocuments>(builtinAppContent.legal);
+
+  useEffect(() => {
+    let active = true;
+    void loadLegalDocuments().then(({ documents }) => {
+      if (active && !acceptedRef.current) setLegalDocuments(documents);
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
 
   const codePurpose = challenge?.purpose;
   const resendDeadline = challenge?.resendAllowedAt ?? 0;
@@ -119,10 +138,10 @@ export function LoginScreen() {
     const timer = setInterval(() => {
       const next = Date.now();
       setClockNow(next);
-      if (next >= deadline) clearInterval(timer);
+      if ((challenge ? phoneOtpServerNow(challenge, next) : next) >= deadline) clearInterval(timer);
     }, 250);
     return () => clearInterval(timer);
-  }, [challenge?.expiresAt, resendDeadline]);
+  }, [challenge, resendDeadline]);
 
   const remainingSeconds = Math.max(0, Math.ceil((resendDeadline - (challenge ? phoneOtpServerNow(challenge, clockNow) : clockNow)) / 1000));
   const challengeExpired = Boolean(challenge && phoneOtpServerNow(challenge, clockNow) >= challenge.expiresAt);
@@ -181,10 +200,25 @@ export function LoginScreen() {
     setError(loginErrorMessage(errorCode));
   }
 
-  function requireConsent() {
-    if (accepted) return true;
-    setError(loginAgeCopy.consentError);
-    return false;
+  function requireConsent(): Promise<boolean> {
+    if (acceptedRef.current) return Promise.resolve(true);
+    if (consentPromiseRef.current) return consentPromiseRef.current;
+    const pending = new Promise<boolean>((resolve) => {
+      Alert.alert('确认后继续', loginAgeCopy.consentError, [
+        { text: '取消', style: 'cancel', onPress: () => resolve(false) },
+        { text: '同意并继续', onPress: () => {
+          if (!mountedRef.current) { resolve(false); return; }
+          acceptedRef.current = true;
+          auth.rememberLoginConsent(legalDocuments);
+          setAccepted(true);
+          setError('');
+          resolve(true);
+        } },
+      ], { cancelable: true, onDismiss: () => resolve(false) });
+    });
+    consentPromiseRef.current = pending;
+    void pending.finally(() => { if (consentPromiseRef.current === pending) consentPromiseRef.current = undefined; });
+    return pending;
   }
 
   function validatePhone() {
@@ -194,7 +228,7 @@ export function LoginScreen() {
   }
 
   async function socialLogin(provider: 'apple' | 'wechat') {
-    if (!requireConsent()) return;
+    if (!await requireConsent()) return;
     if (!beginAction()) return;
     setError('');
     try {
@@ -208,7 +242,7 @@ export function LoginScreen() {
   }
 
   async function requestLoginCode() {
-    if (!validatePhone() || !requireConsent()) return;
+    if (!validatePhone() || !await requireConsent()) return;
     if (!beginAction()) return;
     setError('');
     const requestedPhone = normalizeChinaMobile(phone)!;
@@ -225,7 +259,7 @@ export function LoginScreen() {
   }
 
   async function submitPasswordLogin() {
-    if (!validatePhone() || !requireConsent()) return;
+    if (!validatePhone() || !await requireConsent()) return;
     if (!password) { setError('请输入登录密码。'); return; }
     if (!beginAction()) return;
     setError('');
@@ -258,7 +292,9 @@ export function LoginScreen() {
   }
 
   async function resendCode() {
-    if (!challenge || remainingSeconds > 0 || !beginAction()) return;
+    if (!challenge || remainingSeconds > 0) return;
+    if (challenge.purpose === 'login' && !await requireConsent()) return;
+    if (!beginAction()) return;
     setError('');
     const requestGeneration = ++challengeRequestRef.current;
     const storageGeneration = beginPhoneOtpChallengeMutation();
@@ -282,6 +318,7 @@ export function LoginScreen() {
       return;
     }
     if (!/^\d{6}$/u.test(code)) { setError('请输入6位短信验证码。'); return; }
+    if (challenge.purpose === 'login' && !await requireConsent()) return;
     if (!beginAction()) return;
     setError('');
     try {
@@ -306,13 +343,13 @@ export function LoginScreen() {
   }
 
   if (challengeRestoring) {
-    return <AuthShell><AuthHeading title="正在恢复验证" subtitle="正在安全读取尚未完成的手机号验证…" /></AuthShell>;
+    return <AuthShell showBack={false}><AuthHeading title="正在恢复验证" /></AuthShell>;
   }
 
   if (codePurpose === 'recovery') {
     const recovery = true;
     return (
-      <AuthShell>
+      <AuthShell onBack={() => showLogin('password')}>
         <AuthHeading title={recovery ? '验证手机号' : '输入验证码'} subtitle={`验证码已发送至 ${maskChinaMobile(normalizeChinaMobile(phone))}`} />
         <View style={styles.form}>
           <CodeField onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))} value={code} />
@@ -328,14 +365,13 @@ export function LoginScreen() {
           </Button>
           <Button disabled={submitting} onPress={changePhone} variant="ghost">更换手机号</Button>
         </View>
-        <ScopeNote />
       </AuthShell>
     );
   }
 
   if (entryView === 'recovery') {
     return (
-      <AuthShell>
+      <AuthShell onBack={() => showLogin('password')}>
         <AuthHeading title="重置密码" subtitle="验证已绑定手机号后，为同一个账号设置新密码" />
         <View style={styles.form}>
           <PhoneField onChangeText={updatePhone} value={phone} />
@@ -344,16 +380,15 @@ export function LoginScreen() {
           <Button disabled={submitting} loading={submitting} onPress={() => void requestRecoveryCode()} size="lg">获取重置验证码</Button>
           <View style={styles.inlineLinks}><TextLink label="返回密码登录" onPress={() => showLogin('password')} /></View>
         </View>
-        <ScopeNote />
       </AuthShell>
     );
   }
 
   return (
-    <AuthShell>
+    <AuthShell showBack={false}>
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
-        <AuthHeading title="登录 / 注册" subtitle="继续你的 ICAO 备考进度" />
+        <AuthHeading title="登录 / 注册" />
       </View>
       <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>
@@ -385,7 +420,6 @@ export function LoginScreen() {
               )}
               value={code}
             />
-            <AppText variant="caption">未注册手机号验证成功后会自动创建账号。</AppText>
             {challengeExpired ? <AppText color={colors.destructive} variant="caption">验证码已过期，请重新获取。</AppText> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
             <Button disabled={submitting || !challenge || challengeExpired || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">登录 / 注册</Button>
@@ -398,8 +432,14 @@ export function LoginScreen() {
             <Button disabled={submitting} loading={submitting} onPress={() => void submitPasswordLogin()} size="lg">密码登录</Button>
           </>
         )}
-        <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => setAccepted((value) => !value)} />
-        <LegalLinks router={router} />
+        <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => {
+          if (!submitting) {
+            acceptedRef.current = !acceptedRef.current;
+            setAccepted(acceptedRef.current);
+            auth.rememberLoginConsent(acceptedRef.current ? legalDocuments : undefined);
+          }
+        }} />
+        <LegalLinks documents={legalDocuments} />
       </View>
 {thirdPartyLoginAvailable ? (
         <>
@@ -412,7 +452,6 @@ export function LoginScreen() {
               <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
             ) : null}
           </View>
-          <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>
         </>
       ) : null}
     </AuthShell>
@@ -455,18 +494,23 @@ function LoginMethodTabs({ disabled, method, onChange }: { disabled: boolean; me
   );
 }
 
-function LegalLinks({ router }: { router: ReturnType<typeof useRouter> }) {
+function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
+  const [openDocument, setOpenDocument] = useState<'agreement' | 'privacy'>();
   return (
+    <>
     <View style={styles.legalLinks}>
-      <TextLink label="查看用户协议" onPress={() => router.push('/legal/agreement')} />
+      <TextLink label="查看用户协议" onPress={() => setOpenDocument('agreement')} />
       <AppText variant="micro">·</AppText>
-      <TextLink label="查看隐私政策" onPress={() => router.push('/legal/privacy')} />
+      <TextLink label="查看隐私政策" onPress={() => setOpenDocument('privacy')} />
     </View>
+    {openDocument ? <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible>
+      <Screen contentStyle={{ paddingHorizontal: 0 }} scroll>
+        <TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />
+        <LegalDocumentBody document={documents[openDocument]} />
+      </Screen>
+    </AppModal> : null}
+    </>
   );
-}
-
-function ScopeNote() {
-  return <AppText style={styles.scopeNote} variant="caption">手机号仅支持中国大陆 +86；iOS 与 Android 共用同一业务账号。</AppText>;
 }
 
 const styles = StyleSheet.create({

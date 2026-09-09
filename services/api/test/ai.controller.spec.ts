@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
+
 import { AiController } from '../src/ai/ai.controller';
 
 function request(headers: Record<string, string> = {}) {
@@ -99,5 +101,58 @@ describe('AiController review endpoint', () => {
     await expect(controller.review({
       mode: 'opi', module: 'atc', questionId: 'q-2', transcript: 'Ready.',
     }, request() as never)).rejects.toThrow('invalid_ai_review');
+  });
+});
+
+describe('AiController authorized commerce environment and combined request', () => {
+  it('rejects an unverified sandbox header before uploading or performing provider work', async () => {
+    const admitOperation = vi.fn();
+    const file = vi.fn();
+    const authorize = vi.fn(async () => { throw new Error('commerce_sandbox_session_not_authorized'); });
+    const controller = new AiController({ admitOperation } as never, { assertEnvironmentAuthorized: authorize } as never);
+    await expect(controller.transcribeReview({ ...request({ [COMMERCE_ENVIRONMENT_HEADER]: 'sandbox' }), auth: { sessionId: 'session-1' }, file } as never)).rejects.toThrow('commerce_sandbox_session_not_authorized');
+    expect(authorize).toHaveBeenCalledWith('user-1', 'session-1', 'sandbox', expect.any(Date));
+    expect(admitOperation).not.toHaveBeenCalled();
+    expect(file).not.toHaveBeenCalled();
+  });
+
+  it('passes one multipart audio, validated review context and stable operation id', async () => {
+    const grant = { environment: 'sandbox' };
+    const admitOperation = vi.fn(async () => grant);
+    const transcribeReview = vi.fn(async () => ({ transcript: 'Ready.', review: {} }));
+    const authorize = vi.fn(async () => undefined);
+    const controller = new AiController({ admitOperation, transcribeReview } as never, { assertEnvironmentAuthorized: authorize } as never);
+    const file = { mimetype: 'audio/wav', toBuffer: async () => Buffer.from('audio'), fields: Object.fromEntries(Object.entries({ mode: 'opi', module: 'opi', questionId: 'q-1', model: '16k_en' }).map(([key, value]) => [key, { type: 'field', value }])) };
+    const headers = { [COMMERCE_ENVIRONMENT_HEADER]: 'sandbox', 'x-ai-operation-id': '82000000-0000-4000-8000-000000000002' };
+    await controller.transcribeReview({ ...request(headers), auth: { sessionId: 'session-1' }, file: async () => file } as never);
+    expect(admitOperation).toHaveBeenCalledExactlyOnceWith('user-1', 'sandbox');
+    expect(transcribeReview).toHaveBeenCalledExactlyOnceWith('user-1', 'request-1', Buffer.from('audio'), 'audio/wav', '16k_en', { mode: 'opi', module: 'opi', questionId: 'q-1' }, grant, expect.any(AbortSignal), headers['x-ai-operation-id']);
+    file.fields.module = { type: 'field', value: 'atc' };
+    await expect(controller.transcribeReview({ ...request(headers), auth: { sessionId: 'session-1' }, file: async () => file } as never)).rejects.toThrow('invalid_transcribe_review');
+    expect(transcribeReview).toHaveBeenCalledTimes(1);
+  });
+});
+
+
+describe('AI operation result recovery', () => {
+  it('returns owned results without consent or current membership admission', async () => {
+    const operationResult = vi.fn(async () => ({ state: 'completed', capability: 'transcription', result: { transcript: 'Ready.' } }));
+    const admitOperation = vi.fn();
+    const controller = new AiController({ operationResult, admitOperation } as never);
+    const id = '82000000-0000-4000-8000-000000000099';
+    expect((await controller.operation(id, request() as never)).data).toMatchObject({ state: 'completed' });
+    expect(operationResult).toHaveBeenCalledExactlyOnceWith('user-1', 'production', id);
+    expect(admitOperation).not.toHaveBeenCalled();
+    await expect(controller.operation('bad', request() as never)).rejects.toThrow('invalid_ai_operation_id');
+  });
+
+  it('checks sandbox authorization before any result read', async () => {
+    const operationResult = vi.fn();
+    const authorize = vi.fn(async () => { throw new Error('commerce_sandbox_session_not_authorized'); });
+    const controller = new AiController({ operationResult } as never, { assertEnvironmentAuthorized: authorize } as never);
+    await expect(controller.operation('82000000-0000-4000-8000-000000000099', {
+      ...request({ [COMMERCE_ENVIRONMENT_HEADER]: 'sandbox' }), auth: { sessionId: 'session-1' },
+    } as never)).rejects.toThrow('commerce_sandbox_session_not_authorized');
+    expect(operationResult).not.toHaveBeenCalled();
   });
 });

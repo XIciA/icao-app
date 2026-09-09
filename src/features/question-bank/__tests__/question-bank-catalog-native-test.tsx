@@ -66,6 +66,6 @@ describe('<QuestionBankCatalog /> Native content access', () => {
 
     expect(screen.getByText('会员')).toBeTruthy();
     await fireEvent.press(screen.getByText('会员话题'));
-    expect(mockPush).toHaveBeenCalledWith('/account/membership');
+    expect(mockPush).toHaveBeenCalledWith('/account/membership?from=learning');
   });
 });

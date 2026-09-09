@@ -34,7 +34,13 @@ const [
   readFile('package.json', 'utf8'),
   readFile('services/api/package.json', 'utf8'),
 ]);
-const clientTableGrantRevocationSource = `${clientTableGrantRevocationBase}\n${clientTableGrantRevocationExtension}`;
+const clientTableGrantRevocationSource = [
+  clientTableGrantRevocationBase,
+  clientTableGrantRevocationExtension,
+  ...await Promise.all(['0042_weekly_ai_allowance', '0043_app_content_releases',
+    '0044_account_login_methods', '0046_wechat_payment_attempts']
+    .map(tag => readFile(`services/api/drizzle/${tag}.sql`, 'utf8'))),
+].join('\n');
 
 for (const contract of [
   'check-mainline-release.mjs',
@@ -123,8 +129,8 @@ for (const contract of [
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
   'p.requiredTables !== p.expectedPublicTables',
-  'p.expectedPublicTables !== 59',
-  'p.actualPublicTables !== 59',
+  'p.expectedPublicTables !== 64',
+  'p.actualPublicTables !== 64',
   'production_migration_schema_contract_mismatch',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
@@ -186,8 +192,8 @@ for (const contract of [
   'services/api/scripts/verify-production-schema-contract.mjs',
   '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
   'p.requiredTables !== p.expectedPublicTables',
-  'p.expectedPublicTables !== 59',
-  'p.actualPublicTables !== 59',
+  'p.expectedPublicTables !== 64',
+  'p.actualPublicTables !== 64',
   'migration_rehearsal_schema_contract_mismatch',
   'p.serverOnlyClientGrants !== 0',
   'p.unexpectedPublicTableOwners !== 0',
@@ -598,7 +604,7 @@ const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'
   .map((match) => match[1])
   .sort();
 if (
-  schemaPublicTables.length !== 59
+  schemaPublicTables.length !== 64
   || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
   || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
     !== JSON.stringify(schemaPublicTables)
@@ -612,9 +618,9 @@ if (!schemaVerifierSource.includes('SERVER_ONLY_PUBLIC_TABLES')) {
 }
 const postgresDefaultAclRevocation = 'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;';
 const assertClientTableGrantRevocationContract = (source) => {
-  const revokedClientTables = [...source.matchAll(
-    /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
-  )].map((match) => match[1]).sort();
+  const revokedClientTables = [...new Set([...source.matchAll(
+    /^REVOKE ALL(?: PRIVILEGES)? ON (?:TABLE )?([^;]+?) FROM anon, authenticated;/gmu,
+  )].flatMap((match) => match[1].split(',').map(table => table.trim().replace(/^"?public"?\./u, '').replaceAll('"', ''))))].sort();
   const defaultAclStatements = source.match(/ALTER DEFAULT PRIVILEGES[^;]*;/gu) ?? [];
   if (
     JSON.stringify(revokedClientTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)

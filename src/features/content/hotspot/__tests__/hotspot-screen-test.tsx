@@ -13,6 +13,11 @@ import { loadHotspotBriefs } from '../repository';
 const mockBack = jest.fn();
 const mockPush = jest.fn();
 
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useFocusEffect: (effect: () => void | (() => void)) => jest.requireActual('react').useEffect(effect, [effect]),
+}));
+
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
@@ -42,6 +47,8 @@ describe('OPI hotspot screens', () => {
   beforeEach(() => {
     mockBack.mockReset();
     mockPush.mockReset();
+    // The screen fixture uses bundled briefs and questions, independent of the live content service.
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('offline_test_fixture'));
     jest.spyOn(questionBankDataRepository, 'loadQuestionBank').mockImplementation(async (bankId) => (
       bankId === 'opi' && completeOpiDataset
         ? { dataset: completeOpiDataset, source: 'embedded' }

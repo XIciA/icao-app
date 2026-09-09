@@ -1,8 +1,10 @@
 import Storage from 'expo-sqlite/kv-store';
 
-import { resetLearningStoreForTests, sqliteLearningStore } from '../platform/learning-store';
-import { getLearningRecords, upsertLearningRecord } from '../platform/learning-record-storage';
+import { resetLearningStoreForTests, sqliteLearningStore } from '../platform/learning-store.native';
+import { getLearningRecords, upsertLearningRecord } from '../platform/learning-record-storage.native';
 import type { LearningRecord, QuestionBankTopic } from '../types';
+
+const legacyRecords = jest.requireActual<typeof import('../platform/learning-record-storage')>('../platform/learning-record-storage.ts');
 
 let mockLegacyReadGate: Promise<void> | undefined;
 
@@ -17,6 +19,7 @@ jest.mock('expo-sqlite/kv-store', () => {
         return values.get(key) ?? null;
       }),
       setItem: jest.fn(async (key: string, value: string) => { values.set(key, value); }),
+      multiSet: jest.fn(async (entries: [string, string][]) => { entries.forEach(([key, value]) => values.set(key, value)); }),
     },
   };
 });
@@ -107,7 +110,7 @@ describe('learning store migration', () => {
       upsertLearningRecord(learningRecord('answer-1', 'latest')),
     ]);
 
-    expect(await getLearningRecords()).toEqual([
+    expect(await getLearningRecords({ includeDetails: true })).toEqual([
       expect.objectContaining({ id: 'answer-1', aiResult: expect.objectContaining({ transcript: 'latest' }) }),
     ]);
   });
@@ -119,12 +122,21 @@ describe('learning store migration', () => {
     expect((await getLearningRecords()).map((record) => record.id)).toEqual(['session-b-card-1', 'session-a-card-1']);
   });
 
-  it('keeps session summaries when the separate AI-result limit is reached', async () => {
+  it('keeps all Native AI results and session summaries beyond the former 100-row limit', async () => {
     await upsertLearningRecord({ ...learningRecord('session-summary', 'session'), recordType: 'session' });
     await Promise.all(Array.from({ length: 101 }, (_, index) => upsertLearningRecord(learningRecord(`answer-${index}`, `${index}`))));
 
     const records = await getLearningRecords();
-    expect(records.filter((record) => record.recordType === 'ai_result')).toHaveLength(100);
+    expect(records.filter((record) => record.recordType === 'ai_result')).toHaveLength(101);
     expect(records).toContainEqual(expect.objectContaining({ id: 'session-summary', recordType: 'session' }));
+  });
+
+  it('preserves the frozen generic history retention behavior separately', async () => {
+    legacyRecords.resetLearningRecordStorageForTests();
+    await legacyRecords.upsertLearningRecord({ ...learningRecord('legacy-summary', 'session'), recordType: 'session' });
+    await Promise.all(Array.from({ length: 101 }, (_, index) => legacyRecords.upsertLearningRecord(learningRecord(`legacy-${index}`, `${index}`))));
+    const records = await legacyRecords.getLearningRecords();
+    expect(records.filter(record => record.recordType === 'ai_result')).toHaveLength(100);
+    expect(records).toContainEqual(expect.objectContaining({ id: 'legacy-summary' }));
   });
 });

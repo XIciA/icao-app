@@ -1,7 +1,7 @@
-import { AiOperationFailure, aiFailureDisplayMessage, toAiOperationFailure } from '@/features/ai/ai-operation-failure';
+import { AiOperationFailure, aiFailureDisplayMessage, toAiOperationFailure } from '@/features/ai/ai-operation-failure.native';
 import { ApiClientError } from '@/platform/api-client';
 
-describe('AI operation failure classification', () => {
+describe('Native AI operation failure classification', () => {
   it('preserves server code, status, and request ID while generating a safe local diagnostic ID', () => {
     const failure = toAiOperationFailure(
       new ApiClientError('ai_upstream_limited', 503, 'request-safe-1'),
@@ -36,10 +36,10 @@ describe('AI operation failure classification', () => {
       stage: 'authentication', retryable: false, userAction: 'sign_in',
     });
     expect(toAiOperationFailure(new ApiClientError('ai_upstream_balance_insufficient', 503), 'grammar')).toMatchObject({
-      stage: 'provider', retryable: false, userAction: 'contact_support', userMessage: expect.stringContaining('余额不足'),
+      stage: 'provider', retryable: false, userAction: 'contact_support', userMessage: expect.stringContaining('暂时不可用'),
     });
     expect(toAiOperationFailure(new ApiClientError('ai_upstream_auth_failed', 503), 'grammar').userMessage)
-      .toContain('凭据已失效');
+      .toContain('暂时不可用');
   });
 
   it('keeps cancellation silent and does not turn it into a retryable fault', () => {
@@ -58,11 +58,11 @@ describe('AI operation failure classification', () => {
     });
   });
 
-  it('distinguishes exhausted points from a queued or safely restartable operation', () => {
+  it('distinguishes exhausted allowance from a queued or safely restartable operation', () => {
     expect(toAiOperationFailure(new ApiClientError('insufficient_ai_points', 402), 'grammar')).toMatchObject({
       retryable: false,
       stage: 'authorization',
-      userMessage: expect.stringContaining('AI 点数不足'),
+      userMessage: expect.stringContaining('AI 额度不足'),
     });
     expect(toAiOperationFailure(new ApiClientError('ai_operation_in_progress', 409), 'grammar')).toMatchObject({
       retryable: true,

@@ -1,24 +1,20 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Param, Req, UseGuards } from '@nestjs/common';
 import {
-  discloseAiGeneratedExportRecord,
   type ApiSuccessEnvelope,
   type ClearLearningDataRequest,
   type DeleteAllAiResultsRequest,
   type PrivacyDeletionResponse,
 } from '@icao/contracts';
-import type { NativeAccountDataExportResponse as AccountDataExportResponse } from '@icao/contracts/native-auth';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { SyncService } from '../sync/sync.service';
-import { AccountService } from './account.service';
 import { clearLearningDataSchema, deleteAllAiResultsSchema } from './account.schemas';
 
 @Controller('v1/account/privacy')
 @UseGuards(RequireAuthGuard)
 export class AccountPrivacyController {
   constructor(
-    private readonly account: AccountService,
     private readonly sync: SyncService,
   ) {}
 
@@ -60,26 +56,4 @@ export class AccountPrivacyController {
     };
   }
 
-  @Get('export')
-  async exportData(
-    @Req() request: AuthenticatedRequest,
-  ): Promise<ApiSuccessEnvelope<AccountDataExportResponse>> {
-    const exportedAt = new Date().toISOString();
-    const [account, learning] = await Promise.all([
-      this.account.exportAccountData(request.user!.id, request.user!.phone),
-      this.sync.exportLearningData(request.user!.id),
-    ]);
-    return {
-      requestId: request.id,
-      data: {
-        schemaVersion: 1,
-        exportedAt,
-        account,
-        learning: {
-          ...learning,
-          records: learning.records.map(discloseAiGeneratedExportRecord),
-        },
-      },
-    };
-  }
 }

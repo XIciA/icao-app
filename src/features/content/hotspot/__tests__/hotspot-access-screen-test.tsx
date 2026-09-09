@@ -7,6 +7,8 @@ import { HotspotStudyScreen } from '../HotspotStudyScreen';
 import { loadHotspotBriefs } from '../repository';
 
 const mockBack = jest.fn();
+const mockReplace = jest.fn();
+let mockCanGoBack = true;
 const mockPush = jest.fn();
 const mockRetry = jest.fn();
 const mockUseHotspotAccess = jest.fn();
@@ -19,7 +21,7 @@ jest.mock('lucide-react-native', () => {
 });
 
 jest.mock('expo-router', () => ({
-  useRouter: () => ({ back: mockBack, canGoBack: () => true, push: mockPush }),
+  useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, replace: mockReplace, push: mockPush }),
 }));
 
 jest.mock('../use-hotspot-access.native', () => ({
@@ -47,7 +49,23 @@ describe('OPI hotspot restricted states', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockCanGoBack = true;
     mockState = { status: 'loading' };
+  });
+
+  it.each([HotspotDetailScreen, HotspotStudyScreen])('keeps back available while loading %p', async (Component) => {
+    const screen = await render(withSafeArea(<Component briefId={brief.id} />));
+    await fireEvent.press(screen.getByLabelText('返回'));
+    expect(mockBack).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([HotspotDetailScreen, HotspotStudyScreen])('returns direct links to the hotspot list after a load failure in %p', async (Component) => {
+    mockCanGoBack = false;
+    mockState = { brief, status: 'network-error' };
+    const screen = await render(withSafeArea(<Component briefId={brief.id} />));
+    await fireEvent.press(screen.getByLabelText('返回'));
+    expect(mockReplace).toHaveBeenCalledWith('/content/hotspot');
+    expect(mockBack).not.toHaveBeenCalled();
   });
 
   it('keeps the public summary visible while hiding questions behind the membership entry', async () => {
@@ -62,7 +80,7 @@ describe('OPI hotspot restricted states', () => {
     expect(screen.queryByText('涵盖话题与问题')).toBeNull();
 
     await fireEvent.press(screen.getByText('查看会员'));
-    expect(mockPush).toHaveBeenCalledWith('/account/membership');
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } });
     await fireEvent.press(screen.getByText('刷新权益'));
     expect(mockRetry).toHaveBeenCalledTimes(1);
   });

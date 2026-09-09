@@ -1,3 +1,6 @@
+import { AiAllowanceService } from './commerce/ai-allowance.service';
+import { AiUsageRulesService } from './commerce/ai-usage-rules.service';
+import { AdminAiRulesController } from './commerce/admin-ai-rules.controller';
 import { type DynamicModule, Module } from '@nestjs/common';
 
 import { AccountIdentityService } from './account/account-identity.service';
@@ -10,6 +13,7 @@ import { AdminEntitlementService } from './admin/admin-entitlement.service';
 import { OpsLoginRateLimiter } from './admin/admin-login-rate-limiter';
 import { AdminRoleGuard } from './admin/admin-role.guard';
 import { AdminStaffService } from './admin/admin-staff.service';
+import { AdminFeedbackStorageService } from './admin/admin-feedback-storage.service';
 import { CommerceService } from './commerce/commerce.service';
 import { APPLE_STORE_VERIFIER, type AppleStoreVerifier } from './commerce/apple-store-verifier';
 import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
@@ -27,7 +31,7 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [OpsHealthController, AdminAuthController, AdminController],
+      controllers: [AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
       providers: [
         { provide: OPS_API_CONFIG, useValue: config },
         {
@@ -35,7 +39,9 @@ export class OpsApiModule {
           inject: [OPS_API_CONFIG],
           useFactory: (opsConfig: OpsApiConfig) => new DatabaseService(opsConfig),
         },
-        PersistentCommerceBenefitsService,
+        AiUsageRulesService,
+    AiAllowanceService,
+    PersistentCommerceBenefitsService,
         {
           provide: AccountIdentityService,
           inject: [OPS_API_CONFIG, DatabaseService, PersistentCommerceBenefitsService],
@@ -63,6 +69,7 @@ export class OpsApiModule {
         AdminDataService,
         AdminEntitlementService,
         AdminStaffService,
+        AdminFeedbackStorageService,
       ],
     };
   }

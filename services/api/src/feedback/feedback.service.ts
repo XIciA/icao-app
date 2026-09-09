@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import type { FeedbackSubmissionPayload, FeedbackSubmissionResponse } from '@icao/contracts';
+import type { FeedbackSubmissionResponse } from '@icao/contracts';
+import type { VersionedFeedbackSubmissionPayload as FeedbackSubmissionPayload } from '@icao/contracts/feedback-ops';
 import { and, count, desc, eq, gte } from 'drizzle-orm';
 import { randomUUID } from 'node:crypto';
 
@@ -199,9 +200,14 @@ export class FeedbackService {
       payload: questionBankReleases.payload,
     }).from(questionBankReleases).where(and(
       eq(questionBankReleases.bankId, input.bankId),
-      eq(questionBankReleases.active, true),
+      input.bankVersion === undefined
+        ? eq(questionBankReleases.active, true)
+        : eq(questionBankReleases.version, input.bankVersion),
     )).orderBy(desc(questionBankReleases.version)).limit(1);
-    if (!release) return { verified: false };
+    if (!release || (input.bankChecksum !== undefined && input.bankChecksum !== release.checksum)) {
+      // Keep the submitted context for investigation, but never relabel it as the current release.
+      return { verified: false, version: input.bankVersion, checksum: input.bankChecksum };
+    }
     return {
       version: release.version,
       checksum: release.checksum,

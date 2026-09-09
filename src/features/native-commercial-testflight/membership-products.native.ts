@@ -32,7 +32,7 @@ const MEMBERSHIP_PRODUCTS: readonly MembershipProductDefinition[] = Object.freez
     appleProductId: 'com.readyoufife.ios.membership.31d.v1',
     title: '31天会员',
     durationDays: 31,
-    recommended: true,
+    recommended: false,
   }),
   Object.freeze({
     key: 'membership_62d_v1',
@@ -54,9 +54,10 @@ const PRODUCT_BY_KEY = new Map(MEMBERSHIP_PRODUCTS.map((product) => [product.key
 const PRODUCT_BY_APPLE_ID = new Map(
   MEMBERSHIP_PRODUCTS.map((product) => [product.appleProductId, product]),
 );
+const ACTIVE_MEMBERSHIP_PRODUCTS = Object.freeze(MEMBERSHIP_PRODUCTS.filter((product) => [7, 31, 93].includes(product.durationDays)));
 
 export const APPLE_MEMBERSHIP_PRODUCT_IDS = Object.freeze(
-  MEMBERSHIP_PRODUCTS.map((product) => product.appleProductId),
+  ACTIVE_MEMBERSHIP_PRODUCTS.map((product) => product.appleProductId),
 );
 
 export function getMembershipProductByKey(
@@ -72,7 +73,7 @@ export function getMembershipProductByAppleId(
 }
 
 export function listMembershipProducts(): readonly MembershipProductDefinition[] {
-  return MEMBERSHIP_PRODUCTS;
+  return ACTIVE_MEMBERSHIP_PRODUCTS;
 }
 
 export function normalizeStoreKitEnvironment(

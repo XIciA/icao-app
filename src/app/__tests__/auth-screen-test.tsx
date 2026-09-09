@@ -1,7 +1,8 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { Alert } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { createAuthActionGate, LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
+import { createAuthActionGate, LoginScreen, loginErrorMessage } from '@/components/auth/login-screen.native';
 
 const mockRequestPhoneOtp = jest.fn();
 const mockRequestPasswordRecoveryOtp = jest.fn();
@@ -9,6 +10,11 @@ const mockVerifyPhoneOtp = jest.fn();
 const mockSignInWithPhonePassword = jest.fn();
 const mockSignInWithApple = jest.fn();
 const mockSignInWithWechat = jest.fn();
+const mockRememberLoginConsent = jest.fn();
+jest.mock('@/features/app-content/repository.native', () => {
+  const legal = require('../../../content/app-content/text.json').legal;
+  return { builtinAppContent: { legal }, loadLegalDocuments: jest.fn().mockResolvedValue({ documents: legal }) };
+});
 const mockConsumePendingPath = jest.fn();
 const mockReadPhoneOtpChallenge = jest.fn();
 const mockWritePhoneOtpChallenge = jest.fn();
@@ -40,6 +46,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     signInWithPhonePassword: mockSignInWithPhonePassword,
     signInWithApple: mockSignInWithApple,
     signInWithWechat: mockSignInWithWechat,
+    rememberLoginConsent: mockRememberLoginConsent,
     verifyPhoneOtp: mockVerifyPhoneOtp,
   }),
 }));
@@ -75,6 +82,8 @@ async function renderLoginScreen() {
 
 describe('<LoginScreen />', () => {
   beforeEach(() => {
+    jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
+    jest.mocked(Alert.alert).mockClear();
     mockParams = { slug: 'login' };
     const now = Date.now();
     const response = {
@@ -105,34 +114,32 @@ describe('<LoginScreen />', () => {
     mockReplace.mockClear();
   });
 
-  it('returns to the welcome screen when login is the navigation root', async () => {
-    mockCanGoBack.mockReturnValue(false);
-    const screen = await renderLoginScreen();
-
-    await fireEvent.press(screen.getByLabelText('返回'));
-
-    expect(mockBack).not.toHaveBeenCalled();
-    expect(mockReplace).toHaveBeenCalledWith('/auth/splash');
-  });
-
-  it('uses navigator history when the login screen has a previous route', async () => {
+  it('does not show a back button or a welcome step at the mandatory login entry', async () => {
     mockCanGoBack.mockReturnValue(true);
     const screen = await renderLoginScreen();
-
-    await fireEvent.press(screen.getByLabelText('返回'));
-
-    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(screen.queryByLabelText('返回')).toBeNull();
+    expect(screen.queryByText('开始使用')).toBeNull();
+    expect(mockBack).not.toHaveBeenCalled();
     expect(mockReplace).not.toHaveBeenCalled();
   });
 
-  it('offers Apple, OTP, and password login while pending WeChat approval', async () => {
+  it('returns from password recovery to the same login form', async () => {
+    mockParams = { slug: 'login', mode: 'recovery' };
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByLabelText('返回'));
+    expect(screen.getByText('登录 / 注册')).toBeTruthy();
+    expect(screen.queryByLabelText('返回')).toBeNull();
+    expect(mockReplace).not.toHaveBeenCalled();
+  });
+
+  it('offers Apple, WeChat, OTP, and password login with approved WeChat configuration', async () => {
     const screen = await renderLoginScreen();
 
     expect(screen.getByText('验证码登录')).toBeTruthy();
     expect(screen.getByText('密码登录')).toBeTruthy();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
-    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
-    expect(screen.getByText('未注册手机号验证成功后会自动创建账号。')).toBeTruthy();
+    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
+    expect(screen.queryByText('未注册手机号验证成功后会自动创建账号。')).toBeNull();
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
 
@@ -190,11 +197,12 @@ describe('<LoginScreen />', () => {
     const screen = await renderLoginScreen();
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.press(screen.getByText('获取验证码'));
-    expect(screen.getByText('请确认已满16周岁，并同意用户协议与隐私政策。')).toBeTruthy();
+    expect(Alert.alert).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText('请确认已满16周岁，并同意用户协议与隐私政策。')).toBeNull();
     expect(mockRequestPhoneOtp).not.toHaveBeenCalled();
-
-    await fireEvent.press(screen.getByRole('checkbox'));
-    await fireEvent.press(screen.getByText('获取验证码'));
+    const actions = jest.mocked(Alert.alert).mock.calls[0][2]!;
+    await act(async () => { actions.find(({ text }) => text === '同意并继续')!.onPress!(); });
+    expect(screen.getByRole('checkbox').props.accessibilityState.checked).toBe(true);
 
     expect(mockRequestPhoneOtp).toHaveBeenCalledWith('+8613800138000');
     expect(screen.getByText('60s')).toBeTruthy();
@@ -204,6 +212,17 @@ describe('<LoginScreen />', () => {
     expect(mockVerifyPhoneOtp).toHaveBeenCalledWith(expect.objectContaining({ phone: '+8613800138000', purpose: 'login' }), '123456');
     expect(mockReplace).not.toHaveBeenCalledWith('/(tabs)');
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=setup');
+  });
+
+  it('leaves the original action untouched when consent is cancelled and prevents duplicate prompts', async () => {
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByTestId('apple-sign-in'));
+    await fireEvent.press(screen.getByTestId('apple-sign-in'));
+    expect(Alert.alert).toHaveBeenCalledTimes(1);
+    const actions = jest.mocked(Alert.alert).mock.calls[0][2]!;
+    await act(async () => { actions.find(({ text }) => text === '取消')!.onPress!(); });
+    expect(mockSignInWithApple).not.toHaveBeenCalled();
+    expect(screen.getByRole('checkbox').props.accessibilityState.checked).toBe(false);
   });
 
   it('uses Apple as an auto-registration login after consent', async () => {
@@ -321,6 +340,7 @@ describe('<LoginScreen />', () => {
     await act(async () => {
       const firstRequest = press();
       const secondRequest = press();
+      await Promise.resolve();
       expect(mockRequestPhoneOtp).toHaveBeenCalledTimes(1);
       resolveRequest({
         accepted: true,

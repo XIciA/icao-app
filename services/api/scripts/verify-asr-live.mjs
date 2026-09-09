@@ -208,7 +208,8 @@ try {
   assert(
     typeof result.aiPoints?.operationId === 'string'
       && result.aiPoints.operationId.length > 0
-      && result.aiPoints.ruleVersion === 'ai-points-v1'
+      && typeof result.aiPoints.ruleVersion === 'string'
+      && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu.test(result.aiPoints.ruleVersion)
       && Number.isInteger(result.aiPoints.estimated)
       && result.aiPoints.estimated >= 0
       && Number.isInteger(result.aiPoints.charged)
@@ -217,6 +218,17 @@ try {
       && result.aiPoints.remaining >= 0,
     'public_ai_points_contract_invalid',
   );
+  const [settledOperation] = await database`
+    select reservation.rule_version, reservation.points, reservation.status
+    from ai_point_reservations reservation
+    join ai_usage_rule_versions rule on rule.id::text = reservation.rule_version
+    where reservation.account_id = ${userId} and reservation.environment = 'production'
+      and reservation.operation_id = ${result.aiPoints.operationId}
+  `;
+  assert(settledOperation?.status === 'settled'
+    && settledOperation.rule_version === result.aiPoints.ruleVersion
+    && settledOperation.points === result.aiPoints.charged,
+  'public_ai_charge_does_not_match_persisted_rule');
 
   const usage = await database`
     select attempt_count, failure_code, model, prompt_version, status, upstream_status

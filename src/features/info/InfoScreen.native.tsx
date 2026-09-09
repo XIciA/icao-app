@@ -1,46 +1,37 @@
+import type { VersionedFeedbackQuestionContext } from '@icao/contracts/feedback-ops';
 import type {
   FeedbackCategory,
   FeedbackDiagnosticFeature,
-  FeedbackQuestionContext,
   FeedbackSource,
 } from '@icao/contracts';
-import { useNavigation, usePreventRemove } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, usePreventRemove } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   BookOpen,
   CheckCircle2,
   ChevronDown,
-  ChevronRight,
-  FileText,
-  HelpCircle,
   ImagePlus,
-  Info,
-  RefreshCcw,
   ShieldCheck,
-  Star,
-  Upload,
   X,
 } from '@/components/ui/icons';
-import { useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Linking, Platform, Pressable, Share, StyleSheet, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Alert, Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
-import { APP_DISPLAY_VERSION } from '@/config/app-version';
-import { APP_FILING_NUMBER, APP_FILING_QUERY_URL } from '@/config/native-compliance';
-import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import {
   createClientSubmissionId,
   submitFeedback,
-} from '@/features/feedback/feedback-client';
+} from '@/features/feedback/feedback-client.native';
 import { colors, radii, spacing } from '@/theme';
 
-import { resolveLegalRuntimeCopy } from './legal-release-surface';
+import { builtinAppContent, loadAppContent } from '@/features/app-content/repository.native';
+import { LegalDocumentBody } from '@/features/app-content/LegalDocumentBody.native';
+import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 
-type InfoSlug = 'hub' | 'help' | 'feedback' | 'about' | 'agreement' | 'privacy';
-const pages: InfoSlug[] = ['hub', 'help', 'feedback', 'about', 'agreement', 'privacy'];
+type InfoSlug = 'help' | 'feedback' | 'agreement' | 'privacy' | 'services';
+const pages: InfoSlug[] = ['help', 'feedback', 'agreement', 'privacy', 'services'];
 const MAX_IMAGE_COUNT = 3;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const CATEGORY_OPTIONS: { label: string; value: FeedbackCategory }[] = [
@@ -50,12 +41,17 @@ const CATEGORY_OPTIONS: { label: string; value: FeedbackCategory }[] = [
 ];
 
 export function InfoScreen() {
+  const params = useLocalSearchParams<FeedbackParams & { slug: InfoSlug }>();
+  const { slug } = params;
+  const resetKey = JSON.stringify([slug, params.source, params.sourceRoute, params.bankId, params.categoryId, params.topicId, params.cardId, params.bankVersion, params.bankChecksum, params.correlationId, params.feature]);
+  return <NativeScreenBoundary title={slug === 'feedback' ? '意见反馈' : slug === 'help' ? '帮助中心' : '政策与条款'} fallbackHref="/(tabs)/profile" resetKey={resetKey}><InfoContent /></NativeScreenBoundary>;
+}
+
+function InfoContent() {
   const { slug } = useLocalSearchParams<{ slug: InfoSlug }>();
-  const page: InfoSlug = pages.includes(slug) ? slug : 'hub';
-  if (page === 'hub') return <InfoHub />;
+  const page: InfoSlug = pages.includes(slug) ? slug : 'help';
   if (page === 'help') return <HelpPage />;
   if (page === 'feedback') return <FeedbackPage />;
-  if (page === 'about') return <AboutPage />;
   return <LegalPage page={page} />;
 }
 
@@ -71,38 +67,22 @@ function Page({
   return <Screen scroll={scroll} keyboard contentStyle={styles.screen}><TopBar title={title} />{children}</Screen>;
 }
 
-function InfoHub() {
-  const router = useRouter();
-  return (
-    <Page title="信息与帮助">
-      <View style={styles.content}>
-        <Section title="帮助">
-          <Row icon={HelpCircle} label="帮助中心" hint="查看常见问题" first onPress={() => router.push('/info/help')} />
-          <Row icon={Info} label="关于听你五个" hint={`版本 ${APP_DISPLAY_VERSION}`} onPress={() => router.push('/info/about')} />
-        </Section>
-        <Section title="法律条款">
-          <Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} />
-          <Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} />
-        </Section>
-      </View>
-    </Page>
-  );
-}
-
 function HelpPage() {
   const [open, setOpen] = useState(-1);
-  const faqs = [
-    ['如何切换不同的题库？', '在题库首页进入对应模块，即可切换学习内容。'],
-    ['我的标注和笔记会同步吗？', Platform.OS === 'web' && !isEdgeOneProductionWeb() ? 'Web 体验版只保存在当前浏览器，不与 App 同步；清理浏览器数据后会丢失。' : '登录后，支持的学习数据会通过现有同步服务保存。'],
-    ['随身听支持后台播放吗？', '支持后台播放和系统媒体控制；具体表现取决于系统设置与当前 App 版本。'],
-    ['如何提交内容纠错？', '在刷题学习页顶部点击“纠错”，系统会自动附带当前题目信息。'],
-  ];
+  const [faqs, setFaqs] = useState(builtinAppContent.help);
+  useFocusEffect(useCallback(() => {
+    let active = true;
+    void loadAppContent().then(({ data }) => {
+      if (active) { setFaqs(data.payload.help); setOpen(-1); }
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []));
   return (
     <Page title="帮助中心">
       <View style={styles.content}>
         <View style={styles.faqList}>
-          {faqs.map(([question, answer], index) => (
-            <Pressable key={question} onPress={() => setOpen(open === index ? -1 : index)}>
+          {faqs.map(({ id, question, answer }, index) => (
+            <Pressable key={id} onPress={() => setOpen(open === index ? -1 : index)}>
               <Card style={styles.faq}>
                 <View style={styles.row}>
                   <BookOpen color={colors.primary} size={16} />
@@ -132,6 +112,8 @@ type FeedbackParams = {
   categoryId?: string;
   topicId?: string;
   cardId?: string;
+  bankVersion?: string;
+  bankChecksum?: string;
 };
 
 function FeedbackPage() {
@@ -153,17 +135,20 @@ function FeedbackPage() {
     : diagnosticFeature === 'ai'
       ? 'AI 转写或分析功能出现异常，请协助排查。'
       : '';
-  const question = useMemo<FeedbackQuestionContext | undefined>(() => (
+  const question = useMemo<VersionedFeedbackQuestionContext | undefined>(() => (
     source === 'study' && params.bankId && params.categoryId && params.topicId && params.cardId
       ? {
           bankId: params.bankId,
           categoryId: params.categoryId,
           topicId: params.topicId,
           cardId: params.cardId,
+          ...(params.bankVersion && Number.isSafeInteger(Number(params.bankVersion)) && Number(params.bankVersion) > 0 ? { bankVersion: Number(params.bankVersion) } : {}),
+          ...(params.bankChecksum ? { bankChecksum: params.bankChecksum } : {}),
         }
       : undefined
-  ), [params.bankId, params.cardId, params.categoryId, params.topicId, source]);
+  ), [params.bankId, params.bankVersion, params.bankChecksum, params.cardId, params.categoryId, params.topicId, source]);
   const [clientSubmissionId, setClientSubmissionId] = useState(createClientSubmissionId);
+  const submittedFingerprint = useRef<string | undefined>(undefined);
   const [category, setCategory] = useState<FeedbackCategory>(initialCategory);
   const [description, setDescription] = useState(initialDescription);
   const [contact, setContact] = useState('');
@@ -171,7 +156,14 @@ function FeedbackPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [ticketNumber, setTicketNumber] = useState('');
+  const mounted = useRef(true);
+  const submission = useRef<AbortController | undefined>(undefined);
   const dirty = description.length > 0 || contact.length > 0 || images.length > 0;
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; submission.current?.abort(); };
+  }, []);
 
   useEffect(() => {
     setClientSubmissionId(createClientSubmissionId());
@@ -184,79 +176,95 @@ function FeedbackPage() {
   }, [diagnosticCorrelationId, initialCategory, initialDescription, params.bankId, params.cardId, params.categoryId, params.topicId, source]);
 
   usePreventRemove(dirty && !ticketNumber, ({ data }) => {
-    Alert.alert('放弃本次反馈？', '未提交的文字和图片不会保存。', [
+    Alert.alert('放弃本次反馈？', submitting ? '提交结果尚未确认。离开后将停止等待，服务端可能已经收到本次反馈。' : '未提交的文字和图片不会保存。', [
       { text: '继续填写', style: 'cancel' },
-      { text: '放弃', style: 'destructive', onPress: () => navigation.dispatch(data.action) },
+      { text: '放弃', style: 'destructive', onPress: () => { submission.current?.abort(); navigation.dispatch(data.action); } },
     ]);
   });
 
   async function chooseImages() {
-    const remaining = MAX_IMAGE_COUNT - images.length;
-    if (remaining <= 0) {
-      Alert.alert('最多添加 3 张图片');
-      return;
-    }
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) {
-      Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');
-      return;
-    }
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsMultipleSelection: true,
-      orderedSelection: true,
-      selectionLimit: remaining,
-      quality: 1,
-    });
-    if (result.canceled) return;
-    const candidates = result.assets.slice(0, remaining);
-    const accepted: ImagePicker.ImagePickerAsset[] = [];
-    let rejectedFormat = false;
-    let rejectedSize = false;
-    for (const asset of candidates) {
-      if (!isSupportedImage(asset)) {
-        rejectedFormat = true;
-        continue;
+    if (submission.current) return;
+    try {
+      const remaining = MAX_IMAGE_COUNT - images.length;
+      if (remaining <= 0) {
+        Alert.alert('最多添加 3 张图片');
+        return;
       }
-      if (typeof asset.fileSize === 'number' && asset.fileSize > MAX_IMAGE_BYTES) {
-        rejectedSize = true;
-        continue;
+      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (!mounted.current) return;
+      if (!permission.granted) {
+        Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');
+        return;
       }
-      if (!images.some((current) => current.uri === asset.uri) && !accepted.some((current) => current.uri === asset.uri)) {
-        accepted.push(asset);
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images'],
+        allowsMultipleSelection: true,
+        orderedSelection: true,
+        selectionLimit: remaining,
+        quality: 1,
+      });
+      if (!mounted.current || submission.current) return;
+      if (result.canceled) return;
+      const candidates = result.assets.slice(0, remaining);
+      const accepted: ImagePicker.ImagePickerAsset[] = [];
+      let rejectedFormat = false;
+      let rejectedSize = false;
+      for (const asset of candidates) {
+        if (!isSupportedImage(asset)) {
+          rejectedFormat = true;
+          continue;
+        }
+        if (typeof asset.fileSize === 'number' && asset.fileSize > MAX_IMAGE_BYTES) {
+          rejectedSize = true;
+          continue;
+        }
+        if (!images.some((current) => current.uri === asset.uri) && !accepted.some((current) => current.uri === asset.uri)) {
+          accepted.push(asset);
+        }
       }
-    }
-    setImages((current) => [...current, ...accepted].slice(0, MAX_IMAGE_COUNT));
-    if (rejectedFormat || rejectedSize) {
-      Alert.alert(
-        '部分图片未添加',
-        [rejectedFormat ? '仅支持 JPEG、PNG、WebP。' : '', rejectedSize ? '每张图片不能超过 5 MB。' : ''].filter(Boolean).join('\n'),
-      );
+      setImages((current) => [...current, ...accepted].slice(0, MAX_IMAGE_COUNT));
+      if (rejectedFormat || rejectedSize) {
+        Alert.alert(
+          '部分图片未添加',
+          [rejectedFormat ? '仅支持 JPEG、PNG、WebP。' : '', rejectedSize ? '每张图片不能超过 5 MB。' : ''].filter(Boolean).join('\n'),
+        );
+      }
+    } catch {
+      if (mounted.current) setError('暂时无法添加图片，请重试。已填写的内容仍保留。');
     }
   }
 
   async function submit() {
-    if (description.trim().length < 5 || submitting) return;
+    if (description.trim().length < 5 || submission.current) return;
+    const operation = new AbortController();
+    submission.current = operation;
     setSubmitting(true);
     setError('');
     try {
+      const fingerprint = JSON.stringify({ category, description, contact, question, images: images.map((image) => image.uri) });
+      const submissionId = submittedFingerprint.current !== undefined && submittedFingerprint.current !== fingerprint
+        ? createClientSubmissionId() : clientSubmissionId;
+      submittedFingerprint.current = fingerprint;
+      if (submissionId !== clientSubmissionId) setClientSubmissionId(submissionId);
       const result = await submitFeedback({
-        clientSubmissionId,
+        clientSubmissionId: submissionId,
         category,
         description,
         contact,
         source,
-        sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : '/profile'),
+        sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : '/(tabs)/profile'),
         question,
         images,
         diagnosticFeature,
         diagnosticCorrelationId,
+        signal: operation.signal,
       });
-      setTicketNumber(result.ticketNumber);
+      if (mounted.current && !operation.signal.aborted) setTicketNumber(result.ticketNumber);
     } catch (cause) {
-      setError(feedbackErrorMessage(cause));
+      if (mounted.current && !operation.signal.aborted) setError(feedbackErrorMessage(cause));
     } finally {
-      setSubmitting(false);
+      if (submission.current === operation) submission.current = undefined;
+      if (mounted.current) setSubmitting(false);
     }
   }
 
@@ -279,7 +287,12 @@ function FeedbackPage() {
           <AppText style={styles.center}>感谢你的反馈，请保存反馈编号。</AppText>
           <View style={styles.ticket}><AppText color={colors.primary} variant="cardTitle">{ticketNumber}</AppText></View>
           <View style={styles.resultActions}>
-            <Button onPress={() => router.replace('/(tabs)/profile')} size="lg">返回我的</Button>
+            <Button onPress={() => {
+              if (source === 'study' && router.canGoBack()) { router.back(); return; }
+              const routeBank = /^\/question-bank\/(listening|sentences900|radiotelephony|opi|storytelling)(?:\/|$)/.exec(params.sourceRoute ?? '')?.[1];
+              if (source === 'study' && routeBank) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: routeBank } });
+              else router.replace('/(tabs)/profile');
+            }} size="lg">{source === 'study' ? '返回学习' : '返回我的'}</Button>
             <Button onPress={reset} size="lg" variant="outline">再提一条</Button>
           </View>
         </View>
@@ -307,8 +320,9 @@ function FeedbackPage() {
             </View>
           </View>
         ) : null}
-        <Choice options={CATEGORY_OPTIONS} value={category} onChange={setCategory} />
+        <Choice disabled={submitting} options={CATEGORY_OPTIONS} value={category} onChange={setCategory} />
         <TextField
+          editable={!submitting}
           error={description.length > 0 && description.trim().length < 5 ? '请至少输入 5 个字' : undefined}
           label="问题描述"
           maxLength={500}
@@ -330,6 +344,7 @@ function FeedbackPage() {
                 <Image accessibilityLabel={`反馈图片 ${index + 1}`} source={{ uri: image.uri }} style={styles.previewImage} />
                 <Pressable
                   accessibilityLabel={`移除反馈图片 ${index + 1}`}
+                  disabled={submitting}
                   hitSlop={8}
                   onPress={() => setImages((current) => current.filter((_, itemIndex) => itemIndex !== index))}
                   style={styles.removeImage}
@@ -339,7 +354,7 @@ function FeedbackPage() {
               </View>
             ))}
             {images.length < MAX_IMAGE_COUNT ? (
-              <Pressable accessibilityLabel="添加反馈图片" onPress={() => void chooseImages()} style={styles.upload}>
+              <Pressable accessibilityLabel="添加反馈图片" disabled={submitting} onPress={() => void chooseImages()} style={styles.upload}>
                 <ImagePlus color={colors.mutedForeground} size={20} />
                 <AppText variant="micro">添加</AppText>
               </Pressable>
@@ -347,6 +362,7 @@ function FeedbackPage() {
           </View>
         </View>
         <TextField
+          editable={!submitting}
           label="联系方式（选填）"
           maxLength={100}
           onChangeText={setContact}
@@ -384,126 +400,19 @@ function feedbackErrorMessage(cause: unknown) {
   return '提交失败，请检查网络后重试。你的文字和图片已保留。';
 }
 
-function AboutPage() {
-  const router = useRouter();
-
-  async function handleRate() {
-    const url = Platform.OS === 'ios' ? 'https://apps.apple.com' : 'market://details?id=com.readyoufife.app';
-    const can = await Linking.canOpenURL(url).catch(() => false);
-    if (can) {
-      await Linking.openURL(url);
-    } else {
-      Alert.alert('暂时无法打开应用商店', '请稍后在对应应用商店中搜索“听你五个”。');
-    }
-  }
-
-  async function handleShare() {
-    try {
-      await Share.share({
-        message: `听你五个（Read You 5）- 航空英语·陆空通话备考助手\n版本：${APP_DISPLAY_VERSION}\n与我一起高效备考 ICAO 英语！`,
-        title: '听你五个备考助手',
-      });
-    } catch {
-      // ignore
-    }
-  }
-
-  function handleCheckUpdate() {
-    Alert.alert('检查更新', `当前版本为 ${APP_DISPLAY_VERSION}。请前往对应应用商店查看是否有可用更新。`);
-  }
-
-  async function handleFilingQuery() {
-    const can = await Linking.canOpenURL(APP_FILING_QUERY_URL).catch(() => false);
-    if (can) await Linking.openURL(APP_FILING_QUERY_URL);
-    else Alert.alert('暂时无法打开备案查询', `App 备案号：${APP_FILING_NUMBER}`);
-  }
-
-  return (
-    <Page title="关于听你五个">
-      <View style={styles.aboutHero}>
-        {Platform.OS === 'web' ? (
-          <View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View>
-        ) : (
-          <AppBrandLogo accessibilityLabel="听你五个 App 标志" size="md" testID="info-brand-logo" />
-        )}
-        <AppText variant="sectionTitle">听你五个</AppText>
-        <AppText variant="micro">Read You 5</AppText>
-        <AppText variant="caption">航空英语 · 陆空通话备考助手</AppText>
-        <View style={styles.versionPill}><AppText variant="micro">版本 {APP_DISPLAY_VERSION}</AppText></View>
-      </View>
-      <View style={styles.content}>
-        <Section>
-          <Row first icon={RefreshCcw} label="检查更新" onPress={handleCheckUpdate} value={`当前 ${APP_DISPLAY_VERSION}`} />
-          <Row hint="去应用商店支持我们" icon={Star} label="给我们评分" onPress={() => void handleRate()} />
-          <Row icon={Upload} label="分享给朋友" onPress={() => void handleShare()} />
-        </Section>
-        <Section>
-          <Row first icon={FileText} label="用户协议" onPress={() => router.push('/info/agreement')} />
-          <Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} />
-          <Row hint={`${APP_FILING_NUMBER} · 点击查询`} icon={Info} label="App 备案信息" onPress={() => void handleFilingQuery()} />
-        </Section>
-        <AppText style={styles.copyright} variant="micro">Copyright © 2026 听你五个{`\n`}All rights reserved</AppText>
-      </View>
-    </Page>
-  );
-}
-
-function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
+function LegalPage({ page }: { page: 'agreement' | 'privacy' | 'services' }) {
   const isAgreement = page === 'agreement';
-  const {
-    agreementAccountDescription,
-    agreementCommerceDescription,
-    agreementContentDescription,
-    privacyAccountDescription,
-    textAiDescription,
-    thirdPartyDescription,
-    aiRecordsDescription,
-    aiGeneratedContentDescription,
-    minorDescription,
-  } = resolveLegalRuntimeCopy(Platform.OS);
-  const intro = isAgreement
-    ? '欢迎使用由云启航科（成都）科技有限公司提供的听你五个。在登录或使用本应用前，请仔细阅读并充分理解本协议。'
-    : '云启航科（成都）科技有限公司重视您的个人信息与隐私。本政策按听你五个当前实际功能说明数据的收集、使用、存储、共享和删除方式。';
-  const clauses = isAgreement ? [
-    ['协议主体与适用范围', '本协议是您与云启航科（成都）科技有限公司就使用听你五个 iOS、Android 正式 App 及其相关服务达成的约定。您开始使用服务即表示已阅读并同意本协议及隐私政策。'],
-    ['账号与登录', agreementAccountDescription],
-    ['学习服务与 AI 边界', '本应用提供航空英语题库、音频、录音、转写和 AI 辅助反馈。练习结果仅供学习参考，不代表 ICAO、民航监管机构、考试机构或用人单位的官方评分、认证或专业结论。'],
-    ...(aiGeneratedContentDescription ? [['AI 生成内容标识', aiGeneratedContentDescription]] : []),
-    ['内容与知识产权', agreementContentDescription],
-    ['用户内容与反馈', '您应确保提交的回答、录音、文字、图片和联系方式合法且不侵犯他人权益。您授权我们在提供转写、分析、同步、客服和故障处理所必需的范围内处理这些内容，具体规则见隐私政策。'],
-    ['使用规范', '不得利用本服务实施违法活动、攻击或绕过访问控制、干扰服务器、冒用他人身份、传播恶意程序，或以自动化方式消耗超出正常学习所需的资源。'],
-    ...(agreementCommerceDescription ? [['会员购买', agreementCommerceDescription]] : []),
-    ['服务变更与可用性', '我们会尽力保障服务连续和数据安全，但网络、设备、第三方服务、维护或不可抗力可能造成暂时中断。涉及重要功能、收费或个人信息处理规则的重大变化，将依法提前告知并在需要时重新取得同意。'],
-    ['退出、注销与责任', '您可以退出账号、退出全部设备或在应用内申请注销。注销会删除账号及依法无需继续保留的关联数据，且通常无法恢复。任何一方违反本协议或法律规定的，应依法承担相应责任。'],
-    ['联系与争议处理', '产品支持请联系 support@yunqihangke.com，法律事务请联系 legal@yunqihangke.com。本协议适用中华人民共和国法律；争议应先友好协商，协商不成的，依法向有管辖权的人民法院处理。'],
-  ] : [
-    ['处理者与联系方式', '个人信息处理者为云启航科（成都）科技有限公司，注册地址为成都未来科技城（成都东部新区未来大道118号3层9号-3）。隐私问题、权利请求或投诉请联系 privacy@yunqihangke.com。'],
-    ['账号与安全信息', privacyAccountDescription],
-    ['学习与本地数据', '我们处理做题状态、学习进度、收藏、标注、笔记、回答、学习记录和用户文档，用于本机学习和登录后的云端同步。部分数据先保存在设备本地；登录时会提示您确认旧本机数据归属。'],
-    ['麦克风、录音与 AI', `只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；只有您点击“转写”并明确同意后，录音才会经我们的服务器发送至腾讯云语音识别。${textAiDescription}音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—账号与隐私”撤回同意，不影响无需 AI 的功能。`],
-    ['反馈、诊断与相册权限', '提交反馈时，我们处理反馈内容、可选联系方式、来源页面、App/系统版本、错误编号及关联题目。只有您从录音或 AI 错误区域点击“提交诊断”并继续提交反馈时，才会随工单附带与本次故障错误编号完全一致的脱敏技术事件。允许字段限于功能类型、诊断编号、App/构建/平台/系统版本、相对时间、处理阶段、稳定错误码、状态、耗时、大小、格式及必要的请求编号；单次最多 30 条，本机最多保留 50 条并在 24 小时后自动清除，服务端诊断最长保留 365 天并由定时任务清除。诊断不包含录音、回答、文件地址（URI）、Token 或账号信息。只有您主动添加图片时才调用系统照片选择器；图片存入私有存储并按当前政策期限清理，反馈文字用于工单处理，账号注销时会删除依法无需继续保留的关联数据。'],
-    ['AI 记录与保存期限', aiRecordsDescription],
-    ['第三方处理与共享', `${thirdPartyDescription}我们仅在实现对应功能所需范围内提供数据，不出售个人信息；除取得您的同意、履行合同所必需或法律法规另有要求外，不向无关第三方提供。正式第三方清单和链接将在公开隐私政策中持续更新。`],
-    ['您的权利与账号注销', '您可以在“设置—账号与隐私”导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据，也可以在“学习记录”删除单条 AI 结果。清除学习数据仍保留账号、会员和订单；您还可以退出当前或全部设备，并在账号安全页面申请注销。您也可通过 privacy@yunqihangke.com 请求查阅、更正、补充或解释个人信息处理规则，我们会依法核验身份并处理。'],
-    ['未成年人、保护措施与更新', minorDescription],
-  ];
+  const documentId = page === 'services' ? 'thirdPartyServices' : page;
+  const [document, setDocument] = useState(builtinAppContent.legal[documentId]);
+  useEffect(() => {
+    let active = true;
+    setDocument(builtinAppContent.legal[documentId]);
+    void loadAppContent().then(({ data }) => { if (active) setDocument(data.payload.legal[documentId]); }).catch(() => undefined);
+    return () => { active = false; };
+  }, [documentId]);
   return (
-    <Page title={isAgreement ? '用户协议' : '隐私政策'}>
-      <View style={styles.legal}>
-        <AppText variant="pageTitle">{isAgreement ? '用户服务协议' : '隐私政策'}</AppText>
-        <AppText variant="micro">版本 v4.2 · 更新于 2026-09-01 · 生效于 2026-09-01</AppText>
-        <Card style={styles.intro}><AppText>{intro}</AppText></Card>
-        {clauses.map(([title, body], index) => (
-          <View key={title} style={styles.clause}>
-            <View style={styles.clauseTitle}>
-              <View style={styles.number}><AppText color={colors.primary} variant="micro">{index + 1}</AppText></View>
-              <AppText variant="button">{title}</AppText>
-            </View>
-            <AppText style={styles.clauseBody}>{body}</AppText>
-          </View>
-        ))}
-        <AppText style={styles.center} variant="micro">云启航科（成都）科技有限公司 · {isAgreement ? 'legal' : 'privacy'}@yunqihangke.com</AppText>
-      </View>
+    <Page title={page === 'services' ? '第三方服务清单' : isAgreement ? '用户协议' : '隐私政策'}>
+      <LegalDocumentBody document={document} />
     </Page>
   );
 }
@@ -512,10 +421,12 @@ function Choice({
   options,
   value,
   onChange,
+  disabled,
 }: {
   options: { label: string; value: FeedbackCategory }[];
   value: FeedbackCategory;
   onChange: (value: FeedbackCategory) => void;
+  disabled?: boolean;
 }) {
   return (
     <View style={styles.choice}>
@@ -524,7 +435,8 @@ function Choice({
         {options.map((option) => (
           <Pressable
             accessibilityRole="radio"
-            accessibilityState={{ checked: option.value === value }}
+            accessibilityState={{ checked: option.value === value, disabled }}
+            disabled={disabled}
             key={option.value}
             onPress={() => onChange(option.value)}
             style={[styles.chip, option.value === value && styles.chipSelected]}
@@ -535,39 +447,6 @@ function Choice({
       </View>
     </View>
   );
-}
-
-function Section({ title, children }: { title?: string; children: React.ReactNode }) {
-  return <View style={styles.section}>{title ? <AppText variant="caption">{title}</AppText> : null}<Card style={styles.rows}>{children}</Card></View>;
-}
-
-function Row({
-  icon: Icon,
-  label,
-  hint,
-  value,
-  first = false,
-  onPress,
-}: {
-  icon: typeof Info;
-  label: string;
-  hint?: string;
-  value?: string;
-  first?: boolean;
-  onPress?: () => void;
-}) {
-  const body = (
-    <View style={[styles.menuRow, !first && styles.border]}>
-      <View style={styles.menuIcon}><Icon color={colors.primary} size={16} /></View>
-      <View style={styles.flex}>
-        <AppText variant="button">{label}</AppText>
-        {hint ? <AppText variant="micro">{hint}</AppText> : null}
-      </View>
-      {value ? <AppText variant="caption">{value}</AppText> : null}
-      {onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}
-    </View>
-  );
-  return onPress ? <Pressable onPress={onPress}>{body}</Pressable> : body;
 }
 
 const styles = StyleSheet.create({
@@ -609,10 +488,5 @@ const styles = StyleSheet.create({
   logo: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 },
   versionPill: { backgroundColor: colors.secondary, borderRadius: radii.full, marginTop: spacing[1], paddingHorizontal: spacing[3], paddingVertical: spacing[1.5] },
   copyright: { lineHeight: 18, marginTop: spacing[4], textAlign: 'center' },
-  legal: { gap: spacing[4], padding: spacing[5] },
-  intro: { backgroundColor: colors.secondary },
-  clause: { gap: spacing[2] },
-  clauseTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
-  number: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.sm, height: 22, justifyContent: 'center', width: 22 },
-  clauseBody: { paddingLeft: spacing[8] },
+
 });

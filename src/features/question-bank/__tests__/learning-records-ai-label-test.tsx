@@ -1,3 +1,7 @@
+// Frozen Vercel/legacy history coverage; current Native has one session list.
+jest.mock('../components/LearningRecordsScreen', () => jest.requireActual('../components/LearningRecordsScreen.tsx'));
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
+jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Platform } from 'react-native';
 import type { LearningRecord, QuestionBankStudyPackage } from '../types';

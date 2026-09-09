@@ -1,3 +1,6 @@
+// This suite verifies the frozen Vercel implementation, independent of Jest's iOS resolver.
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
+jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
 import data from '../data/question-bank.json';

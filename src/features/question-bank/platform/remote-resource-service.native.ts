@@ -79,7 +79,7 @@ export async function resolveSignedQuestionBankAsset(
         expiresAt: Date.now() + resource.expiresIn * 1_000,
       } satisfies CachedResource));
     }
-    const local = await cacheMemberResource(path, visibleResource.url).catch(() => undefined);
+    const local = await cacheMemberResource(path, visibleResource.url, visibleResource).catch(() => undefined);
     assertResourceContextCurrent(context);
     return local ?? visibleResource.url;
   } catch (cause) {

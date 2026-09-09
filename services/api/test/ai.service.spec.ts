@@ -600,3 +600,45 @@ describe('AiService DeepSeek review capabilities', () => {
     expect(failingValues).toHaveBeenCalled();
   });
 });
+
+describe('AiService combined transcription and review', () => {
+  it.each([
+    ['grammar', 'atc', 'transcription_grammar'],
+    ['opi', 'opi', 'transcription_opi'],
+  ] as const)('uses a single %s reservation and stores the complete replayable result', async (mode, module, capability) => {
+    const fixture = database();
+    const output = { grammar: { issues: [], correctedText: 'We are ready for departure.' }, ...(mode === 'opi' ? { polishedText: 'We are ready for departure.' } : {}) };
+    const review = reviewProvider(output);
+    const asr = { transcribe: vi.fn(async () => ({ rawTranscript: 'We are ready for departure.', meta: {} })) };
+    const benefits = pointBenefits();
+    const ai = new AiService(fixture as never, review as never, asr as never, benefits as never);
+    const grant = await ai.admitOperation('user-1', 'sandbox');
+    const input = { mode, module, questionId: 'question-1' };
+    const first = await ai.transcribeReview('user-1', 'combined-1', Buffer.from('audio'), 'audio/wav', '16k_en', input, grant, undefined, 'stable-operation');
+    expect(first).toMatchObject({ transcript: 'We are ready for departure.', review: output, aiPoints: { operationId: 'stable-operation' } });
+    expect(benefits.reserveAiPoints).toHaveBeenCalledExactlyOnceWith(expect.anything(), expect.objectContaining({ capability, environment: 'sandbox', operationId: 'stable-operation' }));
+    expect(benefits.settleAiPoints).toHaveBeenCalledTimes(1);
+    expect(benefits.settleAiPoints).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ environment: 'sandbox', result: expect.objectContaining({ transcript: first.transcript, review: first.review }) }));
+    expect(asr.transcribe).toHaveBeenCalledTimes(1);
+    expect(review.generateValidated).toHaveBeenCalledTimes(1);
+    benefits.reserveAiPoints.mockResolvedValueOnce({ state: 'replay', data: first } as never);
+    expect(await ai.transcribeReview('user-1', 'combined-retry', Buffer.from('audio'), 'audio/wav', '16k_en', input, grant, undefined, 'stable-operation')).toEqual(first);
+    expect(asr.transcribe).toHaveBeenCalledTimes(1);
+    expect(review.generateValidated).toHaveBeenCalledTimes(1);
+    expect(benefits.settleAiPoints).toHaveBeenCalledTimes(1);
+  });
+
+  it('releases the entire combination if review fails after transcription, retaining provider usage only', async () => {
+    const fixture = database();
+    const review = reviewProvider({ malformed: true });
+    const asr = { transcribe: vi.fn(async () => ({ rawTranscript: 'We are ready.', meta: {} })) };
+    const benefits = pointBenefits();
+    const ai = new AiService(fixture as never, review as never, asr as never, benefits as never);
+    const grant = await operationGrant(ai);
+    await expect(ai.transcribeReview('user-1', 'combined-failure', Buffer.from('audio'), 'audio/wav', '16k_en', { mode: 'grammar', module: 'atc', questionId: 'q-1' }, grant, undefined, 'operation-failure')).rejects.toThrow();
+    expect(asr.transcribe).toHaveBeenCalledTimes(1);
+    expect(benefits.settleAiPoints).not.toHaveBeenCalled();
+    expect(benefits.releaseAiPoints).toHaveBeenCalledExactlyOnceWith(expect.anything(), expect.objectContaining({ operationId: 'operation-failure', environment: 'production' }));
+    expect(fixture.values).toHaveBeenCalledWith(expect.objectContaining({ capability: 'transcribe', status: 'success', quotaUnits: 0 }));
+  });
+});

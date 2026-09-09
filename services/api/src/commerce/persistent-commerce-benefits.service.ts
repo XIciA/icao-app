@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import type { AiPointOperationSummary } from '@icao/contracts';
-import { and, asc, eq, lte, sql } from 'drizzle-orm';
+import type { AiUsageOperationSummary as AiPointOperationSummary } from '@icao/contracts/commerce-rules';
+import { and, asc, eq, inArray, lte, sql } from 'drizzle-orm';
 
 import {
+  accounts,
   aiPointBatches,
   aiPointLedgerEntries,
   aiPointReservationAllocations,
@@ -16,6 +17,9 @@ import {
   type BillableAiCapability,
 } from './commerce-domain';
 import { AI_POINT_RULE_VERSION, type CommerceEnvironment } from './product-catalog';
+import { AiAllowanceService } from './ai-allowance.service';
+import { AiUsageRulesService } from './ai-usage-rules.service';
+import { INITIAL_AI_RULE } from './ai-allowance-domain';
 
 type CommerceTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 const AI_OPERATION_LEASE_MS = 2 * 60 * 1_000;
@@ -28,6 +32,10 @@ export type PersistentAiPointReservation<T> =
 @Injectable()
 export class PersistentCommerceBenefitsService {
   private readonly model = new CommerceFoundationModel();
+  constructor(
+    private readonly allowance: AiAllowanceService = new AiAllowanceService(),
+    private readonly rules: AiUsageRulesService = new AiUsageRulesService(),
+  ) {}
 
   private async activateDuePointBatches(
     transaction: CommerceTransaction,
@@ -117,19 +125,7 @@ export class PersistentCommerceBenefitsService {
     environment: CommerceEnvironment,
     at: Date,
   ) {
-    const [balance] = await transaction.select({
-      available: sql<number>`coalesce(sum(
-        ${aiPointBatches.grantedPoints}
-        - ${aiPointBatches.consumedPoints}
-        - ${aiPointBatches.reservedPoints}
-      ), 0)::integer`,
-    }).from(aiPointBatches).where(and(
-      eq(aiPointBatches.environment, environment),
-      eq(aiPointBatches.accountId, accountId),
-      eq(aiPointBatches.status, 'available'),
-      lte(aiPointBatches.availableAt, at),
-    ));
-    return Number(balance?.available ?? 0);
+    return (await this.allowance.prepare(transaction, accountId, environment, at)).available;
   }
 
   async reserveAiPoints<T>(
@@ -143,11 +139,13 @@ export class PersistentCommerceBenefitsService {
       reservedAt: Date;
     },
   ): Promise<PersistentAiPointReservation<T>> {
-    const points = AI_POINT_COSTS[input.capability];
-    if (!points) throw new Error('ai_capability_not_billable');
+    await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${input.accountId}`}, 0))`);
+    if (!(input.capability in AI_POINT_COSTS)) throw new Error('ai_capability_not_billable');
     await transaction.execute(sql`
       select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))
     `);
+    const [owner] = await transaction.select({ generation: accounts.aiResultGeneration }).from(accounts).where(eq(accounts.id, input.accountId)).limit(1);
+    if (!owner) throw new Error('account_unavailable');
     await this.activateDuePointBatches(transaction, input.accountId, input.environment, input.reservedAt);
     await this.releaseExpiredAiPointReservations(transaction, input.accountId, input.environment, input.reservedAt);
 
@@ -157,9 +155,9 @@ export class PersistentCommerceBenefitsService {
       eq(aiPointReservations.operationId, input.operationId),
     )).limit(1);
     if (existing) {
+      if (existing.resultDeletedAt || existing.aiResultGeneration !== owner.generation) throw new Error('ai_operation_result_deleted');
       if (
         existing.capability !== input.capability
-        || existing.points !== points
         || existing.requestDigest !== input.requestDigest
       ) {
         throw new Error('ai_operation_idempotency_conflict');
@@ -182,9 +180,22 @@ export class PersistentCommerceBenefitsService {
       .limit(1);
     if (active) return { state: 'wait', retryAfterMs: 250 };
 
+    const context = await this.allowance.prepare(transaction, input.accountId, input.environment, input.reservedAt);
+    let points = context.rule.costs[input.capability];
+    let batchIds = context.batchIds;
+    let ruleVersion = context.ruleVersion;
+    // Pre-change purchased credits remain consumable with their original fixed prices.
+    // They are not converted to weekly units or exposed as another frontend wallet.
+    if (context.available < points && context.legacyAvailable >= INITIAL_AI_RULE.costs[input.capability]) {
+      points = Math.min(points, INITIAL_AI_RULE.costs[input.capability]);
+      batchIds = context.legacyBatchIds;
+      ruleVersion = AI_POINT_RULE_VERSION;
+    }
+    if (batchIds.length === 0) throw new Error('insufficient_ai_points');
     const batches = await transaction.select().from(aiPointBatches).where(and(
       eq(aiPointBatches.environment, input.environment),
       eq(aiPointBatches.accountId, input.accountId),
+      inArray(aiPointBatches.id, batchIds),
       eq(aiPointBatches.status, 'available'),
       lte(aiPointBatches.availableAt, input.reservedAt),
     )).orderBy(
@@ -204,10 +215,11 @@ export class PersistentCommerceBenefitsService {
       operationId: input.operationId,
       capability: input.capability,
       requestDigest: input.requestDigest,
-      ruleVersion: AI_POINT_RULE_VERSION,
+      aiResultGeneration: owner.generation,
+      ruleVersion,
       points,
       status: 'reserved',
-      leaseUntil: new Date(input.reservedAt.getTime() + AI_OPERATION_LEASE_MS),
+      leaseUntil: new Date(input.reservedAt.getTime() + (input.capability.startsWith('transcription_') ? 4 * 60 * 1_000 : AI_OPERATION_LEASE_MS)),
       createdAt: input.reservedAt,
     }).returning({ id: aiPointReservations.id });
     if (!reservation) throw new Error('ai_point_reservation_insert_failed');
@@ -256,6 +268,7 @@ export class PersistentCommerceBenefitsService {
       settledAt: Date;
     },
   ): Promise<T & { aiPoints: AiPointOperationSummary }> {
+    await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${input.accountId}`}, 0))`);
     await transaction.execute(sql`
       select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))
     `);
@@ -265,6 +278,10 @@ export class PersistentCommerceBenefitsService {
       eq(aiPointReservations.operationId, input.operationId),
     )).limit(1);
     if (!reservation) throw new Error('ai_point_reservation_not_found');
+    const [owner] = await transaction.select({ generation: accounts.aiResultGeneration, status: accounts.status }).from(accounts).where(eq(accounts.id, input.accountId)).limit(1);
+    if (!owner || owner.status !== 'active' || reservation.resultDeletedAt || reservation.aiResultGeneration !== owner.generation) {
+      throw new Error('ai_operation_result_deleted');
+    }
     if (reservation.status === 'settled') {
       if (!reservation.resultPayload) throw new Error('ai_operation_result_missing');
       return reservation.resultPayload as T & { aiPoints: AiPointOperationSummary };
@@ -312,7 +329,7 @@ export class PersistentCommerceBenefitsService {
       ...input.result,
       aiPoints: {
         operationId: input.operationId,
-        ruleVersion: AI_POINT_RULE_VERSION,
+        ruleVersion: reservation.ruleVersion,
         estimated: reservation.points,
         charged: reservation.points,
         remaining,
@@ -384,6 +401,7 @@ export class PersistentCommerceBenefitsService {
     transaction: CommerceTransaction,
     input: { accountId: string; externalEligibilityClaimed: true; grantedAt: Date },
   ) {
+    await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${input.accountId}`}, 0))`);
     const [existing] = await transaction.select({ id: aiPointBatches.id })
       .from(aiPointBatches)
       .where(and(
@@ -395,6 +413,7 @@ export class PersistentCommerceBenefitsService {
     if (existing) return { created: false as const, batchId: existing.id };
 
     const state = createCommerceDomainState();
+    const rule = await this.rules.effective(transaction, input.grantedAt);
     const result = this.model.grantFreeTrial(state, {
       accountId: input.accountId,
       environment: 'production',
@@ -404,6 +423,9 @@ export class PersistentCommerceBenefitsService {
     const batch = result.batch;
     const [ledger] = state.pointLedger;
     if (!result.created || !ledger) throw new Error('free_trial_persistence_model_invalid');
+    batch.grantedPoints = rule.trialAllowance;
+    batch.ruleVersion = rule.id;
+    ledger.points = rule.trialAllowance;
 
     await transaction.insert(aiPointBatches).values({
       id: batch.id,
@@ -479,6 +501,8 @@ export class PersistentCommerceBenefitsService {
     input: { accountId: string; deletionJobId: string; revokedAt: Date },
   ) {
     const revokedAt = input.revokedAt.toISOString();
+    await transaction.update(aiPointReservations).set({ resultPayload: null, resultDeletedAt: input.revokedAt })
+      .where(eq(aiPointReservations.accountId, input.accountId));
     await transaction.execute(sql`
       insert into ai_point_ledger_entries (
         environment, account_id, batch_id, reservation_id, operation_id,

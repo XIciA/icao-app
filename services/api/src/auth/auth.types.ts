@@ -14,7 +14,7 @@ export type VerifiedAuthSession = {
     timestamp: number;
   }>;
   authUserId: string;
-  identities: Array<{ provider: string; subject: string }>;
+  identities: Array<{ provider: string; subject: string; legacySubject?: string }>;
   issuedAt: number;
   passwordSet?: boolean;
   sessionId: string;

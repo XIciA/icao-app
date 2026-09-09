@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { Buffer } from 'node:buffer';
 import { spawnSync } from 'node:child_process';
 import {
   appendFileSync,
@@ -37,14 +38,14 @@ function requireSuccess(result, label) {
   );
 }
 
-test('the approved Vercel snapshot matches exactly without a Native-only fallback', () => {
+test('the approved Vercel snapshot matches exactly apart from verified Native build identifiers', () => {
   const result = spawnSync(process.execPath, [cliPath, '--explain'], {
     cwd: repositoryRoot,
     encoding: 'utf8',
     env: process.env,
   });
   requireSuccess(result, 'approved Vercel snapshot no longer matches');
-  assert.match(result.stdout, /Web freeze check passed: \d+ protected files match the baseline\./u);
+  assert.match(result.stdout, /Web freeze check passed: \d+ protected files match the baseline(?:\.| exactly; app\.json differs only in matching advanced Native build identifiers\.)/u);
   assert.doesNotMatch(result.stdout, /Native-only increment proof/u);
 });
 

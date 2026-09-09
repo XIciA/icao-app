@@ -5,7 +5,6 @@ import type {
   VerifyAppleTransactionResponse,
 } from '@icao/contracts';
 import {
-  createContext,
   type PropsWithChildren,
   useCallback,
   useContext,
@@ -21,6 +20,8 @@ import { activateQuestionBankContentAccount } from '@/features/question-bank/dat
 import { apiRequest } from '@/platform/api-client';
 
 import { createAppleStoreKitCommerceProvider } from './apple-storekit-commerce-provider.native';
+import { CommerceRuntimeContext } from './commerce-runtime-context.native';
+import { AndroidCommerceRuntimeProvider } from './android-commerce-runtime';
 import type {
   CommerceFailureResult,
   CommerceOffering,
@@ -60,6 +61,7 @@ import {
   type PersistedUncertainPurchase,
 } from './commerce-uncertain-purchase.native';
 import { listMembershipProducts } from './membership-products.native';
+import { scheduleMembershipExpiry } from './membership-expiry.native';
 import {
   activateNativeCommerceEnvironment,
   confirmNativeCommerceEnvironment,
@@ -75,7 +77,6 @@ type Controller = Readonly<{
   provider: NativeCommerceProvider;
 }>;
 
-const CommerceRuntimeContext = createContext<CommerceRuntimeValue | undefined>(undefined);
 const COMMERCE_RUNTIME_OPERATION_DEADLINE_MS = 60_000;
 
 function withAbortSignal<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
@@ -268,7 +269,7 @@ function reportConfirmsPurchase(
   ));
 }
 
-export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
+function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
   // Commerce is an optional authenticated subsystem. It starts only after the
   // core account and learning-data ownership gate are ready, so an early
@@ -307,6 +308,19 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
     if (!next || next.generation !== controller.entitlementGeneration) return;
     setEntitlementChange(next);
   }, []);
+
+  useEffect(() => {
+    const controller = controllerRef.current;
+    const change = entitlementChange;
+    if (!controller || !change || change.accountId !== accountId || !change.snapshot) return;
+    const generation = generationRef.current;
+    const snapshot = change.snapshot;
+    return scheduleMembershipExpiry(snapshot, () => {
+      if (getCommerceEntitlementSnapshot() !== change) return;
+      publishEntitlement(controller, generation, change.environment,
+        { ...snapshot, membership: { ...snapshot.membership, active: false } }, 'membership-expired');
+    });
+  }, [accountId, entitlementChange, publishEntitlement]);
 
   const refreshEntitlement = useCallback(async (
     controller: Controller,
@@ -1108,6 +1122,11 @@ export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
   }), [accountId, activeEntitlementChange, error, message, offerings, phase, purchase, refresh, restorePurchases]);
 
   return <CommerceRuntimeContext.Provider value={value}>{children}</CommerceRuntimeContext.Provider>;
+}
+
+export function CommerceRuntimeProvider({ children }: PropsWithChildren) {
+  return Platform.OS === 'android' ? <AndroidCommerceRuntimeProvider>{children}</AndroidCommerceRuntimeProvider>
+    : <AppleCommerceRuntimeProvider>{children}</AppleCommerceRuntimeProvider>;
 }
 
 export function useCommerceRuntime() {

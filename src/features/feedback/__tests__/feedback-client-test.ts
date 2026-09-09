@@ -1,3 +1,5 @@
+// Keep the existing generic/Web upload behavior covered separately from Native owner guards.
+jest.mock('../feedback-client', () => jest.requireActual('../feedback-client.ts'));
 import { submitFeedback } from '../feedback-client';
 
 const mockGetDiagnostics = jest.fn();

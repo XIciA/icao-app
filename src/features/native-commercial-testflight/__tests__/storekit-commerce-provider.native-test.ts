@@ -4,6 +4,7 @@ import type {
 } from '../commerce-provider.native';
 import {
   APPLE_MEMBERSHIP_PRODUCT_IDS,
+  getMembershipProductByKey,
   listMembershipProducts,
 } from '../membership-products.native';
 import {
@@ -161,7 +162,7 @@ class FakeStoreKitClient implements StoreKitClient {
 }
 
 function purchasedTransaction(
-  productId = APPLE_MEMBERSHIP_PRODUCT_IDS[2],
+  productId = APPLE_MEMBERSHIP_PRODUCT_IDS[1],
   overrides: Partial<StoreKitTransaction> = {},
 ): StoreKitTransaction {
   return {
@@ -188,7 +189,7 @@ function createProvider(client: FakeStoreKitClient, runtime = new ManualRuntime(
 }
 
 describe('StoreKit native commerce provider', () => {
-  it('returns all five offerings in D4 order using only StoreKit localized prices', async () => {
+  it('returns the three active offerings in duration order using only StoreKit localized prices', async () => {
     const client = new FakeStoreKitClient();
     const { provider } = createProvider(client);
 
@@ -200,27 +201,25 @@ describe('StoreKit native commerce provider', () => {
       value: {
         offerings: [
           expect.objectContaining({ key: 'membership_7d_v1', localizedPrice: '本地价格 1' }),
-          expect.objectContaining({ key: 'membership_15d_v1', localizedPrice: '本地价格 2' }),
           expect.objectContaining({
             key: 'membership_31d_v1',
-            localizedPrice: '本地价格 3',
-            recommended: true,
+            localizedPrice: '本地价格 2',
+            recommended: false,
           }),
-          expect.objectContaining({ key: 'membership_62d_v1', localizedPrice: '本地价格 4' }),
-          expect.objectContaining({ key: 'membership_93d_v1', localizedPrice: '本地价格 5' }),
+          expect.objectContaining({ key: 'membership_93d_v1', localizedPrice: '本地价格 3' }),
         ],
       },
     });
     if (result.ok) {
       expect(result.value.offerings.map((offering) => offering.durationDays)).toEqual([
-        7, 15, 31, 62, 93,
+        7, 31, 93,
       ]);
     }
   });
 
   it('fails closed for incomplete or wrongly typed App Store catalogs', async () => {
     const incompleteClient = new FakeStoreKitClient();
-    incompleteClient.products = incompleteClient.products.slice(0, 4);
+    incompleteClient.products = incompleteClient.products.slice(0, 2);
     const invalidClient = new FakeStoreKitClient();
     invalidClient.products = invalidClient.products.map((product, index) =>
       index === 0 ? { ...product, productTypeIOS: 'consumable' } : product,
@@ -280,7 +279,7 @@ describe('StoreKit native commerce provider', () => {
 
     expect(client.requested).toEqual([
       {
-        productId: APPLE_MEMBERSHIP_PRODUCT_IDS[2],
+        productId: APPLE_MEMBERSHIP_PRODUCT_IDS[1],
         applicationAccountToken: ACCOUNT_TOKEN,
       },
     ]);
@@ -344,7 +343,7 @@ describe('StoreKit native commerce provider', () => {
 
     await expect(
       provider.purchase({
-        offeringKey: 'membership_15d_v1',
+        offeringKey: 'membership_31d_v1',
         applicationAccountToken: ACCOUNT_TOKEN,
       }),
     ).resolves.toEqual(
@@ -394,7 +393,7 @@ describe('StoreKit native commerce provider', () => {
 
     await expect(
       provider.purchase({
-        offeringKey: 'membership_15d_v1',
+        offeringKey: 'membership_31d_v1',
         applicationAccountToken: ACCOUNT_TOKEN,
       }),
     ).resolves.toEqual(expect.objectContaining({ code: 'commerce_purchase_busy' }));
@@ -500,6 +499,24 @@ describe('StoreKit native commerce provider', () => {
     expect(client.getTransactionsCount).toBe(1);
     expect(client.syncPurchasesCount).toBe(0);
     expect(client.finished).toEqual([]);
+  });
+
+  it('restores retired 15/62-day purchases without offering them for new purchases', async () => {
+    const client = new FakeStoreKitClient();
+    const retired = (['membership_15d_v1', 'membership_62d_v1'] as const).map((key) => getMembershipProductByKey(key)!);
+    client.restoredTransactions = retired.map((product) => purchasedTransaction(product.appleProductId, { transactionId: product.key }));
+    const { provider } = createProvider(client);
+    const restored = await provider.restorePurchases();
+    expect(restored).toEqual(expect.objectContaining({ ok: true, value: expect.objectContaining({
+      transactions: expect.arrayContaining(retired.map((product) => expect.objectContaining({ offeringKey: product.key }))),
+      entitlementGranted: false,
+    }) }));
+    for (const product of retired) {
+      expect(APPLE_MEMBERSHIP_PRODUCT_IDS).not.toContain(product.appleProductId);
+      expect((await provider.purchase({ offeringKey: product.key, applicationAccountToken: ACCOUNT_TOKEN })).ok).toBe(false);
+    }
+    expect(client.requested).toEqual([]);
+    await provider.dispose();
   });
 
   it('uses StoreKit sync only for the explicit Restore Purchases action', async () => {
@@ -1082,14 +1099,12 @@ describe('StoreKit native commerce provider', () => {
     });
   });
 
-  it('keeps the five business keys exact and stable', () => {
+  it('offers only the three current business keys', () => {
     expect(
       listMembershipProducts().map((product) => product.key satisfies CommerceOfferingKey),
     ).toEqual([
       'membership_7d_v1',
-      'membership_15d_v1',
       'membership_31d_v1',
-      'membership_62d_v1',
       'membership_93d_v1',
     ]);
   });

@@ -13,9 +13,9 @@ import {
   MOCK_EXAM_MODULE_ORDER,
   MOCK_EXAM_MODULES,
   MOCK_EXAM_TYPE_LABELS,
-} from './rules';
+} from './rules.native';
 import { hydrateMockExamTopic, mockExamTopicCardCount } from './topic-loader.native';
-import type { MockExamConfig, MockExamModuleId, MockExamSection, MockExamSession } from './types';
+import type { MockExamConfig, MockExamModuleId, MockExamSection, MockExamSession } from './types.native';
 
 function random(seed: number) { let state = seed >>> 0; return () => { state += 0x6d2b79f5; let value = state; value = Math.imul(value ^ (value >>> 15), value | 1); value ^= value + Math.imul(value ^ (value >>> 7), value | 61); return ((value ^ (value >>> 14)) >>> 0) / 4294967296; }; }
 function sample<T>(items: readonly T[], count: number, next: () => number) {
@@ -43,7 +43,6 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
     const data = datasets.sentences900;
     const level3 = category(data, '3级');
     const level4 = category(data, '4级');
-    const level5 = category(data, '5级');
     const level3Topic = await hydrateMockExamTopic(data, level3, topic(level3));
     const level4Topic = await hydrateMockExamTopic(data, level4, topic(level4));
     const first = sample(level3Topic.cards, 8, next);
@@ -53,6 +52,7 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
       section(moduleId, 'sentence-3', '900 句 · 第 3 组', data, level4, level4Topic, sample(level4Topic.cards, 4, next)),
     ];
     if (expert) {
+      const level5 = category(data, '5级');
       const level5Topic = await hydrateMockExamTopic(data, level5, topic(level5));
       const extra = sample(level5Topic.cards, 8, next);
       result.push(
@@ -86,15 +86,21 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
   const candidates = data.categories.flatMap((entry) => entry.topics
     .filter((entryTopic) => mockExamTopicCardCount(data, entryTopic) >= 5)
     .map((entryTopic) => ({ category: entry, topic: entryTopic })));
-  const chosen = sample(candidates, 1, next)[0];
-  const chosenTopic = await hydrateMockExamTopic(data, chosen.category, chosen.topic);
-  return [section(moduleId, 'opi', `OPI · ${chosenTopic.name}`, data, chosen.category, chosenTopic, sample(chosenTopic.cards, 5, next))];
+  while (candidates.length) {
+    const index = Math.floor(next() * candidates.length);
+    const [chosen] = candidates.splice(index, 1);
+    const chosenTopic = await hydrateMockExamTopic(data, chosen.category, chosen.topic);
+    const questions = chosenTopic.cards.filter((card) => card.kind !== 'image');
+    // A topic image is supporting material, never one of the five answers.
+    if (questions.length >= 5) return [section(moduleId, 'opi', `OPI · ${chosenTopic.name}`, data, chosen.category, chosenTopic, sample(questions, 5, next))];
+  }
+  throw new Error('OPI 暂无包含 5 道问答的可用话题，请返回后重试。');
 }
 
 export async function buildMockExamSession(config: MockExamConfig, providedSeed?: number): Promise<MockExamSession> {
   const allowed = MOCK_EXAM_MODULES[config.examType]; const selected = MOCK_EXAM_MODULE_ORDER.filter((id) => allowed.includes(id) && config.modules.includes(id));
   if (!selected.length) throw new Error('请至少选择一个考试板块。');
-  const loaded = await Promise.all(['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'].map(async (id) => [id, await questionBankRepository.getDataset(id as QuestionBankId)] as const));
+  const loaded = await Promise.all(selected.map(async (id) => [id, await questionBankRepository.getDataset(id as QuestionBankId)] as const));
   const datasets = Object.fromEntries(loaded) as Record<QuestionBankId, QuestionBankDataset | undefined>;
   for (const moduleId of selected) if (!datasets[moduleId]) throw new Error(`题库加载失败：${MOCK_EXAM_MODULE_LABELS[moduleId]}`);
   const resolved = datasets as Record<QuestionBankId, QuestionBankDataset>;

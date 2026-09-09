@@ -14,6 +14,9 @@ import { questionBankCardTargetKey } from '../annotations/card-index';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import { sqliteLearningStore } from '../platform/learning-store';
 
+// This suite preserves the frozen shared/Web migration contract.
+jest.mock('../annotations/annotation-store', () => jest.requireActual('../annotations/annotation-store.ts'));
+
 jest.mock('expo-sqlite/kv-store', () => {
   const values = new Map<string, string>();
   return {

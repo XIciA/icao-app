@@ -18,6 +18,7 @@ import {
   accountIdentities,
   accountSecurityEvents,
   accounts,
+  aiAllowanceAccounts,
   aiConsents,
   aiQuotaBuckets,
   aiUsageLogs,
@@ -393,6 +394,7 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       await transaction.delete(userDocuments).where(eq(userDocuments.userId, job.accountId));
       await transaction.delete(syncChanges).where(eq(syncChanges.userId, job.accountId));
       await transaction.delete(privacyActionReceipts).where(eq(privacyActionReceipts.accountId, job.accountId));
+      await transaction.delete(aiAllowanceAccounts).where(eq(aiAllowanceAccounts.accountId, job.accountId));
       await transaction.delete(aiConsents).where(eq(aiConsents.userId, job.accountId));
       await transaction.delete(aiUsageLogs).where(eq(aiUsageLogs.userId, job.accountId));
       await transaction.delete(aiQuotaBuckets).where(eq(aiQuotaBuckets.userId, job.accountId));

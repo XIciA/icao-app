@@ -1,13 +1,11 @@
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import type {
-  AccountDataExportResponse,
   CardStateMutation,
   ClearLearningDataRequest,
   DeleteAllAiResultsRequest,
   DocumentMutation,
   LearningRecordMutation,
   PrivacyDeletionResponse,
-  SyncCardState,
   SyncChange,
   SyncMutation,
   SyncPullResponse,
@@ -16,14 +14,20 @@ import type {
   SyncPushResult,
 } from '@icao/contracts';
 import { createHash } from 'node:crypto';
-import { and, asc, desc, eq, gt, lt, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, lt, ne, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { DatabaseService } from '../database/database.service';
-import { accounts, learningRecords, privacyActionReceipts, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
+import { accounts, aiPointReservations, learningRecords, privacyActionReceipts, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
 import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
 
 const VOCABULARY_DOCUMENT_KEY = 'vocabulary';
+const ACCOUNT_PROFILE_KEY = 'account_profile';
+const accountProfileSchema = z.object({
+  displayName: z.string().trim().min(1).refine((value) => Array.from(value).length <= 24),
+  target: z.enum(['icao4-first', 'icao4-recert', 'icao5-first', 'icao5-recert']),
+  avatarUri: z.string().max(180_000).regex(/^data:image\/(?:jpeg|png);base64,[A-Za-z0-9+/]+=*$/u).nullable(),
+});
 
 const stateSchema = z.object({
   visited: z.boolean(),
@@ -146,7 +150,7 @@ export class SyncService {
       const output: SyncPushResult[] = [];
       for (const mutation of parsed.data.mutations as SyncMutation[]) {
         const isAiResult = mutation.kind === 'learning_record'
-          && (mutation.payload.deleted === true || mutation.payload.record?.recordType === 'ai_result');
+          && mutation.payload.deleted !== true && mutation.payload.record?.recordType === 'ai_result';
         if (isAiResult && requestedAiResultGeneration !== account.aiResultGeneration) {
           output.push({ mutationId: mutation.mutationId, status: 'discarded' });
           continue;
@@ -287,13 +291,28 @@ export class SyncService {
       eq(learningRecords.userId, userId),
       eq(learningRecords.clientRecordId, mutation.payload.recordId),
     );
-    const version = mutation.payload.version ?? 1;
+    let version = mutation.payload.version ?? 1;
     const occurredAt = new Date(mutation.payload.occurredAt);
     const updatedAt = new Date(mutation.payload.updatedAt ?? mutation.payload.occurredAt);
     const deleting = mutation.payload.deleted === true;
-    const incomingRecord = deleting ? { deleted: true } : mutation.payload.record!;
-    const incomingIsAiResult = deleting || mutation.payload.record?.recordType === 'ai_result';
     const [current] = await tx.select().from(learningRecords).where(target).limit(1);
+    const descriptor = { ...(current?.payload as Record<string, unknown> ?? {}), ...mutation.payload.record };
+    const incomingIsAiResult = descriptor.recordType === 'ai_result';
+    const incomingRecord = deleting ? { deleted: true, recordType: descriptor.recordType, sessionId: descriptor.sessionId } : mutation.payload.record!;
+    // Deletion wins over an offline copy with an older entity version.
+    if (deleting) version = Math.max(version, (current?.version ?? 0) + 1);
+    if (!deleting && incomingIsAiResult && typeof descriptor.sessionId === 'string') {
+      const [deletedSession] = await tx.select().from(learningRecords).where(and(
+        eq(learningRecords.userId, userId),
+        sql`${learningRecords.payload}->>'sessionId' = ${descriptor.sessionId}`,
+        sql`${learningRecords.payload}->>'deleted' = 'true'`,
+        sql`coalesce(${learningRecords.payload}->>'recordType', '') <> 'ai_result'`,
+      )).limit(1);
+      if (deletedSession) return { mutationId: mutation.mutationId, status: 'discarded', authoritative: {
+        recordId: mutation.payload.recordId, deleted: true, aiResultGeneration,
+        occurredAt: mutation.payload.occurredAt, updatedAt: deletedSession.updatedAt.toISOString(), version,
+      } };
+    }
     const currentDeleted = (current?.payload as { deleted?: unknown } | undefined)?.deleted === true;
     if (currentDeleted && !deleting) {
       return {
@@ -302,7 +321,8 @@ export class SyncService {
         authoritative: {
           recordId: current!.clientRecordId,
           deleted: true,
-          aiResultGeneration,
+          record: current!.payload as Record<string, unknown>,
+          ...(incomingIsAiResult ? { aiResultGeneration } : {}),
           occurredAt: current!.occurredAt.toISOString(),
           version: current!.version,
           updatedAt: current!.updatedAt.toISOString(),
@@ -330,15 +350,14 @@ export class SyncService {
     if (!applied) {
       const [current] = await tx.select().from(learningRecords).where(target).limit(1);
       if (!current) throw new ConflictException('learning_record_conflict');
-      const currentIsAiResult = (current.payload as { deleted?: unknown; recordType?: unknown }).deleted === true
-        || (current.payload as { recordType?: unknown }).recordType === 'ai_result';
+      const currentIsAiResult = (current.payload as { recordType?: unknown }).recordType === 'ai_result';
       return {
         mutationId: mutation.mutationId,
         status: 'conflict',
         authoritative: {
           recordId: current.clientRecordId,
           ...((current.payload as { deleted?: unknown }).deleted === true
-            ? { deleted: true as const }
+            ? { deleted: true as const, record: current.payload as Record<string, unknown> }
             : { record: current.payload as Record<string, unknown> }),
           ...(currentIsAiResult ? { aiResultGeneration } : {}),
           occurredAt: current.occurredAt.toISOString(),
@@ -349,12 +368,25 @@ export class SyncService {
     }
     const payload = {
       recordId: applied.clientRecordId,
-      ...(deleting ? { deleted: true as const } : { record: applied.payload as Record<string, unknown> }),
+      ...(deleting ? { deleted: true as const, record: applied.payload as Record<string, unknown> } : { record: applied.payload as Record<string, unknown> }),
       ...(incomingIsAiResult ? { aiResultGeneration } : {}),
       occurredAt: applied.occurredAt.toISOString(),
       version: applied.version,
       updatedAt: applied.updatedAt.toISOString(),
     };
+    if (deleting) {
+      if (incomingIsAiResult) await this.deleteOperationResult(tx, userId, descriptor);
+      await this.scrubRecordSyncPayloads(tx, userId, applied.clientRecordId, payload);
+      if (!incomingIsAiResult && typeof descriptor.sessionId === 'string') {
+        const children = await tx.select().from(learningRecords).where(and(
+          eq(learningRecords.userId, userId),
+          sql`${learningRecords.payload}->>'sessionId' = ${descriptor.sessionId}`,
+          sql`${learningRecords.payload}->>'recordType' = 'ai_result'`,
+          sql`coalesce(${learningRecords.payload}->>'deleted', 'false') <> 'true'`,
+        ));
+        for (const child of children) await this.writeAiResultTombstone(tx, userId, child, aiResultGeneration);
+      }
+    }
     await tx.insert(syncChanges).values({
       userId,
       kind: mutation.kind,
@@ -367,7 +399,7 @@ export class SyncService {
       status: 'accepted',
       authoritative: {
         recordId: applied.clientRecordId,
-        ...(deleting ? { deleted: true as const } : { record: applied.payload as Record<string, unknown> }),
+        ...(deleting ? { deleted: true as const, record: applied.payload as Record<string, unknown> } : { record: applied.payload as Record<string, unknown> }),
         ...(incomingIsAiResult ? { aiResultGeneration } : {}),
         occurredAt: applied.occurredAt.toISOString(),
         version: applied.version,
@@ -381,6 +413,12 @@ export class SyncService {
     userId: string,
     mutation: DocumentMutation,
   ): Promise<SyncPushResult> {
+    if (mutation.payload.documentKey === 'legal-consent') throw new BadRequestException('reserved_document_key');
+    if (mutation.payload.documentKey === ACCOUNT_PROFILE_KEY) {
+      const profile = accountProfileSchema.safeParse(mutation.payload.document);
+      if (!profile.success) throw new BadRequestException('invalid_account_profile');
+      mutation = { ...mutation, payload: { ...mutation.payload, document: profile.data } };
+    }
     if (mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
       return this.applyVocabularyDocument(tx, userId, mutation);
     }
@@ -536,6 +574,7 @@ export class SyncService {
         dataGeneration: accounts.learningDataGeneration,
       });
       if (!account) throw new ConflictException('sync_user_mismatch');
+      await tx.update(aiPointReservations).set({ resultPayload: null, resultDeletedAt: new Date() }).where(eq(aiPointReservations.accountId, userId));
       const records = await tx.select().from(learningRecords).where(and(
         eq(learningRecords.userId, userId),
         sql`${learningRecords.payload}->>'recordType' = 'ai_result'`,
@@ -562,14 +601,23 @@ export class SyncService {
         dataGeneration: accounts.learningDataGeneration,
       });
       if (!account) throw new ConflictException('sync_user_mismatch');
+      await tx.update(aiPointReservations).set({ resultPayload: null, resultDeletedAt: new Date() }).where(eq(aiPointReservations.accountId, userId));
       const cards = await tx.delete(userCardStates)
         .where(eq(userCardStates.userId, userId)).returning({ userId: userCardStates.userId });
       const records = await tx.delete(learningRecords)
         .where(eq(learningRecords.userId, userId)).returning({ id: learningRecords.id });
       const documents = await tx.delete(userDocuments)
-        .where(eq(userDocuments.userId, userId)).returning({ userId: userDocuments.userId });
+        .where(and(eq(userDocuments.userId, userId), ne(userDocuments.documentKey, ACCOUNT_PROFILE_KEY), ne(userDocuments.documentKey, 'legal-consent'))).returning({ userId: userDocuments.userId });
       await tx.delete(syncMutations).where(eq(syncMutations.userId, userId));
       await tx.delete(syncChanges).where(eq(syncChanges.userId, userId));
+      // Account identity/profile is independent of learning reset generations.
+      const [profile] = await tx.select().from(userDocuments).where(and(
+        eq(userDocuments.userId, userId), eq(userDocuments.documentKey, ACCOUNT_PROFILE_KEY),
+      )).limit(1);
+      if (profile) await tx.insert(syncChanges).values({ userId, kind: 'document', entityKey: ACCOUNT_PROFILE_KEY,
+        payload: { documentKey: ACCOUNT_PROFILE_KEY, document: profile.payload, version: profile.version, updatedAt: profile.updatedAt.toISOString() },
+        version: profile.version,
+      });
       return { ...account, deletedCount: cards.length + records.length + documents.length };
     });
   }
@@ -609,39 +657,16 @@ export class SyncService {
     });
   }
 
-  async exportLearningData(userId: string): Promise<AccountDataExportResponse['learning']> {
-    return this.database.db.transaction(async (tx) => {
-      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
-      const [account] = await tx.select({
-        aiResultGeneration: accounts.aiResultGeneration,
-        dataGeneration: accounts.learningDataGeneration,
-      }).from(accounts).where(eq(accounts.id, userId)).limit(1);
-      if (!account) throw new ConflictException('sync_user_mismatch');
-      const cardRows = await tx.select().from(userCardStates)
-        .where(eq(userCardStates.userId, userId)).orderBy(asc(userCardStates.updatedAt));
-      const recordRows = await tx.select().from(learningRecords).where(and(
-        eq(learningRecords.userId, userId),
-        sql`coalesce(${learningRecords.payload}->>'deleted', 'false') <> 'true'`,
-      )).orderBy(asc(learningRecords.occurredAt));
-      const documentRows = await tx.select().from(userDocuments)
-        .where(eq(userDocuments.userId, userId)).orderBy(asc(userDocuments.documentKey));
-      return {
-        ...account,
-        cardStates: cardRows.map((row) => ({
-          bankId: row.bankId,
-          topicId: row.topicId,
-          cardId: row.cardId,
-          state: row.state as SyncCardState,
-          updatedAt: row.updatedAt.toISOString(),
-        })),
-        records: recordRows.map((row) => row.payload as Record<string, unknown>),
-        documents: documentRows.map((row) => ({
-          documentKey: row.documentKey,
-          document: row.payload as Record<string, unknown>,
-          updatedAt: row.updatedAt.toISOString(),
-        })),
-      };
-    });
+  private async deleteOperationResult(
+    tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
+    userId: string, record: Record<string, unknown>,
+  ) {
+    const operation = record.aiOperation as { operationId?: unknown; environment?: unknown } | undefined;
+    if (!operation || typeof operation.operationId !== 'string' || (operation.environment !== 'production' && operation.environment !== 'sandbox')) return;
+    await tx.update(aiPointReservations).set({ resultPayload: null, resultDeletedAt: new Date() }).where(and(
+      eq(aiPointReservations.accountId, userId), eq(aiPointReservations.operationId, operation.operationId),
+      eq(aiPointReservations.environment, operation.environment),
+    ));
   }
 
   private async writeAiResultTombstone(
@@ -650,6 +675,7 @@ export class SyncService {
     record: typeof learningRecords.$inferSelect,
     aiResultGeneration: number,
   ) {
+    await this.deleteOperationResult(tx, userId, record.payload as Record<string, unknown>);
     const version = record.version + 1;
     const updatedAt = new Date();
     const authoritative = {
@@ -661,24 +687,38 @@ export class SyncService {
       updatedAt: updatedAt.toISOString(),
     };
     await tx.update(learningRecords).set({
-      payload: { deleted: true },
+      payload: { deleted: true, recordType: 'ai_result', sessionId: (record.payload as Record<string, unknown>).sessionId },
       version,
       updatedAt,
     }).where(and(
       eq(learningRecords.userId, userId),
       eq(learningRecords.clientRecordId, record.clientRecordId),
     ));
+    await this.scrubRecordSyncPayloads(tx, userId, record.clientRecordId, authoritative);
+    await tx.insert(syncChanges).values({
+      userId,
+      kind: 'learning_record',
+      entityKey: record.clientRecordId,
+      payload: authoritative,
+      version,
+    });
+  }
+
+  private async scrubRecordSyncPayloads(
+    tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
+    userId: string, recordId: string, authoritative: NonNullable<SyncPushResult['authoritative']>,
+  ) {
     await tx.delete(syncChanges).where(and(
       eq(syncChanges.userId, userId),
       eq(syncChanges.kind, 'learning_record'),
-      eq(syncChanges.entityKey, record.clientRecordId),
+      eq(syncChanges.entityKey, recordId),
     ));
     const historicalMutations = await tx.select({ mutationId: syncMutations.mutationId })
       .from(syncMutations)
       .where(and(
         eq(syncMutations.userId, userId),
         eq(syncMutations.kind, 'learning_record'),
-        sql`${syncMutations.result}->'authoritative'->>'recordId' = ${record.clientRecordId}`,
+        sql`${syncMutations.result}->'authoritative'->>'recordId' = ${recordId}`,
       ));
     for (const mutation of historicalMutations) {
       await tx.update(syncMutations).set({
@@ -692,13 +732,6 @@ export class SyncService {
         eq(syncMutations.mutationId, mutation.mutationId),
       ));
     }
-    await tx.insert(syncChanges).values({
-      userId,
-      kind: 'learning_record',
-      entityKey: record.clientRecordId,
-      payload: authoritative,
-      version,
-    });
   }
 
   private async latestCursor(userId: string) {

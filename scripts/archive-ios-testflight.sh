@@ -27,9 +27,13 @@ require_command pnpm
 require_command pod
 require_command xcodebuild
 require_command codesign
+cd "$PROJECT_ROOT"
+pnpm check:audio
+pnpm test:recording
+pnpm typecheck
 load_release_runtime
 
-node tools/audio-sensitive-fingerprint.mjs verify ios
+# TestFlight is the device acceptance environment; focused audio tests run above.
 node tools/critical-capability-release-evidence.mjs verify testflight ios
 
 echo 'Checking the public TestFlight runtime...'

@@ -66,7 +66,7 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
 
   function openTopic(category: QuestionBankCategory, topic: QuestionBankTopic) {
     if (isLocked(topic)) {
-      router.push('/account/membership');
+      router.push('/account/membership?from=learning');
       return;
     }
     router.push({

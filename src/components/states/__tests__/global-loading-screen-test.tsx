@@ -36,7 +36,7 @@ describe('<GlobalLoadingScreen />', () => {
     expect(iconStyle.height).toBe('100%');
   });
 
-  it('keeps Expo, iOS, Android, both splash screens, and loading traceable to the same icon master', () => {
+  it('keeps the Web fallback frozen while Native loading references the approved master', () => {
     const master = './assets/images/icon.png';
     const splashPlugin = appConfig.expo.plugins.find((plugin) => plugin[0] === 'expo-splash-screen');
     expect(appConfig.expo.icon).toBe(master);
@@ -44,6 +44,6 @@ describe('<GlobalLoadingScreen />', () => {
     expect(appConfig.expo.android.icon).toBe(master);
     expect(splashPlugin?.[1].image).toBe(master);
     expect(splashPlugin?.[1].resizeMode).toBe('contain');
-    expect(APP_BRAND_LOGO_SOURCE).toBe(require('../../../../assets/images/icon.png'));
+    expect(APP_BRAND_LOGO_SOURCE).toBe(require('../../../../assets/images/icon-native.png'));
   });
 });

@@ -1,4 +1,4 @@
-import { Controller, Get, Headers, Param, Req, Res, UseGuards } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, type ApiSuccessEnvelope, type QuestionBankRelease, type QuestionBankReleaseSummary, type QuestionBankTopicRelease } from '@icao/contracts';
 import type { FastifyReply } from 'fastify';
 
@@ -47,10 +47,14 @@ export class QuestionBankController {
     @Param('bankId') bankId: string,
     @Param('categoryId') categoryId: string,
     @Param('topicId') topicId: string,
+    @Query('version') version: string | undefined,
+    @Query('checksum') checksum: string | undefined,
     @Headers(COMMERCE_ENVIRONMENT_HEADER) environmentHeader: string | undefined,
     @Req() request: AuthenticatedRequest,
     @Res({ passthrough: true }) reply: FastifyReply,
   ): Promise<ApiSuccessEnvelope<QuestionBankTopicRelease>> {
+    if ((version !== undefined && (!/^[1-9][0-9]{0,9}$/.test(version) || Number(version) > 2147483647))
+      || (checksum !== undefined && (!version || !/^[a-f0-9]{64}$/.test(checksum)))) throw new BadRequestException('invalid_content_release');
     const release = await this.questionBanks.getTopic(
       bankId,
       categoryId,
@@ -58,6 +62,7 @@ export class QuestionBankController {
       request.user!.id,
       request.auth!.sessionId,
       contentCommerceEnvironment(environmentHeader),
+      version ? { version: Number(version), checksum } : undefined,
     );
     reply.header('cache-control', 'private, no-store');
     return { requestId: request.id, data: release };

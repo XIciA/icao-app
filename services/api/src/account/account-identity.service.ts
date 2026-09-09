@@ -7,7 +7,7 @@ import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, accounts, lifetimeIdentityBenefitClaims, profiles } from '../database/schema';
+import { accountIdentities, accountLoginMethodRemovals, accounts, lifetimeIdentityBenefitClaims, profiles } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
 import { IdentityDigestService } from './identity-digest.service';
@@ -80,6 +80,20 @@ export class AccountIdentityService {
 
     const accountId = await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`auth:${auth.authUserId}`}, 0))`);
+
+      const [removed] = await transaction.select({ id: accountLoginMethodRemovals.id })
+        .from(accountLoginMethodRemovals).where(eq(accountLoginMethodRemovals.authUserId, auth.authUserId)).limit(1);
+      if (removed) throw new UnauthorizedException('login_method_unlinked');
+
+      // Correct only the old verified Apple row-UUID representation. This is
+      // a key repair for the exact same principal, never an ownership merge.
+      for (const identity of auth.identities) {
+        if (identity.provider !== 'apple' || !identity.legacySubject || identity.legacySubject === identity.subject) continue;
+        await transaction.update(accountIdentities).set({ subjectHash: this.hashIdentity('apple', identity.subject) }).where(and(
+          eq(accountIdentities.authUserId, auth.authUserId), eq(accountIdentities.provider, 'apple'),
+          eq(accountIdentities.subjectHash, this.hashIdentity('apple', identity.legacySubject)),
+        ));
+      }
 
       const byAuthUser = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)

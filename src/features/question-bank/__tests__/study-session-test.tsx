@@ -1,3 +1,6 @@
+// Legacy coverage stays pinned to the frozen Web path; Native has a separate session suite.
+jest.mock('../hooks/useStudySession', () => jest.requireActual('../hooks/useStudySession.ts'));
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
 import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react-native';
 import { Platform, Pressable, Text, View } from 'react-native';
 import { toListeningReviewPackage } from '@/features/mock-exam/listening-review';

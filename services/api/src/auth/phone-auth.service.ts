@@ -1,7 +1,8 @@
 import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 
 import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, Optional, ServiceUnavailableException } from '@nestjs/common';
-import type { RecentAuthPurpose, SocialAuthSessionResponse } from '@icao/contracts';
+import type { SocialAuthSessionResponse } from '@icao/contracts';
+import type { NativeRecentAuthPurpose as RecentAuthPurpose } from '@icao/contracts/native-auth';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import type { NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';

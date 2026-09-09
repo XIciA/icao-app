@@ -1,11 +1,15 @@
-import { BadRequestException, Body, Controller, Delete, Get, Post, Req, UseGuards } from '@nestjs/common';
-import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type AiConsentChallenge, type AiConsentStatus, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
+import { BadRequestException, Body, Controller, Delete, Get, Optional, Param, Post, Req, ServiceUnavailableException, UseGuards } from '@nestjs/common';
+import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
+import { isTencentAsrModel, type AiReviewRequest, type ApiSuccessEnvelope, type AiConsent, type AiConsentChallenge, type AiConsentStatus, type GrammarReviewRequest, type PolishRequest } from '@icao/contracts';
+import type { AiOperationLookup, MeteredAiReviewResult as AiReviewResult, MeteredGrammarReviewResult as GrammarReviewResult, MeteredPolishResult as PolishResult, MeteredTranscribeResult as TranscribeResult, TranscribeReviewResult } from '@icao/contracts/commerce-rules';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AiService } from './ai.service';
-import { consentChallengeSchema, consentSchema, grammarSchema, polishSchema, reviewSchema } from './ai.schemas';
+import { ContentAccessService } from '../content-access/content-access.service';
+import { contentCommerceEnvironment } from '../content-access/content-access.environment';
+import { consentChallengeSchema, consentSchema, grammarSchema, polishSchema, reviewSchema, transcribeReviewSchema } from './ai.schemas';
 
 type AiRequest = AuthenticatedRequest & { raw: { once(event: 'aborted', listener: () => void): void } };
 type MultipartRequest = AiRequest & { file(options?: object): Promise<MultipartFile | undefined> };
@@ -38,7 +42,31 @@ function operationId(request: AuthenticatedRequest) {
 @Controller('v1/ai')
 @UseGuards(RequireAuthGuard)
 export class AiController {
-  constructor(private readonly ai: AiService) {}
+  constructor(private readonly ai: AiService, @Optional() private readonly contentAccess?: ContentAccessService) {}
+
+  private async environment(request: AuthenticatedRequest) {
+    const header = request.headers?.[COMMERCE_ENVIRONMENT_HEADER];
+    if (Array.isArray(header)) throw new BadRequestException('invalid_commerce_environment');
+    const environment = contentCommerceEnvironment(header);
+    if (environment === 'production') return environment;
+    if (!this.contentAccess || !request.auth?.sessionId) throw new ServiceUnavailableException('commerce_environment_unavailable');
+    await this.contentAccess.assertEnvironmentAuthorized(request.user!.id, request.auth.sessionId, environment, new Date());
+    return environment;
+  }
+
+  private async admit(request: AuthenticatedRequest) {
+    const environment = await this.environment(request);
+    return environment === 'production' ? this.ai.admitOperation(request.user!.id) : this.ai.admitOperation(request.user!.id, environment);
+  }
+
+  @Get('operations/:operationId')
+  async operation(@Param('operationId') id: string, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<AiOperationLookup>> {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(id)) {
+      throw new BadRequestException('invalid_ai_operation_id');
+    }
+    const environment = await this.environment(request);
+    return { requestId: request.id, data: await this.ai.operationResult(request.user!.id, environment, id) };
+  }
 
   @Get('consent')
   async consentStatus(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<AiConsentStatus>> {
@@ -67,11 +95,31 @@ export class AiController {
   @Post('transcribe')
   async transcribe(@Req() request: MultipartRequest): Promise<ApiSuccessEnvelope<TranscribeResult>> {
     const stableOperationId = operationId(request);
-    const grant = await this.ai.admitOperation(request.user!.id);
+    const grant = await this.admit(request);
     const file = await request.file({ limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8 } });
     if (!file || !file.mimetype.startsWith('audio/')) throw new BadRequestException('invalid_audio');
     const audio = await file.toBuffer();
     return { requestId: request.id, data: await this.ai.transcribe(request.user!.id, request.id, audio, file.mimetype, multipartModel(file), grant, cancellationSignal(request), stableOperationId) };
+  }
+
+  @Post('transcribe-review')
+  async transcribeReview(@Req() request: MultipartRequest): Promise<ApiSuccessEnvelope<TranscribeReviewResult>> {
+    const stableOperationId = operationId(request);
+    const grant = await this.admit(request);
+    const file = await request.file({ limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8 } });
+    if (!file || !file.mimetype.startsWith('audio/')) throw new BadRequestException('invalid_audio');
+    const audio = await file.toBuffer();
+    const fields = Object.fromEntries(['mode', 'module', 'questionId'].map((key) => {
+      const field = file.fields[key];
+      const part = Array.isArray(field) ? undefined : field;
+      return [key, part?.type === 'field' ? part.value : undefined];
+    }));
+    const parsed = transcribeReviewSchema.safeParse(fields);
+    if (!parsed.success) throw new BadRequestException('invalid_transcribe_review');
+    return { requestId: request.id, data: await this.ai.transcribeReview(
+      request.user!.id, request.id, audio, file.mimetype, multipartModel(file), parsed.data,
+      grant, cancellationSignal(request), stableOperationId,
+    ) };
   }
 
   @Post('grammar-review')
@@ -80,7 +128,7 @@ export class AiController {
     // therefore acquired before validation/business work and is rechecked under
     // the consent lock immediately before the provider is called.
     const stableOperationId = operationId(request);
-    const grant = await this.ai.admitOperation(request.user!.id);
+    const grant = await this.admit(request);
     const parsed = grammarSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_grammar_review');
     return { requestId: request.id, data: await this.ai.grammarReview(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
@@ -89,7 +137,7 @@ export class AiController {
   @Post('polish')
   async polish(@Body() body: PolishRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<PolishResult>> {
     const stableOperationId = operationId(request);
-    const grant = await this.ai.admitOperation(request.user!.id);
+    const grant = await this.admit(request);
     const parsed = polishSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_polish');
     return { requestId: request.id, data: await this.ai.polish(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
@@ -98,7 +146,7 @@ export class AiController {
   @Post('review')
   async review(@Body() body: AiReviewRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<AiReviewResult>> {
     const stableOperationId = operationId(request);
-    const grant = await this.ai.admitOperation(request.user!.id);
+    const grant = await this.admit(request);
     const parsed = reviewSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_ai_review');
     return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };

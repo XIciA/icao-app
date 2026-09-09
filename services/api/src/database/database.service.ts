@@ -5,13 +5,12 @@ import postgres, { type Sql } from 'postgres';
 import { API_CONFIG, type ApiConfig } from '../config';
 import * as schema from './schema';
 
-// 0041 changes the SMS delivery protocol namespace. New API/hook binaries
-// must never start against an older schema, and the database constraint in
-// 0041 prevents old binaries from writing legacy delivery states afterwards.
-export const MINIMUM_DATABASE_SCHEMA_VERSION = 41;
+// This API requires the account, content, AI allowance and payment tables through
+// 0046_wechat_payment_attempts. Bind startup to the exact migration, not a table-count guess.
+export const MINIMUM_DATABASE_SCHEMA_VERSION = 46;
 export const MINIMUM_DATABASE_MIGRATION = {
-  createdAt: 1_788_504_217_004,
-  hash: '9d4968f01297dc42df373c37e61b9bd0fff4f96bb697891b9403badb6f0818c2',
+  createdAt: 1_788_973_871_425,
+  hash: 'ee6f955c597387f4ae786a69fae68a4da51edc03cdc0443f78f65dd598a78876',
 } as const;
 
 @Injectable()

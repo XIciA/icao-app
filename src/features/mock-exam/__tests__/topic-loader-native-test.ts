@@ -88,7 +88,7 @@ describe('Native mock-exam topic hydration', () => {
     expect(mockExamTopicCardCount(dataset, publicTopic)).toBe(15);
     await expect(hydrateMockExamTopic(dataset, category, publicTopic)).resolves.toBe(hydrated);
     expect(mockGetTopic).toHaveBeenCalledTimes(1);
-    expect(mockGetTopic).toHaveBeenCalledWith('radiotelephony', 'atc-qfa', 'atc-scenario-0004');
+    expect(mockGetTopic).toHaveBeenCalledWith('radiotelephony', 'atc-qfa', 'atc-scenario-0004', undefined);
   });
 
   it('keeps free users on the public cards without requesting member content', async () => {

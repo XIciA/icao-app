@@ -1,3 +1,4 @@
+import { parseWechatPayConfig, type WechatPayConfig } from './commerce/wechat-pay-config';
 import {
   CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64,
   DEEPSEEK_API_BASE_URL,
@@ -79,6 +80,8 @@ const opsRuntimeSchema = z.object({
   OPS_SESSION_HASH_SECRET: z.string().min(32),
   OPS_TOTP_ENCRYPTION_KEY: z.string(),
   OPS_TRUSTED_PROXY_SHARED_SECRET: z.string().min(32),
+  OPS_FEEDBACK_STORAGE_URL: z.string().url().optional(),
+  OPS_FEEDBACK_STORAGE_READ_TOKEN: z.string().min(20).optional(),
 });
 
 const PRODUCTION_AI_ENVIRONMENT_KEYS = [
@@ -141,6 +144,7 @@ export type ApiConfig = {
   appleKeyId?: string;
   applePrivateKey?: string;
   appleCredentialEncryptionKey?: string;
+  wechatPay?: WechatPayConfig;
   wechatAppId?: string;
   wechatAppSecret?: string;
   wechatUniversalLink?: string;
@@ -181,6 +185,8 @@ export type OpsApiConfig = {
   opsSessionHashSecret: string;
   opsTotpEncryptionKey: string;
   opsTrustedProxySharedSecret: string;
+  opsFeedbackStorageUrl?: string;
+  opsFeedbackStorageReadToken?: string;
 };
 
 export const API_CONFIG = Symbol('API_CONFIG');
@@ -501,6 +507,7 @@ export function loadConfig(
     appleKeyId: parsed.data.APPLE_KEY_ID,
     applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
+    wechatPay: parseWechatPayConfig(environment, parsed.data.WECHAT_APP_ID),
     wechatAppId: parsed.data.WECHAT_APP_ID,
     wechatAppSecret: parsed.data.WECHAT_APP_SECRET,
     wechatUniversalLink: parsed.data.WECHAT_UNIVERSAL_LINK,
@@ -585,5 +592,7 @@ export function loadOpsConfig(
     opsSessionHashSecret: parsed.data.OPS_SESSION_HASH_SECRET,
     opsTotpEncryptionKey: parsed.data.OPS_TOTP_ENCRYPTION_KEY,
     opsTrustedProxySharedSecret: parsed.data.OPS_TRUSTED_PROXY_SHARED_SECRET,
+    opsFeedbackStorageUrl: parsed.data.OPS_FEEDBACK_STORAGE_URL,
+    opsFeedbackStorageReadToken: parsed.data.OPS_FEEDBACK_STORAGE_READ_TOKEN,
   };
 }

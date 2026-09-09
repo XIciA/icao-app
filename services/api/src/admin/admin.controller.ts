@@ -1,3 +1,4 @@
+import type { OpsFeedbackListResponse, OpsFeedbackDetail } from '@icao/contracts/feedback-ops';
 import {
   BadRequestException,
   Body,
@@ -9,7 +10,9 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import type {
@@ -19,7 +22,6 @@ import type {
   OpsEntitlementGrantPreview,
   OpsEntitlementGrantRequest,
   OpsEntitlementGrantResult,
-  OpsFeedbackQueueItem,
   OpsHealthSummary,
   OpsLoginRequest,
   OpsPrivacyRequestQueueItem,
@@ -31,6 +33,8 @@ import type {
 } from '@icao/contracts';
 import type { NativeOpsUserSummary as OpsUserSummary } from '@icao/contracts/native-auth';
 import { z } from 'zod';
+import type { FastifyReply } from 'fastify';
+import { AdminFeedbackStorageService } from './admin-feedback-storage.service';
 
 import { OPS_API_CONFIG, type OpsApiConfig } from '../config';
 import { AdminAuthService } from './admin-auth.service';
@@ -108,6 +112,7 @@ export class AdminController {
     private readonly data: AdminDataService,
     private readonly entitlements: AdminEntitlementService,
     private readonly staff: AdminStaffService,
+    private readonly feedbackStorage: AdminFeedbackStorageService,
   ) {}
 
   @Get('health')
@@ -163,15 +168,43 @@ export class AdminController {
 
   @Get('feedback')
   async feedback(
-    @Headers('x-ops-reason') reason: string | undefined,
+    @Query('cursor') cursor: string | undefined,
     @Req() request: OpsAuthenticatedRequest,
-  ): Promise<ApiSuccessEnvelope<OpsFeedbackQueueItem[]>> {
-    const parsed = opsReasonQuerySchema.safeParse({ reason });
-    if (!parsed.success) throw new BadRequestException('invalid_ops_reason');
+    @Res({ passthrough: true }) reply: FastifyReply,
+  ): Promise<ApiSuccessEnvelope<OpsFeedbackListResponse>> {
+    if (cursor && cursor.length > 300) throw new BadRequestException('invalid_feedback_cursor');
+    reply.header('cache-control', 'private, no-store');
     return {
       requestId: request.id,
-      data: await this.data.feedbackQueue(parsed.data.reason, request.opsStaff!, request.id),
+      data: await this.data.feedbackQueue('查看用户提交的反馈列表', request.opsStaff!, request.id, cursor),
     };
+  }
+
+  @Get('feedback/:ticketNumber')
+  async feedbackDetail(
+    @Param('ticketNumber') ticketNumber: string, @Req() request: OpsAuthenticatedRequest,
+    @Res({ passthrough: true }) reply: FastifyReply,
+  ): Promise<ApiSuccessEnvelope<OpsFeedbackDetail>> {
+    this.assertFeedbackTicket(ticketNumber);
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.data.feedbackDetail(ticketNumber, request.opsStaff!, request.id) };
+  }
+
+  @Get('feedback/:ticketNumber/attachments/:attachmentId')
+  async feedbackAttachment(
+    @Param('ticketNumber') ticketNumber: string, @Param('attachmentId') attachmentId: string,
+    @Req() request: OpsAuthenticatedRequest, @Res() reply: FastifyReply,
+  ) {
+    this.assertFeedbackTicket(ticketNumber);
+    if (!uuidSchema.safeParse(attachmentId).success) throw new BadRequestException('invalid_feedback_attachment');
+    const image = await this.data.feedbackAttachment(ticketNumber, attachmentId, request.opsStaff!, request.id);
+    const bytes = await this.feedbackStorage.read(image);
+    return reply.header('cache-control', 'private, no-store').header('x-content-type-options', 'nosniff')
+      .header('content-type', image.mimeType).send(bytes);
+  }
+
+  private assertFeedbackTicket(ticketNumber: string) {
+    if (!/^FB-\d{6}-[A-F0-9]{8}$/u.test(ticketNumber)) throw new BadRequestException('invalid_feedback_ticket');
   }
 
   @Get('privacy-requests')

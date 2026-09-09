@@ -1,3 +1,5 @@
+// These regression cases target the frozen generic/Web implementation.
+jest.mock('../components/StudyWorkbench', () => jest.requireActual('../components/StudyWorkbench.tsx'));
 import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { createRef, useState } from 'react';
 import { Platform, StyleSheet } from 'react-native';

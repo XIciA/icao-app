@@ -4,8 +4,8 @@ import {
 } from '../wechat-release-capability';
 
 describe('WeChat release capability', () => {
-  it('keeps the current release entry hidden while Open Platform approval is pending', () => {
-    expect(WECHAT_LOGIN_ENABLED).toBe(false);
+  it('enables the current release entry for the approved mobile application', () => {
+    expect(WECHAT_LOGIN_ENABLED).toBe(true);
   });
 
   it('enables the entry only with a complete approved mobile application configuration', () => {

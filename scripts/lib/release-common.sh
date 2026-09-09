@@ -63,6 +63,10 @@ load_release_runtime() {
     exit 1
   fi
 
+  # Public Native identifiers have one reviewed source. Secrets remain server-only.
+  ICAO_WECHAT_APP_ID=$(node -p "require(process.argv[1] + '/config/release/wechat-login-contract.cjs').resolveWechatLoginReleaseCapability(require(process.argv[1] + '/config/release/wechat-login.json')).appId" "$PROJECT_ROOT")
+  ICAO_WECHAT_UNIVERSAL_LINK=$(node -p "require(process.argv[1] + '/config/release/wechat-login-contract.cjs').resolveWechatLoginReleaseCapability(require(process.argv[1] + '/config/release/wechat-login.json')).universalLink" "$PROJECT_ROOT")
+  export ICAO_WECHAT_APP_ID ICAO_WECHAT_UNIVERSAL_LINK
   export API_URL SUPABASE_URL PUBLISHABLE_KEY ECS_HOST ECS_USER SSH_KEY ICAO_IOS_TEAM_ID
   export EXPO_PUBLIC_ICAO_API_URL=$API_URL
   export EXPO_PUBLIC_SUPABASE_URL=$SUPABASE_URL

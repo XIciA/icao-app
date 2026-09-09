@@ -1,8 +1,12 @@
 import { fireEvent, render } from '@testing-library/react-native';
+import { DEFAULT_PROFILE, type ExamGoal } from '@/features/account/profile-model';
 
 import QuestionBankTab from '../(tabs)';
 
 const mockPush = jest.fn();
+let mockProfile = { ...DEFAULT_PROFILE };
+
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -30,13 +34,14 @@ jest.mock('react-native-safe-area-context', () => ({
 describe('<QuestionBankTab />', () => {
   beforeEach(() => {
     mockPush.mockClear();
+    mockProfile = { ...DEFAULT_PROFILE };
   });
 
-  it('shows all five question banks without course selection or filtering', async () => {
+  it('defaults to ICAO 4 first-exam banks without adding an onboarding choice or another profile entrance', async () => {
     const screen = await render(<QuestionBankTab />);
 
     expect(screen.getByText('航空英语题库')).toBeTruthy();
-    expect(screen.getByText('五类题库集中呈现，按自己的节奏开始练习。')).toBeTruthy();
+    expect(screen.getByText('按自己的节奏开始练习。')).toBeTruthy();
     expect(screen.getByText('听力')).toBeTruthy();
     expect(screen.getByText('4 题组 / 1223 题')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
@@ -44,8 +49,9 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('186 场景 / 3216 卡')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
     expect(screen.getByText('144 话题 / 1090 卡')).toBeTruthy();
-    expect(screen.getByText('故事复诵')).toBeTruthy();
-    expect(screen.getByText('4 子库 / 436 卡')).toBeTruthy();
+    expect(screen.queryByText('故事复诵')).toBeNull();
+    expect(screen.queryByLabelText('打开个人资料')).toBeNull();
+    expect(screen.getByLabelText('用户头像')).toBeTruthy();
     expect(screen.queryByText('可练习')).toBeNull();
     expect(screen.queryByLabelText('选择备考课程')).toBeNull();
     expect(screen.queryByText('ICAO 4 复考')).toBeNull();
@@ -54,12 +60,22 @@ describe('<QuestionBankTab />', () => {
     expect(screen.queryByText('跟着课程计划，逐个攻克核心模块。')).toBeNull();
   });
 
-  it('keeps profile and question-bank navigation available', async () => {
+  it.each<[ExamGoal, string[]]>([
+    ['icao4-first', ['听力', '900 句', '陆空通话', 'OPI']],
+    ['icao4-recert', ['陆空通话', 'OPI']],
+    ['icao5-first', ['听力', '900 句', '陆空通话', 'OPI', '故事复诵']],
+    ['icao5-recert', ['陆空通话', 'OPI', '故事复诵']],
+  ])('shows the confirmed module set for %s', async (target, expected) => {
+    mockProfile = { ...mockProfile, target };
     const screen = await render(<QuestionBankTab />);
+    expect(screen.getAllByLabelText(/，打开$/).map(node => node.props.accessibilityLabel)).toEqual(expected.map(title => `${title}，打开`));
+  });
 
-    await fireEvent.press(screen.getByLabelText('打开个人资料'));
-    expect(mockPush).toHaveBeenCalledWith('/account/profile');
-
+  it('reflects a profile goal change and keeps the selected bank navigation', async () => {
+    const screen = await render(<QuestionBankTab />);
+    expect(screen.queryByLabelText('故事复诵，打开')).toBeNull();
+    mockProfile = { ...mockProfile, target: 'icao5-first' };
+    await screen.rerender(<QuestionBankTab />);
     await fireEvent.press(screen.getByLabelText('故事复诵，打开'));
     expect(mockPush).toHaveBeenCalledWith({
       pathname: '/question-bank/[bankId]',

@@ -13,7 +13,9 @@ const mockSignOut = jest.fn();
 const mockRequestPhoneBindingOtp = jest.fn();
 const mockResendPhoneBindingOtp = jest.fn();
 const mockVerifyPhoneBindingOtp = jest.fn();
+const mockAuthorizePhoneBinding = jest.fn();
 const mockRouterReplace = jest.fn();
+const mockRouterPush = jest.fn();
 let mockAuthSession: { user: { hasPassword: boolean; id: string; phone?: string; providers?: ('phone' | 'apple' | 'wechat')[]; registrationPending: boolean } } | undefined;
 let mockAccount: { accountId: string; hasPassword?: boolean; phone?: string; phoneBound: boolean; providers: ('phone' | 'apple' | 'wechat')[] } | undefined;
 let mockPasswordChangePurpose: 'recovery' | 'setup' | undefined;
@@ -43,10 +45,9 @@ jest.mock('@/features/ai/ai-client', () => ({
   withdrawAiConsent: jest.fn().mockResolvedValue(undefined),
 }));
 
-jest.mock('@/features/account/privacy-self-service', () => ({
+jest.mock('@/features/account/privacy-self-service.native', () => ({
   clearLearningData: jest.fn(),
   deleteAllAiResults: jest.fn(),
-  exportAccountAndLearningData: jest.fn(),
 }));
 
 jest.mock('@/features/feedback/feedback-client', () => ({
@@ -59,6 +60,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     account: mockAccount,
     session: mockAuthSession,
     passwordChangePurpose: mockPasswordChangePurpose,
+    passwordChangeReturnPath: '/account/security',
     deleteAccount: jest.fn(),
     signOut: (...args: unknown[]) => mockSignOut(...args),
     signOutAll: jest.fn(),
@@ -66,6 +68,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     resendPhoneBindingOtp: (...args: unknown[]) => mockResendPhoneBindingOtp(...args),
     verifyPhoneBindingOtp: (...args: unknown[]) => mockVerifyPhoneBindingOtp(...args),
     updatePassword: (...args: unknown[]) => mockUpdatePassword(...args),
+    authorizePhoneBinding: (...args: unknown[]) => mockAuthorizePhoneBinding(...args),
   }),
 }));
 
@@ -75,13 +78,14 @@ jest.mock('expo-image-picker', () => ({
 }));
 
 jest.mock('@react-navigation/native', () => ({
+  useFocusEffect: (callback: () => void) => { const React = jest.requireActual('react'); React.useEffect(callback, [callback]); },
   useNavigation: () => ({ dispatch: jest.fn() }),
   usePreventRemove: jest.fn(),
 }));
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: jest.fn(), push: jest.fn(), replace: mockRouterReplace }),
+  useRouter: () => ({ back: jest.fn(), canGoBack: () => true, push: mockRouterPush, replace: mockRouterReplace }),
 }));
 
 function withSafeArea(node: React.ReactNode) {
@@ -104,7 +108,9 @@ describe('base flow parity screens', () => {
     mockSignOut.mockReset();
     mockSignOut.mockResolvedValue(undefined);
     mockRouterReplace.mockReset();
+    mockRouterPush.mockReset();
     mockRequestPhoneBindingOtp.mockReset();
+    mockAuthorizePhoneBinding.mockReset().mockResolvedValue('verified-current-account-grant');
     mockVerifyPhoneBindingOtp.mockReset().mockResolvedValue(undefined);
   });
 
@@ -121,9 +127,10 @@ describe('base flow parity screens', () => {
     mockParams = { slug: 'security' };
     const screen = await render(withSafeArea(<AccountScreen />));
     expect(screen.getByText('账号安全')).toBeTruthy();
-    expect(screen.getByText('正在同步')).toBeTruthy();
+    expect(screen.queryByText('正在同步')).toBeNull();
+    expect(screen.getByText('Apple 登录')).toBeTruthy();
     expect(screen.getByText('设置登录密码')).toBeTruthy();
-    expect(screen.getByText('未绑定')).toBeTruthy();
+    expect(screen.getAllByText('未绑定').length).toBeGreaterThan(0);
     expect(screen.getByText('注销账号')).toBeTruthy();
   });
 
@@ -170,8 +177,40 @@ describe('base flow parity screens', () => {
     expect(screen.getByText('短信验证后设置，可使用手机号和密码登录')).toBeTruthy();
     await fireEvent.press(screen.getByText('设置登录密码'));
 
-    await waitFor(() => expect(mockSignOut).toHaveBeenCalledTimes(1));
-    expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login?mode=recovery');
+    expect(mockSignOut).not.toHaveBeenCalled();
+    expect(mockRouterPush).toHaveBeenCalledWith('/account/password?mode=verify');
+  });
+
+  it('verifies the existing account before sending an OTP to a replacement number', async () => {
+    mockParams = { slug: 'bind-phone' };
+    mockAccount = { accountId: 'current-account', phone: '+8613800138000', hasPassword: true, phoneBound: true, providers: ['phone'] };
+    mockRequestPhoneBindingOtp.mockResolvedValue({ phone: '+8613900139000' });
+    const screen = await render(withSafeArea(<AccountScreen />));
+    expect(screen.getByText(/原登录密码需重新设置/u)).toBeTruthy();
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13900139000');
+    await fireEvent.press(screen.getByText('获取验证码'));
+    expect(mockRequestPhoneBindingOtp).not.toHaveBeenCalled();
+    await fireEvent.changeText(screen.getByLabelText('登录密码'), 'currentpassword10');
+    await fireEvent.press(screen.getByText('验证并继续'));
+    expect(mockAuthorizePhoneBinding).toHaveBeenCalledWith(expect.objectContaining({ method: 'password', password: 'currentpassword10' }));
+    expect(mockRequestPhoneBindingOtp).toHaveBeenCalledWith('13900139000', 'verified-current-account-grant');
+    await fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456');
+    await fireEvent.press(screen.getByText('验证并完成绑定'));
+    expect(mockVerifyPhoneBindingOtp).toHaveBeenCalledWith({ phone: '+8613900139000' }, '123456');
+    expect(mockSignOut).not.toHaveBeenCalled();
+    expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
+  });
+
+  it('cancels replacement verification without sending an OTP or changing the original binding', async () => {
+    mockParams = { slug: 'bind-phone' };
+    mockAccount = { accountId: 'current-account', phone: '+8613800138000', hasPassword: true, phoneBound: true, providers: ['phone'] };
+    const screen = await render(withSafeArea(<AccountScreen />));
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13900139000');
+    await fireEvent.press(screen.getByText('获取验证码'));
+    await fireEvent.press(screen.getByText('取消'));
+    expect(mockRequestPhoneBindingOtp).not.toHaveBeenCalled();
+    expect(mockVerifyPhoneBindingOtp).not.toHaveBeenCalled();
+    expect(mockRouterReplace).not.toHaveBeenCalled();
   });
 
   it('keeps an occupied phone neutral until its SMS code is verified', async () => {
@@ -208,7 +247,7 @@ describe('base flow parity screens', () => {
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.press(screen.getByText('获取验证码'));
 
-    expect(screen.getByText(/重新使用当前第三方方式登录/u)).toBeTruthy();
+    expect(screen.getByText(/请先验证当前账号/u)).toBeTruthy();
     expect(screen.getByText('重新验证身份')).toBeTruthy();
     expect(screen.queryByText(/已有账号|归并/u)).toBeNull();
   });
@@ -281,7 +320,7 @@ describe('base flow parity screens', () => {
     await waitFor(() => expect(mockRouterReplace).toHaveBeenCalledWith('/account/security'));
   });
 
-  it('signs out before opening SMS recovery for a forgotten current password', async () => {
+  it('keeps the current login while opening SMS recovery for a forgotten password', async () => {
     mockParams = { slug: 'password' };
     mockAuthSession = {
       user: {
@@ -291,21 +330,24 @@ describe('base flow parity screens', () => {
         registrationPending: false,
       },
     };
+    mockAccount = { accountId: 'user-1', phone: '+8613800138000', hasPassword: true, phoneBound: true, providers: ['phone'] };
     const screen = await render(withSafeArea(<AccountScreen />));
 
     expect(screen.getByText('当前密码')).toBeTruthy();
     await fireEvent.press(screen.getByText('忘记当前密码？使用短信验证'));
 
-    await waitFor(() => expect(mockSignOut).toHaveBeenCalledTimes(1));
-    expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login?mode=recovery');
+    expect(screen.getByText('验证当前账号手机号')).toBeTruthy();
+    expect(mockSignOut).not.toHaveBeenCalled();
+    expect(mockRouterReplace).not.toHaveBeenCalled();
   });
 
-  it('completes OTP-first registration and enters the app after setting a password', async () => {
-    mockParams = { slug: 'password', mode: 'setup' };
-    mockPasswordChangePurpose = 'setup';
+  it('saves an optional first password and returns to security without an acknowledgment page', async () => {
+    mockParams = { slug: 'password', mode: 'verify' };
+    mockPasswordChangePurpose = 'recovery';
+    mockAccount = { accountId: 'user-1', phone: '+8613800138000', phoneBound: true, providers: ['phone'] };
     const screen = await render(withSafeArea(<AccountScreen />));
 
-    expect(screen.getByText('手机号验证已通过，设置登录密码即可完成注册。')).toBeTruthy();
+    expect(screen.queryByText('注册完成')).toBeNull();
     expect(screen.queryByText('当前密码')).toBeNull();
 
     await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
@@ -313,36 +355,36 @@ describe('base flow parity screens', () => {
     await fireEvent.press(screen.getByTestId('password-submit'));
 
     await waitFor(() => expect(mockUpdatePassword).toHaveBeenCalledWith('flightdeck1', undefined));
-    await waitFor(() => expect(screen.getByText('注册完成')).toBeTruthy());
-    await fireEvent.press(screen.getByText('进入 App'));
-    expect(mockRouterReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockRouterReplace).toHaveBeenCalledWith('/account/security');
+    expect(screen.queryByText('我知道了')).toBeNull();
   });
 
-  it('renders the information hub instead of skipping directly to help', async () => {
+  it('routes the removed information hub to the help center', async () => {
     mockParams = { slug: 'hub' };
     const screen = await render(withSafeArea(<InfoScreen />));
-    expect(screen.getByText('信息与帮助')).toBeTruthy();
+    expect(screen.queryByText('信息与帮助')).toBeNull();
     expect(screen.getByText('帮助中心')).toBeTruthy();
-    expect(screen.getByText('法律条款')).toBeTruthy();
+    expect(screen.queryByText('法律条款')).toBeNull();
   });
 
   it('shows the shared task timestamp version in settings', async () => {
     mockParams = { slug: 'settings' };
     const screen = await render(withSafeArea(<AccountScreen />));
-    expect(screen.getByText(APP_DISPLAY_VERSION)).toBeTruthy();
+    expect(screen.getByText(`听你五个 · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
   });
 
-  it('exposes the 1.0.0 account and privacy self-service rights in the Native settings flow', async () => {
+  it('keeps only data controls and policies in Native privacy settings', async () => {
     mockParams = { slug: 'privacy' };
     mockAccount = { accountId: 'user-1', phone: '+8613800138000', phoneBound: true, providers: ['phone'] };
     const screen = await render(withSafeArea(<AccountScreen />));
 
-    expect(screen.getByText('账号与隐私')).toBeTruthy();
-    expect(screen.getByText('导出账号和学习数据')).toBeTruthy();
+    expect(screen.getByText('隐私与数据')).toBeTruthy();
+    expect(screen.queryByText('导出账号和学习数据')).toBeNull();
     expect(screen.getByText('删除全部 AI 结果')).toBeTruthy();
     expect(screen.getByText('清除全部学习数据')).toBeTruthy();
     expect(screen.getByText('第三方服务清单')).toBeTruthy();
-    expect(screen.getByText('注销整个账号')).toBeTruthy();
+    expect(screen.queryByText('注销整个账号')).toBeNull();
+    expect(screen.queryByText('账号安全')).toBeNull();
     expect(screen.getByText('privacy@yunqihangke.com')).toBeTruthy();
   });
 
@@ -354,26 +396,25 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText(/iOS、Android、Web 产品/u)).toBeNull();
   });
 
-  it('keeps the v4.2 in-app privacy rights and AI disclosure aligned with the public policy source', async () => {
+  it('discloses current Native data controls and AI use without a removed export feature', async () => {
     mockParams = { slug: 'privacy' };
     const screen = await render(withSafeArea(<InfoScreen />));
 
-    expect(screen.getByText(/导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据/u)).toBeTruthy();
-    expect(screen.getByText(/在“学习记录”删除单条 AI 结果/u)).toBeTruthy();
+    expect(screen.queryByText(/导出账号和学习数据/u)).toBeNull();
+    expect(screen.getByText(/删除学习记录/u)).toBeTruthy();
     expect(screen.getByText(/清除学习数据仍保留账号、会员和订单/u)).toBeTruthy();
     expect(screen.getAllByText(/DeepSeek-V4-Flash-0731/u).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Beijing-DeepseekChat-202404280016/u).length).toBeGreaterThan(0);
     expect(screen.getByText(/即时结果区和学习记录中持续显示“AI 辅助生成”/u)).toBeTruthy();
   });
 
-  it('shows the shared task timestamp version on the about page', async () => {
+  it('routes the removed About page to help without update, rating or sharing buttons', async () => {
     mockParams = { slug: 'about' };
     const screen = await render(withSafeArea(<InfoScreen />));
-    expect(screen.getByTestId('info-brand-logo')).toBeTruthy();
-    expect(screen.getByLabelText('听你五个 App 标志')).toBeTruthy();
-    expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
-    expect(screen.getByText('App 备案信息')).toBeTruthy();
-    expect(screen.getByText(/蜀ICP备2026045996号-1A/u)).toBeTruthy();
+    expect(screen.getByText('帮助中心')).toBeTruthy();
+    expect(screen.queryByText('检查更新')).toBeNull();
+    expect(screen.queryByText('给我们评分')).toBeNull();
+    expect(screen.queryByText('分享给朋友')).toBeNull();
   });
 
   it('submits a profile feedback form and shows only the ticket number', async () => {
