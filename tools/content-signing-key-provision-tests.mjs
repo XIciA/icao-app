@@ -321,6 +321,7 @@ test('staged-key cleanup failure remains before the release commit and therefore
     '-c',
     `set -u
 release_succeeded=0
+app_content_activation_armed=0
 cutover_started=1
 runtime_env_update_armed=1
 runtime_source_existed=1

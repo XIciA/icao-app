@@ -69,7 +69,7 @@ trap 'exit 1' HUP INT TERM
     package.json pnpm-lock.yaml pnpm-workspace.yaml patches \
     modules/icao-distribution-environment modules/icao-wechat-auth \
     packages/contracts services/api \
-    content/vocabulary infra/api \
+    content/vocabulary content/app-content/text.json content/question-banks/opi-hotspots.json infra/api \
     | gzip -n > "$ARCHIVE"
 )
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
@@ -513,9 +513,9 @@ docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
   if (p.status !== "verified" || p.readOnly !== true
       || p.requiredTables !== p.expectedPublicTables
-      || p.expectedPublicTables !== 59 || p.actualPublicTables !== 59
+      || p.expectedPublicTables !== 64 || p.actualPublicTables !== 64
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
-      || p.commerceProducts !== 5 || p.appleProductMappings !== 5
+      || p.commerceProducts !== 3 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.unexpectedPublicTableOwners !== 0 || p.defaultAclOwners !== 1
       || p.serverOnlyClientDefaultTableGrants !== 0

@@ -103,45 +103,38 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
 
 const infoPath = path.join(root, 'src/features/info/InfoScreen.native.tsx');
 const info = await readFile(infoPath, 'utf8');
-for (const fragment of [company, appName, '版本 v4.2', '手机号', 'resolveLegalRuntimeCopy(Platform.OS)', 'AI 生成内容标识', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '导出账号和学习数据、撤回 AI 同意、删除全部 AI 结果或清除学习数据', '在“学习记录”删除单条 AI 结果', '清除学习数据仍保留账号、会员和订单', 'privacy@yunqihangke.com']) {
-  requireFragment(info, fragment, infoPath);
-}
-const formalAgreementScope = '听你五个 iOS、Android 正式 App 及其相关服务';
-requireFragment(info, formalAgreementScope, infoPath);
-requireFragment(await readFile(routeToFile('/apps/readyoufife/terms/'), 'utf8'), formalAgreementScope, routeToFile('/apps/readyoufife/terms/'));
-if (info.includes('iOS、Android、Web 产品')) {
-  throw new Error('Formal in-app agreement must not include Web in the iOS/Android App scope.');
-}
-const privacyChoicesPath = routeToFile('/apps/readyoufife/privacy-choices/');
-const privacyChoices = await readFile(privacyChoicesPath, 'utf8');
-for (const fragment of ['设置—账号与隐私', '导出账号和学习数据', '删除全部 AI 结果', '清除学习数据']) {
-  requireFragment(privacyChoices, fragment, privacyChoicesPath);
-}
-if (privacyChoices.includes('1.0.0 暂不提供 App 内自助导出入口')) {
-  throw new Error('Public privacy choices must match the in-App self-service export capability.');
-}
-
-const legalReleasePath = path.join(root, 'src/features/info/legal-release-surface.native.ts');
-const legalRelease = await readFile(legalReleasePath, 'utf8');
-const formalMarker = 'export const FORMAL_APP_LEGAL_COPY';
-const legacyMarker = 'export const VERCEL_LEGACY_LEGAL_COPY';
-const formalStart = legalRelease.indexOf(formalMarker);
-const legacyStart = legalRelease.indexOf(legacyMarker);
-if (formalStart < 0 || legacyStart <= formalStart) {
-  throw new Error('Formal and Vercel legacy legal copy boundaries are missing.');
-}
-const formalLegalRelease = legalRelease.slice(formalStart, legacyStart);
-for (const fragment of ['16周岁', '微信登录', '微信 OpenSDK', '不包含微信支付能力', '腾讯云 EdgeOne', '腾讯云语音识别', 'DeepSeek 开放平台', '杭州深度求索人工智能基础技术研究有限公司', 'DEEPSEEK_MODEL_FILING_DISCLOSURE', 'AI_GENERATED_CONTENT_LABEL', '不得恶意删除、遮挡或隐匿该标识', '本地静态词典查词不调用文本 AI、不消耗 AI 点数']) {
-  requireFragment(formalLegalRelease, fragment, legalReleasePath);
-}
-for (const retiredProvider of ['阿里云百炼', '通义千问', 'qwen']) {
-  if (formalLegalRelease.toLowerCase().includes(retiredProvider.toLowerCase())) {
-    throw new Error(`Formal Native/EdgeOne legal copy still references retired provider: ${retiredProvider}`);
+for (const fragment of ['LegalDocumentBody', 'loadAppContent', 'builtinAppContent']) requireFragment(info, fragment, infoPath);
+const contentPath = path.join(root, 'content/app-content/text.json');
+const content = JSON.parse(await readFile(contentPath, 'utf8'));
+const legal = content.legal;
+for (const id of ['agreement', 'privacy', 'thirdPartyServices']) {
+  const document = legal[id];
+  if (!document?.version || !document.effectiveAt || !document.sections?.length || document.id !== id) {
+    throw new Error(`Native legal document is incomplete: ${id}`);
   }
 }
-for (const fragment of ['isVercelLegacyWeb(platform, runtime)', 'VERCEL_LEGACY_LEGAL_COPY', 'FORMAL_APP_LEGAL_COPY']) {
-  requireFragment(legalRelease, fragment, legalReleasePath);
+for (const id of ['agreement', 'privacy']) {
+  if (!legal[id].requiresReconsent || !legal[id].consentVersion) throw new Error(`Native legal consent version missing: ${id}`);
 }
+const nativeText = JSON.stringify(legal);
+for (const fragment of [company, appName, 'iOS、Android 正式 App', '16周岁', '微信登录', '微信 OpenSDK',
+  '腾讯云 EdgeOne', '腾讯云语音识别', 'DeepSeek 开放平台', '杭州深度求索人工智能基础技术研究有限公司',
+  modelDisclosure, aiLabel, '不得恶意删除、遮挡或隐匿', '单次最多 30 条', '本机最多保留 50 条',
+  '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', '清除学习数据仍保留账号、会员和订单',
+  '学习记录保存题目及本次文字作答，不保存用户录音', 'privacy@yunqihangke.com']) {
+  requireFragment(nativeText, fragment, contentPath);
+}
+for (const retired of ['阿里云百炼', '通义千问', 'qwen', '导出账号和学习数据']) {
+  if (nativeText.toLowerCase().includes(retired.toLowerCase())) throw new Error(`Native legal text references retired capability: ${retired}`);
+}
+const rendererPath = path.join(root, 'src/features/app-content/LegalDocumentBody.native.tsx');
+const renderer = await readFile(rendererPath, 'utf8');
+for (const fragment of ['document.version', 'document.effectiveAt', 'document.sections']) requireFragment(renderer, fragment, rendererPath);
+const consentPath = path.join(root, 'src/features/app-content/LegalConsentGate.native.tsx');
+const consentGate = await readFile(consentPath, 'utf8');
+for (const fragment of ['LegalDocumentBody', 'agreement', 'privacy']) requireFragment(consentGate, fragment, consentPath);
+// Public archived pages remain independently checked above; current Native copy
+// comes from its versioned content release and the consented immutable document.
 
 const contractsPath = path.join(root, 'packages/contracts/src/index.ts');
 const contracts = await readFile(contractsPath, 'utf8');

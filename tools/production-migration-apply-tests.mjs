@@ -180,19 +180,19 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact roll-forward-only 0041 journal entry', async () => {
+test('binds minimumSchemaVersion to the exact required 0046 journal entry', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0041_jazzy_blazing_skull.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0046_wechat_payment_attempts.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
   const entry = journal.entries.at(-1);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 41);
-  assert.equal(entry.tag, '0041_jazzy_blazing_skull');
+  assert.equal(entry.idx, 46);
+  assert.equal(entry.tag, '0046_wechat_payment_attempts');
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1_788_504_217_004'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1_788_973_871_425'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 
@@ -219,7 +219,7 @@ test('classifies every public Drizzle table as server-only with no unclassified 
   const schemaTables = [...schemaSource.matchAll(/pgTable\('([^']+)'/gu)]
     .map((match) => match[1])
     .sort();
-  assert.equal(schemaTables.length, 59);
+  assert.equal(schemaTables.length, 64);
   assert.deepEqual(SERVER_ONLY_PUBLIC_TABLES, schemaTables);
   assert.deepEqual(
     Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort(),

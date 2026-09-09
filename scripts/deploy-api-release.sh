@@ -22,6 +22,7 @@ if [ "$SOURCE_GIT_ROOT" != "$SOURCE_ROOT" ]; then
 fi
 
 node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
+SOURCE_SHA=$(git -C "$SOURCE_ROOT" rev-parse HEAD)
 
 CONTENT_SIGNING_PRIVATE_KEY_PATH=${ICAO_CONTENT_CREDENTIAL_SIGNING_PRIVATE_KEY_PATH:-}
 if [ -z "$CONTENT_SIGNING_PRIVATE_KEY_PATH" ]; then
@@ -53,12 +54,13 @@ ARCHIVE=$ARCHIVE_DIR/source.tar.gz
 mkdir -p "$ARCHIVE_DIR"
 
 cd "$SOURCE_ROOT"
-git ls-files -co --exclude-standard -z -- \
+git archive --format=tar "$SOURCE_SHA" \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
   patches modules/icao-distribution-environment modules/icao-wechat-auth \
   packages/contracts services/api \
-  content/vocabulary infra/api infra/backup \
-  | COPYFILE_DISABLE=1 tar --null -T - -czf "$ARCHIVE"
+  content/vocabulary content/app-content/text.json content/question-banks/opi-hotspots.json infra/api infra/backup \
+  | gzip -n > "$ARCHIVE"
+node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"
 
 CONTENT_KEY_UPLOAD_TOKEN=$(openssl rand -hex 16)
@@ -243,9 +245,21 @@ release_succeeded=0
 runtime_env_update_armed=0
 cutover_started=0
 runtime_source_existed=0
+app_content_activation_armed=0
 cleanup_release() {
   cleanup_status=$?
   trap - EXIT HUP INT TERM
+  if [ "$release_succeeded" != 1 ] && [ "$app_content_activation_armed" = 1 ] \
+    && [ -f "$backup_dir/app-content/activation.json" ]; then
+    if ! docker run --rm --network supabase_default \
+      --env-file "$runtime_env" \
+      --mount "type=bind,src=$backup_dir/app-content,dst=/app-content-state,readonly" \
+      "$candidate_image" node services/api/scripts/import-app-content.mjs \
+      --deployment-rollback /app-content-state/activation.json; then
+      echo 'CRITICAL: the failed API release could not restore its previous app content.' >&2
+      cleanup_status=1
+    fi
+  fi
   if [ "$release_succeeded" != 1 ] && [ "$cutover_started" = 1 ]; then
     if content_key_rollback_release \
       "$rollback_image" "$runtime_env" "$backup_dir/runtime-env-before" "$expected_owner" \
@@ -340,6 +354,20 @@ if ! docker run --rm \
   "$candidate_image" \
   node services/api/scripts/migration-plan.mjs --require-current; then
   echo 'Production schema is not current; candidate API deployment was blocked before cutover.' >&2
+  exit 1
+fi
+
+mkdir -m 700 "$backup_dir/app-content"
+app_content_activation_armed=1
+# The mainline candidate owns both the importer and its fixed content sources.
+# Publication validates every hotspot reference before one atomic activation.
+if ! docker run --rm \
+  --network supabase_default \
+  --env-file "$candidate_runtime_env" \
+  --mount "type=bind,src=$backup_dir/app-content,dst=/app-content-state" \
+  "$candidate_image" \
+  node services/api/scripts/import-app-content.mjs --deployment-activate /app-content-state/activation.json; then
+  echo 'Candidate app content is not publishable; API deployment was blocked before cutover.' >&2
   exit 1
 fi
 

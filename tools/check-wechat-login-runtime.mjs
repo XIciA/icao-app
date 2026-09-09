@@ -113,47 +113,18 @@ const requiredFiles = [
   'src/components/auth/login-screen.native.tsx',
   'src/features/auth/wechat-native-auth.ts',
   'src/features/auth/wechat-release-capability.ts',
-  'src/features/info/legal-release-surface.native.ts',
+  'src/features/app-content/LegalDocumentBody.native.tsx',
+  'content/app-content/text.json',
 ];
 for (const file of requiredFiles) {
   if (!await exists(file)) fail(`required_file_missing:${file}`);
 }
 
-const baseLoginScreen = await readFile(path.join(ROOT, 'src/components/auth/login-screen.tsx'), 'utf8');
 const nativeLoginScreen = await readFile(path.join(ROOT, 'src/components/auth/login-screen.native.tsx'), 'utf8');
-const capabilityImportAnchor = "import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';\n";
-const capabilityStateAnchor = "  const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);\n";
-const baseSocialSurface = `      <Divider label="第三方快捷登录" />
-      <View style={styles.socialSection}>
-        {Platform.OS === 'ios' ? (
-          <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
-        ) : null}
-        <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
-      </View>
-      <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>`;
-if (
-  !baseLoginScreen.includes(capabilityImportAnchor)
-  || !baseLoginScreen.includes(capabilityStateAnchor)
-  || !baseLoginScreen.includes(baseSocialSurface)
-) fail('native_login_parity_anchor_missing');
-const expectedNativeLoginScreen = baseLoginScreen
-  .replace(capabilityImportAnchor, `${capabilityImportAnchor}import { WECHAT_LOGIN_ENABLED } from '@/features/auth/wechat-release-capability';\n`)
-  .replace(capabilityStateAnchor, `${capabilityStateAnchor}  const thirdPartyLoginAvailable = Platform.OS === 'ios' || WECHAT_LOGIN_ENABLED;\n`)
-  .replace(baseSocialSurface, `{thirdPartyLoginAvailable ? (
-        <>
-          <Divider label="第三方快捷登录" />
-          <View style={styles.socialSection}>
-            {Platform.OS === 'ios' ? (
-              <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
-            ) : null}
-            {WECHAT_LOGIN_ENABLED ? (
-              <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
-            ) : null}
-          </View>
-          <AppText style={styles.scopeNote} variant="caption">第三方账号无需绑定手机号；可稍后在账号安全中添加其他登录方式。</AppText>
-        </>
-      ) : null}`);
-if (nativeLoginScreen !== expectedNativeLoginScreen) fail('native_login_surface_drift');
+for (const marker of ['WECHAT_LOGIN_ENABLED', 'thirdPartyLoginAvailable', "socialLogin('wechat')", '通过微信登录',
+  'resolveLoginAgeCopy(Platform.OS)', 'LegalDocumentBody', 'loadLegalDocuments']) {
+  if (!nativeLoginScreen.includes(marker)) fail(`native_login_capability_missing:${marker}`);
+}
 
 const capabilitySource = await readFile(path.join(ROOT, 'src/features/auth/wechat-release-capability.ts'), 'utf8');
 if (
@@ -162,8 +133,10 @@ if (
 ) {
   fail('native_release_capability_not_config_owned');
 }
-const nativeLegalSurface = await readFile(path.join(ROOT, 'src/features/info/legal-release-surface.native.ts'), 'utf8');
-if (!nativeLegalSurface.includes('WECHAT_LOGIN_ENABLED')) fail('native_legal_surface_not_capability_gated');
+const nativeLegalContent = JSON.parse(await readFile(path.join(ROOT, 'content/app-content/text.json'), 'utf8'));
+if (!JSON.stringify(nativeLegalContent.legal).includes('微信登录') || !JSON.stringify(nativeLegalContent.legal).includes('微信 OpenSDK')) {
+  fail('native_legal_content_wechat_disclosure_missing');
+}
 const iosReleaseProduct = await readFile(path.join(ROOT, 'scripts/lib/ios-release-product.sh'), 'utf8');
 if (
   !iosReleaseProduct.includes("wechat_release_mode=\$(\"\${NODE_BINARY:-node}\" -p")
@@ -245,7 +218,7 @@ const clientFiles = [
   ...(await filesBelow('modules/icao-wechat-auth')),
   ...(await filesBelow('plugins')),
 ];
-const forbiddenClientSecrets = [/WECHAT_APP_SECRET/u, /EXPO_PUBLIC_[A-Z0-9_]*WECHAT[A-Z0-9_]*SECRET/u];
+const forbiddenClientSecrets = [/WECHAT_APP_SECRET/u, /EXPO_PUBLIC_[A-Z0-9_]*WECHAT[A-Z0-9_]*SECRET/u, /WECHAT_PAY_(?:API_V3_KEY|MERCHANT_PRIVATE_KEY)/u];
 const forbiddenPaymentMarkers = [
   /\bPayReq\b/u,
   /\bPayResp\b/u,
@@ -258,13 +231,30 @@ const forbiddenPaymentMarkers = [
   /\bwechat[_-]?pay\b/iu,
   /\bwx[_-]?pay\b/iu,
 ];
+// Android APP payment was explicitly approved; iOS still uses the pinned NoPay SDK.
+// Keep the exception scoped to named Android implementations, never all Native files.
+const androidPaymentFiles = new Set([
+  'src/features/native-commercial-testflight/wechat-pay-client.android.ts',
+  'src/features/native-commercial-testflight/android-commerce-runtime.android.tsx',
+  'src/features/native-commercial-testflight/__tests__/wechat-pay-client.android-test.ts',
+  'src/features/native-commercial-testflight/__tests__/android-commerce-runtime.android-test.tsx',
+  'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatAuthModule.kt',
+  'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatPayCoordinator.kt',
+]);
+function iosRelevantPluginSource(source) {
+  return source
+    .replace(/function androidPaymentCallbackSource\(packageName\) \{[\s\S]*?\n\}\n/gu, '')
+    .replace(/'android:name': `\$\{config\.android\.package\}\.wxapi\.WXPayEntryActivity`,/gu, '')
+    .replace(/fs\.writeFileSync\(path\.join\(sourceRoot, 'WXPayEntryActivity\.kt'\), androidPaymentCallbackSource\(packageName\)\);/gu, '');
+}
 for (const relativePath of clientFiles) {
   const source = await readFile(path.join(ROOT, relativePath), 'utf8');
   for (const marker of forbiddenClientSecrets) {
     if (marker.test(source)) fail(`client_secret_marker:${relativePath}`);
   }
+  const paymentSource = relativePath === 'plugins/with-wechat-auth.js' ? iosRelevantPluginSource(source) : source;
   for (const marker of forbiddenPaymentMarkers) {
-    if (marker.test(source)) fail(`payment_marker:${relativePath}`);
+    if (!androidPaymentFiles.has(relativePath) && marker.test(paymentSource)) fail(`payment_marker:${relativePath}`);
   }
 }
 

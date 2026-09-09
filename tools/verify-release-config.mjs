@@ -170,6 +170,10 @@ const productionSchemaContractTests = await readFile('services/api/scripts/produ
 const clientTableGrantRevocation = (await Promise.all([
   'services/api/drizzle/0034_revoke_client_table_grants.sql',
   'services/api/drizzle/0035_lowly_microbe.sql',
+  'services/api/drizzle/0042_weekly_ai_allowance.sql',
+  'services/api/drizzle/0043_app_content_releases.sql',
+  'services/api/drizzle/0044_account_login_methods.sql',
+  'services/api/drizzle/0046_wechat_payment_attempts.sql',
 ].map((file) => readFile(file, 'utf8')))).join('\n');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');
@@ -530,9 +534,9 @@ if (
 ) {
   throw new Error('The post-migration production schema verifier is incomplete.');
 }
-const revokedClientTables = [...clientTableGrantRevocation.matchAll(
-  /REVOKE ALL PRIVILEGES ON TABLE "public"\."([^"]+)" FROM anon, authenticated;/gu,
-)].map((match) => match[1]).sort();
+const revokedClientTables = [...new Set([...clientTableGrantRevocation.matchAll(
+  /^REVOKE ALL(?: PRIVILEGES)? ON (?:TABLE )?([^;]+?) FROM anon, authenticated;/gmu,
+)].flatMap((match) => match[1].split(',').map(table => table.trim().replace(/^"?public"?\./u, '').replaceAll('"', ''))))].sort();
 const defaultAclStatements = clientTableGrantRevocation.match(/ALTER DEFAULT PRIVILEGES[^;]*;/gu) ?? [];
 const postgresDefaultAclRevocation = 'ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA "public" REVOKE ALL PRIVILEGES ON TABLES FROM anon, authenticated;';
 if (
@@ -780,7 +784,8 @@ if (
 if (
   !iosTestFlightArchive.includes("-destination 'generic/platform=iOS'") ||
   !iosTestFlightArchive.includes('archivePath') ||
-  !iosTestFlightArchive.includes('audio-sensitive-fingerprint.mjs verify ios') ||
+  !iosTestFlightArchive.includes('pnpm test:recording') ||
+  !iosTestFlightArchive.includes('pnpm typecheck') ||
   !iosTestFlightArchive.includes('verify_ios_release_app') ||
   !iosTestFlightArchive.includes('ApplicationProperties:Team') ||
   !iosTestFlightArchive.includes('check_release_runtime apple') ||
@@ -788,6 +793,9 @@ if (
   !iosTestFlightArchive.includes('check-mainline-release.mjs')
 ) {
   throw new Error('The TestFlight archive is missing its production identity or product integrity gate.');
+}
+if ([iosTestFlightArchive, iosTestFlightRelease].some(source => source.includes('audio-sensitive-fingerprint.mjs verify ios'))) {
+  throw new Error('TestFlight candidate upload must not require device evidence before user acceptance.');
 }
 if (
   !releaseCommon.includes('tools/check-wechat-login-runtime.mjs') ||

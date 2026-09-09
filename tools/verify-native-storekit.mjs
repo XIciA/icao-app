@@ -45,8 +45,8 @@ for (const [businessKey, productId] of Object.entries(expectedProducts)) {
     failures.push(`${mappingPath} must map the Apple product ID exactly once: ${productId}`);
   }
 }
-if (occurrences(mapping, 'recommended: true') !== 1 || !mapping.includes("key: 'membership_31d_v1'")) {
-  failures.push('Exactly the 31-day StoreKit product must be recommended.');
+if (mapping.includes('recommended: true') || !mapping.includes('[7, 31, 93]') || !mapping.includes('ACTIVE_MEMBERSHIP_PRODUCTS')) {
+  failures.push('Only 7/31/93-day products may be offered; retired IDs remain recognized without recommendation badges.');
 }
 for (const file of await sourceFiles(path.join(root, 'src'))) {
   await rejectParallelProductMapping(file);

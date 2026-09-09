@@ -15,6 +15,15 @@ const {
   normalizeWechatLoginCredentials,
   resolveWechatLoginReleaseCapability,
 } = require('../config/release/wechat-login-contract.cjs');
+const { androidPaymentCallbackSource } = require('../plugins/with-wechat-auth.js');
+
+test('Android payment callback uses the payment coordinator without changing the login callback class', () => {
+  const generated = androidPaymentCallbackSource('com.example.icao');
+  assert.match(generated, /package com\.example\.icao\.wxapi/u);
+  assert.match(generated, /class WXPayEntryActivity/u);
+  assert.match(generated, /IcaoWechatPayCoordinator\.handleResponse\(response\)/u);
+  assert.doesNotMatch(generated, /IcaoWechatAuthCoordinator\.handleResponse|class WXEntryActivity/u);
+});
 
 test('the shared WeChat release contract rejects ambiguous candidate credentials', () => {
   assert.deepEqual(resolveWechatLoginReleaseCapability({

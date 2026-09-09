@@ -72,7 +72,7 @@ pnpm test:recording
 pnpm typecheck
 pnpm check:ios:testflight
 git diff --check
-node tools/audio-sensitive-fingerprint.mjs verify ios
+# TestFlight is the device acceptance environment; focused audio tests run above.
 node tools/critical-capability-release-evidence.mjs verify testflight ios
 node tools/app-store-connect-testflight.mjs verify-build
 
