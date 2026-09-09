@@ -1,5 +1,7 @@
 const { withInfoPlist, withXcodeProject } = require('expo/config-plugins');
 const { withNativeBrandAssets } = require('./native-brand-assets');
+const { normalizeWechatLoginCredentials, resolveWechatLoginReleaseCapability } = require('../config/release/wechat-login-contract.cjs');
+const approvedWechatRelease = require('../config/release/wechat-login.json');
 
 const PHASE_NAME = '[Read You 5] Enforce Release Info.plist';
 const INFO_PLIST_INPUT = '"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"';
@@ -8,13 +10,24 @@ function shellQuote(value) {
   return `'${String(value).replace(/'/g, `'"'"'`)}'`;
 }
 
-function applyCanonicalIosUrlScheme(infoPlist, scheme) {
+function applyCanonicalIosUrlScheme(infoPlist, scheme, wechatConfiguration = {}) {
   if (typeof scheme !== 'string' || !scheme) {
     throw new Error('iOS Release integrity requires one canonical URL scheme.');
   }
+  const wechat = normalizeWechatLoginCredentials(wechatConfiguration);
+  const approved = resolveWechatLoginReleaseCapability(approvedWechatRelease);
+  if (wechat.appId && (!approved.enabled || wechat.appId !== approved.appId
+      || wechat.universalLink !== approved.universalLink)) {
+    throw new Error('iOS Release integrity rejects unapproved WeChat configuration.');
+  }
   return {
     ...infoPlist,
-    CFBundleURLTypes: [{ CFBundleURLSchemes: [scheme] }],
+    CFBundleURLTypes: [
+      { CFBundleURLSchemes: [scheme] },
+      ...(wechat.appId ? [{
+        CFBundleTypeRole: 'Editor', CFBundleURLName: 'icao.wechat.auth', CFBundleURLSchemes: [wechat.appId],
+      }] : []),
+    ],
   };
 }
 
@@ -131,8 +144,15 @@ module.exports = function withIosReleaseIntegrity(config) {
   }
 
   if (scheme === 'readyoufife') {
+    // Read the declared plugin options, not the mutable plist or ambient env.
+    // Expo runs mods in reverse registration order, so both plugins must converge
+    // on the same approved URL types regardless of their registration order.
+    const wechatPlugins = (config.plugins || []).filter(entry =>
+      (Array.isArray(entry) ? entry[0] : entry) === './plugins/with-wechat-auth');
+    if (wechatPlugins.length > 1) throw new Error('Duplicate WeChat login config plugins.');
+    const wechatConfiguration = Array.isArray(wechatPlugins[0]) ? wechatPlugins[0][1] : {};
     config = withInfoPlist(config, (infoPlistConfig) => {
-      infoPlistConfig.modResults = applyCanonicalIosUrlScheme(infoPlistConfig.modResults, scheme);
+      infoPlistConfig.modResults = applyCanonicalIosUrlScheme(infoPlistConfig.modResults, scheme, wechatConfiguration);
       return infoPlistConfig;
     });
   }

@@ -13,6 +13,11 @@ PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
 cd "$PROJECT_ROOT"
 
+# Release commands must never resolve a different dependency graph implicitly.
+# Install the reviewed lockfile explicitly before starting this script.
+export pnpm_config_verify_deps_before_run=error
+export pnpm_config_frozen_lockfile=true
+
 node tools/check-mainline-release.mjs
 
 if [ -n "$(git status --porcelain --untracked-files=all)" ]; then

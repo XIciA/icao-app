@@ -21,6 +21,17 @@ const aiClient = await readFile(path.join(root, 'src/features/ai/ai-client.ts'),
 const audioE2eScript = await readFile(path.join(root, 'scripts/run-audio-e2e.sh'), 'utf8');
 const failures = [];
 
+const firstPnpmCommand = releaseScript.indexOf('\npnpm check:audio');
+for (const guard of [
+  'export pnpm_config_verify_deps_before_run=error',
+  'export pnpm_config_frozen_lockfile=true',
+]) {
+  const guardIndex = releaseScript.indexOf(guard);
+  if (guardIndex < 0 || firstPnpmCommand < 0 || guardIndex > firstPnpmCommand) {
+    failures.push(`TestFlight must protect the reviewed lockfile before running pnpm: ${guard}`);
+  }
+}
+
 for (const releasePath of gatedReleaseScripts) {
   const source = await readFile(path.join(root, releasePath), 'utf8');
   try {

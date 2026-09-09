@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+import { verifyGeneratedIosWechatPlist } from './ios-release-plist-contract.mjs';
 
 const TOOL_PATH = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(TOOL_PATH), '..');
@@ -265,6 +266,9 @@ if (!aasaController.includes("@Get('apple-app-site-association')")) fail('aasa_e
 if (!aasaController.includes("header('content-type', 'application/json')")) fail('aasa_content_type_missing');
 
 if (candidateConfiguration) {
+  if (process.argv.includes('--candidate') || process.argv.includes('--candidate-config')) {
+    await verifyGeneratedIosWechatPlist(ROOT);
+  }
   let candidateCredentials;
   try {
     candidateCredentials = normalizeWechatLoginCredentials({
