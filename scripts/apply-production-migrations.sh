@@ -90,6 +90,7 @@ esac
 chmod 700 "$LOCAL_DIR"
 ARCHIVE=$LOCAL_DIR/source.tar.gz
 REHEARSAL_LOG=$LOCAL_DIR/rehearsal.log
+LOCAL_STAGE=prepare
 REMOTE_ROOT=/opt/icao/runtime/production-migrations
 REMOTE_UPLOAD=$REMOTE_ROOT/uploads/source-$SOURCE_ID-$UPLOAD_TOKEN.tar.gz
 REMOTE_CHECKSUM=$REMOTE_UPLOAD.sha256
@@ -108,9 +109,27 @@ cleanup_local_resources() (
   fi
   exit "$cleanup_failed"
 )
+# BEGIN production-migration-preserve-rehearsal-log
+preserve_rehearsal_failure_log() {
+  if [ ! -s "$REHEARSAL_LOG" ]; then return 0; fi
+  failure_log=$(mktemp "${TMPDIR:-/tmp}/icao-production-migration-failure.$SOURCE_ID.XXXXXX") || return 1
+  chmod 600 "$failure_log" || return 1
+  if ! cp "$REHEARSAL_LOG" "$failure_log"; then return 1; fi
+  printf 'production_migration_failed stage=%s rehearsal_log=%s\n' "$LOCAL_STAGE" "$failure_log" >&2
+  # Relay only our safe phase marker; arbitrary migration errors stay in the
+  # private diagnostic file rather than leaking restored data into console logs.
+  grep '^migration_rehearsal_failed stage=[a-z_]* exit=[0-9]*$' "$failure_log" >&2 || true
+}
+# END production-migration-preserve-rehearsal-log
+
 cleanup_local_on_exit() {
   original_status=$?
   trap - EXIT
+  if [ "$original_status" -ne 0 ]; then
+    if ! preserve_rehearsal_failure_log; then
+      echo "production_migration_failed stage=$LOCAL_STAGE diagnostic_log_preservation_failed" >&2
+    fi
+  fi
   if ! cleanup_local_resources; then original_status=1; fi
   exit "$original_status"
 }
@@ -120,8 +139,10 @@ trap 'exit 1' HUP INT TERM
 # This creates a fresh production backup, verifies its checksum, restores it to
 # an isolated database, applies the exact candidate suffix there, proves data
 # preservation, and removes every temporary rehearsal resource before success.
+LOCAL_STAGE=rehearsal
 ICAO_MIGRATION_REHEARSAL_SOURCE_ROOT=$SOURCE_ROOT \
-  /bin/sh "$SOURCE_ROOT/scripts/rehearse-production-migrations.sh" > "$REHEARSAL_LOG"
+  /bin/sh "$SOURCE_ROOT/scripts/rehearse-production-migrations.sh" > "$REHEARSAL_LOG" 2>&1
+LOCAL_STAGE=rehearsal_contract
 REHEARSAL_CONTRACT=$(node "$CONTRACT_TOOL" parse-rehearsal \
   "$SOURCE_SHA" "$EXPECTED_PRE_PLAN" "$EXPECTED_POST_PLAN" "$REHEARSAL_LOG")
 BACKUP_NAME=${REHEARSAL_CONTRACT%%|*}
@@ -131,6 +152,7 @@ if [ "$BACKUP_NAME|$REHEARSAL_EVIDENCE" != "$REHEARSAL_CONTRACT" ]; then
   exit 1
 fi
 
+LOCAL_STAGE=prepare_source
 (
   cd "$SOURCE_ROOT"
   git archive --format=tar "$SOURCE_SHA" \

@@ -110,6 +110,7 @@ database_created=0
 postgres_password_loaded=0
 evidence_partial=
 cleanup_verified=0
+stage=prepare
 
 case "$source_sha:$archive_sha:$upload_token" in
   *[!A-Fa-f0-9:]*) echo 'remote migration rehearsal identity is invalid' >&2; exit 1 ;;
@@ -249,6 +250,9 @@ cleanup_on_exit() {
   original_status=$?
   trap - EXIT
   set +e
+  if [ "$original_status" -ne 0 ]; then
+    printf 'migration_rehearsal_failed stage=%s exit=%s\n' "$stage" "$original_status" >&2
+  fi
   cleanup_failed=0
   if ! drop_created_database; then cleanup_failed=1; fi
   if ! cleanup_files; then
@@ -349,28 +353,33 @@ test "$available_bytes" -ge "$required_bytes"
 test -f "$runtime_env"
 install -d -m 700 "$work_dir"
 tar -xzf "$upload" -C "$work_dir"
+stage=build
 docker build \
   --build-arg "ICAO_API_RELEASE_ID=migration-rehearsal-$source_id" \
   --build-arg "ICAO_NPM_REGISTRY=$build_npm_registry" \
   -t "$image" -f "$work_dir/infra/api/Dockerfile" "$work_dir"
 
+stage=create_isolated_database
 docker run --rm --network supabase_default \
   -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
   supabase/postgres:17.6.1.136 \
   sh -ec 'createdb -h db -U supabase_admin --maintenance-db=postgres --owner=postgres "$RESTORE_DB_NAME"'
 database_created=1
 
+stage=restore_backup
 docker run --rm --network supabase_default \
   -v "$backup:/backup.dump:ro" -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
   supabase/postgres:17.6.1.136 \
   sh -ec 'pg_restore -h db -U supabase_admin -d "$RESTORE_DB_NAME" --exit-on-error /backup.dump'
 
+stage=restored_database_contract
 database_contract=$(docker run --rm --network supabase_default \
   -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
   supabase/postgres:17.6.1.136 \
   sh -ec 'printf "%s\n" "select pg_get_userbyid(datdba), has_database_privilege('\''postgres'\'', datname, '\''CONNECT'\''), has_database_privilege('\''postgres'\'', datname, '\''CREATE'\''), has_database_privilege('\''postgres'\'', datname, '\''TEMPORARY'\''), (select pg_get_userbyid(nspowner) from pg_namespace where nspname = '\''drizzle'\'') from pg_database where datname = :'\''db_name'\''" | psql -X -qAt -v ON_ERROR_STOP=1 -v db_name="$RESTORE_DB_NAME" -h db -U postgres -d "$RESTORE_DB_NAME"')
 test "$database_contract" = 'postgres|t|t|t|postgres'
 
+stage=restored_database_disk_space
 available_after_restore=$(df -PB1 /opt/icao | awk 'NR == 2 { print $4 }')
 test "$available_after_restore" -ge $((5 * 1024 * 1024 * 1024))
 
@@ -395,14 +404,52 @@ run_sql_file() {
   sql_file=$1
   docker run --rm --network supabase_default \
     -v "$sql_file:/rehearsal.sql:ro" -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
+    -e APPLY_0042="$apply_0042" -e APPLY_0045="$apply_0045" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -q -v ON_ERROR_STOP=1 -h db -U supabase_admin -d "$RESTORE_DB_NAME" -f /rehearsal.sql'
+    sh -ec 'psql -X -q -v ON_ERROR_STOP=1 -h db -U supabase_admin -d "$RESTORE_DB_NAME" -v apply_0042="$APPLY_0042" -v apply_0045="$APPLY_0045" -f /rehearsal.sql'
 }
 
+stage=pre_plan
+pre_plan=$work_dir/pre-plan.json
+docker run --rm --network supabase_default --env-file "$database_env" "$image" \
+  node services/api/scripts/migration-plan.mjs --json > "$pre_plan"
+pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
+  const p = require("/evidence.json");
+  if (!p.safe || p.driftCount !== 0 || p.pendingCount < 1) { console.error("migration_rehearsal_pre_plan_mismatch"); process.exit(1); }
+  process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
+')
+
+preservation_flags=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
+  const p = require("/evidence.json");
+  const pending = tag => p.migrations.some(m => m.tag === tag && m.status === "pending");
+  process.stdout.write(`${pending("0042_weekly_ai_allowance")}:${pending("0045_ai_operation_privacy")}`);
+')
+apply_0042=${preservation_flags%:*}
+apply_0045=${preservation_flags#*:}
+case "$apply_0042:$apply_0045" in
+  true:true|true:false|false:true|false:false) ;;
+  *) echo 'migration_rehearsal_pending_transform_invalid' >&2; exit 1 ;;
+esac
+stage=capture_expected_fingerprints
 fingerprint_before_sql=$work_dir/fingerprint-before.sql
 cat > "$fingerprint_before_sql" <<'SQL'
 CREATE SCHEMA icao_rehearsal;
 REVOKE ALL ON SCHEMA icao_rehearsal FROM PUBLIC;
+-- Only migrations pending in this exact pre-plan may transform the expected rows.
+CREATE TABLE icao_rehearsal.preservation_context (
+  apply_0042 boolean NOT NULL,
+  apply_0045 boolean NOT NULL,
+  migration_started_at timestamptz,
+  migration_finished_at timestamptz
+);
+INSERT INTO icao_rehearsal.preservation_context (apply_0042, apply_0045)
+VALUES (:'apply_0042'::boolean, :'apply_0045'::boolean);
+CREATE TABLE icao_rehearsal.approved_ai_scrubs (reservation_id uuid PRIMARY KEY);
+INSERT INTO icao_rehearsal.approved_ai_scrubs
+SELECT r.id FROM public.ai_point_reservations r
+JOIN public.accounts a ON a.id = r.account_id
+WHERE a.ai_result_generation > 0
+  AND (SELECT apply_0045 FROM icao_rehearsal.preservation_context);
 CREATE TABLE icao_rehearsal.table_fingerprints_before (
   schema_name text NOT NULL,
   table_name text NOT NULL,
@@ -423,6 +470,41 @@ AS $function$
   )
   FROM jsonb_each(row_json) AS entry
   WHERE entry.key = ANY (allowed_columns)
+$function$;
+-- Preserve every original field. Only the BEFORE image receives the approved
+-- deterministic value changes; the AFTER image must contain the actual values.
+CREATE FUNCTION icao_rehearsal.preservation_row(
+  schema_name text, table_name text, row_json jsonb, before_image boolean
+) RETURNS jsonb LANGUAGE plpgsql STABLE STRICT AS $function$
+DECLARE
+  change_catalog boolean;
+BEGIN
+  SELECT apply_0042 INTO change_catalog FROM icao_rehearsal.preservation_context;
+  IF schema_name = 'public' AND change_catalog
+      AND table_name IN ('commerce_products', 'commerce_channel_products') THEN
+    IF before_image THEN
+      IF table_name = 'commerce_products' THEN
+        row_json := row_json || jsonb_build_object(
+          'active', (row_json->>'duration_days')::integer IN (7,31,93),
+          'base_price_cny_fen', CASE (row_json->>'duration_days')::integer
+            WHEN 31 THEN 15800 WHEN 93 THEN 35800
+            ELSE (row_json->>'base_price_cny_fen')::integer END);
+      ELSE
+        row_json := row_json || jsonb_build_object('active', row_json->>'product_key'
+          IN ('membership_7d_v1','membership_31d_v1','membership_93d_v1'));
+      END IF;
+    END IF;
+    -- Actual timestamps are separately required to equal the migration's seed
+    -- timestamp inside the database-clock migration window; never ignore them.
+    row_json := jsonb_set(row_json, '{updated_at}', '"approved_0042_transaction"');
+  END IF;
+  IF before_image AND schema_name = 'public' AND table_name = 'ai_point_reservations'
+      AND EXISTS (SELECT 1 FROM icao_rehearsal.approved_ai_scrubs
+        WHERE reservation_id = (row_json->>'id')::uuid) THEN
+    row_json := jsonb_set(row_json, '{result_payload}', 'null'::jsonb);
+  END IF;
+  RETURN row_json;
+END
 $function$;
 DO $capture$
 DECLARE
@@ -446,13 +528,13 @@ BEGIN
     EXECUTE format(
       'SELECT count(*), md5(COALESCE(string_agg(row_hash, %L ORDER BY row_hash), %L))
        FROM (
-         SELECT md5(icao_rehearsal.project_row(to_jsonb(t), $1)::text) AS row_hash
+         SELECT md5(icao_rehearsal.project_row(icao_rehearsal.preservation_row($2, $3, to_jsonb(t), true), $1)::text) AS row_hash
          FROM %I.%I AS t
        ) AS fingerprint_rows',
       '', '', item.schema_name, item.table_name
     )
     INTO captured_count, captured_digest
-    USING columns_to_preserve;
+    USING columns_to_preserve, item.schema_name, item.table_name;
 
     INSERT INTO icao_rehearsal.table_fingerprints_before (
       schema_name, table_name, allowed_columns, row_count, content_digest
@@ -467,6 +549,7 @@ run_sql_file "$fingerprint_before_sql"
 preexisting_table_count=$(query_scalar 'select count(*) from icao_rehearsal.table_fingerprints_before')
 test "$preexisting_table_count" -gt 0
 
+stage=before_data_counts
 before_card_states=$(query_scalar 'select count(*) from public.user_card_states')
 before_learning_records=$(query_scalar 'select count(*) from public.learning_records')
 before_documents=$(query_scalar 'select count(*) from public.user_documents')
@@ -474,24 +557,23 @@ before_changes=$(query_scalar 'select count(*) from public.sync_changes')
 before_auth_users=$(query_scalar 'select count(*) from auth.users')
 before_migrations=$(query_scalar 'select count(*) from drizzle.__drizzle_migrations')
 before_business_rows=$((before_card_states + before_learning_records + before_documents + before_changes))
+stage=before_business_rows
 test "$before_business_rows" -gt 0
+stage=before_auth_users
 test "$before_auth_users" -gt 0
+stage=before_migrations
 test "$before_migrations" -gt 0
 
-pre_plan=$work_dir/pre-plan.json
-docker run --rm --network supabase_default --env-file "$database_env" "$image" \
-  node services/api/scripts/migration-plan.mjs --json > "$pre_plan"
-pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
-  const p = require("/evidence.json");
-  if (!p.safe || p.driftCount !== 0 || p.pendingCount < 1) process.exit(1);
-  process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
-')
+stage=apply_isolated_migrations
+query_scalar 'update icao_rehearsal.preservation_context set migration_started_at = clock_timestamp()' >/dev/null
 
 docker run --rm --network supabase_default --env-file "$database_env" \
   -e ICAO_PRODUCTION_MIGRATION_SOURCE_SHA="$source_sha" \
   -e ICAO_MIGRATION_REHEARSAL_DATABASE_NAME="$database_name" \
   -e ICAO_MIGRATION_REHEARSAL_AUTHORIZATION="rehearse:$source_sha:$database_name" \
   "$image" node services/api/scripts/migrate.mjs --isolated-rehearsal
+query_scalar 'update icao_rehearsal.preservation_context set migration_finished_at = clock_timestamp()' >/dev/null
+stage=post_plan
 docker run --rm --network supabase_default --env-file "$database_env" "$image" \
   node services/api/scripts/migration-plan.mjs --require-current
 
@@ -500,10 +582,11 @@ docker run --rm --network supabase_default --env-file "$database_env" "$image" \
   node services/api/scripts/migration-plan.mjs --json --require-current > "$post_plan"
 post_summary=$(docker run --rm -v "$post_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
-  if (!p.current || !p.safe || p.pendingCount !== 0 || p.driftCount !== 0) process.exit(1);
+  if (!p.current || !p.safe || p.pendingCount !== 0 || p.driftCount !== 0) { console.error("migration_rehearsal_post_plan_mismatch"); process.exit(1); }
   process.stdout.write(`${p.appliedCount}:${p.pendingCount}:${p.driftCount}`);
 ')
 
+stage=schema_contract
 # BEGIN migration-rehearsal-schema-contract-verification
 schema_contract=$work_dir/schema-contract.json
 docker run --rm --network supabase_default --env-file "$database_env" \
@@ -531,8 +614,47 @@ esac
 test "${#schema_contract_sha}" -eq 64
 # END migration-rehearsal-schema-contract-verification
 
+stage=verify_approved_transformations
 fingerprint_after_sql=$work_dir/fingerprint-after.sql
 cat > "$fingerprint_after_sql" <<'SQL'
+-- The only time normalization below is bounded to rows touched by pending
+-- migrations. A migrated/untouched future database receives no exemption.
+DO $approved_changes$
+DECLARE
+  context icao_rehearsal.preservation_context%ROWTYPE;
+  migration_time timestamptz;
+BEGIN
+  SELECT * INTO STRICT context FROM icao_rehearsal.preservation_context;
+  IF context.migration_started_at IS NULL OR context.migration_finished_at IS NULL
+      OR context.migration_finished_at < context.migration_started_at THEN
+    RAISE EXCEPTION 'migration_rehearsal_time_window_invalid';
+  END IF;
+  IF context.apply_0042 THEN
+    SELECT created_at INTO STRICT migration_time FROM public.ai_usage_rule_versions
+    WHERE id = '00000000-0000-4000-8000-000000000500';
+    IF NOT (migration_time BETWEEN context.migration_started_at AND context.migration_finished_at)
+        OR EXISTS (SELECT 1 FROM public.commerce_products WHERE updated_at IS DISTINCT FROM migration_time)
+        OR EXISTS (SELECT 1 FROM public.commerce_channel_products WHERE updated_at IS DISTINCT FROM migration_time) THEN
+      RAISE EXCEPTION 'migration_rehearsal_catalog_timestamp_mismatch';
+    END IF;
+  END IF;
+  IF context.apply_0045 THEN
+    IF EXISTS (
+      SELECT 1 FROM icao_rehearsal.approved_ai_scrubs target
+      LEFT JOIN public.ai_point_reservations r ON r.id = target.reservation_id
+      WHERE r.id IS NULL OR r.result_payload IS NOT NULL OR r.result_deleted_at IS NULL
+        OR r.result_deleted_at NOT BETWEEN context.migration_started_at AND context.migration_finished_at
+        OR (context.apply_0042 AND r.result_deleted_at IS DISTINCT FROM migration_time)
+    ) OR EXISTS (
+      SELECT 1 FROM public.ai_point_reservations r
+      WHERE r.result_deleted_at IS NOT NULL AND NOT EXISTS (
+        SELECT 1 FROM icao_rehearsal.approved_ai_scrubs target WHERE target.reservation_id = r.id)
+    ) THEN
+      RAISE EXCEPTION 'migration_rehearsal_ai_scrub_scope_mismatch';
+    END IF;
+  END IF;
+END
+$approved_changes$;
 CREATE TABLE icao_rehearsal.table_fingerprints_after (
   schema_name text NOT NULL,
   table_name text NOT NULL,
@@ -558,13 +680,13 @@ BEGIN
     EXECUTE format(
       'SELECT count(*), md5(COALESCE(string_agg(row_hash, %L ORDER BY row_hash), %L))
        FROM (
-         SELECT md5(icao_rehearsal.project_row(to_jsonb(t), $1)::text) AS row_hash
+         SELECT md5(icao_rehearsal.project_row(icao_rehearsal.preservation_row($2, $3, to_jsonb(t), false), $1)::text) AS row_hash
          FROM %I.%I AS t
        ) AS fingerprint_rows',
       '', '', item.schema_name, item.table_name
     )
     INTO captured_count, captured_digest
-    USING item.allowed_columns;
+    USING item.allowed_columns, item.schema_name, item.table_name;
 
     INSERT INTO icao_rehearsal.table_fingerprints_after (
       schema_name, table_name, row_count, content_digest
@@ -591,9 +713,16 @@ preexisting_fingerprint_mismatches=$(query_scalar '
   where before_state.row_count is distinct from after_state.row_count
      or before_state.content_digest is distinct from after_state.content_digest
 ')
+stage=preserved_tables
 test "$missing_preexisting_tables" = 0
-test "$preexisting_fingerprint_mismatches" = 0
+stage=preserved_row_fingerprints
+if [ "$preexisting_fingerprint_mismatches" != 0 ]; then
+  echo "migration_rehearsal_fingerprint_mismatches count=$preexisting_fingerprint_mismatches" >&2
+  query_scalar "select before_state.schema_name || chr(46) || before_state.table_name from icao_rehearsal.table_fingerprints_before before_state join icao_rehearsal.table_fingerprints_after after_state using (schema_name, table_name) where before_state.row_count is distinct from after_state.row_count or before_state.content_digest is distinct from after_state.content_digest" >&2
+  exit 1
+fi
 
+stage=after_data_counts
 after_card_states=$(query_scalar 'select count(*) from public.user_card_states')
 after_learning_records=$(query_scalar 'select count(*) from public.learning_records')
 after_documents=$(query_scalar 'select count(*) from public.user_documents')
@@ -607,6 +736,7 @@ test "$after_changes" = "$before_changes"
 test "$after_auth_users" = "$before_auth_users"
 test "$after_migrations" -gt "$before_migrations"
 
+stage=remaining_schema_contracts
 missing_contracts=$(query_scalar "
   select count(*) from (values
     (to_regclass('public.commerce_products')),
@@ -631,6 +761,7 @@ test "$missing_contracts" = 0
 test "$unvalidated_constraints" = 0
 test "$device_digest_columns" = 0
 
+stage=cleanup
 drop_created_database
 test "$database_created" = 0
 cleanup_files
