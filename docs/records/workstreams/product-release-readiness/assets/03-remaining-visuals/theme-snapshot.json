@@ -1,0 +1,130 @@
+{
+  "colors": {
+    "background": "#FBFAF7",
+    "foreground": "#11161F",
+    "card": "#FFFFFF",
+    "cardForeground": "#11161F",
+    "primary": "#1F5ED9",
+    "primaryForeground": "#FDFCF8",
+    "secondary": "#F4F2EC",
+    "secondaryForeground": "#11161F",
+    "muted": "#F4F2EC",
+    "mutedForeground": "#5D636F",
+    "accent": "#B77610",
+    "accentForeground": "#FDFCF8",
+    "destructive": "#DB2B33",
+    "destructiveForeground": "#FFFFFF",
+    "answerCorrect": "#34C98A",
+    "answerCorrectBackground": "rgba(52, 201, 138, 0.10)",
+    "answerCorrectBorder": "rgba(52, 201, 138, 0.45)",
+    "border": "rgba(17, 22, 31, 0.09)",
+    "input": "rgba(17, 22, 31, 0.12)",
+    "ring": "#1F5ED9",
+    "primary06": "rgba(31, 94, 217, 0.06)",
+    "primary08": "rgba(31, 94, 217, 0.08)",
+    "primary10": "rgba(31, 94, 217, 0.10)",
+    "primary20": "rgba(31, 94, 217, 0.20)",
+    "card80": "rgba(255, 255, 255, 0.80)",
+    "background72": "rgba(251, 250, 247, 0.72)",
+    "overlay": "rgba(17, 22, 31, 0.30)"
+  },
+  "radii": {
+    "sm": 10,
+    "md": 13,
+    "lg": 16,
+    "xl": 22,
+    "xxl": 29,
+    "xxxl": 35,
+    "full": 999
+  },
+  "spacing": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "8": 32,
+    "10": 40,
+    "12": 48,
+    "16": 64,
+    "20": 80,
+    "24": 96,
+    "1.5": 6,
+    "2.5": 10,
+    "3.5": 14
+  },
+  "type": {
+    "pageTitle": {
+      "fontFamily": "NotoSerifSC_600SemiBold",
+      "fontSize": 27,
+      "lineHeight": 35,
+      "letterSpacing": -0.4,
+      "color": "#11161F"
+    },
+    "sectionTitle": {
+      "fontFamily": "NotoSerifSC_600SemiBold",
+      "fontSize": 18,
+      "lineHeight": 25,
+      "letterSpacing": -0.2,
+      "color": "#11161F"
+    },
+    "cardTitle": {
+      "fontFamily": "NotoSerifSC_600SemiBold",
+      "fontSize": 17,
+      "lineHeight": 24,
+      "letterSpacing": -0.15,
+      "color": "#11161F"
+    },
+    "body": {
+      "fontFamily": "Geist_400Regular",
+      "fontSize": 14,
+      "lineHeight": 22,
+      "color": "#5D636F"
+    },
+    "caption": {
+      "fontFamily": "Geist_400Regular",
+      "fontSize": 12,
+      "lineHeight": 19,
+      "color": "#5D636F"
+    },
+    "micro": {
+      "fontFamily": "Geist_500Medium",
+      "fontSize": 10,
+      "lineHeight": 14
+    }
+  },
+  "shadows": {
+    "card": {
+      "shadowColor": "#1F5ED9",
+      "shadowOffset": {
+        "width": 0,
+        "height": 8
+      },
+      "shadowOpacity": 0.05,
+      "shadowRadius": 18,
+      "elevation": 2
+    },
+    "floating": {
+      "shadowColor": "#000000",
+      "shadowOffset": {
+        "width": 0,
+        "height": 8
+      },
+      "shadowOpacity": 0.07,
+      "shadowRadius": 18,
+      "elevation": 6
+    },
+    "modal": {
+      "shadowColor": "#1F5ED9",
+      "shadowOffset": {
+        "width": 0,
+        "height": -8
+      },
+      "shadowOpacity": 0.1,
+      "shadowRadius": 24,
+      "elevation": 12
+    }
+  }
+}
