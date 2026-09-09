@@ -854,7 +854,7 @@ for (const loginContract of [
   'config/release/wechat-login.json',
   'pending_release_must_not_embed_wechat_configuration',
   'candidate_universal_link_api_origin_mismatch',
-  'candidate_android_wechat_callback_mismatch',
+  'await verifyAndroidReleaseWechatArtifact(androidArtifact,',
   'candidate_ios_sendauth_symbol_missing',
   'await verifyGeneratedIosWechatPlist(ROOT)',
 ]) {
@@ -862,7 +862,24 @@ for (const loginContract of [
     throw new Error(`The WeChat NoPay login contract is incomplete: ${loginContract}`);
   }
 }
+const androidWechatArtifactContract = await readFile('tools/android-release-wechat-contract.mjs', 'utf8');
+for (const marker of [
+  'resolveWechatLoginReleaseCapability(releaseConfiguration)',
+  'candidate_android_application_id_mismatch',
+  'candidate_android_wechat_app_id_mismatch',
+  'candidate_android_wechat_callback_mismatch',
+  'candidate_android_wechat_callback_attributes_mismatch',
+  'pending_android_artifact_exposes_wechat_configuration',
+  'candidate_android_client_secret_marker',
+  'candidate_android_unapproved_sdk_marker',
+]) {
+  if (!androidWechatArtifactContract.includes(marker)) {
+    throw new Error(`The approved Android WeChat artifact contract is incomplete: ${marker}`);
+  }
+}
 for (const forbiddenFalsePositiveGate of [
+  'candidate_android_reachable_payment_marker',
+  'candidate_android_payment_manifest_present',
   'candidate_android_payment_class_retained',
   'candidate_android_payment_class_removal_unproven',
 ]) {

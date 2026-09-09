@@ -1,4 +1,5 @@
 import './ios-release-integrity-tests.mjs';
+import './android-release-wechat-tests.mjs';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { chmod, cp, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
