@@ -1,8 +1,20 @@
 # 执行接续记录
 
+## 2026-09-10：生产配套完成，TestFlight候选已交付
+
+最新逐项状态见[交付核对](closeout.md)。十五项主体实现及迁移修复均已进入main，生产API来源为`ce67f4e6dea568907714bf0aa15f393acf5e3fdb`；iOS修复PR #105通过CI `34399216359`后合入，Native候选来源为`b43855aef80e2bf4d8de3cce47c2e436cb8bf8ae`。尚不能标记全部十五项已交付。
+
+- PR #104与CI `34393042930`通过；修复后的52项迁移门禁及新鲜隔离演练通过，随后正式迁移0042—0046成功，47条／0待执行／0漂移，新API切换并健康。
+- API版本`production-migration-ce67f4e6dea5`已绑定annotated tag `release/api-production/2026-09-10-ce67f4e`。app-content version2已原子激活；公网精确内容/checksum/ETag304、16期热点、法律v5.1、AASA与公开API管理路由隔离通过。
+- 真实AI转写、纠错、润色、航空术语保留及临时录音清理全部通过；测试临时账号由既有验证器清理。微信配置可用不等于真机授权回调已验收。
+- 五库活动版本与5798个媒体引用及资源文章release2元数据兼容核对通过；不制造空更新，后续改动走不可变版本发布并保留旧对象。
+- iOS候选1.0.0（3518998）已完成Release archive，但URL Scheme产物检查发现微信回调入口被旧规范化插件覆盖，未上传；最小修复已合入并通过13项回归检查；3519119已从干净主干完成归档并通过实际URL Scheme、微信SDK、隐私和签名检查。原商店profile失效且缺关联域名，已通过Apple API刷新并复用本机既有分发证书重新导出；IPA复核与Apple校验/上传通过，独立回读VALID/IN_BETA_TESTING，已进入1个现有内部组；tag `release/ios-testflight/v1.0.0-b3519119`。该失败Archive的独立隐私/SDK审计通过（10个manifest、3个embedded code）。首次尝试被pnpm自动改写锁文件触发的发布门禁挡住，未上传；已恢复并严格安装锁定依赖，重试通过304项发布相关测试、类型检查、CNG/Logo/微信候选检查。后续运行发布脚本使用`pnpm_config_verify_deps_before_run=error pnpm_config_frozen_lockfile=true`；重建依赖使用`pnpm install --frozen-lockfile --optimistic-repeat-install=false`，并核对工作区与实际依赖。
+- Android发布门禁与批准支付功能的冲突已修复：PR #106、CI `34401386979`通过，21项聚焦检查通过，合入`cfbe44829c1913775741c67fa7bc6dad5d6f59fc`。仅发布工具变化；iOS IPA仍绑定b43855a，不重复构建或生产部署。
+- 外部阻塞仍为后台域名NXDOMAIN与Android微信支付商户APP支付凭证缺失。iOS候选已交付；最终视觉、第三方授权、真实购买及系统音频交互由用户在TestFlight检查。
+
 ## 2026-09-10：主线合并、商店价格与生产迁移演练
 
-当前事实以本节为准；下方各阶段是当时快照，不代表最新交付状态。
+以下为当时阶段快照；最新事实以上方交付进度和closeout为准。
 
 - 十五项主体实现已通过 PR #103 合入 `origin/main`，提交 `dc92e4ce5c5c34c95eb62a05a3ddcb4f608356d0`。合并前 CI `34389517148` 通过仓库检查及 EdgeOne 兼容检查；未部署冻结的 Vercel 项目。
 - App Store Connect 已实际回读确认 7天¥68、31天¥158、93天¥358；旧15／62天商品仅保留原恢复识别。微信登录配置已写入生产受保护环境文件，尚未切换新 API，不能据此宣称真机授权已通过。
