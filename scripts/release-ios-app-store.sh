@@ -13,6 +13,7 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
+node docs/workstreams/app-store-1.0.0/materials/validate-final-fields.mjs --submission
 node tools/critical-capability-release-evidence.mjs verify app-store ios
 
 ARCHIVE_POINTER="$PROJECT_ROOT/.generated/last-testflight-archive.txt"

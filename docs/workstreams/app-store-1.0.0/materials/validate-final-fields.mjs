@@ -70,15 +70,25 @@ const description = field('description');
 const keywords = field('keywords');
 const reviewNotes = field('review-notes');
 const appJson = JSON.parse(appJsonSource);
+const materialsBuild = '3493766';
+const currentBuild = String(appJson.expo.ios?.buildNumber ?? '');
 
 if (
   appJson.expo.name !== appName
   || appJson.expo.version !== '1.0.0'
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
-  || appJson.expo.ios?.buildNumber !== '3493766'
-  || appJson.expo.android?.versionCode !== 3493766
+  || !/^[1-9]\d*$/u.test(currentBuild)
+  || !Number.isSafeInteger(Number(currentBuild))
+  || appJson.expo.android?.versionCode !== Number(currentBuild)
 ) {
   fail('native_app_identity_drift');
+}
+
+// Repository CI can validate preserved materials while a newer TestFlight is in
+// development. Public submission must still bind to the materials' exact build.
+if (currentBuild !== materialsBuild) {
+  if (process.argv.includes('--submission')) fail('submission_materials_require_current_build_review');
+  console.log(`Historical App Store materials target build ${materialsBuild}; build ${currentBuild} requires separate material review before public submission.`);
 }
 
 const releaseSourceContracts = [
