@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Screen, TextField } from '@/components/ui';
+import { Pencil } from '@/components/ui/icons';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { colors, radii, spacing } from '@/theme';
 import { prepareProfileAvatar } from '../../../modules/icao-profile-avatar/src';
@@ -104,7 +105,10 @@ export function AccountProfilePage() {
       <TopBar title="个人资料" />
       <View style={styles.form}>
         <Pressable accessibilityRole="button" accessibilityLabel="更换头像" disabled={saving || picking} onPress={() => void chooseAvatar()} style={styles.avatar}>
-          <ProfileAvatar size={74} uri={draft.avatarUri} />
+          <View style={styles.avatarImage}>
+            <ProfileAvatar size={74} uri={draft.avatarUri} />
+            <View pointerEvents="none" style={styles.editBadge}><Pencil color={colors.primaryForeground} size={9} /></View>
+          </View>
           <AppText color={colors.primary} variant="caption">{picking ? '正在读取…' : '更换头像'}</AppText>
         </Pressable>
         <TextField editable={!saving} label="昵称" maxLength={48} onChangeText={(displayName) => { edited.current = true; setDraft((current) => ({ ...current, displayName })); setError(''); }} value={draft.displayName} />
@@ -133,6 +137,8 @@ const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   form: { gap: spacing[5], padding: spacing[5] },
   avatar: { alignItems: 'center', alignSelf: 'center', gap: spacing[2], marginBottom: spacing[2] },
+  avatarImage: { position: 'relative' },
+  editBadge: { position: 'absolute', right: 0, bottom: 0, width: 20, height: 20, alignItems: 'center', justifyContent: 'center', borderRadius: radii.full, borderWidth: 2, borderColor: colors.card, backgroundColor: colors.primary },
   goal: { gap: spacing[2] },
   options: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   option: { alignItems: 'center', justifyContent: 'center', width: '48%', minHeight: 44, padding: spacing[2], borderWidth: 1, borderColor: colors.input, borderRadius: radii.md, backgroundColor: colors.card },
