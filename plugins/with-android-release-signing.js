@@ -1,4 +1,5 @@
 const { withAppBuildGradle } = require('expo/config-plugins');
+const { withNativeBrandAssets } = require('./native-brand-assets');
 
 const ENV_BLOCK = `// ICAO_RELEASE_SIGNING_ENV_START
 def icaoReleaseStorePath = System.getenv("ICAO_ANDROID_KEYSTORE_PATH")
@@ -63,6 +64,7 @@ function applySigning(contents) {
 }
 
 module.exports = function withAndroidReleaseSigning(config) {
+  config = withNativeBrandAssets(config, 'android');
   return withAppBuildGradle(config, (gradleConfig) => {
     if (gradleConfig.modResults.language !== 'groovy') {
       throw new Error('Android release signing currently requires Groovy build.gradle output.');

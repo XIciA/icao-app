@@ -62,9 +62,7 @@ import { subscribeCommerceEntitlementChanges } from '../commerce-entitlement-eve
 
 const PRODUCTS: CommerceProductOffering[] = [
   ['membership_7d_v1', '7d', '7天会员', 7, false],
-  ['membership_15d_v1', '15d', '15天会员', 15, false],
-  ['membership_31d_v1', '31d', '31天会员', 31, true],
-  ['membership_62d_v1', '62d', '62天会员', 62, false],
+  ['membership_31d_v1', '31d', '31天会员', 31, false],
   ['membership_93d_v1', '93d', '93天会员', 93, false],
 ].map(([productKey, suffix, displayName, durationDays, recommended]) => ({
   productKey: productKey as CommerceProductOffering['productKey'],
@@ -189,15 +187,15 @@ describe('<CommerceRuntimeProvider />', () => {
     mockCreateProvider.mockReset().mockReturnValue(provider());
   });
 
-  it('cross-checks all five products and defaults to production entitlements without StoreKit sandbox history', async () => {
+  it('cross-checks all three current products and defaults to production entitlements without StoreKit sandbox history', async () => {
     const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
     await waitFor(() => expect(screen.getByTestId('phase').props.children).toBe('ready'));
 
-    expect(currentCommerce.offerings).toHaveLength(5);
-    expect(currentCommerce.offerings[2]).toMatchObject({
+    expect(currentCommerce.offerings).toHaveLength(3);
+    expect(currentCommerce.offerings[1]).toMatchObject({
       productKey: 'membership_31d_v1',
       localizedPrice: '¥31',
-      recommended: true,
+      recommended: false,
     });
     expect(currentCommerce.entitlementEnvironment).toBe('production');
     expect(currentCommerce.entitlement).toEqual(ENTITLEMENTS.production);
@@ -221,7 +219,7 @@ describe('<CommerceRuntimeProvider />', () => {
     await act(async () => { await currentCommerce.refresh(); });
 
     expect(currentCommerce.phase).toBe('ready');
-    expect(currentCommerce.offerings).toHaveLength(5);
+    expect(currentCommerce.offerings).toHaveLength(3);
     expect(fakeProvider.listOfferings).toHaveBeenCalledTimes(2);
     expect(mockApiRequest.mock.calls.filter(([path]) => path === '/v1/commerce/catalog')).toHaveLength(2);
   });
@@ -323,7 +321,7 @@ describe('<CommerceRuntimeProvider />', () => {
     mockApiRequest.mockImplementation((path: string) => {
       if (path === '/v1/commerce/catalog') return Promise.resolve({
         ...CATALOG,
-        products: CATALOG.products.slice(0, 4),
+        products: CATALOG.products.slice(0, 2),
       });
       if (path === '/v1/commerce/entitlements/current') return Promise.resolve(ENTITLEMENTS);
       throw new Error(`unexpected_api:${path}`);

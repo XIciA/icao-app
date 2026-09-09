@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'expo-module-gradle-plugin'
+
+group = 'com.icao.profileavatar'
+version = '1.0.0'
+android {
+  namespace "com.icao.profileavatar"
+  defaultConfig {
+    minSdkVersion 24
+    targetSdkVersion 36
+  }
+}
+dependencies {
+  implementation project(':expo-modules-core')
+}

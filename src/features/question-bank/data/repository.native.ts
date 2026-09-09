@@ -1,3 +1,4 @@
+import { sameContentRelease, withContentRelease, type ContentReleaseReference } from './content-version.native';
 import publicData from './question-bank-public.json';
 import publicRelease from './question-bank-public-release.json';
 import Storage from '@/platform/storage';
@@ -34,7 +35,7 @@ export type QuestionBankLoadResult = { dataset: QuestionBankDataset; source: Que
 
 export type QuestionBankRepository = {
   getDataset(id: QuestionBankId): Promise<QuestionBankDataset | undefined>;
-  getTopic(bankId: QuestionBankId, categoryId: string, topicId: string): Promise<QuestionBankTopic | undefined>;
+  getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference): Promise<QuestionBankTopic | undefined>;
 };
 
 let legacyCacheCleanup: Promise<void> | undefined;
@@ -115,7 +116,8 @@ export const remoteQuestionBankRepository = {
     if (!response.ok) throw new Error(`question_bank_http_${response.status}`);
     const body = await response.json() as ApiSuccessEnvelope<QuestionBankRelease<QuestionBankDataset>>;
     assertContentContextCurrent(context);
-    if (!body.data?.dataset || body.data.dataset.id !== id) throw new Error('invalid_question_bank_response');
+    if (!body.data?.dataset || body.data.dataset.id !== id || !Number.isSafeInteger(body.data.version) || body.data.version < 1 || !/^[a-f0-9]{64}$/.test(body.data.checksum)) throw new Error('invalid_question_bank_response');
+    body.data.dataset = withContentRelease(body.data.dataset, { bankId: id, version: body.data.version, checksum: body.data.checksum });
     if (accountId && body.data.dataset.access?.membershipActive === false) {
       await clearQuestionBankMemberContent(accountId).catch(() => undefined);
     }
@@ -127,17 +129,18 @@ export const remoteQuestionBankRepository = {
     }
     return body.data.dataset;
   },
-  async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string) {
+  async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference) {
     const context = contentContext();
     const { accountId, environment } = context;
-    const scope = { bankId, categoryId, topicId } satisfies ContentAccessScope;
+    const scope = { bankId, categoryId, topicId, ...(expected ? { version: expected.version } : {}) } satisfies ContentAccessScope & { version?: number };
     try {
       const release = await apiRequest<QuestionBankTopicRelease<QuestionBankTopic>>(
-        `/v1/question-banks/${encodeURIComponent(bankId)}/categories/${encodeURIComponent(categoryId)}/topics/${encodeURIComponent(topicId)}`,
+        `/v1/question-banks/${encodeURIComponent(bankId)}/categories/${encodeURIComponent(categoryId)}/topics/${encodeURIComponent(topicId)}${expected ? `?version=${expected.version}&checksum=${expected.checksum}` : ''}`,
         { headers: { [COMMERCE_ENVIRONMENT_HEADER]: environment } },
       );
       assertContentContextCurrent(context);
-      if (release.bankId !== bankId || release.categoryId !== categoryId || release.topic.id !== topicId) {
+      release.topic = withContentRelease(release.topic, { bankId: release.bankId, version: release.version, checksum: release.checksum });
+      if (!sameContentRelease(release.topic, expected) || release.bankId !== bankId || release.categoryId !== categoryId || release.topic.id !== topicId) {
         throw new Error('invalid_question_bank_topic_response');
       }
       if (accountId && release.access.membershipActive === false) {
@@ -164,7 +167,7 @@ export const remoteQuestionBankRepository = {
       if (accountId && mayUseOffline) {
         const cached = await readMemberTopicCache(accountId, scope);
         assertContentContextCurrent(context);
-        if (cached) return cached;
+        if (cached && sameContentRelease(cached, expected)) return cached;
       }
       if (
         accountId
@@ -205,8 +208,8 @@ export const questionBankRepository: QuestionBankRepository = {
   async getDataset(id) {
     return (await loadQuestionBank(id))?.dataset;
   },
-  async getTopic(bankId, categoryId, topicId) {
-    if (getApiBaseUrl()) return remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+  async getTopic(bankId, categoryId, topicId, expected) {
+    if (getApiBaseUrl()) return remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId, expected);
     return embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
   },
 };

@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "master": {
-    "path": "assets/images/icon.png",
-    "sha256": "54305156502897255bcb1c17dbf9a1f83036a2f3440c8cb6783e069d8bb34e8b",
+    "path": "assets/images/icon-native.png",
+    "sha256": "2e9401acce52ec48e675ca2d8df1e1659266cd0ad95698033880c5542967577b",
     "png": {
       "width": 1254,
       "height": 1254,
@@ -10,18 +10,13 @@
       "colorType": "rgb",
       "hasAlpha": false
     },
-    "safeArea": {
-      "backgroundRgb": [255, 255, 255],
-      "backgroundTolerance": 10,
-      "minimumClearEdgeFraction": 0.04
-    }
+    "fullBleed": true
   },
   "runtime": {
-    "component": "src/components/brand/AppBrandLogo.tsx",
+    "component": "src/components/brand/AppBrandLogo.native.tsx",
     "surfaces": [
-      "src/components/auth/splash-screen.tsx",
-      "src/components/states/GlobalLoadingScreen.native.tsx",
-      "src/features/info/InfoScreen.tsx"
+      "src/components/auth/login-screen.native.tsx",
+      "src/components/states/GlobalLoadingScreen.native.tsx"
     ]
   },
   "cng": {
@@ -32,13 +27,13 @@
       "expoSplashScreen": "55.0.22"
     },
     "derivationBinding": {
-      "masterSha256": "54305156502897255bcb1c17dbf9a1f83036a2f3440c8cb6783e069d8bb34e8b",
+      "masterSha256": "2e9401acce52ec48e675ca2d8df1e1659266cd0ad95698033880c5542967577b",
       "ios": [
         {
           "role": "app-icon",
           "directorySuffix": "AppIcon.appiconset",
           "file": "App-Icon-1024x1024@1x.png",
-          "sha256": "c76918fb3a2c0d6b29be354fbb98bc0f556aa47d0a7d1673fe7ff37ce854b8a0",
+          "sha256": "8e46f0566b8777e5a6c5f2d317d0dd73b2e5b1cff948c7240d05931dc7377828",
           "width": 1024,
           "height": 1024,
           "hasAlpha": false
@@ -47,7 +42,7 @@
           "role": "splash-1x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image.png",
-          "sha256": "0e2fd0c90e890b59b54890918ffed093834a15ae61f29268dbf2007161564a7a",
+          "sha256": "151a5248d7dbf990a05ace78e6aa05d0d507f498e899d9c3318821ee02c955a8",
           "width": 160,
           "height": 160,
           "hasAlpha": true
@@ -56,7 +51,7 @@
           "role": "splash-2x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@2x.png",
-          "sha256": "1c016a6e5df516431921c9e07f7515731ff6d9ef1c9acf0d1c2eebc4e438556d",
+          "sha256": "ccca09fa551146ac908f263f767abaddbf911abe8ed2f653da09eb9e71cf5f9a",
           "width": 320,
           "height": 320,
           "hasAlpha": true
@@ -65,7 +60,7 @@
           "role": "splash-3x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@3x.png",
-          "sha256": "580526234ed3ff054e9e90a59a9b41b5a14bdf37bef6667408e0b032af853934",
+          "sha256": "a0cc462f3e948c14d963cdc9e13738207614530a74baf47d20f77d59f08cf961",
           "width": 480,
           "height": 480,
           "hasAlpha": true
@@ -75,7 +70,10 @@
     "nativeTreePolicy": {
       "authority": "clean-prebuild-only",
       "trackedDerivedAssets": [],
-      "ignoredGeneratedRoots": ["ios", "android"],
+      "ignoredGeneratedRoots": [
+        "ios",
+        "android"
+      ],
       "releasePrebuildCommand": "ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install",
       "releaseVerificationCommand": "node tools/check-native-brand-assets.mjs --prebuild-root . --platform ios"
     },
@@ -83,7 +81,16 @@
       "backgroundColor": "#FFFFFF",
       "imageWidth": 160,
       "androidImageWidth": 120,
-      "resizeMode": "contain"
+      "resizeMode": "contain",
+      "safeArea": {
+        "backgroundRgb": [
+          255,
+          255,
+          255
+        ],
+        "backgroundTolerance": 10,
+        "minimumClearEdgeFraction": 0.04
+      }
     },
     "generatedTargets": [
       {
@@ -102,7 +109,9 @@
           "android/app/src/main/res/values/styles.xml"
         ]
       }
-    ]
+    ],
+    "nativeBrandPlugin": "plugins/native-brand-assets.js",
+    "frozenWebIcon": "assets/images/icon.png"
   },
   "retiredNativeAssets": [
     "assets/images/splash-icon.png",
@@ -111,8 +120,17 @@
     "assets/images/android-icon-monochrome.png"
   ],
   "inventory": {
-    "candidateRoots": ["assets", "src", "ios", "android", "official-site", "public"],
-    "nonProductControlFiles": ["assets/native-brand-manifest.json"]
+    "candidateRoots": [
+      "assets",
+      "src",
+      "ios",
+      "android",
+      "official-site",
+      "public"
+    ],
+    "nonProductControlFiles": [
+      "assets/native-brand-manifest.json"
+    ]
   },
   "frozenExternalAssets": [
     {
@@ -126,6 +144,10 @@
     {
       "path": "public/promo",
       "owner": "frozen promotional website"
+    },
+    {
+      "path": "assets/images/icon.png",
+      "owner": "Frozen Expo Web source; retired from Native build products"
     }
   ]
 }

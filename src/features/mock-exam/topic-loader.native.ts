@@ -1,3 +1,4 @@
+import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import type {
   QuestionBankCategory,
@@ -22,7 +23,7 @@ export async function hydrateMockExamTopic(
   topic: QuestionBankTopic,
 ) {
   if (!canUseMemberContent(dataset, topic)) return topic;
-  const hydrated = await questionBankRepository.getTopic(dataset.id, category.id, topic.id);
+  const hydrated = await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset));
   if (!hydrated || hydrated.id !== topic.id) {
     throw new Error(`${dataset.title}题组加载失败：${topic.name}`);
   }

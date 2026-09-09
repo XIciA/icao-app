@@ -13,6 +13,11 @@ import { loadHotspotBriefs } from '../repository';
 const mockBack = jest.fn();
 const mockPush = jest.fn();
 
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useFocusEffect: (effect: () => void | (() => void)) => jest.requireActual('react').useEffect(effect, [effect]),
+}));
+
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;

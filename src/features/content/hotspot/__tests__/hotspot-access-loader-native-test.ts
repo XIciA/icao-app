@@ -64,7 +64,7 @@ describe('native OPI hotspot access loader', () => {
     expect(result.status).toBe('ready');
     if (result.status !== 'ready') return;
     expect(result.topics).toHaveLength(brief.topics.length);
-    expect(result.session.topic.cards).toHaveLength(
+    expect(result.session.items).toHaveLength(
       brief.topics.reduce((count, topic) => count + topic.cardIds.length, 0),
     );
     expect(mockGetTopic).not.toHaveBeenCalled();

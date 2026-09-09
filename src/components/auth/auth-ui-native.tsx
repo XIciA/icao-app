@@ -9,24 +9,25 @@ import { colors, fonts, radii, spacing } from '@/theme';
 
 // Shared implementation behind the explicit iOS and Android entry points.
 
-export function AuthShell({ children }: { children: React.ReactNode }) {
+export function AuthShell({ children, showBack = true, onBack }: { children: React.ReactNode; showBack?: boolean; onBack?: () => void }) {
   return (
     <Screen background={<SoftGlow intensity={0.9} size={350} style={styles.glow} />} keyboard scroll contentStyle={styles.screen}>
-      <AuthTopBar />
+      {showBack ? <AuthTopBar onBack={onBack} /> : null}
       {children}
     </Screen>
   );
 }
 
-export function AuthTopBar() {
+export function AuthTopBar({ onBack }: { onBack?: () => void } = {}) {
   const router = useRouter();
   const handleBack = () => {
+    if (onBack) { onBack(); return; }
     if (Platform.OS === 'web') {
       router.back();
       return;
     }
     if (router.canGoBack()) router.back();
-    else router.replace('/auth/splash');
+    else router.replace('/auth/login');
   };
 
   return (
@@ -36,11 +37,11 @@ export function AuthTopBar() {
   );
 }
 
-export function AuthHeading({ title, subtitle }: { title: string; subtitle: string }) {
+export function AuthHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <View style={styles.heading}>
       <AppText variant="pageTitle">{title}</AppText>
-      <AppText variant="caption">{subtitle}</AppText>
+      {subtitle ? <AppText variant="caption">{subtitle}</AppText> : null}
     </View>
   );
 }

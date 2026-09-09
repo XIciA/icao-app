@@ -1,184 +1,97 @@
-/* eslint-disable import/first */
-import { act, fireEvent, render } from '@testing-library/react-native';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
+
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { MembershipPage } from '../MembershipPage.native';
 
 const mockBack = jest.fn();
-const mockPurchase = jest.fn(async () => ({ ok: true, message: '购买成功' }));
-const mockRefresh = jest.fn(async () => undefined);
-const mockRestore = jest.fn(async () => ({ ok: true, message: '恢复成功' }));
-const mockUseCommerceRuntime = jest.fn();
-
+const mockPurchase = jest.fn();
+const mockRefresh = jest.fn();
+const mockRestore = jest.fn();
+let mockParams: { from?: string } = {};
+let mockCommerce: ReturnType<typeof runtimeValue>;
 function runtimeValue(overrides: Record<string, unknown> = {}) {
   return {
-    supported: true,
-    phase: 'ready',
-    offerings: [
-      {
-        productKey: 'membership_7d_v1',
-        displayName: '7天会员',
-        durationDays: 7,
-        recommended: false,
-        localizedPrice: '¥18.00',
-        currencyCode: 'CNY',
-      },
-      {
-        productKey: 'membership_31d_v1',
-        displayName: '31天会员',
-        durationDays: 31,
-        recommended: true,
-        localizedPrice: '¥58.00',
-        currencyCode: 'CNY',
-      },
-    ],
-    entitlementEnvironment: 'sandbox',
-    entitlement: {
-      environment: 'sandbox',
-      serverTime: '2026-08-24T08:00:00.000Z',
-      membership: { active: true, expiresAt: '2026-09-24T08:00:00.000Z' },
-      aiPoints: { available: 100, nextGrantAt: null },
-    },
-    purchase: mockPurchase,
-    refresh: mockRefresh,
-    restorePurchases: mockRestore,
-    ...overrides,
+    supported: true, phase: 'ready',
+    offerings: [7, 31, 93].map((days) => ({ productKey: `membership_${days}d_v1`, displayName: `${days}天会员`, durationDays: days,
+      recommended: false, localizedPrice: `HK$${days}.00`, currencyCode: 'HKD' })),
+    entitlement: { environment: 'sandbox', membership: { active: false, expiresAt: null }, aiPoints: { available: 999 } },
+    purchase: mockPurchase, refresh: mockRefresh, restorePurchases: mockRestore, ...overrides,
   };
 }
+jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams,
+  useRouter: () => ({ back: mockBack, canGoBack: () => true, replace: jest.fn() }) }));
+jest.mock('../CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => mockCommerce }));
 
-jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack }) }));
-jest.mock('../CommerceRuntimeProvider', () => ({
-  useCommerceRuntime: () => mockUseCommerceRuntime(),
-}));
+function Page() { return <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, bottom: 34, left: 0, right: 0 } }}><MembershipPage /></SafeAreaProvider>; }
 
-import { MembershipPage } from '../MembershipPage';
-
-describe('<MembershipPage />', () => {
+describe('Native membership purchase page', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue());
+    jest.clearAllMocks(); mockParams = {};
+    mockPurchase.mockResolvedValue({ ok: true }); mockRefresh.mockResolvedValue(undefined); mockRestore.mockResolvedValue({ ok: true });
+    mockCommerce = runtimeValue();
   });
 
-  it('uses StoreKit localized prices and states the non-renewing duration rules', async () => {
-    const screen = await render(<MembershipPage />);
-
-    expect(screen.getByText('沙盒环境')).toBeTruthy();
-    expect(screen.getByText('¥18.00')).toBeTruthy();
-    expect(screen.getByText('¥58.00')).toBeTruthy();
-    expect(screen.getByText('购买后增加 31 天使用时间；重复购买会顺延。')).toBeTruthy();
-    expect(screen.getByText(/所有档位均为非自动续期商品/u)).toBeTruthy();
-
-    await act(async () => { fireEvent.press(screen.getByText('¥58.00')); });
-    expect(mockPurchase).toHaveBeenCalledWith('membership_31d_v1');
-  });
-
-  it('exposes refresh and explicit Restore Purchases actions', async () => {
-    const screen = await render(<MembershipPage />);
-
-    await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
-    await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
-
-    expect(mockRefresh).toHaveBeenCalledTimes(1);
-    expect(mockRestore).toHaveBeenCalledTimes(1);
-  });
-
-  it('disables every product while a purchase remains unconfirmed', async () => {
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue({
-      phase: 'pending',
-      message: '上一笔购买仍在核对。',
-    }));
-    const screen = await render(<MembershipPage />);
-
-    for (const button of screen.getAllByText('等待确认')) fireEvent.press(button);
-
+  it('shows seven read-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
+    const screen = await render(<Page />);
+    for (const title of ['解锁会员题库', '每周 AI 学习额度', '单词学习', '随身听', '模拟考试', 'OPI 热点', '资源分享']) expect(screen.getByText(title)).toBeTruthy();
+    expect(screen.getAllByRole('radio')).toHaveLength(3);
+    expect(screen.getByRole('radio', { name: '31天会员' }).props.accessibilityState.selected).toBe(true);
+    expect(screen.queryByText('推荐')).toBeNull();
+    expect(screen.queryByText('可用 AI 点数')).toBeNull();
+    expect(screen.queryByText('刷新会员与点数')).toBeNull();
+    expect(screen.getByText('开通31天会员 · HK$31.00')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('radio', { name: '93天会员' }));
     expect(mockPurchase).not.toHaveBeenCalled();
-    expect(screen.getByText('上一笔购买仍在核对。')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).toHaveBeenCalledWith('membership_93d_v1');
   });
 
-  it.each(['loading', 'reconciling', 'restoring'] as const)(
-    'disables purchase, refresh and restore during %s',
-    async (phase) => {
-      mockUseCommerceRuntime.mockReturnValue(runtimeValue({ phase }));
-      const screen = await render(<MembershipPage />);
-
-      fireEvent.press(screen.getByText('¥58.00'));
-      const refreshLabel = phase === 'reconciling'
-        ? '正在核对会员与点数…'
-        : '刷新会员与点数';
-      fireEvent.press(screen.getByText(refreshLabel));
-      fireEvent.press(screen.getByText(phase === 'restoring' ? '正在恢复购买…' : '恢复购买'));
-
-      expect(mockPurchase).not.toHaveBeenCalled();
-      expect(mockRefresh).not.toHaveBeenCalled();
-      expect(mockRestore).not.toHaveBeenCalled();
-    },
-  );
-
-  it('disables purchase but keeps refresh and restore available while pending', async () => {
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue({
-      phase: 'pending',
-      error: {
-        code: 'uncertain-purchase',
-        operation: 'reconciliation',
-        userMessage: '上一笔购买仍在核对，请勿重复下单。',
-        retryable: true,
-        chargeStatus: 'unknown',
-      },
-    }));
-    const screen = await render(<MembershipPage />);
-
-    fireEvent.press(screen.getAllByText('等待确认')[0]);
-    await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
-    await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
-
-    expect(mockPurchase).not.toHaveBeenCalled();
-    expect(mockRefresh).toHaveBeenCalledTimes(1);
+  it('keeps purchase terms and Apple restore accessible without a normal manual refresh button', async () => {
+    const screen = await render(<Page />);
+    await fireEvent.press(screen.getByText('恢复购买'));
     expect(mockRestore).toHaveBeenCalledTimes(1);
-    expect(screen.getByText('上一笔购买仍在核对，请勿重复下单。')).toBeTruthy();
+    await fireEvent.press(screen.getByText('购买须知'));
+    expect(screen.getByText(/有效期内续费将顺延会员时间/u)).toBeTruthy();
+    expect(screen.getByText('到期不自动续费')).toBeTruthy();
+    expect(mockRefresh).not.toHaveBeenCalled();
   });
 
-  it('keeps recovery actions available after a terminal error', async () => {
-    const phase = 'error';
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue({ phase }));
-    const screen = await render(<MembershipPage />);
-
-    fireEvent.press(screen.getByText('¥58.00'));
-    await act(async () => { fireEvent.press(screen.getByText('刷新会员与点数')); });
-    await act(async () => { fireEvent.press(screen.getByText('恢复购买')); });
-
+  it.each(['purchasing', 'restoring', 'loading', 'reconciling', 'pending'])('blocks another purchase while %s', async (phase) => {
+    mockCommerce = runtimeValue({ phase });
+    const screen = await render(<Page />);
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
     expect(mockPurchase).not.toHaveBeenCalled();
+    if (phase === 'pending') {
+      await fireEvent.press(screen.getByText('恢复购买'));
+      expect(mockRestore).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it('offers a retry only after a retryable failure and never invents a price', async () => {
+    mockCommerce = runtimeValue({ phase: 'error', offerings: [], error: { retryable: true, userMessage: '商品暂时无法读取' } });
+    const screen = await render(<Page />);
+    expect(screen.getAllByText('—')).toHaveLength(3);
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByText('重新检查'));
     expect(mockRefresh).toHaveBeenCalledTimes(1);
-    expect(mockRestore).toHaveBeenCalledTimes(1);
   });
 
-  it('renders the public structured error without exposing internal StoreKit codes', async () => {
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue({
-      phase: 'error',
-      offerings: [],
-      message: 'internal_should_not_render',
-      error: {
-        code: 'catalog-invalid',
-        operation: 'catalog',
-        userMessage: 'App Store 商品信息尚未完全同步，请稍后再查看。',
-        retryable: false,
-        chargeStatus: 'not-applicable',
-      },
-    }));
-    const screen = await render(<MembershipPage />);
-
-    expect(screen.getByText('App Store 商品配置正在同步')).toBeTruthy();
-    expect(screen.getByText('App Store 商品信息尚未完全同步，请稍后再查看。')).toBeTruthy();
-    expect(screen.queryByText('internal_should_not_render')).toBeNull();
+  it('shows renewal dates in the same page and does not return a My-page visitor automatically', async () => {
+    mockCommerce = runtimeValue({ entitlement: { membership: { active: true, expiresAt: '2027-01-01T00:00:00Z' } } });
+    const screen = await render(<Page />);
+    expect(screen.getByText('会员续费')).toBeTruthy();
+    expect(screen.getByText(/续费后预计至/u)).toBeTruthy();
+    expect(mockBack).not.toHaveBeenCalled();
   });
 
-  it('uses neutral release copy when Native in-app purchase is unavailable', async () => {
-    mockUseCommerceRuntime.mockReturnValue(runtimeValue({
-      supported: false,
-      phase: 'unavailable',
-      offerings: [],
-      entitlementEnvironment: 'production',
-    }));
-    const screen = await render(<MembershipPage />);
-
-    expect(screen.getByText('当前设备暂不支持应用内购买')).toBeTruthy();
-    expect(screen.getByText('你仍可使用账号与已开放的学习内容；购买功能可在支持的设备上使用。')).toBeTruthy();
-    expect(screen.queryByText(/iPhone|TestFlight/u)).toBeNull();
+  it('returns to the requesting learning page after the shared entitlement becomes active', async () => {
+    mockParams = { from: 'learning' };
+    const screen = await render(<Page />);
+    expect(mockBack).not.toHaveBeenCalled();
+    mockCommerce = runtimeValue({ entitlement: { membership: { active: true, expiresAt: '2027-01-01T00:00:00Z' } } });
+    await screen.rerender(<Page />);
+    await waitFor(() => expect(mockBack).toHaveBeenCalledTimes(1));
   });
 });

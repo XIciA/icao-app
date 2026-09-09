@@ -2,7 +2,8 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 
-import { StudyWorkbench } from '@/features/question-bank/components/StudyWorkbench';
+// Keep coverage for the frozen shared/Web implementation; Native has its own suite.
+const { StudyWorkbench } = jest.requireActual('@/features/question-bank/components/StudyWorkbench.tsx') as typeof import('@/features/question-bank/components/StudyWorkbench');
 
 const mockTranscribeRecording = jest.fn(async (_uri: string, _signal?: AbortSignal) => ({
   transcript: 'normalized aviation transcript',
@@ -33,7 +34,7 @@ jest.mock('lucide-react-native', () => {
   return { BookOpenCheck: Icon, Check: Icon, Eraser: Icon, MessageSquareText: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
 });
 
-describe('AI speaking workbench', () => {
+describe('shared AI speaking workbench', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockHasAiConsent.mockResolvedValue(true);

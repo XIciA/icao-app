@@ -1,15 +1,16 @@
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4-first' }) }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Platform } from 'react-native';
 
 import { MockExamScreen } from '@/features/content/MockExamScreen';
-import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
+import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session.native';
 import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
 
 const { MockExamScreen: WebMockExamScreen } = jest.requireActual(
   '@/features/content/MockExamScreen.tsx',
 ) as { MockExamScreen: typeof MockExamScreen };
 
-jest.mock('@/features/mock-exam/build-session', () => ({
+jest.mock('@/features/mock-exam/build-session.native', () => ({
   buildMockExamSession: jest.fn(async () => ({ id: 'session' })),
   toQuestionBankStudyPackage: jest.fn(() => ({ id: 'package' })),
 }));
@@ -33,7 +34,7 @@ describe('MockExamScreen', () => {
   it('keeps the selection page and hands the generated package to the shared study screen', async () => {
     const screen = await render(<MockExamScreen />);
 
-    expect(screen.getAllByText('模拟练习')).toHaveLength(2);
+    expect(screen.getAllByText('模拟考试')).toHaveLength(2);
     expect(screen.queryByText(/模考/u)).toBeNull();
     expect(screen.getByText('考试类型')).toBeTruthy();
     expect(screen.getByText('考试板块')).toBeTruthy();
@@ -49,7 +50,7 @@ describe('MockExamScreen', () => {
     });
     expect(toQuestionBankStudyPackage).toHaveBeenCalledWith({ id: 'session' });
 
-    await fireEvent.press(screen.getByLabelText('返回模拟练习'));
+    await fireEvent.press(screen.getByLabelText('返回模拟考试'));
     await waitFor(() => expect(screen.getByText('开始完整练习')).toBeTruthy());
     expect(screen.queryByText('共享题库学习页')).toBeNull();
   });
@@ -73,7 +74,7 @@ describe('MockExamScreen', () => {
 
     await fireEvent.press(screen.getByText('开始完整练习'));
 
-    await waitFor(() => expect(screen.getByText('暂时无法生成练习卷，请检查网络或调整板块后重试。')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('暂时无法生成试卷，请检查网络或调整板块后重试。')).toBeTruthy());
     expect(screen.queryByText(/private\.example|internal_failure/u)).toBeNull();
   });
 });

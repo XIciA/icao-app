@@ -94,7 +94,7 @@ describe('Native radio catalog hydration', () => {
       'listening-main-001',
       'listening-main-999',
     ]);
-    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01');
+    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01', undefined);
   });
 
   it('keeps only public tracks for a free user and never requests a member topic', async () => {
@@ -157,7 +157,7 @@ describe('Native radio catalog hydration', () => {
     );
 
     expect(mockGetTopic).toHaveBeenCalledTimes(1);
-    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01');
+    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01', undefined);
     expect(hydrated.categories[0].topics[1]).toEqual(otherTopic);
   });
 
@@ -202,6 +202,13 @@ describe('Native radio catalog hydration', () => {
       nextTopic!.topicId,
     );
     expect(deriveRadioCatalogs([hydrated])[0]?.tracks.map((track) => track.id)).toContain('listening-main-999');
-    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-02');
+    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-02', undefined);
+  });
+
+  it('hydrates the selected topic against the exact catalog release already used by the queue', async () => {
+    const contentRelease = { bankId: 'listening', version: 2, checksum: 'ab'.repeat(32) };
+    mockGetTopic.mockResolvedValue({ ...publicTopic, cards: publicTopic.cards });
+    await hydrateRadioCatalogTopic([{ ...dataset, contentRelease } as QuestionBankDataset], 'listening', 'listening-category-01', 'listening-topic-01');
+    expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01', contentRelease);
   });
 });

@@ -1,4 +1,5 @@
 const { withInfoPlist, withXcodeProject } = require('expo/config-plugins');
+const { withNativeBrandAssets } = require('./native-brand-assets');
 
 const PHASE_NAME = '[Read You 5] Enforce Release Info.plist';
 const INFO_PLIST_INPUT = '"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"';
@@ -121,6 +122,7 @@ function applyReleaseIntegrity(project, options) {
 }
 
 module.exports = function withIosReleaseIntegrity(config) {
+  config = withNativeBrandAssets(config, 'ios');
   const version = config.version;
   const buildNumber = config.ios?.buildNumber;
   const scheme = config.scheme;

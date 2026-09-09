@@ -1,3 +1,4 @@
+import { buildMockExamSession as buildNative } from '../build-session.native';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
 
 describe('buildMockExamSession', () => {
@@ -77,4 +78,23 @@ describe('buildMockExamSession', () => {
       }).toEqual(source.source);
     });
   });
+});
+
+it('builds ICAO 5 recertification with only radiotelephony, one story and five OPI questions', async () => {
+  const session = await buildNative({ examType: 'icao5-recert', modules: ['listening', 'radiotelephony', 'opi', 'storytelling'] }, 124);
+  expect(session.config.modules).toEqual(['radiotelephony', 'storytelling', 'opi']);
+  expect(session.mode).toBe('complete');
+  expect(session.items.filter(item => item.moduleId === 'storytelling')).toHaveLength(1);
+  expect(session.items.filter(item => item.moduleId === 'opi')).toHaveLength(5);
+  expect(session.items.some(item => ['listening', 'sentences900'].includes(item.moduleId))).toBe(false);
+});
+it('keeps seeded selections fixed with no repeated source questions and rejects an empty module selection', async () => {
+  const config = { examType: 'icao5-first' as const, modules: ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'] as const };
+  const [first, second] = await Promise.all([buildNative({ ...config, modules: [...config.modules] }, 25), buildNative({ ...config, modules: [...config.modules] }, 25)]);
+  const identities = first.items.map(item => JSON.stringify(item.source));
+  expect(identities).toEqual(second.items.map(item => JSON.stringify(item.source)));
+  expect(new Set(identities).size).toBe(identities.length);
+  expect(first.sections.filter(section => section.moduleId === 'listening').map(section => section.items.length)).toEqual([5, 5, 5, 5]);
+  expect(first.sections.filter(section => section.moduleId === 'sentences900').map(section => section.items.length)).toEqual([4, 4, 4, 4, 4]);
+  await expect(buildNative({ examType: 'icao4-first', modules: [] })).rejects.toThrow('至少选择');
 });

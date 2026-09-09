@@ -29,14 +29,13 @@ jest.mock('@/features/account/privacy-action-state', () => ({
   pendingPrivacyActionFor: (...args: unknown[]) => mockPendingPrivacyAction(...args),
 }));
 
-// Keep the import after the mock factories so their shared spies are initialized first.
-// eslint-disable-next-line import/first
-import {
+// This is the frozen shared/Web contract. Native intentionally removes export.
+const {
   clearLearningData,
   deleteAiResult,
   deleteAllAiResults,
   exportAccountAndLearningData,
-} from '../privacy-self-service';
+} = jest.requireActual('../privacy-self-service.ts') as typeof import('../privacy-self-service');
 
 const deletion = { aiResultGeneration: 2, dataGeneration: 3, deletedCount: 4 };
 

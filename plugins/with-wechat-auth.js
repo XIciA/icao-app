@@ -165,6 +165,13 @@ class WXEntryActivity : Activity(), IWXAPIEventHandler {
 `;
 }
 
+function androidPaymentCallbackSource(packageName) {
+  return androidCallbackSource(packageName)
+    .replace('class WXEntryActivity', 'class WXPayEntryActivity')
+    .replace('import com.icao.wechatauth.IcaoWechatAuthCoordinator', 'import com.icao.wechatauth.IcaoWechatAuthCoordinator\nimport com.icao.wechatauth.IcaoWechatPayCoordinator')
+    .replace('IcaoWechatAuthCoordinator.handleResponse(response)', 'IcaoWechatPayCoordinator.handleResponse(response)');
+}
+
 module.exports = function withWechatAuth(config, properties) {
   const configuration = normalizedConfiguration(properties);
   config = withDangerousMod(config, ['ios', async (mod) => {
@@ -213,6 +220,15 @@ module.exports = function withWechatAuth(config, properties) {
         'android:theme': '@android:style/Theme.Translucent.NoTitleBar',
       },
     });
+    upsertAndroidManifestEntry(application, 'activity', {
+      $: {
+        'android:name': `${config.android.package}.wxapi.WXPayEntryActivity`,
+        'android:exported': 'true',
+        'android:launchMode': 'singleTop',
+        'android:taskAffinity': config.android.package,
+        'android:theme': '@android:style/Theme.Translucent.NoTitleBar',
+      },
+    });
     const manifest = mod.modResults.manifest;
     const queries = manifest.queries || [{ package: [] }];
     const packages = queries[0].package || [];
@@ -251,6 +267,7 @@ module.exports = function withWechatAuth(config, properties) {
     );
     fs.mkdirSync(sourceRoot, { recursive: true });
     fs.writeFileSync(path.join(sourceRoot, 'WXEntryActivity.kt'), androidCallbackSource(packageName));
+    fs.writeFileSync(path.join(sourceRoot, 'WXPayEntryActivity.kt'), androidPaymentCallbackSource(packageName));
     return mod;
   }]);
   return config;
@@ -260,3 +277,5 @@ module.exports.SDK_SHA256 = SDK_SHA256;
 module.exports.SDK_URL = SDK_URL;
 module.exports.MATERIALIZED_SDK_SHA256 = MATERIALIZED_SDK_SHA256;
 module.exports.verifyMaterializedNoPaySdk = verifyMaterializedNoPaySdk;
+
+module.exports.androidPaymentCallbackSource = androidPaymentCallbackSource;

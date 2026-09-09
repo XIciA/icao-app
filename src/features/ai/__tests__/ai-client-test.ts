@@ -3,6 +3,11 @@ const mockGetItem = jest.fn(async (_key: string) => null as string | null);
 const mockRemoveItem = jest.fn(async (_key: string) => undefined);
 const mockSetItem = jest.fn(async (_key: string, _value: string) => undefined);
 const mockCreateAudioUploadForm = jest.fn();
+let mockAccountId = 'account-a';
+jest.mock('@/features/native-commercial-testflight/commerce-environment.native', () => ({
+  getNativeCommerceEnvironmentState: () => ({ accountId: mockAccountId, generation: 1, status: 'active', environment: 'sandbox' }),
+  subscribeNativeCommerceEnvironment: () => () => undefined,
+}));
 const mockGetAsrModel = jest.fn(async () => '16k_en');
 
 jest.mock('@/platform/api-client', () => {
@@ -35,6 +40,7 @@ describe('Native AI client failure handling', () => {
 
   beforeEach(() => {
     jest.resetModules();
+    mockAccountId = 'account-a';
     mockApiRequest.mockReset();
     mockGetItem.mockReset();
     mockGetItem.mockResolvedValue(null);
@@ -55,7 +61,7 @@ describe('Native AI client failure handling', () => {
   });
 
   function client() {
-    return jest.requireActual('@/features/ai/ai-client') as typeof import('@/features/ai/ai-client');
+    return jest.requireActual('@/features/ai/ai-client.native') as typeof import('@/features/ai/ai-client.native');
   }
 
   it('does not silently accept or retry when another device has revoked consent', async () => {
@@ -68,7 +74,7 @@ describe('Native AI client failure handling', () => {
 
     expect(mockApiRequest).toHaveBeenCalledTimes(1);
     expect(mockApiRequest).not.toHaveBeenCalledWith('/v1/ai/consent', expect.objectContaining({ method: 'POST' }));
-    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4');
+    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4.https%3A%2F%2Fapi.example.test.account-a');
   });
 
   it('treats the server as authoritative when this device has an old accepted cache', async () => {
@@ -81,8 +87,8 @@ describe('Native AI client failure handling', () => {
     await expect(client().getCachedAiConsentHint()).resolves.toBe(true);
     await expect(client().hasAiConsent()).resolves.toBe(false);
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/consent');
-    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4');
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/consent', expect.objectContaining({ signal: expect.any(AbortSignal) }));
+    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4.https%3A%2F%2Fapi.example.test.account-a');
   });
 
   it('does not carry consent from the previous account after an account switch', async () => {
@@ -91,7 +97,9 @@ describe('Native AI client failure handling', () => {
       .mockResolvedValueOnce({ accepted: false, policyVersion: 'ai-learning-privacy-v4' });
 
     await expect(client().hasAiConsent()).resolves.toBe(true);
+    mockAccountId = 'account-b';
     await expect(client().hasAiConsent()).resolves.toBe(false);
+    expect(mockRemoveItem).toHaveBeenCalledWith(expect.stringContaining('.account-b'));
 
     expect(mockSetItem).toHaveBeenCalledTimes(1);
     expect(mockRemoveItem).toHaveBeenCalledTimes(1);
@@ -140,7 +148,7 @@ describe('Native AI client failure handling', () => {
       }),
       method: 'POST',
     }));
-    expect(mockSetItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4', 'accepted');
+    expect(mockSetItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4.https%3A%2F%2Fapi.example.test.account-a', 'accepted');
   });
 
   it('does not retry a potentially chargeable upstream failure', async () => {
@@ -168,7 +176,7 @@ describe('Native AI client failure handling', () => {
 
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/review', expect.objectContaining({
       headers: expect.objectContaining({ 'x-ai-operation-id': '81000000-0000-4000-8000-000000000001' }),
-      signal: controller.signal,
+      signal: expect.any(AbortSignal),
     }));
   });
 

@@ -6,6 +6,7 @@ import {
   aesEncryptAsync,
   CryptoDigestAlgorithm,
   digestStringAsync,
+  digest,
 } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Directory, File, Paths } from 'expo-file-system';
@@ -122,8 +123,9 @@ async function memberResourceFile(
   accountId: string,
   environment: ContentAccessCredential['environment'],
   publicPath: string,
+  checksum?: string,
 ) {
-  const digest = await digestStringAsync(CryptoDigestAlgorithm.SHA256, publicPath);
+  const digest = await digestStringAsync(CryptoDigestAlgorithm.SHA256, `${publicPath}#${checksum ?? 'legacy'}`);
   const extension = /\.[A-Za-z0-9]{1,8}$/u.exec(publicPath)?.[0] ?? '.bin';
   return new File(memberResourceDirectory(accountId, environment), `${digest}${extension}`);
 }
@@ -442,7 +444,9 @@ export async function resolveOfflineMemberResource(publicPath: string) {
   assertMemberContentContextCurrent(context);
   if (!scope || !await readMemberTopicCache(accountId, scope)) return undefined;
   assertMemberContentContextCurrent(context);
-  const file = await memberResourceFile(accountId, environment, publicPath);
+  const checksum = await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.checksum`);
+  if (!checksum || !/^[a-f0-9]{64}$/.test(checksum)) return undefined;
+  const file = await memberResourceFile(accountId, environment, publicPath, checksum);
   assertMemberContentContextCurrent(context);
   return file.exists ? file.uri : undefined;
 }
@@ -458,7 +462,8 @@ export async function hasValidOfflineMemberResourceAccess(publicPath: string) {
   return valid;
 }
 
-export async function cacheMemberResource(publicPath: string, signedUrl: string) {
+export async function cacheMemberResource(publicPath: string, signedUrl: string, expected?: { checksum: string; sizeBytes: number }) {
+  if (!expected || !/^[a-f0-9]{64}$/.test(expected.checksum) || expected.sizeBytes <= 0 || expected.sizeBytes > 52_428_800) return undefined;
   const accountId = activeAccountId;
   if (!accountId) return undefined;
   const context = memberContentContext(accountId);
@@ -471,9 +476,21 @@ export async function cacheMemberResource(publicPath: string, signedUrl: string)
     assertMemberContentContextCurrent(context);
     const directory = memberResourceDirectory(accountId, environment);
     directory.create({ idempotent: true, intermediates: true });
-    const file = await memberResourceFile(accountId, environment, publicPath);
+    const file = await memberResourceFile(accountId, environment, publicPath, expected.checksum);
     assertMemberContentContextCurrent(context);
-    if (!file.exists) await File.downloadFileAsync(signedUrl, file, { idempotent: true });
+    const verifiedChecksum = await Storage.getItem(`${resourceIndexKey(accountId, environment, publicPath)}.checksum`);
+    if (!file.exists || verifiedChecksum !== expected.checksum) {
+      if (!file.exists) {
+        try { await File.downloadFileAsync(signedUrl, file, { idempotent: true }); }
+        catch (cause) { if (file.exists) file.delete(); throw cause; }
+      }
+      if (file.size !== expected.sizeBytes) { file.delete(); throw new Error('resource_size_mismatch'); }
+      const bytes = new Uint8Array(await file.bytes());
+      const hash = Array.from(new Uint8Array(await digest(CryptoDigestAlgorithm.SHA256, bytes)))
+        .map((value) => value.toString(16).padStart(2, '0')).join('');
+      if (hash !== expected.checksum) { file.delete(); throw new Error('resource_checksum_mismatch'); }
+    }
+    await Storage.setItem(`${resourceIndexKey(accountId, environment, publicPath)}.checksum`, expected.checksum);
     assertMemberContentContextCurrent(context);
     return file.exists ? file.uri : undefined;
   });

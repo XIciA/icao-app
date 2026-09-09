@@ -1,12 +1,14 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 
-import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
+import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 
 import ProfileTab from '../(tabs)/profile';
 
 const mockPush = jest.fn();
+let mockFocused = true;
+const mockProfile = { displayName: '飞行学员', avatarUri: null, target: 'icao4-first' };
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -22,33 +24,47 @@ jest.mock('lucide-react-native', () => {
   };
 });
 jest.mock('expo-router', () => ({
-  useFocusEffect: (callback: () => void) => callback(),
+  useFocusEffect: (callback: () => void | (() => void)) => {
+    const isFocused = mockFocused;
+    jest.requireActual('react').useEffect(() => isFocused ? callback() : undefined, [callback, isFocused]);
+  },
   useRouter: () => ({ push: mockPush }),
 }));
-jest.mock('@/features/question-bank/platform/learning-store', () => ({
-  sqliteLearningStore: { getRecords: jest.fn().mockResolvedValue([]) },
+jest.mock('@/features/question-bank/platform/learning-store.native', () => ({
+  readLearningProgressStats: jest.fn(),
 }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: jest.fn() }));
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
+
+function readyAccount(accountId = 'business-account-a') {
+  return {
+    restoring: false, accountReady: true, account: { accountId },
+    session: { user: { id: `provider-${accountId}`, displayName: '已登录' } },
+  };
+}
 
 describe('<ProfileTab />', () => {
   beforeEach(() => {
-    mockPush.mockClear();
-    (sqliteLearningStore.getRecords as jest.Mock).mockResolvedValue([]);
-    (useAuth as jest.Mock).mockReturnValue({ restoring: false, session: undefined });
+    jest.clearAllMocks(); mockFocused = true;
+    jest.mocked(readLearningProgressStats).mockResolvedValue({ learnedCards: 0, completedCards: 0 });
+    (useAuth as jest.Mock).mockReturnValue(readyAccount());
   });
 
   it('matches the empty profile baseline content', async () => {
     const screen = await render(<ProfileTab />);
 
     expect(screen.getByText('飞行学员')).toBeTruthy();
-    expect(screen.getByText('尚未登录')).toBeTruthy();
+    expect(screen.getByText('听你五个账号 · 已登录')).toBeTruthy();
     expect(screen.getAllByText('0')).toHaveLength(2);
+    expect(screen.getByText('目标：ICAO 4 初考')).toBeTruthy();
+    expect(screen.getByText('已完成卡片')).toBeTruthy();
+    expect(screen.queryByText('学习次数')).toBeNull();
     expect(screen.getByText(`© 2026 听你五个 · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
   });
 
   it('shows the current invite-account name in the profile card', async () => {
     (useAuth as jest.Mock).mockReturnValue({
-      restoring: false,
+      ...readyAccount(),
       session: { user: { id: 'user-1', displayName: '起落平安' } },
     });
 
@@ -58,31 +74,50 @@ describe('<ProfileTab />', () => {
   });
 
   it('shows a confirmation state while the local session is restoring', async () => {
-    (useAuth as jest.Mock).mockReturnValue({ restoring: true, session: undefined });
+    (useAuth as jest.Mock).mockReturnValue({ restoring: true, accountReady: false, session: undefined });
 
     const screen = await render(<ProfileTab />);
 
     expect(screen.getByText('正在确认账号…')).toBeTruthy();
+    expect(screen.getAllByText('—')).toHaveLength(2);
+    expect(readLearningProgressStats).not.toHaveBeenCalled();
   });
 
-  it('counts only session summaries and refreshes them on focus', async () => {
-    (sqliteLearningStore.getRecords as jest.Mock).mockResolvedValue([
-      { id: 'session-1', completedCount: 2, recordType: 'session' },
-      { id: 'answer-1', completedCount: 1, recordType: 'ai_result' },
-      { id: 'legacy-session', completedCount: 3 },
-    ]);
-
+  it('uses actual card progress independently of history records and refreshes on focus', async () => {
+    jest.mocked(readLearningProgressStats).mockResolvedValue({ learnedCards: 5, completedCards: 2 });
     const screen = await render(<ProfileTab />);
-
     expect(screen.getByText('5')).toBeTruthy();
     expect(screen.getByText('2')).toBeTruthy();
+    expect(readLearningProgressStats).toHaveBeenCalledTimes(1);
+    mockFocused = false; await screen.rerender(<ProfileTab />);
+    jest.mocked(readLearningProgressStats).mockResolvedValue({ learnedCards: 6, completedCards: 3 });
+    mockFocused = true; await screen.rerender(<ProfileTab />);
+    await waitFor(() => expect(screen.getByText('6')).toBeTruthy());
+    expect(screen.getByText('3')).toBeTruthy();
+    expect(readLearningProgressStats).toHaveBeenCalledTimes(2);
+  });
+
+  it('ignores the old business account read while a new account workspace is becoming ready', async () => {
+    let resolveOld!: (stats: { learnedCards: number; completedCards: number }) => void;
+    jest.mocked(readLearningProgressStats).mockReturnValueOnce(new Promise(resolve => { resolveOld = resolve; }));
+    const screen = await render(<ProfileTab />);
+    (useAuth as jest.Mock).mockReturnValue({ ...readyAccount('business-account-b'), accountReady: false });
+    await screen.rerender(<ProfileTab />);
+    await act(async () => { resolveOld({ learnedCards: 12, completedCards: 8 }); });
+    expect(screen.queryByText('12')).toBeNull();
+    expect(screen.getAllByText('—')).toHaveLength(2);
+    jest.mocked(readLearningProgressStats).mockResolvedValue({ learnedCards: 3, completedCards: 1 });
+    (useAuth as jest.Mock).mockReturnValue(readyAccount('business-account-b'));
+    await screen.rerender(<ProfileTab />);
+    expect(screen.getByText('3')).toBeTruthy();
+    expect(screen.getByText('1')).toBeTruthy();
   });
 
   it('opens word favorites from the row below annotations', async () => {
     const screen = await render(<ProfileTab />);
 
     expect(screen.getByText('我的标注')).toBeTruthy();
-    fireEvent.press(screen.getByText('单词收藏'));
+    await fireEvent.press(screen.getByText('单词收藏'));
 
     expect(mockPush).toHaveBeenCalledWith('/word-favorites');
   });
@@ -90,11 +125,11 @@ describe('<ProfileTab />', () => {
   it('opens the real feedback form from the profile menu', async () => {
     const screen = await render(<ProfileTab />);
 
-    fireEvent.press(screen.getByText('意见反馈'));
+    await fireEvent.press(screen.getByText('意见反馈'));
 
     expect(mockPush).toHaveBeenCalledWith({
       pathname: '/info/[slug]',
-      params: { slug: 'feedback', source: 'profile', sourceRoute: '/profile' },
+      params: { slug: 'feedback', source: 'profile', sourceRoute: '/(tabs)/profile' },
     });
   });
 });

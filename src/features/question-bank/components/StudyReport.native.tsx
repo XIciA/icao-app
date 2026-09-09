@@ -1,77 +1,44 @@
-import { CheckCircle2, Clock3, Flag, Highlighter, NotebookPen, Sparkles, Target } from '@/components/ui/icons';
+import { CheckCircle2, Flag } from '@/components/ui/icons';
+import { lazy, Suspense, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
-import { colors, fonts, radii, spacing } from '@/theme';
-
-import type { LearningRecord, StudyInteraction } from '../types';
-
-function formatDuration(total: number) {
-  const seconds = Math.max(1, Math.floor(total));
-  return seconds < 60 ? `${seconds} 秒` : `${Math.floor(seconds / 60)} 分 ${seconds % 60} 秒`;
-}
-
-export function StudyReport({ record, noteCount, onReturn, interaction, returnLabel }: { record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
-  const mockExam = record.recordType === 'mock_exam';
-  const mockExamTitle = '模拟练习';
-  const mockExamTerm = '练习';
-  const completed = record.reason === 'complete' && record.completedCount >= record.totalCount;
-  const progress = record.totalCount ? (record.completedCount / record.totalCount) * 100 : 0;
-  return (
-    <Screen scroll contentStyle={styles.screen}>
-      <View style={styles.hero}>
-        <View style={styles.iconBox}>
-          {completed ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}
-        </View>
-        <Tag tone={completed ? 'primary' : 'accent'}>{mockExam ? completed ? `${mockExamTerm}完成` : `${mockExamTerm}结束` : completed ? '全部完成' : '中途结束'}</Tag>
-        <AppText style={styles.center} variant="pageTitle">{mockExam ? completed ? `本次${mockExamTerm}完成` : `本次${mockExamTerm}已结束` : completed ? '本次学习完成' : '本次学习已结束'}</AppText>
-        <AppText style={styles.center}>{record.bankTitle} · {record.categoryTitle} · {record.topicTitle}</AppText>
-      </View>
-      <Card elevated style={styles.reportCard}>
-        <View style={styles.progressHeader}>
-          <View>
-            <AppText color={colors.primary} variant="micro">题目完成数</AppText>
-            <AppText variant="sectionTitle">本次学习进度</AppText>
-          </View>
-          <AppText style={styles.progressNumber} variant="sectionTitle">{record.completedCount} / {record.totalCount}</AppText>
-        </View>
-        <View style={styles.track}><View style={[styles.fill, { width: `${progress}%` }]} /></View>
-        <View style={styles.metrics}>
-          <Metric icon={Target} label={mockExam ? '完成题数' : interaction === 'choices' ? '答对题数' : '完成练习'} value={String(mockExam || interaction !== 'choices' ? record.completedCount : record.correctCount)} />
-          <Metric icon={Highlighter} label="标注数" value={String(record.annotationCount ?? 0)} />
-          <Metric icon={NotebookPen} label="笔记数" value={String(record.noteCount ?? noteCount)} />
-          <Metric icon={Clock3} label="学习时长" value={formatDuration(record.durationSeconds)} />
-          <Metric icon={Sparkles} label="反馈次数" value={String(record.feedbackCount ?? 0)} />
-        </View>
-      </Card>
-      <Button onPress={onReturn} size="lg" style={styles.button}>{returnLabel ?? (mockExam ? `返回${mockExamTitle}` : '返回题库目录')}</Button>
-    </Screen>
-  );
-}
-
-function Metric({ icon: Icon, label, value }: { icon: typeof Target; label: string; value: string }) {
-  return (
-    <View style={styles.metric}>
-      <View style={styles.metricIcon}><Icon color={colors.primary} size={17} /></View>
-      <AppText style={styles.metricValue} variant="button">{value}</AppText>
-      <AppText variant="micro">{label}</AppText>
+import { colors, radii, spacing } from '@/theme';
+import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
+import { TopBar } from '@/components/navigation/TopBar';
+import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
+import { toStudyReviewPackage } from '../lib/study-review.native';
+import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from '../types';
+const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
+export function StudyReport({ record, onReturn, returnLabel, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
+  const [review, setReview] = useState<QuestionBankStudyPackage>();
+  const [opening, setOpening] = useState(false);
+  const [error, setError] = useState('');
+  const exam = record.recordType === 'mock_exam';
+  const complete = record.reason === 'complete';
+  const listening = record.mockExam?.listeningResult;
+  async function open() {
+    if (opening) return;
+    setOpening(true); setError('');
+    try { const result = toStudyReviewPackage(await loadLearningRecordReview(record)); if (!result) throw new Error('missing_review'); setReview(result); }
+    catch { setError('记录暂时无法打开，请重试。'); }
+    finally { setOpening(false); }
+  }
+  const returnToReport = () => setReview(undefined);
+  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<Screen><TopBar title="学习记录" onBack={returnToReport} /><AppText>正在打开记录…</AppText></Screen>}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
+  return <Screen scroll contentStyle={styles.screen}>
+    <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
+      {onContinue ? null : <Tag tone={complete ? 'primary' : 'accent'}>{exam && !complete ? '未完成' : '已结束'}</Tag>}
+      <AppText variant="pageTitle">{onContinue || (listening && record.mockExam?.moduleIds.length === 1) ? '听力成绩' : exam ? '本次模拟考试已结束' : '本次学习已结束'}</AppText>
+      <AppText style={styles.center} variant="caption">{record.source === 'hotspot' ? record.hotspot?.title : `${record.bankTitle} · ${record.topicTitle}`}</AppText>
     </View>
-  );
+    {listening ? <Card style={styles.card}><View style={styles.metric}><AppText variant="sectionTitle">听力</AppText><AppText color={colors.primary} variant="pageTitle">{listening.score} / 50</AppText></View><View style={styles.metric}><AppText variant="caption">练习等级</AppText><AppText color={colors.primary} variant="sectionTitle">{listening.level} 级</AppText></View><AppText variant="caption">答对 {listening.correctCount} / 20 题 · 作答 {listening.answeredCount} / 20 题</AppText></Card> : null}
+    {!onContinue ? <Card style={styles.card}><View style={styles.metric}><AppText variant="caption">{exam ? '作答题数' : '本次学习'}</AppText><AppText variant="sectionTitle">{exam ? `${record.answeredCount ?? record.completedCount} / ${record.totalCount}` : `${record.studiedCount ?? record.totalCount} 题`}</AppText></View><View style={styles.metric}><AppText variant="caption">学习时长</AppText><AppText variant="button">{record.durationSeconds < 60 ? `${record.durationSeconds} 秒` : `${Math.floor(record.durationSeconds / 60)} 分`}</AppText></View></Card> : null}
+    <AppText style={styles.center} variant="caption">已保存到学习记录</AppText>
+    {error || externalError ? <AppText color={colors.destructive} variant="caption">{error || externalError}</AppText> : null}
+    {externalError && onExitWithoutSave ? <Button disabled={busy} onPress={onExitWithoutSave} variant="ghost">仍然返回</Button> : null}
+    {onContinue ? <><Button disabled={busy} onPress={onContinue}>进入下一板块</Button><Button disabled={busy} variant="secondary" onPress={onEnd}>结束考试</Button></> : <>
+    <Button disabled={opening} onPress={() => { void open(); }}>{opening ? '正在打开…' : '查看本次记录'}</Button>
+    <Button variant="secondary" onPress={onReturn}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
+  </Screen>;
 }
-
-const styles = StyleSheet.create({
-  screen: { paddingBottom: spacing[6], paddingTop: spacing[6] },
-  hero: { alignItems: 'center', gap: spacing[3] },
-  iconBox: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 72, justifyContent: 'center', width: 72 },
-  center: { textAlign: 'center' },
-  reportCard: { marginTop: spacing[6] },
-  progressHeader: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between' },
-  progressNumber: { fontFamily: fonts.monoRegular, fontSize: 18 },
-  track: { backgroundColor: colors.secondary, borderRadius: radii.full, height: 8, marginTop: spacing[3], overflow: 'hidden' },
-  fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: '100%' },
-  metrics: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2.5], marginTop: spacing[4] },
-  metric: { backgroundColor: 'rgba(244,242,236,0.55)', borderRadius: radii.xl, minHeight: 105, padding: spacing[3], width: '47%' },
-  metricIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.md, height: 32, justifyContent: 'center', width: 32 },
-  metricValue: { marginTop: spacing[3] },
-  button: { marginTop: spacing[6] },
-});
+const styles = StyleSheet.create({ screen: { paddingVertical: spacing[6], gap: spacing[4] }, hero: { alignItems: 'center', gap: spacing[3] }, icon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 72, justifyContent: 'center', width: 72 }, center: { textAlign: 'center' }, card: { gap: spacing[4] }, metric: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing[3] } });

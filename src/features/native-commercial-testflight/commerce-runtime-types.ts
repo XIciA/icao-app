@@ -68,7 +68,8 @@ export type CommerceEntitlementChangeReason =
   | 'restore'
   | 'manual-refresh'
   | 'foreground-reconciliation'
-  | 'pending-reconciliation';
+  | 'pending-reconciliation'
+  | 'membership-expired';
 
 export type CommerceEntitlementChange = Readonly<{
   accountId: string;
@@ -93,4 +94,6 @@ export type CommerceRuntimeValue = Readonly<{
   purchase(productKey: CommerceProductOffering['productKey']): Promise<CommerceActionResult>;
   refresh(): Promise<void>;
   restorePurchases(): Promise<CommerceActionResult>;
+  canCancelPendingPurchase?: boolean;
+  cancelPendingPurchase?(): Promise<CommerceActionResult>;
 }>;

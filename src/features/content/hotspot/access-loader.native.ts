@@ -1,3 +1,4 @@
+import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import type { ContentAccessScope } from '@icao/contracts';
 
 import {
@@ -6,21 +7,22 @@ import {
 import {
   loadQuestionBank,
   questionBankRepository,
-} from '@/features/question-bank/data/repository';
+} from '@/features/question-bank/data/repository.native';
 import { getConnectivity } from '@/features/question-bank/platform/network-service';
 import type {
   QuestionBankDataset,
   QuestionBankTopic,
 } from '@/features/question-bank/types';
 
-import { buildHotspotSession, resolveHotspotTopics } from './build-hotspot-session';
+import { resolveHotspotTopics } from './resolve-hotspot-topics.native';
+import { buildHotspotStudyPackage } from './build-hotspot-study-package.native';
 import {
   classifyHotspotFailure,
   isHotspotNetworkFailure,
   safeHotspotRequestId,
   type HotspotAccessResult,
 } from './access-state.native';
-import { getHotspotBrief } from './repository';
+import { loadHotspotBrief } from './repository.native';
 import type { OpiHotspotBrief } from './types';
 
 type TopicTarget = {
@@ -60,7 +62,7 @@ async function hydrateAuthorizedDataset(
       loadedTopics.set(topic.id, topic);
       return;
     }
-    const loaded = await questionBankRepository.getTopic('opi', scope.categoryId, scope.topicId);
+    const loaded = await questionBankRepository.getTopic('opi', scope.categoryId, scope.topicId, contentReleaseOf(dataset));
     if (!loaded) throw new Error('hotspot_topic_unavailable');
     loadedTopics.set(topic.id, loaded);
   }));
@@ -106,7 +108,7 @@ async function resolveHotspotFailure(
 }
 
 export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessResult> {
-  const brief = getHotspotBrief(briefId);
+  const brief = await loadHotspotBrief(briefId);
   if (!brief) return { status: 'not-found' };
 
   let targets: Map<string, TopicTarget> | undefined;
@@ -122,7 +124,7 @@ export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessR
       status: 'ready',
       brief,
       topics,
-      session: buildHotspotSession(brief, dataset),
+      session: buildHotspotStudyPackage(brief, dataset),
     };
   } catch (error) {
     return resolveHotspotFailure(brief, targets, error);

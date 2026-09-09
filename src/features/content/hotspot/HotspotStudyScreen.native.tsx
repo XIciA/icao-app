@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { Screen } from '@/components/ui';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
 import { spacing } from '@/theme';
@@ -12,18 +13,23 @@ import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.nativ
 import { useHotspotAccess } from './use-hotspot-access.native';
 
 export function HotspotStudyScreen({ briefId }: { briefId: string }) {
+  return <NativeScreenBoundary title="OPI 热点" fallbackHref="/content/hotspot" resetKey={briefId}><HotspotStudyContent briefId={briefId} /></NativeScreenBoundary>;
+}
+
+function HotspotStudyContent({ briefId }: { briefId: string }) {
   const router = useRouter();
-  const { retry, state } = useHotspotAccess(briefId);
-  if (state.status === 'loading') return <GlobalLoadingScreen />;
+  const { retry, state } = useHotspotAccess(briefId, { freezeReadyForStudy: true });
+  const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
 
   if (state.status !== 'ready') {
     return (
       <Screen contentStyle={styles.screen} scroll>
-        <TopBar onBack={() => router.back()} title={state.brief?.title ?? 'OPI 热点'} />
+        <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
         <View style={styles.body}>
           {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
           <HotspotAccessNotice
-            onMembership={() => router.push('/account/membership')}
+            onMembership={() => router.push({ pathname: '/account/[slug]', params: { slug: 'membership', from: 'learning' } })}
             onRetry={retry}
             result={state}
           />
@@ -38,12 +44,10 @@ export function HotspotStudyScreen({ briefId }: { briefId: string }) {
   };
   return (
     <QuestionBankStudyScreen
-      category={state.session.category}
-      dataset={state.session.dataset}
       returnHref={returnHref}
       returnLabel="返回热点详情"
       sourceRoute={`/content/hotspot/${state.brief.id}/study`}
-      topic={state.session.topic}
+      studyPackage={state.session}
     />
   );
 }

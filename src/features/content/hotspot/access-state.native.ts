@@ -1,6 +1,6 @@
 import { ApiClientError } from '@/platform/api-client';
 
-import type { HotspotSessionResult } from './build-hotspot-session';
+import type { QuestionBankStudyPackage } from '@/features/question-bank/types';
 import type { OpiHotspotBrief, ResolvedOpiHotspotTopic } from './types';
 
 type HotspotAccessFailureBase = {
@@ -13,7 +13,7 @@ export type HotspotAccessResult =
     status: 'ready';
     brief: OpiHotspotBrief;
     topics: ResolvedOpiHotspotTopic[];
-    session: HotspotSessionResult;
+    session: QuestionBankStudyPackage;
   }
   | (HotspotAccessFailureBase & { status: 'membership-required' })
   | (HotspotAccessFailureBase & { status: 'offline-authorization-expired' })

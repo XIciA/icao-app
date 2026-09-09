@@ -1,5 +1,7 @@
 import { useEffect, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { NativeAiRecovery } from '@/features/ai/NativeAiRecovery.native';
 
 import { recordingRepository } from '@/features/question-bank/recording/recording-repository';
 import { CommerceRuntimeProvider } from '@/features/native-commercial-testflight/CommerceRuntimeProvider';
@@ -10,6 +12,7 @@ import { purgeExpiredSafeDiagnostics } from '@/platform/diagnostics/safe-diagnos
 const DIAGNOSTIC_PURGE_INTERVAL_MS = 60 * 60 * 1_000;
 
 export function AppRuntime({ children }: PropsWithChildren) {
+  const auth = useAuth();
   useEffect(() => {
     recordingRepository.cleanupExpired();
     void purgeExpiredSafeDiagnostics();
@@ -25,6 +28,7 @@ export function AppRuntime({ children }: PropsWithChildren) {
 
   return (
     <CommerceRuntimeProvider>
+      {auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
       <RadioPlayerProvider>{children}<RadioMiniPlayer /></RadioPlayerProvider>
     </CommerceRuntimeProvider>
   );

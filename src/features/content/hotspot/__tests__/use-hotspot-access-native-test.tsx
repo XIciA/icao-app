@@ -9,6 +9,9 @@ import { loadHotspotAccess } from '../access-loader.native';
 import type { HotspotAccessResult } from '../access-state.native';
 import { loadHotspotBriefs } from '../repository';
 import { useHotspotAccess } from '../use-hotspot-access.native';
+import { buildHotspotStudyPackage } from '../build-hotspot-study-package.native';
+import completeQuestionBanks from '@/features/question-bank/data/question-bank.json';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
 
 jest.mock('../access-invalidation.native', () => ({
   hotspotAccessInvalidationSnapshot: jest.fn(),
@@ -113,5 +116,19 @@ describe('useHotspotAccess Native lifecycle', () => {
     expect(mockUnsubscribe).toHaveBeenCalled();
     expect(consoleError).not.toHaveBeenCalled();
     consoleError.mockRestore();
+  });
+
+  it('preserves a started paper during entitlement refresh, while explicit retries still rebuild', async () => {
+    const session = buildHotspotStudyPackage(brief, (completeQuestionBanks as QuestionBankDataset[]).find(bank => bank.id === 'opi')!);
+    const ready: HotspotAccessResult = { status: 'ready', brief, topics: [], session };
+    mockLoadHotspotAccess.mockResolvedValue(ready);
+    const hook = await renderHook(() => useHotspotAccess(brief.id, { freezeReadyForStudy: true }));
+    await waitFor(() => expect(hook.result.current.state.status).toBe('ready'));
+    invalidationSnapshot = 'production:1';
+    await act(async () => invalidateAccess?.());
+    expect(mockLoadHotspotAccess).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.state).toBe(ready);
+    await act(async () => hook.result.current.retry());
+    await waitFor(() => expect(mockLoadHotspotAccess).toHaveBeenCalledTimes(2));
   });
 });

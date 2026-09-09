@@ -117,6 +117,7 @@ export type QuestionBankStudyItem = {
   category: QuestionBankCategory;
   topic: QuestionBankTopic;
   card: QuestionBankCard;
+  materials?: QuestionBankImageCard[];
   sectionId?: string;
   sectionTitle?: string;
 };
@@ -139,7 +140,8 @@ export type CardLearningState = {
 };
 
 export type MockExamRecordMeta = {
-  examType: 'icao4-recert' | 'icao4-first' | 'icao5-first';
+  examType: 'icao4-recert' | 'icao4-first' | 'icao5-first' | 'icao5-recert';
+  listeningResult?: { answeredCount: number; correctCount: number; score: number; level: 2 | 3 | 4 | 5 | 6; totalCount: 20 };
   mode: 'complete' | 'custom';
   moduleIds: QuestionBankId[];
   sectionCounts: { id: string; title: string; total: number }[];
@@ -153,6 +155,17 @@ export type QuestionBankStudyRecordDescriptor = {
   topicTitle: string;
   recordType?: 'session' | 'ai_result' | 'mock_exam';
   mockExam?: MockExamRecordMeta;
+  source?: 'question-bank' | 'hotspot' | 'mock-exam';
+  hotspot?: { id: string; title: string; date: string };
+};
+
+// A paper contains only its selected questions. Shared annotations remain in their
+// existing source-question store; personal recording files never belong here.
+export type StudyReviewSnapshot = {
+  schemaVersion: 1;
+  items: QuestionBankStudyItem[];
+  states: Record<string, CardLearningState>;
+  answers: Record<string, string>;
 };
 
 export type QuestionBankStudyPackage = {
@@ -166,7 +179,7 @@ export type QuestionBankStudyPackage = {
 };
 
 export type LearningRecord = {
-  schemaVersion?: 1 | 2 | 3 | 4;
+  schemaVersion?: 1 | 2 | 3 | 4 | 5;
   id: string;
   sessionId?: string;
   cardId?: string;
@@ -186,11 +199,24 @@ export type LearningRecord = {
   updatedAt?: string;
   recordType?: 'session' | 'ai_result' | 'mock_exam';
   mockExam?: MockExamRecordMeta;
+  source?: 'question-bank' | 'hotspot' | 'mock-exam';
+  hotspot?: { id: string; title: string; date: string };
+  studyReview?: StudyReviewSnapshot;
+  studyReviewSaved?: boolean;
+  aiResultSaved?: boolean;
+  aiOperation?: { operationId: string; environment: 'sandbox' | 'production'; status: 'pending' | 'complete'; inputTranscript?: string };
+  answeredCount?: number;
+  studiedCount?: number;
+  // Populated on demand from the same session's AI records, never persisted in
+  // the paper snapshot so deleting AI results cannot leave a second copy behind.
+  studyFeedback?: Record<string, NonNullable<LearningRecord['aiResult']>>;
   vercelListeningReview?: VercelListeningReview;
   vercelStudyReview?: VercelStudyReview;
   vercelStudyReviewSaved?: boolean;
   aiResult?: {
     questionId: string;
+    itemId?: string;
+    analyzedTranscript?: string;
     rawTranscript?: string;
     transcript: string;
     grammar?: { correctedText: string; issues: (string | GrammarCorrectionIssue)[] };
