@@ -15,8 +15,7 @@
   "runtime": {
     "component": "src/components/brand/AppBrandLogo.native.tsx",
     "surfaces": [
-      "src/components/auth/login-screen.native.tsx",
-      "src/components/states/GlobalLoadingScreen.native.tsx"
+      "src/components/auth/login-screen.native.tsx"
     ]
   },
   "cng": {

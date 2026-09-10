@@ -1,5 +1,7 @@
 import { Image, StyleSheet, View } from 'react-native';
 
+import { radii } from '@/theme';
+
 export const APP_BRAND_LOGO_SOURCE = require('../../../assets/images/icon-native.png');
 
 export const APP_BRAND_LOGO_SIZES = {
@@ -9,6 +11,8 @@ export const APP_BRAND_LOGO_SIZES = {
 } as const;
 
 export type AppBrandLogoSize = keyof typeof APP_BRAND_LOGO_SIZES;
+
+const logoRadii = { sm: radii.sm, md: radii.md, lg: radii.lg } as const;
 
 type Props = {
   accessibilityLabel?: string;
@@ -21,8 +25,8 @@ type Props = {
  * The only in-App renderer for the Native brand master.
  *
  * The layout surface owns positioning around this component. The component owns
- * square sizing, safe inset, contain scaling, and accessibility so callers cannot
- * crop the mark or substitute a plane glyph.
+ * square sizing, safe inset, contain scaling, rounded image corners, and accessibility.
+ * The approved square master and system launcher icons remain unchanged.
  */
 export function AppBrandLogo({
   accessibilityLabel = '听你五个品牌标志',
@@ -47,7 +51,7 @@ export function AppBrandLogo({
         accessible={false}
         resizeMode="contain"
         source={APP_BRAND_LOGO_SOURCE}
-        style={styles.image}
+        style={[styles.image, { borderRadius: logoRadii[size] }]}
         testID={testID ? `${testID}-image` : undefined}
       />
     </View>
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
+    overflow: 'hidden',
     height: '100%',
     width: '100%',
   },
