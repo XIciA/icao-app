@@ -30,6 +30,30 @@ it('autoplays a new question without exposing playback, pause, seek or speed con
   expect(screen.getByText('音频播放中')).toBeTruthy();
   expect(screen.queryByRole('button')).toBeNull(); expect(mockPlayer.playbackRate).toBe(1);
 });
+it('waits for signed-media resolution before replacing the player or starting the playback watchdog', async () => {
+  jest.useFakeTimers();
+  try {
+    const fallback = { ...props, uri: 'https://private.test/unresolved.mp3', resolving: true };
+    const screen = await render(<ExamQuestionAudio {...fallback} />);
+    await act(async () => { jest.advanceTimersByTime(16_000); });
+    expect(mockPlayer.replace).not.toHaveBeenCalled();
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+    expect(screen.getByText('正在准备音频…')).toBeTruthy();
+    expect(screen.queryByText('重新加载音频')).toBeNull();
+
+    const resolved = { ...props, uri: 'https://media.test/signed-question.mp3', resolving: false };
+    await screen.rerender(<ExamQuestionAudio {...resolved} />);
+    expect(mockPlayer.replace).toHaveBeenCalledTimes(1);
+    expect(mockPlayer.replace).toHaveBeenLastCalledWith(resolved.uri);
+    await act(async () => {
+      mockStatus = { ...mockStatus, isLoaded: true, playbackState: 'readyToPlay' };
+      await screen.rerender(<ExamQuestionAudio {...resolved} />);
+    });
+    await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+    expect(screen.getByText('音频播放中')).toBeTruthy();
+    await screen.unmount();
+  } finally { jest.useRealTimers(); }
+});
 it('resumes ordinary background interruption at the current position without issuing a fresh replay', async () => {
   const screen = await playing(); mockPlayer.currentTime = 7;
   await act(() => mockAppState?.('inactive')); await act(() => mockAppState?.('active'));

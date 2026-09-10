@@ -27,7 +27,7 @@ it('stores summaries separately and loads only the selected snapshot without nes
   expect(JSON.stringify(loaded.studyReview)).not.toContain('file:///');
   expect(loaded.studyReview?.items[0].dataset.categories).toEqual([]);
   expect(loaded.studyReview?.items[0].topic.cards).toEqual([]);
-  expect(toStudyReviewPackage(loaded)?.progressMode).toBe('session-only');
+  expect(toStudyReviewPackage(loaded)?.progressMode).toBe('persistent');
 });
 it('has no retention cap and pages session summaries without surfacing AI-only records', async () => {
   for (let index = 0; index < 120; index++) await upsertLearningRecord(record(String(index)));

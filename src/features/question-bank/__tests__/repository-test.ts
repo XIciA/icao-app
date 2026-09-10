@@ -67,7 +67,15 @@ import resourceManifest from '../../../../content/question-banks/resources/manif
 import { AESEncryptionKey, aesDecryptAsync } from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
+import { waitFor } from '@testing-library/react-native';
+import { File } from 'expo-file-system';
 import Storage from '@/platform/storage';
+import completeQuestionBanks from '../data/question-bank.json';
+import type { QuestionBankDataset } from '../types';
+import { buildMockExamSession } from '@/features/mock-exam/build-session.native';
+import { loadHotspotAccess } from '@/features/content/hotspot/access-loader.native';
+import * as hotspotRepository from '@/features/content/hotspot/repository.native';
+import hotspotIndex from '../../../../content/question-banks/opi-hotspots.json';
 
 function testContentCredential(
   accountId: string,
@@ -102,6 +110,48 @@ describe('embeddedQuestionBankRepository', () => {
   const originalSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
   const originalWebContentBaseUrl = process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL;
   const originalPlatform = Platform.OS;
+
+  async function authenticatedContentApi({ cacheUnavailable = false, credentialStatus = 200 } = {}) {
+    const accountId = '00000000-0000-4000-8000-000000000001';
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'https://api.readyoufife.com';
+    await activateQuestionBankContentAccount(accountId);
+    const access = { policyVersion: 'content-access-v2', environment: 'production', membershipActive: true, membershipExpiresAt: '2099-01-01T00:00:00.000Z' };
+    const response = (data: unknown, status = 200) => ({ ok: status === 200, status, json: async () => status === 200
+      ? { requestId: 'content-integration', data }
+      : { requestId: 'content-integration', error: { code: status === 403 ? 'membership_required' : 'content_credentials_unavailable' } } }) as Response;
+    if (cacheUnavailable) jest.mocked(SecureStore.setItemAsync).mockRejectedValueOnce(new Error('local_keychain_write_failed'));
+    const request = jest.spyOn(globalThis, 'fetch').mockImplementation(async (input, init) => {
+      const url = new URL(String(input));
+      const bankId = /^\/v1\/question-banks\/([^/]+)/.exec(url.pathname)?.[1];
+      if (bankId) {
+        const full = (completeQuestionBanks as QuestionBankDataset[]).find((bank) => bank.id === bankId)!;
+        const categoryId = /\/categories\/([^/]+)/.exec(url.pathname)?.[1];
+        const topicId = /\/topics\/([^/]+)/.exec(url.pathname)?.[1];
+        if (categoryId && topicId) {
+          const topic = full.categories.find((category) => category.id === categoryId)!.topics.find((topic) => topic.id === topicId)!;
+          return response({ bankId, categoryId, version: 12, checksum: 'ab'.repeat(32), access,
+            topic: { ...topic, access: { level: 'member', declaredCardCount: topic.cards.length, availableCardCount: topic.cards.length } } });
+        }
+        // Native catalog is a directory with only free cards, even for members.
+        const catalog = await embeddedQuestionBankRepository.getDataset(full.id);
+        return response({ bankId, version: 12, checksum: 'ab'.repeat(32), dataset: { ...catalog, access } });
+      }
+      if (url.pathname === '/v1/content-access/credentials') {
+        const scope = JSON.parse(String(init?.body)).scopes[0];
+        const credential = testContentCredential(accountId, scope);
+        credential.issuedAt = new Date(Date.parse(credential.issuedAt) + 437).toISOString();
+        credential.expiresAt = new Date(Date.parse(credential.expiresAt) + 437).toISOString();
+        return response(credential, credentialStatus);
+      }
+      if (url.pathname === '/v1/resources/resolve') {
+        const path = url.searchParams.get('path')!;
+        return response({ publicPath: path, objectKey: `v1${path}`, checksum: 'ab'.repeat(32), sizeBytes: 10,
+          mimeType: 'audio/mpeg', url: `https://cloud.readyoufife.com/storage/v1/object/sign/question-bank-assets${path}?token=fixture`, expiresIn: 300 });
+      }
+      throw new Error(`unexpected_content_request:${url.pathname}`);
+    });
+    return { accountId, request };
+  }
 
   it('retries legacy cleanup, removes an orphan device-bound credential, and preserves the later v2 key', async () => {
     const accountId = '00000000-0000-4000-8000-000000000001';
@@ -305,8 +355,8 @@ describe('embeddedQuestionBankRepository', () => {
     expect([...mockStorageValues.keys()].some((key) => key.startsWith('icao.content.member-topic.v2.'))).toBe(true);
     expect([...mockSecureValues.keys()].some((key) => key.startsWith('icao.content.credential.v2.'))).toBe(true);
     await expect(resolveRemoteQuestionBankAsset('/question-bank-assets/audio/listening/main/999.mp3', { forceRefresh: true }))
-      .resolves.toMatch(/^file:\/\/\/document\/icao-member-content\//u);
-    expect(mockFiles.size).toBe(1);
+      .resolves.toBe('https://cloud.readyoufife.com/storage/signed/999.mp3');
+    await waitFor(() => expect(mockFiles.size).toBe(1));
   });
 
   it('uses only an unexpired account-scoped cache when the topic service is offline', async () => {
@@ -489,10 +539,132 @@ describe('embeddedQuestionBankRepository', () => {
         expiresIn: 10_000,
       } }),
     } as Response);
-    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^file:\/\/\/document/u);
+    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toBe('https://cloud.readyoufife.com/storage/signed/999.mp3');
+    await waitFor(() => expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(true));
     fetch.mockRejectedValueOnce(new Error('offline'));
     jest.spyOn(Date, 'now').mockReturnValue(Date.now() + 2 * 60 * 60 * 1_000);
 
     await expect(resolveRemoteQuestionBankAsset(path)).rejects.toThrow('offline');
   });
+  it('builds the 20-question Native listening paper from directory, authorized topics and the same signed audio source', async () => {
+    const { request } = await authenticatedContentApi();
+    const paper = await buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73);
+    expect(paper.sections.map((section) => section.items.length)).toEqual([5, 5, 5, 5]);
+    expect(new Set(paper.items.map((item) => item.card.id)).size).toBe(20);
+    const resources = new Set(resourceManifest.files.map((resource) => resource.publicPath));
+    expect(paper.items.every((item) => item.card.audio && resources.has(item.card.audio))).toBe(true);
+    for (const item of paper.items) {
+      expect(item.card).toBe(item.topic.cards.find((card) => card.id === item.source.cardId));
+      expect(item.source.bankId).toBe('listening');
+    }
+    const path = paper.items[0].card.audio!;
+    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
+    expect(request.mock.calls.some(([url]) => String(url).includes(`/v1/resources/resolve?path=${encodeURIComponent(path)}`))).toBe(true);
+    expect(request.mock.calls.filter(([url]) => String(url).includes('/topics/'))).toHaveLength(4);
+    expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(4);
+  });
+
+  it('opens the July 10 Native hotspot as all 18 original questions after authorized hydration', async () => {
+    const { request } = await authenticatedContentApi();
+    const brief = hotspotIndex.briefs.find((brief) => brief.id === 'hotspot-2026-07-10')!;
+    jest.spyOn(hotspotRepository, 'loadHotspotBrief').mockResolvedValue(brief);
+    const result = await loadHotspotAccess(brief.id);
+    expect(result.status).toBe('ready');
+    if (result.status !== 'ready') throw new Error('hotspot_not_ready');
+    expect(result.session.items.map((item) => item.card.id)).toEqual(brief.topics.flatMap((topic) => topic.cardIds));
+    expect(result.session.items).toHaveLength(18);
+    expect(result.session.progressMode).toBe('persistent');
+    expect(request.mock.calls.filter(([url]) => String(url).includes('/topics/'))).toHaveLength(3);
+  });
+
+  it('retains the authenticated online question when only offline keychain persistence fails', async () => {
+    await authenticatedContentApi({ cacheUnavailable: true });
+    const paper = await buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73);
+    expect(paper.items).toHaveLength(20);
+  });
+
+  it('does not discard an online paper for a temporary offline-credential service failure, but preserves revoked-access errors', async () => {
+    await authenticatedContentApi({ credentialStatus: 503 });
+    await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).resolves.toMatchObject({ items: expect.any(Array) });
+    expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
+    jest.restoreAllMocks();
+    await authenticatedContentApi({ credentialStatus: 403 });
+    await expect(buildMockExamSession({ examType: 'icao4-first', modules: ['listening'] }, 73)).rejects.toMatchObject({ code: 'membership_required', status: 403 });
+  });
+
+  it('rejects a late authorized topic when its account changes during optional credential loading', async () => {
+    const { accountId, request } = await authenticatedContentApi();
+    const route = request.getMockImplementation()!;
+    let release!: (response: Response) => void;
+    let started!: () => void;
+    const credentialRequested = new Promise<void>((resolve) => { started = resolve; });
+    request.mockImplementation(async (input, init) => {
+      if (String(input).endsWith('/v1/content-access/credentials')) {
+        started();
+        return new Promise<Response>((resolve) => { release = resolve; });
+      }
+      return route(input, init);
+    });
+    const loading = questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    await credentialRequested;
+    await activateQuestionBankContentAccount('00000000-0000-4000-8000-000000000002');
+    release({ ok: true, status: 200, json: async () => ({ data: testContentCredential(accountId,
+      { bankId: 'listening', categoryId: 'listening-category-01', topicId: 'listening-topic-01' }) }) } as Response);
+    await expect(loading).rejects.toMatchObject({ code: 'content_account_changed' });
+    expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
+  });
+
+  it('never writes or trusts an invalidly signed offline credential even when the authenticated online topic succeeds', async () => {
+    const { request } = await authenticatedContentApi();
+    const route = request.getMockImplementation()!;
+    request.mockImplementation(async (input, init) => String(input).endsWith('/v1/content-access/credentials')
+      ? { ok: true, status: 200, json: async () => ({ data: { token: 'invalid', scopes: [] } }) } as Response
+      : route(input, init));
+    const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    expect(topic?.cards).toHaveLength(542);
+    expect([...mockStorageValues.keys()].filter((key) => key.startsWith('icao.content.member-topic.v2.'))).toHaveLength(0);
+    expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
+  });
+
+  it('still opens authorized free questions after expiring the previous member cache', async () => {
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'https://api.readyoufife.com';
+    await activateQuestionBankContentAccount('00000000-0000-4000-8000-000000000001');
+    const topic = await embeddedQuestionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    jest.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: true, status: 200, json: async () => ({ data: {
+      bankId: 'listening', categoryId: 'listening-category-01', version: 12, checksum: 'ab'.repeat(32), topic,
+      access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: false, membershipExpiresAt: null },
+    } }) } as Response);
+    await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'))
+      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-001' })]) });
+  });
+
+  it('returns authorized online audio before optional offline download completes, then retains the verified offline copy', async () => {
+    const { request } = await authenticatedContentApi();
+    const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    const path = topic!.cards[0].audio!;
+    const download = File.downloadFileAsync;
+    let release!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; });
+    const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      await held;
+      return download(...args);
+    });
+    try {
+      await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
+      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(1));
+      expect(mockFiles.size).toBe(0);
+    } finally { release(); }
+    await waitFor(() => expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(true));
+    request.mockRejectedValue(new Error('offline'));
+    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toMatch(/^file:\/\/\/document\/icao-member-content\//);
+  });
+
+  it('keeps authorized online audio playable when the optional local URL cache cannot be written', async () => {
+    await authenticatedContentApi();
+    const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_full'));
+    await expect(resolveRemoteQuestionBankAsset(topic!.cards[0].audio!)).resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
+  });
+
+
 });

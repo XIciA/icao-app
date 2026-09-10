@@ -1,10 +1,10 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { useState } from 'react';
+import { createRef, useState, type Ref } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
-import { StudyWorkbench } from '@/features/question-bank/components/StudyWorkbench.native';
+import { StudyWorkbench, type StudyWorkbenchHandle, type StudyWorkbenchFeedbackCache } from '@/features/question-bank/components/StudyWorkbench.native';
 import { AiOperationFailure } from '@/features/ai/ai-operation-failure.native';
 import { ApiClientError } from '@/platform/api-client';
-import type { StudyReviewKind } from '@/features/question-bank/types';
+import type { LearningRecord, StudyReviewKind } from '@/features/question-bank/types';
 const mockHasConsent = jest.fn(async () => true);
 const mockAcceptConsent = jest.fn(async () => undefined);
 const mockTranscribe = jest.fn();
@@ -15,6 +15,7 @@ const mockFeedback = jest.fn();
 const mockCheckpoint = jest.fn(async (): Promise<void> => undefined);
 const mockAnswer = jest.fn();
 const mockPush = jest.fn();
+const mockPending = jest.fn(async (_record: unknown, operationId: string) => ({ operationId, environment: 'sandbox', status: 'pending' }));
 let mockUuidSequence = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `operation-${++mockUuidSequence}` }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush }), usePathname: () => '/question-bank/opi/categories/a/topics/b/study' }));
@@ -25,7 +26,7 @@ jest.mock('@/features/ai/ai-client.native', () => ({
   transcribeAndReviewRecording: (...args: unknown[]) => mockCombined(...args),
 }));
 jest.mock('@/features/ai/ai-operation-recovery.native', () => ({
-  savePendingAiOperation: async (_record: unknown, operationId: string) => ({ operationId, environment: 'sandbox', status: 'pending' }),
+  savePendingAiOperation: (...args: [unknown, string]) => mockPending(...args),
   completePendingAiOperation: async (_recordId: string, operationId: string) => ({ aiOperation: { operationId, environment: 'sandbox', status: 'complete' } }),
   abandonPendingAiOperation: jest.fn(async () => undefined),
 }));
@@ -37,14 +38,22 @@ jest.mock('@/components/ui', () => {
   return { ...actual, BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <View>{children}</View> : null };
 });
 const review = { grammar: { correctedText: 'We are ready.', issues: [] }, polishedText: 'We are ready to depart.', promptVersion: 'deepseek-review:v1' as const };
-function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a' }: { kind?: StudyReviewKind; card?: string; recording?: string }) {
-  const [answer, setAnswer] = useState('My previous answer.');
+function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialFeedback, workbenchRef, feedbackCacheRef }: {
+  kind?: StudyReviewKind; card?: string; recording?: string; sessionId?: string;
+  initialFeedback?: LearningRecord['aiResult']; workbenchRef?: Ref<StudyWorkbenchHandle>;
+  feedbackCacheRef?: { current: StudyWorkbenchFeedbackCache | undefined };
+}) {
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const answerKey = `${sessionId}:${card}`;
+  const answer = answers[answerKey] ?? 'My previous answer.';
+  const [editingTab, setEditingTab] = useState<'mine' | 'notes'>();
   return <StudyWorkbench activeTab="mine" answerText={answer} bankId={kind === 'exact-match' ? 'sentences900' : 'opi'} bankTitle="OPI" cardKey={card}
     sourceCardId="original-q" categoryTitle="运行" topicTitle="飞行" questionText="Question" noteText="" referenceContent={null} referenceLabel="参考答案"
-    reviewKind={kind} recordingUri={recording} sessionId="study-1" sessionStartedAt={new Date().toISOString()} tabs={['mine']}
+    reviewKind={kind} recordingUri={recording} sessionId={sessionId} sessionStartedAt={new Date().toISOString()} tabs={['mine']}
+    initialFeedback={initialFeedback} feedbackCacheRef={feedbackCacheRef} ref={workbenchRef} editingTab={editingTab}
     swipeGesture={Gesture.Pan().enabled(false)} learningStore={{ addRecord: mockSave }}
-    onAnswerChange={(value) => { mockAnswer(value); setAnswer(value); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint}
-    onNoteChange={jest.fn()} onRetrySave={jest.fn()} onEditingTabChange={jest.fn()} onTabChange={jest.fn()} />;
+    onAnswerChange={(value) => { mockAnswer(value); setAnswers((current) => ({ ...current, [answerKey]: value })); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint}
+    onNoteChange={jest.fn()} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
 }
 beforeEach(() => {
   jest.clearAllMocks(); mockHasConsent.mockResolvedValue(true);
@@ -155,4 +164,108 @@ it('does not start an old question request after its delayed checkpoint finishes
   expect(mockCombined).not.toHaveBeenCalled();
   await chooseCombination(screen); await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(1));
   expect(mockCombined.mock.calls[0][0]).toBe('file:///two.m4a');
+});
+
+const historicalFeedback: NonNullable<LearningRecord['aiResult']> = {
+  questionId: 'original-q', itemId: 'q1', transcript: 'Earlier final answer.',
+  rawTranscript: 'Earlier speech transcript.', analyzedTranscript: 'Earlier analyzed answer.',
+  grammar: { correctedText: 'Earlier corrected answer.', issues: [] }, polishedText: 'Earlier polished answer.',
+};
+
+it('displays historical AI, raw and analyzed text without creating a record or marking browsing dirty', async () => {
+  jest.useFakeTimers();
+  try {
+    const workbenchRef = createRef<StudyWorkbenchHandle>();
+    const screen = await render(<Harness initialFeedback={historicalFeedback} workbenchRef={workbenchRef} />);
+    expect(screen.getByText('Earlier corrected answer.')).toBeTruthy();
+    expect(screen.getByText('Earlier polished answer.')).toBeTruthy();
+    expect(screen.getByTestId('study-workbench-raw-transcript').props.children).toBe('Earlier speech transcript.');
+    expect(screen.getByTestId('study-workbench-analyzed-transcript').props.children).toBe('Earlier analyzed answer.');
+    await act(async () => { jest.advanceTimersByTime(1200); expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+    await screen.rerender(<Harness card="q2" workbenchRef={workbenchRef} />);
+    expect(screen.queryByTestId('study-workbench-review-result')).toBeNull();
+    await screen.rerender(<Harness initialFeedback={historicalFeedback} workbenchRef={workbenchRef} />);
+    expect(screen.getByText('Earlier polished answer.')).toBeTruthy();
+    await act(async () => { jest.advanceTimersByTime(1200); expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+    expect(mockSave).not.toHaveBeenCalled(); expect(mockPending).not.toHaveBeenCalled();
+    expect(mockCheckpoint).not.toHaveBeenCalled(); expect(mockFeedback).not.toHaveBeenCalled();
+    expect(mockAnswer).not.toHaveBeenCalled();
+    await screen.unmount();
+  } finally { jest.useRealTimers(); }
+});
+
+it('clears historical feedback on answer edits and does not rehydrate it when returning to the same card', async () => {
+  const workbenchRef = createRef<StudyWorkbenchHandle>();
+  const screen = await render(<Harness initialFeedback={historicalFeedback} workbenchRef={workbenchRef} />);
+  await act(() => fireEvent.press(screen.getByLabelText('编辑我的回答')));
+  await act(() => fireEvent.changeText(screen.getByLabelText('我的回答'), 'My edited answer.'));
+  expect(screen.queryByTestId('study-workbench-ai-region')).toBeNull();
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  expect(mockSave).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'study-1', aiResult: expect.objectContaining({
+    transcript: 'My edited answer.', grammar: undefined, polishedText: undefined, analyzedTranscript: undefined, rawTranscript: undefined,
+  }) }), expect.any(Object));
+  const savedCount = mockSave.mock.calls.length;
+  await screen.rerender(<Harness card="q2" workbenchRef={workbenchRef} />);
+  await screen.rerender(<Harness initialFeedback={{ ...historicalFeedback }} workbenchRef={workbenchRef} />);
+  expect(screen.getByLabelText('我的回答').props.value).toBe('My edited answer.');
+  expect(screen.queryByTestId('study-workbench-ai-region')).toBeNull();
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  expect(mockSave).toHaveBeenCalledTimes(savedCount);
+});
+
+it('keeps new feedback across card navigation, assigns it to the new session and isolates subsequent sessions', async () => {
+  const workbenchRef = createRef<StudyWorkbenchHandle>();
+  const screen = await render(<Harness initialFeedback={historicalFeedback} sessionId="history-restudy-1" workbenchRef={workbenchRef} />);
+  await chooseCombination(screen);
+  await waitFor(() => expect(screen.getByText(review.polishedText)).toBeTruthy());
+  expect(mockCheckpoint).toHaveBeenCalledTimes(1);
+  expect(mockPending).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'history-restudy-1', id: expect.stringContaining('ai-history-restudy-1-'), cardId: 'original-q' }), expect.any(String), expect.objectContaining({ accountId: 'account-a' }), undefined);
+  expect(mockPending.mock.calls[0][0]).toEqual(expect.objectContaining({ feedbackCount: 0, aiResult: expect.objectContaining({ grammar: undefined, polishedText: undefined, rawTranscript: undefined, analyzedTranscript: undefined }) }));
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  const savedCount = mockSave.mock.calls.length;
+  await screen.rerender(<Harness card="q2" sessionId="history-restudy-1" workbenchRef={workbenchRef} />);
+  expect(screen.queryByTestId('study-workbench-ai-region')).toBeNull();
+  await screen.rerender(<Harness initialFeedback={historicalFeedback} sessionId="history-restudy-1" workbenchRef={workbenchRef} />);
+  expect(screen.getByText(review.polishedText)).toBeTruthy();
+  expect(screen.queryByText('Earlier polished answer.')).toBeNull();
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  expect(mockSave).toHaveBeenCalledTimes(savedCount);
+  await screen.rerender(<Harness initialFeedback={historicalFeedback} sessionId="history-restudy-2" workbenchRef={workbenchRef} />);
+  expect(screen.getByText('Earlier polished answer.')).toBeTruthy();
+  expect(screen.queryByText(review.polishedText)).toBeNull();
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  expect(mockSave).toHaveBeenCalledTimes(savedCount);
+});
+
+it('preserves older text-only issue details and does not invent a correction for polished-only feedback', async () => {
+  const screen = await render(<Harness initialFeedback={{ ...historicalFeedback, grammar: { correctedText: 'Original correction.', issues: ['Legacy explanation.'] } }} />);
+  expect(screen.getByText('Legacy explanation.')).toBeTruthy();
+  expect(screen.getByText('Original correction.')).toBeTruthy();
+  await screen.rerender(<Harness card="q2" initialFeedback={{ questionId: 'q2', transcript: 'Input.', polishedText: 'Polished only.' }} />);
+  expect(screen.getByText('Polished only.')).toBeTruthy();
+  expect(screen.queryByText('正确句子')).toBeNull();
+  expect(mockSave).not.toHaveBeenCalled();
+});
+
+it('retains edited and newly generated feedback through the real collapsed-card unmount boundary', async () => {
+  const feedbackCacheRef: { current: StudyWorkbenchFeedbackCache | undefined } = { current: undefined };
+  const workbenchRef = createRef<StudyWorkbenchHandle>();
+  const props = { initialFeedback: historicalFeedback, feedbackCacheRef, workbenchRef };
+  const first = await render(<Harness {...props} />);
+  await act(() => fireEvent.press(first.getByLabelText('编辑我的回答')));
+  await act(() => fireEvent.changeText(first.getByLabelText('我的回答'), 'New answer.'));
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  await first.unmount();
+  const reopened = await render(<Harness {...props} />);
+  expect(reopened.queryByTestId('study-workbench-ai-region')).toBeNull();
+  await chooseCombination(reopened);
+  await waitFor(() => expect(reopened.getByText(review.polishedText)).toBeTruthy());
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  const savedCount = mockSave.mock.calls.length;
+  await reopened.unmount();
+  const final = await render(<Harness {...props} />);
+  expect(final.getByText(review.polishedText)).toBeTruthy();
+  expect(final.queryByText('Earlier polished answer.')).toBeNull();
+  await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
+  expect(mockSave).toHaveBeenCalledTimes(savedCount);
 });

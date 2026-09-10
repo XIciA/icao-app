@@ -147,16 +147,28 @@ export const remoteQuestionBankRepository = {
         await clearQuestionBankMemberContent(accountId).catch(() => undefined);
       }
       if (accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
-        const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            [COMMERCE_ENVIRONMENT_HEADER]: environment,
-          },
-          body: JSON.stringify({ scopes: [scope] }),
-        });
+        try {
+          const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              [COMMERCE_ENVIRONMENT_HEADER]: environment,
+            },
+            body: JSON.stringify({ scopes: [scope] }),
+          });
+          assertContentContextCurrent(context);
+          // Verification is still mandatory before any offline cache is
+          // written. Online topic access was separately authorized by the API.
+          await writeMemberTopicCache(accountId, scope, release.topic, credential);
+        } catch (error) {
+          assertContentContextCurrent(context);
+          // Never suppress revoked access or invalid request/owner boundaries.
+          // A transient credential service or local cache failure must not
+          // discard a topic already returned by the authenticated topic API.
+          if (error instanceof ApiClientError && error.status >= 400 && error.status < 500
+            && error.status !== 408 && error.status !== 429) throw error;
+        }
         assertContentContextCurrent(context);
-        await writeMemberTopicCache(accountId, scope, release.topic, credential);
       }
       return release.topic;
     } catch (error) {

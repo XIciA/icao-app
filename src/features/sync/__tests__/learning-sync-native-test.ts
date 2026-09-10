@@ -19,7 +19,7 @@ jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => 
 
 
 import Storage from '@/platform/storage';
-import { ANNOTATION_STORAGE_KEY, createEmptyAnnotationEntry, createEmptyAnnotationStore, readAnnotationStore, updateAnnotationStore, retryAnnotationStoreWrite, setAnnotationEntry, resetAnnotationStoreCacheForTests } from '@/features/question-bank/annotations/annotation-store.native';
+import { ANNOTATION_STORAGE_KEY, createEmptyAnnotationEntry, createEmptyAnnotationStore, flushPendingAnnotationSaves, readAnnotationStore, updateAnnotationStore, retryAnnotationStoreWrite, setAnnotationEntry, resetAnnotationStoreCacheForTests } from '@/features/question-bank/annotations/annotation-store.native';
 import { questionBankCardTargetKey } from '@/features/question-bank/annotations/card-index';
 import { readProfile } from '@/features/account/profile-store.native';
 import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
@@ -216,6 +216,89 @@ it('preserves rapid annotation updates and retries only the current owner cache'
   await retryAnnotationStoreWrite();
   expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('重试保存');
   await switchLearningSyncAccount('B'); await retryAnnotationStoreWrite();
+  expect((await readAnnotationStore()).entries).toEqual({});
+});
+it('flushing a browsing-only annotation session does not create a document or outbox mutation', async () => {
+  await switchLearningSyncAccount('A');
+  const before = new Map(mockValues);
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
+  expect(mockValues).toEqual(before);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+});
+it('waits for every in-flight annotation edit in the existing workspace queue', async () => {
+  await switchLearningSyncAccount('A');
+  const firstStarted = deferred(); const firstGate = deferred();
+  const secondStarted = deferred(); const secondGate = deferred();
+  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
+  let documentWrites = 0;
+  jest.mocked(Storage.setItem).mockImplementation(async (key, value) => {
+    if (key === ANNOTATION_STORAGE_KEY && ++documentWrites === 1) { firstStarted.release(); await firstGate.promise; }
+    else if (key === ANNOTATION_STORAGE_KEY && documentWrites === 2) { secondStarted.release(); await secondGate.promise; }
+    await original(key, value);
+  });
+  const first = saveNote('保留本次笔记');
+  await firstStarted.promise;
+  let flushed = false;
+  const flushing = flushPendingAnnotationSaves().then(saved => { flushed = true; return saved; });
+  const second = updateAnnotationStore(store => setAnnotationEntry(store, annotationTarget, { ...store.entries[annotationKey], tagIds: ['good'] }));
+  firstGate.release(); await first; await secondStarted.promise;
+  expect(flushed).toBe(false);
+  secondGate.release(); await second;
+  expect(await flushing).toBe(true);
+  expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey]).toMatchObject({ note: '保留本次笔记', tagIds: ['good'] });
+  const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox')!);
+  expect(outbox.at(-1).payload.document.entries[annotationKey]).toMatchObject({ note: '保留本次笔记', tagIds: ['good'] });
+  jest.mocked(Storage.setItem).mockImplementation(original);
+});
+it('reports a failed annotation save until the existing retry persists its retained edits', async () => {
+  await switchLearningSyncAccount('A');
+  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_busy'));
+  await expect(saveNote('尚未落盘')).rejects.toThrow('disk_busy');
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(false);
+  expect((await readAnnotationStore()).entries[annotationKey].note).toBe('尚未落盘');
+  await retryAnnotationStoreWrite();
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
+  expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('尚未落盘');
+});
+it('does not claim success when the annotation document saved but its sync outbox failed', async () => {
+  await switchLearningSyncAccount('A');
+  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
+  let failOutbox = true;
+  jest.mocked(Storage.setItem).mockImplementation(async (key, value) => {
+    if (key === 'icao.learning.v3.sync.outbox' && failOutbox) { failOutbox = false; throw new Error('outbox_busy'); }
+    await original(key, value);
+  });
+  await expect(saveNote('等待同步入队')).rejects.toThrow('outbox_busy');
+  expect(JSON.parse(mockValues.get(ANNOTATION_STORAGE_KEY)!).entries[annotationKey].note).toBe('等待同步入队');
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(false);
+  await retryAnnotationStoreWrite();
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+  jest.mocked(Storage.setItem).mockImplementation(original);
+});
+it('does not let a completed old-owner save authorize departure for a changed account', async () => {
+  await switchLearningSyncAccount('A');
+  const context = captureLearningWriteContext();
+  const started = deferred(); const gate = deferred();
+  const original = jest.mocked(Storage.setItem).getMockImplementation()!;
+  jest.mocked(Storage.setItem).mockImplementationOnce(async (key, value) => { started.release(); await gate.promise; await original(key, value); });
+  const saving = saveNote('留在 A');
+  await started.promise;
+  const flushing = flushPendingAnnotationSaves(context);
+  const switching = switchLearningSyncAccount('B');
+  gate.release(); await saving; await switching;
+  expect(await flushing).toBe(false);
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
+  expect((await readAnnotationStore()).entries).toEqual({});
+});
+it('does not carry a failed annotation-save result across a learning-data reset', async () => {
+  await switchLearningSyncAccount('A');
+  const context = captureLearningWriteContext();
+  jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_busy'));
+  await expect(saveNote('已放弃的数据')).rejects.toThrow('disk_busy');
+  await applyPrivacyLearningDataReset({ dataGeneration: 1, aiResultGeneration: 1 });
+  await expect(flushPendingAnnotationSaves(context)).resolves.toBe(false);
+  await expect(flushPendingAnnotationSaves()).resolves.toBe(true);
   expect((await readAnnotationStore()).entries).toEqual({});
 });
 it('applies a pulled annotation document without waiting on its own running sync', async () => {
