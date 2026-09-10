@@ -289,11 +289,6 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
           return this.markRetryable(job, leaseToken, 'auth_user_delete_failed', now);
         }
         if (!await this.ownsLease(job.id, leaseToken)) return this.responseFor(await this.requireJob(jobId));
-        // A WeChat principal points at the provider-specific Supabase auth user. Remove that
-        // mapping only after the external auth user is gone, so a later authorization can create
-        // a fresh account while lifetime trial claims continue to be enforced by their digest.
-        await this.database.db.delete(wechatAuthPrincipals)
-          .where(eq(wechatAuthPrincipals.authUserId, authUser.authUserId));
         await this.database.db.update(accountDeletionAuthUsers).set({
           status: 'deleted',
           attemptCount: authUser.attemptCount + 1,
@@ -405,6 +400,10 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       const authUserRows = await transaction.select({ authUserId: accountDeletionAuthUsers.authUserId })
         .from(accountDeletionAuthUsers).where(eq(accountDeletionAuthUsers.jobId, job.id));
       if (authUserRows.length > 0) {
+        // Keep the mapping until the account is atomically finalized as deleted:
+        // login can then reject an in-progress deletion instead of registering early.
+        await transaction.delete(wechatAuthPrincipals)
+          .where(inArray(wechatAuthPrincipals.authUserId, authUserRows.map(({ authUserId }) => authUserId)));
         await transaction.update(inviteAccounts).set({
           status: 'deleted',
           userId: null,

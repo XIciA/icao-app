@@ -7,6 +7,7 @@ import { WechatAuthService } from '../src/auth/wechat-auth.service';
 import type { WechatAuthHttp } from '../src/auth/wechat-auth-http';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
+import { wechatAuthPrincipals } from '../src/database/schema';
 
 const supabase = vi.hoisted(() => ({ createClient: vi.fn() }));
 vi.mock('@supabase/supabase-js', () => ({ createClient: supabase.createClient }));
@@ -32,7 +33,7 @@ function query<T>(result: T) {
   const chain: Record<string, ReturnType<typeof vi.fn>> & PromiseLike<T> = {
     then: ((onFulfilled, onRejected) => Promise.resolve(result).then(onFulfilled, onRejected)) as Promise<T>['then'],
   } as never;
-  for (const name of ['from', 'where', 'limit', 'for', 'set', 'returning']) {
+  for (const name of ['from', 'innerJoin', 'where', 'limit', 'for', 'set', 'returning']) {
     chain[name] = vi.fn(() => name === 'returning' ? Promise.resolve(result) : chain);
   }
   return chain;
@@ -268,7 +269,7 @@ describe('WechatAuthService challenge recovery', () => {
     expect((grantCall?.[5] as Date).getTime() - (grantCall?.[4] as Date).getTime()).toBe(600_000);
   });
 
-  it('commits a deterministic principal reservation before creating the external auth user and resumes after failure', async () => {
+  it('commits a stable principal reservation before creating the external auth user and resumes after failure', async () => {
     const subjectDigest = digest('subject', 'unionid:recoverable-user');
     const getUserById = vi.fn().mockResolvedValue({ data: { user: null }, error: { status: 404 } });
     const recoveredUser = {
@@ -296,7 +297,7 @@ describe('WechatAuthService challenge recovery', () => {
     const transaction = {
       execute: vi.fn().mockResolvedValue(undefined),
       insert: vi.fn(() => ({ values: insertValues })),
-      select: vi.fn(() => query([])),
+      select: vi.fn(() => ({ from: (table: unknown) => query(table === wechatAuthPrincipals && principalId ? [{ authUserId: principalId }] : []) })),
     };
     const update = vi.fn(() => query([]));
     const database = {
