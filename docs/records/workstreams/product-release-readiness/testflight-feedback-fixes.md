@@ -45,5 +45,15 @@
 - 价格读取来自StoreKit，前台恢复和购买前重新读取，价格变化先更新界面再允许支付。App Store Connect只读确认中国区7天¥68、31天¥158、93天¥358。最终设备sandbox商店状态尚不能凭截图确定，不硬改货币符号。
 - 完整 `pnpm check` 通过：App160套／1034项、API49文件／678项，以及内容、合同、类型和发布门禁。最后两个审查补丁另经17项受影响回归及类型检查；`pnpm check:release` 通过。另有验证码4项真实隔离PostgreSQL回归、签名导出5项和Web路由冻结负向测试通过。
 - 使用临时验证账号实际检查生产五库、12个完整主题、7月10日OPI的3主题18题，18个音频GET与长度/SHA256一致；账号和临时权益清理完成。证据在 `.generated/product-release-readiness/testflight-twelve-learning-*-live.json`，不等同TestFlight真机验收。
-- 待交付配套：从合入main的提交部署API及真实短信Auth overlay（最小密码8、供应商同号间隔1秒），完成新API真实AI校验，构建并上传新候选。当前尚未上传本轮新包。
+- 交付配套已完成：PR [#108](https://github.com/XIciA/icao-app/pull/108)、CI `34434675576`通过并合入main `72f220cf42c9c336d97a48ad9ba6d68377fe9750`。API `feedback-72f220cf42c9`健康、数据库CURRENT、app-content仍v2；Auth仅从main读取两个目标值更新为最小密码8和同号1秒，其他展开配置、Apple与真实SMS能力不变，不宣称整份overlay逐字替换。旧配置保存在 `/opt/icao/backups/auth-config-72f220cf42c9/`，制品密码/昵称及公网检查通过。
 - 外部短信平台自己的分钟限额仍待核实：现有阿里云控制台会话在登录页，已向用户请求现成登录会话；不能将应用/API的冷却修复当作阿里云平台限额已经改变。
+
+## 新候选与验收入口
+
+- **TestFlight 1.0.0（3519586）已上传，Apple VALID，已进入1个现有内部组。** 上传脚本和独立ASC只读回读均确认，用户直接更新验收，无App Store公开提交。
+- iOS源码：`72f220cf42c9c336d97a48ad9ba6d68377fe9750`；tag `release/ios-testflight/v1.0.0-b3519586`。API tag `release/api-production/2026-09-10-72f220c`；上一API版本 `production-migration-ce67f4e6dea5` 与旧配置保留供回滚。
+- 新API真实AI检查在 `2026-09-10T04:11:17.964Z` 通过ASR、grammar、polish、航空术语保留和临时音频清理；2个临时账号及全部关联数据清理断言通过，未发送短信。
+- Release archive/export、实际微信SDK与回调配置、10份隐私manifest／3个embedded SDK、Apple validate与upload均通过。IPA SHA256：`d92756a2871190a7c54f9aef7a339714b31f61e5a3d86b13178d343e5b0e9034`。
+- 本地证据：`.generated/testflight/candidate.json`、`.generated/critical-capabilities/releases/testflight-ios-3519586.json`、`.generated/critical-capabilities/ai-live.json`、`.generated/product-release-readiness/testflight-twelve-auth-live.json`。不提交任何凭证或签名材料。
+- 重点验收入口：登录/账号安全 → 会员与购买 → 模拟考试 → OPI热点 → 学习记录重新学习。Logo、准备学习空间与失败返回在这些流程一并检查。
+- 尚未证明：真机微信偶发回调、系统音频交互、真实商店币种／购买体验，以及阿里云短信平台自身分钟限额。应用与Auth修复不替代平台限额核实；不能因此声明12项全部经用户验收。
