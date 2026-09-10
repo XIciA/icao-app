@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "version": "aviation-hotword-candidates:v1",
   "source": {
-    "registryReleaseVersion": 12,
-    "registryReleasedAt": "2026-07-30T16:52:28Z",
+    "registryReleaseVersion": 13,
+    "registryReleasedAt": "2026-09-10T08:00:00.000Z",
     "reviewVersion": "aviation-hotword-candidate-review:v1",
     "recordCount": 5619,
     "specs": [

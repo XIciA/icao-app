@@ -266,7 +266,15 @@ async function prepareRelease() {
   const resourceSource = readJson(join(questionBankRoot, 'resources/manifest.source.json'));
   const resourceManifestBytes = readFileSync(join(questionBankReleaseRoot, 'resources/manifest.json'));
   const reusedAssets = await loadReusableAssets(resourceManifestBytes, resourceSource);
-  const assetShardCount = reusedAssets?.assetShardCount ?? defaultAssetShardCount;
+  let assetShardCount = reusedAssets?.assetShardCount ?? defaultAssetShardCount;
+  if (!reusedAssets) {
+    while (true) {
+      const sizes = Array(assetShardCount).fill(0);
+      for (const file of resourceSource.files) sizes[shardForPath(file.publicPath, assetShardCount)] += file.sizeBytes;
+      if (Math.max(...sizes) < 95_000_000) break;
+      if (++assetShardCount > 100) fail('web_content_cannot_partition_resources');
+    }
+  }
   const vocabularyBytes = readFileSync(join(root, 'content/vocabulary/dataset.json'));
   const editorialManifestBytes = readFileSync(join(editorialReleaseRoot, 'manifest.json'));
   const releaseChecksum = sha256(Buffer.concat([
@@ -394,7 +402,7 @@ async function main() {
   if (prepareOnly) return;
   prepared.shardDirectories.forEach((directory, index) => {
     const projectName = `${prepared.projectPrefix}-a${String(index + 1).padStart(2, '0')}`;
-    console.log(`web_content_static_deploy shard=${index + 1}/${defaultAssetShardCount} project=${projectName}`);
+    console.log(`web_content_static_deploy shard=${index + 1}/${prepared.shardDirectories.length} project=${projectName}`);
     deployProject(projectName, directory);
   });
   console.log(`web_content_static_deploy metadata project=${prepared.metadataProject}`);

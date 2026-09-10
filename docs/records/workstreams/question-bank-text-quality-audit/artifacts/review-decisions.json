@@ -85,6 +85,174 @@
       "status": "manual-review",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
       "textSha256": "ee1131ea849b6191250b0eab12992b405be7b17daad55242af8621817b64a26f"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/203/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "e7a9056a23bef0cf753dfce09214f8a34cfefbe4cafc503672273d5383481310",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/252/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "52839d0625df8ecf7890f776ba973a5c51273f51b127f2f2968880820cc9336b",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/257/audioText#LABEL_NUMBER_GLUE",
+      "status": "out-of-scope",
+      "rule": "LABEL_NUMBER_GLUE",
+      "textSha256": "38c5aec2ce139ae3dba7027c7f772486c56f833d8d36969bff9f0c75085c99c0",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/257/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "38c5aec2ce139ae3dba7027c7f772486c56f833d8d36969bff9f0c75085c99c0",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/398/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "faca25253e2cc8ddc792a0eca667c427914bd05ed803cdefd4869255d8dfecf2",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/4/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "status": "out-of-scope",
+      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "textSha256": "34467582a6e819e5f27a353e38a738e961eb3e623edbbef724b284e14c47a175",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/51/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "e942cc1d663d4d3c99ca057e6dd88571fba43c6abf86790302ad58e3aa6d35f6",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json#/cards/71/audioText#LABEL_NUMBER_GLUE",
+      "status": "out-of-scope",
+      "rule": "LABEL_NUMBER_GLUE",
+      "textSha256": "e393ca6b2b8446e3ecaa166a3b126af8aa300b51a00911fa6a4eafc9d6b0a407",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/13/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "364f8db3ded65250867bbb40af995757f88a5899f11c2111ce68db3814d13185",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/17/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "b536f3a2445d349cbbd374103f9361665ef8b70c4a3e0c5665d68370cf40f16d",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/20/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "d052ef85615e6e8a9a4f0dd0eaba1bae9c0a0f56fd8ffd8c8d978f0ef1438aae",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/22/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "a3af223dd6ec5002e3eb21041dd66cd26082002b7ba52aebc2e5d13a266906a1",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/23/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "e35dfcb82e339436f66d171571ff0975e208cf04c587532586ca8c53bf070cbb",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/3/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "263d3081295cfd933cc307eb0215de368b6dd35db1d56cc9ef09d06565585670",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/4/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "e7e4607dfb67f0cc3a559bb979dfcd031a788ed148362392f710274d8ed7b826",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/6/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "c975755393a776aaa6f3ff6557a1b7ef9621d5606984d6135b5d27d4b6dee00c",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/9/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "882ec7d49da3ff0589d804579dea6a55506aabdbaf81ca3955e597de20114386",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json#/cards/94/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "status": "out-of-scope",
+      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "textSha256": "6de67a8e5c21febad09c2e58ed00568fd8ef7f668aebd3b77610fb27f0e73696",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/1/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "c36096f9c7c01a552ee766d682968d2f37d7242e64c07339b72a38d2f00b3a1a",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/13/audioText#FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "status": "out-of-scope",
+      "rule": "FULLWIDTH_PUNCTUATION_IN_ENGLISH",
+      "textSha256": "dfa45eccb678040c247d76b4378e07d7478900ca51f92ad5a857add655fb060b",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/13/audioTextZh#ASCII_PUNCTUATION_IN_CHINESE",
+      "status": "out-of-scope",
+      "rule": "ASCII_PUNCTUATION_IN_CHINESE",
+      "textSha256": "9b0576f3038e1430050d8a0a684f1b6010bed652676b5a276e1b5520f22bef88",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/3/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "6f557182e66ecadfdf3d4321e0f89641c60a1fbf1c722d43f3f4a705685a73df",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/37/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "e7a78324c98993ce02ec61251af74d676d1214102fdfb9d5fe27b1cd0aca97fa",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
+    },
+    {
+      "key": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json#/cards/7/audioText#MISSING_SPACE_AROUND_PUNCTUATION",
+      "status": "out-of-scope",
+      "rule": "MISSING_SPACE_AROUND_PUNCTUATION",
+      "textSha256": "d0e68c11523ac9d4f26998bf0e8efa6896a9c78f4a2fa6c86cb0e5a9f49a1be0",
+      "reason": "2026-09-10用户选择全量采用新源正文，仅删除备注，不额外润色；见sentences900-opi-resource-update/README.md"
     }
   ]
 }

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { assertHotspotReferences, assertImmutableRelease, contentChecksum, prepareNativeContentRelease } from './native-content-release.mjs';
+import { assertHotspotReferences, assertImmutableRelease, contentChecksum, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
 const safeJoin = (root, relative) => {
@@ -18,7 +18,10 @@ const datasets = new Map(manifest.banks.map((bank) => {
   if (contentChecksum(bytes) !== bank.checksum) throw new Error('bank_checksum_mismatch');
   return [bank.id, JSON.parse(bytes)];
 }));
-const release = prepareNativeContentRelease(manifest, JSON.parse(resourcesBytes), datasets, Number(process.env.NATIVE_CONTENT_VERSION));
+const completeRelease = prepareNativeContentRelease(manifest, JSON.parse(resourcesBytes), datasets, Number(process.env.NATIVE_CONTENT_VERSION));
+const release = process.env.CONTENT_BANK_IDS
+  ? selectNativeContentBanks(completeRelease, process.env.CONTENT_BANK_IDS.split(','))
+  : completeRelease;
 if (process.argv.includes('--validate')) {
   console.log(`native_content_valid version=${release.version} banks=${release.banks.length} resources=${release.files.length}`);
 } else {
@@ -49,7 +52,8 @@ if (process.argv.includes('--validate')) {
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
       const [appContent] = await tx`select payload from app_content_releases where active = true limit 1`;
-      if (appContent) assertHotspotReferences(appContent.payload.hotspots, release.banks.find((bank) => bank.id === 'opi').payload);
+      const opi = release.banks.find((bank) => bank.id === 'opi');
+      if (appContent && opi) assertHotspotReferences(appContent.payload.hotspots, opi.payload);
       for (const bank of release.banks) {
         const [existing] = await tx`select checksum from question_bank_releases where bank_id = ${bank.id} and version = ${bank.version}`;
         assertImmutableRelease(existing, bank);

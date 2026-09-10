@@ -248,7 +248,7 @@ describe('embeddedQuestionBankRepository', () => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
       expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1223, 900, 3216, 1090, 436]);
       expect(cards).toHaveLength(1044);
-      expect(resourceManifest.files).toHaveLength(6081);
+      expect(resourceManifest.files).toHaveLength(6981);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
 
       const imageCards = cards.filter(({ bankId, card }) => bankId === 'opi' && card.kind === 'image');
@@ -264,8 +264,14 @@ describe('embeddedQuestionBankRepository', () => {
         return match ? `/question-bank-assets/audio/storytelling/${match[1]}/${match[2]}.mp3` : undefined;
       };
       const legacyCards = cards.filter(({ bankId, card }) =>
-        bankId !== 'opi' && card.audio && !card.audio.includes('/web-v5/') && !card.audio.includes('/web-v6/'));
+        bankId !== 'opi' && bankId !== 'sentences900' && card.audio && !card.audio.includes('/web-v5/') && !card.audio.includes('/web-v6/'));
       expect(legacyCards.filter(({ bankId, card }) => card.audio !== expectedAudio(bankId, card.id))).toEqual([]);
+
+      const sentenceCards = cards.filter(({ bankId }) => bankId === 'sentences900');
+      expect(sentenceCards.length).toBeGreaterThan(0);
+      expect(sentenceCards.every(({ card }) =>
+        card.audio?.startsWith(`/question-bank-assets/audio/sentence900/rev13/${card.id}-`)
+        && resources.has(card.audio))).toBe(true);
 
       const webCards = cards.filter(({ card }) => card.audio?.includes('/web-v5/') || card.audio?.includes('/web-v6/'));
       expect(webCards).toHaveLength(0);

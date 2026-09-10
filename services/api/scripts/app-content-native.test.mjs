@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 import ts from 'typescript';
 import { describe, expect, it, vi } from 'vitest';
-import { assertImmutableRelease, prepareNativeContentRelease } from './native-content-release.mjs';
+import { assertImmutableRelease, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 import { assertLegalDocumentVersions, prepareAppContent } from './import-app-content.mjs';
 const root = new URL('../../../', import.meta.url);
 const json = (name) => JSON.parse(readFileSync(new URL(name, root), 'utf8'));
@@ -73,6 +73,16 @@ describe('immutable native publication', () => {
     const changed = prepareNativeContentRelease(manifest, { schemaVersion: 1, files: [{ ...file, checksum: 'b'.repeat(64) }] }, datasets, 14);
     expect(changed.files[0].publicPath).not.toBe(next.files[0].publicPath);
     expect(() => assertImmutableRelease({ checksum: 'old' }, { checksum: 'new' })).toThrow('content_release_version_immutable');
+  });
+  it('selects only the requested bank and referenced media, rejecting invalid scopes', () => {
+    const next = prepareNativeContentRelease(manifest, { schemaVersion: 1, files: [file] }, datasets, 13);
+    const selected = selectNativeContentBanks(next, ['sentences900']);
+    expect(selected.banks.map((bank) => bank.id)).toEqual(['sentences900']);
+    expect(selected.files).toHaveLength(1);
+    expect(next.banks).toHaveLength(5);
+    expect(() => selectNativeContentBanks(next, ['unknown'])).toThrow('invalid_selected_banks');
+    expect(() => selectNativeContentBanks(next, ['opi', 'opi'])).toThrow('invalid_selected_banks');
+    expect(() => selectNativeContentBanks({ ...next, files: [] }, ['opi'])).toThrow('selected_resource_missing');
   });
   it('rejects incomplete resources and unsafe paths before publishing', () => {
     expect(() => prepareNativeContentRelease(manifest, { schemaVersion: 1, files: [] }, datasets, 13)).toThrow('native_resource_reference_missing');
