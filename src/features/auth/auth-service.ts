@@ -2,6 +2,7 @@ import { createClient, type AuthChangeEvent, type Session, type SupabaseClient }
 import type { AuthorizePasswordRecoveryResponse, RecentAuthGrantResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import type { LoginMethodActionPurpose, LoginMethodChangeResponse, CompleteWechatAuthResponse, NativeAccountSummary, NativeAuthIdentityProvider, NativeBindPhoneResponse as BindPhoneResponse, NativeRecentAuthGrantResponse, NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse, StartWechatAuthResponse, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
+import { isValidPhonePassword } from '@icao/contracts/native-auth';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
 
@@ -106,16 +107,7 @@ function appSession(session: Session | null): AppSession | undefined {
   };
 }
 
-export const PHONE_PASSWORD_MIN_LENGTH = 10;
-export const PHONE_PASSWORD_MAX_LENGTH = 64;
-
-export function isValidPhonePassword(password: string) {
-  const length = Array.from(password).length;
-  return length >= PHONE_PASSWORD_MIN_LENGTH
-    && length <= PHONE_PASSWORD_MAX_LENGTH
-    && /[A-Za-z]/u.test(password)
-    && /[0-9]/u.test(password);
-}
+export { isValidPhonePassword, PHONE_PASSWORD_MIN_LENGTH, PHONE_PASSWORD_MAX_LENGTH } from '@icao/contracts/native-auth';
 
 export function authError(error: { message: string; code?: string } | null) {
   if (!error) return new Error('auth_service_unavailable');

@@ -12,6 +12,16 @@ import type {
   StartPhoneOtpResponse,
 } from './index';
 
+export const PHONE_PASSWORD_MIN_LENGTH = 8;
+export const PHONE_PASSWORD_MAX_LENGTH = 32;
+
+/** Shared by Native password creation/reset and the API. Existing credentials remain usable at login. */
+export function isValidPhonePassword(password: string) {
+  const length = Array.from(password).length;
+  return length >= PHONE_PASSWORD_MIN_LENGTH && length <= PHONE_PASSWORD_MAX_LENGTH
+    && /[A-Za-z]/u.test(password) && /[0-9]/u.test(password);
+}
+
 /** Native 1.0.0 identity providers. Kept outside the Web-owned contract barrel. */
 export type NativeAuthIdentityProvider = AuthIdentityProvider | 'wechat';
 

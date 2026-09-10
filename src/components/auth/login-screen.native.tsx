@@ -47,7 +47,7 @@ export function loginErrorMessage(code: string) {
   switch (code) {
     case 'invalid_phone_number': return '请输入正确的中国大陆手机号。';
     case 'invalid_phone_otp': return '验证码错误或已过期，请重新输入。';
-    case 'invalid_phone_password': return '密码需为10–64位，并同时包含字母和数字。';
+    case 'invalid_phone_password': return '密码需为8–32位，并同时包含字母和数字。';
     case 'invalid_phone_or_password': return '手机号或密码不正确，请重新输入。';
     case 'phone_account_not_found': return '暂时无法发送验证码，请检查手机号或稍后重试。';
     case 'phone_not_confirmed': return '暂时无法完成密码登录，请改用验证码验证或稍后重试。';

@@ -285,23 +285,34 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText('当前密码')).toBeNull();
     expect(submit.props.accessibilityState?.disabled).toBe(true);
 
-    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), '😀😀😀😀a1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), '😀😀😀😀a1');
     await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), '😀😀😀😀a1');
-    await waitFor(() => expect(screen.getByText('密码长度需要为 10–64 位')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('密码长度需要为 8–32 位')).toBeTruthy());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(true);
 
-    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'abcdefghij');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), 'abcdefghij');
     await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'abcdefghij');
     await waitFor(() => expect(screen.getByText('密码必须同时包含字母和数字')).toBeTruthy());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(true);
 
-    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), 'flightdeck1');
     await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck2');
     await waitFor(() => expect(screen.getByText('两次输入的密码不一致')).toBeTruthy());
 
     await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
     await waitFor(() => expect(screen.queryByText('两次输入的密码不一致')).toBeNull());
     expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(false);
+
+    for (const password of ['FlightA1', `${'a'.repeat(31)}1`]) {
+      await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), password);
+      await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), password);
+      expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(false);
+    }
+    const tooLong = `${'a'.repeat(32)}1`;
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), tooLong);
+    await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), tooLong);
+    expect(screen.getByText('密码长度需要为 8–32 位')).toBeTruthy();
+    expect(screen.getByTestId('password-submit').props.accessibilityState?.disabled).toBe(true);
   });
 
   it('rejects a setup or recovery URL without a fresh in-memory SMS authorization', async () => {
@@ -350,7 +361,7 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText('注册完成')).toBeNull();
     expect(screen.queryByText('当前密码')).toBeNull();
 
-    await fireEvent.changeText(screen.getByPlaceholderText('请输入 10–64 位新密码'), 'flightdeck1');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入 8–32 位新密码'), 'flightdeck1');
     await fireEvent.changeText(screen.getByPlaceholderText('请再次输入新密码'), 'flightdeck1');
     await fireEvent.press(screen.getByTestId('password-submit'));
 

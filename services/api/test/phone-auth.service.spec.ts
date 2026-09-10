@@ -25,6 +25,7 @@ function service(
   intentPurpose: 'login' | 'password_recovery' = 'login',
   deliveryStatus?: 'processing_v2' | 'retryable_v2' | 'rejected_v2' | 'completed_v2',
   accountPhones?: AccountPhoneIdentityService,
+  previousIntent?: { createdAt: Date; providerCompletedAt: Date; purpose: string; status: string },
 ) {
   const signInWithOtp = vi.fn().mockResolvedValue({ data: { session: null, user: null }, error });
   const values = vi.fn(() => ({
@@ -34,7 +35,7 @@ function service(
   let selectCall = 0;
   const cycle = (dispatchSequence: number) => [
     [], // active dispatch
-    [], // active pending/ready
+    previousIntent ? [previousIntent] : [], // active pending/ready or a recent send for this purpose
     [{
       dispatchLeaseUntil: new Date('2100-01-01T00:00:00.000Z'),
       dispatchSequence,
@@ -219,6 +220,37 @@ describe('PhoneAuthService', () => {
         },
       },
     });
+  });
+
+  it('keeps the same-purpose resend cooldown even after a successful verification', async () => {
+    const now = new Date();
+    const { instance, signInWithOtp } = service(null, false, 'login', undefined, undefined, {
+      createdAt: now, providerCompletedAt: now, purpose: 'login', status: 'consumed',
+    });
+    await expect(instance.start('+8613800138000', '203.0.113.8')).rejects.toThrow('phone_otp_rate_limited');
+    expect(signInWithOtp).not.toHaveBeenCalled();
+  });
+
+  it('lets completed login continue straight into a different verification purpose', async () => {
+    const now = new Date();
+    const { instance, signInWithOtp } = service(null, false, 'login', undefined, undefined, {
+      createdAt: now, providerCompletedAt: now, purpose: 'login', status: 'consumed',
+    });
+    const source = {
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      user: { id: '11111111-1111-4111-8111-111111111111', phone: '+8613800138000', providers: ['phone'] },
+    } as VerifiedAuthSession;
+    await expect(instance.startRecentAuth(source, 'account_delete', '203.0.113.8')).resolves.toEqual(expect.objectContaining({ accepted: true }));
+    expect(signInWithOtp).toHaveBeenCalledOnce();
+  });
+
+  it('does not bypass an unverified challenge by switching purpose', async () => {
+    const now = new Date();
+    const { instance, signInWithOtp } = service(null, false, 'login', undefined, undefined, {
+      createdAt: now, providerCompletedAt: now, purpose: 'password_recovery', status: 'ready',
+    });
+    await expect(instance.start('+8613800138000', '203.0.113.8')).rejects.toThrow('phone_otp_rate_limited');
+    expect(signInWithOtp).not.toHaveBeenCalled();
   });
 
   it('uses the account-bound phone principal for OTP reauthentication from a WeChat session', async () => {

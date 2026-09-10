@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isValidPhonePassword } from '@icao/contracts/native-auth';
 
 export const deleteAccountSchema = z.object({
   confirmation: z.literal('注销账号'),
@@ -41,7 +42,7 @@ export const startPhoneBindingSchema = z.object({
 }).strict();
 
 export const updatePhonePasswordSchema = z.object({
-  password: z.string().min(10).max(64).regex(/[A-Za-z]/u).regex(/[0-9]/u),
+  password: z.string().refine(isValidPhonePassword),
   currentPassword: z.string().min(1).max(256).optional(),
   recoveryGrantId: z.uuid().optional(),
 }).strict();

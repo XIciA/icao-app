@@ -7,10 +7,11 @@ import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, accountLoginMethodRemovals, accounts, lifetimeIdentityBenefitClaims, profiles } from '../database/schema';
+import { accountIdentities, accountLoginMethodRemovals, accounts, lifetimeIdentityBenefitClaims, profiles, syncChanges, userDocuments } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
 import { IdentityDigestService } from './identity-digest.service';
+import { createDefaultAccountProfile } from './default-account-profile';
 
 export type IdentityCandidate = {
   provider: AuthIdentityProvider;
@@ -109,8 +110,8 @@ export class AccountIdentityService {
 
       const resolvedAccountId = linkedAccounts[0] ?? auth.authUserId;
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${resolvedAccountId}`}, 0))`);
-      await transaction.insert(accounts).values({ id: resolvedAccountId })
-        .onConflictDoNothing({ target: accounts.id });
+      const [createdAccount] = await transaction.insert(accounts).values({ id: resolvedAccountId })
+        .onConflictDoNothing({ target: accounts.id }).returning({ id: accounts.id });
       const [account] = await transaction.select({
         sessionsRevokedAt: accounts.sessionsRevokedAt,
         status: accounts.status,
@@ -125,6 +126,17 @@ export class AccountIdentityService {
 
       await transaction.insert(profiles).values({ userId: resolvedAccountId })
         .onConflictDoNothing({ target: profiles.userId });
+      if (createdAccount) {
+        const document = createDefaultAccountProfile();
+        const updatedAt = new Date();
+        await transaction.insert(userDocuments).values({
+          userId: resolvedAccountId, documentKey: 'account_profile', payload: document, version: 1, updatedAt,
+        });
+        await transaction.insert(syncChanges).values({
+          userId: resolvedAccountId, kind: 'document', entityKey: 'account_profile', version: 1,
+          payload: { documentKey: 'account_profile', document, version: 1, updatedAt: updatedAt.toISOString() },
+        });
+      }
       for (const candidate of candidateHashes) {
         await transaction.insert(accountIdentities).values({
           accountId: resolvedAccountId,

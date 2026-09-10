@@ -6,7 +6,7 @@ import type { NativeRecentAuthPurpose as RecentAuthPurpose } from '@icao/contrac
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import type { NativeStartPhoneBindingResponse as StartPhoneBindingResponse, NativeStartPhoneOtpResponse as StartPhoneOtpResponse, VerifyPhoneOtpRequest, VerifyPhoneOtpResponse } from '@icao/contracts/native-auth';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { and, asc, desc, eq, gt, inArray, isNull, lte, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, inArray, isNotNull, isNull, lte, ne, or, sql } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { phoneOtpIntents, smsDeliveryAttempts } from '../database/schema';
@@ -364,15 +364,27 @@ export class PhoneAuthService {
         id: phoneOtpIntents.id,
         providerCompletedAt: phoneOtpIntents.providerCompletedAt,
         purpose: phoneOtpIntents.purpose,
+        status: phoneOtpIntents.status,
       }).from(phoneOtpIntents).where(and(
         eq(phoneOtpIntents.phoneDigest, phoneDigest),
-        eq(phoneOtpIntents.status, 'ready'),
-      )).limit(1).for('update');
+        or(
+          eq(phoneOtpIntents.status, 'ready'),
+          // A successful verification may continue into another business
+          // purpose immediately. A failed, delivered challenge still keeps
+          // the cooldown across purposes, including after six wrong guesses.
+          and(
+            isNotNull(phoneOtpIntents.otpTokenDigest),
+            gt(phoneOtpIntents.providerCompletedAt, new Date(startedAt.getTime() - PHONE_OTP_RESEND_INTERVAL_MS)),
+            or(ne(phoneOtpIntents.status, 'consumed'), eq(phoneOtpIntents.purpose, purpose)),
+          ),
+        ),
+      )).orderBy(desc(phoneOtpIntents.providerCompletedAt)).limit(1).for('update');
       const resendAnchor = activePending?.purpose === 'password_recovery'
         ? activePending.createdAt.getTime() + RECOVERY_RESPONSE_FLOOR_MS
         : activePending?.providerCompletedAt?.getTime();
       if (
         activePending
+        && (activePending.status !== 'consumed' || activePending.purpose === purpose)
         && (
           resendAnchor === undefined
           || resendAnchor + PHONE_OTP_RESEND_INTERVAL_MS > startedAt.getTime()
