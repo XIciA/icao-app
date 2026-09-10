@@ -136,6 +136,18 @@ describe('react-native-iap StoreKit client', () => {
     });
   });
 
+  it('passes through newly fetched StoreKit USD and CNY quotes without a local currency fallback or product cache', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    const product = { platform: 'ios', type: 'subs', typeIOS: 'non-renewing-subscription', id: PURCHASE.productId };
+    jest.mocked(fetchProducts)
+      .mockResolvedValueOnce([{ ...product, displayPrice: 'US$22.99', currency: 'USD' } as ProductOrSubscription])
+      .mockResolvedValueOnce([{ ...product, displayPrice: '¥158.00', currency: 'CNY' } as ProductOrSubscription]);
+    await client.connect(createHandlers());
+    expect(await client.fetchProducts([PURCHASE.productId])).toMatchObject([{ localizedPrice: 'US$22.99', currencyCode: 'USD' }]);
+    expect(await client.fetchProducts([PURCHASE.productId])).toMatchObject([{ localizedPrice: '¥158.00', currencyCode: 'CNY' }]);
+    expect(fetchProducts).toHaveBeenCalledTimes(2);
+  });
+
   it('rebuilds an unfinished transaction after app restart before finishing it', async () => {
     const restartedClient = new ReactNativeIapStoreKitClient();
     jest.mocked(getPendingTransactionsIOS).mockResolvedValue([PURCHASE]);

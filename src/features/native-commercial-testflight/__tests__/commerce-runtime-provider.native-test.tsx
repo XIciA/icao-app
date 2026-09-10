@@ -802,6 +802,80 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(currentCommerce.entitlementChange?.revision).toBeGreaterThan(oldRevision);
   });
 
+  it('reloads StoreKit localized prices on foreground even after the catalog was already ready', async () => {
+    let quotes = storeOfferings().map((offering, index) => ({
+      ...offering, localizedPrice: ['US$9.99', 'US$22.99', 'US$49.99'][index], currencyCode: 'USD',
+    }));
+    const fakeProvider = provider({
+      listOfferings: jest.fn(async () => ({ ok: true, state: 'succeeded', value: { offerings: quotes } } as const)),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.offerings[1]).toMatchObject({ localizedPrice: 'US$22.99', currencyCode: 'USD' });
+    quotes = storeOfferings().map((offering, index) => ({
+      ...offering, localizedPrice: ['¥68.00', '¥158.00', '¥358.00'][index], currencyCode: 'CNY',
+    }));
+    await act(async () => { mockAppStateHandler?.('active'); });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.offerings[1]).toMatchObject({ localizedPrice: '¥158.00', currencyCode: 'CNY' });
+    expect(fakeProvider.listOfferings).toHaveBeenCalledTimes(2);
+  });
+
+  it.each(['localizedPrice', 'currencyCode'] as const)('requires accepting an updated StoreKit %s before dispatching a purchase', async (changedField) => {
+    let quotes = storeOfferings();
+    const fakeProvider = provider({
+      listOfferings: jest.fn(async () => ({ ok: true, state: 'succeeded', value: { offerings: quotes } } as const)),
+      purchase: jest.fn(async () => ({ ok: false, state: 'cancelled', code: 'commerce_purchase_cancelled', charged: false, retryable: true } as const)),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    quotes = quotes.map(offering => ({ ...offering, [changedField]: changedField === 'localizedPrice' ? '¥158.00' : 'USD' }));
+    await act(async () => {
+      const result = await currentCommerce.purchase('membership_31d_v1');
+      expect(result.ok).toBe(false);
+    });
+    expect(currentCommerce.phase).toBe('ready');
+    expect(currentCommerce.message).toBe('App Store 价格已更新，请确认新价格后再购买。');
+    expect(currentCommerce.offerings[1][changedField]).toBe(quotes[1][changedField]);
+    expect(fakeProvider.purchase).not.toHaveBeenCalled();
+    expect(mockUncertainPurchaseStore.size).toBe(0);
+    await act(async () => { await currentCommerce.purchase('membership_31d_v1'); });
+    expect(fakeProvider.purchase).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not retain purchasable old prices when the foreground StoreKit refresh fails', async () => {
+    const fakeProvider = provider();
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    jest.mocked(fakeProvider.listOfferings).mockResolvedValue({
+      ok: false, state: 'error', code: 'commerce_catalog_query_failed', charged: false, retryable: true,
+    });
+    await act(async () => { mockAppStateHandler?.('active'); });
+    await waitFor(() => expect(currentCommerce.phase).toBe('error'));
+    expect(currentCommerce.offerings).toEqual([]);
+    await act(async () => { await currentCommerce.purchase('membership_31d_v1'); });
+    expect(fakeProvider.purchase).not.toHaveBeenCalled();
+  });
+
+  it('clears a stale background reconciliation message only after current reconciliation has no deferred records', async () => {
+    const fakeProvider = provider({ reconcileTransactions: jest.fn(() => inbox([transaction()])) });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    // The default API mock rejects verification: the first history record is deferred.
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.message).toBe('有购买正在后台核对，权益到账后会自动更新。');
+    await act(async () => { mockAppStateHandler?.('active'); });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.message).toBe('有购买正在后台核对，权益到账后会自动更新。');
+    jest.mocked(fakeProvider.reconcileTransactions).mockImplementation(() => inbox());
+    await act(async () => { mockAppStateHandler?.('active'); });
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(currentCommerce.message).toBeUndefined();
+  });
+
   it('publishes foreground reconciliation so downstream content can invalidate immediately', async () => {
     await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
     await waitFor(() => expect(currentCommerce.phase).toBe('ready'));

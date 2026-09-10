@@ -604,7 +604,9 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       setPhase('reconciling');
       setError(undefined);
       void (async () => {
-        if (!catalogReadyRef.current) await reloadCatalog(controller, generation, operation);
+        // StoreKit's storefront can change while the app is in the background.
+        // A previously loaded catalog is not evidence that its localized prices are current.
+        await reloadCatalog(controller, generation, operation);
         const report = await reconcileAndRefresh(
           controller,
           generation,
@@ -614,6 +616,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (!report.ok || generation !== generationRef.current) throw new Error('reconciliation_failed');
         const uncertain = uncertainPurchaseRef.current;
         if (!uncertain) {
+          setMessage(report.value.deferred > 0 ? '有购买正在后台核对，权益到账后会自动更新。' : undefined);
           setPhase('ready');
           return;
         }
@@ -825,6 +828,20 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     setError(undefined);
     setMessage(undefined);
     try {
+      // Compare a fresh StoreKit quote with the one the user selected before any
+      // purchase intent is persisted or the native confirmation sheet is opened.
+      const displayedOffering = offerings.find(offering => offering.productKey === productKey);
+      const freshOfferings = await reloadCatalog(controller, generation, operation);
+      if (generation !== generationRef.current || controllerRef.current !== controller) return ACCOUNT_CHANGED_RESULT;
+      const freshOffering = freshOfferings.find(offering => offering.productKey === productKey);
+      if (!displayedOffering || !freshOffering) throw new Error('commerce_offering_unknown');
+      if (displayedOffering.localizedPrice !== freshOffering.localizedPrice
+          || displayedOffering.currencyCode !== freshOffering.currencyCode) {
+        const message = 'App Store 价格已更新，请确认新价格后再购买。';
+        setMessage(message);
+        setPhase('ready');
+        return { ok: false, message };
+      }
       const baseline = await reconcileAndRefresh(controller, generation, 'purchase', operation);
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
@@ -976,7 +993,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     } finally {
       operation.finish();
     }
-  }, [phase, reconcileAndRefresh, refreshEntitlement]);
+  }, [offerings, phase, reconcileAndRefresh, refreshEntitlement, reloadCatalog]);
 
   const restorePurchases = useCallback(async (): Promise<CommerceActionResult> => {
     const controller = controllerRef.current;
