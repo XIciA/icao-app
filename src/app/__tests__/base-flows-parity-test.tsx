@@ -1,9 +1,15 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AccountScreen } from '@/features/account/AccountScreen';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { InfoScreen } from '@/features/info/InfoScreen';
+
+let mockInstalledVersion: string | null = '2.3.4';
+const mockBack = jest.fn();
+let mockCanGoBack = true;
+jest.mock('expo-application', () => ({ get nativeApplicationVersion() { return mockInstalledVersion; } }));
 
 let mockParams: Record<string, string> = { slug: '' };
 const mockSubmitFeedback = jest.fn();
@@ -85,7 +91,7 @@ jest.mock('@react-navigation/native', () => ({
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: jest.fn(), canGoBack: () => true, push: mockRouterPush, replace: mockRouterReplace }),
+  useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, push: mockRouterPush, replace: mockRouterReplace }),
 }));
 
 function withSafeArea(node: React.ReactNode) {
@@ -378,10 +384,14 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText('法律条款')).toBeNull();
   });
 
-  it('shows the shared task timestamp version in settings', async () => {
+  it('centralizes identity under a single settings entry', async () => {
     mockParams = { slug: 'settings' };
     const screen = await render(withSafeArea(<AccountScreen />));
-    expect(screen.getByText(`听你五个 · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
+    expect(screen.queryByText(`听你五个 · ${APP_DISPLAY_VERSION}`)).toBeNull();
+    expect(screen.queryByText('蜀ICP备2026045996号-1A')).toBeNull();
+    expect(screen.getByText('其他')).toBeTruthy();
+    await fireEvent.press(screen.getByText('关于听你五个'));
+    expect(mockRouterPush).toHaveBeenCalledWith('/info/about');
   });
 
   it('keeps only data controls and policies in Native privacy settings', async () => {
@@ -419,13 +429,33 @@ describe('base flow parity screens', () => {
     expect(screen.getByText(/即时结果区和学习记录中持续显示“AI 辅助生成”/u)).toBeTruthy();
   });
 
-  it('routes the removed About page to help without update, rating or sharing buttons', async () => {
+  it('shows installed identity and filing on About without promotional buttons', async () => {
     mockParams = { slug: 'about' };
     const screen = await render(withSafeArea(<InfoScreen />));
-    expect(screen.getByText('帮助中心')).toBeTruthy();
+    expect(screen.getByText('关于听你五个')).toBeTruthy();
+    expect(screen.getByText('版本 2.3.4')).toBeTruthy();
+    expect(screen.getByText('云启航科（成都）科技有限公司')).toBeTruthy();
+    const open = jest.spyOn(Linking, 'openURL').mockResolvedValueOnce(true).mockRejectedValueOnce(new Error('offline'));
+    await fireEvent.press(screen.getByRole('link'));
+    expect(open).toHaveBeenCalledWith('https://beian.miit.gov.cn/');
+    await fireEvent.press(screen.getByRole('link'));
+    await waitFor(() => expect(screen.getByText('暂时无法打开备案查询，请稍后重试。')).toBeTruthy());
+    await fireEvent.press(screen.getByLabelText('返回'));
+    expect(mockBack).toHaveBeenCalled();
+    open.mockRestore();
     expect(screen.queryByText('检查更新')).toBeNull();
     expect(screen.queryByText('给我们评分')).toBeNull();
     expect(screen.queryByText('分享给朋友')).toBeNull();
+  });
+
+  it('falls back to configured version and settings when opened without navigation history', async () => {
+    mockParams = { slug: 'about' }; mockInstalledVersion = null; mockCanGoBack = false;
+    try {
+      const screen = await render(withSafeArea(<InfoScreen />));
+      expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
+      await fireEvent.press(screen.getByLabelText('返回'));
+      expect(mockRouterReplace).toHaveBeenCalledWith('/account/settings');
+    } finally { mockInstalledVersion = '2.3.4'; mockCanGoBack = true; }
   });
 
   it('submits a profile feedback form and shows only the ticket number', async () => {

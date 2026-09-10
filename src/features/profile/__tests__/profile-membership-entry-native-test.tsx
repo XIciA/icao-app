@@ -22,6 +22,8 @@ it.each(['ios', 'android'])('shows exactly one membership entry on %s and naviga
   Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
   const screen = await render(<ProfileHomeScreen />);
   expect(screen.getAllByText('会员与购买')).toHaveLength(1);
+  expect(screen.queryByText(/© 2026|蜀ICP备/)).toBeNull();
+  expect(screen.queryByText('关于听你五个')).toBeNull();
   await fireEvent.press(screen.getByText('会员与购买'));
   expect(mockPush).toHaveBeenCalledTimes(1);
   expect(mockPush).toHaveBeenCalledWith('/account/membership');

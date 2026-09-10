@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card } from '@/components/ui';
-import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';
 import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
@@ -118,9 +117,6 @@ export function ProfileHomeScreen() {
           ))}
         </RowGroup>
       </View>
-      <AppText style={styles.footer} variant="caption">
-        © 2026 听你五个 · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? cloudWeb ? ' · 三端云同步' : ' · 数据仅存本机' : ''}
-      </AppText>
     </AccountScreen>
   );
 }

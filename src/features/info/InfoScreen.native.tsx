@@ -1,3 +1,4 @@
+import { AboutPage } from './AboutPage.native';
 import type { VersionedFeedbackQuestionContext } from '@icao/contracts/feedback-ops';
 import type {
   FeedbackCategory,
@@ -30,8 +31,8 @@ import { builtinAppContent, loadAppContent } from '@/features/app-content/reposi
 import { LegalDocumentBody } from '@/features/app-content/LegalDocumentBody.native';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 
-type InfoSlug = 'help' | 'feedback' | 'agreement' | 'privacy' | 'services';
-const pages: InfoSlug[] = ['help', 'feedback', 'agreement', 'privacy', 'services'];
+type InfoSlug = 'about' | 'help' | 'feedback' | 'agreement' | 'privacy' | 'services';
+const pages: InfoSlug[] = ['about', 'help', 'feedback', 'agreement', 'privacy', 'services'];
 const MAX_IMAGE_COUNT = 3;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const CATEGORY_OPTIONS: { label: string; value: FeedbackCategory }[] = [
@@ -44,12 +45,13 @@ export function InfoScreen() {
   const params = useLocalSearchParams<FeedbackParams & { slug: InfoSlug }>();
   const { slug } = params;
   const resetKey = JSON.stringify([slug, params.source, params.sourceRoute, params.bankId, params.categoryId, params.topicId, params.cardId, params.bankVersion, params.bankChecksum, params.correlationId, params.feature]);
-  return <NativeScreenBoundary title={slug === 'feedback' ? '意见反馈' : slug === 'help' ? '帮助中心' : '政策与条款'} fallbackHref="/(tabs)/profile" resetKey={resetKey}><InfoContent /></NativeScreenBoundary>;
+  return <NativeScreenBoundary title={slug === 'about' ? '关于听你五个' : slug === 'feedback' ? '意见反馈' : slug === 'help' ? '帮助中心' : '政策与条款'} fallbackHref={slug === 'about' ? '/account/settings' : '/(tabs)/profile'} resetKey={resetKey}><InfoContent /></NativeScreenBoundary>;
 }
 
 function InfoContent() {
   const { slug } = useLocalSearchParams<{ slug: InfoSlug }>();
   const page: InfoSlug = pages.includes(slug) ? slug : 'help';
+  if (page === 'about') return <AboutPage />;
   if (page === 'help') return <HelpPage />;
   if (page === 'feedback') return <FeedbackPage />;
   return <LegalPage page={page} />;
