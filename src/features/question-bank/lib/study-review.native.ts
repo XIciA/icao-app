@@ -1,3 +1,4 @@
+import { randomUUID } from 'expo-crypto';
 import type { CardLearningState, LearningRecord, QuestionBankStudyItem, QuestionBankStudyPackage, StudyReviewSnapshot } from '../types';
 import { withStudyMaterials } from './study-materials.native';
 
@@ -50,7 +51,24 @@ export function getStudyReview(record: LearningRecord): StudyReviewSnapshot | un
 export function toStudyReviewPackage(record: LearningRecord): QuestionBankStudyPackage | undefined {
   const review = getStudyReview(record);
   if (!review) return undefined;
-  return { id: `study-review-${record.id}`, startedAt: record.createdAt, progressMode: 'session-only', items: review.items, record, studyReviewRecord: record };
+  // The saved attempt supplies the ordered questions and starting answers only.
+  // A new session must never reuse its id, start time, exam rules or grade.
+  return {
+    id: `study-${randomUUID()}`,
+    startedAt: new Date().toISOString(),
+    progressMode: 'persistent',
+    items: review.items,
+    record: {
+      bankId: record.bankId,
+      bankTitle: record.bankId === 'mock_exam' ? '模拟考试题包' : record.bankTitle,
+      categoryTitle: record.categoryTitle,
+      topicTitle: record.topicTitle,
+      recordType: 'session',
+      source: record.source,
+      ...(record.hotspot ? { hotspot: record.hotspot } : {}),
+    },
+    studyReviewRecord: record,
+  };
 }
 
 export function wasAnswered(review: StudyReviewSnapshot, id: string) {

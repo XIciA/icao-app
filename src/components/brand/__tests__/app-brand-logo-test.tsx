@@ -10,7 +10,7 @@ import {
 
 describe('<AppBrandLogo />', () => {
   it.each(Object.keys(APP_BRAND_LOGO_SIZES) as AppBrandLogoSize[])(
-    'keeps the %s variant square, inset, and uncropped',
+    'keeps the %s master square and inset while rounding the rendered image',
     async (size) => {
       const screen = await render(<AppBrandLogo size={size} testID="brand-logo" />);
       const frame = screen.getByTestId('brand-logo');
@@ -22,6 +22,8 @@ describe('<AppBrandLogo />', () => {
       expect(frameStyle.height).toBe(APP_BRAND_LOGO_SIZES[size]);
       expect(frameStyle.padding).toBeGreaterThan(0);
       expect(frameStyle.overflow).not.toBe('hidden');
+      expect(imageStyle.borderRadius).toBeGreaterThan(0);
+      expect(imageStyle.overflow).toBe('hidden');
       expect(imageStyle.width).toBe('100%');
       expect(imageStyle.height).toBe('100%');
       expect(image.props.resizeMode).toBe('contain');

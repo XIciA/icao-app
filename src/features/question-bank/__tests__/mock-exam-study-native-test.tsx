@@ -8,6 +8,7 @@ import { captureStudyReview } from '../lib/study-review.native';
 const mockEntitlement: { snapshot: { membership: { active: boolean; expiresAt: string } } } = { snapshot: { membership: { active: false, expiresAt: '2020-01-01T00:00:00Z' } } };
 let mockNote = '';
 const mockToggleFavorite = jest.fn();
+const mockAnnotationFlush = jest.fn(async () => true);
 jest.mock('@/features/native-commercial-testflight/commerce-entitlement-events', () => ({ getCommerceEntitlementSnapshot: () => mockEntitlement, subscribeCommerceEntitlementChanges: () => () => {} }));
 jest.mock('../data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ dismissTo: jest.fn(), replace: jest.fn(), canGoBack: () => true, back: jest.fn() }) }));
@@ -16,7 +17,7 @@ jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
 jest.mock('react-native-reanimated', () => ({ ...jest.requireActual('react-native-reanimated/mock'), useReducedMotion: () => true }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../hooks/useQuestionBankAudioPreload', () => ({ useQuestionBankAudioPreload: jest.fn() }));
-jest.mock('../annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ entry: mockNote ? { note: mockNote, highlights: [], tagIds: [] } : undefined, highlightDefinitions: [], tagDefinitions: [], store: { entries: {} } }) }));
+jest.mock('../annotations/use-question-annotations-with-save.native', () => ({ useQuestionAnnotations: () => ({ flushPendingSaves: mockAnnotationFlush, entry: mockNote ? { note: mockNote, highlights: [], tagIds: [] } : undefined, highlightDefinitions: [], tagDefinitions: [], store: { entries: {} } }) }));
 jest.mock('../platform/network-service', () => ({ getConnectivity: async () => 'online', subscribeConnectivity: () => () => {} }));
 jest.mock('@/features/vocabulary/progress-store', () => ({ useWordFavorites: () => ({ isFavorite: () => false, toggleFavorite: mockToggleFavorite }) }));
 jest.mock('../static-word-lookup/repository', () => ({ hasStaticWordLookup: () => true, findStaticWordLookup: (word: string) => ({ word }) }));
@@ -35,7 +36,7 @@ function paper(mixed = true): QuestionBankStudyPackage {
   if (mixed) items.push({ ...items[0], id: 'opi-item', dataset: { ...dataset, id: 'opi', study: { ...dataset.study, interaction: 'speaking' } }, card: { id: 'opi-card', taskTitle: 'OPI', audioText: 'Question' } });
   return { id: 'screen-paper', startedAt: '2026-09-09T00:00:00.000Z', progressMode: 'session-only', items, record: { id: 'screen-record', bankId: 'mock_exam', bankTitle: '模拟考试', categoryTitle: 'ICAO 4 初考', topicTitle: '听力', recordType: 'mock_exam', mockExam: { examType: 'icao4-first', mode: 'custom', moduleIds: mixed ? ['listening', 'opi'] : ['listening'], sectionCounts: [] } } };
 }
-beforeEach(() => { jest.clearAllMocks(); mockNote = ''; mockEntitlement.snapshot.membership = { active: false, expiresAt: '2020-01-01T00:00:00Z' }; });
+beforeEach(() => { jest.clearAllMocks(); mockAnnotationFlush.mockResolvedValue(true); mockNote = ''; mockEntitlement.snapshot.membership = { active: false, expiresAt: '2020-01-01T00:00:00Z' }; });
 it('preserves the exam on save failure and permits leaving only after explicit confirmation', async () => {
   const onReturn = jest.fn();
   const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
@@ -109,11 +110,12 @@ it('hides expired member question media and references while keeping the attempt
   mockEntitlement.snapshot.membership = { active: true, expiresAt: '2099-01-01T00:00:00Z' };
   const restored = await render(<QuestionBankStudyScreen studyPackage={input} onReturn={() => {}} />);
   await waitFor(() => expect(restored.getByText('付费 OPI 场景图片')).toBeTruthy());
-  expect(restored.getByText('这次独立回答')).toBeTruthy();
+  await fireEvent.press(restored.getByLabelText('显示答案'));
+  expect(restored.getByText('AI工作台')).toBeTruthy();
   expect(sqliteLearningStore.addRecord).not.toHaveBeenCalled();
 });
 
-it('keeps historical listening words non-interactive and cannot change favorites', async () => {
+it('history uses ordinary listening choices, lookup and favorites without creating a browsing record', async () => {
   const input = paper(false);
   const first = input.items[0];
   if (first.card.kind === 'image') throw new Error('expected listening choices');
@@ -122,15 +124,14 @@ it('keeps historical listening words non-interactive and cannot change favorites
   mockEntitlement.snapshot.membership.active = true;
   const screen = await render(<QuestionBankStudyScreen studyPackage={input} onReturn={() => {}} />);
   await waitFor(() => expect(screen.getByLabelText('选项 A：Request deviation now')).toBeTruthy());
-  expect(screen.queryAllByLabelText(/长按查词|查词：/)).toHaveLength(0);
-  await fireEvent(screen.getByText('deviation'), 'longPress');
-  expect(screen.queryByLabelText('查词结果')).toBeNull();
-  expect(screen.queryByLabelText('收藏')).toBeNull();
-  expect(screen.queryByLabelText('取消收藏')).toBeNull();
-  expect(mockToggleFavorite).not.toHaveBeenCalled();
+  expect(screen.getByTestId('annotation-toolbar')).toBeTruthy();
+  await fireEvent(screen.getByLabelText('长按查词：deviation'), 'longPress');
+  await waitFor(() => expect(screen.getByLabelText('收藏')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('收藏'));
+  expect(mockToggleFavorite).toHaveBeenCalledWith({ word: 'deviation' });
   expect(sqliteLearningStore.addRecord).not.toHaveBeenCalled();
 });
-it('closes an existing lookup sheet when the same study screen becomes historical', async () => {
+it('closes an existing lookup sheet when the screen enters an exam', async () => {
   const input = paper(false);
   const first = input.items[0];
   if (first.card.kind === 'image') throw new Error('expected listening choices');
@@ -141,9 +142,24 @@ it('closes an existing lookup sheet when the same study screen becomes historica
   await waitFor(() => expect(screen.getByLabelText('长按查词：deviation')).toBeTruthy());
   await fireEvent(screen.getByLabelText('长按查词：deviation'), 'longPress');
   await waitFor(() => expect(screen.getByLabelText('收藏')).toBeTruthy());
-  const historyInput = { ...input, studyReviewRecord: { ...input.record, id: 'historical-sheet', createdAt: input.startedAt, totalCount: 1, completedCount: 1, correctCount: 0, durationSeconds: 10, reason: 'complete' as const, studyReview: captureStudyReview(input.items, {}, {}) } };
-  await screen.rerender(<QuestionBankStudyScreen studyPackage={historyInput} onReturn={() => {}} />);
+  const examInput = { ...input, record: { ...input.record, recordType: 'mock_exam' as const } };
+  await screen.rerender(<QuestionBankStudyScreen studyPackage={examInput} onReturn={() => {}} />);
   await waitFor(() => expect(screen.queryByLabelText('收藏')).toBeNull());
   expect(screen.queryByLabelText('查词结果')).toBeNull();
   expect(mockToggleFavorite).not.toHaveBeenCalled();
+});
+
+it('releases the navigation lock after an annotation save failure so retry and return remain usable', async () => {
+  const input = paper(false);
+  input.record = { ...input.record, recordType: 'session', mockExam: undefined };
+  const onReturn = jest.fn();
+  const screen = await render(<QuestionBankStudyScreen studyPackage={input} onReturn={onReturn} />);
+  await waitFor(() => expect(screen.getByLabelText('下一题')).toBeTruthy());
+  mockAnnotationFlush.mockResolvedValueOnce(false);
+  await fireEvent.press(screen.getByLabelText('下一题'));
+  await waitFor(() => expect(screen.getByText('笔记或标注保存失败，请重试。')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('下一题'));
+  await waitFor(() => expect(screen.getByText('2 / 20')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('返回题库目录'));
+  await waitFor(() => expect(onReturn).toHaveBeenCalledTimes(1));
 });

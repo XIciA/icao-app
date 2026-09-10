@@ -35,6 +35,9 @@ describe('Native membership purchase page', () => {
   it('shows seven read-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
     const screen = await render(<Page />);
     for (const title of ['解锁会员题库', '每周 AI 学习额度', '单词学习', '随身听', '模拟考试', 'OPI 热点', '资源分享']) expect(screen.getByText(title)).toBeTruthy();
+    expect(screen.getByText('会员权益')).toBeTruthy();
+    expect(screen.queryByText('权益相同，仅时长不同')).toBeNull();
+    expect(screen.queryByText(/到期不自动续费/u)).toBeNull();
     expect(screen.getAllByRole('radio')).toHaveLength(3);
     expect(screen.getByRole('radio', { name: '31天会员' }).props.accessibilityState.selected).toBe(true);
     expect(screen.queryByText('推荐')).toBeNull();
@@ -53,7 +56,8 @@ describe('Native membership purchase page', () => {
     expect(mockRestore).toHaveBeenCalledTimes(1);
     await fireEvent.press(screen.getByText('购买须知'));
     expect(screen.getByText(/有效期内续费将顺延会员时间/u)).toBeTruthy();
-    expect(screen.getByText('到期不自动续费')).toBeTruthy();
+    expect(screen.getAllByText(/到期不自动续费/u)).toHaveLength(1);
+    expect(screen.queryByText(/权益相同/u)).toBeNull();
     expect(mockRefresh).not.toHaveBeenCalled();
   });
 
@@ -82,6 +86,8 @@ describe('Native membership purchase page', () => {
     mockCommerce = runtimeValue({ entitlement: { membership: { active: true, expiresAt: '2027-01-01T00:00:00Z' } } });
     const screen = await render(<Page />);
     expect(screen.getByText('会员续费')).toBeTruthy();
+    expect(screen.getByText('会员权益')).toBeTruthy();
+    expect(screen.queryByText(/权益相同|到期不自动续费/u)).toBeNull();
     expect(screen.getByText(/续费后预计至/u)).toBeTruthy();
     expect(mockBack).not.toHaveBeenCalled();
   });

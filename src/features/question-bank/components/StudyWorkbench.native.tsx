@@ -25,6 +25,7 @@ import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeAndReviewRec
 import { aiFailureDisplayMessage, toAiOperationFailure, type AiCapability } from '@/features/ai/ai-operation-failure.native';
 import { savePendingAiOperation, completePendingAiOperation, abandonPendingAiOperation } from '@/features/ai/ai-operation-recovery.native';
 import { exactMatch } from '@/features/ai/exact-match';
+import { AiGeneratedContentLabel } from '@/features/ai/AiGeneratedContentLabel';
 import { TRANSCRIPTION_ACTION_ENABLED } from '@/features/ai/transcription-ui-capability';
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { recordSafeDiagnosticEvent } from '@/platform/diagnostics/safe-diagnostic-store';
@@ -53,6 +54,43 @@ type AutoSaveSnapshot = {
 
 type AiConsentKind = 'audio' | 'text' | 'combined';
 type AiAction = 'transcribe' | 'review' | 'combined';
+type FeedbackReview = Pick<NonNullable<LearningRecord['aiResult']>, 'grammar' | 'polishedText'>;
+type CardFeedback = {
+  inherited?: boolean;
+  aiReview?: FeedbackReview;
+  aiOperation?: LearningRecord['aiOperation'];
+  rawTranscript?: string;
+  analyzedTranscript?: string;
+  matchMessage?: string;
+};
+export type StudyWorkbenchFeedbackCache = { sessionId: string; cards: Map<string, CardFeedback> };
+
+function initialCardFeedback(feedback?: LearningRecord['aiResult']): CardFeedback {
+  return {
+    inherited: true,
+    aiReview: feedback && (feedback.grammar || feedback.polishedText)
+      ? { grammar: feedback.grammar, polishedText: feedback.polishedText } : undefined,
+    rawTranscript: feedback?.rawTranscript,
+    analyzedTranscript: feedback?.analyzedTranscript ?? feedback?.transcript,
+  };
+}
+
+function FeedbackReviewContent({ result }: { result: FeedbackReview }) {
+  const grammar = result.grammar;
+  if (grammar && grammar.issues.every((issue) => typeof issue !== 'string')) {
+    return <AiReviewResultView result={{ grammar: { ...grammar, issues: grammar.issues.filter((issue) => typeof issue !== 'string') }, polishedText: result.polishedText, promptVersion: 'deepseek-review:v1' }} />;
+  }
+  // Earlier records may contain plain-text issues or only a polished answer.
+  return <View style={{ gap: spacing[2] }} testID="study-workbench-review-result">
+    <AiGeneratedContentLabel />
+    {grammar ? <>
+      <AppText variant="button">语法纠错</AppText>
+      {grammar.issues.map((issue, index) => <AppText key={index} variant="caption">{typeof issue === 'string' ? issue : `${issue.before} → ${issue.after}：${issue.reasonZh}`}</AppText>)}
+      <AppText variant="button">正确句子</AppText><AppText>{grammar.correctedText}</AppText>
+    </> : null}
+    {result.polishedText ? <><AppText variant="button">润色后的表达</AppText><AppText>{result.polishedText}</AppText></> : null}
+  </View>;
+}
 
 // Unknown outcomes retain their key; a known rejected/released task can start anew.
 function resetFailedOperation(failure: ReturnType<typeof toAiOperationFailure>) {
@@ -73,6 +111,8 @@ type Props = {
   activeTab: StudyConsoleTab;
   referenceLabel: string;
   answerText: string;
+  initialFeedback?: LearningRecord['aiResult'];
+  feedbackCacheRef?: { current: StudyWorkbenchFeedbackCache | undefined };
   questionText: string;
   reviewKind: StudyReviewKind;
   recordingUri?: string;
@@ -102,6 +142,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const {
     activeTab,
     answerText,
+    initialFeedback,
+    feedbackCacheRef,
     bankId,
     bankTitle,
     cardKey,
@@ -130,11 +172,23 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     tabs,
     topicTitle,
   } = props;
-  const [aiReview, setAiReview] = useState<AiReviewResult>();
+  // The screen may retain this cache while a collapsed card unmounts its workbench.
+  const feedbackCacheOwner = useRef<StudyWorkbenchFeedbackCache>(feedbackCacheRef?.current ?? { sessionId, cards: new Map() });
+  const [feedbackCache, setFeedbackCache] = useState(feedbackCacheOwner.current);
+  const feedback = (feedbackCache.sessionId === sessionId ? feedbackCache.cards.get(cardKey) : undefined) ?? initialCardFeedback(initialFeedback);
+  const { aiReview, aiOperation, rawTranscript, analyzedTranscript, matchMessage } = feedback;
+  const updateFeedback = useCallback((patch: Partial<CardFeedback>) => {
+    const current = feedbackCacheOwner.current;
+    const cards = new Map(current.sessionId === sessionId ? current.cards : undefined);
+    cards.set(cardKey, { ...(cards.get(cardKey) ?? initialCardFeedback(initialFeedback)), ...patch });
+    const next = { sessionId, cards };
+    feedbackCacheOwner.current = next;
+    if (feedbackCacheRef) feedbackCacheRef.current = next;
+    setFeedbackCache(next);
+  }, [cardKey, feedbackCacheRef, initialFeedback, sessionId]);
   const [transcribeChoices, setTranscribeChoices] = useState(false);
   const [failureRetryable, setFailureRetryable] = useState(false);
   const [failureNeedsDiagnostic, setFailureNeedsDiagnostic] = useState(false);
-  const [matchMessage, setMatchMessage] = useState<string>();
   const [busy, setBusy] = useState<AiAction>();
   const [error, setError] = useState<string>();
   const [failedAction, setFailedAction] = useState<AiAction>();
@@ -153,9 +207,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const noteInputRef = useRef<TextInput>(null);
   const currentCardKey = useRef(cardKey);
   const writeContext = useRef(captureLearningWriteContext()).current;
-  const [aiOperation, setAiOperation] = useState<LearningRecord['aiOperation']>();
-  const [rawTranscript, setRawTranscript] = useState<string>();
-  const [analyzedTranscript, setAnalyzedTranscript] = useState<string>();
   const dirty = useRef(false);
   const latestSnapshot = useRef<AutoSaveSnapshot | undefined>(undefined);
   const lastSavedFingerprints = useRef(new Map<string, string>());
@@ -165,12 +216,17 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   currentCardKey.current = cardKey;
 
   const resultId = stableResultId(sessionId, cardKey);
+  // Historical feedback is a display seed, never a newly generated result.
+  const savedReview = feedback.inherited ? undefined : aiReview;
+  const savedRawTranscript = feedback.inherited ? undefined : rawTranscript;
+  const savedAnalyzedTranscript = feedback.inherited ? undefined : analyzedTranscript;
   const fingerprint = JSON.stringify({
     answerText,
-    aiReview,
+    aiReview: savedReview,
     matchMessage,
     aiOperation,
-    rawTranscript,
+    rawTranscript: savedRawTranscript,
+    analyzedTranscript: savedAnalyzedTranscript,
   });
   latestSnapshot.current = {
     cardKey,
@@ -187,7 +243,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       completedCount: 1,
       totalCount: 1,
       correctCount: 0,
-      feedbackCount: aiReview || matchMessage ? 1 : 0,
+      feedbackCount: savedReview || matchMessage ? 1 : 0,
       durationSeconds: Math.max(0, Math.round((Date.now() - Date.parse(sessionStartedAt)) / 1000)),
       reason: 'complete',
       createdAt: sessionStartedAt,
@@ -197,13 +253,10 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         questionId: sourceCardId,
         transcript: answerText,
         itemId: cardKey,
-        analyzedTranscript,
-        rawTranscript,
-        grammar: aiReview ? {
-          correctedText: aiReview.grammar.correctedText,
-          issues: aiReview.grammar.issues,
-        } : undefined,
-        polishedText: aiReview?.polishedText,
+        analyzedTranscript: savedAnalyzedTranscript,
+        rawTranscript: savedRawTranscript,
+        grammar: savedReview?.grammar,
+        polishedText: savedReview?.polishedText,
       },
     },
   };
@@ -260,11 +313,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   useEffect(() => {
     const controller = activeRequest.current;
     if (controller) controller.abort();
-    setAiReview(undefined);
-    setAiOperation(undefined);
-    setRawTranscript(undefined);
-    setAnalyzedTranscript(undefined);
-    setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
     setFailureDiagnosticId(undefined);
@@ -278,7 +326,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setAnswerInputHeight(92);
     setNoteInputHeight(92);
     dirty.current = false;
-  }, [cardKey]);
+  }, [cardKey, sessionId]);
 
   function completePendingConsent() {
     consentResolver.current?.(false);
@@ -344,15 +392,17 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }, [consented, requestAiConsent]);
 
   const changeAnswer = useCallback((text: string) => {
-    setAiReview(undefined);
-    setMatchMessage(undefined);
+    if (text === answerText) return;
+    updateFeedback({ inherited: false, aiReview: undefined, aiOperation: undefined, matchMessage: undefined, rawTranscript: undefined, analyzedTranscript: undefined });
     setError(undefined);
     setFailedAction(undefined);
     setFailureDiagnosticId(undefined);
     reviewOperationId.current = undefined;
+    transcribeOperationId.current = undefined;
+    combinedOperationId.current = undefined;
     onAnswerChange(text);
     markDirty();
-  }, [markDirty, onAnswerChange]);
+  }, [answerText, markDirty, onAnswerChange, updateFeedback]);
 
   const beginOperation = useCallback(async (operationId: string, inputTranscript?: string) => {
     const request = activeRequest.current;
@@ -363,8 +413,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     if (!snapshot || snapshot.cardKey !== cardKey || currentCardKey.current !== cardKey || activeRequest.current !== request || request.signal.aborted) throw new Error('request_aborted');
     const operation = await savePendingAiOperation(snapshot.record, operationId, writeContext, inputTranscript);
     if (currentCardKey.current !== cardKey || activeRequest.current !== request || request.signal.aborted) throw new Error('request_aborted');
-    setAiOperation(operation);
-  }, [cardKey, onBeforeAiOperation, persistCurrent, writeContext]);
+    updateFeedback({ aiOperation: operation });
+  }, [cardKey, onBeforeAiOperation, persistCurrent, updateFeedback, writeContext]);
 
   const transcribe = useCallback(async (combined = false) => {
     if (!recordingUri) return;
@@ -394,12 +444,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       const saved = await completePendingAiOperation(resultId, stableOperationId, result, writeContext);
       if (!saved || controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      setAiOperation(saved.aiOperation);
-      setRawTranscript(result.transcript);
-      changeAnswer(result.transcript);
+      updateFeedback({ inherited: false, aiOperation: saved.aiOperation, rawTranscript: result.transcript, aiReview: result.review, analyzedTranscript: result.review ? result.transcript : undefined, matchMessage: undefined });
+      reviewOperationId.current = undefined;
+      onAnswerChange(result.transcript);
+      markDirty();
       if (result.review) {
-        setAiReview(result.review);
-        setAnalyzedTranscript(result.transcript);
         onFeedback();
       }
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
@@ -412,7 +461,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
           if (operation.current) await abandonPendingAiOperation(resultId, operation.current, writeContext).catch(() => undefined);
           if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
           operation.current = undefined;
-          setAiOperation(undefined);
+          updateFeedback({ aiOperation: undefined });
         }
         if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
@@ -444,7 +493,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         if (currentCardKey.current === requestCardKey) setBusy(undefined);
       }
     }
-  }, [bankId, beginOperation, cardKey, changeAnswer, ensureConsent, onFeedback, recordingUri, resultId, reviewKind, sourceCardId, writeContext]);
+  }, [bankId, beginOperation, cardKey, ensureConsent, markDirty, onAnswerChange, onFeedback, recordingUri, resultId, reviewKind, sourceCardId, updateFeedback, writeContext]);
 
   async function reviewAnswer() {
     if (!answerText.trim()) return;
@@ -460,9 +509,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       if (reviewKind === 'exact-match') {
         const result = exactMatch(questionText, answerText);
         if (activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-        setMatchMessage(result.exact
+        updateFeedback({ inherited: false, aiReview: undefined, rawTranscript: undefined, analyzedTranscript: undefined, matchMessage: result.exact
           ? '与原文逐词一致。'
-          : `发现差异：缺失 ${result.summary.missing}、多余 ${result.summary.extra}、替换 ${result.summary.replace}、顺序 ${result.summary.order}。`);
+          : `发现差异：缺失 ${result.summary.missing}、多余 ${result.summary.extra}、替换 ${result.summary.replace}、顺序 ${result.summary.order}。` });
         onFeedback();
         markDirty();
         return;
@@ -483,9 +532,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       const saved = await completePendingAiOperation(resultId, stableOperationId, result, writeContext);
       if (!saved || controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      setAiOperation(saved.aiOperation);
-      setAiReview({ grammar: result.grammar, polishedText: result.polishedText, promptVersion: result.promptVersion });
-      setAnalyzedTranscript(answerText);
+      updateFeedback({ inherited: false, aiOperation: saved.aiOperation, aiReview: { grammar: result.grammar, polishedText: result.polishedText }, analyzedTranscript: answerText, ...(feedback.inherited ? { rawTranscript: undefined } : {}) });
       onFeedback();
       markDirty();
     } catch (error) {
@@ -497,7 +544,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
           if (reviewOperationId.current) await abandonPendingAiOperation(resultId, reviewOperationId.current, writeContext).catch(() => undefined);
           if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
           reviewOperationId.current = undefined;
-          setAiOperation(undefined);
+          updateFeedback({ aiOperation: undefined });
         }
         if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
@@ -568,7 +615,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const transcriptionError = failedAction === 'transcribe' ? error : undefined;
   const aiPrimaryText = matchMessage ? questionText : undefined;
   const aiExplanation = matchMessage;
-  const showAiRegion = busy === 'review' || busy === 'combined' || Boolean(reviewError || aiReview || aiPrimaryText || aiExplanation);
+  const visibleRawTranscript = rawTranscript && rawTranscript !== answerText ? rawTranscript : undefined;
+  const visibleAnalyzedTranscript = aiReview && analyzedTranscript && analyzedTranscript !== answerText && analyzedTranscript !== visibleRawTranscript ? analyzedTranscript : undefined;
+  const showAiRegion = busy === 'review' || busy === 'combined' || Boolean(reviewError || aiReview || aiPrimaryText || aiExplanation || visibleRawTranscript);
 
   return (
     <Fragment>
@@ -631,14 +680,16 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
             </View>
             {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
+              {visibleRawTranscript ? <View><AppText variant="button">本次转写</AppText><AppText testID="study-workbench-raw-transcript">{visibleRawTranscript}</AppText></View> : null}
+              {visibleAnalyzedTranscript ? <View><AppText variant="button">分析时的回答</AppText><AppText testID="study-workbench-analyzed-transcript">{visibleAnalyzedTranscript}</AppText></View> : null}
               {busy === 'review' || busy === 'combined' ? <AppText color={colors.mutedForeground}>{busy === 'combined' ? '正在转写并分析…' : '正在分析表达…'}</AppText> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
                 <View style={styles.aiErrorButtons}>
                   {failureRetryable ? <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => failedAction === 'combined' ? void transcribe(true) : void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
                   {failureNeedsDiagnostic ? <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable> : null}
                 </View>
-                {aiReview ? <AiReviewResultView result={aiReview} /> : null}
-              </> : aiReview ? <AiReviewResultView result={aiReview} /> : <>
+                {aiReview ? <FeedbackReviewContent result={aiReview} /> : null}
+              </> : aiReview ? <FeedbackReviewContent result={aiReview} /> : <>
                 {aiPrimaryText ? <AppText style={styles.aiPrimaryText} testID="study-workbench-ai-primary" variant="button">{aiPrimaryText}</AppText> : null}
                 {aiExplanation ? <><View style={styles.aiDivider} testID="study-workbench-ai-divider" /><AppText color={colors.mutedForeground} style={styles.aiExplanation} testID="study-workbench-ai-explanation">{aiExplanation}</AppText></> : null}
               </>}

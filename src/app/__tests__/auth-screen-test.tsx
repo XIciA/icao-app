@@ -247,6 +247,17 @@ describe('<LoginScreen />', () => {
     expect(mockReplace).not.toHaveBeenCalledWith('/question-bank');
   });
 
+  it.each(['Old123', `${'a'.repeat(63)}1`])('keeps existing-password login compatible without applying new-password limits (%#)', async (password) => {
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
+    await fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), password);
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByRole('button', { name: '密码登录' }));
+    expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('+8613800138000', password);
+    expect(screen.queryByText('密码需为8–32位，并同时包含字母和数字。')).toBeNull();
+  });
+
   it('verifies an existing phone before routing to password recovery', async () => {
     const screen = await renderLoginScreen();
 
@@ -365,7 +376,7 @@ describe('<LoginScreen />', () => {
   it('maps dual-auth failures to actionable and non-enumerating messages', () => {
     expect(loginErrorMessage('invalid_phone_number')).toContain('中国大陆手机号');
     expect(loginErrorMessage('invalid_phone_otp')).toContain('验证码错误或已过期');
-    expect(loginErrorMessage('invalid_phone_password')).toContain('10–64位');
+    expect(loginErrorMessage('invalid_phone_password')).toContain('8–32位');
     expect(loginErrorMessage('invalid_phone_or_password')).toBe('手机号或密码不正确，请重新输入。');
     expect(loginErrorMessage('phone_account_not_found')).not.toContain('未注册');
     expect(loginErrorMessage('phone_not_confirmed')).not.toContain('尚未');

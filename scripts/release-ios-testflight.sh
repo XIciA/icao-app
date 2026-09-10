@@ -99,7 +99,15 @@ mkdir -p "$ARCHIVE_ROOT" "$EXPORT_PATH"
 plutil -create xml1 "$EXPORT_OPTIONS"
 plutil -insert method -string app-store-connect "$EXPORT_OPTIONS"
 plutil -insert destination -string export "$EXPORT_OPTIONS"
-plutil -insert signingStyle -string automatic "$EXPORT_OPTIONS"
+if [ -n "${ICAO_IOS_EXPORT_PROFILE_NAME:-}" ]; then
+  # Use an already installed App Store profile and local distribution identity.
+  # Keep the bundle ID and profile name as data, including dots and punctuation.
+  plutil -insert signingStyle -string manual "$EXPORT_OPTIONS"
+  plutil -insert signingCertificate -string 'Apple Distribution' "$EXPORT_OPTIONS"
+  plutil -insert provisioningProfiles -json "$(node -e 'process.stdout.write(JSON.stringify({ [process.argv[1]]: process.argv[2] }))' -- "$IOS_BUNDLE_ID" "$ICAO_IOS_EXPORT_PROFILE_NAME")" "$EXPORT_OPTIONS"
+else
+  plutil -insert signingStyle -string automatic "$EXPORT_OPTIONS"
+fi
 plutil -insert teamID -string "$IOS_TEAM_ID" "$EXPORT_OPTIONS"
 plutil -insert uploadSymbols -bool YES "$EXPORT_OPTIONS"
 
@@ -176,16 +184,21 @@ codesign --verify --deep --strict "$APP_PATH"
 node tools/audit-ios-archive.mjs "$APP_PATH" "$ARCHIVE_AUDIT_PATH"
 check_wechat_ios_artifact "$APP_PATH"
 
-xcodebuild \
-  -exportArchive \
-  -archivePath "$ARCHIVE_PATH" \
-  -exportPath "$EXPORT_PATH" \
-  -exportOptionsPlist "$EXPORT_OPTIONS" \
-  -allowProvisioningUpdates \
-  -authenticationKeyPath "$APP_STORE_CONNECT_KEY_PATH" \
-  -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
-  -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
-  2>&1 | redact_asc_output
+EXPORT_ARGUMENTS=(
+  -exportArchive
+  -archivePath "$ARCHIVE_PATH"
+  -exportPath "$EXPORT_PATH"
+  -exportOptionsPlist "$EXPORT_OPTIONS"
+)
+if [ -z "${ICAO_IOS_EXPORT_PROFILE_NAME:-}" ]; then
+  EXPORT_ARGUMENTS+=(
+    -allowProvisioningUpdates
+    -authenticationKeyPath "$APP_STORE_CONNECT_KEY_PATH"
+    -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID"
+    -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID"
+  )
+fi
+xcodebuild "${EXPORT_ARGUMENTS[@]}" 2>&1 | redact_asc_output
 
 IPA_PATH=$(find "$EXPORT_PATH" -maxdepth 1 -type f -name '*.ipa' -print -quit)
 if [ -z "$IPA_PATH" ]; then

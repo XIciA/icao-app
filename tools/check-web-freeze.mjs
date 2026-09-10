@@ -35,6 +35,15 @@ const approvedNativeIncrementPaths = new Set([
   'app.json',
 ]);
 
+// Explicitly reviewed TestFlight route repair. Expo's Web require.context
+// includes this file, but its platform router never selects it on Web. Keep
+// both route implementations pinned; this is not a Native-suffix exemption.
+const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
+const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
+const reviewedStudyNativeHash = '85f3981bf8bc8d310ef7e34baae2558f619978528eaaaf8be6555038357228fb';
+const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
+const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
+
 const exactProtectedPaths = [
   '.vercelignore',
   'app.config.js',
@@ -368,6 +377,43 @@ function fingerprintDifferences(expected, current) {
   };
 }
 
+export function assertReviewedNativeStudyRouteDelta(expected, current) {
+  const differences = fingerprintDifferences(expected, current);
+  if (differences.selectionAdded.length || differences.selectionRemoved.length || differences.ownershipChanged.length
+    || !differences.contentChanged.includes(reviewedStudyNativePath)
+    || differences.contentChanged.some((file) => file !== reviewedStudyNativePath && file !== 'app.json')) {
+    throw new Error('unreviewed Web input alongside Native study route repair');
+  }
+  const before = new Map(expected.map((file) => [file.path, file.sha256]));
+  const after = new Map(current.map((file) => [file.path, file.sha256]));
+  if (before.get(reviewedStudyNativePath) !== reviewedStudyNativeBaseHash
+    || after.get(reviewedStudyNativePath) !== reviewedStudyNativeHash
+    || before.get(reviewedStudyWebPath) !== reviewedStudyWebHash
+    || after.get(reviewedStudyWebPath) !== reviewedStudyWebHash) {
+    throw new Error('Native study route or its Web sibling differs from the exact reviewed content');
+  }
+  // Exercise the installed, lockfile-protected router rather than assuming
+  // that every .native file is unreachable. Explicit Web imports elsewhere
+  // remain protected by the unchanged full graph and fingerprints above.
+  const { getRoutes } = require('expo-router/build/getRoutesCore');
+  const nativeKey = `./${reviewedStudyNativePath.slice('src/app/'.length)}`;
+  const webKey = `./${reviewedStudyWebPath.slice('src/app/'.length)}`;
+  const context = (key) => {
+    if (key === nativeKey) throw new Error('Web selected the Native study implementation');
+    return { default: () => null };
+  };
+  context.keys = () => ['./_layout.tsx', webKey, nativeKey];
+  const routes = getRoutes(context, {
+    platform: 'web', ignoreEntryPoints: true, skipGenerated: true,
+    getSystemRoute: ({ defaults }) => defaults,
+  });
+  if (routes?.children.length !== 1 || routes.children[0].contextKey !== webKey) {
+    throw new Error('Web study route platform selection changed');
+  }
+  routes.children[0].loadRoute();
+  return differences.contentChanged;
+}
+
 function evaluateExpoConfig(source, environment) {
   const module = { exports: {} };
   const execute = new Function('module', 'exports', 'process', source);
@@ -652,6 +698,26 @@ async function checkManifest(manifestPath, explain) {
   const hasFailure = combinedChanged || failures.some(([, paths]) => paths.length > 0);
 
   if (hasFailure) {
+    if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)
+      && contentChanged.includes(reviewedStudyNativePath)) {
+      try {
+        const reviewedChanges = assertReviewedNativeStudyRouteDelta(expected, current.files);
+        await execFile('git', ['merge-base', '--is-ancestor', approvedNativeBuildBase, 'HEAD'], { cwd: repositoryRoot });
+        if (reviewedChanges.includes('app.json')) {
+          const { stdout: baseApp } = await execFile('git', ['show', `${approvedNativeBuildBase}:app.json`], {
+            cwd: repositoryRoot, encoding: 'utf8',
+          });
+          if (sha256(Buffer.from(baseApp)) !== expected.find((file) => file.path === 'app.json')?.sha256) {
+            throw new Error('Native build reference does not match the pinned Web manifest');
+          }
+          assertNativeBuildOnlyAppJsonDelta(JSON.parse(baseApp), JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')));
+        }
+        console.log(`Web freeze check passed: ${current.files.length - reviewedChanges.length} protected files match the baseline exactly; one exact reviewed Native study route delta, unchanged Web sibling and verified Native build identifiers.`);
+        return;
+      } catch (error) {
+        console.error(`Reviewed Native study route proof failed: ${error instanceof Error ? error.message : String(error)}`);
+      }
+    }
     if (
       path.resolve(manifestPath) === path.resolve(defaultManifestPath)
       && contentChanged.length === 1 && contentChanged[0] === 'app.json'

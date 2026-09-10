@@ -397,6 +397,12 @@ function validateRuntimeBoundary() {
     if (!source.includes('AppBrandLogo')) violations.push(`${surface} must render AppBrandLogo.`);
   }
 
+  const loadingSource = readFileSync(path.join(repositoryRoot, 'src/components/states/GlobalLoadingScreen.native.tsx'), 'utf8');
+  if (loadingSource.includes('AppBrandLogo') || !loadingSource.includes('<ActivityIndicator')
+      || !loadingSource.includes('正在准备学习空间…')) {
+    violations.push('Native global loading must show only its activity indicator and preparation message, without a brand logo.');
+  }
+
   if (violations.length > 0) fail(['Native brand boundary failed:', ...violations.map((value) => `- ${value}`)].join('\n'));
 }
 

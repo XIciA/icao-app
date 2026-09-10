@@ -10,7 +10,7 @@ import { AuthField, CodeField, PasswordField } from '@/components/auth/auth-ui';
 import { AppText, BottomSheet, Button, Card, Screen, TextField } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { useAuth, type AccountDeletionAuthentication } from '@/features/auth/AuthProvider';
-import { isValidPhonePassword, type PhoneBindingChallenge } from '@/features/auth/auth-service';
+import { isValidPhonePassword, PHONE_PASSWORD_MIN_LENGTH, PHONE_PASSWORD_MAX_LENGTH, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { MembershipRoutePage } from '@/features/native-commercial-testflight/MembershipRoutePage';
 import { ASR_MODEL_OPTIONS, getAsrModel, setAsrModel } from '@/features/ai/asr-model-preference';
@@ -589,9 +589,9 @@ function PasswordPage() {
           <PasswordField label="当前密码" onChangeText={setCurrentPassword} placeholder="请输入当前密码" value={currentPassword} />
           <Button disabled={saving} onPress={() => { setSmsMode(true); setError(''); }} variant="ghost">忘记当前密码？使用短信验证</Button>
         </> : null}
-        <PasswordField label="新密码" onChangeText={setNewPassword} placeholder="请输入 10–64 位新密码" value={newPassword} />
+        <PasswordField label="新密码" onChangeText={setNewPassword} placeholder="请输入 8–32 位新密码" value={newPassword} />
         <AppText color={passwordError ? colors.destructive : colors.mutedForeground} variant="micro">
-          {passwordError || '密码为 10–64 位，且至少包含一个字母和一个数字。'}
+          {passwordError || '密码为 8–32 位，且至少包含一个字母和一个数字。'}
         </AppText>
         <PasswordField label="确认新密码" onChangeText={setConfirmation} placeholder="请再次输入新密码" value={confirmation} />
         {confirmationError ? <AppText color={colors.destructive} variant="caption">{confirmationError}</AppText> : null}
@@ -606,7 +606,7 @@ function getPasswordPolicyError(password: string) {
   if (!password) return '';
   if (isValidPhonePassword(password)) return '';
   const length = Array.from(password).length;
-  if (length < 10 || length > 64) return '密码长度需要为 10–64 位';
+  if (length < PHONE_PASSWORD_MIN_LENGTH || length > PHONE_PASSWORD_MAX_LENGTH) return '密码长度需要为 8–32 位';
   if (!/[A-Za-z]/u.test(password) || !/[0-9]/u.test(password)) return '密码必须同时包含字母和数字';
   return '';
 }

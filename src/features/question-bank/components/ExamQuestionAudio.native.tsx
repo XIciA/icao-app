@@ -35,8 +35,8 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   const eligibleForInterruption = useRef(false);
   const interruptedByCall = useRef(false);
   const callWaiting = useRef(false);
-  const callbacks = useRef({ uri, text, onPlaybackStart });
-  callbacks.current = { uri, text, onPlaybackStart };
+  const callbacks = useRef({ uri, text, resolving, onPlaybackStart });
+  callbacks.current = { uri, text, resolving, onPlaybackStart };
   const operations = useRef({ play: (_restart = false) => {}, pause: () => {} });
 
   function update(next: Phase) { phaseRef.current = next; if (mounted.current) setPhase(next); }
@@ -50,7 +50,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     if (phaseRef.current !== 'ended') update('paused');
   }
   async function play(restart = false) {
-    if (appState.current !== 'active' || (callWaiting.current && !restart)) return;
+    if (callbacks.current.resolving || appState.current !== 'active' || (callWaiting.current && !restart)) return;
     wantPlay.current = false;
     const request = ++generation.current;
     let acquired: AudioLease | undefined;
@@ -121,14 +121,21 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   }, [player]);
 
   useEffect(() => {
+    if (resolving) {
+      // A catalog/fallback path is not yet the authorized playback source.
+      // Keep automatic playback queued until the shared asset loader finishes.
+      wantPlay.current = autoPlay || audible.current;
+      if (wantPlay.current) update('loading');
+      return;
+    }
     if (!uri) return;
     sourceReplacedStatus.current = status;
     try { player.replace(uri); wantPlay.current = autoPlay || audible.current; update(wantPlay.current ? 'loading' : 'paused'); } catch { update('error'); }
   // Source updates refresh the same immutable question, preserving elapsed time.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [player, uri, loadAttempt]);
+  }, [player, uri, resolving, loadAttempt]);
   useEffect(() => {
-    if (!uri || status === sourceReplacedStatus.current) return;
+    if (resolving || !uri || status === sourceReplacedStatus.current) return;
     if (uri && wantPlay.current && status !== sourceReplacedStatus.current && status.isLoaded && status.playbackState !== 'error') operations.current.play();
     if (status.currentTime > 0) { audible.current = true; playbackPosition.current = status.currentTime; }
     if (callWaiting.current && status.playing) { try { player.pause(); } catch { /* Interruption is already paused. */ } }
@@ -136,13 +143,15 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     if (uri && status.playbackState === 'error' && phaseRef.current !== 'error') { operations.current.pause(); eligibleForInterruption.current = false; update('error'); }
   // The player status drives readiness; transports are stable per item.
    
-  }, [player, status, uri]);
+  }, [player, status, uri, resolving]);
   useEffect(() => { if (!uri && text?.trim() && wantPlay.current && !resolving) operations.current.play(); }, [uri, text, resolving, loadAttempt]);
   useEffect(() => {
-    if (phase !== 'loading' && !(phase === 'playing' && !audible.current)) return;
+    // Signed URL resolution has its own timeout and retry path. The
+    // player's 15-second startup watchdog only begins once media is resolved.
+    if (resolving || (phase !== 'loading' && !(phase === 'playing' && !audible.current))) return;
     const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; if (speechStarted.current) { speechGeneration.current += 1; void Speech.stop().catch(() => undefined); } update('error'); } }, 15_000);
     return () => clearTimeout(timer);
-  }, [phase, loadAttempt]);
+  }, [phase, loadAttempt, resolving]);
   const previousPauseRequest = useRef(pauseRequest);
   useEffect(() => {
     if (pauseRequest === previousPauseRequest.current) return;

@@ -14,7 +14,9 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { assertNativeBuildOnlyAppJsonDelta } from './check-web-freeze.mjs';
+import { createHash } from 'node:crypto';
+import { createRequire } from 'node:module';
+import { assertNativeBuildOnlyAppJsonDelta, assertReviewedNativeStudyRouteDelta } from './check-web-freeze.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cliPath = path.join(repositoryRoot, 'tools/check-web-freeze.mjs');
@@ -45,8 +47,50 @@ test('the approved Vercel snapshot matches exactly apart from verified Native bu
     env: process.env,
   });
   requireSuccess(result, 'approved Vercel snapshot no longer matches');
-  assert.match(result.stdout, /Web freeze check passed: \d+ protected files match the baseline(?:\.| exactly; app\.json differs only in matching advanced Native build identifiers\.)/u);
+  assert.match(result.stdout, /Web freeze check passed: \d+ protected files match the baseline(?:\.| exactly; (?:app\.json differs only in matching advanced Native build identifiers|one exact reviewed Native study route delta, unchanged Web sibling and verified Native build identifiers)\.)/u);
   assert.doesNotMatch(result.stdout, /Native-only increment proof/u);
+});
+
+test('the reviewed Native study route delta keeps exact content, Web sibling and every other protected input pinned', () => {
+  const expected = JSON.parse(readFileSync(path.join(repositoryRoot,
+    'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json'), 'utf8')).files;
+  const nativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
+  const webPath = nativePath.replace('.native.tsx', '.tsx');
+  const current = expected.map((file) => file.path === nativePath
+    ? { ...file, sha256: createHash('sha256').update(readFileSync(path.join(repositoryRoot, nativePath))).digest('hex') }
+    : { ...file });
+  assert.deepEqual(assertReviewedNativeStudyRouteDelta(expected, current), [nativePath]);
+  for (const alteredPath of [nativePath, webPath, 'app.config.js']) {
+    const altered = current.map(file => file.path === alteredPath ? { ...file, sha256: '0'.repeat(64) } : file);
+    assert.throws(() => assertReviewedNativeStudyRouteDelta(expected, altered), /unreviewed|exact reviewed/u);
+  }
+  assert.throws(() => assertReviewedNativeStudyRouteDelta(expected, current.concat({
+    path: 'src/app/other.native.tsx', sha256: '0'.repeat(64), sources: ['metro_web_dependency_graph'],
+  })), /unreviewed/u);
+  assert.throws(() => assertReviewedNativeStudyRouteDelta(expected, current.filter(file => file.path !== webPath)), /unreviewed/u);
+  assert.throws(() => assertReviewedNativeStudyRouteDelta(expected, current.map(file => file.path === nativePath
+    ? { ...file, sources: ['explicit_web_import'] } : file)), /unreviewed/u);
+});
+
+test('the reviewed Native study route is included in context but selected only on iOS and Android by the installed router', () => {
+  const require = createRequire(import.meta.url);
+  const { getRoutes } = require('expo-router/build/getRoutesCore');
+  const nativeKey = './question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
+  const webKey = nativeKey.replace('.native.tsx', '.tsx');
+  for (const platform of ['web', 'ios', 'android']) {
+    const loaded = [];
+    const context = key => { loaded.push(key); return { default: () => null }; };
+    context.keys = () => ['./_layout.tsx', webKey, nativeKey];
+    const routes = getRoutes(context, {
+      platform, ignoreEntryPoints: true, skipGenerated: true, getSystemRoute: ({ defaults }) => defaults,
+    });
+    const selected = platform === 'web' ? webKey : nativeKey;
+    assert.equal(routes.children.length, 1);
+    assert.equal(routes.children[0].contextKey, selected);
+    routes.children[0].loadRoute();
+    assert.equal(loaded.includes(selected), true);
+    assert.equal(loaded.includes(platform === 'web' ? nativeKey : webKey), false);
+  }
 });
 
 test('the Native app config proof accepts only matching advanced build identifiers', () => {

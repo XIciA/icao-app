@@ -42,6 +42,15 @@ function sameScopes(left: readonly ContentAccessScope[], right: readonly Content
     && left.every((scope, index) => scopeIdentity(scope) === scopeIdentity(right[index]!));
 }
 
+function matchesSignedSecond(value: string, seconds: number) {
+  const milliseconds = Date.parse(value);
+  // API envelopes use ISO milliseconds; JWT NumericDate is rounded down to
+  // seconds. Expiry remains governed by the signed claim, never the envelope.
+  return Number.isFinite(milliseconds)
+    && new Date(milliseconds).toISOString() === value
+    && Math.floor(milliseconds / 1_000) === seconds;
+}
+
 function parseClaims(payload: string): SignedContentCredentialClaims | undefined {
   try {
     const claims = JSON.parse(payload) as Partial<SignedContentCredentialClaims>;
@@ -127,8 +136,8 @@ export function inspectContentAccessCredential({
     || claims.exp - claims.iat > MAX_OFFLINE_SECONDS
     || credential.policyVersion !== claims.policyVersion
     || credential.environment !== claims.environment
-    || credential.issuedAt !== new Date(claims.iat * 1_000).toISOString()
-    || credential.expiresAt !== new Date(claims.exp * 1_000).toISOString()
+    || !matchesSignedSecond(credential.issuedAt, claims.iat)
+    || !matchesSignedSecond(credential.expiresAt, claims.exp)
     || !sameScopes(credential.scopes, claims.scopes)
     || !claims.scopes.some((candidate) => scopeIdentity(candidate) === scopeIdentity(scope))
   ) return { status: 'invalid' };

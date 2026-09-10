@@ -64,7 +64,7 @@ export async function resolveSignedQuestionBankAsset(
     : undefined;
   assertResourceContextCurrent(context);
   const key = accountId ? resourceCacheKey(accountId, environment, path) : undefined;
-  const cachedValue = key ? await Storage.getItem(key) : undefined;
+  const cachedValue = key ? await Storage.getItem(key).catch(() => undefined) : undefined;
   assertResourceContextCurrent(context);
   try {
     const resource = await apiRequest<ResolvedResource>(
@@ -77,11 +77,14 @@ export async function resolveSignedQuestionBankAsset(
       await Storage.setItem(key, JSON.stringify({
         ...visibleResource,
         expiresAt: Date.now() + resource.expiresIn * 1_000,
-      } satisfies CachedResource));
+      } satisfies CachedResource)).catch(() => undefined);
     }
-    const local = await cacheMemberResource(path, visibleResource.url, visibleResource).catch(() => undefined);
     assertResourceContextCurrent(context);
-    return local ?? visibleResource.url;
+    // Online playback already has server authorization. Downloading and hashing
+    // an optional offline copy must not hold up the player. The existing member
+    // cache remains responsible for credential, checksum and account ownership.
+    void cacheMemberResource(path, visibleResource.url, visibleResource).catch(() => undefined);
+    return visibleResource.url;
   } catch (cause) {
     assertResourceContextCurrent(context);
     if (cause instanceof ApiClientError && cause.status >= 400 && cause.status < 500) {

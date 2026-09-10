@@ -1,6 +1,6 @@
 import Storage from '@/platform/storage';
 
-import { captureLearningWriteContext, inCurrentLearningWorkspace, mutateAnnotationsInCurrentWorkspace, type LearningWriteContext } from '@/features/sync/learning-sync.native';
+import { assertLearningWriteContext, captureLearningWriteContext, inCurrentLearningWorkspace, mutateAnnotationsInCurrentWorkspace, type LearningWriteContext } from '@/features/sync/learning-sync.native';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankId } from '../types';
@@ -23,6 +23,7 @@ const BANK_IDS = new Set<QuestionBankId>(getEmbeddedQuestionBanks().map((bank) =
 const listeners = new Set<() => void>();
 let cachedStore: QuestionBankAnnotationStore | undefined;
 let cachedOwner: string | undefined;
+let latestSave: { ownerToken: string; result: Promise<boolean> } | undefined;
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === 'object' && !Array.isArray(value));
@@ -159,7 +160,7 @@ export async function readAnnotationStore({ force = false }: { force?: boolean }
 
 export async function updateAnnotationStore(updater: (store: QuestionBankAnnotationStore) => QuestionBankAnnotationStore) {
   const context = captureLearningWriteContext();
-  return mutateAnnotationsInCurrentWorkspace(context, async () => {
+  const operation = mutateAnnotationsInCurrentWorkspace(context, async () => {
     const current = await readInWorkspace(context);
     const next = normalizeAnnotationStore(updater(current));
     // Keep a failed local write available to the existing Retry action, scoped
@@ -168,6 +169,27 @@ export async function updateAnnotationStore(updater: (store: QuestionBankAnnotat
     await Storage.setItem(ANNOTATION_STORAGE_KEY, JSON.stringify(next));
     return next;
   });
+  // Observe the existing workspace operation; do not introduce another queue.
+  // Its result includes both the local document and the automatic-sync outbox.
+  latestSave = { ownerToken: context.ownerToken, result: operation.then(() => true, () => false) };
+  return operation;
+}
+
+export async function flushPendingAnnotationSaves(context = captureLearningWriteContext()): Promise<boolean> {
+  try {
+    while (true) {
+      assertLearningWriteContext(context);
+      const pending = latestSave;
+      if (!pending || pending.ownerToken !== context.ownerToken) return true;
+      const saved = await pending.result;
+      assertLearningWriteContext(context);
+      // A later queued write carries the entire current store, including edits
+      // retained after a failure. Wait for that write before allowing departure.
+      if (latestSave === pending) return saved;
+    }
+  } catch {
+    return false;
+  }
 }
 
 /** Called only by the sync owner while its pull/reset/workspace operation owns the workspace. */
@@ -210,4 +232,5 @@ export function createAnnotationDefinitionId(prefix: 'tag' | 'highlight') {
 export function resetAnnotationStoreCacheForTests() {
   cachedStore = undefined;
   cachedOwner = undefined;
+  latestSave = undefined;
 }

@@ -109,14 +109,16 @@ describe('SupabasePhoneAuthService', () => {
     mockWechatAuthorize.mockReset();
   });
 
-  it('accepts only 10-64 character passwords containing a letter and a digit', () => {
+  it('accepts only 8-32 character new passwords containing a letter and a digit', () => {
     expect(isValidPhonePassword('password10')).toBe(true);
     expect(isValidPhonePassword('A123456789')).toBe(true);
-    expect(isValidPhonePassword(`${'a'.repeat(63)}1`)).toBe(true);
+    expect(isValidPhonePassword('Abcdef12')).toBe(true);
+    expect(isValidPhonePassword(`${'a'.repeat(31)}1`)).toBe(true);
     expect(isValidPhonePassword('short1')).toBe(false);
     expect(isValidPhonePassword('abcdefghij')).toBe(false);
     expect(isValidPhonePassword('1234567890')).toBe(false);
-    expect(isValidPhonePassword(`${'a'.repeat(64)}1`)).toBe(false);
+    expect(isValidPhonePassword('Abcde12')).toBe(false);
+    expect(isValidPhonePassword(`${'a'.repeat(32)}1`)).toBe(false);
   });
 
   it('requests an OTP that auto-registers a normalized +86 account', async () => {
@@ -340,6 +342,13 @@ describe('SupabasePhoneAuthService', () => {
     const passwordSession = await service.signInWithPhonePassword(phone, 'password10');
     expect(otpSession.user).toEqual(expect.objectContaining({ id: 'user-1', phone, hasPassword: true, registrationPending: false }));
     expect(passwordSession.user).toEqual(expect.objectContaining({ id: 'user-1', phone, hasPassword: true, registrationPending: false }));
+  });
+
+  it.each(['old123', `${'a'.repeat(63)}1`])('lets the provider verify an existing password outside the new-setting range', async (password) => {
+    const { auth, client } = authClient();
+    await expect(new SupabasePhoneAuthService(client).signInWithPhonePassword(phone, password))
+      .resolves.toEqual(expect.objectContaining({ user: expect.objectContaining({ phone }) }));
+    expect(auth.signInWithPassword).toHaveBeenCalledWith({ phone, password });
   });
 
   it('normalizes the digits-only phone representation returned by production GoTrue', async () => {

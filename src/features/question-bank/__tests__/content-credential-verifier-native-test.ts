@@ -1,9 +1,13 @@
 import type { ContentAccessCredential, ContentAccessScope } from '@icao/contracts';
+import * as distributionEnvironment from '@icao/distribution-environment';
 
 import {
   inspectContentAccessCredential,
   verifyContentAccessCredential,
 } from '../data/content-credential-verifier.native';
+
+const { generateKeyPairSync, sign, verify: verifySignature } = jest.requireActual('node:crypto');
+const { Buffer } = jest.requireActual('node:buffer');
 
 const ACCOUNT_ID = '00000000-0000-4000-8000-000000000001';
 const NOW_SECONDS = 1_777_000_000;
@@ -48,6 +52,36 @@ function verify(value: ContentAccessCredential) {
 }
 
 describe('offline member content credential verification', () => {
+  beforeEach(() => {
+    jest.mocked(distributionEnvironment.verifyIcaoEd25519Jws).mockImplementation((token) => {
+      try { return token.split('.')[1] ? Buffer.from(token.split('.')[1]!, 'base64url').toString('utf8') : undefined; }
+      catch { return undefined; }
+    });
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  it('accepts the real API millisecond envelope while signed JWT timestamps remain whole seconds', () => {
+    const { privateKey, publicKey } = generateKeyPairSync('ed25519');
+    const value = credential();
+    const payload = value.token.split('.')[1]!;
+    const message = `${Buffer.from(JSON.stringify({ alg: 'EdDSA', typ: 'JWT' })).toString('base64url')}.${payload}`;
+    value.token = `${message}.${sign(null, Buffer.from(message), privateKey).toString('base64url')}`;
+    value.issuedAt = new Date(NOW_SECONDS * 1_000 + 437).toISOString();
+    value.expiresAt = new Date((NOW_SECONDS + 3_600) * 1_000 + 437).toISOString();
+    jest.spyOn(distributionEnvironment, 'verifyIcaoEd25519Jws').mockImplementation((token) => {
+      const [header, body, signature] = token.split('.');
+      return header && body && signature && verifySignature(null, Buffer.from(`${header}.${body}`), publicKey, Buffer.from(signature, 'base64url'))
+        ? Buffer.from(body, 'base64url').toString('utf8') : undefined;
+    });
+
+    expect(verify(value)).toMatchObject({ sub: ACCOUNT_ID });
+    expect(verify({ ...value, expiresAt: new Date((NOW_SECONDS + 3_601) * 1_000).toISOString() })).toBeUndefined();
+    expect(verify({ ...value, issuedAt: 'invalid' })).toBeUndefined();
+    expect(verify({ ...value, token: `${message}.invalid` })).toBeUndefined();
+    expect(verifyContentAccessCredential({ accountId: 'another-account', credential: value, environment: 'production', now: NOW_SECONDS * 1_000, scope: SCOPE })).toBeUndefined();
+    expect(inspectContentAccessCredential({ accountId: ACCOUNT_ID, credential: value, environment: 'production', now: (NOW_SECONDS + 3_600) * 1_000, scope: SCOPE }).status).toBe('expired');
+  });
+
   it('accepts an Ed25519-verified account/environment/scope credential', () => {
     expect(verify(credential())).toMatchObject({ sub: ACCOUNT_ID, environment: 'production', scopes: [SCOPE] });
   });

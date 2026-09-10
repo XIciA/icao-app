@@ -159,8 +159,9 @@ export type QuestionBankStudyRecordDescriptor = {
   hotspot?: { id: string; title: string; date: string };
 };
 
-// A paper contains only its selected questions. Shared annotations remain in their
-// existing source-question store; personal recording files never belong here.
+// Each attempt stores only its ordered questions and starting answers for reuse
+// in the standard study screen. Annotations belong to the shared question store;
+// personal recording files are not included.
 export type StudyReviewSnapshot = {
   schemaVersion: 1;
   items: QuestionBankStudyItem[];

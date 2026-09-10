@@ -7,6 +7,7 @@ import { AccountIdentityService } from '../src/account/account-identity.service'
 import type { VerifiedAuthSession } from '../src/auth/auth.types';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
+import { accounts, userDocuments, syncChanges } from '../src/database/schema';
 
 const hashSecret = 'test-account-identity-hash-secret-at-least-32-bytes';
 
@@ -72,6 +73,7 @@ function mutationQuery(record: RecordedMutation) {
 }
 
 function databaseFixture(options: {
+  accountCreated?: boolean;
   distinctSelects?: unknown[][];
   transactionSelects?: unknown[][];
 }) {
@@ -83,7 +85,9 @@ function databaseFixture(options: {
     insert: vi.fn((table: unknown) => {
       const record: RecordedMutation = { kind: 'insert', table };
       mutations.push(record);
-      return mutationQuery(record);
+      const query = mutationQuery(record);
+      if (table === accounts) query.returning.mockResolvedValue(options.accountCreated ? [{ id: 'new-account' }] : []);
+      return query;
     }),
     select: vi.fn(() => fluent(transactionSelects.shift() ?? [])),
     update: vi.fn((table: unknown) => {
@@ -128,6 +132,27 @@ function identityHash(provider: 'apple' | 'phone' | 'wechat', subject: string) {
 }
 
 describe('AccountIdentityService', () => {
+  it('seeds only a newly created account with one editable, synced pilot nickname', async () => {
+    const auth = authSession();
+    const fixture = databaseFixture({
+      accountCreated: true,
+      distinctSelects: [[{ provider: 'phone' }]],
+      transactionSelects: [[], [], [{ sessionsRevokedAt: null, status: 'active' }], [{
+        accountId: auth.authUserId, provider: 'phone', subjectHash: identityHash('phone', '+8613800138000'),
+      }]],
+    });
+    const service = new AccountIdentityService(config, fixture.database, undefined, { grantFreeTrial: vi.fn().mockResolvedValue({ created: true }) } as never);
+    await service.resolve(auth);
+    const document = fixture.mutations.find((row) => row.table === userDocuments)?.values as { payload: { displayName: string } };
+    expect(document).toEqual(expect.objectContaining({
+      documentKey: 'account_profile', userId: auth.authUserId, version: 1,
+      payload: { displayName: expect.stringMatching(/^飞行员(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{4}$/u), avatarUri: null, target: 'icao4-first' },
+    }));
+    expect(fixture.mutations.find((row) => row.table === syncChanges)?.values).toEqual(expect.objectContaining({
+      entityKey: 'account_profile', kind: 'document', userId: auth.authUserId,
+      payload: expect.objectContaining({ document: document.payload, version: 1 }),
+    }));
+  });
   it('lazily creates the permanent account and hashed phone identity for a legacy phone session', async () => {
     const auth = authSession();
     const fixture = databaseFixture({
@@ -168,6 +193,7 @@ describe('AccountIdentityService', () => {
       set: entry.set,
       values: entry.values,
     })))).not.toContain('+8613800138000');
+    expect(fixture.mutations.some((entry) => entry.table === userDocuments || entry.table === syncChanges)).toBe(false);
   });
 
   it('fails closed when a new auth user presents an Apple subject already owned by another auth user', async () => {

@@ -65,7 +65,12 @@ function sourceKey(item: QuestionBankStudyItem) {
 
 async function hydratePersistentStates(store: LearningStore, items: readonly QuestionBankStudyItem[]) {
   const topics = new Map<string, QuestionBankTopic>();
-  items.forEach((item) => topics.set(sourceKey(item), item.topic));
+  items.forEach((item) => {
+    const key = sourceKey(item);
+    const selected = topics.get(key) ?? { ...item.topic, cards: [] };
+    if (!selected.cards.some(card => card.id === item.card.id)) selected.cards.push(item.card);
+    topics.set(key, selected);
+  });
   const loaded = new Map(await Promise.all(Array.from(topics, async ([key, topic]) => (
     [key, await store.getTopicStates(topic)] as const
   ))));
@@ -110,7 +115,10 @@ export function useStudySession(options: UseStudySessionOptions) {
     [legacyItems, packageInput],
   );
   const progressMode = packageInput?.progressMode ?? 'persistent';
-  const recordDescriptor: QuestionBankStudyRecordDescriptor | undefined = packageInput?.record;
+  const recordDescriptor = useMemo<QuestionBankStudyRecordDescriptor | undefined>(() => {
+    if (!packageInput) return undefined;
+    return historyRecord ? { ...packageInput.record, id: undefined, recordType: 'session', mockExam: undefined } : packageInput.record;
+  }, [historyRecord, packageInput]);
   const examMode = recordDescriptor?.recordType === 'mock_exam' && !historyRecord;
   const listeningRange = useMemo(() => resolveListeningExamRange(packageInput), [packageInput]);
   const startingIndex = Math.max(0, initialCardId ? items.findIndex((item) => item.card.id === initialCardId) : 0);
@@ -132,6 +140,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   ).current;
   const finishedAt = useRef<string | undefined>(undefined);
   const committedReport = useRef<LearningRecord | undefined>(undefined);
+  const practiceStarted = useRef(false);
   const listeningResult = useRef<ListeningExamResult | undefined>(undefined);
   const [states, setStates] = useState<Record<string, CardLearningState>>({});
   const statesRef = useRef(states);
@@ -173,35 +182,28 @@ export function useStudySession(options: UseStudySessionOptions) {
     setHydrated(false);
     setLoadError(undefined);
 
-    if (historyReview || progressMode === 'session-only') {
-      const saved = historyReview?.states ?? {};
-      answersRef.current = historyReview?.answers ?? {};
-      setAnswers(answersRef.current);
-      statesRef.current = saved;
-      setStates(saved);
-      setCurrentIndex(startingIndex);
-      setVisitedIndexes(new Set([startingIndex]));
-      setCompletedCardIds(new Set(Object.keys(saved).filter((id) => saved[id].completed)));
-      setRevealed(Boolean(historyRecord));
-      setAutoReveal(Boolean(historyRecord));
-      setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
-      setHydrated(true);
-      return () => { active = false; };
-    }
-
-    void hydratePersistentStates(store, items).then((saved) => {
+    const hydrate = (saved: Record<string, CardLearningState>) => {
       if (!active) return;
       persistentStates.current = saved;
-      statesRef.current = {};
-      setStates({});
+      const initialStates = historyReview ? Object.fromEntries(Object.entries(historyReview.states).map(([id, state]) => [id, { ...state }])) : {};
+      answersRef.current = historyReview ? { ...historyReview.answers } : {};
+      setAnswers(answersRef.current);
+      statesRef.current = initialStates;
+      setStates(initialStates);
+      attemptStates.current = Object.fromEntries(Object.entries(initialStates).map(([id, state]) => [id, { ...state, visited: false }]));
       setCurrentIndex(startingIndex);
       setVisitedIndexes(new Set([startingIndex]));
-      setCompletedCardIds(new Set());
-      setRevealed(false);
+      setCompletedCardIds(new Set(Object.keys(initialStates).filter(id => initialStates[id].completed)));
+      setRevealed(Boolean(historyReview && initialStates[items[startingIndex]?.id]?.selectedChoiceIndex !== undefined));
       setAutoReveal(false);
       setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
       setHydrated(true);
-    }).catch(() => {
+    };
+    if (progressMode === 'session-only') {
+      hydrate({});
+      return () => { active = false; };
+    }
+    void hydratePersistentStates(store, items).then(hydrate).catch(() => {
       if (!active) return;
       setLoadError('学习进度读取失败，请重试。');
       setHydrated(true);
@@ -218,8 +220,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   const persistCard = useCallback((itemOrCardId: string, patch: Partial<CardLearningState>) => {
     const target = resolveItem(itemOrCardId);
     if (!target) return undefined;
-    if (!historyRecord) assertLearningWriteContext(writeContext);
-    if (historyRecord) return statesRef.current[target.id];
+    assertLearningWriteContext(writeContext);
     const current = statesRef.current[target.id] ?? createEmptyCardState();
     const next = migrateLegacyCardState({
       ...current,
@@ -229,7 +230,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     });
     {
       attemptStates.current[target.id] = {
-        ...(attemptStates.current[target.id] ?? createEmptyCardState()), ...patch,
+        ...current, ...patch,
         visited: true, updatedAt: next.updatedAt,
       };
     }
@@ -246,10 +247,13 @@ export function useStudySession(options: UseStudySessionOptions) {
       });
     }
     return next;
-  }, [historyRecord, progressMode, resolveItem, store, writeContext]);
+  }, [progressMode, resolveItem, store, writeContext]);
 
   useEffect(() => {
-    if (hydrated && !loadError && item && !historyRecord && !statesRef.current[item.id]?.visited) {
+    if (!hydrated || loadError || !item) return;
+    if (historyRecord) {
+      attemptStates.current[item.id] = { ...(statesRef.current[item.id] ?? createEmptyCardState()), visited: true };
+    } else if (!statesRef.current[item.id]?.visited) {
       persistCard(item.id, { visited: true });
     }
   }, [historyRecord, hydrated, item, loadError, persistCard]);
@@ -267,7 +271,7 @@ export function useStudySession(options: UseStudySessionOptions) {
 
   const markCompleted = useCallback((itemOrCardId: string) => {
     const target = resolveItem(itemOrCardId);
-    if (!target || historyRecord) return;
+    if (!target || (historyRecord && !practiceStarted.current)) return;
     setCompletedCardIds((current) => new Set(current).add(target.id));
     persistCard(target.id, { completed: true });
   }, [historyRecord, persistCard, resolveItem]);
@@ -307,20 +311,22 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (requestAutoPlay) setPlayRequestToken((current) => current + 1);
     setToolModeState(undefined);
     setActiveTab(preferredWorkbenchTab(nextBehavior.workbenchTabs));
-    setRevealed(examMode ? false : autoReveal);
+    setRevealed(examMode ? false : autoReveal || Boolean(historyRecord && statesRef.current[nextItem.id]?.selectedChoiceIndex !== undefined));
     if (!examMode && autoReveal) markCompleted(nextItem.id);
-  }, [autoReveal, currentIndex, examMode, items, listeningRange, markCompleted]);
+  }, [autoReveal, currentIndex, examMode, historyRecord, items, listeningRange, markCompleted]);
 
   const chooseOption = useCallback((choiceIndex: number, revealAnswer = true) => {
-    if (!item || historyRecord || (examMode && (currentIndex !== committedIndex.current || (item.dataset.id === 'listening' && listeningResult.current)))) return;
+    if (!item || (examMode && (currentIndex !== committedIndex.current || (item.dataset.id === 'listening' && listeningResult.current)))) return;
     if (!Number.isInteger(choiceIndex) || choiceIndex < 0 || choiceIndex >= (item.card.choices?.length ?? 0)) return;
+    practiceStarted.current = true;
     persistCard(item.id, { selectedChoiceIndex: choiceIndex, completed: true });
     setCompletedCardIds((current) => new Set(current).add(item.id));
     if (!examMode && revealAnswer) setRevealed(true);
-  }, [currentIndex, examMode, historyRecord, item, persistCard]);
+  }, [currentIndex, examMode, item, persistCard]);
 
   const recordAnswer = useCallback((recording: RecordingAsset) => {
-    if (!item || historyRecord) return;
+    if (!item) return;
+    practiceStarted.current = true;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current, [item.id]: recording };
     recordingsRef.current = nextRecordings;
@@ -330,10 +336,11 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (!examMode) setRevealed(true);
     if (!examMode && behavior.workbenchTabs.includes('mine')) setActiveTab('mine');
     if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
-  }, [behavior.workbenchTabs, examMode, historyRecord, item, persistCard]);
+  }, [behavior.workbenchTabs, examMode, item, persistCard]);
 
   const clearRecording = useCallback(() => {
-    if (!item || historyRecord) return;
+    if (!item) return;
+    practiceStarted.current = true;
     const previous = recordingsRef.current[item.id];
     const nextRecordings = { ...recordingsRef.current };
     delete nextRecordings[item.id];
@@ -343,32 +350,35 @@ export function useStudySession(options: UseStudySessionOptions) {
     const answered = Boolean(answersRef.current[item.id]?.trim()) || statesRef.current[item.id]?.selectedChoiceIndex !== undefined;
     persistCard(item.id, { recorded: false, completed: answered });
     if (!answered) setCompletedCardIds((current) => { const next = new Set(current); next.delete(item.id); return next; });
-  }, [historyRecord, item, persistCard]);
+  }, [item, persistCard]);
 
   const updateAnswer = useCallback((text: string) => {
-    if (!item || historyRecord) return;
+    if (!item || text === (answersRef.current[item.id] ?? '')) return;
+    practiceStarted.current = true;
     persistCard(item.id, { visited: true });
     answersRef.current = { ...answersRef.current, [item.id]: text };
     setAnswers(answersRef.current);
-  }, [historyRecord, item, persistCard]);
+  }, [item, persistCard]);
 
   const markFeedback = useCallback(() => {
     if (!item) return;
+    practiceStarted.current = true;
+    persistCard(item.id, { visited: true });
     setFeedbackCardIds((current) => new Set(current).add(item.id));
-  }, [item]);
+  }, [item, persistCard]);
 
   const saveReport = useCallback(async (
     reason: 'abort' | 'complete',
     metrics?: { annotationCount?: number; noteCount?: number },
     checkpoint = false,
   ) => {
-    if (historyRecord) return historyRecord;
+    if (historyRecord && !practiceStarted.current) return undefined;
     assertLearningWriteContext(writeContext);
     if (!hydrated || loadError || !items.length) return undefined;
     if (committedReport.current) return committedReport.current;
     if (checkpoint && examMode && !listeningResult.current) return undefined;
     const sessionItemIds = new Set(
-      Array.from(visitedIndexes).flatMap((index) => items[index]?.id ?? []),
+      historyRecord ? items.map(entry => entry.id) : Array.from(visitedIndexes).flatMap((index) => items[index]?.id ?? []),
     );
     const sessionStates = Object.entries(statesRef.current).filter(([itemId]) => sessionItemIds.has(itemId));
     const legacyAnnotationCount = sessionStates.reduce(
@@ -392,7 +402,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       recordType: 'session' as const,
     };
     const isExam = descriptor.recordType === 'mock_exam';
-    const selectedItems = isExam ? items : items.filter((entry) => attemptStates.current[entry.id]?.visited);
+    const selectedItems = isExam || historyRecord ? items : items.filter((entry) => attemptStates.current[entry.id]?.visited);
     const studyReview = captureStudyReview(selectedItems, attemptStates.current, answersRef.current);
     if (!studyReview) return undefined;
     const answeredCount = selectedItems.filter((entry) => wasAnswered(studyReview, entry.id)).length;
@@ -431,15 +441,16 @@ export function useStudySession(options: UseStudySessionOptions) {
   }, [examMode, feedbackCardIds.size, historyRecord, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, recordDescriptor, sessionId, startedAt, store, visitedIndexes, writeContext, hydrated, loadError]);
 
   const saveCheckpoint = useCallback((): Promise<void> => {
-    if (historyRecord || examMode || committedReport.current || savingReport.current) return Promise.reject(new Error('study_checkpoint_unavailable'));
+    if (examMode || committedReport.current || savingReport.current) return Promise.reject(new Error('study_checkpoint_unavailable'));
     if (savingCheckpoint.current) return savingCheckpoint.current;
+    practiceStarted.current = true;
     const operation = saveReport('abort', undefined, true).then(record => {
       if (!record) throw new Error('study_checkpoint_unavailable');
     });
     savingCheckpoint.current = operation;
     void operation.finally(() => { if (savingCheckpoint.current === operation) savingCheckpoint.current = undefined; }).catch(() => undefined);
     return operation;
-  }, [examMode, historyRecord, saveReport]);
+  }, [examMode, saveReport]);
 
   const finish = useCallback((reason: 'abort' | 'complete', metrics?: { annotationCount?: number; noteCount?: number }) => {
     if (savingReport.current) return savingReport.current;

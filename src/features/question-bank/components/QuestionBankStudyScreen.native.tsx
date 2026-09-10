@@ -32,7 +32,7 @@ import { ExamQuestionAudio } from './ExamQuestionAudio.native';
 
 import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index';
-import { useQuestionAnnotations } from '../annotations/use-question-annotations';
+import { useQuestionAnnotations } from '../annotations/use-question-annotations-with-save.native';
 import type { AnnotationTextBlockId } from '../annotations/types';
 import { useStudySession } from '../hooks/useStudySession.native';
 import { useQuestionBankAsset } from '../hooks/useQuestionBankAsset';
@@ -47,7 +47,6 @@ import type {
   QuestionBankStudyPackage,
   QuestionBankTopic,
 } from '../types';
-import { wasAnswered } from '../lib/study-review.native';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar';
 import { AnswerCardSheet } from './AnswerCardSheet';
@@ -57,7 +56,7 @@ import { StudyAudioPlayer } from './StudyAudioPlayer';
 import { StudyCardStack } from './StudyCardStack';
 import { StudyReport } from './StudyReport.native';
 import { StudyTaskRenderer } from './StudyTaskRenderer.native';
-import { StudyWorkbench, type StudyWorkbenchHandle } from './StudyWorkbench.native';
+import { StudyWorkbench, type StudyWorkbenchHandle, type StudyWorkbenchFeedbackCache } from './StudyWorkbench.native';
 
 type NavigationProps = {
   onReturn?: () => void;
@@ -123,6 +122,7 @@ function StudyContent(props: Props) {
   const finishInFlight = useRef(false);
   const cardTransitionInFlight = useRef(false);
   const workbenchRef = useRef<StudyWorkbenchHandle>(null);
+  const workbenchFeedbackCacheRef = useRef<StudyWorkbenchFeedbackCache | undefined>(undefined);
   const bodyScrollRef = useRef<ScrollView>(null);
   const questionOffsetX = useSharedValue(0);
   const item = session.item;
@@ -139,7 +139,7 @@ function StudyContent(props: Props) {
   const listeningExamRange = useMemo(() => resolveListeningExamRange(props.studyPackage), [props.studyPackage]);
   const examMode = session.examMode;
   const listeningExamActive = examMode;
-  const lookupAllowed = !examMode && !session.historyRecord;
+  const lookupAllowed = !examMode && historyContentAllowed;
   useEffect(() => { if (!lookupAllowed) setLookup(undefined); }, [lookupAllowed]);
   const listeningReviewActive = false;
   const listeningSegmentNavigationActive = false;
@@ -163,6 +163,7 @@ function StudyContent(props: Props) {
     cardId: card.id,
   } : undefined;
   const annotations = useQuestionAnnotations(target);
+  const flushAnnotationSaves = annotations.flushPendingSaves;
   const navigateAfterStudy = useCallback(() => {
     if (onReturn) {
       onReturn();
@@ -308,6 +309,13 @@ function StudyContent(props: Props) {
     setCardTransitionActive(true);
     finishWorkbenchEditing();
     try {
+      if (!await flushAnnotationSaves()) {
+        setFinishError('笔记或标注保存失败，请重试。');
+        setCanLeaveWithoutSave(true);
+        resetQuestionOffset();
+        finishCardTransition();
+        return false;
+      }
       const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
       if (!saved) {
         setFinishError('回答自动保存失败，请重试后继续。');
@@ -331,7 +339,7 @@ function StudyContent(props: Props) {
       finishCardTransition();
       return false;
     }
-  }, [animateCardChange, examMode, finishCardTransition, finishWorkbenchEditing, questionOffsetX, reduceMotion, resetQuestionOffset, session, taskInteractionActive, totalItems]);
+  }, [animateCardChange, examMode, flushAnnotationSaves, finishCardTransition, finishWorkbenchEditing, questionOffsetX, reduceMotion, resetQuestionOffset, session, taskInteractionActive, totalItems]);
 
   const collapseWorkbench = useCallback(async () => {
     if (finishInFlight.current || cardTransitionInFlight.current) return false;
@@ -339,6 +347,11 @@ function StudyContent(props: Props) {
     setCardTransitionActive(true);
     finishWorkbenchEditing();
     try {
+      if (!await flushAnnotationSaves()) {
+        setFinishError('笔记或标注保存失败，请重试。');
+        setCanLeaveWithoutSave(true);
+        return;
+      }
       const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
       if (!saved) {
         setFinishError('回答自动保存失败，请重试后收起。');
@@ -350,7 +363,7 @@ function StudyContent(props: Props) {
     } finally {
       finishCardTransition();
     }
-  }, [finishCardTransition, finishWorkbenchEditing, session]);
+  }, [finishCardTransition, finishWorkbenchEditing, flushAnnotationSaves, session]);
 
   const toggleAnswers = useCallback(() => {
     if (session.revealed) {
@@ -441,7 +454,10 @@ function StudyContent(props: Props) {
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
   const answerCardMarked = useMemo(() => {
     if (session.historyReview) {
-      return new Set(session.items.flatMap((entry, index) => wasAnswered(session.historyReview!, entry.id) ? [index] : []));
+      return new Set(session.items.flatMap((entry, index) => {
+        const state = session.states[entry.id];
+        return state?.selectedChoiceIndex !== undefined || state?.recorded || session.answers[entry.id]?.trim() ? [index] : [];
+      }));
     }
     if (listeningSegmentNavigationActive && listeningExamRange) {
       return new Set(listeningExamRange.items.flatMap((entry, index) => (
@@ -454,7 +470,7 @@ function StudyContent(props: Props) {
       )));
     }
     return session.visitedIndexes;
-  }, [listeningExamRange, listeningSegmentNavigationActive, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
+  }, [listeningExamRange, listeningSegmentNavigationActive, session.answers, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
   const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
   const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
@@ -514,6 +530,11 @@ function StudyContent(props: Props) {
     setCanLeaveWithoutSave(false);
     finishWorkbenchEditing();
     try {
+      if (!await flushAnnotationSaves()) {
+        setFinishError('笔记或标注保存失败，请重试。');
+        setCanLeaveWithoutSave(true);
+        return;
+      }
       const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
       if (!saved) {
         setFinishError('回答自动保存失败，请重试后返回。');
@@ -523,7 +544,7 @@ function StudyContent(props: Props) {
       setQuestionAudioPauseRequest((request) => request + 1);
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
-      if (!session.historyRecord) await session.finish('abort', sessionAnnotationMetrics());
+      await session.finish('abort', sessionAnnotationMetrics());
       setLeavingStudy(true);
     } catch {
       setFinishError('学习记录保存失败，内容仍保留在当前页面，请重试。');
@@ -550,6 +571,11 @@ function StudyContent(props: Props) {
     setFinishError(undefined);
     finishWorkbenchEditing();
     try {
+      if (!await flushAnnotationSaves()) {
+        setFinishError('笔记或标注保存失败，请重试。');
+        setCanLeaveWithoutSave(true);
+        return;
+      }
       const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
       if (!saved) {
         setFinishError('回答自动保存失败，请重试后提交纠错。');
@@ -579,10 +605,6 @@ function StudyContent(props: Props) {
   }
 
   async function finish(reason: 'abort' | 'complete') {
-    if (session.historyRecord) {
-      await leaveStudy();
-      return;
-    }
     if (taskInteractionActive) {
       setFinishError('录音正在保存，请稍候再结束。');
       return;
@@ -594,6 +616,11 @@ function StudyContent(props: Props) {
     setCanLeaveWithoutSave(false);
     finishWorkbenchEditing();
     try {
+      if (!await flushAnnotationSaves()) {
+        setFinishError('笔记或标注保存失败，请重试。');
+        setCanLeaveWithoutSave(true);
+        return;
+      }
       const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
       if (!saved) {
         setFinishError('回答自动保存失败，请重试后继续。');
@@ -604,7 +631,7 @@ function StudyContent(props: Props) {
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
       const savedRecord = await session.finish(reason, sessionAnnotationMetrics());
-      if (!savedRecord) setLeavingStudy(true);
+      if (!savedRecord || session.historyRecord) setLeavingStudy(true);
     } catch {
       setFinishError('学习报告保存失败，请重试。');
       setCanLeaveWithoutSave(true);
@@ -614,7 +641,7 @@ function StudyContent(props: Props) {
     }
   }
 
-  if (session.report) {
+  if (session.report && !session.historyRecord) {
     return <StudyReport interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
@@ -625,20 +652,18 @@ function StudyContent(props: Props) {
   const transcript = card.kind === 'image' ? null : (
     <View style={styles.cardContent}>
       <View style={styles.sectionTitle}><Languages color={colors.mutedForeground} size={15} /><AppText variant="button">{session.behavior.transcriptLabel}</AppText></View>
-      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={!session.historyRecord && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.audioText} />
+      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={lookupAllowed && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.audioText} />
       {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
     </View>
   );
   const referenceContent = card.kind === 'image' || dataset.id === 'listening' || !card.referenceText ? null : (
     <View style={styles.referenceContent}>
-      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="reference" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={!session.historyRecord && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.referenceText} />
+      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="reference" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={lookupAllowed && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.referenceText} />
       {card.referenceTextZh ? <AppText style={styles.translation}>{card.referenceTextZh}</AppText> : null}
     </View>
   );
-  const integratedRecordingLayout = session.behavior.taskKind === 'recording' && !session.historyRecord;
-  const taskContent = session.historyRecord && session.behavior.taskKind === 'recording' ? (
-    <AppText variant="caption">{session.cardState?.recorded ? '本次录音未保留，可查看已保存的文字回答。' : '历史复盘 · 仅查看当次作答'}</AppText>
-  ) : (
+  const integratedRecordingLayout = session.behavior.taskKind === 'recording';
+  const taskContent = (
     <StudyTaskRenderer
       examMode={examMode}
       behavior={session.behavior}
@@ -657,8 +682,8 @@ function StudyContent(props: Props) {
       onRecordingIntent={handleRecordingIntent}
       previewPauseRequest={recordingPreviewPauseRequest}
       recording={session.recording}
-      choiceReadOnly={listeningReviewActive || Boolean(session.historyRecord)}
-      revealed={session.revealed || forceListeningReveal || Boolean(session.historyRecord)}
+      choiceReadOnly={listeningReviewActive}
+      revealed={session.revealed || forceListeningReveal}
       selectedChoiceIndex={session.cardState?.selectedChoiceIndex}
       sessionId={session.sessionId}
       variant={integratedRecordingLayout ? 'integrated' : 'default'}
@@ -666,7 +691,7 @@ function StudyContent(props: Props) {
   );
   const atNavigationEnd = session.currentIndex === navigationEndIndex;
   const atListeningSubmission = examMode && session.currentIndex === listeningExamRange?.endIndex;
-  const footerPrimaryLabel = atListeningSubmission ? '提交听力' : !atNavigationEnd ? '下一题' : session.historyRecord ? '返回学习记录' : '完成';
+  const footerPrimaryLabel = atListeningSubmission ? '提交听力' : !atNavigationEnd ? '下一题' : '完成';
   function handleFooterPrimary() {
     if (atListeningSubmission) { void submitListening(); return; }
     if (!atNavigationEnd) { void goToCard(session.currentIndex + 1, 1); return; }
@@ -679,16 +704,16 @@ function StudyContent(props: Props) {
       <View style={styles.topBar}>
         <Pressable accessibilityLabel={returnLabel ?? (returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录')} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
-        {!examMode && !session.historyRecord ? <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable> : null}
+        {!examMode && historyContentAllowed ? <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable> : null}
         <Pressable accessibilityLabel={examMode ? "当前题号" : "打开答题卡"} disabled={examMode || taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}>{!examMode ? <Grid3X3 color={colors.mutedForeground} size={15} /> : null}<AppText style={styles.counter} variant="button">{navigationCurrentIndex + 1} / {navigationItemCount}</AppText></Pressable>
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
-      {!imageCard && !listeningExamActive && !session.historyRecord ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
+      {!imageCard && !listeningExamActive && historyContentAllowed ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
         <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={listeningReviewActive ? undefined : <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} />
       </View> : null}
 
-      {!imageCard && !listeningExamActive && !session.historyRecord && annotationPanelTop !== undefined ? (
+      {!imageCard && !listeningExamActive && historyContentAllowed && annotationPanelTop !== undefined ? (
         <AnnotationFloatingPanel
           activeHighlightId={activeHighlightId}
           highlightDefinitions={annotations.highlightDefinitions}
@@ -709,25 +734,13 @@ function StudyContent(props: Props) {
       <GestureDetector gesture={questionSwipeGesture}>
         <Animated.View style={[styles.bodyGesture, questionBodyAnimatedStyle]}>
           <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} ref={bodyScrollRef} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
-            {session.historyReview && session.historyRecord ? (
-              <View style={styles.historySummary}>
-                <AppText variant="sectionTitle">历史回看</AppText>
-                
-                <AppText color={wasAnswered(session.historyReview, item.id) ? colors.primary : colors.mutedForeground} variant="button">
-                  {wasAnswered(session.historyReview, item.id) ? '本题已作答' : '本题未作答'}
-                </AppText>
-              </View>
-            ) : null}
             {historyContentAllowed && (examMode || session.historyRecord || props.studyPackage?.record.source === 'hotspot') ? item.materials?.map((material) => (
               <ImageQuestionCard key={material.id} imageAlt={material.imageAlt} imagePath={material.image} />
             )) : null}
             {!historyContentAllowed ? <View style={styles.historySummary}><AppText variant="caption">会员到期后，题目与参考内容暂不可查看；你的回答和学习资料仍保留。</AppText><StudyHistoryPersonalContent answer={session.answerText} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} recorded={session.cardState?.recorded} feedback={session.historyRecord?.studyFeedback?.[item.id]} note={entry?.note} tags={entry?.tagIds} definitions={annotations.tagDefinitions} /></View> : card.kind === 'image' ? (
-              <View><ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />{session.historyRecord ? <StudyHistoryPersonalContent answer={session.answerText} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} recorded={session.cardState?.recorded} feedback={session.historyRecord.studyFeedback?.[item.id]} note={entry?.note} tags={entry?.tagIds} definitions={annotations.tagDefinitions} /> : null}</View>
+              <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive && !session.historyRecord) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive && !session.historyRecord) session.revealCurrent(true); }} primary={<View style={styles.primaryContent}>{examMode || (session.behavior.generatedAudio && !card.audio) ? <ExamQuestionAudio exam={examMode} autoPlay={!session.historyRecord} key={item.id} uri={audioAsset.uri} text={!card.audio && session.behavior.generatedAudio ? card.audioText : undefined} label={card.taskTitle} resolving={audioAsset.resolving} onRetry={audioAsset.retry} pauseRequest={questionAudioPauseRequest} onPlaybackStart={handleQuestionPlaybackStart} practiceControls={integratedRecordingLayout ? taskContent : undefined} /> : <StudyAudioPlayer autoPlayRequest={session.historyRecord ? 0 : session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />}{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={examMode ? null : session.historyRecord ? <View style={styles.historySummary}>
-                <StudyHistoryPersonalContent answer={session.answerText} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} recorded={session.cardState?.recorded} feedback={session.historyRecord?.studyFeedback?.[item.id]} note={entry?.note} tags={entry?.tagIds} definitions={annotations.tagDefinitions} />
-                {referenceContent ? <><AppText variant="button">{session.behavior.referenceLabel}</AppText>{referenceContent}</> : null}
-              </View> : <StudyWorkbench onBeforeAiOperation={session.saveCheckpoint} ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
+              <StudyCardStack onCollapse={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) void collapseWorkbench(); }} onReveal={() => { if (!listeningExamActive && !listeningReviewActive && historyContentAllowed) session.revealCurrent(true); }} primary={<View style={styles.primaryContent}>{examMode || (session.behavior.generatedAudio && !card.audio) ? <ExamQuestionAudio exam={examMode} autoPlay={true} key={item.id} uri={audioAsset.uri} text={!card.audio && session.behavior.generatedAudio ? card.audioText : undefined} label={card.taskTitle} resolving={audioAsset.resolving} onRetry={audioAsset.retry} pauseRequest={questionAudioPauseRequest} onPlaybackStart={handleQuestionPlaybackStart} practiceControls={integratedRecordingLayout ? taskContent : undefined} /> : <StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onManualPlay={handleQuestionManualPlay} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />}{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed || forceListeningReveal} transcript={transcript} workbench={examMode ? null : <StudyWorkbench feedbackCacheRef={workbenchFeedbackCacheRef} initialFeedback={session.historyRecord?.studyFeedback?.[item.id]} onBeforeAiOperation={session.saveCheckpoint} ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
             )}
           </ScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
@@ -738,7 +751,7 @@ function StudyContent(props: Props) {
         {finishError ? <AppText color={colors.destructive} style={styles.finishError} variant="caption">{finishError}</AppText> : null}
         {finishError && canLeaveWithoutSave ? <Button disabled={finishing || taskInteractionActive} onPress={confirmExitWithoutSave} size="sm" variant="ghost">仍然返回</Button> : null}
         <View style={styles.footer}>
-          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '生成中…' : session.historyRecord ? '返回记录' : '结束'}</Button>
+          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '保存中…' : '结束'}</Button>
           {!examMode ? <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === navigationStartIndex} leading={<ChevronLeft color={colors.foreground} size={20} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" style={styles.footerPrevious} testID="study-footer-previous" variant="outline">上一题</Button> : null}
           <Button accessibilityLabel={footerPrimaryLabel} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={handleFooterPrimary} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : footerPrimaryLabel} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
         </View>
