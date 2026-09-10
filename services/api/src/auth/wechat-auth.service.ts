@@ -1,4 +1,4 @@
-import { createHash, createHmac, randomBytes, randomUUID } from 'node:crypto';
+import { createHmac, randomBytes, randomUUID } from 'node:crypto';
 
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { LoginMethodActionPurpose, CompleteWechatAuthRequest, CompleteWechatAuthResponse, NativeRecentAuthGrantResponse as RecentAuthGrantResponse, StartWechatAuthResponse, WechatRecentAuthRequest } from '@icao/contracts/native-auth';
@@ -7,7 +7,7 @@ import { and, eq, gt, sql } from 'drizzle-orm';
 
 import { AccountIdentityService } from '../account/account-identity.service';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, accountLoginMethodRemovals, authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
+import { accountDeletionAuthUsers, accountDeletionJobs, accountIdentities, accountLoginMethodRemovals, accounts, authUsageCounters, wechatAuthChallenges, wechatAuthPrincipals } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import type { VerifiedAuthSession } from './auth.types';
 import { RecentAuthService } from './recent-auth.service';
@@ -387,19 +387,37 @@ export class WechatAuthService {
         .where(eq(wechatAuthPrincipals.subjectDigest, subjectDigest))
         .limit(1);
       if (principal) {
+        const [identity] = await transaction.select({ accountId: accountIdentities.accountId })
+          .from(accountIdentities).where(eq(accountIdentities.authUserId, principal.authUserId)).limit(1);
+        // Auth deletion cascades identity rows before the deletion job finishes.
+        const [deletion] = await transaction.select({ accountId: accountDeletionJobs.accountId })
+          .from(accountDeletionAuthUsers)
+          .innerJoin(accountDeletionJobs, eq(accountDeletionJobs.id, accountDeletionAuthUsers.jobId))
+          .where(eq(accountDeletionAuthUsers.authUserId, principal.authUserId)).limit(1);
+        const accountId = identity?.accountId ?? deletion?.accountId ?? principal.authUserId;
+        // Serialize this decision with account deletion, including identities linked to a phone account.
+        await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))`);
+        const [account] = await transaction.select({ status: accounts.status })
+          .from(accounts).where(eq(accounts.id, accountId)).limit(1);
+        if (account && !['active', 'deleted'].includes(account.status)) {
+          throw new ServiceUnavailableException('account_not_active');
+        }
         const [removal] = await transaction.select({ status: accountLoginMethodRemovals.status })
           .from(accountLoginMethodRemovals).where(eq(accountLoginMethodRemovals.authUserId, principal.authUserId)).limit(1);
-        if (!removal) return principal.authUserId;
-        if (removal.status !== 'completed') throw new ServiceUnavailableException('login_method_removal_pending');
+        if (removal && removal.status !== 'completed') throw new ServiceUnavailableException('login_method_removal_pending');
+        if (!removal && account?.status !== 'deleted') return principal.authUserId;
         // A new authorization after cleanup gets a new principal, never the old account.
         const replacementId = randomUUID();
-        await transaction.update(wechatAuthPrincipals).set({ authUserId: replacementId, lastUsedAt: new Date() })
-          .where(eq(wechatAuthPrincipals.subjectDigest, subjectDigest));
+        // Finalization may have removed this row while we waited for the account lock.
+        await transaction.insert(wechatAuthPrincipals).values({ authUserId: replacementId, subjectDigest })
+          .onConflictDoUpdate({ target: wechatAuthPrincipals.subjectDigest,
+            set: { authUserId: replacementId, lastUsedAt: new Date() } });
         return replacementId;
       }
-      const deterministicId = this.principalAuthUserId(subjectDigest);
+      // Persist a fresh reservation before contacting Auth; retries reuse it, while
+      // re-registration must never regenerate the ID of a deleted account.
       const [reserved] = await transaction.insert(wechatAuthPrincipals).values({
-        authUserId: deterministicId,
+        authUserId: randomUUID(),
         subjectDigest,
       }).onConflictDoNothing().returning({ authUserId: wechatAuthPrincipals.authUserId });
       if (reserved) return reserved.authUserId;
@@ -429,7 +447,7 @@ export class WechatAuthService {
       });
       user = created.data.user;
       if (!user) {
-        // A concurrent retry may have created the deterministic user after our
+        // A concurrent retry may have created the reserved user after our
         // initial lookup. Recover it by id instead of creating a second email
         // or deleting another request's successful side effect.
         const recovered = await this.admin.auth.admin.getUserById(authUserId);
@@ -448,17 +466,6 @@ export class WechatAuthService {
         eq(wechatAuthPrincipals.authUserId, authUserId),
       ));
     return user;
-  }
-
-  private principalAuthUserId(subjectDigest: string) {
-    const bytes = Buffer.from(createHash('sha256')
-      .update(`icao-wechat-auth-user-v1\0${subjectDigest}`)
-      .digest('hex')
-      .slice(0, 32), 'hex');
-    bytes[6] = (bytes[6]! & 0x0f) | 0x50;
-    bytes[8] = (bytes[8]! & 0x3f) | 0x80;
-    const hex = bytes.toString('hex');
-    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
   }
 
   private async issueSession(user: User, subjectDigest: string) {
