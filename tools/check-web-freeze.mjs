@@ -418,6 +418,23 @@ export function assertReviewedNativeStudyRouteDelta(expected, current) {
   return differences.contentChanged;
 }
 
+const nativeBuildReference = "{\n  \"expo\": {\n    \"name\": \"听你五个\",\n    \"slug\": \"readyoufife\",\n    \"version\": \"1.0.0\",\n    \"orientation\": \"portrait\",\n    \"icon\": \"./assets/images/icon.png\",\n    \"scheme\": \"readyoufife\",\n    \"userInterfaceStyle\": \"light\",\n    \"ios\": {\n      \"icon\": \"./assets/images/icon.png\",\n      \"supportsTablet\": false,\n      \"bundleIdentifier\": \"com.readyoufife.ios\",\n      \"buildNumber\": \"3493766\",\n      \"config\": {\n        \"usesNonExemptEncryption\": false\n      },\n      \"infoPlist\": {\n        \"UIBackgroundModes\": [\n          \"audio\"\n        ]\n      }\n    },\n    \"android\": {\n      \"icon\": \"./assets/images/icon.png\",\n      \"predictiveBackGestureEnabled\": false,\n      \"package\": \"com.readyoufife.app\",\n      \"versionCode\": 3493766\n    },\n    \"web\": {\n      \"output\": \"single\",\n      \"favicon\": \"./assets/images/favicon.png\"\n    },\n    \"plugins\": [\n      \"expo-router\",\n      [\n        \"expo-splash-screen\",\n        {\n          \"backgroundColor\": \"#FFFFFF\",\n          \"image\": \"./assets/images/icon.png\",\n          \"imageWidth\": 160,\n          \"resizeMode\": \"contain\",\n          \"android\": {\n            \"imageWidth\": 120\n          }\n        }\n      ],\n      [\n        \"expo-audio\",\n        {\n          \"microphonePermission\": \"允许听你五个使用麦克风录制口语练习；录音仅在你主动点击转写并明确同意后发送至 AI 服务。\",\n          \"enableBackgroundPlayback\": false,\n          \"enableBackgroundRecording\": false\n        }\n      ],\n      \"expo-sqlite\",\n      [\n        \"expo-secure-store\",\n        {\n          \"faceIDPermission\": false\n        }\n      ],\n      \"expo-asset\",\n      [\n        \"expo-image-picker\",\n        {\n          \"photosPermission\": \"允许听你五个选择图片并随反馈提交。\",\n          \"cameraPermission\": false\n        }\n      ],\n      \"./plugins/with-android-release-signing\",\n      \"./plugins/with-ios-release-integrity\"\n    ],\n    \"experiments\": {\n      \"typedRoutes\": true,\n      \"reactCompiler\": true\n    }\n  }\n}\n";
+
+// CLI uploads omit .git. The embedded reference must still match the approved
+// manifest byte-for-byte; application identity checks remain identical.
+export async function readNativeBuildReference(expectedHash, directory = repositoryRoot) {
+  let bytes;
+  if (existsSync(path.join(directory, '.git'))) {
+    await execFile('git', ['merge-base', '--is-ancestor', approvedNativeBuildBase, 'HEAD'], { cwd: directory });
+    const { stdout } = await execFile('git', ['show', `${approvedNativeBuildBase}:app.json`], { cwd: directory, encoding: 'utf8' });
+    bytes = Buffer.from(stdout);
+  } else {
+    bytes = Buffer.from(nativeBuildReference);
+  }
+  if (sha256(bytes) !== expectedHash) throw new Error('Native build reference does not match the pinned Web manifest');
+  return JSON.parse(bytes.toString('utf8'));
+}
+
 function evaluateExpoConfig(source, environment) {
   const module = { exports: {} };
   const execute = new Function('module', 'exports', 'process', source);
@@ -718,15 +735,9 @@ async function checkManifest(manifestPath, explain) {
       && contentChanged.includes(reviewedStudyNativePath)) {
       try {
         const reviewedChanges = assertReviewedNativeStudyRouteDelta(expected, current.files);
-        await execFile('git', ['merge-base', '--is-ancestor', approvedNativeBuildBase, 'HEAD'], { cwd: repositoryRoot });
         if (reviewedChanges.includes('app.json')) {
-          const { stdout: baseApp } = await execFile('git', ['show', `${approvedNativeBuildBase}:app.json`], {
-            cwd: repositoryRoot, encoding: 'utf8',
-          });
-          if (sha256(Buffer.from(baseApp)) !== expected.find((file) => file.path === 'app.json')?.sha256) {
-            throw new Error('Native build reference does not match the pinned Web manifest');
-          }
-          assertNativeBuildOnlyAppJsonDelta(JSON.parse(baseApp), JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')));
+          const baseApp = await readNativeBuildReference(expected.find((file) => file.path === 'app.json')?.sha256);
+          assertNativeBuildOnlyAppJsonDelta(baseApp, JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')));
         }
         console.log(`Web freeze check passed: ${current.files.length - reviewedChanges.length} protected files match the baseline exactly; one exact reviewed Native study route delta, unchanged Web sibling and verified Native build identifiers.`);
         return;
@@ -740,18 +751,8 @@ async function checkManifest(manifestPath, explain) {
       && ownershipChanged.length === 0 && selectionAdded.length === 0 && selectionRemoved.length === 0
     ) {
       try {
-        await execFile('git', ['merge-base', '--is-ancestor', approvedNativeBuildBase, 'HEAD'], {
-          cwd: repositoryRoot,
-        });
-        const { stdout: baseApp } = await execFile('git', ['show', `${approvedNativeBuildBase}:app.json`], {
-          cwd: repositoryRoot, encoding: 'utf8',
-        });
-        if (sha256(Buffer.from(baseApp)) !== expected.find((file) => file.path === 'app.json')?.sha256) {
-          throw new Error('Native build reference does not match the pinned Web manifest');
-        }
-        assertNativeBuildOnlyAppJsonDelta(
-          JSON.parse(baseApp), JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')),
-        );
+        const baseApp = await readNativeBuildReference(expected.find((file) => file.path === 'app.json')?.sha256);
+        assertNativeBuildOnlyAppJsonDelta(baseApp, JSON.parse(await readFile(fromRepositoryPath('app.json'), 'utf8')));
         console.log(`Web freeze check passed: ${current.files.length - 1} protected files match the baseline exactly; app.json differs only in matching advanced Native build identifiers.`);
         return;
       } catch (error) {

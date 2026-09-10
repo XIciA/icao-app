@@ -16,7 +16,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { assertNativeBuildOnlyAppJsonDelta, assertReviewedNativeStudyRouteDelta } from './check-web-freeze.mjs';
+import { assertNativeBuildOnlyAppJsonDelta, assertReviewedNativeStudyRouteDelta, readNativeBuildReference } from './check-web-freeze.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cliPath = path.join(repositoryRoot, 'tools/check-web-freeze.mjs');
@@ -195,4 +195,18 @@ test('the real Web resolver and CLI protect every selected input without post-fi
     });
     rmSync(temporaryRoot, { force: true, recursive: true });
   }
+});
+
+
+test('CLI builds without Git require the exact approved native build reference', async () => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), 'icao-web-reference-'));
+  try {
+    const original = spawnSync('git', ['show', 'bc44f5f26ea45b8ecb89669452aaf480b62f2957:app.json'], { cwd: repositoryRoot, encoding: 'utf8' });
+    assert.equal(original.status, 0);
+    const bytes = original.stdout;
+    const manifest = JSON.parse(readFileSync(path.join(repositoryRoot, 'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json')));
+    const hash = manifest.files.find(file => file.path === 'app.json').sha256;
+    assert.deepEqual(await readNativeBuildReference(hash, directory), JSON.parse(bytes));
+    await assert.rejects(readNativeBuildReference('0'.repeat(64), directory), /does not match/);
+  } finally { rmSync(directory, { recursive: true, force: true }); }
 });
