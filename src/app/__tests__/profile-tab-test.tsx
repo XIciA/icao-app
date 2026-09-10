@@ -59,7 +59,7 @@ describe('<ProfileTab />', () => {
     expect(screen.getByText('目标：ICAO 4 初考')).toBeTruthy();
     expect(screen.getByText('已完成卡片')).toBeTruthy();
     expect(screen.queryByText('学习次数')).toBeNull();
-    expect(screen.getByText(`© 2026 听你五个 · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
+    expect(screen.queryByText(`© 2026 听你五个 · ${APP_DISPLAY_VERSION}`)).toBeNull();
   });
 
   it('shows the current invite-account name in the profile card', async () => {
