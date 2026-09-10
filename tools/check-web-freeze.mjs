@@ -23,8 +23,9 @@ const defaultManifestPath = path.join(
 const approvedManifestSha256 = 'fb991a77a14ec06820e7660a7cfaa8d0fec915e138178379dce7b891572e8cb1';
 const approvedNativeBuildBase = 'bc44f5f26ea45b8ecb89669452aaf480b62f2957';
 // User-approved 900-sentence content-only replacement, 2026-09-10.
-// Exact hashes permit these two artifacts only; every other Web input remains frozen.
+// Exact hashes permit the two artifacts and their resource partitioner only; every other Web input remains frozen.
 const approved900ContentHashes = new Map([['src/features/question-bank/data/question-bank.json', 'd38adbeb28176454d3c124e83b02d182c4645034264a5f9b73d8679334e78ecf'], ['src/features/question-bank/data/question-bank-release.json', '65f6f88d90baa31fb1495a3b9f6bda20feb799e04380a30cb2b57afadd684912']]);
+approved900ContentHashes.set('tools/web-content-sync.mjs', 'c068b0c4744708a9cb76c324757d3c854f17d435d430b8fa6ab4d0be444987ef');
 const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
 const approvedNativeIncrementHashes = new Map([
   ['app.config.js', 'a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2'],
