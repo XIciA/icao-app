@@ -1,5 +1,12 @@
 # 执行接续记录
 
+## 2026-09-10：十二项反馈新包已交付
+
+- PR #108／CI34434675576通过，main源码 `72f220cf42c9c336d97a48ad9ba6d68377fe9750`；API `feedback-72f220cf42c9`已部署，Auth仅同步密码8及验证码间隔1秒，其余配置保持。新API真实AI及临时账号/音频清理通过。
+- TestFlight **1.0.0（3519586）** 完成归档、隐私/SDK/微信/签名审计及Apple校验上传，独立回读VALID／1个现有内部组。tag `release/ios-testflight/v1.0.0-b3519586`；API tag `release/api-production/2026-09-10-72f220c`。
+- 当前用户可更新验收。最新范围及证据见[十二项反馈修复](testflight-feedback-fixes.md)。短信平台分钟限额待核实；原后台DNS、Android商户配置待办未扩大到本轮。没有App Store公开提交或Vercel操作。
+- 以下为此前阶段快照，不能覆盖上面的最新交付状态。
+
 ## 2026-09-10：TestFlight十二项反馈修复，准备新候选
 
 - 最新范围和验收以[十二项反馈修复](testflight-feedback-fixes.md)为准，取代历史只读方案；旧候选3519119已由用户实测指出问题，不能当作这些功能已经验收通过。
