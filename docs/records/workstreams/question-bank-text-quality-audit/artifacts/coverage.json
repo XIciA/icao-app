@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 12,
-  "generatedAt": "2026-08-22T14:19:48.267Z",
+  "releaseVersion": 13,
+  "generatedAt": "2026-09-10T07:42:54.013Z",
   "totals": {
     "files": 374,
     "textValues": 40564
@@ -2195,19 +2195,19 @@
     {
       "file": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
       "textValues": 1687,
-      "textProjectionSha256": "1d0f54f636da641adcda0fd68a150276bfc3813720938619d812b8076a039966",
+      "textProjectionSha256": "7dcadd63320cbdb50b759d5ac08d4bed283fe2c98040871671da618309ae1745",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
       "textValues": 478,
-      "textProjectionSha256": "7d1dcedf6d7a4f3f2902b7871fd332bf226fd6ad4a7956da59aca2a830c5cd46",
+      "textProjectionSha256": "c45e73e0d62263231cb4a260529cfe9ad0cda41293c4638b9480003edd6c0e3c",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
       "textValues": 538,
-      "textProjectionSha256": "148ba6b33cd061c0f0b915c663ed032c0bebc72155132bdae5fba2882f10f1b8",
+      "textProjectionSha256": "16e0ad109fa39e01ba425520a85080c345343604f03508d75a9a5e602e94aac4",
       "status": "reviewed"
     },
     {

@@ -18,6 +18,13 @@ const correctionsPath = join(artifactRoot, 'corrections.json');
 const reviewDecisionsPath = join(artifactRoot, 'review-decisions.json');
 const coveragePath = join(artifactRoot, 'coverage.json');
 const wordLookupDatasetPath = join(root, 'content/word-lookup/dataset.json');
+// Exact-value approval for the user's September 900-sentence source replacement.
+// It supersedes historical wording corrections, not validation of later edits.
+const accepted900 = JSON.parse(readFileSync(join(root, 'docs/records/workstreams/sentences900-opi-resource-update/accepted-text.json'), 'utf8')).fields;
+function isAccepted900(record) {
+  return record.bankId === 'sentences900' && accepted900[`${record.cardId}#${record.field}`] === sha256(record.text);
+}
+
 
 const bankTextFields = [
   'title',
@@ -1398,6 +1405,7 @@ function applyReviewedRecordReplacements(record) {
 }
 
 function normalizeDeterministicText(record) {
+  if (isAccepted900(record)) return record.text;
   let next = applyKnownTypoReplacements(applyReviewedRecordReplacements(record))
     .replace(/[\uFEFF\u200B-\u200D\u2060]/gu, '')
     .replace(/\uFFFD/gu, '')
@@ -2221,7 +2229,8 @@ function check() {
       const decoded = part.replaceAll('~1', '/').replaceAll('~0', '~');
       return /^\d+$/u.test(decoded) ? Number(decoded) : decoded;
     });
-    if (valueAtPath(fileValue.json, path) !== entry.after) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
+    const current = valueAtPath(fileValue.json, path);
+    if (current !== entry.after && !isAccepted900({ ...entry, text: current })) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
   }
   console.log(`question_bank_text_check_ok texts=${sources.records.length} files=${sources.files.size} candidates=${candidates.length} reviewed=${decisions.size} corrections=${ledger.corrections.length}`);
 }

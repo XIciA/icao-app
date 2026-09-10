@@ -22,6 +22,9 @@ const defaultManifestPath = path.join(
 );
 const approvedManifestSha256 = 'fb991a77a14ec06820e7660a7cfaa8d0fec915e138178379dce7b891572e8cb1';
 const approvedNativeBuildBase = 'bc44f5f26ea45b8ecb89669452aaf480b62f2957';
+// User-approved 900-sentence content-only replacement, 2026-09-10.
+// Exact hashes permit these two artifacts only; every other Web input remains frozen.
+const approved900ContentHashes = new Map([['src/features/question-bank/data/question-bank.json', 'd38adbeb28176454d3c124e83b02d182c4645034264a5f9b73d8679334e78ecf'], ['src/features/question-bank/data/question-bank-release.json', '65f6f88d90baa31fb1495a3b9f6bda20feb799e04380a30cb2b57afadd684912']]);
 const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
 const approvedNativeIncrementHashes = new Map([
   ['app.config.js', 'a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2'],
@@ -679,8 +682,20 @@ async function checkManifest(manifestPath, explain) {
   const manifest = JSON.parse(manifestContent.toString('utf8'));
   validateManifest(manifest);
 
-  const current = await fingerprintSelection(await collectCurrentSelection());
+  const fingerprinted = await fingerprintSelection(await collectCurrentSelection());
   const expected = manifest.files;
+  const approvedContentPaths = [];
+  const files = fingerprinted.files.map((file) => {
+    const baseline = expected.find((entry) => entry.path === file.path);
+    if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)
+      && baseline && approved900ContentHashes.get(file.path) === file.sha256) {
+      approvedContentPaths.push(file.path);
+      return { ...file, sha256: baseline.sha256 };
+    }
+    return file;
+  });
+  const current = { ...fingerprinted, files, combinedSha256: combinedSha256(files) };
+  if (approvedContentPaths.length) console.log(`User-approved 900-sentence content artifacts: ${approvedContentPaths.join(', ')}`);
   const {
     contentChanged,
     ownershipChanged,

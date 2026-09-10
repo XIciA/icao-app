@@ -53,3 +53,20 @@ export function assertHotspotReferences(hotspots, opi) {
     if (!topic.cardIds.every((id) => cards.has(id))) throw new Error('hotspot_card_missing');
   }
 }
+
+/** Publish a subset without advancing unrelated bank versions or uploading their media. */
+export function selectNativeContentBanks(release, bankIds) {
+  if (!bankIds.length || new Set(bankIds).size !== bankIds.length || bankIds.some((id) => !banksAllowed.has(id))) throw new Error('invalid_selected_banks');
+  const banks = release.banks.filter((bank) => bankIds.includes(bank.id));
+  if (banks.length !== bankIds.length) throw new Error('selected_bank_missing');
+  const references = new Set();
+  function visit(value) {
+    if (typeof value === 'string' && value.startsWith('/question-bank-assets/')) references.add(value);
+    else if (Array.isArray(value)) value.forEach(visit);
+    else if (value && typeof value === 'object') Object.values(value).forEach(visit);
+  }
+  banks.forEach((bank) => visit(bank.payload));
+  const files = release.files.filter((file) => references.has(file.publicPath));
+  if (files.length !== references.size) throw new Error('selected_resource_missing');
+  return { ...release, banks, files };
+}
