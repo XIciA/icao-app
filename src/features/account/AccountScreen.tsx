@@ -8,7 +8,6 @@ import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AuthField, CodeField, PasswordField } from '@/components/auth/auth-ui';
 import { AppText, BottomSheet, Button, Card, Screen, TextField } from '@/components/ui';
-import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { useAuth, type AccountDeletionAuthentication } from '@/features/auth/AuthProvider';
 import { isValidPhonePassword, PHONE_PASSWORD_MIN_LENGTH, PHONE_PASSWORD_MAX_LENGTH, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
@@ -21,7 +20,6 @@ import { AccountProfilePage } from './AccountProfilePage.native';
 import { LoginMethodSheet } from './LoginMethodSheet.native';
 import { WECHAT_LOGIN_ENABLED } from '@/features/auth/wechat-release-capability';
 import { phoneOtpChallenge, phoneOtpServerNow, type PersistedPhoneOtpChallenge } from '@/features/auth/phone-otp-challenge-store';
-import { APP_FILING_NUMBER, APP_FILING_QUERY_URL } from '@/config/native-compliance';
 import { clearLearningData, deleteAllAiResults } from './privacy-self-service.native';
 
 type AccountSlug = 'profile' | 'edit-profile' | 'membership' | 'settings' | 'privacy' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
@@ -116,15 +114,12 @@ function SettingsPage() {
         <Section title="AI">
           <Row first hint="切换后从下一次转写开始生效" icon={Cloud} label="腾讯 ASR 模型" onPress={() => setAsrPickerVisible(true)} value={asrModel} />
         </Section>
-        <Section title="帮助">
+        <Section title="其他">
           <Row first icon={Info} label="帮助中心" onPress={() => router.push('/info/help')} />
+          <Row icon={Info} label="关于听你五个" onPress={() => router.push('/info/about')} />
         </Section>
         {signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}
         <Button disabled={!auth.session || signingOut} loading={signingOut} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => void prepareLogout()} variant="outline">退出登录</Button>
-        <AppText style={styles.center} variant="micro">听你五个 · {APP_DISPLAY_VERSION}</AppText>
-        <Pressable accessibilityRole="link" accessibilityLabel="查询 App 备案信息" onPress={() => { void Linking.openURL(APP_FILING_QUERY_URL).catch(() => setSignOutError('暂时无法打开备案查询。')); }}>
-          <AppText style={styles.center} variant="micro">{APP_FILING_NUMBER}</AppText>
-        </Pressable>
       </View>
       <AsrModelSheet current={asrModel} onClose={() => setAsrPickerVisible(false)} onSelect={(model) => { void selectAsrModel(model); }} visible={asrPickerVisible} />
       <BottomSheet onClose={() => { if (!signingOut) setConfirm(false); }} visible={confirm}>

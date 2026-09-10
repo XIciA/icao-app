@@ -61,41 +61,47 @@ beforeEach(() => {
   mockTranscribe.mockResolvedValue({ transcript: 'Standalone transcript.' });
   mockReview.mockResolvedValue(review);
 });
-async function chooseCombination(screen: Awaited<ReturnType<typeof render>>) {
+async function transcribe(screen: Awaited<ReturnType<typeof render>>) {
   await act(() => fireEvent.press(screen.getByLabelText('转写')));
-  await act(() => fireEvent.press(screen.getByText('转写并分析')));
 }
-it('only sends the selected atomic action and saves both outputs under the original question without unit labels', async () => {
+async function transcribeThenAnalyze(screen: Awaited<ReturnType<typeof render>>) {
+  await transcribe(screen);
+  await waitFor(() => expect(screen.getByLabelText('分析表达').props.accessibilityState.disabled).toBe(false));
+  await act(() => fireEvent.press(screen.getByLabelText('分析表达')));
+}
+it('transcribes directly and only analyzes the current edited text on a separate action', async () => {
   const screen = await render(<Harness />);
-  await waitFor(() => expect(mockHasConsent).toHaveBeenCalled());
+  await transcribe(screen);
+  await waitFor(() => expect(mockAnswer).toHaveBeenCalledWith('Standalone transcript.'));
+  expect(mockCombined).not.toHaveBeenCalled(); expect(mockReview).not.toHaveBeenCalled();
+  expect(screen.queryByText('处理当前录音')).toBeNull();
+  await act(() => fireEvent.press(screen.getByLabelText('编辑我的回答')));
+  await act(() => fireEvent.changeText(screen.getByLabelText('我的回答'), 'My edited answer.'));
+  await act(() => fireEvent(screen.getByLabelText('我的回答'), 'blur'));
+  await act(() => fireEvent.press(screen.getByLabelText('分析表达')));
+  await waitFor(() => expect(mockReview).toHaveBeenCalledWith(expect.objectContaining({ transcript: 'My edited answer.' }), expect.any(AbortSignal), expect.any(String)));
+  expect(mockTranscribe).toHaveBeenCalledTimes(1);
   expect(mockCombined).not.toHaveBeenCalled();
-  await chooseCombination(screen);
-  await waitFor(() => expect(screen.getByTestId('study-workbench-review-result')).toBeTruthy());
-  expect(mockTranscribe).not.toHaveBeenCalled(); expect(mockReview).not.toHaveBeenCalled();
-  expect(mockCombined).toHaveBeenCalledWith('file:///one.m4a', { mode: 'opi', module: 'opi', questionId: 'original-q' }, expect.any(AbortSignal), expect.any(String));
-  expect(mockAnswer).toHaveBeenCalledWith('We are ready.');
-  expect(screen.queryByText(/本次已扣|剩余.*点|转写.*点|分析表达.*点/)).toBeNull();
   await waitFor(() => expect(mockSave).toHaveBeenCalledWith(expect.objectContaining({ cardId: 'original-q', schemaVersion: 5,
-    aiResult: expect.objectContaining({ transcript: 'We are ready.', analyzedTranscript: 'We are ready.', polishedText: review.polishedText }) }), expect.objectContaining({ accountId: 'account-a' })));
+    aiResult: expect.objectContaining({ transcript: 'My edited answer.', analyzedTranscript: 'My edited answer.', polishedText: review.polishedText }) }), expect.objectContaining({ accountId: 'account-a' })));
 });
 it('keeps the original answer on uncertain failure and reuses the task id for retry', async () => {
-  mockCombined.mockRejectedValueOnce(new ApiClientError('ai_timeout', 408));
-  const screen = await render(<Harness />); await chooseCombination(screen);
+  mockTranscribe.mockRejectedValueOnce(new ApiClientError('ai_timeout', 408));
+  const screen = await render(<Harness />); await transcribe(screen);
   await waitFor(() => expect(screen.getByTestId('study-workbench-ai-retry')).toBeTruthy());
   expect(mockAnswer).not.toHaveBeenCalled(); expect(screen.getByText('My previous answer.')).toBeTruthy();
   await act(() => fireEvent.press(screen.getByTestId('study-workbench-ai-retry')));
-  await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(2));
-  expect(mockCombined.mock.calls[0][3]).toBe(mockCombined.mock.calls[1][3]);
-  await chooseCombination(screen);
-  await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(3));
-  expect(mockCombined.mock.calls[2][3]).toBe(mockCombined.mock.calls[1][3]);
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(2));
+  expect(mockTranscribe.mock.calls[0][2]).toBe(mockTranscribe.mock.calls[1][2]);
+  await transcribe(screen);
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(3));
+  expect(mockTranscribe.mock.calls[2][2]).toBe(mockTranscribe.mock.calls[1][2]);
 });
 it('offers standalone transcription without analysis, and preserves 900 local exact-match behavior', async () => {
   const screen = await render(<Harness />);
   await act(() => fireEvent.press(screen.getByLabelText('转写')));
-  await act(() => fireEvent.press(screen.getByText('仅转写')));
   await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
-  expect(mockCombined).not.toHaveBeenCalled(); await screen.unmount();
+  expect(mockCombined).not.toHaveBeenCalled(); expect(mockReview).not.toHaveBeenCalled(); await screen.unmount();
   const exact = await render(<Harness kind="exact-match" />);
   await act(() => fireEvent.press(exact.getByLabelText('转写')));
   await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(2));
@@ -104,51 +110,51 @@ it('offers standalone transcription without analysis, and preserves 900 local ex
   await waitFor(() => expect(exact.getByTestId('study-workbench-ai-explanation')).toBeTruthy());
   expect(mockReview).not.toHaveBeenCalled();
 });
-it('shows both processing destinations before combined upload and honours cancellation', async () => {
+it('shows audio processing consent before upload and honours cancellation', async () => {
   mockHasConsent.mockResolvedValue(false); const screen = await render(<Harness />);
-  await chooseCombination(screen);
-  await waitFor(() => expect(screen.getByText(/转写后的文本会发送至/)).toBeTruthy());
-  expect(mockCombined).not.toHaveBeenCalled();
+  await transcribe(screen);
+  await waitFor(() => expect(screen.getByText(/用于语音转写/)).toBeTruthy());
+  expect(mockTranscribe).not.toHaveBeenCalled();
   await act(() => fireEvent.press(screen.getByText('暂不使用')));
-  expect(mockAcceptConsent).not.toHaveBeenCalled(); expect(mockCombined).not.toHaveBeenCalled();
-  await chooseCombination(screen);
+  expect(mockAcceptConsent).not.toHaveBeenCalled(); expect(mockTranscribe).not.toHaveBeenCalled();
+  await transcribe(screen);
   await waitFor(() => expect(screen.getByText('同意并继续')).toBeTruthy());
   await act(() => fireEvent.press(screen.getByText('同意并继续')));
-  await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
   expect(mockAcceptConsent).toHaveBeenCalledTimes(1);
 });
 it('quota failure has an accurate local explanation without redundant retry or diagnostic buttons', async () => {
-  mockCombined.mockRejectedValueOnce(new AiOperationFailure('polish', 'authorization', 'insufficient_ai_points', 'D-1', false, 'none', '本周期 AI 额度不足，将于9月15日恢复。', 402));
-  const screen = await render(<Harness />); await chooseCombination(screen);
+  mockTranscribe.mockRejectedValueOnce(new AiOperationFailure('polish', 'authorization', 'insufficient_ai_points', 'D-1', false, 'none', '本周期 AI 额度不足，将于9月15日恢复。', 402));
+  const screen = await render(<Harness />); await transcribe(screen);
   await waitFor(() => expect(screen.getByText('本周期 AI 额度不足，将于9月15日恢复。')).toBeTruthy());
   expect(screen.queryByTestId('study-workbench-ai-retry')).toBeNull();
   expect(screen.queryByLabelText('提交 AI 诊断')).toBeNull(); expect(mockAnswer).not.toHaveBeenCalled();
 });
 it('does not deliver a late result into another question and gives a new recording a new task id', async () => {
   let resolve!: (value: unknown) => void;
-  mockCombined.mockImplementationOnce(() => new Promise((done) => { resolve = done; }));
-  const screen = await render(<Harness />); await chooseCombination(screen);
-  await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(1));
+  mockTranscribe.mockImplementationOnce(() => new Promise((done) => { resolve = done; }));
+  const screen = await render(<Harness />); await transcribe(screen);
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
   await screen.rerender(<Harness card="q2" recording="file:///two.m4a" />);
   await act(() => resolve({ transcript: 'Old private response', review }));
   expect(mockAnswer).not.toHaveBeenCalled();
-  await chooseCombination(screen); await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(2));
-  expect(mockCombined.mock.calls[0][3]).not.toBe(mockCombined.mock.calls[1][3]);
+  await transcribe(screen); await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(2));
+  expect(mockTranscribe.mock.calls[0][2]).not.toBe(mockTranscribe.mock.calls[1][2]);
 });
 
 it('does not send or consume AI when the current learning checkpoint cannot be saved', async () => {
   mockCheckpoint.mockRejectedValueOnce(new Error('checkpoint_failed'));
-  const screen = await render(<Harness />); await chooseCombination(screen);
+  const screen = await render(<Harness />); await transcribe(screen);
   await waitFor(() => expect(screen.getByTestId('study-workbench-ai-retry')).toBeTruthy());
-  expect(mockCheckpoint).toHaveBeenCalledTimes(1); expect(mockCombined).not.toHaveBeenCalled(); expect(mockAnswer).not.toHaveBeenCalled();
+  expect(mockCheckpoint).toHaveBeenCalledTimes(1); expect(mockTranscribe).not.toHaveBeenCalled(); expect(mockAnswer).not.toHaveBeenCalled();
 });
 
 it('cancels a pending AI request without showing a false failure or replacing the answer', async () => {
-  mockCombined.mockImplementationOnce((_uri, _input, signal: AbortSignal) => new Promise((_resolve, reject) => {
+  mockTranscribe.mockImplementationOnce((_uri, signal: AbortSignal) => new Promise((_resolve, reject) => {
     signal.addEventListener('abort', () => reject(new Error('ai_cancelled')), { once: true });
   }));
-  const screen = await render(<Harness />); await chooseCombination(screen);
-  await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(1));
+  const screen = await render(<Harness />); await transcribe(screen);
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
   await act(() => fireEvent.press(screen.getByLabelText('取消当前 AI 操作')));
   await waitFor(() => expect(screen.queryByLabelText('取消当前 AI 操作')).toBeNull());
   expect(screen.queryByTestId('study-workbench-ai-retry')).toBeNull();
@@ -157,13 +163,13 @@ it('cancels a pending AI request without showing a false failure or replacing th
 it('does not start an old question request after its delayed checkpoint finishes on a new question', async () => {
   let resolve!: () => void;
   mockCheckpoint.mockImplementationOnce(() => new Promise<void>((done) => { resolve = done; }));
-  const screen = await render(<Harness />); await chooseCombination(screen);
+  const screen = await render(<Harness />); await transcribe(screen);
   await waitFor(() => expect(mockCheckpoint).toHaveBeenCalledTimes(1));
   await screen.rerender(<Harness card="q2" recording="file:///two.m4a" />);
   await act(() => resolve());
-  expect(mockCombined).not.toHaveBeenCalled();
-  await chooseCombination(screen); await waitFor(() => expect(mockCombined).toHaveBeenCalledTimes(1));
-  expect(mockCombined.mock.calls[0][0]).toBe('file:///two.m4a');
+  expect(mockTranscribe).not.toHaveBeenCalled();
+  await transcribe(screen); await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
+  expect(mockTranscribe.mock.calls[0][0]).toBe('file:///two.m4a');
 });
 
 const historicalFeedback: NonNullable<LearningRecord['aiResult']> = {
@@ -216,9 +222,9 @@ it('clears historical feedback on answer edits and does not rehydrate it when re
 it('keeps new feedback across card navigation, assigns it to the new session and isolates subsequent sessions', async () => {
   const workbenchRef = createRef<StudyWorkbenchHandle>();
   const screen = await render(<Harness initialFeedback={historicalFeedback} sessionId="history-restudy-1" workbenchRef={workbenchRef} />);
-  await chooseCombination(screen);
+  await transcribeThenAnalyze(screen);
   await waitFor(() => expect(screen.getByText(review.polishedText)).toBeTruthy());
-  expect(mockCheckpoint).toHaveBeenCalledTimes(1);
+  expect(mockCheckpoint).toHaveBeenCalledTimes(2);
   expect(mockPending).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'history-restudy-1', id: expect.stringContaining('ai-history-restudy-1-'), cardId: 'original-q' }), expect.any(String), expect.objectContaining({ accountId: 'account-a' }), undefined);
   expect(mockPending.mock.calls[0][0]).toEqual(expect.objectContaining({ feedbackCount: 0, aiResult: expect.objectContaining({ grammar: undefined, polishedText: undefined, rawTranscript: undefined, analyzedTranscript: undefined }) }));
   await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
@@ -258,7 +264,7 @@ it('retains edited and newly generated feedback through the real collapsed-card 
   await first.unmount();
   const reopened = await render(<Harness {...props} />);
   expect(reopened.queryByTestId('study-workbench-ai-region')).toBeNull();
-  await chooseCombination(reopened);
+  await transcribeThenAnalyze(reopened);
   await waitFor(() => expect(reopened.getByText(review.polishedText)).toBeTruthy());
   await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
   const savedCount = mockSave.mock.calls.length;
@@ -268,4 +274,23 @@ it('retains edited and newly generated feedback through the real collapsed-card 
   expect(final.queryByText('Earlier polished answer.')).toBeNull();
   await act(async () => { expect(await workbenchRef.current?.flushAutoSave()).toBe(true); });
   expect(mockSave).toHaveBeenCalledTimes(savedCount);
+});
+
+it('disables missing inputs and prevents duplicate direct transcription while pending', async () => {
+  const empty = await render(<Harness recording="" />);
+  expect(empty.getByLabelText('转写').props.accessibilityState.disabled).toBe(true);
+  await act(() => fireEvent.press(empty.getByLabelText('编辑我的回答')));
+  await act(() => fireEvent.changeText(empty.getByLabelText('我的回答'), ''));
+  await act(() => fireEvent(empty.getByLabelText('我的回答'), 'blur'));
+  expect(empty.getByLabelText('分析表达').props.accessibilityState.disabled).toBe(true);
+  await empty.unmount();
+  let resolve!: (result: { transcript: string }) => void;
+  mockTranscribe.mockImplementationOnce(() => new Promise((done) => { resolve = done; }));
+  const screen = await render(<Harness />);
+  await act(() => { fireEvent.press(screen.getByLabelText('转写')); fireEvent.press(screen.getByLabelText('转写')); });
+  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
+  expect(screen.getByLabelText('转写').props.accessibilityState.disabled).toBe(true);
+  expect(screen.getByLabelText('分析表达').props.accessibilityState.disabled).toBe(true);
+  await act(() => resolve({ transcript: 'Done.' }));
+  expect(mockReview).not.toHaveBeenCalled(); expect(mockCombined).not.toHaveBeenCalled();
 });

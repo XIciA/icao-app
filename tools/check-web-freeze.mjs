@@ -48,6 +48,13 @@ const reviewedStudyNativeHash = '85f3981bf8bc8d310ef7e34baae2558f619978528eaaaf8
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
+// Reviewed Native-only installed-version dependency: exact before/after pairs.
+// Existing dependency versions and the Web resolver graph remain unchanged.
+const reviewedAppIdentityDependencyHashes = new Map([
+  ['package.json', ['cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e', 'fb69d0a671771c7e250bc995b42e2b653730db64c147356fab5b89cb3e1b29eb']],
+  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '03cb3f2997aeb9233e1db3520706b612dc7635f1e737a6dd78b132453b4dec28']],
+]);
+
 const exactProtectedPaths = [
   '.vercelignore',
   'app.config.js',
@@ -383,6 +390,12 @@ function fingerprintDifferences(expected, current) {
 
 export function assertReviewedNativeStudyRouteDelta(expected, current) {
   const differences = fingerprintDifferences(expected, current);
+  const expectedHashes = new Map(expected.map((file) => [file.path, file.sha256]));
+  const currentHashes = new Map(current.map((file) => [file.path, file.sha256]));
+  differences.contentChanged = differences.contentChanged.filter((file) => {
+    const pair = reviewedAppIdentityDependencyHashes.get(file);
+    return !pair || expectedHashes.get(file) !== pair[0] || currentHashes.get(file) !== pair[1];
+  });
   if (differences.selectionAdded.length || differences.selectionRemoved.length || differences.ownershipChanged.length
     || !differences.contentChanged.includes(reviewedStudyNativePath)
     || differences.contentChanged.some((file) => file !== reviewedStudyNativePath && file !== 'app.json')) {

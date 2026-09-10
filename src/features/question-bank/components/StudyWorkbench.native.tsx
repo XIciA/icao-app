@@ -1,7 +1,6 @@
 import {
   AI_GENERATED_CONTENT_LABEL,
   DEEPSEEK_MODEL_FILING_DISCLOSURE,
-  type AiReviewResult,
 } from '@icao/contracts';
 import { randomUUID } from 'expo-crypto';
 import { usePathname, useRouter } from 'expo-router';
@@ -20,8 +19,8 @@ import { Keyboard, Platform, Pressable, StyleSheet, TextInput, View } from 'reac
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppModal } from '@/components/platform/AppModal';
-import { AppText, BottomSheet, Button } from '@/components/ui';
-import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeAndReviewRecording, transcribeRecording } from '@/features/ai/ai-client.native';
+import { AppText, Button } from '@/components/ui';
+import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording } from '@/features/ai/ai-client.native';
 import { aiFailureDisplayMessage, toAiOperationFailure, type AiCapability } from '@/features/ai/ai-operation-failure.native';
 import { savePendingAiOperation, completePendingAiOperation, abandonPendingAiOperation } from '@/features/ai/ai-operation-recovery.native';
 import { exactMatch } from '@/features/ai/exact-match';
@@ -52,8 +51,8 @@ type AutoSaveSnapshot = {
   record: Omit<LearningRecord, 'updatedAt'>;
 };
 
-type AiConsentKind = 'audio' | 'text' | 'combined';
-type AiAction = 'transcribe' | 'review' | 'combined';
+type AiConsentKind = 'audio' | 'text';
+type AiAction = 'transcribe' | 'review';
 type FeedbackReview = Pick<NonNullable<LearningRecord['aiResult']>, 'grammar' | 'polishedText'>;
 type CardFeedback = {
   inherited?: boolean;
@@ -186,7 +185,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     if (feedbackCacheRef) feedbackCacheRef.current = next;
     setFeedbackCache(next);
   }, [cardKey, feedbackCacheRef, initialFeedback, sessionId]);
-  const [transcribeChoices, setTranscribeChoices] = useState(false);
   const [failureRetryable, setFailureRetryable] = useState(false);
   const [failureNeedsDiagnostic, setFailureNeedsDiagnostic] = useState(false);
   const [busy, setBusy] = useState<AiAction>();
@@ -202,7 +200,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const activeRequest = useRef<AbortController | undefined>(undefined);
   const transcribeOperationId = useRef<string | undefined>(undefined);
   const reviewOperationId = useRef<string | undefined>(undefined);
-  const combinedOperationId = useRef<string | undefined>(undefined);
   const answerInputRef = useRef<TextInput>(null);
   const noteInputRef = useRef<TextInput>(null);
   const currentCardKey = useRef(cardKey);
@@ -320,8 +317,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setBusy(undefined);
     transcribeOperationId.current = undefined;
     reviewOperationId.current = undefined;
-    combinedOperationId.current = undefined;
-    setTranscribeChoices(false);
     completePendingConsent();
     setAnswerInputHeight(92);
     setNoteInputHeight(92);
@@ -337,7 +332,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   useEffect(() => {
     activeRequest.current?.abort();
     transcribeOperationId.current = undefined;
-    combinedOperationId.current = undefined;
   }, [recordingUri]);
 
   useEffect(() => () => {
@@ -399,7 +393,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setFailureDiagnosticId(undefined);
     reviewOperationId.current = undefined;
     transcribeOperationId.current = undefined;
-    combinedOperationId.current = undefined;
     onAnswerChange(text);
     markDirty();
   }, [answerText, markDirty, onAnswerChange, updateFeedback]);
@@ -416,48 +409,38 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     updateFeedback({ aiOperation: operation });
   }, [cardKey, onBeforeAiOperation, persistCurrent, updateFeedback, writeContext]);
 
-  const transcribe = useCallback(async (combined = false) => {
-    if (!recordingUri) return;
+  const transcribe = useCallback(async () => {
+    if (!recordingUri || activeRequest.current) return;
     const requestCardKey = cardKey;
-    activeRequest.current?.abort();
-    setBusy(combined ? 'combined' : 'transcribe');
+    setBusy('transcribe');
     setError(undefined);
     setFailedAction(undefined);
     setFailureDiagnosticId(undefined);
     const controller = new AbortController();
     activeRequest.current = controller;
     try {
-      if (!await ensureConsent(combined ? 'combined' : 'audio')) return;
+      if (!await ensureConsent('audio')) return;
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      const operation = combined ? combinedOperationId : transcribeOperationId;
+      const operation = transcribeOperationId;
       const stableOperationId = operation.current ?? randomUUID();
       operation.current = stableOperationId;
       await beginOperation(stableOperationId);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      const result: { transcript: string; review?: AiReviewResult } = combined
-        ? await transcribeAndReviewRecording(recordingUri, {
-          mode: reviewKind === 'opi-analysis' ? 'opi' : 'grammar',
-          module: bankId === 'radiotelephony' ? 'atc' : bankId === 'storytelling' ? 'story' : 'opi',
-          questionId: sourceCardId,
-        }, controller.signal, stableOperationId)
-        : await transcribeRecording(recordingUri, controller.signal, stableOperationId);
+      const result = await transcribeRecording(recordingUri, controller.signal, stableOperationId);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       const saved = await completePendingAiOperation(resultId, stableOperationId, result, writeContext);
       if (!saved || controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      updateFeedback({ inherited: false, aiOperation: saved.aiOperation, rawTranscript: result.transcript, aiReview: result.review, analyzedTranscript: result.review ? result.transcript : undefined, matchMessage: undefined });
+      updateFeedback({ inherited: false, aiOperation: saved.aiOperation, rawTranscript: result.transcript, aiReview: undefined, analyzedTranscript: undefined, matchMessage: undefined });
       reviewOperationId.current = undefined;
       onAnswerChange(result.transcript);
       markDirty();
-      if (result.review) {
-        onFeedback();
-      }
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
     } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
-        const failure = toAiOperationFailure(error, combined ? reviewKind === 'opi-analysis' ? 'polish' : 'grammar' : 'transcribe');
+        const failure = toAiOperationFailure(error, 'transcribe');
         if (controller.signal.aborted || failure.cancelled) return;
         if (resetFailedOperation(failure)) {
-          const operation = combined ? combinedOperationId : transcribeOperationId;
+          const operation = transcribeOperationId;
           if (operation.current) await abandonPendingAiOperation(resultId, operation.current, writeContext).catch(() => undefined);
           if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
           operation.current = undefined;
@@ -475,7 +458,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
           requestId: failure.requestId,
           retryable: failure.retryable,
         });
-        setFailedAction(combined ? 'combined' : 'transcribe');
+        setFailedAction('transcribe');
         setFailureDiagnosticId(failure.diagnosticId);
         setFailureRetryable(failure.retryable);
         setFailureNeedsDiagnostic(failure.code !== 'insufficient_ai_points');
@@ -493,12 +476,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         if (currentCardKey.current === requestCardKey) setBusy(undefined);
       }
     }
-  }, [bankId, beginOperation, cardKey, ensureConsent, markDirty, onAnswerChange, onFeedback, recordingUri, resultId, reviewKind, sourceCardId, updateFeedback, writeContext]);
+  }, [beginOperation, cardKey, ensureConsent, markDirty, onAnswerChange, recordingUri, resultId, updateFeedback, writeContext]);
 
   async function reviewAnswer() {
-    if (!answerText.trim()) return;
+    if (!answerText.trim() || activeRequest.current) return;
     const requestCardKey = cardKey;
-    activeRequest.current?.abort();
     setBusy('review');
     setError(undefined);
     setFailedAction(undefined);
@@ -608,16 +590,16 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const aiBusy = Boolean(busy);
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
-  const showTranscribeAction = TRANSCRIPTION_ACTION_ENABLED && activeTab === 'mine' && Boolean(recordingUri);
+  const showTranscribeAction = TRANSCRIPTION_ACTION_ENABLED && activeTab === 'mine';
   const transcribeDisabled = !recordingUri || editing || aiBusy;
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
-  const reviewError = failedAction === 'review' || failedAction === 'combined' ? error : undefined;
+  const reviewError = failedAction === 'review' ? error : undefined;
   const transcriptionError = failedAction === 'transcribe' ? error : undefined;
   const aiPrimaryText = matchMessage ? questionText : undefined;
   const aiExplanation = matchMessage;
   const visibleRawTranscript = rawTranscript && rawTranscript !== answerText ? rawTranscript : undefined;
   const visibleAnalyzedTranscript = aiReview && analyzedTranscript && analyzedTranscript !== answerText && analyzedTranscript !== visibleRawTranscript ? analyzedTranscript : undefined;
-  const showAiRegion = busy === 'review' || busy === 'combined' || Boolean(reviewError || aiReview || aiPrimaryText || aiExplanation || visibleRawTranscript);
+  const showAiRegion = busy === 'review' || Boolean(reviewError || aiReview || aiPrimaryText || aiExplanation || visibleRawTranscript);
 
   return (
     <Fragment>
@@ -635,7 +617,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               accessibilityState={{ disabled: transcribeDisabled }}
               disabled={transcribeDisabled}
               hitSlop={4}
-              onPress={() => reviewKind === 'grammar' || reviewKind === 'opi-analysis' ? setTranscribeChoices(true) : void transcribe()}
+              onPress={() => void transcribe()}
               style={({ pressed }) => [styles.transcribeAction, pressed && !transcribeDisabled ? styles.pressed : null, transcribeDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-transcribe-action"
             >
@@ -675,6 +657,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : Platform.OS === 'web' ? '回答会显示在这里' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
               {transcriptionError ? <View style={styles.aiErrorActions}>
                 <AppText color={colors.destructive} style={styles.aiErrorCopy} variant="caption">{transcriptionError}</AppText>
+                {failureRetryable ? <Pressable accessibilityLabel="重试转写" accessibilityRole="button" onPress={() => void transcribe()} testID="study-workbench-ai-retry" style={styles.aiRetry}><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
                 {failureNeedsDiagnostic ? <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable> : null}
               </View> : null}
               {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
@@ -682,10 +665,10 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
               {visibleRawTranscript ? <View><AppText variant="button">本次转写</AppText><AppText testID="study-workbench-raw-transcript">{visibleRawTranscript}</AppText></View> : null}
               {visibleAnalyzedTranscript ? <View><AppText variant="button">分析时的回答</AppText><AppText testID="study-workbench-analyzed-transcript">{visibleAnalyzedTranscript}</AppText></View> : null}
-              {busy === 'review' || busy === 'combined' ? <AppText color={colors.mutedForeground}>{busy === 'combined' ? '正在转写并分析…' : '正在分析表达…'}</AppText> : reviewError ? <>
+              {busy === 'review' ? <AppText color={colors.mutedForeground}>正在分析表达…</AppText> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
                 <View style={styles.aiErrorButtons}>
-                  {failureRetryable ? <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => failedAction === 'combined' ? void transcribe(true) : void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
+                  {failureRetryable ? <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
                   {failureNeedsDiagnostic ? <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable> : null}
                 </View>
                 {aiReview ? <FeedbackReviewContent result={aiReview} /> : null}
@@ -713,22 +696,12 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         </View>
       </View>
       </GestureDetector>
-      <BottomSheet visible={transcribeChoices} onClose={() => setTranscribeChoices(false)} accessibilityLabel="处理当前录音">
-        <View style={styles.transcribeChoices}>
-          <AppText variant="sectionTitle">处理当前录音</AppText>
-          <Button onPress={() => { setTranscribeChoices(false); void transcribe(true); }}>转写并分析</Button>
-          <Button onPress={() => { setTranscribeChoices(false); void transcribe(); }} variant="outline">仅转写</Button>
-          <Button onPress={() => setTranscribeChoices(false)} variant="outline">取消</Button>
-        </View>
-      </BottomSheet>
       <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
         <View style={styles.consentOverlay}>
           <View accessibilityLabel="AI 数据处理提示" style={styles.consentDialog}>
             <AppText variant="sectionTitle">AI 数据处理提示</AppText>
             <AppText>
-              {consentKind === 'combined'
-                ? `继续后，本次录音会经听你五个服务器发送至腾讯云语音识别；转写后的文本会发送至 ${DEEPSEEK_MODEL_FILING_DISCLOSURE}，用于语法纠错和表达润色。暂存录音在处理完成后删除，异常残留最长保留 24 小时。结果标注“${AI_GENERATED_CONTENT_LABEL}”。`
-                : consentKind === 'audio'
+              {consentKind === 'audio'
                 ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
                 : Platform.OS === 'web'
                   ? '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'
@@ -772,7 +745,6 @@ const styles = StyleSheet.create({
   dotActive: { backgroundColor: colors.primary, height: 4, opacity: 1, width: 10 },
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
   action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
-  transcribeChoices: { gap: spacing[3] },
   consentOverlay: { alignItems: 'center', backgroundColor: colors.overlay, flex: 1, justifyContent: 'center', padding: spacing[5] },
   consentDialog: { backgroundColor: colors.card, borderRadius: radii.xl, gap: spacing[4], maxWidth: 420, padding: spacing[5], width: '100%' },
   pressed: { opacity: 0.72 },
