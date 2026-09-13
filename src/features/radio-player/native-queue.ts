@@ -1,6 +1,8 @@
 import { Asset } from 'expo-asset';
 import { Directory, File, Paths } from 'expo-file-system';
 
+import { APP_BRAND_LOGO_SOURCE } from '@/components/brand/AppBrandLogo.native';
+
 import { clampRadioInterval } from './radio-interval';
 import { selectShuffleTrack, type ShuffleState } from './queue';
 import type { RadioBankId, RadioPlaybackMode } from './types';
@@ -10,6 +12,18 @@ export const RADIO_INTERVAL_SILENCE_DURATION_SECONDS = 30;
 const radioIntervalSilenceAsset = Asset.fromModule(require('../../../assets/audio/radio-interval-silence-30s.wav'));
 
 const intervalUris = new Map<number, string>();
+
+/** Keep the full square source in Metro's bundle; the system owns artwork clipping. */
+export function getRadioArtwork(): string | undefined {
+  try {
+    const asset = Asset.fromModule(APP_BRAND_LOGO_SOURCE);
+    return asset.localUri ?? asset.uri;
+  } catch {
+    // Optional metadata must never prevent an otherwise playable track from loading.
+    if (__DEV__) console.warn('[radio] Bundled artwork could not be resolved');
+    return undefined;
+  }
+}
 
 /** Exact finite media duration avoids a background JS seek being required to shorten a 30s file. */
 export async function ensureRadioIntervalSilenceAsset(seconds = RADIO_INTERVAL_SILENCE_DURATION_SECONDS) {
@@ -35,6 +49,7 @@ export async function ensureRadioIntervalSilenceAsset(seconds = RADIO_INTERVAL_S
 export type NativeRadioContentTrack = {
   album: string;
   artist: string;
+  artwork?: string;
   duration: number;
   id: string;
   radioBankId: RadioBankId;
@@ -48,6 +63,7 @@ export type NativeRadioContentTrack = {
 export type NativeRadioIntervalTrack = {
   album: string;
   artist: string;
+  artwork?: string;
   duration: number;
   id: string;
   radioBankId: RadioBankId;
@@ -83,6 +99,7 @@ export function createNativeRadioIntervalTrack(
   return {
     album: source.album,
     artist: source.artist,
+    artwork: source.artwork,
     duration: intervalSeconds,
     id: `radio-interval:${source.radioBankId}:${source.radioTrackId}:${instanceId}`,
     radioBankId: source.radioBankId,

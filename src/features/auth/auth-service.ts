@@ -5,6 +5,7 @@ import type { LoginMethodActionPurpose, LoginMethodChangeResponse, CompleteWecha
 import { isValidPhonePassword } from '@icao/contracts/native-auth';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
+import { Platform } from 'react-native';
 
 import { apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import { secureSessionStorage } from './secure-session-storage';
@@ -273,7 +274,7 @@ export class SupabasePhoneAuthService implements AuthService {
 
   async isWechatSignInAvailable() {
     const status = getWechatNativeStatus();
-    return status.supported && status.configured;
+    return Platform.OS === 'ios' ? status.installed : status.supported && status.configured;
   }
 
   async signInWithApple() {

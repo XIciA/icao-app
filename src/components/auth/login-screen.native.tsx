@@ -1,8 +1,8 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
-import { Alert, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Alert, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, Screen, TextField } from '@/components/ui';
@@ -56,7 +56,10 @@ export function loginErrorMessage(code: string) {
     case 'apple_auth_unavailable': return '当前设备暂不支持 Apple 登录。';
     case 'apple_auth_failed':
     case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';
-    case 'wechat_not_installed': return '当前设备未安装微信，请改用其他方式登录。';
+    case 'wechat_not_installed': return Platform.OS === 'ios' ? '微信未安装，请使用其他方式登录' : '当前设备未安装微信，请改用其他方式登录。';
+    case 'wechat_status_unavailable': return '暂时无法检查微信状态，请重试或使用其他方式登录。';
+    case 'wechat_auth_unavailable': return Platform.OS === 'ios' ? '当前微信暂不支持授权，请使用其他方式登录。' : '登录失败，请稍后重试。';
+    case 'wechat_auth_configuration_mismatch': return Platform.OS === 'ios' ? '微信登录正在配置，请改用手机号或 Apple 登录。' : '登录失败，请稍后重试。';
     case 'wechat_auth_configuration_pending': return '微信登录正在配置，请改用手机号或 Apple 登录。';
     case 'wechat_auth_timeout': return '微信授权已超时，请重新登录。';
     case 'wechat_auth_failed':
@@ -80,7 +83,9 @@ function LoginContent() {
   const { mode } = useLocalSearchParams<{ mode?: string }>();
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
-  const thirdPartyLoginAvailable = Platform.OS === 'ios' || WECHAT_LOGIN_ENABLED;
+  const [wechatInstalled, setWechatInstalled] = useState(false);
+  const wechatLoginVisible = WECHAT_LOGIN_ENABLED && (Platform.OS !== 'ios' || wechatInstalled);
+  const thirdPartyLoginAvailable = Platform.OS === 'ios' || wechatLoginVisible;
   const [entryView, setEntryView] = useState<EntryView>(mode === 'recovery' ? 'recovery' : 'login');
   const [loginMethod, setLoginMethod] = useState<LoginMethod>('otp');
   const [challenge, setChallenge] = useState<PersistedPhoneOtpChallenge>();
@@ -94,6 +99,7 @@ function LoginContent() {
   const [clockNow, setClockNow] = useState(() => Date.now());
   const actionGateRef = useRef(createAuthActionGate());
   const challengeRequestRef = useRef(0);
+  const wechatStatusRequestRef = useRef(0);
   const mountedRef = useRef(true);
   const consentPromiseRef = useRef<Promise<boolean> | undefined>(undefined);
   const acceptedRef = useRef(false);
@@ -106,6 +112,33 @@ function LoginContent() {
     }).catch(() => undefined);
     return () => { active = false; };
   }, []);
+
+  const queryWechatAvailability = auth.isWechatSignInAvailable;
+  const refreshWechatAvailability = useCallback(async () => {
+    const generation = ++wechatStatusRequestRef.current;
+    try {
+      const installed = await queryWechatAvailability();
+      if (mountedRef.current && generation === wechatStatusRequestRef.current) setWechatInstalled(installed);
+      return installed;
+    } catch {
+      // Preserve a confirmed result on transient query failure. The click path
+      // reports the failure and never starts authorization without a fresh check.
+      throw new Error('wechat_status_unavailable');
+    }
+  }, [queryWechatAvailability]);
+
+  useEffect(() => {
+    if (Platform.OS !== 'ios' || !WECHAT_LOGIN_ENABLED || entryView !== 'login') return;
+    void refreshWechatAvailability().catch(() => undefined);
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void refreshWechatAvailability().catch(() => undefined);
+      else wechatStatusRequestRef.current += 1;
+    });
+    return () => {
+      wechatStatusRequestRef.current += 1;
+      subscription.remove();
+    };
+  }, [entryView, refreshWechatAvailability]);
 
   const codePurpose = challenge?.purpose;
   const resendDeadline = challenge?.resendAllowedAt ?? 0;
@@ -234,8 +267,15 @@ function LoginContent() {
     setError('');
     try {
       if (provider === 'apple') await auth.signInWithApple();
-      else await auth.signInWithWechat();
+      else {
+        if (Platform.OS === 'ios' && !await refreshWechatAvailability()) throw new Error('wechat_not_installed');
+        await auth.signInWithWechat();
+      }
     } catch (value) {
+      if (provider === 'wechat' && Platform.OS === 'ios' && value instanceof Error && value.message === 'wechat_not_installed') {
+        wechatStatusRequestRef.current += 1;
+        setWechatInstalled(false);
+      }
       showError(value);
     } finally {
       finishAction();
@@ -449,7 +489,7 @@ function LoginContent() {
             {Platform.OS === 'ios' ? (
               <SocialButton accessibilityLabel="通过 Apple 登录" kind="apple" onPress={() => void socialLogin('apple')} />
             ) : null}
-            {WECHAT_LOGIN_ENABLED ? (
+            {wechatLoginVisible ? (
               <SocialButton accessibilityLabel="通过微信登录" kind="wechat" onPress={() => void socialLogin('wechat')} />
             ) : null}
           </View>

@@ -1,4 +1,5 @@
 import { requireOptionalNativeModule } from 'expo-modules-core';
+import { Platform } from 'react-native';
 
 export type NativeWechatAuthResult = { code: string; state: string };
 export type NativeWechatAuthStatus = {
@@ -26,6 +27,14 @@ export function createWechatNativeAuthBoundary(
     },
     async authorize(state: string) {
       if (!nativeModule) throw new Error('wechat_auth_unavailable');
+      if (Platform.OS === 'ios') {
+        let status: NativeWechatAuthStatus;
+        try { status = nativeModule.getStatus(); }
+        catch { throw new Error('wechat_status_unavailable'); }
+        if (!status.installed) throw new Error('wechat_not_installed');
+        if (!status.configured) throw new Error('wechat_auth_configuration_pending');
+        if (!status.supported) throw new Error('wechat_auth_unavailable');
+      }
       let timeout: ReturnType<typeof setTimeout> | undefined;
       try {
         return await Promise.race([
@@ -43,6 +52,7 @@ export function createWechatNativeAuthBoundary(
         if (/not_installed/iu.test(code)) throw new Error('wechat_not_installed');
         if (/configuration/iu.test(code)) throw new Error('wechat_auth_configuration_pending');
         if (/timeout/iu.test(code)) throw new Error('wechat_auth_timeout');
+        if (Platform.OS === 'ios' && /unavailable/iu.test(code)) throw new Error('wechat_auth_unavailable');
         throw new Error('wechat_auth_failed');
       } finally {
         if (timeout) clearTimeout(timeout);

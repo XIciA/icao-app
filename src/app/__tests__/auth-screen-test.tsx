@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { Alert } from 'react-native';
+import { Alert, AppState, type AppStateStatus } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { createAuthActionGate, LoginScreen, loginErrorMessage } from '@/components/auth/login-screen.native';
@@ -10,6 +10,7 @@ const mockVerifyPhoneOtp = jest.fn();
 const mockSignInWithPhonePassword = jest.fn();
 const mockSignInWithApple = jest.fn();
 const mockSignInWithWechat = jest.fn();
+const mockIsWechatSignInAvailable = jest.fn();
 const mockRememberLoginConsent = jest.fn();
 jest.mock('@/features/app-content/repository.native', () => {
   const legal = require('../../../content/app-content/text.json').legal;
@@ -46,6 +47,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     signInWithPhonePassword: mockSignInWithPhonePassword,
     signInWithApple: mockSignInWithApple,
     signInWithWechat: mockSignInWithWechat,
+    isWechatSignInAvailable: mockIsWechatSignInAvailable,
     rememberLoginConsent: mockRememberLoginConsent,
     verifyPhoneOtp: mockVerifyPhoneOtp,
   }),
@@ -82,6 +84,7 @@ async function renderLoginScreen() {
 
 describe('<LoginScreen />', () => {
   beforeEach(() => {
+    jest.spyOn(AppState, 'addEventListener').mockReset().mockReturnValue({ remove: jest.fn() });
     jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
     jest.mocked(Alert.alert).mockClear();
     mockParams = { slug: 'login' };
@@ -102,6 +105,7 @@ describe('<LoginScreen />', () => {
     mockSignInWithPhonePassword.mockReset().mockResolvedValue(undefined);
     mockSignInWithApple.mockReset().mockResolvedValue(undefined);
     mockSignInWithWechat.mockReset().mockResolvedValue(undefined);
+    mockIsWechatSignInAvailable.mockReset().mockResolvedValue(true);
     mockConsumePendingPath.mockReset().mockReturnValue(undefined);
     mockReadPhoneOtpChallenge.mockReset().mockResolvedValue(undefined);
     mockWritePhoneOtpChallenge.mockReset().mockResolvedValue(true);
@@ -149,6 +153,101 @@ describe('<LoginScreen />', () => {
     expect(screen.getByText('忘记密码')).toBeTruthy();
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.queryByText(/邀请码/u)).toBeNull();
+  });
+
+  it('keeps WeChat hidden until the first installation result without blocking other login methods', async () => {
+    let finish!: (installed: boolean) => void;
+    mockIsWechatSignInAvailable.mockImplementationOnce(() => new Promise<boolean>((resolve) => { finish = resolve; }));
+    const screen = await renderLoginScreen();
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
+    expect(screen.getByRole('tab', { name: '密码登录' })).toBeTruthy();
+    await act(async () => finish(false));
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+  });
+
+  it('keeps an unknown initial installation state hidden when the native query fails', async () => {
+    mockIsWechatSignInAvailable.mockRejectedValueOnce(new Error('query failed'));
+    const screen = await renderLoginScreen();
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
+    expect(screen.getByRole('tab', { name: '密码登录' })).toBeTruthy();
+  });
+
+  it('refreshes on foreground, ignores older results, and removes its subscription', async () => {
+    let change!: (state: AppStateStatus) => void;
+    const remove = jest.fn();
+    const subscription = jest.spyOn(AppState, 'addEventListener').mockImplementation((_event, listener) => {
+      change = listener;
+      return { remove };
+    });
+    const screen = await renderLoginScreen();
+    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
+    let oldResult!: (installed: boolean) => void;
+    mockIsWechatSignInAvailable.mockImplementationOnce(() => new Promise<boolean>((resolve) => { oldResult = resolve; }));
+    await act(async () => { change('background'); change('active'); });
+    mockIsWechatSignInAvailable.mockResolvedValueOnce(false);
+    await act(async () => { change('background'); change('active'); });
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    await act(async () => oldResult(true));
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    mockIsWechatSignInAvailable.mockResolvedValueOnce(true);
+    await act(async () => { change('background'); change('active'); });
+    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
+    expect(subscription).toHaveBeenCalledTimes(1);
+    await screen.unmount();
+    expect(remove).toHaveBeenCalledTimes(1);
+    subscription.mockRestore();
+  });
+
+  it('hides an uninstalled client discovered at click time and keeps other login options available', async () => {
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByRole('checkbox'));
+    mockIsWechatSignInAvailable.mockResolvedValueOnce(false);
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    expect(mockSignInWithWechat).not.toHaveBeenCalled();
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    expect(screen.getByText('微信未安装，请使用其他方式登录')).toBeTruthy();
+    expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
+  });
+
+  it('also hides WeChat if it is uninstalled between the click check and native dispatch', async () => {
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByRole('checkbox'));
+    mockSignInWithWechat.mockRejectedValueOnce(new Error('wechat_not_installed'));
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
+    expect(screen.getByText('微信未安装，请使用其他方式登录')).toBeTruthy();
+  });
+
+  it('keeps a confirmed installed entry on query failure and reports a click failure without authorizing', async () => {
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByRole('checkbox'));
+    mockIsWechatSignInAvailable.mockRejectedValueOnce(new Error('query failed'));
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
+    expect(mockSignInWithWechat).not.toHaveBeenCalled();
+    expect(screen.getByText('暂时无法检查微信状态，请重试或使用其他方式登录。')).toBeTruthy();
+  });
+
+  it('does not interrupt an active authorization during foreground refresh or allow a second click', async () => {
+    let change!: (state: AppStateStatus) => void;
+    const subscription = jest.spyOn(AppState, 'addEventListener').mockImplementation((_event, listener) => {
+      change = listener;
+      return { remove: jest.fn() };
+    });
+    let finish!: () => void;
+    mockSignInWithWechat.mockImplementationOnce(() => new Promise<void>((resolve) => { finish = resolve; }));
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByRole('checkbox'));
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    await act(async () => { change('background'); change('active'); });
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    expect(mockSignInWithWechat).toHaveBeenCalledTimes(1);
+    await act(async () => finish());
+    await fireEvent.press(screen.getByTestId('wechat-sign-in'));
+    expect(mockSignInWithWechat).toHaveBeenCalledTimes(2);
+    subscription.mockRestore();
   });
 
   it('accepts a pasted +86 phone number before normalizing the field', async () => {

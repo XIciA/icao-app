@@ -732,7 +732,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     if (
       !pendingPurchase ||
       transaction.productId !== pendingPurchase.productId ||
-      transaction.appAccountToken !== pendingPurchase.applicationAccountToken ||
+      transaction.appAccountToken?.toLowerCase() !== pendingPurchase.applicationAccountToken.toLowerCase() ||
       !Number.isFinite(transaction.transactionDate) ||
       transaction.transactionDate < pendingPurchase.requestStartedAt
     ) {

@@ -16,7 +16,7 @@ import {
   useState,
 } from 'react';
 import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/icons';
-import { Keyboard, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppModal } from '@/components/platform/AppModal';
@@ -699,15 +699,23 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       </GestureDetector>
       <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
         <View style={styles.consentOverlay}>
-          <View accessibilityLabel="AI 数据处理提示" style={styles.consentDialog}>
+          <View accessibilityLabel="AI 数据处理提示" style={[styles.consentDialog, Platform.OS === 'ios' && styles.nativeConsentDialog]}>
             <AppText variant="sectionTitle">AI 数据处理提示</AppText>
-            <AppText>
-              {consentKind === 'audio'
-                ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
-                : Platform.OS === 'web'
-                  ? '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'
-                  : `继续后，本次回答文本会经听你五个服务器发送至 ${DEEPSEEK_MODEL_FILING_DISCLOSURE}，用于语法纠错和表达润色。结果会持续显示“${AI_GENERATED_CONTENT_LABEL}”标识。`}
-            </AppText>
+            {Platform.OS !== 'ios' ? (
+              <AppText>
+                {consentKind === 'audio'
+                  ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
+                  : Platform.OS === 'web'
+                    ? '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'
+                    : `继续后，本次回答文本会经听你五个服务器发送至 ${DEEPSEEK_MODEL_FILING_DISCLOSURE}，用于语法纠错和表达润色。结果会持续显示“${AI_GENERATED_CONTENT_LABEL}”标识。`}
+              </AppText>
+            ) : (
+              <ScrollView style={styles.nativeConsentBody} contentContainerStyle={styles.nativeConsentContent}>
+                <AppText>同意后，仅当你主动使用对应 AI 功能时，以下数据才会经听你五个服务器发送给相应服务商：</AppText>
+                <AppText>录音发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。</AppText>
+                <AppText>{`回答文本发送至 DeepSeek 开放平台，使用 ${DEEPSEEK_MODEL_FILING_DISCLOSURE} 进行语法纠错和表达润色。结果会持续显示“${AI_GENERATED_CONTENT_LABEL}”标识。`}</AppText>
+              </ScrollView>
+            )}
             <AppText color={colors.mutedForeground} variant="caption">AI 服务使用日志仅记录功能、状态、模型、耗时和用量；回答与分析结果仍可能作为学习记录同步到你的账号。你可在“设置—隐私与数据”撤回同意。</AppText>
             <Button onPress={() => completeAiConsent(true)}>同意并继续</Button>
             <Button onPress={() => completeAiConsent(false)} variant="outline">暂不使用</Button>
@@ -747,6 +755,9 @@ const styles = StyleSheet.create({
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
   action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
   consentOverlay: { alignItems: 'center', backgroundColor: colors.overlay, flex: 1, justifyContent: 'center', padding: spacing[5] },
+  nativeConsentDialog: { maxHeight: '90%' },
+  nativeConsentBody: { flexShrink: 1 },
+  nativeConsentContent: { gap: spacing[3] },
   consentDialog: { backgroundColor: colors.card, borderRadius: radii.xl, gap: spacing[4], maxWidth: 420, padding: spacing[5], width: '100%' },
   pressed: { opacity: 0.72 },
 });

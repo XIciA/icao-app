@@ -110,17 +110,23 @@ it('offers standalone transcription without analysis, and preserves 900 local ex
   await waitFor(() => expect(exact.getByTestId('study-workbench-ai-explanation')).toBeTruthy());
   expect(mockReview).not.toHaveBeenCalled();
 });
-it('shows audio processing consent before upload and honours cancellation', async () => {
-  mockHasConsent.mockResolvedValue(false); const screen = await render(<Harness />);
-  await transcribe(screen);
-  await waitFor(() => expect(screen.getByText(/用于语音转写/)).toBeTruthy());
-  expect(mockTranscribe).not.toHaveBeenCalled();
+it.each(['转写', '分析表达'])('discloses both AI recipients before first using %s and honours cancellation', async (action) => {
+  mockHasConsent.mockResolvedValue(false);
+  const screen = await render(<Harness />);
+  await act(() => fireEvent.press(screen.getByLabelText(action)));
+  await waitFor(() => expect(screen.getByText(/录音发送至腾讯云语音识别，用于语音转写/)).toBeTruthy());
+  expect(screen.getByText(/回答文本发送至 DeepSeek 开放平台/)).toBeTruthy();
+  expect(screen.getByText(/语法纠错和表达润色/)).toBeTruthy();
+  expect(screen.getByText(/仅当你主动使用对应 AI 功能时/)).toBeTruthy();
+  expect(mockTranscribe).not.toHaveBeenCalled(); expect(mockReview).not.toHaveBeenCalled();
   await act(() => fireEvent.press(screen.getByText('暂不使用')));
-  expect(mockAcceptConsent).not.toHaveBeenCalled(); expect(mockTranscribe).not.toHaveBeenCalled();
-  await transcribe(screen);
+  expect(mockAcceptConsent).not.toHaveBeenCalled();
+  expect(mockTranscribe).not.toHaveBeenCalled(); expect(mockReview).not.toHaveBeenCalled();
+  await act(() => fireEvent.press(screen.getByLabelText(action)));
   await waitFor(() => expect(screen.getByText('同意并继续')).toBeTruthy());
   await act(() => fireEvent.press(screen.getByText('同意并继续')));
-  await waitFor(() => expect(mockTranscribe).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(action === '转写' ? mockTranscribe : mockReview).toHaveBeenCalledTimes(1));
+  expect(action === '转写' ? mockReview : mockTranscribe).not.toHaveBeenCalled();
   expect(mockAcceptConsent).toHaveBeenCalledTimes(1);
 });
 it('quota failure has an accurate local explanation without redundant retry or diagnostic buttons', async () => {
