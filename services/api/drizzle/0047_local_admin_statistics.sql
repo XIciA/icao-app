@@ -14,3 +14,8 @@ CREATE INDEX "product_click_events_date" ON "product_click_events" USING btree (
 CREATE INDEX "product_click_events_account" ON "product_click_events" USING btree ("account_id");
 --> statement-breakpoint
 REVOKE ALL ON TABLE "product_click_events" FROM anon, authenticated;
+
+--> statement-breakpoint
+ALTER TABLE "ops_entitlement_adjustments" DROP CONSTRAINT "ops_entitlement_adjustments_values_check";
+--> statement-breakpoint
+ALTER TABLE "ops_entitlement_adjustments" ADD CONSTRAINT "ops_entitlement_adjustments_values_check" CHECK ("membership_days" BETWEEN 0 AND 366 AND "ai_points" BETWEEN 0 AND 1000000 AND ("membership_days" > 0 OR "ai_points" > 0));

@@ -6309,7 +6309,7 @@
         },
         "ops_entitlement_adjustments_values_check": {
           "name": "ops_entitlement_adjustments_values_check",
-          "value": "\"ops_entitlement_adjustments\".\"membership_days\" BETWEEN 0 AND 366 AND \"ops_entitlement_adjustments\".\"ai_points\" BETWEEN 0 AND 100000 AND (\"ops_entitlement_adjustments\".\"membership_days\" > 0 OR \"ops_entitlement_adjustments\".\"ai_points\" > 0)"
+          "value": "\"ops_entitlement_adjustments\".\"membership_days\" BETWEEN 0 AND 366 AND \"ops_entitlement_adjustments\".\"ai_points\" BETWEEN 0 AND 1000000 AND (\"ops_entitlement_adjustments\".\"membership_days\" > 0 OR \"ops_entitlement_adjustments\".\"ai_points\" > 0)"
         }
       },
       "isRLSEnabled": true

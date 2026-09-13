@@ -10,7 +10,7 @@ import * as schema from './schema';
 export const MINIMUM_DATABASE_SCHEMA_VERSION = 47;
 export const MINIMUM_DATABASE_MIGRATION = {
   createdAt: 1_789_275_866_220,
-  hash: '0cffcfaf6a3553e346ca95363d0ae286f5e8ec6cee37b5c6629764aa95d8fb4a',
+  hash: '7db2b90638ec94133d14b54d54220a764409d8b39a52774305625c66185fa60a',
 } as const;
 
 @Injectable()
