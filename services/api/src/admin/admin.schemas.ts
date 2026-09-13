@@ -23,9 +23,10 @@ export const opsGrantPreviewSchema = z.object({
   accountId: z.uuid(),
   environment: z.enum(['sandbox', 'production']),
   membershipDays: z.number().int().min(0).max(366),
-  aiPoints: z.number().int().min(0).max(100_000),
+  aiPoints: z.number().int().min(0).max(1_000_000),
   reason: opsReasonSchema,
-}).strict().refine((value) => value.membershipDays > 0 || value.aiPoints > 0 || value.aiMode === "refill");
+}).strict().refine((value) => value.membershipDays > 0 || value.aiPoints > 0 || value.aiMode === "refill")
+  .refine((value) => value.aiMode === "refill" || value.aiPoints <= 100_000);
 
 export const opsGrantExecuteSchema = z.object({
   confirmation: z.literal('确认发放'),

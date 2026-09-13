@@ -5067,12 +5067,14 @@ test('local admin gifts expire after 30 days, combine with period units, consume
   const gift = await serviceDatabase.transaction(tx=>benefits.grantCompensation(tx,{accountId,environment,adjustmentId:randomUUID(),grantedAt:now,points:2}));
   const [batch] = await serviceDatabase.select().from(databaseSchema.aiPointBatches).where(eq(databaseSchema.aiPointBatches.id,gift.batchId));
   assert.equal(batch.expiresAt.getTime()-now.getTime(),30*86400000);
+  const snapshot = await persistentCommerceService(new Map()).currentEntitlement(accountId);
+  assert.equal(snapshot.production.aiPoints.available,3);
   const input={accountId,environment,capability:'grammar_correction',operationId:randomUUID(),requestDigest:'fixture-digest',reservedAt:now};
   const reserved=await serviceDatabase.transaction(tx=>benefits.reserveAiPoints(tx,input));
   assert.equal(reserved.state,'execute'); assert.equal(reserved.points,3);
   const [giftReserved]=await serviceDatabase.select().from(databaseSchema.aiPointBatches).where(eq(databaseSchema.aiPointBatches.id,gift.batchId));
   assert.equal(giftReserved.reservedPoints,2);
-  await assert.rejects(serviceDatabase.transaction(tx=>benefits.refillAllowance(tx,[trial.id],now,randomUUID())),/allowance_request_in_progress/);
+  await assert.rejects(serviceDatabase.transaction(tx=>benefits.refillAllowance(tx,[trial.id],now,randomUUID())), error => error.getStatus() === 409 && error.message === 'allowance_request_in_progress');
   await serviceDatabase.transaction(tx=>benefits.settleAiPoints(tx,{accountId,environment,operationId:input.operationId,result:{text:'test'},settledAt:now}));
   await serviceDatabase.transaction(tx=>benefits.refillAllowance(tx,[trial.id],now,randomUUID()));
   const context=await serviceDatabase.transaction(tx=>allowance.summary(tx,accountId,environment,now));

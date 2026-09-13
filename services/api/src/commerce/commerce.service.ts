@@ -1360,7 +1360,7 @@ export class CommerceService {
         expiresAt: membershipExpiresAt,
       },
       aiPoints: {
-        available: context.available,
+        available: context.available + context.bonusAvailable,
         nextGrantAt: context.summary.resetAt,
       },
     };

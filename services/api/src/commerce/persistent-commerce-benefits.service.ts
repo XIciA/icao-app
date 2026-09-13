@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import type { AiUsageOperationSummary as AiPointOperationSummary } from '@icao/contracts/commerce-rules';
 import { and, asc, eq, inArray, lte, sql } from 'drizzle-orm';
 
@@ -458,14 +458,14 @@ export class PersistentCommerceBenefitsService {
   }
 
   async refillAllowance(transaction: CommerceTransaction, batchIds: string[], now: Date, adjustmentId: string) {
-    if (!batchIds.length) throw new Error('allowance_unavailable');
+    if (!batchIds.length) throw new ConflictException('allowance_unavailable');
     const batches = await transaction.select().from(aiPointBatches).where(inArray(aiPointBatches.id, batchIds));
-    if (batches.some(batch => batch.reservedPoints > 0)) throw new Error('allowance_request_in_progress');
+    if (batches.some(batch => batch.reservedPoints > 0)) throw new ConflictException('allowance_request_in_progress');
     const primary = batches.filter(batch => !batch.sourceReference.startsWith('ops-refill:'));
     const total = primary.reduce((sum,batch)=>sum+batch.grantedPoints,0);
     const available = batches.reduce((sum,batch)=>sum+batch.grantedPoints-batch.consumedPoints-batch.reservedPoints,0);
     const owner = primary[0];
-    if (!owner || total <= available) throw new Error('allowance_already_full');
+    if (!owner || total <= available) throw new ConflictException('allowance_already_full');
     const result = await this.grantCompensation(transaction, { accountId:owner.accountId, environment:owner.environment as CommerceEnvironment, adjustmentId, grantedAt:now, points:total-available });
     if (result.created) await transaction.update(aiPointBatches).set({sourceReference:`ops-refill:${owner.id}:${adjustmentId}`,expiresAt:owner.expiresAt}).where(eq(aiPointBatches.id,result.batchId));
   }
