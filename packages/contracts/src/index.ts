@@ -973,7 +973,6 @@ export type OpsPrivacyRequestQueueItem = {
 };
 
 export type OpsEntitlementGrantRequest = {
-  aiMode?: "gift" | "refill";
   accountId: string;
   environment: CommerceEnvironment;
   membershipDays: number;

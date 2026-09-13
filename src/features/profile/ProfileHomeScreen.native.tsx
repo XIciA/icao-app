@@ -1,4 +1,4 @@
-import { trackProductClick } from '@/platform/product-clicks';
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { OpsEntitlementGrantPreview } from '@icao/contracts';
+import type { LocalOpsGrantPreview as OpsEntitlementGrantPreview } from '@icao/contracts/commerce-rules';
 import { opsApi } from './api';
 type Account = { accountId:string;phone:string;status:string };
 type Balance = {total:number;available:number;allowance:{membershipExpiresAt:string|null;resetAt:string|null;bonus?:{available:number;expiresAt:string|null}};history:Array<{applied_at:string;membership_days:number;ai_points:number;reason:string}>};

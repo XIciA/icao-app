@@ -1,4 +1,4 @@
-import { setClickStudyContext } from '@/platform/product-clicks';
+import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
 import { type Href, useFocusEffect, useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from '@/components/ui/icons';
@@ -259,6 +259,7 @@ function StudyContent(props: Props) {
   }, []);
 
   const handleRecordingIntent = useCallback(() => {
+    trackProductClick('record');
     setQuestionAudioPauseRequest((request) => request + 1);
     setRecordingPreviewPauseRequest((request) => request + 1);
     setDismissMediaControlsRequest((request) => request + 1);
@@ -484,6 +485,7 @@ function StudyContent(props: Props) {
   const annotationPanelLeft = Math.max(spacing[5], (viewportWidth - annotationPanelWidth) / 2);
 
   function lookupWord(word: string) {
+    trackProductClick('dictionary');
     if (!lookupAllowed) return;
     const entry = findStaticWordLookup(word);
     if (entry) setLookup(entry);

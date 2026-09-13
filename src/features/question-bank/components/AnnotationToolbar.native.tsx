@@ -1,4 +1,4 @@
-import { trackProductClick } from '@/platform/product-clicks';
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { Check, Highlighter, Plus, Search, Tags, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { useState } from 'react';

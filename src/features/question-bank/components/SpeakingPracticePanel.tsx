@@ -1,4 +1,3 @@
-import { trackProductClick } from '@/platform/product-clicks';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from '@/components/ui/icons';
@@ -293,7 +292,6 @@ function SpeakingPracticePanelContent({
         void controller.primePermission();
       } : undefined}
       onPressIn={usePermissionPrimer ? undefined : () => {
-        trackProductClick('record');
         playback.pause();
         onRecordingIntent?.();
         onInteractionChange?.(true);

@@ -1,4 +1,4 @@
-import { trackProductClick } from '@/platform/product-clicks';
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useEffect, useRef, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';

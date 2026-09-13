@@ -91,3 +91,7 @@ export type AiOperationLookup =
   | { state: 'missing' | 'pending' | 'released' }
   | { state: 'completed'; capability: keyof AiRuleCosts;
       result: MeteredTranscribeResult | MeteredAiReviewResult | TranscribeReviewResult };
+
+/** Local admin extends the existing audited grant contract without changing the Web contract entry. */
+export type LocalOpsGrantRequest = import('./index').OpsEntitlementGrantRequest & { aiMode?: 'gift' | 'refill' };
+export type LocalOpsGrantPreview = Omit<import('./index').OpsEntitlementGrantPreview, 'change'> & { change: Omit<LocalOpsGrantRequest, 'reason'> };

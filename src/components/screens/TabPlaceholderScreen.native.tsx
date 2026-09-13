@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
 import { examGoal } from '@/features/account/profile-model';
 import { useProfile } from '@/features/account/profile-store.native';
@@ -72,7 +73,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
               accessibilityLabel={`${entry.title}，${enabled ? '打开' : '功能开发中'}`}
               disabled={!enabled}
               key={entry.slug}
-              onPress={() => onEntryPress(entry)}
+              onPress={() => { trackProductClick('bank_open',entry.slug); onEntryPress(entry); }}
               style={!enabled ? styles.disabled : null}
             >
               <View style={styles.row}>

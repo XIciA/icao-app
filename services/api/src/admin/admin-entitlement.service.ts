@@ -1,8 +1,7 @@
+import type { LocalOpsGrantRequest as OpsEntitlementGrantRequest, LocalOpsGrantPreview as OpsEntitlementGrantPreview } from '@icao/contracts/commerce-rules';
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import type {
   CommerceEntitlementSummary,
-  OpsEntitlementGrantPreview,
-  OpsEntitlementGrantRequest,
   OpsEntitlementGrantResult,
 } from '@icao/contracts';
 import { and, eq, isNull, sql } from 'drizzle-orm';

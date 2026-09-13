@@ -1,4 +1,4 @@
-import { trackProductClick } from '@/platform/product-clicks';
+import { trackProductClick } from '@/platform/product-clicks.native';
 import {
   AI_GENERATED_CONTENT_LABEL,
   DEEPSEEK_MODEL_FILING_DISCLOSURE,

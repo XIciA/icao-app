@@ -1,4 +1,4 @@
-import { trackProductClick } from '@/platform/product-clicks';
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
