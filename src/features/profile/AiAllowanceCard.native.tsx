@@ -19,6 +19,11 @@ function localTime(value: string) {
 export function allowanceCopy(allowance: AiAllowanceSummary) {
   const percent = allowance.remainingPercent;
   const amount = percent > 0 && percent < 1 ? '不足1%' : `${Math.floor(percent)}%`;
+  if ((allowance.mode === 'unavailable' || allowance.mode === 'expired')
+    && allowance.bonus && Number.isFinite(allowance.bonus.available) && allowance.bonus.available > 0) {
+    return { title: 'AI学习额度', value: '赠送额度可用',
+      detail: allowance.bonus.expiresAt ? `最早到期：${localTime(allowance.bonus.expiresAt)}` : '' };
+  }
   if (allowance.mode === 'expired') return { title: 'AI 每周使用限额', value: '会员已到期', detail: '' };
   if (allowance.mode === 'unavailable' && allowance.reason === 'trial_already_claimed') {
     return { title: 'AI体验额度', value: '体验额度已领取', detail: '注销后重新注册不再赠送' };
@@ -90,11 +95,11 @@ export function AiAllowanceCard() {
       <AppText style={styles.title}>{copy.title}</AppText>
       <AppText style={styles.value} variant="caption">{copy.value}</AppText>
     </View>
-    {showProgress ? <View accessibilityRole="progressbar" accessibilityLabel={copy.title}
+    {showProgress ? <View accessible accessibilityRole="progressbar" accessibilityLabel={copy.title}
       accessibilityValue={{ min: 0, max: 100, now: allowance.remainingPercent, text: copy.value }} style={styles.track}>
       <View style={[styles.fill, { width: `${allowance.remainingPercent}%` }]} />
     </View> : null}
-    {allowance?.bonus && allowance.bonus.available > 0 ? <AppText style={styles.detail} variant="caption">额外赠送额度可用{allowance.bonus.expiresAt ? ` · 最早到期：${localTime(allowance.bonus.expiresAt)}` : ''}</AppText> : null}
+    {showProgress && allowance?.bonus && Number.isFinite(allowance.bonus.available) && allowance.bonus.available > 0 ? <AppText style={styles.detail} variant="caption">额外赠送额度可用{allowance.bonus.expiresAt ? ` · 最早到期：${localTime(allowance.bonus.expiresAt)}` : ''}</AppText> : null}
     {copy.detail ? <AppText style={styles.detail} variant="caption">{copy.detail}</AppText> : null}
   </Card>;
 }

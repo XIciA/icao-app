@@ -78,3 +78,34 @@ it('does not invent prior eligibility for an unavailable response, or hide activ
   expect(allowanceCopy(response(0, 'unavailable').allowance).value).toBe('暂时无法读取');
   expect(allowanceCopy({ ...response(80, 'weekly').allowance, reason: 'trial_already_claimed' }).value).toBe('剩余 80%');
 });
+
+it.each(['unavailable', 'expired'] as const)('shows positive gifts before %s or a prior trial claim without duplicate copy', async (mode) => {
+  const value = response(0, mode);
+  value.allowance.reason = 'trial_already_claimed';
+  value.allowance.bonus = { available: 50, expiresAt: '2026-09-15T10:00:00Z' };
+  mockApiRequest.mockResolvedValue(value);
+  const screen = await render(<AiAllowanceCard />);
+  await waitFor(() => expect(screen.getByText('赠送额度可用')).toBeTruthy());
+  expect(screen.getAllByText(/^最早到期：/u)).toHaveLength(1);
+  expect(screen.queryByText(/^额外赠送额度可用/u)).toBeNull();
+  expect(screen.queryByText('体验额度已领取')).toBeNull();
+  expect(screen.queryByText('会员已到期')).toBeNull();
+  expect(screen.queryByText('暂时无法读取')).toBeNull();
+  expect(screen.queryByRole('progressbar')).toBeNull();
+});
+
+it.each(['weekly', 'trial'] as const)('retains %s percentage and a single separate bonus explanation', async (mode) => {
+  const value = response(20, mode);
+  value.allowance.bonus = { available: 50, expiresAt: null };
+  mockApiRequest.mockResolvedValue(value);
+  const screen = await render(<AiAllowanceCard />);
+  await waitFor(() => expect(screen.getByText(mode === 'weekly' ? '剩余 20%' : '20%')).toBeTruthy());
+  expect(screen.getByRole('progressbar')).toBeTruthy();
+  expect(screen.getAllByText('额外赠送额度可用')).toHaveLength(1);
+  expect(screen.queryByText('赠送额度可用')).toBeNull();
+});
+
+it('does not let an exhausted gift obscure the original trial eligibility reason', () => {
+  expect(allowanceCopy({ ...response(0, 'unavailable').allowance,
+    reason: 'trial_already_claimed', bonus: { available: 0, expiresAt: null } }).value).toBe('体验额度已领取');
+});
