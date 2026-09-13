@@ -19,12 +19,13 @@ export const opsReasonQuerySchema = z.object({ reason: opsReasonSchema }).strict
 export const opsStaffActionSchema = z.object({ reason: opsReasonSchema }).strict();
 
 export const opsGrantPreviewSchema = z.object({
+  aiMode: z.enum(["gift", "refill"]).optional(),
   accountId: z.uuid(),
   environment: z.enum(['sandbox', 'production']),
   membershipDays: z.number().int().min(0).max(366),
   aiPoints: z.number().int().min(0).max(100_000),
   reason: opsReasonSchema,
-}).strict().refine((value) => value.membershipDays > 0 || value.aiPoints > 0);
+}).strict().refine((value) => value.membershipDays > 0 || value.aiPoints > 0 || value.aiMode === "refill");
 
 export const opsGrantExecuteSchema = z.object({
   confirmation: z.literal('确认发放'),

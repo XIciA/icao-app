@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks';
 import {
   BookOpenText,
   Headphones,
@@ -47,6 +48,7 @@ export default function QuestionBankTab() {
         </Pressable>
       }
       onEntryPress={(entry) => {
+        trackProductClick('bank_open', entry.slug);
         router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } });
       }}
       subtitle="五类题库集中呈现，按自己的节奏开始练习。"

@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks';
 import {
   AI_GENERATED_CONTENT_LABEL,
   DEEPSEEK_MODEL_FILING_DISCLOSURE,
@@ -617,7 +618,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               accessibilityState={{ disabled: transcribeDisabled }}
               disabled={transcribeDisabled}
               hitSlop={4}
-              onPress={() => void transcribe()}
+              onPress={() => { trackProductClick('transcription'); void transcribe(); }}
               style={({ pressed }) => [styles.transcribeAction, pressed && !transcribeDisabled ? styles.pressed : null, transcribeDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-transcribe-action"
             >
@@ -641,7 +642,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               accessibilityState={{ disabled: reviewDisabled }}
               disabled={reviewDisabled}
               hitSlop={4}
-              onPress={() => void reviewAnswer()}
+              onPress={() => { trackProductClick('analysis'); void reviewAnswer(); }}
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
@@ -657,7 +658,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : Platform.OS === 'web' ? '回答会显示在这里' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
               {transcriptionError ? <View style={styles.aiErrorActions}>
                 <AppText color={colors.destructive} style={styles.aiErrorCopy} variant="caption">{transcriptionError}</AppText>
-                {failureRetryable ? <Pressable accessibilityLabel="重试转写" accessibilityRole="button" onPress={() => void transcribe()} testID="study-workbench-ai-retry" style={styles.aiRetry}><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
+                {failureRetryable ? <Pressable accessibilityLabel="重试转写" accessibilityRole="button" onPress={() => { trackProductClick('transcription'); void transcribe(); }} testID="study-workbench-ai-retry" style={styles.aiRetry}><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
                 {failureNeedsDiagnostic ? <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable> : null}
               </View> : null}
               {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
@@ -668,7 +669,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               {busy === 'review' ? <AppText color={colors.mutedForeground}>正在分析表达…</AppText> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
                 <View style={styles.aiErrorButtons}>
-                  {failureRetryable ? <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
+                  {failureRetryable ? <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => { trackProductClick('analysis'); void reviewAnswer(); }} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}
                   {failureNeedsDiagnostic ? <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable> : null}
                 </View>
                 {aiReview ? <FeedbackReviewContent result={aiReview} /> : null}

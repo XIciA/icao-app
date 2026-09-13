@@ -4,6 +4,7 @@ import type { AiReviewRequest, AiReviewResult, GrammarReviewResult, PolishResult
 export type AiAllowanceMode = 'weekly' | 'trial' | 'expired' | 'unavailable';
 
 export type AiAllowanceSummary = {
+  bonus?: { available: number; expiresAt: string | null };
   mode: AiAllowanceMode;
   remainingPercent: number;
   resetAt: string | null;

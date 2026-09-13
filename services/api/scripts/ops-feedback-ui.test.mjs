@@ -52,7 +52,7 @@ describe('minimal ops feedback experience', () => {
   });
   it('shows only two business entries and opens full feedback without exposing contact on the list', async () => {
     await act(async () => { root.render(createElement(App)); });
-    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['用户反馈', 'AI 额度调整']);
+    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['用户反馈', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
     expect(element.textContent).toContain('反馈摘要'); expect(element.textContent).not.toContain('contact@example.test');
     await click(element.querySelector('.feedback-row'));
     expect(element.textContent).toContain('反馈全文与所有说明'); expect(element.textContent).toContain('contact@example.test');
@@ -61,7 +61,7 @@ describe('minimal ops feedback experience', () => {
   });
   it('protects unsaved AI inputs on tab changes and routes expired sessions to login', async () => {
     await act(async () => { root.render(createElement(App, { renderAiRules: ({ onDirtyChange }) => createElement('button', { onClick: () => onDirtyChange(true) }, '编辑额度') })); });
-    await click(button('AI 额度调整')); await click(button('编辑额度'));
+    await click(button('AI 规则设置')); await click(button('编辑额度'));
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
     await click(button('用户反馈')); expect(button('编辑额度')).toBeTruthy(); expect(confirm).toHaveBeenCalledOnce();
     confirm.mockReturnValue(true); await click(button('用户反馈')); expect(button('编辑额度')).toBeUndefined();

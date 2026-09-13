@@ -182,11 +182,11 @@ export class PersistentCommerceBenefitsService {
 
     const context = await this.allowance.prepare(transaction, input.accountId, input.environment, input.reservedAt);
     let points = context.rule.costs[input.capability];
-    let batchIds = context.batchIds;
+    let batchIds = [...context.batchIds, ...context.bonusBatchIds];
     let ruleVersion = context.ruleVersion;
     // Pre-change purchased credits remain consumable with their original fixed prices.
     // They are not converted to weekly units or exposed as another frontend wallet.
-    if (context.available < points && context.legacyAvailable >= INITIAL_AI_RULE.costs[input.capability]) {
+    if (context.available + context.bonusAvailable < points && context.legacyAvailable >= INITIAL_AI_RULE.costs[input.capability]) {
       points = Math.min(points, INITIAL_AI_RULE.costs[input.capability]);
       batchIds = context.legacyBatchIds;
       ruleVersion = AI_POINT_RULE_VERSION;
@@ -199,7 +199,7 @@ export class PersistentCommerceBenefitsService {
       eq(aiPointBatches.status, 'available'),
       lte(aiPointBatches.availableAt, input.reservedAt),
     )).orderBy(
-      sql`case when ${aiPointBatches.sourceType} = 'trial' then 1 else 0 end`,
+      sql`${aiPointBatches.expiresAt} asc nulls last`,
       asc(aiPointBatches.availableAt),
       asc(aiPointBatches.id),
     );
@@ -457,6 +457,19 @@ export class PersistentCommerceBenefitsService {
     return { batchId: batch.id, created: true as const };
   }
 
+  async refillAllowance(transaction: CommerceTransaction, batchIds: string[], now: Date, adjustmentId: string) {
+    if (!batchIds.length) throw new Error('allowance_unavailable');
+    const batches = await transaction.select().from(aiPointBatches).where(inArray(aiPointBatches.id, batchIds));
+    if (batches.some(batch => batch.reservedPoints > 0)) throw new Error('allowance_request_in_progress');
+    const primary = batches.filter(batch => !batch.sourceReference.startsWith('ops-refill:'));
+    const total = primary.reduce((sum,batch)=>sum+batch.grantedPoints,0);
+    const available = batches.reduce((sum,batch)=>sum+batch.grantedPoints-batch.consumedPoints-batch.reservedPoints,0);
+    const owner = primary[0];
+    if (!owner || total <= available) throw new Error('allowance_already_full');
+    const result = await this.grantCompensation(transaction, { accountId:owner.accountId, environment:owner.environment as CommerceEnvironment, adjustmentId, grantedAt:now, points:total-available });
+    if (result.created) await transaction.update(aiPointBatches).set({sourceReference:`ops-refill:${owner.id}:${adjustmentId}`,expiresAt:owner.expiresAt}).where(eq(aiPointBatches.id,result.batchId));
+  }
+
   async grantCompensation(
     transaction: CommerceTransaction,
     input: {
@@ -473,7 +486,8 @@ export class PersistentCommerceBenefitsService {
       accountId: input.accountId,
       originalAccountId: input.accountId,
       sourceType: 'compensation',
-      sourceReference: `ops-adjustment:${input.adjustmentId}`,
+      expiresAt: new Date(input.grantedAt.getTime() + 30 * 86400000),
+      sourceReference: `ops-gift:${input.adjustmentId}`,
       ruleVersion: AI_POINT_RULE_VERSION,
       ordinal: 0,
       grantedPoints: input.points,

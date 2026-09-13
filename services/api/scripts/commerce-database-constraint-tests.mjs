@@ -38,6 +38,7 @@ import {
 import * as databaseSchema from '../src/database/schema.ts';
 import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 import { cleanupTemporaryBusinessAccount } from './live-verifier-account-fixture.mjs';
+import { AiAllowanceService } from '../src/commerce/ai-allowance.service.ts';
 import { INITIAL_AI_RULE_ID } from '../src/commerce/ai-allowance-domain.ts';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
@@ -553,7 +554,7 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 64, 'the exact production schema inventory must remain classified');
+  assert.equal(tableCount, 65, 'the exact production schema inventory must remain classified');
   assert.equal(rlsCount, tableCount);
 });
 
@@ -5056,4 +5057,29 @@ test('AI point runtime releases a failed provider reservation and never charges 
     queryScalar(`SELECT string_agg(entry_type, ',' ORDER BY sequence) FROM ai_point_ledger_entries WHERE operation_id = '${operationId}'`),
     'reserve,release',
   );
+});
+
+test('local admin gifts expire after 30 days, combine with period units, consume earliest expiry, and refill retains the cap', async () => {
+  const accountId = randomUUID(), now = new Date(), environment = 'production';
+  await serviceDatabase.insert(databaseSchema.accounts).values({id: accountId});
+  const [trial] = await serviceDatabase.insert(databaseSchema.aiPointBatches).values({accountId,originalAccountId:accountId,environment,sourceType:'trial',sourceReference:`trial:${accountId}`,ruleVersion:'ai-points-v1',ordinal:0,grantedPoints:1,availableAt:now,status:'available'}).returning();
+  const benefits = new PersistentCommerceBenefitsService(), allowance = new AiAllowanceService();
+  const gift = await serviceDatabase.transaction(tx=>benefits.grantCompensation(tx,{accountId,environment,adjustmentId:randomUUID(),grantedAt:now,points:2}));
+  const [batch] = await serviceDatabase.select().from(databaseSchema.aiPointBatches).where(eq(databaseSchema.aiPointBatches.id,gift.batchId));
+  assert.equal(batch.expiresAt.getTime()-now.getTime(),30*86400000);
+  const input={accountId,environment,capability:'grammar_correction',operationId:randomUUID(),requestDigest:'fixture-digest',reservedAt:now};
+  const reserved=await serviceDatabase.transaction(tx=>benefits.reserveAiPoints(tx,input));
+  assert.equal(reserved.state,'execute'); assert.equal(reserved.points,3);
+  const [giftReserved]=await serviceDatabase.select().from(databaseSchema.aiPointBatches).where(eq(databaseSchema.aiPointBatches.id,gift.batchId));
+  assert.equal(giftReserved.reservedPoints,2);
+  await assert.rejects(serviceDatabase.transaction(tx=>benefits.refillAllowance(tx,[trial.id],now,randomUUID())),/allowance_request_in_progress/);
+  await serviceDatabase.transaction(tx=>benefits.settleAiPoints(tx,{accountId,environment,operationId:input.operationId,result:{text:'test'},settledAt:now}));
+  await serviceDatabase.transaction(tx=>benefits.refillAllowance(tx,[trial.id],now,randomUUID()));
+  const context=await serviceDatabase.transaction(tx=>allowance.summary(tx,accountId,environment,now));
+  assert.equal(context.total,1);assert.equal(context.available,1);assert.equal(context.bonusAvailable,0);
+  await serviceDatabase.transaction(tx=>benefits.grantCompensation(tx,{accountId,environment,adjustmentId:randomUUID(),grantedAt:now,points:50}));
+  const later=await serviceDatabase.transaction(tx=>allowance.summary(tx,accountId,environment,new Date(now.getTime()+30*86400000)));
+  assert.equal(later.bonusAvailable,0);
+  const sandbox=await serviceDatabase.transaction(tx=>allowance.summary(tx,accountId,'sandbox',now));
+  assert.equal(sandbox.bonusAvailable,0);
 });

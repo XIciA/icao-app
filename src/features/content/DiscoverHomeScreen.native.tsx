@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks';
 import { useRouter } from 'expo-router';
 import {
   BookMarked,
@@ -38,7 +39,7 @@ const courseEntry: Entry = {
 
 export function DiscoverHomeScreen() {
   const router = useRouter();
-  const open = (slug: string) => router.push({ pathname: '/content/[slug]', params: { slug } });
+  const open = (slug: string) => { trackProductClick('feature_open', slug); router.push({ pathname: '/content/[slug]', params: { slug } }); };
   const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
   const features: Entry[] = [
     ...standardFeatures,

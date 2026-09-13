@@ -1,5 +1,6 @@
+import { setClickStudyContext } from '@/platform/product-clicks';
 import { usePreventRemove } from '@react-navigation/native';
-import { type Href, useRouter } from 'expo-router';
+import { type Href, useFocusEffect, useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Alert, Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -88,6 +89,7 @@ export function QuestionBankStudyScreen(props: Props) {
 function StudyContent(props: Props) {
   const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
+  useFocusEffect(useCallback(() => { setClickStudyContext(props.dataset?.id ?? (props.studyPackage?.record.recordType === 'mock_exam' ? 'mock-exam' : 'study')); return () => setClickStudyContext('study'); }, [props.dataset?.id, props.studyPackage?.record.recordType]));
   const insets = useSafeAreaInsets();
   const { width: viewportWidth } = useAppViewportDimensions();
   const reduceMotion = useReducedMotion();

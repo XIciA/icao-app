@@ -37,6 +37,11 @@ export class AdminEntitlementService {
     requestId: string,
   ): Promise<OpsEntitlementGrantPreview> {
     const now = new Date();
+    if (input.aiMode === 'refill') {
+      const context = await this.commerce.allowanceForAdmin(input.accountId, input.environment);
+      input = { ...input, aiPoints: context.total - context.available };
+      if (input.aiPoints <= 0) throw new ConflictException('allowance_already_full');
+    }
     const entitlements = await this.commerce.currentEntitlement(input.accountId);
     const before = entitlements[input.environment];
     const baseMembershipEnd = before.membership.expiresAt
@@ -98,6 +103,7 @@ export class AdminEntitlementService {
         environment: input.environment,
         membershipDays: input.membershipDays,
         aiPoints: input.aiPoints,
+        aiMode: input.aiMode,
       },
     };
   }

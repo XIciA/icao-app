@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks';
 import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { Platform, StyleSheet, Text, View } from 'react-native';
@@ -141,7 +142,7 @@ export function InteractiveStudyText({
               <Fragment key={`${index}-${token.text}`}>
                 <InteractiveWordTarget
                   accessibilityLabel={lookupByTap ? `查词：${token.text}` : `${active ? '更新或取消' : '添加'}高亮：${token.text}`}
-                  onPress={lookupByTap ? () => onLookup(lookupWord!) : () => onHighlight({
+                  onPress={lookupByTap ? () => { trackProductClick('dictionary'); onLookup(lookupWord!); } : () => onHighlight({
                     blockId,
                     wordIndex: index,
                     quote: token.text,
@@ -162,7 +163,7 @@ export function InteractiveStudyText({
               <Text
                 accessibilityLabel={highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupByLongPress ? `长按查词：${token.text}` : undefined}
                 onLayout={(event) => boxesRef.current.set(index, event.nativeEvent.layout)}
-                onLongPress={lookupByLongPress ? () => onLookup(lookupWord!) : undefined}
+                onLongPress={lookupByLongPress ? () => { trackProductClick('dictionary'); onLookup(lookupWord!); } : undefined}
                 onPress={highlightMode ? () => onHighlight({
                   blockId,
                   wordIndex: index,
