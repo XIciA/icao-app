@@ -596,7 +596,7 @@ docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
   if (p.status !== "verified" || p.readOnly !== true
       || p.requiredTables !== p.expectedPublicTables
-      || p.expectedPublicTables !== 64 || p.actualPublicTables !== 64
+      || p.expectedPublicTables !== 65 || p.actualPublicTables !== 65
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
       || p.commerceProducts !== 3 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
