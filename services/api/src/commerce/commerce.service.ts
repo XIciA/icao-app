@@ -112,11 +112,16 @@ export class CommerceService {
     };
   }
 
+  async allowanceForAdmin(accountId: string, environment: CommerceEnvironment) {
+    return this.database.db.transaction((tx) => this.allowance.summary(tx, accountId, environment));
+  }
+
   async applyAuditedEntitlementAdjustmentInTransaction(
     transaction: CommerceTransaction,
     input: {
       accountId: string;
       aiPoints: number;
+      aiMode?: "gift" | "refill";
       environment: CommerceEnvironment;
       expectedBefore: CommerceEntitlementSummary;
       membershipDays: number;
@@ -157,7 +162,11 @@ export class CommerceService {
     if (input.membershipDays > 0) {
       await this.rebuildMembership(transaction, input.accountId, input.environment, input.appliedAt);
     }
-    await this.benefits.grantCompensation(transaction, {
+    if (input.aiMode === 'refill') {
+      const context = await this.allowance.prepare(transaction, input.accountId, input.environment, input.appliedAt);
+      if (context.total - context.available !== input.aiPoints) throw new ConflictException('ops_entitlement_preview_stale');
+      await this.benefits.refillAllowance(transaction, context.batchIds, input.appliedAt, adjustment.id);
+    } else await this.benefits.grantCompensation(transaction, {
       accountId: input.accountId,
       adjustmentId: adjustment.id,
       environment: input.environment,
@@ -1351,7 +1360,7 @@ export class CommerceService {
         expiresAt: membershipExpiresAt,
       },
       aiPoints: {
-        available: context.available,
+        available: context.available + context.bonusAvailable,
         nextGrantAt: context.summary.resetAt,
       },
     };

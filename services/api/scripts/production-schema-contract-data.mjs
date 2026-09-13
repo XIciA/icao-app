@@ -54,6 +54,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   phone_otp_intents: 'server_only',
   privacy_action_receipts: 'server_only',
   profiles: 'server_only',
+  product_click_events: 'server_only',
   question_bank_releases: 'server_only',
   recent_auth_challenges: 'server_only',
   recent_auth_grants: 'server_only',

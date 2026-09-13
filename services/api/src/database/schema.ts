@@ -713,6 +713,7 @@ export const aiUsageLogs = pgTable('ai_usage_logs', {
   upstreamStatus: text('upstream_status'),
   attemptCount: integer('attempt_count').default(1).notNull(),
   quotaUnits: integer('quota_units').default(0).notNull(),
+  audioDurationSeconds: integer('audio_duration_seconds'),
   inputTokens: integer('input_tokens'),
   outputTokens: integer('output_tokens'),
   costMicrounits: bigint('cost_microunits', { mode: 'number' }),
@@ -837,7 +838,7 @@ export const opsEntitlementAdjustments = pgTable('ops_entitlement_adjustments', 
   index('ops_entitlement_adjustments_account').on(table.environment, table.accountId, table.appliedAt),
   check('ops_entitlement_adjustments_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('ops_entitlement_adjustments_reason_check', sql`length(btrim(${table.reason})) BETWEEN 8 AND 500`),
-  check('ops_entitlement_adjustments_values_check', sql`${table.membershipDays} BETWEEN 0 AND 366 AND ${table.aiPoints} BETWEEN 0 AND 100000 AND (${table.membershipDays} > 0 OR ${table.aiPoints} > 0)`),
+  check('ops_entitlement_adjustments_values_check', sql`${table.membershipDays} BETWEEN 0 AND 366 AND ${table.aiPoints} BETWEEN 0 AND 1000000 AND (${table.membershipDays} > 0 OR ${table.aiPoints} > 0)`),
 ]).enableRLS();
 
 export const opsAuditEvents = pgTable('ops_audit_events', {
@@ -1295,3 +1296,13 @@ export const wechatPaymentAttempts = pgTable('wechat_payment_attempts', {
   check('wechat_payment_attempts_state_check', sql`${table.state} IN ('pending','paid','closed','refund_pending','refunded')`),
   check('wechat_payment_attempts_amount_check', sql`${table.amountFen} > 0 AND ${table.durationDays} > 0`),
 ]).enableRLS();
+
+export const productClickEvents = pgTable('product_click_events', {
+  id: uuid('id').primaryKey(),
+  accountId: uuid('account_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  event: text('event').notNull(),
+  category: text('category').notNull(),
+  context: text('context').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [index('product_click_events_date').on(table.createdAt),
+  index('product_click_events_account').on(table.accountId)]).enableRLS();

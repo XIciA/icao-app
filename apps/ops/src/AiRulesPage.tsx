@@ -84,8 +84,8 @@ export function AiRulesPage({ onDirtyChange }: AiRulesPageProps) {
   }, [loadKey]);
   useEffect(() => { if (!notice) return; const timer = setTimeout(() => setNotice(''), 6000); return () => clearTimeout(timer); }, [notice]);
 
-  if (loading && !catalog) return <section aria-busy="true"><h1>AI 额度调整</h1><p className="muted">正在读取规则…</p></section>;
-  if (!catalog || !draft) return <section><h1>AI 额度调整</h1><p role="alert" className="notice error">{error || '规则暂时不可用'}</p><button className="primary" onClick={() => setLoadKey((key) => key + 1)}>重新读取</button></section>;
+  if (loading && !catalog) return <section aria-busy="true"><h1>AI 规则设置</h1><p className="muted">正在读取规则…</p></section>;
+  if (!catalog || !draft) return <section><h1>AI 规则设置</h1><p role="alert" className="notice error">{error || '规则暂时不可用'}</p><button className="primary" onClick={() => setLoadKey((key) => key + 1)}>重新读取</button></section>;
   const parsed = parseDraft(draft);
   const timeValid = timing === 'now' || (scheduledAt && Number.isFinite(Date.parse(scheduledAt)) && Date.parse(scheduledAt) > Date.now());
   const valid = Object.keys(parsed.errors).length === 0 && timeValid;
@@ -125,7 +125,7 @@ export function AiRulesPage({ onDirtyChange }: AiRulesPageProps) {
   }
 
   return <section className="rules-page">
-    <div className="rules-heading"><div><h1>AI 额度调整</h1><p className="muted">当前规则生效于 {dateText(catalog.current.effectiveAt)}</p></div><button className="link-button" onClick={() => setHistory(true)}>历史版本</button></div>
+    <div className="rules-heading"><div><h1>AI 规则设置</h1><p className="muted">当前规则生效于 {dateText(catalog.current.effectiveAt)}</p></div><button className="link-button" onClick={() => setHistory(true)}>历史版本</button></div>
     {notice ? <p role="status" className="notice success">{notice}</p> : null}
     {error && !preview ? <div role="alert" className="notice error">{error} <button className="link-button" disabled={loading || busy} onClick={() => setLoadKey((key) => key + 1)}>重新读取</button></div> : null}
     <form onSubmit={(event) => void prepare(event)}>

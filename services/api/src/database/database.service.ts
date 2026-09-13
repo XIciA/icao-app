@@ -6,11 +6,11 @@ import { API_CONFIG, type ApiConfig } from '../config';
 import * as schema from './schema';
 
 // This API requires the account, content, AI allowance and payment tables through
-// 0046_wechat_payment_attempts. Bind startup to the exact migration, not a table-count guess.
-export const MINIMUM_DATABASE_SCHEMA_VERSION = 46;
+// 0047_local_admin_statistics. Bind startup to the exact migration, not a table-count guess.
+export const MINIMUM_DATABASE_SCHEMA_VERSION = 47;
 export const MINIMUM_DATABASE_MIGRATION = {
-  createdAt: 1_788_973_871_425,
-  hash: 'ee6f955c597387f4ae786a69fae68a4da51edc03cdc0443f78f65dd598a78876',
+  createdAt: 1_789_275_866_220,
+  hash: '7db2b90638ec94133d14b54d54220a764409d8b39a52774305625c66185fa60a',
 } as const;
 
 @Injectable()

@@ -61,9 +61,9 @@ export function AiAllowanceCard() {
         if (!active || request !== requestId) return;
         setResult({ key: ownerKey, allowance: value });
         // Use the service clock for refresh boundaries, never infer a grant from the device clock.
-        const next = [value.resetAt, value.membershipExpiresAt].filter((time): time is string => !!time)
+        const next = [value.resetAt, value.membershipExpiresAt, value.bonus?.expiresAt].filter((time): time is string => !!time)
           .map((time) => Date.parse(time) - Date.parse(response.serverTime)).filter((delay) => delay > 0);
-        if (next.length) refreshTimer = setTimeout(() => { void refresh(); }, Math.min(...next, 2_147_483_000) + 500);
+        refreshTimer = setTimeout(() => { void refresh(); }, Math.min(...next, 30_000) + 500);
       } catch {
         if (active && request === requestId) setResult({ key: ownerKey, failed: true });
       }
@@ -91,6 +91,7 @@ export function AiAllowanceCard() {
       accessibilityValue={{ min: 0, max: 100, now: allowance.remainingPercent, text: copy.value }} style={styles.track}>
       <View style={[styles.fill, { width: `${allowance.remainingPercent}%` }]} />
     </View> : null}
+    {allowance?.bonus && allowance.bonus.available > 0 ? <AppText style={styles.detail} variant="caption">额外赠送额度可用{allowance.bonus.expiresAt ? ` · 最早到期：${localTime(allowance.bonus.expiresAt)}` : ''}</AppText> : null}
     {copy.detail ? <AppText style={styles.detail} variant="caption">{copy.detail}</AppText> : null}
   </Card>;
 }

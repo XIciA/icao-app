@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { Check, Highlighter, Plus, Search, Tags, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
@@ -110,7 +111,7 @@ export function AnnotationToolbar({
         <Pressable
           accessibilityLabel={highlightMode ? '关闭高亮模式' : '开启高亮模式'}
           accessibilityState={{ expanded: highlightMode, selected: highlightMode }}
-          onPress={toggleHighlightMode}
+          onPress={() => { trackProductClick('highlight'); toggleHighlightMode(); }}
           style={[styles.tool, highlightMode ? styles.toolActive : null]}
         >
           <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
@@ -121,7 +122,7 @@ export function AnnotationToolbar({
         <Pressable
           accessibilityLabel={tagMode ? '关闭标签模式' : '开启标签模式'}
           accessibilityState={{ expanded: tagMode, selected: tagMode }}
-          onPress={toggleTags}
+          onPress={() => { trackProductClick('tag'); toggleTags(); }}
           style={[styles.tool, tagMode ? styles.toolActive : null]}
         >
           <Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />

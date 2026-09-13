@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
@@ -60,7 +61,7 @@ export function ProfileHomeScreen() {
     if (slug === 'learning-records') router.push('/learning-records');
     else if (slug === 'annotations') router.push('/annotations');
     else if (slug === 'word-favorites') router.push('/word-favorites');
-    else if (slug === 'membership') router.push('/account/membership');
+    else if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
     else if (slug === 'settings') router.push('/account/settings');
     else if (slug === 'feedback')
       router.push({
