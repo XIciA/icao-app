@@ -14,7 +14,7 @@ const fields = [
 ] as const;
 type Field = typeof fields[number]['key'];
 type Draft = Record<Field, string>;
-const dateText = (value: string) => new Date(value).toLocaleString('zh-CN', { hour12: false });
+const dateText = (value: string) => Date.parse(value) === 0 ? '初始默认规则' : new Date(value).toLocaleString('zh-CN', { hour12: false });
 const fieldLabel = (field: string) => fields.find(({ key }) => key === field.replace(/^costs\./, ''))?.label ?? field;
 const impactText = {
   all_members: '生效后适用于已有会员及新购会员，已处理的请求不变',
@@ -125,7 +125,7 @@ export function AiRulesPage({ onDirtyChange }: AiRulesPageProps) {
   }
 
   return <section className="rules-page">
-    <div className="rules-heading"><div><h1>AI 规则设置</h1><p className="muted">当前规则生效于 {dateText(catalog.current.effectiveAt)}</p></div><button className="link-button" onClick={() => setHistory(true)}>历史版本</button></div>
+    <div className="rules-heading"><div><h1>AI 规则设置</h1><p className="muted">{Date.parse(catalog.current.effectiveAt) === 0 ? '当前使用初始默认规则' : `当前规则生效于 ${dateText(catalog.current.effectiveAt)}`}</p></div><button className="link-button" onClick={() => setHistory(true)}>历史版本</button></div>
     {notice ? <p role="status" className="notice success">{notice}</p> : null}
     {error && !preview ? <div role="alert" className="notice error">{error} <button className="link-button" disabled={loading || busy} onClick={() => setLoadKey((key) => key + 1)}>重新读取</button></div> : null}
     <form onSubmit={(event) => void prepare(event)}>
