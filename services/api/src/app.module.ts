@@ -1,3 +1,4 @@
+import { ProductClicksController } from './product-clicks.controller';
 import { WechatMerchantClient } from './commerce/wechat-merchant-client';
 import { WechatPayService } from './commerce/wechat-pay.service';
 import { WechatPayController, WechatPayNotificationController } from './commerce/wechat-pay.controller';
@@ -83,7 +84,7 @@ import { AppleStoreServerApiService } from './commerce/apple-store-server-api.se
 import { AppleServerReconciliationService } from './commerce/apple-server-reconciliation.service';
 
 @Module({
-  controllers: [WechatPayController, WechatPayNotificationController,AccountLoginMethodsController, LegalConsentController, AppContentController, CommerceRulesController, HealthController, WechatUniversalLinkController, MeController, PhoneAuthController, WechatAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
+  controllers: [ProductClicksController, WechatPayController, WechatPayNotificationController,AccountLoginMethodsController, LegalConsentController, AppContentController, CommerceRulesController, HealthController, WechatUniversalLinkController, MeController, PhoneAuthController, WechatAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountPrivacyController, AccountDeletionStatusController, QuestionBankController, ContentAccessController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController, AppleNotificationController],
   providers: [WechatMerchantClient, WechatPayService,
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,

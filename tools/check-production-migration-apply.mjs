@@ -38,7 +38,7 @@ const clientTableGrantRevocationSource = [
   clientTableGrantRevocationBase,
   clientTableGrantRevocationExtension,
   ...await Promise.all(['0042_weekly_ai_allowance', '0043_app_content_releases',
-    '0044_account_login_methods', '0046_wechat_payment_attempts']
+    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics']
     .map(tag => readFile(`services/api/drizzle/${tag}.sql`, 'utf8'))),
 ].join('\n');
 
@@ -129,8 +129,8 @@ for (const contract of [
   'migration-plan.mjs --require-current',
   'verify-production-schema-contract.mjs',
   'p.requiredTables !== p.expectedPublicTables',
-  'p.expectedPublicTables !== 64',
-  'p.actualPublicTables !== 64',
+  'p.expectedPublicTables !== 65',
+  'p.actualPublicTables !== 65',
   'production_migration_schema_contract_mismatch',
   'p.unclassifiedPublicTables !== 0',
   'p.missingPublicTables !== 0',
@@ -192,8 +192,8 @@ for (const contract of [
   'services/api/scripts/verify-production-schema-contract.mjs',
   '-e ICAO_PRODUCTION_DATABASE_NAME="$database_name"',
   'p.requiredTables !== p.expectedPublicTables',
-  'p.expectedPublicTables !== 64',
-  'p.actualPublicTables !== 64',
+  'p.expectedPublicTables !== 65',
+  'p.actualPublicTables !== 65',
   'migration_rehearsal_schema_contract_mismatch',
   'p.serverOnlyClientGrants !== 0',
   'p.unexpectedPublicTableOwners !== 0',
@@ -604,7 +604,7 @@ const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'
   .map((match) => match[1])
   .sort();
 if (
-  schemaPublicTables.length !== 64
+  schemaPublicTables.length !== 65
   || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
   || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
     !== JSON.stringify(schemaPublicTables)

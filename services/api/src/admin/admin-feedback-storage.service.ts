@@ -19,7 +19,7 @@ export class AdminFeedbackStorageService {
     }
     try {
       const response = await fetch(`${opsFeedbackStorageUrl.replace(/\/$/u, '')}/object/authenticated/feedback-screenshots/${image.objectKey}`, {
-        headers: { authorization: `Bearer ${opsFeedbackStorageReadToken}` },
+        headers: { authorization: `Bearer ${opsFeedbackStorageReadToken}`, apikey: opsFeedbackStorageReadToken },
         signal: AbortSignal.timeout(10_000), redirect: 'error',
       });
       if (!response.ok || !response.body) throw new Error('storage_read_failed');

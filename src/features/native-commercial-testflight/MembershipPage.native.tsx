@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useEffect, useRef, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -100,7 +101,7 @@ function MembershipContent() {
       })}
     </View>
     {renewalLabel ? <AppText variant="caption" style={styles.center}>续费后预计至 {renewalLabel}</AppText> : null}
-    <Button disabled={!canPurchase} onPress={() => { if (selected) void run(() => commerce.purchase(selected.productKey)); }} size="lg" style={styles.purchase} testID="membership-purchase">{label}</Button>
+    <Button disabled={!canPurchase} onPress={() => { if (selected) { trackProductClick('purchase', selected.productKey); void run(() => commerce.purchase(selected.productKey)); } }} size="lg" style={styles.purchase} testID="membership-purchase">{label}</Button>
     {status ? <AppText style={styles.center} variant="caption">{status}</AppText> : null}
     {!commerce.supported ? <AppText style={styles.center} variant="caption">当前设备暂不支持购买。已购买的权益以账号实际状态为准。</AppText> : null}
     {commerce.supported && (['error', 'unavailable'].includes(commerce.phase) || (Platform.OS === 'android' && pending)) && commerce.error?.retryable !== false ?

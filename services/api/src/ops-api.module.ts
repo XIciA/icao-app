@@ -1,3 +1,4 @@
+import { AdminReportsController } from './admin/admin-reports.controller';
 import { AiAllowanceService } from './commerce/ai-allowance.service';
 import { AiUsageRulesService } from './commerce/ai-usage-rules.service';
 import { AdminAiRulesController } from './commerce/admin-ai-rules.controller';
@@ -31,7 +32,7 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
+      controllers: [AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
       providers: [
         { provide: OPS_API_CONFIG, useValue: config },
         {

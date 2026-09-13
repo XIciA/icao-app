@@ -1,3 +1,5 @@
+import { ReportsPage } from './ReportsPage';
+import { EntitlementsPage } from './EntitlementsPage';
 import type { OpsStaffSession } from '@icao/contracts';
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import { clearSession, opsApi, readSession, writeSession, OPS_SESSION_EXPIRED } from './api';
@@ -54,7 +56,10 @@ function Login({ onLogin }: { onLogin: (session: OpsStaffSession) => void }) {
 export type AiRulesPageProps = { onDirtyChange: (dirty: boolean) => void };
 export function App({ renderAiRules }: { renderAiRules?: (props: AiRulesPageProps) => ReactNode } = {}) {
   const [session, setSession] = useState(readSession());
-  const [page, setPage] = useState<'feedback' | 'ai'>('feedback');
+  const [local, setLocal] = useState(false);
+  const [connecting, setConnecting] = useState(location.port === '4173');
+  useEffect(() => { if (location.port !== '4173') return; void opsApi<{staff: OpsStaffSession['staff']}>('/local/session', {}, false).then(({staff}) => { setSession({staff} as OpsStaffSession); setLocal(true); }).catch(() => {}).finally(()=>setConnecting(false)); }, []);
+  const [page, setPage] = useState<'feedback' | 'ai' | 'usage' | 'clicks' | 'entitlements'>('feedback');
   const [dirty, setDirty] = useState(false);
   const [error, setError] = useState<string>();
   useEffect(() => {
@@ -80,18 +85,19 @@ export function App({ renderAiRules }: { renderAiRules?: (props: AiRulesPageProp
       clearSession(); setSession(undefined); setDirty(false);
     } catch (cause) { setError(cause instanceof Error ? cause.message : '退出失败，请重试'); }
   }
+  if (!session && location.port === '4173') return <main className="login-shell"><section className="login-card"><h1>听你五个 · 管理后台</h1><p>{connecting ? '正在连接真实服务器…' : '连接暂不可用，请重新打开桌面的后台入口。'}</p><button onClick={()=>location.reload()}>重新连接</button></section></main>;
   if (!session) return <Login onLogin={setSession} />;
   return <main className="ops-shell">
     <header className="ops-header">
       <div className="ops-brand">听你五个 · 管理后台</div>
       <nav aria-label="管理功能" className="ops-tabs">
         <button className={page === 'feedback' ? 'active' : ''} aria-current={page === 'feedback' ? 'page' : undefined} onClick={() => changePage('feedback')}>用户反馈</button>
-        <button className={page === 'ai' ? 'active' : ''} aria-current={page === 'ai' ? 'page' : undefined} onClick={() => changePage('ai')}>AI 额度调整</button>
+        {(['clicks','usage','ai','entitlements'] as const).map(key=><button key={key} className={page===key?'active':''} onClick={()=>changePage(key)}>{key==='clicks'?'点击统计':key==='usage'?'AI 用量与费用':key==='ai'?'AI 规则设置':'用户权益'}</button>)}
       </nav>
-      <div className="ops-session"><span>{session.staff.email}</span><button className="link-button" onClick={() => void logout()}>退出</button></div>
+      <div className="ops-session"><span>{local ? "本地连接 · 正式数据" : session.staff.email}</span>{!local && <button className="link-button" onClick={() => void logout()}>退出</button>}</div>
     </header>
     <div className="ops-content"><ErrorNotice error={error} />
-      {page === 'feedback' ? <FeedbackPage /> : session.staff.role !== 'admin'
+      {page === 'feedback' ? <FeedbackPage /> : page === 'usage' || page === 'clicks' ? <ReportsPage key={page} kind={page} /> : page === 'entitlements' ? <EntitlementsPage /> : session.staff.role !== 'admin'
         ? <p className="notice">当前账号没有调整 AI 额度的权限。</p>
         : renderAiRules?.({ onDirtyChange: setDirty }) ?? <AiRulesPage onDirtyChange={setDirty} />}
     </div>

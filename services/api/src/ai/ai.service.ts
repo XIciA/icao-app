@@ -1,3 +1,4 @@
+import { estimateCostMicrounits } from './usage-cost';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
@@ -290,9 +291,10 @@ export class AiService {
   }) {
     await this.database.db.insert(aiUsageLogs).values({
       ...input,
+      audioDurationSeconds: input.meta?.audioDurationSeconds == null ? null : Math.ceil(input.meta.audioDurationSeconds),
       inputTokens: input.meta?.inputTokens,
       outputTokens: input.meta?.outputTokens,
-      costMicrounits: null,
+      costMicrounits: estimateCostMicrounits({ ...input, ...input.meta }),
       failureCode: input.failureCode,
       upstreamStatus: input.upstreamStatus ?? input.meta?.upstreamStatus,
       attemptCount: input.attemptCount ?? input.meta?.attemptCount ?? 1,

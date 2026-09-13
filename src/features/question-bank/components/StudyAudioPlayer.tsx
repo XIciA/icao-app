@@ -1,3 +1,4 @@
+import { trackProductClick } from '@/platform/product-clicks.native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
@@ -571,7 +572,7 @@ export function StudyAudioPlayer({
                 accessibilityLabel={waitingForFirstFrame ? '音频正在启动' : status.playing ? '暂停' : '播放'}
                 accessibilityState={{ disabled: !audioControllable || waitingForFirstFrame }}
                 disabled={!audioControllable || waitingForFirstFrame}
-                onPress={() => void toggle()}
+                onPress={() => { if (!status.playing) trackProductClick('audio_play'); void toggle(); }}
                 style={({ pressed }) => [styles.integratedPlay, !audioControllable ? styles.controlDisabled : null, pressed ? styles.pressed : null]}
               >
                 {uri && !audioFailed && (!status.isLoaded || waitingForFirstFrame) ? (
@@ -626,7 +627,7 @@ export function StudyAudioPlayer({
               <Pressable
                 accessibilityLabel={waitingForFirstFrame ? '音频正在启动' : status.playing ? '暂停' : '播放'}
                 disabled={!status.isLoaded || waitingForFirstFrame}
-                onPress={() => void toggle()}
+                onPress={() => { if (!status.playing) trackProductClick('audio_play'); void toggle(); }}
                 style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
               >
                 {!status.isLoaded || waitingForFirstFrame ? (

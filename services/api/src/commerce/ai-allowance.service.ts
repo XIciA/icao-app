@@ -15,6 +15,8 @@ export type AllowanceContext = {
   batchIds: string[];
   available: number;
   total: number;
+  bonusBatchIds: string[];
+  bonusAvailable: number;
   legacyBatchIds: string[];
   legacyAvailable: number;
   summary: AiAllowanceSummary;
@@ -49,7 +51,7 @@ export class AiAllowanceService {
     let selected: Array<typeof aiPointBatches.$inferSelect>;
 
     if (active) {
-      const purchased = await this.rules.byId(transaction, active.ruleId);
+      const purchased = active.ruleId ? await this.rules.byId(transaction, active.ruleId) : await this.rules.effective(transaction, active.startsAt);
       const versions = await this.rules.versions(transaction, now);
       rule = protectedMemberRule(ruleValues(purchased), versions.filter((version) => (
         version.effectiveAt >= (active.purchasedAt ?? active.startsAt)
@@ -114,6 +116,17 @@ export class AiAllowanceService {
       }
     }
     const total = selected.reduce((sum, batch) => sum + batch.grantedPoints, 0);
+    // Refill grants retain immutable consumption history and reuse the original period's cap/expiry.
+    const refillPrefixes = selected.map(batch => `ops-refill:${batch.id}:%`);
+    if (refillPrefixes.length) {
+      const refills = await transaction.select().from(aiPointBatches).where(and(
+        eq(aiPointBatches.accountId, accountId), eq(aiPointBatches.environment, environment),
+        eq(aiPointBatches.sourceType, 'compensation'), eq(aiPointBatches.status, 'available'),
+        lte(aiPointBatches.availableAt, now), or(isNull(aiPointBatches.expiresAt), gt(aiPointBatches.expiresAt, now)),
+        or(...refillPrefixes.map(prefix => sql`${aiPointBatches.sourceReference} like ${prefix}`)),
+      ));
+      selected = [...selected, ...refills];
+    }
     const available = selected.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0);
     const legacy = await transaction.select().from(aiPointBatches).where(and(
       eq(aiPointBatches.accountId, accountId), eq(aiPointBatches.environment, environment),
@@ -128,13 +141,20 @@ export class AiAllowanceService {
         .from(accounts).where(eq(accounts.id, accountId)).limit(1);
       if (owner?.reason === 'trial_already_claimed') reason = owner.reason;
     }
+    const bonus = legacy.filter((batch) => batch.sourceReference.startsWith('ops-gift:'));
+    const purchasedLegacy = legacy.filter((batch) => !batch.sourceReference.startsWith('ops-gift:') && !batch.sourceReference.startsWith('ops-refill:'));
+    const bonusAvailable = bonus.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0);
+    const bonusExpiry = bonus.filter((b) => b.grantedPoints > b.consumedPoints + b.reservedPoints && b.expiresAt)
+      .map((b) => b.expiresAt!.toISOString()).sort()[0] ?? null;
     return {
+      bonusBatchIds: bonus.map((batch) => batch.id), bonusAvailable,
       rule, ruleVersion, batchIds: selected.map((batch) => batch.id), available, total,
-      legacyBatchIds: legacy.map((batch) => batch.id),
-      legacyAvailable: legacy.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0),
+      legacyBatchIds: purchasedLegacy.map((batch) => batch.id),
+      legacyAvailable: purchasedLegacy.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0),
       summary: {
         mode,
         ...(reason ? { reason } : {}),
+        bonus: { available: bonusAvailable, expiresAt: bonusExpiry },
         remainingPercent: remainingPercent(available, total),
         resetAt: resetAt?.toISOString() ?? null,
         membershipExpiresAt: membershipExpiresAt?.toISOString() ?? null,
