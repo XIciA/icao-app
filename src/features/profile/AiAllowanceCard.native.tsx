@@ -20,6 +20,9 @@ export function allowanceCopy(allowance: AiAllowanceSummary) {
   const percent = allowance.remainingPercent;
   const amount = percent > 0 && percent < 1 ? '不足1%' : `${Math.floor(percent)}%`;
   if (allowance.mode === 'expired') return { title: 'AI 每周使用限额', value: '会员已到期', detail: '' };
+  if (allowance.mode === 'unavailable' && allowance.reason === 'trial_already_claimed') {
+    return { title: 'AI体验额度', value: '体验额度已领取', detail: '注销后重新注册不再赠送' };
+  }
   if (allowance.mode === 'unavailable') return { title: 'AI 每周使用限额', value: '暂时无法读取', detail: '' };
   if (allowance.mode === 'trial') return { title: 'AI 体验剩余', value: amount, detail: '一次性体验，用完不再补充' };
   const expires = allowance.membershipExpiresAt;

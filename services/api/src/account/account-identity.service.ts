@@ -7,7 +7,7 @@ import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, accountLoginMethodRemovals, accounts, lifetimeIdentityBenefitClaims, profiles, syncChanges, userDocuments } from '../database/schema';
+import { accountIdentities, accountLoginMethodRemovals, accounts, aiPointBatches, lifetimeIdentityBenefitClaims, profiles, syncChanges, userDocuments } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
 import { IdentityDigestService } from './identity-digest.service';
@@ -204,7 +204,24 @@ export class AccountIdentityService {
     const inserted = await transaction.insert(lifetimeIdentityBenefitClaims).values(aliases)
       .onConflictDoNothing()
       .returning({ identityDigest: lifetimeIdentityBenefitClaims.identityDigest });
-    if (!grantIfAllNew || inserted.length !== aliases.length) return;
+    if (!grantIfAllNew || inserted.length !== aliases.length) {
+      // Existing claims on THIS account are ordinary repeat logins, not
+      // re-registration. Keep eligibility truth on the server-owned account.
+      const priorClaims = await transaction.select({ context: lifetimeIdentityBenefitClaims.claimContextDigest })
+        .from(lifetimeIdentityBenefitClaims).where(and(
+          eq(lifetimeIdentityBenefitClaims.benefitKey, FREE_TRIAL_BENEFIT_KEY),
+          inArray(lifetimeIdentityBenefitClaims.identityDigest, aliases.map((alias) => alias.identityDigest)),
+        ));
+      const ownContexts = new Set(this.digests.accountContexts(accountId));
+      if (priorClaims.some((claim) => !ownContexts.has(claim.context))) {
+        const [existingTrial] = await transaction.select({ id: aiPointBatches.id }).from(aiPointBatches)
+          .where(and(eq(aiPointBatches.accountId, accountId), eq(aiPointBatches.environment, 'production'),
+            eq(aiPointBatches.sourceType, 'trial'))).limit(1);
+        if (!existingTrial) await transaction.update(accounts).set({ aiTrialEligibilityReason: 'trial_already_claimed' })
+          .where(eq(accounts.id, accountId));
+      }
+      return;
+    }
     await this.commerce.grantFreeTrial(transaction, {
       accountId,
       externalEligibilityClaimed: true,

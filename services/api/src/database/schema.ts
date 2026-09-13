@@ -4,6 +4,7 @@ import { bigint, bigserial, boolean, check, foreignKey, index, integer, jsonb, p
 export const accounts = pgTable('accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
   status: text('status').default('active').notNull(),
+  aiTrialEligibilityReason: text('ai_trial_eligibility_reason').$type<'trial_already_claimed'>(),
   mergedIntoAccountId: uuid('merged_into_account_id'),
   learningDataGeneration: integer('learning_data_generation').default(0).notNull(),
   aiResultGeneration: integer('ai_result_generation').default(0).notNull(),

@@ -62,3 +62,19 @@ it('keeps a positive sub-one-percent amount visible and ends a partial week at m
   expect(allowanceCopy({ ...value, mode: 'expired' }).value).toBe('会员已到期');
   expect(allowanceCopy({ ...value, mode: 'expired' }).detail).toBe('');
 });
+
+it('explains repeat-registration eligibility without presenting a network failure or a fake balance', async () => {
+  const value = response(0, 'unavailable');
+  value.allowance.reason = 'trial_already_claimed';
+  mockApiRequest.mockResolvedValue(value);
+  const screen = await render(<AiAllowanceCard />);
+  await waitFor(() => expect(screen.getByText('体验额度已领取')).toBeTruthy());
+  expect(screen.getByText('注销后重新注册不再赠送')).toBeTruthy();
+  expect(screen.queryByText('暂时无法读取')).toBeNull();
+  expect(screen.queryByRole('progressbar')).toBeNull();
+});
+
+it('does not invent prior eligibility for an unavailable response, or hide active membership', () => {
+  expect(allowanceCopy(response(0, 'unavailable').allowance).value).toBe('暂时无法读取');
+  expect(allowanceCopy({ ...response(80, 'weekly').allowance, reason: 'trial_already_claimed' }).value).toBe('剩余 80%');
+});

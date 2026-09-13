@@ -38,10 +38,14 @@ export class IdentityDigestService {
   }
 
   accountContext(accountId: string) {
-    const current = this.keys[0]!;
-    return createHmac('sha256', current.secret)
+    return this.accountContexts(accountId)[0]!;
+  }
+
+  /** Compare claims made before key rotation without misclassifying the same account. */
+  accountContexts(accountId: string) {
+    return this.keys.map(({ secret }) => createHmac('sha256', secret)
       .update(`lifetime-benefit-account-context-v1\0${accountId}`)
-      .digest('hex');
+      .digest('hex'));
   }
 
   private forKey(
