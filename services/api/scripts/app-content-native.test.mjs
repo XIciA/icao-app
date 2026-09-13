@@ -105,11 +105,19 @@ function mediaFixture() {
     constructor(...parts) { this.uri = parts.map((part) => part.uri ?? part).join('/'); }
     create() {} get exists() { return [...files.keys()].some((key) => key.startsWith(this.uri)); }
     delete() { for (const key of files.keys()) if (key.startsWith(this.uri)) files.delete(key); }
+    list() { return [...files.keys()].filter((key) => key.startsWith(`${this.uri}/`)).map((key) => new File(key)); }
   }
   class File {
     constructor(...parts) { this.uri = parts.map((part) => part.uri ?? part).join('/'); }
     get exists() { return files.has(this.uri); } get size() { return files.get(this.uri)?.length ?? 0; }
+    get name() { return this.uri.split('/').at(-1); } get modificationTime() { return 0; }
     async bytes() { return files.get(this.uri); } delete() { files.delete(this.uri); }
+    move(destination) {
+      const bytes = files.get(this.uri);
+      files.delete(this.uri);
+      this.uri = destination.uri;
+      files.set(this.uri, bytes);
+    }
     static async downloadFileAsync(url, file) { files.set(file.uri, downloads.get(url)); }
   }
   const crypto = { AESKeySize: { AES256: 256 }, AESEncryptionKey: { generate: async () => ({ encoded: async () => 'key' }), import: async () => ({}) },
@@ -119,7 +127,7 @@ function mediaFixture() {
     CryptoDigestAlgorithm: { SHA256: 'sha256' }, digestStringAsync: async (_, value) => createHash('sha256').update(value).digest('hex'),
     digest: async (_, bytes) => { const hash = new Uint8Array(createHash('sha256').update(bytes).digest()); return hash.buffer; } };
   const repository = evaluate('src/features/question-bank/data/member-content-cache.native.ts', {
-    'expo-crypto': crypto, 'expo-file-system': { Directory, File, Paths: { document: 'file:/test' } }, '@/platform/storage': kv,
+    'expo-crypto': crypto, 'expo-file-system': { Directory, File, Paths: { document: 'file:/test', cache: 'file:/cache' } }, '@/platform/storage': kv,
     'expo-secure-store': { getItemAsync: async (key) => secure.get(key), setItemAsync: async (key, value) => secure.set(key, value), deleteItemAsync: async (key) => secure.delete(key) },
     '@/features/native-commercial-testflight/commerce-environment': { getNativeCommerceEnvironment: () => 'production', nativeCommerceEnvironmentSnapshot: () => 'production' },
     './content-credential-verifier.native': { verifyContentAccessCredential: () => true, inspectContentAccessCredential: () => 'valid' },
