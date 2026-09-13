@@ -1,5 +1,5 @@
 import { ReportsPage } from './ReportsPage';
-import { EntitlementsPage } from './EntitlementsPage';
+import { EntitlementsPage } from './UsersPage';
 import type { OpsStaffSession } from '@icao/contracts';
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import { clearSession, opsApi, readSession, writeSession, OPS_SESSION_EXPIRED } from './api';

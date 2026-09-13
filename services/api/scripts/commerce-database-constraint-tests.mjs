@@ -3897,7 +3897,7 @@ test('processes legacy credit refunds, duplicates, reversals and stale notificat
   const accountId = '82000000-0000-4000-8000-000000000001';
   const [initialRule] = await serviceDatabase.select().from(databaseSchema.aiUsageRuleVersions)
     .where(eq(databaseSchema.aiUsageRuleVersions.id, INITIAL_AI_RULE_ID));
-  const purchaseDate = new Date(initialRule.createdAt.getTime() - 1_000);
+  const purchaseDate = new Date(initialRule.createdAt.getTime() - 10_000);
   const refundDate = new Date(Date.now() - 5_000);
   const reversalDate = new Date(Date.now() - 2_000);
   const purchase = verifiedCommerceTransaction({
@@ -5062,6 +5062,8 @@ test('AI point runtime releases a failed provider reservation and never charges 
 test('local admin gifts expire after 30 days, combine with period units, consume earliest expiry, and refill retains the cap', async () => {
   const accountId = randomUUID(), now = new Date(), environment = 'production';
   await serviceDatabase.insert(databaseSchema.accounts).values({id: accountId});
+  const [baseRule]=await serviceDatabase.select().from(databaseSchema.aiUsageRuleVersions).where(eq(databaseSchema.aiUsageRuleVersions.id,INITIAL_AI_RULE_ID));
+  await serviceDatabase.insert(databaseSchema.aiUsageRuleVersions).values({...baseRule,id:randomUUID(),idempotencyKey:randomUUID(),requestDigest:'isolated-one-unit-fixture',trialAllowance:1,effectiveAt:now,createdAt:now});
   const [trial] = await serviceDatabase.insert(databaseSchema.aiPointBatches).values({accountId,originalAccountId:accountId,environment,sourceType:'trial',sourceReference:`trial:${accountId}`,ruleVersion:'ai-points-v1',ordinal:0,grantedPoints:1,availableAt:now,status:'available'}).returning();
   const benefits = new PersistentCommerceBenefitsService(), allowance = new AiAllowanceService();
   const gift = await serviceDatabase.transaction(tx=>benefits.grantCompensation(tx,{accountId,environment,adjustmentId:randomUUID(),grantedAt:now,points:2}));

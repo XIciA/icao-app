@@ -28,9 +28,10 @@ beforeEach(() => {
   element = document.createElement('div'); document.body.append(element); root = createRoot(element); dirty = vi.fn();
   mocks.api.mockReset();
   mocks.api.mockImplementation(async (path, options) => {
+    if (path.includes('/users/operations')) return {rows:[],hasMore:false};
     if (path.endsWith('/preview')) {
       const request = JSON.parse(options.body);
-      return { current, proposed: request, effectiveAt: request.effectiveAt, changes: [{ field: 'weeklyAllowance', before: 500, after: request.weeklyAllowance, audience: 'all_members' }] };
+      return { current, proposed: request, effectiveAt: request.effectiveAt, changes: [{ field: 'weeklyAllowance', before: 500, after: request.weeklyAllowance, audience: 'all_users' }] };
     }
     if (path.endsWith('/publish')) return { ...current, ...JSON.parse(options.body) };
     return { current, latestVersionId: current.id, versions: [current, earlier] };
@@ -47,7 +48,7 @@ describe('AI allowance editor', () => {
     expect(element.textContent).toContain('约 120 次 / 周');
     await prepare();
     expect(element.querySelector('dialog[open]').textContent).toContain('500 → 600');
-    expect(element.querySelector('dialog[open]').textContent).toContain('已有会员及新购会员');
+    expect(element.querySelector('dialog[open]').textContent).toContain('所有已注册用户及已有会员');
     expect(mocks.api.mock.calls.filter(([path]) => path.endsWith('/publish'))).toHaveLength(0);
     await click(button('确认保存'));
     expect(mocks.api.mock.calls.filter(([path]) => path.endsWith('/publish'))).toHaveLength(1);
@@ -74,7 +75,7 @@ describe('AI allowance editor', () => {
     expect(field('会员每周额度').value).toBe('300');
     expect(element.querySelector('dialog')).toBeNull();
     expect(dirty).toHaveBeenLastCalledWith(true);
-    expect(mocks.api).toHaveBeenCalledTimes(1);
+    expect(mocks.api.mock.calls.filter(([path]) => path === '/v1/admin/ai-rules')).toHaveLength(1);
     await input('语音转写', '0');
     expect(button('预览并保存').disabled).toBe(true);
     expect(field('语音转写').getAttribute('aria-invalid')).toBe('true');

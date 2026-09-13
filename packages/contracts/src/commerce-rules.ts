@@ -40,7 +40,7 @@ export type AiRuleChangeImpact = {
   field: string;
   before: number;
   after: number;
-  audience: 'eligible_new_accounts' | 'new_purchases' | 'all_members';
+  audience: 'eligible_new_accounts' | 'new_purchases' | 'all_members' | 'all_users';
 };
 
 export type AiRulePublishRequest = AiUsageRuleValues & {

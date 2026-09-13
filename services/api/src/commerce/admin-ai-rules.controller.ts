@@ -37,11 +37,12 @@ export class AdminAiRulesController {
     const parsed = aiRulePublishSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_ai_usage_rule');
     const data = await this.database.db.transaction(async (transaction) => {
+      const before = await this.rules.effective(transaction, new Date());
       const published = await this.rules.publish(transaction, parsed.data, request.opsStaff!.id);
       await this.audit.record({
         action: 'ops.ai_rules.publish', actorStaffId: request.opsStaff!.id, actorRole: request.opsStaff!.role,
         reason: '发布AI用量规则', requestId: request.id, targetType: 'ai_usage_rule', targetId: published.id,
-        afterState: published, metadata: { previousVersionId: published.previousVersionId },
+        beforeState: before, afterState: published, metadata: { previousVersionId: published.previousVersionId },
       }, transaction);
       return published;
     });

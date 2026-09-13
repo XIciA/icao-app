@@ -82,3 +82,14 @@ section { padding-top: 48px; }
 @media (max-width: 620px) { .rules-group,.rules-dialog { padding: 22px; }.rules-cost-row { grid-template-columns: 1fr; gap: 0; }.rules-cost-row p { margin-bottom: 0; }.rules-history dl { grid-template-columns: 1fr; }.rules-table th,.rules-table td { padding: 12px 8px; } }
 
 .report-filters{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin:24px 0}.report-filters label{display:grid;gap:8px;min-width:140px}.report-filters input,.report-filters select{max-width:300px}.report-filters button,button.account-choice{padding:10px 16px}.account-choice{display:block;margin:8px 0;text-align:left}.confirm-panel{border:2px solid #1F5ED9;margin:24px 0}.rules-table td{max-width:360px;overflow-wrap:anywhere}.ops-tabs{flex-wrap:wrap}.ops-header{flex-wrap:wrap}.rules-actions{align-items:center}fieldset label{display:grid;gap:8px} .empty-state{padding:32px;text-align:center}
+
+.users-table { min-width: 1250px; }
+.mono { font-family: ui-monospace, monospace; font-size: 12px; overflow-wrap: anywhere; }
+.user-drawer { margin: 0 0 0 auto; height: 100dvh; max-height: 100dvh; width: min(1000px, 96vw); max-width: 96vw; border: 0; border-left: 1px solid #ddd; padding: 28px; overflow-y: auto; background: #FBFAF7; color: #11161F; }
+.user-drawer::backdrop { background: #11161F55; }
+.user-drawer td { overflow-wrap: anywhere; }
+.detail-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; padding-bottom: 14px; border-bottom: 1px solid #ddd; }
+.detail-tabs .selected { background: #1F5ED9; color: white; }
+.danger-button { background: #DB2B33; color: white; border-color: #DB2B33; }
+.reset-group { margin-top: 36px; border-top: 1px solid #ddd; padding-top: 24px; }
+.rules-table pre { white-space: pre-wrap; max-width: 480px; font-size: 12px; }

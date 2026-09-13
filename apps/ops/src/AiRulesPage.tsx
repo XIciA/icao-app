@@ -1,3 +1,5 @@
+import { ResetAllowances } from './ResetAllowances';
+import { OperationsTable } from './OperationsTable';
 import type { AiRuleCatalog, AiRulePreview, AiRulePublishRequest, AiUsageRuleValues, AiUsageRuleVersion } from '@icao/contracts/commerce-rules';
 import { type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import { opsApi } from './api';
@@ -17,6 +19,7 @@ type Draft = Record<Field, string>;
 const dateText = (value: string) => Date.parse(value) === 0 ? '初始默认规则' : new Date(value).toLocaleString('zh-CN', { hour12: false });
 const fieldLabel = (field: string) => fields.find(({ key }) => key === field.replace(/^costs\./, ''))?.label ?? field;
 const impactText = {
+  all_users: '所有已注册用户及已有会员，下一次请求使用新规则',
   all_members: '生效后适用于已有会员及新购会员，已处理的请求不变',
   new_purchases: '仅适用于生效后的新购会员，已有会员保留原承诺',
   eligible_new_accounts: '仅适用于此后获得免费体验的新账号',
@@ -136,13 +139,15 @@ export function AiRulesPage({ onDirtyChange }: AiRulesPageProps) {
         <div className="rules-group"><h2>功能消耗</h2><div className="rules-costs">
           {fields.slice(2).map(({ key, label, min, max }) => <div className="rules-cost-row" key={key}><label>{label}<input type="number" inputMode="numeric" min={min} max={max} step="1" value={draft[key]} onChange={(event) => change(key, event.target.value)} aria-invalid={Boolean(parsed.errors[key])} aria-describedby={`${key}-error`} /><span className="field-error" id={`${key}-error`}>{parsed.errors[key]}</span></label><p className="muted">{parsed.errors[key] || parsed.errors.weeklyAllowance ? '—' : `每次占周额度 ${(Number(draft[key]) / parsed.values.weeklyAllowance * 100).toFixed(1)}% · 约 ${Math.floor(parsed.values.weeklyAllowance / Number(draft[key]))} 次 / 周`}</p></div>)}
         </div></div>
-        <div className="rules-group"><h2>生效时间</h2><label>生效方式<select value={timing} onChange={(event) => { setTiming(event.target.value as typeof timing); setPreview(undefined); }}><option value="now">确认保存后生效</option><option value="scheduled">指定时间生效</option></select></label>
+        <div className="rules-group"><h2>生效时间</h2><label>生效方式<select value={timing} onChange={(event) => { setTiming(event.target.value as typeof timing); setPreview(undefined); }}><option value="now">确认保存后生效</option></select></label>
           {timing === 'scheduled' ? <label className="rules-time">指定生效时间<input type="datetime-local" value={scheduledAt} onChange={(event) => setScheduledAt(event.target.value)} required />{!timeValid ? <span className="field-error">请选择未来的时间</span> : null}</label> : null}
-          <p className="muted">减少额度或提高消耗仅影响后续新购；已有会员的购买承诺保持不变。免费体验调整仅影响之后获得体验的账号。</p>
+          <p className="muted">所有用户统一适用新额度和功能消耗，包含已有会员。保留已使用额度，剩余百分比按新上限计算；调整规则不会重置消耗。</p>
         </div>
       </fieldset>
       <div className="rules-actions"><button className="primary" disabled={!changed || !valid || busy || loading}>{busy ? '正在处理…' : '预览并保存'}</button><button type="button" className="link-button" disabled={!changed || busy} onClick={() => { setDraft(draftFor(catalog.current)); setTiming('now'); setScheduledAt(''); setError(''); }}>放弃修改</button></div>
     </form>
+    <ResetAllowances onComplete={() => setLoadKey(key => key + 1)} />
+    <OperationsTable refresh={loadKey} />
     {preview ? <Dialog title="确认规则变更" busy={busy} onClose={() => { setPreview(undefined); setError(''); }}>
       <p className="muted">生效时间：{dateText(preview.result.effectiveAt)}</p>
       <div className="rules-table-scroll"><table className="rules-table"><thead><tr><th>项目</th><th>原值 → 新值</th><th>影响范围</th></tr></thead><tbody>{preview.result.changes.map((change) => <tr key={change.field}><td>{fieldLabel(change.field)}</td><td>{change.before} → {change.after}</td><td>{impactText[change.audience]}</td></tr>)}</tbody></table></div>

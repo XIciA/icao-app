@@ -1,3 +1,5 @@
+import { AdminUsersController } from './admin/admin-users.controller';
+import { AdminGlobalResetService } from './admin/admin-global-reset.service';
 import { AdminReportsController } from './admin/admin-reports.controller';
 import { AiAllowanceService } from './commerce/ai-allowance.service';
 import { AiUsageRulesService } from './commerce/ai-usage-rules.service';
@@ -32,7 +34,7 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
+      controllers: [AdminUsersController, AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
       providers: [
         { provide: OPS_API_CONFIG, useValue: config },
         {
@@ -68,6 +70,7 @@ export class OpsApiModule {
         RequireAdminAuthGuard,
         AdminRoleGuard,
         AdminDataService,
+        AdminGlobalResetService,
         AdminEntitlementService,
         AdminStaffService,
         AdminFeedbackStorageService,
