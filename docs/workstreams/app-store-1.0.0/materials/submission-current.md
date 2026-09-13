@@ -1,10 +1,12 @@
 # 听你五个 · 本次 App Store 送审材料唯一来源
 
-更新：2026-09-14。当前候选 **1.0.0（3524033）**，实施与检查中，尚未上传/重新提交。执行证据见[本轮记录](../../../records/workstreams/product-release-readiness/app-review-september14-execution.md)。
+更新：2026-09-14 03:01（北京时间）。**1.0.0（3524033）** 已上传 TestFlight（VALID）并重新提交 App Store；App与7/31/93天三项会员均为 **等待审核**，保留审核通过后自动发布设置。正式源码 `f8cee39f7bbcc1c23ff88033eec5bbd47627a5e1`。执行证据见[本轮记录](../../../records/workstreams/product-release-readiness/app-review-september14-execution.md)。
 
 本轮微信方案为：已安装微信显示入口，未安装隐藏，返回App重新检测；Apple与手机号/密码登录独立可用。不得沿用此前免安装SDK窗口或Safari授权的描述。CallKit已移除，保留随身听后台播放。用户提供的后台录屏直接使用，不要求额外微信或购买视频。
 
-审核回复草稿：
+视频 `持续音频的功能.mp4` 已作为审核附件完成上传与处理；受保护字段中的专用账号已验证密码登录及正式/沙盒会员可用。凭据不写入仓库。实际备注包含随身听入口和后台播放步骤。
+
+审核回复要点（已发送，完整原文保存在 App Store Connect）：
 
 Thank you for reviewing our app. We have addressed the three issues in a new build:
 
@@ -14,11 +16,11 @@ Thank you for reviewing our app. We have addressed the three issues in a new bui
 
 We also improved purchase confirmation and entitlement synchronization. Thank you for your review.
 
-以上草稿只在最终包、审核账号及视频附件确认后发送；不宣称已完成新包全部真机测试或已获苹果认可。
+以上回复已在最终包、审核账号及视频附件确认后发送；不宣称已完成新包全部真机测试或已获苹果认可。
 
 ## 历史提交：2026-09-10
 
-以下 3519587、WAITING_FOR_REVIEW 和“七项回复”是 2026-09-10 的历史事实；2026-09-12 Apple 已对该构建提出三项问题，不代表目前待重新提交版本的状态。商店文案、价格、截图与隐私基础资料可继续引用，但重新送审必须关联本轮确切构建与新视频。
+以下 3519587、WAITING_FOR_REVIEW 和“七项回复”是 2026-09-10 的历史事实；2026-09-12 Apple 已对该构建提出三项问题，不代表本轮3524033的状态。商店文案、价格、截图与隐私基础资料可继续引用，实际送审已关联本轮确切构建与新视频。
 
 2026-09-10 曾提交 1.0.0（3519587）及 7/31/93 天会员共四项。其平台核对状态如下。
 
