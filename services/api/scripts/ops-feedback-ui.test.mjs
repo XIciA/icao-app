@@ -50,7 +50,7 @@ describe('minimal ops feedback experience', () => {
     await click(button('返回反馈列表'));
     expect(revokeObjectURL).toHaveBeenCalledWith(imageUrl);
   });
-  it('shows only two business entries and opens full feedback without exposing contact on the list', async () => {
+  it('shows five focused business entries and opens full feedback without exposing contact on the list', async () => {
     await act(async () => { root.render(createElement(App)); });
     expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['用户反馈', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
     expect(element.textContent).toContain('反馈摘要'); expect(element.textContent).not.toContain('contact@example.test');

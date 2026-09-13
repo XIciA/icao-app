@@ -31,7 +31,9 @@ async function main(){
       password:randomBytes(32).toString('base64url'),email:'local-owner@readyoufife.com'};
     await writeFile(settingsPath,JSON.stringify(settings),{mode:0o600});
   }
-  const ssh=spawn('ssh',['-N','-i',join(homedir(),'.ssh/icao_app_codex'),'-o','BatchMode=yes','-o','ExitOnForwardFailure=yes','-o','ServerAliveInterval=20','-o','ServerAliveCountMax=3','-L','127.0.0.1:15432:127.0.0.1:5432','-L','127.0.0.1:18000:127.0.0.1:8000','root@47.108.90.19'],{stdio:'ignore'});
+  const databaseHost=execFileSync('ssh',['-i',join(homedir(),'.ssh/icao_app_codex'),'-o','BatchMode=yes','root@47.108.90.19',"docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' supabase-db"],{encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim().split(/\s+/)[0];
+  if(!databaseHost || !/^(?:\d{1,3}\.){3}\d{1,3}$/.test(databaseHost))throw new Error('database_tunnel_target_unavailable');
+  const ssh=spawn('ssh',['-N','-i',join(homedir(),'.ssh/icao_app_codex'),'-o','BatchMode=yes','-o','ExitOnForwardFailure=yes','-o','ServerAliveInterval=20','-o','ServerAliveCountMax=3','-L',`127.0.0.1:15432:${databaseHost}:5432`,'-L','127.0.0.1:18000:127.0.0.1:8000','root@47.108.90.19'],{stdio:'ignore'});
   // App is assigned after provisioning; shutdown may happen before it is ready.
   // eslint-disable-next-line prefer-const
   let app: Awaited<ReturnType<typeof createOpsApp>>|undefined;
