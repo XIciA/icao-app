@@ -41,7 +41,7 @@
           "role": "splash-1x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image.png",
-          "sha256": "151a5248d7dbf990a05ace78e6aa05d0d507f498e899d9c3318821ee02c955a8",
+          "sha256": "f159de44271c0a0efa57babddadacd23075240189b3b7b6cc47173d9e8c0c04d",
           "width": 160,
           "height": 160,
           "hasAlpha": true
@@ -50,7 +50,7 @@
           "role": "splash-2x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@2x.png",
-          "sha256": "ccca09fa551146ac908f263f767abaddbf911abe8ed2f653da09eb9e71cf5f9a",
+          "sha256": "12b9979b39fea7b924829d718ae958d422bfe02b9812b70e783ac0e367a9c5eb",
           "width": 320,
           "height": 320,
           "hasAlpha": true
@@ -59,7 +59,7 @@
           "role": "splash-3x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@3x.png",
-          "sha256": "a0cc462f3e948c14d963cdc9e13738207614530a74baf47d20f77d59f08cf961",
+          "sha256": "f05e7e96ab3cdf9a53ab77ad53dc7008ff17af50b0faa362259cfc846119d928",
           "width": 480,
           "height": 480,
           "hasAlpha": true
@@ -89,7 +89,8 @@
         ],
         "backgroundTolerance": 10,
         "minimumClearEdgeFraction": 0.04
-      }
+      },
+      "iosCornerRadiusFraction": 0.22
     },
     "generatedTargets": [
       {

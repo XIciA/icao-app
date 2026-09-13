@@ -6,7 +6,9 @@ import TrackPlayer, {
   IOSCategoryMode,
 } from 'react-native-track-player';
 
-import { isNativeRadioContentTrack, isNativeRadioIntervalTrack, radioIntervalStartPosition } from './native-queue';
+import { RadioOperationCoordinator } from './operation-coordinator';
+
+import { isNativeRadioContentTrack, isNativeRadioIntervalTrack } from './native-queue';
 
 type RadioRemoteHandlers = {
   next: () => Promise<void>;
@@ -16,6 +18,13 @@ type RadioRemoteHandlers = {
   seek: (position: number) => Promise<void>;
   stop: () => void;
 };
+
+const nativeMutations = new RadioOperationCoordinator();
+export const mutateRadioPlayer = <T>(current: () => boolean, operation: () => Promise<T>) => nativeMutations.run(current, operation);
+
+export type RadioPlaybackEvent = { type: Event; track?: unknown; code?: string; message?: string; paused?: boolean; permanent?: boolean };
+let playbackHandler: ((event: RadioPlaybackEvent) => void) | undefined;
+export function setRadioPlaybackHandler(handler?: (event: RadioPlaybackEvent) => void) { playbackHandler = handler; }
 
 let setupPromise: Promise<void> | undefined;
 let remoteHandlers: RadioRemoteHandlers | undefined;
@@ -31,7 +40,7 @@ export function setRadioRemoteHandlers(handlers?: RadioRemoteHandlers) {
 
 export function ensureRadioTrackPlayer() {
   setupPromise ??= TrackPlayer.setupPlayer({
-    autoHandleInterruptions: true,
+    autoHandleInterruptions: false,
     autoUpdateMetadata: true,
     backBuffer: 30,
     iosCategory: IOSCategory.Playback,
@@ -64,55 +73,64 @@ export function ensureRadioTrackPlayer() {
     ],
     progressUpdateEventInterval: 1,
   }));
-  return setupPromise;
+  const attempt = setupPromise;
+  void attempt.catch(() => { if (setupPromise === attempt) setupPromise = undefined; });
+  return attempt;
 }
 
-async function run(handler: (() => void | Promise<void>) | undefined, fallback: () => Promise<void>) {
-  if (handler) {
-    await handler();
-    return;
+async function safeRun(handler: (() => void | Promise<void>) | undefined, fallback: () => Promise<void>) {
+  try {
+    if (handler) await handler();
+    else await fallback();
+  } catch {
+    playbackHandler?.({ type: Event.PlaybackError, code: 'radio_remote_command_failed' });
   }
-  await fallback();
 }
 
 export async function radioPlaybackService() {
-  TrackPlayer.addEventListener(Event.PlaybackActiveTrackChanged, ({ track }) => {
-    if (isNativeRadioIntervalTrack(track)) {
-      void TrackPlayer.setRate(1)
-        .then(() => TrackPlayer.seekTo(radioIntervalStartPosition(track.radioIntervalSeconds)))
-        .catch(async () => {
-          try {
-            await TrackPlayer.skipToNext(0);
-            await TrackPlayer.play();
-          } catch {
-            // The provider reports content errors. A broken interval must not stop a prepared next track.
-          }
-        });
-      return;
-    }
-    if (isNativeRadioContentTrack(track)) void TrackPlayer.setRate(radioContentPlaybackRate);
+  let transition = 0;
+  TrackPlayer.addEventListener(Event.PlaybackActiveTrackChanged, (event) => {
+    const request = ++transition;
+    const { track } = event;
+    playbackHandler?.({ ...event, type: Event.PlaybackActiveTrackChanged });
+    void mutateRadioPlayer(() => request === transition, async () => {
+      if (isNativeRadioIntervalTrack(track)) {
+        await TrackPlayer.setRate(1);
+      } else if (isNativeRadioContentTrack(track)) {
+        await TrackPlayer.setRate(radioContentPlaybackRate);
+      }
+    }).catch(() => playbackHandler?.({ type: Event.PlaybackError, code: 'radio_transition_failed' }));
+  });
+  TrackPlayer.addEventListener(Event.PlaybackError, (event) => {
+    playbackHandler?.({ ...event, type: Event.PlaybackError });
+  });
+  TrackPlayer.addEventListener(Event.PlaybackQueueEnded, (event) => {
+    playbackHandler?.({ ...event, type: Event.PlaybackQueueEnded });
+  });
+  TrackPlayer.addEventListener(Event.RemoteDuck, (event) => {
+    playbackHandler?.({ ...event, type: Event.RemoteDuck });
   });
   TrackPlayer.addEventListener(Event.RemotePlay, () => {
-    void run(remoteHandlers?.play, TrackPlayer.play);
+    void safeRun(remoteHandlers?.play, TrackPlayer.play);
   });
   TrackPlayer.addEventListener(Event.RemotePause, () => {
-    void run(remoteHandlers?.pause, TrackPlayer.pause);
+    void safeRun(remoteHandlers?.pause, TrackPlayer.pause);
   });
   TrackPlayer.addEventListener(Event.RemoteNext, () => {
-    void run(remoteHandlers?.next, async () => {
+    void safeRun(remoteHandlers?.next, async () => {
       try { await TrackPlayer.skipToNext(0); } catch { /* No prepared next track. */ }
     });
   });
   TrackPlayer.addEventListener(Event.RemotePrevious, () => {
-    void run(remoteHandlers?.previous, async () => {
+    void safeRun(remoteHandlers?.previous, async () => {
       try { await TrackPlayer.skipToPrevious(0); } catch { /* No prepared previous track. */ }
     });
   });
   TrackPlayer.addEventListener(Event.RemoteSeek, ({ position }) => {
     const handler = remoteHandlers?.seek;
-    void run(handler ? () => handler(position) : undefined, () => TrackPlayer.seekTo(position));
+    void safeRun(handler ? () => handler(position) : undefined, () => TrackPlayer.seekTo(position));
   });
   TrackPlayer.addEventListener(Event.RemoteStop, () => {
-    void run(remoteHandlers?.stop, TrackPlayer.stop);
+    void safeRun(remoteHandlers?.stop, TrackPlayer.stop);
   });
 }

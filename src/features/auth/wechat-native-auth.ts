@@ -14,7 +14,7 @@ export type NativeWechatAuthModule = {
   getStatus(): NativeWechatAuthStatus;
 };
 
-const AUTHORIZATION_TIMEOUT_MS = 125_000;
+const AUTHORIZATION_TIMEOUT_MS = 245_000;
 
 export function createWechatNativeAuthBoundary(
   nativeModule: NativeWechatAuthModule | null,

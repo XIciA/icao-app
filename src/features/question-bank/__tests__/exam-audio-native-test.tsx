@@ -1,6 +1,7 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AppState, type AppStateStatus } from 'react-native';
 import * as Speech from 'expo-speech';
+import { audioSessionOrchestrator } from '@/platform/audio';
 import { ExamQuestionAudio } from '../components/ExamQuestionAudio.native';
 import type { AudioInterruptionEvent } from '../../../../modules/icao-audio-interruption/src';
 const mockPlayer = { pause: jest.fn(), play: jest.fn(), seekTo: jest.fn(async () => undefined), replace: jest.fn(), playbackRate: 1, currentTime: 0 };
@@ -60,20 +61,22 @@ it('resumes ordinary background interruption at the current position without iss
   await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(2));
   expect(mockPlayer.seekTo).toHaveBeenLastCalledWith(7); expect(screen.queryByText('重播本题音频')).toBeNull();
 });
-it('allows exactly one explicit replay following a real call interruption', async () => {
+it('allows explicit replay after each actual audio interruption without a call-specific allowance', async () => {
   const screen = await playing(); mockPlayer.currentTime = 4;
-  await act(() => { mockInterruption?.({ phase: 'began', isCall: true }); mockAppState?.('inactive'); });
-  await act(() => { mockInterruption?.({ phase: 'ended', isCall: true }); mockAppState?.('active'); });
+  await act(() => { mockInterruption?.({ phase: 'began' }); mockAppState?.('inactive'); });
+  await act(() => { mockInterruption?.({ phase: 'ended' }); mockAppState?.('active'); });
   expect(mockPlayer.play).toHaveBeenCalledTimes(1);
   await fireEvent.press(screen.getByText('重播本题音频'));
   await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(2)); expect(mockPlayer.seekTo).toHaveBeenLastCalledWith(0);
-  await act(() => { mockInterruption?.({ phase: 'began', isCall: true }); mockInterruption?.({ phase: 'ended', isCall: true }); });
-  expect(screen.queryByText('重播本题音频')).toBeNull();
+  await act(() => { mockInterruption?.({ phase: 'began' }); mockInterruption?.({ phase: 'ended' }); });
+  expect(screen.getByText('重播本题音频')).toBeTruthy();
+  await fireEvent.press(screen.getByText('重播本题音频'));
+  await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(3));
 });
-it('does not replay audio when recording starts or when a call begins after recording already stopped the question', async () => {
+it('does not replay audio when recording starts or when an interruption begins after recording already stopped the question', async () => {
   const screen = await playing();
   await screen.rerender(<ExamQuestionAudio {...props} pauseRequest={1} />);
-  await act(() => { mockInterruption?.({ phase: 'began', isCall: true }); mockInterruption?.({ phase: 'ended', isCall: true }); });
+  await act(() => { mockInterruption?.({ phase: 'began' }); mockInterruption?.({ phase: 'ended' }); });
   expect(mockPlayer.play).toHaveBeenCalledTimes(1); expect(screen.queryByText('重播本题音频')).toBeNull();
 });
 it('uses existing system speech for an OPI question and never autoplays speech in readonly history', async () => {
@@ -84,4 +87,49 @@ it('uses existing system speech for an OPI question and never autoplays speech i
   expect(Speech.speak).not.toHaveBeenCalled();
   await fireEvent.press(history.getByText('播放题目'));
   await waitFor(() => expect(Speech.speak).toHaveBeenCalledTimes(1));
+});
+
+it('does not resume on a late interruption end after recording', async () => {
+  const screen = await playing();
+  await act(() => mockInterruption?.({ phase: 'began' }));
+  expect(screen.queryByText('重播本题音频')).toBeNull();
+  await screen.rerender(<ExamQuestionAudio {...props} pauseRequest={1} />);
+  await act(() => mockInterruption?.({ phase: 'ended' }));
+  expect(screen.queryByText('重播本题音频')).toBeNull();
+  expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+});
+
+it('never unlocks replay when an interruption happens after the question finished', async () => {
+  const screen = await playing();
+  await act(async () => {
+    mockStatus = { ...mockStatus, didJustFinish: true, playing: false, currentTime: 10 };
+    await screen.rerender(<ExamQuestionAudio {...props} />);
+  });
+  expect(screen.getByText('音频已播放')).toBeTruthy();
+  await act(() => { mockInterruption?.({ phase: 'began' }); mockInterruption?.({ phase: 'ended' }); });
+  expect(screen.queryByText('重播本题音频')).toBeNull();
+  expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+});
+
+it.each(['resolve', 'reject'] as const)('a superseded playback continuation (%s) releases only its own lease and retains the newer owner', async (settlement) => {
+  let finishFirstStop!: () => void;
+  jest.mocked(Speech.stop).mockImplementationOnce(() => new Promise<void>((resolve, reject) => { finishFirstStop = () => settlement === 'resolve' ? resolve() : reject(new Error('old stop failed')); }));
+  const practice = { ...props, exam: false, autoPlay: false };
+  const screen = await render(<ExamQuestionAudio {...practice} />);
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(Speech.stop).toHaveBeenCalledTimes(1));
+  const first = await jest.mocked(audioSessionOrchestrator.acquire).mock.results[0]!.value;
+
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+  const second = await jest.mocked(audioSessionOrchestrator.acquire).mock.results[1]!.value;
+  expect(second.token).not.toBe(first.token);
+  await act(async () => { finishFirstStop(); });
+  expect(audioSessionOrchestrator.release).toHaveBeenCalledWith(first);
+  expect(audioSessionOrchestrator.release).not.toHaveBeenCalledWith(second);
+  expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+
+  // The newer ref must still be retained so a real pause releases it.
+  await screen.rerender(<ExamQuestionAudio {...practice} pauseRequest={1} />);
+  expect(audioSessionOrchestrator.release).toHaveBeenCalledWith(second);
 });

@@ -58,6 +58,7 @@ export function loginErrorMessage(code: string) {
     case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';
     case 'wechat_not_installed': return '当前设备未安装微信，请改用其他方式登录。';
     case 'wechat_auth_configuration_pending': return '微信登录正在配置，请改用手机号或 Apple 登录。';
+    case 'wechat_auth_timeout': return '微信授权已超时，请重新登录。';
     case 'wechat_auth_failed':
     case 'invalid_wechat_auth_response': return '微信登录未完成，请重试或改用其他方式。';
     case 'social_auth_cancelled': return '已取消登录。';

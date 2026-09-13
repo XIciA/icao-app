@@ -41,17 +41,21 @@ jest.mock('expo-file-system', () => {
     get exists() { return [...mockFiles].some((value) => value.startsWith(this.uri)); }
     create() { return undefined; }
     delete() { [...mockFiles].filter((value) => value.startsWith(this.uri)).forEach((value) => mockFiles.delete(value)); }
+    list() { return [...mockFiles].filter((value) => value.startsWith(`${this.uri}/`)).map((uri) => new MockFile(uri)); }
   }
   class MockFile {
     uri: string;
     constructor(first: MockDirectory | string, ...parts: string[]) { this.uri = [typeof first === 'string' ? first : first.uri, ...parts].join('/'); }
     get exists() { return mockFiles.has(this.uri); }
     get size() { return 10; }
+    get name() { return this.uri.split('/').pop()!; }
+    get modificationTime() { return 0; }
     async bytes() { return new Uint8Array(10); }
     delete() { mockFiles.delete(this.uri); }
+    move(destination: MockFile) { mockFiles.delete(this.uri); this.uri = destination.uri; mockFiles.add(this.uri); }
     static async downloadFileAsync(_url: string, file: MockFile) { mockFiles.add(file.uri); return file; }
   }
-  return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document') } };
+  return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document'), cache: new MockDirectory('file:///cache') } };
 });
 
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank, questionBankRepository } from '../data/repository';
@@ -61,6 +65,8 @@ import {
   readMemberTopicCache,
   writeMemberTopicCache,
   inspectOfflineMemberTopicAccess,
+  cacheMemberResource,
+  resolveOfflineMemberResource,
 } from '../data/member-content-cache.native';
 import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import resourceManifest from '../../../../content/question-banks/resources/manifest.source.json';
@@ -670,6 +676,191 @@ describe('embeddedQuestionBankRepository', () => {
     const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
     jest.mocked(Storage.setItem).mockRejectedValueOnce(new Error('disk_full'));
     await expect(resolveRemoteQuestionBankAsset(topic!.cards[0].audio!)).resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
+  });
+
+  it('deduplicates the same verified resource while allowing a different track to download concurrently', async () => {
+    await authenticatedContentApi();
+    const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    const paths = topic!.cards.slice(0, 2).map(card => card.audio!);
+    const download = File.downloadFileAsync;
+    let release!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; });
+    const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      await held;
+      return download(...args);
+    });
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    const first = cacheMemberResource(paths[0], 'https://example.test/first', metadata);
+    const duplicate = cacheMemberResource(paths[0], 'https://example.test/first-refreshed', metadata);
+    const second = cacheMemberResource(paths[1], 'https://example.test/second', metadata);
+    try {
+      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(2));
+    } finally { release(); }
+    const results = await Promise.all([first, duplicate, second]);
+    expect(results[0]).toBe(results[1]);
+    expect(results[0]).not.toBe(results[2]);
+    expect(mockFiles.size).toBe(2);
+    expect([...mockFiles].some(path => path.endsWith('.part'))).toBe(false);
+  });
+
+  it('signs out without waiting for a stalled transfer and discards its late downloaded file', async () => {
+    await authenticatedContentApi();
+    const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
+    const download = File.downloadFileAsync;
+    let release!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; });
+    const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      await held;
+      return download(...args);
+    });
+    const pending = cacheMemberResource(topic!.cards[0].audio!, 'https://example.test/slow', {
+      checksum: 'ab'.repeat(32), sizeBytes: 10,
+    });
+    const rejected = expect(pending).rejects.toThrow('content_account_changed');
+    try {
+      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(1));
+      let signedOut = false;
+      const signingOut = activateQuestionBankContentAccount(undefined).then(() => { signedOut = true; });
+      await waitFor(() => expect(signedOut).toBe(true));
+      await signingOut;
+    } finally { release(); }
+    await rejected;
+    expect(mockFiles.size).toBe(0);
+    expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(false);
+  });
+
+  it('bounds temporary authorized public copies, keeps recent hits, and never turns them into offline member access', async () => {
+    await activateQuestionBankContentAccount('temporary-account');
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    const copies: string[] = [];
+    for (let index = 0; index < 8; index++) {
+      copies.push((await cacheMemberResource(`/public/${index}.mp3`, 'https://example.test/audio', metadata, { temporary: true }))!);
+    }
+    await cacheMemberResource('/public/0.mp3', 'https://example.test/refreshed', metadata, { temporary: true });
+    await cacheMemberResource('/public/8.mp3', 'https://example.test/audio', metadata, { temporary: true });
+    expect(mockFiles.size).toBe(8);
+    expect(mockFiles.has(copies[0])).toBe(true);
+    expect(mockFiles.has(copies[1])).toBe(false);
+    await expect(resolveOfflineMemberResource('/public/0.mp3')).resolves.toBeUndefined();
+    await activateQuestionBankContentAccount(undefined);
+    expect(mockFiles.size).toBe(0);
+  });
+
+  it('rejects oversized and corrupted temporary copies without leaving files or granting offline access', async () => {
+    await activateQuestionBankContentAccount('temporary-account');
+    await expect(cacheMemberResource('/public/large.mp3', 'https://example.test/audio', {
+      checksum: 'ab'.repeat(32), sizeBytes: 17 * 1_024 * 1_024,
+    }, { temporary: true })).resolves.toBeUndefined();
+    await expect(cacheMemberResource('/public/corrupt.mp3', 'https://example.test/audio', {
+      checksum: 'cd'.repeat(32), sizeBytes: 10,
+    }, { temporary: true })).rejects.toThrow('resource_checksum_mismatch');
+    expect(mockFiles.size).toBe(0);
+  });
+
+  it('caps native transfer concurrency so rapid track changes can fall back without accumulating download jobs', async () => {
+    await activateQuestionBankContentAccount('temporary-account');
+    const download = File.downloadFileAsync;
+    let release!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; });
+    const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      await held;
+      return download(...args);
+    });
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    const pending = Array.from({ length: 4 }, (_, index) => cacheMemberResource(
+      `/public/${index}.mp3`, 'https://example.test/slow', metadata, { temporary: true },
+    ));
+    try {
+      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(4));
+      await expect(cacheMemberResource('/public/overflow.mp3', 'https://example.test/slow', metadata, { temporary: true }))
+        .resolves.toBeUndefined();
+      expect(downloading).toHaveBeenCalledTimes(4);
+    } finally { release(); }
+    await Promise.all(pending);
+    expect(mockFiles.size).toBe(4);
+  });
+
+  it('applies the temporary byte budget even before reaching the file count limit', async () => {
+    await activateQuestionBankContentAccount('temporary-account');
+    const sizeBytes = 16 * 1_024 * 1_024;
+    jest.spyOn(File.prototype, 'size', 'get').mockReturnValue(sizeBytes);
+    for (let index = 0; index < 5; index++) {
+      await cacheMemberResource(`/public/large-${index}.mp3`, 'https://example.test/audio', {
+        checksum: 'ab'.repeat(32), sizeBytes,
+      }, { temporary: true });
+    }
+    expect(mockFiles.size).toBe(4);
+    expect([...mockFiles].some(uri => uri.includes('large-0.mp3'))).toBe(false);
+  });
+
+  it('prepares authorized radio audio as a temporary local file without granting offline member access', async () => {
+    await authenticatedContentApi();
+    const path = '/radio/free-audio.mp3';
+    await expect(resolveRemoteQuestionBankAsset(path, { preferDownloaded: true }))
+      .resolves.toMatch(/^file:\/\/\/cache\/icao-authorized-content\//);
+    await expect(resolveOfflineMemberResource(path)).resolves.toBeUndefined();
+    expect([...mockStorageValues.keys()].some(key => key.endsWith('.checksum'))).toBe(false);
+  });
+
+  it('keeps authorized radio streaming available when temporary caching fails', async () => {
+    await authenticatedContentApi();
+    jest.spyOn(File, 'downloadFileAsync').mockRejectedValue(new Error('disk_full'));
+    await expect(resolveRemoteQuestionBankAsset('/radio/free-audio.mp3', { preferDownloaded: true }))
+      .resolves.toMatch(/^https:\/\/cloud.readyoufife.com\//);
+    expect(mockFiles.size).toBe(0);
+  });
+
+  it('does not reuse a temporary radio copy after the resource API denies access', async () => {
+    const { request } = await authenticatedContentApi();
+    const path = '/radio/free-audio.mp3';
+    await expect(resolveRemoteQuestionBankAsset(path, { preferDownloaded: true }))
+      .resolves.toMatch(/^file:\/\/\/cache\//);
+    request.mockResolvedValue({ ok: false, status: 403, json: async () => ({
+      error: { code: 'membership_required', message: 'Membership required' },
+    }) } as Response);
+    await expect(resolveRemoteQuestionBankAsset(path, { preferDownloaded: true }))
+      .rejects.toMatchObject({ status: 403 });
+    expect(mockFiles.size).toBe(0);
+  });
+
+  it('discards obsolete radio downloads but preserves a newer subscriber sharing the same bytes', async () => {
+    await activateQuestionBankContentAccount('temporary-account');
+    const metadata = { checksum: 'ab'.repeat(32), sizeBytes: 10 };
+    const download = File.downloadFileAsync;
+    for (const hasNewSubscriber of [false, true]) {
+      let current = true;
+      let release!: () => void;
+      let started!: () => void;
+      const held = new Promise<void>((resolve) => { release = resolve; });
+      const downloading = new Promise<void>((resolve) => { started = resolve; });
+      const spy = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+        started();
+        await held;
+        return download(...args);
+      });
+      const path = `/public/stale-${hasNewSubscriber}.mp3`;
+      const old = cacheMemberResource(path, 'https://example.test/old', metadata, {
+        temporary: true, isCurrent: () => current,
+      });
+      await downloading;
+      current = false;
+      let newer: Promise<string | undefined> | undefined;
+      if (hasNewSubscriber) {
+        let subscribed!: () => void;
+        const subscription = new Promise<void>((resolve) => { subscribed = resolve; });
+        newer = cacheMemberResource(path, 'https://example.test/new', metadata, {
+          temporary: true, isCurrent: () => { subscribed(); return true; },
+        });
+        await subscription;
+      }
+      release();
+      await expect(old).resolves.toBeUndefined();
+      if (newer) await expect(newer).resolves.toMatch(/^file:\/\/\/cache\/icao-authorized-content\//);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(mockFiles.size).toBe(hasNewSubscriber ? 1 : 0);
+      expect([...mockFiles].some(uri => uri.endsWith('.part'))).toBe(false);
+      spy.mockRestore();
+    }
   });
 
 

@@ -46,7 +46,7 @@ function hasRequiredIOSSendAuthRuntime(objectiveCMetadata) {
 function hasRequiredIOSSendAuthSource(source) {
   return [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
   ].every((anchor) => source.includes(anchor));
 }
 
@@ -68,12 +68,12 @@ if (process.argv.includes('--self-test-ios-macho-metadata')) {
   }
   const completeSource = [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
   ].join('\n');
   if (!hasRequiredIOSSendAuthSource(completeSource)) fail('ios_sendauth_source_positive_self_test');
   for (const missingAnchor of [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: controller, delegate: self)',
+    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
   ]) {
     if (hasRequiredIOSSendAuthSource(completeSource.replace(missingAnchor, ''))) {
       fail('ios_sendauth_source_negative_self_test');
@@ -168,6 +168,8 @@ for (const [platform, source] of [['ios', iosBridge], ['android', androidBridge]
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_timeout_generation_guard_missing');
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_callback_generation_guard_missing');
 if (!hasRequiredIOSSendAuthSource(iosBridge)) fail('ios_sendauth_call_chain_missing');
+if (/guard WXApi\.isWXAppInstalled\(\)/u.test(iosBridge)) fail('ios_no_install_authorization_blocked');
+if (!iosBridge.includes('pending.presentation?.dismiss(animated: true)')) fail('ios_auth_presentation_cleanup_missing');
 if (!androidBridge.includes('takePending(responseState)')) fail('android_callback_generation_guard_missing');
 if (!androidBridge.includes('takePending(state)')) fail('android_timeout_generation_guard_missing');
 if (/takePending\(\s*\)/u.test(`${iosBridge}\n${androidBridge}`)) fail('native_unguarded_pending_take_present');

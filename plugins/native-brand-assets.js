@@ -5,11 +5,30 @@ const { createRequire } = require('node:module');
 const { IOSConfig, withBaseMod } = require('expo/config-plugins');
 const fromExpo = createRequire(require.resolve('expo/package.json'));
 const { generateImageAsync } = fromExpo('@expo/image-utils');
+const fromImageUtils = createRequire(fromExpo.resolve('@expo/image-utils'));
+const Jimp = fromImageUtils('jimp-compact');
 const { setIconAsync } = fromExpo('@expo/prebuild-config/build/plugins/icons/withAndroidIcons');
 const { setSplashImageDrawablesAsync } = fromExpo('@expo/prebuild-config/build/plugins/unversioned/expo-splash-screen/withAndroidSplashImages');
 
 const MASTER = 'assets/images/icon-native.png';
 const APPROVED_SHA256 = '2e9401acce52ec48e675ca2d8df1e1659266cd0ad95698033880c5542967577b';
+
+// The launcher applies its own mask. Launch-screen image views do not: apply the
+// same rounded treatment as our in-App logo, without changing the approved artwork.
+async function roundedSplash(source) {
+  const image = await Jimp.read(source);
+  const { width, height, data } = image.bitmap;
+  const radius = width * 0.22;
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const dx = Math.max(radius - (x + 0.5), (x + 0.5) - (width - radius), 0);
+      const dy = Math.max(radius - (y + 0.5), (y + 0.5) - (height - radius), 0);
+      const coverage = Math.max(0, Math.min(1, radius + 0.5 - Math.hypot(dx, dy)));
+      data[(y * width + x) * 4 + 3] = Math.round(255 * coverage);
+    }
+  }
+  return image.getBufferAsync(Jimp.MIME_PNG);
+}
 
 async function assertApprovedMaster(projectRoot) {
   const source = await fs.readFile(path.join(projectRoot, MASTER));
@@ -30,7 +49,7 @@ async function iosBrandProducts(projectRoot) {
       src: path.join(projectRoot, MASTER), width: artifact.width, height: artifact.width,
       ...(artifact.opaque ? { removeTransparency: true, resizeMode: 'cover', backgroundColor: '#ffffff' } : {}),
     });
-    return { ...artifact, source };
+    return { ...artifact, source: artifact.opaque ? source : await roundedSplash(source) };
   }));
 }
 
