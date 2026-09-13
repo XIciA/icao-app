@@ -224,7 +224,7 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(mockApiRequest.mock.calls.filter(([path]) => path === '/v1/commerce/catalog')).toHaveLength(2);
   });
 
-  it('verifies and finishes a purchase before presenting the server entitlement', async () => {
+  it('presents the verified server entitlement without another blocking refresh', async () => {
     const purchased = transaction('production');
     const fakeProvider = provider({
       purchase: jest.fn(async () => ({
@@ -279,9 +279,50 @@ describe('<CommerceRuntimeProvider />', () => {
     expect(currentCommerce.entitlementChange).toMatchObject({
       accountId: firstAccountId,
       environment: 'production',
-      reason: 'purchase',
+      reason: 'transaction-verification',
       snapshot: expect.objectContaining({ membership: expect.objectContaining({ active: true }) }),
     });
+  });
+
+  it('shows verified purchase success before native finish drains without allowing a duplicate purchase', async () => {
+    const purchased = transaction('production', 'finish-delayed');
+    let finish!: () => void;
+    let verified = false;
+    const fakeProvider = provider({
+      purchase: jest.fn(async () => ({ ok: true, state: 'succeeded', value: {
+        transaction: purchased, entitlementGranted: false, transactionFinished: false,
+      } } as const)),
+      drainTransactionInbox: jest.fn(() => inbox([purchased])),
+      finishTransaction: jest.fn(() => new Promise(resolve => {
+        finish = () => resolve({ ok: true, state: 'succeeded', value: {
+          transactionReference: purchased.transactionReference, transactionFinished: true, completion: 'finished',
+        } });
+      })),
+    });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    mockApiRequest.mockImplementation((path: string) => {
+      if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
+      if (path === '/v1/commerce/entitlements/current') {
+        if (verified) return Promise.reject(new Error('redundant_refresh_failed'));
+        return Promise.resolve(ENTITLEMENTS);
+      }
+      if (path === '/v1/commerce/apple/transactions/verify') {
+        verified = true;
+        return Promise.resolve({ created: true, transactionId: purchased.transactionReference,
+          entitlement: entitlement('production', true) });
+      }
+      throw new Error(`unexpected_api:${path}`);
+    });
+    const screen = await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    await act(async () => { expect(await currentCommerce.purchase('membership_31d_v1')).toMatchObject({ ok: true }); });
+    expect(currentCommerce.entitlement?.membership.active).toBe(true);
+    expect(currentCommerce.phase).toBe('ready');
+    expect(mockUncertainPurchaseStore.has(mockAccountId)).toBe(false);
+    await act(async () => { expect(await currentCommerce.purchase('membership_31d_v1')).toMatchObject({ ok: false }); });
+    expect(fakeProvider.purchase).toHaveBeenCalledTimes(1);
+    await act(async () => finish());
+    await screen.unmount();
   });
 
   it('selects sandbox entitlement only after StoreKit supplies verified sandbox history', async () => {
@@ -441,7 +482,7 @@ describe('<CommerceRuntimeProvider />', () => {
     await act(async () => { await currentCommerce.refresh(); });
 
     expect(currentCommerce.phase).toBe('pending');
-    expect(currentCommerce.message).toContain('仍在等待');
+    expect(currentCommerce.message).toContain('确认中');
     expect(fakeProvider.purchase).toHaveBeenCalledTimes(1);
   });
 

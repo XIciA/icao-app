@@ -1,5 +1,6 @@
 /* eslint-disable import/first */
 import React from 'react';
+import { Asset } from 'expo-asset';
 import { act, render } from '@testing-library/react-native';
 import type { RadioPlayerContextValue } from '../types';
 import { RadioOperationCoordinator } from '../operation-coordinator';
@@ -58,6 +59,42 @@ function deferred<T>() { let resolve!: (value: T) => void; const promise = new P
 
 describe('radio native queue integration', () => {
   beforeEach(() => { mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockResolve.mockImplementation(async (path) => `file://${path}`); });
+  afterEach(() => jest.restoreAllMocks());
+
+  it.each(['order', 'repeatOne', 'shuffle'] as const)('keeps bundled artwork on every content and interval through %s transitions', async (mode) => {
+    const artwork = 'file:///app/assets/icon-native.png';
+    jest.spyOn(Asset, 'fromModule').mockReturnValue({ localUri: null, uri: artwork } as Asset);
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.setMode(mode));
+    await act(() => mockContext.setIntervalSeconds(5)); await flush();
+    await act(() => mockContext.selectTrack('t0', true)); await flush();
+    expect(mockQueue.filter((track) => track.radioTrackKind === 'content')).toHaveLength(4);
+    expect(mockQueue.filter((track) => track.radioTrackKind === 'interval')).toHaveLength(3);
+    expect(mockQueue.every((track) => track.artwork === artwork)).toBe(true);
+    mockActive = 1;
+    await act(() => mockPlaybackHandler?.({ type: 'active', track: mockQueue[1] })); await flush();
+    expect(mockContext.waitingForNext).toBe(true);
+    expect(mockQueue[mockActive].artwork).toBe(artwork);
+    mockActive = 2;
+    await act(() => mockPlaybackHandler?.({ type: 'active', track: mockQueue[2] })); await flush();
+    await act(() => mockContext.pause()); await flush();
+    await act(() => mockContext.play()); await flush();
+    expect(mockQueue.every((track) => track.artwork === artwork)).toBe(true);
+    expect(mockQueue[0].radioTrackKind).toBe('content');
+    await view.unmount();
+  });
+
+  it('still plays and prepares successors if artwork resolution fails', async () => {
+    jest.spyOn(Asset, 'fromModule').mockImplementation(() => { throw new Error('missing_artwork'); });
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.selectTrack('t0', true)); await flush();
+    expect(mockPlay).toHaveBeenCalled();
+    expect(mockQueue).toHaveLength(4);
+    expect(mockContext.error).toBeUndefined();
+    await view.unmount();
+  });
+
   it('keeps a bounded prepared native window while automatic transitions prune history', async () => {
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
     await act(() => mockContext.activateSession()); await flush();

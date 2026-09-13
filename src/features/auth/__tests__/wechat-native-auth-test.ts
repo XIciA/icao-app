@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import {
   assertWechatChallengeMatchesNativeApp,
   createWechatNativeAuthBoundary,
@@ -19,14 +20,45 @@ describe('WeChat native authorization boundary', () => {
     });
   });
 
-  it('uses the native authorization capability even when the WeChat app is absent', async () => {
+  it('rechecks installation before authorization and never opens an absent client', async () => {
     const nativeModule = nativeModuleDouble();
-    nativeModule.getStatus.mockReturnValue({ appId: 'wx12345678', configured: true, installed: false, supported: true });
-    nativeModule.authorize.mockResolvedValue({ code: 'official-sdk-code', state: 'sms-state' });
     const boundary = createWechatNativeAuthBoundary(nativeModule);
-    expect(boundary.getStatus()).toMatchObject({ installed: false, supported: true });
-    await expect(boundary.authorize('sms-state')).resolves.toEqual({ code: 'official-sdk-code', state: 'sms-state' });
-    expect(nativeModule.authorize).toHaveBeenCalledWith('sms-state');
+    expect(boundary.getStatus().installed).toBe(true);
+    nativeModule.getStatus.mockReturnValue({ appId: 'wx12345678', configured: true, installed: false, supported: true });
+    await expect(boundary.authorize('state')).rejects.toThrow('wechat_not_installed');
+    expect(nativeModule.authorize).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    [{ configured: false, installed: true, supported: true }, 'wechat_auth_configuration_pending'],
+    [{ configured: true, installed: true, supported: false }, 'wechat_auth_unavailable'],
+  ])('keeps installed-client capability errors distinct from missing installation', async (status, error) => {
+    const nativeModule = nativeModuleDouble();
+    nativeModule.getStatus.mockReturnValue(status);
+    await expect(createWechatNativeAuthBoundary(nativeModule).authorize('state')).rejects.toThrow(error);
+    expect(nativeModule.authorize).not.toHaveBeenCalled();
+  });
+
+  it('does not launch on an installation query failure', async () => {
+    const nativeModule = nativeModuleDouble();
+    nativeModule.getStatus.mockImplementation(() => { throw new Error('native query failed'); });
+    await expect(createWechatNativeAuthBoundary(nativeModule).authorize('state')).rejects.toThrow('wechat_status_unavailable');
+    expect(nativeModule.authorize).not.toHaveBeenCalled();
+  });
+
+  it('keeps the pre-existing Android authorization contract unchanged', async () => {
+    const originalOS = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' });
+    try {
+      const nativeModule = nativeModuleDouble();
+      nativeModule.getStatus.mockReturnValue({ configured: true, installed: false, supported: true });
+      nativeModule.authorize.mockResolvedValue({ code: 'android-code', state: 'android-state' });
+      await expect(createWechatNativeAuthBoundary(nativeModule).authorize('android-state')).resolves.toEqual({
+        code: 'android-code', state: 'android-state',
+      });
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalOS });
+    }
   });
 
   it('rejects a production challenge from an App ID other than the one compiled into the app', () => {

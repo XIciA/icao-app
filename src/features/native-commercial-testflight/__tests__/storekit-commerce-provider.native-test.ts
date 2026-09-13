@@ -708,6 +708,28 @@ describe('StoreKit native commerce provider', () => {
     );
   });
 
+  it.each([false, true])('matches UUID identity regardless of native casing (uppercase request: %s)', async (uppercase) => {
+    const client = new FakeStoreKitClient();
+    const { provider } = createProvider(client);
+    client.onRequest = () => client.handlers?.onPurchaseUpdated(purchasedTransaction(undefined, {
+      appAccountToken: uppercase ? ACCOUNT_TOKEN : ACCOUNT_TOKEN.toUpperCase(),
+    }));
+    await expect(provider.purchase({ offeringKey: 'membership_31d_v1',
+      applicationAccountToken: uppercase ? ACCOUNT_TOKEN.toUpperCase() : ACCOUNT_TOKEN,
+    })).resolves.toMatchObject({ ok: true, state: 'succeeded' });
+  });
+
+  it.each([undefined, '12345678-1234-4234-8234-123456789ABD'])('never matches a missing or different account token: %s', async (appAccountToken) => {
+    const client = new FakeStoreKitClient();
+    const { provider, runtime } = createProvider(client);
+    client.onRequest = () => client.handlers?.onPurchaseUpdated(purchasedTransaction(undefined, { appAccountToken }));
+    const result = provider.purchase({ offeringKey: 'membership_31d_v1', applicationAccountToken: ACCOUNT_TOKEN });
+    await client.requestStarted;
+    runtime.fireTimeouts();
+    await expect(result).resolves.toMatchObject({ ok: false, code: 'commerce_purchase_timed_out' });
+    await expect(provider.drainTransactionInbox()).resolves.toMatchObject({ value: { transactions: [expect.anything()] } });
+  });
+
   it('never mispairs a different product or same-product old transaction with the active request', async () => {
     const client = new FakeStoreKitClient();
     const { provider, runtime } = createProvider(client);

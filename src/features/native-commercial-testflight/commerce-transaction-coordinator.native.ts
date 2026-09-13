@@ -27,6 +27,8 @@ export interface CommerceTransactionConsumer {
       lifecycle?: CommerceOperationLifecycle;
     }>,
   ): Promise<CommerceTransactionConsumption>;
+  /** Verified and acknowledged; native finish may still be draining. */
+  onServerVerified?(transaction: CommerceTransaction): void;
   observeQuarantined?(transaction: CommerceQuarantinedTransaction): Promise<void>;
 }
 
@@ -296,6 +298,7 @@ export class NativeCommerceTransactionCoordinator {
           purchasedAt: transaction.purchasedAt,
           environment: transaction.environment,
         });
+        this.consumer.onServerVerified?.(transaction);
         const finish = await this.provider.finishTransaction({
           acknowledgement: acknowledgement.value,
         }, { lifecycle: operation.lifecycle });

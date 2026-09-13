@@ -38,7 +38,7 @@ function fail(message) {
 function hasRequiredIOSSendAuthRuntime(objectiveCMetadata) {
   return [
     /\bSendAuthReq\b/u,
-    /sendAuthReq:viewController:delegate:completion:/u,
+    /sendReq:completion:/u,
     /IcaoWechatAuthModule/u,
   ].every((marker) => marker.test(objectiveCMetadata));
 }
@@ -46,7 +46,7 @@ function hasRequiredIOSSendAuthRuntime(objectiveCMetadata) {
 function hasRequiredIOSSendAuthSource(source) {
   return [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
+    'WXApi.send(request)',
   ].every((anchor) => source.includes(anchor));
 }
 
@@ -54,13 +54,13 @@ if (process.argv.includes('--self-test-ios-macho-metadata')) {
   const completeMetadata = [
     'name _TtC14IcaoWechatAuth20IcaoWechatAuthModule',
     'type @"SendAuthReq"',
-    'sendAuthReq:viewController:delegate:completion:',
+    'sendReq:completion:',
   ].join('\n');
   if (!hasRequiredIOSSendAuthRuntime(completeMetadata)) fail('ios_macho_metadata_positive_self_test');
   for (const missingMarker of [
     /IcaoWechatAuthModule/u,
     /SendAuthReq/u,
-    /sendAuthReq:viewController:delegate:completion:/u,
+    /sendReq:completion:/u,
   ]) {
     if (hasRequiredIOSSendAuthRuntime(completeMetadata.replace(missingMarker, ''))) {
       fail('ios_macho_metadata_negative_self_test');
@@ -68,12 +68,12 @@ if (process.argv.includes('--self-test-ios-macho-metadata')) {
   }
   const completeSource = [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
+    'WXApi.send(request)',
   ].join('\n');
   if (!hasRequiredIOSSendAuthSource(completeSource)) fail('ios_sendauth_source_positive_self_test');
   for (const missingAnchor of [
     'let request = SendAuthReq()',
-    'WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate)',
+    'WXApi.send(request)',
   ]) {
     if (hasRequiredIOSSendAuthSource(completeSource.replace(missingAnchor, ''))) {
       fail('ios_sendauth_source_negative_self_test');
@@ -168,8 +168,11 @@ for (const [platform, source] of [['ios', iosBridge], ['android', androidBridge]
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_timeout_generation_guard_missing');
 if (!iosBridge.includes('takePending(expectedState: state)')) fail('ios_callback_generation_guard_missing');
 if (!hasRequiredIOSSendAuthSource(iosBridge)) fail('ios_sendauth_call_chain_missing');
-if (/guard WXApi\.isWXAppInstalled\(\)/u.test(iosBridge)) fail('ios_no_install_authorization_blocked');
-if (!iosBridge.includes('pending.presentation?.dismiss(animated: true)')) fail('ios_auth_presentation_cleanup_missing');
+if (!iosBridge.includes('guard WXApi.isWXAppInstalled() else')) fail('ios_installation_guard_missing');
+if (/sendAuthReq|authorizationHost|presentingViewController|WechatAuthorizationDelegate/u.test(iosBridge)) fail('ios_no_install_authorization_present');
+for (const marker of ['wechatLoginVisible', 'refreshWechatAvailability', "AppState.addEventListener('change'", 'wechatStatusRequestRef']) {
+  if (!nativeLoginScreen.includes(marker)) fail(`ios_installation_visibility_missing:${marker}`);
+}
 if (!androidBridge.includes('takePending(responseState)')) fail('android_callback_generation_guard_missing');
 if (!androidBridge.includes('takePending(state)')) fail('android_timeout_generation_guard_missing');
 if (/takePending\(\s*\)/u.test(`${iosBridge}\n${androidBridge}`)) fail('native_unguarded_pending_take_present');

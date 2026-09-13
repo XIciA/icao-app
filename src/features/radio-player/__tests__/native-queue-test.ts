@@ -1,7 +1,10 @@
+import { Asset } from 'expo-asset';
+
 import {
   createNativeRadioIntervalTrack,
   selectNativeShuffleTrack,
   getRadioNativeQueueBehavior,
+  getRadioArtwork,
   isNativeRadioContentTrack,
   isNativeRadioIntervalTrack,
   radioIntervalStartPosition,
@@ -11,6 +14,7 @@ import {
 const source: NativeRadioContentTrack = {
   album: '听力 · 题组一',
   artist: '听你五个',
+  artwork: 'file:///app/assets/icon-native.png',
   duration: 12,
   id: 'native-content-1',
   radioBankId: 'listening',
@@ -52,6 +56,7 @@ describe('radio native interval queue metadata', () => {
     expect(interval).toEqual(expect.objectContaining({
       album: source.album,
       artist: source.artist,
+      artwork: source.artwork,
       duration: 5,
       radioBankId: source.radioBankId,
       radioIntervalSeconds: 5,
@@ -68,4 +73,28 @@ describe('radio native interval queue metadata', () => {
       .toEqual({ history: ['a', 'b', 'c'], cursor: 1 });
   });
 
+});
+
+describe('bundled radio artwork', () => {
+  afterEach(() => jest.restoreAllMocks());
+
+  it('resolves the full square source from the asset registry and prefers its local URI', () => {
+    const resolve = jest.spyOn(Asset, 'fromModule').mockReturnValue({
+      localUri: 'file:///app/assets/icon-native.png', uri: 'asset:/icon-native.png',
+    } as Asset);
+    expect(getRadioArtwork()).toBe('file:///app/assets/icon-native.png');
+    expect(resolve).toHaveBeenCalledWith(require('../../../../assets/images/icon-native.png'));
+  });
+
+  it('uses the bundled URI when the asset has no separate cached file', () => {
+    jest.spyOn(Asset, 'fromModule').mockReturnValue({ localUri: null, uri: 'file:///app/assets/icon-native.png' } as Asset);
+    expect(getRadioArtwork()).toBe('file:///app/assets/icon-native.png');
+  });
+
+  it('does not turn an artwork resolution failure into an audio failure', () => {
+    jest.spyOn(Asset, 'fromModule').mockImplementation(() => { throw new Error('missing_asset'); });
+    const warning = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    expect(getRadioArtwork()).toBeUndefined();
+    expect(warning).toHaveBeenCalledWith('[radio] Bundled artwork could not be resolved');
+  });
 });

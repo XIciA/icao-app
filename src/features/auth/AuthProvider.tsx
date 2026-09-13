@@ -48,6 +48,7 @@ type AuthContextValue = {
   changeLoginMethod(provider: 'apple' | 'wechat', action: 'bind' | 'unbind', authentication: AccountDeletionAuthentication): Promise<void>;
   requestLoginMethodPhoneOtp(provider: 'apple' | 'wechat', action: 'bind' | 'unbind'): Promise<NativeStartPhoneOtpResponse>;
   signInWithApple(): Promise<void>;
+  isWechatSignInAvailable(): Promise<boolean>;
   signInWithWechat(): Promise<void>;
   requestPhoneOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
   requestPasswordRecoveryOtp(phone: string): Promise<NativeStartPhoneOtpResponse>;
@@ -88,6 +89,7 @@ const AuthContext = createContext<AuthContextValue>({
   changeLoginMethod: unavailable,
   requestLoginMethodPhoneOtp: unavailable,
   signInWithApple: unavailable,
+  isWechatSignInAvailable: async () => false,
   signInWithWechat: unavailable,
   requestPhoneOtp: unavailable,
   requestPasswordRecoveryOtp: unavailable,
@@ -486,7 +488,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setSessionSnapshot(undefined, true);
   }, [service, setSessionSnapshot]);
 
+  const isWechatSignInAvailable = useCallback(async () => {
+    return service ? service.isWechatSignInAvailable() : false;
+  }, [service]);
+
   const value = useMemo<AuthContextValue>(() => ({
+    isWechatSignInAvailable,
     configured: Boolean(service),
     accountReady,
     accountDeletionPending,
@@ -848,7 +855,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       } finally { accountDeletionActionRef.current = false; }
     },
-  }), [acceptAuthenticatedSession, account, accountDeletionPending, accountReady, accountRestoreUnavailable, beginInteractiveAuth, finalizeAccountDeletion, finishInteractiveAuth, inspectPendingAccountDeletion, legalStatus, passwordAuthorization, pendingPath, restorePersistedAccount, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
+  }), [isWechatSignInAvailable, acceptAuthenticatedSession, account, accountDeletionPending, accountReady, accountRestoreUnavailable, beginInteractiveAuth, finalizeAccountDeletion, finishInteractiveAuth, inspectPendingAccountDeletion, legalStatus, passwordAuthorization, pendingPath, restorePersistedAccount, restoring, revokeAllAndClear, service, session, setAccountDeletionState, setSessionSnapshot, uiAcceptanceMode]);
 
   const applyLegalStatus = useCallback((next: LegalConsentStatus) => {
     if (next.accountId !== activeAccountIdRef.current || !sessionRef.current) return;

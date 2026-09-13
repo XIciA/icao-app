@@ -6,15 +6,6 @@ private let wechatAppIdKey = "ICAOWechatAppId"
 private let wechatUniversalLinkKey = "ICAOWechatUniversalLink"
 private let authorizationTimeoutSeconds: TimeInterval = 240
 
-// A cancelled SDK web dialog may omit state. This delegate is scoped to one
-// request, so such a callback cannot cancel a newer authorization generation.
-private final class WechatAuthorizationDelegate: NSObject, WXApiDelegate {
-  let receive: (BaseResp) -> Void
-  init(receive: @escaping (BaseResp) -> Void) { self.receive = receive }
-  func onReq(_ req: BaseReq) {}
-  func onResp(_ response: BaseResp) { receive(response) }
-}
-
 final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
   static let shared = IcaoWechatAuthCoordinator()
 
@@ -22,8 +13,6 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
     let state: String
     let promise: Promise
     let timeout: DispatchWorkItem
-    let presentation: UIViewController?
-    let delegate: WechatAuthorizationDelegate
   }
 
   private var pending: PendingAuthorization?
@@ -54,8 +43,11 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
       promise.reject("wechat_auth_configuration_pending", "WeChat login is waiting for platform configuration")
       return
     }
-    let installed = WXApi.isWXAppInstalled()
-    guard !installed || WXApi.isWXAppSupport() else {
+    guard WXApi.isWXAppInstalled() else {
+      promise.reject("wechat_not_installed", "WeChat is not installed")
+      return
+    }
+    guard WXApi.isWXAppSupport() else {
       promise.reject("wechat_auth_unavailable", "The installed WeChat version does not support authorization")
       return
     }
@@ -63,47 +55,22 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
       promise.reject("wechat_auth_in_progress", "A WeChat authorization request is already active")
       return
     }
-    guard let controller = Self.presentingViewController() else {
-      promise.reject("wechat_auth_unavailable", "No view controller is available for WeChat authorization")
-      return
-    }
     let timeout = DispatchWorkItem { [weak self] in
       guard let pending = self?.takePending(expectedState: state) else { return }
       pending.promise.reject("wechat_auth_timeout", "WeChat authorization timed out")
     }
-    // Give the SDK its own presentation owner for its official no-install
-    // authorization. Cancellation/timeout may only dismiss this request's UI.
-    let authorizationHost: UINavigationController? = installed ? nil : {
-      let content = UIViewController()
-      content.view.backgroundColor = .systemBackground
-      content.title = "微信登录"
-      content.navigationItem.leftBarButtonItem = UIBarButtonItem(
-        title: "取消", primaryAction: UIAction { [weak self] _ in self?.cancel(state: state) }
-      )
-      let host = UINavigationController(rootViewController: content)
-      host.modalPresentationStyle = .formSheet
-      host.isModalInPresentation = true
-      return host
-    }()
-    let delegate = WechatAuthorizationDelegate { [weak self] response in
-      DispatchQueue.main.async { self?.handleResponse(response, requestState: state) }
-    }
-    pending = PendingAuthorization(state: state, promise: promise, timeout: timeout, presentation: authorizationHost, delegate: delegate)
+    pending = PendingAuthorization(state: state, promise: promise, timeout: timeout)
     DispatchQueue.main.asyncAfter(deadline: .now() + authorizationTimeoutSeconds, execute: timeout)
     let request = SendAuthReq()
     request.scope = "snsapi_userinfo"
     request.state = state
-    let send = { [weak self] in
-      guard let self, self.pending?.state == state else { return }
-      WXApi.sendAuthReq(request, viewController: authorizationHost ?? controller, delegate: delegate) { [weak self] sent in
-        DispatchQueue.main.async {
-          guard !sent, let pending = self?.takePending(expectedState: state) else { return }
-          pending.promise.reject("wechat_auth_unavailable", "WeChat authorization could not be started")
-        }
+    WXApi.send(request) { [weak self] sent in
+      DispatchQueue.main.async {
+        guard !sent, let pending = self?.takePending(expectedState: state) else { return }
+        let code = WXApi.isWXAppInstalled() ? "wechat_auth_unavailable" : "wechat_not_installed"
+        pending.promise.reject(code, "WeChat authorization could not be started")
       }
     }
-    if let authorizationHost { controller.present(authorizationHost, animated: true, completion: send) }
-    else { send() }
   }
 
   func onReq(_ req: BaseReq) {}
@@ -114,13 +81,11 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
     }
   }
 
-  private func handleResponse(_ response: BaseResp, requestState: String? = nil) {
+  private func handleResponse(_ response: BaseResp) {
     guard let authorization = response as? SendAuthResp else { return }
-    // Successful authorization must always carry the original state. Only a
-    // request-scoped failure/cancel delegate can supply an omitted state.
-    let responseState = authorization.state.flatMap { $0.isEmpty ? nil : $0 }
-    guard let state = responseState ?? (authorization.errCode != 0 ? requestState : nil),
-          requestState == nil || requestState == state,
+    // Every client callback must match the active request, including failure
+    // and cancellation. Unsolicited, cold-start and late callbacks are ignored.
+    guard let state = authorization.state, !state.isEmpty,
           let pending = takePending(expectedState: state) else { return }
     if authorization.errCode == 0, let code = authorization.code, !code.isEmpty {
       pending.promise.resolve(["code": code, "state": pending.state])
@@ -143,17 +108,7 @@ final class IcaoWechatAuthCoordinator: NSObject, WXApiDelegate {
     guard pending.state == expectedState else { return nil }
     self.pending = nil
     pending.timeout.cancel()
-    pending.presentation?.dismiss(animated: true)
     return pending
-  }
-
-  private static func presentingViewController() -> UIViewController? {
-    var controller = UIApplication.shared.connectedScenes
-      .compactMap { $0 as? UIWindowScene }
-      .flatMap(\.windows)
-      .first(where: { $0.isKeyWindow })?.rootViewController
-    while let presented = controller?.presentedViewController { controller = presented }
-    return controller
   }
 }
 
@@ -167,7 +122,7 @@ public final class IcaoWechatAuthModule: Module {
         "appId": configuration?.appId ?? "",
         "configured": configuration != nil,
         "installed": WXApi.isWXAppInstalled(),
-        "supported": !WXApi.isWXAppInstalled() || WXApi.isWXAppSupport()
+        "supported": WXApi.isWXAppSupport()
       ] as [String : Any]
     }
 

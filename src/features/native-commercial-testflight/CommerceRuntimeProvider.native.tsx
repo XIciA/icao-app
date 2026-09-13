@@ -182,7 +182,7 @@ function failureRuntimeError(
     return runtimeError(
       'purchase-unconfirmed',
       operation,
-      '购买结果尚未确认，App 会自动继续核对，请勿重复购买。',
+      '购买结果确认中，权益到账后会自动更新，你可以继续使用，请勿重复购买。',
       { retryable: false, chargeStatus: 'unknown' },
     );
   }
@@ -289,6 +289,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
   const catalogReadyRef = useRef(false);
   const uncertainPurchaseRef = useRef<PersistedUncertainPurchase | undefined>(undefined);
   const uncertainStorageBlockedRef = useRef(false);
+  const purchaseConfirmedRef = useRef<((transaction: CommerceTransaction) => void) | undefined>(undefined);
 
   const publishEntitlement = useCallback((
     controller: Controller,
@@ -423,6 +424,9 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     );
     const provider = createAppleStoreKitCommerceProvider();
     const consumer: CommerceTransactionConsumer = {
+      onServerVerified: (transaction) => {
+        if (generation === generationRef.current) purchaseConfirmedRef.current?.(transaction);
+      },
       consume: async (transaction, options) => {
         if (generation !== generationRef.current) return { state: 'deferred' } as const;
         const environment = verifiedEnvironment(transaction);
@@ -540,7 +544,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (restoredUncertain && !reportConfirmsPurchase(report.value, restoredUncertain)) {
           const nextError = uncertainPurchaseError(
             'reconciliation',
-            '上一笔购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+            '上一笔购买结果确认中，权益到账后会自动更新，你可以继续使用，请勿重复购买。',
           );
           setError(nextError);
           setMessage(nextError.userMessage);
@@ -623,7 +627,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
         if (!reportConfirmsPurchase(report.value, uncertain)) {
           const nextError = uncertainPurchaseError(
             'reconciliation',
-            '购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+            '购买结果确认中，权益到账后会自动更新，你可以继续使用，请勿重复购买。',
           );
           setError(nextError);
           setMessage(nextError.userMessage);
@@ -740,7 +744,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       if (uncertain && !reportConfirmsPurchase(report.value, uncertain)) {
         const nextError = uncertainPurchaseError(
           'refresh',
-          '购买仍在等待 App Store 或服务器确认，请勿重复下单。',
+          '购买结果确认中，权益到账后会自动更新，你可以继续使用，请勿重复购买。',
         );
         setError(nextError);
         setMessage(nextError.userMessage);
@@ -824,6 +828,8 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     }
     const generation = generationRef.current;
     let purchaseDispatched = false;
+    let waitingNotice: ReturnType<typeof setTimeout> | undefined;
+    let confirmationHandler: ((transaction: CommerceTransaction) => void) | undefined;
     setPhase('purchasing');
     setError(undefined);
     setMessage(undefined);
@@ -871,6 +877,11 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       }
       uncertainPurchaseRef.current = uncertain;
       purchaseDispatched = true;
+      waitingNotice = setTimeout(() => {
+        if (generation === generationRef.current && controllerRef.current === controller) {
+          setMessage('购买结果确认中，确认后权益会自动更新，你可以继续使用。');
+        }
+      }, 8_000);
       const purchaseResult = await operation.wait(controller.provider.purchase({
         offeringKey: productKey,
         applicationAccountToken: controller.accountId,
@@ -895,6 +906,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
         }
         return result;
       }
+      clearTimeout(waitingNotice);
       const transactionReference = purchaseResult.value.transaction.transactionReference;
       const exactUncertain: PersistedUncertainPurchase = {
         ...uncertain,
@@ -906,19 +918,47 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
         return ACCOUNT_CHANGED_RESULT;
       }
       uncertainPurchaseRef.current = exactUncertain;
+      setMessage('正在同步会员权益，确认后会自动更新，你可以继续使用。');
+      const confirmed = new Promise<{ confirmed: true }>((resolve) => {
+        confirmationHandler = (transaction) => {
+          if (generation !== generationRef.current || controllerRef.current !== controller) return;
+          if (transaction.transactionReference !== transactionReference
+            || transaction.signedTransaction !== purchaseResult.value.transaction.signedTransaction
+            || transaction.environment !== exactUncertain.environment) return;
+          resolve({ confirmed: true });
+        };
+        purchaseConfirmedRef.current = confirmationHandler;
+      });
       let report: Awaited<ReturnType<NativeCommerceTransactionCoordinator['drainObservedTransactions']>>;
       try {
-        report = await operation.wait(controller.coordinator.drainObservedTransactions({
+        const coordination = controller.coordinator.drainObservedTransactions({
           lifecycle: operation,
           signal: operation.signal,
-        }));
+        });
+        // Server verification grants access. StoreKit finishing retains the
+        // physical operation lock, but must not hold the successful UI hostage.
+        operation.drain(coordination);
+        const outcome = await operation.wait(Promise.race([coordination, confirmed]));
+        if ('confirmed' in outcome) {
+          await operation.wait(clearUncertainPurchase(controller.accountId));
+          if (generation !== generationRef.current || controllerRef.current !== controller) return ACCOUNT_CHANGED_RESULT;
+          uncertainPurchaseRef.current = undefined;
+          const result = { ok: true, message: '购买成功，会员权益已到账。' };
+          setMessage(result.message);
+          setError(undefined);
+          setPhase('ready');
+          return result;
+        }
+        report = outcome;
       } finally {
         operation.drain(controller.coordinator.whenIdle());
       }
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
-      await refreshEntitlement(controller, generation, 'purchase', operation);
+      if (!report.ok || !reportConfirmsPurchase(report.value, exactUncertain)) {
+        await refreshEntitlement(controller, generation, 'purchase', operation);
+      }
       if (generation !== generationRef.current || controllerRef.current !== controller) {
         return ACCOUNT_CHANGED_RESULT;
       }
@@ -982,7 +1022,7 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       const nextError = runtimeError(
         'purchase-unconfirmed',
         'purchase',
-        '购买结果尚未确认，App 会自动继续核对，请勿重复购买。',
+        '购买结果确认中，权益到账后会自动更新，你可以继续使用，请勿重复购买。',
         { retryable: false, chargeStatus: 'unknown' },
       );
       const result = { ok: false, message: nextError.userMessage, error: nextError };
@@ -991,6 +1031,8 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       setPhase('pending');
       return result;
     } finally {
+      clearTimeout(waitingNotice);
+      if (purchaseConfirmedRef.current === confirmationHandler) purchaseConfirmedRef.current = undefined;
       operation.finish();
     }
   }, [offerings, phase, reconcileAndRefresh, refreshEntitlement, reloadCatalog]);

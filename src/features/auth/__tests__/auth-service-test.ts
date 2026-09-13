@@ -1,4 +1,5 @@
 import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
+import { getWechatNativeStatus } from '../wechat-native-auth';
 
 import { apiRequest, apiRequestWithAccessToken } from '@/platform/api-client';
 import {
@@ -876,4 +877,17 @@ describe('dual phone auth error mapping', () => {
     expect(current.auth.setSession).not.toHaveBeenCalled(); expect(current.auth.signOut).not.toHaveBeenCalled();
   });
 
+});
+
+
+describe('iOS WeChat entry installation status', () => {
+  it.each([
+    [{ installed: false, supported: true, configured: true }, false],
+    [{ installed: true, supported: false, configured: true }, true],
+    [{ installed: true, supported: true, configured: false }, true],
+  ])('shows the entry based on installation without hiding capability failures', async (status, visible) => {
+    jest.mocked(getWechatNativeStatus).mockReturnValueOnce(status);
+    const service = new SupabasePhoneAuthService({} as SupabaseClient);
+    await expect(service.isWechatSignInAvailable()).resolves.toBe(visible);
+  });
 });

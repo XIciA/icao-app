@@ -1,10 +1,20 @@
 # 听你五个 · 本次 App Store 送审材料唯一来源
 
-更新：2026-09-13。重新送审候选：**1.0.0（3524032）**，已上传 TestFlight，Apple 处理状态 VALID，内部“测试”组可用。销售地区仍为仅中国大陆。
+更新：2026-09-14。当前候选 **1.0.0（3524033）**，实施与检查中，尚未上传/重新提交。执行证据见[本轮记录](../../../records/workstreams/product-release-readiness/app-review-september14-execution.md)。
 
-三项主要修复、两项细节和后台联合代码已完成，执行证据见[联合整改记录](../../../records/workstreams/product-release-readiness/app-review-remediation-execution.md)。用户回来后按[候选验收与录屏说明](../../../records/workstreams/product-release-readiness/app-review-remediation-handoff.md)检查本轮构建、录制真实背景播放及微信免安装授权视频，再提交 Apple。当前没有发送本轮审核回复，没有重新提交 App Store。
+本轮微信方案为：已安装微信显示入口，未安装隐藏，返回App重新检测；Apple与手机号/密码登录独立可用。不得沿用此前免安装SDK窗口或Safari授权的描述。CallKit已移除，保留随身听后台播放。用户提供的后台录屏直接使用，不要求额外微信或购买视频。
 
-微信使用官方 SDK 的 App 内授权容器，不能在回复中写成 Safari View Controller。后台音频权限保留给随身听；最终归档已检查无 CallKit 框架引用。物理设备短信授权与锁屏跨曲结果须按实际录屏填写，不用代码测试替代。
+审核回复草稿：
+
+Thank you for reviewing our app. We have addressed the three issues in a new build:
+
+1. Login (4.2.3(i)): WeChat is optional and its button is displayed only when WeChat is installed. On devices without WeChat, users can sign in within the app using Sign in with Apple or phone/password login; there is no requirement or prompt to install WeChat. Availability is checked again when returning to the app. The review account in App Review Information uses the in-app password login option.
+2. CallKit (Guideline 5): We have removed CallKit integration. The app does not provide VoIP calls or a CallKit calling interface. We retain normal audio playback for learning.
+3. Background audio (2.5.4): The Radio feature (发现 → 随身听) plays learning audio while the app is in the background. Please see the attached physical-device recording, which shows playback followed by navigation to the Home Screen while audio continues. UIBackgroundModes audio is used for this feature. To reproduce, sign in, open 发现 → 随身听, choose a topic, start playback, and return to the Home Screen.
+
+We also improved purchase confirmation and entitlement synchronization. Thank you for your review.
+
+以上草稿只在最终包、审核账号及视频附件确认后发送；不宣称已完成新包全部真机测试或已获苹果认可。
 
 ## 历史提交：2026-09-10
 

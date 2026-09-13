@@ -72,6 +72,16 @@ describe('Native membership purchase page', () => {
     }
   });
 
+  it('offers pending-result recheck without enabling another purchase', async () => {
+    mockCommerce = runtimeValue({ phase: 'pending', error: { retryable: false, userMessage: '购买结果确认中，权益到账后会自动更新，你可以继续使用。' } });
+    const screen = await render(<Page />);
+    expect(screen.getByText(/你可以继续使用/u)).toBeTruthy();
+    await fireEvent.press(screen.getByText('检查购买结果'));
+    expect(mockRefresh).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).not.toHaveBeenCalled();
+  });
+
   it('offers a retry only after a retryable failure and never invents a price', async () => {
     mockCommerce = runtimeValue({ phase: 'error', offerings: [], error: { retryable: true, userMessage: '商品暂时无法读取' } });
     const screen = await render(<Page />);
