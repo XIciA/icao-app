@@ -86,7 +86,7 @@ describe('feedback attachment private proxy', () => {
   it('returns verified image bytes through the fixed private bucket only', async () => {
     const fetcher = vi.fn().mockResolvedValue(new Response(bytes)); vi.stubGlobal('fetch', fetcher);
     await expect(service().read(image)).resolves.toEqual(bytes);
-    expect(fetcher).toHaveBeenCalledWith(`https://storage.example.test/object/authenticated/feedback-screenshots/${image.objectKey}`, expect.objectContaining({ redirect: 'error', headers: { authorization: 'Bearer scoped-read-only-token' } }));
+    expect(fetcher).toHaveBeenCalledWith(`https://storage.example.test/object/authenticated/feedback-screenshots/${image.objectKey}`, expect.objectContaining({ redirect: 'error', headers: { authorization: 'Bearer scoped-read-only-token', apikey: 'scoped-read-only-token' } }));
   });
   it('rejects traversal and does not request storage', async () => {
     const fetcher = vi.fn(); vi.stubGlobal('fetch', fetcher);
