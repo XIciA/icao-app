@@ -116,6 +116,20 @@ async function consume(tx: CommerceTransaction, owner: string, reservedAt: Date,
 }
 
 describe('weekly AI allowance with the persistent commerce ledger', () => {
+  it('reports persisted trial suppression only when no active allowance exists', () => scenario(async (tx) => {
+    const owner = await account(tx);
+    expect((await allowance.summary(tx, owner, 'production', NOW)).summary).toMatchObject({ mode: 'unavailable' });
+    expect((await allowance.summary(tx, owner, 'production', NOW)).summary.reason).toBeUndefined();
+    await tx.update(schema.accounts).set({ aiTrialEligibilityReason: 'trial_already_claimed' }).where(eq(schema.accounts.id, owner));
+    expect((await allowance.summary(tx, owner, 'production', NOW)).summary).toMatchObject({ mode: 'unavailable', reason: 'trial_already_claimed' });
+    expect((await allowance.summary(tx, owner, 'sandbox', NOW)).summary.reason).toBeUndefined();
+    await member(tx, owner);
+    const active = await allowance.summary(tx, owner, 'production', NOW);
+    expect(active.summary.mode).toBe('weekly');
+    expect(active.summary.reason).toBeUndefined();
+    expect(active.available).toBe(500);
+  }));
+
   it('resets at exactly 7×24 hours, never accumulates leftover allowance, and keeps the account anchor', () => scenario(async (tx) => {
     const owner = await account(tx);
     await member(tx, owner);

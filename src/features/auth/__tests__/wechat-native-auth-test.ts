@@ -19,6 +19,16 @@ describe('WeChat native authorization boundary', () => {
     });
   });
 
+  it('uses the native authorization capability even when the WeChat app is absent', async () => {
+    const nativeModule = nativeModuleDouble();
+    nativeModule.getStatus.mockReturnValue({ appId: 'wx12345678', configured: true, installed: false, supported: true });
+    nativeModule.authorize.mockResolvedValue({ code: 'official-sdk-code', state: 'sms-state' });
+    const boundary = createWechatNativeAuthBoundary(nativeModule);
+    expect(boundary.getStatus()).toMatchObject({ installed: false, supported: true });
+    await expect(boundary.authorize('sms-state')).resolves.toEqual({ code: 'official-sdk-code', state: 'sms-state' });
+    expect(nativeModule.authorize).toHaveBeenCalledWith('sms-state');
+  });
+
   it('rejects a production challenge from an App ID other than the one compiled into the app', () => {
     const status = nativeModuleDouble().getStatus();
     expect(() => assertWechatChallengeMatchesNativeApp('wx-different-app', status)).toThrow(

@@ -1,5 +1,6 @@
 import {
   createNativeRadioIntervalTrack,
+  selectNativeShuffleTrack,
   getRadioNativeQueueBehavior,
   isNativeRadioContentTrack,
   isNativeRadioIntervalTrack,
@@ -21,10 +22,10 @@ const source: NativeRadioContentTrack = {
 
 describe('radio native interval queue metadata', () => {
   it.each([
-    [1, 29],
-    [5, 25],
+    [1, 0],
+    [5, 0],
     [30, 0],
-  ])('seeks a 30-second native silence track for a %s-second wait', (seconds, expectedPosition) => {
+  ])('starts an exact-duration native silence track at zero for a %s-second wait', (seconds, expectedPosition) => {
     expect(radioIntervalStartPosition(seconds)).toBe(expectedPosition);
   });
 
@@ -51,7 +52,7 @@ describe('radio native interval queue metadata', () => {
     expect(interval).toEqual(expect.objectContaining({
       album: source.album,
       artist: source.artist,
-      duration: 30,
+      duration: 5,
       radioBankId: source.radioBankId,
       radioIntervalSeconds: 5,
       radioSourceTrackId: source.radioTrackId,
@@ -62,4 +63,9 @@ describe('radio native interval queue metadata', () => {
     expect(isNativeRadioContentTrack(source)).toBe(true);
     expect(interval.id).not.toBe(source.id);
   });
+  it('preserves native random forward history after stepping back', () => {
+    expect(selectNativeShuffleTrack({ history: ['a', 'b', 'c'], cursor: 0 }, 'b'))
+      .toEqual({ history: ['a', 'b', 'c'], cursor: 1 });
+  });
+
 });

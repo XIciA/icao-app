@@ -27,7 +27,7 @@ jest.mock('react-native-track-player', () => ({
   },
   AppKilledPlaybackBehavior: { StopPlaybackAndRemoveNotification: 'stop-playback-and-remove-notification' },
   Capability: { Pause: 'pause', Play: 'play', SeekTo: 'seek-to', SkipToNext: 'next', SkipToPrevious: 'previous' },
-  Event: { PlaybackActiveTrackChanged: 'active-track-changed', RemoteNext: 'remote-next', RemotePause: 'remote-pause', RemotePlay: 'remote-play', RemotePrevious: 'remote-previous', RemoteSeek: 'remote-seek', RemoteStop: 'remote-stop' },
+  Event: { PlaybackActiveTrackChanged: 'active-track-changed', RemoteDuck: 'remote-duck', RemoteNext: 'remote-next', RemotePause: 'remote-pause', RemotePlay: 'remote-play', RemotePrevious: 'remote-previous', RemoteSeek: 'remote-seek', RemoteStop: 'remote-stop' },
   IOSCategory: { Playback: 'playback' },
   IOSCategoryMode: { SpokenAudio: 'spoken-audio' },
 }));
@@ -78,14 +78,13 @@ describe('radio track-player runtime', () => {
     mockListeners.get('active-track-changed')?.({
       track: { radioTrackKind: 'interval', radioIntervalSeconds: 5 },
     });
-    await Promise.resolve();
-    await Promise.resolve();
+    for (let i = 0; i < 12; i += 1) await Promise.resolve();
 
     expect(mockSetRate).toHaveBeenCalledWith(1);
-    expect(mockSeekTo).toHaveBeenCalledWith(25);
+    expect(mockSeekTo).not.toHaveBeenCalled();
 
     mockListeners.get('active-track-changed')?.({ track: { radioTrackKind: 'content' } });
-    await Promise.resolve();
+    for (let i = 0; i < 12; i += 1) await Promise.resolve();
 
     expect(mockSetRate).toHaveBeenLastCalledWith(1.5);
   });

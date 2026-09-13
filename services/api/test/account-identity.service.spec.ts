@@ -393,3 +393,46 @@ describe('AccountIdentityService', () => {
     expect(fixture.mutations).toHaveLength(0);
   });
 });
+
+describe('persisted repeat-registration trial eligibility', () => {
+  function deniedClaimFixture(context: string, hasTrial = false) {
+    const fixture = databaseFixture({ transactionSelects: [[{ context }], hasTrial ? [{ id: 'existing-trial' }] : []] });
+    // Directly testing claimLifetimeTrial does not run resolveAccount's first select.
+    fixture.transaction.select.mockImplementationOnce(() => fluent([{ context }]));
+    fixture.transaction.select.mockImplementationOnce(() => fluent(hasTrial ? [{ id: 'existing-trial' }] : []));
+    const originalInsert = fixture.transaction.insert.getMockImplementation()!;
+    fixture.transaction.insert.mockImplementation((table: unknown) => {
+      const query = originalInsert(table);
+      query.returning.mockResolvedValue([]);
+      return query;
+    });
+    return fixture;
+  }
+
+  it('records a denied trial only from an existing claim belonging to another account', async () => {
+    const fixture = deniedClaimFixture('other-account-context');
+    const service = new AccountIdentityService(config, fixture.database);
+    await service.claimLifetimeTrialInTransaction(fixture.transaction as never,
+      [{ provider: 'wechat', subject: 'verified-subject' }], 'new-account', new Date());
+    expect(fixture.mutations).toContainEqual({ kind: 'update', table: accounts,
+      set: { aiTrialEligibilityReason: 'trial_already_claimed' } });
+  });
+
+  it('does not mark an account with its own trial when binding an already-used identity', async () => {
+    const fixture = deniedClaimFixture('other-account-context', true);
+    const service = new AccountIdentityService(config, fixture.database);
+    await service.claimLifetimeTrialInTransaction(fixture.transaction as never,
+      [{ provider: 'wechat', subject: 'verified-subject' }], 'current-account', new Date(), false);
+    expect(fixture.mutations.filter((mutation) => mutation.kind === 'update')).toEqual([]);
+  });
+
+  it('does not mistake an ordinary repeated login for a re-registration', async () => {
+    const context = createHmac('sha256', hashSecret)
+      .update('lifetime-benefit-account-context-v1\0current-account').digest('hex');
+    const fixture = deniedClaimFixture(context);
+    const service = new AccountIdentityService(config, fixture.database);
+    await service.claimLifetimeTrialInTransaction(fixture.transaction as never,
+      [{ provider: 'phone', subject: '+8613800138000' }], 'current-account', new Date());
+    expect(fixture.mutations.filter((mutation) => mutation.kind === 'update')).toEqual([]);
+  });
+});

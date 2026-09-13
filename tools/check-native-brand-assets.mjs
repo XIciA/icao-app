@@ -196,6 +196,17 @@ function validateFullBleed(png, label) {
   }
 }
 
+function validateRoundedSplash(png, label) {
+  if (!png.hasAlpha) fail(`${label} must include a rounded transparent mask.`);
+  const alphaAt = (x, y) => png.pixels[(y * png.width + x) * png.channels + png.channels - 1];
+  for (const [x, y] of [[0, 0], [png.width - 1, 0], [0, png.height - 1], [png.width - 1, png.height - 1]]) {
+    if (alphaAt(x, y) !== 0) fail(`${label} still has square visible corners.`);
+  }
+  for (const [x, y] of [[Math.floor(png.width / 2), 0], [0, Math.floor(png.height / 2)], [Math.floor(png.width / 2), Math.floor(png.height / 2)]]) {
+    if (alphaAt(x, y) !== 255) fail(`${label} loses its central artwork.`);
+  }
+}
+
 function validateMaster() {
   const masterPath = path.join(repositoryRoot, manifest.master.path);
   const source = readFileSync(masterPath);
@@ -524,8 +535,7 @@ function validateGeneratedIos(prebuildRoot) {
   if (splashFiles.length < 3) fail('Generated iOS splash set must include 1x, 2x, and 3x images.');
   const splashImages = splashFiles.map((file) => parsePng(readFileSync(path.join(splashSet, file)), `iOS splash ${file}`));
   for (const [index, splashImage] of splashImages.entries()) {
-    validateOpaque(splashImage, `iOS splash ${splashFiles[index]}`);
-    validateFullBleed(splashImage, `iOS splash ${splashFiles[index]}`);
+    validateRoundedSplash(splashImage, `iOS splash ${splashFiles[index]}`);
   }
   const splashSizes = splashImages
     .map((image) => image.width)
@@ -566,7 +576,8 @@ function validateGeneratedIos(prebuildRoot) {
         fail(`Generated ${artifact.role} ${key} changed: expected ${artifact[key]}, received ${png[key]}.`);
       }
     }
-    validateOpaque(png, `generated ${artifact.role}`);
+    if (artifact.role === 'app-icon') validateOpaque(png, `generated ${artifact.role}`);
+    else validateRoundedSplash(png, `generated ${artifact.role}`);
   }
 }
 

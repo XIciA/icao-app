@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.source = { :path => '.' }
   s.static_framework = true
   s.dependency 'ExpoModulesCore'
-  s.frameworks = 'AVFoundation', 'CallKit'
+  s.frameworks = 'AVFoundation'
   s.source_files = '**/*.{h,m,mm,swift}'
 end

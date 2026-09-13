@@ -337,6 +337,13 @@
       "when": 1789275866220,
       "tag": "0047_local_admin_statistics",
       "breakpoints": true
+    },
+    {
+      "idx": 48,
+      "version": "7",
+      "when": 1789279104465,
+      "tag": "0048_ai_trial_eligibility_reason",
+      "breakpoints": true
     }
   ]
 }

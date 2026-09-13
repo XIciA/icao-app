@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-import { clientVisibleSignedResourceUrl, resolveSignedQuestionBankAsset } from './remote-resource-service';
+import { clientVisibleSignedResourceUrl, resolveSignedQuestionBankAsset } from './remote-resource-service.native';
 
 const DEV_ASSET_PORT = 3100;
 
@@ -35,6 +35,6 @@ export function clientVisibleResourceUrl(url: string) {
   return clientVisibleSignedResourceUrl(url);
 }
 
-export async function resolveRemoteQuestionBankAsset(path: string, { forceRefresh = false }: { forceRefresh?: boolean } = {}) {
-  return resolveSignedQuestionBankAsset(path, { forceRefresh });
+export async function resolveRemoteQuestionBankAsset(path: string, { forceRefresh = false, preferDownloaded = false, isCurrent }: { forceRefresh?: boolean; preferDownloaded?: boolean; isCurrent?: () => boolean } = {}) {
+  return resolveSignedQuestionBankAsset(path, { forceRefresh, preferDownloaded, isCurrent });
 }

@@ -3,7 +3,7 @@ import { and, asc, eq, gt, inArray, isNull, lte, or, sql } from 'drizzle-orm';
 import type { AiAllowanceSummary, AiUsageRuleValues } from '@icao/contracts/commerce-rules';
 
 import {
-  aiAllowanceAccounts, aiPointBatches, aiPointLedgerEntries, commerceOrders, membershipEntitlementSegments,
+  accounts, aiAllowanceAccounts, aiPointBatches, aiPointLedgerEntries, commerceOrders, membershipEntitlementSegments,
 } from '../database/schema';
 import { allowancePeriod, protectedMemberRule, remainingPercent } from './ai-allowance-domain';
 import { AiUsageRulesService, type CommerceTransaction, ruleValues } from './ai-usage-rules.service';
@@ -134,6 +134,13 @@ export class AiAllowanceService {
       eq(aiPointBatches.status, 'available'), lte(aiPointBatches.availableAt, now),
       or(isNull(aiPointBatches.expiresAt), gt(aiPointBatches.expiresAt, now)),
     ));
+    const mode = active ? 'weekly' : selected.length ? 'trial' : membershipExpiresAt ? 'expired' : 'unavailable';
+    let reason: AiAllowanceSummary['reason'];
+    if (mode === 'unavailable' && environment === 'production') {
+      const [owner] = await transaction.select({ reason: accounts.aiTrialEligibilityReason })
+        .from(accounts).where(eq(accounts.id, accountId)).limit(1);
+      if (owner?.reason === 'trial_already_claimed') reason = owner.reason;
+    }
     const bonus = legacy.filter((batch) => batch.sourceReference.startsWith('ops-gift:'));
     const purchasedLegacy = legacy.filter((batch) => !batch.sourceReference.startsWith('ops-gift:') && !batch.sourceReference.startsWith('ops-refill:'));
     const bonusAvailable = bonus.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0);
@@ -145,8 +152,9 @@ export class AiAllowanceService {
       legacyBatchIds: purchasedLegacy.map((batch) => batch.id),
       legacyAvailable: purchasedLegacy.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0),
       summary: {
+        mode,
+        ...(reason ? { reason } : {}),
         bonus: { available: bonusAvailable, expiresAt: bonusExpiry },
-        mode: active ? 'weekly' : selected.length ? 'trial' : membershipExpiresAt ? 'expired' : 'unavailable',
         remainingPercent: remainingPercent(available, total),
         resetAt: resetAt?.toISOString() ?? null,
         membershipExpiresAt: membershipExpiresAt?.toISOString() ?? null,

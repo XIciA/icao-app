@@ -6,6 +6,8 @@ export type AiAllowanceMode = 'weekly' | 'trial' | 'expired' | 'unavailable';
 export type AiAllowanceSummary = {
   bonus?: { available: number; expiresAt: string | null };
   mode: AiAllowanceMode;
+  /** Present only when persisted eligibility evidence explains an unavailable trial. */
+  reason?: 'trial_already_claimed';
   remainingPercent: number;
   resetAt: string | null;
   membershipExpiresAt: string | null;

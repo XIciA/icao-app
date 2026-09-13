@@ -37,7 +37,7 @@ public class IcaoAudioInterruptionModule : Module() {
         modes.observe(mode)?.let { phase ->
           // The existing JS study audio owner checks that playback was active
           // and controls pause/replay. This module never owns audio focus.
-          sendEvent("interruption", mapOf("phase" to phase, "isCall" to true))
+          sendEvent("interruption", mapOf("phase" to phase))
         }
       }
     }
