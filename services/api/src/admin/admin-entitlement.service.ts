@@ -161,7 +161,7 @@ export class AdminEntitlementService {
         reason: payload.data.reason,
         beforeState: result.before,
         afterState: result.entitlement,
-        metadata: { previewId, adjustmentId: result.adjustmentId },
+        metadata: { previewId, adjustmentId: result.adjustmentId, environment: payload.data.environment },
       });
       return {
         adjustmentId: result.adjustmentId,

@@ -38,7 +38,7 @@ const clientTableGrantRevocationSource = [
   clientTableGrantRevocationBase,
   clientTableGrantRevocationExtension,
   ...await Promise.all(['0042_weekly_ai_allowance', '0043_app_content_releases',
-    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason']
+    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances']
     .map(tag => readFile(`services/api/drizzle/${tag}.sql`, 'utf8'))),
 ].join('\n');
 

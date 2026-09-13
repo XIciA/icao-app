@@ -803,7 +803,7 @@ export const opsChangePreviews = pgTable('ops_change_previews', {
   sessionId: uuid('session_id').notNull()
     .references(() => opsStaffSessions.id, { onDelete: 'restrict' }),
   changeType: text('change_type').notNull(),
-  targetAccountId: uuid('target_account_id').notNull()
+  targetAccountId: uuid('target_account_id')
     .references(() => accounts.id, { onDelete: 'restrict' }),
   requestPayload: jsonb('request_payload').notNull(),
   beforeState: jsonb('before_state').notNull(),
@@ -816,7 +816,7 @@ export const opsChangePreviews = pgTable('ops_change_previews', {
   uniqueIndex('ops_change_previews_confirmation_hash').on(table.confirmationHash),
   index('ops_change_previews_actor_pending').on(table.staffId, table.sessionId, table.executedAt),
   index('ops_change_previews_expiry').on(table.expiresAt),
-  check('ops_change_previews_change_type_check', sql`${table.changeType} IN ('grant_review_entitlement')`),
+  check('ops_change_previews_change_type_check', sql`${table.changeType} IN ('grant_review_entitlement', 'reset_all_allowances')`),
   check('ops_change_previews_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
 ]).enableRLS();
 
@@ -1125,6 +1125,8 @@ export const aiPointBatches = pgTable('ai_point_batches', {
   ordinal: integer('ordinal').notNull(),
   grantedPoints: integer('granted_points').notNull(),
   consumedPoints: integer('consumed_points').default(0).notNull(),
+  allowanceConsumedBaseline: integer('allowance_consumed_baseline').default(0).notNull(),
+  allowanceResetAt: timestamp('allowance_reset_at', { withTimezone: true }),
   reservedPoints: integer('reserved_points').default(0).notNull(),
   availableAt: timestamp('available_at', { withTimezone: true }).notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }),
@@ -1155,6 +1157,7 @@ export const aiPointBatches = pgTable('ai_point_batches', {
   check('ai_point_batches_source_check', sql`${table.sourceType} IN ('trial', 'membership', 'weekly_membership', 'compensation')`),
   check('ai_point_batches_status_check', sql`${table.status} IN ('scheduled', 'available', 'expired', 'revoked', 'merged')`),
   check('ai_point_batches_grant_positive', sql`${table.grantedPoints} >= 0`),
+  check('ai_point_batches_allowance_baseline_check', sql`${table.allowanceConsumedBaseline} >= 0 AND ${table.allowanceConsumedBaseline} <= ${table.consumedPoints}`),
   check('ai_point_batches_consumed_nonnegative', sql`${table.consumedPoints} >= 0`),
   check('ai_point_batches_reserved_nonnegative', sql`${table.reservedPoints} >= 0`),
   check('ai_point_batches_total_within_grant', sql`${table.consumedPoints} + ${table.reservedPoints} <= ${table.grantedPoints}`),

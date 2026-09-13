@@ -20,31 +20,20 @@ export function allowancePeriod(anchor: Date, now: Date) {
   return { ordinal, startsAt, endsAt: new Date(startsAt.getTime() + WEEK_MS) };
 }
 
-/** Each purchase keeps its promise; later benefits never make that promise worse. */
-export function protectedMemberRule(purchased: AiUsageRuleValues, improvements: AiUsageRuleValues[]) {
-  return improvements.reduce<AiUsageRuleValues>((rule, candidate) => ({
-    weeklyAllowance: Math.max(rule.weeklyAllowance, candidate.weeklyAllowance),
-    trialAllowance: rule.trialAllowance,
-    costs: Object.fromEntries(Object.entries(rule.costs).map(([key, cost]) => [
-      key, Math.min(cost, candidate.costs[key as keyof typeof candidate.costs]),
-    ])) as AiUsageRuleValues['costs'],
-  }), { ...purchased, costs: { ...purchased.costs } });
-}
-
 export function ruleChangeImpact(before: AiUsageRuleValues, after: AiUsageRuleValues): AiRuleChangeImpact[] {
   const changes: AiRuleChangeImpact[] = [];
   if (before.weeklyAllowance !== after.weeklyAllowance) changes.push({
     field: 'weeklyAllowance', before: before.weeklyAllowance, after: after.weeklyAllowance,
-    audience: after.weeklyAllowance > before.weeklyAllowance ? 'all_members' : 'new_purchases',
+    audience: 'all_users',
   });
   if (before.trialAllowance !== after.trialAllowance) changes.push({
     field: 'trialAllowance', before: before.trialAllowance, after: after.trialAllowance,
-    audience: 'eligible_new_accounts',
+    audience: 'all_users',
   });
   for (const key of Object.keys(before.costs) as Array<keyof AiUsageRuleValues['costs']>) {
     if (before.costs[key] !== after.costs[key]) changes.push({
       field: `costs.${key}`, before: before.costs[key], after: after.costs[key],
-      audience: after.costs[key] < before.costs[key] ? 'all_members' : 'new_purchases',
+      audience: 'all_users',
     });
   }
   return changes;

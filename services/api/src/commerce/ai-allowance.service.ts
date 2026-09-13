@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { and, asc, eq, gt, inArray, isNull, lte, or, sql } from 'drizzle-orm';
 import type { AiAllowanceSummary, AiUsageRuleValues } from '@icao/contracts/commerce-rules';
 
 import {
   accounts, aiAllowanceAccounts, aiPointBatches, aiPointLedgerEntries, commerceOrders, membershipEntitlementSegments,
 } from '../database/schema';
-import { allowancePeriod, protectedMemberRule, remainingPercent } from './ai-allowance-domain';
+import { allowancePeriod, remainingPercent } from './ai-allowance-domain';
 import { AiUsageRulesService, type CommerceTransaction, ruleValues } from './ai-usage-rules.service';
 import type { CommerceEnvironment } from './product-catalog';
 
@@ -45,19 +45,12 @@ export class AiAllowanceService {
     const membershipExpiresAt = segments.reduce<Date | null>((latest, segment) => (
       !latest || segment.endsAt > latest ? segment.endsAt : latest
     ), null);
-    let rule = ruleValues(current);
-    let ruleVersion = current.id;
+    const rule = ruleValues(current);
+    const ruleVersion = current.id;
     let resetAt: Date | null = null;
     let selected: Array<typeof aiPointBatches.$inferSelect>;
 
     if (active) {
-      const purchased = active.ruleId ? await this.rules.byId(transaction, active.ruleId) : await this.rules.effective(transaction, active.startsAt);
-      const versions = await this.rules.versions(transaction, now);
-      rule = protectedMemberRule(ruleValues(purchased), versions.filter((version) => (
-        version.effectiveAt >= (active.purchasedAt ?? active.startsAt)
-      )).map(ruleValues));
-      ruleVersion = purchased.id;
-
       const [firstOrder] = await transaction.select({ effectiveAt: commerceOrders.membershipEffectiveAt })
         .from(commerceOrders).where(and(
           eq(commerceOrders.environment, environment), eq(commerceOrders.accountId, accountId),
@@ -89,16 +82,6 @@ export class AiAllowanceService {
           environment, accountId, batchId: batch.id, operationId: `grant:${batch.id}`,
           entryType: 'grant', direction: 'credit', points: batch.grantedPoints, createdAt: now,
         });
-      } else if (rule.weeklyAllowance > existing.grantedPoints) {
-        // Increasing a limit retains consumed/reserved units, including same-week repurchases.
-        const extra = rule.weeklyAllowance - existing.grantedPoints;
-        await transaction.update(aiPointBatches).set({ grantedPoints: rule.weeklyAllowance, updatedAt: now })
-          .where(eq(aiPointBatches.id, existing.id));
-        await transaction.insert(aiPointLedgerEntries).values({
-          environment, accountId, batchId: existing.id,
-          operationId: `allowance-increase:${existing.id}:${rule.weeklyAllowance}`,
-          entryType: 'grant', direction: 'credit', points: extra, createdAt: now,
-        }).onConflictDoNothing();
       }
       selected = await transaction.select().from(aiPointBatches).where(identity);
     } else {
@@ -108,14 +91,9 @@ export class AiAllowanceService {
         eq(aiPointBatches.sourceType, 'trial'), eq(aiPointBatches.status, 'available'),
         lte(aiPointBatches.availableAt, now), or(isNull(aiPointBatches.expiresAt), gt(aiPointBatches.expiresAt, now)),
       ));
-      if (selected[0]) {
-        const trialRule = await this.rules.byId(transaction,
-          /^[0-9a-f-]{36}$/iu.test(selected[0].ruleVersion) ? selected[0].ruleVersion : null);
-        rule = protectedMemberRule(ruleValues(trialRule), [ruleValues(current)]);
-        ruleVersion = trialRule.id;
-      }
     }
-    const total = selected.reduce((sum, batch) => sum + batch.grantedPoints, 0);
+    const total = selected.length ? (active ? rule.weeklyAllowance : rule.trialAllowance) : 0;
+    const primary = [...selected];
     // Refill grants retain immutable consumption history and reuse the original period's cap/expiry.
     const refillPrefixes = selected.map(batch => `ops-refill:${batch.id}:%`);
     if (refillPrefixes.length) {
@@ -125,9 +103,24 @@ export class AiAllowanceService {
         lte(aiPointBatches.availableAt, now), or(isNull(aiPointBatches.expiresAt), gt(aiPointBatches.expiresAt, now)),
         or(...refillPrefixes.map(prefix => sql`${aiPointBatches.sourceReference} like ${prefix}`)),
       ));
-      selected = [...selected, ...refills];
+      selected = [...selected, ...refills.filter(refill => {
+        const owner = primary.find(batch => refill.sourceReference.startsWith(`ops-refill:${batch.id}:`));
+        return owner && (!owner.allowanceResetAt || refill.createdAt > owner.allowanceResetAt);
+      })];
     }
-    const available = selected.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0);
+    // The live cap is independent of the immutable physical grant/consumption ledger.
+    // Old refill grants offset usage; a reset starts a new consumption baseline.
+    const used = selected.reduce((sum, batch) => sum + batch.consumedPoints + batch.reservedPoints
+      - (batch.sourceReference.startsWith('ops-refill:') ? batch.grantedPoints : batch.allowanceConsumedBaseline), 0);
+    const available = Math.max(0, Math.min(total, total - used));
+    const physical = selected.reduce((sum, batch) => sum + batch.grantedPoints - batch.consumedPoints - batch.reservedPoints, 0);
+    if (primary[0] && available > physical) {
+      const extra = available - physical;
+      await transaction.update(aiPointBatches).set({ grantedPoints: sql`${aiPointBatches.grantedPoints} + ${extra}`, updatedAt: now })
+        .where(eq(aiPointBatches.id, primary[0].id));
+      await transaction.insert(aiPointLedgerEntries).values({ environment, accountId, batchId: primary[0].id,
+        operationId: `allowance-cap:${primary[0].id}:${crypto.randomUUID()}`, entryType: 'grant', direction: 'credit', points: extra, createdAt: now });
+    }
     const legacy = await transaction.select().from(aiPointBatches).where(and(
       eq(aiPointBatches.accountId, accountId), eq(aiPointBatches.environment, environment),
       inArray(aiPointBatches.sourceType, ['membership', 'compensation']),
@@ -161,6 +154,28 @@ export class AiAllowanceService {
         ruleVersion,
       },
     };
+  }
+
+  /** Caller locks the account; no consumption or purchase records are deleted. */
+  async resetBase(transaction: CommerceTransaction, accountId: string, environment: CommerceEnvironment, now: Date, operationId: string) {
+    const pending = await transaction.execute(sql`select 1 from ai_point_reservations where account_id = ${accountId}::uuid
+      and environment = ${environment} and status = 'reserved' limit 1`);
+    if (pending.length) throw new ConflictException('allowance_request_in_progress');
+    let context = await this.prepare(transaction, accountId, environment, now);
+    if (!context.batchIds.length) {
+      const [batch] = await transaction.insert(aiPointBatches).values({ accountId, originalAccountId: accountId, environment,
+        sourceType: 'trial', sourceReference: `ops-reset-trial:${operationId}:${accountId}`, ordinal: 0,
+        ruleVersion: context.ruleVersion, grantedPoints: context.rule.trialAllowance, availableAt: now, status: 'available', createdAt: now }).returning();
+      if (batch!.grantedPoints > 0) await transaction.insert(aiPointLedgerEntries).values({ environment, accountId, batchId: batch!.id,
+        operationId: `reset:${operationId}:${accountId}`, entryType: 'grant', direction: 'credit', points: batch!.grantedPoints, createdAt: now });
+      context = await this.prepare(transaction, accountId, environment, now);
+    }
+    const bases = await transaction.select().from(aiPointBatches).where(inArray(aiPointBatches.id, context.batchIds));
+    for (const batch of bases.filter(batch => !batch.sourceReference.startsWith('ops-refill:'))) {
+      await transaction.update(aiPointBatches).set({ allowanceConsumedBaseline: batch.consumedPoints, allowanceResetAt: now, updatedAt: now })
+        .where(eq(aiPointBatches.id, batch.id));
+    }
+    return this.prepare(transaction, accountId, environment, now);
   }
 
   async summary(transaction: CommerceTransaction, accountId: string, environment: CommerceEnvironment, now = new Date()) {

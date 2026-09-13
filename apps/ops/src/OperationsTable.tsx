@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react';
+import { opsApi } from './api';
+type Operation = {sequence:number;action:string;target_id:string|null;reason:string;before_state:unknown;after_state:unknown;created_at:string;actor_staff_id:string};
+const names:Record<string,string>={'ops.ai_rules.publish':'全局 AI 规则调整','ops.entitlement.execute':'用户权益调整','ops.allowance.reset':'基础额度重置','ops.allowances.reset.execute':'全员额度重置'};
+export function OperationsTable({account,environment,refresh=0}:{account?:string;environment?:string;refresh?:number}){
+ const [page,setPage]=useState(1),[data,setData]=useState<{rows:Operation[];hasMore:boolean}>(),[error,setError]=useState('');
+ useEffect(()=>{let active=true;setData(undefined);setError('');const q=new URLSearchParams({page:String(page),...(account?{account}:{}),...(environment?{environment}:{})});
+ void opsApi<{rows:Operation[];hasMore:boolean}>(`/v1/admin/users/operations?${q}`).then(d=>{if(active)setData(d);}).catch(()=>{if(active)setError('操作记录加载失败，请刷新重试。');});return()=>{active=false;};},[account,environment,page,refresh]);
+ return <div><h2>操作记录</h2>{error?<p role="alert">{error}</p>:!data?<p>正在读取记录…</p>:<><div className="rules-table-scroll"><table className="rules-table"><thead><tr><th>时间</th><th>操作</th><th>对象</th><th>原因</th><th>前后内容</th></tr></thead><tbody>{data.rows.map(r=><tr key={r.sequence}><td>{new Date(r.created_at).toLocaleString('zh-CN')}</td><td>{names[r.action]??r.action}</td><td className="mono">{r.target_id??'全部账户'}</td><td>{r.reason}</td><td><details><summary>查看详情</summary><p>操作者：{r.actor_staff_id}</p><p>修改前</p><pre>{JSON.stringify(r.before_state,null,2)}</pre><p>修改后</p><pre>{JSON.stringify(r.after_state,null,2)}</pre></details></td></tr>)}</tbody></table></div>{!data.rows.length?<p className="muted">暂无操作记录。</p>:null}<div className="rules-actions"><button disabled={page===1} onClick={()=>setPage(p=>p-1)}>上一页</button><span>第 {page} 页</span><button disabled={!data.hasMore} onClick={()=>setPage(p=>p+1)}>下一页</button></div></>}</div>;
+}

@@ -1,10 +1,16 @@
+import { AdminGlobalResetService } from '../src/admin/admin-global-reset.service';
+import { AdminUsersController } from '../src/admin/admin-users.controller';
+import type { AdminAuditService } from '../src/admin/admin-audit.service';
+import type { CommerceService } from '../src/commerce/commerce.service';
+import type { DatabaseService } from '../src/database/database.service';
+import type { OpsApiConfig } from '../src/config';
 import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
@@ -48,7 +54,7 @@ beforeAll(async () => {
   await client.unsafe(`
     CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role; CREATE ROLE supabase_admin;
     GRANT USAGE, CREATE ON SCHEMA public TO supabase_admin;
-    CREATE SCHEMA auth; CREATE TABLE auth.users(id uuid PRIMARY KEY);
+    CREATE SCHEMA auth; CREATE TABLE auth.users(id uuid PRIMARY KEY, phone text);
     CREATE TABLE auth.sessions(id uuid PRIMARY KEY,user_id uuid NOT NULL);
     CREATE SCHEMA storage; CREATE TABLE storage.buckets(id text PRIMARY KEY,name text NOT NULL,
       public boolean NOT NULL,file_size_limit bigint,allowed_mime_types text[]);
@@ -172,23 +178,23 @@ describe('weekly AI allowance with the persistent commerce ledger', () => {
     expect((await allowance.summary(tx, owner, 'production', day(8))).available).toBe(95);
   }));
 
-  it('protects already-purchased terms, applies improvements, and applies reductions only to later purchases', () => scenario(async (tx) => {
+  it('applies current rules to every existing member without clearing consumption', () => scenario(async (tx) => {
     const old = await account(tx);
     await member(tx, old);
     await consume(tx, old, NOW);
     const reduced = { ...INITIAL_AI_RULE, weeklyAllowance: 300, costs: { ...INITIAL_AI_RULE.costs, transcription: 9 } };
     const first = await publish(tx, reduced, day(1));
-    expect(first.preview.changes.every((change) => change.audience === 'new_purchases')).toBe(true);
-    expect(await allowance.summary(tx, old, 'production', day(2))).toMatchObject({ available: 495, rule: { weeklyAllowance: 500, costs: { transcription: 5 } } });
+    expect(first.preview.changes.every((change) => change.audience === 'all_users')).toBe(true);
+    expect(await allowance.summary(tx, old, 'production', day(2))).toMatchObject({ available: 295, rule: { weeklyAllowance: 300, costs: { transcription: 9 } } });
     const recent = await account(tx);
     await member(tx, recent, day(2), day(33), first.result.id);
     expect(await allowance.summary(tx, recent, 'production', day(2))).toMatchObject({ total: 300, rule: { costs: { transcription: 9 } } });
     const second = await publish(tx, { ...reduced, weeklyAllowance: 600, costs: { ...reduced.costs, transcription: 2 } }, day(3), first.result.id);
-    expect(second.preview.changes.every((change) => change.audience === 'all_members')).toBe(true);
+    expect(second.preview.changes.every((change) => change.audience === 'all_users')).toBe(true);
     expect(await allowance.summary(tx, old, 'production', day(3))).toMatchObject({ total: 600, available: 595, rule: { costs: { transcription: 2 } } });
     expect(await allowance.summary(tx, recent, 'production', day(3))).toMatchObject({ total: 600, available: 600 });
     const restored = await publish(tx, reduced, day(4), second.result.id);
-    expect((await allowance.summary(tx, old, 'production', day(4))).total).toBe(600);
+    expect((await allowance.summary(tx, old, 'production', day(4))).total).toBe(300);
     const next = await account(tx);
     await member(tx, next, day(5), day(36), restored.result.id);
     expect((await allowance.summary(tx, next, 'production', day(5))).total).toBe(300);
@@ -233,13 +239,13 @@ describe('weekly AI allowance with the persistent commerce ledger', () => {
     expect((await allowance.summary(tx, owner, 'production', day(1))).available).toBe(469);
   }));
 
-  it('only uses changed trial grants for new eligible accounts and preserves legacy restore terms at the migration cutoff', () => scenario(async (tx) => {
+  it('updates existing trial caps and retains the historical purchase identity at the migration cutoff', () => scenario(async (tx) => {
     const old = await account(tx);
     await benefits.grantFreeTrial(tx, { accountId: old, externalEligibilityClaimed: true, grantedAt: NOW });
     await publish(tx, { ...INITIAL_AI_RULE, trialAllowance: 50 }, day(1));
     const recent = await account(tx);
     await benefits.grantFreeTrial(tx, { accountId: recent, externalEligibilityClaimed: true, grantedAt: day(2) });
-    expect((await allowance.summary(tx, old, 'production', day(2))).total).toBe(100);
+    expect((await allowance.summary(tx, old, 'production', day(2))).total).toBe(50);
     expect((await allowance.summary(tx, recent, 'production', day(2))).total).toBe(50);
     const initial = await rules.byId(tx, INITIAL_AI_RULE_ID);
     expect(await rules.purchaseTerms(tx, 'membership_31d_v1', new Date(initial.createdAt.getTime() - 1))).toMatchObject({ aiUsageRuleVersionId: null, aiPointRuleVersion: 'ai-points-v1' });
@@ -316,3 +322,76 @@ describe('operation recovery and privacy with the real persistent ledger', () =>
     expect(await ai.operationResult(owner, 'production', second.input.operationId)).toMatchObject({ state: 'completed' });
   }));
 });
+
+it('clamps lowered caps, enforces actual reservation budgets, and keeps original charges', () => scenario(async tx => {
+  const owner=await account(tx);await member(tx,owner);await consume(tx,owner,NOW);
+  await publish(tx,{...INITIAL_AI_RULE,weeklyAllowance:3},day(1));
+  expect((await allowance.summary(tx,owner,'production',day(1))).available).toBe(0);
+  await expect(consume(tx,owner,day(1))).rejects.toThrow('insufficient_ai_points');
+  const [batch]=await tx.select().from(schema.aiPointBatches).where(eq(schema.aiPointBatches.accountId,owner));
+  expect(batch!.consumedPoints).toBe(5);
+}));
+it('resets consumed base only, keeps expiry, reservations and gifts separate, and supports repeated reset',()=>scenario(async tx=>{
+  const owner=await account(tx);await member(tx,owner);await consume(tx,owner,NOW);
+  await benefits.grantCompensation(tx,{accountId:owner,environment:'production',adjustmentId:randomUUID(),grantedAt:NOW,points:50});
+  const before=await allowance.summary(tx,owner,'production',day(1));
+  const reset=await allowance.resetBase(tx,owner,'production',day(1),randomUUID());
+  expect(reset).toMatchObject({available:500,total:500,bonusAvailable:50});expect(reset.summary.resetAt).toBe(before.summary.resetAt);expect(reset.summary.membershipExpiresAt).toBe(before.summary.membershipExpiresAt);
+  const [batch]=await tx.select().from(schema.aiPointBatches).where(eq(schema.aiPointBatches.id,reset.batchIds[0]!));expect(batch!.consumedPoints).toBe(5);expect(batch!.allowanceConsumedBaseline).toBe(5);
+  await consume(tx,owner,day(1));expect((await allowance.summary(tx,owner,'production',day(1))).available).toBe(495);
+  expect((await allowance.resetBase(tx,owner,'production',day(2),randomUUID())).available).toBe(500);
+  const input={accountId:owner,environment:'production' as const,capability:'transcription' as const,operationId:randomUUID(),requestDigest:'pending',reservedAt:day(2)};
+  await benefits.reserveAiPoints(tx,input);await expect(allowance.resetBase(tx,owner,'production',day(2),randomUUID())).rejects.toThrow('allowance_request_in_progress');
+  await benefits.releaseAiPoints(tx,{...input,releasedAt:day(2),failureCode:'test'});
+  const free=await account(tx);await tx.update(schema.accounts).set({aiTrialEligibilityReason:'trial_already_claimed'}).where(eq(schema.accounts.id,free));
+  expect((await allowance.resetBase(tx,free,'production',day(2),randomUUID()))).toMatchObject({available:100,total:100,summary:{mode:'trial'}});
+  expect((await allowance.summary(tx,free,'sandbox',day(2))).available).toBe(0);
+}));
+it('restores exhausted free trial and recalculates it under later rule changes without losing historical consumption',()=>scenario(async tx=>{
+  const owner=await account(tx);await benefits.grantFreeTrial(tx,{accountId:owner,externalEligibilityClaimed:true,grantedAt:NOW});
+  await publish(tx,{...INITIAL_AI_RULE,trialAllowance:5},day(1));await consume(tx,owner,day(1));
+  expect((await allowance.summary(tx,owner,'production',day(1))).available).toBe(0);
+  await allowance.resetBase(tx,owner,'production',day(2),randomUUID());
+  const current=await rules.effective(tx,day(2));await publish(tx,{...INITIAL_AI_RULE,trialAllowance:3,costs:{...INITIAL_AI_RULE.costs,transcription:2}},day(3),current.id);
+  expect((await allowance.summary(tx,owner,'production',day(3))).available).toBe(3);
+  await consume(tx,owner,day(3));expect((await allowance.summary(tx,owner,'production',day(3))).available).toBe(1);
+  const [batch]=await tx.select().from(schema.aiPointBatches).where(eq(schema.aiPointBatches.accountId,owner));expect(batch!.consumedPoints).toBe(7);
+}));
+
+it('previews exact account count, resets atomically, rejects stale rules, and makes completed confirmation idempotent',()=>scenario(async tx=>{
+  vi.useFakeTimers({toFake:['Date']});vi.setSystemTime(day(2));
+  try {
+    const owner=await account(tx),free=await account(tx),deleted=await account(tx);
+    await member(tx,owner);await consume(tx,owner,NOW);await tx.update(schema.accounts).set({status:'deleted'}).where(eq(schema.accounts.id,deleted));
+    await benefits.grantFreeTrial(tx,{accountId:free,externalEligibilityClaimed:true,grantedAt:NOW});await consume(tx,free,NOW);
+    const [admin]=await tx.insert(schema.opsStaffAccounts).values({email:`${randomUUID()}@test.invalid`,role:'admin',passwordHash:'x',totpSecretCiphertext:'x',totpSecretIv:'x',totpSecretTag:'x',totpConfirmedAt:NOW}).returning();
+    const [session]=await tx.insert(schema.opsStaffSessions).values({staffId:admin!.id,tokenHash:randomUUID(),totpVerifiedAt:NOW,createdAt:NOW,expiresAt:day(20)}).returning();
+    const staff={id:admin!.id,email:admin!.email,role:'admin' as const,sessionId:session!.id};
+    const db={db:tx} as unknown as DatabaseService;
+    const service=new AdminGlobalResetService({opsSessionHashSecret:'isolated-test-only'} as OpsApiConfig,db,allowance,rules,benefits);
+    const p=await service.preview({environment:'production',reason:'验证批量重置与账本保留'},staff,randomUUID());expect(p.count).toBe(2);
+    const pending={accountId:free,environment:'production' as const,capability:'transcription' as const,operationId:randomUUID(),requestDigest:'pending',reservedAt:day(2)};
+    await benefits.reserveAiPoints(tx,pending);
+    await expect(service.execute(p.previewId,p.confirmationToken,staff,randomUUID())).rejects.toThrow('allowance_request_in_progress');
+    expect((await allowance.summary(tx,owner,'production',day(2))).available).toBe(495);
+    await benefits.releaseAiPoints(tx,{...pending,releasedAt:day(2),failureCode:'test'});
+    await service.execute(p.previewId,p.confirmationToken,staff,randomUUID());
+    expect((await allowance.summary(tx,owner,'production',day(2))).available).toBe(500);expect((await allowance.summary(tx,free,'production',day(2))).available).toBe(100);
+    await consume(tx,owner,day(2));await service.execute(p.previewId,p.confirmationToken,staff,randomUUID());expect((await allowance.summary(tx,owner,'production',day(2))).available).toBe(495);
+    const p2=await service.preview({environment:'production',reason:'验证预览后规则变更拦截'},staff,randomUUID());
+    await publish(tx,{...INITIAL_AI_RULE,weeklyAllowance:600},day(2));
+    await expect(service.execute(p2.previewId,p2.confirmationToken,staff,randomUUID())).rejects.toThrow('ai_usage_rule_preview_stale');
+    const audit=await tx.select().from(schema.opsAuditEvents).where(eq(schema.opsAuditEvents.action,'ops.allowances.reset.execute'));expect(audit).toHaveLength(1);
+  } finally {vi.useRealTimers();}
+}));
+it('lists users with real phone, membership and order search, pagination and detail',()=>scenario(async tx=>{
+  const owner=await account(tx);await member(tx,owner);const auth=randomUUID();
+  await tx.execute(sql`insert into auth.users(id,phone) values(${auth}::uuid,'8613800000011')`);
+  await tx.insert(schema.accountIdentities).values({accountId:owner,authUserId:auth,provider:'phone',subjectHash:'a'.repeat(64)});
+  const controller=new AdminUsersController({db:tx} as unknown as DatabaseService,{allowanceForAdmin:(id:string,env:'production'|'sandbox')=>allowance.summary(tx,id,env,NOW)} as CommerceService,{record:async()=>{}} as unknown as AdminAuditService,{} as AdminGlobalResetService);
+  const req={id:randomUUID(),headers:{},opsStaff:{id:randomUUID(),email:'test@example.invalid',role:'admin' as const,sessionId:randomUUID()}};
+  const listing=await controller.list({query:'13800000011',limit:1},req);expect(listing.data.total).toBe(1);expect(listing.data.rows[0]).toMatchObject({account_id:owner,phone:'8613800000011'});
+  const none=await controller.list({query:'13800000011',page:2,limit:1},req);expect(none.data.total).toBe(1);expect(none.data.rows).toHaveLength(0);
+  const detail=await controller.detail(owner,'production',req);expect(detail.data.orders).toHaveLength(1);
+  const orderSearch=await controller.list({query:String(detail.data.orders[0]!.external_order_id)},req);expect(orderSearch.data.total).toBe(1);
+}));

@@ -344,6 +344,13 @@
       "when": 1789279104465,
       "tag": "0048_ai_trial_eligibility_reason",
       "breakpoints": true
+    },
+    {
+      "idx": 49,
+      "version": "7",
+      "when": 1789321929050,
+      "tag": "0049_admin_global_allowances",
+      "breakpoints": true
     }
   ]
 }
