@@ -58,6 +58,7 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  ['.vercelignore', ['a3d50ec9c80c6644c5f67c9461ccd4b7ccd3378af4cad618e1f7931232156bdb', '916c0e0fe0a01d56b657ecd2d460fb5b17f3f882b56cf00e7d055989ef846909']],
   // Android CMake path patch; package versions and all JavaScript stay identical.
   ['pnpm-workspace.yaml', ['6921135eec6d4d34d7508b385c4a2d9f0d7c8665382f963534c2162267b3dfca', '1e10635db62f0e8691336ee758537efac983b4bcfe6d5caf04c360efecac1196']],
   ['patches/expo-modules-core@55.0.25.patch', [null, '036b8b086a42f1d1f841089b9dacce74ca4fb88297bfd4886436d5e0c8ed7774']],
