@@ -16,6 +16,8 @@ import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
 
+import { isVercelLegacyWeb } from '@/config/web-runtime';
+
 import { isContentAvailableOnPlatform, resolveMockExamDiscoverCopy } from './native-release-surface';
 
 type Entry = { slug: string; title: string; en: string; description: string; icon: LucideIcon; mock?: boolean };
@@ -28,6 +30,7 @@ const resourceEntries: Entry[] = [
   { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日各考点真实考题资讯', icon: Flame },
   { slug: 'resources', title: '资源分享', en: 'Resources', description: '备考资料与实用工具合集', icon: FolderOpen },
 ];
+const appDownloadEntry: Entry = { slug: 'app-download', title: '听你五个 APP', en: 'App', description: '下载 APP，随时练习航空英语', icon: BookMarked };
 const courseEntry: Entry = {
   slug: 'courses',
   title: '体系课程',
@@ -45,6 +48,7 @@ export function DiscoverHomeScreen() {
     reportEntry,
   ];
   const visibleFeatures = features.filter((entry) => isContentAvailableOnPlatform(entry.slug, Platform.OS));
+  const visibleResources = isVercelLegacyWeb(Platform.OS) ? [appDownloadEntry, ...resourceEntries] : resourceEntries;
   const courseAvailable = isContentAvailableOnPlatform(courseEntry.slug, Platform.OS);
   return (
     <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset scroll contentStyle={styles.screen}>
@@ -54,7 +58,7 @@ export function DiscoverHomeScreen() {
         <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle title="资源" en="Resources" />
-      <View style={styles.list}>{resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
+      <View style={styles.list}>{visibleResources.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       {courseAvailable ? <><SectionTitle title="课程" en="Courses" /><ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis /></> : null}
     </Screen>
   );

@@ -169,8 +169,8 @@ const icao5IntensiveOutline = [
 export const webCoursePromoCatalog = {
   source: {
     url: 'https://feizhuicao.com/promo',
-    syncedAt: '2026-08-10',
-    liveHtmlSha256: 'c4702c2cade8a239e60325612afa26f1f7d911fa587d29a6150614e10fd256e8',
+    syncedAt: '2026-09-17',
+    liveHtmlSha256: '749fffe70a4d270c9ae47f7a8ab542af5c715bf1956315a6b768ed9857365c99',
   },
   hero: {
     eyebrow: 'CURRICULUM SYSTEM',
@@ -216,7 +216,7 @@ export const webCoursePromoCatalog = {
           {
             id: 'icao4-initial-guaranteed',
             name: 'ICAO 4 初考包过班',
-            price: '5999',
+            price: '6999',
             unit: '元 / 无限课时',
             description: '备考期间课程不限次数，团队持续承担教学与复盘任务直至学员通过。',
             detailIntro: guaranteedIntro,
@@ -256,7 +256,7 @@ export const webCoursePromoCatalog = {
           {
             id: 'icao4-retake-guaranteed',
             name: 'ICAO 4 复考包过班',
-            price: '4999',
+            price: '5999',
             unit: '元 / 无限课时',
             description: '备考期间课程不限次数，团队持续承担教学与复盘任务直至学员通过。',
             detailIntro: guaranteedIntro,
@@ -337,7 +337,7 @@ export const webCoursePromoCatalog = {
           {
             id: 'icao5-guaranteed',
             name: 'ICAO 5 包过班',
-            price: '7999',
+            price: '8999',
             unit: '元 / 无限课时',
             description: '备考期间课程不限次数，团队持续承担教学与复盘任务直至学员通过。',
             detailIntro: guaranteedIntro,

@@ -7,17 +7,17 @@ describe('webCoursePromoCatalog', () => {
 
     expect(webCoursePromoCatalog.source).toEqual({
       url: 'https://feizhuicao.com/promo',
-      syncedAt: '2026-08-10',
-      liveHtmlSha256: 'c4702c2cade8a239e60325612afa26f1f7d911fa587d29a6150614e10fd256e8',
+      syncedAt: '2026-09-17',
+      liveHtmlSha256: '749fffe70a4d270c9ae47f7a8ab542af5c715bf1956315a6b768ed9857365c99',
     });
     expect(views).toHaveLength(5);
     expect(plans).toHaveLength(12);
     expect(plans.map((plan) => `${plan.name}:${plan.price}:${plan.unit}`)).toEqual(expect.arrayContaining([
       'ICAO 4 初考基础班:4500:元 / 15 节课 + 2 次模拟测试',
-      'ICAO 4 初考包过班:5999:元 / 无限课时',
-      'ICAO 4 复考包过班:4999:元 / 无限课时',
+      'ICAO 4 初考包过班:6999:元 / 无限课时',
+      'ICAO 4 复考包过班:5999:元 / 无限课时',
       'ICAO 4 预习课程:3000:元 / 12 节课',
-      'ICAO 5 包过班:7999:元 / 无限课时',
+      'ICAO 5 包过班:8999:元 / 无限课时',
     ]));
     expect(webCoursePromoCatalog.advantages.items[0].description).toContain('95%+');
     expect(webCoursePromoCatalog.advantages.items[0].description).toContain('92%+');
