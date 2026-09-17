@@ -53,7 +53,7 @@ export async function assertAndroidReleaseWechatArtifact({ bundle, manifestXml, 
     if (matches.length !== 1) fail('candidate_android_wechat_callback_mismatch');
     const callback = matches[0];
     const attributes = callback.$;
-    if (attributes['android:exported'] !== 'true' || attributes['android:launchMode'] !== 'singleTop'
+    if (attributes['android:exported'] !== 'true' || !['singleTop', '1'].includes(attributes['android:launchMode'])
         || attributes['android:taskAffinity'] !== approvedPackage || attributes['android:enabled'] === 'false'
         || attributes['android:permission'] || callback['intent-filter']?.length) {
       fail('candidate_android_wechat_callback_attributes_mismatch');
