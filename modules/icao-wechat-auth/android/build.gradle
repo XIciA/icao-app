@@ -17,5 +17,6 @@ android {
 
 dependencies {
   implementation project(':expo-modules-core')
-  implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
+  // Generated app callback Activities consume the SDK types exposed by this module.
+  api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
 }

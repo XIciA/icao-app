@@ -95,6 +95,8 @@ async function filesBelow(relativeDirectory) {
   async function visit(relativePath) {
     for (const entry of await readdir(path.join(ROOT, relativePath), { withFileTypes: true })) {
       const child = path.join(relativePath, entry.name);
+      // Android compilation outputs are checked in the final APK, not as client source.
+      if (child === 'modules/icao-wechat-auth/android/build') continue;
       // The approved vendored XCFramework is verified by its locked archive SHA above. Scanning
       // its bundled README/binaries for source markers creates false positives and adds no signal.
       if (entry.isDirectory() && entry.name !== 'Vendor') await visit(child);
