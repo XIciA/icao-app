@@ -17,12 +17,22 @@ test('formal web selects shared account, sync, and protected topic logic', () =>
   }
 });
 test('browser media, storage and commerce adapters remain browser-owned', () => {
-  for (const file of ['src/platform/storage.web.ts', 'src/features/native-commercial-testflight/CommerceRuntimeProvider.web.tsx', 'src/features/question-bank/recording/recording-repository.web.ts']) {
+  for (const file of ['src/platform/storage.web.ts', 'src/features/native-commercial-testflight/CommerceRuntimeProvider.browser.tsx', 'src/features/question-bank/recording/recording-repository.web.ts']) {
     const resolution = { type: 'sourceFile', filePath: path.join(root, file) };
     assert.equal(edgeOneSharedModule(root, resolution, 'web', 'edgeone-production'), resolution);
   }
   for (const name of ['member-content-cache.ts', 'member-content-cache.native.ts']) {
     const resolution = { type: 'sourceFile', filePath: path.join(root, 'src/features/question-bank/data', name) };
     assert.match(edgeOneSharedModule(root, resolution, 'web', 'edgeone-production').filePath, /member-content-cache\.browser\.ts$/);
+  }
+});
+
+test('legacy runtime keeps its original radio and commerce providers', () => {
+  for (const file of ['src/features/radio-player/RadioPlayerProvider.web.tsx', 'src/features/native-commercial-testflight/CommerceRuntimeProvider.tsx', 'src/features/native-commercial-testflight/MembershipRoutePage.tsx']) {
+    const resolution = { type: 'sourceFile', filePath: path.join(root, file) };
+    for (const runtime of [undefined, '', 'vercel-legacy']) {
+      assert.equal(edgeOneSharedModule(root, resolution, 'web', runtime), resolution);
+    }
+    assert.match(edgeOneSharedModule(root, resolution, 'web', 'edgeone-production').filePath, /\.browser\.tsx$/);
   }
 });

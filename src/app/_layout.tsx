@@ -58,10 +58,10 @@ export function AppStack() {
   const publicDownload = Platform.OS === 'web' && isEdgeOneProductionWeb() && pathname === '/download';
 
   useEffect(() => {
-    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && pathname !== '/download' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
+    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !publicDownload && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
       auth.rememberPendingPath(pathname);
     }
-  }, [auth, pathname]);
+  }, [auth, pathname, publicDownload]);
 
   useEffect(() => {
     if (!auth.restoring && auth.canAccessApp && pathname?.startsWith('/auth/')) {

@@ -2,6 +2,9 @@
 // media and UI adapters still resolve as web modules. Vercel is never remapped.
 const path = require('node:path');
 const sharedModules = {
+  "src/features/radio-player/RadioPlayerProvider.web.tsx": "src/features/radio-player/RadioPlayerProvider.browser.tsx",
+  "src/features/native-commercial-testflight/CommerceRuntimeProvider.tsx": "src/features/native-commercial-testflight/CommerceRuntimeProvider.browser.tsx",
+  "src/features/native-commercial-testflight/MembershipRoutePage.tsx": "src/features/native-commercial-testflight/MembershipRoutePage.browser.tsx",
   "src/features/radio-player/catalog.ts": "src/features/radio-player/catalog.browser.ts",
   "src/features/auth/AuthProvider.web.tsx": "src/features/auth/AuthProvider.tsx",
   "src/features/auth/auth-service.web.ts": "src/features/auth/auth-service.ts",

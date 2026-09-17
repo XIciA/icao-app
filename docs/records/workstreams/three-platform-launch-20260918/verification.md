@@ -32,3 +32,10 @@
 - 浏览器手机 390×844、桌面 1440×1000：手机号验证码/密码入口正常，无 Apple/微信入口；下载页 Logo、App Store 链接和 Android 待开放状态正常，无横向溢出；从登录页进入下载页再返回登录页已复测通过。
 - 浏览器初次发现临时 Supabase client 与主 client 共用 storageKey 警告，已隔离临时 client key；新构建未出现新的控制台错误/警告。
 - 验收边界：没有使用生产账号写学习记录、发起 AI 消费或购买；上述浏览器 smoke 不代替真实登录后的三端双向同步及真实支付验收。网页录音采用现有浏览器录音适配，原始录音文件不会因此新增跨设备云同步。
+
+### PR 冻结边界收敛
+
+- 修复版随身听迁至 `RadioPlayerProvider.browser.tsx`，`RadioPlayerProvider.web.tsx` 恢复为 `origin/main` 字节一致内容；原 Vercel 播放行为保持不变。
+- 正式网页权益/会员页迁至 `CommerceRuntimeProvider.browser.tsx`、`MembershipRoutePage.browser.tsx`，仅 EdgeOne Metro 映射到新实现；删除新增 `.web.tsx` 覆盖，Vercel 继续解析原 base 实现及原提示文本。
+- 同一构建内 Provider 和 `useRadioPlayer` 均通过同一路径映射到同一模块，避免出现两个 Context。音频所有权门禁显式覆盖正式 browser 实现。
+- 映射测试 3/3；网页随身听/权益隔离聚焦测试 7/7；音频边界门禁和 TypeScript 检查通过。

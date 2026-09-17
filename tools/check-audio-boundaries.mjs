@@ -6,6 +6,8 @@ const sourceRoot = path.join(root, 'src');
 const orchestrator = 'src/platform/audio/audio-session-orchestrator.ts';
 const sessionManagedPlayer = 'src/platform/audio/session-managed-player.ts';
 const webRadioPlayer = 'src/features/radio-player/RadioPlayerProvider.web.tsx';
+// The formal browser implementation is selected only by the EdgeOne resolver.
+const formalWebRadioPlayer = 'src/features/radio-player/RadioPlayerProvider.browser.tsx';
 const recorderAdapter = 'src/features/question-bank/recording/expo-recorder-adapter.ts';
 const recorderAdapterWeb = 'src/features/question-bank/recording/expo-recorder-adapter.web.ts';
 const repository = 'src/features/question-bank/recording/recording-repository.ts';
@@ -52,21 +54,21 @@ for (const file of files) {
     file,
     content,
     /import\s*\{[^}]*\b(?:createAudioPlayer|useAudioPlayer)\b[^}]*\}\s*from\s*['"]expo-audio['"]/s,
-    [sessionManagedPlayer, webRadioPlayer],
+    [sessionManagedPlayer, webRadioPlayer, formalWebRadioPlayer],
     'Expo Audio players must use the session-managed factory or hook so pause cannot deactivate a recording session',
   );
   reject(
     file,
     content,
     /\b(?:createAudioPlayer|useAudioPlayer)\s*\(/,
-    [sessionManagedPlayer, webRadioPlayer],
+    [sessionManagedPlayer, webRadioPlayer, formalWebRadioPlayer],
     'Expo Audio player construction must stay behind the session-managed boundary',
   );
   reject(
     file,
     content,
     /(?:import\s*\*\s*as\s+\w+\s*from|require\s*\(|import\s*\()\s*['"]expo-audio['"]\s*\)?/,
-    [orchestrator, sessionManagedPlayer, recorderAdapter, recorderAdapterWeb, webRadioPlayer],
+    [orchestrator, sessionManagedPlayer, recorderAdapter, recorderAdapterWeb, webRadioPlayer, formalWebRadioPlayer],
     'namespace, require, or dynamic Expo Audio access may not bypass the audio ownership boundaries',
   );
   reject(

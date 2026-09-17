@@ -19,7 +19,7 @@ jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolve
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: async () => ({token: 'lease'}), release: async () => undefined, register: () => () => undefined } }));
 jest.mock('@/platform/storage', () => ({ __esModule: true, default: { getItem: async () => null, setItem: async () => undefined } }));
 import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
-import { RadioPlayerProvider, useRadioPlayer } from '../RadioPlayerProvider.web';
+import { RadioPlayerProvider, useRadioPlayer } from '../RadioPlayerProvider.browser';
 function Observer() { mockValue = useRadioPlayer(); return null; }
 const tree = () => <RadioPlayerProvider><Observer /></RadioPlayerProvider>;
 async function flush() { await act(async () => { for (let i = 0; i < 30; i++) await Promise.resolve(); }); }

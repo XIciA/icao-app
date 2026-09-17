@@ -55,7 +55,82 @@ const reviewedAppIdentityDependencyHashes = new Map([
   ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '03cb3f2997aeb9233e1db3520706b612dc7635f1e737a6dd78b132453b4dec28']],
 ]);
 
+// Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
+// Exact before/after hashes only; no general exemption for browser or native files.
+const reviewedFormalWebHashes = new Map([
+  [
+    "metro.config.js",
+    [
+      "f198870ad147b9572961c05327bc3616077328d9696aa5debb6103d8aeb7a71e",
+      "797adeaf4cf6c604716a2b768d35b9e6231df6e63265591a2133dc33c3e8313a"
+    ]
+  ],
+  [
+    "src/app/_layout.tsx",
+    [
+      "6e1e6c63667d5bff4816d0d195e71383fbca7d406d5a63120bdc32c2053dc732",
+      "cd447d1320b480769b541c6d0fa3b20ca95cd9d996d0d925100d323f70bf88a4"
+    ]
+  ],
+  [
+    "src/app/download.tsx",
+    [
+      null,
+      "0d5cc1a0a75bb74e80f5fd693490db0b39d3d06aa2ccaf752484c439395eede0"
+    ]
+  ],
+  [
+    "src/components/platform/EdgeOneAlertHost.tsx",
+    [
+      null,
+      "f450380d17bebdcb3a18fd6f7732ab5f946ddaa5d40936950d36477af34f1d1b"
+    ]
+  ],
+  [
+    "src/features/auth/phone-otp-storage.web.ts",
+    [
+      null,
+      "0b95f6b10a64548ccce8eb54eb7e14fb609141958b08c875a9a4b25b2e882fdf"
+    ]
+  ],
+  [
+    "src/features/auth/secure-session-storage.web.ts",
+    [
+      null,
+      "dacdd5efeb93c8d11515ab4118f748e68b0795486143e94487ac1d27e870b395"
+    ]
+  ],
+  [
+    "src/features/content/AppDownloadScreen.tsx",
+    [
+      "87b29194e178462bdc81f85c264fa3e12be9027846c6c1264441eeabf9fa6947",
+      "56b8bb03e75118dfc707298ba60e804058945d068b1c9a703c1a6a0598236a21"
+    ]
+  ],
+  [
+    "tools/edgeone-shared-modules.cjs",
+    [
+      null,
+      "4b06fc56dbc5cc9385082a6cec7b1c9b45daa02e1e9ed61fa57611a6d0ea6d57"
+    ]
+  ]
+]);
+
+export function normalizeReviewedFormalWebInputs(expected, current) {
+  const baseline = new Map(expected.map(file => [file.path, file]));
+  return current.flatMap(file => {
+    const pair = reviewedFormalWebHashes.get(file.path);
+    const before = baseline.get(file.path);
+    if (!pair || (before?.sha256 ?? null) !== pair[0] || file.sha256 !== pair[1]) return [file];
+    // Existing protection ownership must remain identical. Added exact bridges
+    // are not part of the legacy runtime and are pinned above on every check.
+    if (before && before.sources.join('\0') !== file.sources.join('\0')) return [file];
+    return before ? [before] : [];
+  });
+}
+
 const exactProtectedPaths = [
+  'tools/edgeone-shared-modules.cjs',
   '.vercelignore',
   'app.config.js',
   'app.json',
@@ -716,7 +791,9 @@ async function checkManifest(manifestPath, explain) {
   const fingerprinted = await fingerprintSelection(await collectCurrentSelection());
   const expected = manifest.files;
   const approvedContentPaths = [];
-  const files = fingerprinted.files.map((file) => {
+  const reviewedFiles = path.resolve(manifestPath) === path.resolve(defaultManifestPath)
+    ? normalizeReviewedFormalWebInputs(expected, fingerprinted.files) : fingerprinted.files;
+  const files = reviewedFiles.map((file) => {
     const baseline = expected.find((entry) => entry.path === file.path);
     if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)
       && baseline && approved900ContentHashes.get(file.path) === file.sha256) {
