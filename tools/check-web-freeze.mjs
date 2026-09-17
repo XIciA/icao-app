@@ -52,16 +52,17 @@ const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac
 // Existing dependency versions and the Web resolver graph remain unchanged.
 const reviewedAppIdentityDependencyHashes = new Map([
   ['package.json', ['cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e', 'fb69d0a671771c7e250bc995b42e2b653730db64c147356fab5b89cb3e1b29eb']],
-  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '42ff434328d6ea09f23ad4131202df0b221c5d721e0db397b0b971263654796f']],
+  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '80753a9136a3331d2176b692a0491f66a8fe63848f4d785f95f951e9bbb87cd3']],
 ]);
 
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  ['patches/react-native-reanimated@4.2.1.patch', [null, '2110d0c65efd75dc19fcda10411a628c61202965736eba134ff69e42609f26bd']],
   ['.vercelignore', ['a3d50ec9c80c6644c5f67c9461ccd4b7ccd3378af4cad618e1f7931232156bdb', '916c0e0fe0a01d56b657ecd2d460fb5b17f3f882b56cf00e7d055989ef846909']],
   // Android CMake path patch; package versions and all JavaScript stay identical.
-  ['pnpm-workspace.yaml', ['6921135eec6d4d34d7508b385c4a2d9f0d7c8665382f963534c2162267b3dfca', '1e10635db62f0e8691336ee758537efac983b4bcfe6d5caf04c360efecac1196']],
-  ['patches/expo-modules-core@55.0.25.patch', [null, '036b8b086a42f1d1f841089b9dacce74ca4fb88297bfd4886436d5e0c8ed7774']],
+  ['pnpm-workspace.yaml', ['6921135eec6d4d34d7508b385c4a2d9f0d7c8665382f963534c2162267b3dfca', 'becf75d14c36abeb44a3101d052af47cd2ce7a2242927b0f6a6f81c6c24d100a']],
+  ['patches/expo-modules-core@55.0.25.patch', [null, '7c4af49fe3dabe894cd566135b04b5bf8d951b6a26a880fe0fcec806c75df6e7']],
   [
     "metro.config.js",
     [
@@ -134,6 +135,7 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
 }
 
 const exactProtectedPaths = [
+  'patches/react-native-reanimated@4.2.1.patch',
   'patches/expo-modules-core@55.0.25.patch',
   'tools/edgeone-shared-modules.cjs',
   '.vercelignore',

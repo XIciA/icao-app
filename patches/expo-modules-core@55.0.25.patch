@@ -1,3 +1,23 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index aa170fac0cf796ae4b1a203e9411f3bb963c62b5..62c6ca95f96e714a105ee9269ae0210593793036 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -73,8 +73,13 @@ if (workletsProject != null) {
+     println("Linking react-native-worklets native libs into expo-modules-core build tasks")
+     println(workletsProject.tasks.getByName("mergeDebugNativeLibs"))
+     println(workletsProject.tasks.getByName("mergeReleaseNativeLibs"))
+-    tasks.getByName("buildCMakeDebug").dependsOn(workletsProject.tasks.getByName("mergeDebugNativeLibs"))
+-    tasks.getByName("buildCMakeRelWithDebInfo").dependsOn(workletsProject.tasks.getByName("mergeReleaseNativeLibs"))
++    // Also order ABI-specific tasks before linking when Gradle runs in parallel.
++    tasks.matching { it.name.startsWith("buildCMakeDebug") }.configureEach {
++      dependsOn(workletsProject.tasks.getByName("mergeDebugNativeLibs"))
++    }
++    tasks.matching { it.name.startsWith("buildCMakeRelWithDebInfo") }.configureEach {
++      dependsOn(workletsProject.tasks.getByName("mergeReleaseNativeLibs"))
++    }
+   }
+ }
+ 
 diff --git a/android/cmake/main.cmake b/android/cmake/main.cmake
 index c79b8c62a57b0d09cc3205b83dce14a60f87319b..95317d722b476fd3c2769d1ded82e04c4f450638 100644
 --- a/android/cmake/main.cmake
