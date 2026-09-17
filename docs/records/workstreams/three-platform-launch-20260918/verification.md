@@ -14,7 +14,7 @@
 
 ## 正式发布记录
 
-待代码进入 origin/main 后填写制品 SHA、部署标识、下载地址与线上检查结果。不能将本地构建或预览记为正式上线。
+生产 API、签名 APK、正式 EdgeOne 网页和 Vercel 安卓下载入口均已发布；精确来源、制品摘要、部署标识及回滚目标见 [release.md](./release.md)。这表示制品与网站已交付，不表示真实 Android 设备及真实支付已验收。
 
 ## 真实设备边界
 
@@ -46,3 +46,15 @@
 - 使用 pnpm 锁定补丁改为引用已有合并任务的稳定输出；保留原 Gradle 任务依赖，覆盖 Debug/Release 和各 ABI。没有升级依赖版本、修改 JavaScript 或手工复制动态库。
 - 冻结检查仅加入这份 Android CMake 补丁及其 workspace/lockfile 的精确摘要；Web 业务代码保持冻结，负向门禁测试 7 项通过。
 - 后续全链路原生检查发现 Reanimated 4.2.1 也引用同一旧路径，已对两个消费者统一修正，并将合并依赖明确加到各 ABI 的 CMake 任务上，避免并行链接竞态。扫描安装依赖的 CMake/Gradle 源码确认没有第三个现行消费者。
+- 应用层生成的微信回调 Activity 直接使用 SDK 类型，模块依赖改为 `api`，使这些类型对应用编译可见；三个本地 Expo 模块补齐 SDK 55 发布插件所需的 defaultConfig 版本。
+- 四种 ABI 的完整原生编译、应用 Kotlin 编译和 Release lint 通过；最终 `assembleRelease` 成功。16 GB 开发机并行 ABI 构建会造成明显内存争用，本次采用单 Gradle worker 完成构建；没有降级编译器或跳过 ABI。
+- 实际 APK 的 `apkanalyzer` 将 `singleTop` 输出为数值 `1`。校验工具接受这两个等价表示，继续拒绝其他 launch mode；9 项合同测试通过，实际 APK 通过校验。该修正仅影响校验工具，未重建或更改已有签名 APK。
+
+## 生产环境复核（2026-09-18）
+
+- 正式网页 `readyoufife.com` 的线上 JavaScript 文件与已审查的 EdgeOne 构建一致。Chrome 实测手机号验证码/密码切换、下载页及返回；没有微信或 Apple 登录入口，未登录访问发现页会返回登录。
+- 390px 和 1440px 页面宽度与内容宽度相同，没有横向溢出；下载页 Logo、两端按钮、上下/左右布局正常。浏览器验收期间未出现 console error/warn。
+- `feizhuicao.com/content/app-download` 已显示正式 Android APK 下载；返回发现页后仍有 APP、OPI 热点、资源分享三个项目和原体系课程入口。云构建的冻结门禁确认 349 个受保护文件与基线完全一致。
+- 公开 APK HTTP 200、MIME 正确、长度 132899861 字节；完整公开下载 SHA-256 与本地制品相同，公开响应 ETag 也与本地 MD5 一致。
+- 生产数据库只读查询确认 7/31/93 天价格分别为 6800/15800/35800 分；既有四个私有 storage bucket 的权限与各自大小上限保持不变。
+- API 和 Storage 容器健康。微信商户凭据保留在服务端，未放入客户端制品或本记录。
