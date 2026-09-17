@@ -45,6 +45,17 @@ test('the real Android plugin output permits approved login and APP payment with
   await assertAndroidReleaseWechatArtifact(input(manifest));
 });
 
+test('compiled APK manifests encode singleTop as enum value 1', async () => {
+  const manifest = await generatedManifest();
+  for (const entry of manifest.manifest.application[0].activity) entry.$['android:launchMode'] = '1';
+  await assertAndroidReleaseWechatArtifact(input(manifest));
+  for (const value of ['0', '2', '3', '4', 'singleTask']) {
+    const invalid = structuredClone(manifest);
+    paymentActivity(invalid).$['android:launchMode'] = value;
+    await assert.rejects(assertAndroidReleaseWechatArtifact(input(invalid)), /callback_attributes_mismatch/u);
+  }
+});
+
 test('Android artifacts reject unapproved package, AppID, duplicate metadata and callback identities', async () => {
   for (const mutate of [
     value => { value.manifest.$.package = 'com.unapproved.app'; },
