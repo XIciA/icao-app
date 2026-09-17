@@ -33,3 +33,11 @@
 - 商户证书与私钥匹配；微信支付公钥可解析，APIv3 密钥用户已设置。需进一步验证正式部署与接口。
 
 遇到外部人工验证时继续其他工作，不绕过验证，不伪造验收结果。
+
+## APK 存储发布
+
+正式 APK 使用现有 Supabase Storage 的独立公开 bucket `app-releases`，路径包含版本和 build number，不覆盖旧包；不新增可写匿名策略。仅接受 Android APK MIME，bucket 上限 512 MiB。既有私有 bucket 的 50 MiB / 8 MiB / 5 MiB / 10 MiB 限制保留。
+
+若正式包超过原全局 50 MiB 限制，使用 `infra/supabase/docker-compose.app-releases.yml` 作为现有生产 Compose 的附加覆盖文件，只重建 storage 服务；先备份并核对原 Compose 文件，不覆盖生产的其他配置。上线后验证公开下载、文件大小和 SHA-256，并验证现有私有资源仍需授权。
+
+依据：https://supabase.com/docs/guides/self-hosting/storage/config 与 https://supabase.com/docs/guides/storage/uploads/file-limits 。

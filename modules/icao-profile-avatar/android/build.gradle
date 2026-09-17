@@ -7,6 +7,8 @@ version = '1.0.0'
 android {
   namespace "com.icao.profileavatar"
   defaultConfig {
+    versionCode 1
+    versionName project.version.toString()
     minSdkVersion 24
     targetSdkVersion 36
   }
