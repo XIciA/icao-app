@@ -39,3 +39,9 @@
 - 正式网页权益/会员页迁至 `CommerceRuntimeProvider.browser.tsx`、`MembershipRoutePage.browser.tsx`，仅 EdgeOne Metro 映射到新实现；删除新增 `.web.tsx` 覆盖，Vercel 继续解析原 base 实现及原提示文本。
 - 同一构建内 Provider 和 `useRadioPlayer` 均通过同一路径映射到同一模块，避免出现两个 Context。音频所有权门禁显式覆盖正式 browser 实现。
 - 映射测试 3/3；网页随身听/权益隔离聚焦测试 7/7；音频边界门禁和 TypeScript 检查通过。
+
+### Android 原生依赖构建修正
+
+- Expo Modules Core 55.0.25 仍引用旧 `intermediates/cmake` 路径；当前 Android Gradle 插件将 Worklets 输出到 `cxx`，并由既有 `mergeReleaseNativeLibs` 任务合并。与 Expo 官方 issue #42893 描述相同。
+- 使用 pnpm 锁定补丁改为引用已有合并任务的稳定输出；保留原 Gradle 任务依赖，覆盖 Debug/Release 和各 ABI。没有升级依赖版本、修改 JavaScript 或手工复制动态库。
+- 冻结检查仅加入这份 Android CMake 补丁及其 workspace/lockfile 的精确摘要；Web 业务代码保持冻结，负向门禁测试 7 项通过。

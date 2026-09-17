@@ -24,6 +24,7 @@ services/
 strategic/
 /tools/*
 !/tools/*web*
+!/tools/edgeone-shared-modules.cjs
 !/tools/check-lucide-import-boundary.mjs
 战略/
 ios/

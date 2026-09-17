@@ -1,0 +1,25 @@
+diff --git a/android/cmake/main.cmake b/android/cmake/main.cmake
+index c79b8c62a57b0d09cc3205b83dce14a60f87319b..95317d722b476fd3c2769d1ded82e04c4f450638 100644
+--- a/android/cmake/main.cmake
++++ b/android/cmake/main.cmake
+@@ -77,11 +77,19 @@ if (REACT_NATIVE_WORKLETS_DIR)
+     set(BUILD_TYPE "release")
+   endif ()
+ 
++  # Gradle waits for mergeDebugNativeLibs/mergeReleaseNativeLibs above. Use that
++  # task output instead of the pre-AGP-9 CMake intermediate directory.
++  if (BUILD_TYPE STREQUAL "debug")
++    set(MERGE_TASK "mergeDebugNativeLibs")
++  else ()
++    set(MERGE_TASK "mergeReleaseNativeLibs")
++  endif ()
++
+   set_target_properties(
+     worklets
+     PROPERTIES
+     IMPORTED_LOCATION
+-    "${REACT_NATIVE_WORKLETS_DIR}/android/build/intermediates/cmake/${BUILD_TYPE}/obj/${ANDROID_ABI}/libworklets.so"
++    "${REACT_NATIVE_WORKLETS_DIR}/android/build/intermediates/merged_native_libs/${BUILD_TYPE}/${MERGE_TASK}/out/lib/${ANDROID_ABI}/libworklets.so"
+   )
+ 
+   target_link_libraries(
