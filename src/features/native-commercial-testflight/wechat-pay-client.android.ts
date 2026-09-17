@@ -30,7 +30,9 @@ export function createWechatPaymentBoundary(module: WechatNativePaymentModule | 
   };
 }
 export const launchWechatCheckout = createWechatPaymentBoundary(requireOptionalNativeModule<WechatNativePaymentModule>('IcaoWechatAuth'));
-// Each multi-step purchase keeps the original token. An account switch cannot replay a payment write as another account.
+// Callers obtain a fresh session for the captured authentication user before an operation
+// (and again after the SDK returns). Each request remains pinned to that explicit token;
+// these helpers deliberately never retry a payment write under the current global account.
 export const getWechatPayCatalog = (accessToken: string) => apiRequestWithAccessToken<WechatPayCatalog>('/v1/commerce/wechat/catalog', accessToken);
 export const createWechatCheckout = (input: WechatCheckoutRequest, accessToken: string) => apiRequestWithAccessToken<WechatCheckout>('/v1/commerce/wechat/checkouts', accessToken, { method: 'POST', body: JSON.stringify(input) });
 export const getPendingWechatCheckout = (accessToken: string) => apiRequestWithAccessToken<WechatCheckout | null>('/v1/commerce/wechat/pending', accessToken);

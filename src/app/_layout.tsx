@@ -1,12 +1,13 @@
 import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
+import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AppText } from '@/components/ui';
@@ -15,6 +16,7 @@ import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { useAppFonts } from '@/platform/use-app-fonts';
 import { colors } from '@/theme';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
@@ -31,6 +33,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.root}>
       <AppViewport>
         <ModalHost>
+          <EdgeOneAlertHost />
           <SafeAreaProvider>
             <AuthProvider>
               <AppRuntime>
@@ -52,12 +55,13 @@ export function AppStack() {
   const pathname = usePathname();
   const router = useRouter();
   const authRedirectInFlightRef = useRef(false);
+  const publicDownload = Platform.OS === 'web' && isEdgeOneProductionWeb() && pathname === '/download';
 
   useEffect(() => {
-    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
+    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !publicDownload && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
       auth.rememberPendingPath(pathname);
     }
-  }, [auth, pathname]);
+  }, [auth, pathname, publicDownload]);
 
   useEffect(() => {
     if (!auth.restoring && auth.canAccessApp && pathname?.startsWith('/auth/')) {
@@ -69,8 +73,8 @@ export function AppStack() {
     authRedirectInFlightRef.current = false;
   }, [auth, pathname, router]);
 
-  if (auth.restoring) return <GlobalLoadingScreen />;
-  if (auth.accountRestoreUnavailable) {
+  if (auth.restoring && !publicDownload) return <GlobalLoadingScreen />;
+  if (auth.accountRestoreUnavailable && !publicDownload) {
     return (
       <CenteredState
         actionLabel="重新检查"
@@ -80,7 +84,7 @@ export function AppStack() {
       />
     );
   }
-  if (auth.accountDeletionPending) {
+  if (auth.accountDeletionPending && !publicDownload) {
     return (
       <CenteredState
         actionLabel="重新检查"
@@ -93,6 +97,13 @@ export function AppStack() {
 
   return (
     <View style={styles.root}>
+      {Platform.OS === 'web' && isEdgeOneProductionWeb() && pathname !== '/download' ? (
+        <View style={styles.downloadHeader}>
+          <Pressable accessibilityRole="link" onPress={() => router.push('/download' as Href)} style={styles.downloadLink}>
+            <AppText color={colors.primary} variant="button">下载 APP</AppText>
+          </Pressable>
+        </View>
+      ) : null}
       <Stack
             screenOptions={{
               animation: 'slide_from_right',
@@ -108,6 +119,7 @@ export function AppStack() {
               <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
             </Stack.Protected>
             <Stack.Screen name="legal/[slug]" />
+            <Stack.Screen name="download" />
             <Stack.Protected guard={auth.canAccessApp}>
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
               <Stack.Screen name="question-bank/[bankId]/index" />
@@ -173,6 +185,8 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  downloadHeader: { alignItems: 'flex-end', backgroundColor: colors.background, paddingHorizontal: 20, paddingVertical: 4 },
+  downloadLink: { paddingHorizontal: 12, paddingVertical: 10 },
   errorRoot: { backgroundColor: colors.background, flex: 1 },
   acceptanceBadge: {
     backgroundColor: colors.accent,

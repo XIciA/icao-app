@@ -16,7 +16,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { assertNativeBuildOnlyAppJsonDelta, assertReviewedNativeStudyRouteDelta, readNativeBuildReference } from './check-web-freeze.mjs';
+import { assertNativeBuildOnlyAppJsonDelta, assertReviewedNativeStudyRouteDelta, normalizeReviewedFormalWebInputs, readNativeBuildReference } from './check-web-freeze.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cliPath = path.join(repositoryRoot, 'tools/check-web-freeze.mjs');
@@ -209,4 +209,18 @@ test('CLI builds without Git require the exact approved native build reference',
     assert.deepEqual(await readNativeBuildReference(hash, directory), JSON.parse(bytes));
     await assert.rejects(readNativeBuildReference('0'.repeat(64), directory), /does not match/);
   } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+
+
+test('formal Web review pins exact changes and never exempts later edits or unrelated inputs', () => {
+  const expected = JSON.parse(readFileSync(path.join(repositoryRoot, 'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json'), 'utf8')).files;
+  const before = expected.find(file => file.path === 'src/features/content/AppDownloadScreen.tsx');
+  const after = { ...before, sha256: createHash('sha256').update(readFileSync(path.join(repositoryRoot, before.path))).digest('hex') };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [after]), [before]);
+  const mutated = { ...after, sha256: '0'.repeat(64) };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [mutated]), [mutated]);
+  const ownership = { ...after, sources: ['unreviewed'] };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [ownership]), [ownership]);
+  const unrelated = { path: 'src/app/other.web.tsx', sha256: after.sha256, sources: [] };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [unrelated]), [unrelated]);
 });

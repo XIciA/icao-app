@@ -1,4 +1,4 @@
-import { Link, useRouter } from 'expo-router';
+import { Link, useRouter, type Href } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
@@ -10,6 +10,9 @@ import { BookOpen, Headphones, Sparkles } from '@/components/ui/icons';
 import { colors, radii, spacing } from '@/theme';
 
 export const APP_STORE_DOWNLOAD_URL = 'https://apps.apple.com/cn/app/id6800583111';
+const androidDownloadCandidate = process.env.EXPO_PUBLIC_ICAO_ANDROID_DOWNLOAD_URL ?? '';
+export const ANDROID_DOWNLOAD_URL = /^https:\/\/cloud\.readyoufife\.com\/storage\/v1\/object\/public\/app-releases\/android\/[A-Za-z0-9._-]+\.apk$/u.test(androidDownloadCandidate)
+  ? androidDownloadCandidate : undefined;
 const features = [
   { Icon: BookOpen, label: '题库练习' },
   { Icon: Headphones, label: '随身听' },
@@ -29,12 +32,12 @@ function PlatformMark({ apple = false, color = colors.foreground }: { apple?: bo
   );
 }
 
-export function AppDownloadScreen() {
+export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const router = useRouter();
   const { isMobile } = useWebLayout();
   return (
     <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="听你五个 APP" onBack={() => router.replace('/(tabs)/discover')} />
+      <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} />
       <View style={styles.content}>
         <View style={styles.hero}>
           <View style={styles.logo}><AppBrandLogo size="lg" accessibilityLabel="听你五个 Logo" /></View>
@@ -69,10 +72,15 @@ export function AppDownloadScreen() {
             <View style={styles.platformRow}>
               <View style={styles.platformIcon}><PlatformMark /></View>
               <View style={styles.platformCopy}><AppText variant="cardTitle">安卓版</AppText><AppText variant="micro" color={colors.mutedForeground}>Android 手机</AppText></View>
-              <AppText variant="micro" style={styles.badge}>筹备中</AppText>
+              <AppText variant="micro" style={styles.badge}>{ANDROID_DOWNLOAD_URL ? '正式版' : '筹备中'}</AppText>
             </View>
-            <Button disabled accessibilityState={{ disabled: true }} variant="secondary" size="lg" style={styles.comingSoon}>敬请期待</Button>
-            <AppText style={styles.hint}>安卓版暂未开放下载</AppText>
+            {ANDROID_DOWNLOAD_URL ? <Link href={ANDROID_DOWNLOAD_URL as Href} asChild>
+              <Pressable accessibilityRole="link" style={styles.appleButton}>
+                <PlatformMark color={colors.primaryForeground} />
+                <AppText variant="button" color={colors.primaryForeground}>下载安卓 APK</AppText>
+              </Pressable>
+            </Link> : <Button disabled accessibilityState={{ disabled: true }} variant="secondary" size="lg" style={styles.comingSoon}>敬请期待</Button>}
+            <AppText style={styles.hint}>{ANDROID_DOWNLOAD_URL ? '下载后打开安装包，按系统提示安装' : '安卓版暂未开放下载'}</AppText>
           </Card>
         </View>
         <AppText style={styles.footer}>听你五个 · 航空英语学习助手</AppText>

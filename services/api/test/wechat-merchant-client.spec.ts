@@ -21,6 +21,22 @@ describe('Wechat APIv3 trust boundary', () => {
     expect(() => parseWechatPayConfig({ WECHAT_PAY_MCH_ID: config.merchantId }, config.appId)).toThrow('incomplete_wechat_pay_configuration');
     expect(() => new WechatMerchantClient({}).config()).toThrow('wechat_pay_unavailable');
   });
+  it('normalizes env-file escaped PEM newlines before validating and using both keys', () => {
+    const parsed = parseWechatPayConfig({
+      WECHAT_PAY_MCH_ID: config.merchantId,
+      WECHAT_PAY_API_V3_KEY: config.apiV3Key,
+      WECHAT_PAY_MERCHANT_SERIAL_NO: config.merchantSerial,
+      WECHAT_PAY_MERCHANT_PRIVATE_KEY: config.privateKey.replaceAll('\n', '\\n'),
+      WECHAT_PAY_PLATFORM_PUBLIC_KEY: config.platformPublicKey.replaceAll('\n', '\\n'),
+      WECHAT_PAY_PLATFORM_PUBLIC_KEY_ID: config.platformPublicKeyId,
+      WECHAT_PAY_NOTIFY_URL: config.notifyUrl,
+    }, config.appId)!;
+    expect(parsed.privateKey.trim()).toBe(config.privateKey.trim());
+    expect(parsed.platformPublicKey.trim()).toBe(config.platformPublicKey.trim());
+    const configured = new WechatMerchantClient({ wechatPay: parsed });
+    expect(() => configured.paymentParameters('prepay-test')).not.toThrow();
+    expect(() => configured.verify('{}', signed('{}'))).not.toThrow();
+  });
   it('signs the exact APP payload with the merchant RSA key', () => {
     const parameters = client.paymentParameters('prepay-test');
     expect(parameters.packageValue).toBe('Sign=WXPay');

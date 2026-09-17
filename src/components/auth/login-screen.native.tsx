@@ -84,7 +84,7 @@ function LoginContent() {
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
   const [wechatInstalled, setWechatInstalled] = useState(false);
-  const wechatLoginVisible = WECHAT_LOGIN_ENABLED && (Platform.OS !== 'ios' || wechatInstalled);
+  const wechatLoginVisible = WECHAT_LOGIN_ENABLED && Platform.OS !== 'web' && wechatInstalled;
   const thirdPartyLoginAvailable = Platform.OS === 'ios' || wechatLoginVisible;
   const [entryView, setEntryView] = useState<EntryView>(mode === 'recovery' ? 'recovery' : 'login');
   const [loginMethod, setLoginMethod] = useState<LoginMethod>('otp');
@@ -128,7 +128,7 @@ function LoginContent() {
   }, [queryWechatAvailability]);
 
   useEffect(() => {
-    if (Platform.OS !== 'ios' || !WECHAT_LOGIN_ENABLED || entryView !== 'login') return;
+    if (Platform.OS === 'web' || !WECHAT_LOGIN_ENABLED || entryView !== 'login') return;
     void refreshWechatAvailability().catch(() => undefined);
     const subscription = AppState.addEventListener('change', (state) => {
       if (state === 'active') void refreshWechatAvailability().catch(() => undefined);
@@ -268,11 +268,11 @@ function LoginContent() {
     try {
       if (provider === 'apple') await auth.signInWithApple();
       else {
-        if (Platform.OS === 'ios' && !await refreshWechatAvailability()) throw new Error('wechat_not_installed');
+        if (Platform.OS !== 'web' && !await refreshWechatAvailability()) throw new Error('wechat_not_installed');
         await auth.signInWithWechat();
       }
     } catch (value) {
-      if (provider === 'wechat' && Platform.OS === 'ios' && value instanceof Error && value.message === 'wechat_not_installed') {
+      if (provider === 'wechat' && Platform.OS !== 'web' && value instanceof Error && value.message === 'wechat_not_installed') {
         wechatStatusRequestRef.current += 1;
         setWechatInstalled(false);
       }

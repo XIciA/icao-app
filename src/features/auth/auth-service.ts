@@ -274,7 +274,7 @@ export class SupabasePhoneAuthService implements AuthService {
 
   async isWechatSignInAvailable() {
     const status = getWechatNativeStatus();
-    return Platform.OS === 'ios' ? status.installed : status.supported && status.configured;
+    return Platform.OS === 'ios' ? status.installed : Platform.OS === 'android' && status.installed && status.supported && status.configured;
   }
 
   async signInWithApple() {
@@ -856,6 +856,7 @@ export function getAuthService() {
       detectSessionInUrl: false,
       flowType: 'pkce',
       persistSession: false,
+      storageKey: 'icao-auth-transient-verification',
     },
   }));
   return singleton;

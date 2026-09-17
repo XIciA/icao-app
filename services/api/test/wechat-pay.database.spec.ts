@@ -151,6 +151,54 @@ describe('WeChat checkout joins the existing commerce ledger', () => {
     const second = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() }); paid(second.id);
     expect((await service.cancel(accountId, second.id)).state).toBe('paid');
   }));
+  it('closes an expired unpaid checkout during reconciliation and releases a new purchase', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, request } = fixture(tx);
+    const first = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    await tx.update(schema.wechatPaymentAttempts).set({ expiresAt: new Date(Date.now() - 1000) }).where(eq(schema.wechatPaymentAttempts.id, first.id));
+    expect((await service.status(accountId, first.id)).state).toBe('closed');
+    expect(request.mock.calls.some(([, path]) => path.endsWith('/close'))).toBe(true);
+    expect(await service.pending(accountId)).toBeNull();
+    expect((await service.create(accountId, { productKey: 'membership_31d_v1', idempotencyKey: randomUUID() })).state).toBe('pending');
+  }));
+  it('fulfills an expired local checkout that WeChat confirms was paid', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, paid, request } = fixture(tx);
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    await tx.update(schema.wechatPaymentAttempts).set({ expiresAt: new Date(Date.now() - 1000) }).where(eq(schema.wechatPaymentAttempts.id, checkout.id));
+    paid(checkout.id);
+    expect((await service.status(accountId, checkout.id)).entitlement?.membership.active).toBe(true);
+    expect(request.mock.calls.some(([, path]) => path.endsWith('/close'))).toBe(false);
+  }));
+  it('fulfills a payment that races closing an expired checkout', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, paid, request } = fixture(tx);
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    await tx.update(schema.wechatPaymentAttempts).set({ expiresAt: new Date(Date.now() - 1000) }).where(eq(schema.wechatPaymentAttempts.id, checkout.id));
+    const implementation = request.getMockImplementation()!;
+    request.mockImplementation(async (method, path, body) => {
+      if (path.endsWith('/close')) paid(checkout.id);
+      return implementation(method, path, body);
+    });
+    const result = await service.status(accountId, checkout.id);
+    expect(result.state).toBe('paid');
+    expect(result.entitlement?.membership.active).toBe(true);
+  }));
+  it('reuses the merchant order when creation succeeds remotely but its response is lost', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, request, trades } = fixture(tx);
+    const input = { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() };
+    const implementation = request.getMockImplementation()!;
+    let first = true;
+    request.mockImplementation(async (method, path, body) => {
+      const result = await implementation(method, path, body);
+      if (first && path === '/v3/pay/transactions/app') { first = false; throw new Error('uncertain response'); }
+      return result;
+    });
+    await expect(service.create(accountId, input)).rejects.toThrow('uncertain response');
+    const pending = await service.pending(accountId);
+    expect(pending?.state).toBe('pending');
+    const recovered = await service.create(accountId, input);
+    expect(recovered.id).toBe(pending?.id);
+    expect(recovered.payment?.prepayId).toBeTruthy();
+    expect(trades.size).toBe(1);
+  }));
   it('refunds through the same order and revocation ledger, preserving another active purchase', () => scenario(async (tx) => {
     const accountId = await owner(tx); const { service, paid, request } = fixture(tx);
     const first = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() }); paid(first.id); await service.status(accountId, first.id);
@@ -162,6 +210,27 @@ describe('WeChat checkout joins the existing commerce ledger', () => {
     expect(orders.filter((order) => order.status === 'refunded')).toHaveLength(1);
     expect(orders.filter((order) => order.status === 'verified')).toHaveLength(1);
     expect((await service.status(accountId, second.id)).entitlement?.membership.active).toBe(true);
+  }));
+  it('retains the refund intent after an uncertain request and retries with the same refund number', () => scenario(async (tx) => {
+    const accountId = await owner(tx); const { service, paid, request } = fixture(tx);
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    paid(checkout.id); await service.status(accountId, checkout.id);
+    const implementation = request.getMockImplementation()!;
+    let first = true;
+    request.mockImplementation(async (method, path, body) => {
+      if (first && path === '/v3/refund/domestic/refunds') {
+        first = false;
+        throw new Error('wechat_pay_request_uncertain');
+      }
+      return implementation(method, path, body);
+    });
+    await expect(service.refund(checkout.id, 'authorized refund')).rejects.toThrow('wechat_pay_request_uncertain');
+    const [attempt] = await tx.select().from(schema.wechatPaymentAttempts).where(eq(schema.wechatPaymentAttempts.id, checkout.id));
+    expect(attempt).toMatchObject({ state: 'refund_pending', refundNumber: checkout.id.replaceAll('-', '') });
+    expect((await service.pending(accountId))?.state).toBe('refund_pending');
+    expect((await service.refund(checkout.id, 'retry same refund')).state).toBe('refunded');
+    const numbers = request.mock.calls.filter(([, path]) => path === '/v3/refund/domestic/refunds').map(([, , body]) => body?.out_refund_no);
+    expect(numbers).toEqual([attempt!.refundNumber, attempt!.refundNumber]);
   }));
   it('accepts the official refund notification shape without a currency field and preserves the merchant refund number', () => scenario(async (tx) => {
     const accountId = await owner(tx); const { service, paid } = fixture(tx);

@@ -294,9 +294,9 @@ function SecurityPage() {
             label={hasPassword ? '修改登录密码' : '设置登录密码'}
             onPress={() => void openPasswordSettings()}
           />
-          {Platform.OS === 'ios' || auth.account?.providers.includes('apple') ? <Row icon={Shield} label="Apple 登录"
+          {Platform.OS === 'ios' ? <Row icon={Shield} label="Apple 登录"
             value={auth.account?.providers.includes('apple') ? '已绑定' : '未绑定'} onPress={() => setLoginMethod('apple')} /> : null}
-          {WECHAT_LOGIN_ENABLED || auth.account?.providers.includes('wechat') ? <Row icon={Shield} label="微信登录"
+          {Platform.OS !== 'web' && (WECHAT_LOGIN_ENABLED || auth.account?.providers.includes('wechat')) ? <Row icon={Shield} label="微信登录"
             value={auth.account?.providers.includes('wechat') ? '已绑定' : '未绑定'} onPress={() => setLoginMethod('wechat')} /> : null}
         </Section>
         {loginMethod ? <LoginMethodSheet provider={loginMethod} bound={auth.account?.providers.includes(loginMethod) === true}
@@ -626,7 +626,7 @@ function DeleteAccountPage() {
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
   const hasApple = Platform.OS === 'ios' && auth.account?.providers.includes('apple') === true;
-  const hasWechat = auth.account?.providers.includes('wechat') === true;
+  const hasWechat = Platform.OS !== 'web' && auth.account?.providers.includes('wechat') === true;
   const hasPassword = auth.account?.hasPassword === true
     || (auth.session?.user.providers.includes('phone') === true && auth.session.user.hasPassword);
   const hasPhoneOtp = auth.account?.phoneBound === true;
