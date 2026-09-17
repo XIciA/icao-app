@@ -20,7 +20,7 @@ const defaultManifestPath = path.join(
   repositoryRoot,
   'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json',
 );
-const approvedManifestSha256 = 'fb991a77a14ec06820e7660a7cfaa8d0fec915e138178379dce7b891572e8cb1';
+const approvedManifestSha256 = '9c833024567b133031d4825bd867cdf3aaa67e0574343cb7e81b13c74a5f8804';
 const approvedNativeBuildBase = 'bc44f5f26ea45b8ecb89669452aaf480b62f2957';
 // User-approved 900-sentence content-only replacement, 2026-09-10.
 // Exact hashes permit the two artifacts and their resource partitioner only; every other Web input remains frozen.

@@ -37,8 +37,8 @@
       "tools/**/* whose basename contains web or promo, excluding tools/check-web-freeze.mjs"
     ]
   },
-  "fileCount": 350,
-  "combinedSha256": "56b6914d00a75a6e7868c30c5468a2b68a00578d5c0ffe64c540f7c5f04ddc5b",
+  "fileCount": 351,
+  "combinedSha256": "fffa77b08f77780522984be4b0b993b5550224a9cb2cc7f0a703c27b54a6cf97",
   "files": [
     {
       "path": ".vercelignore",
@@ -233,14 +233,14 @@
     },
     {
       "path": "public/promo/index.html",
-      "sha256": "b9df2fbf05aca4ae92aae13df4909934490fa7f7a9026f6e14e2de0fe3a56b44",
+      "sha256": "749fffe70a4d270c9ae47f7a8ab542af5c715bf1956315a6b768ed9857365c99",
       "sources": [
         "tree:public"
       ]
     },
     {
-      "path": "public/promo/legacy/static/chunks/460-61c97d362998eefc.js",
-      "sha256": "13bbc6b5d877b1539c389f6bf371c502a26aabfb5ebcf83a5b5ec35db8010a8d",
+      "path": "public/promo/legacy/static/chunks/460-a2ba968b61aa5645.js",
+      "sha256": "a2ba968b61aa56454dd274a50fdde5bf6503681859fcf0dbe0744ff53cf45c98",
       "sources": [
         "tree:public"
       ]
@@ -1262,7 +1262,7 @@
     },
     {
       "path": "src/app/content/[slug].tsx",
-      "sha256": "21480cbe452d819ee4cfd35a6bd782540bb97e153b77f49b0942ffb2d13e66b6",
+      "sha256": "6935ea2b61f8330ed5b0254eb83264bc9cd0ce1230e868359a4fd5245753dc47",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1651,6 +1651,13 @@
       ]
     },
     {
+      "path": "src/features/content/AppDownloadScreen.tsx",
+      "sha256": "87b29194e178462bdc81f85c264fa3e12be9027846c6c1264441eeabf9fa6947",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
       "path": "src/features/content/ContentLibraryScreen.tsx",
       "sha256": "eb29afd3d5c943d7098c1977a2b695e5c3349c9d3c6bf7b69838df025e12dc45",
       "sources": [
@@ -1659,7 +1666,7 @@
     },
     {
       "path": "src/features/content/DiscoverHomeScreen.tsx",
-      "sha256": "f8df4d232342058fdc1999f0f8133d0fe97740b83858e6f8ec4e91a430e3be6b",
+      "sha256": "ea2f5688b84332a1c3cb378e92949d2643a63926c84ffcbf9d16a72670baffeb",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -1702,7 +1709,7 @@
     },
     {
       "path": "src/features/content/courses/course-promo-catalog.web-data.ts",
-      "sha256": "07f2e50c8c1e1eb85b40a28f84074c3f85f95fc98a9f46daf8718dde9f744c57",
+      "sha256": "d9bc861b5d2b7d9c6a7f2c6adf08bc634688f7059dbaea99ea311fbf9c4599d4",
       "sources": [
         "metro_web_dependency_graph"
       ]
@@ -2524,6 +2531,21 @@
       "sha256": "8d1afdbcdce3deaa746a72d3758886cf509372f87aea993929973d5c2e63a1be",
       "sources": [
         "exact_web_config_or_asset"
+      ]
+    }
+  ],
+  "scopedUpdates": [
+    {
+      "date": "2026-09-17",
+      "authorization": "User requested adding design A App download page before existing OPI hotspots and resources entries (all retained), and +1000 CNY for three unlimited guaranteed courses, with production Vercel deployment.",
+      "paths": [
+        "public/promo/index.html",
+        "public/promo/legacy/static/chunks/460-61c97d362998eefc.js",
+        "public/promo/legacy/static/chunks/460-a2ba968b61aa5645.js",
+        "src/app/content/[slug].tsx",
+        "src/features/content/AppDownloadScreen.tsx",
+        "src/features/content/DiscoverHomeScreen.tsx",
+        "src/features/content/courses/course-promo-catalog.web-data.ts"
       ]
     }
   ]
