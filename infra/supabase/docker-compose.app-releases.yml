@@ -1,0 +1,6 @@
+# Compose overlay for the self-hosted public Android release bucket.
+# Existing private buckets retain their smaller per-bucket upload limits.
+services:
+  storage:
+    environment:
+      FILE_SIZE_LIMIT: 536870912
