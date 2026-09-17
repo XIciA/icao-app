@@ -29,8 +29,8 @@ export function ProfileHomeScreen() {
   const auth = useAuth();
   const profile = useProfile();
   const cloudWeb = Platform.OS === 'web' && isEdgeOneProductionWeb();
-  const visibleMenu = menu.filter((item) => Platform.OS !== 'web'
-    || (item.slug !== 'membership' && (cloudWeb || item.slug !== 'feedback')));
+  const visibleMenu = menu.filter((item) => Platform.OS !== 'web' || cloudWeb
+    || (item.slug !== 'membership' && item.slug !== 'feedback'));
   const [progress, setProgress] = useState<{ accountId: string; learnedCards: number; completedCards: number }>();
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   useFocusEffect(
@@ -112,7 +112,7 @@ export function ProfileHomeScreen() {
               icon={item.icon}
               isLast={index === visibleMenu.length - 1}
               key={item.slug}
-              label={item.label}
+              label={cloudWeb && item.slug === 'membership' ? '会员权益' : item.label}
               onPress={() => open(item.slug)}
             />
           ))}

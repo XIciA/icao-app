@@ -119,9 +119,13 @@ export class WechatPayService {
     }
     const config = this.merchant.config();
     try {
-      return await this.applyTrade(tx, attempt, await this.merchant.request('GET', `/v3/pay/transactions/out-trade-no/${tradeNumber(attempt.id)}?mchid=${config.merchantId}`));
+      const current = await this.applyTrade(tx, attempt, await this.merchant.request('GET', `/v3/pay/transactions/out-trade-no/${tradeNumber(attempt.id)}?mchid=${config.merchantId}`));
+      // Expiration alone is not proof of non-payment: close through WeChat after querying it.
+      return current.state === 'pending' && current.expiresAt.getTime() <= Date.now() ? this.closePending(tx, current) : current;
     } catch (error) {
-      if (error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId) return attempt;
+      if (error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId) {
+        return attempt.expiresAt.getTime() <= Date.now() ? this.closePending(tx, attempt) : attempt;
+      }
       throw error;
     }
   }
@@ -152,27 +156,45 @@ export class WechatPayService {
       await this.active(tx, owner);
       attempt = await this.reconcile(tx, attempt);
       if (attempt.state !== 'pending') return attempt;
-      try {
-        await this.merchant.request('POST', `/v3/pay/transactions/out-trade-no/${tradeNumber(id)}/close`, { mchid: this.merchant.config().merchantId });
-      } catch (error) {
-        if (error instanceof WechatMerchantError && error.providerCode === 'ORDERPAID') return this.reconcile(tx, attempt);
-        if (!(error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId)) throw error;
-      }
-      const [updated] = await tx.update(wechatPaymentAttempts).set({ state: 'closed', updatedAt: new Date() }).where(eq(wechatPaymentAttempts.id, id)).returning();
-      return updated!;
+      return this.closePending(tx, attempt);
     });
     return this.view(result);
   }
+  private async closePending(tx: Transaction, attempt: Attempt): Promise<Attempt> {
+    const config = this.merchant.config();
+    try {
+      await this.merchant.request('POST', `/v3/pay/transactions/out-trade-no/${tradeNumber(attempt.id)}/close`, { mchid: config.merchantId });
+    } catch (error) {
+      if (error instanceof WechatMerchantError && error.providerCode === 'ORDERPAID') {
+        // A payment racing the close must be fulfilled, never discarded as expired/cancelled.
+        return this.applyTrade(tx, attempt, await this.merchant.request('GET', `/v3/pay/transactions/out-trade-no/${tradeNumber(attempt.id)}?mchid=${config.merchantId}`));
+      }
+      if (!(error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId)) throw error;
+    }
+    const [updated] = await tx.update(wechatPaymentAttempts).set({ state: 'closed', updatedAt: new Date() })
+      .where(eq(wechatPaymentAttempts.id, attempt.id)).returning();
+    return updated!;
+  }
   /** Called only by authorized merchant operations, never by a client-reported payment result. */
   async refund(id: string, reason: string) {
-    const attempt = await this.database.db.transaction(async (tx) => {
+    // Commit the refund intent before contacting WeChat. An accepted refund whose response
+    // is lost must remain discoverable for reconciliation after a restart.
+    await this.database.db.transaction(async (tx) => {
       let current = await this.lock(tx, id);
+      if (current.state === 'refunded' || current.state === 'refund_pending') return;
       current = await this.reconcile(tx, current);
+      if (current.state === 'refunded') return;
+      if (current.state !== 'paid') throw new ConflictException('wechat_refund_not_paid');
+      await tx.update(wechatPaymentAttempts).set({ state: 'refund_pending',
+        refundNumber: current.refundNumber ?? tradeNumber(id), updatedAt: new Date() }).where(eq(wechatPaymentAttempts.id, id));
+    });
+    const attempt = await this.database.db.transaction(async (tx) => {
+      const current = await this.lock(tx, id);
       if (current.state === 'refunded') return current;
-      if (current.state !== 'paid' && current.state !== 'refund_pending') throw new ConflictException('wechat_refund_not_paid');
+      if (current.state !== 'refund_pending') throw new ConflictException('wechat_refund_not_paid');
       // Same merchant refund number is used on every retry, including an uncertain network result.
       const raw = await this.merchant.request('POST', '/v3/refund/domestic/refunds', {
-        transaction_id: current.transactionId, out_refund_no: tradeNumber(id), reason: reason.slice(0, 80),
+        transaction_id: current.transactionId, out_refund_no: current.refundNumber ?? tradeNumber(id), reason: reason.slice(0, 80),
         notify_url: this.merchant.config().notifyUrl, amount: { refund: current.amountFen, total: current.amountFen, currency: 'CNY' },
       });
       return this.applyRefund(tx, current, raw);

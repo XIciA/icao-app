@@ -12,7 +12,10 @@ export function parseWechatPayConfig(environment: NodeJS.ProcessEnv, appId?: str
   const values = names.map((name) => environment[name]?.trim());
   if (!values.some(Boolean)) return undefined;
   if (!appId || !values.every(Boolean)) throw new Error('incomplete_wechat_pay_configuration');
-  const [merchantId, apiV3Key, merchantSerial, privateKey, platformPublicKey, platformPublicKeyId, notifyUrl] = values as string[];
+  const [merchantId, apiV3Key, merchantSerial, rawPrivateKey, rawPlatformPublicKey, platformPublicKeyId, notifyUrl] = values as string[];
+  // Docker env-files carry PEM values on one line, as with the other server signing keys.
+  const privateKey = rawPrivateKey!.replaceAll('\\n', '\n');
+  const platformPublicKey = rawPlatformPublicKey!.replaceAll('\\n', '\n');
   try {
     const url = new URL(notifyUrl!);
     if (!/^\d{6,32}$/u.test(merchantId!) || Buffer.byteLength(apiV3Key!, 'utf8') !== 32

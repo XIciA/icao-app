@@ -1,6 +1,6 @@
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 import type { NativeStartPhoneOtpResponse, PhoneOtpPurpose } from '@icao/contracts/native-auth';
-import * as SecureStore from 'expo-secure-store';
+import { phoneOtpStorage } from './phone-otp-storage';
 
 export type PersistedPhoneOtpChallenge = {
   challengeId: string;
@@ -16,9 +16,6 @@ export type PersistedPhoneOtpChallenge = {
 const KEY = 'icao.auth.phone-otp-challenge.v2';
 const LEGACY_KEY = 'icao.auth.phone-otp-challenge.v1';
 const MAX_RESTORE_AGE_MS = 24 * 60 * 60 * 1_000;
-const OPTIONS: SecureStore.SecureStoreOptions = {
-  keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-};
 let mutationTail: Promise<void> = Promise.resolve();
 let mutationGeneration = 0;
 
@@ -108,12 +105,12 @@ export async function readPhoneOtpChallenge(now = Date.now()) {
   return withMutationLock(async () => {
     let raw: string | null;
     try {
-      raw = await SecureStore.getItemAsync(KEY, OPTIONS);
+      raw = await phoneOtpStorage.getItem(KEY);
     } catch {
       throw new Error('auth_session_storage_unavailable');
     }
     if (!raw) {
-      await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+      await phoneOtpStorage.removeItem(LEGACY_KEY).catch(() => undefined);
       return undefined;
     }
     let parsed: unknown;
@@ -126,8 +123,8 @@ export async function readPhoneOtpChallenge(now = Date.now()) {
     if (challenge) return challenge;
     try {
       await Promise.all([
-        SecureStore.deleteItemAsync(KEY, OPTIONS),
-        SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS),
+        phoneOtpStorage.removeItem(KEY),
+        phoneOtpStorage.removeItem(LEGACY_KEY),
       ]);
     } catch {
       throw new Error('auth_session_storage_unavailable');
@@ -147,7 +144,7 @@ export async function writePhoneOtpChallenge(
     if (generation !== mutationGeneration) return false;
     let currentRaw: string | null = null;
     try {
-      currentRaw = await SecureStore.getItemAsync(KEY, OPTIONS);
+      currentRaw = await phoneOtpStorage.getItem(KEY);
       const current = currentRaw
         ? parsePhoneOtpChallenge(JSON.parse(currentRaw) as unknown, Date.now())
         : undefined;
@@ -158,13 +155,13 @@ export async function writePhoneOtpChallenge(
           || (current.issuedAt === challenge.issuedAt && current.challengeId !== challenge.challengeId)
         )
       ) return false;
-      await SecureStore.setItemAsync(KEY, JSON.stringify(challenge), OPTIONS);
+      await phoneOtpStorage.setItem(KEY, JSON.stringify(challenge));
       if (generation !== mutationGeneration) {
-        if (currentRaw) await SecureStore.setItemAsync(KEY, currentRaw, OPTIONS);
-        else await SecureStore.deleteItemAsync(KEY, OPTIONS);
+        if (currentRaw) await phoneOtpStorage.setItem(KEY, currentRaw);
+        else await phoneOtpStorage.removeItem(KEY);
         return false;
       }
-      await SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS).catch(() => undefined);
+      await phoneOtpStorage.removeItem(LEGACY_KEY).catch(() => undefined);
       return true;
     } catch {
       throw new Error('auth_session_storage_unavailable');
@@ -177,8 +174,8 @@ export async function clearPhoneOtpChallenge() {
   return withMutationLock(async () => {
     try {
       await Promise.all([
-        SecureStore.deleteItemAsync(KEY, OPTIONS),
-        SecureStore.deleteItemAsync(LEGACY_KEY, OPTIONS),
+        phoneOtpStorage.removeItem(KEY),
+        phoneOtpStorage.removeItem(LEGACY_KEY),
       ]);
     } catch {
       throw new Error('auth_session_storage_unavailable');

@@ -17,8 +17,12 @@ const mockQuery = jest.fn();
 const mockCancel = jest.fn();
 const mockLaunch = jest.fn();
 const mockApi = jest.fn();
+const mockWechatStatus = jest.fn();
+const mockGetSession = jest.fn();
+jest.mock('@/features/auth/auth-service', () => ({ getAuthService: () => ({ getSession: () => mockGetSession() }) }));
+jest.mock('@/features/auth/wechat-native-auth', () => ({ getWechatNativeStatus: () => mockWechatStatus() }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({
-  accountReady: true, account: { accountId: mockAccountId }, session: { accessToken: `token:${mockAccountId}` },
+  accountReady: true, account: { accountId: mockAccountId }, session: { accessToken: `token:${mockAccountId}`, user: { id: `auth:${mockAccountId}` } },
 }) }));
 jest.mock('@/platform/api-client', () => ({ apiRequestWithAccessToken: (...args: unknown[]) => mockApi(...args) }));
 jest.mock('@/features/question-bank/data/member-content-cache', () => ({ activateQuestionBankContentAccount: jest.fn(async () => undefined) }));
@@ -67,7 +71,9 @@ beforeEach(() => {
     if (type === 'change') mockAppStateHandler = listener;
     return { remove: jest.fn() };
   });
+  mockGetSession.mockImplementation(async () => ({ accessToken: `token:${mockAccountId}`, user: { id: `auth:${mockAccountId}` } }));
   mockCatalog.mockResolvedValue(catalog);
+  mockWechatStatus.mockReturnValue({ configured: true, installed: true, supported: true });
   mockPending.mockResolvedValue(null);
   mockCreate.mockResolvedValue(checkout);
   mockQuery.mockResolvedValue(checkout);
@@ -160,4 +166,110 @@ it('leaves purchase unavailable when the merchant configuration is absent', asyn
   expect(current.offerings).toEqual([]);
   expect(mockCreate).not.toHaveBeenCalled();
   expect(mockLaunch).not.toHaveBeenCalled();
+});
+
+it('does not create an order when WeChat has been uninstalled', async () => {
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  mockWechatStatus.mockReturnValue({ configured: true, installed: false, supported: true });
+  await act(async () => { expect(await current.purchase('membership_7d_v1')).toEqual({ ok: false, message: '请先安装微信，再使用微信支付。' }); });
+  expect(mockCreate).not.toHaveBeenCalled();
+  expect(current.phase).toBe('ready');
+});
+
+it('closes a cancelled SDK payment through the server and allows purchasing again', async () => {
+  mockLaunch.mockResolvedValue({ state: 'cancelled' });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockCancel).toHaveBeenCalledWith(checkout.id, `token:${mockAccountId}`);
+  expect(current.phase).toBe('ready');
+  expect(current.canCancelPendingPurchase).toBe(false);
+  expect(current.entitlement?.membership.active).toBe(false);
+});
+
+it('grants a server-confirmed payment even when the SDK reports cancellation', async () => {
+  mockLaunch.mockResolvedValue({ state: 'cancelled' });
+  mockCancel.mockResolvedValue({ ...checkout, state: 'paid', entitlement: entitlement(true) });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { expect((await current.purchase('membership_7d_v1')).ok).toBe(true); });
+  expect(current.entitlement?.membership.active).toBe(true);
+});
+
+it('keeps existing membership usable when a pending WeChat order cannot be queried', async () => {
+  mockPending.mockResolvedValue(checkout);
+  mockQuery.mockRejectedValue(new Error('provider temporarily unavailable'));
+  mockApi.mockResolvedValue({ production: entitlement(true) });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('error'));
+  expect(current.entitlement?.membership.active).toBe(true);
+});
+
+it('refreshes an expired session for the captured auth user before checkout writes', async () => {
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  mockGetSession.mockResolvedValue({ accessToken: 'refreshed-token', user: { id: `auth:${mockAccountId}` } });
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockPending).toHaveBeenLastCalledWith('refreshed-token');
+  expect(mockCreate).toHaveBeenCalledWith(expect.anything(), 'refreshed-token');
+  expect(mockQuery).toHaveBeenCalledWith(checkout.id, 'refreshed-token');
+});
+
+it('obtains a fresh same-user token after a long WeChat payment flow', async () => {
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  mockLaunch.mockImplementation(async () => {
+    mockGetSession.mockResolvedValue({ accessToken: 'after-wechat-token', user: { id: `auth:${mockAccountId}` } });
+    return { state: 'returned' };
+  });
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockCreate).toHaveBeenCalledWith(expect.anything(), `token:${mockAccountId}`);
+  expect(mockQuery).toHaveBeenCalledWith(checkout.id, 'after-wechat-token');
+});
+
+it('does not create a checkout if persisted session now belongs to another auth user', async () => {
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  mockGetSession.mockResolvedValue({ accessToken: 'other-user-token', user: { id: 'another-auth-user' } });
+  mockPending.mockClear();
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockPending).not.toHaveBeenCalled();
+  expect(mockCreate).not.toHaveBeenCalled();
+  expect(mockLaunch).not.toHaveBeenCalled();
+});
+
+it('ignores a late session refresh when UI has switched to a different account', async () => {
+  const session = deferred<{ accessToken: string; user: { id: string } }>();
+  const screen = await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  const previousAccount = mockAccountId;
+  mockGetSession.mockReturnValueOnce(session.promise);
+  let operation!: Promise<unknown>;
+  await act(async () => { operation = current.purchase('membership_7d_v1'); });
+  mockAccountId = '10000000-0000-4000-8000-000000000002';
+  await screen.rerender(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { session.resolve({ accessToken: 'late-old-token', user: { id: `auth:${previousAccount}` } }); await operation; });
+  expect(mockCreate).not.toHaveBeenCalled();
+  expect(mockLaunch).not.toHaveBeenCalled();
+  expect(getCommerceEntitlementSnapshot()?.accountId).toBe(mockAccountId);
+});
+
+it('refreshes a same-user expired token before reconciling membership', async () => {
+  mockGetSession.mockResolvedValue({ accessToken: 'fresh-startup-token', user: { id: `auth:${mockAccountId}` } });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  expect(mockCatalog).toHaveBeenCalledWith('fresh-startup-token');
+  expect(mockApi).toHaveBeenCalledWith('/v1/commerce/entitlements/current', 'fresh-startup-token');
+});
+
+it('refreshes a same-user expired token before cancelling an unpaid order', async () => {
+  mockPending.mockResolvedValue(checkout);
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('pending'));
+  mockGetSession.mockResolvedValue({ accessToken: 'fresh-cancel-token', user: { id: `auth:${mockAccountId}` } });
+  await act(async () => { await current.cancelPendingPurchase!(); });
+  expect(mockCancel).toHaveBeenCalledWith(checkout.id, 'fresh-cancel-token');
+  expect(current.phase).toBe('ready');
 });
