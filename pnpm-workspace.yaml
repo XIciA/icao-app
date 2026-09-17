@@ -11,4 +11,5 @@ allowBuilds:
   esbuild: true
 patchedDependencies:
   expo-modules-core@55.0.25: patches/expo-modules-core@55.0.25.patch
+  react-native-reanimated@4.2.1: patches/react-native-reanimated@4.2.1.patch
   react-native-track-player@4.1.2: patches/react-native-track-player@4.1.2.patch

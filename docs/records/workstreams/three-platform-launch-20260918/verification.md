@@ -45,3 +45,4 @@
 - Expo Modules Core 55.0.25 仍引用旧 `intermediates/cmake` 路径；当前 Android Gradle 插件将 Worklets 输出到 `cxx`，并由既有 `mergeReleaseNativeLibs` 任务合并。与 Expo 官方 issue #42893 描述相同。
 - 使用 pnpm 锁定补丁改为引用已有合并任务的稳定输出；保留原 Gradle 任务依赖，覆盖 Debug/Release 和各 ABI。没有升级依赖版本、修改 JavaScript 或手工复制动态库。
 - 冻结检查仅加入这份 Android CMake 补丁及其 workspace/lockfile 的精确摘要；Web 业务代码保持冻结，负向门禁测试 7 项通过。
+- 后续全链路原生检查发现 Reanimated 4.2.1 也引用同一旧路径，已对两个消费者统一修正，并将合并依赖明确加到各 ABI 的 CMake 任务上，避免并行链接竞态。扫描安装依赖的 CMake/Gradle 源码确认没有第三个现行消费者。
