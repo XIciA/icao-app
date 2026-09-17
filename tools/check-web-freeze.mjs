@@ -52,12 +52,15 @@ const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac
 // Existing dependency versions and the Web resolver graph remain unchanged.
 const reviewedAppIdentityDependencyHashes = new Map([
   ['package.json', ['cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e', 'fb69d0a671771c7e250bc995b42e2b653730db64c147356fab5b89cb3e1b29eb']],
-  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '03cb3f2997aeb9233e1db3520706b612dc7635f1e737a6dd78b132453b4dec28']],
+  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '42ff434328d6ea09f23ad4131202df0b221c5d721e0db397b0b971263654796f']],
 ]);
 
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // Android CMake path patch; package versions and all JavaScript stay identical.
+  ['pnpm-workspace.yaml', ['6921135eec6d4d34d7508b385c4a2d9f0d7c8665382f963534c2162267b3dfca', '1e10635db62f0e8691336ee758537efac983b4bcfe6d5caf04c360efecac1196']],
+  ['patches/expo-modules-core@55.0.25.patch', [null, '036b8b086a42f1d1f841089b9dacce74ca4fb88297bfd4886436d5e0c8ed7774']],
   [
     "metro.config.js",
     [
@@ -130,6 +133,7 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
 }
 
 const exactProtectedPaths = [
+  'patches/expo-modules-core@55.0.25.patch',
   'tools/edgeone-shared-modules.cjs',
   '.vercelignore',
   'app.config.js',
