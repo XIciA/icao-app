@@ -350,7 +350,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
 
-    await waitFor(() => expect(screen.getByText(/iPhone 录音器准备失败.*诊断编号/u)).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(/系统录音器准备失败.*诊断编号/u)).toBeTruthy());
     expect(mockRecorder.prepare).toHaveBeenCalledTimes(1);
     expect(mockRecorder.start).not.toHaveBeenCalled();
     expect(screen.getByLabelText('提交录音诊断')).toBeTruthy();

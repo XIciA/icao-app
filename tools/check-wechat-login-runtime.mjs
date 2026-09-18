@@ -246,6 +246,7 @@ const androidPaymentFiles = new Set([
   'src/features/native-commercial-testflight/wechat-pay-client.android.ts',
   'src/features/native-commercial-testflight/android-commerce-runtime.android.tsx',
   'src/features/native-commercial-testflight/__tests__/wechat-pay-client.android-test.ts',
+  'src/features/native-commercial-testflight/__tests__/wechat-pay-transport.android-test.ts',
   'src/features/native-commercial-testflight/__tests__/android-commerce-runtime.android-test.tsx',
   'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatAuthModule.kt',
   'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatPayCoordinator.kt',

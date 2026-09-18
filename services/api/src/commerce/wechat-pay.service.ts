@@ -6,13 +6,13 @@ import { DatabaseService } from '../database/database.service';
 import { accounts, wechatPaymentAttempts } from '../database/schema';
 import { AiUsageRulesService } from './ai-usage-rules.service';
 import { CommerceService } from './commerce.service';
-import { ACTIVE_MEMBERSHIP_PRODUCTS } from './product-catalog';
+import { WECHAT_MEMBERSHIP_PRODUCTS } from './product-catalog';
 import { WechatMerchantClient, WechatMerchantError } from './wechat-merchant-client';
 
 type Transaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 type Attempt = typeof wechatPaymentAttempts.$inferSelect;
 const amountSchema = z.object({ total: z.number().int().positive(), currency: z.literal('CNY') });
-const tradeSchema = z.object({ appid: z.string(), mchid: z.string(), out_trade_no: z.string(), trade_type: z.literal('APP'),
+const tradeSchema = z.object({ appid: z.string(), mchid: z.string(), out_trade_no: z.string(), trade_type: z.literal('APP').optional(),
   transaction_id: z.string().optional(), trade_state: z.enum(['SUCCESS', 'REFUND', 'NOTPAY', 'CLOSED', 'REVOKED', 'USERPAYING', 'PAYERROR']),
   amount: amountSchema, success_time: z.string().datetime({ offset: true }).optional() });
 const refundSchema = z.object({ mchid: z.string().optional(), out_trade_no: z.string(), transaction_id: z.string(),
@@ -33,7 +33,7 @@ export class WechatPayService {
     private readonly commerce: CommerceService, private readonly rules: AiUsageRulesService) {}
 
   catalog(): WechatPayCatalog {
-    return { available: this.merchant.available, products: this.merchant.available ? ACTIVE_MEMBERSHIP_PRODUCTS.map((product) => ({
+    return { available: this.merchant.available, products: this.merchant.available ? WECHAT_MEMBERSHIP_PRODUCTS.map((product) => ({
       productKey: product.productKey, title: product.displayName, amountFen: product.basePriceCnyFen,
       currency: 'CNY', durationDays: product.durationDays,
     })) : [] };
@@ -59,7 +59,7 @@ export class WechatPayService {
   }
   async create(owner: string, input: WechatCheckoutRequest): Promise<WechatCheckout> {
     this.merchant.config();
-    const product = ACTIVE_MEMBERSHIP_PRODUCTS.find((candidate) => candidate.productKey === input.productKey);
+    const product = WECHAT_MEMBERSHIP_PRODUCTS.find((candidate) => candidate.productKey === input.productKey);
     if (!product) throw new BadRequestException('wechat_product_unavailable');
     const attempt = await this.database.db.transaction(async (tx) => {
       await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${owner}`}, 0))`);
@@ -140,7 +140,9 @@ export class WechatPayService {
     }
     let updates: Partial<Attempt> = {};
     if (trade.trade_state === 'SUCCESS' || trade.trade_state === 'REFUND') {
-      if (!trade.transaction_id || !trade.success_time) throw new BadRequestException('wechat_pay_invalid_transaction');
+      // WeChat omits trade_type before payment. Paid orders still must prove the
+      // APP channel, provider transaction ID and payment time before fulfillment.
+      if (trade.trade_type !== 'APP' || !trade.transaction_id || !trade.success_time) throw new BadRequestException('wechat_pay_invalid_transaction');
       await this.commerce.fulfillWechatPayment(tx, { accountId: attempt.accountId, transactionId: trade.transaction_id,
         productKey: attempt.productKey, durationDays: attempt.durationDays, ruleVersionId: attempt.aiUsageRuleVersionId,
         paidAt: new Date(trade.success_time) });

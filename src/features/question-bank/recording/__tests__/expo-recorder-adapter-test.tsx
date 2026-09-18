@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react-native';
+import { Platform } from 'react-native';
 
 import type { RawRecording, RecorderRuntimeEvent } from '../types';
 
@@ -48,7 +49,44 @@ jest.mock('expo-audio', () => ({
 
 // Import after the Expo module mock so this test exercises only the adapter contract.
 // eslint-disable-next-line import/first
-import { IOS_VOICE_RECORDING_OPTIONS, useExpoRecorderAdapter } from '../expo-recorder-adapter';
+import { IOS_VOICE_RECORDING_OPTIONS, requestMicrophonePermission, useExpoRecorderAdapter } from '../expo-recorder-adapter';
+
+describe('native microphone permission lifecycle', () => {
+  const initialPlatform = Platform.OS;
+  const permissionApi = jest.requireMock('expo-audio');
+  afterEach(() => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: initialPlatform });
+    jest.clearAllMocks();
+  });
+
+  it('does not reopen Android permission Activity after a grant', async () => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' });
+    permissionApi.getRecordingPermissionsAsync.mockResolvedValue({ granted: true, canAskAgain: true });
+    expect(await requestMicrophonePermission()).toMatchObject({ granted: true });
+    expect(permissionApi.requestRecordingPermissionsAsync).not.toHaveBeenCalled();
+  });
+
+  it('requests Android permission when the user can still grant it', async () => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' });
+    permissionApi.getRecordingPermissionsAsync.mockResolvedValue({ granted: false, canAskAgain: true });
+    expect(await requestMicrophonePermission()).toMatchObject({ granted: true });
+    expect(permissionApi.requestRecordingPermissionsAsync).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns permanent denial without opening another Android permission Activity', async () => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' });
+    permissionApi.getRecordingPermissionsAsync.mockResolvedValue({ granted: false, canAskAgain: false });
+    expect(await requestMicrophonePermission()).toMatchObject({ granted: false });
+    expect(permissionApi.requestRecordingPermissionsAsync).not.toHaveBeenCalled();
+  });
+
+  it('preserves the iOS permission request path', async () => {
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'ios' });
+    await requestMicrophonePermission();
+    expect(permissionApi.getRecordingPermissionsAsync).not.toHaveBeenCalled();
+    expect(permissionApi.requestRecordingPermissionsAsync).toHaveBeenCalledTimes(1);
+  });
+});
 
 describe('ExpoRecorderAdapter native duration contract', () => {
   let now = 1_000;

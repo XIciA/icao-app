@@ -117,6 +117,36 @@ function fixture(tx: CommerceTransaction) {
 }
 
 describe('WeChat checkout joins the existing commerce ledger', () => {
+  it('sells the Android day pass for one yuan and grants exactly one day through the ordinary ledger', () => scenario(async (tx) => {
+    const accountId = await owner(tx);
+    const { service, paid } = fixture(tx);
+    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[1, 100], [7, 6800], [31, 15800], [93, 35800]]);
+    const checkout = await service.create(accountId, { productKey: 'membership_1d_v1', idempotencyKey: randomUUID() });
+    expect(checkout.amountFen).toBe(100);
+    const trade = paid(checkout.id);
+    const result = await service.status(accountId, checkout.id);
+    expect(result.entitlement?.membership.active).toBe(true);
+    expect(Date.parse(result.entitlement!.membership.expiresAt!) - Date.parse(trade.success_time as string)).toBe(86_400_000);
+    await service.status(accountId, checkout.id);
+    const orders = await tx.select().from(schema.commerceOrders).where(eq(schema.commerceOrders.accountId, accountId));
+    expect(orders).toHaveLength(1);
+    expect(orders[0]).toMatchObject({ productKey: 'membership_1d_v1', durationDays: 1, membershipContributionMs: 86_400_000, aiPointRuleVersion: 'ai-weekly-v1' });
+  }));
+
+  it('queries and closes the real unpaid response shape without trade_type, but rejects paid responses missing it', () => scenario(async (tx) => {
+    const accountId = await owner(tx);
+    const { service, trades, paid } = fixture(tx);
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    delete trades.get(checkout.id.replaceAll('-', ''))!.trade_type;
+    expect((await service.status(accountId, checkout.id)).state).toBe('pending');
+    const trade = paid(checkout.id);
+    await expect(service.status(accountId, checkout.id)).rejects.toThrow('wechat_pay_invalid_transaction');
+    trade.trade_state = 'NOTPAY'; delete trade.transaction_id; delete trade.success_time;
+    expect((await service.cancel(accountId, checkout.id)).state).toBe('closed');
+    const orders = await tx.select().from(schema.commerceOrders).where(eq(schema.commerceOrders.accountId, accountId));
+    expect(orders).toHaveLength(0);
+  }));
+
   it('creates idempotently, grants only after verified payment, and replays callbacks without duplicate membership', () => scenario(async (tx) => {
     const accountId = await owner(tx); const { service, request, paid } = fixture(tx);
     const input = { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() };

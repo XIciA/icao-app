@@ -71,7 +71,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
       if (callbacks.current.uri) {
         if (restart || playbackPosition.current > 0) await player.seekTo(playbackPosition.current);
         if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
-        player.playbackRate = 1;
+        player.setPlaybackRate(1);
         player.play();
         update('playing');
       } else if (callbacks.current.text?.trim()) {

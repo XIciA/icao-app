@@ -11,7 +11,8 @@ describe('buildMockExamSession', () => {
     expect(session.sections.find((section) => section.moduleId === 'radiotelephony')?.items.length).toBeLessThanOrEqual(20);
     expect(session.sections.filter((section) => section.moduleId === 'opi').map((section) => section.items).flat()).toHaveLength(5);
     expect(new Set(session.items.map((item) => item.id)).size).toBe(session.items.length);
-  });
+  // The first case cold-loads all four real catalogs on a clean CI runner.
+  }, 15_000);
 
   it('marks a partial allowed selection as custom and adds expert sentence groups for ICAO 5', async () => {
     const session = await buildMockExamSession({ examType: 'icao5-first', modules: ['sentences900', 'storytelling'] }, 74);

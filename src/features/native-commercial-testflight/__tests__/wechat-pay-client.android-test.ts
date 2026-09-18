@@ -37,6 +37,6 @@ it('keeps the original account token fixed for checkout creation', async () => {
   const input = { productKey: checkout.productKey, idempotencyKey: checkout.id };
   await createWechatCheckout(input, 'original-account-token');
   expect(apiRequestWithAccessToken).toHaveBeenCalledWith('/v1/commerce/wechat/checkouts', 'original-account-token', {
-    method: 'POST', body: JSON.stringify(input),
+    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input),
   });
 });

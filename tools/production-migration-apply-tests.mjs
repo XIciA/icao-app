@@ -181,20 +181,20 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact required 0049 journal entry', async () => {
+test('binds minimumSchemaVersion to the exact required 0050 journal entry', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0049_admin_global_allowances.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0050_wechat_day_pass.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
   const entry = journal.entries.at(-1);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 49);
-  assert.equal(entry.tag, '0049_admin_global_allowances');
-  assert.equal(entry.when, 1789321929050);
+  assert.equal(entry.idx, 50);
+  assert.equal(entry.tag, '0050_wechat_day_pass');
+  assert.equal(entry.when, 1789740000000);
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1789321929050'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1789740000000'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 

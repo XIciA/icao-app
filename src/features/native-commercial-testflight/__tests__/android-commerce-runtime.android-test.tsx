@@ -7,6 +7,7 @@ import { AndroidCommerceRuntimeProvider } from '../android-commerce-runtime.andr
 import { CommerceRuntimeContext } from '../commerce-runtime-context.native';
 import { resetCommerceEntitlementEventsForTests, getCommerceEntitlementSnapshot } from '../commerce-entitlement-events';
 import type { CommerceRuntimeValue } from '../commerce-runtime-types';
+import { ApiClientError } from '@/platform/api-client';
 
 let mockAccountId = '10000000-0000-4000-8000-000000000001';
 let mockAppStateHandler: ((state: AppStateStatus) => void) | undefined;
@@ -24,7 +25,7 @@ jest.mock('@/features/auth/wechat-native-auth', () => ({ getWechatNativeStatus: 
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({
   accountReady: true, account: { accountId: mockAccountId }, session: { accessToken: `token:${mockAccountId}`, user: { id: `auth:${mockAccountId}` } },
 }) }));
-jest.mock('@/platform/api-client', () => ({ apiRequestWithAccessToken: (...args: unknown[]) => mockApi(...args) }));
+jest.mock('@/platform/api-client', () => ({ ...jest.requireActual('@/platform/api-client'), apiRequestWithAccessToken: (...args: unknown[]) => mockApi(...args) }));
 jest.mock('@/features/question-bank/data/member-content-cache', () => ({ activateQuestionBankContentAccount: jest.fn(async () => undefined) }));
 jest.mock('../commerce-environment', () => ({ activateNativeCommerceEnvironment: jest.fn(async () => undefined), deactivateNativeCommerceEnvironment: jest.fn() }));
 jest.mock('../membership-expiry.native', () => ({ scheduleMembershipExpiry: jest.fn(() => jest.fn()) }));
@@ -272,4 +273,73 @@ it('refreshes a same-user expired token before cancelling an unpaid order', asyn
   await act(async () => { await current.cancelPendingPurchase!(); });
   expect(mockCancel).toHaveBeenCalledWith(checkout.id, 'fresh-cancel-token');
   expect(current.phase).toBe('ready');
+});
+
+it('accepts the optional one-day Android product and continues working after the server removes it', async () => {
+  mockCatalog.mockResolvedValue({ ...catalog, products: [{ productKey: 'membership_1d_v1', title: '1天会员', durationDays: 1, amountFen: 100, currency: 'CNY' }, ...catalog.products] });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  expect(current.offerings[0]).toMatchObject({ productKey: 'membership_1d_v1', durationDays: 1, localizedPrice: '¥1' });
+  mockCatalog.mockResolvedValue(catalog);
+  await act(async () => { await current.refresh(); });
+  expect(current.phase).toBe('ready');
+  expect(current.offerings.map((p) => p.durationDays)).toEqual([7, 31, 93]);
+});
+
+it('shows a retryable creation error for a rejected JSON request without claiming payment is pending', async () => {
+  mockCreate.mockRejectedValue(new ApiClientError('invalid_wechat_checkout', 400));
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(current.phase).toBe('error');
+  expect(current.message).toContain('未能创建支付订单');
+  expect(current.canCancelPendingPurchase).toBe(false);
+  expect(mockLaunch).not.toHaveBeenCalled();
+  mockCreate.mockResolvedValue(checkout);
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockLaunch).toHaveBeenCalledTimes(1);
+});
+
+it('does not claim an uncertain payment when checking for an existing order fails before creation', async () => {
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  mockPending.mockRejectedValueOnce(new Error('network unavailable'));
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(current.phase).toBe('error');
+  expect(mockCreate).not.toHaveBeenCalled();
+  expect(mockLaunch).not.toHaveBeenCalled();
+});
+
+it('preserves uncertainty after a creation timeout and clears stale guidance once the server confirms no pending order', async () => {
+  mockCreate.mockRejectedValue(new ApiClientError('ai_timeout', 408));
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(current.phase).toBe('pending');
+  expect(current.canCancelPendingPurchase).toBe(false);
+  await act(async () => { await current.refresh(); });
+  expect(current.phase).toBe('ready');
+  expect(current.message).toBeUndefined();
+});
+
+it.each(['reject', 'failed'] as const)('closes a verified unpaid order after SDK %s and reports the launch failure', async (result) => {
+  if (result === 'reject') mockLaunch.mockRejectedValue(new Error('wechat_pay_unavailable'));
+  else mockLaunch.mockResolvedValue({ state: 'failed' });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { await current.purchase('membership_7d_v1'); });
+  expect(mockCancel).toHaveBeenCalledWith(checkout.id, `token:${mockAccountId}`);
+  expect(current.phase).toBe('ready');
+  expect(current.message).toContain('未能打开微信支付');
+  expect(current.canCancelPendingPurchase).toBe(false);
+});
+
+it('preserves a server-confirmed payment even after the SDK fails', async () => {
+  mockLaunch.mockRejectedValue(new Error('SDK return lost'));
+  mockCancel.mockResolvedValue({ ...checkout, state: 'paid', entitlement: entitlement(true) });
+  await render(<App />);
+  await waitFor(() => expect(current.phase).toBe('ready'));
+  await act(async () => { expect((await current.purchase('membership_7d_v1')).ok).toBe(true); });
+  expect(current.entitlement?.membership.active).toBe(true);
+  expect(current.message).toContain('购买成功');
 });

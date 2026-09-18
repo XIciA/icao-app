@@ -2,7 +2,7 @@ import { requireOptionalNativeModule } from 'expo-modules-core';
 import type { WechatCheckout, WechatCheckoutRequest, WechatPayCatalog, WechatPayParameters } from '@icao/contracts/wechat-pay';
 import { apiRequestWithAccessToken } from '@/platform/api-client';
 
-export type WechatNativePaymentResult = { state: 'returned' | 'cancelled' | 'unknown' };
+export type WechatNativePaymentResult = { state: 'returned' | 'cancelled' | 'failed' | 'unknown' };
 export type WechatNativePaymentModule = {
   pay(id: string, payment: WechatPayParameters): Promise<WechatNativePaymentResult>;
   cancelPayment(id: string): void | Promise<void>;
@@ -34,7 +34,9 @@ export const launchWechatCheckout = createWechatPaymentBoundary(requireOptionalN
 // (and again after the SDK returns). Each request remains pinned to that explicit token;
 // these helpers deliberately never retry a payment write under the current global account.
 export const getWechatPayCatalog = (accessToken: string) => apiRequestWithAccessToken<WechatPayCatalog>('/v1/commerce/wechat/catalog', accessToken);
-export const createWechatCheckout = (input: WechatCheckoutRequest, accessToken: string) => apiRequestWithAccessToken<WechatCheckout>('/v1/commerce/wechat/checkouts', accessToken, { method: 'POST', body: JSON.stringify(input) });
+export const createWechatCheckout = (input: WechatCheckoutRequest, accessToken: string) => apiRequestWithAccessToken<WechatCheckout>('/v1/commerce/wechat/checkouts', accessToken, {
+  method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input),
+});
 export const getPendingWechatCheckout = (accessToken: string) => apiRequestWithAccessToken<WechatCheckout | null>('/v1/commerce/wechat/pending', accessToken);
 export const getWechatCheckout = (id: string, accessToken: string) => apiRequestWithAccessToken<WechatCheckout>(`/v1/commerce/wechat/checkouts/${encodeURIComponent(id)}`, accessToken);
 export const cancelWechatCheckout = (id: string, accessToken: string) => apiRequestWithAccessToken<WechatCheckout>(`/v1/commerce/wechat/checkouts/${encodeURIComponent(id)}/cancel`, accessToken, { method: 'POST' });
