@@ -1,5 +1,6 @@
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useRouter } from 'expo-router';
+import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import {
   BookMarked,
   Bot,
@@ -50,7 +51,10 @@ export function DiscoverHomeScreen() {
   const courseAvailable = isContentAvailableOnPlatform(courseEntry.slug, Platform.OS);
   return (
     <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset contentStyle={styles.screen} scroll>
-      <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>{courseAvailable ? '功能、资源与课程，探索更多学习方式。' : '功能与资源，探索更多学习方式。'}</AppText></View>
+      <View style={styles.header}>
+        <View style={styles.headingRow}><AppText variant="pageTitle">发现</AppText><WebAppDownloadLink /></View>
+        <AppText>{courseAvailable ? '功能、资源与课程，探索更多学习方式。' : '功能与资源，探索更多学习方式。'}</AppText>
+      </View>
       <SectionTitle en="Features" title="功能" />
       <Card style={styles.featureCard}>
         <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
@@ -80,6 +84,7 @@ const styles = StyleSheet.create({
   screen: { paddingTop: spacing[2] },
   glow: { left: -170, top: -180 },
   header: { gap: spacing[1], marginBottom: spacing[5] },
+  headingRow: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', gap: spacing[3] },
   sectionTitle: { alignItems: 'baseline', flexDirection: 'row', gap: spacing[2], marginBottom: spacing[3], marginTop: spacing[1] },
   featureCard: { padding: spacing[3] },
   grid: { flexDirection: 'row' },

@@ -58,6 +58,9 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // 2026-09-18: download link moves into existing headers; renders null on Vercel/Native.
+  ['src/app/(tabs)/index.tsx', ['1db0d65bd730db78b7a8d9593f268031e093f4c02c85049b79a363adcdeda3ca', '3f2dbc096f2d1f20a793982ddc0125f18e3de49b37bad01c730870082608d1c2']],
+  ['src/components/platform/WebAppDownloadLink.tsx', [null, '1f19c9bc5d31315d0fde3b4a6aab6170237ccaa2e2b078644238edd54c71dc08']],
   ['patches/react-native-reanimated@4.2.1.patch', [null, '2110d0c65efd75dc19fcda10411a628c61202965736eba134ff69e42609f26bd']],
   ['.vercelignore', ['a3d50ec9c80c6644c5f67c9461ccd4b7ccd3378af4cad618e1f7931232156bdb', '916c0e0fe0a01d56b657ecd2d460fb5b17f3f882b56cf00e7d055989ef846909']],
   // Android CMake path patch; package versions and all JavaScript stay identical.
@@ -74,7 +77,7 @@ const reviewedFormalWebHashes = new Map([
     "src/app/_layout.tsx",
     [
       "6e1e6c63667d5bff4816d0d195e71383fbca7d406d5a63120bdc32c2053dc732",
-      "cd447d1320b480769b541c6d0fa3b20ca95cd9d996d0d925100d323f70bf88a4"
+      "35065fdbd71319594b66ca530f7e99a66d678985000efaae747fc9b4df13792a"
     ]
   ],
   [
