@@ -2,11 +2,26 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  assertActiveAppleProductMappings,
   assessPublicTableClassification,
   assertPublicTableSecurityContract,
 } from './production-schema-contract-lib.mjs';
 
 const expectedTables = ['accounts', 'profiles'];
+
+test('the WeChat day pass does not alter the active Apple catalog or legacy restore mappings', () => {
+  const mappings = [7, 15, 31, 62, 93].map((days) => ({
+    product_key: `membership_${days}d_v1`, active: [7, 31, 93].includes(days),
+  }));
+  assert.doesNotThrow(() => assertActiveAppleProductMappings(mappings));
+  assert.throws(() => assertActiveAppleProductMappings([
+    ...mappings, { product_key: 'membership_1d_v1', active: true },
+  ]), /production_apple_active_product_mapping_mismatch/u);
+  assert.throws(() => assertActiveAppleProductMappings(mappings.filter((row) => row.product_key !== 'membership_31d_v1')),
+    /production_apple_active_product_mapping_mismatch/u);
+  assert.throws(() => assertActiveAppleProductMappings(mappings.map((row) => ({ ...row, active: true }))),
+    /production_apple_active_product_mapping_mismatch/u);
+});
 
 function verify(actualTables, overrides = {}) {
   return assertPublicTableSecurityContract({

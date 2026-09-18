@@ -2,6 +2,7 @@ import postgres from 'postgres';
 
 import { SERVER_ONLY_PUBLIC_TABLES } from './production-schema-contract-data.mjs';
 import {
+  assertActiveAppleProductMappings,
   assessPublicTableClassification,
   assertPublicTableSecurityContract,
 } from './production-schema-contract-lib.mjs';
@@ -222,9 +223,7 @@ try {
       'production_apple_product_mapping_mismatch',
     );
 
-    const activeAppleKeys = appleProducts.filter(row => row.active).map(row => row.product_key).sort();
-    assert(JSON.stringify(activeAppleKeys) === JSON.stringify(expectedProducts.map(row => row[0]).sort()),
-      'production_apple_active_product_mapping_mismatch');
+    assertActiveAppleProductMappings(appleProducts);
 
     return {
       appleProductMappings: appleProducts.length,
