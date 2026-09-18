@@ -17,6 +17,7 @@ const beforeSql = extractSql('fingerprint_before_sql');
 const afterSql = extractSql('fingerprint_after_sql');
 const migration42 = readFileSync(new URL('../services/api/drizzle/0042_weekly_ai_allowance.sql', import.meta.url), 'utf8');
 const migration45 = readFileSync(new URL('../services/api/drizzle/0045_ai_operation_privacy.sql', import.meta.url), 'utf8');
+const migration50 = readFileSync(new URL('../services/api/drizzle/0050_wechat_day_pass.sql', import.meta.url), 'utf8');
 // macOS TMPDIR can exceed PostgreSQL's Unix socket path limit.
 const root = mkdtempSync(join(process.platform === 'darwin' ? '/tmp' : tmpdir(), 'icao-preserve-'));
 const data = join(root, 'data');
@@ -26,7 +27,7 @@ let started = false;
 
 function psql(sql, flags = { apply42: true, apply45: true }) {
   return spawnSync('psql', ['-X', '-qAt', '-v', 'ON_ERROR_STOP=1',
-    '-v', `apply_0042=${flags.apply42}`, '-v', `apply_0045=${flags.apply45}`,
+    '-v', `apply_0042=${flags.apply42}`, '-v', `apply_0045=${flags.apply45}`, '-v', `apply_0050=${flags.apply50 ?? false}`,
     '-h', socket, '-p', String(port), '-U', 'postgres', '-d', 'postgres'],
   { input: sql, encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
 }
@@ -80,6 +81,15 @@ INSERT INTO commerce_products VALUES
  ('membership_93d_v1',93,39800,true,'2026-01-01','ninety three');
 CREATE TABLE commerce_channel_products (product_key text PRIMARY KEY, active boolean, updated_at timestamptz, provider_product_id text);
 INSERT INTO commerce_channel_products SELECT product_key,true,updated_at,'apple.' || product_key FROM commerce_products;
+ALTER TABLE commerce_products
+  ADD display_name text,
+  ADD ai_point_rule_version text,
+  ADD ai_point_batch_count integer,
+  ADD ai_point_batch_interval_days integer,
+  ADD ai_points_per_batch integer,
+  ADD created_at timestamptz DEFAULT now(),
+  ALTER active SET DEFAULT true,
+  ALTER updated_at SET DEFAULT now();
 `;
 const assertFingerprints = `
 DO $verify$ BEGIN
@@ -91,9 +101,9 @@ DO $verify$ BEGIN
   ) THEN RAISE EXCEPTION 'preserved_row_fingerprints_mismatch'; END IF;
 END $verify$;
 `;
-function scenario({ apply42 = true, apply45 = true, mutation = '', migrationOverride } = {}) {
-  const preApplied = `${apply42 ? '' : migration42}\n${apply45 ? '' : migration45}`;
-  const pending = migrationOverride ?? `${apply42 ? migration42 : ''}\n${apply45 ? migration45 : ''}`;
+function scenario({ apply42 = true, apply45 = true, apply50 = false, preApplied50 = false, mutation = '', migrationOverride } = {}) {
+  const preApplied = `${apply42 ? '' : migration42}\n${apply45 ? '' : migration45}\n${preApplied50 ? migration50 : ''}`;
+  const pending = migrationOverride ?? `${apply42 ? migration42 : ''}\n${apply45 ? migration45 : ''}\n${apply50 ? migration50 : ''}`;
   return psql(`${fixture}
     BEGIN; ${preApplied} COMMIT;
     ${beforeSql}
@@ -103,7 +113,7 @@ function scenario({ apply42 = true, apply45 = true, mutation = '', migrationOver
     ${mutation}
     ${afterSql}
     ${assertFingerprints}
-  `, { apply42, apply45 });
+  `, { apply42, apply45, apply50 });
 }
 function passes(result) { assert.equal(result.status, 0, result.stderr); }
 function fails(result, reason = /preserved_row_fingerprints_mismatch/u) {
@@ -160,4 +170,29 @@ test('failed rehearsal log survives outer cleanup privately with a safe phase ma
     assert.match(result.stderr, /stage=preserved_row_fingerprints exit=1/u);
     assert.doesNotMatch(result.stderr, /private fixture diagnostic/u);
   } finally { rmSync(scratch, { recursive: true, force: true }); }
+});
+
+const dayPassOnly = { apply42: false, apply45: false, apply50: true };
+test('0050 permits only its verified new row while preserving all existing rows', () => {
+  passes(scenario(dayPassOnly));
+  passes(scenario({ apply50: true }));
+  fails(scenario({ ...dayPassOnly, mutation: "UPDATE commerce_products SET base_price_cny_fen=1 WHERE duration_days=31;" }));
+});
+test('0050 rejects malformed or missing inserted product data and timestamps', () => {
+  for (const mutation of [
+    "UPDATE commerce_products SET base_price_cny_fen=2 WHERE duration_days=1;",
+    "UPDATE commerce_products SET display_name='wrong' WHERE duration_days=1;",
+    "UPDATE commerce_products SET created_at='2000-01-01' WHERE duration_days=1;",
+    "DELETE FROM commerce_products WHERE duration_days=1;",
+  ]) fails(scenario({ ...dayPassOnly, mutation }), /day_pass_insert_mismatch/u);
+});
+test('0050 does not exempt any additional inserted row or Apple mapping', () => {
+  fails(scenario({ ...dayPassOnly, mutation: "INSERT INTO commerce_products(product_key) VALUES ('unapproved');" }));
+  fails(scenario({ ...dayPassOnly, mutation: "INSERT INTO commerce_channel_products(product_key,active) VALUES ('membership_1d_v1',true);" }));
+});
+test('0050 never exempts a pre-existing day pass or subsequent mutations', () => {
+  fails(scenario({ ...dayPassOnly, preApplied50: true }), /day_pass_already_present/u);
+  passes(scenario({ apply42: false, apply45: false, preApplied50: true }));
+  fails(scenario({ apply42: false, apply45: false, preApplied50: true,
+    mutation: "UPDATE commerce_products SET base_price_cny_fen=2 WHERE duration_days=1;" }));
 });

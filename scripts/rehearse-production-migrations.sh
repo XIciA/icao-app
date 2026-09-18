@@ -404,9 +404,9 @@ run_sql_file() {
   sql_file=$1
   docker run --rm --network supabase_default \
     -v "$sql_file:/rehearsal.sql:ro" -e PGPASSWORD -e RESTORE_DB_NAME="$database_name" \
-    -e APPLY_0042="$apply_0042" -e APPLY_0045="$apply_0045" \
+    -e APPLY_0042="$apply_0042" -e APPLY_0045="$apply_0045" -e APPLY_0050="$apply_0050" \
     supabase/postgres:17.6.1.136 \
-    sh -ec 'psql -X -q -v ON_ERROR_STOP=1 -h db -U supabase_admin -d "$RESTORE_DB_NAME" -v apply_0042="$APPLY_0042" -v apply_0045="$APPLY_0045" -f /rehearsal.sql'
+    sh -ec 'psql -X -q -v ON_ERROR_STOP=1 -h db -U supabase_admin -d "$RESTORE_DB_NAME" -v apply_0042="$APPLY_0042" -v apply_0045="$APPLY_0045" -v apply_0050="$APPLY_0050" -f /rehearsal.sql'
 }
 
 stage=pre_plan
@@ -422,14 +422,18 @@ pre_summary=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e 
 preservation_flags=$(docker run --rm -v "$pre_plan:/evidence.json:ro" "$image" node -e '
   const p = require("/evidence.json");
   const pending = tag => p.migrations.some(m => m.tag === tag && m.status === "pending");
-  process.stdout.write(`${pending("0042_weekly_ai_allowance")}:${pending("0045_ai_operation_privacy")}`);
+  process.stdout.write(`${pending("0042_weekly_ai_allowance")}:${pending("0045_ai_operation_privacy")}:${pending("0050_wechat_day_pass")}`);
 ')
-apply_0042=${preservation_flags%:*}
-apply_0045=${preservation_flags#*:}
-case "$apply_0042:$apply_0045" in
-  true:true|true:false|false:true|false:false) ;;
-  *) echo 'migration_rehearsal_pending_transform_invalid' >&2; exit 1 ;;
-esac
+apply_0042=${preservation_flags%%:*}
+remaining_preservation_flags=${preservation_flags#*:}
+apply_0045=${remaining_preservation_flags%%:*}
+apply_0050=${remaining_preservation_flags#*:}
+for preservation_flag in "$apply_0042" "$apply_0045" "$apply_0050"; do
+  case "$preservation_flag" in
+    true|false) ;;
+    *) echo 'migration_rehearsal_pending_transform_invalid' >&2; exit 1 ;;
+  esac
+done
 stage=capture_expected_fingerprints
 fingerprint_before_sql=$work_dir/fingerprint-before.sql
 cat > "$fingerprint_before_sql" <<'SQL'
@@ -439,11 +443,21 @@ REVOKE ALL ON SCHEMA icao_rehearsal FROM PUBLIC;
 CREATE TABLE icao_rehearsal.preservation_context (
   apply_0042 boolean NOT NULL,
   apply_0045 boolean NOT NULL,
+  apply_0050 boolean NOT NULL,
   migration_started_at timestamptz,
   migration_finished_at timestamptz
 );
-INSERT INTO icao_rehearsal.preservation_context (apply_0042, apply_0045)
-VALUES (:'apply_0042'::boolean, :'apply_0045'::boolean);
+INSERT INTO icao_rehearsal.preservation_context (apply_0042, apply_0045, apply_0050)
+VALUES (:'apply_0042'::boolean, :'apply_0045'::boolean, :'apply_0050'::boolean);
+-- Never exempt a pre-existing row from the preservation fingerprint.
+DO $day_pass_before$
+BEGIN
+  IF (SELECT apply_0050 FROM icao_rehearsal.preservation_context)
+      AND EXISTS (SELECT 1 FROM public.commerce_products WHERE product_key = 'membership_1d_v1') THEN
+    RAISE EXCEPTION 'migration_rehearsal_day_pass_already_present';
+  END IF;
+END
+$day_pass_before$;
 CREATE TABLE icao_rehearsal.approved_ai_scrubs (reservation_id uuid PRIMARY KEY);
 INSERT INTO icao_rehearsal.approved_ai_scrubs
 SELECT r.id FROM public.ai_point_reservations r
@@ -633,9 +647,21 @@ BEGIN
     SELECT created_at INTO STRICT migration_time FROM public.ai_usage_rule_versions
     WHERE id = '00000000-0000-4000-8000-000000000500';
     IF NOT (migration_time BETWEEN context.migration_started_at AND context.migration_finished_at)
-        OR EXISTS (SELECT 1 FROM public.commerce_products WHERE updated_at IS DISTINCT FROM migration_time)
+        OR EXISTS (SELECT 1 FROM public.commerce_products WHERE updated_at IS DISTINCT FROM migration_time
+          AND NOT (context.apply_0050 AND product_key = 'membership_1d_v1'))
         OR EXISTS (SELECT 1 FROM public.commerce_channel_products WHERE updated_at IS DISTINCT FROM migration_time) THEN
       RAISE EXCEPTION 'migration_rehearsal_catalog_timestamp_mismatch';
+    END IF;
+  END IF;
+  IF context.apply_0050 THEN
+    IF (SELECT count(*) FROM public.commerce_products
+        WHERE product_key = 'membership_1d_v1'
+          AND display_name = '1天会员' AND duration_days = 1 AND base_price_cny_fen = 100
+          AND ai_point_rule_version = 'ai-weekly-v1' AND ai_point_batch_count = 1
+          AND ai_point_batch_interval_days = 7 AND ai_points_per_batch = 500 AND active
+          AND created_at BETWEEN context.migration_started_at AND context.migration_finished_at
+          AND updated_at = created_at) <> 1 THEN
+      RAISE EXCEPTION 'migration_rehearsal_day_pass_insert_mismatch';
     END IF;
   END IF;
   IF context.apply_0045 THEN
@@ -682,6 +708,9 @@ BEGIN
        FROM (
          SELECT md5(icao_rehearsal.project_row(icao_rehearsal.preservation_row($2, $3, to_jsonb(t), false), $1)::text) AS row_hash
          FROM %I.%I AS t
+         WHERE NOT ($2 = ''public'' AND $3 = ''commerce_products''
+           AND (SELECT apply_0050 FROM icao_rehearsal.preservation_context)
+           AND to_jsonb(t)->>''product_key'' = ''membership_1d_v1'')
        ) AS fingerprint_rows',
       '', '', item.schema_name, item.table_name
     )
