@@ -1,7 +1,7 @@
 import * as Speech from 'expo-speech';
 import { Alert } from 'react-native';
 
-import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
+import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech.native';
 
 jest.mock('expo-speech', () => ({ speak: jest.fn(), stop: jest.fn(async () => undefined), maxSpeechInputLength: 4000 }));
 const speak = jest.mocked(Speech.speak);
