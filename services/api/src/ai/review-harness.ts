@@ -38,7 +38,8 @@ function sameProtectedTokens(source: string, output: string) {
   const patterns = [
     /\b(?:FL\s?\d+|\d+(?:\.\d+)?)\b/giu,
     /\b[A-Z]{2,}\b/gu,
-    /\b[A-Z][A-Za-z]+\s+\d+\b/gu,
+    // ASR may lowercase the airline name; casing alone does not change a callsign.
+    /\b[A-Z][A-Za-z]+\s+\d+\b/giu,
     /\b[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+(?:Control|Approach|Tower|Ground|Departure|Center|Centre)\b/gu,
   ];
   return patterns.every((pattern) => JSON.stringify(sortedMatches(source, pattern)) === JSON.stringify(sortedMatches(output, pattern)));

@@ -4,6 +4,21 @@ import { reviewSchema } from '../src/ai/ai.schemas';
 import { parseAndValidateReview } from '../src/ai/review-harness';
 
 describe('review harness', () => {
+  it('accepts callsign capitalization in an actual ASR response', () => {
+    const transcript = 'Tower this is united 919 we have been struck by lightning. We will return to the ramp to check the aircraft.';
+    const polishedText = 'Tower, this is United 919. We have been struck by lightning and will return to the ramp to check the aircraft.';
+    expect(parseAndValidateReview({ grammar: { issues: [], correctedText: transcript }, polishedText }, {
+      mode: 'opi', module: 'opi', questionId: 'asr-callsign', transcript,
+    }).polishedText).toBe(polishedText);
+  });
+
+  it.each(['Speedbird 919', 'United 918'])('still rejects changed lowercase ASR callsign: %s', (callsign) => {
+    const transcript = 'This is united 919.';
+    expect(() => parseAndValidateReview({ grammar: { issues: [], correctedText: transcript }, polishedText: `This is ${callsign}.` }, {
+      mode: 'opi', module: 'opi', questionId: 'asr-callsign', transcript,
+    })).toThrow('review_protected_tokens_changed');
+  });
+
   it('accepts a structured grammar correction while preserving aviation tokens', () => {
     expect(parseAndValidateReview({
       grammar: {
