@@ -598,7 +598,7 @@ docker run --rm -v "$schema_contract:/evidence.json:ro" "$image" node -e '
       || p.requiredTables !== p.expectedPublicTables
       || p.expectedPublicTables !== 65 || p.actualPublicTables !== 65
       || p.unclassifiedPublicTables !== 0 || p.missingPublicTables !== 0
-      || p.commerceProducts !== 3 || p.appleProductMappings !== 5
+      || p.commerceProducts !== 4 || p.appleProductMappings !== 5
       || p.unvalidatedConstraints !== 0 || p.serverOnlyClientGrants !== 0
       || p.unexpectedPublicTableOwners !== 0 || p.defaultAclOwners !== 1
       || p.serverOnlyClientDefaultTableGrants !== 0

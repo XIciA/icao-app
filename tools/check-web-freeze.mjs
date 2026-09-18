@@ -58,6 +58,8 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // 2026-09-19: user-authorized public APK download on both websites.
+  // Root layout changes only the /download exemption; all learning routes keep their auth guard.
   // 2026-09-19 Android parity: exact reviewed Android branches.
   // Web shadow/hold behavior is unchanged; native recorder failures use a platform-neutral label.
   ["src/theme/tokens.ts", ["a12723112d79fb8ce78395ebea79ae2057f8cedfde0788b7cfa5b55a9e0e22fb", "840cdd8c958219e2e228c98301d23677d8119dedf22db01523854bfe419b10b8"]],
@@ -81,14 +83,14 @@ const reviewedFormalWebHashes = new Map([
     "src/app/_layout.tsx",
     [
       "6e1e6c63667d5bff4816d0d195e71383fbca7d406d5a63120bdc32c2053dc732",
-      "35065fdbd71319594b66ca530f7e99a66d678985000efaae747fc9b4df13792a"
+      "6f79dc9a17b33ac050b5bc9477948c1aeae0facfa1c6bfb81f11fcbcdc9b3c53"
     ]
   ],
   [
     "src/app/download.tsx",
     [
       null,
-      "0d5cc1a0a75bb74e80f5fd693490db0b39d3d06aa2ccaf752484c439395eede0"
+      "9ae7b8662978ecb8c8fa4b560124bab1caa01e1801f6b82e9449110776cb7b1b"
     ]
   ],
   [

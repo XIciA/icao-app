@@ -28,6 +28,7 @@ if (
 
 const serverOnlyTables = SERVER_ONLY_PUBLIC_TABLES;
 const expectedProducts = [
+  ['membership_1d_v1', 1, 100, 'ai-weekly-v1', 1, 7, 500],
   ['membership_7d_v1', 7, 6800, 'ai-points-v1', 1, 31, 250],
   ['membership_31d_v1', 31, 15800, 'ai-points-v1', 1, 31, 1000],
   ['membership_93d_v1', 93, 35800, 'ai-points-v1', 3, 31, 1000],

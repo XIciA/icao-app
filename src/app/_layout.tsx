@@ -16,7 +16,6 @@ import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { useAppFonts } from '@/platform/use-app-fonts';
 import { colors } from '@/theme';
-import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
@@ -55,7 +54,7 @@ export function AppStack() {
   const pathname = usePathname();
   const router = useRouter();
   const authRedirectInFlightRef = useRef(false);
-  const publicDownload = Platform.OS === 'web' && isEdgeOneProductionWeb() && pathname === '/download';
+  const publicDownload = Platform.OS === 'web' && pathname === '/download';
 
   useEffect(() => {
     if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !publicDownload && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
