@@ -163,7 +163,10 @@ function SpeakingPracticePanelContent({
   const usePermissionPrimer = isWeb && (controller.permissionPrimerRequired || controller.permissionPrimerActive);
   const primingPermission = isWeb && controller.permissionPrimerActive;
   const recordButtonDisabled = primingPermission
-    || (isBusy && (!isWeb || controller.phase === 'finalizing'));
+    // Android cancels the active touch when its native view becomes disabled.
+    // Keep the initiating hold alive while permission/recorder preparation runs;
+    // the recording engine already serializes starts and remembers early release.
+    || (isBusy && (Platform.OS === 'ios' || controller.phase === 'finalizing'));
   const recordLabel = primingPermission
     ? '正在等待麦克风授权…'
     : controller.phase === 'requestingPermission' || controller.phase === 'preparing'

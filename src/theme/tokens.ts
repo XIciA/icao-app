@@ -1,4 +1,4 @@
-import type { TextStyle, ViewStyle } from 'react-native';
+import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 import { fonts } from './font-families';
 
@@ -110,21 +110,27 @@ export const type = {
 } as const;
 
 export const shadows = {
-  card: {
+  card: Platform.OS === 'android' ? {
+    boxShadow: '0 8px 18px rgba(31, 94, 217, 0.05)',
+  } satisfies ViewStyle : {
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.05,
     shadowRadius: 18,
     elevation: 2,
   } satisfies ViewStyle,
-  floating: {
+  floating: Platform.OS === 'android' ? {
+    boxShadow: '0 8px 18px rgba(0, 0, 0, 0.07)',
+  } satisfies ViewStyle : {
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.07,
     shadowRadius: 18,
     elevation: 6,
   } satisfies ViewStyle,
-  modal: {
+  modal: Platform.OS === 'android' ? {
+    boxShadow: '0 -8px 24px rgba(31, 94, 217, 0.10)',
+  } satisfies ViewStyle : {
     shadowColor: colors.primary,
     shadowOffset: { width: 0, height: -8 },
     shadowOpacity: 0.10,

@@ -112,7 +112,10 @@ function upsertAndroidManifestEntry(application, key, value) {
   const entries = application[key] || [];
   const name = value.$['android:name'];
   application[key] = [
-    ...entries.filter((entry) => entry.$?.['android:name'] !== name),
+    ...entries.filter((entry) => {
+      const existingName = entry.$?.['android:name'];
+      return existingName !== name && !(key === 'activity' && existingName?.startsWith('.') && name.endsWith(existingName));
+    }),
     value,
   ];
 }

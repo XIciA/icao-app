@@ -53,6 +53,12 @@ function MembershipContent() {
   const returnedRef = useRef(false);
   useEffect(() => { activeRef.current = true; return () => { activeRef.current = false; }; }, []);
   const selected = commerce.offerings.find((offering) => offering.productKey === selectedKey);
+  const products = Platform.OS === 'android'
+    ? commerce.offerings.map((offering) => ({ key: offering.productKey, durationDays: offering.durationDays }))
+    : listMembershipProducts();
+  useEffect(() => {
+    if (Platform.OS === 'android' && commerce.offerings.length && !selected) setSelectedKey('membership_31d_v1');
+  }, [commerce.offerings, selected]);
   const active = commerce.entitlement?.membership.active === true;
   const busy = localBusy || ['loading', 'purchasing', 'restoring', 'reconciling'].includes(commerce.phase);
   const pending = commerce.phase === 'pending';
@@ -89,7 +95,7 @@ function MembershipContent() {
       </View>
     </Card>
     <View accessibilityRole="radiogroup" style={styles.plans}>
-      {listMembershipProducts().map((product) => {
+      {products.map((product) => {
         const offering = commerce.offerings.find((item) => item.productKey === product.key);
         const selected = selectedKey === product.key;
         return <Pressable key={product.key} accessibilityRole="radio" accessibilityLabel={`${product.durationDays}天会员`}

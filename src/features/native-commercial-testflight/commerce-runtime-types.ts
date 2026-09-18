@@ -4,9 +4,9 @@ import type {
 } from '@icao/contracts';
 
 export type CommerceRuntimeOffering = Readonly<{
-  productKey: CommerceProductOffering['productKey'];
+  productKey: CommerceProductOffering['productKey'] | 'membership_1d_v1';
   displayName: string;
-  durationDays: CommerceProductOffering['durationDays'];
+  durationDays: CommerceProductOffering['durationDays'] | 1;
   recommended: boolean;
   localizedPrice: string;
   currencyCode: string;
@@ -91,7 +91,7 @@ export type CommerceRuntimeValue = Readonly<{
   entitlementChange?: CommerceEntitlementChange;
   error?: CommerceRuntimeError;
   message?: string;
-  purchase(productKey: CommerceProductOffering['productKey']): Promise<CommerceActionResult>;
+  purchase(productKey: CommerceRuntimeOffering['productKey']): Promise<CommerceActionResult>;
   refresh(): Promise<void>;
   restorePurchases(): Promise<CommerceActionResult>;
   canCancelPendingPurchase?: boolean;

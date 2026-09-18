@@ -350,7 +350,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
 
-    await waitFor(() => expect(screen.getByText(/iPhone 录音器准备失败.*诊断编号/u)).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(/系统录音器准备失败.*诊断编号/u)).toBeTruthy());
     expect(mockRecorder.prepare).toHaveBeenCalledTimes(1);
     expect(mockRecorder.start).not.toHaveBeenCalled();
     expect(screen.getByLabelText('提交录音诊断')).toBeTruthy();
@@ -489,6 +489,26 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
     await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
+    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    await screen.unmount();
+  });
+
+  it('keeps the Android hold enabled throughout permission and recorder preparation', async () => {
+    setPlatform('android');
+    const permission = deferred<boolean>();
+    const preparation = deferred<undefined>();
+    mockRecorder.requestPermission.mockReturnValue(permission.promise);
+    mockRecorder.prepare.mockReturnValue(preparation.promise);
+    const screen = await render(<SpeakingPracticePanel {...commonProps} variant="integrated" />);
+    await act(async () => { fireEvent(screen.getByTestId('integrated-record-button'), 'pressIn'); });
+    expect(screen.getByTestId('integrated-record-button').props.accessibilityState.disabled).toBe(false);
+    await act(async () => { permission.resolve(true); });
+    await waitFor(() => expect(mockRecorder.prepare).toHaveBeenCalled());
+    expect(screen.getByTestId('integrated-record-button').props.accessibilityState.disabled).toBe(false);
+    await act(async () => { preparation.resolve(undefined); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    expect(mockRecorder.cancel).not.toHaveBeenCalled();
+    await act(async () => { fireEvent(screen.getByTestId('integrated-record-button'), 'pressOut'); });
     await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
     await screen.unmount();
   });

@@ -351,6 +351,13 @@
       "when": 1789321929050,
       "tag": "0049_admin_global_allowances",
       "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "7",
+      "when": 1789740000000,
+      "tag": "0050_wechat_day_pass",
+      "breakpoints": true
     }
   ]
 }

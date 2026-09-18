@@ -61,7 +61,7 @@ object IcaoWechatPayCoordinator {
     take(active.id)?.promise?.resolve(mapOf("state" to when (payment.errCode) {
       BaseResp.ErrCode.ERR_OK -> "returned"
       BaseResp.ErrCode.ERR_USER_CANCEL -> "cancelled"
-      else -> "unknown"
+      else -> "failed"
     }))
   }
 

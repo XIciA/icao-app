@@ -147,15 +147,15 @@ const FAILURE_MESSAGES: Record<RecordingFailureCode, string> = {
   recording_media_duration_mismatch: '录音文件的实际时长异常，请重新录制。',
   recording_media_unreadable: '录音文件无法读取，请重新录制。',
   recording_media_services_reset: '系统音频服务已重置，请重新录制。',
-  recording_native_prepare_failed: 'iPhone 录音器准备失败，请稍后重试。',
-  recording_native_prepare_timeout: 'iPhone 录音器准备超时，请重新录制。',
-  recording_native_start_failed: 'iPhone 录音器启动失败，请稍后重试。',
-  recording_native_start_timeout: 'iPhone 录音器启动超时，请重新录制。',
+  recording_native_prepare_failed: '系统录音器准备失败，请稍后重试。',
+  recording_native_prepare_timeout: '系统录音器准备超时，请重新录制。',
+  recording_native_start_failed: '系统录音器启动失败，请稍后重试。',
+  recording_native_start_timeout: '系统录音器启动超时，请重新录制。',
   recording_owner_pause_failed: '上一段音频未能暂停，请稍后重试。',
   recording_owner_pause_timeout: '上一段音频暂停超时，请稍后重试。',
   recording_runtime_tainted: '系统录音器没有返回；正在隔离旧录音器。如仍无法重试，请重新启动 App。',
   recording_source_missing: '没有找到录音文件，请重新录制。',
-  recording_stop_timeout: 'iPhone 录音器停止超时，请重新启动 App 后重试。',
+  recording_stop_timeout: '系统录音器停止超时，请重新启动 App 后重试。',
   recording_too_short: '录音时间太短，请重新录制。',
 };
 
@@ -338,6 +338,7 @@ export class RecordingEngine {
   pressOut = async () => {
     const operation = this.activeOperation;
     if (!operation) return;
+    this.report('record_press_released', this.state.phase, operation, 'info');
     operation.releaseRequested = true;
     await this.startPromise?.catch(() => undefined);
     if (this.activeOperation === operation && operation.started && !operation.stopRequested) {

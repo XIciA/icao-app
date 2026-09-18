@@ -92,6 +92,13 @@ export async function getMicrophonePermission() {
 }
 
 export async function requestMicrophonePermission() {
+  // Android opens a permission Activity even for a previously granted request.
+  // That background transition interrupts the hold before recording can start.
+  // Read the existing grant first; still use the system prompt when needed.
+  if (Platform.OS === 'android') {
+    const current = await getRecordingPermissionsAsync();
+    if (current.granted || !current.canAskAgain) return current;
+  }
   return requestRecordingPermissionsAsync();
 }
 
