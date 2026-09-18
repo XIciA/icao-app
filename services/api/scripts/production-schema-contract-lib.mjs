@@ -63,3 +63,11 @@ export function assertPublicTableSecurityContract({
     unexpectedPublicTableOwners: 0,
   };
 }
+// The WeChat-only day pass must not become an active App Store mapping.
+export function assertActiveAppleProductMappings(products) {
+  const expectedKeys = ['membership_7d_v1', 'membership_31d_v1', 'membership_93d_v1'].sort();
+  const actualKeys = products.filter((row) => row.active).map((row) => row.product_key).sort();
+  if (JSON.stringify(actualKeys) !== JSON.stringify(expectedKeys)) {
+    throw new Error('production_apple_active_product_mapping_mismatch');
+  }
+}
