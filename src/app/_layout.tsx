@@ -97,13 +97,6 @@ export function AppStack() {
 
   return (
     <View style={styles.root}>
-      {Platform.OS === 'web' && isEdgeOneProductionWeb() && pathname !== '/download' ? (
-        <View style={styles.downloadHeader}>
-          <Pressable accessibilityRole="link" onPress={() => router.push('/download' as Href)} style={styles.downloadLink}>
-            <AppText color={colors.primary} variant="button">下载 APP</AppText>
-          </Pressable>
-        </View>
-      ) : null}
       <Stack
             screenOptions={{
               animation: 'slide_from_right',
@@ -185,8 +178,6 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  downloadHeader: { alignItems: 'flex-end', backgroundColor: colors.background, paddingHorizontal: 20, paddingVertical: 4 },
-  downloadLink: { paddingHorizontal: 12, paddingVertical: 10 },
   errorRoot: { backgroundColor: colors.background, flex: 1 },
   acceptanceBadge: {
     backgroundColor: colors.accent,

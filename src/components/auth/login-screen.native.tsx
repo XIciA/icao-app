@@ -4,6 +4,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
+import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, Screen, TextField } from '@/components/ui';
 import { useAuth, type LoginLegalDocuments } from '@/features/auth/AuthProvider';
@@ -430,6 +431,7 @@ function LoginContent() {
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
         <AuthHeading title="登录 / 注册" />
+        <WebAppDownloadLink />
       </View>
       <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>

@@ -10,6 +10,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet } from 'react-native';
 
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
+import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { colors, radii } from '@/theme';
@@ -46,6 +47,7 @@ export default function QuestionBankTab() {
           <UserRound color={colors.mutedForeground} size={20} />
         </Pressable>
       }
+      headerTrailing={<WebAppDownloadLink />}
       onEntryPress={(entry) => {
         router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } });
       }}
