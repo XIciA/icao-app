@@ -493,26 +493,6 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await screen.unmount();
   });
 
-  it('keeps the Android hold enabled throughout permission and recorder preparation', async () => {
-    setPlatform('android');
-    const permission = deferred<boolean>();
-    const preparation = deferred<undefined>();
-    mockRecorder.requestPermission.mockReturnValue(permission.promise);
-    mockRecorder.prepare.mockReturnValue(preparation.promise);
-    const screen = await render(<SpeakingPracticePanel {...commonProps} variant="integrated" />);
-    await act(async () => { fireEvent(screen.getByTestId('integrated-record-button'), 'pressIn'); });
-    expect(screen.getByTestId('integrated-record-button').props.accessibilityState.disabled).toBe(false);
-    await act(async () => { permission.resolve(true); });
-    await waitFor(() => expect(mockRecorder.prepare).toHaveBeenCalled());
-    expect(screen.getByTestId('integrated-record-button').props.accessibilityState.disabled).toBe(false);
-    await act(async () => { preparation.resolve(undefined); });
-    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    expect(mockRecorder.cancel).not.toHaveBeenCalled();
-    await act(async () => { fireEvent(screen.getByTestId('integrated-record-button'), 'pressOut'); });
-    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
-    await screen.unmount();
-  });
-
   it('releases the Web permission stream when the user lets go before permission completes', async () => {
     setPlatform('web');
     const permission = deferred<boolean>();

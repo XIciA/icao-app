@@ -61,7 +61,6 @@ const reviewedFormalWebHashes = new Map([
   // 2026-09-19 Android parity: exact reviewed Android branches.
   // Web shadow/hold behavior is unchanged; native recorder failures use a platform-neutral label.
   ["src/theme/tokens.ts", ["a12723112d79fb8ce78395ebea79ae2057f8cedfde0788b7cfa5b55a9e0e22fb", "840cdd8c958219e2e228c98301d23677d8119dedf22db01523854bfe419b10b8"]],
-  ["src/features/question-bank/components/SpeakingPracticePanel.tsx", ["185826939829a06bfd4f155bc6f0aea9af873ef0b479e55e56b6d26963e92ecc", "744a65e530e8999ad92cb50943c4c223ca80a1fd038d8785aa348091d2e9393f"]],
   ["src/features/question-bank/recording/recording-engine.ts", ["de59e2b3c90f2f88b551ed02848f67a14c02ab16bd89733295cc592fb5d5403a", "c9c43d207ed469f238ff1325b18d59847fb2e55fec497fa80010a63117159665"]],
   // 2026-09-18: download link moves into existing headers; renders null on Vercel/Native.
   ['src/app/(tabs)/index.tsx', ['1db0d65bd730db78b7a8d9593f268031e093f4c02c85049b79a363adcdeda3ca', '3f2dbc096f2d1f20a793982ddc0125f18e3de49b37bad01c730870082608d1c2']],

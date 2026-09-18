@@ -4,7 +4,8 @@ import * as Speech from 'expo-speech';
 import { audioSessionOrchestrator } from '@/platform/audio';
 import { ExamQuestionAudio } from '../components/ExamQuestionAudio.native';
 import type { AudioInterruptionEvent } from '../../../../modules/icao-audio-interruption/src';
-const mockPlayer = { pause: jest.fn(), play: jest.fn(), seekTo: jest.fn(async () => undefined), replace: jest.fn(), playbackRate: 1, currentTime: 0 };
+// Native playbackRate is getter-only; the method is the supported write API.
+const mockPlayer = { pause: jest.fn(), play: jest.fn(), seekTo: jest.fn(async () => undefined), replace: jest.fn(), setPlaybackRate: jest.fn(), get playbackRate() { return 1; }, currentTime: 0 };
 let mockStatus = { isLoaded: false, playbackState: 'loading', currentTime: 0, playing: false, didJustFinish: false };
 let mockInterruption: ((event: AudioInterruptionEvent) => void) | undefined;
 let mockAppState: ((state: AppStateStatus) => void) | undefined;
@@ -29,7 +30,7 @@ async function playing() {
 it('autoplays a new question without exposing playback, pause, seek or speed controls', async () => {
   const screen = await playing();
   expect(screen.getByText('音频播放中')).toBeTruthy();
-  expect(screen.queryByRole('button')).toBeNull(); expect(mockPlayer.playbackRate).toBe(1);
+  expect(screen.queryByRole('button')).toBeNull(); expect(mockPlayer.setPlaybackRate).toHaveBeenCalledWith(1);
 });
 it('waits for signed-media resolution before replacing the player or starting the playback watchdog', async () => {
   jest.useFakeTimers();
