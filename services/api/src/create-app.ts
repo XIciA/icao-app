@@ -1,5 +1,6 @@
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 import { NestFactory } from '@nestjs/core';
+import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
 
 import { AppModule } from './app.module';
 import { HttpErrorFilter } from './http-error.filter';
@@ -17,13 +18,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
     bufferLogs: true,
     rawBody: true,
   });
-  app.enableCors({
-    origin: config.corsOrigins,
-    credentials: false,
-    methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match'],
-    maxAge: 86_400,
-  });
+  app.enableCors(apiCorsOptions(config.corsOrigins));
   app.useGlobalFilters(new HttpErrorFilter());
   await app.register(multipart, {
     limits: { fileSize: 8 * 1024 * 1024, files: 3, fields: 8, parts: 12 },
@@ -33,4 +28,14 @@ export async function createApp(config: ApiConfig = loadConfig()) {
   await app.init();
   await app.getHttpAdapter().getInstance().ready();
   return app;
+}
+
+export function apiCorsOptions(origins: string[]) {
+  return {
+    origin: origins,
+    credentials: false,
+    methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match', COMMERCE_ENVIRONMENT_HEADER, 'x-ai-operation-id'],
+    maxAge: 86_400,
+  };
 }
