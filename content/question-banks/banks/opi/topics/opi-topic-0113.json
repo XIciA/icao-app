@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0113",
   "name": "EFIS",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "An EFIS integrates multiple types of flight information in clear displays, reducing search time and pilot workload. This improves situational awareness and operational efficiency.",
       "referenceTextZh": "电子飞行仪表系统将多种飞行信息集中显示在清晰的屏幕上，减少了查找信息所需的时间和飞行员的工作负荷。这有助于提高情景意识和运行效率。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

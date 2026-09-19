@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0085",
   "name": "CSN 102 乘客被热咖啡烫伤",
   "declaredCardCount": 21,
@@ -193,5 +192,6 @@
       "referenceTextZh": "收到，谢谢，CSN 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1478.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0141",
   "name": "CES 5277 襟翼问题 TCAS机动 备降/返航",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "许可在 Runway 04 落地，CES 5277。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

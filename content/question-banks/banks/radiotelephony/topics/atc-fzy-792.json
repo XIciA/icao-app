@@ -1,0 +1,118 @@
+{
+  "id": "atc-fzy-792",
+  "name": "CES2151 [鸟击，发动机失效]",
+  "declaredCardCount": 12,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152582",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-1",
+      "audioText": "You are CES2151, from Wuhan to Shanghai Hongqiao airport. Gate 232, Information S, ask for ATC clearance.",
+      "audioTextZh": "你的呼号是东方2151，丛武汉飞往上海虹桥，232号停机位，通播S，请求放行许可。",
+      "referenceText": "Wuhan Delivery, CES2151, gate 232, information S, request ATC clearance to Shanghai Hongqiao",
+      "referenceTextZh": "武汉放行，东方2151，232号停机位，通播S，请求飞往上海虹桥的许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b02a9502623aa4345be6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152583",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-2",
+      "audioText": "CES2151, cleared to Shanghai Hongqiao via flight planned route, runway 36R, ZF01 departure, initial altitude 1,800m, climb to 10,100m, after departure contact 123.4, squawk 4125.",
+      "audioTextZh": "东方2151，可以经由计划航路飞往上海虹桥，跑道36右，ZF01离场，初始高度1800米，爬升至10100米，离场后，联系123.4，应答机4125。",
+      "referenceText": "Cleared to Shanghai Hongqiao, via flight planned route, runway 36R, ZF01 departure, initial altitude 1,800m, climb to 10,100m, contact 123.4, squawk 4125, CES2151.",
+      "referenceTextZh": "可以经由计划航路飞往上海虹桥，跑道36右，ZF01离场，初始高度1800米，爬升至10100米，离场后，联系123.4，应答机4125，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eb85c7eb3ad306bc790b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152584",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-3",
+      "audioText": "You found that the tow bar was not available, contact Ground for the tow bar.",
+      "audioTextZh": "你发现拖杆不在位，联系地面，请求拖杆。",
+      "referenceText": "Wuhan Ground, CES2151, request a tow bar due tow bar is not available.",
+      "referenceTextZh": "武汉地面，东方2151，由于拖杆不可用，请求拖杆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8f630c44b8c0850a4c3f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152585",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-4",
+      "audioText": "CES2151, taxi via Z4, A3, A to the holding point of A7.",
+      "audioTextZh": "东方2151，经由滑行道Z4，A3，A，滑行至A7等待点。",
+      "referenceText": "Taxi via Z4, A3, A to the holding point of A7, CES2151.",
+      "referenceTextZh": "经由滑行道Z4，A3，A，滑行至A7等待点，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf9b2f607ac614450464.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152586",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-5",
+      "audioText": "CES2151, 2 cranes erected west of taxiway A, taxi with caution.",
+      "audioTextZh": "东方2151，滑行道A西面竖着两架起重机，谨慎滑行。",
+      "referenceText": "Roger, thanks, CES2151.",
+      "referenceTextZh": "收到，谢谢，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa63006e8afb509086a3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152587",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-6",
+      "audioText": "CES2151, give way to A320 on A7. When it is clear, continue taxi to A, hold short of runway 36R.",
+      "audioTextZh": "东方2151，给A7处的A320让路，当与航空器解除冲突，继续滑行至A，在跑道36右外等待。",
+      "referenceText": "Give way to A320 on A7, when clear, continue taxi to A, hold short of runway 36R, CES2151.",
+      "referenceTextZh": "给A7处的A320让路，当与航空器解除冲突，继续滑行至A，在跑道36右外等待，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cfc297938cd06e77a15b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152588",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-7",
+      "audioText": "The wind sock indicates strong tailwind, ask to check the wind.",
+      "audioTextZh": "风袋显示有很强的顺风，请求确认风的情况。",
+      "referenceText": "Wuhan Ground, CES2151, request wind check.",
+      "referenceTextZh": "武汉地面，东方2151，请求校对风向风速。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/78567bda04692be1437e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152589",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-8",
+      "audioText": "After airborne, you encountered bird strike and one of your engines failed, make an urgency call and ask to return to Wuhan airport.",
+      "audioTextZh": "离地后，你遭遇了鸟击，你的一个发动机失效，做紧急通话，并请求返回武汉机场。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Departure, CES2151, engine failure due to bird strike, request return to Wuhan airport.",
+      "referenceTextZh": "PANPAN,PANPAN,PANPAN，武汉离场，东方2151，由于鸟击，发动机故障，请求返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/51875fc27e163439b4f4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152590",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-9",
+      "audioText": "CES2151, roger PAN, climb and maintain 600m, turn right to join downwind, cleared for ILS approach runway 36R.",
+      "audioTextZh": "东方2151，收到PAN，爬升至600米保持，右转加入三边，可以ILS进近，跑道36右。",
+      "referenceText": "Climb and maintain 600m, turn right join downwind, cleared for ILS approach runway 36R, CES2151.",
+      "referenceTextZh": "爬升至600米保持，右转加入三边，可以ILS进近，跑道36右，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3c5ec0a39158fefc0454.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152591",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-10",
+      "audioText": "Because of strong tailwind, you want to change to runway 18L.",
+      "audioTextZh": "由于强顺风，你想更改到跑道18左。",
+      "referenceText": "Wuhan Departure, CES2151, request change to runway 18L due to strong tailwind.",
+      "referenceTextZh": "武汉离场，东方2151，由于强顺风，请求更改到跑道18左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2eb3b8a3d483d608d0e5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152592",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-11",
+      "audioText": "CES2151, change to runway 18L is approved, maintain 600m, turn right to WHA, contact approach on 121.7.",
+      "audioTextZh": "东方2151，同意更改到18左，保持在600米，右转至WHA，联系进近121.7。",
+      "referenceText": "Runway 18L, maintain 600m, turn right to WHA, 121.7, CES2151.",
+      "referenceTextZh": "跑道18左，保持在600米，右转至WHA，121.7，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d2a6e97374d7498b71bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152593",
+      "taskTitle": "41-CES2151 [鸟击，发动机失效]-12",
+      "audioText": "CES2151, climb to 900m, after WHA, fly heading 360, expect radar vectors for ILS approach runway 18L.",
+      "audioTextZh": "东方2151，爬升至900米，过WHA后，航向360，预计雷达引导ILS进近，跑道18左。",
+      "referenceText": "Climb to 900m, after WHA, fly heading 360, expect radar vector for ILS approach runway 18L, CES2151.",
+      "referenceTextZh": "爬升至900米，WHA后，航向360，预计雷达引导ILS进近，跑道18左，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3139662f43ba6e43b3e1.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

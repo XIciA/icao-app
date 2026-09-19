@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0108",
   "name": "AFR 113 发动机失效 乘客医疗 TCAS机动",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "124.35，AFR 113。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

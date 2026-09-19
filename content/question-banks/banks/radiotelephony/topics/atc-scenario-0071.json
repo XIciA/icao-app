@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0071",
   "name": "CSN 542 撞气球 机翼，控制面损坏",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "跑道 02 可以着陆，CSN 542。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1231.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

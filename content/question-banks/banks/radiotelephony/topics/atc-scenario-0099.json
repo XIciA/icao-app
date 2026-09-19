@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0099",
   "name": "CES 277 襟翼卡阻 无法完全放下",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "可以落地，跑道 04，CES 277。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1725.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

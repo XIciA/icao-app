@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0070",
   "name": "CCA 368(印度口音)跑线 复飞",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "经快速出口 E2 脱离跑道 01，CCA 368。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1211.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

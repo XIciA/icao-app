@@ -1,10 +1,9 @@
 {
   "id": "atc-baw",
   "name": "BAW",
-  "declaredTopicCount": 12,
-  "declaredCardCount": 202,
+  "declaredTopicCount": 19,
+  "declaredCardCount": 324,
   "topicIds": [
-    "atc-scenario-0025",
     "atc-scenario-0026",
     "atc-scenario-0027",
     "atc-scenario-0028",
@@ -15,6 +14,14 @@
     "atc-scenario-0123",
     "atc-scenario-0124",
     "atc-scenario-0125",
-    "atc-scenario-0126"
+    "atc-scenario-0126",
+    "atc-fzy-1514",
+    "atc-fzy-1694",
+    "atc-fzy-1713",
+    "atc-fzy-606",
+    "atc-fzy-630",
+    "atc-fzy-635",
+    "atc-fzy-862",
+    "atc-fzy-870"
   ]
 }

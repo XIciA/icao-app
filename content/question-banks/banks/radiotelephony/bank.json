@@ -3,12 +3,12 @@
   "title": "陆空通话",
   "nameEn": "Radiotelephony",
   "description": "结构 词汇 理解能力",
-  "summary": "186 场景 / 3216 卡",
+  "summary": "319 场景 / 5751 卡",
   "enabled": true,
   "statusLabel": "可练习",
   "icon": "radioTower",
-  "declaredTopicCount": 186,
-  "declaredCardCount": 3216,
+  "declaredTopicCount": 319,
+  "declaredCardCount": 5751,
   "categoryUnit": "航司",
   "topicUnit": "场景",
   "cardUnit": "卡",
@@ -50,6 +50,8 @@
     "atc-aca",
     "atc-cca",
     "atc-csn",
-    "atc-ces"
+    "atc-ces",
+    "atc-scoring-points",
+    "atc-nwa"
   ]
 }

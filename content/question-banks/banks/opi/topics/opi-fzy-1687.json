@@ -1,0 +1,53 @@
+{
+  "id": "opi-fzy-1687",
+  "name": "11.补充话题",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-fzy-224769",
+      "taskTitle": "11.补充话题-1",
+      "audioText": "What progress or developments has China's civil aviation industry made in the last decade?",
+      "audioTextZh": "中国民航在过去十年取得了哪些进步或发展？",
+      "studyTier": 1,
+      "referenceText": "The progress or development made by China's civil aviation in the past decade has been rapid. We independently developed the C919 large aircraft, built the Daxing Airport, opened up more and more international and domestic routes, and traveling by plane has become increasingly popular and common.",
+      "referenceTextZh": "中国民航在过去十年取得的进步或发展是飞快的，我们独立研制了C919大飞机，建造了大兴机场，开辟了越来越多的国际、国内航线，乘坐飞机出行变得越来越受欢迎，越来越普遍。"
+    },
+    {
+      "id": "opi-fzy-224770",
+      "taskTitle": "11.补充话题-2",
+      "audioText": "What’s your opinions about the progress of China’s aircraft industry?",
+      "audioTextZh": "你对我国航空制造业的发展情况有何看法？",
+      "studyTier": 1,
+      "referenceText": "Our country's aircraft industry has made huge development. We independently developed the C909 and C919 aircraft, and at the same time, we have also made great progress in engine research.",
+      "referenceTextZh": "我国的航空制造业取得了很大的发展，我们独立研制了C909和C919，同时，我们在发动机研究方面也取得了巨大的进步。"
+    },
+    {
+      "id": "opi-fzy-224771",
+      "taskTitle": "11.补充话题-3",
+      "audioText": "What modern equipment and technologies have been used by China's civil aviation industry?",
+      "audioTextZh": "中国民航使用了哪些新设备和新技术？",
+      "studyTier": 1,
+      "referenceText": "China's civil aviation has adopted many new technologies and equipment, such as TCAS, BDS, HUD, AR and VR, etc.",
+      "referenceTextZh": "中国民航采用了很多新技术和新设备，比如TCAS，BDS，HUD，AR和VR等。"
+    },
+    {
+      "id": "opi-fzy-224772",
+      "taskTitle": "11.补充话题-4",
+      "audioText": "How do you deal with the challenges brought by the new equipment and technologies?",
+      "audioTextZh": "如何应对来自新技术和新设备的挑战？",
+      "studyTier": 1,
+      "referenceText": "In my opinion, we should conduct relevant theoretical studies and take relevant simulator training.",
+      "referenceTextZh": "在我看来，我们应当进行相关的理论学习，其次，我们需要通过相关的模拟机训练。"
+    },
+    {
+      "id": "opi-fzy-224773",
+      "taskTitle": "11.补充话题-5",
+      "audioText": "Against the backdrop of the aviation industry's development, as a pilot, how do you plan to respond?",
+      "audioTextZh": "在航空业发展的背景下，作为一名飞行员，您打算如何应对呢？",
+      "studyTier": 1,
+      "referenceText": "First of all, we should embrace the development of civil aviation and maintain a positive attitude towards new technologies and equipment. Secondly, we should conduct relevant theoretical studies. Thirdly, we need to take simulator training to enhance our flight skills.",
+      "referenceTextZh": "首先，我们要拥抱民航的发展，对新技术和设备保持积极态度，其次，我们应进行相关的理论学习，其次，我们需要通过相关的模拟机训练，提升自己的飞行技术。"
+    }
+  ],
+  "categoryId": "opi-category-07"
+}

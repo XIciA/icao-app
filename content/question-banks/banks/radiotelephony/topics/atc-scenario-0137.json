@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0137",
   "name": "CES 5118 雷暴绕飞 TCAS机动 舱门问题",
   "declaredCardCount": 24,
@@ -220,5 +219,6 @@
       "referenceTextZh": "许可从 Runway 18L 起飞，起初保持跑道航向，爬升至 1500 米，CES 5118。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-035-ces5118-q24.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

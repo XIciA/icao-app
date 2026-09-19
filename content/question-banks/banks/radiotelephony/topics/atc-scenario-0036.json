@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0036",
   "name": "UAL 182 火山灰 双发失效 一发重启不稳定",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "进近，UAL 182，请求应急服务在跑道附近待命。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/629.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

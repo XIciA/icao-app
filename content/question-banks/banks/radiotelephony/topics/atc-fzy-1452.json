@@ -1,0 +1,479 @@
+{
+  "id": "atc-fzy-1452",
+  "name": "陈述意图",
+  "declaredCardCount": 47,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210179",
+      "taskTitle": "【练习版】State intention说明意图-1",
+      "audioText": "UAL921, the closest airport is Nanjing Airport. Current visibility is marginal. I have to check if they can accommodate an aircraft of your size. Hongqiao and Pudong airport has longer runways and can definitely accommodate your aircraft. Advised your intention.\n[Ask for radar vector to the airport that has better visibility between Hongqiao and Pudong.]",
+      "audioTextZh": "美联航921，最近的机场是南京机场。当前能见度处于临界状态。我要检查南京机场能否接收你。虹桥机场和浦东机场有更长的跑道，并且肯定可以接收你。请示意图。\n【请求雷达引导至能见度较高的虹桥机场或浦东机场。】",
+      "studyTier": 0,
+      "referenceText": "Request fly to the better visibility airport between Hongqiao and Pudong, UAL921.",
+      "referenceTextZh": "请求飞往能见度较高的虹桥机场或浦东机场，美联航921。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a944ea694806437ea74.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210180",
+      "taskTitle": "【练习版】State intention说明意图-2",
+      "audioText": "AFR986, Wuhan Control, roger PANPAN, turn right heading 240, report intentions.[Tell controller that your GPS altitude and groundspeed is not accurate compared to barometric(气压高度表) indications, but can still maintain stable flight. request descend, leaving icing area.]",
+      "audioTextZh": "法航986，武汉区调，收到PANPAN，右转航向240，报告意图。\n【告诉管制员，你的GPS高度和地速数据与气压高度表显示的不准确，但仍能正常飞行。请求下降，离开积冰区域。】",
+      "studyTier": 0,
+      "referenceText": "Turn right heading 240. Request descent and leaving icing area due inaccurate indications, AFR986.",
+      "referenceTextZh": "右转航向240，由于数据显示不准确，请求下降，离开积冰区域，法航986。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8e83bdd9432abf7d3bab.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210181",
+      "taskTitle": "【练习版】State intention说明意图-3",
+      "audioText": "CES586, around TOL reported moderate to severe clear air turbulence between 6000m to 10400m. The alternative level is 11600m, report intention?[Tell the controller you can accept 11600m.]",
+      "audioTextZh": "东方586，TOL附近报告有强烈晴空乱流，高度6000米至10400米。备用高度是11600米，报告意图。\n【告诉管制员11600米可用。】",
+      "studyTier": 0,
+      "referenceText": "Affirm 11600m, CES586.",
+      "referenceTextZh": "同意11600米，东方586。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f7040ec5e7615db279c1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210182",
+      "taskTitle": "【练习版】State intention说明意图-4",
+      "audioText": "CSN351, roger, hold at present position, advise intentions when able. [Tell the controller that you are still able to taxi but you need 5min to solve the problem, ask to hold at convenient position on taxiway.]",
+      "audioTextZh": "南航351，收到，原地等待，可以时报告意图。\n【告诉管制员你仍能滑行，但是需要5分钟解决问题，请求在滑行道上方便的位置等待。】",
+      "studyTier": 0,
+      "referenceText": "Ground, CSN351, request 5min and hold at convenient position to solve the problem.",
+      "referenceTextZh": "地面，南航351，请求停在一个没影响的位置5分钟来解决问题。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9091d06da3fed69c2aa8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210183",
+      "taskTitle": "【练习版】State intention说明意图-5",
+      "audioText": "CSN582, radar vectors are available or you can fly a visual circuit and join left downwind. Report intention.[Tell the controller you will join left down wind.]",
+      "audioTextZh": "南航582，可以雷达引导，也可以做一个目视起落航线，加入左三边。报告意图。【告诉管制员你将加入左三边。】",
+      "studyTier": 0,
+      "referenceText": "Request join left down wind, CSN582.",
+      "referenceTextZh": "请求加入左三边， 南航582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f183866bebcbfec8df8f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210184",
+      "taskTitle": "【练习版】State intention说明意图-6",
+      "audioText": "UAL162, report intention.[Tell ATC you still need to land at the nearest airport because the running engine is not stable.]",
+      "audioTextZh": "美联航162，报告意图。\n【告诉ATC你仍需要降落在最近的机场，因为重启的发动机运行不稳定。】",
+      "studyTier": 0,
+      "referenceText": "We still need to land at the nearest airport due the running engine is not stable, UAL162.",
+      "referenceTextZh": "由于重启的发动机运行不稳定，我们仍需降落在最近的机场，美联航162。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c4432dff004ab672f44.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210185",
+      "taskTitle": "【练习版】State intention说明意图-7",
+      "audioText": "UAL865, Xinzheng is available for you to divert. Say intentions.[Xinzheng airport is not the regular airport for your company, you need to ask permission and tell controller later.]",
+      "audioTextZh": "美联航865，新郑机场适合改航。请示意图。\n【新郑机场不是你公司的常用机场，你需要获得公司许可后再回复管制员。】",
+      "studyTier": 0,
+      "referenceText": "Control, UAL865, we need to ask permission to divert to the airport, standby.",
+      "referenceTextZh": "区调，美联航865，我们需要获得公司的许可才能改航，稍等。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1accebfb5223215e698f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210186",
+      "taskTitle": "【练习版】State intention说明意图-8",
+      "audioText": "ACA989, roger, report your intentions.[Tell the controller that you want radar guidance to go round the CB.]",
+      "audioTextZh": "加航989，收到，报告意图。【告诉管制员你想要雷达引导绕飞积雨云区域。】",
+      "studyTier": 0,
+      "referenceText": "Request radar vector to avoid the CB, ACA989.",
+      "referenceTextZh": "请求雷达引导躲避积雨云，加航989。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f364b0c7515db14f9109.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210187",
+      "taskTitle": "【练习版】State intention说明意图-9",
+      "audioText": "CCA451, Wuhan Approach, radar contact, is there any damage to the aircraft? Report your intentions.[Tell the approach controller that you want to land at Wuhan airport, and you don’t know anything about the damage.]",
+      "audioTextZh": "国航451，武汉进近，雷达已识别，飞机有损伤么？报告意图。\n【告诉进近你想降落在武汉机场，你不知道飞机是否有损坏。】",
+      "studyTier": 0,
+      "referenceText": "Request land at Wuhan airport, and we don't know anything about the damage. CCA451.",
+      "referenceTextZh": "请求返回武汉机场，我们不清楚是否有损伤，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9b12acca14caba20d7b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210188",
+      "taskTitle": "【练习版】State intention说明意图-10",
+      "audioText": "CSN421, roger, report your intentions.[Tell the controller that you wish to land at Wuhan airport.]",
+      "audioTextZh": "南航421，收到，报告意图。【告诉管制员你希望降落在武汉机场。】",
+      "studyTier": 0,
+      "referenceText": "Request to land at Wuhan airport. CSN421.",
+      "referenceTextZh": "请求降落在武汉机场，南航421。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6940dd8e6f4a1bcd4af0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210189",
+      "taskTitle": "【练习版】State intention说明意图-11",
+      "audioText": "SIA786, say intention?[Tell ATC you want to terminate the approach, maintain 3000ft runway heading, complete the abnormal procedure.]",
+      "audioTextZh": "新航786，请示意图？【告诉管制员你想中止进近，保持3000英尺，保持跑道航向，完成非正常程序。】",
+      "studyTier": 0,
+      "referenceText": "Request go around, maintaining runway heading and 3000ft to complete abnormal procedure, SIA786.",
+      "referenceTextZh": "请求复飞，保持跑道航向，3000英尺，完成非正常情况程序，新航786。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/acba191b104b2f901724.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210190",
+      "taskTitle": "【练习版】State intention说明意图-12",
+      "audioText": "AFR126, roger, say intention. [You have to hold for a check.]",
+      "audioTextZh": "法航126，收到，请示意图。【你必须盘旋检查。】",
+      "studyTier": 0,
+      "referenceText": "Request holding for a check, AFR126.",
+      "referenceTextZh": "请求等待盘旋检查，法航126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/601d521d07f9586d9620.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210191",
+      "taskTitle": "【练习版】State intention说明意图-13",
+      "audioText": "BAW141, Beijing roger, when ready, advise intention.[You lost directional indication, if weather permits, request navigation assistance to Beijing airport]",
+      "audioTextZh": "英航141，北京收到，准备好时通知意图。【你失去了方向指示，如果天气允许，请求雷达引导至北京机场。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Control, BAW141, if weather permits, request navigation assistance to Beijing airport due directional indication failure.",
+      "referenceTextZh": "北京区调，英航141，如果天气允许，由于航向指示失效，请求导航至北京机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f37f7f33eb7894f15c99.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210192",
+      "taskTitle": "【练习版】State intention说明意图-14",
+      "audioText": "AFR101, roger, say intentions. [Tell the ATC that the man has finally surrendered, the two passengers are in dangerous situation, request return to Beijing airport and priority landing.]",
+      "audioTextZh": "法航101，收到，请示意图。【告诉ATC该名男子最终被控制住了，两名受伤乘客处于危险状态，请求返回北京机场并优先降落。】",
+      "studyTier": 0,
+      "referenceText": "The man is under control now, request return to Beijing airport and priority landing, two passengers are in critical condition, require medical assistance on arrival, AFR101.",
+      "referenceTextZh": "该名男子已被控制，请求返回北京机场，优先降落，两名乘客受伤严重，请求到达时安排医疗救助，法航101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1d145720f6f82d79193f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210193",
+      "taskTitle": "【练习版】State intention说明意图-15",
+      "audioText": "CES5102, the weather is deteriorating, say intentions. [Tell the controller you want to continue approach.]",
+      "audioTextZh": "东方5102，恶劣天气状况，请示意图。【告诉管制员你想继续进近。】",
+      "studyTier": 0,
+      "referenceText": "Request continue approach and try to land, CES5102.",
+      "referenceTextZh": "请求继续进近，尝试降落，东方5102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/53f8bd3a2186bb484190.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210194",
+      "taskTitle": "【练习版】State intention说明意图-16",
+      "audioText": "CES5102, Beijing Tower, expect low visibility for your arrival, say intention.[You want to try landing.]",
+      "audioTextZh": "东方5102，北京塔台，机场低能见，请示意图。【你想尝试降落。】",
+      "studyTier": 0,
+      "referenceText": "Roger, request landing, CES5102,.",
+      "referenceTextZh": "收到，请求着陆，东方5102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ed4e2b364ef14caa97f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210195",
+      "taskTitle": "【练习版】State intention说明意图-17",
+      "audioText": "CCA983, roger, say intention.[Request priority landing at Beijing airport.]",
+      "audioTextZh": "国航983，收到，说明意图。【请求优先着陆在北京机场。】",
+      "studyTier": 0,
+      "referenceText": "Request priority landing at Beijing airport, CCA983.",
+      "referenceTextZh": "请求优先着陆北京机场，国航983。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c38cb0e349b2413e5ab.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210196",
+      "taskTitle": "【练习版】State intention说明意图-18",
+      "audioText": "BAW038, Beijing Departure, report intention.[Your turbine blades appear to be broken, request return to Beijing airport.]",
+      "audioTextZh": "英航038，北京离场，报告意图。【你的涡轮叶片似乎破损了，请求返回北京机场。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Departure, BAW038, request return to Beijing airport, our turbine blades may have been broken.",
+      "referenceTextZh": "北京离场，英航038，请求返回北京机场，涡轮叶片可能已破损。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f8f893f1dd18eb0a193.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210197",
+      "taskTitle": "【练习版】State intention说明意图-19",
+      "audioText": "CES220, Beijing roger, maintain 220kts. Report intention.[You intend to maintain 210kts, the minimum clean speed, and you are trying to extend the spoiler again.]",
+      "audioTextZh": "东方220，北京收到，保持220节，报告意图。【你想保持最小光洁速度210节，并尝试再次打开扰流板。】",
+      "studyTier": 0,
+      "referenceText": "Minimum clean speed is 210kts, intend to maintain 210kts and try to extend the spoilers again, CES220.",
+      "referenceTextZh": "最小光洁速度是210节，保持210节并尝试再次打开扰流板，东方220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef6fc81af545f42f2b1c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210198",
+      "taskTitle": "【练习版】State intention说明意图-20",
+      "audioText": "NWA89, Beijing roger, can you land normally, say intention. [Tell the approach that it is not serious, you can land normally.]",
+      "audioTextZh": "美西北89，收到，能否正常着陆，说明意图。【告诉北京进近问题不严重，可以正常着陆。】",
+      "studyTier": 0,
+      "referenceText": "GPWS failure not serious, able to land normally, NWA89.",
+      "referenceTextZh": "近地警告系统故障不严重，可以正常着陆，美西北89。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc6c5acd63501facf39e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210199",
+      "taskTitle": "【练习版】State intention说明意图-21",
+      "audioText": "NWA89, say intention.[Tell the Tower you’re going around.]",
+      "audioTextZh": "美西北89，说明意图。【告诉塔台你准备复飞。】",
+      "studyTier": 0,
+      "referenceText": "Going around, NWA89,.",
+      "referenceTextZh": "复飞了，美西北89。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2fb944022bc9fb8dfb34.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210200",
+      "taskTitle": "【练习版】State intention说明意图-22",
+      "audioText": "NWA89, roger, say intention.[Tell the Departure you want to circle back for another landing on runway 36R.]",
+      "audioTextZh": "美西北89，收到，说明意图。【告诉离场你想机动飞行一圈后转回跑道36右着陆。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Departure, NWA89, request landing on runway 36R.",
+      "referenceTextZh": "北京离场，美西北89，请求跑道36右着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/687eb6380d163de464d4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210201",
+      "taskTitle": "【练习版】State intention说明意图-23",
+      "audioText": "UAL895, Beijing is snowing heavily, runway unserviceable for one hour due to lack of snow removal equipment, say intention.[Request continue approach, you can hold for one hour with enough fuel.]",
+      "audioTextZh": "美联航895，北京有大雪，由于缺少除雪设备跑道关闭1小时，说明意图。【请求继续进近，燃料足够飞行1小时。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Control, request continue approach, we can hold for one hour, UAL895.",
+      "referenceTextZh": "北京区调，请求继续进近，我们可以继续飞行1小时，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bc5d5e631e023f73ea72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210202",
+      "taskTitle": "【练习版】State intention说明意图-24",
+      "audioText": "ACA554, roger MAYDAY, turn right heading 030, descend to 3000m, QNH1008, advise intentions when able. [Tell Zhengzhou Control, the toxic fume is caused by dangerous cargo leakage in cargo hold.]",
+      "audioTextZh": "加航554，收到MAYDAY，右转航向030，下降到3000米，修正海压1008，如可以，告知意图。 [告诉郑州区调，有毒烟雾是由于货舱危险品泄露导致的]",
+      "studyTier": 0,
+      "referenceText": "Turn right heading 030, descend to 3000m, QNH1008, the toxic fume is caused by dangerous cargo leakage in cargo hold, ACA554.",
+      "referenceTextZh": "右转航向030，下降到3000米，修正海压1008，有毒烟雾是由于货舱危险品泄露导致的，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b8a49bd7ec7f3c8932f0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210203",
+      "taskTitle": "【练习版】State intention说明意图-25",
+      "audioText": "C: CSN582, we just had report of a bomb left in your first class passenger section. Please report intentions. [Tell the controller the cabin crew and the securities are searching the bomb.]",
+      "audioTextZh": "南方582，我们收到一个报告，客舱头等舱区域有炸弹，请报告意图。 [告知管制员，客舱乘务员和安全员正在寻找炸弹。]",
+      "studyTier": 0,
+      "referenceText": "We are searching for/looking for/ the bomb, CSN582.",
+      "referenceTextZh": "我们正在寻找炸弹，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cea073ed1be44ee3e9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210205",
+      "taskTitle": "【练习版】State intention说明意图-27",
+      "audioText": "JAL602, negative, heading240 is not available due restricted area. Diversion to the left is available, say your intention. Tell controller you want to turn left heading 080.",
+      "audioTextZh": "日航602，不可以，由于限制区，航向240不可用。可以左偏航，说出你的意图。 [告诉管制员，你想左转航向080。]",
+      "studyTier": 0,
+      "referenceText": "Request turn left heading 080, JAL602.",
+      "referenceTextZh": "申请左转航向080，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0f99ca3964b77bab3deb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210206",
+      "taskTitle": "【练习版】State intention说明意图-28",
+      "audioText": "CSN371, roger, hold at present position, advise intentions when able.\nTell the controller that you are still able to taxi, but you need 5mins to solve the problem, ask to hold at convenient position on taxiway.",
+      "audioTextZh": "南方371，收到，原地等待，方便时告知意图。\n告诉管制员，你仍然可以滑行，但是你需要5分钟来解决问题，请求在滑行道上的方便位置等待。",
+      "studyTier": 0,
+      "referenceText": "Hold position, We are able to taxi but need 5 minutes to solve the problem. Request hold at convenient position on taxiway, CSN371.",
+      "referenceTextZh": "原地等待，我们仍然可以滑行，但是需要5分钟解决问题，请求在滑行道上方便的位置等待，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/267f823e7cba15b9f593.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210207",
+      "taskTitle": "采分点练习-陈述意图-20",
+      "audioText": "Report your intention, KLM88.\n[Tell ATC, that you need shuttle bus to disembark passengers and a tug to tow you back to apron.]",
+      "audioTextZh": "报告你的意图，荷航88。\n告诉管制，你需要摆渡车让乘客下飞机以及拖车拖你回机坪。",
+      "studyTier": 2,
+      "referenceText": "Request shuttle bus to disembark passengers and a tug to tow us back to apron, KLM88.",
+      "referenceTextZh": "请求摆渡车让乘客下飞机，以及拖车拖飞机回机坪，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8acf025564f331139aa6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210208",
+      "taskTitle": "采分点练习-陈述意图-19",
+      "audioText": "Roger, UAL835, what is your intention?\n[The injured passengers are bleeding seriously, You request priority landing at Wuhan airport, and request ambulance on arrival. ]",
+      "audioTextZh": "美联航835，你的意图是什么？\n[受伤的乘客流血严重，你请求在武汉机场优先着陆，并在着陆后请求救护车。]",
+      "studyTier": 2,
+      "referenceText": "Request priority landing and ambulance on arrival, UAL835.",
+      "referenceTextZh": "请求优先着陆，并在着陆后请求救护车，美联航835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4f09583570bdb95eb23.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224859",
+      "taskTitle": "采分点练习-陈述意图-1",
+      "audioText": "C: CSN3112, roger, say your intention.\nB: [Tell the controller you require radar vectors to Beijing for priority landing.]",
+      "audioTextZh": "C: 南方3112，收到，说明你的意图。\nB:【告知管制员，你需要雷达引导到北京进行优先着陆。】",
+      "studyTier": 2,
+      "referenceText": "Request radar vectors to Beijing for priority landing, CSN3112.",
+      "referenceTextZh": "请求雷达引导到北京进行优先着陆，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2e0e0b41ce4a9f218d47.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224860",
+      "taskTitle": "采分点练习-陈述意图-2",
+      "audioText": "C: SIA308, roger Mayday, descend to and maintain FL100, keep us advised the situation on board and your intention.\nB: [Read back the instructions and tell the controller that you’re working the checklist and will advise.]",
+      "audioTextZh": "C: 新航308，收到Mayday，下高度层100保持，告知我们机上情况以及你的意图。\nB：【复诵指令，告知管制员，你现在正在执行检查单。】",
+      "studyTier": 2,
+      "referenceText": "Descend to and maintain FL100, we’re working the checklist and will advise, SIA308.",
+      "referenceTextZh": "下到高度层100保持，我们正在执行检查单，将会告知，新航308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a003f762391be605fcb5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224861",
+      "taskTitle": "采分点练习-陈述意图-3",
+      "audioText": "C: CSN3001, roger Panpan, descend to 9200m. When able, say your further intention.\nB: [Inform controller that cabin crew have provided necessary first aid to the sick passenger, but you still need doctors and medical service to be ready at the gate after landing.]",
+      "audioTextZh": "C：南方3001，收到Panpan，下9200米，可以的时候，报告你的意图。\n【告知管制员，乘务员已经给患病乘客提供了必要的急救，但是着陆后，你依旧需要医生和救护车在机位上就绪。】",
+      "studyTier": 2,
+      "referenceText": "Descend to 9200m, request doctors and medical service to be ready at the gate, CSN3001.",
+      "referenceTextZh": "下9200米，请求医生和救护车在机位上就绪，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/09266748d747b486eb9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224862",
+      "taskTitle": "采分点练习-陈述意图-4",
+      "audioText": "C: ACA303, climb to and maintain 4,500m, expedite passing 2,700m. N: [Read back the instruction and advise the controller you are climbing on reduced thrust and will require some time before reaching that altitude.]",
+      "audioTextZh": "加航303，上到4500米保持，加速过2700米。\n【复诵指令，告知管制员，你正在减推力爬升，在到达那个高度之前需要一些时间。】",
+      "studyTier": 2,
+      "referenceText": "Climb to and maintain 4,500m, unable expedite due reduced thrust, ACA303.",
+      "referenceTextZh": "上到4500米保持，由于减推力，无法加速爬升，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4141e8b22d59aa698fad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224863",
+      "taskTitle": "采分点练习-陈述意图-5",
+      "audioText": "C: Roger, sir, what's your intention.\nN: [Tell departure you want to circle back for another landing on runway 36R.]",
+      "audioTextZh": "收到，你的意图是什么？\n【告知离场，你想盘旋进近跑道36右再次降落。】",
+      "studyTier": 2,
+      "referenceText": "Request circle back for another landing on runway 36R, ACA121.",
+      "referenceTextZh": "请求盘旋进近跑道36右再次降落，加航121。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/04278a4ea68fdbe54eb7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224864",
+      "taskTitle": "采分点练习-陈述意图-6",
+      "audioText": "C: CES769, climb and maintain 2400m, when able, say your intention.",
+      "audioTextZh": "东方769，上到2400米保持，可以的时候，告知意图。",
+      "studyTier": 2,
+      "referenceText": "Climb and maintain 2400m, wilco, CES769.",
+      "referenceTextZh": "上2400米保持，照办，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/650d457029095f69b1d7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224865",
+      "taskTitle": "采分点练习-陈述意图-7",
+      "audioText": "B: [After performing the checklist, you decide to dump fuel and return for landing.]",
+      "audioTextZh": "【当执行完检查单，你决定放油并返场着陆。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Departure, CES769, request dump fuel and return for landing.",
+      "referenceTextZh": "武汉离场，东方769，请求放油并返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3641fb5a412ddb2a683a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224866",
+      "taskTitle": "采分点练习-陈述意图-8",
+      "audioText": "C: UAL887, Beijing Control, roger that. Notify us the further situation and your intention.\n[Tell controller that the pure oxygen is being fed to the woman, and she is about to give birth on the plane. You want to divert to Wuhan.]",
+      "audioTextZh": "C: 美联航887，北京区调，收到。告知情况的发展以及你的意图。\n【告知管制员，已经给乘客提供纯氧，她打算在飞机上生孩子。你想备降到武汉。】",
+      "studyTier": 2,
+      "referenceText": "The pure oxygen is being fed to the woman, and she is about to give birth on the plane, request divert to Wuhan, UAL887.",
+      "referenceTextZh": "已经给乘客提供纯氧，她打算在飞机上生孩子，请求改航到武汉，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/020c97eee9f579ee46f5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224867",
+      "taskTitle": "采分点练习-陈述意图-9",
+      "audioText": "C: Roger, CSN1310, ground assistance is already for you, report your intention.\n[As passengers have been successfully deplaned, you want to vacate the runway and taxi back to the remote apron and have maintenance staff check the aircraft and refuel the aircraft.]",
+      "audioTextZh": "C: 收到，南方1310，地面援助已经在找你了，报告你的意图。\n【由于乘客已经成功下机，你要脱离跑道，滑回远机坪，让维修人员检查飞机并给飞机加油。】",
+      "studyTier": 2,
+      "referenceText": "Request taxi back to the remote apron and have maintenance staff check the aircraft and refuel the aircraft, CSN1310.",
+      "referenceTextZh": "请求滑回远机坪，让维修人员检查飞机并加油，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a350034e0155103a236.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224868",
+      "taskTitle": "采分点练习-陈述意图-10",
+      "audioText": "C: AFR896, turn right heading 240, advice your intentions.\nN: [Tell controller that your GPS altitude and ground speed is not accurate compared to barometric indications, but you can still maintain stable flight, request descend to leave the icing area.]",
+      "audioTextZh": "法航896，右转航向240，告知你的意图。\n【告诉管制员，你的GPS高度和地速与气压指示相比不准确，但你仍然可以保持稳定飞行，请求下降离开结冰区。】",
+      "studyTier": 2,
+      "referenceText": "Turn right heading 240, request descend to leave the icing area. The instrument readings are abnormal, but we can still maintain the stable flight, AFR896.",
+      "referenceTextZh": "右转航向240，请求下降离开结冰区。仪表复数不正常，但我们依旧可以保持平稳飞行，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/07435360f0608e5a4362.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224869",
+      "taskTitle": "采分点练习-陈述意图-11",
+      "audioText": "C: CCA1301, Beijing Tower, negative, no visual fire on the landing gears or tyres, report intention.\nN: [Tell the controller you want to vacate runway and taxi to the ramp for a thorough check but you have to wait to cool the brakes for about 5 minutes. ]",
+      "audioTextZh": "国航1301，北京塔台，不，起落架和轮胎处没有明火。报告意图。\n【告知管制员你想脱离跑道，滑行至机坪进行全面检查，但是你需要等待大约5分钟来冷却刹车。】",
+      "studyTier": 2,
+      "referenceText": "Roger, request vacate runway and taxi to the ramp for a check after cooling the brakes for about 5 minutes., CCA1301.",
+      "referenceTextZh": "收到，请求冷却刹车大概5分钟后脱离跑道，滑行至机坪进行全面检查， 国航1301。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a7d3fed16801ce514a1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224870",
+      "taskTitle": "采分点练习-陈述意图-12",
+      "audioText": "C: CCA321, Wuhan Approach, roger, what is your intention?\n[Tell controller, you want to reduce to minimum clean speed to perform the checklist.]",
+      "audioTextZh": "国航三两幺，武汉进近，收到，你的意图是什么？\n【告知管制员，你想减小到最小光洁速度来执行检查单。】",
+      "studyTier": 2,
+      "referenceText": "Request reduce to minimum clean speed to perform the checklist, CCA321.",
+      "referenceTextZh": "请求减小到最小光洁速度来执行检查单，国航三两幺。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/082d8a381dd544a0ec17.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224871",
+      "taskTitle": "采分点练习-陈述意图-13",
+      "audioText": "C: CCA321, negative, we’ve never received such report, do you request approach to another runway or request another type of approach?\nB: [Tell controller you want to change to runway 18R.]",
+      "audioTextZh": "国航三两幺，没有，我们没有收到类似的报告，你是请求进近其他跑道还是请求其他进近方式？\n【告诉管制员，你想更换至跑道18右。】",
+      "studyTier": 2,
+      "referenceText": "Roger, request change to runway 18R, CCA321.",
+      "referenceTextZh": "收到，请求更换至跑道18右，国航三两幺。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef1eed6bf636d6f92ac8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224872",
+      "taskTitle": "采分点练习-陈述意图-14",
+      "audioText": "C: ACA219, follow the standard missed approach procedure, advise intentions when able.",
+      "audioTextZh": "加航219，按照标准复飞程序，可以时告知意图。",
+      "studyTier": 2,
+      "referenceText": "Follow the standard missed approach procedure, wilco, ACA219.",
+      "referenceTextZh": "按照标准复飞程序，照办，加航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/efea6ee358ce91d92e9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224873",
+      "taskTitle": "采分点练习-陈述意图-15",
+      "audioText": "B: [Now You are climbing to the missed approach altitude, you decided to divert to Changsha airport, inform Wuhan Tower.]",
+      "audioTextZh": "【你现在爬升到复飞高度，你决定改航至长沙机场，告知武汉塔台。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Tower, ACA219, request divert to Changsha airport.",
+      "referenceTextZh": "武汉塔台，加航219，请求改航至长沙机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/764ad4d416ddb8546fa3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224874",
+      "taskTitle": "采分点练习-陈述意图-16",
+      "audioText": "11C: CSN557, we have a good look at your undercarriage. Your left main landing gear is stuck halfway. It is not in the extended position. Advise intention.\n11N: Tell tower you want to perform hold near airport.",
+      "audioTextZh": "南方557，我看清楚了你的起落架，你的左起落架卡在半路了，没有在放出位置，告知意图。\n【告知管制，你想在机场附近等待。】",
+      "studyTier": 2,
+      "referenceText": "Request hold near the airport, CSN557.",
+      "referenceTextZh": "请求在机场附近等待，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/17ab6a09cead5c6414eb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224875",
+      "taskTitle": "采分点练习-陈述意图-17",
+      "audioText": "ATC: Passenger with head injury, roger that, say intention, AFR9939.\n[The purser has offered first aid to the injured passenger, he is OK now. You will continue the flight.]",
+      "audioTextZh": "有乘客头部受伤，收到，报告意图，法航9939。\n乘务长向受伤乘客提供了急救，他目前情况良好，你将继续飞行。",
+      "studyTier": 2,
+      "referenceText": "The passenger is OK now, we will continue the flight. AFR9939.",
+      "referenceTextZh": "乘客情况目前良好，我们将继续飞行，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40d07ad270b3cb38b768.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224876",
+      "taskTitle": "采分点练习-陈述意图-18",
+      "audioText": "SIA323, roger MAYDAY. Say your intention.\n[Tell the Tower you want to jettison fuel and return to Wuhan airport.]",
+      "audioTextZh": "新航323，收到MAYDAY，说出你的意图。\n告诉塔台，你想放油，然后返回武汉机场。",
+      "studyTier": 2,
+      "referenceText": "Request fuel dumping and return to Wuhan airport, SIA323.",
+      "referenceTextZh": "请求放油，返回武汉机场， 新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f283932b967df775e8f4.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

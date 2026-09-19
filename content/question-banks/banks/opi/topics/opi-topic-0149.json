@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0149",
   "name": "禁区、危险区、限制区",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "The crew should take prompt action to leave the restricted area by a safe route and contact ATC without delay. They should report the error, current position, and intentions while the crew continues normal duties. After landing, the event should be reported through the applicable company process.",
       "referenceTextZh": "机组应立即采取行动，沿安全航路离开限制区，并尽快联系空中交通管制。他们应报告误入情况、当前位置和意图，同时继续履行正常机组职责。着陆后，应按照适用的公司程序报告该事件。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

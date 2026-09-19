@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0146",
   "name": "CCA 976 起落架问题 襟翼问题 烟雾",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "左转航向 310，雷达引导目视进近跑道 22，CCA 976。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-044-cca976-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

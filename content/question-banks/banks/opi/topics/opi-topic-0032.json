@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0032",
   "name": "RVSM",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "RVSM increases airspace capacity and gives pilots more opportunity to use an efficient cruising altitude. This can improve flight efficiency, reduce fuel consumption and delays, and lower operating costs.",
       "referenceTextZh": "RVSM 增加了空域容量，并使飞行员有更多机会使用高效的巡航高度。这可以提高飞行效率、减少燃油消耗和延误，并降低运行成本。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

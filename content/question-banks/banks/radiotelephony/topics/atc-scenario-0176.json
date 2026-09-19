@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0176",
   "name": "UAL 813 颠簸 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近 Runway 36R，UAL 813。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-076-ual813-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

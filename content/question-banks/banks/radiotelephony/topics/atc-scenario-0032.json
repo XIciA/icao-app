@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0032",
   "name": "BAW 871 鸟击 左风挡裂 APU",
   "declaredCardCount": 14,
@@ -130,5 +129,6 @@
       "referenceTextZh": "北京塔台，BAW 871，因 APU 故障，请求地面电源车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/561.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

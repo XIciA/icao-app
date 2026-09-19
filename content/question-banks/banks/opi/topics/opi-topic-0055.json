@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0055",
   "name": "CPDLC",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "The pilots should first confirm that CPDLC is available. They can then send ATC a text message reporting the two-way radio failure and request further instructions. The crew should monitor the CPDLC display, follow the text clearance, and acknowledge receipt through the data link.",
       "referenceTextZh": "飞行员应先确认 CPDLC 可用，然后向空中交通管制发送文字信息，报告双向无线电通信失效并申请进一步指令。机组应监控 CPDLC 显示、遵循文字许可，并通过数据链确认收到。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

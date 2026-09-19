@@ -1,0 +1,170 @@
+{
+  "id": "opi-fzy-544",
+  "name": "Topic on Weather",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "opi-fzy-109980",
+      "taskTitle": "Topic on Weather-1",
+      "audioText": "Can you tell me some kinds of adverse weather conditions?",
+      "audioTextZh": "能否和我说我几种恶劣的天气状况？",
+      "studyTier": 0,
+      "referenceText": "Yes. There are different adverse weather conditions such as thunderstorm, wind shear, severe turbulence, sandstorm and icing.",
+      "referenceTextZh": "好的。恶劣天气分不同的种类，如雷暴、风切变、严重颠簸、沙暴以及积冰。"
+    },
+    {
+      "id": "opi-fzy-109981",
+      "taskTitle": "Topic on Weather-2",
+      "audioText": "How can you get weather information before each flight?",
+      "audioTextZh": "每次飞行之前你怎样获得天气信息？",
+      "studyTier": 0,
+      "referenceText": "There are different ways to get weather information. We either can get weather information about departure airport and destination airport from dispatching office, or get weather information from the ATIS. Besides, we can also know the current weather conditions by observation.",
+      "referenceTextZh": "获得天气信息的方法有几种，我们既可以从调度办公室处获得起飞机场及目的机场处的天气状况，也可以从ATIS处获得相关信息。另外，我们还可以通过观察了解当前天气状况。"
+    },
+    {
+      "id": "opi-fzy-109982",
+      "taskTitle": "Topic on Weather-3",
+      "audioText": "What do you think of weather report in flight?",
+      "audioTextZh": "说说你对飞行中的进行气象报告的看法？",
+      "studyTier": 0,
+      "referenceText": "As a pilot, it’s necessary to make weather reports about adverse conditions in flight. Because by telling the controllers the position and altitude of the weather condition, ATC can inform other aircraft of the condition for flight safety.",
+      "referenceTextZh": "作为飞行员，在飞行中就恶劣天气做气象报告是必需的。因为告知ATC该天气状况的位置和高度后，他们可以通知其它飞机该天气状况，保证飞行安全。"
+    },
+    {
+      "id": "opi-fzy-109983",
+      "taskTitle": "Topic on Weather-4",
+      "audioText": "As a captain, what will you do if wind shear happens during takeoff?",
+      "audioTextZh": "作为机长，起飞阶段遇到风切变你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "As a captain, I will first be calm and keep the control of the aircraft. Maintaining the attitude, adding power or using maximum thrust to leave this area until we are clear of the wind shear, then I will contact ATC and report the conditions of wind shear.",
+      "referenceTextZh": "作为机长，首先我会保持镇定并控制好飞机。保持姿态、增加功率或者使用最大推力，直到飞机飞离风切变区域，之后我会联系ATC并报告发生风切变状况。"
+    },
+    {
+      "id": "opi-fzy-109984",
+      "taskTitle": "Topic on Weather-5",
+      "audioText": "What do you know about CAT?",
+      "audioTextZh": "你对晴空乱流了解多少？",
+      "studyTier": 0,
+      "referenceText": "Clear Air Turbulence is very dangerous. In clear air, there is no precipitation and airborne radar can not detect such weather condition. Since most clear air turbulence occur unexpectedly, if persons on board have not had their seat belts fastened, they may probably be injured. Besides, CAT also increases the difficulty in controlling airplanes.",
+      "referenceTextZh": "晴空乱流是非常危险的。在晴天没有降水，机载雷达无法检测到这种天气状况。因为晴空乱流发生得突然，如果机上人员未系好安全带就可能会受伤。另外，晴空乱流也增加了操纵飞机的难度。"
+    },
+    {
+      "id": "opi-fzy-109985",
+      "taskTitle": "Topic on Weather-6",
+      "audioText": "How do you see about CBs?",
+      "audioTextZh": "你对积雨云有什么了解？",
+      "studyTier": 0,
+      "referenceText": "CBs can bring dangers to aircraft in flight. In the CBs, strong wind, heavy rain, severe turbulence and lightning will all be dangerous to the aircraft. Lightning strikes will damage aircraft structure, electrical and electronic equipment. Heavy rain may immerse into the engines and cause engine failure, and strong wind will influence flight performance. So, as a pilot, we should try to avoid the dangers from CBs.",
+      "referenceTextZh": "积雨云会给飞行中的飞机带来危险。在积雨云中，强风、大雨、严重颠簸以及闪电都将带给飞机危险。雷击会毁坏飞机结构及电子电气设备。大雨可能会浸入发动机，造成发动机失效。此外强风会影响飞机性能。所以，作为飞行员，我们应该尽量避免积雨云带来的危险。"
+    },
+    {
+      "id": "opi-fzy-109986",
+      "taskTitle": "Topic on Weather-7",
+      "audioText": "As a captain, what will you do if you encounter the CBs en route?",
+      "audioTextZh": "作为机长，在途中遇到积雨云你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "As a captain, if there are CBs en route, I will first be calm and make decisions. Then, I will contact ATC and report our intention to go around the CBs. Once we get the clearance, we change heading. When we are clear of CBs, we request return to approved route.",
+      "referenceTextZh": "作为机长，如果在途中遇到积雨云，首先我会保持镇定并作出决定。之后我会联系ATC请求复飞。一旦得到许可，我们会改变航向。摆脱积雨云后，我们会请求返回许可航路上。"
+    },
+    {
+      "id": "opi-fzy-109987",
+      "taskTitle": "Topic on Weather-8",
+      "audioText": "How do you see about the thunderstorm? What will you do if you encounter/run into it?",
+      "audioTextZh": "你怎么看待雷暴现象？如果遇到雷暴或进入雷暴区，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "Either in flight or on the ground, thunderstorms are very dangerous to aircraft, because the airplane may suffer from the lightning strike going with the thunderstorms. In thunderstorm, there are heavy rain, strong wind and even wind shears. They are dangerous causes of flight damage. If I find myself in or near a thunderstorm, I will select the setting for reduced airspeed and maintain a constant attitude, I won’t change power settings, just let the aircraft \"ride the waves\". Because trying to hold altitude can increase stresses on the airplane, potentially with catastrophic results. Meanwhile, I will keep my eyes on instruments and turn up the cockpit floodlights if necessary. I will avoid looking outside the cockpit because it may cause temporary blindness from lightning. In short, I will keep calm and plan my course to take me through the storm as quickly as possible.",
+      "referenceTextZh": "不管是在飞行中还是地面上，雷暴对飞机来说都是很危险的，因为飞机可能被雷暴引发的闪电攻击。在雷暴区，通常伴有大雨、强风甚至风切变，这些危险现象都可能造成飞机毁坏。如果发现自己处于或接近雷暴区，我会减速并保持稳定姿态，我不会调整功率，而是让飞机自行“乘风破浪”。因为试图保持高度会增加机上压力，给飞机带来潜在的灾难。同时，我会监视仪表，必要时打开驾驶舱泛光灯。我会尽量避免看驾驶舱外，因为闪电可能会造成暂时性失明。总之，我会保持冷静并尽快做好方案度过风暴区。"
+    },
+    {
+      "id": "opi-fzy-109988",
+      "taskTitle": "Topic on Weather-9",
+      "audioText": "What will you do if you encounter turbulence?",
+      "audioTextZh": "如果遇到颠簸你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "If I encounter turbulence in flight, I will be calm and follow the turbulence penetration procedure to ensure flight safety.",
+      "referenceTextZh": "如果在飞行中遇到颠簸气流，我会保持镇定，执行颠簸气流穿越程序，保证飞行安全。"
+    },
+    {
+      "id": "opi-fzy-109989",
+      "taskTitle": "Topic on Weather-10",
+      "audioText": "What condition of weather do you like to fly? Why?",
+      "audioTextZh": "你喜欢在什么天气飞行？为什么？",
+      "studyTier": 0,
+      "referenceText": "I like flying on sunny days because it’s comparably safe to fly on sunny days due to the good visibility and comfortable feelings. It is raining today. I don’t like flying on rainy days.",
+      "referenceTextZh": "我喜欢在晴天飞行，因为能见度好，感觉舒适，相对来说比较安全。今天是雨天，我不喜欢在雨天飞行。"
+    },
+    {
+      "id": "opi-fzy-109990",
+      "taskTitle": "Topic on Weather-11",
+      "audioText": "Can extreme turbulence cause airplane crashes?",
+      "audioTextZh": "极强烈乱流能否导致飞机坠毁？",
+      "studyTier": 0,
+      "referenceText": "Well, it depends on the type of turbulence and where it is. Clear Air Turbulence might throw a plane around, but at those altitudes, owing to plenty of room, the plane won’t hit anything. While at low levels (landing and takeoff), up and down drafts are associated with microburst, mountain waves and rotors, it can be extremely dangerous because they could force the plane into the ground before the pilot has time to correct it.",
+      "referenceTextZh": "嗯，这取决于乱流的种类和发生位置。晴空乱流可能会翻转飞机，但在这种高度，空间很大，飞机不会撞到任何东西。高度较低时（降落或起飞过程），上升下降气流和微下击暴流、地形波、转子都有关系，而这些都可能是非常危险的，因为它们可能在飞行员纠正之前就把飞机击落了。"
+    },
+    {
+      "id": "opi-fzy-109992",
+      "taskTitle": "Topic on Weather-12",
+      "audioText": "Why is lightning strike dangerous to flight safety?",
+      "audioTextZh": "为什么雷击会危害到飞行安全？",
+      "studyTier": 0,
+      "referenceText": "Well, because if lightning strike occurs, the fuselage and radar dome may be damaged, and the electrical system may malfunction. What’s more, lightning strike may also result in temporary radio failure.",
+      "referenceTextZh": "嗯，因为如果发生雷击，机身和雷达可能会被破坏，电气系统也会发生故障。另外，雷击可能会导致暂时性通讯失败。"
+    },
+    {
+      "id": "opi-fzy-109993",
+      "taskTitle": "Topic on Weather-13",
+      "audioText": "In what kind of weather and season is lightning strike most likely to occur?",
+      "audioTextZh": "雷击最常发生于哪种天气及季节？",
+      "studyTier": 0,
+      "referenceText": "In summer, when there is thunderstorm or CB, lightning strike is most likely to occur.",
+      "referenceTextZh": "在夏季，遇到雷雨天或积雨云时，最有可能发生雷击现象。"
+    },
+    {
+      "id": "opi-fzy-109994",
+      "taskTitle": "Topic on Weather-14",
+      "audioText": "Can you introduce the weather radar on your aircraft?",
+      "audioTextZh": "能否介绍下你所飞飞机上的气象雷达？",
+      "studyTier": 0,
+      "referenceText": "The weather radar system includes receiver-transmitter unit, antenna, and control panel. Radar returns will be displayed on the navigation display (ND): the most intense areas are displayed in red, lesser intensity in amber, and lowest intensity green. It is selected on the electronic flight instrument system (EFIS) control panel. The weather radar also provides predictive wind shear alerting. However, turbulence can be sensed by the weather radar only when there is sufficient precipitation.",
+      "referenceTextZh": "气象雷达系统包括：接收机、定向天线和控制面板。雷达回波会显示在导航显示器上：最强烈的区域为红色，较强的为琥珀色，最低强度为绿色。气象雷达是在电子飞行仪表系统控制面板上显示。系统具有风切变预警功能。然而，只有在降水充足的时候才能感应到颠簸气流。"
+    },
+    {
+      "id": "opi-fzy-109996",
+      "taskTitle": "Topic on Weather-15",
+      "audioText": "What is the influence of wind on the aircraft during flight?",
+      "audioTextZh": "飞行过程中，风对飞机有什么影响？",
+      "studyTier": 0,
+      "referenceText": "Generally speaking, the wind shear and gust may be great hazards for a flight to take off and land. While the plane is en route, there is no limitation imposed. We often intend to fly in tailwind for consideration of fuel saving.",
+      "referenceTextZh": "一般来说，风切变和阵风可能对航班起降产生很大的危害。而飞机在航行中没有强加的限制。为了节油，我们通常考虑顺风飞行。"
+    },
+    {
+      "id": "opi-fzy-109998",
+      "taskTitle": "Topic on Weather-16",
+      "audioText": "Have you ever meet CBs, how did you perform?",
+      "audioTextZh": "你在飞行中遇到过积雨云么？是如何应对的？",
+      "studyTier": 0,
+      "referenceText": "Yes, once we met developing CBs ahead. We accidentally flew into the clouds, and encountered severe turbulence and lightning strike. The lightning struck the windshield, and the airframe wasn’t seriously damaged. Some passengers got injured. Our aircraft had lost electric power due to lightning strike. All the instrument displays malfunctioned. We had to use torch to monitor the instrument. We dumped fuel to avoid overweight landing and requested ATC radar to vector us to divert. We also requested emergency services on arrival for fear of potential accident. Finally, a safe landing was made.",
+      "referenceTextZh": "遇到过，有一次飞机前方有片正在成形的积雨云，我们不小心飞了进去并遇到严重的颠簸和雷击。雷电击中挡风玻璃，机身损坏不严重。一些乘客受伤，由于雷击，飞机的电力系统全部失效。所有仪器的显示都出了故障。我们不得不使用手电筒来观察仪表。为了避免超重着陆我们放了部分油并请求ATC雷达引导我们改航。我们还请求在抵达机场时提供紧急服务，以避免潜在事故。最后我们安全着陆了。"
+    },
+    {
+      "id": "opi-fzy-109999",
+      "taskTitle": "Topic on Weather-17",
+      "audioText": "Have you encountered wind shear? Please describe the situation.",
+      "audioTextZh": "你遇到过风切变吗？能描述一下当时的情况嘛？",
+      "studyTier": 0,
+      "referenceText": "No, I haven’t. / Yes, I have. The aircraft was approaching Beijing. There was strong wind on final. When we encountered wind shear, the wind shear alarm occurred, so we follow the procedure to go around.",
+      "referenceTextZh": "我没有遇到过风切边。/ 我遇到过风切变，那次遇到风切变是在北京进近的时候，在五边风特别大，很乱。当飞机遇到风切变时飞机响起风切变警报，我们执行程序复飞了。"
+    },
+    {
+      "id": "opi-fzy-110000",
+      "taskTitle": "Topic on Weather-18",
+      "audioText": "Have you encountered ice? Could you please describe the situation?",
+      "audioTextZh": "你遇到过积冰吗？可以描述一下当时的情况吗？",
+      "studyTier": 0,
+      "referenceText": "No, I haven’t. / It was a flight from Beijing to New York in winter. The aircraft was ready to approach and land. New York reported there were rain, but radar indicated all green so we turned on the windshield wiper and continued approach. After flying in cloud for a while, there were ice building up on windshield. The captain reported the situation to controller in time. Then we quickly descended to lower level to fly through the icing area.",
+      "referenceTextZh": "我没有遇到过积冰。/ 那是一次冬天北京飞纽约航班的晚上，飞机正准备下降进近在纽约落地，纽约报告有雨，在雷达显示上都是绿区，正常开雨刷进近。结果在云中飞行了一小段以后，驾驶舱的风挡下方就积累了大量的冰晶，发生这种情况时，机长及时报告给管制员，快速下降到较低高度，才飞越积冰区域。"
+    }
+  ],
+  "categoryId": "opi-category-01"
+}

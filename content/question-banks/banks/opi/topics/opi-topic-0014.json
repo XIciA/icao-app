@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0014",
   "name": "鸟击",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "The airport management department is responsible for controlling bird activity near the airport. It may send bird-control vehicles to disperse birds when activity is reported.",
       "referenceTextZh": "机场管理部门负责控制机场附近的鸟类活动。收到鸟情报告后，可以派出驱鸟车辆驱散鸟群。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0079",
   "name": "水上迫降",
   "declaredCardCount": 28,
@@ -228,5 +227,6 @@
       "referenceText": "The crew should report the situation to ATC, request emergency services, and complete the ditching checklist. They should inform the cabin crew and passengers, make sure life vests are worn, and prepare for the emergency evacuation. After the ditching, everyone should leave the aircraft as directed by the crew and rescuers.",
       "referenceTextZh": "机组应向空中交通管制报告情况、申请应急服务，并完成水上迫降检查单。他们应通知客舱机组和旅客，确保穿好救生衣，并为紧急撤离做好准备。水上迫降后，所有人应按照机组和救援人员指示离开飞机。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

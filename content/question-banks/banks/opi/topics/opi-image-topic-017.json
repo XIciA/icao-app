@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-017",
   "name": "水上迫降",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-017.jpg",
-      "imageAlt": "水上迫降航空场景图片"
+      "imageAlt": "水上迫降航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-017-q01",
@@ -35,5 +35,6 @@
       "referenceText": "After the aircraft stops, the pilots should secure it as required and order an evacuation if remaining on board is unsafe. The crew should use only exits that are above the water and free from hazards, deploy the available slide-rafts or life rafts, and direct occupants to leave baggage behind. Everyone should move into the rafts, stay together, and use the survival and signalling equipment.",
       "referenceTextZh": "飞机停止后，飞行员应按要求使飞机处于安全状态；如果留在机上不安全，就下令撤离。机组应只使用位于水面以上且没有危险的出口，展开可用的滑梯救生筏或救生筏，并指挥人员不要携带行李。所有人应进入救生筏、保持在一起，并使用救生和信号设备。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

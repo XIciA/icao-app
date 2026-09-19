@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0118",
   "name": "不稳定进近",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "The crew should monitor airspeed, attitude, and thrust and make smooth corrections to regain the glide slope. If the deviation exceeds the permitted limits or cannot be corrected promptly, they should follow the SOP, go around, advise ATC, and prepare for another approach.",
       "referenceTextZh": "机组应监控空速、姿态和推力，并平稳修正以重新回到下滑道。如果偏差超出允许范围，或无法及时修正，机组应遵循标准操作程序复飞，通知空中交通管制，并准备再次进近。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

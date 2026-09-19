@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0174",
   "name": "UAL 221 颠簸 乘客医疗 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近 Runway 36R，UAL 221。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

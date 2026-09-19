@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0001",
   "name": "QFA 432 沙暴 1发，2发失效",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "收到，右转航向 250，QFA 432。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/020.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

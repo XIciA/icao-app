@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0111",
   "name": "SIA 497 起落架问题 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "许可 ILS 进近 Runway 18L，建立后报告，SIA 497。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

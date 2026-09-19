@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0154",
   "name": "CSN 319 液压问题 雷暴绕飞 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉进近，CSN 319，LKO 附近有雷暴，请求向左偏置 20 海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

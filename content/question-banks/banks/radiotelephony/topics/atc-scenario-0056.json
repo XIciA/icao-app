@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0056",
   "name": "CCA 124 疑似起飞鸟击 右发熄火",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "Beijing Departure，CCA 124，放油完成，请求雷达引导返回 Beijing。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/973.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

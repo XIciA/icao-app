@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0143",
   "name": "无人机",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "Pilots can maintain a careful visual scan, especially near airports, and report drone sightings promptly to ATC. They should review NOTAMs for planned drone activity and be particularly alert in those areas. Good crew coordination helps both pilots look for and respond to the threat.",
       "referenceTextZh": "飞行员可以保持认真目视观察，尤其是在机场附近，并及时向空中交通管制报告发现的无人机。他们应查看航行通告中计划开展的无人机活动，并在相关区域格外警觉。良好的机组协作有助于两名飞行员共同发现并应对威胁。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

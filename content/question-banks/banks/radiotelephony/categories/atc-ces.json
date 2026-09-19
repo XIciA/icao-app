@@ -1,8 +1,8 @@
 {
   "id": "atc-ces",
   "name": "CES",
-  "declaredTopicCount": 20,
-  "declaredCardCount": 352,
+  "declaredTopicCount": 38,
+  "declaredCardCount": 670,
   "topicIds": [
     "atc-scenario-0089",
     "atc-scenario-0090",
@@ -23,6 +23,24 @@
     "atc-scenario-0138",
     "atc-scenario-0139",
     "atc-scenario-0140",
-    "atc-scenario-0141"
+    "atc-scenario-0141",
+    "atc-fzy-1400",
+    "atc-fzy-1442",
+    "atc-fzy-1443",
+    "atc-fzy-1465",
+    "atc-fzy-1518",
+    "atc-fzy-1676",
+    "atc-fzy-1691",
+    "atc-fzy-609",
+    "atc-fzy-610",
+    "atc-fzy-614",
+    "atc-fzy-626",
+    "atc-fzy-633",
+    "atc-fzy-639",
+    "atc-fzy-748",
+    "atc-fzy-749",
+    "atc-fzy-750",
+    "atc-fzy-787",
+    "atc-fzy-792"
   ]
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0080",
   "name": "CSN 202 前缘襟翼结冰",
   "declaredCardCount": 21,
@@ -193,5 +192,6 @@
       "referenceTextZh": "执行目视进近 36R，准备好时转五边，CSN 202。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1386.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0099",
   "name": "绕机检查",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "The pilot should report the defect to maintenance personnel and review the Minimum Equipment List. If dispatch with the defect is permitted, the flight may proceed under the applicable conditions. If it is not permitted, the aircraft should be changed or the flight cancelled.",
       "referenceTextZh": "飞行员应向维修人员报告缺陷并查看最低设备清单。如果该缺陷允许放行，航班可在适用条件下执行；如果不允许，就应更换飞机或取消航班。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

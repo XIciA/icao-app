@@ -1,0 +1,136 @@
+{
+  "id": "atc-fzy-1615",
+  "name": "CCA2119 [雷暴，风挡破裂]",
+  "declaredCardCount": 14,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219665",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-1",
+      "audioText": "N: [Your call sign is CCA2119, you are maintaining 4,500 meters over VYK, you have received information X, make an initial contact with Beijing Approach.]",
+      "audioTextZh": "【你的呼号是国航2119，你现在正保持在4500米，过VYK，你已经收到通播X，与北京进近进行初始联系。】",
+      "referenceText": "Beijing Approach, CCA2119, maintaining 4500m, over VYK, information X.",
+      "referenceTextZh": "北京进近，国航2119，正保持4500米，过VYK， 通播X。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a036d041640127480e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219666",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-2",
+      "audioText": "C: CCA2119, Beijing Approach, radar contact, descent to 3,000m, QNH 1011, expect ILS approach runway 36R.",
+      "audioTextZh": "国航2119，北京进近，雷达看见了，下3000米，修压1011，预计盲降进近跑道36右。",
+      "referenceText": "Descent to 3,000m, QNH 1011, expect ILS approach runway 36R, CCA2119.",
+      "referenceTextZh": "下3000米，修压1011，预计盲降进近跑道36右，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b8c3457bc7ac0a655e2a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219667",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-3",
+      "audioText": "N: [Your weather radar indicates there is a thunderstorm ahead, ask Beijing Approach to turn left to circumnavigate the weather.]",
+      "audioTextZh": "【你的气象雷达显示前方有雷暴，询问北京进近，左转绕飞天气。】",
+      "referenceText": "Beijing Approach, CCA2119, request turn left to avoid the weather ahead.",
+      "referenceTextZh": "北京进近，国航2119，请求左转避开天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/074ed4d08db738c94377.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219668",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-4",
+      "audioText": "C: CCA2119, negative due prohibited area. Turn right heading 030.",
+      "audioTextZh": "国航2119，由于禁飞区，不可以，右转航向030。",
+      "referenceText": "Roger, turn right heading 030, CCA2119.",
+      "referenceTextZh": "收到，右转航向030，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9bc434925d6c69db651a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219669",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-5",
+      "audioText": "N: [During maneuver, your left windshield has cracked, report it to Beijing Approach and request descent.]",
+      "audioTextZh": "【在机动过程中，你的左侧风挡破裂，报告给北京进近，请求下降。】",
+      "referenceText": "Beijing Approach, CCA2119, request descent due left windshield cracked.",
+      "referenceTextZh": "北京进近，国航2119，由于风挡破裂，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/860dc7b3807f4da518e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219670",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-6",
+      "audioText": "C: CCA2119, turn right heading 330, descend to and maintain 1,800 meters, when able, advise your situation on board.",
+      "audioTextZh": "国航2119，右转航向330，下到1800米保持，可以的时候，报告机上情况。",
+      "referenceText": "Turn right heading 330, descend to and maintain 1,800 meters, wilco, CCA2119.",
+      "referenceTextZh": "右转航向330，下到1800米保持，照办，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/96b996df1ac7901a55ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219671",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-7",
+      "audioText": "N: [A few minutes later, tell the controller that the aircraft is still controlled and there are no injuries on board.]",
+      "audioTextZh": "【几分钟后，告知管制员，飞机仍旧可以控制，机上没有人受伤。】",
+      "referenceText": "Beijing Approach, CCA2119, aircraft is under control, and no one injured on board.",
+      "referenceTextZh": "北京进近，国航2119，飞机现在可以控制，机上没有人受伤。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b18cbe020a9aa055ca5c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219672",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-8",
+      "audioText": "C: CCA2119, continue present heading, descent to 1,200 meters, cleared for ILS approach runway 36R, report established.",
+      "audioTextZh": "国航2119，保持当前航向，下1200米保持，可以盲降进近。跑道36右，建立后报。",
+      "referenceText": "Continue present heading, descent to 1,200 meters, cleared for ILS approach runway 36R, wilco, CCA2119.",
+      "referenceTextZh": "保持当前航向，下1200米保持，可以盲降进近，跑道36右，照办，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aa38a48635982eafb7b5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219673",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-9",
+      "audioText": "N: [Now you have established on the localizer runway 36R.]",
+      "audioTextZh": "【你现在已经建立跑道36右的航向道。】",
+      "referenceText": "Beijing Approach, CCA2119, established on the localizer runway 36R.",
+      "referenceTextZh": "北京进近，国航2119，建立跑道36右的盲降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5154e22a88711727dfa9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219674",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-10",
+      "audioText": "C: CCA2119, radar service terminated, you are 10 miles from touchdown, contact Beijing Tower 118.5.",
+      "audioTextZh": "国航2119，雷达服务终止，你现在距离接地点10海里，联系北京塔台118.5。",
+      "referenceText": "Roger, 118.5 CCA2119.",
+      "referenceTextZh": "收到，118.5，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a7f67626bd0a424621b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219675",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-11",
+      "audioText": "N: [Now You are 10 miles from touchdown, Contact Beijing Tower.]",
+      "audioTextZh": "【你现在距离接地点10海里，联系北京塔台。】",
+      "referenceText": "Beijing Tower, CCA2119, 10 miles from touchdown.",
+      "referenceTextZh": "北京塔台，国航2119，距离接地点10海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a74269768361b3a9e722.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219676",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-12",
+      "audioText": "C: CCA2119, surface wind 350 degrees, 5 knots, runway 36R, clear to land.",
+      "audioTextZh": "国航2119，地面风350度，5节，跑道36右，可以落地。",
+      "referenceText": "Runway 36R, clear to land, CCA2119.",
+      "referenceTextZh": "跑道36右，可以落地，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b02fab4f8d83c61555dc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219677",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-13",
+      "audioText": "N: [After landing, you can’t find the taxiway clearly, ask Beijing Ground for a tug to tow you to the apron.]",
+      "audioTextZh": "【落地之后，你不发清晰找到滑行道，请求北京地面安排一辆拖车将你拖回机坪。】",
+      "referenceText": "Beijing Ground, CCA2119, request a tug to tow back to the apron due windshield cracked.",
+      "referenceTextZh": "北京地面，国航2119，由于风挡破裂，请求一辆拖车将我们拖回机坪。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/798a76a41af2fa32f82a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219678",
+      "taskTitle": "67-CCA2119 [雷暴，风挡破裂]-14",
+      "audioText": "C: CCA2119, hold position, the tug is on the way.",
+      "audioTextZh": "国航2119，原地等待，拖车正在路上。",
+      "referenceText": "Holding position, roger thanks, CCA2119.",
+      "referenceTextZh": "原地等待，收到，谢谢，国航2119。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/43042c0fddfc447f0dcb.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

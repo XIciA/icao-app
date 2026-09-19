@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-583",
+  "name": "Figure 27",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-583-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 27 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-583.png",
+      "imageAlt": "Figure 27，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110381",
+      "taskTitle": "Figure 27-1",
+      "audioText": "Describe what is shown in these two pictures.",
+      "audioTextZh": "请描述这两张图片展示的是什么。",
+      "studyTier": 0,
+      "referenceText": "These two pictures show the approach and landing of an aircraft. In the left picture, the aircraft is making a low approach with a bank aligning the center line of the runway. In the right picture, we can see the aircraft touching the runway forming an angle with the runway center line. Dense smoke is coming from the right main gear.",
+      "referenceTextZh": "这两张图片展示的分别是飞机的进近和着陆。左图中，飞机在低空进场，倾斜并对准跑道中心线。右图中可以看到飞机正接触跑道，与跑道的中心线形成一定角度，飞机的左起落架处有浓烟。"
+    },
+    {
+      "id": "opi-fzy-110382",
+      "taskTitle": "Figure 27-2",
+      "audioText": "Why did you say that the aircraft was making a low approach over the runway?",
+      "audioTextZh": "你为什么说左图的飞机在低空进场？",
+      "studyTier": 0,
+      "referenceText": "There are visual approach slope indicators (VASI) on both sides of runway threshold. Each light is designed so that it appears as either white or red, depending on the angle at which it is viewed. When the pilot is approaching the lights at the proper angle, meaning that the pilot is on the glide slope, the first set of lights appears white and the second set appears red. When both sets appear white, the aircraft is too high, and when both appear red, it is too low. In the left picture, three sets of the lights on each side are in red, which indicates that the aircraft is below the glide slope.",
+      "referenceTextZh": "跑到路口的两侧都有目视进近坡度指示器，灯光被设计为可显示红色或白色其中之一，颜色取决于看灯光的角度。当飞行员在适合的角度进近，意味着飞行员在下滑道上，这时能看到第一组灯光显示为白色，第二组灯光显示为红色。当两组灯光都显示为白色时，飞机高度过高。当两组灯光都显示为红色时，飞机高度过低。在左图中，两边的三组灯光都显示为红色，这证明了飞机下滑道过低。"
+    },
+    {
+      "id": "opi-fzy-110383",
+      "taskTitle": "Figure 27-3",
+      "audioText": "Why do you think the aircraft could not align the center line of the runway?",
+      "audioTextZh": "你为什么认为飞机无法对准跑道中心线？",
+      "studyTier": 0,
+      "referenceText": "The aircraft most likely encountered crosswind when landing, and the crosswind made it difficult to control the aircraft.",
+      "referenceTextZh": "飞机在着陆时最有可能遭遇侧风，侧风会让飞机难以控制。"
+    },
+    {
+      "id": "opi-fzy-110384",
+      "taskTitle": "Figure 27-4",
+      "audioText": "What problem may cause under such condition and how to avoid it?",
+      "audioTextZh": "这种情况会引发什么问题，怎样避免这种问题？",
+      "studyTier": 0,
+      "referenceText": "Crosswind is an important factor to consider during landing. Poor flight operation in strong crosswind can make the aircraft land outside the runway. So, during approach, we monitor ATIS for the current weather conditions at the airport, if the crosswind is too strong, we can choose to go around or circle for delay landing.",
+      "referenceTextZh": "在着陆时，侧风是需要考虑的重要因素。侧风强烈时操作失误会让飞机在跑道外着陆。所以在进场过程中要守听机场通播，了解机场当前的天气状况。如果侧风太过强烈，可以选择复飞或盘旋来延迟降落。"
+    },
+    {
+      "id": "opi-fzy-110385",
+      "taskTitle": "Figure 27-5",
+      "audioText": "Can you list some crosswind landing technology skills?",
+      "audioTextZh": "你能列举一些侧风着陆的技术技巧吗？",
+      "studyTier": 0,
+      "referenceText": "First, try to use a longer final approach than normal. This allows you to adjust your aileron and rudder inputs as necessary to align yourself with the runway. Second, touchdown speed should be higher than the normal. Third, maintain the aileron into the wind until the aircraft slows down to taxiing speed.",
+      "referenceTextZh": "第一，试图用更长的航线边进场，这样飞行员可以在必要时调整副翼和方向舵，从而将飞机对准跑道；第二，着陆速度应该比平时快；第三，保持副翼逆风直到飞机降至滑行速度。"
+    },
+    {
+      "id": "opi-fzy-110386",
+      "taskTitle": "Figure 27-6",
+      "audioText": "Have you ever received any training about crosswind landing?",
+      "audioTextZh": "你曾接受过关于侧风着陆的训练吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, it is one of the important subjects in our simulator training and initial flight training.",
+      "referenceTextZh": "在模拟训练和最初的飞行训练中，侧风着陆都是非常重要的部分之一。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

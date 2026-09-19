@@ -1,0 +1,88 @@
+{
+  "id": "opi-fzy-574",
+  "name": "Figure 18",
+  "declaredCardCount": 9,
+  "cards": [
+    {
+      "id": "opi-fzy-574-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 18 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-574.png",
+      "imageAlt": "Figure 18，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110312",
+      "taskTitle": "Figure 18-1",
+      "audioText": "Could you please make a brief description about the top picture?",
+      "audioTextZh": "请问你可以对上图进行简单描述吗？",
+      "studyTier": 0,
+      "referenceText": "This picture shows the situation about a four-engine aircraft which is taking off. It has produced strong wake turbulence. There is a rotation point on the runway. There are two parallel runways in this picture. The distance between the centerline of the two runways is less than 760m.",
+      "referenceTextZh": "上图展示的是四引擎飞机起飞时的情况。飞机产生了很强的尾流涡流。跑道中的是旋转点。图中有两条平行跑道，两条跑道的中心线距离小于760米。"
+    },
+    {
+      "id": "opi-fzy-110313",
+      "taskTitle": "Figure 18-2",
+      "audioText": "According to the picture, could you please explain what is wake turbulence?",
+      "audioTextZh": "根据图片，你能够解释什么是尾流涡流吗？",
+      "studyTier": 0,
+      "referenceText": "Yes. Wake turbulence is used to describe the effect of the rotating air masses generated behind the wingtips of an aircraft, just like what the bottom picture shows.",
+      "referenceTextZh": "好的，尾流涡流形容的是飞机翼尖后产生的旋转气团，正如第二张图所示。"
+    },
+    {
+      "id": "opi-fzy-110314",
+      "taskTitle": "Figure 18-3",
+      "audioText": "When would you need to avoid wake turbulence?",
+      "audioTextZh": "什么情况下需要避免尾流涡流？",
+      "studyTier": 0,
+      "referenceText": "I need to avoid this situation in many circumstances, especially when there is a heavy aircraft taking off ahead of me. During cruise and landing, I also need to avoid wake turbulence if there are heavy aircraft nearby.",
+      "referenceTextZh": "在很多情况下需要避免这种情况，尤其是在我之前有重型飞机起飞时。在巡航和着陆过程中，如果附近有重型飞机同样需要避免飞机尾流。"
+    },
+    {
+      "id": "opi-fzy-110315",
+      "taskTitle": "Figure 18-4",
+      "audioText": "How to avoid wake turbulence if the aircraft were climbing or cruising?",
+      "audioTextZh": "如果飞机在爬升或巡航阶段应怎样避免飞机尾流？",
+      "studyTier": 0,
+      "referenceText": "My climb profile should be above the profile of previous aircraft. As for cruising, I must keep enough distance from other aircraft.",
+      "referenceTextZh": "爬升时，飞机的爬升剖面要高于之前的飞机。巡航时，必须要和其他飞机保持足够的距离。"
+    },
+    {
+      "id": "opi-fzy-110316",
+      "taskTitle": "Figure 18-5",
+      "audioText": "As the picture shows, if the taking off aircraft is a B747, you are the captain of a B737 which is going to take off on the other runway, what would you do?",
+      "audioTextZh": "如图所示，如果正在起飞的飞机是波音747，你是另一条跑道上正准备起飞的波音737的机长，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "I will keep two minutes’ separation with B747, because the two parallel runways are separated by less than 760m, the minimum takeoff separation is two minutes to avoid wake turbulence.",
+      "referenceTextZh": "我会和波音747保持两分钟的间隔，因为两条平行跑道的中心线距离小于760米，所以最小起飞间隔为两分钟来避免尾流涡流。"
+    },
+    {
+      "id": "opi-fzy-110317",
+      "taskTitle": "Figure 18-6",
+      "audioText": "Is there criterion for an aircraft that can be called a heavy aircraft?",
+      "audioTextZh": "重型飞机是否有一定标准？",
+      "studyTier": 0,
+      "referenceText": "Yes, there is. If the maximum certificated takeoff mass of aircraft type is more than 136,000kg, it is a heavy aircraft.",
+      "referenceTextZh": "有标准，最大起飞重量在136000千克以上的飞机为重型飞机。"
+    },
+    {
+      "id": "opi-fzy-110318",
+      "taskTitle": "Figure 18-7",
+      "audioText": "Besides wake turbulence, what other turbulence does a flight possibly meet during flying?",
+      "audioTextZh": "除了飞机尾流，飞机在飞行时还可能遇到哪些湍流？",
+      "studyTier": 0,
+      "referenceText": "The flight may meet kinds of turbulence like clear air turbulence, or turbulence caused by bad weather and so on.",
+      "referenceTextZh": "飞机可能遇到各种湍流，例如晴空湍流或由恶劣天气引发的湍流等。"
+    },
+    {
+      "id": "opi-fzy-110319",
+      "taskTitle": "Figure 18-8",
+      "audioText": "What does a pilot usually do in case of turbulence during flight?",
+      "audioTextZh": "飞行员在飞行时遇到湍流通常会怎样做？",
+      "studyTier": 0,
+      "referenceText": "It depends on the intensity of turbulence. If it is a light turbulence, I would maintain present heading and altitude of flight. If it is a medium or heavy turbulence, I would report the situation to ATC and request to change the altitude and heading if necessary. No matter what kind of turbulence we’re experiencing, I would advise passengers to fasten the harnesses for consideration of safety.",
+      "referenceTextZh": "这取决于湍流的强度。如果遭遇弱湍流，我会保持当前的航向和高度。如果遭遇严重的湍流，我会将情况报告给ATC，并且在有必要时请求改变高度和航向。不管遇到哪种湍流，考虑到安全因素，我都会建议乘客系紧安全带。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

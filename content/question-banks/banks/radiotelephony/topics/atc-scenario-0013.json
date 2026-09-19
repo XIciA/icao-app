@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0013",
   "name": "SIA 308 客舱烟雾 错过脱离滑行道",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "使用第二个快速出口，脱离后联系巴黎地面118.5，SIA 308。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/231.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

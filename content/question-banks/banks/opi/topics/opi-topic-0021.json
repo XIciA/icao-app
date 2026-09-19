@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0021",
   "name": "低能见度与RVR",
   "declaredCardCount": 12,
@@ -100,5 +99,6 @@
       "referenceText": "Low visibility can reduce situational awareness, increase pilot workload, and raise the risk of misjudgment. It may lead to a runway incursion, ground collision, missed taxiway or runway, unstable approach, go-around, delay, or diversion.",
       "referenceTextZh": "低能见度会降低情景意识、增加飞行员工作负荷，并提高误判风险。它可能导致跑道侵入、地面碰撞、错过滑行道或跑道、进近不稳定、复飞、延误或改航。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

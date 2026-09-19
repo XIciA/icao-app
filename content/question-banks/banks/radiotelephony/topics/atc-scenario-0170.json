@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0170",
   "name": "UAL 219 颠簸 积冰/防冰 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉塔台，UAL 219，跑道 04 向台。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-070-ual219-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

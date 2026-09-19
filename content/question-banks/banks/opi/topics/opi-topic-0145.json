@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0145",
   "name": "CI",
   "declaredCardCount": 12,
@@ -100,5 +99,6 @@
       "referenceText": "Depending on the aircraft's flight management system, a higher cost index may calculate a later top of descent and keep the aircraft at a higher speed for longer. A lower cost index may calculate an earlier descent that gives more priority to fuel efficiency.",
       "referenceTextZh": "根据飞机所使用的飞行管理系统，较高的成本指数可能计算出更晚的下降顶点，使飞机以较高速度保持更长时间。较低的成本指数可能计算出更早的下降点，更重视燃油效率。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

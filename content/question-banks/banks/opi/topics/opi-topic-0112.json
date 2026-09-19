@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0112",
   "name": "英语课程",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "I have been learning English for more than 15 years. During flight training, I also studied radiotelephony, aviation terminology, and interview English.",
       "referenceTextZh": "我学习英语已经超过 15 年。飞行训练期间，我还学习了无线电通话、航空术语和面试英语。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

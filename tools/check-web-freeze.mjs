@@ -44,7 +44,7 @@ const approvedNativeIncrementPaths = new Set([
 // both route implementations pinned; this is not a Native-suffix exemption.
 const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
 const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
-const reviewedStudyNativeHash = '40afd215f39bda3586f5ff40dc746ab631d65169cf5c1a76f136c88a2ad69c19';
+const reviewedStudyNativeHash = '3869d4c59d22f94a19e1d6b1b7db404483ca19c85770059dfaf9aa0f269a1782';
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
@@ -58,6 +58,11 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // Reviewed candidate metadata only; legacy display version remains 1.0.0.
+  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "525956ea30de791da15b3aeec2db6558721f600b4199a10375fdcecd03eae034"]],
+  // 2026-09-20: redirect only the legacy repository's two imports to immutable,
+  // byte-identical v13 snapshots so an APK link release cannot ship new banks.
+  ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
   // 2026-09-20: exact reviewed scope dependencies of the Native study route.
   // Expo Web includes that route in context, but the router proof below keeps
   // it unselected on Vercel. Radio empty-state and answer-card changes retain
@@ -146,14 +151,36 @@ const reviewedFormalWebHashes = new Map([
     "tools/edgeone-shared-modules.cjs",
     [
       null,
-      "0d892bc9a18bdab5ef5bb5ccaa47b3ac23d0d8b31e6f136be1aff00845ad0659"
+      "308e93f6f3f1d722b8b3004579472f54dcb8b37d9147dd5ac8aa5c3a2b28f075"
     ]
   ]
 ]);
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));
+  const currentPaths = new Set(current.map(file => file.path));
   return current.flatMap(file => {
+    // Marketing version 1.1.0 applies to the apps/formal Web only. The legacy
+    // Web resolver now selects the byte-identical 1.0.0 module; EdgeOne remaps
+    // that module through its exact pinned shared-module table.
+    if (file.path === 'src/config/app-version.web.ts') {
+      const original = baseline.get('src/config/app-version.ts');
+      if (original && !currentPaths.has(original.path) && file.sha256 === original.sha256) return [original];
+      return [file];
+    }
+    const legacyPrefix = 'src/features/question-bank/data/legacy-v13/';
+    if (file.path.startsWith(legacyPrefix)) {
+      const originalPath = `src/features/question-bank/data/${file.path.slice(legacyPrefix.length)}`;
+      const original = baseline.get(originalPath);
+      if (!currentPaths.has(originalPath) && original
+        && approved900ContentHashes.get(originalPath) === file.sha256
+        && original.sources.join('\0') === file.sources.join('\0')) {
+        return [{ ...file, path: originalPath }];
+      }
+      // A changed snapshot or simultaneous current-bank import remains a hard
+      // freeze failure. This is an exact relocation, not a content exemption.
+      return [file];
+    }
     const pair = reviewedFormalWebHashes.get(file.path);
     const before = baseline.get(file.path);
     if (!pair || (before?.sha256 ?? null) !== pair[0] || file.sha256 !== pair[1]) return [file];

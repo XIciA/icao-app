@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0109",
   "name": "SIA 123 鸟击 发动机失效 积冰/防冰",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉塔台，SIA 123，已建立跑道 22 ILS 进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-002-sia123-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

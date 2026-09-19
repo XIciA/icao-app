@@ -1,0 +1,242 @@
+{
+  "id": "opi-fzy-1680",
+  "name": "4.驾驶舱内设备",
+  "declaredCardCount": 26,
+  "cards": [
+    {
+      "id": "opi-fzy-152069",
+      "taskTitle": "4.驾驶舱内设备-1",
+      "audioText": "What modern equipment do you think should be installed on board?",
+      "audioTextZh": "哪些现代设备应该被安装在驾驶舱内？",
+      "studyTier": 1,
+      "referenceText": "I think modern cockpit should be equipped with many modern equipment.\nSuch as EFIS, GPWS, TCAS, GPS and so on.\nThey are good for flight safety.",
+      "referenceTextZh": "我认为很多现代设备需要安装在现代驾驶舱内。\n比如：电子仪表系统，增强型近地警告系统，空中防撞系统，全球定位系统等。\n它们有利于飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152070",
+      "taskTitle": "4.驾驶舱内设备-2",
+      "audioText": "Do you think modern equipment will benefit flight safety?",
+      "audioTextZh": "你认为现代科技可以使得飞行更安全吗？",
+      "studyTier": 1,
+      "referenceText": "Modern technology can reduce human errors and reduce pilots’ workload.\nIt also can increase work efficiency and improve flight safety.\nFor example, TCAS can give us traffic information in time and help avoid it.\nIt can reduce mid-air collision, relieve pilot's workload, and avoid human errors, which largely increases flight safety.",
+      "referenceTextZh": "现代科技可以减少人为差错，减轻飞行员工作负荷。\n同时可以提高工作效率，提高飞行安全。\n比如: 空中防撞系统可以及时给我们航空器信息，并帮我们避让。\n它可以减小空中相撞概率，减轻飞行员的工作负荷，避免人为失误，这可以很大的提高飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152071",
+      "taskTitle": "4.驾驶舱内设备-3",
+      "audioText": "Compared with conventional cockpit, what are the advantages of modern glass cockpit?",
+      "audioTextZh": "与传统的驾驶舱相比，现代化的驾驶舱有什么优势？",
+      "studyTier": 1,
+      "referenceText": "Modern glass cockpit is wider, more advanced, precise, computerized and highly automatic than traditional cockpit.",
+      "referenceTextZh": "现代驾驶舱比传统驾驶舱更宽、更先进、更精确、更计算机化、更高度自动化。"
+    },
+    {
+      "id": "opi-fzy-152072",
+      "taskTitle": "4.驾驶舱内设备-4",
+      "audioText": "What are the advantages and disadvantages of analog instruments?",
+      "audioTextZh": "模拟仪表有什么优势和劣势？",
+      "studyTier": 1,
+      "referenceText": "Analog instruments are cheap, reliable, stable and free of electrical failure.\nHowever, the accuracy of the analog instruments is low and it may takes us more time to scan the instruments for flight information.",
+      "referenceTextZh": "模拟仪表更便宜，更可靠，稳定，不受电气系统失效的影响。\n但是，模拟仪表精度较低，需要花费我们更多时间去浏览仪表获取飞行信息。"
+    },
+    {
+      "id": "opi-fzy-152073",
+      "taskTitle": "4.驾驶舱内设备-5",
+      "audioText": "What are the advantages and disadvantages of digital instruments?",
+      "audioTextZh": "数字仪表有什么优势和劣势？",
+      "studyTier": 1,
+      "referenceText": "There are some advantages and disadvantages of digital instruments.\nDigital instruments such as PFD and MFD can display some important flight information in a single display, so it is very convenient to use.\nThey can reduce our workload, increase our situational awareness and ensure the flight safety.\nBut they rely too much on the electrical system, so they will be influenced if the electrical system failed.",
+      "referenceTextZh": "数字仪表有一些优点和缺点。\n数字仪表如PFD和MFD可以在一个显示器中显示一些重要的飞行信息，所以它方便使用。\n它们可以减轻我们的工作量，提高我们的情景意识，确保飞行安全。\n但是它们过多的依赖飞机的电气系统，所以当电气系统发生故障时，它们会受到影响。"
+    },
+    {
+      "id": "opi-fzy-152074",
+      "taskTitle": "4.驾驶舱内设备-6",
+      "audioText": "Is it a good thing for the modern commercial aircraft to be highly computerized?",
+      "audioTextZh": "你认为现代商业客机高度计算机化是好事吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I think it will reduce human errors and improve work efficiency.",
+      "referenceTextZh": "是的，计算机化能够减少人为差错，提高工作效率。"
+    },
+    {
+      "id": "opi-fzy-152075",
+      "taskTitle": "4.驾驶舱内设备-7",
+      "audioText": "What do you know about EFIS?",
+      "audioTextZh": "你知道电子仪表系统吗？",
+      "studyTier": 1,
+      "referenceText": "EFIS stands for electronic flight instrument system.\nIt mainly includes PFD and MFD.\nWe can know lots of information from it, such as speed, altitude, fly heading and so on.",
+      "referenceTextZh": "EFIS指的是电子仪表系统。\n它包括主飞显示器和多功能显示器。\n我们可以从中获得很多信息，例如：速度、高度、航向等。"
+    },
+    {
+      "id": "opi-fzy-152076",
+      "taskTitle": "4.驾驶舱内设备-8",
+      "audioText": "What are the advantages of EFIS?",
+      "audioTextZh": "电子仪表系统的优势是什么？",
+      "studyTier": 1,
+      "referenceText": "It can reduce pilot workload and avoid human errors.",
+      "referenceTextZh": "它可以减轻飞行员工作负担，避免人为失误。"
+    },
+    {
+      "id": "opi-fzy-152077",
+      "taskTitle": "4.驾驶舱内设备-9",
+      "audioText": "What do you know about GPWS?",
+      "audioTextZh": "你知道GPWS吗？",
+      "studyTier": 1,
+      "referenceText": "GPWS stands for Ground Proximity Warning System.",
+      "referenceTextZh": "GPWS指的是近地警告系统。"
+    },
+    {
+      "id": "opi-fzy-152078",
+      "taskTitle": "4.驾驶舱内设备-10",
+      "audioText": "What are the differences of GPWS and EGPWS?",
+      "audioTextZh": "近地警告系统和增强型近地警告系统有什么区别？",
+      "studyTier": 1,
+      "referenceText": "As far as I know, EGPWS has a terrain database, EGPWS alerts earlier than GPWS.\nAnd it is more advanced, more accurate, has more functions than GPWS.",
+      "referenceTextZh": "据我所知，EGPWS有一个地形数据库，EGPWS警报比GPWS早。\n它更先进，更精确，比GPWS功能更多。"
+    },
+    {
+      "id": "opi-fzy-152079",
+      "taskTitle": "4.驾驶舱内设备-11",
+      "audioText": "What are the differences between the GPWS and TCAS?",
+      "audioTextZh": "近地警告系统和空中防撞系统有什么区别？",
+      "studyTier": 1,
+      "referenceText": "The main function of GPWS is to avoid the collision between the aircraft and the ground;\nIf the rate of descent exceeds limit or the aircraft is too below the glide slope, or there is wind shear, it will alert.\nTCAS is used to avoid the mid-air collision during flight.\nTCAS consists of TCAS TA and TCAS RA. TCAS TA can provide information about the conflicting traffic such as altitude, speed, direction. TCAS RA can provide guidance to avoid the conflicting traffic. If there is a conflicting traffic, the TCAS TA will give us a warning sound \"traffic, traffic\", the TCAS RA will give us guidance to avoid it,\"climb, climb\", or \"descend, descend\".",
+      "referenceTextZh": "近地警告系统的主要功能是避免飞机和地面发生冲撞。\n如果下降率过大，或者飞机过多低于下滑道，或有遇到风切变，近地警告会发出告警。\n空中防撞系统是用来防止空中相撞。\nTCAS由TCAS TA（交通告警）和TCAS RA（决断告警）组成。TCAS TA可以提供冲突飞机信息，比如高度，速度，方向。TCAS RA可以提供引导避开冲突飞机。如果有冲突飞机，TCAS TA将给我们警告“冲突，冲突”， TCAS RA将给我们引导避开，“爬升，爬升”，“下降，下降”。"
+    },
+    {
+      "id": "opi-fzy-152080",
+      "taskTitle": "4.驾驶舱内设备-12",
+      "audioText": "What do you know about HUD? What information can a pilot get from HUD?",
+      "audioTextZh": "你知道抬头显示吗？你可以从抬头显示中获得哪些信息？",
+      "studyTier": 1,
+      "referenceText": "HUD stands for head-up display, it is a modern device in the cockpit.\nIt allows the pilot to see the required information without having to look down.\nIt is used to present information such as airspeed, heading and altitude and so on to the pilot.",
+      "referenceTextZh": "HUD指的是抬头显示，它是驾驶舱里的现代设备。\n它允许飞行员不用低头就可以获得所需信息。\n它可以向飞行员展示空速、航向、高度等信息。"
+    },
+    {
+      "id": "opi-fzy-152081",
+      "taskTitle": "4.驾驶舱内设备-13",
+      "audioText": "What is CVR? What are the functions of CVR?",
+      "audioTextZh": "CVR是什么？CVR的作用是什么？",
+      "studyTier": 2,
+      "referenceText": "CVR stands for cockpit voice recorder. CVR is used to record audio in the cockpit, on radio and intercom communications.",
+      "referenceTextZh": "CVR是驾驶舱话音记录器的缩写。CVR用于记录驾驶舱内的无线电和对讲机通信的音频。"
+    },
+    {
+      "id": "opi-fzy-152082",
+      "taskTitle": "4.驾驶舱内设备-14",
+      "audioText": "What do you know about FDR?",
+      "audioTextZh": "你知道飞行数据记录仪吗？",
+      "studyTier": 1,
+      "referenceText": "FDR stands for flight data recorder.",
+      "referenceTextZh": "FDR指的是飞行数据记录器。"
+    },
+    {
+      "id": "opi-fzy-152083",
+      "taskTitle": "4.驾驶舱内设备-15",
+      "audioText": "What are the usage of CVR and FDR?",
+      "audioTextZh": "CVR和FDR的作用是什么？",
+      "studyTier": 1,
+      "referenceText": "CVR and FDR also called the black box, which is usually painted in red or orange.\nThey record many important flight information, such as altitude, heading, speed, rate of climb, engine parameters, aircraft system operating condition, etc.\nThe CVR and FDR can help investigators to analyze the accident afterwards.",
+      "referenceTextZh": "CVR和FDR也被称为黑匣子，通常被漆成红色或橙色。\n它们记录了许多重要的飞行信息，如高度、航向、速度、爬升率、发动机参数、飞机系统运行状况等。\nCVR和FDR可以帮助调查人员在事后对事故进行分析。"
+    },
+    {
+      "id": "opi-fzy-152084",
+      "taskTitle": "4.驾驶舱内设备-16",
+      "audioText": "What is EFB? What is the usage of EFB?",
+      "audioTextZh": "EFB是什么？EFB的用处是什么？",
+      "studyTier": 1,
+      "referenceText": "EFB stands for electronic flight bag.\nIt is an electronic information management device that helps flight crews perform flight management tasks more easily and efficiently by using less paper.\nIt is designed to reduce or replace the paper references commonly found in flight bags carried by pilots, including: aircraft operations manuals, flight crew operations manuals, and navigation chart.",
+      "referenceTextZh": "EFB指的是电子飞行包。\n它是一种电子信息管理设备，通过减少纸张的使用，帮助机组人员更容易、更有效地执行飞行管理任务。\n其目的是减少或替代飞行员随身携带的飞行包中常见的纸质参考资料，包括:飞机操作手册、机组操作手册、航图等。"
+    },
+    {
+      "id": "opi-fzy-152187",
+      "taskTitle": "4.驾驶舱内设备-17",
+      "audioText": "What will you do if you see the airport below but with EGPWS triggered?",
+      "audioTextZh": "如果你看到机场，但是你的EGPWS触发了，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If we have seen the airport but our EGPWS was triggered, we will follow the EGPWS to pull up the aircraft, and make a missed approach, then we will report this situation to ATC.",
+      "referenceTextZh": "如果我们已经看见跑道，但近地警告被触发，我们将遵照近地警告系统指示拉起飞机并且复飞，然后我们要把这个情况汇报给管制员。"
+    },
+    {
+      "id": "opi-fzy-152250",
+      "taskTitle": "4.驾驶舱内设备-18",
+      "audioText": "What do you know about the TCAS?",
+      "audioTextZh": "你对TCAS了解多少？",
+      "studyTier": 2,
+      "referenceText": "TCAS stands for Traffic Collision Alert and Avoidance System.\nTCAS indicates the speed, direction, and position of the conflicting traffic.\nIn case of TCAS RA, it also guides the aircraft to avoid traffic.",
+      "referenceTextZh": "TCAS是空中防撞系统的缩写。\nTCAS显示冲突航空器的速度、方向和位置。\n在TCAS RA的情况下，它还可以引导飞机避开冲突航空器。"
+    },
+    {
+      "id": "opi-fzy-152251",
+      "taskTitle": "4.驾驶舱内设备-19",
+      "audioText": "Is your aircraft equipped with TCAS?",
+      "audioTextZh": "你的飞机上有TCAS吗？",
+      "studyTier": 1,
+      "referenceText": "No, I fly Cessna172, we don’t have it on my aircraft.",
+      "referenceTextZh": "没有，我飞的是塞斯纳172，我的飞机上没有TCAS。"
+    },
+    {
+      "id": "opi-fzy-152983",
+      "taskTitle": "4.驾驶舱内设备-20",
+      "audioText": "Who will be allowed to enter the cockpit?",
+      "audioTextZh": "谁可以被允许进入驾驶舱？",
+      "studyTier": 1,
+      "referenceText": "Usually the flight crew, inspectors, supervisors can be allowed to enter the cockpit.",
+      "referenceTextZh": "通常是飞行机组、检察员或者局方检察员可以被允许进入驾驶舱。"
+    },
+    {
+      "id": "opi-fzy-164813",
+      "taskTitle": "4.驾驶舱内设备-21",
+      "audioText": "What EFB application do you use during the pre-flight preparation?",
+      "audioTextZh": "在飞行前准备中，你会使用什么EFB程序？",
+      "studyTier": 1,
+      "referenceText": "Usually, I often use flight crew operating manual, navigation chart and so on.",
+      "referenceTextZh": "通常，我会使用机组操作手册，导航图等。"
+    },
+    {
+      "id": "opi-fzy-164814",
+      "taskTitle": "4.驾驶舱内设备-22",
+      "audioText": "What is your opinion on your company’s CVR supervision policy?",
+      "audioTextZh": "你们公司的CVR监管政策是什么？",
+      "studyTier": 1,
+      "referenceText": "The cockpit voice recorder mainly records the conversations between the crew and the controllers on the ground, as well as various sounds in the cockpit (including the running of the aircraft engine) and so on. In our company, the flight supervision department has the right to monitor the CVR.",
+      "referenceTextZh": "驾驶舱话音记录器主要记录机组人员和地面管制人员的通话、机组人员之间的对话以及驾驶舱内出现的各种音响（包括飞机发动机的运转声音）等。在我们公司，飞行监管部门有权对CVR进行监控。"
+    },
+    {
+      "id": "opi-fzy-164816",
+      "taskTitle": "4.驾驶舱内设备-23",
+      "audioText": "Will the supervision affect your performance in flight, like your action or operation will be restricted?",
+      "audioTextZh": "你觉得公司对CVR的监管会影响你的飞行表现吗？譬如限制你的行为和操作？",
+      "studyTier": 1,
+      "referenceText": "No, it won’t. Because as a qualified pilot, we should be responsibility for our action and operation so as to ensure flight safety. It is a good way to remind us keep focused on our duties.",
+      "referenceTextZh": "不，不会。因为作为一名合格的飞行员，我们需要对自己的行为和操作负责，以此来保证飞行安全。监管是一个提醒我们专注于自己责任的好方法。"
+    },
+    {
+      "id": "opi-fzy-164817",
+      "taskTitle": "4.驾驶舱内设备-24",
+      "audioText": "Can the HUD be used to lower the landing minimum?",
+      "audioTextZh": "HUD可以用来降低着陆的最小值吗？",
+      "studyTier": 1,
+      "referenceText": "HUD can make the aircraft take off in low visibility, and reduce the decision altitude of the aircraft when landing.",
+      "referenceTextZh": "可以使飞机在低能见度下起飞，在飞机着陆时，可以降低飞机的决断高度。"
+    },
+    {
+      "id": "opi-fzy-164818",
+      "taskTitle": "4.驾驶舱内设备-25",
+      "audioText": "Besides HUD, do you know any other minimum equipment landing facilities?",
+      "audioTextZh": "除了HUD，你还知道其他别的最小着陆设备吗？",
+      "studyTier": 1,
+      "referenceText": "Well, sorry, I am still a student pilot now, I am not familiar with this question, but in the future, I hope I can be a qualified pilot and have more knowledge to answer this question.",
+      "referenceTextZh": "不好意思，我现在还是一个飞行学员，我对这个问题还不是很熟悉，但是在将来，我希望自己可以做一名合格的飞行员，然后有更多的知识储备来回答这个问题。"
+    },
+    {
+      "id": "opi-fzy-209191",
+      "taskTitle": "4.驾驶舱内设备-26",
+      "audioText": "Can you name some emergency equipment in your cockpit?",
+      "audioTextZh": "你能说出飞机驾驶舱里的应急设备吗？",
+      "studyTier": 1,
+      "referenceText": "We have a lot of emergency equipment in the cockpit, such as portable oxygen bottles, first aid kits, fire extinguishers and so on.",
+      "referenceTextZh": "我们的驾驶舱里有很多应急设备，譬如说手提氧气瓶、急救箱、灭火瓶等。"
+    }
+  ],
+  "categoryId": "opi-category-06"
+}

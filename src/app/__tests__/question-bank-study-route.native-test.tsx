@@ -23,6 +23,7 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('@/features/question-bank/hooks/useQuestionBank', () => ({ useQuestionBank: () => mockBankState }));
 jest.mock('@/features/question-bank/hooks/useQuestionBankTopic.native', () => ({ useQuestionBankTopic: () => mockTopicState }));
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ studyScope: 'selected' }) }));
 jest.mock('@/features/question-bank/components/QuestionBankStudyScreen', () => ({
   QuestionBankStudyScreen: () => {
     const { View } = jest.requireActual<typeof import('react-native')>('react-native');
@@ -134,6 +135,24 @@ describe('Native study route recovery', () => {
     mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('原题不可用')).toBeTruthy();
+    expect(screen.queryByText('查看会员方案')).toBeNull();
+  });
+
+  it('does not suggest paying for an excluded protected topic', async () => {
+    mockBankState = { status: 'ready', data: { ...dataset, categories: [{ ...dataset.categories[0], topics: [] }] }, source: 'remote', retry: mockBankRetry };
+    mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
+    const screen = await render(<Page />);
+    expect(screen.getByText('不在当前学习范围')).toBeTruthy();
+    expect(screen.queryByText('查看会员方案')).toBeNull();
+  });
+
+  it('uses public scope identities when an excluded card belongs to a protected topic', async () => {
+    mockParams.cardId = 'outside';
+    const indexed = { ...topic, scopeCardIds: { all: ['card', 'outside'], selected: ['card'], crash: ['card'] } };
+    mockBankState = { status: 'ready', data: { ...dataset, categories: [{ ...dataset.categories[0], topics: [indexed] }] }, source: 'remote', retry: mockBankRetry };
+    mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
+    const screen = await render(<Page />);
+    expect(screen.getByText('不在当前学习范围')).toBeTruthy();
     expect(screen.queryByText('查看会员方案')).toBeNull();
   });
 

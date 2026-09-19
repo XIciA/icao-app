@@ -1,5 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import type { ReactNode } from 'react';
+import { normalizeStudyScope } from '@icao/contracts';
+import { useProfile } from '@/features/account/profile-store.native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
@@ -13,6 +15,7 @@ import type { QuestionBankId } from '@/features/question-bank/types';
 
 export default function NativeQuestionBankStudyRoute() {
   const router = useRouter();
+  const scope = normalizeStudyScope(useProfile().studyScope);
   const { bankId, categoryId, topicId, cardId, returnTo } = useLocalSearchParams<{
     bankId: QuestionBankId;
     categoryId: string;
@@ -51,7 +54,11 @@ export default function NativeQuestionBankStudyRoute() {
     return stateScreen(<CenteredState actionLabel={returnLabel} description="原题内容已更新或不可用，请返回后选择其他内容。" icon={BookX}
       onAction={returnToSource} title="原题不可用" />);
   }
-  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (!category
+  // Directory IDs are public even for protected questions. Scope exclusion is
+  // therefore knowable before a member-only topic request returns its text.
+  const outsideCatalogScope = cardId && catalogTopic?.scopeCardIds
+    && !catalogTopic.scopeCardIds[scope].includes(cardId);
+  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (!catalogTopic || outsideCatalogScope
     || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {

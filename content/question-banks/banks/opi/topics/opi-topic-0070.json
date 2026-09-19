@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0070",
   "name": "机上炸弹与可疑物品",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "No, not automatically. The captain should follow the bomb-threat checklist and coordinate with ATC and airport security. If possible, the aircraft should be moved away from terminals and other aircraft. Whether passengers disembark normally or evacuate should depend on the credibility of the threat and the advice of security personnel, because an uncoordinated response may cause panic and increase the risk.",
       "referenceTextZh": "不能一律立即允许旅客下机。机长应执行炸弹威胁检查单，并与空中交通管制和机场安保部门协调。如果条件允许，应将飞机移离航站楼和其他飞机。旅客正常下机还是紧急撤离，应根据威胁可信度和安保人员意见决定，因为未经协调的响应可能引起恐慌并增大风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

@@ -19,6 +19,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / 'content/question-banks'
+REDRAW_MANIFEST = ROOT / 'docs/records/workstreams/question-bank-study-scopes-20260920/image-redraws.json'
+SOURCE_CORRECTIONS = ROOT / 'docs/records/workstreams/question-bank-study-scopes-20260920/source-text-corrections.json'
+OPI_CRASH_SELECTION = ROOT / 'docs/records/workstreams/question-bank-study-scopes-20260920/opi-crash-selection.json'
 REMOVED = {'listening-main-927', 'listening-main-779', 'listening-main-981', 'listening-main-077'}
 REMOVED_SOURCE_EXERCISES = {116599}  # Same Hawaii/large-bang question, rewritten transcript.
 CRASH_REVIEW_EXCLUSIONS = {
@@ -86,6 +89,19 @@ def write(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+
+
+def canonical_snapshot():
+    """Bind a proposal to the editable baseline; never reapply to its own output."""
+    files = [CONTENT / 'registry.json', CONTENT / 'resources/manifest.source.json']
+    for bank_id in read(CONTENT / 'registry.json')['bankIds']:
+        base = CONTENT / 'banks' / bank_id
+        files.append(base / 'bank.json')
+        for category_id in read(base / 'bank.json')['categoryIds']:
+            category_path = base / 'categories' / (category_id + '.json')
+            files.append(category_path)
+            files.extend(base / 'topics' / (topic_id + '.json') for topic_id in read(category_path)['topicIds'])
+    return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest() for path in files}
 
 
 def source_coverage_errors(source):
@@ -249,10 +265,14 @@ class Merge:
         self.by_bank = {bank['id']: bank for bank in self.banks}
         self.resources = read(CONTENT / 'resources/manifest.source.json')
         self.report = {'merged': [], 'added': [], 'removed': [], 'warnings': [], 'sources': [], 'classification': []}
+        self.report['baselineFiles'] = canonical_snapshot()
         self.media = {}
         self.media_files = {}
         self.aliases = {}
         self.provenance = {}
+        self.text_corrections = read(SOURCE_CORRECTIONS)['corrections'] if SOURCE_CORRECTIONS.exists() else []
+        self.redraws = {url: entry for entry in read(REDRAW_MANIFEST)['images']
+                       for url in entry.get('sourceUrls', [entry['sourceUrl']])} if REDRAW_MANIFEST.exists() else {}
         self.baseline = copy.deepcopy(self.banks)
         contract = (ROOT / 'packages/contracts/src/index.ts').read_text()
         self.free_ids = set(re.findall(r"'(?:listening-main-\d+|story-wing-\d+)'", contract))
@@ -294,6 +314,30 @@ class Merge:
         key = (bank_id, url, kind)
         if key in self.media:
             return self.media[key]
+        if kind == 'image':
+            redraw = self.redraws.get(url)
+            if redraw:
+                local = (ROOT / redraw['path']).resolve()
+                asset_root = (CONTENT / 'resources/files').resolve()
+                if not local.is_relative_to(asset_root) or not redraw.get('reviewed'):
+                    raise ValueError('Unreviewed or invalid redrawn image')
+                body = local.read_bytes()
+                digest = hashlib.sha256(body).hexdigest()
+                if digest != redraw['sha256'] or local.suffix not in ('.png', '.jpg'):
+                    raise ValueError('Redrawn image changed after visual review')
+                relative_path = str(local.relative_to(asset_root))
+                public_path = '/question-bank-assets/' + relative_path
+                record = {'objectKey': 'v1/' + relative_path, 'bankId': bank_id, 'sourceRelativePath': relative_path,
+                          'publicPath': public_path, 'sizeBytes': len(body), 'mimeType': 'image/png' if local.suffix == '.png' else 'image/jpeg',
+                          'checksum': digest, 'status': 'ready'}
+                if not any(item['publicPath'] == public_path for item in self.resources['files']):
+                    self.resources['files'].append(record)
+                self.media[key] = public_path
+                self.report.setdefault('redrawnImages', []).append({'sourceUrl': url, 'publicPath': public_path, 'checksum': digest})
+                return public_path
+            # Original third-party pictures can remain local references only.
+            # A proposal may show a placeholder source, but never be publishable.
+            self.report['warnings'].append({'kind': 'image_redraw_required', 'url': url})
         suffix = '.mp3' if kind == 'audio' else ('.png' if '.png' in url.lower() else '.jpg')
         identity = hashlib.sha256(url.encode()).hexdigest()[:20]
         source_path = f'{"audio" if kind == "audio" else "images"}/{bank_id}/fzy/{identity}{suffix}'
@@ -341,11 +385,24 @@ class Merge:
             card['choicesZh'] = [text(item.get('translate')) for item in choice['options']]
             labels = [item['index'] for item in choice['options']]
             card['correctChoiceIndex'] = labels.index(choice['answer'])
-            card['referenceText'] = f'正确答案：{choice["answer"]}. {card["choices"][card["correctChoiceIndex"]]}'
+            # The app labels options by their array position. Source labels may
+            # arrive in B,C,D,A order and must not leak into the displayed answer.
+            display_label = chr(ord('A') + card['correctChoiceIndex'])
+            card['referenceText'] = f'正确答案：{display_label}. {card["choices"][card["correctChoiceIndex"]]}'
         if bank_id != 'opi':
             card['audio'] = self.resource(bank_id, stem.get('audios'))
         if not card['audioText'] or not card['audioTextZh']:
             self.report['warnings'].append({'kind': 'missing_text', 'id': card['id']})
+        for correction in self.text_corrections:
+            if correction['sourceExerciseId'] != question['exercise_id']:
+                continue
+            field = correction['field']
+            if card.get(field, '') != correction['before']:
+                raise ValueError(f'Source wording changed before reviewed correction: {card["id"]}/{field}')
+            card[field] = correction['after']
+            self.report.setdefault('sourceTextCorrections', []).append(correction)
+        if bank_id == 'listening' and any(not value.strip() for value in card['choicesZh']):
+            self.report['warnings'].append({'kind': 'missing_choice_translation', 'id': card['id']})
         return card
 
     def category(self, bank, category_id, name):
@@ -381,7 +438,9 @@ class Merge:
                         continue
                 if url not in images:
                     images.append(url)
-        return [self.resource('opi', url, 'image') for url in images]
+        # Several source URLs can be alternate encodings of the same picture.
+        # Reviewed mappings may point them all to one canonical illustration.
+        return list(dict.fromkeys(self.resource('opi', url, 'image') for url in images))
 
     def add_section(self, section):
         bank = self.by_bank[section['module']]
@@ -426,7 +485,10 @@ class Merge:
                 for old, new in zip(duplicate['cards'], cards):
                     new['id'] = old['id']
                 topic['id'] = duplicate['id']
-                duplicate.update(topic)
+                # Preserve the required version when a later ordinary-bank
+                # copy has the same scenario but different reference wording.
+                if not (duplicate.get('studyTier', 0) >= 1 and tier == 0):
+                    duplicate.update(topic)
                 self.report['merged'].append({'bank': bank['id'], 'section': section_id, 'topicId': duplicate['id'], 'reason': 'complete-ordered-scene'})
             else:
                 category['topics'].append(topic)
@@ -521,7 +583,15 @@ class Merge:
             for candidates, count in groups:
                 if len(candidates) < count:
                     self.report['warnings'].append({'kind': 'crash_pool_incomplete', 'bank': bank['id'], 'available': len(candidates), 'required': count})
-                for identity, value, group, item in balanced_foundations(candidates, count):
+                if bank['id'] == 'opi':
+                    chosen_ids = [card_id for group in read(OPI_CRASH_SELECTION)['groups'] for card_id in group['cardIds']]
+                    by_id = {entry[0]: entry for entry in candidates}
+                    if len(chosen_ids) != count or len(set(chosen_ids)) != count or not set(chosen_ids).issubset(by_id):
+                        raise ValueError('Reviewed OPI crash selection must contain exactly 60 distinct curated questions')
+                    chosen = [by_id[card_id] for card_id in chosen_ids]
+                else:
+                    chosen = balanced_foundations(candidates, count)
+                for identity, value, group, item in chosen:
                     item['studyTier'] = 2
                     crash.append({'bank': bank['id'], 'id': identity, 'group': group, 'themes': foundation_tags(value), 'text': value})
             if bank['id'] == 'opi':
@@ -552,6 +622,9 @@ class Merge:
         write(self.output / 'media-files.json', self.media_files)
         write(self.output / 'merge-report.json', self.report)
         write(self.output / 'id-alias-review.json', self.aliases)
+        self.report['artifactChecksums'] = {name: hashlib.sha256((self.output / name).read_bytes()).hexdigest()
+                                           for name in ['proposal.json', 'resources.json', 'media-files.json', 'id-alias-review.json', 'crash-selection-review.json']}
+        write(self.output / 'merge-report.json', self.report)
 
 
 def main():

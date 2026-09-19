@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0144",
   "name": "CCA 985 积冰/防冰 烟雾 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉塔台，CCA 985，烟雾无法控制，请求着陆时提供应急服务。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

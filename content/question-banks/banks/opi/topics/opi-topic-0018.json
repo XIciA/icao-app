@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0018",
   "name": "燃油",
   "declaredCardCount": 32,
@@ -260,5 +259,6 @@
       "referenceText": "Fuel can become contaminated because of inadequate preflight inspection, poor maintenance, or an improperly filtered fuel supply. Water, sand, or other debris in the fuel tanks can also contaminate it.",
       "referenceTextZh": "飞行前检查不充分、维修不当或燃油供应过滤不合格，都可能造成燃油污染。油箱中的水、沙粒或其他碎片也会污染燃油。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

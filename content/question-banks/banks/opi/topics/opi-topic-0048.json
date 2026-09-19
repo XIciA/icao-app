@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0048",
   "name": "起飞着陆性能",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "At my flight school, the operational tailwind limit for the DA-40 is 10 knots for both takeoff and landing. I must still calculate the required runway distance because a tailwind increases the ground roll. Runway condition, available distance, or another school restriction may require a lower limit.",
       "referenceTextZh": "在我的航校，DA-40 起飞和着陆的运行顺风限制都是 10 节。我仍须计算所需跑道距离，因为顺风会增加地面滑跑距离。跑道状况、可用距离或航校其他限制可能要求采用更低限值。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

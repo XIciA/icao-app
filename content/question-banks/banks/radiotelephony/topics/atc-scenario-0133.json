@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0133",
   "name": "CES 565 缝翼问题 积冰/防冰 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "Runway 36R，保持当前航向，下降至 900 米，CES 565。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

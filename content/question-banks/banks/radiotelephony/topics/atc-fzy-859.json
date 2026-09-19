@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-859",
+  "name": "JAL220 [传话，风挡破裂]",
+  "declaredCardCount": 15,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153110",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-1",
+      "audioText": "Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.",
+      "audioTextZh": "你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。",
+      "referenceText": "Panpan Relay, Panpan Relay, Panpan Relay, Wuhan Control, JAL220, cruising level 10400m, over OBLIK, we received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, request emergency assistance.",
+      "referenceTextZh": "Panpan Panpan Panpan，武汉区调，日航220，在10400米巡航，飞过OBLIK，我们收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，申请紧急援助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d26cb68f6e44de22fe26.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153111",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-2",
+      "audioText": "JAL220, roger, thanks, advise CCA105 to maintain heading and altitude.",
+      "audioTextZh": "日航220，收到，谢谢，告知国航105保持航向和高度。",
+      "referenceText": "Roger, advise CCA105 to maintain heading and altitude, JAL220",
+      "referenceTextZh": "收到，告知国航105保持航向和高度，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2c95b8d2a55fde7b1336.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153112",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-3",
+      "audioText": "JAL220, descend to and maintain 9200m, adjust speed less than 260 knots.",
+      "audioTextZh": "日航220，下9200米保持，调整速度不超过260节。",
+      "referenceText": "Descend to and maintain 9200m, adjust speed less than 260 knots, JAL220.",
+      "referenceTextZh": "下9200米保持，调整速度不超过260节，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e4ef0c4644a6788b68bc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153123",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-4",
+      "audioText": "JAL220, maintain present heading and descend to 5400m.",
+      "audioTextZh": "日航220，保持当前航向，下到5400米。",
+      "referenceText": "Maintain present heading and descend to 5400m, JAL220.",
+      "referenceTextZh": "保持当前航向，下到5400米，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bfe2d67f35e24f19f96d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153124",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-5",
+      "audioText": "During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.",
+      "audioTextZh": "在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Control, JAL220, we encountered bird strike during the descent. The windshield was broken. Oxygen masks fell down in cabin, Request radar vectors and priority landing.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉区调，日航220，我们在下降过程中遭遇鸟击。风挡玻璃破裂。氧气面罩脱落，请求雷达引导，优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b998d71ef489373125e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153125",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-6",
+      "audioText": "JAL220, roger Mayday, descend to 5100m and contact Wuhan Approach on 125.5.",
+      "audioTextZh": "日航220，收到Mayday，下降到5100米，联系武汉进近125.5。",
+      "referenceText": "Descend to 5100m, contact Wuhan Approach on 125.5, JAL220.",
+      "referenceTextZh": "下降到5100米，联系武汉进近125.5，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/594abcbc45010b3c358a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153126",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-7",
+      "audioText": "Now you are 5 miles south of LKO, state your situation to Wuhan Approach and ask for ILS approach and priority landing.",
+      "audioTextZh": "现在，你在LKO以南5海里，向武汉进近陈述你的情况，请求ILS进近，优先着陆。",
+      "referenceText": "Wuhan Approach, JAL220, 5 miles south of LKO, we encountered bird strike and our windshield was cracked, request ILS approach and priority landing.",
+      "referenceTextZh": "武汉进近，日航220，在LKO以南5海里，我们遭遇鸟击，风挡玻璃破裂，请求ILS进近，优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/080df06ffc12153d724e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153127",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-8",
+      "audioText": "JAL220, Wuhan Approach, turn right heading 240, intercept LKO 030 radial inbound, descend to 3300m.",
+      "audioTextZh": "日航220，武汉进近，右转航向240，切LKO 030 向台径向线，下到3300米。",
+      "referenceText": "Right heading 240, intercept LKO 030 radial inbound, descend to 3300m, JAL220.",
+      "referenceTextZh": "右转航向240，正切LKO 030 向台，下到3300米，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fbae24d541725e210d30.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153128",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-9",
+      "audioText": "JAL220, when able, state persons on board.\nTell the controller you the persons on board is 188, including 4 children.",
+      "audioTextZh": "日航220，可以的时候，报机上人数。\n告诉管制员，机上人数为188，包括4名儿童。",
+      "referenceText": "Wuhan Approach, JAL220, the POB is 188, 4 children included.",
+      "referenceTextZh": "武汉进近，日航220，机上人数为188，包括4名儿童。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f6faa8dbb96fa57a957f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153129",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-10",
+      "audioText": "JAL220, roger, turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L.",
+      "audioTextZh": "日航220，收到，右转直飞DA，下到2100米，修正海压1015，预计跑道36左。",
+      "referenceText": "Turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L. JAL220.",
+      "referenceTextZh": "右转直飞DA，下到2100米，修正海压1015，预计跑道36左，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4931eec3674dcf9b1f5a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153130",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-11",
+      "audioText": "Because of strong tailwind, you want to change to runway 36R.",
+      "audioTextZh": "由于强顺风，你想变更到跑道36右。",
+      "referenceText": "Wuhan Approach, JAL220, request change to runway 36R due strong tailwind.",
+      "referenceTextZh": "武汉进近，日航220，由于强顺风，请求变更到跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c234f662f9a4d84360d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153131",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-12",
+      "audioText": "JAL220, change to runway 36R is approved, maintain 600m, turn right to WHA, you are number one.",
+      "audioTextZh": "日航220，同意变更到跑道36右，在600米保持，右转飞至WHA，你是第一个。",
+      "referenceText": "Change to runway 36R is approved, maintain 600m, turn right to WHA, number one for landing, JAL220.",
+      "referenceTextZh": "同意变更到跑道36右，在600米保持，右转飞至WHA，第一个落地，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8856695353d0dd1a10d9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153132",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-13",
+      "audioText": "After landing, you find your APU has failed, tell this situation to Wuhan Tower and ask for Ground Power Unit.",
+      "audioTextZh": "落地后，你发现你的APU失效了，将情况告知武汉塔台，请求GPU。",
+      "referenceText": "Wuhan Tower, JAL220, request ground power unit due APU failure.",
+      "referenceTextZh": "武汉塔台，由于APU失效，请求GPU。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/47a349d829e0c9faea65.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153133",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-14",
+      "audioText": "JAL220, Wuhan Tower, roger, do you need any other services?\nTell the controller you need a tow truck to tow you back to the apron.",
+      "audioTextZh": "日航220，武汉塔台，收到，你还需要别的服务吗？\n告知管制员，你需要一辆拖车将你拖回机坪。",
+      "referenceText": "Affirm, request a tow truck, JAL220.",
+      "referenceTextZh": "是的，请求一辆拖车，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f2c13f11fc518e669ff.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153134",
+      "taskTitle": "39-JAL220 [传话，风挡破裂]-15",
+      "audioText": "JAL220, roger, do you need medical help at the ramp?\nTell the controller you need the medical help at the ramp.",
+      "audioTextZh": "日航220，收到，到达机坪需要医疗救援吗？\n[告诉管制员，在机坪你需要医疗救援。]",
+      "referenceText": "Affirm, request medical help at the ramp, JAL220.",
+      "referenceTextZh": "是的，在机坪上请求医疗救援，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b7cd46d8cff7cfb755f2.mp3"
+    }
+  ],
+  "categoryId": "atc-jal"
+}

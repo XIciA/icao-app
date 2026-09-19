@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-643",
+  "name": "UAL895 autothrottle problem, etc.",
+  "declaredCardCount": 18,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111803",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-1",
+      "audioText": "[Your call sign is UAL895, destination Beijing, approaching POLHO, estimate POLHO 30, level 12100m, TMR 50, next TZH, now contact Beijing Control and request clearance to cross the national boundary line.]",
+      "audioTextZh": "你的呼号是UAL（美联航）895，目的地北京，正在接近POLHO，预计POLHO 30分，高度12100米，TMR 50分，下个报告点TZH，现在联系北京区调并请求穿越国境线许可。",
+      "referenceText": "Beijing Control, UAL895, 12100m maintaining, estimate POLHO 30, TMR 50, next TZH, request clearance for entry.",
+      "referenceTextZh": "北京区调，美联航895，12100米保持，预计POLHO 30分，TMR 50分，下个报告点TZH，请求进入许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/434e59ae10ac3b915772.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111804",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-2",
+      "audioText": "Station calling Beijing, confirm call sign.[Say call sign and squawk number 2456.]",
+      "audioTextZh": "哪个呼叫北京，确认呼号。【告知你的呼号和应答机编码2456。】",
+      "referenceText": "Beijing Control, UAL895, squawk 2456.",
+      "referenceTextZh": "北京区调，美联航895，应答机2456。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f49180321f3656ffd22a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111805",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-3",
+      "audioText": "UAL895, Beijing roger, hold short of the national boundary line, we show you do not have permission to enter the country. Standby one.",
+      "audioTextZh": "美联航895，北京收到，国境线外等待，这里显示你没有入境许可，稍等。",
+      "referenceText": "Hold short of the national boundary line, UAL895.",
+      "referenceTextZh": "国境线外等待，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b0cf26f1e9edddb8d53.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111806",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-4",
+      "audioText": "[Now you are over POLHO at 30, report Beijing Control for further advice.]",
+      "audioTextZh": "【过POLHO 30分，报告北京区调，请求进一步指令。】",
+      "referenceText": "Beijing Control, UAL895, over POLHO 30, advise instruction.",
+      "referenceTextZh": "北京区调，美联航895，过POLHO 30分，请求指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b484552ec95ecc1bb5f2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111807",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-5",
+      "audioText": "UAL895, roger, right orbit due Air Force restriction.",
+      "audioTextZh": "美联航895，收到，由于空军限制区右转机动。",
+      "referenceText": "Right Orbit, UAL895.",
+      "referenceTextZh": "右转机动，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/38f520a8fdd46352ba0d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111808",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-6",
+      "audioText": "UAL895, Beijing Control, cleared for entry, back on course G218, radar contact.",
+      "audioTextZh": "美联航895，北京区调，准许入境，回到G218航路，雷达识别。",
+      "referenceText": "Cleared for entry, back on course G218, UAL895.",
+      "referenceTextZh": "准许入境，回到G218航路，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7ad8a4a31ba94fcb1a5d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111809",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-7",
+      "audioText": "[5 minutes later.][You have some autothrottle system problems, you’d like to descend to 8900m to complete some checklists.]",
+      "audioTextZh": "【5分钟后】【飞机自动油门系统出现故障，你想下降到8900米完成检查单。】",
+      "referenceText": "(Panpan Panpan Panpan) Beijing Control, UAL895, autothrottle system failure, request descent to 8900m for check.",
+      "referenceTextZh": "(Panpan Panpan Panpan) 北京区调，美联航895，自动油门系统故障，请求下降到8900米检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4bf7e405884bb1cf048.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111810",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-8",
+      "audioText": "UAL895, roger, descend to 8900m. [5 minutes later.]UAL895, do you require any other assistance?[Now you have finished checklists and can fly normally.]",
+      "audioTextZh": "美联航895，收到，下降到8900米。【5分钟后】美联航895，你需要其它援助吗？【你已完成检查单，现在可以正常飞行。】",
+      "referenceText": "Beijing Control, UAL895, checklists complete, everything is normal now.",
+      "referenceTextZh": "北京区调，美联航895，完成检查单，现在一切正常。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/671fe3ed8f852bedd2bc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111811",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-9",
+      "audioText": "UAL895, roger, descend to and maintain 4500m by KM.",
+      "audioTextZh": "美联航895，收到，下降保持4500米过KM。",
+      "referenceText": "Descend to and maintain 4500m by KM, UAL895.",
+      "referenceTextZh": "下降保持4500米过KM，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f9c6c9aa12a340a2142.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111812",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-10",
+      "audioText": "UAL895, Beijing is snowing heavily, runway unserviceable for one hour due to lack of snow removal equipment, say intention.[Request continue approach, you can hold for one hour with enough fuel.]",
+      "audioTextZh": "美联航895，北京有大雪，由于缺少除雪设备跑道关闭1小时，说明意图。【请求继续进近，燃料足够飞行1小时。】",
+      "referenceText": "Request continue approach, we can hold for one hour, UAL895.",
+      "referenceTextZh": "请求继续进近，我们可以继续飞行1小时，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bc5d5e631e023f73ea72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111813",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-11",
+      "audioText": "UAL895, roger, direct to HUR for hold, contact Beijing Approach on 129.0.",
+      "audioTextZh": "美联航895，收到，直飞HUR等待，联系北京进近129.0。",
+      "referenceText": "Direct to HUR for hold, Approach 129.0, UAL895.",
+      "referenceTextZh": "直飞HUR等待，北京进近129.0，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/016fcc7a0e6cc24e0559.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111814",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-12",
+      "audioText": "[Establish initial contact with Beijing Approach, you are 4500m maintaining and flying direct to HUR.]",
+      "audioTextZh": "【与北京进近建立初次联系，4500米保持，正在直飞HUR。】",
+      "referenceText": "Beijing Approach, UAL895, 4500m maintaining, direct to HUR.",
+      "referenceTextZh": "北京进近，美联航895，4500米保持，直飞HUR。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a096c885e9a9dc1bd421.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111815",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-13",
+      "audioText": "UAL895, Beijing Approach, direct to HUR join standard holding procedure as published.",
+      "audioTextZh": "美联航895，北京进近，直飞HUR加入标准等待。",
+      "referenceText": "Direct to HUR join standard holding procedure as published, UAL895.",
+      "referenceTextZh": "直飞HUR加入标准等待，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/05406f188a20426cbf69.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111816",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-14",
+      "audioText": "[30 minutes later.]UAL895, Beijing Approach, no significant weather change within two hours, report endurance.[You have only one hour fuel endurance.]",
+      "audioTextZh": "【30分钟后】美联航895，北京进近，2小时内无明显天气变化，报告续航时间。【你的续航时间只有1小时。】",
+      "referenceText": "Endurance 60 minutes, UAL895.",
+      "referenceTextZh": "续航时间60分钟，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1197d0b6d334231fd887.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111817",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-15",
+      "audioText": "UAL895, confirm alternate.[Your alternate is Tianjin.]",
+      "audioTextZh": "美联航895，证实备降场。【你的备降机场在天津。】",
+      "referenceText": "Alternate Tianjin, UAL895.",
+      "referenceTextZh": "备降机场天津，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/86fc96b307f90910edc7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111818",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-16",
+      "audioText": "UAL895, there is frost fog in Tianjin, and visibility is too low.[Request diversion to Hohhot.]",
+      "audioTextZh": "美联航895，天津有冻雾，可见度很差。【请求备降呼和浩特。】",
+      "referenceText": "Request diversion to Hohhot.",
+      "referenceTextZh": "请求备降呼和浩特，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/934df086ed1270fb5446.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111819",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-17",
+      "audioText": "UAL895, ice on runway in Hohhot, suggest Dalian or Shenyang.[After contact with your dispatcher, you decide to divert to Dalian. Tell the controller.]",
+      "audioTextZh": "美联航895，呼和跑道有冰，建议大连或沈阳。【与签派联系后，你决定备降大连，告知管制员。】",
+      "referenceText": "Beijing Approach, UAL895, request diversion to Dalian.",
+      "referenceTextZh": "北京进近，美联航895，请求备降大连。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9489fc1befca24ec6ac4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111820",
+      "taskTitle": "15. UAL895 autothrottle problem, etc.-18",
+      "audioText": "UAL895, Beijing roger, direct to LADIX, climb to 6300m, contact Beijing Control on 120.35.",
+      "audioTextZh": "美联航895，收到，直飞LADIX，上升到6300米，联系北京区调120.35。",
+      "referenceText": "Direct to LADIX, climb to 6300m, 120.35, UAL895.",
+      "referenceTextZh": "直飞LADIX，上升到6300米，120.35，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9d563a7a03dbd8bc690.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

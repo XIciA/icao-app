@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0135",
   "name": "EBT",
   "declaredCardCount": 10,
@@ -84,5 +83,6 @@
       "referenceText": "The main purpose of EBT is to improve pilot competencies and flight safety through training based on evidence. It develops skills such as situational awareness, decision-making, communication, coordination, and emergency response for complex operations. It also aims to make training more relevant and effective.",
       "referenceTextZh": "循证训练的主要目的是通过基于证据的训练，提高飞行员胜任能力和飞行安全。它针对复杂运行培养情景意识、决策、沟通、协作和应急反应等技能，同时也致力于提高训练的针对性和有效性。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

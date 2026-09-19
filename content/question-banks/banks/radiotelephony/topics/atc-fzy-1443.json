@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1443",
+  "name": "CES769 [乘客争吵，客舱温度高]",
+  "declaredCardCount": 15,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-209471",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-1",
+      "audioText": "B: [Your call sign is CES769, a flight from Wuhan to Amsterdam. You are parking at Stand 223. You have received information C, request ATC clearance.]",
+      "audioTextZh": "【你的呼号是东方769，一架从武汉飞往阿姆斯特丹的飞机。你现在停在223号停机位，你已经收到通播C，请求管制放行许可。】",
+      "referenceText": "Wuhan Delivery, CES769, stand 223, information C, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "武汉放行，东方769，223号停机位，通播C，请求飞往阿姆斯特丹的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/010d3836ce368b3dbde8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209472",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-2",
+      "audioText": "C: CES769, Wuhan Delivery, cleared to Amsterdam via flight planned route, departure runway 36, initial climb to 1800m, HZ-01 departure, cruising level 11000m, squawk 6127.",
+      "audioTextZh": "东方769，武汉放行，可以经由计划航路飞往阿姆斯特丹，离场跑道36，初始爬升至1800米，HZ-01离场，巡航高度11000米，应答机6127。",
+      "referenceText": "Cleared to Amsterdam via flight planned route, departure runway 36, initial climb to 1800m, HZ01 departure, cruising level 11000m, squawk 6127, CES769.",
+      "referenceTextZh": "可以经由计划航路飞往阿姆斯特丹，离场跑道36，初始爬升至1800米，HZ-01离场，巡航高度11000米，应答机6127，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ef1e853746bccbbb425.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209473",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-3",
+      "audioText": "B: [Two passengers are quarreling loudly in the cabin, and the air security are needed to remove the passengers away, report it to Wuhan Delivery, and request to delay the flight.]",
+      "audioTextZh": "【两名乘客在客舱大吵起来，需要安保人员将他们送下飞机。将情况报告给武汉放行，请求推迟航班。】",
+      "referenceText": "Wuhan Delivery, CES769, two passengers are quarreling loudly in the cabin, we need air security to remove the passengers, and request to delay the flight.",
+      "referenceTextZh": "武汉放行，东方769，两名乘客在客舱大吵起来，我们需要安保人员将他们送下飞机，请求推迟航班。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/db629936cd0a9251d062.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209474",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-4",
+      "audioText": "C: CES769, report when ready.",
+      "audioTextZh": "东方769，准备好了叫。",
+      "referenceText": "Roger, wilco, CES769.",
+      "referenceTextZh": "收到，照办，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b48a7a8ddba152863e1f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209475",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-5",
+      "audioText": "B: [Now the passengers have been removed by the airport security. You are ready to copy ATC clearance.]",
+      "audioTextZh": "【现在乘客已经被安保人员送下飞机，你准备好抄收放行许可了。】",
+      "referenceText": "Wuhan Delivery, CES769, we are fully ready to copy ATC clearance.",
+      "referenceTextZh": "武汉放行，东方769，我们准备好抄收管制许可了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bdf18a60e5cc0f6cedd3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209476",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-6",
+      "audioText": "C: CES769, re-cleared to Amsterdam, initial climb to 1200m, HZ-02 departure, squawk 5101, the rest unchanged.",
+      "audioTextZh": "东方769，重新许可至阿姆斯特丹，初始爬升至1200米，HZ-02离场，应答机5101，其余不变。",
+      "referenceText": "Re-cleared to Amsterdam, initial climb 1200m, HZ-02 departure, squawk 5101, the rest unchanged, CES769.",
+      "referenceTextZh": "重新许可至阿姆斯特丹，初始爬升至1200米，HZ-02离场，应答机5101，其余不变，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c062cff34f6ed323216f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209477",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-7",
+      "audioText": "B: [Now you are holding at holding point runway 36, contact Wuhan Tower.]",
+      "audioTextZh": "【你现在在跑道36的外等待点等待，联系武汉塔台。】",
+      "referenceText": "Wuhan Tower, CES769, holding at holding point of runway 36.",
+      "referenceTextZh": "武汉塔台，东方769，在跑道36的外等待点等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a8c5244fec009a144a08.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209478",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-8",
+      "audioText": "C: CES769, expedite cross runway 36, taxi via taxiway Z5, A4 and A.",
+      "audioTextZh": "东方769，加速穿越跑道36，经由滑行道Z5，A4和A滑行。",
+      "referenceText": "Expedite cross runway 36, taxi via taxiway Z5, A4 and A, CES769.",
+      "referenceTextZh": "加速穿越跑道36，经由滑行道Z5，A4和A滑行，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9203c60926e5799d66b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209479",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-9",
+      "audioText": "B: [Now you are ready for departure.]",
+      "audioTextZh": "【现在你准备好离场了。】",
+      "referenceText": "Wuhan Tower, CES769, ready for departure.",
+      "referenceTextZh": "武汉塔台，东方769，准备好离场了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0acdae53aa93a4f4e68d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209480",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-10",
+      "audioText": "C: CES769, line up and cleared for immediate takeoff.",
+      "audioTextZh": "东方769，上跑道，可以立即起飞。",
+      "referenceText": "Line up and cleared for immediate takeoff, runway 36, CES769.",
+      "referenceTextZh": "上跑道，可以立即起飞，跑道36，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a7a3411b77d065ac213f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209481",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-11",
+      "audioText": "B: [Now you are airborne, passing 600m for 1200m, contact Wuhan Departure and request further climb.]",
+      "audioTextZh": "【现在你已经离地，正在过600米飞往1200米，联系武汉离场请求进一步爬升。】",
+      "referenceText": "Wuhan Departure, CES769, airborne, passing 600m for 1200m, request further climb.",
+      "referenceTextZh": "武汉离场，东方769，离地了，过600米，飞往1200米，请求进一步爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3578f6f44b973f793105.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209482",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-12",
+      "audioText": "C: CES769, radar contact, climb to 3000m on QNH 1012.",
+      "audioTextZh": "东方769，雷达识别，爬升至3000米，修压1012。",
+      "referenceText": "Climb to 3000m on QNH 1012, CES769.",
+      "referenceTextZh": "爬升至3000米，修压1012，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/14c6205684e71d5cb589.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209483",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-13",
+      "audioText": "B: [During climb, your instrument shows that cabin temperature is too high, report it to the controller and ask to level off to perform the checklist.]",
+      "audioTextZh": "【在爬升过程中，你的仪表显示客舱温度过高，将此报告给管制员，请求平飞并执行检查单。】",
+      "referenceText": "Wuhan Departure, CES769, cabin temperature is too high, request level off to perform the checklist.",
+      "referenceTextZh": "武汉离场，东方769，客舱温度过高，请求平飞并执行检查单。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7df1e485e3b4ce8e8e2e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209484",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-14",
+      "audioText": "C: CES769, climb and maintain 2400m, when able, say your intention.",
+      "audioTextZh": "东方769，上到2400米保持，可以的时候，告知意图。",
+      "referenceText": "Climb and maintain 2400m, wilco, CES769.",
+      "referenceTextZh": "上2400米保持，照办，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/650d457029095f69b1d7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209485",
+      "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-15",
+      "audioText": "B: [After performing the checklist, you decide to dump fuel and return for landing.]",
+      "audioTextZh": "【当执行完检查单，你决定放油并返场着陆。】",
+      "referenceText": "Wuhan Departure, CES769, request dump fuel and return for landing.",
+      "referenceTextZh": "武汉离场，东方769，请求放油并返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3641fb5a412ddb2a683a.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

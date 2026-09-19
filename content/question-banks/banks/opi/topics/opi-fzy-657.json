@@ -1,0 +1,125 @@
+{
+  "id": "opi-fzy-657",
+  "name": "Modern technology",
+  "declaredCardCount": 13,
+  "cards": [
+    {
+      "id": "opi-fzy-118207",
+      "taskTitle": "Modern technology-6",
+      "audioText": "What do you think of online shopping?",
+      "audioTextZh": "你对网上购物有什么看法？",
+      "studyTier": 1,
+      "referenceText": "I think, thanks to the modern technology, now we can buy things online without even going out, and this can save us a lot of time and money.",
+      "referenceTextZh": "我觉得多亏了现代科技，我们不用出门就能在网上买东西，这节省了我们大量的时间和金钱。"
+    },
+    {
+      "id": "opi-fzy-203074",
+      "taskTitle": "Modern technology-2",
+      "audioText": "What do you know about AI?",
+      "audioTextZh": "你知道AI吗？",
+      "studyTier": 1,
+      "referenceText": "AI stands for Artificial Intelligence. A major goal of artificial intelligence research is to make machines capable of performing complex tasks that normally require human intelligence.",
+      "referenceTextZh": "AI指的是人工智能。人工智能研究的一个主要目标是使机器能够胜任一些通常需要人类智能才能完成的复杂工作。"
+    },
+    {
+      "id": "opi-fzy-118208",
+      "taskTitle": "Modern technology-3",
+      "audioText": "What are the advantages and disadvantages of online shopping?",
+      "audioTextZh": "网上购物的优点和缺点是什么？",
+      "studyTier": 0,
+      "referenceText": "There are many advantages of online shopping, for example, we can buy things at home, and the shops available are worldwide and open in 24 hours. This will save us a lot of time and energy. But there are also disadvantages, one thing is that it may cause personal data leak, and sometimes the delivery fees may cost\nmore than the things we purchased. Another thing is that we can't inspect goods before purchase.",
+      "referenceTextZh": "网上购物有很多优点，比如说我们在家里就能买东西，网店遍布世界各地，并且24小时营业，这样节省我们很多时间和精力。但是也有缺点，其中一个就是可能导致我们个人信息泄露，有时候快递费用比我们购买的物品还要贵，还有就是我们不能在购买前检查要购买的商品。"
+    },
+    {
+      "id": "opi-fzy-203075",
+      "taskTitle": "Modern technology-4",
+      "audioText": "Do you think AI will replace pilot?",
+      "audioTextZh": "你认为人工智能会取代飞行员吗？",
+      "studyTier": 1,
+      "referenceText": "No, I don’t think so. Pilots not only need to control the aircraft well, but also need to respond to complex situations timely and make reasonable decisions. These actions cannot be replaced by computers.",
+      "referenceTextZh": "飞行员不仅需要操纵好飞机，更需要对复杂情况及时作出反应，合理作出决策。这些都是计算机无法取代的。"
+    },
+    {
+      "id": "opi-fzy-118209",
+      "taskTitle": "Modern technology-5",
+      "audioText": "Do you know VR and AR? How can they be used in flight?",
+      "audioTextZh": "你了解VR和AR吗？它们如何应用在飞行中呢？",
+      "studyTier": 0,
+      "referenceText": "VR stands for virtual reality, and AR means augment reality. They can be used in the flight training, such as the simulator training.",
+      "referenceTextZh": "VR是虚拟现实，AR是增强现实。它们可应用于飞行训练中，如模拟机训练。"
+    },
+    {
+      "id": "opi-fzy-118210",
+      "taskTitle": "Modern technology-7",
+      "audioText": "Do you think the application of VR and AR technologies can improve the flight safety?",
+      "audioTextZh": "你认为VR和AR技术的应用能够提高飞行安全吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, VR can be used in artificial intelligence, education, training, medicine and many other areas. With the help of AR and VR, people can experience surreal atmospheres indoors as well as outdoors. Virtual reality can be used for flight training and help pilots understand how to control the aircraft especially in emergency situation. While using VR doesn't replace flight time in real flight, it gives student pilots more chances to exercise their maneuverability.",
+      "referenceTextZh": "是的，虚拟现实技术可以广泛应用于人工智能、教育、培训、医疗等其他领域。通过增强现实和虚拟现实技术，人们可以在室内感受到室外的超真实环境。虚拟现实可以应用在飞行培训中，帮助飞行员更好地了解如何操纵飞机，尤其在紧急情况下。虽然增强现实不能够代替实际飞行时间，但是通过它能够让飞行学员更好地练习飞行中的机动性。"
+    },
+    {
+      "id": "opi-fzy-203077",
+      "taskTitle": "Modern technology-8",
+      "audioText": "What do you often do on the Internet?",
+      "audioTextZh": "你通常上网做什么？",
+      "studyTier": 1,
+      "referenceText": "Usually, I use the Internet to search for information, watch movies and read news. Besides, I also play games on the Internet.",
+      "referenceTextZh": "通常，我上网查信息、看电影和看新闻，此外，我也会在网上玩游戏。"
+    },
+    {
+      "id": "opi-fzy-203078",
+      "taskTitle": "Modern technology-10",
+      "audioText": "What is your favorite website?",
+      "audioTextZh": "你最喜欢的网址是哪一个？",
+      "studyTier": 1,
+      "referenceText": "My favorite website is Sina.com. I visit it every day. It provides various information, like the latest world news, important sports events, stories about movie stars.",
+      "referenceTextZh": "我最喜欢的网站是新浪网，我每天都看，这个网站提供不同的信息，比如最近的世界新闻，重要的体育事件，还有电影明星的报道。"
+    },
+    {
+      "id": "opi-fzy-118212",
+      "taskTitle": "Modern technology-11",
+      "audioText": "How often do you surf the Internet?",
+      "audioTextZh": "你多久上一次网？",
+      "studyTier": 0,
+      "referenceText": "Generally, I surf the Internet almost every day. / I don't use it often.",
+      "referenceTextZh": "我几乎每天都上网。/我不太经常上网。"
+    },
+    {
+      "id": "opi-fzy-224153",
+      "taskTitle": "Modern technology-12",
+      "audioText": "Could you briefly describe the progress that China's civil aviation has made over the past decade?",
+      "audioTextZh": "你能简单描述下，中国民航在过去10年间取得了哪些进步吗？",
+      "studyTier": 1,
+      "referenceText": "The development of China's civil aviation over the past 10 years has been rapid. We have independently designed and manufactured the C919 aircraft, built the Daxing Airport, and our international and domestic flight routes have become increasingly complex. Travel by air has become more and more common.",
+      "referenceTextZh": "中国民航在过去10年的发展是飞快的。我们自行设计并制造了C919大飞机，建造了大兴机场，我们的国际、国内航线也日益复杂，乘坐飞机旅行越来越普遍。"
+    },
+    {
+      "id": "opi-fzy-118213",
+      "taskTitle": "Modern technology-13",
+      "audioText": "What do you usually do with your mobile phone/cellphone?",
+      "audioTextZh": "你通常用手机做什么？",
+      "studyTier": 0,
+      "referenceText": "I use my mobile phone every day. I can surf the Internet, make video chat and voice call, listen to music, read e-books, and do online shopping and online payment. I can't live without my mobile phone.",
+      "referenceTextZh": "我每天都要用手机，会用手机上网，视频聊天，语音通话，听音乐，读电子书，而且还需要网上购物，网上支付等，生活中我已经离不开手机了。"
+    },
+    {
+      "id": "opi-fzy-224154",
+      "taskTitle": "Modern technology-14",
+      "audioText": "What new technologies or equipment has China's civil aviation adopted?",
+      "audioTextZh": "中国民航采用了哪些新技术或新设备？",
+      "studyTier": 1,
+      "referenceText": "As far as I know, the Chinese civil aviation industry has adopted many new technologies and equipment to enhance flight safety and reduce the workload of pilots. These include: TCAS, HUD, AR and VR, etc.",
+      "referenceTextZh": "据我所知，中国民航采用了很多新技术和新设备来提升飞行安全，降低飞行员工作载荷，这包括：TCAS、HUD、AR和VR等。"
+    },
+    {
+      "id": "opi-fzy-224155",
+      "taskTitle": "Modern technology-16",
+      "audioText": "How can you deal with the challenges brought by the new technologies or equipment?",
+      "audioTextZh": "您如何应对新科技或新设备所带来的挑战呢？",
+      "studyTier": 1,
+      "referenceText": "As a pilot, first of all, we need to embrace new technologies and equipment with a positive attitude. At the same time, we need to continuously enhance our theoretical learning on the ground. Additionally, we also need to strengthen the training in related simulators. Moreover, we also need to enhance the CRM.",
+      "referenceTextZh": "作为一名飞行员，首先，我们需要以积极的态度迎合新技术和新设备，同时，我们需要不断加强地面理论学习，同时，也需要强化相关模拟机训练，同时，我们也需要加强驾驶舱资源管理。"
+    }
+  ],
+  "categoryId": "opi-category-07"
+}

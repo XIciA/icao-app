@@ -1,0 +1,179 @@
+{
+  "id": "opi-fzy-550",
+  "name": "English Learning",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "opi-fzy-110138",
+      "taskTitle": "English Learning-1",
+      "audioText": "When did you start learning English?",
+      "audioTextZh": "你是什么时候开始学英语的？",
+      "studyTier": 0,
+      "referenceText": "I began to learn English at middle school. / I started to learn English from the year before last year, when I transferred from the air force.",
+      "referenceTextZh": "我从中学时开始学英语。/ 前年从空军调动后我开始学英语。"
+    },
+    {
+      "id": "opi-fzy-152270",
+      "taskTitle": "English Learning-2",
+      "audioText": "How long have you been learning English? Have you received any training related English?",
+      "audioTextZh": "你学习英语多长时间了？你接受过任何英语训练吗？",
+      "studyTier": 1,
+      "referenceText": "I have learned English for more than 10 years.\nAnd I have received 2 months of English training related to this test.",
+      "referenceTextZh": "我已经学习英语10几年了。\n我也已经接受过2个月与此次考试相关的英语培训。"
+    },
+    {
+      "id": "opi-fzy-110139",
+      "taskTitle": "English Learning-3",
+      "audioText": "Is this your first time to have an English test?",
+      "audioTextZh": "这是你第一次参加英语考试吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, it’s my first time to have the English test. / No, it isn’t. I have taken many English tests in middle school and university. / This is the fifth time for me to attend the English test.",
+      "referenceTextZh": "是的，这是我第一次参加英语考试。/ 不是，我在中学和大学时参加过很多英语考试。/ 这是我第五次参加英语考试。"
+    },
+    {
+      "id": "opi-fzy-152271",
+      "taskTitle": "English Learning-4",
+      "audioText": "What are the effective ways to learn English?",
+      "audioTextZh": "学习英语有哪些好的方法？",
+      "studyTier": 2,
+      "referenceText": "I think listening, reading, speaking and practicing is the most effective way to learn English. At the same time, we can also improve our listening and expression ability by listening to English songs, watching English movies or programs.",
+      "referenceTextZh": "我认为多听，多读，多说，多练是学习英语最有效的办法，同时，我们还可以通过听英文歌，看英文电影或者节目的方式提高我们的听力和表达能力。"
+    },
+    {
+      "id": "opi-fzy-110140",
+      "taskTitle": "English Learning-5",
+      "audioText": "Have you taken any aviation English test before?",
+      "audioTextZh": "你之前参加过航空英语考试吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, I have. Before PEPEC test, I have to take Basic English Test and Radiotelephony English Test, which we call double-certificate English test, and Airline Transport Pilot License (ATPL) test. They are all aviation English tests.",
+      "referenceTextZh": "参加过，在PEPEC考试前，我参加过基础英语考试和无线电通话考试，这两个考试被称为双证书英语考试。我还参加过航线运输飞行员执照，以上考试都是航空英语考试。"
+    },
+    {
+      "id": "opi-fzy-152272",
+      "taskTitle": "English Learning-6",
+      "audioText": "Do you think watch English movie or programs is a good way to improve your English proficiency?",
+      "audioTextZh": "你认为看英文电影或节目是提高英语水平的好办法吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I think so. Because watching English movies or programs can help us get familiar with some common English expressions and improve our listening ability. So I think watching English movies or programs is a good way to improve our English proficiency.",
+      "referenceTextZh": "是的，确实是。因为看英语电影或节目可以让我们熟悉一些英语常用表达，提高我们的听力能力。因此，我认为看英文电影或节目是提高我们英语水平的好办法。"
+    },
+    {
+      "id": "opi-fzy-110141",
+      "taskTitle": "English Learning-7",
+      "audioText": "Have you ever taken any aviation English training before?",
+      "audioTextZh": "你之前参加过航空英语相关的培训吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, I took one month PEPEC preparation course last winter.",
+      "referenceTextZh": "参加过，去年冬天我参加了为期一个月的PEPEC培训课程。"
+    },
+    {
+      "id": "opi-fzy-203069",
+      "taskTitle": "English Learning-8",
+      "audioText": "Do you think it’s necessary for you to continue the English study in the near future?",
+      "audioTextZh": "在不久的将来，你认为还有必要学习英语吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, absolutely, I will never give up English learning in the near future, because it’s very important for pilots.",
+      "referenceTextZh": "是的，肯定是很必要的。在不久的将来，我不会放弃英语学习，因为它对飞行员来说非常重要。"
+    },
+    {
+      "id": "opi-fzy-110142",
+      "taskTitle": "English Learning-9",
+      "audioText": "Do you think your English has been improved since you began studying?",
+      "audioTextZh": "你认为开始学习后你的英语水平有提高吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, of course. Through studying, I learnt a lot of words and phrases, I know the basic structure and grammar of English, so now it’s easier for me to watch English films and read English books. / I think I’ve made a little progress. At least I dare to open my mouth. When I talk with foreigners, I’m not nervous and can speak a little. During the flight from Sydney to Beijing I could understand the ATC’s instructions and respond timely and correctly.",
+      "referenceTextZh": "当然有提高，在学习中我积累了很多单词和短语，了解到英语的基本结构和语法，现在我在看英文电影和读英文书时感到更容易。/ 我认为我有了一点进步，至少现在我敢说英语了。当我和外国人交谈时，我不再感到紧张并且能说一些英语。从悉尼飞北京时我能听懂ATC的指令并及时正确地回复ATC。"
+    },
+    {
+      "id": "opi-fzy-110143",
+      "taskTitle": "English Learning-10",
+      "audioText": "What role does English play in your work?",
+      "audioTextZh": "英语在你的工作中起什么作用？",
+      "studyTier": 0,
+      "referenceText": "English plays a very important role in my work. Most instruments in aircraft are marked with English abbreviation words, and the same with many signs in airports. Additionally, it’s essential for pilots and ATC’s radiotelephony communication, especially in international flights.",
+      "referenceTextZh": "英语在我的工作中起重要作用。飞机上的大部分仪器标注的都是英文缩写词，机场的很多标志也是一样。此外飞行员和ATC在陆空通话中必须要使用英语，尤其是飞国际航班时。"
+    },
+    {
+      "id": "opi-fzy-110144",
+      "taskTitle": "English Learning-11",
+      "audioText": "Do you think English is hard to learn? Why?",
+      "audioTextZh": "你认为英语是否很难学？为什么？",
+      "studyTier": 0,
+      "referenceText": "Yes, I think English is quite difficult for me, especially speaking and listening. There are a lot to learn, grammar, pronunciation, vocabulary and so on. / I haven’t read the alphabets for ten years, so I have to restart to learn ABC. / No, I don’t think it’s hard to learn. I began to study English from the middle school, so I can listen and speak oral English well.",
+      "referenceTextZh": "很难学，我认为英语对我来说很难，尤其是口语和听力。需要学习的内容很多，例如语法、发音、词汇等。/ 我已经有十年没有接触英语了，所以我必须要重新学习英语。/ 不难学，我认为英语没那么难，我从中学开始学英语，所以我的听力和口语都很好。"
+    },
+    {
+      "id": "opi-fzy-110145",
+      "taskTitle": "English Learning-12",
+      "audioText": "What have you done to improve your oral English?",
+      "audioTextZh": "你曾为提高口语做过什么？",
+      "studyTier": 0,
+      "referenceText": "To improve my oral English, I have paid more attention to communicating ability instead of only laying emphasis on grammatical correctness. I try to talk more with my foreign teacher or some other partners. Sometimes it’s hard to get English partners, so I always talk to myself about what I have seen or what I have done. Additionally, I like to retell some English articles and stories in my own words, and I feel it’s a simple method of practicing spoken English.",
+      "referenceTextZh": "为了提高口语水平，我在学习中不止侧重于语法正确性，而是更注重沟通能力。我尝试多与外教和同学用英语交谈，有时很难找到可以和我对话的同学，所以我经常把自己看到的或经历到的事情用英语说给自己听。此外，我喜欢用自己的语言复述英文文章和故事，我认为这是个提高口语水平的简单的方法。"
+    },
+    {
+      "id": "opi-fzy-110146",
+      "taskTitle": "English Learning-13",
+      "audioText": "Will you keep on learning English? / Will you continue to improve your English?",
+      "audioTextZh": "你会继续学习英语吗？ / 你会继续提高自己的英语水平吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, absolutely I will. English plays an important role in my work. It’s an essential communication tool for pilots and controllers.",
+      "referenceTextZh": "当然会，英语在我的工作中起重要的作用。对于飞行员和管制员来说英语是必不可少的交流工具。"
+    },
+    {
+      "id": "opi-fzy-110147",
+      "taskTitle": "English Learning-14",
+      "audioText": "Do you enjoy speaking English?",
+      "audioTextZh": "你喜欢说英语吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, I do. I enjoy speaking English. I feel proud when I speak English with a foreigner fluently.",
+      "referenceTextZh": "我喜欢，和外国人用英语流利交谈时我会感到很骄傲。"
+    },
+    {
+      "id": "opi-fzy-110148",
+      "taskTitle": "English Learning-15",
+      "audioText": "Which English TV program do you like most?",
+      "audioTextZh": "你最喜欢的英文电视节目是什么？",
+      "studyTier": 0,
+      "referenceText": "I like CCTV international channel most. It’s an English speaking program and I can see many different culture in different countries. It’s nice to watch this channel and it’s helpful for my English learning.",
+      "referenceTextZh": "我最喜欢CCTV国际频道，通过英文节目我能感受不同国家的不同文化。我喜欢这个频道，节目对学习英语也很有帮助。"
+    },
+    {
+      "id": "opi-fzy-110149",
+      "taskTitle": "English Learning-16",
+      "audioText": "Do you think English is important in radio communication nowadays?",
+      "audioTextZh": "你觉得英语在无线电通话中重要吗？",
+      "studyTier": 0,
+      "referenceText": "Definitely. With the development of China, more and more foreign aircraft fly in the airspace of our country. It’s a challenge for ATCs to handle the normal and abnormal situation in English. Fluent oral English became really important nowadays.",
+      "referenceTextZh": "当然重要，随着中国的发展，越来越多的外国飞机在我国空域内飞行，这对管制员用英语处理正常及非正常状况都是一个挑战。如今，讲一口流利的英语非常重要。"
+    },
+    {
+      "id": "opi-fzy-110150",
+      "taskTitle": "English Learning-17",
+      "audioText": "In your opinion, which part is more important in English study?",
+      "audioTextZh": "在你看来，英语学习中最重要的是哪个部分？",
+      "studyTier": 0,
+      "referenceText": "In order to understand all the instructions from ATC, we must have a better ability in listening and speaking. We must express our intention clearly.",
+      "referenceTextZh": "为了了解ATC的全部信息，我们必须有较好的听说能力。我们必须能够清楚的表达自己的意图。"
+    },
+    {
+      "id": "opi-fzy-110151",
+      "taskTitle": "English Learning-18",
+      "audioText": "Do you have some special methods in English study?",
+      "audioTextZh": "你学习英语有什么特别的方法么？",
+      "studyTier": 0,
+      "referenceText": "I think we should practice listening and speaking as much as possible. In free time, I always read newspapers, listen to the radio and attend the lecture.",
+      "referenceTextZh": "我觉得我们应该尽可能多地练习听说。在空闲时间，我经常读报纸、听广播和参加讲座。"
+    },
+    {
+      "id": "opi-fzy-110152",
+      "taskTitle": "English Learning-19",
+      "audioText": "If given a chance to study English, what form do you prefer?",
+      "audioTextZh": "如果给你一个学习英语的机会，你更喜欢哪种形式？",
+      "studyTier": 0,
+      "referenceText": "I’d like to join the training center. They can make a well conceived plan and provide effective methods. I can improve my English level in short time, and I cherish the opportunity to receive training in details on campus after graduation.",
+      "referenceTextZh": "我想加入培训中心。培训中心会制定周密的学习计划，提供有效的学习方法。这样我可以在短期内提升英语水平。我很珍惜毕业后还能在校园内接受培训的机会。"
+    }
+  ],
+  "categoryId": "opi-category-07"
+}

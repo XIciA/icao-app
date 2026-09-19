@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-774",
+  "name": "ACA526 [复飞，改航]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152291",
+      "taskTitle": "22-ACA526 [复飞，改航]-1",
+      "audioText": "[Your call sign is ACA526, from Vancouver to Wuhan, you are cruising at 11000m over OBLIK, squawk 3555.]",
+      "audioTextZh": "你的呼号是加航526，从温哥华飞往武汉，你现在在11000米巡航，过OBLIK，应答机（编码）3555。",
+      "referenceText": "Wuhan Control, ACA526, 11000m over OBLIK, squawk 3555.",
+      "referenceTextZh": "武汉区调，加航526，（高度）11000米，过OBLIK，应答机（编码）3555。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3863fe043f02b3697a01.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152292",
+      "taskTitle": "22-ACA526 [复飞，改航]-2",
+      "audioText": "ACA526, Wuhan control, radar contact, reduce speed to Mach number decimal 75 due flow control.",
+      "audioTextZh": "加航526，武汉区调，雷达识别，由于流量管控，速度减小至马赫数点75。",
+      "referenceText": "Reduce speed to Mach number decimal 75, ACA526.",
+      "referenceTextZh": "速度减小至马赫数点75，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3c1f4a48eb4ae1765265.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152293",
+      "taskTitle": "22-ACA526 [复飞，改航]-3",
+      "audioText": "ACA526, descend to and maintain 9200m, adjust speed less than 270 knots until further advised.",
+      "audioTextZh": "加航526，下降并保持在9200米，调整速度低于270节直到进一步通知。",
+      "referenceText": "Descend to and maintain 9200m, adjust speed less than 270 knots until further advised, ACA526.",
+      "referenceTextZh": "下降并保持在9200米，调整速度低于270节直到进一步通知，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f3b34f22a401aa4860b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152294",
+      "taskTitle": "22-ACA526 [复飞，改航]-4",
+      "audioText": "[The TCAS indicating converging traffic at 2 o'clock position, below and climbing, confirm if it is a conflicting traffic.]",
+      "audioTextZh": "[TCAS显示汇入飞机在2点钟位置，下方，正在爬升。证实是否为冲突航空器]",
+      "referenceText": "Wuhan Control, ACA526, TCAS shows a converging traffic at 2 o'clock, confirm if it is conflict with us.",
+      "referenceTextZh": "武汉区调，加航526，TCAS显示2点钟有汇入航空器，证实是否与我们冲突。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/22534204aa4133a76692.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152295",
+      "taskTitle": "22-ACA526 [复飞，改航]-5",
+      "audioText": "ACA526, negative, that aircraft is climbing to 8900m, it will cross behind you shortly.",
+      "audioTextZh": "加航526，不是，航空器正爬升至8900米，它很快会在你后方穿过。",
+      "referenceText": "Roger, thank you. ACA526.",
+      "referenceTextZh": "收到，谢谢，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c461aabf1ad61a5ad00f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152296",
+      "taskTitle": "22-ACA526 [复飞，改航]-6",
+      "audioText": "[ATIS shows the visibility at Wuhan airport is low. You want to know if your alternate airport Changsha is available for diversion.]",
+      "audioTextZh": "[机场通播显示武汉机场的能见度很低，你想知道能否备降到长沙机场]",
+      "referenceText": "Wuhan Control, ACA526, ATIS shows the visibility at Wuhan airport is low, confirm if Changsha is available for diversion.",
+      "referenceTextZh": "武汉区调，加航526，机场通播显示武汉机场的能见度很低，证实能否备降到长沙。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a0992a5e3769337371aa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152297",
+      "taskTitle": "22-ACA526 [复飞，改航]-7",
+      "audioText": "ACA526 Changsha is available, confirm you are diverting to Changsha.\n[Tell the controller you are not diverting to Changsha for the moment, you still want to fly to Wuhan.]",
+      "audioTextZh": "加航526，长沙机场可用，确认你正在改航到长沙。\n[告诉管制员你目前不改航到长沙，你依旧想飞往武汉]",
+      "referenceText": "Negative, we still want to fly to Wuhan, ACA526.",
+      "referenceTextZh": "不了，我们依旧希望飞往武汉，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0fc585bcd7b63c045171.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152298",
+      "taskTitle": "22-ACA526 [复飞，改航]-8",
+      "audioText": "Roger, ACA526. Track direct to ZF, expect ZF-2A arrival runway 36R.",
+      "audioTextZh": "收到，加航526，直飞ZF，预计ZF-2A进近，跑道36右。",
+      "referenceText": "Track direct to ZF, expect ZF-2A arrival runway 36R. ACA526.",
+      "referenceTextZh": "直飞ZF，预计ZF-2A进近，跑道36右，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b1ecaf7e6d4ad7b2ad7a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152299",
+      "taskTitle": "22-ACA526 [复飞，改航]-9",
+      "audioText": "ACA526, descend to and maintain 4200m, maintain minimum clean speed.",
+      "audioTextZh": "加航526，下降并保持在4200米，保持最小光洁速度。",
+      "referenceText": "Descend to and maintain 4200m, maintain minimum clean speed, ACA526.",
+      "referenceTextZh": "下降并保持在4200米，保持最小光洁速度，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c396e5303edf3268ed83.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152300",
+      "taskTitle": "22-ACA526 [复飞，改航]-10",
+      "audioText": "ACA526, contact approach on 119.6.",
+      "audioTextZh": "加航526，联系进近119.6。",
+      "referenceText": "119.6, ACA526.",
+      "referenceTextZh": "119.6，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4429a307f9329ad5a063.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152301",
+      "taskTitle": "22-ACA526 [复飞，改航]-11",
+      "audioText": "[Now you are established on ILS approach runway 36R. You are 15 miles from touchdown, contact Tower.]",
+      "audioTextZh": "[你建立了ILS进近，跑道36右。你离接地点15海里，联系塔台]",
+      "referenceText": "Wuhan Tower, ACA526, established on ILS approach runway 36R, 15 miles from touchdown.\n注：建立航向道/ILS进近后，联系塔台即可。",
+      "referenceTextZh": "武汉塔台，加航526，建立ILS进近，跑道36右，离接地点15海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/af9cea64a5ae4d4afe9a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152302",
+      "taskTitle": "22-ACA526 [复飞，改航]-12",
+      "audioText": "Roger. Surface wind calm. RVR touch down 550m, midpoint 600m, rollout 500m. continue approach runway 36R.",
+      "audioTextZh": "收到，地面静风，接地点RVR550米，中间点600米，终止端500米，继续进近跑道36右。",
+      "referenceText": "Continue approach runway 36R, ACA526.\n注：风和RVR值属于情报，无需复诵。",
+      "referenceTextZh": "继续进近跑道36右，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7fab987dabf28c47ebfe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152303",
+      "taskTitle": "22-ACA526 [复飞，改航]-13",
+      "audioText": "[Now you are 10 miles from touchdown. Ask Wuhan Tower for cloud base.]",
+      "audioTextZh": "[现在你距离接地点10海里。询问武汉塔台云底高]",
+      "referenceText": "Wuhan Tower, ACA526, 10 miles from touchdown, confirm the cloud base.",
+      "referenceTextZh": "武汉塔台，加航526，离接地点10海里，证实云底高。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/045374b4b935b899c697.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152304",
+      "taskTitle": "22-ACA526 [复飞，改航]-14",
+      "audioText": "Cloud broken 700m, cleared to land Runway 36R.",
+      "audioTextZh": "多云700米，可以落地，跑道36右。",
+      "referenceText": "Cleared to land Runway 36R, ACA526.",
+      "referenceTextZh": "可以落地，跑道36右，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/afff383469cf7a08107f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152305",
+      "taskTitle": "22-ACA526 [复飞，改航]-15",
+      "audioText": "[At the minimum, you are unable to see approach lights. You are carrying out a missed approach procedure. Advise Tower.]",
+      "audioTextZh": "[在最低高度，你无法看到进近灯，你正在执行复飞程序，告知塔台]",
+      "referenceText": "Wuhan Tower, ACA526, going around, approach lights not in sight.",
+      "referenceTextZh": "武汉塔台，加航526，没有看到进近灯，复飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b996780b9114c277a905.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152306",
+      "taskTitle": "22-ACA526 [复飞，改航]-16",
+      "audioText": "Roger, follow the missed approach procedure, advise intentions when able.",
+      "audioTextZh": "收到，按照标准复飞程序，可以时，告知意图。",
+      "referenceText": "Follow the missed approach procedure, wilco, ACA526.",
+      "referenceTextZh": "按照标准复飞程序，照办，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d7fab7950b3b84894c01.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152307",
+      "taskTitle": "22-ACA526 [复飞，改航]-17",
+      "audioText": "[Now you are climbing to the missed approach altitude, you decide to divert to Changsha Airport. Inform Tower.]",
+      "audioTextZh": "[你现在爬升到复飞高度，你决定改航到长沙机场，告知塔台]",
+      "referenceText": "Wuhan Tower, ACA526, we are climbing to the missed approach altitude, request divert to Changsha Airport.",
+      "referenceTextZh": "武汉塔台，加航526，我们现在爬升到复飞高度，请求改航到长沙机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ab060bdb884783e75de6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152308",
+      "taskTitle": "22-ACA526 [复飞，改航]-18",
+      "audioText": "Roger, turn right track to LKO, descend to and maintain 2400m.",
+      "audioTextZh": "收到，右转直飞LKO，下降并保持到2400米。",
+      "referenceText": "Turn right track to LKO, descend to and maintain 2400m, ACA526.",
+      "referenceTextZh": "右转直飞LKO，下降并保持到2400米，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c432fb6eccebb0f2692.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152309",
+      "taskTitle": "22-ACA526 [复飞，改航]-19",
+      "audioText": "ACA526, contact Departure on 120.4, goodbye.",
+      "audioTextZh": "加航526，联系离场120.4，再见。",
+      "referenceText": "120.4, goodbye. ACA526.",
+      "referenceTextZh": "120.4，再见，加航526。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a04831e3dedab47e413.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0093",
   "name": "CES 728 强积冰 进近灯暗",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "收到，谢谢，CES 728。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1615.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

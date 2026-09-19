@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0027",
   "name": "机场安检与航空安保",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "Airports and airlines should use advanced security equipment and apply strict security checks to people and items going on board. Ground staff need thorough training, and cooperation with police and fire departments should be strengthened. Raising public security awareness can also help.",
       "referenceTextZh": "机场和航空公司应使用先进安检设备，并对登机人员和物品实施严格安检。地面人员需要接受充分培训，还应加强与公安和消防部门的合作。提高公众安保意识也会有所帮助。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

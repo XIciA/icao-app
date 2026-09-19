@@ -1,0 +1,136 @@
+{
+  "id": "atc-fzy-785",
+  "name": "CSN319 [液压系统失效]",
+  "declaredCardCount": 14,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152482",
+      "taskTitle": "30-CSN319 [液压系统失效]-1",
+      "audioText": "You are CSN319, parking at gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.",
+      "audioTextZh": "你的呼号是南方319，停在51号停机位，通播C，从武汉飞往广州，请求放行许可。",
+      "referenceText": "Wuhan Delivery, CSN319, gate 51, information C, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方319，51号停机位，通播C，请求飞往广州的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8535218cf89a12038623.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152483",
+      "taskTitle": "30-CSN319 [液压系统失效]-2",
+      "audioText": "CSN319, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO01 departure, initially climb to 1,200m, cruising level 9,800m, after departure contact 119.7, squawk 2515.",
+      "audioTextZh": "南方319，可以经由计划航路飞往广州，使用跑道36右，按照LKO01离场。初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, runway 36R, follow LKO01 departure, initially climb to 1200m, cruising level 9800m, contact 119.7, squawk 2515, CSN319.",
+      "referenceTextZh": "可以经由计划航路飞往广州，使用跑道36右，按照LKO01离场。初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e2330620ea5170629e8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152484",
+      "taskTitle": "30-CSN319 [液压系统失效]-3",
+      "audioText": "CSN319, due to military activity, expect 1hour delay, you are No.5 in sequence.",
+      "audioTextZh": "南方319，由于军事活动，预计有1小时延误，你是第五个。",
+      "referenceText": "Roger, No.5 in sequence, CSN319.",
+      "referenceTextZh": "收到，第五个，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0ac73049ddad9ab38ab6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152485",
+      "taskTitle": "30-CSN319 [液压系统失效]-4",
+      "audioText": "You are now ready for push back and start up.",
+      "audioTextZh": "你现在准备好推出开车了。",
+      "referenceText": "Wuhan Ground, CSN319, request pushback and start up.",
+      "referenceTextZh": "武汉地面，南方319，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4951eded1028858e4a32.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152486",
+      "taskTitle": "30-CSN319 [液压系统失效]-5",
+      "audioText": "CSN319, after B737 behind is clear, push back onto Z4, abeam gate 213, facing east.",
+      "audioTextZh": "南方319，与后方B737解除冲突后，在Z4推出，正切213号停机位，面朝东。",
+      "referenceText": "After B737 is clear, pushback onto Z4, abeam gate 213, facing east, CSN319.",
+      "referenceTextZh": "与后方B737解除冲突后，在Z4推出，正切213号停机位，面朝东，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dafc21ad9d938461ce68.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152487",
+      "taskTitle": "30-CSN319 [液压系统失效]-6",
+      "audioText": "You have completed push back and start up, request taxi.",
+      "audioTextZh": "你完成了推出开车，请求滑行。",
+      "referenceText": "Wuhan Ground, CSN319, request taxi.",
+      "referenceTextZh": "武汉地面，南方319，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c4d777e34fd896f2cad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152488",
+      "taskTitle": "30-CSN319 [液压系统失效]-7",
+      "audioText": "CSN319, taxi via Z4, A3, A, hold short of runway 36R.",
+      "audioTextZh": "南方319，经由滑行道Z4,A3,A，在跑道36右外等待。",
+      "referenceText": "Taxi via Z4, A3, A, hold short of runway 36R, CSN319.",
+      "referenceTextZh": "经由滑行道Z4,A3,A，在跑道36右外等待，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1115efcc79a0c4144950.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152489",
+      "taskTitle": "30-CSN319 [液压系统失效]-8",
+      "audioText": "Now you are ready for takeoff.",
+      "audioTextZh": "现在，你准备好起飞了。",
+      "referenceText": "Wuhan Tower, CSN319. Ready for departure.",
+      "referenceTextZh": "武汉塔台，南方319，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/87cb0a63d993593d76ef.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152490",
+      "taskTitle": "30-CSN319 [液压系统失效]-9",
+      "audioText": "CSN319, Behind B737, line up behind, runway 36R.",
+      "audioTextZh": "南方319，在B737后，上跑道等待，跑道36右。",
+      "referenceText": "Behind B737, line up behind, runway 36R, CSN319.",
+      "referenceTextZh": "在B737后，上跑道等待，跑道36右，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/99a456413484539df02d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152491",
+      "taskTitle": "30-CSN319 [液压系统失效]-10",
+      "audioText": "CSN319, climb to 3,900m, expedite until passing 2,100m.",
+      "audioTextZh": "南方319，爬升到3900米，加速爬升至2100米。",
+      "referenceText": "Climb to 3900m, expedite until passing 2100m, CSN319.",
+      "referenceTextZh": "爬升到3900米，加速爬升至2100米，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f1829be507d3ac639791.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152492",
+      "taskTitle": "30-CSN319 [液压系统失效]-11",
+      "audioText": "CSN319, stop climbing due converging traffic, level off at 2,700m.",
+      "audioTextZh": "南方319，由于汇入航空器，停止爬升，在2700米改平。",
+      "referenceText": "level off at 2700m due converging traffic, CSN319.",
+      "referenceTextZh": "由于汇入航空器，在2700米改平，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1393d04769df63f0dbe9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152493",
+      "taskTitle": "30-CSN319 [液压系统失效]-12",
+      "audioText": "You found one of your hydraulic systems failed, make an urgency call and tell ATC this situation and ask to level off at 3,900m and then return to Wuhan airport.",
+      "audioTextZh": "你发现，你的一个液压系统失效了，做紧急呼叫，告诉管制员这个情况，并请求在3900米改平，然后返回武汉机场。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Departure, CSN319, we have one hydraulic system failure, request level off at 3,900m and then return to Wuhan airport.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉离场，南方319，我们一个液压失效，请求在3900米改平，然后返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6f39ac7d886128d2150b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152494",
+      "taskTitle": "30-CSN319 [液压系统失效]-13",
+      "audioText": "Roger PAN, maintain 3,900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach r/w 36R.",
+      "audioTextZh": "收到PAN，保持高度3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右。",
+      "referenceText": "Maintain 3,900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R, CSN319.",
+      "referenceTextZh": "保持高度3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d94997bea0b56210d54.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152495",
+      "taskTitle": "30-CSN319 [液压系统失效]-14",
+      "audioText": "Thunderstorm was detected near LKO, ask to deviate 20 miles to the left.",
+      "audioTextZh": "在LKO探测到雷暴，请求左偏航20海里。",
+      "referenceText": "Wuhan Control, CSN319, request deviate 20miles to the left due to thunderstorm near LKO.",
+      "referenceTextZh": "武汉区调，南方319，由于LKO附近有雷暴，请求左偏航20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4862cb9e1258bd9acaf2.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

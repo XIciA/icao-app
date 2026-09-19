@@ -1,0 +1,106 @@
+{
+  "id": "opi-fzy-569",
+  "name": "Figure 13",
+  "declaredCardCount": 11,
+  "cards": [
+    {
+      "id": "opi-fzy-569-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 13 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-569.png",
+      "imageAlt": "Figure 13，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110271",
+      "taskTitle": "Figure 13-1",
+      "audioText": "Please make a brief description about the picture.",
+      "audioTextZh": "请对图片做简单描述。",
+      "studyTier": 0,
+      "referenceText": "In the left picture, the pilot is checking on the paper information before flight, and a ground staff is standing beside him, maybe she is waiting to make sure the pilot knows all the information. In the right picture, a Boeing 747 of United Airline is parking with its tail striking the ground. I think the aircraft is loading to prepare for departure because there are lots of vehicles around it. Maybe staff members made mistakes when calculating the datum which caused the center gravity of aircraft not to have been located correctly.",
+      "referenceTextZh": "左图中，飞行员正在做飞行检查。一名机场工作人员（地勤）正站在飞行员旁边，可能正在等待飞行员确认所有信息。右图中，一家美国航空的波音747正在停车，机尾触到地面。我认为这架飞机正在装货并准备出发，因为飞机四周有许多车辆。也许工作人员在计算基准时出现错误，导致飞机重心不稳。"
+    },
+    {
+      "id": "opi-fzy-110272",
+      "taskTitle": "Figure 13-2",
+      "audioText": "Do you think the preflight preparation is necessary?",
+      "audioTextZh": "你认为飞行前的准备有必要吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, it’s very important. Pilots should get acquainted with the aircraft, routes and the situation of destination airport. Besides, pilots should do some preparation for some possible emergency in order to keep a smooth flight.",
+      "referenceTextZh": "我认为飞行前的准备非常重要。飞行员应该熟悉飞机、航线、目的地机场的状况。此外，为了保证飞行顺利，飞行员应该为可能发生的紧急情况做好准备。"
+    },
+    {
+      "id": "opi-fzy-110273",
+      "taskTitle": "Figure 13-3",
+      "audioText": "In the right picture, what part of the aircraft might be damaged?",
+      "audioTextZh": "在右图中，飞机哪个部分可能被损坏？",
+      "studyTier": 0,
+      "referenceText": "The aft-apartment, tail and lower cargo compartment might be damaged seriously.",
+      "referenceTextZh": "飞机后部、机尾、低层货舱可能会受到严重损坏。"
+    },
+    {
+      "id": "opi-fzy-110274",
+      "taskTitle": "Figure 13-4",
+      "audioText": "Who do you think made the error?",
+      "audioTextZh": "你认为是谁出现了失误？",
+      "studyTier": 0,
+      "referenceText": "I think loaders may not strictly follow the loading and unloading work flow to operate.",
+      "referenceTextZh": "我认为装卸工可能没有严格按照装卸货的工作流程来操作。"
+    },
+    {
+      "id": "opi-fzy-110275",
+      "taskTitle": "Figure 13-5",
+      "audioText": "What should the company do to avoid such kind of problem?",
+      "audioTextZh": "你认为航空公司可以怎样避免这类问题？",
+      "studyTier": 0,
+      "referenceText": "I think the company should establish loading and unloading procedure and provide corresponding training for ground workers to follow the procedure correctly and strictly. There also shall be a load master to monitor during operation. Maybe we can use tie-down equipment which is on nose gear of aircraft or tail stand to prevent this condition.",
+      "referenceTextZh": "我认为航空公司应该建立装卸货的流程，并对地面工作人员进行培训，确保他们能够正确、严格地执行工作流程，同时在装卸货时需要有管理员来指挥。或者可以在飞机的前起落和尾部托架使用栓系设备来避免类似问题。"
+    },
+    {
+      "id": "opi-fzy-110276",
+      "taskTitle": "Figure 13-6",
+      "audioText": "Do you think this accident would happen to a passenger aircraft?",
+      "audioTextZh": "你认为类似事故是否可能在航线客机上发生？",
+      "studyTier": 0,
+      "referenceText": "Yes, because the cargo compartment is at the lower part of passenger aircraft, so similar accidents are possible if aircraft were loaded incorrectly.",
+      "referenceTextZh": "可能，因为客机的货仓在飞机的下部，如果装载位置不正确会发生类似的事情。"
+    },
+    {
+      "id": "opi-fzy-110277",
+      "taskTitle": "Figure 13-7",
+      "audioText": "Do you think weight and balance are important to flight safety? Why?",
+      "audioTextZh": "你认为重量和平衡对飞行安全来说重要吗？为什么？",
+      "studyTier": 0,
+      "referenceText": "They are important to our flight safety. Weight and balance affect the stability of the aircraft. To ensure the aircraft’s safety, both factors must fall within specified limits established by manufacturers.",
+      "referenceTextZh": "非常重要，重量和平衡会影响飞机的稳定性。为了确保飞机的安全，制造商必须保证两个因素都符合相关规定。"
+    },
+    {
+      "id": "opi-fzy-110278",
+      "taskTitle": "Figure 13-8",
+      "audioText": "If an aircraft was loaded incorrectly, how would it affect flight control operations?",
+      "audioTextZh": "如果飞机被错误地装载，这会对飞机控制产生怎样的影响？",
+      "studyTier": 0,
+      "referenceText": "When the fore/aft center of gravity is out of range, the aircraft may pitch down or up which may cause a loss of control. The excessive pitch may occur in all phases of flight especially takeoff. On the other hand, if the maximum weight is exceeded, the aircraft may not likely to be controlled. Excessive takeoff weight may make it impossible to take off within available runway length, or the aircraft can’t even rotate. Excessive weight in flight may make climbing difficult or impossible, or it may make it impossible to maintain an altitude.",
+      "referenceTextZh": "如果飞机的前/后重心超出范围，飞机可能会俯冲或上扬，从而导致飞机失控。过多的倾斜有可能发生在飞行的任何阶段，尤其是在起飞时。另一方面，如果超过了最大重量，飞机可能无法被操控。过大的起飞重量会使飞机无法在可用跑道长度内起飞，甚至无法抬前轮。在飞行中过大的重量会使爬升变得困难甚至失败，或者让飞机无法保持在某一高度。"
+    },
+    {
+      "id": "opi-fzy-110279",
+      "taskTitle": "Figure 13-9",
+      "audioText": "Is it going to be a problem for controlling the aircraft if all passengers are arranged in the forward part of the airplane? Why?",
+      "audioTextZh": "如果所有乘客都被安排在飞机前部，飞机的控制是否会出问题？为什么？",
+      "studyTier": 0,
+      "referenceText": "Yes. If CG locates too close to the forward part, it may be difficult for pilots to raise the nose during taking off, thus the aircraft may pitch down, which may cause a loss of control.",
+      "referenceTextZh": "会有问题。如果中心太过于靠前，飞行员在起飞时会很难抬起机头，飞机可能会俯冲，这样会导致飞机失控。"
+    },
+    {
+      "id": "opi-fzy-110280",
+      "taskTitle": "Figure 13-10",
+      "audioText": "If you find that the aircraft landing weight exceeds the maximum limit, what will you do?",
+      "audioTextZh": "如果你发现飞机的着陆重量超过了最大限制，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "I will report ATC to apply for fuel burning or fuel dumping.",
+      "referenceTextZh": "我会向ATC报告，并申请燃烧燃料或放油。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

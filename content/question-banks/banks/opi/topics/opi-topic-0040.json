@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0040",
   "name": "GPS",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "If GPS fails, the pilot can use available conventional navigation systems such as VOR, NDB, or DME. The pilot should also report the failure to ATC and request radar monitoring or radar vectors if needed.",
       "referenceTextZh": "如果 GPS 失效，飞行员可以使用 VOR、NDB 或 DME 等可用的传统导航系统。飞行员还应向空中交通管制报告故障，并在需要时申请雷达监控或雷达引导。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

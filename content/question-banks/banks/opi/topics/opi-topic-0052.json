@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0052",
   "name": "尾流",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "The crew should remain calm, maintain aircraft control, and avoid over-controlling the aircraft. They should monitor the flight attitude, speed, and altitude closely and inform ATC about the encounter. The crew should also make sure that passengers and crew members are securely fastened to reduce the risk of injury.",
       "referenceTextZh": "机组应保持冷静、控制好飞机，并避免过度操纵。他们应密切监控飞行姿态、速度和高度，并向空中交通管制报告遭遇尾流。机组还应确保旅客和机组成员都已可靠系好安全带，以降低受伤风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

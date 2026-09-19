@@ -1,0 +1,43 @@
+{
+  "id": "opi-fzy-849",
+  "name": "Ground collision",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-fzy-849-image-1",
+      "kind": "image",
+      "taskTitle": "Ground collision · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-849.png",
+      "imageAlt": "Ground collision，用于本话题的看图描述和问答",
+      "studyTier": 2
+    },
+    {
+      "id": "opi-fzy-152400",
+      "taskTitle": "Ground collision-1",
+      "audioText": "What can you see from this picture?",
+      "audioTextZh": "从图中你看到了什么？",
+      "studyTier": 2,
+      "referenceText": "I can see two aircraft encounter ground collision.\nThe tail of China Eastern Airlines aircraft is damaged by the starboard wing of China Southern Airlines plane.",
+      "referenceTextZh": "我可以看到两架飞机遭到了地面碰撞。\n一架东航飞机的机尾被南航飞机的机翼剐蹭了。"
+    },
+    {
+      "id": "opi-fzy-152401",
+      "taskTitle": "Ground collision-2",
+      "audioText": "What ground conditions will contribute to the ground collision?",
+      "audioTextZh": "什么样的道面情况会造成地面冲突？",
+      "studyTier": 1,
+      "referenceText": "Many runway and taxiway problems will cause ground collision.\nFor example, slippery taxiway or lighting system inoperative, taxi way surface damage and so on.\nWhat’s more, the intersection runway or working progress adjacent to the runway can also cause ground collision.",
+      "referenceTextZh": "很多跑道和滑行道的问题都会造成地面冲突。\n比如，湿滑滑行道或者灯光系统故障，滑行道表面损坏等。\n此外，跑道交叉口或跑道附近进行施工作业也会导致地面冲突。"
+    },
+    {
+      "id": "opi-fzy-152402",
+      "taskTitle": "Ground collision-3",
+      "audioText": "During the taxi, if you are not familiar with the layout of the airport, what should you do?",
+      "audioTextZh": "在滑行阶段，如果你不清楚机场布局，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If I encounter this situation, I will listen to the controller’s instructions carefully.\nIf necessary, I will request a follow-me car to avoid any accidents.",
+      "referenceTextZh": "如果我遇到这样的情况，我会认真听管制员的指令。\n如有必要，我会请求引导车，来避免任何事故发生。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

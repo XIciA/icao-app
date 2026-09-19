@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0089",
   "name": "电力系统失效",
   "declaredCardCount": 10,
@@ -84,5 +83,6 @@
       "referenceText": "The crew should use backup power and the standby instruments to maintain control and navigation. They can request radar vectors from ATC if that service is available. If necessary, they should declare urgency and divert to a suitable airport.",
       "referenceTextZh": "机组应使用备用电源和备用仪表保持控制和导航。如果空中交通管制能够提供雷达服务，可以申请雷达引导。必要时应宣布紧迫状态并改航至合适机场。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-754",
+  "name": "QFA432 [沙尘暴，发动机失效]",
+  "declaredCardCount": 18,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-215454",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-1",
+      "audioText": "N: Your call sign is QFA432. Ask Shanghai Delivery for the departure clearance to Beijing.",
+      "audioTextZh": "你的呼号是澳航432，向上海放行请求飞往北京的离场许可。",
+      "referenceText": "Shanghai Delivery, QFA432, request departure clearance to Beijing.",
+      "referenceTextZh": "上海放行，澳航432，请求飞往北京的离场许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/68188cf6349478cd8ff1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215455",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-2",
+      "audioText": "C: QFA432, Shanghai Delivery, cleared to Beijing via flight planned route, runway 26, follow H01D departure, initial climb to 6000ft on QNH, contact departure 128.75, squawk 3421.",
+      "audioTextZh": "澳航432，上海放行，可以经由计划航路飞往北京，跑道26，按照H01D离场，按修压初始爬升至6000英尺，联系离场128.75，应答机3421。",
+      "referenceText": "Cleared to Beijing via flight planned route, runway 26, follow H01D departure, initial climb to 6000ft on QNH, contact departure 128.75, squawk 3421, QFA432.",
+      "referenceTextZh": "可以经由计划航路飞往北京，跑道26，按照H01D离场，按修压初始爬升至6000英尺，联系离场128.75，应答机3421，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a58d498eba7192e26c1e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215456",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-3",
+      "audioText": "N: Tell the controller you are ready for taxi.",
+      "audioTextZh": "告知管制员你准备好滑行了。",
+      "referenceText": "Shanghai Ground, QFA432, request taxi instructions.",
+      "referenceTextZh": "上海地面，澳航432，请求滑行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1bc2fd0cd1d0967a2693.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215457",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-4",
+      "audioText": "C: QFA432,,taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
+      "audioTextZh": "澳航432，经由滑行道F，C1和B滑行至跑道26等待点。注意机位319尽头有施工。",
+      "referenceText": "Taxi via F, C1, B to holding point runway 26, roger caution, QFA432.",
+      "referenceTextZh": "经由滑行道F，C1和B滑行至跑道26等待点，收到 。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1e8ac4bcfd24e4dd8fde.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215458",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-5",
+      "audioText": "N: As you are taxiing, you notice some smoke coming from APU on B747 ahead of you, report this to ATC.",
+      "audioTextZh": "你在滑行的时候，你看到前方B747的APU有烟雾冒出，报告给管制员。",
+      "referenceText": "Shanghai Ground, QFA432, some smoke coming from the APU of the B747 ahead of us.",
+      "referenceTextZh": "上海地面，澳航432，前方B747的APU有烟雾冒出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/57d4d8bcc84aa18d2264.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215459",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-6",
+      "audioText": "C: QFA432, roger, thank you.\nN: You are now at the holding point of runway 26. Tell ATC you are ready to takeoff.",
+      "audioTextZh": "澳航432，收到，谢谢。\n你现在在跑道26的外等待点，告诉管制员你准备好起飞了。",
+      "referenceText": "Shanghai Tower, QFA432, holding point of runway 26, request departure.",
+      "referenceTextZh": "上海塔台，澳航432，跑道26的外等待点，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8e39a009e73699005ef3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215460",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-7",
+      "audioText": "C: QFA432, behind landing traffic, line up behind.",
+      "audioTextZh": "澳航432，在着陆的航空器后面，上跑道等待。",
+      "referenceText": "Behind landing traffic, line up behind, QFA432.",
+      "referenceTextZh": "在着陆的航空器后面，上跑道等待，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0a4d4cc144bb9aa69a09.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215461",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-8",
+      "audioText": "N: Now you have reached 3300 meters over Beijing airport, request further descent.",
+      "audioTextZh": "你现在到达北京机场上空3300米，请求进一步下降。",
+      "referenceText": "Beijing Approach, QFA432, 3300m maintaining, request descent.",
+      "referenceTextZh": "北京进近，澳航432，保持在3300米，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/caed2e86cee51b80da0f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215462",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-9",
+      "audioText": "C: QFA432, maintain 3300 meters, opposite traffic 1 o’clock 10 miles, report clear of traffic.",
+      "audioTextZh": "澳航432，保持3300米，对面航空器1点钟方向，10海里，解除冲突后报。",
+      "referenceText": "Maintain 3300 meters, opposite traffic 1 o’clock, 10 miles, report clear of traffic, QFA432.",
+      "referenceTextZh": "保持3300米，对面航空器1点钟方向，10海里，解除冲突后报，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/07165b621f710590f9ca.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215463",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-10",
+      "audioText": "N: Now you have cleared of the conflicting traffic, report to ATC.",
+      "audioTextZh": "现在你与冲突航空器解除冲突，报告给管制员。",
+      "referenceText": "Beijing Approach, QFA432, cleared of traffic.",
+      "referenceTextZh": "北京进近，澳航432，解除冲突。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/389f41f3762874be3654.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215464",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-11",
+      "audioText": "C: Roger, QFA432.\nN: You were cleared to 1200m but notice the sky is turning yellow color and visibility is deteriorating quickly. You suspect a sandstorm. Tell Beijing Approach this and ask ATC if there is a sand storm forecast.",
+      "audioTextZh": "收到，澳航432。\n你被许可到1200米，但是你注意到天空变黄，能见度快速变差。你怀疑是沙尘暴。告知北京进近，询问管制员是否有沙暴预报。",
+      "referenceText": "Beijing Approach, QFA432, maintaining 1200 meters, the sky is turning yellow and the visibility is getting worse. Confirm if there is a sandstorm forecast.",
+      "referenceTextZh": "北京进近，澳航432，在1200米保持，天空变黄，能见度变差，证实是否有沙尘暴预报。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/664ff3b54396b5565234.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215465",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-12",
+      "audioText": "N: The sandstorm is very severe and visibility is now very poor. Inform ATC of the situation and ask to climb to higher level to get above the sandstorm.",
+      "audioTextZh": "沙尘暴很严重，能见度很低。通知管制员该情况，请求爬升到更高的高度以飞越沙尘暴。",
+      "referenceText": "Beijing Approach, QFA432, the sandstorm is very severe and visibility is now very poor, request climb to higher level to get above the sandstorm.",
+      "referenceTextZh": "北京进近，澳航432，沙尘暴非常严重，现在能见度很低，请求爬升到更高高度以飞越沙尘暴。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f1f52282f9ba26e2c715.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215466",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-13",
+      "audioText": "C: QFA432, climb to and maintain 7000 meters and turn right heading 210.",
+      "audioTextZh": "澳航432，上到7000米保持，右转航向210。",
+      "referenceText": "Climb and maintain 7000 meters and turn right heading 210, QFA432.",
+      "referenceTextZh": "上到7000米保持，右转航向210，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4cbfe2a2f9b188a9b8bc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215467",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-14",
+      "audioText": "N: Suddenly, your No.1 and No.2 engines have flamed out due to the dust storm, If the weather is clear at Beijing, request radar vectors to Beijing airport for priority landing. This is a distress call.",
+      "audioTextZh": "突然，由于沙尘暴，你的一、二发熄火了，如果北京的天气晴朗，申请雷达引导到北京机场优先降落。这是遇险通话。",
+      "referenceText": "Mayday Mayday Mayday, Beijing Approach, QFA432, No.1 and 2 engines failed due to dust storm. If the weather is clear at Beijing, request radar vectors to Beijing for priority landing.",
+      "referenceTextZh": "Mayday Mayday Mayday，北京进近，澳航432，由于因沙尘暴，一、二发失效。如果北京天气晴朗，申请雷达引导到北京优先降落。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8d15efc93f57c7b6fe39.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215468",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-15",
+      "audioText": "C: QFA432, roger MAYDAY, turn right heading 030, descend to 3000 meters.",
+      "audioTextZh": "澳航432，收到Mayday，右转航向030，下降到3000米。",
+      "referenceText": "Turn right heading 030, descend to 3000 meters, QFA432.",
+      "referenceTextZh": "右转航向030，下降到3000米，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b3595fa9fd4b7d73a5d3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215469",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-16",
+      "audioText": "C: QFA432, the weather is clear now, expect radar vectors for ILS approach runway 18L, report established.",
+      "audioTextZh": "澳航432，现在天气晴朗了，预计雷达引导盲降进近跑道18左，建立航向道后报。",
+      "referenceText": "Radar vectors for ILS approach runway 18L, report established, QFA432.",
+      "referenceTextZh": "雷达引导盲降进近跑道18左，建立航向道后报，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3b9142d2eb97e21c308a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215470",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-17",
+      "audioText": "N: You have established ILS approach runway 18L, contact Beijing Tower.",
+      "audioTextZh": "你现在已经建立跑道18左盲降进近，联系北京塔台。",
+      "referenceText": "Beijing Tower, QFA432, established ILS approach runway 18L.",
+      "referenceTextZh": "北京塔台，澳航432，建立跑道18左盲降进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/48c48ab5cfdfa8f45488.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215471",
+      "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-18",
+      "audioText": "C: QFA432, cleared to land, runway 18L, you are number 1.",
+      "audioTextZh": "澳航432，可以落地。跑道18左，你是第一个。",
+      "referenceText": "Cleared to land, runway 18L, number 1, QFA432.",
+      "referenceTextZh": "可以落地。跑道18左，第一个，澳航432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/47dcd9d36b18f54553bf.mp3"
+    }
+  ],
+  "categoryId": "atc-qfa"
+}

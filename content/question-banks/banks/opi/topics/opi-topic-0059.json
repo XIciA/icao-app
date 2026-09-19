@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0059",
   "name": "标准喊话",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Standard callouts provide a cross-check between crew members. They help reduce human error and support flight safety.",
       "referenceTextZh": "标准喊话为机组成员之间提供交叉检查，有助于减少人为差错并保障飞行安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

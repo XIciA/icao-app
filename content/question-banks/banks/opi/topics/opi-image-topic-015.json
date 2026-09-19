@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-015",
   "name": "强侧风着陆",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-015.jpg",
-      "imageAlt": "强侧风着陆航空场景图片"
+      "imageAlt": "强侧风着陆航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-015-q01",
@@ -35,5 +35,6 @@
       "referenceText": "I would check the relevant aircraft performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured in the stronger crosswind, I would go around or divert as appropriate.",
       "referenceTextZh": "我会检查相关飞机性能，与机组及空中交通管制协调，并执行检查单。如果更强的侧风下无法确保安全，我会复飞或视情况改航。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

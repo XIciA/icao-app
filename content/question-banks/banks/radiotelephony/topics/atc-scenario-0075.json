@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0075",
   "name": "CSN 557 左主起落架未收回 液压系统漏油",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "武汉塔台，CSN 557，飞机仍保持完整，请求紧急撤离。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1299.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

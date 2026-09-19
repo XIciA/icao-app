@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0073",
   "name": "CSN 319 一套液压系统失效",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉进近，CSN 319，LKO 附近有雷暴，请求向左偏置 20 海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1266.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

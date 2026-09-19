@@ -1,0 +1,43 @@
+{
+  "id": "opi-fzy-840",
+  "name": "De-icing",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-fzy-840-image-1",
+      "kind": "image",
+      "taskTitle": "De-icing · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-840.png",
+      "imageAlt": "De-icing，用于本话题的看图描述和问答",
+      "studyTier": 2
+    },
+    {
+      "id": "opi-fzy-152422",
+      "taskTitle": "De-icing-1",
+      "audioText": "Can you say something about this picture?",
+      "audioTextZh": "你根据这张图片可以说些什么吗？",
+      "studyTier": 2,
+      "referenceText": "This picture shows it is a cold and snowy night. The apron is covered with snow.\nGround staff is deicing for the aircraft from China Southern Airlines now.",
+      "referenceTextZh": "好的。这是一个寒冷下过雪的晚上，机坪被白雪覆盖。\n地面人员正在给一架南航的飞机除冰。"
+    },
+    {
+      "id": "opi-fzy-152423",
+      "taskTitle": "De-icing-2",
+      "audioText": "How can icing conditions affect flight safety?",
+      "audioTextZh": "积冰如何影响飞行安全？",
+      "studyTier": 1,
+      "referenceText": "Icing will change the shape of the wings.\nincrease drag and reduce lift.\nreduce aircraft’s performance and may cause stall.",
+      "referenceTextZh": "积冰可以改变机翼形状。\n增加阻力，减弱升力。\n它将降低飞机性能，可能会造成失速。"
+    },
+    {
+      "id": "opi-fzy-152424",
+      "taskTitle": "De-icing-3",
+      "audioText": "Can planes wait a long time to take off after deicing?",
+      "audioTextZh": "飞机完成除冰后可以等待很长时间再起飞吗？",
+      "studyTier": 1,
+      "referenceText": "As far as I know, in case of icing again, the plane should take off as soon as possible after deicing.",
+      "referenceTextZh": "据我所知，为防止飞机再次积冰，飞机在除冰后需要尽快起飞。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

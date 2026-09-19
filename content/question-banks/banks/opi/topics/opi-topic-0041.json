@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0041",
   "name": "GPWS与EGPWS",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "At a complex airport, EGPWS can warn the crew when the aircraft is too low relative to surrounding terrain. It supports terrain avoidance by giving aural alerts such as “Too low, terrain” or “Terrain, pull up.”",
       "referenceTextZh": "在复杂机场，EGPWS 可以在飞机相对周围地形过低时警告机组。系统通过“Too low, terrain”或“Terrain, pull up”等声音告警支持地形避让。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

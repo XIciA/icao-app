@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0177",
   "name": "QFA 701 起落架问题 雷暴绕飞 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉地面，QFA 701，拖车未就位，请求牵引车。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-077-qfa701-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

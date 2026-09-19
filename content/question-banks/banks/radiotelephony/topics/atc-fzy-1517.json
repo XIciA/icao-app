@@ -1,0 +1,199 @@
+{
+  "id": "atc-fzy-1517",
+  "name": "UAL887 [积雨云，怀孕乘客]",
+  "declaredCardCount": 21,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219485",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-1",
+      "audioText": "[Your call-sign is UAL887, a passenger flight from Tokyo to Guangzhou. You are now flying at 9500m, estimating OBLIK at 35, squawking 5355. Make an initial contact with Beijing Control.]",
+      "audioTextZh": "【你的呼号是美联航887，一架从东京飞往广州的客运航班。你现在在9500米飞行，预计过OBLIK时间35分，应答机5355。与北京区调进行初始联系。】",
+      "referenceText": "Beijing Control, UAL887, 9500m maintaining, ETA OBLIK 35, squawk 5355.",
+      "referenceTextZh": "北京区调，美联航887，正保持在9500米，预计过OBLIK时间35分，应答机5355。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5042f262ceebf98ee54d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219486",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-2",
+      "audioText": "C: UAL887, Beijing Control, radar contact, maintain present altitude, no speed restriction.",
+      "audioTextZh": "C: 美联航887，北京区调，雷达看见了，保持当前高度，没有速度限制。",
+      "referenceText": "Maintain present altitude, no speed restriction, UAL887.",
+      "referenceTextZh": "保持当前高度，没有速度限制，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a829fd0e8b35d11c4292.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219487",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-3",
+      "audioText": "[You have an indication of cumulonimbus about 40km ahead, therefore, you want to turn right to go round it.]",
+      "audioTextZh": "【前方40公里处显示有积雨云，因此，你想右转绕飞。】",
+      "referenceText": "Beijing Control, UAL887, we have an indication of CB about 40km ahead, request turn right to avoid it.",
+      "referenceTextZh": "北京区调，美联航887，前方40公里处显示有积雨云，请求右转绕飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/acab53e3c2e5b4c45fe1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219488",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-4",
+      "audioText": "C: UAL887, turning right is not approved due prohibited area, turn left 30 degrees, track out 35km, report clear of the build-up.",
+      "audioTextZh": "C: 美联航887，不行，由于禁区，左转30度，出航35公里，离开积雨云后报。",
+      "referenceText": "Turn left 30 degrees, track out 35km, wilco, UAL887.",
+      "referenceTextZh": "左转30度，出航35公里，照办，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6acf99db960877e133ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219489",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-5",
+      "audioText": "[You are now clear of cumulonimbus and closing back to your original course, report to the controller.]",
+      "audioTextZh": "【你现在离开积雨云，正返回原航路，告知管制员。】",
+      "referenceText": "Beijing Control, UAL887, clear of CB and returning back to our original course.",
+      "referenceTextZh": "北京区调，美联航887，离开积雨云，正返回原航路。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1f04eb298a45afa3413.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219490",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-6",
+      "audioText": "C: UAL887, Beijing Control, roger, report joining.\n[Later...]\n[A flight attendant reports that a pregnant woman is about to deliver a baby, and she is in severe pain. Inform Beijing Control the situation. This is an emergency call.]",
+      "audioTextZh": "C:美联航887，北京区调，收到，加入后报。\n【后来...】\n【一名乘务员报告说一名怀孕乘客要生孩子，她现在疼得厉害。告知北京区调，这是一个紧急呼叫。】",
+      "referenceText": "Panpan Panpan Panpan, Beijing Control, UAL887, a pregnant woman is on board is about to deliver a baby, she is in severe pain.",
+      "referenceTextZh": "Panpan Panpan Panpan，北京区调，美联航887，一名怀孕乘客将要在飞机上生孩子，她现在疼得厉害。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2c35b090a9cc04acd0c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219491",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-7",
+      "audioText": "C: UAL887, Beijing Control, roger that. Notify us the further situation and your intention.\n[Tell controller that the pure oxygen is being fed to the woman, and she is about to give birth on the plane. You want to divert to Wuhan.]",
+      "audioTextZh": "C: 美联航887，北京区调，收到。告知情况的发展以及你的意图。\n【告知管制员，已经给乘客提供纯氧，她打算在飞机上生孩子。你想备降到武汉。】",
+      "referenceText": "The pure oxygen is being fed to the woman, and she is about to give birth on the plane, request divert to Wuhan, UAL887.",
+      "referenceTextZh": "已经给乘客提供纯氧，她打算在飞机上生孩子，请求改航到武汉，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/020c97eee9f579ee46f5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219492",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-8",
+      "audioText": "C: UAL887, roger that. You are cleared to divert to Wuhan. Turn right heading 216 and descend to 8100m.",
+      "audioTextZh": "C: 美联航887，收到。你可以改航到武汉。右转航向216，下8100米。",
+      "referenceText": "Cleared to divert to Wuhan, turn right heading 216 and descend to 8100m, UAL887.",
+      "referenceTextZh": "可以改航到武汉，右转航向216，下8100米，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae0749b8498cb46a256f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219493",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-9",
+      "audioText": "[Make a passenger address to find if any doctor or nurse is available to offer help.]",
+      "audioTextZh": "【进行机上广播，看是否能找到医生或护士。】",
+      "referenceText": "Ladies and gentlemen, this is your captain speaking: a female passenger is about to give birth on the plane, so if you are a doctor or nurse, please kindly offer some help, thank you so much!",
+      "referenceTextZh": "女士们，先生们，这里是机长广播：一名女性乘客将要在飞机上生孩子，因此如果你是医生或者护士，请提供帮助，谢谢。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c271e44dd234550ad56.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219494",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-10",
+      "audioText": "[15 minutes later.]\n[Tell controller that the baby is delivered safely, but the mother has fainted, request landing as soon as possible.]",
+      "audioTextZh": "【15分钟后。】\n【告知管制员，孩子成功出生，但是妈妈已经昏迷，请求尽快着陆。】",
+      "referenceText": "Beijing Control, UAL887, the baby has been delivered safely, but the mother lost consciousness, request landing as soon as possible.",
+      "referenceTextZh": "北京区调，美联航887，孩子安全出生，但是妈妈失去意识，请求尽快着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4dfb7ad393ec911ec4b6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219495",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-11",
+      "audioText": "C: UAL887, Beijing Control, roger your information. Further descend to 5100m, contact Wuhan Approach 126.3.",
+      "audioTextZh": "C: 美联航887，北京区调，收到你的情报。继续下到5100 米，联系武汉进近126.3。",
+      "referenceText": "Descend to 5100m, contact Wuhan Approach on 126.3, UAL887.",
+      "referenceTextZh": "下到5100米，联系武汉进近126.3，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8e459b5ba96df7e6c6bd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219496",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-12",
+      "audioText": "[Contact Wuhan Approach and ask controller to arrange doctor and ambulance on arrival.]",
+      "audioTextZh": "【联系武汉进近，请求管制员安排医生和救护车在着陆后就位。】",
+      "referenceText": "Wuhan Approach, UAL887, request doctor and ambulance on arrival.",
+      "referenceTextZh": "武汉进近，美联航887，请求着陆后医生和救护车就位。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bd284ddd65e776fa78b7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219497",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-13",
+      "audioText": "C: UAL887, Wuhan Approach, radar contact, radar vectors for ILS approach runway 04R.",
+      "audioTextZh": "C: 美联航887，武汉进近，雷达看到了，雷达引导盲降进近跑道04右。",
+      "referenceText": "Radar vectors for ILS approach runway 04R, UAL887.",
+      "referenceTextZh": "雷达引导，盲降进近跑道04右，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/55524ee827561378569f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219498",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-14",
+      "audioText": "C: UAL887, turn left heading 190, descend to and maintain 3600m on QNH 1006, reduce to minimum approach speed.",
+      "audioTextZh": "C: 美联航887，左转航向190，下到3600米保持，修压1006，减小到最低进近速度。",
+      "referenceText": "Turn left heading 190, descend to and maintain 3600m on QNH1006, reduce to minimum approach speed, UAL887.",
+      "referenceTextZh": "左转航向190，下到3600米保持，修压1006，减小到最低进近速度，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/399e8a955761a995bd49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219499",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-15",
+      "audioText": "C: UAL887, descend to 1200m, turn right heading 226 to intercept the localizer runway 04R, report established.",
+      "audioTextZh": "美联航887，下1200米，右转航向226来截获跑道04右航向道，截获后报。",
+      "referenceText": "Descend to 1200m, turn right heading 226 to intercept the localizer runway 04R, wilco, UAL887.",
+      "referenceTextZh": "右转航向226来截获跑道04右航向道，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d42a2c05f9b688f2428.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219500",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-16",
+      "audioText": "[Now you have intercepted the localizer of runway 04R, inform Tower controller. ]",
+      "audioTextZh": "【你现在已经截获跑道04右航向道，告知塔台管制员。】",
+      "referenceText": "Wuhan Tower, UAL887, intercepted the localizer of runway 04R.",
+      "referenceTextZh": "武汉塔台，美联航887，截获跑道04右航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d4591da9cf25ec9a0577.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219501",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-17",
+      "audioText": "C: UAL887, Wuhan Tower, continue approach, runway 04R, report outer marker.",
+      "audioTextZh": "C: 美联航887，武汉塔台，继续进近，跑道04右，过外指点标后报。",
+      "referenceText": "Continue approach, runway 04R, wilco, UAL887.",
+      "referenceTextZh": "继续进近，跑道04右，照办，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7175dda4f613c8b5e94f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219502",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-18",
+      "audioText": "[Now you are over outer marker.]",
+      "audioTextZh": "【你现在已经过了外指点标。】",
+      "referenceText": "Wuhan Tower, UAL887, over outer marker.",
+      "referenceTextZh": "武汉塔台，美联航887，过外指点标。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f02e12437e93d1ccafee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219503",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-19",
+      "audioText": "C: UAL887, cleared to land, runway 04R, surface wind 170, 13m/s, QNH1006, report vacated.",
+      "audioTextZh": "C: 美联航887，可以落地，跑道04右，地面风170度，13米每秒，修压1006，脱离后报。",
+      "referenceText": "Cleared to land, runway 04R, QNH1006, wilco, UAL887.",
+      "referenceTextZh": "可以落地，跑道04右，修压1006，照办，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ccc1ed8877b1caff494a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219504",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-20",
+      "audioText": "[During landing, you hear a loud bang and the plane bounces. You suspect the plane has encountered a tail strike. Inform this to the controller and request ground staff to have a visual check of your tail section at the gate.]",
+      "audioTextZh": "【在着陆中，你听到了一声巨响，飞机弹跳。你怀疑飞机遇到了擦机尾。告知管制员该情况，请求地面人员在你到达机位后目视检查机尾部分。】",
+      "referenceText": "Wuhan Tower, UAL887, we hear a loud bang and the plane bounces during landing, suspect a tail strike, request ground staff to have a visual check of our tail section at the gate.",
+      "referenceTextZh": "武汉塔台，美联航887，我们听到了一声巨响，飞机弹跳，怀疑飞机遇到了擦机尾，请求地面人员在机位目视检查机尾部分。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf2e5d565890622768c2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219505",
+      "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-21",
+      "audioText": "C: UAL887, roger, vacate runway via fast exit J4, contact Wuhan Ground on 118.025.",
+      "audioTextZh": "美联航887，收到，经由快速脱离道J4脱离，联系武汉地面118.025。",
+      "referenceText": "Vacate runway via fast exit J4, contact Wuhan Ground on 118.025, UAL887.",
+      "referenceTextZh": "经由快速脱离道J4脱离，联系武汉地面118.025，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1c5427c28651d88c06a.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

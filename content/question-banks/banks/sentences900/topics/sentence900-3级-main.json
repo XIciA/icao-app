@@ -1,5 +1,4 @@
 {
-  "categoryId": "sentence900-3级",
   "id": "sentence900-3级-main",
   "name": "3级句子",
   "declaredCardCount": 562,
@@ -4500,5 +4499,6 @@
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-900-80dfb7429c61.mp3",
       "audioDurationSeconds": 9.927
     }
-  ]
+  ],
+  "categoryId": "sentence900-3级"
 }

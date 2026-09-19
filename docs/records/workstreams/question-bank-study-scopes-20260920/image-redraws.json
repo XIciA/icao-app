@@ -1,0 +1,867 @@
+{
+  "schemaVersion": 1,
+  "mode": "built-in-imagegen",
+  "style": "Existing aviation picture-question baseline: realistic American graphic novel, black ink outlines, restrained hatching, clean blue-gray cel shading, thin black border and AI-generation label.",
+  "images": [
+    {
+      "sectionId": 557,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/1.png",
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-557.png",
+      "sha256": "e8e32baa86eeb090ab4f09e29fc478b7910d79380ef52e8c0059f8dfd9acfbce",
+      "reviewed": true,
+      "review": "Viewed generated output: anvil, upward/downward arrows, rain, low roll cloud, surface outflow and gust front are visible; source question context retained; English labels and AI disclosure legible.",
+      "references": [
+        "https://www.faa.gov/sites/faa.gov/files/FAA-H-8083-28_FAA_Web.pdf"
+      ],
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape illustration for an aviation English oral picture question. Reference image 1 is ONLY factual content to redraw: a mature thunderstorm cross-section with anvil top, upward airflow on the left, rain and downward airflow in the middle/right, air spreading outward at ground level, a low roll cloud at the leading edge, gust front and blowing dust. Reference image 2 is ONLY the existing app's art style: realistic American aviation graphic novel, crisp black ink outlines, restrained crosshatching, clean flat cel shading with muted blue-gray atmospheric tones, a thin black panel border, clear instructional composition. Do not copy reference 2's aircraft, airline logos or scene. Draw an original polished educational comic diagram of the thunderstorm, readable on a phone. Show an anvil extending to the right; upward arrows on the left within the cloud; downward arrows and rain below cloud center; outward near-surface arrows; a low detached roll cloud near the forward gust front, never high inside the cloud. Show turbulent airflow as restrained curved arrows. Minimal legible English labels near their exact features: ANVIL, UPDRAFT, DOWNDRAFT, RAIN, ROLL CLOUD, GUST FRONT, WIND SHEAR. No aircraft, no tornado, no people, no extra text or titles. Bottom-right, unobtrusive small black rounded label with exact white Chinese text: 本图片由AI生成. Prioritize scientific clarity, believable cloud shape and the reference illustration's inked comic style over ornament.",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20161102/581946b9e860d.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/1.png"
+      ]
+    },
+    {
+      "sectionId": 837,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329a772c28.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329a772c28.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093640-6441e8a8b5e33.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cb3fbff64.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cb4c29496.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cb5b4fe54.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-837.png",
+      "sha256": "300466c0ac560ce137c7e88740244322017117934561a5605de6dd06d961ca3c",
+      "reviewed": true,
+      "review": "Mechanic and seated captain visibly hand over one worksheet in a parked cockpit; natural hands, comic rendering and AI label verified.",
+      "prompt": "Use case: illustration-story. Create a new 1536x1024 landscape educational image for an aviation English oral picture question. First reference image is factual scene context only; second reference is our app's approved art style only. Render an ORIGINAL illustration in realistic American aviation graphic-novel style: precise black ink outlines, restrained crosshatching, clean cel shading, convincing aircraft anatomy and muted blue-gray tones. Thin black panel border. Do not copy source watermarks or source typography; no source branding. Only text: a small unobtrusive black rounded label at bottom right with exact white Chinese text 本图片由AI生成. Preserve all facts needed by the oral question while matching the style reference. Scene: Inside a parked modern airliner cockpit in daylight, a mechanic wearing a dark work uniform and yellow reflective safety vest stands beside a seated captain in a white pilot shirt with epaulettes. The mechanic hands a maintenance worksheet on a clipboard to the captain, who is inspecting it. Show both people's hands naturally holding the single sheet/clipboard, flight instruments and overhead panel visible. Original faces, no likeness copying. It must be clear this is a maintenance-document handover on the ground, not an inflight emergency. No readable fine-print on the worksheet."
+    },
+    {
+      "sectionId": 838,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329c50dcce.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329c50dcce.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093656-6441e8b85786b.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cb9312465.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cba785c24.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cbb2ceb63.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-838.png",
+      "sha256": "c35dd0e23b0aad47164ef6d4dd58edfc36a8a8be67360bc30545cfccff9e1e3f",
+      "reviewed": true,
+      "review": "Modern glass cockpit, PFD/navigation/system displays and night runway preserved; scene is illustrative and no question depends on numeric display values.",
+      "prompt": "Use case: illustration-story. Create a new 1536x1024 landscape educational image for an aviation English oral picture question. First reference image is factual scene context only; second reference is our app's approved art style only. Render an ORIGINAL illustration in realistic American aviation graphic-novel style: precise black ink outlines, restrained crosshatching, clean cel shading, convincing aircraft anatomy and muted blue-gray tones. Thin black panel border. Do not copy source watermarks or source typography; no source branding. Only text: a small unobtrusive black rounded label at bottom right with exact white Chinese text 本图片由AI生成. Preserve all facts needed by the oral question while matching the style reference. Scene: A modern Airbus-style airliner glass cockpit seen from behind the pilot seats at night, looking forward through the windscreen at an illuminated runway. Show two symmetric main digital instrument groups, blue/brown PFD attitude displays, navigation displays, central engine/system screens, flight management console and an overhead panel. The topic is modern digital cockpit instruments. No dominant analog-instrument panel, no alarm/red failure warnings, no people obstructing displays."
+    },
+    {
+      "sectionId": 839,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329e40feb3.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd329e40feb3.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093713-6441e8c995d58.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cbe0b0104.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cbf45eadc.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc0076818.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-839.png",
+      "sha256": "578ebccade0c370406787d529962515bffb1e5c6cfde051b708a9ee4283e4dd4",
+      "reviewed": true,
+      "review": "Engine cowling separated in flight, exposed systems and intact inlet ring visible; no unrelated fire; style and AI label verified.",
+      "prompt": "Use case: illustration-story. Create a new 1536x1024 landscape educational image for an aviation English oral picture question. First reference image is factual scene context only; second reference is our app's approved art style only. Render an ORIGINAL illustration in realistic American aviation graphic-novel style: precise black ink outlines, restrained crosshatching, clean cel shading, convincing aircraft anatomy and muted blue-gray tones. Thin black panel border. Do not copy source watermarks or source typography; no source branding. Only text: a small unobtrusive black rounded label at bottom right with exact white Chinese text 本图片由AI生成. Preserve all facts needed by the oral question while matching the style reference. Scene: An original daylight view from a passenger window over a blue-and-white turbofan engine in flight, agricultural fields far below. Large portions of the engine cowling have torn away, clearly exposing pipes, cables and internal engine equipment behind the intact front inlet ring. A torn cowling panel is visible on top. Preserve the key fact: cowling structural damage, not an engine fire. No smoke, flames or injured people."
+    },
+    {
+      "sectionId": 840,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6e3b029796.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6e3b029796.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093723-6441e8d38c57b.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc19be4a5.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc25428ec.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-840.png",
+      "sha256": "48fcf0a97f460e02302bb75c956cd68fe93d01c3c3db57456ec0d170f309461b",
+      "reviewed": true,
+      "review": "Night snow-covered apron, parked China Southern jet and truck-mounted crew spraying de-icing fluid visible; no fire; comic style and AI label verified.",
+      "prompt": "Use case: illustration-story. Create a new 1536x1024 landscape educational image for an aviation English oral picture question. First reference image is factual scene context only; second reference is our app's approved art style only. Render an ORIGINAL illustration in realistic American aviation graphic-novel style: precise black ink outlines, restrained crosshatching, clean cel shading, convincing aircraft anatomy and muted blue-gray tones. Thin black panel border. Do not copy source watermarks or source typography; no source branding. Only text: a small unobtrusive black rounded label at bottom right with exact white Chinese text 本图片由AI生成. Preserve all facts needed by the oral question while matching the style reference. Scene: A cold snowy airport apron at night. Ground crew in a raised articulated basket on a de-icing truck spray de-icing fluid across the wing and upper airframe of a parked China Southern Airlines passenger jet. Show realistic nozzle mist, floodlights, snow on the apron, the parked jet's blue-and-white livery and tail, and ground service truck. Aircraft engines are stationary. Preserve the factual scene of night ground de-icing; no fire, no aircraft taking off."
+    },
+    {
+      "sectionId": 841,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a2b309a4.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a2b309a4.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093739-6441e8e315f9b.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc578b35d.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc62263e1.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc702d2c4.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-841.png",
+      "sha256": "134c9194b2e48a1ffbbaf48e2d206597d2f956fed7e4238cc2f77f4614d2d9ad",
+      "reviewed": true,
+      "review": "Distant airport lightning and stationary aircraft visible; no strike/fire on an aircraft, comic style and label verified.",
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape aviation English picture-question illustration. Reference1 supplies factual scene context only; reference2 supplies our existing app's art style only. Draw an original realistic American aviation graphic novel image with crisp black ink outlines, restrained crosshatching, clean cel shading, believable proportions and blue-gray atmospheric tones; thin black panel border. Source watermarks and typography must not appear. Small unobtrusive black rounded label bottom-right with exact white Chinese text 本图片由AI生成. No other text unless the scene requests educational labels. Scene: Wide view of an airport apron and terminal at night, several airliners parked at gates or holding stationary on taxiways. A bright fork of lightning strikes in the distance beyond the airport under a dark thunderstorm sky. Reflected terminal and taxiway lights visible. The lightning is in the vicinity, not striking any aircraft. No fire or explosions."
+    },
+    {
+      "sectionId": 842,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a3f1e59f.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a3f1e59f.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093748-6441e8ec53e83.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc85ad38f.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cc9078b93.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20230522/646ada17a63b2.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20230522/646ada3202155.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20230522/646ada470139d.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-842.png",
+      "sha256": "fdb8dc2dd75e66612a98f5dfb248d70c17b0916a66337299bf594e83c0f2e5c0",
+      "reviewed": true,
+      "review": "Two aircraft in dense fog; landing aircraft in foreground and second on separate taxiway; no collision, visibility context retained.",
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape aviation English picture-question illustration. Reference1 supplies factual scene context only; reference2 supplies our existing app's art style only. Draw an original realistic American aviation graphic novel image with crisp black ink outlines, restrained crosshatching, clean cel shading, believable proportions and blue-gray atmospheric tones; thin black panel border. Source watermarks and typography must not appear. Small unobtrusive black rounded label bottom-right with exact white Chinese text 本图片由AI生成. No other text unless the scene requests educational labels. Scene: An airport in heavy pale-gray fog with severely reduced visibility. In the foreground a twin-engine passenger jet with landing gear extended is just above a runway while landing; in the far background a second passenger jet is faintly visible moving on a separate parallel taxiway. Both silhouettes remain distinguishable through dense fog, runway lights dimly glow. Do not put the taxiing aircraft in the landing aircraft's path. No accidents."
+    },
+    {
+      "sectionId": 843,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a500be23.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a500be23.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093803-6441e8fba70fa.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045ccb67de70.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045ccc19e945.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-843.png",
+      "sha256": "512f79a4aa1b2d3487605ab2e089a7bae0079ad69654342919b47e52ac4fa387",
+      "reviewed": true,
+      "review": "Central down arrows and outward left/right ground outflow correct; headwind/downdraft/tailwind zones legible, microburst context retained.",
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape aviation English picture-question illustration. Reference1 supplies factual scene context only; reference2 supplies our existing app's art style only. Draw an original realistic American aviation graphic novel image with crisp black ink outlines, restrained crosshatching, clean cel shading, believable proportions and blue-gray atmospheric tones; thin black panel border. Source watermarks and typography must not appear. Small unobtrusive black rounded label bottom-right with exact white Chinese text 本图片由AI生成. No other text unless the scene requests educational labels. Scene: A scientifically clear microburst cross-section diagram: dark rain cloud above, central concentrated vertical DOWNDRAFT, hits the ground and spreads outward horizontally to both sides as gusty outflow. For an aircraft imagined traveling left-to-right, left outflow is labeled 1 HEADWIND, middle vertical downflow labeled 2 DOWNDRAFT, right outflow labeled 3 TAILWIND. Use blue airflow arrows with unequivocal directions: left-side near-ground arrows point LEFT and right-side near-ground arrows point RIGHT; central arrow points DOWN. A simple low ground line, restrained rain streaks, no decorative aircraft. No upward arrow through the central shaft. Educational diagram with American comic inking/cel shading; legible English labels exactly HEADWIND, DOWNDRAFT, TAILWIND near corresponding zones, small numbers1/2/3. Do not call these a time sequence; they are zones along a flight path."
+    },
+    {
+      "sectionId": 844,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a6019bf6.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a6019bf6.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093821-6441e90d8f1f6.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045ccd93f09e.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cce61335d.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-844.png",
+      "sha256": "444188bee61808fb03fa36b65c9b78597443b3d51cdd4237a49cc5592dfe15b6",
+      "reviewed": true,
+      "review": "Crosswind landing with modest bank/crab, extended gear and lateral windsock preserved; no accident.",
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape aviation English picture-question illustration. Reference1 supplies factual scene context only; reference2 supplies our existing app's art style only. Draw an original realistic American aviation graphic novel image with crisp black ink outlines, restrained crosshatching, clean cel shading, believable proportions and blue-gray atmospheric tones; thin black panel border. Source watermarks and typography must not appear. Small unobtrusive black rounded label bottom-right with exact white Chinese text 本图片由AI生成. No other text unless the scene requests educational labels. Scene: Rear three-quarter view of a large four-engine passenger jet on very short final above a runway, landing gear down, making a crosswind landing with a small bank angle and crab angle visibly different from runway alignment. Windsock blown sideways and subdued wind streaks show crosswind; distant hills and airport buildings, clear daylight. Realistic jet geometry, no excessive 45-degree bank, no accident, no runway collision, no logo or airline name."
+    },
+    {
+      "sectionId": 845,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a75733e8.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a75733e8.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093834-6441e91a44c7c.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cd07c26d2.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cd1380b16.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-845.png",
+      "sha256": "c66fcb5858f46727a5ee728da4916b0899484726d4b1cce5d03199636a38021c",
+      "reviewed": true,
+      "review": "Level runway atop mountain plateau with surrounding rugged terrain visible; high-elevation airport context, style and label verified.",
+      "prompt": "Use case: scientific-educational. Create a new 1536x1024 landscape aviation English picture-question illustration. Reference1 supplies factual scene context only; reference2 supplies our existing app's art style only. Draw an original realistic American aviation graphic novel image with crisp black ink outlines, restrained crosshatching, clean cel shading, believable proportions and blue-gray atmospheric tones; thin black panel border. Source watermarks and typography must not appear. Small unobtrusive black rounded label bottom-right with exact white Chinese text 本图片由AI生成. No other text unless the scene requests educational labels. Scene: An original aerial oblique view of a high-elevation mountain airport: one long straight paved runway on a broad level constructed plateau, taxiway and small terminal/apron adjacent, steep rugged mountain valleys and layered peaks surrounding the airport. Bright hazy daylight, muted green/brown slopes and blue-gray distant ridges. The runway is continuous and level; no impossible curved runway, no airliner balancing on a cliff, no labels or added technical claims."
+    },
+    {
+      "sectionId": 846,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6e0f8b9c57.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6e0f8b9c57.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093845-6441e925217e4.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cd295211d.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045cd3445b88.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-846.png",
+      "sha256": "531ac8fee75009d98c23342fa7a43895d31a45b1393b56c6974bec8a2fde995f",
+      "reviewed": true,
+      "review": "已逐张核对：大型金色放射状航站楼、廊桥与机坪，匹配大兴机场及机场设施讨论主题。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: A high aerial overview of Beijing Daxing International Airport's distinctive golden starfish-shaped passenger terminal, its central hub and five broad curving concourses radiating over huge aprons with many aircraft stands and jet bridges. Landside road links at the top and airport taxiway/runway context in distance. Clearly recognizable terminal shape; interpret as a comic illustration, not a traced satellite photo. No invented readable airport labels."
+    },
+    {
+      "sectionId": 847,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210427/6087cfaf155e7.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210427/6087cfaf155e7.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093855-6441e92f241b0.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210427/6087cf92759ef.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210427/6087cf77803b8.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-847.png",
+      "sha256": "8556bd62a1c39cd86876046003d0189795daa5ebc5a2b1186f71593c23531155",
+      "reviewed": true,
+      "review": "已逐张核对：海岸悬崖、受限跑道及进近飞机，匹配复杂机场和地形主题；属于示意图而非机场运行图。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: Aerial oblique view of a small challenging coastal airport resembling the source island airfield: a short straight runway and tiny apron on a level green headland, steep sea cliffs at both runway ends, deep blue ocean and white surf around the headland, hills and sparse houses nearby. Believable runway geometry. No aircraft crash, no giant modern terminal, no geographic text labels."
+    },
+    {
+      "sectionId": 848,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a885d32e.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a885d32e.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093910-6441e93ee34b0.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d0f32e225.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d0fe0819c.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1090150a.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-848.png",
+      "sha256": "3416735341c6c4f0200a881361aea68987c12ca59fb5672e0cdbfe7e4ae48e96",
+      "reviewed": true,
+      "review": "已逐张核对：起飞姿态过大、尾部擦地及火花可见，符合擦尾事故题意。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: Side view of a large twin-engine China Eastern cargo aircraft during takeoff rotation: nose pitched too high, nose wheel airborne, main landing gear still just at runway level, the underside of the aft fuselage/tail touches the runway and throws a small trail of bright scraping sparks. China Eastern-style white fuselage with red-and-blue striping. This is a tail strike at takeoff, not an engine fire or a nose crash. Anatomically correct wings, gear, tail."
+    },
+    {
+      "sectionId": 849,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a9c71385.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32a9c71385.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093941-6441e95db4de8.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d15486360.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d15f77c65.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-849.png",
+      "sha256": "4403ac395178f8c94218097c475d978faefd54d5ed222dececfda51176a9d964",
+      "reviewed": true,
+      "review": "已逐张核对：两架地面客机机翼与垂尾碰撞处清晰，保留地面刮碰的因果线索。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: Two large passenger aircraft stationary after a ground collision on a sunlit airport apron. Clearly show a China Southern-style jet's RIGHT wingtip contacting and damaging the vertical tail of a China Eastern-style jet. Foreground rear section of the red/blue-trimmed China Eastern aircraft has visible bent/torn metal at the tail contact point; the other aircraft's long wing extends toward that point. Ground personnel stand at a safe distance observing. Use an original three-quarter rear composition with believable distinct airframes. No fire, no moving people beneath engines, no black annotation circle."
+    },
+    {
+      "sectionId": 853,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210323/6059af54053ed.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210323/6059af54053ed.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094036-6441e9945af44.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d2071b829.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d22e0e86a.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-853.png",
+      "sha256": "77f7f6aca5a04784574255c65c3a3a565248518edf544d987220743b58ae4c73",
+      "reviewed": true,
+      "review": "已逐张核对：双发涡桨机停机加油、油车与地勤，螺旋桨静止；场景与讨论主题吻合。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: A blue-and-white small twin-propeller high-wing commuter aircraft is parked on a concrete apron with both propellers stopped. A large silver aviation fuel tanker is beside it, preparing for refueling. Daylight, realistic separation between truck and aircraft; no running propellers, no fire or fuel spill. The two propellers and tanker must be clearly identifiable. No airline lettering."
+    },
+    {
+      "sectionId": 856,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f86fb912d.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f86fb912d.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094120-6441e9c0ce9c8.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d37946634.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3846464a.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d38f77c68.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20230720/64b8a7f53107e.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20230720/64b8a80521298.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-856.png",
+      "sha256": "536862318a021512c6a0fc36bcb022e07b7ce0259af009a4e93fcc780d43e350",
+      "reviewed": true,
+      "review": "已逐张核对：客机起落架未放下，机腹沿跑道接触并产生烟尘，符合机腹着陆主题。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: Side view of a LOT Polish Airlines twin-engine airliner making a controlled gear-up belly landing on a runway, landing gear entirely retracted, belly and engine nacelles close to runway surface. A low white-gray trail of friction smoke is behind it. White fuselage with navy-blue LOT marking, realistic runway and autumn treeline in background, overcast daylight. No giant flames, no extended wheels, no injuries."
+    },
+    {
+      "sectionId": 858,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f9f8dface.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f9f8dface.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094149-6441e9dd94304.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3d153281.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3da3bbe9.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3e3f2898.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-858.png",
+      "sha256": "32112576019bae117bca9246a8405a5933a81df6aedfb47e6c28613a2a846312",
+      "reviewed": true,
+      "review": "已逐张核对：冒烟客机、充气滑梯与撤离乘客；携带行李作为讨论中的错误行为线索。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: An Asiana Airlines passenger jet stationary on dry grass after an emergency landing. Dense dark smoke rises behind/above the fuselage. Exactly two deployed emergency evacuation slides lead from open passenger exits to the ground. Passengers already on the ground walk away; a few visibly carry small luggage, preserving the source's unsafe-behavior discussion context without endorsement. Original faces, no injured bodies or gore. Side view, daytime, airport beyond. Evacuation and smoke must be readable, not a generic airport scene."
+    },
+    {
+      "sectionId": 1706,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260130/20260130115115-697c2ab3e77fa.jpg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260130/20260130115115-697c2ab3e77fa.jpg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-1706.png",
+      "sha256": "c81cc9eb3ff929a5ad85f773095146995cc8b8a31e1df8e41c9929558c5c004f",
+      "reviewed": true,
+      "review": "已逐张核对：后置双发T尾飞机、机头牵引车与地勤，表达推出作业而非滑行。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: A COMAC C909 regional passenger jet with T-tail and two rear-fuselage-mounted engines preparing for pushback at an airport apron in daylight. A tow tractor attached via a single towbar to the nose gear, exactly three visible ground staff in fluorescent safety vests supervising around the plane at safe positions. White/red/gold livery, cockpit and T-tail clearly identifiable. No underwing engines, no C919 model label, no commercial brand logos needed."
+    },
+    {
+      "sectionId": 1716,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260722/20260722173201-6a608e11684f7.jpg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260722/20260722173201-6a608e11684f7.jpg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-1716.png",
+      "sha256": "ce868c4962a9dca3a473cc03ef5d79b9b824ec0b8a3ad9be8dd30909e9f1f1ef",
+      "reviewed": true,
+      "review": "已逐张核对：地面停放客机、逼近机场的沙尘墙及低能见度主题明确；线描、配色、边框和AI标识一致。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: Airport apron in daylight just before a major dust storm arrives. Parked passenger jets at terminal gates and ground-service carts in foreground; enormous brown rolling wall of sand and dust approaches across the horizon, sharply reducing visibility behind it. Gray storm sky, no rain-focused thunderstorm, no fire, no aircraft flying inside the dust."
+    },
+    {
+      "sectionId": 850,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32aaea725b.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32aaea725b.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421093955-6441e96b304fd.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d17a9994b.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1981fb0b.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-850.png",
+      "sha256": "5eb9e20622c19ca9f0eea581a86c717dfc9820e47902704652bebb8a84e21da3",
+      "reviewed": true,
+      "review": "已核对：地面车辆侵入着陆跑道、进近客机与跑道中心线，风险位置明确。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: Runway-incursion hazard seen looking along a runway in hazy daylight. A green airport vehicle crosses the active runway in the middle distance while a passenger jet with landing gear extended is on short final ahead, clearly approaching the same runway. Original perspective, enough separation to show an imminent conflict without depicting impact. Vehicle must be obviously on the runway, not a harmless parallel taxiway. No crash, smoke or gore."
+    },
+    {
+      "sectionId": 851,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32ac1e832c.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32ac1e832c.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094013-6441e97d27f6c.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1adb3295.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1b9d6b55.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1c674d0c.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-851.png",
+      "sha256": "50b6721a69aa78e7e88f9842b411408a6f7f848f157e24dba6a80dba6714ee37",
+      "reviewed": true,
+      "review": "已核对：春秋航空配色双发客机低空遭遇鸟群，符合鸟击讨论主题，未虚构严重爆炸。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: A Spring Airlines-style white-and-green twin-engine passenger jet on approach with landing gear down, viewed from ahead at an angle. A flock of medium-sized birds flies across the airspace near its nose and wings, presenting a bird-strike hazard. Birds visibly small compared with aircraft, natural wing shapes, clear daylight sky. No impact, blood or engine explosion, preserve hazard-discussion context."
+    },
+    {
+      "sectionId": 854,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f64ea3eb8.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f64ea3eb8.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094050-6441e9a233a0f.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d30bc3efa.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d317754aa.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d323e7ddf.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-854.png",
+      "sha256": "4ca105679be7e59cf5cb1542eee183d9edd239e11aaf9f1ecd06328215973307",
+      "reviewed": true,
+      "review": "已核对：起飞后爬升、起落架仍可见，飞机右发动机（迎面视角左侧）起火，另一发动机正常。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: A twin-engine passenger jet shortly after takeoff, climbing nose-up above an airport control tower with landing gear not yet fully retracted. Flame and a small smoke trail emerge only from its RIGHT (starboard) engine. Viewed from ahead and below, this engine appears on the viewer's LEFT. The other engine remains normal. Overcast daylight, realistic aircraft shape, restrained fire, no fuselage explosion."
+    },
+    {
+      "sectionId": 857,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f94e4a43c.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f94e4a43c.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094134-6441e9ce29f7d.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3ab946c4.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3b7f0094.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-857.png",
+      "sha256": "86958b696b2c0c1f5c76b281cb11b076bd30547af49dcc9dfb309212042fa99b",
+      "reviewed": true,
+      "review": "已核对：河上迫降的客机、机翼上等待救援的乘客、充气滑梯/救生筏和救援船，图题相符。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: A twin-engine passenger jet floating low in a river after a controlled ditching, nose/front three-quarter view. Many passengers stand on the wings and inflated evacuation slide-rafts beside the fuselage waiting for rescue; small rescue boats approach or transport passengers nearby. Choppy blue-gray water, overcast daylight, no gore, no flames. Keep fuselage recognizable and wings supporting people; distinguish an emergency water landing from normal seaplane operations."
+    },
+    {
+      "sectionId": 852,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32ad4d8e07.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201211/5fd32ad4d8e07.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094022-6441e986cf26c.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1e4a4218.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d1f0a739e.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-852.png",
+      "sha256": "4484faf8b48bb242ffe9c9aa0bfe2f368a2ce4a708777698b28621fe18fe8381",
+      "reviewed": true,
+      "review": "异物金属箱卡在涡扇进口、整流罩破损清晰；补齐AI标识后复核，保留外来物损伤主题。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: Airport apron incident involving foreign-object ingestion. Close oblique view of an airliner's underwing turbofan engine inlet with a large rectangular metallic cargo container visibly lodged at the inlet mouth, damaging it; a second normal engine visible farther along the wing. One ground worker stands well away, another parked aircraft in background. No people in the engine, no fire, no airborne aircraft. The cargo box stuck in engine must be the unmistakable focal point.\nTargeted review correction: Edit only the bottom-right margin of this approved aviation illustration: add a small rounded black label with exact white Chinese text 本图片由AI生成, clearly legible. Preserve the entire aircraft scene, geometry, colors and style exactly. Do not change any other part of the picture. Keep a thin black outer border."
+    },
+    {
+      "sectionId": 855,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f78570e46.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20201214/5fd6f78570e46.jpeg",
+        "https://resource.feizhiyi.com/fzy/uploads/section/20230421/20230421094105-6441e9b1ef506.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d33c5524e.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d34e139f5.jpeg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20210308/6045d3572fcd8.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-855.png",
+      "sha256": "8266cc0ed98f78b7cea407d8d55bc2e877e05763e73aab30cbc3e625132b6f90",
+      "reviewed": true,
+      "review": "两架不同大小客机在空中距离过近，无接触，表达空中接近风险；AI标识清楚。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: Two passenger jets in dangerously close airborne proximity, near miss with NO physical contact. A large Lufthansa-style Boeing747 with four engines, white fuselage and navy/yellow tail flies slightly behind and above another smaller twin-engine jet with dark blue/gray livery. Side oblique telephoto composition, landing gears extended and overlapping silhouettes but clear vertical separation. Aircraft must be two distinct complete airframes, not fused. Overcast sky, no damage or fire.\nTargeted review correction: Edit only the bottom-right margin of this approved aviation illustration: add a small rounded black label with exact white Chinese text 本图片由AI生成, clearly legible. Preserve the entire aircraft scene, geometry, colors and style exactly. Do not change any other part of the picture. Keep a thin black outer border."
+    },
+    {
+      "sectionId": 1715,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260722/20260722172608-6a608cb0bdfd1.jpg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/uploads/exercise/images/20260722/20260722172608-6a608cb0bdfd1.jpg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-1715.png",
+      "sha256": "809bfd47d2c3e54244bacc1c10c99d4569d9369b6820023aa5b5f309dacb3ccc",
+      "reviewed": true,
+      "review": "无人机与进近客机相邻，表示机场无人机活动风险；已补齐AI标识，未改变场景。",
+      "prompt": "Use case: illustration-story. Create an ORIGINAL 1536x1024 landscape aviation English oral picture-question illustration. Input1 is factual context; input2 is approved app art style. Realistic American aviation graphic novel style, crisp black ink, restrained crosshatching and clean cel shading, muted blue-gray palette; thin black border. Preserve the question's central facts and believable aircraft anatomy. No source watermark, no source text annotations, no explanatory captions. Add a small unobtrusive black rounded label bottom right containing exact white Chinese 本图片由AI生成. Scene: A small black quadcopter camera drone in the near foreground, airborne close to an airport approach path. In the background a British Airways-style passenger jet with landing gear extended is preparing to land under overcast sky. Show clear scale separation: drone much nearer and jet farther away, both easily identifiable. Hazardous proximity context, no impact or crash. White fuselage, navy lower body and red/white/blue tail cues.\nTargeted review correction: Edit only the bottom-right margin of this approved aviation illustration: add a small rounded black label with exact white Chinese text 本图片由AI生成, clearly legible. Preserve the entire aircraft scene, geometry, colors and style exactly. Do not change any other part of the picture. Keep a thin black outer border."
+    },
+    {
+      "sectionId": 570,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/14.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/14.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-849.png",
+      "sha256": "4403ac395178f8c94218097c475d978faefd54d5ed222dececfda51176a9d964",
+      "reviewed": true,
+      "review": "与849来源照片逐图核对为同一地面客机翼尖碰撞垂尾事件，航空公司及损伤位置相同，共用已重制的849图。",
+      "prompt": "Use case: illustration-story. New 1536x1024 landscape picture for aviation English oral practice. Input1 factual reference, input2 approved app style only. Draw an ORIGINAL realistic American aviation comic illustration, precise black ink outlines, restrained crosshatching, clean cel shading and muted blue-gray atmospheric palette. Thin black border. Preserve the central event and aircraft facts needed by the question. No source watermarks or annotations. Small black rounded label bottom-right, exact white Chinese text 本图片由AI生成. No captions except necessary aircraft livery requested. Scene: Two large passenger aircraft stationary after a ground collision on a sunlit airport apron. Clearly show a China Southern-style jet's RIGHT wingtip contacting and damaging the vertical tail of a China Eastern-style jet. Foreground rear section of the red/blue-trimmed China Eastern aircraft has visible bent/torn metal at the tail contact point; the other aircraft's long wing extends toward that point. Ground personnel stand at a safe distance observing. Use an original three-quarter rear composition with believable distinct airframes. No fire, no moving people beneath engines, no black annotation circle.",
+      "reusesSectionId": 849
+    },
+    {
+      "sectionId": 559,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b5c76ea6.jpg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b5c76ea6.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/3.png",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b6b82a1a.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b7955f10.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b8654997.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450b96b8caf.jpg",
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20221011/63450ba585024.jpg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-559.png",
+      "sha256": "bd9c85eb9caed150a9dfc35a0d7b15881193d9b53c9ac1b8ccda4fe44c97d2b0",
+      "reviewed": true,
+      "review": "五段编号及迎风、下沉、顺风方向已对照原示意图；合并展示机场下击暴流和五阶段关系。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Scientific diagram of a microburst over a runway. Draw one plane's hypothetical trajectory from LEFT to RIGHT in five numbered positions: 1 entering headwind and initially climbing; 2 reducing headwind nearing the downdraft; 3 under central DOWNWARD flow; 4 emerging into tailwind and descending; 5 very low over ground at far right. All aircraft point RIGHT. Broad blue arrows flow DOWN the central core then OUTWARD left/right along ground, never inward. Label HEADWIND on left, DOWNDRAFT center, TAILWIND right. Retain numbering 1 2 3 4 5. It is a hazard illustration, not safe operating advice."
+    },
+    {
+      "sectionId": 560,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/4.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/4.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-560.png",
+      "sha256": "f38f39afd33d629175f22c29d914ec344026d3e0ad6065b42910a0cbed1ae20c",
+      "reviewed": true,
+      "review": "雷击轮舱、起落架放下与深色天气场景一致。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. A generic narrowbody twin-engine airliner flying side-on on landing approach, gear down against a dark thunderstorm sky. Bright lightning visibly contacts around the main wheel-well/underside and extends toward the ground. No fire or explosion. Show aircraft intact, white fuselage, cloudy dramatic sky."
+    },
+    {
+      "sectionId": 561,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/5.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/5.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-561.png",
+      "sha256": "824d61fed2b5c0906a29b2a6d3222b2dc42e149491c448b9e52d90208d337c28",
+      "reviewed": true,
+      "review": "白天双侧除冰车辆、积雪与客机比例核对。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Snow-covered daytime airport apron, large twin-engine passenger jet stationary, two deicing vehicles with raised baskets on opposite sides spraying its snowy fuselage and wings. Snow on aircraft and ground, mist from spray, technicians in baskets; no spinning engines, no fire."
+    },
+    {
+      "sectionId": 562,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/6.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/6.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-562.png",
+      "sha256": "d8587185e52f69c8b4d60e578f20c7dbb0a73ea1cd6e0b0d83f63d25ceda35bd",
+      "reviewed": true,
+      "review": "灭火器和急救箱两类设备及英文文字核对。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Still life showing aircraft cabin safety equipment on a clean light background: on the LEFT one red handheld fire extinguisher with handle and hose, on the RIGHT one closed gray medical/first-aid case with dark medical cross and clear English label FIRST AID KIT. Clearly different equipment, no product website."
+    },
+    {
+      "sectionId": 563,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/7.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/7.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-563.png",
+      "sha256": "a22de2addf4183fff722979837afee1a9762b9df7be59b25872dd0a9500acf03",
+      "reviewed": true,
+      "review": "747短上层及A380双层、各四台发动机区别可辨。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Two equal side-by-side illustrated panels for aircraft comparison, left a Boeing 747 with characteristic short raised upper deck hump and FOUR engines; right an Airbus A380 with full-length double passenger decks and FOUR engines. Both in flight above cloud; separate aircraft entirely, accurate proportions. Labels Boeing 747 and Airbus A380."
+    },
+    {
+      "sectionId": 564,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/8.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/8.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-564.png",
+      "sha256": "1025ac6ab0839377258a1ad60801f2c73190f061c863eb83eaa6cfcc49a8e6e6",
+      "reviewed": true,
+      "review": "逐项对照L/C/R各系统负载和ISLN位置，未增加跨系统连通。系统名称置于对应供压路径下方，与原图一致。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Redraw this exact hydraulic-system schematic with crisp colored diagram lines and subtle comic shading on light background. Preserve all topology and labels. THREE independent columns L, C, R at bottom. L supplies L REV and FLT CTRL. C supplies NOSE GEAR & STEERING, ALTN/RSV BRAKES, FLAPS, MAIN GEAR & STEERING, FLT CTRL. R supplies NORM BRKS, R REV, FLT CTRL. ISLN valves on center circuit branches as reference. Do not connect R hydraulic line to L/C. Title Hydraulic Pressure System. Ensure text highly readable and diagrams educational, no decorative aircraft obscuring details."
+    },
+    {
+      "sectionId": 565,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/9.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/9.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-565.png",
+      "sha256": "ab9e8575e734de57971905e0992a1df65beeaa409ca5318ecc3078917e87c9de",
+      "reviewed": true,
+      "review": "逐项核对Green/Blue/Yellow负载标签、各优先活门和PTU只连接Green/Yellow，Blue独立。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Redraw this exact three-column hydraulic consumers schematic in a clear inked aviation technical comic style on off-white background. Preserve original diagram topology, all labels, all consumer boxes and connections. Bottom three systems GREEN PRESSURE / BLUE PRESSURE / YELLOW PRESSURE. Label left consumers N/WS, L/G, SLATS/FLAPS, PRIORITY VALVE, NORMAL BRAKES, REVERSE ENG 1, YAW DAMPER 1, RUDDER, FLAPS RH WTB, SLATS LH & RH WTB, STABILIZER, LH ELEVATOR, LH & RH SPLR 1, LH & RH AILERONS, LH & RH SPLR 5. Center CSM/G, SLATS, PRIORITY VALVE, RUDDER, FLAPS LH & RH WTB, SLATS LH & RH WTB, LH & RH ELEVATORS, LH & RH SPLR 3, LH & RH AILERONS. Right FLAPS, PRIORITY VALVE, ALTN/PARK BRAKES, CARGO DOORS, REVERSE ENG 2, YAW DAMPER 2, RUDDER, FLAPS LH WTB, STABILIZER, RH ELEVATOR, LH & RH SPLR 2, LH & RH SPLR 4. PTU connects GREEN and YELLOW at top with NO blue connection. Legend WTB: Wing Tip Brake; CSM/G: Constant Speed Motor/Generator; N/WS: Nose Wheel Steering. Must preserve technical meaning exactly, no invented components."
+    },
+    {
+      "sectionId": 566,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/10.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/10.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-566.png",
+      "sha256": "7725c226828ede3f4b2debf64fc37d4bae24e37b14d4a319625acdbb964f7378",
+      "reviewed": true,
+      "review": "三类呼吸设备编号和形态与原图一致。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. Three equal illustrated panels, simple clean light backgrounds, aviation breathing equipment: panel (1) transparent emergency passenger oxygen mask with elastic strap and hose; panel (2) portable pressurized oxygen cylinder with regulator, gauge, hose and carrying strap; panel (3) protective full-face breathing mask with visor and filter/connector. Draw equipment clearly, no people or extra equipment. Preserve labels (1), (2), (3)."
+    },
+    {
+      "sectionId": 568,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/12.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/12.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-568.png",
+      "sha256": "85f8a290b9f01331dd359100e8394ec2b40773d4cdaa4207f80ff06c8df0d3c6",
+      "reviewed": true,
+      "review": "安检液体检查场景、行李与工作人员可辨。",
+      "prompt": "Create a NEW landscape 1536x1024 illustration for aviation English picture discussion. Transform factual reference Image 1 into an ORIGINAL detailed American aviation graphic-novel drawing: crisp black ink outlines, restrained crosshatching, hand-drawn cel shading, blue-gray palette. Do not output a photo. Thin black border. Mandatory small black rounded label bottom-right with exact white text 本图片由AI生成. Preserve facts needed to discuss the depicted event; no other new text except requested labels. At an airport security checkpoint a uniformed security officer explains to a woman passenger that a large bottle of liquid cannot go through in her carry-on bag. The officer holds the bottle beside an open carry-on; a scanning machine and a few confiscated bottles on a table in background. Original fictional people, calm discussion, no visible brand names or readable private data."
+    },
+    {
+      "sectionId": 571,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/15.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/15.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-571.png",
+      "sha256": "a584180682d0d1c5131dabdea448bc57c91d2cc870d1d70636f5ca7f85762639",
+      "reviewed": true,
+      "review": "727机翼接触巴士上角、三发T尾与静止停机坪场景一致。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Airport apron ground collision: the wing of a parked Mexicana-livery Boeing727 has struck the upper front corner/roof of a passenger shuttle bus. Three-engine T-tail aircraft identity visible. Bus door open, no passengers inside, no blood, aircraft and bus stationary, impact contact clearly shown."
+    },
+    {
+      "sectionId": 572,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/16.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/16.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-572.png",
+      "sha256": "fef2a0aa00f62bdcf8428af173229a0491bd9a40d7a093495f3ee91d9e00f81d",
+      "reviewed": true,
+      "review": "机舱托盘配餐构成完整。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Close view of a typical airline meal on a lowered seat tray inside a passenger cabin: main dish with rice and meat, small salad, wrapped cutlery, bread roll, cup and can of drink. Clearly in-flight catering theme, clean comic illustration, no branded labels."
+    },
+    {
+      "sectionId": 573,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/17.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/17.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-573.png",
+      "sha256": "6d2f56f1ec6579f809635599881df04943d22b1c71705912141d5157ad930a9f",
+      "reviewed": true,
+      "review": "延误航显和旅客通话含义清楚。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Passenger seen from behind at an airport terminal making a phone call while facing a departures display showing many rows marked Delayed. Include flight board headings Destination, Gate, Status and repeated Delayed. Main meaning is widespread delays and worried passenger, no personal data."
+    },
+    {
+      "sectionId": 575,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/19.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/19.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-575.png",
+      "sha256": "f140a40a7a548eb0c34b0ff755abe1b0a238c90ea2b1513a86c26cf18f06f78b",
+      "reviewed": true,
+      "review": "四发涡桨机山地飞行及山地气流图编号对照；源答案误写涡扇另入文本修正清单。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two side-by-side panels: LEFT a four-engine large aircraft flying above rugged mountains; RIGHT an educational mountain-wave airflow diagram with wind crossing the ridge LEFT to RIGHT, smooth wave crests in the lee, rotor circulations below the waves and lee-side downdraft. Preserve the visual concept and simple numeric positions1,2,3,4 from reference. Comic inked educational rendering."
+    },
+    {
+      "sectionId": 576,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/20.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/20.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-576.png",
+      "sha256": "cad362b086968134c5beb3a0269921440d51ec3469b04ccca25e11c6c109ca60",
+      "reviewed": true,
+      "review": "高翼轻型机与皮卡碰撞、两人逃离场景核对。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. A small high-wing light aircraft collides with a pickup truck on a narrow country road through rugged hills. Airplane nose and front of truck meet; dust and small debris, two people running away to safety, intact recognizable wings and tail, no gore and no large explosion. Depict incident at moment of collision."
+    },
+    {
+      "sectionId": 577,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/21.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/21.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-577.png",
+      "sha256": "31aa1f5326b917f24320474c071dfc78172e3e0834defd2b3048cc971ec4f6ad",
+      "reviewed": true,
+      "review": "英航进近鸟群及放下起落架，无新增发动机火灾。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. British Airways-livery twin-engine passenger aircraft in low landing approach, landing gear down, surrounded by a dense flock of birds at varied distances, trees below. No flames. Keep bird hazard and approach configuration clearly identifiable."
+    },
+    {
+      "sectionId": 578,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/22.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/22.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-578.png",
+      "sha256": "58a6cd639f598313c2e61ede29733aa2d10785c413fe9522563bfd43977b9df4",
+      "reviewed": true,
+      "review": "土航前机身断裂及救援场景一致。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Aftermath of a Turkish Airlines passenger aircraft crash in a field: forward fuselage resting on ground and broken behind front cabin, forward passenger door open, firefighters and rescue personnel helping around aircraft with ambulances in background. Respectful nonfictional-style aviation illustration, no identifiable victims or gore."
+    },
+    {
+      "sectionId": 579,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/23.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/23.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-579.png",
+      "sha256": "87eef74253ae81b53ebbd17620df3265c505fec5a6f22b8b15669cfcc111a28a",
+      "reviewed": true,
+      "review": "塑料异物进气道和破损整流罩双图核对。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two equal panels showing engine foreign-object damage: LEFT frontal turbofan intake with a large translucent plastic sheet sucked into the fan; RIGHT close side view of an engine with broken/open cowling and visible damaged internal structure. Engines stopped, no people near running blades. Both panels needed, comic drawing not photo."
+    },
+    {
+      "sectionId": 580,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/24.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/24.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-580.png",
+      "sha256": "0c8d6292af64b4e850f0609b44eabc41b77eb62ee0c8d97dec5bdac788395fd0",
+      "reviewed": true,
+      "review": "协和式三角翼、起飞火灾和放下起落架核对。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Concorde supersonic passenger aircraft taking off nose-up with triangular delta wings and landing gear extended. Large flames and dark smoke trail from the lower rear fuselage/left engine area. Airport in background. Accurate slender Concorde silhouette, non-graphic accident illustration."
+    },
+    {
+      "sectionId": 581,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/25.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/25.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-581.png",
+      "sha256": "5b36c511209034a8b1b6856f4cd3c31580a756d9b2060afd309f0e79f1e520dc",
+      "reviewed": true,
+      "review": "法航后置发动机飞机陷入田地，维修及宪兵场景一致。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Air France-livery rear-engine Fokker100 passenger aircraft resting low in soft muddy field after a runway excursion; mechanics in high-visibility jackets inspect rear engine and a French Gendarmerie officer watches in foreground. Aircraft intact, no fire; sunken landing gear and rough field clear."
+    },
+    {
+      "sectionId": 582,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/26.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/26.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-582.png",
+      "sha256": "ec3fbdf50cba785917061f93133d54dc5b3642e4a11f8e2f922f94eb80a60ba9",
+      "reviewed": true,
+      "review": "高翼双涡桨冲出跑道入草地，机体完整。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. High-wing twin-turboprop passenger aircraft has skidded off runway and stopped in soft grassy shoulder, some wheels sunk into ground. Cordoned-off area with airport workers and passengers standing at safe distance; no fire or gore. Preserve twin propeller aircraft rather than a jet."
+    },
+    {
+      "sectionId": 583,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/27.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/27.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-583.png",
+      "sha256": "4ec015b147b11804486ae8f92a422c0dc9b09ceff49c2e8b15ac90234d063dbc",
+      "reviewed": true,
+      "review": "747倾斜进近和偏航接地双图，不是两机相撞。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two equal panels of a Boeing747 approach and landing at an urban airport: LEFT rear view low approach with visible bank while aligning with runway centerline, city below; RIGHT aircraft touchdown with tire smoke and slight sideways alignment, runway centerline visible. Clearly show sequence, not two airplanes colliding."
+    },
+    {
+      "sectionId": 584,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/28.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/28.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-584.png",
+      "sha256": "380ad925cc3ebb8033e551884f4ca8b3b9569278254f3d14a0358302dfb44b8c",
+      "reviewed": true,
+      "review": "客舱破损失压虚构场景两图，保留题目讨论内容。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two comic panels of a fictional severe in-flight cabin emergency, from inside passenger cabin: damaged open rear fuselage admitting bright sky, loose papers and overhead items displaced, passengers bracing in seats, one unsecured person lifted off floor in turbulence in second panel. No blood, injuries or gore. Show decompression/turbulence discussion clearly, not instructions or an actual disaster photo."
+    },
+    {
+      "sectionId": 586,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/30.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/30.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-586.png",
+      "sha256": "b654bcfc3ec41d7f68c28987d4c1703826e59647c5d38cbc218ea56dd1f3aff4",
+      "reviewed": true,
+      "review": "低翼单发轻型机与皮卡碰撞后烟雾场景，与高翼另一题不混同。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Aftermath on narrow hillside country road: small low-wing single-engine light aircraft has collided with a pickup truck, airplane diagonal across road with damaged nose beside truck front, dark smoke rising from collision area, one person standing behind truck at safe distance. No gore or dramatic explosion. Different aircraft/view from high-wing collision scene."
+    },
+    {
+      "sectionId": 569,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/13.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/13.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-569.png",
+      "sha256": "fcb7205545087d4c373049f2c50fa8dad917f19c6b906cf64577589a4bb68bb5",
+      "reviewed": true,
+      "review": "已核对双联图驾驶舱简报与地面装卸时机尾触地、机鼻抬起的747场景，保留失衡关键线索。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two side-by-side panels: LEFT inside an airliner cockpit before departure, a seated uniformed pilot checks a printed flight briefing while female ground staff stands beside him; RIGHT a United-livery Boeing747 parked on the airport apron with ground service equipment. Both essential preflight scenes remain separate.\nCorrection: Correct ONLY the right panel: the parked United Boeing747 is TAIL-SITTING due to ground loading imbalance. Its aft fuselage/tail belly is resting on the apron, nose noticeably raised, nose landing gear off the ground, main gear is the pivot. It is stationary being loaded with service vehicles, NOT taking off. This pitch-up/tail-contact condition is the key fact tested. Keep the left cockpit-briefing panel exactly unchanged, maintain same inked comic art, proportions, panel layout and exact AI badge."
+    },
+    {
+      "sectionId": 574,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/18.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/18.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-574.png",
+      "sha256": "58bebe5e65152e9fdbdbc75705cc539da55660e09f98d3a83eb32ecdbfb8243c",
+      "reviewed": true,
+      "review": "已核对平行跑道、间距与抬轮点、双翼尾流示意；去掉错误的旋向箭头，不添加旋转方向误导。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. Two-panel aviation educational illustration of wake turbulence. TOP is plan view of two PARALLEL runways less than760m apart, departing four-engine airliner pointing right; clearly marked rotation point and pair of wake trails beginning there. BOTTOM an elevated rear view of an airliner showing TWO counter-rotating wingtip vortex tubes trailing behind and downward. Correct paired vortex directions. Required labels: rotation point; less than 760 m; wake vortices. It is explanatory depiction, no claim of safe following separation.\nCorrection: Correct only the lower panel's two circular blue vortex-direction arrows. They MUST rotate in opposite directions: viewer-left arrow clockwise, viewer-right arrow COUNTERCLOCKWISE (on its left side it points down, on its right side it points up). Air between the two vortices flows downward. Remove the current viewer-right clockwise arrow and replace it with the counterclockwise arrow. Preserve the rest of the image, all text, two panel layout, colors, airplane, wake tubes and exact AI badge unchanged.\nRevision: Edit this existing aviation education comic illustration. Preserve all content, composition, labels, aircraft and badge. In the BOTTOM panel REMOVE both blue circular arrow overlays completely, leaving just the two white spiraling wake-vortex trails. Retain the black wake vortices label and its two straight arrows. Do not add replacement rotation arrows. Keep original American aviation comic style and badge 本图片由AI生成."
+    },
+    {
+      "sectionId": 585,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/29.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/29.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-585.png",
+      "sha256": "8a3f418ed66dacbafbe3ef2392cc76f71f424e6c3c7171330f82491d3c34027f",
+      "reviewed": true,
+      "review": "已核对JetBlue A320前轮横转、轮胎磨损与烟雾场景，前轮胎面朝向侧视观察者。",
+      "prompt": "Create a NEW 1536x1024 landscape image for aviation-English picture questions. Image1 is a factual reference only; redraw with ORIGINAL American aviation graphic-novel styling, crisp black ink outlines, restrained crosshatching, hand-drawn cel shading and muted blue-gray color. Must look illustrated, not photographic. Thin black border, mandatory small bottom-right black rounded label with exact white text 本图片由AI生成. Preserve scene facts needed by the source questions. JetBlue-livery AirbusA320 during landing roll runway25L, main landing gear rolling normally, NOSE wheel is turned sideways with sparks and smoke ONLY at nose-wheel runway contact. Flaps and slats extended, airframe intact, no engine fire. Accurate aircraft proportions and clear nose-gear malfunction.\nCorrection: Correct only the nose wheel assembly at the far left below the cockpit: the two nose wheels are rotated ninety degrees sideways relative to the airplane's forward path, so the tires skid across their width and sparks arise at the sideways tires. In this side view show the tire TREAD faces as two narrow vertical rubber rectangles, NOT the normal circular wheel side faces. Leave main wheels as normal round side views. Preserve airframe, smoke, branding, background, runway and AI badge unchanged."
+    },
+    {
+      "sectionId": 587,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/31.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/31.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-587.png",
+      "sha256": "39b608a5222d5e5834cfc970b70818bcee0a7c7dcabcdd511fc8420c92766d2b",
+      "reviewed": true,
+      "review": "已核对起飞擦尾、跑道、背景飞机与车辆，修正CAT II/III文字。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Twin-engine airliner in a steep nose-up takeoff rotation, tail visibly scraping the runway with a small puff of smoke. Main landing gear still near runway. Another aircraft nose and a small airport service car in far right background, forest beyond. No large flames. Preserve actual tailstrike, not ordinary takeoff. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI.\nRevision: Edit only the small yellow-on-black foreground airfield sign near lower center of this aviation comic. Replace its existing garbled label with exact text '16 CAT II/III'. Keep every other part unchanged: tailstrike airliner, runway, forest, parked plane, car, composition and 本图片由AI生成 badge."
+    },
+    {
+      "sectionId": 588,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/32.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/32.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-588.png",
+      "sha256": "ddcd35b6d08eacc0a894587206f5be9850c680103760c430e2da06063f051b20",
+      "reviewed": true,
+      "review": "已核对双翼螺旋桨飞机倒栽葱与机尾抬起场景。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: A Y-5 / Antonov An-2 type single-engine biplane after a nose-over accident in a grassy field, tail high in air, nose and propeller buried in ground, two sets of stacked wings and bracing clearly recognizable. Uniformed observers stand around at safe distance. No injuries or fire. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 589,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/33.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/33.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-589.png",
+      "sha256": "25419e41f10b736618205ddccc6e91c8fbb649f6aadb3c439813c6c539995e84",
+      "reviewed": true,
+      "review": "已核对四幅依次为起飞发动机故障、涡桨飞机左发起火、前轮未收、驾驶舱烟雾与面罩。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Four-panel aviation emergency discussion illustration corresponding to question answers: TOP LEFT a twin-engine passenger aircraft climbing with smoke streaming from a failed engine; TOP RIGHT a turboprop during runway roll with flames at its LEFT engine (viewer-right when seen from front); BOTTOM LEFT cropped forward passenger-aircraft fuselage in flight with its nose landing gear still extended; BOTTOM RIGHT a pilot wearing a full-face oxygen mask and goggles in a cockpit filled with smoke. Distinct panels, precise aviation silhouettes, no gore, no operational instructions. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 590,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/20171122/bfb02590410a5b89d98c004004131c9b.jpeg",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/20171122/bfb02590410a5b89d98c004004131c9b.jpeg"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-590.png",
+      "sha256": "b3f266a93811d00cc2529c6f7026b6c9884b3bb8885f132bb323c4b6934cd89b",
+      "reviewed": true,
+      "review": "已核对左上模拟仪表与右下玻璃座舱布局，匹配答案的位置指代。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Two diagonal cockpit comparison panels: UPPER LEFT a light-aircraft cockpit with traditional round analogue gauges, yoke, engine controls and visible daylight windshield; LOWER RIGHT a large commercial airliner modern glass cockpit with digital flight displays, dual pilot controls, overhead panel and central throttle console at dusk. Contrast traditional analogue instruments with glass displays. Do not invent operational values or legible checklists. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 591,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/35.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/35.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-591.png",
+      "sha256": "dda95284e96465b222ae9e9add9eecd9ca7364e7e775fc43b4d4a0f0b4dff394",
+      "reviewed": true,
+      "review": "已核对747机鼻陷入排水沟、主轮仍在沟外场景。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Saudi Arabian-livery Boeing 747 after a runway excursion, nose pitched down into a deep narrow concrete drainage ditch, main wheels and tail remaining on grassy bank. Four engines, short upper deck hump. Nose is visibly low and damaged near ditch, stationary, no fire; distant hills. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 592,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/36.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/36.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-592.png",
+      "sha256": "6694822ea572a76d6b0f47d01ec3996c985a16fb639b8f7d03634af0d03cdcb0",
+      "reviewed": true,
+      "review": "已核对747低空飞越海滩进近、放下起落架场景。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Air France-livery Boeing747 flying very low in landing approach over a tropical beach beside an airport, four engines and landing gear fully extended, people on sandy beach in foreground, road and airport fence behind them, sea to left and runway just beyond road. Clear aviation observation scene, no crash. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 593,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/37.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/37.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-593.png",
+      "sha256": "017e0651cbdedb22120986997234cf3bee262b2660ea670af963defadcb3b393",
+      "reviewed": true,
+      "review": "已核对非功能性可疑物品示意与时钟线索，无制作说明。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: A stylized fictional suspicious-package prop used as an aviation security discussion image: a bundle of plain cylindrical objects secured with black straps and a round alarm clock on the front. Clean isolated neutral background, simple cartoon representation, no labels about chemical contents, no technical wiring, no cutaway and no construction instructions. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 594,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/38.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/38.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-594.png",
+      "sha256": "d0a1bee4a4bfa8e63e060fc7052d0adc6ba02b2d85ebac356136bb3be90806ee",
+      "reviewed": true,
+      "review": "已核对上方两架客机地面碰撞、下方消防救援，修正小型公务机为737客机。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Two stacked panels: TOP large twin-engine passenger aircraft on apron with emergency exit slides deployed and a damaged small business jet nearby; BOTTOM aftermath of aircraft ground fire, fire engines spraying foam around rear fuselage with dark smoke and a rescue van beside it. Airport emergency response, no victims shown. Match these separate visual scenes, no invented midair collision. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI.\nRevision: Edit this two-panel aviation comic. In the TOP panel replace the small business jet at left with a damaged Boeing 737 passenger airliner in a pale white and blue Xiamen-style livery, with underwing engines and a conventional tail (not a T-tail). It has collided on the apron with the large passenger jet at right: show visibly damaged nose/cockpit of the 737 adjacent to the larger jet. Maintain both aircraft as passenger airliners and preserve evacuation slides of large jet. Preserve the bottom panel firefighting scene, composition, comic rendering and 本图片由AI生成 badge. No added titles or explanatory labels."
+    },
+    {
+      "sectionId": 595,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/39.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/39.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-595.png",
+      "sha256": "a564426eff2758a03fd78f3bdd9cc533e7ba8bb8677f17b1026366bd2a55aeb1",
+      "reviewed": true,
+      "review": "已核对双发涡桨飞机前起落架折断、机鼻接地、消防泡沫与地勤场景。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Front view of a Saab340-like low-wing twin turboprop aircraft stationary on a foamed runway after nose-gear collapse, nose resting near ground, propellers stopped, main gear supports aircraft, airport staff inspecting from sides. Clear nose-gear problem, intact cockpit and fuselage, no flames. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 596,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/40.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/40.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-596.png",
+      "sha256": "d5543a331a2dbf296fb05d0ecb0a8d2379e90398d6ce5925bd2e4bd1a305d51f",
+      "reviewed": true,
+      "review": "已核对客舱撤离滑梯训练，保留训练环境与观察人员。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Cabin crew evacuation training at an aircraft door mockup: adult trainee sliding feet first down inflated emergency evacuation slide with arms crossed on chest, instructor in dark suit standing at left observing, simulator cabin entry at top. Indoor training setting, calm, no actual emergency. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    },
+    {
+      "sectionId": 597,
+      "sourceUrl": "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/41.png",
+      "sourceUrls": [
+        "https://resource.feizhiyi.com/fzy/Uploads/Picture/Part5/Probe/41.png"
+      ],
+      "path": "content/question-banks/resources/files/images/opi/fzy-redrawn/figure-597.png",
+      "sha256": "fd28e8ba112f97ed792c0c88446ca0a338d044cc53a6a5e684e2cf3abbf0f468",
+      "reviewed": true,
+      "review": "已核对锂离子电池警示标志、破损禁运文字、火焰与易碎图标，仅为题目情境插画。",
+      "prompt": "Use case: illustration-story / scientific-educational. Create an entirely redrawn aviation English OPI study illustration, matching our established American aviation comic art: crisp black ink contours, controlled cel shading, fine hatch detail, muted blue-gray and cream, realistic airplane proportions, thin black outer border. Landscape 3:2. The reference is only for essential scene meaning; do not paste or trace the original photograph. Scene: Redraw an educational sample of a lithium-ion battery caution label in crisp inked comic style, cream paper and red diagonal border. At center show black pictograms of fragile wineglass, battery cells and fire. Exact readable text: CAUTION! / IF DAMAGED / Lithium ion Battery / DO NOT LOAD OR TRANSPORT PACKAGE IF DAMAGED. Omit the old telephone number and no invented contact. Keep this as the pictured study label, not an official certified shipping template. Preserve exam-relevant facts, avoid adding unrelated drama. Bottom-right small black rounded badge, exact white Chinese text: 本图片由AI生成. This badge must be legible and complete. All other labels only where specifically required. No source website logos, no page UI."
+    }
+  ]
+}

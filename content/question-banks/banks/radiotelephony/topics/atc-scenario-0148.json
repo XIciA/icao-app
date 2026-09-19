@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0148",
   "name": "CCA 1301 起落架问题 刹车问题 积冰/防冰",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "保持位置，收到，谢谢，CCA 1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-046-cca1301-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

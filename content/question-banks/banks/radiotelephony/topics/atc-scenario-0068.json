@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0068",
   "name": "CCA 301 刹车超温 一个前轮没气",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "等待，收到，谢谢，CCA 301。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1180.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

@@ -60,7 +60,7 @@ for (const required of [
   if (!releaseHelper.includes(required)) failures.push(`iOS release helper is missing: ${required}`);
 }
 
-if (app.expo.version !== '1.0.0') failures.push('Marketing Version must remain 1.0.0.');
+if (!/^\d+\.\d+\.\d+$/u.test(app.expo.version ?? '')) failures.push('Marketing Version must be a committed three-part release version.');
 if (app.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios') failures.push('Unexpected iOS Bundle ID.');
 if (!/^\d+$/u.test(String(app.expo.ios?.buildNumber ?? ''))) failures.push('iOS build number must be an integer string.');
 const audioPlugin = app.expo.plugins?.find((plugin) => Array.isArray(plugin) && plugin[0] === 'expo-audio');

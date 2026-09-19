@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0124",
   "name": "BAW 352 鸟击 雷暴绕飞 TCAS机动",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "右转，直飞 LKO，爬升至并保持 2400 米，BAW 352。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-021-baw2352-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

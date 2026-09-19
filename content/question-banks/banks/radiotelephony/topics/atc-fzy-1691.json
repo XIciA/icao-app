@@ -1,0 +1,154 @@
+{
+  "id": "atc-fzy-1691",
+  "name": "CES209 [雷暴，雹击，风挡破裂]",
+  "declaredCardCount": 16,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224676",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-1",
+      "audioText": "N: [Your call sign is CES209, you are approaching VYK, maintaining 4500m, squawking 3125, make an initial contact with Beijing Control.]",
+      "audioTextZh": "N：【你的呼号是东方209，你现在接近VYK，保持在4500米，应答机3125，与北京区调建立初始联系。】",
+      "referenceText": "Beijing Control, CES209, approaching VYK, maintaining 4500m, squawking3125.",
+      "referenceTextZh": "北京区调，东方209，接近VYK，保持在4500米，应答机3125。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5ea34376bc9b8d8222e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224677",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-2",
+      "audioText": "C: CES209, Beijing Control, radar contact, direct to VYK, after passing VYK, climb to 8400m.",
+      "audioTextZh": "C：东方209，北京区调，雷达看见了，直飞VYK，过VYK后，上8400米。",
+      "referenceText": "Direct to VYK, after passing VYK, climb to 8400m, CES209.",
+      "referenceTextZh": "直飞VYK，过VYK后，上8400米，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/231e210d2df8635be1a2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224678",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-3",
+      "audioText": "N: [Your weather radar observed thunderstorm ahead, request Beijing Control for right turn to avoid the thunderstorm.]",
+      "audioTextZh": "N：【你的气象雷达观察到前方有雷暴，向北京区调请求右转避开雷暴。】",
+      "referenceText": "Beijing Control, CES209, thunderstorm ahead on radar, request right turn to avoid it.",
+      "referenceTextZh": "北京区调，东方209，雷达显示前方有雷暴，请求右转避开。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/557b94088f0bd830b8f4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224679",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-4",
+      "audioText": "C: CES209, negative due military activity, turn right heading 010.",
+      "audioTextZh": "C：东方209，由于军事活动不可以，右转航向010。",
+      "referenceText": "Turn right heading 010, CES209.",
+      "referenceTextZh": "右转航向010，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aa3d6a7ee66cf9717ccc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224680",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-5",
+      "audioText": "C: CES209, turn left heading 350.",
+      "audioTextZh": "C：东方209，左转航向350。",
+      "referenceText": "Turn left heading 350, CES209.",
+      "referenceTextZh": "左转航向350，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7020c98af87e08f7ff66.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224681",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-6",
+      "audioText": "N: [Now there is a strong echo of thunderstorm, you are too close to the weather, request left turn to avoid it.]",
+      "audioTextZh": "N：【雷暴有很强的回音，你距离雷暴太近，请求左转避让。】",
+      "referenceText": "Beijing Control, CES209, we are too close to thunderstorm, request left turn to avoid it.",
+      "referenceTextZh": "北京区调，东方209，我们离雷暴太近，请求左转避让。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/225277afaafa48f5c165.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224682",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-7",
+      "audioText": "C: CES209, left turn is not permitted due restricted area.",
+      "audioTextZh": "C：东方209，由于限制区，禁止左转。",
+      "referenceText": "Roger, CES209.",
+      "referenceTextZh": "收到，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f3beed6b8cc79a52e61f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224683",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-8",
+      "audioText": "N: [Suddenly, you have suffered from hail strike, your left windshield has cracked, report it to Beijing Control and request return to land.]",
+      "audioTextZh": "N：【突然，你遇到了雹击，你左侧的风挡破裂，将情况报告给北京区调，请求着陆。】",
+      "referenceText": "Beijing Control, CES209, hail strike and left windshield is cracked, request return to land.",
+      "referenceTextZh": "北京区调，东方209，雹击，左侧的风挡破裂，请求返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/015ebb9d1402994d2f07.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224684",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-9",
+      "audioText": "C: CES209, roger, turn right heading 340, direct to VYK, descend to and maintain 2400m.",
+      "audioTextZh": "C：东方209，收到，右转航向340，直飞VYK，下到2400米保持。",
+      "referenceText": "Turn right heading 340, direct to VYK, descend to and maintain 2400m, CES209.",
+      "referenceTextZh": "右转航向340，直飞VYK，下到2400米保持，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/31464b74681cd1c7a51d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224685",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-10",
+      "audioText": "C: CES209, descend to 2400m, contact Beijing Approach 119.25.",
+      "audioTextZh": "C：东方209，下2400米，联系北京进近119.25。",
+      "referenceText": "Descend to 2400m, 119.25, CES209.",
+      "referenceTextZh": "下2400米，119.25，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/564c41a40919cc926cb7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224686",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-11",
+      "audioText": "N: [Now you are maintaining 2400m, over VYK, you have got information K, contact Beijing Approach.]",
+      "audioTextZh": "N：【你现在保持在2400米，过VYK，你收到通播K，联系北京进近。】",
+      "referenceText": "Beijing Approach, CES209, maintaining 2400m over VYK, information K.",
+      "referenceTextZh": "北京进近，东方209，保持2400米，过VYK，通播K。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/377470638837007fc952.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224687",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-12",
+      "audioText": "C: CES209, Beijing Approach, radar contact, follow VYK05 arrival, expect radar vectors for ILS approach runway 36R.",
+      "audioTextZh": "C：东方209，北京进近，雷达看见了，按照VYK05进场，预计雷达引导盲降进近跑道36右。",
+      "referenceText": "Follow VYK05 arrival, expect radar vectors for ILS approach runway 36R, CES209.",
+      "referenceTextZh": "按照VYK05进场，预计雷达引导盲降进近跑道36右，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9854df4f9e62e456a001.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224688",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-13",
+      "audioText": "N: [During approach, neither of you can see through the windshield due to cracked windshield, you ask Beijing Tower for auto land.]",
+      "audioTextZh": "N：【进近过程中，由于风挡破裂，你们两都无法通过玻璃看到外面，向北京塔台请求自动着陆。】",
+      "referenceText": "Beijing Tower, CES209, neither of us can see through the windshield due to cracked windshield, request auto land.",
+      "referenceTextZh": "北京塔台，东方209，由于风挡破裂，你们两都无法通过玻璃看到外面，请求自动着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c893af527b2c3a76e814.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224689",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-14",
+      "audioText": "C: CES209, runway 36R, cleared to land.",
+      "audioTextZh": "C：东方209，跑道36右，可以落地。",
+      "referenceText": "Runway 36R, cleared to land, CES209.",
+      "referenceTextZh": "跑道36右，可以落地，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f6be2936886f02f52f27.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224690",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-15",
+      "audioText": "N: [After landing, you can’t see the taxiway clearly due to cracked windshield, request a tug.]",
+      "audioTextZh": "N：【着陆后，由于风挡破裂，你看不清滑行道，请求拖车。】",
+      "referenceText": "Beijing Tower, CES209, unable to see taxiway clearly due cracked windshield, request a tug.",
+      "referenceTextZh": "北京塔台，东方209，由于风挡破裂，看不清滑行道，请求拖车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/85b6a68a45b4cc149dbf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224691",
+      "taskTitle": "77-CES209 [雷暴，雹击，风挡破裂]-16",
+      "audioText": "C: CES209, hold position, the tug will come soon.",
+      "audioTextZh": "C：东方209，原地等待，拖车马上来。",
+      "referenceText": "Hold position, roger thanks, CES209.",
+      "referenceTextZh": "原地等待，收到，谢谢，东方209。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/324ef309fe7dda8249eb.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

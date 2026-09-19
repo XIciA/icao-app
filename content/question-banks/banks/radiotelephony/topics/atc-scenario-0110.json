@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0110",
   "name": "UAL 403 机翼/控制面损坏 颠簸 雷暴绕飞",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "广州管制，UAL 403，已脱离天气，请求直飞 TON。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-003-ual403-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

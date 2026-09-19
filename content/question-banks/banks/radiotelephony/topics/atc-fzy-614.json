@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-614",
+  "name": "CES615 towbar&wind limit, etc.",
+  "declaredCardCount": 18,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111247",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-1",
+      "audioText": "[You are CES615, from Wuhan to Shanghai Hongqiao airport. Gate 232, Information S, ask for ATC clearance.]",
+      "audioTextZh": "【你是东方615，从武汉飞往上海虹桥机场。232号机位，通播S，请求ATC放行。】",
+      "referenceText": "Wuhan Delivery, CES615, information S, destination Shanghai Hongqiao, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方615，通播S，目的地上海虹桥机场，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/083684fe39e2e5160f8f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111248",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-2",
+      "audioText": "CES615, Wuhan Delivery, cleared to Shanghai Hongqiao via flight planned route, runway 36R, ZF-01 departure, initial climb 1800m, cruising level 10100m, after departure contact 123.4, squawk 4125.",
+      "audioTextZh": "东方615，武汉放行，可以按计划航路飞往上海虹桥机场，跑道36右，ZF-01离场，起始高度1800米，巡航高度10100米，起飞后联系123.4，应答机4125。",
+      "referenceText": "Cleared to Shanghai Hongqiao, via flight planned route, runway 36R, ZF-01 departure, initial climb 1800m, cruising level 10100m, departure 123.4, squawk 4125, CES615.",
+      "referenceTextZh": "可以按计划航路飞往上海虹桥机场，跑道36右，ZF-01离场，起始高度1800米，巡航高度10100米，离场后联系123.4，应答机4125，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aed9c4234cac324f8e42.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111249",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-3",
+      "audioText": "[You found that the tow bar was not available, contact Ground for the tow bar.]",
+      "audioTextZh": "【你发现牵引杆无法使用，联系地面要一个新的。】",
+      "referenceText": "Wuhan Ground, CES615, request a new tow bar due the tow bar not available.",
+      "referenceTextZh": "武汉地面，东方615，牵引杆不能使用，请求提供一个新的。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/10dba8fe24387dc6c667.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111250",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-4",
+      "audioText": "CES615, roger. Tow bar is on the way.",
+      "audioTextZh": "东方615，收到。牵引杆马上送到。",
+      "referenceText": "Thanks, CES615.",
+      "referenceTextZh": "谢谢，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7956893a419b4421fa8e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111251",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-5",
+      "audioText": "[You have already pushback and start-up, tell Ground you can taxi.]",
+      "audioTextZh": "【你已经推出开车，告诉地面你可以滑行了。】",
+      "referenceText": "Wuhan Ground, CES615, request taxi.",
+      "referenceTextZh": "武汉地面，东方615，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9c7d37c11f6f38a745b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111252",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-6",
+      "audioText": "CES615, taxi via Z4, A3, A to the holding point of A7.",
+      "audioTextZh": "东方615，沿滑行道Z4，A3，A滑至滑行道A7的等待点。",
+      "referenceText": "Z4, A3, A to the holding point of A7, CES615.",
+      "referenceTextZh": "沿滑行道Z4，A3，A滑至滑行道A7的等待点，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a0c5c0f9d893dec5836.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111253",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-7",
+      "audioText": "CES615, two cranes erected west of taxiway A, taxi with caution.",
+      "audioTextZh": "东方615，滑行道A西侧有2辆起重机，小心滑行。",
+      "referenceText": "Roger, thanks, CES615",
+      "referenceTextZh": "收到，谢谢，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9add35902c5ca222063.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111254",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-8",
+      "audioText": "CES615, give way to A320 on A7. When it is clear, continue taxi to A, hold short of runway 36R.",
+      "audioTextZh": "东方615，给滑行道A7上的A320让路。没影响后，继续滑行至滑行道A，跑道36右外等待。",
+      "referenceText": "Give way to the traffic on A7, after traffic cleared, taxi to A, hold short of runway 36R, CES615.",
+      "referenceTextZh": "给滑行道A7上的A320让路。飞机没影响后，继续滑至滑行道A，跑道36右外等待，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eae86e676eb5f5394410.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111255",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-9",
+      "audioText": "[The wind sock indicates strong tailwind, ask Tower to check the wind.]",
+      "audioTextZh": "【风袋显示有强烈顺风，让塔台查看风向风速。】",
+      "referenceText": "Wuhan Tower, CES615, request wind check.",
+      "referenceTextZh": "武汉塔台，东方615，核实风向风速。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/75249236dd088d56f1cf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111256",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-10",
+      "audioText": "CES615, current wind 350 degrees at 6mps.[The wind is excess the company regulation of the takeoff wind speed; tell the controller you need to change the runway 36L.]",
+      "audioTextZh": "东方615，当前风350，6米/秒。【该风速超过公司规定的起飞风速；告诉管制员你需要更换至跑道36左。】",
+      "referenceText": "Wuhan Tower, CES615, the wind excesses the company regulation. Request change runway 36L.",
+      "referenceTextZh": "武汉塔台，东方615，该风速超过公司规定。请求更换至跑道36左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/be0458d945b5a39d33a9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111257",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-11",
+      "audioText": "CES615, change runway 36L approved, taxi to holding point 36L, via A, A2 and Z2.",
+      "audioTextZh": "东方615，可以更换至跑道36左，沿滑行道A，A2，Z2滑行至跑道36左等待点。",
+      "referenceText": "Taxi to holding point 36L, via A, A2 and Z2, CES615.",
+      "referenceTextZh": "沿滑行道A，A2，Z2滑至跑道36左等待点，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cfaafa49098aa44d748c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111258",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-12",
+      "audioText": "CES615, the takeoff aircraft ahead reported birds in the vicinity of the airport.",
+      "audioTextZh": "东方615，前方起飞的飞机报告机场附近有鸟群。",
+      "referenceText": "Roger, thanks, CES615.",
+      "referenceTextZh": "收到，谢谢，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7a0c9d122a9ff4644022.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111259",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-13",
+      "audioText": "[You encountered bird strike and one of your engines failed, make an urgency call and ask to return to Wuhan airport.]",
+      "audioTextZh": "【你遇到鸟击，一发失效，做紧急呼叫，要求返回武汉机场。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Tower, CES615, engine failure due bird strike, request return to Wuhan airport.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉塔台，东方615，由于鸟击，发动机失效，请求返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/94abe4ab2ace79b565ce.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111260",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-14",
+      "audioText": "CES615, roger PANPAN, climb and maintain 600m, turn right to join downwind, cleared for ILS approach runway 36R.",
+      "audioTextZh": "东方615，收到PANPAN，上升保持600米，右转加入左三边，可以盲降进近跑道36右。",
+      "referenceText": "Climb and maintain 600m, right turn join downwind, ILS approach runway 36R, CES615.",
+      "referenceTextZh": "上升保持600米，右转加入左三边，可以盲降进近跑道36右，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/544b68f8c0a57b7c65f3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111261",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-15",
+      "audioText": "[Because of strong tailwind, you want to change to runway 36L.]",
+      "audioTextZh": "【由于强烈顺风，你想更换至跑道36左。】",
+      "referenceText": "Wuhan Tower, CES615, request change to runway 36L due strong tailwind.",
+      "referenceTextZh": "武汉塔台，东方615，由于强烈顺风，请求更换至跑道36左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/600aa1d9223e2f618039.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111262",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-16",
+      "audioText": "CES615, change to runway 36L approved, maintain 600m, turn right to WHA, contact Approach on 121.7.",
+      "audioTextZh": "东方615，同意更换至跑道36左，保持600米，右转直飞WHA，联系进近121.7。",
+      "referenceText": "Runway 36L approved, maintaining 600m, right turn to WHA, Approach 121.7, CES615.",
+      "referenceTextZh": "同意跑道36左，保持600米，右转直飞WHA，联系进近121.7，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d1d32c6355cc7609dc6c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111263",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-17",
+      "audioText": "[Tell controller you are maintaining 600m, track fly to WHA on Approach 121.7.]",
+      "audioTextZh": "【告诉管制员你正保持在600米，飞往WHA，进近121.7。】",
+      "referenceText": "Wuhan Approach, CES615, maintaining 600m, direct to WHA.",
+      "referenceTextZh": "武汉进近，东方615，600米保持，直飞WHA。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/98f9be654654dbf02ed9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111264",
+      "taskTitle": "31. CES615 towbar&wind limit, etc.-18",
+      "audioText": "CES615, Wuhan Approach radar contact, climb and maintain 900m, after WHA, fly heading 360, expect radar vectors for ILS approach runway 36L.",
+      "audioTextZh": "东方615，武汉进近，雷达已识别，上升保持900米，飞过WHA后，航向360，雷达引导盲降进近跑道36左。",
+      "referenceText": "Climb and maintain 900m, after WHA, heading 360, radar vector ILS 36L, CES615.",
+      "referenceTextZh": "上升保持900米，飞过WHA后，航向360，雷达引导盲降进近跑道36左，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e3985cb2e32ae39cff5e.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

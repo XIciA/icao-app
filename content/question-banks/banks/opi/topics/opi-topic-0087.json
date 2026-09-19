@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0087",
   "name": "旅客广播",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "The other pilot should first take control of the aircraft and then use the interphone to inform the cabin crew. The cabin crew should be asked to provide first aid to the incapacitated pilot.",
       "referenceTextZh": "另一名飞行员应先接管飞机，然后使用内话通知客舱机组，并要求客舱机组为失能飞行员提供急救。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

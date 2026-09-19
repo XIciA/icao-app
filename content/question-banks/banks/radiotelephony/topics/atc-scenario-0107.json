@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0107",
   "name": "ACA 123 装载问题 右发漏油",
   "declaredCardCount": 14,
@@ -130,5 +129,6 @@
       "referenceTextZh": "地面，ACA 123，我们必须取消航班。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1851.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

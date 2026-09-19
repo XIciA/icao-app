@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0135",
   "name": "CES 556 颠簸 雷暴绕飞 积冰/防冰",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "武汉进近，CES 556，问题旅客已被妥善约束，请求离开等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

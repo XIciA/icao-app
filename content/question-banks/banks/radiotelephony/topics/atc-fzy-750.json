@@ -1,0 +1,235 @@
+{
+  "id": "atc-fzy-750",
+  "name": "CES5118 [延误，飞机阻挡滑行道]",
+  "declaredCardCount": 25,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-151810",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-1",
+      "audioText": "[Your call sign is CES5118 from Wuhan to Beijing, parking at gate 223, now you are ready, request ATC clearance.]",
+      "audioTextZh": "你的呼号是东方5118，从武汉飞往北京，现在停在223号停机位，你现在准备好了，请求放行许可。",
+      "referenceText": "Wuhan Delivery, CES5118, gate 223, destination Beijing, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方5118，223号停机位，目的地北京，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4f43e8454ca57abd42b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151811",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-2",
+      "audioText": "CES5118 standby one, I’ll check your flight plan.",
+      "audioTextZh": "东方5118，稍等，我检查下你的飞行计划。",
+      "referenceText": "Standby, CES5118.\n注：standby指的是“本频道稍等”，可直接回复standby。",
+      "referenceTextZh": "稍等，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/afea7b9d547eff9fc4ba.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151812",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-3",
+      "audioText": "[The flight attendant tells you passengers have boarded. All cargo doors are closed. Now report ready for clearance.]",
+      "audioTextZh": "[乘务员告诉你，乘客已登机，所有货舱门关闭。现在，报告自己准备好，请求许可]",
+      "referenceText": "Wuhan Delivery, CES5118, we’re fully ready, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方5118，我们完全准备好了，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/11f02b064efd65b34ada.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151813",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-4",
+      "audioText": "CES5118, cleared to Beijing, FL107, runway 18L, ZF11 departure, initially 900m, departure frequency 120.6, squawk 3021.",
+      "audioTextZh": "东方5118，可以飞往北京，高度层107，跑道18左，ZF11离场，初始爬升至900米，离场频率120.6，应答机编码3021。",
+      "referenceText": "Cleared to Beijing, FL107, runway 18L, ZF11 departure, initially 900m, departure frequency 120.6, squawk 3021, CES5118.",
+      "referenceTextZh": "可以飞往北京，高度层107，跑道18左，ZF11离场，初始爬升至900米，离场频率120.6，应答机编码3021，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/53c4539a9f9412ec28de.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151814",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-5",
+      "audioText": "CES5118, read back correct, remain this frequency.",
+      "audioTextZh": "东方5118.复诵正确，长守该频率。",
+      "referenceText": "Roger, monitor, CES5118.",
+      "referenceTextZh": "收到，守听。东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5e9e3881a5b7c2d16240.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151815",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-6",
+      "audioText": "[5 minutes later, no call from Delivery, ask about duration and reason of the delay.]",
+      "audioTextZh": "[5分钟后，放行未呼叫，询问延误持续的时间和原因]",
+      "referenceText": "Wuhan Delivery, CES5118, confirm the duration and reason of the delay?",
+      "referenceTextZh": "武汉放行，东方5118，证实延误多久，延误的原因是什么？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/160da62aa99d1c823f13.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151816",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-7",
+      "audioText": "CES5118, due to thunderstorm activity, flow control is now in effect. Expect 8 minutes separation between each aircraft going same direction.",
+      "audioTextZh": "由于雷暴活动，实施流量管控，飞往同一方向的飞机之间，预计有8分钟的间隔。",
+      "referenceText": "Roger, CES5118.\n注：题干内容为管制提供的情报（information），无需复诵，可用roger回答。",
+      "referenceTextZh": "收到，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aa57369c91ca69150ff8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151817",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-8",
+      "audioText": "[Heavy rain is starting to fall, accompanying with thunder and lightning.]\nAll aircraft on my frequency, airport will be temporarily closed. Thunderstorms on final. Expect delay until the weather improves. Squawk ident if you copy this message.",
+      "audioTextZh": "[开始下大雨，伴有打雷和闪电]\n我频率上所有的航空器，机场将会暂时关闭。五边上有雷暴。预计延误直到天气变好。若收到此信息，应答机识别。",
+      "referenceText": "Roger, squawking ident, CES5118.\n注：实际运行中应答机识别只需做动作，无需回复。但在考试中，建议直接像参考答案一样回复管制的指令。",
+      "referenceTextZh": "收到，应答机识别，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a8b27923682b482e88f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151818",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-9",
+      "audioText": "[One hour later, the weather is getting better and the airport is open. Now ask for your departure sequence.]",
+      "audioTextZh": "[一小时后，天气变好，机场开放，现在，询问你的离场顺序]",
+      "referenceText": "Wuhan Delivery, CES5118, request departure sequence.",
+      "referenceTextZh": "武汉放行，东方5118，请求离场顺序。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cce478b0526c25a9f1c7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151819",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-10",
+      "audioText": "CES5118, you are currently No.1 in your direction. Expect about 20 minutes delay. Contact Ground on 121.8.",
+      "audioTextZh": "东方5118，你目前是你方向上第一个。预计延误20分钟，联系地面121.8。",
+      "referenceText": "Roger, 121.8, No.1, CES5118.",
+      "referenceTextZh": "收到，121.8，第一个，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9f797195568791b922ec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151820",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-11",
+      "audioText": "[Inform ground you are ready for pushback and start.]",
+      "audioTextZh": "[告知地面，你准备好推出开车了]",
+      "referenceText": "Wuhan Ground, CES5118, request pushback and startup.",
+      "referenceTextZh": "武汉地面，东方5118，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/65becb95d17b26d7b97a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151821",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-12",
+      "audioText": "CES5118, push back approved, facing north.",
+      "audioTextZh": "东方5118，同意推出，机头朝北。",
+      "referenceText": "Pushback approved, facing north, CES5118.",
+      "referenceTextZh": "同意推出，机头朝北，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/527f579217490f173d90.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151822",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-13",
+      "audioText": "[You realize the tug is not in position yet. Advise ground control you need another 5 minutes to be ready.]",
+      "audioTextZh": "[你注意到拖车没有就位。告知地面管制，你需要延误5分钟准备。]",
+      "referenceText": "Wuhan Ground, CES5118, tug is not ready, request 5 minutes delay.",
+      "referenceTextZh": "武汉地面，东方5118，拖车未就位，请求5分钟延误。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dc9d4db02d7d7a51d7aa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151823",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-14",
+      "audioText": "CES5118, roger, standby for push, I will call you back.",
+      "audioTextZh": "东方5118，收到，稍等推出，一会呼叫你。",
+      "referenceText": "Standby, CES5118.",
+      "referenceTextZh": "稍等，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e1535ea9911777f99e66.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151824",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-15",
+      "audioText": "CES5118, are you fully ready now? We have a slot time for departure in 10 minutes.\n[You need to open the cabin door to add passenger food and drinks due to the long delay. Advise Ground you will need another 5 minutes for catering.]",
+      "audioTextZh": "东方5118，你现在完全准备好了吗？我们10分钟后有一个离场时间。\n[由于长时间延误，你需要打开客舱门，增加乘客餐食和饮料，告知地面，你还需要5分钟来进行配餐]",
+      "referenceText": "Negative, we need another 5 minutes for catering due long delay, CES5118.",
+      "referenceTextZh": "没有，由于长时间延误，我们需要5分钟来进行配餐，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4005f4e59563278e7aef.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151825",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-16",
+      "audioText": "CES5118, roger, report ready.",
+      "audioTextZh": "东方5118，收到，准备好后报。",
+      "referenceText": "Wilco, call you back, CES5118.\n注意：此处可以说wilco或者call you back。",
+      "referenceTextZh": "照办，等会呼叫你，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/299bbf42fb9bd24a1a74.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151826",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-17",
+      "audioText": "[Five minutes later, catering completed, call ready.]",
+      "audioTextZh": "[5分钟之后，配餐完成，呼叫已准备好]",
+      "referenceText": "Wuhan Ground, CES5118, we are ready, request pushback.",
+      "referenceTextZh": "武汉地面，东方5118，我们准备好了，请求推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7008a2bc6fb9772a4f47.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151827",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-18",
+      "audioText": "Pushback approved until abeam gate 221. Do not block gate 222, there is incoming traffic to that gate.",
+      "audioTextZh": "推出正切到221号停机位，不要堵塞222号停机位，有架航空器要进入该机位。",
+      "referenceText": "Pushback approved until abeam gate 221, not block gate 222, roger, CES5118.\n注：此处的推出指令较为复杂，但需要完整复诵，不可用wilco或者roger省略回答。",
+      "referenceTextZh": "推出正切到221号停机位，不要堵塞222号停机位，收到，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/baa1627982ac7536a683.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151828",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-19",
+      "audioText": "[Engine start completed, now request for taxi.]",
+      "audioTextZh": "[发动机启动完成，现在请求滑行]",
+      "referenceText": "Wuhan Ground, CES5118, request taxi.",
+      "referenceTextZh": "武汉地面，东方5118，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0954ed115ccad14886be.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151829",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-20",
+      "audioText": "CES5118, taxi via M, A, hold short of E1.",
+      "audioTextZh": "东方5118，经由滑行道M、A，在E1外等待",
+      "referenceText": "Taxi via M, A, hold short of E1, CES5118.",
+      "referenceTextZh": "经由滑行道M、A，在E1外等待，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2ed8073c16893f23c51d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151830",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-21",
+      "audioText": "CES5118, can you accept E1 intersection for departure? Take off roll is available 3300m.\n[Tell tower you can accept.]",
+      "audioTextZh": "东方5118，你能接受从E1减跑道起飞吗？可用起飞滑跑3300米。\n[告诉管制员你可以接受]",
+      "referenceText": "Affirm, E1 intersection for departure, CES5118.",
+      "referenceTextZh": "同意，E1减跑道起飞，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e1f3180a7f1f06f27e83.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151831",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-22",
+      "audioText": "CES5118, roger, line up and wait via taxiway E1.",
+      "audioTextZh": "东方5118，收到，通过E1上跑道等待。",
+      "referenceText": "Line up and wait via taxiway E1, runway 18L, CES5118.",
+      "referenceTextZh": "通过E1上跑道等待，跑道18左，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/89610e773d3fa2baaaf6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151832",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-23",
+      "audioText": "[Report to the tower that the aircraft in front of you is blocking E1.]",
+      "audioTextZh": "[报告给管制员，前面的飞机堵塞了E1滑行道]",
+      "referenceText": "Wuhan Tower, CES5118, an aircraft in front is blocking E1.",
+      "referenceTextZh": "武汉塔台，东方5118，前面的飞机阻塞了E1滑行道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/caaac4fae96833080656.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151833",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-24",
+      "audioText": "CES5118, roger, Break, break, CSN326, taxi forward to be clear of E1.\n[The aircraft moved, you are able to continue taxi and line up.]",
+      "audioTextZh": "东方5118，收到，断开，断开，南方326，向前滑行，脱离E1。[飞机移动了，你现在可以继续滑行并上跑道了]",
+      "referenceText": "Wuhan Tower, CES5118, request continue taxi and line up.",
+      "referenceTextZh": "武汉塔台，东方5118，继续滑行，上跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea1af9c811ed42d89fa6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151834",
+      "taskTitle": "23-CES5118 [延误，飞机阻挡滑行道]-25",
+      "audioText": "CES5118. Cleared for takeoff, runway 18L, initially maintain runway heading, climb to 1500m.",
+      "audioTextZh": "东方5118，可以起飞，跑道18左，初始保持跑道航向，爬升至1500米。",
+      "referenceText": "Cleared for takeoff, runway 18L, runway heading, climb to 1500m, CES5118.",
+      "referenceTextZh": "可以起飞，跑道18左，跑道航向，爬升至1500米，东方5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1739f53297ea288eb19f.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

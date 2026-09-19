@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0019",
   "name": "舱单",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "The flight crew may receive the load sheet as a paper document or by an approved electronic or data-link system. Before the captain accepts it, the crew checks the flight details, load figures, takeoff and landing weights, and centre-of-gravity information. Any last-minute change must be communicated and recorded.",
       "referenceTextZh": "飞行机组可以通过纸质文件或经批准的电子或数据链系统接收载重平衡表。机长接受文件前，机组会核对航班信息、载荷数据、起飞和着陆重量以及重心信息。任何临时变更都必须传达并记录。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0185",
   "name": "CCA 321 风挡裂纹 雷暴绕飞 积冰/防冰",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "地面，CCA 321，由于风挡破碎，无法找到滑行道，请求引导车。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

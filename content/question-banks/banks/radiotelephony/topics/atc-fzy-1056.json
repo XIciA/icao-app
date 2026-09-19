@@ -1,0 +1,190 @@
+{
+  "id": "atc-fzy-1056",
+  "name": "AFR113 [发动机失效，乘客中风]",
+  "declaredCardCount": 20,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-177329",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-1",
+      "audioText": "Your call sign is AFR113, you are holding at holding point A9 of runway 04, you are fully ready. Contact Wuhan Tower and say you’re ready for departure.",
+      "audioTextZh": "你的呼号是法航113，你现在在跑道04外A9等待点等待，已经完全准备好。联系武汉塔台，告诉他们你准备好离场了。",
+      "referenceText": "Wuhan Tower, AFR113, holding point A9 of runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，法航113，跑道04外A9等待点，准备好离场了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/754f74ebeb9dd9a80414.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177330",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-2",
+      "audioText": "AFR113, hold at present position.",
+      "audioTextZh": "法航113，在当前位置等待。",
+      "referenceText": "Holding, AFR113.",
+      "referenceTextZh": "等待，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f199e0fe9676cc11a77d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177331",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-3",
+      "audioText": "AFR113, hold at present position, do you have the traffic on short final in sight?\nTell the controller yes.",
+      "audioTextZh": "法航113，在当前位置等待，你看到短五边上的航空器了吗？\n告诉管制员已经看到。",
+      "referenceText": "Affirm, traffic in sight, AFR113.",
+      "referenceTextZh": "是的，看到航空器了，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3568bd98a973556a20c6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177332",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-4",
+      "audioText": "AFR113, behind the CES 737 on short final, line up behind.",
+      "audioTextZh": "法航113，在短五边上的东航737后，上跑道等待。",
+      "referenceText": "Behind CES737 on short final, line up behind, AFR113.",
+      "referenceTextZh": "在短五边上的东航737后，上跑道等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cd77493d9556edc68512.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177333",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-5",
+      "audioText": "AFR113, cleared for takeoff, when airborne, contact departure 120.2.",
+      "audioTextZh": "法航113，可以起飞，离地后，联系离场120.2。",
+      "referenceText": "Cleared for takeoff, runway 04,, after airborne, contact departure 120.2, AFR113.",
+      "referenceTextZh": "可以起飞，跑道04，离地后，联系离场120.2，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/11e31b1f018353c5a9b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177334",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-6",
+      "audioText": "You are passing 900m, contact Wuhan Departure, ask if you can cancel the SID, and proceed to LKO.",
+      "audioTextZh": "你现在正在过900米，联系武汉离场。询问是否可以取消SID，直飞LKO.",
+      "referenceText": "Wuhan Departure, AFR113, passing 900m, request cancel SID and proceed to LKO.",
+      "referenceTextZh": "武汉离场，法航113，正在过900米，请求取消SID，直飞LKO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/780f339de4dd15e0b4d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177335",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-7",
+      "audioText": "AFR113, radar identified, continue climb to 2400m, turn right to LKO.",
+      "audioTextZh": "法航113，雷达识别了，继续上到2400米，右转飞LKO。",
+      "referenceText": "Continue climb 2400m, turn right to LKO, AFR113.",
+      "referenceTextZh": "继续上到2400米，右转飞LKO，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7fe5da9a8da5aa0db88f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177336",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-8",
+      "audioText": "AFR113, climb to 4500m and contact Wuhan Control on 119.7.",
+      "audioTextZh": "法航113，上4500米，联系武汉区调119.7。",
+      "referenceText": "Climb to 4500m and contact 119.7, AFR113.",
+      "referenceTextZh": "上到4500米，联系武汉区调119.7，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ad31eec6950fca7c96ad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177337",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-9",
+      "audioText": "Your position is just over LKO, the next way-point is DAPRO, ETA at time 34, make the standard position report, and request climb.",
+      "audioTextZh": "你刚刚过LKO，下一个位置点是DAPRO，预计到达时间34分，做一个标准位置报，并请求爬升。",
+      "referenceText": "Wuhan Control, AFR113. maintaining 4500m. Over LKO, next DAPRO at 34, request climb.",
+      "referenceTextZh": "武汉区调，法航113，在4500米保持，过LKO，预计到达下一位置点DAPRO34分，请求爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a430c6eb97c38ba30db5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177338",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-10",
+      "audioText": "AFR113, climb to 5100m, no speed restriction.",
+      "audioTextZh": "法航113，上到5100米，无速度限制。",
+      "referenceText": "Climb to 5100m, no speed restriction, AFR113.",
+      "referenceTextZh": "上到5100米，无速度限制，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/51ac75c36515ce2be032.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177339",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-11",
+      "audioText": "During climb, your port engine failed, tell the controller this situation and you would like to return to land. This is an urgency call.",
+      "audioTextZh": "在爬升过程中，你的左发失效了，告诉管制员这一情形，你想返场着陆，这是一个紧急呼叫。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR113, port engine failure, request return to land.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN, 武汉区调，法航113，左发失效，请求返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/503018439018cecb36ba.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177340",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-12",
+      "audioText": "AFR113, Roger PAN, descend to 1800m, turn right heading 360.",
+      "audioTextZh": "法航113，收到PAN，下到1800米，右转航向360。",
+      "referenceText": "Descend to 1800m, turn right heading 360, AFR113.",
+      "referenceTextZh": "下到1800米，右转航向360，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/507cbcd5b6d1473417ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177341",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-13",
+      "audioText": "AFR113, contact Approach 119.85.",
+      "audioTextZh": "法航113，联系进近119.85。",
+      "referenceText": "119.85, AFR113.",
+      "referenceTextZh": "119.85，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9576f4402a6e623c5655.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177342",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-14",
+      "audioText": "Your altitude is 1800m, you have information S, contact approach.",
+      "audioTextZh": "你的高度是1800米，你收到通播S，联系进近。",
+      "referenceText": "Wuhan approach, AFR113. 1800m maintaining, information S.",
+      "referenceTextZh": "武汉进近，法航113，保持在1800米，通播S。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d490e81e2e9b76ef0896.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177343",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-15",
+      "audioText": "AFR113, current information is T, descend to 900m, expect radar vectors for ILS runway 36L.\nRead back and ask to use runway 36R to land due to performance limitations.",
+      "audioTextZh": "法航113，目前通播是T，下到900米，预计雷达引导ILS进近，跑道36左。\n复诵，由于性能限制，请求使用跑道36右着陆。",
+      "referenceText": "Information T, descend to 900m, Request ILS runway 36R due to performance, AFR113.",
+      "referenceTextZh": "通播T，下到900米，由于性能，请求跑道36右，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c97a541f9524c4b7d6a8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177344",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-16",
+      "audioText": "AFR113, change landing runway 36R.",
+      "audioTextZh": "法航113，更换到36右跑道。",
+      "referenceText": "Runway 36R, AFR113.",
+      "referenceTextZh": "跑道36右，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b1172f175c9ce0bda9e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177345",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-17",
+      "audioText": "You have just got the information from the cabin that one of your passengers suffered stroke during the incident. Inform the controller and ask for ambulance after landing.",
+      "audioTextZh": "你从客舱收到一则消息，一名乘客在此事件中中风，告知管制员这个情况，并在着陆后请求救护车。",
+      "referenceText": "Wuhan Approach, AFR113, request ambulance after landing due to passenger suffered stroke.",
+      "referenceTextZh": "武汉进近，法航113，由于乘客中风，在着陆之后请求救护车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9dd8798cc062d6fde14.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177346",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-18",
+      "audioText": "AFR113, roger, we will notify airport medical assistance, now turn left heading 330, descend to 600m, cleared ILS approach runway 36R.",
+      "audioTextZh": "法航113，收到，我们将告知机场医疗救援，现在，左转航向330，下到600米，可以ILS进近，跑道36右。",
+      "referenceText": "Turn left heading 330, descend to 600m, cleared ILS approach runway 36R, AFR113.",
+      "referenceTextZh": "左转航向330，下到600米，可以ILS进近，跑道36右，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c2d98a7fb45dfa68066.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177347",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-19",
+      "audioText": "Report that you have intercepted the localizer for RWY 36R.",
+      "audioTextZh": "报告管制员，你已经截获跑道36右的航向道。",
+      "referenceText": "Wuhan Approach, AFR113., localizer established for runway 36R.",
+      "referenceTextZh": "武汉进近，法航113，建立了跑道36右的航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ffc45f77ac8ba99688d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177348",
+      "taskTitle": "16-AFR113 [发动机失效，乘客中风]-20",
+      "audioText": "AFR113, contact Tower 124.35.",
+      "audioTextZh": "法航113，联系塔台124.35。",
+      "referenceText": "124.35, AFR113.",
+      "referenceTextZh": "124.35，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d8edfcdd8374e0a0f1a3.mp3"
+    }
+  ],
+  "categoryId": "atc-afr"
+}

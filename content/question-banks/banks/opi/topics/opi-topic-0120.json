@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0120",
   "name": "失速警告",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "Pilots should keep the angle of attack below the aircraft's critical value and maintain balanced, controlled flight. They should also obtain weather information before departure and avoid conditions that could lead to a stall.",
       "referenceTextZh": "飞行员应使迎角保持在飞机临界值以下，并维持协调、可控的飞行状态。他们还应在起飞前获取气象信息，避开可能导致失速的条件。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

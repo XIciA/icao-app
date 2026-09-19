@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('merge', Path(__file__).with_name('merge-study-scope-content.py'))
 merge = importlib.util.module_from_spec(spec)
@@ -9,6 +10,62 @@ spec.loader.exec_module(merge)
 
 
 class MergeSafetyTests(unittest.TestCase):
+    def test_listening_reference_uses_display_position_instead_of_source_option_label(self):
+        worker = merge.Merge.__new__(merge.Merge)
+        worker.report, worker.text_corrections = {'warnings': []}, []
+        worker.resource = lambda *_args: '/question-bank-assets/test.mp3'
+        question = {'exercise_id': 1, 'required': True,
+                    'stem': {'text': 'Question?', 'translate': '问题？'},
+                    'single_choice': {'answer': 'C', 'options': [
+                        {'index': 'B', 'content': 'Wrong', 'translate': '错'},
+                        {'index': 'C', 'content': 'Correct', 'translate': '对'},
+                        {'index': 'D', 'content': 'Another', 'translate': '其他'},
+                        {'index': 'A', 'content': 'Last', 'translate': '最后'}]}}
+        card = worker.normalize({'module': 'listening', 'name': '听力'}, question, 0)
+        self.assertEqual(card['correctChoiceIndex'], 1)
+        self.assertEqual(card['referenceText'], '正确答案：B. Correct')
+
+    def test_reviewed_translation_can_fill_absent_field_but_not_replace_changed_source(self):
+        worker = merge.Merge.__new__(merge.Merge)
+        worker.report = {'warnings': []}
+        worker.text_corrections = [{'sourceExerciseId': 42, 'field': 'referenceTextZh',
+                                    'before': '', 'after': '已核实的翻译'}]
+        section = {'module': 'opi', 'name': '样例'}
+        question = {'exercise_id': 42, 'required': True,
+                    'stem': {'text': 'Describe the picture.', 'translate': '描述图片。'},
+                    'essay': {'answer': {'text': 'A plane.'}}}
+        self.assertEqual(worker.normalize(section, question, 0)['referenceTextZh'], '已核实的翻译')
+        question['essay']['answer']['translate'] = '源站新增了不同的翻译'
+        with self.assertRaisesRegex(ValueError, 'Source wording changed'):
+            worker.normalize(section, question, 0)
+
+    def test_source_image_cannot_be_published_without_reviewed_redraw(self):
+        url = 'https://resource.feizhiyi.com/source.png'
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / 'capture'
+            image_path = root / 'content/question-banks/resources/files/images/redrawn.png'
+            image_path.parent.mkdir(parents=True)
+            image_path.write_bytes(b'reviewed-image')
+            worker = merge.Merge.__new__(merge.Merge)
+            worker.source, worker.media, worker.media_files = source, {}, {}
+            worker.redraws, worker.resources, worker.report = {}, {'files': []}, {'warnings': []}
+            worker.resource('opi', url, 'image')
+            self.assertTrue(any(item['kind'] == 'image_redraw_required' for item in worker.report['warnings']))
+            worker.media.clear()
+            worker.redraws[url] = {'path': str(image_path.relative_to(root)), 'reviewed': False,
+                                   'sha256': merge.hashlib.sha256(image_path.read_bytes()).hexdigest()}
+            with patch.object(merge, 'ROOT', root), patch.object(merge, 'CONTENT', root / 'content/question-banks'):
+                with self.assertRaisesRegex(ValueError, 'Unreviewed'):
+                    worker.resource('opi', url, 'image')
+                worker.redraws[url]['reviewed'] = True
+                path = worker.resource('opi', url, 'image')
+                self.assertEqual(path, '/question-bank-assets/images/redrawn.png')
+                worker.media.clear()
+                image_path.write_bytes(b'changed-after-review')
+                with self.assertRaisesRegex(ValueError, 'changed after visual review'):
+                    worker.resource('opi', url, 'image')
+
     def make_complete_capture(self, directory):
         ranges = []
         for bank_index, bank in enumerate(['listening', 'radiotelephony', 'storytelling', 'opi'], 1):
@@ -114,6 +171,30 @@ class MergeSafetyTests(unittest.TestCase):
         self.assertFalse(merge.same_scenario(first, partial))
         self.assertFalse(merge.same_scenario(first, different))
         self.assertTrue(merge.same_scenario(first, first))
+
+    def test_required_radio_answer_survives_later_ordinary_copy(self):
+        with tempfile.TemporaryDirectory() as temp:
+            worker = merge.Merge(Path(temp), Path(temp) / 'out')
+            worker.by_bank = {'radiotelephony': {'id': 'radiotelephony', 'categories': []}}
+            worker.resource = lambda *_args: '/question-bank-assets/test.mp3'
+            for required in [True, False]:
+                worker.add_section({'module': 'radiotelephony', 'section_id': 1 if required else 2,
+                    'name': 'UAL805 [改航]', 'all_count': 1, 'completeAll': True, 'requiredSection': required,
+                    'questions': [{'exercise_id': 11 if required else 12, 'required': required,
+                        'stem': {'text': 'UAL805, turn right heading 130.', 'translate': '右转航向130。', 'audios': 'ignored'},
+                        'essay': {'answer': {'text': 'Required reference' if required else 'Ordinary reference', 'translate': '参考'}}}]})
+            cards = merge.all_cards(worker.by_bank['radiotelephony'])
+            self.assertEqual(len(cards), 1)
+            self.assertEqual(cards[0][2]['referenceText'], 'Required reference')
+            self.assertEqual(cards[0][1]['studyTier'], 1)
+
+    def test_alternate_source_image_urls_resolve_to_one_picture(self):
+        worker = merge.Merge.__new__(merge.Merge)
+        worker.source = Path('/nonexistent-local-reference')
+        worker.resource = lambda *_args: '/question-bank-assets/images/one-redraw.png'
+        questions = [{'section_img': 'https://resource.feizhiyi.com/full.png',
+                      'stem': {'images': ['https://resource.feizhiyi.com/other.png']}}]
+        self.assertEqual(worker.opi_images(questions), ['/question-bank-assets/images/one-redraw.png'])
 
 
 if __name__ == '__main__':

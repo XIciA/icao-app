@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0098",
   "name": "CES 5118 加餐水 前机堵滑行道",
   "declaredCardCount": 23,
@@ -211,5 +210,6 @@
       "referenceTextZh": "可以起飞，跑道 18L，起始保持跑道航向，爬升至 1500 米，CES 5118。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1709.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

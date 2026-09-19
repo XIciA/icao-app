@@ -1,10 +1,12 @@
 {
   "id": "atc-klm",
   "name": "KLM",
-  "declaredTopicCount": 2,
-  "declaredCardCount": 40,
+  "declaredTopicCount": 4,
+  "declaredCardCount": 80,
   "topicIds": [
     "atc-scenario-0042",
-    "atc-scenario-0183"
+    "atc-scenario-0183",
+    "atc-fzy-866",
+    "atc-fzy-868"
   ]
 }

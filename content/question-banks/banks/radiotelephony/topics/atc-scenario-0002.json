@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0002",
   "name": "QFA 160 燃油续航 导航定位",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "否定，我们仍有超过 2 小时续航燃油，QFA 160。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/038.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0057",
   "name": "CCA 101 撞未知物体 风挡裂",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "左转航向 070，跑道 36R ILS 进近，建立后报告，CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/993.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

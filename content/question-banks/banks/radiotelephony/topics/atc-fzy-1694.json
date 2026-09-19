@@ -1,0 +1,262 @@
+{
+  "id": "atc-fzy-1694",
+  "name": "BAW390 [拖把，积云，乘客受伤]",
+  "declaredCardCount": 28,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224741",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-1",
+      "audioText": "N: [Your callsign is BAW390, a flight from Wuhan to London, Bay 208, you have ATIS Z, request Delivery for your ATC clearance.]",
+      "audioTextZh": "N：【你的呼号是英航309，一架从武汉飞往伦敦的航班，你现在在208机位，收到通播Z，向放行申请管制许可。】",
+      "referenceText": "Wuhan Delivery, BAW390, from Wuhan to London, Bay 208, ATIS Zulu, request ATC clearance.",
+      "referenceTextZh": "武汉放行，英航390，从武汉飞往伦敦，208机位，通播Z，申请管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70e5393e1f58e8d8afaa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224742",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-2",
+      "audioText": "C: BAW390, cleared to London, runway 18R, ZF-13D departure, flight planned route, initial climb to and maintain 1800m, cruising level 9500m, expect level change en route, squawk 5505.",
+      "audioTextZh": "C：英航390，可以飞往伦敦，跑道18右，ZF13D离场，计划航路，初始高度1800米，巡航高度9500米，预计入行后变高度，应答机5505。",
+      "referenceText": "Cleared to London, runway 18R, ZF-13D departure, flight planned route, initial climb to and maintain 1800m, cruising level 9500m, expect level change en route, squawk 5505, BAW390.",
+      "referenceTextZh": "可以飞往伦敦，跑道18右，ZF13D离场，计划航路，初始高度1800米，巡航高度9500米，预计入行后变高度，应答机5505，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a7f04e19df110b257194.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224743",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-3",
+      "audioText": "N: [You are fully ready at Bay 208, request Wuhan Ground for pushback and startup.]",
+      "audioTextZh": "N：【你现在在208机位上完全准备好了，联系武汉地面请求推出开车。】",
+      "referenceText": "Wuhan Ground, BAW390, request pushback and startup.",
+      "referenceTextZh": "武汉地面，英航309，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/67c65f5de39a3850fba9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224744",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-4",
+      "audioText": "C: BAW390, after company Boeing777 enters adjacent Bay 207, pushback and startup approved, facing west.",
+      "audioTextZh": "C：英航390，公司的波音777进入到临近的207机位后，可以推出开车，头朝西。",
+      "referenceText": "After the traffic enter adjacent Bay 207, pushback and startup approved, facing west, BAW390.",
+      "referenceTextZh": "公司的波音777进入到临近的207机位后，可以推出开车，头朝西，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e46e717becd6b28efa83.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224745",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-5",
+      "audioText": "N: [During pushback, the tow bar was bent, notify Wuhan Ground, you will hold at present position while waiting for a new tow bar.]",
+      "audioTextZh": "N：【在推出过程中，你的拖杆断了，告知武汉地面，你将原地等待，等待新的拖杆。】",
+      "referenceText": "Wuhan Ground, BAW390, tow bar bent during pushback, we will hold at present position for a new tow bar.",
+      "referenceTextZh": "武汉地面，英航390，推出过程中拖杆断了，我们将原地等待，等待新的拖杆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a1ba051322d17b719bf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224746",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-6",
+      "audioText": "N: [You have completed the pushback and startup procedures, now you find there is a problem with your nose wheel, request to hold position to have the maintenance examine the nose wheel.]",
+      "audioTextZh": "N：【你已经完成了推出开车程序，现在你发现你的前轮出现了问题，请求原地等待，让机务人员进行检查前轮。】",
+      "referenceText": "Wuhan Ground, BAW390, nose wheel problem, request hold position to check the nose wheel.",
+      "referenceTextZh": "武汉地面，英航309，前轮问题，请求原地等待，让机务人员检查下前轮。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/745d13b9bda5070ab21c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224747",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-7",
+      "audioText": "N: [The engineers have repaired the nose wheel, request Wuhan Ground for taxi instructions.]",
+      "audioTextZh": "N：【机务人员已经修好了前轮，向武汉地面请求滑行指令。】",
+      "referenceText": "Wuhan Ground, BAW390, nose wheel repaired, request taxi instructions.",
+      "referenceTextZh": "武汉地面，英航309，前轮已经修好，请求滑行指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fffeaa9448dab0793ca5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224748",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-8",
+      "audioText": "C: BAW390, taxi to holding point of runway 18R via Z4, C, hold at holding point 7.",
+      "audioTextZh": "C：英航390，经由滑行道Z4，C滑行到跑道18右等待点，在等待点7等待。",
+      "referenceText": "Taxi to holding point of runway 18R via Z4, C, hold at holding point 7, BAW390.",
+      "referenceTextZh": "经由滑行道Z4，C滑行到跑道18右等待点，在等待点7等待，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f42c5e9d9e59d23b9c82.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224749",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-9",
+      "audioText": "C: BAW390, A330 is taxiing northbound on C, follow that aircraft to holding point runway 18R.",
+      "audioTextZh": "C：英航390，滑行道C上有一架向北滑行的空客A330，跟着那架航空器滑行到跑道18右外等待点。",
+      "referenceText": "Follow the traffic to holding point runway 18R, BAW390.",
+      "referenceTextZh": "跟着航空器到跑道18右外等待点，英航309。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40ad9950a1087ffd8856.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224750",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-10",
+      "audioText": "N: [You are at the holding point of runway 18R, you are ready for takeoff, call Wuhan Tower.]",
+      "audioTextZh": "B：【你现在正在跑道18右的外等待点，你准备好起飞了，呼叫武汉塔台。】",
+      "referenceText": "Wuhan Tower, BAW390, holding point of runway 18R, ready for departure.",
+      "referenceTextZh": "武汉塔台，英航390，在跑道18右外等待点，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/61e5d359f187a95e3608.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224751",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-11",
+      "audioText": "C: BAW390, caution, previous aircraft reported wind shear shortly after takeoff, what is your intention?\nN: [Ask controller about the wind shear information for other departure runways.]",
+      "audioTextZh": "C：英航390，注意，之前的航班在起飞不久时候报告遇到风切变，你的意图是什么？\nN：【询问管制员，其他起飞跑道的风切变信息。】",
+      "referenceText": "Request wind shear information for other departure runways, BAW390.",
+      "referenceTextZh": "询问其他起飞跑道的风切变信息，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a20ccf93bb2edef22444.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224752",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-12",
+      "audioText": "C: BAW390, there is no reported windshear for other runways.\nN: [Advise controller that you want to change your departure runway to 18L.]",
+      "audioTextZh": "C：英航390，其他跑道没有风切变报告。\nN：【告知管制员，你想把起飞跑道更改到18左。】",
+      "referenceText": "Request change to runway 18L, BAW390.",
+      "referenceTextZh": "请求更改跑道至18左，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/75f86ac0699234e94c0f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224753",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-13",
+      "audioText": "C: BAW390, roger, enter runway 18R, vacate via W4, report vacating.",
+      "audioTextZh": "C：英航390，收到，上跑道18右，经由W4脱离，脱离时报。",
+      "referenceText": "Enter runway 18R, vacate via W4, wilco, BAW390.",
+      "referenceTextZh": "上跑道18右，经由W4脱离，将照办，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd157faf99bf805bcc43.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224754",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-14",
+      "audioText": "N: [Now you are cruising at 9500m, overhead OBLIK, make the initial contact with Zhengzhou Control, and say your squawk number 5505.]",
+      "audioTextZh": "N：【你现在在9500米巡航，飞越OBLIK，与郑州区调建立初始联系，告知你的应答机编码是5505。】",
+      "referenceText": "Zhengzhou Control, BAW390, cruising at 9500m, over OBLIK, Squawk 5505.",
+      "referenceTextZh": "郑州区调，英航390，在9500米巡航，过OBLIK，应答机5505。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0fcae3386f6817979837.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224755",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-15",
+      "audioText": "C: BAW390, Zhengzhou Control, radar contact, offset 3miles right of track.",
+      "audioTextZh": "C：英航390，郑州区调，雷达看见了，右偏置3海里。",
+      "referenceText": "Offset 3 miles to the right, BAW390.",
+      "referenceTextZh": "右偏置3海里，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3da12df08ddae467db3e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224756",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-16",
+      "audioText": "N: [There is towering cumulus build up ahead, you want to climb to 10100m to overfly, make the request to Zhengzhou Control.]",
+      "audioTextZh": "N：【前方积云堆积得很高，你打算上到 10100 米高度飞越过去，向郑州区调提出请求。】",
+      "referenceText": "Zhengzhou Control, BAW390, towering CB ahead, request climb to 10100m to overfly.",
+      "referenceTextZh": "郑州区调，英航390，前方积云很高，请求上10100米飞越。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b8e22ceb22db611a11e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224757",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-17",
+      "audioText": "N: [You found that you can not overfly the weather, request turn right heading 030, so you can be clear of the weather.]",
+      "audioTextZh": "N：【你发现你无法飞越天气，请求右转航向030，这样你可以避开天气。】",
+      "referenceText": "Zhengzhou Control, BAW390, negative overfly weather, request turn right heading 030 to get clear of weather.",
+      "referenceTextZh": "郑州区调，英航390，不可以飞越天气，请求右转航向030来避开天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf07f932ff5ad43bae4d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224758",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-18",
+      "audioText": "C: BAW390, Zhengzhou Control, negative due to restricted airspace. You can turn right heading to 015 or turn left as required, which would you prefer?\nN: [You decided to deviate to the right as turning left would no longer be feasible. Advise Zhengzhou Control.]",
+      "audioTextZh": "C：英航390，郑州区调，由于限制区，不可以。你可以右转航向015或者左转，你倾向于哪一个？\nN：【因为无法左转，你决定右偏置，告知郑州区调。】",
+      "referenceText": "Request deviate to the right, BAW390.",
+      "referenceTextZh": "请求右偏置，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9f2d6d3e4996a58d3958.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224759",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-19",
+      "audioText": "N: [You are suddenly caught up in severe turbulence, you can not maintain altitude, advise Zhengzhou Control. This is an urgency call.]",
+      "audioTextZh": "N：【你突然遇到了重颠簸，你无法保持高度，告知郑州区调，这是一个紧急通话。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Zhengzhou Control, BAW390, experiencing severe turbulence, unable to maintain altitude.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，郑州区调，英航390，遇到了强颠簸，无法保持高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f7cb973153bc0a75b55d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224760",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-20",
+      "audioText": "C: BAW390, Zhengzhou Control, roger, what is your intentions?\nN: [Tell Zhengzhou Control you will need a further right deviation to heading of 090.]",
+      "audioTextZh": "C：英航390，郑州区调，收到，你的意图是什么？\nN：【告知郑州管制，你需要继续右偏置到航向090。】",
+      "referenceText": "Request further deviation to the right to heading 090, BAW390.",
+      "referenceTextZh": "请求继续右偏置到航向090，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/01828e019482c4f73f3d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224761",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-21",
+      "audioText": "C: BAW390, heading of 090 approved, report when you are able to turn left.",
+      "audioTextZh": "C：英航390，可以航向090，准备好左转时报。",
+      "referenceText": "Heading 090 approved, wilco, BAW390.",
+      "referenceTextZh": "可以航向090，将照办，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/37a7c1ca3eaf06cb5c30.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224762",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-22",
+      "audioText": "N: [Your purser reports that several passengers have been injured during turbulence, they are in serious need of medical attention, you decided to return to Wuhan airport. Tell Zhengzhou Control.]",
+      "audioTextZh": "N：【你的乘务长报告说有几名乘客在颠簸时受伤了，他们急需医疗看护，你决定返回武汉机场，告知郑州区调。】",
+      "referenceText": "Zhengzhou Control, BAW390, passenger injured during turbulence and need medical help, request return to Wuhan.",
+      "referenceTextZh": "郑州区调，英航390，乘客在颠簸时受伤了，他们急需医疗看护，请求返回武汉。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7cfd791e3967fd034829.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224763",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-23",
+      "audioText": "C: BAW390, turn left proceed to OBLIK, descend to and maintain 2700m.",
+      "audioTextZh": "C：英航390，左转直飞OBLIK，下2700米保持。",
+      "referenceText": "Turn left proceed to OBLIK, descend to and maintain 2700m, BAW390.",
+      "referenceTextZh": "左转直飞OBLIK，下2700米保持，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9b16c63213effb7f02a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224764",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-24",
+      "audioText": "N: [Your aircraft now is in the Wuhan Approach control area, the condition of injured passengers are getting worse, call Wuhan Approach to make a landing as soon as possible.]",
+      "audioTextZh": "N：【你的飞机现在在武汉进近管制区，受伤乘客情况恶化，联系武汉进近，请求尽快着陆。】",
+      "referenceText": "Wuhan Approach, BAW390, injured passenger is getting worse, request landing as soon as possible.",
+      "referenceTextZh": "武汉进近，英航390，受伤乘客情况恶化，请求尽快着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/847b0bdc6c4667e1d064.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224765",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-25",
+      "audioText": "N: [Advise Wuhan Approach you will require medical assistance after landing.]",
+      "audioTextZh": "N：【告知武汉进近，着陆后你需要医疗协助。】",
+      "referenceText": "Wuhan Approach, BAW390, request medical assistance after landing.",
+      "referenceTextZh": "武汉进近，英航390，着陆后请求医疗协助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/279e0240ff3c99535309.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224766",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-26",
+      "audioText": "C: BAW390, how many injured passenger on board will require ambulance?\nN: [Notify Wuhan Approach that 3 passengers are in serious conditions and will require ambulance and two more passengers suffered minor cuts and will require some first aid treatment at the airport.]",
+      "audioTextZh": "C：英航390，机上多少受伤乘客需要救护车？\nN：【告知武汉进近，有3名乘客受伤严重，需要救护车，另外还有2名乘客有轻微擦伤，需要在机场接受一些初步治疗。】",
+      "referenceText": "Wuhan Approach, BAW390, 3 passengers are in serious conditions and will require ambulance and two more passengers suffered minor cuts and will require some first aid treatment at the airport.",
+      "referenceTextZh": "武汉进近，英航390，有3名乘客受伤严重，需要救护车，另外还有2名乘客有轻微擦伤，需要在机场接受一些初步治疗。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2daa8ee70004506ee6e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224767",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-27",
+      "audioText": "C: BAW390, roger, descent to and maintain 1200m, turn left heading 190, to intercept the localizer for runway 22, report established.",
+      "audioTextZh": "C：英航390，收到，下1200米保持，左转航向190，切跑道22航向道，建立后报。",
+      "referenceText": "Descent to and maintain 1200m, turn left heading 190, to intercept the localizer for runway 22, wilco, BAW390.",
+      "referenceTextZh": "下1200米保持，左转航向190，切跑道22航向道，将照办，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b7d9e855569b7d2a6c7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224768",
+      "taskTitle": "80-BAW390 [拖把，积云，乘客受伤]-28",
+      "audioText": "C: BAW390, you are 17 track miles to touchdown, you are high on your approach, increase your rate of descent.",
+      "audioTextZh": "C：英航390，你现在距离接地点17海里，你进近高度偏高，增加下降率。",
+      "referenceText": "17 track miles to touchdown, increase rate of descent, BAW390.",
+      "referenceTextZh": "距离接地点17海里，增加下降率，英航390。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/baec3a88c6a590c94763.mp3"
+    }
+  ],
+  "categoryId": "atc-baw"
+}

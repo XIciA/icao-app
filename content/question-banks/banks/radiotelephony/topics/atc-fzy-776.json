@@ -1,0 +1,190 @@
+{
+  "id": "atc-fzy-776",
+  "name": "CSN582 [炸弹威胁，气球]",
+  "declaredCardCount": 20,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152324",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-1",
+      "audioText": "[Your call sign is CSN582. You are at Gate K10 with information B. Request clearance from Chengdu Delivery.]",
+      "audioTextZh": "[你的呼号是南方582，你在K10停机位，通播B，向成都放行申请许可。]",
+      "referenceText": "Chengdu Delivery, CSN582, Gate K10, information B, request ATC clearance.",
+      "referenceTextZh": "成都放行，南方582，K10停机位，通播B，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d827b1ce7b4ef893d44e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152325",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-2",
+      "audioText": "C: CSN582, Chengdu Delivery, good afternoon. Information B valid. Cleared to Shanghai via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb 1200m on QNH 1021. After departure contact 125.6, squawk 3656.",
+      "audioTextZh": "南方582，成都放行，下午好，通播B有效，可以经由计划航路飞往上海，跑道02，离场后右转直飞BHS，按照修正海压1021初始爬升至1200米，联系离场125.6，应答机3656。",
+      "referenceText": "Cleared to Shanghai via flight planned route. Runway 02. After departure turn right direct to BHS. Initial climb 1200m on QNH 1021. After departure contact 125.6, squawk 3656, CSN582.",
+      "referenceTextZh": "可以经由计划航路飞往上海，跑道02，离场后右转直飞BHS，按修正海压1021初始爬升至1200米，联系离场125.6，应答机3656，南方，582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/265d0efb8ec8c0fd47b6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152326",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-3",
+      "audioText": "C: CSN582, read back correct. When ready for pushback and start-up, contact Ground 121.85.",
+      "audioTextZh": "南方582，复诵正确，可以推出开车时，联系地面121.85。",
+      "referenceText": "121.85, CSN582.",
+      "referenceTextZh": "121.85，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9248e88cdc3da653f568.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152327",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-4",
+      "audioText": "[You are now ready for start-up. Request pushback and permission to start your engines from Chengdu Ground.]",
+      "audioTextZh": "[你现在准备好开车了，向成都地面请求推出开车。]",
+      "referenceText": "Chengdu Ground, CSN582, ready for/request pushback and start-up.",
+      "referenceTextZh": "成都地面，南方582，准备好/请求推出开车了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4c71afbd424f2d8d3f9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152328",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-5",
+      "audioText": "C: CSN582, Chengdu Ground, pushback and start-up approved.",
+      "audioTextZh": "南方582，成都地面，同意推出开车。",
+      "referenceText": "Pushback and start-up approved, CSN582.",
+      "referenceTextZh": "同意推出开车，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d7b6e46836adc689014e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152329",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-6",
+      "audioText": "C: CSN582, we just had report of a bomb left in your first class passenger section. Please report intentions.\n[Tell the controller the cabin crew and the securities are searching the bomb.]",
+      "audioTextZh": "南方582，我们收到一个报告，客舱头等舱区域有炸弹，请报告意图。\n[告知管制员，客舱乘务员和安全员正在寻找炸弹。]",
+      "referenceText": "We are searching for/looking for/ the bomb, CSN582.",
+      "referenceTextZh": "我们正在寻找炸弹，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cea073ed1be44ee3e9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152330",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-7",
+      "audioText": "[During the search, the cabin crew find a bag that is not claimed by any passengers. Inform Ground about this and tell them that because there is no aircraft around you, you will hold at present position.]",
+      "audioTextZh": "[在寻找过程中，乘务员发现一个无人认领的包。告知地面此事，告诉他们，因为你周围没有航空器，你将原地等待。]",
+      "referenceText": "Chengdu Ground, CSN582, we found a bag unidentified (we found an unknown bag), request hold position due no aircraft around us.",
+      "referenceTextZh": "成都地面，南方582，我们发现一个不明包裹，由于四周没有航空器，请求原地等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4821231f990440eb94c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152331",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-8",
+      "audioText": "C: CSN582, roger, do you need any further assistance?\n[Tell the controller you will disembark the passengers and request passenger steps and a bomb squad.]",
+      "audioTextZh": "南方582，收到，你需要进一步的协助吗？\n[告知管制员，你将让乘客下飞机，请求客梯和拆弹小组。]",
+      "referenceText": "Affirm, we will disembark the passengers, request passenger stairs and bomb squad, CSN582.\n注意客梯车的表达可以是passengers step、passengers stairs或者stair vehicle。",
+      "referenceTextZh": "是的，我们将让乘客下飞机，请求客梯和拆弹小组，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6d325e171e078dbf142c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152332",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-9",
+      "audioText": "[It is late the day. The suspected bomb was an empty bag. You are at the holding point of runway 02. Tell ATC you are ready for takeoff.]",
+      "audioTextZh": "[天已晚，疑似炸弹的包是个空包，你在跑道02外等待点，你准备好起飞了。]",
+      "referenceText": "Chengdu Tower, CSN582, holding point of runway 02, ready for departure.",
+      "referenceTextZh": "成都塔台，南方582，跑道02外等待点，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/efbc319c538e46673147.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152333",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-10",
+      "audioText": "C: CSN582, Chengdu Tower, after departure maintain runway heading, cleared for takeoff RWY02. Surface wind 010, 2m/s.",
+      "audioTextZh": "南方582，成都塔台，离场后保持跑道航向，可以起飞，跑道02，地面风010, 2米每秒。",
+      "referenceText": "Maintain runway heading, cleared for takeoff RWY02. CSN582.",
+      "referenceTextZh": "跑道航向，可以起飞，跑道02，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5ae89f1e5c7479c1d2df.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152334",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-11",
+      "audioText": "[You are departed from runway 02, call Tower.]",
+      "audioTextZh": "[你从跑道02离场，呼叫塔台。]",
+      "referenceText": "Chengdu Tower, CSN582, airborne, runway 02.\n注：我们一般用airborne表示飞机离地了。",
+      "referenceTextZh": "成都塔台，南方582，离地了，跑道02。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1bc3de7cd43244666555.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152335",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-12",
+      "audioText": "C: CSN582, contact Departure on 125.6.",
+      "audioTextZh": "南方582，联系离场125.6。",
+      "referenceText": "125.6, CSN582.",
+      "referenceTextZh": "125.6，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/26c8458e022ede50d21c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152336",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-13",
+      "audioText": "[Contact Departure. Your altitude is now passing 1200m.]",
+      "audioTextZh": "[联系离场，你的高度现在已经过1200米。]",
+      "referenceText": "Chengdu Departure, CSN582, passing 1200m.",
+      "referenceTextZh": "成都离场，南方582，过1200米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9040b4ada276840ec3a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152337",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-14",
+      "audioText": "C: CSN582, Chengdu Departure, good afternoon. Maintain runway heading, climb and maintain 3000m. There are some flights reported the large unmanned weather balloons in your flight route area.",
+      "audioTextZh": "南方582，成都离场，下午好，保持跑道航向，上3000米保持，许多航班报告，在你的航路区域有一些无人气象气球。",
+      "referenceText": "Roger, thanks, maintain runway heading, climb and maintain 3000m, CSN582.\n题干中的There are some flights reported the large unmanned weather balloons in your flight route area属于情报，直接回复roger即可。",
+      "referenceTextZh": "收到，谢谢，保持跑道航向，上3000米保持，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ab41f6766b546a4c8015.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152338",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-15",
+      "audioText": "[As you are climbing, you notice a large unmanned balloon. Your position is 4 miles north of the airfield and current height is 2000 meters. Report this to ATC.]",
+      "audioTextZh": "[当你爬升时，你注意到一个大型无人气球，你的位置是机场以北4海里，当前高度2000米，将此报告给管制员。]",
+      "referenceText": "Chengdu Departure, CSN582, we have seen a large unmanned balloon. Our position is 4 miles north of the airfield and current height is 2000 meters.",
+      "referenceTextZh": "成都离场，南方582，我们看到一个大型无人气球，我们位置是机场以北4海里，当前高度2000米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fcb24acbd597abc5898c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152339",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-16",
+      "audioText": "[Before ATC replies you suddenly hit another balloon you did not see. The aircraft becomes difficult to control and you want to return to land at Chengdu. Tell ATC this. This is an Urgency call.]",
+      "audioTextZh": "[在管制员回复之前，你撞上了一个你没有注意到的气球，飞机变得很难控制，你想返场降落成都，告知管制员此事，这是一个紧急呼叫。]",
+      "referenceText": "PANPAN PANPAN PANPAN, Chengdu Departure, CSN582, we just hit a balloon, request return to Chengdu for landing.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，成都离场，南方582，我们撞上了一个气球，请求成都降落。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70a838251081201fa6f4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152340",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-17",
+      "audioText": "C: CSN582, Chengdu Control, roger Panpan, turn left heading 200, descend and maintain 1200m. All runways available for landing.",
+      "audioTextZh": "南方582，成都区调，收到PANPAN，左转航向200，下到1200米保持，所有跑道可用于着陆。",
+      "referenceText": "Turn left heading 200, descend and maintain 1200m, CSN582.",
+      "referenceTextZh": "左转航向200，下到1200米保持，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7ecc40c39b3baa419f9b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152341",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-18",
+      "audioText": "C: CSN582, radar vectors are available or you can fly a visual circuit and join left downwind. Report intention.\n[Tell the controller you will join left downwind.]",
+      "audioTextZh": "南方582，雷达引导可用，或者你可以目视盘旋加入左三边，报告意图。\n[告诉管制员你将加入左三边。]",
+      "referenceText": "Request join left downwind, CSN582.",
+      "referenceTextZh": "请求加入左三边，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3361555a8e1ae0d70485.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-201157",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-19",
+      "audioText": "C: CSN582, roger, report downwind. And when able can you tell us what is the damage to your aircraft?\n[Reply to the transmission and tell them you have a large hole in your wing and the controls are damaged.]",
+      "audioTextZh": "南方582，收到，三边报，可以的时候告知飞行受损情况。\n[回复指令，告诉他们机翼有个大洞，飞行操纵面受损。]",
+      "referenceText": "Report downwind. We have a large hole in our wing and the controls are damaged, CSN582.",
+      "referenceTextZh": "三边报，机翼有个大洞，飞行操纵面受损，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a60640cdcb3092420865.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-201158",
+      "taskTitle": "5-CSN582 [炸弹威胁，气球]-20",
+      "audioText": "C: CSN582, you are No.1, cleared to land RWY02. Report on final.",
+      "audioTextZh": "南方582，你是第一个，可以着陆，跑道02，五边报。",
+      "referenceText": "Report on final, No.1, cleared to land RWY02, CSN582.\n注：题干中最后的五边报report on final不用必须放在答案开头，也可以用wilco代替。",
+      "referenceTextZh": "五边报，第一个，可以着陆，跑道02，南方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f83a296a6df7158ac20.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

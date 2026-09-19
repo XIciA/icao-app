@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0101",
   "name": "SIA 544 客舱广播",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "收到，SIA 544。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1756.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

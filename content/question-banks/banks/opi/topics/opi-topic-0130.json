@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0130",
   "name": "疲劳与值勤限制",
   "declaredCardCount": 34,
@@ -276,5 +275,6 @@
       "referenceText": "Possible signs include unusual irritability, withdrawal from team discussions, and difficulty concentrating during briefings. The colleague may also make more small errors or become unusually forgetful.",
       "referenceTextZh": "可能的迹象包括异常烦躁、不愿参与团队讨论，以及在简令期间难以集中注意力。这名同事还可能出现更多小错误，或变得异常健忘。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

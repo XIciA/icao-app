@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0119",
   "name": "烟雾",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "The crew should put on oxygen masks and smoke goggles as required and follow the applicable smoke or fire checklist. They should identify and isolate the source if possible. They should advise ATC, declare an emergency when appropriate, land at a suitable airport, and request fire and medical services.",
       "referenceTextZh": "机组应按要求戴上氧气面罩和防烟护目镜，并执行适用的烟雾或火警检查单。他们应尽可能查明并隔离源头。机组还应通知空中交通管制，在适当时宣布紧急状态，在合适的机场着陆，并请求消防和医疗服务。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

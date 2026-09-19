@@ -1,0 +1,549 @@
+{
+  "id": "atc-fzy-1453",
+  "name": "复杂指令",
+  "declaredCardCount": 54,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210209",
+      "taskTitle": "【练习版】Complex instruction复杂指令-1",
+      "audioText": "Roger, CCA451, climb and maintain 900m, turn left direct to DA, and hold over DA.",
+      "audioTextZh": "收到，国航451，上升保持900米，左转直飞DA，在DA等待。",
+      "studyTier": 0,
+      "referenceText": "Climb and maintain 900m, turn left direct to DA, and hold over DA. CCA451.",
+      "referenceTextZh": "上升保持900米，左转直飞DA，在DA等待，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/264b19d85f176d0c730c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210210",
+      "taskTitle": "【练习版】Complex instruction复杂指令-2",
+      "audioText": "CCA451, descend and maintain 900m, turn right heading 290, radar vector for the ILS approach runway 36L.",
+      "audioTextZh": "国航451，下降保持900米，右转航向290，雷达引导盲降进近跑道36左。",
+      "studyTier": 0,
+      "referenceText": "Descend and maintain 900m, turn right heading 290, ILS approach runway 36L. CCA451.",
+      "referenceTextZh": "下降保持900米，右转航向290，盲降进近跑道36左，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f658f91c9dd0e00073e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210211",
+      "taskTitle": "【练习版】Complex instruction复杂指令-3",
+      "audioText": "CSN339, Wuhan Ground, after B737 behind cleared, pushback onto Z4, abeam Gate 213, facing east.",
+      "audioTextZh": "南航339，武汉地面，波音737没影响后，推出开车至滑行道Z4，正切机位213，头朝东。",
+      "studyTier": 0,
+      "referenceText": "After traffic cleared, pushback onto Z4, abeam 213, facing east, CSN339.",
+      "referenceTextZh": "没影响后，推出开车至滑行道Z4，正切213号机位，头朝东，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ed8ce73e29ee3defc96c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210212",
+      "taskTitle": "【练习版】Complex instruction复杂指令-4",
+      "audioText": "CSN339, Wuhan Control, roger PANPAN, maintain 3900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
+      "audioTextZh": "南航339，武汉区调，收到PANPAN，3900米保持，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右。",
+      "studyTier": 0,
+      "referenceText": "Maintaining 3900m, left direct to LKO, LKO-02 arrival, ILS approach runway 36R, CSN339.",
+      "referenceTextZh": "3900米保持，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/83c9f8fa5cfed78a473d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210213",
+      "taskTitle": "【练习版】Complex instruction复杂指令-5",
+      "audioText": "AFR332, follow ZF01D, runway heading until 1200m, contact Wuhan Departure on 124.25.",
+      "audioTextZh": "法航332，按照ZF01离场，跑道航向直到1200米，联系武汉离场，124.25。",
+      "studyTier": 0,
+      "referenceText": "ZF01D, runway heading until 1200m, contact Departure on 124.25, AFR332.",
+      "referenceTextZh": "ZF01离场，跑道航向直到1200米，联系武汉离场，124.25，法航332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/25283abb77963586f327.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210214",
+      "taskTitle": "【练习版】Complex instruction复杂指令-6",
+      "audioText": "AFR332, descend to and maintain 600m, turn right to join the downwind for runway 22, report when turning base.",
+      "audioTextZh": "法航3332，下到600米保持，右转加入跑道22的3边，进入4边后报。",
+      "studyTier": 0,
+      "referenceText": "Descend to and maintain 600m, turn right to join the downwind for runway 22, report when turning base, AFR332.",
+      "referenceTextZh": "下到600米保持，右转加入跑道22的3边，进入4边后报，法航332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5328e5fa085ed5950297.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210215",
+      "taskTitle": "【练习版】Complex instruction复杂指令-7",
+      "audioText": "SIA233, Tower, roger PANPAN, turn right heading 240, intercept LKO VOR 30 radial inbound, climb and maintain 3000m.",
+      "audioTextZh": "新航233，塔台，收到PANPAN，右转航向240，切入LKO VOR向台30度径向线，上升保持3000米。",
+      "studyTier": 0,
+      "referenceText": "Right heading 240, intercept LKO 030 radial inbound, climb and maintain 3000m, SIA233.",
+      "referenceTextZh": "右转航向240，切入LKO VOR向台30度径向线，上升保持3000米，新航233。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4cdf5ac4e655bf8e9ef9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210216",
+      "taskTitle": "【练习版】Complex instruction复杂指令-8",
+      "audioText": "CES586, due to temporarily airspace restriction is effective immediately, after XSH, direct to ZF, expect ZF-03A Arrival. ILS approach runway 36R.",
+      "audioTextZh": "东方586，由于临时空域限制立即生效，过XSH，直飞ZF，预计ZF-03A进场，盲降进近跑道36右。",
+      "studyTier": 0,
+      "referenceText": "Direct to ZF, expect ZF-03A arrival. ILS approach runway 36R, CES586.",
+      "referenceTextZh": "直飞ZF，预计ZF-03A进场，盲降进近跑道36右，东方586。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c51b2c6eeba8a6ea79e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210217",
+      "taskTitle": "【练习版】Complex instruction复杂指令-9",
+      "audioText": "CSN421, Wuhan Approach, radar contact, follow ZF-1A arrival; descend and maintain 2700m on QNH1017, information C.",
+      "audioTextZh": "南航421，武汉进近，雷达已识别，ZF-1A进场；下降保持修正海压2700米，修正海压1017，通播C。",
+      "studyTier": 0,
+      "referenceText": "ZF-1A arrival, descend and maintain 2700 m on QNH 1017; information C. CSN421.",
+      "referenceTextZh": "ZF-1A进场，下降保持修正海压2700米，修正海压1017，通播C，南航421。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/312b3d9f7729e4f9a24b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210218",
+      "taskTitle": "【练习版】Complex instruction复杂指令-10",
+      "audioText": "UAL895, Beijing roger, direct to LADIX, climb to 6300m, contact Beijing Control on 120.35.",
+      "audioTextZh": "美联航895，收到，直飞LADIX，上升到6300米，联系北京区调120.35。",
+      "studyTier": 0,
+      "referenceText": "Direct to LADIX, climb to 6300m, 120.35, UAL895.",
+      "referenceTextZh": "直飞LADIX，上升到6300米，120.35，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9d563a7a03dbd8bc690.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210219",
+      "taskTitle": "【练习版】Complex instruction复杂指令-11",
+      "audioText": "JAL220, Wuhan Approach, turn right heading 240, intercept LKO 030 radio inbound, descend to 3300m.",
+      "audioTextZh": "日航220，武汉进近，右转航向240，切LKO 030 无线电向台，下到3300米。",
+      "studyTier": 0,
+      "referenceText": "Right heading 240, LKO 030 radio inbound, descend to 3300m, JAL220.",
+      "referenceTextZh": "右转航向240，LKO 030 向台，下到3300米，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fbae24d541725e210d30.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210220",
+      "taskTitle": "【练习版】Complex instruction复杂指令-12",
+      "audioText": "JAL220, roger, turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L.",
+      "audioTextZh": "日航220，收到，右转直飞DA，下到2100米，修正海压1015，预计跑道36左。",
+      "studyTier": 0,
+      "referenceText": "Turn right direct to DA, descend to 2100m, QNH1015, expect runway 36L. JAL220.",
+      "referenceTextZh": "右转直飞DA，下到2100米，修正海压1015，预计跑道36左，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4931eec3674dcf9b1f5a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210221",
+      "taskTitle": "【练习版】Complex instruction复杂指令-13",
+      "audioText": "JAL220, change to runway 36R is approved, maintain 600m, turn right to WHA, you are number one.",
+      "audioTextZh": "日航220，同意变更到跑道36右，在600米保持，右转飞至WHA，你是第一个。",
+      "studyTier": 0,
+      "referenceText": "Runway 36R, maintain 600m, turn right to WHA, number one for landing, JAL220.",
+      "referenceTextZh": "跑道36右，在600米保持，右转飞至WHA，第一个落地，日航220。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8856695353d0dd1a10d9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210222",
+      "taskTitle": "【练习版】Complex instruction复杂指令-14",
+      "audioText": "Roger, CES543, you have just passed the traffic, descend and maintain 6000m and turn left heading 170 immediately. There is military activity in the area right now.[You are required to read back the clearance and show your gratitude.]",
+      "audioTextZh": "收到，东方543，你刚躲避过活动，立即下降保持6000米，左转航向170。飞机位于军事活动区域内。【你需要复诵指令并表示感谢。】",
+      "studyTier": 0,
+      "referenceText": "Descend and maintain 6000m, turn left heading 170 immediately, thanks, CES543.",
+      "referenceTextZh": "立即下降保持6000米，左转航向170，谢谢，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e22f16746805fceed295.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210223",
+      "taskTitle": "【练习版】Complex instruction复杂指令-15",
+      "audioText": "CCA983, roger. Turn left direct to HUR, descend to and maintain 3600m. Expect runway 01.",
+      "audioTextZh": "国航983，收到。左转直飞HUR，下降保持3600米，预计跑道01。",
+      "studyTier": 0,
+      "referenceText": "Turn left direct to HUR, descend to and maintain 3600m. Expect runway 01, CCA983.",
+      "referenceTextZh": "左转直飞HUR，下降并保持3600，预计跑道01，国航983。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4ee1709b6af55f028eee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210224",
+      "taskTitle": "【练习版】Complex instruction复杂指令-16",
+      "audioText": "BAW141, roger, cleared visual approach, join final for runway 36L, you are number one, contact Tower 118.1.",
+      "audioTextZh": "英航141，收到，可以目视进近，加入跑道36左五边，你第一个着陆，联系塔台118.1。",
+      "studyTier": 0,
+      "referenceText": "Cleared visual approach, join final for runway 36L, No.1, 118.1, BAW141.",
+      "referenceTextZh": "可以目视进近，加入跑道36左五边，第一个，118.1，英航141。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e2256cbae1cd571c1774.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210225",
+      "taskTitle": "【练习版】Complex instruction复杂指令-17",
+      "audioText": "CCA991, roger, descend to and maintain 1800m on QNH 1012, information D, expect ILS approach runway 18R, you are number one.",
+      "audioTextZh": "国航991，收到，下降保持修正海压1800米，修正海压1012，通播D，预计跑道18右盲降进近，你是第一个。",
+      "studyTier": 0,
+      "referenceText": "Descend to and maintain 1800m on QNH 1012, information D, ILS runway 18R, number one, CCA991.",
+      "referenceTextZh": "下降保持修正海压1800米，修正海压1012，通播D，跑道18右盲降进近，第一个，国航991。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c9271c8d45efc1070d4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210226",
+      "taskTitle": "【练习版】Complex instruction复杂指令-18",
+      "audioText": "UAL239, reduce to minimum speed. Fly direct to ZF, expect ZF-3 arrival runway 36R.",
+      "audioTextZh": "美联航239，速度减至最小。直飞ZF，预计ZF-3进场，跑道36右。",
+      "studyTier": 0,
+      "referenceText": "Minimum speed. Direct to ZF, ZF-3 arrival runway 36R, UAL239.",
+      "referenceTextZh": "最小速度。直飞ZF，ZF-3进场，跑道36右，美联航239。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/289de9b2924de14c845d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210227",
+      "taskTitle": "【练习版】Complex instruction复杂指令-19",
+      "audioText": "UAL239, turn right heading 310, cleared for the VOR/DME approach runway 04, report inbound.",
+      "audioTextZh": "美联航239，右转航向310，可以VOR/DME进近跑道04，向台报告。",
+      "studyTier": 0,
+      "referenceText": "Right heading 310, cleared for VOR/DME approach runway 04, report inbound, UAL239.",
+      "referenceTextZh": "右转航向310，可以VOR/DME进近跑道04，向台报告，美联航239。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d3a1b706f73935da621.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210228",
+      "taskTitle": "【练习版】Complex instruction复杂指令-20",
+      "audioText": "UAL865, Zhengzhou Control, radar contact, offset 3 miles right of track, reduce Mach .75, due Wuhan Control restrictions.",
+      "audioTextZh": "美联航865，郑州区调，雷达已识别，向右偏3海里，由于武汉区调限制，马赫数减小至点75。",
+      "studyTier": 0,
+      "referenceText": "Offset 3 miles right of track, reduce Mach .75, UAL865.",
+      "referenceTextZh": "右偏3海里，马赫数减小至点75，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1942a5c3009b0e8a5258.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210229",
+      "taskTitle": "【练习版】Complex instruction复杂指令-21",
+      "audioText": "UAL887, direct to HUR, descend to and maintain 3600m, contact Beijing Approach 119.7.",
+      "audioTextZh": "美联航887，直飞HUR，下降保持3600米，联系北京进近119.7。",
+      "studyTier": 0,
+      "referenceText": "Direct to HUR, descend to and maintain 3600m, 119.7, UAL887.",
+      "referenceTextZh": "直飞HUR，下降保持3600米，119.7，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19bbebd9b6ccf3c57e22.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210230",
+      "taskTitle": "【练习版】Complex instruction复杂指令-22",
+      "audioText": "ACA989, Wuhan Approach, Roger, follow ZF-1A arrival, and descend and maintain 1800m on QNH 1013. Information D.[Read back the controller’s instruction, and ask the detail of information D because you could not receive the information on the radio.]",
+      "audioTextZh": "加航989，武汉进近，收到，ZF-1A进场，下降保持修正海压1800米，修正海压1013。通播D。【复诵管制员指令，询问通播D详细内容，因为你并未收到该消息。】",
+      "studyTier": 0,
+      "referenceText": "Roger, follow ZF-1A arrival; descend and maintain 1800m on QNH 1013. Request details of information D. ACA989.",
+      "referenceTextZh": "收到，ZF-1A进场，下降保持修正海压1800米，修正海压1013。请求告知通播D详细内容，加航989。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/810f6a0104db4ed01041.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210231",
+      "taskTitle": "【练习版】Complex instruction复杂指令-23",
+      "audioText": "QFA378, turn right heading 030 approved, when clear of weather, turn left direct to LKO.",
+      "audioTextZh": "澳航378，同意右转航向030，天气好转后，左转直飞LKO。",
+      "studyTier": 0,
+      "referenceText": "Right Heading 030, after clear of weather, direct to LKO, QFA378.",
+      "referenceTextZh": "右转航向030，天气好转后，直飞LKO，快达378。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/08b9e2ef3b67fe0224e1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210232",
+      "taskTitle": "【练习版】Complex instruction复杂指令-24",
+      "audioText": "QFA378, Wuhan Approach, cleared to LKO-2A arrival, descend and maintain 1200m on QNH1012, information C valid, you are No. 1.",
+      "audioTextZh": "快达378，武汉进近，可以LKO-2A进场，下降保持修正海压1200米，修正海压1012，通播C有效，你第一个。",
+      "studyTier": 0,
+      "referenceText": "LKO-2A arrival, descend and maintain 1200m on QNH1012, information C, No.1. QFA378.",
+      "referenceTextZh": "LKO-2A进近，下降保持修正海压1200米，修正海压1012，通播C有效，你第一个，澳航378。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/74ab76ed30191c83e901.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210233",
+      "taskTitle": "【练习版】Complex instruction复杂指令-25",
+      "audioText": "AFR872, Wuhan Approach, roger MAYDAY, turn right heading 040, descend and maintain 2100m, radar vector to ILS approach runway 36R, you are priority landing.",
+      "audioTextZh": "法航872，武汉进近，收到MAYDAY，右转航向040，下降保持2100米，雷达引导盲降进近跑道36右，你优先着陆。",
+      "studyTier": 0,
+      "referenceText": "Roger, right heading 040, descend and maintain 2100 m, ILS runway 36R, AFR872.",
+      "referenceTextZh": "收到，右转航向040，下降保持2100米，盲降进近跑道36右，法航872。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d389cbeba7b66a72f1c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224886",
+      "taskTitle": "采分点练习-复杂指令-1",
+      "audioText": "B: [You’ve just followed your TCAS RA instruction. You’ve stopped your descent at nearly 6800m, and track out 9km right of the course, report to ATC.]",
+      "audioTextZh": "B：【你已执行了TCAS RA指令。你已停止下降，高度维持在约6800米，并偏航右转偏离原航线9公里，现向空管报告。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Control, CES5325, our TCAS instructed us to stop descent at 6800m, and we are tracking out 9km right of the course.",
+      "referenceTextZh": "武汉区调，东方5325，TCAS指示我们在6800米停止下降，我们偏航右转偏离原航线9公里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6d667eaac69a8dbe2f86.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224887",
+      "taskTitle": "采分点练习-复杂指令-2",
+      "audioText": "C: CSN905, descend to and maintain 9,200m, rate of descent at 2,000 ft/min or greater.",
+      "audioTextZh": "C：南方905，下9200米保持，下降率2000英尺每分或更大。",
+      "studyTier": 2,
+      "referenceText": "Descend and maintain 9,200m at 2,000 ft/min or greater, CSN905.",
+      "referenceTextZh": "下9200米保持，下降率2000英尺每分或更大，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/21b3f2ea41d9305fba7e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224888",
+      "taskTitle": "采分点练习-复杂指令-3",
+      "audioText": "C: CSN3112, turn left heading 150, direct to AA446, hold at AA446 as published due weather.",
+      "audioTextZh": "C: 南方3112，左转航向150，直飞AA446，由于天气，在AA446按公布程序等待。",
+      "studyTier": 2,
+      "referenceText": "Turn left heading 150, direct to AA446, hold at AA446 as published, CSN3112.",
+      "referenceTextZh": "左转航向150，直飞AA446，在AA446按公布程序等待，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/802229b92bbcadcd4fbe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224889",
+      "taskTitle": "采分点练习-复杂指令-4",
+      "audioText": "C: CSN3001, cleared to deviate 20 miles to the left, maintain present altitude, expect fly direct to P419. Notify us when you are clear of the weather. We will radar vector you back to your original route.",
+      "audioTextZh": "C: 南方3001，可以左偏置20海里，保持当前高度，预计直飞P419，脱离天气时报。我们将雷达引导你返回原航路。",
+      "studyTier": 2,
+      "referenceText": "Cleared to deviate 20 miles to the left, maintain present altitude, expect fly direct to P419, wilco, CSN3001.",
+      "referenceTextZh": "可以左偏置20海里，保持当前高度，预计直飞P419，将照办，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/249be61ba242ecb1422f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224890",
+      "taskTitle": "采分点练习-复杂指令-5",
+      "audioText": "C: CSN3001, turn left heading 048 degrees, direct to BOGRO, and then join airway A461.",
+      "audioTextZh": "C：南方3001，左转航向048度，直飞BOGRO，然后加入A461航路。",
+      "studyTier": 2,
+      "referenceText": "Turn left heading 048 degrees, direct to BOGRO, and then join airway A461, CSN3001.",
+      "referenceTextZh": "左转航向048度，直飞BOGRO，然后加入A461航路，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a1eb2be372e68f3af19.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224891",
+      "taskTitle": "采分点练习-复杂指令-6",
+      "audioText": "C: ACA521, roger Mayday, turn left heading 220, direct to ZF, descend to 3300m, you are No.1.",
+      "audioTextZh": "加航521，收到Mayday，左转航向220，直飞ZF，下3000米，你是第一个。",
+      "studyTier": 2,
+      "referenceText": "Turn left heading 220, direct to ZF, descend to 3300m, No.1 ACA521.",
+      "referenceTextZh": "左转航向220，直飞ZF，下3300米，第一个，加航521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3466251151aaf53e40ad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224892",
+      "taskTitle": "采分点练习-复杂指令-7",
+      "audioText": "C: CES5227, Wuhan Departure, hold over LKO VOR 130 radial, inbound track 085, 30-40 miles legs, right hand pattern at 2700m.",
+      "audioTextZh": "C: 东方5227，武汉离场，在LKO台130度径向线等待，入航航迹085度，航段30-40海里，右等待，高度2700米。",
+      "studyTier": 2,
+      "referenceText": "Hold over LKO VOR 130 radial, inbound track 085, 30-40 miles legs, right hand pattern at 2700m, CES5227.",
+      "referenceTextZh": "在LKO台130度径向线等待，入航航迹085度，航段30-40海里，右等待，高度2700米，东方5227。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/57e682f003cdd18d0778.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224893",
+      "taskTitle": "采分点练习-复杂指令-8",
+      "audioText": "C: CES5227, Wuhan Tower, after airborne, fly runway heading to 600m, follow SID fly to HZ, when airborne contact 126.3, cleared for takeoff, runway 04.",
+      "audioTextZh": "C: 东方5227，武汉塔台，离地后，跑道航向上到600米，按照标准离场程序飞往HZ，离地后，联系126.3，可以起飞，跑道04。",
+      "studyTier": 2,
+      "referenceText": "Runway heading to 600m, follow SID fly to HZ, 126.3, cleared for takeoff, runway 04, CES5227.",
+      "referenceTextZh": "跑道航向上到600米，按照标准离场程序飞往HZ，126.3， 可以起飞，跑道04，东方5227。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d52c94cefab1acb0aa51.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224894",
+      "taskTitle": "采分点练习-复杂指令-9",
+      "audioText": "C: UAL887, turn left heading 190, descend to and maintain 3600m on QNH 1006, reduce to minimum approach speed.",
+      "audioTextZh": "C: 美联航887，左转航向190，下到3600米保持，修压1006，减小到最低进近速度。",
+      "studyTier": 2,
+      "referenceText": "Turn left heading 190, descend to and maintain 3600m on QNH1006, reduce to minimum approach speed, UAL887.",
+      "referenceTextZh": "左转航向190，下到3600米保持，修压1006，减小到最低进近速度，美联航887。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/399e8a955761a995bd49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224895",
+      "taskTitle": "采分点练习-复杂指令-10",
+      "audioText": "C: BAW3532, cancel ATC speed restriction, descend and maintain 9800m, rate of descent 2500ft per minute.",
+      "audioTextZh": "C：英航3532，取消管制速度限制，下9800保持，下降率2500英尺每分。",
+      "studyTier": 2,
+      "referenceText": "No speed restriction, descend and maintain 9800m, rate of descent 2500ft per minute, BAW3532.",
+      "referenceTextZh": "没有速度限制，下9800米保持，下降率2500英尺每分，BAW3532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/110d3a7627b4680b9446.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224896",
+      "taskTitle": "采分点练习-复杂指令-11",
+      "audioText": "C: CCA1368, Beijing roger, leave the holding pattern and turn left heading 033, further descend to 2400m and contact Beijing Tower on 118.3, we have informed your situation to them.",
+      "audioTextZh": "管：国航幺三六八，北京收到，离开等待程序，左转航向洞三三，继续下到两千四，联系北京塔台幺幺八点三，我们已经向他们告知你的情况。",
+      "studyTier": 2,
+      "referenceText": "Leave the holding pattern and turn left heading 033, further descend to 2400m and contact Beijing Tower on 118.3, CCA1368.",
+      "referenceTextZh": "离开等待程序，左转航向洞三三，继续下到两千四，联系北京塔台幺幺八点三，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2ceb08cf923f28b5d0ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224897",
+      "taskTitle": "采分点练习-复杂指令-12",
+      "audioText": "C: CCA1368, hold over AA442 130 radial 14 DME fix, one and a half minute inbound legs, left hand pattern, maintain 2700m, expect further clearance at 45, time now 30.",
+      "audioTextZh": "管：国航幺三六八，在Alpha Alpha四四两一百三十度径向线DME幺四海里点等待，入航时间一分半，左等待，保持两拐，预计进一步许可时间四五分，当前时间三洞分。",
+      "studyTier": 2,
+      "referenceText": "Hold over AA442 130 radial 14 DME fix, one and a half minute inbound legs, left hand pattern, maintain 2700m, CCA1368.",
+      "referenceTextZh": "在Alpha Alpha四四两一百三十度径向线DME幺四海里点等待，入航时间一分半，左等待，保持两拐，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/88ea21a7957f29a40c7a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224898",
+      "taskTitle": "采分点练习-复杂指令-13",
+      "audioText": "C: CCA1368, turn right heading 060, track direct to AA443, descend to and maintain 4500m by AA443.",
+      "audioTextZh": "管：国航幺三六八，右转航向洞六洞，直飞Alpha Alpha四四三，在Alpha Alpha四四三之前下到四千五。",
+      "studyTier": 2,
+      "referenceText": "Right heading 060, track direct to AA443, descend to and maintain 4500m by AA443, CCA1368.",
+      "referenceTextZh": "右转航向洞六洞，直飞Alpha Alpha四四三，在Alpha Alpha四四三之前下到四千五，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d8ccccc55b76c79b6ac8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224899",
+      "taskTitle": "采分点练习-复杂指令-14",
+      "audioText": "C: CES556, due to temporarily airspace restriction is effective immediately, after XSH, direct to ZF, expect ZF-03A Arrival. ILS approach runway 36R.",
+      "audioTextZh": "东方556，由于临时空域限制立即生效，过XSH，直飞ZF，预计ZF-03A进场，盲降进近跑道36右。",
+      "studyTier": 2,
+      "referenceText": "After XSH, direct to ZF, expect ZF-03A arrival. ILS approach runway 36R, CES556.",
+      "referenceTextZh": "过XSH后，直飞ZF，预计ZF-03A进场，盲降进近跑道36右，东方556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0e3b10a688ea6329f10a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224900",
+      "taskTitle": "采分点练习-复杂指令-15",
+      "audioText": "C: CSN3102, Guangzhou Departure, radar contact, turn right heading 088, track direct to CON, climb to and maintain 2100m when passing CON.",
+      "audioTextZh": "南方3102，广州离场，雷达识别了，右转航向088，直飞CON，过CON后上2100米保持。",
+      "studyTier": 2,
+      "referenceText": "Right heading 088, track direct to CON, climb to and maintain 2100m when passing CON, CSN3102.",
+      "referenceTextZh": "右转航向088，直飞CON，过CON后上2100米保持，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70362dd799cfef962139.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224901",
+      "taskTitle": "采分点练习-复杂指令-16",
+      "audioText": "Roger, descend to 9200m, rate of descent at 2000ft per min or greater. Offset 3 miles to the right.",
+      "audioTextZh": "收到，下降到9200米，下降率每分钟2000英尺或更大。右偏航3海里。",
+      "studyTier": 2,
+      "referenceText": "Descend to 9200m, rate of descent at 2000ft per minute or greater. Offset 3 miles to the right. BAW120.",
+      "referenceTextZh": "下降到9200米，下降率每分钟2000英尺或更大。右偏航3海里，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8d9d4045b260bedaaca0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224902",
+      "taskTitle": "采分点练习-复杂指令-17",
+      "audioText": "BAW120, descend to and maintain 7800m, cancel offset. Track direct to AKOMA, reduce speed to minimum clean speed due flow control.",
+      "audioTextZh": "英航120，下到7800米保持，取消偏航。直飞AKOMA，由于流控，速度减小到最低光洁速度。",
+      "studyTier": 2,
+      "referenceText": "Descend and maintain 7800m, cancel offset. Track direct to AKOMA, reduce speed to minimum clean speed due flow control. BAW120.",
+      "referenceTextZh": "下到7800米保持，取消偏航。直飞AKOMA，由于流控，速度减小到最低光洁速度，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/46f056379b67c03aaa6a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224903",
+      "taskTitle": "采分点练习-复杂指令-18",
+      "audioText": "C: ACA331, after the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m.",
+      "audioTextZh": "加航331，航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持。",
+      "studyTier": 2,
+      "referenceText": "After the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m, ACA331.",
+      "referenceTextZh": "航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/08c7149616875f0715fc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224904",
+      "taskTitle": "采分点练习-复杂指令-19",
+      "audioText": "CES2151, change to runway 18L is approved, maintain 600m, turn right to WHA, contact approach on 121.7.",
+      "audioTextZh": "东方2151，同意更改到18左，保持在600米，右转至WHA，联系进近121.7。",
+      "studyTier": 2,
+      "referenceText": "Runway 18L, maintain 600m, turn right to WHA, 121.7, CES2151.",
+      "referenceTextZh": "跑道18左，保持在600米，右转至WHA，121.7，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d2a6e97374d7498b71bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224905",
+      "taskTitle": "采分点练习-复杂指令-20",
+      "audioText": "CES2151, climb to 900m, after WHA, fly heading 360, expect radar vectors for ILS approach runway 18L.",
+      "audioTextZh": "东方2151，爬升至900米，过WHA后，航向360，预计雷达引导ILS进近，跑道18左。",
+      "studyTier": 2,
+      "referenceText": "Climb to 900m, after WHA, fly heading 360, expect radar vector for ILS approach runway 18L, CES2151.",
+      "referenceTextZh": "爬升至900米，WHA后，航向360，预计雷达引导ILS进近，跑道18左，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3139662f43ba6e43b3e1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224906",
+      "taskTitle": "采分点练习-复杂指令-21",
+      "audioText": "SIA123, Tower, roger PANPAN, turn right heading 240, intercept LKO VOR 30 radial inbound, climb and maintain 3000m.",
+      "audioTextZh": "新航123，塔台，收到PANPAN，右转航向240，切入LKO VOR向台30度径向线，上升保持3000米。",
+      "studyTier": 2,
+      "referenceText": "Right heading 240, intercept LKO 030 radial inbound, climb and maintain 3000m, SIA123.",
+      "referenceTextZh": "右转航向240，切入LKO VOR向台30度径向线，上升保持3000米，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8744212c1fd45c52e478.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224907",
+      "taskTitle": "采分点练习-复杂指令-22",
+      "audioText": "C: CCA321, Guangzhou Control, roger, turn right heading 038, descend to and maintain 5400m, increase speed to 320 knots or greater.",
+      "audioTextZh": "国航三两幺，广州区调，收到，右转航向038，下到五千四保持，速度调至320节或更大。",
+      "studyTier": 2,
+      "referenceText": "Right heading 038, descend to and maintain 5400m, increase speed to 320 knots or greater, CCA321.",
+      "referenceTextZh": "右转航向038，下到五千四保持，速度增大到320节或更多，国航三两幺。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8fc1a0076dbbaafcc67d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224908",
+      "taskTitle": "采分点练习-复杂指令-23",
+      "audioText": "C: CCA321, Guangzhou Control, roger, fly direct to PAVTU and then turn left and join airway H24.",
+      "audioTextZh": "国航三两幺，广州区调，收到，直飞PAVTU。然后左转加入H24航路。",
+      "studyTier": 2,
+      "referenceText": "Fly direct to PAVTU and then turn left and join airway H24, CCA321.",
+      "referenceTextZh": "直飞PAVTU。然后左转加入H24航路，国航三两幺。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0542d2360efe6c346124.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224909",
+      "taskTitle": "采分点练习-复杂指令-24",
+      "audioText": "7C: CSN557, turn right track direct to \"D\" NDB, descend and maintain 900m, follow the published procedure. Clear for ILS approach runway 36R.",
+      "audioTextZh": "南方557，右转直飞“D”NDB，下到900米保持，按照发布的程序，可以ILS进近，跑道36右。",
+      "studyTier": 2,
+      "referenceText": "Turn right track direct to \"D\" NDB, descend and maintain 900m, follow the published procedure. Clear for ILS approach runway 36R, CSN557.",
+      "referenceTextZh": "右转直飞“D”NDB，下到900米保持，按照发布的程序，可以ILS进近，跑道36右，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2b26e37cd5de2149e5c0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224910",
+      "taskTitle": "采分点练习-复杂指令-25",
+      "audioText": "CCA976, cancel SID, maintain runway heading to 1500 meters, track direct ZF, runway 04, cleared for takeoff.",
+      "audioTextZh": "国航976，取消SID，保持跑道航向直到1500米，直飞ZF，跑道04，可以起飞。",
+      "studyTier": 2,
+      "referenceText": "Cleared for takeoff. runway 04. After departure, cancel SID, maintain runway heading to 1500m, direct to ZF, CCA976.",
+      "referenceTextZh": "可以起飞，跑道04，离场后，取消SID，保持跑道航向直到1500米，直飞ZF，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c86974cddc62a29858c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224911",
+      "taskTitle": "采分点练习-复杂指令-26",
+      "audioText": "Roger PAN, maintain 3,900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach r/w 36R.",
+      "audioTextZh": "收到PAN，保持高度3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右。",
+      "studyTier": 2,
+      "referenceText": "Maintain 3,900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R, CSN319.",
+      "referenceTextZh": "保持高度3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d94997bea0b56210d54.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224912",
+      "taskTitle": "采分点练习-复杂指令-27",
+      "audioText": "C: CCA321, Wuhan Approach, cleared divert to Changsha, fly heading 140 and rejoin airway R343, fly direct to LCC.",
+      "audioTextZh": "国航321，武汉进近，可以备降至长沙，航向140，加入R343航路，直飞LCC。",
+      "studyTier": 2,
+      "referenceText": "Cleared divert to Changsha, heading 140 and rejoin airway R343, fly direct to LCC, CCA321.",
+      "referenceTextZh": "可以备降至长沙，航向140，加入R343航路，直飞LCC，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8db5460a6c06c25c5aa9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224913",
+      "taskTitle": "采分点练习-复杂指令-28",
+      "audioText": "CCA527, descend to 4200m, when ready reach 4200m 10 miles before ATAGA.",
+      "audioTextZh": "国航527，下到4200米，在ATAGA前10海里下到4200米。",
+      "studyTier": 2,
+      "referenceText": "Descend to 4200m, reach 4200m 10 miles before ATAGA, CCA527.",
+      "referenceTextZh": "下到4200米，在ATAGA前10海里下到4200米，国航527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/36ce06bd63c23379dcd2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224914",
+      "taskTitle": "采分点练习-复杂指令-29",
+      "audioText": "CSN6682, roger PAN, maintain 3900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
+      "audioTextZh": "南方6682，收到PAN，保持3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右。",
+      "studyTier": 2,
+      "referenceText": "Maintain 3900m, Turn left direct to LKO, expect LKO-02 arrival, ILS approach, runway 36R, CSN6682.",
+      "referenceTextZh": "保持3900米，左转直飞LKO，预计LKO-02进场，ILS进近，跑道36右，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb26e146ad314af74999.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

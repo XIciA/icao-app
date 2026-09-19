@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0140",
   "name": "冬夏季运行",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "Summer operations can expose pilots to thunderstorms, heavy rain, and lightning.",
       "referenceTextZh": "夏季运行可能使飞行员面临雷暴、大雨和雷电。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

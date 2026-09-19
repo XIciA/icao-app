@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1515",
+  "name": "CSN1310 [减跑道起飞，燃油泄漏]",
+  "declaredCardCount": 15,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219422",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-1",
+      "audioText": "[Your call sign is CSN1310, from Beijing to Guangzhou, you’re at gate 602 with information F. You’re now ready for your ATC clearance.]",
+      "audioTextZh": "【你的呼号是南方1310，从北京到广州，你现在在602号机位，收到通播F，你准备好抄收你的放行许可了。】",
+      "referenceText": "Beijing Delivery, CSN1310, gate 602, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "北京放行，南方1310，602号机位，请求飞往广州的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/16da11764d9d0c78b918.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219423",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-2",
+      "audioText": "C: CSN1310, Beijing Delivery, standby for 15 minutes due flow control at this moment.",
+      "audioTextZh": "C: 南方1310，北京放行，由于当前流控，稍等15分钟。",
+      "referenceText": "Standing by, CSN1310.",
+      "referenceTextZh": "稍等，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b1922094bf8d8f6fb2f9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219424",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-3",
+      "audioText": "[15 minutes later.]\n[You want to know if you can get your ATC clearance now.]",
+      "audioTextZh": "【15分钟后。】\n【你想知道你现在能否得到你的放行许可。】",
+      "referenceText": "Beijing Delivery, CSN1310, gate 602, confirm we can get our ATC clearance to Guangzhou.",
+      "referenceTextZh": "北京放行，南方1310，602号机位，证实我们能都得到我们飞往广州的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/824c46f4db5c5db19523.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219425",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-4",
+      "audioText": "C: CSN1310, Beijing Delivery, affirm. You are cleared to destination via flight planned route, runway 36R, MUGLO-9ZD departure, initial altitude 1200m, cruising level 9800m, squawk 6332.",
+      "audioTextZh": "C: 南方1310，北京放行，可以。你可以经由计划航路飞往目的地，跑道36右，MUGLO-9ZD离场，初始高度1200米，巡航高度9800米，应答机6332。",
+      "referenceText": "Cleared to destination via flight planned route, runway 36R, MUGLO-9ZD departure, initial altitude 1200m, cruising level 9800m, squawk 6332, CSN1310.",
+      "referenceTextZh": "可以经由计划航路飞往目的地，跑道36右，MUGLO-9ZD离场，初始高度1200米，巡航高度9800米，应答机6332，南方6332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a386e0aa21814d53e13b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219426",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-5",
+      "audioText": "[Now you are ready for push-back and startup, call Ground controller.]",
+      "audioTextZh": "【现在你准备好推出开车了，联系地面管制员。】",
+      "referenceText": "Beijing Ground, CSN1310, gate 602, request push-back and startup.",
+      "referenceTextZh": "北京地面，南方1310，602号机位，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8d239cff3fa8cd497a24.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219427",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-6",
+      "audioText": "C: CSN1310, Beijing Ground, push-back and startup approved, facing north.",
+      "audioTextZh": "C：南方1310，北京地面，可以推出开车，机头朝北。",
+      "referenceText": "Push-back and startup approved, facing north, CSN1310.",
+      "referenceTextZh": "可以推出开车，机头朝北，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/59912fe361981792be5a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219428",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-7",
+      "audioText": "C: CSN1310, are you able to accept intersection departure from W3?\n[Tell controller you can accept the intersection departure from W3. ]",
+      "audioTextZh": "C: 南方1310，你可以接受从W3减跑道起飞吗？\n【告知管制员你可以接受从W3减跑道起飞。】",
+      "referenceText": "Affirm, we can accept the intersection departure from W3, CSN1310.",
+      "referenceTextZh": "是的，我们可以接受从W3减跑道起飞，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cc7cd2c7c816ddc3dc45.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219429",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-8",
+      "audioText": "C: CSN1310, roger, taxi via taxiway Z0, F2, F and W3 to the holding point of runway 36R. Taxi with caution, taxiway F is partially flooded.",
+      "audioTextZh": "C: 南方1310，收到，经由滑行道Z0，F2，F和W3滑行到跑道36右外等待点。谨慎滑行，滑行道F上有部分积水。",
+      "referenceText": "Taxi via taxiway Z0, F2, F and W3 to the holding point of runway 36R, roger caution, CSN1310.",
+      "referenceTextZh": "经由滑行道Z0，F2，F和W3滑行到跑道36右外等待点，收到谨慎，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa60b3ae5ec56d8b16f1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219430",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-9",
+      "audioText": "[Now you are approaching the holding point of runway 36R, you are ready for intersection departure from W3.]",
+      "audioTextZh": "【你现在接近跑道36右的外等待点，你准备好从W3减跑道起飞了。】",
+      "referenceText": "Beijing Tower, CSN1310, approaching holding point of runway 36R, request intersection departure from W3.",
+      "referenceTextZh": "北京塔台，南方1310，正接近跑道36右的外等待点，请求从W3减跑道起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d78ec401ee2e1421c70.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219431",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-10",
+      "audioText": "C: CSN1310, Beijing Tower, line up runway 36R.",
+      "audioTextZh": "C: 南方1310，北京塔台，上跑道36右。",
+      "referenceText": "Line up runway 36R, CSN1310.",
+      "referenceTextZh": "上跑道36右，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb08b7c85174c5b50116.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219432",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-11",
+      "audioText": "C: CSN1310, wind 040, 3m/s, fly runway heading, cleared for takeoff, report airborne.",
+      "audioTextZh": "C: 南方1310，风040，3米每秒，跑道航向，可以起飞，离地后报。",
+      "referenceText": "Fly runway heading, cleared for takeoff, runway 36R, wilco, CSN1310.",
+      "referenceTextZh": "跑道航向，可以起飞，跑道36右，照办，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8e23444b4b6a95dc71d5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219433",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-12",
+      "audioText": "[Before you begin the takeoff roll, a cabin crew reports there is a amount of fuel on the runway, possible the fuel leak from the right wing. Notify this situation to the controller, and inform him you want fire trucks on standby and stair vehicles to disembark the passengers.]",
+      "audioTextZh": "【在你开始起飞滑跑前，一名机组人员报告跑道上有大量燃油，可能是右翼燃油泄漏。将此情况通知管制员，并通知他你需要消防车待命，并请求客梯车让乘客下飞机。】",
+      "referenceText": "Beijing Tower, CSN1310, a cabin crew reports fuel on the runway, possible due the fuel leak, request fire trucks on standby and stair vehicles to disembark the passengers.",
+      "referenceTextZh": "北京塔台，南方1310，一名机组人员报告跑道上有燃油，可能是由于燃油泄漏，请求消防车待命和客梯车让乘客下机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/864a9c69706f49399a54.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219434",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-13",
+      "audioText": "C: CSN1310, roger, fire trucks and stair vehicles have been sent. Report current situation.\n[The fuel leak has stopped, but you still need some ground assistance to deal with the fuel on the runway.]",
+      "audioTextZh": "C: CSN1310，收到，消防车和客梯车已经出动。报告当前情况。\n【燃油泄漏已经停止，但你仍然需要一些地面协助来处理跑道上的燃油。】",
+      "referenceText": "The fuel leak has stopped, but we still need some ground assistance to deal with the fuel on the runway, CSN1310.",
+      "referenceTextZh": "燃油泄漏已经停止，但是我们仍然需要一些地面协助来处理跑道上的燃油，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dac3dcd32317d6d82331.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219435",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-14",
+      "audioText": "C: Roger, CSN1310, ground assistance is already for you, report your intention.\n[As passengers have been successfully deplaned, you want to vacate the runway and taxi back to the remote apron and have maintenance staff check the aircraft and refuel the aircraft.]",
+      "audioTextZh": "C: 收到，南方1310，地面援助已经在找你了，报告你的意图。\n【由于乘客已经成功下机，你要脱离跑道，滑回远机坪，让维修人员检查飞机并给飞机加油。】",
+      "referenceText": "Request taxi back to the remote apron and have maintenance staff check the aircraft and refuel the aircraft, CSN1310.",
+      "referenceTextZh": "请求滑回远机坪，让维修人员检查飞机并加油，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a350034e0155103a236.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219436",
+      "taskTitle": "60-CSN1310 [减跑道起飞，燃油泄漏]-15",
+      "audioText": "C: CSN1310, roger, taxi via E5, G and H1 to the Apron No.2, expedite taxi on G.",
+      "audioTextZh": "C: 南方1310，收到，经由E5，G和H1滑回2号机坪，加速滑过滑行道G。",
+      "referenceText": "E5, G and H1, Apron No.2, wilco, CSN1310.",
+      "referenceTextZh": "E5，G和H1，2号机坪，照办，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0653decb7b989b80c27f.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

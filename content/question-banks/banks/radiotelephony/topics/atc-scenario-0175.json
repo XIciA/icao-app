@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0175",
   "name": "UAL 817 鸟击 积冰/防冰 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉地面，UAL 817，我们的 APU 不工作，请求在登机口准备好地面电源车。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-075-ual817-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

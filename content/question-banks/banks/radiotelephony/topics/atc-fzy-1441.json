@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1441",
+  "name": "ACA331 [有毒气体，冲突航空器]",
+  "declaredCardCount": 15,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-209441",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-1",
+      "audioText": "B: [Your call sign is ACA331, from Wuhan to Vancouver, pushback and start up have been completed, request Wuhan Ground for taxi instructions.]",
+      "audioTextZh": "【你的呼号是加航331，从武汉飞往温哥华，已经完成了推出开车，向武汉地面请求滑行指令。】",
+      "referenceText": "Wuhan Ground, ACA331, push back and start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，加航331，完成了推出开车，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/14b7010201d663a9c32d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209442",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-2",
+      "audioText": "C: ACA331, Wuhan Ground, taxi to holding point runway 18R via A7, A, Z4, C.",
+      "audioTextZh": "加航331，武汉地面，经由滑行道A7，A和Z4，C滑行至跑道18右外等待点。",
+      "referenceText": "Taxi to holding point runway 18R via A7, A, Z4, C, ACA331.",
+      "referenceTextZh": "经由滑行道A7，A，Z4和C滑行至跑道18右外等待点，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef331b7bcb8dfe4d21ff.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209443",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-3",
+      "audioText": "C: ACA331, follow the A319 on M to holding point runway 18R.",
+      "audioTextZh": "加航331，跟随着M滑行道上的A319，滑行至跑道18右外等待点。",
+      "referenceText": "Follow the A319 on M to holding point runway 18R, ACA331.",
+      "referenceTextZh": "跟随着M上的A319，滑行至跑道18右外等待点，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eee2c7615b45d3080ce0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209444",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-4",
+      "audioText": "C: ACA331, runway 18R is closed due to disable aircraft on the runway. Change your ATC clearance to runway 18L. ZF-12D departure, the rest is unchanged.",
+      "audioTextZh": "加航331，由于跑道上有故障航空器，18右跑道关闭。更改你的管制放行许可至18左，ZF-12D离场，其余不变。",
+      "referenceText": "Roger, runway 18L, ZF-12D departure, the rest is unchanged, ACA331.",
+      "referenceTextZh": "收到，跑道18左，ZF-12D离场，其余不变，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/86680ce47cfab750d99e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209445",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-5",
+      "audioText": "C: ACA331, enter the runway 18R from C, vacate runway via C4, report vacated.",
+      "audioTextZh": "加航331，经由C进入18右跑道，经由C4脱离跑道，脱离后报。",
+      "referenceText": "Enter the runway 18R from C, vacate runway via C4, wilco, ACA331.",
+      "referenceTextZh": "经由C进入18右跑道，经由C4脱离跑道，照办，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/591b586d06623c16aa9f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209446",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-6",
+      "audioText": "B: [Now you have vacated runway 18R via C4, report to Ground.]",
+      "audioTextZh": "【你现在经由C4脱离跑道18右，报告给地面。】",
+      "referenceText": "Wuhan Ground, ACA331, we have vacated runway 18R via C4.",
+      "referenceTextZh": "武汉地面，加航331，我们已经经由C4脱离跑道18右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e696c8d032ffd8e3c0ba.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209447",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-7",
+      "audioText": "C: ACA331, continue taxi to holding point runway 18L via M, A, A1.",
+      "audioTextZh": "加航331，继续经由滑行道M，A，A1滑行至跑道18左外等待点。",
+      "referenceText": "Continue taxi to holding point 18L via M, A, A1, ACA331.",
+      "referenceTextZh": "继续经由滑行道M，A，A1滑行至跑道18左外等待点，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4824cd4ac6da7b3e7de.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209448",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-8",
+      "audioText": "B: [Now you are airborne, climbing to 1800m, you see a helicopter on 10 o'clock above. It is closing to your aircraft. Inform Wuhan Departure and ask for a right turn to avoid the traffic.]",
+      "audioTextZh": "【现在你已经离地，爬升至1800米，你看到上方10点钟方向有一架直升机，它正在靠近你的飞机。报告给武汉离场，请求右转躲避航空器。】",
+      "referenceText": "Wuhan Departure, ACA331, airborne, climbing to 1800m, there is a helicopter on 10 o'clock above. It is closing to our aircraft, request right turn to avoid it.",
+      "referenceTextZh": "武汉离场，加航331，离地了，爬升至1800米，10点钟方向有一架直升机，它正在靠近我们飞机，请求右转躲避航空器。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b5cfd8fcd622317dd28.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209449",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-9",
+      "audioText": "C: ACA33I, roger, turn right heading 240, expedite climb to 2400m, maintain visual separation with the helicopter.",
+      "audioTextZh": "加航331，收到，右转航向240，加速爬升至2400米，与直升机保持目视间隔。",
+      "referenceText": "Turn right heading 240, expedite climb to 2400m, maintain visual separation with the helicopter, ACA331.",
+      "referenceTextZh": "右转航向240，加速爬升至2400米，与直升机保持目视间隔，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/255b6a04ba44e607cc6d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209450",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-10",
+      "audioText": "C: ACA331, after the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m.",
+      "audioTextZh": "加航331，航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持。",
+      "referenceText": "After the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m, ACA331.",
+      "referenceTextZh": "航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/08c7149616875f0715fc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209451",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-11",
+      "audioText": "B: [You are now at cruising level 9500m, over OBLIK, make an initial contact with Zhengzhou Control, your squawk number is 5655.]",
+      "audioTextZh": "【你现在在9500米巡航，飞过OBLIK，与郑州区调建立初始联系，你的应答机编码是5655。】",
+      "referenceText": "Zhengzhou Control, ACA331, maintaining 9500m, over OBLIK, squawking 5655.",
+      "referenceTextZh": "郑州区调，加航331，在9500米保持，过OBLIK，应答机5655。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ba85228c9a9e18255cc9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209452",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-12",
+      "audioText": "C: ACA331, Zhengzhou Control, radar contact, climb to and maintain 10100m.",
+      "audioTextZh": "加航331，郑州区调，雷达识别，上10100米保持。",
+      "referenceText": "Climb to and maintain 10100m, ACA331.",
+      "referenceTextZh": "上10100米保持，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e2f791e49d7226e24d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209453",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-13",
+      "audioText": "B: [Suddenly, your cabin crew reports there are toxic fume in the rear cabin. You decide to expedite descend for smoke removal. Make a distress call to Zhengzhou Control and request to level off at 3000m.]",
+      "audioTextZh": "【突然，乘务员报告后客舱有有毒气体。你决定加速下降进行除烟程序。向郑州区调做遇险呼叫，请求在3000米平飞。】",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Zhengzhou Control, ACA331, there are toxic fume in the rear cabin. Request expedite descend for smoke removal and level off at 3000m.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，郑州区调，加航331，后客舱有有毒气体，请求加速下降进行除烟程序，并在3000米改平。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8519ea03ed4458e3985.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209454",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-14",
+      "audioText": "C: ACA331, Zhengzhou Control, roger Mayday, turn right heading 060, descend to and maintain 3000m. When able, report POB.\nB: [Inform Zhengzhou Control, your POB is 223, including 5 children.]",
+      "audioTextZh": "加航331，郑州区调，收到Mayday，右转航向060，下降到3000米保持，可以的时候，报告机上人数。\n【告知管制员，机上人数223，包括5名儿童。】",
+      "referenceText": "Turn right heading 060, descend to and maintain 3000m, our POB is 223, including 5 children, ACA331.",
+      "referenceTextZh": "右转航向060，下降到3000米保持，机上人数223，包括5名儿童，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d726cd3c83ebc21f4be2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209455",
+      "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-15",
+      "audioText": "C: Roger, descend to 1800m and contact Zhengzhou Approach on 113.35.",
+      "audioTextZh": "收到，下降到1800米，联系郑州进近113.35。",
+      "referenceText": "Descend to 1800m and contact Zhengzhou Approach on 113.35, ACA331.",
+      "referenceTextZh": "下降到1800米，联系郑州进近113.35，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/65afcffe3b5fab65dac5.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0030",
   "name": "BAW 817 鸟击 左风挡裂",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉地面，BAW 817，APU 失效，请求到达停机位时准备地面电源车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/528.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

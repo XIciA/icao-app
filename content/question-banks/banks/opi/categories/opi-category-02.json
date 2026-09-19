@@ -1,8 +1,8 @@
 {
   "id": "opi-category-02",
   "name": "特情",
-  "declaredTopicCount": 19,
-  "declaredCardCount": 164,
+  "declaredTopicCount": 21,
+  "declaredCardCount": 268,
   "topicIds": [
     "opi-topic-0004",
     "opi-topic-0005",
@@ -22,6 +22,8 @@
     "opi-topic-0120",
     "opi-topic-0132",
     "opi-topic-0133",
-    "opi-topic-0137"
+    "opi-topic-0137",
+    "opi-fzy-1685",
+    "opi-fzy-546"
   ]
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0092",
   "name": "CES 565 高客舱高警报 缝翼卡阻",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "跑道 36R，继续当前航向，下降至 900 米，CES 565。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1597.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

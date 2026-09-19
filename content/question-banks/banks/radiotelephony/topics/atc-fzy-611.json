@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-611",
+  "name": "CSN339 thunderstorm, etc.",
+  "declaredCardCount": 18,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111192",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-1",
+      "audioText": "[You are CSN339, parking at Gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.]",
+      "audioTextZh": "【你是南航339，停在51号机位，通播C，从武汉飞往广州，请求ATC放行。】",
+      "referenceText": "Wuhan Delivery, CSN339, Parking bay 51, information C, destination Guangzhou, request ATC clearance.",
+      "referenceTextZh": "武汉放行，南航339，51号机位，通播C，目的地广州，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/819a51eeb0957ff7d2d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111193",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-2",
+      "audioText": "CSN339, Wuhan Delivery, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO-01 departure, initially climb 1200m, cruising level 9800m, after departure contact 119.7, squawk 2515.[Read Back]",
+      "audioTextZh": "南航339，武汉放行，可以按计划航路飞往广州，使用跑道36右，LKO-01离场，起始高度1200米，巡航高度9800米，离场后联系119.7，应答机2515。【复诵】",
+      "referenceText": "Cleared to Guangzhou, via flight planned route, runway 36R LKO-01 departure, initial climb 1200m, cruising level 9800m, departure frequency 119.7, squawk 2515, CSN339.",
+      "referenceTextZh": "可以按计划航路飞往广州，使用跑道36右，LKO-01离场，起始高度1200米，巡航高度9800米，离场后联系119.7，应答机2515，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68bc972a465e59f7eac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111194",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-3",
+      "audioText": "CSN339, due to military activity, expect 1 hour delay, you are No.5 in sequence.[Read Back]",
+      "audioTextZh": "南航339，由于军事活动，预计延误1小时，你排第五个。【复诵】",
+      "referenceText": "Roger, No.5, CSN339.",
+      "referenceTextZh": "收到，第5个，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19761a82f1a1217d2d9a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111195",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-4",
+      "audioText": "[1 hour has passed, ask controller how long would you wait.]",
+      "audioTextZh": "【1小时过去了，询问管制员你还要等多久。】",
+      "referenceText": "Wuhan Delivery, CSN339. How long shall we delay?",
+      "referenceTextZh": "武汉放行，南航339。我们还要等多久？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5ae1d74a8d2ce39bbf77.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111196",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-5",
+      "audioText": "CSN339, standby one.[Read Back]",
+      "audioTextZh": "南航339，稍等。【复诵】",
+      "referenceText": "Standby, CSN339.",
+      "referenceTextZh": "稍等，南方339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4d5f7f73e403d4bbe40d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111197",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-6",
+      "audioText": "[You are now ready for pushback and start-up. Call Wuhan Ground.]",
+      "audioTextZh": "【你已准备好推出开车。呼叫武汉地面。】",
+      "referenceText": "Wuhan Ground, CSN339, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，南航339，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/92e7d196c83fa034dbec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111198",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-7",
+      "audioText": "CSN339, Wuhan Ground, after B737 behind cleared, pushback onto Z4, abeam Gate 213, facing east.[Read Back]",
+      "audioTextZh": "南航339，武汉地面，波音737没影响后，推出开车至滑行道Z4，正切机位213，头朝东。【复诵】",
+      "referenceText": "After traffic cleared, pushback onto Z4, abeam 213, facing east, CSN339.",
+      "referenceTextZh": "没影响后，推出开车至滑行道Z4，正切213号机位，头朝东，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ed8ce73e29ee3defc96c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111199",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-8",
+      "audioText": "[You have completed pushback and start-up, request taxi.]",
+      "audioTextZh": "【你完成了推出开车，请求滑行。】",
+      "referenceText": "Wuhan Ground, CSN339, request taxi.",
+      "referenceTextZh": "武汉地面，南航339，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ce47fcec9242acf04c1e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111200",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-9",
+      "audioText": "CSN339, taxi via Z4, A3, A, hold short of runway 36R.[Read Back]",
+      "audioTextZh": "南航339，沿滑行道Z4，A3，A，滑至跑道36右外等待。【复诵】",
+      "referenceText": "Taxi via Z4, A3, A, and hold short of runway 36R, CSN339.",
+      "referenceTextZh": "沿滑行道Z4，A3，A, 滑至跑道36右外等待。南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1de577d147f3c0e382e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111201",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-10",
+      "audioText": "[Now you are ready for takeoff. Call Wuhan Tower.]",
+      "audioTextZh": "【你已准备好起飞。呼叫武汉塔台。】",
+      "referenceText": "Wuhan Tower, CSN339, request departure.",
+      "referenceTextZh": "武汉塔台，南航339，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7b59ce4ef9ddf9c4cc49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111202",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-11",
+      "audioText": "CSN339, Wuhan Tower, Behind B737, line up behind, runway 36R.[Read Back]",
+      "audioTextZh": "南航339，武汉塔台，波音737起飞后进跑道36右等待。【复诵】",
+      "referenceText": "After traffic behind, line up runway 36R, CSN339.",
+      "referenceTextZh": "737起飞后进跑道36右等待，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9687f5f5e1a1554c1cfb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111203",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-12",
+      "audioText": "[You are airborne, call Wuhan Departure.]",
+      "audioTextZh": "【你已离地，呼叫武汉离场。】",
+      "referenceText": "Wuhan Departure, CSN339, airborne.",
+      "referenceTextZh": "武汉离场，南航339，离地了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a4191828b669c2114616.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111204",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-13",
+      "audioText": "CSN339, climb and maintain 3900m, expedite until passing 2100m.[Read Back]",
+      "audioTextZh": "南航339，上升保持标压3900米，尽快通过2100米。【复诵】",
+      "referenceText": "Climb and maintain 3900m on standard, expedite until passing 2100m, CSN339.",
+      "referenceTextZh": "上升保持标压3900米，尽快通过2100米，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/553f157b40f4afd72f81.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111205",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-14",
+      "audioText": "CSN339, stop climbing due converging traffic, maintain 2700m.[Read Back]",
+      "audioTextZh": "南航339，由于会聚活动，停止爬升，2700米保持。【复诵】",
+      "referenceText": "Stop climbing, and maintaining 2700m, CSN339.",
+      "referenceTextZh": "停止爬升，保持2700米，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/afbf3bd274bc2b8c1ddf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111206",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-15",
+      "audioText": "[You found one of your hydraulic systems is failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.]",
+      "audioTextZh": "【你发现机上一个液压系统失效，紧急呼叫ATC，告诉其该情况并请求在3900米平飞，之后返回武汉机场。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, CSN339, we have one hydraulic system failure, request level off at 3900m and then return to Wuhan airport.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，南航339，机上一个液压系统失效，请求在3900米平飞，之后返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f8d3572bd350ee3be218.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111207",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-16",
+      "audioText": "CSN339, Wuhan Control, roger PANPAN, maintain 3900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.[Read Back]",
+      "audioTextZh": "南航339，武汉区调，收到PANPAN，3900米保持，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右。【复诵】",
+      "referenceText": "Maintaining 3900m, left direct to LKO, LKO-02 arrival, ILS approach runway 36R, CSN339.",
+      "referenceTextZh": "3900米保持，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/83c9f8fa5cfed78a473d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111208",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-17",
+      "audioText": "[A thunderstorm was detected near LKO, ask to deviate 20 miles to the left.]",
+      "audioTextZh": "【探测到LKO附近有雷暴，请求向左偏航20海里。】",
+      "referenceText": "Wuhan Control, CSN339, request offset 20miles left of track due weather.",
+      "referenceTextZh": "武汉区调，南航339，由于天气原因，请求向左偏20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ca824f96639d3215e7f9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111209",
+      "taskTitle": "28. CSN339 thunderstorm, etc.-18",
+      "audioText": "CSN339, offset approved.",
+      "audioTextZh": "南航339，偏置同意。",
+      "referenceText": "Offset approved, CSN339.",
+      "referenceTextZh": "同意偏置，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/18005ff38f51ea4b6a21.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

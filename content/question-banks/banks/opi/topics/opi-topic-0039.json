@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0039",
   "name": "GNSS",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Modern satellite-based navigation can provide precise guidance worldwide and in different weather conditions. It can support flexible and direct routes, including operations in remote areas without ground navigation equipment. These capabilities can reduce pilot workload and may also reduce airline operating costs.",
       "referenceTextZh": "现代卫星导航可以在全球和不同天气条件下提供精确引导。它支持灵活和直接的航路，包括在没有地面导航设备的偏远地区运行。这些能力可以降低飞行员工作负荷，也可能降低航空公司运行成本。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

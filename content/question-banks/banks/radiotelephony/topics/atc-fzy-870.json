@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-870",
+  "name": "BAW871 [风挡破裂，APU故障]",
+  "declaredCardCount": 15,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153579",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-1",
+      "audioText": "Your call sign is BAW871, from Beijing to London, you are at stand 215, request ATC clearance to London.",
+      "audioTextZh": "你的呼号是英航871，从北京飞往伦敦，你现在在215号停机位，请求飞往伦敦的管制许可。",
+      "referenceText": "Beijing Delivery, BAW871, stand 215, request ATC clearance to London.",
+      "referenceTextZh": "北京放行，英航871，215号停机位，请求飞往伦敦的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9a8bc491ebe1138f7ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153580",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-2",
+      "audioText": "BAW871, cleared to London via flight planned route, follow VYK 05D Departure, initially 900m on 1023, cruising level 10,400m, after departure contact 120.6, squawk 4523.",
+      "audioTextZh": "英航871，可以经由计划航路飞往伦敦，按照VYK05离场程序，初始爬升至900米，修正海压1023，巡航高度10400米，离场后联系120.6，应答机4523。",
+      "referenceText": "Cleared to London via flight planned route, follow VYK 05D Departure, initially 900m on 1023, cruising level 10,400m, after departure contact 120.6, squawk 4523, BAW871.",
+      "referenceTextZh": "可以经由计划航路飞往伦敦，按照VYK05离场程序，初始爬升至900米，修正海压1023，巡航高度10400米，离场后联系120.6，应答机4523，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f45d19f2e3bb87569e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153581",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-3",
+      "audioText": "You are now ready, contact Ground to request push back and start up.",
+      "audioTextZh": "你现在准备好了，联系地面，请求推出开车。",
+      "referenceText": "Beijing Ground, BAW871, ready for push back and start up.",
+      "referenceTextZh": "北京地面，英航871，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8df134e73285f7e75fa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153582",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-4",
+      "audioText": "BAW871, Push back and start up approved, facing west.",
+      "audioTextZh": "英航871，同意推出开车，面朝西。",
+      "referenceText": "Push back and start up approved, facing west, BAW871.",
+      "referenceTextZh": "同意推出开车，面朝西，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e4553dbc33eabee6f823.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153583",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-5",
+      "audioText": "You noticed the tug is not in position yet, ask Ground control for a tug.",
+      "audioTextZh": "你注意到拖车未就位，向地面管制请求拖车。",
+      "referenceText": "Beijing Ground, BAW871, request a tug.",
+      "referenceTextZh": "北京地面，英航871，请求拖车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3cfbfcf6eae040e2f35c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153584",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-6",
+      "audioText": "BAW871, roger, the tug is on the way.\nWhile taxiing, you notices the wind sock shows a strong tail wind, contact Ground to check the wind.",
+      "audioTextZh": "英航871，收到，拖车在路上。\n滑行过程中，你注意到风袋显示强顺风，联系地面，检查风向风速。",
+      "referenceText": "Beijing Ground, BAW871, request wind check.",
+      "referenceTextZh": "北京地面，英航871，请求风向风速。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9953a093c270734f72e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153585",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-7",
+      "audioText": "BAW871, surface wind 220 degrees, 8 meters per second.",
+      "audioTextZh": "英航871，地面风220度，8米每秒。",
+      "referenceText": "Roger, thanks, BAW871.",
+      "referenceTextZh": "收到，谢谢，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a007680f86bd5bb98bd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153586",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-8",
+      "audioText": "The tailwind exceeds your takeoff limit, contact tower to change to runway 22 and state the reason.",
+      "audioTextZh": "顺风量超过你的起飞限制，联系塔台，更换为跑道22, 并说明原因。",
+      "referenceText": "Beijing Tower, BAW871, the tailwind exceeds takeoff limit, request change to runway 22.",
+      "referenceTextZh": "北京塔台，英航871，顺风量超过起飞限制，请求更换为跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/79d9a092faed3b99b1f3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153587",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-9",
+      "audioText": "After airborne, you fly into a flock of birds, the left windshield was cracked, request fuel dump and return for landing. This is an urgency call.",
+      "audioTextZh": "离地后，你飞入鸟群，你左侧风挡破裂，请求放油并返场着陆。这是一个紧急呼叫。",
+      "referenceText": "PANPAN PANPAN PANPAN, Beijing Departure, BAW871, we encountered bird strike and our left windshield was cracked, request fuel dump and return to land.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，北京离场，英航871，我们我们遭遇鸟击，左侧风挡破裂，请求放油并返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19c65de7324f201b5555.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153588",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-10",
+      "audioText": "BAW871, roger your pan, turn right heading 240, intercept LKO 030 radial inbound, climb to 3300m.",
+      "audioTextZh": "英航871，收到Pan，右转航向240，切LKO030向台径向线，爬升至3300米。",
+      "referenceText": "Turn right heading 240, intercept LKO 030 radial inbound, climb to 3300m, BAW871.",
+      "referenceTextZh": "右转航向240，切LKO030向台径向线，爬升至3300米，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a4814ca2069219f43a1d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153589",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-11",
+      "audioText": "BAW871, after LKO, turn right heading 220, maintain 3300m, report over LKO.",
+      "audioTextZh": "英航871，LKO之后，右转航向220，保持3300米，过LKO报。",
+      "referenceText": "After LKO, turn right heading 220, maintaining 3300m, report over LKO/wilco, BAW871.",
+      "referenceTextZh": "LKO之后，右转航向220，保持3300米，过LKO报/照办，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6016214e448b2f9739a1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153590",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-12",
+      "audioText": "Now you finished fuel dumping, ask for radar vectors to runway 22.",
+      "audioTextZh": "现在你完成了放油，请求雷达引导至跑道22。",
+      "referenceText": "Beijing Approach, BAW871, fuel dumping completed, request radar vector to runway 22.",
+      "referenceTextZh": "北京进近，英航871，完成放油，请求雷达引导至跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2b5e1a7e442e45f8c597.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153591",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-13",
+      "audioText": "BAW871, turn right direct to DA, descend to 2100m, QNH1015, expect runway 22.",
+      "audioTextZh": "英航871，右转直飞DA，下到2100米，修正海压1015，预计使用跑道22。",
+      "referenceText": "Turn right direct to DA, descend to 2100m, QNH1015, expect runway 22, BAW871.",
+      "referenceTextZh": "右转直飞DA，下到2100米，修正海压1015，预计使用跑道22，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c6db516d50bedfc5ede5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153592",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-14",
+      "audioText": "Your APU has failed, tell this situation to Beijing Tower and ask for Ground Power Unit.",
+      "audioTextZh": "你的APU失效了，将情况告知北京塔台，请求地面动力装置。",
+      "referenceText": "Beiing Tower, BAW871, request ground power unit due APU failure.",
+      "referenceTextZh": "北京塔台，英航871，由于APU失效，请求地面动力装置。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a325de6dd13dc666729.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153593",
+      "taskTitle": "19-BAW871 [风挡破裂，APU故障]-15",
+      "audioText": "BAW871, ground power will be ready, caution crosswind when landing, expect ZF-01 arrival, cleared to land, runway 22.",
+      "audioTextZh": "英航871，地面电源将就绪，着陆时注意侧风，预计ZF-01进场，可以落地，跑道22。",
+      "referenceText": "Thanks for caution, ZF-01 arrival, cleared to land, runway 22, BAW871.",
+      "referenceTextZh": "谢谢提示，ZF-01进场，可以落地，跑道22，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1759625b68051a20d0d.mp3"
+    }
+  ],
+  "categoryId": "atc-baw"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0168",
   "name": "UAL 831 增压问题 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "直飞 HSH，雷达引导前往浦东，128.35，UAL 831。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

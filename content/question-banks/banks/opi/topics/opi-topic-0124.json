@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0124",
   "name": "爱好",
   "declaredCardCount": 22,
@@ -180,5 +179,6 @@
       "referenceText": "I visit Taobao most often. I use it for online shopping because many goods are affordable and delivery is fast.",
       "referenceTextZh": "我最常访问淘宝。我用它进行网上购物，因为许多商品价格实惠，而且配送很快。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

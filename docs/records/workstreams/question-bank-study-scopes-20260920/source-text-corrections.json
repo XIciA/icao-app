@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "corrections": [
+    {
+      "sourceExerciseId": 110177,
+      "field": "referenceText",
+      "before": "This picture is the schematic of turbulence activity. On the top of the picture, there is the anvil which is like the hat of the cloud. In the upper part, there are many roll clouds moving up and down and the rain is falling down from the roll clouds. Under the roll clouds, there are many wind shear turbulence. The bottom of the picture displays the first gust with many dusts contained.",
+      "after": "This diagram shows a thunderstorm with an anvil-shaped top. Rising and sinking air currents inside the storm create turbulence. Rain falls through the downdraft. Near the ground, the spreading downdraft forms a gust front, where a low roll cloud may appear and gusty winds can lift dust. Wind shear can occur around the storm.",
+      "reason": "The source incorrectly calls upper-level cloud circulations roll clouds. The diagram shows updrafts and downdrafts; a roll cloud is a low cloud associated with the gust front.",
+      "reference": "https://www.faa.gov/sites/faa.gov/files/FAA-H-8083-28_FAA_Web.pdf"
+    },
+    {
+      "sourceExerciseId": 110177,
+      "field": "referenceTextZh",
+      "before": "这是湍流运动的示意图。图片顶端是形状像云的帽子的砧状云。图片上部的卷轴云在上下移动，雨从卷轴云落下。卷轴云下面是湍流和风切变。图片底端显示的是夹杂很多尘埃的初阵风。",
+      "after": "这张图展示了顶部呈砧状的雷暴。雷暴内部的上升和下降气流会造成湍流，降雨穿过下降气流。下降气流到达地面后向外扩散，形成阵风锋；附近可能出现低空卷轴云，阵风也可能扬起尘土。雷暴周围可能出现风切变。",
+      "reason": "与已核实的英文图解同步，纠正将高空云内环流称为卷轴云的错误。",
+      "reference": "https://www.faa.gov/sites/faa.gov/files/FAA-H-8083-28_FAA_Web.pdf"
+    },
+    {
+      "sourceExerciseId": 110183,
+      "field": "audioText",
+      "before": "What should pilots do if the cabin crew report there were passengers injuries due to turbulence?",
+      "after": "What should pilots do if the cabin crew report there were passenger injuries due to turbulence?",
+      "reason": "此处 passenger 作 injuries 的名词定语，使用单数形式。"
+    },
+    {
+      "sourceExerciseId": 110193,
+      "field": "audioText",
+      "before": "Please describe what is showed in the picture.",
+      "after": "Please describe what is shown in the picture.",
+      "reason": "纠正被动语态中过去分词 showed → shown，不改变题意。"
+    },
+    {
+      "sourceExerciseId": 110194,
+      "field": "referenceText",
+      "before": "A microburst is an intense, localized downdraft which spreads out in all direction when it reaches the surface. Any convective cloud can produce this phenomenon, for example rains showers, virga and thunderstorms. A microburst creates severe horizontal and vertical wind shears which pose serious hazards to aircraft. When the downdraft approaches the surface, the wind flows outward from the core in all directions. This is usually a short-lived phenomenon, seldom lasting more than 15 minutes from the time the burst strikes the ground until it dissipates.",
+      "after": "A microburst is an intense, localized downdraft which spreads out in all directions when it reaches the surface. Any convective cloud can produce this phenomenon, for example rain showers, virga and thunderstorms. A microburst creates severe horizontal and vertical wind shears which pose serious hazards to aircraft. When the downdraft approaches the surface, the wind flows outward from the core in all directions. This is usually a short-lived phenomenon, seldom lasting more than 15 minutes from the time the burst strikes the ground until it dissipates.",
+      "reason": "纠正复数 directions 及 rain showers 的明显词形错误。"
+    },
+    {
+      "sourceExerciseId": 110208,
+      "field": "referenceText",
+      "before": "It snowed at the airport. There is a parked airplane and two de-icing vehicles on the apron. Some staffs are operating the de-icing vehicles, and some other people are standing around. The airplane is under de-icing procedure.",
+      "after": "It snowed at the airport. There is a parked airplane and two de-icing vehicles on the apron. Some staff members are operating the de-icing vehicles, and some other people are standing around. The airplane is under de-icing procedure.",
+      "reason": "此处指工作人员，改为 staff members，避免误用 staffs 表示人员复数。"
+    },
+    {
+      "sourceExerciseId": 110215,
+      "field": "audioText",
+      "before": "If you were holding for takeoff and a flight attendant reported that there was a built-up of snow on the wings, what would you do?",
+      "after": "If you were holding for takeoff and a flight attendant reported that there was a buildup of snow on the wings, what would you do?",
+      "reason": "修复积雪名词 buildup 的词形。"
+    },
+    {
+      "sourceExerciseId": 110217,
+      "field": "audioText",
+      "before": "What is showed in the picture?",
+      "after": "What is shown in the picture?",
+      "reason": "纠正被动语态中过去分词 showed → shown，不改变题意。"
+    },
+    {
+      "sourceExerciseId": 110218,
+      "field": "referenceText",
+      "before": "A fire extinguisher is used to control or put out a fire, mostly in emergency situations. When we find there is medical emergency on board, the medical box is needed. For example, if there is a passenger suffering from a heart attack, we need do first aid immediately.",
+      "after": "A fire extinguisher is used to control or put out a fire, mostly in emergency situations. When we find there is medical emergency on board, the medical box is needed. For example, if there is a passenger suffering from a heart attack, we need to do first aid immediately.",
+      "reason": "need 后补齐不定式 to；不修改急救操作内容。"
+    },
+    {
+      "sourceExerciseId": 110225,
+      "field": "audioText",
+      "before": "Could you tell me what is showed in the picture?",
+      "after": "Could you tell me what is shown in the picture?",
+      "reason": "纠正被动语态中过去分词 showed → shown，不改变题意。"
+    },
+    {
+      "sourceExerciseId": 110246,
+      "field": "referenceText",
+      "before": "As far as I know, the control the rudder is completed by operating rudder pedals, the rudder can help pilots to control the yaw ate of the aircraft, and it allows the aircraft to make a smooth turn when used in coordination with the ailerons. However, excessive use of the rudder can lead to a spin that can cause the airplane to lose altitude rapidly.",
+      "after": "As far as I know, the control of the rudder is completed by operating rudder pedals, the rudder can help pilots to control the yaw rate of the aircraft, and it allows the aircraft to make a smooth turn when used in coordination with the ailerons. However, excessive use of the rudder can lead to a spin that can cause the airplane to lose altitude rapidly.",
+      "reason": "补齐 of，并修复 yaw rate 漏字；不改变方向舵操作描述。"
+    },
+    {
+      "sourceExerciseId": 110271,
+      "field": "referenceText",
+      "before": "In the left picture, the pilot is checking on the paper information before flight, and a ground staff is standing beside him, maybe she is waiting to make sure the pilot knows all the information. In the right picture, a Boeing 747 of United Airline is parking with its tail striking the ground. I think the aircraft is loading to prepare for departure because there are lots of vehicles around it. Maybe staffs made mistakes when calculating the datum which caused the center gravity of aircraft not to have been located correctly.",
+      "after": "In the left picture, the pilot is checking on the paper information before flight, and a ground staff is standing beside him, maybe she is waiting to make sure the pilot knows all the information. In the right picture, a Boeing 747 of United Airline is parking with its tail striking the ground. I think the aircraft is loading to prepare for departure because there are lots of vehicles around it. Maybe staff members made mistakes when calculating the datum which caused the center gravity of aircraft not to have been located correctly.",
+      "reason": "此处指工作人员，改为 staff members，避免误用 staffs 表示人员复数。"
+    },
+    {
+      "sourceExerciseId": 110279,
+      "field": "audioText",
+      "before": "Is it going to be a problem for controlling the aircraft  if all passengers are arranged in the forward part of the airplaneIs, ? Why?",
+      "after": "Is it going to be a problem for controlling the aircraft if all passengers are arranged in the forward part of the airplane? Why?",
+      "reason": "删除题干末尾意外拼入的 Is 和多余标点。"
+    },
+    {
+      "sourceExerciseId": 110281,
+      "field": "audioText",
+      "before": "What is showed in the picture?",
+      "after": "What is shown in the picture?",
+      "reason": "纠正被动语态中过去分词 showed → shown，不改变题意。"
+    },
+    {
+      "sourceExerciseId": 110281,
+      "field": "referenceText",
+      "before": "Two aircraft are parking on the apron/taxiway, and the wingtip of one aircraft collided with the rudder of the other aircraft. Many staffs are standing around the aircraft and waiting for trouble removal. It should be an accident of ground strike.",
+      "after": "Two aircraft are parking on the apron/taxiway, and the wingtip of one aircraft collided with the rudder of the other aircraft. Many staff members are standing around the aircraft and waiting for trouble removal. It should be an accident of ground strike.",
+      "reason": "此处指工作人员，改为 staff members，避免误用 staffs 表示人员复数。"
+    },
+    {
+      "sourceExerciseId": 110288,
+      "field": "referenceText",
+      "before": "Wingtip design usually include navigation lights, anti-collision strobe lights, landing lights and identification markings. To some extent, wingtips can be an expression of aircraft design style, so their shape may be influenced by marketing considerations as well as by aerodynamic requirements.",
+      "after": "Wingtip design usually includes navigation lights, anti-collision strobe lights, landing lights and identification markings. To some extent, wingtips can be an expression of aircraft design style, so their shape may be influenced by marketing considerations as well as by aerodynamic requirements.",
+      "reason": "单数主语 design 与谓语 includes 保持一致。"
+    },
+    {
+      "sourceExerciseId": 110289,
+      "field": "audioText",
+      "before": "Could you please describe what is showed in the picture?",
+      "after": "Could you please describe what is shown in the picture?",
+      "reason": "纠正被动语态中过去分词 showed → shown，不改变题意。"
+    },
+    {
+      "sourceExerciseId": 110291,
+      "field": "referenceText",
+      "before": "In my opinion, great efforts should be made by flight crew, ground staffs and relative departments together to avoid such accident happening. They should focus on their work cautiously and communicate with each other timely and effectively.",
+      "after": "In my opinion, great efforts should be made by flight crew, ground staff members and relative departments together to avoid such accident happening. They should focus on their work cautiously and communicate with each other timely and effectively.",
+      "reason": "此处指工作人员，改为 staff members，避免误用 staffs 表示人员复数。"
+    },
+    {
+      "sourceExerciseId": 110295,
+      "field": "audioText",
+      "before": "Why the shuttle bus is required at airport?",
+      "after": "Why is the shuttle bus required at an airport?",
+      "reason": "纠正 why 疑问句倒装并补齐 airport 前的不定冠词。"
+    },
+    {
+      "sourceExerciseId": 110305,
+      "field": "referenceText",
+      "before": "In the picture, I can see a widespread flight delays displayed on the terminal screen. A passenger is standing in front of the screen and making a phone call. Maybe he is telling someone about the flight delay.",
+      "after": "In the picture, I can see widespread flight delays displayed on the terminal screen. A passenger is standing in front of the screen and making a phone call. Maybe he is telling someone about the flight delay.",
+      "reason": "复数 delays 前不能使用不定冠词 a。"
+    },
+    {
+      "sourceExerciseId": 110320,
+      "field": "referenceText",
+      "before": "In the left picture, there is a large aircraft with four turbo fan engines cruising over mountains, and the right picture shows the movement principle of the air over mountains, which causes turbulence of the aircraft. A flight is cruising over mountains and it is crossing invisible bodies of air which are moving vertically at many different speeds.",
+      "after": "In the left picture, there is a large aircraft with four turboprop engines cruising over mountains, and the right picture shows the movement principle of the air over mountains, which causes turbulence of the aircraft. A flight is cruising over mountains and it is crossing invisible bodies of air which are moving vertically at many different speeds.",
+      "reason": "根任务已核对 section575 原图为四发螺旋桨飞机；修正涡扇与涡桨的明确图文矛盾。"
+    },
+    {
+      "sourceExerciseId": 110320,
+      "field": "referenceTextZh",
+      "before": "好的。左图里，一架有四个涡流风扇发动机的大型飞机正在山上巡航。右图展示的是山顶空气的运动规律，这会引发湍流。飞机正在山顶巡航，并穿过在不同速度下垂直运动的不可见空气。",
+      "after": "好的。左图里，一架有四个涡轮螺旋桨发动机的大型飞机正在山上巡航。右图展示的是山顶空气的运动规律，这会引发湍流。飞机正在山顶巡航，并穿过在不同速度下垂直运动的不可见空气。",
+      "reason": "与原图及英文修正同步，修正发动机类型。"
+    },
+    {
+      "sourceExerciseId": 110325,
+      "field": "audioText",
+      "before": "Why clear air turbulence can not be detected by radar?",
+      "after": "Why can clear air turbulence not be detected by radar?",
+      "reason": "纠正 why 疑问句助动词倒装；不改变问题事实范围。"
+    },
+    {
+      "sourceExerciseId": 110367,
+      "field": "audioText",
+      "before": "Please give a brief description of what showed in the picture.",
+      "after": "Please give a brief description of what is shown in the picture.",
+      "reason": "图示描述补齐被动语态 is shown。"
+    },
+    {
+      "sourceExerciseId": 110393,
+      "field": "referenceText",
+      "before": "An A320 of JetBlue Airways is landing on the runway 25L. It has the full flaps and slats. Flames and dense smoke is coming out from the front landing gear.",
+      "after": "An A320 of JetBlue Airways is landing on the runway 25L. It has the full flaps and slats. Flames and dense smoke are coming out from the front landing gear.",
+      "reason": "复合主语 Flames and dense smoke 使用复数谓语 are。"
+    },
+    {
+      "sourceExerciseId": 110418,
+      "field": "referenceText",
+      "before": "In my opinion, the main reason for nose over was braking too hard and too early during landing. As for this accident showed in picture, maybe the pilot was not proficient in landing skills and didn't use the brakes correctly. Or maybe the pilot saw some traffic or obstacles on the runway and he wanted to brake the aircraft earlier, but it caused the nose over.",
+      "after": "In my opinion, the main reason for nose over was braking too hard and too early during landing. As for this accident shown in picture, maybe the pilot was not proficient in landing skills and didn't use the brakes correctly. Or maybe the pilot saw some traffic or obstacles on the runway and he wanted to brake the aircraft earlier, but it caused the nose over.",
+      "reason": "纠正图示描述中过去分词 shown，不改变事实内容。"
+    },
+    {
+      "sourceExerciseId": 110420,
+      "field": "audioText",
+      "before": "What would you do if you met the emergency situation similar to what showed in the picture?",
+      "after": "What would you do if you met the emergency situation similar to what is shown in the picture?",
+      "reason": "图示描述补齐被动语态 is shown。"
+    },
+    {
+      "sourceExerciseId": 110425,
+      "field": "referenceText",
+      "before": "The first picture is about the engine failure of a climbing aircraft. In the second picture, there are flames coming from the left engine during the aircraft rolling on the runway. As for the third picture, it shows the situation that the nose gear is still down during flying. And there is thick smoke in the cockpit which is showed in the last picture.",
+      "after": "The first picture is about the engine failure of a climbing aircraft. In the second picture, there are flames coming from the left engine during the aircraft rolling on the runway. As for the third picture, it shows the situation that the nose gear is still down during flying. And there is thick smoke in the cockpit which is shown in the last picture.",
+      "reason": "纠正图示描述中过去分词 shown，不改变事实内容。"
+    },
+    {
+      "sourceExerciseId": 110426,
+      "field": "audioText",
+      "before": "What would you do in the situation showed in the second picture?",
+      "after": "What would you do in the situation shown in the second picture?",
+      "reason": "纠正作后置定语的过去分词 shown。"
+    },
+    {
+      "sourceExerciseId": 110433,
+      "field": "audioText",
+      "before": "Describe what showed in the pictures. (See Fig.34)",
+      "after": "Describe what is shown in the pictures. (See Fig.34)",
+      "reason": "图示描述补齐被动语态 is shown。"
+    },
+    {
+      "sourceExerciseId": 110433,
+      "field": "referenceText",
+      "before": "The upper left picture shows a traditional and out-of-datecockpit. There are many electromechanical instrument panels such as altimeter, attitude indicator, airspeed indicator showing in the main control panel. The below right picture shows a modern aircraft cockpit, from its control lever we can see it is a cockpit of Boeing aircraft. Many electronic displays such as EFIS, EICAS and FMS are showing in the primary flight display area.",
+      "after": "The upper left picture shows a traditional and out-of-date cockpit. There are many electromechanical instrument panels such as altimeter, attitude indicator, airspeed indicator showing in the main control panel. The below right picture shows a modern aircraft cockpit, from its control lever we can see it is a cockpit of Boeing aircraft. Many electronic displays such as EFIS, EICAS and FMS are showing in the primary flight display area.",
+      "reason": "修复缺少词间空格。"
+    },
+    {
+      "sourceExerciseId": 110444,
+      "field": "audioText",
+      "before": "It is reported that the accident showed in the picture happened during taxiing from a hangar toward a departure gate by a maintenance crew, and they taxied using only the No.1 and No.4 engines. What do you think of that?",
+      "after": "It is reported that the accident shown in the picture happened during taxiing from a hangar toward a departure gate by a maintenance crew, and they taxied using only the No.1 and No.4 engines. What do you think of that?",
+      "reason": "纠正作后置定语的过去分词 shown。"
+    },
+    {
+      "sourceExerciseId": 110457,
+      "field": "referenceText",
+      "before": "In the upper picture, an aircraft is colliding with the other one holding at the apron. Some people are around two aircraft. The aircraft is on fire producing thick smoke after collision as showed in the lower picture. Several fire engines and lots of firemen showing on the scene are extinguishing the fire.",
+      "after": "In the upper picture, an aircraft is colliding with the other one holding at the apron. Some people are around two aircraft. The aircraft is on fire producing thick smoke after collision as shown in the lower picture. Several fire engines and lots of firemen showing on the scene are extinguishing the fire.",
+      "reason": "纠正图示描述中过去分词 shown，不改变事实内容。"
+    },
+    {
+      "sourceExerciseId": 110458,
+      "field": "referenceText",
+      "before": "I have heard of this crash before. It happened at Baiyun International Airport in 1990. The left aircraft showed in the first picture belonged to Xiamen Airline. It was hijacked, and the pilot struggled with hijackers and diverted to Baiyun Airport to make a forced landing. After landing, the aircraft rolled off the runway and collided with the other aircraft. More than one hundred people died in the accident.",
+      "after": "I have heard of this crash before. It happened at Baiyun International Airport in 1990. The left aircraft shown in the first picture belonged to Xiamen Airline. It was hijacked, and the pilot struggled with hijackers and diverted to Baiyun Airport to make a forced landing. After landing, the aircraft rolled off the runway and collided with the other aircraft. More than one hundred people died in the accident.",
+      "reason": "纠正图示描述中过去分词 shown，不改变事实内容。"
+    },
+    {
+      "sourceExerciseId": 110461,
+      "field": "audioText",
+      "before": "If you were the captain of the flight holding at the apron showed in the first picture, what would you do under that situation?",
+      "after": "If you were the captain of the flight holding at the apron shown in the first picture, what would you do under that situation?",
+      "reason": "纠正作后置定语的过去分词 shown。"
+    },
+    {
+      "sourceExerciseId": 110471,
+      "field": "referenceText",
+      "before": "They are practicing emergency evacuation. A man is just sliding down a slider. Another man dressed very formal. He is standing beside the slide and he seems to be the instructor. There is another man standing at the door. I can just see his legs and he seems to be ready to jump onto the slide.",
+      "after": "They are practicing emergency evacuation. A man is just sliding down a slider. Another man is dressed very formally. He is standing beside the slide and he seems to be the instructor. There is another man standing at the door. I can just see his legs and he seems to be ready to jump onto the slide.",
+      "reason": "补齐谓语 is，并使用副词 formally 修饰 dressed。"
+    },
+    {
+      "sourceExerciseId": 111112,
+      "field": "referenceTextZh",
+      "before": "",
+      "after": "收到，谢谢，英航951。",
+      "reason": "为已有英文参考 Roger, thanks, BAW951. 补齐直接对应的中文，不增加信息。"
+    },
+    {
+      "sourceExerciseId": 152406,
+      "field": "referenceText",
+      "before": "I can see a flock of birds are flying around Spring Airlines’ aircraft during the flight. \nTheses birds are threaten to flight safety.",
+      "after": "I can see a flock of birds are flying around Spring Airlines’ aircraft during the flight. \nThese birds pose a threat to flight safety.",
+      "reason": "纠正 Theses 拼写及 are threaten to 的错误结构。"
+    },
+    {
+      "sourceExerciseId": 152413,
+      "field": "referenceText",
+      "before": "From the picture I can see there is an aircraft parking on the ground. The airplane has two propellers. Beside the plane, there is a fuel truck, so I guess the plane is getting ready to refueling.",
+      "after": "From the picture I can see there is an aircraft parking on the ground. The airplane has two propellers. Beside the plane, there is a fuel truck, so I guess the plane is getting ready to refuel.",
+      "reason": "get ready to 后接动词原形 refuel。"
+    },
+    {
+      "sourceExerciseId": 152425,
+      "field": "referenceText",
+      "before": "From the picture I can see an airplane is encountering engine fire after take-off.\nThe flame is coming from starboard engine. This emergency situation is threaten to flight safety.",
+      "after": "From the picture I can see an airplane is encountering engine fire after take-off.\nThe flame is coming from starboard engine. This emergency situation poses a threat to flight safety.",
+      "reason": "纠正 is threaten to 的错误结构。"
+    },
+    {
+      "sourceExerciseId": 224156,
+      "field": "referenceText",
+      "before": "作为一名飞行员，首先，我们需要不断加强地面理论学习，同时，也需要强化相关模拟机训练，提升飞行安全。",
+      "after": "As pilots, we need to continually strengthen our study of ground theory and reinforce the relevant simulator training to improve flight safety.",
+      "reason": "英文参考栏误放中文；忠实翻译现有中文参考，不增加操作步骤。"
+    },
+    {
+      "sourceExerciseId": 224156,
+      "field": "referenceTextZh",
+      "before": "",
+      "after": "作为一名飞行员，首先，我们需要不断加强地面理论学习，同时，也需要强化相关模拟机训练，提升飞行安全。",
+      "reason": "将原有中文参考保留到中文栏。"
+    },
+    {
+      "sourceExerciseId": 224310,
+      "field": "referenceText",
+      "before": "是的，长期过度依赖自动化可能导致飞行员手动操作技能生疏和情境意识下降，但通过定期模拟机训练和严格规程，技能可得到保持。",
+      "after": "Yes, prolonged overreliance on automation may lead to a decline in pilots' manual flying skills and situational awareness. However, these skills can be maintained through regular simulator training and strict procedures.",
+      "reason": "来源中英文参考栏互换，英文尾部还有 maintained and. 残句；以完整中文为准恢复对应英文。"
+    },
+    {
+      "sourceExerciseId": 224310,
+      "field": "referenceTextZh",
+      "before": "Yes, long-term relying on automation may lead to degradation of pilots' manual flying skills and situational awareness. However, through regular simulator training and strict procedures, these skills can be maintained and.",
+      "after": "是的，长期过度依赖自动化可能导致飞行员手动操作技能生疏和情境意识下降，但通过定期模拟机训练和严格规程，技能可得到保持。",
+      "reason": "来源中英文参考栏互换，将完整中文放回中文栏。"
+    },
+    {
+      "sourceExerciseId": 110197,
+      "field": "referenceText",
+      "before": "Yes, I’ve encountered wind shear several times. / No, I haven’t. If I encountered wind shear, I would maintain the configuration of the airplane, level the wings, hold the nose up 15 degrees and apply full power until the wind shear is over. Throttle up the engine to raise the nose to 15 degrees, hold control wheel by both hands and follow the instructions. Another pilot would be responsible for report any missing items. When the altitude and speed steady climbed, wind shear escaped maneuver, I would report to ATC that we encountered wind shear, the height and intensity of the wind shear. In this way, I should be able to avoid the accident.",
+      "after": "If I encountered wind shear, I would immediately follow the escape procedure and recovery guidance for my aircraft type. Once clear of the wind shear, I would report the encounter to ATC.",
+      "reason": "固定15度/全程保证安全不适合作为未指明机型的通用答案；制造商要求遵循FCOM及专用风切变指引。没有新增固定处置数值。",
+      "sources": [
+        "https://safetyfirst.airbus.com/wind-shear-an-invisible-enemy-to-pilots/?airbus-iframe=true&airbus-post=2151"
+      ]
+    },
+    {
+      "sourceExerciseId": 110197,
+      "field": "referenceTextZh",
+      "before": "我曾遭遇过几次风切变。/ 我没有遭遇过风切变，如果我遭遇风切变，我会保持飞机的形态不变，尽快改平机翼，机头抬高15度并增大到全功率直到风切变消失。加油门抬机头到15度，双手抱住驾驶盘，跟随指引；另一名飞行员报出任何遗漏项目；当高度、速度稳定上升，风切变改出，报告ATC遇到风切边并执行风切变改出机动飞行，报告风切变的高度强度。严格执行风切变改出程序，这样我应该能够避免事故发生。",
+      "after": "如果遭遇风切变，我会立即执行本机型的风切变脱离程序并遵循相应改出指引。脱离风切变后，我会向空管报告遭遇情况。",
+      "reason": "固定15度/全程保证安全不适合作为未指明机型的通用答案；制造商要求遵循FCOM及专用风切变指引。没有新增固定处置数值。",
+      "sources": [
+        "https://safetyfirst.airbus.com/wind-shear-an-invisible-enemy-to-pilots/?airbus-iframe=true&airbus-post=2151"
+      ]
+    },
+    {
+      "sourceExerciseId": 110199,
+      "field": "referenceText",
+      "before": "If I encountered the microburst when landing, I would adjust the airspeed to an available level first. If the speed changed suddenly, I would speed up quickly to prevent the decrease of lift. Because if I decelerated in such condition, I might enter into the tailwind and the lift would decrease more, in that case, the aircraft might hit the ground in a moment.",
+      "after": "I would avoid an approach affected by a microburst. If an encounter occurred, I would immediately use the aircraft-specific wind shear escape procedure and recovery guidance, rather than improvise airspeed corrections.",
+      "reason": "源答案把微下击暴流脱离简化为先调空速再加速，遗漏立即执行机型脱离程序；制造商明确进近/着陆遭遇须立即改出。",
+      "sources": [
+        "https://safetyfirst.airbus.com/wind-shear-an-invisible-enemy-to-pilots/?airbus-iframe=true&airbus-post=2151"
+      ]
+    },
+    {
+      "sourceExerciseId": 110199,
+      "field": "referenceTextZh",
+      "before": "如果在降落时遭遇微暴流，我会首先调整空速。如果速度突然发生变化，我会立刻加速来防止升力下降。因为在这种情况下如果减速，我可能会进入顺风，升力会下降更多，在那种情况下，飞机可能会立刻触地。",
+      "after": "我会避免在微下击暴流影响下继续进近；如果已经遭遇，我会立即按照本机型的风切变脱离程序和改出指引操作，而不是临时自行调整空速。",
+      "reason": "源答案把微下击暴流脱离简化为先调空速再加速，遗漏立即执行机型脱离程序；制造商明确进近/着陆遭遇须立即改出。",
+      "sources": [
+        "https://safetyfirst.airbus.com/wind-shear-an-invisible-enemy-to-pilots/?airbus-iframe=true&airbus-post=2151"
+      ]
+    },
+    {
+      "sourceExerciseId": 110206,
+      "field": "referenceText",
+      "before": "I would fly a different route to go round a bad thunderstorm. Sometimes I can fly higher and go above the storm. If the aircraft is forced to fly through a storm, the static wicks on the wing’s trailing edges should help keep the plane safe.",
+      "after": "I would plan a route around thunderstorms and follow the aircraft weather-avoidance procedures. Static wicks reduce static-related radio interference; they do not make flying through a thunderstorm safe.",
+      "reason": "源答案把放电刷误作穿越雷暴的安全保证，并无条件推荐上方越过。FAA区分静电干扰与雷暴避让，Airbus强调优先绕飞。",
+      "sources": [
+        "https://www.faa.gov/air_traffic/publications/atpubs/aip_html/chap7_section_6.html",
+        "https://safetyfirst.airbus.com/optimum-use-of-weather-radar/?airbus-iframe=true&airbus-post=2136"
+      ]
+    },
+    {
+      "sourceExerciseId": 110206,
+      "field": "referenceTextZh",
+      "before": "我会选择新的航线来避开雷暴，有时我会飞得高一些，在风暴上面飞行。如果飞机被迫要穿过风暴，机翼后缘的放电刷会保护飞机的安全。",
+      "after": "我会规划绕飞雷暴的航线，并遵循本机型的天气避让程序。放电刷用于减少静电造成的无线电干扰，不能因此认为穿越雷暴是安全的。",
+      "reason": "源答案把放电刷误作穿越雷暴的安全保证，并无条件推荐上方越过。FAA区分静电干扰与雷暴避让，Airbus强调优先绕飞。",
+      "sources": [
+        "https://www.faa.gov/air_traffic/publications/atpubs/aip_html/chap7_section_6.html",
+        "https://safetyfirst.airbus.com/optimum-use-of-weather-radar/?airbus-iframe=true&airbus-post=2136"
+      ]
+    },
+    {
+      "sourceExerciseId": 110249,
+      "field": "referenceText",
+      "before": "There are normally three situations in which the oxygen devices are needed. First, when the cabin depressurization occurs, emergency oxygen supplying is needed. Second, they are used to do protective oxygen supplying when there is fire, smoke or toxic gas. Third, there may be emergency medical situations in demand of oxygen supplying. If there were a cabin fire or there were dense smoke in the cabin, passengers and crew members should wear the PBE quickly to protect their eyes and breathing system from fire/smoke damage.",
+      "after": "Different oxygen and breathing devices have different purposes. Passenger oxygen masks are used for a loss of cabin pressure. Medical oxygen may be used when needed. Crew members use protective breathing equipment for protection against smoke and harmful gases while carrying out their duties.",
+      "reason": "14 CFR 121.337明确PBE供驾驶舱值勤及机组灭火防护，源答案混同旅客供氧与机组防烟设备。保留用途区分，不增加灭火步骤。",
+      "sources": [
+        "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-G/part-121/subpart-K/section-121.337"
+      ]
+    },
+    {
+      "sourceExerciseId": 110249,
+      "field": "referenceTextZh",
+      "before": "通常需要使用供氧设备的情况有三种：第一，机舱失压时，需要紧急供氧；第二，当机舱内出现火灾、烟雾或毒气时，需要用供氧设备防护；第三，紧急医疗状况时需要供氧。机舱内失火或有浓烟时，乘客和机组人员应快速戴上呼吸保护器，保护眼睛和呼吸系统免于火/烟的伤害。",
+      "after": "不同的供氧和呼吸设备用途不同。旅客氧气面罩用于客舱失压，医疗供氧设备按需要使用。机组人员执行相关职责时使用防护呼吸设备，保护自己免受烟雾和有害气体影响。",
+      "reason": "14 CFR 121.337明确PBE供驾驶舱值勤及机组灭火防护，源答案混同旅客供氧与机组防烟设备。保留用途区分，不增加灭火步骤。",
+      "sources": [
+        "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-G/part-121/subpart-K/section-121.337"
+      ]
+    },
+    {
+      "sourceExerciseId": 110324,
+      "field": "referenceText",
+      "before": "Once encountering the clear air turbulence, the aircraft must descend rapidly, so I will try to keep configuration of the aircraft and instruct all cabin crew and passengers to keep belts fastened. At the same time, I would contact ATC and advise our situation and report my intentions. As long as we pilot keep calm, we will overcome the emergency safely.",
+      "after": "I would follow the aircraft turbulence procedure, avoid abrupt control inputs, and ensure that passengers and cabin crew are seated with their seat belts fastened. I would report the turbulence to ATC and coordinate any necessary change of level or route.",
+      "reason": "Airbus建议按机型程序、平稳操纵、保障客舱人员安全；降低巡航高度是可以考虑的选择，不能改写为必须迅速下降。",
+      "sources": [
+        "https://safetyfirst.airbus.com/managing-severe-turbulence/?airbus-iframe=true&airbus-post=2107"
+      ]
+    },
+    {
+      "sourceExerciseId": 110324,
+      "field": "referenceTextZh",
+      "before": "一旦遭遇晴空湍流，飞机必须迅速下降，所以我会尽量保持飞机的配置并命令机组人员和乘客系紧安全带。同时我会联系ATC并报告我的意图。只要飞行员保持冷静就可以安全处理紧急情况。",
+      "after": "我会执行本机型的颠簸程序，避免突然操纵，并确保旅客和客舱乘务员就座、系好安全带。我会向空管报告颠簸，并协调必要的高度或航路调整。",
+      "reason": "Airbus建议按机型程序、平稳操纵、保障客舱人员安全；降低巡航高度是可以考虑的选择，不能改写为必须迅速下降。",
+      "sources": [
+        "https://safetyfirst.airbus.com/managing-severe-turbulence/?airbus-iframe=true&airbus-post=2107"
+      ]
+    },
+    {
+      "sourceExerciseId": 110230,
+      "field": "referenceText",
+      "before": "Yes, the flight control system used in Airbus is fly-by-wire, while the flight control system of Boeing is mechanical.",
+      "after": "Flight control systems differ by aircraft type, not simply by manufacturer. Many Airbus aircraft use fly-by-wire, and Boeing aircraft such as the 777 and 787 also use fly-by-wire. The details and control laws must be compared for the specific models.",
+      "reason": "制造商资料明确B777/B787采用电传，直接反证“波音使用机械操纵”的一概表述。",
+      "sources": [
+        "https://www.airbus.com/en/newsroom/stories/2022-06-safety-innovation-1-fly-by-wire-fbw"
+      ]
+    },
+    {
+      "sourceExerciseId": 110230,
+      "field": "referenceTextZh",
+      "before": "有，空中客车使用电传操纵系统，波音使用机械操纵系统。",
+      "after": "飞行操纵系统的差异取决于具体机型，不能只按制造商品牌区分。许多空客飞机采用电传操纵，波音777和787等机型也采用电传操纵。具体系统和控制律应按机型比较。",
+      "reason": "制造商资料明确B777/B787采用电传，直接反证“波音使用机械操纵”的一概表述。",
+      "sources": [
+        "https://www.airbus.com/en/newsroom/stories/2022-06-safety-innovation-1-fly-by-wire-fbw"
+      ]
+    },
+    {
+      "sourceExerciseId": 110232,
+      "field": "referenceText",
+      "before": "In my opinion, Boeing 747 is much safer than Airbus 380. Boeing 747 has long been used, so the known defects have been improved, and Boeing 747 is mechanically controlled, its emergency handling can be flexible. Airbus 380 is fly-by-wire, once there is something wrong with the cable, things will be difficult to deal with, but I do believe that both Boeing 747 and Airbus 380 are outstanding aircraft.",
+      "after": "I would not conclude that the Boeing 747 is safer simply because of its control system type. The A380 has segregated, redundant flight control power sources and backup systems. A meaningful safety comparison needs evidence about the specific aircraft and operating conditions, not an assumption that fly-by-wire becomes unmanageable after a wiring fault.",
+      "reason": "源答案以机械/电传架构直接断言747安全很多，且忽略A380隔离冗余及备用系统。官方架构资料可直接否定其单一线路故障推论；不改成相反的品牌安全排名。",
+      "sources": [
+        "https://www.airbus.com/en/newsroom/stories/2025-07-flight-control-system-more-redundancy-to-enhance-resilience",
+        "https://safetyfirst.airbus.com/app/themes/mh_newsdesk/documents/archives/a380-development-of-the-flight-controls.pdf"
+      ]
+    },
+    {
+      "sourceExerciseId": 110232,
+      "field": "referenceTextZh",
+      "before": "在我看来，波音747要比空中客车A380安全很多。波音747投入使用的时间更长，基本上已知的缺陷都已得到改善，而且波音747使用机械操纵系统，应急处理很灵活。但是空中客车A380使用电传操纵系统，一旦电缆出现问题会很难处理。但我坚信波音747和空中客车A380都是非常优秀的飞机。",
+      "after": "我不会仅凭操纵系统类型就断定波音747更安全。A380的飞行操纵系统具有相互隔离的冗余动力来源和备用系统。比较安全性需要具体机型和运行条件方面的证据，不能假定电传系统一旦出现线路故障就难以操纵。",
+      "reason": "源答案以机械/电传架构直接断言747安全很多，且忽略A380隔离冗余及备用系统。官方架构资料可直接否定其单一线路故障推论；不改成相反的品牌安全排名。",
+      "sources": [
+        "https://www.airbus.com/en/newsroom/stories/2025-07-flight-control-system-more-redundancy-to-enhance-resilience",
+        "https://safetyfirst.airbus.com/app/themes/mh_newsdesk/documents/archives/a380-development-of-the-flight-controls.pdf"
+      ]
+    },
+    {
+      "sourceExerciseId": 152972,
+      "field": "referenceText",
+      "before": "2015年1月29日，一架瑞安航空的波音737-800从伦敦飞往贝尔热拉克，执行FR8592次航班，在仪表气象条件下，使用NDB Y进近到贝尔热拉克的28跑道。飞机移交给塔台时下降到最低安全高度以下。进场管制员收到了最低安全高度警告，飞机的EGPWS也发出了警告。机组人员执行了复飞，飞机爬升到安全高度。然后，机组人员准备再次进近，在第一次中断进近约24分钟后，安全降落在28号跑道上。根据调查，事故发生时，飞机正在执行NDB进近，没有DME，可能没有外部视觉参考。与此同时，第一次精密进近可能是不完整或不精确的。结果，后期的修正没有让机组人员实现既定的制导模式。这导致机长混淆了飞机应该遵循的水平轨迹。这种混乱的状态使他提前下降到安全高度以下。",
+      "after": "On January 29, 2015, a Ryanair Boeing 737-800 operating flight FR8592 from London to Bergerac was conducting the NDB Y approach to runway 28 at Bergerac in instrument meteorological conditions. The aircraft descended below the minimum safe altitude when it was handed over to the tower. The approach controller received a Minimum Safe Altitude Warning, and the aircraft's EGPWS also issued a warning. The crew executed a go-around and climbed to a safe altitude. The crew then prepared for another approach and landed safely on runway 28 approximately 24 minutes after discontinuing the first approach. According to the investigation, the aircraft was conducting an NDB approach without DME and probably without external visual references. Meanwhile, the initial preparation for the approach was insufficiently precise and complete. As a result, the later corrections did not enable the crew to achieve the intended guidance mode. This caused the captain to become confused about the lateral path that the aircraft should follow. In this state of confusion, he descended below the safe altitude prematurely.",
+      "reason": "BEA2015-0037官方报告明确为initial approach preparation，且ILS/DME不可用、实际执行NDB Y；中文“精密进近”系误译。英文沿用既有完整中文参考的忠实翻译，仅修正该术语，中文同时保留并纠正。此两项替代前一语言提案152972两项。",
+      "sources": [
+        "https://bea.aero/les-enquetes/evenements-notifies/detail/incident-du-boeing-b737-800-immatricule-ei-emk-exploite-par-ryanair-survenu-le-29-01-2015-vers-bergerac-24/",
+        "https://bea.aero/fileadmin/uploads/tx_elydbrapports/BEA2015-0037.pdf"
+      ]
+    },
+    {
+      "sourceExerciseId": 152972,
+      "field": "referenceTextZh",
+      "before": "",
+      "after": "2015年1月29日，一架瑞安航空的波音737-800从伦敦飞往贝尔热拉克，执行FR8592次航班，在仪表气象条件下，使用NDB Y进近到贝尔热拉克的28跑道。飞机移交给塔台时下降到最低安全高度以下。进场管制员收到了最低安全高度警告，飞机的EGPWS也发出了警告。机组人员执行了复飞，飞机爬升到安全高度。然后，机组人员准备再次进近，在第一次中断进近约24分钟后，安全降落在28号跑道上。根据调查，事件发生时，飞机正在执行NDB进近，没有DME，可能没有外部视觉参考。与此同时，最初的进近准备不够精确、完整。结果，后期的修正没有让机组人员实现既定的制导模式。这导致机长混淆了飞机应该遵循的水平轨迹。这种混乱的状态使他提前下降到安全高度以下。",
+      "reason": "BEA2015-0037官方报告明确为initial approach preparation，且ILS/DME不可用、实际执行NDB Y；中文“精密进近”系误译。英文沿用既有完整中文参考的忠实翻译，仅修正该术语，中文同时保留并纠正。此两项替代前一语言提案152972两项。",
+      "sources": [
+        "https://bea.aero/les-enquetes/evenements-notifies/detail/incident-du-boeing-b737-800-immatricule-ei-emk-exploite-par-ryanair-survenu-le-29-01-2015-vers-bergerac-24/",
+        "https://bea.aero/fileadmin/uploads/tx_elydbrapports/BEA2015-0037.pdf"
+      ]
+    },
+    {
+      "sourceExerciseId": 226957,
+      "field": "choicesZh",
+      "before": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "after": [
+        "机组资源管理",
+        "驾驶舱话音记录器",
+        "CFM",
+        "可控飞行撞地"
+      ],
+      "reason": "补齐源站空白选项译文；缩写采用已有题库含义，未明确的CFM保留缩写；应答机代码保留原数字。"
+    },
+    {
+      "sourceExerciseId": 219567,
+      "field": "choicesZh",
+      "before": [
+        "",
+        "",
+        "",
+        "以上都不是"
+      ],
+      "after": [
+        "7500",
+        "7600",
+        "7700",
+        "以上都不是"
+      ],
+      "reason": "补齐源站空白选项译文；缩写采用已有题库含义，未明确的CFM保留缩写；应答机代码保留原数字。"
+    }
+  ]
+}

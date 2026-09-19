@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0019",
   "name": "AFR 101 携带爆炸物 伤2人",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "可以18R落地，谢谢，AFR 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/337.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-005",
   "name": "起落架异常",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-005.jpg",
-      "imageAlt": "起落架异常航空场景图片"
+      "imageAlt": "起落架异常航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-005-q01",
@@ -35,5 +35,6 @@
       "referenceText": "A landing gear collapse or retraction on the ground can cause serious structural damage.",
       "referenceTextZh": "起落架在地面坍塌或收起可能造成严重的结构损伤。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

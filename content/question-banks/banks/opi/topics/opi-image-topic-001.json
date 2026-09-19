@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-001",
   "name": "夜航驾驶舱",
   "declaredCardCount": 3,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-001.jpg",
-      "imageAlt": "夜航驾驶舱航空场景图片"
+      "imageAlt": "夜航驾驶舱航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-001-q01",
@@ -27,5 +27,6 @@
       "referenceText": "Before a night flight, I would brief the threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay the flight.",
       "referenceTextZh": "夜间飞行前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟飞行。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

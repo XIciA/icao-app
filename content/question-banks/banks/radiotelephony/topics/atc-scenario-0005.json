@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0005",
   "name": "QFA 358 天气 气象雷达失效",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "右转航向 090，爬升至 1500 米，119.7，QFA 358。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/094.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

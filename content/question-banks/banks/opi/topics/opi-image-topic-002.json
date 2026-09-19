@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-002",
   "name": "机翼积冰",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-002.jpg",
-      "imageAlt": "机翼积冰航空场景图片"
+      "imageAlt": "机翼积冰航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-002-q01",
@@ -35,5 +35,6 @@
       "referenceText": "I would identify the wing contamination, communicate clearly, follow the checklist, and choose the safest option according to the aircraft status and operating conditions.",
       "referenceTextZh": "我会识别机翼污染情况，保持清晰沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

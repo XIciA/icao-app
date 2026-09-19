@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-jal",
   "id": "atc-scenario-0181",
   "name": "JAL 602 雷暴绕飞 乘客医疗 TCAS机动",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "请求医疗援助，打开后舱门，用担架将患病旅客送下飞机，JAL 602。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-082-jal602-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-jal"
 }

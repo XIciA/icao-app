@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0078",
   "name": "CSN 109 冰雹风挡裂 自动降落许可",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "收到，原地等待，CSN 109。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1348.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,0 +1,199 @@
+{
+  "id": "atc-fzy-1616",
+  "name": "ACA303 [除冰，发动机抖震]",
+  "declaredCardCount": 21,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219680",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-1",
+      "audioText": "N: [Your call sign is ACA303, a flight from Wuhan to Vancouver, you are at stand 233 and information F received, request Wuhan Delivery for your ATC clearance.]",
+      "audioTextZh": "【你的呼号是加航303，从武汉飞往温哥华，你现在在233机位，收到了通播F，向武汉放行请求管制许可。】",
+      "referenceText": "Wuhan Delivery, ACA303, stand 233, information F, request ATC clearance to Vancouver.",
+      "referenceTextZh": "武汉放行，加航303，233机位，通播F，请求飞往温哥华的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e986173923657fc448dd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219681",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-2",
+      "audioText": "C: ACA303, Wuhan Delivery, cleared to destination Vancouver, runway 04, ZF-01D departure, flight planned route, initial altitude 1,500m, cruising level 9,500m, request level change en route, squawk 3252, departure frequency 123.32.",
+      "audioTextZh": "加航303，武汉放行，可以飞往目的地温哥华，跑道04，ZF-01D离场，计划航路，初始高度1500米，巡航高度9500米，入行后转高度，应答机3252，离场频率123.32。",
+      "referenceText": "Cleared to destination Vancouver, runway 04, ZF-01D departure, flight planned route, initial altitude 1,500m, cruising level 9,500m, request level change en route, squawk 3252, departure frequency 123.32, ACA303.",
+      "referenceTextZh": "可以飞往目的地温哥华，跑道04，ZF-01D离场，计划航路，初始高度1500米，巡航高度9500米，入行后转高度，应答机3252，离场频率123.32，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/925fe26dd9a6dcf8a938.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219682",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-3",
+      "audioText": "N: [Call Wuhan Ground for your push back and start-up instructions.]",
+      "audioTextZh": "【呼叫武汉地面，请求推出开车指令。】",
+      "referenceText": "Wuhan Ground, ACA303, stand 233, request push back and start up.",
+      "referenceTextZh": "武汉地面，加航303，233机位，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f437b4adc573a1fb9d6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219683",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-4",
+      "audioText": "C: ACA303, Wuhan Ground, push back and start up approved, push to taxiway Z4, face east.",
+      "audioTextZh": "加航303，武汉地面，可以推出开车，推到滑行道Z4，面朝东。",
+      "referenceText": "Push back and start up approved, push to taxiway Z4, face east, ACA303.",
+      "referenceTextZh": "可以推出开车，推到滑行道Z4，面朝东，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/34bbcbf844956ed2bdd0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219684",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-5",
+      "audioText": "N: [You have completed your engine start-up, you are ready for taxi, call Wuhan Ground.]",
+      "audioTextZh": "【你现在已经完成了开车，你准备好滑行了，呼号武汉地面。】",
+      "referenceText": "Wuhan Ground, ACA303, start-up completed, request taxi.",
+      "referenceTextZh": "武汉地面，加航303，完成开车，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e74d63cded690ddd215c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219685",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-6",
+      "audioText": "C: ACA303, taxi to holding point runway 04 via Z4, A, hold short of A6.",
+      "audioTextZh": "加航303，经由滑行道Z4，A滑行到跑道04外等待点，在A6等待。",
+      "referenceText": "Taxi to holding point runway 04 via Z4, A, hold short of A6, ACA303.",
+      "referenceTextZh": "经由滑行道Z4，A滑行到跑道04外等待点，在A6等待，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5efbc0de03f832aa0283.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219686",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-7",
+      "audioText": "N: [The airport is experiencing icing conditions. You need to perform de-icing procedures, call Wuhan Ground.]",
+      "audioTextZh": "【机场遇到了积冰情况，你需要执行除冰程序，呼叫武汉地面。】",
+      "referenceText": "Wuhan Ground, ACA303, request de-icing.",
+      "referenceTextZh": "武汉地面，加航303，请求除冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/29bf4454618560ed6e0f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219687",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-8",
+      "audioText": "C: ACA303, roger, taxi to de-icing area 5 via A5.",
+      "audioTextZh": "加航303，收到，经由A5滑行到5号除冰区。",
+      "referenceText": "Taxi to de-icing area 5 via A5, ACA303.",
+      "referenceTextZh": "经由A5滑行到5号除冰区，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1919ceeb587498ad8a8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219688",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-9",
+      "audioText": "N: [You are now holding short of runway 04, you are fully ready for takeoff, contact Wuhan Tower.]",
+      "audioTextZh": "【你现在在跑道04外等待，你准备好起飞了，联系武汉塔台。】",
+      "referenceText": "Wuhan Tower, ACA303, holding short of runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，加航303，在跑道04外等待，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b3a1d7c6cd784fd7f282.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219689",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-10",
+      "audioText": "C: ACA303, Wuhan Tower, behind the BAW747 on short final, line up behind, runway 04.",
+      "audioTextZh": "加航303，武汉塔台，在短五边上的英航747后面，上跑道等待，跑道04。",
+      "referenceText": "Behind the traffic/BAW 747 on short final, line up behind, runway 04, ACA303.",
+      "referenceTextZh": "在短五边上的英航747/航空器后面，上跑道等待，跑道04，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0b42db6b01c99822d31f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219690",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-11",
+      "audioText": "C: ACA303, after airborne, contact Departure 119.7. Surface wind 080 at 4 m/s, cleared for takeoff, runway 04.",
+      "audioTextZh": "加航303，离地后，联系离场119.7。地面风080度，4米每秒，可以起飞，跑道04。",
+      "referenceText": "Cleared for takeoff, runway 04, 119.7, ACA303.",
+      "referenceTextZh": "可以起飞，跑道04，119.7，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7d7705814a030556bb14.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219691",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-12",
+      "audioText": "N: [You are passing 900m for 1,500m. Your No.3 engine vibration indication is near the maximum limit, call Wuhan Departure for a holding pattern at 1,200m to perform the checklist.]",
+      "audioTextZh": "【你现在过900米上1500米，你的3号发动喘振指示接近最大值，呼叫武汉离场，在1200米加入等待程序，以此执行检查单。】",
+      "referenceText": "Wuhan Departure, ACA303, passing 900m for 1,500m. Our No.3 engine vibration indication is near the maximum limit, request a holding pattern at 1,200m to perform the checklist.",
+      "referenceTextZh": "武汉离场，加航303，过900米上1500米。我们的3号发动喘振指示接近最大值，请求在1200米加入等待程序，以此执行检查单。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/53350b33a3d888a43b67.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219692",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-13",
+      "audioText": "C: ACA303, roger, proceed direct to HZ, climb to and maintain 1,200m, advise intentions when able.",
+      "audioTextZh": "加航303，收到，直飞HZ，上到1200米保持，可以的时候报告意图。",
+      "referenceText": "Proceed direct to HZ, climb to and maintain 1,200m, wilco, ACA303.",
+      "referenceTextZh": "直飞HZ，上到1200米保持，照办，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f0dbbc9b31ce3febc97.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219693",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-14",
+      "audioText": "C: ACA303, join the published holding pattern at HZ, expect further clearance at time 0135.",
+      "audioTextZh": "加航303，在HZ加入公布的等待程序，预计在1点35分得到进一步许可。",
+      "referenceText": "Join the published holding pattern at HZ, expect further clearance at time 0135, ACA303.",
+      "referenceTextZh": "在HZ加入公布的等待程序，预计在1点35分得到进一步许可，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/398b1112cce11b621149.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219694",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-15",
+      "audioText": "N: [You suspect the engine vibration problem is caused by icing, request Wuhan Departure for a higher level to leave the icing area.]",
+      "audioTextZh": "【你怀疑发动机喘振问题是由积冰导致，向武汉离场请求高高度，离开积冰区。】",
+      "referenceText": "Wuhan Departure, ACA303, we suspect the engine vibration problem is caused by icing, request further climb to leave the icing area.",
+      "referenceTextZh": "武汉离场，加航303，我们怀疑发动机喘振问题是由积冰导致，请求进一步爬升，离开积冰区域。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/54cf8f9b9f7b352e0df2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219695",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-16",
+      "audioText": "C: ACA303, roger, what level would you prefer?\nN: [Ask the controller if 4,500m is available.]",
+      "audioTextZh": "加航303，收到，你喜欢哪个高度？\n【询问管制员，4500米是否可用。】",
+      "referenceText": "We prefer 4,500m/Request 4,500m, ACA303.",
+      "referenceTextZh": "我们更喜欢4500米/请求4500米，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/81902cf0f716e750e4a0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219696",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-17",
+      "audioText": "C: ACA303, climb to and maintain 4,500m, expedite passing 2,700m.\nN: [Read back the instruction and advise the controller you are climbing on reduced thrust and will require some time before reaching that altitude.]",
+      "audioTextZh": "加航303，上到4500米保持，加速过2700米。\n【复诵指令，告知管制员，你正在减推力爬升，在到达那个高度之前需要一些时间。】",
+      "referenceText": "Climb to and maintain 4,500m, unable expedite due reduced thrust, ACA303.",
+      "referenceTextZh": "上到4500米保持，由于减推力，无法加速爬升，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4141e8b22d59aa698fad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219697",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-18",
+      "audioText": "C: ACA303, are you declaring an emergency?\nN: [Tell Wuhan Departure, you are not declaring an emergency at this time, you still have to perform engine checks once you leave the icing area.]",
+      "audioTextZh": "加航303，你需要宣布紧急情况吗？\n【告知武汉离场，现在你不需要宣布紧急情况，你离开积冰区域后，还需要执行发动机检查。】",
+      "referenceText": "Negative, we will perform engine checks once we leave the icing area, ACA303.",
+      "referenceTextZh": "不，我们离开积冰区域后，还需要执行发动机检查，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c328aaefde464c30490.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219698",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-19",
+      "audioText": "C: ACA303, roger, turn right heading 070, climb to and maintain 4,500m.",
+      "audioTextZh": "加航303，收到，右转航向070，上4500米保持。",
+      "referenceText": "Turn right heading 070, climb to and maintain 4,500m, ACA303.",
+      "referenceTextZh": "右转航向070，上4500米保持，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ce2dd0536c5b556e20c8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219699",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-20",
+      "audioText": "N: [You have almost reached 4,500m, your No.3 engine is operating normally, you decided to continue to your destination, call Wuhan Control.]",
+      "audioTextZh": "【你马上到4500米，你的3号发动机运行正常，你打算继续飞往目的地，呼叫武汉区调。】",
+      "referenceText": "Wuhan Control, ACA303, approaching 4,500m, No.3 engine is operating normally, we will continue to our destination.",
+      "referenceTextZh": "武汉区调，加航303，接近4500米，3号发动机运行正常，我们将继续飞往目的地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d3175e6604bbe03bf7a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219700",
+      "taskTitle": "68-ACA303 [除冰，发动机抖震]-21",
+      "audioText": "C: ACA303, roger, contact Zhengzhou Control on 127.5.",
+      "audioTextZh": "加航303，收到，联系郑州区调127.5。",
+      "referenceText": "127.5, ACA303.",
+      "referenceTextZh": "127.5，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/38fe066013da28ecdcae.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0093",
   "name": "医疗紧急情况",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "The crew should first make sure the area is safe, assess the person's condition, and call for trained medical help. They should provide care within their training, such as controlling bleeding or performing CPR when indicated. The person should be monitored, and the pilots should be updated so that medical support or a diversion can be arranged.",
       "referenceTextZh": "机组应先确认现场安全、评估人员状况并呼叫受过训练的医疗帮助。他们应在自身训练范围内提供救护，例如按需止血或实施心肺复苏。应持续监控患者并向飞行员更新情况，以便安排医疗支援或改航。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

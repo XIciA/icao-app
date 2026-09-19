@@ -1,0 +1,127 @@
+{
+  "id": "atc-fzy-793",
+  "name": "ACA517 [颠簸，发动机失效]",
+  "declaredCardCount": 13,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152594",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-1",
+      "audioText": "Your all sign is ACA517, Cruising at 10,100m, squawk 3215, approaching DAPRO, make an initial contact with Guangzhou control.",
+      "audioTextZh": "你的呼号是加航517，在10100米巡航，应答机3215，接近DAPRO，与广州区调进行初始联络。",
+      "referenceText": "Guangzhou Control, ACA517, 10,100m maintaining, squawk 3215, approaching DAPRO.",
+      "referenceTextZh": "广州区调，加航517，保持在10100米，应答机3215，接近DAPRO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/950d2a2301891972ce20.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152595",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-2",
+      "audioText": "ACA517, radar identified.\nThere’s moderate turbulence at 10,100m, ask if there’s any turbulence at 10,700m.",
+      "audioTextZh": "加航517，雷达识别。\n[在10100米有中度颠簸，询问10700米是否有颠簸。]",
+      "referenceText": "Guangzhou Control, ACA517, we encountered moderate turbulence at 10,100m, confirm there is turbulence at 10,700m.",
+      "referenceTextZh": "广州区调，加航517，我们在10100米遇到中度颠簸，证实10700米是否有颠簸。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4410ab8ae88c60861c5d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152596",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-3",
+      "audioText": "ACA517, there’s no turbulence at 10,700m.\nAsk to climb to 10,700m due moderate turbulence.",
+      "audioTextZh": "加航517，在10700米没有颠簸。\n由于中度颠簸，请求爬升至10700米。",
+      "referenceText": "Request climb to 10,700m due moderate turbulence, ACA517.",
+      "referenceTextZh": "由于中度颠簸，请求爬升至10700米，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/686e4ae07f7201c7e8d9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152597",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-4",
+      "audioText": "ACA517, climb to 10,700m within 2 minutes.",
+      "audioTextZh": "加航517, 2分钟内爬升至10700米。",
+      "referenceText": "Climb to 10,700m within 2 minutes, ACA517.",
+      "referenceTextZh": "2分钟内爬升至10700米，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4b5d766e26d5e7761de7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152598",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-5",
+      "audioText": "When you are at 10,700m, your left engine failed, make an urgency call and request turn right and descend to 6300m.",
+      "audioTextZh": "当你在10700米时，你的左发失效了，做紧急呼叫，请求右转下降至6300米。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Guangzhou Control, ACA517, left engine failure, request turn right and descend to 6300m.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，广州区调，加航517，左发失效，请求右转下降到6300米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9fb90a1ab4fc6ea349d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152599",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-6",
+      "audioText": "ACA517, turn right heading 200, descend to 6000m.",
+      "audioTextZh": "加航517，右转航向200，下降到6000米。",
+      "referenceText": "Right heading 200, descend to 6000m, ACA517.",
+      "referenceTextZh": "右转航向200，下降到6000米，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/caed47ed7f858d69e94d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152600",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-7",
+      "audioText": "Advise Guangzhou Control you want to divert to Wuhan airport, and track direct to WHA, and descend to lower level.",
+      "audioTextZh": "告知广州区调，你想改航到武汉机场，直飞WHA，下降到更低高度。",
+      "referenceText": "Guangzhou Control, ACA517, request to divert to Wuhan and direct to WHA, descend to lower level.",
+      "referenceTextZh": "广州区调，加航517，请求备降至武汉机场，直飞WHA，下降到更低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cf6a595ebad068399fe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152601",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-8",
+      "audioText": "ACA517, turn left direct to WHA, descend to 2100m.",
+      "audioTextZh": "加航517，左转直飞WHA，下降到2100米。",
+      "referenceText": "Turn left direct to WHA, descend to 2100m, ACA517.",
+      "referenceTextZh": "左转直飞WHA，下降到2100米，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/da6bbd8f17b6cbffe0fa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152602",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-9",
+      "audioText": "The weather is deteriorating and is below landing minima, ask for ILS approach for runwy 36L.",
+      "audioTextZh": "天气正在降级，已低于最低着陆标准，请求ILS进近，跑道36左。",
+      "referenceText": "Wuhan Approach, ACA517, request ILS approach for runway 36L.",
+      "referenceTextZh": "武汉进近，加航517，请求ILS进近，跑道36左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d24a4af569c9549c3bf2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152603",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-10",
+      "audioText": "ACA517, runway 36L is not available, runway in use 36R.",
+      "audioTextZh": "加航517，跑道36左不可用，使用跑道36右。",
+      "referenceText": "Runway in use 36R, ACA517.",
+      "referenceTextZh": "使用跑道36右，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f353196c0dcd1a61647.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152604",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-11",
+      "audioText": "ACA517, no speed restrictions.",
+      "audioTextZh": "加航517，没有速度限制。",
+      "referenceText": "No speed restrictions, ACA517.",
+      "referenceTextZh": "没有速度限制，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eebd568300028df3fcb3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152605",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-12",
+      "audioText": "You executed missed approach procedure and try to land on runway 36R.",
+      "audioTextZh": "你执行了复飞程序，想尝试在跑道36右着陆。",
+      "referenceText": "Wuhan Tower, ACA517, going around and we try to land on runway 36R.",
+      "referenceTextZh": "武汉塔台，加航517，复飞了，我们尝试下在跑道36右着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/29ce219651f29d39f220.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152606",
+      "taskTitle": "6-ACA517 [颠簸，发动机失效]-13",
+      "audioText": "ACA517, climb to 1200m, follow standard missed approach procedure.",
+      "audioTextZh": "加航517，爬升到1200米，按照标准复飞程序。",
+      "referenceText": "Climb to 1200m, follow standard missed approach procedure, ACA517.",
+      "referenceTextZh": "爬升到1200米，按照标准复飞程序，加航517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc53d4854adfa2f2369d.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

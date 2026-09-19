@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "bank": "opi",
+  "reason": "人工初筛60道：基础概念、常见工作交流及典型图片描述；避免以冷僻机型参数、复杂程序和多重故障代替核心知识。高频为备考取向，不宣称具备考试频率统计。",
+  "groups": [
+    {
+      "theme": "个人经历与英语学习",
+      "cardIds": [
+        "opi-fzy-151967",
+        "opi-fzy-151968",
+        "opi-fzy-151970",
+        "opi-fzy-151972",
+        "opi-fzy-151982",
+        "opi-fzy-151998",
+        "opi-fzy-152271",
+        "opi-fzy-152273"
+      ]
+    },
+    {
+      "theme": "基本天气与危害",
+      "cardIds": [
+        "opi-fzy-152129",
+        "opi-fzy-152131",
+        "opi-fzy-152143",
+        "opi-fzy-152147",
+        "opi-fzy-152151",
+        "opi-fzy-152163",
+        "opi-fzy-152165",
+        "opi-fzy-152170"
+      ]
+    },
+    {
+      "theme": "飞机与设备基础",
+      "cardIds": [
+        "opi-fzy-152056",
+        "opi-fzy-152057",
+        "opi-fzy-152060",
+        "opi-fzy-152061",
+        "opi-fzy-152064",
+        "opi-fzy-152066",
+        "opi-fzy-152081",
+        "opi-fzy-152250"
+      ]
+    },
+    {
+      "theme": "航前与通信",
+      "cardIds": [
+        "opi-fzy-152001",
+        "opi-fzy-152005",
+        "opi-fzy-152008",
+        "opi-fzy-152045",
+        "opi-fzy-152046",
+        "opi-fzy-152050",
+        "opi-fzy-152054",
+        "opi-fzy-152189"
+      ]
+    },
+    {
+      "theme": "机组协作与人的因素",
+      "cardIds": [
+        "opi-fzy-152012",
+        "opi-fzy-152016",
+        "opi-fzy-152018",
+        "opi-fzy-152032",
+        "opi-fzy-152035",
+        "opi-fzy-152047",
+        "opi-fzy-153338",
+        "opi-fzy-224539"
+      ]
+    },
+    {
+      "theme": "常见非正常情况",
+      "cardIds": [
+        "opi-fzy-152039",
+        "opi-fzy-152198",
+        "opi-fzy-152235",
+        "opi-fzy-152240",
+        "opi-fzy-152246",
+        "opi-fzy-152247",
+        "opi-fzy-152263",
+        "opi-fzy-152266",
+        "opi-fzy-152269",
+        "opi-fzy-153351"
+      ]
+    },
+    {
+      "theme": "基础看图描述",
+      "cardIds": [
+        "opi-fzy-152422",
+        "opi-fzy-152383",
+        "opi-fzy-152400",
+        "opi-fzy-152403",
+        "opi-fzy-152406",
+        "opi-fzy-152410",
+        "opi-fzy-152425",
+        "opi-fzy-152429",
+        "opi-fzy-152433",
+        "opi-fzy-152440"
+      ]
+    }
+  ]
+}

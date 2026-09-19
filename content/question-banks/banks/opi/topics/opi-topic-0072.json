@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0072",
   "name": "红眼航班",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "A red-eye flight takes off late at night and arrives early the next morning.",
       "referenceTextZh": "红眼航班在深夜起飞，并于次日清晨到达。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

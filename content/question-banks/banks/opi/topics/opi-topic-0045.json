@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0045",
   "name": "延误与流控",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "The flight crew should keep passengers informed about the reason for the delay and provide useful updates. They should coordinate with the cabin crew to maintain order, assist passengers, and provide food and drinks when appropriate. The pilots should also remain in contact with ATC and the dispatcher about the expected departure.",
       "referenceTextZh": "飞行机组应向旅客说明延误原因并提供有用的最新信息。他们应与客舱机组协调，维持秩序、协助旅客，并在适当时提供食品和饮料。飞行员还应就预计离场时间与空中交通管制和签派员保持联系。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

@@ -1,8 +1,8 @@
 {
   "id": "atc-sia",
   "name": "SIA",
-  "declaredTopicCount": 16,
-  "declaredCardCount": 262,
+  "declaredTopicCount": 27,
+  "declaredCardCount": 445,
   "topicIds": [
     "atc-scenario-0007",
     "atc-scenario-0008",
@@ -19,6 +19,17 @@
     "atc-scenario-0121",
     "atc-scenario-0122",
     "atc-scenario-0184",
-    "atc-scenario-0186"
+    "atc-scenario-0186",
+    "atc-fzy-1437",
+    "atc-fzy-1672",
+    "atc-fzy-1692",
+    "atc-fzy-599",
+    "atc-fzy-617",
+    "atc-fzy-618",
+    "atc-fzy-619",
+    "atc-fzy-628",
+    "atc-fzy-755",
+    "atc-fzy-783",
+    "atc-fzy-909"
   ]
 }

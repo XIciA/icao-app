@@ -47,12 +47,12 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('航空英语题库')).toBeTruthy();
     expect(screen.getByText('按自己的节奏开始练习。')).toBeTruthy();
     expect(screen.getByText('听力')).toBeTruthy();
-    expect(screen.getByText('4 题组 / 1223 题')).toBeTruthy();
+    expect(screen.getByText('4 题组 / 1614 题')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
-    expect(screen.getByText('186 场景 / 3216 卡')).toBeTruthy();
+    expect(screen.getByText('319 场景 / 5751 卡')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
-    expect(screen.getByText('144 话题 / 1090 卡')).toBeTruthy();
+    expect(screen.getByText('238 话题 / 2317 卡')).toBeTruthy();
     expect(screen.queryByText('故事复诵')).toBeNull();
     await fireEvent.press(screen.getByLabelText('打开个人资料'));
     expect(mockPush).toHaveBeenCalledWith('/account/profile');

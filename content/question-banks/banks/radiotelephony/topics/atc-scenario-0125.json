@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0125",
   "name": "BAW 120 鸟击 积冰/防冰 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "120.45，BAW 120。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-022-baw120-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

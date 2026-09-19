@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0103",
   "name": "CCA 102 鸟击 左1风挡裂开",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "武汉塔台，CCA 102，看到跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1782.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

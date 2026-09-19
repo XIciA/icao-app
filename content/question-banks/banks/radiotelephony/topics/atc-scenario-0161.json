@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0161",
   "name": "AFR 896 颠簸 积冰/防冰 TCAS机动",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "Runway 36R，许可落地，AFR 896。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

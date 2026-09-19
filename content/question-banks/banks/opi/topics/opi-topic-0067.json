@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0067",
   "name": "空中相撞与TCAS",
   "declaredCardCount": 11,
@@ -70,11 +69,12 @@
     },
     {
       "id": "opi-core-718",
-      "taskTitle": "特情-空中相撞与TCAS-9",
+      "taskTitle": "Topic on Aircraft and Systems-23",
       "audioText": "How does TCAS work?",
-      "audioTextZh": "TCAS 如何工作？",
-      "referenceText": "TCAS exchanges information with the transponders of nearby aircraft and calculates their relative position, altitude, and closure trend. It uses this information to predict possible conflicts and issue traffic advisories. TCAS II also coordinates compatible resolution advisories between equipped aircraft so that their vertical manoeuvres do not conflict.",
-      "referenceTextZh": "TCAS 与附近飞机的应答机交换信息，计算它们的相对位置、高度和接近趋势，并据此预测可能冲突、发布交通咨询。TCAS II 还会在配备系统的飞机之间协调相容的决断咨询，避免双方垂直机动发生冲突。"
+      "audioTextZh": "TCAS如何进行工作的？",
+      "studyTier": 0,
+      "referenceText": "TCAS (Traffic Collision Avoidance System) tells pilots to climb or descend when there's traffic, TCAS in modern aircraft consists of TCAS TA (Traffic Advisory) and TCAS RA (Resolution Advisory). TCAS TA provides information about conflicting traffic such as its position, direction and speed. While TCAS RA provides guidance to avoid the traffic. If there is conflicting traffic, TCAS will provide pilots with warning sounds “traffic, traffic” (TCAS TA). If the traffic is too close, TCAS RA will give information “climb, climb” or “descend, descend”. When the aircraft is clear of traffic, TCAS will show “clear of traffic”.",
+      "referenceTextZh": "TCAS（空中防撞系统）在遇到飞行冲突时告知飞行员爬升或下降。现代飞机TCAS系统包括TCAS交通咨询和TCAS决断咨询两部分。TCAS TA提供冲突信息，如位置、方向和速度，而TCAS RA提供避开冲突航空器的方案。一旦遇上活动冲\n突，TCAS TA会向飞行员发出“traffic, traffic”声音警报，如果该冲突特别紧迫，TCAS RA会发送“climb, climb”或“descend, descend”的指令信息。当冲突解除，TCAS会指示“clear of traffic”。"
     },
     {
       "id": "opi-core-719",
@@ -92,5 +92,6 @@
       "referenceText": "Increasing congestion raises the workload of both pilots and air traffic controllers. It also increases the risk of communication misunderstandings and mid-air collisions.",
       "referenceTextZh": "拥堵加剧会增加飞行员和空中交通管制员的工作负荷，也会提高通信误解和空中相撞的风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

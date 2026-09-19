@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0047",
   "name": "ACA 331 有毒烟雾 有乘客昏迷",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "请求救护车和危险品专家，ACA 331。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/816.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

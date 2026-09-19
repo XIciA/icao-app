@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-593",
+  "name": "Figure 37",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-593-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 37 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-593.png",
+      "imageAlt": "Figure 37，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110451",
+      "taskTitle": "Figure 37-1",
+      "audioText": "Look at the picture, describe what you can see.",
+      "audioTextZh": "请看这张图片并描述在图中能看到什么。",
+      "studyTier": 0,
+      "referenceText": "From the picture, I can see one object that looks like a time bomb consisting of a bundle of dynamite sticks and a timer connected by electric wires.",
+      "referenceTextZh": "这张图看起来是个将一捆炸药和计时器用电线相连组合而成的定时炸弹。"
+    },
+    {
+      "id": "opi-fzy-110452",
+      "taskTitle": "Figure 37-2",
+      "audioText": "How can it be possibly carried onto the airplane?",
+      "audioTextZh": "定时炸弹可能是怎样被带上飞机的？",
+      "studyTier": 0,
+      "referenceText": "It may be carried onto the aircraft by a terrorist or hijacker who covers it up and passes through the airport security check. Probably the carry-on baggage is not very carefully checked and the screening machine fails to detect it.",
+      "referenceTextZh": "可能是恐怖分子或劫机者将炸弹藏起来，然后通过了安检。也许随身行李并没有被仔细检查，或者安检机器没能探测到它。"
+    },
+    {
+      "id": "opi-fzy-110453",
+      "taskTitle": "Figure 37-3",
+      "audioText": "Have you ever found a time bomb on board? How did you do?",
+      "audioTextZh": "你曾经在机上发现过定时炸弹吗？当时你是怎样做的？",
+      "studyTier": 0,
+      "referenceText": "Once during the flight, the cabin crew reported that there was a suspicious object in the cabin overhead compartment. After examination, we noticed it was very similar to an explosive or bomb because of its dynamite sticks and a timer taped. Immediately the cabin crew moved the passengers far away from the dangerous area. Meanwhile, we contacted ATC and requested an emergency landing and emergency services. At last, we landed safely and made an emergent evacuation on the runway.",
+      "referenceTextZh": "曾经发现过。有一次在飞行途中，机组人员报告在客舱行李架内有可疑物体。经检查，我们发现可疑物体疑似为爆炸物或是炸弹，炸药管和计时器绑在一起。机组人员立刻将乘客转移出危险区域，同时我们联系ATC并要求紧急着陆和紧急服务。最后，我们安全着陆并在跑道上进行紧急疏散。"
+    },
+    {
+      "id": "opi-fzy-110454",
+      "taskTitle": "Figure 37-4",
+      "audioText": "Please tell me about the security process changes in China.",
+      "audioTextZh": "请告诉我国内的安全程序有什么样的变化。",
+      "studyTier": 0,
+      "referenceText": "There are many changes in the security process in most airports in China, especially in some big international airports such as Beijing, Shanghai, and Guangzhou. They have introduced lots of advanced equipment, and many qualified airport staff have been employed and fully trained. Currently, passengers need to be screened through detection machines and all the sharp items such as knives and scissors are prohibited in the cabin.",
+      "referenceTextZh": "好的。国内大部分机场的安全程序都有很多变化，尤其是一些大型国际机场，例如北京，上海和广州。这些机场引进了许多先进设备，雇佣专业的工作人员并对他们进行培训。如今，乘客需要通过安检，所有尖锐物品，例如刀、剪刀，全部都被禁止带上飞机。"
+    },
+    {
+      "id": "opi-fzy-110455",
+      "taskTitle": "Figure 37-5",
+      "audioText": "In your eyes, how to improve the security procedure in the future?",
+      "audioTextZh": "在你看来，将来还能如何提升安检程序？",
+      "studyTier": 0,
+      "referenceText": "I think many areas need to be improved in the security procedure. Basically, airport passenger screening must be placed. Furthermore, advanced security equipment should be strengthened so as to ensure that they provide adequate protection for passengers. More qualified security staff should be hired to reduce passengers’ waiting time. The existing security personnel should be trained regularly to be able to identify items harmful to flight safety. Moreover, relevant law should be enforced and information must be shared timely by the joint effort of airports and airlines.",
+      "referenceTextZh": "我认为安检程序还有很多需要提升的部分。机场对乘客的检查肯定要被放在首位，而且要加强先进安检设备的使用，以确保这些设备能为乘客提供充分保护。雇用更专业的安检人员从而减少乘客等待的时间。现有的安检人员应定期接受培训，确保他们有能力辨认有害于飞行安全的物品。此外，相关法律需要得到实施，在机场和航空公司的共同努力下信息需要即时共享。"
+    },
+    {
+      "id": "opi-fzy-110456",
+      "taskTitle": "Figure 37-6",
+      "audioText": "What will you perform when you meet terrorism activities on board?",
+      "audioTextZh": "如果在机上遭遇恐怖活动你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "Although security check reduces the possibility of terrorism threat, as a pilot, I should be always prepared to fight against terrorism. When I meet terrorism activities, like hijack or bomb threat, I should keep cool head and execute emergency procedures immediately.",
+      "referenceTextZh": "虽然安检降低了恐怖袭击的可能性，但是作为一名飞行员，我要始终做好面对恐怖分子的准备。如果遭遇恐怖活动，例如劫机或炸弹威胁，我应该保持头脑冷静并立刻执行应急措施。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

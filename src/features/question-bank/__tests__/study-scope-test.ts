@@ -1,5 +1,6 @@
 import { studyScopeCardIds } from '@icao/contracts';
 import data from '../data/question-bank.json';
+import publicData from '../data/question-bank-public.json';
 import { EXAM_GOALS } from '@/features/account/profile-model';
 import { scopeDataset, scopeTopic } from '../lib/study-scope';
 import type { QuestionBankDataset, QuestionBankTopic } from '../types';
@@ -9,6 +10,39 @@ const topic: QuestionBankTopic = { id: 'private-topic', name: '测试', declared
   { id: 'selected', taskTitle: '精', audioText: 'selected', studyTier: 1 },
   { id: 'crash', taskTitle: '冲', audioText: 'crash', studyTier: 2 },
 ] };
+
+it('keeps every shipped scope nested and public directory counts equal to the full bank', () => {
+  for (const bank of data as QuestionBankDataset[]) {
+    const publicBank = (publicData as QuestionBankDataset[]).find((item) => item.id === bank.id)!;
+    for (const goal of EXAM_GOALS) {
+      const ids = new Map<string, Set<string>>();
+      for (const scope of ['all', 'selected', 'crash'] as const) {
+        const projected = scopeDataset(bank, scope, goal.id);
+        const projectedPublic = scopeDataset(publicBank, scope, goal.id);
+        expect(projectedPublic.declaredCardCount).toBe(projected.declaredCardCount);
+        const cards = projected.categories.flatMap((category) => category.topics.flatMap((item) => item.cards));
+        expect(cards).toHaveLength(projected.declaredCardCount);
+        ids.set(scope, new Set(cards.map((card) => card.id)));
+      }
+      for (const id of ids.get('selected')!) expect(ids.get('all')!.has(id)).toBe(true);
+      for (const id of ids.get('crash')!) expect(ids.get('selected')!.has(id)).toBe(true);
+    }
+  }
+});
+
+it('ships the agreed crash practice units, counting full radio scenes and spoken OPI questions', () => {
+  const banks = data as QuestionBankDataset[];
+  const crash = (id: string) => scopeDataset(banks.find((bank) => bank.id === id)!, 'crash', 'icao5-first');
+  const listening = crash('listening').categories.flatMap((category) => category.topics);
+  expect(listening).toHaveLength(4);
+  expect(listening.map((item) => item.cards.length)).toEqual([25, 25, 25, 25]);
+  const radio = crash('radiotelephony').categories.flatMap((category) => category.topics);
+  expect(radio.filter((item) => item.practiceKind !== 'scoring-points')).toHaveLength(30);
+  expect(radio.filter((item) => item.practiceKind === 'scoring-points').length).toBeGreaterThan(0);
+  expect(crash('storytelling').declaredCardCount).toBe(20);
+  const opi = crash('opi').categories.flatMap((category) => category.topics.flatMap((item) => item.cards));
+  expect(opi.filter((card) => card.kind !== 'image')).toHaveLength(60);
+});
 
 it('enforces nested membership without copying or mutating questions', () => {
   const selected = scopeTopic('listening', topic, 'selected');

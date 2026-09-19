@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0117",
   "name": "劫机与非法干扰",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "If it can be done safely, the pilot should select transponder code 7500 to alert ATC without speaking. The pilot should not announce the hijacking explicitly over the radio unless it is safe to do so, and should maintain normal communication when possible. The airline's hijacking communication procedure should be followed.",
       "referenceTextZh": "如果能够安全操作，飞行员应将应答机设置为 7500，在不通话的情况下向空中交通管制发出警报。除非能够确保安全，否则飞行员不应在无线电中明确宣布发生劫机，并应尽可能保持正常通信。应遵守航空公司的劫机通信程序。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

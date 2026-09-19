@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0102",
   "name": "飞行前准备",
   "declaredCardCount": 12,
@@ -100,5 +99,6 @@
       "referenceText": "Before departure, the cabin crew attends a safety briefing with the pilots and checks the emergency equipment and cabin facilities. They verify passenger boarding, maintain cabin order, and demonstrate safety procedures such as seat-belt use.",
       "referenceTextZh": "离场前，客舱机组参加与飞行员进行的安全简令，并检查应急设备和客舱设施。他们核实旅客登机、维持客舱秩序，并演示安全带使用等安全程序。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

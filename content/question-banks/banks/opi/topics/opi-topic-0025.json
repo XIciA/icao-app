@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0025",
   "name": "训练与复训",
   "declaredCardCount": 25,
@@ -94,11 +93,12 @@
     },
     {
       "id": "opi-core-399",
-      "taskTitle": "运行-训练与复训-12",
+      "taskTitle": "7.理论学习与飞行训练-4",
       "audioText": "What subjects were included in your initial flight training?",
-      "audioTextZh": "你的初始飞行训练包括哪些科目？",
-      "referenceText": "My initial flight training included local and cross-country flights, high-speed approaches, stalls, and steep turns.",
-      "referenceTextZh": "我的初始飞行训练包括本场和转场飞行、高速进近、失速和大坡度转弯。"
+      "audioTextZh": "你初始训练包含哪些训练科目？",
+      "studyTier": 1,
+      "referenceText": "We have learned many subjects during the initial flight training.\nSuch as local training, cross-country training, high speed approach, stall, steep turn and so on.",
+      "referenceTextZh": "初始训练我们学会了很多科目。\n比如：本场训练，转场训练，大速度进近，失速，大坡度转弯等。"
     },
     {
       "id": "opi-core-400",
@@ -118,19 +118,21 @@
     },
     {
       "id": "opi-core-402",
-      "taskTitle": "运行-训练与复训-15",
+      "taskTitle": "7.理论学习与飞行训练-6",
       "audioText": "When was your first solo flight?",
-      "audioTextZh": "你第一次单飞是什么时候？",
-      "referenceText": "I have not made my first solo flight yet because I am still training at flight school. I will be allowed to fly solo after I have completed the required training and my instructor is satisfied that I can operate the aircraft safely.",
-      "referenceTextZh": "我还没有进行第一次单飞，因为目前仍在航校训练。完成规定训练，并且教员确认我能够安全操纵飞机后，我才会获准单飞。"
+      "audioTextZh": "你什么时候放的单飞？",
+      "studyTier": 1,
+      "referenceText": "My first solo fight was on May 1st, 2019 (about 2 years ago).",
+      "referenceTextZh": "我的第一次单飞是在2019年5月1日（大约两年前）。"
     },
     {
       "id": "opi-core-404",
-      "taskTitle": "运行-训练与复训-16",
+      "taskTitle": "7.理论学习与飞行训练-8",
       "audioText": "What did you learn from your first solo flight?",
-      "audioTextZh": "你从第一次单飞中学到了什么？",
-      "referenceText": "I learned that good preflight preparation makes a flight easier and safer. I also learned to follow the checklist and SOP carefully to maintain flight safety.",
-      "referenceTextZh": "我学到，良好的飞行前准备可以使飞行更轻松、更安全。我也学会认真遵循检查单和标准操作程序来保障飞行安全。"
+      "audioTextZh": "从单飞中你学到了什么？",
+      "studyTier": 1,
+      "referenceText": "I have learned many things from my first solo flight.\nFirst, we should make good preflight preparation to make flight easier and safer.\nSecond, we should follow the checklist and follow SOP to ensure flight safety.",
+      "referenceTextZh": "我从单飞中学到了很多。\n首先，我们应该做好飞行前准备，使飞行简单安全。\n其次，我们应该遵照检查单和标准操作程序确保飞行安全。"
     },
     {
       "id": "opi-core-405",
@@ -204,5 +206,6 @@
       "referenceText": "My flight school is in a city with convenient transport. It has experienced flight instructors and ground teachers, modern training aircraft and simulators, and courses in theory, flying skills, and emergency handling. The school places strong emphasis on training safety and quality.",
       "referenceTextZh": "我的航校位于一座交通便利的城市。学校拥有经验丰富的飞行教员和地面教员、现代化训练飞机和模拟机，并开设理论、飞行技能和应急处置课程。学校非常重视训练安全和质量。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

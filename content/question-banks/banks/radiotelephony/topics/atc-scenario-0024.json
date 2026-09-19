@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0024",
   "name": "AFR 939 中断起飞 刹车超温",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "需要，我们需要客梯车让旅客下机，AFR 939。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/426.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

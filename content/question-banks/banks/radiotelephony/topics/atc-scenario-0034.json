@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0034",
   "name": "UAL 403 防冰 因重量提前下降",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "广州管制，UAL 403，已脱离天气，请求直飞 TON。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/593.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

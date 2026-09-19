@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0029",
   "name": "夜航",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Runway lighting makes the runway boundaries and centerline easier to see at night. It helps pilots judge their position, align the aircraft with the runway, and conduct safer takeoffs and landings.",
       "referenceTextZh": "跑道灯光使飞行员在夜间更容易看清跑道边界和中线。它有助于判断位置、使飞机与跑道对正，并更安全地起飞和着陆。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

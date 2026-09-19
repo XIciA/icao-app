@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-004",
   "name": "飞机接近风险",
   "declaredCardCount": 3,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-004.jpg",
-      "imageAlt": "飞机接近风险航空场景图片"
+      "imageAlt": "飞机接近风险航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-004-q01",
@@ -27,5 +27,6 @@
       "referenceText": "Possible factors include loss of separation, wake turbulence, a runway incursion, or a misunderstanding of ATC instructions. Human factors, weather, aircraft condition, the airport environment, and communication problems may also contribute.",
       "referenceTextZh": "可能的因素包括间隔丧失、尾流、跑道侵入，或对空中交通管制指令的误解。人的因素、天气、飞机状况、机场环境和通信问题也可能起到作用。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

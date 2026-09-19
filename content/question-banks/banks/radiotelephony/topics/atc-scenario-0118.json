@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0118",
   "name": "CSN 371 刹车问题 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "保持不大于 Mach 0.80，CSN 371。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-014-csn371-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

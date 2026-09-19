@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-1400",
+  "name": "CES728 [积冰，进近灯暗]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-202760",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-1",
+      "audioText": "1B: Your call sign is CES728 from Wuhan to Guangzhou, you are at gate 213, information W received, request ATC clearance.",
+      "audioTextZh": "你的呼号是东方728，从武汉飞往广州，你现在在213号停机位，收到通播W，请求管制许可。",
+      "referenceText": "Wuhan Delivery, CES728, from Wuhan to Guangzhou gate 213, information W, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方728，从武汉飞往广州，213号停机位，通播W，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae9e084a6e0d47aeb231.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202761",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-2",
+      "audioText": "2C: CES728, cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m, cruising level 9800m, contact 119.6 when airborne, squawk 3615.",
+      "audioTextZh": "东方728，可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，离地后联系119.6，应答机编码3615。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m cruising level 9800m, contact 119.6 when airborne, squawk 3615, CES728.",
+      "referenceTextZh": "可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，离地后联系119.6，应答机编码3615，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd931e27282d2cff1852.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202762",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-3",
+      "audioText": "3B: Now you are pushing back with engines running, request taxi clearance.",
+      "audioTextZh": "现在你正在推出，发动机已经运转，请求滑行许可。",
+      "referenceText": "Wuhan Ground, CES728, pushing back, request taxi clearance.",
+      "referenceTextZh": "武汉地面，东方728，正在推出，请求滑行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8834e630f683ea3f2eee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202763",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-4",
+      "audioText": "4C: CES728, taxi via Z4, A3, A to holding point of runway 36R.",
+      "audioTextZh": "东方728，经由滑行道Z4，A3，A滑行至跑道36右外等待点。",
+      "referenceText": "Taxi via Z4, A3, A to holding point runway 36R, CES728.",
+      "referenceTextZh": "经由滑行道Z4，A3，A滑行至跑道36右外等待点，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d67f83bc818f72d5eeb9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202764",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-5",
+      "audioText": "5C: CES728, give way to Air China A319 on taxiway A7, you are No.2.",
+      "audioTextZh": "东方728，给在滑行道A7上的国航A319让路，你是第二个。",
+      "referenceText": "Give way to Air China A319 on taxiway A7, No.2. CES728.",
+      "referenceTextZh": "给在滑行道A7上的国航A319让路，第二个，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/69e7fba3cb90376fe23a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202765",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-6",
+      "audioText": "6B: You are at holding point of runway 36R, contact Tower for takeoff clearance.",
+      "audioTextZh": "你现在在跑道36右外等待点，联系塔台，请求起飞许可。",
+      "referenceText": "Wuhan Tower, CES728, holding point of runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，东方728，跑道36右外等待点，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e927da37ecb53c5f69e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202766",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-7",
+      "audioText": "7C: CES728, line up and wait, expect 1min delay. There will be a helicopter crossing the runway from left to right.",
+      "audioTextZh": "东方728，上跑道等待，预计1分钟延误，有一架直升机在从左向右穿越跑道。",
+      "referenceText": "Lining up and wait, expect 1min delay, CES728.",
+      "referenceTextZh": "上跑道等待，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/88db4ea5fe2dc2f1958a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202767",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-8",
+      "audioText": "8C: CES728, wind 010 degrees 2m/s, clear for takeoff runway 36R. Caution storm north of the airport.",
+      "audioTextZh": "东方728，地面风010度，2米每秒，可以起飞， 跑道36右，小心机场北部有风暴。",
+      "referenceText": "Clear for takeoff runway 36R, CES728.",
+      "referenceTextZh": "可以起飞， 跑道36右，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d9c26aeaac73a0e840e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202768",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-9",
+      "audioText": "9B: You are now at cruising level. You want to climb to 10400m to avoid turbulence. Ask Wuhan Control if 10400m is available and if there is any turbulence reported on that level.",
+      "audioTextZh": "你现在到达巡航高度，你想爬升至10400米来躲避颠簸，询问武汉区调，10400米是否可用，以及在此高度是否有颠簸报告。",
+      "referenceText": "Wuhan Control, CES728, confirm 10400m is available and there is any turbulence reported on that level?",
+      "referenceTextZh": "武汉区调，东方728，我们在巡航高度，请求爬升至10400米来躲避颠簸，证实10400米是否可用，以及此高度是否有颠簸？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/23b470736b25bf8fe9b3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202769",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-10",
+      "audioText": "10C: CES728, Wuhan Control, 10400m is available and no turbulence reported on that level.\n10B: You want to climb to 10400m.",
+      "audioTextZh": "东方728，武汉区调，10400米可用，没有颠簸报告。\n【你想爬升至10400米。】",
+      "referenceText": "Request climb to 10400m, CES728.",
+      "referenceTextZh": "请求爬升至10400米，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/55036e7fe3a069da81aa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202770",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-11",
+      "audioText": "11B: You are now in Guangzhou Control, cruising at 10400m, because you are encountering the icing condition, you want to descend to a lower level.",
+      "audioTextZh": "你现在在广州区调，巡航高度10400米，由于你遇到了积冰情况，你想下降至更低高度。",
+      "referenceText": "Guangzhou Control, CES728, cruising at 10400m, request descend due icing.",
+      "referenceTextZh": "广州区调，东方728，巡航高度10400米，由于积冰，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5d29b22e1aa137a3f7d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202771",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-12",
+      "audioText": "12C: CES728, descend to 4200m, maintain high speed.",
+      "audioTextZh": "东方728，下到4200米，保持高航速。",
+      "referenceText": "Descend to 4200m, maintain high speed, CES728.",
+      "referenceTextZh": "下到4200米，保持高航速，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a5a13205fed7fd44e89.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202772",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-13",
+      "audioText": "13B: You are now with Guangzhou Approach, you want to maintain high speed as long as possible to avoid ice accumulation. Tell ATC.",
+      "audioTextZh": "你现在已经和广州进近建立联系，你想尽可能保持高航速来避免积冰，告知管制员。",
+      "referenceText": "Guangzhou Approach, CES728, request maintain high speed as long as possible to avoid ice accumulation.",
+      "referenceTextZh": "广州进近，东方728，请求尽可能保持高航速来避免积冰",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ecad54b84d936b41009d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202773",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-14",
+      "audioText": "14C: CES728, no speed restriction.",
+      "audioTextZh": "东方728，没有速度限制。",
+      "referenceText": "No speed restriction, CES728.",
+      "referenceTextZh": "没有速度限制，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/17ac2f6b72411eb0915f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202774",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-15",
+      "audioText": "15B: While on final approach, you notice the approach lights are too dim, ask the controller to increase the intensity of the approach lights.",
+      "audioTextZh": "在五边进近时，你注意到进近灯过暗，请求管制提高进近灯亮度。",
+      "referenceText": "Guangzhou Tower, CES728, request brighten the approach lights.",
+      "referenceTextZh": "广州塔台，东方728，请求提高进近灯亮度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e9575c9874367cc158c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202775",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-16",
+      "audioText": "16C: Roger, CES728, the approach lights will be turned up shortly. Clear to land runway 27L, wind calm. Caution runway is wet, braking action medium.",
+      "audioTextZh": "收到，东方728，进近灯很快会调高亮度。可以落地，跑道27左，静风，注意跑道湿滑，刹车性能中等。",
+      "referenceText": "Clear to land runway 27L, roger, braking action medium, CES728.",
+      "referenceTextZh": "可以落地，跑道27左，收到，刹车性能中等，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/416ec4b610db3a319131.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202776",
+      "taskTitle": "47-CES728 [积冰，进近灯暗]-17",
+      "audioText": "17B: After landing, you find taxi is too difficult in poor visibility, ask ground control for a follow me car.",
+      "audioTextZh": "落地后，你发现在低能见度下滑行困难，向地面管制请求一辆引导车。",
+      "referenceText": "Guangzhou Ground, CES728, It’s difficult to taxi in poor visibility, request a follow-me car.",
+      "referenceTextZh": "广州地面，东方728，低能见度下滑行困难，请求一辆引导车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/533cb2f40ce5360650bc.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

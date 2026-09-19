@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0004",
   "name": "应急设备",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "Evacuation slides help people on board leave the aircraft as quickly as possible during an evacuation.",
       "referenceTextZh": "撤离滑梯可以帮助机上人员在撤离时尽快离开飞机。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

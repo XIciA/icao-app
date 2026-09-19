@@ -1,0 +1,226 @@
+{
+  "id": "atc-fzy-625",
+  "name": "CCA451 nose gear problem, etc.",
+  "declaredCardCount": 24,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111447",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-1",
+      "audioText": "[You are the pilot of CCA451 and now waiting for ATC clearance.]CCA451 Wuhan Tower, cleared to Guangzhou via flight planned route, cruising level 9200m, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne.[The Tower controller's voice is disturbed, and you didn't hear the words after“9200 m”, ask the controller to repeat the latter part of the instruction.]",
+      "audioTextZh": "【你是国航451的飞行员，正在等待ATC的离场许可。】国航451，武汉塔台，可以按计划行列放行至广州，巡航高度9200米，LKO-1D离场，应答机2052，起飞后联系武汉进近118.9。【塔台的声音被干扰了，你没听到“9200米”之后的信息，请管制员重复指令的后半部分。】",
+      "referenceText": "Wuhan Tower, CCA451, read you 2, say again after 9200m.",
+      "referenceTextZh": "武汉塔台，国航451，听你2个，“9200米”后信息再说一遍。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/537afce997363486b255.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111448",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-2",
+      "audioText": "CCA451, cruising level 9200 m, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne.[Read Back]",
+      "audioTextZh": "国航451，巡航高度9200米，LKO-1D离场，应答机2052，起飞后联系武汉进近118.9。【复诵】",
+      "referenceText": "Cleared to Guangzhou, via flight planned route, cruising level 9200m, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne. CCA451.",
+      "referenceTextZh": "可以按计划航路放行至广州，巡航高度9200米，LKO-1D离场，应答机2052，起飞后联系武汉进近118.9，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a32494f89caf3d6ffbd1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111449",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-3",
+      "audioText": "[You have completed the relevant checklist. Ask the Tower controller to let you to start your engine.]",
+      "audioTextZh": "【你已完成相关检查单。告诉塔台并请求启动发动机。】",
+      "referenceText": "Wuhan Tower, CCA451, request start-up.",
+      "referenceTextZh": "武汉塔台，国航451，请求开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/28675cb3a997d061a8ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111450",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-4",
+      "audioText": "CCA451, start-up approved, report when ready for taxi.[Read Back]",
+      "audioTextZh": "国航451，可以开车，准备好滑行报告。【复诵】",
+      "referenceText": "start-up approved, report when ready for taxi, CCA451.",
+      "referenceTextZh": "可以开车，准备好滑行报告，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f7d0b3d3f33a56e9454.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111451",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-5",
+      "audioText": "[Now you are ready to taxi out, ask the Tower controller for taxi instructions.]",
+      "audioTextZh": "【你已准备好滑出，向塔台询问滑行指令。】",
+      "referenceText": "Wuhan Tower, CCA451, request taxi.",
+      "referenceTextZh": "武汉塔台，国航451，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eac4573a2e1a41e16f34.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111452",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-6",
+      "audioText": "CCA451, taxi via taxiway A7 and A to holding point of runway 36R.[Read Back]",
+      "audioTextZh": "国航451，沿滑行道A7，A滑至跑道36右的等待点。【复诵】",
+      "referenceText": "Taxi via Taxiway A7 and A to holding point of runway 36R, CCA451.",
+      "referenceTextZh": "沿滑行道A7，A滑至跑道36右的等待点，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bbb6982326f44f9859bd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111453",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-7",
+      "audioText": "CCA451, hold position, traffic 10 o’clock, approaching you from your left.[Acknowledge the instruction, and inform the controller that you have seen the traffic.]",
+      "audioTextZh": "国航451，原地等待，10点钟方向有飞机正在从左侧接近你。【确认收到指令，通知管制员你已看到该飞机。】",
+      "referenceText": "Roger, holding position, traffic in sight, CCA451.",
+      "referenceTextZh": "收到，原地等待，飞机已看到，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/853470a33b873d54a7b9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111454",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-8",
+      "audioText": "[Later, you are approaching the active runway 36R, ask the Tower controller for permission to enter the runway.]",
+      "audioTextZh": "【过了一会儿，你正在接近现用跑道36右，向塔台请求进入该跑道。】",
+      "referenceText": "Wuhan Tower, CCA451, approaching runway 36R, request line up.",
+      "referenceTextZh": "武汉塔台，国航451，接近跑道36右，请求进跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b33c9f302571ddca25a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111455",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-9",
+      "audioText": "CCA451, line up and wait.[Read Back]",
+      "audioTextZh": "国航451，进跑道等待。【复诵】",
+      "referenceText": "Line up and wait, CCA451.",
+      "referenceTextZh": "进跑道等待，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2469cc05e53622d1f92a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111456",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-10",
+      "audioText": "CCA451, cleared for takeoff, runway 36R.[Read Back]",
+      "audioTextZh": "国航451，可以起飞，跑道36右。【复诵】",
+      "referenceText": "Cleared for takeoff, runway 36R, CCA451.",
+      "referenceTextZh": "可以起飞，跑道36右，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/095b888fe6df56f99d1d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111457",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-11",
+      "audioText": "[(This is a night operation). When you are rolling out, your speed has just reached VR, you suddenly see a slow moving object ahead of you; it is crossing the runway from left to right. You pull back and rotate to avoid the traffic, and you felt a shake from the nose gear. You get airborne at time 23, and report the accident to Wuhan Approach.]",
+      "audioTextZh": "【（这是夜间作业。）滑跑时，飞机速度刚达到了VR，你看到前方有一缓慢移动的物体；它从跑道左侧穿至右侧。你立即拉杆抬头以躲避活动，同时感觉前起落架震动了一下。起飞时间23分，向武汉进近报告该事故。】",
+      "referenceText": "Wuhan Approach, CCA451, airborne 23, nose gear hit something during takeoff.",
+      "referenceTextZh": "武汉进近，国航451，起飞时间23分，起飞时前起落架撞到东西了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ec33f6d739ab8b9c372c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111458",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-12",
+      "audioText": "CCA451, Wuhan Approach, radar contact, is there any damage to the aircraft? Report your intentions.[Tell the approach controller that you want to land at Wuhan airport, and you don’t know anything about the damage.]",
+      "audioTextZh": "国航451，武汉进近，雷达已识别，飞机有损伤么？报告意图。【告诉进近你想降落在武汉机场，你不知道飞机是否有损坏。】",
+      "referenceText": "Request land at Wuhan airport, and we don't know anything about the damage. CCA451.",
+      "referenceTextZh": "请求返回武汉机场，我们不清楚是否有损伤，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9b12acca14caba20d7b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111459",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-13",
+      "audioText": "CCA451, roger, do you want to hold and have a check?[Tell the controller that you want to hold and check.]",
+      "audioTextZh": "国航451，收到，你想要等待并进行检查么？【告诉管制员你想等待并接受检查。】",
+      "referenceText": "Affirm, request hold and check, CCA451.",
+      "referenceTextZh": "是的，请求等待并检查，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/84003cc31644a08f549d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111460",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-14",
+      "audioText": "Roger, CCA451, climb and maintain 900m, turn left direct to DA, and hold over DA.[Read back the controller’s instruction.]",
+      "audioTextZh": "收到，国航451，上升保持900米，左转直飞DA，在DA等待。【复诵管制员的指令。】",
+      "referenceText": "Climb and maintain 900m, turn left direct to DA, and hold over DA. CCA451.",
+      "referenceTextZh": "上升保持900米，左转直飞DA，在DA等待，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/264b19d85f176d0c730c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111461",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-15",
+      "audioText": "[Inform the controller that you found out that there is something wrong with the nose gear. Tell the controller you need to dump fuel before landing.]",
+      "audioTextZh": "【通知管制员，你发现前起落架有些故障。告诉管制员着陆前飞机需要放油。】",
+      "referenceText": "Wuhan Approach, CCA451, we have something wrong with the nose gear; we have to dump fuel before landing.",
+      "referenceTextZh": "武汉进近，国航451，飞机前起落架有故障，着陆前我们必须放油。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b0fe0db6e8da04b5850e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111462",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-16",
+      "audioText": "Roger, CCA451, climb and maintain 2100m, turn left heading 130, radar vector to the dumping area.",
+      "audioTextZh": "收到，国航451，上升保持2100米，左转航向130，雷达引导至放油区。",
+      "referenceText": "Climb and maintain 2100m, turning left heading 130, CCA451.",
+      "referenceTextZh": "上升保持2100米，左转航向130，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/28986667387e5b37e35d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111463",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-17",
+      "audioText": "[Later, inform the controller that you have finished the fuel dumping and want to be radar guided to Wuhan airport.]",
+      "audioTextZh": "【过了一会儿，通知管制员你已完成放油，想要雷达引导至武汉机场。】",
+      "referenceText": "Wuhan Approach, CCA451, fuel dumping completed, request radar vector to Wuhan airport.",
+      "referenceTextZh": "武汉进近，国航451，放油完成，请求雷达引导至武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/174b24bf8681b72d0666.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111464",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-18",
+      "audioText": "CCA451, descend and maintain 900m, turn right heading 290, radar vector for the ILS approach runway 36L.[Read Back]",
+      "audioTextZh": "国航451，下降保持900米，右转航向290，雷达引导盲降进近跑道36左。【复诵】",
+      "referenceText": "Descend and maintain 900m, turn right heading 290, ILS approach runway 36L. CCA451.",
+      "referenceTextZh": "下降保持900米，右转航向290，盲降进近跑道36左，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f658f91c9dd0e00073e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111465",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-19",
+      "audioText": "CCA451, do you need any assistance upon landing?[Tell the controller that you are going to make a landing without nose gear, you need fire trucks and a foamed runway.]",
+      "audioTextZh": "国航451，着陆后需要帮助么？【告诉管制员，你准备进行无起落架着陆，需要消防车及一条泡沫跑道。】",
+      "referenceText": "We are going to land without the nose gear; request fire trucks and a foamed runway. CCA451.",
+      "referenceTextZh": "我们准备进行无起落架着陆，请求提供消防车及泡沫跑道，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/974c364c5fdfb1358e40.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111466",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-20",
+      "audioText": "Roger CCA451, foamed runway and fire trucks will be ready upon landing.[Read Back]",
+      "audioTextZh": "收到，国航451，着陆时泡沫跑道及消防车将会准备好。【复诵】",
+      "referenceText": "Roger, thanks, CCA451.",
+      "referenceTextZh": "收到，谢谢，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6d591d9f021c9ea92ac7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111467",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-21",
+      "audioText": "CCA451, reduce speed to 180 knots.[Read Back]",
+      "audioTextZh": "国航451，减速到180节。【复诵】",
+      "referenceText": "Reducing speed to180 knots, CCA451.",
+      "referenceTextZh": "减速180节，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd448f7f5d06ed2302ac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111468",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-22",
+      "audioText": "CCA451, turn left heading 330 to intercept the localizer for runway 36L, report established.[Read back the controller’s instruction.]",
+      "audioTextZh": "国航451，左转航向330，切入跑道36左航道，建立后报告。【复诵管制员指令。】",
+      "referenceText": "Left heading 330 to intercept the localizer of runway 36L, report established, CCA451.",
+      "referenceTextZh": "左转航向330，切入跑道36左航道，建立后报告，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aaf93777d45b647f0329.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111469",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-23",
+      "audioText": "[Inform the controller that you have captured the localizer.]",
+      "audioTextZh": "【通知管制员你已截获航道。】",
+      "referenceText": "Wuhan Approach, CCA451, established Localizer.",
+      "referenceTextZh": "武汉进近，国航451，已建立航道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/444230e5e8a9fe6554ac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111470",
+      "taskTitle": "42. CCA451 nose gear problem, etc.-24",
+      "audioText": "Roger, CCA451, cleared ILS approach runway 36L, 13 miles from touch down, radar service terminated, contact Wuhan Tower on 124.35.[Read Back]",
+      "audioTextZh": "收到，国航451，可以盲降进近跑道36左，距离着陆13海里，雷达服务中止，联系武汉塔台124.35。【复诵】",
+      "referenceText": "Cleared ILS approach runway 36L, contact Wuhan Tower 124.35. CCA451.",
+      "referenceTextZh": "可以盲降进近跑道36左，联系武汉塔台124.35，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d3e2e1d5260735fa6ec4.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

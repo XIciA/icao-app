@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-022",
   "name": "山区夜间进近",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-022.jpg",
-      "imageAlt": "山区夜间进近航空场景图片"
+      "imageAlt": "山区夜间进近航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-022-q01",
@@ -35,5 +35,6 @@
       "referenceText": "The briefing should cover low cloud, rain, fog, terrain shadow, and limited visual references. It should also address careful aircraft monitoring and the need for conservative action if safety margins are reduced.",
       "referenceTextZh": "简令应包括低云、降雨、雾、地形阴影和有限目视参照等内容。还应说明如何认真监控飞机，以及安全裕度降低时采取保守措施的必要性。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

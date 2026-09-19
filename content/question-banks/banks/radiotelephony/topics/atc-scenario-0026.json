@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0026",
   "name": "BAW 120 皮托管加温失效 空速不可信",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "120.45，BAW 120。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/460.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

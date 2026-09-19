@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0040",
   "name": "UAL 811 转述增压问题",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "省略位置报告，自主导航至 ZF，UAL 811。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/692.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

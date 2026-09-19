@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-023",
   "name": "地面火灾应急",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-023.jpg",
-      "imageAlt": "地面火灾应急航空场景图片"
+      "imageAlt": "地面火灾应急航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-023-q01",
@@ -35,5 +35,6 @@
       "referenceText": "I would alert ground control and the cabin crew immediately and stop boarding or servicing activities. If there were enough time and it was safe and authorized, I would have the aircraft moved away from the fire. Otherwise, I would shut it down and evacuate through exits away from the flames and smoke, directing everyone to assemble upwind at a safe distance.",
       "referenceTextZh": "我会立即通知地面管制和客舱机组，并停止登机或保障作业。如果时间充足且安全并获得许可，我会让飞机移离火场。否则，我会关闭飞机，并通过远离火焰和烟雾的出口撤离，指挥所有人到上风向的安全距离集合。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

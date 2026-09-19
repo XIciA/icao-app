@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0097",
   "name": "CES 325 左翼撞击 三号熄火 冲出跑道",
   "declaredCardCount": 23,
@@ -211,5 +210,6 @@
       "referenceTextZh": "武汉塔台，CES 325，我们滑出跑道并设法将飞机停在草地上，请求应急服务。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1686.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

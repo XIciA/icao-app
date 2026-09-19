@@ -1,0 +1,154 @@
+{
+  "id": "atc-fzy-907",
+  "name": "CSN3109 [冰雹，颠簸]",
+  "declaredCardCount": 16,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-164678",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-1",
+      "audioText": "Your call sign is CSN3109, from Wuhan to Beijing, you are now leveling at 8900 meters, expect OBLIK 25, make a position report to Guangzhou Control.",
+      "audioTextZh": "你的呼号是南方3109，从武汉飞往北京，你现在在8900米平飞，预计25分到达OBLIK，向广州区调做位置报。",
+      "referenceText": "Guangzhou Control, CSN3109, leveling at 8900 meters, expect OBLIK 25.",
+      "referenceTextZh": "广州区调，南方3109，8900米平飞，预计25分过OBLIK。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/126acddfa6231dc3e38b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164679",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-2",
+      "audioText": "CSN3109, Guangzhou Control, maintain present altitude, contact Beijing Control on 132.2.",
+      "audioTextZh": "南方3109，广州区调，保持当前高度，联系北京区调132.2。",
+      "referenceText": "Maintain present altitude and contact Beijing Control on 132.2, CSN3109.\n注：此处答案可以省略为：present attitude and 132.2.",
+      "referenceTextZh": "保持当前高度，联系北京区调132.2，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/22411ab6944034e2987e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164680",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-3",
+      "audioText": "[Your weather radar shows that there is a thunderstorm 33 miles ahead, you want to climb to 10100m to fly over it, contact Beijing Control.]",
+      "audioTextZh": "[你的气象雷达显示前方33海里有雷暴，你想上10100米飞越雷暴，联系北京区调。]",
+      "referenceText": "Beijing Control, CSN3109, our weather radar shows that there is a thunderstorm 33 miles ahead, request climb to 10100m to fly over it.\n注：此处答案可省略为：Beijing Control, CSN3109, request climb to 10100m due weather/bad weather/adverse weather.",
+      "referenceTextZh": "北京区调，南方3109，我们的气象雷达显示前方33海里有雷暴，请求上10100米飞越雷暴。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d6244c7e5ae1b1996d05.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164681",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-4",
+      "audioText": "CSN3109, negative, but you can either turn left or right to go round it, which do you prefer?\n[Tell controller you can make a left turn.]",
+      "audioTextZh": "南方3109，不可，但是你可以左转或者右转来飞避它，你更喜欢哪一个？\n[告诉管制员，你可以左转。]",
+      "referenceText": "Request a left turn, CSN3109.\n注：此处为被动报话格式：通话内容+己方呼号；go round：绕飞。",
+      "referenceTextZh": "请求左转，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dc679c717a4623f27232.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164682",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-5",
+      "audioText": "CSN3109, turn left heading 270 for 5 miles, when clear of weather, return to the original route.",
+      "audioTextZh": "南方3109，可以左转270度飞5海里，当脱离天气，回到原航路。",
+      "referenceText": "Left heading 270 for 5 miles, wilco, CSN3109.",
+      "referenceTextZh": "左转270度飞5海里，照办，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a8babb9881e8bdec7872.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164683",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-6",
+      "audioText": "[Now you are clear of weather and back to the original course.]\nCSN3109, descend to 7500m.",
+      "audioTextZh": "[现在你脱离天气，回到原航路了。]\n南方3109，下到7500米。",
+      "referenceText": "Descend to 7500m, CSN3109.",
+      "referenceTextZh": "下到7500米，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ebfa9e27a2a105ea853d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164684",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-7",
+      "audioText": "During the descent, you encountered a strong hail and experienced heavy turbulence. The outer windshield of your aircraft cracked due to hail strike, tell your situation to Beijing Approach, and request emergency landing, this is a distress call.",
+      "audioTextZh": "在下降过程中，你遇到了冰雹和颠簸。飞机外侧风挡玻璃由于冰雹撞击而出现裂纹，将情况告知北京区调，请求紧急着陆，这是一个遇险呼叫。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Beijing Approach, CSN3109, our outer windshield cracked due to hail strike, request emergency landing.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY. 北京进近，南方3109，我们外侧风挡玻璃由于冰雹撞击而出现裂纹，请求紧急着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/50c1db3b3c95f756c353.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164685",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-8",
+      "audioText": "CSN3109, roger Mayday, cleared for ILS approach, runway 36R, and you are No.1 in the landing sequence.",
+      "audioTextZh": "南方3109，收到MAYDAY，可以ILS进近，跑道36右，你是第一个着陆。",
+      "referenceText": "Cleared for ILS approach, runway 36R, No.1 in landing sequence, CSN3109.",
+      "referenceTextZh": "可以ILS进近，跑道36右，第一个着陆，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9c7e675c114cfb1f3a4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164686",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-9",
+      "audioText": "CSN3109, when able, state your situation.\n[Inform the controller that your engines and control surfaces are working normally, but the outer windshield is cracked.]",
+      "audioTextZh": "南方3109，可以的时候，陈述你的情况。\n[告知管制员，飞机发动机和操纵面正常，但是外侧风挡玻璃出现裂纹。]",
+      "referenceText": "Our engines and control surfaces are working normally, but the outer windshield is cracked, CSN3109.",
+      "referenceTextZh": "飞机发动机和操纵面正常，但是外侧风挡玻璃出现裂纹， 南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9634854afa6b9b75a09.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164687",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-10",
+      "audioText": "CSN3109, report persons on board and confirm whether you need medical services upon arrival.\n[Inform Beijing Approach that you have 275 passengers on board and there is no injury report, so no medical assistance is required.]",
+      "audioTextZh": "南方3019，报告机上人数，证实着陆后是否需要医疗救援。\n[告诉管制员，机上有275名乘客，无人受伤，不需要医疗救援。]",
+      "referenceText": "We have 275 passengers on board and there is no injury report, no medical assistance is required, CSN3109.",
+      "referenceTextZh": "我们机上有275名乘客，无人受伤，不需要医疗救援，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d0e4a98977552ba0955.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164688",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-11",
+      "audioText": "CSN3109, continue approach and contact Tower on 118.6.",
+      "audioTextZh": "南方3109，继续进近，联系塔台118.6。",
+      "referenceText": "Continue approach and contact Tower on 118.6, CSN3109.\n注：此处答案可省略为：Continue approach and 118.6, CSN3109.",
+      "referenceTextZh": "继续进近，联系塔台118.6，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b6a18d8f658a95190fda.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164689",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-12",
+      "audioText": "CSN3109, wind 310, 5m/s, runway 36R, cleared to land.",
+      "audioTextZh": "南方3109，风310度，5米每秒，跑道36右，可以落地。",
+      "referenceText": "Cleared to land, runway 36R, CSN3109.",
+      "referenceTextZh": "可以落地，跑道36右，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/94195f24c2313aefca3a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164690",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-13",
+      "audioText": "CSN3109, vacate runway via W6.",
+      "audioTextZh": "南方3109，通过W6滑行道脱离。",
+      "referenceText": "Vacate runway via W6, CSN3109.",
+      "referenceTextZh": "通过W6滑行道脱离，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8d5896747fba314e0c60.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164691",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-14",
+      "audioText": "CSN3109, contact Ground on 121.8, good bye.",
+      "audioTextZh": "南方3109，联系地面121.8，再见。",
+      "referenceText": "Contact Ground on 121.8, CSN3109.\n注：此处答案可省略为：121.8, CSN3109.",
+      "referenceTextZh": "联系地面121.8，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e4f843520c46b68de2fc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164692",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-15",
+      "audioText": "[You find an Airbus 320 block the taxiway W6 ahead, you now want to change taxiway to E6, call Beijing Ground.]",
+      "audioTextZh": "[你发现前方W6滑行道被一架A320挡住，你现在想更换至E6滑行道，呼叫北京地面。]",
+      "referenceText": "Beijing Ground, CSN3109, an Airbus 320 is blocking the taxiway W6 ahead, request change to taxiway E6.",
+      "referenceTextZh": "北京地面，南方3109，前方W6滑行道被一架A320挡住，请求更换至E6滑行道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b9089e62c1b8f3ef1946.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164693",
+      "taskTitle": "2-CSN3109 [冰雹，颠簸]-16",
+      "audioText": "CSN3109, change to taxiway E6 approved, taxi with caution due the taxiway is slippery.",
+      "audioTextZh": "南方3109，可以更换至E6滑行道，跑道湿滑，谨慎滑行。",
+      "referenceText": "Taxiway E6 approved, thanks, CSN3109.\n注：题干中的change to taxiway E6 approved属许可，需要复诵。",
+      "referenceTextZh": "可以E6滑行道。谢谢，南方3109。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/206d31e706c9e96d3543.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

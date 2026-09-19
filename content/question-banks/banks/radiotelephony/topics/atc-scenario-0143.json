@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0143",
   "name": "CCA 725 起落架问题 积冰/防冰 乘客医疗",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "收到，谢谢，CCA 725。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-041-cca725-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

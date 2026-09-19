@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0030",
   "name": "中断起飞",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "V1 is the takeoff decision speed. The crew must make the stop-or-go decision before reaching it, and the first stopping action for a rejected takeoff must begin by V1 to remain within the calculated accelerate-stop distance. After passing V1, the crew normally continues the takeoff and deals with the problem after becoming airborne.",
       "referenceTextZh": "V1 是起飞决断速度。机组必须在达到该速度前作出停或走的决定；若要在计算的加速停止距离内完成中断起飞，第一个停车动作必须最迟在 V1 开始。越过 V1 后，机组通常继续起飞，并在离地后处置问题。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

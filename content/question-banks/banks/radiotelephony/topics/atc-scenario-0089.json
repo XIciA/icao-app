@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0089",
   "name": "CES 556 醉客不理性乱秩序 氧气面罩 灭火器",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "武汉进近，CES 556，问题旅客已被妥善约束，请求离开等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1549.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

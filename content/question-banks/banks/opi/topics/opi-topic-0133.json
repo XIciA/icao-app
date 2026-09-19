@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0133",
   "name": "飞行中失火",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "The crew should maintain control of the aircraft and follow the applicable engine-fire checklist. The affected engine should be shut down and isolated, and the fire-extinguishing system should be used as directed by the checklist. The crew should declare the emergency, coordinate with ATC, and prepare to land at a suitable airport and evacuate if necessary.",
       "referenceTextZh": "机组应保持飞机控制，并执行适用的发动机失火检查单。应关停并隔离受影响的发动机，并按照检查单指示使用灭火系统。机组应宣布紧急状态，与空中交通管制协调，并准备在合适的机场着陆，必要时实施撤离。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

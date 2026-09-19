@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-003",
   "name": "夜间跑道起飞",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-003.jpg",
-      "imageAlt": "夜间跑道起飞航空场景图片"
+      "imageAlt": "夜间跑道起飞航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-003-q01",
@@ -35,5 +35,6 @@
       "referenceText": "Approach lights and runway-end identifier lights help pilots find and align with the runway. Threshold, edge, centerline, and touchdown-zone lights show the runway's position and usable landing area. Runway-end lights and visual glide-slope indicators provide additional guidance during landing, while edge and centerline lights also support takeoff.",
       "referenceTextZh": "进近灯和跑道入口识别灯帮助飞行员找到跑道并与跑道对正。入口灯、边灯、中线灯和接地区灯显示跑道位置及可用着陆区域。跑道末端灯和目视下滑指示器在着陆时提供进一步引导，而边灯和中线灯也为起飞提供支持。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

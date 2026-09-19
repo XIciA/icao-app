@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0022",
   "name": "发动机滑油",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "Engine idle is a low-power state with minimal fuel supply and low rotational speed. It is normally used during ground taxi, after landing during the rollout, and before shutdown, while still providing basic power for aircraft systems.",
       "referenceTextZh": "发动机慢车是一种燃油供应很少、转速较低的低功率状态。通常用于地面滑行、着陆后的滑跑阶段和关车前，同时仍为飞机系统提供基本动力。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

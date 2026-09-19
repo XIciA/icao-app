@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0011",
   "name": "SIA 323 地面车堵塞 左发EGT超温",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "左转，直飞 LKO，预期跑道 36R ILS 进近，SIA 323。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/196.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

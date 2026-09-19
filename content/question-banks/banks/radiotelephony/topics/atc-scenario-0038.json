@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0038",
   "name": "UAL 219 中度晴空颠簸",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉塔台，UAL 219，跑道 04 向台。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/661.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

@@ -1,8 +1,8 @@
 {
   "id": "atc-ual",
   "name": "UAL",
-  "declaredTopicCount": 19,
-  "declaredCardCount": 313,
+  "declaredTopicCount": 32,
+  "declaredCardCount": 540,
   "topicIds": [
     "atc-scenario-0033",
     "atc-scenario-0034",
@@ -22,6 +22,19 @@
     "atc-scenario-0173",
     "atc-scenario-0174",
     "atc-scenario-0175",
-    "atc-scenario-0176"
+    "atc-scenario-0176",
+    "atc-fzy-1055",
+    "atc-fzy-1381",
+    "atc-fzy-1516",
+    "atc-fzy-1517",
+    "atc-fzy-600",
+    "atc-fzy-620",
+    "atc-fzy-621",
+    "atc-fzy-622",
+    "atc-fzy-638",
+    "atc-fzy-643",
+    "atc-fzy-753",
+    "atc-fzy-788",
+    "atc-fzy-908"
   ]
 }

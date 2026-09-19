@@ -1,0 +1,127 @@
+{
+  "id": "atc-fzy-1713",
+  "name": "BAW931 [乘客重病，让路，发动机起火]",
+  "declaredCardCount": 13,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-225602",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-1",
+      "audioText": "1N: You are BAW931, at stand 709, with information L, request ATC clearance to London.",
+      "audioTextZh": "你是英航931，在709号机位，收到通播Lima，请求飞往伦敦的管制许可。",
+      "referenceText": "Wuhan delivery, BAW931, information L received, stand 709, request ATC clearance to London.",
+      "referenceTextZh": "武汉放行，英航931，收到通播Lima，709号机位，请求飞往伦敦的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f355e3e283b9d5c74efb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225603",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-2",
+      "audioText": "2C: Clear to London, via flight planned route. ZF05D departure, initially climb to 1500 m, cruising level 10,700 m, runway in use 18L, after departure, contact 124.7, squawk 4503.",
+      "audioTextZh": "可以经由计划航路飞往伦敦，ZF05D离场，初始高度1500米，巡航高度10700米，跑道18左，离场后联系124.7，应答机4503。",
+      "referenceText": "Clear to London via flight planned route. ZF05D departure, initially climb to 1500 m, cruising level 10,700 m. runway in use 18L, after departure, contact 124.7, squawk 4503, BAW931.",
+      "referenceTextZh": "可以经由计划航路飞往伦敦，ZF05D离场，初始高度1500米，巡航高度10700米，跑道18左，离场后联系124.7，应答机4503，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2ce1d8907d4e8e5cff8d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225604",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-3",
+      "audioText": "3N: Now you are ready for push-back and start up, contact ground.",
+      "audioTextZh": "现在你准备好推出开车了，联系地面。",
+      "referenceText": "Wuhan Ground, BAW931, request push back and start up.",
+      "referenceTextZh": "武汉地面，英航931，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5b65fa86e67167cb6511.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225605",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-4",
+      "audioText": "4C: BAW931, Push back and start up approved, facing north.",
+      "audioTextZh": "英航931，可以推出开车，朝北。",
+      "referenceText": "Push back and start up approved, facing north. BAW931.",
+      "referenceTextZh": "可以推出开车，朝北，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/04f19dfa0a55721e8a50.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225606",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-5",
+      "audioText": "5N: Now you have a problem. One of your passenger is seriously ill. You inform ATC and request to disembark the passenger. You have to delay the push-back due to disembarking the passenger.",
+      "audioTextZh": "N：你现在遇到了一个问题，一名乘客病得很重，告知管制员，请求让这名乘客下飞机。由于乘客要下飞机，所以你推迟推出。",
+      "referenceText": "Wuhan Ground, BAW931, request delay push-back and disembark an ill passenger.",
+      "referenceTextZh": "武汉地面，英航931，请求推迟推出，让生病乘客下飞机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/feb30a5d7ba1e4970e44.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225607",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-6",
+      "audioText": "6N: This time, contact your company to inform this situation. And also request medical assistance.",
+      "audioTextZh": "这次，联系你们公司，告知此情况，同时申请医疗协助。",
+      "referenceText": "Company office(此处可以是Operation office或者dispatcher), BAW931, push-back is delayed due to ill passenger, request medical assistance.",
+      "referenceTextZh": "公司，英航931，由于一名得病乘客，推迟推出，请求医疗协助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d5e1d39127d76af8064f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225608",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-7",
+      "audioText": "7N: Now, you have disembarked this passenger. Request taxi.",
+      "audioTextZh": "现在，这名乘客已经下机，请求滑行。",
+      "referenceText": "Wuhan ground, BAW931, ready to taxi.",
+      "referenceTextZh": "武汉地面，英航931，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa72318101aa2845d284.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225609",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-8",
+      "audioText": "8C: BAW931, taxi to the Holding point of runway 18L via A7, A, hold short of A5.",
+      "audioTextZh": "英航931，经由A7，A滑行道跑道18左外等待点，在A5等待。",
+      "referenceText": "Taxi to the holding point of runway 18L, via A7, A, hold short of A5, BAW931.",
+      "referenceTextZh": "经由A7，A滑行道跑道18左外等待点，在A5等待，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5f1e635fa0879c4b667b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225610",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-9",
+      "audioText": "9N: There is a B777 of your company behind you, Give way to the A320 crossing from left to right.",
+      "audioTextZh": "你后方有一架本公司的波音777，给正在从左向右穿越的空客A320让路。",
+      "referenceText": "9P: Give way to the A320, BAW931.",
+      "referenceTextZh": "给空客A320让路，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/102b7e95d0d20a1cdc5f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225611",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-10",
+      "audioText": "10C: BAW931, continue taxi after traffic is cleared, hold short of runway 18L.",
+      "audioTextZh": "英航931，冲突接触后继续滑行，在跑道18左外等待。",
+      "referenceText": "Continue taxi after traffic is cleared, hold short of runway 18L. BAW931.",
+      "referenceTextZh": "冲突接触后继续滑行，在跑道18左外等待，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/60e586e522c8c7752fcb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225612",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-11",
+      "audioText": "11C: BAW931, Line up and wait, clear for takeoff 18L, wind calm. Contact departure 124.5 after airborne.",
+      "audioTextZh": "英航931，上跑道等待，可以起飞，跑道18左，静风。离地后联系124.5。（注意，实际运行中，上跑道与起飞许可不会同时发布，这里是原题反馈，学员注意按题干要求复诵即可）",
+      "referenceText": "Line up and wait, 124.5, clear for takeoff, runway 18L, BAW931.",
+      "referenceTextZh": "上跑道等待，124.5，可以起飞，跑道18左，英航931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c1b0860f344f941a08d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225613",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-12",
+      "audioText": "12N: During take off rolling, your right engine suddenly got fire. You have to abort takeoff, contact ATC.",
+      "audioTextZh": "在滑跑期间，你右发突然着火。 你必须中断起飞，联系管制员。",
+      "referenceText": "Wuhan Tower, BAW931, abort takeoff due to right engine fire.",
+      "referenceTextZh": "武汉塔台，英航931，右发起火，中断起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/247f78b3d16cfce09aba.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225614",
+      "taskTitle": "83-BAW931 [乘客重病，让路，发动机起火]-13",
+      "audioText": "13N: The fire can not be extinguished. Inform this to ATC. Also you want to carry out evacuation, and request emergency equipment.",
+      "audioTextZh": "火无法熄灭，告知管制员此情况。同时，你想执行应急撤离，请求应急设备。",
+      "referenceText": "Wuhan Tower, BAW931, We can’t extinguish the fire, request emergency evacuation and emergency equipment.",
+      "referenceTextZh": "武汉塔台，英航931，火无法熄灭，请求应急撤离和应急设备。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f0da85d3fe29645e146.mp3"
+    }
+  ],
+  "categoryId": "atc-baw"
+}

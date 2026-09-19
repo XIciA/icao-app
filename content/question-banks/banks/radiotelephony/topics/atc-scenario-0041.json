@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0041",
   "name": "UAL 122 左发失效 重启成功",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "左转航向 170，下降至 3000 英尺，130.6，UAL 122。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/710.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

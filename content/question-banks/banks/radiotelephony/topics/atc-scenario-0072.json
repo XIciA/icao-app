@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0072",
   "name": "CSN 342 炸弹电话 复飞",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "武汉塔台，CSN 342，最低标准高度无目视，复飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1250.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

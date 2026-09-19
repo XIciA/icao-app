@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-jal",
   "id": "atc-scenario-0182",
   "name": "JAL 220 鸟击 积冰/防冰 乘客医疗",
   "declaredCardCount": 14,
@@ -130,5 +129,6 @@
       "referenceTextZh": "是的，请求在停机坪提供医疗援助，JAL 220。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-083-jal220-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-jal"
 }

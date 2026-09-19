@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0122",
   "name": "问好",
   "declaredCardCount": 6,
@@ -30,11 +29,12 @@
     },
     {
       "id": "opi-extra-140",
-      "taskTitle": "其它-问好-4",
+      "taskTitle": "Health-1",
       "audioText": "Did you sleep well last night?",
-      "audioTextZh": "你昨晚睡得好吗？",
-      "referenceText": "Yes, I slept well last night. I went to bed early so that I would have enough energy for today's test.",
-      "referenceTextZh": "是的，我昨晚睡得很好。我很早就上床休息了，以保证有足够的精力参加今天的考试。"
+      "audioTextZh": "你昨晚上睡得好吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, I did. I slept very well last night.\n\nNo, I didn't, because it's hard for me to sleep in a different place.",
+      "referenceTextZh": "嗯，我昨晚睡得挺好。\n\n不好，我换了地方就很难入睡。"
     },
     {
       "id": "opi-extra-141",
@@ -52,5 +52,6 @@
       "referenceText": "I find the interactive communication section the most difficult, especially when discussing complex emergency situations. It requires fluent expression, accurate aviation terminology, and a quick response to the examiner's questions.",
       "referenceTextZh": "我觉得互动交流部分最难，尤其是讨论复杂紧急情况时。它要求表达流利、航空术语准确，并能迅速回答考官的问题。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

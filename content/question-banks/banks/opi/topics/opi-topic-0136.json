@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0136",
   "name": "飞行操纵检查",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "In a typical multi-crew check, the pilot flying moves each control as called for and watches for free, unobstructed movement. The pilot monitoring cross-checks the corresponding control-surface or flight-control indication and confirms the result. The exact division follows the aircraft checklist and operator SOP, and both pilots stop the check if movement, direction, or indication is abnormal.",
       "referenceTextZh": "在典型的多机组检查中，操纵飞行员按口令活动每个操纵装置，并观察其是否能够自由、无阻碍地移动。监控飞行员交叉核对相应的操纵面或飞行操纵指示，并确认结果。具体分工应遵循飞机检查单和运营人的标准操作程序；如果动作、方向或指示异常，两名飞行员都应停止检查。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

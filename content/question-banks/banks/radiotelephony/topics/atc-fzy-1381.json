@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1381",
+  "name": "UAL811 [传话，积雨云]",
+  "declaredCardCount": 18,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-200662",
+      "taskTitle": "46-UAL811 [传话，积雨云]-1",
+      "audioText": "Your callsign is UAL811, from Los Angeles to Wuhan, you have received an urgency call from AFR131, AFR131 had a suspected slow depressurization, they are leaving 9800 meters for 3000 meters, please relay this message to Zhengzhou Control.",
+      "audioTextZh": "你的呼号是美联航811，从洛杉矶飞往武汉，你收到法航131的紧急呼叫，法航131疑似遭遇缓慢释压，他们正从九千八下到三千，请将这则信息转发给郑州区调。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Zhengzhou Control, UAL811, message relay from AFR131, AFR131 encountered slow decompression, they are leaving 9800 meters for 3000 meters.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，郑州区调，美联航811，转发法航131的信息，法航131遭遇缓慢释压，他们正从九千八下到三千。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2eb70b04715015178b73.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200663",
+      "taskTitle": "46-UAL811 [传话，积雨云]-2",
+      "audioText": "UAL811, roger PANPAN. Please inform AFR131 they are number one in sequence, and they have the landing priority.",
+      "audioTextZh": "美联航811，收到PANPAN，告诉法航131他们是第一个，优先着陆。",
+      "referenceText": "Roger, inform AFR131 they are number one in sequence, and they have the landing priority, UAL811.",
+      "referenceTextZh": "收到，告知法航131他们是第一个，优先着陆，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5957cc87353f2ee35d56.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200664",
+      "taskTitle": "46-UAL811 [传话，积雨云]-3",
+      "audioText": "Your weather radar shows there is a cumulonimbus ahead of you, ask Zhengzhou Control for 20 miles deviation to the right.",
+      "audioTextZh": "你的气象雷达显示前方有积雨云，向郑州区调请求右偏航20海里。",
+      "referenceText": "Zhengzhou Control, UAL811, request 20 miles deviation to the right due CBs.",
+      "referenceTextZh": "郑州区调，美联航811，由于积雨云，请求右偏航20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c134b38dafe05162bf9e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200665",
+      "taskTitle": "46-UAL811 [传话，积雨云]-4",
+      "audioText": "UAL811, 20miles deviation right of track approved, report when clear of weather.",
+      "audioTextZh": "美联航811，可以右偏航20海里，脱离天气后报。",
+      "referenceText": "20 miles deviation right of track approved, report when clear of weather. UAL811.",
+      "referenceTextZh": "可以右偏航20海里，脱离天气后报，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9ec79998831891c3c9a3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200666",
+      "taskTitle": "46-UAL811 [传话，积雨云]-5",
+      "audioText": "Tell ATC you are clear of CBs now.",
+      "audioTextZh": "告诉管制员你现在脱离积雨云。",
+      "referenceText": "Zhengzhou Control, UAL811, we are clear of CBs.",
+      "referenceTextZh": "郑州区调，美联航811，脱离积雨云。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d3523c3f28a9056e5034.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200667",
+      "taskTitle": "46-UAL811 [传话，积雨云]-6",
+      "audioText": "UAL811, resume your original route.",
+      "audioTextZh": "美联航811，回到初始航路。",
+      "referenceText": "Resume original route, UAL811.",
+      "referenceTextZh": "回到初始航路，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7acd3f81d8dfce4970e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200668",
+      "taskTitle": "46-UAL811 [传话，积雨云]-7",
+      "audioText": "You are at 10400 meters, you encountered clear air turbulence. Contact Zhengzhou Control, request climb to a higher level.",
+      "audioTextZh": "你现在在10400米，你遇到了晴空颠簸，联系郑州区调，请求上高度。",
+      "referenceText": "Zhengzhou Control, UAL811, request climb due clear air turbulence at 10400 meters.",
+      "referenceTextZh": "郑州区调，美联航811，由于10400米有晴空颠簸，请求上高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7998c77258c13fef76e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200669",
+      "taskTitle": "46-UAL811 [传话，积雨云]-8",
+      "audioText": "UAL811, climb to and maintain 11000 meters.",
+      "audioTextZh": "美联航811，上一万一保持。",
+      "referenceText": "Climb to and maintain 11000 meters, UAL811.",
+      "referenceTextZh": "上一万一保持，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/952b824109e6efe5256c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200670",
+      "taskTitle": "46-UAL811 [传话，积雨云]-9",
+      "audioText": "UAL811, reduce speed to mach decimal 72.\nAdvise Zhengzhou Control mach decimal 72 is not acceptable, it is too slow for your aircraft.",
+      "audioTextZh": "美联航811，速度降到马赫数点七二。\n告知郑州区调，马赫数点七二不可用，对你飞机来说太慢了。",
+      "referenceText": "Negative, unable mach decimal 72, it is too slow for my aircraft, UAL811.",
+      "referenceTextZh": "不可以，不能马赫数点七二，这对我们飞机来说太慢了，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e54123422188934df09b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200671",
+      "taskTitle": "46-UAL811 [传话，积雨云]-10",
+      "audioText": "UAL811, maintain mach decimal 75, we are limiting the number of aircraft entering Wuhan Control area due radar failure.",
+      "audioTextZh": "美联航811，保持马赫数点七五，由于雷达失效，我们正在限制进入武汉区调的飞机数量。",
+      "referenceText": "Roger, maintain mach decimal 75, UAL811.",
+      "referenceTextZh": "收到，保持马赫数点七五，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6268352583196ffe7c69.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200672",
+      "taskTitle": "46-UAL811 [传话，积雨云]-11",
+      "audioText": "UAL811, what is your estimated time over OBLIK?\nAdvise Zhengzhou Control, your estimated time for OBLIK is 1020Z.",
+      "audioTextZh": "美联航811，你预计过OBLIK的时间是多少？\n告知郑州区调，你预计过OBLIK的时间是10点20分。",
+      "referenceText": "Our estimated time over OBLIK is 1020Z, UAL811.",
+      "referenceTextZh": "计过OBLIK的时间是10点20分，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f0b18e5a846f6daa7ae.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200673",
+      "taskTitle": "46-UAL811 [传话，积雨云]-12",
+      "audioText": "UAL811, roger, reach OBLIK earlier than 1020.",
+      "audioTextZh": "美联航811，收到，10点20分前过OBLIK。",
+      "referenceText": "Reach OBLIK earlier than 1020, UAL811.",
+      "referenceTextZh": "10点20分前过OBLIK，美联航。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/efbd370b5f1c9d41f315.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200674",
+      "taskTitle": "46-UAL811 [传话，积雨云]-13",
+      "audioText": "You are over OBLIK at time 1015, maintaining 11000 meters, you are estimating ZF at 1030. Your next waypoint is WUH, make a standard position report to Wuhan Control.",
+      "audioTextZh": "你在10点15分过OBLIK，高度保持在一万一，预计过ZF时间10点30分，下一航路点WUH，向武汉区调做标准的位置报。",
+      "referenceText": "Wuhan Control, UAL811, over OBLIK at 1015, maintaining 11000 meters, estimating ZF at 1030, next waypoint WUH.",
+      "referenceTextZh": "武汉区调，美联航811，10点15分过OBLIK，高度保持在一万一，预计过ZF时间10点30分，下一航路点WUH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8c2682c71c216000dd4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200675",
+      "taskTitle": "46-UAL811 [传话，积雨云]-14",
+      "audioText": "UAL811, Wuhan Control, maintain 11000 meters, and report at WUH.",
+      "audioTextZh": "美联航811，武汉区调，保持在一万一，过WUH报。",
+      "referenceText": "Maintain 11000 meters, wilco, UAL811.",
+      "referenceTextZh": "保持在一万一，照办，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b9260a1e0d6b8a2bb056.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200676",
+      "taskTitle": "46-UAL811 [传话，积雨云]-15",
+      "audioText": "UAL811, for identification, reset squawk 4573.",
+      "audioTextZh": "美联航811，应答机重新设置为4573进行识别。",
+      "referenceText": "Reset squawk 4573, UAL811.",
+      "referenceTextZh": "应答机重新设置为4573，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4208f96b17b6b26a5232.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200677",
+      "taskTitle": "46-UAL811 [传话，积雨云]-16",
+      "audioText": "Now you are at 5100 meters, ATIS M is received, contact Wuhan Approach.",
+      "audioTextZh": "你现在在五千一，收到通播M，联系武汉进近。",
+      "referenceText": "Wuhan Approach, UAL811, 5100 meters, with information M.",
+      "referenceTextZh": "武汉进近，美联航811，五千一，通播M。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/558421e02f8f700bd5cd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200678",
+      "taskTitle": "46-UAL811 [传话，积雨云]-17",
+      "audioText": "UAL811, Wuhan Approach, expedite descent until passing 4500 meters.",
+      "audioTextZh": "美联航811，武汉进近，加速下降直到过四千五。",
+      "referenceText": "Expedite descent until passing 4500 meters, UAL811.",
+      "referenceTextZh": "加速下降直到过四千五，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/45f8809d1dfae1bf2728.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200679",
+      "taskTitle": "46-UAL811 [传话，积雨云]-18",
+      "audioText": "UAL811, turn right heading 240, intercept 030 radial BKM VOR.",
+      "audioTextZh": "美联航811，右转航向240，切BKM VOR 030径向线。",
+      "referenceText": "Turn right heading 240, intercept 030 radial BKM VOR, UAL811.",
+      "referenceTextZh": "右转航向240，切BKM VOR 030径向线，美联航811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/11c20e9f4e4332c59ad3.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

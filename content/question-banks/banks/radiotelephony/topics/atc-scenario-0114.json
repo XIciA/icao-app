@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0114",
   "name": "CSN 3102 雷暴绕飞 积冰/防冰 乘客医疗",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "广州塔台，CSN 3102，医疗服务是否已在登机口准备好？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

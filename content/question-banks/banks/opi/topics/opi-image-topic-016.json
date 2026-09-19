@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-016",
   "name": "跑道发动机火警",
   "declaredCardCount": 5,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-016.jpg",
-      "imageAlt": "跑道发动机火警航空场景图片"
+      "imageAlt": "跑道发动机火警航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-016-q01",
@@ -43,5 +43,6 @@
       "referenceText": "If the fire warning occurred before the takeoff decision speed and the aircraft could stop safely, I would reject the takeoff in accordance with the procedure. At or after the decision speed, I would continue the takeoff, maintain control, climb safely, and then complete the engine-fire memory actions and checklist. I would declare an emergency and arrange the earliest safe landing, treating a continuing fire as an immediate threat.",
       "referenceTextZh": "如果火警出现在起飞决断速度之前，且飞机能够安全停下，我会按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，控制好飞机并安全爬升，然后完成发动机火警记忆项目和检查单。我会宣布紧急状态并安排尽早安全着陆，把持续燃烧的火情视为直接威胁。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

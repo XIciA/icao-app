@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-860",
+  "name": "AFR941 [右发失效]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153135",
+      "taskTitle": "40-AFR941 [右发失效]-1",
+      "audioText": "Your call sign is AFR941, you are descending through 3900m for 3600m. Contact Wuhan Approach.",
+      "audioTextZh": "你的呼号是法航941，你现在正经3900米下降到3600米，联系武汉进近。",
+      "referenceText": "Wuhan Approach, AFR941, leaving 3900m for 3600m.",
+      "referenceTextZh": "武汉进近，法航941，正离开3900米下降到3600米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6bd6517c7384eb44961f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153136",
+      "taskTitle": "40-AFR941 [右发失效]-2",
+      "audioText": "AFR941, Wuhan Approach, radar identified, information E is current, descend to and maintain 3000m on QNH 1004.",
+      "audioTextZh": "法航941，武汉进近，雷达识别了，当前通播为E，下到3000米保持，修正海压1004。",
+      "referenceText": "Information E received, descending and maintaining 3000m on QNH 1004, AFR941.",
+      "referenceTextZh": "收到通播E，下到3000米保持，修正海压1004，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4bf1d113368aac364780.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153137",
+      "taskTitle": "40-AFR941 [右发失效]-3",
+      "audioText": "AFR941, descend and maintain 2400m, reduced to minimum clean speed.\nRead back the instruction and tell the controller that the clean configuration speed of your aircraft is 200 knots.",
+      "audioTextZh": "法航941，下到2400米保持，减小到最小光洁速度。\n[复诵指令，并告知管制员，你飞机的最小光洁速度是200节。]",
+      "referenceText": "Descending and maintaining 2400m, reduce to minimum clean speed 200 knots. AFR941.",
+      "referenceTextZh": "下到2400米保持，减小至最小光洁速度200节，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b19f307f8b6c14c3e848.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153138",
+      "taskTitle": "40-AFR941 [右发失效]-4",
+      "audioText": "AFR941, turn right heading 300. You are No.3, 25 miles from touch-down.",
+      "audioTextZh": "法航941，右转航向300，你是第三个，离接地点25海里。",
+      "referenceText": "Right heading 300, No. 3, AFR941.",
+      "referenceTextZh": "右转航向300，第三个，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0f860ef19be531630068.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153139",
+      "taskTitle": "40-AFR941 [右发失效]-5",
+      "audioText": "AFR941, turn left proceed direct DA, descend to and maintain 2100m.",
+      "audioTextZh": "法航941，左转直飞DA，下到2100米保持。",
+      "referenceText": "Turn left direct to DA, descend to and maintain 2100m, AFR941.",
+      "referenceTextZh": "左转直飞DA，下到2100米保持，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3e5f777186447626f6c4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153140",
+      "taskTitle": "40-AFR941 [右发失效]-6",
+      "audioText": "AFR941, hold at DA as published.",
+      "audioTextZh": "法航941，按照发布的程序在DA等待。",
+      "referenceText": "Holding at DA as published, AFR941.",
+      "referenceTextZh": "按照发布的程序在DA等待，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ca403db7ee751657a31.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153141",
+      "taskTitle": "40-AFR941 [右发失效]-7",
+      "audioText": "AFR941, they’re having a runway inspection at the moment, expect to delay more than 15 mins.\nRead back the ATC instruction and report that you are entering the hold.",
+      "audioTextZh": "法航941，他们目前正在进行跑道检查，预计延误超过15分钟。\n[复诵管制指令，并报告你正在进入等待。]",
+      "referenceText": "More than15 mins delay, entering the hold. AFR941.",
+      "referenceTextZh": "延误超过15分钟，正进入等待，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2e28115fc5c73c9deda4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153142",
+      "taskTitle": "40-AFR941 [右发失效]-8",
+      "audioText": "The EGT of your starboard engine is fluctuating, state this situation to the controller. Ask to leave the holding pattern right away.",
+      "audioTextZh": "你右侧发动机的排气温度不稳定，告知管制员此情况。请求立刻离开等待航线。",
+      "referenceText": "Wuhan Approach, AFR941. The EGT of the right engine is fluctuating, request to leave the holding pattern right away,",
+      "referenceTextZh": "武汉进近，法航941，右侧发动机的排气温度不稳定，请求立刻离开等待航线。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5af1c7cffc53b30d70d1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153143",
+      "taskTitle": "40-AFR941 [右发失效]-9",
+      "audioText": "AFR941, roger, standby, continue your hold, we are changing the landing sequence, expect to call you in 2min.\nThe oil pressure of your starboard engine is rapidly decreasing, state this situation to the controller, request immediate exit and request descent.",
+      "audioTextZh": "法航941，收到，稍等，继续等待，我们正在更改着陆顺序，预计2分钟后呼叫你。\n[你右侧发动机的油压正快速下降，将情况告知管制员，请求立刻离开等待，并请求下降。]",
+      "referenceText": "Wuhan Approach, AFR941, the oil pressure of the right engine is rapidly decreasing, request immediate exit and descent.",
+      "referenceTextZh": "武汉进近，法航941，右侧发动机的油压正快速下降，请求立刻离开等待，并请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9861f2d06b65cb43ee2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153144",
+      "taskTitle": "40-AFR941 [右发失效]-10",
+      "audioText": "AFR941, standby, traffic at your 3 o’clock position is maintaining 1800m crossing from your right to left, report visual.\nTell the controller you have seen the conflicting aircraft.",
+      "audioTextZh": "法航941，稍等，你3点钟位置有航空器，高度1800米，正从你的右侧向左侧穿越，看到后报。\n[告诉管制员，你已经看到冲突航空器了。]",
+      "referenceText": "Traffic in sight. AFR941.",
+      "referenceTextZh": "看到航空器了，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2ff674d06e01ffb226ef.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153145",
+      "taskTitle": "40-AFR941 [右发失效]-11",
+      "audioText": "Your starboard engine has failed, make an urgency call and ask for landing priority.",
+      "audioTextZh": "你右侧的发动机失效了，做紧急呼叫，请求优先着陆。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Approach, AFR941, our starboard engine has failed, request priority landing.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉进近，法航941，右侧的发动机失效了，请求优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/51a7c5964bc85d12b3bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153146",
+      "taskTitle": "40-AFR941 [右发失效]-12",
+      "audioText": "AFR941, roger PAN. Turn left heading 060, descend to 900m, cleared ILS approach runway 36L.",
+      "audioTextZh": "法航941，收到PAN。左转航向060，下降到900米，可以ILS进近，跑道36左。",
+      "referenceText": "Left heading 060, descending to 900m, cleared ILS approach runway 36L, AFR941.",
+      "referenceTextZh": "左转航向060，下降到900米，可以ILS进近，跑道36左，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/791f3cb707998989d9de.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153147",
+      "taskTitle": "40-AFR941 [右发失效]-13",
+      "audioText": "AFR941, contact Wuhan Tower, frequency 124.35, good bye.",
+      "audioTextZh": "法航941，联系武汉塔台，频率124.35，再见。",
+      "referenceText": "124.35, AFR941.",
+      "referenceTextZh": "124.35，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b46b5ce4f30aed10140.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153148",
+      "taskTitle": "40-AFR941 [右发失效]-14",
+      "audioText": "Your heading is 060 and your altitude is 900m, contact Wuhan Tower and tell him about the condition of your aircraft.",
+      "audioTextZh": "你的航向是060，高度是900米，联系武汉塔台，告知他你飞机的情况。",
+      "referenceText": "Wuhan tower, AFR941. Heading 060, altitude 900m, our starboard engine has failed.",
+      "referenceTextZh": "武汉塔台，法航941，航向060，高度900米，我们的右侧发动机失效了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/86318b98ccf7d095269d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153149",
+      "taskTitle": "40-AFR941 [右发失效]-15",
+      "audioText": "AFR941, roger, maintain present heading.",
+      "audioTextZh": "法航941，收到，保持当前航向。",
+      "referenceText": "Maintaining present heading. AFR941.",
+      "referenceTextZh": "保持当前航向，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/720d9ae2164666924d25.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153150",
+      "taskTitle": "40-AFR941 [右发失效]-16",
+      "audioText": "AFR941, turn left heading 030 to intercept the localizer for runway 36L.",
+      "audioTextZh": "法航941，左转航向030，截获跑道36左的航向道。",
+      "referenceText": "Left heading 030 to intercept the localizer for runway 36L, AFR941.",
+      "referenceTextZh": "左转航向030，截获跑道36左的航向道，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70dc3d3f95970ca80862.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153151",
+      "taskTitle": "40-AFR941 [右发失效]-17",
+      "audioText": "Report you have established localizer runway 36L.",
+      "audioTextZh": "报告你已经建立跑道36左的航向道。",
+      "referenceText": "Wuhan Tower, AFR941, localizer established, runway 36L.",
+      "referenceTextZh": "武汉塔台，法航941，已经建立跑道36左的航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6cebe5c6babfee0d3eeb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153152",
+      "taskTitle": "40-AFR941 [右发失效]-18",
+      "audioText": "AFR941, cleared to land.",
+      "audioTextZh": "法航941，可以落地。",
+      "referenceText": "Cleared to land, runway 36L, AFR941.",
+      "referenceTextZh": "可以落地，跑道36左，法航941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/558b127291cdb9366f02.mp3"
+    }
+  ],
+  "categoryId": "atc-afr"
+}

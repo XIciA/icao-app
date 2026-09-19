@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-klm",
   "id": "atc-scenario-0183",
   "name": "KLM 88 积冰/防冰 TCAS机动 复飞",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "塔台，KLM 88，跑道湿滑，我们滑出 Runway 18L，请求拖车和客梯车。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-klm"
 }

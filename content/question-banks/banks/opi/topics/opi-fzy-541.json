@@ -1,0 +1,341 @@
+{
+  "id": "opi-fzy-541",
+  "name": "Topic on Aircraft and Systems",
+  "declaredCardCount": 37,
+  "cards": [
+    {
+      "id": "opi-fzy-109884",
+      "taskTitle": "Topic on Aircraft and Systems-1",
+      "audioText": "What was the aircraft you first flew?",
+      "audioTextZh": "你第一次驾驶的飞机是什么型号？",
+      "studyTier": 0,
+      "referenceText": "The aircraft I first flew was C172, which was made in the US. It’s a four-seat, single-engine, high-wing and fixed-wing aircraft. The cruising altitude of C172 is usually below 3000 meters. In C172, there’s no pressurization system and air conditioning system, and its slow speed is good for pilots to enjoy the beautiful sceneries while flying. I flew C172 for about 120 hours. My flying experience with C172 was very interesting and memorable.",
+      "referenceTextZh": "我第一次驾驶的是塞斯纳172型飞机，产自美国。塞斯纳172是一款四座位单引擎上单翼固定翼飞机。其巡航高度通常在3000米以下，机舱内无增压系统和空气调节系统。另外，塞斯纳172的飞行速度较慢，适合飞行员欣赏途中的风景。我驾驶C172大约120小时，这些飞行经历既有趣又难忘。"
+    },
+    {
+      "id": "opi-fzy-109885",
+      "taskTitle": "Topic on Aircraft and Systems-2",
+      "audioText": "What type of aircraft do you fly now? What other types have you flown?",
+      "audioTextZh": "你现在飞什么机型？你还飞过其它机型么？",
+      "studyTier": 0,
+      "referenceText": "I fly A320 of Airbus family now, and I have flown Y-5, a single propeller aircraft, and MD82. They are conventional aircraft. The flight management and navigation systems are out of date, but the maneuverability of MD82 is excellent.",
+      "referenceTextZh": "我现在飞空客A320系列，之前飞过单螺旋桨的Y-5系列和MD82型飞机，它们都是传统型号的飞机。虽然飞行管理系统和导航系统都已过时，但MD82的机动性能仍很出色。"
+    },
+    {
+      "id": "opi-fzy-109886",
+      "taskTitle": "Topic on Aircraft and Systems-3",
+      "audioText": "What are the main types of aircraft in your fleet?",
+      "audioTextZh": "你们机队的主要机型有哪些？",
+      "studyTier": 0,
+      "referenceText": "Our fleet consists of more than one hundred Airbuses, more than seventy Boeings and some other aircraft like MD, CRJ, and ERJ.",
+      "referenceTextZh": "我们机队有100余架空客飞机，70余架波音型飞机，以及MD、 CRJ、ERJ型飞机。"
+    },
+    {
+      "id": "opi-fzy-109887",
+      "taskTitle": "Topic on Aircraft and Systems-4",
+      "audioText": "Can you say something about the A320?",
+      "audioTextZh": "你能介绍下A320型飞机吗？",
+      "studyTier": 0,
+      "referenceText": "A320 is a short to medium range aircraft with two powerful turbofan engines. It has a single aisle and its maximum seating capacity is 158. A320 has fly-by-wire and is easy to control. It has advanced flight management system and greatly reduces the work load of pilot.\n\nI don't fly Airbus aircraft so I'm not familiar with it, but I know Airbus is highly computerized. So, in abnormal situation, it can solve most of the problems automatically. It is fly-by-wire, which can reduce pilots’ workload. Also in Airbus aircraft, the traditional control column has been replaced by side-sticks, thus\ngiving pilots more space in the cockpit.",
+      "referenceTextZh": "A320系列是一款单通道双发中短程飞机，舱内设158个座位。A320操作便捷，采用电传操控系统。其先进的飞行管理系统，大幅减轻了飞行员的工作负荷。\n\n我没飞过空客系列，所以我不了解A320，但我知道空客飞机是高度计算机化产品。遇到异常情况时，它可以自动解决大部分的问题。A320采用电传操纵，减轻了飞行员的工作负荷。另外，空客飞机采用侧置的操纵杆代替传统驾驶盘，为飞\n行员提供了更多的座舱空间。"
+    },
+    {
+      "id": "opi-fzy-109888",
+      "taskTitle": "Topic on Aircraft and Systems-5",
+      "audioText": "What type of aircraft did you fly in your flight school?",
+      "audioTextZh": "在飞行学院时你飞过什么型号的飞机？",
+      "studyTier": 0,
+      "referenceText": "I flew TB-20 and PA-42 in my flight school. TB-20 is light, single engine, pistonpowered aircraft designed in the late 1970s. It has a variable pitch propeller, and it's the first of this class in Europe at that time. The Piper PA-42 Cheyenne is a turboprop aircraft built by Piper Aircraft. The PA-42 Cheyennes are developed from the earlier PA-31T Cheyennes I and II.",
+      "referenceTextZh": "我在飞行学院飞过TB-20和 PA-42。TB-20是一款小型单引擎活塞式飞机，设计于20世纪70年代。它配备了可变螺距螺旋桨，是当时欧洲同级别飞机中的翘楚。派珀PA-42系列是由派珀公司研发的涡轮螺旋桨飞机。派珀PA-42夏衍是在早期的PA-31T夏衍I和PA-31T夏衍II的基础上设计研发的。"
+    },
+    {
+      "id": "opi-fzy-109891",
+      "taskTitle": "Topic on Aircraft and Systems-6",
+      "audioText": "What are some advantages of Airbus compared to Boeing?",
+      "audioTextZh": "和波音系列相比，空中客车系列有哪些优点？",
+      "studyTier": 0,
+      "referenceText": "Airbus is much more efficient and economical to operate than Boeing. Besides, Airbus pays more attention to the introduction of advanced technology to improve aircraft performance. For example, it was the first time to introduce digital fly-by-wire controls into an airliner, which facilitated the aircraft operation greatly.\n\nAirbus is highly computerized. In abnormal situation, it can solve most problems automatically, but Boeing usually shows problems on warning display and pilots will have to do checklists and solve problems by themselves. Also in Airbus aircraft, the traditional control column has been replaced by side-sticks. Thus, pilots have more space in the cockpit than in Boeing aircraft.",
+      "referenceTextZh": "相比于波音系列，空客系列操作起来更加高效经济。另外，空客公司更加注重引进先进技术，提高飞机性能。例如，空客公司是首个使用数字电传操纵飞行控制系统的公司，极大地方便了飞机的操作。\n\n空客飞机高度计算机化。遇到异常情况时，它可以自行解决大部分问题，而波音系列通常是在警告指示上显示，飞行员必须按照检查单自行解决问题。另外，空客系列已经采用侧置的操纵杆代替传统驾驶盘。飞行员在座舱内的活动空间比波音系列大。"
+    },
+    {
+      "id": "opi-fzy-109895",
+      "taskTitle": "Topic on Aircraft and Systems-7",
+      "audioText": "What is the spoiler and what is its function?",
+      "audioTextZh": "扰流板是什么？它有什么功能？",
+      "studyTier": 0,
+      "referenceText": "The spoiler is a device hinged on the upper surface of an airplane wing to break up the airflow around an aerodynamic surface, decrease lift and provide bank or descent control.",
+      "referenceTextZh": "扰流板位于机翼上表面，用来阻断机翼气动面的气流，减少升力，提供坡度或控制下降。"
+    },
+    {
+      "id": "opi-fzy-109896",
+      "taskTitle": "Topic on Aircraft and Systems-8",
+      "audioText": "What's the function of the air conditioning system and what would you do if you experienced air conditioning system malfunction in flight?",
+      "audioTextZh": "空气调节系统的功能是什么？飞行中如果遇到空气调节系统失灵怎么办？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, the air conditioning system is applied to heat and cool the cabin and cockpit to desired temperature settings. If I encountered air conditioning\nmalfunction in flight, I would first do trouble shooting according to the SOPs, and if it’s hard to solve the problem, I will descend to a low altitude to assure safety and request to land at the neatest airport as soon as possible.",
+      "referenceTextZh": "据我所知，空气调节系统用于加热或冷却客舱和座舱温度到所需温度值。若飞行中空气调节系统失灵，首先我会按照操作程序进行故障排查，如不能解决问题，我会操控飞机较低高度以确保安全，并迅速向最近的机场发送降落请求。"
+    },
+    {
+      "id": "opi-fzy-109898",
+      "taskTitle": "Topic on Aircraft and Systems-9",
+      "audioText": "Where do airplanes get their electrical supply?",
+      "audioTextZh": "飞机在哪里充电？",
+      "studyTier": 0,
+      "referenceText": "Engines are the main devices that supply electrical power to the aircraft, besides, the ground power and APU can supply power to the aircraft.",
+      "referenceTextZh": "发动机是为飞机提供电能的主要装置，此外地面电源和APU（辅助动力装置）也可以为飞机提供电能。"
+    },
+    {
+      "id": "opi-fzy-109899",
+      "taskTitle": "Topic on Aircraft and Systems-10",
+      "audioText": "What if the electrical system malfunctions in flight?",
+      "audioTextZh": "飞行中电气系统发生故障应如何应对？",
+      "studyTier": 0,
+      "referenceText": "First I will do some immediate action such as reset alternator/ generator by turning their switches or circuit breakers off, then on again. If problem persists, I will turn alternator/generator off, start conserve battery power and request priority landing at the nearest airport.",
+      "referenceTextZh": "首先我会立即采取一些行动，如通过重启开关或关闭断路器来重置发电机。如果问题仍未解决，我会关闭发电机，节省电量，并请求优先降落在最近的机场。"
+    },
+    {
+      "id": "opi-fzy-109900",
+      "taskTitle": "Topic on Aircraft and Systems-11",
+      "audioText": "Can you briefly say something about the wind shear warning system?",
+      "audioTextZh": "你能否简单地介绍下飞机上的风切变预警系统？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, Boeing and Airbus are equipped with two kinds of aircraft wind shear systems, predictive wind shear (PWS) and reactive wind shear systems (RWS). Comparatively speaking, the alerting time of PWS is much longer than that of the RWS.",
+      "referenceTextZh": "据我所知，波音和空客飞机都配备了两种风切变系统，分别是预测性风切变系统（PWS）和反应式切变系统（RWS）。相比而言，预测性风切变系统的报警时间比反应式风切变系统要长。"
+    },
+    {
+      "id": "opi-fzy-109901",
+      "taskTitle": "Topic on Aircraft and Systems-12",
+      "audioText": "Is the phraseology important to the radio communication for pilots? Why?",
+      "audioTextZh": "飞行员在无线电通讯中使用术语是否重要？",
+      "studyTier": 0,
+      "referenceText": "Yes. Radio phraseologe is critical, it can avoid the misunderstanding in the communication between pilots and controllers. Proper phraseology enhances safety and is also the performance of a professional pilot.",
+      "referenceTextZh": "是的，无线电术语非常关键，可以避免飞行员与管制员通信中的误解。使用标准术语可提高安全性，也是专业飞行员的表现。"
+    },
+    {
+      "id": "opi-fzy-109902",
+      "taskTitle": "Topic on Aircraft and Systems-13",
+      "audioText": "In what situations may the radio communication failure happen?",
+      "audioTextZh": "在何种情况下会发生无线电通信故障？",
+      "studyTier": 0,
+      "referenceText": "Although the complete loss of communication is an extremely rare event due to duplication of equipment in modern aircraft, there are still situations which contribute to full or partial communication breakdown, such as airborne or ground radio equipment malfunction, radio interference, stuck microphone selector, English language skills below the required level, etc. So pilots and controllers should be well prepared to manage it.",
+      "referenceTextZh": "由于现代飞机上安装了双套通信设备，无线电通信完全故障极其罕见，但仍存在导致通信完全或部分故障的情况，如机载或地面无线电设备故障、无线电干扰、麦克风故障，以及英语能力不达标等。因此飞行员和管制员应为无线电通讯故障做好充足的准备。"
+    },
+    {
+      "id": "opi-fzy-109903",
+      "taskTitle": "Topic on Aircraft and Systems-14",
+      "audioText": "How should you perform when the radio communication failure happens?",
+      "audioTextZh": "无线电通信故障发生时你应如何应对？",
+      "studyTier": 0,
+      "referenceText": "First I will try to contact ATC on 121.5MHz, if it doesn't work, I will squawk 7600 and continue the route last assigned by ATC. If I can receive ATC instruction but I can’t transmit out, I will squawk ident to confirm the instructions.",
+      "referenceTextZh": "首先我会尝试通过调频121.5和ATC联系，若无法联系，我会把应答机拨到7600编码并按照ATC上一指令继续航程。若可以收到ATC的指令但无法回复，我会按下通讯窗口的【IDENT】键以确认指令。"
+    },
+    {
+      "id": "opi-fzy-109904",
+      "taskTitle": "Topic on Aircraft and Systems-15",
+      "audioText": "Do you know some incidents caused by the radio communication failure? If yes, can you tell me one of them?",
+      "audioTextZh": "你知道一些由无线电通信故障引发的事故吗？如果知道，能否告诉我其中一件？",
+      "studyTier": 0,
+      "referenceText": "Yes. Although I have never encountered the situation by myself, I heard about some. For example, in 2012, an airplane flown by Spanish carrier Vueling from Malaga to Amsterdam lost radio contact with ATC, as soon as the plane landed at Schiphol airport, it was surrounded by security forces and a negotiator was sent to talk to the crew. After speaking to the captain the negotiator was certain there were no hijackers on the plane. The Netherlands intercepted it with two fighter planes and then sent security forces to surround it at Amsterdam airport in a hijack scare caused by a loss of radio contact.",
+      "referenceTextZh": "知道。我未亲身经历过，但听说过。例如，2012年，西班牙伏林航空公司运营的一架从马拉加飞往阿姆斯特丹的飞机和ATC失去了联系，飞机降落在史基浦机场上时，安全部队立刻包围了飞机，一名谈判代表被指派前往和机组人员交涉。谈判代表和机长交涉后确认机上没有劫持者。荷兰空管因无法与该飞机进行无线电通信，怀疑其被劫持，因而派出两架战斗机拦截了这架飞机，并派遣安全部队在阿姆斯特丹机场包围了它。"
+    },
+    {
+      "id": "opi-fzy-109905",
+      "taskTitle": "Topic on Aircraft and Systems-16",
+      "audioText": "What do you know about the navigation aids in aircraft?",
+      "audioTextZh": "你对飞机上的导航系统了解多少？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, aircraft are installed with several navigation aids, for instance, automatic direction finder (ADF), inertial navigation, compasses, radar navigation, VHF omnidirectional range (VOR) and global navigation satellite system (GNSS).",
+      "referenceTextZh": "据我所知，飞机上安装了多种导航系统，例如，自动测向仪（ADF）、惯性导航、罗盘、雷达导航、全向导航（VOR）和全球导航卫星系统（GNSS）。"
+    },
+    {
+      "id": "opi-fzy-109906",
+      "taskTitle": "Topic on Aircraft and Systems-17",
+      "audioText": "Will an aircraft totally lose navigation aids?",
+      "audioTextZh": "飞机的导航系统会完全失效吗？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, total navigation aids failure of aircraft will never happen, since there are several independently navigation operating instruments, pilots can generally get some sort of directions. The plane has its magnetic compass and hopefully gyro compass as well, and pilots also can look through windows to look for landmarks during low level flight, so normally an aircraft won't totally lose navigation aids.",
+      "referenceTextZh": "据我所知，飞机导航系统不会完全失效，因为飞机上有几个独立的导航操控仪器，飞行员大体上可以辨别出方向。飞机上有磁罗盘及陀螺仪，并且在较低高度飞行时，飞行员可以窗外寻找路标，所以飞机一般不会完全失去导航系统。"
+    },
+    {
+      "id": "opi-fzy-109907",
+      "taskTitle": "Topic on Aircraft and Systems-18",
+      "audioText": "What will you do if you find your navigation system is inaccurate during flight? Have you heard such malfunction that caused an incident?",
+      "audioTextZh": "如果发现导航系统不准确，你会怎样做？你知道这一故障引起的事故吗？",
+      "studyTier": 0,
+      "referenceText": "I will ask for ATC assistance to confirm my current position and heading, then I will disengage autopilot and change to manual control, meanwhile I will request direct route for quick landing. I've heard such accident before, which was Adam Air Flight 574 in 2007. The pilots lost control of the aircraft after they became preoccupied with troubleshooting the inertial navigation system and inadvertently disconnected the autopilot. In this accident, the aircraft crashed with all 102 people on board died.",
+      "referenceTextZh": "我会请ATC协助确认当前位置和航向，之后我会解除自动驾驶状态，手动操纵飞机，同时我会请求较短航线尽快着陆。我曾听过这种事故，2007年发生在亚当航空574号航班上。飞行员专注于处理机上惯性导航系统故障，无意解除了自动驾驶系统，无法控制飞机。这次事故中，这架飞机坠毁，机上全部102名人员遇难。"
+    },
+    {
+      "id": "opi-fzy-109908",
+      "taskTitle": "Topic on Aircraft and Systems-19",
+      "audioText": "Can you tell me something about the lighting systems in the airport?",
+      "audioTextZh": "你能否介绍一下机场照明系统？",
+      "studyTier": 0,
+      "referenceText": "In an airport, there are various kinds of lighting systems, like the approach and landing lighting systems, including Precision Approach Path Indicator (PAPI) lights and Visual Approach Slope Indicator System (VASIS) lights. Also, there are runway lighting systems, such as runway centerline lighting systems, runway\nedge lighting systems and so on. Moreover, some taxiways even have automatic lighting systems. They are used to help aircraft landing at night, in heavy rain, fog or some other poor visibility condition. The intensity of the runway lighting systems can be adjusted to help pilots see the runway better, and the lights on\nthe runways and taxiways serve to guide pilots to make ground movement when necessary.",
+      "referenceTextZh": "机场内有多种照明系统，如进场着陆照明系统，包括精密进近航道指示器（PAPI）和目视进近下滑道指示系统（VASIS）。机场还有跑道照明系统，如跑道中心线照明系统、跑道边缘照明系统等。此外，部分滑行道甚至有自动照明系统。这些照明系统用于帮助飞机在夜间、雨天、雾天等能见度低的情况下着陆。跑道照明系统的强度可以调节，以帮助飞行员更好地观察跑道，跑道和滑行道上的照明灯用于指导飞行员在必要时进行地面活动。"
+    },
+    {
+      "id": "opi-fzy-109909",
+      "taskTitle": "Topic on Aircraft and Systems-20",
+      "audioText": "Do you want to fly any new type of aircraft such as B787 or A380?",
+      "audioTextZh": "你想驾驶新型飞机吗，如波音787或空客A380？",
+      "studyTier": 0,
+      "referenceText": "B787 is the dreamliner, and A380 is the biggest passenger aircraft in the world. The feeling of flying that kind of aircraft will be different. So, it would be great to have a chance to fly the big aircraft.",
+      "referenceTextZh": "波音787是梦幻客机，A380是世界上载客量最大的飞机。驾驶这些飞机会有不同的感觉。所以如果有机会能飞大飞机肯定很不错。"
+    },
+    {
+      "id": "opi-fzy-109910",
+      "taskTitle": "Topic on Aircraft and Systems-21",
+      "audioText": "Do you prefer flying two-engine or four-engine aircraft? Why?",
+      "audioTextZh": "你喜欢驾驶双发飞机还是四发飞机？为什么？",
+      "studyTier": 0,
+      "referenceText": "In consideration of safety, I don't know which to choose, because both of them are designed to be very safe, even though a few of them had some accidents because of abnormal situations. While in view of comfort, I prefer two-engine aircraft, since they produce less noise and are more comfortable for passengers.",
+      "referenceTextZh": "考虑到安全性，我不知道如何选择，因为两种飞机设计得都很安全。虽然其中一些机型因非正常情况出过事故。若考虑舒适性，我更喜欢双发飞机，因为其噪音小，更舒适。"
+    },
+    {
+      "id": "opi-fzy-109911",
+      "taskTitle": "Topic on Aircraft and Systems-22",
+      "audioText": "What is the most significant difference between RNAV and RNP?",
+      "audioTextZh": "RNAV和RNP有哪些主要不同点？",
+      "studyTier": 0,
+      "referenceText": "RNAV (regional area navigation) relies on ground navigation equipment, which cannot provide accurate navigation and requires radar monitoring. Therefore, RNAV is often used in large airports with ground navigation facilities. RNP (required navigation) relies on GNSS, whose onboard equipment must be capable of monitoring and alerting, does not require radar monitoring, and can operate in mountainous or highland airports where ground equipment is lacking.",
+      "referenceTextZh": "RNAV（区域导航）依赖于地面导航设备，不能提供精确导航，需要雷达监控，因此常应用于地面导航设施齐备的大型机场；RNP（所需导航性能）依赖于GNSS（全球导航卫星系统），其机载设备必须具备监视和告警的性能，不需要雷达监控，可以在缺乏地面设备的山区或高原机场运行。"
+    },
+    {
+      "id": "opi-fzy-109913",
+      "taskTitle": "Topic on Aircraft and Systems-24",
+      "audioText": "Are there wind shear detection radar system deployed at airplanes?",
+      "audioTextZh": "飞机上是否有风切变探测系统？",
+      "studyTier": 0,
+      "referenceText": "Yes. In the predictive wind shear detection mode, the weather radar processor of the aircraft detects the presence of the microburst. To complement the reactive wind shear system and provide an early warning of potential wind shear activity, some weather radars feature the capability to detect wind shear areas ahead of\nthe aircraft.",
+      "referenceTextZh": "有。预测风切变检测模式下，机上的天气雷达处理器检测出是否存在微爆流。为了弥补反应性风切变系统的不足，并提供潜在风切变活动预警，一些天气雷达具有检测飞机前方是否有风切变区域的能力。"
+    },
+    {
+      "id": "opi-fzy-109914",
+      "taskTitle": "Topic on Aircraft and Systems-25",
+      "audioText": "How does the wind shear warning system work?",
+      "audioTextZh": "风切变预警系统如何工作？",
+      "studyTier": 0,
+      "referenceText": "The wind shear warning system is initiated whenever the energy level of aircraft falls below a predetermined threshold. The airborne wind shear detection and alert system, fitted in an aircraft, detects and alerts the pilot both visually and aurally of a wind shear condition. In reactive wind shear detection system, the detection takes place when the aircraft penetrates a wind shear condition of sufficient force, which can pose a hazard to the aircraft. While in predictive wind shear detection system, the detection takes place, if such wind shear condition is ahead of the aircraft.",
+      "referenceTextZh": "飞机的能量水平低于预定阈值时，风切变预警系统将会启动。风切变探测和预警系统安装在飞机内部，为飞行员在视觉和听觉上提供风切变警告。反应性风切变预警系统在飞机进入强力风切变区域时发出警告，这可能对飞机造成危害。而预测性风切变预警系统在飞机前方出现风切变状况就会进行预警。"
+    },
+    {
+      "id": "opi-fzy-109915",
+      "taskTitle": "Topic on Aircraft and Systems-26",
+      "audioText": "Can you tell me something about the components of electric system in an aircraft?",
+      "audioTextZh": "你能介绍下机上电气系统组件吗？",
+      "studyTier": 0,
+      "referenceText": "Yes. Aircraft are installed with either a 14 or 28 volt direct-current electrical system, and normally aircraft electric system consists of the following parts: generator, battery, battery switch, bus bar, fuses, and circuit breakers, voltage regulator, load meter, associated electrical wiring, etc.",
+      "referenceTextZh": "好的。飞机安装有14或28伏直流电气系统。通常飞机电气系统由以下部件组成：发电机、电池、电池开关、汇流条、保险丝、断路器、稳压器、测力计和关联电线等。"
+    },
+    {
+      "id": "opi-fzy-109916",
+      "taskTitle": "Topic on Aircraft and Systems-27",
+      "audioText": "How does the electric system work in aircraft?",
+      "audioTextZh": "飞机上的电气系统如何工作？",
+      "studyTier": 0,
+      "referenceText": "An aircraft electrical system is a self contained network of components that generate, transmit, distribute, utilize and store electrical energy. It can be turned on or off with a battery switch which controls the electrical power to aircraft in a way similar to the master switch. Turning the battery switch to “ON” position can provide electrical energy to all the electrical facilities circuits except the ignition system.",
+      "referenceTextZh": "飞机的电气系统是由产生、传输、分配、利用和存储电能的部件组成的封闭网络。它由一电池开关控制，以类似于主开关的方式掌控飞机的电力。将电池开关转到“ON”位置可以向除点火系统外的所有电气设备电路提供电能。"
+    },
+    {
+      "id": "opi-fzy-109917",
+      "taskTitle": "Topic on Aircraft and Systems-28",
+      "audioText": "What if the electrical system malfunctions?",
+      "audioTextZh": "如果电气系统出现故障该怎样做？",
+      "studyTier": 0,
+      "referenceText": "Electrical failure is not very common but does happen every now and then. Usually a blown fuse or circuit breaker popping indicating a temporarily overload on that device or circuit. If it’s circuit breaker tripped, resolve it as the way that nonessential circuit breakers are not to be reset in flight, but essential circuit breakers are to be reset. If it’s inverter inoperative, select the other inverter.",
+      "referenceTextZh": "电气系统故障虽不常见但偶尔发生。通常，保险丝熔断或断路器弹出，代表该设备或电路临时超载。若断路器跳闸，不用重置副断路器，但要重置主断路器。若换流器失效，可以选择另一台换流器。"
+    },
+    {
+      "id": "opi-fzy-109919",
+      "taskTitle": "Topic on Aircraft and Systems-29",
+      "audioText": "What's the function of hydraulic system?",
+      "audioTextZh": "液压系统的作用是什么？",
+      "studyTier": 0,
+      "referenceText": "Hydraulic system is one of the core systems in the aircraft, it’s used to provide hydraulic power to operate many aircraft units such as landing gears, nose wheel steering, brakes and flight control surfaces.",
+      "referenceTextZh": "液压系统是飞机中的核心系统之一，它用于给飞机上的许多系统如起落架系统、前轮转弯系统、刹车系统以及飞行操纵面提供液压以完成操纵。"
+    },
+    {
+      "id": "opi-fzy-140768",
+      "taskTitle": "Topic on Aircraft and Systems-30",
+      "audioText": "What does EFIS stand for? What is the use of EFIS?",
+      "audioTextZh": "EFIS代表的意思是什么？EFIS的作用是什么？",
+      "studyTier": 0,
+      "referenceText": "EFIS stands for electronic flight instrument system. It consists of PFD and MFD. PFD shows primary flight data, such as altitude, heading, attitude, airspeed, vertical speed and yaw. MFD is used to display navigation information, weather information, flight plan and other important information. All the data are displayed on EFIS vividly and accurately. It helps to reduce our workload, improve situation awareness, and enhance flight safety.",
+      "referenceTextZh": "EFIS代表电子飞行仪表系统，它由主要飞行显示器（PFD）和多功能飞行显示器（MFD）组成。PFD显示主要飞行数据，例如高度、航向、姿态、速度、垂直速度、转弯；MFD用来显示导航信息、天气信息、飞行计划以及其他重要信息。所有这些信息都生动准确地显示在EFIS上，EFIS有助于减轻工作负荷，提高情景意识，增强飞行安全。"
+    },
+    {
+      "id": "opi-fzy-140769",
+      "taskTitle": "Topic on Aircraft and Systems-31",
+      "audioText": "What are the differences between traditional cockpits and modern cockpits?",
+      "audioTextZh": "传统驾驶舱和现代驾驶舱有什么不同？",
+      "studyTier": 0,
+      "referenceText": "Traditional cockpits use analog instrument to show flight information, such as ADI (Attitude Direction Indicator), HSI (Horizontal Situation Indicator), ASI (Airspeed Indicator), and so on. These analog instruments are more reliable, they can be used even in case of electrical failure. However, each indicator only shows one single flight data, so it may cost more time for pilots to monitor the instrument. Modern cockpits are equipped with digital displays like PFD and MFD. Various important flight information can be shown in a single display. It can save the time of scanning instrument for flight information and thus greatly reduce pilots workload.",
+      "referenceTextZh": "传统驾驶舱使用模拟仪表指示飞行数据，例如ADI（姿态指引仪），HSI（水平状态指示器），ASI（空速表）等。传统仪表更可靠，即便电力故障也依然可用，但每块指示器仅显示单个飞行数据，可能需要消耗更多时间监视仪表。现代驾驶舱装有数字显示例如PFD和MFD。各类重要的飞行数据都可以显示在单块仪表上，有助于节省使用仪表查看信息的时间，减轻飞行员的工作负荷。"
+    },
+    {
+      "id": "opi-fzy-140770",
+      "taskTitle": "Topic on Aircraft and Systems-32",
+      "audioText": "Can you tell me something about flight control surfaces?",
+      "audioTextZh": "能否介绍一下飞行操纵面？",
+      "studyTier": 0,
+      "referenceText": "Generally, flight control surfaces can be divided into primary flight control surfaces and secondary flight control surfaces. The primary flight control surfaces include rudders, elevators and ailerons. The secondary flight control surfaces include flaps, slats, trim tabs, spoilers and so on.",
+      "referenceTextZh": "飞行操纵面包括主飞行操纵面和辅助飞行操纵面。主飞行操纵面包括方向舵、升降舵和副翼。辅助飞行操纵面包括襟翼、缝翼、配平调整片、扰流板等。"
+    },
+    {
+      "id": "opi-fzy-140771",
+      "taskTitle": "Topic on Aircraft and Systems-33",
+      "audioText": "What are positions and functions of flight control surfaces?",
+      "audioTextZh": "飞行操纵面位于哪里？作用是什么？",
+      "studyTier": 0,
+      "referenceText": "Ailerons are located on each wing and used to control the rolling of aircraft. The rudder is located at the trailing edge of the vertical stabilizer and controls the nose yaw to the left and right. The elevator situated on the trailing edge of the horizontal stabilizer controls the pitch.",
+      "referenceTextZh": "副翼位于机翼上，用来控制飞机滚转。方向舵位于垂直安定面后缘，控制机头左右偏转。升降舵位于水平安定面后缘，控制飞机俯仰。"
+    },
+    {
+      "id": "opi-fzy-140772",
+      "taskTitle": "Topic on Aircraft and Systems-34",
+      "audioText": "What are possible reasons that may cause the aircraft out of control?",
+      "audioTextZh": "飞机失控的原因有哪些？",
+      "studyTier": 0,
+      "referenceText": "There are many reasons for the aircraft out of control, such as flight control system failure, hydraulic system failure, engine failure, stall, structural damage, and adverse weather like clear air turbulence, micro-burst, wind shear and icing.",
+      "referenceTextZh": "导致飞机失控的原因有很多，比如飞行操纵失效、液压失效、发动机失效、失速、飞机结构损伤，以及恶劣天气像晴空颠簸、微下击暴流、风切变和积冰。"
+    },
+    {
+      "id": "opi-fzy-140773",
+      "taskTitle": "Topic on Aircraft and Systems-35",
+      "audioText": "What are the flight control limitations of your aircraft?",
+      "audioTextZh": "你所飞机型的飞行操纵限制有哪些？",
+      "studyTier": 0,
+      "referenceText": "I fly C172 now. As far as I know, the stall speed of C172 is 47 knots, the maximum airspeed of C172 is 163 knots, and the service ceiling of C172 is 4100 meters.",
+      "referenceTextZh": "我现在飞塞斯纳172型飞机。据我所知，塞斯纳172的失速速度是47节，最大空速限制是163节，实用升限是4100米。"
+    },
+    {
+      "id": "opi-fzy-140774",
+      "taskTitle": "Topic on Aircraft and Systems-36",
+      "audioText": "What do you know about oxygen system in an aircraft?",
+      "audioTextZh": "你对氧气系统了解多少？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, the oxygen system on most commercial aircraft consist of the flight crew oxygen system, the passenger oxygen system, and portable oxygen cylinders. If the cabin pressurization system failed and the cabin altitude was above a safe level, oxygen masks will drop down in front of the passenger automatically. Portable oxygen cylinders can be used for first aid.",
+      "referenceTextZh": "据我所知，大多数客机上的氧气系统都包括机组氧气系统，旅客氧气系统，和便携式氧气瓶。一旦座舱增压系统失效，座舱高度高于安全高度，旅客氧气面罩会自动脱落。便携式氧气瓶可用作急救。"
+    },
+    {
+      "id": "opi-fzy-140775",
+      "taskTitle": "Topic on Aircraft and Systems-37",
+      "audioText": "What are the methods to communicate with ATC during flight?",
+      "audioTextZh": "飞行中与管制通信的方法有哪些？",
+      "studyTier": 0,
+      "referenceText": "The most common communication system in use today is the VHF system. In addition to VHF equipment, large aircraft are usually equipped with HF communication systems and CPDLC (Controller-Pilot Data Link\nCommunications).",
+      "referenceTextZh": "当今应用最广泛的通信系统是甚高频（VHF）系统。除了VHF以外，大型飞机通常还装有高频通信（HF）系统和管制员—飞行员数据链通信（CPDLC）。"
+    },
+    {
+      "id": "opi-fzy-153467",
+      "taskTitle": "Topic on Aircraft and Systems-45",
+      "audioText": "What are the differences between passenger flight and cargo flight?",
+      "audioTextZh": "客航与货航有什么区别？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, there are some differences between passenger flight and cargo flight. First, for passenger flight, it transports passengers and luggage to their destination; while for cargo flight, it only transports cargo. Second, there are many doors and emergency exits on a passenger flight aircraft, while, there are less doors on a cargo flight aircraft, instead, the doors on the cargo flight aircraft are relatively larger and wider.",
+      "referenceTextZh": "据我所知，货机和客机存在一些区别。首先，对于客航来说，它是将乘客和货物运送到目的地；而对于货航来，它只运输货物，第二，在客航飞机上，有很多的舱门和紧急出口，然而，在货航飞机上，就没有这么多的舱门，相反，货航飞机上的舱门相对更大更宽。"
+    }
+  ],
+  "categoryId": "opi-category-06"
+}

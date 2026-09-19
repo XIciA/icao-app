@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0146",
   "name": "局方检查",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "CAAC conducts ramp inspections to support flight safety and regulatory compliance. Inspectors verify documents and licenses, look for visible aircraft defects, and check that required safety equipment is available and serviceable. The inspection can identify unsafe practices or violations before departure.",
       "referenceTextZh": "中国民航局通过停机坪检查保障飞行安全和规章符合性。监察员会核实文件和执照，查看飞机是否存在可见缺陷，并检查规定的安全设备是否齐全且状态良好。检查可以在起飞前发现不安全做法或违规行为。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

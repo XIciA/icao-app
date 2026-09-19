@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0001",
   "name": "雷击",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "An aircraft is most likely to be struck by lightning during climb, descent, or holding rather than at normal cruise altitude. These phases often take it through active cloud layers at lower altitudes. The risk is greatest near thunderstorms and at levels where the temperature is close to freezing.",
       "referenceTextZh": "飞机在爬升、下降或等待阶段比在正常巡航高度更容易遭到雷击，因为这些阶段常会穿过较低高度的活跃云层。雷暴附近以及温度接近冰点的高度层风险最大。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-1689",
+  "name": "JAL503 [气球，火山爆发]",
+  "declaredCardCount": 17,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224648",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-1",
+      "audioText": "N: [Your callsign is JAL503, from Wuhan to Tokyo. You have completed the pushback procedure and your aircraft is on taxiway Z4. Call Wuhan Ground and get the approval to run the engine.]",
+      "audioTextZh": "N：【你的呼号是日航503，从武汉飞往东京。你已经完成推出程序，你的飞机现在在滑行道Z4上，联系武汉地面，申请开车。】",
+      "referenceText": "Wuhan Ground, JAL503 on taxiway Z4, from Wuhan to Tokyo, request engine start-up.",
+      "referenceTextZh": "武汉地面，日航503，在滑行道Z4上，从武汉飞往东京，请求开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d7b228c67d27f67abb19.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224649",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-2",
+      "audioText": "C: JAL503, start up approved.",
+      "audioTextZh": "C：日航503，可以开车。",
+      "referenceText": "Start up approved, JAL503.",
+      "referenceTextZh": "可以开车，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b9a9e517737b38fd73bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224650",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-3",
+      "audioText": "N: [During engine startup, the engine starter has malfunctioned. Tell Wuhan Ground your situation and an extended delay for maintenance inspection.]",
+      "audioTextZh": "N：【在开车过程中，发动机启动器故障，将此情况告知管制员，航班将延长延误时间以进行机务检查。】",
+      "referenceText": "Wuhan Ground, JAL503, we have a malfunction with our engine starter, expect an extended delay for maintenance inspection.",
+      "referenceTextZh": "武汉地面，日航503，我们的发动机启动器故障，预计延长延误时间进行机务检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e6aa1b1f07a321d60051.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224651",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-4",
+      "audioText": "C: JAl503, I cannot have you occupy Z4 for extended periods, advise you tow your aircraft back to the gate.\nN: [Tell ATC you will comply and will ask for maintenance to tow your aircraft back to the Gate 237.]",
+      "audioTextZh": "C：日航503，我不能让你继续占据滑行道Z4，建议将你的飞机推回机位。\nN：【告诉管制员你将照办，将请求机务人员将你的飞机拖回机坪237。】",
+      "referenceText": "Wilco, we will arrange for maintenance to tow us back to Gate 237, JAL503.",
+      "referenceTextZh": "将照办，我们将安排机务把我们的飞机拖回237机位，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d9fe7e1ca22f6617c813.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224652",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-5",
+      "audioText": "C: JAL503, that Gate is now occupied, tell maintenance to tow your aircraft to 239.",
+      "audioTextZh": "C：日航503，该机位已被占用，告诉机务把你拖到239机位。",
+      "referenceText": "Roger, gate 239, JAL503.",
+      "referenceTextZh": "收到，239机位，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19d59e4a7b8fd49a0940.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224653",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-6",
+      "audioText": "N: [After the replacement of the engine starter and maintenance release completed, you have finished startup and arrived at holding point of runway 36R. You want to ask for takeoff clearance. Call Wuhan Tower.]",
+      "audioTextZh": "N：【在更换发动机启动器并完成维护检查后，您已完成开车，并抵达跑道36右等待点。您想要请求起飞许可。请呼叫武汉塔台。】",
+      "referenceText": "Wuhan Tower, JAL503, holding point runway 36R, request departure.",
+      "referenceTextZh": "武汉塔台，日航503，跑到36右外等待点，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/82a3e40eabcba1c0905a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224654",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-7",
+      "audioText": "C: JAL503, standby, runway 36R in the process of snow removal. Hold at present position.",
+      "audioTextZh": "C：日航503，稍等，跑道36右正在进行除雪。原地等待。",
+      "referenceText": "standby, hold at present position, JAL503.",
+      "referenceTextZh": "稍等，原地等待，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/05eccfd5ea8b0d01c71d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224655",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-8",
+      "audioText": "N: [You are airborne and maintaining runway heading, passing 300m, climbing to 1800m. Make an initial contact with Wuhan Departure.]",
+      "audioTextZh": "N：【你起飞了，保持跑道航向，过300米，正上到1800米，与武汉离场建立初始联系。】",
+      "referenceText": "Wuhan Departure, JAL503 airborne, maintaining runway heading, passing 300m climbing to 1800m.",
+      "referenceTextZh": "武汉离场，日航503，起飞了，保持跑道航向，过300米，正上到1800米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/90c4ac084a693b228d44.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224656",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-9",
+      "audioText": "C: JAL503, noise abatement procedure in effect, climb to and maintain 3300m.",
+      "audioTextZh": "C：日航503，降噪程序生效，上3300米保持。",
+      "referenceText": "Climb to and maintain 3300m, JAL503.",
+      "referenceTextZh": "上3300米保持，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/059d32c804db23cf6868.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224657",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-10",
+      "audioText": "N: [When you were over HG, a balloon was in your 12 o’clock position. You have just taken evasive actions. Report this situation to ATC.]",
+      "audioTextZh": "N：【当你过HG后，在你12点钟方向有一个气球，你执行了避让动作，将此情况告知管制员。】",
+      "referenceText": "Wuhan Departure, JAL503, over HG, we encountered a balloon at our 12 o’clock, we took evasive action.",
+      "referenceTextZh": "武汉离场，日航503，过HG，我们在12点钟方向遇到了一个气球，我们采取了避让动作。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/23e95922888bc458d5bd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224658",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-11",
+      "audioText": "C: JAL503, can you describe the balloon? Was any object clinging to the balloon?\nN: [Tell the controller it is difficult to judge the size of the balloon, it is probably a parade balloon, there isn’t any object clinging to the balloon.]",
+      "audioTextZh": "C：日航503，你能描述一下那个气球的情况吗？气球上有没有附着什么东西？\nN：【告知管制员很难判断气球的大小，它可能是游行用的气球，气球上没有附着任何物体。】",
+      "referenceText": "Difficult to judge the size, possibly a parade balloon, no objects clinging to it, JAL503.",
+      "referenceTextZh": "很难判断气球的大小，它可能是游行用的气球，气球上没有附着任何物体，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f495e62e254be633cb36.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224659",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-12",
+      "audioText": "N: [Several hours later, you are flying at FL330 in Tokyo Control, squawking 3345. Make an initial contact with Tokyo Control for further instructions.]",
+      "audioTextZh": "N：【几小时后，你现在在高度层330飞行，在东京区调管制范围内，应答机3345，与东京区调建立初始联系，请求进一步指令。】",
+      "referenceText": "Tokyo Control, JAL503 at FL330, squawk 3345 ready for further instruction.",
+      "referenceTextZh": "东京区调，日航503，高度层330，应答机3345，请求进一步指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/09d5d713abc0bb1b27ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224660",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-13",
+      "audioText": "C: JAL503, Tokyo Control, radar identified, descend to and maintain FL250, expedite passing FL330.",
+      "audioTextZh": "C：日航503，东京区调，雷达看见了，下高度层250保持，加速过高度层330。",
+      "referenceText": "Descend to and maintain FL250, expedite passing FL330, JAL503.",
+      "referenceTextZh": "下高度层250保持，加速过高度层330，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c0950bf58c27846e4bf7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224661",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-14",
+      "audioText": "N: [When approaching to FL250, the visibility is becoming very poor. At the same time, air data instruments reading are becoming inaccurate. Report your situation to Tokyo Control.]",
+      "audioTextZh": "N：【在接近高度层250时，能见度变得非常差。同时，大气数据仪表的读数也不再准确。请向东京区调报告的的情况。】",
+      "referenceText": "Tokyo Control, JAL503, experiencing poor visibility and inaccurate air data readings while approaching FL250.",
+      "referenceTextZh": "东京区调，日航503，在接近高度层250时，能见度变得非常差，大气数据仪表的读数也不再准确。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/737a2646fac2838113b2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224662",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-15",
+      "audioText": "C: JAL503, a new SIGMET issued indicate a volcano eruption. You may have entered vocalic ash band, turn left heading 270.\nN: [You find your engines were vibrating fiercely, flame out occurred on both engines and your aircraft was descending in order to sustain flight. You tried to restart the engines, but only the left engine has been restarted. Make a distress call and request priority landing at Osaka Kansai International Airport.]",
+      "audioTextZh": "C：日航503，新的SIGMET报表明有火山爆发。您可能进入了火山灰带，请左转航向 270。\nN：【您发现发动机抖震严重，两台发动机都熄火了，你的飞机开始下降以维持飞行。你试图重启发动机，但只有左侧发动机成功重启。做遇险通话，并请求优先降落到大阪关西国际机场。】",
+      "referenceText": "Mayday Mayday Mayday, Tokyo Control, JAL503, engines vibrating, flame out on both engines, descending for flight sustainment. Left engine restarted, request priority landing at Osaka Kansai International Airport.",
+      "referenceTextZh": "Mayday Mayday Mayday，东京区调，日航503，发动机抖震，双发熄火，下降来维持飞行，左发成功重启，请求优先降落到大阪关西国际机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5595318bfd3307d1506.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224663",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-16",
+      "audioText": "C: JAL503, roger, turn left heading 180, descend to and maintain FL150, report reaching.",
+      "audioTextZh": "C；日航503，收到，左转航向180，下高度层150保持，到达后报。",
+      "referenceText": "Turn left to 180, descend to and maintain FL150, will report reaching, JAL503.",
+      "referenceTextZh": "左转航向180，下高度层150保持，到达后报，日航503。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4f2864f91415f3e2f660.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224664",
+      "taskTitle": "76-JAL503 [气球，火山爆发]-17",
+      "audioText": "N: [You are not familiar with Osaka Kansai International Airport. Contact Osaka Approach and ask for radar guidance, you are at FL150.]",
+      "audioTextZh": "N：【你对大阪冠希机场不熟悉，联系大阪进近，请求雷达引导，你现在在高度层150。】",
+      "referenceText": "Osaka Approach, JAL503 at FL150, unfamiliar with Osaka Kansai, request radar guidance for landing.",
+      "referenceTextZh": "大阪进近，日航503，高度层150，不熟悉关西机场，请求雷达引导着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/631a418b68f100cc0133.mp3"
+    }
+  ],
+  "categoryId": "atc-jal"
+}

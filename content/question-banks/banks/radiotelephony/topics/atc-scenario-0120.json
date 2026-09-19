@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0120",
   "name": "AFR 101 发动机失效 积冰/防冰 TCAS机动",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "可以04跑道落地，AFR 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-016-afr101-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

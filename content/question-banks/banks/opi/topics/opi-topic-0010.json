@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0010",
   "name": "危险品运输",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "Before departure, we review the notification to the captain to confirm the dangerous goods, their location, and any special handling information. If an incident occurs, we identify the item from that information and follow the aircraft checklist and the dangerous-goods emergency response guidance. We coordinate with the cabin crew, ATC, and company operations and land at a suitable airport as soon as the seriousness of the event requires.",
       "referenceTextZh": "离场前，我们查看机长通知单，确认危险品、存放位置和任何特殊处置信息。如果发生事件，我们会根据这些信息识别物品，并执行飞机检查单和危险品应急响应指南。我们会与客舱机组、空中交通管制和公司运行部门协调，并根据事件严重程度尽快在合适机场着陆。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

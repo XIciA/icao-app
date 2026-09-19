@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0096",
   "name": "CES 102 异响 3客受伤",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "跑道 36R 可以落地，报告脱离，CES 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1663.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

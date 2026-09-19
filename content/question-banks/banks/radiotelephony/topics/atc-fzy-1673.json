@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-1673",
+  "name": "CSN3112 [飑线，燃油紧急]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224046",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-1",
+      "audioText": "B: [Your callsign is CSN3112, a flight from Beijing to Guangzhou. The preceding aircraft reported a squall line 100 miles ahead on the weather radar. Contact Beijing Control and request turn right to circumnavigate the weather.]",
+      "audioTextZh": "B：【你的呼号是南方3112，一架从北京飞往广州的航班。前面有架报告气象雷达上显示前方100海里有飑线。联系北京区调，请求右转来绕飞天气。】",
+      "referenceText": "Beijing Control, CSN3112, the preceding aircraft reported a squall line 100 miles ahead on the weather radar, request turn right to avoid it.",
+      "referenceTextZh": "北京区调，南方3112，前面有架航班报告气象雷达上显示前方100海里有飑线，请求右转来绕飞天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/146b0a6c76e9dda2bff0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224047",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-2",
+      "audioText": "C: CSN3112, Beijing Control, negative due prohibited area, turn left 30 degrees, track out 35km, report clear of CB.",
+      "audioTextZh": "C: 南方3112，北京区调，由于禁飞区，不可以，左转30度，航迹外偏35公里，脱离积云后报。",
+      "referenceText": "Turn left 30 degrees, track out 35km, wilco, CSN3112.",
+      "referenceTextZh": "左转30度，航迹外偏35公里，照办，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5b58455503dffd5116c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224048",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-3",
+      "audioText": "B: [Now you are clear of CB and closing back to the course, contact Beijing Control.]",
+      "audioTextZh": "B: 【现在你已脱离积雨云区，正在返回原航线，联系北京区调。】",
+      "referenceText": "Beijing Control, CSN3112, clear of CB and closing back to the course.",
+      "referenceTextZh": "北京区调，南方3112，脱离积云区，正返回原航线。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e57a76eec3950dc7ea10.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224049",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-4",
+      "audioText": "C: CSN3112, the preceding aircraft reported severe turbulence of 10400m, 11000m is available, what’s your intention?\nB: [Acknowledge the transmission and tell the controller you’d like to climb to 11000m.]",
+      "audioTextZh": "C: 南方3112，前机报告在10400米有严重颠簸，11000米可用，你的意图是什么？\nB: 【收到此通话，告知管制员，你想上到11000米。】",
+      "referenceText": "Roger, request climb to 11000m, CSN3112.",
+      "referenceTextZh": "收到，请求爬升至11000米，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/60d16b85d8b8543baa3f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224050",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-5",
+      "audioText": "C: CSN3112, climb to and maintain 11000m.",
+      "audioTextZh": "C: 南方3112，上11000米保持。",
+      "referenceText": "Climb and maintain 11000m, CSN3112.",
+      "referenceTextZh": "上11000米保持，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fd035e01f430691de81d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224051",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-6",
+      "audioText": "C: CSN3112, after passing MUDAM, fly direct to ASAVA.",
+      "audioTextZh": "C：南方3112，过MUDAM后，直飞ASAVA。",
+      "referenceText": "After passing MUDAM, fly direct to ASAVA, CSN3112.",
+      "referenceTextZh": "过MUDAM后，直飞ASAVA，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/183d31ddfa076deddad8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224052",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-7",
+      "audioText": "C: CSN3112, orbit right from present position until advised of the weather ahead.",
+      "audioTextZh": "C: 南方3112，从现在位置向右盘旋等待，前方天气情况稍后告知。",
+      "referenceText": "Orbit right from present position until advised, CSN3112.",
+      "referenceTextZh": "从现在位置向右盘旋等待直到告知，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/045800fb4fc9d6555c6f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224053",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-8",
+      "audioText": "B: [After several orbits, you find you don’t have enough fuel to hold any further. Report this situation to Beijing Control.]",
+      "audioTextZh": "B：【经过多次盘旋，你发现你没有足够的燃油继续等待。将情况报告给北京区调。】",
+      "referenceText": "Beijing Control, CSN3112, we don’t have enough fuel to hold any further.",
+      "referenceTextZh": "北京区调，南方3001，我们没有足够的燃油继续等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e20948a4449912172c82.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224054",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-9",
+      "audioText": "C: CSN3112, roger, say your intention.\nB: [Tell the controller you require radar vectors to Beijing for priority landing.]",
+      "audioTextZh": "C: 南方3112，收到，说明你的意图。\nB:【告知管制员，你需要雷达引导到北京进行优先着陆。】",
+      "referenceText": "Request radar vectors to Beijing for priority landing, CSN3112.",
+      "referenceTextZh": "请求雷达引导到北京进行优先着陆，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2e0e0b41ce4a9f218d47.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224055",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-10",
+      "audioText": "C: CSN3112, turn left heading 190, fly direct to GUVBA.",
+      "audioTextZh": "C：南方3112，左转航向190，直飞GUVBA。",
+      "referenceText": "Turn left heading 190, fly direct to GUVBA, CSN3112.",
+      "referenceTextZh": "左转航向190，直飞GUVBA，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7800e8849c05edae71fc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224056",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-11",
+      "audioText": "C: CSN3112, turn left heading 150, direct to AA446, hold at AA446 as published due weather.",
+      "audioTextZh": "C: 南方3112，左转航向150，直飞AA446，由于天气，在AA446按公布程序等待。",
+      "referenceText": "Turn left heading 150, direct to AA446, hold at AA446 as published, CSN3112.",
+      "referenceTextZh": "左转航向150，直飞AA446，在AA446按公布程序等待，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/802229b92bbcadcd4fbe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224057",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-12",
+      "audioText": "B: [You have been holding at AA446 for about 30 minutes. You are reaching the minimum fuel situation. Contact Beijing Control and request leave the hold and land as soon as possible.]",
+      "audioTextZh": "B:【你已经在AA446等待了约30分钟，你进入了紧急燃油状态，联系北京区调，申请离开等待区，尽快着陆。】",
+      "referenceText": "Beijing Control, CSN3112, we have been holding at AA446 for about 30 minutes, we are reaching the minimum fuel situation. Request leave the hold and land as soon as possible.",
+      "referenceTextZh": "北京区调，南方3112，我们已经在AA446等待了约30分钟，我们进入了紧急燃油状态，申请离开等待区，尽快着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/315269914183345d0ecb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224058",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-13",
+      "audioText": "C: CSN3112, roger, leave the hold, proceed to LADIX, descend to 6000m, contact Beijing Approach on 119.35, we have informed them about your situation.",
+      "audioTextZh": "C: 南方3112，收到，离开等待区，直飞LADIX，下6000米，联系北京进近119.35，我们已经将你的情况告知他们。",
+      "referenceText": "Leave the hold, proceed to LADIX, descend to 6000m, 119.35, CSN3112.",
+      "referenceTextZh": "离开等待区，直飞LADIX，下6000米，联系北京进近119.35，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/696d40ee65a10d18108b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224059",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-14",
+      "audioText": "B: [Now you are over LADIX, maintaining 6000m, you have received information L, contact Beijing Approach.]",
+      "audioTextZh": "B：【现在你已经过LADIX，保持在6000米，你收到了最新的通播L，联系北京进近。】",
+      "referenceText": "Beijing Approach, CSN3112, over LADIX, maintaining 6000m, information L.",
+      "referenceTextZh": "北京进近，南方3112，过LADIX，正保持6000米，通播L。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7fb9bae39f83282b9c26.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224060",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-15",
+      "audioText": "C: CSN3112, Beijing Approach, radar contact, descend to 4200m, expect radar vector ILS approach runway 36R.",
+      "audioTextZh": "C：南方3112，北京进近，雷达看见了，下4200米保持，预计雷达引导盲降进近跑道36右。",
+      "referenceText": "Descend to 4200m, expect radar vector ILS approach runway 36R, CSN3112.",
+      "referenceTextZh": "下4200米保持，预计雷达引导盲降进近跑道36右，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/487286dcf47cf27e52a9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224061",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-16",
+      "audioText": "C: CSN3112, are you declaring fuel emergency?\nB: [Tell the controller that you’re declaring fuel emergency and request priority landing runway 36R.]",
+      "audioTextZh": "C: 南方3112，你需要宣布紧急情况吗？\nB：【告知管制员你将宣布燃油紧急情况，请求优先着陆跑道36右。】",
+      "referenceText": "Affirm, we are declaring fuel emergency and request priority landing runway 36R, CSN3112.",
+      "referenceTextZh": "是的，我们将宣布燃油紧急情况，请求优先着陆跑道36右，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/02801f6e300540761546.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224062",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-17",
+      "audioText": "C: CSN3112, roger, you are number one to land, cleared straight-in ILS approach runway 36R, report established.",
+      "audioTextZh": "C：南方3112，收到，你第一个落地，可以直接盲降进近跑道36右，建立后报。",
+      "referenceText": "Number one, cleared straight-in ILS approach runway 36R, wilco, CSN3112.",
+      "referenceTextZh": "第一个，可以直接盲降进近跑道36右，照办，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f6e4bbfcf7b685f06b02.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224063",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-18",
+      "audioText": "B: [Now you’ve established on ILS approach runway 36R, contact Beijing Tower.]",
+      "audioTextZh": "B:【现在你已经建立跑道36右的盲降，联系北京塔台。】",
+      "referenceText": "Beijing Tower, CSN3112, established on ILS approach runway 36R.",
+      "referenceTextZh": "北京塔台，南方3112，已经建立跑道36右的盲降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/64eee570b6d0f2716cee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224064",
+      "taskTitle": "71-CSN3112 [飑线，燃油紧急]-19",
+      "audioText": "C: CSN3112, Beijing Tower, runway 36R, cleared to land.",
+      "audioTextZh": "C：南方3112，北京塔台，跑道36右，可以落地。",
+      "referenceText": "Runway 36R, cleared to land, CSN3112.",
+      "referenceTextZh": "跑道36右，可以落地，南方3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1e0854c7b6226825c51f.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

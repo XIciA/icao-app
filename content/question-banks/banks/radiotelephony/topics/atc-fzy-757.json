@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-757",
+  "name": "ACA554 [有毒气体，货物泄漏]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-151925",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-1",
+      "audioText": "[Your call sign is ACA554, from Wuhan to Vancouver, pushback and start-up have been completed, request Wuhan Ground for taxi instructions.]",
+      "audioTextZh": "[你的呼号是加航554，从武汉飞往温哥华，已经完成推出开车，向武汉地面请求滑行指令]",
+      "referenceText": "Wuhan Ground, ACA554, pushback and start up completed, request taxi instructions.",
+      "referenceTextZh": "武汉地面，加航554，已经完成推出开车，请求滑行指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7273de4d69a365054c36.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151926",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-2",
+      "audioText": "ACA554, Wuhan Ground, taxi to holding point via A7, A, Z4, C.",
+      "audioTextZh": "加航554，武汉地面，经由滑行道A7，A，Z4，C，滑行至等待点。",
+      "referenceText": "Taxi to holding point via A7, A, Z4, C, ACA554.",
+      "referenceTextZh": "经由滑行道A7，A，Z4，C，滑行至等待点，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8c755d22f931391fdf99.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151927",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-3",
+      "audioText": "ACA554, follow the A319 on M to holding point runway 18R.",
+      "audioTextZh": "加航554，跟随着M上的A319，滑行至跑道18右等待点。",
+      "referenceText": "Follow the A319 on M to holding point runway 18R, ACA554.",
+      "referenceTextZh": "跟随着M上的A319，滑行至跑道18右等待点，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/93b6e97b2e20f03e622f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151928",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-4",
+      "audioText": "ACA554, runway 18R is closed due to disable aircraft on the runway. Change your ATC clearance to runway 18L, ZF-12D departure, the rest is unchanged.",
+      "audioTextZh": "加航554，由于故障航空器，跑道18右关闭。你的放行许可更改至跑道18左，ZF-12D离场，其余指令不变。",
+      "referenceText": "Runway 18L, ZF-12D departure, rest unchanged, ACA554.",
+      "referenceTextZh": "跑道18左，ZF-12D离场，其余未变，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/571ac0f49f1c4c29d9f9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151929",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-5",
+      "audioText": "ACA554, enter runway 18R from C, vacate runway via C4, report vacated.",
+      "audioTextZh": "加航554，由C进跑道18右，通过C4脱离跑道，脱离后报。",
+      "referenceText": "Enter runway 18R from C, vacate runway via C4, report vacated, ACA554.",
+      "referenceTextZh": "由C进跑道18右，通过C4脱离跑道，脱离后报，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0cae8d061fb8298f070a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151930",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-6",
+      "audioText": "[Now you have vacated runway 18R via C4, report to Ground.]",
+      "audioTextZh": "[你现在已经通过C4脱离跑道18右，报告给地面]",
+      "referenceText": "Wuhan Ground, ACA554, vacated runway 18R via C4.",
+      "referenceTextZh": "武汉地面，加航554，已经通过C4脱离跑道18右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2dd88418f6010eb65e9b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151931",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-7",
+      "audioText": "ACA554, continue taxi to holding point 18L via M, A, A1",
+      "audioTextZh": "加航554，继续通过M，A，A1，滑行至跑道18左等待点。",
+      "referenceText": "Continue taxi to holding point 18L via M, A, A1, ACA554.",
+      "referenceTextZh": "继续通过M，A，A1，滑行至跑道18左等待点，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5f73bfe824bdb7d61773.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151932",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-8",
+      "audioText": "[Now you are airborne, climbing to 1800m, you see a helicopter at 10 o'clock above. It is closing to your aircraft. Inform Wuhan Control and ask for a right turn to avoid the traffic.]",
+      "audioTextZh": "[你现在离地了，正爬升至1800米，你看到上方10点钟方向上有一架直升机。它正在接近你的飞机。告知武汉区调，请求右转躲避航空器]",
+      "referenceText": "Wuhan Control, ACA554, airborne, climbing to 1800m, helicopter at 10 o'clock above. It is closing to my aircraft. Request right turn to avoid the traffic.",
+      "referenceTextZh": "武汉区调，加航554，离地了，正爬升至1800米，上方10点钟方向上有一架直升机。它正在接近我的飞机。请求右转躲避航空器。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a5d83d2fd601f0edd2b9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151933",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-9",
+      "audioText": "ACA554, roger, turn right heading 240, expedite climb 2400m, maintain visual separation with the helicopter.",
+      "audioTextZh": "加航554，收到，右转航向240，加速爬升至2400米，与直升机保持目视间隔。",
+      "referenceText": "Turn right heading 240, expedite climb 2400m, maintain visual separation with the helicopter, ACA554.",
+      "referenceTextZh": "右转航向240，加速爬升至2400米，与直升机保持目视间隔，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/02d37c940d78562aeb26.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151934",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-10",
+      "audioText": "ACA554, after the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m.",
+      "audioTextZh": "加航554，与航空器解除冲突后，直飞ZF，恢复自主领航，上5100米保持。",
+      "referenceText": "After the traffic is clear, track direct to ZF resume own navigation, climb to and maintain 5100m, ACA554.",
+      "referenceTextZh": "与航空器解除冲突后，直飞ZF，恢复自主领航，上5100米保持，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bfd27c6cd7db28f18972.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151935",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-11",
+      "audioText": "[You are now at cruising level 9500m, over OBLIK, make an initial contact with Zhengzhou Control, your squawk number is 5655.]",
+      "audioTextZh": "[你现在到达巡航高度9500米，过OBLIK，与郑州区调做初始联络，你的应答机是5655]",
+      "referenceText": "Zhengzhou Control, ACA554, 9500m, over OBLIK, squawk 5655.",
+      "referenceTextZh": "郑州区调，加航554，9500米，过OBLIK，应答机5655。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ff9445ba56a3cb12a07f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151936",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-12",
+      "audioText": "ACA554, Zhengzhou Control, radar contact, climb to and maintain 10100m.",
+      "audioTextZh": "加航554，郑州区调，雷达识别，上10100米保持。",
+      "referenceText": "Climb to and maintain 10100m, ACA554.",
+      "referenceTextZh": "上10100米保持，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f1a9d38fb49b479f2dd3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151937",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-13",
+      "audioText": "[Suddenly, your cabin crew reports there are toxic fume in the rear cabin. You decide to expedite descent for smoke removal. Make a distress call to Zhengzhou Control and request to level off at 3000m.]",
+      "audioTextZh": "[突然，你的乘务员报告客舱后部出现有毒烟雾，你决定加速下降，进行除烟，向郑州区调宣布遇险，并请求在3000米改平]",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Zhengzhou Control, ACA554, toxic fume in the rear cabin, we are expediting descent for smoke removal, request level off at 3000m.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，郑州区调，加航554，客舱后部出现有毒烟雾，我们加速下降，进行除烟，请求在3000米改平。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8a66e98995f697325f36.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151938",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-14",
+      "audioText": "ACA554, roger MAYDAY, turn right heading 030, descend to 3000m, QNH1008, advise intentions when able.\n[Tell Zhengzhou Control, the toxic fume is caused by dangerous cargo leakage in cargo hold.]",
+      "audioTextZh": "加航554，收到MAYDAY，右转航向030，下降到3000米，修正海压1008，如可以，告知意图。\n[告诉郑州区调，有毒烟雾是由于货舱危险品泄露导致的]",
+      "referenceText": "Turn right heading 030, descend to 3000m, QNH1008, the toxic fume is caused by dangerous cargo leakage in cargo hold, ACA554.",
+      "referenceTextZh": "右转航向030，下降到3000米，修正海压1008，有毒烟雾是由于货舱危险品泄露导致的，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f542196741608197b515.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151939",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-15",
+      "audioText": "[Passengers have been seriously affected by the toxic fume, and become unconscious. Tell Zhengzhou Control the situation and ask for divert to Zhengzhou Airport.]",
+      "audioTextZh": "[由于有毒烟雾，乘客受到严重影响，失去意识。将情况告知郑州区调，请求改航至郑州机场]",
+      "referenceText": "Zhengzhou Control, ACA554, passengers have been seriously affected by the toxic fume, and become unconscious. Request divert to Zhengzhou Airport.",
+      "referenceTextZh": "郑州区调，加航554，由于有毒烟雾，乘客受到严重影响，失去意识。请求改航至郑州机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/55aec5b5bf0c2fd65dbd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151940",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-16",
+      "audioText": "ACA554, Zhengzhou Control, roger, turn left heading 360, contact Zhengzhou Approach 120.35.",
+      "audioTextZh": "加航554，郑州区调，收到，左转航向360，联系郑州进近120.35。",
+      "referenceText": "Turn left heading 360, contact Zhengzhou Approach 120.35, ACA554.",
+      "referenceTextZh": "左转航向360，联系郑州进近120.35，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/165ff8d1522890eb93ec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151941",
+      "taskTitle": "35-ACA554 [有毒气体，货物泄漏]-17",
+      "audioText": "ACA554, Zhengzhou Approach, radar contact, track direct to CGO, maintain 3000m, expect radar vectors for ILS runway 12.",
+      "audioTextZh": "加航554，郑州进近，雷达识别，直飞CGO，保持3000米，预计雷达引导，ILS跑道12。",
+      "referenceText": "Track direct to CGO, maintain 3000m, expect radar vectors for ILS runway 12, ACA554.",
+      "referenceTextZh": "直飞CGO，保持3000米，预计雷达引导ILS跑道12，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c4e97dc2f9205152f4f0.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

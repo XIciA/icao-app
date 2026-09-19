@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0142",
   "name": "皮托管",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "The crew should follow the applicable QRH or aircraft procedure and use other reliable instruments to maintain control. If ice is suspected, the procedure may call for pitot heat. If the problem remains unresolved, the crew should inform ATC and consider diverting for maintenance.",
       "referenceTextZh": "机组应执行适用的快速检查单或机型程序，并使用其他可靠仪表保持飞机控制。如果怀疑结冰，程序可能要求接通空速管加温。如果问题仍无法解决，机组应通知空中交通管制，并考虑备降进行维修。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

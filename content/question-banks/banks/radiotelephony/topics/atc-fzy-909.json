@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-909",
+  "name": "SIA323 [跑道入侵，发动机起火]",
+  "declaredCardCount": 18,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-164736",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-1",
+      "audioText": "[Your call sign is SIA323. Stand 217, from Wuhan to Singapore, information V. Request ATC clearance to Singapore.]",
+      "audioTextZh": "你的呼号是新航323，217号停机位，从武汉飞往新加坡，通播V，请求飞往新加坡的飞行的许可。",
+      "referenceText": "Wuhan Delivery, SIA323, stand217, information V, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航323, 217号停机位，通播V，目的地新加坡，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/05f8dfdedc6fa51dc2df.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164737",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-2",
+      "audioText": "SIA323, Wuhan Delivery, cleared to Singapore via flight planned route, LKO-02 departure, initial climb to 1500m, cruising level 9800m, runway 36R, when airborne, contact departure frequency 119.7, squawk 3652.",
+      "audioTextZh": "新航323，武汉放行，可以经由计划航路飞往新加坡，LKO-02离场，初始爬升至1500米，巡航高度9800米，跑道36右，离地后，联系离场频率119.7，应答机3652。",
+      "referenceText": "Cleared to Singapore via flight planned route, LKO-02 departure, initial climb to 1500m, cruising level 9800m, runway 36R, when airborne, contact departure frequency 119.7, squawk 3652. SIA323.",
+      "referenceTextZh": "可以经由计划航路飞往新加坡，LKO-02离场，初始爬升至1500米，巡航高度9800米，跑道36右，离地后，联系离场频率119.7，应答机3652，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fb336133764405fcea68.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164738",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-3",
+      "audioText": "[You are now ready, contact Ground to request pushback and start-up.]",
+      "audioTextZh": "现在你准备好了，联系地面，请求推出开车。",
+      "referenceText": "Wuhan Ground, SIA323, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，新航323，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dc82a693c00f6e65e55b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164739",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-4",
+      "audioText": "SIA323, Wuhan Ground, after A330 behind, pushback and start-up, facing east.",
+      "audioTextZh": "新航323，武汉地面，在A330后，推出开车，面朝东。",
+      "referenceText": "After A330 behind, pushback and start-up, facing east, SIA323.",
+      "referenceTextZh": "在A330后，推出开车，面朝东，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1f163ce7a5be389cc90.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164740",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-5",
+      "audioText": "[Now you are at holding point of runway 36R, contact Tower for takeoff clearance.]",
+      "audioTextZh": "现在你在跑道36右外等待点，联系塔台，请求起飞许可。",
+      "referenceText": "Wuhan Tower, SIA323. We are at holding point of runway 36R, request departure.",
+      "referenceTextZh": "武汉塔台，新航323，我们现在在跑道36右外等待点，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/960c20c4ba1ef743da44.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164741",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-6",
+      "audioText": "SIA323, surface wind light and variable, cleared for takeoff, runway 36R.",
+      "audioTextZh": "新航323，地面轻风，风向多变，可以起飞，跑道36右。",
+      "referenceText": "Cleared for takeoff, runway 36R, SIA323.",
+      "referenceTextZh": "可以起飞，跑道36右，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d323173cfc35baf9eae7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164742",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-7",
+      "audioText": "[During takeoff rolling, you find there is a ground vehicle crossing runway 36R. Tell ATC your decision to abort takeoff due runway incursion. ]",
+      "audioTextZh": "在起飞滑跑中，你发现一辆地面车辆正在穿越跑道36右，告诉管制员，由于跑道入侵，你决定中断起飞。",
+      "referenceText": "Wuhan Tower, SIA323, we are aborting takeoff due runway incursion, a ground vehicle is crossing runway.",
+      "referenceTextZh": "武汉塔台，新航323，由于跑道入侵，我们中断起飞了，一辆汽车正在穿越跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4b0570a80f525f012355.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164744",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-8",
+      "audioText": "SIA323, roger that, advise intentions when able.\n[Now you have vacated runway and checked everything is normal, you want to change runway 36L for departure. Tell Tower. ]",
+      "audioTextZh": "新航323，收到，可以的时候告知意图。\n现在你已经脱离跑道，检查一切正常，你想更换至跑道36左起飞，告知塔台。",
+      "referenceText": "Wuhan Tower, SIA323, everything is normal now, request change runway 36L for departure.",
+      "referenceTextZh": "武汉塔台，新航323，现在一切正常，请求更换至跑道36左起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd0f038c293ab8fba3bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164745",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-9",
+      "audioText": "SIA323, standby for your request. Can you accept intersection departure from Z4?\n[Tell tower you can not accept Z4 intersection departure because of your aircraft performance. ]",
+      "audioTextZh": "新航323，稍等，你可以接受从Z4减跑道起飞吗？\n告诉塔台，由于飞机性能，你无法接受从Z4减跑道起飞",
+      "referenceText": "Negative intersection departure due performance, SIA323.",
+      "referenceTextZh": "由于性能，无法减跑道起飞，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/215d1937dc0db0429bfc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164746",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-10",
+      "audioText": "SIA323, change runway 36L for departure.",
+      "audioTextZh": "新航323，更换至跑道36左起飞。",
+      "referenceText": "Runway 36L, SIA323.",
+      "referenceTextZh": "跑道36左，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7cf99b21d001dedb44d7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164747",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-11",
+      "audioText": "[You have departed from RWY 36L, shortly after liftoff, your starboard engine was on fire, and the EGT is very high, so you have to shut down this engine, make a distress call.]",
+      "audioTextZh": "你已经从跑道36左起飞，起飞不久后，你右侧发动机起火，排气温度非常高，因此你关闭了该发动机，做遇险通话。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY. Wuhan Tower, SIA323, right engine on fire, EGT is too high, we are shutting down the engine.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY. 武汉塔台，新航323，右侧发动机起火，排气温度过高，我们关闭了该发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ee7fd01632432e4886b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164749",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-12",
+      "audioText": "SIA323, roger MAYDAY. Say your intention.\n[Tell the Tower you want to jettison fuel and return to Wuhan airport.]",
+      "audioTextZh": "新航323，收到MAYDAY，说出你的意图。\n告诉塔台，你想放油，然后返回武汉机场。",
+      "referenceText": "Request fuel dumping and return to Wuhan airport, SIA323.",
+      "referenceTextZh": "请求放油，返回武汉机场， 新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f283932b967df775e8f4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164750",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-13",
+      "audioText": "SIA323, turn right heading 240, intercept LKO VOR 030 radial inbound, climb and maintain 3000m.",
+      "audioTextZh": "新航323，右转航向240，切LKO VOR 030向台径向线，上3000米保持。",
+      "referenceText": "Right heading 240, intercept LKO 030 radial inbound, climb and maintain 3000m, SIA323.",
+      "referenceTextZh": "右转航向240，切LKO 030径向向台，上3000米保持，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5c741d912a60be4ea90.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164751",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-14",
+      "audioText": "SIA323, after passing LKO, left heading 220, maintain 3000m.",
+      "audioTextZh": "新航323，过LKO后，左转航向220，3000米保持。",
+      "referenceText": "After passing LKO, left heading 220, maintain 3000m, SIA323.",
+      "referenceTextZh": "过LKO后，左转航向220，3000米保持，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1d273a5bf438ba4c4792.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164752",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-15",
+      "audioText": "SIA323, advise the time required for fuel jettison.\n[Tell Wuhan Approach you need approximately 18 minutes.]",
+      "audioTextZh": "新航323，告知放油所用时间。\n告诉武汉进近，你需要18分钟。",
+      "referenceText": "We need about 18 minutes for fuel dumping, SIA323.",
+      "referenceTextZh": "我们需要大约18分钟放油，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ccf4cb41fb7afcbd6ef8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164754",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-16",
+      "audioText": "[Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.]",
+      "audioTextZh": "告诉武汉进近，完成放油，请求雷达引导至跑道22。",
+      "referenceText": "Wuhan Approach, SIA323, fuel dumping completed, request radar vector for runway 22.",
+      "referenceTextZh": "武汉进近，新航323，完成放油，请求雷达引导至跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/815946447e18ab59c75c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164755",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-17",
+      "audioText": "[You are now established on ILS approach runway 22, contact Tower.]",
+      "audioTextZh": "你现在建立ILS进近，跑道22，联系塔台。",
+      "referenceText": "Wuhan Tower, SIA323, established ILS approach runway 22.",
+      "referenceTextZh": "武汉塔台，新航323，建立ILS进近，跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0741a13037b48c940248.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-164756",
+      "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-18",
+      "audioText": "SIA323, do you need any assistance upon landing?\n[inform Tower you need to order emergency evacuation after landing, request a shuttle bus to take passengers to the terminal.]",
+      "audioTextZh": "新航323，着陆后需要任何协助吗？\n告诉塔台，你需要在着陆后组织紧急撤离，请求一辆摆渡车，将乘客送至航站楼。",
+      "referenceText": "Affirm, we need to perform emergency evacuation, request shuttle bus on arrival, SIA323.",
+      "referenceTextZh": "是的，我们需要执行紧急撤离，着陆后请求摆渡车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/46fa9928f559ff4a70b0.mp3"
+    }
+  ],
+  "categoryId": "atc-sia"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0090",
   "name": "CES 232 右主起落架 通场 等待",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "在 DA 按公布程序等待，预计进一步许可时间 30，报告进入等待，CES 232。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1564.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0081",
   "name": "CSN 353 危险品卸载 浓雾",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "继续爬升至 8900 米，报告通过 6000 米，CSN 353。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1402.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0086",
   "name": "CSN 235 完全准备 强风切变",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "继续爬升至 5100 米，118.9，CSN 235。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1493.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

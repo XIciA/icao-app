@@ -1,0 +1,52 @@
+{
+  "id": "opi-fzy-855",
+  "name": "Near miss",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-fzy-855-image-1",
+      "kind": "image",
+      "taskTitle": "Near miss · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-855.png",
+      "imageAlt": "Near miss，用于本话题的看图描述和问答",
+      "studyTier": 2
+    },
+    {
+      "id": "opi-fzy-152429",
+      "taskTitle": "Near miss-1",
+      "audioText": "Can you say something from this picture?",
+      "audioTextZh": "你可以简单说说这张图片吗？",
+      "studyTier": 2,
+      "referenceText": "From this picture I can see a B747 from Lufthansa Airlines is encountering near air miss with another airplane.",
+      "referenceTextZh": "这张图片中，一架汉莎航空的波音747飞机与另一架飞机发生空中危险接近。"
+    },
+    {
+      "id": "opi-fzy-152430",
+      "taskTitle": "Near miss-2",
+      "audioText": "What equipment can be used to detect conflicting traffic during the flight?",
+      "audioTextZh": "在飞行中，可以用什么设备来探测冲突飞机？",
+      "studyTier": 1,
+      "referenceText": "I fly Airbus A320, there is TCAS equipped in my aircraft.\nWe can get the conflicting traffic information from TCAS.",
+      "referenceTextZh": "我飞的是空客A320，飞机配备空中防撞系统。\n我们可以从空中防撞系统上得知冲突飞机的信息。"
+    },
+    {
+      "id": "opi-fzy-152431",
+      "taskTitle": "Near miss-3",
+      "audioText": "How can pilots avoid near miss or air miss?",
+      "audioTextZh": "飞行员怎么能避免危险接近？",
+      "studyTier": 1,
+      "referenceText": "First, we can follow ATC instruction to maintain enough separation with other aircraft.\nSecond, we can follow TCAS RA to avoid colliding with other aircraft.\nThird, if ATC instruction goes against TCAS RA, we should follow TCAS RA to keep enough vertical separation with the conflicting traffic.",
+      "referenceTextZh": "首先，我们可以执行管制指令与其他飞机保持足够问隔。\n其次，我们可以执行TCAS RA避免与其他飞机相撞。\n第三，如果管制指令和TCAS RA发生冲突，我们应该执行TCAS RA，与冲突飞机保持足够垂直间隔。"
+    },
+    {
+      "id": "opi-fzy-152432",
+      "taskTitle": "Near miss-4",
+      "audioText": "How to avoid mid air collision?",
+      "audioTextZh": "如何防止空中相撞？",
+      "studyTier": 1,
+      "referenceText": "I think we can take many measures.\nFor example, we should follow ATC’s instructions.\nAircraft should be installed with TCAS to avoid conflicting traffic.\nPilot should scan outside carefully during the flight, improve situation awareness as well.",
+      "referenceTextZh": "例如，我们应该遵循管制员的指令。\n飞机上需要配备空中防撞系统。\n飞行员在飞行时应当密切关注飞机外情况，还应该提高情景意识。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0115",
   "name": "不利天气",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "No, I have not encountered severe weather during an actual flight. I have studied these hazards and practised weather-avoidance decisions during training. The exercises taught me to obtain current weather information, avoid hazardous areas, maintain control, and change the route or landing plan when necessary.",
       "referenceTextZh": "没有，我在实际飞行中没有遇到过严重天气。我学习过这些危险，并在训练中练习了天气规避决策。这些练习教会我获取最新气象信息、避开危险区域、保持飞机控制，并在必要时改变航路或着陆计划。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

@@ -1,0 +1,118 @@
+{
+  "id": "atc-fzy-791",
+  "name": "CSN371 [自动刹车告警，手册问题]",
+  "declaredCardCount": 12,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152570",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-1",
+      "audioText": "You are CZ371, from Wuhan to Moscow, Bay 224, with information C, request ATC clearance.",
+      "audioTextZh": "你的呼号是南方371，从武汉飞往莫斯科，224号停机位，通播C，请求放行许可。",
+      "referenceText": "Wuhan Delivery, CZ371. Bay 224, information C received, request ATC clearance to Moscow.",
+      "referenceTextZh": "武汉放行，南方371, 224号停机位，收到通播C，请求飞往莫斯科的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4e5e5f21130815dc667b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152571",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-2",
+      "audioText": "CSN371, cleared to Moscow via flight planned route, follow ZF01D departure, cruising level 8,900m, initial altitude 1,500m, departure frequency 119.45, squawk 3223. Read back information.",
+      "audioTextZh": "南方371，可以经由计划航路飞往莫斯科，按照ZF01离场，巡航高度8900米，初始高度1500米，离场频率119.45，应答机3223。复诵信息。",
+      "referenceText": "Cleared to Moscow via flight planned route, follow ZF01D departure, cruising level 8,900m, initial altitude 1,500m, departure frequency 119.45, squawk 3223, CSN371.",
+      "referenceTextZh": "可以经由计划航路飞往莫斯科，按照ZF01离场，巡航高度8900米，初始高度1500米，离场频率119.45，应答机3223，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f93ae613c9d0a008b7fd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152572",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-3",
+      "audioText": "The maintenance staff has deferred an MEL item regarding APU, contact Ground that you will be ready for start up one engine at bay in 5 mins.",
+      "audioTextZh": "机务人员保留了APU的一个项目，告知地面，你准备好在5分钟后，在停机位启动一台发动机。",
+      "referenceText": "Wuhan Ground, CSN371, we’ll be ready to start up one engine at bay in 5mins.",
+      "referenceTextZh": "武汉地面，南方371，我们准备好在5分钟后，在停机位启动一台发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5766baa3019bf42ca65f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152573",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-4",
+      "audioText": "CSN 371, pushback is approved, pushback onto taxiway F, facing south.",
+      "audioTextZh": "南方371，同意推出，推出到F滑行道，朝南。",
+      "referenceText": "Pushback is approved, pushback onto taxiway F, facing south., CSN371.",
+      "referenceTextZh": "同意推出，推出到F滑行道，朝南，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0427c315b4be38f75e77.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152574",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-5",
+      "audioText": "CSN371, taxi to holding point runway 04 via F, A9, hold short of A.",
+      "audioTextZh": "南方371，经由滑行道F，A9滑行到跑道04，在A外等待。",
+      "referenceText": "Taxi to holding point runway 04 via F, A9, hold short of A. CSN371.",
+      "referenceTextZh": "经由滑行道F，A9滑行到跑道04，在A外等待，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/38f03e0845dbe1940d3f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152575",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-6",
+      "audioText": "While taxing, an auto brake caution message is displayed on aircraft’s warning system, so you stopped taxing, advise Ground.",
+      "audioTextZh": "在滑行中，一条自动刹车告警信息出现在飞机的告警系统中，因此你停止滑行，告知地面。",
+      "referenceText": "Wuhan Ground, CZ371, we have autobrake caution message, we are stopping taxi.",
+      "referenceTextZh": "武汉地面，南方371，我们有一个自动刹车告警信息，我们停止滑行了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/787b7790f162bb16adf6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152576",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-7",
+      "audioText": "CSN371, roger, hold at present position, advise intentions when able.\nTell the controller that you are still able to taxi, but you need 5mins to solve the problem, ask to hold at convenient position on taxiway.",
+      "audioTextZh": "南方371，收到，原地等待，方便时告知意图。\n告诉管制员，你仍然可以滑行，但是你需要5分钟来解决问题，请求在滑行道上的方便位置等待。",
+      "referenceText": "Hold position, we are able to taxi but need 5 minutes to solve the problem. Request hold at convenient position on taxiway, CSN371.",
+      "referenceTextZh": "原地等待，我们仍然可以滑行，但是需要5分钟解决问题，请求在滑行道上方便的位置等，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5786ae4d0dc813fcd741.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152577",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-8",
+      "audioText": "While communicating with mechanic and dispatcher, you discovered that some pages of onboard flight manual were missing, it is against regulation to continue the flight, report to ATC and ask for returning to the gate.",
+      "audioTextZh": "在与机务和签派的沟通中，你发现机上飞行手册有几页不见了，这违反了继续飞行的规定，告知管制员，并请求返回机坪。",
+      "referenceText": "Wuhan Ground, CSN371, request return to apron due to flight manuals problem.",
+      "referenceTextZh": "武汉地面，南方371，由于飞行手册问题，请求返回机坪。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b50b53966f1570db8062.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152578",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-9",
+      "audioText": "CZ371, taxi to Bay 224 via A8, A, A5.",
+      "audioTextZh": "南方371，经由A8，A，A5，滑回机坪224。",
+      "referenceText": "Taxi to Bay 224 via A8, A, A5, CZ371.",
+      "referenceTextZh": "经由A8，A，A5，滑回机坪224，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d427d86c07fcf9348782.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152579",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-10",
+      "audioText": "Two hours later, you are now cruising at 9500m, you are approaching WXI, your squawk number is 3223, call Beijing Control.",
+      "audioTextZh": "2小时后，你现在巡航在9500米，你正在接近WXI，你的应答机编码是3223，呼叫北京区调。",
+      "referenceText": "Beijing Control, CSN371, 9500m, approaching WXI, squawking 3223.",
+      "referenceTextZh": "北京区调，南方371，9500米，接近WXI，应答机编码3223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fbb8942e04ecaa64f42c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152580",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-11",
+      "audioText": "Tell Beijing Control you're too heavy, request a step climb to 10,700m in about 1 hour.",
+      "audioTextZh": "告诉北京区调，你的飞机过重，请求在1小时内阶段爬升至10700米。",
+      "referenceText": "Beijing Control, CSN371, unable due weight, request a step climb to 10,700m in about 1 hour.",
+      "referenceTextZh": "北京区调，南方371，由于飞机重量无法做到，请求在1小时内阶段爬升至10700米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ecbba104b6fb9e19fcff.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152581",
+      "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-12",
+      "audioText": "CZ371, due separation, maintain Mach number not greater than point 80.",
+      "audioTextZh": "南方371，由于间隔，保持马赫数不大于0.80。",
+      "referenceText": "Maintain Mach number not greater than point 80, CSN371.",
+      "referenceTextZh": "保持马赫数不大于0.80，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/651ea8f919166aa0f5b7.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

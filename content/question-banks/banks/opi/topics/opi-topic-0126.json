@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0126",
   "name": "飞行操纵系统",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "The pilot flying should control the aircraft manually. The pilot monitoring should read the checklist and monitor the aircraft's performance.",
       "referenceTextZh": "操纵飞行员应人工控制飞机，监控飞行员应朗读检查单并监控飞机性能。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

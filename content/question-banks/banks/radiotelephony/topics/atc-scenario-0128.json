@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0128",
   "name": "ACA 219 TCAS机动 复飞 备降/返航",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "one two zero decimal，ACA 219。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

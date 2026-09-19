@@ -1,0 +1,190 @@
+{
+  "id": "atc-fzy-1693",
+  "name": "AFR168 [襟翼、缝翼问题，起落架卡阻]",
+  "declaredCardCount": 20,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224719",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-1",
+      "audioText": "N: [Your callsign is AFR168, you are inbound for Wuhan, descending passed 4800m for 3600m, call Wuhan Control to request further descent.]",
+      "audioTextZh": "N：【你的呼号是法航168，你正飞往武汉，正从4800米下到3600米，呼叫武汉区调，请求进一步下降。】",
+      "referenceText": "Wuhan Control, AFR168, destination Wuhan, descending from 4800m for 3600m, request further descent.",
+      "referenceTextZh": "武汉区调，法航168，目的地武汉，正在从4800米下到3600米，请求进一步下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eef7d5ad27ce1fed6c53.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224720",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-2",
+      "audioText": "C: AFR168, Wuhan Control, contact Wuhan Approach on 124.35.",
+      "audioTextZh": "C：法航168，武汉区调，联系武汉进近124.35。",
+      "referenceText": "124.35, AFR168.",
+      "referenceTextZh": "124.35，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e6156fc07b1801a83012.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224721",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-3",
+      "audioText": "N: [You are leveling at 3600m, you have received ATIS J, ask Wuhan Approach which arrival is in use.]",
+      "audioTextZh": "N：【你现在正在3600米平飞，你已经收到了通播J，询问武汉进近，可用的进近程序是哪一个。】",
+      "referenceText": "Wuhan Approach, AFR168, leveling at 3600m, ATIS J, request arrival in use.",
+      "referenceTextZh": "武汉进近，法航168，正在3600米平飞，收到通播J，请求可用进近程序。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dffce6ece9c2791b36d0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224722",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-4",
+      "audioText": "C: AFR168, Wuhan Approach, radar contact, expect IKUBA 05A arrival, runway in use 04.",
+      "audioTextZh": "C：法航168，武汉进近，雷达看见了，预计IKUBA 05A进近，使用跑道04。",
+      "referenceText": "Expect IKUBA 05A arrival, runway 04, AFR168.",
+      "referenceTextZh": "预计IKUBA 05A进近，跑道04，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ac4cf8c56691e17bc22b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224723",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-5",
+      "audioText": "C: AFR168, descend to and maintain 2400m on QNH996.",
+      "audioTextZh": "C：法航168，下2400米保持，修正海压996。",
+      "referenceText": "Descend to and maintain 2400m on QNH996, AFR168.",
+      "referenceTextZh": "下2400米保持，修正海压996，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/66d6f52964a83b637614.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224724",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-6",
+      "audioText": "C: AFR168, reduce speed to 170kts, track direct to DA, expect your approach from the west.",
+      "audioTextZh": "C：法航168，减速至170节，直飞DA，预计从西边进近。",
+      "referenceText": "Reduce speed to 170kts, track direct to DA, expect approach from the west, AFR168.",
+      "referenceTextZh": "减速至170节，直飞DA，预计从西边进近，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/44011027db38522e70ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224725",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-7",
+      "audioText": "N: [The slats on the aircraft are unable to be extended, advise controller about this situation, and request maintain speed 220kts.]",
+      "audioTextZh": "N：【你飞机上的缝翼无法放出，告知管制员此情况，请求速度保持220节。】",
+      "referenceText": "Wuhan Approach, AFR168, slats unable to extend, request maintain speed 220kts.",
+      "referenceTextZh": "武汉进近，法航168，缝翼无法放出，请求速度保持220节。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/926e0f846aadbc52bf94.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224726",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-8",
+      "audioText": "N: [You want to hold at DA to deal with this problem, notify Wuhan Approach.]",
+      "audioTextZh": "N：【你想在DA等待来解决这个问题，告知武汉进近。】",
+      "referenceText": "Wuhan Approach, AFR168, request hold at DA to solve problem.",
+      "referenceTextZh": "武汉进近，法航168，请求在DA等待来解决问题。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc1dee1ed42d55540535.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224727",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-9",
+      "audioText": "N: [You are unable to extend most of the flaps, and the slats remain in the zero position, advise Wuhan Approach that you require a longer runway for landing due to the high approach speed.]",
+      "audioTextZh": "N：【你已经无法放出大部分襟翼，缝翼也在零位，告知管制员，由于过高的进近速度，你需要一个更长的跑道着陆。】",
+      "referenceText": "Wuhan Approach, AFR168, unable to extend most of the flaps, slats remain zero position, request longer runway for landing due to high approach speed.",
+      "referenceTextZh": "武汉进近，法航168，无法放出大部分襟翼，缝翼也在零位，由于过高的进近速度，申请一个更长的跑道着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/10190f4a330424c04412.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224728",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-10",
+      "audioText": "C: AFR168, Wuhan Approach, roger, change your landing runway to 36R, advise when ready to approach.",
+      "audioTextZh": "C：法航168，武汉进近，收到，着陆跑道更改至36右，准备好进近时报。",
+      "referenceText": "change to runway 36R, wilco, AFR168.",
+      "referenceTextZh": "更改至36右，将照办，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/07ae7497a449acd23775.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224729",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-11",
+      "audioText": "N: [You are now manually flying the aircraft due to auto-pilot malfunctioned, tell the controller you are ready for approach.]",
+      "audioTextZh": "N：【由于自动驾驶失效，你现在正在手动操纵制飞机，告诉管制员，你准备好进近了。】",
+      "referenceText": "Wuhan Approach, AFR168, we are on manual due auto-pilot malfunction, ready for approach.",
+      "referenceTextZh": "武汉进近，法航168，自动驾驶失效，正在手动操纵飞机，准备好进近了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ed988680f37b6401e43.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224730",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-12",
+      "audioText": "C: AFR168, Wuhan Approach, radar vectors, after this orbit, fly heading 060.",
+      "audioTextZh": "C：法航168，武汉进近，雷法引导，这次盘旋后，航向060。",
+      "referenceText": "Radar vectors, after the orbit fly heading 060, AFR168.",
+      "referenceTextZh": "雷法引导，这次盘旋后，航向060，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c0bfe53a96189fbc5f2b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224731",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-13",
+      "audioText": "N: [Now you are 5 miles from touchdown, you have encountered wake turbulence from departing heavy aircraft, you decided to go around, call Wuhan Tower.]",
+      "audioTextZh": "N：【你现在距离接地点5海里，你遇到了前方起飞航空器导致的尾流，你决定复飞，呼叫武汉塔台。】",
+      "referenceText": "Wuhan Tower, AFR168, 5 miles from touchdown, encountered wake turbulence from departing heavy aircraft, going around.",
+      "referenceTextZh": "武汉塔台，法航168，距离接地点5海里，遇到了前方起飞航空器导致的尾流，复飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a8b440663cb317d376d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224732",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-14",
+      "audioText": "C: AFR168, follow the published go around procedures, climb to 900m.",
+      "audioTextZh": "C：法航168，按照公布的复飞程序，上900米。",
+      "referenceText": "Follow published go around procedures, climb to 900m, AFR168.",
+      "referenceTextZh": "按照公布的复飞程序，上900米，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/260af3155fc9810ba8c1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224733",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-15",
+      "audioText": "C: AFR168, apologies for the separation problem, contact Wuhan Approach on 124.35.",
+      "audioTextZh": "C：法航168，抱歉间隔原因，联系武汉进近124.35。",
+      "referenceText": "124.35, AFR168.",
+      "referenceTextZh": "124.35，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/53ae9487584505671d93.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224734",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-16",
+      "audioText": "N: [Your landing gear was jammed during retraction, make an urgency call to Wuhan Approach about the situation, and request another holding pattern.]",
+      "audioTextZh": "N：【在收上起落架过程中，你的起落架卡阻了，向武汉进近做一个紧急通话，告知此情况，请求再次加入等待程序。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, AFR168, landing gear jammed during retraction, request another holding pattern.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，法航168，在收上起落架过程中，起落架卡阻了，请求再次加入等待程序，",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f2609edf5c39a34c34b1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224735",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-17",
+      "audioText": "C: AFR168, roger, turn left heading 250, track direct to DA, climb to and maintain 3900m.",
+      "audioTextZh": "C：法航168，收到，左转航向250，直飞DA，上3900米保持。",
+      "referenceText": "Turn left heading 250, track direct to DA, climb to and maintain 3900m, AFR168.",
+      "referenceTextZh": "左转航向250，直飞DA，上3900米保持，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/08757e73f2fe48fccea0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224736",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-18",
+      "audioText": "C: AFR168, a thunderstorm will approach the airport within 30 minutes, acknowledge.\nN: [Tell Wuhan Approach you will need to dumping fuel for about 10 minutes and return for an emergency landing.]",
+      "audioTextZh": "C：法航168，雷暴将在30分钟到达机场，请知晓。\nN：【告知武汉进近，你需要放油10分钟，然后返场进行紧急着陆。】",
+      "referenceText": "Wuhan Approach AFR168, request dumping fuel for 10 minutes and return for emergency landing.",
+      "referenceTextZh": "武汉进近，法航168，请求放油10分钟，然后返场进行紧急着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/47414a7acfe59592aa74.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224737",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-19",
+      "audioText": "C: AFR168, turn left heading 330, climb to maintain 4200m, expect your fuel dump instruction shortly.",
+      "audioTextZh": "C：法航168，左转航向330，上4200米保持，预计一会发布放油指令。",
+      "referenceText": "Turn left heading 330, climb to maintain 4200m, roger, AFR168.",
+      "referenceTextZh": "左转航向330，上4200米保持，收到，法航168。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4fbcc91f8df302c61774.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224738",
+      "taskTitle": "79-AFR168 [襟翼、缝翼问题，起落架卡阻]-20",
+      "audioText": "N: [Request Wuhan Approach for emergency service on arrival and that the runway is foamed up.]",
+      "audioTextZh": "N：【请求武汉进近，在着陆后需要紧急服务，并且需要在跑道上喷洒泡沫。】",
+      "referenceText": "Wuhan Approach, AFR168, request emergency service on arrival and that the runway is foamed up.",
+      "referenceTextZh": "武汉进近，法航168，请求在着陆后紧急服务，并且在跑道上喷洒泡沫。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e5933e8e2bff18b43ca5.mp3"
+    }
+  ],
+  "categoryId": "atc-afr"
+}

@@ -1,0 +1,485 @@
+{
+  "id": "opi-fzy-1677",
+  "name": "1.飞行环境：气象",
+  "declaredCardCount": 53,
+  "cards": [
+    {
+      "id": "opi-fzy-152129",
+      "taskTitle": "1.飞行环境：气象-1",
+      "audioText": "How do you know the weather information before departure?",
+      "audioTextZh": "起飞前，你如何获取天气信息？",
+      "studyTier": 2,
+      "referenceText": "Listen to ATIS to obtain weather information before departure.\nOr get weather information about departure airport and destination airport from dispatchers.\nBesides, observe current weather conditions directly.",
+      "referenceTextZh": "起飞前通过收听通播获取气象信息。\n或者从签派那里了解起飞机场和目的地机场的天气状况。\n此外，可以直接观察实时天气情况。"
+    },
+    {
+      "id": "opi-fzy-152130",
+      "taskTitle": "1.飞行环境：气象-2",
+      "audioText": "How do you make the weather analysis before each flight?",
+      "audioTextZh": "每次飞行前，你都如何做气象分析？",
+      "studyTier": 1,
+      "referenceText": "Listen to ATIS carefully to get current weather information.\nMeanwhile, read meteorological chart and NOTAM to know future weather trends.",
+      "referenceTextZh": "认真收听ATIS了解实时气象信息。\n同时，阅读气象图和通告了解未来天气变化趋势。"
+    },
+    {
+      "id": "opi-fzy-152131",
+      "taskTitle": "1.飞行环境：气象-3",
+      "audioText": "In which season is thunderstorm most likely to occur?",
+      "audioTextZh": "雷暴最常见于什么季节？",
+      "studyTier": 2,
+      "referenceText": "Thunderstorm is most likely to occur in summer.",
+      "referenceTextZh": "雷暴多发于夏季。"
+    },
+    {
+      "id": "opi-fzy-152132",
+      "taskTitle": "1.飞行环境：气象-4",
+      "audioText": "Can you describe some stages of thunderstorm?",
+      "audioTextZh": "你能描述下雷暴的阶段吗？",
+      "studyTier": 1,
+      "referenceText": "There are three stages, cumulus stage, mature stage, and dissipating stage.\nThe feature of the first stage is updraft.\nDuring mature stage, precipitation begins to fall.\nAnd the last stage is characterized by downdrafts.",
+      "referenceTextZh": "有三个阶段：积云阶段、成熟阶段、消散阶段。\n第一阶段的特征是上升气流。\n在成熟阶段，出现降雨。\n最后阶段的特征是下沉气流。"
+    },
+    {
+      "id": "opi-fzy-152133",
+      "taskTitle": "1.飞行环境：气象-5",
+      "audioText": "What should you do if there is a thunderstorm at the airport?",
+      "audioTextZh": "当机场附近有雷暴，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If we are still on the ground, we will wait for weather improvement.\nIf we are flying in the air, we will hold or divert to the alternate airport.",
+      "referenceTextZh": "如果我还在地面上，我会等待天气变好。\n如果我在空中飞行，我会等待或者改航到备降机场。"
+    },
+    {
+      "id": "opi-fzy-152134",
+      "taskTitle": "1.飞行环境：气象-6",
+      "audioText": "Have you ever flown into CB? Why is it a danger?",
+      "audioTextZh": "你遇到过积云吗？为什么积雨云很危险？",
+      "studyTier": 1,
+      "referenceText": "No, I have never flown into CB, but I know it is very dangerous.\nIn CB, we may encounter some unfavorable conditions, for example, severe turbulence, low visibility, lightning strike, heavy rain and wind shear.",
+      "referenceTextZh": "不，我从未遇到过积雨云，但我知道它很危险。\n在积雨云内，我们可能会遇到严重颠簸、低能见度、雷击、暴雨、风切变等不利情况。"
+    },
+    {
+      "id": "opi-fzy-152135",
+      "taskTitle": "1.飞行环境：气象-7",
+      "audioText": "How are CBs displayed in the cockpit?",
+      "audioTextZh": "积雨云在驾驶舱是如何显示的？",
+      "studyTier": 1,
+      "referenceText": "The CBs are displayed on ND or MFD in red color.",
+      "referenceTextZh": "在导航雷达或者多功能显示器上，积雨云显示为红色。"
+    },
+    {
+      "id": "opi-fzy-152136",
+      "taskTitle": "1.飞行环境：气象-8",
+      "audioText": "What should a pilot do if there is an indication of CBs ahead?",
+      "audioTextZh": "当前方有积雨云时，飞行员应该怎么做？",
+      "studyTier": 1,
+      "referenceText": "First I will stay calm and keep control of the aircraft.\nThen I will contact ATC, report my situation and request a new level to detour CB.\nWhen we clear of weather, we will rejoin the planned route.",
+      "referenceTextZh": "首先我要保持冷静，控制好飞机。\n然后我将联系空中交通管制，报告我的情况并请求一个新的高度来绕过积雨云。\n飞离该天气后，我们就会重新飞回原计划航路。"
+    },
+    {
+      "id": "opi-fzy-152137",
+      "taskTitle": "1.飞行环境：气象-9",
+      "audioText": "How does the on-board weather radar detect the intensity of precipitation?",
+      "audioTextZh": "机载气象雷达如何检测降水的强度？",
+      "studyTier": 1,
+      "referenceText": "Airborne Weather Radar mainly detects the distribution and intensity of precipitation particles by emitting and receiving electromagnetic waves and displays them to pilots in different colors. There are three colors displayed on the weather radar: red, amber and green. The red area indicates severe weather and heavy precipitation. The amber area shows moderate weather. And the green area indicates the weather is not hazardous to flight.",
+      "referenceTextZh": "机载气象雷达主要通过发射和接收电磁波来探测降水粒子的分布和强度，并以不同的颜色显示给飞行员。天气雷达上有三种颜色显示:红色、琥珀色和绿色。 红色区域表示恶劣天气和强降水。 琥珀色区域显示天气温和。 绿色区域表示天气对飞行没有危害。"
+    },
+    {
+      "id": "opi-fzy-152138",
+      "taskTitle": "1.飞行环境：气象-10",
+      "audioText": "In what weather conditions is lightning strike most likely to occur?",
+      "audioTextZh": "在什么天气条件下容易发生雷击？",
+      "studyTier": 1,
+      "referenceText": "Lightning strike usually occurs in thunderstorm or CBs, in summer.",
+      "referenceTextZh": "在夏季的雷暴天气或者积雨云天气中，容易发生雷击。"
+    },
+    {
+      "id": "opi-fzy-152139",
+      "taskTitle": "1.飞行环境：气象-11",
+      "audioText": "What damage will lightning bring to the aircraft?",
+      "audioTextZh": "雷击会给飞机造成哪些损伤？",
+      "studyTier": 1,
+      "referenceText": "Lightning strike is very dangerous to flight safety.\nIt may cause various damages to the aircraft, such as structural damage, system failure, engine fire, engine flame out and so on.",
+      "referenceTextZh": "雷击对飞行安全是非常危险的。\n它会对飞机造成各种损坏，如结构损坏、系统故障、发动机起火、发动机熄火等。"
+    },
+    {
+      "id": "opi-fzy-152140",
+      "taskTitle": "1.飞行环境：气象-12",
+      "audioText": "How should we avoid lightning strike?",
+      "audioTextZh": "如何避免雷击？",
+      "studyTier": 1,
+      "referenceText": "Before takeoff or approach, we should listen to ATIS to get the latest weather information;\nDuring flight, we should check the weather radar screen and monitor the cloud movement and trend.\nIf there is any indication of thunderstorms, we should request radar vectors to go round the weather.\nIn these ways, we can avoid lightning strike.",
+      "referenceTextZh": "在飞机起飞或进场前，我们应听取ATIS的最新天气信息。\n在飞行过程中，我们应监视天气雷达屏幕，并监测云的移动和趋势。\n如果有任何雷暴的迹象，我们应该请求雷达引导来绕飞天气。\n通过这些方法，我们可以避免雷击。"
+    },
+    {
+      "id": "opi-fzy-152141",
+      "taskTitle": "1.飞行环境：气象-13",
+      "audioText": "What should you do if you encounter lightning strike?",
+      "audioTextZh": "如果你遭遇雷击，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "First, I will keep calm and not be panic. Keeping control of the aircraft is the most important thing in this situation;\nThen, I would follow the checklist;\nThird, I will contact ATC and request emergency descent and priority landing.\nBesides, if there is passenger injured, I would request medical assistance.",
+      "referenceTextZh": "首先，我会保持冷静，不惊慌。在这种情况下，保持对飞机的控制是最重要的。\n然后，我会执行检查单。\n再次，我将联系空中交通管制，请求紧急下降和优先着陆。\n另外，如果有乘客受伤，我会请求医疗救助。"
+    },
+    {
+      "id": "opi-fzy-152142",
+      "taskTitle": "1.飞行环境：气象-14",
+      "audioText": "Have you ever encountered turbulence during flight?",
+      "audioTextZh": "在飞行过程中，你遇到过颠簸吗？",
+      "studyTier": 1,
+      "referenceText": "Yes. I have. Turbulence is very common.\nI remember when I flew from Beijing to Shanghai, I encountered severe turbulence.\nThe speed and altitude changed rapidly. It was hard to control the aircraft.\nI reported the situation to ATC and requested changing the altitude to leave the turbulent area as soon as possible.",
+      "referenceTextZh": "是的。我遇到过。颠簸是很常见的。\n我记得当我从北京飞往上海时，我遇到了严重的颠簸。\n飞机速度和高度迅速变化。操控变得困难。\n我将情况报告给空中交通管制中心，并要求改变高度尽快离开颠簸区。"
+    },
+    {
+      "id": "opi-fzy-152143",
+      "taskTitle": "1.飞行环境：气象-15",
+      "audioText": "Why is turbulence dangerous?",
+      "audioTextZh": "为什么颠簸是危险的？",
+      "studyTier": 2,
+      "referenceText": "The aircraft may lose speed and altitude rapidly;\nIt is difficult to control the aircraft in moderate to severe turbulence.\nSevere turbulence may even cause structural damage and passenger injuries.",
+      "referenceTextZh": "飞机可能迅速失去速度和高度;\n在中等到严重的颠簸情况下，飞行员很难控制飞机。\n严重颠簸甚至可能造成飞机结构损坏和乘客受伤。"
+    },
+    {
+      "id": "opi-fzy-152144",
+      "taskTitle": "1.飞行环境：气象-16",
+      "audioText": "What would you do if you have passengers injured when you encounter turbulence?",
+      "audioTextZh": "在遇到颠簸时，有乘客受伤，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If there is a passenger injured during turbulence, first, I will make a PA to look for a doctor on board.\nIf there is no doctor on board, I will ask flight attendants to carry out first aid.\nThen, I will inform ATC of the situation.\nIf necessary, I will request priority landing and emergency services on arrival;\nIf it is very serious, I will call PANPAN.",
+      "referenceTextZh": "如果有乘客在颠簸中受伤，我首先会做一个机上广播看机上是否有医生。\n如果飞机上没有医生，我会让空乘人员进行急救。\n然后，我会将情况通知管制员。\n如有需要，我将申请优先着陆和到达时的紧急服务;\n如果情况很严重，我会发出PANPAN信号 。"
+    },
+    {
+      "id": "opi-fzy-152145",
+      "taskTitle": "1.飞行环境：气象-17",
+      "audioText": "What is CAT? Why is CAT extremely dangerous?",
+      "audioTextZh": "CAT是什么？为什么CAT非常危险？",
+      "studyTier": 1,
+      "referenceText": "CAT means clear air turbulence.\nThe reason why it is extremely dangerous is that:\nOn the one hand, it cannot be detected before we fly into it.\nOn the other hand, it may cause structural damage and passenger injuries.",
+      "referenceTextZh": "CAT指的是晴空颠簸。\n晴空颠簸之所以格外危险是因为：\n一方面，在我们飞入之前，它是无法被探测到的。\n另一方面，它可能会造成飞机结构损坏和乘客受伤。"
+    },
+    {
+      "id": "opi-fzy-152146",
+      "taskTitle": "1.飞行环境：气象-18",
+      "audioText": "What rules should be followed to avoid clear air turbulence?",
+      "audioTextZh": "应该采用什么样的措施避免晴空颠簸？",
+      "studyTier": 1,
+      "referenceText": "We can take many measures to avoid the clear air turbulence. For instance, we can conduct meteorological analysis before the flight and rationally plan our flight routes based on the reports from controllers or other pilots. Secondly, we make good use of our on-board equipment and conduct careful visual observations. Finally, we can adopt more new technologies, such as LIDAR and AIi technologies, to predict clear air turbulence in a timely manner.",
+      "referenceTextZh": "我们可以采取很多措施来避免晴空颠簸。比如，我们可以在飞行前进行气象分析，根据管制员或者其他飞行员的报告，合理规划我们的航路。其次，我们好好利用我们的机载设备，并进行仔细的目视观察。最后，我们可以采用更多的新技术，如激光雷达（LIDAR）和Ai新技术，及时对晴空颠簸进行预测。"
+    },
+    {
+      "id": "opi-fzy-152147",
+      "taskTitle": "1.飞行环境：气象-19",
+      "audioText": "What is wake turbulence? What may cause wake turbulence?",
+      "audioTextZh": "什么是尾流？尾流是怎么产生的？",
+      "studyTier": 2,
+      "referenceText": "Wake turbulence is the upward and outward vortex produced by the tip of an airplane's wing. Wake turbulence usually happen when the preceding larger aircraft is taking off or landing.",
+      "referenceTextZh": "尾流是由飞机机翼尖端产生的向上和向外的涡流。\n尾流通常发生在前面较大的飞机起飞或降落时。"
+    },
+    {
+      "id": "opi-fzy-152148",
+      "taskTitle": "1.飞行环境：气象-20",
+      "audioText": "How does wake turbulence threaten flight safety?",
+      "audioTextZh": "尾流是如何影响飞行安全的？",
+      "studyTier": 1,
+      "referenceText": "When we fly into wake turbulence caused by the preceding aircraft, it may cause the aircraft difficult to control and aircraft may lose altitude.",
+      "referenceTextZh": "当我们飞进前一架飞机产生的尾流时，可能会导致飞机难以控制并掉高度。"
+    },
+    {
+      "id": "opi-fzy-152149",
+      "taskTitle": "1.飞行环境：气象-21",
+      "audioText": "How to avoid wake turbulence?",
+      "audioTextZh": "如何避免尾流？",
+      "studyTier": 1,
+      "referenceText": "To avoid wake turbulence, we can keep enough separation from the preceding aircraft.",
+      "referenceTextZh": "为了避免尾流，我们需要与前机保持足够间隔。"
+    },
+    {
+      "id": "opi-fzy-152150",
+      "taskTitle": "1.飞行环境：气象-22",
+      "audioText": "What should you do if you have been caught in wake turbulence?",
+      "audioTextZh": "如果你飞进尾流，你会怎么办？",
+      "studyTier": 1,
+      "referenceText": "Keeping control of the aircraft is the most important thing in this situation;\nThen, we should report the situation to ATC.\nBesides, we will make a PA to inform the cabin crew and passengers to fasten their seat belts.",
+      "referenceTextZh": "在这种情况下，保持对飞机的控制是最重要的。\n然后，我们应该向空中交通管制报告情况。\n另外，我们会做机长广播，通知乘务员和乘客系好安全带。"
+    },
+    {
+      "id": "opi-fzy-152151",
+      "taskTitle": "1.飞行环境：气象-23",
+      "audioText": "What is wind shear? Why is wind shear dangerous?",
+      "audioTextZh": "什么是风切变？为什么风切变很危险？",
+      "studyTier": 2,
+      "referenceText": "Wind shear is the rapid change in wind speed and direction.\nIt can cause the aircraft to lose speed and altitude in a short time.\nSevere wind shear can even cause the aircraft to be out of control.",
+      "referenceTextZh": "风切变是风速和风向的快速变化。\n它会导致飞机在短时间内失去速度和高度。\n严重的风切变甚至会导致飞机失控。"
+    },
+    {
+      "id": "opi-fzy-152152",
+      "taskTitle": "1.飞行环境：气象-24",
+      "audioText": "What suggestion do you have to reduce accident caused by wind shear?",
+      "audioTextZh": "你有什么减少风切变危险的建议吗？",
+      "studyTier": 1,
+      "referenceText": "Before departure, we should listen to ATIS and NOTAM. If the weather is bad, we should delay takeoff.\nIf there is wind shear alert before approach, we should request holding.\nIf wind shear occurs at final, we should carry out going around.\nIf it occurs during flight, we should change flight level to avoid it.",
+      "referenceTextZh": "离场前注意收听ATIS和飞行员通知。如果天气不好，我们就推迟起飞。\n如果进近前有风切变警报，我们应等待。\n如果五边出现风切变，我们应该进行复飞。\n如果在飞行中遇到风切变，我们应通过改变飞行高度来避免。"
+    },
+    {
+      "id": "opi-fzy-152153",
+      "taskTitle": "1.飞行环境：气象-25",
+      "audioText": "How to recover from wind shear?",
+      "audioTextZh": "如何从风切变中改出？",
+      "studyTier": 1,
+      "referenceText": "If we fly into wind shear, we will perform wind shear recovery procedures immediately.\nWe will use full power, pitch up 15 degrees, maintain the configuration, climb to safe altitude and leave the wind shear area as soon as possible.\nIn these ways, we can recover from wind shear.",
+      "referenceTextZh": "如果我们飞进风切变，我们会立即进行风切变改出程序。\n我们将使用最大马力，上仰15度，保持姿态，爬升到安全高度。\n通过这些方式，我们可以从风切变中改出。"
+    },
+    {
+      "id": "opi-fzy-152154",
+      "taskTitle": "1.飞行环境：气象-26",
+      "audioText": "Why is low-level wind shear especially hazardous to flight?",
+      "audioTextZh": "对于飞行而言，为什么低空风切变格外危险？",
+      "studyTier": 1,
+      "referenceText": "Low level wind shear may cause the aircraft to change speed and altitude quickly and suddenly.\nIt makes the aircraft difficult to control.\nIt always occurs near the ground, so pilots don't have enough time and altitude to carry out wind shear recovery procedures.\nThe aircraft can easily stall, even crash.",
+      "referenceTextZh": "低空风切变可能导致飞机迅速而突然地改变速度和高度。\n这使得飞机难以控制。\n低空风切变总是发生在地面附近，所以飞行员没有足够的时间和高度来进行风切变改出程序。\n飞机很容易失速，甚至坠毁。"
+    },
+    {
+      "id": "opi-fzy-152155",
+      "taskTitle": "1.飞行环境：气象-27",
+      "audioText": "Do you have wind shear warning on your aircraft?",
+      "audioTextZh": "你的飞机上有风切变告警吗？",
+      "studyTier": 1,
+      "referenceText": "I fly C172, we don't have wind shear warning on our aircraft.\nBut I know, big aircraft have wind shear warning. They have the voice warning such as \"WIND SHEAR, WIND SHEAR\".",
+      "referenceTextZh": "我现在飞的是塞斯纳C172，我们的飞机没有风切变警告。\n但我知道，大飞机有风切变警告。它会给出“WIND SHEAR, WIND SHEAR”的声音警告。"
+    },
+    {
+      "id": "opi-fzy-152156",
+      "taskTitle": "1.飞行环境：气象-28",
+      "audioText": "What are the possible consequences if wind shear warning is ignored by pilots?",
+      "audioTextZh": "如果风切变告警被飞行员忽视，可能发生的结果是什么？",
+      "studyTier": 1,
+      "referenceText": "If wind shear warning are ignored by pilots, the aircraft may encounter severe problem.\nSuch as loss of control, structural damage, passenger injury and so on.\nThe aircraft may even crash.",
+      "referenceTextZh": "如果飞行员忽视风切变预警，飞机可能会遭遇严重问题。\n比如：失控、结构破坏、乘客受伤等。\n飞机甚至可能会坠毁。"
+    },
+    {
+      "id": "opi-fzy-152157",
+      "taskTitle": "1.飞行环境：气象-29",
+      "audioText": "If you hear “go around, wind shear ahead” during approach, how would you perform the wind shear recovery manoeuvre?",
+      "audioTextZh": "在进近时，如果你听到“go around, wind shear ahead”，你会如何执行风切变改出机动？",
+      "studyTier": 1,
+      "referenceText": "We will use full power, pitch up 15 degrees, and maintain the configuration climb to safe altitude.\nAnd leave the wind shear area as soon as possible.",
+      "referenceTextZh": "我们会使用最大马力，上仰15度，保持姿态，爬升到安全高度。\n尽快离开风切变区域。"
+    },
+    {
+      "id": "opi-fzy-152158",
+      "taskTitle": "1.飞行环境：气象-30",
+      "audioText": "What's the policy in low visibility situation?",
+      "audioTextZh": "低能见度的运行政策是什么？",
+      "studyTier": 1,
+      "referenceText": "I am still a student pilot. I don't know the policy in low visibility.\nBut I know the minimal takeoff and landing visibility for C172 is about 1600m.",
+      "referenceTextZh": "我还是一名飞行学员。我不知道在低能见度下的运行政策。\n但我知道塞斯纳172的最小起飞和降落能见度大约是1600米。"
+    },
+    {
+      "id": "opi-fzy-152159",
+      "taskTitle": "1.飞行环境：气象-31",
+      "audioText": "Can you name some consequences of disorientation under low visibility?",
+      "audioTextZh": "你能说出在低能见度下失去方向的后果吗？",
+      "studyTier": 1,
+      "referenceText": "Disorientation under low visibility is very dangerous.\nIt may cause runway incursion, near miss, or even collision.",
+      "referenceTextZh": "在低能见度下迷失方向是非常危险的。\n它可能会造成跑道侵入，危险接近，甚至地面冲撞。"
+    },
+    {
+      "id": "opi-fzy-152160",
+      "taskTitle": "1.飞行环境：气象-32",
+      "audioText": "How can we reduce runway incursion during taxi in case of low visibility?",
+      "audioTextZh": "在低能见度下滑行时如何减少跑道入侵？",
+      "studyTier": 1,
+      "referenceText": "We can do many things to avoid runway incursion during taxi in low visibility.\nWe should follow ATC instructions and have good situation awareness.\nBefore we enter the runway, we should get ATC clearance.\nIf we have any doubt about ATC clearance, we should confirm with ATC.",
+      "referenceTextZh": "我们可以做很多事情来避免在低能见度下滑行时出现跑道入侵。\n我们应该听从ATC的指示，并有良好的情景意识。\n在我们进入跑道之前，我们应该得到空中交通管制许可。\n如果我们对空管许可有疑问，我们应该和空管确认。"
+    },
+    {
+      "id": "opi-fzy-152161",
+      "taskTitle": "1.飞行环境：气象-33",
+      "audioText": "What do you know about micro-burst?",
+      "audioTextZh": "你知道微下击暴流吗？",
+      "studyTier": 1,
+      "referenceText": "Micro-burst is an extremely powerful downdraft produced by a thunderstorm or rain shower.\nA micro-burst can be particularly dangerous to aircraft, especially during landing.\nSeveral fatal crashes have been attributed to micro-bursts in the vicinity of airport.",
+      "referenceTextZh": "微下击暴流是由雷暴或阵雨产生的一种极其强大的下沉气流。\n微暴对飞机来说尤其危险，尤其是在着陆期间。\n几起致命的事故都是由机场附近的微下击暴流造成的。"
+    },
+    {
+      "id": "opi-fzy-152162",
+      "taskTitle": "1.飞行环境：气象-34",
+      "audioText": "What threat does micro-burst pose to flight safety?",
+      "audioTextZh": "微下击暴流会对飞行安全构成哪些威胁？",
+      "studyTier": 1,
+      "referenceText": "The micro-burst can be particularly dangerous to aircraft.\nThe strong downdraft can cause the aircraft lose lift, even stall.\nIf the aircraft encountered micro-burst at a low altitude shortly after takeoff or during landing, the aircraft will not have sufficient altitude to recover.",
+      "referenceTextZh": "微下击暴流对飞机来说尤其危险。\n强烈的下沉气流会导致飞机失去升力，甚至失速。\n如果飞机在起飞后不久或降落时在低空遇到微下击暴流，飞机将没有足够的高度进行改出。"
+    },
+    {
+      "id": "opi-fzy-152163",
+      "taskTitle": "1.飞行环境：气象-35",
+      "audioText": "In what kind of condition will icing occur?",
+      "audioTextZh": "在什么条件下容易产生积冰？",
+      "studyTier": 2,
+      "referenceText": "When the temperature is below freezing point and the air is wet, icing may occur.",
+      "referenceTextZh": "当温度低于冰点，空气潮湿时，可能会结冰。"
+    },
+    {
+      "id": "opi-fzy-152164",
+      "taskTitle": "1.飞行环境：气象-36",
+      "audioText": "In what area is icing most likely to occur?",
+      "audioTextZh": "积冰容易出现在飞机的什么部位？",
+      "studyTier": 1,
+      "referenceText": "Icing is most likely to occur on the fuselage, the wings and the windshield.",
+      "referenceTextZh": "积冰容出现在机身，机翼和风挡玻璃上。"
+    },
+    {
+      "id": "opi-fzy-152165",
+      "taskTitle": "1.飞行环境：气象-37",
+      "audioText": "Why is icing a threat to flight safety?",
+      "audioTextZh": "为什么积冰会威胁飞行安全？",
+      "studyTier": 2,
+      "referenceText": "Icing is very dangerous to the flying aircraft.\nIt can change the shape of wings while we are in flight.\nIt can also increase drag and reduce lift.\nIt may reduce aircraft's performance and cause stall.",
+      "referenceTextZh": "积冰对正在飞行的飞机是很危险的。\n它能在我们飞行时改变机翼的外形。\n它还可以增加阻力，降低升力。\n它可能会降低飞机的性能，导致失速。"
+    },
+    {
+      "id": "opi-fzy-152166",
+      "taskTitle": "1.飞行环境：气象-38",
+      "audioText": "Do you have any indication in the cockpit to show that you are in icing condition? If not, how do you know you are in icing condition?",
+      "audioTextZh": "你的驾驶舱内有任何表明你处于积冰状态的指示吗? 如果没有，你如何知道自己处在积冰状态？",
+      "studyTier": 1,
+      "referenceText": "We can look out of the window to see if there is ice buildup on the wings.\nWe can also ask ATC to see if there is any previous pilot's report about icing conditions.\nModern aircraft are equipped with advanced anti-icing and deicing devices.\nSome aircraft also have electronic ice detector to help pilot detect icing conditions.",
+      "referenceTextZh": "我们可以向窗外看，看机翼上是否积冰。\n我们也可以询问空中交通管制是否有任何之前飞行员关于积冰情况的报告。\n现代飞机都配备了先进的防冰除冰装置。\n一些飞机也有电子测冰仪，以帮助飞行员检测积冰情况。"
+    },
+    {
+      "id": "opi-fzy-152167",
+      "taskTitle": "1.飞行环境：气象-39",
+      "audioText": "If ice accumulates on wings, what will you do?",
+      "audioTextZh": "如果机翼上积了冰，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If it occurs before takeoff, I will contact with ground and return to apron to carry out de-icing procedure.\nIf it occurs en route, I will turn the de-icing system to maximum and push the throttle forward to increase speed.\nThen I will report the situation to ATC, descend to a lower level and leave the icing area as soon as possible.",
+      "referenceTextZh": "如果发生在起飞前，我将与地面联系并返回停机坪执行除冰程序。\n如果发生在飞行途中，我将把除冰系统调到最大，并将油门向前推以增加速度。\n然后我将向空中交通管制报告情况，下降到较低的高度，尽快离开结冰区域。"
+    },
+    {
+      "id": "opi-fzy-152168",
+      "taskTitle": "1.飞行环境：气象-40",
+      "audioText": "What do you know about the anti-ice system in an aircraft?",
+      "audioTextZh": "你对飞机上的防冰系统了解多少？",
+      "studyTier": 1,
+      "referenceText": "Some aircraft have anti-ice and de-ice system to remove ice once it has formed.\nThese systems protect the leading edge of wing, windshields, propeller blades and so on.\nI fly C172, we only have pitot tube heating.",
+      "referenceTextZh": "有些飞机装有防冰和除冰系统，一旦冰形成就可以将其清除。\n这些系统保护机翼的前缘，挡风玻璃，螺旋桨叶片等。\n我的飞机是塞斯纳172，我们只有空速管加热。"
+    },
+    {
+      "id": "opi-fzy-152169",
+      "taskTitle": "1.飞行环境：气象-41",
+      "audioText": "How many types of ice can you mention? What kind of ice do you think is the most dangerous for flight safety?",
+      "audioTextZh": "你知道多少类型的冰？什么类型的冰对飞行安全最危险？",
+      "studyTier": 1,
+      "referenceText": "Generally, there are four types of ice. clear ice, mixed ice, rime ice and frost.\nClear ice is the most dangerous ice for flight safety because it can modify aerodynamic characteristics.",
+      "referenceTextZh": "通常有四种冰，分别是明冰、毛冰、雾凇冰和霜。\n明冰对飞行安全影响最大，因为它能够改变飞机的空气动力特性。"
+    },
+    {
+      "id": "opi-fzy-152170",
+      "taskTitle": "1.飞行环境：气象-42",
+      "audioText": "What might be the consequences of crosswind landing?",
+      "audioTextZh": "侧风着陆的后果是什么？",
+      "studyTier": 2,
+      "referenceText": "Crosswind landing may cause many serious consequences.\nFor example, it can cause aircraft to veer off the runway, and it can also lead to tail strike or wingtip strikes the ground, which can cause structural damage or even passenger injured.\nSo it is dangerous to land with crosswind.",
+      "referenceTextZh": "侧风着陆可能会造成许多严重后果。\n例如，它可能导致飞机偏离跑道，也可能导致机尾或翼尖撞击地面，从而导致结构损坏甚至乘客受伤。\n所以侧风着陆是很危险的。"
+    },
+    {
+      "id": "opi-fzy-152171",
+      "taskTitle": "1.飞行环境：气象-43",
+      "audioText": "If the crosswind exceeds limits, but your captain or first officer insists in landing, what will you do?",
+      "audioTextZh": "如果侧风超出限制，但是你的机长或者副驾驶坚持着陆，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "Well, I think good communication among crew members is very important for flight safety.\nSo when crew members have different opinions, we should first communicate with each other.\nThen, we should strictly follow SOP to carry out procedures.",
+      "referenceTextZh": "我认为机组成员之间的良好沟通对飞行安全非常重要。\n所以机组间有不同的意见时，我们应该首先互相沟通。\n然后，严格按照SOP执行程序。"
+    },
+    {
+      "id": "opi-fzy-152172",
+      "taskTitle": "1.飞行环境：气象-44",
+      "audioText": "What is the maximum tailwind that your aircraft can take off or land?",
+      "audioTextZh": "你的飞机能起飞或降落的最大顺风量是多少？",
+      "studyTier": 1,
+      "referenceText": "Generally, the maximum tailwind is 10 knots for takeoff and landing.",
+      "referenceTextZh": "通常飞机起飞或降落的最大顺风量是10节。"
+    },
+    {
+      "id": "opi-fzy-152173",
+      "taskTitle": "1.飞行环境：气象-45",
+      "audioText": "What should flight crew pay attention to when they encounter strong cross wind during landing?",
+      "audioTextZh": "机组人员在着陆过程中遇到强侧风时应注意什么？",
+      "studyTier": 1,
+      "referenceText": "When we encounter strong cross wind during landing, we must pay attention to the wind direction and speed.\nIf the wind speed exceeds the limit, we cannot land. In this situation, we will prepare for the possible go around．",
+      "referenceTextZh": "当我们在着陆过程中遇到强侧风时，必须注意风向和风速。\n如果风速超过极限，我们就不能着陆。在这种情况下，我们将为可能的复飞做好准备。"
+    },
+    {
+      "id": "opi-fzy-152174",
+      "taskTitle": "1.飞行环境：气象-46",
+      "audioText": "If the previous aircraft goes around due to cross wind, what will you do?",
+      "audioTextZh": "如果前机因为侧风而复飞，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "I will ask the ATC for the wind check.\nIf the wind exceeds our limit, l will also go around.",
+      "referenceTextZh": "我会请求管制员通报风的信息。\n如果风超限，我也会复飞。"
+    },
+    {
+      "id": "opi-fzy-152175",
+      "taskTitle": "1.飞行环境：气象-47",
+      "audioText": "If cross wind is marginal around your standard, what will you do?",
+      "audioTextZh": "如果侧风在边缘标准，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If the cross wind is marginal, I will think about the aircraft performance, visibility and the runway condition.\nI think the best way is to go around and divert to the alternate airport.",
+      "referenceTextZh": "如果侧风在边缘标准，我会考虑飞机的性能，能见度和跑道情况。\n我想最好的办法是复飞然后改航到备降机场。"
+    },
+    {
+      "id": "opi-fzy-152180",
+      "taskTitle": "1.飞行环境：气象-48",
+      "audioText": "What influence does mountain wave turbulence impose to flight safety?",
+      "audioTextZh": "山岳波湍流会对飞行安全造成什么影响？",
+      "studyTier": 1,
+      "referenceText": "The aircraft may lose speed and altitude rapidly.\nIt is difficult to control the aircraft in moderate to severe turbulence.\nIt may even cause structural damage and passenger injuries.",
+      "referenceTextZh": "飞机可能会迅速失去速度和高度。\n在中等到严重的湍流情况下很难控制飞机。\n可能造成飞机结构损坏和乘客受伤。"
+    },
+    {
+      "id": "opi-fzy-152994",
+      "taskTitle": "1.飞行环境：气象-49",
+      "audioText": "Based on your experience, can you tell me what weather do you think is the worst or the most dangerous?",
+      "audioTextZh": "根据你的经验，你觉得最坏的或者最危险的天气是什么？",
+      "studyTier": 1,
+      "referenceText": "I think the low level wind shear is the most dangerous for flight, because as the low level wind shear always appears at low altitude, we do not have much space to deal with it.",
+      "referenceTextZh": "我认为低空风气变对飞行来说是最危险的，因为低空风切变总是发生在低高度，我们没有足够的空间改出。"
+    },
+    {
+      "id": "opi-fzy-152995",
+      "taskTitle": "1.飞行环境：气象-50",
+      "audioText": "Have you ever experienced such bad weather in your career?",
+      "audioTextZh": "在你的职业生涯中，遭遇这样的坏天气吗？",
+      "studyTier": 1,
+      "referenceText": "No, I am very lucky, I have never encountered this bad weather.",
+      "referenceTextZh": "不，我非常幸运，我从来没有遭遇过中这种坏天气。"
+    },
+    {
+      "id": "opi-fzy-152996",
+      "taskTitle": "1.飞行环境：气象-51",
+      "audioText": "What kind of other bad weather do you think that is dangerous?",
+      "audioTextZh": "你还觉得其他别的危险的天气吗？",
+      "studyTier": 1,
+      "referenceText": "Well, I think wind shear is dangerous, too.",
+      "referenceTextZh": "我觉得风切变也很危险。"
+    },
+    {
+      "id": "opi-fzy-152997",
+      "taskTitle": "1.飞行环境：气象-52",
+      "audioText": "What kind of season or what kind of area that is most likely to encounter wind shear?",
+      "audioTextZh": "在什么季节或者什么区域你觉得最有可能遭遇风切变。",
+      "studyTier": 1,
+      "referenceText": "I think you're most likely to experience wind shear in a micro burst in summer.",
+      "referenceTextZh": "我觉得，在夏季的微下击暴流中最有可能遭遇风切变。"
+    },
+    {
+      "id": "opi-fzy-153353",
+      "taskTitle": "1.飞行环境：气象-54",
+      "audioText": "What are the bad influences if you fly in heavy rain?",
+      "audioTextZh": "在大雨中飞行的不利影响是什么？",
+      "studyTier": 1,
+      "referenceText": "Heavy rain can reduce visibility. And it can also cause engines flame-out during the landing stage. Heavy rain can also affect the braking action of the runway, making aircraft more likely to overrun the runway.",
+      "referenceTextZh": "大雨会降低能见度，暴雨可能会使处于着陆阶段的飞机发动机熄火，此外，大雨也会影响跑道的刹车性能，使飞机有更大的可能冲出跑道。"
+    }
+  ],
+  "categoryId": "opi-category-01"
+}

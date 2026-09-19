@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0016",
   "name": "AFR 782 厕所冒烟 作PA 乘客烟熏",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "经滑行道E3、A、A8滑行至5号机坪，非常感谢，AFR 782。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/278.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

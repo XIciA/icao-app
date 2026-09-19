@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0059",
   "name": "CCA 527 绕飞雷暴",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "跑道 02R 可以着陆，着陆后加快脱离跑道，CCA 527。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1028.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

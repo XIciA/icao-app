@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0082",
   "name": "CSN 311 跑线 宣布燃油紧急",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "跑道 36R，可以落地，CSN 311。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1421.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

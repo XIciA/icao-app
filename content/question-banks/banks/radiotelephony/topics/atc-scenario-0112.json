@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0112",
   "name": "CSN 557 液压问题 起落架问题 燃油泄漏",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "武汉塔台，CSN 557，航空器仍然完好，请求紧急撤离。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-008-csn557-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0075",
   "name": "等待程序",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "Before entering a holding pattern, the pilot should confirm the holding fix, holding altitude, inbound track, left- or right-hand pattern, and outbound time.",
       "referenceTextZh": "进入等待航线前，飞行员应确认等待定位点、等待高度、入航航迹、左转或右转航线以及出航时间。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }
