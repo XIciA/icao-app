@@ -24,7 +24,7 @@ let mockTaskKind: 'choices' | 'recording' = 'choices';
 let mockAnnotationTarget: unknown;
 let mockWorkbenchProps: { persistAiResult?: boolean } | undefined;
 let mockSessionOverride: ((input: { studyPackage?: QuestionBankStudyPackage }) => Record<string, unknown>) | undefined;
-let mockAnswerCardProps: { marked: Set<number>; markedLabel?: string; onSelect: (index: number) => void; total: number; unmarkedLabel?: string } | undefined;
+let mockAnswerCardProps: { results?: ('correct' | 'incorrect' | undefined)[]; tagColors?: string[][]; marked: Set<number>; markedLabel?: string; onSelect: (index: number) => void; total: number; unmarkedLabel?: string } | undefined;
 
 jest.mock('@react-navigation/native', () => ({
   usePreventRemove: (_prevent: boolean, handler: () => void) => { mockPreventRemoveHandler = handler; },
@@ -580,6 +580,7 @@ describe('study exit flow', () => {
           await act(async () => { fireEvent.press(screen.getByLabelText('打开答题卡')); });
           expect(mockAnswerCardProps).toMatchObject({ markedLabel: '已答', total: 20, unmarkedLabel: '未答' });
           expect(mockAnswerCardProps?.marked).toEqual(new Set([0]));
+          expect(mockAnswerCardProps?.results).toBeUndefined();
           await act(async () => { mockAnswerCardProps?.onSelect(0); });
         }
         if (index < 19) {
@@ -649,4 +650,22 @@ describe('study exit flow', () => {
       Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
     }
   });
+  it('uses the latest choice in the Vercel question list and leaves unanswered questions neutral', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    const pkg = { ...listeningExamPackage(), progressMode: 'persistent' as const };
+    mockSessionOverride = function useLatestChoiceSession() { return useMockListeningExamSession({ studyPackage: pkg }); };
+    try {
+      const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+      expect(mockAnswerCardProps?.results?.every((result) => result === undefined)).toBe(true);
+      await act(async () => { fireEvent.press(screen.getByLabelText('选择错误答案')); });
+      expect(mockAnswerCardProps?.results?.[0]).toBe('incorrect');
+      await act(async () => { fireEvent.press(screen.getByLabelText('选择正确答案')); });
+      expect(mockAnswerCardProps?.results?.[0]).toBe('correct');
+      expect(mockAnswerCardProps?.results?.[1]).toBeUndefined();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
+  });
+
 });
