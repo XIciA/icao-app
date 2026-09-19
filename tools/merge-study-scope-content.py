@@ -145,12 +145,16 @@ def source_coverage_errors(source):
             declared_ids = evidence.get('exercise_ids')
             if declared_ids is not None and (len(declared_ids) != evidence.get('response_total') or not set(declared_ids).issubset(ids)):
                 errors.append(f'{section_id}/{scope}: source question identities are missing')
+            if scope == 'required' and declared_ids is not None and set(declared_ids) != required_ids:
+                errors.append(f'{section_id}: required identities differ despite matching counts')
         # A scope can share question IDs with another scope. Validate the source
         # answer-card IDs where captured, instead of adding scope totals together.
         for entry in section.get('sourceRanges', []):
             known_ids = entry.get('expectedIds', [])
             if known_ids and not set(known_ids).issubset(ids):
                 errors.append(f'{section_id}/{entry["scope"]}: answer-card identities are missing')
+            if entry['scope'] == 'required' and known_ids and set(known_ids) != required_ids:
+                errors.append(f'{section_id}: required answer-card identities differ')
     return errors
 
 
@@ -186,7 +190,11 @@ def fingerprint(value):
 def semantic_guard(value):
     numbers = tuple(re.sub(r'(?<=\d),(?=\d{3}(?:\D|$))', '', item) for item in re.findall(r'[+-]?(?:\d+(?:[.,]\d+)*|\.\d+)', value))
     negations = tuple(bool(re.search(r'\b' + word + r'\b', value, re.I)) for word in ['not', 'no', 'unable', 'negative', 'without', "can't", 'cannot', "won't", "isn't", "aren't", "doesn't", "don't", "shouldn't"])
-    return numbers, negations
+    # A one-word operational reversal can be >98% similar in a long transcript.
+    # Preserve those anchors rather than allowing the fuzzy score to erase it.
+    operational = re.sub(r'\b(\d{2})([LRC])\b', lambda match: match[1] + ' ' + {'l': 'left', 'r': 'right', 'c': 'center'}[match[2].lower()], value, flags=re.I)
+    anchors = tuple(re.findall(r'\b(?:left|right|climb|descend|increase|decrease|before|after|above|below|north|south|east|west|red|green|amber)\b', operational.lower()))
+    return numbers, negations, anchors
 
 
 def same_question(left, right):
@@ -244,6 +252,7 @@ class Merge:
         self.media = {}
         self.media_files = {}
         self.aliases = {}
+        self.provenance = {}
         self.baseline = copy.deepcopy(self.banks)
         contract = (ROOT / 'packages/contracts/src/index.ts').read_text()
         self.free_ids = set(re.findall(r"'(?:listening-main-\d+|story-wing-\d+)'", contract))
@@ -452,19 +461,38 @@ class Merge:
             duplicate = matches[0][1] if matches else None
             if duplicate:
                 source_id = card['id']
-                card['id'] = duplicate['id']
-                card['studyTier'] = max(card['studyTier'], duplicate.get('studyTier', 0))
+                canonical_id = duplicate['id']
+                # Required source wording wins over its ordinary-bank variant,
+                # regardless of capture order. Keep one canonical ID and union
+                # membership, without silently swapping the curated question.
+                prior_sources = [(old_topic, existing) for old_topic, existing in matches if existing['id'] in self.provenance]
+                winner_topic, winner_card = target, card
+                winner_source = {'sourceId': source_id, 'required': card['studyTier'] >= 1}
+                if prior_sources:
+                    prior_topic, prior_card = max(prior_sources, key=lambda row: self.provenance[row[1]['id']]['required'])
+                    prior_source = self.provenance[prior_card['id']]
+                    if prior_source['required'] >= winner_source['required']:
+                        winner_topic, winner_card, winner_source = prior_topic, prior_card, prior_source
+                replacement = copy.deepcopy(winner_card)
+                replacement['id'] = canonical_id
+                replacement['studyTier'] = max(card['studyTier'], *(existing.get('studyTier', 0) for _, existing in matches))
                 similarity = SequenceMatcher(None, fingerprint(duplicate.get('audioText', '')), fingerprint(card['audioText']), autojunk=False).ratio()
                 duplicate.clear()
-                duplicate.update(card)
-                self.report['merged'].append({'bank': bank['id'], 'sourceId': source_id, 'cardId': card['id'], 'reason': 'same-question', 'similarity': round(similarity, 5)})
+                duplicate.update(replacement)
+                self.provenance[canonical_id] = copy.deepcopy(winner_source)
+                self.report['merged'].append({'bank': bank['id'], 'sourceId': source_id, 'cardId': canonical_id, 'keptSourceId': winner_source['sourceId'], 'reason': 'same-question', 'similarity': round(similarity, 5)})
                 for old_topic, extra in matches[1:]:
-                    duplicate['studyTier'] = max(duplicate['studyTier'], extra.get('studyTier', 0))
                     old_topic['cards'].remove(extra)
-                    self.aliases[extra['id']] = card['id']
-                    self.report['merged'].append({'bank': bank['id'], 'sourceId': extra['id'], 'cardId': card['id'], 'reason': 'same-question-existing-copy'})
+                    self.aliases[extra['id']] = canonical_id
+                    self.provenance.pop(extra['id'], None)
+                    self.report['merged'].append({'bank': bank['id'], 'sourceId': extra['id'], 'cardId': canonical_id, 'reason': 'same-question-existing-copy'})
+                if bank['id'] == 'listening' and matches[0][0] is not winner_topic:
+                    matches[0][0]['cards'].remove(duplicate)
+                    winner_topic['cards'].append(duplicate)
+                    self.report['classification'].append({'cardId': canonical_id, 'fromTopic': matches[0][0]['id'], 'toTopic': winner_topic['id'], 'reason': 'source-question-and-group-stay-together'})
             else:
                 target['cards'].append(card)
+                self.provenance[card['id']] = {'sourceId': card['id'], 'required': card['studyTier'] >= 1}
                 self.report['added'].append({'bank': bank['id'], 'cardId': card['id'], 'topicId': target['id']})
 
     def finish(self):

@@ -50,6 +50,17 @@ class MergeSafetyTests(unittest.TestCase):
             merge.write(directory / 'section-4-complete.json', section)
             self.assertTrue(any('required' in error for error in merge.source_coverage_errors(directory)))
 
+    def test_correct_counts_cannot_hide_wrong_required_membership(self):
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            self.make_complete_capture(directory)
+            section = merge.read(directory / 'section-4-complete.json')
+            section['questions'] = [{'exercise_id': 4, 'required': False}, {'exercise_id': 44, 'required': True}]
+            section['all_count'] = 2
+            section['sourceRanges'][0]['expectedIds'] = [4, 44]
+            merge.write(directory / 'section-4-complete.json', section)
+            self.assertTrue(any('required' in error and 'identities' in error for error in merge.source_coverage_errors(directory)))
+
     def test_base_and_required_drills_share_the_scoring_point_category(self):
         self.assertEqual(merge.scoring_point_name('【练习版】ATC clearance放行许可'), '放行许可')
         self.assertEqual(merge.scoring_point_name('采分点练习-放行许可'), '放行许可')
@@ -63,6 +74,38 @@ class MergeSafetyTests(unittest.TestCase):
         prefix = 'Maintain the assigned heading and report when reaching the designated reporting point. '
         for a, b in [('Mach .75', 'Mach 75'), ('3.5 miles', '35 miles'), ('FL330', 'FL340'), ('cleared', 'not cleared'), ('can accept', "can't accept")]:
             self.assertFalse(merge.same_question(prefix + a, prefix + b))
+
+    def test_long_scenario_cannot_hide_an_operational_reversal(self):
+        prefix = 'The controller issues the clearance after checking all traffic in the area. ' * 8
+        for first, second in [('left', 'right'), ('climb', 'descend'), ('before', 'after'), ('above', 'below'), ('red', 'green')]:
+            self.assertFalse(merge.same_question(prefix + first, prefix + second))
+
+    def test_required_version_and_its_listening_group_survive_either_import_order(self):
+        with tempfile.TemporaryDirectory() as temp:
+            for source_order in [(467, 468), (468, 467)]:
+                worker = merge.Merge(Path(temp), Path(temp) / 'out')
+                old_card = {'id': 'old-card', 'audioText': 'Hong Kong Approach, cancel distress. What should the pilot do?'}
+                topics = [{'id': topic, 'cards': [old_card] if topic == 'listening-topic-04' else []} for topic in merge.LISTENING_SECTIONS.values()]
+                bank = {'id': 'listening', 'categories': [{'id': 'main', 'topics': topics}]}
+                worker.by_bank = {'listening': bank}
+                worker.excluded_texts = []
+                worker.resource = lambda *_args: '/question-bank-assets/test.mp3'
+                for section_id in source_order:
+                    required = section_id == 467
+                    worker.add_section({
+                        'module': 'listening', 'section_id': section_id, 'name': str(section_id), 'all_count': 1, 'completeAll': True,
+                        'questions': [{
+                            'exercise_id': section_id, 'required': required,
+                            'stem': {'text': old_card['audioText'], 'translate': '试题', 'audios': 'ignored'},
+                            'single_choice': {'answer': 'A', 'options': [{'index': 'A', 'content': 'Required answer' if required else 'Ordinary answer', 'translate': '答案'}]},
+                        }],
+                    })
+                cards = merge.all_cards(bank)
+                self.assertEqual(len(cards), 1)
+                self.assertEqual(cards[0][1]['id'], 'listening-topic-01')
+                self.assertEqual(cards[0][2]['id'], 'old-card')
+                self.assertEqual(cards[0][2]['choices'], ['Required answer'])
+                self.assertEqual(cards[0][2]['studyTier'], 1)
 
     def test_same_callsign_and_partial_overlap_preserve_both_scenarios(self):
         first = {'cards': [{'audioText': 'UAL805, maintain 11000 meters.'}, {'audioText': 'Turn heading 130.'}]}
