@@ -58,6 +58,10 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // 2026-09-19: user-authorized Vercel answer-card results and upper-left tag dots.
+  // Runtime guards retain Native/EdgeOne output; only these exact UI inputs are approved.
+  ["src/features/question-bank/components/AnswerCardSheet.tsx", ["50e00cde4882980ad00e3c32313ecfd78631fa707e5d6d06cedf12c23fe36eba", "75abd67dd1a8af5fd34bc3bfce017774658992273a17ce62b657b5d0409e92ff"]],
+  ["src/features/question-bank/components/QuestionBankStudyScreen.tsx", ["b0d2abef18998f5312cc00a24b8f1fbbefe954746b56006ce34025e91268ee31", "d5568bbc3a46f034a552fba446ce394985305355acf92f41118d935ac168060e"]],
   // 2026-09-19: user-authorized public APK download on both websites.
   // Root layout changes only the /download exemption; all learning routes keep their auth guard.
   // 2026-09-19 Android parity: exact reviewed Android branches.

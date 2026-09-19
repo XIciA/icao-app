@@ -465,6 +465,26 @@ export function QuestionBankStudyScreen(props: Props) {
     }
     return session.visitedIndexes;
   }, [listeningExamRange, listeningSegmentNavigationActive, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
+  const answerCardResults = useMemo(() => {
+    // Keep active mock exams blind; their results become visible during review.
+    if (!vercelLegacyWeb || listeningExamActive) return undefined;
+    return session.items.slice(navigationStartIndex, navigationEndIndex + 1).map((entry) => {
+      const selected = session.states[entry.id]?.selectedChoiceIndex;
+      const correct = entry.card.correctChoiceIndex;
+      if (selected === undefined || correct === undefined) return undefined;
+      return selected === correct ? 'correct' as const : 'incorrect' as const;
+    });
+  }, [listeningExamActive, navigationEndIndex, navigationStartIndex, session.items, session.states, vercelLegacyWeb]);
+  const answerCardTagColors = useMemo(() => {
+    if (!vercelLegacyWeb) return undefined;
+    return session.items.slice(navigationStartIndex, navigationEndIndex + 1).map((entry) => {
+      const key = questionBankCardTargetKey({ bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id, cardId: entry.card.id });
+      return (annotations.store.entries[key]?.tagIds ?? []).flatMap((id) => {
+        const definition = annotations.tagDefinitions.find((tag) => tag.id === id);
+        return definition ? [annotationToneColors[definition.color]] : [];
+      });
+    });
+  }, [annotations.store.entries, annotations.tagDefinitions, navigationEndIndex, navigationStartIndex, session.items, vercelLegacyWeb]);
   const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
   const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
@@ -771,7 +791,7 @@ export function QuestionBankStudyScreen(props: Props) {
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={answerCardVisible} />
+      <AnswerCardSheet results={answerCardResults} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={answerCardVisible} />
       <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
