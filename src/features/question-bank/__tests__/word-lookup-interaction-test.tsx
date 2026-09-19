@@ -46,7 +46,7 @@ jest.mock('../hooks/useStudySession', () => ({
       behavior: { generatedAudio: false, referenceLabel: dataset.study.copy.referenceLabel, reviewKind: 'none', taskKind: 'choices', transcriptLabel: dataset.study.copy.transcriptLabel, workbenchTabs: ['notes'] },
       chooseOption: jest.fn(), currentIndex: 0, finish: jest.fn(), goTo: jest.fn(), hydrated: true, markCompleted: jest.fn(), markFeedback: jest.fn(), playRequestToken: 0,
       recording: undefined, report: undefined, revealCurrent: jest.fn(), revealed: true, setActiveTab: jest.fn(), setToolMode, toggleAnswers: jest.fn(), toolMode,
-      topic, updateAnswer: jest.fn(), visitedIndexes: new Set([0]),
+      topic, states: {}, updateAnswer: jest.fn(), visitedIndexes: new Set([0]),
     };
   },
 }));
