@@ -1,3 +1,6 @@
+import { normalizeStudyScope } from '@icao/contracts';
+import { useProfile } from '@/features/account/profile-store.native';
+import { scopeDataset } from '@/features/question-bank/lib/study-scope';
 import TrackPlayer, {
   Event,
   RepeatMode,
@@ -69,6 +72,7 @@ function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: strin
 }
 
 export function RadioPlayerProvider({ children }: PropsWithChildren) {
+  const profile = useProfile();
   const [playerReady, setPlayerReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const mounted = useRef(true);
@@ -89,7 +93,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   if (playerReady) return <ReadyRadioPlayerProvider>{children}</ReadyRadioPlayerProvider>;
   // Radio initialization must not strand the entire App on an empty screen.
   // Native hooks mount only after setup; other features remain accessible on failure.
-  const catalogs = getEmbeddedRadioCatalogs();
+  const catalogs = getEmbeddedRadioCatalogs({ scope: normalizeStudyScope(profile.studyScope), target: profile.target });
   const noop = () => undefined;
   const unavailable: RadioPlayerContextValue = {
     catalogs, currentCatalog: catalogs[0], currentTrack: catalogs[0]?.tracks[0], currentIndex: 0,
@@ -113,7 +117,10 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     nativeCommerceEnvironmentSnapshot,
     nativeCommerceEnvironmentSnapshot,
   );
-  const embeddedCatalogs = useMemo(getEmbeddedRadioCatalogs, []);
+  const profile = useProfile();
+  const selection = useMemo(() => ({ scope: normalizeStudyScope(profile.studyScope), target: profile.target }), [profile.studyScope, profile.target]);
+  const selectionRef = useRef(selection); selectionRef.current = selection;
+  const embeddedCatalogs = useMemo(() => getEmbeddedRadioCatalogs(selection), [selection]);
   const [catalogs, setCatalogs] = useState(embeddedCatalogs);
   const [bankId, setBankId] = useState<RadioBankId>(embeddedCatalogs[0]?.bankId ?? 'listening');
   const [trackId, setTrackId] = useState(embeddedCatalogs[0]?.tracks[0]?.id ?? '');
@@ -144,7 +151,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const nativeTransitionTrackId = useRef<string | undefined>(undefined);
   const nativeTrackInstance = useRef(0);
   const activeNativeContentTrack = useRef<NativeRadioContentTrack | undefined>(undefined);
-  const catalogDatasets = useRef<QuestionBankDataset[]>(getEmbeddedQuestionBanks());
+  const catalogDatasets = useRef<QuestionBankDataset[]>(getEmbeddedQuestionBanks().map((bank) => scopeDataset(bank, selection.scope, selection.target)));
   const catalogHydrationGeneration = useRef(0);
   const topicHydrations = useRef(new Map<string, Promise<void>>());
   const waitingForNextRef = useRef(false);
@@ -206,7 +213,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const resetAccountRuntime = useCallback(async () => {
     catalogHydrationGeneration.current += 1;
     topicHydrations.current.clear();
-    catalogDatasets.current = getEmbeddedQuestionBanks();
+    catalogDatasets.current = getEmbeddedQuestionBanks().map((bank) => scopeDataset(bank, selectionRef.current.scope, selectionRef.current.target));
     generation.current += 1;
     queueRevision.current += 1;
     recoveryAttempts.current.clear();
@@ -256,6 +263,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   }, [embeddedCatalogs, releaseRadioLease]);
 
   useEffect(() => registerRadioPlayerRuntimeReset(resetAccountRuntime), [resetAccountRuntime]);
+  const previousSelection = useRef(selection);
+  useEffect(() => {
+    if (previousSelection.current === selection) return;
+    previousSelection.current = selection;
+    void resetAccountRuntime();
+  }, [selection, resetAccountRuntime]);
 
   const hydrateTopic = useCallback(async (identity: Pick<RadioTrack, 'bankId' | 'categoryId' | 'topicId'>) => {
     const request = catalogHydrationGeneration.current;
@@ -276,7 +289,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
             ...category, topics: category.topics.map((item) => item.id === identity.topicId ? topic : item),
           }),
         });
-        const nextCatalogs = deriveRadioCatalogs(catalogDatasets.current);
+        const nextCatalogs = deriveRadioCatalogs(catalogDatasets.current, selectionRef.current);
         stateRef.current.catalogs = nextCatalogs;
         setCatalogs(nextCatalogs);
       })();
@@ -478,10 +491,10 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     const requestGeneration = catalogHydrationGeneration.current + 1;
     catalogHydrationGeneration.current = requestGeneration;
     topicHydrations.current.clear();
-    void loadRadioCatalogDatasets().then((datasets) => {
+    void loadRadioCatalogDatasets(selectionRef.current).then((datasets) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
       catalogDatasets.current = datasets;
-      const next = deriveRadioCatalogs(datasets);
+      const next = deriveRadioCatalogs(datasets, selectionRef.current);
       if (next.length) {
         stateRef.current.catalogs = next;
         setCatalogs(next);
@@ -491,7 +504,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, commerceEnvironmentSnapshot]);
+  }, [auth.restoring, auth.session, commerceEnvironmentSnapshot, selection]);
 
   useEffect(() => {
     if (auth.restoring) return;
@@ -517,12 +530,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
         if (value.schemaVersion !== 1 && value.schemaVersion !== 2) return;
         let available = stateRef.current.catalogs;
         if (value.categoryId && value.topicId) {
-          const datasets = await withRadioTimeout(loadRadioCatalogDatasets());
+          const datasets = await withRadioTimeout(loadRadioCatalogDatasets(selectionRef.current));
           if (!active) return;
           const hydrated = await withRadioTimeout(hydrateRadioCatalogTopic(datasets, value.bankId, value.categoryId, value.topicId));
           if (!active) return;
           catalogDatasets.current = hydrated;
-          available = deriveRadioCatalogs(hydrated);
+          available = deriveRadioCatalogs(hydrated, selectionRef.current);
           stateRef.current.catalogs = available;
           setCatalogs(available);
         }

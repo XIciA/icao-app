@@ -67,7 +67,7 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
     const candidates = data.categories.flatMap((entry) => entry.topics
       .filter((entryTopic) => {
         const count = mockExamTopicCardCount(data, entryTopic);
-        return count >= 15 && count <= 20;
+        return entryTopic.practiceKind !== 'scoring-points' && count > 0;
       })
       .map((entryTopic) => ({ category: entry, topic: entryTopic })));
     const chosen = sample(candidates, 1, next)[0];
@@ -77,8 +77,7 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
   if (moduleId === 'storytelling') {
     const data = datasets.storytelling;
     const group = category(data, '飞行ICAO');
-    const selected = group.topics.find((entry) => entry.name === '必做题库');
-    if (!selected) throw new Error('故事复述缺少飞行 ICAO 必做题库。');
+    const selected = sample(group.topics.filter((entry) => mockExamTopicCardCount(data, entry) > 0), 1, next)[0];
     const selectedTopic = await hydrateMockExamTopic(data, group, selected);
     return [section(moduleId, 'storytelling', '故事复述', data, group, selectedTopic, sample(selectedTopic.cards, 1, next))];
   }

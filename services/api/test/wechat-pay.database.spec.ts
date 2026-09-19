@@ -117,13 +117,16 @@ function fixture(tx: CommerceTransaction) {
 }
 
 describe('WeChat checkout joins the existing commerce ledger', () => {
-  it('sells the Android day pass for one yuan and grants exactly one day through the ordinary ledger', () => scenario(async (tx) => {
+  it('rejects new day-pass purchases but settles an existing paid day pass exactly once', () => scenario(async (tx) => {
     const accountId = await owner(tx);
     const { service, paid } = fixture(tx);
-    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[1, 100], [7, 6800], [31, 15800], [93, 35800]]);
-    const checkout = await service.create(accountId, { productKey: 'membership_1d_v1', idempotencyKey: randomUUID() });
-    expect(checkout.amountFen).toBe(100);
+    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[7, 6800], [31, 15800], [93, 35800]]);
+    await expect(service.create(accountId, { productKey: 'membership_1d_v1', idempotencyKey: randomUUID() })).rejects.toThrow('wechat_product_unavailable');
+    // Represent a pending checkout saved before the offering was retired.
+    const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
+    await tx.update(schema.wechatPaymentAttempts).set({ productKey: 'membership_1d_v1', durationDays: 1, amountFen: 100 }).where(eq(schema.wechatPaymentAttempts.id, checkout.id));
     const trade = paid(checkout.id);
+    trade.amount = { total: 100, currency: 'CNY' };
     const result = await service.status(accountId, checkout.id);
     expect(result.entitlement?.membership.active).toBe(true);
     expect(Date.parse(result.entitlement!.membership.expiresAt!) - Date.parse(trade.success_time as string)).toBe(86_400_000);

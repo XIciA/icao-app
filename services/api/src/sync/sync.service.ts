@@ -26,6 +26,7 @@ const ACCOUNT_PROFILE_KEY = 'account_profile';
 const accountProfileSchema = z.object({
   displayName: z.string().trim().min(1).refine((value) => Array.from(value).length <= 24),
   target: z.enum(['icao4-first', 'icao4-recert', 'icao5-first', 'icao5-recert']),
+  studyScope: z.enum(['all', 'selected', 'crash']).optional(),
   avatarUri: z.string().max(180_000).regex(/^data:image\/(?:jpeg|png);base64,[A-Za-z0-9+/]+=*$/u).nullable(),
 });
 
@@ -427,6 +428,13 @@ export class SyncService {
       eq(userDocuments.documentKey, mutation.payload.documentKey),
     );
     const [current] = await tx.select().from(userDocuments).where(target).limit(1);
+    // Older installed clients still send profile edits without the new field.
+    if (mutation.payload.documentKey === ACCOUNT_PROFILE_KEY && mutation.payload.document.studyScope === undefined) {
+      const previousScope = (current?.payload as Record<string, unknown> | undefined)?.studyScope;
+      if (previousScope === 'all' || previousScope === 'selected' || previousScope === 'crash') {
+        mutation = { ...mutation, payload: { ...mutation.payload, document: { ...mutation.payload.document, studyScope: previousScope } } };
+      }
+    }
     if (current && mutation.payload.version <= current.version) {
       return {
         mutationId: mutation.mutationId,

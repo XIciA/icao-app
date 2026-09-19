@@ -1,4 +1,7 @@
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { normalizeStudyScope } from '@icao/contracts';
+import { useProfile } from '@/features/account/profile-store.native';
+import { scopeDataset } from '../lib/study-scope';
 
 import {
   nativeCommerceEnvironmentSnapshot,
@@ -13,6 +16,7 @@ type State =
   | { status: 'error'; data?: undefined; error: Error };
 
 export function useQuestionBank(bankId: QuestionBankId | undefined) {
+  const profile = useProfile();
   const environmentSnapshot = useSyncExternalStore(
     subscribeNativeCommerceEnvironment,
     nativeCommerceEnvironmentSnapshot,
@@ -47,5 +51,8 @@ export function useQuestionBank(bankId: QuestionBankId | undefined) {
   }, [attempt, bankId, environmentSnapshot]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
-  return { ...state, retry };
+  const projected = useMemo(() => state.status === 'ready'
+    ? { ...state, data: scopeDataset(state.data, normalizeStudyScope(profile.studyScope), profile.target) }
+    : state, [state, profile.studyScope, profile.target]);
+  return { ...projected, retry };
 }

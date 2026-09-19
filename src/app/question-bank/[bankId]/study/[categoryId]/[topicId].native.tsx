@@ -42,6 +42,22 @@ export default function NativeQuestionBankStudyRoute() {
   );
 
   if (bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
+  const category = bankState.status === 'ready'
+    ? bankState.data.categories.find((item) => item.id === categoryId)
+    : undefined;
+  const catalogTopic = category?.topics.find((item) => item.id === topicId);
+  const removedCard = cardId && catalogTopic?.scopeCardIds && !catalogTopic.scopeCardIds.all.includes(cardId);
+  if (removedCard) {
+    return stateScreen(<CenteredState actionLabel={returnLabel} description="原题内容已更新或不可用，请返回后选择其他内容。" icon={BookX}
+      onAction={returnToSource} title="原题不可用" />);
+  }
+  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (!category
+    || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
+      || topicState.topic.declaredCardCount === 0)));
+  if (outsideSelection) {
+    return stateScreen(<CenteredState actionLabel="返回题库首页" description="这部分内容不在当前考试目标或题库范围内。可回到首页调整题库范围，或在个人资料中查看考试目标。" icon={BookX}
+      onAction={() => router.replace('/(tabs)')} title="不在当前学习范围" />);
+  }
   if (topicState.status === 'membership-required') {
     return stateScreen(
       <CenteredState
@@ -53,9 +69,6 @@ export default function NativeQuestionBankStudyRoute() {
       />
     );
   }
-  const category = bankState.status === 'ready'
-    ? bankState.data.categories.find((item) => item.id === categoryId)
-    : undefined;
   const topic = topicState.status === 'ready' ? topicState.topic : undefined;
   const targetCardMissing = Boolean(cardId && topic && !topic.cards.some((card) => card.id === cardId));
   const lockedTarget = targetCardMissing && bankState.status === 'ready' && bankState.data.access?.membershipActive !== true;

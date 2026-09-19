@@ -92,7 +92,7 @@ export const ACTIVE_MEMBERSHIP_PRODUCTS = MEMBERSHIP_PRODUCTS.filter(
 
 // Temporary Android payment-verification offering approved on 2026-09-19.
 // Disable here after acceptance; historical orders retain their saved terms.
-export const WECHAT_DAY_PASS_ENABLED = true;
+export const WECHAT_DAY_PASS_ENABLED = false;
 export const WECHAT_MEMBERSHIP_PRODUCTS = [
   ...(WECHAT_DAY_PASS_ENABLED ? [{ productKey: 'membership_1d_v1', displayName: '1天会员', durationDays: 1, basePriceCnyFen: 100 }] : []),
   ...ACTIVE_MEMBERSHIP_PRODUCTS,

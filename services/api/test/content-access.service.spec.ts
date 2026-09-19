@@ -32,8 +32,8 @@ const dataset = {
       name: '10s航空英语',
       declaredCardCount: 2,
       cards: [
-        { id: 'listening-main-001', audio: '/question-bank-assets/audio/listening/main/001.mp3' },
-        { id: 'listening-main-999', audio: '/question-bank-assets/audio/listening/main/999.mp3' },
+        { id: 'listening-main-001', audio: '/question-bank-assets/audio/listening/main/001.mp3', studyTier: 2 },
+        { id: 'listening-main-999', audio: '/question-bank-assets/audio/listening/main/999.mp3', studyTier: 1 },
       ],
     }],
   }],
@@ -115,6 +115,7 @@ describe('versioned content access policy', () => {
       membershipExpiresAt: '2026-09-25T00:00:00.000Z',
     });
     expect(topic.cards.map((card) => card.id)).toEqual(['listening-main-001']);
+    expect(topic.scopeCardIds).toEqual({ all: ['listening-main-001', 'listening-main-999'], selected: ['listening-main-001', 'listening-main-999'], crash: ['listening-main-001'] });
     expect(topic.access).toEqual({ level: 'member', availableCardCount: 1, declaredCardCount: 2 });
   });
 

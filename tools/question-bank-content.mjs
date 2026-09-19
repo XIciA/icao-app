@@ -127,12 +127,16 @@ function validate({ registry, banks, resources }, { full = false, requireResourc
       let categoryCards = 0;
       if (category.topics.length !== category.declaredTopicCount) fail(`category_topic_count:${bank.id}:${category.id}`);
       for (const topic of category.topics) {
+        if (topic.studyTier !== undefined && ![0, 1, 2].includes(topic.studyTier)) fail(`invalid_study_tier:${topic.id}`);
+        if (topic.practiceKind !== undefined && !['scenario', 'scoring-points'].includes(topic.practiceKind)) fail(`invalid_practice_kind:${topic.id}`);
         assertString(topic.id, `${bank.id}/${category.id}.topic.id`);
         assertUnique(topicIds, topic.id, `${bank.id}/${category.id}/${topic.id}`);
         topicCount += 1;
         bankTopics += 1;
         if (topic.cards.length !== topic.declaredCardCount) fail(`topic_card_count:${bank.id}:${topic.id}`);
         for (const card of topic.cards) {
+          if (card.studyTier !== undefined && ![0, 1, 2].includes(card.studyTier)) fail(`invalid_study_tier:${card.id}`);
+          if (topic.studyTier !== undefined && card.studyTier !== undefined && topic.studyTier !== card.studyTier) fail(`conflicting_study_tier:${card.id}`);
           assertString(card.id, `${bank.id}/${topic.id}.card.id`);
           assertString(card.taskTitle, `${bank.id}/${topic.id}/${card.id}.taskTitle`);
           assertUnique(cardIds, card.id, `${bank.id}/${category.id}/${topic.id}/${card.id}`);

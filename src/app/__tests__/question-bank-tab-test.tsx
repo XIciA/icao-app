@@ -14,6 +14,9 @@ jest.mock('lucide-react-native', () => {
 
   return {
     BookOpenText: Icon,
+    Check: Icon,
+    ChevronDown: Icon,
+    Info: Icon,
     ChevronRight: Icon,
     Headphones: Icon,
     MessageSquareQuote: Icon,
@@ -25,6 +28,7 @@ jest.mock('lucide-react-native', () => {
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ push: mockPush }),
+  useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]),
 }));
 jest.mock('react-native-safe-area-context', () => ({
   SafeAreaView: ({ children }: { children: React.ReactNode }) => children,
@@ -34,7 +38,7 @@ jest.mock('react-native-safe-area-context', () => ({
 describe('<QuestionBankTab />', () => {
   beforeEach(() => {
     mockPush.mockClear();
-    mockProfile = { ...DEFAULT_PROFILE };
+    mockProfile = { ...DEFAULT_PROFILE, studyScope: 'all' };
   });
 
   it('defaults to ICAO 4 first-exam banks without adding an onboarding choice or another profile entrance', async () => {
@@ -50,7 +54,8 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('OPI')).toBeTruthy();
     expect(screen.getByText('144 话题 / 1090 卡')).toBeTruthy();
     expect(screen.queryByText('故事复诵')).toBeNull();
-    expect(screen.queryByLabelText('打开个人资料')).toBeNull();
+    await fireEvent.press(screen.getByLabelText('打开个人资料'));
+    expect(mockPush).toHaveBeenCalledWith('/account/profile');
     expect(screen.getByLabelText('用户头像')).toBeTruthy();
     expect(screen.queryByText('可练习')).toBeNull();
     expect(screen.queryByLabelText('选择备考课程')).toBeNull();

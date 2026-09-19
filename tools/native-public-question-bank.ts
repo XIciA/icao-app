@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { CONTENT_ACCESS_POLICY_VERSION, isFreeQuestionBankCard } from '../packages/contracts/src/index';
+import { CONTENT_ACCESS_POLICY_VERSION, isFreeQuestionBankCard, studyScopeCardIds } from '../packages/contracts/src/index';
 
 type Card = Record<string, unknown> & { id: string };
 type Topic = Record<string, unknown> & { id: string; declaredCardCount: number; cards: Card[] };
@@ -26,6 +26,7 @@ const output = source.map((bank) => ({
       const cards = topic.cards.filter((card) => isFreeQuestionBankCard(bank.id, topic.id, card.id));
       return {
         ...topic,
+        scopeCardIds: studyScopeCardIds(bank.id, topic),
         cards,
         access: {
           level: cards.length >= topic.declaredCardCount ? 'free' : 'member',
@@ -42,7 +43,9 @@ const output = source.map((bank) => ({
     membershipExpiresAt: null,
   },
 }));
-const json = `${JSON.stringify(output, null, 2)}\n`;
+// This is generated runtime data, not a hand-maintained source. Compact JSON
+// keeps the public offline directory within its existing bundle-size budget.
+const json = `${JSON.stringify(output)}\n`;
 const release = `${JSON.stringify({
   policyVersion: CONTENT_ACCESS_POLICY_VERSION,
   checksum: createHash('sha256').update(json).digest('hex'),

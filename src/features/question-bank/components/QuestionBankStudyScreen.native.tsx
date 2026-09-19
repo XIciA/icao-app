@@ -51,6 +51,7 @@ import type {
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar';
 import { AnswerCardSheet } from './AnswerCardSheet';
+import { LookupPronunciation } from './LookupPronunciation';
 import { InteractiveStudyText } from './InteractiveStudyText';
 import { ImageQuestionCard } from './ImageQuestionCard';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
@@ -107,6 +108,7 @@ function StudyContent(props: Props) {
   const [activeHighlightId, setActiveHighlightId] = useState('green');
   const [annotationPanelTop, setAnnotationPanelTop] = useState<number>();
   const [lookup, setLookup] = useState<StaticWordLookupEntry>();
+  useFocusEffect(useCallback(() => () => setLookup(undefined), []));
   const [finishing, setFinishing] = useState(false);
   const [leavingStudy, setLeavingStudy] = useState(false);
   const [finishError, setFinishError] = useState<string>();
@@ -475,6 +477,22 @@ function StudyContent(props: Props) {
     return session.visitedIndexes;
   }, [listeningExamRange, listeningSegmentNavigationActive, session.answers, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
   const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
+  const answerCardResults = useMemo(() => {
+    if (examMode) return undefined;
+    return session.items.map((entry) => {
+      const selected = session.states[entry.id]?.selectedChoiceIndex;
+      const correct = entry.card.correctChoiceIndex;
+      if (entry.dataset.id !== 'listening' || selected === undefined || correct === undefined) return undefined;
+      return selected === correct ? 'correct' as const : 'incorrect' as const;
+    });
+  }, [examMode, session.items, session.states]);
+  const answerCardTagColors = useMemo(() => session.items.map((entry) => {
+    const key = questionBankCardTargetKey({ bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id, cardId: entry.card.id });
+    return (annotations.store.entries[key]?.tagIds ?? []).flatMap((id) => {
+      const definition = annotations.tagDefinitions.find((tag) => tag.id === id);
+      return definition ? [annotationToneColors[definition.color]] : [];
+    });
+  }), [annotations.store.entries, annotations.tagDefinitions, session.items]);
   const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
   const dictionaryMode = lookupInteraction === 'tap';
@@ -738,7 +756,7 @@ function StudyContent(props: Props) {
       <GestureDetector gesture={questionSwipeGesture}>
         <Animated.View style={[styles.bodyGesture, questionBodyAnimatedStyle]}>
           <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} ref={bodyScrollRef} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
-            {historyContentAllowed && (examMode || session.historyRecord || props.studyPackage?.record.source === 'hotspot') ? item.materials?.map((material) => (
+            {historyContentAllowed ? item.materials?.map((material) => (
               <ImageQuestionCard key={material.id} imageAlt={material.imageAlt} imagePath={material.image} />
             )) : null}
             {!historyContentAllowed ? <View style={styles.historySummary}><AppText variant="caption">会员到期后，题目与参考内容暂不可查看；你的回答和学习资料仍保留。</AppText><StudyHistoryPersonalContent answer={session.answerText} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} recorded={session.cardState?.recorded} feedback={session.historyRecord?.studyFeedback?.[item.id]} note={entry?.note} tags={entry?.tagIds} definitions={annotations.tagDefinitions} /></View> : card.kind === 'image' ? (
@@ -762,11 +780,12 @@ function StudyContent(props: Props) {
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={!examMode && answerCardVisible} />
+      <AnswerCardSheet results={answerCardResults} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={!examMode && answerCardVisible} />
       <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
             <AppText style={styles.lookupTitle} variant="pageTitle">{lookup?.word}</AppText>
+            {lookupAllowed && lookup ? <LookupPronunciation key={lookup.word} word={lookup.word} /> : null}
             {lookupAllowed && lookup ? (
               <Pressable
                 accessibilityLabel={wordFavorites.isFavorite({ word: lookup.word }) ? '取消收藏' : '收藏'}

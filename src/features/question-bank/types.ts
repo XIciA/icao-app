@@ -1,4 +1,6 @@
 import type {
+  StudyTier,
+  StudyScopeCardIds,
   GrammarCorrectionIssue,
   QuestionBankAccessSummary,
   QuestionBankContentAccess,
@@ -42,6 +44,7 @@ export type QuestionBankCapabilities = {
 type QuestionBankCardBase = {
   id: string;
   taskTitle: string;
+  studyTier?: StudyTier;
 };
 
 export type QuestionBankTextCard = QuestionBankCardBase & {
@@ -79,6 +82,9 @@ export type QuestionBankTopic = {
   nameEn?: string;
   declaredCardCount: number;
   cards: QuestionBankCard[];
+  studyTier?: StudyTier;
+  scopeCardIds?: StudyScopeCardIds;
+  practiceKind?: 'scenario' | 'scoring-points';
   access?: QuestionBankContentAccess;
 };
 

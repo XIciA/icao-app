@@ -74,6 +74,18 @@ describe('Native mock-exam topic hydration', () => {
     mockGetTopic.mockReset();
   });
 
+  it('includes complete eleven-card scenarios and excludes scoring-point drills regardless of daily tiers', async () => {
+    const scenario = { ...publicTopic, id: 'complete-scene', practiceKind: 'scenario' as const, studyTier: 0 as const, declaredCardCount: 11,
+      cards: Array.from({ length: 11 }, (_, i) => ({ id: `scene-${i}`, taskTitle: `场景${i}`, audioText: `Instruction ${i}` })),
+      access: { level: 'member' as const, availableCardCount: 11, declaredCardCount: 11 } };
+    const drills = { ...scenario, id: 'scoring', practiceKind: 'scoring-points' as const, studyTier: 2 as const };
+    mockGetTopic.mockResolvedValue(scenario);
+    mockGetDataset.mockResolvedValue({ ...dataset, categories: [{ ...category, topics: [drills, scenario] }] });
+    const exam = await buildMockExamSession({ examType: 'icao4-recert', modules: ['radiotelephony'] }, 42);
+    expect(exam.items).toHaveLength(11);
+    expect(exam.items.every((item) => item.source.topicId === 'complete-scene')).toBe(true);
+  });
+
   it('uses declared member counts for selection and hydrates only the selected topic', async () => {
     const hydrated = {
       ...publicTopic,

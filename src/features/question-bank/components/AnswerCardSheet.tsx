@@ -27,11 +27,11 @@ type Props = {
 
 export function AnswerCardSheet({ visible, total, current, marked, results, tagColors, markedLabel = '已学', unmarkedLabel = '未学', onSelect, onClose }: Props) {
   const vercelLegacyWeb = isVercelLegacyWeb(Platform.OS);
-  const showResults = vercelLegacyWeb && results?.some(Boolean);
+  const showResults = results?.some(Boolean);
   return (
     <BottomSheet accessibilityLabel="答题卡" onClose={onClose} visible={visible}>
       <View style={styles.header}><AppText variant="sectionTitle">答题卡</AppText><Pressable accessibilityLabel="关闭答题卡" onPress={onClose} style={styles.close}><X color={colors.foreground} size={20} /></Pressable></View>
-      <View style={[styles.legend, vercelLegacyWeb ? styles.legendWrap : null]}>
+      <View style={[styles.legend, styles.legendWrap]}>
         <Legend color={colors.primary} label="当前" />
         {showResults ? <>
           <Legend color={colors.answerCorrect} label="答对" />
@@ -44,14 +44,14 @@ export function AnswerCardSheet({ visible, total, current, marked, results, tagC
         {Array.from({ length: total }, (_, index) => {
           const isCurrent = index === current;
           const isMarked = marked.has(index);
-          const result = vercelLegacyWeb ? results?.[index] : undefined;
-          const dots = vercelLegacyWeb ? tagColors?.[index] ?? [] : [];
+          const result = results?.[index];
+          const dots = tagColors?.[index] ?? [];
           const resultColor = result === 'correct' ? colors.answerCorrect : result === 'incorrect' ? colors.destructive : undefined;
           const textColor = resultColor ?? (isCurrent ? colors.primaryForeground : isMarked ? colors.primary : colors.foreground);
           return (
             <Pressable
               accessibilityLabel={`第 ${index + 1} 题`}
-              accessibilityHint={vercelLegacyWeb ? [result === 'correct' ? '答对' : result === 'incorrect' ? '答错' : isMarked ? markedLabel : unmarkedLabel, dots.length ? `已添加${dots.length}个标签` : ''].filter(Boolean).join('，') : undefined}
+              accessibilityHint={[result === 'correct' ? '答对' : result === 'incorrect' ? '答错' : isMarked ? markedLabel : unmarkedLabel, dots.length ? `已添加${dots.length}个标签` : ''].filter(Boolean).join('，')}
               accessibilityState={{ selected: isCurrent }}
               key={index}
               onPress={() => onSelect(index)}
@@ -71,8 +71,8 @@ export function AnswerCardSheet({ visible, total, current, marked, results, tagC
               >
                 {index + 1}
               </AppText>
-              {isMarked && (!isCurrent || result) ? <Check color={resultColor ?? colors.primary} size={10} style={styles.check} /> : null}
-              {dots.length ? <View pointerEvents="none" style={styles.tagDots}>{dots.map((color, dotIndex) => (
+              {vercelLegacyWeb && isMarked && (!isCurrent || result) ? <Check color={resultColor ?? colors.primary} size={10} style={styles.check} /> : null}
+              {dots.length ? <View pointerEvents="none" style={[styles.tagDots, vercelLegacyWeb ? styles.legacyTagPosition : styles.tagPosition]}>{dots.map((color, dotIndex) => (
                 <View key={`${color}-${dotIndex}`} style={[styles.tagDot, { backgroundColor: color }, dotIndex ? styles.tagDotOverlap : null]} />
               ))}</View> : null}
             </Pressable>
@@ -107,7 +107,9 @@ const styles = StyleSheet.create({
   numberCorrect: { backgroundColor: colors.answerCorrectBackground, borderColor: colors.answerCorrectBorder },
   numberIncorrect: { backgroundColor: 'rgba(219,43,51,0.06)', borderColor: 'rgba(219,43,51,0.45)' },
   resultCurrent: { borderColor: colors.primary, borderWidth: 2 },
-  tagDots: { alignItems: 'center', flexDirection: 'row', position: 'absolute', left: 2, top: -3 },
+  tagDots: { alignItems: 'center', flexDirection: 'row', position: 'absolute' },
+  legacyTagPosition: { left: 2, top: -3 },
+  tagPosition: { right: 2, top: 0 },
   tagDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
   tagDotOverlap: { marginLeft: -5 },
   numberText: { fontFamily: fonts.monoRegular, height: ANSWER_CARD_NUMBER_HEIGHT, includeFontPadding: false, lineHeight: ANSWER_CARD_NUMBER_HEIGHT, textAlign: 'center', textAlignVertical: 'center', width: '100%' },

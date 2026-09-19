@@ -3,6 +3,7 @@ import { join, resolve, sep } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
 import { assertHotspotReferences, assertImmutableRelease, contentChecksum, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
+import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
 
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
 const safeJoin = (root, relative) => {
@@ -49,8 +50,19 @@ if (process.argv.includes('--validate')) {
         if (downloadError || !data || data.size !== file.sizeBytes || contentChecksum(Buffer.from(await data.arrayBuffer())) !== file.checksum) throw new Error('immutable_resource_upload_failed');
       }
     }
+    let historyReset;
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
+      if (process.env.RESET_LEARNING_HISTORY === '1') {
+        if (release.banks.length !== 5) throw new Error('history_reset_requires_complete_release');
+        const prior = await tx`select bank_id from question_bank_releases where version = ${release.version}`;
+        // The complete release and reset commit atomically. Retrying an already
+        // published release cannot clear new study work for a second time.
+        if (prior.length !== 0 && prior.length !== release.banks.length) throw new Error('history_reset_partial_version');
+        if (prior.length === 0) {
+          historyReset = await resetLearningHistoryForContent(tx);
+        }
+      }
       const [appContent] = await tx`select payload from app_content_releases where active = true limit 1`;
       const opi = release.banks.find((bank) => bank.id === 'opi');
       if (appContent && opi) assertHotspotReferences(appContent.payload.hotspots, opi.payload);
@@ -68,6 +80,7 @@ if (process.argv.includes('--validate')) {
           on conflict (object_key) do nothing`;
       }
     });
+    if (historyReset) console.log(`content_history_reset ${JSON.stringify(historyReset)}`);
     console.log(`native_content_import_ok version=${release.version} banks=${release.banks.length} resources=${release.files.length}`);
   } finally { await sql.end({ timeout: 5 }); }
 }

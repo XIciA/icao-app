@@ -44,7 +44,7 @@ const approvedNativeIncrementPaths = new Set([
 // both route implementations pinned; this is not a Native-suffix exemption.
 const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
 const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
-const reviewedStudyNativeHash = '85f3981bf8bc8d310ef7e34baae2558f619978528eaaaf8be6555038357228fb';
+const reviewedStudyNativeHash = '40afd215f39bda3586f5ff40dc746ab631d65169cf5c1a76f136c88a2ad69c19';
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
@@ -58,9 +58,26 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // 2026-09-20: exact reviewed scope dependencies of the Native study route.
+  // Expo Web includes that route in context, but the router proof below keeps
+  // it unselected on Vercel. Radio empty-state and answer-card changes retain
+  // explicit legacy guards. No content dataset or legacy route is exempted.
+  ["packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "30c3bb2c611ebb23bcbad2e9cf356717c649625af5c9c5268a85d896a7174292"]],
+  ["packages/contracts/src/study-scopes.ts", [null, "30dd976b2541996e129dbcdcd53482b227e8e75e825e1c7bb5d52843a9939823"]],
+  ["src/features/account/profile-model.ts", [null, "dddb1948c1ba2b7c961d62e9acb55808b735869a62bcd57e1dddb0ef003ade5a"]],
+  ["src/features/account/profile-store.native.ts", [null, "16a8cc5e31a9a6b1774b126cbebc02a32727ea11714416efde4c8a3929592ca2"]],
+  ["src/features/question-bank/annotations/annotation-store.native.ts", [null, "079c3a7ee22748387e2d81fac885943c3b38ee79bb499363ca680d89c488d339"]],
+  ["src/features/question-bank/lib/study-materials.native.ts", [null, "543765cae861673168b578ff9061a68b8e4650a96ec4e660833d3ecd82c74287"]],
+  ["src/features/question-bank/lib/study-review.native.ts", [null, "568f99b3dde8d314c5469a03c70a4885886d70d160c5c2de7d9f0011a3fc9771"]],
+  ["src/features/question-bank/lib/study-scope.ts", [null, "4ae80964194f8b850abe2beea4a1d47875df59a4eef99f0ccad98f3a1bdcd4fe"]],
+  ["src/features/question-bank/platform/learning-record-storage.native.ts", [null, "9422dbffcdf68c680b837f3ce8bb735158b2cde45efb08e778df7ef4e62b45cd"]],
+  ["src/features/sync/learning-sync.native.ts", [null, "76d3c4137eb5403fc2b55f7c0be0664df2b9726bfaea65fb3f6f32ec434b79a9"]],
+  ["src/features/content/RadioPlayerScreen.tsx", ["94e12998e82066cee0632f566951329a25bee32a4fee8465504afca37bbaf27a", "da7d2cb6d7f54428fef93d6620325a1187691f4a25371fec8023132c969f049d"]],
+  ["src/features/question-bank/hooks/useQuestionBankTopic.native.ts", ["20a67d213b57d8de523a8ae33d3ccc6dd825eb56d11e0036288aaf3325b2a52f", "ca38cc12af380e4216f485e8535a18da3afb15bb5c97bd39ad8c5155ac5c7198"]],
+  ["src/platform/audio/audio-session-orchestrator.ts", ["d7ee1cedd46e9b9a4964ab1b25195ff0568ede69f387b8ce487e46cb1874b516", "def21c332d36f00daeeb7e9b4a272f296b36cc6882342cede8a1d121b98d37de"]],
   // 2026-09-19: user-authorized Vercel answer-card results and upper-left tag dots.
   // Runtime guards retain Native/EdgeOne output; only these exact UI inputs are approved.
-  ["src/features/question-bank/components/AnswerCardSheet.tsx", ["50e00cde4882980ad00e3c32313ecfd78631fa707e5d6d06cedf12c23fe36eba", "75abd67dd1a8af5fd34bc3bfce017774658992273a17ce62b657b5d0409e92ff"]],
+  ["src/features/question-bank/components/AnswerCardSheet.tsx", ["50e00cde4882980ad00e3c32313ecfd78631fa707e5d6d06cedf12c23fe36eba", "ed30659f02b672c85bfe3163b65ec1500e19a41219ef49265873c8218508c55f"]],
   ["src/features/question-bank/components/QuestionBankStudyScreen.tsx", ["b0d2abef18998f5312cc00a24b8f1fbbefe954746b56006ce34025e91268ee31", "d5568bbc3a46f034a552fba446ce394985305355acf92f41118d935ac168060e"]],
   // 2026-09-19: user-authorized public APK download on both websites.
   // Root layout changes only the /download exemption; all learning routes keep their auth guard.
@@ -129,7 +146,7 @@ const reviewedFormalWebHashes = new Map([
     "tools/edgeone-shared-modules.cjs",
     [
       null,
-      "4b06fc56dbc5cc9385082a6cec7b1c9b45daa02e1e9ed61fa57611a6d0ea6d57"
+      "0d892bc9a18bdab5ef5bb5ccaa47b3ac23d0d8b31e6f136be1aff00845ad0659"
     ]
   ]
 ]);

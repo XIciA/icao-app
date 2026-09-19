@@ -1,4 +1,7 @@
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { normalizeStudyScope, studyScopeCardIds } from '@icao/contracts';
+import { useProfile } from '@/features/account/profile-store.native';
+import { scopeTopic } from '../lib/study-scope';
 
 import {
   nativeCommerceEnvironmentSnapshot,
@@ -10,11 +13,12 @@ import type { QuestionBankId, QuestionBankTopic } from '../types';
 
 type State =
   | { status: 'loading'; topic?: undefined; error?: undefined }
-  | { status: 'ready'; topic: QuestionBankTopic; error?: undefined }
+  | { status: 'ready'; topic: QuestionBankTopic; scopeExcludedCardIds?: string[]; error?: undefined }
   | { status: 'membership-required'; topic?: undefined; error?: undefined }
   | { status: 'error'; topic?: undefined; error: Error };
 
 export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categoryId: string | undefined, topicId: string | undefined) {
+  const profile = useProfile();
   const environmentSnapshot = useSyncExternalStore(
     subscribeNativeCommerceEnvironment,
     nativeCommerceEnvironmentSnapshot,
@@ -47,5 +51,12 @@ export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categor
   }, [attempt, bankId, categoryId, environmentSnapshot, topicId]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
-  return { ...state, retry };
+  const projected = useMemo(() => {
+    if (state.status !== 'ready' || !bankId) return state;
+    const scope = normalizeStudyScope(profile.studyScope);
+    const index = state.topic.scopeCardIds ?? studyScopeCardIds(bankId, state.topic);
+    return { ...state, topic: scopeTopic(bankId, state.topic, scope),
+      scopeExcludedCardIds: index.all.filter((id) => !index[scope].includes(id)) };
+  }, [state, bankId, profile.studyScope]);
+  return { ...projected, retry };
 }

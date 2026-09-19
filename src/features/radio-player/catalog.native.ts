@@ -5,9 +5,13 @@ import {
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 
 import type { RadioCatalog } from './types';
+import { scopeDataset } from '@/features/question-bank/lib/study-scope';
+import type { StudyScope } from '@icao/contracts';
+import type { ExamGoal } from '@/features/account/profile-model';
+export type RadioStudySelection = { scope: StudyScope; target: ExamGoal };
 
-export function deriveRadioCatalogs(datasets: QuestionBankDataset[]): RadioCatalog[] {
-  return datasets
+export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?: RadioStudySelection): RadioCatalog[] {
+  return (selection ? datasets.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : datasets)
     .filter((bank) => bank.capabilities?.radioEligible)
     .map((bank) => {
       let stableIndex = 0;
@@ -40,11 +44,11 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[]): RadioCatal
     .filter((catalog) => catalog.tracks.length > 0);
 }
 
-export function getEmbeddedRadioCatalogs() {
-  return deriveRadioCatalogs(getEmbeddedQuestionBanks());
+export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection) {
+  return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection);
 }
 
-export async function loadRadioCatalogDatasets() {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection) {
   const embedded = getEmbeddedQuestionBanks();
   const eligible = embedded.filter((bank) => bank.capabilities?.radioEligible);
   const durationByAudio = new Map(
@@ -69,7 +73,7 @@ export async function loadRadioCatalogDatasets() {
       })),
     } satisfies QuestionBankDataset;
   }));
-  return loaded;
+  return selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
 }
 
 export async function loadRadioCatalogs() {

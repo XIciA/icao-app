@@ -8,6 +8,9 @@ import { RadioOperationCoordinator } from '../operation-coordinator';
 const mockTracks = Array.from({ length: 6 }, (_, i) => ({ id: `t${i}`, bankId: 'listening', bankTitle: '听力', categoryId: 'c', categoryTitle: 'C', topicId: 'topic', topicTitle: 'T', title: `T${i}`, audioText: '', audioPath: `/audio/${i}.mp3`, durationSeconds: 20, stableIndex: i }));
 const mockCatalogs = [{ bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: mockTracks }];
 const mockSession = { user: { id: 'user-a' } };
+let mockProfile = { studyScope: 'all', target: 'icao4-first' };
+const mockSelectionCatalogs = (selection?: { scope: string }) => selection?.scope === 'crash'
+  ? [{ ...mockCatalogs[0], tracks: mockTracks.slice(0, 2) }] : mockCatalogs;
 let mockQueue: any[] = [];
 let mockActive = 0;
 let mockPlaybackHandler: ((event: any) => void) | undefined;
@@ -20,10 +23,11 @@ const mockAcquire = jest.fn(async () => ({ token: 'lease' }));
 const mockCoordinator = new RadioOperationCoordinator();
 
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ restoring: false, session: mockSession }) }));
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveQuestionBankAsset: () => undefined, resolveRemoteQuestionBankAsset: (path: string) => mockResolve(path) }));
-jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: () => mockCatalogs, loadRadioCatalogDatasets: async () => [], deriveRadioCatalogs: () => mockCatalogs }));
+jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: async () => [], deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => mockSelectionCatalogs(selection) }));
 jest.mock('../catalog-hydration.native', () => ({ hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: () => mockAcquire(), release: async () => undefined, register: (_owner: string, client: { deactivate: () => Promise<void> }) => { mockDeactivate = client.deactivate; return () => undefined; } } }));
 jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: async () => undefined, registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
@@ -58,8 +62,25 @@ async function flush() { await act(async () => { for (let i = 0; i < 80; i += 1)
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>((r) => { resolve = r; }); return { promise, resolve }; }
 
 describe('radio native queue integration', () => {
-  beforeEach(() => { mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockResolve.mockImplementation(async (path) => `file://${path}`); });
+  beforeEach(() => { mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
+
+  it('clears the previous scope queue and rejects its late audio preparation', async () => {
+    const slow = deferred<string>();
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.activateSession()); await flush();
+    mockResolve.mockImplementation((path) => path === '/audio/5.mp3' ? slow.promise : Promise.resolve(`file://${path}`));
+    await act(() => mockContext.selectTrack('t5', true)); await flush();
+    mockProfile = { ...mockProfile, studyScope: 'crash' };
+    await view.rerender(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    const playCount = mockPlay.mock.calls.length;
+    slow.resolve('file:///audio/5.mp3'); await flush();
+    expect(mockContext.catalogs[0].tracks.map(track => track.id)).toEqual(['t0', 't1']);
+    expect(mockContext.currentTrack?.id).toBe('t0');
+    expect(mockQueue).toEqual([]);
+    expect(mockPlay).toHaveBeenCalledTimes(playCount);
+    await view.unmount();
+  });
 
   it.each(['order', 'repeatOne', 'shuffle'] as const)('keeps bundled artwork on every content and interval through %s transitions', async (mode) => {
     const artwork = 'file:///app/assets/icon-native.png';

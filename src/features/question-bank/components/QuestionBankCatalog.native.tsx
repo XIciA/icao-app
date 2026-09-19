@@ -25,10 +25,12 @@ import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
-import { getEmbeddedQuestionBanks } from '../data/repository';
 import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-progress';
 import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
+import { useStudyCatalog } from '../hooks/useStudyCatalog.native';
+import { useProfile } from '@/features/account/profile-store.native';
+import { normalizeStudyScope } from '@icao/contracts';
 
 const icons: LucideIcon[] = [CloudLightning, Cog, RadioTower, Wrench];
 const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
@@ -43,20 +45,22 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   const router = useRouter();
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
-  const switcherItems = useMemo(() => getEmbeddedQuestionBanks().map((item) => ({
+  const scopedCatalog = useStudyCatalog();
+  const scope = normalizeStudyScope(useProfile().studyScope);
+  const switcherItems = useMemo(() => scopedCatalog.map((item) => ({
     icon: bankIcons[item.icon],
     label: item.title,
     summary: `${item.categories.length} ${item.categoryUnit} / ${item.declaredCardCount} ${item.cardUnit}`,
     value: item.id,
-  })), []);
+  })), [scopedCatalog]);
 
   useEffect(() => {
     let active = true;
-    void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics)).then((next) => {
+    void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
       if (active) setProgress(next);
     });
     return () => { active = false; };
-  }, [dataset]);
+  }, [dataset, scope]);
 
   function isLocked(topic: QuestionBankTopic) {
     return dataset.access?.membershipActive !== true
