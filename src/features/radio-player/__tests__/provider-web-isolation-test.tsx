@@ -10,14 +10,13 @@ let mockValue: RadioPlayerContextValue;
 const mockLoad = jest.fn();
 const mockResolve = jest.fn(async () => 'https://example.test/audio');
 const emptyStatus = () => ({ duration: 0, currentTime: 0, playing: false, isBuffering: false, isLoaded: false, didJustFinish: false });
-let mockStatus = emptyStatus();
 let mockCurrentStatus = emptyStatus();
 const mockPlayer = {
   pause: jest.fn(), play: jest.fn(), replace: jest.fn(), setPlaybackRate: jest.fn(), seekTo: jest.fn(async () => undefined),
   get currentStatus() { return mockCurrentStatus; },
   get isLoaded() { return mockCurrentStatus.isLoaded; },
 };
-jest.mock('expo-audio', () => ({ useAudioPlayer: () => mockPlayer, useAudioPlayerStatus: () => mockStatus }));
+jest.mock('@/platform/audio/browser-audio-player', () => ({ useBrowserAudioPlayer: () => mockPlayer }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => mockAuth }));
 jest.mock('@/config/web-runtime', () => ({ isEdgeOneProductionWeb: () => true }));
 jest.mock('../catalog.browser', () => ({ getEmbeddedRadioCatalogs: () => mockPublic, loadRadioCatalogs: () => mockLoad() }));
@@ -33,7 +32,7 @@ function account(id?: string) { mockAuth = { restoring: false, session: id ? {us
 function deferred<T>() { let resolve!: (value:T)=>void; return { promise: new Promise<T>(r=>{resolve=r;}), resolve: (value:T)=>resolve(value) }; }
 beforeEach(() => {
   jest.clearAllMocks(); resetCommerceEntitlementEventsForTests(); account('A');
-  mockStatus = emptyStatus(); mockCurrentStatus = emptyStatus();
+  mockCurrentStatus = emptyStatus();
   mockPlayer.replace.mockImplementation(() => { mockCurrentStatus = emptyStatus(); });
   mockLoad.mockResolvedValue(mockPrivate); mockResolve.mockResolvedValue('https://example.test/audio');
 });
@@ -78,14 +77,12 @@ it('advances once per actual media completion while old loaded/ended events surv
   const view = await render(tree()); await flush();
   await act(() => mockValue.activateSession()); await flush();
   mockCurrentStatus = { ...emptyStatus(), isLoaded: true, duration: 20 };
-  mockStatus = mockCurrentStatus;
   await view.rerender(tree()); await flush();
   await act(() => mockValue.play()); await flush();
   expect(mockPlayer.play).toHaveBeenCalledTimes(1);
 
   const nextAudio = deferred<string>(); mockResolve.mockReturnValue(nextAudio.promise);
   mockCurrentStatus = { ...mockCurrentStatus, currentTime: 20, didJustFinish: true };
-  mockStatus = mockCurrentStatus; // useAudioPlayerStatus retains this until the new media emits.
   await view.rerender(tree()); await flush();
   expect(mockValue.currentTrack?.id).toBe('track-1');
   expect(mockValue.loading).toBe(true);
@@ -117,12 +114,10 @@ it('waits for the replacement in repeat-one mode instead of replaying the old en
   const view = await render(tree()); await flush();
   await act(() => mockValue.activateSession()); await flush();
   mockCurrentStatus = { ...emptyStatus(), isLoaded: true, duration: 20 };
-  mockStatus = mockCurrentStatus;
   await view.rerender(tree()); await flush();
   await act(() => mockValue.setMode('repeatOne'));
   await act(() => mockValue.play()); await flush();
   mockCurrentStatus = { ...mockCurrentStatus, currentTime: 20, didJustFinish: true };
-  mockStatus = mockCurrentStatus;
   await view.rerender(tree()); await flush();
   expect(mockValue.currentTrack?.id).toBe('private');
   expect(mockValue.loading).toBe(true);
