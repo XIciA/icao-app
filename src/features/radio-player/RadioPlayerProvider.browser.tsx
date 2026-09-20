@@ -1,6 +1,6 @@
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { useBrowserAudioPlayer } from '@/platform/audio/browser-audio-player';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
 
@@ -70,11 +70,8 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const [sourceState, setSourceState] = useState<{ loading: boolean; error?: string }>({ loading: false });
   const [restored, setRestored] = useState(false);
   const [shuffle, setShuffle] = useState<ShuffleState>({ history: trackId ? [trackId] : [], cursor: trackId ? 0 : -1 });
-  const player = useAudioPlayer(null, { crossOrigin: 'anonymous', updateInterval: 250 });
-  // Subscribe for renders, but read the current media element. Expo's event
-  // snapshot survives replace() and can still describe the previous song.
-  useAudioPlayerStatus(player);
-  const status = { ...player.currentStatus, isLoaded: player.isLoaded };
+  const player = useBrowserAudioPlayer();
+  const status = player.currentStatus;
   const generation = useRef(0);
   const preparedTrackId = useRef<string | undefined>(undefined);
   const loadingTrackId = useRef<string | undefined>(undefined);
@@ -171,7 +168,8 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       if (status.didJustFinish || status.currentTime >= Math.max(0, status.duration - 0.1)) await player.seekTo(0);
       if (request !== generation.current || owner !== contentOwnerRef.current) { await releaseLease(lease); return; }
       player.setPlaybackRate(rate);
-      player.play();
+      await player.play();
+      if (request !== generation.current || owner !== contentOwnerRef.current) { await releaseLease(lease); return; }
       setSessionVisible(true);
       setSourceState({ loading: false });
     } catch {
