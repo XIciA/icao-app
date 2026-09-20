@@ -71,10 +71,14 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const [restored, setRestored] = useState(false);
   const [shuffle, setShuffle] = useState<ShuffleState>({ history: trackId ? [trackId] : [], cursor: trackId ? 0 : -1 });
   const player = useAudioPlayer(null, { crossOrigin: 'anonymous', updateInterval: 250 });
-  const status = useAudioPlayerStatus(player);
+  // Subscribe for renders, but read the current media element. Expo's event
+  // snapshot survives replace() and can still describe the previous song.
+  useAudioPlayerStatus(player);
+  const status = { ...player.currentStatus, isLoaded: player.isLoaded };
   const generation = useRef(0);
   const preparedTrackId = useRef<string | undefined>(undefined);
   const loadingTrackId = useRef<string | undefined>(undefined);
+  const installedTrackId = useRef<string | undefined>(undefined);
   const pendingPlay = useRef(false);
   const pendingSeek = useRef(0);
   const handledFinish = useRef(false);
@@ -84,10 +88,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
 
   const { catalog: currentCatalog, track: currentTrack } = findTrack(catalogs, bankId, trackId);
   const currentIndex = currentTrack ? currentCatalog?.tracks.findIndex((track) => track.id === currentTrack.id) ?? -1 : -1;
-  const duration = status.duration || currentTrack?.durationSeconds || 0;
-  const position = status.currentTime || 0;
-  const playing = status.playing;
-  const buffering = status.isBuffering || status.timeControlStatus === 'waiting';
+  const sourceMatches = Boolean(currentTrack && installedTrackId.current === currentTrack.id);
+  const duration = (sourceMatches ? status.duration : 0) || currentTrack?.durationSeconds || 0;
+  const position = sourceMatches ? status.currentTime || 0 : 0;
+  const playing = sourceMatches && status.playing;
+  const buffering = sourceMatches && (status.isBuffering || status.timeControlStatus === 'waiting');
   stateRef.current = { bankId, trackId, bankTrackIds, catalogs, intervalSeconds, mode, subtitleMode, rate, shuffle, position };
 
   const releaseLease = useCallback(async (lease = audioLease.current) => {
@@ -133,6 +138,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     pendingSeek.current = Math.max(0, nextPosition);
     preparedTrackId.current = undefined;
     loadingTrackId.current = track.id;
+    installedTrackId.current = undefined;
     handledFinish.current = false;
     clearIntervalTimer();
     setSourceState({ loading: true });
@@ -143,6 +149,8 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       const uri = await resolveTrack(track, forceRefresh);
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
       player.replace(uri);
+      installedTrackId.current = track.id;
+      setSourceState({ loading: true });
     } catch {
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
       loadingTrackId.current = undefined;
@@ -218,7 +226,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     if (!formalWeb) return;
     generation.current += 1;
     pendingPlay.current = false; pendingSeek.current = 0;
-    preparedTrackId.current = undefined; loadingTrackId.current = undefined;
+    preparedTrackId.current = undefined; loadingTrackId.current = undefined; installedTrackId.current = undefined;
     clearIntervalTimer(); player.pause(); player.replace(null);
     void releaseLease();
     setLoadedCatalogs({ owner: contentOwner, catalogs: embeddedCatalogs });
@@ -280,7 +288,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, [auth.session, currentTrack, prepareTrack, restored, sessionVisible]);
 
   useEffect(() => {
-    if (!currentTrack || loadingTrackId.current !== currentTrack.id || !status.isLoaded) return;
+    if (!currentTrack || !sourceMatches || loadingTrackId.current !== currentTrack.id || !status.isLoaded) return;
     loadingTrackId.current = undefined;
     preparedTrackId.current = currentTrack.id;
     setSourceState({ loading: false });
@@ -294,7 +302,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       if (pendingPlay.current) await startPreparedPlayback();
     };
     void finish();
-  }, [currentTrack, player, rate, startPreparedPlayback, status.duration, status.isLoaded]);
+  }, [currentTrack, player, rate, sourceMatches, startPreparedPlayback, status.duration, status.isLoaded]);
 
   useEffect(() => {
     if (!sourceState.loading) return;
@@ -316,7 +324,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, [releaseLease, status.playbackState]);
 
   useEffect(() => {
-    if (!auth.session || !status.didJustFinish || handledFinish.current || preparedTrackId.current !== currentTrack?.id) return;
+    if (!auth.session || !sourceMatches || !status.didJustFinish || handledFinish.current || preparedTrackId.current !== currentTrack?.id) return;
     handledFinish.current = true;
     void releaseLease();
     if (intervalSeconds <= 0) {
@@ -333,7 +341,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
         return 0;
       });
     }, 1_000);
-  }, [advanceAutomatically, auth.session, clearIntervalTimer, currentTrack?.id, intervalSeconds, releaseLease, status.didJustFinish]);
+  }, [advanceAutomatically, auth.session, clearIntervalTimer, currentTrack?.id, intervalSeconds, releaseLease, sourceMatches, status.didJustFinish]);
 
   useEffect(() => {
     const timer = setInterval(() => { if (sessionVisible) void saveSnapshot(); }, 2_000);
@@ -392,6 +400,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     pendingPlay.current = false;
     preparedTrackId.current = undefined;
     loadingTrackId.current = undefined;
+    installedTrackId.current = undefined;
     clearIntervalTimer();
     player.pause();
     player.replace(null);
