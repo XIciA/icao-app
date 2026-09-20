@@ -64,11 +64,12 @@ const reviewedFormalWebHashes = new Map([
   // byte-identical v13 snapshots so an APK link release cannot ship new banks.
   ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
   // 2026-09-20: exact reviewed scope dependencies of the Native study route.
+  // Scope helpers are inlined without semantic changes so plain Node 22 can
+  // load the existing source-export package; the legacy route stays unchanged.
   // Expo Web includes that route in context, but the router proof below keeps
   // it unselected on Vercel. Radio empty-state and answer-card changes retain
   // explicit legacy guards. No content dataset or legacy route is exempted.
-  ["packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "30c3bb2c611ebb23bcbad2e9cf356717c649625af5c9c5268a85d896a7174292"]],
-  ["packages/contracts/src/study-scopes.ts", [null, "30dd976b2541996e129dbcdcd53482b227e8e75e825e1c7bb5d52843a9939823"]],
+  ["packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "721bfa9a9a83f03ca23db0fef9193b3ce9ebb9ffb59b13c66eb312a83601a5ad"]],
   ["src/features/account/profile-model.ts", [null, "dddb1948c1ba2b7c961d62e9acb55808b735869a62bcd57e1dddb0ef003ade5a"]],
   ["src/features/account/profile-store.native.ts", [null, "16a8cc5e31a9a6b1774b126cbebc02a32727ea11714416efde4c8a3929592ca2"]],
   ["src/features/question-bank/annotations/annotation-store.native.ts", [null, "079c3a7ee22748387e2d81fac885943c3b38ee79bb499363ca680d89c488d339"]],

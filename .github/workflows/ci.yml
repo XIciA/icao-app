@@ -50,5 +50,7 @@ jobs:
         run: pnpm --filter @icao/api test:commerce-db
       - name: Run repository checks
         run: pnpm check:ci
+      - name: Verify contracts without a TypeScript loader
+        run: node --test packages/contracts/test/runtime.test.mjs
       - name: Verify EdgeOne production export
         run: pnpm check:web:edgeone

@@ -23,7 +23,8 @@ COPY content/vocabulary content/vocabulary
 COPY content/app-content/text.json content/app-content/text.json
 COPY content/question-banks/opi-hotspots.json content/question-banks/opi-hotspots.json
 
-RUN pnpm --filter @icao/contracts build && pnpm --filter @icao/api build
+RUN node --test packages/contracts/test/runtime.test.mjs \
+  && pnpm --filter @icao/contracts build && pnpm --filter @icao/api build
 
 ENV NODE_ENV=production
 ENV API_RELEASE_ID=$ICAO_API_RELEASE_ID
