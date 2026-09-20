@@ -48,6 +48,8 @@ const schema = z.object({
   TENCENT_CLOUD_SECRET_KEY: z.string().min(10).optional(),
   TENCENT_CLOUD_REGION: z.string().min(1).optional(),
   TENCENT_ASR_ENDPOINT: z.string().min(1).default('asr.tencentcloudapi.com'),
+  TENCENT_ASR_HOTWORD_ID: z.string().regex(/^[a-f0-9]{32}$/u).optional(),
+  TENCENT_ASR_CUSTOMIZATION_ID: z.string().regex(/^[a-f0-9]{32}$/u).optional(),
   AI_ASR_STAGING_BUCKET: z.string().min(1).default('ai-transcription-inputs'),
   AI_ASR_POLL_INTERVAL_MS: z.coerce.number().int().min(250).max(10_000).default(2_000),
   AI_ASR_TIMEOUT_MS: z.coerce.number().int().min(5_000).max(120_000).default(55_000),
@@ -164,6 +166,8 @@ export type ApiConfig = {
   tencentCloudSecretKey?: string;
   tencentCloudRegion?: string;
   tencentAsrEndpoint: string;
+  tencentAsrHotwordId?: string;
+  tencentAsrCustomizationId?: string;
   aiAsrStagingBucket: string;
   aiAsrPollIntervalMs: number;
   aiAsrTimeoutMs: number;
@@ -527,6 +531,8 @@ export function loadConfig(
     tencentCloudSecretKey: parsed.data.TENCENT_CLOUD_SECRET_KEY,
     tencentCloudRegion: parsed.data.TENCENT_CLOUD_REGION,
     tencentAsrEndpoint: parsed.data.TENCENT_ASR_ENDPOINT,
+    tencentAsrHotwordId: parsed.data.TENCENT_ASR_HOTWORD_ID,
+    tencentAsrCustomizationId: parsed.data.TENCENT_ASR_CUSTOMIZATION_ID,
     aiAsrStagingBucket: parsed.data.AI_ASR_STAGING_BUCKET,
     aiAsrPollIntervalMs: parsed.data.AI_ASR_POLL_INTERVAL_MS,
     aiAsrTimeoutMs: parsed.data.AI_ASR_TIMEOUT_MS,

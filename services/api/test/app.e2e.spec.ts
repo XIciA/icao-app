@@ -393,6 +393,13 @@ describe('API foundation', () => {
       .toThrow('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   });
 
+  it('validates account-scoped ASR asset IDs without accepting arbitrary parameter data', () => {
+    const config = loadTestProductionConfig({ TENCENT_ASR_HOTWORD_ID: 'a'.repeat(32), TENCENT_ASR_CUSTOMIZATION_ID: 'b'.repeat(32) });
+    expect(config.tencentAsrHotwordId).toBe('a'.repeat(32));
+    expect(config.tencentAsrCustomizationId).toBe('b'.repeat(32));
+    expect(() => loadTestProductionConfig({ TENCENT_ASR_HOTWORD_ID: 'wrong-account-or-invalid' })).toThrow();
+  });
+
   it('requires every critical AI provider setting to be explicit in production', () => {
     for (const field of [
       'AI_TEXT_PROVIDER',

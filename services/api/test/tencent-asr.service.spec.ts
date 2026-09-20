@@ -49,9 +49,9 @@ function storage() {
   };
 }
 
-function service(client: object) {
+function service(client: object, overrides: Partial<ApiConfig> = {}) {
   const fakeStorage = storage();
-  const instance = new TencentAsrService(config(), fakeStorage as unknown as AsrAudioStorageService);
+  const instance = new TencentAsrService({ ...config(), ...overrides }, fakeStorage as unknown as AsrAudioStorageService);
   Reflect.set(instance, 'client', client);
   return { fakeStorage, instance };
 }
@@ -95,6 +95,25 @@ describe('TencentAsrService', () => {
         'audio/wav',
         'request-42',
       );
+    },
+  );
+
+  it.each<TencentAsrModel>(['16k_en', '16k_en_large', '16k_zh_en_2.0'])(
+    'attaches account assets only to their matching English engine: %s', async (model) => {
+      const client = {
+        CreateRecTask: vi.fn<(request: Record<string, unknown>) => Promise<{ Data: { TaskId: number } }>>().mockResolvedValue({ Data: { TaskId: 90 } }),
+        DescribeTaskStatus: vi.fn(async () => ({ Data: { Status: 2, Result: 'flight level 310' } })),
+      };
+      const { instance } = service(client, {
+        tencentAsrHotwordId: 'a'.repeat(32), tencentAsrCustomizationId: 'b'.repeat(32),
+      });
+      const result = await instance.transcribe(Buffer.from('audio'), 'audio/wav', model);
+      const request = client.CreateRecTask.mock.calls[0]?.[0] as Record<string, unknown> | undefined;
+      expect(request).toMatchObject({ EngineModelType: model });
+      expect(request?.HotwordId).toBe(model === '16k_en' ? 'a'.repeat(32) : undefined);
+      expect(request?.CustomizationId).toBe(model === '16k_en' ? 'b'.repeat(32) : undefined);
+      expect(request).not.toHaveProperty('ReplaceTextId');
+      expect(result.rawTranscript).toBe('flight level 310');
     },
   );
 

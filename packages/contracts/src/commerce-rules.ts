@@ -82,8 +82,7 @@ export type MeteredGrammarReviewResult = WithUsage<GrammarReviewResult>;
 export type MeteredPolishResult = WithUsage<PolishResult>;
 
 export type TranscribeReviewRequest = Omit<AiReviewRequest, 'transcript'>;
-export type TranscribeReviewResult = {
-  transcript: string;
+export type TranscribeReviewResult = Omit<TranscribeResult, 'aiPoints'> & {
   review: Omit<AiReviewResult, 'aiPoints'>;
   aiPoints?: AiUsageOperationSummary;
 };

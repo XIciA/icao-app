@@ -1,0 +1,253 @@
+{
+  "version": "20260920-v1",
+  "engine": "16k_en",
+  "basis": "Frozen 900 raw-ASR differences; historical trials are limited evidence, not a guarantee. No new audio calls this round.",
+  "items": [
+    {
+      "term": "TCAS",
+      "weight": 5,
+      "reason": "旧权重5实验602/604中tas变为tcas，有局部收益。",
+      "evidenceIds": [
+        "sentence900-main-602",
+        "sentence900-main-854",
+        "sentence900-main-857",
+        "sentence900-main-858",
+        "sentence900-main-604"
+      ]
+    },
+    {
+      "term": "ILS",
+      "weight": 5,
+      "reason": "旧权重5实验649中ios变为ils，有局部收益。",
+      "evidenceIds": [
+        "sentence900-main-278",
+        "sentence900-main-298",
+        "sentence900-main-299",
+        "sentence900-main-300",
+        "sentence900-main-375",
+        "sentence900-main-474",
+        "sentence900-main-018",
+        "sentence900-main-323",
+        "sentence900-main-471",
+        "sentence900-main-475",
+        "sentence900-main-630",
+        "sentence900-main-649"
+      ]
+    },
+    {
+      "term": "CPDLC",
+      "weight": 5,
+      "reason": "旧实验改善字母拼接；部分收益属于呈现差异，不能全部算听辨提升。",
+      "evidenceIds": [
+        "sentence900-main-437",
+        "sentence900-main-438",
+        "sentence900-main-440",
+        "sentence900-main-662",
+        "sentence900-main-664",
+        "sentence900-main-663"
+      ]
+    },
+    {
+      "term": "RVSM",
+      "weight": 5,
+      "reason": "旧实验595改善字母拼接；须区分呈现和听辨收益。",
+      "evidenceIds": [
+        "sentence900-main-429",
+        "sentence900-main-430",
+        "sentence900-main-431",
+        "sentence900-main-432",
+        "sentence900-main-433",
+        "sentence900-main-465",
+        "sentence900-main-594",
+        "sentence900-main-531",
+        "sentence900-main-595"
+      ]
+    },
+    {
+      "term": "VOR",
+      "weight": 2,
+      "reason": "旧实验补全部分VOR，但405额外出现R；不能只依据词级编辑数采纳。",
+      "evidenceIds": [
+        "sentence900-main-062",
+        "sentence900-main-072",
+        "sentence900-main-305",
+        "sentence900-main-319",
+        "sentence900-main-358",
+        "sentence900-main-362",
+        "sentence900-main-372",
+        "sentence900-main-382",
+        "sentence900-main-385",
+        "sentence900-main-386",
+        "sentence900-main-388",
+        "sentence900-main-389",
+        "sentence900-main-390",
+        "sentence900-main-391",
+        "sentence900-main-392",
+        "sentence900-main-397",
+        "sentence900-main-399",
+        "sentence900-main-404",
+        "sentence900-main-405",
+        "sentence900-main-407",
+        "sentence900-main-408",
+        "sentence900-main-071",
+        "sentence900-main-314",
+        "sentence900-main-383",
+        "sentence900-main-401",
+        "sentence900-main-412",
+        "sentence900-main-423",
+        "sentence900-main-630",
+        "sentence900-main-074",
+        "sentence900-main-075",
+        "sentence900-main-316",
+        "sentence900-main-317",
+        "sentence900-main-371",
+        "sentence900-main-428",
+        "sentence900-main-470"
+      ]
+    },
+    {
+      "term": "wilco",
+      "weight": 5,
+      "reason": "3处will go或we'll go；旧权重5/9未解决，不做强制替换。",
+      "evidenceIds": [
+        "sentence900-main-127",
+        "sentence900-main-142",
+        "sentence900-main-381"
+      ]
+    },
+    {
+      "term": "RNAV",
+      "weight": 5,
+      "reason": "存在our NAV、arnaav、arneav等差异；旧词表未充分解决。",
+      "evidenceIds": [
+        "sentence900-main-361",
+        "sentence900-main-362",
+        "sentence900-main-364",
+        "sentence900-main-365",
+        "sentence900-main-368",
+        "sentence900-main-087",
+        "sentence900-main-468"
+      ]
+    },
+    {
+      "term": "RAIM",
+      "weight": 5,
+      "reason": "存在Ram及R等差异；旧词表未解决。",
+      "evidenceIds": [
+        "sentence900-main-365",
+        "sentence900-main-367"
+      ]
+    },
+    {
+      "term": "NDB",
+      "weight": 5,
+      "reason": "2处参考NDB对应DB，优先验证漏字母问题。",
+      "evidenceIds": [
+        "sentence900-main-365",
+        "sentence900-main-402"
+      ]
+    },
+    {
+      "term": "SELCAL",
+      "weight": 5,
+      "reason": "参考SELCAL对应cell call，候选术语偏置，不能强行替换。",
+      "evidenceIds": [
+        "sentence900-main-439",
+        "sentence900-main-491"
+      ]
+    },
+    {
+      "term": "KODAP",
+      "weight": 5,
+      "reason": "codap/code APP等导航点差异，旧词表未解决。",
+      "evidenceIds": [
+        "sentence900-main-340",
+        "sentence900-main-342"
+      ]
+    },
+    {
+      "term": "JEMMY",
+      "weight": 5,
+      "reason": "参考JEMMY对应Jimmy，只有特定导航语境可考虑偏置。",
+      "evidenceIds": [
+        "sentence900-main-330"
+      ]
+    },
+    {
+      "term": "APU",
+      "weight": 5,
+      "reason": "多处APU对应au而非仅拆字母，旧25词表未覆盖。",
+      "evidenceIds": [
+        "sentence900-main-522",
+        "sentence900-main-667",
+        "sentence900-main-656",
+        "sentence900-main-520",
+        "sentence900-main-521",
+        "sentence900-main-659",
+        "sentence900-main-660",
+        "sentence900-main-665",
+        "sentence900-main-666",
+        "sentence900-main-668"
+      ]
+    },
+    {
+      "term": "RVR",
+      "weight": 5,
+      "reason": "存在Our VR而非纯R V R呈现差异。",
+      "evidenceIds": [
+        "sentence900-main-199",
+        "sentence900-main-201",
+        "sentence900-main-202",
+        "sentence900-main-203",
+        "sentence900-main-204",
+        "sentence900-main-205",
+        "sentence900-main-206",
+        "sentence900-main-198"
+      ]
+    },
+    {
+      "term": "ident",
+      "weight": 2,
+      "reason": "I dent/dent等多处差异；需保护用户真实说出的普通词。",
+      "evidenceIds": [
+        "sentence900-main-237",
+        "sentence900-main-243",
+        "sentence900-main-792"
+      ]
+    },
+    {
+      "term": "radial",
+      "weight": 2,
+      "reason": "2处radial对应radio；radio本身也是航空常用词，需检查反向误识别。",
+      "evidenceIds": [
+        "sentence900-main-407",
+        "sentence900-main-408",
+        "sentence900-main-075",
+        "sentence900-main-316"
+      ]
+    },
+    {
+      "term": "DAPRO",
+      "weight": 5,
+      "reason": "2处导航点对应dappro/dapprow。",
+      "evidenceIds": [
+        "sentence900-main-419",
+        "sentence900-main-420"
+      ]
+    },
+    {
+      "term": "FUPAD",
+      "weight": 5,
+      "reason": "839导航点对应fad。",
+      "evidenceIds": [
+        "sentence900-main-839"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "term": "braking action",
+      "reason": "2026-09-20控制台上传会去除空格为brakingaction；避免引入错误拼写，本轮不启用此候选。"
+    }
+  ]
+}

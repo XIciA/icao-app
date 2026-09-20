@@ -131,6 +131,9 @@ export class TencentAsrService {
     try {
       const submitted = await this.cloudCall(() => client.CreateRecTask({
         EngineModelType: model,
+        // Customization IDs are tied to an account and engine, never attach to another engine.
+        ...(model === '16k_en' && this.config.tencentAsrHotwordId ? { HotwordId: this.config.tencentAsrHotwordId } : {}),
+        ...(model === '16k_en' && this.config.tencentAsrCustomizationId ? { CustomizationId: this.config.tencentAsrCustomizationId } : {}),
         ChannelNum: 1,
         ResTextFormat: 0,
         SourceType: 0,
