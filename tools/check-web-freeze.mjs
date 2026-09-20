@@ -58,6 +58,9 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // User-authorized Vercel lookup pronunciation, 2026-09-20; existing voice reused.
+  ['src/features/vocabulary/speech.ts', ['9d8d0b98e76e96d875a6259047c4d057270ba5381f00c13889a016f32551b481', '491ec412d742283ad8b9b7055c73edbb76056ba8dee36cdc1558fe428a99b5f6']],
+  ['src/features/question-bank/components/LegacyLookupPronunciation.tsx', [null, 'e035b5b2a51cacd3a91a844e0354c098f8361cb4da125c0778ce550bf54433f1']],
   // Native short word taps select the row; legacy Web uses its unchanged tap-lookup branch.
   ["src/features/question-bank/components/ChoiceList.tsx", ["a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70", "d2716333d1cd8ca29ac6ce5417fe63363db272722e29f47cffbb8b2e50752ac4"]],
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
@@ -86,7 +89,7 @@ const reviewedFormalWebHashes = new Map([
   // 2026-09-19: user-authorized Vercel answer-card results and upper-left tag dots.
   // Runtime guards retain Native/EdgeOne output; only these exact UI inputs are approved.
   ["src/features/question-bank/components/AnswerCardSheet.tsx", ["50e00cde4882980ad00e3c32313ecfd78631fa707e5d6d06cedf12c23fe36eba", "ed30659f02b672c85bfe3163b65ec1500e19a41219ef49265873c8218508c55f"]],
-  ["src/features/question-bank/components/QuestionBankStudyScreen.tsx", ["b0d2abef18998f5312cc00a24b8f1fbbefe954746b56006ce34025e91268ee31", "d5568bbc3a46f034a552fba446ce394985305355acf92f41118d935ac168060e"]],
+  ["src/features/question-bank/components/QuestionBankStudyScreen.tsx", ["b0d2abef18998f5312cc00a24b8f1fbbefe954746b56006ce34025e91268ee31", "bae835bdc38f4480e158c8c37cce4543ab2dc4463e277afe0985fe183e9796d1"]],
   // 2026-09-19: user-authorized public APK download on both websites.
   // Root layout changes only the /download exemption; all learning routes keep their auth guard.
   // 2026-09-19 Android parity: exact reviewed Android branches.
