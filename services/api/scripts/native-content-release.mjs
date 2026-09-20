@@ -44,6 +44,24 @@ export function assertImmutableRelease(existing, wanted) {
   if (existing && existing.checksum !== wanted.checksum) throw new Error('content_release_version_immutable');
 }
 
+/** Content-addressed banks retain their existing version when unchanged.
+ * Plan again under the publication lock so retries never repeat a history reset. */
+export function planNativeContentPublication(release, existing, resetHistory = false) {
+  if (resetHistory && release.banks.length !== 5) throw new Error('history_reset_requires_complete_release');
+  let fresh = 0;
+  let alreadyPublished = 0;
+  const banks = release.banks.map((bank) => {
+    const priorVersion = existing.find((row) => row.bank_id === bank.id && Number(row.version) === bank.version);
+    assertImmutableRelease(priorVersion, bank);
+    if (priorVersion) alreadyPublished += 1;
+    const sameContent = existing.find((row) => row.bank_id === bank.id && row.checksum === bank.checksum);
+    if (!sameContent) fresh += 1;
+    return sameContent ? { ...bank, version: Number(sameContent.version) } : bank;
+  });
+  if (resetHistory && fresh > 0 && alreadyPublished > 0) throw new Error('history_reset_partial_version');
+  return { banks, resetHistory: resetHistory && fresh > 0 };
+}
+
 export function assertHotspotReferences(hotspots, opi) {
   if (!opi || opi.id !== 'opi' || !Array.isArray(opi.categories)) throw new Error('opi_release_required');
   const topics = new Map(opi.categories.flatMap((category) => category.topics.map((topic) => [topic.id, new Set(topic.cards.map((card) => card.id))])));
