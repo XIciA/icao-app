@@ -1,7 +1,7 @@
 # AI 开发文档
 
 状态：当前入口
-更新时间：2026-07-30
+更新时间：2026-09-20
 
 本目录说明产品能力与维护入口。服务端实际装载的 prompt/领域资产以
 `services/api/src/ai/assets/` 及其 manifest 为运行时来源；不要在文档目录建立第二份运行副本。
@@ -23,9 +23,8 @@
 | 资产 | 文档 |
 | --- | --- |
 | 资产范围与补充顺序 | [`assets/README.md`](assets/README.md) |
-| ASR 实际热词资产 | [`assets/asr-hotwords.json`](assets/asr-hotwords.json) |
-| 民航特殊数字读音 | [`assets/aviation-number-pronunciation.md`](assets/aviation-number-pronunciation.md) |
-| ICAO 字母拼读 | [`assets/icao-spelling-alphabet.md`](assets/icao-spelling-alphabet.md) |
+| 腾讯 ASR 热词及来源 | [`assets/tencent-asr/hotwords.json`](assets/tencent-asr/hotwords.json) |
+| 腾讯 ASR 自学习原文 | [`assets/tencent-asr/aviation-training-900.txt`](assets/tencent-asr/aviation-training-900.txt) |
 
 ## 3. 共同要求
 

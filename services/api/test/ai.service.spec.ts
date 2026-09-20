@@ -642,3 +642,27 @@ describe('AiService combined transcription and review', () => {
     expect(fixture.values).toHaveBeenCalledWith(expect.objectContaining({ capability: 'transcribe', status: 'success', quotaUnits: 0 }));
   });
 });
+
+describe('ASR production profile and faithful presentation', () => {
+  it.each(['transcribe', 'transcribeReview'] as const)('uses ordinary English and preserves raw recognition in %s', async (entry) => {
+    const rawTranscript = 'We has flight level 310. Unable Q N H one zero one three.';
+    const fixture = database();
+    const benefits = pointBenefits();
+    const review = reviewProvider({ grammar: { correctedText: 'We has FL310. Unable QNH 1013.', issues: [] } });
+    const asr = { transcribe: vi.fn(async () => ({ rawTranscript, meta: {} })) };
+    const ai = new AiService(fixture as never, review as never, asr as never, benefits as never);
+    const grant = await operationGrant(ai);
+    const result = entry === 'transcribe'
+      ? await ai.transcribe('user-1', 'faithful', Buffer.from('audio'), 'audio/wav', '16k_en_large', grant)
+      : await ai.transcribeReview('user-1', 'faithful', Buffer.from('audio'), 'audio/wav', '16k_en_large', { mode: 'grammar', module: 'atc', questionId: 'q-1' }, grant);
+    expect(asr.transcribe).toHaveBeenCalledWith(Buffer.from('audio'), 'audio/wav', '16k_en', undefined, 'faithful');
+    expect(result).toMatchObject({
+      rawTranscript, model: '16k_en', transcript: 'We has FL310. Unable QNH 1013.',
+      normalization: { version: 'aviation-normalization:conservative-v1' },
+    });
+    expect(benefits.settleAiPoints).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ result: expect.objectContaining({ rawTranscript }) }));
+    if (entry === 'transcribeReview') {
+      expect(review.generateValidated.mock.calls[0]?.[0].prompt).toContain('We has FL310. Unable QNH 1013.');
+    }
+  });
+});

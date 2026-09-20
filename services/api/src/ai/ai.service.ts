@@ -1,3 +1,5 @@
+import { normalizeAviationTranscriptDetailed, AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, type AviationTranscriptNormalizationResult } from './aviation-transcript-normalization';
+import { DEFAULT_TENCENT_ASR_MODEL } from '@icao/contracts';
 import { estimateCostMicrounits } from './usage-cost';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
@@ -453,14 +455,18 @@ export class AiService {
 
   async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId) {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
+    // Older clients may still send an experimental engine preference. The server owns the rollout.
+    model = DEFAULT_TENCENT_ASR_MODEL;
     return this.run({
       userId, requestId, capability: 'transcribe', provider: 'tencent-asr', model,
-      promptVersion: 'tencent-asr:raw:v1', units: 3, grant, operationId,
+      promptVersion: AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, units: 3, grant, operationId,
       pointCapability: 'transcription', signal,
       requestDigest: this.requestDigest(['transcription', mimeType, model, audio]),
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
-        return { data: { transcript: result.rawTranscript }, meta: result.meta };
+        const normalized = normalizeAviationTranscriptDetailed(result.rawTranscript);
+        return { data: { transcript: normalized.transcript, rawTranscript: result.rawTranscript,
+          normalization: { version: normalized.version, transformations: normalized.transformations }, model }, meta: result.meta };
       },
     });
   }
@@ -468,8 +474,9 @@ export class AiService {
   async transcribeReview(
     userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel,
     input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId,
-  ): Promise<TranscribeReviewResult> {
+  ): Promise<TranscribeReviewResult & { rawTranscript: string; model: TencentAsrModel; normalization: Omit<AviationTranscriptNormalizationResult, 'transcript'> }> {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
+    model = DEFAULT_TENCENT_ASR_MODEL;
     const pointCapability = input.mode === 'opi' ? 'transcription_opi' : 'transcription_grammar';
     return this.run({
       userId, requestId, capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
@@ -482,13 +489,16 @@ export class AiService {
         // Provider usage is recorded separately; the user has one reservation for the whole result.
         await this.logUsage({
           userId, requestId, capability: 'transcribe', status: 'success', model,
-          promptVersion: 'tencent-asr:raw:v1', latencyMs: Date.now() - started,
+          promptVersion: AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, latencyMs: Date.now() - started,
           quotaUnits: 0, meta: transcription.meta,
         }).catch(() => this.logger.error('ai_usage_log_failed capability=transcribe status=success'));
-        const transcript = transcription.rawTranscript.trim();
+        const normalized = normalizeAviationTranscriptDetailed(transcription.rawTranscript);
+        const transcript = normalized.transcript.trim();
         if (!transcript || transcript.length > 4_000) throw new BadRequestException('invalid_transcript');
         const result = await this.generateReview(userId, { ...input, transcript }, signal);
-        return { data: { transcript, review: withReviewPromptVersion(result.data) }, meta: result.meta };
+        return { data: { transcript, rawTranscript: transcription.rawTranscript, model,
+          normalization: { version: normalized.version, transformations: normalized.transformations },
+          review: withReviewPromptVersion(result.data) }, meta: result.meta };
       },
     });
   }
