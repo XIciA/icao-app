@@ -10,7 +10,7 @@ jest.mock('@/features/question-bank/data/repository', () => ({
   questionBankRepository: { getTopic: (...args: unknown[]) => mockGetTopic(...args) },
 }));
 
-import { hydrateRadioCatalogTopic, nextRadioCatalogTopic } from '../catalog-hydration.native';
+import { hydrateRadioCatalogDatasets, hydrateRadioCatalogTopic, nextRadioCatalogTopic } from '../catalog-hydration.native';
 import { deriveRadioCatalogs } from '../catalog.native';
 
 const publicTopic: QuestionBankTopic = {
@@ -221,5 +221,47 @@ describe('Native radio catalog hydration', () => {
     mockGetTopic.mockResolvedValue({ ...publicTopic, cards: publicTopic.cards });
     await hydrateRadioCatalogTopic([{ ...dataset, contentRelease } as QuestionBankDataset], 'listening', 'listening-category-01', 'listening-topic-01');
     expect(mockGetTopic).toHaveBeenCalledWith('listening', 'listening-category-01', 'listening-topic-01', contentRelease);
+  });
+});
+
+
+describe('complete authorized radio directory', () => {
+  beforeEach(() => mockGetTopic.mockReset());
+  const topics = Array.from({ length: 6 }, (_, index) => ({ ...publicTopic, id: `topic-${index}`, cards: [] }));
+  const bank = { ...dataset, categories: [{ ...dataset.categories[0], topics }] };
+
+  it('hydrates empty protected topics with bounded concurrency without mutating the public input', async () => {
+    let active = 0; let maximum = 0;
+    mockGetTopic.mockImplementation(async (_bank, _category, id) => {
+      active += 1; maximum = Math.max(maximum, active);
+      await Promise.resolve(); active -= 1;
+      return { ...publicTopic, id, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: `${id}-member` }] };
+    });
+    const full = await hydrateRadioCatalogDatasets([bank]);
+    expect(mockGetTopic).toHaveBeenCalledTimes(6);
+    expect(maximum).toBeLessThanOrEqual(3);
+    expect(deriveRadioCatalogs(full)[0].tracks).toHaveLength(12);
+    expect(topics.every(topic => topic.cards.length === 0)).toBe(true);
+  });
+
+  it('never expands membership content for free accounts', async () => {
+    await hydrateRadioCatalogDatasets([{ ...bank, access: { ...bank.access, membershipActive: false } }]);
+    expect(mockGetTopic).not.toHaveBeenCalled();
+  });
+
+  it.each([undefined, { ...publicTopic, id: 'wrong-topic' }, { ...publicTopic, id: 'topic-0' }])('rejects missing, wrong or partial topics instead of publishing misleading queue counts', async topic => {
+    mockGetTopic.mockResolvedValue(topic);
+    await expect(hydrateRadioCatalogDatasets([bank])).rejects.toThrow('radio_topic_unavailable');
+    expect(topics.every(item => item.cards.length === 0)).toBe(true);
+  });
+
+  it('rejects a result when account ownership changes during the request', async () => {
+    let current = true;
+    mockGetTopic.mockImplementation(async (_bank, _category, id) => {
+      current = false;
+      return { ...publicTopic, id, cards: [publicTopic.cards[0], publicTopic.cards[0]] };
+    });
+    await expect(hydrateRadioCatalogDatasets([bank], () => { if (!current) throw new Error('content_account_changed'); })).rejects.toThrow('content_account_changed');
+    expect(topics.every(item => item.cards.length === 0)).toBe(true);
   });
 });

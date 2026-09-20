@@ -122,7 +122,7 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
                     <AppText numberOfLines={1} variant="caption">
                       {singleTopic
                         ? `${category.declaredCardCount} ${dataset.cardUnit}`
-                        : `${category.declaredTopicCount} ${dataset.topicUnit} / ${category.declaredCardCount} ${dataset.cardUnit}`}
+                        : `${category.declaredTopicCount} ${category.topics.every((topic) => topic.practiceKind === 'scoring-points') ? '专项' : dataset.topicUnit} / ${category.declaredCardCount} ${dataset.cardUnit}`}
                     </AppText>
                   </View>
                   {singleLabel ? <View style={styles.accessPill}><AppText color={colors.primary} variant="micro">{singleLabel}</AppText></View> : null}

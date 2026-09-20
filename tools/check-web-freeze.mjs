@@ -61,7 +61,7 @@ const reviewedFormalWebHashes = new Map([
   // Native short word taps select the row; legacy Web uses its unchanged tap-lookup branch.
   ["src/features/question-bank/components/ChoiceList.tsx", ["a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70", "d2716333d1cd8ca29ac6ce5417fe63363db272722e29f47cffbb8b2e50752ac4"]],
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
-  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "4fce47350d1d8b209db74d9cc7851721e325686a2f50ea3c9a13d3bad6398555"]],
+  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "14dc9b2bdee3e720b753ccaf2dada8943dd0e1916886f0dc11e665e568494905"]],
   // 2026-09-20: redirect only the legacy repository's two imports to immutable,
   // byte-identical v13 snapshots so an APK link release cannot ship new banks.
   ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
@@ -163,7 +163,7 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));
   const currentPaths = new Set(current.map(file => file.path));
   return current.flatMap(file => {
-    // Marketing version 1.1.1 applies to the apps/formal Web only. The legacy
+    // Marketing version 1.1.2 applies to the apps/formal Web only. The legacy
     // Web resolver now selects the byte-identical 1.0.0 module; EdgeOne remaps
     // that module through its exact pinned shared-module table.
     if (file.path === 'src/config/app-version.web.ts') {
