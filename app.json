@@ -2,7 +2,7 @@
   "expo": {
     "name": "听你五个",
     "slug": "readyoufife",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "readyoufife",
@@ -11,7 +11,7 @@
       "icon": "./assets/images/icon.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3533720",
+      "buildNumber": "3533721",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -25,7 +25,7 @@
       "icon": "./assets/images/icon.png",
       "predictiveBackGestureEnabled": false,
       "package": "com.readyoufife.app",
-      "versionCode": 3533720
+      "versionCode": 3533721
     },
     "web": {
       "output": "single",

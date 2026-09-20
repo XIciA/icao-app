@@ -20,6 +20,7 @@ it('keeps every shipped scope nested and public directory counts equal to the fu
         const projected = scopeDataset(bank, scope, goal.id);
         const projectedPublic = scopeDataset(publicBank, scope, goal.id);
         expect(projectedPublic.declaredCardCount).toBe(projected.declaredCardCount);
+        expect(projectedPublic.summary).toBe(projected.summary);
         const cards = projected.categories.flatMap((category) => category.topics.flatMap((item) => item.cards));
         expect(cards).toHaveLength(projected.declaredCardCount);
         ids.set(scope, new Set(cards.map((card) => card.id)));
@@ -37,6 +38,7 @@ it('ships the agreed crash practice units, counting full radio scenes and spoken
   expect(listening).toHaveLength(4);
   expect(listening.map((item) => item.cards.length)).toEqual([25, 25, 25, 25]);
   const radio = crash('radiotelephony').categories.flatMap((category) => category.topics);
+  expect(crash('radiotelephony').summary).toBe('30 场景＋9 专项 / 614 卡');
   expect(radio.filter((item) => item.practiceKind !== 'scoring-points')).toHaveLength(30);
   expect(radio.filter((item) => item.practiceKind === 'scoring-points').length).toBeGreaterThan(0);
   expect(crash('storytelling').declaredCardCount).toBe(20);

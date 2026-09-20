@@ -59,7 +59,7 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
-  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "525956ea30de791da15b3aeec2db6558721f600b4199a10375fdcecd03eae034"]],
+  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "4fce47350d1d8b209db74d9cc7851721e325686a2f50ea3c9a13d3bad6398555"]],
   // 2026-09-20: redirect only the legacy repository's two imports to immutable,
   // byte-identical v13 snapshots so an APK link release cannot ship new banks.
   ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
@@ -75,7 +75,7 @@ const reviewedFormalWebHashes = new Map([
   ["src/features/question-bank/annotations/annotation-store.native.ts", [null, "079c3a7ee22748387e2d81fac885943c3b38ee79bb499363ca680d89c488d339"]],
   ["src/features/question-bank/lib/study-materials.native.ts", [null, "543765cae861673168b578ff9061a68b8e4650a96ec4e660833d3ecd82c74287"]],
   ["src/features/question-bank/lib/study-review.native.ts", [null, "568f99b3dde8d314c5469a03c70a4885886d70d160c5c2de7d9f0011a3fc9771"]],
-  ["src/features/question-bank/lib/study-scope.ts", [null, "4ae80964194f8b850abe2beea4a1d47875df59a4eef99f0ccad98f3a1bdcd4fe"]],
+  ["src/features/question-bank/lib/study-scope.ts", [null, "bf379ef1b7f9f1873c08986722a3e4aaccf4bc1c7da2a43bc9088a4061edbfd5"]],
   ["src/features/question-bank/platform/learning-record-storage.native.ts", [null, "9422dbffcdf68c680b837f3ce8bb735158b2cde45efb08e778df7ef4e62b45cd"]],
   ["src/features/sync/learning-sync.native.ts", [null, "76d3c4137eb5403fc2b55f7c0be0664df2b9726bfaea65fb3f6f32ec434b79a9"]],
   ["src/features/content/RadioPlayerScreen.tsx", ["94e12998e82066cee0632f566951329a25bee32a4fee8465504afca37bbaf27a", "da7d2cb6d7f54428fef93d6620325a1187691f4a25371fec8023132c969f049d"]],
@@ -161,7 +161,7 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));
   const currentPaths = new Set(current.map(file => file.path));
   return current.flatMap(file => {
-    // Marketing version 1.1.0 applies to the apps/formal Web only. The legacy
+    // Marketing version 1.1.1 applies to the apps/formal Web only. The legacy
     // Web resolver now selects the byte-identical 1.0.0 module; EdgeOne remaps
     // that module through its exact pinned shared-module table.
     if (file.path === 'src/config/app-version.web.ts') {
