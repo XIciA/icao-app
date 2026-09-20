@@ -50,7 +50,7 @@ export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection) {
   return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection);
 }
 
-export async function loadRadioCatalogDatasets(selection?: RadioStudySelection) {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean } = {}) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
     const current = getNativeCommerceEnvironmentState();
@@ -82,6 +82,8 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection) 
   }));
   assertOwner();
   const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
+  // App startup uses metadata only. Expand authorized text when the radio session opens.
+  if (!options.complete) return scoped;
   const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner);
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }

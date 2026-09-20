@@ -49,7 +49,14 @@ assert.match(distributionModule, /Curve25519\.Signing\.PublicKey/u);
 assert.doesNotMatch(webRepository, /member-content-cache|COMMERCE_ENVIRONMENT_HEADER/u);
 assert.match(nativeMockExam, /hydrateMockExamTopic/u);
 assert.match(nativeRadioCatalog, /loadRadioCatalogDatasets/u);
-assert.doesNotMatch(nativeRadioCatalog, /hydrateRadioCatalog/u);
+// Directory text expands through the existing authorized repository only after
+// the radio session opens; app startup still retrieves public metadata only.
+assert.match(nativeRadioCatalog, /if \(!options\.complete\) return scoped/u);
+assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner\)/u);
+assert.match(nativeRadioProvider, /complete: sessionVisible/u);
+assert.match(nativeRadioHydration, /membershipActive === true/u);
+assert.match(nativeRadioHydration, /Math\.min\(3, work\.length\)/u);
+assert.match(nativeRadioHydration, /questionBankRepository\.getTopic/u);
 assert.match(nativeRadioHydration, /hydrateRadioCatalogTopic/u);
 assert.match(nativeRadioHydration, /nextRadioCatalogTopic/u);
 assert.doesNotMatch(nativeRadioHydration, /Promise\.all\(datasets|Promise\.all\(category\.topics/u);

@@ -3,5 +3,5 @@ import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets
 export { deriveRadioCatalogs, getEmbeddedRadioCatalogs };
 
 export async function loadRadioCatalogs(selection?: RadioStudySelection) {
-  return deriveRadioCatalogs(await loadRadioCatalogDatasets(selection), selection);
+  return deriveRadioCatalogs(await loadRadioCatalogDatasets(selection, { complete: true }), selection);
 }

@@ -498,7 +498,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     topicHydrations.current.clear();
     setCatalogLoading(true);
     setCatalogError(undefined);
-    void loadRadioCatalogDatasets(selectionRef.current).then((datasets) => {
+    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible }).then((datasets) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
       catalogDatasets.current = datasets;
       const next = deriveRadioCatalogs(datasets, selectionRef.current);
@@ -515,7 +515,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, catalogRetry, commerceEnvironmentSnapshot, selection]);
+  }, [auth.restoring, auth.session, catalogRetry, commerceEnvironmentSnapshot, selection, sessionVisible]);
 
   useEffect(() => {
     if (auth.restoring) return;
