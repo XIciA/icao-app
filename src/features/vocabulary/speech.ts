@@ -12,16 +12,19 @@ function profile(text: string) {
   return /[.!?]$/.test(text) || text.split(/\s+/).length > 5 ? sentenceProfile : wordProfile;
 }
 
-function speakOnce(text: string) {
+function speakOnce(text: string, signal?: AbortSignal) {
   const value = normalize(text);
-  if (!value) return Promise.resolve(false);
+  if (!value || signal?.aborted) return Promise.resolve(false);
   return new Promise<boolean>((resolve) => {
     let settled = false;
     const finish = (result: boolean) => {
       if (settled) return;
       settled = true;
+      signal?.removeEventListener('abort', cancel);
       resolve(result);
     };
+    const cancel = () => { void stopVocabularySpeech(); finish(false); };
+    signal?.addEventListener('abort', cancel, { once: true });
     try {
       Speech.speak(value.slice(0, Speech.maxSpeechInputLength), {
         ...profile(value),
@@ -39,11 +42,11 @@ export async function stopVocabularySpeech() {
   try { await Speech.stop(); } catch { /* Speech failure must not block learning. */ }
 }
 
-export async function speakVocabulary(word: string, example?: string) {
+export async function speakVocabulary(word: string, example?: string, signal?: AbortSignal) {
   await stopVocabularySpeech();
-  const wordPlayed = await speakOnce(word);
+  const wordPlayed = await speakOnce(word, signal);
   if (!wordPlayed) return false;
-  if (example?.trim()) return speakOnce(example);
+  if (example?.trim()) return speakOnce(example, signal);
   return true;
 }
 

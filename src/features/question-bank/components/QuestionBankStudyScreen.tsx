@@ -48,6 +48,7 @@ import { wasAnswered } from '../lib/study-review';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar';
 import { AnswerCardSheet } from './AnswerCardSheet';
+import { LegacyLookupPronunciation } from './LegacyLookupPronunciation';
 import { InteractiveStudyText } from './InteractiveStudyText';
 import { ImageQuestionCard } from './ImageQuestionCard';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
@@ -796,6 +797,7 @@ export function QuestionBankStudyScreen(props: Props) {
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
             <AppText style={styles.lookupTitle} variant="pageTitle">{lookup?.word}</AppText>
+            {lookup ? <LegacyLookupPronunciation key={lookup.word} word={lookup.word} /> : null}
             {lookup ? (
               <Pressable
                 accessibilityLabel={wordFavorites.isFavorite({ word: lookup.word }) ? '取消收藏' : '收藏'}
