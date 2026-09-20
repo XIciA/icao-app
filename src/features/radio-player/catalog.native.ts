@@ -1,3 +1,5 @@
+import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
+import { hydrateRadioCatalogDatasets } from './catalog-hydration.native';
 import {
   getEmbeddedQuestionBanks,
   loadQuestionBank,
@@ -49,6 +51,11 @@ export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection) {
 }
 
 export async function loadRadioCatalogDatasets(selection?: RadioStudySelection) {
+  const owner = getNativeCommerceEnvironmentState();
+  const assertOwner = () => {
+    const current = getNativeCommerceEnvironmentState();
+    if (current.accountId !== owner.accountId || current.generation !== owner.generation) throw new Error('content_account_changed');
+  };
   const embedded = getEmbeddedQuestionBanks();
   const eligible = embedded.filter((bank) => bank.capabilities?.radioEligible);
   const durationByAudio = new Map(
@@ -73,7 +80,10 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection) 
       })),
     } satisfies QuestionBankDataset;
   }));
-  return selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
+  assertOwner();
+  const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
+  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner);
+  return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
 
 export async function loadRadioCatalogs() {

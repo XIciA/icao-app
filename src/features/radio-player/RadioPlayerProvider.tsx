@@ -122,6 +122,9 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const selectionRef = useRef(selection); selectionRef.current = selection;
   const embeddedCatalogs = useMemo(() => getEmbeddedRadioCatalogs(selection), [selection]);
   const [catalogs, setCatalogs] = useState(embeddedCatalogs);
+  const [catalogLoading, setCatalogLoading] = useState(false);
+  const [catalogError, setCatalogError] = useState<string>();
+  const [catalogRetry, setCatalogRetry] = useState(0);
   const [bankId, setBankId] = useState<RadioBankId>(embeddedCatalogs[0]?.bankId ?? 'listening');
   const [trackId, setTrackId] = useState(embeddedCatalogs[0]?.tracks[0]?.id ?? '');
   const [bankTrackIds, setBankTrackIds] = useState<Partial<Record<RadioBankId, string>>>({});
@@ -245,6 +248,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       shuffle: emptyShuffle,
     };
     setCatalogs(embeddedCatalogs);
+    setCatalogLoading(false);
+    setCatalogError(undefined);
     setBankId(firstBankId);
     setTrackId(firstTrackId);
     setBankTrackIds({});
@@ -491,6 +496,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     const requestGeneration = catalogHydrationGeneration.current + 1;
     catalogHydrationGeneration.current = requestGeneration;
     topicHydrations.current.clear();
+    setCatalogLoading(true);
+    setCatalogError(undefined);
     void loadRadioCatalogDatasets(selectionRef.current).then((datasets) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
       catalogDatasets.current = datasets;
@@ -499,12 +506,16 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
         stateRef.current.catalogs = next;
         setCatalogs(next);
       }
-    }).catch(() => undefined);
+    }).catch(() => {
+      if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogError('播放目录加载失败，请重试');
+    }).finally(() => {
+      if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogLoading(false);
+    });
     return () => {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, commerceEnvironmentSnapshot, selection]);
+  }, [auth.restoring, auth.session, catalogRetry, commerceEnvironmentSnapshot, selection]);
 
   useEffect(() => {
     if (auth.restoring) return;
@@ -915,9 +926,9 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     waitingForNext,
     speedOptions,
     playing,
-    loading: sourceState.loading,
+    loading: sourceState.loading || catalogLoading,
     buffering,
-    error: sourceState.error,
+    error: catalogError ?? sourceState.error,
     position,
     duration,
     sessionVisible,
@@ -945,11 +956,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     setRate,
     setIntervalSeconds,
     retry: () => {
+      if (catalogError) { setCatalogRetry((value) => value + 1); return; }
       recoveryAttempts.current.clear();
       if (currentCatalog && currentTrack) void prepareTrack(currentCatalog, currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,
-  }), [activateSession, bankTrackIds, buffering, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setMode, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
+  }), [activateSession, bankTrackIds, buffering, catalogError, catalogLoading, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setMode, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
 
   return <RadioContext.Provider value={value}>{children}</RadioContext.Provider>;
 }

@@ -62,3 +62,27 @@ export async function hydrateRadioCatalogTopic(
     return datasets;
   }
 }
+
+/** Build one complete authorized directory before exposing queue counts. Audio
+ * files stay lazy; only the existing topic repository supplies protected text. */
+export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[], assertCurrent: () => void = () => undefined) {
+  const hydrated = datasets.map(dataset => ({ ...dataset, categories: dataset.categories.map(category => ({ ...category, topics: [...category.topics] })) }));
+  const work = hydrated.flatMap(dataset => dataset.access?.membershipActive === true
+    ? dataset.categories.flatMap(category => category.topics.flatMap((topic, index) =>
+      topic.access?.level === 'member' && topic.cards.length < topic.access.declaredCardCount
+        ? [{ dataset, category, topic, index }] : [])) : []);
+  let next = 0;
+  const worker = async () => {
+    while (next < work.length) {
+      const item = work[next++];
+      assertCurrent();
+      const topic = await questionBankRepository.getTopic(item.dataset.id, item.category.id, item.topic.id, contentReleaseOf(item.dataset));
+      assertCurrent();
+      if (!topic || topic.id !== item.topic.id || topic.cards.length < item.topic.access!.declaredCardCount) throw new Error('radio_topic_unavailable');
+      item.category.topics[item.index] = topic;
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(3, work.length) }, worker));
+  assertCurrent();
+  return hydrated;
+}

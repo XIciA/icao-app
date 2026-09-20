@@ -21,13 +21,14 @@ const mockPlay = jest.fn(async () => undefined);
 const mockPause = jest.fn(async () => undefined);
 const mockAcquire = jest.fn(async () => ({ token: 'lease' }));
 const mockCoordinator = new RadioOperationCoordinator();
+const mockLoadCatalogs = jest.fn(async () => []);
 
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ restoring: false, session: mockSession }) }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveQuestionBankAsset: () => undefined, resolveRemoteQuestionBankAsset: (path: string) => mockResolve(path) }));
-jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: async () => [], deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => mockSelectionCatalogs(selection) }));
+jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: () => mockLoadCatalogs(), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => mockSelectionCatalogs(selection) }));
 jest.mock('../catalog-hydration.native', () => ({ hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: () => mockAcquire(), release: async () => undefined, register: (_owner: string, client: { deactivate: () => Promise<void> }) => { mockDeactivate = client.deactivate; return () => undefined; } } }));
 jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: async () => undefined, registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
@@ -62,8 +63,21 @@ async function flush() { await act(async () => { for (let i = 0; i < 80; i += 1)
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>((r) => { resolve = r; }); return { promise, resolve }; }
 
 describe('radio native queue integration', () => {
-  beforeEach(() => { mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockResolve.mockImplementation(async (path) => `file://${path}`); });
+  beforeEach(() => { mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
+
+  it('shows directory failures and lets the user retry without restarting the app', async () => {
+    mockLoadCatalogs.mockRejectedValueOnce(new Error('network unavailable'));
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    expect(mockContext.error).toBe('播放目录加载失败，请重试');
+    expect(mockContext.loading).toBe(false);
+    await act(() => mockContext.retry()); await flush();
+    expect(mockLoadCatalogs).toHaveBeenCalledTimes(2);
+    expect(mockContext.error).toBeUndefined();
+    expect(mockContext.loading).toBe(false);
+    expect(mockContext.catalogs[0].tracks).toHaveLength(6);
+    await view.unmount();
+  });
 
   it('clears the previous scope queue and rejects its late audio preparation', async () => {
     const slow = deferred<string>();
