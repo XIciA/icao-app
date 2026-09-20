@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { assertHotspotReferences, assertImmutableRelease, contentChecksum, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
+import { assertHotspotReferences, assertImmutableRelease, contentChecksum, planNativeContentPublication, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
 import { ensureNativeContentResource } from './native-content-resources.mjs';
 
@@ -37,10 +37,8 @@ if (process.argv.includes('--validate')) {
     }) },
   }).storage.from('question-bank-assets');
   try {
-    for (const bank of release.banks) {
-      const [existing] = await sql`select checksum from question_bank_releases where bank_id = ${bank.id} and version = ${bank.version}`;
-      assertImmutableRelease(existing, bank);
-    }
+    const resetHistory = process.env.RESET_LEARNING_HISTORY === '1';
+    planNativeContentPublication(release, await sql`select bank_id, version, checksum from question_bank_releases`, resetHistory);
     const existing = new Map((await sql`select object_key, checksum from resource_objects where storage_bucket = 'question-bank-assets'`).map((row) => [row.object_key, row.checksum]));
     let checkedResources = 0;
     for (const file of release.files) {
@@ -56,20 +54,13 @@ if (process.argv.includes('--validate')) {
     let historyReset;
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
-      if (process.env.RESET_LEARNING_HISTORY === '1') {
-        if (release.banks.length !== 5) throw new Error('history_reset_requires_complete_release');
-        const prior = await tx`select bank_id from question_bank_releases where version = ${release.version}`;
-        // The complete release and reset commit atomically. Retrying an already
-        // published release cannot clear new study work for a second time.
-        if (prior.length !== 0 && prior.length !== release.banks.length) throw new Error('history_reset_partial_version');
-        if (prior.length === 0) {
-          historyReset = await resetLearningHistoryForContent(tx);
-        }
-      }
+      const publication = planNativeContentPublication(release,
+        await tx`select bank_id, version, checksum from question_bank_releases`, resetHistory);
+      if (publication.resetHistory) historyReset = await resetLearningHistoryForContent(tx);
       const [appContent] = await tx`select payload from app_content_releases where active = true limit 1`;
       const opi = release.banks.find((bank) => bank.id === 'opi');
       if (appContent && opi) assertHotspotReferences(appContent.payload.hotspots, opi.payload);
-      for (const bank of release.banks) {
+      for (const bank of publication.banks) {
         const [existing] = await tx`select checksum from question_bank_releases where bank_id = ${bank.id} and version = ${bank.version}`;
         assertImmutableRelease(existing, bank);
         await tx`update question_bank_releases set active = false where bank_id = ${bank.id} and active = true`;

@@ -13,6 +13,7 @@ import postgres from 'postgres';
 import * as databaseSchema from '../src/database/schema.ts';
 import { SyncService } from '../src/sync/sync.service.ts';
 import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
+import { planNativeContentPublication } from './native-content-release.mjs';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-privacy-postgres-'));
@@ -432,4 +433,37 @@ test('content reset leaves a concurrently registered account and its first write
   assert.deepEqual(await accountGenerations(existing), { aiResultGeneration: 1, dataGeneration: 1 });
   assert.deepEqual(await accountGenerations(newcomer), { aiResultGeneration: 0, dataGeneration: 0 });
   assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${newcomer}'`), '1');
+});
+
+test('mixed-version content publication respects checksum uniqueness and resets history only once', async (t) => {
+  const accountId = '77000000-0000-4000-8000-000000000001';
+  await createAccount(accountId);
+  await push(accountId, [cardMutation('mixed-old', 'old-card')]);
+  const ids = ['listening', 'sentences900', 'radiotelephony', 'opi', 'storytelling'];
+  const release = { version: 14, banks: ids.map((id) => ({ id, version: 14, checksum: `${id}-new`, payload: { id } })) };
+  await databaseClient`insert into question_bank_releases (bank_id, version, checksum, payload, active)
+    values ('sentences900', 13, 'sentences900-new', '{"id":"sentences900"}', true)`;
+  // The publisher uses raw postgres-js. Drizzle customizes the shared test
+  // client's JSON serializers, so use the same unmodified client as production.
+  const publisher = postgres({ database: 'postgres', host: socketDirectory, port, username: 'postgres', prepare: false });
+  t.after(() => publisher.end());
+  const publish = () => publisher.begin(async (tx) => {
+    await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
+    const plan = planNativeContentPublication(release, await tx`select bank_id, version, checksum from question_bank_releases`, true);
+    if (plan.resetHistory) await resetLearningHistoryForContent(tx);
+    for (const bank of plan.banks) {
+      await tx`update question_bank_releases set active = false where bank_id = ${bank.id} and active = true`;
+      await tx`insert into question_bank_releases (bank_id, version, checksum, payload, active)
+        values (${bank.id}, ${bank.version}, ${bank.checksum}, ${tx.json(bank.payload)}, true)
+        on conflict (bank_id, version) do update set active = true`;
+    }
+  });
+  await publish();
+  assert.deepEqual(await accountGenerations(accountId), { aiResultGeneration: 1, dataGeneration: 1 });
+  await push(accountId, [cardMutation('mixed-new', 'new-card')], { dataGeneration: 1, aiResultGeneration: 1 });
+  await publish();
+  assert.deepEqual(await accountGenerations(accountId), { aiResultGeneration: 1, dataGeneration: 1 });
+  assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${accountId}'`), '1');
+  assert.equal(queryScalar('SELECT count(*) FROM question_bank_releases WHERE active'), '5');
+  assert.equal(queryScalar("SELECT version FROM question_bank_releases WHERE bank_id = 'sentences900' AND active"), '13');
 });
