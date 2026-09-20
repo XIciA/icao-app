@@ -795,13 +795,6 @@ export type AiPointOperationSummary = {
 
 export type TranscribeResult = {
   transcript: string;
-  /** Unmodified recognized words; provider timestamps are removed. */
-  rawTranscript?: string;
-  model?: TencentAsrModel;
-  normalization?: {
-    version: string;
-    transformations: Array<{ before: string; after: string; ruleId: string; risk: string }>;
-  };
   aiPoints?: AiPointOperationSummary;
 };
 

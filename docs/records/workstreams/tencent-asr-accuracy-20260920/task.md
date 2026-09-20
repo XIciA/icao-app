@@ -116,3 +116,5 @@
 - 专用最小权限策略ICAOAsrRuntime20260920已创建，仅CreateRecTask、DescribeTaskStatus、GetAsrVocab、GetAsrVocabList、GetCustomizationList、GetModelInfo。专用编程子账号已准备到最终审核页，创建持久密钥的工具临提交确认尚待用户回应；生产未切换。
 - 完整pnpm check通过（显式使用本地已存在的题库媒体目录），包含179项工具测试、1189项前端测试、587项API测试及类型/构建校验。真实SDK均为mock；本轮ASR音频调用0。
 - 本轮API单独发布，不提升移动端版本或构建移动端，Vercel不变。切换前保留原env与不可变镜像，部署仅使用origin/main干净提交。
+
+- CI首次运行发现共享contracts入口属于Vercel冻结输入；已恢复共享contracts原状，将可追溯返回类型保留在API服务内部，未更改冻结基线或网页代码。冻结检查8/8通过；最终源码再次通过完整pnpm check（179项工具、1189项前端、587项API测试及构建）。

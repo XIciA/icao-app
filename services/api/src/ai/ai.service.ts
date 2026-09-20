@@ -1,4 +1,4 @@
-import { normalizeAviationTranscriptDetailed, AVIATION_TRANSCRIPT_NORMALIZATION_VERSION } from './aviation-transcript-normalization';
+import { normalizeAviationTranscriptDetailed, AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, type AviationTranscriptNormalizationResult } from './aviation-transcript-normalization';
 import { DEFAULT_TENCENT_ASR_MODEL } from '@icao/contracts';
 import { estimateCostMicrounits } from './usage-cost';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
@@ -474,7 +474,7 @@ export class AiService {
   async transcribeReview(
     userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel,
     input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId,
-  ): Promise<TranscribeReviewResult> {
+  ): Promise<TranscribeReviewResult & { rawTranscript: string; model: TencentAsrModel; normalization: Omit<AviationTranscriptNormalizationResult, 'transcript'> }> {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     model = DEFAULT_TENCENT_ASR_MODEL;
     const pointCapability = input.mode === 'opi' ? 'transcription_opi' : 'transcription_grammar';
