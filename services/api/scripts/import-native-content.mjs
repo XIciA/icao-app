@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
 import { assertHotspotReferences, assertImmutableRelease, contentChecksum, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
+import { ensureNativeContentResource } from './native-content-resources.mjs';
 
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
 const safeJoin = (root, relative) => {
@@ -29,26 +30,28 @@ if (process.argv.includes('--validate')) {
   for (const key of ['DATABASE_URL', 'SUPABASE_URL', 'SUPABASE_SECRET_KEY', 'RESOURCE_ROOT']) if (!process.env[key]) throw new Error(`missing_${key}`);
   const resourceRoot = resolve(process.env.RESOURCE_ROOT);
   const sql = postgres(process.env.DATABASE_URL, { max: 2, prepare: false });
-  const storage = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SECRET_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false } }).storage.from('question-bank-assets');
+  const storage = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SECRET_KEY, {
+    auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false },
+    global: { fetch: (url, init) => fetch(url, { ...init,
+      signal: init?.signal ? AbortSignal.any([init.signal, AbortSignal.timeout(60_000)]) : AbortSignal.timeout(60_000),
+    }) },
+  }).storage.from('question-bank-assets');
   try {
     for (const bank of release.banks) {
       const [existing] = await sql`select checksum from question_bank_releases where bank_id = ${bank.id} and version = ${bank.version}`;
       assertImmutableRelease(existing, bank);
     }
     const existing = new Map((await sql`select object_key, checksum from resource_objects where storage_bucket = 'question-bank-assets'`).map((row) => [row.object_key, row.checksum]));
+    let checkedResources = 0;
     for (const file of release.files) {
       if (existing.has(file.objectKey)) {
         if (existing.get(file.objectKey) !== file.checksum) throw new Error('resource_object_immutable');
         continue;
       }
       const bytes = readFileSync(safeJoin(resourceRoot, file.sourcePublicPath.slice('/question-bank-assets/'.length)));
-      if (bytes.length !== file.sizeBytes || contentChecksum(bytes) !== file.checksum) throw new Error('source_resource_checksum_mismatch');
-      const { error } = await storage.upload(file.objectKey, bytes, { contentType: file.mimeType, upsert: false });
-      if (error) {
-        // A previous interrupted import may have uploaded an orphan. Verify it; never overwrite it.
-        const { data, error: downloadError } = await storage.download(file.objectKey);
-        if (downloadError || !data || data.size !== file.sizeBytes || contentChecksum(Buffer.from(await data.arrayBuffer())) !== file.checksum) throw new Error('immutable_resource_upload_failed');
-      }
+      await ensureNativeContentResource(storage, file, bytes);
+      checkedResources += 1;
+      if (checkedResources % 100 === 0) console.log(`native_content_resources_verified count=${checkedResources}`);
     }
     let historyReset;
     await sql.begin(async (tx) => {
