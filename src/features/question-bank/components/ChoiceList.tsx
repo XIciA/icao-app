@@ -51,6 +51,7 @@ function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, 
       accessibilityState={{ selected }}
       disabled={readOnly}
       onPress={choose}
+      onPressIn={() => { lookupHandled.current = false; }}
       style={({ pressed }) => [
         styles.choice,
         translationVisible ? styles.choiceRevealed : null,
@@ -83,7 +84,12 @@ function ChoiceRow({ choice, choiceZh, correctChoiceIndex, selectedChoiceIndex, 
             </InteractiveWordTarget>
           );
           if (!lookupByTap && !lookupByLongPress) return <Text key={`${tokenIndex}:${token}`} style={styles.copyText}>{token}</Text>;
-          return <Text accessibilityLabel={`长按查词：${word}`} key={`${tokenIndex}:${token}`} onLongPress={lookupByLongPress ? () => {
+          return <Text accessibilityLabel={`长按查词：${word}`} key={`${tokenIndex}:${token}`} onPressIn={() => { lookupHandled.current = false; }} onPress={(event) => {
+            // Native Text owns the touch when it has a long-press handler.
+            // Forward its short press to the same choice action as the row.
+            event?.stopPropagation();
+            choose();
+          }} onLongPress={lookupByLongPress ? () => {
             lookupHandled.current = true;
             onLookupWord!(word!);
           } : undefined} style={styles.copyText}>{token}</Text>;

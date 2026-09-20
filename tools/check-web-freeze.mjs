@@ -58,6 +58,8 @@ const reviewedAppIdentityDependencyHashes = new Map([
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
 // Exact before/after hashes only; no general exemption for browser or native files.
 const reviewedFormalWebHashes = new Map([
+  // Native short word taps select the row; legacy Web uses its unchanged tap-lookup branch.
+  ["src/features/question-bank/components/ChoiceList.tsx", ["a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70", "d2716333d1cd8ca29ac6ce5417fe63363db272722e29f47cffbb8b2e50752ac4"]],
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
   ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "4fce47350d1d8b209db74d9cc7851721e325686a2f50ea3c9a13d3bad6398555"]],
   // 2026-09-20: redirect only the legacy repository's two imports to immutable,
