@@ -30,6 +30,12 @@ export function scopeDataset(dataset: QuestionBankDataset, scope: StudyScope, ta
     }).filter((category) => category.topics.length > 0) : [];
   const declaredTopicCount = categories.reduce((sum, category) => sum + category.topics.length, 0);
   const declaredCardCount = categories.reduce((sum, category) => sum + category.declaredCardCount, 0);
+  const scoringPointGroups = dataset.id === 'radiotelephony'
+    ? categories.flatMap((category) => category.topics).filter((topic) => topic.practiceKind === 'scoring-points').length
+    : 0;
+  const topicSummary = scoringPointGroups
+    ? `${declaredTopicCount - scoringPointGroups} 场景＋${scoringPointGroups} 专项`
+    : `${declaredTopicCount} ${dataset.topicUnit}`;
   return { ...dataset, categories, declaredTopicCount, declaredCardCount,
-    summary: `${declaredTopicCount} ${dataset.topicUnit} / ${declaredCardCount} ${dataset.cardUnit}` };
+    summary: `${topicSummary} / ${declaredCardCount} ${dataset.cardUnit}` };
 }
