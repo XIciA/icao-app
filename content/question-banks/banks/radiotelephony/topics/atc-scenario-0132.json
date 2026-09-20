@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0132",
   "name": "ACA 571 颠簸 雷暴绕飞 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "Runway 36R，许可落地，ACA 571。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

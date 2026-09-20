@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-607",
+  "name": "CCA532 icing&engine failure, etc.",
+  "declaredCardCount": 18,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111114",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-1",
+      "audioText": "[Your call sign is CCA532, you are at Wuhan airport, Gate 211, information V received, request ATC clearance to Changsha.]",
+      "audioTextZh": "【你的呼号是国航532，你在武汉机场，211号机位，收到通播V，请求ATC放行至长沙。】",
+      "referenceText": "Wuhan Delivery, CCA 532, Gate 211, information V, destination Changsha, request ATC clearance.",
+      "referenceTextZh": "武汉放行，国航532，211号机位，通播V，目的地长沙，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/faa161089e63fb46060b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111115",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-2",
+      "audioText": "CCA532, Wuhan Delivery, cleared to Changsha via flight planned route, LKO-02 departure, initial climb 1800m, cruising level 8400m, runway 04, contact Departure on 119.7, squawk 2016.[Read Back]",
+      "audioTextZh": "国航532，武汉放行，可以按计划航路放行至长沙，LKO-02离场，起始高度1800米，巡航高度8400米，跑道04，联系离场119.7，应答机2016。【复诵】",
+      "referenceText": "Cleared to Changsha via flight planned route, LKO-02 departure, initial climb 1800m, cruising level 8400m, runway 04, Departure 119.7, squawk 2016, CCA532.",
+      "referenceTextZh": "可以按计划航路飞往长沙，LKO-02离场，起始高度1800米，巡航高度8400米，跑道04，联系离场119.7，应答机2016，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e21785596d90a70ce863.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111116",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-3",
+      "audioText": "[Now you are ready for pushback and start-up, contact Wuhan Ground.]",
+      "audioTextZh": "【你已经准备好推出开车，联系武汉地面。】",
+      "referenceText": "Wuhan Ground, CCA 532, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，国航532，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d1b91e1726df56fbe0f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111117",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-4",
+      "audioText": "CCA532, Wuhan Ground, pushback and start-up approved, facing east.[Read Back]",
+      "audioTextZh": "国航532，武汉地面，可以推出开车，头朝东。【复诵】",
+      "referenceText": "Pushback and start-up approved, facing east, CCA532.",
+      "referenceTextZh": "可以推出开车，头朝东，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a0396ebf4cb9e2bc6db8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111118",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-5",
+      "audioText": "[You are now on the taxiway Z4 with your engines running. Ask Ground for taxi instructions.]",
+      "audioTextZh": "【你现在在滑行道Z4上，发动机全部起动。向地面请求滑行指令。】",
+      "referenceText": "Wuhan Ground, CCA532, taxiway Z4 with engines running, request taxi.",
+      "referenceTextZh": "武汉地面，国航532，滑行道Z4上，发动机全部起动，请求滑出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4678cd2d919421613216.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111119",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-6",
+      "audioText": "CCA532, taxi to holding point runway 04 via Z4, A. hold short of A4.[Read Back]",
+      "audioTextZh": "国航532，沿滑行道Z4，A滑行至跑道04，在A4外等待。【复诵】",
+      "referenceText": "Taxi to holding point runway 04 via Z4, A. hold short of A4, CCA532.",
+      "referenceTextZh": "沿滑行道Z4，A滑行至跑道04，在A4外等待，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7a4d76017692e4305a8b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111120",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-7",
+      "audioText": "CCA532, Ground, caution, work in progress near the right side of taxiway A3.[Read Back]",
+      "audioTextZh": "国航532，地面，小心，滑行道A3右侧附近正在施工。【复诵】",
+      "referenceText": "Roger caution, thanks, CCA532.",
+      "referenceTextZh": "收到谨慎（滑行），谢谢，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/587128ebc2b9b7548358.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111121",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-8",
+      "audioText": "CCA532, Ground, give way to the A320 vacating on E3, when the traffic is clear, continue taxi A, A9, hold short of runway 04.[Read Back]",
+      "audioTextZh": "国航532，地面，给滑行道E3上的A320让路，没影响后，继续沿滑行道A，A9滑行，在跑道04外等待。【复诵】",
+      "referenceText": "Give way to the A320, when traffic is clear, continue taxi A, A9, hold short of runway 04, CCA532.",
+      "referenceTextZh": "给A320让路，活动清除时，继续沿滑行道A，A9滑行，在跑道04外等待，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/34994ce2d2c9a9d97ddd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111122",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-9",
+      "audioText": "[Now you are airborne at 900m climbing, contact Wuhan Departure.]",
+      "audioTextZh": "【飞机已离地，高度900米上升，联系武汉离场。】",
+      "referenceText": "Wuhan Departure, CCA532 airborne, passing 900m.",
+      "referenceTextZh": "武汉离场，国航532，离地，通过900米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a9d2cf676c948f0dd35d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111123",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-10",
+      "audioText": "CCA532, Wuhan Departure, radar contact, turn left direct to DA, climb and maintain 3000m on QNH 1020.[Read Back]",
+      "audioTextZh": "国航532，武汉离场，雷达已识别，左转直飞DA，上升保持修正海压3000米，修正海压1020。【复诵】",
+      "referenceText": "Turn left direct to DA, climb and maintain 3000m on QNH 1020, CCA532.",
+      "referenceTextZh": "左转直飞DA，上升保持修正海压3000米，修正海压1020，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8aa44bf25558585238d4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111124",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-11",
+      "audioText": "CCA532, climb and maintain 6600m on standard, expedite passing 3900m.[Read Back]",
+      "audioTextZh": "国航532，上升保持标压6600米，快速通过3900米。【复诵】",
+      "referenceText": "Climb and maintain 6600m on standard, expedite passing 3900m, CCA532.",
+      "referenceTextZh": "上升保持标压6600米，快速通过3900米，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a4ee77f4069d38c4daf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111125",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-12",
+      "audioText": "[You are experiencing moderate icing while maintaining 6600m, request higher level and state Wuhan Control the reason.]",
+      "audioTextZh": "【你在6600米遇到了中度积冰，请求更高飞行高度，并向武汉区调说明原因。】",
+      "referenceText": "Wuhan Control, CCA532, maintaining 6600m, request higher level due moderate icing.",
+      "referenceTextZh": "武汉区调，国航532，保持6600米，由于中度积冰，请求高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb5114aabe1e82413f0c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111126",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-13",
+      "audioText": "CCA532, Wuhan Control climb and maintain 7200m.[Read Back]",
+      "audioTextZh": "国航532，武汉区调，上升保持7200米。【复诵】",
+      "referenceText": "Climb and maintain 7200m, CCA532.",
+      "referenceTextZh": "上升保持7200米，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/be4b16ebce63464dbb13.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111127",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-14",
+      "audioText": "[Suddenly your starboard engine failed at 7200m, make an urgency call ATC, and request descent and return to Wuhan airport.]",
+      "audioTextZh": "【在7200米时，右侧发动机突然失效，紧急呼叫ATC，并请求下降，返回武汉机场。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, CCA532, maintaining 7200m, right engine failure, request descent and return to Wuhan airport.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，国航532，保持7200米，右侧发动机失效，请求下降，返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/982b6b8ce2c6b66feb42.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111128",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-15",
+      "audioText": "CCA532, roger PANPAN, descend and maintain 4200m, turn left heading 010, expect radar vectors for runway 04.[Read Back]",
+      "audioTextZh": "国航532，收到PANPAN，下降保持4200米，左转航向010，雷达引导至跑道04。【复诵】",
+      "referenceText": "Descend and maintain 4200m, left heading 010, expect radar vector runway 04, CCA532.",
+      "referenceTextZh": "下降保持4200米，左转航向010，预计雷达引导至跑道04，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/85c13e7ae113d19e43d5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111129",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-16",
+      "audioText": "CCA532, continue descend and maintain 3000m on QNH 1019.[Read Back]",
+      "audioTextZh": "国航532，继续下降保持修正海压3000米，修正海压1019。【复诵】",
+      "referenceText": "Descend and maintain 3000m on QNH1019, CCA532.",
+      "referenceTextZh": "下降保持修正海压3000米，修正海压1019，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a92596449f34baa2220.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111130",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-17",
+      "audioText": "[You failed to restart the right engine, ask ATC for priority landing, also ask for the longest runway for safety concerns.]",
+      "audioTextZh": "【右侧发动机重启失败，向ATC请求优先着陆，提供最长的跑道。】",
+      "referenceText": "Wuhan Control, CCA532, we failed to restart the right engine, request priority land and the longest runway.",
+      "referenceTextZh": "武汉区调，国航532，右侧发动机重启失败，请求优先着陆，并提供最长的跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a67940b1b14066dc7713.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111131",
+      "taskTitle": "24. CCA532 icing&engine failure, etc.-18",
+      "audioText": "[Now you have established on ILS approach runway 36R, contact Wuhan Tower.]",
+      "audioTextZh": "【你已经建立的盲降进近跑道36右，联系武汉塔台。】",
+      "referenceText": "Wuhan Tower, CCA532, established on ILS approach runway 36R.",
+      "referenceTextZh": "武汉塔台，国航532，建立盲降进近跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f8d2d6c4947c06de411.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-861",
+  "name": "CSN6682 [液压系统失效]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153184",
+      "taskTitle": "13-CSN6682 [液压系统失效]-1",
+      "audioText": "B: [Your call sign is CSN6682, you are at stand K38 with information B. Your destination is Guangzhou, request ATC clearance from Wuhan Delivery.]",
+      "audioTextZh": "【你的呼号是南方6682，你在K38停机位，收到通播B。你的目的地是广州，向武汉放行请求管制许可。】",
+      "referenceText": "Wuhan Delivery, CSN6682, stand K38, information B, request ATC clearance.",
+      "referenceTextZh": "武汉放行，南方6682，K38机位，通播B，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8bd8b25e4a450e6228d4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153185",
+      "taskTitle": "13-CSN6682 [液压系统失效]-2",
+      "audioText": "C: CSN6682, I read you 3, loud background whistle, check your transmitter.\nB: [You have the transmitter checked and carry out radio check with Wuhan Delivery on the frequency 118.3.]",
+      "audioTextZh": "C：南方6682，我听你3个，很尖锐的背景音；检查你的发射机。\nB：【你检查了发射机，与武汉放行在频率118.3上进行无线电检查。】",
+      "referenceText": "Wuhan Delivery, CSN6682, radio check on frequency 118.3, 1, 2, 3, 4, 5, how do you read?",
+      "referenceTextZh": "武汉放行，南方6682，在频率118.3上进行无线电检查，1，2，3，4，5，你听我几个？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a01ae9205b3e3c06dc64.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153186",
+      "taskTitle": "13-CSN6682 [液压系统失效]-3",
+      "audioText": "C: CSN6682, I read you 5.\nB: [Acknowledge the transmission and request ATC clearance.]",
+      "audioTextZh": "C：南方6682，我听你5个。\nB：【收到并确认这条信息，并请求管制许可。】",
+      "referenceText": "Roger, stand K38, information B, request ATC clearance, CSN6682.",
+      "referenceTextZh": "收到，K38机位，通报B，请求管制许可，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68ff84213ec9a10c62f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153187",
+      "taskTitle": "13-CSN6682 [液压系统失效]-4",
+      "audioText": "C: CSN6682, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36R, follow LKO01 Departure, initial climb 1200 meters, cruising level 8400 meters, departure frequency 119.6, squawk 3115.",
+      "audioTextZh": "C：南方6682，武汉放行，可以经由计划航路飞往广州，起飞跑道36右，按照LKO01离场，初始爬升至1200米，巡航高度8400米，离场频率119.6，应答机3115。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, follow LKO 01 Departure, initial climb 1200 meters, cruising level 8400 meters, departure frequency 119.6, squawk 3115, CSN6682.",
+      "referenceTextZh": "可以经由计划航路飞往广州，起飞跑道36右，按照LKO01离场，初始爬升至1200米，巡航高度8400米，离场频率119.6，应答机3115，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb5a9868a73916d63113.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153188",
+      "taskTitle": "13-CSN6682 [液压系统失效]-5",
+      "audioText": "B: [Now you have completed push back and startup, and you are ready for taxi, contact Wuhan Ground.]",
+      "audioTextZh": "B：【现在你完成了推出开车，你准备好滑行了，联系武汉地面。】",
+      "referenceText": "Wuhan Ground, CSN6682, request taxi.",
+      "referenceTextZh": "武汉地面，南方6682，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eb2ccd2e7c0e865062e7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153189",
+      "taskTitle": "13-CSN6682 [液压系统失效]-6",
+      "audioText": "C: CSN6682, taxi via taxiway Z4, A3 and A to holding point runway 36R.",
+      "audioTextZh": "C：南方6682，经由Z4，A3和A滑行到跑道36右外等待点。",
+      "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, CSN6682.",
+      "referenceTextZh": "经由Z4，A3和A滑行到跑道36右外等待点，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f843b0c1d857015e9162.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153190",
+      "taskTitle": "13-CSN6682 [液压系统失效]-7",
+      "audioText": "B: [Now you are at holding point runway 36R, you are ready for departure, contact Wuhan Tower.]",
+      "audioTextZh": "B：【你现在在跑道36右的外等待点，你准备好离场了，联系武汉塔台。】",
+      "referenceText": "Wuhan Tower, CSN6682, holding point runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，南方6682，跑道36右外等待点，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d2ae4007d22f580197fd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153191",
+      "taskTitle": "13-CSN6682 [液压系统失效]-8",
+      "audioText": "C: CSN6682, runway 36R, 350 degrees, 5 knots, cleared for takeoff.",
+      "audioTextZh": "C：南方6682，跑道36右，风向350度，5节，可以起飞。",
+      "referenceText": "Cleared for takeoff, runway 36R, CSN6682.",
+      "referenceTextZh": "可以起飞，跑道36右，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/050b6facb849962f686f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153193",
+      "taskTitle": "13-CSN6682 [液压系统失效]-9",
+      "audioText": "B: [Now you are airborne, passing 600 meters, contact Wuhan Approach.]",
+      "audioTextZh": "B：【你现在已经离地，过600米，联系武汉进近。】",
+      "referenceText": "Wuhan Approach, CSN6682, airborne, passing 600 meters.",
+      "referenceTextZh": "武汉进近，南方6682，离地了，过600米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b1ae111c034e42b42865.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153194",
+      "taskTitle": "13-CSN6682 [液压系统失效]-10",
+      "audioText": "C: CSN6682, Wuhan Approach, radar contact, climb to 3900 meters, expedite until passing 2100 meters.",
+      "audioTextZh": "C：南方6682，武汉进近，雷达看见了，上3900米，快速爬升到2100米。",
+      "referenceText": "Climb to 3900 meters, expedite until passing 2100 meters, CSN6682.",
+      "referenceTextZh": "上3900米，快速爬升至2100米，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c1d7fca6c364a15fefb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153195",
+      "taskTitle": "13-CSN6682 [液压系统失效]-11",
+      "audioText": "B: [During climb, you find that the flaps are jammed at takeoff position, inform Wuhan Approach this situation, and ask to fly direct to WHA for trouble shooting.]",
+      "audioTextZh": "B：【爬升中，你发现你的襟翼卡在了起飞位，把这个情况告知武汉进近，请求直飞WHA进行排故。】",
+      "referenceText": "Wuhan Approach, CSN6682, our flaps are jammed at takeoff position, request fly direct to WHA for trouble shooting.",
+      "referenceTextZh": "武汉进近，南方6682，我们的襟翼卡在了起飞位，请求直飞WHA进行排故。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/356ca62c707465872728.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153196",
+      "taskTitle": "13-CSN6682 [液压系统失效]-12",
+      "audioText": "C: CSN6682, roger, turn right direct to WHA, climb to and maintain 3000 meters, hold at WHA as published.",
+      "audioTextZh": "C：南方6682，收到，右转直飞WHA，上3000米保持，按照公布程序在WHA等待。",
+      "referenceText": "Turn right, direct to WHA, climb to and maintain 3000 meters, hold at WHA as published, SN6682.",
+      "referenceTextZh": "右转直飞WHA，上3000米保持，按照公布程序在WHA等待，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/68e76ef9bf7190c5e203.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153197",
+      "taskTitle": "13-CSN6682 [液压系统失效]-13",
+      "audioText": "B: [During hold, you notice that one of the hydraulic systems is leaking fluid rapidly, make an urgency call to Wuhan Approach and request descent and return to land at Wuhan Airport.]",
+      "audioTextZh": "B：【在等待程序中，你发现其中一个液压系统正在快速泄漏液压油，向武汉进近发出紧急呼叫，请求下降并返航在武汉机场着陆。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, CSN6682, one of the hydraulic system is leaking fluid rapidly, request descent and return to land at Wuhan Airport.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，南方6682，一个液压系统正在快速泄漏液压油，请求下降并返回武汉机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/491ef4b3bd58b3db1b73.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153198",
+      "taskTitle": "13-CSN6682 [液压系统失效]-14",
+      "audioText": "C: CSN6682, roger PAN, turn right heading 240, descend to 2400 meters, expect radar vector for ILS approach runway 36R.",
+      "audioTextZh": "C：南方6682，收到PAN，右转航向240，下2400米保持，预计雷达引导盲降进近跑道36右。",
+      "referenceText": "Turn right heading 240, descend to 2400 meters, expect radar vector for ILS approach runway 36R, CSN6682.",
+      "referenceTextZh": "右转航向240，下2400米保持，预计雷达引导盲降进近跑道36右，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b832f3b5d71324ef6d23.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-226631",
+      "taskTitle": "13-CSN6682 [液压系统失效]-15",
+      "audioText": "C: CSN6682, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R, report established.",
+      "audioTextZh": "C：南方6682，右转航向330，下900米保持，可以盲降进近跑道36右，建立后报。",
+      "referenceText": "Turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R, report established, CSN6682.",
+      "referenceTextZh": "右转航向330，下900米保持，可以盲降进近跑道36右，建立后报，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fb4d0de301b5cfb4cf52.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-226632",
+      "taskTitle": "13-CSN6682 [液压系统失效]-16",
+      "audioText": "B: [Now you have intercepted the localizer runway 36R, contact Wuhan Tower.]",
+      "audioTextZh": "B：【现在你已经截获跑道36右航向道，联系武汉塔台。】",
+      "referenceText": "Wuhan Tower, CSN6682, intercepted the localizer for runway 36R.",
+      "referenceTextZh": "武汉塔台，南方6682，截获跑道36右航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f638ccd894721b374e6e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-226633",
+      "taskTitle": "13-CSN6682 [液压系统失效]-17",
+      "audioText": "C: CSN6682, cleared to land runway 36R.",
+      "audioTextZh": "C：南方6682，可以落地，跑道36右。",
+      "referenceText": "Cleared to land runway 36R, CSN6682.",
+      "referenceTextZh": "可以落地，跑道36右，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/96b994711d35a8938ea3.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

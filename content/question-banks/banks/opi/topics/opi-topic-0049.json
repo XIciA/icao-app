@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0049",
   "name": "着陆重量",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "A hard landing can result from an unstable approach, excessive landing speed, an improper flare, a tailwind, poor runway braking action, an overweight aircraft, or incorrect handling of a crosswind.",
       "referenceTextZh": "重着陆可能由进近不稳定、着陆速度过大、拉平不当、顺风、跑道制动作用不良、飞机超重或侧风操纵错误造成。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

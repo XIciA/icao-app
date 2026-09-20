@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0117",
   "name": "CSN 6682 液压问题 襟翼问题 积冰/防冰",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "许可在 Runway 36R 落地，CSN 6682。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-013-csn6682-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

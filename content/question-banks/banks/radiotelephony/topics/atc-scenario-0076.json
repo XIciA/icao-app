@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0076",
   "name": "CSN 371 自动刹车警告 丢失几页飞行手册",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "保持不大于 M.80，CSN 371。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1317.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0048",
   "name": "ACA 909 女客心脏病 听不到通播",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "武汉进近，ACA 909，请求目视进近跑道 18L 以节省时间。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/836.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0095",
   "name": "CES 151 拖把断了 鸟击一发失效",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "爬升并保持 900 米，过 WHA 后，飞航向 360，预计雷达引导 ILS 进近跑道 18L，CES 151。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1645.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

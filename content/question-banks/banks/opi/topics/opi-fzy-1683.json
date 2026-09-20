@@ -1,0 +1,215 @@
+{
+  "id": "opi-fzy-1683",
+  "name": "7.理论学习与飞行训练",
+  "declaredCardCount": 23,
+  "cards": [
+    {
+      "id": "opi-fzy-151982",
+      "taskTitle": "7.理论学习与飞行训练-1",
+      "audioText": "When and where did you have the initial training?",
+      "audioTextZh": "你什么时候在哪里进行的初始训练？",
+      "studyTier": 2,
+      "referenceText": "I had / received my initial training in CAFUC (Civil Aviation Flight University of China) in 2008.\nIn the first two years in university, I studied basic flight theories and aviation English in Guanghan, Sichuan Province.\nIn the third year, I had my primary flight training in Luoyang Branch, Henan Province.",
+      "referenceTextZh": "我于2008年在中国民航飞行学院学飞飞行。\n大学前两年，我在四川广汉飞行学院学习飞行基本理论和航空英语。\n第三年，我在河南洛阳进行初级飞行训练。"
+    },
+    {
+      "id": "opi-fzy-151983",
+      "taskTitle": "7.理论学习与飞行训练-2",
+      "audioText": "What are the unforgettable things during your initial training?",
+      "audioTextZh": "在初始训练期间，有哪些难忘的时刻？",
+      "studyTier": 1,
+      "referenceText": "Well, my first solo flight was one of the most unforgettable moments of my initial training.\nThat was a sunny day. The visibility was good, wind was calm. It was good for flying.\nI flew two traffic patterns and made a successful landing.",
+      "referenceTextZh": "在初始训练中，我的单飞是最难忘的时刻之一。\n那是阳光明媚的一天。能见度很好，静风，很适合飞行。\n我飞了两个起落，最后成功着陆。"
+    },
+    {
+      "id": "opi-fzy-151984",
+      "taskTitle": "7.理论学习与飞行训练-3",
+      "audioText": "What have you learned from your flight instructor?",
+      "audioTextZh": "你从飞行教员那里学到了什么？",
+      "studyTier": 1,
+      "referenceText": "I have learned a lot from my flight instructor.\nFirst, I have learned many flight skills.\nSecond, I have learned how to be a responsible man.",
+      "referenceTextZh": "我从飞行教员那里学到了很多东西。\n首先，我学到了很多飞行技术。\n其次，我学到了如何做一个负责的人。"
+    },
+    {
+      "id": "opi-fzy-151986",
+      "taskTitle": "7.理论学习与飞行训练-5",
+      "audioText": "What subject was the most difficult for you during the initial training?",
+      "audioTextZh": "初始训练中，什么科目对你来说最困难？",
+      "studyTier": 1,
+      "referenceText": "I think stall is the most difficult one for me.\nBecause it was difficult to control the aircraft and recover from the stall.\nThe aircraft may crash on the ground.",
+      "referenceTextZh": "我认为失速对我来说最困难。\n因为操纵飞机和失速改出很困难。\n飞机可能会坠机。"
+    },
+    {
+      "id": "opi-fzy-151988",
+      "taskTitle": "7.理论学习与飞行训练-7",
+      "audioText": "Were you nervous at your first solo, how did you overcome it?",
+      "audioTextZh": "单飞的时候紧张吗，你是如何克服它的？",
+      "studyTier": 1,
+      "referenceText": "Yes, I was a little nervous.\nMy flight instructor encouraged me and helped me to calm down.\nAfter I walked into the cockpit, I just focused on my operation, and I forgot my nervousness.",
+      "referenceTextZh": "是的，我有点紧张。\n我的飞行教员给了我鼓励，并帮助我平静下来。\n当走进驾驶舱后，我专注于操作，忘记了紧张。"
+    },
+    {
+      "id": "opi-fzy-151990",
+      "taskTitle": "7.理论学习与飞行训练-9",
+      "audioText": "When did you get the Private Pilot License?",
+      "audioTextZh": "你什么时候拿到私照的？",
+      "studyTier": 1,
+      "referenceText": "I got the Private Pilot License in June 4th 2019.",
+      "referenceTextZh": "我在2019年6月4日拿到了私照。"
+    },
+    {
+      "id": "opi-fzy-151991",
+      "taskTitle": "7.理论学习与飞行训练-10",
+      "audioText": "How many hours should you experience simulator training during your initial training?",
+      "audioTextZh": "在初始训练中，你们需要经历多长时间的模拟机训练？",
+      "studyTier": 1,
+      "referenceText": "About 40 hours. And we should finish it in 5 weeks.",
+      "referenceTextZh": "40小时左右，我们需要在5周内完成。"
+    },
+    {
+      "id": "opi-fzy-151992",
+      "taskTitle": "7.理论学习与飞行训练-11",
+      "audioText": "What subjects should you practise in simulator?",
+      "audioTextZh": "模拟机训练的科目都有哪些？",
+      "studyTier": 1,
+      "referenceText": "In simulator, we mainly practise normal procedures and abnormal procedures.\nSuch as engine problem, adverse weather conditions and so on.",
+      "referenceTextZh": "在模拟机训练中，我们需要练习正常程序和非正常程序。\n比如发动机故障、不利天气条件等。"
+    },
+    {
+      "id": "opi-fzy-151993",
+      "taskTitle": "7.理论学习与飞行训练-12",
+      "audioText": "During your simulator training, do you have any session related to a hydraulic system failure? How did you handle it in simulator?",
+      "audioTextZh": "在模拟机训练中，你们有关于液压失效的练习项目吗？你是如何在模拟机训练中处理的？",
+      "studyTier": 1,
+      "referenceText": "Yes, I have.\nHydraulic system failure may cause landing gear jammed, brakes malfunction and so on.\nFor example, if I encounter landing gear jammed, I should try manual extension, make a low pass for visual check.\nIf necessary, I will make a belly landing.",
+      "referenceTextZh": "是的，我们有相关科目。\n液压系统失效会造成起落架卡阻，刹车故障等问题。\n比如，如果我遇到起落架卡阻，我会尝试手动收放，做低空通场进行目视检查。\n如有必要，我会执行机腹着陆。"
+    },
+    {
+      "id": "opi-fzy-151994",
+      "taskTitle": "7.理论学习与飞行训练-13",
+      "audioText": "Why do you need simulator training?",
+      "audioTextZh": "为什么我们需要模拟机训练？",
+      "studyTier": 1,
+      "referenceText": "Well, as we all know, simulator training is necessary for flight safety.\nWe can review many emergency situations which cannot be practised in real flight.\nSo that before a real flight, we can gain flying experience.",
+      "referenceTextZh": "我们知道，对飞行安全来说，模拟机训练是必要的。\n我们可以回顾许多在真实飞行中无法练习的紧急情况。\n因此在实践飞行之前，我们可以获取更多飞行经验。"
+    },
+    {
+      "id": "opi-fzy-151995",
+      "taskTitle": "7.理论学习与飞行训练-14",
+      "audioText": "When and where did you have the recurrent training?",
+      "audioTextZh": "你什么时候在哪里进行了复训？",
+      "studyTier": 1,
+      "referenceText": "I had my current training in 2008 in China Eastern Airline.",
+      "referenceTextZh": "我于2008年在东航进行的复训。"
+    },
+    {
+      "id": "opi-fzy-151996",
+      "taskTitle": "7.理论学习与飞行训练-15",
+      "audioText": "Why do pilots need recurrent training each year?",
+      "audioTextZh": "飞行员为什么需要复训？",
+      "studyTier": 1,
+      "referenceText": "Recurrent training is very necessary.\nIt can help us to review abnormal procedures.\nIt can help us be familiar with all kinds of normal/abnormal situations.\nIt is very important for improving flight safety.",
+      "referenceTextZh": "复训非常有必要。\n它帮我们回顾不正常程序。\n它帮助我们熟悉各种正常/非正常情况。\n它对提高飞行安全很重要。"
+    },
+    {
+      "id": "opi-fzy-151997",
+      "taskTitle": "7.理论学习与飞行训练-16",
+      "audioText": "Are you a captain or first officer? Where are you based?",
+      "audioTextZh": "你是机长还是副驾，你们公司的总部在哪里？",
+      "studyTier": 1,
+      "referenceText": "I am the first officer.\nWe are now based in Wuhan.",
+      "referenceTextZh": "我是副驾。\n我们公司的总部目前在武汉。"
+    },
+    {
+      "id": "opi-fzy-151998",
+      "taskTitle": "7.理论学习与飞行训练-17",
+      "audioText": "How many hours in total have you flown?",
+      "audioTextZh": "你目前的飞行时间累计是多少？",
+      "studyTier": 2,
+      "referenceText": "I have flown more than 12000 hours.",
+      "referenceTextZh": "我的飞行时间超过1.2万小时。"
+    },
+    {
+      "id": "opi-fzy-151999",
+      "taskTitle": "7.理论学习与飞行训练-18",
+      "audioText": "How many type ratings do you have?",
+      "audioTextZh": "你有几种型別等级？",
+      "studyTier": 1,
+      "referenceText": "Now I am an airline transport pilot with type rating of A320, I hope I will fly A350 in future.",
+      "referenceTextZh": "我现在是一名航线飞行员，有A320的型別等级签注，我希望我未来可以飞A350。"
+    },
+    {
+      "id": "opi-fzy-153337",
+      "taskTitle": "7.理论学习与飞行训练-19",
+      "audioText": "What should you do if you have different opinions or some arguments with your flight instructor during your flight training?",
+      "audioTextZh": "如果在飞行训练中，你和你的教员有不同意见，或者有一些争执，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If this happens, I will follow the guidance of the instructor, and then, after the flight is over, I will discuss with the instructor, exchange ideas, and constantly improve my flying skills.",
+      "referenceTextZh": "如果发生这种情况，我会听从教员的指导，然后，在飞行结束后，和教员进行讨论，交换意见，不断提高自己的飞行技能。"
+    },
+    {
+      "id": "opi-fzy-153348",
+      "taskTitle": "7.理论学习与飞行训练-20",
+      "audioText": "What are the subjects you will practice with flight attendants during the training?",
+      "audioTextZh": "和机组训练时，你们会训练哪些科目？",
+      "studyTier": 1,
+      "referenceText": "Usually, we will practice some abnormal procedures, for example, rejected takeoff, cabin depressurization, and emergency evacuation.",
+      "referenceTextZh": "通常，我们会训练一些非正常情况，譬如：中断起飞，客舱失压或者紧急撤离。"
+    },
+    {
+      "id": "opi-fzy-224530",
+      "taskTitle": "7.理论学习与飞行训练-21",
+      "audioText": "Have you ever received any English radio telephony communication lessons in your flight school?",
+      "audioTextZh": "你在航校期间，接受过任何英语无线电陆空通话课程吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, we have. We learned basic knowledge of the English radio telephony communication in my flight school, and that made me realized the differences between the daily English and the English used in radio communication, which will help me to use standard words during the real operation, and to reduce misunderstanding between pilots and controllers.",
+      "referenceTextZh": "是的，我们有。在航校学习中，我们掌握了英语无线电通话的基本知识，这让我意识到日常英语与无线电通话中使用的英语之间存在着差异。这些知识将有助于我在实际运行中使用标准用语，并减少飞行员与管制员之间的误解。"
+    },
+    {
+      "id": "opi-fzy-224158",
+      "taskTitle": "7.理论学习与飞行训练-22",
+      "audioText": "What do you know about EBT?",
+      "audioTextZh": "关于循证训练，你知道多少？",
+      "studyTier": 1,
+      "referenceText": "Evidence-based training refers to training and evaluation based on operational data, characterized by the development and assessment of trainees' comprehensive capabilities including a series of core competencies, rather than measuring their performance in a single event or flight. Broadly speaking, training and evaluation based on multiple data sources such as operation, discipline assessment, and psychological evaluation all fall under evidence-based training.",
+      "referenceTextZh": "循证训练是指基于运行数据的训练和评估，其特点是开发和评估学员含一系列核心胜任力的全面能力，而不是衡量其在某一事件或机动飞行中的绩效表现。广义来看，基于运行、作风评价和心理测评等多数据源的训练和评估均属于循证训练。"
+    },
+    {
+      "id": "opi-fzy-224531",
+      "taskTitle": "7.理论学习与飞行训练-23",
+      "audioText": "Do you believe that the English radio telephony communication is important in civil aviation?",
+      "audioTextZh": "你认为，英语无线电陆空通话重要吗？",
+      "studyTier": 1,
+      "referenceText": "Absolutely yes. English radio communication between aircraft and ground is of great importance. It is the mandatory standard language for global aviation safety. Through highly standardized terms and procedures, it can minimize ambiguity and avoid misunderstandings, ensuring that instructions between pilots and controllers are conveyed clearly and accurately. It is the core foundation for ensuring flight safety and efficiency.",
+      "referenceTextZh": "英语无线电陆空通话极其重要。它是全球航空安全的强制性标准语言，通过高度标准化的术语和流程，能最大限度消除歧义、避免误解，确保飞行员与管制员之间指令传递清晰无误，是保障飞行安全与效率的核心基石。"
+    },
+    {
+      "id": "opi-fzy-224159",
+      "taskTitle": "7.理论学习与飞行训练-24",
+      "audioText": "What topics do you have in the EBT?",
+      "audioTextZh": "在循证训练中，你们有哪些训练主题？",
+      "studyTier": 1,
+      "referenceText": "We have many training topics, such as CRM, bad weather, unstable approach, landing, navigation, go-around, etc.",
+      "referenceTextZh": "我们有很多训练主题，比如CRM，恶劣天气、不稳定进近、着陆、导航、复飞等。"
+    },
+    {
+      "id": "opi-fzy-224160",
+      "taskTitle": "7.理论学习与飞行训练-25",
+      "audioText": "What are the purpose of EBT?",
+      "audioTextZh": "循证训练的目的是什么？",
+      "studyTier": 1,
+      "referenceText": "The purpose of the EBT training program is to cultivate and assess the ability of pilots to operate safely and effectively in commercial air transport environments, as well as the ability required to handle the most relevant threats based on the evidence collected in accidents, symptoms, flight operations and training.",
+      "referenceTextZh": "EBT训练方案的目的在于培养和评估飞行员在商业航空运输环境中安全、有效运行的能力，以及根据在事故、征候、飞行运行以及训练中收集的证据，处理最相关威胁所需的能力。"
+    },
+    {
+      "id": "opi-fzy-224161",
+      "taskTitle": "7.理论学习与飞行训练-26",
+      "audioText": "What are the advantages of EBT compared to traditional training methods?",
+      "audioTextZh": "相较于传统训练方法，循证训练的优势是什么？",
+      "studyTier": 1,
+      "referenceText": "Compared with traditional training methods, evidence-based training can better enhance pilots' competence, that is, their comprehensive ability to perform tasks by applying relevant knowledge and skills under specific conditions, and improve training efficiency.",
+      "referenceTextZh": "相较于传统训练方法，循证训练能够更好地提升飞行员胜任力，即飞行员在特定条件下运用相关知识、技能执行任务的综合能力，提高培训效率。"
+    }
+  ],
+  "categoryId": "opi-category-05"
+}

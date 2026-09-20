@@ -1,0 +1,199 @@
+{
+  "id": "atc-fzy-631",
+  "name": "CSN6202 flight control problem, etc",
+  "declaredCardCount": 21,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111569",
+      "taskTitle": "3. CSN6202 flight control problem, etc-1",
+      "audioText": "[Your call sign is CSN6202, destination Harbin. You just departed from Beijing airport at 23. You are passing 1200m and want to climb to 1800m, contact Beijing Departure.]",
+      "audioTextZh": "【你的呼号是南航6202，目的地哈尔滨。北京机场起飞的时间是23分。刚刚飞过1200米，想爬升到1800米，联系北京离场。】",
+      "referenceText": "Beijing Departure, CSN6202, from Beijing to Harbin, airborne 23, passing 1200m, request climb to 1800m.",
+      "referenceTextZh": "北京离场，南航6202，北京飞哈尔滨，离地时间23分，过1200米，请求上1800米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ffc8d51cad8bf9c3c93e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111570",
+      "taskTitle": "3. CSN6202 flight control problem, etc-2",
+      "audioText": "CSN6202, Beijing Departure, radar contact, due to slower preceding traffic, cancel SID, turn right heading 010.",
+      "audioTextZh": "南航6202，北京离场，雷达已识别，由于前机减速，取消SID，右转航向010。",
+      "referenceText": "Cancel SID, turn right heading 010, CSN6202.",
+      "referenceTextZh": "取消SID，右转航向010，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aad7f1f98dae83f8582e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111571",
+      "taskTitle": "3. CSN6202 flight control problem, etc-3",
+      "audioText": "CSN6202, climb to 5400m on standard, resume own navigation, direct to YV via flight planned route.",
+      "audioTextZh": "南航6202，上升标压5400米，自主领航，按计划航路直飞YV。",
+      "referenceText": "Climb to 5400m on standard, direct to YV via flight planned route, CSN6202.",
+      "referenceTextZh": "上升标压5400米，按计划航路直飞YV，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7418c2760ec4b68ccf6b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111572",
+      "taskTitle": "3. CSN6202 flight control problem, etc-4",
+      "audioText": "[Inform the controller that your weather radar shows a build-up around YV, request direct to KAKAT.]",
+      "audioTextZh": "【通知管制员你的气象雷达显示YV处有积雨云，请求直飞KAKAT。】",
+      "referenceText": "Beijing Departure, CSN6202, radar indicates a CB around YV, request direct to KAKAT.",
+      "referenceTextZh": "北京离场，南航6202，雷达显示YV附近有积雨云，请求直飞KAKAT。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b80f595dfffd31320d2d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111573",
+      "taskTitle": "3. CSN6202 flight control problem, etc-5",
+      "audioText": "CSN6202, contact Beijing Control 125.9 for request.",
+      "audioTextZh": "南航6202，联系北京区调125.9，请求直飞。",
+      "referenceText": "125.9, CSN6202.",
+      "referenceTextZh": "125.9，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ecd9072c888107b36995.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111574",
+      "taskTitle": "3. CSN6202 flight control problem, etc-6",
+      "audioText": "[Make an initial contact with Beijing Control, 5400m maintaining, request direct to KAKAT due to weather.]",
+      "audioTextZh": "【开始联系北京区调，保持5400米，由于天气原因，请求直飞KAKAT。】",
+      "referenceText": "Beijing Control, CSN6202, 5400m maintaining, request direct to KAKAT due weather.",
+      "referenceTextZh": "北京区调，南航6202，保持5400米，由于天气原因，请求直飞KAKAT。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8b466adc23accc1c2fb8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111575",
+      "taskTitle": "3. CSN6202 flight control problem, etc-7",
+      "audioText": "CSN6202, climb to and maintain 10700m. Due Air Force restriction, suggest heading 020. [Because the CB is too large, you want heading 030.]",
+      "audioTextZh": "南航6202，上升并保持10700米。由于空军限制，建议航向020。【由于积雨云范围太大，你想要航向030。】",
+      "referenceText": "Climb to and maintain 10700m, request heading 030 due CB, CSN6202.",
+      "referenceTextZh": "上升并保持10700米，由于积雨云，请求航向030，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/384ce248f2f93d777170.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111576",
+      "taskTitle": "3. CSN6202 flight control problem, etc-8",
+      "audioText": "CSN6202, turn right heading 030 approved.",
+      "audioTextZh": "南航6202，同意右转航向030。",
+      "referenceText": "Turn right heading 030, CSN6202.",
+      "referenceTextZh": "右转航向030，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/61c4bd4bbfca3da2cc0d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111577",
+      "taskTitle": "3. CSN6202 flight control problem, etc-9",
+      "audioText": "[Now you have cleared weather, back on course.]",
+      "audioTextZh": "【天气转好，返回航道。】",
+      "referenceText": "Beijing Control, CSN6202, cleared weather, back on course.",
+      "referenceTextZh": "北京区调，南航6202，天气转好，返回航道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0d4ebd7c02610c105ccd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111578",
+      "taskTitle": "3. CSN6202 flight control problem, etc-10",
+      "audioText": "CSN6202, Beijing roger. [Tell the controller that you have ice accumulation as a result of suspected de-icing equipment failure. Request descent below the freezing level.]",
+      "audioTextZh": "南航6202，北京收到。【告知管制员你遇到积冰，除冰装置疑似故障。请求下降至结冰高度以下。】",
+      "referenceText": "Beijing Control, CSN6202, possible de-icing equipment failure, ice is building up. Request descent below freezing level.",
+      "referenceTextZh": "北京区调，南航6202，除冰装置似乎有问题，积冰严重。请求下降至结冰高度以下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8fd827588ce0ee7acc99.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111579",
+      "taskTitle": "3. CSN6202 flight control problem, etc-11",
+      "audioText": "CSN6202, roger descent to 6300m. Report if you still have emergency condition on this level?[Tell the controller this level should be sufficient and emergency conditions do not exist.]",
+      "audioTextZh": "南航6202，收到，下降6300米。报告你是否在此高度还有紧急情况？【告知管制员这个高度足够了，不存在紧急状况。】",
+      "referenceText": "Descending to 6300m, negative emergency conditions, this level is sufficient, CSN6202.",
+      "referenceTextZh": "下降到6300米，没有紧急状况，这个高度已经足够，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b2bf9473a9f7a0ff2d6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111580",
+      "taskTitle": "3. CSN6202 flight control problem, etc-12",
+      "audioText": "[There may be a problem about flight control system, request return to Beijing airport.]",
+      "audioTextZh": "【飞行操纵系统似乎有问题，请求返回北京机场。】",
+      "referenceText": "Beijing Control, CSN6202, request return to Beijing airport due possible problems with flight control system.",
+      "referenceTextZh": "北京区调，南航6202， 请求返回北京机场，飞行操纵系统似乎有问题。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1500890f174da8fb26e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111581",
+      "taskTitle": "3. CSN6202 flight control problem, etc-13",
+      "audioText": "CSN6202, roger, confirm approach and landing normal? [Say no problem.]",
+      "audioTextZh": "南航6202，收到，确定进近着陆正常？【回答没问题。】",
+      "referenceText": "Affirm, CSN6202.",
+      "referenceTextZh": "是的，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/15ec40db266995cd398f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111582",
+      "taskTitle": "3. CSN6202 flight control problem, etc-14",
+      "audioText": "CSN6202, turn right direct to GITUM, descend to and maintain 3600m.",
+      "audioTextZh": "南航6202，右转直飞GITUM，下降保持3600米。",
+      "referenceText": "Turn right direct to GITUM, descend to and maintain 3600m, CSN6202.",
+      "referenceTextZh": "右转直飞GITUM，下降保持3600米，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/81936ee8b961b67c22bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111583",
+      "taskTitle": "3. CSN6202 flight control problem, etc-15",
+      "audioText": "CSN6202, contact Approach 120.6.",
+      "audioTextZh": "南航6202，联系进近120.6。",
+      "referenceText": "120.6, CSN6202.",
+      "referenceTextZh": "120.6，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/02b20c7428f06f311331.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111584",
+      "taskTitle": "3. CSN6202 flight control problem, etc-16",
+      "audioText": "[Descend to 3600m. Contact Approach, tell him you have a further problem with your leading edge flap extension and believe it is because of the prior icing issue.]",
+      "audioTextZh": "【下降3600米，联系进近，告知他前缘襟翼无法放下，应该是受之前的积冰影响。】",
+      "referenceText": "Beijing Approach, CSN6202, descending to 3600m. We have a problem with our leading edge flap extension.",
+      "referenceTextZh": "北京进近，南航6202，正下降至3600米。我们的前缘襟翼无法放下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ddfc36ead8d46dbe3952.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111585",
+      "taskTitle": "3. CSN6202 flight control problem, etc-17",
+      "audioText": "CSN6202, Beijing Approach, roger, do you require any other assistance? [Tell Approach you have a micro-switch malfunction and will conduct a flapless landing and request runway 36R.]",
+      "audioTextZh": "南航6202，北京进近，收到，是否需要其它援助？【告知进近微动电门故障，准备实施无襟翼着陆，并请求降落在跑道36右。】",
+      "referenceText": "Due possible micro-switch malfunction, we’ll be conducting a flapless landing and request runway 36R, CSN6202.",
+      "referenceTextZh": "由于微动电门似乎发生故障，我们准备实施无襟翼着陆，请求跑道36右，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9cfd92a2406099c37ba8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111586",
+      "taskTitle": "3. CSN6202 flight control problem, etc-18",
+      "audioText": "CSN6202 roger, change of runway 36R, turn left heading 090,  descend to and maintain 2700m on QNH 1013, information C.",
+      "audioTextZh": "南航6202，收到，更换跑道36右，左转航向090，下降保持修正海压2700米保持，修正海压1013，通播C。",
+      "referenceText": "Runway 36R, turn left heading 090, descend to and maintain 2700m on QNH 1013, information C, CSN6202.",
+      "referenceTextZh": "跑道36右，左转航向090，下降保持修正海压2700米，修正海压1013，通播C，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/15d07664be72639a9cf8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111587",
+      "taskTitle": "3. CSN6202 flight control problem, etc-19",
+      "audioText": "CSN6202, turn right heading 270, descend to 1800m.",
+      "audioTextZh": "南航6202，右转航向270，下降1800米。",
+      "referenceText": "Turn right heading 270, descend to 1800m, CSN6202.",
+      "referenceTextZh": "右转航向270，下到1800米，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a6cba7d6bef29b815f0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111588",
+      "taskTitle": "3. CSN6202 flight control problem, etc-20",
+      "audioText": "CSN6202, the field is 11 miles away, report visual contact. [Tell the approach, you have the runway in sight.]",
+      "audioTextZh": "南航6202，距离机场还有11海里，能见地面叫。【告诉进近，你可以看见跑道。】",
+      "referenceText": "Runway in sight, CSN6202.",
+      "referenceTextZh": "看到跑道了，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e277858f11713a551504.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111589",
+      "taskTitle": "3. CSN6202 flight control problem, etc-21",
+      "audioText": "CSN6202, make visual approach 36R, turn final when ready.",
+      "audioTextZh": "南航6202，目视进近跑道36右，准备好后转向五边。",
+      "referenceText": "Make visual approach 36R, turn final when ready, CSN6202.",
+      "referenceTextZh": "目视进近跑道36右，准备好后转向五边，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cfb8c966e6aabfcf9705.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

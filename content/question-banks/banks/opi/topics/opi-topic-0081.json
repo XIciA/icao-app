@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0081",
   "name": "充电宝与锂电池",
   "declaredCardCount": 13,
@@ -108,5 +107,6 @@
       "referenceText": "A power bank generates heat while it is being used. If a faulty unit overheats inside a seat pocket or bag, the problem may not be noticed until it becomes serious. Prohibiting its use reduces the chance of an unnoticed event and supports early detection.",
       "referenceTextZh": "充电宝使用时会产生热量。如果故障充电宝在座椅口袋或行李中过热，可能直到情况严重才被发现。禁止使用可以减少事件未被发现的机会，并有助于早期发现。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0074",
   "name": "CSN 817 强风切变 浓雾",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "收到，谢谢，CSN 817。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1281.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

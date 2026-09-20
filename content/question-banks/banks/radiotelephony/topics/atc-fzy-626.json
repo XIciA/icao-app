@@ -1,0 +1,217 @@
+{
+  "id": "atc-fzy-626",
+  "name": "CES543 TCAS RA&bang, etc.",
+  "declaredCardCount": 23,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111471",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-1",
+      "audioText": "[You are the pilot of CES543 which is bound for Wuhan. You have just been handed over from Hefei Control, you are over IKUBA at 23, and your level is 8400m, call Wuhan Control.]",
+      "audioTextZh": "【你是东方543的飞行员，飞机飞往武汉。你刚从合肥区调转出，IKUBA时间23分，高度8400米，呼叫武汉区调。】",
+      "referenceText": "Wuhan Control, CES543, IKUBA 23, maintaining 8400m, destination Wuhan.",
+      "referenceTextZh": "武汉区调，东方543，IKUBA时间23分，8400米保持，目的地武汉。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/754d6d8fbab289ddc5c2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111472",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-2",
+      "audioText": "CES543, Wuhan Control, radar identified, descend and maintain 6000m, report reaching.[Read Back]",
+      "audioTextZh": "东方543，武汉区调，雷达已识别，下降保持6000米，到达报。【复诵】",
+      "referenceText": "Descend and maintain 6000m, report reaching. CES543.",
+      "referenceTextZh": "下降保持6000米，到达报，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2edf76e7a522a09070ec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111473",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-3",
+      "audioText": "[You have just followed your TCAS RA instruction. You have stopped your descent at nearly 6800m and track out 9km right of the course. Report to ATC.]",
+      "audioTextZh": "【你刚刚执行了机上TCAS RA的指令。你在6800米停止下降并向右偏9千米，向ATC报告。】",
+      "referenceText": "Wuhan Control, CES543, our TCAS instructed us to stop descent and turn right to avoid traffic, maintaining 6800m, 9 km right of the course.",
+      "referenceTextZh": "武汉区调，东方543，机上TCAS指示飞机在6800米停止下降并向右偏9千米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/88cf119379eb07c6dc06.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111474",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-4",
+      "audioText": "Roger, CES543, you have just passed the traffic, descend and maintain 6000m and turn left heading 170 immediately. There is military activity in the area right now.[You are required to read back the clearance and show your gratitude.]",
+      "audioTextZh": "收到，东方543，你刚躲避过活动，立即下降保持6000米，左转航向170。飞机位于军事活动区域内。【你需要复诵指令并表示感谢。】",
+      "referenceText": "Descend and maintain 6000m, turn left heading 170 immediately, thanks, CES543.",
+      "referenceTextZh": "立即下降保持6000米，左转航向170，谢谢，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e22f16746805fceed295.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111475",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-5",
+      "audioText": "[You hear a loud bang, it seems that the left wing has been hit by something, and you feel the airplane has a banking tendency. Declare urgency to ATC.]",
+      "audioTextZh": "【你听到一声巨响，好像是左侧机翼撞到东西了，你觉得飞机有倾斜的趋势。向ATC报告该紧急情况。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, CES543, the left wing was hit by some foreign object, and the plane has a banking tendency, request priority landing and emergency services.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，东方543，左侧机翼被异物袭击，飞机有倾斜趋势，请求优先着陆并提供紧急服务。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/547562426bcad590578e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111476",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-6",
+      "audioText": "CES543, Wuhan Control, roger PANPAN, descend and maintain 4800m, report passing XSH.[Read Back]",
+      "audioTextZh": "东方543，武汉区调，收到PANPAN，下降保持4800米，过XSH报告。【复诵】",
+      "referenceText": "Descend and maintain 4800m, report passing XSH, CES543.",
+      "referenceTextZh": "下降保持4800米，过XSH报告，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ccc42dfd65aa8b95b939.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111477",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-7",
+      "audioText": "CES543, Wuhan Control, we have notified the other relevant parties. Please give us more detail about your present situation.[Report to ATC that No.3 engine has flamed out and it is even harder to overcome the banking tendency. You guess that there might be some more damages to the left wing.]",
+      "audioTextZh": "东方543，武汉区调，已经通知了有关部门。请详细告诉我们你当前的情况。【告诉ATC 3号发动机熄火，飞机很难克服倾斜趋势。你猜测左侧机翼可能还有更多的损伤。】",
+      "referenceText": "No.3 engine flameout and it became harder to overcome the bank tendency. Suspect the left wing damaged. CES543.",
+      "referenceTextZh": "3号发动机熄火，飞机很难克服倾斜趋势。怀疑左侧机翼损坏。东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2b8fb6b2b97e922a358.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111478",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-8",
+      "audioText": "CES543, keep us advised.[Read Back]",
+      "audioTextZh": "东方543，随时报告。【复诵】",
+      "referenceText": "Wilco, CES543.",
+      "referenceTextZh": "收到，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/32df74c0244ab748c66f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111479",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-9",
+      "audioText": "[Now you are over XSH at 4800m, call Wuhan Control.]",
+      "audioTextZh": "【你已飞过XSH，高度4800米，呼叫武汉区调。】",
+      "referenceText": "Wuhan Control, CES543, maintaining 4800m, over XSH.",
+      "referenceTextZh": "武汉区调，东方543，4800米保持，过XSH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e0533590fd6f67b95c1a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111480",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-10",
+      "audioText": "CES543, maintain present level, contact Wuhan Approach on 118.9, good day.[Read Back]",
+      "audioTextZh": "东方543，保持当前高度，联系武汉进近118.9，再见。【复诵】",
+      "referenceText": "Maintain present level, 118.9, good day. CES543.",
+      "referenceTextZh": "保持当前高度，118.9，再见，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ea762e51e8ae555506a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111481",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-11",
+      "audioText": "[Now you are over XSH at 4800m, call Wuhan Approach and inform them that you are in distress now.]",
+      "audioTextZh": "【你已过XSH，高度4800米，呼叫武汉进近，通知他们你遇到危险。】",
+      "referenceText": "MAYDAY, MAYDAY, MAYDAY, Wuhan Approach, CES543, left wing hit something, No.3 engine flameout and the airplane has banking tendency, we are now passing XSH, maintaining 4800m.",
+      "referenceTextZh": "MAYDAY, MAYDAY, MAYDAY，武汉进近，东方543，左侧机翼受到撞击，3号发动机熄火，飞机有倾斜趋势，我们飞过XSH，4800米保持。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d339d431b94c462fbac5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111482",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-12",
+      "audioText": "Roger, the center controller has told us your situation, you will have the top priority. Descend and maintain 1200 m on QNH1008, expect ILS Approach runway 36R, you are number 1.[You are required to read back the clearance and show your gratitude.]",
+      "audioTextZh": "收到，中央管制告诉我们你的情况，你将优先着陆。下降保持修正海压1200米，修正海压1008，盲降进近跑道36右，你第一个。【你需要复诵并表示感谢。】",
+      "referenceText": "Descend and maintain 1200m on QNH1008, ILS runway 36R, thank you very much, CES543.",
+      "referenceTextZh": "下降保持修正海压1200米，修正海压1008，盲降进近跑道36右，非常感谢，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/16218e299159b157b861.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111483",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-13",
+      "audioText": "[Now you want to verify the wind data, Ask ATC to give detailed wind information.]",
+      "audioTextZh": "【你想要核对风的信息，让ATC提供详细的风的信息。】",
+      "referenceText": "Wuhan Approach, CES543, request detailed wind information.",
+      "referenceTextZh": "武汉进近，东方543，请求提供详细风的信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cbc1c2a660816b8190b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111484",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-14",
+      "audioText": "CES543, the latest ATIS shows, wind 310 degrees, 11 m/s, but variable.[Read Back]",
+      "audioTextZh": "东方543，最新通播显示，风310，11米/秒，但变化不定。",
+      "referenceText": "Roger, CES543.",
+      "referenceTextZh": "收到，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a1aa0ce4dc4dc0235277.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111485",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-15",
+      "audioText": "[You consider there might be some problem with your landing, so you ask ATC to provide emergency assistance upon your landing.]",
+      "audioTextZh": "【你觉得飞机着陆有问题，所以要求ATC在降落时提供紧急援助。】",
+      "referenceText": "Wuhan Approach, CES543, request emergency assistance upon landing.",
+      "referenceTextZh": "武汉进近，东方543，请求着陆时提供紧急援助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0508e69810c95bd92eab.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111486",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-16",
+      "audioText": "CES543, Roger, fire services and ambulance will be ready upon your landing.[Read Back]",
+      "audioTextZh": "东方543，收到，着陆时消防车及救护车都将准备好。【复诵】",
+      "referenceText": "Roger, thanks, CES543.",
+      "referenceTextZh": "收到，谢谢，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5cc9bdfb82d4a473b2d1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111487",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-17",
+      "audioText": "[You have fully established on the ILS runway 36R, call Wuhan Approach.]",
+      "audioTextZh": "【你已完全建立盲降进近跑道36右，呼叫武汉进近。】",
+      "referenceText": "Wuhan Approach, CES543, ILS fully established. Runway 36R.",
+      "referenceTextZh": "武汉进近，东方543，已建立盲降。跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0e3c8a3482cbfbc09744.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111488",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-18",
+      "audioText": "CES543, continue approach and contact tower 118.6, good day.[Read Back]",
+      "audioTextZh": "东方543，继续进近，联系塔台118.6，再见。【复诵】",
+      "referenceText": "118.6, good day, CES543.",
+      "referenceTextZh": "118.6，再见，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf871f7740abfaa98319.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111489",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-19",
+      "audioText": "[Contact Wuhan Tower, report to Air Traffic Control that you are a landing aircraft at emergency.]",
+      "audioTextZh": "【联系武汉塔台，向管制员报告你需要紧急降落。】",
+      "referenceText": "Wuhan Tower, CES543, we are emergency landing aircraft.",
+      "referenceTextZh": "武汉塔台，东方543，我们是需要紧急降落的飞机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/edf45bde08b04ee973c1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111490",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-20",
+      "audioText": "CES543, radar identified, continue ILS approach runway 36R, you are no. 1, report the outer marker.[Read Back]",
+      "audioTextZh": "东方543，雷达已识别，继续盲降进近跑道36右，你第一个，过远台报告。【复诵】",
+      "referenceText": "ILS Approach runway 36R, report outer marker, CES543.",
+      "referenceTextZh": "盲降进近跑道36右，过远台报告，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a09c775d24e0310640a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111491",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-21",
+      "audioText": "[Now you are over the outer marker, call Wuhan Tower.]",
+      "audioTextZh": "【你已过远台，呼叫武汉塔台。】",
+      "referenceText": "Wuhan Tower, CES543, outer marker.",
+      "referenceTextZh": "武汉塔台，东方543，过远台。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bad42d598eae3c3e2ba6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111492",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-22",
+      "audioText": "CES543, cleared to land runway 36R, wind 300 degrees at 12 m/s, QNH1008.[You are required to read back the clearance.]",
+      "audioTextZh": "东方543，可以降落跑道36右，风300，12米/秒，修正海压1008。【你需要复诵指令。】",
+      "referenceText": "Cleared to land, runway 36R QNH1008 CES543.",
+      "referenceTextZh": "可以着陆，跑道36右，修正海压1008，东方543。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7b8f271df3c58d04a5c4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111493",
+      "taskTitle": "43. CES543 TCAS RA&bang, etc.-23",
+      "audioText": "[You have just skidded off the runway but managed to stop the airplane on the grass strip, report to ATC.]",
+      "audioTextZh": "【你冲出了跑道，但成功地把飞机停在了草坪上，报告ATC。】",
+      "referenceText": "Wuhan Tower, CES543, we have just skidded off the runway but managed to stop the airplane on the grass strip.",
+      "referenceTextZh": "武汉塔台，东方543，我们冲出了跑道，但停在了草坪上。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/654c9094b04df4be01cd.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

@@ -1,0 +1,127 @@
+{
+  "id": "atc-fzy-786",
+  "name": "JAL602 [雷暴，乘客骨折]",
+  "declaredCardCount": 13,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152496",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-1",
+      "audioText": "Your callsign is JAL602, from Tokyo to Wuhan, cruising at 10,100m, you have enter the Wuhan control areas, contact Wuhan control.",
+      "audioTextZh": "你的呼号是日航602，从东京飞往武汉，巡航在10100米，你进入武汉管制区域，联系武汉区调。",
+      "referenceText": "Wuhan control, JAL602, 10,100m.",
+      "referenceTextZh": "武汉区调，日航602，10100米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/561b6c72623769efe667.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152497",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-2",
+      "audioText": "You now have an indication about thunderstorm on your radar screen, 50km ahead of you. Request ATC clearance to offset 5 miles to the right.",
+      "audioTextZh": "现在你的雷达屏幕上显示前方50千米处有雷暴，请求管制许可，右偏5海里。",
+      "referenceText": "Wuhan Control, JAL602, request offset 5 miles to the right due thunderstorm..",
+      "referenceTextZh": "武汉区调，日航602，由于雷暴，请求右偏5海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eea975dbf2fd0b409eeb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152498",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-3",
+      "audioText": "JAL602, offset 5 miles to the right is approved.\nLater you find more thunderstorm ahead of you, request climb to 10,700m.",
+      "audioTextZh": "日航602，同意右偏航5海里。\n[之后，你发现前方有更多雷暴，请求爬升至10700米。]",
+      "referenceText": "Wuhan Control, JAL602, request 10,700m due weather,",
+      "referenceTextZh": "武汉区调，日航602，由于天气，申请10700米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b659da026bbf91774ed8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152499",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-4",
+      "audioText": "JAL602, negative, 10,700m is not available due military activity, can you accept 11,300m?\nTell ATC you cannot accept 11,300m due performance.",
+      "audioTextZh": "日航602，不可以，由于军事活动，10700米不可用，你能接受11300米吗？\n告诉管制员，由于性能，无法接受11300米。",
+      "referenceText": "Negative, unable 11,300m due performance, JAL602.",
+      "referenceTextZh": "不行，由于性能，无法接受11300米，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d1be59cce2067e46af6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152500",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-5",
+      "audioText": "JAL602, maintain 10,100m.",
+      "audioTextZh": "日航602，在10100米保持。",
+      "referenceText": "Maintaining 10,100m., JAL602.",
+      "referenceTextZh": "在10100米保持，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/559a4e712e9a4e108a65.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152501",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-6",
+      "audioText": "To avoid thunderstorm you request turn right heading 240, and maintain this heading for 50 miles.",
+      "audioTextZh": "为了避开雷暴，你请求右转航向240，并在此航向上保持50海里。",
+      "referenceText": "Wuhan Control, JAL602, request turn right heading 240, and maintain this heading for 50 miles to avoid the weather.",
+      "referenceTextZh": "武汉区调，日航602，请求右转航向240，并在此航向上保持50海里来避开雷暴。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7243dae333e489ecf8ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152502",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-7",
+      "audioText": "JAL602, negative, heading240 is not available due restricted area. Diversion to the left is available, say your intention.\nTell controller you want to turn left heading 080.",
+      "audioTextZh": "日航602，不可以，由于限制区，航向240不可用。可以左偏航，说出你的意图。\n[告诉管制员，你想左转航向080。]",
+      "referenceText": "Request turn left heading 080, JAL602.",
+      "referenceTextZh": "申请左转航向080，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0f99ca3964b77bab3deb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152503",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-8",
+      "audioText": "JAL602, left heading 080 is approved.",
+      "audioTextZh": "日航602，同意左转航向080。",
+      "referenceText": "Left heading 080, JAL602.",
+      "referenceTextZh": "左转航向080，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e762b70e3939f3e6f701.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152504",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-9",
+      "audioText": "JAL602, how much miles do you want to fly on this heading?\nTell the controller 50 miles is enough.",
+      "audioTextZh": "日航602，你想在此航向飞多少海里？\n告诉管制员，50海里足够了。",
+      "referenceText": "50 miles, JAL602.",
+      "referenceTextZh": "50海里，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70c307664333aef30743.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152505",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-10",
+      "audioText": "Now you are clear of weather, contact Wuhan control and request direct to ZF and descend.",
+      "audioTextZh": "现在你脱离天气，联系武汉区调，请求直飞ZF并下降。",
+      "referenceText": "Wuhan Control, JAL602, clear of weather, request direct to ZF and descend.",
+      "referenceTextZh": "武汉区调，日航602，脱离天气，请求直飞ZF并下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f55df5ad8d1d4d50af6f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152506",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-11",
+      "audioText": "Now you see CBs in front of you, request maneuver 2 miles to the right.",
+      "audioTextZh": "现在，你在前方看到积雨云，请求向右机动2海里。",
+      "referenceText": "Wuhan Control, JAL602, request 2 miles maneuver to the right due CBs.",
+      "referenceTextZh": "武汉区调，日航602，由于积雨云，请求向右机动2海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/94a51fd5c777612ea72e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152507",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-12",
+      "audioText": "During maneuver, an old lady fell in the cabin. She might be suffering from bone fracture. Inform the situation to the controller and request priority landing.",
+      "audioTextZh": "在机动飞行过程中，客舱有一名年长女士跌倒，她有可能骨折了，告知管制员情况，并请求优先着陆。",
+      "referenceText": "Wuhan Control, JAL602, an old lady fell in the cabin. She might be suffering from bone fracture. Request priority landing.",
+      "referenceTextZh": "武汉区调，日航602，一名年长女士在客舱摔倒了，她有可能骨折了，请求优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8702440cf201a2b495a3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152508",
+      "taskTitle": "8-JAL602 [雷暴，乘客骨折]-13",
+      "audioText": "JAL602 priority landing is approved. Expect radar vectors. Do you require medical assistance on arrival?\nTell the controller you need the medical assistance and you will open the right rear door to deplane the sick passenger by stretcher.",
+      "audioTextZh": "日航602，可以优先着陆，预计雷达引导，在着陆后，你请求医疗援助吗？\n告诉管制员，你需要医疗援助，你将打开右侧后门，并用担架将患病乘客抬下飞机。",
+      "referenceText": "Affirm, request medical assistance, we will open the right rear door to deplane the sick passenger by stretcher, JAL602.",
+      "referenceTextZh": "是的，请求医疗援助，我们将打开右侧后门，并用担架将患病乘客抬下飞机，日航602。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5bf527d919eb327cbfec.mp3"
+    }
+  ],
+  "categoryId": "atc-jal"
+}

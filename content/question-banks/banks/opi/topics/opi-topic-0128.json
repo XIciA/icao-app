@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0128",
   "name": "氧气系统",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Passenger oxygen masks are automatically deployed when cabin altitude reaches the aircraft's deployment threshold, usually as a result of decompression.",
       "referenceTextZh": "当座舱高度达到飞机设定的释放阈值时，旅客氧气面罩会自动释放并落下，这通常是由失压引起的。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

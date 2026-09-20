@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0018",
   "name": "AFR 126 前轮转弯失效",
   "declaredCardCount": 22,
@@ -202,5 +201,6 @@
       "referenceTextZh": "直飞大连机场，120.35，AFR 126。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/318.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

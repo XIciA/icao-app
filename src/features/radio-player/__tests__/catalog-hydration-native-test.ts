@@ -66,6 +66,17 @@ const dataset = {
 describe('Native radio catalog hydration', () => {
   beforeEach(() => mockGetTopic.mockReset());
 
+  it('uses the same nested scope and examination-goal projection as daily study', () => {
+    const full = { ...dataset, categories: [{ ...dataset.categories[0], topics: [{ ...publicTopic, cards: [
+      { ...publicTopic.cards[0], id: 'all', studyTier: 0 as const },
+      { ...publicTopic.cards[0], id: 'selected', studyTier: 1 as const },
+      { ...publicTopic.cards[0], id: 'crash', studyTier: 2 as const },
+    ] }] }] };
+    expect(deriveRadioCatalogs([full], { scope: 'selected', target: 'icao4-first' })[0].tracks.map((track) => track.id)).toEqual(['selected', 'crash']);
+    expect(deriveRadioCatalogs([full], { scope: 'crash', target: 'icao4-first' })[0].tracks.map((track) => track.id)).toEqual(['crash']);
+    expect(deriveRadioCatalogs([full], { scope: 'all', target: 'icao4-recert' })).toEqual([]);
+  });
+
   it('adds authorized member tracks through the topic repository', async () => {
     const hydrated = {
       ...publicTopic,

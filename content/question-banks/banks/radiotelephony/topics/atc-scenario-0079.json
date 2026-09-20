@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0079",
   "name": "CSN 310 减跑道 地面延误加油",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "北京塔台，CSN 310，由于长时间地面延误，我们没有足够燃油到达目的地，请求滑回给飞机加油。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1365.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

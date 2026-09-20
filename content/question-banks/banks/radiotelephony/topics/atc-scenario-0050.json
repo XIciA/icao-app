@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0050",
   "name": "ACA 517 左发失效 复飞",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "跑道有片状积水，刹车效应中等，ACA 517。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/869.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

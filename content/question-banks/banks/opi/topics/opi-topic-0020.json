@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0020",
   "name": "QAR",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Not always. Some airlines may fail to review the recorded data properly, so pilot-performance problems and aircraft-maintenance issues may not be discovered.",
       "referenceTextZh": "不一定。有些航空公司可能没有妥善分析记录的数据，因此无法发现飞行员表现问题和飞机维修问题。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1513",
+  "name": "QFA953 [行李问题，液压失效]",
+  "declaredCardCount": 15,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219145",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-1",
+      "audioText": "[Your call sign is QFA953. You are close to departure time. However, one passenger is missing while his checked luggage is still onboard. For security reasons, contact company operations to offload the baggage.]",
+      "audioTextZh": "【你的呼号是澳航953，快到离场时间了；然而一名乘客未登机，他的行李还在机上。安全起见，联系公司运行部门卸下他的行李。】",
+      "referenceText": "Operations, QFA953, we are close to our departure time. One passenger is still missing; Request offload his checked luggage.",
+      "referenceTextZh": "运控，澳航953，我们快到起飞时间了。一名乘客仍未登机，请求卸下他的托运行李。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a9423d6a1bd5bf696c72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219146",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-2",
+      "audioText": "[Now you are at Gate 51, ATIS W, request ATC clearance to Los Angeles.]",
+      "audioTextZh": "【你在51号机位，通播W，请求ATC放行至洛杉矶。】",
+      "referenceText": "Wuhan Delivery, QFA953, Gate 51, information W, destination Los Angeles, request ATC clearance.",
+      "referenceTextZh": "武汉放行，澳航953，51号机位，通播W，目的地洛杉矶，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/149e382eebb976b1f246.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219147",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-3",
+      "audioText": "QFA953, Wuhan Delivery, cleared to Los Angeles via flight planned route, runway 36R, follow LKO-01 departure, initial climb 1500m, cruising level 9800m, departure frequency 119.7, squawk 2515.",
+      "audioTextZh": "澳航953，武汉放行，可以按计划航路飞往洛杉矶，跑道36右，LKO-01离场，起始高度1500米，巡航高度9800米，离场频率119.7，应答机2515。",
+      "referenceText": "Cleared to Los Angeles, flight planned route, LKO-01 departure runway 36R, initial climb 1500m, cruising level 9800m, departure 119.7, squawk 2515, QFA953.",
+      "referenceTextZh": "可以按计划航路飞往洛杉矶，跑道36右，LKO-01离场，起始高度1500米，巡航高度9800米，离场频率119.7，应答机2515，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c434ee8d921122f9b130.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219148",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-4",
+      "audioText": "QFA953, expect 10min delay due taxiway A3 is temporally blocked by a broken down vehicle.",
+      "audioTextZh": "澳航953，滑行道A3被一辆抛瞄的车辆堵住，预计延误10分钟。",
+      "referenceText": "Roger, 10min delay, QFA953.",
+      "referenceTextZh": "收到，10分钟延误，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/33ee70c40e7cd3d25cc2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219149",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-5",
+      "audioText": "[The time is up for delay, call controller you can pushback and start-up.]",
+      "audioTextZh": "【延误时间快结束了，呼叫管制员你可以推出开车了。】",
+      "referenceText": "Wuhan Ground, QFA953, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，澳航953，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d27e61b3b5be07303430.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219151",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-6",
+      "audioText": "QFA953, Wuhan Ground, the B737 right hand side is pushing. After traffic is clear, pushback onto taxiway Z4, abeam Gate 213, facing east.",
+      "audioTextZh": "澳航953，武汉地面，你右侧的波音737正在推出。活动清除后，推出到滑行道Z4，正切213号机位，头朝东。",
+      "referenceText": "Roger, after the B737 cleared, pushback onto taxiway Z4, abeam Gate 213, facing east, QFA953.",
+      "referenceTextZh": "收到，波音737起飞后，推出至滑行道Z4，正切213号机位，头朝东，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/14c9995bd9732c235ace.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219152",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-7",
+      "audioText": "[As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.]",
+      "audioTextZh": "【在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。】",
+      "referenceText": "Wuhan Ground, QFA953, we found several baggage scattered on A3. We stop taxi and holding present position, request ground service to retrieve the baggage.",
+      "referenceTextZh": "武汉地面，澳航953，我们发现滑行道A3上散落着几件行李。我们停止滑行，原地等待，请求地面工作人员收走行李。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1595161ccd3a3753b14e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219153",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-8",
+      "audioText": "QFA953, hold your position, I will advise Ground Operations.",
+      "audioTextZh": "澳航953，原地等待，我会通知地面运行部门。",
+      "referenceText": "Holding, QFA953.",
+      "referenceTextZh": "等待，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/39248d0ddb7faf2ac9d1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219154",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-9",
+      "audioText": "QFA953, Ground, taxiway A3 cleared, expedite taxi via A3 and A to holding point runway 36R.",
+      "audioTextZh": "澳航953，地面，滑行道A3清理完成，快速沿滑行道A3，A滑至跑道36右等待点。",
+      "referenceText": "Roger, expediting taxi via A3 and A to holding point runway 36R, QFA953.",
+      "referenceTextZh": "收到，快速沿滑行道A3，A滑至跑道36右等待点，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/99ec49e94e2b40d0a0e3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219155",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-10",
+      "audioText": "[You are now airborne, passing 1200m for 2400m. Contact Wuhan Departure and ask for further climb.]",
+      "audioTextZh": "【你已经起飞，通过1200米，上升2400米。联系武汉离场，请求爬升更高高度。】",
+      "referenceText": "Wuhan Departure, QFA953, passing 1200m for 2400m, request further climb.",
+      "referenceTextZh": "武汉离场，澳航953，通过1200米，上升2400米，请求爬升高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/549baa0efa248fee061c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219156",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-11",
+      "audioText": "QFA953, Wuhan Departure, radar identified, expedite climb and maintain 6000m on standard due crossing traffic.",
+      "audioTextZh": "澳航953，武汉离场，雷达已识别，由于交叉活动，快速上升保持标压6000米。",
+      "referenceText": "Expediting climb and maintain 6000m on standard, QFA953.",
+      "referenceTextZh": "快速上升保持标压6000米，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/664df7e4346b94b3e5fe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219157",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-12",
+      "audioText": "[During climbing, one of your hydraulic systems failed, make an urgency call and ask to level off at 4500m and then return to Wuhan airport.]",
+      "audioTextZh": "【爬升过程中，机上一个液压系统失效，做紧急呼叫，请求在4500米平飞，之后返回武汉机场。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Departure, QFA953 one hydraulic system failure, request level off at 4500m and then return to Wuhan airport.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉离场，澳航953，机上一个液压系统失效，请求在4500米平飞，之后返回武汉机场",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef0052daeb336ca599a1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219158",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-13",
+      "audioText": "QFA953, roger PANPAN, climb and maintain 4500m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
+      "audioTextZh": "澳航953，收到PANPAN，上升保持4500米，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右。",
+      "referenceText": "Climb and maintain 4500m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R. QFA953.",
+      "referenceTextZh": "上升保持4500米，左转直飞LKO，预计LKO-02进场，盲降进近跑道36右，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f868ea6ffbcfc36a2deb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219159",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-14",
+      "audioText": "[The purser informs you that a passenger has become ill, possibly suffering from hyperventilation, ask for an ambulance to wait at the gate.]",
+      "audioTextZh": "【乘务长通知你有一名乘客生病了，可能是换气过度，请求到达机位时提供救护车。】",
+      "referenceText": "Wuhan Departure, QFA953, request an ambulance, we have a passenger possibly suffering from hyperventilation.",
+      "referenceTextZh": "武汉离场，澳航953，请求提供救护车，机上有一名乘客好像换气过度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/632979f23b31dbdb6153.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219160",
+      "taskTitle": "58-QFA953 [行李问题，液压失效]-15",
+      "audioText": "QFA953, roger. Radar vector ILS runway 36R.",
+      "audioTextZh": "澳航953，收到。雷达引导盲降进近跑道36右。",
+      "referenceText": "Radar vector ILS runway 36R, QFA953.",
+      "referenceTextZh": "雷达引导盲降进近跑道36右，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e6bb316c6af9a775b119.mp3"
+    }
+  ],
+  "categoryId": "atc-qfa"
+}

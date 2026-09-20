@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0060",
   "name": "襟翼",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "Pilots should follow the no-flap or partial-flap landing checklist and control the required airspeed and attitude carefully. If time and conditions allow, they can reduce the aircraft’s weight before landing. They should inform ATC, request the longest suitable runway, maintain a stable approach, and brief the crew and passengers.",
       "referenceTextZh": "飞行员应执行无襟翼或部分襟翼着陆检查单，并认真控制规定空速和姿态。如果时间和条件允许，可以在着陆前降低飞机重量。他们应通知空中交通管制、申请最长的合适跑道、保持稳定进近，并向机组和旅客进行简令。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

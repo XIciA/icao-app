@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0054",
   "name": "EFB",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "During preflight preparation, I most often use EFB applications for the flight plan, weather forecasts, NOTAMs, airport information, and aeronautical charts. I also use them to check loading information, aircraft performance data, and the MEL.",
       "referenceTextZh": "飞行前准备时，我最常使用 EFB 应用查看飞行计划、天气预报、航行通告、机场信息和航空图。我还用它们检查装载信息、飞机性能数据和 MEL。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0104",
   "name": "CSN 303 防冰坏 微动开关问题",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "收到，CSN 303。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1802.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

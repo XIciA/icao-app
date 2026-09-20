@@ -76,14 +76,14 @@ describe('Vercel answer results and tag badges', () => {
     expect(StyleSheet.flatten(screen.getByText('2').props.style).color).toBe(colors.answerCorrect);
   });
 
-  it.each(['ios', 'android', 'edgeone'])('preserves the existing %s display even when feedback is supplied', async (surface) => {
+  it.each(['ios', 'android', 'edgeone'])('shows answer results and tags on %s while retaining the current marker', async (surface) => {
     Object.defineProperty(Platform, 'OS', { configurable: true, value: surface === 'edgeone' ? 'web' : surface });
     if (surface === 'edgeone') jest.spyOn(webRuntime, 'isVercelLegacyWeb').mockReturnValue(false);
     const screen = await render(sheet());
-    expect(StyleSheet.flatten(screen.getByLabelText('第 1 题').props.style).backgroundColor).toBe(colors.primary);
-    expect(StyleSheet.flatten(screen.getByText('2').props.style).color).toBe(colors.primary);
-    expect(screen.getByLabelText('第 2 题').props.accessibilityHint).toBeUndefined();
-    expect(screen.queryByText('答对')).toBeNull();
-    expect(screen.queryByText('答错')).toBeNull();
+    expect(StyleSheet.flatten(screen.getByLabelText('第 1 题').props.style)).toMatchObject({ backgroundColor: colors.answerCorrectBackground, borderColor: colors.primary });
+    expect(StyleSheet.flatten(screen.getByText('2').props.style).color).toBe(colors.destructive);
+    expect(screen.getByLabelText('第 2 题').props.accessibilityHint).toBe('答错，已添加2个标签');
+    expect(screen.getByText('答对')).toBeTruthy();
+    expect(screen.getByText('答错')).toBeTruthy();
   });
 });

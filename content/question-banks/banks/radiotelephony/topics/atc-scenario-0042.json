@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-klm",
   "id": "atc-scenario-0042",
   "name": "KLM 88 电力不足 复飞",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "上海塔台，KLM 88，跑道湿滑，我们滑出跑道 18L，请求拖车和客梯车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/730.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-klm"
 }

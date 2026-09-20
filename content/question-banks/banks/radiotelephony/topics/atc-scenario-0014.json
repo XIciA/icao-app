@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0014",
   "name": "SIA 334 通讯失效 地面延误",
   "declaredCardCount": 10,
@@ -94,5 +93,6 @@
       "referenceTextZh": "推出和开车批准，推出至正对 33 号登机口，不得阻挡 35 号登机口，SIA 334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/241.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

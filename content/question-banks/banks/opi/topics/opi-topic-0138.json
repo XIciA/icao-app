@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0138",
   "name": "刹车系统",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Before landing, the crew should use the latest runway condition, braking reports, wind, weather, and available length to calculate the required landing distance with the appropriate safety margin. They should also consider aircraft weight, configuration, system failures, and the reliability of the report. If a safe landing is not assured, they should use another runway, hold for improvement, or divert.",
       "referenceTextZh": "着陆前，机组应根据最新跑道状况、刹车效应报告、风、天气和可用长度，计算具有适当安全裕度的所需着陆距离。他们还应考虑飞机重量、构型、系统失效和报告的可靠性。如果无法确保安全着陆，应改用其他跑道、等待条件改善或备降。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

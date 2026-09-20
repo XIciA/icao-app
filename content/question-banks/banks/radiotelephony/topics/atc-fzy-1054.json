@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1054",
+  "name": "CSN817 [TCAS爬升，PAPI灯]",
+  "declaredCardCount": 15,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-177234",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-1",
+      "audioText": "Your call sign is CSN817, you are from Wuhan to Guangzhou, gate 213, information G received, request ATC clearance.",
+      "audioTextZh": "你的呼号是南方817，从武汉飞往广州，213号停机位，收到通播G，请求放行许可。",
+      "referenceText": "Wuhan Delivery, CSN817, gate 213, information G received, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方817，213号停机位，收到通播G，请求到广州的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b6d676553ba9588312c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177235",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-2",
+      "audioText": "CSN817, cleared to destination Guangzhou via flight planned route, runway 36R, follow LKO-01 departure, initially climb to 1200m, cruising level 8400m, when airborne contact departure 119.7, squawk 3115.",
+      "audioTextZh": "南方817，可以经由计划航路飞往广州，跑道36右，按照LKO-01离场，初始爬升至1200米，巡航高度8400米，离地后联系离场119.7，应答机3115。",
+      "referenceText": "Cleared to destination Guangzhou via flight planned route, runway 36R, LKO-01 departure, initially climb to 1200m, cruising level 8400m, when airborne contact departure 119.7, squawk 3115, CSN817.",
+      "referenceTextZh": "可以经由计划航路飞往广州，跑道36右，LKO-01离场，初始爬升至1200米，巡航高度8400米，离地后联系离场119.7，应答机3115，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/395a31b38d0a2d49da61.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177236",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-3",
+      "audioText": "Now you are pushed back with the engines running, request taxi instructions.",
+      "audioTextZh": "现在飞机推出，发动机启动，请求滑行指令。",
+      "referenceText": "Wuhan Ground, CSN817, request taxi instructions.",
+      "referenceTextZh": "武汉地面，南方817，请求滑行指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/00cbec9be49015d2f452.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177237",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-4",
+      "audioText": "CSN817, taxi via Z4, A3, A to holding point of runway 36R.",
+      "audioTextZh": "南方817，经由Z4，A3，A滑行至跑道36右外等待点。",
+      "referenceText": "Taxi via Z4, A3, A to holding point of runway 36R, CSN817.",
+      "referenceTextZh": "经由Z4，A3，A滑行至跑道36右外等待点，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5b80e34aa1b72c9a995.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177238",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-5",
+      "audioText": "CSN 817, taxi with caution, men and equipment are operating at the east of taxiway A.",
+      "audioTextZh": "南方817，谨慎滑行，滑行道A东侧和人员和设备施工。",
+      "referenceText": "Roger, wilco, CSN817.",
+      "referenceTextZh": "收到，照办，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1df6d91f91cbc71a497e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177239",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-6",
+      "audioText": "You encountered the wind shear between 200m to 400m, report the situation to ATC.",
+      "audioTextZh": "你在200米到400米之间遇到风切变，将情况报告给管制员。",
+      "referenceText": "Wuhan Departure, CSN817, we encountered wind shear between 200m to 400m.",
+      "referenceTextZh": "武汉离场，南方817，我们在200米到400米之间遇到风切变。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c5ace6eafc70791aa95.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177240",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-7",
+      "audioText": "Now you are cruising at 7800m, approaching DAPRO, make an initial contact with Guangzhou Control.",
+      "audioTextZh": "现在你在78000米巡航，接近DAPRO，和广州区调进行初始联系。",
+      "referenceText": "Guangzhou Control, CSN817, 7800m maintaining, approaching DAPRO.",
+      "referenceTextZh": "广州区调，南方817，在7800米巡航，接近DAPRO.",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/67afb347f10095bb6817.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177241",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-8",
+      "audioText": "CSN817, Guangzhou Control, radar identified, omit position report.",
+      "audioTextZh": "南方817，广州区调，雷达识别了，省略位置报。",
+      "referenceText": "Roger, omit position report, CSN817.",
+      "referenceTextZh": "收到，省略位置报，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3b6ec33bdcddff78908d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177242",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-9",
+      "audioText": "As you were descending to 4200m, you executed TCAS RA climbing maneuver, report the situation to controller.",
+      "audioTextZh": "当你下降到4200米时，你执行了TCAS RA爬升机动，将情况告知管制员。",
+      "referenceText": "Guangzhou Control, CSN817, we executed TCAS RA climbing maneuver when we were descending to 4200m.",
+      "referenceTextZh": "广州区调，南方817，我们在下降到4200米时，执行了TCAS RA爬升机动。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9c822a820640c437b001.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177243",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-10",
+      "audioText": "Now the conflicted traffic is clear, resume descend. Report the situation to the controller.",
+      "audioTextZh": "现在和航空器取消冲突，继续下降，将情况报告给管制员。",
+      "referenceText": "Guangzhou Control, CSN817, now the conflicted traffic is clear, resuming descend.",
+      "referenceTextZh": "广州区调，南方817，现在和航空器解除冲突，继续下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/518d1641b3a473a667be.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177244",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-11",
+      "audioText": "CSN817 continue descend to 3600m.",
+      "audioTextZh": "南方817，继续下降到3600米。",
+      "referenceText": "Continue descend to 3600m, CSN817.",
+      "referenceTextZh": "继续下降到3600米，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e9b3396ece2e1aee5179.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177245",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-12",
+      "audioText": "Now you are established on the ILS approach runway 36R, tell the controller you cannot see PAPI light.",
+      "audioTextZh": "现在你建立了跑道36右的盲降，告诉管制员，你看不到PAPI灯。",
+      "referenceText": "Guangzhou Tower, CSN817, established on the ILS approach runway 36R, but we cannot see PAPI light.",
+      "referenceTextZh": "广州塔台，南方817，建立了跑道36右的盲降，但是我们看不到PAPI灯。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9583de7b4f1405b8f96.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177246",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-13",
+      "audioText": "CSN817, cleared to land, PAPI light is out of service.",
+      "audioTextZh": "南方817，可以落地，PAPI灯故障。",
+      "referenceText": "Cleared to land, runway 36R, CSN817.",
+      "referenceTextZh": "可以落地，跑道36右，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4e785fabccf24b520e49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177247",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-14",
+      "audioText": "Ask for a follow me car after landing.",
+      "audioTextZh": "着陆后请求一辆引导车。",
+      "referenceText": "Guangzhou Tower, CSN817, request a follow me car after landing.",
+      "referenceTextZh": "广州塔台，南方817，着陆后请求一辆引导车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/596c21cb299ec9adcd75.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177248",
+      "taskTitle": "44-CSN817 [TCAS爬升，PAPI灯]-15",
+      "audioText": "Roger, CSN817, the follow me car will be waiting for you on the taxiway A.",
+      "audioTextZh": "收到，南方817，引导车将在滑行道A处等你。",
+      "referenceText": "Roger. thanks, CSN817.",
+      "referenceTextZh": "收到，谢谢，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ebb71d7195b0a7f90ac2.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0121",
   "name": "SIA 852 起落架问题 积冰/防冰 TCAS机动",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "武汉地面，SIA 852，请求客梯和摆渡车在停机坪准备好。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

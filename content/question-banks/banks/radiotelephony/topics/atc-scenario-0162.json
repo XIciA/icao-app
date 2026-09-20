@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0162",
   "name": "AFR 941 发动机失效 TCAS机动 延误/加油",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "可以落地，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

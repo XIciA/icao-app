@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0116",
   "name": "CSN 3102 雷暴绕飞 TCAS机动 舱门问题",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "进入 Runway 18L，经 A9 脱离跑道，经 Z2 和 Z4 滑行道滑行至 234 登机口，CSN 3102。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

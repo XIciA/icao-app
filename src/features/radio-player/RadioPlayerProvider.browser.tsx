@@ -1,3 +1,5 @@
+import { normalizeStudyScope } from '@icao/contracts';
+import { useProfile } from '@/features/account/profile-store.native';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
@@ -9,7 +11,7 @@ import Storage from '@/platform/storage';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { commerceEntitlementSnapshotVersion, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 
-import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog';
+import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
 import { clampRadioInterval } from './radio-interval';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
@@ -41,12 +43,14 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceEntitlementSnapshotVersion, commerceEntitlementSnapshotVersion);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
   const [catalogError, setCatalogError] = useState<string>();
-  const embeddedCatalogs = useMemo(getEmbeddedRadioCatalogs, []);
+  const profile = useProfile();
+  const selection = useMemo(() => ({ scope: normalizeStudyScope(profile.studyScope), target: profile.target }), [profile.studyScope, profile.target]);
+  const embeddedCatalogs = useMemo(() => getEmbeddedRadioCatalogs(selection), [selection]);
   const formalWeb = isEdgeOneProductionWeb();
   const signedIn = Boolean(auth.session);
   const entitlement = getCommerceEntitlementSnapshot();
   const contentOwner = formalWeb
-    ? `${auth.session?.user.id ?? 'signed-out'}:${auth.account?.accountId ?? 'none'}:${entitlement?.generation ?? 0}:${entitlement?.snapshot?.membership.active === true}`
+    ? `${auth.session?.user.id ?? 'signed-out'}:${auth.account?.accountId ?? 'none'}:${entitlement?.generation ?? 0}:${entitlement?.snapshot?.membership.active === true}:${selection.scope}:${selection.target}`
     : 'legacy';
   const contentOwnerRef = useRef(contentOwner); contentOwnerRef.current = contentOwner;
   const [loadedCatalogs, setLoadedCatalogs] = useState({ owner: contentOwner, catalogs: embeddedCatalogs });
@@ -228,11 +232,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     if (auth.restoring || !auth.session || !sessionVisible) return;
     let active = true;
     setCatalogError(undefined);
-    void loadRadioCatalogs().then((nextCatalogs) => {
+    void loadRadioCatalogs(selection).then((nextCatalogs) => {
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
     }).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); });
     return () => { active = false; };
-  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb]);
+  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
 
   useEffect(() => {
     let active = true;

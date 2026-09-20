@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0129",
   "name": "导航",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "Poor visibility in bad weather can cause spatial disorientation.",
       "referenceTextZh": "恶劣天气中的低能见度可能导致空间定向障碍。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

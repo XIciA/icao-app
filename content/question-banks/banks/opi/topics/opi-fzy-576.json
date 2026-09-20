@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-576",
+  "name": "Figure 20",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-576-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 20 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-576.png",
+      "imageAlt": "Figure 20，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110330",
+      "taskTitle": "Figure 20-1",
+      "audioText": "What can you see in the picture?",
+      "audioTextZh": "你能在图中看到什么？",
+      "studyTier": 0,
+      "referenceText": "In this picture, I can see that a light aircraft with a small high wing has crashed into a truck driving along the country road in the mountain area. Two people are running away from this accident spot.",
+      "referenceTextZh": "在图中，我看到一架上单翼轻型飞机在山区撞向了一辆沿路驾驶的卡车。两个人正逃离事故地点。"
+    },
+    {
+      "id": "opi-fzy-110331",
+      "taskTitle": "Figure 20-2",
+      "audioText": "In your opinion, what may cause the accident?",
+      "audioTextZh": "在你看来，引发事故的原因可能是什么？",
+      "studyTier": 0,
+      "referenceText": "Since this is in the mountain area where convective weather is common, the accident might have something to do with wind shear, which could make aircraft lose altitude rapidly. If flying at a low altitude, the pilot might not have enough time and space to recover from the downdraft, thus the plane went out of control and hit the truck.",
+      "referenceTextZh": "事故发生在对流天气很常见的山区，可能与风切变相关，风切变会让飞机快速下降。如果飞机在低空飞行，可能没有足够的时间和空间从下降气流中改出，飞机从而失去控制并撞向卡车。"
+    },
+    {
+      "id": "opi-fzy-110332",
+      "taskTitle": "Figure 20-3",
+      "audioText": "Is it because of the pilot's error or just an unfortunate event?",
+      "audioTextZh": "事故是由于飞行员的失误，或只是个不幸的事件？",
+      "studyTier": 0,
+      "referenceText": "If he were a well trained and experienced pilot, he would have taken the necessary precautions before he flew into the mountain area. He would consider the minimum safety altitude, the notice in the mountain area, and whether he had enough preparation. Anyway, this is an unfortunate event. Sometimes accidents are simply unavoidable.",
+      "referenceTextZh": "如果飞行员受过良好训练，经验丰富，他在飞入山区前会采取必要的预防措施。比如山区的最低飞行安全高度，在山区飞行的注意事项，飞行之前对该飞行区域是否有足够的认识和准备；不论如何这是个不幸的事件，有时意外是不可避免的。"
+    },
+    {
+      "id": "opi-fzy-110333",
+      "taskTitle": "Figure 20-4",
+      "audioText": "If you encounter the engine failure during flight, what would you do?",
+      "audioTextZh": "如果你在飞行中遭遇发动机故障，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "If I encounter the engine failure, I will verify the situation first. Then I need to judge whether descent is needed according to aircraft performance and the route. After that I will tell my intention to ATC and do the checklist again to ensure the flight safety. If there are emergency situations, I would declare emergency or distress and tell the cabin crew to prepare for the situation. Pilots should also prepare for the alternate.",
+      "referenceTextZh": "遇到发动机失效，首先要判断情况属实与否，其次要根据飞机性能和当前航线的情况做出是否下降高度并通知管制员相关决策，再次执行检查单，隔离故障保障飞机安全。如果遇到紧急情况，需要宣布紧急或者遇险信号，通知客舱做好相应的应急准备。飞行员自己要做好相应的备降准备。"
+    },
+    {
+      "id": "opi-fzy-110334",
+      "taskTitle": "Figure 20-5",
+      "audioText": "Can you say some differences between high-wing aircraft and low-wing aircraft?",
+      "audioTextZh": "你能说出上单翼飞机和下单翼飞机有什么区别吗？",
+      "studyTier": 0,
+      "referenceText": "Yes. As far as I know, they have different fuel pumping systems. High-wing aircraft use gravity to drain the fuel to the engine, while for the low-wing aircraft, fuel is pumped to the engine. Low-wing aircraft have better field performance compare with high-wing aircraft.",
+      "referenceTextZh": "好的。据我所知，两种飞机的燃料输送系统不同。上单翼飞机依靠重力将燃料排送到引擎，但下单翼飞机是用泵将燃料抽送到引擎。下单翼飞机的起降性能要优于上单翼飞机。"
+    },
+    {
+      "id": "opi-fzy-110335",
+      "taskTitle": "Figure 20-6",
+      "audioText": "Do you think high-wing aircraft is more stable than low-wing aircraft? Why or why not?",
+      "audioTextZh": "你认为上单翼飞机是否比下单翼飞机更稳定？为什么/为什么不？",
+      "studyTier": 0,
+      "referenceText": "Yes, I think so. A high-wing airplane design contributes to the lateral stability, whereas a low-wing placement has a destabilizing effect in roll. However, this effect may be counteracted by including more dihedral to improve the overall lateral stability.",
+      "referenceTextZh": "我认为上单翼更加稳定。上单翼飞机的设计有助于横向稳定性，下单翼飞机的配置使飞机在横滚时不稳定。然而，这种不稳定可以由反角抵消，从而提高飞机整体的横向稳定性。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0042",
   "name": "ATIS",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "Pilots need to listen to ATIS because it provides current operational and weather information for safe departure or arrival. It can include the active runway, approach type, runway condition, wind, visibility, weather, temperature, dew point, and altimeter setting. This information helps the crew prepare before takeoff or landing.",
       "referenceTextZh": "飞行员需要收听 ATIS，因为它提供安全离场或到达所需的当前运行和天气信息。内容可以包括使用跑道、进近类型、跑道状况、风、能见度、天气、温度、露点和高度表拨正值。这些信息帮助机组在起飞或着陆前做好准备。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

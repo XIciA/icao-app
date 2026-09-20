@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0157",
   "name": "CSN 1310 雷暴绕飞 TCAS机动 延误/加油",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "北京塔台，CSN 1310，由于长时间地面延误，我们没有足够燃油到达目的地，请求滑回给飞机加油。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

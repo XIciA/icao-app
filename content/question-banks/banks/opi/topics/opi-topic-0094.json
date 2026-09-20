@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0094",
   "name": "备降与改航",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "The crew should inform ATC of the situation and request clearance to the diversion airport. They should obtain its weather and runway information, update the flight plan in the FMS if the aircraft is equipped with one, and brief the cabin crew and passengers about the diversion.",
       "referenceTextZh": "机组应向空中交通管制报告情况，并申请前往备降机场的许可。他们应获取该机场天气和跑道信息；如果飞机配有 FMS，就更新飞行计划，并向客舱机组和旅客作备降简令。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

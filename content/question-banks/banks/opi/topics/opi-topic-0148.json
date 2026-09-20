@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0148",
   "name": "侧窗",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "The pilots should maintain control and avoid being distracted by the noise and airflow. They should use oxygen if pressurisation is lost, reduce speed or descend as directed by the checklist, secure loose items, and attempt to close the window only if the approved procedure allows it. They should inform ATC and land at a suitable airport.",
       "referenceTextZh": "飞行员应保持飞机控制，避免被噪声和气流分散注意力。如果飞机失压，应使用氧气，按检查单要求减速或下降，并固定松散物品。只有经批准的程序允许时，才可尝试关闭侧窗。他们还应通知空中交通管制，并在合适的机场着陆。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1501",
+  "name": "AFR896 [颠簸，皮托管加热失效，积冰堵塞]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-215388",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-1",
+      "audioText": "N: [You are from Paris to Wuhan. You are flying at 11300m, approaching SIA. Call Xi'an Control.]",
+      "audioTextZh": "【你从巴黎飞往武汉。你现在在11300米巡航，接近SIA，呼叫西安区调。】",
+      "referenceText": "Xi'an Control, AFR896, 11300m maintaining, approaching SIA.",
+      "referenceTextZh": "西安区调，法航896，在11300米保持。接近SIA。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6fa6d9ebbbc12470e596.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215389",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-2",
+      "audioText": "N: [You are experiencing moderate turbulence. You want to know the turbulence report at other level.]",
+      "audioTextZh": "【你正在经历中度颠簸，你想知道其他高度层上的颠簸报告。】",
+      "referenceText": "Xi'an Control, AFR896, encountering moderate turbulence at present level, confirm if there is any turbulence report at other levels.",
+      "referenceTextZh": "西安区调，法航896，当前高度正遇到中度颠簸，证实其他高度上是否有颠簸报告",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bb71f33858249c77a28b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215390",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-3",
+      "audioText": "C: AFR896, You are the first aircraft in my sector. There is no report here.\nN: [Tell the controller you want to descent to 10700m.]",
+      "audioTextZh": "法航896，你是我扇区的第一个飞机，没有其他报告。\n【告知管制员，你想下降到10700米。】",
+      "referenceText": "Request descend to 10700m, AFR896.",
+      "referenceTextZh": "请求下降到10700米，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f5a7f9621160f091d76e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215391",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-4",
+      "audioText": "C: AFR896, descend and maintain 10700m.",
+      "audioTextZh": "法航896，下到10700米保持。",
+      "referenceText": "Descend and maintain 10700m, AFR896.",
+      "referenceTextZh": "下到10700米保持，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e26ec0bd820aca5f195.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215392",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-5",
+      "audioText": "N: [You are experiencing severe turbulence at 10700m. The pitot static heating feature has malfunctioned. You want to fly back to 11300m to avoid turbulence and ice. This is an urgent call.]",
+      "audioTextZh": "【你在10700米遇到了强颠簸，你的皮托管静态加热功能发生故障，你想回到11300米来躲避颠簸和积冰，这是紧急通话。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Xi'an Control, AFR896, request fly back to 11300m due turbulence and ice area. The pitot heating feature has malfunctioned.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，西安区调，法航896，由于颠簸和积冰区域，请求飞回11300米，皮托管静态加热功能发生故障。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/95d5b9b225e52006094c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215393",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-6",
+      "audioText": "C: AFR896, climb and maintain 11300m.",
+      "audioTextZh": "法航896，上到11300米保持。",
+      "referenceText": "Climb and maintain 11300m, AFR896.",
+      "referenceTextZh": "上到11300米保持，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4fe17520c07409e3443c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215394",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-7",
+      "audioText": "C: AFR896, contact Wuhan Control on 132.35.",
+      "audioTextZh": "法航896，联系武汉区调132.35。",
+      "referenceText": "132.35, AFR896.",
+      "referenceTextZh": "132.35，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b3b3e6a8228a84e1a11d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215395",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-8",
+      "audioText": "C: AFR896. Radar contact. Direct to ZHO, descend to 11000m.",
+      "audioTextZh": "法航896，雷达识别，直飞ZHO，下到11000米。",
+      "referenceText": "Direct to ZHO, descend to 11000m, AFR896.",
+      "referenceTextZh": "直飞ZHO，下到11000米，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb9fe15a63be26eb2e22.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215396",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-9",
+      "audioText": "N: [Ask to climb to 11600m due icing.]",
+      "audioTextZh": "【由于积冰，请求上11600米。】",
+      "referenceText": "Wuhan Control, AFR896, request climb to 11600m due icing.",
+      "referenceTextZh": "武汉区调，法航896，由于积冰，请求上11600米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f8d06ff996adbec6da27.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215397",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-10",
+      "audioText": "C: AFR896, climb to 11600m.",
+      "audioTextZh": "法航896，上到11600米。",
+      "referenceText": "Climb to 11600m. AFR896.",
+      "referenceTextZh": "上到11600米，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/54a1057f41e97d7385f9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215398",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-11",
+      "audioText": "N: [You are established contact, initiated descend for runway 36R. During descending, airspeed and altitude readings are abnormal, possibly due to ice blockage. advice Wuhan Control this situation. this is an urgent call.]",
+      "audioTextZh": "【你已经建立联系，初始下降到跑道36右，在下降过程中，你的空速和高度读数异常，大概是由于积冰堵塞。告知武汉区调，这是一个紧急通话。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR896, airspeed and altitude readings are abnormal due to the ice blockage during descend.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉区调，法航896，在下降过程中，由于积冰堵塞，空速和高度读数异常。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1da9fe467a43f58e91a8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215399",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-12",
+      "audioText": "C: AFR896, turn right heading 240, advice your intentions.\nN: [Tell controller that your GPS altitude and ground speed is not accurate compared to barometric indications, but you can still maintain stable flight, request descend to leave the icing area.]",
+      "audioTextZh": "法航896，右转航向240，告知你的意图。\n【告诉管制员，你的GPS高度和地速与气压指示相比不准确，但你仍然可以保持稳定飞行，请求下降离开结冰区。】",
+      "referenceText": "Turn right heading 240, request descend to leave the icing area. The instrument readings are abnormal, but we can still maintain the stable flight, AFR896.",
+      "referenceTextZh": "右转航向240，请求下降离开结冰区。仪表复数不正常，但我们依旧可以保持平稳飞行，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/07435360f0608e5a4362.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215400",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-13",
+      "audioText": "C: AFR896, descend to 3600m.",
+      "audioTextZh": "法航896，下降到3600米。",
+      "referenceText": "Descend to 3600m, AFR896.",
+      "referenceTextZh": "下降到3600米，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4e7564d5b20d993e5b0c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215401",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-14",
+      "audioText": "C: AFR896, radar shows you are at 4800m. What's your current GPS altitude?\nN: [Tell the controller GPS altitude is 3600m, request descend to 1800m.]",
+      "audioTextZh": "法航896，雷达显示你在4800米。你当前的GPS高度是多少？\n【告知管制员，你的GPS高度是3600米，请求下降到1800米。】",
+      "referenceText": "Our GPS shows 3600m, request descend to 1800m, AFR896.",
+      "referenceTextZh": "我们的GPS显示3600米，请求下降待1800米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d420e5074a48ea9ac96a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215402",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-15",
+      "audioText": "C: AFR896, another aircraft has information with regards to the differences between his barometric and GPS altitude. I have him on 3000m, his reported GPS is 3600m.\nN: [Request further descending and leaving icing area.]",
+      "audioTextZh": "【法航896，另一架飞机也有关于他的气压高度和GPS高度差异的信息。我看到他在3000米，他报告的GPS是3600米。】\n【请求进一步下降，然后离开积冰区域。】",
+      "referenceText": "Request further descending and leaving the icing area, AFR896.",
+      "referenceTextZh": "请求进一步下降，然后离开积冰区域，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ebbef992036b9284f5e7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215403",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-16",
+      "audioText": "C: AFR896, contact approach on 124.55, we have informed them your altimeter errors.",
+      "audioTextZh": "法航896，联系进近124.55，我们已经告知他们你的高度表错误。",
+      "referenceText": "Contact Approach on 124.55. AFR896.",
+      "referenceTextZh": "联系进近124.55，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f7ce49907433a24ffe76.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215404",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-17",
+      "audioText": "N: [You left the icing area and your instruments have returned to normal. Report to Wuhan Tower. You have established on the ILS 36R.]",
+      "audioTextZh": "【你离开了积冰区域，你的仪表恢复正常，告知武汉塔台，你已经建立跑道36右的航向道。】",
+      "referenceText": "Wuhan Tower, AFR896, established on ILS approach Runway 36R, the instrument readings are normal.",
+      "referenceTextZh": "武汉塔台，法航896，预计盲降进近跑道36右，仪表读数正常了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aa03b15ef1f0fa0cb724.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215405",
+      "taskTitle": "56-AFR896 [颠簸，皮托管加热失效，积冰堵塞]-18",
+      "audioText": "C: AFR896, wind calm runway 36R. Clear to land.",
+      "audioTextZh": "法航896，静风跑道36右，可以落地。",
+      "referenceText": "Cleared to land runway 36R, AFR896.",
+      "referenceTextZh": "可以落地，法航896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fd76a9354144c4a9d346.mp3"
+    }
+  ],
+  "categoryId": "atc-afr"
+}

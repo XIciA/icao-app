@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-857",
+  "name": "Ditching",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-857-image-1",
+      "kind": "image",
+      "taskTitle": "Ditching · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-857.png",
+      "imageAlt": "Ditching，用于本话题的看图描述和问答",
+      "studyTier": 1
+    },
+    {
+      "id": "opi-fzy-152437",
+      "taskTitle": "Ditching-1",
+      "audioText": "Can you describe this picture?",
+      "audioTextZh": "你可以描述一下这张图吗？",
+      "studyTier": 1,
+      "referenceText": "OK. The pilot made a ditching due to emergency situation.\nA lot of passengers were standing on the emergency slides and waiting for rescue.\nSome of them were escorted to safe place by boats.",
+      "referenceTextZh": "好的。飞行员由于遇到紧急情况做了水上迫降。\n很多的旅客站在紧急滑梯上等待被救援。\n部分旅客用船被护送到安全的地方。"
+    },
+    {
+      "id": "opi-fzy-152438",
+      "taskTitle": "Ditching-2",
+      "audioText": "Which do you think is more dangerous, ditching or forced landing?",
+      "audioTextZh": "你认为哪一更危险？水上迫降或者陆上迫降？",
+      "studyTier": 1,
+      "referenceText": "I think ditching is more dangerous.\nBecause normally, the aircraft will suffer more damages than forced landing after ditching.\nBesides, ditching has special requirements for pilots.",
+      "referenceTextZh": "我认为水上迫降更危险。\n因为一般来讲，水上迫降后，飞机受到的损伤比陆地迫降更大。\n此外，水上迫降需要飞行员具备很多特殊技巧。"
+    },
+    {
+      "id": "opi-fzy-152439",
+      "taskTitle": "Ditching-3",
+      "audioText": "If you are going to make a ditching, what preparation should you make?",
+      "audioTextZh": "如果你打算水上迫降，你会做什么准备？",
+      "studyTier": 1,
+      "referenceText": "参考题目：\nIf I will make a ditching, I will do the following preparations as below.\nFirst, I will report our intention to ATC.\nThen, I will make a PA to cabin crew and passengers that we will make a ditching, ask them to put on life vests.\nAfter ditching, I will make emergency evacuation with all crew members as soon as possible.",
+      "referenceTextZh": "如果我打算水上迫降，我会做以下准备。\n首先，我会将这个决定报告给ATC。\n然后做机长广播，告诉机组和乘客我们即将进行水上迫降，要求他们穿好救生衣。\n迫降后，我会和机组成员一起立刻组织紧急撤离。"
+    },
+    {
+      "id": "opi-fzy-214923",
+      "taskTitle": "Ditching-4",
+      "audioText": "What are the differences between flying over water and flying over land?",
+      "audioTextZh": "跨水飞行和跨陆地飞行有什么区别？",
+      "studyTier": 1,
+      "referenceText": "In my opinion, flying over water is more dangerous and requires the pilots to have the relevant qualifications and flying skills, because when there is an abnormal situation, we can only make a ditching.",
+      "referenceTextZh": "在我看来，跨水飞行更危险，需要飞行员具备相关的资质和飞行技巧， 因为当发生意外时，我们只能水上迫降。"
+    },
+    {
+      "id": "opi-fzy-214924",
+      "taskTitle": "Ditching-5",
+      "audioText": "Through the flight plan, you learned that your flight mission is related to flying overs water, what will you do to prepare?",
+      "audioTextZh": "通过飞行计划，你了解到飞行任务和跨水飞行有关，你会做什么准备？",
+      "studyTier": 1,
+      "referenceText": "I pay special attention to the aircraft's alternate airport information, en route weather information, and emergency equipment on board, such as life rafts or life jackets.",
+      "referenceTextZh": "我会格外关注飞机的备降机场信息、航路天气信息以及机上的应急设备，如救生筏或者救生衣。"
+    },
+    {
+      "id": "opi-fzy-214925",
+      "taskTitle": "Ditching-6",
+      "audioText": "What would you do if you encountered abnormal situation while you were flying over water?",
+      "audioTextZh": "如果跨水飞行遇到特情，你会怎么处置？",
+      "studyTier": 1,
+      "referenceText": "I would first maintain control of the aircraft, then quickly execute a checklist to identify the source of the problem, and at the same time, I would contact the controller and request a diversion to a suitable nearby airport. If necessary, we would request necessary airport assistance upon landing.",
+      "referenceTextZh": "首先我会保持对飞机的操纵，然后迅速执行检查单，找出问题根源，同时，我也会联系管制员，请求备降到附近的合适机场。如有需要，我们在落地后请求必要的机场协助。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

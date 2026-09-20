@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0171",
   "name": "UAL 805 雷暴绕飞 TCAS机动 导航/自动驾驶问题",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "恢复自主导航，直飞 DAPRO，UAL 805。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

@@ -1,8 +1,8 @@
 {
   "id": "opi-category-06",
   "name": "飞机系统",
-  "declaredTopicCount": 17,
-  "declaredCardCount": 120,
+  "declaredTopicCount": 20,
+  "declaredCardCount": 234,
   "topicIds": [
     "opi-topic-0022",
     "opi-topic-0035",
@@ -20,6 +20,9 @@
     "opi-topic-0139",
     "opi-topic-0142",
     "opi-topic-0144",
-    "opi-topic-0148"
+    "opi-topic-0148",
+    "opi-fzy-1679",
+    "opi-fzy-1680",
+    "opi-fzy-541"
   ]
 }

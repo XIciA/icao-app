@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0020",
   "name": "AFR 101 中度积冰 左发失效",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "可以04跑道落地，AFR 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/357.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

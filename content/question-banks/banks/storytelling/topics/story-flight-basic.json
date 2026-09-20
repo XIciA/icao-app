@@ -1,36 +1,39 @@
 {
-  "categoryId": "story-category-1",
   "id": "story-flight-basic",
   "name": "基础题库",
-  "declaredCardCount": 287,
+  "declaredCardCount": 245,
   "cards": [
     {
       "id": "story-koala-001",
-      "taskTitle": "飞行ICAO-基础题库-1",
-      "audioText": "An aircraft was ready for taxi and it was cleared to taxi to the departure runway holding point. It was also approved to cross an inner and outer taxiway en route, so the pilot released the parking brake. When the aircraft started to move, the pilot saw a B747 on his left, and the B747 went faster than him. The controller immediately instructed the pilot to hold short and give way to the B747 but the pilot only paid attention to the B747 on his left, so he didn't follow the instruction and continued to move to the threshold. The aircraft stopped when the First Officer warned \"stop!\" and the pilot applied the brakes at once. When a pilot made errors, the First Officer played important role. Without the First Officer, their aircraft would have probably collided with another aircraft.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/001.mp3",
-      "audioTextZh": "一架飞机准备滑行，并获准滑行至起飞跑道等待点；其滑行路线还获准穿越一条内侧滑行道和一条外侧滑行道，于是飞行员松开了驻停刹车。飞机开始移动时，飞行员看到左侧有一架B747，而且这架B747的滑行速度比自己快。管制员立即指示该机在跑道外等待并给B747让行，但飞行员只顾注意左侧的B747，没有执行指令，继续向跑道入口移动。直到副驾驶高喊“停下！”飞行员才立即刹车，将飞机停住。飞行员出现错误时，副驾驶发挥了重要作用。如果没有副驾驶，他们的飞机很可能已经与另一架飞机相撞。"
+      "taskTitle": "故事复述-1",
+      "audioText": "An aircraft was ready for taxi and it was cleared to taxi to the departure runway holding point. It was also approved to cross an inner and outer taxiway en route, so the pilot released the parking brake. When the aircraft started to move, the pilot saw a B747 on his left, and the B747 went faster than him. The controller immediately instructed the pilot to hold short and give way to the B747 but the pilot only paid attention to the B747 on his left, so he didn’t follow the instruction and continued to move to the threshold. The aircraft stopped when the First Officer warned “stop!” and the pilot applied the brakes at once. When a pilot made errors, the First Officer played important role. Without the First Officer, their aircraft would have probably collided with another aircraft.",
+      "audioTextZh": "一架飞机在准备滑行，并且得到滑行到等待点的许可。滑行路线允许穿过内侧和外侧滑行道.，所以飞行员松开了刹车。飞机开始移动后，飞行员看到左侧有一架波音747，这架波音747的速度更快。管制员立刻指挥飞机等待给波音747让路，但飞行员只注意到左侧的波音747，所以他并没有听到指令，而是继续向入口移动。副驾驶发出警告说：“停下！”于是飞行员立刻进行刹车。飞行员出现错误时，副驾驶的作用很重要。如果不是副驾驶，他们的飞机很可能与另一架飞机相撞。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/f02c308ff321c384e6c8.mp3"
     },
     {
       "id": "story-koala-002",
-      "taskTitle": "飞行ICAO-基础题库-2",
-      "audioText": "A flight flew from Beijing to Shanghai. During the flight, the aircraft requested radar vectors to Shanghai Approach for losing some altitude. The inbound course was 157° and altitude was 3000 feet. The controller gave the instruction, \"Fly heading 130, intercept LOC Runway 16\", but after following the instruction, TCAS showed several targets. Then the ATC gave another instruction, \"Do not cross LOC course, for separation\". The pilot responded, \"Wilco.\" When they captured the LOC course, they reported to ATC, but ATC said, \"I told you, do not capture the LOC course.\" Both pilots were not sure about the ATC's meaning but they continued to approach and landed safely. After the flight, the flight crew discussed about the ATC instruction, and they thought the instruction could be understood differently. It was a fortune that they landed safely, so the ATC must use standard words to give clear instructions when they were working.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/002.mp3",
-      "audioTextZh": "一架飞机从北京飞往上海。途中，飞机向上海进近申请雷达引导下降高度。向台航道157°，高度3000英尺。管制员给出指令：“航向130°，切入跑道16航道。”但完成指令后，TCAS显示几个活动目标。然后ATC给出另一指令：“不要穿过航道，保持间隔。”飞行员回复：“照办。”飞机截获航道时，飞行员向ATC报告，但ATC说：“我说的是，不要截获航道。”两位飞行员无法确定ATC的意图，但他们继续进近并安全着陆。飞行结束后，机组对ATC的指令进行讨论，他们认为指令可以有不同的理解方式。幸运的是飞机能够安全着陆，所以ATC在工作时必须使用标准用语来给出指令。"
+      "taskTitle": "故事复述-2",
+      "audioText": "A flight flew from Beijing to Shanghai. During the flight, the aircraft requested radar vectors to Shanghai Approach for losing some altitude. The inbound course was 157° and altitude was 3000 feet. The controller gave the instruction, “Fly heading 130°, intercept LOC Runway 16”, but after following the instruction, TCAS showed several targets. Then the ATC gave another instruction, “Do not cross LOC course, for separation”. The pilot responded, “Wilco”. When they captured, they reported to the ATC, but the ATC said “I told you, do not capture LOC course.” Both the pilots were not sure about the ATC’s meaning but they continued to approach and landed safely. After the flight, the flight crew discussed about the ATC instruction, and they thought the instruction could be understood differently. It was a fortune that they landed safely, so the ATC must use standard words to give clear instructions when they were working.",
+      "audioTextZh": "一架飞机从北京飞往上海。途中，飞机向上海进近申请雷达引导下降高度。向台航道157°，高度3000英尺。管制员给出指令：“航向130°，切入跑道16航道。”但完成指令后，TCAS显示几个活动目标。然后ATC给出另一指令：“不要穿过航道，保持间隔。”飞行员回复：“照办。”飞机截获航道时，飞行员向ATC报告，但ATC说：“我说的是，不要截获航道。”两位飞行员无法确定ATC的意图，但他们继续进近并安全着陆。飞行结束后，机组对ATC的指令进行讨论，他们认为指令可以有不同的理解方式。幸运的是飞机能够安全着陆，所以ATC在工作时必须使用标准用语来给出指令。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/549fe4116025c750d235.mp3"
     },
     {
       "id": "story-koala-003",
-      "taskTitle": "飞行ICAO-基础题库-3",
-      "audioText": "At 1:30 pm local time, the crew members checked in for a long-distance flight, and the aircraft took off after 3:30 pm. Another 2 hours later, the operation asked the aircraft to return back to the airport of departure because of technical fault, so the captain had to tell passengers about what was going on via PA. After landing, the flight crew had worked for about 8 hours, and their work should be taken over under the circumstances, but the operation told them that they had to change to operate another shorter and delayed flight. It was already eight o'clock after the aircraft landed. Three of the crew decided not to operate the flight and I supported their opinion. Two replacement crew members arrived at the aircraft and they still needed to operate their new flight. At about ten o'clock everything was ready for departure. The crew members hadn't had any formal meal since then.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/003.mp3",
-      "audioTextZh": "当地时间下午1点30分，机组成员报到执行一次长途飞行，飞机在下午3点30分以后起飞。又过了2小时，由于技术故障，运控要求飞机返回出发机场，机长只得通过客舱广播向乘客说明情况。飞机着陆时已是晚上8点左右，飞行机组已经工作了约8小时。按这种情况，本应由其他机组接替他们，但运控却要求他们改为执行另一个航程较短、已经延误的航班。3名机组成员决定不再执行该航班，我支持他们的意见。随后有2名替补机组成员到达飞机，他们还要执行这个新的航班。到晚上10点左右，一切才准备好可以离场。从报到至此，机组成员一直没有吃过一顿正式的饭。"
+      "taskTitle": "故事复述-3",
+      "audioText": "At 1:30 pm local time, the crew members checked in for a long distance flight, and the aircraft took off after 3:30 pm. Another 2 hours later, the operation asked the aircraft to return back to the airport of departure because of technical fault, so the captain had to tell passengers about what was going on via PA. After landing, the flight crew had worked for about 8 hours, and their work should be taken over under the circumstances, but the operation told them that they had to change to operate another shorter and delayed flight. It was already eight o’clock after the aircraft landed. Three of the crew decided not to operate the flight and I supported their opinion. Two replacement crew members arrived at the aircraft and they still needed to operate their new flight. At about ten o’clock, everything was ready for departure. The crew members hadn’t had any formal meal since then.",
+      "audioTextZh": "当地时间下午1:30，机组成员到达机场为长途飞行做准备，飞机在下午3:30后起飞。起飞2小时后，由于机械故障，运控要求飞机返回出发机场，于是机长通过广播将情况告知机上乘客。飞机着陆后，机组成员已工作8小时，在这种情况下，他们的工作可由其他人接手，但运控要求机组成员为另一个延误的短途航班工作。飞机着陆时已经是晚上8点，有3名机组成员决定不再继续工作，我支持他们的观点。两组替换机组到达机场，他们仍需要操作他们的新航班。在10点左右，离场准备就绪，从工作开始机组成员还没有用正餐。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/ea18df8de10a0b71aebd.mp3"
     },
     {
       "id": "story-koala-004",
-      "taskTitle": "飞行ICAO-基础题库-4",
-      "audioText": "In 2005, direct charter flight between Chinese mainland and Taiwan was opened. Departure and destination airports included Beijing, Guangzhou, Shanghai and Taipei. It was the first ever non-stop, round-trip charter flight across the Taiwan Straits in 56 years. It was also the first time since 1949 that a mainland jetliner flew for Taiwan on normal commercial flight. The first mainland aircraft to take off was CCA1087 which departed from the Beijing Capital Airport at 8:00 am on Saturday. All the 88 passengers on board were Taiwan business people and their families. During the Spring Festival, they went back home for traditional family reunion. The first mainland aircraft to land was CSZ3097. It only took 90 minutes for all the 242 passengers on board to fly from Guangzhou to Taipei. After nearly 4 hours of non-stop flight, a charter plane of Taiwan-based China Airlines landed in Beijing. The flight time was much shorter than the same trip in the past. Previous flight would take about 10 hours, and passengers had to transit in Hong Kong or Macao. The direct charter flight will provide convenience to people on the mainland and Taiwan.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/004.mp3",
-      "audioTextZh": "2005年，中国大陆与台湾之间开通了直达包机。出发和目的地机场包括北京、广州、上海和台北。这是56年来台湾海峡两岸首次开通不经停往返包机，也是自1949年以来大陆喷气客机首次执行飞往台湾的正常商业航班。第一架从大陆起飞的飞机是CCA1087，于星期六上午8点从北京首都机场起飞。机上88名乘客全部是台湾商务人士及其家属；春节期间，他们返乡与家人传统团聚。第一架在台湾着陆的大陆飞机是CSZ3097，机上242名乘客从广州飞往台北只用了90分钟。一架台湾中华航空公司的包机经过近4小时不经停飞行后抵达北京，飞行时间比以往同一行程短得多。过去这一旅程约需10小时，乘客还必须在香港或澳门中转。直达包机将为大陆和台湾民众提供便利。"
+      "taskTitle": "故事复述-4",
+      "audioText": "In 2005, direct charter flight between Chinese mainland and Taiwan was opened. Departure and destination airports included Beijing, Guangzhou, Shanghai and Taipei. It was the first ever non-stop, round-trip charter flight across the Taiwan Straits in 56 years. It was also the first time since 1949 that a mainland jetliner flew for Taiwan on normal commercial flight.\nThe first mainland aircraft to take off was CCA1087 which departed from the Beijing Capital Airport at 8:00 am on Saturday. All the 88 passengers on board were Taiwan business people and their families. During the Spring Festival, they went back home for traditional family reunion.\nThe first mainland aircraft to land was CSZ3097. It only took 90 minutes for all the 242 passengers on board to fly from Guangzhou to Taipei.\nAfter nearly 4 hours of non-stop flight, a charter plane of Taiwan-based China Airlines landed in Beijing. The flight time was much shorter than the same trip in the past. Previous flight would take about 10 hours, and passengers had to transit in Hong Kong or Macao.\nThe direct charter flight will provide convenience to people on the mainland and Taiwan.",
+      "audioTextZh": "2005年，内地和台湾的直达航班开通。出发和到达的城市包括北京、广州、上海和台北。这是56年来海峡两岸首次开通直达往返航班，同时也是自1949年起，大陆客机第一次到台湾进行商业飞行。\n最早从内地起飞的航班是国航1087，飞机在周六上午8点从北京首都机场起飞。机上的88名乘客全部为台湾商人和他们的家属。春节期间，他们回家与亲友团聚。\n最先着陆的航班是南航3097，飞机从广州出发，机上242名乘客仅需90分钟就到达台北。\n在4小时的连续飞行后，一架来自台湾航空公司中华航空的航班在北京降落。和之前从台湾到北京的航班相比，这次飞行的时间缩短了很多。之前的航班需要飞行10小时，乘客们必须在香港或澳门中转。\n直飞航班会为内地和台湾的乘客们提供便利。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/18802f75fbe97bf92dfe.mp3"
     },
     {
       "id": "story-koala-005",
@@ -41,52 +44,59 @@
     },
     {
       "id": "story-koala-006",
-      "taskTitle": "飞行ICAO-基础题库-6",
-      "audioText": "One day, an accident happened because an aircraft was guided improperly by a marshaller when parking. The marshaller first guided the aircraft to a gate. When the aircraft was near the stop line, the marshaller gave a premature crossed wands signal which means stopping taxing, so the aircraft was stopped abruptly. The pilot set the parking brake and released the seatbelt sign. Unexpectedly, the marshaller showed the separated wands again and stopped them a little forward of the point. He did not give a clear signal, and the sudden stop caused fatigue and a medical emergency of 2 passengers. When the marshaller was asked about the signal, he said he did not give the signal. Anyway, it was not a good guidance but the final position of the aircraft was proper. Luckily there were no injuries on board.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/006.mp3",
-      "audioTextZh": "一天，一架飞机在停机过程中因信号员引导不当而发生事故。信号员先把飞机引向一个登机口。飞机接近停止线时，信号员过早给出了指挥棒交叉信号，表示停止滑行，因此飞机突然停下。飞行员设置驻停刹车，并关闭了安全带指示灯。出乎意料的是，信号员随后又把指挥棒分开，示意飞机继续向前，并让飞机停在比原停止点稍靠前的位置。他没有给出清晰的信号，突然停车导致2名乘客身体不适，其中出现了需要医疗处置的紧急情况。事后有人询问信号员有关信号的情况，他却说自己没有发出那个信号。无论如何，这次引导并不规范，不过飞机最终的停放位置是合适的。幸运的是，机上无人受伤。"
+      "taskTitle": "故事复述-6",
+      "audioText": "One day, an accident happened because an aircraft was guided improperly by a marshaller when parking.\nThe marshaller first guided the aircraft to a gate. When the aircraft was near the stop line, the marshaller gave a premature crossed wands signal which means stopping taxiing, so the aircraft was stopped abruptly. The pilot set the parking brake and released the seatbelt sign. Unexpectedly, the marshaller showed the separated wands again and stopped them a little forward of the point. He did not give a clear signal, and the sudden stop caused fatigue and a medical emergency of 2 passengers. When the marshaller was asked about the signal, he said he did not give the signal. Anyway, it was not a good guidance but the final position of the aircraft was proper. Luckily there were no injuries on board.",
+      "audioTextZh": "某天，一架飞机由于停机时引导不当而出现事故。\n信号员首先引导飞机滑行到机位，飞机靠近停机线时，信号员给出交叉信号，表示飞机停止滑行，所以飞机在滑行中突然停止。飞行员松开刹车并关闭安全带信号。意外的是，信号员又给出分开信号，并让飞机在机位前一点停下。信号员给出的指令不明确，飞机突然停下，导致2名乘客需要急救。当信号员被问及给出的信号时，他说他并没有给出这种信号。无论如何，飞机没有得到良好引导，但最后的停机位置是合适的。幸运的是机上无人受伤。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/1fa9c7a566e18bbb7dca.mp3"
     },
     {
       "id": "story-koala-007",
-      "taskTitle": "飞行ICAO-基础题库-7",
-      "audioText": "When a B747 was climbing out, its No.1 engine failed. The failure caused the aircraft to yaw the heading about 20 degrees from the original. The Primary Engine Display showed that the thrust was zero, the engine indications were all red, and the temperature was exceeding 680C. The aircraft had autopilot disconnection, then it suddenly yawed and the heading deviated 10 degrees The pilot immediately leveled off the aircraft so that he could check the engine. Then he confirmed that No.1 engine was failed. The EGT temperature was still high when all proper procedures were done. So the pilot pulled out the engine fire lever to secure the engine and completed the checklist. Because of the landing weight requirements, the aircraft had to dump fuel before landing. Then the pilot requested radar vector to the fuel dumping area and started dumping fuel at 8000 feet. During the 35 minutes of dumping, the controller asked other aircraft to avoid the dumping area. At last, they made an auto landing then taxied to the gate safely.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/007.mp3",
-      "audioTextZh": "一架B747在起飞爬升过程中1号发动机失效。故障使飞机相对原航向偏转约20度。主发动机显示器显示推力为零，发动机各项指示均变为红色，温度超过680摄氏度。自动驾驶断开后，飞机突然偏航，航向偏差达到10度。飞行员立即使飞机改平，以便检查发动机，随后确认1号发动机已经失效。完成所有规定程序后，排气温度（EGT）仍然很高，于是飞行员拉出发动机火警手柄，将该发动机隔离并完成检查单。由于着陆重量限制，飞机着陆前必须放油。飞行员请求雷达引导前往放油区，并在8000英尺开始放油。在持续35分钟的放油过程中，管制员要求其他航空器避开放油区域。最后，该机实施自动着陆，并安全滑行至登机口。"
+      "taskTitle": "故事复述-7",
+      "audioText": "When a B747 was climbing out, its No.1 engine failed. The failure caused the aircraft to yaw the heading about 20 degrees from the original.\nThe Primary Engine Display showed that the thrust was zero, the engine indications were all red, and the temperature was exceeding 680℃. The aircraft had autopilot disconnection, then it suddenly yawed and the heading deviated 10 degrees. The pilot immediately leveled off the aircraft so that he could check the engine. Then he confirmed that No.1 engine was failed.\nThe EGT temperature was still high when all proper procedures were done. So the pilot pulled out the engine fire lever to secure the engine and completed the checklist. Because of the landing weight requirements, the aircraft had to dump fuel before landing. Then the pilot requested radar vector to the fuel dumping area and started dumping fuel at 8000 feet. During the 35 minutes of dumping, the controller asked other aircraft to avoid the dumping area. At last, they made an auto landing then taxied to the gate safely.",
+      "audioTextZh": "一架B747在上升，此时1号发动机失效。故障导致飞机从原航线偏航20度。\n主发动机显示器显示推力为零，发动机故障显示亮起，温度超过680℃。飞机的自动驾驶断开，然后飞机突然偏航10度。飞行员立刻平飞来检查发动机，然后飞行员确定1号发动机已失效。\n所有程序全部完成后，EGT温度仍然很高，所以飞行员拉出发动机灭火手柄来保护发动机，并完成检查单。由于着陆重量限制，飞机着陆前必须放油。飞行员请求雷达引导到放油区，然后在8000英尺高开始放油。放油持续了35分钟，这期间管制员指挥其它飞机避开放油区。最后，飞机自动着陆并安全滑到停机位。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/cebe48238b23aa0ce7a7.mp3"
     },
     {
       "id": "story-koala-008",
-      "taskTitle": "飞行ICAO-基础题库-8",
-      "audioText": "A B737 was cleared to taxi to holding point of runway 29 while the pilot saw the landing lights of A320 on landing roll out at the opposite end of the runway. A320 had landed on runway 11 and a conflict was nearly to happen. In order to exit the runway quickly, the pilot of B737 turned 180 degrees. At the same time, tower called and gave him instruction to vacate the runway. The B737 almost collided with A320 but there were nothing wrong with the two aircraft. The cause of this possible accident was that the two operations were conducted in both directions on runway 11/29. A320 was landing on runway 11 while B737 was holding short of runway 29 and waiting for ATC clearance at the same time. Then the tower called them and instructed them to fly SH-01 departure and climb 7000 feet when airborne, but they considered it as a clearance, so they began to taxi onto the runway. At that time, the tower and ground were combined. The pilot had called the tower twice without receiving any response, so he was not sure whether the aircraft had landed.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/008.mp3",
-      "audioTextZh": "一架B737获准滑行至29跑道等待点时，飞行员看到一架A320的着陆灯出现在跑道另一端；A320刚在11跑道着陆，两机险些发生冲突。为尽快脱离跑道，B737飞行员将飞机掉头180度。与此同时，塔台呼叫并指示他脱离跑道。B737险些与A320相撞，但两架飞机都没有受损。这起险情的原因是11/29跑道同时进行相反方向的运行：A320在11跑道着陆，而B737当时正在29跑道外等待空中交通管制许可。塔台随后呼叫B737，指示其按SH-01离场程序飞行，离地后爬升至7000英尺；机组却把这句话理解成了进入跑道的许可，于是开始滑入跑道。当时塔台与地面管制席位合并运行。飞行员此前两次呼叫塔台都没有得到回应，因此不确定那架飞机是否已经着陆。"
+      "taskTitle": "故事复述-8",
+      "audioText": "A B737 was cleared to taxi to holding point of runway 29 while the pilot saw the landing lights of A320 on landing rollout at the opposite end of the runway. A320 had landed on runway 11 and a conflict was nearly to happen. In order to exit the runway quickly, the pilot of B737 turned 180 degrees. At the same time, tower called and gave him instruction to vacate the runway. The B737 almost collided with A320 but there were nothing wrong with the two aircraft. The cause of this possible accident was that the two operations were conducted in both directions on runway 11/29. A320 was landing on runway 11 while B737 was holding short of runway 29 and waiting for ATC clearance at the same time. Then the tower called them and instructed them to fly SH-01 departure and climb 7000 feet when airborne, but they considered it as a clearance, so they began to taxi onto the runway. At that time, the tower and ground were combined. The pilot had called the tower twice without receiving any response, so he was not sure whether the aircraft had landed.",
+      "audioTextZh": "一架B737可以滑行到跑道29的等待点，这时飞行员看到A320的着陆灯出现在跑道相反方向。A320在跑道11着陆，两架飞机即将相撞。为了快速离开跑道，B737的飞行员将飞机转180度。同时，塔台呼叫B737并给出脱离跑道的指令。B737和A320差一点相撞，好在两架飞机都未出现问题。导致这起事件的发生可能由于两架飞机运行了11和29号跑道的不同方向。A320在跑道11着陆，同一时间B737在跑道29等待ATC许可。之后，塔台呼叫飞机给出离场指令，SH-01离场，离地后上升到7000英尺。他们认为这是许可，所以两架飞机开始在跑道滑行。当时塔台和地面的信号重合了。飞行员呼叫塔台两次，但没有收到任何回复，所以他不确定飞机是否已着陆。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/b83e194a0acad457e7eb.mp3"
     },
     {
       "id": "story-koala-009",
-      "taskTitle": "飞行ICAO-基础题库-9",
-      "audioText": "The ATC cleared an aircraft to take off, but shortly after take-off, two of the flight attendants smelled something burning. They immediately informed the purser while found that the captain had already contacted the Tower and requested airport assistance. Some passengers felt panic when they saw the smoke in the cabin. Soon captain told passengers about the situation via PA. A few minutes later, dense smoke spread all over the cabin and some passengers suffered from smoke inhalation. At the same time, the flight attendants consulted their emergency checklist and tried to keep the passengers in order. The aircraft finally returned to the departure airport. Fire trucks arrived and ambulances were ready to meet them at the apron. Fortunately, all the passengers were safely evacuated and got effective first aid. After inspection, the cause of the accident was clear. It was an electrical fire in the cockpit.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/009.mp3",
-      "audioTextZh": "一架飞机从ATC处得到起飞许可，但在起飞后不久，两名乘务员闻到烧焦的味道，他们立刻通知了乘务长，同时发现机长已经联系塔台并请求机场援助。一些乘客看到客舱有烟开始感到恐慌。很快，机长通过广播将情况告知乘客。几分钟后，客舱内布满浓烟，有些乘客吸入了烟尘。此时，乘务员完成紧急检查单并尽力维持乘客的秩序。飞机最终返回出发机场，消防车和救护车在机坪等待飞机。幸运的是，乘客们全部被安全撤离并得到急救。经检查，事故原因是由于驾驶舱发生电气火灾。"
+      "taskTitle": "故事复述-9",
+      "audioText": "The ATC cleared an aircraft to take off, but shortly after take-off, two of the flight attendants smelled something burning. They immediately informed the purser while found that the captain had already contacted the Tower and requested airport assistance. Some passengers felt panic when they saw the smoke in the cabin.\nSoon captain told passengers about the situation via PA. A few minutes later, dense smoke spread all over the cabin and some passengers suffered from smoke inhalation. At the same time, the flight attendants consulted their emergency checklist and tried to keep the passengers in order.\nThe aircraft finally returned to the departure airport. Fire trucks arrived and ambulances were ready to meet them at the apron. Fortunately, all the passengers were safely evacuated and got effective first aid. After inspection, the cause of the accident was clear. It was an electrical fire in the cockpit.",
+      "audioTextZh": "一架飞机从ATC处得到起飞许可，但在起飞后不久，两名乘务员闻到烧焦的味道，他们立刻通知了乘务长，同时发现机长已经联系塔台并请求机场援助。一些乘客看到客舱有烟开始感到恐慌。\n很快，机长通过广播将情况告知乘客。几分钟后，客舱内布满浓烟，有些乘客吸入了烟尘。此时，乘务员完成紧急检查单并尽力维持乘客的秩序。\n飞机最终返回出发机场，消防车和救护车在机坪等待飞机。幸运的是，乘客们全部被安全撤离并得到急救。经检查，事故原因是由于驾驶舱发生电气火灾。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/bf4bd33428f4027807e2.mp3"
     },
     {
       "id": "story-koala-010",
-      "taskTitle": "飞行ICAO-基础题库-10",
-      "audioText": "In 1986, a little girl named Crystal Grant living in Memphis, Tennessee got a liver disease and needed a liver transplant. Her family got information that a liver source became available but she must fly to Houston, Texas, she would be able to take the medical treatment. Before departure, an accident happened that the plane blew a couple of tires and ran off the runway into a fence while taking off. At the same time, a Coca-Cola corporate jet had just arrived at the airport carrying their CEO, and the pilot who saw the accident heard the experience of Crystal. Then the pilot briefed the CEO about the story. After visiting Crystal, the CEO decided to take her to Houston by his corporate jet. Meanwhile, the liver which Crystal needed was in San Diego, California, but the flight to transport the liver got failed. The CEO asked the pilot if they could fly to San Diego to pick up the liver first, but found that they would not have enough time for the transplant. Then the CEO contacted the governor of California and explained the situation. Finally, the governor dispatched an F-18 fighter jet to safely transport the liver container to Houston. Everything ran smoothly and the little girl got a successful transplant.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/010.mp3",
-      "audioTextZh": "1986年，住在田纳西州孟菲斯的小女孩Crystal Grant患上肝病，需要接受肝脏移植。家人得到消息，有一个可用的供肝，但她必须飞往得克萨斯州休斯敦才能接受治疗。出发前却发生事故：她原定乘坐的飞机起飞时爆了几个轮胎，冲出跑道并撞上围栏。与此同时，一架载着可口可乐公司首席执行官的公务机刚刚抵达机场。公务机飞行员目睹事故并得知Crystal的经历，随后把情况报告给首席执行官。首席执行官看望Crystal后，决定用自己的公务机送她去休斯敦。与此同时，Crystal需要的肝脏位于加利福尼亚州圣迭戈，但原定运送肝脏的航班未能成行。首席执行官询问飞行员能否先飞往圣迭戈取肝脏，但发现那样会来不及完成移植手术。于是，他联系加利福尼亚州州长并说明情况。最终，州长派出一架F-18战斗机，把装有肝脏的容器安全运到休斯敦。一切进展顺利，小女孩成功接受了移植。"
+      "taskTitle": "故事复述-10",
+      "audioText": "In 1986, a little girl named Crystal Grant living in Memphis, Tennessee got a liver disease and needed a liver transplant. Her family got information that a liver source became available but she must fly to Houston, Texas, she would be able to take the medical treatment. Before departure, an accident happened that the plane blew a couple of tires and ran off the runway into a fence while taking off.\nAt the same time, a Coca-Cola corporate jet had just arrived at the airport carrying their CEO, and the pilot who saw the accident heard the experience of Crystal. Then the pilot briefed the CEO about the story. After visiting Crystal, the CEO decided to take her to Houston by his corporate jet.\nMeanwhile, the liver which Crystal needed was in San Diego, California, but the flight to transport the liver got failed.\nThe CEO asked the pilot if they could fly to San Diego to pick up the liver first, but found that they would not have enough time for the transplant.\nThen the CEO contacted the governor of California and explained the situation. Finally, the governor dispatched an F-18 fighter jet to safely transport the liver container to Houston. Everything ran smoothly and the little girl got a successful transplant.",
+      "audioTextZh": "1986年，家住田纳西州孟菲斯的女孩Crystal Grant身患肝病，需要肝脏移植。她的家人得知有可用的肝脏来源，但Crystal必须去得克萨斯州的休斯顿做手术。Crystal乘坐的飞机发生了事故，起飞时，轮胎爆胎，飞机冲出跑道撞向围栏。\n这时，可口可乐公司的公务机到达同一机场，飞机上是公司CEO，公务机的飞行员看到了事故过程并听到了Crystal的故事，然后他将故事告诉了CEO。看望Crystal后，CEO决定用公务机送Crystal去休斯顿。\nCrystal需要的肝脏来源在加利福尼亚州的圣地亚哥，但是运送肝脏的飞机出现故障。\nCEO询问飞行员是否能先飞到圣地亚哥，但他们发现这样会没有足够时间进行手术。\n然后，CEO联系到加利福尼亚州的州长，并解释了这个情况。最后，州长派遣F-18战斗机将肝脏运送到休斯顿。手术进行得很顺利，Crystal成功接受了移植。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/8cb115d62ec55da0d647.mp3"
     },
     {
       "id": "story-koala-011",
-      "taskTitle": "飞行ICAO-基础题库-11",
-      "audioText": "A man was on a flight from Seattle to San Francisco, but along the way, the plane stopped unexpectedly in Sacramento. The flight attendant explained the situation and told passengers that they could get off the aircraft for a walk within 50 minutes before the plane re-boarded. Passengers got off the plane in succession except one person. When the man walked by the only person on board he could tell the person was a blind man. Because the man was wearing sunglasses and a seeing eye dog was lying quietly underneath the seat in front of him. The blind man had flown this flight frequently because the pilot could call him by name. The pilot asked, Keith, we're in Sacramento for almost an hour. Would you like to get off and stretch your legs? The blind man said no but he asked the pilot if he could take his dog for a walk. What the pilot did not know was, all the people in the gate area came to a complete standstill when they saw him, because the pilot got off the plane with a seeing eye dog and a pair of sunglasses on. It caused a panic between passengers that they thought the pilot was a blind man. They not only tried to change planes, but also wanted to change airlines! It took time for the pilot and flight attendants to explain to passengers and calm them down. Later the aircraft took off again.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/011.mp3",
-      "audioTextZh": "一位男士乘坐飞机从西雅图飞往旧金山，途中飞机突然在萨克拉门托降落。乘务员向乘客解释了情况，并告诉他们可以在起飞前下飞机活动50分钟。乘客们依次下飞机，但有一位乘客没走。当男士经过这位乘客时，他注意到这位乘客是盲人。因为他戴着墨镜，一只导盲犬安静地躺在他前方的座位下。这位盲人肯定经常乘坐这趟航班，因为飞行员能够直接叫出他的名字。飞行员问他：“Keith，我们将在萨克拉门托停留一小时，你想下飞机活动一下吗？”这位盲人拒绝了，但他问飞行员是否可以带他的导盲犬散个步。但飞行员不知道的是，门口的乘客在看到他时全都停下了，因为他在下飞机时戴着墨镜并牵着一只导盲犬。这引发了乘客们的恐慌，他们以为飞行员是个盲人。乘客们不仅想更换航班，而且还想更换航空公司！飞行员和乘务员花了一段时间向乘客解释情况并让大家冷静下来，之后飞机再次起飞了。"
+      "taskTitle": "故事复述-11",
+      "audioText": "A man was on a flight from Seattle to San Francisco, but along the way, the plane stopped unexpectedly in Sacramento. The flight attendant explained the situation and told passengers that they could get off the aircraft for a walk within 50 minutes before the plane re-boarded.\nPassengers got off the plane in succession except one person. When the man walked by the only person on board he could tell the person was a blind man. Because the man was wearing sunglasses and a seeing eye dog was lying quietly underneath the seat in front of him. The blind man had flown this flight frequently because the pilot could call him by name. The pilot asked, “Keith, we’re in Sacramento for almost an hour. Would you like to get off and stretch your legs?” The blind man said no but he asked the pilot if he could take his dog for a walk.\nWhat the pilot did not know was, all the people in the gate area came to a complete standstill when they saw him, because the pilot got off the plane with a seeing eye dog and a pair of sunglasses on. It caused a panic between passengers that they thought the pilot was a blind man. They not only tried to change planes, but also wanted to change airlines! It took time for the pilot and flight attendants to explain to passengers and calm them down. Later the aircraft took off again.",
+      "audioTextZh": "一位男士乘坐飞机从西雅图飞往旧金山，途中飞机突然在萨克拉门托降落。乘务员向乘客解释了情况，并告诉他们可以在起飞前下飞机活动50分钟。乘客们依次下飞机，但有一位乘客没走。当男士经过这位乘客时，他注意到这位乘客是盲人。因为他戴着墨镜，一只导盲犬安静地躺在他前方的座位下。这位盲人肯定经常乘坐这趟航班，因为飞行员能够直接叫出他的名字。飞行员问他：“Keith，我们将在萨克拉门托停留一小时，你想下飞机活动一下吗？”这位盲人拒绝了，但他问飞行员是否可以带他的导盲犬散个步。\n但飞行员不知道的是，门口的乘客在看到他时全都停下了，因为他在下飞机时戴着墨镜并牵着一只导盲犬。这引发了乘客们的恐慌，他们以为飞行员是个盲人。乘客们不仅想更换航班，而且还想更换航空公司！飞行员和乘务员花了一段时间向乘客解释情况并让大家冷静下来，之后飞机再次起飞了。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/d72160258bf4e0c36ec4.mp3"
     },
     {
       "id": "story-koala-012",
-      "taskTitle": "飞行ICAO-基础题库-12",
-      "audioText": "A worker in the airport just finished his work, while he was walking along the apron he found a female pilot was struggling with a huge package. The package was stuck, half of the package was in the plane and another half was out. The worker was a very kind and warmhearted man, so he tried to help the female pilot. He went into the plane and tried his best to push the package, but the package did not move and nothing happened. Later the worker and the pilot decided to push and pull at the same time. They tried so hard over and over again and both got exhausted, but they still couldn't move the package. The worker felt hopeless and he said it was impossible to get the package out of the plane. Then he heard the pilot shrieking, \"Oh, no! I was trying to stuff it in!\"",
-      "audio": "/question-bank-assets/audio/storytelling/koala/012.mp3",
-      "audioTextZh": "一位机场工人刚结束工作，他在停机坪看到一位女飞行员正在费力处理一个大包裹。包裹被卡住，一半在飞机内一半在飞机外。这位工人很热心，所以他想帮助这个女飞行员。他走到机舱内并尽力将包裹向外推，但是包裹根本没有挪动。之后，工人和飞行员决定一个人推的同时另一个人拉。他们一次次努力，两个人都很累，但仍然没有挪动包裹。工人感到很绝望，他说包裹可能没办法从飞机里拿出来了，然后他听到了飞行员的大叫：“不！我是想将包裹放进去！”"
+      "taskTitle": "故事复述-14",
+      "audioText": "A worker in the airport just finished his work, while he was walking along the apron he found a female pilot was struggling with a huge package. The package was stuck, half of the package was in the plane and another half was out. The worker was a very kind and warmhearted man, so he tried to help the female pilot. He went into the plane and tried his best to push the package, but the package did not move and nothing happened. Later the worker and the pilot decided to push and pull at the same time. They tried so hard over and over again and both got exhausted, but they still couldn’t move the package. The worker felt hopeless and he said it was impossible to get the package out of the plane. Then he heard the pilot shrieking, “Oh, no! I was trying to stuff it in!”",
+      "audioTextZh": "一位机场工人刚结束工作，他在停机坪看到一位女飞行员正在费力处理一个大包裹。包裹被卡住，一半在飞机内一半在飞机外。这位工人很热心，所以他想帮助这个女飞行员。他走到机舱内并尽力将包裹向外推，但是包裹根本没有挪动。之后，工人和飞行员决定一个人推的同时另一个人拉。他们一次次努力，两个人都很累，但仍然没有挪动包裹。工人感到很绝望，他说包裹可能没办法从飞机里拿出来了，然后他听到了飞行员的大叫：“不！我是想将包裹放进去！”",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/911f0508e03716aa1984.mp3"
     },
     {
       "id": "story-koala-013",
@@ -97,38 +107,43 @@
     },
     {
       "id": "story-koala-014",
-      "taskTitle": "飞行ICAO-基础题库-14",
-      "audioText": "Lately I was on a VFR flight. We were passing within Aerodrome Traffic Zone under the control of Local Approach, visibility was good, and there was not too much traffic on the frequency. The controller requested a position report by asking if we were over an Island, the feature cannot be found on the half million chart and I was not familiar with it. So I looked for it and asked for clarification. During the period a potential Airprox developed. Fortunately the pilot noted it and avoided it by an evasive maneuver. The pilot and I were both annoyed by the controller for using an unrecognizable local feature which caused confusion and distraction for us. We were squawking 7000 Mode C, so our position should be known. If not, or if there were too much traffic on screen, the controller should have asked for a specific squawk. Controllers should know that non-local pilots only navigate according to charted features. To avoid accidents, local knowledge should be taken seriously.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/014.mp3",
-      "audioTextZh": "最近我执行了一次目视飞行规则（VFR）飞行。我们在本场进近管制下穿过机场交通地带，当时能见度良好，频率也不繁忙。管制员询问我们是否已经飞越某个岛，要求报告位置，但这个地标在1:500000航图上找不到，我也不熟悉。于是我一边寻找，一边请求管制员澄清。在此期间，一起潜在的空中接近危险逐渐形成。幸运的是，飞行员发现了相关航空器，并通过规避机动避开。飞行员和我都对管制员使用无法识别的本地地标感到不满，因为这让我们困惑并分散了注意力。我们的应答机正使用7000编码和C模式，管制员理应知道我们的位置；如果不知道，或者雷达屏幕上的目标太多，就应要求我们使用一个指定的应答机编码。管制员应当明白，非本地飞行员只能依据航图标示的地标导航。为避免事故，必须认真对待因本地知识差异带来的风险。"
+      "taskTitle": "故事复述-15",
+      "audioText": "Lately I was on a VFR flight. We were passing within Aerodrome Traffic Zone under the control of Local Approach, visibility was good, and there was not too much traffic on the frequency.\nThe controller requested a position report by asking if we were over an Island, the feature cannot be found on the half million chart and I was not familiar with it. So I looked for it and asked for clarification. During the period a potential Airprox developed. Fortunately the pilot noted it and avoided it by an evasive maneuver.\nThe pilot and I were both annoyed by the controller for using an unrecognizable local feature which caused confusion and distraction for us. We were squawking 7000 Mode C, so our position should be known. If not, or if there were too much traffic on screen, the controller should have asked for a specific squawk.\nControllers should know that non-local pilots only navigate according to charted features. To avoid accidents, local knowledge should be taken seriously.",
+      "audioTextZh": "最近在一次目视飞行时，我们在当地进近的指挥下通过机场活动区域，能见度很好，频率里也没有很多飞机。\n管制员要我们报位置报，询问我们是否飞过某个岛，我在地形图上看不到这个岛，我对这里的地形也并不熟悉，所以我试图寻找这个地形并要求管制员进行说明。在这期间，飞机险些与其它飞机相撞。幸运的是，飞行员通过规避机动避免了事故。\n飞行员和我都很恼火，由于管制员在指挥时使用无法找到的当地地形，导致我们很迷惑并为此分神。我们的应答机是C模式，编码7000，所以管制员应该知道飞机的位置。如果管制员不知道，或屏幕上有太多活动，管制员应向我们要求特定的编码。\n管制员要了解，非当地的飞行员只能根据图表上的地形导航。为避免事故发生，要谨慎使用当地知识进行指挥。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/95b629356a4f118f757f.mp3"
     },
     {
       "id": "story-koala-015",
-      "taskTitle": "飞行ICAO-基础题库-15",
-      "audioText": "The flight was flying to UK, and before landing, we were asked to hold at FL150 for approximately 30 minutes delay due to the weather. The ATC first instructed us to hold at a level around FL100 and the next clearance was understood as descending to the next lower level, when we were at or near FL80, ATC asked if we had turned onto heading 080. The situation was embarrassing. I had to apologize on the radio telephone and ATC responded, \"No problem\", with updated heading and further descent. However, that airport was not the place to be at the wrong level and heading on a busy, rough Sunday night! In the days following, by giving the incident much thought, I found the major contributing factor of my mistake. We were not supposed to hear what we thought we should hear, thus confusing heading and cleared level. Instead, we should pay attention to the ATC instruction.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/015.mp3",
-      "audioTextZh": "该航班正飞往英国。着陆前，由于天气原因，我们被要求在FL150等待约30分钟。空中交通管制最初指示我们在FL100附近的高度层等待，随后的一项许可被我们理解成下降至下一个更低高度层。当我们处于或接近FL80时，空中交通管制询问我们是否已经转到航向080。场面十分尴尬，我不得不通过无线电话道歉；管制员回答“没关系”，然后给出了更新后的航向和进一步下降许可。然而，在一个繁忙而天气颠簸的星期日夜晚，绝不能在那个机场附近飞错高度层和航向。接下来的几天，我反复思考这起事件，找到了自己犯错的主要原因：我们不能只听见自己以为会听见的内容，从而把航向和许可高度层混淆；相反，我们必须专心听清空中交通管制的指令。"
+      "taskTitle": "故事复述-16",
+      "audioText": "The flight was flying to UK, and before landing, we were asked to hold at FL150 for approximately 30 minutes delay due to the weather.\nThe ATC first instructed us to hold at a level around FL100 and the next clearance was understood as descending to the next lower level, when we were at or near FL80, ATC asked if we had turned onto heading 080.\nThe situation was embarrassing. I had to apologize on the radio telephone and ATC responded, “No problem”, with updated heading and further descent. However, that airport was not the place to be at the wrong level and heading on a busy, rough Sunday night!\nIn the days following, by giving the incident much thought, I found the major contributing factor of my mistake. We were not supposed to hear what we thought we should hear, thus confusing heading and cleared level. Instead, we should pay attention to the ATC instruction.",
+      "audioTextZh": "飞机正飞往英国。着陆前，由于天气，我们要在高度层150等待30分钟左右。\nATC首先指挥我们在高度层100等待，我们认为下个指令应该是下降到更低高度，当我们接近高度层80时，ATC询问我们是否转向航向080。\n这种情况让人很为难，我不得不在通话时道歉，ATC回复：“没关系”，然后告知我修正后的航向和下降高度。然而，在繁忙的周日晚，错误的高度层和航向会让飞机无法到达机场！\n接下来的几天中，我对这件事思考了很多，并找到出现错误的主要原因。我们不应假设自己会收到什么指令，从而会弄混航向和高度。相反，我们应关注ATC给出的指令。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/02ed64418086301bb7ba.mp3"
     },
     {
       "id": "story-koala-016",
-      "taskTitle": "飞行ICAO-基础题库-16",
-      "audioText": "John was the captain of a flight from Shanghai to Hong Kong. On July 20th, he and his first officer, Ted, controlled the airplane to take off from Shanghai airport. When the plane reached 1200 feet, a wind shear warning occurred with the warning sound echoed in the cockpit. Under those circumstances, John took over the control immediately and called for the checklist. The result showed the left PFD indicated normally and only a malfunction indication appeared on the right seat PFD. The flight crew came to an agreement it was a false warning, so they continued to climb. The plane safely landed on Hong Kong airport 3 hours later. The crew asked a ground maintenance personnel to fix the problem. Unfortunately, on the way back, the same trouble appeared again.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/016.mp3",
-      "audioTextZh": "John是一班上海飞往香港航班的机长。7月20日，他和副驾驶Ted操纵飞机从上海机场起飞。飞机到达1200英尺时，驾驶舱响起风切变警告。在这种情况下，John立即接管操纵并要求执行检查单。检查结果显示，左座主飞行显示器（PFD）工作正常，只有右座PFD出现故障指示。飞行机组一致认为这是一次虚假警告，于是继续爬升。3小时后，飞机安全降落在香港机场。机组请地面维修人员排除故障，但不幸的是，返程途中同样的问题再次出现。"
+      "taskTitle": "故事复述-17",
+      "audioText": "John was the captain of a flight from Shanghai to Hong Kong. On July 20th, he and his first officer, Ted, controlled the airplane to take off from Shanghai airport. When the plane reached 1200 feet, a windshear warning occurred with the warning sound echoed in the cockpit. Under those circumstances, John took over the control immediately and called for the checklist. The result showed the left PFD indicated normally and only a malfunction indication appeared on the right seat PFD. The flight crew came to an agreement it was a false warning, so they continued to climb. The plane safely landed on Hong Kong airport 3 hours later. The crew asked a ground maintenance personnel to fix the problem. Unfortunately, on the way back, the same trouble appeared again.",
+      "audioTextZh": "John是一架上海飞往香港的航班的机长。6月20日，他和副驾驶Ted操作飞机从上海机场起飞。到达1200英尺时，飞机出现风切变警报，警报音回响在驾驶室内。在这种情况下，John立刻接管飞机操作并完成检查单。结果显示左侧主飞行显示器显示正常，只有右侧主飞行显示器有故障指示。机组一致认为警报出错，所以飞机继续上升。3小时后，飞机在香港机场安全着陆，机组请地面维修人员进行维修。不幸的是，在返回途中相同的问题再次出现了。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/58c7c8f8c9bd0d09948b.mp3"
     },
     {
       "id": "story-koala-017",
-      "taskTitle": "飞行ICAO-基础题库-17",
-      "audioText": "During a flight from Hong Kong to Beijing, we captured an urgency call from UAL320 that they had a bird strike. A bird crashed their left windshield and the captain was badly wounded by the broken glass, so they requested for priority landing and ambulance. We informed this serious incident to the controller. The controller contacted the UAL320 at once without receiving any response. So we were asked to relay the instruction to UAL320. Luckily, we contacted them successfully, \"UAL320, CCA830, Beijing Approach cleared you ILS straight in approach runway 16R, you are number one, ambulance and first aid will be ready for you.\" \"Roger, thank you very much,\" UAL320 replied. Finally, the aircraft landed on Beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/017.mp3",
-      "audioTextZh": "在香港飞往北京途中，我们接到来自美联航320的紧急呼叫，他们的飞机遭遇鸟击。有鸟撞到左边挡风玻璃，玻璃破损，机长受重伤，所以他们请求优先着陆和救护车。我们将这起严重事故告诉管制员，管制员立刻联系美联航320，但没有收到任何回复。于是管制员要求我们传送指令给美联航320。幸运的是，我们与美联航320成功建立联系：“美联航320，国航830，北京进近同意直接盲降进近跑道16右，你是第一个，救护车和急救已就位。”“收到，非常感谢。”美联航320这样回复我们。飞机最终在北京机场安全着陆，机长被立刻送往医院，机上没有其他人员受伤。"
+      "taskTitle": "故事复述-18",
+      "audioText": "During a flight from Hong Kong to Beijing, we captured an urgency call from UAL320 that they had a bird strike. A bird crashed their left windshield and the captain was badly wounded by the broken glass, so they requested for priority landing and ambulance. We informed this serious incident to the controller. The controller contacted the UAL320 at once without receiving any response. So we were asked to relay the instruction to UAL320. Luckily, we contacted them successfully, “UAL320, CCA830, Beijing Approach cleared you ILS straight in approach runway 16R, you are number one, ambulance and first aid will be ready for you.” “Roger, thank you very much”, the UAL320 replied. Finally, the aircraft landed on Beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+      "audioTextZh": "在香港飞往北京途中，我们接到来自美联航320的紧急呼叫，他们的飞机遭遇鸟击。有鸟撞到左边挡风玻璃，玻璃破损，机长受重伤，所以他们请求优先着陆和救护车。我们将这起严重事故告诉管制员，管制员立刻联系美联航320，但没有收到任何回复。于是管制员要求我们传送指令给美联航320。幸运的是，我们与美联航320成功建立联系，“美联航320，国航830，北京进近同意直接盲降进近跑道16右，你是第一个，救护车和急救已就位。”“收到，非常感谢。”美联航320这样回复我们。飞机最终在北京机场安全着陆，机长被立刻送往医院，机上没有其他人员受伤。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/d9e9d61ed41ff2727827.mp3"
     },
     {
       "id": "story-koala-018",
-      "taskTitle": "飞行ICAO-基础题库-18",
-      "audioText": "I still remember my solo day. On that day, the vice president of the United States was driven to the airport. Air Force 2, a new B757, landed at about 9 o'clock but we had to wait until all the formalities were completed on the apron. My CFI had asked me if I was ready for solo. At that time I said yes because of my confidence, and the clear weather also helped, but when I got into the cockpit and knew the CFI wasn't coming, I still felt a bit nervous and I hoped not to screw it up. Everything was as usual and it was even better for me to notice that the plane had a better climb rate and there was a lot more room in the C150 with only one person. Everything went by the book except when I lost mic on the floor and stumbled with repeated clearance of the option. Three landings seemed better than the once I did when the CFI was with me. The airplane finally safely landed with everything going smoothly. On my way home I thought about this experience of flying a real airplane alone. To have the vice president fly all that way just watch me solo gave me more confidence about myself.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/018.mp3",
-      "audioTextZh": "到现在我还能想起单飞那天的经历。那天，美国副总统到达机场。空军二号，一架全新波音757，在9点左右着陆，但我们必须在机坪等待所有仪式完成。我的总飞行教练之前询问我是否已准备好单飞，由于对自己有信心，并且天气条件好，我回答没问题。但当我走进史舵得知总飞行教练不在时，我还是感到有些紧张，并且希望我不会犯错误。飞行一切正常，我甚至感到飞机有更好的爬升率，单独一个人在塞斯纳150上显得舱内很空旷。所有事情都按照检查单执行除了我把麦克风掉在了地上而且蹩脚的重复执行了许可选项。这三个落地比之前跟总飞行教练飞得都要好。最终，飞机安全降落，飞行顺利。回家的路上，我在回想这次单独飞行的经历。副总统特地赶过来看我单飞这件事情上给了我莫大的自信。"
+      "taskTitle": "故事复述-19",
+      "audioText": "I still remember my solo day. On that day, the vice president of the United States was driven to the airport. Air force 2, a new B757, landed at about 9 o’clock but we had to wait until all the formalities were completed on the apron. My CFI had asked me if I was ready for solo. At that time I said yes because of my confidence, and the clear weather also helped, but when I got into the cockpit and knew the CFI wasn’t coming, I still felt a bit nervous and I hoped not to screw it up. Everything was as usual and it was even better for me to notice that the plane had a better climb rate and there was a lot more room in the C150 with only one person. Everything went by the book except when I lost mic on the floor and stumbled with repeated clearance of the option. Three landings seemed better than the once I did when the CFI was with me. The airplane finally safely landed with everything going smoothly. On my way home I thought about this experience of flying a real airplane alone. To have the vice president fly all that way just watch me solo gave me more confidence about myself.",
+      "audioTextZh": "到现在我还能想起单飞那天的经历。那天，美国副总统到达机场。空军二号，一架全新波音757，在9点左右着陆，但我们必须在机坪等待所有仪式完成。我的总飞行教练之前询问我是否已准备好单飞，由于对自己有信心，并且天气条件好，我回答没问题。但当我走进驾驶舱得知总飞行教练不在时，我还是感到有些紧张，并且希望我不会犯错误。飞行一切正常，我甚至感到飞机有更好的爬升率，单独一个人在塞斯纳150上显得舱内很空旷。所有事情都按照检查单执行除了我把麦克风掉在了地上而且蹩脚的重复执行了许可选项。这三个落地比之前跟总飞行教练飞得都要好。最终，飞机安全降落，飞行顺利。回家的路上，我在回想这次单独飞行的经历。副总统特地赶过来看我单飞这件事情上给了我莫大的自信。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/24b3298a72c30a5f69a7.mp3"
     },
     {
       "id": "story-koala-019",
@@ -139,31 +154,35 @@
     },
     {
       "id": "story-koala-020",
-      "taskTitle": "飞行ICAO-基础题库-20",
-      "audioText": "The flight was from New York to Dallas. When passengers were boarding, an elderly couple found a woman occupied their seat in first class. The flight attendant wanted to see her boarding pass to solve the problem, but the woman responded in fake broken English, \"No English, pas anglais. \" The attendant knew it was a pretence because the woman had been chatting a bit with another passenger. Then, she tried to persuade the woman to show the boarding pass but only to get disregard. At last, she had to use French to talk with the woman. The woman was so surprised that she let go of her ticket and gave it to the attendant. After checking the boarding pass, the attendant walked the woman all the way to her seat which was at the back of the plane then she returned to first class. During the flight the woman continued complaining in French and asking that attendant to serve her. The attendant smiled and served her everything she wanted, but talking with her in English as she spoke in French. Finally, the flight landed safely at Dallas. The woman was one of the last people off the plane. She demanded the attendant's name and worker ID so she could complain about her. Unexpectedly, the attendant smiled and told the woman it would be nice if she stopped pretending that she couldn't speak or understand English. The woman scowled and marched off the plane.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/020.mp3",
-      "audioTextZh": "一架飞机从纽约飞往达拉斯。登机时，一对老夫妇发现一位女士坐在他们的头等舱座位上。乘务员想检查她的登机牌，但她用蹩脚的英语回复：“不会英语。”乘务员知道这是借口，因为她之前在用英语和另一位乘客交谈。之后，乘务员想劝说女士出示登机牌，但是她完全不理。最后，乘务员不得不用法语和她交流，她非常惊讶于是放手把票给了乘务员。检查完登机牌后，乘务员带领女士走到她位于飞机后部的座位，然后乘务员回到了头等舱。整个飞行期间，这位女士一直在用法语抱怨并要求那位乘务员为她提供服务。乘务员微笑着满足她的要求，但始终用英语回复她的法语。最终飞机在达拉斯安全降落，这位女士是最后下飞机的乘客们之一，她想知道乘务员的名字和证件号去投诉。意外的是，乘务员微笑着告诉她，如果她能不再假装不懂英语就好了。这位女士皱着眉走下了飞机。"
+      "taskTitle": "故事复述-20",
+      "audioText": "The flight was from New York to Dallas. When passengers were boarding, an elderly couple found a woman occupied their seats in first class. The flight attendant wanted to see her boarding pass to solve the problem, but the woman responded in fake broken English, “No English, pas anglais.”\nThe attendant knew it was a pretence because the woman had been chatting a bit with another passenger. Then, she tried to persuade the woman to show the boarding pass but only to get disregard. At last, she had to use French to talk with the woman. The woman was so surprised that she let go of her ticket and gave it to the attendant. After checking the boarding pass, the attendant walked the woman all the way to her seat which was at the back of the plane, then she returned to first class.\nDuring the flight, the woman continued complaining in French and asking that attendant to serve her. The attendant smiled and served her everything she wanted, but talked with her in English as she spoke in French.\nFinally, the flight landed safely at Dallas. The woman was one of the last people off the plane. She demanded the attendant’s name and worker ID so she could complain about her. Unexpectedly, the attendant smiled and told the woman it would be nice if she stopped pretending that she couldn’t speak or understand English. The woman scowled and marched off the plane.",
+      "audioTextZh": "一架飞机从纽约飞往达拉斯。登机时，一对老夫妇发现一位女士坐在他们的头等舱座位上。乘务员想检查她的登机牌，但她用蹩脚的英语回复：“不会英语。”\n乘务员知道这是借口，因为她之前在用英语和另一位乘客交谈。之后，乘务员想劝说女士出示登机牌，但是她完全不理。最后，乘务员不得不用法语和她交流，她非常惊讶于是放手把票给了乘务员。检查完登机牌后，乘务员带领女士走到她位于飞机后部的座位，然后乘务员回到了头等舱。\n整个飞行期间，这位女士一直在用法语抱怨并要求那位乘务员为她提供服务。乘务员微笑着满足她的要求，但始终用英语回复她的法语。\n最终飞机在达拉斯安全降落，这位女士是最后下飞机的乘客们之一，她想知道乘务员的名字和证件号去投诉。意外的是，乘务员微笑着告诉她，如果她能不再假装不懂英语就好了。这位女士皱着眉走下了飞机。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/3f7db48be5bd8a675134.mp3"
     },
     {
       "id": "story-koala-021",
-      "taskTitle": "飞行ICAO-基础题库-21",
-      "audioText": "A ridiculous accident happened when a flight was coming back from Poland in 1998. The plane had just landed at the airport when a guy on board claimed that he had a bomb. All the passengers started to panic. The pilot immediately contacted ATC and asked for emergency services. Because of the man's allegation the plane couldn't get to the gate, so the plane had to board on a bus. All the luggage on the plane was removed and sniffed by a dog. The flight crew and passengers waited and watched for 3 hours without air conditioning and food or anything. After searching, it turned out that there was no bomb on board. The guy was just drunk, and he went mad because they wouldn't give him another beer.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/021.mp3",
-      "audioTextZh": "1998年，一架从波兰返航的飞机上发生了一起荒唐的事件。飞机刚在机场着陆，机上一名男子便声称自己带有炸弹，所有乘客都陷入恐慌。飞行员立即联系空中交通管制并请求应急服务。由于这名男子的声称，飞机无法滑到登机口，乘客只能改乘摆渡车离机。机上所有行李都被卸下，并由搜爆犬逐一嗅探检查。飞行机组和乘客在没有空调、食物和其他保障的情况下等待观察了3个小时。搜查后证实，机上根本没有炸弹。那名男子只是喝醉了，因为机组不肯再给他一杯啤酒而发狂。"
+      "taskTitle": "故事复述-21",
+      "audioText": "A ridiculous accident happened when a flight was coming back from Poland in 1998. The plane had just landed at the airport when a guy on board claimed that he had a bomb. All the passengers started to panic. The pilot immediately contacted ATC and asked for emergency services. Because of the man’s allegation the plane couldn’t get to the gate, so the plane had to board on a bus. All the luggage on the plane was removed and sniffed by a dog. The flight crew and passengers waited and watched for 3 hours without air conditioning and food or anything. After searching, it turned out that there was no bomb on board. The guy was just drunk, and he went mad because they wouldn't give him another beer.",
+      "audioTextZh": "1998年，一架从波兰返回的飞机上发生了一起荒唐的事故。飞机刚在机场着陆，此时机上一名乘客声称他携带炸弹，乘客们开始恐慌。飞行员立刻联系ATC请求紧急援助。由机上有炸弹，飞机无法到达机位，于是乘客不得不登上摆渡车。机上所有行李都被卸下飞机由嗅探犬进行排查。机组和乘客们在没有空调、水和食物的情况下等待了3小时。经检查，飞机上根本没有炸弹。那位醉酒乘客的疯狂举动，仅仅是因为他不能再喝啤酒了。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/9b85c36b7007e023f4eb.mp3"
     },
     {
       "id": "story-koala-022",
-      "taskTitle": "飞行ICAO-基础题库-22",
-      "audioText": "Before the flight, a man used his miles to upgrade to first class. He thought this would make his flight much more comfortable than usual, but what happened later proved he was wrong. He sat next to an old lady whose family members were in economy class. Soon after take-off, when the man was about to begin eating, the old lady suddenly and explosively vomited. The flight attendant rushed to her to deal with the situation, but the old lady did not turn better. Another half an hour later, when the man was stepping around her to use the restroom, she vomited again and some of her vomits even got on the man's clothes. After cleaning himself out in the restroom, the man came back and found his seat was crowded with the lady's family members. Because of the crowd, he was asked to simply stand and wait during 40 minutes of turbulence, and during that time the sick lady vomited yet again. That whole area smelled terrible. Passengers couldn't just stand while the plane landed, so the man had to exchange his seat with the lady's niece whose seat was in economy class. The worst is, when the man asked if he could get his miles back, he was told \"NO\". The man was not satisfied and he thought this unforgettable flying experience was a total nightmare.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/022.mp3",
-      "audioTextZh": "飞行前，一名男子用里程把座位升到了头等舱。他以为这会让旅程比平时舒适得多，但后来发生的一切证明他错了。他坐在一位老妇人旁边，而老妇人的家人都在经济舱。起飞后不久，男子正准备吃东西，老妇人突然剧烈呕吐。乘务员赶来处理，但她的情况没有好转。又过了半小时，男子从她身边绕过准备去洗手间时，她再次呕吐，一些呕吐物甚至弄到了男子衣服上。男子在洗手间清理完回来，发现自己的座位旁挤满了老妇人的家人。由于那里过于拥挤，在随后40分钟的颠簸中，他被要求站着等待；其间老妇人又吐了一次，整个区域气味难闻。飞机着陆时乘客不能站着，于是男子只得与老妇人的侄女交换座位，而侄女的座位在经济舱。最糟糕的是，当男子询问能否退还升级所用的里程时，得到的回答是“不行”。他非常不满，认为这次难忘的飞行经历简直是一场噩梦。"
+      "taskTitle": "故事复述-22",
+      "audioText": "Before the flight, a man used his miles to upgrade to first class. He thought this would make his flight much more comfortable than usual, but what happened later proved he was wrong. He sat next to an old lady whose family members were in economy class. Soon after take-off, when the man was about to begin eating, the old lady suddenly and explosively vomited. The flight attendant rushed to her to deal with the situation, but the old lady did not turn better. Another half an hour later, when the man was stepping around her to use the restroom, she vomited again and some of her vomits even got on the man’s clothes. After cleaning himself out in the restroom, the man came back and found his seat was crowded with the lady’s family members. Because of the crowd, he was asked to simply stand and wait during 40 minutes of turbulence, and during that time the sick lady vomited yet again. That whole area smelled terrible. Passengers couldn’t just stand while the plane landed, so the man had to exchange his seat with the lady’s niece whose seat was in economy class. The worst is, when the man asked if he could get his miles back, he was told “NO”. The man was not satisfied and he thought this unforgettable flying experience was a total nightmare.",
+      "audioTextZh": "飞行前，一位男士用里程升到头等舱。他原以为这次飞行会比以前更舒适，但后来发生的事证明了他的选择是错的。他的座位在一位老妇人旁边，老妇人的家人全都在经济舱。起飞后不久，当他准备用餐时，老妇人猛地呕吐起来。乘务员很快来处理完这个情况，但老妇人的情况并没有转好。半小时后，这位男士从老妇人身边经过去洗手间，这时老妇人再次呕吐起来，有些呕吐物甚至弄到了他的衣服上。在洗手间清理完，他发现自己的座位附近挤满了老妇人的家人。由于人太多，飞机颠簸的40分钟里他只能站着等待，在这期间老妇人再次呕吐起来，整个区域弥漫着可怕的味道。飞机着陆时乘客必须坐下，所以他只能和在经济舱的老妇人的侄女换座位。更糟糕的是，他升舱的里程无法返还。他为此感到很不满意，他认为这次经历简直是个噩梦。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/cfb9686d6fcc67919d50.mp3"
     },
     {
       "id": "story-koala-023",
-      "taskTitle": "飞行ICAO-基础题库-23",
-      "audioText": ".During a flight from Rhode Island to Washington, an accident happened and brought bad influence on the airline. The aircraft took off from the airport smoothly and the flight was incident-free en route. When the plane was approaching to the airport, the pilot was tired so he missed the controller's instruction. Then the controller gave the instruction again. This time, the pilot became clear but he applied the brakes suddenly. Because of his sudden operation, the back door of the plane blew off and passengers could see the runway. Fortunately, the cabin had already lost the pressure so no one flew out and all the passengers stayed in their own seats safely. However, the pilot was grounded because of his misoperation.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/023.mp3",
-      "audioTextZh": "罗德岛飞往华盛顿的航班上发生一起事故，这起事故给航空公司带来不好的影响。飞机从机场顺利起飞，途中也没有事故发生。飞机进近时，飞行员因为疲劳漏听管制员指令。之后管制员再次给出指令，这时飞行员清醒了并突然刹车。因为突然的操作，飞机的后门被吸走，乘客们能直接看到跑道。幸运的是客舱已降压，没有人因此吸出飞机，乘客们都安全待在座位上。然而，飞行员由于这次失误被停飞。"
+      "taskTitle": "故事复述-23",
+      "audioText": "During a flight from Rhode Island to Washington, an accident happened and brought bad influence on the airline. The aircraft took off from the airport smoothly and the flight was incident-free en route. When the plane was approaching to the airport, the pilot was tired so he missed the controller’s instruction. Then the controller gave the instruction again. This time, the pilot became clear but he applied the brakes suddenly. Because of his sudden operation, the back door of the plane blew off and passengers could see the runway. Fortunately, the cabin had already lost the pressure so no one flew out and all the passengers stayed in their own seats safely. However, the pilot was grounded because of his misoperation.",
+      "audioTextZh": "罗德岛飞往华盛顿的航班上发生一起事故，这起事故给航空公司带来不好的影响。飞机从机场顺利起飞，途中也没有事故发生。飞机进近时，飞行员因为疲劳漏听管制员指令。之后管制员再次给出指令，这时飞行员清醒了并突然刹车。因为突然的操作，飞机的后门被吸走，乘客们能直接看到跑道。幸运的是客舱已降压，没有人因此吸出飞机，乘客们都安全待在座位上。然而，飞行员由于这次失误被停飞。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/653feb2345484cffcf1d.mp3"
     },
     {
       "id": "story-koala-024",
@@ -174,10 +193,11 @@
     },
     {
       "id": "story-koala-025",
-      "taskTitle": "飞行ICAO-基础题库-25",
+      "taskTitle": "故事复述-25",
       "audioText": "It was a foggy day in 2001, A Flight 126 from Singapore Airlines was cleared to taxi to runway 19 Right. A few minutes later, a Cessna pilot requested engine start, and the ground controller gave start-up clearance. Then the controller asked 126 to contact the Tower controller. From then on, those two aircraft were on two different radio frequencies. The Cessna started to taxi, but the pilot made the mistake of taxiing to the right and entered taxiway Echo 6. But the Ground controller did not realize it and cleared the Cessna to continue its taxi. At the same time the Tower controller cleared Flight 126 for takeoff. When the Flight 126 was rolling on the runway, the Cessna crossed the runway holding sign and entered the active runway 19 Right. Unfortunately, the two aircraft collided, all 124 people on board died.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/025.mp3",
-      "audioTextZh": "2001年的一个雾天，新加坡航空126号航班获准滑行至19R跑道。几分钟后，一名塞斯纳飞机飞行员请求启动发动机，地面管制员给予启动许可。随后，管制员要求126号航班联系塔台。从此，两架飞机分别使用不同的无线电频率。塞斯纳开始滑行，但飞行员错误地向右转，进入E6滑行道。地面管制员没有察觉这一错误，仍许可塞斯纳继续滑行。与此同时，塔台许可126号航班起飞。当126号航班正在跑道上滑跑时，塞斯纳越过跑道等待标志，进入正在使用的19R跑道。不幸的是，两架飞机相撞，机上124人全部遇难。"
+      "audioTextZh": "2001年的一个雾天，正准备起飞的新航126航班被指挥滑行到19右跑道，几分钟后，另一架塞斯纳飞机的驾驶员请求开车，地面管制员给出开车许可，并让126航班联系塔台管制员。此后，两架飞机使用不同的频率。塞斯纳飞机开始滑出，但驾驶员滑错了，他向右滑行到了E6滑行道，地面管制员没有意识到塞斯纳的错误，并指挥他继续滑行。同时，塔台管制员指挥126航班开始起飞。当126航班在跑道上滑跑，正好塞斯纳穿过跑道等待标志并进入了19右跑道，不幸的是，两架飞机相撞，机上124人无一生还。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/cea2f28a0cfdaac69ee2.mp3"
     },
     {
       "id": "story-koala-026",
@@ -188,24 +208,27 @@
     },
     {
       "id": "story-koala-027",
-      "taskTitle": "飞行ICAO-基础题库-27",
-      "audioText": "An air traffic controller issued a take-off clearance to the Flight 386 for runway 30R. At the same time, an airport operations officer was operating a vehicle on that runway. The controller had previously issued a clearance to the operations officer to conduct bird dispersal activities on the runway. The operations officer was monitoring his radio and heard Flight 386's take-off clearance. He told the controller that he would vacate the runway. At the same time, the flight crew had observed the vehicle on the runway and did not commence the takeoff. The controller cancelled the take-off clearance until the runway was clear. The investigation found that the controller didn't keep eyes on the runway because he was concentrating on heavy traffic. Another possible reason was that the controller was experiencing some degree of fatigue at the time.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/027.mp3",
-      "audioTextZh": "一管制员发布起飞许可给386航班，允许该飞机从跑道30右起飞，与此同时，—名机场工作人员正在30右跑道上工作。因为之前管制员让该工作人员在跑道上驱鸟。工作人员在当前频率守听，听到386航班要起飞的许可指令，立刻告诉管制员他会马上离开跑道。同时，机组人员看到跑道上的车辆，没有执行起飞操作。管制员取消了起飞许可，直到跑道被空出来。后据调查，管制员因为指挥飞机过多，没有留意该跑道，导致了这次事件。还有一个可能的原因是管制员此时过于疲惫导致此次事件。"
+      "taskTitle": "故事复述-27",
+      "audioText": "An air traffic controller issued a take-off clearance to the Flight 386 for runway 30R. At the same time, an airport operations officer was operating a vehicle on that runway. The controller had previously issued a clearance to the operations officer to conduct bird dispersal activities on the runway. The operations officer was monitoring his radio and heard Flight 386's take-off clearance. He told the controller that he would vacate the runway. At the same time, the flight crew had observed the vehicle on the runway and did not commence the takeoff. The controller cancelled the take-off clearance until the runway was clear. The investigation found that the controller didn’t keep eyes on the runway because he was concentrating on heavy traffic. Another possible reason was that the controller was experiencing some degree of fatigue at the time.",
+      "audioTextZh": "一管制员发布起飞许可给386航班，允许该飞机从跑道30右起飞，与此同时，一名机场工作人员正在30右跑道上工作。因为之前管制员让该工作人员在跑道上驱鸟。工作人员在当前频率守听，听到386航班要起飞的许可指令，立刻告诉管制员他会马上离开跑道。同时，机组人员看到跑道上的车辆，没有执行起飞操作。管制员取消了起飞许可，直到跑道被空出来。后据调查，管制员因为指挥飞机过多，没有留意该跑道，导致了这次事件。还有一个可能的原因是管制员此时过于疲惫导致此次事件。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/7dd21faef0d00931ea5c.mp3"
     },
     {
       "id": "story-koala-028",
-      "taskTitle": "飞行ICAO-基础题库-28",
-      "audioText": "Getting lost while flying is a potentially dangerous situation, especially when low on fuel. If a pilot becomes lost, there are some good common-sense procedures to follow. If a town or city cannot be seen, the first thing to do is climb. Being mindful of traffic and weather conditions. An increase in altitude increases radio and navigation reception range, and also increases radar coverage. If flying near a town or city, it might be possible to read the name of the town on a water tower. If the airplane has a navigation radio, such as a VOR or ADF receiver, it can be possible to determine position by plotting an azimuth from two or more navigational facilities. If GPS is installed or a pilot has a portable aviation GPS on board, it can be used to determine the position and location of the nearest airport.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/028.mp3",
-      "audioTextZh": "飞行中迷失方向是一种潜在的危险情况，尤其是在燃油不足时。如果飞行员迷航，可以遵循一些符合常识的程序。如果看不到城镇或城市，首先应在注意其他航空器和天气条件的同时爬升。增加高度可以扩大无线电和导航设备的接收范围，也能增大雷达覆盖范围。如果在城镇或城市附近飞行，也许能从水塔上读到城镇名称。如果飞机装有VOR或ADF接收机等无线电导航设备，就可以通过从两个或更多导航设施作方位线来确定位置。如果飞机装有GPS，或飞行员携带便携式航空GPS，就可以用它确定飞机位置以及最近机场的位置和方位。"
+      "taskTitle": "故事复述-28",
+      "audioText": "Getting lost as an airplane flying is a potentially dangerous situation, especially when low on fuel. If a pilot becomes lost, there are some good common sense procedures to follow. If a town or city cannot be seen, the first thing to do is climb. Being mindful of traffic and weather conditions. An increase in altitude increases radio and navigation reception range, and also increases radar coverage. If flying near a town or city, it might be possible to read the name of the town on a water tower. If the airplane has a navigation radio, such as a VOR or ADF receiver, it can be possible to determine position by plotting an azimuth from two or more navigational facilities. If GPS is installed or a pilot has a portable aviation GPS on board, it can be used to determine the position and location of the nearest airport.",
+      "audioTextZh": "飞机在飞行中迷航是一种潜在的危险情况，特别是在燃料不足的情况下。如果飞行员迷航，可以遵循一些良好的常识程序。如果无法目视某个城镇或城市，首要的就是爬升。留意其他航空器及天气情况。海拔高度的增加使得无线电和导航的接收范围扩大，也增加了雷达覆盖范围。如果在一个城镇或城市附近飞行，可能会在水塔上看到城镇的名字。如果飞机配备无线电导航，如VOR或ADF接收器，它可以通过两个或更多的导航设施绘制方位角来确定位置。如果安装了全球定位系统(GPS)，或者飞行员在飞机上配备了便携式航空全球定位系统，就可以确定最近机场的方位和位置。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/f0ee8f47077701871c61.mp3"
     },
     {
       "id": "story-koala-029",
-      "taskTitle": "飞行ICAO-基础题库-29",
-      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757's lights came on and it began to move. Realizing the risk of runway incursion, he canceled A320's takeoff clearance immediately.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/029.mp3",
-      "audioTextZh": "着陆灯信号可以为管制员提供有用的信息。有一天，一架B757飞机在着陆后经滑行道A9从36左跑道脱离。然后它又被允许可以穿36右跑道。但它在36左和36右跑道之间的A9滑行道上停止了滑行。塔台管制员试图联系飞行员，但没有得到回复。他看到飞机着陆灯也熄灭了，这使他确认B757出现了无线电故障，没有收到通过36右跑道的许可指令。因此他指挥另外一架A320在36右跑道上起飞。突然，管制员注意到B757的灯又亮了，它开始移动。意识到有发生跑道入侵的危险，管制员立即取消了A320的起飞许可。"
+      "taskTitle": "故事复述-49",
+      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757’s lights came on and it began to move. Realizing the risk of runway incursion, he canceled A320's takeoff clearance immediately.",
+      "audioTextZh": "着陆灯可以作为信号向管制员发送有用信息。一天，一架B757在降落后经由滑行道A9脱离36左跑道。随后飞机获准穿越36右跑道。但它在36左和36右跑道之间的A9滑行道上停止滑行。塔台管制员试图联系飞行员但没有得到回复。他看到飞机着陆灯也关闭了。他猜想B757遇无线电故障，没有收到穿越36右跑道的许可，所以他给A320发布了起飞许可，使用跑道36右。突然，管制员注意到B757的着陆灯亮了并开始移动。管制员意识到跑道有被入侵的危险，于是立即取消了A320的起飞许可。",
+      "studyTier": 2,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/1bc2638e4a164b528b85.mp3"
     },
     {
       "id": "story-koala-030",
@@ -216,31 +239,27 @@
     },
     {
       "id": "story-koala-031",
-      "taskTitle": "飞行ICAO-基础题库-31",
-      "audioText": "One day, Flight 456, a B737 carrying 152 passengers and 9 crew members, was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, flight 456 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested that the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 456 by radar to land at runway 34R. Unfortunately, the pilot couldn't stabilize the aircraft on the localizers due to wind shear. Flight 456 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/031.mp3",
-      "audioTextZh": "一天，456号航班是一架载有152名乘客和9名机组人员的B737，正飞往东京国际机场着陆。从东京区域管制移交东京进近后，由于交通拥堵，456号航班被指示前往DA点等待。等待期间，机组获悉当地天气正在恶化，管制员建议飞行员备降，但飞行员报告剩余燃油不足以飞到备降机场。于是，管制员对456号航班实施雷达引导，安排其在34R跑道着陆。不幸的是，由于风切变，飞行员无法使飞机稳定在航向道上。456号航班复飞并进行第二次进近，随后因燃油耗尽撞上山坡。飞机解体，机上所有人员全部遇难。"
+      "taskTitle": "故事复述-32",
+      "audioText": "One day, Flight 456, a B737 carrying 152 passengers and 9 crew members, was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, flight 456 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested that the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 456 by radar to land at runway 34R. Unfortunately, the pilot couldn’t stabilize the aircraft on the localizers due to wind shear. Flight 456 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
+      "audioTextZh": "一天，一架载有152名乘客和9名机组人员的B737执行456航班在东京国际机场降落。当从东京区调转到东京进近时，因为航空器拥堵，456航班被指示前往DA等待。在等待期间，机组人员被告知当地天气正在恶化，管制员建议飞行员备降，但飞行员报告说他们的燃料不够备降。所以管制员雷达引导456航班降落在34右跑道。不幸的是，由于风切变，飞行员无法在航道上建立稳定进近。456航班执行了复飞，执行了二次进近。后来，由于燃油短缺，飞机在山坡上坠毁。飞机被撞成碎片，机上人员全部遇难。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/08fae88af1c6c9eb1fd2.mp3"
     },
     {
       "id": "story-koala-032",
-      "taskTitle": "飞行ICAO-基础题库-32",
-      "audioText": "Flight 145 nearly collided with Flight 101 at the intersection of Runway 16 and Runway 22. There were no injuries and no damage to either aircraft, but it was regarded as the most serious incident of this kind. That day, the tower controller cleared Flight 145 to land on runway 22. But he forgot the arriving aircraft when he cleared Flight 101 to take off from the intersecting runway 16. After Flight 145 touched down, the ground radar system alerted. The controller tried to instruct Flight 145 to stop short of runway 16. However, the aircraft just managed to stop in the middle of the intersection. It was impossible for Flight 101 to abort takeoff. So Flight 101 made an early liftoff and flew over Flight 145. The two aircraft missed colliding by only 50 feet.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/032.mp3",
-      "audioTextZh": "145航班与101航班在16号跑道和22号跑道的交叉口险些相撞。两架飞机均无人员伤亡和机体损伤，但该事件被认定为同类型事件中最严重的一起。当天塔台管制员允许145航班在22号跑道着陆，但他随后在允许101航班从交叉的16号跑道起飞时，却忘记了这架即将降落的飞机。当145航班触地后，地面雷达系统发出警报。管制员试图指示145航班在16号跑道前停止滑行，但飞机最终恰好停在了交叉口中央。此时101航班已无法中止起飞程序，只得提前离地升空，从145航班上方飞越。两架飞机仅以50英尺的距离惊险擦过，避免了相撞。"
-    },
-    {
-      "id": "story-koala-033",
-      "taskTitle": "飞行ICAO-基础题库-33",
-      "audioText": "One day, Flight 456, a B737 carrying 152 passengers and 9 crew members, was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, Flight 456 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested that the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 456 by radar to land at runway 34R. Unfortunately, the pilot couldn't stabilize the aircraft on the localizers due to wind shear. Flight 456 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/033.mp3",
-      "audioTextZh": "一天，456号航班，一架载有152名乘客和9名机组人员的B737，正在飞往东京国际机场着陆。当该航班从东京区调移交给东京进近时，由于空中交通拥堵，456号航班被指示飞往DA点等待。在等待期间，机组获悉当地天气正在恶化，管制员建议飞行员备降，但飞行员报告剩余燃油不足以飞到备降机场。因此，管制员对456号航班实施雷达引导，使其在34R跑道着陆。遗憾的是，由于风切变，飞行员无法使飞机在航向道上稳定下来。456号航班复飞后进行了第二次进近。随后，飞机因燃油不足撞上山坡。飞机解体，机上所有人员全部遇难。"
+      "taskTitle": "故事复述-30",
+      "audioText": "Flight 145 nearly collided with Flight 101 at the intersection of runway 16 and runway 22. There were no injuries and no damage to either aircraft. But it was regarded as the most serious incident of this kind. That day, the tower controller cleared Flight 145 to land on runway 22. But he forgot the arriving aircraft when he cleared Flight 101 to take off from the intersecting runway 16. After Flight 145 touched down, the ground radar system alerted. The controller tried to instruct Flight 145 to stop short of runway 16. However, the aircraft just managed to stop in the middle of the intersection. It was impossible for Flight 101 to abort takeoff. So Flight 101 made an early liftoff and flew over Flight 145. The two aircraft missed colliding by only 50 feet.",
+      "audioTextZh": "145号航班几乎与101号航班在16跑道和22跑道的交叉处相撞。两架飞机都没有人员伤亡或机体损伤。但这被认为是此类事件中最严重的一次。那天，塔台管制员批准145航班降落在22跑道上。但当他让101航班从交叉的16跑道起飞时，他忘记了抵达的飞机。145航班着陆后，地面雷达系统发出警报。管制员试图指示145航班在16跑道外停下。然而，飞机最后只能在跑道交叉处停下。101航班无法中断起飞。所以101航班提前拉起，飞过145航班。两架飞机仅差50英尺就相撞了。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/2c97c701342637f2792a.mp3"
     },
     {
       "id": "story-koala-034",
-      "taskTitle": "飞行ICAO-基础题库-34",
-      "audioText": "When American Flight 815 was approaching the terminal area of its destination, the flight crew contacted Approach Control and requested an ILS approach for Runway 12. The tailwind conditions were reported on runway 12 at that time, so the controller advised the pilot to make a circling approach for runway 30. But the flight crew insisted to land on runway 12 and the controller cleared them to land on that runway. The runway was wet and the braking action was not good. During landing roll the aircraft skidded to the right side of the runway and went through the airport fences. The fuselage was broken into three pieces, the right engine and right main gear were separated from the aircraft. No one was killed, but many passengers suffered from serious injuries.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/034.mp3",
-      "audioTextZh": "当美国815航班接近目的地终端区时，飞行机组联系进近管制，并请求对12号跑道实施仪表着陆系统（ILS）进近。当时12号跑道报有顺风情况，因此管制员建议飞行员对30号跑道进行盘旋进近。但飞行机组人员坚持要在12号跑道降落，管制员便批准他们在该跑道降落。跑道是湿的，制动效果不佳。在着陆滑跑过程中，飞机向跑道右侧打滑，并冲出了机场围栏。机身断成了三截，右发动机和右主起落架与飞机分离。所幸无人死亡，但许多乘客受了重伤。"
+      "taskTitle": "故事复述-31",
+      "audioText": "When an American Flight 815 was approaching the terminal area of its destination, the flight crew contacted the Approach Control and requested ILS approach for runway 12. The tailwind conditions were reported on runway 12 at that time, so the controller advised the pilot to make a circling approach for runway 30. But the flight crew insisted to land on runway 12 and the controller cleared them to land on that runway. The runway was wet and the braking action was not good. During landing roll, the aircraft skidded to the right side of the runway and went through the airport fences. The fuselage was broken into three pieces, the right engine and right main gear were separated from the aircraft. No one was killed, but many passengers suffered from serious injuries.",
+      "audioTextZh": "当一架美国航空815航班接近目的地终端区时，机组人员联系进近管制中心，要求在12跑道盲降进近。当时12跑道报告有顺风情况，所以管制员建议飞行员在30跑道盘旋进近。但机组人员坚持在12跑道降落，管制员允许他们在该跑道降落。跑道湿滑，刹车性能也不好。在着陆滑跑过程中，飞机侧滑到跑道右侧，穿过机场围栏。机身断成三段，右发和右主起落架与机身分离。没有人死亡，但许多乘客受了重伤。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/9ed6f1a2057cfa799745.mp3"
     },
     {
       "id": "story-koala-035",
@@ -255,13 +274,6 @@
       "audioText": "When SIA188 was approaching the airspace of Chicago Center Area Control, the controller instructed the flight crew to change radio frequency for the next section on 132.1. The first officer acknowledged the frequency change and read back the correct frequency. However, the flight crew did not contact ATC on the new frequency. Because the controllers in the receiving units were preparing for a shift change, they didn't know that flight 188 did not establish radio contact, 30 minutes later, the controller at the next sector identified SIA188 on the radar. Although they attempted to establish contact with the airplane by calling the company dispatcher, they got no response from the pilots. The controller finally regained contact with SIA188 on the emergency frequency 50 minutes later.",
       "audio": "/question-bank-assets/audio/storytelling/koala/036.mp3",
       "audioTextZh": "当新加坡航空公司188号航班（SIA188）接近芝加哥中心区域管制的空域时，管制员指示机组人员将下一段航程的无线电频率切换至132.1。副驾驶确认了频率变更，并正确复诵了该频率。然而，机组人员并未在新频率上与空中交通管制（ATC）取得联系。由于接收单位的管制员当时正在准备交接班，他们并不知道188号航班没有建立无线电联系。30分钟后，下一个扇区的管制员在雷达上识别出了新加坡航空公司188号航班。尽管他们尝试通过呼叫该公司的调度员来与飞机建立联系，但没有得到飞行员的回应。最终，管制员在50分钟后通过应急频率重新与新加坡航空公司188号航班取得了联系。"
-    },
-    {
-      "id": "story-koala-037",
-      "taskTitle": "飞行ICAO-基础题库-37",
-      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757's lights came on and it began to move. Realizing the risk of runway incursion, he cancelled A320's takeoff clearance immediately.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/037.mp3",
-      "audioTextZh": "着陆灯信号能为管制员提供有用的信息。有一天，一架波音757客机在降落之后经由A9滑行道从36L跑道脱离。随后，它得到许可可以穿越36R跑道。但它在36L跑道和36R跑道之间的A9滑行道上停止了滑行。塔台管制员试图联系飞行员，但没有收到任何回复。他看到这架飞机的着陆灯也熄灭了。这使他认为这架波音757出现了无线电故障，并且没有收到穿越36R跑道的许可。于是，他向在36R跑道上的空客A320发出了起飞许可。突然，管制员注意到这架波音757的灯亮了起来，并且开始移动。意识到存在跑道侵入的风险，他立即取消了空客A320的起飞许可。"
     },
     {
       "id": "story-koala-038",
@@ -314,10 +326,11 @@
     },
     {
       "id": "story-koala-045",
-      "taskTitle": "飞行ICAO-基础题库-45",
-      "audioText": "An aircraft broke due to some unexplained problems of the propeller. The pilot tried every method to repair but only to get more confused So he had to call an experienced engineer to find out the problem. The engineer searched the engine carefully. It took along time for the engineer to finish the checking procedure, at last he only knocked the engine at a place then the engine was repaired well. The engineer charged the pilot for 5000 dollars, but the pilot was not willing to pay for it since he thought that it was too expensive for just a knock. The engineer was upset about the pilot's words for he didn't understand the value of engineers' work. He said, \"It is inexpensive for a knock. A knock only values for 5 dollars, but knowing the correct place to knock values 4995 dollars. \"",
-      "audio": "/question-bank-assets/audio/storytelling/koala/045.mp3",
-      "audioTextZh": "一架飞机因螺旋桨出现一些不明原因的问题而发生故障。飞行员尝试了各种方法来修理，但却越发困惑。于是，他不得不叫来一位经验丰富的工程师来找出问题所在。工程师仔细检查了发动机。工程师花了很长时间才完成检查程序，最后他只是在发动机的一个部位敲了一下，发动机就修好了。工程师向飞行员收取5000美元的费用，但飞行员不愿意支付，因为他认为仅仅敲一下就收这么多钱太贵了。工程师对飞行员的话感到很不满，因为他不理解工程师工作的价值。工程师说：“敲一下这个动作本身并不贵，敲一下只值5美元，但知道该敲在哪个正确的位置却值4995美元。”"
+      "taskTitle": "故事复述-13",
+      "audioText": "An aircraft broke due to some unexplained problems of the propeller. The pilot tried every method to repair but only to get more confused. So he had to call an experienced engineer to find out the problem. The engineer searched the engine carefully. It took a long time for the engineer to finish the checking procedure, at last he only knocked the engine at a place then the engine was repaired well. The engineer charged the pilot for 5000 dollars, but the pilot was not willing to pay for it since he thought that it was too expensive for just a knock. The engineer was upset about the pilot’s words for he didn’t understand the value of engineers’ work. He said, “It is inexpensive for a knock. A knock only values for 5 dollars, but knowing the correct place to knock values 4995 dollars.”",
+      "audioTextZh": "由于螺旋桨的问题飞机损坏，飞行员尝试用各种方法修理，但却只让自己更困惑，所以他不得不叫一位有经验的工程师来解决问题。工程师仔细地检查发动机，检查程序花费很长时间，最后工程师在发动机某处敲了敲，然后发动机就修好了。工程师向飞行员收取5000美金的费用，但飞行员不愿意付，他认为敲一下飞机就收取这些费用太贵了。工程师对此很失望，因为这说明飞行员不懂得工程师工作的价值。工程师说：“修理费并不贵，敲一次只需5美金，但知道敲一次的正确位置价值4995美金。”",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/f693bbd865460f3635d2.mp3"
     },
     {
       "id": "story-koala-046",
@@ -325,13 +338,6 @@
       "audioText": "The breakup of China Airlines Flight 611, a Boeing 747-200, has drawn international attention because it comes at a time of increasing concern over how long older jets can remain airworthy. Some research has suggested that metal fatigue may be a particular problem in planes that are used regularly in very warm, humid places like Taipei and Hong Kong. But Boeing maintains that with proper maintenance, aircraft aging should not be a problem. The flight data recorder shows that the plane began gaining altitude at a significantly faster rate in the 27 seconds before the plane broke apart, although the extra gain in altitude was well within the plane's design limits. The plane was supposed to be leveling off then as it approached its cruising altitude of 35, 000 feet. According to the examination of the wreckage, investigators analyzed that there's no evidence of an explosion or pilot error.",
       "audio": "/question-bank-assets/audio/storytelling/koala/046.mp3",
       "audioTextZh": "中华航空611号航班（一架波音747-200型客机）的解体事件引起了国际社会的关注，因为此事发生之际，人们日益担忧老旧飞机究竟还能在多长时间内保持适航状态。一些研究表明，在像台北和香港这样非常温暖、潮湿且飞机使用频繁的地方，金属疲劳可能是一个尤为突出的问题。但波音公司坚称，只要进行适当的维护，飞机老化就不应成为一个问题。飞行数据记录器显示，在飞机解体前的27秒内，这架飞机开始以明显更快的速度上升高度，尽管额外增加的高度完全在飞机的设计极限范围内。当时，这架飞机在接近35000英尺的巡航高度时本应趋于平飞。根据对飞机残骸的检查，调查人员分析得出，没有证据表明事故是由爆炸或飞行员操作失误导致的。"
-    },
-    {
-      "id": "story-koala-047",
-      "taskTitle": "飞行ICAO-基础题库-47",
-      "audioText": "Getting lost as an airplane flying is a potentially dangerous situation, especially when low on fuel If a pilot becomes lost, there are some good common sense procedures to follow. If a town or city cannot be seen, the first thing to do is climb. Being mindful of traffic and weather conditions. An increase in altitude increases radio and navigation reception range, and also increases radar coverage. If flying near a town or city, it might be possible to read the name of the town ona water tower. If the airplane has a navigation radio, such as a VOR or ADF receiver, it can be possible to determine position by plotting an azimuth from two or more navigational facilities. If GPS is installed or a pilot has a portable aviation GPS on board, it can be used to determine the position and location of the nearest airport.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/047.mp3",
-      "audioTextZh": "在空中飞行时迷失方向是一种潜在的危险情况，尤其是在燃油不足的情况下。如果飞行员迷失方向，可以遵循以下一些合理的常规程序。如果看不到城镇或城市，首先要做的是爬升，同时留意交通和天气状况。增加飞行高度可以扩大无线电和导航接收范围，也能增加雷达覆盖范围。如果在城镇或城市附近飞行，也许可以从水塔上读出城镇的名字。如果飞机上有导航无线电设备，如甚高频全向信标（VOR）或自动定向仪（ADF）接收器，就可以通过绘制来自两个或多个导航设施的方位角来确定位置。如果飞机安装了全球定位系统（GPS），或者飞行员携带了便携式航空GPS，就可以用它来确定飞机的位置以及最近机场的位置。"
     },
     {
       "id": "story-koala-048",
@@ -384,10 +390,11 @@
     },
     {
       "id": "story-koala-055",
-      "taskTitle": "飞行ICAO-基础题库-55",
+      "taskTitle": "故事复述-40",
       "audioText": "The crew of flight 523 found a traffic 20 miles at FL 294 right ahead of the airplane on TCAS at FL 290 near LAMEN. The captain reported to Shanghai Control immediately, but the controller responded that there was no indication on his radar screen and there had not been any flight advisory. The captain then instructed the crew to turn left and found the conflicting traffic closing to the flight path and a TCAS warning was initiated. The crew then immediately turns right for avoidance, disengage the autopilot and descended to a lower altitude. The crew reported to the controller about the conflict after the conflict had been cleared.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/055.mp3",
-      "audioTextZh": "523号航班机组在LAMEN附近以FL290飞行时，通过TCAS发现飞机正前方20海里处有一架位于FL294的航空器。机长立即向上海管制部门报告，但管制员回复称，他的雷达屏幕上没有显示，而且也没有收到任何飞行相关的告警信息。随后机长指示机组人员向左转向，结果发现有冲突的飞行器正接近他们的飞行路径，并且空中交通防撞系统发出了告警。机组人员随即立即向右转向以进行避让，断开了自动驾驶仪，并下降到了较低的高度。在冲突解除后，机组人员向管制员报告了这起冲突事件。"
+      "audioTextZh": "523航班的机组人员，在FL294，他们在TCAS上发现飞机正前方20英里处有航空器冲突，该航空器在LAMEN附近的FL290上。机长立即向上海管制报告，但管制员回应称，他的雷达屏幕上没有显示任何迹象，也没有任何飞行警告。机长随后指示机组人员左转，发现冲突交通接近航线，并发出TCAS警告。机组人员随即右转避让，解除自动驾驶并下降到较低的高度。在冲突解除后，机组人员向管制员报告了冲突。",
+      "studyTier": 2,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/ac99a7c723effcbf7d85.mp3"
     },
     {
       "id": "story-koala-056",
@@ -404,13 +411,6 @@
       "audioTextZh": "2003年9月28日，美国联合航空公司552号航班，一架DC-9-82型飞机，在从纽约市起飞爬升过程中遭遇了发动机空中起火的情况。在返回起飞机场的途中，前起落架无法放下，空中交通管制部门（ATC）指示机组人员进行复飞，在此期间，机组人员使用紧急程序放下了前起落架。机组人员实施了紧急着陆，机上2名机组人员、3名空乘人员以及138名乘客在跑道上撤离了飞机。没有人员受伤的报告，但这架飞机因火灾受到了严重损坏。美国国家运输安全委员会认定，这起事故的可能原因是美国航空公司的维修人员采用了不恰当的发动机手动启动程序，这导致了随后的左发动机起火。"
     },
     {
-      "id": "story-koala-058",
-      "taskTitle": "飞行ICAO-基础题库-58",
-      "audioText": "On March 22, 2008, China Southern 303, a Boeing 757-200, lost a left upper wing trailing edge panel during cruise flight at FL270. Initially, ATC received a pilot report that the flight crew had experienced \"light chop \"at the time. The flight was en route from Greenyard Airport to Blueyard Airport. The broken panel struck the window of passenger row 19ABC and cracked only the outer portion of the window. Pressurization was not lost. The flight crew continued on to Blueyard. Upon approach to Blueyard, ATC instructed the flight crew to expedite for separation. The flight crew informed ATC that they could not increase their airspeed due to possible airframe damage. The flight landed safely. There were 174 passengers and 6 crew members on board with no reported injuries",
-      "audio": "/question-bank-assets/audio/storytelling/koala/058.mp3",
-      "audioTextZh": "2008年3月22日，中国南方航空公司303航班，一架波音757-200型飞机，在270飞行高度层（FL270）进行巡航飞行时，左翼上缘后缘的一块面板脱落。起初，空中交通管制（ATC）收到飞行员报告称，当时机组人员经历了“轻微颠簸”。该航班当时正从格林亚德机场飞往布卢亚德机场。脱落的面板撞击了客舱第19排A、B、C座的窗户，仅使窗户的外层出现了裂纹。飞机没有出现失压情况。机组人员继续飞往布卢亚德机场。在接近布卢亚德机场时，空中交通管制指示机组人员加速以保持间隔。机组人员告知空中交通管制，由于可能存在机体结构损伤，他们无法提高飞行速度。该航班最终安全着陆。机上载有174名乘客和6名机组人员，无人员受伤报告。"
-    },
-    {
       "id": "story-koala-059",
       "taskTitle": "飞行ICAO-基础题库-59",
       "audioText": "On February 17, 2005, an Airbus 320 operated by United Airline, collided with an ERJ 145, operated by US Airways during taxi in the runup area of taxiway J at the north end of runway 19. The right aileron of the ERJ 145 was substantially damaged; the left winglet of the Airbus 320 had minor damage. There were no injuries. The pilot of the Airbus 320 reported that he was positioned to the right of the ERJ 145. ATC cleared them for departure, which required them to taxi past the ERJ 145. The captain stated that he checked the proximity of the ERJ 145, and it looked like he could clear it and then felt the impact. The captain notified ATC of the collision. Airport fire crews responded, but there was no fuel leak or fire. The crew of the ERJ 145 reported that they were stationary with the parking brake applied while awaiting ATC clearance",
@@ -423,13 +423,6 @@
       "audioText": "Prior to initiating the first ILS approach to runway 10R, the pilot of Japan air 223 was advised by the tower controller that the runway visual range (RVR) was 600 feet, followed by being given a landing clearance. The pilot declared a missed approach two minutes later and was given radar vectors for a second ILS approach. After turning inbound on the localizer, the pilot was advised the runway visual range and then cleared to land. When the tower controller observed the airplane turning to the south of the runway on her radar display, she issued missed approach instructions. There was no further reply from the pilot. The airplane impacted the top of an 85-foot tall tree, and then continued to collide on the ground. The published missed approach procedure instructed the pilot to climb to 900 feet, then right turn to intercept the 160 degree radial of the VORTAC. It appears the pilot likely misinterpreted the missed approach instructions by making the right hand turn prior to initiating a climb to900 feet, which resulted in the subsequent impact with the tree.",
       "audio": "/question-bank-assets/audio/storytelling/koala/060.mp3",
       "audioTextZh": "在日本航空223号航班的飞行员开始对10R跑道进行首次仪表着陆系统（ILS）进近之前，塔台管制员告知他跑道视程（RVR）为600英尺，随后给予了他着陆许可。两分钟后，该飞行员宣布复飞，之后管制员通过雷达引导其进行第二次仪表着陆系统进近。在转向沿航向信标台向台飞行后，飞行员被告知了跑道视程，然后得到了着陆许可。当塔台管制员在她的雷达显示屏上观察到飞机转向跑道南侧时，她发出了复飞指令。此后飞行员没有再作回应。飞机撞上了一棵85英尺高的树的顶部，接着继续在地面上发生碰撞。公布的复飞程序指示飞行员爬升至900英尺，然后右转以截获甚高频全向信标台和测距仪（VORTAC）160度方位线。看起来飞行员很可能误解了复飞指令，在爬升至900英尺之前就进行了右转，这导致了随后与树木的碰撞。"
-    },
-    {
-      "id": "story-koala-061",
-      "taskTitle": "飞行ICAO-基础题库-61",
-      "audioText": "Prior to initiating the first ILS approach to runway 10R, the pilot of Japan air 223 was advised by the tower controller that the runway visual range (RVR) was 600 feet, followed by being given a landing clearance. The pilot declared a missed approach two minutes later and was given radar vectors for a second ILS approach. After turning inbound on the localizer, the pilot was advised the runway visual range and then cleared to land. When the tower controller observed the airplane turning to the south of the runway on her radar display, she issued missed approach instructions. There was no further reply from the pilot. The airplane impacted the top of an 85-foot tall tree, and then continued to collide on the ground. The published missed approach procedure instructed the pilot to climb to 900 feet, then right turn to intercept the 160 degree radial of the VORTAC. It appears the pilot likely misinterpreted the missed approach instructions by making the right hand turn prior to initiating a climb to900 feet, which resulted in the subsequent impact with the tree.",
-      "audio": "/question-bank-assets/audio/storytelling/koala/061.mp3",
-      "audioTextZh": "在日本航空223航班的飞行员开始对10R跑道进行首次仪表着陆系统（ILS）进近之前，塔台管制员告知他跑道视程（RVR）为600英尺，随后给予了他着陆许可。两分钟后，这名飞行员宣布复飞，之后获得了雷达引导，以进行第二次仪表着陆系统进近。在转向沿航向信标台向台飞行后，飞行员被告知了跑道视程，随后得到了着陆许可。当塔台管制员在她的雷达显示屏上看到飞机转向跑道南侧时，她发出了复飞指令。此后飞行员没有再做回应。飞机撞上了一棵85英尺高的树的树顶，接着继续在地面上发生碰撞。已公布的复飞程序指示飞行员爬升至900英尺，然后右转以截获甚高频全向信标台和测距仪（VORTAC）的160度方位线。看来，飞行员很可能误解了复飞指令，在爬升至900英尺之前就进行了右转，从而导致了随后与那棵树的碰撞。"
     },
     {
       "id": "story-koala-062",
@@ -719,123 +712,11 @@
       "audioTextZh": "目视进近是空中交通管制（ATC）对处于仪表飞行规则（IFR）飞行计划中的飞机的一种许可，允许其以目视方式飞往机场，甚至直接着陆。它并非一种仪表进近程序，且不存在复飞航段。即使一架飞机正按引导进行仪表进近，只要飞行员随后报告已看到机场或跑道，管制员也可以发起、或者飞行员可以请求进行目视进近。在批准一架飞机进行目视进近之前，管制员应确保机场的天气状况符合目视飞行规则（VFR），并且他们需要解决与所有其他飞机之间可能存在的冲突。飞行员在任何时候都必须能够看到机场或前方的飞机。这种进近方式必须得到相应空中交通管制机构的批准并处于其管控之下。机场所报告的天气状况必须是：云底高度达到或高于1000英尺，能见度为3英里或更远。一架无法完成目视进近的飞机应按照任何“复飞”情况来处理，并且必须为其提供适当的间隔。"
     },
     {
-      "id": "story-wing-046",
-      "taskTitle": "飞行ICAO-基础题库-103",
-      "audioText": "An aircraft was ready for taxi and it was cleared to taxi to the departure runway holding point. It was also approved to cross an inner and outer taxiway en route, so the pilot released the parking brake. When the aircraft started to move, the pilot saw a B747 on his left, and the B747 went faster than him. The controller immediately instructed the pilot to hold short and give way to the B747 but the pilot only paid attention to the B747 on his left, so he didn't follow the instruction and continued to move to the threshold. The aircraft stopped when the First Officer warned \"stop!\" and the pilot applied the brakes at once. When a pilot made errors, the First Officer played important role. Without the First Officer, their aircraft would have probably collided with another aircraft.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/046.mp3",
-      "audioTextZh": "一架飞机在准备滑行，并且得到滑行到等待点的许可。滑行路线允许穿过内侧和外侧滑行道，所以飞行员松开了刹车。飞机开始移动后，飞行员看到左侧有一架波音747，这架波音747的速度更快。管制员立刻指挥飞机等待给波音747让路，但飞行员只注意到左侧的波音747，所以他并没有听到指令，而是继续向入口移动。副驾驶发出警告说：\"停下！\"于是飞行员立刻进行刹车。飞行员出现错误时，副驾驶的作用很重要。如果不是副驾驶，他们的飞机很可能与另一架飞机相撞。"
-    },
-    {
-      "id": "story-wing-047",
-      "taskTitle": "飞行ICAO-基础题库-104",
-      "audioText": "A flight flew from Beijing to Shanghai. During the flight, the aircraft requested radar vectors to Shanghai Approach for losing some altitude. The inbound course was 157° and altitude was 3000 feet. The controller gave the instruction, \"Fly heading 130°, intercept LOC Runway 16\", but after following the instruction, TCAS showed several targets. Then the ATC gave another instruction, \"Do not cross LOC course, for separation\". The pilot responded, \"Wilco.\" When they captured the LOC course, they reported to ATC, but ATC said, \"I told you, do not capture the LOC course.\" Both pilots were not sure about the ATC's meaning but they continued to approach and landed safely. After the flight, the flight crew discussed about the ATC instruction, and they thought the instruction could be understood differently. It was a fortune that they landed safely, so the ATC must use standard words to give clear instructions when they were working.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/047.mp3",
-      "audioTextZh": "一架飞机从北京飞往上海。途中，飞机向上海进近申请雷达引导下降高度。向台航道157°,高度3000英尺。管制员给出指令：\"航向130°,切入跑道16航道。\"但完成指令后，TCAS显示几个活动目标。然后ATC给出另一指令：\"不要穿过航道，保持间隔。\"飞行员回复：\"照办。\"飞机截获航道时，飞行员向ATC报告，但ATC说：\"我说的是，不要截获航道。\"两位飞行员无法确定ATC的意图，但他们继续进近并安全着陆。飞行结束后，机组对ATC的指令进行讨论，他们认为指令可以有不同的理解方式。幸运的是飞机能够安全着陆，所以ATC在工作时必须使用标准用语来给出指令。"
-    },
-    {
-      "id": "story-wing-048",
-      "taskTitle": "飞行ICAO-基础题库-105",
-      "audioText": "At 1:30 pm local time, the crew members checked in for a long distance flight, and the aircraft took off after 3:30 pm. Another 2 hours later, the operation asked the aircraft to return back to the airport of departure because of technical fault, so the captain had to tell passengers about what was going on via PA. After landing, the flight crew had worked for about 8 hours, and their work should be taken over under the circumstances, but the operation told them that they had to change to operate another shorter and delayed flight. It was already eight o' clock after the aircraft landed. Three of the crew decided not to operate the flight and I supported their opinion. Two replacement crew members arrived at the aircraft and they still needed to operate their new flight. At about ten o'clock, everything was ready for departure. The crew members hadn't had any formal meal since then.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/048.mp3",
-      "audioTextZh": "当地时间下午1:30，机组成员到机场报到，为一次长途飞行做准备，飞机在下午3:30之后起飞。约2小时后，由于技术故障，运行控制部门要求飞机返回出发机场，机长只得通过客舱广播向乘客说明情况。飞机着陆时，机组已经工作约8小时，按当时情况本应由其他机组接替，但运行控制部门却通知他们，必须改为执行另一个航程较短但已经延误的航班。飞机落地时已是晚上8点。3名机组成员决定不再执行该航班，我支持他们的决定。两名替换机组成员随后抵达飞机，但原机组仍需执行他们新分配的航班。到晚上10点左右，一切离场准备就绪。自报到以来，机组成员一直没有吃过一顿正式的饭。"
-    },
-    {
-      "id": "story-wing-049",
-      "taskTitle": "飞行ICAO-基础题库-106",
-      "audioText": "In 2005, direct charter flight between Chinese mainland and Taiwan was opened. Departure and destination airports included Beijing, Guangzhou, Shanghai and Taipei. It was the first ever non-stop, round-trip charter flight across the Taiwan Straits in 56 years. It was also the first time since 1949 that a mainland jetliner flew for Taiwan on normal commercial flight. The first mainland aircraft to take off was CCA1087 which departed from the Beijing Capital Airport at 8:00 am on Saturday. All the 88 passengers on board were Taiwan business people and their families. During the Spring Festival, they went back home for traditional family reunion. The first mainland aircraft to land was CSZ3097. It only took 90 minutes for all the 242 passengers on board to fly from Guangzhou to Taipei. After nearly 4 hours of non-stop flight, a charter plane of Taiwan-based China Airlines landed in Beijing. The flight time was much shorter than the same trip in the past. Previous flight would take about 10 hours, and passengers had to transit in Hong Kong or Macao. The direct charter flight will provide convenience to people on the mainland and Taiwan.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/049.mp3",
-      "audioTextZh": "2005年，中国大陆与台湾之间开通了直航包机。出发和到达机场包括北京、广州、上海和台北。这是56年来两岸首次开通不经停往返包机，也是自1949年以来，大陆喷气式客机首次执行飞往台湾的正常商业航班。最先从大陆起飞的是国航CCA1087航班，飞机于星期六上午8:00从北京首都机场起飞。机上88名乘客全部是台湾商务人士及其家属，他们在春节期间返乡与家人团聚。最先抵达台湾的是南航CSZ3097航班。机上242名乘客从广州飞往台北，全程仅用90分钟。经过近4小时不经停飞行，一架台湾中华航空公司的包机在北京着陆。与过去相同行程相比，飞行时间大幅缩短；以往需要约10小时，乘客还必须在香港或澳门中转。直航包机将为大陆和台湾民众往来提供便利。"
-    },
-    {
-      "id": "story-wing-050",
-      "taskTitle": "飞行ICAO-基础题库-107",
-      "audioText": "The breakup of China Airlines Flight 611, a Boeing 747-200, has drawn international attention because it comes at a time of increasing concern over how long older jets can remain airworthy. Some research has suggested that metal fatigue may be a particular problem in planes that are used regularly in very warm, humid places like Taipei and Hong Kong. But Boeing maintains that with proper maintenance, aircraft aging should not be a problem. The flight data recorder shows that the plane began gaining altitude at a significantly faster rate in the 27 seconds before the plane broke apart, although the extra gain in altitude was well within the plane's design limits. The plane was supposed to be leveling off then as it approached its cruising altitude of 35, 000 feet. According to the examination of the wreckage, investigators analyzed that there's no evidence of an explosion or pilot error.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/050.mp3",
-      "audioTextZh": "中华航空611号航班是一架波音747-200，其空中解体事件引起国际社会关注，因为人们正越来越担忧老旧喷气式飞机能够保持适航状态多长时间。一些研究认为，在台北、香港等炎热潮湿地区频繁运行的飞机尤其容易出现金属疲劳问题。但波音公司坚持认为，只要维护得当，飞机老化不应成为问题。飞行数据记录器显示，在飞机解体前27秒内，飞机的爬升率明显增大，不过增加的高度仍完全处于飞机的设计限制范围内。当时飞机接近35,000英尺巡航高度，本应正在改平。根据对残骸的检查，调查人员认为没有证据显示发生过爆炸，也没有证据表明飞行员操作失误。"
-    },
-    {
-      "id": "story-wing-051",
-      "taskTitle": "飞行ICAO-基础题库-108",
-      "audioText": "One day, an accident happened because an aircraft was guided improperly by a marshaller when parking. The marshaller first guided the aircraft to a gate. When the aircraft was near the stop line, the marshaller gave a premature crossed wands signal which means stopping taxiing, so the aircraft was stopped abruptly. The pilot set the parking brake and released the seatbelt sign. Unexpectedly, the marshaller showed the separated wands again and stopped them a little forward of the point. He did not give a clear signal, and the sudden stop caused fatigue and a medical emergency of 2 passengers. When the marshaller was asked about the signal, he said he did not give the signal. Anyway, it was not a good guidance but the final position of the aircraft was proper. Luckily there were no injuries on board.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/051.mp3",
-      "audioTextZh": "一天，一架飞机在停靠机位时因信号员引导不当而发生事件。信号员先引导飞机滑向机位。飞机接近停止线时，信号员过早给出指挥棒交叉信号，表示停止滑行，飞机因此突然停下。飞行员设置停留刹车并关闭安全带指示灯。出乎意料的是，信号员随后又给出指挥棒分开信号，让飞机继续向前移动一点后才再次停下。信号员的指令不清晰，飞机突然停止导致两名乘客身体不适，其中出现医疗紧急情况。被问及相关信号时，信号员否认自己发出过该信号。无论如何，这次引导并不规范，不过飞机最终停靠位置正确。所幸机上没有人员受伤。"
-    },
-    {
-      "id": "story-wing-052",
-      "taskTitle": "飞行ICAO-基础题库-109",
-      "audioText": "When a B747 was climbing out, its No.1 engine failed. The failure caused the aircraft to yaw the heading about 20 degrees from the original. The Primary Engine Display showed that the thrust was zero, the engine indications were all red, and the temperature was exceeding 680℃.The aircraft had autopilot disconnection, then it suddenly yawed and the heading deviated 10 degrees. The pilot immediately leveled off the aircraft so that he could check the engine. Then he confirmed that No.1 engine was failed. The EGT temperature was still high when all proper procedures were done. So the pilot pulled out the engine fire lever to secure the engine and completed the checklist. Because of the landing weight requirements, the aircraft had to dump fuel before landing. Then the pilot requested radar vector to the fuel dumping area and started dumping fuel at 8000 feet. During the 35 minutes of dumping, the controller asked other aircraft to avoid the dumping area. At last, they made an auto landing then taxied to the gate safely.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/052.mp3",
-      "audioTextZh": "一架B747在上升，此时1号发动机失效。故障导致飞机从原航线偏航20度。主发动机显示器显示推力为零，发动机故障显示亮起，温度超过680℃。飞机的自动驾驶断开，然后飞机突然偏航10度。飞行员立刻平飞来检查发动机，然后飞行员确定1号发动机已失效。所有程序全部完成后，EGT温度仍然很高，所以飞行员拉出发动机灭火手柄来保护发动机，并完成检查单。由于着陆重量限制，飞机着陆前必须放油。飞行员请求雷达引导到放油区，然后在8000英尺高开始放油。放油持续了35分钟，这期间管制员指挥其它飞机避开放油区。最后，飞机自动着陆并安全滑到停机位。"
-    },
-    {
-      "id": "story-wing-053",
-      "taskTitle": "飞行ICAO-基础题库-110",
-      "audioText": "A B737 was cleared to taxi to holding point of runway 29 while the pilot saw the landing lights of A320 on landing rollout at the opposite end of the runway. A320 had landed on runway 11 and a conflict was nearly to happen. In order to exit the runway quickly, the pilot of B737 turned 180 degrees. At the same time, tower called and gave him instruction to vacate the runway. The B737 almost collided with A320 but there were nothing wrong with the two aircraft. The cause of this possible accident was that the two operations were conducted in both directions on runway 11/29. A320 was landing on runway 11 while B737 was holding short of runway 29 and waiting for ATC clearance at the same time. Then the tower called them and instructed them to fly SH-01 departure and climb 7000 feet when airborne, but they considered it as a clearance, so they began to taxi onto the runway. At that time, the tower and ground were combined. The pilot had called the tower twice without receiving any response, so he was not sure whether the aircraft had landed.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/053.mp3",
-      "audioTextZh": "一架波音737获准滑行至29号跑道等待点。此时飞行员看到一架空客A320在跑道另一端亮着着陆灯，正在着陆滑跑；该A320是在11号跑道着陆，两机险些发生冲突。为了尽快退出跑道，波音737飞行员将飞机转向180度。与此同时，塔台呼叫并指令其脱离跑道。波音737与空客A320险些相撞，但两架飞机均未受损。这起险情的原因，是11/29号跑道同时进行相反方向运行：空客A320在11号跑道着陆，而波音737在29号跑道外等待管制许可。随后塔台呼叫波音737，向其发布SH-01离场程序以及离地后爬升至7,000英尺的指令，但机组把这段指令误认为进入跑道的许可，因此开始滑入跑道。当时塔台和地面管制席位合并运行。此前飞行员曾两次呼叫塔台但都没有收到回应，因此无法确定那架飞机是否已经着陆。"
-    },
-    {
-      "id": "story-wing-054",
-      "taskTitle": "飞行ICAO-基础题库-111",
-      "audioText": "The ATC cleared an aircraft to take off, but shortly after take-off, two of the flight attendants smelled something burning. They immediately informed the purser while found that the captain had already contacted the Tower and requested airport assistance. Some passengers felt panic when they saw the smoke in the cabin. Soon captain told passengers about the situation via PA.A few minutes later, dense smoke spread all over the cabin and some passengers suffered from smoke inhalation. At the same time, the flight attendants consulted their emergency checklist and tried to keep the passengers in order. The aircraft finally returned to the departure airport. Fire trucks arrived and ambulances were ready to meet them at the apron. Fortunately, all the passengers were safely evacuated and got effective first aid. After inspection, the cause of the accident was clear. It was an electrical fire in the cockpit.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/054.mp3",
-      "audioTextZh": "一架飞机从ATC处得到起飞许可，但在起飞后不久，两名乘务员闻到烧焦的味道，他们立刻通知了乘务长，同时发现机长已经联系塔台并请求机场援助。一些乘客看到客舱有烟开始感到恐慌。很快，机长通过广播将情况告知乘客。几分钟后，客舱内布满浓烟，有些乘客吸入了烟尘。此时，乘务员完成紧急检查单并尽力维持乘客的秩序。飞机最终返回出发机场，消防车和救护车在机坪等待飞机。幸运的是，乘客们全部被安全撤离并得到急救。经检查，事故原因是由于驾驶舱发生电气火灾。"
-    },
-    {
-      "id": "story-wing-055",
-      "taskTitle": "飞行ICAO-基础题库-112",
-      "audioText": "In 1986, a little girl named Crystal Grant living in Memphis, Tennessee got a liver disease and needed a liver transplant. Her family got information that a liver source became available but she must fly to Houston, Texas, she would be able to take the medical treatment. Before departure, an accident happened that the plane blew a couple of tires and ran off the runway into a fence while taking off. At the same time, a Coca-Cola corporate jet had just arrived at the airport carrying their CEO, and the pilot who saw the accident heard the experience of Crystal. Then the pilot briefed the CEO about the story. After visiting Crystal, the CEO decided to take her to Houston by his corporate jet. Meanwhile, the liver which Crystal needed was in San Diego, California, but the flight to transport the liver got failed. The CEO asked the pilot if they could fly to San Diego to pick up the liver first, but found that they would not have enough time for the transplant. Then the CEO contacted the governor of California and explained the situation. Finally, the governor dispatched an F-18 fighter jet to safely transport the liver container to Houston. Everything ran smoothly and the little girl got a successful transplant.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/055.mp3",
-      "audioTextZh": "1986年，家住田纳西州孟菲斯的小女孩Crystal Grant患有肝病，需要接受肝脏移植。家人得知已有可用肝源，但她必须飞往得克萨斯州休斯顿才能接受治疗。出发前，她原本要乘坐的飞机在起飞时爆了数个轮胎，冲出跑道并撞上围栏。与此同时，一架搭载可口可乐公司首席执行官的公务机刚刚抵达机场。公务机飞行员目睹了事故并听说Crystal的经历，随后向首席执行官讲述此事。首席执行官探望Crystal后，决定用自己的公务机送她前往休斯顿。Crystal需要的肝脏位于加利福尼亚州圣迭戈，但原计划运输肝脏的航班未能成行。首席执行官询问飞行员能否先飞往圣迭戈取肝脏，却发现这样将赶不上移植手术。首席执行官随后联系加利福尼亚州州长并说明情况。最终，州长派出一架F-18战斗机，将装有肝脏的容器安全运至休斯顿。整个过程进展顺利，小女孩成功接受了移植手术。"
-    },
-    {
-      "id": "story-wing-056",
-      "taskTitle": "飞行ICAO-基础题库-113",
-      "audioText": "A man was on a flight from Seattle to San Francisco, but along the way, the plane stopped unexpectedly in Sacramento. The flight attendant explained the situation and told passengers that they could get off the aircraft for a walk within 50 minutes before the plane re-boarded. Passengers got off the plane in succession except one person. When the man walked by the only person on board he could tell the person was a blind man. Because the man was wearing sunglasses and a seeing eye dog was lying quietly underneath the seat in front of him. The blind man had flown this flight frequently because the pilot could call him by name. The pilot asked, \"Keith, we' re in Sacramento for almost an hour. Would you like to get off and stretch your legs?\" The blind man said no but he asked the pilot if he could take his dog for a walk. What the pilot did not know was, all the people in the gate area came to a complete standstill when they saw him, because the pilot got off the plane with a seeing eye dog and a pair of sunglasses on. It caused a panic between passengers that they thought the pilot was a blind man. They not only tried to change planes, but also wanted to change airlines! It took time for the pilot and flight attendants to explain to passengers and calm them down. Later the aircraft took off again.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/056.mp3",
-      "audioTextZh": "一位男士乘坐飞机从西雅图飞往旧金山，途中飞机突然在萨克拉门托降落。乘务员向乘客解释了情况，并告诉他们可以在起飞前下飞机活动50分钟。乘客们依次下飞机，但有一位乘客没走。当男士经过这位乘客时，他注意到这位乘客是盲人。因为他戴着墨镜，一只导盲犬安静地躺在他前方的座位下。这位盲人肯定经常乘坐这趟航班，因为飞行员能够直接叫出他的名字。飞行员问他：\"Keith，我们将在萨克拉门托停留一小时，你想下飞机活动一下吗？\"这位盲人拒绝了，但他问飞行员是否可以带他的导盲犬散个步。但飞行员不知道的是，门口的乘客在看到他时全都停下了，因为他在下飞机时戴着墨镜并牵着一只导盲犬。这引发了乘客们的恐慌，他们以为飞行员是个盲人。乘客们不仅想更换航班，而且还想更换航空公司！飞行员和乘务员花了一段时间向乘客解释情况并让大家冷静下来，之后飞机再次起飞了。"
-    },
-    {
-      "id": "story-wing-057",
-      "taskTitle": "飞行ICAO-基础题库-114",
-      "audioText": "On a flight, a middle-aged, well-off white South African Lady was not satisfied with her seat for she found herself sitting next to a black man. She called the flight attendant over and asked to change to another seat. The attendant wanted to know the reason, which made the woman more irritable. \"Can't you see? You' ve sat me next to a kaffir. I can't possibly sit next to this disgusting human. Find me another seat!\" The flight attendant found it hard to deal with because the flight was very full, but she told the woman that she would go and check to see if there was any seat available in club or first class. A few minutes later the attendant returned with good news. Economy and club are both full, but there were one seat in first class. When the attendant delivered the news, the lady cannot help but looked at the people around her with a smug and self-satisfied grin. Then the attendant continued, \"We don't make this kind of upgrade as usual, however, I just got special permission from the captain and he felt that it was outrageous for our passenger to be forced to sit next to such an obnoxious person. \"She then turned to the black man sitting next to the woman and said, \"So if you'd like to get your things, sir, I have your seat ready for you. \" The surrounding passengers all stood and gave a standing ovation, the black guy walks up to the front of the plane.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/057.mp3",
-      "audioTextZh": "一次飞行中，有位来自南非、富有的中年白人女士对自己的座位不满意，因为她发现自己的座位在一位黑人男士旁边，她向乘务员要求换座位。乘务员询问换座位的原因，这让她更加烦躁：“你看不到吗？你们让我坐在黑人旁边，我不能坐在这么恶心的人旁边，给我换个座位！”乘务员很难解决这个问题，因为飞机几乎客满，但她还是告诉女士她会查询公务舱或头等舱是否有空位。几分钟后，乘务员带回了好消息。经济舱和公务舱全部客满，但头等舱还有一个座位。乘务员说到这里时，那位女士禁不住自鸣得意地笑着看向周围的人。乘务员接着说到：“这种情况下通常不会给乘客升舱，然而机长刚才有特别许可，他不能接受我们的乘客要被迫坐在讨厌的人身边。”然后她对女士身边的乘客说：“所以如果您愿意收拾行李，我们已为您准备好座位。”周围的乘客全部起立鼓掌，黑人乘客换到了飞机前部的座位。"
-    },
-    {
-      "id": "story-wing-058",
-      "taskTitle": "飞行ICAO-基础题库-115",
-      "audioText": "An aircraft broke due to some unexplained problems of the propeller. The pilot tried every method to repair but only to get more confused. So he had to call an experienced engineer to find out the problem. The engineer searched the engine carefully. It took a long time for the engineer to finish the checking procedure, at last he only knocked the engine at a place then the engine was repaired well. The engineer charged the pilot for 5000 dollars, but the pilot was not willing to pay for it since he thought that it was too expensive for just a knock. The engineer was upset about the pilot's words for he didn't understand the value of engineers' work. He said, \"It is inexpensive for a knock. A knock only values for 5 dollars, but knowing the correct place to knock values 4995 dollars. \"",
-      "audio": "/question-bank-assets/audio/storytelling/wing/058.mp3",
-      "audioTextZh": "由于螺旋桨的问题飞机损坏，飞行员尝试用各种方法修理，但却只让自己更困惑，所以他不得不叫一位有经验的工程师来解决问题。工程师仔细地检查发动机，检查程序花费很长时间，最后工程师在发动机某处敲了敲，然后发动机就修好了。工程师向飞行员收取5000美金的费用，但飞行员不愿意付，他认为敲一下飞机就收取这些费用太贵了。工程师对此很失望，因为这说明飞行员不懂得工程师工作的价值。工程师说：\"修理费并不贵，敲一次只需5美金，但知道敲一次的正确位置价值4995美金。\""
-    },
-    {
-      "id": "story-wing-059",
-      "taskTitle": "飞行ICAO-基础题库-116",
-      "audioText": "A worker in the airport just finished his work, while he was walking along the apron he found a female pilot was struggling with a huge package. The package was stuck, half of the package was in the plane and another half was out. The worker was a very kind and warmhearted man, so he tried to help the female pilot. He went into the plane and tried his best to push the package, but the package did not move and nothing happened. Later the worker and the pilot decided to push and pull at the same time. They tried so hard over and over again and both got exhausted, but they still couldn't move the package. The worker felt hopeless and he said it was impossible to get the package out of the plane. Then he heard the pilot shrieking, \"Oh, no! I was trying to stuff it in!\"",
-      "audio": "/question-bank-assets/audio/storytelling/wing/059.mp3",
-      "audioTextZh": "一位机场工人刚结束工作，他在停机坪看到一位女飞行员正在费力处理一个大包裹。包裹被卡住，一半在飞机内一半在飞机外。这位工人很热心，所以他想帮助这个女飞行员。他走到机舱内并尽力将包裹向外推，但是包裹根本没有挪动。之后，工人和飞行员决定一个人推的同时另一个人拉。他们一次次努力，两个人都很累，但仍然没有挪动包裹。工人感到很绝望，他说包裹可能没办法从飞机里拿出来了，然后他听到了飞行员的大叫：\"不！我是想将包裹放进去！\""
-    },
-    {
-      "id": "story-wing-060",
-      "taskTitle": "飞行ICAO-基础题库-117",
-      "audioText": "Lately I was on a VFR flight. We were passing within Aerodrome Traffic Zone under the control of Local Approach, visibility was good, and there was not too much traffic on the frequency. The controller requested a position report by asking if we were over an Island, the feature cannot be found on the half million chart and I was not familiar with it. So I looked for it and asked for clarification. During the period a potential Airprox developed. Fortunately the pilot noted it and avoided it by an evasive maneuver. The pilot and I were both annoyed by the controller for using an unrecognizable local feature which caused confusion and distraction for us. We were squawking 7000 Mode C, so our position should be known. If not, or if there were too much traffic on screen, the controller should have asked for a specific squawk. Controllers should know that non-local pilots only navigate according to charted features. To avoid accidents, local knowledge should be taken seriously.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/060.mp3",
-      "audioTextZh": "最近在一次目视飞行时，我们在当地进近的指挥下通过机场活动区域，能见度很好，频率里也没有很多飞机。管制员要我们报位置报，询问我们是否飞过某个岛，我在地形图上看不到这个岛，我对这里的地形也并不熟悉，所以我试图寻找这个地形并要求管制员进行说明。在这期间，飞机险些与其它飞机相撞。幸运的是，飞行员通过规避机动避免了事故。飞行员和我都很恼火，由于管制员在指挥时使用无法找到的当地地形，导致我们很迷惑并为此分神。我们的应答机是C模式，编码7000，所以管制员应该知道飞机的位置。如果管制员不知道，或屏幕上有太多活动，管制员应向我们要求特定的编码。管制员要了解，非当地的飞行员只能根据图表上的地形导航。为避免事故发生，要谨慎使用当地知识进行指挥。"
-    },
-    {
       "id": "story-wing-061",
       "taskTitle": "飞行ICAO-基础题库-118",
       "audioText": "The flight was flying to UK, and before landing, we were asked to hold at FL150 for approximately 30 minutes delay due to the weather. The ATC first instructed us to hold at a level around FL100 and the next clearance The situation was embarrassing. I had to apologize on the radio telephone and ATC responded, \"No problem\", with updated heading and further descent. However, that airport was not the place to be at the wrong level and heading on a busy, rough Sunday night! In the days following, by giving the incident much thought, I found the major contributing factor of my mistake. We were not supposed to hear what we thought we should hear, thus confusing heading and cleared level. Instead, we should pay attention to the ATC instruction.",
       "audio": "/question-bank-assets/audio/storytelling/wing/061.mp3",
       "audioTextZh": "飞机正飞往英国。着陆前，由于天气，我们要在高度层150等待30分钟左右。ATC首先指挥我们在高度层100等待，我们认为下个指令应该是下降到更低高度，当我们接近高度层80时，ATC询问我们是否转向航向080。这种情况让人很为难，我不得不在通话时道歉，ATC回复：“没关系”，然后告知我修正后的航向和下降高度。然而，在繁忙的周日晚，错误的高度层和航向会让飞机无法到达机场！接下来的几天中，我对这件事思考了很多，并找到出现错误的主要原因。我们不应假设自己会收到什么指令，从而会弄混航向和高度。相反，我们应关注ATC给出的指令。"
-    },
-    {
-      "id": "story-wing-062",
-      "taskTitle": "飞行ICAO-基础题库-119",
-      "audioText": "John was the captain of a flight from Shanghai to Hong Kong. On July 20th, he and his first officer, Ted, controlled the airplane to take off from Shanghai airport. When the plane reached 1200 feet, a windshear warning occurred with the warning sound echoed in the cockpit. Under those circumstances, John took over the control immediately and called for the checklist. The result showed the left PFD indicated normally and only a malfunction indication appeared on the right seat PFD. The flight crew came to an agreement it was a false warning, so they continued to climb. The plane safely landed on Hong Kong airport 3 hours later. The crew asked a ground maintenance personnel to fix the problem. Unfortunately, on the way back, the same trouble appeared again.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/062.mp3",
-      "audioTextZh": "John是一架上海飞往香港航班的机长。7月20日，他和副驾驶Ted操纵飞机从上海机场起飞。飞机爬升到1,200英尺时出现风切变警告，警报声在驾驶舱内响起。John立即接管操纵并要求执行检查单。检查结果显示，左座主飞行显示器指示正常，只有右座主飞行显示器出现故障指示。机组一致判断这是一次虚假警告，因此继续爬升。3小时后，飞机在香港机场安全着陆。机组请地面维修人员排除故障。遗憾的是，在返程途中同样的故障再次出现。"
     },
     {
       "id": "story-wing-063",
@@ -859,32 +740,12 @@
       "audioTextZh": "一架飞机从纽约飞往达拉斯。登机时，一对老夫妇发现一位女士坐在他们的头等舱座位上。乘务员想检查她的登机牌，但她用蹩脚的英语回复：\"不会英语。\"乘务员知道这是借口，因为她之前在用英语和另一位乘客交谈。之后，乘务员想劝说女士出示登机牌，但是她完全不理。最后，乘务员不得不用法语和她交流，她非常惊讶于是放手把票给了乘务员。检查完登机牌后，乘务员带领女士走到她位于飞机后部的座位，然后乘务员回到了头等舱。整个飞行期间，这位女士一直在用法语抱怨并要求那位乘务员为她提供服务。乘务员微笑着满足她的要求，但始终用英语回复她的法语。最终飞机在达拉斯安全降落，这位女士是最后下飞机的乘客们之一，她想知道乘务员的名字和证件号去投诉。意外的是，乘务员微笑着告诉她，如果她能不再假装不懂英语就好了。这位女士皱着眉走下了飞机。"
     },
     {
-      "id": "story-wing-066",
-      "taskTitle": "飞行ICAO-基础题库-123",
-      "audioText": "A ridiculous accident happened when a flight was coming back from Poland in 1998. The plane had just landed at the airport when a guy on board claimed that he had a bomb. All the passengers started to panic. The pilot immediately contacted ATC and asked for emergency services. Because of the man's allegation the plane couldn't get to the gate, so the plane had to board on a bus. All the luggage on the plane was removed and sniffed by a dog. The flight crew and passengers waited and watched for3 hours without air conditioning and food or anything. After searching, it turned out that there was no bomb on board. The guy was just drunk, and he went mad because they wouldn't give him another beer.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/066.mp3",
-      "audioTextZh": "1998年，一架从波兰返航的飞机上发生了一起荒唐事件。飞机刚在机场着陆，一名机上乘客就声称自己携带炸弹，所有乘客顿时陷入恐慌。飞行员立即联系空中交通管制并请求应急服务。由于这名男子声称机上有炸弹，飞机无法驶向登机口，乘客只得转乘摆渡车。机上所有行李都被卸下，并由嗅探犬检查。机组和乘客在没有空调、食物或其他保障的情况下等待并观看排查过程长达3小时。检查结果显示机上根本没有炸弹。那名男子只是喝醉了，因为机组不肯再给他一杯啤酒而失控闹事。"
-    },
-    {
-      "id": "story-wing-067",
-      "taskTitle": "飞行ICAO-基础题库-124",
-      "audioText": "Before the flight, a man used his miles to upgrade to first class. He thought this would make his flight much more comfortable than usual, but what happened later proved he was wrong. He sat next to an old lady whose family members were in economy class. Soon after take-off, when the man was about to begin eating, the old lady suddenly and explosively vomited. The flight attendant rushed to her to deal with the situation, but the old lady did not turn better. Another half an hour later, when the man was stepping around her to use the restroom, she vomited again and some of her vomits even got on the man' s clothes. After cleaning himself out in the restroom, the man came back and found his seat was crowded with the lady's family members. Because of the crowd, he was asked to simply stand and wait during 40 minutes of turbulence, and during that time the sick lady vomited yet again. That whole area smelled terrible. Passengers couldn't just stand while the plane landed, so the man had to exchange his seat with the lady's niece whose seat was in economy class. The worst is, when the man asked if he could get his miles back, he was told \"NO\". The man was not satisfied and he thought this unforgettable flying experience was a total nightmare.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/067.mp3",
-      "audioTextZh": "飞行前，一位男士用里程升到头等舱。他原以为这次飞行会比以前更舒适，但后来发生的事证明了他的选择是错的。他的座位在一位老妇人旁边，老妇人的家人全都在经济舱。起飞后不久，当他准备用餐时，老妇人猛地呕吐起来。乘务员很快来处理完这个情况，但老妇人的情况并没有转好。半小时后，这位男士从老妇人身边经过去洗手间，这时老妇人再次呕吐起来，有些呕吐物甚至弄到了他的衣服上。在洗手间清理完，他发现自己的座位附近挤满了老妇人的家人。由于人太多，飞机颠簸的40分钟里他只能站着等待，在这期间老妇人再次呕吐起来，整个区域弥漫着可怕的味道。飞机着陆时乘客必须坐下，所以他只能和在经济舱的老妇人的侄女换座位。更糟糕的是，他升舱的里程无法返还。他为此感到很不满意，他认为这次经历简直是个噩梦。"
-    },
-    {
-      "id": "story-wing-068",
-      "taskTitle": "飞行ICAO-基础题库-125",
-      "audioText": "During a flight from Rhode Island to Washington, an accident happened and brought bad influence on the airline. The aircraft took off from the airport smoothly and the flight was incident-free en route. When the plane was approaching to the airport, the pilot was tired so he missed the controller' s instruction. Then the controller gave the instruction again. This time, the pilot became clear but he applied the brakes suddenly. Because of his sudden operation, the back door of the plane blew off and passengers could see the runway. Fortunately, the cabin had already lost the pressure so no one flew out and all the passengers stayed in their own seats safely. However, the pilot was grounded because of his misoperation.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/068.mp3",
-      "audioTextZh": "罗德岛飞往华盛顿的航班上发生一起事故，这起事故给航空公司带来不好的影响。飞机从机场顺利起飞，途中也没有事故发生。飞机进近时，飞行员因为疲劳漏听管制员指令。之后管制员再次给出指令，这时飞行员清醒了并突然刹车。因为突然的操作，飞机的后门被吸走，乘客们能直接看到跑道。幸运的是客舱已降压，没有人因此吸出飞机，乘客们都安全待在座位上。然而，飞行员由于这次失误被停飞。"
-    },
-    {
       "id": "story-wing-069",
-      "taskTitle": "飞行ICAO-基础题库-126",
-      "audioText": "The flight was from Seattle to Vancouver. After checking the radar, the pilot requested push back and start up. The airplane was approved to push back and start up but few seconds later the controller found the left engine of the plane got fire. So he gave the pilot a warning immediately and asked if fire service was needed. The pilot shut off the engine immediately to prevent the fire from spreading. \"The emergency equipment is standing by. \"the controller told the pilot. Several minutes later, passengers were all safely evacuated. There was no one injured but passengers had to change to another airline.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/069.mp3",
-      "audioTextZh": "该航班从西雅图飞往温哥华。检查雷达后，飞行员请求推出和启动发动机。飞机获准推出开车，但几秒钟后，管制员发现飞机左发起火，立即向飞行员发出警告，并询问是否需要消防服务。飞行员立即关闭发动机，防止火势蔓延。管制员告知飞行员：“应急设备正在待命。”几分钟后，所有乘客安全撤离，无人受伤，但乘客不得不改乘另一家航空公司的航班。"
+      "taskTitle": "故事复述-24",
+      "audioText": "The flight was from Seattle to Vancouver. After checking the radar, the pilot requested push back and start up. The airplane was approved to push back and start up but few seconds later the controller found the left engine of the plane got fire. So he gave the pilot a warning immediately and asked if fire service was needed. The pilot shut off the engine immediately to prevent the fire from spreading. “The emergency equipment is standing by.” the controller told the pilot. Several minutes later, passengers were all safely evacuated. There was no one injured but passengers had to change to another airline.",
+      "audioTextZh": "一架飞机从西雅图飞往温哥华。在检查完雷达后，飞行员请求推出开车。飞机得到推出开车许可几秒后，管制员发现飞机的左发动机起火。他立刻警告飞行员并询问飞机是否需要消防服务。飞行员立刻关闭发动机，防止火情扩大。“紧急设备已就位。”管制员告诉飞行员。几分钟后，乘客全部被安全撤离。没有人员受伤，但乘客们必须要改乘另一航班。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/38339f0289fd245904c1.mp3"
     },
     {
       "id": "story-wing-070",
@@ -894,144 +755,20 @@
       "audioTextZh": "2001年的一个大雾天，新加坡航空126号航班获准滑行至19右跑道。几分钟后，一架塞斯纳飞机的飞行员请求启动发动机，地面管制员发布开车许可，随后要求126号航班联系塔台管制员。从那时起，两架飞机分别使用不同的无线电频率。塞斯纳飞机开始滑行，但飞行员错误地向右转，进入Echo 6滑行道。地面管制员没有发现这一错误，仍许可塞斯纳继续滑行。与此同时，塔台管制员许可126号航班起飞。126号航班在跑道上加速滑跑时，塞斯纳飞机越过跑道等待标志，进入正在使用的19右跑道。两架飞机不幸相撞，机上124人全部遇难。"
     },
     {
-      "id": "story-wing-071",
-      "taskTitle": "飞行ICAO-基础题库-128",
-      "audioText": "A strong snowstorm hit Chicago International airport in an afternoon. An aircraft from United Airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4, 500 feet below the landing minimums for the ILS approach to Runway 13 Center. The controller advised the crew to hold in the air, waiting for the weather to get better, or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So the crew decided to circle to land on runway 31 Center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/071.mp3",
-      "audioTextZh": "某日下午，一场暴风雪袭击了芝加哥国际机场。一架美联航飞机准备在机场着陆，但由于能见度极低，飞机不得不在机场上空盘旋。跑道视程为4500英尺，低于13中跑道的盲降进近标准。管制员建议机组空中等待天气好转，或备降到有较长跑道的另一机场着陆，但是这两种选择均会额外增加公司成本，并给乘客带来不便，于是考虑再三，机组决定在有着较低着陆标准的31中跑道盘旋着陆。很遗憾，强顺风使飞机滑出跑道，撞上了一辆停着的卡车。"
-    },
-    {
-      "id": "story-wing-072",
-      "taskTitle": "飞行ICAO-基础题库-129",
-      "audioText": "An air traffic controller issued a take-off clearance to the Flight 386 for runway 30R. At the same time, an airport operations officer was operating a vehicle on that runway. The controller had previously issued a clearance to the operations officer to conduct bird dispersal activities on the runway. The operations officer was monitoring his radio and heard Flight 386's take-off clearance. He told the controller that he would vacate the runway. At the same time, the flight crew had observed the vehicle on the runway and did not commence the takeoff. The controller cancelled the take-off clearance until the runway was clear. The investigation found that the controller didn't keep eyes on the runway because he was concentrating on heavy traffic. Another possible reason was that the controller was experiencing some degree of fatigue at the time.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/072.mp3",
-      "audioTextZh": "一管制员发布起飞许可给386航班，允许该飞机从跑道30右起飞，与此同时，一名机场工作人员正在30右跑道上工作。因为之前管制员让该工作人员在跑道上驱鸟。工作人员在当前频率守听，听到386航班要起飞的许可指令，立刻告诉管制员他会马上离开跑道。同时，机组人员看到跑道上的车辆，没有执行起飞操作。管制员取消了起飞许可，直到跑道被空出来。后据调查，管制员因为指挥飞机过多，没有留意该跑道，导致了这次事件。还有一个可能的原因是管制员此时过于疲惫导致此次事件。"
-    },
-    {
-      "id": "story-wing-073",
-      "taskTitle": "飞行ICAO-基础题库-130",
-      "audioText": "Getting lost as an airplane flying is a potentially dangerous situation, especially when low on fuel. If a pilot becomes lost, there are some good common sense procedures to follow. If a town or city cannot be seen, the first thing to do is climb. Being mindful of traffic and weather conditions. An increase in altitude increases radio and navigation reception range, and also increases radar coverage. If flying near a town or city, it might be possible to read the name of the town on a water tower. If the airplane has a navigation radio, such as a VOR or ADF receiver, it can be possible to determine position by plotting an azimuth from two or more navigational facilities. If GPS is installed or a pilot has a portable aviation GPS on board, it can be used to determine the position and location of the nearest airport.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/073.mp3",
-      "audioTextZh": "飞机在飞行中迷航是一种潜在的危险情况，特别是在燃料不足的情况下。如果飞行员迷航，可以遵循一些良好的常识程序。如果无法目视某个城镇或城市，首要的就是爬升。留意其他航空器及天气情况。海拔高度的增加使得无线电和导航的接收范围扩大，也增加了雷达覆盖范围。如果在一个城镇或城市附近飞行，可能会在水塔上看到城镇的名字。如果飞机配备无线电导航，如VOR或ADF接收器，它可以通过两个或更多的导航设施绘制方位角来确定位置。如果安装了全球定位系统(GPS),或者飞行员在飞机上配备了便携式航空全球定位系统，就可以确定最近机场的方位和位置。"
-    },
-    {
       "id": "story-wing-074",
-      "taskTitle": "飞行ICAO-基础题库-131",
-      "audioText": "It was a foggy day in 2002, SIA 626 was cleared to taxi to runway 36R.A few minutes later, the Cessna pilot requested engine start. The ground controller gave start-up clearance. Then he requested Flight 626 to contact the Tower controller. From then on, those two aircraft were on two different radio frequencies. The Cessna started to taxi, but the pilot made a mistake of taxiing to right and entered taxiway R6. But the ground controller did not realize it and cleared the Cessna to continue its taxi. At the same time, the Tower controller cleared Flight 626 for takeoff. When the flight 626 was rolling on the runway, the Cessna crossed the runway holding sign and entered the active runway 36R. Unfortunately, the two aircraft collided, all 114 people on board died.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/074.mp3",
-      "audioTextZh": "2002年的一个大雾天，新加坡航空626号航班获准滑行至36右跑道。几分钟后，一架塞斯纳飞机的飞行员请求启动发动机，地面管制员发布开车许可，随后要求626号航班联系塔台管制员。从那时起，两架飞机分别使用不同的无线电频率。塞斯纳飞机开始滑行，但飞行员错误地向右转并进入R6滑行道。地面管制员没有发现这一错误，仍许可塞斯纳继续滑行。与此同时，塔台管制员许可626号航班起飞。626号航班在跑道上起飞滑跑时，塞斯纳飞机越过跑道等待标志，进入正在使用的36右跑道。两架飞机不幸相撞，机上114人全部遇难。"
-    },
-    {
-      "id": "story-wing-075",
-      "taskTitle": "飞行ICAO-基础题库-132",
-      "audioText": "Flight 145 nearly collided with Flight 101 at the intersection of runway 16 and runway 22. There were no injuries and no damage to either aircraft. But it was regarded as the most serious incident of this kind. That day, the tower controller cleared Flight 145 to land on runway 22. But he forgot the arriving aircraft when he cleared Flight 101 to take off from the intersecting runway 16. After Flight 145 touched down, the ground radar system alerted. The controller tried to instruct Flight 145 to stop short of runway 16. However, the aircraft just managed to stop in the middle of the intersection. It was impossible for Flight 101 to abort takeoff. So Flight 101 made an early liftoff and flew over Flight 145. The two aircraft missed colliding by only 50 feet.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/075.mp3",
-      "audioTextZh": "145号航班在16号跑道与22号跑道交叉处险些与101号航班相撞。两架飞机均无人受伤，机体也没有损坏，但该事件被认为是此类事件中最严重的一次。当天，塔台管制员许可145号航班在22号跑道着陆；但在许可101号航班从与其相交的16号跑道起飞时，管制员忘记了这架正在进场的飞机。145号航班接地后，地面雷达系统发出警报。管制员试图指令145号航班在16号跑道外等待，但飞机最终只能停在跑道交叉口中央。此时101号航班已无法中断起飞，只能提前离地，从145号航班上方飞过。两架飞机最近时仅相差50英尺，险些相撞。"
-    },
-    {
-      "id": "story-wing-076",
-      "taskTitle": "飞行ICAO-基础题库-133",
-      "audioText": "When an American Flight 815 was approaching the terminal area of its destination, the flight crew contacted the Approach Control and requested ILS approach for runway 12. The tailwind conditions were reported on runway 12 at that time, so the controller advised the pilot to make a circling approach for runway 30. But the flight crew insisted to land on runway 12 and the controller cleared them to land on that runway. The runway was wet and the braking action was not good. During landing roll, the aircraft skidded to the right side of the runway and went through the airport fences. The fuselage was broken into three pieces, the right engine and right main gear were separated from the aircraft. No one was killed, but many passengers suffered from serious injuries.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/076.mp3",
-      "audioTextZh": "当一架美国航空815航班接近目的地终端区时，机组人员联系进近管制中心，要求在12跑道盲降进近。当时12跑道报告有顺风情况，所以管制员建议飞行员在30跑道盘旋进近。但机组人员坚持在12跑道降落，管制员允许他们在该跑道降落。跑道湿滑，刹车性能也不好。在着陆滑跑过程中，飞机侧滑到跑道右侧，穿过机场围栏。机身断成三段，右发和右主起落架与机身分离。没有人死亡，但许多乘客受了重伤。"
-    },
-    {
-      "id": "story-wing-077",
-      "taskTitle": "飞行ICAO-基础题库-134",
-      "audioText": "One day, Flight 456, a B737 carrying 152 passengers and 9 crew members, was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, flight 456 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested that the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 456 by radar to land at runway 34R. Unfortunately, the pilot couldn't stabilize the aircraft on the localizers due to wind shear. Flight 456 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/077.mp3",
-      "audioTextZh": "一天，一架载有152名乘客和9名机组人员的B737执行456航班在东京国际机场降落。当从东京区调转到东京进近时，因为航空器拥堵，456航班被指示前往DA等待。在等待期间，机组人员被告知当地天气正在恶化，管制员建议飞行员备降，但飞行员报告说他们的燃料不够备降。所以管制员雷达引导456航班降落在34右跑道。不幸的是，由于风切变，飞行员无法在航道上建立稳定进近。456航班执行了复飞，执行了二次进近。后来，由于燃油短缺，飞机在山坡上坠毁。飞机被撞成碎片，机上人员全部遇难。"
+      "taskTitle": "故事复述-29",
+      "audioText": "It was a foggy day in 2002, SIA 626 was cleared to taxi to runway 36R. A few minutes later, the Cessna pilot requested engine start. The ground controller gave start-up clearance. Then he requested Flight 626 to contact the Tower controller. From then on, those two aircraft were on two different radio frequencies. The Cessna started to taxi, but the pilot made a mistake of taxiing to right and entered taxiway R6. But the ground controller did not realize it and cleared the Cessna to continue its taxi. At the same time, the Tower controller cleared Flight 626 for takeoff. When the flight 626 was rolling on the runway, the Cessna crossed the runway holding sign and entered the active runway 36R. Unfortunately, the two aircraft collided, all 114 people on board died.",
+      "audioTextZh": "2002年的一个大雾天，SIA 626获准滑行到跑道36右。几分钟后，塞斯纳飞行员要求启动发动机。地面管制员给予启动许可。然后他要求626航班与塔台管制员联系。从那时起，这两架飞机的无线电频率就不一样了。塞斯纳飞机开始滑行，但飞行员错误地向右滑行，进入了R6滑行道。但地面管制人员没有意识到这一点，并允许塞斯纳继续滑行。与此同时，塔台管制员批准626航班起飞。当626航班在跑道上起飞滑跑时，塞斯纳飞机穿过跑道等待标志，进入36R活动跑道。不幸的是，两架飞机相撞，机上114人全部遇难。",
+      "studyTier": 0,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/34b8c7c5adf0622e9ac0.mp3"
     },
     {
       "id": "story-wing-078",
-      "taskTitle": "飞行ICAO-基础题库-135",
+      "taskTitle": "故事复述-48",
       "audioText": "When SIA128 was approaching the airspace of Chicago center area control, the controller instructed the flight crew to change radio frequency for the next sector on 132.1. The first officer acknowledged the frequency change and read back the correct frequency. However, the flight crew did not contact ATC on the new frequency. Because the controllers in the receiving units were preparing for a shift change, they didn't know that flight 128 did not establish radio contact, 30 minutes later, the controller at the next sector identified SIA128 on the radar. Although they attempted to establish contact with the airplane by calling the company dispatcher, they got no response from the pilots. The controller finally regained contact with SIA128 on the emergency frequency 50 minutes later.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/078.mp3",
-      "audioTextZh": "当新航128接近芝加哥中心区域管制时，管制员指示机组人员切换频率到下一扇区132.1。副驾驶确认了切换的频率并进行了复诵。然而，机组人员并没有在新的频率中与管制员建立联系。由于管制员正处于交接班时间，他们不知道128次航班没有建立无线电联系，30分钟后，下一扇区的管制员在雷达上发现了新航128。尽管他们试图通过联系公司签派与飞机建立联系，但飞行员仍没有回应。50分钟后，在紧急频率上管制员终于恢复了与新航128的联系。"
-    },
-    {
-      "id": "story-wing-079",
-      "taskTitle": "飞行ICAO-基础题库-136",
-      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757's lights came on and it began to move. Realizing the risk of runway incursion, he canceled A320's takeoff clearance immediately.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/079.mp3",
-      "audioTextZh": "着陆灯信号可以为管制员提供有用的信息。有一天，一架B757飞机在着陆后经滑行道A9从36左跑道脱离。然后它又被允许可以穿36右跑道。但它在36左和36右跑道之间的A9滑行道上停止了滑行。塔台管制员试图联系飞行员，但没有得到回复。他看到飞机着陆灯也熄灭了，这使他确认B757出现了无线电故障，没有收到通过36右跑道的许可指令。因此他指挥另外一架A320在36右跑道上起飞。突然，管制员注意到B757的灯又亮了，它开始移动。意识到有发生跑道入侵的危险，管制员立即取消了A320的起飞许可。"
-    },
-    {
-      "id": "story-wing-080",
-      "taskTitle": "飞行ICAO-基础题库-137",
-      "audioText": "A strong snowstorm hit Chicago International airport in an afternoon. An aircraft from United Airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4, 500 feet below the landing minimums for the ILS approach to Runway 13 Center. The controller advised the crew to hold in the air, waiting for the weather to get better, or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So the crew decided to circle to land on runway 31 Center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/080.mp3",
-      "audioTextZh": "某日下午，一场暴风雪袭击了芝加哥国际机场。一架美联航飞机准备在机场着陆，但由于能见度极低，飞机不得不在机场上空盘旋。跑道视程为4500英尺，低于13中跑道的盲降进近标准。管制员建议机组空中等待天气好转，或备降到有较长跑道的另一机场着陆，但是这两种选择均会额外增加公司成本，并给乘客带来不便，于是考虑再三，机组决定在有着较低着陆标准的31中跑道盘旋着陆。很遗憾，强顺风使飞机滑出跑道，撞上了一辆停着的卡车。"
-    },
-    {
-      "id": "story-wing-081",
-      "taskTitle": "飞行ICAO-基础题库-138",
-      "audioText": "When SIA188 was approaching the airspace of Chicago Center Area Control, the controller instructed the flight crew to change radio frequency for the next section on 132.1. The first officer acknowledged the frequency change and read back the correct frequency. However, the flight crew did not contact ATC on the new frequency. Because the controllers in the receiving units were preparing for a shift change, they didn't know that flight 188 did not establish radio contact, 30 minutes later, the controller at the next sector identified SIA188 on the radar. Although they attempted to establish contact with the airplane by calling the company dispatcher, they got no response from the pilots. The controller finally regained contact with SIA188 on the emergency frequency 50 minutes later.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/081.mp3",
-      "audioTextZh": "当新加坡航空公司188号航班（SIA188）接近芝加哥中心区域管制的空域时，管制员指示机组人员将下一段航程的无线电频率切换至132.1。副驾驶确认了频率变更，并正确复诵了该频率。然而，机组人员并未在新频率上与空中交通管制（ATC）取得联系。由于接收单位的管制员当时正在准备交接班，他们并不知道188号航班没有建立无线电联系。30分钟后，下一个扇区的管制员在雷达上识别出了新加坡航空公司188号航班。尽管他们尝试通过呼叫该公司的调度员来与飞机建立联系，但没有得到飞行员的回应。最终，管制员在50分钟后通过应急频率重新与新加坡航空公司188号航班取得了联系。"
-    },
-    {
-      "id": "story-wing-082",
-      "taskTitle": "飞行ICAO-基础题库-139",
-      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757's lights came on and it began to move. Realizing the risk of runway incursion, he canceled A320's takeoff clearance immediately.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/082.mp3",
-      "audioTextZh": "着陆灯信号可以为管制员提供有用的信息。有一天，一架B757飞机在着陆后经滑行道A9从36左跑道脱离。然后它又被允许可以穿36右跑道。但它在36左和36右跑道之间的A9滑行道上停止了滑行。塔台管制员试图联系飞行员，但没有得到回复。他看到飞机着陆灯也熄灭了，这使他确认B757出现了无线电故障，没有收到通过36右跑道的许可指令。因此他指挥另外一架A320在36右跑道上起飞。突然，管制员注意到B757的灯又亮了，它开始移动。意识到有发生跑道入侵的危险，管制员立即取消了A320的起飞许可。"
-    },
-    {
-      "id": "story-wing-083",
-      "taskTitle": "飞行ICAO-基础题库-140",
-      "audioText": "It was a foggy day in 2002, SIA 686 was cleared to taxi to runway 36R. A few minutes later, the Cessna pilot requested engine start. The ground controller gave start-up clearance. Then he requested Flight 686 to contact the Tower controller. From then on, those two aircraft were on two different radio frequencies. The Cessna started to taxi, but the pilot made a mistake to taxi to right and entered taxiway R6. But the ground controller did not realize it and cleared the Cessna to continue its taxi. At the same time, the Tower controller cleared Flight 686 for takeoff. When the flight 686 was rolling on the runway, the Cessna crossed the runway holding sign and entered the active runway 36R. Unfortunately, the two aircraft collided, all 114 people on board died.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/083.mp3",
-      "audioTextZh": "2002年的一个雾天，新加坡航空公司686号航班获许滑行至36R跑道。几分钟后，一架塞斯纳飞机的飞行员请求启动发动机。地面管制员给予了启动许可。然后，他让686号航班联系塔台管制员。从那时起，这两架飞机就处于两个不同的无线电频率上。塞斯纳飞机开始滑行，但飞行员错误地向右滑行，进入了R6滑行道。然而，地面管制员并未意识到这一点，仍批准塞斯纳飞机继续滑行。与此同时，塔台管制员批准686号航班起飞。当686号航班在跑道上开始滑跑时，塞斯纳飞机越过了跑道等待标志，进入了正在使用的36R跑道。不幸的是，两架飞机相撞，机上114人全部遇难。"
-    },
-    {
-      "id": "story-wing-084",
-      "taskTitle": "飞行ICAO-基础题库-141",
-      "audioText": "Flight 345 nearly collided with Flight 101 at the intersection of runway 16 and runway 22. There were no injuries and no damage to either aircraft. But it was regarded as the most serious incident of this kind. That day, the tower controller cleared Flight 345 to land on runway 22. But he forgot the arriving aircraft when he cleared Flight 101 to take off from the intersecting runway 16. After Flight 345 touched down, the ground radar system alerted. The controller tried to instruct Flight 345 to stop short of runway 16. However, the aircraft managed to stop in the middle of the intersection. It was impossible for Flight 101 to abort takeoff. Flight 101 made an early liftoff and flew over Flight 345. The two aircraft missed colliding by only 50 feet.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/084.mp3",
-      "audioTextZh": "345航班和101航班在16号跑道与22号跑道的交叉处险些相撞。两架飞机均未出现人员伤亡情况，机体也都没有受损。但这起事件仍被视为此类事件中最为严重的一起。当天，塔台管制员批准345航班在22号跑道降落。然而，当他批准101航班从与之交叉的16号跑道起飞时，却忘记了正在进场降落的345航班。345航班触地降落之后，地面雷达系统发出了警报。管制员试图指示345航班在16号跑道前停下。然而，飞机最终在跑道交叉点的中央才停了下来。此时101航班已无法中止起飞程序，于是101航班提前离地升空，从345航班上方飞过。两架飞机仅差50英尺就相撞了。"
-    },
-    {
-      "id": "story-wing-085",
-      "taskTitle": "飞行ICAO-基础题库-142",
-      "audioText": "As American Flight 835 was approaching the terminal area of its destination, the flight crew contacted the Approach Control and requested ILS approach for runway 12. Tailwind conditions were reported on runway 12 at that time, so the controller advised the pilot to make a circling approach for runway 30. But the crew insisted to land on runway 12 and the controller cleared them to land on the runway 12. The runway was wet and braking action was not good. During landing roll, the aircraft skidded to the left of the runway and went through the airport fences. The fuselage was broken into three pieces, the right engine and right main gear were separated from the aircraft. No one was killed, but many passengers suffered from serious injuries.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/085.mp3",
-      "audioTextZh": "当美国835航班接近其目的地的终端区域时，飞行机组人员联系了进近管制部门，并请求使用仪表着陆系统（ILS）对12号跑道进行进近。当时报告显示12号跑道存在顺风情况，所以管制员建议飞行员对30号跑道进行盘旋进近。但机组人员坚持要在12号跑道降落，管制员便批准他们在12号跑道降落。跑道是湿的，制动效果不佳。在着陆滑跑过程中，飞机向跑道左侧打滑，并冲出了机场围栏。机身断成了三截，右发动机和右主起落架与飞机分离。所幸无人死亡，但许多乘客受了重伤。"
-    },
-    {
-      "id": "story-wing-086",
-      "taskTitle": "飞行ICAO-基础题库-143",
-      "audioText": "One day, Flight 123, a B737 carrying 152 passengers and 9 crew members, was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, flight 123 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested that the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 123 by radar to land at runway 34R. Unfortunately, the pilot couldn't stabilize the aircraft on the localizer due to wind shear. Flight 123 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/086.mp3",
-      "audioTextZh": "有一天，载有152名乘客和9名机组人员的波音737型123号航班正飞往东京国际机场准备降落。当该航班从东京区域管制移交给东京进近管制时，由于空中交通拥堵，123号航班接到指令前往DA点等待。在等待过程中，机组人员得知当地天气正在恶化，管制员建议飞行员备降其他机场，但飞行员报告称燃油不足以支撑他们飞抵备降机场。于是，管制员通过雷达引导123号航班在34R跑道降落。不幸的是，由于遭遇风切变，飞行员无法使飞机在仪表着陆系统的航向道上保持稳定。123号航班复飞并进行了第二次进近。后来，由于燃油短缺，飞机坠毁在一处山坡上。飞机解体，机上所有人员全部遇难。"
-    },
-    {
-      "id": "story-wing-087",
-      "taskTitle": "飞行ICAO-基础题库-144",
-      "audioText": "One day, Indonesia 205 took off from Jinan to Hangzhou. About one hour later, the aircraft was transferred to Hangzhou Approach. Hangzhou Approach required Indonesia 205 to slow down to 190 knots and later the controller asked the pilot to reduce speed to 160 knots. Three minutes later, Indonesia 205 passed the outer marker inbound. At that time, the controller issued a missed approach clearance because of separation. He instructed Indonesia 205 to make a right turn to a heading of 180 and climb to 900 m. But during the missed approach, the aircraft was out of control because of mechanical problem. The aircraft continued to descend with a high angle of attack. The aircraft impacted trees and buildings and part of the fuselage was damaged.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/087.mp3",
-      "audioTextZh": "某日，印尼205航班从济南起飞前往杭州。大约一小时后，该航班被移交给杭州进近管制。杭州进近管制要求印尼205航班将速度降至190节，随后管制员又要求飞行员将速度减至160节。三分钟后，印尼205航班在向台飞行时通过了远距指点标。当时，由于间隔问题，管制员发出了复飞指令。他指示印尼205航班右转至航向180度，并爬升至900米。但在复飞过程中，飞机因机械故障失去控制。飞机以大迎角持续下降，撞上了树木和建筑物，部分机身受损。"
-    },
-    {
-      "id": "story-wing-088",
-      "taskTitle": "飞行ICAO-基础题库-145",
-      "audioText": "One day, AFR188 crashed at Singapore Changi Airport during takeoff. The tower controller instructed the crew to takeoff on Runway 02L, but the crew lined up runway 02R and began their takeoff rolling. The aircraft overran the runway, and crashed into the fence of the airport. Crew members and 110 passengers were killed, and the co-pilot was badly injured. The plane was destroyed by the impact and caught on an intense fire. According to the investigation, there were three reasons leading to the accidents. First of all, the crew didn't use effective methods to verify their position at the airport. Secondly, the crew forgot to check whether they were on the correct runway or not. Finally, the crew members' idle chatting during the taxi resulted in the loss of situational awareness.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/088.mp3",
-      "audioTextZh": "有一天，法国航空公司188号航班（AFR188）在新加坡樟宜机场起飞时坠毁。塔台管制员指示机组人员在02L跑道起飞，但机组人员却在02R跑道排队并开始了起飞滑跑。飞机冲出跑道，撞上了机场的围栏。机组人员和110名乘客遇难，副驾驶受了重伤。飞机因撞击而损毁，并燃起了熊熊大火。根据调查，导致此次事故的原因有三个。首先，机组人员没有使用有效的方法来确认他们在机场的位置。其次，机组人员忘记检查他们是否在正确的跑道上。最后，机组人员在滑行过程中的闲聊导致他们对所处情况的认知缺失。"
-    },
-    {
-      "id": "story-wing-089",
-      "taskTitle": "飞行ICAO-基础题库-146",
-      "audioText": "One day, an A320 collided with a B737 during taxi. The right ailerons of B737 was severely damaged but A320 only had minor damage of its left wing. Luckily, there were no injuries. After receiving ATC taxi instruction, the A320 began to pass the B737 from the right side. The captain of A320 thought they had enough room to pass over the B737. But unfortunately Fortunately, the fuel leak didn't develop into fire. The crew of the Boeing aircraft complained that they just parked stationary with the parking brakes applied when they were hit.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/089.mp3",
-      "audioTextZh": "一天，一架空客A320在滑行过程中与一架波音737相撞。波音737的右副翼严重受损，空客A320的左翼仅受到轻微损伤。所幸无人受伤。收到空中交通管制的滑行指令后，空客A320开始从波音737右侧通过。空客A320机长认为两机之间有足够空间，可以越过波音737，但随后发生了碰撞。所幸燃油泄漏没有进一步引发火灾。波音737机组表示，发生碰撞时他们的飞机一直停在原地，且已设置停留刹车，却遭到空客A320撞击。"
-    },
-    {
-      "id": "story-wing-090",
-      "taskTitle": "飞行ICAO-基础题库-147",
-      "audioText": "A Sun Express Germany Boeing 737-800, performing flight XG-3208 from Burgas to Frankfurt, was cleared to climb to and maintain FL220. At the same time, a Go2Sky Boeing 737-800 performing flight 6D-6129 from Antalya to Bratislava was en route at FL240 did not want to change their flight level. ATC instructed XG-3208 to turn left onto a heading 270. The crew however, read back \"Climb FL270\", which was not picked up by ATC. The crew selected FL270 into their Selected Altitude, and this was duly transmitted by Mode-S to the controller's desk, where a disagree message appeared between cleared and assigned altitude. The aircraft began to climb, about 15 seconds later, the radar issued a short term conflict alert between XG-3208 and 6D-6129. Then ATC instructed XG-3208 to descend back to FL220 immediately, 4 seconds later the crew read that instruction back. And the aircraft already climbed through FL236. The separation reduced to 0 feet vertically and 2.6 nm horizontally and the aircraft continued to climb reaching FL250, and re-establishing vertical separation. ATC thus instructed XG-3208 to continue the climb to FL260.",
-      "audio": "/question-bank-assets/audio/storytelling/wing/090.mp3",
-      "audioTextZh": ".一架德国阳光快运航空公司（Sun Express Germany）的波音737-800型飞机，执飞从布尔加斯飞往法兰克福的XG-3208航班，获得许可爬升至并保持在220飞行高度层（FL220）。与此同时，一架Go2Sky航空公司的波音737-800型飞机执飞从安塔利亚飞往布拉迪斯拉发的6D-6129航班，正在240飞行高度层（FL240）航路上飞行，且不想改变其飞行高度层。空中交通管制（ATC）指令XG-3208航班左转至航向270度。然而，机组复诵的是“爬升至270飞行高度层（FL270）”，而空中交通管制并未注意到这一错误复诵。机组人员在其选定高度设置中选择了FL270，并且通过S模式适时地将这一信息传输到了管制员的操作台上，此时在许可高度和设定高度之间出现了不一致的提示信息。飞机开始爬升，大约15秒后，雷达发出了XG-3208航班和6D-6129航班之间的短期冲突警报。随后，空中交通管制指令XG-3208航班立即下降至FL220，4秒后机组复诵了该指令。而此时飞机已经爬升至236飞行高度层。两机的垂直间隔缩小至0英尺，水平间隔为2.6海里，并且这架飞机继续爬升，达到了250飞行高度层，随后重新建立了垂直间隔。因此，空中交通管制指令XG-3208航班继续爬升至260飞行高度层。"
+      "audioTextZh": "当新航128接近芝加哥中心区管制空域时，管制员指示机组人员将无线电频率调到下一个扇区132.1。副驾驶确认了频率的变化，并把正确的频率复诵了出来。然而，机组人员并没有在新的频率上联系到管制员。由于接收的人员正在准备换班，他们不知道128航班没有建立联系，30分钟后，下一个扇区的管制员在雷达上识别出了新航128。虽然他们试图通过呼叫公司调度员与飞机建立联系，但没有得到飞行员的回应。50分钟后，管制员终于通过紧急频率与新航128重新取得了联系。",
+      "studyTier": 2,
+      "audio": "/question-bank-assets/audio/storytelling/fzy/534138438abaab11b731.mp3"
     },
     {
       "id": "story-pepec-0001",
@@ -2013,5 +1750,6 @@
       "audioTextZh": "2026年6月29日，Jetblue的一架Airbus 321执行Jetblue 948航班，从Las Vegas飞往New York JFK（USA）。飞机正在保持3,000英尺进近JFK机场13L跑道时，机组报告称一架无人机撞击了飞机风挡上方。飞机继续进近并安全降落在13L跑道。FAA报告称：“JetBlue Airlines 948航班的飞行员报告称，6月29日星期一当地时间约07:15，飞机正在对John F. Kennedy International Airport实施最后进近时，在约3,000英尺高度撞到一架无人机。飞行后检查未发现飞机有任何损伤。FAA将对此展开调查。”约40分钟后，一架警用直升机告知塔台，他们在2,000英尺高度看到该无人机，并继续靠近查看。",
       "audio": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0173.mp3"
     }
-  ]
+  ],
+  "categoryId": "story-category-1"
 }

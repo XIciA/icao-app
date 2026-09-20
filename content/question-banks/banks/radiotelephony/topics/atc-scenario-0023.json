@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0023",
   "name": "AFR 332 驾驶舱浓烟",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉塔台，AFR 332，烟雾无法控制，申请到达后应急保障。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/410.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

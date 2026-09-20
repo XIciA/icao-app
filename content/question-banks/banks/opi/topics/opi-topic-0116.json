@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0116",
   "name": "重心",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "An excessively forward center of gravity makes the aircraft harder to rotate and may increase the takeoff distance. It can also increase fuel consumption in cruise, although it generally increases longitudinal stability.",
       "referenceTextZh": "重心过度靠前会使飞机更难抬前轮，并可能增加起飞距离。它还可能增加巡航燃油消耗，不过通常会提高纵向稳定性。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

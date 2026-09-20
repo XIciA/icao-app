@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0062",
   "name": "CCA 976 烟雾警报 烟雾难以忍受",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "左转航向 310，雷达引导目视进近跑道 22，CCA 976。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1080.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

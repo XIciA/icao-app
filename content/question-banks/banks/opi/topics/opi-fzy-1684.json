@@ -1,0 +1,323 @@
+{
+  "id": "opi-fzy-1684",
+  "name": "8.飞行中人的因素",
+  "declaredCardCount": 35,
+  "cards": [
+    {
+      "id": "opi-fzy-152012",
+      "taskTitle": "8.飞行中人的因素-1",
+      "audioText": "What do you know about CRM?",
+      "audioTextZh": "你对机组资源管理了解多少？",
+      "studyTier": 2,
+      "referenceText": "CRM stands for Crew Resource Management.\nIt is an essential part of any flight department’s training and a critical piece of knowledge in an airline pilot’s career.\nCRM teaches how to establish good communication and improve teamwork.\nIt can reduce human errors, improve flight safety.",
+      "referenceTextZh": "CRM指的是驾驶舱资源管理。\n它是任何飞行部门培训的重要组成部分，也是航空公司飞行员职业生涯中的重要知识。\nCRM教给我们如何建立良好的沟通和提高团队合作。\nCRM可以减少人为失误，提高飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152014",
+      "taskTitle": "8.飞行中人的因素-3",
+      "audioText": "Do you think human error is a major factor concerning flight safety?",
+      "audioTextZh": "你认为人为失误是影响飞行安全的主要因素吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I definitely think so.\nAs we all know, about 70% accidents were caused by human errors.",
+      "referenceTextZh": "是的，我确实这么认为。\n众所周知，大约70%的事故都是由于人为失误引起的。"
+    },
+    {
+      "id": "opi-fzy-152015",
+      "taskTitle": "8.飞行中人的因素-4",
+      "audioText": "How to reduce human errors to minimum in flying?",
+      "audioTextZh": "在飞行中，如何将人为失误降到最低？",
+      "studyTier": 1,
+      "referenceText": "There are many ways we can do to reduce human errors during flight.\nFor example, we should have good teamwork and focus on one's job.\nRead back correctly and confirm timely.\nHave enough rest between flights.",
+      "referenceTextZh": "我们有很多方法可以减少飞行过程中的人为失误。\n例如，我们应该有良好的团队合作，专注于自己的工作。\n正确复诵指令，及时确认。\n航班之间要有足够的休息。"
+    },
+    {
+      "id": "opi-fzy-152016",
+      "taskTitle": "8.飞行中人的因素-5",
+      "audioText": "Do you think good cooperation between captain and first officer would benefit flight safety?",
+      "audioTextZh": "你认为机长和副驾驶之间良好的合作可以提高飞行安全吗？",
+      "studyTier": 2,
+      "referenceText": "Yes, of course.\nPilots are responsible for flight safety.\nIf they don't have good cooperation, it can greatly endanger flight safety.\nWithout teamwork, there will be no safety.",
+      "referenceTextZh": "是的，当然是这样的。\n飞行员要对飞行安全负责。\n如果他们们不能很好地合作，就会极大地危及飞行安全。\n没有团队合作，就没有安全。"
+    },
+    {
+      "id": "opi-fzy-152017",
+      "taskTitle": "8.飞行中人的因素-6",
+      "audioText": "If something unhappy happened between a pilot and a flight attendant, what should you do as a captain?",
+      "audioTextZh": "如果飞行员和乘务员之间发生了不愉快的事情，作为机长，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "As a captain, I should always keep in mind safety comes first.\nDuring flying, we need leave unhappy things behind.\nAfter flight, we can work it out in the briefing room.",
+      "referenceTextZh": "作为一名机长，我应该时刻牢记安全第一。\n在飞行中，我们需要把不愉快的事情抛在脑后。\n飞行结束后，我们可以在讲评室解决。"
+    },
+    {
+      "id": "opi-fzy-152018",
+      "taskTitle": "8.飞行中人的因素-7",
+      "audioText": "If you are first officer and you have some disagreement with captain during flight, what should you do?",
+      "audioTextZh": "如果你是副驾，在飞行中你和机长出现意见不一致，你应该怎么做？",
+      "studyTier": 2,
+      "referenceText": "During flying, if we have some disagreement, we should follow SOP.\nIf there's anything wrong that may affect our flight safety, I will insist on my decision.",
+      "referenceTextZh": "在飞行中，如果我们出现意见不同，我们应该遵守标准操作程序。\n如果有影响到安全的错误情况，我会坚持我的决定。"
+    },
+    {
+      "id": "opi-fzy-152029",
+      "taskTitle": "8.飞行中人的因素-8",
+      "audioText": "How often do you have the medical check?",
+      "audioTextZh": "你多久进行一次体检？",
+      "studyTier": 1,
+      "referenceText": "I usually have a medical check once a year.",
+      "referenceTextZh": "我一般一年进行一次体检。"
+    },
+    {
+      "id": "opi-fzy-152030",
+      "taskTitle": "8.飞行中人的因素-9",
+      "audioText": "Do you think it is very important for pilot to stay healthy?",
+      "audioTextZh": "你认为飞行员保持健康重要吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, it is. Pilots need to be healthy to ensure flight safety.\nOtherwise, during flying, there may be medical problem, like incapacitation.",
+      "referenceTextZh": "是的。飞行员需要保持健康来确保飞行安全。\n否者，在飞行过程中，将会发生健康问题，比如：失能。"
+    },
+    {
+      "id": "opi-fzy-152031",
+      "taskTitle": "8.飞行中人的因素-10",
+      "audioText": "In your opinion, what is the best exercise for pilot to keep healthy?",
+      "audioTextZh": "在你看来，飞行员保持健康最好的运动方式是什么？",
+      "studyTier": 1,
+      "referenceText": "As far as I’m concerned, the best way for a pilot to keep healthy is swimming.",
+      "referenceTextZh": "在我看来，飞行员保持健康的最好方式是游泳。"
+    },
+    {
+      "id": "opi-fzy-152032",
+      "taskTitle": "8.飞行中人的因素-11",
+      "audioText": "How do you balance work and rest?",
+      "audioTextZh": "如何平衡工作和休息？",
+      "studyTier": 2,
+      "referenceText": "Well, before work, I must make sure I have taken enough rest.\nWhen at work, I should focus on my work.",
+      "referenceTextZh": "在工作前，我需要保险自己有足够的休息。\n在工作中，我应该关注于自己的工作。"
+    },
+    {
+      "id": "opi-fzy-152033",
+      "taskTitle": "8.飞行中人的因素-12",
+      "audioText": "What medical help can cabin crew provide to passengers?",
+      "audioTextZh": "机组可以为乘客提供哪些医疗帮助？",
+      "studyTier": 1,
+      "referenceText": "The cabin crew can assess the situation, look for symptoms, offer first aid and report to the cockpit.\nThe cabin crew can also provide first aid kit.",
+      "referenceTextZh": "机组成员可以评估情形，发现症状并汇报给驾驶舱。\n机组成员也可以提供急救包。"
+    },
+    {
+      "id": "opi-fzy-152034",
+      "taskTitle": "8.飞行中人的因素-13",
+      "audioText": "When you feel uncomfortable during flying, what would you do?",
+      "audioTextZh": "在飞行中当你感觉不舒服时，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "When this situation happens, I will tell my partner immediately, let him control the aircraft, contact ATC and request medical service.",
+      "referenceTextZh": "当这种情况发生时，我会立即告知我的同伴，联系管制，并申请医疗服务。"
+    },
+    {
+      "id": "opi-fzy-152035",
+      "taskTitle": "8.飞行中人的因素-14",
+      "audioText": "If one pilot becomes incapacitated, what would you do?",
+      "audioTextZh": "当一个飞行员失能时，你会怎么做？",
+      "studyTier": 2,
+      "referenceText": "When this situation happens, I will take over his job immediately.\nAnd then ask crew members to give him first aid and take care of him.\nAt the same time, we can make a PA to find if there is a doctor on board.\nWhen necessary, request landing as soon as possible and medical service.",
+      "referenceTextZh": "当这种情况发生时，我会立马接替他的工作。\n然后让乘务员对他进行急救并照顾他。\n如有需要，申请尽快着陆和医疗服务。"
+    },
+    {
+      "id": "opi-fzy-152036",
+      "taskTitle": "8.飞行中人的因素-15",
+      "audioText": "What may cause crew's incapacity?",
+      "audioTextZh": "什么可以导致机组失能？",
+      "studyTier": 1,
+      "referenceText": "There are many factors that can cause crew’s incapacity.\nFor example, medical problem like choke and heart attack.\nFood poisoning and cabin decompression.\nAnd the fatigue can also cause crew’s incapacity.",
+      "referenceTextZh": "有很多因素会导致机组失能。\n例如，像窒息、心脏病这样的健康问题。\n食物中毒和机舱失压。\n而且疲劳还会导致机组失能。"
+    },
+    {
+      "id": "opi-fzy-152037",
+      "taskTitle": "8.飞行中人的因素-16",
+      "audioText": "how to minimize the risks of incidents caused by crew incapacitation?",
+      "audioTextZh": "如何将机组失能风险降到最低？",
+      "studyTier": 1,
+      "referenceText": "There are many things we can do to avoid crew incapacitation.\nFirst, we should do more exercise to keep healthy.\nSecond, we should have regular medical check.\nThird, if there is depressurization, we should put on the oxygen masks.",
+      "referenceTextZh": "我们可以做很多事情避免机组失能。\n首先，我们可以做一些运动保持身体健康。\n第二，我们可以定期体检。\n第三，如果出现失压，我们应该戴上氧气面罩。"
+    },
+    {
+      "id": "opi-fzy-152038",
+      "taskTitle": "8.飞行中人的因素-17",
+      "audioText": "Does the captain share the same food with the co-pilot?",
+      "audioTextZh": "机长和副驾会吃一样的餐食吗？",
+      "studyTier": 1,
+      "referenceText": "No, they usually don’t eat same food.\nBecause according to regulations, they need to avoid food poisoning at the same time.",
+      "referenceTextZh": "不，他们不会吃一样的餐食。\n因为他们需要避免同时食物中毒。"
+    },
+    {
+      "id": "opi-fzy-152047",
+      "taskTitle": "8.飞行中人的因素-18",
+      "audioText": "If the ATC uses non-standard words in communicating with you, how should you respond?",
+      "audioTextZh": "如果管制员用不标准术语和你交流，你会怎么应对？",
+      "studyTier": 2,
+      "referenceText": "I will respond with standard words and ask the controller to use standard words.",
+      "referenceTextZh": "我会用标准术语回应，并要求管制员使用标准术语。"
+    },
+    {
+      "id": "opi-fzy-152989",
+      "taskTitle": "8.飞行中人的因素-19",
+      "audioText": "Do you think that the communication in the cockpit should be minimized in the critical phases?",
+      "audioTextZh": "你认为在关键阶段，应该减少驾驶舱中的交流吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I think so, because during critical phases, pilots should pay their attention to the control of the aircraft and make sure they are able to operate the aircraft correctly and respond to any emergency that may arise.",
+      "referenceTextZh": "是的，我这么认为，因为在关键阶段，飞行员应该专注于对飞机的操纵，并且保证他们能够正确操作飞机，及时应对可能出现的紧急情况。"
+    },
+    {
+      "id": "opi-fzy-152990",
+      "taskTitle": "8.飞行中人的因素-20",
+      "audioText": "If you work with a pilot who has limited experience, what should you do?",
+      "audioTextZh": "如果你和一位经验有限的飞行员一起共事，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If I work with a pilot who has limited experience, I will cooperate with him actively, because good team work is an important condition to ensure flight safety. In the non-critical stages, we will exchange our experiences.",
+      "referenceTextZh": "如果我和一位经验有限的飞行员一起共事，我们积极和他进行合作，因为良好的团队合作是保证飞行安全的重要条件。在非关键阶段，我们将交流经验。"
+    },
+    {
+      "id": "opi-fzy-153338",
+      "taskTitle": "8.飞行中人的因素-21",
+      "audioText": "What’s your opinion about cross-check in the cockpit?",
+      "audioTextZh": "你怎么看待驾驶舱里的交叉检查？",
+      "studyTier": 2,
+      "referenceText": "Cross check refers to the inspection and verification between crew members, equipment, and crew and air traffic control.\nHuman makes mistakes, and cross check can detect these mistakes in time. It is a way to strengthen the safety supervision of individuals and teams, and it can effectively ensure flight safety.",
+      "referenceTextZh": "检查检查指的是机组成员之间、设备之间、机组和管制之间的检查和证实。\n人都会犯错，交叉检查可以及时发现这些错误，是加强个人和团队安全监督的方法，能够有效保证飞行安全。"
+    },
+    {
+      "id": "opi-fzy-153347",
+      "taskTitle": "8.飞行中人的因素-22",
+      "audioText": "Did you ever have the training with flight attendants?",
+      "audioTextZh": "你们和乘务组一起训练过吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, we did, usually, we will have a joint training once a year.",
+      "referenceTextZh": "是的，我们有，通常来说，我们每年会有一次联合训练。"
+    },
+    {
+      "id": "opi-fzy-153349",
+      "taskTitle": "8.飞行中人的因素-23",
+      "audioText": "Why do pilots need the joint training with flight attendants?",
+      "audioTextZh": "飞行员为什么需要与乘务员进行联合训练？",
+      "studyTier": 1,
+      "referenceText": "Because flight crew and cabin crew work as a team during the flight, and good team work is the basis of the CRM. In some emergency situations, a good team work among flight crew and cabin crew plays a very important role in ensuring flight safety.",
+      "referenceTextZh": "因为在飞行中，机组和乘务组要像团队一样协作，良好的团队合作也是驾驶舱资源管理的基础。在一些紧急情况下，机组和乘务组之间的良好合作在保证飞行安全中，扮演着重要作用。"
+    },
+    {
+      "id": "opi-fzy-153350",
+      "taskTitle": "8.飞行中人的因素-24",
+      "audioText": "How do pilots and controllers cooperate with each other to improve flight safety?",
+      "audioTextZh": "飞行员如何与管制员进行协作来提高飞行安全？",
+      "studyTier": 1,
+      "referenceText": "I Think the cooperation between the controllers and pilots are very important. The medium of communication between controllers and pilots is radio, so both sides should follow the rules to enhance mutual trust. Pilots should use standard language to talk, and avoid occupying frequency for a long time to establish good work discipline.",
+      "referenceTextZh": "我认为飞行员和管制员之间的合作是非常重要的。管制员和飞行员之间的沟通媒介是无线电，因此，双方都应该遵守相关规定，增强相互信任。飞行员应该使用标准、规范的语言进行通话，切忌长时间占用频率，树立良好的工作纪律。"
+    },
+    {
+      "id": "opi-fzy-214917",
+      "taskTitle": "8.飞行中人的因素-25",
+      "audioText": "What do you know about the hazards attitudes?",
+      "audioTextZh": "你对危险的态度了解多少？",
+      "studyTier": 1,
+      "referenceText": "Yes, I know something about hazardous attitudes, for example, anti-authority, macho, resignation and so on. We must try our best to overcome these hazardous attitudes.",
+      "referenceTextZh": "是的，我知道一些危险的态度，例如，反权威，大男子主义，顺从等等。我们必须尽最大努力克服这些危险的态度。"
+    },
+    {
+      "id": "opi-fzy-214919",
+      "taskTitle": "8.飞行中人的因素-27",
+      "audioText": "How to avoid the hazards attitudes?",
+      "audioTextZh": "如何避免危险态度？",
+      "studyTier": 1,
+      "referenceText": "There are many effective ways to avoid hazardous attitudes, such as strengthening cooperation and communication between crews, cross-check and so on.",
+      "referenceTextZh": "有很多有效的方式可以避免危险态度，比如说，加强机组之间的合作和交流，交叉检查等。"
+    },
+    {
+      "id": "opi-fzy-224537",
+      "taskTitle": "8.飞行中人的因素-28",
+      "audioText": "What is the maximum flight duty time limit in your company?",
+      "audioTextZh": "在你们公司，最长的执勤时限是多久？",
+      "studyTier": 1,
+      "referenceText": "I’m current a student pilot, in my flight school, our flight time can not exceed 4 hours a day.",
+      "referenceTextZh": "我现在还是一名飞行学员，在我们航校，我们一天的飞行时间不能超过4个小时。"
+    },
+    {
+      "id": "opi-fzy-224157",
+      "taskTitle": "8.飞行中人的因素-29",
+      "audioText": "Have you ever encountered a particularly difficult captain or flight instructor to work with?",
+      "audioTextZh": "你是否曾遇到过一位特别难相处的机长或飞行教员呢？",
+      "studyTier": 1,
+      "referenceText": "I am currently a co-pilot for Air China. My captain has excellent flight skills and a friendly personality. We get along very well. If we really encounter a captain who is difficult to get along with, I think I should put aside my personal emotions and focus on the flight control. After all, flight safety is of the utmost importance.",
+      "referenceTextZh": "我现在是一名国航的副驾，我的机长飞行技术过硬，性格友善好，我们相处得很好。如果真的遇见比较难相处的机长，我认为我应当把个人情绪放一边，专注于飞行的操纵，毕竟，飞行安全是最重要的。"
+    },
+    {
+      "id": "opi-fzy-224538",
+      "taskTitle": "8.飞行中人的因素-30",
+      "audioText": "How can you extend your flight duty time?",
+      "audioTextZh": "你如何延长自己的执勤时间？",
+      "studyTier": 1,
+      "referenceText": "CAAC has clear restrictions on the duty time of pilots. We cannot extend our duty time limit at our own will.",
+      "referenceTextZh": "中国民航局对飞行员的执勤时间有明确的限制，我们无法随意延长我们的执勤时间限制。"
+    },
+    {
+      "id": "opi-fzy-224539",
+      "taskTitle": "8.飞行中人的因素-31",
+      "audioText": "Do you think being a pilots is stressful, and how do you usually deal with stress?",
+      "audioTextZh": "你觉得做为一名飞行员压力大吗？你都如何缓解压力？",
+      "studyTier": 2,
+      "referenceText": "To be honest, it’s a quite stressful job of being a pilot, after all, we’re flying in the air, not on the ground. Pilots should be responsible for the safety and security of the aircraft and all passengers. What’s more, we are required to pass many training and exam, like this ICAO test and recurrent training.",
+      "referenceTextZh": "老实说，飞行员的工作压力很大，毕竟我们是在空中飞行，而不是在地面上。飞行员应该对飞机和所有乘客的安全负责。更重要的是，我们需要通过很多培训和考试，比如这次ICAO考试和复训。"
+    },
+    {
+      "id": "opi-fzy-224540",
+      "taskTitle": "8.飞行中人的因素-32",
+      "audioText": "How do you usually mitigate fatigue during long haul flight?",
+      "audioTextZh": "在长航程中，你一般如何缓解疲劳？",
+      "studyTier": 1,
+      "referenceText": "First, before the long haul flight, we’ll have good rest and enough sleep. Second, we will have multiple sets of pilots, which means pilots can have rest in turn in the crew’ rest rooms. What’s more, we can engage auto-pilot if possible to reduce pilot’s workload.",
+      "referenceTextZh": "首先，在航程飞行之前，我们要好好休息，保证充足的睡眠。第二，我们将有多组飞行员，这意味着飞行员可以轮流在机组休息室休息。更重要的是，如果可能的话，我们可以接通自动驾驶，以减少飞行员的工作负荷。"
+    },
+    {
+      "id": "opi-fzy-224541",
+      "taskTitle": "8.飞行中人的因素-33",
+      "audioText": "How fatigue is managed during irregular operations, like long delay?",
+      "audioTextZh": "在非正常运行时，如何进行疲劳管理，比如出现长延误时？",
+      "studyTier": 1,
+      "referenceText": "I think, during irregular operations, the operation principle is not let fatigue affect safety. So I will report the fatigue conditions to the company's operation department in a timely manner, then we will try to rest in turn, and what’s more, we should strictly follow the regulations on the duty time limit, and never exceed the time limit. Last but not least, captain and first officer should have positive communication, and make decisions together.",
+      "referenceTextZh": "我认为，在非正常运行中，运行原则是不要让疲劳影响安全。所以我会及时向公司运营部门报告疲劳情况，然后我们轮流休息，更重要的是，我们要严格遵守执勤时限的规定，绝不超过时限。最后，机长和副驾驶应该有积极的沟通，共同做出决定。"
+    },
+    {
+      "id": "opi-fzy-224553",
+      "taskTitle": "8.飞行中人的因素-34",
+      "audioText": "Can you please introduce the flight disciplines in your flight school or in your company?",
+      "audioTextZh": "你能介绍下你们航校或者公司的飞行纪律吗？",
+      "studyTier": 1,
+      "referenceText": "I am currently a student pilot. Our flight school has many flight disciplines. For instance, we must obey laws and regulations, follow standard operating procedures, and report any special situations encountered during the flight. At the same time, we should also pay attention to crew resource management, actively communicate and collaborate.",
+      "referenceTextZh": "我现在是一名飞行学员，我们航校有很多飞行纪律，比如，我们必须遵守法律法规，遵守标准操作程序，飞行中如遇到特殊情况，要如实报告，同时，我们也应该注意机组资源管理，积极沟通、协作。"
+    },
+    {
+      "id": "opi-fzy-224554",
+      "taskTitle": "8.飞行中人的因素-35",
+      "audioText": "How can you develop good flight habits or good flight disciplines?",
+      "audioTextZh": "你如何培养好的飞行习惯或飞行纪律？",
+      "studyTier": 1,
+      "referenceText": "To develop good flight habits or good flight disciplines, first of all, we must we must obey laws and regulations, follow standard operating procedures, respect life, regulations and duties. At the same time, we should also pay attention to crew resource management, actively communicate and collaborate, avoid hazardous attitudes.",
+      "referenceTextZh": "要养成良好的飞行习惯或飞行纪律，首先，我们必须遵守法律法规，遵循标准操作程序，敬畏生命、敬畏规章、敬畏职责。同时，我们还应注重机组资源管理，积极沟通协作，避免危险态度。"
+    },
+    {
+      "id": "opi-fzy-224562",
+      "taskTitle": "8.飞行中人的因素-36",
+      "audioText": "What is your opinions about your company’s catering?",
+      "audioTextZh": "你对你们公司的配餐制度有什么看法吗？",
+      "studyTier": 1,
+      "referenceText": "Well, in my opinion, the catering in my company is healthy but not that delicious.",
+      "referenceTextZh": "在我看来，我们公司的配餐很健康，但是没有那么美味。"
+    },
+    {
+      "id": "opi-fzy-224563",
+      "taskTitle": "8.飞行中人的因素-37",
+      "audioText": "Does your company allow captains and first officers to eat the same food?",
+      "audioTextZh": "你们公司允许机长和副驾吃相同的食物吗？",
+      "studyTier": 1,
+      "referenceText": "No, captains and first officers are not allowed to have the same food so as to avoid any abnormal situation caused by poisoning from the same kind of food.",
+      "referenceTextZh": "不可以，机长和副驾不能吃同样的食物，以免出现同一种食物中毒的异常情况。"
+    }
+  ],
+  "categoryId": "opi-category-04"
+}

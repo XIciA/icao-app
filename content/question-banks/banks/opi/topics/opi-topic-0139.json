@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0139",
   "name": "飞行自动化系统",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Yes, I think some pilots have become too dependent on automation. Automated systems perform much of the routine aircraft control, so pilots may spend more time monitoring and managing those systems.",
       "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

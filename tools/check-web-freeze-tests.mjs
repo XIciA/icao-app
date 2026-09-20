@@ -224,3 +224,16 @@ test('formal Web review pins exact changes and never exempts later edits or unre
   const unrelated = { path: 'src/app/other.web.tsx', sha256: after.sha256, sources: [] };
   assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [unrelated]), [unrelated]);
 });
+
+test('legacy bank relocation preserves exact published bytes and rejects mutable or competing imports', () => {
+  const expected = JSON.parse(readFileSync(path.join(repositoryRoot, 'docs/records/workstreams/native-commercial-launch/evidence/web-freeze-manifest.json'), 'utf8')).files;
+  const originalPath = 'src/features/question-bank/data/question-bank.json';
+  const before = expected.find(file => file.path === originalPath);
+  const snapshot = { ...before, path: 'src/features/question-bank/data/legacy-v13/question-bank.json', sha256: 'd38adbeb28176454d3c124e83b02d182c4645034264a5f9b73d8679334e78ecf' };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [snapshot]), [{ ...snapshot, path: originalPath }]);
+  const changed = { ...snapshot, sha256: '0'.repeat(64) };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [changed]), [changed]);
+  assert.equal(normalizeReviewedFormalWebInputs(expected, [snapshot, before])[0].path, snapshot.path);
+  const changedOwnership = { ...snapshot, sources: ['unreviewed'] };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [changedOwnership]), [changedOwnership]);
+});

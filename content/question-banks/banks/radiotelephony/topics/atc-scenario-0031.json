@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0031",
   "name": "BAW 352 询问两地天气 复飞",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "右转直飞 LKO，爬升并保持 2400 米，BAW 352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/547.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

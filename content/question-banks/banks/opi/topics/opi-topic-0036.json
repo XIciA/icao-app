@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0036",
   "name": "起落架",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "The landing gear is normally extended at the altitude and airspeed specified by the SOP, early enough to confirm that it is fully down and locked and to maintain a stable approach.",
       "referenceTextZh": "通常应在标准操作程序规定的高度和空速下放起落架，并留出足够时间确认起落架完全放下并锁定，同时保持稳定进近。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

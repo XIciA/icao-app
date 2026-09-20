@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0086",
   "name": "紧急撤离",
   "declaredCardCount": 10,
@@ -84,5 +83,6 @@
       "referenceText": "Cabin crew members guide passengers to the exits, assist vulnerable passengers, and maintain order. They open the usable emergency exits and deploy the slides, check the cabin for anyone remaining, and coordinate with the flight crew. They also report the evacuation status to the captain.",
       "referenceTextZh": "客舱机组引导旅客前往出口、协助需要特别帮助的旅客并维持秩序。他们打开可用应急出口并放出滑梯，检查客舱内是否还有人员，并与飞行机组协调。他们还会向机长报告撤离状态。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0053",
   "name": "CCA 105 装没听清许可 跑道入侵",
   "declaredCardCount": 24,
@@ -220,5 +219,6 @@
       "referenceTextZh": "可以跑道 36L ILS 进近，124.35，CCA 105。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/925.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1460",
+  "name": "CSN3102 [延误，热水烫伤乘客]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210819",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-1",
+      "audioText": "[Your callsign is CSN3102, a B737 from Guangzhou to Beijing, you are now at gate 127 with information F. You are ready to copy ATC clearance.]",
+      "audioTextZh": "你的呼号是南方3102，从广州飞往北京的波音737，你现在在127停机位，收到通播F，你准备好抄收管制放行了。",
+      "referenceText": "Guangzhou Delivery, CSN3102, Guangzhou to Beijing, gate 127 with information F, request ATC clearance.",
+      "referenceTextZh": "广州放行，南方3102，广州飞往北京，127停机位，收到通播F，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/176de040a2818c55c4dd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210820",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-2",
+      "audioText": "C: CSN3102, Guangzhou Delivery, standby due thunderstorm en route.",
+      "audioTextZh": "南方3102，广州放行，由于航路上有雷暴，稍等。",
+      "referenceText": "Standing by, CSN3102.",
+      "referenceTextZh": "稍等，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4bf96174a0410fb82d5f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210821",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-3",
+      "audioText": "[You want to know how long the delay will be. ]",
+      "audioTextZh": "【你想知道要延误多久。】",
+      "referenceText": "Guangzhou Delivery, CSN3102, confirm how long the delay will be.",
+      "referenceTextZh": "广州放行，南方3102，证实延误时间。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dc7b5b31830cbbab1a2e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210822",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-4",
+      "audioText": "C: CSN3102, delay not determined, call you back.",
+      "audioTextZh": "南方3102，延误不确定，等会叫你。",
+      "referenceText": "Roger, CSN3102.",
+      "referenceTextZh": "收到，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cfd8ce47a56fc384280c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210823",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-5",
+      "audioText": "[A few minutes later.]\nC: CSN3102, are you ready to copy your ATC clearance?\n[Tell the controller “Yes”.]",
+      "audioTextZh": "【几分钟后】\n南方3102，你准备好抄收你的放行许可了吗？\n【告诉管制员，是的】",
+      "referenceText": "Affirm, ready to copy, CSN3102.",
+      "referenceTextZh": "是的，准备好抄收了，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a7ef1162c907181d487d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210824",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-6",
+      "audioText": "C: CSN3102, here is your ATC clearance. Cleared to Beijing via LMN-81 departure, flight planed route, cruising level 9800m, initial climb to 900m on QNH1012, runway 02L, squawk 1725, departure frequency 121.05.",
+      "audioTextZh": "南方3102，这是你的管制许可，可以经由LMN-81标准离场飞往北京，计划航路，巡航高度9800米，初始爬升至900米，修正海压1012，跑道02左，应答机编码1725，离场频率121.05。",
+      "referenceText": "Cleared to Beijing via LMN-81 departure, flight planed route, cruising level 9800m, initial climb to 900m on QNH1012, runway 02L, squawk 1725, departure frequency 121.05, CSN3102.",
+      "referenceTextZh": "可以经由LMN-81标准离场飞往北京，计划航路，巡航高度9800米，初始爬升至900米，修正海压1012，跑道02左，应答机编码1725，离场频率121.05，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1792db81326579f9b2c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210825",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-7",
+      "audioText": "[You are now ready for push back and start-up.]",
+      "audioTextZh": "【你现在准备好推出开车了。】",
+      "referenceText": "Guangzhou Ground, CSN3102, request pushback and start-up.",
+      "referenceTextZh": "广州地面，南方3102，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2797f9284b518686fc1c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210826",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-8",
+      "audioText": "CSN3102, pushback and start-up approved, facing east.",
+      "audioTextZh": "南方3102，可以推出开车，面朝东。",
+      "referenceText": "Pushback and start-up approved, facing east, CSN3102.",
+      "referenceTextZh": "可以推出开车，面朝东，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/455209f75387887884dc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210827",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-9",
+      "audioText": "CSN3102, taxi via L8, A, A10 to the holding point of runway 02L.",
+      "audioTextZh": "南方3102，经由滑行道L8，A和A10滑行至跑道02左等待点。",
+      "referenceText": "Taxi via L8, A, A10 to the holding point of runway 02L, CSN3102.",
+      "referenceTextZh": "经由滑行道L8，A和A10滑行至跑道02左等待点，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4b8dba5fb3a910ff704.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210828",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-10",
+      "audioText": "[You are now approaching holding point of runway 02L and you are ready for departure, contact Tower.]",
+      "audioTextZh": "【你现在到达跑道02左外等待点，你准备好起飞了，联系塔台。】",
+      "referenceText": "Guangzhou Tower, CSN3102, holding point of runway 02L, request departure.",
+      "referenceTextZh": "广州塔台，南方3102，跑道02左外等待点，请求离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2db19ddcb72982e53c3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210829",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-11",
+      "audioText": "C: CSN3102, hold short for wake turbulence, a heavy B747 just departed.",
+      "audioTextZh": "南方3102，由于尾流，原地等待，一架重型747刚刚起飞。",
+      "referenceText": "Holding short, CSN3102.",
+      "referenceTextZh": "等待，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1454c7ee177365dd0ac5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210830",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-12",
+      "audioText": "C: CSN3102, wind 040, 03m/s, fly runway heading, cleared for takeoff runway 02L, report airborne.",
+      "audioTextZh": "南方3102，风向040，3米每秒，跑道航向，可以起飞，跑道02左，离地后报。",
+      "referenceText": "Runway heading, cleared for takeoff runway 02L, wilco, CSN3102.",
+      "referenceTextZh": "跑道航向，可以起飞，跑道02左，照办，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e086ef734ad507442d80.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210831",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-13",
+      "audioText": "[You are now airborne and have passed 1200m, contact Guangzhou Departure.]",
+      "audioTextZh": "【你现在离地了，过1200米，联系广州离场。】",
+      "referenceText": "Guangzhou Departure, CSN3102, airborne runway 02L, passing 1200m.",
+      "referenceTextZh": "广州离场，南方3102，离地了，跑道02左，过1200米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/96eebba7a5baa5e14e7f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210832",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-14",
+      "audioText": "C: CSN3102, Guangzhou Departure, radar contact, turn right heading 088, track direct to CON, climb to and maintain 2100m when passing CON.",
+      "audioTextZh": "南方3102，北京离场，雷达识别了，右转航向088，直飞CON，过CON后上2100米保持。",
+      "referenceText": "Right heading 088, track direct to CON, climb to and maintain 2100m when passing CON, CSN3102.",
+      "referenceTextZh": "右转航向088，直飞CON，过CON后上2100米保持，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70362dd799cfef962139.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210833",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-15",
+      "audioText": "[Now you are cruising at 9800m. During the cabin service, you encountered moderate turbulence, a flight attendant accidentally spilled hot water on a female passenger. Though timely first aid has been given, the passenger's condition has not improved. Inform the controller this situation and request fly back and land at Guangzhou airport.]",
+      "audioTextZh": "【你现在在9800米巡航。在客舱服务期间，你遇到了中度颠簸，一名乘务员不小心将热水洒到一名女乘客身上。虽然已经实施了急救，但是乘客的情况并没有改善。告知管制员此情况，请求飞回广州机场。】",
+      "referenceText": "Guangzhou Control, CSN3102, cruising at 9800m, we encountered moderate turbulence, a flight attendant accidentally spilled hot water on a female passenger during cabin service, first aid has been given, the passenger's condition has not improved, request return to land at Guangzhou airport.",
+      "referenceTextZh": "广州区调，南方3102，9800米巡航，我们遇到了中度颠簸，一名乘务员不小心将热水洒到一名女乘客身上。虽然已经实施了急救，但是乘客的情况并没有改善，请求返回广州机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/36885cfe76bfcfb05491.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210834",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-16",
+      "audioText": "C: CSN3102, roger, turn left heading 280, descend to and maintain 8400m.",
+      "audioTextZh": "南方3102，收到，左转航向280，下到8400保持。",
+      "referenceText": "Left heading 280, descend to and maintain 8400m, CSN3102.",
+      "referenceTextZh": "左转航向280，下到8400保持，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/42bc109ef6cd6d7d20d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210835",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-17",
+      "audioText": "C: CSN3102, medical team will be ready upon landing, do you require other assistance?\n[Tell the controller you want disembark passengers at the apron, so you need passenger stairs.]",
+      "audioTextZh": "南方3102，医疗队伍将会在着陆后就位，你还需要其他协助吗？\n【告诉管制员你想在机坪让乘客下飞机，你需要客梯。】",
+      "referenceText": "Affirm, request passenger stairs to disembark passengers at the apron, CSN3102.",
+      "referenceTextZh": "是的，请求客梯来让乘客在机坪下飞机，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a7a5b742f69394181d72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210836",
+      "taskTitle": "53-CSN3102 [延误，热水烫伤乘客]-18",
+      "audioText": "C: Roger, CSN3102, passenger stairs will be ready.",
+      "audioTextZh": "收到，南方3102，客梯将就位。",
+      "referenceText": "Roger, thanks, CSN3102.",
+      "referenceTextZh": "收到，感谢，南方3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8a2a8ce5b0965f516b83.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

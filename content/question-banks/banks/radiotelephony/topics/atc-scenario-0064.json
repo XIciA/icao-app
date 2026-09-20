@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0064",
   "name": "CCA 321 机长心脏骤停失能 PCR ILS区域非空",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "跟随引导车经滑行道 T4 和 D 到 557 号登机口，CCA 321。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1115.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

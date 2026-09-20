@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0063",
   "name": "飞行记录本与手册文件",
   "declaredCardCount": 19,
@@ -156,5 +155,6 @@
       "referenceText": "The available documents should include the Aircraft Flight Manual, Flight Crew Operations Manual, Quick Reference Handbook, Minimum Equipment List, and the necessary aeronautical and approach charts. They support normal and emergency operations.",
       "referenceTextZh": "可用文件应包括飞机飞行手册、飞行机组操作手册、快速参考手册、最低设备清单，以及所需航空图和进近图。这些文件支持正常和应急运行。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

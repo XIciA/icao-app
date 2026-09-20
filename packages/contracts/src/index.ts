@@ -999,3 +999,4 @@ export type OpsEntitlementGrantResult = {
   appliedAt: string;
   entitlement: CommerceEntitlementSummary;
 };
+export * from './study-scopes';

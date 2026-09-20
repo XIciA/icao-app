@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0026",
   "name": "外来物吸入",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "If an engine ingests a foreign object in flight, the pilot should divert to the nearest suitable airport.",
       "referenceTextZh": "如果发动机在飞行中吸入外来物，飞行员应改航至最近的合适机场。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

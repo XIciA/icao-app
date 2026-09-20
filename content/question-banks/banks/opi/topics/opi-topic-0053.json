@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0053",
   "name": "HUD",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "Yes, I think HUD use in adverse weather will become more common. It can improve situational awareness in low visibility and support more reliable operations. As the technology develops, more airlines may install HUDs to improve operations and reduce some weather-related delays.",
       "referenceTextZh": "是的，我认为 HUD 在恶劣天气中的应用会越来越普遍。它能提高低能见度下的情景意识，并支持更可靠的运行。随着技术发展，更多航空公司可能安装 HUD，以改善运行并减少部分天气延误。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0033",
   "name": "PBN/RNAV/RNP进近",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "RNP approaches can provide both lateral and vertical guidance. Because they are based on GNSS, they do not depend on ground navigation facilities and can be useful at remote airports or airports with complex terrain. This may also reduce infrastructure costs.",
       "referenceTextZh": "RNP 进近可以同时提供水平和垂直引导。由于它以 GNSS 为基础，不依赖地面导航设施，因此适用于偏远机场或地形复杂的机场。这也可能降低基础设施成本。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

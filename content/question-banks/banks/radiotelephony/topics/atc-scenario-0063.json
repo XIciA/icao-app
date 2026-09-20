@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0063",
   "name": "CCA 937 地勤行李出错 2发间歇噪音",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "等待，继续当前航向，CCA 937。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1098.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

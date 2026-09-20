@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0144",
   "name": "磁罗盘",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "Yes, the DA-40 I fly has a magnetic compass. It is mounted near the centre of the cockpit above the main instrument panel, where both pilots can read it. I use it as a basic heading reference and as a backup for the electronic heading display.",
       "referenceTextZh": "是的，我驾驶的 DA-40 配有磁罗盘。它安装在驾驶舱中部、主仪表板上方，两名飞行员都可以读到。我把它作为基本航向基准，也是电子航向显示的备份。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

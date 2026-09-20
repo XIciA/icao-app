@@ -1,0 +1,244 @@
+{
+  "id": "atc-fzy-1707",
+  "name": "CSN3118 [积冰，复飞]",
+  "declaredCardCount": 26,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224973",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-1",
+      "audioText": "N: [Your aircraft callsign is CSN3118, a flight from Beijing to Wuhan. You are now maintaining 10400m and in Wuhan Control Area, squawking 4332. Make an initial contact with Wuhan Control.]",
+      "audioTextZh": "N：【你的飞机呼号是南方3118，一架从北京飞往武汉的航班。你现在正保持在10400米，在武汉区调管制区，应答机4332，与武汉区调建立初始联系。】",
+      "referenceText": "Wuhan Control, CSN3118, maintaining 10400m, squawking 4332.",
+      "referenceTextZh": "武汉区调，南方3118，正保持10400米，应答机4332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7ce9023c78a3cd422a0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224974",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-2",
+      "audioText": "C: CSN3118, I read you 3, say again your squawk and level.\nN: [You adjust the radio equipment, ask the controller whether you can be heard clearly.]",
+      "audioTextZh": "C：南方3118，我听你3个，再说一遍你的应答机和高度层。\nN：【你调试了你的无线电设备，询问管制员是否听你清楚。】",
+      "referenceText": "Wuhan Control, CSN3118, how do you read?",
+      "referenceTextZh": "武汉区调，南方3118，你听我如何？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/540be28b150fd4c4f633.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224975",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-3",
+      "audioText": "C: CSN3118, I read you 5.\nN: [Tell the controller you are maintaining 10400m and squawking 4332.]",
+      "audioTextZh": "C：南方3118，我听你5个。\nN：【告知管制员，你现在正保持10400米，应答机4332。】",
+      "referenceText": "Wuhan Control, CSN3118, maintaining 10400m and squawking 4332.",
+      "referenceTextZh": "武汉区调，南方3118，正保持10400米，应答机4332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/df981e154af02fec5a82.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224976",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-4",
+      "audioText": "C: CSN3118, Wuhan Control, radar contact, descend to and maintain 9800m.",
+      "audioTextZh": "C：南方3118，武汉区调，雷达看见了，下9800米保持。",
+      "referenceText": "Descend to and maintain 9800m, CSN3118.",
+      "referenceTextZh": "下9800米保持，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e936def07ffc0acac85.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224977",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-5",
+      "audioText": "N: [After leveling at 9800m, you find rapid accumulation of ice on the leading edge slats, the attitude of your aircraft is unstable. Report your situation and ask for emergency descent. This is an urgency call.]",
+      "audioTextZh": "N：【在9800米巡航后，你发现前缘缝翼快速出现积冰，飞机姿态不稳定。报告此情况，请求紧急下降，这是一个紧急通话。】",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CSN3118, leveling at 9800m, rapid accumulation of ice on the leading edge slats and our attitude is unstable, request emergency descent.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉区调，南方3118，正在9800米巡航，前缘缝翼快速出现积冰，飞机姿态不稳定，请求紧急下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5e3f97ad9ac86538fd40.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224978",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-6",
+      "audioText": "C: CSN3118, roger, descend to and maintain 4200m, high rate of descent approved.",
+      "audioTextZh": "C：南方3118，收到，下4200米保持，可以快速下降。",
+      "referenceText": "Descend to and maintain 4200m, high rate of descent approved, CSN3118.",
+      "referenceTextZh": "下4200米保持，可以快速下降，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4613b2a381d4d54d18c3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224979",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-7",
+      "audioText": "N: [After leaving the icing level, you are rid of your aircraft’s icing problems, and will continue your approach to Wuhan airport. Information D received. Make an initial contact with Wuhan Approach.]",
+      "audioTextZh": "N：【离开积冰高度后，你解决了飞机的积冰问题，你将继续进近武汉机场，你收到了通播D，与武汉进近进行初始联系。】",
+      "referenceText": "Wuhan Approach, CSN3118, maintaining 4200m, information D received.",
+      "referenceTextZh": "武汉进近，南方3118，正保持4200米，通播D。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3cdab7dda0252f7813bf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224980",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-8",
+      "audioText": "C: CSN3118, Wuhan Approach, current information is E, runway in use 36R.\nN: [Tell the controller you want to descend.]",
+      "audioTextZh": "C：南方3118，武汉进近，当前通播为E，使用跑道36右。\nN：【告知武汉进近，你想下降。】",
+      "referenceText": "Information E, runway 36R, request descend, CSN3118.",
+      "referenceTextZh": "通播E，跑道36右，请求下降，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/68d734f1ddae9d6351ec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224981",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-9",
+      "audioText": "C: CSN3118, descend to and maintain 3600m, QNH 1014, track direct to ZF, expect ZF-1A arrival.",
+      "audioTextZh": "C：南方3118，下3600米保持，修正海压1014，直飞ZF，预计ZF-1A进近。",
+      "referenceText": "Descend to and maintain 3600m, QNH 1014, track direct to ZF, expect ZF-1A arrival, CSN3118.",
+      "referenceTextZh": "下3600米保持，修正海压1014，直飞ZF，预计ZF-1A进近，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fac4ad146c6f267b28f6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224982",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-10",
+      "audioText": "N: [You are over ZF, flying on 3600m. Tell ATC that you want to descend to 1800m and track direct to final.]",
+      "audioTextZh": "N：【你现在过ZF，在3600米飞行。告知管制员，你想下1800米，直飞五边。】",
+      "referenceText": "Wuhan Approach, CSN3118, over ZF, 3600m, request descend to 1800m and track direct to final.",
+      "referenceTextZh": "武汉进近，南方3118，过ZF，3600米，请求下1800米，直飞五边。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2ff696670fef7613020.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224983",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-11",
+      "audioText": "C: CSN3118, negative due sequencing, you are No.2, follow China Eastern A330. Descend to and maintain 2400m, turn right heading 180.",
+      "audioTextZh": "C：南方3118，由于顺序，不可以，你第二份，跟着东航的A330，下2400米保持，右转航向180。",
+      "referenceText": "No.2, follow China Eastern A330, descend to and maintain 2400m, turn right heading 180, CSN3118.",
+      "referenceTextZh": "第二个，跟着东航的A330，下2400米保持，右转航向180，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/905be2391a02f065a71d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224984",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-12",
+      "audioText": "N: [You are on right downwind for runway 36R, you estimate a 25 track miles till touchdown, ask Approach for further descent.]",
+      "audioTextZh": "N：【你在跑道36右的右三边，预计距离接地点25海里，向进近请求继续下降。】",
+      "referenceText": "Wuhan Approach, CSN3118, right downwind for runway 36R, estimate a 25 track miles till touchdown, request further descent.",
+      "referenceTextZh": "武汉进近，南方3118，跑道36右的右三边，预计距离接地点25海里，请求继续下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/94833b4e426b83d494c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224985",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-13",
+      "audioText": "C: Roger, CSN3118, descend to and maintain 1200m, turn right heading 330 to intercept the localizer of runway 36R, report established.",
+      "audioTextZh": "C：收到，南方3118，下1200米保持，右转航向330来切跑道36右的航向道，建立后报。",
+      "referenceText": "Descend to and maintain 1200m, turn right heading 330 to intercept the localizer of runway 36R, wilco/report established, CSN3118.",
+      "referenceTextZh": "下1200米保持，右转航向330来切跑道36右的航向道，建立后报，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8005eb4d4ec7bb5a57d5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224986",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-14",
+      "audioText": "N: [After established on ILS, you discovered a landing gear warning, indicating the nose gear had not been extended properly. Report to Wuhan Tower that you will overshoot and request join a holding pattern to perform the checklist.]",
+      "audioTextZh": "N：【建立盲降后，你发现一个起落架告警，指示前起落架没有正确放出。报告给武汉塔台，你将复飞，然后申请加入等待程序，来执行检查单。】",
+      "referenceText": "Wuhan Tower, CSN3118, ILS established, we had a landing gear warning, indicating the nose gear had not been extended properly, request overshoot and join a holding pattern to perform the checklist.",
+      "referenceTextZh": "武汉塔台，南方3118，建立盲降了，我们有一个起落架告警，指示前起落架没有正确放出，请求复飞并加入等待程序来执行检查单。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/81247db824bb4df55c54.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224987",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-15",
+      "audioText": "C: CSN3118, go around, climb to 1500m.",
+      "audioTextZh": "C：南方3118，复飞，上1500米。",
+      "referenceText": "Going around, climb to 1500m, CSN3118.",
+      "referenceTextZh": "复飞，上1500米，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d572277954f8295d750e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224988",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-16",
+      "audioText": "C: CSN3118, track direct to AB, hold as published, report entering the hold.",
+      "audioTextZh": "C：南方3118，直飞AB，按公布的程序等待，加入等待后报。",
+      "referenceText": "Track direct to AB, hold as published, report entering the hold, CSN3118.",
+      "referenceTextZh": "直飞AB，按公布的程序等待，加入等待后报，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/091347c6839ee7333907.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224990",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-17",
+      "audioText": "N: [You have entered holding pattern and finished the checklist. But you are not sure whether the nose gear has been extended fully. Tell Tower that you want to exit the hold and make a low pass to confirm the nose gear is in the normal position.]",
+      "audioTextZh": "N：【你已经加入到等待程序，完成了检查单，但是你不确定前起落架是否完全放出。告知塔台，你想离开等待，进行低空通常来检查前起落架是否在正常位置。】",
+      "referenceText": "Wuhan Tower, CSN3118, we have entered holding pattern and finished the checklist, but we are not sure whether the nose gear has been extended fully, request exit the hold and make a low pass for a visual check.",
+      "referenceTextZh": "武汉塔台，南方3118，我们已经进入到等待程序，完成了检查单，但是我们不确定前起落架是否完全放出，请求离开等待程序，进行低空通场目视检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/862d723d548fa594cf62.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224991",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-18",
+      "audioText": "C: Roger, CSN3118, exit hold, cleared for ILS approach, runway 36R, low pass approved, not below 150m.",
+      "audioTextZh": "C：收到，南方3118，离开等待，可以盲降进近，跑道36右，可以低空通场，不低于150米。",
+      "referenceText": "Exit hold, cleared for ILS approach, runway 36R, low pass approved, not below 150m, CSN3118.",
+      "referenceTextZh": "离开等待，可以盲降进近，跑道36右，可以低空通场，不低于150米，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/96c854879d0d913bad20.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224992",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-19",
+      "audioText": "C: CSN3118, your nose gear appears to be down. Go around, climb to 1200m.",
+      "audioTextZh": "C：南方3118，你的前轮看起来已经放下，复飞，上1200米。",
+      "referenceText": "Going around, climb to 1200m, CSN3118.",
+      "referenceTextZh": "复飞，上1200米，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8c4fbca0d9b83061f897.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224993",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-20",
+      "audioText": "N: [Advise controller that you have joined downwind and want to make an ILS approach runway 36R.]",
+      "audioTextZh": "N：【告知管制员，你已经加入三边，想进行盲降进近跑道36右。】",
+      "referenceText": "Wuhan Tower, CSN3118, on downwind, request ILS approach, runway 36R.",
+      "referenceTextZh": "武汉塔台，南方3118，在三边，请求盲降进近跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/820d384ca0f92b4f4ad0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224994",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-21",
+      "audioText": "N: [You are now on short final. At this time, the runway is still occupied by preceding aircraft. You have to initiate the missed approach and report to the controller.]",
+      "audioTextZh": "N：【你现在在短五边，此时，跑道依旧被前机占据，你必须执行复飞，报告给管制员。】",
+      "referenceText": "Wuhan Tower, CSN3118, the runway is still occupied by preceding aircraft, going around.",
+      "referenceTextZh": "武汉塔台，南方3118，跑道被前机占据，复飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/641daf3735ec64830ade.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224995",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-22",
+      "audioText": "C: CSN3118, go around as published, the aircraft on the runway has rejected takeoff, possibly due to blown tyre, a runway inspection is scheduled as soon as he is able to vacate, I will notify you when the runway is ready.",
+      "audioTextZh": "C：南方3118，按公布的程序复飞，跑道上飞机中断起飞了，大概是因为胎爆，他可以脱离后，将尽快进行跑道检查，跑道可用时，我会通知你。",
+      "referenceText": "Roger, go around as published, CSN3118.",
+      "referenceTextZh": "收到 ，按发布的程序复飞，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f5154d6c1b88be204d4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224996",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-23",
+      "audioText": "N: [The fuel quantity indicator shows that the endurance is 25 minutes. Report your situation to ATC and ask to land as soon as possible. This is a distress call.]",
+      "audioTextZh": "N：【油量指示显示燃油续航25分钟，向管制员告知你的情况，请求尽快着陆，这是一个遇险通话。】",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Tower, CSN3118, our endurance is 25 minutes, request land as soon as possible/priority landing.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉塔台，南方3118，我们的续航只有25分钟，请求尽快着陆/优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/493b3961255c65a552d1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224997",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-24",
+      "audioText": "C: CSN3118, roger, descend to and maintain 900m, turn right heading 330, cleared for ILS approach, runway 36R, report established.",
+      "audioTextZh": "C：南方3118，收到，下900保持，右转航向330，可以盲降进近，跑道36右。建立后报。",
+      "referenceText": "Descend to and maintain 900m, turn right heading 330, cleared for ILS approach, runway 36R, report established, CSN3118.",
+      "referenceTextZh": "下900保持，右转航向330，可以盲降进近，跑道36右。建立后报，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3f027876f902873d2b09.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224998",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-25",
+      "audioText": "N: [Your aircraft has just landed on runway 36R, but you find that the aircraft cannot taxi because the nose wheel steering is inoperative. Tell controller that your situation and ask for ground service to help your aircraft leave the runway.]",
+      "audioTextZh": "N：【你的飞机刚刚降落在36右跑道上，但你发现飞机不能滑行，因为前轮转向故障。告诉管制员你的情况，请求地面服务帮助你的飞机离开跑道。】",
+      "referenceText": "Wuhan Tower, CSN3118, our nose wheel steering is inoperative, request ground service to help us leave the runway.",
+      "referenceTextZh": "武汉塔台，南方3118，我们的前轮转向故障，请求地面服务帮助我们的飞机离开跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a6f8fbc58eabc294a80c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224999",
+      "taskTitle": "81-CSN3118 [积冰，复飞]-26",
+      "audioText": "C: Roger, CSN3118, hold your present position, the tug will arrive in a few minutes.",
+      "audioTextZh": "C：收到，南方3118，当前位置等待，拖车一会就到。",
+      "referenceText": "Holding present position, thanks, CSN3118.",
+      "referenceTextZh": "当前位置等待，谢谢，南方3118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/44f2df5fe515790ff3ce.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

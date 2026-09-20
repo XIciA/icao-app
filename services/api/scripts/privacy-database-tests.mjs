@@ -12,6 +12,7 @@ import postgres from 'postgres';
 
 import * as databaseSchema from '../src/database/schema.ts';
 import { SyncService } from '../src/sync/sync.service.ts';
+import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-privacy-postgres-'));
@@ -362,4 +363,73 @@ test('clear-learning idempotency returns the first result without deleting later
   assert.deepEqual(await serviceInstance().clearLearningData(accountId, request), first);
   assert.deepEqual(await accountGenerations(accountId), { aiResultGeneration: 1, dataGeneration: 1 });
   assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${accountId}' AND card_id = 'new-card'`), '1');
+});
+
+test('content consolidation clears old history, preserves personal documents and rejects stale devices', async () => {
+  const accountId = '66000000-0000-4000-8000-000000000001';
+  await createAccount(accountId);
+  await push(accountId, [cardMutation('content-old-card', 'old-card'), aiMutation('content-old-ai', 'old-ai', 'old-answer')]);
+  const profile = { displayName: 'Test pilot', target: 'icao5-first', studyScope: 'selected' };
+  const vocabulary = { favorites: ['runway'] };
+  await database.insert(databaseSchema.userDocuments).values([
+    { userId: accountId, documentKey: 'account_profile', payload: profile, version: 3 },
+    { userId: accountId, documentKey: 'vocabulary', payload: vocabulary, version: 4 },
+  ]);
+  // A failed content transaction must not clear history or increment generations.
+  await assert.rejects(databaseClient.begin(async (tx) => {
+    await resetLearningHistoryForContent(tx);
+    throw new Error('publication_failed');
+  }), /publication_failed/);
+  assert.deepEqual(await accountGenerations(accountId), { aiResultGeneration: 0, dataGeneration: 0 });
+  assert.equal(await activeRecordCount(accountId, 'old-ai'), 1);
+  await databaseClient.begin((tx) => resetLearningHistoryForContent(tx));
+  assert.deepEqual(await accountGenerations(accountId), { aiResultGeneration: 1, dataGeneration: 1 });
+  assert.equal(await activeRecordCount(accountId, 'old-ai'), 0);
+  const stale = await push(accountId, [cardMutation('stale-card', 'old-card')]);
+  assert.equal(stale.resetLearningData, true);
+  assert.equal(stale.results[0].status, 'discarded');
+  const documents = await databaseClient`select document_key, payload from user_documents where user_id = ${accountId}`;
+  assert.deepEqual(Object.fromEntries(documents.map((row) => [row.document_key, row.payload])), { account_profile: profile, vocabulary });
+  const changes = await databaseClient`select kind, entity_key from sync_changes where user_id = ${accountId}`;
+  assert.deepEqual(changes.map((row) => row.kind), ['document', 'document']);
+  assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${accountId}'`), '0');
+  await push(accountId, [cardMutation('fresh-card', 'fresh-card')], { dataGeneration: 1, aiResultGeneration: 1 });
+  assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${accountId}'`), '1');
+});
+
+test('content reset leaves a concurrently registered account and its first writes intact', async () => {
+  const existing = '01000000-0000-4000-8000-000000000001';
+  const newcomer = '02000000-0000-4000-8000-000000000001';
+  await createAccount(existing);
+  let releaseLock;
+  let lockReady;
+  const ready = new Promise((resolve) => { lockReady = resolve; });
+  const hold = new Promise((resolve) => { releaseLock = resolve; });
+  const holder = databaseClient.begin(async (tx) => {
+    await tx`select pg_advisory_xact_lock(hashtextextended(${'learning:' + existing}, 0))`;
+    lockReady();
+    await hold;
+  });
+  await ready;
+  const reset = databaseClient.begin((tx) => resetLearningHistoryForContent(tx));
+  try {
+    // Wait until reset has read its snapshot and is waiting for the first user's
+    // normal learning lock. Signup remains available on another DB connection.
+    let waiting = false;
+    for (let attempt = 0; attempt < 50; attempt += 1) {
+      const rows = await databaseClient`select count(*)::int as count from pg_stat_activity where wait_event = 'advisory'`;
+      if (rows[0].count > 0) { waiting = true; break; }
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+    assert.equal(waiting, true, 'reset did not reach its account lock');
+    await createAccount(newcomer);
+    await push(newcomer, [cardMutation('new-user-first-write', 'new-user-first-card')]);
+  } finally {
+    releaseLock();
+    await holder;
+    await reset;
+  }
+  assert.deepEqual(await accountGenerations(existing), { aiResultGeneration: 1, dataGeneration: 1 });
+  assert.deepEqual(await accountGenerations(newcomer), { aiResultGeneration: 0, dataGeneration: 0 });
+  assert.equal(queryScalar(`SELECT count(*) FROM user_card_states WHERE user_id = '${newcomer}'`), '1');
 });

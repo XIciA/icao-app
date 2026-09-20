@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0094",
   "name": "CES 769 乘客打开应急门",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "增速至 M.83 或更大，直飞 PEK，CES 769。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1630.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

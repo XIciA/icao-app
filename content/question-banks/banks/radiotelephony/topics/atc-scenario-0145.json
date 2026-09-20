@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0145",
   "name": "CCA 937 积冰/防冰 TCAS机动 备降/返航",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "等待，继续当前航向，CCA 937。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-043-cca937-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0024",
   "name": "飞行员-ATC通信",
   "declaredCardCount": 17,
@@ -140,5 +139,6 @@
       "referenceText": "Non-standard phraseology can cause pilots and controllers to misunderstand each other. That misunderstanding may lead to a runway incursion or an accident.",
       "referenceTextZh": "非标准通话用语会使飞行员和管制员彼此误解。这种误解可能导致跑道侵入或事故。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

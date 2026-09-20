@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0155",
   "name": "CSN 3109 风挡裂纹 雷暴绕飞 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "收到，保持位置，CSN 3109。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-054-csn3109-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-1512",
+  "name": "CCA1368 [等待，跑道入侵，刹车性能]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-219125",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-1",
+      "audioText": "[Your call sign is CCA1368, you are approaching DUGEB, maintaining 5400m, squawk 1021 with information B, contact Beijing Approach.]",
+      "audioTextZh": "【你的呼号是国航幺三六八，你现在到达DUGEB，在五千四保持，应答机幺洞两幺，通播Bravo，联系北京进近】",
+      "referenceText": "Beijing Approach, CCA1368, approaching DUGEB, maintaining 5400m, squawk 1021, information B.",
+      "referenceTextZh": "北京进近，国航幺三六八，接近DUGEB，在五千四保持，应答机幺洞两幺，通播Bravo。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1eceab33ad23b91d0a96.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219126",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-2",
+      "audioText": "C: CCA1368, Beijing Approach, radar contact, cleared for DUGEB-9Z Arrival, expect ILS approach runway 36R.",
+      "audioTextZh": "管：国航幺三六八，北京进近，雷达看见了，可以DUGEB-Niner Zulu进近，预计盲降跑道三六右。",
+      "referenceText": "DUGEB-9Z Arrival, runway 36R, CCA1368.",
+      "referenceTextZh": "DUGEB-Niner Zulu进近，跑道三六右，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/577a2320c2f2e2d295ce.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219127",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-3",
+      "audioText": "C: CCA1368, turn right heading 060, track direct to AA443, descend to and maintain 4500m by AA443.",
+      "audioTextZh": "管：国航幺三六八，右转航向洞六洞，直飞Alpha Alpha四四三，在Alpha Alpha四四三之前下到四千五。",
+      "referenceText": "Right heading 060, track direct to AA443, descend to and maintain 4500m by AA443, CCA1368.",
+      "referenceTextZh": "右转航向洞六洞，直飞Alpha Alpha四四三，在Alpha Alpha四四三之前下到四千五，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d8ccccc55b76c79b6ac8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219128",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-4",
+      "audioText": "C: CCA1368, due landing delays at Beijing about 20 minutes, you are expected to hold at AA442.\n[You want to know the holding details.]",
+      "audioTextZh": "管：国航幺三六八，由于北京机场着陆延误二十分钟，预计你要在Alpha Alpha四四两等待。\n【你想知道等待的细节】",
+      "referenceText": "Request holding instructions, CCA1368.",
+      "referenceTextZh": "请求等待程序，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bd49b07f089f924f35ad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219129",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-5",
+      "audioText": "C: CCA1368, hold over AA442 130 radial 14 DME fix, one and a half minute inbound legs, left hand pattern, maintain 2700m, expect further clearance at 45, time now 30.",
+      "audioTextZh": "管：国航幺三六八，在Alpha Alpha四四两一百三十度径向线DME幺四海里点等待，入航时间一分半，左等待，保持两拐，预计进一步许可时间四五分，当前时间三洞分。",
+      "referenceText": "Hold over AA442 130 radial 14 DME fix, one and a half minute inbound legs, left hand pattern, maintain 2700m, CCA1368.",
+      "referenceTextZh": "在Alpha Alpha四四两一百三十度径向线DME幺四海里点等待，入航时间一分半，左等待，保持两拐，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/88ea21a7957f29a40c7a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219130",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-6",
+      "audioText": "[The fuel indicator in your cockpit shows that the fuel endurance is 50 minutes, inform the controller that you have to leave the hold otherwise you will be at minimum fuel.]",
+      "audioTextZh": "【你驾驶舱内的油量指示燃油续航为五十分，告知管制员你必须要离开等待程序，否则你将进入最低燃油】",
+      "referenceText": "Beijing Approach, CCA1368, our endurance is 50 minutes, request leave the hold otherwise we will be at the minimum fuel.",
+      "referenceTextZh": "北京进近，国航幺三六八，我们的燃油续航五十分，请求离开等待，否则我们将进入最低燃油。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/31d5e7e523f8d37ee436.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219131",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-7",
+      "audioText": "C: CCA1368, Beijing roger, leave the holding pattern and turn left heading 033, further descend to 2400m and contact Beijing Tower on 118.3, we have informed your situation to them.",
+      "audioTextZh": "管：国航幺三六八，北京收到，离开等待程序，左转航向洞三三，继续下到两千四，联系北京塔台幺幺八点三，我们已经向他们告知你的情况。",
+      "referenceText": "Leave the holding pattern and turn left heading 033, further descend to 2400m and contact Beijing Tower on 118.3, CCA1368.",
+      "referenceTextZh": "离开等待程序，左转航向洞三三，继续下到两千四，联系北京塔台幺幺八点三，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2ceb08cf923f28b5d0ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219132",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-8",
+      "audioText": "[You are now 18 miles from touchdown, and you have received the latest information O, contact Beijing Tower and request straight-in ILS approach 36L due fuel problem. ]",
+      "audioTextZh": "参考答案：\n【你现在距离接地点幺八海里，你已收到通播Oscar，联系北京塔台，由于燃油问题，请求直接进近跑道三六左。】",
+      "referenceText": "Beijing Tower, CCA1368, 18 miles from touchdown, information O, request straight-in ILS approach 36L.",
+      "referenceTextZh": "北京塔台，国航幺三六八，接地点幺八海里，通播Oscar，请求直接进近跑道三六左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4257f80ceb78b18042f5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219133",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-9",
+      "audioText": "C: CCA1368, Beijing Tower, radar contact, cleared ILS approach runway 36L, descend and maintain 1800m.",
+      "audioTextZh": "管：国航幺三六八，北京塔台，雷达看见了，可以盲降进近跑道三六左，下一千八保持。",
+      "referenceText": "Cleared ILS approach runway 36L, descend and maintain 1800m, CCA1368.",
+      "referenceTextZh": "可以盲降进近跑道三六左，下一千八保持，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7b1b1b23624020b019be.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219134",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-10",
+      "audioText": "C: CCA1368, fly heading 360, continue descent and maintain 1200m, increase your rate of descent.",
+      "audioTextZh": "管：国航幺三六八，航向三六洞，继续下一千二保持，加速下降。",
+      "referenceText": "Heading 360, descend and maintain 1200m, wilco, CCA1368.",
+      "referenceTextZh": "航向三六洞，继续下一千二保持，将照办，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa8a23d42fc0f90143a8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219135",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-11",
+      "audioText": "C: CCA1368, reduce speed to 200 knots until 10 DME, descend to 900m.",
+      "audioTextZh": "管：国航幺三六八，速度减小到两百节直到DME十海里，下九百。",
+      "referenceText": "Reduce speed to 200 knots until 10 DME, descend to 900m, CCA1368.",
+      "referenceTextZh": "速度减小到两百节直到DME十海里，下九百，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e14fb2ddda97dc871ee3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219136",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-12",
+      "audioText": "C: CCA1368, turn left heading 330, intercept localizer runway 36L, report established.",
+      "audioTextZh": "管：国航幺三六八，左转航向三三洞，切跑道三六左航向道，建立后报。",
+      "referenceText": "Left heading 330, intercept localizer runway 36L, wilco, CCA1368.",
+      "referenceTextZh": "左转航向三三洞，切跑道三六左航向道，照办，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5a7f81677176e30d7184.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219137",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-13",
+      "audioText": "[Inform the controller you have intercepted the localizer of runway 36L.]",
+      "audioTextZh": "【告知管制员你已经切跑道三六左的航向道】",
+      "referenceText": "Beijing Tower, CCA1368, intercepted the localizer of runway 36L.",
+      "referenceTextZh": "北京塔台，国航幺三六八，已经切跑道三六左的航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/67c7a2dec54a735accf9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219138",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-14",
+      "audioText": "C: CCA1368, roger, reduce speed to 180 knots, continue approach.",
+      "audioTextZh": "管：国航幺三六八，速度减小至一百八十节，继续进近。",
+      "referenceText": "180 knots, continue approach, CCA1368.",
+      "referenceTextZh": "一百八十节，继续进近，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/008eb3bd6bc4f32b3e06.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219139",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-15",
+      "audioText": "[As you are landing, you see a ground vehicle on runway 36L, you decide to perform the missed approach procedure, inform Tower.]",
+      "audioTextZh": "【在着陆时，你看到跑道三六左上有一辆车，你决定执行复飞，告知塔台】",
+      "referenceText": "Beijing Tower, CCA1368, going around, a ground vehicle on runway 36L.",
+      "referenceTextZh": "北京塔台，国航幺三六八，复飞了，跑道三六左上有车辆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/43e417412fb420120bd9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219140",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-16",
+      "audioText": "C: CCA1368, roger, turn left heading 300, climb and maintain 900m. The vehicle was inspecting the runway surface, and he didn’t vacate the runway in time as instructed.",
+      "audioTextZh": "管：国航幺三六八，左转航向三洞洞，上九百保持，车辆在检查跑道道面，他没有按照指示脱离跑道。",
+      "referenceText": "Turn left heading 300, climb and maintain 900m, CCA1368.",
+      "referenceTextZh": "左转航向三洞洞，上九百保持，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/932a8dce9428ac992ff1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219141",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-17",
+      "audioText": "C: CCA1368, change to land on runway 01, wind 240 degrees 18 knots, cleared to land.",
+      "audioTextZh": "管：国航幺三六八，改到跑道洞幺着陆，风两四洞度幺八节，可以落地。",
+      "referenceText": "Cleared to land, runway 01, CCA1368.",
+      "referenceTextZh": "可以落地，跑道洞幺，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/551466f3ed9aeabd370f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219142",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-18",
+      "audioText": "[After landing, you notice that the runway surface is slippery, and you managed to stop your aircraft 200 meters near the stop end, you suspect the runway braking action of runway 01 is medium to poor, inform Tower.]",
+      "audioTextZh": "【着陆后，你发现跑道道面湿滑，你在跑道头两百米处停住飞机，你怀疑跑道洞幺刹车性能中到差，告知塔台】",
+      "referenceText": "Beijing Tower, CCA1368, the runway surface is slippery. We stop our aircraft 200 meters near the stop end, and we suspect the braking action of runway 01 is medium to poor.",
+      "referenceTextZh": "北京塔台，国航幺三六八，跑道道面湿滑，我们在跑道头两百米处停住飞机，我们怀疑跑道洞幺刹车性能中到差。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e5684a14cdb5d2f657fb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-219143",
+      "taskTitle": "57-CCA1368 [等待，跑道入侵，刹车性能]-19",
+      "audioText": "C: CCA1368, roger, thanks, vacate runway via E3, report vacated.",
+      "audioTextZh": "管：国航幺三六八，收到，谢谢，经由Echo三脱离，脱离后报。",
+      "referenceText": "Vacate runway via E3, wilco, CCA1368.",
+      "referenceTextZh": "经由Echo三脱离跑道，照办，国航幺三六八。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7447c02c5832aac02dd0.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

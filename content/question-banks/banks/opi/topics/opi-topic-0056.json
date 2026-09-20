@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0056",
   "name": "CFIT",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Pilots can help prevent CFIT by following SOPs and conducting careful cross-checks during flight.",
       "referenceTextZh": "飞行员可以通过遵守标准操作程序并在飞行中认真交叉检查，帮助预防可控飞行撞地。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0021",
   "name": "AFR 675 襟翼卡阻 滑出跑道 前轮陷地",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "收到，AFR 675。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/374.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

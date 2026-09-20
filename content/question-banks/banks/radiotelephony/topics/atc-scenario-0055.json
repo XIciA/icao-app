@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0055",
   "name": "CCA 878 乘客心脏病 一发脱离",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "下降到 3300 米，直飞 DUMET，CCA 878。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/953.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

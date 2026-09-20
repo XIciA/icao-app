@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0153",
   "name": "CCA 1432 雷暴绕飞 TCAS机动",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近 Runway 01，CCA 1432。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-051-cca1432-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

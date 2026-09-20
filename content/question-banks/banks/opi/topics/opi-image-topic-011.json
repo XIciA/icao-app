@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-011",
   "name": "尾部发动机火警",
   "declaredCardCount": 5,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-011.jpg",
-      "imageAlt": "尾部发动机火警航空场景图片"
+      "imageAlt": "尾部发动机火警航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-011-q01",
@@ -43,5 +43,6 @@
       "referenceText": "Regular maintenance should detect fuel, oil, and hydraulic leaks and any damage to engine wiring or hot sections. Crews should complete careful preflight inspections, monitor engine indications, and respond promptly to abnormal temperatures, vibration, or warning messages. Good FOD control and correct engine-start procedures also reduce the risk.",
       "referenceTextZh": "定期维修应发现燃油、滑油和液压油泄漏，以及发动机线路或高温部件的损伤。机组应认真完成飞行前检查，监控发动机指示，并及时处置温度异常、振动或警告信息。良好的外来物管理和正确的发动机起动程序也能降低风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

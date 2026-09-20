@@ -75,7 +75,7 @@ const currentBuild = String(appJson.expo.ios?.buildNumber ?? '');
 
 if (
   appJson.expo.name !== appName
-  || appJson.expo.version !== '1.0.0'
+  || !/^\d+\.\d+\.\d+$/u.test(appJson.expo.version ?? '')
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
   || !/^[1-9]\d*$/u.test(currentBuild)
   || !Number.isSafeInteger(Number(currentBuild))
@@ -86,7 +86,7 @@ if (
 
 // Repository CI can validate preserved materials while a newer TestFlight is in
 // development. Public submission must still bind to the materials' exact build.
-if (currentBuild !== materialsBuild) {
+if (currentBuild !== materialsBuild || appJson.expo.version !== '1.0.0') {
   if (process.argv.includes('--submission')) fail('submission_materials_require_current_build_review');
   console.log(`Historical App Store materials target build ${materialsBuild}; build ${currentBuild} requires separate material review before public submission.`);
 }

@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-1671",
+  "name": "CSN3001 [雷暴，医疗特情]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-223722",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-1",
+      "audioText": "B: [Your call sign is CSN3001, a Boeing 737 from Guangzhou to Wuhan. You are now at gate 185 with information X, request ATC clearance.]",
+      "audioTextZh": "【你的呼号是南方3001，一架从广州飞往武汉的波音737。你现在在185号停机位，收到通播X，请求管制许可。】",
+      "referenceText": "Guangzhou Delivery, CSN3001, gate 185 with information X, request ATC clearance to Wuhan.",
+      "referenceTextZh": "广州放行，南方3001，185号停机位，通播X，请求去往武汉的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68d076e774482b7e499.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223723",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-2",
+      "audioText": "C: CSN3001, Guangzhou Delivery, cleared to destination via flight planned route, runway in use 02R, YIN-94D departure, initial altitude 600m, cruising level 10400m, contact Departure 121.05 when airborne, squawk 3561.",
+      "audioTextZh": "C: 南方3001，广州放行，可以经由计划航路飞往目的地，使用跑道02右，YIN-94D离场，初始高度600米，巡航高度10400米，起飞后联系离场121.05，应答机编码3561。",
+      "referenceText": "Cleared to destination via flight planned route, runway in use 02R, YIN-94D departure, initial altitude 600m, cruising level 10400m, contact Departure 121.05 when airborne, squawk 3561, CSN3001.",
+      "referenceTextZh": "经由计划航路飞往目的地，使用跑道02右，YIN-94D离场，初始高度600米，巡航高度10400米，起飞后联系离场121.05，应答机编码3561。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa81e565fc6e6715242c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223724",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-3",
+      "audioText": "B: [You are now ready for pushback and startup, contact Ground.]",
+      "audioTextZh": "【你现在准备好推出开车了，联系地面。】",
+      "referenceText": "Guangzhou Ground, CSN3001, request pushback and startup.",
+      "referenceTextZh": "广州地面，南方3001，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e0ff7b50f20224cd7b88.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223725",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-4",
+      "audioText": "C: CSN3001, pushback approved, long push, start up at own discretion.",
+      "audioTextZh": "C：南方3001，可以推出，长推点，自行决定开车。",
+      "referenceText": "Pushback approved, long push, start up at own discretion, CSN3001.",
+      "referenceTextZh": "可以推出，长推点，自行决定开车，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/374094c0e59d9891b5e9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223726",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-5",
+      "audioText": "C: CSN3001, taxi via taxiway T4, P1 to the holding point of runway 02L.",
+      "audioTextZh": "C：南方3001，经由滑行道T4，P1，滑行到跑道02左外等待点。",
+      "referenceText": "Taxi via taxiway T4, P1 to the holding point of runway 02L, CSN3001.",
+      "referenceTextZh": "经由滑行道T4，P1，滑行到跑道02左外等待点，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/52325fe14a98f9972dda.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223727",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-6",
+      "audioText": "C: CSN3001, enter runway 02L via P1, then vacate via P2, hold at holding point of runway 02R.",
+      "audioTextZh": "C: 南方3001，经由P1进入跑道02左，然后经由P2脱离，在跑道02右外等待点等待。",
+      "referenceText": "Enter runway 02L via P1, then vacate via P2, hold at holding point of runway 02R, CSN3001.",
+      "referenceTextZh": "经由P1进入跑道02左，然后经由P2脱离，在跑道02右外等待点等待，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2dea1e0fcce84094c328.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223728",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-7",
+      "audioText": "B: [You are now at the holding point of runway 02R, you are ready for departure.]",
+      "audioTextZh": "【现在你在跑道02右的外等待点，你准备好起飞了。】",
+      "referenceText": "Guangzhou Tower, CSN3001, holding point of runway 02R, request departure.",
+      "referenceTextZh": "广州塔台，南方3001，跑道02右的外等待点，申请起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8760eb513a5c7b3431e2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223729",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-8",
+      "audioText": "C: CSN3001, Guangzhou Tower, maintain runway heading until 1500ft, runway 02R, cleared for takeoff.",
+      "audioTextZh": "C：南方3001，广州塔台，保持跑道航向直到1500英尺，跑道02右，可以起飞。",
+      "referenceText": "Runway heading until 1500ft, runway 02R, cleared for takeoff, CSN3001.",
+      "referenceTextZh": "跑道航向直到1500英尺，跑道02右，可以起飞，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0b91575297dd035df2ce.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223730",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-9",
+      "audioText": "B: [You are now airborne, passing 1500ft, make an initial contact with Guangzhou Departure.]",
+      "audioTextZh": "【你现在离地了，通过1500英尺，与广州离场建立初始联系。】",
+      "referenceText": "Guangzhou Departure, CSN3001, airborne, passing 1500ft.",
+      "referenceTextZh": "广州离场，南方3001，离地了，过1500英尺。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c66fbb5733abb03fd1a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223731",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-10",
+      "audioText": "C: CSN3001, Guangzhou Departure, radar contact, turn right heading 028, then direct to YIN, maintain FL156 when passing YIN.",
+      "audioTextZh": "C: 南方3001，广州离场，雷达看见了，右转航向028，然后直飞YIN，过YIN时保持高度层156。",
+      "referenceText": "Turn right heading 028, then direct to YIN, maintain FL156 when passing YIN, CSN3001.",
+      "referenceTextZh": "右转航向028，然后直飞YIN，过YIN时保持高度层156，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f8ddaa5e4b2e16b08500.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223732",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-11",
+      "audioText": "C: CSN3001, turn left heading 048 degrees, direct to BOGRO, and then join airway A461.",
+      "audioTextZh": "C：南方3001，左转航向048度，直飞BOGRO，然后加入A461航路。",
+      "referenceText": "Turn left heading 048 degrees, direct to BOGRO, and then join airway A461, CSN3001.",
+      "referenceTextZh": "左转航向048度，直飞BOGRO，然后加入A461航路，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a1eb2be372e68f3af19.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223733",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-12",
+      "audioText": "C: CSN3001, report your estimated time over BOGRO.\nB: [Advise controller your estimated time over BOGRO is 1045.]",
+      "audioTextZh": "C: 南方3001，报告你预计过BPGRO的时间。\n【告知管制员，你预计过BOGRO的时间是10点45分。】",
+      "referenceText": "ETA BOGRO 1045, CSN3001.",
+      "referenceTextZh": "预计过BOGRO的时间是10点45分，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/14fb562a350280552a42.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223734",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-13",
+      "audioText": "B: [Now you are leveling at 10400m, the latest SIGMET says a super cell thunderstorm is developing along your route, you want to deviate 20 miles to the left, call Guangzhou Control.]",
+      "audioTextZh": "【你现在在10400米平飞，最新的气象报显示一个超级单体雷暴正在你的航路航生成，你想左偏置20海里，呼叫广州区调。】",
+      "referenceText": "Guangzhou Control, CSN3001, request 20 miles deviation to the left due thunderstorm.",
+      "referenceTextZh": "广州区调，南方3001，由于雷暴，请求左偏20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fef9ed2f05c1877cc0ac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223735",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-14",
+      "audioText": "C: CSN3001, cleared to deviate 20 miles to the left, maintain present altitude, expect fly direct to P419. Notify us when you are clear of the weather. We will radar vector you back to your original route.",
+      "audioTextZh": "C: 南方3001，可以左偏置20海里，保持当前高度，预计直飞P419，脱离天气时报。我们将雷达引导你返回原航路。",
+      "referenceText": "Cleared to deviate 20 miles to the left, maintain present altitude, expect fly direct to P419, wilco, CSN3001.",
+      "referenceTextZh": "可以左偏置20海里，保持当前高度，预计直飞P419，将照办，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/249be61ba242ecb1422f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223736",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-15",
+      "audioText": "B: [After deviating 20 miles left, you observe the thunderstorm is expanding, therefore, you need additional 10 miles left deviation.]",
+      "audioTextZh": "【左偏置20海里后，你发现雷暴范围正在扩大，因此，你需要再左偏10海里。】",
+      "referenceText": "Guangzhou Control, CSN3001, request additional 10 miles left deviation, thunderstorm is extending.",
+      "referenceTextZh": "广州区调，南方3001，请求再左偏10海里，雷暴范围正在扩大。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/07f8fe005b297d573b0a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223737",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-16",
+      "audioText": "C: CSN3001, approved additional 10 miles left deviation, no traffic reported, advise if conditions worsen.",
+      "audioTextZh": "C：南方3001，可以再左偏10海里，没有关于航空器的报告，如果情况恶化，请告知。",
+      "referenceText": "Approved 10 miles further left deviation, wilco, CSN3001.",
+      "referenceTextZh": "可以再左偏10海里，照办，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c4285db0085e3c55888.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223738",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-17",
+      "audioText": "B: [Later.]\nB: [You are now in Wuhan Control area. The purser reports that a 73-year-old woman in 35H suffers from stroke and is having a terrible headache. Report this situation to Wuhan Control and ask for landing priority. This is an emergency call.]",
+      "audioTextZh": "【一会后。】\n【你现在在武汉区调。乘务长报告说，35H座位上一名73岁的妇女中风，头痛得厉害。将此情况报告武汉区调，请求优先降落。这是紧急通话。】",
+      "referenceText": "Panpan Panpan Panpan, Wuhan Control, CSN3001, a 73-year-old woman in 35H suffers from stroke, and is having a terrible headache, request landing priority.",
+      "referenceTextZh": "Panpan Panpan Panpan，武汉区调，南方3001，35H座位上一名73岁的妇女中风，头痛得厉害，请求优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ed1f53c54971585f6a53.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223739",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-18",
+      "audioText": "C: CSN3001, roger Panpan, descend to 9200m. When able, say your further intention.\nB: [Inform controller that cabin crew have provided necessary first aid to the sick passenger, but you still need doctors and medical service to be ready at the gate after landing.]",
+      "audioTextZh": "C：南方3001，收到Panpan，下9200米，可以的时候，报告你的意图。\n【告知管制员，乘务员已经给患病乘客提供了必要的急救，但是着陆后，你依旧需要医生和救护车在机位上就绪。】",
+      "referenceText": "Descend to 9200m, request doctors and medical service to be ready at the gate, CSN3001.",
+      "referenceTextZh": "下9200米，请求医生和救护车在机位上就绪，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/09266748d747b486eb9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-223740",
+      "taskTitle": "69-CSN3001 [雷暴，医疗特情]-19",
+      "audioText": "C: CSN3001, roger, medical services and doctors are already on standby. Further descend to 6600 meters, descent rate at your own discretion.",
+      "audioTextZh": "C: 南方3001，医疗服务和医生已经就位。继续下到6600米，自行决定下降率。",
+      "referenceText": "Roger, thanks, descend to 6600m, descent rate at own discretion, CSN3001.",
+      "referenceTextZh": "收到，谢谢，下到6600米，自行决定下降率，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5283240c025b0376c4a8.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

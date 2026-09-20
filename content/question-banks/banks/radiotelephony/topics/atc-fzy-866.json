@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-866",
+  "name": "KLM88 delay pushback&laning gear problem",
+  "declaredCardCount": 19,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153508",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-1",
+      "audioText": "[Your call sign is KLM88, you are at Wuhan Airport, stand 223, you are fully ready, call Wuhan delivery and request ATC clearance.]",
+      "audioTextZh": "你的呼号是荷航88，你现在武汉机场，223号停机位，你现在准备好了，呼叫武汉放行，申请管制许可。",
+      "referenceText": "Wuhan Delivery, KLM88, stand 223, request ATC clearance.",
+      "referenceTextZh": "武汉放行，荷航88，223号机位，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0a5645cd720dea3682e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153509",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-2",
+      "audioText": "KLM88, negative due traffic on short final, standby.",
+      "audioTextZh": "荷航88，不可以，短五边上有航空器，稍等。",
+      "referenceText": "Roger, standby, KLM88.",
+      "referenceTextZh": "收到，稍等，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b40a3aa5f08faa8745b4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153510",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-3",
+      "audioText": "[You have been waiting for 15 minutes, and some passengers in the cabin are complaining, you want to know how long the delay is, ask Wuhan delivery for confirmation.]",
+      "audioTextZh": "[你已经等了15分钟了，客舱有乘客抱怨，你想知道延误多久，询问武汉放行，进行确认。]",
+      "referenceText": "Wuhan Delivery, KLM88, confirm the delay time.",
+      "referenceTextZh": "武汉放行，荷航88，确认延误时间。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d1c1aebd3cc583f64ad2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153511",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-4",
+      "audioText": "KLM88, delay not determined, expect further clearance in 5 minutes.",
+      "audioTextZh": "荷航88，延误时间不确定，预计在5分钟后收到下一个许可。",
+      "referenceText": "Roger, 5 minutes, thanks, KLM88.",
+      "referenceTextZh": "收到，5分钟，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/df37273868c27828c943.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153512",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-5",
+      "audioText": "[5 minutes later, you want to request the ATC clearance again.]",
+      "audioTextZh": "[5分钟后，你想再次申请管制许可。]",
+      "referenceText": "Wuhan Delivery, KLM88, stand 223, request ATC clearance.",
+      "referenceTextZh": "武汉放行，荷航88,223号停机位，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ab125a48b7d825f5174.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153513",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-6",
+      "audioText": "KLM88, cleared to destination via flight planned route, LKO-01 departure, initial climb to 1500m, cruising level 11000m, squawk 3512.",
+      "audioTextZh": "荷航88，可以经由计划航路飞往目的地，LKO-01离场，初始爬升至1500米，巡航高度11000米，应答机3512。",
+      "referenceText": "Cleared to destination via flight planned route, LKO-01 departure, initial climb to 1500m, cruising level 11000m, squawk 3512, KLM88.",
+      "referenceTextZh": "可以经由计划航路飞往目的地，LKO-01离场，初始爬升至1500米，巡航高度11000米，应答机3512，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2c1ac148845f9f512b3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153514",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-7",
+      "audioText": "[Now you’re ready for push-back and startup, call Wuhan Ground.]",
+      "audioTextZh": "[现在你准备好推出开车了，呼叫武汉地面。]",
+      "referenceText": "Wuhan Ground, KLM88, request push-back and startup.",
+      "referenceTextZh": "武汉地面，荷航88，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e098e563afbdb914477.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153515",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-8",
+      "audioText": "KLM88, push-back approved, facing east, start your engines at your own discretion.",
+      "audioTextZh": "荷航88，同意推出，面朝东，自行决定开车。",
+      "referenceText": "Push-back approved, facing east, startup at own discretion, KLM88.",
+      "referenceTextZh": "同意推出，面朝东，自行决定开车，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6444b9efff90e84e4ef2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153516",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-9",
+      "audioText": "[You have completed pushback and startup, request taxi instructions.]",
+      "audioTextZh": "[你完成了推出开车，请求滑行指令。]",
+      "referenceText": "Wuhan Ground, KLM88, request taxi.",
+      "referenceTextZh": "武汉地面，荷航88，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8f1ad07a81756480001c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153517",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-10",
+      "audioText": "KML88, taxi via taxiway Z4, A2, E2 to the holding point of runway 04, taxi with caution due constructions near taxiway E1.",
+      "audioTextZh": "荷航88， 经由Z4，A2，E2，滑行至04跑道外等待点，谨慎滑行，E1滑行道上有施工。",
+      "referenceText": "Taxi via taxiway Z4, A2, E2 to the holding point of runway 04, thanks, KLM88.",
+      "referenceTextZh": "经由Z4，A2，E2，滑行至04跑道外等待点，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/60e6afd61b60224feea1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153518",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-11",
+      "audioText": "[Now you have reached the holding point of runway 04, you are ready for takeoff.]",
+      "audioTextZh": "[你现在到达了04跑道外等待点，你准备好起飞了。]",
+      "referenceText": "Wuhan Tower, KLM88, request departure.",
+      "referenceTextZh": "武汉塔台，荷航88，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/640565272ebb6ec7b990.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153519",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-12",
+      "audioText": "KLM88, cleared for takeoff, runway 04, keep runway heading until 800m, contact Wuhan departure on 128.35.",
+      "audioTextZh": "荷航88，可以起飞，跑道04，保持跑道航向直到800米，联系武汉离场128.35。",
+      "referenceText": "Cleared for takeoff, runway 04, runway heading until 800m, contact Wuhan departure 128.35, KLM88.",
+      "referenceTextZh": "可以起飞，跑道04，跑道航向直到800米，联系武汉离场128.35，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d8d3af0b155e8c4b2964.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153520",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-13",
+      "audioText": "[During the landing gear retraction, you find your landing gear cannot be retracted, you’ve completed the checklist, but the problem still cannot be fixed, report this situation to Wuhan Departure, this is an urgency call.]",
+      "audioTextZh": "[在收轮期间，你发现你的起落架无法收回，你完成了检查单，但是依旧没有解决问题，将此情况报告给武汉离场，这是一个紧急呼叫。]",
+      "referenceText": "Panpan, Panpan, Panpan, Wuhan Departure, KLM88, our landing gear cannot be retracted.",
+      "referenceTextZh": "Panpan, Panpan, Panpan，武汉离场，荷航88，我们的起落架无法收回。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8deb1ed6cf6f6feba477.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153521",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-14",
+      "audioText": "KLM88, Wuhan Departure, roger pan, what is your intention?\n[Tell controller you want to return to Wuhan airport with priority.]",
+      "audioTextZh": "荷航88，武汉离场，你的意图是什么？\n[告诉管制员，你想返回武汉机场，优先着陆。]",
+      "referenceText": "Request priority landing to Wuhan airport, KLM88.",
+      "referenceTextZh": "请求优先着陆武汉机场，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fef976af4058a290153d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153522",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-15",
+      "audioText": "KLM88, roger, follow LKO-01 arrival, fly direct to the holding point as published to burn fuel, you are the first one in the landing sequence.",
+      "audioTextZh": "荷航88，收到，按照LKO-01进场，直飞发布的等待点进行放油，你第一个着陆。",
+      "referenceText": "LKO-01 arrival, fly direct to the holding point as published, No.1, thanks, KLM88.",
+      "referenceTextZh": "LKO-01进场，直飞发布的等待点，第一个，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0dfa0bd66013f3a74713.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153523",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-16",
+      "audioText": "KLM88, when able, report persons on board.\n[Tell the controller that the POB is 178, including 5 children.]",
+      "audioTextZh": "荷航88，可以的时候，报告机上人数。\n[告诉管制员，机上人数是178，包含5名儿童。]",
+      "referenceText": "POB is 178, including 5 children, KLM88,",
+      "referenceTextZh": "机上人数178，包含5名儿童，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/eaf8e988f61a30d1568d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153524",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-17",
+      "audioText": "[Your landing gear problem cannot be fixed, tell the controller that you need a tug because you cannot taxi back to the apron with your own power.]",
+      "audioTextZh": "[你的起落架问题依旧，没解决，告诉管制员，你需要一辆拖车，因为你无法自行滑回机坪。]",
+      "referenceText": "Wuhan Tower, KLM88, we cannot taxi back due to landing gear problem, request a tug.",
+      "referenceTextZh": "武汉塔台，荷航88，由于起落架问题，我们无法滑回机坪，请求拖车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9014fc41403ea4a1fed9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153525",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-18",
+      "audioText": "KLM88, the tug is on the way.",
+      "audioTextZh": "荷航88，拖车在路上了。",
+      "referenceText": "Roger, thanks, KLM88.",
+      "referenceTextZh": "收到，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9ead27d64b8f982e9672.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153526",
+      "taskTitle": "47. KLM88 delay pushback&laning gear problem-19",
+      "audioText": "KLM88, expect ILS approach runway 04, report established.",
+      "audioTextZh": "荷航88，预计ILS进近，跑道04，建立后报。",
+      "referenceText": "ILS approach runway 04, wilco, KLM88.",
+      "referenceTextZh": "ILS进近，跑道04，建立后报，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/586280cca39b7666a0e7.mp3"
+    }
+  ],
+  "categoryId": "atc-klm"
+}

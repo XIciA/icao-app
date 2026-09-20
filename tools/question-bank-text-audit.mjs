@@ -118,7 +118,6 @@ const knownTypoReplacements = new Map([
   ['aiebus', 'airbus'],
   ['aïr', 'air'],
   ["aircraftdidn't", "aircraft didn't"],
-  ['aircrafts', "aircraft's"],
   ['allthe', 'all the'],
   ['alnd', 'and'],
   ['aot', 'got'],
@@ -1404,14 +1403,13 @@ function applyReviewedRecordReplacements(record) {
   return next;
 }
 
-function normalizeDeterministicText(record) {
+export function normalizeDeterministicText(record) {
   if (isAccepted900(record)) return record.text;
   let next = applyKnownTypoReplacements(applyReviewedRecordReplacements(record))
     .replace(/[\uFEFF\u200B-\u200D\u2060]/gu, '')
     .replace(/\uFFFD/gu, '')
     .replace(/\r/gu, '')
     .replace(/\t/gu, ' ')
-    .replaceAll('近进', '进近')
     .replace(/#%?\$?@?\*\^?#\.{3,}/gu, '[unintelligible due to radio interference]')
     .replace(/#%?\$?@?\*\^?#…+/gu, '［无线电干扰，内容不清］')
     .replace(/([!?。，；：])\1+/gu, '$1')
@@ -1428,7 +1426,7 @@ function normalizeDeterministicText(record) {
       .replaceAll('？', '?')
       .replaceAll('（', '(')
       .replaceAll('）', ')')
-      .replace(/[^\S\n]+([,:;!?]|\.(?!\.))/gu, '$1')
+      .replace(/[^\S\n]+([,:;!?]|\.(?![.\d]))/gu, '$1')
       .replace(/(?<=[A-Za-z0-9])([,:;])(?=[A-Za-z])/gu, '$1 ')
       .replace(/(?<=[a-z0-9])\.(?=[A-Z])/gu, '. ')
       .replace(/(?<=[A-Z])\.(?=(?:ATC|After|Air|An|At|Before|But|During|Finally|He|However|In|It|Later|Meanwhile|On|Otherwise|She|So|Suddenly|The|Then|They|This|Unfortunately|Upon|We|When|While)\b)/gu, '. ')
@@ -1690,7 +1688,7 @@ function scanRecord(record, suspiciousWords) {
       || /(?:(?<!\.)\.(?!\.)|[!?])\s+(?:an|and|break|but|call|can|confirm|do|er|expect|flames|for|he|heading|however|ice|if|is|other|report|request|the|vehicle|we|you)\b/u.test(text)
       || /(?<=[A-Za-z])\((?=[A-Za-z]{2})/u.test(text)
       || /(?<=[A-Za-z])\)(?=[A-Za-z])/u.test(text)
-      || /[^\S\n]+(?:[,:;!?]|\.(?!\.))/u.test(text)
+      || /[^\S\n]+(?:[,:;!?]|\.(?![.\d]))/u.test(text)
     )
   ) {
     add('MISSING_SPACE_AROUND_PUNCTUATION', '英文标点与相邻单词之间缺少空格。');
@@ -2147,7 +2145,7 @@ function applyCorrections() {
       return /^\d+$/u.test(decoded) ? Number(decoded) : decoded;
     });
     const current = valueAtPath(fileValue.json, path);
-    if (current === entry.after) {
+    if (current === entry.after || isAccepted900({ ...entry, text: current })) {
       alreadyApplied += 1;
       continue;
     }
@@ -2241,6 +2239,7 @@ function sealCoverage() {
   console.log(`question_bank_text_coverage_sealed files=${sources.files.size} texts=${sources.records.length}`);
 }
 
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
 const command = process.argv[2] ?? 'check';
 if (command === 'audit') audit();
 else if (command === 'propose') proposeDeterministicCorrections();
@@ -2249,3 +2248,4 @@ else if (command === 'apply') applyCorrections();
 else if (command === 'check') check();
 else if (command === 'seal-coverage') sealCoverage();
 else fail(`unknown_text_audit_command:${command}`);
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0137",
   "name": "灭火器",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "The crew must follow the aircraft's engine-fire checklist and positively identify the affected engine before taking action. The checklist may direct the crew to reduce its thrust, shut it down, isolate the fuel supply, and then discharge the fire extinguisher.",
       "referenceTextZh": "机组必须执行飞机的发动机失火检查单，并在采取行动前明确识别受影响的发动机。检查单可能要求机组减小该发动机的推力、将其关停、隔离燃油供应，然后释放灭火剂。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

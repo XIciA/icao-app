@@ -1,5 +1,7 @@
-import embeddedData from './question-bank.json';
-import embeddedRelease from './question-bank-release.json';
+// Immutable legacy website snapshot. Native and formal Web resolve the protected
+// repository.native implementation and keep using the current canonical bank.
+import embeddedData from './legacy-v13/question-bank.json';
+import embeddedRelease from './legacy-v13/question-bank-release.json';
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, QuestionBankRelease } from '@icao/contracts';

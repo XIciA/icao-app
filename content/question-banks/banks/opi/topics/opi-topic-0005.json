@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0005",
   "name": "紧急情况遇险",
   "declaredCardCount": 14,
@@ -116,5 +115,6 @@
       "referenceText": "If the distressed aircraft can communicate with ATC, I would stop transmitting. If it cannot, I would help relay the message to ATC and provide any necessary assistance.",
       "referenceTextZh": "如果遇险飞机能够与空中交通管制通信，我会停止发射。如果它无法通信，我会协助向空中交通管制转发报文，并提供必要帮助。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

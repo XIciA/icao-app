@@ -14,7 +14,7 @@ const mockStatus = { duration: 0, currentTime: 0, playing: false, isBuffering: f
 jest.mock('expo-audio', () => ({ useAudioPlayer: () => mockPlayer, useAudioPlayerStatus: () => mockStatus }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => mockAuth }));
 jest.mock('@/config/web-runtime', () => ({ isEdgeOneProductionWeb: () => true }));
-jest.mock('../catalog', () => ({ getEmbeddedRadioCatalogs: () => mockPublic, loadRadioCatalogs: () => mockLoad() }));
+jest.mock('../catalog.browser', () => ({ getEmbeddedRadioCatalogs: () => mockPublic, loadRadioCatalogs: () => mockLoad() }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveRemoteQuestionBankAsset: () => mockResolve(), resolveQuestionBankAsset: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: async () => ({token: 'lease'}), release: async () => undefined, register: () => () => undefined } }));
 jest.mock('@/platform/storage', () => ({ __esModule: true, default: { getItem: async () => null, setItem: async () => undefined } }));

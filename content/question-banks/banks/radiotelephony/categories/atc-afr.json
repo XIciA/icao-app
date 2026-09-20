@@ -1,8 +1,8 @@
 {
   "id": "atc-afr",
   "name": "AFR",
-  "declaredTopicCount": 18,
-  "declaredCardCount": 330,
+  "declaredTopicCount": 33,
+  "declaredCardCount": 598,
   "topicIds": [
     "atc-scenario-0015",
     "atc-scenario-0016",
@@ -21,6 +21,21 @@
     "atc-scenario-0164",
     "atc-scenario-0165",
     "atc-scenario-0166",
-    "atc-scenario-0167"
+    "atc-scenario-0167",
+    "atc-fzy-1056",
+    "atc-fzy-1380",
+    "atc-fzy-1501",
+    "atc-fzy-1693",
+    "atc-fzy-602",
+    "atc-fzy-603",
+    "atc-fzy-604",
+    "atc-fzy-605",
+    "atc-fzy-624",
+    "atc-fzy-629",
+    "atc-fzy-632",
+    "atc-fzy-775",
+    "atc-fzy-860",
+    "atc-fzy-865",
+    "atc-fzy-867"
   ]
 }

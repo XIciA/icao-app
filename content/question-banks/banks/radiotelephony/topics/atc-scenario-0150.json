@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0150",
   "name": "CCA 321 积冰/防冰 乘客医疗 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "跟随引导车经 T4 和 DAL 滑行道前往 557 登机口，CCA 321。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-048-cca321-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

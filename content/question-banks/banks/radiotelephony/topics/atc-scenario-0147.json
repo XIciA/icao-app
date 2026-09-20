@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0147",
   "name": "CCA 527 鸟击 雷暴绕飞 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "跑道 02R 可以着陆，着陆后加快脱离跑道，CCA 527。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

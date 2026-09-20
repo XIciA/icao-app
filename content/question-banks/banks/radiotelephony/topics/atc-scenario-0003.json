@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0003",
   "name": "QFA 923 乘客，滑行道包裹 液压失效",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "武汉塔台，QFA 923，有一名旅客生病，可能过度换气，请求救护车在登机口等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/057.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

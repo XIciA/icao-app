@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-783",
+  "name": "SIA852 [汽车抛锚，轮胎爆裂]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152444",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-1",
+      "audioText": "Your call sign is SIA852, you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Singapore.",
+      "audioTextZh": "你的呼号是新航852，你现在在武汉机场，7号停机位，收到机场通播M，请求飞往新加坡的放行许可。",
+      "referenceText": "Wuhan Delivery, SIA852, Stand 7, Information M, request ATC clearance to Singapore.",
+      "referenceTextZh": "武汉放行，新加坡852，停机位7号，通播M，请求飞往新加坡的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f180e1cdf7649e67478.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152445",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-2",
+      "audioText": "SIA852, cleared to Singapore via flight planned route, ZF 03D departure, initial climb to 1800m, cruising level 10400m, RWY 18L, departure frequency 124.7, squawk 4615.",
+      "audioTextZh": "新航852，可以经由计划航路飞往新加坡，ZF03离场（程序），初始爬升高度1800米，巡航高度10400米，跑道18左，离场频率124.7，应答机4615。",
+      "referenceText": "Cleared to Singapore via flight planned route, ZF 03D departure, initial 1800m, cruising level 10400m, RWY 18L, contact 124.7, squawk 4615, SIA852.",
+      "referenceTextZh": "可以经由计划航路飞往新加坡，ZF03离场（程序），初始爬升高度1800米，巡航高度10400米，跑道18左，离场频率124.7，应答机4615，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c49de644753c28d9899d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152446",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-3",
+      "audioText": "Now you are ready for push back and start up, contact Wuhan Ground.",
+      "audioTextZh": "现在你准备好推出开车了，联系武汉地面。",
+      "referenceText": "Wuhan Ground, SIA852, request push back and start up.",
+      "referenceTextZh": "武汉地面，新航852，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2eb95ce0f8e5fb21154b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152447",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-4",
+      "audioText": "SIA852, delay for push back and start up due flow control.\n[Read back the instruction and ask how long the delay will be.]",
+      "audioTextZh": "新航852，由于流控，推迟推出开车。\n[复诵信息，并询问延误时间多久。]",
+      "referenceText": "Delay for push back and start up due flow control. How long is the delay? SIA852.",
+      "referenceTextZh": "由于流控，推迟推出开车，延误多久？新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c8f874dd5d059a40a863.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152448",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-5",
+      "audioText": "SIA852, delay about a few minutes.",
+      "audioTextZh": "新航852，延误几分钟。",
+      "referenceText": "Roger, SIA852.",
+      "referenceTextZh": "收到，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/873c3353f12d8f53edc4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152449",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-6",
+      "audioText": "A few minutes later, contact Ground and request a new clearance.",
+      "audioTextZh": "几分钟后，联系地面，请求新的许可。",
+      "referenceText": "Wuhan Ground, SIA852, request push back and start up.",
+      "referenceTextZh": "武汉地面，新航852，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d800c367cbc19deecb77.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152450",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-7",
+      "audioText": "SIA852, push back and start up at your own discretion.",
+      "audioTextZh": "新航852，自行决定推出开车。",
+      "referenceText": "Push back and start up at own discretion, SIA852.",
+      "referenceTextZh": "自行决定推出开车，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/45cd9c4c9e3cf5f06155.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152451",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-8",
+      "audioText": "You have completed the pushback and start up procedure, you decided to make an intersection departure from E2. Contact Ground to request intersection departure from E2.",
+      "audioTextZh": "你完成了推出和开车程序，你决定从滑行道E2进行减跑道起飞，联系地面，请求从E2进行减跑道起飞。",
+      "referenceText": "Wuhan Ground, SIA852, completed pushback and start up. Request intersection departure from E2.",
+      "referenceTextZh": "武汉地面，新航852，完成推出开车，请求从E2进行减跑道起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0a83b6fc5d5a3132bf1b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152452",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-9",
+      "audioText": "SIA852, intersection departure from E2 is approved. Taxi to E2 via A6, A, A2. Hold short of RWY 18L.",
+      "audioTextZh": "新航852，可以从E2进行减跑道起飞，经由A6,A,A2，滑行至E2，跑道18左外等待。",
+      "referenceText": "Intersection departure from E2 is approved. Taxi to E2 via A6, A, A2. Hold short of RWY 18L, SIA852.",
+      "referenceTextZh": "可以从E2进行减跑道起飞，经由A6,A,A2，滑行至E2，跑道18左外等待，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d742f71ef1b6729d575.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152453",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-10",
+      "audioText": "During taxiing, you find a vehicle broken down on taxiway A, you have stopped the aircraft, inform ATC about this situation and request airport services to tow away the vehicle.",
+      "audioTextZh": "在滑行过程中，你发现一辆汽车在滑行道A上抛锚了。你停下了飞机，告知管制员此情况，请求机场服务拖走汽车。",
+      "referenceText": "Wuhan Ground, SIA852, we stopped taxiing due to a vehicle broken down on taxiway, request airport services to tow away the vehicle.",
+      "referenceTextZh": "武汉地面，新航852，滑行道上有汽车抛锚，我们停止滑行，请求机场服务拖走汽车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dbb2b3047dc82831c40f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152454",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-11",
+      "audioText": "SIA852, hold at present position. The ramp services will be there in a few minutes.",
+      "audioTextZh": "新航852，在当前位置等待，机坪服务将在几分钟后到达。",
+      "referenceText": "Holding at present position, SIA852.",
+      "referenceTextZh": "在当前位置等待，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ee21531b6b15893461d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152455",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-12",
+      "audioText": "You are now holding short of RWY 18L on E2. Request for departure.",
+      "audioTextZh": "你现在滑行道E2，跑道18左外等待，请求起飞。",
+      "referenceText": "Wuhan Tower, SIA852, we are holding short of RWY 18L on E2. Request departure.",
+      "referenceTextZh": "武汉塔台，新航852，我们在滑行道E2，跑道18左外等待，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/18cf3f47f95c5d13b860.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152456",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-13",
+      "audioText": "SIA852, cleared for takeoff, runway 18L.",
+      "audioTextZh": "新航852，可以起飞，跑道18左。",
+      "referenceText": "Cleared for takeoff, runway 18L. SIA852.",
+      "referenceTextZh": "可以起飞，跑道18左，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/769329f20d0bd9c854fb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152457",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-14",
+      "audioText": "During the takeoff roll, your nose wheel ran over a sharp object on the runway surface and a nose wheel tire burst, you aborted takeoff. Notify Wuhan Tower and request fire trucks and maintenance.",
+      "audioTextZh": "在起飞滑跑期间，你的前轮碾过跑道表面上的尖锐物，前轮爆胎，你中断起飞了，通知武汉塔台，请求消防车以及机务维修人员。",
+      "referenceText": "Wuhan Tower, SIA852, we aborted takeoff due nose wheel tire burst. Request fire trucks and maintenance.",
+      "referenceTextZh": "武汉塔台，新航852，由于前轮爆胎，我们中断起飞了，请求消防车和机务维修人员。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d3984f850871a4b54660.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152459",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-15",
+      "audioText": "SIA852, do you require anything else?\nTell ATC that you require a tug to tow your aircraft back to the apron after inspection.",
+      "audioTextZh": "新航852，你还请求别的吗？\n[告诉管制员，检查完飞机后，你需要一辆拖车，将飞机拖回机坪]",
+      "referenceText": "Affirm. Request a tug to tow back to the apron after inspection, SIA852.",
+      "referenceTextZh": "是的，检查完飞机后，请求一辆拖车，将飞机拖回机坪，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e799de1621a66b819a49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152460",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-16",
+      "audioText": "SIA852, the tug is on the way. Contact ground 121.75.",
+      "audioTextZh": "新航852，拖车在路上了，联系地面121.75。",
+      "referenceText": "Roger, thanks, 121.75, SIA852.",
+      "referenceTextZh": "收到，谢谢，121.75，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/44c37b943776fb57a26d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152461",
+      "taskTitle": "29-SIA852 [汽车抛锚，轮胎爆裂]-17",
+      "audioText": "Request passenger stairs and shuttle bus to be ready at the apron.",
+      "audioTextZh": "[请求客梯和摆渡车在停机坪待命]",
+      "referenceText": "Wuhan Ground, SIA852, request passenger stairs and shuttle bus to be ready at the apron.",
+      "referenceTextZh": "武汉地面，新航852，请求客梯和摆渡车在停机坪待命。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f1c583372dbe90571cc.mp3"
+    }
+  ],
+  "categoryId": "atc-sia"
+}

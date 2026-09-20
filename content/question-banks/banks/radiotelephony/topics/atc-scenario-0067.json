@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0067",
   "name": "CCA 1089 慢释压 有乘客昏迷",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "北京管制，CCA 1089，3000 米平飞，请求改航 Hangzhou，并请求 Hangzhou Airport 天气。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1160.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

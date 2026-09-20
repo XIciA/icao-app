@@ -1,0 +1,459 @@
+{
+  "id": "atc-fzy-1445",
+  "name": "滑行指令",
+  "declaredCardCount": 45,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210067",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-1",
+      "audioText": "SIA635, taxi to the holding point of runway 36R, via Z4, A3 and A.",
+      "audioTextZh": "新航635，沿滑行道Z4，A3，A滑至跑道36右等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi to the holding point of runway 36R, via Z4, A3 and A, SIA635.",
+      "referenceTextZh": "沿滑行道Z4，A3，A滑至跑道36右等待点，新航635。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ee73b6c59d296a20f283.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210068",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-2",
+      "audioText": "AFR151, taxi to holding point runway 04 via Z4, A, hold short of A4.",
+      "audioTextZh": "法航151，沿滑行道Z4，A滑至跑道04等待点，在A4外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 04 via Z4, A, hold short of A4, AFR151.",
+      "referenceTextZh": "沿滑行道Z4，A滑至跑道04等待点，在A4外等待，法航151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d0b62310dfe4eb70dbf0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210069",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-3",
+      "audioText": "BAW951, taxi to the Holding point of runway 18L, via A7, A, hold short of A5.",
+      "audioTextZh": "英航951，沿滑行道A7，A滑至跑道18左等待点，在A5外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to the Holding point of runway 18L, via A7, A, hold short of A5, BAW951.",
+      "referenceTextZh": "沿滑行道A7，A滑行跑道18左等待点，在A5外等待，英航951。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d64bb302aece32af7b09.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210070",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-4",
+      "audioText": "CCA532, taxi to holding point runway 04 via Z4, A. hold short of A4.",
+      "audioTextZh": "国航532，沿滑行道Z4，A滑行至跑道04，在A4外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 04 via Z4, A. hold short of A4, CCA532.",
+      "referenceTextZh": "沿滑行道Z4，A滑行至跑道04，在A4外等待，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7a4d76017692e4305a8b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210071",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-5",
+      "audioText": "CCA987, taxi to the holding point of runway 18L via Z4, A2, A, hold short of E1.",
+      "audioTextZh": "国航987，沿滑行道Z4，A2，A滑行至跑道18左外等待点，在E1外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A2, A to holding point of runway 18L, hold short of E1, CCA987.",
+      "referenceTextZh": "沿滑行道Z4，A2，A滑行至跑道18左外等待点，在E1外等待。国航987。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/423197453c53ce610792.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210072",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-6",
+      "audioText": "CCA987, taxi to Gate 213 via M, M3, Z4.",
+      "audioTextZh": "国航987，沿滑行道M，M3，Z4滑回213号机位。",
+      "studyTier": 0,
+      "referenceText": "Taxi to Gate 213 via M, M3, Z4, CCA987.",
+      "referenceTextZh": "沿滑行道M，M3，Z4滑回213号机位，国航987。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/48070447725b71155be3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210073",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-7",
+      "audioText": "CSN339, taxi via Z4, A3, A, hold short of runway 36R.",
+      "audioTextZh": "南航339，沿滑行道Z4，A3，A，滑至跑道36右外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A3, A, and hold short of runway 36R, CSN339.",
+      "referenceTextZh": "沿滑行道Z4，A3，A, 滑至跑道36右外等待。南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1de577d147f3c0e382e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210074",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-8",
+      "audioText": "CSN351, taxi to holding point runway 04 via F, A9, hold short of A.",
+      "audioTextZh": "南航351，沿滑行道F，A9滑至跑道04等待点，在滑行道A外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to Holding point runway 04 via F, A9, hold short of A. CSN351.",
+      "referenceTextZh": "沿滑行道F，A9滑至跑道04等待点，在滑行道A外等待，南航351。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c82a6050ae80ae8ac030.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210075",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-9",
+      "audioText": "CES615, taxi via Z4, A3, A to the holding point of A7.",
+      "audioTextZh": "东方615，沿滑行道Z4，A3，A滑至滑行道A7的等待点。",
+      "studyTier": 0,
+      "referenceText": "Z4, A3, A to the holding point of A7, CES615.",
+      "referenceTextZh": "沿滑行道Z4，A3，A滑至滑行道A7的等待点，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a0c5c0f9d893dec5836.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210076",
+      "taskTitle": "采分点练习-滑行指令-8",
+      "audioText": "QFA953, Ground, taxiway A3 cleared, expedite taxi via A3 and A to holding point runway 36R.",
+      "audioTextZh": "澳航953，地面，滑行道A3清理完成，快速沿滑行道A3，A滑至跑道36右等待点。",
+      "studyTier": 2,
+      "referenceText": "Roger, expediting taxi via A3 and A to holding point runway 36R, QFA953.",
+      "referenceTextZh": "收到，快速沿滑行道A3，A滑至跑道36右等待点，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/99ec49e94e2b40d0a0e3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210077",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-11",
+      "audioText": "SIA233, taxi to holding point runway 18L via E, D4, F.",
+      "audioTextZh": "新航233，沿滑行道E，D4，F滑至跑道18左的等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 18L via E, D4, and F.SIA233.",
+      "referenceTextZh": "沿滑行道E，D4，F滑至跑道18左的等待点，新航233。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9963db7442b289315203.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210078",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-12",
+      "audioText": "CCA451, taxi via taxiway A7 and A to holding point of runway 36R.",
+      "audioTextZh": "国航451，沿滑行道A7，A滑至跑道36右的等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Taxiway A7 and A to holding point of runway 36R, CCA451.",
+      "referenceTextZh": "沿滑行道A7，A滑至跑道36右的等待点，国航451。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bbb6982326f44f9859bd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210079",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-13",
+      "audioText": "SIA786 Wuhan Ground, taxi to holding point runway 36 via Z4 and A, hold short of E7.",
+      "audioTextZh": "新航786，武汉地面，沿滑行道Z4，A滑行至跑道36等待点，在E7外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 36 via Z4 and A hold short of E7, SIA786.",
+      "referenceTextZh": "沿滑行道Z4，A滑行至跑道36等待点，E7外等待，新航786。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/25f9a082b8edd0fec187.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210080",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-14",
+      "audioText": "AFR101, roger, B737 inbound is approaching from left for Gate 303, once that aircraft is cleared, taxi via B and D, hold short of runway 01. [You received report from information H that B is closed.]",
+      "audioTextZh": "法航101，收到，一架波音737从303号机位左侧滑行入位，737一离开，你就可以沿滑行道B，D滑行至跑道01外等待。【你收到通播H，滑行道B已经关闭。】",
+      "studyTier": 0,
+      "referenceText": "ATIS H says that taxiway B is closed, confirm taxi via B, AFR101.",
+      "referenceTextZh": "通播H显示滑行道B已经关闭，确认是否从B滑行出，法航101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1eb998327e9dae5cba8b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210081",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-15",
+      "audioText": "AFR101, correction, taxi via M and D, hold short of runway 01.",
+      "audioTextZh": "法航101，更正，沿滑行道M，D滑行至跑道01外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via M and D, hold short of runway 01, AFR101.",
+      "referenceTextZh": "一旦波音737离开，从滑行道M和D滑出，收到，法航101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4edbdbd919ee14b4c933.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210082",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-16",
+      "audioText": "QFA029, taxi via taxiway A4 and B1 to holding point 36R.",
+      "audioTextZh": "澳航029，经滑行道A4和B1滑到跑道36右等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi via taxiway A4 and B1 to holding point 36R, QFA029.",
+      "referenceTextZh": "滑行经滑行道A4和B1滑到跑道36右等待点，澳航029。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9700dad1669131007285.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210083",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-17",
+      "audioText": "Roger, CSN6306, runway 31 via taxiway D1 B1 and A12.",
+      "audioTextZh": "收到，南航6306，经滑行道D1，B1和A12滑到跑道31。",
+      "studyTier": 0,
+      "referenceText": "Roger, runway 31, taxiway D1 B1 and A12, CSN6306.",
+      "referenceTextZh": "收到，跑道31，滑行道D1，B1和A12，南航6306。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9f9e133d8a310d2c7499.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210084",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-18",
+      "audioText": "CES565, taxi via Z4, C, C1 to holding point of runway 36L.",
+      "audioTextZh": "东方565，经由滑行道Z4, C，C1，滑行至跑道36左外等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, C, C1 to holding point of runway 36L, CES565.",
+      "referenceTextZh": "经由滑行道Z4, C，C1，跑道36左外等待, 东方565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c92445e04bab4d1077e6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210085",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-19",
+      "audioText": "CES568, taxi via Z4, A3, A to holding point runway 36R.",
+      "audioTextZh": "东方568，经由Z4,A3,A，滑行至跑道36右等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A3, A to holding point runway 36R. CES568.",
+      "referenceTextZh": "经由Z4,A3,A，滑行至跑道36右等待点，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ee7c7f268c90500eb647.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210086",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-20",
+      "audioText": "CSN586, taxi via Z4, A3, A to holding point of runway 36R.",
+      "audioTextZh": "南方586，经由Z4，A3，A，在跑道36右外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A3, A to holding point of runway 36R, CSN586.",
+      "referenceTextZh": "经由Z4，A3，A，在跑道36右外等待，南方586。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a524cf3bf07a7a23ff88.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210087",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-21",
+      "audioText": "CCA428, taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4.",
+      "audioTextZh": "国航428，经由滑行道C、M、A，滑行至跑道04，在Z4等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4. CCA428.",
+      "referenceTextZh": "经由滑行道C、M、A，滑行至跑道04，在Z4等待，国航428。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef9485d03683321ffdd5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210088",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-22",
+      "audioText": "UAL403, Ground, taxi to holding point runway 36R via Z4, A3, and A.",
+      "audioTextZh": "美联航403，通过滑行道Z4，A3和A，到跑道36右等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 36R via Z4, A3, A, UAL403.",
+      "referenceTextZh": "通过滑行道Z4，A3和A，到跑道36右等待点，美联航403。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a8503f8d0491816d4be8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210089",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-23",
+      "audioText": "QFA683, taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
+      "audioTextZh": "澳航683，经由F，C1和B，滑行至跑道26等待点，注意，319号机坪尽头有施工。",
+      "studyTier": 0,
+      "referenceText": "Taxi via F, C1, B to holding point runway 26, thanks for caution, QFA683.",
+      "referenceTextZh": "经由F，C1和B，滑行至跑道26等待点，谢谢提醒，澳航683。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/922f6c9eefa291c6c868.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210090",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-24",
+      "audioText": "SIA497, taxi to runway 36R via Z4, A, hold short of E7.",
+      "audioTextZh": "新航497，经由Z4，A，滑行至跑道36右，在E7外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to runway 36R via Z4, A, hold short of E7. SIA497.",
+      "referenceTextZh": "经由Z4，A，滑行至跑道36右，在E7外等待，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70048646af50e377ef0f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210091",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-25",
+      "audioText": "ACA554, continue taxi to holding point 18L via M, A, A1.",
+      "audioTextZh": "加航554，继续通过M，A，A1，滑行至跑道18左等待点。",
+      "studyTier": 0,
+      "referenceText": "Continue taxi to holding point 18L via M, A, A1, ACA554.",
+      "referenceTextZh": "继续通过M，A，A1，滑行至跑道18左等待点，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc23b242861a85fab4cc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210092",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-26",
+      "audioText": "SIA852, intersection departure from E2 is approved. Taxi to E2 via A6, A, A2. Hold short of RWY 18L.",
+      "audioTextZh": "新航852，可以从E2进行减跑道起飞，经由A6,A,A2，滑行至E2，跑道18左外等待。",
+      "studyTier": 0,
+      "referenceText": "Intersection departure from E2 is approved. Taxi to E2 via A6, A, A2. Hold short of RWY 18L, SIA852.",
+      "referenceTextZh": "可以从E2进行减跑道起飞，经由A6,A,A2，滑行至E2，跑道18左外等待，新航852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d742f71ef1b6729d575.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210093",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-27",
+      "audioText": "CSN319, taxi via Z4, A3, A, hold short of runway 36R.",
+      "audioTextZh": "南方319，经由滑行道Z4,A3,A，在跑道36右外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A3, A, hold short of runway 36R, CSN319.",
+      "referenceTextZh": "经由滑行道Z4,A3,A，在跑道36右外等待，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1115efcc79a0c4144950.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210094",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-28",
+      "audioText": "CSN371, taxi to holding point runway 04 via F, A9, hold short of A.",
+      "audioTextZh": "南方371，经由滑行道F，A9滑行到跑道04，在A外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi to holding point runway 04 via F, A9, hold short of A. CSN371.",
+      "referenceTextZh": "经由滑行道F，A9滑行到跑道04，在A外等待，南方371。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9873245e5b2b7b227ac1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210095",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-29",
+      "audioText": "CES2151, taxi via Z4, A3, A to the holding point of A7.",
+      "audioTextZh": "东方2151，经由滑行道Z4，A3，A，滑行至A7等待点。",
+      "studyTier": 0,
+      "referenceText": "Taxi via Z4, A3, A to the holding point of A7, CES2151.",
+      "referenceTextZh": "经由滑行道Z4，A3，A，滑行至A7等待点，东方2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf9b2f607ac614450464.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210096",
+      "taskTitle": "【练习版】Taxi instructions滑行指令-30",
+      "audioText": "CSN6682, taxi via A4, A3, C, hold short of runway 36R.",
+      "audioTextZh": "南方6682，经由滑行道A4，A3, C，在跑道36右外等待。",
+      "studyTier": 0,
+      "referenceText": "Taxi via A4, A3, C, hold short of runway 36R, CSN6682.",
+      "referenceTextZh": "经由滑行道A4，A3, C，在跑道36右外等待，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/63d72e0ef1d17c9063e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224810",
+      "taskTitle": "采分点练习-滑行指令-1",
+      "audioText": "C: CSN9302, taxi via J, D, T3 and T4 to the holding point of runway 19.",
+      "audioTextZh": "C: 南方9302，经由滑行道J，D，T3和T4滑行到跑道19外等待点。",
+      "studyTier": 2,
+      "referenceText": "Taxi via J, D, T3 and T4 to the holding point of runway 19, CSN9302.",
+      "referenceTextZh": "经由滑行道J，D，T3和T4滑行到跑道19外等待点，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7561e7626ce6a4f79c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224811",
+      "taskTitle": "采分点练习-滑行指令-2",
+      "audioText": "C: SIA308, Wuhan Ground, taxi via taxiway Z4, A2, A to the holding point of E5 runway 04.",
+      "audioTextZh": "C: 新航308，武汉地面，经由滑行道Z4，A2和A滑行到跑道04外等待点E5。",
+      "studyTier": 2,
+      "referenceText": "Taxi via taxiway Z4, A2, A to the holding point of E5 runway 04, SIA308.",
+      "referenceTextZh": "经由滑行道Z4，A2和A滑行到跑道04外等待点E5，新航308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6332940341e2a1241f12.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224812",
+      "taskTitle": "采分点练习-滑行指令-3",
+      "audioText": "C: CSN3001, taxi via taxiway T4, P1 to the holding point of runway 02L.",
+      "audioTextZh": "C：南方3001，经由滑行道T4，P1，滑行到跑道02左外等待点。",
+      "studyTier": 2,
+      "referenceText": "Taxi via taxiway T4, P1 to the holding point of runway 02L, CSN3001.",
+      "referenceTextZh": "经由滑行道T4，P1，滑行到跑道02左外等待点，南方3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/52325fe14a98f9972dda.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224813",
+      "taskTitle": "采分点练习-滑行指令-4",
+      "audioText": "C: CES769, expedite cross runway 36, taxi via taxiway Z5, A4 and A.",
+      "audioTextZh": "东方769，加速穿越跑道36，经由滑行道Z5，A4和A滑行。",
+      "studyTier": 2,
+      "referenceText": "Expedite cross runway 36, taxi via taxiway Z5, A4 and A, CES769.",
+      "referenceTextZh": "加速穿越跑道36，经由滑行道Z5，A4和A滑行，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9203c60926e5799d66b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224814",
+      "taskTitle": "采分点练习-滑行指令-5",
+      "audioText": "C: ACA521, taxi to holding point runway 04 via taxiway Z4, A3 and A, hold short of E5.",
+      "audioTextZh": "加航521，经由滑行道Z4，A3和A，滑行到跑道04外等待点，在E5等待。",
+      "studyTier": 2,
+      "referenceText": "Taxi to holding point runway 04 via taxiway Z4, A3 and A, hold short of E5, ACA521.",
+      "referenceTextZh": "经由滑行道Z4，A3和A，滑行到跑道04外等待点，在E5等待，加航521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dea75e79a9745580b573.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224815",
+      "taskTitle": "采分点练习-滑行指令-6",
+      "audioText": "C: CSN1310, roger, taxi via taxiway Z0, F2, F and W3 to the holding point of runway 36R. Taxi with caution, taxiway F is partially flooded.",
+      "audioTextZh": "C: 南方1310，收到，经由滑行道Z0，F2，F和W3滑行到跑道36右外等待点。谨慎滑行，滑行道F上有部分积水。",
+      "studyTier": 2,
+      "referenceText": "Taxi via taxiway Z0, F2, F and W3 to the holding point of runway 36R, roger caution, CSN1310.",
+      "referenceTextZh": "经由滑行道Z0，F2，F和W3滑行到跑道36右外等待点，收到谨慎，南方1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa60b3ae5ec56d8b16f1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224816",
+      "taskTitle": "采分点练习-滑行指令-7",
+      "audioText": "[As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.]",
+      "audioTextZh": "【在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Ground, QFA953, we found several baggage scattered on A3. We stop taxi and holding present position, request ground service to retrieve the baggage.",
+      "referenceTextZh": "武汉地面，澳航953，我们发现滑行道A3上散落着几件行李。我们停止滑行，原地等待，请求地面工作人员收走行李。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1595161ccd3a3753b14e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224818",
+      "taskTitle": "采分点练习-滑行指令-9",
+      "audioText": "CCA937, taxi to Gate 213 via M, M3, Z4.",
+      "audioTextZh": "国航937，沿滑行道M，M3，Z4滑回213号机位。",
+      "studyTier": 2,
+      "referenceText": "Taxi to Gate 213 via M, M3, Z4, CCA937.",
+      "referenceTextZh": "沿滑行道M，M3，Z4滑回213号机位，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea34c9dc5647f6b221bc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224820",
+      "taskTitle": "采分点练习-滑行指令-11",
+      "audioText": "4C: CES728, taxi via Z4, A3, A to holding point of runway 36R.",
+      "audioTextZh": "东方728，经由滑行道Z4，A3，A滑行至跑道36右外等待点。",
+      "studyTier": 2,
+      "referenceText": "Taxi via Z4, A3, A to holding point runway 36R, CES728.",
+      "referenceTextZh": "经由滑行道Z4，A3，A滑行至跑道36右外等待点，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d67f83bc818f72d5eeb9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224821",
+      "taskTitle": "采分点练习-滑行指令-12",
+      "audioText": "ATC: AFR9939, Wuhan Ground, taxi via A1, A, M, to holding point M2. Caution work in progress at right side of M.",
+      "audioTextZh": "法航9939，武汉地面，经由滑行道A1，A和M，滑行至M2等待点，注意M右侧有施工。",
+      "studyTier": 2,
+      "referenceText": "Taxi via A1, A, M, to holding point M2, roger caution, thanks, AFR9939.",
+      "referenceTextZh": "经由滑行道A1，A和M，滑行至M2等待点，收到，谨慎滑行，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f0764b9b530c421e06ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224822",
+      "taskTitle": "采分点练习-滑行指令-13",
+      "audioText": "CSN817, taxi via Z4, A3, A to holding point of runway 36R.",
+      "audioTextZh": "南方817，经由Z4，A3，A滑行至跑道36右外等待点。",
+      "studyTier": 2,
+      "referenceText": "Taxi via Z4, A3, A to holding point of runway 36R, CSN817.",
+      "referenceTextZh": "经由Z4，A3，A滑行至跑道36右外等待点，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5b80e34aa1b72c9a995.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224823",
+      "taskTitle": "采分点练习-滑行指令-14",
+      "audioText": "KLM88, taxi via taxiway Z, Z4, A2, E2 and M1 to the holding point of runway 35, taxi with caution due workmen near taxiway Z.",
+      "audioTextZh": "荷航88， 经由Z，Z4，A2，E2，M1，滑行至35跑道等待点，谨慎滑行，滑行道Z附近有工人。",
+      "studyTier": 2,
+      "referenceText": "Roger. Taxi via taxiway Z, Z4, A2, E2, M1 to the holding point of runway 35, thanks, KLM88.",
+      "referenceTextZh": "经由Z，Z4，A2，E2，M1滑行至35跑道外等待点，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ad66a83625625f068dc0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224824",
+      "taskTitle": "采分点练习-滑行指令-15",
+      "audioText": "AFR332, taxi via taxiway A3, A, E5 to the holding point of runway 22. Taxi with caution, the taxiway is slippery due to the heavy rain.",
+      "audioTextZh": "法航332，经由滑行道A3，A，E5滑至跑道22外等待点，谨慎滑行，由于大雨，滑行道湿滑。",
+      "studyTier": 2,
+      "referenceText": "Taxi via taxiway A3, A, E5 to the holding point of runway 22, roger caution, AFR332.",
+      "referenceTextZh": "经由滑行道A3，A，E5滑至跑道22外等待点，收到提醒，法航332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f04a151a50ddd55026ec.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224825",
+      "taskTitle": "采分点练习-滑行指令-16",
+      "audioText": "C: QFA432,,taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
+      "audioTextZh": "澳航432，经由滑行道F，C1和B滑行至跑道26等待点。注意机位319尽头有施工。",
+      "studyTier": 2,
+      "referenceText": "Taxi via F, C1, B to holding point runway 26, roger caution, QFA432.",
+      "referenceTextZh": "经由滑行道F，C1和B滑行至跑道26等待点，收到。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1e8ac4bcfd24e4dd8fde.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224826",
+      "taskTitle": "采分点练习-滑行指令-17",
+      "audioText": "CCA985, taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4.",
+      "audioTextZh": "国航985，经由滑行道C、M、A，滑行至跑道04，在Z4等待。",
+      "studyTier": 2,
+      "referenceText": "Taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4. CCA985.",
+      "referenceTextZh": "经由滑行道C、M、A，滑行至跑道04，在Z4等待，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0254686a9c923d9d5c30.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

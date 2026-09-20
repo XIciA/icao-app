@@ -1,0 +1,154 @@
+{
+  "id": "atc-fzy-788",
+  "name": "UAL219 [晴空颠簸，军机]",
+  "declaredCardCount": 16,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152531",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-1",
+      "audioText": "Your call sign is UAL219, from New York to Wuhan. You are maintaining 11000m over OBLIK, squawk number is 3566. Call wuhan control.",
+      "audioTextZh": "你的呼号是美联航219，从纽约飞往武汉，你现在保持在11000米，过OBLIK，应答机编码3566，呼叫武汉区调。",
+      "referenceText": "Wuhan control, UAL219, 11000m over OBLIK, squawking 3566.",
+      "referenceTextZh": "武汉区调，美联航219,11000米，过OBLK，应答机3566。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4eaba5403daa80594e23.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152532",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-2",
+      "audioText": "UAL 219, Wuhan control, radar contact, descend to and maintain 9200m, expedite descend until passing 9800m due crossing traffic.",
+      "audioTextZh": "美联航219，武汉区调，雷达识别，下降并保持9200米，由于通过航空器，加速下降直到过9800米。",
+      "referenceText": "Descend to and maintain 9200m, expedite descend until passing 9800m, UAL219.",
+      "referenceTextZh": "下降并保持9200米，加速下降直到过9800米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2907d3988993a62d29cd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152533",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-3",
+      "audioText": "You are now maintaining 9200m and are experiencing moderate clear air turbulence (CAT). Inform ATC of this situation and request further descent to 8400m.",
+      "audioTextZh": "你现在保持在9200米，你正在经历中度晴空颠簸，告知管制员此情况，请求进一步下降到8400米。",
+      "referenceText": "Wuhan control, UAL219, maintaining 9200m. Request further descent to 8400m due moderate clear air turbulence.",
+      "referenceTextZh": "武汉区调，美联航219，目前在9200米保持，由于中度晴空颠簸，请求进一步下降到8400米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/33a70c65f592704da098.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152534",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-4",
+      "audioText": "UAL219, continue descent and maintain 8400m, report reaching.",
+      "audioTextZh": "美联航219，继续下降并保持在8400米，到达后报。",
+      "referenceText": "Continue descent to and maintain 8400m, wilco, UAL219.",
+      "referenceTextZh": "继续下降并保持在8400米，照办，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a090fbe3cda65b78d44.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152535",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-5",
+      "audioText": "TCAS shows a fast moving aircraft at 9 o’clock. Check with Wuhan Control if it is a conflicting traffic.",
+      "audioTextZh": "TCAS显示，9点钟方向有一架快速移动的航空器，与武汉区调确认，是否为冲突航空器。",
+      "referenceText": "Wuhan control, UAL219, TCAS shows a traffic at 9 o’clock. Confirm it is a conflicting aircraft?",
+      "referenceTextZh": "武汉区调，美联航219，TCAS显示9点钟方向有一架航空器，确认是否为冲突航空器？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e77677f81f67abcdd33d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152536",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-6",
+      "audioText": "UAL219, negative, that aircraft is military aircraft flying parallel to your current track and will overtake you shortly. Report traffic in sight.",
+      "audioTextZh": "美联航219，不是，该飞机为一架军机，与你现在的航迹平行飞行，不久将超过你。看到航空器后报。",
+      "referenceText": "Wilco, UAL219.",
+      "referenceTextZh": "照办，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9fefa822ff2949a197e2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152537",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-7",
+      "audioText": "Now that aircraft has passed you. Report to ATC.",
+      "audioTextZh": "现在，航空器冲突已解除，报告给管制。",
+      "referenceText": "Wuhan control, UAL219, clear of traffic.",
+      "referenceTextZh": "武汉区调，美联航219，与航空器解除冲突。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ee48825249b745ea8a7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152538",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-8",
+      "audioText": "UAL219, reduce to minimum speed. Track direct to ZF, expect ZF-3 arrival RWY 36R.",
+      "audioTextZh": "美联航219，减小到最小速度，直飞ZF，预计ZF-3进场，跑道36右。",
+      "referenceText": "Reduce to minimum speed. Track direct to ZF, ZF-3 arrival RWY 36R, UAL219.",
+      "referenceTextZh": "减小到最小速度，直飞ZF，预计ZF-3进场，跑道36右，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/70fac6cf32adb252e878.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152539",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-9",
+      "audioText": "UAL219, continue descent to and maintain 4200m.",
+      "audioTextZh": "美联航219，继续下降并保持在4200米。",
+      "referenceText": "Descent to and maintain 4200m, UAL219.",
+      "referenceTextZh": "下降并保持在4200米，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7d4fccc2da30851d24d9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152540",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-10",
+      "audioText": "You are now leveling at 4200m and approaching ZF, information A received, make an initial contact with Wuhan approach.",
+      "audioTextZh": "武汉进近，美联航219，保持在4200米，接近ZF，通播A。",
+      "referenceText": "Wuhan approach, UAL219 maintaining 4200m, approaching ZF, information A.",
+      "referenceTextZh": "武汉进近，美联航219，保持在4200米，接近ZF，通播A。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ce2c264bf38816d62a7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152541",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-11",
+      "audioText": "Now you have established ILS approach RWY 36R, contact Wuhan Tower.",
+      "audioTextZh": "现在，你已经建立了ILS进近，跑道36右，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, UAL219, established ILS approach RWY 36R.",
+      "referenceTextZh": "武汉塔台，美联航219，建立ILS进近，跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6f291838cfbf10a7c1d8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152542",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-12",
+      "audioText": "UAL219, continue approach RWY 36R.",
+      "audioTextZh": "美联航219，继续进近，跑道36右。",
+      "referenceText": "Continue approach RWY 36R, UAL219.",
+      "referenceTextZh": "继续进近，跑道36右，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/193f433f271c6529a738.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152543",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-13",
+      "audioText": "All stations! All stations! Be advised RWY 36R is closed due to an unserviceable aircraft occupying the runway. Break break, UAL219, fly heading 360, climb to and maintain 1500m.",
+      "audioTextZh": "各台注意，各台注意，通知下，由于一架故障飞机占用跑道，跑道36右关闭，断开，断开，美联航219，航向360，爬升并保持1500米。",
+      "referenceText": "Roger, heading 360, climb to and maintain 1500m, UAL219.",
+      "referenceTextZh": "收到，航向360，爬升并保持1500米，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/71ebd025472feeb740bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152544",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-14",
+      "audioText": "UAL219, turn right heading 170, expect radar vectors for VOR/DME approach RWY 04.",
+      "audioTextZh": "美联航219，右转航向170，预计雷达引导，VOR/DME进近，跑道04。",
+      "referenceText": "Right heading 170, expect radar vectors for VOR/DME approach RWY 04, UAL219",
+      "referenceTextZh": "右转航向170，预计雷达引导，VOR/DME进近，跑道04，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b1bc364483e89a774ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152545",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-15",
+      "audioText": "UAL219, turn right heading 310, cleared for the VOR/DME approach RWY 04, report inbound.",
+      "audioTextZh": "右转航向310，可以VOR/DME进近，跑道04，向台报，美联航219。",
+      "referenceText": "Right heading 310, cleared for VOR/DME approach RWY 04, report inbound, UAL219.",
+      "referenceTextZh": "右转航向310，可以VOR/DME进近，跑道04，向台报，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ba78ec2038e6885e7afa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152546",
+      "taskTitle": "15-UAL219 [晴空颠簸，军机]-16",
+      "audioText": "You are now inbound course for RWY 04, contact Wuhan Tower.",
+      "audioTextZh": "你现在进入跑道04向台航迹，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, UAL219, VOR/DME approach RWY 04.",
+      "referenceTextZh": "武汉塔台，美联航219，VOR/DME进近，跑道04。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d2c4069d7ec3bc8e318a.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

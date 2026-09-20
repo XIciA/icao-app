@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0132",
   "name": "结构损伤",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "No, I have never experienced structural damage to an aircraft.",
       "referenceTextZh": "没有，我从未经历过飞机结构损伤。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

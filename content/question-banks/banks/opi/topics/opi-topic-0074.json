@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0074",
   "name": "飞行作风",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "I am not employed by an airline, so I do not have a company flight-discipline programme. At my flight school, instructors promote discipline through clear procedures, checklists, standard calls, thorough briefings, and direct debriefing of any deviation. A typical airline would add recurrent training and operational monitoring.",
       "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的飞行作风培养计划。在航校，教员通过明确的程序、检查单、标准口令、充分的简令以及对偏差的直接讲评来培养良好作风。典型航空公司还会加入复训和运行监控。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

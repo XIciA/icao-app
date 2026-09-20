@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 13,
-  "generatedAt": "2026-09-10T07:42:54.013Z",
+  "releaseVersion": 14,
+  "generatedAt": "2026-09-19T23:28:00.617Z",
   "totals": {
-    "files": 374,
-    "textValues": 40564
+    "files": 603,
+    "textValues": 63945
   },
   "files": [
     {
       "file": "content/question-banks/banks/listening/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "bdc4986e5b82b25a844eec2c582e58fda7c451d2f7d78731aaf770e6452c68c1",
+      "textProjectionSha256": "4dab329ca51bb4a7f6a21fe16b51e2d88e87977963f17346b1bd82a5068deca2",
       "status": "reviewed"
     },
     {
@@ -40,32 +40,32 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "textValues": 6505,
-      "textProjectionSha256": "81585f4815668478bd6955cfac1370a5ae0325c2ffc15435f393d54ae86d510e",
+      "textValues": 7597,
+      "textProjectionSha256": "542d4f8a883c614bc0a0a6f946ae8cd225864e5197c65f079fe70385f8e2bd2f",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-      "textValues": 2401,
-      "textProjectionSha256": "b4819472d80a818bee86abbc34853f4b4d303dd8a7318e8fe0475759a34e30e8",
+      "textValues": 3901,
+      "textProjectionSha256": "c44718a2530cea025f0a5c602e5a24a1012283547d79cfd798741f3c213c0a49",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-      "textValues": 2989,
-      "textProjectionSha256": "91dd1d413ca5b11c92b1c0890678b49eedf695e644292a2d52e7327569b6d38c",
+      "textValues": 4141,
+      "textProjectionSha256": "960c622801458c800524fd19e16d329f176fb48474c90223c8eb2953b8baeb56",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-      "textValues": 2785,
-      "textProjectionSha256": "645e610ca9cc10dba05ce3958d71af800efcac6fb96cb334bd42b306e3416f67",
+      "textValues": 3733,
+      "textProjectionSha256": "77992e46c3a8212f6d7fcfe168021e1b1b20ec079ccee8661679e35c7e18e089",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "bc85b8b56396c0e6427753d12b257cc6d1d739ba35da3a1b27529ea07d40cc02",
+      "textProjectionSha256": "ac913950cfd7a0c9ec7f752e731f87a6be0c4d218517b91b044a2a4177309836",
       "status": "reviewed"
     },
     {
@@ -114,6 +114,570 @@
       "file": "content/question-banks/banks/opi/categories/opi-category-08.json",
       "textValues": 1,
       "textProjectionSha256": "e2b92dfe0382a309eb80a0b7a7ac1404102f31f9eb8f73fbd7ab5b79ea07ced3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1677.json",
+      "textValues": 266,
+      "textProjectionSha256": "a8b09654b35ebab1887647cbd84cdec60c6d820a85712a2a851b1b772d17b9ca",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1678.json",
+      "textValues": 116,
+      "textProjectionSha256": "43bf46d13ca892f082b378449be58f39f928d8e1f6a2251d54054e976d13ecff",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1679.json",
+      "textValues": 256,
+      "textProjectionSha256": "09272c4631f3b138547c260dc2b532eb74ec750003093eda1c0f1d507954140a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1680.json",
+      "textValues": 131,
+      "textProjectionSha256": "2f8eed255610ee38d73a188e594d55f262ae238022bb80809bec389e48ff889d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1681.json",
+      "textValues": 191,
+      "textProjectionSha256": "fbf89c047471b36880a774c8fc9aabe100f645365cdbdcdf0f15374afa664fa9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1682.json",
+      "textValues": 351,
+      "textProjectionSha256": "6bc3e4af69e19fd1f2f02ee25f29fcfbd5677f1872159891c01df69464e460b4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1683.json",
+      "textValues": 116,
+      "textProjectionSha256": "413a84b60521c102f9dc834ecb4f3ccf2cec2ad5176e9f4493ab54ef615841a2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1684.json",
+      "textValues": 176,
+      "textProjectionSha256": "c1f8130b29e29843fe6d4889b7d885f36dbc389e09ee83f0f73bd71f60ed8bb6",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1685.json",
+      "textValues": 386,
+      "textProjectionSha256": "1dd73a8558b28f49e16ea2d2f72a65eaf9762b0eb542e63d7ad7b0f54fd9fa2a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1686.json",
+      "textValues": 96,
+      "textProjectionSha256": "4e5def1b33723215e8bc19a77fd82c1f024aef027cc424247b340ebae0e51ef1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1687.json",
+      "textValues": 26,
+      "textProjectionSha256": "9557e71390d1bd829da1f819ffbd9f5c6f5a918533edde920cc76cd6c8b706ca",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1706.json",
+      "textValues": 18,
+      "textProjectionSha256": "e63544e28b0eb1e4c4c0f7d5f798919ff3d20b2d37c71d6c95418cc56f0afd3b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1715.json",
+      "textValues": 33,
+      "textProjectionSha256": "c9f9cd70344b574df3eae590f0e75921ed597c26fd0b3ee780a1a250ce288565",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-1716.json",
+      "textValues": 28,
+      "textProjectionSha256": "911b96ac469a25bccca809eb3b8f0dc6c2357c825fbdc873171d2aafc65fa085",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-540.json",
+      "textValues": 71,
+      "textProjectionSha256": "84e8e0b9bfbdf81da880e1c826b8c92d4e30655b9d092ef2469ba7fb95d9ac0d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
+      "textValues": 186,
+      "textProjectionSha256": "ccafc31789d47662a780c410f2340f4f45ae1e8725c34adcee6a0f360b1f0b5c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-542.json",
+      "textValues": 196,
+      "textProjectionSha256": "fe5c41acfb97b0aadad24203f20c2a4700ed803816846154000e5f4c78b01dd9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-543.json",
+      "textValues": 101,
+      "textProjectionSha256": "2f5d80331ffbd86b4b5cafd29d6f056309d33d3b4be57ef6960d95b1b29ea878",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-544.json",
+      "textValues": 91,
+      "textProjectionSha256": "5db042caab52654e00938b4ba61b5f7d903894d8f3732d245dc7482c48391b85",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-545.json",
+      "textValues": 66,
+      "textProjectionSha256": "b87154844ddcbc39af2b0e49c2961bde89829765f285a8978173c24924d23ebb",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-546.json",
+      "textValues": 136,
+      "textProjectionSha256": "7ce8a94498467bb9e6e5d6b6194202777f0bfd4017df867387ca5fcc7e4b1fa6",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-547.json",
+      "textValues": 101,
+      "textProjectionSha256": "d1e7c6e1610e2f8da30125cf26b72789e01b0edf2a5ecfbc9f2543a0b7a43d78",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-548.json",
+      "textValues": 101,
+      "textProjectionSha256": "53a2fd9c1da0ed4702be3669ccfc4855fc1a1207008d555713b1ea326dfb9aa3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-549.json",
+      "textValues": 66,
+      "textProjectionSha256": "6ed9b4c05e33122f9223921c4d398e3bfa7cc56a4b01f2310c568b2f4141c007",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-550.json",
+      "textValues": 96,
+      "textProjectionSha256": "c666b0f9bd7bb493ae4b59ab9dd7fffa901e21b8505a20454b55ea9d27c7a955",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-551.json",
+      "textValues": 151,
+      "textProjectionSha256": "d7dbb926892b943a7df7bdcdc5ffe1bd2c91b5e38e28997577758c305351531a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-557.json",
+      "textValues": 43,
+      "textProjectionSha256": "cbd1c3affa13411f3a23297c77f20d523bdffb025450c7fe4919c6ad38b04830",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-559.json",
+      "textValues": 33,
+      "textProjectionSha256": "82fb01f6edf576b6040ba590d5651566f6b9f51de4d942394607d0e31dbfb8d6",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-560.json",
+      "textValues": 28,
+      "textProjectionSha256": "2e77c874ee56af8221551f8548e7b8fd02aa26ebee14a4b15b020011b37e9eb4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-561.json",
+      "textValues": 43,
+      "textProjectionSha256": "432c2f3f937e17fbf4cd2f310a86552703b2916af582a549c4a1a475e83a10fe",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-562.json",
+      "textValues": 43,
+      "textProjectionSha256": "1eee97f1bccb599be8c46e508de7316724d7e85cd12a8fcb129834aa34f8e38b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-563.json",
+      "textValues": 43,
+      "textProjectionSha256": "95ab5cabdc9851547c7160d3d8facb061fa150e8f183bc9b07e3988f087b62a4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-564.json",
+      "textValues": 38,
+      "textProjectionSha256": "6be2d118263d05e6f5837e6d0671d5a7712714ee8ed276494c2702a3d16522c0",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-565.json",
+      "textValues": 43,
+      "textProjectionSha256": "99d19dab955505d2a358f164f132c7903b81bcc2312d43a3e0af9b005b474719",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-566.json",
+      "textValues": 43,
+      "textProjectionSha256": "8bd11641ca22ec0874b390d6a611136a8898b7753ef6a8d78b35dfd08783387c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-568.json",
+      "textValues": 38,
+      "textProjectionSha256": "54816c827730239a13021013aa4b73e7815cdb114fe9a92ca1a834076d530381",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-569.json",
+      "textValues": 53,
+      "textProjectionSha256": "539eb14e54fdc0d99141aec338733bc63d469c32bceca7cf320078cc9411aad1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-570.json",
+      "textValues": 43,
+      "textProjectionSha256": "c2fce05724f053de4caf36274313737e4c6e5a431e1cdfbf7927ea3a926911ec",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-571.json",
+      "textValues": 43,
+      "textProjectionSha256": "1756d3ec08cad9a5e8e4a771ded4d5c46b0c47a1a618968ff04fd9b92b9a7c2d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-572.json",
+      "textValues": 43,
+      "textProjectionSha256": "5bb86ecd9b7f2f5d9ad8ed2a759e73c06bd8214d6f4399ed555400f14732b183",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-573.json",
+      "textValues": 38,
+      "textProjectionSha256": "a1d719dd882ef372b9dcc540ab3c52880e18d82354d1aa63ace2b87e72d47b32",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-574.json",
+      "textValues": 43,
+      "textProjectionSha256": "9861263034216c9c36751c8ba5559cc480d49f5fd6cd27ad06c6bd0c2f98879e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-575.json",
+      "textValues": 53,
+      "textProjectionSha256": "de735798e82913dbd263cdffa554fb2cc8be8a79538ded7398d8283fa95610b2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-576.json",
+      "textValues": 33,
+      "textProjectionSha256": "aa08c281fbe0c0e2a4af13d2a7bba24777b07a45c7e8eb1d09911b18014d65c1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-577.json",
+      "textValues": 38,
+      "textProjectionSha256": "9a57df675f6db45e67e4b997e6bd9f137491c6c8604e0a6cb74dc59c2ec361d4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-578.json",
+      "textValues": 43,
+      "textProjectionSha256": "7ee8a7975e146266e2e9ecd0aee6007abe17ae0f2882e11081d06a8eccb2af23",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-579.json",
+      "textValues": 43,
+      "textProjectionSha256": "7370ced6a740ee9a099d55420d336bef3ed2789e182f48e879c235a5eb735ab2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-580.json",
+      "textValues": 43,
+      "textProjectionSha256": "9421db18bb801ef810c6339fdd92569c1184702aa902dab64a5358e4f72e287a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-581.json",
+      "textValues": 33,
+      "textProjectionSha256": "c6d24a48a502df27077691c5b0d0340e6c19550768e97c42081ca88deea15026",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-582.json",
+      "textValues": 43,
+      "textProjectionSha256": "e80daec4592808a3c4aad47ca1f941bf7dcbd1b8d5700315987e544736613655",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-583.json",
+      "textValues": 33,
+      "textProjectionSha256": "fa742b6ffa44629d968b9e87980f7d426abe526455b44384b39cdb1e7a628435",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-584.json",
+      "textValues": 33,
+      "textProjectionSha256": "9a2c14d6e6c98a1be7b19ded17f9caadac24ac98bf52b6968be1c6f440d63650",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-585.json",
+      "textValues": 43,
+      "textProjectionSha256": "2e3844772659bcb8222269fea810058737e95f5cc73dbc0bc5634fd7b4a55765",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-586.json",
+      "textValues": 43,
+      "textProjectionSha256": "487d401a9a0398060e07e0b2bc91005a1c79065742c48ff0ab7b6bb8de4be8f1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-587.json",
+      "textValues": 43,
+      "textProjectionSha256": "cc4d302e0e3219b2d0a27578c3aa428a8c98f44ac3f11ce982a8104d5c11b6b2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-588.json",
+      "textValues": 43,
+      "textProjectionSha256": "53677cecac7d9c9e685c311b81279e9125863ee0bc930e11564a13fd926db909",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-589.json",
+      "textValues": 43,
+      "textProjectionSha256": "eeb1b2ed27adb2e7c8f38c5363d2c0df21ad87fae56ecb9b15bce245abc8780c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-590.json",
+      "textValues": 33,
+      "textProjectionSha256": "aacf6cc9ed7f41b0d63ab34904e8194430937ba62a6d6520593abd05e07a9691",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-591.json",
+      "textValues": 33,
+      "textProjectionSha256": "0e681998c7f7f1785a362d2f1e9a78d022987146f16d317647688b154067fad9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-592.json",
+      "textValues": 33,
+      "textProjectionSha256": "259357f4e7c850661eb6d7a62f7cea5991f924366632f6c82c8075b36b67a8ad",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-593.json",
+      "textValues": 33,
+      "textProjectionSha256": "3929217a1158cb2a66e7a54e6e45bdcc2f213dc61c61324bedd9429ac5d02b94",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-594.json",
+      "textValues": 43,
+      "textProjectionSha256": "f77ab4017f0ce4661f8cbd49d0557010b6d48964e0df1a4b9f4b583219e7728a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-595.json",
+      "textValues": 33,
+      "textProjectionSha256": "044a1ef25711a0ec80c212b88d89586a8863e88e3c0965a5f7d18680b6884a64",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-596.json",
+      "textValues": 43,
+      "textProjectionSha256": "8b0368a362c623a6ae5fd3f34e7a9fc909c95a7359bfe49b5e594c0811cf4d4d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-597.json",
+      "textValues": 43,
+      "textProjectionSha256": "9ce2d29b5b6223b0bd8952aa4e697734e27f0e941f1b3eb282084cca8973517b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-651.json",
+      "textValues": 96,
+      "textProjectionSha256": "e050c85b68e330c9f7553fa867f57bba103d328eafd341f04dfcd1d910b10bc9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-652.json",
+      "textValues": 61,
+      "textProjectionSha256": "387fe01ad22db6a91ba723e874ae101ad90c692ea2f564d9bc005d74f655dce4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-653.json",
+      "textValues": 46,
+      "textProjectionSha256": "c0dc3f173dd83f4e1385d3386575f1a19a6bfb13ee4944a156b14ef0b0cb3fab",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-654.json",
+      "textValues": 71,
+      "textProjectionSha256": "5f8bd6f6477e231764027ac6d222869002681014efd16211017f54cd143c4dd2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-655.json",
+      "textValues": 31,
+      "textProjectionSha256": "63559a83bf8afd5ed38af3db2abd13158952b9c92ddd7f47e88604f3b1e4c699",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-656.json",
+      "textValues": 66,
+      "textProjectionSha256": "c8d8e3219f1730148fc67ba11b5fa4dff6f46b6255c06d96432110ad63762ab4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-657.json",
+      "textValues": 66,
+      "textProjectionSha256": "f727a38288d1a4f9082635cd9fd43742d006e1e9c6ddf9cfca2e724896d28e87",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-837.json",
+      "textValues": 23,
+      "textProjectionSha256": "dc62e3d4f1a4904d5740e978086ff5b956f031cb178f091cc7a82a76a68e5e7f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-838.json",
+      "textValues": 23,
+      "textProjectionSha256": "8a964f8c6927a86bc761d36b4185180ab1ad2f6d546792573840cfcfe4abd538",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-839.json",
+      "textValues": 23,
+      "textProjectionSha256": "17eaf19868621bb57225a298cd0c92699c2387422a6796396c6d3f38914e01b0",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-840.json",
+      "textValues": 18,
+      "textProjectionSha256": "f65d1818448c337a4123545ea22b06b44940fbfb7877acf7824f6fbd68e0c692",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-841.json",
+      "textValues": 23,
+      "textProjectionSha256": "74abd9658ba2fdce723823a37fb023fb4ec10e4b98653bd0897c3e3f8a3d0697",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-842.json",
+      "textValues": 33,
+      "textProjectionSha256": "046f78548c7048a872635d710a968afe4fe3ba205294737e626ecbf2bf76a5c2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-843.json",
+      "textValues": 18,
+      "textProjectionSha256": "4931647fa4d6961997f0d8a8472d2c07ff1077c40f63b23d5de3eafdae2cd80c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-844.json",
+      "textValues": 18,
+      "textProjectionSha256": "26e6971c3d834c0aa4127623750e75b133d9c714a38b5efb654f6926e999e9aa",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-845.json",
+      "textValues": 18,
+      "textProjectionSha256": "4a88233f915f0b764df65e9877587ca8224d159a4f2165d9fa2bcd1d5ca286bb",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-846.json",
+      "textValues": 18,
+      "textProjectionSha256": "6d0d67cc6fc309a267b712c896ca3d31ed9c73a6c861b8ac5d25f2bf4075c394",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-847.json",
+      "textValues": 18,
+      "textProjectionSha256": "2a127ce3283c89ed0f270bc67e11fbf828cc093d412757f91484183909e65c3d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-848.json",
+      "textValues": 23,
+      "textProjectionSha256": "739a6190168822537ba22173136e528591a80edf2fa4a277a373c045aeb19445",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-849.json",
+      "textValues": 18,
+      "textProjectionSha256": "5001d2158bbdadf6921e0fd69e2237deb99fee6b888a2e20db9512dcb7a6b5e8",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-850.json",
+      "textValues": 18,
+      "textProjectionSha256": "426bb4035090fc636dd7a759251b54938382f3eec373bfc9a76377f44c979674",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-851.json",
+      "textValues": 23,
+      "textProjectionSha256": "bc1fa1757ac002a7df4ce713c512bade18d5c2fa56bad028f804777af28cded1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-852.json",
+      "textValues": 18,
+      "textProjectionSha256": "5d56f073d31f0a1fe2fb206563d874c37ae89151a81aaf41b74bf3c94bd10484",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-853.json",
+      "textValues": 18,
+      "textProjectionSha256": "92eb298d4853ee488a6ccae744695ff9dc68a8fd3373793fb0416978bb860a2e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-854.json",
+      "textValues": 23,
+      "textProjectionSha256": "dabb1bad609a79ed87d7aea6bafd607fa0abfcb7b5b19eadeb0ab4c2d884db2d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-855.json",
+      "textValues": 23,
+      "textProjectionSha256": "696ecc6cb358d66bd95359cb1335556f935479e6bc0c1488f77f7796917611aa",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-856.json",
+      "textValues": 33,
+      "textProjectionSha256": "d15a0e9ef045c605dfc031a62a470eec98f5edffe78d776983a8bef8d31dabaa",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-857.json",
+      "textValues": 33,
+      "textProjectionSha256": "c0943a8452ac05fb2441a6c2d93d5a205db11b680294e129b195952b5a925711",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/opi/topics/opi-fzy-858.json",
+      "textValues": 23,
+      "textProjectionSha256": "bb20c040a462c3bedba30d12f7df3bbf62144c1d25fc15f834b98727694b9202",
       "status": "reviewed"
     },
     {
@@ -293,7 +857,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0007.json",
       "textValues": 176,
-      "textProjectionSha256": "fafc9cc1e2dc60fd5f3ab84bd84f1a79a4677e6ce37e5f12614bc896da16905a",
+      "textProjectionSha256": "cd740211203d67433f5d22e008dbb03ed10faac86e839e6d483343e79d589a1b",
       "status": "reviewed"
     },
     {
@@ -365,7 +929,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0025.json",
       "textValues": 126,
-      "textProjectionSha256": "f3790a876c9a5e4d89815adeeee13c6c3fc2ff05077ca134e5de3a7e33fdac3b",
+      "textProjectionSha256": "68e4d08ef52429dcd672031118235e58008f1f52fc4525b86f7d9f75725ccb03",
       "status": "reviewed"
     },
     {
@@ -593,7 +1157,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0067.json",
       "textValues": 56,
-      "textProjectionSha256": "40a6fea093f86b0f3b98c0dbb05bdad7d6f711b74f513fbaea1eef45e4beba51",
+      "textProjectionSha256": "5b67e65ae8dc1bb63d67b1c1b7f593e23b99d518eebd7e82538f61b71e6d4bbd",
       "status": "reviewed"
     },
     {
@@ -629,7 +1193,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0073.json",
       "textValues": 16,
-      "textProjectionSha256": "acaa881b9009a9b37fd22ed4b8af7907ddaa83f8d1365a4f5f7c6cd2f53c2dcf",
+      "textProjectionSha256": "4067998c01980a98577dd4eba3a1b2cdb98821c9dec533fdc1d645fe66b44c6d",
       "status": "reviewed"
     },
     {
@@ -701,7 +1265,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0088.json",
       "textValues": 51,
-      "textProjectionSha256": "9622c34e55626642ae4573db5915c389a4c9f36e8e7842d9f6ee49651977f8c8",
+      "textProjectionSha256": "d128761bc33c8d8db6311dfe7da7c7721959ec6b2dcedd51d0630eede3d3f411",
       "status": "reviewed"
     },
     {
@@ -713,7 +1277,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0090.json",
       "textValues": 16,
-      "textProjectionSha256": "f8492b6f76fb32f741896038121bb48c164417aa0d226cdb80a463c128254c5c",
+      "textProjectionSha256": "edf002cb7a47a891713e8806be9f6fab5a39078450bf3626d0e361b63bcfb5b6",
       "status": "reviewed"
     },
     {
@@ -821,13 +1385,13 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0122.json",
       "textValues": 31,
-      "textProjectionSha256": "fd4176d311e51ab9bdba76906923d7d9e373ca3936f2619b615b4695cc2ece78",
+      "textProjectionSha256": "8fbf8dee5a7d6342146ffdf3ead40ffad36e2be25d21fef67088adc8dfadac28",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0123.json",
       "textValues": 101,
-      "textProjectionSha256": "1119da1828fe17e60c952928d8d22d2c9b7df99b17eeb3c338efe01a57ca5e33",
+      "textProjectionSha256": "5daaaeccac633f89787647472f3c61108db705b7ba32bbbf12d6edcb948d8e56",
       "status": "reviewed"
     },
     {
@@ -983,7 +1547,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "8e53b11afbf9badf51515178d2788c4d29dc93f41102a04247a79b4a53f6fb44",
+      "textProjectionSha256": "5b2ac044d09b0bc6b20e23f1236a1dd4840c780b1c991bb1b6b62931a462d013",
       "status": "reviewed"
     },
     {
@@ -1035,9 +1599,21 @@
       "status": "reviewed"
     },
     {
+      "file": "content/question-banks/banks/radiotelephony/categories/atc-nwa.json",
+      "textValues": 2,
+      "textProjectionSha256": "f7e1d81bf600edd2497b9a1319d5132da8258c64f5966c6dc727f0054d05f5a0",
+      "status": "reviewed"
+    },
+    {
       "file": "content/question-banks/banks/radiotelephony/categories/atc-qfa.json",
       "textValues": 1,
       "textProjectionSha256": "15a3bfa5f891d31e506df95de92efedf3d576219619ae866512287153aa6ff23",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/categories/atc-scoring-points.json",
+      "textValues": 2,
+      "textProjectionSha256": "a700e08f30c5895beeae44482fb958471b7877c53a2fdc29b2212f152e02a6c1",
       "status": "reviewed"
     },
     {
@@ -1050,6 +1626,840 @@
       "file": "content/question-banks/banks/radiotelephony/categories/atc-ual.json",
       "textValues": 1,
       "textProjectionSha256": "35dcf8266af0f724e4123393229d84e7d896ccbce7f5ced7acf28419f604cefc",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1054.json",
+      "textValues": 76,
+      "textProjectionSha256": "f694de3963daff3d1b9db63684792f865ccfb8d95e380fb2c3ca9f99bb263113",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1055.json",
+      "textValues": 56,
+      "textProjectionSha256": "69ae7f367aab3e5ddc3a5675f89523970add9495d3290256ebd39100928dd631",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1056.json",
+      "textValues": 101,
+      "textProjectionSha256": "4aed5bc20fc5b8242e6955f7686c71e62a6f4856180b020be86b1e4b91953430",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1380.json",
+      "textValues": 81,
+      "textProjectionSha256": "77a2b59596e5a85d5d8a1eebf435e38848c9f8164343a1fb8c86dcc7c0067493",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1381.json",
+      "textValues": 91,
+      "textProjectionSha256": "dc24d28c6e0476a8b1592d469f04e7d9e98a51fdddc4e3b8504d666d1cca1f55",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1390.json",
+      "textValues": 91,
+      "textProjectionSha256": "d6941a40cec85dfe87f4cc0e602f7e13fc4e136785a1f48ffc902e269f5accea",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1391.json",
+      "textValues": 91,
+      "textProjectionSha256": "86eff98264adb4866dd2d665863a99b48020318222818eac9ad85eebaab00ea9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1400.json",
+      "textValues": 86,
+      "textProjectionSha256": "377ea9bc1407b2ebab7c0408574f13f918dc511299afd04ad81e5ab822033cce",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1437.json",
+      "textValues": 91,
+      "textProjectionSha256": "1fd0d06fd04a0b2670675839272971c6bc82bb6e00fdbdbeb22a433e08cce935",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1440.json",
+      "textValues": 76,
+      "textProjectionSha256": "8d89a0e0b4c28d63e4e5ca81916a31c2886854449ec38aa967a669005bcdfd1c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1441.json",
+      "textValues": 76,
+      "textProjectionSha256": "c249dbc37a219751b5c484b68fe01a3ae775e514e22af2b96903d917f52c2663",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1442.json",
+      "textValues": 76,
+      "textProjectionSha256": "cc28382af3ab670c564f4604d85697b42dc12801ace733bcb9d485799c166c7e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1443.json",
+      "textValues": 76,
+      "textProjectionSha256": "245213eea97e60630fa23a478e9207f03f87025997811f7c0d391223803cfa8a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1444.json",
+      "textValues": 306,
+      "textProjectionSha256": "1f852a50726d4536e8df66b1bcf99f3318be9199406ee48770cff9b7d9e11449",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1445.json",
+      "textValues": 226,
+      "textProjectionSha256": "a3bb9abb7b85dee308c70003da76c9acf7d471c953314a33b1f88b3043a3b254",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1446.json",
+      "textValues": 271,
+      "textProjectionSha256": "c2c3f92cf1edca5785a75b13dabc0ce2e13325fe92512597581fa571ae166a70",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1447.json",
+      "textValues": 131,
+      "textProjectionSha256": "b3acd2167b54b97ecd6f68782427db061da2ff2ce00a0ea9124cc0f0c6aa47c7",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1449.json",
+      "textValues": 191,
+      "textProjectionSha256": "aa2e8ad4061bc446c7727f5811e83a4473806e1ad185842d094cb598ff394bdc",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1450.json",
+      "textValues": 46,
+      "textProjectionSha256": "95c40dde0c26c230252da4acb6f53cbdf5cd71301b6f4b28487308f4f45a5c76",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1451.json",
+      "textValues": 211,
+      "textProjectionSha256": "ecc4c9064e928f9422875d56970d2e9873954e8ce772c2207ef292d3960dad17",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1452.json",
+      "textValues": 236,
+      "textProjectionSha256": "8a4f3a3792aa537bb86aff9d4fa093e5c1aabeec241cdff2d0a0479bbdaa2345",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1453.json",
+      "textValues": 271,
+      "textProjectionSha256": "ea2d14d5a801244ca030903278d70e24c3217293c9103d4a30ddee1424d5c7d8",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1454.json",
+      "textValues": 96,
+      "textProjectionSha256": "78a57d0cf5bea5ae1204630ada0331be0197f2dfcb10d7105d45d3c0fcef96c7",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1460.json",
+      "textValues": 91,
+      "textProjectionSha256": "f8aa4b83ebd159937dd812153a9c289af27c57434d6f421c0351d6a416e8cb73",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1465.json",
+      "textValues": 86,
+      "textProjectionSha256": "e8591a8bb9a653548d67b8aff9b27d837a94822a1cc0248e7396309eb3043e10",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1495.json",
+      "textValues": 96,
+      "textProjectionSha256": "f3fba1efa0813b806bef5358bb06991dac1327f224cf42ba3741dd746b8ae9ed",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1501.json",
+      "textValues": 91,
+      "textProjectionSha256": "e779d9a6c9c433909974e23318219fc81efc7bb7bc0fc13fc08a0d2a22cab497",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1512.json",
+      "textValues": 96,
+      "textProjectionSha256": "668152e08da7780b2905e0b32cd70cd8e06164796fa5181517f4dd65b633ce62",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1513.json",
+      "textValues": 76,
+      "textProjectionSha256": "30bf4d93331303c7af2417704ce6f07fbb6d6a00a8621c13d13184bc9a5b7119",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1514.json",
+      "textValues": 81,
+      "textProjectionSha256": "276549e5e416e23028658c04bac4e250b15c9a942ecdc52e74e9f2927dd2165a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1515.json",
+      "textValues": 76,
+      "textProjectionSha256": "24d33d89fe1499006bd4bfa5bc5f24a18de29c1600560796bfb0262345d7072f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1516.json",
+      "textValues": 81,
+      "textProjectionSha256": "6d6f1e53916a44f405c5fe0f00d543f1526e26e201138d1f283e496e0b3708e3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1517.json",
+      "textValues": 106,
+      "textProjectionSha256": "86e8bca8bb0d37515588fdba2d43936932b118d2df1ebb8701adabc2109d80b2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1518.json",
+      "textValues": 76,
+      "textProjectionSha256": "21da1c34e8193993398a7e8d6bf4abeb6569c70c75490c6ac14e86cd55461900",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1612.json",
+      "textValues": 81,
+      "textProjectionSha256": "bc4a4f27536c9264a660597e540c5981841066952cf0396bf21b5c1591ae9ba5",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1614.json",
+      "textValues": 91,
+      "textProjectionSha256": "98b38113139a43e82278baef9841f14617b019a11ef93c22cd881a8c0bbe8961",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1615.json",
+      "textValues": 71,
+      "textProjectionSha256": "e6c1b205a606c4ac15317a1b67f96881c7213982b721718f4a8741787f263fc2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1616.json",
+      "textValues": 106,
+      "textProjectionSha256": "1cb6bfd289c772cd932af1f65281e127168e261473096734d10d1467f86806ce",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1671.json",
+      "textValues": 96,
+      "textProjectionSha256": "14cd18bc03cf0f25020ab083c47d4a256128a544613f2174dd4c974b67be5129",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1672.json",
+      "textValues": 86,
+      "textProjectionSha256": "71991f0db5c11b8e9f7a39cb4c5accdd4a3eb558c4ec56ef10f697b1a78dba55",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1673.json",
+      "textValues": 96,
+      "textProjectionSha256": "578853d714f0995b6e3b6ffc5c333a3e076570b6b7d759ef2fb5456dfa62929b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1674.json",
+      "textValues": 96,
+      "textProjectionSha256": "88b31c6698ddfb283e87e95eed637b6f79594dc99345e5c054e94bf71f57b726",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1675.json",
+      "textValues": 86,
+      "textProjectionSha256": "9296297a1853e3e9def05a7acc14f167f50db3ec228bd3057fd235db3ab54417",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1676.json",
+      "textValues": 96,
+      "textProjectionSha256": "04821ab4eb02045d4bfcdd8c939f19f6b8f111a0a16af526823859fb52b08484",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1688.json",
+      "textValues": 76,
+      "textProjectionSha256": "1f7055bb2e4862b1efe3edbfe8c7012cce97d594b91c237d44b5bd1be3b6a837",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1689.json",
+      "textValues": 86,
+      "textProjectionSha256": "5f6795e70c508106ad5672bd92501959aec712d0b6097e6ce24034079607b0fb",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1691.json",
+      "textValues": 81,
+      "textProjectionSha256": "66cd43a46851b370df24f28b73a3c3e7dbd7ea70fcbe52cb60a3bc68cfbdc3d5",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1692.json",
+      "textValues": 76,
+      "textProjectionSha256": "782ea7ab6aac1a1a0a0d456caf5cfe660180a81dd9670569127229949502f853",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1693.json",
+      "textValues": 101,
+      "textProjectionSha256": "854e1e27ca1b853fcfa1f8d8d53f3b22949dad06b65a2c6a63b98875c79c2cc7",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1694.json",
+      "textValues": 141,
+      "textProjectionSha256": "105f3ebf0525678ac310a41c51ebb13af255f81efb90712477a1adb7313b1a8b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1703.json",
+      "textValues": 11,
+      "textProjectionSha256": "54c42fdbd14a747b06c59a880bdb7078c19b98f17081bb8f629b4cb71212395a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1707.json",
+      "textValues": 131,
+      "textProjectionSha256": "73b588aecc06b954b36cf970ec0db580c737c5bbd6d8ac7271d910f952fe9bf9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1708.json",
+      "textValues": 126,
+      "textProjectionSha256": "66db5c522b133ed97b2019e57baf2fe38f92b5af6dbdc286833ac40dda15f79f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1713.json",
+      "textValues": 66,
+      "textProjectionSha256": "8079e6b2ef2c9969590637ebee744db07fff016b19067d2cc97346448b57dd0d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1714.json",
+      "textValues": 71,
+      "textProjectionSha256": "513be957d0a059382e2cdfcee3ec998d8d8b377e0252e77cf9b1b692c21f9789",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-599.json",
+      "textValues": 86,
+      "textProjectionSha256": "3b2e2e8769288d2fd4f83a2906c8d23bd00b3a3d23c6c6c33a21b777c289b161",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-600.json",
+      "textValues": 91,
+      "textProjectionSha256": "702e6e1d3957c32037305beae2c227f8cf358f160e31486f88c17bcd8b0bcfa2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-601.json",
+      "textValues": 91,
+      "textProjectionSha256": "f3bc48072889e4a5b834bd713a905ad04d14f4d26904d8b0f48fbe58aaaea30b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-602.json",
+      "textValues": 81,
+      "textProjectionSha256": "852e97b8b8942e982902c61b8a6249b1c0e6472554479ab2efcd7132946c446b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-603.json",
+      "textValues": 101,
+      "textProjectionSha256": "e18b129c439fd0ed2b6b4d2b606fe237a7e19135a73aa20644a0f1e474d28d68",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-604.json",
+      "textValues": 86,
+      "textProjectionSha256": "9ca800c54013cc74d1ea64de685c59578eef1c816c0861d9b12aef3eb9da2db3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-605.json",
+      "textValues": 91,
+      "textProjectionSha256": "f1cd380bdde83442dd3515a90134ef51dd1163a0dbb235d16b4a39e0cff32f3b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-606.json",
+      "textValues": 76,
+      "textProjectionSha256": "6c4b12e84a7803bcb52bf6847e574911019aebe9bc7436ad474cd2c916c06c2c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-607.json",
+      "textValues": 91,
+      "textProjectionSha256": "6dc7d51333b27c9e16b443cfc7759e8aade6eef317792566be494774ed78575f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-608.json",
+      "textValues": 101,
+      "textProjectionSha256": "36d53899ff10af4089a83e127afa9bddc57b47d36647820e6ae08ef015480155",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-609.json",
+      "textValues": 86,
+      "textProjectionSha256": "2202248d06b9dda731e8ae66db83ec10827c3745e0757e4b8500947c0d67745d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-610.json",
+      "textValues": 116,
+      "textProjectionSha256": "49649e75e623554aa9c746ea8ba8a91cb6438c7cc4498b0df39bdc107087e0e8",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-611.json",
+      "textValues": 91,
+      "textProjectionSha256": "3933d8065ce9de6aa430412dc6129568ecf5308db5529ee1a9142644a2d24f96",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-612.json",
+      "textValues": 86,
+      "textProjectionSha256": "ffd816dd9821e7b786a13fb06be2de340873ef681c4c53c1535bd39b3b2ffebc",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-614.json",
+      "textValues": 91,
+      "textProjectionSha256": "66a20961cf24a6d23622481b7466942732bf4ed5e47ee04861d4652fb1be0dce",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-615.json",
+      "textValues": 101,
+      "textProjectionSha256": "15a04015514332a7c155474268742928318d53a3635b9e3cb9ec0229ca7ce5b3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-616.json",
+      "textValues": 81,
+      "textProjectionSha256": "a40f9da929864846efcf38b129bf4da43e7a6ab2d2802bc9ec090e5b05f6ee34",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-617.json",
+      "textValues": 91,
+      "textProjectionSha256": "c6746b31e9b82938a1965250a6e11b29fe13e278843813a43a4dca220041353b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-618.json",
+      "textValues": 96,
+      "textProjectionSha256": "f133bf4440f0b6a295f5f82de0b1d4c6c618e32bf6bf52864b38b3e7cf09fade",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-619.json",
+      "textValues": 81,
+      "textProjectionSha256": "d8e0fa9b4b72a2ee1d26aa833dbb57b9f5cca68a148c85d3fa86eae300b095d1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-620.json",
+      "textValues": 91,
+      "textProjectionSha256": "bb62bef67d4620cb2b887ae1c2457135f3a0d9f5e7b1b62fb01f11e03f647295",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-621.json",
+      "textValues": 81,
+      "textProjectionSha256": "3df76b2092755c49e0ece40026d9f553d82b5a7033e1a10f6c505e9b46c95abd",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-622.json",
+      "textValues": 101,
+      "textProjectionSha256": "0fa6f3007e6cc9431237664edb1f6b71066990de86b80d406ebe7595ba0e0d88",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-623.json",
+      "textValues": 101,
+      "textProjectionSha256": "e474865de0ba414f38a99f620fc6ab6d2834f4502123ab32555f0d280e56e53e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-624.json",
+      "textValues": 91,
+      "textProjectionSha256": "8cdaf225e13fde64c9a818ff8624f18da669ac103a47c714aad3c3c0d660a33e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-625.json",
+      "textValues": 121,
+      "textProjectionSha256": "df0885cdf7c564dec16655b2f544cbdd635b71a742db999eb6236f0f07aa1883",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-626.json",
+      "textValues": 116,
+      "textProjectionSha256": "708a1e280690868c7e3724e2beef1da3df5056d8f7053f7a79b1e9281bf761c1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-627.json",
+      "textValues": 96,
+      "textProjectionSha256": "16c008da39602f1171697ca96bbf606fa3764e3661bfd0e3c5578b1e7abb2822",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-628.json",
+      "textValues": 76,
+      "textProjectionSha256": "4bdb0b596e853356247ab2575d24f8860e4eec234354a1e3f3f45e4f6d2a4c52",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-629.json",
+      "textValues": 101,
+      "textProjectionSha256": "7df76e1143fd5d60dc8e351e74e61f37964c6ac91085bdbe0106a7e18422b36b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-630.json",
+      "textValues": 86,
+      "textProjectionSha256": "00524a4ee8eb66b349f8fce9efb3a06c78ea6f603bcdd94e2bb175bfffd920cc",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-631.json",
+      "textValues": 106,
+      "textProjectionSha256": "4f093d401ad02195929a06db3c57e93e27e626ca6892350bc18a49b266b2ccc9",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-632.json",
+      "textValues": 96,
+      "textProjectionSha256": "3b519be5d7ca4399a93a2cd08029dae5660d44a81d96395d66585f94e7551543",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-633.json",
+      "textValues": 91,
+      "textProjectionSha256": "08977e276a93758fbaec35b052060093f94c1187bb5d76b3a01bb0119a8b051d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-634.json",
+      "textValues": 91,
+      "textProjectionSha256": "19bfb624d6d44c03f0c3850d578e9a324bb9aaee0ae754f5adf5d201026c380a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-635.json",
+      "textValues": 91,
+      "textProjectionSha256": "8d8a8b07510205957c6066a21d218c7cdfaf7615aec69b69f76be7111b2c5220",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-636.json",
+      "textValues": 111,
+      "textProjectionSha256": "58bbdb3aa44da8d074d35093997594c227ee51bf1839271c5cf95741e237d892",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-637.json",
+      "textValues": 76,
+      "textProjectionSha256": "0e4eaeb9148fca606e9c6c642de7147e16ae4b6ccc1710f8198f4b8a30cdf644",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-638.json",
+      "textValues": 106,
+      "textProjectionSha256": "9ee3d03e538528a8cef40d46a50288a5724317f3e4e080ae57cd39b03e20d4ad",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-639.json",
+      "textValues": 106,
+      "textProjectionSha256": "ac0c599f228e36a39209210e5ef448fa0d421e59ad9fa803ed28b23555c7fb5d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-640.json",
+      "textValues": 96,
+      "textProjectionSha256": "e4b3a8346388892b63012efa965726508abc713ea7dd8570b056140b0363218c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-641.json",
+      "textValues": 86,
+      "textProjectionSha256": "6ce9de25eb3c7cea393577a9ee801b0edc04fd4abb7fab283d59030015be00bb",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-642.json",
+      "textValues": 106,
+      "textProjectionSha256": "dc0275d009540d25a7551db83000891f9d2f162adee2a2393b47d9968bb9346b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-643.json",
+      "textValues": 91,
+      "textProjectionSha256": "322a07387bc6c62a1068b81055fdc3b826340675397015078411aeb7befe33e2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-748.json",
+      "textValues": 91,
+      "textProjectionSha256": "db96cb3b34d8810d15bd906694dcad6dceec4c81cb23c0c80b3849b62c171f99",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-749.json",
+      "textValues": 86,
+      "textProjectionSha256": "eb3337fb9b57e676da920c3a146eca0d5ef8f73ee6befe88d93ad37e848b254e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-750.json",
+      "textValues": 126,
+      "textProjectionSha256": "b5327501503faa1e3c35f5d0fc20ec21b1977f7366202b29548d0768301dbcd1",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-751.json",
+      "textValues": 76,
+      "textProjectionSha256": "dab515fab553f1ec0d9229cced96f4bfc5b7fbc5fa2a35d8582d15e2df5f1d26",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-752.json",
+      "textValues": 86,
+      "textProjectionSha256": "4b67d00a126652093ff59d2f2ae9057f4bcb16fc39be323a470a5653a66013cd",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-753.json",
+      "textValues": 81,
+      "textProjectionSha256": "6d28ba76180c505939b835de677bd33e9cbfbcef8dbe63ce8a426d8c630fedf2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-754.json",
+      "textValues": 91,
+      "textProjectionSha256": "bf708f155d0babd45c589bb729e7b642728a53ce8324d4df1411ba100238e3c3",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-755.json",
+      "textValues": 66,
+      "textProjectionSha256": "7bcceb7670cda8e1a1e80e5b212238ba39bbf7233df8d41bce9d1925231aa741",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-756.json",
+      "textValues": 81,
+      "textProjectionSha256": "90205b61820547e7399601c011218262dafe3d24cf76f6bb63dea31f0b89a152",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-757.json",
+      "textValues": 86,
+      "textProjectionSha256": "fea3a05b8f0929c885e88110466b0b64f06f4cfed6abd260953d9bddeaefc9a2",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-773.json",
+      "textValues": 81,
+      "textProjectionSha256": "fc93599c5affe48088a9b7e4be2db477fc4ade010ba25f4f3c3b235d961e81cf",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-774.json",
+      "textValues": 96,
+      "textProjectionSha256": "1ff2873cc80149365871a3165aaefdaf0cc961621bda5f1a28234e9517fb133d",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-775.json",
+      "textValues": 71,
+      "textProjectionSha256": "d245ede43ba043beb434260c4a3d1f98110a51751172306be9ca3f161df8b360",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-776.json",
+      "textValues": 101,
+      "textProjectionSha256": "d141c3e45d861a44aaceced703c5802e37b7d2ff4646bf193594c195dd6ff95b",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-777.json",
+      "textValues": 121,
+      "textProjectionSha256": "860691ee53e7ba06ddd2e12e055c2e923d4f06e26cf6890f6b1161a3a34c9b47",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-783.json",
+      "textValues": 86,
+      "textProjectionSha256": "2ad66ecd536dd8aba3b3e520a88a6af5c7379dc51b939b2b8309d8662228fac7",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-784.json",
+      "textValues": 101,
+      "textProjectionSha256": "e47a5651eed460edd7b494d3823ec4280bdae866c2fb6552082aabf3235729db",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-785.json",
+      "textValues": 71,
+      "textProjectionSha256": "7ad934eaa2274aeed126e0b2c49401a77b09d01e68c50cae20e9e14f6fe95c33",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-786.json",
+      "textValues": 66,
+      "textProjectionSha256": "c6cb323451906b14dc888dbb6668bae464abcbe529aaaf83e25103415fdc06ce",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-787.json",
+      "textValues": 61,
+      "textProjectionSha256": "69938777de3dc87b3c27cc57dd39fe1ac697dd70cffcf9568bf574a6e112335a",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-788.json",
+      "textValues": 81,
+      "textProjectionSha256": "d85b2fe795264facf0f6dcf28ed2a91818b74c578b1ab92c348d93c0e0da8772",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-789.json",
+      "textValues": 51,
+      "textProjectionSha256": "3d3da5abd5750fc139814ed85df8f81dac413eae806a8685dd27414c47c439da",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-790.json",
+      "textValues": 91,
+      "textProjectionSha256": "0ce081acdb1bc0b50c4803ae82112bfba1827e4fb1b4adedc12cedf4cbb0ad5e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-791.json",
+      "textValues": 61,
+      "textProjectionSha256": "5021a6d0b7a15052aef1396cb977f88c9ce187d9a8b2e70f53e8ad152fcbd285",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-792.json",
+      "textValues": 61,
+      "textProjectionSha256": "ca4929d2abb15c1bc6a5988739b0f8c9d66fb685d89a24ad33174e251ede98ac",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-793.json",
+      "textValues": 66,
+      "textProjectionSha256": "2e00e5f21624e48d3bb6ac62b8fb881e819d91d8138f14d369f1d15762662d28",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-859.json",
+      "textValues": 76,
+      "textProjectionSha256": "b86b689209d66e9661dfc39df02ae941cd01e7829ec1247dd0f83c8ff845c79f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-860.json",
+      "textValues": 91,
+      "textProjectionSha256": "314d6b3358c71153a7451bb60b30ee691ce16e977390a1bfd10f25c6a4cc5996",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-861.json",
+      "textValues": 86,
+      "textProjectionSha256": "a987dd0a9c2a6ace0f696fba9bc4a2ff9100d3c62b1ae86f84efb9353c1992e4",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-862.json",
+      "textValues": 91,
+      "textProjectionSha256": "802df6c9a60c49262af137135e24af35daff84e7069eacbcacbde6db121f310c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-865.json",
+      "textValues": 86,
+      "textProjectionSha256": "3cae7c6af3952e0dfe409a80def2082132bfa914f22c6aa88bc18be9e5d7683e",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-866.json",
+      "textValues": 96,
+      "textProjectionSha256": "9dab5fd07040ba955bf181e313c4fb57c2e51cf0541d601046144c3bbe43e577",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-867.json",
+      "textValues": 86,
+      "textProjectionSha256": "3b8bec791b2136531b15e86c3de9da09bb9a05b6ead29af1a8757ed0b7b5622f",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-868.json",
+      "textValues": 106,
+      "textProjectionSha256": "3dbb6b24795aeeecacc2ed8accf86b7b323bc5a6ca9fb8fb751e0c10e4660e39",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-869.json",
+      "textValues": 76,
+      "textProjectionSha256": "e0a0495fe545fda1fd928603ea57c90dc0dceb1868649d167d358ffd585d3271",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-870.json",
+      "textValues": 76,
+      "textProjectionSha256": "7b77d1aeaa25e73e87ccc66b63b2743719d1fffd815cd5a9fc218e36c9997ce6",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-907.json",
+      "textValues": 81,
+      "textProjectionSha256": "1059c80875f508e0f89c24f05ec321e1a9e5f28abd7a628a54a5729b07aa7d17",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-908.json",
+      "textValues": 91,
+      "textProjectionSha256": "219747534f2e02ca59ccde3611366a67e74b8e774dbbeae1cbb6e690883dc19c",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-909.json",
+      "textValues": 91,
+      "textProjectionSha256": "a4aeae0b3620c0ba031d82b0ee279024eb5ec8562a59da9abe4229ba2450c5b7",
+      "status": "reviewed"
+    },
+    {
+      "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-910.json",
+      "textValues": 86,
+      "textProjectionSha256": "558710a83a56173b2b4f7e3ffb7d27b03ad79b95e44f49ede681365f2bf541a8",
       "status": "reviewed"
     },
     {
@@ -1068,12 +2478,6 @@
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0003.json",
       "textValues": 96,
       "textProjectionSha256": "14d6bbfe76cd7ef41ef095c66dd6d68dcae59eab172b78217f3d57361ebaae21",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0004.json",
-      "textValues": 111,
-      "textProjectionSha256": "317b4418150d55213a4d029b7960c7403ff78722224374876bfee6716cb55082",
       "status": "reviewed"
     },
     {
@@ -1197,12 +2601,6 @@
       "status": "reviewed"
     },
     {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0025.json",
-      "textValues": 91,
-      "textProjectionSha256": "6f2357b39bca4ee45a08e32635e4d5584d0b41a3e215f4dea4436b5dc83b78e9",
-      "status": "reviewed"
-    },
-    {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0026.json",
       "textValues": 81,
       "textProjectionSha256": "5e5b676ba755f2494945723917078c6cfa82c4233307c65c537652e797793f3e",
@@ -1317,12 +2715,6 @@
       "status": "reviewed"
     },
     {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0045.json",
-      "textValues": 91,
-      "textProjectionSha256": "6b166dac08843545fef509d9723f85a4eaf5c6915f9380a1a72b8f396e540806",
-      "status": "reviewed"
-    },
-    {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0046.json",
       "textValues": 96,
       "textProjectionSha256": "9ef7741b11553844d0845d6c040f17a56c2f864bc43ec4f798ff927c69f7363b",
@@ -1434,12 +2826,6 @@
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0064.json",
       "textValues": 86,
       "textProjectionSha256": "6a7fa2326f7582e1a8e4df1d7ebc7fc6fb14666bcafccde58acaf09872590d2a",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0065.json",
-      "textValues": 91,
-      "textProjectionSha256": "5b07c428863779f87e18ab5934f32e278a48b01e199e69b11e85764ea78dbb7f",
       "status": "reviewed"
     },
     {
@@ -1995,18 +3381,6 @@
       "status": "reviewed"
     },
     {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0158.json",
-      "textValues": 76,
-      "textProjectionSha256": "46a67dc20a27a05c5d518f27e71c95f36ff590388abde420f4f5af9b4282e001",
-      "status": "reviewed"
-    },
-    {
-      "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0159.json",
-      "textValues": 96,
-      "textProjectionSha256": "bc06794cc46e7c066690459b554df2403d6bd69792647c56187a8aea2f9347c6",
-      "status": "reviewed"
-    },
-    {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0160.json",
       "textValues": 96,
       "textProjectionSha256": "161a33395caeabeba1bea6cbd80347cc14f1a14799c63c14d24cb1e9a459728a",
@@ -2213,7 +3587,7 @@
     {
       "file": "content/question-banks/banks/storytelling/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "65b1d11f9cb8c25938cedeb77a53d33004150744a77e221ec1a065a92551cb4d",
+      "textProjectionSha256": "3320092a961d3ca10d4cc9e895cd36e56c429e80675606a9ef6e0cd6aac0937f",
       "status": "reviewed"
     },
     {
@@ -2236,20 +3610,20 @@
     },
     {
       "file": "content/question-banks/banks/storytelling/topics/story-atc-required.json",
-      "textValues": 166,
-      "textProjectionSha256": "d616e31d157ea5270dd92fa56b187b67abf5fd254bebb8463e34d4c415c3528b",
+      "textValues": 103,
+      "textProjectionSha256": "0ef4fe8724792bd6a122e79041cd796648fb0c14ca3fb066686985460fda1b22",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-      "textValues": 862,
-      "textProjectionSha256": "6e3d56b27a53f704a487514b2c83ab949657e7e4eeb7b997fd09d4a30e16a4a2",
+      "textValues": 736,
+      "textProjectionSha256": "d5e8775c2da4262d20ba0c801ea54e2265c41de7d1e868b7ec5df7bf438c64f8",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/storytelling/topics/story-flight-required.json",
-      "textValues": 136,
-      "textProjectionSha256": "c6704db6daa3e4dafb764e0e5582695f17a6d428d0d3533b7460ac2d3a169bfb",
+      "textValues": 165,
+      "textProjectionSha256": "9caa1af363fa744bfa8c9856c1b8827161dffbd47584f561995a56228a440ce4",
       "status": "reviewed"
     }
   ]

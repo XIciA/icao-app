@@ -56,7 +56,7 @@ jest.mock('../annotations/use-question-annotations', () => ({
           topicId: 'listening-topic-01',
           cardId: 'listening-main-001',
           tagIds: ['memory'],
-          highlights: [{ blockId: 'question', wordIndex: 1, colorId: 'yellow', quote: '919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: 'abc' }],
+          highlights: [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: 'abc' }],
           note: '复习雷击通话',
           updatedAt: '2026-07-12T00:00:00.000Z',
         },
@@ -87,15 +87,15 @@ describe('<MyAnnotationsScreen />', () => {
     const screen = await render(<MyAnnotationsScreen />);
     expect(screen.getByText('我的标注')).toBeTruthy();
     expect(screen.getByText('全部题库')).toBeTruthy();
-    expect(screen.getByText(/UAL 919/)).toBeTruthy();
+    expect(screen.getByText(/UAL\s?919/)).toBeTruthy();
     expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
     expect(screen.getByLabelText('已添加2个标签：好题、不懂')).toBeTruthy();
 
-    await fireEvent.press(screen.getByText(/UAL 919/));
+    await fireEvent.press(screen.getByText(/UAL\s?919/));
     expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ cardId: 'listening-main-001', returnTo: 'annotations' }) }));
 
     await fireEvent.press(screen.getByText('高亮'));
-    expect(screen.getByLabelText('高亮词：919,')).toBeTruthy();
+    expect(screen.getByLabelText('高亮词：UAL919,')).toBeTruthy();
     expect(screen.queryByLabelText('高亮词：UAL')).toBeNull();
     expect(screen.getByText('重点')).toBeTruthy();
     expect(screen.getByText('记忆')).toBeTruthy();
@@ -107,13 +107,13 @@ describe('<MyAnnotationsScreen />', () => {
   it('can narrow the default all-bank view to one question bank', async () => {
     const screen = await render(<MyAnnotationsScreen />);
     expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
-    expect(screen.getByText(/UAL 919/)).toBeTruthy();
+    expect(screen.getByText(/UAL\s?919/)).toBeTruthy();
 
     await fireEvent.press(screen.getByLabelText('切换题库'));
     await fireEvent.press(screen.getByText('听力'));
 
     expect(screen.queryByText('Maintaining FL310.')).toBeNull();
-    expect(screen.getByText(/UAL 919/)).toBeTruthy();
+    expect(screen.getByText(/UAL\s?919/)).toBeTruthy();
     expect(screen.getByText('本机数据 · 当前题库')).toBeTruthy();
   });
 });

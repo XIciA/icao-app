@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0003",
   "name": "风切变",
   "declaredCardCount": 19,
@@ -156,5 +155,6 @@
       "referenceText": "The season depends on the local climate, so there is no single answer worldwide. Convective wind shear is most likely during the local thunderstorm season, while frontal and inversion-related wind shear can occur at other times. Pilots should use current forecasts, reports, and local weather patterns rather than relying only on the time of year.",
       "referenceTextZh": "具体季节取决于当地气候，因此全球没有统一答案。对流性风切变最常见于当地雷暴季节，而锋面或逆温相关的风切变也可能在其他时段发生。飞行员应依据当前预报、报告和当地天气规律，而不能只看季节。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

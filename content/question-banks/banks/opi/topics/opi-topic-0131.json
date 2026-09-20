@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0131",
   "name": "客航与货航",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "The pilots are responsible for the safe operation of the aircraft and for the safety of the people and their belongings on board.",
       "referenceTextZh": "飞行员负责飞机的安全运行，并保障机上人员及其物品的安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

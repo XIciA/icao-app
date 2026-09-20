@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0092",
   "name": "旅客异常情况处置",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "The cabin crew or purser should explain that the instruction is related to flight safety and ask the passenger to comply. If the passenger continues to refuse and disrupts the operation, the crew can involve the air marshal and arrange for airport security to handle the matter.",
       "referenceTextZh": "客舱机组或乘务长应说明该指令与飞行安全有关，并要求旅客配合。如果旅客继续拒绝并扰乱运行，机组可以让空中警察介入，并安排机场安保部门处理。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

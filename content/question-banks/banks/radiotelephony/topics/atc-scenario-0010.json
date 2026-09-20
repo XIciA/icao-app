@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0010",
   "name": "SIA 497 询问起落架 前轮转向失效",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "许可跑道 18L ILS 进近，建立后报告，SIA 497。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/178.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

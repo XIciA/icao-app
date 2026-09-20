@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0085",
   "name": "无线电检查",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "The pilot should check the radio equipment and antenna, try an alternate frequency, and adjust the radio settings if necessary. While some communication remains, the pilot should use standard phraseology and keep transmissions brief. If communication fails completely, the pilot should follow the applicable radio-failure procedure and select code 7600 when required.",
       "referenceTextZh": "飞行员应检查无线电设备和天线、尝试备用频率，并在必要时调整无线电设置。仍可通信时，应使用标准通话用语并保持通话简短。如果通信完全中断，应遵循适用的无线电失效程序，并在规定时选择代码 7600。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

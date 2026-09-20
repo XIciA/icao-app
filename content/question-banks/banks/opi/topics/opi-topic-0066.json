@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0066",
   "name": "人为因素与人为差错",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Pilots can maintain a safety margin by dividing tasks clearly and cross-checking each other’s work. Effective communication and cooperation within the crew also help identify problems before they become serious.",
       "referenceTextZh": "飞行员可以通过明确分工并相互交叉检查来保持安全裕度。机组内部有效沟通与合作，也有助于在问题变得严重前及时发现。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

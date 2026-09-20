@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0028",
   "name": "颠簸",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "Mountain-wave turbulence can cause violent shaking and make the aircraft difficult to control. It may lead to a loss of speed or altitude, structural damage, and injuries. It also increases pilot workload and the risk of unstable flight.",
       "referenceTextZh": "山地波颠簸会造成剧烈抖动，并使飞机难以操纵。它可能导致速度或高度损失、结构损伤和人员受伤，还会增加飞行员工作负荷和飞行不稳定的风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

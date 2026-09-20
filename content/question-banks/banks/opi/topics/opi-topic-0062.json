@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0062",
   "name": "禁烟政策",
   "declaredCardCount": 6,
@@ -52,5 +51,6 @@
       "referenceText": "The flight crew should ask the cabin crew to stop the passenger and explain the fire and safety risks. If the passenger refuses to comply, the incident should be recorded and airport security can be asked to handle the matter after arrival.",
       "referenceTextZh": "飞行机组应让客舱机组制止该旅客，并说明火灾和安全风险。如果旅客拒绝遵守规定，应记录事件，并可在到达后请机场安保部门处理。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

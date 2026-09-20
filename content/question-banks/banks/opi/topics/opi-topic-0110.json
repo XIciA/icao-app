@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0110",
   "name": "失控",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "The crew's first priority is to recover control by following the applicable SOP, memory items, and emergency checklist. Once able, the crew should advise ATC of the situation. If control cannot be restored, they should declare distress and prepare for a forced landing or ditching.",
       "referenceTextZh": "机组首要任务是按照适用的标准操作程序、记忆项目和应急检查单恢复控制。条件允许后，应向空中交通管制报告情况。如果无法恢复控制，应宣布遇险并准备迫降或水上迫降。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

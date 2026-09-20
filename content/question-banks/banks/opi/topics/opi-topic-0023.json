@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-02",
   "id": "opi-topic-0023",
   "name": "跑道侵入与地面冲突",
   "declaredCardCount": 14,
@@ -116,5 +115,6 @@
       "referenceText": "The pilot should advise ATC and request instructions to vacate the runway at the next suitable exit. If the next exit is too far away, the pilot may request permission to backtrack, provided that other traffic is not affected.",
       "referenceTextZh": "飞行员应通知空中交通管制，并申请从下一个合适出口脱离跑道。如果下一个出口太远，在不影响其他交通的前提下，可以申请许可沿跑道反向滑行。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-02"
 }

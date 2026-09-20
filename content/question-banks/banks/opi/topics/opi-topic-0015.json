@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0015",
   "name": "SOP",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "SOPs standardize normal and abnormal operations, reduce human error, improve crew coordination, and support consistent responses to different situations. Following them helps minimize risk and improve flight safety.",
       "referenceTextZh": "标准操作程序使正常和非正常运行标准化，减少人为差错，改善机组协调，并支持对不同情况作出一致反应。遵守程序有助于降低风险、提高飞行安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

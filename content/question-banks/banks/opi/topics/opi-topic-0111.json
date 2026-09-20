@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0111",
   "name": "空调系统",
   "declaredCardCount": 5,
@@ -44,5 +43,6 @@
       "referenceText": "The crew should follow the SOP and checklist and determine whether cabin temperature or pressurization is affected. They should use oxygen masks if required by a pressurization problem. If temperature cannot be controlled or safety is threatened, they should inform ATC and divert to a suitable airport.",
       "referenceTextZh": "机组应遵循标准操作程序和检查单，并判断客舱温度或增压是否受到影响。如果增压问题要求使用氧气面罩，就应及时使用。如果无法控制温度或安全受到威胁，应通知空中交通管制并改航至合适机场。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

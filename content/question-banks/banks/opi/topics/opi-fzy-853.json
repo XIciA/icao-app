@@ -1,0 +1,43 @@
+{
+  "id": "opi-fzy-853",
+  "name": "Refuel",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-fzy-853-image-1",
+      "kind": "image",
+      "taskTitle": "Refuel · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-853.png",
+      "imageAlt": "Refuel，用于本话题的看图描述和问答",
+      "studyTier": 1
+    },
+    {
+      "id": "opi-fzy-152413",
+      "taskTitle": "Refuel-1",
+      "audioText": "What can you see from this picture?",
+      "audioTextZh": "你从上述图中看到了什么？",
+      "studyTier": 1,
+      "referenceText": "From the picture I can see there is an aircraft parking on the ground. The airplane has two propellers. Beside the plane, there is a fuel truck, so I guess the plane is getting ready to refuel.",
+      "referenceTextZh": "从图中我可以看到有一架飞机停在地面，飞机有2个螺旋桨。在飞机的旁边，有一辆加油车，因此，我猜测，飞机正在准备加油。"
+    },
+    {
+      "id": "opi-fzy-152414",
+      "taskTitle": "Refuel-2",
+      "audioText": "How many fuel tanks are there on your aircraft?",
+      "audioTextZh": "你的飞机上有几个油箱？",
+      "studyTier": 1,
+      "referenceText": "I fly C172, we only have one fuel tank.\nBut as far as I know, some big aircraft, like B737, they have three tanks.",
+      "referenceTextZh": "我飞的是塞斯纳172机型，我们的飞机上只有一个油箱。\n但是据我所知，一些大飞机，如波音737，有3个油箱。"
+    },
+    {
+      "id": "opi-fzy-152415",
+      "taskTitle": "Refuel-3",
+      "audioText": "What will cause fuel contamination?",
+      "audioTextZh": "哪些情况会造成燃油污染？",
+      "studyTier": 1,
+      "referenceText": "I have never encountered fuel contamination.\nBut as far as I know, if we refuel in bad weather conditions, such as sandstorms, rain and so on, there will be the possibility of fuel contamination.",
+      "referenceTextZh": "我从未遇到过燃油污染的情况。\n但是据我所知，如果我们在恶劣的天气条件下加油，比如沙尘暴，降雨等，就会有燃油污染的可能性。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

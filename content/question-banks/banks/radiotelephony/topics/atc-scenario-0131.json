@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0131",
   "name": "ACA 521 乘客医疗 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "请求救护车和医生，ACA 521。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-028-aca521-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

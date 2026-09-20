@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0069",
   "name": "QRH",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "A QRH gives the crew checklists and procedures to follow when an emergency occurs. It can improve situational awareness, reduce workload and human error, and support flight safety.",
       "referenceTextZh": "发生紧急情况时，快速参考手册（QRH）为机组提供需要执行的检查单和程序。它可以提高情景意识、降低工作负荷和人为差错，并保障飞行安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

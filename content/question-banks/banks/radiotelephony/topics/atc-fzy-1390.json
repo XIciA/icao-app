@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1390",
+  "name": "CSN557 [液压油泄漏]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-202673",
+      "taskTitle": "36-CSN557 [液压油泄漏]-1",
+      "audioText": "1N: Your call sign is CSN557, you are flying from Wuhan to Rome, you are taxiing southbound on C to holding point of runway 36L. Contact Tower.",
+      "audioTextZh": "你的呼号是南方557，从武汉飞往罗马，你现在正在滑行道C上向南滑行至跑道36左。联系塔台。",
+      "referenceText": "Wuhan Tower, CSN557, taxiing southbound on C to holding point of runway 36L.",
+      "referenceTextZh": "武汉塔台，南方557，正在滑行道C上向南滑行至跑道36左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7351e6204be9a9083b50.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202674",
+      "taskTitle": "36-CSN557 [液压油泄漏]-2",
+      "audioText": "2C: CSN557, line up runway 36L.",
+      "audioTextZh": "南方557，上跑道36左等待。",
+      "referenceText": "Line up runway 36L, CSN557.",
+      "referenceTextZh": "上跑道36左等待，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a2ee5a459481fdb6343.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202675",
+      "taskTitle": "36-CSN557 [液压油泄漏]-3",
+      "audioText": "3C: CSN557, wind calm, contact Approach on 119.35 when airborne, cleared to takeoff runway 36L.",
+      "audioTextZh": "南方557，静风，离地后联系进近119.35，可以起飞，跑道36左。",
+      "referenceText": "Cleared to takeoff runway 36L, 119.35, CSN557.",
+      "referenceTextZh": "可以起飞，跑道36左，119.35，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/82712708cd803799de38.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202676",
+      "taskTitle": "36-CSN557 [液压油泄漏]-4",
+      "audioText": "4N: After airborne, you have an undercarriage warning, your left main gear has not fully retracted, call Wuhan Approach and request maintain 1200m and maintain speed 180 knots.",
+      "audioTextZh": "离地后，你收到了起落架警告，你的左侧起落架没有完全收回，联系武汉进近，请求保持高度1200米，速度180节。",
+      "referenceText": "Wuhan Approach, CSN557, our left main gear has not fully retracted, request maintain 1200m and maintain speed 180 knots.",
+      "referenceTextZh": "武汉进近，南方557，左起落架没有完全收回，请求保持高度1200米，速度180节。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c008bb675dfdd5c64b75.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202677",
+      "taskTitle": "36-CSN557 [液压油泄漏]-5",
+      "audioText": "5C: Roger, CSN557, climb and maintain 1200m and keep 180 knots approved. Advise intentions when able.",
+      "audioTextZh": "收到，南方557，上1200米保持，速度180节，可以时告知意图。",
+      "referenceText": "Climb and maintain 1200m and keep 180 knots, wilco, CSN557.",
+      "referenceTextZh": "上1200米保持，速度180节，照办，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9afdc75d8c4e261e196.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202678",
+      "taskTitle": "36-CSN557 [液压油泄漏]-6",
+      "audioText": "6N: After performing the checklist, you still cannot verify the landing gear position. Tell the Approach you want to return to Wuhan airport and fly a low pass over airfield for visual inspection.",
+      "audioTextZh": "执行完检查单后，你依旧无法证实起落架位置。告知进近，你希望返航武汉机场，进行低空目视通场。",
+      "referenceText": "Wuhan Approach, CSN557, we can’t confirm the landing gear position, request return to Wuhan airport and make a low pass for visual check.",
+      "referenceTextZh": "武汉进近，南方557，我们无法确定起落架的位置，请求返航武汉机场，并执行低空目视通场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/793cf6d09b748906a472.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202679",
+      "taskTitle": "36-CSN557 [液压油泄漏]-7",
+      "audioText": "7C: CSN557, turn right track direct to \"D\" NDB, descend and maintain 900m, follow the published procedure. Clear for ILS approach runway 36R.",
+      "audioTextZh": "南方557，右转直飞“D”NDB，下到900米保持，按照发布的程序，可以ILS进近，跑道36右。",
+      "referenceText": "Turn right track direct to \"D\" NDB, descend and maintain 900m, follow the published procedure. Clear for ILS approach runway 36R, CSN557.",
+      "referenceTextZh": "右转直飞“D”NDB，下到900米保持，按照发布的程序，可以ILS进近，跑道36右，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2b26e37cd5de2149e5c0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202680",
+      "taskTitle": "36-CSN557 [液压油泄漏]-8",
+      "audioText": "8C: CSN557, you are 10miles from the touchdown, contact Tower on 118.5.",
+      "audioTextZh": "南方557，距离接地点10海里，联系塔台118.5。",
+      "referenceText": "10miles from the touchdown, 118.5, CSN557.",
+      "referenceTextZh": "接地点10海里，118.5，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b40f5a5c0e01f58a04e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202681",
+      "taskTitle": "36-CSN557 [液压油泄漏]-9",
+      "audioText": "9N: Call Tower and tell you are established on ILS runway 36R, you are ready for low pass.",
+      "audioTextZh": "呼叫塔台，告知你已经建立跑道36右盲降，准备好低空通场了。",
+      "referenceText": "Wuhan Tower, CSN557, established on ILS runway 36R, ready for low pass.",
+      "referenceTextZh": "武汉塔台，南方557，建立了跑道36右盲降，准备好低空通场了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a4a870f6a6c5b112816.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202682",
+      "taskTitle": "36-CSN557 [液压油泄漏]-10",
+      "audioText": "10C: CSN557, wind calm, cleared for low pass runway 36R, not below 100m above runway.",
+      "audioTextZh": "南方557，静风，可以低空通场，跑道36右，不低于跑道100米。",
+      "referenceText": "Cleared for low pass runway 36R, not below 100m above runway. CSN557.",
+      "referenceTextZh": "可以低空通场，跑道36右，不低于跑道100米，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/db81f913b1c697f67404.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202683",
+      "taskTitle": "36-CSN557 [液压油泄漏]-11",
+      "audioText": "11C: CSN557, we have a good look at your undercarriage. Your left main landing gear is stuck halfway. It is not in the extended position. Advise intention.\n11N: Tell tower you want to perform hold near airport.",
+      "audioTextZh": "南方557，我看清楚了你的起落架，你的左起落架卡在半路了，没有在放出位置，告知意图。\n【告知管制，你想在机场附近等待。】",
+      "referenceText": "Request hold near the airport, CSN557.",
+      "referenceTextZh": "请求在机场附近等待，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/17ab6a09cead5c6414eb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202684",
+      "taskTitle": "36-CSN557 [液压油泄漏]-12",
+      "audioText": "12C: CSN557, after low pass maintain runway heading and climb to 900m.",
+      "audioTextZh": "南方557，低空通场后，保持报道航向，上到900米。",
+      "referenceText": "Maintain runway heading and climb to 900m.,CSN557.",
+      "referenceTextZh": "保持跑道航向，上900米，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dcfbbb7d0dd779263401.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202685",
+      "taskTitle": "36-CSN557 [液压油泄漏]-13",
+      "audioText": "13C: CSN557, turn left proceed to DA, climb and maintain 1200m, contact Approach on 119.25.",
+      "audioTextZh": "南方557，左转直飞DA，上1200米保持，联系进近119.25。",
+      "referenceText": "Turn left proceed to DA, climb and maintain 1200m, contact Approach on 119.25, CSN557.",
+      "referenceTextZh": "左转直飞DA，上1200米保持，联系进近119.25，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/64e3d5e69e890c810778.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202686",
+      "taskTitle": "36-CSN557 [液压油泄漏]-14",
+      "audioText": "14N: Now you are tracking to DA, maintain 1200m, call Wuhan Approach, request holding instructions.",
+      "audioTextZh": "你现在正直飞DA，1200米保持，呼叫武汉进近，请求等待指令。",
+      "referenceText": "Wuhan Approach, CSN557, tracking to DA, maintain 1200m, request holding instructions.",
+      "referenceTextZh": "武汉进近，南方557，直飞DA，1200米，请求等待指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3d60117f8fdc92a6b1ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202687",
+      "taskTitle": "36-CSN557 [液压油泄漏]-15",
+      "audioText": "15C: CSN557, Wuhan Approach, radar contact, hold at DA as published, expect further clearance time 50, report entering the hold.",
+      "audioTextZh": "南方557，武汉进近，雷达识别，按照发布的程序在DA等待，预计在50分得到进一步指令，进入等待后报。",
+      "referenceText": "Hold at DA as published, expect further clearance time 50, report entering the hold. CSN557.",
+      "referenceTextZh": "按照发布的程序在DA等待，预计在50分得到进一步指令，进入等待后报，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b7fde7179dbc21409b3a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202688",
+      "taskTitle": "36-CSN557 [液压油泄漏]-16",
+      "audioText": "16N: During hold, another warning is triggered. One of the hydraulic systems is leaking fluid slowly. You want to dump fuel and return to the airport and make emergency landing. This is an urgency call.",
+      "audioTextZh": "在等待期间，触发了另一个警告。一个液压系统正在缓慢漏油，你想放油，然后返回机场紧急着陆，这是一个紧急通话。",
+      "referenceText": "Pan Pan Pan, Wuhan Approach, CSN557, one of our hydraulic systems is leaking fluid, request emergency landing at Wuhan airport after fuel dumping.",
+      "referenceTextZh": "Pan Pan Pan，武汉进近，南方557，一个液压系统在漏油，请求放油后在武汉机场紧急着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/82358d138cdf39d0f196.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202689",
+      "taskTitle": "36-CSN557 [液压油泄漏]-17",
+      "audioText": "17C: CSN557, roger PAN. Climb to and maintain 3000m, turn left heading 310, radar vector to dump fuel. We will have the emergency services ready and foam the runway slowly.",
+      "audioTextZh": "南方557，收到Pan，上3000米保持，左转航向310，雷达引导放油。我们将安排好紧急设备，同时向跑道喷洒泡沫。",
+      "referenceText": "Climb to and maintain 3000m, turn left heading 310, radar vector to dump fuel. CSN557.",
+      "referenceTextZh": "上到3000米保持，左转航向310，雷达引导放油，南方557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5a80a06487ced115591c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-202690",
+      "taskTitle": "36-CSN557 [液压油泄漏]-18",
+      "audioText": "18N: After the emergency landing on runway 36R. The aircraft is still intact. You want to make an emergency evacuation.",
+      "audioTextZh": "在36右跑道紧急降落后。飞机完好无损。你想要紧急撤离。",
+      "referenceText": "参考答案，\nWuhan Tower, CSN557, request emergency evacuation on r/w 36R.",
+      "referenceTextZh": "武汉塔台，南方557，请求在跑道36右执行紧急撤离。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fe4c28d28f3badca1722.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

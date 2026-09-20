@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0035",
   "name": "液压系统",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "A hydraulic fluid leak can reduce system pressure and cause partial or complete loss of flight controls, landing gear, brakes, or thrust reversers. A severe leak may make the aircraft difficult to control and can contribute to a runway overrun or structural damage.",
       "referenceTextZh": "液压油泄漏会降低系统压力，并造成飞行操纵、起落架、刹车或反推部分或完全丧失。严重泄漏可能使飞机难以操纵，并可能促成冲出跑道或结构损伤。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

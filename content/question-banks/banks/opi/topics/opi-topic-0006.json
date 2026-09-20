@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0006",
   "name": "CVR与FDR",
   "declaredCardCount": 17,
@@ -140,5 +139,6 @@
       "referenceText": "CVR monitoring does not prevent me from taking any action needed for safety. It makes me more conscious of using professional language, standard callouts, and clear coordination. My decisions are still based on the situation, the SOPs, and my responsibility for the flight.",
       "referenceTextZh": "CVR 监听不会阻止我采取任何安全所需的行动。它会让我更加注意使用专业语言、标准口令和清晰协调。我的决策仍以实际情况、标准操作程序和我对飞行承担的责任为依据。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-018",
   "name": "擦尾风险",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-018.jpg",
-      "imageAlt": "擦尾风险航空场景图片"
+      "imageAlt": "擦尾风险航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-018-q01",
@@ -35,5 +35,6 @@
       "referenceText": "The crew should brief the tail-strike threat, check the relevant aircraft performance, coordinate clearly, and follow the checklist. If safety were not assured, the takeoff should be delayed or rejected.",
       "referenceTextZh": "机组应对擦尾威胁进行简令，检查相关飞机性能，保持清晰协调，并执行检查单。如果无法确保安全，应推迟起飞或中断起飞。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

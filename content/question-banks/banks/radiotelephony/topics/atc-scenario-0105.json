@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0105",
   "name": "CSN 230 滑行灯暗 右主轮滑出跑道",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "收到，谢谢，CSN 230。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1821.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

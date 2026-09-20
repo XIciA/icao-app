@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0058",
   "name": "CCA 512 右发失效 重启失败",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "武汉塔台，CCA 512，已建立跑道 36R ILS 进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1011.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

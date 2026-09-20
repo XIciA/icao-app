@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0002",
   "name": "积冰",
   "declaredCardCount": 18,
@@ -148,5 +147,6 @@
       "referenceText": "In heavy snow, a two-step process may use heated Type I fluid to remove existing contamination, followed by Type IV fluid for anti-icing. The crew should check the fluid's certified weather conditions.",
       "referenceTextZh": "在大雪条件下，两步法可以先使用加热的 I 型液体清除已有污染，再使用 IV 型液体进行防冰。机组应核对该液体获准使用的天气条件。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

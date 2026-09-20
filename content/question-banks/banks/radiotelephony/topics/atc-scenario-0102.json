@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0102",
   "name": "CSN 426 乘客坐错 翼尖相撞",
   "declaredCardCount": 11,
@@ -103,5 +102,6 @@
       "referenceTextZh": "北京东地面，CSN 426，请求摆渡车送旅客返回登机口。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1767.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

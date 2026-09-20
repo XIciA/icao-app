@@ -1,0 +1,88 @@
+{
+  "id": "opi-fzy-587",
+  "name": "Figure 31",
+  "declaredCardCount": 9,
+  "cards": [
+    {
+      "id": "opi-fzy-587-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 31 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-587.png",
+      "imageAlt": "Figure 31，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110409",
+      "taskTitle": "Figure 31-1",
+      "audioText": "Please describe this picture briefly in your words.",
+      "audioTextZh": "请用你的话简要描述这幅图。",
+      "studyTier": 0,
+      "referenceText": "From this picture, I can see an aircraft is experiencing tail strike, and smoke is coming from the tail. It must be happening at a big airport equipped with CAT Ⅱand Ⅲ ILS system. There is another aircraft waiting at the holding point of the runway. The airport is surrounded by thick forest.",
+      "referenceTextZh": "从这幅图中可以看到一架飞机发生了擦机尾，且尾部有烟雾冒出。这一定是发生在安装了仪表着陆系统Ⅱ类及Ⅲ类的大型机场。跑道等待点还有另外一架飞机在等候。整个机场被茂密的森林包围。"
+    },
+    {
+      "id": "opi-fzy-110410",
+      "taskTitle": "Figure 31-2",
+      "audioText": "Is the aircraft landing or taking off? Why?",
+      "audioTextZh": "这架飞机是在起飞还是降落阶段？为什么？",
+      "studyTier": 0,
+      "referenceText": "I think this aircraft is taking off, because the flaps are not in the landing configuration.",
+      "referenceTextZh": "我觉得这架飞机正在起飞，因为飞机襟翼不是着陆该有的配置。"
+    },
+    {
+      "id": "opi-fzy-110411",
+      "taskTitle": "Figure 31-3",
+      "audioText": "In your opinion, what may cause this to happen?",
+      "audioTextZh": "就你的观点，造成该事故的原因可能有哪些？",
+      "studyTier": 0,
+      "referenceText": "Maybe the captain saw some traffic or obstacles on the runway and he wanted to rotate the aircraft earlier, but the aircraft was too heavy, so he couldn't pull up the aircraft, then the tail struck onto the ground.",
+      "referenceTextZh": "可能机长看到跑道上有一些车辆或障碍物，他想早点抬前轮，但是机身太重，导致他不能拉起飞机，然后发生了擦机尾。"
+    },
+    {
+      "id": "opi-fzy-110412",
+      "taskTitle": "Figure 31-4",
+      "audioText": "Are there any other causes that may lead to tail strike during takeoff?",
+      "audioTextZh": "在起飞阶段，还有没有其它可能造成擦机尾的原因？",
+      "studyTier": 0,
+      "referenceText": "Yes. Severe weather condition can lead to such accident. Maybe the aircraft encountered wind shear during takeoff after V1, however, the airspeed couldn't increase sufficiently to reach VR. When the aircraft reached the end of the runway, the pilot had to pull up, but the airspeed was not high enough, so that the tail struck on the runway.",
+      "referenceTextZh": "有的。恶劣天气状况可能导致这类事故。飞机速度达到起飞决断速度时遇到了风切变，而空速又达不到抬轮速度。当飞机到达跑道尽头时，飞行员不得不拉起，但是空速不够，所以机尾撞在跑道上。"
+    },
+    {
+      "id": "opi-fzy-110413",
+      "taskTitle": "Figure 31-5",
+      "audioText": "What would you do if you encountered tail strike during takeoff?",
+      "audioTextZh": "如果在起飞时遇到擦机尾你会如何解决？",
+      "studyTier": 0,
+      "referenceText": "I would use the maximum thrust to reduce the pitch angle and continue to take off. Then report to the ATC about the situation. After takeoff, I would make a short circuit and return for emergency landing.",
+      "referenceTextZh": "我会使用最大推力，减少俯仰角，继续起飞。之后向ATC报告相关情况。起飞后，我会做个小起落航线，并返回机场，要求紧急降落。"
+    },
+    {
+      "id": "opi-fzy-110414",
+      "taskTitle": "Figure 31-6",
+      "audioText": "Which aircraft experiences tail strike more often than others?",
+      "audioTextZh": "哪种类型的飞机更容易发生擦机尾？",
+      "studyTier": 0,
+      "referenceText": "A tail strike possibly happens to an aircraft with tricycle landing gear; with a tail dragger configuration, the plane naturally sits in a nose-up attitude when on the ground.",
+      "referenceTextZh": "配备有三点式起落架的飞机更容易发生擦机尾；飞机在地面上保持机头上仰的状态。"
+    },
+    {
+      "id": "opi-fzy-110415",
+      "taskTitle": "Figure 31-7",
+      "audioText": "If this situation happened during landing, what would cause such accident?",
+      "audioTextZh": "如果在降落阶段发生这种状况，可能的原因有哪些？",
+      "studyTier": 0,
+      "referenceText": "There may be some problems with the flaps of aircraft. The flaps cannot be extended normally during landing. When the aircraft approached the runway, the speed was too high, and tail strike happened.",
+      "referenceTextZh": "襟翼可能有些问题。在降落阶段襟翼无法正常打开。当飞机接近跑道时，速度过高，就会发生擦机尾。"
+    },
+    {
+      "id": "opi-fzy-110416",
+      "taskTitle": "Figure 31-8",
+      "audioText": "Are there any other causes which can lead to tail strike during landing?",
+      "audioTextZh": "在降落阶段，还有没有其它可能造成擦机尾的原因？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, there are three landing risk factors may precede a tail strike, they are unstabilized approach, mishandling of crosswinds, and over-rotation during missed approach.",
+      "referenceTextZh": "据我所知，有三种危险因素可能会造成擦机尾，分别是不稳定进近、侧风操作失误、复飞时抬轮过度。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

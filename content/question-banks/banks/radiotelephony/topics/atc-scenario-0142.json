@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0142",
   "name": "CCA 512 发动机失效 积冰/防冰 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "武汉塔台，CCA 512，已建立 ILS 进近 Runway 36R。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-040-cca512-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

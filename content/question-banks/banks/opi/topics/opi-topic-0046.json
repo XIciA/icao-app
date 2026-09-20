@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0046",
   "name": "航空发展与新技术",
   "declaredCardCount": 16,
@@ -132,5 +131,6 @@
       "referenceText": "SAF can play an important role by reducing lifecycle emissions from aircraft that are already in service. Because it can be used with the existing fleet, it offers a more immediate option than technologies that require completely new aircraft designs. Wider use will still require major investment, greater production capacity, lower costs, and more feedstock.",
       "referenceTextZh": "SAF 可以通过降低现役飞机的全生命周期排放发挥重要作用。由于它能用于现有机队，与需要全新飞机设计的技术相比，可以更快投入使用。扩大应用仍需要大量投资、更高产能、更低成本和更多原料。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

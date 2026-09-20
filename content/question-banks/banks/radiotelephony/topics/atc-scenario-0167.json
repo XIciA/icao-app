@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0167",
   "name": "AFR 332 烟雾 TCAS机动 备降/返航",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "巴黎管制，AFR 332，我们的公司签派员刚刚告诉我们，法兰克福的地面工作人员正在罢工，我们决定继续飞往巴黎。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-021",
   "name": "鸟击",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-021.jpg",
-      "imageAlt": "鸟击航空场景图片"
+      "imageAlt": "鸟击航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-021-q01",
@@ -35,5 +35,6 @@
       "referenceText": "Bird-strike risk is highest near airports and at low altitude during takeoff, climb, approach, and landing. It increases during migration periods and around wetlands, open water, grass, rubbish sites, or other places that attract birds. Dawn, dusk, poor visibility, and airport activities that disturb flocks can make detection and avoidance more difficult.",
       "referenceTextZh": "鸟击风险在机场附近以及起飞、爬升、进近和着陆的低高度阶段最高。迁徙季节，以及湿地、开阔水域、草地、垃圾场或其他吸引鸟类的地点附近，风险会增大。黎明、黄昏、低能见度，以及惊扰鸟群的机场活动，都可能使发现和避让更加困难。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

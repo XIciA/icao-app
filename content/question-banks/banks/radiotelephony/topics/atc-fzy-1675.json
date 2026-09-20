@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-1675",
+  "name": "CSN905 [冷锋，位置报]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224086",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-1",
+      "audioText": "N: [Your flight number is CSN905, a flight from Changchun to Wuhan. You are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]",
+      "audioTextZh": "N：【你的呼号是南方905，一架从长春飞往武汉的航班。你现在在10400米巡航，你正接近BIDOG，你的应答机编码是2332。与北京区调建立初始联系。】",
+      "referenceText": "Beijing Control, CSN905, maintaining 10400m, approaching BIDOG, squawking 2332.",
+      "referenceTextZh": "北京区调，南方905，正保持10400米，接近BIDOG，应答机2332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8dda23dd05f6a53df407.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224087",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-2",
+      "audioText": "C: CSN905, Beijing Control, radar contact, change your squawk number to 0423.",
+      "audioTextZh": "C：南方905，北京区调，雷达看见了，应答机编码改为0423。",
+      "referenceText": "Squawking 0423, CSN905.",
+      "referenceTextZh": "答机编码0423，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/994ff86e86e228c21af6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224088",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-3",
+      "audioText": "C: CSN905, reduced to Mach point 75 due to flow restrictions in the Zhengzhou Control area.",
+      "audioTextZh": "C：南方905，由于郑州管制区流控限制，速度减小至点75。",
+      "referenceText": "Roger, reduce to Mach point 75, CSN905.",
+      "referenceTextZh": "收到，速度减小至点75，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/22b1b2bec1991e34514d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224089",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-4",
+      "audioText": "C: CSN905, descend to and maintain 9,200m, rate of descent at 2,000 ft/min or greater.",
+      "audioTextZh": "C：南方905，下9200米保持，下降率2000英尺每分或更大。",
+      "referenceText": "Descend and maintain 9,200m at 2,000 ft/min or greater, CSN905.",
+      "referenceTextZh": "下9200米保持，下降率2000英尺每分或更大，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/21b3f2ea41d9305fba7e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224090",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-5",
+      "audioText": "N: [A cold front is passing Beijing Control area, numerous thunderstorms are coming from the west, request Beijing Control that you want to climb to 11600m.]",
+      "audioTextZh": "N：【冷锋正在穿越北京管制区，西侧有大量雷暴天气正在靠近，向北京区调申请，你想上116000米。】",
+      "referenceText": "Beijing Control, CSN905, request climb to 11600m due weather.",
+      "referenceTextZh": "北京区调，南方905，由于天气，请求上11600米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/307162b3d00c344d71b8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224091",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-6",
+      "audioText": "C: CSN905, negative, higher levels are occupied, advise your intentions.\nN: [Advise the controller you wish to turn left and track direct to WXI.]",
+      "audioTextZh": "C：南方905，不可以，更高的高度被占用，告知你的意图。\nN：【告知管制员，你向左转直飞WXI。】",
+      "referenceText": "Roger, request turn left and track direct to WXI, CSN905.",
+      "referenceTextZh": "收到，请求左转直飞WXI，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1de170ff12c20ccdb7ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224092",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-7",
+      "audioText": "C: CSN905, negative, do not deviate off course.",
+      "audioTextZh": "C：南方905，不可以，不能偏航。",
+      "referenceText": "Roger, CSN905.",
+      "referenceTextZh": "收到，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5770d0b438e92bf959c2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224093",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-8",
+      "audioText": "N: [Advise controller that if there is no other options are available to avoid the weather, you will have to divert to Beijing airport.]",
+      "audioTextZh": "N：【告知管制员，如果没有别的办法来避开天气，你就只能备降北京机场。】",
+      "referenceText": "Beijing Control, CSN905, if there is no other options are available to avoid the weather, request divert to Beijing airport.",
+      "referenceTextZh": "北京区调，南方905，如果没有别的办法来避开天气，我们就只能备降北京机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e469f411f45004704032.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224094",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-9",
+      "audioText": "C: CSN905, stand by.",
+      "audioTextZh": "C：南方905，稍等。",
+      "referenceText": "Standing by, CSN905.",
+      "referenceTextZh": "稍等，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae0b525c1f58fc5620d6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224095",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-10",
+      "audioText": "C: CSN905, 11,000m is available now, advise your intentions.\nN: [Tell Beijing Control that you can accept 11,000m.]",
+      "audioTextZh": "C：南方905，11000米现在可用，告知你的意图。\nN：【告知管制员，你可以接受11000米。】",
+      "referenceText": "Roger, we can accept 11,000m, CSN905.",
+      "referenceTextZh": "收到，我们可以接受11000米，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/90ad155eec9a46ba7d1d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224096",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-11",
+      "audioText": "C: CSN905, turn right heading 250.",
+      "audioTextZh": "C：南方905，右转航向250。",
+      "referenceText": "Turn right heading 250, CSN905.",
+      "referenceTextZh": "右转航向250，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9202a629933f5d37672d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224097",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-12",
+      "audioText": "C: CSN905, climb to and maintain 11,000m, turn left parallel to your course.",
+      "audioTextZh": "C：南方905，上11000米保持，左转，保持与当前航迹平行。",
+      "referenceText": "Climb to and maintain 11,000m, turn left parallel to our course, CSN905.",
+      "referenceTextZh": "上11000米保持，左转，保持与当前航迹平行，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4415a6ad4bfcd4cf27af.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224098",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-13",
+      "audioText": "N: [You observed a flash of lightning and heard a loud thud. Your transponders have malfunctioned, notify Beijing Control.]",
+      "audioTextZh": "N：【你观察到闪电并听到一声巨响。应答机故障，现通知北京区调。】",
+      "referenceText": "Beijing Control, CSN905, we have observed a flash of lightning and heard a loud thud, transponders have malfunctioned.",
+      "referenceTextZh": "北京区调，南方905，我们观察到闪电并听到一声巨响，应答机故障了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/077a92f0d278b6182e91.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224099",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-14",
+      "audioText": "C: CSN905, I have lost your altimetry readout, confirm you are still maintaining 11,000m.\nN: [Tell Beijing Control you are maintaining 11,000m, and request immediate left turn to a heading of 180 degrees.]",
+      "audioTextZh": "C：南方905，你的高度数据已消失，请确认你是否仍保持在11000米。\nN: 【告知北京区调，你正保持11000米。请求立即左转航向180度。】",
+      "referenceText": "Maintaining 11,000m and request an immediate left turn to a heading 180 degrees, CSN905.",
+      "referenceTextZh": "正保持11000米，请求立即左转航向180度，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/46f7e2d4606c9ff13c73.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224100",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-15",
+      "audioText": "C: CSN905, roger, left heading of 180 degrees approved, what is your status?\nN: [Readback the controller’s instructions and notify Beijing Control that some electrical equipment have malfunctioned, including the transponders.]",
+      "audioTextZh": "C：南方905，收到，可以左转航向180度。你那边状况如何？\nN: 【复诵管制的指令，通知北京区调，部分电子设备包括应答机发生故障。】",
+      "referenceText": "Left heading of 180 degrees, some electrical equipment have malfunctioned, including the transponders, CSN905.",
+      "referenceTextZh": "左转航向180度，部分电子设备包括应答机发生故障，南方905。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bf56ca9a0bb89d44b2d5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224101",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-16",
+      "audioText": "C: CSN905, roger, advise when clear of the weather. You are expected to descend shortly.\nN: [You decided to continue flight to Wuhan. You are now cruising at 7,800m over WXI, make an initial contact with Zhengzhou control.]",
+      "audioTextZh": "C：南方905，收到，脱离天气后告知。预计你一会就下降。\nN：【你决定继续飞往武汉，你现在在7800米巡航，过WXI，与郑州区调建立初始联系。】",
+      "referenceText": "Zhengzhou Control, CSN905, maintaining 7,800m, over WXI.",
+      "referenceTextZh": "郑州区调，南方905，正保持7800米，过WXI。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a16cad4449d9883bdce.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224102",
+      "taskTitle": "73-CSN905 [冷锋，位置报]-17",
+      "audioText": "C: CSN905, Zhengzhou Control, give a full position report.\nN: [Provide the following Information in your position report: You are cruising at 7,800m, overhead WXI at 1215. Your ETA to the next way point AKOMA is 1235. The waypoint after that is ZHO.]",
+      "audioTextZh": "C：南方905，郑州管制，做一个完整的位置报。\nN：【在位置报中，提供以下信息：你正在7800米巡航，在12点15分飞跃WXI，预计过航路点AKOMA时间12点35分，下一点是ZHO。】",
+      "referenceText": "Zhengzhou Control, CSN905, maintaining 7,800m, overhead WXI at 1215, ETA AKOMA at 1235, next ZHO.",
+      "referenceTextZh": "郑州区调，南方905，保持7800米，在12点15分飞跃WXI，预计过航路点AKOMA时间12点35分，下一点是ZHO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e9b78c4b12a92d237c72.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

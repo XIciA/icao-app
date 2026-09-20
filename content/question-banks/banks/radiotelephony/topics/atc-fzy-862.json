@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-862",
+  "name": "BAW120 [皮托管，风切变]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153166",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-1",
+      "audioText": "Your call sign is BAW120, from London to Wuhan, cruising at 11000m, over WXI, Squawk 4521, make an initial contact with Zhengzhou Control.",
+      "audioTextZh": "你的呼号是英航120，从伦敦飞往武汉，在11000米巡航，飞过WXI，应答机4521，与郑州区调做初始报话。",
+      "referenceText": "Zhengzhou Control, BAW120, cruising at 11000m, over WXI, Squawk 4521.",
+      "referenceTextZh": "郑州区调，英航120，在11000米巡航，飞过WXI，应答机4521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/32691aa9cfc7a53a79bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153167",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-2",
+      "audioText": "BAW120, Zhengzhou Control, radar identified, descend and maintain 9200m.\nYou want to maintain present level and descend after passing AKOMA.",
+      "audioTextZh": "英航120，郑州区调，雷达识别了，下9200米保持。\n你想保持当前高度，在通过AKOMA点后下降。",
+      "referenceText": "Request maintain present level and descend after passing AKOMA., BAW120.",
+      "referenceTextZh": "请求保持当前高度，通过AKOMA点后下降，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a80dc39876333088006e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153168",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-3",
+      "audioText": "You can either descend now without speed restrictions or maintain 11000m and fly heading 260 for 5min, which do you prefer?\nTell the controller you want to descend to 9200m.",
+      "audioTextZh": "你可以现在下降，没有速度限制，也可以在11000米保持，航向260保持5分钟，你选哪一个？\n告诉管制员，你想下降到9200米。",
+      "referenceText": "Request descend to 9200, BAW120.",
+      "referenceTextZh": "请求下降到9200米，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/328a7c67b5158d7cd0af.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153169",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-4",
+      "audioText": "Roger, descend to 9200m, rate of descent at 2000ft per min or greater. Offset 3 miles to the right.",
+      "audioTextZh": "收到，下降到9200米，下降率每分钟2000英尺或更大。右偏航3海里。",
+      "referenceText": "Descend to 9200m, rate of descent at 2000ft per minute or greater. Offset 3 miles to the right. BAW120.",
+      "referenceTextZh": "下降到9200米，下降率每分钟2000英尺或更大。右偏航3海里，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8d9d4045b260bedaaca0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153170",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-5",
+      "audioText": "Now you are maintaining 9200m in icing condition. Indications show pitot tube heating has failed and your air speed indications appear to be inaccurate. Call Zhengzhou Control tell him you want to descend to a lower level to avoid icing condition.",
+      "audioTextZh": "你现在保持在9200米，遇到积冰，你的皮托管加热系统失效了，你空速指示不正确，呼叫郑州区调，告诉他你想下降到更低高度来避开积冰。",
+      "referenceText": "Zhengzhou Control, BAW120, maintaining 9200m in icing condition. Our pitot tube heating has failed and the air speed indications are not correct. Request descend to a lower level to avoid icing condition.",
+      "referenceTextZh": "郑州区调，英航120，在9200米保持，遇到积冰，我们的皮托管加热系统失效了，空速指示不正确，请求下降到更低高度来避开积冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/391b6995b56733a99130.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153171",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-6",
+      "audioText": "BAW120, descend to and maintain 7800m, cancel offset. Track direct to AKOMA, reduce speed to minimum clean speed due flow control.",
+      "audioTextZh": "英航120，下到7800米保持，取消偏航。直飞AKOMA，由于流控，速度减小到最低光洁速度。",
+      "referenceText": "Descend and maintain 7800m, cancel offset. Track direct to AKOMA, reduce speed to minimum clean speed due flow control. BAW120.",
+      "referenceTextZh": "下到7800米保持，取消偏航。直飞AKOMA，由于流控，速度减小到最低光洁速度，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/46f056379b67c03aaa6a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153172",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-7",
+      "audioText": "You are maintaining 7800m, overhead OBLIK, inform Zhengzhou Control that your air speed indication is working normally, you want to resume normal speed and continue descend.",
+      "audioTextZh": "你现在在7800米保持，飞过OBLIK，告知郑州区调，你的空速指示正常工作了，你想恢复到正常速度，继续下降。",
+      "referenceText": "Zhengzhou Control, BAW120. Maintaining 7800m, over OBLIK, our air speed indication is working normally, request resume normal speed and continue descent.",
+      "referenceTextZh": "郑州区调，英航120，在7800米保持，飞过OBLIK，我们的空速指正常工作了，请求恢复到正常速度，继续下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1830681f9ad595241f0c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153173",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-8",
+      "audioText": "Roger, BAW120. Speed restriction is canceled. Descend to and maintain 6600m, contact 119.7.",
+      "audioTextZh": "收到，英航120，取消速度限制，下6600米保持，联系119.7。",
+      "referenceText": "Cancel speed restriction, descend and maintain 6600m, contact 119.7, BAW120.",
+      "referenceTextZh": "取消速度限制，下6600米保持，联系119.7，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f790fb2bb653352ca384.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153174",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-9",
+      "audioText": "Now you are passing 7200m, descend to 6600m. transponder code 4521, call Wuhan Control.",
+      "audioTextZh": "现在你通过7200米，下降到6600米，应答机代码4521，呼叫武汉区调。",
+      "referenceText": "Wuhan Control, BAW120, passing 7200m, descend to 6600m. transponder code 4521.",
+      "referenceTextZh": "武汉区调，英航120，通过7200米，下降到6600米，应答机代码4521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d169fdbc9fc03f95ced5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153175",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-10",
+      "audioText": "BAW120, Wuhan Control, radar contact, descend to 4800m from present position, track direct to ZF, contact Wuhan Approach 120.45.",
+      "audioTextZh": "英航120，武汉区调，雷达识别了，从当前位置下降到4800米，直飞ZF，联系武汉进近120.45。",
+      "referenceText": "Descend to 4800m from present position, track direct to ZF, contact Wuhan Approach 120.45. BAW120.",
+      "referenceTextZh": "从当前位置下降到4800米，直飞ZF，联系武汉进近120.45，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1106ee5646beb6acbe14.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153176",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-11",
+      "audioText": "You are about to level off at 4800m, information I received, contact Wuhan Approach.",
+      "audioTextZh": "你打算在4800米改平，收到通播I，联系武汉进近。",
+      "referenceText": "Wuhan Approach, BAW120, level off at 4800m, information I.",
+      "referenceTextZh": "武汉进近，英航120，在4800米改平，收到通播I。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a28646bcd483d4056f2f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153177",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-12",
+      "audioText": "Wuhan Approach, radar contact, expect ZF-12 arrival, runway 18R.",
+      "audioTextZh": "武汉进近，雷达识别了。预计ZF-12A进场，跑道18右。",
+      "referenceText": "ZF-12arrival, runway 18R. BAW120.",
+      "referenceTextZh": "ZF-12进场，跑道18右，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a0688f7515610740b73.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153178",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-13",
+      "audioText": "You are 10 miles from touchdown, establish ILS for runway 18R, contact Wuhan Tower.",
+      "audioTextZh": "你离接地点10海里，建立ILS，跑道18右，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, BAW120, 10 miles from touchdown, establish ILS for runway 18R.",
+      "referenceTextZh": "武汉塔台，英航120，接地点10海里，建立ILS盲降，跑道18右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cde013727ac558e8e91a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153179",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-14",
+      "audioText": "Wind 220 degrees, 10 meters per second, gusting 15m/sec, cleared to land.",
+      "audioTextZh": "风向220度，10米每秒，阵风15米每秒。可以落地。",
+      "referenceText": "Cleared to land, runway 18R, BAW120.",
+      "referenceTextZh": "可以落地，跑道18右，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bac4cd53f1f45981ec9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153180",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-15",
+      "audioText": "You encounter low level wind shear at 300m and decide to go around. Call Tower.",
+      "audioTextZh": "你在300米遭遇低空风切变，决定复飞，呼叫塔台。",
+      "referenceText": "Wuhan Tower, BAW120, going around due low level wind shear at 300m.",
+      "referenceTextZh": "武汉塔台，英航120，300米遇到低空风切变，复飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f134ec3941a12f880db2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153181",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-16",
+      "audioText": "BAW120, follow the published missed approach procedure, climb to and maintain 1800m.",
+      "audioTextZh": "英航120，按照发布的复飞程序，上1800米保持。",
+      "referenceText": "Follow the published missed approach procedure, climb to and maintain 1800m, BAW120.",
+      "referenceTextZh": "按照发布的复飞程序，上1800米保持，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d50c36861f5964ed92f8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153182",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-17",
+      "audioText": "Tell Wuhan Tower you want to make ILS approach runway 22.",
+      "audioTextZh": "告诉武汉塔台，你想进行ILS进近，跑道22。",
+      "referenceText": "Wuhan Tower, BAW120, request ILS approach runway 22.",
+      "referenceTextZh": "武汉塔台，英航120，请求ILS进近，跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/62437e33bdf2cdcd446c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153183",
+      "taskTitle": "52-BAW120 [皮托管，风切变]-18",
+      "audioText": "Roger, contact Approach 120.45 for vectors onto final runway 22.",
+      "audioTextZh": "收到，联系进近120.45，雷达引导进入跑道22五边。",
+      "referenceText": "Contact approach 120.45 for vectors onto final runway 22, BAW120.",
+      "referenceTextZh": "联系进近120.45，雷达引导进入跑道22五边，英航120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/36d132fb019863556f45.mp3"
+    }
+  ],
+  "categoryId": "atc-baw"
+}

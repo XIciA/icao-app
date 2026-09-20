@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0016",
   "name": "复杂/特殊机场运行",
   "declaredCardCount": 24,
@@ -196,5 +195,6 @@
       "referenceText": "The pilot should study the airport charts, NOTAMs, ATIS, weather, runway and taxiway conditions, and approach procedures. The pilot should communicate with ATC, monitor the instruments closely, and be prepared for a go-around.",
       "referenceTextZh": "飞行员应研究机场图、航行通告、ATIS、天气、跑道和滑行道状况以及进近程序。飞行员应与空中交通管制沟通，密切监控仪表，并做好复飞准备。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

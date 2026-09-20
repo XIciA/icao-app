@@ -82,3 +82,15 @@ it('rejects legal consent forged through the generic document sync endpoint', as
   await expect(internals.applyDocument(tx, 'user', document)).rejects.toThrow('reserved_document_key');
   expect(tx.select).not.toHaveBeenCalled(); expect(tx.insert).not.toHaveBeenCalled();
 });
+
+it.each([undefined, 'all'] as const)('keeps a saved scope for older profile writers and accepts an explicit %s change', async (studyScope) => {
+  const current = { documentKey: 'account_profile', payload: { displayName: '机长', avatarUri: null, target: 'icao4-first', studyScope: 'crash' }, version: 4, updatedAt: new Date(createdAt) };
+  const { internals, tx } = fixture([[current]]);
+  const update = vi.fn();
+  const transaction = { ...tx, update: () => ({ set: (value: unknown) => { update(value); return { where: async () => undefined }; } }) };
+  const entry: DocumentMutation = { kind: 'document', mutationId: 'profile-edit', payload: { documentKey: 'account_profile',
+    document: { displayName: '新名称', avatarUri: null, target: 'icao5-first', ...(studyScope ? { studyScope } : {}) }, version: 5, updatedAt: createdAt } };
+  const result = await internals.applyDocument(transaction, 'user', entry);
+  expect(result).toMatchObject({ status: 'accepted', authoritative: { document: { displayName: '新名称', studyScope: studyScope ?? 'crash' } } });
+  expect(update).toHaveBeenCalledWith(expect.objectContaining({ payload: expect.objectContaining({ studyScope: studyScope ?? 'crash' }) }));
+});

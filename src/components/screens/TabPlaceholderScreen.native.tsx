@@ -4,7 +4,10 @@ import { examGoal } from '@/features/account/profile-model';
 import { useProfile } from '@/features/account/profile-store.native';
 import { ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useStudyCatalog } from '@/features/question-bank/hooks/useStudyCatalog.native';
+import { StudyScopeSelector } from '@/features/question-bank/components/StudyScopeSelector';
 
 import { colors, radii, spacing } from '@/theme';
 
@@ -33,9 +36,11 @@ type Props = {
 // The existing route uses this component only for the question-bank home.
 export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, onEntryPress }: Props) {
   const profile = useProfile();
-  const headerLeading = <ProfileAvatar size={40} uri={profile.avatarUri} />;
+  const router = useRouter();
+  const headerLeading = <Pressable accessibilityRole="button" accessibilityLabel="打开个人资料" hitSlop={6} onPress={() => router.push('/account/profile')} style={({ pressed }) => pressed ? { opacity: 0.7 } : undefined}><ProfileAvatar size={40} uri={profile.avatarUri} /></Pressable>;
   const goal = examGoal(profile.target);
-  const visibleEntries = goal.banks.flatMap((id) => entries.filter((entry) => entry.slug === id));
+  const catalog = useStudyCatalog();
+  const visibleEntries = goal.banks.flatMap((id) => entries.filter((entry) => entry.slug === id).map((entry) => ({ ...entry, meta: catalog.find((bank) => bank.id === id)?.summary ?? '此范围暂无内容' })));
   return (
     <Screen
       background={(
@@ -52,7 +57,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
         {headerLeading || headerTrailing ? (
           <View style={styles.toolbar}>
             <View>{headerLeading}</View>
-            <View>{headerTrailing}</View>
+            <View style={styles.actions}><StudyScopeSelector />{headerTrailing}</View>
           </View>
         ) : null}
         {eyebrow ? (
@@ -106,6 +111,7 @@ const styles = StyleSheet.create({
   content: { paddingTop: spacing[2] },
   header: { marginBottom: spacing[5] },
   toolbar: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  actions: { flexDirection: 'row', alignItems: 'center', flexShrink: 1, flexWrap: 'wrap', justifyContent: 'flex-end' },
   titleWithToolbar: { marginTop: spacing[6] },
   eyebrow: { letterSpacing: 1.8, marginBottom: spacing[2], textTransform: 'uppercase' },
   subtitle: { marginTop: spacing[2], maxWidth: 330 },

@@ -1,0 +1,154 @@
+{
+  "id": "atc-fzy-1380",
+  "name": "AFR9939 [跑道入侵，颠簸]",
+  "declaredCardCount": 16,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-200646",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-1",
+      "audioText": "[Your call sign is AFR9939, you are flying from Wuhan to Beijing, your position now is gate 276, information B is valid, ask ATC for your airway clearance.]",
+      "audioTextZh": "你的呼号是法航9939，你正从武汉飞往北京，你现在在276号机位，通播B有效，向管制请求你的航路许可。",
+      "referenceText": "Wuhan Delivery, AFR9939, gate 276, information B, request ATC clearance to Beijing.",
+      "referenceTextZh": "武汉放行，法航9939，276号机位，通播B，请求前往北京的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5ffe41d970c9928704d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200647",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-2",
+      "audioText": "ATC: AFR9939, Wuhan Delivery, you are cleared to Beijing via flight planned route, runway in use 04, follow HZ-01 Departure, initially 1200 meters, cruising level 10400 meters, departure frequency 119.6, squawk 3101.",
+      "audioTextZh": "法航9939，武汉放行，可以经由计划航路飞往北京，跑道04，按照HZ-01离场，初始爬升至1200米，巡航高度10400米，离场频率119.6，应答机编码3101。",
+      "referenceText": "Cleared to Beijing via flight planned route, runway in use 04, follow HZ-01 Departure, initially 1200 meters, cruising level 10400 meters, departure frequency 119.6, squawk 3101. AFR9939.",
+      "referenceTextZh": "可以经由计划航路飞往北京，跑道04，按照HZ-01离场，初始爬升至1200米，巡航高度10400米，离场频率119.6，应答机编码3101，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1452c79137a45e3f8efe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200648",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-3",
+      "audioText": "[Now, you are on taxiway A1, request taxi instructions from Ground controller.]",
+      "audioTextZh": "你现在滑行道A1，向地面管制请求滑行许可。",
+      "referenceText": "Wuhan Ground, AFR9939, taxiway A1, request to continue taxi.",
+      "referenceTextZh": "武汉地面，法航9939，滑行道A1，请求继续滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4db0d181616b82557cdb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200649",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-4",
+      "audioText": "ATC: AFR9939, Wuhan Ground, taxi via A1, A, M, to holding point M2. Caution work in progress at right side of M.",
+      "audioTextZh": "法航9939，武汉地面，经由滑行道A1，A和M，滑行至M2等待点，注意M右侧有施工。",
+      "referenceText": "Taxi via A1, A, M, to holding point M2, roger caution, thanks, AFR9939.",
+      "referenceTextZh": "经由滑行道A1，A和M，滑行至M2等待点，收到，谨慎滑行，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f0764b9b530c421e06ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200650",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-5",
+      "audioText": "[You are approaching the holding point M2, inform Tower that you are ready for takeoff.]",
+      "audioTextZh": "你现在到达M2等待点，告知武汉塔台，你准备好起飞了。",
+      "referenceText": "Wuhan Tower, AFR9939, approaching holding point M2, request departure.",
+      "referenceTextZh": "武汉塔台，法航9939，到达M2等待点，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19b4ffb4ad90e6bbcca6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200651",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-6",
+      "audioText": "ATC: AFR9939, you are cleared for immediate takeoff, runway 04, surface wind 300 at 2 meters per second.",
+      "audioTextZh": "法航9939，可以立刻起飞，跑道04，地面风300, 2米每秒。",
+      "referenceText": "Cleared for immediate takeoff, runway 04, AFR9939.",
+      "referenceTextZh": "可以立刻起飞，跑道04，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5cb07bd53d64898693c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200652",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-7",
+      "audioText": "[While you are accelerating for takeoff rolling, you notice a yellow ground vehicle is crossing runway 04, tell ATC you stopped immediately because of runway incursion.]",
+      "audioTextZh": "你在起飞滑跑时，你看到一辆黄色的地面车辆正在穿过跑道04，由于跑道入侵，你立刻停止。",
+      "referenceText": "Wuhan Tower, AFR9939, we rejected takeoff due runway incursion, vehicle crossing runway.",
+      "referenceTextZh": "武汉塔台，法航9939，由于跑道入侵，我们中断起飞，跑道上有车辆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9efca0487dcffa881b1e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200653",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-8",
+      "audioText": "ATC: Roger, AFR9939, advise intention when able.\n[Tell ATC, you want to vacate runway via E2 and taxi back to the apron to have a ground check.]",
+      "audioTextZh": "收到，法航9939，方便时告知意图。\n告诉管制员，你想经由E2脱离跑道，滑回机坪进行检查。",
+      "referenceText": "Wuhan Tower, AFR9939, request vacate runway via E2 and taxi back to the apron to have a ground check.",
+      "referenceTextZh": "武汉塔台，法航9939，请求经由E2脱离跑道，滑回机坪进行检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5bbfef36589a8bbc972d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200654",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-9",
+      "audioText": "[Later, everything is normal again, you are finally in the air, passing 600 meters for 1200 meters, tell Departure that you require further instructions.]",
+      "audioTextZh": "后来，一切恢复正常，你最后升空，现在过600米，飞往1200米，告诉离场，请求进一步指令。",
+      "referenceText": "Wuhan Departure, AFR9939, passing 600 meters for 1200 meters, request further instructions.",
+      "referenceTextZh": "武汉离场，法航9939，过600米，飞往1200米，请求进一步指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/411737b5f1c8367c8ba1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200655",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-10",
+      "audioText": "ATC: AFR9939, Wuhan Departure, continue climb to 3000 meters.",
+      "audioTextZh": "法航9939，武汉离场，继续爬升至3000米。",
+      "referenceText": "Climbing to 3000 meters. AFR9939.",
+      "referenceTextZh": "爬升至3000米，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1033ef20fa73139daf0b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200656",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-11",
+      "audioText": "[Now, you are cruising at 10400 meters, suddenly the air becomes very turbulent, you suspect there is a moderate to severe clear air turbulence. Request a lower level.]",
+      "audioTextZh": "你现在巡航在10400米，忽然气流变得很颠簸，你猜测中度到重度颠簸，请求下高度。\n参考答案：",
+      "referenceText": "Wuhan Control, AFR9939, at 10400 meters, request lower level due moderate to severe clear air turbulence.",
+      "referenceTextZh": "武汉区调，法航9939，10400米，由于中度到重度颠簸，请求下高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9431f86e2046458ea22b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200657",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-12",
+      "audioText": "ATC: Roger, descend to 8900 meters, report if there is any injury on board.\n[Your purser reports that there is a passenger with head injuries because of the turbulence.]",
+      "audioTextZh": "收到，下到8900米，报告机上是否有人伤亡。\n乘务长报告由于颠簸，机上有乘客头部受伤。",
+      "referenceText": "Descend to 8900 meters, purser reports we have a passenger with head injury. AFR9939.",
+      "referenceTextZh": "下到8900米，乘务长报告有乘客头部受伤，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a6ba6d9d9edc8b4a98b3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200658",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-13",
+      "audioText": "ATC: Passenger with head injury, roger that, say intention, AFR9939.\n[The purser has offered first aid to the injured passenger, he is OK now. You will continue the flight.]",
+      "audioTextZh": "有乘客头部受伤，收到，报告意图，法航9939。\n乘务长向受伤乘客提供了急救，他目前情况良好，你将继续飞行。",
+      "referenceText": "The passenger is OK now, we will continue the flight. AFR9939.",
+      "referenceTextZh": "乘客情况目前良好，我们将继续飞行，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40d07ad270b3cb38b768.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200659",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-14",
+      "audioText": "ATC: AFR9939, roger, direct to ENH, then, descent to 6000 meters, establish contact with Beijing Control 120.6.",
+      "audioTextZh": "法航9939，直飞ENH，然后下到6000米，联系北京区调120.6。",
+      "referenceText": "Direct to ENH, descent to 6000 meters, contact Beijing Control on 120.6. AFR9939.",
+      "referenceTextZh": "直飞ENH，然后下到6000米，联系北京区调120.6，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c47691cf65432924680.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200660",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-15",
+      "audioText": "[Now you are over Beijing Capital airport, you have established ILS for runway 36R, tell Beijing Tower about your situation, request ambulance on arrival.]",
+      "audioTextZh": "你现在到达北京首都机场上空，你已经建立跑道36右盲降，告诉北京塔台你的意图，请求到达后急救车就位。",
+      "referenceText": "Beijing Tower, AFR9939, ILS established runway 36R, we have a passenger with head injury, request ambulance on arrival.",
+      "referenceTextZh": "北京塔台，法航9939，建立跑道36右盲降，我们有一名乘客头部受伤，请求到达后急救车就位。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7ebb8f4194b20d70779e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-200661",
+      "taskTitle": "45-AFR9939 [跑道入侵，颠簸]-16",
+      "audioText": "ATC: AFR9939, Beijing Tower, ambulance will be ready on your arrival, cleared to land, runway 36R, wind calm.",
+      "audioTextZh": "法航9939，北京塔台，到达后救护车将就位，可以落地，跑道36右，静风。",
+      "referenceText": "Cleared to land, runway 36R, thank you, AFR9939.",
+      "referenceTextZh": "可以落地，跑道36右，谢谢，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/545c5fc7562dde318cca.mp3"
+    }
+  ],
+  "categoryId": "atc-afr"
+}

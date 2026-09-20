@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0037",
   "name": "积雨云与雷暴",
   "declaredCardCount": 14,
@@ -116,5 +115,6 @@
       "referenceText": "If the aircraft is still on the ground, the pilot can delay departure and wait for the weather to improve. If the aircraft is airborne, the pilot can ask ATC to hold until conditions improve or request a diversion to an alternate airport.",
       "referenceTextZh": "如果飞机仍在地面，飞行员可以推迟离场并等待天气好转。如果已经在空中，可以申请空中交通管制安排等待，直至条件改善，或申请改航至备降机场。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

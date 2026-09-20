@@ -93,6 +93,16 @@ it('keeps the source picture visible beside its OPI question without creating an
   expect(saved.totalCount).toBe(1); expect(saved.studyReview?.items[0].materials?.[0].id).toBe('picture');
 });
 
+it('keeps the shared picture beside ordinary daily OPI questions as well', async () => {
+  const input = paper(); const opi = input.items.at(-1)!;
+  opi.topic = { ...opi.topic, cards: [{ id: 'picture', taskTitle: 'Picture', kind: 'image', image: '/assets/opi.jpg', imageAlt: '日常 OPI 场景图片' }, opi.card] };
+  input.items = [opi];
+  input.record = { ...input.record, recordType: 'session', mockExam: undefined };
+  const screen = await render(<QuestionBankStudyScreen studyPackage={input} onReturn={() => {}} />);
+  await waitFor(() => expect(screen.getByText('日常 OPI 场景图片')).toBeTruthy());
+  expect(screen.queryByText('自动播放题目')).toBeNull();
+});
+
 it('hides expired member question media and references while keeping the attempt answer and current shared note', async () => {
   const input = paper(); const opi = input.items.at(-1)!;
   if (opi.card.kind === 'image') throw new Error('expected OPI text question');
@@ -164,3 +174,4 @@ it('releases the navigation lock after an annotation save failure so retry and r
   await fireEvent.press(screen.getByLabelText('返回题库目录'));
   await waitFor(() => expect(onReturn).toHaveBeenCalledTimes(1));
 });
+jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));

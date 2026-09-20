@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0008",
   "name": "SIA 123 拖把断了 鸟击 放油",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "武汉塔台，SIA 123，已建立跑道 22 ILS 进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/142.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

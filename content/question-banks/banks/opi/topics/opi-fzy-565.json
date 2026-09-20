@@ -1,0 +1,88 @@
+{
+  "id": "opi-fzy-565",
+  "name": "Figure 9",
+  "declaredCardCount": 9,
+  "cards": [
+    {
+      "id": "opi-fzy-565-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 9 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-565.png",
+      "imageAlt": "Figure 9，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110240",
+      "taskTitle": "Figure 9-1",
+      "audioText": "If the thrust reverser is inoperative, what will you do?",
+      "audioTextZh": "如果反推力装置出现故障，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "When braking ability reduces, for higher speeds on contaminated runways, reverse thrust can be the most useful and effective. However, if I encounter thrust reverser failure, touchdown velocity is minimum during approach, and the braking action is good, I will use the maximum brake and spoilers to stop the aircraft.",
+      "referenceTextZh": "当制动性能下降时，为了在受污染的跑道获得更大的速度，反推力是最有效的。然而，如果我遭遇反推力装置故障，进近的时候保持最小速度接地，在刹车性能良好时我会使用最大制动和扰流器来让飞机停下。"
+    },
+    {
+      "id": "opi-fzy-110241",
+      "taskTitle": "Figure 9-2",
+      "audioText": "If the flaps can not be extended, what should you do to manage the situation?",
+      "audioTextZh": "如果飞机无法放襟翼，你应该怎样处理这个情况？",
+      "studyTier": 0,
+      "referenceText": "First we will try the alternate system to extend the flaps. If it does not work, we will follow the flapless landing checklist. We should check the landing distance of our aircraft according to the landing weight, and request the longest runway if necessary.",
+      "referenceTextZh": "首先应尝试用备用系统来放襟翼，如果不起作用，则要执行无襟翼着陆检查。我们应根据着陆重量检查飞机的着陆距离，如果可以的话应请求最长跑道。"
+    },
+    {
+      "id": "opi-fzy-110242",
+      "taskTitle": "Figure 9-3",
+      "audioText": "What will be impacted by a hydraulic system failure? Could you name a few?",
+      "audioTextZh": "液压系统故障将会产生什么影响？你能说出一些吗？",
+      "studyTier": 0,
+      "referenceText": "Yes. If only one system fails, there won’t be much impact. However, if we lose two or more hydraulic systems, many equipment or systems can not be operated normally. For example, the reverser, flight control system, landing gear, nose wheel steering, and brake.",
+      "referenceTextZh": "好的。如果只有一个系统出现故障，那么不会有过多影响。然而，如果两个或更多的液压系统出现故障，许多设备和系统就无法正常操作，例如反推器、飞行控制系统、起落架、前轮转弯和刹车。"
+    },
+    {
+      "id": "opi-fzy-110243",
+      "taskTitle": "Figure 9-4",
+      "audioText": "How would you manage the situation if the landing gear could not be put down and locked?",
+      "audioTextZh": "如果起落架无法放下并固定你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "First, I will finish the checklist and follow the procedure on the checklist. If it’s necessary, I will make a low pass so that ATC and ground staff can help me to check the landing gear. If the landing gear was not locked, I need to report to ATC and relevant staff to prepare fire equipment and medical facility, then land without landing gear or land with the landing gear was partly retracted.",
+      "referenceTextZh": "首先要完成检查单，然后按照检查单的项目逐步进行。如果有必要低空通场通过ATC及地面人员的观察帮助判断是否放下锁好。一旦起落架没有放下锁好，需要通知ATC及相关地面工作人员准备好消防设施、救援设施，实施无起落架或部分起落架收上着陆。"
+    },
+    {
+      "id": "opi-fzy-110244",
+      "taskTitle": "Figure 9-5",
+      "audioText": "Do you know some advantages of hydraulic systems over other systems for aircraft operating?",
+      "audioTextZh": "你知道液压系统在飞机运行中比其他系统有哪些优点吗？",
+      "studyTier": 0,
+      "referenceText": "Hydraulic systems are lighter in weight than existing alternate systems, and there is an absence of sloppiness in response to the demands placed on the systems. Besides, they are reliable whether they work or not. And better yet, they can be easily maintained and don’t risk shock hazard. What’s more, they can develop practically unlimited force or torque.",
+      "referenceTextZh": "液压系统比现有备用系统的重量更轻，并且对系统要求做出的反应不会出错。此外，不论系统工作与否都很稳定。更好的是，它很容易维护，不会有电击的危险。另外，它可以发挥近乎无限的能量或扭矩。"
+    },
+    {
+      "id": "opi-fzy-110245",
+      "taskTitle": "Figure 9-6",
+      "audioText": "Can you say something about flight control system?",
+      "audioTextZh": "你能介绍一下飞行控制系统吗？",
+      "studyTier": 0,
+      "referenceText": "OK. An aircraft flight control system consists of flight control surfaces, the respective cockpit controls, connecting linkages, and the necessary operating mechanisms to control an aircraft’s direction in flight.",
+      "referenceTextZh": "好的，飞机的飞行控制系统由飞行操纵面、独立驾驶舱操控、连接杆件和必需的操作装置组成，在飞行中控制飞机的方向。"
+    },
+    {
+      "id": "opi-fzy-110246",
+      "taskTitle": "Figure 9-7",
+      "audioText": "What is the function of rudder?",
+      "audioTextZh": "方向舵的作用是什么？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, the control of the rudder is completed by operating rudder pedals, the rudder can help pilots to control the yaw rate of the aircraft, and it allows the aircraft to make a smooth turn when used in coordination with the ailerons. However, excessive use of the rudder can lead to a spin that can cause the airplane to lose altitude rapidly.",
+      "referenceTextZh": "就我所知，方向舵的控制是由飞行员通过方向舵踏板来完成的，方向舵可以帮助飞行员控制飞机的偏航率，和副翼协同工作时可以让飞机顺畅地转弯。然而，过度使用方向舵导致的旋转会引发飞机立刻下降。"
+    },
+    {
+      "id": "opi-fzy-110247",
+      "taskTitle": "Figure 9-8",
+      "audioText": "During your simulator session, do you have any training related to a hydraulic system failure?",
+      "audioTextZh": "在模拟训练时你是否接受过液压系统故障相关的训练？",
+      "studyTier": 0,
+      "referenceText": "Yes, we have many training related to hydraulic system failure. For example, in the case of loss of all the hydraulic systems, we must manually control the aircraft with the combined force of the two pilots, and follow the checklist step by step to deal with this situation, including manually extending the landing gear and using the alternate hydraulic system to extend flaps.",
+      "referenceTextZh": "是的，我们有许多液压系统故障相关的训练。比如，在液压系统全部故障时，飞机必须由两位飞行员协同手动操作，并且逐步执行检查清单，其中包括手动放下起落架和使用备用液压系统放襟翼。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

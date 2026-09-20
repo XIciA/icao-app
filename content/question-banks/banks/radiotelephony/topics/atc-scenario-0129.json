@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0129",
   "name": "ACA 452 颠簸 积冰/防冰 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "119.35，ACA 452。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-026-aca452-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

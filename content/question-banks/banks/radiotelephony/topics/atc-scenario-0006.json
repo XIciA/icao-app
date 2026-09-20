@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0006",
   "name": "QFA 701 前轮转向失效 PAPI灯暗",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉地面，QFA 701，拖车未就位，请求牵引车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/111.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

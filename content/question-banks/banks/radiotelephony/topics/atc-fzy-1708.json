@@ -1,0 +1,235 @@
+{
+  "id": "atc-fzy-1708",
+  "name": "CSN3347 [发动机启动问题，地面障碍物]",
+  "declaredCardCount": 25,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-225005",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-1",
+      "audioText": "N: [Your aircraft call-sign is CSN3347, from Wuhan to Guangzhou, bay 221, information C received. Contact Wuhan Delivery for ATC clearance.]",
+      "audioTextZh": "N：【你的航空器呼号是南方3347，从武汉飞往广州，221号机位，收到了通播C，联系武汉放行，申请管制许可。】",
+      "referenceText": "Wuhan Delivery, CSN3347, bay 221, information C received, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方3347，221号机位，收到通播C，申请飞往广州的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/186027613b050781db56.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225006",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-2",
+      "audioText": "C: CSN3347, Wuhan Delivery, expect 5 minutes delay, your flight plan is being processed.",
+      "audioTextZh": "C：南方3347，武汉放行，预计延误5分钟，正在处理你的飞行计划。",
+      "referenceText": "Roger, 5 minutes delay, CSN3347.",
+      "referenceTextZh": "收到，延误5分钟，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/38409e4b3dc639b6b1d8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225007",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-3",
+      "audioText": "N: [5 minutes later, you try to contact the controller again for ATC clearance.]",
+      "audioTextZh": "N：【5分钟后，你想再次联系管制员，申请你的管制许可。】",
+      "referenceText": "Wuhan Delivery, CSN3347, bay 221, information C received, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方3347，机位221，收到通播C，请求飞往广州的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/12a657196827dcc1fbba.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225008",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-4",
+      "audioText": "C: CSN3347, cleared to Guangzhou via flight planned route, expect LKO-01D departure, initially climb to 900m, cruising level 10,100m, runway 36R, squawk 3353, departure frequency 123.1.",
+      "audioTextZh": "C：南方3347，可以经由计划航路飞往广州，预计LKO-01D离场，初始爬升至900米，巡航高度10100米，跑道36右，应答机3353，离场频率123.1。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, expect LKO-01D departure, initially climb to 900m, cruising level 10,100m, runway 36R, squawk 3353, departure frequency 123.1, CSN3347.",
+      "referenceTextZh": "可以经由计划航路飞往广州，预计LKO-01D离场，初始爬升至900米，巡航高度10100米，跑道36右，应答机3353，离场频率123.1，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9fc3d5f4d27e85f7848f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225009",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-5",
+      "audioText": "C: CSN3347, readback is correct, contact Ground on 121.9 for pushback and start-up.",
+      "audioTextZh": "C：南方3347，复诵正确，联系地面121.9推出开车。",
+      "referenceText": "121.9, CSN3347.",
+      "referenceTextZh": "121.9，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/169fc69d7875b98738b9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225010",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-6",
+      "audioText": "N: [Contact Wuhan Ground and ask for pushback and start-up.]",
+      "audioTextZh": "N：【联系武汉地面，请求推出开车。】",
+      "referenceText": "Wuhan Ground, CSN3347, bay 221, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，南方3347，机坪221，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e25b581b20b7c06ffd7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225011",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-7",
+      "audioText": "C: CSN3347, inbound traffic is a company A330 taxiing behind, once that traffic is cleared, pushback and start-up approved.",
+      "audioTextZh": "C：南方3347，一架公司的A330正在后方滑行，一旦解除冲突，可以推出开车。",
+      "referenceText": "After the company A330 has passed clear, pushback and start-up approved, CSN3347.",
+      "referenceTextZh": "在公司的A330解除冲突后，可以推出开车，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/770a8df7374b1074bd1f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225012",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-8",
+      "audioText": "N: [When you are starting up the engines, the port engine experiences a start-up problem. Report this situation and ask for maintenance staff to inspect the engine.]",
+      "audioTextZh": "N：【当你在启动发动机时，左发遇到了启动问题，报告该情况，请求机务人员检查发动机。】",
+      "referenceText": "Wuhan Ground, CSN3347, the port engine had a problem during startup, request maintenance staff to inspect/check the engine.",
+      "referenceTextZh": "武汉地面，南方3347，在启动过程中，左发遇到问题，请求机务人员检查发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bda16b78bceca288d1c7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225013",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-9",
+      "audioText": "N: [After the inspection, the port engine had been started up successfully. Contact Ground for taxi instructions.]",
+      "audioTextZh": "N：【检查之后，左发成功启动，联系地面，申请滑行指令。】",
+      "referenceText": "Wuhan Ground, CSN3347, after the inspection, the port engine had been started up successfully, request taxi.",
+      "referenceTextZh": "武汉地面，南方3347，检查之后，左发成功启动，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c468e7a45231312a6234.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225014",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-10",
+      "audioText": "C: CSN3347, taxi to holding point runway 36R via Z4, A2 and A. Taxi with caution, work in progress on A5.",
+      "audioTextZh": "C：南方3347，经由滑行道Z4，A2和A，滑行到跑道36右外等待点，谨慎滑行，A5上有施工。",
+      "referenceText": "Taxi to holding point runway 36R via Z4, A2 and A, thanks for the caution, CSN3347.",
+      "referenceTextZh": "经由滑行道Z4，A2和A，滑行到跑道36右外等待点，感谢提醒，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a07abe6f05520330420b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225015",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-11",
+      "audioText": "N: [You are on taxiway A near taxiway A5. A large wooden box has been discarded on taxiway A. Report to ATC and ask for its removal.]",
+      "audioTextZh": "N：【你在滑行道A上，接近A5，一个大木箱子散落在滑行道A上，报告给管制员，请求移除。】",
+      "referenceText": "Wuhan Ground, CSN3347, we are on taxiway A near taxiway A5, a large wooden box is in front of us, request to remove it.",
+      "referenceTextZh": "武汉地面，南方3347，我们在滑行道A上，接近A5，前方有一个大木箱子，请求移除。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0fc3d22f34bc762c6c4c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225016",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-12",
+      "audioText": "N: [The obstruction has been removed, you continue to taxi on taxiway A. When approaching the intersection A7, you find a B737 at your 10 o’clock position taxiing from left to right. You have stopped your aircraft, report this situation to controller.]",
+      "audioTextZh": "N：【障碍物被移除，你继续在滑行道A上滑行，当接近联络道A7的时候，你发现10点钟方向有一架B737正从左向右滑行，你停下了飞机，告知管制员这个情况。】",
+      "referenceText": "Wuhan Ground, CSN3347, we continue to taxi on taxiway A, when approaching the intersection A7, we find a B737 at our 10 o’clock taxiing from left to right, we have stopped the aircraft.",
+      "referenceTextZh": "武汉地面，南方3347，我们继续在滑行道A上滑行，当我们到达A7的时候，我们发现10点钟方向上有一架B737正从左向右滑行，我们停下了飞机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3884ad790c0ebe76fd86.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225017",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-13",
+      "audioText": "C: CSN3347, after cleared of traffic, continue taxi.",
+      "audioTextZh": "C：南方3347，脱离冲突后，继续滑行。",
+      "referenceText": "When the traffic is clear, continue taxi, CSN3347.",
+      "referenceTextZh": "脱离冲突后，继续滑行，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3747d288e4f5b0ecaec1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225018",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-14",
+      "audioText": "N: [While you are taxiing, the wind sock shows that the wind has changed. Ask ATC for wind information.]",
+      "audioTextZh": "N：【在滑行时，风袋显示风向改变，向管制员询问风的信息。】",
+      "referenceText": "Wuhan Ground, CSN3347, request wind information.",
+      "referenceTextZh": "武汉地面，南方3347，请求风的信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f3781a8ce3723cb33530.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225019",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-15",
+      "audioText": "C: CSN3347, wind 240 degrees at 10 m/s.\nN: [The wind speed has exceeded your aircraft’s tailwind limitation. You decide to change to runway 18L for takeoff. State your request and reason to the controller.]",
+      "audioTextZh": "C：南方3347，风向240，10米每秒。\nN：【风速超过了你的顺风限制，你决定改到跑道18左起飞，向管制员告知你的请求及原因。】",
+      "referenceText": "Wuhan Ground, CSN3347, the wind speed has exceeded our aircraft’s tailwind limitation, request change to runway 18L for takeoff.",
+      "referenceTextZh": "武汉地面，南方3347，风速超过飞机的顺风限制，我请求改到跑道18左起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/052dafac9bff84685a54.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225020",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-16",
+      "audioText": "N: [You are now holding at holding point runway 18L, ready for departure, contact Tower.]",
+      "audioTextZh": "N：【你现在在跑道18左外等待点，你准备好起飞了，联系塔台。】",
+      "referenceText": "Wuhan Tower, CSN3347, we are holding at holding point runway 18L, ready for departure.",
+      "referenceTextZh": "武汉塔台，南方3447，我们在跑道18左的外等待点，准备好起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea14bd80a58723f1a69a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225021",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-17",
+      "audioText": "C: CSN3347, behind B777 on short final, line up behind.",
+      "audioTextZh": "C：南方3347，在短五边的B777之后，上跑道等待。",
+      "referenceText": "Behind B777 on short final, line up behind, CSN3347.",
+      "referenceTextZh": "在短五边的B777之后，上跑道等待，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/221b0664738c2ff85f9a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225022",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-18",
+      "audioText": "C: CSN3347, when airborne, contact Departure on 123.1, wind 240 degrees, 8m/s, cleared for takeoff, runway 18L.",
+      "audioTextZh": "C：南方3347，离地后，联系离场123.1，风向240度，8米每秒，可以起飞，跑道18左。",
+      "referenceText": "When airborne, contact Departure on 123.1, cleared for takeoff, runway 18L, CSN3347.",
+      "referenceTextZh": "离地后，联系离场123.1，可以起飞，跑道18左，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a0550b29fa296f39c36b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225023",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-19",
+      "audioText": "N: [You are about to roll on runway 18L. Suddenly, a ground vehicle is attempting to cross runway 18L. You are stopping, contact Tower and report this situation.]",
+      "audioTextZh": "N：【你正要在跑道18左滑跑，突然，一辆地面车辆试图穿越跑道18左，你停下来了，联系塔台，报告你的情况。】",
+      "referenceText": "Wuhan Tower, CSN3347, a ground vehicle is attempting to cross runway 18L, we are stopping.",
+      "referenceTextZh": "武汉塔台，南方3347，一辆地面车辆试图穿越跑道18左，我们停下来了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cfd8f80d7ed24f1fc56.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225024",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-20",
+      "audioText": "C: CSN3347, cancel takeoff, hold position.",
+      "audioTextZh": "C：南方3347，取消起飞，原地等待。",
+      "referenceText": "Cancel takeoff, holding position, CSN3347.",
+      "referenceTextZh": "取消起飞，原地等待，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/168a3825431900cb9dd0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225025",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-21",
+      "audioText": "N: [Your aircraft is in Wuhan Control area, cruising at 10100m. Suddenly, your instruments indicate that there is a conflicting traffic at your 2 o’clock position passing from right to left. Report your situation to ATC.]",
+      "audioTextZh": "N：【你的飞机现在在武汉区调管制区，巡航高度10100米，突然，你的仪表指示有一架冲突航空器在你的2点钟方向，正在从右向左穿越，告知管制员你的情况。】",
+      "referenceText": "Wuhan Control, CSN3347, cruising at 10100m. Our instruments indicate that there is a conflicting traffic at 2 o’clock position passing from right to left.",
+      "referenceTextZh": "武汉区调，南方3347，在10100米巡航，我们的仪表指示在2点钟方向有一架冲突航空器正从右向左穿越。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f45d5dfdfadb4d56c075.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225026",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-22",
+      "audioText": "C: Roger, CSN3347, descend to and maintain 9500m.\nN: [TCAS resolution advisory orders a climbing maneuver. You are following your TCAS climb. Advise ATC.]",
+      "audioTextZh": "C：收到，南方3347，下9500米保持。\nN：【你的TCAS决策告警执行了爬升机动，你按照TCAS进行爬升，告知管制员。】",
+      "referenceText": "We are following our TCAS climb, CSN3347.",
+      "referenceTextZh": "我们按照TCAS爬升，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1233d5d0591b2ff63b95.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225027",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-23",
+      "audioText": "N: [After the TCAS conflict has been resolved, you have returned to 10100m and continue your flight planned route. You have encountered clear air turbulence and need to change your level, inform Wuhan Control.]",
+      "audioTextZh": "N：【TCAS冲突解决后，你回到了10100米，继续计划航路飞行，你遇到了清空颠簸，需要改变高度，告知武汉区调。】",
+      "referenceText": "Wuhan Control, CSN3347, we have returned to 10100m and continue our flight planned route, request change our level due clear air turbulence.",
+      "referenceTextZh": "武汉区调，南方3347，我们回到了10100米，继续按计划航路飞行，由于晴空点播，请求改变高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/57aeff5f4aef97deb929.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225028",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-24",
+      "audioText": "C: Roger, climb and maintain 11300m.\nN: [You cannot accept this instruction, because your aircraft is too heavy, ask controller for a lower level.]",
+      "audioTextZh": "C：收到，上11300米保持。\nN：【你无法接受此高度，因为你的飞机太重了，向管制员申请更低的高度。】",
+      "referenceText": "Negative, request a lower level due aircraft weight, CSN3347.",
+      "referenceTextZh": "不行，由于飞机重量，请求更低的高度，南方3347。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f3213137981a93d10485.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-225029",
+      "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-25",
+      "audioText": "C: CSN3347, descend to and maintain 9500m.",
+      "audioTextZh": "C：南方3347，下9500米保持。",
+      "referenceText": "Descend to and maintain 9500m, CSN3347.",
+      "referenceTextZh": "下9500米保持，南方3317。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3aa08efe2e8c43cc5c9c.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

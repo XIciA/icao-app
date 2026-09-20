@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0088",
   "name": "增压系统",
   "declaredCardCount": 10,
@@ -22,11 +21,12 @@
     },
     {
       "id": "opi-core-869",
-      "taskTitle": "飞机系统-增压系统-3",
+      "taskTitle": "9.非正常情况-7",
       "audioText": "What can cause in-flight depressurization?",
-      "audioTextZh": "哪些因素可能导致飞行中失压？",
-      "referenceText": "In-flight depressurization can result from a pressurization-system failure, an outflow-valve malfunction, an air-conditioning pack problem, or a bleed-air leak. It can also be caused by an improperly sealed door or by structural damage to a door, window, windshield, or the aircraft skin.",
-      "referenceTextZh": "飞行中失压可能由增压系统失效、外流活门故障、空调组件问题或引气泄漏造成。舱门密封不当，或舱门、舷窗、风挡及机身蒙皮的结构损伤也会导致失压。"
+      "audioTextZh": "什么可以导致飞行中失压？",
+      "studyTier": 1,
+      "referenceText": "Many factors will cause the in-flight depressurization.\nFor example, structural damage, pressurization system failure.",
+      "referenceTextZh": "很多因素可以导致飞行中失压。\n比如：飞机结构破坏，增压系统故障。"
     },
     {
       "id": "opi-core-870",
@@ -84,5 +84,6 @@
       "referenceText": "A pilot may see an abnormal cabin-pressure differential, a rapid rise in cabin altitude or cabin rate, or a cabin-altitude warning. Other signs can include automatic deployment of oxygen masks, pressure discomfort in the ears or sinuses, and symptoms of hypoxia such as dizziness or blurred vision.",
       "referenceTextZh": "飞行员可能看到异常客舱压差、客舱高度或客舱高度变化率迅速上升，或收到客舱高度警告。其他迹象包括氧气面罩自动脱落、耳部或鼻窦压力不适，以及头晕或视物模糊等缺氧症状。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

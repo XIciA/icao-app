@@ -1,0 +1,29 @@
+{
+  "id": "atc-fzy-1703",
+  "name": "传话",
+  "declaredCardCount": 2,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224943",
+      "taskTitle": "采分点练习-传话-1",
+      "audioText": "Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.",
+      "audioTextZh": "你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。",
+      "studyTier": 2,
+      "referenceText": "Panpan Relay, Panpan Relay, Panpan Relay, Wuhan Control, JAL220, cruising level 10400m, over OBLIK, we received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, request emergency assistance.",
+      "referenceTextZh": "Panpan Panpan Panpan，武汉区调，日航220，在10400米巡航，飞过OBLIK，我们收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，申请紧急援助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d26cb68f6e44de22fe26.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224944",
+      "taskTitle": "采分点练习-传话-2",
+      "audioText": "Your callsign is UAL811, from Los Angeles to Wuhan, you have received an urgency call from AFR131, AFR131 had a suspected slow depressurization, they are leaving 9800 meters for 3000 meters, please relay this message to Zhengzhou Control.",
+      "audioTextZh": "你的呼号是美联航811，从洛杉矶飞往武汉，你收到法航131的紧急呼叫，法航131疑似遭遇缓慢释压，他们正从九千八下到三千，请将这则信息转发给郑州区调。",
+      "studyTier": 2,
+      "referenceText": "PANPAN, PANPAN, PANPAN, Zhengzhou Control, UAL811, message relay from AFR131, AFR131 encountered slow decompression, they are leaving 9800 meters for 3000 meters.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，郑州区调，美联航811，转发法航131的信息，法航131遭遇缓慢释压，他们正从九千八下到三千。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2eb70b04715015178b73.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

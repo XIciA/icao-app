@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0039",
   "name": "UAL 835 TCAS机动2重伤3轻伤",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "跑道 36R，可以落地，UAL 835。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/677.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

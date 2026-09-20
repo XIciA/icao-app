@@ -1,0 +1,199 @@
+{
+  "id": "atc-fzy-868",
+  "name": "KLM88 [发电机失效，偏出跑道]",
+  "declaredCardCount": 21,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153544",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-1",
+      "audioText": "[Your call sign is KLM88, you are at Pudong Airport, stand 223, you are fully ready, call Shanghai delivery and request ATC clearance to Amsterdam.]",
+      "audioTextZh": "你的呼号是荷航88，你现在浦东机场，223号停机位，你现在准备好了，呼叫上海放行，申请管制许可，目的地阿姆斯特丹。",
+      "referenceText": "Pudong Delivery, KLM88, stand 223, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "浦东放行，荷航88，223号机位，请求放行许可，目的地阿姆斯特丹。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dbbaa1ab82d9d9d495fe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153545",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-2",
+      "audioText": "KLM88, Shanghai Delivery. Cleared to destination via flight planned route, use runway 35, LAK-05D departure, initial climb to 1500m, cruising level 11000m, squawk 3512.",
+      "audioTextZh": "荷航88，可以经由计划航路飞往目的地，跑道35，LAK-05D离场，初始爬升至1500米，巡航高度11000米，应答机3512。",
+      "referenceText": "Cleared to destination via flight planned route, runway 35, LAK-05D departure, initial climb to 1500m, cruising level 11000m, squawk 3512, KLM88.",
+      "referenceTextZh": "可以经由计划航路飞往目的地，跑道35，LAK-05D离场，初始爬升至1500米，巡航高度11000米，应答机3512，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d3d96c6e76ace0c9042.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153546",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-3",
+      "audioText": "KLM88, readback correct, contact 118.9 when ready for pushback and startup.",
+      "audioTextZh": "荷航88，复诵正确，准备好推出开车叫118.9。",
+      "referenceText": "Contact 118.9 when ready, KLM88.",
+      "referenceTextZh": "准备好时叫118.9，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a31deab3f66fd5372b1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153547",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-4",
+      "audioText": "[Tell Ground controller, passenger boarding is not completed, You have to wait for 15 minutes before you can pushback and startup]",
+      "audioTextZh": "[跟地面说你还要再等15分钟才能推出开车，乘客登机还没完成。]",
+      "referenceText": "Shanghai Ground, KLM88, request 15 minutes delay due boarding not completed.",
+      "referenceTextZh": "上海地面，荷航88，由于登机未完成，请求15分钟延误。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a63c9fd43d983ff50026.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153548",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-5",
+      "audioText": "Roger delay, KLM88, call me when ready.\n[You are fully ready, now call Ground, request pushback and startup.]",
+      "audioTextZh": "收到，有延误，荷航88，准备好叫。\n你现在准备好了，呼叫地面，请求推出开车。",
+      "referenceText": "Shanghai Ground, KLM88, stand 223, request pushback and startup.",
+      "referenceTextZh": "上海地面，荷航88，223号停机位，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6cdcc600050d520c8087.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153549",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-6",
+      "audioText": "KLM88, pushback approved, facing east, startup at own discretion.",
+      "audioTextZh": "荷航88，同意推出，开车自行掌握，机头朝东。",
+      "referenceText": "Pushback approved, facing east, startup at own discretion, KLM88.",
+      "referenceTextZh": "同意推出，开车自行掌握，机头朝东，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c766db4c54a251c3232.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153550",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-7",
+      "audioText": "[You have completed pushback and startup, request taxi instructions.]",
+      "audioTextZh": "[你完成了推出开车，请求滑行指令。]",
+      "referenceText": "Shanghai Ground, KLM88, request taxi.",
+      "referenceTextZh": "上海地面，荷航88，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/90da44f179057a5820e1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153551",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-8",
+      "audioText": "KLM88, taxi via taxiway Z, Z4, A2, E2 and M1 to the holding point of runway 35, taxi with caution due workmen near taxiway Z.",
+      "audioTextZh": "荷航88， 经由Z，Z4，A2，E2，M1，滑行至35跑道等待点，谨慎滑行，滑行道Z附近有工人。",
+      "referenceText": "Roger. Taxi via taxiway Z, Z4, A2, E2, M1 to the holding point of runway 35, thanks, KLM88.",
+      "referenceTextZh": "经由Z，Z4，A2，E2，M1滑行至35跑道外等待点，谢谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ad66a83625625f068dc0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153552",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-9",
+      "audioText": "[Now you have reached the holding point of runway 35, you are ready for takeoff.]",
+      "audioTextZh": "[你现在到达了35号跑道等待点，你准备好起飞了。]",
+      "referenceText": "Shanghai Tower, KLM88, holding point of runway 35, request departure.",
+      "referenceTextZh": "上海塔台，荷航88，跑道35等待点，请求起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/00c5e8081882215bcd77.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153553",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-10",
+      "audioText": "KLM88, Shanghai Tower, cleared for takeoff, runway 35, keep runway heading until 900m, contact Departure on 128.35.",
+      "audioTextZh": "荷航88，上海塔台，可以起飞，跑道35，保持跑道航向直到900米，联系离场128.35。",
+      "referenceText": "Cleared for takeoff, runway 35, runway heading until 900m, contact departure 128.35, KLM88.",
+      "referenceTextZh": "可以起飞，跑道35，跑道航向直到900米，联系离场128.35，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/69fea471ea6a2eeeef8a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153554",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-11",
+      "audioText": "[During climb, you found your generators have failed, and you are flying with aircraft battery, report this situation to Shanghai Departure, tell them you need to return.]",
+      "audioTextZh": "[在爬升过程中，你发现你的发电机故障了，现在靠电池供电，报告该情况，并请求返场。]",
+      "referenceText": "Shanghai Departure, KLM88, we are flying with aircraft battery, our generators failed, request return to land.",
+      "referenceTextZh": "上海离场，荷航88，发电机故障了，现在靠电池供电，请求返场 。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/730c128818f62b93e7f8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153555",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-12",
+      "audioText": "KLM88, Shanghai Departure, roger, expect ILS approach runway 35.",
+      "audioTextZh": "荷航88，上海离场，收到，预计使用35号跑道，盲降进近。",
+      "referenceText": "Expect ILS approach runway 35, KLM88.",
+      "referenceTextZh": "预计盲降进近，35号跑道，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/045e23819da76dc9b571.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153556",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-13",
+      "audioText": "KLM88, previous pilot reported the ILS signal for runway 35 is very unstable, are you able to make a second approach to another runway 36L?\n[Tell controller, you are unable to do that, you don’t have enough electrical power left for a second approach]",
+      "audioTextZh": "荷航88，前机报告跑道35盲降信号不稳定，你可以使用另外一条跑道36左吗？\n[告诉管制员，你无法照办，没有足够的电力进行第二次进近。]",
+      "referenceText": "Negative, unable due power not enough, KLM88.",
+      "referenceTextZh": "不行，我电力不足，无法照办，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7d3f97ccdf3b2c8f165c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153557",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-14",
+      "audioText": "KLM88, visual approach, continue descent, runway 35, you are number one, report airfield in sight.",
+      "audioTextZh": "荷航88，目视进近，继续下降，跑道35，你是第一个，机场可见报告。",
+      "referenceText": "No.1, visual approach, continue descent, runway 35, wilco, KLM88.",
+      "referenceTextZh": "第一个，目视进近，继续下降，跑道35，照办，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a547336423794844314.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153558",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-15",
+      "audioText": "[You are joining downwind of runway 35, tell Approach.]",
+      "audioTextZh": "你正在加入跑道35的三边，告诉进近。",
+      "referenceText": "Shanghai Approach, KLM88, joining downwind of runway 35.",
+      "referenceTextZh": "上海进近，荷航88，正在加入跑道35的三边。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2c2a289138d04c6ff819.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153559",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-16",
+      "audioText": "KLM88, roger, report on final.",
+      "audioTextZh": "收到，荷航88，五边报。",
+      "referenceText": "Report final, KLM88.",
+      "referenceTextZh": "五边报，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/061a0a95091238b74a7a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153560",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-17",
+      "audioText": "KLM88, now establish contact with Tower 128.9.",
+      "audioTextZh": "荷航88，现在联系塔台128.9。",
+      "referenceText": "128.9, KLM88.",
+      "referenceTextZh": "128.9，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2cdcdcc677a50ab64ddf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153561",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-18",
+      "audioText": "KLM88, Shanghai Tower, you are cleared to land, surface wind 330, 2 meters per second.",
+      "audioTextZh": "荷航88，上海塔台，可以落地，地面风330，2米/秒。",
+      "referenceText": "Cleared to land, runway 35, KLM88.",
+      "referenceTextZh": "可以落地，跑道35，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cd2f914be457162f9d63.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153562",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-19",
+      "audioText": "[During landing, your aircraft skidded off the runway, tell Tower you are unable to taxi back by yourself.]",
+      "audioTextZh": "落地的时候，你的飞机偏出跑道，告诉塔台你无法靠自己滑回了。",
+      "referenceText": "Shanghai Tower, KLM88, my aircraft skidded off the runway, unable to taxi back with my own power.",
+      "referenceTextZh": "上海塔台，荷航88，飞机偏出跑道，无法自行滑回。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/24a3711a48864fde88d8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-196745",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-20",
+      "audioText": "Report your intention, KLM88.\n[Tell ATC, that you need shuttle bus to disembark passengers and a tug to tow you back to apron.]",
+      "audioTextZh": "报告你的意图，荷航88。\n告诉管制，你需要摆渡车让乘客下飞机以及拖车拖你回机坪。",
+      "referenceText": "Request shuttle bus to disembark passengers and a tug to tow us back to apron, KLM88.",
+      "referenceTextZh": "请求摆渡车让乘客下飞机，以及拖车拖飞机回机坪，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8acf025564f331139aa6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-196746",
+      "taskTitle": "25-KLM88 [发电机失效，偏出跑道]-21",
+      "audioText": "Roger, KLM88, emergency services will be ready soon.",
+      "audioTextZh": "收到，荷航88，马上准备应急救援。",
+      "referenceText": "Thanks, KLM88.",
+      "referenceTextZh": "感谢，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb0a909aa79f22a59fe3.mp3"
+    }
+  ],
+  "categoryId": "atc-klm"
+}

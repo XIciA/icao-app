@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0051",
   "name": "航食",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "Yes, the captain and first officer should avoid eating the same meal. If one meal is contaminated, eating different meals reduces the risk that both pilots will become incapacitated by food poisoning.",
       "referenceTextZh": "是的，机长和副驾驶应避免食用相同餐食。如果一份餐食受到污染，食用不同餐食可以降低两名飞行员同时因食物中毒而失能的风险。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

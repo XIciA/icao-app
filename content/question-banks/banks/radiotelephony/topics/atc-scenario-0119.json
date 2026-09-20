@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0119",
   "name": "SIA 615 鸟击 积冰/防冰 烟雾",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "否定，飞机没有损伤，机上也没有人员受伤，SIA 615。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

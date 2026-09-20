@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-1454",
+  "name": "CCA937 [行李问题，发动机噪声]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210271",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-1",
+      "audioText": "[Your call sign is CCA937, you are at G213, receive information N, call Wuhan Delivery and request ATC clearance to Amsterdam.]",
+      "audioTextZh": "【你的呼号是国航937，你在213号机位，收到通播N，呼叫武汉放行，请求ATC放行至阿姆斯特丹。】",
+      "referenceText": "Wuhan Delivery, CCA937. Gate 213, Information N, destination Amsterdam, request ATC clearance.",
+      "referenceTextZh": "武汉放行，国航937。机位213，通播N，目的地阿姆斯特丹，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8fb0e04a09a8ea42af85.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210272",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-2",
+      "audioText": "CCA937, Wuhan Delivery, cleared to Amsterdam via flight planned route. Follow ZF-12D departure, initial climb 1500m, cruising level 9500m, after departure contact 125.65, squawk 3251, runway 18L.",
+      "audioTextZh": "国航937，武汉放行，可以按计划航路飞往阿姆斯特丹。ZF-12D离场，起始高度1500米，巡航高度9500米，离场后联系125.65，应答机3251，跑道18左。",
+      "referenceText": "Cleared to Amsterdam via flight planned route, ZF-12D departure, initial climb 1500m, cruising level 9500m, departure 125.65, squawk 3251, runway 18L, CCA937.",
+      "referenceTextZh": "可以按计划航路飞往阿姆斯特丹。ZF-12D离场，起始高度1500米，巡航高度9500米，离场后联系125.65，应答机3251，跑道18左，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7c13e7e74e287380e588.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210274",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-3",
+      "audioText": "CCA937, read back correct, expect slot time 20 due to temporary departure restriction. Report when ready for pushback and start-up.",
+      "audioTextZh": "国航937，复诵正确，根据临时离场限制，预计离场时间20分。准备好推出开车时报告。",
+      "referenceText": "Expect slot time 20, wilco, CCA937.",
+      "referenceTextZh": "预计离场时间20，将照办，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d5def66362a1ca100c17.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210276",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-4",
+      "audioText": "[Tell the controller that there are two passengers missing, and the bags have already removed from the aircraft. The load sheet is amended. Contact the controller to report the situation and state you are ready for push.]",
+      "audioTextZh": "【告诉管制员机上两名乘客没来，他们的行李已卸下。舱单已经修订。联系管制员报告该情况，并说明你已准备好推出。】",
+      "referenceText": "Wuhan Delivery, CCA937, two passengers missing and bags are removed, request pushback.",
+      "referenceTextZh": "武汉放行，国航937，2名乘客没来，行李已经卸下，请求推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9295777e64e6077899fa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210277",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-5",
+      "audioText": "CCA937, Delivery, the slot time restriction cancelled. Contact Ground on 121.75 for pushback and start-up.",
+      "audioTextZh": "国航937，放行，离场限制取消。联系地面121.75，请求推出开车。",
+      "referenceText": "Contact Ground 121.75, CCA937.",
+      "referenceTextZh": "联系地面121.75，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d72422dfb56f4b47eb3c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210279",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-6",
+      "audioText": "CCA937, Wuhan Ground, pushback and start-up approved, report ready taxi.",
+      "audioTextZh": "国航937，武汉地面，同意推出开车，准备好滑行时报告。",
+      "referenceText": "Pushback and start-up approved, report ready taxi, CCA937.",
+      "referenceTextZh": "同意推出开车，准备好滑行时报告，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/75aed928dc02ec643490.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210281",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-7",
+      "audioText": "[You are ready for taxi, call Ground you can taxi.]",
+      "audioTextZh": "【你准备好滑行，告诉地面你可以滑行。】",
+      "referenceText": "Wuhan Ground, CCA937, request taxi.",
+      "referenceTextZh": "武汉地面，国航937，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/649d527dac133b1c3031.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210282",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-8",
+      "audioText": "CCA937, taxi to the holding point of runway 18L via Z4, A2, A, hold short of E1.",
+      "audioTextZh": "国航937，沿滑行道Z4，A2，A滑行至跑道18左等待点，在E1外等待。",
+      "referenceText": "Taxi via Z4, A2, A to runway 18L, hold short of E1, CCA937.",
+      "referenceTextZh": "沿滑行道Z4，A2，A滑行至跑道18左等待点，在E1外等待。国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/088d129126231176c2ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210283",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-9",
+      "audioText": "CCA937, hold position. Your company operation asks you to contact them on frequency 133.9. Advise when you are ready taxi.",
+      "audioTextZh": "国航937，原地等候。你公司的运行部门要求你联系他们133.9。准备好滑出报告。",
+      "referenceText": "Holding. Contact company operation on 133.9. Report when ready for taxi, CCA937.",
+      "referenceTextZh": "等待。联系公司133.9。准备好滑出报告，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/51baf5963827048a674f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210284",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-10",
+      "audioText": "[Company tells you that the ground staff made a mistake during the baggage removal procedure. You want to taxi back to the gate.]",
+      "audioTextZh": "【公司告诉你，地面工作人在行李拆卸程序中犯了一个错误。你想要滑回停机位。】",
+      "referenceText": "Wuhan Ground, CCA937, request taxi back due baggage problem.",
+      "referenceTextZh": "武汉地面，国航937，由于行李问题，请求滑回。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/645866edeae471bb5f4c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210285",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-11",
+      "audioText": "CCA937, taxi to Gate 213 via M, M3, Z4.",
+      "audioTextZh": "国航937，沿滑行道M，M3，Z4滑回213号机位。",
+      "referenceText": "Taxi to Gate 213 via M, M3, Z4, CCA937.",
+      "referenceTextZh": "沿滑行道M，M3，Z4滑回213号机位，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea34c9dc5647f6b221bc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210287",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-12",
+      "audioText": "[Now the baggage problem has been fixed. You ask for pushback and start up again.]",
+      "audioTextZh": "【现在行李问题解决了。重新请求推出开车。】",
+      "referenceText": "Wuhan Ground, CCA937, gate 213, request pushback and start-up.",
+      "referenceTextZh": "武汉地面，国航937，213号机位，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bbd4629a7b77681bcef9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210288",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-13",
+      "audioText": "CCA937, a cold front is advancing to the airport. Expect change runway 04. Standby for the new departure clearance. Pushback and start-up approved.",
+      "audioTextZh": "国航937，机场现在有冷锋临近。预计更换跑道04。稍等新的离场许可。同意推出开车。",
+      "referenceText": "Pushback and start-up approved. Runway 04. Standby for new departure clearance due weather, CCA937.",
+      "referenceTextZh": "同意推出开车。跑道04。由于天气，等待新的离场许可，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/68df01795a68cba68571.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210289",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-14",
+      "audioText": "CCA937, recleared to Amsterdam, follow ZF-01D departure, runway 04, initial climb 1500m, rest unchanged.[Read back the instructions and advise when you are ready for taxi.]",
+      "audioTextZh": "国航937，重新许可放行至阿姆斯特丹，ZF-01D离场，跑道04，起始高度1500米，其余不变。【复诵指令，准备好滑行时报告。】",
+      "referenceText": "Recleared to Amsterdam, follow ZF-01D departure, runway 04, initial climb 1500m, rest unchanged. Request taxi, CCA937.",
+      "referenceTextZh": "重新许可放行至阿姆斯特丹，ZF-01D离场，跑道04，起始高度1500米，其余不变。请求滑行，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/65c251056f03cf701c5c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210290",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-15",
+      "audioText": "[You are rotate normally. Report you are airborne, passing 900m, climbing for 1500m, request cancel SID.]",
+      "audioTextZh": "【飞机抬轮正常。离地时报告，通过900米，上升1500米，请求取消SID。】",
+      "referenceText": "Wuhan Departure, CCA937, airborne, passing 900m, climbing to 1500m, request cancel SID.",
+      "referenceTextZh": "武汉离场，国航937，离地，通过900米，上升1500米，请求取消SID。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4834c14b465a72b67d68.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210291",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-16",
+      "audioText": "CCA937, Wuhan Departure, radar contact. Cancel SID, Direct to ZF, climb and maintain 4500m on standard.",
+      "audioTextZh": "国航937，武汉离场，雷达已识别。取消SID，直飞ZF，上升保持标压4500米。",
+      "referenceText": "Cancel SID, direct to ZF, climb and maintain 4500m on standard, CCA937.",
+      "referenceTextZh": "取消SID，直飞ZF，上升保持标压4500米，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/835df5ad9dff4bcb5ac3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210292",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-17",
+      "audioText": "[The No. 2 engine produced intermittent noises, as a precaution, you want to terminate the flight and return. Notify the Wuhan Departure and request level off at 2700m.]",
+      "audioTextZh": "【2号发动机产生间歇性噪音，为了预警，你想要中止飞行，返回机场。通知武汉离场，请求在2700米平飞。】",
+      "referenceText": "Departure, CCA937, request level off at 2700m and return to Wuhan airport due to engine No.2 problem.",
+      "referenceTextZh": "离场，国航937，由于2号发动机问题，请求2700米平飞并返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8b34946f59ef629ed7ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210293",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-18",
+      "audioText": "CCA937, climb and maintain 2700m, turn left heading 220. Radar vector for runway 04.",
+      "audioTextZh": "国航937，上升保持2700米，左转航向220。雷达引导至跑道04。",
+      "referenceText": "Climb and maintain 2700m, turn left heading 220. Radar vector for runway 04, CCA937.",
+      "referenceTextZh": "上升保持2700米，左转航向220。雷达引导至跑道04，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/66fde0a03576fcbe5d12.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210294",
+      "taskTitle": "42-CCA937 [行李问题，发动机噪声]-19",
+      "audioText": "[To avoid overweight landing. You request a 15min fuel dumping.]",
+      "audioTextZh": "【为了防止飞机超重着陆。请求放油15分钟。】",
+      "referenceText": "Wuhan Departure, CCA937, Request fuel dumping for 15min to reduce the landing weight.",
+      "referenceTextZh": "武汉离场，国航937，为了减小着陆重量，请求放油15分钟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/63e78671e6bccfbfd9ce.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

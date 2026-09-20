@@ -2,6 +2,7 @@ import { BadRequestException, ForbiddenException, HttpException, Inject, Injecta
 import {
   CONTENT_ACCESS_POLICY_VERSION,
   isFreeQuestionBankCard,
+  studyScopeCardIds,
   type ContentAccessCredential,
   type ContentAccessScope,
   type CommerceEnvironment,
@@ -77,6 +78,7 @@ function filterTopic(bankId: string, topic: ContentTopic, membershipActive: bool
   const cards = membershipActive ? topic.cards : freeCards;
   return {
     ...topic,
+    scopeCardIds: studyScopeCardIds(bankId, topic),
     cards,
     access: topicAccess(topic, cards.length, freeCards.length),
   };
@@ -86,6 +88,7 @@ function catalogTopic(bankId: string, topic: ContentTopic) {
   const freeCards = topic.cards.filter((card) => isFreeQuestionBankCard(bankId, topic.id, card.id));
   return {
     ...topic,
+    scopeCardIds: studyScopeCardIds(bankId, topic),
     cards: freeCards,
     access: topicAccess(topic, freeCards.length, freeCards.length),
   };

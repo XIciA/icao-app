@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0031",
   "name": "复飞",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Pilots should follow the published missed-approach procedure and monitor nearby terrain and obstacles closely. They should consider the weather and possible mountain wind shear and maintain the appropriate speed and altitude. Good communication with ATC and coordination with the cabin crew are also important.",
       "referenceTextZh": "飞行员应遵循公布的复飞程序，并密切监控附近地形和障碍物。他们应考虑天气和可能的山地风切变，并保持适当的速度和高度。与空中交通管制保持良好沟通，并与客舱机组协调也很重要。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

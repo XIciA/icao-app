@@ -1,4 +1,5 @@
 import type { QuestionBankId } from '@/features/question-bank/types';
+import { normalizeStudyScope, type StudyScope } from '@icao/contracts';
 
 export const EXAM_GOALS = [
   { id: 'icao4-first', label: 'ICAO 4 初考', banks: ['listening', 'sentences900', 'radiotelephony', 'opi'] },
@@ -8,12 +9,13 @@ export const EXAM_GOALS = [
 ] as const satisfies readonly { id: string; label: string; banks: readonly QuestionBankId[] }[];
 
 export type ExamGoal = typeof EXAM_GOALS[number]['id'];
-export type UserProfile = { displayName: string; avatarUri: string | null; target: ExamGoal };
+export type UserProfile = { displayName: string; avatarUri: string | null; target: ExamGoal; studyScope?: StudyScope };
 export const MAX_PROFILE_AVATAR_LENGTH = 180_000;
 export const DEFAULT_PROFILE: Readonly<UserProfile> = Object.freeze({
   avatarUri: null,
   displayName: '飞行学员',
   target: 'icao4-first',
+  studyScope: 'selected',
 });
 
 export function examGoal(value: unknown) {
@@ -26,6 +28,7 @@ export function normalizeProfile(value: unknown): UserProfile {
   return {
     displayName: name && Array.from(name).length <= 24 ? name : DEFAULT_PROFILE.displayName,
     target: examGoal(data.target).id,
+    studyScope: normalizeStudyScope(data.studyScope),
     // Local file paths are deliberately not accepted as cross-device profile data.
     avatarUri: typeof data.avatarUri === 'string'
       && data.avatarUri.length <= MAX_PROFILE_AVATAR_LENGTH

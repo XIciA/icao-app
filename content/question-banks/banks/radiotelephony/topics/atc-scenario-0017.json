@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0017",
   "name": "AFR 941 右EGT波动 滑油压力下降 右发失效",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "可以落地，AFR 941。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/296.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

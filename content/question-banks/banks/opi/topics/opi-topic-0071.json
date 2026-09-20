@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0071",
   "name": "情景意识",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "Pilots should monitor the radio frequencies throughout the flight. They should also follow the SOPs and cross-check important information.",
       "referenceTextZh": "飞行员应在整个飞行过程中守听无线电频率，还应遵循标准操作程序并交叉检查重要信息。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

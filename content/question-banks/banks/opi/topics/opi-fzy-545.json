@@ -1,0 +1,125 @@
+{
+  "id": "opi-fzy-545",
+  "name": "Topic on CRM",
+  "declaredCardCount": 13,
+  "cards": [
+    {
+      "id": "opi-fzy-110001",
+      "taskTitle": "Topic on CRM-1",
+      "audioText": "How do you know about CRM?",
+      "audioTextZh": "你对机组资源管理有多少了解？",
+      "studyTier": 0,
+      "referenceText": "Crew Resource Management is also called Cockpit Resource Management, which is a cockpit management concept involving a pilot’s thorough use of all available resources, both inside the cockpit and outside. It is an essential part of any flight department’s training and a critical piece of knowledge in an airline pilot’s career. All professional pilots are trained in CRM, and the focus remains on specific concepts such as aeronautical decision-making, risk management, teamwork, and error management. CRM teaches us how to communicate with each other, how to solve problems and how to act duties of crew members. Good CRM can reduce crew errors and workload, improve cooperation between crew members, and make flight operations safe and efficient.",
+      "referenceTextZh": "机组资源管理也称为驾驶舱资源管理，是一个涉及飞行员充分利用驾驶舱内外可用资源的驾驶舱管理概念。它是飞行部门培训的重要组成部分，也是航空公司飞行员职业生涯中的重要知识。所有的专业飞行员都要培训机组资源管理，重点仍然在诸如航空决策、风险管理、团队合作和错误管理等具体概念上。机组资源管理教导我们如何相互沟通、如何解决问题以及如何做好机组人员你的本职工作。良好的机组资源管理可以减少机组错误，减轻工作量，提高成员间合作效率，实现飞行操作安全化、高效化。"
+    },
+    {
+      "id": "opi-fzy-110002",
+      "taskTitle": "Topic on CRM-2",
+      "audioText": "What should you do when you receive a clearance?",
+      "audioTextZh": "获得指令后你应该怎样做？",
+      "studyTier": 0,
+      "referenceText": "Firstly, I should follow the instruction. Secondly, if I encounter questions or difficulties, I should request as early as possible.",
+      "referenceTextZh": "首先，我应该遵循指示。之后，如果我遇到问题或困难，应及时报告。"
+    },
+    {
+      "id": "opi-fzy-110003",
+      "taskTitle": "Topic on CRM-3",
+      "audioText": "Does captain always check with co-pilot on received clearances?",
+      "audioTextZh": "机长是否经常与副驾驶核实收到的指令？",
+      "studyTier": 0,
+      "referenceText": "Yes. It’s necessary for us to understand clearly about all the clearances. If we are unsure about the ATC clearance, we should request the clarification immediately in case of misunderstanding.",
+      "referenceTextZh": "是的。清楚地了解所有的指令对我们来说是非常必要的。如果我们对ATC的指令不确定时，应该立刻要求澄清以防误解。"
+    },
+    {
+      "id": "opi-fzy-110007",
+      "taskTitle": "Topic on CRM-4",
+      "audioText": "What’s the main duty of a pilot?",
+      "audioTextZh": "飞行员的主要职责是什么？",
+      "studyTier": 0,
+      "referenceText": "The main duty of a pilot is to make sure the safety of the flight and passengers. When an emergency situation happens, he should be able to handle the emergency situation, and if necessary, he should help evacuate passengers.",
+      "referenceTextZh": "飞行员的主要职责是确保飞行及乘客的安全。发生紧急情况时，他应该能够解决问题。必要时，他应该帮助乘客疏散。"
+    },
+    {
+      "id": "opi-fzy-110008",
+      "taskTitle": "Topic on CRM-5",
+      "audioText": "What are the different duties of captain and first officer?",
+      "audioTextZh": "机长和副驾驶的职责有什么不同？",
+      "studyTier": 0,
+      "referenceText": "Captain is the final decision maker during the flight whereas the first officer should complete his own duty to assist the captain and give him advice when necessary. In my opinion, both captain and the first officer are important for ensuring the flight safety.",
+      "referenceTextZh": "机长是飞行期间的最终决策者，副驾驶应完成自己的职责，协助机长并在必要时为机长提供建议。在我看来，机长和副驾驶对确保飞行安全都是非常重要的。"
+    },
+    {
+      "id": "opi-fzy-110009",
+      "taskTitle": "Topic on CRM-6",
+      "audioText": "If you have a first officer or captain that you don’t like, how would you handle the situation?",
+      "audioTextZh": "如果你不喜欢一起工作的机长或副驾驶，你会怎样处理这种情况？",
+      "studyTier": 0,
+      "referenceText": "First of all, I would rather do my job following standard operation procedures (SOP). Secondly, I will try to avoid any possible confliction, and create relaxing environment. Lastly, if necessary, I have to feed back to crew scheduling.",
+      "referenceTextZh": "首先，我会选择按照标准运行程序（SOP）工作。其次，我会尽量避免任何可能发生的冲突，营造轻松的氛围。最后，必要的话，我会把情况反馈给机组排班人员。"
+    },
+    {
+      "id": "opi-fzy-110012",
+      "taskTitle": "Topic on CRM-7",
+      "audioText": "How decisions are made on the flight deck?",
+      "audioTextZh": "机长和副驾驶是如何做决策的？",
+      "studyTier": 0,
+      "referenceText": "Nowadays, both the captain and the first officer make decisions on the flight deck. But years ago, most captains were not willing to listen to others’ advice and first officers were always reluctant to put forward different ideas. However, since the introduction of CRM into aviation industry, the decision is made when the captain and the first officer agree on an issue.",
+      "referenceTextZh": "如今，机长和副驾驶都在驾驶舱做决策。但多年前，大多数机长不太愿意听取别人的意见，副驾驶也不愿意提出不同观点。然而，自从引进机组资源管理制度到航空业，机长和副驾驶对某一事件达成一致观点才会做决定。"
+    },
+    {
+      "id": "opi-fzy-110013",
+      "taskTitle": "Topic on CRM-8",
+      "audioText": "How do you think of the introduction of CRM?",
+      "audioTextZh": "你怎样看待引入机组资源管理？",
+      "studyTier": 0,
+      "referenceText": "Since the introduction of CRM into aviation industry, pilots have learnt that nobody is perfect, and the best way to prevent making mistakes is to have others watch your back. I think the arrival of CRM has been a good change not only for the pilots, but also for flight safety.",
+      "referenceTextZh": "自从引进机组资源管理制度到航空业，飞行员们就知道了人无完人，防止决策失误的最好办法是有人监督。我认为引进机组资源管理对飞行员乃至飞行安全都是一个好的改变。"
+    },
+    {
+      "id": "opi-fzy-110014",
+      "taskTitle": "Topic on CRM-9",
+      "audioText": "Tell me about the task sharing of flight crew members in your aircraft.",
+      "audioTextZh": "请告诉我你们机上的机组人员是如何分配任务的？",
+      "studyTier": 0,
+      "referenceText": "In our aircraft, we strictly follow the SOP and the captain would assign tasks to every crew member. When emergency situation happens, we usually cooperate with each other and solve the problem together.",
+      "referenceTextZh": "在我们飞机上，大家都严格遵守标准运行程序，机长将任务分配给每一个成员。发生紧急情况时，我们通常会互相合作，共同解决问题。"
+    },
+    {
+      "id": "opi-fzy-110015",
+      "taskTitle": "Topic on CRM-10",
+      "audioText": "In your opinion, how to improve CRM?",
+      "audioTextZh": "在你看来，如何提高机组资源管理？",
+      "studyTier": 0,
+      "referenceText": "Firstly, crew members should establish good communication, so that some mistakes can be prevented and corrected timely. Secondly, crew members should make full use of the facilities and the ground navigation equipment. Thirdly, the crew should operate the plane strictly according to manuals and standard operation procedures. Lastly, the crew should comply with the aviation regulations.",
+      "referenceTextZh": "首先，机组成员间应建立良好的沟通，这样可以防止并及时纠正一些错误。其次，机组成员应充分利用设施和地面导航设备。另外，成员应按照手册和标准运行程序，严格操纵飞机。最后，机组成员应遵守航空法规。"
+    },
+    {
+      "id": "opi-fzy-110016",
+      "taskTitle": "Topic on CRM-11",
+      "audioText": "How to balance your work time and break time?",
+      "audioTextZh": "怎样平衡工作时间和休息时间？",
+      "studyTier": 0,
+      "referenceText": "I have a personal schedule recording my daily arrangement, with its help I can arrange my daily work and break time reasonably. I have many hobbies, like riding, playing basketball, so during my break time, I can relax myself thoroughly. Every year I will take a long vacation for travelling. In my work time, I am always fully present and I really appreciate every flight of my duty time.",
+      "referenceTextZh": "嗯，我有一个个人时间表，记录我每天的安排，有了它我可以合理的安排我的日常工作及休息时间。我有许多爱好，像骑马、打篮球，所以休息时，我可能全面放松自己。每年我都会放个长假去旅行。工作时，我完全投入，同时我很珍视每次飞行任务。"
+    },
+    {
+      "id": "opi-fzy-110017",
+      "taskTitle": "Topic on CRM-12",
+      "audioText": "What will you do if your flight time is approaching duty time limit?",
+      "audioTextZh": "如果你的飞行时间达到工作时间限制，你会怎样做？",
+      "studyTier": 0,
+      "referenceText": "Our company prohibits flying under fatigue condition in order to avoid any incident or disaster, so if my flight time is approaching duty time limit, I will request my company for duty off and have a good rest.",
+      "referenceTextZh": "我们公司禁止在疲劳状态下飞行，以避免发生任何事故或灾难。所以如果我的飞行时间达到工作时间限制，我会和公司请求下班，好好休息。"
+    },
+    {
+      "id": "opi-fzy-110018",
+      "taskTitle": "Topic on CRM-13",
+      "audioText": "What are the most important principles of CRM?",
+      "audioTextZh": "CRM最重要的原则是什么？",
+      "studyTier": 0,
+      "referenceText": "CRM stands for Crew Resource Management. It means flight crew should work as a team. Though each member of the flight crew has different duties and responsibilities, he can not work individually. They must cooperate with each other during flight.",
+      "referenceTextZh": "CRM代表机组资源管理；意思是飞机机组成员应作为一个团队工作。虽然每个机组成员都有不同的任务和责任，也不能单独工作。飞行期间，他们必须互相合作。"
+    }
+  ],
+  "categoryId": "opi-category-07"
+}

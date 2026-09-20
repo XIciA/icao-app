@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-1692",
+  "name": "SIA708 [紧急下降，客舱烟雾]",
+  "declaredCardCount": 15,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224703",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-1",
+      "audioText": "N: [Your call sign is SIA708, you are en route from Singapore to Beijing, you are overhead BUBDA, maintaining 11900m, your squawk number is 3705, make an initial contact with Guangzhou Control.]",
+      "audioTextZh": "N：【你的呼号是新航708，你现在正在从新加坡飞往北京的航路上，你现在已经过BUBDA，保持11900米，你的应答机编码是3705，与广州区调建立初始联系。】",
+      "referenceText": "Guangzhou Control, SIA708 from Singapore to Beijing, overhead BUBDA, maintaining 11900m, squawking 3705.",
+      "referenceTextZh": "广州区调，新航708，从新加坡飞往北京，过BUBDA，保持11900米，应答机3705。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/812707b3e0e9b708cdb4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224704",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-2",
+      "audioText": "C: SIA708, radar contact, track direct to DAPRO, confirm your aircraft type.\nN: [You are flying a Boeing777, acknowledge the controller.]",
+      "audioTextZh": "C：新航708，雷达看见了，直飞DAPRO，证实你的机型。\nN：【你正在飞的是波音777，告知管制员。】",
+      "referenceText": "Track direct to DAPRO, affirm, we are a Boeing 777, SIA708.",
+      "referenceTextZh": "直飞DAPRO，是的，我们飞的是波音777，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/da754cff940562e1f4c1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224705",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-3",
+      "audioText": "C: SIA708, maintain 3 miles offset right of track, keep high speed.",
+      "audioTextZh": "C：新航708，从当前航迹又偏置3海里，保持高速。",
+      "referenceText": "Maintain 3 miles offset to the right of track, keep high speed, SIA708.",
+      "referenceTextZh": "从当前航迹又偏置3海里，保持高速，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8595647e2d636bcc2705.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224706",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-4",
+      "audioText": "N: [Your cabin altitude is slightly increasing, as a precaution, you want to request a lower level, advise your intention to Guangzhou Control.]",
+      "audioTextZh": "N：【你的座舱高度正在轻微上升，作为预防，你想申请更低高度。将你的意图告知广州区调。】",
+      "referenceText": "Guangzhou Control, SIA708, request lower level due to increasing cabin altitude.",
+      "referenceTextZh": "广州区调，新航708，由于座舱高度，请求更低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c0125c3af70e65e8b37.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224707",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-5",
+      "audioText": "C: SIA708, standby, traffic below your level, expect your descent in 5 minutes.",
+      "audioTextZh": "C：新航708，稍等，你的下方有航空器，预计5分钟后下降。",
+      "referenceText": "Standby, expect descent in 5 minutes, SIA708.",
+      "referenceTextZh": "稍等，预计5分钟后下降，；新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7a9e6c56ec3e7f4672e2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224708",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-6",
+      "audioText": "N: [You have a problem with pressurization, you are unsure whether the cabin pressure controller has malfunctioned, or the outflow valve has jammed, you wish to descent immediately to 9500m.]",
+      "audioTextZh": "N：【你遇到了增压问题，你不确定是座舱压力控制器出现了故障，还是排气阀卡住了，你希望立即下降到 9500 米的高度。】",
+      "referenceText": "Guangzhou Control, SIA708, experiencing pressurization issues, request immediate descent to 9500m.",
+      "referenceTextZh": "武汉区调，新航708，遇到增压问题，请求立即下降到9500米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9da425a87fdd414d21c8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224709",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-7",
+      "audioText": "C: SIA708, roger, turn right heading 070, descend to and maintain 9500m.",
+      "audioTextZh": "C：新航708，右转航向070，下9500米保持。",
+      "referenceText": "Turn right to 070, descend to and maintain 9500m, SIA708.",
+      "referenceTextZh": "右转航向070，下9500米保持，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0e03c02b21f4314103ff.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224710",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-8",
+      "audioText": "C: SIA708, report the nature of your problem when able.\nN: [You are leveling at 9500m, your pressurization looks to be stable, advise controller and request track direct to DAPRO.]",
+      "audioTextZh": "C：新航708，可以的时候，报告你的机上情况。\nN：【你现在在9500米巡航，你的增压现在看起来稳定了，告知管制员，请求直飞DAPRO。】",
+      "referenceText": "Level at 9500m, pressurization appears stable, request track direct to DAPRO, SIA708.",
+      "referenceTextZh": "在9500米巡航，增压现在看起来稳定了，请求直飞DAPRO，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8419805d63388fdfdbc9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224711",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-9",
+      "audioText": "C: SIA708, unable, turn left heading 340 to intercept the A461 airway, maintaining offset 3 miles to the right.",
+      "audioTextZh": "C：新航708，不可以，左转航向340，切A461航路，保持右偏置3海里。",
+      "referenceText": "Turn left to 340 to intercept A461, maintain 3 miles offset to the right, SIA708.",
+      "referenceTextZh": "左转航向340，切A461航路，保持右偏置3海里，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4f0835eee05d903a29b3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224712",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-10",
+      "audioText": "N: [Suddenly, you have a cabin smoke alarm, you have deployed the cabin oxygen masks, report to Guangzhou Control, you want to make an emergency descent to 3300m, this is a distress call.]",
+      "audioTextZh": "N：【突然，你有一个客舱烟雾告警，你释放了客舱氧气面罩，报告给广州区调，你想紧急下降到3300米，这是一个遇险通话。】",
+      "referenceText": "Mayday Mayday Mayday, Guangzhou Control, SIA708, cabin smoke alarm activated, deployed oxygen masks, request emergency descent to 3300m.",
+      "referenceTextZh": "Mayday Mayday Mayday，广州区调，新航708，客舱烟雾告警激活，已经释放氧气面罩，请求紧急下降到3300米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a3ba4a532f1105f09c8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224713",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-11",
+      "audioText": "C: SIA708, roger, turn right heading 080, descend to and maintain 3300m, advise intentions when able.",
+      "audioTextZh": "C：新航708，收到，右转航向080，下3300保持，可以的时候告知意图。",
+      "referenceText": "Turn right to 080, descend to 3300m, wilco, SIA708.",
+      "referenceTextZh": "右转航向080，下3300保持，将照办，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/53f74f331c15287ae7d1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224714",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-12",
+      "audioText": "N: [Your TCAS indicates low altitude traffic converging to your aircraft, advise Guangzhou Control and request heading change to avoid it.]",
+      "audioTextZh": "N：【你的TCAS指示一个低高度航空器，正在向你靠近，请告知广州区调，并请求改变航向以避开它。】",
+      "referenceText": "Guangzhou Control, SIA708, TCAS indicates low altitude traffic converging to my aircraft, request heading change to avoid converging traffic.",
+      "referenceTextZh": "广州区调，新航708，TCAS指示一个低高度航空器，正在向我靠近，请求改变航向来避开航空器。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f493dea78869f6bd552.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224715",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-13",
+      "audioText": "C: CCA101, turn right heading 360. Break break, SIA708, turn right heading 180.",
+      "audioTextZh": "C：国航101，右转航向360。断开，断开，新航708，右转航向180。",
+      "referenceText": "Turn right to 180, SIA708.",
+      "referenceTextZh": "右转航向180，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e225d4249894017cf56a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224716",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-14",
+      "audioText": "N: [You are continuing the emergency descent, your purser has found the source of the smoke and will try to extinguish the fire once the safe altitude is reached, advise control that you are passing 8900m, and wish to divert to Changsha airport.]",
+      "audioTextZh": "N：【你正在继续执行紧急下降程序，乘务长已经找到了烟雾的来源，并会在达到安全高度后尝试扑灭火源。请通知管制部门你正在过 8900 米的高度，并希望改航至长沙机场。】",
+      "referenceText": "Guangzhou Control, SIA708, continue emergency descent, passing 8900m, request diversion to Changsha Airport due to cabin smoke.",
+      "referenceTextZh": "广州区调，新航708，继续进行紧急下降，过8900米，由于客舱烟雾，请求改航到长沙机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ec50998e338058e54df6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224717",
+      "taskTitle": "78-SIA708 [紧急下降，客舱烟雾]-15",
+      "audioText": "C: SIA708, Changsha Control, Changsha airport has approach restrictions, latest ATIS suggests visibility 320 in fog, advise your intentions.\nN: [Ask Changsha Control whether if CAT II approach is available at Changsha airport.]",
+      "audioTextZh": "C：新航708，长沙区调，长沙机场有进近限制，最新的 ATIS 信息显示在大雾天气下能见度为 320 米，请告知你的意图。\nN：【询问长沙区调长沙机场是否可以进行二类进近。】",
+      "referenceText": "Cconfirm Changsha Airport CAT II approach is available, SIA708.",
+      "referenceTextZh": "证实长沙机场能否进行二类盲降，新航708。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8f90eb23fd97220141d.mp3"
+    }
+  ],
+  "categoryId": "atc-sia"
+}

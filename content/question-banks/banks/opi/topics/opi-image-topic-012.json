@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-012",
   "name": "滑行道起飞排队",
   "declaredCardCount": 5,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-012.jpg",
-      "imageAlt": "滑行道起飞排队航空场景图片"
+      "imageAlt": "滑行道起飞排队航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-012-q01",
@@ -43,5 +43,6 @@
       "referenceText": "Airports and ATC can reduce queues through better departure sequencing, traffic-flow planning, and timely information about restrictions. Airlines can hold an aircraft at the gate or delay engine start when a long wait is expected. During a queue, the crew should monitor fuel, brake temperature, weather, and duty time and coordinate any change of plan.",
       "referenceTextZh": "机场和空中交通管制可以通过优化离场排序、流量规划，并及时提供限制信息来减少排队。航空公司预计等待时间较长时，可以让飞机留在登机口或推迟起动发动机。排队期间，机组应监控燃油、刹车温度、天气和值勤时间，并协调任何计划变更。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

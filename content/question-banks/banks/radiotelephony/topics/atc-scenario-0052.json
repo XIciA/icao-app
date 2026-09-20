@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0052",
   "name": "CCA 101 地面障碍 沙暴双发失效",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "右转航向 260，收到，CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/901.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

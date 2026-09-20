@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0022",
   "name": "AFR 896 皮托管加温，GPS高度地速失效",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "36R跑道，可以落地，AFR 896。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/394.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

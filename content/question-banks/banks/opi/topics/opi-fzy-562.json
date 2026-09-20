@@ -1,0 +1,88 @@
+{
+  "id": "opi-fzy-562",
+  "name": "Figure 6",
+  "declaredCardCount": 9,
+  "cards": [
+    {
+      "id": "opi-fzy-562-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 6 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-562.png",
+      "imageAlt": "Figure 6，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110217",
+      "taskTitle": "Figure 6-1",
+      "audioText": "What is shown in the picture?",
+      "audioTextZh": "图中展示的是什么？",
+      "studyTier": 0,
+      "referenceText": "The picture shows two kinds of emergency and safety equipment. The left one is a fire extinguisher, and the right one is a medical box.",
+      "referenceTextZh": "图中展示了两种应急和安全设备。左边是灭火器，右边是急救箱。"
+    },
+    {
+      "id": "opi-fzy-110218",
+      "taskTitle": "Figure 6-2",
+      "audioText": "In what situation will they be used?",
+      "audioTextZh": "在什么情况下会使用这些设备？",
+      "studyTier": 0,
+      "referenceText": "A fire extinguisher is used to control or put out a fire, mostly in emergency situations. When we find there is medical emergency on board, the medical box is needed. For example, if there is a passenger suffering from a heart attack, we need to do first aid immediately.",
+      "referenceTextZh": "灭火器用于控制或熄灭火情，主要在紧急情况时使用。当飞机上有医疗紧急情况时需要急救箱。例如，有乘客突然心脏病发作时需要立刻急救。"
+    },
+    {
+      "id": "opi-fzy-110219",
+      "taskTitle": "Figure 6-3",
+      "audioText": "Can you tell me how to use a fire extinguisher?",
+      "audioTextZh": "你能告诉我如何使用灭火器吗？",
+      "studyTier": 0,
+      "referenceText": "First remove the safety pin, after the safety pin is removed, depress the operating lever. The lever pushes on an actuating rod, which presses the valve down to open up a passage to the nozzle which will release the fire extinguishing material outside.",
+      "referenceTextZh": "好的。首先拔出安全销，然后压下压把。压把推动一个操纵杆按压下方的阀门，打开和喷筒相连的喷管，释放灭火器内部填充物。"
+    },
+    {
+      "id": "opi-fzy-110220",
+      "taskTitle": "Figure 6-4",
+      "audioText": "What circumstances can cause a fire in an airplane?",
+      "audioTextZh": "什么情况下会引发飞机上的火灾？",
+      "studyTier": 0,
+      "referenceText": "There is no single cause of airplane fire, among which engine fire is in the majority. Besides, oil leakage, overheating cookers, careless smoking and lightning strike, the inflammable goods on board and fanatics in arson, etc., all these are the reasons may cause fire in airplane.",
+      "referenceTextZh": "飞机火灾并非由单一原因引发，其中发动机着火是主要原因。此外，漏油、厨具过热、吸烟、雷击、易燃物品和极端分子纵火，这些都可能引发飞机上的火灾。"
+    },
+    {
+      "id": "opi-fzy-110221",
+      "taskTitle": "Figure 6-5",
+      "audioText": "Can you tell me something about the smoke detector in the airplane?",
+      "audioTextZh": "你能给我介绍一下飞机上的烟雾报警器吗？",
+      "studyTier": 0,
+      "referenceText": "A smoke detection system monitors the lavatories and cargo baggage compartments for the presence of smoke, which is indication of a fire condition. Smoke detection instruments that collect air for sampling are mounted in the compartments in strategic locations. A smoke detection system is used where the type of fire anticipated is expected to generate a substantial amount of smoke before temperature changes are sufficient to actuate a heat detection system. Two common types used are light refraction and ionization.",
+      "referenceTextZh": "好的，烟雾报警系统会监控卫生间和货物行李舱是否有烟雾，防止火情发生。安装在舱内重要位置的监测仪器会收集空气作为监测样本。如果预计发生的火灾会在温度变化前会形成大量烟雾，烟雾量足以启动高温探测系统，这时报警器会起作用。烟雾报警器能探测到的两种常见火灾成因是光反射和电离作用。"
+    },
+    {
+      "id": "opi-fzy-110222",
+      "taskTitle": "Figure 6-6",
+      "audioText": "Do you think the first aid in flight is necessary?",
+      "audioTextZh": "你认为飞机上的急救有必要吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, of course. Medical emergencies aboard aircraft are inevitable. With commercial air traffic increasing, these emergencies are expected to become more frequent as the percentage of older people increases, so the first aid in flight is necessary.",
+      "referenceTextZh": "当然有必要，飞机上的医疗紧急情况不可避免。随着商业航班数量增多，可以预见这些紧急情况会更加频繁，因为年长乘客的比例也会增长，所以飞机上的急救非常有必要。"
+    },
+    {
+      "id": "opi-fzy-110223",
+      "taskTitle": "Figure 6-7",
+      "audioText": "Do you have any training on aeromedicine?",
+      "audioTextZh": "你接受过有关航空医学的培训吗？",
+      "studyTier": 0,
+      "referenceText": "No, we don’t have such training. / Yes, we have. Pilots and flight attendants are required to undergo initial and recurrent training on aviation medicine, first aid, CPR and automated external defibrillator (AED) usage every 12 to 24 months.",
+      "referenceTextZh": "没有，飞行员没有相关培训。/有相关的培训是和乘务人员一同进行航空医学、急救、心脏复苏术、除颤器使用相关的基本培训，并且每12到24个月定期复训。"
+    },
+    {
+      "id": "opi-fzy-110224",
+      "taskTitle": "Figure 6-8",
+      "audioText": "Can you tell me some safety equipment in the airplane?",
+      "audioTextZh": "你能说出飞机上的一些安全设备吗？",
+      "studyTier": 0,
+      "referenceText": "Yes, fire extinguisher, safety belt, oxygen mask, life jacket, emergency exit and inflatable slide.",
+      "referenceTextZh": "好的，灭火瓶、安全带、氧气面罩、救生衣、紧急出口和充气滑梯。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

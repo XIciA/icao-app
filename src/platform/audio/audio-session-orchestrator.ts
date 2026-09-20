@@ -2,7 +2,7 @@ import { setAudioModeAsync, setIsAudioActiveAsync } from 'expo-audio';
 
 import { emitAudioDiagnostic } from './audio-diagnostics';
 
-export type AudioOwner = 'radio' | 'study' | 'recording' | 'recordingPlayback';
+export type AudioOwner = 'radio' | 'study' | 'recording' | 'recordingPlayback' | 'wordSpeech';
 
 export type AudioLease = Readonly<{
   owner: AudioOwner;
@@ -30,6 +30,7 @@ export class AudioSessionError extends Error {
 const TRANSITION_TIMEOUT_MS = 2_000;
 
 const profiles = {
+  wordSpeech: { allowsRecording: false, interruptionMode: 'doNotMix' as const, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false },
   idle: { allowsRecording: false, interruptionMode: 'doNotMix' as const, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false },
   radio: { allowsRecording: false, interruptionMode: 'doNotMix' as const, playsInSilentMode: true, shouldPlayInBackground: true, shouldRouteThroughEarpiece: false },
   study: { allowsRecording: false, interruptionMode: 'doNotMix' as const, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false },

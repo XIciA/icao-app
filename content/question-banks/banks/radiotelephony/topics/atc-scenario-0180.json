@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0180",
   "name": "QFA 432 积冰/防冰 烟雾 TCAS机动",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "收到，右转航向 250，QFA 432。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-080-qfa432-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

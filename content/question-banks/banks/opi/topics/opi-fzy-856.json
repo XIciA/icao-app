@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-856",
+  "name": "Belly landing",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-856-image-1",
+      "kind": "image",
+      "taskTitle": "Belly landing · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-856.png",
+      "imageAlt": "Belly landing，用于本话题的看图描述和问答",
+      "studyTier": 2
+    },
+    {
+      "id": "opi-fzy-152433",
+      "taskTitle": "Belly landing-1",
+      "audioText": "How to describe this picture?",
+      "audioTextZh": "如何描述这张图片？",
+      "studyTier": 2,
+      "referenceText": "The picture shows an airplane from Polish Airlines encountered landing gear problems, the pilot made a belly landing at last.\nI can see smoke was coming from the aircraft.",
+      "referenceTextZh": "图片中一架波兰航空的飞机遭遇起落架故障，飞行员最后机腹着陆。\n我能看到飞机有烟冒出。"
+    },
+    {
+      "id": "opi-fzy-152434",
+      "taskTitle": "Belly landing-2",
+      "audioText": "What may cause the landing gear problems?",
+      "audioTextZh": "什么会导致飞机起落架问题？",
+      "studyTier": 1,
+      "referenceText": "Usually, the majority of landing gear problems are caused by hydraulic system failures.",
+      "referenceTextZh": "通常情况下，起落架问题大部分是由于液压系统故障导致的。"
+    },
+    {
+      "id": "opi-fzy-152435",
+      "taskTitle": "Belly landing-3",
+      "audioText": "How do you determine whether the landing gears are extended or not?",
+      "audioTextZh": "你如何确定起落架是否放下？",
+      "studyTier": 1,
+      "referenceText": "I fly C172, our landing gear is fixed/non-retractable landing gear.\nAs far as I know, there are green lights indication on the panel to show the landing gear conditions.",
+      "referenceTextZh": "我飞的是塞斯纳172，飞机的起落架是固定式的。\n据我所知，在显示面板上会有绿灯显示起落架的状态。"
+    },
+    {
+      "id": "opi-fzy-152436",
+      "taskTitle": "Belly landing-4",
+      "audioText": "During approach and landing phases, when will you extend the landing gear?",
+      "audioTextZh": "在进近和着陆阶段，你什么时候放下起落架？",
+      "studyTier": 1,
+      "referenceText": "I fly A320. In general, when the aircraft is at about 2000 feet or 10 nm from the runway, I will extend the landing gear.",
+      "referenceTextZh": "我飞的是空客320，一般情况下，在高度2000英尺或者距离跑道10海里的时候，我会放下起落架。"
+    },
+    {
+      "id": "opi-fzy-153275",
+      "taskTitle": "Belly landing-5",
+      "audioText": "What are the functions of the aircraft landing gears?",
+      "audioTextZh": "起落架的功能是什么？",
+      "studyTier": 1,
+      "referenceText": "The landing gear is used to support the aircraft and to provide steering.",
+      "referenceTextZh": "起落架用于支撑飞机，以及提供飞机转向。"
+    },
+    {
+      "id": "opi-fzy-153276",
+      "taskTitle": "Belly landing-6",
+      "audioText": "When do you make a belly landing?",
+      "audioTextZh": "你在什么情况下会进行机腹着陆？",
+      "studyTier": 1,
+      "referenceText": "In most cases, we perform belly landing when the landing gear is unable to release due to hydraulic failure, or when the landing gear is stuck due to foreign object.",
+      "referenceTextZh": "在大部分情况下，当由于飞机液压系统出现故障，从而导致起落架无法释出，或者飞机起落架因为外物导致卡阻时，我们会执行机腹着陆。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

@@ -1,0 +1,88 @@
+{
+  "id": "opi-fzy-571",
+  "name": "Figure 15",
+  "declaredCardCount": 9,
+  "cards": [
+    {
+      "id": "opi-fzy-571-image-1",
+      "kind": "image",
+      "taskTitle": "Figure 15 · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-571.png",
+      "imageAlt": "Figure 15，用于本话题的看图描述和问答",
+      "studyTier": 0
+    },
+    {
+      "id": "opi-fzy-110289",
+      "taskTitle": "Figure 15-1",
+      "audioText": "Could you please describe what is shown in the picture?",
+      "audioTextZh": "你能描述图中展示的是什么吗？",
+      "studyTier": 0,
+      "referenceText": "According to this picture, I can see a shuttle bus has collided with the wingtip of a B727 which belongs to Mexican Airlines. The door of the shuttle bus is open and nobody is in it.",
+      "referenceTextZh": "根据图片，我看到一辆摆渡车和一架墨西哥航空的波音727的翼尖相撞。摆渡车的前门打开，没有人在摆渡车内。"
+    },
+    {
+      "id": "opi-fzy-110290",
+      "taskTitle": "Figure 15-2",
+      "audioText": "According to your experience, what may cause the accident?",
+      "audioTextZh": "根据你的经验，事故的原因可能是什么？",
+      "studyTier": 0,
+      "referenceText": "From my point of view, both the driver and the pilot all possibly made some errors and caused the accident. Maybe the driver of the shuttle bus was drunk or too tired, and he drove the bus too close to the aircraft and collided with its wingtip. On the other hand, maybe the pilot of this aircraft didn’t pay attention to the shuttle bus during turning or taxiing, thus the aircraft collided with it.",
+      "referenceTextZh": "从我的角度看，事故原因可能由于摆渡车司机和飞行员双方都出现了错误。摆渡车司机可能是醉酒驾车或疲劳驾驶，于是摆渡车离飞机太近从而相撞。另一方面，飞行员可能在转弯或滑行时没有注意到摆渡车，于是和摆渡车相撞。"
+    },
+    {
+      "id": "opi-fzy-110291",
+      "taskTitle": "Figure 15-3",
+      "audioText": "How to avoid such accident happening in your opinion?",
+      "audioTextZh": "你认为应该如何避免这类事故？",
+      "studyTier": 0,
+      "referenceText": "In my opinion, great efforts should be made by flight crew, ground staff members and relative departments together to avoid such accident happening. They should focus on their work cautiously and communicate with each other timely and effectively.",
+      "referenceTextZh": "我认为，机组、地勤人员和相关部门应该共同努力以避免类似事故发生。三方在各自的工作中要专注，并能相互间及时有效地沟通。"
+    },
+    {
+      "id": "opi-fzy-110292",
+      "taskTitle": "Figure 15-4",
+      "audioText": "What do you know about B727? Could you say something about this type of aircraft?",
+      "audioTextZh": "你对波音727有什么了解？你能介绍一下这种飞机吗？",
+      "studyTier": 0,
+      "referenceText": "B727 is a member of Boeing family. As far as I know, it has a T shape tail and three engines. One of the engines is mounted at the top of the tail cone.",
+      "referenceTextZh": "好的，波音727是波音飞机中的一员。就我所知，波音727的尾翼为T字型并有三台发动机。其中一个发动机在飞机尾锥顶端。"
+    },
+    {
+      "id": "opi-fzy-110293",
+      "taskTitle": "Figure 15-5",
+      "audioText": "Could you please describe an abnormal case that you have encountered during taxiing?",
+      "audioTextZh": "你能描述一件滑行时遭遇过的异常情况吗？",
+      "studyTier": 0,
+      "referenceText": "Once we were taxiing following the ATC instruction, some debris was found at the intersection of two taxiways. I couldn’t go round it and had to wait until the taxiway was cleared.",
+      "referenceTextZh": "好的。有一次我正按照ATC指令在滑行，在两条滑行道的交叉点发现了一些碎片。我无法从旁边绕开，所以只好等待滑行道清理完毕。"
+    },
+    {
+      "id": "opi-fzy-110294",
+      "taskTitle": "Figure 15-6",
+      "audioText": "As far as you know, what ground events often happen?",
+      "audioTextZh": "就你所知，通常地面会发生哪些事故？",
+      "studyTier": 0,
+      "referenceText": "As far as I know, ground events mainly involve bad weather or problems of runway and taxiway. For example, poor braking action led by slippery runway or taxiway, lighting system inoperative, working in progress adjacent to the runway, broken runway surface and so on, and these problems may lead to aborted takeoff, missed approach or delayed flight.",
+      "referenceTextZh": "就我所知，地面事故主要与恶劣天气或是滑行道、跑道的问题相关。例如，刹车效应差可能由以下原因导致：跑道和滑行道太滑、照明系统失效、临近跑道施工、跑道表面受损等。这些问题会引发中断起飞、进场失败或航班延误。"
+    },
+    {
+      "id": "opi-fzy-110295",
+      "taskTitle": "Figure 15-7",
+      "audioText": "Why is the shuttle bus required at an airport?",
+      "audioTextZh": "为什么机场内需要摆渡车？",
+      "studyTier": 0,
+      "referenceText": "Shuttle bus is a channel connecting airport terminal and the flight scheduled far in the designated parking area. It is used to transport passengers between terminal and the flight. At the airport, the shuttle bus is almost the largest mobile carrier except the aircraft.",
+      "referenceTextZh": "摆渡车能够连接航站楼和距离航站楼较远的航班。它的作用是在飞机和航站楼间运送乘客。在机场，摆渡车几乎是除飞机外最大的移动载体。"
+    },
+    {
+      "id": "opi-fzy-110296",
+      "taskTitle": "Figure 15-8",
+      "audioText": "What should be paid more attention to when evacuating passengers in emergency?",
+      "audioTextZh": "在对乘客进行紧急疏散时应更加注意哪些因素？",
+      "studyTier": 0,
+      "referenceText": "The crew must be forceful in their use of commands to get passengers out of the aircraft. During the evacuation progress, cabin crew must grasp the exit assist handles and position themselves correctly in the assist space so that they can not be pushed out of the exit, and must not interfere with evacuating passengers. What’s more, it is necessary to maintain a balanced flow of passengers to all usable exits, minimizing the evacuation time.",
+      "referenceTextZh": "机组在对乘客进行指挥时态度要坚定。在疏散过程中，机组成员必须要抓紧出口扶手，保持在正确的位置上防止被推出出口外，并且不能干扰疏散的乘客们。还有就是要保证每个可用出口的人流量均衡，缩短疏散的时间。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

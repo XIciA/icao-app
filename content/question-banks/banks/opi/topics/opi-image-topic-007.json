@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-007",
   "name": "高高原机场",
   "declaredCardCount": 4,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-007.jpg",
-      "imageAlt": "高高原机场航空场景图片"
+      "imageAlt": "高高原机场航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-007-q01",
@@ -35,5 +35,6 @@
       "referenceText": "Pilots face thin air, longer landing distances, reduced engine performance, and terrain restrictions.",
       "referenceTextZh": "飞行员面临的挑战包括空气稀薄、着陆距离增加、发动机性能下降和地形限制。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

@@ -1,0 +1,62 @@
+{
+  "id": "opi-fzy-655",
+  "name": "Season",
+  "declaredCardCount": 6,
+  "cards": [
+    {
+      "id": "opi-fzy-118193",
+      "taskTitle": "Weather/Season-1",
+      "audioText": "What's the weather like today? How do you think today's weather?",
+      "audioTextZh": "今天天气如何？/你觉得今天天气怎么样？",
+      "studyTier": 0,
+      "referenceText": "It's a sunny/ rainy/ snowy/ foggy day.",
+      "referenceTextZh": "今天晴天/下雨/下雪/起雾了。"
+    },
+    {
+      "id": "opi-fzy-118194",
+      "taskTitle": "Weather/Season-2",
+      "audioText": "Do you think today's weather is good for flight?",
+      "audioTextZh": "你觉得今天的天气是否利于飞行？",
+      "studyTier": 0,
+      "referenceText": "Yes, I think so. It's a sunny day, with calm wind and good visibility, so it's a good day for flight.\nNo, I don't think so, because the wind is strong, so there might be turbulence. / It's rainy, and the visibility is bad, so I don't think it's a good day for flight.",
+      "referenceTextZh": "嗯，是的。今天天气晴朗，静风，能见度很好，所以今天是飞行的好天气。\n\n今天天气不利于飞行。因为风很大，可能会有颠簸。/今天下雨了，能见度很差，所以我觉得今天不适合飞行。"
+    },
+    {
+      "id": "opi-fzy-118195",
+      "taskTitle": "Weather/Season-3",
+      "audioText": "What weather conditions do you think are good/favorable for flight?",
+      "audioTextZh": "你觉得什么天气条件比较适合飞行？",
+      "studyTier": 0,
+      "referenceText": "I think sunny day is good for flight. Because in sunny day, both the visibility and braking action are good, there is low risk/possibility of accidents.",
+      "referenceTextZh": "我觉得晴天适合飞行。因为晴天能见度好，刹车效应好，事故发生率因而会比较低。"
+    },
+    {
+      "id": "opi-fzy-118196",
+      "taskTitle": "Weather/Season-4",
+      "audioText": "Which season do you like best? Why?",
+      "audioTextZh": "你最喜欢哪个季节？为什么？",
+      "studyTier": 0,
+      "referenceText": "I like spring/ autumn most, because it's neither too cold nor too hot in spring/ autumn.",
+      "referenceTextZh": "我最喜欢春天/秋天，因为这个季节既不太冷也不太热。"
+    },
+    {
+      "id": "opi-fzy-118197",
+      "taskTitle": "Weather/Season-5",
+      "audioText": "Which is your least favorite season?",
+      "audioTextZh": "哪个季节是你最不喜欢的？",
+      "studyTier": 0,
+      "referenceText": "Well, I don't like winter, because I have to wear a lot to keep my body warm. And I don't want to go out or do anything in the cold weather.",
+      "referenceTextZh": "嗯，我不喜欢冬天，因为冬天我得穿很厚的衣服来保暖。并且冬天我不想出去，不想做任何事情。"
+    },
+    {
+      "id": "opi-fzy-118198",
+      "taskTitle": "Weather/Season-6",
+      "audioText": "Which season is best for flying in northern china?",
+      "audioTextZh": "在中国北方，你认为哪个季节更适合飞行呢？",
+      "studyTier": 0,
+      "referenceText": "In my opinion, spring is best for flying in northern china, because the weather is warm, and there is no strong wind or heavy rain either.",
+      "referenceTextZh": "我认为在北方春季更适合飞行，天气暖和，也没有大风或大雨天气。"
+    }
+  ],
+  "categoryId": "opi-category-01"
+}

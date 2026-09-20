@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0084",
   "name": "CSN 001 老太太受伤 2座乘客重伤",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "脱离跑道后，跟随引导车到 213 号登机口，CSN 001。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1457.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

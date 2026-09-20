@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0115",
   "name": "CSN 3102 机翼/控制面损坏 积冰/防冰 TCAS机动",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "取消速度限制，在 QNH 1014 上下降至 1500 米，CSN 3102。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

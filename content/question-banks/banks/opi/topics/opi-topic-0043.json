@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0043",
   "name": "飞行员健康与机组失能",
   "declaredCardCount": 12,
@@ -100,5 +99,6 @@
       "referenceText": "An operator can arrange reasonable duty and rest periods to reduce fatigue and provide training on incapacitation and emergency takeovers. It can equip aircraft with medical kits and encourage crews to report health problems promptly. The operator can then adjust schedules when necessary to protect flight safety.",
       "referenceTextZh": "运营人可以合理安排值勤和休息时间以减轻疲劳，并提供失能和紧急接替训练。运营人可以为飞机配备医疗箱，并鼓励机组及时报告健康问题；随后在必要时调整排班，以保护飞行安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

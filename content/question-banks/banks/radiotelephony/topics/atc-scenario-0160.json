@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0160",
   "name": "CSN 302 雷暴绕飞 TCAS机动 备降/返航",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "Runway 19，许可落地，CSN 302。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0050",
   "name": "擦尾",
   "declaredCardCount": 9,
@@ -76,5 +75,6 @@
       "referenceText": "I would identify the applicable pitch attitude by checking the aircraft flight manual and the SOP for my aircraft type. I would then monitor pitch carefully during takeoff rotation and the landing flare so that I did not exceed that limit.",
       "referenceTextZh": "我会查阅该机型的飞机飞行手册和标准操作程序，确定适用的俯仰姿态限制。随后在起飞抬轮和着陆拉平时认真监控俯仰，避免超过该限制。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

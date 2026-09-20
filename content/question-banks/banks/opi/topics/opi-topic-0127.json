@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0127",
   "name": "发动机问题",
   "declaredCardCount": 13,
@@ -108,5 +107,6 @@
       "referenceText": "Yes, I think it is difficult. With one engine inoperative, the aircraft has less power and can be more difficult to control.",
       "referenceTextZh": "是的，我认为这很困难。一台发动机不工作时，飞机的动力会减小，也可能更难操纵。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

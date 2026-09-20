@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0057",
   "name": "FCTM",
   "declaredCardCount": 3,
@@ -28,5 +27,6 @@
       "referenceText": "I use the FCTM during initial and recurrent training, especially in ground school and the simulator. For example, I can study its maneuver guidance to improve an aircraft-handling technique before practising it in the simulator.",
       "referenceTextZh": "我在初始和复训期间使用 FCTM，尤其是在地面课程和模拟机训练中。例如，在模拟机练习前，我可以学习其中的机动指导来改进飞机操纵技术。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

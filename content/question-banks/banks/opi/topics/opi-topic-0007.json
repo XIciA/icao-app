@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0007",
   "name": "CRM与机组协作",
   "declaredCardCount": 35,
@@ -150,11 +149,12 @@
     },
     {
       "id": "opi-core-161",
-      "taskTitle": "人的因素-CRM与机组协作-19",
+      "taskTitle": "8.飞行中人的因素-2",
       "audioText": "What are the duties of the cabin crew?",
-      "audioTextZh": "客舱机组有哪些职责？",
-      "referenceText": "Cabin crew ensure passenger safety and order, conduct safety checks and cabin inspections, operate emergency equipment, and provide in-flight service. They also assist with boarding and disembarkation and report abnormal cabin situations to the pilots promptly.",
-      "referenceTextZh": "客舱机组负责旅客安全和客舱秩序，实施安全检查和客舱检查，操作应急设备，并提供机上服务。他们还协助旅客登机和下机，并及时向飞行员报告客舱异常情况。"
+      "audioTextZh": "乘务人员的主要职责是什么？",
+      "studyTier": 1,
+      "referenceText": "The main duties of the cabin crew are:\nServe passengers food and drinks.\nTeach passengers how to use emergency equipment.\nReport emergency to cockpit.",
+      "referenceTextZh": "机组人员的主要职责是：\n给乘客提供餐食和饮料。\n教给乘客如何使用紧急设备。\n将紧急情况反馈到驾驶舱。"
     },
     {
       "id": "opi-core-162",
@@ -284,5 +284,6 @@
       "referenceText": "Cabin crew should immediately report smoke or fire, a passenger with a serious illness or severe injury, and any sign of structural damage to the aircraft.",
       "referenceTextZh": "客舱机组应立即报告烟雾或火灾、旅客严重患病或重伤，以及飞机出现任何结构损伤迹象。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

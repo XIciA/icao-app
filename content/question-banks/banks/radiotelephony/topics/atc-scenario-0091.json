@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0091",
   "name": "CES 529 右空调过热都失效 5乘客重伤",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "杭州塔台，CES 529，已建立 ILS 进近跑道 06。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1579.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

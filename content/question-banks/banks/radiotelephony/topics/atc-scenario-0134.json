@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0134",
   "name": "CES 728 颠簸 积冰/防冰 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "收到，谢谢，CES 728。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-032-ces728-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

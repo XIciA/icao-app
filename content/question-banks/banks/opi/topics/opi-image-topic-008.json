@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-008",
   "name": "模拟机训练",
   "declaredCardCount": 3,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-008.jpg",
-      "imageAlt": "模拟机训练航空场景图片"
+      "imageAlt": "模拟机训练航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-008-q01",
@@ -27,5 +27,6 @@
       "referenceText": "Simulator training can improve situational awareness. It gives pilots clearer information, supports better monitoring, and gives them more time to make safe decisions.",
       "referenceTextZh": "模拟机训练可以提高情景意识。它能为飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

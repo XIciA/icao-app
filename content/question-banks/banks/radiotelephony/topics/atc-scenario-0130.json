@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0130",
   "name": "ACA 517 发动机失效 颠簸 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "跑道有片状积水，刹车效应中等，ACA 517。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

@@ -1,0 +1,43 @@
+{
+  "id": "opi-fzy-846",
+  "name": "Big international airport",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-fzy-846-image-1",
+      "kind": "image",
+      "taskTitle": "Big international airport · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-846.png",
+      "imageAlt": "Big international airport，用于本话题的看图描述和问答",
+      "studyTier": 1
+    },
+    {
+      "id": "opi-fzy-152416",
+      "taskTitle": "Big international airport-1",
+      "audioText": "Can you describe this picture?",
+      "audioTextZh": "你可以描述一下这张图吗？",
+      "studyTier": 1,
+      "referenceText": "Yes. I can. The picture shows the outside view of an airport terminal.\nI guess it is Beijing Daxing International Airport.\nThis is a complicated airport with many stands and runways.",
+      "referenceTextZh": "好的。这是一张机场航站楼的外观图。\n我猜它是北京大兴国际机场。\n这是一个复杂机场，有很多的停机位和跑道。"
+    },
+    {
+      "id": "opi-fzy-152417",
+      "taskTitle": "Big international airport-2",
+      "audioText": "Compared with small airports, what are the advantages and disadvantages of big international airports?",
+      "audioTextZh": "与小机场相比，大型国际机场的优缺点是什么？",
+      "studyTier": 1,
+      "referenceText": "Advantages: there are more advanced facilities and gates.\nThey will meet take-off and landing requirements for large aircraft.\nDisadvantages: traffic congestion and air traffic control are easier to occur.\nThe complicated airport layout make it easier for pilots to get confused.",
+      "referenceTextZh": "优点：有更先进的设施和更多的停机位。\n它们能够满足大型飞机的起降要求。\n缺点：容易发生交通拥堵和流控。\n复杂的机场布局容易使飞行员困惑。"
+    },
+    {
+      "id": "opi-fzy-152418",
+      "taskTitle": "Big international airport-3",
+      "audioText": "Can you name some special equipment in an airport?",
+      "audioTextZh": "你能说出机场里的专业设备吗？",
+      "studyTier": 1,
+      "referenceText": "There are some special equipment used in an airport.\nFor example, runway lighting equipment, bird-scaring equipment, tug, navigation equipment, like NDB and VOR.",
+      "referenceTextZh": "机场配备了很多专业设备。如：跑道灯光设备、驱鸟设备、拖车、导航设备，比如：NDB和VOR。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

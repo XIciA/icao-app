@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0029",
   "name": "BAW 141 进云 雷击 领航",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "可以目视进近，加入跑道 36L 最后进近，118.1，BAW 141。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/511.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

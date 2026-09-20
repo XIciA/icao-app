@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0061",
   "name": "CCA 985 电子舱问题 电子舱冒烟",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉塔台，CCA 985，烟雾无法控制，请求着陆时提供应急服务。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1061.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

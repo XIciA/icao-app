@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0152",
   "name": "CCA 572 雷暴绕飞 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "加速脱离 Runway 18，CCA 572。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

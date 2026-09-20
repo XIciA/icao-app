@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0065",
   "name": "开槽跑道与湿滑道面",
   "declaredCardCount": 14,
@@ -116,5 +115,6 @@
       "referenceText": "During preflight planning, I obtain runway information from ATIS, NOTAMs, ATC, and pilot reports. I check the surface condition, braking action, length, width, and any reported obstacles. I then compare those details with the aircraft’s operational requirements to decide whether the runway is suitable.",
       "referenceTextZh": "飞行前计划期间，我会从 ATIS、航行通告、空中交通管制和飞行员报告中获取跑道信息。我会检查道面状况、制动作用、长度、宽度和任何报告的障碍物，再把这些信息与飞机运行要求比较，判断跑道是否适用。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

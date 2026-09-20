@@ -1,0 +1,70 @@
+{
+  "id": "opi-fzy-842",
+  "name": "Low visibility operation",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-fzy-842-image-1",
+      "kind": "image",
+      "taskTitle": "Low visibility operation · 看图材料",
+      "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-842.png",
+      "imageAlt": "Low visibility operation，用于本话题的看图描述和问答",
+      "studyTier": 2
+    },
+    {
+      "id": "opi-fzy-152383",
+      "taskTitle": "Low visibility operation-1",
+      "audioText": "Can you describe this picture?",
+      "audioTextZh": "你可以描述一下这张图片吗？",
+      "studyTier": 2,
+      "referenceText": "There are two airplanes operating in heavy foggy weather. One is taxiing on the runway, the other is landing, I guess.",
+      "referenceTextZh": "有两架飞机正在大雾天气下运行。一架在跑道上滑行，另一架我猜是在降落。"
+    },
+    {
+      "id": "opi-fzy-152384",
+      "taskTitle": "Low visibility operation-2",
+      "audioText": "What are the possible results if the aircraft operates in low visibility?",
+      "audioTextZh": "在低能见下运行会产生的结果有哪些？",
+      "studyTier": 1,
+      "referenceText": "Many ground incidents or ground accidents are related to low visibility operation.\nFor example, ground collision, runway incursion, and taxiing to the wrong taxiway.",
+      "referenceTextZh": "很多地面事件或者地面事故都和低能见度有关。\n比如：地面冲突，跑道入侵，滑错滑行道等。"
+    },
+    {
+      "id": "opi-fzy-152385",
+      "taskTitle": "Low visibility operation-3",
+      "audioText": "If you taxi to the wrong taxiway in low visibility, what should you do?",
+      "audioTextZh": "如果你在低能见度下滑错滑行道，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "If this situation happens, I will stop the aircraft immediately to avoid further accidents.\nThen, I will report my situation to ATC and hold at current position for further instructions.\nIf necessary, I will request a follow-me car to avoid this kind of incidents again.",
+      "referenceTextZh": "如果发生了此类情形，我会立即停止飞机，防止后续的事故发生。\n然后，我会将情况报告给管制员，在当前位置等待后续指令。\n如有必要，我会申请一辆引导车，防止此类事件再次发生。"
+    },
+    {
+      "id": "opi-fzy-152386",
+      "taskTitle": "Low visibility operation-4",
+      "audioText": "How to avoid ground incidents or accidents in low visibility?",
+      "audioTextZh": "在低能见度下，如何避免地面事件或者地面事故发生？",
+      "studyTier": 1,
+      "referenceText": "There are many measures we can take to avoid the ground incidents or ground accidents in low visibility.\nFirst, we should follow ATC instructions and have good situation awareness.\nNext, before we entering the runway, we should get ATC clearance.\nIf we have any doubt about ATC clearance, we should confirm with ATC.",
+      "referenceTextZh": "我们可以采取很多措施来避免地面事件或地面事故在低能见度下发生。\n首先，我们应该听从ATC的指令，有良好的情景意识。\n然后，在我们进入跑道之前，我们应该获得空中交通管制许可。\n如果我们对空管许可有疑问，我们应该和空管确认。"
+    },
+    {
+      "id": "opi-fzy-166040",
+      "taskTitle": "Low visibility operation-5",
+      "audioText": "What are the advantages of using HUD in heavy fog weather?",
+      "audioTextZh": "在浓雾天气下，使用HUD的优势是什么？",
+      "studyTier": 1,
+      "referenceText": "HUD can lower takeoff and landing standards, and it can provide precise flare-out guidance. Through the data displayed on HUD, pilots can accurately predict the location of the touchdown point and correct the flight status according to the data indication on the HUD at any time, so as to reduce the probability of unsafe events such as too long flare distance and high landing load.",
+      "referenceTextZh": "HUD能够降低起降标准，它能够提供精确的拉平引导。通过HUD显示的数据，飞行员可以精确预测接地点位置，随时根据HUD上的数据指示修正飞行状态，减少飞机平飘距离过长、着陆载荷大等不安全事件的发生概率。"
+    },
+    {
+      "id": "opi-fzy-166041",
+      "taskTitle": "Low visibility operation-6",
+      "audioText": "Do you think HUD operations in adverse weather will be a trend in the future?",
+      "audioTextZh": "你认为不利天气下HUD运行会变成一种趋势吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, HUD operations can lower takeoff and landing standards and reduce delays due to adverse weather, so I think it will be a trend in the future.",
+      "referenceTextZh": "是的，HUD运行可以降低起飞和降落标准，减少因不利天气而导致的延误，因此我认为HUD运行会变成一种趋势。"
+    }
+  ],
+  "categoryId": "opi-category-08"
+}

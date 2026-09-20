@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1391",
+  "name": "CCA321 [偏置，雹击，改航]",
+  "declaredCardCount": 18,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-215370",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-1",
+      "audioText": "B: [Your call sign is CCA321, from Beijing to Guangzhou. You are now cruising at 10400m with squawk 3210, estimating fly over LKO at time 30, next DAPRO at 45. Make an initial contact with Guangzhou Control.]",
+      "audioTextZh": "【你的呼号是国航321，从北京飞往广州。巡航高度10400米，应答机3210，预计30分飞过LKO，45分飞过DAPRO，与广州区调建立初始联系。】",
+      "referenceText": "Guangzhou Control, CCA321, Beijing to Guangzhou, cruising at 10400m with squawk 3210, estimating fly over LKO at time 30, next DAPRO at 45.",
+      "referenceTextZh": "广州区调，国航321，北京飞往广州，巡航高度10400米，应答机3210，预计30分飞过LKO，45分飞过DAPRO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4b6d456fb5392af7a72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215371",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-2",
+      "audioText": "C: CCA321, Guangzhou Control, radar identified, keep present altitude and increase speed to Mach number decimal 82.",
+      "audioTextZh": "国航321，武汉区调，雷达识别了，保持当前高度，速度增加至马赫数点82。",
+      "referenceText": "Keep present altitude and increase speed to Mach number decimal 82, CCA321.",
+      "referenceTextZh": "保持当前高度，速度增加至马赫数点82，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/19e17b67d0d8b9f54f05.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215372",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-3",
+      "audioText": "B: [Your weather radar indicates there is a large groups of cumulonimbus cloud 5 miles east of DAPRO, so you want to deviate to the right and join airway R343 after LKO, inform controller.]",
+      "audioTextZh": "【你的气象雷达显示DAPRO以东5海里有大片积雨云，所以你想在LKO之后右偏航并加入航路R343，告知管制员。】",
+      "referenceText": "Guangzhou Control, CCA321, request deviation to the right and join airway R343 after LKO due CBs ahead.",
+      "referenceTextZh": "广州区调，国航321，由于前方有积雨云，请求LKO之后右偏航并加入航路R343。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ecf524ee576b19bda22e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215373",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-4",
+      "audioText": "C: CCA321, roger, cleared to deviate to the right and join airway R343 after LKO, fly direct to LLC.",
+      "audioTextZh": "国航321，收到，可以在LKO之后右偏航并加入航路R343，直飞LLC。",
+      "referenceText": "Cleared to deviate to the right and join airway R343 after LKO, fly direct to LLC, CCA321.",
+      "referenceTextZh": "可以在LKO之后右偏航并加入航路R343，直飞LLC，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7e7ea2930d669d2b444.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215374",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-5",
+      "audioText": "B: [A dissipating thunderstorm is ahead of you and you are near the zero-degree isotherm, so you need an additional offset 20 miles to the right.]",
+      "audioTextZh": "你前方有雷暴在消散，你在零度等温线附近，所以你需要再向右偏置20海里。",
+      "referenceText": "Guangzhou Control, CCA321, request an additional offset 20 miles to the right, a dissipating thunderstorm is ahead of us and we are near the zero-degree isotherm.",
+      "referenceTextZh": "广州区调，国航321，请求偏置右海里，前方有雷暴在消散，在零度等温线附近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5de1cdf699411989a7f5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215375",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-6",
+      "audioText": "C: CCA321, negative deviation 20 miles to the right due restricted area.\nB: [You want to know if you can deviate 100 miles to the left.]",
+      "audioTextZh": "国航321，由于禁飞区域，不能右偏置20海里。\n【你想知道你是否可以左偏100海里。】",
+      "referenceText": "Confirm we can deviate 100 miles to the left, CCA321.",
+      "referenceTextZh": "证实能否左偏100海里，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a7240c31bf87b20a7f1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215376",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-7",
+      "audioText": "CCA321, cleared to deviate 100 miles to the left.",
+      "audioTextZh": "国航321，可以左偏置100海里。",
+      "referenceText": "Cleared to deviate 100 miles to the left, CCA321.",
+      "referenceTextZh": "可以左偏置100海里，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e3983205f8f994d64f03.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215377",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-8",
+      "audioText": "B: [You are now 15 miles southwest of LKO. Suddenly, you encountered heavy hail. The windshield was smashed and multiple cracks obscured your view. The airspeed indications in the cockpit have also become unreliable. You want to divert to Wuhan Airport. Make a distress call to Guangzhou Control.]",
+      "audioTextZh": "【你现在在LKO西南15海里，突然，你遇到了强冰雹，你的风挡破裂了，裂纹阻挡了你的视野，驾驶舱里的空速指示也变得不可靠。你想改航至武汉机场，向广州区调做一个遇险通话。】",
+      "referenceText": "Mayday Mayday Mayday, Guangzhou Control, CCA321, 15 miles southwest of LKO, we encountered heavy hail. The windshield was smashed and multiple cracks obscured our view, The airspeed indications in the cockpit have also become unreliable. Request divert to Wuhan Airport.",
+      "referenceTextZh": "Mayday Mayday Mayday，广州区调，国航321，LKO西南15海里，我们遇到了冰雹，我们的风挡破裂了，裂纹阻挡了我们的视野，驾驶舱里的空速指示也变得不可靠。请求改航至武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5ce02fcb5897079ae453.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215378",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-9",
+      "audioText": "C: CCA321, Guangzhou Control, roger Mayday, descend to 7800m initially.\nB: [You want to descend to 6600m instead.]",
+      "audioTextZh": "国航321，广州区调，收到Mayday，初始下降到7800米。\n【你想下降到6600米。】",
+      "referenceText": "Request 6600m, CCA321.",
+      "referenceTextZh": "请求6600米，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e82d91e583a667bc686.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215379",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-10",
+      "audioText": "C: CCA321, 6600m is not available due current military activity, descend to 7800m initially.",
+      "audioTextZh": "国航321，由于当前军机活动，6600米不可用，初始下降到7800米。",
+      "referenceText": "Roger, descend to 7800m initially, CCA321.",
+      "referenceTextZh": "收到，初始下降到7800米，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c15657e1b4899678ceb6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215380",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-11",
+      "audioText": "C: CCA321, when ready, report onboard situation.\nB: [Tell the controller that the engines and control surfaces are working normally, and there is no passenger injury in the cabin.]",
+      "audioTextZh": "国航321，可以的时候，报告机上情况。\n【告诉管制员，发动机和操纵面工作正常，客舱内无乘客受伤。】",
+      "referenceText": "Guangzhou Control, CCA321, the engines and control surfaces are working normally, and there is no passenger injury in the cabin.",
+      "referenceTextZh": "广州区调，国航321，发动机和操纵面工作正常，客舱内无乘客受伤。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ccf8b219552a730dee57.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215381",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-12",
+      "audioText": "C: CCA321, roger, turn right heading 329, further descend to 5400m.",
+      "audioTextZh": "国航321，收到，右转航向329，继续下降到5400米。",
+      "referenceText": "Turn right heading 329, further descend to 5400m, CCA321.",
+      "referenceTextZh": "右转航向329，继续下降到5400米，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7912ff4871b57056776b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215382",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-13",
+      "audioText": "B: [Because neither of you nor co-pilot can see through the windshield, you want to activate the auto-land on Wuhan Airport, inform Guangzhou Control.]",
+      "audioTextZh": "【由于你和你的副驾都无法通过风挡看清外面，因此你想在武汉机场激活了自动着陆，告知广州区调。】",
+      "referenceText": "Guangzhou Control, CCA321, request activate the auto-land on Wuhan Airport due neither of us can see through the windshield.",
+      "referenceTextZh": "广州区调，国航321，由我们都无法通过风挡看清外面，请求在武汉机场激活自动着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a6b218bd2fbe5b807a96.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215383",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-14",
+      "audioText": "C: CCA321, roger, we’ve informed your situation to Wuhan Airport, and necessary emergency assistance will be provided upon your landing, continue descend to 4200m and expect LKO-02 arrival.",
+      "audioTextZh": "国航321，收到，我们已经将你的情况告知武汉机场，在你着陆后将提供必要的协助，继续下降到4200米，预计LKO-02进场。",
+      "referenceText": "Roger, continue descend to 4200m and expect LKO-02 arrival, CCA321.",
+      "referenceTextZh": "收到，继续下降到4200米，预计LKO-02进场，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2e4a958a40fc91a71b24.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215384",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-15",
+      "audioText": "B: [During the approach to Wuhan Airport, your auto-landing system has malfunctioned, and you can not continue approach and land on Wuhan airport, you want to know the nearest suitable alternate airport, ask Wuhan Approach.]",
+      "audioTextZh": "【在进近武汉机场过程中，你的自动着陆系统失效了。你无法继续进近并在武汉机场着陆，你想知道最近的备降机场，询问武汉进近。】",
+      "referenceText": "Wuhan Approach, CCA321, our auto-landing system has malfunctioned, we can not continue approach and land on Wuhan airport, request nearest suitable alternate airport.",
+      "referenceTextZh": "武汉进近，国航321，我们的自动着陆系统失效了，无法继续进近并在武汉机场着陆，请求最近的备降机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b5e60f5a00a4b9355822.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215385",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-16",
+      "audioText": "C: CCA321, roger, your nearest suitable alternate airport is Changsha Airport, which is 120 miles away, confirm you want to divert to Changsha?\nB: [Tell the controller you decided to divert to Changsha.]",
+      "audioTextZh": "国航321，收到，你的最近的备降机场是长沙机场，120海里，证实你想备降至长沙？\n【告知管制员，你想备降至长沙。】",
+      "referenceText": "Affirm, request divert to Changsha, CCA321.",
+      "referenceTextZh": "是的，请求备降至长沙，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7eea5a5a3661802bcc36.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215386",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-17",
+      "audioText": "C: CCA321, Wuhan Approach, cleared divert to Changsha, fly heading 140 and rejoin airway R343, fly direct to LCC.",
+      "audioTextZh": "国航321，武汉进近，可以备降至长沙，航向140，加入R343航路，直飞LCC。",
+      "referenceText": "Cleared divert to Changsha, heading 140 and rejoin airway R343, fly direct to LCC, CCA321.",
+      "referenceTextZh": "可以备降至长沙，航向140，加入R343航路，直飞LCC，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8db5460a6c06c25c5aa9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-215387",
+      "taskTitle": "27-CCA321 [偏置，雹击，改航]-18",
+      "audioText": "C: CCA321, further descend to 2400m, contact Changsha Approach on 124.35.",
+      "audioTextZh": "国航321，继续下降到2400米，联系长沙进近124.35.。",
+      "referenceText": "Descend to 2400m, 124.35., CCA321.",
+      "referenceTextZh": "下降到2400米，联系长沙进近124.35.，国航321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fbbb7a9b8474ad675c50.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

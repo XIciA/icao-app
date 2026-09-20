@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0037",
   "name": "UAL 805 雷暴绕飞",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "恢复自主导航，直飞 DAPRO，UAL 805。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/645.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

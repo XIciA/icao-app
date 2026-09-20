@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0178",
   "name": "QFA 160 机翼/控制面损坏 燃油紧急 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "否定，我们仍有超过 2 小时续航燃油，QFA 160。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

@@ -1,0 +1,100 @@
+{
+  "id": "atc-fzy-789",
+  "name": "CCA976 [中断起飞，烟雾告警]",
+  "declaredCardCount": 10,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-152547",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-1",
+      "audioText": "CCA976, Delivery. cleared to Beijing via flight planned route, ZF01 departure, initially climb to 2700 meters, cruising level 8100, after airborne contact departure on 125.9, squawk 6563, runway 04.",
+      "audioTextZh": "国航976，放行，可以经由计划航路飞往北京。ZF-01离场，初始爬升至2700米，巡航高度8100米，升空后联系离场125.9，应答机编码6563，跑道04。",
+      "referenceText": "Cleared to Beijing via flight planned route, ZF01 departure, initially climb to 2700m, cruising level 8100m, after airborne contact 125.9, squawk 6563, runway 04, CCA976.",
+      "referenceTextZh": "可以经由计划航路飞往北京。ZF-01离场，初始爬升至2700米，巡航高度8100米，升空后联系离场125.9，应答机编码6563，跑道04，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b10b22c77478fa769270.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152548",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-2",
+      "audioText": "CCA 976, there is a disabled 737 on the taxiway A. follow the follow-me car on A9, hold short of runway 04.",
+      "audioTextZh": "国航976，A滑行道上有一架B737故障了，跟着A9上的引导车，在跑道04外的等待。",
+      "referenceText": "Following the follow-me-car on A9, hold short of runway 04, CCA976.",
+      "referenceTextZh": "跟随着A9上的引导车，在跑道04外的等待，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3bb8c6bd41e4101094f3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152549",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-3",
+      "audioText": "CCA 976, traffic on 11 kilometers final, wind calm, cleared for immediate takeoff.",
+      "audioTextZh": "国航976，在五边11公里处有航空器，静风，可以立即起飞。",
+      "referenceText": "Cleared for immediate takeoff, runway 04, CCA976.",
+      "referenceTextZh": "可以立即起飞，跑道04，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4de5935839340b811be.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152550",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-4",
+      "audioText": "As you apply power you hear a master warning alarm, tell the Tower that you are stopping.",
+      "audioTextZh": "当你加油门时，你听到一个主警告，告诉塔台你停下飞机了。",
+      "referenceText": "Wuhan Tower, CCA 976, stopping due master warning.",
+      "referenceTextZh": "武汉塔台，国航976，由于主警告，我们停下来了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/11b7c4fcac8657b55fac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152551",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-5",
+      "audioText": "CCA 976, expedite taxiing and vacate at F, call the Ground when clear.",
+      "audioTextZh": "国航976，加速滑行，通过F脱离跑道，脱离跑道后联系地面。",
+      "referenceText": "Expedite taxiing and vacate at F, wilco, CCA976.",
+      "referenceTextZh": "加速滑行，通过F脱离，照办，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/85f5ba9d476127ed8f15.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152552",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-6",
+      "audioText": "Tell the Ground you are clear of runway 04 at F and you have aborted takeoff because the flap setting was incorrect.",
+      "audioTextZh": "告诉地面，你通过F脱离了跑道，并且由于襟翼设置不正确，中断了起飞。",
+      "referenceText": "Wuhan Ground, CCA976, clear of runway 04 at F, we aborted takeoff due to incorrect flap setting.",
+      "referenceTextZh": "武汉地面，国航976，在F脱离了跑道，由于襟翼设置不正确，我们中断了起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fd20f349ab47eda53e60.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152553",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-7",
+      "audioText": "CCA976, cancel SID, maintain runway heading to 1500 meters, track direct ZF, runway 04, cleared for takeoff.",
+      "audioTextZh": "国航976，取消SID，保持跑道航向直到1500米，直飞ZF，跑道04，可以起飞。",
+      "referenceText": "Cleared for takeoff. runway 04. After departure, cancel SID, maintain runway heading to 1500m, direct to ZF, CCA976.",
+      "referenceTextZh": "可以起飞，跑道04，离场后，取消SID，保持跑道航向直到1500米，直飞ZF，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c86974cddc62a29858c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152554",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-8",
+      "audioText": "After gear retraction you have a smoke warning, tell Wuhan Departure you require an immediate return with a priority landing on 04, this is a distress call.",
+      "audioTextZh": "收轮后，你收到一个烟雾警告，告诉武汉离场，你需要立即返场，优先在跑道04着陆，这是遇险呼叫。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Departure, CCA976, smoke warning, request immediate return and priority landing on runway 04.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY, 武汉离场，国航976，烟雾告警，请求立即返场，优先在跑道04着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ebd684effdf10299e00.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152555",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-9",
+      "audioText": "CCA976, roger, continue climb to 900 meters, turn right heading 070, expect radar vector for runway 04.",
+      "audioTextZh": "国航976，收到，继续爬升到900米，右转航向070，预计雷达引导至跑道04。",
+      "referenceText": "Climbing to 900, turn right heading 070, expect radar vector for runway 04, CCA976.",
+      "referenceTextZh": "爬升到900米，右转航向070，预计雷达引导至跑道04，国航976。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e71995529a0ebe1c06a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-152556",
+      "taskTitle": "31-CCA976 [中断起飞，烟雾告警]-10",
+      "audioText": "The source of smoke cannot be determined and is becoming unbearable, notify Wuhan tower you hope to turn left to make a landing on the nearest available runway 22, this is a distress call.",
+      "audioTextZh": "烟雾的来源无法确定，而且越来越难以忍受，通知武汉塔台，你希望左转，在最近的可用跑道22上降落，这是遇险呼叫。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Tower, CCA976, the smoke is unbearable, request left turn and land at runway 22.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY, 武汉塔台，国航976，烟雾无法忍受，请求左转，在跑道22降落。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/29235ce1f7f772f81500.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0051",
   "name": "ACA 521 滑行道障碍 机长心脏病",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "请求救护车和医生，ACA 521。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/885.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

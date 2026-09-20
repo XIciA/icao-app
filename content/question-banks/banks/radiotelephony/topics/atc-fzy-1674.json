@@ -1,0 +1,181 @@
+{
+  "id": "atc-fzy-1674",
+  "name": "CSN9302 [雹击，仪表失真]",
+  "declaredCardCount": 19,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-224066",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-1",
+      "audioText": "B: [Your callsign is CSN9302, you’re parking at bay 235. You’re ready for pushback, contact Guangzhou Ground.]",
+      "audioTextZh": "B：【你的呼号是南方9302，你现在在235号机位，你准备好推出了，联系广州地面。】",
+      "referenceText": "Guangzhou Ground, CSN9302, bay 235, ready for pushback.",
+      "referenceTextZh": "广州地面，南方9302，235号机位，请求推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ebf8e828e850a6c8ddcd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224067",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-2",
+      "audioText": "C: CSN9302, standby, expect 20 minutes delay. Thunderstorm is approaching the airport, numerous aircraft holding for weather improvement.",
+      "audioTextZh": "C：南方9302，稍等，预计延误20分钟，雷暴正接近机场，很多飞机正在等待天气变好。",
+      "referenceText": "Roger, standby, CSN9302.",
+      "referenceTextZh": "收到，稍等，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5347fce3c84662f7a8a6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224068",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-3",
+      "audioText": "C: CSN9302, report tug is ready.\nB: [Tell the controller the tug is ready and you’re ready for pushback.]",
+      "audioTextZh": "C: 南方9302，拖车就位后报。\nB：【告知管制员拖车已就位，你准备好推出了。】",
+      "referenceText": "Guangzhou Ground, CSN9302, the tug is ready, and we’re ready for pushback.",
+      "referenceTextZh": "广州地面，南方9302，拖车已就位，我们准备好推出了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f683c79cdf2348f5da96.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224069",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-4",
+      "audioText": "C: CSN9302, pushback approved, facing east, runway 19, standby for startup.",
+      "audioTextZh": "C：南方9302，可以推出，朝东，跑道19，稍等开车。",
+      "referenceText": "Pushback approved, facing east, runway 19, standby for startup, CSN9302.",
+      "referenceTextZh": "可以推出，朝东，跑道19，稍等开车，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/777c755083c85273a0c2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224070",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-5",
+      "audioText": "B: [Now you’ve been waiting for the startup clearance for about 15 minutes, contact Guangzhou Ground for startup.]",
+      "audioTextZh": "B:【你等你的开车许可已经等了15分钟了，联系广州地面，申请开车。】",
+      "referenceText": "Guangzhou Ground, CSN9302, we’ve been waiting for about 15 minutes, request startup.",
+      "referenceTextZh": "广州地面，南方9302，我们已经等了15分钟了，申请开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0d5065ea28630e5889ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224071",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-6",
+      "audioText": "C: CSN9302, expect departure at 49, startup at own discretion, QNH1008, report when ready for taxi.",
+      "audioTextZh": "C：南方9302，预计离场时间49分，自行决定开车，修压1008，准备好滑行时报。",
+      "referenceText": "Expect departure at 49, startup at own discretion, QNH1008, CSN9302.",
+      "referenceTextZh": "预计离场时间49分，自行决定开车，修压1008，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/541fa14f646e4884b500.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224072",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-7",
+      "audioText": "B: [Now you’re ready for taxi.]",
+      "audioTextZh": "B:【你现在准备好滑行了。】",
+      "referenceText": "Guangzhou Ground, CSN9302, request taxi.",
+      "referenceTextZh": "广州地面，南方9302，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4c46485eb7f703296ede.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224073",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-8",
+      "audioText": "C: CSN9302, taxi via J, D, T3 and T4 to the holding point of runway 19.",
+      "audioTextZh": "C: 南方9302，经由滑行道J，D，T3和T4滑行到跑道19外等待点。",
+      "referenceText": "Taxi via J, D, T3 and T4 to the holding point of runway 19, CSN9302.",
+      "referenceTextZh": "经由滑行道J，D，T3和T4滑行到跑道19外等待点，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7561e7626ce6a4f79c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224074",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-9",
+      "audioText": "C: CSN9302, hold short of T3, give way to A320 crossing from right to left.",
+      "audioTextZh": "C：南方9302，在T3外等待，给从右向左穿越的A320让路。",
+      "referenceText": "Hold short of T3, give way to A320, CSN9302.",
+      "referenceTextZh": "在T3外等待，给A320让路，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8ef55e2613fa66b19aca.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224075",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-10",
+      "audioText": "C: CSN9302, traffic is clear, continue taxi via D, T3 and T4 to the holding point of runway 19.",
+      "audioTextZh": "C：南方9302，冲突解除，继续沿D，T3和T4滑行到跑道19外等待点。",
+      "referenceText": "Continue taxi via D, T3 and T4 to the holding point of runway 19, CSN9302.",
+      "referenceTextZh": "继续沿D，T3和T4滑行到跑道19外等待点，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea972059c9a300e354f8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224076",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-11",
+      "audioText": "B: [Now you’re at the holding point F1, runway 19, you’re fully ready, contact Guangzhou Tower.]",
+      "audioTextZh": "B：【你现在在F1等待点，跑道19，你完全准备好了，联系武汉塔台。】",
+      "referenceText": "Guangzhou Tower, CSN9302, holding point F1, runway 19, fully ready.",
+      "referenceTextZh": "广州塔台，南方9302，F1等待点，跑道19，完全准备好了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bfa2b01e0bb3f328c8b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224077",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-12",
+      "audioText": "C: CSN9302, line up and wait runway 19, caution thunderstorm building up at the departure end of runway 19.\nB: [Read back ATC’s clearance and request right turn when airborne due weather.]",
+      "audioTextZh": "C：南方9302，上跑道19等待，注意跑道19一边（离场边）上有雷暴正在生成。\nB：【复诵管制的许可，由于天气，起飞后请求右转。】",
+      "referenceText": "Line up and wait runway 19, request right turn when airborne due weather, CSN9302.",
+      "referenceTextZh": "上跑道19等待，由于天气，起飞后请求右转，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2eb7699cd1881cf7cf97.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224078",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-13",
+      "audioText": "C: CSN9302, turn right heading 120, runway 19, cleared for takeoff, surface wind 180 degrees, 5m/s.",
+      "audioTextZh": "C：南方9302，右转航向120，跑道19，可以起飞，地面风180度，5米每秒。",
+      "referenceText": "Turn right heading 120, runway 19, cleared for takeoff, CSN9302.",
+      "referenceTextZh": "右转航向120，跑道19，可以起飞，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/96cb3eced08e688f048f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224079",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-14",
+      "audioText": "B: [Now you’re airborne, maintaining 2100m, heading 120. Contact Guangzhou Approach.]",
+      "audioTextZh": "B：【你现在起飞了，正保持2100米，航向120，联系广州进近。】",
+      "referenceText": "Guangzhou Approach, CSN9302, airborne, maintaining 2100m, heading 120.",
+      "referenceTextZh": "广州进近，南方9302，正保持2100米，航向120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40d5d485866bdd08cd3f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224080",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-15",
+      "audioText": "C: CSN9302, climb to 2700m on QNH 1008.",
+      "audioTextZh": "C：南方9302，上2700米，修压1008。",
+      "referenceText": "Climb to 2700m on QNH 1008, CSN9302.",
+      "referenceTextZh": "上2700米，修压1008，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4c3f64c91462ff5cffa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224081",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-16",
+      "audioText": "B: [During climb, suddenly you’ve been struck by a foreign object, possibly hail strike. Your instruments are indicating incorrectly. Report this situation to Guangzhou Approach and request return to land.]",
+      "audioTextZh": "B：【在爬升过程中，你突然遭遇外物撞击，可能是冰雹。仪表显示异常。向广州进近报告此情况，请求返航着陆。】",
+      "referenceText": "Guangzhou Approach, CSN9302, we’ve been struck by a foreign object, possibly hail strike, our instruments are indicating incorrectly, request return to land.",
+      "referenceTextZh": "广州进近，南方9302，我们被外物撞击，可能是冰雹，仪表显示异常，请求返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f22fa5ffbb0e152ffd2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224082",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-17",
+      "audioText": "C: CSN9302, roger, descend to 1500m, expect radar vectors for final runway 19.",
+      "audioTextZh": "C：南方9302，下1500米，预计雷达引导至19跑道五边。",
+      "referenceText": "Descend to 1500m, expect radar vectors for final runway 19, CSN9302.",
+      "referenceTextZh": "下1500米，预计雷达引导至19跑道五边，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4b8171314db4c8482747.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224083",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-18",
+      "audioText": "C: CSN9302, contact Tower 118.5.",
+      "audioTextZh": "C：南方9302，联系塔台118.5。",
+      "referenceText": "118.5, CSN9302.",
+      "referenceTextZh": "118.5，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/916faa4bc2a628df5feb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224084",
+      "taskTitle": "72-CSN9302 [雹击，仪表失真]-19",
+      "audioText": "C: CSN9302, runway 19, cleared to land.",
+      "audioTextZh": "C：南方9302，跑道19，可以落地。",
+      "referenceText": "Runway 19, cleared to land, CSN9302.",
+      "referenceTextZh": "跑道19，可以落地，南方9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f6a13e803407c4a2423b.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

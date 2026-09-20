@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0113",
   "name": "CSN 542 撞气球 可疑炸弹/无人认领行李 机翼/控制面损坏",
   "declaredCardCount": 20,
@@ -184,5 +183,6 @@
       "referenceTextZh": "跑道 02 可以着陆，CSN 542。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q20.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

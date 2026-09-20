@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0007",
   "name": "SIA 852 地面车堵滑行道 前轮爆胎",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "武汉地面，SIA 852，请求客梯和摆渡车在停机坪准备好。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/126.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

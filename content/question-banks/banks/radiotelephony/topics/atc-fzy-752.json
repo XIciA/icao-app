@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-752",
+  "name": "CCA985 [电子设备烟雾]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-151850",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-1",
+      "audioText": "[Your call sign is CCA985 from Wuhan to Frankfurt, you are at Bay 221, with information H, contact Wuhan Delivery for airway clearance.]",
+      "audioTextZh": "你的呼号是国航985，从武汉飞往法兰克福，你现在在221号停机位，收到通播H，联系武汉放行，请求航路许可。",
+      "referenceText": "Wuhan Delivery, CCA985, bay 221, information H, request ATC clearance to Frankfurt.",
+      "referenceTextZh": "武汉放行，国航985，221号停机位，收到通播H，请求飞往法兰克福的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e6d50ab7a841713471f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151851",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-2",
+      "audioText": "CCA985, Wuhan Delivery, cleared to Frankfurt via flight planned route, runway 04, follow ZF-01D departure, initially climb to 1500m on QNH, cruising level 9500m, departure frequency 119.35.",
+      "audioTextZh": "国航985，武汉放行，可以经由计划航路飞往法兰克福，跑道04，按照ZF-01离场，初始爬升至修正海压1500米，巡航高度9500米，离场频率119.35。",
+      "referenceText": "Cleared to Frankfurt via flight planned route, runway 04, follow ZF-01D departure, initially climb to 1500m on QNH, cruising level 9500m, departure frequency 119.35. CCA985.",
+      "referenceTextZh": "可以经由计划航路飞往法兰克福，跑道04，按照ZF-01离场，初始爬升至修正海压1500米，巡航高度9500米，离场频率119.35，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c4dc5976c95d715fb32c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151852",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-3",
+      "audioText": "CCA985, read back correct, your slot time is 1435, contact Wuhan Ground on 121.85.",
+      "audioTextZh": "国航985，复诵正确，你的离场时间是14:35，联系武汉地面121.85。",
+      "referenceText": "Slot time 1435, 121.85. CCA985.\n（注：只要是管制员给出的离场时间（限制或许可时间），飞行员必须复诵。如果是随口告知的参考时间（非指令），可以不复诵，但谨慎起见，复诵更安全）",
+      "referenceTextZh": "离场时间14：35，121.85，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/524227b25278d59f0401.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151853",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-4",
+      "audioText": "[During pushback you have a small avionics problem, you wish to remain on taxiway Z4 for approximately 5 minutes, inform Wuhan Ground.]",
+      "audioTextZh": "[在推出过程中，你的航空电子设备出现了一些小问题，你希望在Z4滑行道上停留大约5分钟，告知武汉地面]",
+      "referenceText": "Wuhan Ground, CCA985, request remain on taxiway Z4 for about 5mins due a small avionics problem.",
+      "referenceTextZh": "武汉地面，国航985，由于航空电子设备出现小问题，请求在Z4滑行道停留大约5分钟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5217c4095a48bab3cf2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151854",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-5",
+      "audioText": "Roger, CCA985, advise when you are ready.\n[You decided that the maintenance are needed before departure, tell Wuhan Ground you want to return to Gate 221 to have the plane checked by the engineers.]",
+      "audioTextZh": "收到，国航985，准备好后告知。\n[你决定，在离场前，需要对飞机进行维修，告诉武汉地面，你想返回到221号停机位，让机务检查飞机]",
+      "referenceText": "Wuhan Ground, CCA985, request return to Gate 221 to have the plane checked by the engineers.",
+      "referenceTextZh": "武汉地面，国航985，请求返回221号停机位，让机务检查飞机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3712eb1fc01acd09cb0c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151855",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-6",
+      "audioText": "CCA985, Gate 221 will be occupied by another aircraft in a minute, standby a while, I will assign you another gate.",
+      "audioTextZh": "国航985, 221号停机位会在1分钟后被另一架飞机占用，稍等下，我会给你分配别的机位。",
+      "referenceText": "Roger, standby. CCA985.",
+      "referenceTextZh": "收到，稍等，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/396b3677175623666fe5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151856",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-7",
+      "audioText": "[The engineers have fixed the avionic problem, request Wuhan Ground for engine start up.]",
+      "audioTextZh": "[工程师解决了航空电子设备的问题，联系武汉地面，请求启动发动机]",
+      "referenceText": "Wuhan Ground, CCA985, avionic problem fixed, request start-up.",
+      "referenceTextZh": "武汉地面，国航985，航空电子设备问题解决，请求启动发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/849c2e7fce552d511a94.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151857",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-8",
+      "audioText": "CCA985, your slot time is expired, your new slot time is 1615, start up at own discretion.",
+      "audioTextZh": "国航985，你的离场时间已经过期，你的新的离场时间是16:15，自行决定开车时间。",
+      "referenceText": "1615, start up at own discretion, CCA985.",
+      "referenceTextZh": "16：15，自行决定开车时间，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/75b54c724dd7f8aacd81.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151858",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-9",
+      "audioText": "[Now you have completed the engine start up procedures, call Wuhan Ground for taxiway instructions.]",
+      "audioTextZh": "[现在，你完成了发动机启动程序，呼叫武汉地面，请求滑行指令]",
+      "referenceText": "Wuhan Ground, CCA985, request taxi.",
+      "referenceTextZh": "武汉地面，国航985，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/13c6c98fc8df3770cad1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151859",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-10",
+      "audioText": "CCA985, taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4.",
+      "audioTextZh": "国航985，经由滑行道C、M、A，滑行至跑道04，在Z4等待。",
+      "referenceText": "Taxi via taxiway C, M, A to holding point runway 04. Hold short of Z4. CCA985.",
+      "referenceTextZh": "经由滑行道C、M、A，滑行至跑道04，在Z4等待，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0254686a9c923d9d5c30.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151860",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-11",
+      "audioText": "[You are now at holding point of runway 04, you are ready for takeoff, call Wuhan Tower.]",
+      "audioTextZh": "[你现在在跑道04等待点，你准备好起飞了，呼叫武汉塔台]",
+      "referenceText": "Wuhan Tower, CCA985, holding point of runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，国航985，跑道04等待点, 准备好离场了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2d945a2294653c43fe5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151861",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-12",
+      "audioText": "CCA985, surface wind 070 degrees, 3 m/s, cleared for takeoff runway 04.",
+      "audioTextZh": "国航985，地面风070度，3米每秒， 可以起飞，跑道04。",
+      "referenceText": "Cleared for takeoff runway 04, CCA985.",
+      "referenceTextZh": "可以起飞，跑道04，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b6a32a89944837332113.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151862",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-13",
+      "audioText": "[Shortly after airborne, smoke is coming from the avionics bay, make a distress call to Wuhan Tower and ask for immediate return for landing. ]",
+      "audioTextZh": "[离地不久，烟雾从电子设备舱冒出，向武汉塔台做遇险通话，请求立即返场着陆]",
+      "referenceText": "Mayday Mayday Mayday, Wuhan Tower, CCA985, request immediate return for landing due avionics bay smoke.",
+      "referenceTextZh": "Mayday，Mayday，Mayday，武汉塔台，国航985，由于烟雾从电子设备舱冒出，请求立即返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4e78057eb58d73af8166.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151863",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-14",
+      "audioText": "[Tell Tower you want to level off at 600m and remain on the Tower frequency.]",
+      "audioTextZh": "[告诉塔台，你希望在600米改平，并保持塔台频率]",
+      "referenceText": "Wuhan Tower, CCA985, request level off at 600m and remain on the Tower frequency.",
+      "referenceTextZh": "武汉塔台，国航985，请求在600米改平，并保持塔台频率。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d441f06cc787de416b0e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151864",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-15",
+      "audioText": "[Tell Wuhan Tower you want to fly a right hand circuit for immediate landing runway 04.]",
+      "audioTextZh": "告诉武汉塔台，你要飞右起落，并立即降落04跑道。",
+      "referenceText": "Wuhan Tower, CCA985, request a right hand circuit for immediate landing runway 04.",
+      "referenceTextZh": "武汉塔台，国航985，请求飞右起落，并立即降落04跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/496a62205478136837a2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151865",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-16",
+      "audioText": "CCA985, maintain 600m, turn right to join the downwind for runway 04, report when turning base.",
+      "audioTextZh": "国航985，保持600米，右转加入三边，跑道04，进入四边后报。",
+      "referenceText": "Maintain 600m, turn right to join the downwind for runway 04, report when turning base. CCA985.",
+      "referenceTextZh": "保持600米，右转加入三边，跑道04，进入四边后报，国航985。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4af4ecbbf637c25c7bfd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151866",
+      "taskTitle": "33-CCA985 [电子设备烟雾]-17",
+      "audioText": "[The smoke situation cannot be controlled, request emergency services upon landing.]",
+      "audioTextZh": "[烟雾情况不受控制，在着陆后请求紧急服务]",
+      "referenceText": "Wuhan Tower, CCA985, request emergency services upon landing due the smoke situation cannot be controlled.",
+      "referenceTextZh": "武汉塔台，国航985，由于烟雾情况不受控制，在着陆后请求紧急服务。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5fbcfb93b050498fbe36.mp3"
+    }
+  ],
+  "categoryId": "atc-cca"
+}

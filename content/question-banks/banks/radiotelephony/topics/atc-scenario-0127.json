@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0127",
   "name": "ACA 331 烟雾 TCAS机动 备降/返航",
   "declaredCardCount": 19,
@@ -175,5 +174,6 @@
       "referenceTextZh": "郑州进近，ACA 331，请求救护车和危险品专家。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q19.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

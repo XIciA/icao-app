@@ -1,0 +1,619 @@
+{
+  "id": "atc-fzy-1444",
+  "name": "放行许可",
+  "declaredCardCount": 61,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-209540",
+      "taskTitle": "【练习版】ATC clearance放行许可-1",
+      "audioText": "[Your call sign is AFR101, your destination is Paris, you are going to depart from Beijing airport at Gate 301. Now call Beijing Delivery, and request ATC clearance.]",
+      "audioTextZh": "【你的呼号是法航101，目的地巴黎，从北京出发，301号机位，现在联系北京放行，请求放行。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Delivery, AFR101, Gate 301, request ATC clearance.",
+      "referenceTextZh": "北京放行，法航101，机位301，请求放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b0cf83d4fcb1b96ca74a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209541",
+      "taskTitle": "【练习版】ATC clearance放行许可-2",
+      "audioText": "AFR101, cleared to Paris, via flight planned route, initially climb to 6600m, RENOB32 departure, request level change for 10400m en route, squawk 1725, runway 36R, departure frequency 127.75.",
+      "audioTextZh": "法航101，可以按计划航路放行至巴黎，起始高度6600米。RENOB32离场，在航路上申请巡航高度10400m，应答机1725，跑道36右，离场频率127.75。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Paris, via flight planned route, initially climb to 6600m, RENOB32 departure, request level change for 10400m en route, squawk 1725, runway 36R, departure frequency 127.75, AFR101.",
+      "referenceTextZh": "可以按计划航路放行至巴黎，起始高度6600米，RENOB32离场，航路申请更改巡航10400米，应答机1725，跑道36右，离场频率127.75，法航101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/67cb059dcf49407e4f2e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209542",
+      "taskTitle": "【练习版】ATC clearance放行许可-3",
+      "audioText": "[Your call sign is QFA029, your destination is Dubai, you are going to depart from Beijing airport at Gate 302. Now call Beijing Delivery, and request ATC clearance.]",
+      "audioTextZh": "【你的呼号是QFA（澳航）029，目的地是迪拜，你正准备从北京机场302机位出发。现在联系北京放行并请求ATC许可。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Delivery, QFA029, Gate 302, request ATC clearance to Dubai.",
+      "referenceTextZh": "北京放行，澳航029，机位302，请求飞往迪拜的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a9eb3bf23d80b182b3f5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209543",
+      "taskTitle": "【练习版】ATC clearance放行许可-4",
+      "audioText": "QFA029, Beijing Delivery, cleared to Dubai, via flight planned route, initially climb to 6600m, RENOB 32 departure, request level change for 11000m en route, squawk 1725, runway 36R, departure frequency 127.75.",
+      "audioTextZh": "澳航029，北京放行，可以按计划航路飞往迪拜，起始高度6600米，RENOB 32离场，更改巡航高度11000米在航路上申请，应答机1725，跑道36R，离场频率127.75。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Dubai, via flight planned route, initially climb to 6600m, RENOB 32 departure, request level change for 11000m en route, squawk 1725, runway 36R, departure frequency 127.75. QFA029.",
+      "referenceTextZh": "按计划航路飞往迪拜，起始高度6600米，按RENOB 32离场，改变高度11000米在航路上申请，应答机1725，跑道36R，离场频率127.75，澳航029。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0fc77a2296c34d089362.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209544",
+      "taskTitle": "【练习版】ATC clearance放行许可-5",
+      "audioText": "[You are the pilot of CSN6306 which is bound for Dalian. You are going to depart from Shanghai airport at Gate 23. Now call Delivery, and request your ATC clearance.]",
+      "audioTextZh": "【你是航班CSN6306的飞行员，飞机飞往大连。你正在上海机场23号停机位准备出发，现在联系放行并请求放行许可。】",
+      "studyTier": 0,
+      "referenceText": "Shanghai Delivery, CSN6306, destination Dalian, Gate 23, request ATC clearance.",
+      "referenceTextZh": "上海放行，南航6306，目的地大连，23号门，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4268459193527668bdd5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209545",
+      "taskTitle": "【练习版】ATC clearance放行许可-6",
+      "audioText": "CSN6306, Shanghai Delivery, copy clearance, cleared to Dalian, via flight planned route, D2 Departure, initial climb to 900m. Request level change en route, squawk 4736.",
+      "audioTextZh": "南航6306，上海放行，抄收放行许可，可以按计划航路飞往大连，按D2离场，起始高度900米。在航路上申请改变高度，应答机4736。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Dalian, via flight planned route, D2 Departure, initial climb to 900m. Request level change en route, squawk 4736, CSN6306.",
+      "referenceTextZh": "按计划航路飞往大连，D2离场，起始高度900米。在航路上申请改变高度，应答机4736.",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/48f45b6c70949a529b90.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209546",
+      "taskTitle": "【练习版】ATC clearance放行许可-7",
+      "audioText": "[Your call sign is AFR151. You are at Wuhan airport, at Gate 215, information G received, request ATC clearance to Paris.]",
+      "audioTextZh": "【你的呼号是法航151，在武汉机场，215号机位，收到通播G，向ATC申请放行至巴黎。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, AFR151, Gate 215, information G, destination Paris, request ATC clearance.",
+      "referenceTextZh": "武汉放行，法航151，215号机位，通播G，目的地巴黎，申请ATC放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/01222663fccd15cb907b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209547",
+      "taskTitle": "【练习版】ATC clearance放行许可-8",
+      "audioText": "AFR151, Wuhan Delivery, cleared to Paris via flight planned route, LKO-01 departure, runway 04, initial climb 1800m, cruising level 10700m, contact Departure on 119.7, squawk 2521.",
+      "audioTextZh": "法航151，武汉放行，可以按计划航路飞往巴黎，LKO-01号离场，跑道04，起始高度1800米，巡航高度10700米，离场频率119.7，应答机2521。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Paris via flight planned route, LKO-01 departure, runway 04, initial climb 1800m, cruising level 10700m, 119.7, squawk 2521, AFR151.",
+      "referenceTextZh": "可以按计划航路放行至巴黎，LKO-01号离场，跑道04，起始高度1800米，巡航高度10700米，119.7，应答机2521，法航151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e53d6813f70ccba0e555.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209548",
+      "taskTitle": "【练习版】ATC clearance放行许可-9",
+      "audioText": "[You are BAW951, at Stand 709, with information L, call Wuhan Delivery and request ATC clearance to London.]",
+      "audioTextZh": "【你是英航951，709号机位，通播L，呼叫武汉放行，请求放行至伦敦。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, BAW951, Parking bay 709, information L, destination London, request ATC clearance.",
+      "referenceTextZh": "武汉放行，英航951，停机位709，通播L，目的地伦敦，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8611b364d0cbfe81420.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209549",
+      "taskTitle": "【练习版】ATC clearance放行许可-10",
+      "audioText": "BAW951, Wuhan Delivery, cleared to London, via flight planned route. ZF-05D departure, initially climb 1500m, cruising level 10700m. Runway 18L, after departure, contact 124.7, squawk 4503.",
+      "audioTextZh": "英航951，武汉放行，可以按计划航路飞往伦敦。ZF-05D离场，起始高度1500米，巡航高度10700米，跑道18左，离场联系124.7，应答机4503。",
+      "studyTier": 0,
+      "referenceText": "Cleared to London, flight planned route, SID ZF-05D, initial climb 1500m, cruising level 10700m, runway 18L, after departure contact 124.7, squaw 4503. BAW951.",
+      "referenceTextZh": "可以按计划航路飞往伦敦。ZF-05D离场，起始高度1500米，巡航高度10700米，跑道18左，离场联系124.7，应答机4503，英航951。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/263cb73837422bad1896.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209550",
+      "taskTitle": "【练习版】ATC clearance放行许可-11",
+      "audioText": "[Your call sign is CCA532, you are at Wuhan airport, Gate 211, information V received, request ATC clearance to Changsha.]",
+      "audioTextZh": "【你的呼号是国航532，你在武汉机场，211号机位，收到通播V，请求ATC放行至长沙。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CCA 532, Gate 211, information V, destination Changsha, request ATC clearance.",
+      "referenceTextZh": "武汉放行，国航532，211号机位，通播V，目的地长沙，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/faa161089e63fb46060b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209551",
+      "taskTitle": "【练习版】ATC clearance放行许可-12",
+      "audioText": "CCA532, Wuhan Delivery, cleared to Changsha via flight planned route, LKO-02 departure, initial climb 1800m, cruising level 8400m, runway 04, contact Departure on 119.7, squawk 2016.",
+      "audioTextZh": "国航532，武汉放行，可以按计划航路放行至长沙，LKO-02离场，起始高度1800米，巡航高度8400米，跑道04，联系离场119.7，应答机2016。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Changsha via flight planned route, LKO-02 departure, initial climb 1800m, cruising level 8400m, runway 04, Departure 119.7, squawk 2016, CCA532.",
+      "referenceTextZh": "可以按计划航路飞往长沙，LKO-02离场，起始高度1800米，巡航高度8400米，跑道04，联系离场119.7，应答机2016，国航532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e21785596d90a70ce863.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209569",
+      "taskTitle": "【练习版】ATC clearance放行许可-13",
+      "audioText": "[Your call sign is CES582 from Wuhan to Beijing. Parking at Gate 223. When you are ready, request ATC clearance.]",
+      "audioTextZh": "【你的呼号是东方582，飞机从武汉飞往北京。停机位223号。准备好时，请求ATC放行。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CES582, Gate 223, destination Beijing request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方582，223号机位，目的地北京，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4ac8636dad1a43921b8a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209570",
+      "taskTitle": "【练习版】ATC clearance放行许可-14",
+      "audioText": "CES582 cleared to Beijing, via flight planned route ZF-03 departure, initial climb 1500m, cruising level 10700m, departure frequency 124.5, squawk code 3415.",
+      "audioTextZh": "东方582，可以按计划航路放行到北京，ZF-03离场，起始高度1500米，巡航高度10700米，离场频率124.5，应答机编码3415。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Beijing, via flight planned route, ZF-03 departure, initial climb 1500m, cruising level 10700m, departure 124.5, squawk 3415, CES582.",
+      "referenceTextZh": "可以按计划航路飞往北京，ZF-03离场，起始高度1500米，巡航高度10700米，离场频率124.5，应答机编码3415，东方582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2b6cb0239f87b3b571d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209571",
+      "taskTitle": "【练习版】ATC clearance放行许可-15",
+      "audioText": "[You are CSN339, parking at Gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.]",
+      "audioTextZh": "【你是南航339，停在51号机位，通播C，从武汉飞往广州，请求ATC放行。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CSN339, Parking bay 51, information C, destination Guangzhou, request ATC clearance.",
+      "referenceTextZh": "武汉放行，南航339，51号机位，通播C，目的地广州，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/819a51eeb0957ff7d2d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209572",
+      "taskTitle": "【练习版】ATC clearance放行许可-16",
+      "audioText": "CSN339, Wuhan Delivery, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO-01 departure, initially climb 1200m, cruising level 9800m, after departure contact 119.7, squawk 2515.[Read Back]",
+      "audioTextZh": "南航339，武汉放行，可以按计划航路飞往广州，使用跑道36右，LKO-01离场，起始高度1200米，巡航高度9800米，离场后联系119.7，应答机2515。【复诵】",
+      "studyTier": 0,
+      "referenceText": "Cleared to Guangzhou, via flight planned route, runway 36R LKO-01 departure, initial climb 1200m, cruising level 9800m, departure frequency 119.7, squawk 2515, CSN339.",
+      "referenceTextZh": "可以按计划航路飞往广州，使用跑道36右，LKO-01离场，起始高度1200米，巡航高度9800米，离场后联系119.7，应答机2515，南航339。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68bc972a465e59f7eac.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209573",
+      "taskTitle": "【练习版】ATC clearance放行许可-17",
+      "audioText": "[You are CSN351, from Wuhan to Moscow, Gate 224, with information C, request ATC clearance.]",
+      "audioTextZh": "【你是南航351，从武汉飞往莫斯科，224号机位，通播C，请求ATC放行。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CSN351, Parking bay 224, information C, destination Moscow, request ATC clearance.",
+      "referenceTextZh": "武汉放行，南航351，机位224，通播C，目的地莫斯科，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/25d67a108cc4c03f831a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209574",
+      "taskTitle": "【练习版】ATC clearance放行许可-18",
+      "audioText": "CSN351, Wuhan Delivery, cleared to Moscow via flight planned route, follow ZF-01D departure, cruising level 8900m, initial altitude 1500m, departure frequency 119.45, squawk 3223.[Read Back]",
+      "audioTextZh": "南航351，武汉放行，可以按计划航路飞往莫斯科，ZF-01D离场，巡航高度8900米，起始高度1500米，离场频率119.45，应答机3223。【复诵】",
+      "studyTier": 0,
+      "referenceText": "Cleared to Moscow, via flight planned route, ZF-01D departure, cruising level 8900m, initial climb 1500m, departure frequency 119.45, squawk 3223, CSN351.",
+      "referenceTextZh": "可以按计划航路飞往莫斯科，ZF-01D离场，巡航高度8900米，起始高度1500米，离场频率119.45，应答机3223，南航351。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b542abdba2c19ef16033.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209575",
+      "taskTitle": "【练习版】ATC clearance放行许可-19",
+      "audioText": "[Your call sign is CSN582. You are at Gate K10 with information B. Request clearance from Chengdu Delivery.]",
+      "audioTextZh": "【你的呼号是南航582。K10号机位，通播B。向成都放行申请放行许可。】",
+      "studyTier": 0,
+      "referenceText": "Chengdu Delivery, CSN582, Gate K10, information B, destination Shanghai request ATC clearance.",
+      "referenceTextZh": "成都放行，南航582，K10号机位，通播B，目的地上海，向ATC申请放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7be2cd0718112629e853.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209576",
+      "taskTitle": "【练习版】ATC clearance放行许可-20",
+      "audioText": "CSN582, Chengdu Delivery, good afternoon. Information B valid. Cleared to Shanghai via flight planned route. Runway 02. After departure turn right direct to BHS. Initial climb 1200m on QNH 1021. After departure contact 125.6, squawk 3656.",
+      "audioTextZh": "南航582，成都放行，下午好。通播B有效。可以按计划航路放行至上海。跑道02。起飞后右转直飞BHS。起始高度修正海压1200米。修正海压1021。起飞后联系125.6，应答机3656。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Shanghai via flight planned route. Runway 02. After departure turn right direct to BHS. Initial climb 1200m on QNH 1021. After departure contact 125.6, squawk 3656, CSN582.",
+      "referenceTextZh": "可以按计划航路飞往上海。跑道02。离场后右转直飞BHS。起始高度修正海压1200米，修正海压1021。离场后联系125.6，应答机3656，南航582。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5ee128ee3d3fb8545ed.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209577",
+      "taskTitle": "【练习版】ATC clearance放行许可-21",
+      "audioText": "[You are CES615, from Wuhan to Shanghai Hongqiao airport. Gate 232, Information S, ask for ATC clearance.]",
+      "audioTextZh": "【你是东方615，从武汉飞往上海虹桥机场。232号机位，通播S，请求ATC放行。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CES615, Gate 232, information S, destination Shanghai Hongqiao, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方615，232号机位，通播S，目的地上海虹桥机场，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/083684fe39e2e5160f8f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209578",
+      "taskTitle": "【练习版】ATC clearance放行许可-22",
+      "audioText": "CES615, Wuhan Delivery, cleared to Shanghai Hongqiao via flight planned route, runway 36R, ZF-01 departure, initial climb 1800m, cruising level 10100m, after departure contact 123.4, squawk 4125.",
+      "audioTextZh": "东方615，武汉放行，可以按计划航路飞往上海虹桥机场，跑道36右，ZF-01离场，起始高度1800米，巡航高度10100米，起飞后联系123.4，应答机4125。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Shanghai Hongqiao, via flight planned route, runway 36R, ZF-01 departure, initial climb 1800m, cruising level 10100m, departure 123.4, squawk 4125, CES615.",
+      "referenceTextZh": "可以按计划航路飞往上海虹桥机场，跑道36右，ZF-01离场，起始高度1800米，巡航高度10100米，离场后联系123.4，应答机4125，东方615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/aed9c4234cac324f8e42.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209579",
+      "taskTitle": "【练习版】ATC clearance放行许可-23",
+      "audioText": "[Your call sign is QFA953. You are close to departure time. However, one passenger is missing while his checked luggage is still onboard. For security reasons, contact company operations to offload the baggage.]",
+      "audioTextZh": "【你的呼号是澳航953，快到离场时间了；然而一名乘客未登机，他的行李还在机上。安全起见，联系公司运行部门卸下他的行李。】",
+      "studyTier": 0,
+      "referenceText": "Operations, QFA953, we are close to our departure time. One passenger is still missing; Request offload his checked luggage.",
+      "referenceTextZh": "运控，澳航953，我们快到起飞时间了。一名乘客仍未登机，请求卸下他的托运行李。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5fd4956c959933ed5dc8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209580",
+      "taskTitle": "【练习版】ATC clearance放行许可-24",
+      "audioText": "[Now you are at Gate 51, ATIS W, request ATC clearance to Los Angeles.]",
+      "audioTextZh": "【你在51号机位，通播W，请求ATC放行至洛杉矶。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, QFA953, Gate 51, information W, destination Los Angeles, request ATC clearance.",
+      "referenceTextZh": "武汉放行，澳航953，51号机位，通播W，目的地洛杉矶，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0639b069d563b0e7d6f2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209581",
+      "taskTitle": "【练习版】ATC clearance放行许可-25",
+      "audioText": "QFA953, Wuhan Delivery, cleared to Los Angeles via flight planned route, runway 36R, follow LKO-01 departure, initial climb 1500m, cruising level 9800m, departure frequency 119.7, squawk 2515.",
+      "audioTextZh": "澳航953，武汉放行，可以按计划航路飞往洛杉矶，跑道36右，LKO-01离场，起始高度1500米，巡航高度9800米，离场频率119.7，应答机2515。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Los Angeles, flight planned route, LKO-01 departure runway 36R, initial climb 1500m, cruising level 9800m, departure 119.7, squawk 2515, QFA953.",
+      "referenceTextZh": "可以按计划航路飞往洛杉矶，跑道36右，LKO-01离场，起始高度1500米，巡航高度9800米，离场频率119.7，应答机2515，澳航953。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/622a23d7ef45d614cba7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209582",
+      "taskTitle": "【练习版】ATC clearance放行许可-26",
+      "audioText": "[Your call sign is SIA233. Stand 215, from Wuhan to Singapore, information B. Request ATC clearance to Singapore.]",
+      "audioTextZh": "【你的呼号是新航233，215号机位，从武汉飞往新加坡，通播B，向ATC申请放行至新加坡。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, SIA233, Stand 215, information B, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航233，215号机位，通播B，目的地新加坡，向ATC申请放行至新加坡。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/151a32b4d62c0ccce7fa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209583",
+      "taskTitle": "【练习版】ATC clearance放行许可-27",
+      "audioText": "SIA233, Wuhan Delivery cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325.",
+      "audioTextZh": "题目翻译：新航233，武汉放行，可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325, SIA233.",
+      "referenceTextZh": "可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325, 新航233。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c90560899d1881efa7cb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209584",
+      "taskTitle": "【练习版】ATC clearance放行许可-28",
+      "audioText": "[Your call sign is SIA854, you are at Wuhan Airport, Stand 7, received ATIS M, request ATC clearance to Singapore.]",
+      "audioTextZh": "【你的呼号是新航854，你在武汉机场，7号机位，收到通播M，向ATC申请放行至新加坡。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, SIA854, Stand 7, information M, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航854，7号机位，通播M，目的地新加坡，申请ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3b2bfb674cfc58bb9e8f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209585",
+      "taskTitle": "【练习版】ATC clearance放行许可-29",
+      "audioText": "SIA854, Wuhan Delivery, cleared to Singapore via flight planned route, ZF-03D departure, initial climb 1800m, cruising level 10400m, runway 18L, departure frequency 124.7, squawk 4615.",
+      "audioTextZh": "新航854，武汉放行，可以按计划航路飞往新加坡，ZF-03D离场，起始高度1800米，巡航高度10400米，跑道18左，离场频率124.7，应答机4615。",
+      "studyTier": 0,
+      "referenceText": "Cleared to Singapore via flight planned route, ZF-03D departure, initial climb 1800m, cruising level 10400m, runway 18L, departure frequency 124.7, squawk 4615, SIA854.",
+      "referenceTextZh": "可以按计划航路飞往新加坡，ZF-03D离场，起始高度1800米，巡航高度10400米，跑道18左，离场频率124.7，应答机4615，新航854。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/24dd7c0763bd25f5a2c4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224775",
+      "taskTitle": "采分点练习-放行许可-1",
+      "audioText": "B: [Your callsign is SIA308, a flight from Wuhan to Frankfurt. You’re parking at gate M5. You got the latest information G, contact Wuhan Delivery for ATC clearance.]",
+      "audioTextZh": "B: 你的呼号是新航308，从武汉飞往法兰克福。你现在在M5号停机位。你收到了最新的通播G，联系武汉放行，申请管制许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, SIA308, gate M5, information G, request ATC clearance to Frankfurt.",
+      "referenceTextZh": "武汉放行，新航308，M5号机位，通播G，请求飞往法兰克福的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f26912450bb8f72d0525.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224776",
+      "taskTitle": "采分点练习-放行许可-2",
+      "audioText": "C: SIA308, cleared to Frankfurt via flight planned route, departure runway 04, initial climb 1600m, ZF05 departure, cruising level 11000m, departure frequency 119.45, squawk 3763.",
+      "audioTextZh": "C: 新航308，可以经由计划航路飞往法兰克福，离场跑道04，初始爬升至1600米，ZF05离场，巡航高度11000米，离场频率119.45，应答机3763。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Frankfurt via flight planned route, departure runway 04, initial climb 1600m, ZF05 departure, cruising level 11000m, departure frequency 119.45, squawk 3763, SIA308.",
+      "referenceTextZh": "可以经由计划航路飞往法兰克福，离场跑道04，初始爬升至16500米，ZF05离场，巡航高度11000米，离场频率119.45，应答机3763，新航308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7f00e78aca2995c1d058.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224777",
+      "taskTitle": "采分点练习-放行许可-3",
+      "audioText": "B: [Your call sign is CSN3001, a Boeing 737 from Guangzhou to Wuhan. You are now at gate 185 with information X, request ATC clearance.]",
+      "audioTextZh": "【你的呼号是南方3001，一架从广州飞往武汉的波音737。你现在在185号停机位，收到通播X，请求管制许可。】",
+      "studyTier": 2,
+      "referenceText": "Guangzhou Delivery, CSN3001, gate 185 with information X, request ATC clearance to Wuhan.",
+      "referenceTextZh": "广州放行，南方3001，185号停机位，通播X，请求去往武汉的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68d076e774482b7e499.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224778",
+      "taskTitle": "采分点练习-放行许可-4",
+      "audioText": "C: CSN3001, Guangzhou Delivery, cleared to destination via flight planned route, runway in use 02R, YIN-94D departure, initial altitude 600m, cruising level 10400m, contact Departure 121.05 when airborne, squawk 3561.",
+      "audioTextZh": "C: 南方3001，广州放行，可以经由计划航路飞往目的地，使用跑道02右，YIN-94D离场，初始高度600米，巡航高度10400米，起飞后联系离场121.05，应答机编码3561。",
+      "studyTier": 2,
+      "referenceText": "Cleared to destination via flight planned route, runway in use 02R, YIN-94D departure, initial altitude 600m, cruising level 10400m, contact Departure 121.05 when airborne, squawk 3561, CSN3001.",
+      "referenceTextZh": "经由计划航路飞往目的地，使用跑道02右，YIN-94D离场，初始高度600米，巡航高度10400米，起飞后联系离场121.05，应答机编码3561。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fa81e565fc6e6715242c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224779",
+      "taskTitle": "采分点练习-放行许可-5",
+      "audioText": "N: [Your call sign is ACA303, a flight from Wuhan to Vancouver, you are at stand 233 and information F received, request Wuhan Delivery for your ATC clearance.]",
+      "audioTextZh": "【你的呼号是加航303，从武汉飞往温哥华，你现在在233机位，收到了通播F，向武汉放行请求管制许可。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, ACA303, stand 233, information F, request ATC clearance to Vancouver.",
+      "referenceTextZh": "武汉放行，加航303，233机位，通播F，请求飞往温哥华的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e986173923657fc448dd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224780",
+      "taskTitle": "采分点练习-放行许可-6",
+      "audioText": "C: ACA303, Wuhan Delivery, cleared to destination Vancouver, runway 04, ZF-01D departure, flight planned route, initial altitude 1,500m, cruising level 9,500m, request level change en route, squawk 3252, departure frequency 123.32.",
+      "audioTextZh": "加航303，武汉放行，可以飞往目的地温哥华，跑道04，ZF-01D离场，计划航路，初始高度1500米，巡航高度9500米，入航后转高度，应答机3252，离场频率123.32。",
+      "studyTier": 2,
+      "referenceText": "Cleared to destination Vancouver, runway 04, ZF-01D departure, flight planned route, initial altitude 1,500m, cruising level 9,500m, request level change en route, squawk 3252, departure frequency 123.32, ACA303.",
+      "referenceTextZh": "可以飞往目的地温哥华，跑道04，ZF-01D离场，计划航路，初始高度1500米，巡航高度9500米，入航后转高度，应答机3252，离场频率123.32，加航303。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/925fe26dd9a6dcf8a938.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224781",
+      "taskTitle": "采分点练习-放行许可-7",
+      "audioText": "B: [Your call sign is CES769, a flight from Wuhan to Amsterdam. You are parking at Stand 223. You have received information C, request ATC clearance.]",
+      "audioTextZh": "【你的呼号是东方769，一架从武汉飞往阿姆斯特丹的飞机。你现在停在223号停机位，你已经收到通播C，请求管制放行许可。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CES769, stand 223, information C, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "武汉放行，东方769，223号停机位，通播C，请求飞往阿姆斯特丹的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/010d3836ce368b3dbde8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224782",
+      "taskTitle": "采分点练习-放行许可-8",
+      "audioText": "C: CES769, Wuhan Delivery, cleared to Amsterdam via flight planned route, departure runway 36, initial climb to 1800m, HZ-01 departure, cruising level 11000m, squawk 6127.",
+      "audioTextZh": "东方769，武汉放行，可以经由计划航路飞往阿姆斯特丹，离场跑道36，初始爬升至1800米，HZ-01离场，巡航高度11000米，应答机6127。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Amsterdam via flight planned route, departure runway 36, initial climb to 1800m, HZ01 departure, cruising level 11000m, squawk 6127, CES769.",
+      "referenceTextZh": "可以经由计划航路飞往阿姆斯特丹，离场跑道36，初始爬升至1800米，HZ-01离场，巡航高度11000米，应答机6127，东方769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ef1e853746bccbbb425.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224783",
+      "taskTitle": "采分点练习-放行许可-9",
+      "audioText": "N: [Your call sign is ACA521, a flight from Wuhan to Toronto. You are at Gate 232, you have got the latest ATIS T, contact Wuhan Delivery and request ATC clearance.]",
+      "audioTextZh": "【你的呼号是加航521，从武汉飞往多伦多。你现在在232机位，你收到最新通播T，联系武汉放行，请求管制许可。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, ACA521, Gate 232 with information T, request ATC clearance to Toronto.",
+      "referenceTextZh": "武汉放行，加航521，232机位，通播T，请求飞往多伦多的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/69d4127619797b567279.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224784",
+      "taskTitle": "采分点练习-放行许可-10",
+      "audioText": "C: ACA521, Wuhan Delivery, Cleared to Toronto via flight planned route, departure runway 04, initial climb to 1500m, ZF-05 departure, cruising level 10400m, request level change en route, departure frequency 125.75, squawk 5655.",
+      "audioTextZh": "加航521，北京放行，可以经由计划航路飞往多伦多，离场跑道04，初始爬升至1500米，ZF05离场，巡航高度10400米，入行后变更高度，离场频率125.75，应答机5655。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Toronto via flight planned route, departure runway 04, initial climb to 1500m, ZF-05 departure, cruising level 10400m, request level change en route, departure frequency 125.75, squawk 5655, ACA521.",
+      "referenceTextZh": "可以经由计划航路飞往多伦多，离场跑道04，初始爬升至1500米，ZF05离场，巡航高度10400米，入行后变更高度，离场频率125.75，应答机5655，加航521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/689e61c73f518ffbf18a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224785",
+      "taskTitle": "采分点练习-放行许可-11",
+      "audioText": "[Your call-sign is CES5227, from Wuhan to London Heathrow. Now you are at gate 26, information F, request your ATC clearance.]",
+      "audioTextZh": "【你的呼号是东方5227，从武汉到伦敦希斯罗。你现在在26号机位，通播F，请求管制许可。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CES5227, gate 26, information F, request ATC clearance to London Heathrow.",
+      "referenceTextZh": "武汉放行，东方5227，26号机位，通播F，请求飞往伦敦希斯罗的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/991bf817bc6816a909df.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224786",
+      "taskTitle": "采分点练习-放行许可-12",
+      "audioText": "C: CES5227, Wuhan Delivery, you are cleared to your destination via flight planed route, runway in use 04, HZ-02D departure, initial climb to 600m, cruising level 10700m, squawk 3532, departure frequency 126.3.",
+      "audioTextZh": "C: 东方5227，武汉放行，你可以经由计划航路飞往目的地，使用跑道04，HZ-02D离场，初始爬升到600米，巡航高度10700米，应答机3532，离场频率126.3。",
+      "studyTier": 2,
+      "referenceText": "Cleared to destination via flight planed route, runway in use 04, HZ-02D departure, initial climb to 600m, cruising level 10700m, squawk 3532, departure frequency 126.3, CES5227.",
+      "referenceTextZh": "可以经由计划航路飞往目的地，使用跑道04，HZ-02D离场，初始爬升到600米，巡航高度10700米，应答机3532，离场频率126.3，东方5227。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ff06ef6b1d26f4242a8a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224787",
+      "taskTitle": "采分点练习-放行许可-13",
+      "audioText": "N: [Your call sign is CCA1301, from Beijing to Guangzhou. You are now at stand 133, with information F. Ask for your ATC clearance.]",
+      "audioTextZh": "【你的呼号是国航1301，从北京飞往广州。你现在在133停机位，收到通播F，请求你的管制许可。】",
+      "studyTier": 2,
+      "referenceText": "Beijing Delivery, CCA1301, stand 133, information F, request ATC clearance.",
+      "referenceTextZh": "北京放行，国航1301,133停机位，通播F，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a29023d4afe09cb8ae52.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224788",
+      "taskTitle": "采分点练习-放行许可-14",
+      "audioText": "C: CCA1301, Beijing Delivery, cleared to Guangzhou via flight planned route, follow VYK 02D Departure, initial climb 1200m on QNH1023, cruising level 10,300m, after departure contact 120.6, squawk 4523.",
+      "audioTextZh": "国航1301，可以经由计划航路飞往广州，按照VYK 02D离场，初始爬升至1200米，修正海压1023，巡航高度10300米，离场后联系120.6，应答机4523。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Guangzhou via flight planned route, follow VYK 02D Departure, initial climb 1200m on QNH1023, cruising level 10,300m, after departure contact 120.6, squawk 4523, CCA1301.",
+      "referenceTextZh": "可以经由计划航路飞往广州，按照VYK 02D离场，初始爬升至1200米，修正海压1023，巡航高度10300米，离场后联系120.6，应答机4523，国航1301。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/38796dd784515a50a225.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224789",
+      "taskTitle": "采分点练习-放行许可-15",
+      "audioText": "[Your call sign is CCA937, you are at G213, receive information N, call Wuhan Delivery and request ATC clearance to Amsterdam.]",
+      "audioTextZh": "【你的呼号是国航937，你在213号机位，收到通播N，呼叫武汉放行，请求ATC放行至阿姆斯特丹。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CCA937. Gate 213, Information N, destination Amsterdam, request ATC clearance.",
+      "referenceTextZh": "武汉放行，国航937。机位213，通播N，目的地阿姆斯特丹，请求ATC放行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8fb0e04a09a8ea42af85.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224790",
+      "taskTitle": "采分点练习-放行许可-16",
+      "audioText": "CCA937, Wuhan Delivery, cleared to Amsterdam via flight planned route. Follow ZF-12D departure, initial climb 1500m, cruising level 9500m, after departure contact 125.65, squawk 3251, runway 18L.",
+      "audioTextZh": "国航937，武汉放行，可以按计划航路飞往阿姆斯特丹。ZF-12D离场，起始高度1500米，巡航高度9500米，离场后联系125.65，应答机3251，跑道18左。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Amsterdam via flight planned route, ZF-12D departure, initial climb 1500m, cruising level 9500m, departure 125.65, squawk 3251, runway 18L, CCA937.",
+      "referenceTextZh": "可以按计划航路飞往阿姆斯特丹。ZF-12D离场，起始高度1500米，巡航高度9500米，离场后联系125.65，应答机3251，跑道18左，国航937。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7c13e7e74e287380e588.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224793",
+      "taskTitle": "采分点练习-放行许可-19",
+      "audioText": "[Your call sign is SIA123. stand 215, from Wuhan to Singapore, information B. Request ATC clearance to Singapore.]",
+      "audioTextZh": "[你的呼号是新航123，215号机位，从武汉飞往新加坡，通播B，向ATC申请放行至新加坡。]",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, SIA123, stand 215, information B, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航123，215号机位，通播B，目的地新加坡，向ATC申请放行至新加坡。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40669792e6d370308412.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224794",
+      "taskTitle": "采分点练习-放行许可-20",
+      "audioText": "SIA123, Wuhan Delivery, cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325.",
+      "audioTextZh": "新航123，武汉放行，可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325, SIA123.",
+      "referenceTextZh": "可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325, 新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a49533f3423a9d90d61c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224795",
+      "taskTitle": "采分点练习-放行许可-21",
+      "audioText": "1B: Your call sign is CES728 from Wuhan to Guangzhou, you are at gate 213, information W received, request ATC clearance.",
+      "audioTextZh": "你的呼号是东方728，从武汉飞往广州，你现在在213号停机位，收到通播W，请求管制许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CES728, from Wuhan to Guangzhou gate 213, information W, request ATC clearance.",
+      "referenceTextZh": "武汉放行，东方728，从武汉飞往广州，213号停机位，通播W，请求管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae9e084a6e0d47aeb231.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224796",
+      "taskTitle": "采分点练习-放行许可-22",
+      "audioText": "2C: CES728, cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m, cruising level 9800m, contact 119.6 when airborne, squawk 3615.",
+      "audioTextZh": "东方728，可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，离地后联系119.6，应答机编码3615。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m cruising level 9800m, contact 119.6 when airborne, squawk 3615, CES728.",
+      "referenceTextZh": "可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，离地后联系119.6，应答机编码3615，东方728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd931e27282d2cff1852.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224797",
+      "taskTitle": "采分点练习-放行许可-23",
+      "audioText": "[Your call sign is AFR9939, you are flying from Wuhan to Beijing, your position now is gate 276, information B is valid, ask ATC for your airway clearance.]",
+      "audioTextZh": "你的呼号是法航9939，你正从武汉飞往北京，你现在在276号机位，通播B有效，向管制请求你的航路许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, AFR9939, gate 276, information B, request ATC clearance to Beijing.",
+      "referenceTextZh": "武汉放行，法航9939，276号机位，通播B，请求前往北京的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5ffe41d970c9928704d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224798",
+      "taskTitle": "采分点练习-放行许可-24",
+      "audioText": "ATC: AFR9939, Wuhan Delivery, you are cleared to Beijing via flight planned route, runway in use 04, follow HZ-01 Departure, initially 1200 meters, cruising level 10400 meters, departure frequency 119.6, squawk 3101.",
+      "audioTextZh": "法航9939，武汉放行，可以经由计划航路飞往北京，跑道04，按照HZ-01离场，初始爬升至1200米，巡航高度10400米，离场频率119.6，应答机编码3101。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Beijing via flight planned route, runway in use 04, follow HZ-01 Departure, initially 1200 meters, cruising level 10400 meters, departure frequency 119.6, squawk 3101. AFR9939.",
+      "referenceTextZh": "可以经由计划航路飞往北京，跑道04，按照HZ-01离场，初始爬升至1200米，巡航高度10400米，离场频率119.6，应答机编码3101，法航9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1452c79137a45e3f8efe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224799",
+      "taskTitle": "采分点练习-放行许可-25",
+      "audioText": "Your call sign is CSN817, you are from Wuhan to Guangzhou, gate 213, information G received, request ATC clearance.",
+      "audioTextZh": "你的呼号是南方817，从武汉飞往广州，213号停机位，收到通播G，请求放行许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CSN817, gate 213, information G received, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方817，213号停机位，收到通播G，请求到广州的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b6d676553ba9588312c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224800",
+      "taskTitle": "采分点练习-放行许可-26",
+      "audioText": "CSN817, cleared to destination Guangzhou via flight planned route, runway 36R, follow LKO-01 departure, initially climb to 1200m, cruising level 8400m, when airborne contact departure 119.7, squawk 3115.",
+      "audioTextZh": "南方817，可以经由计划航路飞往广州，跑道36右，按照LKO-01离场，初始爬升至1200米，巡航高度8400米，离地后联系离场119.7，应答机3115。",
+      "studyTier": 2,
+      "referenceText": "Cleared to destination Guangzhou via flight planned route, runway 36R, LKO-01 departure, initially climb to 1200m, cruising level 8400m, when airborne contact departure 119.7, squawk 3115, CSN817.",
+      "referenceTextZh": "可以经由计划航路飞往广州，跑道36右，LKO-01离场，初始爬升至1200米，巡航高度8400米，离地后联系离场119.7，应答机3115，南方817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/395a31b38d0a2d49da61.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224801",
+      "taskTitle": "采分点练习-放行许可-27",
+      "audioText": "[Your call sign is SIA323. Stand 217, from Wuhan to Singapore, information V. Request ATC clearance to Singapore.]",
+      "audioTextZh": "你的呼号是新航323，217号停机位，从武汉飞往新加坡，通播V，请求飞往新加坡的飞行的许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, SIA323, stand217, information V, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航323, 217号停机位，通播V，目的地新加坡，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/05f8dfdedc6fa51dc2df.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224802",
+      "taskTitle": "采分点练习-放行许可-28",
+      "audioText": "SIA323, Wuhan Delivery, cleared to Singapore via flight planned route, LKO-02 departure, initial climb to 1500m, cruising level 9800m, runway 36R, when airborne, contact departure frequency 119.7, squawk 3652.",
+      "audioTextZh": "新航323，武汉放行，可以经由计划航路飞往新加坡，LKO-02离场，初始爬升至1500米，巡航高度9800米，跑道36右，离地后，联系离场频率119.7，应答机3652。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Singapore via flight planned route, LKO-02 departure, initial climb to 1500m, cruising level 9800m, runway 36R, when airborne, contact departure frequency 119.7, squawk 3652. SIA323.",
+      "referenceTextZh": "可以经由计划航路飞往新加坡，LKO-02离场，初始爬升至1500米，巡航高度9800米，跑道36右，离地后，联系离场频率119.7，应答机3652，新航323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fb336133764405fcea68.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224803",
+      "taskTitle": "采分点练习-放行许可-29",
+      "audioText": "Your call sign is BAW871, from Beijing to London, you are at stand 215, request ATC clearance to London.",
+      "audioTextZh": "你的呼号是英航871，从北京飞往伦敦，你现在在215号停机位，请求飞往伦敦的管制许可。",
+      "studyTier": 2,
+      "referenceText": "Beijing Delivery, BAW871, stand 215, request ATC clearance to London.",
+      "referenceTextZh": "北京放行，英航871，215号停机位，请求飞往伦敦的管制许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9a8bc491ebe1138f7ea.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224804",
+      "taskTitle": "采分点练习-放行许可-30",
+      "audioText": "BAW871, cleared to London via flight planned route, follow VYK 05D Departure, initially 900m on 1023, cruising level 10,400m, after departure contact 120.6, squawk 4523.",
+      "audioTextZh": "英航871，可以经由计划航路飞往伦敦，按照VYK05离场程序，初始爬升至900米，修正海压1023，巡航高度10400米，离场后联系120.6，应答机4523。",
+      "studyTier": 2,
+      "referenceText": "Cleared to London via flight planned route, follow VYK 05D Departure, initially 900m on 1023, cruising level 10,400m, after departure contact 120.6, squawk 4523, BAW871.",
+      "referenceTextZh": "可以经由计划航路飞往伦敦，按照VYK05离场程序，初始爬升至900米，修正海压1023，巡航高度10400米，离场后联系120.6，应答机4523，英航871。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f45d19f2e3bb87569e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224805",
+      "taskTitle": "采分点练习-放行许可-31",
+      "audioText": "[Your call sign is KLM88, you are at Pudong Airport, stand 223, you are fully ready, call Shanghai delivery and request ATC clearance to Amsterdam.]",
+      "audioTextZh": "你的呼号是荷航88，你现在浦东机场，223号停机位，你现在准备好了，呼叫上海放行，申请管制许可，目的地阿姆斯特丹。",
+      "studyTier": 2,
+      "referenceText": "Shanghai Delivery, KLM88, stand 223, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "上海放行，荷航88，223号机位，请求放行许可，目的地阿姆斯特丹。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/dbbaa1ab82d9d9d495fe.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224806",
+      "taskTitle": "采分点练习-放行许可-32",
+      "audioText": "KLM88, Shanghai Delivery. Cleared to destination via flight planned route, use runway 35, LAK-05D departure, initial climb to 1500m, cruising level 11000m, squawk 3512.",
+      "audioTextZh": "荷航88，可以经由计划航路飞往目的地，跑道35，LAK-05D离场，初始爬升至1500米，巡航高度11000米，应答机3512。",
+      "studyTier": 2,
+      "referenceText": "Cleared to destination via flight planned route, runway 35, LAK-05D departure, initial climb to 1500m, cruising level 11000m, squawk 3512, KLM88.",
+      "referenceTextZh": "可以经由计划航路飞往目的地，跑道35，LAK-05D离场，初始爬升至1500米，巡航高度11000米，应答机3512，荷航88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9d3d96c6e76ace0c9042.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224807",
+      "taskTitle": "采分点练习-放行许可-33",
+      "audioText": "You are CSN319, parking at gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.",
+      "audioTextZh": "你的呼号是南方319，停在51号停机位，通播C，从武汉飞往广州，请求放行许可。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Delivery, CSN319, gate 51, information C, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，南方319，51号停机位，通播C，请求飞往广州的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8535218cf89a12038623.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224808",
+      "taskTitle": "采分点练习-放行许可-34",
+      "audioText": "CSN319, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO01 departure, initially climb to 1,200m, cruising level 9,800m, after departure contact 119.7, squawk 2515.",
+      "audioTextZh": "南方319，可以经由计划航路飞往广州，使用跑道36右，按照LKO01离场。初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515。",
+      "studyTier": 2,
+      "referenceText": "Cleared to Guangzhou via flight planned route, runway 36R, follow LKO01 departure, initially climb to 1200m, cruising level 9800m, contact 119.7, squawk 2515, CSN319.",
+      "referenceTextZh": "可以经由计划航路飞往广州，使用跑道36右，按照LKO01离场。初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515，南方319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e2330620ea5170629e8.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

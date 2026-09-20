@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-qfa",
   "id": "atc-scenario-0179",
   "name": "QFA 358 雷暴绕飞 TCAS机动 复飞",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "右转航向 090，爬升至 1,500 米，联系武汉进近 119.7，QFA 358。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-qfa"
 }

@@ -1,0 +1,10 @@
+{
+  "id": "atc-nwa",
+  "name": "NWA",
+  "nameEn": "NWA",
+  "declaredTopicCount": 1,
+  "declaredCardCount": 17,
+  "topicIds": [
+    "atc-fzy-641"
+  ]
+}

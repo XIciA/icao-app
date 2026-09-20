@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0121",
   "name": "机型与职业",
   "declaredCardCount": 17,
@@ -140,5 +139,6 @@
       "referenceText": "I have flown the DA-40 during my flight training. It is the only aircraft type I claim to have flown.",
       "referenceTextZh": "我在飞行训练期间驾驶过 DA-40。这是我唯一声称驾驶过的机型。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

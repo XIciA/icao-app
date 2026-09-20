@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0164",
   "name": "AFR 675 起落架问题 襟翼问题 雷暴绕飞",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "收到，谢谢，AFR 675。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-064-afr675-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

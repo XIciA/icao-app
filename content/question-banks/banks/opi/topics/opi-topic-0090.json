@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0090",
   "name": "大雨/强降雨",
   "declaredCardCount": 3,
@@ -14,11 +13,12 @@
     },
     {
       "id": "opi-core-892",
-      "taskTitle": "气象-大雨/强降雨-2",
+      "taskTitle": "1.飞行环境：气象-53",
       "audioText": "Have you ever flown in heavy rain?",
-      "audioTextZh": "你曾在大雨中飞行过吗？",
-      "referenceText": "Yes, I have flown through heavy rain during an approach. I used the windshield wipers, monitored visibility and runway braking action, and adjusted the approach speed in accordance with the procedure. Although visibility was reduced and the landing distance increased, I maintained a stable approach and landed safely.",
-      "referenceTextZh": "是的，我曾在进近期间穿过强降雨。我使用风挡雨刷，监控能见度和跑道制动作用，并按照程序调整进近速度。虽然能见度降低、着陆距离增加，我仍保持稳定进近并安全着陆。"
+      "audioTextZh": "你在大雨中飞行过吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I have. Once I flew from Beijing to Qingdao in a hot summer, during the landing, I encountered heavy rain, the visibility decreased quickly. But finally, I made a successful landing.",
+      "referenceTextZh": "是的，我有过。有一次，我在一个炎热的夏天从北京飞青岛，在着陆的过程中，我遇到了大雨，能见度迅速下降。但最后，我成功着陆了。"
     },
     {
       "id": "opi-core-893",
@@ -28,5 +28,6 @@
       "referenceText": "Heavy rain can reduce visibility and obscure the windshield. It can reduce runway braking action and increase the risk of an overrun or runway excursion. It may also affect engine performance and aircraft stability during approach.",
       "referenceTextZh": "强降雨会降低能见度并遮蔽风挡，降低跑道制动作用，并增加冲出或偏出跑道的风险。它还可能影响进近期间的发动机性能和飞机稳定性。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

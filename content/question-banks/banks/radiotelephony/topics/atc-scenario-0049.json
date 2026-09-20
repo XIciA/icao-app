@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0049",
   "name": "ACA 452 偷渡犯 导航，自驾失效",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "119.35，ACA 452。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/853.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

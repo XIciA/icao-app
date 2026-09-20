@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0169",
   "name": "UAL 182 积冰/防冰 TCAS机动",
   "declaredCardCount": 18,
@@ -166,5 +165,6 @@
       "referenceTextZh": "进近，UAL 182，请求应急服务在跑道附近待命。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q18.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

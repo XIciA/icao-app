@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-aca",
   "id": "atc-scenario-0106",
   "name": "ACA 412 请求绕飞 左发进水熄火",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "广州管制，ACA 412，请求紧急着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1837.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-aca"
 }

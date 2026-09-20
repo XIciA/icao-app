@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ces",
   "id": "atc-scenario-0136",
   "name": "CES 2151 鸟击 TCAS机动 备降/返航",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "爬升至并保持 900 米，飞越 WHA 后飞航向 360，预计雷达引导 ILS 进近 Runway 18L，CES 2151。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ces"
 }

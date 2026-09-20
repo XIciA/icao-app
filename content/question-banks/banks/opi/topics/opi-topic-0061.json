@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0061",
   "name": "控酒政策",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Yes, I think flight crew should be tested for alcohol before every flight because the test supports flight safety.",
       "referenceTextZh": "是的，我认为飞行机组应在每次飞行前接受酒精检测，因为检测有助于保障飞行安全。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

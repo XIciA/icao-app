@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0141",
   "name": "高度偏差",
   "declaredCardCount": 2,
@@ -20,5 +19,6 @@
       "referenceText": "The crew should review weather information and remain alert for areas of turbulence. If an ATC instruction is unclear, they should confirm it immediately. Both pilots should also cross-check their altimeters during flight.",
       "referenceTextZh": "机组应查看气象信息，并对颠簸区域保持警觉。如果空中交通管制指令不明确，应立即进行确认。两名飞行员还应在飞行中交叉核对高度表。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

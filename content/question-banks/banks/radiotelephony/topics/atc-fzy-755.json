@@ -1,0 +1,127 @@
+{
+  "id": "atc-fzy-755",
+  "name": "SIA497 [起落架问题]",
+  "declaredCardCount": 13,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-151896",
+      "taskTitle": "20-SIA497 [起落架问题]-1",
+      "audioText": "[Your call sign is SIA497, you are at Wuhan Airport, Gate 215, information P received, request ATC clearance to Singapore.]",
+      "audioTextZh": "你的呼号是新航497，你现在在武汉机场，215号停机位，通播P，请求飞往新加坡的放行许可。",
+      "referenceText": "Wuhan Delivery, SIA497, gate 215, information P, request ATC clearance to Singapore.",
+      "referenceTextZh": "武汉放行，新航497，215号停机位，通播P，请求飞往新加坡的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/535567b5052492667fd8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151897",
+      "taskTitle": "20-SIA497 [起落架问题]-2",
+      "audioText": "SIA497, cleared to Singapore via flight planned route. LKO-01 departure, initial climb to 1800m, cruising level 10700m, runway 36R, frequency 119.7, squawk 2706.",
+      "audioTextZh": "新航497，可以经由计划航路飞往新加坡，LKO-01离场，初始爬升至1800米，巡航高度10700米，跑道36右，频率119.7，应答机2706。",
+      "referenceText": "Cleared to Singapore via flight planned route. LKO-01 departure, initial 1800m, cruising level 10700m, runway 36R, contact 119.7, squawk 2706. SIA497.",
+      "referenceTextZh": "可以经由计划航路飞往新加坡，LKO-01离场，初始爬升至1800米，巡航高度10700米，跑道36右，频率119.7，应答机2706，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e097b067eb1f05a66439.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151898",
+      "taskTitle": "20-SIA497 [起落架问题]-3",
+      "audioText": "[Now you are on taxiway Z4 with the engines running, ask for taxi instructions.]",
+      "audioTextZh": "[你现在在Z4滑行道，发动机启动，请求滑行许可]",
+      "referenceText": "Wuhan Ground, SIA497, taxiway Z4, request taxi.",
+      "referenceTextZh": "武汉地面，新航497，Z4滑行道，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3cdffff21e128722176a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151899",
+      "taskTitle": "20-SIA497 [起落架问题]-4",
+      "audioText": "SIA497, taxi to runway 36R via Z4, A, hold short of E7.",
+      "audioTextZh": "新航497，经由Z4，A，滑行至跑道36右，在E7外等待。",
+      "referenceText": "Taxi to runway 36R via Z4, A, hold short of E7. SIA497.",
+      "referenceTextZh": "经由Z4，A，滑行至跑道36右，在E7外等待，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5994150bdb4450194fe1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151900",
+      "taskTitle": "20-SIA497 [起落架问题]-5",
+      "audioText": "[When taxi along taxiway A, ask for intersection departure from E5.]",
+      "audioTextZh": "[当你沿着A滑行道滑行时，请求从E5减跑道起飞]",
+      "referenceText": "Wuhan Ground, SIA497, taxiway A, request intersection departure from E5",
+      "referenceTextZh": "武汉地面，新航497，A滑行道，请求从E5减跑道起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/57533ec29e32cde3c856.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151901",
+      "taskTitle": "20-SIA497 [起落架问题]-6",
+      "audioText": "Negative due sequencing, continue taxi to holding point of runway 36R, hold short of E7.",
+      "audioTextZh": "由于排序，不可以，继续滑行至跑道36右，在E7外等待。",
+      "referenceText": "Taxi to holding point of runway 36R, hold short of E7. SIA497.",
+      "referenceTextZh": "滑行至跑道36右，在E7外等待，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/90ae864956c52760afe0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151902",
+      "taskTitle": "20-SIA497 [起落架问题]-7",
+      "audioText": "[Now you are airborne, 600m climbing, contact departure.]",
+      "audioTextZh": "[现在你离地了，600米爬升中，联系离场]",
+      "referenceText": "Wuhan Departure, SIA497, airborne, 600m climbing.",
+      "referenceTextZh": "武汉离场，新航497，离地了，600米爬升中。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/395a7a84a5a7933f1d72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151903",
+      "taskTitle": "20-SIA497 [起落架问题]-8",
+      "audioText": "SIA497, radar contact, turn left direct to DA, climb to 3000m, QNH1021.",
+      "audioTextZh": "新航497，雷达识别，左转直飞DA，爬升至3000米，修正海压1021。",
+      "referenceText": "Turn left direct to DA, climb to 3000m, QNH1021, SIA497.",
+      "referenceTextZh": "左转直飞DA，爬升至3000米，修正海压1021，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4b1b30e195ca1dbc84a5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151904",
+      "taskTitle": "20-SIA497 [起落架问题]-9",
+      "audioText": "[When you are approaching Singapore airport, your landing gears cannot be extended normally. Report this situation to Singapore airport.]",
+      "audioTextZh": "[当你接近新加坡机场，你的起落架无法正常放下，将此情况报告给新加坡机场]",
+      "referenceText": "Singapore Approach, SIA497, we can't extend the landing gears normally.",
+      "referenceTextZh": "新加坡进近，新航497，我们无法正常放下起落架。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e1193672ba25e767c78.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151905",
+      "taskTitle": "20-SIA497 [起落架问题]-10",
+      "audioText": "[Tell the controller you want to terminate approach, maintain 600m on runway heading to complete abnormal procedures.]",
+      "audioTextZh": "[告诉管制员，你想终止进近，跑道航向保持600米，执行不正常程序]",
+      "referenceText": "Singapore Approach, SIA497, request terminate approach, request maintain 600m on runway heading to carry out abnormal procedures.",
+      "referenceTextZh": "新加坡进近，新航497，请求终止进近，请求跑道航向保持600米执行不正常程序。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1cbf06d52a0046981324.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151906",
+      "taskTitle": "20-SIA497 [起落架问题]-11",
+      "audioText": "[Now the landing gear is extended normally, but you lost nose wheel steering, request a tug after landing.]",
+      "audioTextZh": "现在起落架正常放下，但是你失去前轮转弯，落地后，请求拖车。",
+      "referenceText": "Singapore Approach, SIA497, the landing gear is extended normally, but we lost nose wheel steering, request a tug after landing.",
+      "referenceTextZh": "新加坡进近，新航497，起落架可以正常放下，但是我们失去前轮转弯，落地后，请求拖车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1fbbcc82992bca2534e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151907",
+      "taskTitle": "20-SIA497 [起落架问题]-12",
+      "audioText": "Roger, tug will be ready after landing.",
+      "audioTextZh": "收到，拖车在落地后就位。",
+      "referenceText": "Roger, thanks. SIA497.",
+      "referenceTextZh": "收到，谢谢，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b5ed8611eeb8b5af0e33.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151908",
+      "taskTitle": "20-SIA497 [起落架问题]-13",
+      "audioText": "Expect ILS approach runway 18L, report established.",
+      "audioTextZh": "预计ILS进近，跑道18左，建立后报。",
+      "referenceText": "ILS approach runway 18L, report established, SIA497.",
+      "referenceTextZh": "ILS进近，跑道18左，建立后报，新航497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6f97c6abb5aaa18a4861.mp3"
+    }
+  ],
+  "categoryId": "atc-sia"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "atc-fzy-1450",
+  "name": "位置报",
+  "declaredCardCount": 9,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210128",
+      "taskTitle": "采分点练习-位置报-5",
+      "audioText": "Your call sign is CSN3109, from Wuhan to Beijing, you are now leveling at 8900 meters, expect OBLIK 25, make a position report to Guangzhou Control.",
+      "audioTextZh": "你的呼号是南方3109，从武汉飞往北京，你现在在8900米巡航，预计25分到达OBLIK，向广州区调做位置报。",
+      "studyTier": 2,
+      "referenceText": "Guangzhou Control, CSN3109, 8900m maintaining, expect OBLIK 25.",
+      "referenceTextZh": "广州区调，南方3109，8900米保持，预计25分过OBLIK。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/126acddfa6231dc3e38b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210129",
+      "taskTitle": "【练习版】Position report位置报告-2",
+      "audioText": "AFR113, climb to 4500m and contact Wuhan control on 119.7.",
+      "audioTextZh": "法航113，上4500米，联系武汉区调119.7。",
+      "studyTier": 0,
+      "referenceText": "Climb to 4500m and contact 119.7, AFR113.",
+      "referenceTextZh": "上到4500米，联系武汉区调119.7，法航113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ad31eec6950fca7c96ad.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210130",
+      "taskTitle": "采分点练习-位置报-4",
+      "audioText": "Your position is just over LKO, the next way-point is DAPRO, ETA at time 34, make the standard position report, and request climb.",
+      "audioTextZh": "你刚刚过LKO，下一个位置点是DAPRO，预计到达时间34分，做一个标准位置报，并请求爬升。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Control, AFR113. Over LKO, next DAPRO at 34, request climb.",
+      "referenceTextZh": "武汉区调，法航113，过LKO，预计到达下一位置点DAPRO34分，请求爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a430c6eb97c38ba30db5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210131",
+      "taskTitle": "【练习版】Position report位置报告-4",
+      "audioText": "UAL811, roger, reach OBLIK earlier than 1020.",
+      "audioTextZh": "美联航811，收到，10点20分前过OBLIK。",
+      "studyTier": 0,
+      "referenceText": "Reach OBLIK earlier than 1020, UAL811.",
+      "referenceTextZh": "10点20分前过OBLIK，美联航。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/54841d9d0ab5d0ba9300.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210132",
+      "taskTitle": "采分点练习-位置报-3",
+      "audioText": "You are over OBLIK at time 1015, maintaining 11000 meters, you are estimating ZF at 1030. Your next waypoint is WUH, make a standard position report to Wuhan Control.",
+      "audioTextZh": "你在10点15分过OBLIK，高度保持在一万一，预计过ZF时间10点30分，下一航路点WUH，向武汉区调做标准的位置报。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Control, UAL811, over OBLIK at 1015, maintaining 11000 meters, estimating ZF at 1030, next waypoint WUH.",
+      "referenceTextZh": "武汉区调，美联航811，10点15分过OBLIK，高度保持在一万一，预计过ZF时间10点30分，下一航路点WUH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8c2682c71c216000dd4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210133",
+      "taskTitle": "采分点练习-位置报-2",
+      "audioText": "B: [Your call sign is ACA219, you are now maintaining at 10700m, over ZHO at 35, next OBLIK at 50, make a standard position report to Wuhan Control.]",
+      "audioTextZh": "【你的呼号是加航219，你现在保持在10700米，过ZHO，35分，下一航路点OBLIK，50分，向武汉区调做一个标准位置报。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Control, ACA219, 10700m, over ZHO at 35, next OBLIK at 50.",
+      "referenceTextZh": "武汉区调，加航219，10700米，过ZHO 35分，下一航路点OBLIK，50分。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/25dab36cc08700099911.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210134",
+      "taskTitle": "【练习版】Position report位置报告-7",
+      "audioText": "AFR123, climb and maintain 4500m on standard, contact Wuhan Control 119.7.",
+      "audioTextZh": "法航123，上升保持标压4500米，联系武汉区调119.7。",
+      "studyTier": 0,
+      "referenceText": "Climbing and maintain 4500m on standard, 119.7, AFR123.",
+      "referenceTextZh": "上升保持标压4500米，119.7，法航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ae7146d3d8a0c15ec20.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210135",
+      "taskTitle": "【练习版】Position report位置报告-8",
+      "audioText": "[You are maintaining 4500m and just over LKO at time 23, the next way-point is DAPRO, ETA is 34, make the standard position report, and request climb.]",
+      "audioTextZh": "【你保持在4500米，过LKO时间23分，下一个点DAPRO，预计到达时间34分，做标准位置报告，并请求爬升。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Control, AFR123, over LKO 23, maintaining 4500m, next DARPO 34, request climb.",
+      "referenceTextZh": "武汉区调，法航123，LKO 23分，保持4500米，下一个点DAPRO，预计到达时间34分，请求爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1cef4d1abf4eb862cc9c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224880",
+      "taskTitle": "采分点练习-位置报-1",
+      "audioText": "C: CSN905, Zhengzhou Control, give a full position report.\nN: [Provide the following Information in your position report: You are cruising at 7,800m, overhead WXI at 1215. Your ETA to the next way point AKOMA is 1235. The waypoint after that is ZHO.]",
+      "audioTextZh": "C：南方905，郑州管制，做一个完整的位置报。\nN：【在位置报中，提供以下信息：你正在7800米巡航，在12点15分飞跃WXI，预计过航路点AKOMA时间12点35分，下一点是ZHO。】",
+      "studyTier": 2,
+      "referenceText": "Zhengzhou Control, CSN905, maintaining 7,800m, overhead WXI at 1215, ETA AKOMA at 1235, next ZHO.",
+      "referenceTextZh": "郑州区调，南方905，保持7800米，在12点15分飞跃WXI，预计过航路点AKOMA时间12点35分，下一点是ZHO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e9b78c4b12a92d237c72.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

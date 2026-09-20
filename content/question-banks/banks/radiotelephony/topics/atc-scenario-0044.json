@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-jal",
   "id": "atc-scenario-0044",
   "name": "JAL 220 转述接收机失效 吸入外来物体 右发超温",
   "declaredCardCount": 14,
@@ -130,5 +129,6 @@
       "referenceTextZh": "是的，请求在停机坪提供医疗援助，JAL 220。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/760.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-jal"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-ual",
   "id": "atc-scenario-0033",
   "name": "UAL 221 乘客心脏病 乘客不舒服",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "右转航向 330，下降至 900 米，可以 ILS 进近跑道 36R，UAL 221。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/577.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-ual"
 }

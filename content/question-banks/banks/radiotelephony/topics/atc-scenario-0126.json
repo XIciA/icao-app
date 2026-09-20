@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0126",
   "name": "BAW 817 鸟击 积冰/防冰 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉地面，BAW 817，APU 失效，请求到达停机位时准备地面电源车。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

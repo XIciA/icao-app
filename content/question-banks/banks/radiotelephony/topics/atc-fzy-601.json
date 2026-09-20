@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-601",
+  "name": "ACA587 missed approach, etc.",
+  "declaredCardCount": 18,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111009",
+      "taskTitle": "18. ACA587 missed approach, etc.-1",
+      "audioText": "[Your call sign is ACA587, cruising level 10100m, squawk 3215, approaching DAPRO, make an initiate contact with Guangzhou Control.]",
+      "audioTextZh": "【你的呼号是加航587，巡航高度10100米，应答机3215，接近DAPRO，和广州区调进行初次联系。】",
+      "referenceText": "Guangzhou Control, ACA587, maintaining 10100m, approaching DAPRO, squawk 3215.",
+      "referenceTextZh": "广州区调，加航587，保持10100米，接近DAPRO，应答机3215。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/12113242627bed815ddd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111010",
+      "taskTitle": "18. ACA587 missed approach, etc.-2",
+      "audioText": "ACA587, Guangzhou Control, radar contact, maintain 10100m, report DAPRO.",
+      "audioTextZh": "加航587，广州区调，雷达已识别，保持10100米，到DAPRO报告。",
+      "referenceText": "Maintain 10100m, report DAPRO, ACA587.",
+      "referenceTextZh": "保持10100米，DAPRO报告，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c8f75067905dc81d71e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111011",
+      "taskTitle": "18. ACA587 missed approach, etc.-3",
+      "audioText": "[There’s moderate turbulence at 10100m, ask if there’s any turbulence at 10700m.]",
+      "audioTextZh": "【10100米处有中度颠簸，询问10700米处是否有颠簸。】",
+      "referenceText": "Control, ACA587, we suffer moderate turbulence at 10100m. Confirm any turbulence reported at 10700m?",
+      "referenceTextZh": "区调，加航587，我们在10100米遇到中度颠簸。证实10700米处有报告颠簸么？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1a7d6e46328832bba0f6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111012",
+      "taskTitle": "18. ACA587 missed approach, etc.-4",
+      "audioText": "ACA587, no reported turbulence at 10700m.[Ask to climb to 10700m due to moderate turbulence.]",
+      "audioTextZh": "加航587，10700米处无颠簸报告。【由于中度颠簸，请求爬升10700米。】",
+      "referenceText": "Request climb to 10700m due moderate turbulence, ACA587.",
+      "referenceTextZh": "由于中度颠簸，请求爬升10700米，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1316e28afce71e42e176.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111013",
+      "taskTitle": "18. ACA587 missed approach, etc.-5",
+      "audioText": "ACA587, climb and maintain 10700m within 2min.",
+      "audioTextZh": "加航587，上升保持10700米，2分钟到。",
+      "referenceText": "Climb and maintain 10700m within 2min, ACA587.",
+      "referenceTextZh": "上升保持10700米，2分钟到，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b4df5db6689d4c96b5f7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111014",
+      "taskTitle": "18. ACA587 missed approach, etc.-6",
+      "audioText": "[When you are at 10700m, left engine failed, make an urgency call and request turn right and descend to 6300m.]",
+      "audioTextZh": "【你在10700米时，左侧发动机失效，做紧急呼叫，请求右转航行，并下降6300米。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Guangzhou Control, ACA587, left engine failure, request turn right and descend to 6300m.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，广州区调，加航587，左侧发动机失效，请求右转，下降6300米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f4c91da96693a73e820.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111015",
+      "taskTitle": "18. ACA587 missed approach, etc.-7",
+      "audioText": "ACA587, roger PANPAN, turn right heading 200, descend and maintain 6300m.",
+      "audioTextZh": "加航587，收到PANPAN，右转航向200，下降保持6300米。",
+      "referenceText": "Right heading 200, descend and maintain 6300m, ACA587.",
+      "referenceTextZh": "右转航向200，下降保持6300米，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/bb61358953d68de76d49.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111016",
+      "taskTitle": "18. ACA587 missed approach, etc.-8",
+      "audioText": "[Advise Guangzhou Control you want to divert to Wuhan airport, and track direct to WHA, and descend to low level.]",
+      "audioTextZh": "【告诉广州区调你想改航至武汉机场，直飞WHA，下降至较低高度。】",
+      "referenceText": "Guangzhou Control, ACA587, request divert to Wuhan, request direct to WHA, descend to lower level.",
+      "referenceTextZh": "广州区调，加航587，请求改航至武汉，直飞WHA，下降至较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/57c0863a30673f9f1752.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111017",
+      "taskTitle": "18. ACA587 missed approach, etc.-9",
+      "audioText": "ACA587, turn left direct to WHA, descend and maintain 2100m on QNH 1023.",
+      "audioTextZh": "加航587，左转直飞WHA，下降保持修正海压2100米，修正海压1023。",
+      "referenceText": "Turn left direct to WHA, descend and maintain 2100m QNH 1023, ACA587.",
+      "referenceTextZh": "左转直飞WHA，下降保持修正海压2100米，修正海压1023，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/676b868e3144675006a6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111018",
+      "taskTitle": "18. ACA587 missed approach, etc.-10",
+      "audioText": "[The weather is deteriorating and is below landing minima, ask ATC for ILS approach runway 36L.]",
+      "audioTextZh": "【天气状况恶劣，低于着陆最低天气标准，向ATC请求盲降进近跑道36左。】",
+      "referenceText": "Guangzhou Approach, ACA587, request ILS approach runway 36L due weather.",
+      "referenceTextZh": "广州进近，加航587，由于天气原因，请求盲降进近跑道36左。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e9ed91334de2196452d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111019",
+      "taskTitle": "18. ACA587 missed approach, etc.-11",
+      "audioText": "ACA587, runway 36L not available, runway in use 36R.",
+      "audioTextZh": "加航587，跑道36左不可用，使用跑道36右。",
+      "referenceText": "Landing runway 36R, ACA587.",
+      "referenceTextZh": "在跑道36右降落，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea9f155e9d5875a11cf2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111020",
+      "taskTitle": "18. ACA587 missed approach, etc.-12",
+      "audioText": "[Ask controller is there any restrictions.]",
+      "audioTextZh": "【询问管制员是否有限制。】",
+      "referenceText": "Wuhan Approach, ACA587, confirm any restrictions?",
+      "referenceTextZh": "武汉进近，加航587，证实是否有其它限制？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d8791855a439fff1ee47.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111021",
+      "taskTitle": "18. ACA587 missed approach, etc.-13",
+      "audioText": "ACA587, no speed restrictions.",
+      "audioTextZh": "加航587，没有速度限制。",
+      "referenceText": "Roger, no speed restrictions, ACA587.",
+      "referenceTextZh": "收到，没有速度限制，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6ceb40fa49c27f6d51b3.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111022",
+      "taskTitle": "18. ACA587 missed approach, etc.-14",
+      "audioText": "[You executed missed approach procedure and try to land on runway 36R. State this situation to Tower.]",
+      "audioTextZh": "【执行复飞程序，尝试降落在跑道36右。向塔台报告该情况。】",
+      "referenceText": "Wuhan Tower, ACA587, going around and we try to land runway 36R.",
+      "referenceTextZh": "武汉塔台，加航587，复飞，我们试降跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a48266c35dbd07564a0d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111023",
+      "taskTitle": "18. ACA587 missed approach, etc.-15",
+      "audioText": "ACA587, Tower, climb and maintain 1200m, follow standard missed approach procedure, standby sequences.",
+      "audioTextZh": "加航587，塔台，上升保持1200米，执行标准复飞程序，按顺序等待。",
+      "referenceText": "Climb and maintain 1200m, standard missed approach procedure, standby sequences, ACA587.",
+      "referenceTextZh": "上升保持1200米，执行标准复飞程序，按顺序等待，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6832ebbe738a16d80949.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111024",
+      "taskTitle": "18. ACA587 missed approach, etc.-16",
+      "audioText": "ACA587, runway 36R is available now, expect radar vectors for ILS approach runway 36R.",
+      "audioTextZh": "加航587，现在跑道36右可用，雷达引导盲降进近跑道36右。",
+      "referenceText": "Radar vectors for ILS approach runway 36R, ACA587.",
+      "referenceTextZh": "雷达引导，盲降跑道36右，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/711f38998cb3dbe30ae7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111025",
+      "taskTitle": "18. ACA587 missed approach, etc.-17",
+      "audioText": "[You established on runway 36R, and ask Tower for runway braking action.]",
+      "audioTextZh": "【建立盲降跑道36右，询问塔台该跑道的刹车效应。】",
+      "referenceText": "Guangzhou Tower, ACA587, established 36R, request braking action of 36R.",
+      "referenceTextZh": "广州塔台，加航587，建立盲降跑道36右，请求跑道36右刹车效应。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/757e75cae9047dff1145.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111026",
+      "taskTitle": "18. ACA587 missed approach, etc.-18",
+      "audioText": "ACA587, braking action good runway 36R.",
+      "audioTextZh": "加航587，跑道36右刹车效应好。",
+      "referenceText": "Roger, thanks, ACA587.",
+      "referenceTextZh": "收到，谢谢，加航587。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/31bf47f5f03adb58c024.mp3"
+    }
+  ],
+  "categoryId": "atc-aca"
+}

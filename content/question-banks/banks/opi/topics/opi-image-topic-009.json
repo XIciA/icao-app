@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-08",
   "id": "opi-image-topic-009",
   "name": "传统仪表驾驶舱",
   "declaredCardCount": 3,
@@ -9,7 +8,8 @@
       "kind": "image",
       "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-009.jpg",
-      "imageAlt": "传统仪表驾驶舱航空场景图片"
+      "imageAlt": "传统仪表驾驶舱航空场景图片",
+      "studyTier": 0
     },
     {
       "id": "opi-image-009-q01",
@@ -27,5 +27,6 @@
       "referenceText": "Traditional flight instruments can create a higher scan workload, provide less integrated information, and require more manual cross-checking.",
       "referenceTextZh": "传统飞行仪表可能增加仪表扫描工作量，提供的综合信息较少，并要求飞行员进行更多人工交叉检查。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-08"
 }

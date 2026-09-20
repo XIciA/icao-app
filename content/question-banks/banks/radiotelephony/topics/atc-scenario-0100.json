@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0100",
   "name": "CCA 102 左发熄火 液压 起落架",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "可以落地，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1741.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

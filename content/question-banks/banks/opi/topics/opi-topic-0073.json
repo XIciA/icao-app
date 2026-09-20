@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-04",
   "id": "opi-topic-0073",
   "name": "危险态度",
   "declaredCardCount": 3,
@@ -14,11 +13,12 @@
     },
     {
       "id": "opi-core-749",
-      "taskTitle": "人的因素-危险态度-2",
+      "taskTitle": "8.飞行中人的因素-26",
       "audioText": "How can hazardous attitudes affect flight safety?",
-      "audioTextZh": "危险态度会如何影响飞行安全？",
-      "referenceText": "Hazardous attitudes can impair situational awareness, lead to poor decisions, weaken crew coordination, and cause pilots to ignore regulations or SOPs. For example, an anti-authority attitude may make a pilot reject useful advice or rules, while impulsivity may lead to hasty actions. These behaviours increase the risk of mistakes and accidents.",
-      "referenceTextZh": "危险态度会损害情景意识、导致错误决策、削弱机组协调，并使飞行员忽视规章或标准操作程序。例如，反权威态度会使飞行员拒绝有用建议或规则，而冲动会造成草率行动。这些行为会增加差错和事故风险。"
+      "audioTextZh": "危险态度如何影响飞行安全？",
+      "studyTier": 1,
+      "referenceText": "For example, if the pilot holds an anti-authority attitude, he may refuse to listen to the advice or suggestion of others, or he may disregard the rules and regulations. He may make mistake and make poor decision. This is very dangerous for flight safety.",
+      "referenceTextZh": "例如，如果飞行员持有反权威态度，他可能会拒绝听取别人的意见或建议，或者他可能会无视规章制度。他可能会犯错误，做出错误的决定。这对飞行安全是非常危险的。"
     },
     {
       "id": "opi-core-750",
@@ -28,5 +28,6 @@
       "referenceText": "Pilots need self-awareness to recognize personal bias and hazardous attitudes. They can manage them by following regulations, SOPs, and manuals, strengthening CRM communication and cooperation, and learning from mistakes. Flight safety should take priority over personal bias.",
       "referenceTextZh": "飞行员需要具备自我意识，才能发现个人偏见和危险态度。他们可以通过遵守规章、标准操作程序和手册，加强 CRM 沟通与合作，并从错误中学习来进行管理。飞行安全应优先于个人偏见。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-04"
 }

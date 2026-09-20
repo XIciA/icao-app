@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-sia",
   "id": "atc-scenario-0184",
   "name": "SIA 323 发动机失效 积冰/防冰 TCAS机动",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "武汉离场，SIA 323，我们已关停左发动机，请求退出等待并返场着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-085-sia323-q17.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-sia"
 }

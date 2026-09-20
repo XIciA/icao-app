@@ -1,0 +1,190 @@
+{
+  "id": "atc-fzy-622",
+  "name": "UAL865 deviate&minimum fuel, etc.",
+  "declaredCardCount": 20,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-111389",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-1",
+      "audioText": "[You are estimating WXI at time 34 maintaining 11000m, squawk 6527. Contact Zhengzhou Control.]",
+      "audioTextZh": "【预计到达WXI时间34分，11000米保持，应答机6527，联系郑州区调。】",
+      "referenceText": "Zhengzhou Control, UAL865, ETA WXI 34 maintaining 11000m, squawk 6527.",
+      "referenceTextZh": "郑州区调，美联航865，预计到达WXI时间34分，11000米保持，应答机6527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8e7eb17291c438fcd9b6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111390",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-2",
+      "audioText": "UAL865, Zhengzhou Control, radar contact, offset 3 miles right of track, reduce Mach .75, due Wuhan Control restrictions.[Read Back]",
+      "audioTextZh": "美联航865，郑州区调，雷达已识别，向右偏3海里，由于武汉区调限制，马赫数减小至点75。【复诵】",
+      "referenceText": "Offset 3 miles right of track, reduce Mach .75, UAL865.",
+      "referenceTextZh": "右偏3海里，马赫数减小至点75，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1942a5c3009b0e8a5258.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111391",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-3",
+      "audioText": "[Adverse weather ahead, request Zhengzhou Control for 20nm deviation right of track and state the reason.]",
+      "audioTextZh": "【前方天气状况恶劣，向郑州区调请求向右偏20海里并说明原因。】",
+      "referenceText": "Zhengzhou Control, UAL865, request 20nm deviation right of track due weather.",
+      "referenceTextZh": "郑州区调，美联航865，由于天气原因，请求向右偏20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cd4159c9d5457ba871c5.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111392",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-4",
+      "audioText": "UAL865, 20nm deviation to the right approved, report clear of weather.[Tell the controller you are cleared of weather.]",
+      "audioTextZh": "美联航865，可以向右偏20海里，天气好转报告。【告诉管制员天气好转。】",
+      "referenceText": "Zhengzhou Control, UAL865, clear of weather.",
+      "referenceTextZh": "郑州区调，美联航865，脱离天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4fc1c484b4e0ee85bafa.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111393",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-5",
+      "audioText": "UAL865, the restriction still exists, reduce Mach number .72 [Read Back]",
+      "audioTextZh": "美联航865，限制仍有效，减小马赫数至点72。【复诵】",
+      "referenceText": "Reduce to Mach.72, UAL865.",
+      "referenceTextZh": "减小马赫数至点72，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e05c08fc8252aa4335ce.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111394",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-6",
+      "audioText": "[Advise Zhengzhou Control Mach .72 is not acceptable which is too slow for your aircraft.]",
+      "audioTextZh": "【告诉郑州区调马赫数点72对你的飞机来说太慢了。】",
+      "referenceText": "Zhengzhou Control, UAL865, we cannot accept Mach .72, too slow for us.",
+      "referenceTextZh": "郑州区调，美联航865，我们不能接受马赫数点72，对我们来说太慢了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/3cc5566ed24c51fdb32e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111395",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-7",
+      "audioText": "UAL865, Zhengzhou Control, maintain Mach .75, we are limiting the number of aircraft flying through Wuhan Control area due Wuhan radar failure.[Read Back]",
+      "audioTextZh": "美联航865，郑州区调，马赫数点75保持，由于武汉雷达失效，我们正在限制武汉管制区内飞行的飞机数量。【复诵】",
+      "referenceText": "Roger. Maintaining Mach .75, UAL865.",
+      "referenceTextZh": "收到，马赫数点75保持，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/54381736cc4246f5637c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111396",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-8",
+      "audioText": "UAL865, report estimated time of OBLIK.[Inform Zhengzhou control your estimated time for OBLIK is 0638.]",
+      "audioTextZh": "美联航865，报告预计到达OBLIK时间。【通知郑州区调，预计到达OBLIK时间为06:38。】",
+      "referenceText": "Estimating OBLIK 0638, UAL865.",
+      "referenceTextZh": "预计到达OBLIK时间为06:38，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae9c2fb928ca9a5718b1.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111397",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-9",
+      "audioText": "UAL865, make a right orbit due spacing, reach OBLIK not earlier than 0646.[Tell Zhengzhou Control, you are the international flight, you can’t hold for a long time due to fuel limitation.]",
+      "audioTextZh": "美联航865，由于间隔，右转机动，到达OBLIK时间不早于06:46。‘【告诉郑州区调，你们是国际航班，由于油量限制，你们不能长时间盘旋等待。】",
+      "referenceText": "Orbit right due spacing, over OBLIK not early than 0646, we are an international flight, we cannot hold for a long time due fuel limitation, UAL865.",
+      "referenceTextZh": "由于间隔，右转机动，到达OBLIK时间不早于06:46，我们是一架国际航班，由于油量限制，我们不能长时间等待，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/69ed0b2803aee8cabbbf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111398",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-10",
+      "audioText": "UAL865, confirm the fuel endurance?[Tell the controller the fuel endurance is 45min, you can’t hold more than 30min.]",
+      "audioTextZh": "美联航865，证实燃油续航时间。【告诉管制员燃油续航时间为45分钟，飞机不能盘旋等待超过30分钟。】",
+      "referenceText": "Our endurance is 45min, negative hold more than 30min, UAL865.",
+      "referenceTextZh": "续航时间45分钟，不能盘旋等待超过30分钟，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/01e0549d65548f635011.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111399",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-11",
+      "audioText": "UAL865, I can’t tell you the exactly time of hold, do you need declare an emergency fuel?[Tell controller you can hold for now, inform the latest notice as soon as possible.]",
+      "audioTextZh": "美联航865，我无法确定等待时间，你需要宣布紧急燃油么？【告诉管制员你现在还可以等待，请求尽快通知下一指令。】",
+      "referenceText": "We can hold now, please acknowledge the time as soon as possible, UAL865.",
+      "referenceTextZh": "我们现在还能等待，请尽快确认等待时间，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/76b51c621c9f41a674cc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111400",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-12",
+      "audioText": "UAL865, make a standard hold at present position.[Read Back]",
+      "audioTextZh": "美联航865，在原地标准等待。【复诵】",
+      "referenceText": "Make a standard hold at present position, UAL865.",
+      "referenceTextZh": "原地标准等待，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/620b37c959d31ca7b977.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111401",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-13",
+      "audioText": "[After hold 20min, ask controller how long will you delay for the flight.]",
+      "audioTextZh": "【等待20分钟后，询问管制员航班还要延误多久。】",
+      "referenceText": "Zhengzhou Control, UAL865, confirm how long shall we hold?",
+      "referenceTextZh": "郑州区调，美联航865，证实下还要等待多久？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2014cc586fdf73063e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111402",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-14",
+      "audioText": "UAL865, negative time. Do you want to divert to alternation or declare an emergency fuel?[Ask controller which airport is suitable for divert to and is there any delay for the alternation.]",
+      "audioTextZh": "美联航865，不能确定。你想改航到备降机场或是宣布紧急燃油状态么？【询问管制员哪个机场适合备降以及备降机场是否有延误。】",
+      "referenceText": "Confirm which airport is available for us, and is there any delay for the alternation, UAL865.",
+      "referenceTextZh": "证实哪个机场适合我们改航，备降机场是否有延误。美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c3f07b3b7b7e7be4587d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111403",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-15",
+      "audioText": "UAL865, Xinzheng is available for you to divert. Say intentions.[Xinzheng airport is not the regular airport for your company, you need to ask permission and tell controller later.]",
+      "audioTextZh": "美联航865，新郑机场适合改航。请示意图。【新郑机场不是你公司的常用机场，你需要获得公司许可后再回复管制员。】",
+      "referenceText": "We need to ask permission to divert to the airport, standby, UAL865.",
+      "referenceTextZh": "我们需要获得公司的许可才能改航，稍等，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1accebfb5223215e698f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111404",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-16",
+      "audioText": "[After you get the permission, you can divert to Xinzheng, tell ATC you can fly to Zhengzhou and ask for help to Xinzheng.]",
+      "audioTextZh": "【获得许可之后，你可以改航到新郑机场，告诉ATC你可以飞往新郑机场，并请求帮助前往机场。】",
+      "referenceText": "Zhengzhou Control, UAL865, we can divert to Xinzheng, request radar vector.",
+      "referenceTextZh": "郑州区调，美联航865，我们可以改航至新郑机场，请求雷达引导。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/10a294cf624606cfe3b7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111405",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-17",
+      "audioText": "UAL865, roger. Standby.[A few minutes later.]UAL865, Zhengzhou Control, Wuhan is available, do you want to continue fly to Wuhan?[Ask controller you want to fly to Wuhan and ask for direct to Wuhan due to the hold for a long time.]",
+      "audioTextZh": "美联航865，收到。稍等。【几分钟后。】美联航865，郑州区调，武汉可以飞了，你想继续飞往武汉么？【告诉管制员你想飞往武汉，另外因为等待时间太久，请求直飞武汉。】",
+      "referenceText": "Request direct to Wuhan due long time delay, UAL865.",
+      "referenceTextZh": "由于等待太久，请求直飞武汉，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8778b65486f6b6e905d2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111406",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-18",
+      "audioText": "UAL865, direct to IAF of runway 36R, contact Wuhan Control 125.5.[Read Back]",
+      "audioTextZh": "美联航865，直飞IAF，跑道36右，联系武汉区调125.5。【复诵】",
+      "referenceText": "Direct to IAF of runway 36R, Wuhan Control 125.5, UAL865.",
+      "referenceTextZh": "直飞IAF，跑道36右，联系武汉区调125.5，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/51c2918eed541527c677.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111407",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-19",
+      "audioText": "[Tell Wuhan Control, you are directing to IAF of runway 36R, declare you are minimum fuel. Ask to direct to FAF of runway 36R. This is an urgency call.]",
+      "audioTextZh": "【告诉武汉区调，你正在直飞IAF，跑道36右，宣布最低燃油状态。请求直飞FAF，跑道36右。这是紧急呼叫。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, UAL865, minimum fuel, request direct to FAF of runway 36R.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，美联航865，最低燃油，请求直飞FAF，跑道36右。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/090fada26c2c6397af0e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-111408",
+      "taskTitle": "39. UAL865 deviate&minimum fuel, etc.-20",
+      "audioText": "UAL865, Wuhan Control, roger PANPAN, direct to FAF of runway 36R.[Read Back]",
+      "audioTextZh": "美联航865，武汉区调，收到PANPAN，直飞FAF，跑道36右。【复诵】",
+      "referenceText": "Direct to FAF of runway 36R, UAL865.",
+      "referenceTextZh": "直飞FAF，跑道36右，美联航865。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/76d9870e655b3a763b5e.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

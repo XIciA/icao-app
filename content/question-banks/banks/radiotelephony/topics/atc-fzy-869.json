@@ -1,0 +1,145 @@
+{
+  "id": "atc-fzy-869",
+  "name": "CSN6682 radio check&hydraulic failure",
+  "declaredCardCount": 15,
+  "studyTier": 0,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-153563",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-1",
+      "audioText": "Your call sign is CSN6682, from Wuhan to Guangzhou, you are at stand 215, make initial contact with Wuhan Ground and make a radio check.",
+      "audioTextZh": "你的呼号是南方6682，从武汉飞往广州，你现在在215号停机位，与广州地面进行初始报话，并进行无线电检查。",
+      "referenceText": "Wuhan Ground, CSN6682, stand 215, 1, 2, 3, 4, 5, how do you read?",
+      "referenceTextZh": "武汉地面，南方6682，215号停机位，你听我几个？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7264b549962c9222fdd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153564",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-2",
+      "audioText": "CSN6682, Wuhan Ground, I read you five. Here is your ATC clearance.",
+      "audioTextZh": "南方6682，武汉地面，我听你5个，以下是你的管制许可。",
+      "referenceText": "Roger, ready to copy, CSN6682.",
+      "referenceTextZh": "收到，准备好抄收了，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/43ffa007467a851d522e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153565",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-3",
+      "audioText": "CSN6682, cleared to Guangzhou via flight planned route, runway in use 36R, follow LKO-01 departure, initially climb to 1,200m, cruising level 9,800m, after departure contact 119.7, squawk 2515.",
+      "audioTextZh": "南方6682，可以经由计划航路飞往广州，使用跑道36右，按照LKO-01离场，初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515。",
+      "referenceText": "Cleared to Guangzhou, via flight planned route, runway in use 36R, follow LKO01 departure, initially climb to 1200m, cruising level 9800m, after departure contact 119.7, squawk 2515, CSN6682.",
+      "referenceTextZh": "可以经由计划航路飞往广州，使用跑道36右，按照LKO-01离场，初始爬升至1200米，巡航高度9800米，离场后联系119.7，应答机2515，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/36c1ee25384ce46f9c8d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153566",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-4",
+      "audioText": "Now you are ready for push back and start up, contact Ground.",
+      "audioTextZh": "现在你准备好推出开车了，联系地面。",
+      "referenceText": "Wuhan Ground, CSN6682, request push-back and start up.",
+      "referenceTextZh": "武汉地面，南方6682，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b24d713a330c89d2d200.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153567",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-5",
+      "audioText": "CSN6682, push back and start up approved, facing east.",
+      "audioTextZh": "南方6682，同意推出开车，面朝西。",
+      "referenceText": "Push back and start up approved, facing east, CSN6682.",
+      "referenceTextZh": "同意推出开车，面朝西，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7aef083aef987b9c1086.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153568",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-6",
+      "audioText": "You have completed push back and start up, request taxi.",
+      "audioTextZh": "你现在完成了推出开车，请求滑行。",
+      "referenceText": "Wuhan Ground, CSN6682, request taxi.",
+      "referenceTextZh": "武汉地面，南方6682，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/74a7919aa652972599c0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153569",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-7",
+      "audioText": "CSN6682, taxi via A4, A3, C, hold short of runway 36R.",
+      "audioTextZh": "南方6682，经由滑行道A4，A3,C，在跑道36右外等待。",
+      "referenceText": "Taxi via A4, A3, C, hold short of runway 36R, CSN6682.",
+      "referenceTextZh": "经由滑行道A4，A3,C，在跑道36右外等待，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/63d72e0ef1d17c9063e4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153570",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-8",
+      "audioText": "Now you are ready for takeoff.",
+      "audioTextZh": "现在你准备好起飞了。",
+      "referenceText": "Wuhan Tower, CSN6682, ready for departure.",
+      "referenceTextZh": "武汉塔台，南方6682，准备好离场了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c76531dd28226bd0c779.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153571",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-9",
+      "audioText": "CSN6682, line up and wait, runway 36R, cleared for takeoff.",
+      "audioTextZh": "南方6682，上跑道等待，跑道36右，可以起飞。",
+      "referenceText": "Line up and wait, runway 36R, cleared for takeoff, CSN6682.",
+      "referenceTextZh": "上跑道等待，跑道36右，可以起飞，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/67910a4abfb89e3ea44a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153572",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-10",
+      "audioText": "CSN6682, climb to 3900m, expedite until passing 2100m.",
+      "audioTextZh": "南方6682，爬升至3900米，加速爬升至2100米。",
+      "referenceText": "Climb to 3900m, expedite passing 2100m, CSN6682.",
+      "referenceTextZh": "爬升至3900米，加速爬升至2100米，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/43878f543420eb1300f8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153573",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-11",
+      "audioText": "CSN6682, stop climbing due converging traffic, level off at 2,700m.",
+      "audioTextZh": "南方6682，由于拥堵航空器，停止爬升，在2700米改平。",
+      "referenceText": "Level off at 2700m due converging traffic, CSN6682.",
+      "referenceTextZh": "由于拥堵航空器，在2700米改平，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6a2d9cc33c6992b6ddee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153574",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-12",
+      "audioText": "You found one of your hydraulic systems failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.",
+      "audioTextZh": "你发现你的一个液压系统失效了，做紧急呼叫，并将此情况告诉管制员，请求在3900米改平，然后返回武汉机场。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CSN6682, we have one hydraulic system failure, request level off at 3900m and then return to Wuhan airport.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉区调，南方6682，我们的一个液压系统失效了，请求在3900米改平，然后返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a483b0c17259ced7c0bf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153575",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-13",
+      "audioText": "CSN6682, roger PAN, maintain 3900m, turn left direct to LKO, expect LKO-02 arrival, ILS approach runway 36R.",
+      "audioTextZh": "南方6682，收到PAN，保持在3900米，左转直飞LKO，预计LKO-02进近，ILS进场，跑道36右。",
+      "referenceText": "Turn left direct to LKO, expect LKO-02 arrival, CSN6682.",
+      "referenceTextZh": "左转直飞LKO，预计LKO-02进近，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb26e146ad314af74999.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153576",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-14",
+      "audioText": "Report that you have intercepted the localizer for RWY 36R.",
+      "audioTextZh": "报告你已经截获跑道36右的下滑道。",
+      "referenceText": "Wuhan Approach, CSN6682, established localizer for runway 36R.",
+      "referenceTextZh": "武汉进近，南方6682，建立跑道36右的下滑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ab1760e713ae60e120e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-153577",
+      "taskTitle": "48. CSN6682 radio check&hydraulic failure-15",
+      "audioText": "CSN6682,, contact tower 124.35.",
+      "audioTextZh": "南方6682，联系地面124.35。",
+      "referenceText": "124.35, CSN6682.",
+      "referenceTextZh": "125.35，南方6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7cdc30e6c43763aba98f.mp3"
+    }
+  ],
+  "categoryId": "atc-csn"
+}

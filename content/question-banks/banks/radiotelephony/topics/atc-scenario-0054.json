@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0054",
   "name": "CCA 425 火山灰云 1发熄火",
   "declaredCardCount": 11,
@@ -103,5 +102,6 @@
       "referenceTextZh": "武汉管制，CCA 425，我们的 1 号发动机已重启，请求继续飞往 Tokyo。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/936.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

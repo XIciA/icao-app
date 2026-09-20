@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-afr",
   "id": "atc-scenario-0165",
   "name": "AFR 939 刹车问题 积冰/防冰 TCAS机动",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "需要，我们需要客梯车让旅客下机，AFR 939。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-afr"
 }

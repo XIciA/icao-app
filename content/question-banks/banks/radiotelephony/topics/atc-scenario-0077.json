@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0077",
   "name": "CSN 102 因延误重新加油",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "进入跑道 36R，经 A2 脱离跑道，然后经 T5 到 211 号登机口，CSN 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1332.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

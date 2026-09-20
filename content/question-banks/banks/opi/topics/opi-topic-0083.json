@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-06",
   "id": "opi-topic-0083",
   "name": "模拟/数字仪表与驾驶舱",
   "declaredCardCount": 8,
@@ -68,5 +67,6 @@
       "referenceText": "Pilots combine outside visual observation with information from modern cockpit systems. EFIS can present navigation, weather-radar, and terrain information, while TCAS provides traffic alerts. Sensors and reports from ATC or other pilots can add current wind, weather, and airspace information.",
       "referenceTextZh": "飞行员把外部目视观察与现代驾驶舱系统的信息结合使用。EFIS 可以显示导航、气象雷达和地形信息，TCAS 提供交通警告。传感器以及空中交通管制或其他飞行员的报告，还能补充当前风况、天气和空域信息。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-06"
 }

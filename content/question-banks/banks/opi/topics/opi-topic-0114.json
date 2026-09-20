@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-05",
   "id": "opi-topic-0114",
   "name": "驾驶舱进入规则",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "In an airline operation, the crew member should first confirm that entry is necessary and use the operator's secure communication and identity-check procedure. The pilots verify the request, check that the area is safe, and control the door opening. The door should then be closed and secured immediately after the authorised person enters.",
       "referenceTextZh": "在航空公司运行中，机组成员应先确认确有进入驾驶舱的必要，并使用运营人的安全通信和身份核验程序。飞行员核实请求，确认门外区域安全，并控制驾驶舱门开启。获准人员进入后，应立即关门并重新锁闭。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-05"
 }

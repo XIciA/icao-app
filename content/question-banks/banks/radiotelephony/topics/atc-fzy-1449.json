@@ -1,0 +1,389 @@
+{
+  "id": "atc-fzy-1449",
+  "name": "初始联系",
+  "declaredCardCount": 38,
+  "practiceKind": "scoring-points",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-210097",
+      "taskTitle": "【练习版】Initial contact初始联系-1",
+      "audioText": "UAL239, continue descend and maintain 4200m.",
+      "audioTextZh": "美联航239，继续下降保持4200米。",
+      "studyTier": 0,
+      "referenceText": "Descend and maintain 4200m, UAL239.",
+      "referenceTextZh": "下降保持4200米，美联航239。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2a7cea495ade4e36fb4f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210098",
+      "taskTitle": "采分点练习-初始联系-14",
+      "audioText": "You are now leveling at 4200m and approaching ZF, information A received, make an initial contact with Wuhan approach.",
+      "audioTextZh": "你现在正保持在4200米，接近ZF，收到通播A，与武汉进近建立初始联系。",
+      "studyTier": 2,
+      "referenceText": "Wuhan approach, UAL219 maintaining 4200m, approaching ZF, information A.",
+      "referenceTextZh": "武汉进近，美联航219，保持在4200米，接近ZF，通播A。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1ce2c264bf38816d62a7.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210099",
+      "taskTitle": "【练习版】Initial contact初始联系-3",
+      "audioText": "ACA989, maintain 4500m, contact Wuhan Control on 118.1.",
+      "audioTextZh": "加航989，4500米保持，联系武汉区调118.1。",
+      "studyTier": 0,
+      "referenceText": "Roger, maintain 4500m, contact Wuhan Control 118.1, ACA989.",
+      "referenceTextZh": "收到，4500米保持，联系武汉区调118.1，加航989。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9914cfda467be34aca71.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210100",
+      "taskTitle": "【练习版】Initial contact初始联系-4",
+      "audioText": "[You are just over ZF, make an initial contact with Wuhan Control.]",
+      "audioTextZh": "【你刚过ZF，和武汉区调进行初次联系。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Control, ACA989, maintaining 4500m, over ZF.",
+      "referenceTextZh": "武汉区调，加航989，4500米保持，过ZF。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/54aa883694e303a548bf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210101",
+      "taskTitle": "【练习版】Initial contact初始联系-5",
+      "audioText": "CSN421, roger, maintain 4800m, contact Wuhan Approach on 118.9.",
+      "audioTextZh": "南航421，收到，4800米保持，联系武汉进近118.9。",
+      "studyTier": 0,
+      "referenceText": "Maintaining 4800m, contact Wuhan Approach on 118.9, CSN421.",
+      "referenceTextZh": "4800米保持，联系武汉进近118.9，南航421。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/837599e7d316de81b02f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210102",
+      "taskTitle": "【练习版】Initial contact初始联系-6",
+      "audioText": "[Make an initial contact with Wuhan Approach; inform the controller that you have received an anonymous call saying there is a bomb on board your aircraft, and you are returning to Wuhan.]",
+      "audioTextZh": "【和武汉进近进行初次联系；通知管制员你收到匿名电话，称飞机上有炸弹，你正在返回武汉。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Approach, CSN421, maintaining 4800m, over ZF. We have received an anonymous call saying there is a bomb on board. We are turning back to land at Wuhan airport.",
+      "referenceTextZh": "武汉进近，南航421，4800米保持，过ZF。我们收到匿名电话，称飞机上有炸弹，我们正在返回降落到武汉。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/172ecd8b7abaa2946582.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210103",
+      "taskTitle": "【练习版】Initial contact初始联系-7",
+      "audioText": "CSN6202, contact Beijing Control 125.9 for request.",
+      "audioTextZh": "南航6202，联系北京区调125.9，请求直飞。",
+      "studyTier": 0,
+      "referenceText": "125.9, CSN6202.",
+      "referenceTextZh": "125.9，南航6202。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ecd9072c888107b36995.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210104",
+      "taskTitle": "【练习版】Initial contact初始联系-8",
+      "audioText": "[Make an initial contact with Beijing Control, 5400m maintaining, request direct to KAKAT due to weather.]",
+      "audioTextZh": "【开始联系北京区调，保持5400米，由于天气原因，请求直飞KAKAT。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Control, CSN6202, 5400m maintaining, request direct to KAKAT due weather.",
+      "referenceTextZh": "北京区调，南航6202，保持5400米，由于天气原因，请求直飞KAKAT。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8b466adc23accc1c2fb8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210105",
+      "taskTitle": "【练习版】Initial contact初始联系-9",
+      "audioText": "CCA991, climb to and maintain 6600m, contact Beijing Control 124.55.",
+      "audioTextZh": "国航991，上升保持6600米，联系北京区调124.55。",
+      "studyTier": 0,
+      "referenceText": "Climb to and maintain 6600m, 124.55, CCA991.",
+      "referenceTextZh": "上升保持6600米，124.55，国航991。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4398800c9929306453ee.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210106",
+      "taskTitle": "【练习版】Initial contact初始联系-10",
+      "audioText": "[Make an initial contact with Beijing Control, you are 6600m maintaining, request 10400m.]",
+      "audioTextZh": "【与北京区调建立初次联系，6600米保持，请求上升到10400米。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Control, CCA991, 6600m maintaining. Request climb to 10400m.",
+      "referenceTextZh": "北京区调，国航991，6600米保持，请求上升到10400米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/76822f2edf3f1434a806.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210107",
+      "taskTitle": "【练习版】Initial contact初始联系-11",
+      "audioText": "UAL895, roger, direct to HUR for hold, contact Beijing Approach on 129.0.",
+      "audioTextZh": "美联航895，收到，直飞HUR等待，联系北京进近129.0。",
+      "studyTier": 0,
+      "referenceText": "Direct to HUR for hold, Approach 129.0, UAL895.",
+      "referenceTextZh": "直飞HUR等待，北京进近129.0，美联航895。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/016fcc7a0e6cc24e0559.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210108",
+      "taskTitle": "【练习版】Initial contact初始联系-12",
+      "audioText": "[Establish initial contact with Beijing Approach, you are 4500m maintaining and flying direct to HUR.]",
+      "audioTextZh": "【与北京进近建立初次联系，4500米保持，正在直飞HUR。】",
+      "studyTier": 0,
+      "referenceText": "Beijing Approach, UAL895, 4500m maintaining, direct to HUR.",
+      "referenceTextZh": "北京进近，美联航895，4500米保持，直飞HUR。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a096c885e9a9dc1bd421.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210109",
+      "taskTitle": "采分点练习-初始联系-11",
+      "audioText": "Your call sign is CSN6682, from Wuhan to Guangzhou, you are at stand 215, make initial contact with Wuhan Ground and make a radio check.",
+      "audioTextZh": "你的呼号是南方6682，从武汉飞往广州，你现在在215号停机位，与广州地面进行初始报话，并进行无线电检查。",
+      "studyTier": 2,
+      "referenceText": "Wuhan Ground, CSN6682, stand 215, 1, 2, 3, 4, 5, how do you read?",
+      "referenceTextZh": "武汉地面，南方6682，215号停机位，1，2，3，4，5，你听我几个？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c7264b549962c9222fdd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210110",
+      "taskTitle": "【练习版】Initial contact初始联系-14",
+      "audioText": "CSN586, taxi with caution, men and equipment operating east of taxiway A.",
+      "audioTextZh": "南方586，谨慎滑行，滑行道A东部有人和设备运行。",
+      "studyTier": 0,
+      "referenceText": "Roger, thanks. Taxi with caution. CSN586.",
+      "referenceTextZh": "收到，谢谢，谨慎滑行，南方586。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f67e5faebcc5f484b77b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210111",
+      "taskTitle": "【练习版】Initial contact初始联系-15",
+      "audioText": "[Now you are cruising at 8000m, approaching DAPRO, make an initial contact with Guangzhou Control.]",
+      "audioTextZh": "[你现在巡航在8000米，接近DAPRO，与广州区调进行初始联系]",
+      "studyTier": 0,
+      "referenceText": "Guangzhou Control, CSN586, maintaining 8000m, approaching DAPRO.",
+      "referenceTextZh": "广州区调，南方586，正保持在8000米，接近DAPRO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b247a08c3ad58b1b1c4b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210112",
+      "taskTitle": "【练习版】Initial contact初始联系-16",
+      "audioText": "ACA554, after the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m.",
+      "audioTextZh": "加航554，与航空器解除冲突后，直飞ZF，恢复自主领航，上5100米保持。",
+      "studyTier": 0,
+      "referenceText": "After the traffic is clear, track direct to ZF resume own navigation, climb to and maintain 5100m, ACA554.",
+      "referenceTextZh": "与航空器解除冲突后，直飞ZF，恢复自主领航，上5100米保持，加航554。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/26b568f222244dd8385d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210113",
+      "taskTitle": "采分点练习-初始联系-15",
+      "audioText": "[You are now at cruising level 9500m, over OBLIK, make an initial contact with Zhengzhou Control, your squawk number is 5655.]",
+      "audioTextZh": "[你现在到达巡航高度9500米，过OBLIK，与郑州区调做初始联络，你的应答机是5655]",
+      "studyTier": 2,
+      "referenceText": "Zhengzhou Control, ACA554, 9500m, over OBLIK, squawk 5655.",
+      "referenceTextZh": "郑州区调，加航554，9500米，过OBLIK，应答机5655。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ff9445ba56a3cb12a07f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210114",
+      "taskTitle": "【练习版】Initial contact初始联系-18",
+      "audioText": "[Your call sign is QFA653, from Sydney to Wuhan, cruising at 10700m, squawk 3211. Now you are entering Wuhan Control area. Make an initial contact with Wuhan Control.]",
+      "audioTextZh": "你的呼号是澳航653，从悉尼飞往武汉，巡航高度10700米，应答机3211。你现在正在进入武汉管制区域，与武汉区调进行初始联络。",
+      "studyTier": 0,
+      "referenceText": "Wuhan Control, QFA653, 10700m, squawk 3211.",
+      "referenceTextZh": "武汉区调，澳航653，（高度）10700米，应答机3211。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a58238343777eb1c4dd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210115",
+      "taskTitle": "【练习版】Initial contact初始联系-19",
+      "audioText": "ACA909, maintain 4,500 m, contact Wuhan Control on 118.1.",
+      "audioTextZh": "加航909，在4500米保持，联系武汉区调118.1。",
+      "studyTier": 0,
+      "referenceText": "Roger, maintain 4,500 m, contact Wuhan Control 118.1, ACA909.",
+      "referenceTextZh": "收到，在4500米保持，联系武汉区调118.1，加航909。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0997ec399f931308ce41.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210117",
+      "taskTitle": "【练习版】Initial contact初始联系-21",
+      "audioText": "UAL219, continue descent to and maintain 4200m.",
+      "audioTextZh": "美联航219，继续下降并保持在4200米。",
+      "studyTier": 0,
+      "referenceText": "Descend to and maintain 4200m, UAL219.",
+      "referenceTextZh": "下降并保持在4200米，美联航219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7d4fccc2da30851d24d9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210119",
+      "taskTitle": "【练习版】Initial contact初始联系-23",
+      "audioText": "Your call sign is QFA 160 from Tokyo to Guangzhou, you are cruising at 11000 meters, over Whiskey X-ray, make the initial contact with Zhengzhou control.",
+      "audioTextZh": "你的呼号是澳航160，从东京飞往广州，你现在在11000米巡航，飞过WX，与郑州区调建立初始联系。",
+      "studyTier": 0,
+      "referenceText": "Zhengzhou Control, QFA160, from Tokyo to Guangzhou, we are cruising at 11,000 meters over WX.",
+      "referenceTextZh": "郑州区调，澳航160，从东京飞往广州，我们在11000米巡航，飞过WX。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f41ebbd434181ed63351.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210120",
+      "taskTitle": "采分点练习-初始联系-12",
+      "audioText": "Your all sign is ACA517, Cruising at 10,100m, squawk 3215, approaching DAPRO, make an initial contact with Guangzhou control.",
+      "audioTextZh": "你的呼号是加航517，在10100米巡航，应答机3215，接近DAPRO，与广州区调进行初始联络。",
+      "studyTier": 2,
+      "referenceText": "Guangzhou Control, ACA517, 10,100m maintaining, squawk 3215, approaching DAPRO.",
+      "referenceTextZh": "广州区调，加航517，保持在10100米，应答机3215，接近DAPRO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/950d2a2301891972ce20.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210122",
+      "taskTitle": "【练习版】Initial contact初始联系-26",
+      "audioText": "Your call sign is BAW120, from Wuhan to London, cruising at 11000m, over WXI, Squawk 4521, make an initial contact with Zhengzhou Control.",
+      "audioTextZh": "你的呼号是英航120，从武汉飞往伦敦，在11000米巡航，飞过WXI，应答机4521，与郑州区调做初始报话。",
+      "studyTier": 0,
+      "referenceText": "Zhengzhou Control, BAW120, from Wuhan to London, cruising at 11000m, over WXI, Squawk 4521.",
+      "referenceTextZh": "郑州区调，英航120，从武汉飞往伦敦，在11000米巡航，飞过WXI，应答机4521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/74c5540fab6204c8efa4.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210123",
+      "taskTitle": "【练习版】Initial contact初始联系-27",
+      "audioText": "[Your call sign is CSN6682, from Wuhan to Guangzhou, you are at stand 215, make the initial contact with Wuhan Delivery and request ATC clearance.]",
+      "audioTextZh": "【你的呼号是南方6682，从武汉飞往广州，你现在在215号停机位，和武汉放行进行初始通话，请求放行许可。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Delivery, CSN6682, from Wuhan to Guangzhou, stand 215, request ATC clearance.",
+      "referenceTextZh": "武汉放行，南方6682，从武汉飞往广州，215号停机位，请求放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/989060cc0caf888e2046.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210124",
+      "taskTitle": "【练习版】Initial contact初始联系-28",
+      "audioText": "C: ACA331, after the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m.",
+      "audioTextZh": "加航331，航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持。",
+      "studyTier": 0,
+      "referenceText": "After the traffic is clear, track direct to ZF, resume own navigation, climb to and maintain 5100m, ACA331.",
+      "referenceTextZh": "航空器脱离冲突后，直飞ZF，恢复自主领航，上到5100米保持，加航331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/08c7149616875f0715fc.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210126",
+      "taskTitle": "【练习版】Initial contact初始联系-30",
+      "audioText": "C: CES529, Wuhan Departure, radar identified, turn right direct to ZF, climb to 5100m.",
+      "audioTextZh": "东方529，武汉离场，雷达已识别，右转直飞ZF，上5100米。",
+      "studyTier": 0,
+      "referenceText": "Turn right direct to ZF, climb to 5100m, CES529.",
+      "referenceTextZh": "右转直飞ZF，上5100米，东方529。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/cb14c987891d6154e33a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-210127",
+      "taskTitle": "【练习版】Initial contact初始联系-31",
+      "audioText": "[Now you are over ZF, maintaining 5100m, squawk 2515, make an initial contact with Wuhan Control.]",
+      "audioTextZh": "【现在你在ZF上空，5100米保持，应答机2515，与武汉区调建立初始联系。】",
+      "studyTier": 0,
+      "referenceText": "Wuhan Control, CES529, over ZF, maintaining 5100m, squawk 2515.",
+      "referenceTextZh": "武汉区调，东方529，过ZF，在5100米保持，应答机2515。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d203c4847b54f32b5942.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224828",
+      "taskTitle": "采分点练习-初始联系-1",
+      "audioText": "N: [Your flight number is CSN905, a flight from Changchun to Wuhan. You are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]",
+      "audioTextZh": "N：【你的呼号是南方905，一架从长春飞往武汉的航班。你现在在10400米巡航，你正接近BIDOG，你的应答机编码是2332。与北京区调建立初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Beijing Control, CSN905, maintaining 10400m, approaching BIDOG, squawking 2332.",
+      "referenceTextZh": "北京区调，南方905，正保持10400米，接近BIDOG，应答机2332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8dda23dd05f6a53df407.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224829",
+      "taskTitle": "采分点练习-初始联系-2",
+      "audioText": "B: [Now you’re en-route Germany, Rhein Radar Control, you’re cruising at FL360, make an initial contact with Rhein Radar Control.]",
+      "audioTextZh": "B：【你现在已经在德国莱茵雷达管制区航路上，你现在在高度层360巡航。与莱茵雷达管制区进行初始通话。】",
+      "studyTier": 2,
+      "referenceText": "Rhein Radar, SIA308, en-route, cruising at FL360.",
+      "referenceTextZh": "莱茵雷达，新航308，在航路上，高度层360。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/7a85f60eeaef3e16c4cf.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224830",
+      "taskTitle": "采分点练习-初始联系-3",
+      "audioText": "N: [Your call sign is CCA2119, you are maintaining 4,500 meters over VYK, you have received information X, make an initial contact with Beijing Approach.]",
+      "audioTextZh": "【你的呼号是国航2119，你现在正保持在4500米，过VYK，你已经收到通播X，与北京进近进行初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Beijing Approach, CCA2119, maintaining 4500m, over VYK, information X.",
+      "referenceTextZh": "北京进近，国航2119，正保持4500米，过VYK， 通播X。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a036d041640127480e0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224831",
+      "taskTitle": "采分点练习-初始联系-4",
+      "audioText": "[Your call-sign is UAL887, a passenger flight from Tokyo to Guangzhou. You are now flying at 9500m, estimating OBLIK at 35, squawking 5355. Make an initial contact with Beijing Control.]",
+      "audioTextZh": "【你的呼号是美联航887，一架从东京飞往广州的客运航班。你现在在9500米飞行，预计过OBLIK时间35分，应答机5355。与北京区调进行初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Beijing Control, UAL887, 9500m maintaining, ETA OBLIK 35, squawk 5355.",
+      "referenceTextZh": "北京区调，美联航887，正保持在9500米，预计过OBLIK时间35分，应答机5355。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5042f262ceebf98ee54d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224832",
+      "taskTitle": "采分点练习-初始联系-5",
+      "audioText": "[Your call sign is BAW3532, from London to Shanghai, you are now on airway H14, 11600m maintaining, next HO, make an initial contact with Xi’an Control. ]",
+      "audioTextZh": "【你的呼号是英航3532，从伦敦飞往上海，你现在在航路H14上，正保持11600米，下一点是HO，与西安区调进行初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Xi’an Control, BAW3532, now on airway H14, 11600m maintaining, next HO.",
+      "referenceTextZh": "西安区调，英航3532，现在在航路H14上，正保持11600米，下一点是HO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/b60680d6285b65ddbf2e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224833",
+      "taskTitle": "采分点练习-初始联系-6",
+      "audioText": "B: [Your call sign is CES556, you are maintaining 9200m, ETA JTN at 55, squawk 1532; make an initial contact with Wuhan Control.]",
+      "audioTextZh": "【你的呼号是东方556，飞机保持9200米，预计到达JTN时间55分，应答机1532；和武汉区调建立初次联系。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Control, CES556, 9200m maintaining, ETA JTN 55, squawk 1532.",
+      "referenceTextZh": "武汉区调，东方556，保持9200米。预计到达JTN时间55分，应答机1532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1bfce2411e40524b12c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224834",
+      "taskTitle": "采分点练习-初始联系-7",
+      "audioText": "B: [Your call sign is CCA321, from Wuhan to Guangzhou, you are now over DAPRO at 9200m. Make an initial contact with Guangzhou Control.]",
+      "audioTextZh": "【你的呼号是国航三两幺，从武汉飞往广州，你现在飞过DAPRO，高度九千二，与广州区调建立初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Guangzhou Control, CCA321, over DAPRO, maintaining 9200m.",
+      "referenceTextZh": "广州区调，国航三两幺，飞过DAPRO，保持在九千二。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8080d72d7284e992f875.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224835",
+      "taskTitle": "采分点练习-初始联系-8",
+      "audioText": "B: [Now you are airborne, leaving 1200m for 2400m, make an initial contact with Wuhan Departure.]",
+      "audioTextZh": "【现在你已离地，从1200米飞往2400米，与武汉离场建立初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Wuhan Departure, CES529, airborne, leaving 1200m for 2400m.",
+      "referenceTextZh": "武汉离场，东方529，离地了，从1200米飞往2400米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/2748bb00d024e1a82c1d.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224836",
+      "taskTitle": "采分点练习-初始联系-9",
+      "audioText": "B: [Your call sign is CCA321, from Beijing to Guangzhou. You are now cruising at 10400m with squawk 3210, estimating fly over LKO at time 30, next DAPRO at 45. Make an initial contact with Guangzhou Control.]",
+      "audioTextZh": "【你的呼号是国航321，从北京飞往广州。巡航高度10400米，应答机3210，预计30分飞过LKO，45分飞过DAPRO，与广州区调建立初始联系。】",
+      "studyTier": 2,
+      "referenceText": "Guangzhou Control, CCA321, Beijing to Guangzhou, cruising at 10400m with squawk 3210, estimating fly over LKO at time 30, next DAPRO at 45.",
+      "referenceTextZh": "广州区调，国航321，北京飞往广州，巡航高度10400米，应答机3210，预计30分飞过LKO，45分飞过DAPRO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4b6d456fb5392af7a72.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224837",
+      "taskTitle": "采分点练习-初始联系-10",
+      "audioText": "Your call sign is BAW120, from London to Wuhan, cruising at 11000m, over WXI, Squawk 4521, make an initial contact with Zhengzhou Control.",
+      "audioTextZh": "你的呼号是英航120，从伦敦飞往武汉，在11000米巡航，飞过WXI，应答机4521，与郑州区调做初始报话。",
+      "studyTier": 2,
+      "referenceText": "Zhengzhou Control, BAW120, cruising at 11000m, over WXI, Squawk 4521.",
+      "referenceTextZh": "郑州区调，英航120，在11000米巡航，飞过WXI，应答机4521。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/32691aa9cfc7a53a79bb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-224840",
+      "taskTitle": "采分点练习-初始联系-13",
+      "audioText": "B: Your call sign is QFA 160 from Tokyo to Guangzhou, you are cruising at 11000 meters, over WX, make the initial contact with Zhengzhou control.",
+      "audioTextZh": "你的呼号是澳航160，从东京飞往广州，你现在在11000米巡航，飞过WX，与郑州区调建立初始联系。",
+      "studyTier": 2,
+      "referenceText": "Zhengzhou Control, QFA160, from Tokyo to Guangzhou, we are cruising at 11,000 meters over WX.",
+      "referenceTextZh": "郑州区调，澳航160，从东京飞往广州，我们在11000米巡航，飞过WX。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f41ebbd434181ed63351.mp3"
+    }
+  ],
+  "categoryId": "atc-scoring-points"
+}

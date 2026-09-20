@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-01",
   "id": "opi-topic-0080",
   "name": "微下击暴流",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "As the aircraft approaches the microburst, a strong headwind may increase its airspeed and lift. Inside it, a severe downdraft can cause rapid altitude loss. On exit, a strong tailwind may reduce airspeed and lift, possibly leading to a stall or loss of control.",
       "referenceTextZh": "飞机接近微下击暴流时，强顶风可能使空速和升力增大。进入内部后，强烈下沉气流会造成高度迅速损失。离开时，强顺风可能使空速和升力减小，并可能导致失速或失去控制。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-01"
 }

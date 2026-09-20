@@ -1,0 +1,163 @@
+{
+  "id": "atc-fzy-749",
+  "name": "CES568 [积冰，进近灯暗]",
+  "declaredCardCount": 17,
+  "studyTier": 1,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-151793",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-1",
+      "audioText": "[Your call sign is CES568, gate 213, information W received, request ATC clearance from Wuhan.]",
+      "audioTextZh": "你的呼号是东方568,213号停机位，收到通播W，请求从武汉起飞的许可。",
+      "referenceText": "Wuhan Delivery, CES568, gate 213, information W, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，东方568,213号停机位，通播W，请求到广州的许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5d9fe512f2ab65ac282f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151794",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-2",
+      "audioText": "CES568, cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m cruising level 9800m, contact 119.6.",
+      "audioTextZh": "东方568，可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，联系119.6。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, runway 36R, LKO-02 departure, initially climb to 1200m cruising level 9800m, contact 119.6, CES568.\n题干中没有出现应答机，考试时也会有这样的情况，题干中没有说，就不需要复诵。",
+      "referenceTextZh": "可以经由计划航路飞往广州，跑道36右，LKO-02离场，初始爬升至1200米，巡航高度9800米，联系119.6，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/808838e8a6ac4f51228b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151795",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-3",
+      "audioText": "[Now you are pushing back with engines running, request taxi instruction.]",
+      "audioTextZh": "[你现在正在推出，发动机已启动，请求滑行指令]",
+      "referenceText": "Wuhan Ground, CES568, pushing back with engines running, request taxi.\n注：此题答案可直接简化为：Wuhan Ground, CES568, request taxi.",
+      "referenceTextZh": "武汉地面，东方568，正在推出，发动机已启动，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/47f071d4e14050224dc8.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151796",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-4",
+      "audioText": "CES568, taxi via Z4, A3, A to holding point runway 36R.",
+      "audioTextZh": "东方568，经由Z4,A3,A，滑行至跑道36右等待点。",
+      "referenceText": "Taxi via Z4, A3, A to holding point runway 36R. CES568.",
+      "referenceTextZh": "经由Z4,A3,A，滑行至跑道36右等待点，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ee7c7f268c90500eb647.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151797",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-5",
+      "audioText": "CES568, give way to Air China A319 on taxiway A7, you are No.2.",
+      "audioTextZh": "东方568，给在A7滑行道上的国航A319让路，你是第二个。",
+      "referenceText": "Give way to Air China A319 on taxiway A7, No.2, CES568.",
+      "referenceTextZh": "给在A7滑行道上的国航A319让路，第二个，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a77b304f2d0708d3d4b.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151798",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-6",
+      "audioText": "[You are at holding point of runway 36R, contact Tower for takeoff clearance.]",
+      "audioTextZh": "[你现在在跑道36右等待点，联系塔台，请求起飞许可]",
+      "referenceText": "Wuhan Tower, CES568, holding point of runway 36R, ready for/request departure.",
+      "referenceTextZh": "武汉塔台，东方568，36右跑道等待点，准备好/请求起飞了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0cc9b49ff58a21192ba0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151799",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-7",
+      "audioText": "CES568, line up and wait, expect 1 min delay. There'll be a helicopter crossing the runway from left to right.",
+      "audioTextZh": "东方568，上跑道等待，预计1分钟延误，一架直升机将从左到右穿越跑道。",
+      "referenceText": "Lining up and wait, CES568.",
+      "referenceTextZh": "上跑道等待，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/55e738afc6b0cecbd34c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151800",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-8",
+      "audioText": "CES568, wind 010 degrees 2 m/s, cleared for takeoff runway 36R. Caution storm north of the airport.",
+      "audioTextZh": "东方568，风向010度，2米每秒，可以起飞，跑道36右，注意，机场北部有风暴。",
+      "referenceText": "Cleared for takeoff runway 36R, roger, CES568.",
+      "referenceTextZh": "可以起飞，跑道36右，收到，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f359ece522f008ae2687.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151801",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-9",
+      "audioText": "[You are now at cruising level. You want to climb to 10400m to avoid turbulence. Ask Wuhan Control if 10400m is available and if there is any turbulence reported on that level.]",
+      "audioTextZh": "你现在到达巡航高度，你想爬升到10400米来避免颠簸。询问武汉区调，10400米是否可用，以及在此高度层是否有颠簸报告。",
+      "referenceText": "Wuhan Control, CES568, confirm 10400m is available? And confirm any turbulence reported at that level?",
+      "referenceTextZh": "武汉区调，东方568，证实10400米是否可用？证实此高度是否有任何颠簸？",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/59b7b9d77d6e539fb472.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151802",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-10",
+      "audioText": "[10400m is available and no turbulence reported on that level, request climb to 10400m.]",
+      "audioTextZh": "[10400米可用，在此高度没有颠簸报告，请求爬升到10400米]",
+      "referenceText": "Wuhan Control, CES568, request 10400m.",
+      "referenceTextZh": "武汉区调，东方568，请求10400米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f66c06c41160af62560.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151803",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-11",
+      "audioText": "[You are now in Guangzhou Control, cruising at 10400m, because you are encountering the icing condition, you want to descend to a lower level.]",
+      "audioTextZh": "[你现在进入广州区调管制区，在10400米巡航，由于你遭遇积冰情况，你想下降到更低高度]",
+      "referenceText": "Guangzhou Control, CES568, cruising at 10400m, request descent due icing.\n注：除了使用参考答案中的cruising at 10400m报告高度信息外，还可以说成10400m maintaining或直接说10400m。",
+      "referenceTextZh": "广州区调，东方568，在10400米巡航，由于积冰，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2a0276874d0f6289694.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151804",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-12",
+      "audioText": "CES568, descend to 4200m, maintain high speed.",
+      "audioTextZh": "东方568，下降到4200米，保持高速度。",
+      "referenceText": "Descend to 4200m, maintain high speed, CES568.",
+      "referenceTextZh": "下降到4200米，保持高速度，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/98f06784771227a857c9.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151805",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-13",
+      "audioText": "[You are now with Guangzhou Approach, you want to maintain high speed as long as possible to avoid ice accumulation. Tell ATC.]",
+      "audioTextZh": "[你现在进入广州进近管制，你想尽可能长时间地保持最大速度来防止积冰堆积，告诉管制员]",
+      "referenceText": "Guangzhou Approach, CES568, request maintain high speed as long as possible to avoid ice accumulation.\n注：参考答案中的to avoid ice accumulation也可使用due icing condition来代替。",
+      "referenceTextZh": "广州进近，东方568，请求尽可能长时间地保持最大速度来防止积冰形成。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d889e99cfb94b0950768.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151806",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-14",
+      "audioText": "CES568, no speed restriction.",
+      "audioTextZh": "东方568，没有速度限制。",
+      "referenceText": "No speed restriction, CES568.",
+      "referenceTextZh": "没有速度限制，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ebb3815fda5cfdb84995.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151807",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-15",
+      "audioText": "[While on final approach, you notice the approach lights are too dim, ask the controller to increase the intensity of the approach lights.]",
+      "audioTextZh": "[在五边进近过程中，你注意到进近灯很暗，请求管制员增强进近灯光亮度]",
+      "referenceText": "Guangzhou Tower, CES568, request brighten the approach lights.\n注：表示增强亮度的词可以是:brighten/enhance the brightness/increase the brightness",
+      "referenceTextZh": "广州塔台，东方568，请求调亮进近灯光。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/33de6f9e534adeb24c91.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151808",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-16",
+      "audioText": "Roger, CES568, the approach lights will be turned up shortly. Cleared to land runway 27L, wind calm. Caution runway is wet, braking action medium.",
+      "audioTextZh": "东方568，进近灯光马上会调亮，可以落地，跑道27左，静风。注意，跑道湿滑，刹车效应中等。",
+      "referenceText": "roger, cleared to land runway 27L, braking action medium. CES568.\n注：题干中的braking action medium--刹车效应中等属于情报，无需复诵。",
+      "referenceTextZh": "收到，可以落地跑道27左，刹车效应中等，东方568。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4a7cd5c65658e383feb.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-151809",
+      "taskTitle": "21-CES568 [积冰，进近灯暗]-17",
+      "audioText": "[After landing, you find taxi is too difficult in poor visibility, ask Ground control for a follow-me-car.]",
+      "audioTextZh": "[着陆后，你发现在低能见度下滑行太困难，请求地面管制员派一辆引导车]",
+      "referenceText": "Guangzhou Ground, CES568, it's difficult to taxi in poor visibility, request a follow-me-car.\n注：参考答案中的 it's difficult to taxi in poor visibility可不说，或者用due bad weather/low visibility代替。",
+      "referenceTextZh": "广州地面，东方568，在低能见度下滑行太困难，请求一辆引导车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d33ddab9612d8f691309.mp3"
+    }
+  ],
+  "categoryId": "atc-ces"
+}

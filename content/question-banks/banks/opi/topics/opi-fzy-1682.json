@@ -1,0 +1,638 @@
+{
+  "id": "opi-fzy-1682",
+  "name": "6.运行相关",
+  "declaredCardCount": 70,
+  "cards": [
+    {
+      "id": "opi-fzy-152003",
+      "taskTitle": "6.运行相关-1",
+      "audioText": "Can you drink alcohol before flight? why?",
+      "audioTextZh": "你可以在飞行前饮酒吗？为什么？",
+      "studyTier": 1,
+      "referenceText": "No, we can’t drink any alcohol.\nAccording to regulations, a pilot cannot drink any alcohol 8 hours before each flight.",
+      "referenceTextZh": "不，我们不能。\n根据规定，飞行员在航班开始8小时前不能饮酒。"
+    },
+    {
+      "id": "opi-fzy-152004",
+      "taskTitle": "6.运行相关-2",
+      "audioText": "Why is it necessary to have the limit of the alcohol intake?",
+      "audioTextZh": "为什么限制飞行员的酒精摄入是有必要的？",
+      "studyTier": 1,
+      "referenceText": "Drinking will reduce spatial orientation and decision making.\nAnd then may influence the flight safety.",
+      "referenceTextZh": "饮酒会降低飞行员的空间方向感和判断能力。\n进而会影响飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152019",
+      "taskTitle": "6.运行相关-3",
+      "audioText": "What can be regarded as dangerous goods in aviation industry?",
+      "audioTextZh": "在民航业，哪些物品可以被视为是危险品？",
+      "studyTier": 1,
+      "referenceText": "In aviation industry, many things can be regarded as dangerous goods.\nFor example, lighters, fireworks, oil, bombs, weapons, like guns, knifes...",
+      "referenceTextZh": "在民航业，有很多物品都可以被视为是危险品。\n比如：火机，烟花，油，炸弹，武器，比如：枪支，刀具等。"
+    },
+    {
+      "id": "opi-fzy-152020",
+      "taskTitle": "6.运行相关-4",
+      "audioText": "Why is some liquid not allowed to be carried into cabin?",
+      "audioTextZh": "为什么一些液体不允许带进客舱？",
+      "studyTier": 1,
+      "referenceText": "Because some liquid like alcohol may cause fire or explosion.",
+      "referenceTextZh": "因为诸如酒精类的液体会造成火灾或者爆炸。"
+    },
+    {
+      "id": "opi-fzy-152021",
+      "taskTitle": "6.运行相关-5",
+      "audioText": "What precautions should you take if you are informed of transporting dangerous goods?",
+      "audioTextZh": "如果你被通知进行危险品运输，你会采取什么预防措施？",
+      "studyTier": 1,
+      "referenceText": "I should know the name, quantity, and position of dangerous goods in advance.\nReview SOP of emergencies.",
+      "referenceTextZh": "我会提前了解危险品的名称、数量、位置。\n回顾紧急情况下的标准运行手册。"
+    },
+    {
+      "id": "opi-fzy-152022",
+      "taskTitle": "6.运行相关-6",
+      "audioText": "If some dangerous goods are leaked during flight, what should you do?",
+      "audioTextZh": "在飞行中，如果出现危险品泄漏，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "I will separate them from passengers and other goods.\nThen contact ATC, report my situation.\nDeclare emergency, request priority landing.\nRequest ground assistance if necessary.",
+      "referenceTextZh": "我会将危险品与乘客和其他货物分离。\n接下来联系管制员，报告我的情况。\n宣布紧急状况，申请优先着陆。\n如必要，申请地面援助。"
+    },
+    {
+      "id": "opi-fzy-152023",
+      "taskTitle": "6.运行相关-7",
+      "audioText": "What are the purposes of airport security check?",
+      "audioTextZh": "机场安检的目的是什么？",
+      "studyTier": 1,
+      "referenceText": "The purpose of the airport security check is to prevent terrorist activities and improve flight safety.",
+      "referenceTextZh": "机场安检的目的是防止恐怖分子，提高飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152024",
+      "taskTitle": "6.运行相关-8",
+      "audioText": "What can airport and airlines do to improve/strengthen the airport security?",
+      "audioTextZh": "机场和航空公司可以采取哪些措施提高机场安检？",
+      "studyTier": 1,
+      "referenceText": "Many measures can be taken to improve the airport security.\nFor example, improve security check, use more advanced technology, increase security staff and provide more training.",
+      "referenceTextZh": "可以采取很多措施来提高机场的安全。\n例如，改进安全检查，使用更先进的技术，增加安全人员和提供更多的培训。"
+    },
+    {
+      "id": "opi-fzy-152085",
+      "taskTitle": "6.运行相关-9",
+      "audioText": "Are there any manuals or handbooks in your cockpit?",
+      "audioTextZh": "你们驾驶舱里有手册吗？",
+      "studyTier": 1,
+      "referenceText": "①I now fly C172, in my cockpit, we only have C172 operation handbook.\n②I now fly B737, in my cockpit, we have normal checklist, emergency checklist, QRH, MEL, FOM and so on.",
+      "referenceTextZh": "①我现在飞塞斯172，我们只有172操作手册。\n②我现在飞波音737，在我们驾驶舱中，有正常检查单，紧急检查单，快速检查单，最低设备清单，飞行操作手册（FOM：Flight Operations Manual）等。"
+    },
+    {
+      "id": "opi-fzy-152086",
+      "taskTitle": "6.运行相关-10",
+      "audioText": "Do you often consult these manuals in flight",
+      "audioTextZh": "在飞行中，你经常查阅这些手册吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I often use these manuals in my flight, especially the normal checklist, I use it nearly every day.",
+      "referenceTextZh": "是的，我经常使用这些手册，尤其是正常检查单，基本每天都用。"
+    },
+    {
+      "id": "opi-fzy-152087",
+      "taskTitle": "6.运行相关-11",
+      "audioText": "Compared with paper manuals, what are the advantages and disadvantages of electronic manuals?",
+      "audioTextZh": "与纸质手册相比，电子手册的优缺点有哪些？",
+      "studyTier": 1,
+      "referenceText": "Advantages: the electronic manuals are cheaper, eco-friendly, easy to update, more portable and interactive..\nDisadvantages: it needs to charge and it is not good for our eyesight. What’s moire, it has no copy.",
+      "referenceTextZh": "优点：电子手册更便宜，对环境友好，容易更新，更便携，更具交互性。\n缺点：需要充电，对眼睛不利，同时，也没有副本。"
+    },
+    {
+      "id": "opi-fzy-152088",
+      "taskTitle": "6.运行相关-12",
+      "audioText": "Do you think that the paper manuals will be replaced by electronic manuals?",
+      "audioTextZh": "你认为纸质手册会被电子手册取代吗？",
+      "studyTier": 1,
+      "referenceText": "I don’t think so, because paper manuals can be used at any time, even in case of electrical failure．",
+      "referenceTextZh": "我认为纸质手册不会被电子手册替代，因为纸质手册可以在任何时候使用，即使在电气失效情况下也可以使用。"
+    },
+    {
+      "id": "opi-fzy-152089",
+      "taskTitle": "6.运行相关-13",
+      "audioText": "What are the normal checklists and what are included in it? When do you use it?",
+      "audioTextZh": "正常检查点包含什么？什么时候使用正常检查单？",
+      "studyTier": 1,
+      "referenceText": "Normal checklist includes cockpit checklist; pre-start checklist and pre-taxi checklist and so on.\nWe will use the normal checklist at every stage of flight.",
+      "referenceTextZh": "正常检查单包含驾驶舱检查单、开车前检查单、滑行前检查单等。\n我们在飞行的任何阶段都会使用检查单。"
+    },
+    {
+      "id": "opi-fzy-152090",
+      "taskTitle": "6.运行相关-14",
+      "audioText": "How do crew members cooperate with each other to carry out the checklist procedure?",
+      "audioTextZh": "机组人员如何相互配合执行检查单的？",
+      "studyTier": 1,
+      "referenceText": "The pilot not flying will read out the checklist.\nThe pilot flying will check the terms in the checklist.\nAt the same time, both pilots will cross check each other to ensure flight safety.",
+      "referenceTextZh": "未把杆飞行员大声朗读检查单。\n把杆飞行员检查检查单里的项目。\n同时，两个飞行员要相互检查确保飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152091",
+      "taskTitle": "6.运行相关-15",
+      "audioText": "What is QRH? Why is it helpful to the pilot?",
+      "audioTextZh": "QRH是什么？为什么对飞行员有很大的帮助？",
+      "studyTier": 1,
+      "referenceText": "QRH refers to quick reference handbook.\nQRH will reduce workload, avoid human errors and improve flight safety.",
+      "referenceTextZh": "QRH指的是快速检查单。\nQRH可以降低工作负荷，减少人为失误，提高飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152092",
+      "taskTitle": "6.运行相关-16",
+      "audioText": "What is MEL? What does MEL stand for? Why is MEL important for flight safety?",
+      "audioTextZh": "MEL是什么？为什么MEL对飞行安全很重要？",
+      "studyTier": 1,
+      "referenceText": "MEL stands for minimum equipment list.\nMEL is important for flight safety.\nThere are many items in the MEL, they are the minimum requirements of the flight.\nIf we are going to fly the aircraft, the aircraft must meet the MEL requirements, or our flight will be canceled.",
+      "referenceTextZh": "MEL指的是最低设备清单。\nMEL对于飞行安全很重要。\nMEL里面有很多项目，他们是飞行的最低要求。如果我们要飞，飞机必须满足MEL要求，否则航班就会取消。"
+    },
+    {
+      "id": "opi-fzy-152093",
+      "taskTitle": "6.运行相关-17",
+      "audioText": "What's SOP? Why is SOP important for flight safety?",
+      "audioTextZh": "SOP是什么？为什么说SOP对飞行安全很重要？",
+      "studyTier": 1,
+      "referenceText": "SOP stands for standard operation procedures.\nIt is the standard we should follow when the captain and co-pilot have different opinions.\nSOP can largely improve work efficiency and avoid human errors.",
+      "referenceTextZh": "SOP指的是标准操作程序。\n它是在机长和副驾驶之间有不同意见时需要参考的标准。\nSOP可以有效提高工作效率，避免人为失误。"
+    },
+    {
+      "id": "opi-fzy-152094",
+      "taskTitle": "6.运行相关-18",
+      "audioText": "What may be the results if a pilot doesn’t follow SOP?",
+      "audioTextZh": "如果飞行员没有遵守SOP，会发生什么后果？",
+      "studyTier": 1,
+      "referenceText": "Not following SOP will cause human errors and affect flight safety.",
+      "referenceTextZh": "不遵守SOP将导致人为失误，影响飞行安全。"
+    },
+    {
+      "id": "opi-fzy-152095",
+      "taskTitle": "6.运行相关-19",
+      "audioText": "What factors and conditions may affect the compliance with SOP?",
+      "audioTextZh": "哪些因素会影响飞行员遵守SOP？",
+      "studyTier": 1,
+      "referenceText": "There are many factors, for example, high pilot workload, time stress, improper training and so on.",
+      "referenceTextZh": "因素很多，比如飞行员工作量大，时间压力，训练不当等。"
+    },
+    {
+      "id": "opi-fzy-152096",
+      "taskTitle": "6.运行相关-20",
+      "audioText": "What do you know about the loading sheet? What information is included in the loading sheet?",
+      "audioTextZh": "你知道舱单吗？舱单中都有哪些信息？",
+      "studyTier": 1,
+      "referenceText": "Loading sheet records the weight and balance of aircraft and other related data, it is very important for flight performance.\nThe loading sheet includes POB, weight of cargo and baggage, zero fuel weight, takeoff weight, landing weight, CG and so on.",
+      "referenceTextZh": "舱单记录了飞机的重量平衡等相关数据，对飞行性能非常重要。\n舱单包括机上人员、货物和行李重量、零燃油重量、起飞重量、着陆重量、重心等。"
+    },
+    {
+      "id": "opi-fzy-152097",
+      "taskTitle": "6.运行相关-21",
+      "audioText": "Which department is responsible to provide loading sheet to pilots?",
+      "audioTextZh": "哪个部门负责向飞行员提供舱单？",
+      "studyTier": 1,
+      "referenceText": "Usually the company operation or dispatcher will provide the loading sheet to pilots.",
+      "referenceTextZh": "通常情况下，公司运营或者签派会给飞行员提供舱单。"
+    },
+    {
+      "id": "opi-fzy-152108",
+      "taskTitle": "6.运行相关-22",
+      "audioText": "What are the factors that may influence the fuel economy?",
+      "audioTextZh": "哪些因素可能会影响燃油经济性？",
+      "studyTier": 1,
+      "referenceText": "There are many factors that will influence the fuel economy.\nFor example, the weather conditions, cruising level, airspeed, altitude, the weight of the aircraft, the pilot flight skills and so on.",
+      "referenceTextZh": "有很多因素影响燃油经济性。\n比如：天气情况，巡航高度层、速度、飞行高度、飞机重量、飞行员的操作技巧等。"
+    },
+    {
+      "id": "opi-fzy-152109",
+      "taskTitle": "6.运行相关-23",
+      "audioText": "What is the maximum fuel quantity that your aircraft can carry?",
+      "audioTextZh": "你的飞机能携带的最大燃油量是多少？",
+      "studyTier": 1,
+      "referenceText": "My aircraft C172 can carry 53 gallons at most.",
+      "referenceTextZh": "我的塞斯纳172飞机最多可携带53加仑的油。"
+    },
+    {
+      "id": "opi-fzy-152110",
+      "taskTitle": "6.运行相关-24",
+      "audioText": "How do pilots know the fuel endurance during flight?",
+      "audioTextZh": "在飞行中，飞行员如何知道燃油续航力的？",
+      "studyTier": 1,
+      "referenceText": "Pilots can know fuel endurance from fuel gauge or MFD.",
+      "referenceTextZh": "飞行员可以从油表和多功能显示器上得知燃油续航力。"
+    },
+    {
+      "id": "opi-fzy-152111",
+      "taskTitle": "6.运行相关-25",
+      "audioText": "Do you think cruising at high altitude can reduce fuel consumption and why?",
+      "audioTextZh": "你认为高巡航高度可以降低燃油消耗吗？为什么？",
+      "studyTier": 1,
+      "referenceText": "Usually yes.\nThe air density at the high cruising altitude is smaller, therefore, the drag is smaller.\nSo the aircraft consumes less fuel.",
+      "referenceTextZh": "一般来讲，是这样的。\n高巡航高度的空气密度较小，因此阻力较小。\n所以飞机消耗的燃油更少。"
+    },
+    {
+      "id": "opi-fzy-152112",
+      "taskTitle": "6.运行相关-26",
+      "audioText": "What is your opinion about pilot's role in saving fuel?",
+      "audioTextZh": "你对飞行员节油的观点是什么？",
+      "studyTier": 1,
+      "referenceText": "I think pilots play an important role in saving fuel.\nPilots can follow the company rules or regulations to fly at economical altitude and speed.\nIn this way, the pilot can save fuel and reduce the cost of the airlines.",
+      "referenceTextZh": "我认为飞行员在节油方面充当着重要的角色。\n飞行员可以遵照公司规章，以经济的燃油高度和速度飞行。\n这样，飞行员可以节省燃油，减少公司成本。"
+    },
+    {
+      "id": "opi-fzy-152113",
+      "taskTitle": "6.运行相关-27",
+      "audioText": "What can pilots do to save fuel?",
+      "audioTextZh": "飞行员如何节油？",
+      "studyTier": 1,
+      "referenceText": "There are many things pilots can do to save fuel.\nFor example: choose higher cruise level, use economic airspeed, fly direct to destination and pay more attention to weight and balance.",
+      "referenceTextZh": "飞行员可以做很多事情来节省燃油。\n例如：选择较高的巡航高度层，使用经济的航速，直飞目的地，注意重量和平衡等。"
+    },
+    {
+      "id": "opi-fzy-152114",
+      "taskTitle": "6.运行相关-28",
+      "audioText": "What's your company's fuel policy?",
+      "audioTextZh": "你们公司的燃油政策是是什么？",
+      "studyTier": 1,
+      "referenceText": "1, Our company's fuel policy is clean and environmentally friendly, the company encourages pilots to save fuel on the premise of safe flight.\n2, Sorry, I am a new pilot, I am not familiar with it. But as far as I know, most airlines advocate fuel saving under the premise of secure flight.",
+      "referenceTextZh": "1, 我们的公司的燃油政策是清洁环保的，公司在安全飞行的前提下鼓励飞行员节油。\n2, 不好意思，我是一名新手飞行员，我不是很熟悉我们公司的政策。但据我所知，大部分航空公司在安全飞行的前提下都会积极倡导节油的。"
+    },
+    {
+      "id": "opi-fzy-152115",
+      "taskTitle": "6.运行相关-29",
+      "audioText": "What do you think your company encouraging pilots to save fuel?",
+      "audioTextZh": "你怎么看待航空公司鼓励飞行员节省燃油？",
+      "studyTier": 1,
+      "referenceText": "It is an effective way for the company to reduce the fuel cost.\nIt is a good method to make less pollution to the environment.\nThe pilots will get bonus by saving fuel.",
+      "referenceTextZh": "对公司来说，这是很有效降低燃油成本的措施。\n也是减少环境污染的一个好办法。\n飞行员可以通过节油获得津贴。"
+    },
+    {
+      "id": "opi-fzy-152116",
+      "taskTitle": "6.运行相关-30",
+      "audioText": "What's the consequence of using contaminated fuel?",
+      "audioTextZh": "使用污染燃油的后果是什么？",
+      "studyTier": 1,
+      "referenceText": "It's very dangerous.\nIt can cause fuel duct blocked, filter blocked, engine overheating, engine inlet icing, engine flame out and so on.\nSo we should never use contaminated fuel.",
+      "referenceTextZh": "这种情况很危险。\n这会造成燃油导管和燃油过滤器堵塞，造成发动机过热，发动机进气道积冰以及发动机熄火等问题。\n因此，我们应当避免使用受污染的燃油。"
+    },
+    {
+      "id": "opi-fzy-152117",
+      "taskTitle": "6.运行相关-31",
+      "audioText": "What may cause fuel shortage on board?",
+      "audioTextZh": "什么会导致机上燃油短缺？",
+      "studyTier": 1,
+      "referenceText": "There are some reasons can cause fuel shortage on board.\nSuch as fuel system problem, strong headwind, fuel leakage, miscalculation of fuel quantity, flying at a low level for a long time and so on.",
+      "referenceTextZh": "有一些原因可以导致机上燃油短缺。\n如燃油系统问题、强逆风、燃油泄漏、燃油量计算错误、长时间低空飞行等。"
+    },
+    {
+      "id": "opi-fzy-152118",
+      "taskTitle": "6.运行相关-32",
+      "audioText": "If you encounter fuel shortage when going around, what should you do?",
+      "audioTextZh": "在复飞阶段你遇到燃油短缺，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "Report our situation to ATC and request land as soon as possible.",
+      "referenceTextZh": "向空中交通管制报告并请求立即着陆。"
+    },
+    {
+      "id": "opi-fzy-152119",
+      "taskTitle": "6.运行相关-33",
+      "audioText": "Under what circumstance will you declare fuel emergency?",
+      "audioTextZh": "在什么情况你会宣布燃油紧急情况？",
+      "studyTier": 1,
+      "referenceText": "If the crew expect the minimum remaining fuel after landing, we should declare fuel emergency.",
+      "referenceTextZh": "如果机组人员预计着陆后剩余燃油量为最低燃油量，我们应该宣布燃油紧急情况。"
+    },
+    {
+      "id": "opi-fzy-152120",
+      "taskTitle": "6.运行相关-34",
+      "audioText": "According to the regulation, what does minimum fuel refer to?",
+      "audioTextZh": "根据规定，最低燃油指的是？",
+      "studyTier": 1,
+      "referenceText": "Well, as far as I know, the minimum fuel is a specified minimum amount of fuel that should be reported to air traffic controllers during flight for emergency measures.\nAccording to regulations, if the fuel endurance at 3000ft over destination airport is less than 45 minutes, we will declare minimum fuel．",
+      "referenceTextZh": "据我所知，最低燃油量是指在飞行过程中需要向空中交通管制员报告的用于应急措施的最低燃油量。\n根据法规，在目的地机场上空3000英尺，燃油续航时间低于45分钟，我们会宣告最低燃油状态。"
+    },
+    {
+      "id": "opi-fzy-152121",
+      "taskTitle": "6.运行相关-35",
+      "audioText": "What are the differences between the minimum fuel and emergency fuel?",
+      "audioTextZh": "最低燃油和紧急燃油有什么区别？",
+      "studyTier": 1,
+      "referenceText": "Obviously, emergency fuel is more urgent than minimum fuel. ATC will give priority to emergency fuel situations. According to regulations, if the fuel endurance at 1500ft over destination airport is less than 30 minutes, we will declare fuel emergency.",
+      "referenceTextZh": "很显然，紧急燃油比最低燃油情况更急迫。空中交通管制员会优先处理紧急燃油情况。根据法规，如果在目的地机场上空1500英尺（飞行），燃油续航时间低于30分钟，我们将宣布燃油告急。"
+    },
+    {
+      "id": "opi-fzy-152122",
+      "taskTitle": "6.运行相关-36",
+      "audioText": "Under what circumstance should you execute dumping procedure?",
+      "audioTextZh": "在什么情况下，你会执行放油程序？",
+      "studyTier": 1,
+      "referenceText": "If the aircraft encounters emergency situations after takeoff, the pilot makes the decision to return to the airport, but the aircraft exceeds the maximum landing weight, the pilot must carry out fuel dumping procedure before landing.",
+      "referenceTextZh": "如果飞机起飞后遇到紧急情况，飞行员决定返回机场，但飞机超过了最大着陆重量，飞行员必须在着陆前进行放油程序。"
+    },
+    {
+      "id": "opi-fzy-152123",
+      "taskTitle": "6.运行相关-37",
+      "audioText": "How to execute dumping procedure?",
+      "audioTextZh": "如何执行放油程序？",
+      "studyTier": 1,
+      "referenceText": "To dump fuel, we will report our intention to ATC and request fuel dumping instruction.\nThen we will fly to the fuel dumping area and commence fuel dumping.\nWhen fuel dumping is completed, we will report it to ATC again.",
+      "referenceTextZh": "执行放油程序，我们将向空中交通管制报告我们的意图并要求放油指示。\n然后我们将飞到放油区开始放油。\n当放油完毕后，我们将再次向空中交通管制报告。"
+    },
+    {
+      "id": "opi-fzy-152124",
+      "taskTitle": "6.运行相关-38",
+      "audioText": "Can you dump fuel at city area?",
+      "audioTextZh": "可以在城市区域放油吗？",
+      "studyTier": 1,
+      "referenceText": "No, we can't. We should dump fuel at certain area, which is far away from cities or villages.",
+      "referenceTextZh": "不，不可以。我们应该在特定区域执行放油程序，要远离城市和村庄。"
+    },
+    {
+      "id": "opi-fzy-152125",
+      "taskTitle": "6.运行相关-39",
+      "audioText": "Which area do you think fuel dumping is not allowed during flight?",
+      "audioTextZh": "你认为在哪些地方不可以放油？",
+      "studyTier": 1,
+      "referenceText": "We should dump fuel at assigned fuel dumping area.\nWe should dump fuel at an altitude of 6000 feet or above, and keep away from cities and rivers to avoid pollution.",
+      "referenceTextZh": "我们应该在指定的放油区域放油。\n我们应该在海拔6000英尺以上放油，远离城市和河流，避免污染。"
+    },
+    {
+      "id": "opi-fzy-152126",
+      "taskTitle": "6.运行相关-40",
+      "audioText": "Have you had the experience of refuel?",
+      "audioTextZh": "你经历过加油吗？",
+      "studyTier": 1,
+      "referenceText": "Refueling is the duty of the ground maintenance staff.\nWe just tell them the quantity of refueling. But we must monitor the whole refueling process.\nLast, we will confirm if the fuel tank is properly locked.",
+      "referenceTextZh": "加油是地面维修人员的职责。\n我们只告诉他们所加的油量。但我们必须监控整个加油过程。\n最后，我们会确认油箱是否锁好"
+    },
+    {
+      "id": "opi-fzy-152127",
+      "taskTitle": "6.运行相关-41",
+      "audioText": "What safety factors do you need to consider during refueling?",
+      "audioTextZh": "在加油过程中，你需要考虑哪些安全因素？",
+      "studyTier": 1,
+      "referenceText": "During aircraft refueling, passengers are not allowed to be on board.\nAt the same time, pilots cannot use the mobile phone or smoke.\nIf there is thunderstorm, refueling is prohibited.",
+      "referenceTextZh": "在飞机加油期间，乘客不允许登机。\n同时，飞行员不能使用手机或也不能吸烟。\n如遇雷暴天气，禁止加油。"
+    },
+    {
+      "id": "opi-fzy-152128",
+      "taskTitle": "6.运行相关-42",
+      "audioText": "If you encounter fuel leakage during refueling, what will you do?",
+      "audioTextZh": "在加油期间，如果你遇到燃油泄漏，你会怎么做？",
+      "studyTier": 1,
+      "referenceText": "First, stop refuel immediately and shut down fuel pump.\nThen, report fire department, contact ground staff for further check.\nIf passengers on board, arrange disembark as soon as possible.",
+      "referenceTextZh": "首先，立即停止加油，关闭燃油泵。\n然后，报告消防部门，并联系地面工作人员进行进一步检查。\n如果机上有乘客，立即安排下客。"
+    },
+    {
+      "id": "opi-fzy-152978",
+      "taskTitle": "6.运行相关-43",
+      "audioText": "What do you know about the FCTM?",
+      "audioTextZh": "你知道FCTM吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, FCTM stands for Flight Crew Training Manual, it provides information and advice on maneuvering flights and techniques, and it covers the whole process of a flight. The procedures listed in the FCTM are very important for the whole crew members.",
+      "referenceTextZh": "是的，FCTM指的是机组训练手册，它提供了针对机动飞行和技巧的信息和建议，内容涵盖了飞行的整个过程。机组训练手册中列出的程序对整个机组而言都很重要。"
+    },
+    {
+      "id": "opi-fzy-152979",
+      "taskTitle": "6.运行相关-44",
+      "audioText": "Do you use FCTM in your work?",
+      "audioTextZh": "你在工作中会使用机组训练手册吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, we will use FCTM in our work, because some procedures listed in the FCTM are important for the flight safety. We should consult it when where is abnormal situation.",
+      "referenceTextZh": "是的，我们在工作中会使用机组训练手册，因为机组训练手册中列出的许多程序对飞行安全很重要，当出现特情时，我们应该参阅机组训练手册。"
+    },
+    {
+      "id": "opi-fzy-152982",
+      "taskTitle": "6.运行相关-45",
+      "audioText": "Do you know about flight log? What is the function of flight log?",
+      "audioTextZh": "你知道飞行记录簿吗？飞行记录簿的功能是什么？",
+      "studyTier": 1,
+      "referenceText": "Flight log, also know as aircraft flight log, records an aircraft’s recent flight history.\nThere are many information in the flight log, for example, aircraft flight time, landings and other crew information.\nThe flight log provides supplementary flight information that is accurate and up-to-date.",
+      "referenceTextZh": "飞行记录簿，又称飞机飞行日志，记录了飞机最近的飞行历史。\n飞行记录簿中有很多信息，例如，飞机的飞行时间信息，着陆信息和其他机组人员信息。\n飞行日志提供一些补充的飞行信息，这些信息是准确和最新的。"
+    },
+    {
+      "id": "opi-fzy-152984",
+      "taskTitle": "6.运行相关-46",
+      "audioText": "Do you know red-eye flight?",
+      "audioTextZh": "你知道红眼航班吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I know, red-eye flight refers to flights that operate from late night to early morning and arrive at their destination in the morning of the next day.",
+      "referenceTextZh": "是的，我知道，红眼航班指的是在深夜至凌晨时段运行，并于第二天清晨至早上抵达目的地的航班。"
+    },
+    {
+      "id": "opi-fzy-152985",
+      "taskTitle": "6.运行相关-47",
+      "audioText": "What’s your opinion about red-eye flight?",
+      "audioTextZh": "你怎么看待红眼航班？",
+      "studyTier": 1,
+      "referenceText": "On the one hand, I think red-eye flight can improve the utilization rate of the aircraft and increase the income of the airline company.\nAt the same time, the red-eye flight is cheap and can benefit more people.\nOn the other hand, for the pilot, the red-eye flight will increase the work load and bring adverse effects on the health of the pilot.",
+      "referenceTextZh": "一方面，我认为红眼航班可以提高飞机的利用率，增加航空公司的收入。\n同时，红眼航班价格低廉，可以照顾到更多的人群。\n另一方面，红眼航班对飞行员而言，会增加飞行员的工作负担，给飞行员的身体健康带来不利影响。"
+    },
+    {
+      "id": "opi-fzy-152986",
+      "taskTitle": "6.运行相关-48",
+      "audioText": "Have you ever flown red-eye flight?",
+      "audioTextZh": "你飞过红眼航班吗？",
+      "studyTier": 1,
+      "referenceText": "No, I have never flown red-eye flight, because I am a student pilot now. But I have some experience of flying at night.",
+      "referenceTextZh": "不，我没有飞过红眼航班，因为我现在是一名飞行学员，但是我经历或夜航。"
+    },
+    {
+      "id": "opi-fzy-153336",
+      "taskTitle": "6.运行相关-49",
+      "audioText": "Which one do you think is more difficult, the English manual or the Chinese manual?",
+      "audioTextZh": "你觉得哪一个更难，英文手册还是中文手册？",
+      "studyTier": 1,
+      "referenceText": "I think the English manual is more difficult, because my mother tongue is Chinese, so I think it is a little difficult to understand some English sentences.",
+      "referenceTextZh": "我觉得英文手册更难，因为我的母语是汉语，所以，在理解一些英文句子上，我觉得还是有一些难度的。"
+    },
+    {
+      "id": "opi-fzy-153346",
+      "taskTitle": "6.运行相关-50",
+      "audioText": "Does your company provide any training to address and improve strict adherence to SOPs?",
+      "audioTextZh": "你们公司是否提供任何培训，来使飞行员严格遵守标准操作程序？",
+      "studyTier": 1,
+      "referenceText": "Yes, as we all know, SOP is very important for flight safety, so our company will organize relevant training regularly.",
+      "referenceTextZh": "是的，众所周知，SOP对于飞行安全来说非常重要，因此，我们公司会定期组织相关培训。"
+    },
+    {
+      "id": "opi-fzy-153484",
+      "taskTitle": "6.运行相关-51",
+      "audioText": "Does your company have any international routes?",
+      "audioTextZh": "你们公司有任何国际航线吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, I work for Air China, we have so many international routes, for example, Beijing to London, Beijing to New York and so on.",
+      "referenceTextZh": "是的，我在国航工作，因此，有很多的国际航线，比如，北京到伦敦，北京到纽约。"
+    },
+    {
+      "id": "opi-fzy-153485",
+      "taskTitle": "6.运行相关-52",
+      "audioText": "Which do you prefer, the international routes or domestic routes?",
+      "audioTextZh": "你更喜欢哪一个，国际航线还是国内航线？",
+      "studyTier": 1,
+      "referenceText": "I prefer international routes, there are some reasons for it: first, I can gain more flight experience; second, I have the chance to travel around the world and enjoy the local culture; third, I can improve my English.",
+      "referenceTextZh": "我更喜欢国际航线，有很多原因：首先，我可以获得更多的飞行经验；第二，我可以有机会周游世界，领略当地文化；第三，我可以提高我的英语水平。"
+    },
+    {
+      "id": "opi-fzy-153486",
+      "taskTitle": "6.运行相关-53",
+      "audioText": "Do you prefer long haul routes or short haul routes?",
+      "audioTextZh": "你是喜欢长航线还是短航线？",
+      "studyTier": 1,
+      "referenceText": "As far as I am concerned, I like long haul flights, because for long haul flights, I will have longer cruising time, which permits me to get fully ready for a safe landing.",
+      "referenceTextZh": "就我而言，我喜欢长航线，因为对于长航线来说，我们的巡航时间也会更长，这可以允许我为安全着陆做好充分准备。"
+    },
+    {
+      "id": "opi-fzy-209632",
+      "taskTitle": "6.运行相关-54",
+      "audioText": "Why pilots are not allowed to drink alcohol before flights?",
+      "audioTextZh": "飞行员在飞行前为什么不允许喝酒？",
+      "studyTier": 1,
+      "referenceText": "It is very dangerous for a pilot to drink alcohol before a flight because alcohol can affect the pilot's judgment and reaction capacity. For pilots, who need to make quick, accurate decisions at high speeds and in extreme situations, drinking alcohol can cause incapacitation and threaten flight safety.",
+      "referenceTextZh": "飞行员在飞行前饮酒是非常危险的，因为酒精会影响飞行员的判断和反应能力。对于飞行员来说，他们需要在高速飞行、极端情况下做出快速、准确的决策，饮酒可能会造成失能，威胁飞行安全。"
+    },
+    {
+      "id": "opi-fzy-209633",
+      "taskTitle": "6.运行相关-55",
+      "audioText": "How is alcohol test carried out at your flight school or company?",
+      "audioTextZh": "在你们航校或公司，酒精检查是如何执行的？",
+      "studyTier": 1,
+      "referenceText": "According to the regulations of our flight school and company, pilots cannot drink alcohol within 12 hours before each flight mission, so we will conduct a breathalyzer/alcohol test before each flight, and the relevant equipment will check the alcohol concentration of the pilot's breath to ensure that the pilot has not drunk alcohol before the flight.",
+      "referenceTextZh": "根据我们航校和公司的规定，飞行员在飞行任务前12小时内不能饮酒，因此，我们在每次飞行前都会进行酒精测试，相关设备会对飞行员呼出气体中的酒精浓度进行检查，确保飞行员在飞行前没有饮酒。"
+    },
+    {
+      "id": "opi-fzy-224472",
+      "taskTitle": "6.运行相关-56",
+      "audioText": "Do you make takeoff and landing performance assessment for each flight?",
+      "audioTextZh": "每次飞行时，你都会做起飞着陆性能评估吗？",
+      "studyTier": 1,
+      "referenceText": "Yes, we conduct takeoff and landing performance assessments before every takeoff or landing. This is one of our company's safety operational requirements.",
+      "referenceTextZh": "是的，每次起飞或者着陆之前，我们都会进行起飞着陆性能评估，这是我们公司安全运行的要求之一。"
+    },
+    {
+      "id": "opi-fzy-224473",
+      "taskTitle": "6.运行相关-57",
+      "audioText": "Why should pilots make takeoff and landing performance assessment?",
+      "audioTextZh": "飞行员为什么要进行起飞着陆性能评估？",
+      "studyTier": 1,
+      "referenceText": "The purpose of takeoff and landing performance assessment is to ensure that under existing environmental conditions and aircraft state, there is enough runway length to complete a safe takeoff or landing, and to provide adequate safety margins for potential failures, such as engine failure.",
+      "referenceTextZh": "起飞着陆性能评估的目的，是确保在现有环境和飞机状态下，有足够的跑道长度完成安全的起飞或着陆，并为潜在故障（如发动机失效）提供充分的安全裕度。"
+    },
+    {
+      "id": "opi-fzy-224474",
+      "taskTitle": "6.运行相关-58",
+      "audioText": "Can you tell me the takeoff and landing performance assessment for your aircraft?",
+      "audioTextZh": "你能告诉我你的飞机上是怎么进行起飞着陆性能评估的吗？",
+      "studyTier": 1,
+      "referenceText": "I currently fly the A320. When conducting takeoff and landing performance assessments, we check the standard performance manual for the basic data. We then combine this with airport conditions (runway, slope, obstacles), weather (temperature, wind), aircraft status (weight, configuration), and regulatory requirements to calculate and verify takeoff speeds, required runway length, and landing distance.",
+      "referenceTextZh": "我目前飞的飞机是A320，在进行起飞着陆性能评估时，我们会查询标准性能手册获取基础数据，结合机场条件（跑道、坡度、障碍物）、气象条件（温度、风）、飞机状态（重量、构型、设备）及规章要求，进行起飞速度、跑道需求距离及着陆距离的详细计算与校核。"
+    },
+    {
+      "id": "opi-fzy-224475",
+      "taskTitle": "6.运行相关-59",
+      "audioText": "What factors should be taken into consideration during the takeoff and landing performance assessment?",
+      "audioTextZh": "在进行起飞着陆性能评估时，你需要考虑的因素都有哪些？",
+      "studyTier": 1,
+      "referenceText": "We will take lots of information into consideration, such as runway condition (runway length, runway slope), weather condition (wind speed and direction, temperature)\naircraft status (thrust setting, weight and balance), because these factors are vital to the safety of takeoff and landing.",
+      "referenceTextZh": "我们将综合考虑诸多因素，比如跑道状况（跑道长度、坡度）、天气状况（风速和风向、温度）、飞机状态（推力设置、重量和平衡），因为这些因素对于飞机的起飞和降落安全至关重要。"
+    },
+    {
+      "id": "opi-fzy-224477",
+      "taskTitle": "6.运行相关-60",
+      "audioText": "What are the duties of dispatchers?",
+      "audioTextZh": "签派的职责是什么？",
+      "studyTier": 1,
+      "referenceText": "In our company, the core responsibility of dispatchers is to ensure flight safety, punctuality, and efficient operation. Key tasks include flight planning (calculating fuel, routes, alternate airports), monitoring flights, coordinating unusual conditions (such as weather or mechanical issues), and providing decision-making support to the flight crew. It serves as the control center for flight operations.",
+      "referenceTextZh": "在我们公司，签派的核心职责是保障航班安全、正点和高效运行。主要工作包括：飞行计划制作（计算油量、航路、备降场）、监控航班、协调处理运行中的各类突发情况（如天气、机械故障），并为飞行机组提供决策支持，是航班运行的控制中心。"
+    },
+    {
+      "id": "opi-fzy-224479",
+      "taskTitle": "6.运行相关-61",
+      "audioText": "When will you contact dispatchers?",
+      "audioTextZh": "你什么时候会联系签派？",
+      "studyTier": 1,
+      "referenceText": "Pilots usually contact dispatchers before a flight to confirm the flight plan and discuss any special operational requirements. Additionally, they also contact dispatchers during flight in case of emergencies, such as mechanical failures, severe weather, medical emergencies, or the need to divert and land at an alternate airport.",
+      "referenceTextZh": "飞行员一般会在飞行前联系签派员，确认飞行计划，讨论特殊运行要求，同时，在飞行中遭遇特情，如机械故障、恶劣天气、医疗紧急事件、需改航备降等时，也会联系签派。"
+    },
+    {
+      "id": "opi-fzy-224480",
+      "taskTitle": "6.运行相关-62",
+      "audioText": "How could pilots contact the dispatcher?",
+      "audioTextZh": "飞行员如何联系签派？",
+      "studyTier": 1,
+      "referenceText": "Pilots can contact dispatchers through various methods, such as High Frequency (HF) communication, data link systems like ACARS, and satellite phones.",
+      "referenceTextZh": "飞行员与签派联系的方式有很多，比如，高频通信、ACARS等数据链系统、以及 卫星电话。"
+    },
+    {
+      "id": "opi-fzy-224481",
+      "taskTitle": "6.运行相关-63",
+      "audioText": "What are the differences of operating your aircraft in summer and in winter?",
+      "audioTextZh": "在冬季和夏季运行的区别是什么？",
+      "studyTier": 1,
+      "referenceText": "During summer operations, pilots may encounter high temperatures, thunderstorms, and severe convective weather, which can reduce engine performance and require careful management of severe turbulence. In winter operations, pilots need to focus on low temperatures, icing, snow accumulation, and low visibility, with emphasis on de-icing/anti-icing procedures and cold-weather starts.",
+      "referenceTextZh": "飞机在夏季运行时，飞行员可能会遇到高温、雷暴和强对流天气，因此发动机性能会降低，同时也需要注意严重颠簸管理；冬季运行时，飞行员则需要重点关注低温、积冰、积雪和低能见度，侧重除防冰程序和低温启动。"
+    },
+    {
+      "id": "opi-fzy-224483",
+      "taskTitle": "6.运行相关-64",
+      "audioText": "Which part of the aircraft would you pay special attention to during the walk-around check if you are going to take off in extremely cold winter?",
+      "audioTextZh": "如果你要在极冷的冬季起飞，在绕机检查时你会特别注意飞机的哪个部分？",
+      "studyTier": 1,
+      "referenceText": "I will pay extra attention to the control surfaces of the aircraft and the air intakes of the aircraft engines to prevent ice accumulation in these areas.",
+      "referenceTextZh": "我会格外检查飞机的操纵面和飞机发动机进气道，避免这些地方产生积冰。"
+    },
+    {
+      "id": "opi-fzy-224484",
+      "taskTitle": "6.运行相关-65",
+      "audioText": "How can you make a safe takeoff or landing on compact snow?",
+      "audioTextZh": "在紧实的雪面，如何安全起飞着陆？",
+      "studyTier": 1,
+      "referenceText": "When taking off and landing on a compact snow surface, it is necessary to ensure that the runway braking action meets the standards and to conduct a controlled approach with reduced speed. Maintain a stable configuration, avoid forceful operations, use maximum braking and reverse thrust to reduce speed promptly, and prevent any runway excursion throughout the process.",
+      "referenceTextZh": "在紧实雪面起飞着陆，需确认跑道刹车性能达标并减速进近。严格保持稳定姿态，避免猛烈操作，利用最大刹车和反推及时减速，并全程防冲出跑道。"
+    },
+    {
+      "id": "opi-fzy-224512",
+      "taskTitle": "6.运行相关-66",
+      "audioText": "Do you think red-eye flight will be the trend in the future?",
+      "audioTextZh": "你认为红眼航班在未来会变成趋势吗？",
+      "studyTier": 1,
+      "referenceText": "I believe red-eye flights remain necessary but won't become a trend. High-speed rail's advantages in short to medium distances are increasingly obvious. International long-haul and low-cost carriers will continue using them to fill schedules and reduce costs, but their overall share may remain stable.",
+      "referenceTextZh": "我认为红眼航班依然是刚需，但不会成为普遍趋势。高铁在中短途的优势越来越明显。国际远程和低成本航空还会继续用它来填满时刻、降低成本，但总体比重可能会保持稳定。"
+    },
+    {
+      "id": "opi-fzy-224514",
+      "taskTitle": "6.运行相关-67",
+      "audioText": "Do you prefer day flight or night flight?",
+      "audioTextZh": "你喜欢飞日间航班还是夜间航班？",
+      "studyTier": 1,
+      "referenceText": "I prefer flying in day time, because the visibility is good in day time, and it is more safely to fly under good visibility, also, we can have a better and regular rest in the day flight. I prefer flying in night time, because there are few planes at night and we don't need to wait or delay, especially for the pilots of cargo planes, time always comes first.",
+      "referenceTextZh": "我喜欢飞日间航班，因为白天能见度较好，在这样的情况下飞行更安全，同时飞飞日间航班，我们能够更好更规律地休息。 我喜欢飞夜间航班，因为晚上飞机少，我们不需要等待或延误，尤其对于货机飞行员来说，时间总是排在第一位的。"
+    },
+    {
+      "id": "opi-fzy-224515",
+      "taskTitle": "6.运行相关-68",
+      "audioText": "What are the differences between day flight and night flight?",
+      "audioTextZh": "白天飞行与夜间飞行有什么不同？",
+      "studyTier": 1,
+      "referenceText": "There are some differences between day flight and night flight. During day flight, we will have better visual reference. During night flight, it will be difficult for the pilots to have visual contact with runway, as a result, pilots needs to use ground equipment to have a safe landing.",
+      "referenceTextZh": "白天飞行和夜间飞行有一些不同。白天飞行期间，我们有更多的目视参考。夜间飞行期间，飞行员很难对跑道建立目视参考，因此，飞行员需要使用地面设备进行安全着陆。"
+    },
+    {
+      "id": "opi-fzy-224520",
+      "taskTitle": "6.运行相关-69",
+      "audioText": "Which do you think is more dangerous, flying over land, or flying over water?",
+      "audioTextZh": "你觉得哪一个更危险，跨陆飞行还是跨水飞行？",
+      "studyTier": 1,
+      "referenceText": "As far as I think, flying over water is more dangerous, because when we fly over water, we should strictly follow ETOPS, and we may find it hard to land when there is an emergency. What’s more, we need additional joint training with cabin crew.",
+      "referenceTextZh": "在我看来，跨水飞行更为危险，因为当我们跨水飞行时，必须严格遵守 ETOPS 规定，而且一旦出现紧急情况，我们可能会难以着陆。此外，我们还需要与乘务员进行额外的联合训练。"
+    },
+    {
+      "id": "opi-fzy-224521",
+      "taskTitle": "6.运行相关-70",
+      "audioText": "If you are going to fly over water according to your flight plan, what preparation will you make?",
+      "audioTextZh": "如果你要进行跨水飞行，你会做什么准备？",
+      "studyTier": 1,
+      "referenceText": "If I’m going to fly over water, I will make a good flight plan, for example, I will pay special attention to the weather conditions, such as jet stream, thunderstorms; then I should study the alternate airport, diversion procedure, last but not least, I will pay special attention to the emergency equipment, such as ELT, life jackets.",
+      "referenceTextZh": "如果我要跨水飞行，我会制定一个好的飞行计划，例如，我会特别注意天气状况，如高空急流、雷暴；然后我会研究下备降计划，备降程序，最后，我会特别注意应急设备，如ELT，救生衣。"
+    }
+  ],
+  "categoryId": "opi-category-05"
+}

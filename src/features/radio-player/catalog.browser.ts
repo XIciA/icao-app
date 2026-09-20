@@ -1,4 +1,4 @@
-import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets } from './catalog.native';
+import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets, type RadioStudySelection } from './catalog.native';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
@@ -8,13 +8,13 @@ export { deriveRadioCatalogs, getEmbeddedRadioCatalogs };
 /** Catalog endpoints deliberately omit protected cards; retrieve the authorized
  * topic content before building a member's web listening queue. Bounded workers
  * keep this small set of topic requests from competing with audio playback. */
-export async function loadRadioCatalogs() {
+export async function loadRadioCatalogs(selection?: RadioStudySelection) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
     const current = getNativeCommerceEnvironmentState();
     if (current.accountId !== owner.accountId || current.generation !== owner.generation) throw new Error('content_account_changed');
   };
-  const datasets = await loadRadioCatalogDatasets();
+  const datasets = await loadRadioCatalogDatasets(selection);
   assertOwner();
   const work = datasets.flatMap(dataset => dataset.access?.membershipActive
     ? dataset.categories.flatMap(category => category.topics.flatMap((topic, index) =>
@@ -33,5 +33,5 @@ export async function loadRadioCatalogs() {
   };
   await Promise.all(Array.from({ length: Math.min(3, work.length) }, worker));
   assertOwner();
-  return deriveRadioCatalogs(datasets);
+  return deriveRadioCatalogs(datasets, selection);
 }

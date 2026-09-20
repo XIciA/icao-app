@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0123",
   "name": "基本情况",
   "declaredCardCount": 20,
@@ -22,11 +21,12 @@
     },
     {
       "id": "opi-extra-150",
-      "taskTitle": "其它-基本情况-3",
+      "taskTitle": "Supplement-11",
       "audioText": "Which airline do you work for?",
       "audioTextZh": "你在哪家航空公司工作？",
-      "referenceText": "I am currently a student pilot, so I have not officially joined an airline yet.",
-      "referenceTextZh": "我目前是一名飞行学员，所以还没有正式加入航空公司。"
+      "studyTier": 0,
+      "referenceText": "I work for Air China, it is one of the biggest airlines and the only flag-carrier in China. It is based in Beijing and has 7 branches/branch companies all over the country. There are over 200 aircraft in the fleet with over 2000 pilots. The routes cover domestic and international cities. It flies to almost every important city in the world, for example, Moscow, Rome, Dubai, Tokyo, Los Angeles and so on.",
+      "referenceTextZh": "我在中国国航工作，国航是中国最大的航空公司之一，是中国唯一载国旗飞行的航空公司。国航总部在北京，在全国各地还有7个分公司。国航拥有200多架飞机，2000多名飞行员。国航航线遍布国内外，航班几乎可飞往全世界每个重要国家，例如：莫斯科、罗马、迪拜、东京、洛杉矶等。"
     },
     {
       "id": "opi-extra-152",
@@ -164,5 +164,6 @@
       "referenceText": "I do not have a strong preference. Long-haul routes require good physical fitness and fatigue management, while short-haul routes require pilots to adapt to frequent takeoffs and landings. Both types of route can help a pilot improve different skills.",
       "referenceTextZh": "我没有明显的偏好。长途航线要求良好的身体素质和疲劳管理能力，短途航线则要求飞行员适应频繁的起飞和着陆。两类航线都能帮助飞行员提高不同方面的技能。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

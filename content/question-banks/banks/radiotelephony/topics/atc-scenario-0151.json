@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-cca",
   "id": "atc-scenario-0151",
   "name": "CCA 1368 雷暴绕飞 TCAS机动 复飞",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "经 E2 快速脱离道脱离 Runway 01，CCA 1368。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-cca"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-baw",
   "id": "atc-scenario-0123",
   "name": "BAW 931 鸟击 发动机起火 乘客医疗",
   "declaredCardCount": 15,
@@ -139,5 +138,6 @@
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉塔台，BAW 931，火情无法扑灭，我们正在撤离，申请应急设备。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-020-baw931-q15.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-baw"
 }

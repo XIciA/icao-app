@@ -1,0 +1,109 @@
+{
+  "id": "atc-fzy-1055",
+  "name": "UAL805 [偏置，改航]",
+  "declaredCardCount": 11,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-177256",
+      "taskTitle": "1-UAL805 [偏置，改航]-1",
+      "audioText": "Your call sign is UAL805, a flight to Guangzhou. You are approaching WXI at 11000m. You are squawking 6527. Contact Zhengzhou Control.",
+      "audioTextZh": "你的呼号是美联航805，是一架飞往广州的航班。你现在接近WXI，高度11000米，你的应答机编码是6527。联系郑州区调。",
+      "referenceText": "Zhengzhou Control, UAL805, approaching WXI at 11000m, squawk 6527.",
+      "referenceTextZh": "郑州区调，美联航805，接近WXI，高度11000米，应答机编码6527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a79f5792e7869a1d4e13.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177257",
+      "taskTitle": "1-UAL805 [偏置，改航]-2",
+      "audioText": "UAL805, Zhengzhou Control, radar contact, offset 3 miles to the right, reduce to Mach .75, due to Wuhan Control restrictions.",
+      "audioTextZh": "美联航805，郑州区调，雷达识别了，右偏置3海里，由于武汉区调限制，速度减小至马赫数点75。",
+      "referenceText": "Roger, offset 3 miles to the right, reduce to Mach .75, UAL805.、\n（注：题干中due to Wuhan Control restrictions属于情报，无需复诵，或用roger代替）",
+      "referenceTextZh": "收到，右偏置3海里，速度减小至马赫数点75，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/edcbd0118c47950b7780.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177258",
+      "taskTitle": "1-UAL805 [偏置，改航]-3",
+      "audioText": "There is adverse weather ahead, request Zhengzhou Control for 20 miles deviation right of track and state the reason.",
+      "audioTextZh": "前方有恶劣天气，向郑州区调请求右偏航20海里，并陈述原因。",
+      "referenceText": "Zhengzhou Control, UAL805, request 20 miles deviation right of track due weather.\n（注：题干明确要求state the reason，因此，答案中的due weather不可省略）",
+      "referenceTextZh": "郑州区调，美联航805，由于天气，请求右偏航20海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8a3d23afec51a6a66131.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177259",
+      "taskTitle": "1-UAL805 [偏置，改航]-4",
+      "audioText": "UAL805, 20 miles deviation to the right approved, report when clear of weather.",
+      "audioTextZh": "美联航805，同意右偏航20海里，脱离天气后报。",
+      "referenceText": "20 miles deviation to the right approved, report when clear of weather, (wilco), UAL805.\n（注：题干中的report when clear of weather，可用wilco回复）",
+      "referenceTextZh": "同意右偏航20海里，脱离天气后报(或“照办”)，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/94893e833e77623a6290.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177260",
+      "taskTitle": "1-UAL805 [偏置，改航]-5",
+      "audioText": "Now tell the controller you are clear of weather.",
+      "audioTextZh": "现在告诉管制员你已经脱离天气了。",
+      "referenceText": "Zhengzhou Control, UAL805, clear of weather.",
+      "referenceTextZh": "郑州区调，美联航805，脱离天气了。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e3638c940e332d0b2a65.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177261",
+      "taskTitle": "1-UAL805 [偏置，改航]-6",
+      "audioText": "UAL805, the restriction still exists, reduce speed to Mach .72.\nAdvise Zhengzhou Control Mach .72 is not acceptable which is too slow for your aircraft.",
+      "audioTextZh": "美联航805，依旧存在限制，速度降至马赫数点72。\n告诉郑州区调，不能接受马赫数点72，对你的飞机来说，太慢了。",
+      "referenceText": "Negative, unable Mach.72 because it's too slow for us, UAL805.\n（注：一般用Negative, unable ...来表达“不能，无法执行”这一含义，并陈述原因）",
+      "referenceTextZh": "不能马赫数点72，这对我们来说太慢了，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0014049e3ef131928c43.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177262",
+      "taskTitle": "1-UAL805 [偏置，改航]-7",
+      "audioText": "UAL805, Zhengzhou Control, maintain Mach .75, we are limiting the number of aircraft flying through Zhengzhou control area due to Zhengzhou radar failure.",
+      "audioTextZh": "美联航805，郑州区调，保持马赫数点75，由于郑州雷达失效，我们现在正在限制飞进郑州管制区域的航空器。",
+      "referenceText": "Maintain Mach .75, UAL805.\n（注：we are limiting the number of aircraft flying through Zhengzhou control area due to Zhengzhou radar failure属于情报，无需复诵）",
+      "referenceTextZh": "保持马赫数点75，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8c809edd4bbb165cc747.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177263",
+      "taskTitle": "1-UAL805 [偏置，改航]-8",
+      "audioText": "UAL805, what is your estimated time for OBLIK?\nInform Zhengzhou Control your estimated time for OBLIK is 0638Z.",
+      "audioTextZh": "美联航805，你预计到达OBLIK的时间是多少？\n告诉郑州区调，你预计到达OBLIK的时间是0638Z。",
+      "referenceText": "Estimating OBLIK at 0638Z, UAL805.",
+      "referenceTextZh": "预计OBLIK时间0638Z，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a645052b9d115a6f2ce2.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177264",
+      "taskTitle": "1-UAL805 [偏置，改航]-9",
+      "audioText": "UAL805, make a right orbit due spacing, reach OBLIK not earlier than 0646Z.",
+      "audioTextZh": "美联航805，由于间距，右盘旋一圈，到达OBLIK的时间不早于0646Z。",
+      "referenceText": "Orbit right, reach OBLIK not earlier than 0646Z. UAL805.",
+      "referenceTextZh": "右盘旋一圈，到达OBLIK的时间不早于0646Z，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/482a1dd9c67ec2f79290.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177265",
+      "taskTitle": "1-UAL805 [偏置，改航]-10",
+      "audioText": "You have completed the orbit, request track direct to OBLIK.",
+      "audioTextZh": "你完成盘旋，请求直飞OBLIK。",
+      "referenceText": "Zhengzhou Control, UAL805, request track to OBLIK.",
+      "referenceTextZh": "郑州区调，美联航805，请求直飞OBLIK。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/1c40faeb153942b97975.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-177266",
+      "taskTitle": "1-UAL805 [偏置，改航]-11",
+      "audioText": "UAL805, negative direct to OBLIK, turn left heading 130 to intercept A461 airway.",
+      "audioTextZh": "美联航805，不能直飞OBLIK，左转航向130，切A461航路。",
+      "referenceText": "Roger, turn left heading 130 to intercept A461 airway, UAL805.",
+      "referenceTextZh": "收到，左转航向130，切A461航路，美联航805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e0b689a1e054945acd44.mp3"
+    }
+  ],
+  "categoryId": "atc-ual"
+}

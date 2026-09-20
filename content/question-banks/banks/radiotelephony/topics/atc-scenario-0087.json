@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0087",
   "name": "CSN 682 试音 襟翼卡起飞位 液压漏油",
   "declaredCardCount": 17,
@@ -157,5 +156,6 @@
       "referenceTextZh": "跑道 36R 可以落地，CSN 682。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1510.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

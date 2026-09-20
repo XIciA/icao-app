@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-07",
   "id": "opi-topic-0084",
   "name": "当前位置与工作背景",
   "declaredCardCount": 7,
@@ -60,5 +59,6 @@
       "referenceText": "I have not accumulated any hours in high-performance flight training because I have not started that training yet. My current flight time has been gained during ordinary flight training on the DA-40.",
       "referenceTextZh": "我还没有开始高性能飞行训练，因此没有积累相关飞行时间。目前的飞行时间来自使用 DA-40 进行的普通飞行训练。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-07"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "opi-category-03",
   "id": "opi-topic-0147",
   "name": "VASI",
   "declaredCardCount": 4,
@@ -36,5 +35,6 @@
       "referenceText": "Red over red means that the aircraft is below the correct approach path. The pilot should make a smooth correction with power and pitch toward the proper path and avoid an abrupt pull-up. If the aircraft is too low or a safe correction cannot be made, the pilot should go around.",
       "referenceTextZh": "上红下红表示飞机低于正确的进近航径。飞行员应通过平稳调整功率和俯仰，使飞机回到正确航径，并避免突然拉起。如果飞机过低或无法安全修正，飞行员应复飞。"
     }
-  ]
+  ],
+  "categoryId": "opi-category-03"
 }

@@ -1,5 +1,4 @@
 {
-  "categoryId": "atc-csn",
   "id": "atc-scenario-0156",
   "name": "CSN 7353 TCAS机动 危险品 延误/加油",
   "declaredCardCount": 16,
@@ -148,5 +147,6 @@
       "referenceTextZh": "继续爬升至 8900 米，CSN 7353。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q16.mp3"
     }
-  ]
+  ],
+  "categoryId": "atc-csn"
 }

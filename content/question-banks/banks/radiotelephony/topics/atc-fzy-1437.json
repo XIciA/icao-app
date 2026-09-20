@@ -1,0 +1,172 @@
+{
+  "id": "atc-fzy-1437",
+  "name": "SIA123 [路障，右发失效]",
+  "declaredCardCount": 18,
+  "studyTier": 2,
+  "practiceKind": "scenario",
+  "cards": [
+    {
+      "id": "radiotelephony-fzy-209001",
+      "taskTitle": "38-SIA123 [路障，右发失效]-1",
+      "audioText": "[Your call sign is SIA123. stand 215, from Wuhan to Singapore, information B. Request ATC clearance to Singapore.]",
+      "audioTextZh": "[你的呼号是新航123，215号机位，从武汉飞往新加坡，通播B，向ATC申请放行至新加坡。]",
+      "referenceText": "Wuhan Delivery, SIA123, stand 215, information B, destination Singapore, request ATC clearance.",
+      "referenceTextZh": "武汉放行，新航123，215号机位，通播B，目的地新加坡，向ATC申请放行至新加坡。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/40669792e6d370308412.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209002",
+      "taskTitle": "38-SIA123 [路障，右发失效]-2",
+      "audioText": "SIA123, Wuhan Delivery, cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325.",
+      "audioTextZh": "新航123，武汉放行，可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325。",
+      "referenceText": "Cleared to Singapore via flight planned route, LKO-01 departure, initial climb 1800m, cruising level 10400m, runway 36R, departure frequency 119.7, squawk 6325, SIA123.",
+      "referenceTextZh": "可以按计划航路放行至新加坡，LKO-01离场，起始高度1800米，巡航高度10400米，跑道36右，离场频率119.7，应答机6325, 新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/a49533f3423a9d90d61c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209003",
+      "taskTitle": "38-SIA123 [路障，右发失效]-3",
+      "audioText": "[You are now ready, contact Ground to request pushback and start-up.]",
+      "audioTextZh": "[你现在准备好了，联系地面，请求推出开车>]",
+      "referenceText": "Wuhan Ground, SIA123, request pushback and startup.",
+      "referenceTextZh": "武汉地面，新航123，请求推出开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/e6a1b81d3c611d19c23a.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209004",
+      "taskTitle": "38-SIA123 [路障，右发失效]-4",
+      "audioText": "SIA123, Wuhan Ground, pushback and startup approved, facing east.",
+      "audioTextZh": "新航123，武汉地面，同意推出开车，面朝东。",
+      "referenceText": "Pushback and startup approved, facing east, SIA123.",
+      "referenceTextZh": "同意推出开车，面朝东，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/125156512554da413a36.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209005",
+      "taskTitle": "38-SIA123 [路障，右发失效]-5",
+      "audioText": "[While taxiing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.]",
+      "audioTextZh": "【滑行时，你注意到风袋显示有强烈顺风，联系塔台检查风的情况。】",
+      "referenceText": "Wuhan Tower, SIA123, request wind check.",
+      "referenceTextZh": "武汉塔台，新航123，证实地面风。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/fc144fb5086f5cef8a62.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209008",
+      "taskTitle": "38-SIA123 [路障，右发失效]-6",
+      "audioText": "SIA123, surface wind 220 degrees, 8m/s.\n[The tailwind exceeds your takeoff limit. Contact Tower to change to runway 18L and state the reason.]",
+      "audioTextZh": "新航123，地面风220，8米/秒。\n【该风速超过你的起飞限制。联系塔台更换至跑道18左并说明原因。】",
+      "referenceText": "Request runway 18L due the tailwind exceeds our takeoff limit, SIA123.",
+      "referenceTextZh": "由于风速超过我们的起飞限制，请求更换跑道18左，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9a9e80a675a9d81968f6.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209009",
+      "taskTitle": "38-SIA123 [路障，右发失效]-7",
+      "audioText": "SIA123, contact Ground 121.6.",
+      "audioTextZh": "新航123，联系地面121.6。",
+      "referenceText": "Contact Ground 121.6, SIA123.",
+      "referenceTextZh": "联系地面121.6，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/64dad79f1774a30bdd0e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209010",
+      "taskTitle": "38-SIA123 [路障，右发失效]-8",
+      "audioText": "SIA123, taxi to holding point runway 18L via E, D4, F.",
+      "audioTextZh": "新航123，沿滑行道E，D4，F滑至跑道18左的等待点。",
+      "referenceText": "Taxi to holding point runway 18L via E, D4, and F. SIA123.",
+      "referenceTextZh": "沿滑行道E，D4，F滑至跑道18左的等待点，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/5a6f8003117730d4d74c.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209011",
+      "taskTitle": "38-SIA123 [路障，右发失效]-9",
+      "audioText": "[After you pass taxiway E, you saw a cone lying on the taxiway D4, tell the controller what you have seen.]",
+      "audioTextZh": "【滑过滑行道E后，你看到滑行道D4上有一个路障，告诉管制员你看到的情况。】",
+      "referenceText": "Wuhan Ground, SIA123, there is a cone lying on the taxiway D4 and it blocks my taxiway. Request assistance.",
+      "referenceTextZh": "武汉地面，新航123，滑行道D4上有一个路障，它堵住了我的滑行道。请求援助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/042f092447d609120e5e.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209012",
+      "taskTitle": "38-SIA123 [路障，右发失效]-10",
+      "audioText": "SIA123, roger that. Hold present position.",
+      "audioTextZh": "新航123，收到。原地等待。",
+      "referenceText": "Holding, SIA123.",
+      "referenceTextZh": "等待，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/78e6f35f41c6717d82a0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209013",
+      "taskTitle": "38-SIA123 [路障，右发失效]-11",
+      "audioText": "[You have departed from runway 18L, shortly after liftoff, you encountered a bird strike, your right engine has failed, make an urgency call, request maintain runway heading.]",
+      "audioTextZh": "【你已在跑道18左起飞，起飞后不久，飞机遭到了鸟击，右侧发动机失效，做紧急呼叫，请求保持跑道航向。】",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Tower, SIA123, right engine failure due bird strike, request maintain runway heading.",
+      "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉塔台，新航123，由于鸟击，右侧发动机失效，请求保持跑道航向。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ae03317739cbe8aec7fd.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209016",
+      "taskTitle": "38-SIA123 [路障，右发失效]-12",
+      "audioText": "[Tell the Tower you want to dump fuel and return to Wuhan airport.]",
+      "audioTextZh": "【告诉塔台你想放油之后返回武汉机场。】",
+      "referenceText": "Wuhan Tower, SIA123 request fuel dumping and return to Wuhan airport.",
+      "referenceTextZh": "武汉塔台，新航123，请求放油，之后返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/d413786c1e39439bffde.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209017",
+      "taskTitle": "38-SIA123 [路障，右发失效]-13",
+      "audioText": "SIA123, Tower, roger PANPAN, turn right heading 240, intercept LKO VOR 30 radial inbound, climb and maintain 3000m.",
+      "audioTextZh": "新航123，塔台，收到PANPAN，右转航向240，切入LKO VOR向台30度径向线，上升保持3000米。",
+      "referenceText": "Right heading 240, intercept LKO 030 radial inbound, climb and maintain 3000m, SIA123.",
+      "referenceTextZh": "右转航向240，切入LKO VOR向台30度径向线，上升保持3000米，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/8744212c1fd45c52e478.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209018",
+      "taskTitle": "38-SIA123 [路障，右发失效]-14",
+      "audioText": "SIA123, after passing LKO, left heading 220, maintain 3000m, report over LKO.",
+      "audioTextZh": "新航123，飞过LKO后，左转航向220，3000米保持，过LKO报告。",
+      "referenceText": "After passing LKO, left heading 220, maintaining 3000m, report over LKO, SIA123.",
+      "referenceTextZh": "飞过LKO后，左转航向220，3000米保持，过LKO报告，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ea4e48e2581d77125372.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209019",
+      "taskTitle": "38-SIA123 [路障，右发失效]-15",
+      "audioText": "[You are over LKO, call Wuhan Control.]",
+      "audioTextZh": "【你飞过LKO了，呼叫武汉区调。】",
+      "referenceText": "Wuhan Control, SIA123, over LKO 3000m maintaining.",
+      "referenceTextZh": "武汉区调，新航123，过LKO，高度3000米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/ad593f69dd431c6754b0.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209020",
+      "taskTitle": "38-SIA123 [路障，右发失效]-16",
+      "audioText": "SIA123, advise the time required for fuel jettison.\n[Tell Wuhan Control you need approximately 25 min.]",
+      "audioTextZh": "新航123，报告放油需要的时间。\n【告诉武汉区调你需要大约25分钟。】",
+      "referenceText": "We need about 25min, SIA123.",
+      "referenceTextZh": "我们需要大约25分钟，新航123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e8dada9d6b760014777.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209021",
+      "taskTitle": "38-SIA123 [路障，右发失效]-17",
+      "audioText": "[Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.]",
+      "audioTextZh": "【告诉武汉进近放油完成，请求雷达引导至跑道22。】",
+      "referenceText": "Wuhan Approach, SIA123, fuel dumping completed, request radar vector runway 22.",
+      "referenceTextZh": "武汉进近，新航123，放油完成，请求雷达引导至跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/0b3c320878e47ea7af7f.mp3"
+    },
+    {
+      "id": "radiotelephony-fzy-209022",
+      "taskTitle": "38-SIA123 [路障，右发失效]-18",
+      "audioText": "[You are now established on ILS approach runway 22, contact Tower.]",
+      "audioTextZh": "【你已经建立盲降进近跑道22，联系塔台。】",
+      "referenceText": "Wuhan Tower, SIA123, established ILS approach runway 22.",
+      "referenceTextZh": "武汉塔台，新航123，建立盲降进近跑道22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/fzy/6e50220692b5f98972ea.mp3"
+    }
+  ],
+  "categoryId": "atc-sia"
+}
