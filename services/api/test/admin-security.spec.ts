@@ -103,6 +103,8 @@ describe('ops high-risk request gates', () => {
     expect(opsGrantPreviewSchema.safeParse({ ...base, aiMode: 'gift', aiPoints: 100_001 }).success).toBe(false);
     expect(opsGrantPreviewSchema.safeParse({ ...base, aiMode: 'refill', aiPoints: 1_000_001 }).success).toBe(false);
     expect(opsGrantPreviewSchema.safeParse({ ...base, aiPoints: 100, reason: '太短' }).success).toBe(false);
+    expect(opsGrantPreviewSchema.safeParse({ ...base, aiPoints: 100, reason: '赠会员' }).success).toBe(true);
+    expect(opsGrantPreviewSchema.safeParse({ ...base, aiPoints: 100, reason: ' 太短 ' }).success).toBe(false);
   });
 
   it('accepts only the exact explicit execution phrase', () => {
