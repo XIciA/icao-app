@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const opsReasonSchema = z.string().trim().min(8).max(500);
+export const opsReasonSchema = z.string().trim().min(3).max(500);
 
 export const opsLoginSchema = z.object({
   email: z.email().max(254).transform((value) => value.trim().toLowerCase()),

@@ -11,7 +11,7 @@ import { OPS_API_CONFIG, type OpsApiConfig } from '../config';
 import { hashOpsSecret } from './admin-crypto';
 import type { OpsAuthenticatedStaff } from './admin.types';
 
-export const resetRequestSchema = z.object({ environment: z.enum(['production','sandbox']), reason: z.string().trim().min(8).max(500) });
+export const resetRequestSchema = z.object({ environment: z.enum(['production','sandbox']), reason: z.string().trim().min(3).max(500) });
 const payloadSchema = resetRequestSchema.extend({ accountIds: z.array(z.uuid()), ruleId: z.uuid() });
 @Injectable()
 export class AdminGlobalResetService {
