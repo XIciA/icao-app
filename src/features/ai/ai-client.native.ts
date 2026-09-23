@@ -10,6 +10,7 @@ import type {
 import { randomUUID } from 'expo-crypto';
 import Storage from '@/platform/storage';
 import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized, rememberApiError, withApiRequestTimeout } from '@/platform/api-client';
+import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { createAudioUploadForm } from '@/platform/audio-upload';
 import { getNativeCommerceEnvironmentState, subscribeNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment.native';
 import { AiOperationFailure, toAiOperationFailure, type AiCapability } from './ai-operation-failure.native';
@@ -27,7 +28,7 @@ function assertOwner(owner: Owner, signal?: AbortSignal) {
 }
 
 /** Reuse the account/environment owner; cancellation also prevents a 401 retry under another account. */
-async function withOwner<T>(action: (context: AiContext) => Promise<T>, externalSignal?: AbortSignal): Promise<T> {
+async function withOwner<T>(action: (context: AiContext) => Promise<T>, externalSignal?: AbortSignal, timeoutMs?: number): Promise<T> {
   const owner = getNativeCommerceEnvironmentState();
   if (!owner.accountId || owner.status !== 'active') throw new Error('commerce_environment_unavailable');
   const controller = new AbortController();
@@ -43,7 +44,7 @@ async function withOwner<T>(action: (context: AiContext) => Promise<T>, external
       const result = await action({ owner, signal });
       assertOwner(owner, signal);
       return result;
-    }, controller.signal);
+    }, controller.signal, timeoutMs);
   } finally { unsubscribe(); externalSignal?.removeEventListener('abort', abort); }
 }
 
@@ -143,9 +144,9 @@ async function jsonOperation<T>(path: string, input: unknown, capability: AiCapa
     return await withOwner(async (context) => {
       try {
         return await apiRequest<T>(path, { method: 'POST', signal: context.signal,
-          headers: { ...headers(context, operationId), 'Content-Type': 'application/json' }, body: JSON.stringify(input) });
+          headers: { ...headers(context, operationId), 'Content-Type': 'application/json' }, body: JSON.stringify(input) }, 150_000);
       } catch (error) { throw await operationFailure(error, capability, context); }
-    }, signal);
+    }, signal, 150_000);
   } catch (error) { throw toAiOperationFailure(error, capability); }
 }
 
@@ -161,20 +162,26 @@ async function audioOperation<T>(uri: string, input: TranscribeReviewRequest | u
         const model = await getAsrModel();
         const send = async (accessToken: string) => {
           assertOwner(context.owner, context.signal);
+          const preparationStarted = Date.now();
           const upload = await createAudioUploadForm(uri, model);
-          if (input) for (const [key, value] of Object.entries(input)) upload.form.append(key, value);
+          emitAudioDiagnostic({ code: 'ai_audio_prepared', scope: 'transcription', level: 'info', diagnosticId: operationId, elapsedMillis: Date.now() - preparationStarted });
+          if (input) for (const [key, value] of Object.entries(input)) {
+            if (value !== undefined) upload.form.append(key, typeof value === 'string' ? value : JSON.stringify(value));
+          }
           assertOwner(context.owner, context.signal);
           return upload.fetch(`${baseUrl}/v1/ai/${input ? 'transcribe-review' : 'transcribe'}`, {
             method: 'POST', headers: { ...headers(context, operationId), accept: 'application/json', authorization: `Bearer ${accessToken}` },
             body: upload.form, signal: context.signal,
           }) as Promise<Response>;
         };
+        const requestStarted = Date.now();
         const response = await recoverApiUnauthorized(await send(token), send, token);
+        emitAudioDiagnostic({ code: 'ai_audio_response_received', scope: 'transcription', level: 'info', diagnosticId: operationId, elapsedMillis: Date.now() - requestStarted });
         const payload = await response.json().catch(() => undefined) as { requestId?: string; data?: T; error?: { code?: string } } | undefined;
         if (!response.ok || !payload?.data) throw rememberApiError(payload?.error?.code ?? `api_http_${response.status}`, response.status, payload?.requestId);
         return payload.data;
       } catch (error) { throw await operationFailure(error, capability, context); }
-    }, signal);
+    }, signal, input ? 210_000 : 90_000);
   } catch (error) { throw toAiOperationFailure(error, capability); }
 }
 

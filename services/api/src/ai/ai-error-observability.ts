@@ -1,4 +1,4 @@
-import { HttpException, ServiceUnavailableException } from '@nestjs/common';
+import { HttpException, ServiceUnavailableException, UnprocessableEntityException } from '@nestjs/common';
 
 import type { ProviderMeta } from './provider-meta';
 
@@ -22,6 +22,9 @@ const SAFE_FAILURE_CODES = new Set([
   'ai_cancelled',
   'ai_consent_required',
   'ai_invalid_response',
+  'ai_insufficient_material',
+  'ai_material_too_long',
+  'ai_invalid_answer',
   'ai_not_configured',
   'ai_timeout',
   'ai_upstream_auth_failed',
@@ -56,8 +59,13 @@ export class ObservedAiServiceException extends ServiceUnavailableException {
   }
 }
 
+export class ObservedAiInputException extends UnprocessableEntityException {
+  readonly upstreamStatus = 'invalid_input';
+  constructor(public readonly failureCode: string, public readonly attemptCount: number, public readonly meta: ProviderMeta) { super(failureCode); }
+}
+
 export function aiFailureObservation(error: unknown): AiFailureObservation {
-  if (error instanceof ObservedAiServiceException) {
+  if (error instanceof ObservedAiServiceException || error instanceof ObservedAiInputException) {
     return {
       failureCode: error.failureCode,
       upstreamStatus: error.upstreamStatus,

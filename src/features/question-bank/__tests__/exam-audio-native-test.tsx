@@ -113,24 +113,45 @@ it('never unlocks replay when an interruption happens after the question finishe
 });
 
 it.each(['resolve', 'reject'] as const)('a superseded playback continuation (%s) releases only its own lease and retains the newer owner', async (settlement) => {
-  let finishFirstStop!: () => void;
-  jest.mocked(Speech.stop).mockImplementationOnce(() => new Promise<void>((resolve, reject) => { finishFirstStop = () => settlement === 'resolve' ? resolve() : reject(new Error('old stop failed')); }));
+  let finishFirstAcquire!: () => void;
+  const first = { owner: 'study' as const, token: ++mockToken };
+  jest.mocked(audioSessionOrchestrator.acquire).mockImplementationOnce(() => new Promise((resolve, reject) => { finishFirstAcquire = () => settlement === 'resolve' ? resolve(first) : reject(new Error('old acquire failed')); }));
+  mockStatus = { ...mockStatus, isLoaded: true, playbackState: 'readyToPlay' };
   const practice = { ...props, exam: false, autoPlay: false };
   const screen = await render(<ExamQuestionAudio {...practice} />);
   await fireEvent.press(screen.getByText('播放题目'));
-  await waitFor(() => expect(Speech.stop).toHaveBeenCalledTimes(1));
-  const first = await jest.mocked(audioSessionOrchestrator.acquire).mock.results[0]!.value;
+  await waitFor(() => expect(audioSessionOrchestrator.acquire).toHaveBeenCalledTimes(1));
 
   await fireEvent.press(screen.getByText('播放题目'));
   await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
   const second = await jest.mocked(audioSessionOrchestrator.acquire).mock.results[1]!.value;
   expect(second.token).not.toBe(first.token);
-  await act(async () => { finishFirstStop(); });
-  expect(audioSessionOrchestrator.release).toHaveBeenCalledWith(first);
+  await act(async () => { finishFirstAcquire(); });
+  if (settlement === 'resolve') expect(audioSessionOrchestrator.release).toHaveBeenCalledWith(first);
   expect(audioSessionOrchestrator.release).not.toHaveBeenCalledWith(second);
   expect(mockPlayer.play).toHaveBeenCalledTimes(1);
 
   // The newer ref must still be retained so a real pause releases it.
   await screen.rerender(<ExamQuestionAudio {...practice} pauseRequest={1} />);
   expect(audioSessionOrchestrator.release).toHaveBeenCalledWith(second);
+});
+
+it('file audio does not depend on or interrupt the system speech service', async () => {
+  jest.mocked(Speech.stop).mockRejectedValueOnce(new Error('speech unavailable'));
+  const screen = await playing();
+  expect(Speech.stop).not.toHaveBeenCalled();
+  expect(screen.getByText('音频播放中')).toBeTruthy();
+  jest.mocked(Speech.stop).mockReset().mockResolvedValue(undefined);
+});
+it('can autoplay while native AppState is still initializing', async () => {
+  Object.defineProperty(AppState, 'currentState', { configurable: true, value: null });
+  await playing();
+});
+it('waits for readiness when foreground returns before loading finishes', async () => {
+  const screen = await render(<ExamQuestionAudio {...props} />);
+  await act(() => mockAppState?.('inactive'));
+  await act(() => mockAppState?.('active'));
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  await act(async () => { mockStatus = { ...mockStatus, isLoaded: true, playbackState: 'readyToPlay' }; await screen.rerender(<ExamQuestionAudio {...props} />); });
+  await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
 });

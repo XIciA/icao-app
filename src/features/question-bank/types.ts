@@ -221,6 +221,8 @@ export type LearningRecord = {
   vercelStudyReview?: VercelStudyReview;
   vercelStudyReviewSaved?: boolean;
   aiResult?: {
+    analysis?: import('@icao/contracts/learning-ai').LearningAnalysis;
+    resumeOperationId?: string;
     questionId: string;
     itemId?: string;
     analyzedTranscript?: string;

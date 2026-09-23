@@ -117,6 +117,18 @@ describe('TencentAsrService', () => {
     },
   );
 
+  it('polls early twice then returns to the configured interval, preserving the recognized words', async () => {
+    const client = { CreateRecTask: vi.fn(async () => ({ Data: { TaskId: 7 } })),
+      DescribeTaskStatus: vi.fn().mockResolvedValueOnce({ Data: { Status: 0 } }).mockResolvedValueOnce({ Data: { Status: 1 } }).mockResolvedValueOnce({ Data: { Status: 1 } }).mockResolvedValue({ Data: { Status: 2, Result: 'do not cross runway 27' } }) };
+    const { instance } = service(client, { aiAsrPollIntervalMs: 2000 });
+    const waits: number[] = [];
+    Reflect.set(instance, 'wait', async (_deadline: number, _signal: unknown, duration: number) => { waits.push(duration); });
+    const result = await instance.transcribe(Buffer.from('audio'), 'audio/wav', '16k_en');
+    expect(waits.filter((value) => value >= 500)).toEqual([500, 1000, 2000]);
+    expect(result.rawTranscript).toBe('do not cross runway 27');
+    expect(result.meta.timings?.pollCount).toBe(4);
+  });
+
   it('maps an empty successful response to no speech and still removes staged audio', async () => {
     const { fakeStorage, instance } = service({
       CreateRecTask: vi.fn(async () => ({ Data: { TaskId: 43 } })),

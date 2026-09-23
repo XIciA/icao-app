@@ -84,13 +84,20 @@ export type MeteredPolishResult = WithUsage<PolishResult>;
 export type TranscribeReviewRequest = Omit<AiReviewRequest, 'transcript'>;
 export type TranscribeReviewResult = {
   transcript: string;
+  rawTranscript?: string;
   review: Omit<AiReviewResult, 'aiPoints'>;
   aiPoints?: AiUsageOperationSummary;
 };
 
+export type PartialAiTranscription = {
+  transcript: string;
+  rawTranscript: string;
+  input: TranscribeReviewRequest;
+};
+
 /** Recovery reads an existing operation and never starts new provider work. */
 export type AiOperationLookup =
-  | { state: 'missing' | 'pending' | 'released' }
+  | { state: 'missing' | 'pending' | 'released'; partialTranscription?: PartialAiTranscription }
   | { state: 'completed'; capability: keyof AiRuleCosts;
       result: MeteredTranscribeResult | MeteredAiReviewResult | TranscribeReviewResult };
 

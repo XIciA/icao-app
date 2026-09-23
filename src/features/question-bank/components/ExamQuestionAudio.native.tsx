@@ -6,6 +6,7 @@ import { Headphones } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
 import { colors, spacing } from '@/theme';
 import { audioSessionOrchestrator, useSessionManagedAudioPlayer, type AudioLease } from '@/platform/audio';
+import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { observeAudioInterruption } from '../../../../modules/icao-audio-interruption/src';
 
 type Phase = 'loading' | 'playing' | 'paused' | 'ended' | 'error';
@@ -13,7 +14,7 @@ type Props = { exam?: boolean; autoPlay?: boolean; uri?: string; text?: string; 
 
 /** Exam presentation of the shared study audio owner. No user transport controls. */
 export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, label, resolving, onRetry, pauseRequest, onPlaybackStart, practiceControls }: Props) {
-  const player = useSessionManagedAudioPlayer(null, { updateInterval: 200 });
+  const player = useSessionManagedAudioPlayer(null, { updateInterval: 200, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
   const [phase, setPhase] = useState<Phase>(autoPlay ? 'loading' : 'paused');
   const [interruptionReplay, setInterruptionReplay] = useState(false);
@@ -21,12 +22,14 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   const lease = useRef<AudioLease | undefined>(undefined);
   const generation = useRef(0);
   const mounted = useRef(true);
-  const appState = useRef(AppState.currentState);
+  const appState = useRef(AppState.currentState ?? 'active');
   const phaseRef = useRef<Phase>(autoPlay ? 'loading' : 'paused');
   const audible = useRef(false);
   const playbackPosition = useRef(0);
   const wantPlay = useRef(autoPlay);
   const sourceReplacedStatus = useRef(status);
+  const latestStatus = useRef(status);
+  latestStatus.current = status;
   const speechStarted = useRef(false);
   const speechGeneration = useRef(0);
   const speechPaused = useRef(false);
@@ -38,6 +41,10 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   callbacks.current = { uri, text, resolving, onPlaybackStart };
   const operations = useRef({ play: (_restart = false) => {}, pause: () => {} });
 
+  function fail(code: string) {
+    emitAudioDiagnostic({ scope: 'playback', owner: 'study', level: 'error', code, reason: 'exam-question', phase: phaseRef.current });
+    update('error');
+  }
   function update(next: Phase) { phaseRef.current = next; if (mounted.current) setPhase(next); }
   function releaseSpecific(current: AudioLease | undefined) {
     if (!current) return;
@@ -55,6 +62,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   }
   async function play(restart = false) {
     if (callbacks.current.resolving || appState.current !== 'active' || (systemInterrupted.current || (awaitingReplay.current && !restart))) return;
+    if (callbacks.current.uri && !latestStatus.current.isLoaded) { wantPlay.current = true; update('loading'); return; }
     wantPlay.current = false;
     const request = ++generation.current;
     let acquired: AudioLease | undefined;
@@ -62,10 +70,14 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
       acquired = await audioSessionOrchestrator.acquire('study', 'exam-question');
       if (!mounted.current || request !== generation.current || appState.current !== 'active') { await audioSessionOrchestrator.release(acquired); return; }
       lease.current = acquired;
-      if (restart) { speechGeneration.current += 1; playbackPosition.current = 0; speechPaused.current = false; speechGeneration.current += 1; await Speech.stop(); }
+      if (restart) {
+        playbackPosition.current = 0;
+        if (speechStarted.current) { speechGeneration.current += 1; speechPaused.current = false; await Speech.stop(); speechStarted.current = false; }
+      }
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
       eligibleForInterruption.current = true;
-      if (!speechPaused.current) await Speech.stop();
+      // File playback uses the same session owner as ordinary study. Only this
+      // component's own TTS may be stopped; unrelated speech is not a prerequisite.
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
       callbacks.current.onPlaybackStart?.();
       if (callbacks.current.uri) {
@@ -91,7 +103,10 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
           update('playing');
         }
       } else { update('error'); release(); }
-    } catch { if (mounted.current && request === generation.current) update('error'); releaseSpecific(acquired); }
+    } catch (error) {
+      if (mounted.current && request === generation.current) fail(error && typeof error === 'object' && 'code' in error && typeof error.code === 'string' ? error.code : 'exam_play_start_failed');
+      releaseSpecific(acquired);
+    }
   }
   operations.current = { play: (restart = false) => { void play(restart); }, pause };
 
@@ -117,7 +132,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     });
     const appSubscription = AppState.addEventListener('change', next => {
       appState.current = next;
-      if (next !== 'active' && phaseRef.current === 'playing') { interrupted.current = true; operations.current.pause(); }
+      if (next !== 'active' && (phaseRef.current === 'playing' || phaseRef.current === 'loading')) { interrupted.current = true; operations.current.pause(); }
       else if (next === 'active' && interrupted.current && !awaitingReplay.current) { interrupted.current = false; operations.current.play(); }
       else if (next === 'active' && phaseRef.current === 'loading') { wantPlay.current = true; setLoadAttempt(value => value + 1); }
     });
@@ -130,13 +145,17 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     if (resolving) {
       // A catalog/fallback path is not yet the authorized playback source.
       // Keep automatic playback queued until the shared asset loader finishes.
-      wantPlay.current = autoPlay || audible.current;
+      wantPlay.current = wantPlay.current || phaseRef.current === 'playing';
       if (wantPlay.current) update('loading');
       return;
     }
     if (!uri) return;
     sourceReplacedStatus.current = status;
-    try { player.replace(uri); wantPlay.current = autoPlay || audible.current; update(wantPlay.current ? 'loading' : 'paused'); } catch { update('error'); }
+    try {
+      wantPlay.current = wantPlay.current || phaseRef.current === 'playing';
+      player.replace(uri);
+      update(wantPlay.current ? 'loading' : 'paused');
+    } catch { fail('exam_source_replace_failed'); }
   // Source updates refresh the same immutable question, preserving elapsed time.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player, uri, resolving, loadAttempt]);
@@ -146,7 +165,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     if (status.currentTime > 0) { audible.current = true; playbackPosition.current = status.currentTime; }
     if (awaitingReplay.current && status.playing) { try { player.pause(); } catch { /* Interruption is already paused. */ } }
     if (uri && status.didJustFinish && phaseRef.current === 'playing') { eligibleForInterruption.current = false; update('ended'); release(); }
-    if (uri && status.playbackState === 'error' && phaseRef.current !== 'error') { operations.current.pause(); eligibleForInterruption.current = false; update('error'); }
+    if (uri && status.playbackState === 'error' && phaseRef.current !== 'error') { operations.current.pause(); eligibleForInterruption.current = false; fail('exam_media_load_failed'); }
   // The player status drives readiness; transports are stable per item.
    
   }, [player, status, uri, resolving]);
@@ -155,7 +174,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
     // Signed URL resolution has its own timeout and retry path. The
     // player's 15-second startup watchdog only begins once media is resolved.
     if (resolving || (phase !== 'loading' && !(phase === 'playing' && !audible.current))) return;
-    const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; if (speechStarted.current) { speechGeneration.current += 1; void Speech.stop().catch(() => undefined); } update('error'); } }, 15_000);
+    const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; if (speechStarted.current) { speechGeneration.current += 1; void Speech.stop().catch(() => undefined); } fail('exam_first_frame_timeout'); } }, 15_000);
     return () => clearTimeout(timer);
   }, [phase, loadAttempt, resolving]);
   const previousPauseRequest = useRef(pauseRequest);

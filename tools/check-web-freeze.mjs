@@ -162,6 +162,19 @@ const reviewedFormalWebHashes = new Map([
   ]
 ]);
 
+// 2026-09-23 AI/annotation task: type-only legacy contracts/palettes transpile
+// identically to HEAD; managed colors and mutations resolve only on Native/EdgeOne.
+// The existing Native route proof still excludes that route on Vercel. No legacy
+// page, AI endpoint, content or deployment exemption is granted here.
+reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "5c1ee7a8ebe04f9d6702ef762ad0355dde9ae4cffb227857a30645b3928d0aac"]);
+reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "ac855563ad946df567f5e56a12aa35e444c967ce04fb77670800fdac8858bd0d"]);
+reviewedFormalWebHashes.set("src/features/question-bank/annotations/colors.ts", ["3dbcb635004af0665a7762333860671b1a0da726b3fc85a3bafd6f215648191a", "9e51a2debdc9a200210b53f88a551c8497e1a75e06eb07887cbe14f5ac1e2509"]);
+reviewedFormalWebHashes.set("src/features/question-bank/annotations/types.ts", ["d648ef01a088c278ea35b0a940f0246dbf1b7bbf03c70078dd5c4b335d7b0712", "c784141a43b71601278f2dca8fec1baad7a23a0d0d46b8c6574aeccbea254ef1"]);
+reviewedFormalWebHashes.set("src/features/question-bank/annotations/annotation-store.native.ts", [null, "5e1dd5afe4bdc78c5fd9817743e063172492bdabb660b74e11a95f6048c5dc11"]);
+reviewedFormalWebHashes.set("src/features/sync/learning-sync.native.ts", [null, "f92ad61b8dd5ca4bac2c20be3f2b2fe829913f340f2a220de0959a85369b17c5"]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "7b51f0da8dfa8efbc6132cd95c32f07d5efe0a3a2bbaca58b17e9868fefeb41d"]);
+reviewedFormalWebHashes.set("packages/contracts/src/annotation-management.ts", [null, "725cf8d2432ae96898d4e6c6f847fef960ba8375b3a9b9f882433741fe2ed49a"]);
+
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));
   const currentPaths = new Set(current.map(file => file.path));

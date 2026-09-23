@@ -27,6 +27,7 @@ function cleanTranscript(result: string | undefined) {
 @Injectable()
 export class TencentAsrService {
   private readonly logger = new Logger(TencentAsrService.name);
+  private nextStatusRequestAt = 0;
   private client?: InstanceType<typeof AsrClient>;
 
   constructor(
@@ -84,8 +85,8 @@ export class TencentAsrService {
     });
   }
 
-  private async wait(deadline: number, signal?: AbortSignal) {
-    const duration = Math.min(this.config.aiAsrPollIntervalMs, this.remaining(deadline));
+  private async wait(deadline: number, signal?: AbortSignal, requestedMs = this.config.aiAsrPollIntervalMs) {
+    const duration = Math.min(requestedMs, this.remaining(deadline));
     await new Promise<void>((resolve, reject) => {
       const finish = () => {
         signal?.removeEventListener('abort', cancel);
@@ -125,7 +126,8 @@ export class TencentAsrService {
     throw new ServiceUnavailableException('ai_upstream_failed');
   }
 
-  private async recognize(url: string, model: TencentAsrModel, signal?: AbortSignal) {
+  private async recognize(url: string, model: TencentAsrModel, signal?: AbortSignal): Promise<{ rawTranscript: string; meta: ProviderMeta }> {
+    const started = Date.now();
     const deadline = Date.now() + this.config.aiAsrTimeoutMs;
     const client = this.sdk();
     try {
@@ -140,10 +142,20 @@ export class TencentAsrService {
         Url: url,
       }), deadline, signal);
       const taskId = submitted.Data?.TaskId;
+      const submitMs = Date.now() - started;
+      let statusRequestMs = 0; let pollingWaitMs = 0; let pollCount = 0;
       if (typeof taskId !== 'number') throw new ServiceUnavailableException('ai_invalid_response');
 
       for (;;) {
+        const statusStarted = Date.now();
+        // Tencent documents 50 status queries/second. Space queries across this
+        // singleton provider at <=40/s, including the faster initial polls.
+        const now = Date.now();
+        const slot = Math.max(now, this.nextStatusRequestAt);
+        this.nextStatusRequestAt = slot + 25;
+        if (slot > now) await this.wait(deadline, signal, slot - now);
         const response = await this.cloudCall(() => client.DescribeTaskStatus({ TaskId: taskId }), deadline, signal);
+        statusRequestMs += Date.now() - statusStarted; pollCount += 1;
         const status = response.Data?.Status;
         if (status === 2) {
           const transcript = cleanTranscript(response.Data?.Result);
@@ -154,12 +166,15 @@ export class TencentAsrService {
               attemptCount: 1,
               audioDurationSeconds: response.Data?.AudioDuration,
               upstreamStatus: 'success',
+              timings: { submitMs, statusRequestMs, pollingWaitMs, pollCount },
             } satisfies ProviderMeta,
           };
         }
         if (status === 3) this.mapProviderError(new Error(response.Data?.ErrorMsg || 'asr_task_failed'));
         if (status !== 0 && status !== 1) throw new ServiceUnavailableException('ai_invalid_response');
-        await this.wait(deadline, signal);
+        const waitStarted = Date.now();
+        await this.wait(deadline, signal, Math.min(this.config.aiAsrPollIntervalMs, pollCount === 1 ? 500 : pollCount === 2 ? 1000 : this.config.aiAsrPollIntervalMs));
+        pollingWaitMs += Date.now() - waitStarted;
       }
     } catch (error) {
       this.mapProviderError(error);
@@ -173,12 +188,21 @@ export class TencentAsrService {
     signal?: AbortSignal,
     correlationId?: string,
   ) {
+    if (signal?.aborted) throw new ServiceUnavailableException('ai_cancelled');
+    const started = Date.now();
     const staged = await this.audioStorage.stage(audio, mimeType, correlationId);
+    const stagingMs = Date.now() - started;
+    let result: Awaited<ReturnType<TencentAsrService['recognize']>> | undefined;
     try {
-      return await this.recognize(staged.url, model, signal);
+      result = await this.recognize(staged.url, model, signal);
+      return result;
     } finally {
+      const cleanupStarted = Date.now();
       await this.audioStorage.remove(staged.objectKey)
         .catch(() => this.logger.warn('asr_audio_cleanup_failed stage=request_finally'));
+      const timings = { ...result?.meta.timings, stagingMs, cleanupMs: Date.now() - cleanupStarted, totalMs: Date.now() - started };
+      if (result) result.meta.timings = timings;
+      this.logger.log(`asr_timing ${JSON.stringify(timings)}`);
     }
   }
 }

@@ -1,9 +1,9 @@
-import { Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
+import { Inject, Injectable, ServiceUnavailableException, UnprocessableEntityException } from '@nestjs/common';
 
 import type { AiReviewRequest } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
-import { ObservedAiServiceException } from './ai-error-observability';
+import { ObservedAiInputException, ObservedAiServiceException } from './ai-error-observability';
 import type { ProviderMeta } from './provider-meta';
 
 type Completion = {
@@ -22,6 +22,7 @@ type Waiter = {
   resolve: (release: () => void) => void;
   reject: (error: Error) => void;
   onAbort?: () => void;
+  cleanup?: () => void;
 };
 
 @Injectable()
@@ -47,8 +48,8 @@ export class DeepSeekReviewProviderService {
     this.active -= 1;
     while (this.waiters.length > 0) {
       const waiter = this.waiters.shift()!;
+      waiter.cleanup?.();
       if (waiter.signal?.aborted) continue;
-      if (waiter.onAbort) waiter.signal?.removeEventListener('abort', waiter.onAbort);
       this.active += 1;
       waiter.resolve(() => this.release());
       return;
@@ -63,22 +64,26 @@ export class DeepSeekReviewProviderService {
     }
     return new Promise((resolve, reject) => {
       const waiter: Waiter = { signal, resolve, reject };
+      const rejectWaiter = (code: string) => {
+        const index = this.waiters.indexOf(waiter);
+        if (index >= 0) this.waiters.splice(index, 1);
+        waiter.cleanup?.();
+        reject(new ServiceUnavailableException(code));
+      };
+      const timer = setTimeout(() => rejectWaiter('ai_upstream_limited'), 15_000);
+      waiter.cleanup = () => { clearTimeout(timer); if (waiter.onAbort) signal?.removeEventListener('abort', waiter.onAbort); };
       if (signal) {
-        waiter.onAbort = () => {
-          const index = this.waiters.indexOf(waiter);
-          if (index >= 0) this.waiters.splice(index, 1);
-          reject(new ServiceUnavailableException('ai_cancelled'));
-        };
+        waiter.onAbort = () => rejectWaiter('ai_cancelled');
         signal.addEventListener('abort', waiter.onAbort, { once: true });
       }
       this.waiters.push(waiter);
     });
   }
 
-  private async request(body: Record<string, unknown>, signal?: AbortSignal): Promise<Completion> {
+  private async request(body: Record<string, unknown>, signal?: AbortSignal, timeoutMs = 20_000): Promise<Completion> {
     if (!this.config.deepseekApiKey) throw new ReviewAttemptError('ai_not_configured', false);
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20_000);
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
     try {
       const response = await fetch(this.endpoint(), {
         method: 'POST',
@@ -111,10 +116,14 @@ export class DeepSeekReviewProviderService {
     prompt: string;
     userId: string;
     signal?: AbortSignal;
+    maxTokens?: number;
+    timeoutMs?: number;
     validate: (data: unknown) => T;
   }): Promise<{ data: T; meta: ProviderMeta }> {
+    const queued = Date.now();
     const release = await this.acquire(input.signal);
-    const meta: ProviderMeta = {};
+    const started = Date.now();
+    const meta: ProviderMeta = { timings: { queueMs: started - queued } };
     let lastCode = 'ai_invalid_response';
     let attemptCount = 0;
     try {
@@ -130,9 +139,9 @@ export class DeepSeekReviewProviderService {
             ],
             response_format: { type: 'json_object' },
             temperature: 0,
-            max_tokens: 2048,
+            max_tokens: input.maxTokens ?? 2048,
             stream: false,
-          }, input.signal);
+          }, input.signal, input.timeoutMs);
           meta.inputTokens = (meta.inputTokens ?? 0) + (payload.usage?.prompt_tokens ?? 0);
           meta.outputTokens = (meta.outputTokens ?? 0) + (payload.usage?.completion_tokens ?? 0);
           const choice = payload.choices?.[0];
@@ -144,12 +153,14 @@ export class DeepSeekReviewProviderService {
           try {
             return {
               data: input.validate(data),
-              meta: { ...meta, attemptCount, upstreamStatus: attemptCount > 1 ? 'recovered' : 'success' },
+              meta: { ...meta, timings: { ...meta.timings, generationMs: Date.now() - started }, attemptCount, upstreamStatus: attemptCount > 1 ? 'recovered' : 'success' },
             };
-          } catch {
+          } catch (error) {
+            if (error instanceof UnprocessableEntityException) throw new ObservedAiInputException(error.message, attemptCount, { ...meta, timings: { ...meta.timings, generationMs: Date.now() - started } });
             throw new ReviewAttemptError('ai_invalid_response', true);
           }
         } catch (error) {
+          if (error instanceof UnprocessableEntityException) throw error;
           const failure = error instanceof ReviewAttemptError ? error : new ReviewAttemptError('ai_invalid_response', true);
           lastCode = failure.code;
           if (!failure.retryable || failure.code !== 'ai_invalid_response' || attempt === 1) break;
@@ -171,7 +182,7 @@ export class DeepSeekReviewProviderService {
                     ? 'not_configured'
                     : 'unavailable';
       throw new ObservedAiServiceException(lastCode, status, attemptCount || 1, {
-        ...meta,
+        ...meta, timings: { ...meta.timings, generationMs: Date.now() - started },
         attemptCount: attemptCount || 1,
         upstreamStatus: status,
       });

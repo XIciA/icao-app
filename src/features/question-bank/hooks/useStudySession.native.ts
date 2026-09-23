@@ -331,6 +331,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     const nextRecordings = { ...recordingsRef.current, [item.id]: recording };
     recordingsRef.current = nextRecordings;
     setRecordings(nextRecordings);
+    setAnswers((current) => ({ ...current, [item.id]: '' }));
     persistCard(item.id, { recorded: true, recordingDurationMillis: recording.durationMillis, completed: true });
     setCompletedCardIds((current) => new Set(current).add(item.id));
     if (!examMode) setRevealed(true);

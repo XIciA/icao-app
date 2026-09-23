@@ -2,6 +2,8 @@ import { fireEvent, render } from '@testing-library/react-native';
 
 import { MyAnnotationsScreen } from '../components/MyAnnotationsScreen';
 
+let mockHighlightName: string | undefined;
+let mockHighlightDeleted = false;
 const mockPush = jest.fn();
 const mockRefresh = jest.fn(async () => undefined);
 
@@ -39,16 +41,17 @@ jest.mock('lucide-react-native', () => {
 jest.mock('../annotations/use-question-annotations', () => ({
   useQuestionAnnotations: () => {
     const { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } = jest.requireActual('../annotations/types');
+    const highlights = DEFAULT_ANNOTATION_HIGHLIGHTS.filter((entry: { id: string }) => !mockHighlightDeleted || entry.id !== 'yellow').map((entry: { id: string; label: string }) => entry.id === 'yellow' && mockHighlightName ? { ...entry, label: mockHighlightName } : entry);
     return ({
     hydrated: true,
-    highlightDefinitions: DEFAULT_ANNOTATION_HIGHLIGHTS,
+    highlightDefinitions: highlights,
     loadErrorMessage: undefined,
     refresh: mockRefresh,
     store: {
       version: 1,
       legacyImported: true,
       tagDefinitions: DEFAULT_ANNOTATION_TAGS,
-      highlightDefinitions: DEFAULT_ANNOTATION_HIGHLIGHTS,
+      highlightDefinitions: highlights,
       entries: {
         entry: {
           bankId: 'listening',
@@ -56,7 +59,7 @@ jest.mock('../annotations/use-question-annotations', () => ({
           topicId: 'listening-topic-01',
           cardId: 'listening-main-001',
           tagIds: ['memory'],
-          highlights: [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: 'abc' }],
+          highlights: mockHighlightDeleted ? [] : [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: 'abc' }],
           note: '复习雷击通话',
           updatedAt: '2026-07-12T00:00:00.000Z',
         },
@@ -79,6 +82,7 @@ jest.mock('../annotations/use-question-annotations', () => ({
 
 describe('<MyAnnotationsScreen />', () => {
   beforeEach(() => {
+    mockHighlightName = undefined; mockHighlightDeleted = false;
     mockPush.mockClear();
     mockRefresh.mockClear();
   });
@@ -116,4 +120,20 @@ describe('<MyAnnotationsScreen />', () => {
     expect(screen.getByText(/UAL\s?919/)).toBeTruthy();
     expect(screen.getByText('本机数据 · 当前题库')).toBeTruthy();
   });
+});
+
+it('keeps a filter attached to its stable class ID after renaming, and clears deleted filters while preserving notes', async () => {
+  const screen = await render(<MyAnnotationsScreen />);
+  await fireEvent.press(screen.getByText('高亮'));
+  await fireEvent.press(screen.getByLabelText('筛选记忆'));
+  mockHighlightName = '待复习';
+  await screen.rerender(<MyAnnotationsScreen />);
+  expect(screen.getByLabelText('筛选待复习').props.accessibilityState.selected).toBe(true);
+  expect(screen.getByLabelText('高亮词：UAL919,')).toBeTruthy();
+  mockHighlightDeleted = true;
+  await screen.rerender(<MyAnnotationsScreen />);
+  expect(screen.queryByLabelText('筛选待复习')).toBeNull();
+  expect(screen.queryByLabelText('高亮词：UAL919,')).toBeNull();
+  await fireEvent.press(screen.getByText('笔记'));
+  expect(screen.getByText('复习雷击通话')).toBeTruthy();
 });

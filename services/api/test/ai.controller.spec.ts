@@ -81,6 +81,7 @@ describe('AiController review endpoint', () => {
       grant,
       expect.any(AbortSignal),
       '82000000-0000-4000-8000-000000000001',
+      undefined,
     );
   });
 
@@ -126,7 +127,7 @@ describe('AiController authorized commerce environment and combined request', ()
     const headers = { [COMMERCE_ENVIRONMENT_HEADER]: 'sandbox', 'x-ai-operation-id': '82000000-0000-4000-8000-000000000002' };
     await controller.transcribeReview({ ...request(headers), auth: { sessionId: 'session-1' }, file: async () => file } as never);
     expect(admitOperation).toHaveBeenCalledExactlyOnceWith('user-1', 'sandbox');
-    expect(transcribeReview).toHaveBeenCalledExactlyOnceWith('user-1', 'request-1', Buffer.from('audio'), 'audio/wav', '16k_en', { mode: 'opi', module: 'opi', questionId: 'q-1' }, grant, expect.any(AbortSignal), headers['x-ai-operation-id']);
+    expect(transcribeReview).toHaveBeenCalledExactlyOnceWith('user-1', 'request-1', Buffer.from('audio'), 'audio/wav', '16k_en', { mode: 'opi', module: 'opi', questionId: 'q-1' }, grant, expect.any(AbortSignal), headers['x-ai-operation-id'], undefined);
     file.fields.module = { type: 'field', value: 'atc' };
     await expect(controller.transcribeReview({ ...request(headers), auth: { sessionId: 'session-1' }, file: async () => file } as never)).rejects.toThrow('invalid_transcribe_review');
     expect(transcribeReview).toHaveBeenCalledTimes(1);

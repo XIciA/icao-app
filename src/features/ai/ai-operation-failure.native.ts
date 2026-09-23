@@ -65,6 +65,10 @@ function failurePolicy(code: string, fallbackStage: AiFailureStage) {
         : 'AI 数据处理同意已撤回或需要更新，请重新确认后再试。',
     };
   }
+  if (['ai_insufficient_material', 'ai_material_too_long'].includes(code)) return { stage: 'response_validation' as const, retryable: false, userAction: 'none' as const, userMessage: '当前题目材料不足或过长，暂时无法可靠分析。录音和回答已保留。' };
+  if (code === 'ai_input_too_long') return { stage: 'response_validation' as const, retryable: false, userAction: 'none' as const, userMessage: '回答过长，请编辑后再进行比较。' };
+  if (code === 'ai_invalid_answer') return { stage: 'response_validation' as const, retryable: false, userAction: 'none' as const, userMessage: '当前回答无法分析，请编辑文字或重新录音后再试。' };
+  if (code === 'ai_partial_recovered') return { stage: 'api' as const, retryable: true, userAction: 'retry' as const, userMessage: '转写已恢复，上次组合任务未扣费。再次评分将按完整转写加分析任务结算，不重复上传录音。' };
   if (code === 'learning_save_failed') {
     return { stage: 'api' as const, retryable: true, userAction: 'retry' as const,
       userMessage: '本次学习暂未保存，尚未发起 AI 处理，请重试。' };

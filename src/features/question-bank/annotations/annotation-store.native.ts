@@ -1,3 +1,4 @@
+import { normalizeAnnotationDefinitions } from '@icao/contracts/annotation-management';
 import Storage from '@/platform/storage';
 
 import { assertLearningWriteContext, captureLearningWriteContext, inCurrentLearningWorkspace, mutateAnnotationsInCurrentWorkspace, type LearningWriteContext } from '@/features/sync/learning-sync.native';
@@ -8,17 +9,14 @@ import { questionBankCardTargetKey } from './card-index';
 import {
   DEFAULT_ANNOTATION_HIGHLIGHTS,
   DEFAULT_ANNOTATION_TAGS,
-  type AnnotationDefinition,
   type AnnotationHighlight,
   type AnnotationTextBlockId,
-  type AnnotationToneKey,
   type QuestionAnnotationEntry,
   type QuestionBankAnnotationStore,
   type QuestionBankCardTarget,
 } from './types';
 
 export const ANNOTATION_STORAGE_KEY = 'icao.annotations.v1';
-const TONES = new Set<AnnotationToneKey>(['green', 'yellow', 'red', 'blue']);
 const BANK_IDS = new Set<QuestionBankId>(getEmbeddedQuestionBanks().map((bank) => bank.id));
 const listeners = new Set<() => void>();
 let cachedStore: QuestionBankAnnotationStore | undefined;
@@ -27,28 +25,6 @@ let latestSave: { ownerToken: string; result: Promise<boolean> } | undefined;
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === 'object' && !Array.isArray(value));
-}
-
-function isTone(value: unknown): value is AnnotationToneKey {
-  return typeof value === 'string' && TONES.has(value as AnnotationToneKey);
-}
-
-function normalizeDefinition(value: unknown): AnnotationDefinition | undefined {
-  if (!isObject(value) || typeof value.id !== 'string' || !value.id) return undefined;
-  if (typeof value.label !== 'string' || !value.label.trim() || !isTone(value.color)) return undefined;
-  return { id: value.id, label: value.label.trim().slice(0, 8), color: value.color, builtIn: value.builtIn === true };
-}
-
-function normalizeDefinitions(value: unknown, defaults: AnnotationDefinition[]) {
-  const definitions = new Map(defaults.map((item) => [item.id, item]));
-  if (Array.isArray(value)) {
-    value.forEach((item) => {
-      const definition = normalizeDefinition(item);
-      if (!definition || definitions.has(definition.id)) return;
-      definitions.set(definition.id, { ...definition, builtIn: false });
-    });
-  }
-  return Array.from(definitions.values());
 }
 
 function normalizeHighlight(value: unknown): AnnotationHighlight | undefined {
@@ -90,7 +66,7 @@ function normalizeEntry(value: unknown): QuestionAnnotationEntry | undefined {
 
 export function createEmptyAnnotationStore(): QuestionBankAnnotationStore {
   return {
-    version: 1,
+    version: 2,
     legacyImported: true,
     tagDefinitions: DEFAULT_ANNOTATION_TAGS,
     highlightDefinitions: DEFAULT_ANNOTATION_HIGHLIGHTS,
@@ -107,11 +83,20 @@ export function normalizeAnnotationStore(value: unknown): QuestionBankAnnotation
       if (entry) entries[questionBankCardTargetKey(entry)] = entry;
     });
   }
+  const deleted = value.deletedDefinitions && isObject(value.deletedDefinitions) ? value.deletedDefinitions : {};
+  const ids = (values: unknown) => Array.isArray(values) ? values.filter((id): id is string => typeof id === 'string') : [];
+  const deletedDefinitions = { tags: ids(deleted.tags), highlights: ids(deleted.highlights) };
+  const tagDefinitions = normalizeAnnotationDefinitions(value.tagDefinitions, DEFAULT_ANNOTATION_TAGS, deletedDefinitions.tags);
+  const highlightDefinitions = normalizeAnnotationDefinitions(value.highlightDefinitions, DEFAULT_ANNOTATION_HIGHLIGHTS, deletedDefinitions.highlights);
+  for (const entry of Object.values(entries)) {
+    entry.tagIds = entry.tagIds.filter((id) => tagDefinitions.some((d) => d.id === id));
+    entry.highlights = entry.highlights.filter((h) => highlightDefinitions.some((d) => d.id === h.colorId));
+  }
   return {
-    version: 1,
+    version: 2, deletedDefinitions,
     legacyImported: value.legacyImported === true,
-    tagDefinitions: normalizeDefinitions(value.tagDefinitions, DEFAULT_ANNOTATION_TAGS),
-    highlightDefinitions: normalizeDefinitions(value.highlightDefinitions, DEFAULT_ANNOTATION_HIGHLIGHTS),
+    tagDefinitions,
+    highlightDefinitions,
     entries,
   };
 }

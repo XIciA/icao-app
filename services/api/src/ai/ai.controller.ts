@@ -10,6 +10,7 @@ import { AiService } from './ai.service';
 import { ContentAccessService } from '../content-access/content-access.service';
 import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { consentChallengeSchema, consentSchema, grammarSchema, polishSchema, reviewSchema, transcribeReviewSchema } from './ai.schemas';
+import { learningReviewMaterials } from './learning-review';
 
 type AiRequest = AuthenticatedRequest & { raw: { once(event: 'aborted', listener: () => void): void } };
 type MultipartRequest = AiRequest & { file(options?: object): Promise<MultipartFile | undefined> };
@@ -57,6 +58,15 @@ export class AiController {
   private async admit(request: AuthenticatedRequest) {
     const environment = await this.environment(request);
     return environment === 'production' ? this.ai.admitOperation(request.user!.id) : this.ai.admitOperation(request.user!.id, environment);
+  }
+
+  private async materials(request: AuthenticatedRequest, input: Omit<AiReviewRequest, 'transcript'>, environment: 'production' | 'sandbox') {
+    if (input.analysisVersion !== 2) return undefined;
+    if (!input.source || !this.contentAccess || !request.auth?.sessionId) throw new BadRequestException('ai_insufficient_material');
+    const source = input.source;
+    const release = await this.contentAccess.getTopic(source.bankId, source.categoryId, source.topicId,
+      request.user!.id, request.auth.sessionId, environment, new Date(), source);
+    return learningReviewMaterials(input, release.topic);
   }
 
   @Get('operations/:operationId')
@@ -109,16 +119,20 @@ export class AiController {
     const file = await request.file({ limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8 } });
     if (!file || !file.mimetype.startsWith('audio/')) throw new BadRequestException('invalid_audio');
     const audio = await file.toBuffer();
-    const fields = Object.fromEntries(['mode', 'module', 'questionId'].map((key) => {
+    const fields = Object.fromEntries(['mode', 'module', 'questionId', 'analysisVersion', 'source'].map((key) => {
       const field = file.fields[key];
       const part = Array.isArray(field) ? undefined : field;
-      return [key, part?.type === 'field' ? part.value : undefined];
+      const raw = part?.type === 'field' ? part.value : undefined;
+      if (raw !== undefined && (key === 'source' || key === 'analysisVersion')) {
+        try { return [key, JSON.parse(String(raw))]; } catch { throw new BadRequestException('invalid_transcribe_review'); }
+      }
+      return [key, raw];
     }));
     const parsed = transcribeReviewSchema.safeParse(fields);
     if (!parsed.success) throw new BadRequestException('invalid_transcribe_review');
     return { requestId: request.id, data: await this.ai.transcribeReview(
       request.user!.id, request.id, audio, file.mimetype, multipartModel(file), parsed.data,
-      grant, cancellationSignal(request), stableOperationId,
+      grant, cancellationSignal(request), stableOperationId, await this.materials(request, parsed.data, grant.environment ?? 'production'),
     ) };
   }
 
@@ -149,6 +163,7 @@ export class AiController {
     const grant = await this.admit(request);
     const parsed = reviewSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_ai_review');
-    return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
+    return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId,
+      await this.materials(request, parsed.data, grant.environment ?? 'production')) };
   }
 }

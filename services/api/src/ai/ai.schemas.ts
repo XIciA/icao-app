@@ -28,21 +28,41 @@ export const polishSchema = z.object({
   correctedText: z.string().trim().min(1).max(5000).optional(),
 }).strict();
 
+const learningFields = {
+  analysisVersion: z.literal(2).optional(),
+  source: z.object({
+    bankId: z.enum(['radiotelephony', 'storytelling', 'opi']),
+    categoryId: z.string().trim().min(1).max(160), topicId: z.string().trim().min(1).max(160),
+    version: z.number().int().positive(), checksum: z.string().regex(/^[a-f0-9]{64}$/u),
+  }).strict().optional(),
+  resumeOperationId: z.string().uuid().optional(),
+};
+function validLearningSource(value: { analysisVersion?: 2; source?: z.infer<typeof learningFields.source>; mode: string; module: string; resumeOperationId?: string }) {
+  if (!value.analysisVersion) return !value.source && !value.resumeOperationId;
+  const bank = { atc: 'radiotelephony', story: 'storytelling', opi: 'opi' }[value.module];
+  return value.source?.bankId === bank && (value.module === 'opi') === (value.mode === 'opi');
+}
+
 export const reviewSchema = z.object({
+  ...learningFields,
   mode: z.enum(['grammar', 'opi']),
   module: z.enum(['atc', 'story', 'opi']),
   questionId: z.string().trim().min(1).max(160),
-  transcript: z.string().trim().min(1).max(4000),
-}).strict().superRefine((value, context) => {
+  transcript: z.string().trim().min(1).max(12000),
+}).strict().refine(validLearningSource, 'invalid_learning_source').superRefine((value, context) => {
+  if (!value.analysisVersion && value.transcript.length > 4000) {
+    context.addIssue({ code: 'custom', message: 'legacy_transcript_too_long', path: ['transcript'] });
+  }
   if (value.mode === 'opi' && value.module !== 'opi') {
     context.addIssue({ code: 'custom', message: 'opi_mode_requires_opi_module', path: ['module'] });
   }
 });
 
 export const transcribeReviewSchema = z.object({
+  ...learningFields,
   mode: z.enum(['grammar', 'opi']), module: z.enum(['atc', 'story', 'opi']),
   questionId: z.string().trim().min(1).max(160),
-}).strict().refine((value) => value.mode !== 'opi' || value.module === 'opi', { path: ['module'], message: 'opi_mode_requires_opi_module' });
+}).strict().refine(validLearningSource, 'invalid_learning_source').refine((value) => !value.resumeOperationId, 'resume_requires_text').refine((value) => value.mode !== 'opi' || value.module === 'opi', { path: ['module'], message: 'opi_mode_requires_opi_module' });
 
 export const grammarResultSchema = z.object({
   correctedText: z.string().trim().min(1).max(5000),

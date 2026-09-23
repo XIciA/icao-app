@@ -170,7 +170,11 @@ function mergeSyncProgress(target: SyncMeta, source: SyncMeta) {
 }
 
 function hasAnnotationData(value: QuestionBankAnnotationStore) {
-  return Object.keys(value.entries ?? {}).length > 0
+  const defaults = createEmptyAnnotationStore();
+  return (value.version === 2 && (JSON.stringify(value.tagDefinitions) !== JSON.stringify(defaults.tagDefinitions)
+    || JSON.stringify(value.highlightDefinitions) !== JSON.stringify(defaults.highlightDefinitions)
+    || Boolean(value.deletedDefinitions?.tags.length || value.deletedDefinitions?.highlights.length)))
+    || Object.keys(value.entries ?? {}).length > 0
     || value.tagDefinitions.some((item) => !item.builtIn)
     || value.highlightDefinitions.some((item) => !item.builtIn);
 }

@@ -177,10 +177,10 @@ describe('Native AI client failure handling', () => {
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/review', expect.objectContaining({
       headers: expect.objectContaining({ 'x-ai-operation-id': '81000000-0000-4000-8000-000000000001' }),
       signal: expect.any(AbortSignal),
-    }));
+    }), 150_000);
   });
 
-  it('applies the same 45 second deadline to the native multipart upload', async () => {
+  it('allows ASR its bounded 90 second request window', async () => {
     jest.useFakeTimers();
     const uploadFetch = jest.fn((_url: string, init?: RequestInit) => new Promise<Response>((_resolve, reject) => {
       init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')), { once: true });
@@ -199,7 +199,7 @@ describe('Native AI client failure handling', () => {
       retryable: true,
     });
 
-    await jest.advanceTimersByTimeAsync(45_001);
+    await jest.advanceTimersByTimeAsync(90_001);
     await observed;
     expect(uploadFetch).toHaveBeenCalledTimes(1);
     expect(uploadFetch).toHaveBeenCalledWith(expect.stringContaining('/v1/ai/transcribe'), expect.objectContaining({

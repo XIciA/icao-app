@@ -2,7 +2,7 @@
   "expo": {
     "name": "听你五个",
     "slug": "readyoufife",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "readyoufife",
@@ -11,7 +11,7 @@
       "icon": "./assets/images/icon.png",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3533722",
+      "buildNumber": "3538342",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -25,7 +25,7 @@
       "icon": "./assets/images/icon.png",
       "predictiveBackGestureEnabled": false,
       "package": "com.readyoufife.app",
-      "versionCode": 3533722
+      "versionCode": 3538342
     },
     "web": {
       "output": "single",
@@ -48,7 +48,7 @@
       [
         "expo-audio",
         {
-          "microphonePermission": "允许听你五个使用麦克风录制口语练习；录音仅在你主动点击转写并明确同意后发送至 AI 服务。",
+          "microphonePermission": "允许听你五个使用麦克风录制口语练习；经你同意后，点击 AI评分或开启录音后自动转写时，会将录音发送至腾讯云语音识别。",
           "enableBackgroundPlayback": false,
           "enableBackgroundRecording": false
         }

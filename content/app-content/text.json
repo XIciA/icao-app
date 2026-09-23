@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": 3,
-  "publishedAt": "2026-09-13T00:00:00.000Z",
+  "version": 4,
+  "publishedAt": "2026-09-23T00:00:00.000Z",
   "help": [
     {
       "id": "bank-selection",
@@ -83,8 +83,8 @@
     },
     "privacy": {
       "id": "privacy",
-      "version": "v5.2",
-      "effectiveAt": "2026-09-13",
+      "version": "v5.3",
+      "effectiveAt": "2026-09-23",
       "title": "隐私政策",
       "intro": "云启航科（成都）科技有限公司重视您的个人信息与隐私。本政策按听你五个当前实际功能说明数据的收集、使用、存储、共享和删除方式。",
       "sections": [
@@ -102,7 +102,7 @@
         },
         {
           "title": "麦克风、录音与 AI",
-          "body": "只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；只有您点击“转写”并明确同意后，录音才会经我们的服务器发送至腾讯云语音识别。回答文本只在您主动请求分析时发送至 DeepSeek 开放平台，使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016） 进行语法纠错和表达润色。音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—隐私与数据”撤回同意，不影响无需 AI 的功能。"
+          "body": "只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；自动转写默认关闭。您主动点击“AI评分”并同意 AI 处理后，必要录音经我们的服务器发送至腾讯云语音识别；若在“设置—AI”首次确认并开启“录音后自动转写”，此后普通学习中新完成的录音会自动上传转写，可随时关闭。回答文本及必要题目材料只在您主动请求分析时发送至 DeepSeek 开放平台，使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016） 进行语法纠错、信息核对和表达润色。音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—隐私与数据”撤回同意，不影响无需 AI 的功能。旧版仍按其“转写”按钮触发上传。"
         },
         {
           "title": "反馈、诊断与相册权限",
@@ -130,13 +130,13 @@
         }
       ],
       "requiresReconsent": true,
-      "changeSummary": "补充功能点击统计及其用途，不采集点击时的录音、文字或回答内容。",
+      "changeSummary": "说明可选自动转写及基于题目材料的 AI 学习分析；默认关闭自动转写，首次开启单独确认，已有有效同意继续有效。",
       "consentVersion": "v5.2"
     },
     "thirdPartyServices": {
       "id": "thirdPartyServices",
-      "version": "v5.1",
-      "effectiveAt": "2026-09-10",
+      "version": "v5.2",
+      "effectiveAt": "2026-09-23",
       "title": "第三方服务清单",
       "intro": "仅在提供相应功能所需范围内使用以下服务；具体处理规则见隐私政策。",
       "sections": [
@@ -154,15 +154,16 @@
         },
         {
           "title": "语音识别",
-          "body": "腾讯云语音识别仅在您同意并主动请求转写时处理相应录音。"
+          "body": "腾讯云语音识别仅在您同意并主动请求转写，或首次明确确认并开启“录音后自动转写”后，处理相应录音；自动转写默认关闭，可随时关闭。"
         },
         {
           "title": "文本 AI",
-          "body": "回答文本只在您主动请求分析时发送至 DeepSeek 开放平台，使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016） 进行语法纠错和表达润色。"
+          "body": "回答文本及必要题目材料只在您主动请求分析时发送至 DeepSeek 开放平台，使用 DeepSeek-V4-Flash-0731（Deepseek Chat，备案号 Beijing-DeepseekChat-202404280016） 进行语法纠错、信息核对和表达润色。"
         }
       ],
       "requiresReconsent": false,
-      "consentVersion": "v5.1"
+      "consentVersion": "v5.1",
+      "changeSummary": "补充用户可选自动转写和必要题目材料处理说明。"
     }
   }
 }

@@ -71,8 +71,11 @@ function withNativeBrandAssets(config, platform) {
       } else {
         // Expo's non-adaptive fallback lets launchers inset the complete square instead of cropping the brand.
         await setIconAsync(projectRoot, { icon: path.join(projectRoot, MASTER), isAdaptive: false });
+        const splashPath = path.join(projectRoot, '.generated/native-brand/android-rounded-splash.png');
+        await fs.mkdir(path.dirname(splashPath), { recursive: true });
+        await fs.writeFile(splashPath, await roundedSplash(await fs.readFile(path.join(projectRoot, MASTER))));
         await setSplashImageDrawablesAsync(result,
-          { image: path.join(projectRoot, MASTER), backgroundColor: '#FFFFFF', resizeMode: 'contain', imageWidth: 120 },
+          { image: splashPath, backgroundColor: '#FFFFFF', resizeMode: 'contain', imageWidth: 120 },
           projectRoot, 120);
       }
       return result;

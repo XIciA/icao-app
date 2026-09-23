@@ -21,6 +21,7 @@ function fixture() {
   const client = evaluate('src/features/ai/ai-client.native.ts', {
     '@icao/contracts': { COMMERCE_ENVIRONMENT_HEADER: 'x-icao-commerce-environment', CURRENT_AI_CONSENT_POLICY_VERSION: 'v1', CURRENT_AI_CONSENT_FLOW_REVISION: '1' },
     'expo-crypto': { randomUUID: () => 'new-operation-id' }, '@/platform/api-client': api,
+    '@/platform/audio/audio-diagnostics': { emitAudioDiagnostic: vi.fn() },
     '@/platform/storage': { getItem: async (key) => storage.get(key), setItem: async (key, value) => storage.set(key, value), removeItem: async (key) => storage.delete(key) },
     '@/platform/audio-upload': { createAudioUploadForm: async (uri, model) => ({ fetch, form: { values: { audio: uri, model }, append(key, value) { this.values[key] = value; } } }) },
     '@/features/native-commercial-testflight/commerce-environment.native': {

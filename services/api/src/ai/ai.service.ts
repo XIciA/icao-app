@@ -6,7 +6,9 @@ import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/
 import { and, eq, sql } from 'drizzle-orm';
 import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiReviewRequest, type GrammarReviewRequest, type PolishRequest, type TencentAsrModel } from '@icao/contracts';
 
-import type { AiOperationLookup, AiRuleCosts, AiUsageOperationSummary as AiPointOperationSummary, MeteredAiReviewResult as AiReviewResult, MeteredPolishResult as PolishResult, TranscribeReviewRequest, TranscribeReviewResult } from '@icao/contracts/commerce-rules';
+import type { AiOperationLookup, AiRuleCosts, PartialAiTranscription, AiUsageOperationSummary as AiPointOperationSummary, MeteredAiReviewResult as AiReviewResult, MeteredPolishResult as PolishResult, TranscribeReviewRequest, TranscribeReviewResult } from '@icao/contracts/commerce-rules';
+import type { LearningReviewMaterials } from '@icao/contracts/learning-ai';
+import { learningReviewPrompt, validateLearningReview, LEARNING_REVIEW_PROMPT_VERSION } from './learning-review';
 
 import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
 import type { BillableAiCapability } from '../commerce/commerce-domain';
@@ -80,15 +82,17 @@ export class AiService {
       eq(aiPointReservations.operationId, operationId),
     )).limit(1);
     if (!owner || owner.status !== 'active' || !operation || operation.resultDeletedAt || operation.aiResultGeneration !== owner.aiResultGeneration) return { state: 'missing' };
-    if (operation.status === 'released') return { state: 'released' };
+    const partial = (operation.resultPayload as { partialTranscription?: PartialAiTranscription } | null)?.partialTranscription;
+    if (operation.status === 'released') return { state: 'released', ...(partial ? { partialTranscription: partial } : {}) };
     if (operation.status === 'reserved') {
-      return { state: operation.leaseUntil && operation.leaseUntil.getTime() > Date.now() ? 'pending' : 'released' };
+      const pending = Boolean(operation.leaseUntil && operation.leaseUntil.getTime() > Date.now());
+      return { state: pending ? 'pending' : 'released', ...(!pending && partial ? { partialTranscription: partial } : {}) };
     }
     // Privacy deletion clears the body but retains the financial ledger.
     if (!operation.resultPayload) return { state: 'missing' };
     const payload = operation.resultPayload as Record<string, unknown>;
     const result = operation.capability === 'grammar_correction' || operation.capability === 'opi_refinement'
-      ? { ...payload, promptVersion: REVIEW_PROMPT_VERSION } : payload;
+      ? { ...payload, promptVersion: payload.analysis ? LEARNING_REVIEW_PROMPT_VERSION : REVIEW_PROMPT_VERSION } : payload;
     return { state: 'completed', capability: operation.capability as keyof AiRuleCosts,
       result: result as Extract<AiOperationLookup, { state: 'completed' }>['result'] };
     });
@@ -404,6 +408,7 @@ export class AiService {
     };
     try {
       const result = await this.withAuthorizedOperation(input.userId, input.grant, input.action);
+      this.logger.log(`ai_stages requestId=${safeLogToken(input.requestId)} capability=${input.capability} timings=${JSON.stringify(result.meta.timings ?? {})}`);
       const data = await this.database.db.transaction((transaction) => this.commerce.settleAiPoints(transaction, {
         accountId: input.userId,
         environment: input.grant.environment ?? 'production',
@@ -473,7 +478,7 @@ export class AiService {
 
   async transcribeReview(
     userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel,
-    input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId,
+    input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId, materials?: LearningReviewMaterials,
   ): Promise<TranscribeReviewResult & { rawTranscript: string; model: TencentAsrModel; normalization: Omit<AviationTranscriptNormalizationResult, 'transcript'> }> {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     model = DEFAULT_TENCENT_ASR_MODEL;
@@ -481,7 +486,7 @@ export class AiService {
     return this.run({
       userId, requestId, capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
       provider: 'deepseek', model: this.reviewProvider.textModel(input.mode),
-      promptVersion: REVIEW_PROMPT_VERSION, units: 1, grant, operationId, pointCapability, signal,
+      promptVersion: input.analysisVersion === 2 ? LEARNING_REVIEW_PROMPT_VERSION : REVIEW_PROMPT_VERSION, units: 1, grant, operationId, pointCapability, signal,
       requestDigest: this.requestDigest([pointCapability, mimeType, model, JSON.stringify(input), audio]),
       action: async () => {
         const started = Date.now();
@@ -494,8 +499,10 @@ export class AiService {
         }).catch(() => this.logger.error('ai_usage_log_failed capability=transcribe status=success'));
         const normalized = normalizeAviationTranscriptDetailed(transcription.rawTranscript);
         const transcript = normalized.transcript.trim();
-        if (!transcript || transcript.length > 4_000) throw new BadRequestException('invalid_transcript');
-        const result = await this.generateReview(userId, { ...input, transcript }, signal);
+        if (!transcript || transcript.length > (input.analysisVersion === 2 ? 12_000 : 4_000)) throw new BadRequestException('invalid_transcript');
+        if (input.analysisVersion === 2) await this.savePartial(userId, grant.environment ?? 'production', operationId,
+          { transcript, rawTranscript: transcription.rawTranscript, input });
+        const result = await this.generateReview(userId, { ...input, transcript }, signal, materials);
         return { data: { transcript, rawTranscript: transcription.rawTranscript, model,
           normalization: { version: normalized.version, transformations: normalized.transformations },
           review: withReviewPromptVersion(result.data) }, meta: result.meta };
@@ -533,7 +540,14 @@ export class AiService {
     return { polishedText: result.polishedText!, promptVersion: REVIEW_PROMPT_VERSION, aiPoints: result.aiPoints };
   }
 
-  private generateReview(userId: string, input: AiReviewRequest, signal?: AbortSignal) {
+  private generateReview(userId: string, input: AiReviewRequest, signal?: AbortSignal, materials?: LearningReviewMaterials) {
+    if (input.analysisVersion === 2) {
+      if (!materials) throw new BadRequestException('ai_insufficient_material');
+      return this.reviewProvider.generateValidated({ mode: input.mode, userId, signal,
+        system: learningReviewPrompt(input.module), prompt: JSON.stringify({ ...materials, answerText: input.transcript }),
+        maxTokens: 6000, timeoutMs: 45_000,
+        validate: (data) => validateLearningReview(data, input, materials) });
+    }
     return this.reviewProvider.generateValidated({
       mode: input.mode,
       system: reviewSystemPrompt(input.mode),
@@ -544,22 +558,60 @@ export class AiService {
     });
   }
 
-  async review(userId: string, requestId: string, input: AiReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId): Promise<AiReviewResult> {
-    const result = await this.run({
+  private async savePartial(userId: string, environment: 'production' | 'sandbox', operationId: string, partial: PartialAiTranscription) {
+    await this.database.db.transaction(async (tx) => {
+      await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
+      const [owner] = await tx.select().from(accounts).where(eq(accounts.id, userId)).limit(1);
+      if (!owner || owner.status !== 'active') throw new BadRequestException('account_unavailable');
+      await tx.update(aiPointReservations).set({ resultPayload: { partialTranscription: partial } }).where(and(
+        eq(aiPointReservations.accountId, userId), eq(aiPointReservations.environment, environment),
+        eq(aiPointReservations.operationId, operationId), eq(aiPointReservations.status, 'reserved'),
+        eq(aiPointReservations.aiResultGeneration, owner.aiResultGeneration), sql`${aiPointReservations.resultDeletedAt} is null`,
+      ));
+    });
+  }
+
+  async review(userId: string, requestId: string, input: AiReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId, materials?: LearningReviewMaterials): Promise<AiReviewResult> {
+    let partial: PartialAiTranscription | undefined;
+    if (input.resumeOperationId) {
+      const previous = await this.operationResult(userId, grant.environment ?? 'production', input.resumeOperationId);
+      if (previous.state !== 'released' || !previous.partialTranscription) throw new BadRequestException('ai_resume_unavailable');
+      partial = previous.partialTranscription;
+      if (partial.input.questionId !== input.questionId || partial.input.module !== input.module || partial.input.mode !== input.mode
+        || !input.source || !partial.input.source
+        || (['bankId', 'categoryId', 'topicId', 'version', 'checksum'] as const)
+          .some((key) => partial!.input.source![key] !== input.source![key])) throw new BadRequestException('ai_resume_mismatch');
+    }
+    const pointCapability = partial ? (input.mode === 'opi' ? 'transcription_opi' : 'transcription_grammar')
+      : input.mode === 'opi' ? 'opi_refinement' : 'grammar_correction';
+    type ReviewData = Awaited<ReturnType<typeof this.generateReview>>['data'];
+    const result = await this.run<ReviewData | Pick<TranscribeReviewResult, 'transcript' | 'rawTranscript' | 'review'>>({
       userId,
       requestId,
       capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
       provider: 'deepseek',
       model: this.reviewProvider.textModel(input.mode),
-      promptVersion: REVIEW_PROMPT_VERSION,
+      promptVersion: input.analysisVersion === 2 ? LEARNING_REVIEW_PROMPT_VERSION : REVIEW_PROMPT_VERSION,
       units: input.mode === 'opi' ? 3 : 2,
       grant,
       operationId,
-      pointCapability: input.mode === 'opi' ? 'opi_refinement' : 'grammar_correction',
-      requestDigest: this.requestDigest([input.mode === 'opi' ? 'opi_refinement' : 'grammar_correction', JSON.stringify(input)]),
+      pointCapability,
+      requestDigest: this.requestDigest([pointCapability, JSON.stringify(input)]),
       signal,
-      action: () => this.generateReview(userId, input, signal),
+      action: async () => {
+        if (partial) await this.savePartial(userId, grant.environment ?? 'production', operationId, partial);
+        const generated = await this.generateReview(userId, input, signal, materials);
+        // A resumed combination still has a combined billing capability. Persist
+        // its complete envelope so operation lookup and cross-device recovery
+        // interpret it exactly like the original audio request.
+        return partial ? { ...generated, data: {
+          transcript: input.transcript,
+          rawTranscript: partial.rawTranscript,
+          review: withReviewPromptVersion(generated.data),
+        } } : generated;
+      },
     });
+    if ('review' in result) return { ...result.review, aiPoints: result.aiPoints };
     return { ...withReviewPromptVersion(result), aiPoints: result.aiPoints };
   }
 }
