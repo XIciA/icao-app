@@ -173,7 +173,7 @@ describe('ops login anti-abuse boundary', () => {
       OPS_ENABLED: '1',
       OPS_HOST: '127.0.0.1',
       OPS_PORT: '3102',
-      OPS_CORS_ORIGINS: 'https://ops.readyoufife.com',
+      OPS_CORS_ORIGINS: 'https://api.readyoufife.com',
       OPS_SESSION_HASH_SECRET: authConfig.opsSessionHashSecret,
       OPS_TOTP_ENCRYPTION_KEY: authConfig.opsTotpEncryptionKey,
       OPS_TRUSTED_PROXY_SHARED_SECRET: authConfig.opsTrustedProxySharedSecret,
@@ -185,7 +185,7 @@ describe('ops login anti-abuse boundary', () => {
       ...authConfig,
       nodeEnv: 'production',
       apiReleaseId: 'ops-production-test',
-      opsCorsOrigins: ['https://ops.readyoufife.com'],
+      opsCorsOrigins: ['https://api.readyoufife.com'],
     });
     expect('supabaseSecretKey' in config).toBe(false);
     expect('applePrivateKey' in config).toBe(false);
@@ -201,7 +201,7 @@ describe('ops login anti-abuse boundary', () => {
       OPS_ENABLED: '1',
       OPS_HOST: '0.0.0.0',
       OPS_PORT: '3102',
-      OPS_CORS_ORIGINS: 'https://ops.readyoufife.com',
+      OPS_CORS_ORIGINS: 'https://api.readyoufife.com',
       OPS_SESSION_HASH_SECRET: authConfig.opsSessionHashSecret,
       OPS_TOTP_ENCRYPTION_KEY: authConfig.opsTotpEncryptionKey,
       OPS_TRUSTED_PROXY_SHARED_SECRET: authConfig.opsTrustedProxySharedSecret,
@@ -210,7 +210,7 @@ describe('ops login anti-abuse boundary', () => {
       .toThrow('invalid_ops_api_configuration:API_RELEASE_ID');
     expect(() => loadOpsConfig({
       ...productionEnvironment,
-      OPS_CORS_ORIGINS: 'https://ops.readyoufife.com,https://example.com',
+      OPS_CORS_ORIGINS: 'https://api.readyoufife.com,https://example.com',
     })).toThrow('invalid_ops_api_configuration:OPS_CORS_ORIGINS');
   });
 

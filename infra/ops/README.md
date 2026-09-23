@@ -1,6 +1,6 @@
 # Ops Console 生产交付
 
-`ops.readyoufife.com` 是独立的内部运营后台。浏览器只访问同源 HTTPS；`/v1/admin/*` 由 ECS
+`https://api.readyoufife.com/admin/` 是完整内部运营后台，复用现有域名与证书，无需新增 DNS。浏览器访问同源 `/admin/v1/admin/*`，由 ECS 去掉 `/admin` 前缀后
 网关转发到专用 Ops API，数据库连接只存在于该服务端容器。普通用户 API 不注册管理路由，Ops
 发布失败或回滚不会替换普通 API 镜像。
 
@@ -13,7 +13,7 @@
 
 1. 代码及所需数据库 migration 已审查、合入 `origin/main`，生产 migration 账本与仓库完全一致。
    发布脚本只做只读 `--require-current` 检查，绝不应用 migration。
-2. `ops.readyoufife.com` 的 DNS A 记录已指向当前 ECS 公网 IPv4；执行时必须通过
+2. `api.readyoufife.com` 的 DNS A 记录已指向当前 ECS 公网 IPv4；执行时必须通过
    `ICAO_OPS_EXPECTED_PUBLIC_IP` 再次明确该地址。Caddy 复用现有 80/443 入口自动申请和续期 TLS，
    脚本会在切换前验证 DNS 和现有 `api.readyoufife.com` TLS，在切换后验证 Ops 主机证书、HSTS、
    页面和健康接口。
@@ -49,7 +49,7 @@
 必须先获得本次生产部署授权，并在干净、最新的 `main == origin/main` worktree 中运行：
 
 ```sh
-ICAO_OPS_PRODUCTION_CONFIRM=ops.readyoufife.com \
+ICAO_OPS_PRODUCTION_CONFIRM=api.readyoufife.com \
 ICAO_OPS_EXPECTED_PUBLIC_IP=<当前 ECS 公网 IPv4> \
 ./scripts/deploy-ops-release.sh deploy
 ```
@@ -76,7 +76,7 @@ ICAO_OPS_EXPECTED_PUBLIC_IP=<当前 ECS 公网 IPv4> \
 `origin/main` 上执行一次性回滚：
 
 ```sh
-ICAO_OPS_PRODUCTION_CONFIRM=ops.readyoufife.com \
+ICAO_OPS_PRODUCTION_CONFIRM=api.readyoufife.com \
 ICAO_OPS_ROLLBACK_CONFIRM=<release-id> \
 ./scripts/deploy-ops-release.sh rollback <release-id>
 ```
@@ -87,3 +87,5 @@ Ops 的 HTTPS、HSTS、页面、健康接口和旧 `x-icao-api-version` 标识�
 均不存在、Ops 公网页面和健康接口均不可访问。快照成功使用后会被标记，不能重复消费；回滚证据复制到
 本机对应 `.generated` 目录。回滚不逆向数据库 migration，因此正式部署门禁要求 production
 schema 在部署前已经正确进入当前状态。
+
+线上入口使用账号、密码及动态验证码登录，无注册入口。现有本地后台继续在根路径工作，页面、权限和正式数据来源不变。可选配置 `OPS_FEEDBACK_STORAGE_URL` 与 `OPS_FEEDBACK_STORAGE_READ_TOKEN` 用于反馈附件读取，秘密只保存在服务器。

@@ -42,7 +42,7 @@ export async function opsApi<T>(
 
 export async function opsResponse(path: string, options: RequestInit = {}, authenticated = true) {
   const session = readSession();
-  const response = await fetch(path, {
+  const response = await fetch(`${location.pathname.startsWith('/admin/') ? '/admin' : ''}${path}`, {
     ...options,
     headers: {
       accept: 'application/json',
