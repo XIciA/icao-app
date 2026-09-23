@@ -1,3 +1,4 @@
+import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
 import { nativeApplicationVersion } from 'expo-application';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -28,6 +29,7 @@ export function AboutPage() {
           <AppText>Read You 5</AppText>
           <AppText color={colors.mutedForeground}>版本 {nativeApplicationVersion || APP_DISPLAY_VERSION}</AppText>
         </View>
+        <AppUpdatePrompt manual />
         <Card style={styles.details}>
           <AppText color={colors.mutedForeground} variant="caption">开发及运营主体</AppText>
           <AppText>云启航科（成都）科技有限公司</AppText>

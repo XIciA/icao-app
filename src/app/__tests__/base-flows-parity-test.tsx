@@ -90,6 +90,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 jest.mock('expo-router', () => ({
+  usePathname: () => '/info/about',
   useLocalSearchParams: () => mockParams,
   useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, push: mockRouterPush, replace: mockRouterReplace }),
 }));
@@ -443,7 +444,7 @@ describe('base flow parity screens', () => {
     await fireEvent.press(screen.getByLabelText('返回'));
     expect(mockBack).toHaveBeenCalled();
     open.mockRestore();
-    expect(screen.queryByText('检查更新')).toBeNull();
+    expect(screen.getByText('检查更新')).toBeTruthy();
     expect(screen.queryByText('给我们评分')).toBeNull();
     expect(screen.queryByText('分享给朋友')).toBeNull();
   });

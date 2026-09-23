@@ -1,3 +1,4 @@
+import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
 import { useEffect, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -29,6 +30,7 @@ export function AppRuntime({ children }: PropsWithChildren) {
   return (
     <CommerceRuntimeProvider>
       {auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
+      {auth.canAccessApp ? <AppUpdatePrompt /> : null}
       <RadioPlayerProvider>{children}<RadioMiniPlayer /></RadioPlayerProvider>
     </CommerceRuntimeProvider>
   );

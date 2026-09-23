@@ -3,6 +3,8 @@ import { AppState, View } from 'react-native';
 
 import { AppRuntime } from '../AppRuntime';
 
+jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+
 const mockCleanupRecordings = jest.fn();
 const mockPurgeDiagnostics = jest.fn(async () => undefined);
 const mockCommerceRuntimeProvider = jest.fn();
