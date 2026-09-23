@@ -384,5 +384,234 @@
         }
       }
     ]
+  },
+  "shortAnswerFeedback": {
+    "recordedAt": "2026-09-23T06:39:29.639Z",
+    "transport": "DeepSeek production endpoint via existing server configuration; synthetic text only",
+    "schemaVersion": 2,
+    "promptSha256": "1cfa9e5a1da10205c3387438f842b62bef3f68dbc426d8aa359aa9a0dd12f81f",
+    "cases": [
+      {
+        "id": "atc-short-0",
+        "passed": true,
+        "elapsedMs": 240
+      },
+      {
+        "id": "atc-short-1",
+        "passed": true,
+        "elapsedMs": 97
+      },
+      {
+        "id": "atc-short-2",
+        "passed": true,
+        "elapsedMs": 84
+      },
+      {
+        "id": "atc-short-3",
+        "passed": true,
+        "elapsedMs": 74
+      },
+      {
+        "id": "atc-short-4",
+        "passed": true,
+        "elapsedMs": 73
+      },
+      {
+        "id": "atc-short-5",
+        "passed": true,
+        "elapsedMs": 78
+      },
+      {
+        "id": "atc-brief-valid",
+        "passed": true,
+        "elapsedMs": 134
+      },
+      {
+        "id": "story-unrelated-short",
+        "passed": true,
+        "elapsedMs": 82
+      },
+      {
+        "id": "story-unintelligible",
+        "passed": true,
+        "elapsedMs": 82
+      },
+      {
+        "id": "opi-unrelated-fragment",
+        "passed": true,
+        "elapsedMs": 83
+      },
+      {
+        "id": "opi-unintelligible",
+        "passed": true,
+        "elapsedMs": 122
+      },
+      {
+        "id": "opi-brief-relevant",
+        "passed": true,
+        "elapsedMs": 86
+      },
+      {
+        "id": "atc-clean",
+        "passed": true,
+        "elapsedMs": 86
+      },
+      {
+        "id": "atc-missing",
+        "passed": true,
+        "elapsedMs": 84
+      },
+      {
+        "id": "atc-wrong-extra",
+        "passed": true,
+        "elapsedMs": 115
+      },
+      {
+        "id": "atc-legitimate-report",
+        "passed": true,
+        "elapsedMs": 96
+      },
+      {
+        "id": "story-paraphrase",
+        "passed": true,
+        "elapsedMs": 108
+      },
+      {
+        "id": "story-missing",
+        "passed": true,
+        "elapsedMs": 80
+      },
+      {
+        "id": "story-wrong-extra",
+        "passed": true,
+        "elapsedMs": 205
+      },
+      {
+        "id": "opi-grammar",
+        "passed": true,
+        "elapsedMs": 83
+      },
+      {
+        "id": "opi-clean",
+        "passed": true,
+        "elapsedMs": 78
+      },
+      {
+        "id": "opi-off-topic",
+        "passed": true,
+        "elapsedMs": 84
+      },
+      {
+        "id": "opi-unseen-picture",
+        "passed": true,
+        "elapsedMs": 90
+      }
+    ],
+    "representativeResults": [
+      {
+        "id": "atc-short-0",
+        "passed": true,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "My life."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [
+              {
+                "sourceQuote": "contact company operations to offload the baggage",
+                "reasonZh": "未联系公司签派，也未提出卸下行李的请求。"
+              },
+              {
+                "sourceQuote": "Your call sign is QFA953.",
+                "reasonZh": "未包含呼号 QFA953。"
+              }
+            ],
+            "incorrectInformation": [],
+            "extraInformation": [
+              {
+                "answerQuote": "My life.",
+                "reasonZh": "该内容与联系公司签派卸下行李的任务无关。"
+              }
+            ]
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "atc-short-1",
+        "passed": true,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "FL310."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [
+              {
+                "sourceQuote": "contact company operations to offload the baggage",
+                "reasonZh": "未按要求联系公司签派并请求卸下行李。"
+              },
+              {
+                "sourceQuote": "Your call sign is QFA953.",
+                "reasonZh": "未包含呼号 QFA953。"
+              }
+            ],
+            "incorrectInformation": [],
+            "extraInformation": [
+              {
+                "answerQuote": "FL310.",
+                "reasonZh": "该高度信息与当前联系公司签派卸下行李的任务无关。"
+              }
+            ]
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-unrelated-fragment",
+        "passed": true,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "My life."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [],
+            "offTopic": {
+              "questionQuote": "Describe how you would handle an engine failure after takeoff.",
+              "answerQuote": "My life.",
+              "reasonZh": "回答与问题要求的“起飞后发动机失效的处置方法”完全无关，未提供任何相关操作内容。"
+            },
+            "polishedText": "My life."
+          },
+          "polishedText": "My life.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-brief-relevant",
+        "passed": true,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Safety."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [],
+            "offTopic": null,
+            "polishedText": "Safety."
+          },
+          "polishedText": "Safety.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      }
+    ]
   }
 }
