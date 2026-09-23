@@ -1,0 +1,388 @@
+{
+  "recordedAt": "2026-09-23",
+  "scope": "Controlled synthetic fixtures; no user recordings or answers. Server-side timings only, not device end-to-end acceptance.",
+  "asrBaseline": {
+    "model": "16k_en",
+    "pollIntervalMs": 2000,
+    "timeoutMs": 55000,
+    "results": [
+      {
+        "iteration": 1,
+        "timings": {
+          "stageMs": 194,
+          "CreateRecTaskMs": 524,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 221,
+          "DescribeTaskStatusCount": 2,
+          "pollingWaitMs": 2003,
+          "removeMs": 17
+        },
+        "totalMs": 2960,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      },
+      {
+        "iteration": 2,
+        "timings": {
+          "stageMs": 39,
+          "CreateRecTaskMs": 141,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 237,
+          "DescribeTaskStatusCount": 2,
+          "pollingWaitMs": 2000,
+          "removeMs": 13
+        },
+        "totalMs": 2430,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      },
+      {
+        "iteration": 3,
+        "timings": {
+          "stageMs": 27,
+          "CreateRecTaskMs": 127,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 215,
+          "DescribeTaskStatusCount": 2,
+          "pollingWaitMs": 2001,
+          "removeMs": 22
+        },
+        "totalMs": 2392,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      }
+    ]
+  },
+  "asrCandidate": {
+    "model": "16k_en",
+    "pollIntervalMs": 2000,
+    "timeoutMs": 55000,
+    "results": [
+      {
+        "iteration": 1,
+        "timings": {
+          "stageMs": 101,
+          "CreateRecTaskMs": 484,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 270,
+          "DescribeTaskStatusCount": 3,
+          "pollingWaitMs": 1503,
+          "removeMs": 16
+        },
+        "totalMs": 2376,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      },
+      {
+        "iteration": 2,
+        "timings": {
+          "stageMs": 35,
+          "CreateRecTaskMs": 163,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 171,
+          "DescribeTaskStatusCount": 2,
+          "pollingWaitMs": 501,
+          "removeMs": 14
+        },
+        "totalMs": 884,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      },
+      {
+        "iteration": 3,
+        "timings": {
+          "stageMs": 26,
+          "CreateRecTaskMs": 113,
+          "CreateRecTaskCount": 1,
+          "DescribeTaskStatusMs": 255,
+          "DescribeTaskStatusCount": 3,
+          "pollingWaitMs": 1500,
+          "removeMs": 15
+        },
+        "totalMs": 1909,
+        "rawTranscript": "China eastern 123 maintaining flight level 180 cleared runway 36 left.",
+        "audioDurationSeconds": 6.592
+      }
+    ]
+  },
+  "deepseekEvaluation": {
+    "generatedAt": "2026-09-23T03:40:41.637Z",
+    "cases": [
+      {
+        "id": "atc-clean",
+        "passed": true,
+        "elapsedMs": 260,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Right heading 330, descending to 3000 feet, cleared ILS approach runway 36R, Speedbird 123."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [],
+            "incorrectInformation": [],
+            "extraInformation": []
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "atc-missing",
+        "passed": true,
+        "elapsedMs": 228,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Descending to 3000 feet, Speedbird 123."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [
+              {
+                "sourceQuote": "turn right heading 330",
+                "reasonZh": "未复述右转航向330。"
+              },
+              {
+                "sourceQuote": "cleared ILS approach runway 36R",
+                "reasonZh": "未复述ILS进近许可及跑道36R。"
+              }
+            ],
+            "incorrectInformation": [],
+            "extraInformation": []
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "atc-wrong-extra",
+        "passed": true,
+        "elapsedMs": 91,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Right heading 330, descending to 5000 feet, cleared ILS approach runway 36R, cleared for takeoff, Speedbird 123."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [],
+            "incorrectInformation": [
+              {
+                "sourceQuote": "descend to 3000 feet",
+                "answerQuote": "descending to 5000 feet",
+                "reasonZh": "高度指令读错，应为3000英尺而非5000英尺。"
+              }
+            ],
+            "extraInformation": [
+              {
+                "answerQuote": "cleared for takeoff",
+                "reasonZh": "复述中加入了未给出的起飞许可。"
+              }
+            ]
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "atc-legitimate-report",
+        "passed": true,
+        "elapsedMs": 92,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "We have two hours of fuel and 120 persons on board, Speedbird 123."
+          },
+          "analysis": {
+            "module": "atc",
+            "grammarErrors": [],
+            "missingInformation": [],
+            "incorrectInformation": [],
+            "extraInformation": []
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "story-paraphrase",
+        "passed": true,
+        "elapsedMs": 185,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "The crew saw cabin smoke after departure, advised ATC and returned. They landed safely and all occupants evacuated uninjured."
+          },
+          "analysis": {
+            "module": "story",
+            "grammarErrors": [],
+            "missingInformation": [],
+            "incorrectInformation": [],
+            "extraInformation": []
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "story-missing",
+        "passed": true,
+        "elapsedMs": 75,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "The crew noticed smoke after takeoff and returned to the departure airport."
+          },
+          "analysis": {
+            "module": "story",
+            "grammarErrors": [],
+            "missingInformation": [
+              {
+                "sourceQuote": "They informed ATC and returned to the departure airport.",
+                "reasonZh": "复述未提及通知ATC这一重要行动。"
+              },
+              {
+                "sourceQuote": "The aircraft landed safely and everyone evacuated without injuries.",
+                "reasonZh": "复述未提及安全着陆和全员无伤撤离的结果。"
+              }
+            ],
+            "incorrectInformation": [],
+            "extraInformation": []
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "story-wrong-extra",
+        "passed": true,
+        "elapsedMs": 93,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Before takeoff the crew noticed cabin smoke. They told ATC and returned to the departure airport because a passenger was smoking. The plane landed safely and everyone evacuated without injuries."
+          },
+          "analysis": {
+            "module": "story",
+            "grammarErrors": [],
+            "missingInformation": [],
+            "incorrectInformation": [
+              {
+                "sourceQuote": "After takeoff, the crew noticed smoke in the cabin.",
+                "answerQuote": "Before takeoff the crew noticed cabin smoke.",
+                "reasonZh": "原文是起飞后注意到烟雾，答案改为起飞前。"
+              }
+            ],
+            "extraInformation": [
+              {
+                "answerQuote": "because a passenger was smoking",
+                "reasonZh": "原文未提及乘客吸烟这一原因。"
+              }
+            ]
+          },
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-grammar",
+        "passed": true,
+        "elapsedMs": 76,
+        "result": {
+          "grammar": {
+            "issues": [
+              {
+                "before": "help",
+                "after": "helps",
+                "reasonZh": "主语 communication 为第三人称单数，谓语应用 helps。"
+              },
+              {
+                "before": "It make",
+                "after": "It makes",
+                "reasonZh": "主语 It 为第三人称单数，谓语应用 makes。"
+              }
+            ],
+            "correctedText": "Good communication help pilots avoid misunderstanding. It make the flight safer."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [
+              {
+                "before": "help",
+                "after": "helps",
+                "reasonZh": "主语 communication 为第三人称单数，谓语应用 helps。"
+              },
+              {
+                "before": "It make",
+                "after": "It makes",
+                "reasonZh": "主语 It 为第三人称单数，谓语应用 makes。"
+              }
+            ],
+            "offTopic": null,
+            "polishedText": "Good communication helps pilots avoid misunderstandings. It makes the flight safer."
+          },
+          "polishedText": "Good communication helps pilots avoid misunderstandings. It makes the flight safer.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-clean",
+        "passed": true,
+        "elapsedMs": 101,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "Clear communication helps pilots and controllers understand each other and prevents mistakes."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [],
+            "offTopic": null,
+            "polishedText": "Clear communication helps pilots and controllers understand each other and prevents mistakes."
+          },
+          "polishedText": "Clear communication helps pilots and controllers understand each other and prevents mistakes.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-off-topic",
+        "passed": true,
+        "elapsedMs": 120,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "My favorite hobby is cooking. I like making pasta at home."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [],
+            "offTopic": {
+              "questionQuote": "Describe how you would handle an engine failure after takeoff.",
+              "answerQuote": "My favorite hobby is cooking. I like making pasta at home.",
+              "reasonZh": "回答内容与起飞后发动机失效的处置完全无关，未涉及任何航空操作。"
+            },
+            "polishedText": "My favorite hobby is cooking. I like making pasta at home."
+          },
+          "polishedText": "My favorite hobby is cooking. I like making pasta at home.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      },
+      {
+        "id": "opi-unseen-picture",
+        "passed": true,
+        "elapsedMs": 68,
+        "result": {
+          "grammar": {
+            "issues": [],
+            "correctedText": "There are two aircraft on the apron."
+          },
+          "analysis": {
+            "module": "opi",
+            "grammarErrors": [],
+            "offTopic": null,
+            "polishedText": "There are two aircraft on the apron."
+          },
+          "polishedText": "There are two aircraft on the apron.",
+          "promptVersion": "deepseek-review:v2"
+        }
+      }
+    ]
+  }
+}
