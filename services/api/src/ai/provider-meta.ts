@@ -4,4 +4,5 @@ export type ProviderMeta = {
   inputTokens?: number;
   outputTokens?: number;
   upstreamStatus?: string;
+  timings?: { stagingMs?: number; submitMs?: number; statusRequestMs?: number; pollingWaitMs?: number; cleanupMs?: number; queueMs?: number; generationMs?: number; totalMs?: number; pollCount?: number };
 };

@@ -46,7 +46,7 @@ describe('DeepSeekReviewProviderService', () => {
 
     expect(result).toEqual({
       data: { ok: true },
-      meta: { attemptCount: 1, inputTokens: 12, outputTokens: 8, upstreamStatus: 'success' },
+      meta: { attemptCount: 1, inputTokens: 12, outputTokens: 8, upstreamStatus: 'success', timings: { queueMs: expect.any(Number), generationMs: expect.any(Number) } },
     });
     const calls = fetchMock.mock.calls as unknown as Array<[string, RequestInit]>;
     const request = JSON.parse(String(calls[0]![1].body));
@@ -155,6 +155,20 @@ describe('DeepSeekReviewProviderService', () => {
     finishFirst(response('{"request":1}'));
     await expect(first).resolves.toMatchObject({ data: { request: 1 } });
     await expect(second).resolves.toMatchObject({ data: { request: 2 } });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+  it('removes timed-out queue entries so they cannot execute later or consume another slot', async () => {
+    vi.useFakeTimers();
+    let finishFirst!: (value: Response) => void;
+    const fetchMock = vi.fn().mockImplementationOnce(() => new Promise<Response>((resolve) => { finishFirst = resolve; })).mockResolvedValue(response('{"ok":true}'));
+    vi.stubGlobal('fetch', fetchMock);
+    const provider = new DeepSeekReviewProviderService(config('1'));
+    const input = { mode: 'grammar' as const, system: 'Return JSON.', prompt: '{}', userId: 'user', validate: (data: unknown) => data };
+    const first = provider.generateValidated(input);
+    const queued = expect(provider.generateValidated(input)).rejects.toThrow('ai_upstream_limited');
+    await vi.advanceTimersByTimeAsync(15_001); await queued;
+    finishFirst(response('{"ok":true}')); await first;
+    await expect(provider.generateValidated(input)).resolves.toMatchObject({ data: { ok: true } });
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 });

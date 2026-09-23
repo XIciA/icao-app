@@ -77,7 +77,7 @@ export async function withApiRequestTimeout<T>(
   }
 }
 
-async function fetchOnce(path: string, init: RequestInit, token?: string) {
+async function fetchOnce(path: string, init: RequestInit, token?: string, timeoutMs?: number) {
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
   const headers = new Headers(init.headers);
@@ -85,14 +85,14 @@ async function fetchOnce(path: string, init: RequestInit, token?: string) {
   if (token) headers.set('authorization', `Bearer ${token}`);
   return withApiRequestTimeout(
     (signal) => fetch(`${baseUrl}${path}`, { ...init, headers, signal }),
-    init.signal,
+    init.signal, timeoutMs,
   );
 }
 
-export async function apiFetch(path: string, init: RequestInit = {}) {
+export async function apiFetch(path: string, init: RequestInit = {}, timeoutMs?: number) {
   const token = await accessTokenProvider?.();
-  const response = await fetchOnce(path, init, token);
-  return recoverApiUnauthorized(response, (nextToken) => fetchOnce(path, init, nextToken), token);
+  const response = await fetchOnce(path, init, token, timeoutMs);
+  return recoverApiUnauthorized(response, (nextToken) => fetchOnce(path, init, nextToken, timeoutMs), token);
 }
 
 export async function recoverApiUnauthorized(
@@ -156,7 +156,7 @@ export async function invalidateApiSession() {
   if (token) await sessionInvalidatedHandler?.(token);
 }
 
-export async function apiRequest<T>(path: string, init: RequestInit = {}) {
+export async function apiRequest<T>(path: string, init: RequestInit = {}, timeoutMs?: number) {
   if (
     __DEV__
     && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1'
@@ -179,7 +179,7 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}) {
       policyVersion: 'ai-learning-privacy-v4',
     } as T;
   }
-  const response = await apiFetch(path, init);
+  const response = await apiFetch(path, init, timeoutMs);
   const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;
   if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);
   if (!response.ok || 'error' in body) {

@@ -1,6 +1,6 @@
-import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile, type TencentAsrModel } from '@icao/contracts';
+import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { AlertTriangle, Check, ChevronRight, Cloud, FileText, Info, LogOut, Shield, Trash2, UserRound } from '@/components/ui/icons';
+import { AlertTriangle, ChevronRight, Cloud, FileText, Info, LogOut, Shield, Trash2, UserRound } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 
@@ -12,7 +12,7 @@ import { useAuth, type AccountDeletionAuthentication } from '@/features/auth/Aut
 import { isValidPhonePassword, PHONE_PASSWORD_MIN_LENGTH, PHONE_PASSWORD_MAX_LENGTH, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { MembershipRoutePage } from '@/features/native-commercial-testflight/MembershipRoutePage';
-import { ASR_MODEL_OPTIONS, getAsrModel, setAsrModel } from '@/features/ai/asr-model-preference';
+import { AutoTranscriptionSetting } from '@/features/ai/AutoTranscriptionSetting';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
 import { getLearningSyncStatus, runLearningSync } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
@@ -56,22 +56,6 @@ function SettingsPage() {
   const [signingOut, setSigningOut] = useState(false);
   const [pendingChanges, setPendingChanges] = useState(false);
   const [signOutError, setSignOutError] = useState('');
-  const [asrModel, setSelectedAsrModel] = useState<TencentAsrModel>(DEFAULT_TENCENT_ASR_MODEL);
-  const [asrPickerVisible, setAsrPickerVisible] = useState(false);
-  useEffect(() => {
-    let active = true;
-    void getAsrModel().then((model) => { if (active) setSelectedAsrModel(model); });
-    return () => { active = false; };
-  }, []);
-
-  async function selectAsrModel(model: TencentAsrModel) {
-    try {
-      await setAsrModel(model);
-      setSelectedAsrModel(model);
-      setAsrPickerVisible(false);
-    } catch { setSignOutError('转写模型保存失败，请重试。'); }
-  }
-
   async function prepareLogout() {
     if (signingOut) return;
     setSigningOut(true);
@@ -112,7 +96,8 @@ function SettingsPage() {
           <Row icon={Shield} label="隐私与数据" onPress={() => router.push('/account/privacy')} />
         </Section>
         <Section title="AI">
-          <Row first hint="切换后从下一次转写开始生效" icon={Cloud} label="腾讯 ASR 模型" onPress={() => setAsrPickerVisible(true)} value={asrModel} />
+          <AutoTranscriptionSetting />
+          <Row first hint="当前由服务端统一使用通用英语模型" icon={Cloud} label="腾讯 ASR 模型" value={DEFAULT_TENCENT_ASR_MODEL} />
         </Section>
         <Section title="其他">
           <Row first icon={Info} label="帮助中心" onPress={() => router.push('/info/help')} />
@@ -121,7 +106,6 @@ function SettingsPage() {
         {signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}
         <Button disabled={!auth.session || signingOut} loading={signingOut} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => void prepareLogout()} variant="outline">退出登录</Button>
       </View>
-      <AsrModelSheet current={asrModel} onClose={() => setAsrPickerVisible(false)} onSelect={(model) => { void selectAsrModel(model); }} visible={asrPickerVisible} />
       <BottomSheet onClose={() => { if (!signingOut) setConfirm(false); }} visible={confirm}>
         <View style={styles.formNoPad}>
           <AppText variant="sectionTitle">退出登录</AppText>
@@ -734,7 +718,6 @@ function Choice({ label, options, value, onChange, compact = false }: { label: s
 function Section({ title, children }: { title: string; children: React.ReactNode }) { return <View style={styles.section}><AppText variant="caption">{title}</AppText><Card style={styles.rows}>{children}</Card></View>; }
 function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant="button">{label}</AppText>{hint ? <AppText variant="micro">{hint}</AppText> : null}</View>{value ? <AppText variant="caption">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }
 
-function AsrModelSheet({ visible, current, onClose, onSelect }: { visible: boolean; current: TencentAsrModel; onClose: () => void; onSelect: (model: TencentAsrModel) => void }) { return <BottomSheet accessibilityLabel="选择腾讯 ASR 模型" onClose={onClose} visible={visible}><View style={styles.modelSheet}><AppText variant="sectionTitle">选择转写模型</AppText><AppText variant="caption">选择只保存在本机，并从下一次转写开始生效。</AppText><View style={styles.modelOptions}>{ASR_MODEL_OPTIONS.map((option) => { const selected = option.model === current; return <Pressable accessibilityLabel={`使用 ${option.model}`} accessibilityState={{ selected }} key={option.model} onPress={() => onSelect(option.model)} style={[styles.modelOption, selected && styles.modelOptionSelected]}><View style={styles.flex}><AppText color={selected ? colors.primary : colors.foreground} variant="button">{option.model}</AppText><AppText variant="micro">{option.title} · {option.description}</AppText></View>{selected ? <Check color={colors.primary} size={18} /> : null}</Pressable>; })}</View><AppText variant="micro">当前未启用热词、词汇替换、自学习模型或航空规则化脚本。</AppText></View></BottomSheet>; }
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', overflow: 'hidden', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, avatarImage: { borderRadius: radii.full, height: 74, width: 74 }, avatarSmallImage: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20, zIndex: 2 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, passwordForm: { gap: spacing[4], padding: spacing[5] }, passwordIntro: { gap: spacing[2] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, modelSheet: { gap: spacing[4] }, modelOptions: { gap: spacing[2] }, modelOption: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 68, padding: spacing[3] }, modelOptionSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },
 });

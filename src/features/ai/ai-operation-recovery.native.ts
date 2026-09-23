@@ -1,4 +1,4 @@
-import type { AiOperationLookup } from '@icao/contracts/commerce-rules';
+import type { AiOperationLookup, PartialAiTranscription } from '@icao/contracts/commerce-rules';
 import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
 import { assertLearningWriteContext, captureLearningWriteContext, enqueueLearningRecord, runLearningSync, type LearningWriteContext } from '@/features/sync/learning-sync.native';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store.native';
@@ -26,11 +26,22 @@ function applyResult(record: LearningRecord, result: Completed['result']): Learn
     feedbackCount: review ? 1 : record.feedbackCount,
     aiResult: { ...previous,
       // A recovery never overwrites a later manually edited answer.
-      ...(transcript !== undefined ? { rawTranscript: transcript } : {}),
+      ...(transcript !== undefined ? { rawTranscript: 'rawTranscript' in result && typeof result.rawTranscript === 'string' ? result.rawTranscript : transcript, ...(!previous.transcript ? { transcript } : {}) } : {}),
       ...(review ? { analyzedTranscript: transcript ?? record.aiOperation?.inputTranscript ?? previous.transcript,
-        grammar: { correctedText: review.grammar.correctedText, issues: review.grammar.issues }, polishedText: review.polishedText } : {}),
+        grammar: { correctedText: review.grammar.correctedText, issues: review.grammar.issues }, polishedText: review.polishedText,
+        analysis: review.analysis, resumeOperationId: undefined } : {}),
     },
   };
+}
+
+export async function recoverPartialAiOperation(recordId: string, operationId: string, partial: PartialAiTranscription, context: LearningWriteContext) {
+  const saved = await updatePendingLearningAiRecord(recordId, operationId, (record) => ({
+    ...record, aiOperation: { ...record.aiOperation!, status: 'complete' }, updatedAt: new Date().toISOString(),
+    aiResult: { ...record.aiResult!, transcript: record.aiResult?.transcript || partial.transcript,
+      rawTranscript: partial.rawTranscript, resumeOperationId: operationId },
+  }), () => assertLearningWriteContext(context, true));
+  if (saved) await enqueueLearningRecord(saved, context);
+  return saved;
 }
 
 export async function completePendingAiOperation(recordId: string, operationId: string, result: Completed['result'], context: LearningWriteContext) {
@@ -80,7 +91,10 @@ export function recoverPendingAiOperations(): Promise<void> {
       const result = await lookupAiOperation(record.aiOperation.operationId);
       assertOwner(); assertLearningWriteContext(context, true);
       if (result.state === 'completed') await completePendingAiOperation(record.id, record.aiOperation.operationId, result.result, context);
-      else if (result.state === 'released') await abandonPendingAiOperation(record.id, record.aiOperation.operationId, context);
+      else if (result.state === 'released') {
+        if (result.partialTranscription) await recoverPartialAiOperation(record.id, record.aiOperation.operationId, result.partialTranscription, context);
+        else await abandonPendingAiOperation(record.id, record.aiOperation.operationId, context);
+      }
     }
   };
   const promise = action().finally(() => { if (running === promise) running = undefined; });

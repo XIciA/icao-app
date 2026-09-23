@@ -47,7 +47,7 @@ function sameProtectedTokens(source: string, output: string) {
 
 const UNCERTAINTY = /\b(?:think|believe|may|might|could|maybe|perhaps|possibly|probably|likely|seems?|appears?)\b/iu;
 
-function assertProtectedMeaning(source: string, output: string) {
+export function assertProtectedMeaning(source: string, output: string) {
   if (!sameProtectedTokens(source, output)) throw new Error('review_protected_tokens_changed');
   if (UNCERTAINTY.test(source) && !UNCERTAINTY.test(output)) throw new Error('review_uncertainty_removed');
 }
@@ -85,7 +85,7 @@ export function parseAndValidateReview(data: unknown, input: AiReviewRequest): R
 }
 
 export function withReviewPromptVersion(result: ReviewBody): AiReviewResult {
-  return { ...result, promptVersion: REVIEW_PROMPT_VERSION };
+  return { ...result, promptVersion: result.analysis ? 'deepseek-review:v2' : REVIEW_PROMPT_VERSION };
 }
 
 export function legacyIssueText(issue: GrammarCorrectionIssue) {

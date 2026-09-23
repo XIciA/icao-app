@@ -795,6 +795,7 @@ export type AiPointOperationSummary = {
 
 export type TranscribeResult = {
   transcript: string;
+  rawTranscript?: string;
   aiPoints?: AiPointOperationSummary;
 };
 
@@ -805,6 +806,8 @@ export type ExactMatchToken = {
   actual?: string;
   expectedIndex?: number;
   actualIndex?: number;
+  expectedSource?: { start: number; end: number; text: string };
+  actualSource?: { start: number; end: number; text: string };
 };
 export type ExactMatchResult = {
   exact: boolean;
@@ -837,6 +840,10 @@ export type AiReviewRequest = {
   module: 'atc' | 'story' | 'opi';
   questionId: string;
   transcript: string;
+  analysisVersion?: 2;
+  source?: import('./learning-ai').LearningReviewSource;
+  /** Retry the text recovered from an uncharged, failed combined operation. */
+  resumeOperationId?: string;
 };
 
 export type AiReviewResult = {
@@ -845,7 +852,8 @@ export type AiReviewResult = {
     correctedText: string;
   };
   polishedText?: string;
-  promptVersion: 'deepseek-review:v1';
+  promptVersion: 'deepseek-review:v1' | 'deepseek-review:v2';
+  analysis?: import('./learning-ai').LearningAnalysis;
   aiPoints?: AiPointOperationSummary;
 };
 

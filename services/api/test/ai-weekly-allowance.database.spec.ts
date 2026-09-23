@@ -16,6 +16,8 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
 import { AiService } from '../src/ai/ai.service';
+import { CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
+import { ObservedAiServiceException } from '../src/ai/ai-error-observability';
 import { SyncService } from '../src/sync/sync.service';
 import * as schema from '../src/database/schema';
 import { AiUsageRulesService, type CommerceTransaction } from '../src/commerce/ai-usage-rules.service';
@@ -269,6 +271,50 @@ describe('weekly AI allowance with the persistent commerce ledger', () => {
 
 
 describe('operation recovery and privacy with the real persistent ledger', () => {
+  it('retains a failed combination, resumes edited text once, and recovers the complete paid result', () => scenario(async (tx) => {
+    const owner = await account(tx);
+    const now = new Date();
+    await member(tx, owner, new Date(now.getTime() - 60_000), new Date(now.getTime() + 86_400_000));
+    await tx.insert(schema.aiConsentAuthorities).values({ userId: owner, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION, revision: 1, active: true, updatedAt: now });
+    await tx.insert(schema.aiConsents).values({ userId: owner, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION, acceptedAt: now, revision: 1 });
+    const generateValidated = vi.fn(async (input: { validate: (value: unknown) => unknown }) => ({ data: input.validate({ grammarErrors: [], missingInformation: [], incorrectInformation: [], extraInformation: [] }), meta: {} }));
+    generateValidated.mockRejectedValueOnce(new ObservedAiServiceException('ai_upstream_failed', 'upstream_failed', 1));
+    const asr = { transcribe: vi.fn(async () => ({ rawTranscript: 'Climb flight level one eight zero.', meta: {} })) };
+    const ai = new AiService({ db: tx } as never, { generateValidated, textModel: () => 'deepseek-v4-flash' } as never, asr as never, benefits);
+    const grant = await ai.admitOperation(owner);
+    const source = { bankId: 'radiotelephony' as const, categoryId: 'c', topicId: 't', version: 1, checksum: 'test' };
+    const input = { mode: 'grammar' as const, module: 'atc' as const, questionId: 'q', analysisVersion: 2 as const, source };
+    const materials = { questionText: 'Climb FL180.', contextText: '', referenceText: '', hasUnseenImage: false };
+    const failedId = randomUUID();
+    const before = (await allowance.summary(tx, owner, 'production', now)).available;
+    await expect(ai.transcribeReview(owner, randomUUID(), Buffer.from('synthetic-audio'), 'audio/wav', '16k_en', input, grant, undefined, failedId, materials)).rejects.toThrow('ai_upstream_failed');
+    expect((await allowance.summary(tx, owner, 'production', new Date())).available).toBe(before);
+    const released = await ai.operationResult(owner, 'production', failedId);
+    expect(released).toMatchObject({ state: 'released', partialTranscription: { rawTranscript: 'Climb flight level one eight zero.', input } });
+    expect(await ai.operationResult(await account(tx), 'production', failedId)).toEqual({ state: 'missing' });
+    expect(await ai.operationResult(owner, 'sandbox', failedId)).toEqual({ state: 'missing' });
+    const resumedId = randomUUID();
+    const resumedInput = { ...input, transcript: 'Climbing FL180.', resumeOperationId: failedId };
+    const result = await ai.review(owner, randomUUID(), resumedInput, grant, undefined, resumedId, materials);
+    const recovered = await ai.operationResult(owner, 'production', resumedId);
+    expect(recovered).toMatchObject({ state: 'completed', capability: 'transcription_grammar', result: {
+      transcript: resumedInput.transcript, rawTranscript: 'Climb flight level one eight zero.',
+      review: { analysis: { module: 'atc' }, promptVersion: 'deepseek-review:v2' }, aiPoints: result.aiPoints,
+    } });
+    expect((await allowance.summary(tx, owner, 'production', new Date())).available).toBe(before - result.aiPoints!.charged);
+    expect(await ai.review(owner, randomUUID(), resumedInput, grant, undefined, resumedId, materials)).toEqual(result);
+    expect(asr.transcribe).toHaveBeenCalledTimes(1);
+    expect(generateValidated).toHaveBeenCalledTimes(2);
+    const [row] = await tx.select().from(schema.aiPointReservations).where(eq(schema.aiPointReservations.operationId, failedId));
+    const expiredId = randomUUID();
+    await benefits.reserveAiPoints(tx, { accountId: owner, environment: 'production', operationId: expiredId, requestDigest: 'expired-fixture', capability: 'transcription_grammar', reservedAt: new Date() });
+    await tx.update(schema.aiPointReservations).set({ leaseUntil: new Date(0), resultPayload: row!.resultPayload }).where(eq(schema.aiPointReservations.operationId, expiredId));
+    expect(await ai.operationResult(owner, 'production', expiredId)).toMatchObject({ state: 'released', partialTranscription: { input } });
+    await new SyncService({ db: tx } as never).deleteAllAiResults(owner, { confirmation: '删除全部AI结果', idempotencyKey: randomUUID() });
+    expect(await ai.operationResult(owner, 'production', failedId)).toEqual({ state: 'missing' });
+    expect(await ai.operationResult(owner, 'production', resumedId)).toEqual({ state: 'missing' });
+  }));
+
   it('reads only the same account and environment, including after membership expiry and consent withdrawal', () => scenario(async (tx) => {
     const owner = await account(tx);
     await member(tx, owner);
