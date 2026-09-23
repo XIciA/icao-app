@@ -27,7 +27,7 @@ for command_name in git gzip mktemp node openssl scp shasum ssh; do
   require_command "$command_name"
 done
 
-OPS_PUBLIC_HOST=ops.readyoufife.com
+OPS_PUBLIC_HOST=api.readyoufife.com
 if [ "${ICAO_OPS_PRODUCTION_CONFIRM:-}" != "$OPS_PUBLIC_HOST" ]; then
   echo "Set ICAO_OPS_PRODUCTION_CONFIRM=$OPS_PUBLIC_HOST for an explicitly authorized production action." >&2
   exit 1
@@ -309,9 +309,9 @@ esac
 case "$upload_token" in
   ''|*[!A-Fa-f0-9]*) echo 'Remote Ops upload token is invalid.' >&2; exit 1 ;;
 esac
-[ "$public_host" = ops.readyoufife.com ] || { echo 'Remote Ops hostname is invalid.' >&2; exit 1; }
+[ "$public_host" = api.readyoufife.com ] || { echo 'Remote Ops hostname is invalid.' >&2; exit 1; }
 
-for command_name in awk basename cat chmod curl date df dirname docker find flock getent grep install mv rmdir rm sed seq sha256sum sleep ss stat systemctl tar tr; do
+for command_name in awk basename cat chmod curl date df dirname docker find flock getent grep install mv python3 rmdir rm sed seq sha256sum sleep ss stat systemctl tar tr; do
   command -v "$command_name" >/dev/null 2>&1 || {
     echo "Required remote command is missing: $command_name" >&2
     exit 1
@@ -503,13 +503,15 @@ if ! awk '
   BEGIN {
     split("DATABASE_URL NODE_ENV API_RELEASE_ID ACCOUNT_IDENTITY_HASH_SECRET OPS_ENABLED OPS_HOST OPS_PORT OPS_CORS_ORIGINS OPS_SESSION_HASH_SECRET OPS_TOTP_ENCRYPTION_KEY OPS_TRUSTED_PROXY_SHARED_SECRET", keys)
     for (index in keys) allowed[keys[index]] = 1
+    optional["OPS_FEEDBACK_STORAGE_URL"] = 1
+    optional["OPS_FEEDBACK_STORAGE_READ_TOKEN"] = 1
   }
   /^[[:space:]]*($|#)/ { next }
   !/^[A-Z0-9_]+=/ { exit 1 }
   {
     key = $0
     sub(/=.*/, "", key)
-    if (!allowed[key] || ++seen[key] != 1) exit 1
+    if ((!allowed[key] && !optional[key]) || ++seen[key] != 1) exit 1
   }
   END {
     for (key in allowed) if (seen[key] != 1) exit 1
@@ -643,10 +645,13 @@ esac
   echo 'At least one non-disabled Ops administrator is required before cutover.' >&2
   exit 1
 }
+candidate_gateway=$release_dir/gateway-candidate.Caddyfile
+python3 "$source_dir/infra/ops/prepare-gateway.py" \
+  "$gateway_caddy" "$source_dir/infra/gateway/Caddyfile" "$candidate_gateway"
 docker run --rm "$candidate_web" caddy validate --config /etc/caddy/Caddyfile
 docker run --rm \
   --env-file "$gateway_env" \
-  -v "$source_dir/infra/gateway/Caddyfile:/etc/caddy/Caddyfile:ro" \
+  -v "$candidate_gateway:/etc/caddy/Caddyfile:ro" \
   caddy:2.11.4-alpine caddy validate --config /etc/caddy/Caddyfile
 docker compose -f "$source_dir/infra/ops/docker-compose.runtime.yml" config >/dev/null
 docker compose -f "$source_dir/infra/gateway/docker-compose.yml" config >/dev/null
@@ -722,9 +727,9 @@ if [ "$api_exists" -eq 1 ]; then
   curl -fsS --max-time 10 -D "$attempt_dir/previous-local-ready.headers" \
     -o "$attempt_dir/previous-local-ready.json" http://127.0.0.1:3102/health/ready
   curl -fsS --max-time 10 -D "$attempt_dir/previous-public-ready.headers" \
-    -o "$attempt_dir/previous-public-ready.json" "https://$public_host/health/ready"
+    -o "$attempt_dir/previous-public-ready.json" "https://$public_host/admin/health/ready"
   curl -fsS --max-time 10 -D "$attempt_dir/previous-public-web.headers" \
-    -o "$attempt_dir/previous-public-web.html" "https://$public_host/"
+    -o "$attempt_dir/previous-public-web.html" "https://$public_host/admin/"
   previous_local_release_id=$(tr -d '\r' < "$attempt_dir/previous-local-ready.headers" \
     | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
   previous_public_release_id=$(tr -d '\r' < "$attempt_dir/previous-public-ready.headers" \
@@ -790,7 +795,7 @@ chmod 600 "$candidate_runtime_env"
 install -d -m 700 "$runtime_root"
 install -m 600 "$candidate_runtime_env" "$runtime_env"
 install -m 600 "$source_dir/infra/ops/docker-compose.runtime.yml" "$runtime_compose"
-install -m 644 "$source_dir/infra/gateway/Caddyfile" "$gateway_caddy"
+install -m 644 "$candidate_gateway" "$gateway_caddy"
 install -m 600 "$source_dir/infra/gateway/docker-compose.yml" "$gateway_compose"
 
 docker tag "$candidate_api" icao-ops-api:production
@@ -821,9 +826,9 @@ docker compose -f "$gateway_compose" up -d --force-recreate caddy
 public_ready=0
 for attempt in $(seq 1 60); do
   if curl -fsS --max-time 10 -D "$attempt_dir/public-ready.headers" \
-    -o "$attempt_dir/public-ready.json" "https://$public_host/health/ready" \
+    -o "$attempt_dir/public-ready.json" "https://$public_host/admin/health/ready" \
     && curl -fsS --max-time 10 -D "$attempt_dir/public-web.headers" \
-    -o "$attempt_dir/public-web.html" "https://$public_host/" \
+    -o "$attempt_dir/public-web.html" "https://$public_host/admin/" \
     && curl -fsS --max-time 10 https://api.readyoufife.com/health/ready >/dev/null; then
     public_ready=1
     break

@@ -163,9 +163,9 @@ if [ "$previous_state" = running ]; then
   for attempt in $(seq 1 30); do
     if curl -fsS --max-time 10 -D "$attempt_dir/rollback-public-ready.headers" \
       -o "$attempt_dir/rollback-public-ready.json" \
-      https://ops.readyoufife.com/health/ready \
+      https://api.readyoufife.com/admin/health/ready \
       && curl -fsS --max-time 10 -D "$attempt_dir/rollback-public-web.headers" \
-      -o "$attempt_dir/rollback-public-web.html" https://ops.readyoufife.com/; then
+      -o "$attempt_dir/rollback-public-web.html" https://api.readyoufife.com/admin/; then
       ops_public_ready=1
       break
     fi

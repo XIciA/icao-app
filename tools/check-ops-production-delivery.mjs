@@ -62,6 +62,11 @@ if (syntax.status !== 0) {
   throw new Error(`ops_production_shell_syntax:${syntax.stderr || syntax.stdout}`);
 }
 
+const gatewayScopeTest = spawnSync('python3', ['infra/ops/test_prepare_gateway.py'], { encoding: 'utf8' });
+if (gatewayScopeTest.status !== 0) {
+  throw new Error(`ops_gateway_scope:${gatewayScopeTest.stderr || gatewayScopeTest.stdout}`);
+}
+
 const rollbackStateTest = spawnSync('/bin/sh', [
   'infra/ops/release-state.sh',
   'self-test',
@@ -215,8 +220,8 @@ requireText('infra/ops/rollback-release.sh', [
   'sha256sum -c snapshot-checksums.sha256',
   'docker compose -f "$gateway_compose" up -d --force-recreate caddy',
   'https://api.readyoufife.com/health/ready',
-  'https://ops.readyoufife.com/health/ready',
-  'https://ops.readyoufife.com/',
+  'https://api.readyoufife.com/admin/health/ready',
+  'https://api.readyoufife.com/admin/',
   'strict-transport-security:',
   '"service":"icao-ops-api"',
   '"database":"ok"',
@@ -248,8 +253,8 @@ requireText('infra/ops/verify-ops-absence.sh', [
   'docker inspect icao-ops-api',
   'docker inspect icao-ops-web',
   'curl -sS --max-time 5',
-  'https://ops.readyoufife.com/',
-  'https://ops.readyoufife.com/health/ready',
+  'https://api.readyoufife.com/admin/',
+  'https://api.readyoufife.com/admin/health/ready',
   'consecutive_absent',
   'accepted a surviving Ops container',
   'accepted a surviving public Ops host',
@@ -310,7 +315,8 @@ requireText('infra/ops/docker-compose.runtime.yml', [
 forbidText('infra/ops/docker-compose.runtime.yml', ['build:', '0.0.0.0:3102', '0.0.0.0:4180']);
 
 requireText('infra/gateway/Caddyfile', [
-  'ops.readyoufife.com',
+  'handle_path /admin/* {',
+  'redir /admin /admin/ 308',
   '@ops_health path /health/live /health/ready',
   '@ops_admin path /v1/admin/*',
   'reverse_proxy 127.0.0.1:3102',
@@ -370,7 +376,7 @@ if (JSON.stringify(gatewayEnvKeys) !== JSON.stringify(['OPS_TRUSTED_PROXY_SHARED
 }
 
 requireText('services/api/src/config.ts', [
-  "opsCorsOrigins[0] !== 'https://ops.readyoufife.com'",
+  "opsCorsOrigins[0] !== 'https://api.readyoufife.com'",
   "invalid_ops_api_configuration:API_RELEASE_ID",
   "invalid_ops_api_configuration:OPS_CORS_ORIGINS",
 ]);
@@ -395,7 +401,7 @@ for (const forbiddenBrowserMarker of [
     throw new Error(`ops_browser_database_or_secret_boundary:${forbiddenBrowserMarker}`);
   }
 }
-if (!browserApi.includes('fetch(path,')) throw new Error('ops_browser_must_use_same_origin_relative_api');
+if (!browserApi.includes("location.pathname.startsWith('/admin/') ? '/admin' : ''")) throw new Error('ops_browser_must_use_same_origin_relative_api');
 
 requireText('infra/ops/README.md', [
   '不会由仓库猜测',

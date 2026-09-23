@@ -583,7 +583,7 @@ export function loadOpsConfig(
     }
     if (
       opsCorsOrigins.length !== 1
-      || opsCorsOrigins[0] !== 'https://ops.readyoufife.com'
+      || opsCorsOrigins[0] !== 'https://api.readyoufife.com'
     ) throw new Error('invalid_ops_api_configuration:OPS_CORS_ORIGINS');
   }
   return {
