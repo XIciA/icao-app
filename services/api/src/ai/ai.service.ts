@@ -24,7 +24,9 @@ import type { ProviderMeta } from './provider-meta';
 // Legacy reservations may contain provider-only fields. Apply the same public
 // boundary to lookup and idempotent replay; new results never persist these fields.
 function publicAiPayload<T extends Record<string, unknown>>(value: T): T {
-  const { model: _model, normalization: _normalization, ...payload } = value;
+  const payload: Record<string, unknown> = { ...value };
+  delete payload.model;
+  delete payload.normalization;
   return payload as T;
 }
 
