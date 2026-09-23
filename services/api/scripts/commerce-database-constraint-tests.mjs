@@ -5087,3 +5087,28 @@ test('local admin gifts expire after 30 days, combine with period units, consume
   const sandbox=await serviceDatabase.transaction(tx=>allowance.summary(tx,accountId,'sandbox',now));
   assert.equal(sandbox.bonusAvailable,0);
 });
+
+
+test('entitlement adjustment database accepts three-character reasons and rejects shorter trimmed reasons', () => {
+  const result = psql(`
+    BEGIN;
+    CREATE TEMP TABLE reason_probe (LIKE ops_entitlement_adjustments INCLUDING ALL);
+    INSERT INTO reason_probe (preview_id, staff_id, account_id, environment, reason, membership_days, applied_at)
+      VALUES (gen_random_uuid(), gen_random_uuid(), gen_random_uuid(), 'production', 'abc', 31, now());
+    UPDATE reason_probe SET reason = '  111  ';
+    DO $$ BEGIN
+      BEGIN
+        UPDATE reason_probe SET reason = ' ab ';
+        RAISE EXCEPTION 'short reason unexpectedly accepted';
+      EXCEPTION WHEN check_violation THEN NULL;
+      END;
+      BEGIN
+        UPDATE reason_probe SET reason = repeat('x', 501);
+        RAISE EXCEPTION 'oversized reason unexpectedly accepted';
+      EXCEPTION WHEN check_violation THEN NULL;
+      END;
+    END $$;
+    ROLLBACK;
+  `);
+  assert.equal(result.status, 0, result.stderr);
+});
