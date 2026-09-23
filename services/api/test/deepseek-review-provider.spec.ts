@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { DeepSeekReviewProviderService } from '../src/ai/deepseek-review-provider.service';
 import { loadConfig } from '../src/config';
+import { learningReviewPrompt, validateLearningReview } from '../src/ai/learning-review';
 
 function config(maxConcurrency = '50') {
   return loadConfig({
@@ -75,6 +76,33 @@ describe('DeepSeekReviewProviderService', () => {
     expect(result.data).toEqual({ ok: true });
     expect(result.meta).toMatchObject({ attemptCount: 2, upstreamStatus: 'recovered' });
     expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('repairs a model refusal of a short answer into evidence-backed feedback', async () => {
+    const input = { module: 'atc' as const, mode: 'grammar' as const, questionId: 'q', transcript: 'My life.' };
+    const materials = { questionText: 'Contact company operations to offload the baggage.', contextText: '', referenceText: '', hasUnseenImage: false };
+    const feedback = { grammarErrors: [], missingInformation: [{ sourceQuote: materials.questionText, reasonZh: '没有向公司运行部门提出卸下行李的请求' }], incorrectInformation: [], extraInformation: [] };
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(response(JSON.stringify({ error: { code: 'invalid_answer', reasonZh: '回答太短' } })))
+      .mockResolvedValueOnce(response(JSON.stringify(feedback)));
+    vi.stubGlobal('fetch', fetchMock);
+    const result = await new DeepSeekReviewProviderService(config()).generateValidated({
+      mode: input.mode, system: learningReviewPrompt(input.module), prompt: JSON.stringify({ ...materials, answerText: input.transcript }), userId: 'user-1',
+      validate: (data) => validateLearningReview(data, input, materials),
+    });
+    expect(result.data.analysis).toEqual({ module: 'atc', ...feedback });
+    expect(result.meta).toMatchObject({ attemptCount: 2, upstreamStatus: 'recovered' });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not convert repeated model refusals to success or a learner input error', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => response(JSON.stringify({ error: { code: 'invalid_answer', reasonZh: '回答太短' } }))));
+    const input = { module: 'atc' as const, mode: 'grammar' as const, questionId: 'q', transcript: 'FL310.' };
+    const materials = { questionText: 'Report fuel endurance.', contextText: '', referenceText: '', hasUnseenImage: false };
+    await expect(new DeepSeekReviewProviderService(config()).generateValidated({
+      mode: input.mode, system: learningReviewPrompt(input.module), prompt: JSON.stringify({ ...materials, answerText: input.transcript }), userId: 'user-1',
+      validate: (data) => validateLearningReview(data, input, materials),
+    })).rejects.toMatchObject({ failureCode: 'ai_invalid_response', attemptCount: 2 });
   });
 
   it('preserves metered token metadata when both repair attempts are invalid', async () => {

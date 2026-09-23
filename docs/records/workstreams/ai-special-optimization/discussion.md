@@ -12,7 +12,7 @@
 - 恢复后补验：自动转写授权与工作台18项、内容发布兼容23项通过；本轮显示版本准备为1.2.0，构建号仍待干净任务提交后由既有release:prepare生成。
 - 2026-09-23 12:13 完整 `pnpm check` 通过：前端175套/1219项、后端57文件/600项、StoreKit179项和完整媒体校验；日志 `/tmp/icao-ai-final-check.log`。随后审查补齐标注编辑草稿退出守卫，覆盖工具切换、切题、系统返回/结束与纠错跳转；相关补验后再做发布前全检。
 - 发布准备：已保留并合并后台PR153 / b81269d9 的迁移0051；本轮不新增数据库迁移。新候选 1.2.0 / build3538342。标注外部退出守卫13项聚焦测试与类型检查通过，版本冻结精确摘要随候选更新。
-- 当前：主要实现已合入PR154/155，API、Android和两站下载已发布；TestFlight正在构建，正式Web实测发现的标注面板平台限制正在修正。以以下最新交付记录为准，不将早期检查点当作现状。
+- 当前：主要实现及发布修正已合入PR154/155/156，各交付渠道已可用；用户已确认TestFlight模考音频与切题正常。新增短回答误报错正在修复。以以下最新交付记录为准，不将早期检查点当作现状。
 - 生产只读复核：2026-09-23 实际容器的语法/润色模型均 deepseek-v4-flash，腾讯 ASR 轮询 2000ms、超时 55000ms；不输出凭证、不变更配置。设置页原模型选择与服务端强制16k_en不一致，候选改为如实展示当前模型，保留服务端模型策略。
 - 已有验证：新 AI 交互15项、900比较11项、保守航空规范化41项、模考音频13项、管理交互与更新渠道9项；后端新结构/标注5+5项通过。DeepSeek在线受控合成样例11/11通过结构/证据与预期分类校验，结果暂在 .generated/learning-review-eval/report.json，未使用用户回答或用户录音。
 - 全量检查首轮暴露的旧断言已逐一核对：独立转写超时从45秒改为90秒，组合210秒；新增参数/诊断时长及更新按钮需同步测试。未将测试通过视为手机已验收。
@@ -28,19 +28,28 @@
 | 渠道 | 精确来源与当前结果 |
 | --- | --- |
 | Android | `416891c1ec53f4b3d0c33c5a0c5bd3ecbbb4aec1`，1.2.0 / 3538342，包名com.readyoufife.app；已上传不可变APK，两站链接已切换 |
-| EdgeOne | 同416891c1，生产部署`dp3tjk32w189`；实际浏览器核对下载链接与模考音频；标注面板补修待再次部署 |
+| EdgeOne | `ae625137662d4124575b41b37677bc21243474b7`，生产部署`dpb305ifxdr6`；下载、模考播放与标注管理面板实测通过 |
 | Vercel | 同416891c1，`dpl_eWumPkTTt9V54CMrGLuZJfVgo72b`，只更新APK链接；350项冻结输入通过，旧AI与题库不变 |
 | API | `249e609dc7af772b4ca6520117e53647dc5ca38b`，`ai-contract-main-20260923`；就绪、v1真实转写/语法/润色、v2三模块来源/结构/结果恢复/幂等重放通过，临时测试账号已清理 |
-| TestFlight | 249e609d源码，1.2.0 / 3538342；直接Release候选正在构建，未宣称已可安装 |
+| TestFlight | 249e609d源码，1.2.0 / 3538342；Apple VALID / IN_BETA_TESTING、内部测试组可安装；用户确认模考音频和切题正常 |
 
 - APK：[同一不可变安装包](https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-1.2.0-b3538342.apk)，133367593字节，SHA256 `5b904bb4d49966e8c901dcfc4e30d511cf395b2f8b6dfb01893dbfa36e9751df`。完整公开下载与本地APK摘要一致；签名证书SHA256 `25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629` 与旧包一致。尚未真机验证覆盖升级及Android冷启动。
 - 浏览器已确认readyoufife.com/download和feizhuicao.com/content/app-download均指向上述URL。当前桌面Chrome实际点击被客户端以ERR_BLOCKED_BY_CLIENT拦截；未绕过浏览器保护。命令行完整下载与摘要验证通过，与浏览器点击结果分开记录。
 - 正式Web实测：组卷→第1题“10s航空英语-17”完成音频→下一题“10s航空英语-74”完成音频→正常结束，并生成0/55未作答测试学习记录。未操作用户录音；这不证明iOS截图故障及手机音频路由已实测。
 - 正式Web标注根因：共享Native学习页仍使用Platform.OS !== web限制浮层模式和布局坐标，按钮切换有效但面板不会渲染。仅在正式Web映射的共享页移除此陈旧限制，复用同一面板与状态；旧Vercel页面不改。新增页面级Web回归覆盖打开标签/高亮管理、选色回填与取消不应用。
 - 249e609d完整本地pnpm check再次通过（1220前端/600后端/179 StoreKit测试与完整媒体检查）；初次因Web导出覆盖dist中的题库校验产物中止，重新生成已审查内容且确认源码零差异后通过。日志`/tmp/icao-ai-final-main-check.log`。PR155曾被两处未使用变量lint拦截，修正后完整CI通过再合并。
-- 已推送annotated tags：`release/android/v1.2.0-b3538342`、`release/web-edgeone/20260923-416891c1`、`release/web-vercel-legacy/20260923-416891c1`、`release/api-production/20260923-416891c1`。后续API与TestFlight可用标签继续补记。
+- 已推送annotated tags：`release/android/v1.2.0-b3538342`、`release/web-edgeone/20260923-416891c1`、`release/web-vercel-legacy/20260923-416891c1`、`release/api-production/20260923-416891c1`。另已推送`release/api-production/20260923-249e609d`、`release/ios-testflight/v1.2.0-b3538342`和`release/web-edgeone/20260923-ae625137`。
 - 磁盘处理：只归档并移除无容器引用的旧候选`icao-api:candidate-wechat-reregister-8a7372f6e80c`，未改用户数据；归档在发布目录`.generated/ai-special-optimization/image-archive/`，gzip与OCI精确镜像摘要均已验证，归档SHA256 `3d9fa82b21fb6beaa744323e2cfc850c808d92e4c65a029dcc8225f34d13455f`。当前镜像及直接回滚镜像均保留。原项目目录出现的pnpm-lock.yaml未提交变动与output/独立保留，未带入任何正式产物。
-- 更新清单仍等待TestFlight实际VALID且IN_BETA_TESTING后发布；按各平台真实构建源码记录，不伪称Android与后续iOS完全同SHA。
+- 更新清单已于2026-09-23T05:51:06.567Z发布到既有app-releases/updates.json，仅列真实可用android-apk、ios-testflight渠道1.2.0/b3538342；公开读取与生成文件一致。bucket仅增加application/json，保留原APK限制及匿名权限。按各平台真实构建源码记录，不伪称Android与iOS同SHA。
+
+## 短回答误报错修复（2026-09-23，执行中）
+
+- 用户已确认需求：乱答、短答、偏题也应得到正常模块学习反馈，不得仅因回答质量而报错。截图为陆空通话QFA953卸下未登机旅客行李场景，“My life.”与“FL310.”失败，正常部分回答成功。
+- 已核实根因：req-c4、req-j1的脱敏日志均为DeepSeek返回ai_invalid_answer、一次调用后终止；与ASR识别及网络无关。现行提示词允许“不能评估”返回invalid_answer，校验器又将模型判断直接转换为422用户输入错误。
+- 修正范围：只修改服务端模块提示词及模型响应校验边界，保持当前客户端JSON合同、题目来源权限、界面、收费标准不变。非空短答/乱答进入信息缺失或有明确证据的偏题反馈；无法理解的片段不臆造语法纠正或扩写。来源缺失仍由服务端检查。模型擅自返回错误对象按无效模型响应处理，复用已有最多一次修复，不伪造“无问题”成功结果。
+- 发布前验证：DeepSeek受控合成样例23/23通过（截图两类回答、单字符、符号、中文、故事短答、OPI偏题片段、正常简洁航空用语及原有正常样例）；证据见controlled-evaluation.json。相关自动化23项通过；完整pnpm check通过，前端1221、后端608、StoreKit179及媒体校验，日志/tmp/icao-short-answer-check.log。模型拒绝按原有一次修复、持续异常不伪成功；线上临时账号恢复、幂等及一次计费待发布后复验。未导出用户录音或回答。
+- 发布方式：合入origin/main后更新共享API；客户端协议未变，已安装1.2.0候选可直接重试。本修复不重发Vercel或无变化的客户端包。后台管理任务已协调，API构建先行，保留其独立Ops与网关发布边界。
+- 已完成其他验收：正式Web标签/高亮管理可打开，已用颜色自动回填、新颜色空名称、未保存切色守卫、取消不应用和删除影响提示实测；未对真实用户分类执行保存/删除。Android覆盖升级与冷启动仍待真机，不以自动化代替。TestFlight模拟考试音频/切题为用户实际验收通过，不能扩大为所有AI功能已验收。
 
 ## 首次发布与线上复核（2026-09-23 12:43，历史阶段记录）
 

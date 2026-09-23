@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { UnprocessableEntityException } from '@nestjs/common';
 import { learningReviewMaterials, learningReviewPrompt, validateLearningReview } from '../src/ai/learning-review';
 import { reviewSchema } from '../src/ai/ai.schemas';
 
@@ -9,6 +10,8 @@ const result = { grammarErrors: [], missingInformation: [{ sourceQuote: 'QNH 101
 describe('learning review v2', () => {
   it('preserves v1 compatibility and requires a server-resolvable matching source for v2', () => {
     expect(reviewSchema.safeParse(input).success).toBe(true);
+    expect(reviewSchema.safeParse({ ...input, transcript: '  ' }).success).toBe(false);
+    expect(reviewSchema.safeParse({ ...input, transcript: 'x' }).success).toBe(true);
     expect(reviewSchema.safeParse({ ...input, analysisVersion: 2 }).success).toBe(false);
     expect(reviewSchema.safeParse({ ...input, analysisVersion: 2, source: { bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) } }).success).toBe(false);
     expect(reviewSchema.safeParse({ ...input, module: 'opi', analysisVersion: 2, source: { bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) } }).success).toBe(false);
@@ -20,9 +23,22 @@ describe('learning review v2', () => {
     expect(() => validateLearningReview({ ...result, score: 90 }, input, materials)).toThrow();
   });
   it('keeps source limitations and model failures separate from a clean analysis', () => {
-    expect(() => validateLearningReview({ error: { code: 'invalid_answer', reasonZh: '回答无法分析' } }, input, materials)).toThrow('ai_invalid_answer');
+    for (const code of ['invalid_answer', 'insufficient_material']) {
+      let caught: unknown;
+      try { validateLearningReview({ error: { code, reasonZh: '回答无法分析' } }, input, materials); } catch (error) { caught = error; }
+      expect(caught).toBeInstanceOf(Error);
+      expect(caught).not.toBeInstanceOf(UnprocessableEntityException);
+    }
     expect(() => learningReviewMaterials(input, { cards: [{ id: 'other', audioText: 'text' }] })).toThrow('ai_insufficient_material');
     expect(learningReviewPrompt('opi')).toContain('hasUnseenImage=true');
+  });
+  it.each(['My life.', 'FL310.', 'x', '???', '不知道'])('accepts evidence-backed missing-information feedback for %s', (transcript) => {
+    const feedback = { grammarErrors: [], missingInformation: [{ sourceQuote: 'QNH 1013', reasonZh: '回答没有复诵题目要求的气压值' }], incorrectInformation: [], extraInformation: [] };
+    expect(validateLearningReview(feedback, { ...input, transcript }, materials).analysis).toEqual({ module: 'atc', ...feedback });
+  });
+  it('accepts OPI relevance feedback while preserving an uninterpretable answer', () => {
+    const feedback = { grammarErrors: [], offTopic: { questionQuote: materials.questionText, answerQuote: '???', reasonZh: '尚未回应题目明确要求' }, polishedText: '???' };
+    expect(validateLearningReview(feedback, { ...input, module: 'opi', mode: 'opi', transcript: '???' }, materials).analysis).toEqual({ module: 'opi', ...feedback });
   });
   it('uses preceding scenario turns, never future turns or unrelated scoring-point questions', () => {
     const cards = [{ id: 'q1', audioText: 'Callsign CCA123.' }, { id: 'q2', audioText: 'Descend 3000 feet.' }, { id: 'q3', audioText: 'Cleared to land.' }];
