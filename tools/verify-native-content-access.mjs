@@ -63,7 +63,7 @@ assert.doesNotMatch(nativeRadioHydration, /Promise\.all\(datasets|Promise\.all\(
 assert.match(nativeRadioProvider, /hydrateTrackTopic/u);
 assert.match(nativeRadioProvider, /hydrateFollowingTrackTopic/u);
 assert.equal(countCards(publicBanks), 1_044);
-assert.equal(countCards(sourceBanks), 10_964);
+assert.equal(countCards(sourceBanks), 10_963);
 assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 1_000_000);
 
 console.log('native_content_access_boundary_ok');

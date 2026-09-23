@@ -47,7 +47,7 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('航空英语题库')).toBeTruthy();
     expect(screen.getByText('按自己的节奏开始练习。')).toBeTruthy();
     expect(screen.getByText('听力')).toBeTruthy();
-    expect(screen.getByText('4 题组 / 1614 题')).toBeTruthy();
+    expect(screen.getByText('4 题组 / 1613 题')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
     expect(screen.getByText('310 场景＋9 专项 / 5751 卡')).toBeTruthy();

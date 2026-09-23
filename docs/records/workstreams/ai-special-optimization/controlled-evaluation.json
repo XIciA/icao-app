@@ -613,5 +613,163 @@
         }
       }
     ]
+  },
+  "shortAnswerProductionAcceptance": {
+    "sourceCommit": "5830a334432fd28a2f86b6a3b5cc7e14ad181a70",
+    "releaseId": "ai-short-feedback-5830a334",
+    "releaseTag": "release/api-production/20260923-5830a334",
+    "live": {
+      "status": "ok",
+      "analysisVersion": 2,
+      "checks": [
+        {
+          "module": "atc",
+          "caseIndex": 0,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 1988
+        },
+        {
+          "module": "atc",
+          "caseIndex": 1,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 2231
+        },
+        {
+          "module": "atc",
+          "caseIndex": 2,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 2076
+        },
+        {
+          "module": "atc",
+          "caseIndex": 3,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 2056
+        },
+        {
+          "module": "atc",
+          "caseIndex": 4,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 2214
+        },
+        {
+          "module": "story",
+          "caseIndex": 0,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 3,
+          "latencyMs": 2467
+        },
+        {
+          "module": "opi",
+          "caseIndex": 0,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 5,
+          "latencyMs": 1855
+        },
+        {
+          "module": "opi",
+          "caseIndex": 1,
+          "schema": true,
+          "authorizedSource": true,
+          "recovery": true,
+          "idempotency": true,
+          "singleCharge": true,
+          "chargedPoints": 5,
+          "latencyMs": 1765
+        }
+      ],
+      "cleanupComplete": true
+    },
+    "compatibilityLive": {
+      "schemaVersion": 1,
+      "kind": "ai-live",
+      "status": "passed",
+      "apiVersion": "ai-short-feedback-5830a334",
+      "apiOrigin": "https://api.readyoufife.com",
+      "verifierFingerprint": "a679c49b56b71d035de13f72064c40e991279bcf554a4c7f70dd223a7bde14a5",
+      "verifiedAt": "2026-09-23T07:14:34.898Z",
+      "checks": {
+        "transcribe": true,
+        "grammar": true,
+        "polish": true,
+        "aviationTerms": true,
+        "temporaryAudioRemoved": true
+      }
+    },
+    "sourceScope": "End-to-end uses server-authorized free-bank questions; exact screenshot QFA953 material is covered in synthetic evaluation and user iPhone confirmation. No membership bypass.",
+    "userAcceptance": {
+      "recordedDate": "2026-09-23",
+      "result": "User confirmed feedback now displays normally on the original question",
+      "environment": "Existing TestFlight 1.2.0 build 3538342"
+    }
+  },
+  "listeningQuestionRemovalPreflight": {
+    "checkedAt": "2026-09-23T07:50:09.720Z",
+    "target": "listening-main-755",
+    "newVersion": 15,
+    "newChecksum": "43d7f4afab22c5be75a66724bd9c64860c9b152c35274bcf72a7f3e44be26c25",
+    "oldVersion": 14,
+    "oldChecksum": "02ad45a9e55b2af0ea00ec3fb550c8c2fa12bd181047f2af34524bc6fd6b471a",
+    "cardsBefore": 1614,
+    "cardsAfter": 1613,
+    "remainingCardsUnchanged": true,
+    "otherBanks": [
+      {
+        "bank_id": "opi",
+        "version": 14,
+        "checksum": "68aac90b720ff36f8044f5fcf104777e10aa8b0a1ec140c6fddd70f626de0347"
+      },
+      {
+        "bank_id": "radiotelephony",
+        "version": 14,
+        "checksum": "3ae83cf390501bf0282eb1a206db9d9d099e0ea03754732ac8aada8cdac72b2b"
+      },
+      {
+        "bank_id": "sentences900",
+        "version": 13,
+        "checksum": "2e465bd6cd55161217284ea74dc5b77423335568d27de5722c1937e907aac4e3"
+      },
+      {
+        "bank_id": "storytelling",
+        "version": 14,
+        "checksum": "62505f7dc2ed9bc58d0b772229d73e170a4def760acd7e356c40e93651d3fd7f"
+      }
+    ],
+    "resourceSnapshotSha256": "3a2ce47ff563f42bc93dc17620ebbd7b482963d9e8d9f7dc7c70a80a65d2eb35",
+    "resourceCount": 16170,
+    "allAudioReferencesReady": true
   }
 }
