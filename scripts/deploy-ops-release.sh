@@ -502,7 +502,7 @@ fi
 if ! awk '
   BEGIN {
     split("DATABASE_URL NODE_ENV API_RELEASE_ID ACCOUNT_IDENTITY_HASH_SECRET OPS_ENABLED OPS_HOST OPS_PORT OPS_CORS_ORIGINS OPS_SESSION_HASH_SECRET OPS_TOTP_ENCRYPTION_KEY OPS_TRUSTED_PROXY_SHARED_SECRET", keys)
-    for (index in keys) allowed[keys[index]] = 1
+    for (key_index in keys) allowed[keys[key_index]] = 1
     optional["OPS_FEEDBACK_STORAGE_URL"] = 1
     optional["OPS_FEEDBACK_STORAGE_READ_TOKEN"] = 1
   }
