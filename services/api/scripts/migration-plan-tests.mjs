@@ -66,7 +66,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 51);
+  assert.equal(migrations.length, 52);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -91,6 +91,7 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.deepEqual(migrations.slice(42).map(migration => migration.tag), [
     '0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods',
     '0045_ai_operation_privacy', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0050_wechat_day_pass',
+    '0051_ops_reason_three_characters',
   ]);
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
@@ -318,6 +319,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0044_account_login_methods',
       '0045_ai_operation_privacy',
       '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0050_wechat_day_pass',
+    '0051_ops_reason_three_characters',
     ],
   );
   assert.ok(
