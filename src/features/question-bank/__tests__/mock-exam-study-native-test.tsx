@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { Alert, Text as MockText, View as MockView } from 'react-native';
+import { Alert, Platform, Text as MockText, View as MockView } from 'react-native';
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen.native';
 import { sqliteLearningStore } from '../platform/learning-store.native';
 import data from '../data/question-bank.json';
@@ -9,6 +9,7 @@ const mockEntitlement: { snapshot: { membership: { active: boolean; expiresAt: s
 let mockNote = '';
 const mockToggleFavorite = jest.fn();
 const mockAnnotationFlush = jest.fn(async () => true);
+const mockToggleTag = jest.fn();
 jest.mock('@/features/native-commercial-testflight/commerce-entitlement-events', () => ({ getCommerceEntitlementSnapshot: () => mockEntitlement, subscribeCommerceEntitlementChanges: () => () => {} }));
 jest.mock('../data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/platform/product-clicks.native', () => ({ trackProductClick: jest.fn(), setClickStudyContext: jest.fn() }));
@@ -18,7 +19,7 @@ jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
 jest.mock('react-native-reanimated', () => ({ ...jest.requireActual('react-native-reanimated/mock'), useReducedMotion: () => true }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../hooks/useQuestionBankAudioPreload', () => ({ useQuestionBankAudioPreload: jest.fn() }));
-jest.mock('../annotations/use-question-annotations-with-save.native', () => ({ useQuestionAnnotations: () => ({ flushPendingSaves: mockAnnotationFlush, entry: mockNote ? { note: mockNote, highlights: [], tagIds: [] } : undefined, highlightDefinitions: [], tagDefinitions: [], store: { entries: {} } }) }));
+jest.mock('../annotations/use-question-annotations-with-save.native', () => ({ useQuestionAnnotations: () => ({ flushPendingSaves: mockAnnotationFlush, toggleTag: mockToggleTag, entry: mockNote ? { note: mockNote, highlights: [], tagIds: [] } : undefined, highlightDefinitions: jest.requireActual('../annotations/types').DEFAULT_ANNOTATION_HIGHLIGHTS, tagDefinitions: jest.requireActual('../annotations/types').DEFAULT_ANNOTATION_TAGS, store: { entries: {} } }) }));
 jest.mock('../platform/network-service', () => ({ getConnectivity: async () => 'online', subscribeConnectivity: () => () => {} }));
 jest.mock('@/features/vocabulary/progress-store', () => ({ useWordFavorites: () => ({ isFavorite: () => false, toggleFavorite: mockToggleFavorite }) }));
 jest.mock('../static-word-lookup/repository', () => ({ hasStaticWordLookup: () => true, findStaticWordLookup: (word: string) => ({ word }) }));
@@ -175,3 +176,27 @@ it('releases the navigation lock after an annotation save failure so retry and r
   await waitFor(() => expect(onReturn).toHaveBeenCalledTimes(1));
 });
 jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
+
+it('opens tag and highlight management from the shared study screen on formal Web', async () => {
+  const originalPlatform = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { value: 'web', configurable: true });
+  try {
+    const input = paper(false);
+    input.record = { ...input.record, recordType: 'session', mockExam: undefined };
+    const screen = await render(<QuestionBankStudyScreen studyPackage={input} onReturn={() => {}} />);
+    await waitFor(() => expect(screen.getByTestId('annotation-panel-anchor')).toBeTruthy());
+    await fireEvent(screen.getByTestId('annotation-panel-anchor'), 'layout', { nativeEvent: { layout: { x: 0, y: 50, width: 400, height: 40 } } });
+    await fireEvent.press(screen.getByLabelText('开启标签模式'));
+    await fireEvent.press(screen.getByLabelText('管理标注分类'));
+    await fireEvent.press(screen.getByLabelText('颜色 yellow 已使用'));
+    expect(screen.getByLabelText('标注名称').props.value).toBe('记忆');
+    await fireEvent.changeText(screen.getByLabelText('标注名称'), '待保存草稿');
+    await fireEvent.press(screen.getByLabelText('取消编辑标注'));
+    expect(screen.queryByLabelText('标注名称')).toBeNull();
+    expect(mockToggleTag).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByLabelText('开启高亮模式'));
+    await fireEvent.press(screen.getByLabelText('管理标注分类'));
+    expect(screen.getByText('管理高亮 · 修改当前颜色名称')).toBeTruthy();
+    await screen.unmount();
+  } finally { Object.defineProperty(Platform, 'OS', { value: originalPlatform, configurable: true }); }
+});
