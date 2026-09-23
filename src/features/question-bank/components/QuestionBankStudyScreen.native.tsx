@@ -503,7 +503,7 @@ function StudyContent(props: Props) {
   const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
   const dictionaryMode = lookupInteraction === 'tap';
-  const nativeAnnotationMode = Platform.OS !== 'web' && (session.toolMode === 'highlight' || session.toolMode === 'tags')
+  const annotationMode = session.toolMode === 'highlight' || session.toolMode === 'tags'
     ? session.toolMode
     : undefined;
   const annotationPanelWidth = Math.min(viewportWidth - spacing[10], 390);
@@ -747,7 +747,7 @@ function StudyContent(props: Props) {
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
-      {!imageCard && !listeningExamActive && historyContentAllowed ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
+      {!imageCard && !listeningExamActive && historyContentAllowed ? <View testID="annotation-panel-anchor" onLayout={({ nativeEvent }) => setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height)} style={styles.tools}>
         <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={listeningReviewActive ? undefined : <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { void changeToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { void changeToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { void changeToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} />
       </View> : null}
 
@@ -761,7 +761,7 @@ function StudyContent(props: Props) {
           activeHighlightId={activeHighlightId}
           highlightDefinitions={annotations.highlightDefinitions}
           left={annotationPanelLeft}
-          mode={nativeAnnotationMode}
+          mode={annotationMode}
           onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color); }}
           onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }}
           onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }}
