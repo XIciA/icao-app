@@ -171,6 +171,22 @@ forbidText('scripts/deploy-ops-release.sh', [
   'insert into ops_staff_accounts',
 ]);
 const deployment = files['scripts/deploy-ops-release.sh'];
+// Compile and execute the actual embedded awk program, not only sh -n.
+const envAllowlist = deployment.match(/if ! awk '([\s\S]*?)' "\$runtime_env"; then/u)?.[1];
+if (!envAllowlist) throw new Error('ops_environment_allowlist_missing');
+const validEnv = files['infra/ops/ops-api.env.example'].split('\n')
+  .filter((line) => /^[A-Z0-9_]+=/u.test(line)).map((line) => line.split('=')[0] + '=test');
+for (const [name, input, accepted] of [
+  ['complete', validEnv.join('\n'), true],
+  ['optional_feedback', [...validEnv, 'OPS_FEEDBACK_STORAGE_URL=test', 'OPS_FEEDBACK_STORAGE_READ_TOKEN=test'].join('\n'), true],
+  ['missing', validEnv.slice(1).join('\n'), false],
+  ['duplicate', [...validEnv, validEnv[0]].join('\n'), false],
+  ['unknown', [...validEnv, 'UNREVIEWED_KEY=test'].join('\n'), false],
+]) {
+  const result = spawnSync('awk', [envAllowlist], { input: input + '\n', encoding: 'utf8' });
+  if ((result.status === 0) !== accepted) throw new Error(`ops_environment_allowlist_${name}:${result.stderr}`);
+}
+
 const stagingBlock = deployment.match(/<<'REMOTE_STAGE'\n([\s\S]*?)\nREMOTE_STAGE/u)?.[1];
 if (!stagingBlock) throw new Error('ops_upload_staging_preflight_missing');
 const stagingWrite = stagingBlock.indexOf('exec 9>"$lock_file"');
