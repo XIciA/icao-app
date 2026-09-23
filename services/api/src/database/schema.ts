@@ -838,7 +838,7 @@ export const opsEntitlementAdjustments = pgTable('ops_entitlement_adjustments', 
   uniqueIndex('ops_entitlement_adjustments_preview').on(table.previewId),
   index('ops_entitlement_adjustments_account').on(table.environment, table.accountId, table.appliedAt),
   check('ops_entitlement_adjustments_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
-  check('ops_entitlement_adjustments_reason_check', sql`length(btrim(${table.reason})) BETWEEN 8 AND 500`),
+  check('ops_entitlement_adjustments_reason_check', sql`length(btrim(${table.reason})) BETWEEN 3 AND 500`),
   check('ops_entitlement_adjustments_values_check', sql`${table.membershipDays} BETWEEN 0 AND 366 AND ${table.aiPoints} BETWEEN 0 AND 1000000 AND (${table.membershipDays} > 0 OR ${table.aiPoints} > 0)`),
 ]).enableRLS();
 
