@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 
 const files = Object.fromEntries(await Promise.all([
   'apps/ops/src/api.ts',
+  'apps/ops/index.html',
   'infra/gateway/Caddyfile',
   'infra/gateway/docker-compose.yml',
   'infra/ops/Dockerfile',
@@ -170,6 +171,24 @@ forbidText('scripts/deploy-ops-release.sh', [
   'provision-ops-staff',
   'insert into ops_staff_accounts',
 ]);
+// Exercise the real HTML probe against the page being shipped, so a title change
+// cannot silently break both deployment and rollback health checks.
+for (const path of ['scripts/deploy-ops-release.sh', 'infra/ops/rollback-release.sh']) {
+  const probes = [...files[path].matchAll(/grep -F '([^']+)' "\$attempt_dir\/[^"]+web\.html"/gu)];
+  if (probes.length !== (path.startsWith('scripts/') ? 3 : 1)) throw new Error(`ops_web_probes_missing:${path}`);
+  for (const [, marker] of probes) {
+    for (const [html, accepted] of [[files['apps/ops/index.html'], true], ['<html>upstream error</html>', false]]) {
+      const result = spawnSync('grep', ['-F', marker], { input: html, encoding: 'utf8' });
+      if ((result.status === 0) !== accepted) throw new Error(`ops_web_probe_mismatch:${path}`);
+    }
+  }
+}
+for (const path of ['infra/ops/Dockerfile', 'infra/ops/Dockerfile.api']) {
+  const dockerfile = files[path];
+  if (!dockerfile.includes('COPY patches patches') || dockerfile.indexOf('COPY patches patches') > dockerfile.indexOf('RUN pnpm install')) {
+    throw new Error(`ops_docker_missing_workspace_patches:${path}`);
+  }
+}
 const deployment = files['scripts/deploy-ops-release.sh'];
 // Compile and execute the actual embedded awk program, not only sh -n.
 const envAllowlist = deployment.match(/if ! awk '([\s\S]*?)' "\$runtime_env"; then/u)?.[1];

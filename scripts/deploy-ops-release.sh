@@ -742,7 +742,7 @@ if [ "$api_exists" -eq 1 ]; then
   grep -F '"service":"icao-ops-api"' "$attempt_dir/previous-public-ready.json" >/dev/null
   grep -F '"database":"ok"' "$attempt_dir/previous-public-ready.json" >/dev/null
   grep -Fi 'strict-transport-security:' "$attempt_dir/previous-public-web.headers" >/dev/null
-  grep -F '内部运营' "$attempt_dir/previous-public-web.html" >/dev/null
+  grep -F '<title>听你五个 · 管理后台</title>' "$attempt_dir/previous-public-web.html" >/dev/null
   previous_api_tag=icao-ops-api:rollback-$release_id-$attempt_id
   previous_web_tag=icao-ops-web:rollback-$release_id-$attempt_id
   running_api_image=$(docker inspect -f '{{.Image}}' icao-ops-api)
@@ -818,7 +818,7 @@ grep -F '"database":"ok"' "$attempt_dir/local-ready.json" >/dev/null
 local_release_id=$(tr -d '\r' < "$attempt_dir/local-ready.headers" \
   | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
 [ "$local_release_id" = "$release_id" ] || { echo 'Local Ops release identity mismatch.' >&2; exit 1; }
-grep -F '内部运营' "$attempt_dir/local-web.html" >/dev/null
+grep -F '<title>听你五个 · 管理后台</title>' "$attempt_dir/local-web.html" >/dev/null
 ss -ltnH | awk '{ print $4 }' | grep -Fx '127.0.0.1:3102' >/dev/null
 ss -ltnH | awk '{ print $4 }' | grep -Fx '127.0.0.1:4180' >/dev/null
 
@@ -842,7 +842,7 @@ public_release_id=$(tr -d '\r' < "$attempt_dir/public-ready.headers" \
   | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
 [ "$public_release_id" = "$release_id" ] || { echo 'Public Ops release identity mismatch.' >&2; exit 1; }
 grep -Fi 'strict-transport-security:' "$attempt_dir/public-web.headers" >/dev/null
-grep -F '内部运营' "$attempt_dir/public-web.html" >/dev/null
+grep -F '<title>听你五个 · 管理后台</title>' "$attempt_dir/public-web.html" >/dev/null
 chmod 600 "$attempt_dir"/*
 
 api_image_id=$(docker inspect -f '{{.Image}}' icao-ops-api)

@@ -180,7 +180,7 @@ if [ "$previous_state" = running ]; then
       || rollback_failed=1
     grep -Fi 'strict-transport-security:' "$attempt_dir/rollback-public-web.headers" >/dev/null \
       || rollback_failed=1
-    grep -F '内部运营' "$attempt_dir/rollback-public-web.html" >/dev/null \
+    grep -F '<title>听你五个 · 管理后台</title>' "$attempt_dir/rollback-public-web.html" >/dev/null \
       || rollback_failed=1
     restored_release_id=$(tr -d '\r' < "$attempt_dir/rollback-public-ready.headers" \
       | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
