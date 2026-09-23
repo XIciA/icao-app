@@ -1,6 +1,5 @@
 FROM node:22-alpine
 
-ARG ICAO_API_RELEASE_ID=development
 ARG ICAO_NPM_REGISTRY=https://registry.npmmirror.com
 
 RUN COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY" corepack enable \
@@ -26,6 +25,8 @@ COPY content/question-banks/opi-hotspots.json content/question-banks/opi-hotspot
 RUN node --test packages/contracts/test/runtime.test.mjs \
   && pnpm --filter @icao/contracts build && pnpm --filter @icao/api build
 
+# Release identity must not invalidate dependency and compiler layers.
+ARG ICAO_API_RELEASE_ID=development
 ENV NODE_ENV=production
 ENV API_RELEASE_ID=$ICAO_API_RELEASE_ID
 

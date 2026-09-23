@@ -621,7 +621,7 @@ describe('AiService combined transcription and review', () => {
     expect(benefits.settleAiPoints).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ environment: 'sandbox', result: expect.objectContaining({ transcript: first.transcript, review: first.review }) }));
     expect(asr.transcribe).toHaveBeenCalledTimes(1);
     expect(review.generateValidated).toHaveBeenCalledTimes(1);
-    benefits.reserveAiPoints.mockResolvedValueOnce({ state: 'replay', data: first } as never);
+    benefits.reserveAiPoints.mockResolvedValueOnce({ state: 'replay', data: { ...first, model: '16k_en', normalization: { version: 'legacy' } } } as never);
     expect(await ai.transcribeReview('user-1', 'combined-retry', Buffer.from('audio'), 'audio/wav', '16k_en', input, grant, undefined, 'stable-operation')).toEqual(first);
     expect(asr.transcribe).toHaveBeenCalledTimes(1);
     expect(review.generateValidated).toHaveBeenCalledTimes(1);
@@ -657,10 +657,11 @@ describe('ASR production profile and faithful presentation', () => {
       : await ai.transcribeReview('user-1', 'faithful', Buffer.from('audio'), 'audio/wav', '16k_en_large', { mode: 'grammar', module: 'atc', questionId: 'q-1' }, grant);
     expect(asr.transcribe).toHaveBeenCalledWith(Buffer.from('audio'), 'audio/wav', '16k_en', undefined, 'faithful');
     expect(result).toMatchObject({
-      rawTranscript, model: '16k_en', transcript: 'We has FL310. Unable QNH 1013.',
-      normalization: { version: 'aviation-normalization:conservative-v1' },
+      rawTranscript, transcript: 'We has FL310. Unable QNH 1013.',
     });
     expect(benefits.settleAiPoints).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ result: expect.objectContaining({ rawTranscript }) }));
+    expect(result).not.toHaveProperty('model');
+    expect(result).not.toHaveProperty('normalization');
     if (entry === 'transcribeReview') {
       expect(review.generateValidated.mock.calls[0]?.[0].prompt).toContain('We has FL310. Unable QNH 1013.');
     }

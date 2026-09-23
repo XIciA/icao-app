@@ -16,7 +16,7 @@ const audioFile = process.env.AI_VERIFY_AUDIO_FILE
 const audioMimeType = process.env.AI_VERIFY_AUDIO_MIME ?? 'audio/mp4';
 const bucketName = process.env.AI_ASR_STAGING_BUCKET ?? 'ai-transcription-inputs';
 const expectedModel = process.env.AI_VERIFY_ASR_MODEL ?? '16k_en';
-const expectedWorkflow = 'tencent-asr:raw:v1';
+const expectedWorkflow = 'aviation-normalization:conservative-v1';
 const supabaseUrl = process.env.SUPABASE_URL;
 const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
@@ -202,9 +202,10 @@ try {
   transcribeRequestId = transcribeResponse.requestId;
   assert(typeof result.transcript === 'string' && result.transcript.trim().length > 0, 'empty_transcript');
   assert(
-    JSON.stringify(Object.keys(result).sort()) === JSON.stringify(['aiPoints', 'transcript']),
+    JSON.stringify(Object.keys(result).sort()) === JSON.stringify(['aiPoints', 'rawTranscript', 'transcript']),
     'public_contract_leaks_internal_fields',
   );
+  assert(typeof result.rawTranscript === 'string' && result.rawTranscript.trim().length > 0, 'raw_transcript_missing');
   assert(
     typeof result.aiPoints?.operationId === 'string'
       && result.aiPoints.operationId.length > 0
@@ -256,7 +257,7 @@ try {
     workflow: expectedWorkflow,
     transcriptCharacters: result.transcript.length,
     temporaryAudioRemoved: true,
-    publicContract: ['aiPoints', 'transcript'],
+    publicContract: ['aiPoints', 'rawTranscript', 'transcript'],
     requestObserved: true,
   };
 } catch (error) {
