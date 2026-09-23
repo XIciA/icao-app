@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 14,
-  "generatedAt": "2026-09-19T23:28:00.617Z",
+  "releaseVersion": 15,
+  "generatedAt": "2026-09-23T07:31:03.134Z",
   "totals": {
     "files": 603,
-    "textValues": 63945
+    "textValues": 63933
   },
   "files": [
     {
       "file": "content/question-banks/banks/listening/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "4dab329ca51bb4a7f6a21fe16b51e2d88e87977963f17346b1bd82a5068deca2",
+      "textProjectionSha256": "6149f26c5bc03b21d5ee4f284dfaaabee93f45b06d5b2017698eba426ba49bd6",
       "status": "reviewed"
     },
     {
@@ -40,8 +40,8 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "textValues": 7597,
-      "textProjectionSha256": "542d4f8a883c614bc0a0a6f946ae8cd225864e5197c65f079fe70385f8e2bd2f",
+      "textValues": 7585,
+      "textProjectionSha256": "c2b811ee476c694c9d0eb821cf5d4c5ef10af72042594dd9da27875848461164",
       "status": "reviewed"
     },
     {

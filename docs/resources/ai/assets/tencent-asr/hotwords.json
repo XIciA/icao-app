@@ -3,9 +3,9 @@
   "engine": "16k_en",
   "basis": "User-approved full-bank expansion. Initial 18 terms retain historical error evidence. New terms are corpus/context candidates, not measured accuracy gains; no audio calls this round.",
   "corpus": {
-    "cards": 10877,
+    "cards": 10876,
     "bankCounts": {
-      "listening": 1614,
+      "listening": 1613,
       "opi": 2230,
       "radiotelephony": 5751,
       "sentences900": 900,
@@ -3624,8 +3624,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 28,
-      "uniqueTextCount": 27,
+      "cardCount": 27,
+      "uniqueTextCount": 26,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -3638,8 +3638,7 @@
         "sentence900-main-453",
         "listening-fzy-110852",
         "listening-fzy-219586",
-        "listening-main-754",
-        "listening-main-755"
+        "listening-main-754"
       ],
       "examples": [
         {

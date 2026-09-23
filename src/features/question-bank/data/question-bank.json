@@ -4,12 +4,12 @@
     "title": "听力",
     "nameEn": "Listening",
     "description": "理解能力",
-    "summary": "4 题组 / 1614 题",
+    "summary": "4 题组 / 1613 题",
     "enabled": true,
     "statusLabel": "可练习",
     "icon": "headphones",
     "declaredTopicCount": 4,
-    "declaredCardCount": 1614,
+    "declaredCardCount": 1613,
     "categoryUnit": "分类",
     "topicUnit": "题组",
     "cardUnit": "题",
@@ -44,12 +44,12 @@
         "id": "listening-category-01",
         "name": "10s航空英语",
         "declaredTopicCount": 1,
-        "declaredCardCount": 633,
+        "declaredCardCount": 632,
         "topics": [
           {
             "id": "listening-topic-01",
             "name": "全部题目",
-            "declaredCardCount": 633,
+            "declaredCardCount": 632,
             "cards": [
               {
                 "id": "listening-main-001",
@@ -5131,28 +5131,6 @@
                   "遵守空中交通管制规定"
                 ],
                 "audioDurationSeconds": 15.624
-              },
-              {
-                "id": "listening-main-755",
-                "taskTitle": "10s航空英语-332",
-                "audioText": "The cabin crew plays a crucial role in passenger safety during emergencies. Their training enables them to quickly respond to situations like decompression and direct passengers effectively, such as providing oxygen masks and directing the passengers to follow the crew's instructions.\nQuestion: In the event of an emergency on board, such as rapid decompression, what is the primary role of the cabin crew?",
-                "audioTextZh": "客舱机组在紧急情况下保障乘客安全方面发挥关键作用。所接受的训练使他们能够迅速应对失压等情况并有效引导乘客，例如提供氧气面罩并指示乘客遵从机组指令。\n问题：机上发生快速失压等紧急情况时，客舱机组的主要作用是什么？",
-                "referenceText": "正确答案：D. To provide oxygen masks and directing them to follow emergency procedures.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q10.mp3",
-                "choices": [
-                  "To remain seated and wait for the pilots' instructions.",
-                  "To immediately prepare the aircraft for landing.",
-                  "To guide passengers to their assigned seats and provide in-flight meals.",
-                  "To provide oxygen masks and directing them to follow emergency procedures."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "留在座位上等待飞行员指令",
-                  "立即准备航空器着陆",
-                  "引导乘客到指定座位并提供机上餐食",
-                  "提供氧气面罩并指示乘客遵循应急程序"
-                ],
-                "audioDurationSeconds": 18.936
               },
               {
                 "id": "listening-main-756",
