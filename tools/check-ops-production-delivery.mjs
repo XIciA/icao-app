@@ -348,6 +348,10 @@ requireText('infra/ops/docker-compose.runtime.yml', [
   'name: supabase_default',
 ]);
 forbidText('infra/ops/docker-compose.runtime.yml', ['build:', '0.0.0.0:3102', '0.0.0.0:4180']);
+const staticRuntime = files['infra/ops/docker-compose.runtime.yml'].split('  ops-web:')[1]?.split('\nnetworks:')[0];
+if (!staticRuntime?.includes('cap_add:\n      - NET_BIND_SERVICE')) {
+  throw new Error('ops_caddy_file_capability_missing_from_bounding_set');
+}
 
 requireText('infra/gateway/Caddyfile', [
   'handle_path /admin/* {',
