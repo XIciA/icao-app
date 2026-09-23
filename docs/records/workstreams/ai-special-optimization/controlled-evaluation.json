@@ -771,5 +771,43 @@
     "resourceSnapshotSha256": "3a2ce47ff563f42bc93dc17620ebbd7b482963d9e8d9f7dc7c70a80a65d2eb35",
     "resourceCount": 16170,
     "allAudioReferencesReady": true
+  },
+  "listeningQuestionRemovalRelease": {
+    "commit": "bc42931e09364c5746b06d2a243157770498e7b7",
+    "pullRequest": 162,
+    "tag": "release/content-listening/20260923-v15-bc42931e",
+    "archive": {
+      "commit": "bc42931e09364c5746b06d2a243157770498e7b7",
+      "id": "content-listening-v15-bc42931e",
+      "sha": "8b37a93c735d8a3824b33707eba3d2e50ab52ecbbd8bd4fb3977a97a75bfb850"
+    },
+    "serverVerification": {
+      "phase": "after",
+      "status": "ok",
+      "at": "2026-09-23T08:12:06.150Z",
+      "version": 15,
+      "checksum": "43d7f4afab22c5be75a66724bd9c64860c9b152c35274bcf72a7f3e44be26c25",
+      "cards": 1613,
+      "otherBanksUnchanged": true,
+      "resourcesUnchanged": true,
+      "retainedRollbackVersion": 14
+    },
+    "clientApiVerification": {
+      "status": "ok",
+      "checkedAt": "2026-09-23T08:12:47.485Z",
+      "version": 15,
+      "checksum": "43d7f4afab22c5be75a66724bd9c64860c9b152c35274bcf72a7f3e44be26c25",
+      "bankCount": 1613,
+      "topicCount": 632,
+      "freeCards": 40,
+      "targetAbsentFromCatalogAndTopic": true,
+      "oldEtagRefreshes": true,
+      "newEtag304": true,
+      "environment": "production",
+      "cleanupComplete": true
+    },
+    "legacyVercelFrozen": true,
+    "clientRebuildRequired": false,
+    "acceptanceLimit": "Live production API and deterministic rendering/data checks; does not assert that already-open or offline client sessions immediately refresh."
   }
 }
