@@ -1,5 +1,4 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { opsResponse } from '../../../apps/ops/src/api';
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -13,6 +12,7 @@ it.each([
   const fetch = vi.fn().mockResolvedValue({ ok: true });
   vi.stubGlobal('fetch', fetch);
   const path = expected.replace(/^\/admin/, '');
+  const { opsResponse } = await import('../../../apps/ops/src/api.js');
   await opsResponse(path, {}, false);
-  expect(fetch.mock.calls[0][0]).toBe(expected);
+  expect(fetch.mock.calls[0]?.[0]).toBe(expected);
 });
