@@ -1,4 +1,4 @@
-import { normalizeAviationTranscriptDetailed, AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, type AviationTranscriptNormalizationResult } from './aviation-transcript-normalization';
+import { normalizeAviationTranscriptDetailed, AVIATION_TRANSCRIPT_NORMALIZATION_VERSION } from './aviation-transcript-normalization';
 import { DEFAULT_TENCENT_ASR_MODEL } from '@icao/contracts';
 import { estimateCostMicrounits } from './usage-cost';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
@@ -20,6 +20,13 @@ import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-pro
 import { legacyIssueText, parseAndValidateReview, withReviewPromptVersion } from './review-harness';
 import { aiFailureObservation } from './ai-error-observability';
 import type { ProviderMeta } from './provider-meta';
+
+// Legacy reservations may contain provider-only fields. Apply the same public
+// boundary to lookup and idempotent replay; new results never persist these fields.
+function publicAiPayload<T extends Record<string, unknown>>(value: T): T {
+  const { model: _model, normalization: _normalization, ...payload } = value;
+  return payload as T;
+}
 
 type UsageCapability = 'transcribe' | 'grammar_review' | 'polish';
 type AiProviderName = 'deepseek' | 'tencent-asr';
@@ -90,7 +97,7 @@ export class AiService {
     }
     // Privacy deletion clears the body but retains the financial ledger.
     if (!operation.resultPayload) return { state: 'missing' };
-    const payload = operation.resultPayload as Record<string, unknown>;
+    const payload = publicAiPayload(operation.resultPayload as Record<string, unknown>);
     const result = operation.capability === 'grammar_correction' || operation.capability === 'opi_refinement'
       ? { ...payload, promptVersion: payload.analysis ? LEARNING_REVIEW_PROMPT_VERSION : REVIEW_PROMPT_VERSION } : payload;
     return { state: 'completed', capability: operation.capability as keyof AiRuleCosts,
@@ -397,7 +404,7 @@ export class AiService {
       requestDigest: input.requestDigest,
       signal: input.signal,
     });
-    if (reservation.state === 'replay') return reservation.data;
+    if (reservation.state === 'replay') return publicAiPayload(reservation.data);
     const started = Date.now();
     const usage = {
       userId: input.userId,
@@ -470,8 +477,7 @@ export class AiService {
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
         const normalized = normalizeAviationTranscriptDetailed(result.rawTranscript);
-        return { data: { transcript: normalized.transcript, rawTranscript: result.rawTranscript,
-          normalization: { version: normalized.version, transformations: normalized.transformations }, model }, meta: result.meta };
+        return { data: { transcript: normalized.transcript, rawTranscript: result.rawTranscript }, meta: result.meta };
       },
     });
   }
@@ -479,7 +485,7 @@ export class AiService {
   async transcribeReview(
     userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel,
     input: TranscribeReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId, materials?: LearningReviewMaterials,
-  ): Promise<TranscribeReviewResult & { rawTranscript: string; model: TencentAsrModel; normalization: Omit<AviationTranscriptNormalizationResult, 'transcript'> }> {
+  ): Promise<TranscribeReviewResult & { rawTranscript: string }> {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     model = DEFAULT_TENCENT_ASR_MODEL;
     const pointCapability = input.mode === 'opi' ? 'transcription_opi' : 'transcription_grammar';
@@ -503,8 +509,7 @@ export class AiService {
         if (input.analysisVersion === 2) await this.savePartial(userId, grant.environment ?? 'production', operationId,
           { transcript, rawTranscript: transcription.rawTranscript, input });
         const result = await this.generateReview(userId, { ...input, transcript }, signal, materials);
-        return { data: { transcript, rawTranscript: transcription.rawTranscript, model,
-          normalization: { version: normalized.version, transformations: normalized.transformations },
+        return { data: { transcript, rawTranscript: transcription.rawTranscript,
           review: withReviewPromptVersion(result.data) }, meta: result.meta };
       },
     });
