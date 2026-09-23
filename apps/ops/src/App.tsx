@@ -39,7 +39,6 @@ function Login({ onLogin }: { onLogin: (session: OpsStaffSession) => void }) {
   return <main className="login-shell">
     <section className="login-card">
       <div className="brand-mark">5</div>
-      <p className="eyebrow">飞猪 ICAO · 内部系统</p>
       <h1>运营后台</h1>
       <p className="muted">仅限获授权的公司工作人员。所有查询与变更都会记录审计。</p>
       <form onSubmit={submit} className="form-stack">
