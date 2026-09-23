@@ -1,3 +1,4 @@
+import { preserveManagedAnnotations } from '@icao/contracts/annotation-management';
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import type {
   CardStateMutation,
@@ -446,6 +447,9 @@ export class SyncService {
           updatedAt: current.updatedAt.toISOString(),
         },
       };
+    }
+    if (mutation.payload.documentKey === 'annotations') {
+      mutation = { ...mutation, payload: { ...mutation.payload, document: preserveManagedAnnotations(current?.payload as Record<string, unknown> | undefined, mutation.payload.document) } };
     }
     const values = {
       userId,

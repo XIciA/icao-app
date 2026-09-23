@@ -9,7 +9,7 @@ import { InteractiveStudyText } from '../components/InteractiveStudyText';
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
-  return { Check: Icon, Highlighter: Icon, Plus: Icon, Search: Icon, Tags: Icon, X: Icon };
+  return { Check: Icon, Highlighter: Icon, Pencil: Icon, Trash2: Icon, Plus: Icon, Search: Icon, Tags: Icon, X: Icon };
 });
 
 describe('annotation study controls', () => {
@@ -248,10 +248,10 @@ describe('annotation study controls', () => {
 
     await fireEvent.press(screen.getByLabelText('开启标签模式'));
     await waitFor(() => expect(screen.getByLabelText('取消选择好题')).toBeTruthy());
-    await fireEvent.press(screen.getByLabelText('新建标注定义'));
-    expect(screen.getByLabelText('新标签名称')).toBeTruthy();
-    await fireEvent.changeText(screen.getByLabelText('新标签名称'), '复习');
-    await fireEvent.press(screen.getByLabelText('取消新建'));
+    await fireEvent.press(screen.getByLabelText('管理标注分类'));
+    expect(screen.getByLabelText('标注名称')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText('标注名称'), '复习');
+    await fireEvent.press(screen.getByLabelText('取消编辑标注'));
     expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy();
     await fireEvent.press(screen.getByLabelText('取消选择好题'));
     expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy();

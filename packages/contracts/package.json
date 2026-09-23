@@ -6,6 +6,9 @@
     ".": "./src/index.ts",
     "./native-auth": "./src/native-auth.ts",
     "./commerce-rules": "./src/commerce-rules.ts",
+    "./aviation-transcript-normalization": "./src/aviation-transcript-normalization.ts",
+    "./annotation-management": "./src/annotation-management.ts",
+    "./learning-ai": "./src/learning-ai.ts",
     "./feedback-ops": "./src/feedback-ops.ts",
     "./app-content": "./src/app-content.ts",
     "./wechat-pay": "./src/wechat-pay.ts"

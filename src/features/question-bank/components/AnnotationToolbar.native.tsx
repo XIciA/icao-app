@@ -1,10 +1,10 @@
 import { trackProductClick } from '@/platform/product-clicks.native';
-import { Check, Highlighter, Plus, Search, Tags, X } from '@/components/ui/icons';
+import { Check, Highlighter, Pencil, Search, Tags, Trash2, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
-import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
-import { AppText } from '@/components/ui';
+import { AppText, Button } from '@/components/ui';
 import { colors, radii, shadows, spacing } from '@/theme';
 
 import { annotationToneColors } from '../annotations/colors';
@@ -36,6 +36,11 @@ type ToolbarProps = {
 };
 
 type FloatingPanelProps = {
+  onManagingChange?: (editing: boolean) => void;
+  exitGuardRef?: { current: (() => Promise<boolean>) | undefined };
+  onSaveDefinition?: (kind: CreatorKind, id: string | undefined, label: string, color: AnnotationToneKey) => Promise<boolean>;
+  onDeleteDefinition?: (kind: CreatorKind, id: string) => Promise<boolean>;
+  definitionUsage?: (kind: CreatorKind, id: string) => number;
   activeHighlightId: string;
   highlightDefinitions: AnnotationDefinition[];
   left: number;
@@ -138,106 +143,117 @@ export function AnnotationFloatingPanel(props: FloatingPanelProps) {
   return <AnnotationFloatingPanelContent key={`${props.mode}:${props.resetToken}`} {...props} mode={props.mode} />;
 }
 
-function AnnotationFloatingPanelContent({
-  activeHighlightId,
-  highlightDefinitions,
-  left,
-  mode,
-  onCreateHighlight,
-  onCreateTag,
-  onHighlightChange,
-  onTagToggle,
-  selectedTags,
-  tagDefinitions,
-  top,
-  width,
+function AnnotationFloatingPanelContent({ activeHighlightId, highlightDefinitions, left, mode,
+  onHighlightChange, onTagToggle, selectedTags, tagDefinitions, top, width,
+  onManagingChange, onSaveDefinition, onDeleteDefinition, definitionUsage, exitGuardRef,
 }: Omit<FloatingPanelProps, 'mode'> & { mode: FloatingMode }) {
-  const [creator, setCreator] = useState<CreatorKind>();
+  const [editing, setEditing] = useState(false);
   const [name, setName] = useState('');
+  const [editingId, setEditingId] = useState<string>();
   const [tone, setTone] = useState<AnnotationToneKey>('green');
-
-  const creatorKind: CreatorKind = mode === 'tags' ? 'tag' : 'highlight';
+  const [pendingTone, setPendingTone] = useState<AnnotationToneKey>();
+  const [deleting, setDeleting] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const pendingExit = useRef<Promise<boolean> | undefined>(undefined);
+  const kind: CreatorKind = mode === 'tags' ? 'tag' : 'highlight';
   const definitions = mode === 'tags' ? tagDefinitions : highlightDefinitions;
-  const selectedIds = mode === 'tags' ? selectedTags : [activeHighlightId];
-
-  function closeCreator() {
-    setCreator(undefined);
-    setName('');
-    setTone('green');
+  const definition = editingId ? definitions.find((entry) => entry.id === editingId) : undefined;
+  const dirty = name.trim() !== (definition?.label ?? '');
+  useEffect(() => { onManagingChange?.(editing); return () => onManagingChange?.(false); }, [editing, onManagingChange]);
+  useEffect(() => {
+    if (!exitGuardRef) return;
+    exitGuardRef.current = () => {
+      if (busy) return Promise.resolve(false);
+      if (!editing) return Promise.resolve(true);
+      if (!dirty) { setEditing(false); return Promise.resolve(true); }
+      if (!pendingExit.current) {
+        pendingExit.current = new Promise<boolean>((resolve) => {
+          Alert.alert('放弃未保存的修改？', '当前分类名称尚未保存。可以继续编辑，或放弃修改后离开。', [
+            { text: '继续编辑', style: 'cancel', onPress: () => resolve(false) },
+            { text: '放弃修改', style: 'destructive', onPress: () => { setEditing(false); resolve(true); } },
+          ], { cancelable: true, onDismiss: () => resolve(false) });
+        }).finally(() => { pendingExit.current = undefined; });
+      }
+      return pendingExit.current;
+    };
+    return () => { exitGuardRef.current = undefined; };
+  }, [busy, dirty, editing, exitGuardRef]);
+  function selectTone(next: AnnotationToneKey) {
+    const selected = definitions.find((entry) => entry.color === next);
+    setTone(next); setName(selected?.label ?? ''); setEditingId(selected?.id);
+    setError(''); setDeleting(false); setPendingTone(undefined);
   }
-
-  function submitCreator() {
-    const label = name.trim();
-    if (!label || !creator) return;
-    if (creator === 'tag') onCreateTag(label, tone);
-    else onCreateHighlight(label, tone);
-    closeCreator();
+  function changeTone(next: AnnotationToneKey) {
+    if (busy || tone === next) return;
+    if (dirty) setPendingTone(next); else selectTone(next);
   }
-
-  return (
-    <View pointerEvents="box-none" style={styles.floatingLayer} testID="annotation-floating-layer">
-      <View
-        style={[styles.picker, { left, top, width }]}
-        testID={mode === 'highlight' ? 'highlight-color-panel' : 'annotation-picker-panel'}
-      >
-        <ToolOptions
-          definitions={definitions}
-          onCreate={() => setCreator(creatorKind)}
-          onSelect={mode === 'tags' ? onTagToggle : onHighlightChange}
-          selectedIds={selectedIds}
-          singleSelection={mode === 'highlight'}
-        />
-        {creator === creatorKind ? (
-          <View style={styles.creator}>
-            <TextInput
-              accessibilityLabel={creator === 'tag' ? '新标签名称' : '新高亮名称'}
-              autoFocus
-              maxLength={8}
-              onChangeText={setName}
-              onSubmitEditing={submitCreator}
-              placeholder="名称"
-              placeholderTextColor={colors.mutedForeground}
-              style={styles.input}
-              value={name}
-            />
-            <View style={styles.creatorFooter}>
-              <View style={styles.tones}>
-                {(Object.keys(annotationToneColors) as AnnotationToneKey[]).map((key) => (
-                  <Pressable
-                    accessibilityLabel={`颜色 ${key}`}
-                    key={key}
-                    onPress={() => setTone(key)}
-                    style={[styles.toneButton, tone === key ? styles.toneSelected : null]}
-                  >
-                    <View style={[styles.toneDot, { backgroundColor: annotationToneColors[key] }]} />
-                  </Pressable>
-                ))}
-              </View>
-              <Pressable accessibilityLabel="取消新建" onPress={closeCreator} style={styles.iconButton}>
-                <X color={colors.mutedForeground} size={15} />
-              </Pressable>
-              <Pressable
-                accessibilityLabel="确认新建"
-                disabled={!name.trim()}
-                onPress={submitCreator}
-                style={[styles.confirmButton, !name.trim() ? styles.disabled : null]}
-              >
-                <Check color={colors.primaryForeground} size={15} />
-              </Pressable>
-            </View>
-          </View>
-        ) : null}
-      </View>
+  function enter() {
+    if (editing) return;
+    selectTone(definitions.find((entry) => entry.id === activeHighlightId)?.color ?? definitions[0]?.color ?? 'green');
+    setEditing(true);
+  }
+  function close() { if (!busy) { setEditing(false); setDeleting(false); setPendingTone(undefined); setError(''); } }
+  async function save() {
+    if (busy || !name.trim()) return;
+    if (editingId && !definition) { setError('此分类已被其他设备删除，请取消后重新选择。'); return; }
+    if (!dirty && definition) { close(); return; }
+    setBusy(true); setError('');
+    try {
+      if (!await onSaveDefinition?.(kind, definition?.id, name, tone)) { setError('保存未完成，请重试；每种颜色只能有一个名称。'); return; }
+      setEditing(false);
+    } catch { setError('保存失败，请重试。'); }
+    finally { setBusy(false); }
+  }
+  async function remove() {
+    if (busy || !definition) return;
+    setBusy(true); setError('');
+    try {
+      if (!await onDeleteDefinition?.(kind, definition.id)) { setError('删除未完成，请重试。'); return; }
+      setEditing(false); setDeleting(false);
+    } catch { setError('删除失败，请重试。'); }
+    finally { setBusy(false); }
+  }
+  return <View pointerEvents="box-none" style={styles.floatingLayer} testID="annotation-floating-layer">
+    <View style={[styles.picker, { left, top, width }]} testID={mode === 'highlight' ? 'highlight-color-panel' : 'annotation-picker-panel'}>
+      <ToolOptions definitions={definitions} onCreate={enter}
+        onSelect={(id) => { if (busy) return; const selected = definitions.find((entry) => entry.id === id); if (editing) { if (selected) { if (dirty) { setError('请先保存或取消当前修改。'); return; } setTone(selected.color); setName(selected.label); setEditingId(selected.id); setDeleting(false); setError(''); } } else if (mode === 'tags') onTagToggle(id); else onHighlightChange(id); }}
+        selectedIds={editing ? definition ? [definition.id] : [] : mode === 'tags' ? selectedTags : [activeHighlightId]}
+        singleSelection={mode === 'highlight'} managing={editing} />
+      {!editing && mode === 'highlight' && !definitions.some((entry) => entry.id === activeHighlightId) ? <AppText variant="caption">请选择高亮颜色，再标记正文。</AppText> : null}
+      {editing ? <View style={styles.creator}>
+        <AppText variant="micro">{kind === 'tag' ? '管理标签' : '管理高亮'} · {definition ? '修改当前颜色名称' : '选择的颜色尚未使用，填写名称即可新增'}</AppText>
+        {new Set(definitions.map((entry) => entry.color)).size < definitions.length ? <AppText variant="caption">历史分类超过可用颜色，已保留全部标记。请先删除不再需要的分类，释放颜色后会自动整理；删除前会显示影响范围。</AppText> : null}
+        <TextInput accessibilityLabel="标注名称" autoFocus editable={!busy} maxLength={8} onChangeText={setName}
+          onSubmitEditing={() => { void save(); }} placeholder="名称" placeholderTextColor={colors.mutedForeground} style={styles.input} value={name} />
+        <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
+          <View style={styles.tones}>{(Object.keys(annotationToneColors) as AnnotationToneKey[]).map((key) => <Pressable
+            accessibilityLabel={`颜色 ${key}${definitions.some((entry) => entry.color === key) ? ' 已使用' : ' 未使用'}`} accessibilityState={{ selected: tone === key }} disabled={busy}
+            key={key} onPress={() => changeTone(key)} style={[styles.toneButton, tone === key ? styles.toneSelected : null]}>
+            <View style={[styles.toneDot, { backgroundColor: annotationToneColors[key] }]} />
+          </Pressable>)}</View>
+        </ScrollView>
+        {pendingTone ? <View style={{ gap: spacing[2] }}><AppText variant="caption">切换颜色会放弃未保存的名称修改。</AppText><Button size="sm" onPress={() => selectTone(pendingTone)}>放弃修改并切换</Button><Button size="sm" variant="outline" onPress={() => setPendingTone(undefined)}>继续编辑</Button></View> : null}
+        {deleting && definition ? <View style={{ gap: spacing[2] }}><AppText variant="caption">删除“{definition.label}”及其在 {definitionUsage?.(kind, definition.id) ?? 0} 道题上的{kind === 'tag' ? '标签' : '高亮'}？其他标记和笔记保留。</AppText><Button size="sm" disabled={busy} onPress={() => { void remove(); }}>确认删除</Button><Button size="sm" disabled={busy} variant="outline" onPress={() => setDeleting(false)}>取消删除</Button></View> : null}
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        <View style={styles.creatorFooter}>
+          {definition ? <Pressable accessibilityLabel="删除当前分类" disabled={busy} onPress={() => setDeleting(true)} style={styles.iconButton}><Trash2 color={colors.destructive} size={18} /></Pressable> : null}
+          <View style={{ flex: 1 }} />
+          <Pressable accessibilityLabel="取消编辑标注" disabled={busy} onPress={close} style={styles.iconButton}><X color={colors.mutedForeground} size={18} /></Pressable>
+          <Pressable accessibilityLabel={dirty || !definition ? '保存标注' : '完成标注管理'} disabled={busy || !name.trim()} onPress={() => { void save(); }} style={[styles.confirmButton, busy || !name.trim() ? styles.disabled : null]}><Check color={colors.primaryForeground} size={18} /></Pressable>
+        </View>
+      </View> : null}
     </View>
-  );
+  </View>;
 }
 
-function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelection }: {
+function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelection, managing = false }: {
   definitions: AnnotationDefinition[];
   onCreate: () => void;
   onSelect: (id: string) => void;
   selectedIds: string[];
   singleSelection: boolean;
+  managing?: boolean;
 }) {
   return (
     <ScrollView contentContainerStyle={styles.options} horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
@@ -245,7 +261,7 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
         const selected = selectedIds.includes(definition.id);
         return (
           <Pressable
-            accessibilityLabel={singleSelection ? `使用${definition.label}高亮` : `${selected ? '取消选择' : '选择'}${definition.label}`}
+            accessibilityLabel={managing ? `编辑${definition.label}` : singleSelection ? `使用${definition.label}高亮` : `${selected ? '取消选择' : '选择'}${definition.label}`}
             accessibilityState={{ selected }}
             key={definition.id}
             onPress={() => onSelect(definition.id)}
@@ -257,8 +273,8 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
           </Pressable>
         );
       })}
-      <Pressable accessibilityLabel="新建标注定义" onPress={onCreate} style={styles.addButton}>
-        <Plus color={colors.mutedForeground} size={15} />
+      <Pressable accessibilityLabel="管理标注分类" onPress={onCreate} style={styles.addButton}>
+        <Pencil color={colors.mutedForeground} size={15} />
       </Pressable>
     </ScrollView>
   );

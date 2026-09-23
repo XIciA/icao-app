@@ -1,6 +1,6 @@
 import type { QuestionBankId } from '../types';
 
-export type AnnotationToneKey = 'green' | 'yellow' | 'red' | 'blue';
+export type AnnotationToneKey = import('@icao/contracts/annotation-management').ManagedAnnotationTone;
 export type AnnotationTextBlockId = 'question' | 'reference';
 
 export type AnnotationDefinition = {
@@ -34,7 +34,8 @@ export type QuestionAnnotationEntry = QuestionBankCardTarget & {
 };
 
 export type QuestionBankAnnotationStore = {
-  version: 1;
+  version: 1 | 2;
+  deletedDefinitions?: import('@icao/contracts/annotation-management').AnnotationDeletions;
   legacyImported: boolean;
   tagDefinitions: AnnotationDefinition[];
   highlightDefinitions: AnnotationDefinition[];
