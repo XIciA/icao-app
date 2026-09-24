@@ -231,6 +231,8 @@ test('legacy bank relocation preserves exact published bytes and rejects mutable
   const before = expected.find(file => file.path === originalPath);
   const snapshot = { ...before, path: 'src/features/question-bank/data/legacy-v13/question-bank.json', sha256: 'd38adbeb28176454d3c124e83b02d182c4645034264a5f9b73d8679334e78ecf' };
   assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [snapshot]), [{ ...snapshot, path: originalPath }]);
+  const withoutRemovedQuestion = { ...snapshot, sha256: '2bfacfa95474ab42e17204d28889d3af400c93dae80d833b384185b9089630ce' };
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [withoutRemovedQuestion]), [{ ...withoutRemovedQuestion, path: originalPath }]);
   const changed = { ...snapshot, sha256: '0'.repeat(64) };
   assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [changed]), [changed]);
   assert.equal(normalizeReviewedFormalWebInputs(expected, [snapshot, before])[0].path, snapshot.path);

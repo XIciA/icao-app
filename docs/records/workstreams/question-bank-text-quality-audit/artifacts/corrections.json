@@ -591,7 +591,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/audioText",
+      "pointer": "/cards/293/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -607,7 +607,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/choices/0",
+      "pointer": "/cards/293/choices/0",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -623,7 +623,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/choices/1",
+      "pointer": "/cards/293/choices/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -639,7 +639,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/choices/2",
+      "pointer": "/cards/293/choices/2",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -655,7 +655,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/choices/3",
+      "pointer": "/cards/293/choices/3",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -671,7 +671,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/294/referenceText",
+      "pointer": "/cards/293/referenceText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -687,7 +687,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/303/choices/0",
+      "pointer": "/cards/302/choices/0",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -703,7 +703,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/316/choices/0",
+      "pointer": "/cards/315/choices/0",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -719,7 +719,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/326/choices/2",
+      "pointer": "/cards/325/choices/2",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -735,7 +735,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/332/choices/1",
+      "pointer": "/cards/331/choices/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -751,7 +751,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/338/choices/1",
+      "pointer": "/cards/337/choices/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -767,7 +767,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/338/referenceText",
+      "pointer": "/cards/337/referenceText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -815,7 +815,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/419/choices/3",
+      "pointer": "/cards/418/choices/3",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -831,7 +831,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/419/choicesZh/3",
+      "pointer": "/cards/418/choicesZh/3",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -847,7 +847,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/423/choices/1",
+      "pointer": "/cards/422/choices/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -863,7 +863,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/423/choicesZh/1",
+      "pointer": "/cards/422/choicesZh/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -879,7 +879,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/428/audioText",
+      "pointer": "/cards/427/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -895,7 +895,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/438/audioText",
+      "pointer": "/cards/437/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -912,7 +912,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/439/audioText",
+      "pointer": "/cards/438/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -929,7 +929,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/440/audioText",
+      "pointer": "/cards/439/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -946,7 +946,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/441/audioText",
+      "pointer": "/cards/440/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -963,7 +963,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/442/audioText",
+      "pointer": "/cards/441/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -980,7 +980,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/443/audioText",
+      "pointer": "/cards/442/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -997,7 +997,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/444/audioText",
+      "pointer": "/cards/443/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1014,7 +1014,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/445/audioText",
+      "pointer": "/cards/444/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1031,7 +1031,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/446/audioText",
+      "pointer": "/cards/445/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1048,7 +1048,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/447/audioText",
+      "pointer": "/cards/446/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1065,7 +1065,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/448/audioText",
+      "pointer": "/cards/447/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1082,7 +1082,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/449/audioText",
+      "pointer": "/cards/448/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1099,7 +1099,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/450/audioText",
+      "pointer": "/cards/449/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1116,7 +1116,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/451/audioText",
+      "pointer": "/cards/450/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1133,7 +1133,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/452/audioText",
+      "pointer": "/cards/451/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1150,7 +1150,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/453/audioText",
+      "pointer": "/cards/452/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1167,7 +1167,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/454/audioText",
+      "pointer": "/cards/453/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1184,7 +1184,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/455/audioText",
+      "pointer": "/cards/454/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1201,7 +1201,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/456/audioText",
+      "pointer": "/cards/455/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1218,7 +1218,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/457/audioText",
+      "pointer": "/cards/456/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1235,7 +1235,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/459/audioText",
+      "pointer": "/cards/458/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1252,7 +1252,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/460/audioText",
+      "pointer": "/cards/459/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1269,7 +1269,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/461/audioText",
+      "pointer": "/cards/460/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1286,7 +1286,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/462/audioText",
+      "pointer": "/cards/461/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1303,7 +1303,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/463/audioText",
+      "pointer": "/cards/462/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1320,7 +1320,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/464/audioText",
+      "pointer": "/cards/463/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1337,7 +1337,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/465/audioText",
+      "pointer": "/cards/464/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1354,7 +1354,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/466/audioText",
+      "pointer": "/cards/465/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1371,7 +1371,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/467/audioText",
+      "pointer": "/cards/466/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1388,7 +1388,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/468/audioText",
+      "pointer": "/cards/467/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1422,7 +1422,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/475/audioText",
+      "pointer": "/cards/474/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1438,7 +1438,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/475/audioTextZh",
+      "pointer": "/cards/474/audioTextZh",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1478,7 +1478,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/499/audioText",
+      "pointer": "/cards/498/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1512,7 +1512,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/511/audioText",
+      "pointer": "/cards/510/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1529,7 +1529,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/518/audioText",
+      "pointer": "/cards/517/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1546,7 +1546,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/524/audioText",
+      "pointer": "/cards/523/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1563,7 +1563,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/527/audioText",
+      "pointer": "/cards/526/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1580,7 +1580,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/530/audioText",
+      "pointer": "/cards/529/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1613,7 +1613,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/536/audioText",
+      "pointer": "/cards/535/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1630,7 +1630,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/537/audioText",
+      "pointer": "/cards/536/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1647,7 +1647,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/539/audioText",
+      "pointer": "/cards/538/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1664,7 +1664,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/540/audioText",
+      "pointer": "/cards/539/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1681,7 +1681,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/545/audioText",
+      "pointer": "/cards/544/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1698,7 +1698,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/547/audioText",
+      "pointer": "/cards/546/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1732,7 +1732,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/551/audioText",
+      "pointer": "/cards/550/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1749,7 +1749,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/552/audioText",
+      "pointer": "/cards/551/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1766,7 +1766,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/553/audioText",
+      "pointer": "/cards/552/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1783,7 +1783,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/561/audioText",
+      "pointer": "/cards/560/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1800,7 +1800,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/571/audioTextZh",
+      "pointer": "/cards/570/audioTextZh",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1817,7 +1817,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/572/audioText",
+      "pointer": "/cards/571/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1834,7 +1834,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/572/audioTextZh",
+      "pointer": "/cards/571/audioTextZh",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1851,7 +1851,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/575/audioText",
+      "pointer": "/cards/574/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1868,7 +1868,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/576/audioText",
+      "pointer": "/cards/575/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1885,7 +1885,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/577/audioText",
+      "pointer": "/cards/576/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1902,7 +1902,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/578/audioTextZh",
+      "pointer": "/cards/577/audioTextZh",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1919,7 +1919,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/580/audioText",
+      "pointer": "/cards/579/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1936,7 +1936,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/581/audioText",
+      "pointer": "/cards/580/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1953,7 +1953,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/581/choicesZh/0",
+      "pointer": "/cards/580/choicesZh/0",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1969,7 +1969,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/581/choicesZh/1",
+      "pointer": "/cards/580/choicesZh/1",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -1985,7 +1985,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/581/choicesZh/2",
+      "pointer": "/cards/580/choicesZh/2",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2001,7 +2001,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/581/choicesZh/3",
+      "pointer": "/cards/580/choicesZh/3",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2017,7 +2017,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/587/audioText",
+      "pointer": "/cards/586/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2034,7 +2034,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/588/audioText",
+      "pointer": "/cards/587/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2051,7 +2051,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/589/audioText",
+      "pointer": "/cards/588/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2068,7 +2068,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/590/audioText",
+      "pointer": "/cards/589/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2085,7 +2085,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/592/audioText",
+      "pointer": "/cards/591/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2102,7 +2102,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/593/audioText",
+      "pointer": "/cards/592/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2136,7 +2136,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/596/audioText",
+      "pointer": "/cards/595/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2153,7 +2153,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/597/audioText",
+      "pointer": "/cards/596/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2170,7 +2170,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/601/audioText",
+      "pointer": "/cards/600/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2187,7 +2187,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/602/audioText",
+      "pointer": "/cards/601/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2221,7 +2221,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/606/audioText",
+      "pointer": "/cards/605/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2238,7 +2238,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/607/audioText",
+      "pointer": "/cards/606/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2255,7 +2255,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/608/audioText",
+      "pointer": "/cards/607/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2272,7 +2272,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/609/audioText",
+      "pointer": "/cards/608/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2289,7 +2289,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/610/audioText",
+      "pointer": "/cards/609/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2306,7 +2306,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/611/audioText",
+      "pointer": "/cards/610/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2323,7 +2323,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/614/audioText",
+      "pointer": "/cards/613/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2340,7 +2340,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/615/audioText",
+      "pointer": "/cards/614/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2357,7 +2357,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/616/audioText",
+      "pointer": "/cards/615/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2374,7 +2374,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/617/audioText",
+      "pointer": "/cards/616/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2391,7 +2391,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/618/audioText",
+      "pointer": "/cards/617/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2408,7 +2408,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/620/audioText",
+      "pointer": "/cards/619/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2425,7 +2425,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/626/audioText",
+      "pointer": "/cards/625/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -2442,7 +2442,7 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/629/audioText",
+      "pointer": "/cards/628/audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",
       "topicId": "listening-topic-01",
@@ -37697,7 +37697,7 @@
       "after": "Nickel-cadmium (Ni-Cd) batteries are frequently used in turbo propeller aircraft.\nQ: According to the statement, what type of aircraft is more likely to have a Ni-Cd battery?",
       "reason": "来源中文明确Nickel-cadmium/NiCd，与同题116327一致，纠正音译拼写。",
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "pointer": "/cards/582/audioText",
+      "pointer": "/cards/581/audioText",
       "field": "audioText",
       "bankId": "listening",
       "categoryId": "listening-category-01",

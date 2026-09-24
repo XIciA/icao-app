@@ -222,7 +222,7 @@ describe('embeddedQuestionBankRepository', () => {
     ) ?? [];
 
     expect(listening?.declaredTopicCount).toBe(4);
-    expect(listening?.declaredCardCount).toBe(1613);
+    expect(listening?.declaredCardCount).toBe(1612);
     expect(listening?.categories).toHaveLength(4);
     expect(listeningCards).toHaveLength(40);
     expect(listeningCards.every((card) =>
@@ -252,9 +252,9 @@ describe('embeddedQuestionBankRepository', () => {
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1613, 900, 5751, 2317, 382]);
+      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1612, 900, 5751, 2317, 382]);
       expect(cards).toHaveLength(1044);
-      expect(resourceManifest.files).toHaveLength(10372);
+      expect(resourceManifest.files).toHaveLength(10371);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
 
       const imageCards = cards.filter(({ bankId, card }) => bankId === 'opi' && card.kind === 'image');
@@ -633,7 +633,7 @@ describe('embeddedQuestionBankRepository', () => {
       ? { ok: true, status: 200, json: async () => ({ data: { token: 'invalid', scopes: [] } }) } as Response
       : route(input, init));
     const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
-    expect(topic?.cards).toHaveLength(632);
+    expect(topic?.cards).toHaveLength(631);
     expect([...mockStorageValues.keys()].filter((key) => key.startsWith('icao.content.member-topic.v2.'))).toHaveLength(0);
     expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
   });
