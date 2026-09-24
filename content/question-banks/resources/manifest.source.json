@@ -43990,18 +43990,6 @@
       "durationSeconds": 16.92
     },
     {
-      "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-14-q05.mp3",
-      "bankId": "listening",
-      "sourceRelativePath": "audio/listening/web-v5/pepec-listening-s01-section-14-q05.mp3",
-      "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q05.mp3",
-      "mimeType": "audio/mpeg",
-      "status": "ready",
-      "sizeBytes": 79280,
-      "checksum": "8ec05193c9261751bed80dfefdb678a7874bc52492ac26cbfc2d93323e7d621e",
-      "localPreparedPath": ".generated/web-question-bank-content-migration/prepared/resources/files/audio/listening/web-v5/pepec-listening-s01-section-14-q05.mp3",
-      "durationSeconds": 13.356
-    },
-    {
       "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-14-q06.mp3",
       "bankId": "listening",
       "sourceRelativePath": "audio/listening/web-v5/pepec-listening-s01-section-14-q06.mp3",

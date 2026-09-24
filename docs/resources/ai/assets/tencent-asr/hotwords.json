@@ -3,9 +3,9 @@
   "engine": "16k_en",
   "basis": "User-approved full-bank expansion. Initial 18 terms retain historical error evidence. New terms are corpus/context candidates, not measured accuracy gains; no audio calls this round.",
   "corpus": {
-    "cards": 10876,
+    "cards": 10875,
     "bankCounts": {
-      "listening": 1613,
+      "listening": 1612,
       "opi": 2230,
       "radiotelephony": 5751,
       "sentences900": 900,

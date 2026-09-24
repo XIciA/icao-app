@@ -25,6 +25,9 @@ const approvedNativeBuildBase = 'bc44f5f26ea45b8ecb89669452aaf480b62f2957';
 // User-approved 900-sentence content-only replacement, 2026-09-10.
 // Exact hashes permit the two artifacts and their resource partitioner only; every other Web input remains frozen.
 const approved900ContentHashes = new Map([['src/features/question-bank/data/question-bank.json', 'd38adbeb28176454d3c124e83b02d182c4645034264a5f9b73d8679334e78ecf'], ['src/features/question-bank/data/question-bank-release.json', '65f6f88d90baa31fb1495a3b9f6bda20feb799e04380a30cb2b57afadd684912']]);
+// The user-requested global removal of listening-main-829 also applies to the
+// legacy Vercel snapshot. Pin the resulting bytes; no other legacy edit passes.
+const reviewedLegacyQuestionRemovalHash = '2bfacfa95474ab42e17204d28889d3af400c93dae80d833b384185b9089630ce';
 approved900ContentHashes.set('tools/web-content-sync.mjs', 'c068b0c4744708a9cb76c324757d3c854f17d435d430b8fa6ab4d0be444987ef');
 const approvedNativeIncrementBase = 'b27a2b81514390b037cba5fd96f72180998d0205';
 const approvedNativeIncrementHashes = new Map([
@@ -175,6 +178,11 @@ reviewedFormalWebHashes.set("src/features/question-bank/annotations/annotation-s
 reviewedFormalWebHashes.set("src/features/sync/learning-sync.native.ts", [null, "f92ad61b8dd5ca4bac2c20be3f2b2fe829913f340f2a220de0959a85369b17c5"]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "7b51f0da8dfa8efbc6132cd95c32f07d5efe0a3a2bbaca58b17e9868fefeb41d"]);
 reviewedFormalWebHashes.set("packages/contracts/src/annotation-management.ts", [null, "725cf8d2432ae96898d4e6c6f847fef960ba8375b3a9b9f882433741fe2ed49a"]);
+// These three Native-only changes were already pinned above. Permit their
+// exact reviewed bytes to coexist with the one-card legacy content removal.
+reviewedFormalWebHashes.set('package.json', reviewedAppIdentityDependencyHashes.get('package.json'));
+reviewedFormalWebHashes.set('pnpm-lock.yaml', reviewedAppIdentityDependencyHashes.get('pnpm-lock.yaml'));
+reviewedFormalWebHashes.set(reviewedStudyNativePath, [reviewedStudyNativeBaseHash, reviewedStudyNativeHash]);
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));
@@ -193,7 +201,9 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
       const originalPath = `src/features/question-bank/data/${file.path.slice(legacyPrefix.length)}`;
       const original = baseline.get(originalPath);
       if (!currentPaths.has(originalPath) && original
-        && approved900ContentHashes.get(originalPath) === file.sha256
+        && (approved900ContentHashes.get(originalPath) === file.sha256
+          || (originalPath === 'src/features/question-bank/data/question-bank.json'
+            && file.sha256 === reviewedLegacyQuestionRemovalHash))
         && original.sources.join('\0') === file.sources.join('\0')) {
         return [{ ...file, path: originalPath }];
       }
@@ -880,7 +890,9 @@ async function checkManifest(manifestPath, explain) {
   const files = reviewedFiles.map((file) => {
     const baseline = expected.find((entry) => entry.path === file.path);
     if (path.resolve(manifestPath) === path.resolve(defaultManifestPath)
-      && baseline && approved900ContentHashes.get(file.path) === file.sha256) {
+      && baseline && (approved900ContentHashes.get(file.path) === file.sha256
+        || (file.path === 'src/features/question-bank/data/question-bank.json'
+          && file.sha256 === reviewedLegacyQuestionRemovalHash))) {
       approvedContentPaths.push(file.path);
       return { ...file, sha256: baseline.sha256 };
     }
