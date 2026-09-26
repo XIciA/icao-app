@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { Check, ChevronDown, Info } from '@/components/ui/icons';
-import { AppText, BottomSheet } from '@/components/ui';
+import { Check, ChevronDown } from '@/components/ui/icons';
+import { AppText } from '@/components/ui';
 import { updateProfile, useProfile } from '@/features/account/profile-store.native';
 import { normalizeStudyScope, type StudyScope } from '@icao/contracts';
 import { colors, radii, spacing } from '@/theme';
@@ -16,7 +16,6 @@ export function StudyScopeSelector() {
   const profile = useProfile();
   const scope = normalizeStudyScope(profile.studyScope);
   const [anchor, setAnchor] = useState<{ x: number; y: number }>();
-  const [info, setInfo] = useState(false);
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
   const [error, setError] = useState(false);
@@ -37,26 +36,22 @@ export function StudyScopeSelector() {
       <Pressable ref={button} accessibilityRole="button" accessibilityLabel={`切换题库范围，当前${options.find((item) => item.value === scope)?.title}`} accessibilityState={{ expanded: Boolean(anchor) }} onPress={() => button.current?.measureInWindow((x, y, w, h) => { setError(false); setAnchor({ x: x + w, y: y + h }); })} style={styles.trigger}>
         <AppText variant="button">{options.find((item) => item.value === scope)?.title}</AppText><ChevronDown color={colors.primary} size={16} />
       </Pressable>
-      <Pressable accessibilityRole="button" accessibilityLabel="题库范围介绍" onPress={() => setInfo(true)} style={styles.info}><Info color={colors.mutedForeground} size={19} /></Pressable>
     </View>
     <Modal transparent animationType="fade" visible={Boolean(anchor)} onRequestClose={() => setAnchor(undefined)}>
       <Pressable accessibilityLabel="关闭题库范围菜单" style={StyleSheet.absoluteFill} onPress={() => setAnchor(undefined)} />
       <View accessibilityViewIsModal style={[styles.menu, { width: menuWidth, maxHeight: height * 0.65, left: Math.max(16, Math.min((anchor?.x ?? width - 16) - menuWidth, width - menuWidth - 16)), top: Math.min((anchor?.y ?? 80) + 6, height * 0.3) }]}>
         <ScrollView>
           {options.map((option) => <Pressable key={option.value} accessibilityRole="button" accessibilityLabel={`选择${option.title}`} accessibilityState={{ selected: scope === option.value, disabled: busy }} disabled={busy} onPress={() => { void choose(option.value); }} style={[styles.option, scope === option.value ? styles.selected : null]}>
-            <View style={styles.copy}><AppText variant="button">{option.title}</AppText><AppText variant="micro">{option.description}</AppText></View>
-            {scope === option.value ? <Check color={colors.primary} size={18} /> : null}
+            <View style={styles.copy}><AppText variant="cardTitle" color={scope === option.value ? colors.primary : colors.foreground}>{option.title}</AppText><AppText variant="caption">{option.description}</AppText></View>
+            {scope === option.value ? <Check color={colors.primary} size={18} style={styles.check} /> : null}
           </Pressable>)}
           {error ? <AppText accessibilityLiveRegion="polite" color={colors.destructive} style={styles.error}>切换未保存，请重试</AppText> : null}
         </ScrollView>
       </View>
     </Modal>
-    <BottomSheet accessibilityLabel="题库范围介绍" visible={info} onClose={() => setInfo(false)}>
-      <View style={styles.descriptions}>{options.map((option) => <View key={option.value} style={styles.description}><AppText variant="sectionTitle">{option.title}</AppText><AppText>{option.description}</AppText></View>)}</View>
-    </BottomSheet>
   </>;
 }
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center' }, trigger: { minHeight: 44, paddingHorizontal: spacing[2], flexDirection: 'row', alignItems: 'center', gap: spacing[1] }, info: { width: 40, height: 44, justifyContent: 'center', alignItems: 'center' },
-  menu: { position: 'absolute', backgroundColor: colors.card, borderRadius: radii.lg, borderColor: colors.border, borderWidth: 1, overflow: 'hidden' }, option: { padding: spacing[4], flexDirection: 'row', gap: spacing[2], alignItems: 'center' }, selected: { backgroundColor: colors.primary06 }, copy: { flex: 1, gap: spacing[1] }, error: { padding: spacing[3] }, descriptions: { gap: spacing[6], paddingBottom: spacing[4] }, description: { gap: spacing[2] },
+  row: { flexDirection: 'row', alignItems: 'center' }, trigger: { minHeight: 44, paddingHorizontal: spacing[2], flexDirection: 'row', alignItems: 'center', gap: spacing[1] },
+  menu: { position: 'absolute', backgroundColor: colors.card, borderRadius: radii.lg, borderColor: colors.border, borderWidth: 1, overflow: 'hidden' }, option: { padding: spacing[4], flexDirection: 'row', gap: spacing[2], alignItems: 'flex-start' }, selected: { backgroundColor: colors.primary06 }, copy: { flex: 1, gap: spacing[2] }, check: { marginTop: spacing[1] }, error: { padding: spacing[3] },
 });
