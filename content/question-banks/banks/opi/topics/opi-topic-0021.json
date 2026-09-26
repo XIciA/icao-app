@@ -33,7 +33,8 @@
       "audioText": "When are low-visibility procedures required?",
       "audioTextZh": "何时需要实施低能见度程序？",
       "referenceText": "Low-visibility procedures are required when the reported visibility, cloud ceiling, or RVR reaches the activation criteria published for that aerodrome. ATC or the aerodrome operator activates the procedures to protect sensitive areas and control surface movements. The exact trigger is local, so pilots must check the current airport information.",
-      "referenceTextZh": "当报告能见度、云底高或跑道视程达到该机场公布的启动标准时，就需要实施低能见度程序。空中交通管制或机场运营方会启动这些程序，以保护敏感区并控制地面活动。具体启动条件由当地规定，因此飞行员必须查看最新机场信息。"
+      "referenceTextZh": "当报告能见度、云底高或跑道视程达到该机场公布的启动标准时，就需要实施低能见度程序。空中交通管制或机场运营方会启动这些程序，以保护敏感区并控制地面活动。具体启动条件由当地规定，因此飞行员必须查看最新机场信息。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-192",
@@ -57,7 +58,8 @@
       "audioText": "How can pilots prevent runway incursions while taxiing in low visibility?",
       "audioTextZh": "低能见度滑行时，飞行员如何防止跑道侵入？",
       "referenceText": "Pilots should taxi slowly, use the airport chart, and obtain ATC clearance before entering a runway. They should read back instructions clearly, confirm any doubt with ATC, and maintain good situational awareness. A follow-me vehicle can be requested if necessary.",
-      "referenceTextZh": "飞行员应缓慢滑行、使用机场图，并在进入跑道前取得空中交通管制许可。他们应清楚复诵指令，对任何疑问向管制确认，并保持良好情景意识。必要时可以申请引导车。"
+      "referenceTextZh": "飞行员应缓慢滑行、使用机场图，并在进入跑道前取得空中交通管制许可。他们应清楚复诵指令，对任何疑问向管制确认，并保持良好情景意识。必要时可以申请引导车。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-194",
@@ -65,7 +67,8 @@
       "audioText": "What precautions should pilots take when taxiing in low visibility?",
       "audioTextZh": "低能见度滑行时，飞行员应采取哪些预防措施？",
       "referenceText": "Pilots should maintain good situational awareness and follow ATC instructions carefully. If visibility is extremely poor, they may request a follow-me vehicle.",
-      "referenceTextZh": "飞行员应保持良好情景意识，并认真遵循空中交通管制指令。如果能见度极低，可以申请引导车。"
+      "referenceTextZh": "飞行员应保持良好情景意识，并认真遵循空中交通管制指令。如果能见度极低，可以申请引导车。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-195",
@@ -81,7 +84,8 @@
       "audioText": "What should a pilot do after missing the correct taxiway in low visibility?",
       "audioTextZh": "低能见度下错过正确滑行道后，飞行员应如何处置？",
       "referenceText": "The pilot should stop immediately, report the aircraft's position to ATC, and request further instructions. The aircraft should not continue without ATC clearance, and the pilot may request a follow-me vehicle if necessary.",
-      "referenceTextZh": "飞行员应立即停车，向空中交通管制报告飞机位置，并申请进一步指令。未经管制许可不得继续滑行，必要时飞行员可以申请引导车。"
+      "referenceTextZh": "飞行员应立即停车，向空中交通管制报告飞机位置，并申请进一步指令。未经管制许可不得继续滑行，必要时飞行员可以申请引导车。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-198",

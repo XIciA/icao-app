@@ -9,7 +9,8 @@
       "audioText": "What does a CAAC inspector typically examine during a ramp inspection?",
       "audioTextZh": "中国民航局监察员在停机坪检查中通常检查哪些内容？",
       "referenceText": "A CAAC ramp inspector may examine crew licenses and medical certificates, aircraft and operational documents, checklists, MEL status, and deferred defects. The inspector may also check emergency equipment and the condition of the cockpit, cabin, cargo area, landing gear, tires, lights, and other visible aircraft parts. The purpose is to verify safety and regulatory compliance.",
-      "referenceTextZh": "中国民航局的停机坪监察员可能检查机组执照和体检合格证、飞机和运行文件、检查单、最低设备清单状态及保留故障。监察员还可能检查应急设备，以及驾驶舱、客舱、货舱、起落架、轮胎、灯光和其他可见飞机部位的状况。检查目的是确认运行安全并符合规章要求。"
+      "referenceTextZh": "中国民航局的停机坪监察员可能检查机组执照和体检合格证、飞机和运行文件、检查单、最低设备清单状态及保留故障。监察员还可能检查应急设备，以及驾驶舱、客舱、货舱、起落架、轮胎、灯光和其他可见飞机部位的状况。检查目的是确认运行安全并符合规章要求。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-364",
@@ -17,7 +18,8 @@
       "audioText": "What documents and items may a flight crew need to present during a CAAC ramp inspection?",
       "audioTextZh": "接受中国民航局停机坪检查时，飞行机组可能需要出示哪些文件和物品？",
       "referenceText": "The crew may need to present pilot licenses, medical certificates, company identification, and a passport for an international flight. Operational and aircraft documents can include the flight release, flight plan, weather and NOTAM information, performance data, registration and airworthiness certificates, radio license, and journey logbook. Checklists, the QRH, MEL, current charts, emergency equipment, and current EFB databases may also be checked.",
-      "referenceTextZh": "执行国际航班时，机组可能需要出示飞行员执照、体检合格证、公司身份证件和护照。运行和飞机文件可以包括签派放行单、飞行计划、气象与航行通告信息、性能数据、国籍登记证、适航证、无线电台执照和飞行记录本。检查单、快速检查单、最低设备清单、现行航图、应急设备和最新的电子飞行包数据库也可能接受检查。"
+      "referenceTextZh": "执行国际航班时，机组可能需要出示飞行员执照、体检合格证、公司身份证件和护照。运行和飞机文件可以包括签派放行单、飞行计划、气象与航行通告信息、性能数据、国籍登记证、适航证、无线电台执照和飞行记录本。检查单、快速检查单、最低设备清单、现行航图、应急设备和最新的电子飞行包数据库也可能接受检查。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-365",
@@ -25,7 +27,8 @@
       "audioText": "How should a pilot cooperate with a CAAC inspector during a spot check?",
       "audioTextZh": "接受抽查时，飞行员应如何配合中国民航局监察员？",
       "referenceText": "The pilot should remain calm, polite, and professional and present the requested documents. Questions should be answered honestly and directly without guessing or arguing; if the pilot does not know, they can offer to look up the answer. The pilot should follow reasonable requests, disclose known defects, and inform the captain or company as required after the inspection.",
-      "referenceTextZh": "飞行员应保持冷静、礼貌和专业，并出示要求提供的文件。回答问题时应诚实、直接，不猜测也不争辩；如果不知道，可以提出查找答案。飞行员应配合合理要求，如实说明已知故障，并在检查后按要求通知机长或公司。"
+      "referenceTextZh": "飞行员应保持冷静、礼貌和专业，并出示要求提供的文件。回答问题时应诚实、直接，不猜测也不争辩；如果不知道，可以提出查找答案。飞行员应配合合理要求，如实说明已知故障，并在检查后按要求通知机长或公司。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-366",
@@ -33,7 +36,8 @@
       "audioText": "What key items may an inspector examine in the cockpit during a ramp inspection?",
       "audioTextZh": "停机坪检查期间，监察员可能检查驾驶舱内的哪些重点项目？",
       "referenceText": "In the cockpit, an inspector may check crew licenses and medical fitness, use of SOPs and checklists, and the availability and currency of the QRH, MEL, and performance manuals. The aircraft logbook and deferred-defect records may be reviewed. Fire extinguishers, oxygen masks, smoke goggles, and other emergency equipment may also be inspected.",
-      "referenceTextZh": "在驾驶舱内，监察员可能检查机组执照和身体状况、标准操作程序与检查单的使用，以及快速检查单、最低设备清单和性能手册是否齐备并处于现行有效状态。他们还可能查看飞机记录本和保留故障记录，并检查灭火器、氧气面罩、防烟护目镜和其他应急设备。"
+      "referenceTextZh": "在驾驶舱内，监察员可能检查机组执照和身体状况、标准操作程序与检查单的使用，以及快速检查单、最低设备清单和性能手册是否齐备并处于现行有效状态。他们还可能查看飞机记录本和保留故障记录，并检查灭火器、氧气面罩、防烟护目镜和其他应急设备。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-368",
@@ -41,7 +45,8 @@
       "audioText": "Why does CAAC conduct ramp inspections?",
       "audioTextZh": "中国民航局为什么开展停机坪检查？",
       "referenceText": "CAAC conducts ramp inspections to support flight safety and regulatory compliance. Inspectors verify documents and licenses, look for visible aircraft defects, and check that required safety equipment is available and serviceable. The inspection can identify unsafe practices or violations before departure.",
-      "referenceTextZh": "中国民航局通过停机坪检查保障飞行安全和规章符合性。监察员会核实文件和执照，查看飞机是否存在可见缺陷，并检查规定的安全设备是否齐全且状态良好。检查可以在起飞前发现不安全做法或违规行为。"
+      "referenceTextZh": "中国民航局通过停机坪检查保障飞行安全和规章符合性。监察员会核实文件和执照，查看飞机是否存在可见缺陷，并检查规定的安全设备是否齐全且状态良好。检查可以在起飞前发现不安全做法或违规行为。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-05"

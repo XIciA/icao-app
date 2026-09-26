@@ -1,6 +1,135 @@
 {
-  "generatedAt": "2026-07-28T05:51:08.071Z",
+  "generatedAt": "2026-09-26T06:30:00.000Z",
   "briefs": [
+    {
+      "id": "hotspot-2026-09-26",
+      "date": "2026-09-26",
+      "title": "9月26日 题目更新",
+      "centers": [
+        "多考点反馈",
+        "冬季运行专题"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0002",
+          "topicTitle": "积冰",
+          "cardIds": [
+            "opi-core-029",
+            "opi-core-016"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0099",
+          "topicTitle": "绕机检查",
+          "cardIds": [
+            "opi-extra-027"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0140",
+          "topicTitle": "冬夏季运行",
+          "cardIds": [
+            "opi-extra-330",
+            "opi-supplement-20260926-cold-check",
+            "opi-supplement-20260926-winter-delay",
+            "opi-supplement-20260926-winter-training",
+            "opi-supplement-20260926-winter-pressure"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0085",
+          "topicTitle": "无线电检查",
+          "cardIds": [
+            "opi-core-851",
+            "opi-core-852"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0040",
+          "topicTitle": "GPS",
+          "cardIds": [
+            "opi-core-515",
+            "opi-core-519"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0144",
+          "topicTitle": "磁罗盘",
+          "cardIds": [
+            "opi-extra-344",
+            "opi-extra-348"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0063",
+          "topicTitle": "飞行记录本与手册文件",
+          "cardIds": [
+            "opi-core-669",
+            "opi-core-671"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0007",
+          "topicTitle": "CRM与机组协作",
+          "cardIds": [
+            "opi-core-135"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0071",
+          "topicTitle": "情景意识",
+          "cardIds": [
+            "opi-core-737",
+            "opi-core-738",
+            "opi-core-739"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0025",
+          "topicTitle": "训练与复训",
+          "cardIds": [
+            "opi-core-386",
+            "opi-core-388",
+            "opi-core-389",
+            "opi-core-390"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0130",
+          "topicTitle": "疲劳与值勤限制",
+          "cardIds": [
+            "opi-extra-245",
+            "opi-extra-246",
+            "opi-extra-248"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0146",
+          "topicTitle": "局方检查",
+          "cardIds": [
+            "opi-extra-362",
+            "opi-extra-364",
+            "opi-extra-366"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0018",
+          "topicTitle": "燃油",
+          "cardIds": [
+            "opi-core-281",
+            "opi-core-302"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0039",
+          "topicTitle": "GNSS",
+          "cardIds": [
+            "opi-core-513",
+            "opi-core-514"
+          ]
+        }
+      ]
+    },
     {
       "id": "hotspot-2026-07-10",
       "date": "2026-07-10",

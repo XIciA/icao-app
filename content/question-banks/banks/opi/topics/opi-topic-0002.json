@@ -25,7 +25,8 @@
       "audioText": "How can in-flight icing affect flight safety?",
       "audioTextZh": "空中结冰会如何影响飞行安全？",
       "referenceText": "In-flight icing may reduce lift, increase drag, and cause flight-control problems or a stall. It may also cause incorrect airspeed or altitude indications and may lead to engine vibration, flameout, or failure.",
-      "referenceTextZh": "飞行中结冰会减小升力、增大阻力，并可能导致飞行操纵问题或失速。它还可能造成空速或高度指示错误，并可能引起发动机振动、熄火或失效。"
+      "referenceTextZh": "飞行中结冰会减小升力、增大阻力，并可能导致飞行操纵问题或失速。它还可能造成空速或高度指示错误，并可能引起发动机振动、熄火或失效。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-017",
@@ -41,7 +42,8 @@
       "audioText": "What should a pilot do if ice begins to accumulate on the wings in flight?",
       "audioTextZh": "飞行中机翼开始积冰时，飞行员应如何处置？",
       "referenceText": "I would report the situation to ATC and request an altitude change to leave the icing area. I would also turn on the aircraft's de-icing and anti-icing systems.",
-      "referenceTextZh": "我会向空中交通管制报告情况，并申请改变高度以离开结冰区域。我还会打开飞机的除冰和防冰系统。"
+      "referenceTextZh": "我会向空中交通管制报告情况，并申请改变高度以离开结冰区域。我还会打开飞机的除冰和防冰系统。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-020",
@@ -57,7 +59,8 @@
       "audioText": "On which parts of an aircraft is ice most likely to form?",
       "audioTextZh": "飞机哪些部位最容易结冰？",
       "referenceText": "Ice is most likely to form on exposed leading edges and critical components. These include the wings, windshield, engine air intakes, pitot tubes, static ports, radio antennas, and landing gear.",
-      "referenceTextZh": "冰最容易积聚在暴露的前缘和关键部件上，包括机翼、风挡、发动机进气口、空速管、静压孔、无线电天线和起落架。"
+      "referenceTextZh": "冰最容易积聚在暴露的前缘和关键部件上，包括机翼、风挡、发动机进气口、空速管、静压孔、无线电天线和起落架。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-025",
@@ -65,7 +68,8 @@
       "audioText": "What de-icing systems are installed on the aircraft you fly?",
       "audioTextZh": "你所飞的飞机安装了哪些除冰系统？",
       "referenceText": "The aircraft I fly uses hot air, electrical heating, and de-icing fluid for ice protection.",
-      "referenceTextZh": "我所飞的飞机使用热空气、电加温和除冰液进行防冰保护。"
+      "referenceTextZh": "我所飞的飞机使用热空气、电加温和除冰液进行防冰保护。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-026",
@@ -81,7 +85,8 @@
       "audioText": "What types of airframe ice can form in flight?",
       "audioTextZh": "飞行中可能形成哪些类型的机体积冰？",
       "referenceText": "The common types of airframe ice are rime ice, clear ice, and mixed ice.",
-      "referenceTextZh": "常见的机体积冰类型包括雾凇冰、明冰和混合冰。"
+      "referenceTextZh": "常见的机体积冰类型包括雾凇冰、明冰和混合冰。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-027-part-2",
@@ -97,7 +102,8 @@
       "audioText": "What is the difference between de-icing and anti-icing?",
       "audioTextZh": "除冰与防冰有什么区别？",
       "referenceText": "De-icing removes ice, snow, or frost that has already accumulated on an aircraft. Anti-icing helps prevent new ice from forming after de-icing. Many operations use de-icing first and anti-icing second.",
-      "referenceTextZh": "除冰是清除已经积聚在飞机上的冰、雪或霜。防冰则是在除冰后帮助防止新的冰层形成。许多运行先除冰，随后再进行防冰。"
+      "referenceTextZh": "除冰是清除已经积聚在飞机上的冰、雪或霜。防冰则是在除冰后帮助防止新的冰层形成。许多运行先除冰，随后再进行防冰。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-030",
@@ -105,7 +111,8 @@
       "audioText": "What is holdover time in ground de-icing and anti-icing operations?",
       "audioTextZh": "在地面除冰和防冰作业中，什么是保持时间？",
       "referenceText": "Holdover time is the estimated period during which anti-icing fluid protects an aircraft from ice, snow, or frost accumulation. It begins when the final anti-icing application starts and ends when the fluid loses effectiveness. It depends on the fluid type, weather, and precipitation intensity; if it expires before takeoff, new contamination may form and re-treatment may be needed.",
-      "referenceTextZh": "保持时间是指防冰液保护飞机免受冰、雪或霜积聚的预计时段。它从最后一次防冰液喷洒开始时计算，到防冰液失效时结束。保持时间取决于液体类型、天气和降水强度；如果起飞前超过保持时间，可能再次形成污染，需要重新处理。"
+      "referenceTextZh": "保持时间是指防冰液保护飞机免受冰、雪或霜积聚的预计时段。它从最后一次防冰液喷洒开始时计算，到防冰液失效时结束。保持时间取决于液体类型、天气和降水强度；如果起飞前超过保持时间，可能再次形成污染，需要重新处理。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-030-part-2",
@@ -113,7 +120,8 @@
       "audioText": "Why must an aircraft take off within the applicable holdover time after ground de-icing or anti-icing?",
       "audioTextZh": "飞机在地面除冰或防冰后，为什么必须在适用的保持时间内起飞？",
       "referenceText": "Anti-icing fluid loses effectiveness over time. If takeoff is delayed beyond the applicable holdover time, ice, snow, or frost may accumulate again on critical surfaces. This contamination can reduce lift and increase drag, so the aircraft must be treated again before takeoff.",
-      "referenceTextZh": "防冰液的有效性会随时间下降。如果起飞延误并超过适用的保持时间，冰、雪或霜可能再次积聚在关键表面上。这种污染会减小升力并增大阻力，因此飞机必须在起飞前重新进行除防冰处理。"
+      "referenceTextZh": "防冰液的有效性会随时间下降。如果起飞延误并超过适用的保持时间，冰、雪或霜可能再次积聚在关键表面上。这种污染会减小升力并增大阻力，因此飞机必须在起飞前重新进行除防冰处理。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-031",
@@ -121,7 +129,8 @@
       "audioText": "What are the common types of aircraft de-icing and anti-icing fluids?",
       "audioTextZh": "常见的飞机除冰液和防冰液有哪些类型？",
       "referenceText": "The four common fluid categories are Type I, Type II, Type III, and Type IV.",
-      "referenceTextZh": "常见的四类液体是 I 型、II 型、III 型和 IV 型。"
+      "referenceTextZh": "常见的四类液体是 I 型、II 型、III 型和 IV 型。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-031-part-2",
@@ -129,7 +138,8 @@
       "audioText": "How do the common types of aircraft de-icing and anti-icing fluids differ?",
       "audioTextZh": "常见类型的飞机除冰液和防冰液有何区别？",
       "referenceText": "Type I is a thin, heated de-icing fluid that runs off quickly and provides a short holdover time. Type II is thicker and remains on the surface longer, while Type III is designed for smaller aircraft. Type IV is very thick and provides the longest holdover time.",
-      "referenceTextZh": "I 型是黏度较低的加热除冰液，会很快流走，保持时间较短。II 型黏度更高，在表面停留时间更长；III 型适用于较小型飞机。IV 型黏度很高，保持时间最长。"
+      "referenceTextZh": "I 型是黏度较低的加热除冰液，会很快流走，保持时间较短。II 型黏度更高，在表面停留时间更长；III 型适用于较小型飞机。IV 型黏度很高，保持时间最长。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-032",

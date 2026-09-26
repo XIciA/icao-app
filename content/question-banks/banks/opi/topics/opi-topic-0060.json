@@ -9,7 +9,8 @@
       "audioText": "What should pilots monitor when extending or retracting the flaps?",
       "audioTextZh": "放出或收回襟翼时，飞行员应监控哪些情况？",
       "referenceText": "Pilots should monitor the airspeed and confirm that the flaps move to the selected position.",
-      "referenceTextZh": "飞行员应监控空速，并确认襟翼移动到所选位置。"
+      "referenceTextZh": "飞行员应监控空速，并确认襟翼移动到所选位置。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-645",
@@ -17,7 +18,8 @@
       "audioText": "What should pilots do if the flaps fail to extend normally during an approach?",
       "audioTextZh": "进近过程中襟翼无法正常放出时，飞行员应如何处置？",
       "referenceText": "The pilots should follow the applicable checklist for the flap malfunction. If the flaps still cannot be extended normally, they should inform ATC and request the longest suitable runway for landing.",
-      "referenceTextZh": "飞行员应执行适用于襟翼故障的检查单。如果襟翼仍无法正常放出，应通知空中交通管制，并申请使用最长的合适跑道着陆。"
+      "referenceTextZh": "飞行员应执行适用于襟翼故障的检查单。如果襟翼仍无法正常放出，应通知空中交通管制，并申请使用最长的合适跑道着陆。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-646",
@@ -25,7 +27,8 @@
       "audioText": "What operational risks can arise if the flaps fail to extend during an approach?",
       "audioTextZh": "进近过程中襟翼无法放出可能带来哪些运行风险？",
       "referenceText": "If the flaps fail to extend, the aircraft may need a higher approach and landing speed and a longer landing distance. This can make the approach or landing unstable and increase the risk of a runway overrun or veer-off. A hard landing may also damage the tyres or landing gear and injure people on board.",
-      "referenceTextZh": "如果襟翼无法放出，飞机可能需要更高的进近和着陆速度以及更长的着陆距离。这会使进近或着陆不稳定，并增加冲出或偏出跑道的风险。重着陆还可能损坏轮胎或起落架，并使机上人员受伤。"
+      "referenceTextZh": "如果襟翼无法放出，飞机可能需要更高的进近和着陆速度以及更长的着陆距离。这会使进近或着陆不稳定，并增加冲出或偏出跑道的风险。重着陆还可能损坏轮胎或起落架，并使机上人员受伤。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-647",
@@ -33,7 +36,8 @@
       "audioText": "What risks can arise if the flaps are operated outside their approved limitations?",
       "audioTextZh": "超出批准的限制操作襟翼可能产生哪些风险？",
       "referenceText": "Selecting or extending flaps above their approved speed can overload and damage the flap system or supporting structure. An incorrect flap setting can also reduce climb performance, increase drag, or produce an unexpected change in lift and handling. These effects can lead to loss of control, a runway overrun, or an unstable approach.",
-      "referenceTextZh": "在超过批准速度时选择或放出襟翼，会使襟翼系统或支撑结构过载并受损。襟翼设置错误还会降低爬升性能、增大阻力，或使升力和操纵特性意外改变。这些影响可能导致失去控制、冲出跑道或进近不稳定。"
+      "referenceTextZh": "在超过批准速度时选择或放出襟翼，会使襟翼系统或支撑结构过载并受损。襟翼设置错误还会降低爬升性能、增大阻力，或使升力和操纵特性意外改变。这些影响可能导致失去控制、冲出跑道或进近不稳定。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-648",
@@ -41,7 +45,8 @@
       "audioText": "How is the takeoff flap setting selected under your company's procedures?",
       "audioTextZh": "根据你所在公司的程序，如何选择起飞襟翼设置？",
       "referenceText": "I am not employed by an airline, so I follow my flight school's DA-40 checklist. It specifies the takeoff flap position, and I select and verify that position during the before-takeoff check. Runway, weight, wind, temperature, and obstacles are assessed separately to confirm that takeoff performance is adequate.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的 DA-40 检查单。检查单规定起飞襟翼位置，我会在起飞前检查中选择并核实该位置。跑道、重量、风、温度和障碍物则单独评估，以确认起飞性能足够。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的 DA-40 检查单。检查单规定起飞襟翼位置，我会在起飞前检查中选择并核实该位置。跑道、重量、风、温度和障碍物则单独评估，以确认起飞性能足够。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-651",
@@ -49,7 +54,8 @@
       "audioText": "What risks are associated with landing with the flaps up?",
       "audioTextZh": "收上襟翼着陆有哪些风险？",
       "referenceText": "A flaps-up landing requires a higher landing speed than normal and can increase the risk of running off the end of the runway.",
-      "referenceTextZh": "无襟翼着陆需要比正常情况更高的着陆速度，并会增加冲出跑道末端的风险。"
+      "referenceTextZh": "无襟翼着陆需要比正常情况更高的着陆速度，并会增加冲出跑道末端的风险。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-652",

@@ -9,7 +9,8 @@
       "audioText": "What is the Global Positioning System (GPS)?",
       "audioTextZh": "什么是全球定位系统（GPS）？",
       "referenceText": "GPS stands for Global Positioning System. It is one of the most widely used satellite navigation systems within GNSS.",
-      "referenceTextZh": "GPS 是全球定位系统的缩写。它是 GNSS 中使用最广泛的卫星导航系统之一。"
+      "referenceTextZh": "GPS 是全球定位系统的缩写。它是 GNSS 中使用最广泛的卫星导航系统之一。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-516",
@@ -17,7 +18,8 @@
       "audioText": "How does the Global Positioning System (GPS) compare with conventional navigation systems?",
       "audioTextZh": "全球定位系统（GPS）与传统导航系统相比有何不同？",
       "referenceText": "Compared with conventional navigation systems, GPS generally provides more accurate and reliable navigation guidance.",
-      "referenceTextZh": "与传统导航系统相比，GPS 通常能提供更准确、更可靠的导航引导。"
+      "referenceTextZh": "与传统导航系统相比，GPS 通常能提供更准确、更可靠的导航引导。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-518",
@@ -25,7 +27,8 @@
       "audioText": "Do you prefer the Global Positioning System (GPS) or conventional navigation systems?",
       "audioTextZh": "你更喜欢全球定位系统（GPS）还是传统导航系统？",
       "referenceText": "I prefer GPS because it can provide precise guidance to the aircraft. It is available worldwide and can be used in many different weather conditions.",
-      "referenceTextZh": "我更喜欢 GPS，因为它能为飞机提供精确引导。它在全球范围内可用，并能在许多不同天气条件下使用。"
+      "referenceTextZh": "我更喜欢 GPS，因为它能为飞机提供精确引导。它在全球范围内可用，并能在许多不同天气条件下使用。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-519",
@@ -33,7 +36,8 @@
       "audioText": "What should a pilot do if the Global Positioning System (GPS) fails during flight?",
       "audioTextZh": "飞行中全球定位系统（GPS）失效时，飞行员应如何处置？",
       "referenceText": "If GPS fails, the pilot can use available conventional navigation systems such as VOR, NDB, or DME. The pilot should also report the failure to ATC and request radar monitoring or radar vectors if needed.",
-      "referenceTextZh": "如果 GPS 失效，飞行员可以使用 VOR、NDB 或 DME 等可用的传统导航系统。飞行员还应向空中交通管制报告故障，并在需要时申请雷达监控或雷达引导。"
+      "referenceTextZh": "如果 GPS 失效，飞行员可以使用 VOR、NDB 或 DME 等可用的传统导航系统。飞行员还应向空中交通管制报告故障，并在需要时申请雷达监控或雷达引导。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-03"

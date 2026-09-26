@@ -9,7 +9,8 @@
       "audioText": "Have you ever heard of a mid-air collision involving TCAS?",
       "audioTextZh": "你听说过涉及 TCAS 的空中相撞事故吗？",
       "referenceText": "Yes. I heard about a collision over Germany between a passenger aircraft and a cargo aircraft in which one crew followed an ATC instruction while the other followed a TCAS resolution advisory.",
-      "referenceTextZh": "是的。我听说过德国上空一起客机与货机相撞的事故，其中一组机组遵循空中交通管制指令，另一组则遵循 TCAS 决断咨询。"
+      "referenceTextZh": "是的。我听说过德国上空一起客机与货机相撞的事故，其中一组机组遵循空中交通管制指令，另一组则遵循 TCAS 决断咨询。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-338",
@@ -17,7 +18,8 @@
       "audioText": "How can pilots prevent near misses and mid-air collisions?",
       "audioTextZh": "飞行员如何防止危险接近和空中相撞？",
       "referenceText": "Pilots should prepare thoroughly, remain familiar with the route, maintain a visual and instrument scan, and share cockpit tasks clearly. They should use standard phraseology, confirm unclear clearances, and follow ATC instructions and separation rules. They should also follow the SOP and respond promptly to a TCAS resolution advisory; if an ATC instruction conflicts with that advisory, they should follow the TCAS RA.",
-      "referenceTextZh": "飞行员应充分准备、熟悉航路、保持目视和仪表扫描，并明确分配驾驶舱任务。他们应使用标准通话用语、核实不明确的许可，并遵循空中交通管制指令和间隔规定。还应遵循标准操作程序，及时响应 TCAS 决断咨询；如果管制指令与该咨询冲突，应遵循 TCAS RA。"
+      "referenceTextZh": "飞行员应充分准备、熟悉航路、保持目视和仪表扫描，并明确分配驾驶舱任务。他们应使用标准通话用语、核实不明确的许可，并遵循空中交通管制指令和间隔规定。还应遵循标准操作程序，及时响应 TCAS 决断咨询；如果管制指令与该咨询冲突，应遵循 TCAS RA。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-352",
@@ -25,7 +27,8 @@
       "audioText": "Have you ever experienced a near miss in flight?",
       "audioTextZh": "你在飞行中经历过危险接近吗？",
       "referenceText": "No, I have never experienced a near miss in flight.",
-      "referenceTextZh": "没有，我从未在飞行中经历过危险接近。"
+      "referenceTextZh": "没有，我从未在飞行中经历过危险接近。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-353",
@@ -33,7 +36,8 @@
       "audioText": "What can cause a near miss or mid-air collision?",
       "audioTextZh": "哪些因素会导致危险接近或空中相撞？",
       "referenceText": "Possible causes include TCAS or radar failure, poor situational awareness, and an incorrect ATC instruction. A pilot may misunderstand a clearance or use non-standard communication, and high workload or congested airspace can increase the risk. Low visibility or failure to follow a TCAS advisory can also contribute.",
-      "referenceTextZh": "可能原因包括 TCAS 或雷达失效、情景意识不足以及错误的空中交通管制指令。飞行员可能误解许可或使用非标准通信，高工作负荷或拥挤空域也会增加风险。低能见度或未遵循 TCAS 咨询也可能促成事件。"
+      "referenceTextZh": "可能原因包括 TCAS 或雷达失效、情景意识不足以及错误的空中交通管制指令。飞行员可能误解许可或使用非标准通信，高工作负荷或拥挤空域也会增加风险。低能见度或未遵循 TCAS 咨询也可能促成事件。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-717",
@@ -41,7 +45,8 @@
       "audioText": "What is the Traffic Alert and Collision Avoidance System (TCAS)?",
       "referenceText": "TCAS stands for Traffic Alert and Collision Avoidance System. It is an airborne system that uses transponder information to monitor nearby aircraft and alert pilots to conflicting traffic, helping to prevent mid-air collisions.",
       "audioTextZh": "什么是空中交通告警和防撞系统（TCAS）？",
-      "referenceTextZh": "TCAS 是空中交通警告与防撞系统的缩写。它是一套机载系统，利用应答机信息监控附近飞机，并向飞行员警告冲突交通，帮助防止空中相撞。"
+      "referenceTextZh": "TCAS 是空中交通警告与防撞系统的缩写。它是一套机载系统，利用应答机信息监控附近飞机，并向飞行员警告冲突交通，帮助防止空中相撞。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-717-part-2",
@@ -49,7 +54,8 @@
       "audioText": "What are the main functions of TCAS?",
       "referenceText": "TCAS monitors nearby transponder-equipped aircraft and warns the crew about possible traffic conflicts. A traffic advisory helps the pilots locate and assess the traffic. TCAS II can also issue a resolution advisory that recommends a vertical response to increase separation and avoid a collision.",
       "audioTextZh": "TCAS 的主要功能是什么？",
-      "referenceTextZh": "TCAS 监控附近配有应答机的飞机，并向机组警告可能的交通冲突。交通咨询帮助飞行员定位和评估相关飞机。TCAS II 还能发布决断咨询，建议采取垂直机动以增大间隔并避免碰撞。"
+      "referenceTextZh": "TCAS 监控附近配有应答机的飞机，并向机组警告可能的交通冲突。交通咨询帮助飞行员定位和评估相关飞机。TCAS II 还能发布决断咨询，建议采取垂直机动以增大间隔并避免碰撞。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-714",

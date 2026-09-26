@@ -9,7 +9,8 @@
       "audioText": "What situations could make a ditching necessary?",
       "audioTextZh": "哪些情况可能需要进行水上迫降？",
       "referenceText": "Fuel exhaustion, engine failure, severe structural damage, or an emergency that prevents the aircraft from reaching a suitable runway could make a ditching necessary. For example, a crew may have to ditch after both engines fail over water when no airport is within reach.",
-      "referenceTextZh": "燃油耗尽、发动机失效、严重结构损伤，或使飞机无法到达合适跑道的紧急情况，都可能使水上迫降成为必要选择。例如，两台发动机在水面上空全部失效且没有可到达机场时，机组可能必须水上迫降。"
+      "referenceTextZh": "燃油耗尽、发动机失效、严重结构损伤，或使飞机无法到达合适跑道的紧急情况，都可能使水上迫降成为必要选择。例如，两台发动机在水面上空全部失效且没有可到达机场时，机组可能必须水上迫降。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-787",
@@ -17,7 +18,8 @@
       "audioText": "What preparations should a flight crew make before a ditching?",
       "audioTextZh": "水上迫降前，机组应做哪些准备？",
       "referenceText": "The crew should declare the emergency, request rescue support, and select the safest available water area. They should brief the passengers, make sure life vests are worn, instruct everyone to brace, and prepare the life rafts and evacuation. The aircraft should be configured for the ditching, and the crew should maintain stable flight for the touchdown.",
-      "referenceTextZh": "机组应宣布紧急状态、申请救援支援，并选择最安全的可用水域。他们应向旅客进行简令，确保穿好救生衣，指示所有人采取防冲击姿势，并准备救生筏和撤离。飞机应按水上迫降要求调整构型，机组则应保持稳定飞行直至接水。"
+      "referenceTextZh": "机组应宣布紧急状态、申请救援支援，并选择最安全的可用水域。他们应向旅客进行简令，确保穿好救生衣，指示所有人采取防冲击姿势，并准备救生筏和撤离。飞机应按水上迫降要求调整构型，机组则应保持稳定飞行直至接水。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-788",
@@ -25,7 +27,8 @@
       "audioText": "How should a flight crew determine the safest direction for a ditching?",
       "audioTextZh": "机组应如何确定最安全的水上迫降方向？",
       "referenceText": "The crew should consider the wind direction and wave pattern and use visual observation. They should choose a direction toward the calmest suitable water while avoiding strong currents and debris.",
-      "referenceTextZh": "机组应考虑风向和波浪走向并进行目视观察。他们应选择朝向最平静合适水域的方向，同时避开强水流和漂浮物。"
+      "referenceTextZh": "机组应考虑风向和波浪走向并进行目视观察。他们应选择朝向最平静合适水域的方向，同时避开强水流和漂浮物。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-789",
@@ -33,7 +36,8 @@
       "audioText": "How should the crew organize a passenger evacuation after a ditching?",
       "audioTextZh": "水上迫降后，机组应如何组织乘客撤离？",
       "referenceText": "Once the aircraft is stable, the crew should open the usable exits, deploy the life rafts, and guide passengers to board them in an orderly way. They should check for injuries, assign responsibilities such as raft leaders, and make sure everyone leaves the aircraft. The crew should remain calm and follow the emergency procedures throughout the evacuation.",
-      "referenceTextZh": "飞机稳定后，机组应打开可用出口、展开救生筏，并引导旅客有序登筏。他们应检查伤员、指定筏长等职责，并确保所有人离开飞机。整个撤离过程中，机组应保持冷静并遵循应急程序。"
+      "referenceTextZh": "飞机稳定后，机组应打开可用出口、展开救生筏，并引导旅客有序登筏。他们应检查伤员、指定筏长等职责，并确保所有人离开飞机。整个撤离过程中，机组应保持冷静并遵循应急程序。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-790",
@@ -113,7 +117,8 @@
       "audioText": "How should passengers with special needs be assisted during an evacuation after a ditching?",
       "audioTextZh": "水上迫降后撤离时，应如何协助有特殊需要的乘客？",
       "referenceText": "Passengers with special needs, including disabled passengers, pregnant women, and children, should receive priority assistance. Crew members or trained volunteers should be assigned to help them, make sure their life vests fit properly, provide physical support, and guide them to the life rafts.",
-      "referenceTextZh": "残障旅客、孕妇和儿童等有特殊需要的旅客应优先获得协助。应指定机组成员或经过培训的志愿者帮助他们，确保救生衣正确合身、提供身体支撑，并引导他们前往救生筏。"
+      "referenceTextZh": "残障旅客、孕妇和儿童等有特殊需要的旅客应优先获得协助。应指定机组成员或经过培训的志愿者帮助他们，确保救生衣正确合身、提供身体支撑，并引导他们前往救生筏。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-800",
@@ -121,7 +126,8 @@
       "audioText": "What are the key considerations when ditching in icy water?",
       "audioTextZh": "在冰冷水域进行水上迫降时，需要重点考虑哪些事项？",
       "referenceText": "The crew should avoid thin ice and select the calmest suitable water area available. Passengers should keep their limbs covered to reduce the risk of hypothermia. After evacuation, the life rafts may be secured to a suitable ice surface if this can be done safely.",
-      "referenceTextZh": "机组应避开薄冰，并选择最平静的合适水域。旅客应遮盖四肢，以降低失温风险。撤离后，如果能够安全完成，可以把救生筏固定在合适冰面上。"
+      "referenceTextZh": "机组应避开薄冰，并选择最平静的合适水域。旅客应遮盖四肢，以降低失温风险。撤离后，如果能够安全完成，可以把救生筏固定在合适冰面上。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-801",
@@ -201,7 +207,8 @@
       "audioText": "Which is more dangerous, ditching on water or making a forced landing on land, and why?",
       "audioTextZh": "水上迫降与陆地迫降相比，哪一种更危险？为什么？",
       "referenceText": "I think ditching is generally more dangerous than a forced landing on suitable flat land. Open water has no stable surface and creates risks such as capsizing, flooding, and hypothermia, while rescue may be more difficult. Both situations still require precise aircraft control and careful emergency preparation.",
-      "referenceTextZh": "我认为，与在合适平坦陆地上迫降相比，水上迫降通常更危险。开阔水面没有稳定表面，并带来倾覆、进水和失温风险，救援也可能更困难。两种情况仍都要求精确控制飞机并认真做好应急准备。"
+      "referenceTextZh": "我认为，与在合适平坦陆地上迫降相比，水上迫降通常更危险。开阔水面没有稳定表面，并带来倾覆、进水和失温风险，救援也可能更困难。两种情况仍都要求精确控制飞机并认真做好应急准备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-811",

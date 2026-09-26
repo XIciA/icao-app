@@ -9,7 +9,8 @@
       "audioText": "Have you ever encountered an emergency, urgency, or distress situation during a flight? If so, what happened?",
       "audioTextZh": "你在飞行中遇到过应急、紧急或遇险情况吗？如果遇到过，当时发生了什么？",
       "referenceText": "No, I have never encountered an emergency, urgency, or distress situation during a flight. However, I have practised responses to engine failure, depressurization, and turbulence in simulator training, using SOPs and checklists.",
-      "referenceTextZh": "没有，我在飞行中从未遇到过紧急、紧迫或遇险情况。不过，我在模拟机训练中按照标准操作程序和检查单练习过发动机失效、失压和颠簸的处置。"
+      "referenceTextZh": "没有，我在飞行中从未遇到过紧急、紧迫或遇险情况。不过，我在模拟机训练中按照标准操作程序和检查单练习过发动机失效、失压和颠簸的处置。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-079",
@@ -17,7 +18,8 @@
       "audioText": "What assistance might a flight crew need from ATC or ground personnel during an emergency?",
       "audioTextZh": "紧急情况下，机组可能需要 ATC 或地面人员提供哪些协助？",
       "referenceText": "The crew may need ATC to coordinate a priority landing and the necessary airspace and to provide updated weather information. ATC or ground personnel may also arrange fire, rescue, medical, and airport police services.",
-      "referenceTextZh": "机组可能需要空中交通管制协调优先着陆和所需空域，并提供最新天气信息。空中交通管制或地面人员还可以安排消防、救援、医疗和机场公安等服务。"
+      "referenceTextZh": "机组可能需要空中交通管制协调优先着陆和所需空域，并提供最新天气信息。空中交通管制或地面人员还可以安排消防、救援、医疗和机场公安等服务。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-084",
@@ -25,7 +27,8 @@
       "audioText": "When is an emergency descent necessary?",
       "audioTextZh": "何时需要实施紧急下降？",
       "referenceText": "An emergency descent may be necessary after a decompression or a pressurization-system failure. It may also be needed when there is uncontrollable smoke or fire in flight.",
-      "referenceTextZh": "发生失压或增压系统故障后，可能需要紧急下降。飞行中出现无法控制的烟雾或火灾时，也可能需要这样做。"
+      "referenceTextZh": "发生失压或增压系统故障后，可能需要紧急下降。飞行中出现无法控制的烟雾或火灾时，也可能需要这样做。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-085",
@@ -33,7 +36,8 @@
       "audioText": "What procedures should a pilot follow during an emergency descent?",
       "audioTextZh": "紧急下降过程中，飞行员应遵循哪些程序？",
       "referenceText": "The pilot should put on an oxygen mask, notify the crew and passengers, complete the recall items, and follow the aircraft's emergency descent profile. The pilot should monitor the instruments and communicate with the crew. If time permits, the pilot should advise ATC of the situation.",
-      "referenceTextZh": "飞行员应戴上氧气面罩，通知机组和旅客，完成记忆项目，并按照该机型的紧急下降剖面操作。飞行员应监控仪表并与机组沟通。如果时间允许，还应向空中交通管制报告情况。"
+      "referenceTextZh": "飞行员应戴上氧气面罩，通知机组和旅客，完成记忆项目，并按照该机型的紧急下降剖面操作。飞行员应监控仪表并与机组沟通。如果时间允许，还应向空中交通管制报告情况。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-086",
@@ -41,7 +45,8 @@
       "audioText": "What assistance can ATC provide during an emergency descent?",
       "audioTextZh": "ATC 在紧急下降过程中可以提供哪些协助？",
       "referenceText": "ATC can issue the necessary clearance, advise other aircraft that an emergency descent is in progress, and help provide separation. It can also provide information about the flight conditions and the en-route minimum altitude.",
-      "referenceTextZh": "空中交通管制可以发布必要的许可，通知其他飞机正在进行紧急下降，并协助提供间隔。它还可以提供飞行条件和航路最低高度等信息。"
+      "referenceTextZh": "空中交通管制可以发布必要的许可，通知其他飞机正在进行紧急下降，并协助提供间隔。它还可以提供飞行条件和航路最低高度等信息。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-087",
@@ -49,7 +54,8 @@
       "audioText": "What can cause an aircraft to make a belly landing?",
       "audioTextZh": "哪些情况会导致飞机进行机腹着陆？",
       "referenceText": "A belly landing may be necessary if the pilot forgets to extend the landing gear or if a mechanical problem prevents the gear from extending.",
-      "referenceTextZh": "如果飞行员忘记放起落架，或机械故障使起落架无法放下，可能需要进行机腹着陆。"
+      "referenceTextZh": "如果飞行员忘记放起落架，或机械故障使起落架无法放下，可能需要进行机腹着陆。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-088",
@@ -89,7 +95,8 @@
       "audioText": "What is the difference between an urgency situation and a distress situation?",
       "audioTextZh": "紧急情况与遇险情况有什么区别？",
       "referenceText": "An urgency situation requires prompt attention but not immediate assistance, and the signal is PAN PAN. A distress situation requires immediate assistance because there is a serious threat to the aircraft or to life, and the signal is MAYDAY.",
-      "referenceTextZh": "紧迫情况需要及时关注，但不需要立即援助，其信号是 PAN PAN。遇险情况表示飞机或人员生命受到严重威胁，需要立即援助，其信号是 MAYDAY。"
+      "referenceTextZh": "紧迫情况需要及时关注，但不需要立即援助，其信号是 PAN PAN。遇险情况表示飞机或人员生命受到严重威胁，需要立即援助，其信号是 MAYDAY。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-105",
@@ -97,7 +104,8 @@
       "audioText": "What general steps should a pilot take in an urgency or distress situation?",
       "audioTextZh": "在紧急或遇险情况下，飞行员通常应采取哪些步骤？",
       "referenceText": "I would keep control of the aircraft and ask the copilot to read the checklist while I carry out the required actions. At the same time, I would report the situation to ATC. If necessary, I would request a diversion, priority landing, and emergency services.",
-      "referenceTextZh": "我会控制好飞机，并让副驾驶读检查单，由我执行所需动作。同时，我会向空中交通管制报告情况。如有必要，我会申请改航、优先着陆和应急服务。"
+      "referenceTextZh": "我会控制好飞机，并让副驾驶读检查单，由我执行所需动作。同时，我会向空中交通管制报告情况。如有必要，我会申请改航、优先着陆和应急服务。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-109",
@@ -105,7 +113,8 @@
       "audioText": "How should a pilot transmit a distress message?",
       "audioTextZh": "飞行员应如何发送遇险信息？",
       "referenceText": "The pilot should begin with “Mayday” repeated three times and address the station being called. The message should give the aircraft identification and type, the nature of the distress, the pilot's intentions, position, heading, altitude, fuel endurance in minutes, and number of people on board. Relevant weather and any other useful information should be added when time permits.",
-      "referenceTextZh": "飞行员应先连续三次呼叫“Mayday”，并呼叫目标电台。报文应包括飞机识别标志和机型、遇险性质、飞行员意图、位置、航向、高度、以分钟表示的续航时间，以及机上人数。如果时间允许，还应补充相关天气和其他有用信息。"
+      "referenceTextZh": "飞行员应先连续三次呼叫“Mayday”，并呼叫目标电台。报文应包括飞机识别标志和机型、遇险性质、飞行员意图、位置、航向、高度、以分钟表示的续航时间，以及机上人数。如果时间允许，还应补充相关天气和其他有用信息。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-110",
@@ -113,7 +122,8 @@
       "audioText": "What should a pilot do after hearing another aircraft transmit a distress message in flight?",
       "audioTextZh": "飞行中听到另一架飞机发送遇险信息后，飞行员应如何处置？",
       "referenceText": "If the distressed aircraft can communicate with ATC, I would stop transmitting. If it cannot, I would help relay the message to ATC and provide any necessary assistance.",
-      "referenceTextZh": "如果遇险飞机能够与空中交通管制通信，我会停止发射。如果它无法通信，我会协助向空中交通管制转发报文，并提供必要帮助。"
+      "referenceTextZh": "如果遇险飞机能够与空中交通管制通信，我会停止发射。如果它无法通信，我会协助向空中交通管制转发报文，并提供必要帮助。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-02"

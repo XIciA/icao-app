@@ -51,11 +51,13 @@ const reviewedStudyNativeHash = '3869d4c59d22f94a19e1d6b1b7db404483ca19c85770059
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
-// Reviewed Native-only installed-version dependency: exact before/after pairs.
+// Reviewed Native/EdgeOne-only dependencies (installed version and clipboard).
+// Clipboard is imported only by ContactRow.native; legacy runtime imports stay unchanged.
+// Lockfile review preserves every existing version and adds only expo-clipboard 55.0.14.
 // Existing dependency versions and the Web resolver graph remain unchanged.
 const reviewedAppIdentityDependencyHashes = new Map([
-  ['package.json', ['cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e', 'fb69d0a671771c7e250bc995b42e2b653730db64c147356fab5b89cb3e1b29eb']],
-  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '80753a9136a3331d2176b692a0491f66a8fe63848f4d785f95f951e9bbb87cd3']],
+  ['package.json', ['cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e', '162f0078797d725160b936dfbb0db9a20e1e4914a598b392095269f3f7d74784']],
+  ['pnpm-lock.yaml', ['96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9', '32b104dc495aa019188b30a67fb5797875ae58bd2a382c7a4914b9dacd1e2d02']],
 ]);
 
 // Reviewed 2026-09-18: EdgeOne-only bridges and the user-authorized APK button.
@@ -183,6 +185,9 @@ reviewedFormalWebHashes.set("packages/contracts/src/annotation-management.ts", [
 reviewedFormalWebHashes.set('package.json', reviewedAppIdentityDependencyHashes.get('package.json'));
 reviewedFormalWebHashes.set('pnpm-lock.yaml', reviewedAppIdentityDependencyHashes.get('pnpm-lock.yaml'));
 reviewedFormalWebHashes.set(reviewedStudyNativePath, [reviewedStudyNativeBaseHash, reviewedStudyNativeHash]);
+
+// 2026-09-26: only two unused-in-legacy icon exports; existing exports unchanged.
+reviewedFormalWebHashes.set('src/components/ui/icons.ts', ['f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0', '90039b5045f3ce1bb0d679c1b3f8ad631fdf22759d0b4466f08f2c01bef1ea03']);
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));

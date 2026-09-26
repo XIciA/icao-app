@@ -9,7 +9,8 @@
       "audioText": "Does your company provide joint training for flight and cabin crews on managing flight crew incapacitation? If not, do you think such training is necessary, and why?",
       "audioTextZh": "你所在的公司是否为飞行机组和客舱机组提供应对飞行机组成员失能的联合培训？如果没有，你认为这种培训是否必要？为什么？",
       "referenceText": "I am not currently employed by an airline, so I have not received company joint training. I think it is necessary because flight and cabin crews must communicate clearly, protect the flight deck, assist an incapacitated pilot, and coordinate the cabin response. Practising together helps both groups understand their duties before a real event.",
-      "referenceTextZh": "我目前尚未受雇于航空公司，因此没有参加过公司联合训练。我认为这种训练很有必要，因为飞行机组和客舱机组必须清晰沟通、保护驾驶舱、协助失能飞行员，并协调客舱响应。共同练习有助于双方在真实事件发生前了解各自职责。"
+      "referenceTextZh": "我目前尚未受雇于航空公司，因此没有参加过公司联合训练。我认为这种训练很有必要，因为飞行机组和客舱机组必须清晰沟通、保护驾驶舱、协助失能飞行员，并协调客舱响应。共同练习有助于双方在真实事件发生前了解各自职责。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-214",
@@ -17,7 +18,8 @@
       "audioText": "What should the remaining pilot do if the other pilot becomes incapacitated during flight?",
       "audioTextZh": "飞行中一名飞行员失能时，另一名飞行员应如何处置？",
       "referenceText": "The remaining pilot should take control and stabilize the aircraft, using the autopilot if conditions allow. The cabin crew should be asked to assess the incapacitated pilot and provide first aid, while the remaining crew redistribute essential duties. The pilot should inform ATC and prepare to land at a suitable airport, requesting medical assistance when needed.",
-      "referenceTextZh": "剩余飞行员应接管并稳定飞机，在条件允许时使用自动驾驶仪。应请客舱机组评估失能飞行员并提供急救，同时由其余机组重新分配关键职责。飞行员应通知空中交通管制，准备在合适机场着陆，并在需要时申请医疗协助。"
+      "referenceTextZh": "剩余飞行员应接管并稳定飞机，在条件允许时使用自动驾驶仪。应请客舱机组评估失能飞行员并提供急救，同时由其余机组重新分配关键职责。飞行员应通知空中交通管制，准备在合适机场着陆，并在需要时申请医疗协助。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-529",
@@ -25,7 +27,8 @@
       "audioText": "Which types of exercise are most suitable for pilots, and why?",
       "audioTextZh": "哪些运动最适合飞行员？为什么？",
       "referenceText": "I think swimming and running are suitable exercises for pilots. They improve cardiovascular fitness and endurance and can help pilots maintain a strong body and a sharp mind. Swimming is also a full-body exercise that is gentle on the joints and can reduce stress.",
-      "referenceTextZh": "我认为游泳和跑步适合飞行员。它们可以改善心肺功能和耐力，帮助飞行员保持强健体魄和敏锐思维。游泳还是一种对关节冲击较小的全身运动，并能缓解压力。"
+      "referenceTextZh": "我认为游泳和跑步适合飞行员。它们可以改善心肺功能和耐力，帮助飞行员保持强健体魄和敏锐思维。游泳还是一种对关节冲击较小的全身运动，并能缓解压力。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-530",
@@ -81,7 +84,8 @@
       "audioText": "What are the common causes of crew incapacitation?",
       "audioTextZh": "机组成员失能的常见原因有哪些？",
       "referenceText": "Common causes include sudden illness, serious injury, food poisoning, toxic-gas inhalation, and depressurization. Fatigue, stress, and lack of sleep can also impair a crew member’s ability to work and may lead to incapacitation.",
-      "referenceTextZh": "常见原因包括突发疾病、严重受伤、食物中毒、有毒气体吸入和失压。疲劳、压力和睡眠不足也会损害机组成员的工作能力，并可能导致失能。"
+      "referenceTextZh": "常见原因包括突发疾病、严重受伤、食物中毒、有毒气体吸入和失压。疲劳、压力和睡眠不足也会损害机组成员的工作能力，并可能导致失能。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-777",
@@ -89,7 +93,8 @@
       "audioText": "How can flight crew members reduce the risk of becoming incapacitated?",
       "audioTextZh": "飞行机组成员如何降低自身失能的风险？",
       "referenceText": "Flight crew members can reduce the risk by exercising regularly, eating a balanced diet, and having regular medical examinations. They should follow flight-duty-time rules, get enough rest, and manage stress to prevent fatigue. During depressurization or another relevant emergency, they should use oxygen masks promptly and follow the applicable safety procedure.",
-      "referenceTextZh": "飞行机组成员可以通过规律锻炼、均衡饮食和定期体检来降低风险。他们应遵守飞行值勤时间规定、充分休息并管理压力，以防止疲劳。发生失压或其他相关紧急情况时，应立即使用氧气面罩并遵循适用安全程序。"
+      "referenceTextZh": "飞行机组成员可以通过规律锻炼、均衡饮食和定期体检来降低风险。他们应遵守飞行值勤时间规定、充分休息并管理压力，以防止疲劳。发生失压或其他相关紧急情况时，应立即使用氧气面罩并遵循适用安全程序。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-778",
@@ -97,7 +102,8 @@
       "audioText": "How can an operator reduce the safety risks associated with crew incapacitation?",
       "audioTextZh": "运营人如何降低与机组成员失能有关的安全风险？",
       "referenceText": "An operator can arrange reasonable duty and rest periods to reduce fatigue and provide training on incapacitation and emergency takeovers. It can equip aircraft with medical kits and encourage crews to report health problems promptly. The operator can then adjust schedules when necessary to protect flight safety.",
-      "referenceTextZh": "运营人可以合理安排值勤和休息时间以减轻疲劳，并提供失能和紧急接替训练。运营人可以为飞机配备医疗箱，并鼓励机组及时报告健康问题；随后在必要时调整排班，以保护飞行安全。"
+      "referenceTextZh": "运营人可以合理安排值勤和休息时间以减轻疲劳，并提供失能和紧急接替训练。运营人可以为飞机配备医疗箱，并鼓励机组及时报告健康问题；随后在必要时调整排班，以保护飞行安全。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-04"

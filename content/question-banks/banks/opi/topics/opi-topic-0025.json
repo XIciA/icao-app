@@ -9,7 +9,8 @@
       "audioText": "Why is recurrent training important for pilots?",
       "audioTextZh": "为什么复训对飞行员很重要？",
       "referenceText": "Recurrent training helps pilots review procedures and emergency actions, maintain their skills, and refresh knowledge that may have been forgotten. It also helps them adapt to changes in technology, procedures, and regulations and identify areas that need improvement. The training can improve communication and cooperation between crew members.",
-      "referenceTextZh": "复训帮助飞行员复习程序和应急动作、保持技能，并更新可能已经遗忘的知识。它还帮助他们适应技术、程序和法规变化，并发现需要改进的方面。培训也能改善机组成员之间的沟通与合作。"
+      "referenceTextZh": "复训帮助飞行员复习程序和应急动作、保持技能，并更新可能已经遗忘的知识。它还帮助他们适应技术、程序和法规变化，并发现需要改进的方面。培训也能改善机组成员之间的沟通与合作。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-387",
@@ -17,7 +18,8 @@
       "audioText": "Where do you receive your recurrent training?",
       "audioTextZh": "你在哪里接受复训？",
       "referenceText": "I have not received company recurrent training yet because I am still training at flight school. My current program includes simulator training there.",
-      "referenceTextZh": "我尚未接受公司复训，因为目前仍在航校训练。我的现行训练计划包括航校的模拟机训练。"
+      "referenceTextZh": "我尚未接受公司复训，因为目前仍在航校训练。我的现行训练计划包括航校的模拟机训练。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-388",
@@ -25,7 +27,8 @@
       "audioText": "How often do you receive recurrent training?",
       "audioTextZh": "你多久接受一次复训？",
       "referenceText": "At flight school, I receive simulator training once a month.",
-      "referenceTextZh": "在航校，我每月接受一次模拟机训练。"
+      "referenceTextZh": "在航校，我每月接受一次模拟机训练。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-388-part-2",
@@ -33,7 +36,8 @@
       "audioText": "How many training hours do you complete during each recurrent training session?",
       "audioTextZh": "每次复训你要完成多少小时的训练？",
       "referenceText": "Each simulator training session at my flight school lasts about three hours, depending on the training subject.",
-      "referenceTextZh": "航校每次模拟机训练大约持续三小时，具体取决于训练科目。"
+      "referenceTextZh": "航校每次模拟机训练大约持续三小时，具体取决于训练科目。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-389",
@@ -41,7 +45,8 @@
       "audioText": "What subjects do you review during recurrent training?",
       "audioTextZh": "复训期间你会复习哪些科目？",
       "referenceText": "We review normal procedures such as traffic patterns, holding patterns, and precision approaches. We also practice abnormal situations such as a rejected takeoff, engine failure, and hydraulic-system failure.",
-      "referenceTextZh": "我们会复习起落航线、等待航线和精密进近等正常程序，也会练习中断起飞、发动机失效和液压系统失效等非正常情况。"
+      "referenceTextZh": "我们会复习起落航线、等待航线和精密进近等正常程序，也会练习中断起飞、发动机失效和液压系统失效等非正常情况。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-390",
@@ -49,7 +54,8 @@
       "audioText": "Which recurrent training subject do you find most difficult, and why?",
       "audioTextZh": "你觉得哪个复训科目最难？为什么？",
       "referenceText": "I find engine-failure training the most difficult because the DA-40 I fly has a single engine, so an engine failure means a complete loss of power. The situation requires quick decisions and actions, and choosing the right time and place for a forced landing is especially difficult for a less experienced pilot.",
-      "referenceTextZh": "我认为发动机失效训练最困难，因为我飞的 DA-40 是单发飞机，发动机失效就意味着动力完全丧失。这种情况要求快速决策和行动，而对于经验较少的飞行员来说，选择迫降的正确时机和地点尤其困难。"
+      "referenceTextZh": "我认为发动机失效训练最困难，因为我飞的 DA-40 是单发飞机，发动机失效就意味着动力完全丧失。这种情况要求快速决策和行动，而对于经验较少的飞行员来说，选择迫降的正确时机和地点尤其困难。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-393",

@@ -9,7 +9,8 @@
       "audioText": "Who is responsible for performing the preflight walk-around inspection?",
       "audioTextZh": "谁负责进行飞行前绕机检查？",
       "referenceText": "The captain has overall responsibility for the walk-around inspection, although the first officer normally performs it under the company's SOP. A student pilot may carry it out under the supervision and confirmation of a flight instructor.",
-      "referenceTextZh": "机长对绕机检查承担总体责任，但通常由副驾驶按照公司标准操作程序执行。学员飞行员可以在飞行教员监督和确认下完成检查。"
+      "referenceTextZh": "机长对绕机检查承担总体责任，但通常由副驾驶按照公司标准操作程序执行。学员飞行员可以在飞行教员监督和确认下完成检查。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-024",
@@ -17,7 +18,8 @@
       "audioText": "Why is it important to follow the prescribed route during a walk-around inspection?",
       "audioTextZh": "绕机检查时为什么必须遵循规定的路线？",
       "referenceText": "Following a prescribed route helps the pilot inspect every required area without missing a point. A consistent sequence reduces human error, improves efficiency, and helps ensure that critical parts are checked before flight.",
-      "referenceTextZh": "沿规定路线检查，能帮助飞行员覆盖每个必检区域而不遗漏。固定顺序可以减少人为差错、提高效率，并确保飞行前检查关键部位。"
+      "referenceTextZh": "沿规定路线检查，能帮助飞行员覆盖每个必检区域而不遗漏。固定顺序可以减少人为差错、提高效率，并确保飞行前检查关键部位。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-026",
@@ -25,7 +27,8 @@
       "audioText": "Which areas of an aircraft require especially careful attention during a walk-around inspection, and why?",
       "audioTextZh": "绕机检查时，航空器的哪些区域需要特别仔细检查？为什么？",
       "referenceText": "The engines, landing gear, wings, flight-control surfaces, and pitot tubes require careful attention. Each of these areas is important to the aircraft's safe operation, although the entire aircraft should still be inspected thoroughly.",
-      "referenceTextZh": "发动机、起落架、机翼、飞行操纵面和空速管需要重点检查。这些区域都关系到飞机安全运行，但整架飞机仍须全面检查。"
+      "referenceTextZh": "发动机、起落架、机翼、飞行操纵面和空速管需要重点检查。这些区域都关系到飞机安全运行，但整架飞机仍须全面检查。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-027",
@@ -33,7 +36,8 @@
       "audioText": "What requires extra attention during a walk-around inspection in extremely cold weather?",
       "audioTextZh": "在极寒天气下进行绕机检查时，哪些方面需要格外注意？",
       "referenceText": "The pilot should look carefully for ice on the airframe and wings and check that the pitot tubes are not blocked. Ice on the wings can reduce lift and aircraft performance, while a blocked pitot tube can cause inaccurate cockpit indications.",
-      "referenceTextZh": "飞行员应认真检查机体和机翼是否结冰，并确认空速管没有堵塞。机翼结冰会降低升力和飞机性能，空速管堵塞则会造成驾驶舱指示不准确。"
+      "referenceTextZh": "飞行员应认真检查机体和机翼是否结冰，并确认空速管没有堵塞。机翼结冰会降低升力和飞机性能，空速管堵塞则会造成驾驶舱指示不准确。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-043",
@@ -41,7 +45,8 @@
       "audioText": "Why is a walk-around inspection important?",
       "audioTextZh": "绕机检查为什么很重要？",
       "referenceText": "A walk-around inspection can reveal fuel leaks, ice, structural damage, or foreign objects before flight. It also allows the pilot to check the engines, pitot tubes, and flight-control surfaces. Finding these problems on the ground helps prevent an in-flight malfunction.",
-      "referenceTextZh": "绕机检查可以在飞行前发现燃油泄漏、结冰、结构损伤或外来物，也使飞行员能够检查发动机、空速管和飞行操纵面。在地面发现这些问题有助于防止飞行中故障。"
+      "referenceTextZh": "绕机检查可以在飞行前发现燃油泄漏、结冰、结构损伤或外来物，也使飞行员能够检查发动机、空速管和飞行操纵面。在地面发现这些问题有助于防止飞行中故障。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-047",
@@ -49,7 +54,8 @@
       "audioText": "What route do you follow during a walk-around inspection?",
       "audioTextZh": "你进行绕机检查时遵循什么路线？",
       "referenceText": "I begin at the nose, walk around the right side of the aircraft, continue around the left side, and finish back at the nose.",
-      "referenceTextZh": "我从机头开始，沿飞机右侧绕行，再继续检查左侧，最后回到机头。"
+      "referenceTextZh": "我从机头开始，沿飞机右侧绕行，再继续检查左侧，最后回到机头。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-053",

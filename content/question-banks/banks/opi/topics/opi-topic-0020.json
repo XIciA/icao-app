@@ -9,7 +9,8 @@
       "audioText": "What is a quick access recorder (QAR)?",
       "referenceText": "QAR stands for quick access recorder. It records flight data such as airspeed, altitude, heading, and position and can be used for training, investigation, and improving pilot skills.",
       "audioTextZh": "什么是快速存取记录器（QAR）？",
-      "referenceTextZh": "QAR 是快速存取记录器的缩写。它记录空速、高度、航向和位置等飞行数据，可用于培训、调查和提高飞行员技能。"
+      "referenceTextZh": "QAR 是快速存取记录器的缩写。它记录空速、高度、航向和位置等飞行数据，可用于培训、调查和提高飞行员技能。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-311",
@@ -17,7 +18,8 @@
       "audioText": "What types of flight data are recorded by a QAR?",
       "audioTextZh": "QAR 会记录哪些类型的飞行数据？",
       "referenceText": "A QAR can record aircraft-system conditions, engine parameters, and flight-control parameters during flight.",
-      "referenceTextZh": "QAR 可以记录飞行中的飞机系统状态、发动机参数和飞行操纵参数。"
+      "referenceTextZh": "QAR 可以记录飞行中的飞机系统状态、发动机参数和飞行操纵参数。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-312",
@@ -25,7 +27,8 @@
       "audioText": "Do you think airlines use QAR data appropriately? Why or why not?",
       "audioTextZh": "你认为航空公司合理使用 QAR 数据吗？为什么？",
       "referenceText": "Not always. Some airlines may fail to review the recorded data properly, so pilot-performance problems and aircraft-maintenance issues may not be discovered.",
-      "referenceTextZh": "不一定。有些航空公司可能没有妥善分析记录的数据，因此无法发现飞行员表现问题和飞机维修问题。"
+      "referenceTextZh": "不一定。有些航空公司可能没有妥善分析记录的数据，因此无法发现飞行员表现问题和飞机维修问题。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-03"

@@ -9,7 +9,8 @@
       "audioText": "What should a pilot do if the aircraft collides with a ground vehicle while taxiing?",
       "audioTextZh": "滑行时飞机与地面车辆相撞，飞行员应如何处置？",
       "referenceText": "The pilot should stop the aircraft immediately, set the parking brake, and have the cabin crew check for injuries. The crew should report the collision to ATC and company dispatch and request maintenance inspection and emergency assistance if needed. Taxi should not resume until the aircraft's airworthiness has been confirmed.",
-      "referenceTextZh": "飞行员应立即停下飞机、设置停留刹车，并让客舱机组检查是否有人受伤。机组应向空中交通管制和公司签派报告碰撞，并在需要时申请维修检查和应急协助。在确认飞机适航之前，不得恢复滑行。"
+      "referenceTextZh": "飞行员应立即停下飞机、设置停留刹车，并让客舱机组检查是否有人受伤。机组应向空中交通管制和公司签派报告碰撞，并在需要时申请维修检查和应急协助。在确认飞机适航之前，不得恢复滑行。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-340",
@@ -49,7 +50,8 @@
       "audioText": "What can cause a ground collision?",
       "audioTextZh": "哪些因素会导致地面碰撞？",
       "referenceText": "A ground collision can be caused by poor visibility, a mechanical problem, or human error. Inoperative brakes or steering may cause an aircraft to leave a taxiway or runway, while a misunderstanding between pilots and controllers can also create a collision risk.",
-      "referenceTextZh": "地面碰撞可能由低能见度、机械故障或人为差错造成。刹车或转向失效可能使飞机偏离滑行道或跑道，而飞行员与管制员之间的误解也会带来碰撞风险。"
+      "referenceTextZh": "地面碰撞可能由低能见度、机械故障或人为差错造成。刹车或转向失效可能使飞机偏离滑行道或跑道，而飞行员与管制员之间的误解也会带来碰撞风险。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-345",
@@ -57,7 +59,8 @@
       "audioText": "How can ground collisions be prevented?",
       "audioTextZh": "如何防止地面碰撞？",
       "referenceText": "Pilots should prepare thoroughly, follow ATC instructions, use standard phraseology, taxi slowly in low visibility, and maintain situational awareness. ATC should communicate clearly, and airports should provide effective signs and lighting and manage movement areas carefully.",
-      "referenceTextZh": "飞行员应充分准备，遵循空中交通管制指令，使用标准通话用语，在低能见度下缓慢滑行，并保持情景意识。空中交通管制应清晰通信，机场则应提供有效的标志和灯光，并认真管理活动区域。"
+      "referenceTextZh": "飞行员应充分准备，遵循空中交通管制指令，使用标准通话用语，在低能见度下缓慢滑行，并保持情景意识。空中交通管制应清晰通信，机场则应提供有效的标志和灯光，并认真管理活动区域。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-346",
@@ -65,7 +68,8 @@
       "audioText": "How can pilots reduce the risk of a collision while taxiing in heavy fog?",
       "audioTextZh": "大雾中滑行时，飞行员如何降低碰撞风险？",
       "referenceText": "Pilots should taxi carefully, follow ATC instructions and regulations, and maintain good situational awareness.",
-      "referenceTextZh": "飞行员应谨慎滑行，遵循空中交通管制指令和规章，并保持良好情景意识。"
+      "referenceTextZh": "飞行员应谨慎滑行，遵循空中交通管制指令和规章，并保持良好情景意识。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-349",
@@ -97,7 +101,8 @@
       "audioText": "What ground conditions can contribute to a ground collision?",
       "audioTextZh": "哪些地面条件可能导致地面碰撞？",
       "referenceText": "Low visibility, poor runway or taxiway lighting, and unclear markings can contribute to a ground collision. Wet or slippery surfaces, foreign-object debris, and narrow taxiways can also make safe maneuvering more difficult.",
-      "referenceTextZh": "低能见度、跑道或滑行道灯光不足，以及标线不清，都可能导致地面碰撞。湿滑道面、外来物和狭窄滑行道也会增加安全机动的难度。"
+      "referenceTextZh": "低能见度、跑道或滑行道灯光不足，以及标线不清，都可能导致地面碰撞。湿滑道面、外来物和狭窄滑行道也会增加安全机动的难度。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-358",

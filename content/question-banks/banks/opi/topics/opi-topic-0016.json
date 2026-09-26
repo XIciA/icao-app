@@ -9,7 +9,8 @@
       "audioText": "What factors can cause an aircraft to overrun the runway after landing?",
       "audioTextZh": "哪些因素可能导致航空器着陆后冲出跑道？",
       "referenceText": "A runway overrun can result from an unstable or high approach, a tailwind, poor braking action on a wet, icy, or snowy runway, or landing without the normal flap configuration. Brake or thrust-reverser problems, a short runway, or exceeding aircraft performance limits can also contribute.",
-      "referenceTextZh": "冲出跑道可能由进近不稳定或偏高、顺风、湿滑、结冰或积雪跑道制动作用不良，或未使用正常襟翼构型着陆造成。刹车或反推故障、跑道较短，或超出飞机性能限制也可能促成冲出跑道。"
+      "referenceTextZh": "冲出跑道可能由进近不稳定或偏高、顺风、湿滑、结冰或积雪跑道制动作用不良，或未使用正常襟翼构型着陆造成。刹车或反推故障、跑道较短，或超出飞机性能限制也可能促成冲出跑道。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-190",
@@ -17,7 +18,8 @@
       "audioText": "Have you ever taken off from or landed on a short and narrow runway?",
       "audioTextZh": "你是否曾在短而窄的跑道上起飞或着陆？",
       "referenceText": "No, I have never taken off from or landed on a short and narrow runway. However, I have received relevant simulator training.",
-      "referenceTextZh": "没有，我从未在短而窄的跑道上起飞或着陆。不过，我接受过相关的模拟机训练。"
+      "referenceTextZh": "没有，我从未在短而窄的跑道上起飞或着陆。不过，我接受过相关的模拟机训练。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-191",
@@ -25,7 +27,8 @@
       "audioText": "How can pilots safely take off from and land on short and narrow runways?",
       "audioTextZh": "飞行员如何在短而窄的跑道上安全起飞和着陆？",
       "referenceText": "Pilots should assess the weather, runway condition, and aircraft performance before flight and follow the applicable SOP. They should use the full available runway, maintain directional control during takeoff, and determine the required landing distance before landing. They should conduct an approach briefing, confirm how duties will be shared, and be prepared to reject the takeoff, go around, or divert if needed.",
-      "referenceTextZh": "飞行员应在飞行前评估天气、跑道状况和飞机性能，并遵循适用的标准操作程序。起飞时应使用全部可用跑道并保持方向控制；着陆前应计算所需着陆距离。机组还应进行进近简令、确认职责分工，并做好在需要时中断起飞、复飞或改航的准备。"
+      "referenceTextZh": "飞行员应在飞行前评估天气、跑道状况和飞机性能，并遵循适用的标准操作程序。起飞时应使用全部可用跑道并保持方向控制；着陆前应计算所需着陆距离。机组还应进行进近简令、确认职责分工，并做好在需要时中断起飞、复飞或改航的准备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-192",
@@ -33,7 +36,8 @@
       "audioText": "What makes a runway short and narrow for a particular aircraft?",
       "audioTextZh": "对特定航空器而言，哪些因素会使一条跑道显得短而窄？",
       "referenceText": "Whether a runway is short and narrow depends on the aircraft type. The same runway may be normal for a DA-40 but short and narrow for a larger aircraft such as a B747 or A320.",
-      "referenceTextZh": "跑道是否短而窄取决于飞机类型。同一条跑道对 DA-40 可能很正常，但对 B747 或 A320 等较大型飞机可能属于短窄跑道。"
+      "referenceTextZh": "跑道是否短而窄取决于飞机类型。同一条跑道对 DA-40 可能很正常，但对 B747 或 A320 等较大型飞机可能属于短窄跑道。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-193",
@@ -41,7 +45,8 @@
       "audioText": "What hazards do pilots face when operating on short and narrow runways?",
       "audioTextZh": "在短而窄的跑道上运行时，飞行员会面临哪些危险？",
       "referenceText": "On a short runway, an aircraft may overrun the end. On a narrow runway, it may veer off the side. Either event can damage the aircraft, injure people on board, and reduce the safety margin.",
-      "referenceTextZh": "在短跑道上，飞机可能冲出跑道末端；在窄跑道上，飞机可能偏出跑道侧边。两种情况都可能损坏飞机、使机上人员受伤，并降低安全裕度。"
+      "referenceTextZh": "在短跑道上，飞机可能冲出跑道末端；在窄跑道上，飞机可能偏出跑道侧边。两种情况都可能损坏飞机、使机上人员受伤，并降低安全裕度。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-195",
@@ -49,7 +54,8 @@
       "audioText": "How should a flight crew prepare before a flight to a high-elevation airport?",
       "audioTextZh": "飞往高海拔机场前，飞行机组应如何准备？",
       "referenceText": "Before the flight, I would analyse the terrain and weather and review the runway conditions and the airport's arrival and departure procedures. I would check aircraft performance, including the effect of aircraft weight, and make sure the aircraft was in good condition. I would also discuss possible emergency situations and the relevant procedures with the crew.",
-      "referenceTextZh": "飞行前，我会分析地形和天气，查看跑道状况以及机场的进离场程序。我会检查飞机性能，包括飞机重量的影响，并确认飞机状态良好。我还会与机组讨论可能发生的紧急情况及相关程序。"
+      "referenceTextZh": "飞行前，我会分析地形和天气，查看跑道状况以及机场的进离场程序。我会检查飞机性能，包括飞机重量的影响，并确认飞机状态良好。我还会与机组讨论可能发生的紧急情况及相关程序。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-196",
@@ -121,7 +127,8 @@
       "audioText": "What should pilots consider when taking off from or landing at a coastal airport?",
       "audioTextZh": "在沿海机场起飞或着陆时，飞行员应考虑哪些因素？",
       "referenceText": "Pilots should consider changeable weather at coastal airports, including possible thunderstorms or wind shear, and avoid those conditions when necessary.",
-      "referenceTextZh": "飞行员应考虑沿海机场多变的天气，包括可能出现的雷暴或风切变，并在必要时避开这些条件。"
+      "referenceTextZh": "飞行员应考虑沿海机场多变的天气，包括可能出现的雷暴或风切变，并在必要时避开这些条件。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-245",
@@ -145,7 +152,8 @@
       "audioText": "What is a coastal airport?",
       "audioTextZh": "什么是沿海机场？",
       "referenceText": "A coastal airport is an airport located beside or close to the sea or another large body of water.",
-      "referenceTextZh": "沿海机场是位于海边或靠近海洋及其他大型水域的机场。"
+      "referenceTextZh": "沿海机场是位于海边或靠近海洋及其他大型水域的机场。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-249",

@@ -9,7 +9,8 @@
       "audioText": "How many portable fire extinguishers are carried on the aircraft you fly?",
       "audioTextZh": "你所飞的飞机配备了多少个便携式灭火器？",
       "referenceText": "The DA-40 used at my flight school carries one portable fire extinguisher within reach of the pilots. I confirm that it is present, secured, and serviceable during the preflight inspection. The number and type must always match the aircraft's approved equipment list.",
-      "referenceTextZh": "我所在航校使用的 DA-40 配有一具便携式灭火器，放置在飞行员能够拿到的位置。飞行前检查时，我会确认灭火器在位、固定妥当且状态良好。其数量和类型必须始终符合飞机经批准的设备清单。"
+      "referenceTextZh": "我所在航校使用的 DA-40 配有一具便携式灭火器，放置在飞行员能够拿到的位置。飞行前检查时，我会确认灭火器在位、固定妥当且状态良好。其数量和类型必须始终符合飞机经批准的设备清单。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-315",
@@ -17,7 +18,8 @@
       "audioText": "When should a portable fire extinguisher be discharged during a flight?",
       "audioTextZh": "飞行中应在什么情况下使用便携式灭火器？",
       "referenceText": "A portable extinguisher should be discharged when there is a fire for which that extinguishing agent is suitable and the crew can attack it without losing control of the aircraft. The crew should raise the alarm, isolate electrical power or fuel when appropriate, keep an escape route, and aim at the base of the flames. It should not be discharged merely as a precaution or test.",
-      "referenceTextZh": "当发生的火灾适合使用该灭火剂，且机组能够在不影响飞机控制的情况下灭火时，才应使用便携式灭火器。机组应发出火警，视情况隔离电源或燃油，保留撤离通道，并将灭火剂喷向火焰根部。不得仅为预防或测试而喷射灭火剂。"
+      "referenceTextZh": "当发生的火灾适合使用该灭火剂，且机组能够在不影响飞机控制的情况下灭火时，才应使用便携式灭火器。机组应发出火警，视情况隔离电源或燃油，保留撤离通道，并将灭火剂喷向火焰根部。不得仅为预防或测试而喷射灭火剂。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-318",
@@ -25,7 +27,8 @@
       "audioText": "What types of fire extinguishers are carried on an aircraft?",
       "audioTextZh": "飞机上配备了哪些类型的灭火器？",
       "referenceText": "Aircraft may carry water extinguishers for ordinary combustible materials such as paper, wood, or textiles. They may also carry Halon or another clean-agent extinguisher for electrical and flammable-liquid fires.",
-      "referenceTextZh": "飞机可能配备水基灭火器，用于扑灭纸张、木材或织物等普通可燃物引发的火灾。也可能配备哈龙或其他洁净气体灭火器，用于扑灭电气和易燃液体火灾。"
+      "referenceTextZh": "飞机可能配备水基灭火器，用于扑灭纸张、木材或织物等普通可燃物引发的火灾。也可能配备哈龙或其他洁净气体灭火器，用于扑灭电气和易燃液体火灾。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-319",
@@ -33,7 +36,8 @@
       "audioText": "What precautions should be taken when using a fire extinguisher in the cockpit or cabin?",
       "audioTextZh": "在驾驶舱或客舱使用灭火器时，应采取哪些预防措施？",
       "referenceText": "Keep a clear escape route and move other people away from the area as much as possible. For an electrical fire, isolate power to the affected equipment if it is safe to do so. Avoid breathing extinguisher vapors in a confined space, and direct the agent at the base of the fire.",
-      "referenceTextZh": "应保持撤离通道畅通，并尽可能让其他人员远离该区域。对于电气火灾，如果能够安全操作，应切断受影响设备的电源。在密闭空间中要避免吸入灭火剂蒸气，并将灭火剂喷向火焰根部。"
+      "referenceTextZh": "应保持撤离通道畅通，并尽可能让其他人员远离该区域。对于电气火灾，如果能够安全操作，应切断受影响设备的电源。在密闭空间中要避免吸入灭火剂蒸气，并将灭火剂喷向火焰根部。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-320",
@@ -41,7 +45,8 @@
       "audioText": "Which type of fire extinguisher should be used for an electrical fire behind a cockpit panel, and why?",
       "audioTextZh": "驾驶舱面板后方发生电气火灾时，应使用哪种灭火器？为什么？",
       "referenceText": "A clean-agent extinguisher, such as a Halon or Halotron type, should be used for an electrical fire behind a cockpit panel. The agent is non-conductive and leaves no residue, so it reduces the risk of electrical shock and secondary damage to avionics.",
-      "referenceTextZh": "驾驶舱面板后方发生电气火灾时，应使用哈龙或 Halotron 类型的洁净气体灭火器。此类灭火剂不导电且不会留下残留物，因此可以降低触电以及航空电子设备继发损坏的风险。"
+      "referenceTextZh": "驾驶舱面板后方发生电气火灾时，应使用哈龙或 Halotron 类型的洁净气体灭火器。此类灭火剂不导电且不会留下残留物，因此可以降低触电以及航空电子设备继发损坏的风险。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-321",
@@ -57,7 +62,8 @@
       "audioText": "What could happen if a flight crew accidentally discharges a fire extinguisher?",
       "audioTextZh": "如果机组意外释放灭火瓶，可能会发生什么？",
       "referenceText": "An accidental discharge can reduce the firefighting agent available for a real emergency. It may also cause temporary poor visibility or breathing discomfort and could affect nearby electrical or electronic equipment.",
-      "referenceTextZh": "灭火器意外喷射会减少真正发生紧急情况时可用的灭火剂。它还可能暂时降低能见度、引起呼吸不适，并可能影响附近的电气或电子设备。"
+      "referenceTextZh": "灭火器意外喷射会减少真正发生紧急情况时可用的灭火剂。它还可能暂时降低能见度、引起呼吸不适，并可能影响附近的电气或电子设备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-066",

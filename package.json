@@ -146,6 +146,7 @@
     "expo-application": "~55.0.19",
     "expo-asset": "~55.0.17",
     "expo-audio": "~55.0.16",
+    "expo-clipboard": "55.0.14",
     "expo-constants": "~55.0.16",
     "expo-crypto": "~55.0.17",
     "expo-dev-client": "~55.0.36",

@@ -6,6 +6,7 @@ import { APP_DISPLAY_VERSION } from '@/config/app-version';
 
 import ProfileTab from '../(tabs)/profile';
 
+jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(async () => true) }));
 const mockPush = jest.fn();
 let mockFocused = true;
 const mockProfile = { displayName: '飞行学员', avatarUri: null, target: 'icao4-first' };
@@ -14,6 +15,8 @@ jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
   return {
+    Phone: Icon,
+    Copy: Icon,
     Bookmark: Icon,
     ChevronRight: Icon,
     History: Icon,
@@ -120,6 +123,18 @@ describe('<ProfileTab />', () => {
     await fireEvent.press(screen.getByText('单词收藏'));
 
     expect(mockPush).toHaveBeenCalledWith('/word-favorites');
+  });
+
+  it('copies the displayed contact number and reports clipboard failures', async () => {
+    const clipboard = jest.requireMock('expo-clipboard');
+    const screen = await render(<ProfileTab />);
+    expect(screen.getByText('157 3950 8390')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('联系我们，复制手机号15739508390'));
+    expect(clipboard.setStringAsync).toHaveBeenCalledWith('15739508390');
+    expect(screen.getByText('已复制')).toBeTruthy();
+    clipboard.setStringAsync.mockResolvedValueOnce(false);
+    await fireEvent.press(screen.getByLabelText('联系我们，复制手机号15739508390'));
+    expect(screen.getByText('复制失败，请重试')).toBeTruthy();
   });
 
   it('opens the real feedback form from the profile menu', async () => {

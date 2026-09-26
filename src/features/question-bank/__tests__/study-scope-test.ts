@@ -1,3 +1,4 @@
+import hotspots from '../../../../content/question-banks/opi-hotspots.json';
 import { studyScopeCardIds } from '@icao/contracts';
 import data from '../data/question-bank.json';
 import publicData from '../data/question-bank-public.json';
@@ -43,7 +44,10 @@ it('ships the agreed crash practice units, counting full radio scenes and spoken
   expect(radio.filter((item) => item.practiceKind === 'scoring-points').length).toBeGreaterThan(0);
   expect(crash('storytelling').declaredCardCount).toBe(20);
   const opi = crash('opi').categories.flatMap((category) => category.topics.flatMap((item) => item.cards));
-  expect(opi.filter((card) => card.kind !== 'image')).toHaveLength(60);
+  const opiIds = new Set(opi.map((card) => card.id));
+  for (const brief of hotspots.briefs) for (const topic of brief.topics) {
+    for (const id of topic.cardIds) expect(opiIds.has(id)).toBe(true);
+  }
 });
 
 it('enforces nested membership without copying or mutating questions', () => {

@@ -96,3 +96,6 @@ export { default as WifiOff } from 'lucide-react-native/icons/wifi-off';
 export { default as Wrench } from 'lucide-react-native/icons/wrench';
 export { default as X } from 'lucide-react-native/icons/x';
 export { default as Zap } from 'lucide-react-native/icons/zap';
+
+export { default as Phone } from 'lucide-react-native/icons/phone';
+export { default as Copy } from 'lucide-react-native/icons/copy';

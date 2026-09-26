@@ -9,7 +9,8 @@
       "audioText": "What should a pilot do after receiving an ATC instruction to hold at a holding fix?",
       "audioTextZh": "收到空中交通管制部门在等待定位点等待的指令后，飞行员应怎么做？",
       "referenceText": "The pilot should follow the ATC instruction and confirm the holding altitude, inbound track, turn direction, and outbound time. The crew should also confirm the reason for the hold and its expected duration. If the delay becomes long, they should check their fuel endurance.",
-      "referenceTextZh": "飞行员应遵循空中交通管制指令，并确认等待高度、入航航迹、转弯方向和出航时间。机组还应确认等待原因和预计时长。如果延误变长，应检查燃油续航能力。"
+      "referenceTextZh": "飞行员应遵循空中交通管制指令，并确认等待高度、入航航迹、转弯方向和出航时间。机组还应确认等待原因和预计时长。如果延误变长，应检查燃油续航能力。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-756",
@@ -17,7 +18,8 @@
       "audioText": "What information should a pilot confirm before entering a holding pattern?",
       "audioTextZh": "进入等待航线前，飞行员应确认哪些信息？",
       "referenceText": "Before entering a holding pattern, the pilot should confirm the holding fix, holding altitude, inbound track, left- or right-hand pattern, and outbound time.",
-      "referenceTextZh": "进入等待航线前，飞行员应确认等待定位点、等待高度、入航航迹、左转或右转航线以及出航时间。"
+      "referenceTextZh": "进入等待航线前，飞行员应确认等待定位点、等待高度、入航航迹、左转或右转航线以及出航时间。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-05"

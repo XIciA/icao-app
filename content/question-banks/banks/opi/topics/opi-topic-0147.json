@@ -9,7 +9,8 @@
       "audioText": "How does a visual approach slope indicator (VASI) help a pilot during an approach?",
       "audioTextZh": "目视进近坡度指示器（VASI）如何在进近过程中帮助飞行员？",
       "referenceText": "A VASI is a light system beside the runway that helps a pilot judge the descent path on a visual approach. White over white indicates that the aircraft is high, red over red indicates that it is low, and red over white indicates the correct path.",
-      "referenceTextZh": "目视进近坡度指示系统是跑道旁的一套灯光系统，帮助飞行员在目视进近中判断下降航径。上白下白表示飞机偏高，上红下红表示飞机偏低，上红下白表示航径正确。"
+      "referenceTextZh": "目视进近坡度指示系统是跑道旁的一套灯光系统，帮助飞行员在目视进近中判断下降航径。上白下白表示飞机偏高，上红下红表示飞机偏低，上红下白表示航径正确。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-370",
@@ -17,7 +18,8 @@
       "audioText": "What are the main differences between a visual approach slope indicator (VASI) and a precision approach path indicator (PAPI)?",
       "audioTextZh": "目视进近坡度指示器（VASI）与精密进近航道指示器（PAPI）的主要区别是什么？",
       "referenceText": "A VASI normally uses two or three light bars and gives broader red-and-white indications of the approach path. A PAPI normally uses four lights in one row, and the changing number of red and white lights gives more detailed path information. For example, two red and two white lights indicate that the aircraft is on the PAPI path.",
-      "referenceTextZh": "目视进近坡度指示系统通常使用两到三排灯，提供较宽泛的红白灯光进近航径指示。精密进近航径指示器通常在一排中设置四盏灯，红灯和白灯数量的变化可以提供更细致的航径信息。例如，两红两白表示飞机位于正确的精密进近航径上。"
+      "referenceTextZh": "目视进近坡度指示系统通常使用两到三排灯，提供较宽泛的红白灯光进近航径指示。精密进近航径指示器通常在一排中设置四盏灯，红灯和白灯数量的变化可以提供更细致的航径信息。例如，两红两白表示飞机位于正确的精密进近航径上。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-371",
@@ -25,7 +27,8 @@
       "audioText": "How should a pilot manage a night approach if the VASI is unavailable?",
       "audioTextZh": "VASI 不可用时，飞行员应如何实施夜间进近？",
       "referenceText": "The pilot should check NOTAMs and not rely on an unserviceable VASI. During the approach, another available source of vertical guidance, such as a PAPI or ILS glide slope, can be used. If reliable guidance is not available or the approach becomes unsafe, the pilot should go around and request an instrument approach.",
-      "referenceTextZh": "飞行员应查看航行通告，不能依赖不能工作的目视进近坡度指示系统。进近期间，可以使用其他可用的垂直引导来源，例如精密进近航径指示器或仪表着陆系统下滑道。如果没有可靠引导或进近变得不安全，飞行员应复飞并请求仪表进近。"
+      "referenceTextZh": "飞行员应查看航行通告，不能依赖不能工作的目视进近坡度指示系统。进近期间，可以使用其他可用的垂直引导来源，例如精密进近航径指示器或仪表着陆系统下滑道。如果没有可靠引导或进近变得不安全，飞行员应复飞并请求仪表进近。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-372",
@@ -33,7 +36,8 @@
       "audioText": "What does a red-over-red VASI indication mean, and how should the pilot respond?",
       "audioTextZh": "VASI 显示“红上红”意味着什么？飞行员应如何应对？",
       "referenceText": "Red over red means that the aircraft is below the correct approach path. The pilot should make a smooth correction with power and pitch toward the proper path and avoid an abrupt pull-up. If the aircraft is too low or a safe correction cannot be made, the pilot should go around.",
-      "referenceTextZh": "上红下红表示飞机低于正确的进近航径。飞行员应通过平稳调整功率和俯仰，使飞机回到正确航径，并避免突然拉起。如果飞机过低或无法安全修正，飞行员应复飞。"
+      "referenceTextZh": "上红下红表示飞机低于正确的进近航径。飞行员应通过平稳调整功率和俯仰，使飞机回到正确航径，并避免突然拉起。如果飞机过低或无法安全修正，飞行员应复飞。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-03"

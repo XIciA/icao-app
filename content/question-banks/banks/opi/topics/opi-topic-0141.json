@@ -9,7 +9,8 @@
       "audioText": "What are the main factors that can cause an altitude deviation?",
       "audioTextZh": "导致高度偏差的主要因素有哪些？",
       "referenceText": "An altitude deviation can be caused by severe turbulence, an incorrect altitude setting, or an altimeter malfunction. It can also result from misunderstanding an ATC instruction.",
-      "referenceTextZh": "高度偏离可能由严重颠簸、高度设置错误或高度表故障造成，也可能是误解空中交通管制指令所致。"
+      "referenceTextZh": "高度偏离可能由严重颠簸、高度设置错误或高度表故障造成，也可能是误解空中交通管制指令所致。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-333",
@@ -17,7 +18,8 @@
       "audioText": "How can a flight crew prevent an altitude deviation?",
       "audioTextZh": "飞行机组如何预防高度偏差？",
       "referenceText": "The crew should review weather information and remain alert for areas of turbulence. If an ATC instruction is unclear, they should confirm it immediately. Both pilots should also cross-check their altimeters during flight.",
-      "referenceTextZh": "机组应查看气象信息，并对颠簸区域保持警觉。如果空中交通管制指令不明确，应立即进行确认。两名飞行员还应在飞行中交叉核对高度表。"
+      "referenceTextZh": "机组应查看气象信息，并对颠簸区域保持警觉。如果空中交通管制指令不明确，应立即进行确认。两名飞行员还应在飞行中交叉核对高度表。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-05"
