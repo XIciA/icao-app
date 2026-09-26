@@ -24,7 +24,6 @@ function Login({ onLogin }: { onLogin: (session: OpsStaffSession) => void }) {
         body: JSON.stringify({
           email: form.get('email'),
           password: form.get('password'),
-          totpCode: form.get('totpCode'),
           deviceName: navigator.userAgent.slice(0, 100),
         }),
       }, false);
@@ -42,9 +41,8 @@ function Login({ onLogin }: { onLogin: (session: OpsStaffSession) => void }) {
       <h1>运营后台</h1>
       <p className="muted">仅限获授权的公司工作人员。所有查询与变更都会记录审计。</p>
       <form onSubmit={submit} className="form-stack">
-        <label>公司邮箱<input name="email" type="email" autoComplete="username" required /></label>
-        <label>独立密码<input name="password" type="password" autoComplete="current-password" minLength={12} required /></label>
-        <label>动态验证码或恢复码<input name="totpCode" inputMode="numeric" autoComplete="one-time-code" required /></label>
+        <label>账号<input name="email" type="email" autoComplete="username" required /></label>
+        <label>密码<input name="password" type="password" autoComplete="current-password" minLength={12} required /></label>
         <ErrorNotice error={error} />
         <button className="primary" disabled={busy}>{busy ? '正在校验…' : '安全登录'}</button>
       </form>

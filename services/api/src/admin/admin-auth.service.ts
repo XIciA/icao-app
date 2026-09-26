@@ -10,13 +10,11 @@ import { and, eq, gt, isNull, sql } from 'drizzle-orm';
 import { randomBytes } from 'node:crypto';
 
 import { OPS_API_CONFIG, type OpsApiConfig } from '../config';
-import { opsStaffAccounts, opsStaffRecoveryCodes, opsStaffSessions } from '../database/schema';
+import { opsStaffAccounts, opsStaffSessions } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { AdminAuditService } from './admin-audit.service';
 import {
-  decryptOpsTotpSecret,
   hashOpsSecret,
-  matchingOpsTotpStep,
   verifyOpsPassword,
 } from './admin-crypto';
 import { OpsLoginRateLimiter } from './admin-login-rate-limiter';
@@ -39,7 +37,6 @@ export class AdminAuthService {
     if (
       !this.config.opsEnabled
       || !this.config.opsSessionHashSecret
-      || !this.config.opsTotpEncryptionKey
       || !this.config.opsTrustedProxySharedSecret
     ) throw new ServiceUnavailableException('ops_console_disabled');
   }
@@ -48,19 +45,11 @@ export class AdminAuthService {
     return hashOpsSecret(token, this.config.opsSessionHashSecret, 'ops-session-v1');
   }
 
-  private recoveryHash(code: string) {
-    return hashOpsSecret(
-      code.trim().toUpperCase(),
-      this.config.opsSessionHashSecret,
-      'ops-recovery-code-v1',
-    );
-  }
-
   async login(input: {
     deviceName?: string;
     email: string;
     password: string;
-    totpCode: string;
+    totpCode?: string;
   }, requestId: string, source: string): Promise<OpsStaffSession> {
     this.assertEnabled();
     // This synchronous gate runs before database lookup, scrypt, and audit.
@@ -75,27 +64,9 @@ export class AdminAuthService {
       !staff
       || staff.disabledAt
       || !passwordValid
-      || !staff.totpConfirmedAt
     ) {
       await this.recordFailure(staff, requestId);
       throw new UnauthorizedException('invalid_ops_credentials');
-    }
-
-    let totpStep: number | undefined;
-    let recoveryHash: string | undefined;
-    if (/^\d{6}$/u.test(input.totpCode)) {
-      const secret = decryptOpsTotpSecret({
-        ciphertext: staff.totpSecretCiphertext,
-        iv: staff.totpSecretIv,
-        tag: staff.totpSecretTag,
-      }, this.config.opsTotpEncryptionKey);
-      totpStep = matchingOpsTotpStep(secret, input.totpCode, now);
-      if (totpStep === undefined || totpStep <= staff.lastTotpStep) {
-        await this.recordFailure(staff, requestId);
-        throw new UnauthorizedException('invalid_ops_credentials');
-      }
-    } else {
-      recoveryHash = this.recoveryHash(input.totpCode);
     }
 
     const accessToken = randomBytes(32).toString('base64url');
@@ -104,32 +75,11 @@ export class AdminAuthService {
       await transaction.execute(sql`
         select pg_advisory_xact_lock(hashtextextended(${`ops-staff:${staff.id}`}, 0))
       `);
-      if (totpStep !== undefined) {
-        const [updated] = await transaction.update(opsStaffAccounts).set({
-          lastTotpStep: totpStep,
-          updatedAt: now,
-        }).where(and(
-          eq(opsStaffAccounts.id, staff.id),
-          sql`${opsStaffAccounts.lastTotpStep} < ${totpStep}`,
-        )).returning({ id: opsStaffAccounts.id });
-        if (!updated) return undefined;
-      } else {
-        const [consumed] = await transaction.update(opsStaffRecoveryCodes).set({
-          consumedAt: now,
-        }).where(and(
-          eq(opsStaffRecoveryCodes.staffId, staff.id),
-          eq(opsStaffRecoveryCodes.codeHash, recoveryHash!),
-          isNull(opsStaffRecoveryCodes.consumedAt),
-        )).returning({ id: opsStaffRecoveryCodes.id });
-        if (!consumed) return undefined;
-        await transaction.update(opsStaffAccounts).set({
-          updatedAt: now,
-        }).where(eq(opsStaffAccounts.id, staff.id));
-      }
       const [created] = await transaction.insert(opsStaffSessions).values({
         staffId: staff.id,
         tokenHash: this.tokenHash(accessToken),
         deviceName: input.deviceName ?? null,
+        // Legacy database column stores the successful authentication timestamp.
         totpVerifiedAt: now,
         lastSeenAt: now,
         expiresAt,
@@ -143,8 +93,8 @@ export class AdminAuthService {
         action: 'ops.auth.login',
         targetType: 'ops_session',
         targetId: created.id,
-        reason: '工作人员完成密码与动态验证码登录',
-        metadata: { recoveryCodeUsed: Boolean(recoveryHash) },
+        reason: '工作人员完成账号密码登录',
+        metadata: { authenticationMethod: 'password' },
       }, transaction);
       return created;
     });

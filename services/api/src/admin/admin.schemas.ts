@@ -5,7 +5,7 @@ export const opsReasonSchema = z.string().trim().min(3).max(500);
 export const opsLoginSchema = z.object({
   email: z.email().max(254).transform((value) => value.trim().toLowerCase()),
   password: z.string().min(12).max(256),
-  totpCode: z.string().trim().regex(/^(?:\d{6}|[A-Fa-f0-9]{4}(?:-[A-Fa-f0-9]{4}){3})$/u),
+  totpCode: z.string().trim().regex(/^(?:\d{6}|[A-Fa-f0-9]{4}(?:-[A-Fa-f0-9]{4}){3})$/u).optional(),
   deviceName: z.string().trim().min(2).max(120).optional(),
 }).strict();
 

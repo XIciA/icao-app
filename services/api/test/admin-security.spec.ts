@@ -28,7 +28,7 @@ import {
   writeOpsProvisionDelivery,
   type OpsProvisionDelivery,
 } from '../src/admin/admin-provisioning';
-import { opsGrantExecuteSchema, opsGrantPreviewSchema } from '../src/admin/admin.schemas';
+import { opsLoginSchema, opsGrantExecuteSchema, opsGrantPreviewSchema } from '../src/admin/admin.schemas';
 import { loadConfig, loadOpsConfig, type OpsApiConfig } from '../src/config';
 import { createOpsApp } from '../src/create-ops-app';
 import { DatabaseService } from '../src/database/database.service';
@@ -298,6 +298,32 @@ describe('ops login anti-abuse boundary', () => {
     }
     expect(() => limiter.assertAllowed('203.0.113.200', at)).toThrow(HttpException);
     expect(limiter.sizeForTesting()).toBe(200);
+  });
+
+  it('accepts password-only login without MFA enrollment and records its actual method', async () => {
+    const password = 'correct horse battery staple';
+    const input = opsLoginSchema.parse({ email: 'admin@example.com', password });
+    const staff = { id: 'staff-1', email: input.email, role: 'admin', disabledAt: null,
+      passwordHash: await hashOpsPassword(password), totpConfirmedAt: null };
+    const values = vi.fn(() => ({ returning: vi.fn().mockResolvedValue([{ id: 'session-1' }]) }));
+    const transaction = { execute: vi.fn(), insert: vi.fn(() => ({ values })) };
+    const db = { select: vi.fn(() => ({ from: () => ({ where: () => ({ limit: async () => [staff] }) }) })),
+      transaction: vi.fn(async (fn) => fn(transaction)) };
+    const audit = { record: vi.fn() };
+    const auth = new AdminAuthService(authConfig, { db } as unknown as DatabaseService,
+      audit as unknown as AdminAuditService, new OpsLoginRateLimiter(authConfig));
+    const session = await auth.login(input, 'password-login', '198.51.100.80');
+    expect(session.staff.email).toBe(input.email);
+    expect(session.accessToken.length).toBeGreaterThan(32);
+    expect(audit.record).toHaveBeenCalledWith(expect.objectContaining({
+      action: 'ops.auth.login', metadata: { authenticationMethod: 'password' },
+    }), transaction);
+    await expect(auth.login({ ...input, password: 'wrong password value' }, 'wrong-password', '198.51.100.81'))
+      .rejects.toMatchObject({ status: 401 });
+    staff.disabledAt = new Date() as never;
+    await expect(auth.login(input, 'disabled-staff', '198.51.100.82'))
+      .rejects.toMatchObject({ status: 401 });
+    expect(db.transaction).toHaveBeenCalledOnce();
   });
 
   it('does no database, scrypt, or audit work after the source gate rejects', async () => {

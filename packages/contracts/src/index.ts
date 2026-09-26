@@ -876,7 +876,8 @@ export type OpsStaffRole = 'admin' | 'support';
 export type OpsLoginRequest = {
   email: string;
   password: string;
-  totpCode: string;
+  /** Optional legacy client field; password login does not require an OTP. */
+  totpCode?: string;
   deviceName?: string;
 };
 
