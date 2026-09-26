@@ -9,7 +9,8 @@
       "audioText": "What is your understanding of crew resource management?",
       "audioTextZh": "你如何理解机组资源管理？",
       "referenceText": "Crew resource management means using communication, cooperation, and teamwork to manage all available resources safely. It includes task sharing, decision-making, situational awareness, and the use of both onboard and ground resources to reduce human error.",
-      "referenceTextZh": "机组资源管理是指通过沟通、合作和团队协作，安全地管理所有可用资源。它包括任务分工、决策、情景意识，以及对机上和地面资源的利用，从而减少人为差错。"
+      "referenceTextZh": "机组资源管理是指通过沟通、合作和团队协作，安全地管理所有可用资源。它包括任务分工、决策、情景意识，以及对机上和地面资源的利用，从而减少人为差错。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-136",
@@ -17,7 +18,8 @@
       "audioText": "What communication practices should pilots use when speaking with ATC?",
       "referenceText": "Pilots should use standard phraseology, speak clearly, and read back instructions correctly. If a clearance is unclear, they should confirm it with ATC. They should stay focused and avoid distractions so that information is transmitted accurately.",
       "audioTextZh": "飞行员与空中交通管制员通话时应采用哪些沟通方法？",
-      "referenceTextZh": "飞行员应使用标准通话用语，表达清楚，并正确复诵指令。如果许可不明确，应向空中交通管制核实。他们还应保持专注并避免分心，确保信息准确传递。"
+      "referenceTextZh": "飞行员应使用标准通话用语，表达清楚，并正确复诵指令。如果许可不明确，应向空中交通管制核实。他们还应保持专注并避免分心，确保信息准确传递。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-137",
@@ -25,7 +27,8 @@
       "audioText": "How should a captain and first officer communicate effectively?",
       "referenceText": "The captain and first officer should communicate openly and exchange their ideas. They should also follow the applicable procedures and company policy.",
       "audioTextZh": "机长和副驾驶应如何进行有效沟通？",
-      "referenceTextZh": "机长和副驾驶应开放沟通并交换意见。他们还应遵守适用程序和公司政策。"
+      "referenceTextZh": "机长和副驾驶应开放沟通并交换意见。他们还应遵守适用程序和公司政策。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-138",
@@ -33,7 +36,8 @@
       "audioText": "How should pilots communicate effectively with cabin crew?",
       "referenceText": "Pilots and cabin crew should respect one another and each other's opinions. The captain should help the whole crew follow the applicable procedures and company policy.",
       "audioTextZh": "飞行员应如何与客舱机组进行有效沟通？",
-      "referenceTextZh": "飞行员和客舱机组应相互尊重，也应尊重彼此的意见。机长应帮助全体机组遵守适用程序和公司政策。"
+      "referenceTextZh": "飞行员和客舱机组应相互尊重，也应尊重彼此的意见。机长应帮助全体机组遵守适用程序和公司政策。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-139",
@@ -41,7 +45,8 @@
       "audioText": "How should pilots and ATC cooperate during normal and abnormal situations?",
       "referenceText": "During normal operations, pilots and ATC should use standard phraseology, speak clearly, confirm any unclear instruction, and exchange relevant flight and weather information. During an abnormal situation, the pilots should report the problem promptly, and ATC should provide appropriate assistance and coordination.",
       "audioTextZh": "在正常和非正常情况下，飞行员与空中交通管制部门应如何协作？",
-      "referenceTextZh": "正常运行中，飞行员与空中交通管制应使用标准通话用语、表达清楚、核实任何不明确的指令，并交换相关飞行和天气信息。出现非正常情况时，飞行员应及时报告问题，空中交通管制则应提供适当的协助与协调。"
+      "referenceTextZh": "正常运行中，飞行员与空中交通管制应使用标准通话用语、表达清楚、核实任何不明确的指令，并交换相关飞行和天气信息。出现非正常情况时，飞行员应及时报告问题，空中交通管制则应提供适当的协助与协调。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-146",
@@ -49,7 +54,8 @@
       "audioText": "Why should pilots understand the duties of cabin crew?",
       "audioTextZh": "飞行员为什么应当了解客舱机组的职责？",
       "referenceText": "Pilots and cabin crew work as one team, so pilots should understand the cabin crew's duties. This knowledge helps them cooperate, offer appropriate support and instructions, and work more effectively during an emergency.",
-      "referenceTextZh": "飞行员和客舱机组是一个团队，因此飞行员应了解客舱机组的职责。这些知识有助于双方合作、提供适当支持和指令，并在紧急情况下更有效地协同工作。"
+      "referenceTextZh": "飞行员和客舱机组是一个团队，因此飞行员应了解客舱机组的职责。这些知识有助于双方合作、提供适当支持和指令，并在紧急情况下更有效地协同工作。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-147",
@@ -97,7 +103,8 @@
       "audioText": "Does your company provide joint CRM training for flight and cabin crews?",
       "audioTextZh": "你所在公司是否为飞行机组和客舱机组提供联合 CRM 培训？",
       "referenceText": "I am not employed by an airline, so I have not attended company joint CRM training. In a typical airline programme, pilots and cabin crew train together in communication, task sharing, and coordination during events such as smoke, a medical emergency, or an evacuation. A joint debriefing helps both groups understand each other's information needs and responsibilities.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有参加过公司的联合 CRM 培训。在典型航空公司培训中，飞行员和客舱机组会共同练习在烟雾、医疗紧急情况或撤离等事件中的沟通、任务分工和协调。联合讲评有助于双方了解彼此的信息需求和职责。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有参加过公司的联合 CRM 培训。在典型航空公司培训中，飞行员和客舱机组会共同练习在烟雾、医疗紧急情况或撤离等事件中的沟通、任务分工和协调。联合讲评有助于双方了解彼此的信息需求和职责。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-153",
@@ -105,7 +112,8 @@
       "audioText": "What practical exercises do flight and cabin crews perform during joint CRM training?",
       "audioTextZh": "飞行机组和客舱机组在联合 CRM 培训中会进行哪些实践练习？",
       "referenceText": "Flight and cabin crews practice emergency evacuation, responses to fire or decompression, in-flight medical emergencies, and the management of unruly passengers. They also practice communication and coordination during normal phases of flight.",
-      "referenceTextZh": "飞行机组和客舱机组会练习紧急撤离、火灾或失压处置、飞行中医疗紧急情况，以及对扰乱秩序旅客的管理。他们还会练习正常飞行阶段的沟通与协调。"
+      "referenceTextZh": "飞行机组和客舱机组会练习紧急撤离、火灾或失压处置、飞行中医疗紧急情况，以及对扰乱秩序旅客的管理。他们还会练习正常飞行阶段的沟通与协调。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-154",
@@ -129,7 +137,8 @@
       "audioText": "Have you ever worked with a captain or first officer who was difficult to work with? If so, what made the working relationship difficult?",
       "audioTextZh": "你是否曾与一名难以共事的机长或副驾驶合作过？如果有，是什么使这种工作关系变得困难？",
       "referenceText": "Yes. I once worked with a captain who did not share information clearly and sometimes dismissed the first officer's concerns. That made coordination difficult and increased the risk of misunderstandings during busy periods. I remained professional, used clear and specific language, and raised safety concerns again when necessary.",
-      "referenceTextZh": "是的，我曾与一名信息分享不够清楚、有时忽视副驾驶担忧的机长共事。这使协调变得困难，并增加了繁忙阶段产生误解的风险。我保持专业，使用清楚具体的语言，并在必要时再次提出安全担忧。"
+      "referenceTextZh": "是的，我曾与一名信息分享不够清楚、有时忽视副驾驶担忧的机长共事。这使协调变得困难，并增加了繁忙阶段产生误解的风险。我保持专业，使用清楚具体的语言，并在必要时再次提出安全担忧。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-157",
@@ -170,7 +179,8 @@
       "audioText": "As the captain, how would you handle a conflict between a pilot and a cabin crew member?",
       "audioTextZh": "作为机长，你会如何处理飞行员与客舱机组成员之间的冲突？",
       "referenceText": "I would first speak calmly with both people to understand the cause of the conflict and reduce the tension. I would mediate impartially and remind them that teamwork and professional communication are essential to flight safety. I would then help them resolve the misunderstanding so they could focus on their duties and the flight.",
-      "referenceTextZh": "我会先冷静地与双方沟通，了解冲突原因并缓和紧张气氛。我会公正地进行调解，并提醒他们团队合作和专业沟通对飞行安全至关重要。随后，我会帮助他们消除误解，使他们能够重新专注于职责和飞行。"
+      "referenceTextZh": "我会先冷静地与双方沟通，了解冲突原因并缓和紧张气氛。我会公正地进行调解，并提醒他们团队合作和专业沟通对飞行安全至关重要。随后，我会帮助他们消除误解，使他们能够重新专注于职责和飞行。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-164",
@@ -194,7 +204,8 @@
       "audioText": "As the captain, how would you help the crew work effectively as a team?",
       "audioTextZh": "作为机长，你会如何帮助机组像一个团队一样有效协作？",
       "referenceText": "As captain, I would make sure everyone understands their duties and responsibilities during the preflight briefing. I would respect each crew member's opinion and encourage good communication and cooperation throughout the flight. I would also lead the crew in following the SOP and company policy.",
-      "referenceTextZh": "作为机长，我会在飞行前简令中确保每个人都了解自己的职责。我会尊重每位机组成员的意见，并在整个飞行过程中鼓励良好沟通与合作。我还会带领机组遵守标准操作程序和公司政策。"
+      "referenceTextZh": "作为机长，我会在飞行前简令中确保每个人都了解自己的职责。我会尊重每位机组成员的意见，并在整个飞行过程中鼓励良好沟通与合作。我还会带领机组遵守标准操作程序和公司政策。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-209",
@@ -218,7 +229,8 @@
       "audioText": "How should the flight crew cooperate before departure?",
       "audioTextZh": "飞行机组在起飞前应如何协作？",
       "referenceText": "Before departure, the crew should conduct a safety briefing and agree on duties and responsibilities. They should complete the walk-around and cockpit inspections and check the aircraft against the MEL requirements. They should then work together to perform the checklist, with one pilot flying and the other reading the checklist and monitoring the aircraft.",
-      "referenceTextZh": "离场前，机组应进行安全简令并明确职责。他们应完成绕机检查和驾驶舱检查，并按照 MEL 要求核对飞机状态。随后，两名飞行员应合作执行检查单，一人操纵飞机，另一人读检查单并监控飞机。"
+      "referenceTextZh": "离场前，机组应进行安全简令并明确职责。他们应完成绕机检查和驾驶舱检查，并按照 MEL 要求核对飞机状态。随后，两名飞行员应合作执行检查单，一人操纵飞机，另一人读检查单并监控飞机。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-213",
@@ -250,7 +262,8 @@
       "audioText": "How should the captain and first officer cooperate during normal and abnormal operations?",
       "referenceText": "During normal operations, the pilot flying should control the aircraft while the pilot monitoring watches the instruments, systems, weather, and traffic. During an abnormal situation, the pilot flying should keep control while the pilot monitoring carries out the checklist. The pilot flying should then cross-check and verify the actions.",
       "audioTextZh": "在正常和非正常运行中，机长和副驾驶应如何协作？",
-      "referenceTextZh": "正常运行中，操纵飞机的飞行员负责控制飞机，监控飞行员则监视仪表、系统、天气和交通。出现非正常情况时，操纵飞行员应继续控制飞机，监控飞行员执行检查单。随后，操纵飞行员应交叉检查并确认所执行的动作。"
+      "referenceTextZh": "正常运行中，操纵飞机的飞行员负责控制飞机，监控飞行员则监视仪表、系统、天气和交通。出现非正常情况时，操纵飞行员应继续控制飞机，监控飞行员执行检查单。随后，操纵飞行员应交叉检查并确认所执行的动作。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-145",
@@ -258,7 +271,8 @@
       "audioText": "How should the flight crew and cabin crew cooperate during normal and abnormal operations?",
       "referenceText": "During normal operations, flight and cabin crews should understand their duties and maintain effective communication and close cooperation. During an abnormal situation, the flight crew should provide clear instructions, and the cabin crew should calm and prepare passengers for a possible evacuation.",
       "audioTextZh": "在正常和非正常运行中，飞行机组与客舱机组应如何协作？",
-      "referenceTextZh": "正常运行中，飞行机组和客舱机组应了解各自职责，并保持有效沟通和密切合作。出现非正常情况时，飞行机组应提供明确指令，客舱机组则应安抚旅客，并为可能的撤离做好准备。"
+      "referenceTextZh": "正常运行中，飞行机组和客舱机组应了解各自职责，并保持有效沟通和密切合作。出现非正常情况时，飞行机组应提供明确指令，客舱机组则应安抚旅客，并为可能的撤离做好准备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-767",
@@ -282,7 +296,8 @@
       "audioText": "What types of cabin problems should cabin crew report to the captain immediately?",
       "audioTextZh": "客舱机组应立即向机长报告哪些类型的客舱问题？",
       "referenceText": "Cabin crew should immediately report smoke or fire, a passenger with a serious illness or severe injury, and any sign of structural damage to the aircraft.",
-      "referenceTextZh": "客舱机组应立即报告烟雾或火灾、旅客严重患病或重伤，以及飞机出现任何结构损伤迹象。"
+      "referenceTextZh": "客舱机组应立即报告烟雾或火灾、旅客严重患病或重伤，以及飞机出现任何结构损伤迹象。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-04"

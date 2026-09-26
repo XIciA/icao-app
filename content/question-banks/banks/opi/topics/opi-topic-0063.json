@@ -25,7 +25,8 @@
       "audioText": "What should a flight crew review in the aircraft maintenance log?",
       "audioTextZh": "飞行机组应在航空器维修记录本中查看哪些内容？",
       "referenceText": "The flight crew should review the date, the malfunctioning part, and the recorded maintenance work in the aircraft maintenance log.",
-      "referenceTextZh": "飞行机组应查看飞机维修记录中的日期、故障部件和已记录的维修工作。"
+      "referenceTextZh": "飞行机组应查看飞机维修记录中的日期、故障部件和已记录的维修工作。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-670",
@@ -41,7 +42,8 @@
       "audioText": "Why is it important to review the aircraft maintenance log before a flight?",
       "audioTextZh": "飞行前查看航空器维修记录本为什么很重要？",
       "referenceText": "Reviewing the maintenance log helps the crew understand the aircraft’s condition and check whether it meets the applicable MEL requirements. This allows the crew to confirm that the aircraft is airworthy before the flight.",
-      "referenceTextZh": "查看维修记录帮助机组了解飞机状态，并检查飞机是否满足适用的 MEL 要求，从而在飞行前确认飞机适航。"
+      "referenceTextZh": "查看维修记录帮助机组了解飞机状态，并检查飞机是否满足适用的 MEL 要求，从而在飞行前确认飞机适航。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-672",

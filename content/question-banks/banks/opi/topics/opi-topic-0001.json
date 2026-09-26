@@ -9,7 +9,8 @@
       "audioText": "Have you ever encountered a lightning strike during flight?",
       "audioTextZh": "你在飞行中遇到过雷击吗？",
       "referenceText": "No, I have never encountered a lightning strike during flight. I know that lightning strikes are dangerous, so I avoid them during flight.",
-      "referenceTextZh": "没有，我在飞行中从未遭遇过雷击。我知道雷击很危险，因此在飞行中会避开雷电活动区域。"
+      "referenceTextZh": "没有，我在飞行中从未遭遇过雷击。我知道雷击很危险，因此在飞行中会避开雷电活动区域。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-002",
@@ -17,7 +18,8 @@
       "audioText": "Under what weather conditions are lightning strikes most likely to occur?",
       "audioTextZh": "雷击最可能在哪些天气条件下发生？",
       "referenceText": "Lightning strikes are most likely to occur in thunderstorms or cumulonimbus clouds.",
-      "referenceTextZh": "雷击最可能发生在雷暴或积雨云中。"
+      "referenceTextZh": "雷击最可能发生在雷暴或积雨云中。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-003",
@@ -25,7 +27,8 @@
       "audioText": "Why are lightning strikes hazardous to flight safety?",
       "audioTextZh": "为什么雷击会危及飞行安全？",
       "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause electrical failure or disrupt communication and navigation systems.",
-      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致电气故障，或使通信和导航系统中断。"
+      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致电气故障，或使通信和导航系统中断。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-004",
@@ -33,7 +36,8 @@
       "audioText": "What should a pilot do if the aircraft is struck by lightning during flight?",
       "audioTextZh": "飞行中飞机遭遇雷击时，飞行员应如何处置？",
       "referenceText": "I would first maintain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situation to ATC. If the damage were severe, I would request a diversion to an alternate airport. After landing, I would request a maintenance inspection.",
-      "referenceTextZh": "我会首先控制好飞机，并遵循标准操作程序和检查单。我会检查飞机是否存在结构或系统损伤，并向空中交通管制报告情况。如果损伤严重，我会申请改航至备降机场。着陆后，我会申请进行维修检查。"
+      "referenceTextZh": "我会首先控制好飞机，并遵循标准操作程序和检查单。我会检查飞机是否存在结构或系统损伤，并向空中交通管制报告情况。如果损伤严重，我会申请改航至备降机场。着陆后，我会申请进行维修检查。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-005",
@@ -41,7 +45,8 @@
       "audioText": "What measures can pilots take to reduce the risk of a lightning strike?",
       "audioTextZh": "飞行员可以采取哪些措施降低遭遇雷击的风险？",
       "referenceText": "Before flight, I check the weather reports and avoid areas where lightning is likely. During flight, I monitor the weather radar and request a deviation from ATC if lightning is detected ahead. I also avoid cumulonimbus clouds and thunderstorm areas.",
-      "referenceTextZh": "飞行前，我会查看天气报告，并避开可能发生雷电的区域。飞行中，我会监控气象雷达；如果前方探测到雷电，就向空中交通管制申请绕飞。我还会避开积雨云和雷暴区域。"
+      "referenceTextZh": "飞行前，我会查看天气报告，并避开可能发生雷电的区域。飞行中，我会监控气象雷达；如果前方探测到雷电，就向空中交通管制申请绕飞。我还会避开积雨云和雷暴区域。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-007",
@@ -49,7 +54,8 @@
       "audioText": "What damage can a lightning strike cause to an aircraft?",
       "audioTextZh": "雷击会对飞机造成哪些损伤？",
       "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause communication or navigation failure.",
-      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致通信或导航失效。"
+      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致通信或导航失效。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-012",

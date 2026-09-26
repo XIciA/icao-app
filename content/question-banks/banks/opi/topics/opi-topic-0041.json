@@ -9,7 +9,8 @@
       "audioText": "What is the Enhanced Ground Proximity Warning System (EGPWS)?",
       "referenceText": "EGPWS stands for Enhanced Ground Proximity Warning System. It warns pilots about terrain and obstacles so that they can avoid a collision. It can issue alerts such as “Terrain, terrain” and “Pull up.”",
       "audioTextZh": "什么是增强型近地警告系统（EGPWS）？",
-      "referenceTextZh": "EGPWS 是增强型近地警告系统的缩写。它向飞行员发出地形和障碍物警告，帮助避免碰撞。系统可以发出“Terrain, terrain”和“Pull up”等告警。"
+      "referenceTextZh": "EGPWS 是增强型近地警告系统的缩写。它向飞行员发出地形和障碍物警告，帮助避免碰撞。系统可以发出“Terrain, terrain”和“Pull up”等告警。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-521",
@@ -17,7 +18,8 @@
       "audioText": "What is the function of the Ground Proximity Warning System (GPWS)?",
       "audioTextZh": "近地警告系统（GPWS）有什么功能？",
       "referenceText": "The function of GPWS is to help prevent controlled flight into terrain. It monitors the aircraft’s proximity to the ground and gives the flight crew aural and visual warnings when there is a terrain-collision risk.",
-      "referenceTextZh": "GPWS 的作用是帮助防止可控飞行撞地。它监控飞机与地面的接近程度，并在存在撞地风险时向飞行机组发出声音和目视警告。"
+      "referenceTextZh": "GPWS 的作用是帮助防止可控飞行撞地。它监控飞机与地面的接近程度，并在存在撞地风险时向飞行机组发出声音和目视警告。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-522",
@@ -25,7 +27,8 @@
       "audioText": "How does the Ground Proximity Warning System (GPWS) work?",
       "audioTextZh": "近地警告系统（GPWS）如何工作？",
       "referenceText": "GPWS uses radio-altimeter information to monitor the aircraft’s height above the ground. Its different operating modes compare that height with conditions such as the aircraft’s descent rate. If the aircraft is too close to the ground or descending too rapidly near it, the system gives a warning such as “Sink rate.”",
-      "referenceTextZh": "GPWS 使用无线电高度表信息监控飞机相对地面的高度。不同工作模式会把该高度与飞机下降率等条件进行比较。如果飞机离地面过近或在近地面下降过快，系统会发出“Sink rate”等警告。"
+      "referenceTextZh": "GPWS 使用无线电高度表信息监控飞机相对地面的高度。不同工作模式会把该高度与飞机下降率等条件进行比较。如果飞机离地面过近或在近地面下降过快，系统会发出“Sink rate”等警告。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-523",
@@ -33,7 +36,8 @@
       "audioText": "What is the difference between the Ground Proximity Warning System (GPWS) and the Enhanced Ground Proximity Warning System (EGPWS)?",
       "audioTextZh": "近地警告系统（GPWS）与增强型近地警告系统（EGPWS）有何不同？",
       "referenceText": "GPWS mainly reacts to ground-proximity information beneath the aircraft. EGPWS is an enhanced system that also uses GPS and terrain, obstacle, and airport databases to compare the aircraft’s position with surrounding terrain. This allows EGPWS to provide earlier warnings about high or steep terrain ahead.",
-      "referenceTextZh": "GPWS 主要根据飞机下方的近地信息作出反应。EGPWS 是增强系统，还利用 GPS 以及地形、障碍物和机场数据库，把飞机位置与周围地形比较，因此可以更早警告前方较高或陡峭的地形。"
+      "referenceTextZh": "GPWS 主要根据飞机下方的近地信息作出反应。EGPWS 是增强系统，还利用 GPS 以及地形、障碍物和机场数据库，把飞机位置与周围地形比较，因此可以更早警告前方较高或陡峭的地形。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-524",

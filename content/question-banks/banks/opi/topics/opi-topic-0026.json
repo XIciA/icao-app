@@ -9,7 +9,8 @@
       "audioText": "What is foreign object ingestion (FOI)?",
       "audioTextZh": "什么是外来物吸入（FOI）？",
       "referenceText": "FOI stands for foreign object ingestion. It occurs when an aircraft engine takes in a foreign object, such as a bird or debris, during ground or flight operations.",
-      "referenceTextZh": "FOI 是外来物吸入的缩写。它是指飞机发动机在地面或飞行运行中吸入鸟类、碎片等外来物。"
+      "referenceTextZh": "FOI 是外来物吸入的缩写。它是指飞机发动机在地面或飞行运行中吸入鸟类、碎片等外来物。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-412",
@@ -17,7 +18,8 @@
       "audioText": "What can happen if an engine ingests a foreign object?",
       "audioTextZh": "发动机吸入异物后可能会发生什么？",
       "referenceText": "Foreign object ingestion can damage engine blades, the cowling, or internal components. It may reduce thrust and cause vibration, an engine surge, a flameout, or engine failure.",
-      "referenceTextZh": "外来物吸入会损坏发动机叶片、整流罩或内部部件，可能降低推力，并造成振动、发动机喘振、熄火或失效。"
+      "referenceTextZh": "外来物吸入会损坏发动机叶片、整流罩或内部部件，可能降低推力，并造成振动、发动机喘振、熄火或失效。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-226",
@@ -25,7 +27,8 @@
       "audioText": "During which phases of aircraft operation is foreign object ingestion most likely to occur, and why?",
       "audioTextZh": "外来物吸入最容易发生在飞机运行的哪些阶段？为什么？",
       "referenceText": "Foreign object ingestion is most likely during takeoff and landing because the aircraft is at low altitude, where birds and other foreign objects may be encountered.",
-      "referenceTextZh": "外来物吸入最容易发生在起飞和着陆阶段，因为飞机处于低高度，可能遇到鸟类和其他外来物。"
+      "referenceTextZh": "外来物吸入最容易发生在起飞和着陆阶段，因为飞机处于低高度，可能遇到鸟类和其他外来物。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-416",
@@ -33,7 +36,8 @@
       "audioText": "What measures can help prevent foreign object damage?",
       "audioTextZh": "哪些措施有助于防止外来物损伤？",
       "referenceText": "Pilots should check the ground and sky before flight, report debris to ATC, and delay takeoff if necessary. Airports should keep runways and taxiways clean and disperse birds.",
-      "referenceTextZh": "飞行员应在飞行前检查地面和天空，向空中交通管制报告碎片，并在必要时推迟起飞。机场应保持跑道和滑行道清洁并驱散鸟类。"
+      "referenceTextZh": "飞行员应在飞行前检查地面和天空，向空中交通管制报告碎片，并在必要时推迟起飞。机场应保持跑道和滑行道清洁并驱散鸟类。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-418",
@@ -41,7 +45,8 @@
       "audioText": "What should a pilot do after finding foreign objects on the runway before departure?",
       "audioTextZh": "起飞前发现跑道上有异物时，飞行员应如何处置？",
       "referenceText": "The pilot should report the foreign objects and their position to ATC and request a takeoff delay or another runway. Takeoff should not continue until ATC confirms that the runway is clear.",
-      "referenceTextZh": "飞行员应向空中交通管制报告外来物及其位置，并申请推迟起飞或改用另一条跑道。在管制确认跑道已经清理之前，不应继续起飞。"
+      "referenceTextZh": "飞行员应向空中交通管制报告外来物及其位置，并申请推迟起飞或改用另一条跑道。在管制确认跑道已经清理之前，不应继续起飞。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-222",

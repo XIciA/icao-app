@@ -65,7 +65,8 @@
       "audioText": "How does fatigue affect a pilot's performance?",
       "audioTextZh": "疲劳会如何影响飞行员的工作表现？",
       "referenceText": "Fatigue can impair judgment, slow reaction time, and reduce situational awareness. A fatigued pilot may miss checklist items or misunderstand ATC instructions. These effects increase the risk of errors, especially during critical phases such as approach and landing.",
-      "referenceTextZh": "疲劳会损害判断力、减慢反应速度并降低情景意识。疲劳的飞行员可能遗漏检查单项目或误解空中交通管制指令。这些影响会增加差错风险，尤其是在进近和着陆等关键阶段。"
+      "referenceTextZh": "疲劳会损害判断力、减慢反应速度并降低情景意识。疲劳的飞行员可能遗漏检查单项目或误解空中交通管制指令。这些影响会增加差错风险，尤其是在进近和着陆等关键阶段。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-246",
@@ -73,7 +74,8 @@
       "audioText": "What are common causes of fatigue for flight crew?",
       "audioTextZh": "飞行机组疲劳的常见原因有哪些？",
       "referenceText": "Common causes include long duty hours, crossing time zones, and insufficient rest between flights. Early starts and late finishes can disrupt normal sleep patterns. High workload and stressful weather can also make fatigue develop faster.",
-      "referenceTextZh": "常见原因包括值勤时间过长、跨越时区，以及航班之间休息不足。过早开始或过晚结束值勤会扰乱正常睡眠规律。工作负荷高和天气带来的压力也会使疲劳更快出现。"
+      "referenceTextZh": "常见原因包括值勤时间过长、跨越时区，以及航班之间休息不足。过早开始或过晚结束值勤会扰乱正常睡眠规律。工作负荷高和天气带来的压力也会使疲劳更快出现。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-247",
@@ -89,7 +91,8 @@
       "audioText": "What can an airline do to reduce the risk of pilot fatigue?",
       "audioTextZh": "航空公司可以采取哪些措施降低飞行员疲劳风险？",
       "referenceText": "An airline can use a fatigue risk management system and science-based rostering that considers normal sleep rhythms. It can provide suitable rest facilities on long flights and educate crews about good sleep habits. Together, these measures help the airline manage fatigue proactively.",
-      "referenceTextZh": "航空公司可以采用疲劳风险管理系统，并根据正常睡眠规律进行科学排班。公司还可以在远程航班上提供合适的休息设施，并向机组普及良好的睡眠习惯。这些措施能够共同帮助航空公司主动管理疲劳。"
+      "referenceTextZh": "航空公司可以采用疲劳风险管理系统，并根据正常睡眠规律进行科学排班。公司还可以在远程航班上提供合适的休息设施，并向机组普及良好的睡眠习惯。这些措施能够共同帮助航空公司主动管理疲劳。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-249",
@@ -145,7 +148,8 @@
       "audioText": "Have you ever had a flight delay that extended your duty time? If so, what happened?",
       "audioTextZh": "你是否曾遇到因航班延误而延长值勤时间的情况？如果有，当时发生了什么？",
       "referenceText": "No, I have not had an airline delay that extended my duty time because I am still a student pilot. A training flight has sometimes been delayed by weather, but my instructor and I reassessed our fitness and the available daylight before continuing. If either of us was too tired, the lesson was postponed.",
-      "referenceTextZh": "没有，我仍是一名飞行学员，没有遇到过因航空公司航班延误而延长值勤时间的情况。训练飞行有时会因天气延误，但继续飞行前，我和教员都会重新评估自身状态和剩余日照时间。如果任何一方过于疲劳，训练就会延期。"
+      "referenceTextZh": "没有，我仍是一名飞行学员，没有遇到过因航空公司航班延误而延长值勤时间的情况。训练飞行有时会因天气延误，但继续飞行前，我和教员都会重新评估自身状态和剩余日照时间。如果任何一方过于疲劳，训练就会延期。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-257",
@@ -153,7 +157,8 @@
       "audioText": "What can happen if a flight causes the crew to exceed the applicable maximum duty time?",
       "audioTextZh": "一次飞行导致机组超过适用的最大值勤时间时，可能产生什么后果？",
       "referenceText": "If a delay would take the crew beyond the applicable duty limit, the flight may need to be delayed, cancelled, or assigned to a replacement crew that remains within its legal limits. Any permitted extension must meet the relevant rules and fatigue assessment. Continuing without legal authority or while unfit can impair performance and create both safety and regulatory consequences.",
-      "referenceTextZh": "如果延误会使机组超出适用的值勤限制，航班可能需要继续延误、取消，或改由仍在法定限制内的替换机组执行。任何获准的延长都必须符合相关规定和疲劳评估要求。在没有法律依据或不适合继续值勤时继续运行，会损害工作表现，并带来安全和监管后果。"
+      "referenceTextZh": "如果延误会使机组超出适用的值勤限制，航班可能需要继续延误、取消，或改由仍在法定限制内的替换机组执行。任何获准的延长都必须符合相关规定和疲劳评估要求。在没有法律依据或不适合继续值勤时继续运行，会损害工作表现，并带来安全和监管后果。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-258",
@@ -177,7 +182,8 @@
       "audioText": "What is the difference between flight time and duty time?",
       "audioTextZh": "飞行时间与值勤时间有何不同？",
       "referenceText": "For an aeroplane, flight time normally runs from the moment it first moves for takeoff until it finally comes to rest at the end of the flight. Duty time is broader: it starts when a crew member reports for assigned duties and ends when the person is free from them. It can include preparation, one or more flights, and post-flight work, although exact legal definitions vary.",
-      "referenceTextZh": "对飞机而言，飞行时间通常从飞机为起飞而首次移动时开始，到飞行结束后最终停止时结束。值勤时间的范围更广：它从机组成员报到执行指定任务时开始，到其解除任务时结束。值勤时间可以包括准备工作、一次或多次飞行和飞行后工作，不过具体法律定义可能有所不同。"
+      "referenceTextZh": "对飞机而言，飞行时间通常从飞机为起飞而首次移动时开始，到飞行结束后最终停止时结束。值勤时间的范围更广：它从机组成员报到执行指定任务时开始，到其解除任务时结束。值勤时间可以包括准备工作、一次或多次飞行和飞行后工作，不过具体法律定义可能有所不同。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-261",
@@ -193,7 +199,8 @@
       "audioText": "What tools can help pilots monitor and manage their duty time?",
       "audioTextZh": "哪些工具可以帮助飞行员监控和管理自己的值勤时间？",
       "referenceText": "Electronic logbooks and rostering software can calculate flight and duty times and warn about possible limit breaches. These tools help planners and crews manage schedules, although pilots still have personal responsibility for monitoring their duty time.",
-      "referenceTextZh": "电子飞行记录簿和排班软件可以计算飞行及值勤时间，并对可能超出限制的情况发出警告。这些工具有助于计划人员和机组管理日程，不过飞行员仍有责任亲自监控自己的值勤时间。"
+      "referenceTextZh": "电子飞行记录簿和排班软件可以计算飞行及值勤时间，并对可能超出限制的情况发出警告。这些工具有助于计划人员和机组管理日程，不过飞行员仍有责任亲自监控自己的值勤时间。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-263",
@@ -209,7 +216,8 @@
       "audioText": "How would you define overwork in an aviation job?",
       "audioTextZh": "你会如何定义航空工作中的过度工作？",
       "referenceText": "Overwork occurs when a person's workload exceeds their capacity to perform safely. It usually involves sustained high demands without enough time to recover, rather than one unusually long day. Over time, it can cause cumulative stress and declining performance.",
-      "referenceTextZh": "过度工作是指一个人的工作负荷超出其安全履职能力。它通常意味着长时间持续承受高强度要求，却没有足够的恢复时间，而不是偶尔出现某一天特别漫长的情况。久而久之，它会造成累积性压力和工作表现下降。"
+      "referenceTextZh": "过度工作是指一个人的工作负荷超出其安全履职能力。它通常意味着长时间持续承受高强度要求，却没有足够的恢复时间，而不是偶尔出现某一天特别漫长的情况。久而久之，它会造成累积性压力和工作表现下降。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-265",
@@ -225,7 +233,8 @@
       "audioText": "What is the difference between overwork and fatigue?",
       "audioTextZh": "过度工作与疲劳有何不同？",
       "referenceText": "Fatigue is a state of tiredness that can result from causes such as one poor night's sleep. Overwork means a sustained excessive workload over time and can lead to fatigue. In simple terms, fatigue is the condition, while overwork is one possible cause.",
-      "referenceTextZh": "疲劳是一种疲倦状态，可能由某一晚睡眠不佳等原因造成。过度工作是指长期持续的工作负荷过大，并可能导致疲劳。简单来说，疲劳是一种状态，而过度工作是其可能的原因之一。"
+      "referenceTextZh": "疲劳是一种疲倦状态，可能由某一晚睡眠不佳等原因造成。过度工作是指长期持续的工作负荷过大，并可能导致疲劳。简单来说，疲劳是一种状态，而过度工作是其可能的原因之一。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-267",

@@ -9,7 +9,8 @@
       "audioText": "Have you ever experienced an aircraft electrical system failure?",
       "audioTextZh": "你是否曾遇到航空器电气系统失效？",
       "referenceText": "No, I have never experienced an aircraft electrical system failure in flight.",
-      "referenceTextZh": "没有，我从未在飞行中遇到过飞机电气系统失效。"
+      "referenceTextZh": "没有，我从未在飞行中遇到过飞机电气系统失效。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-880",
@@ -17,7 +18,8 @@
       "audioText": "What should a flight crew do if one source of electrical power fails during flight?",
       "audioTextZh": "飞行中一个电源失效时，飞行机组应怎么做？",
       "referenceText": "The crew should follow the SOP and complete the applicable checklist. They should use the available backup power and switch off unnecessary electrical equipment to conserve it. They should advise ATC and arrange to land at a suitable airport if the failure cannot be resolved.",
-      "referenceTextZh": "机组应遵循标准操作程序并完成适用检查单。他们应使用可用备用电源，并关闭非必要电气设备以节省电量。如果故障无法排除，应通知空中交通管制并安排在合适机场着陆。"
+      "referenceTextZh": "机组应遵循标准操作程序并完成适用检查单。他们应使用可用备用电源，并关闭非必要电气设备以节省电量。如果故障无法排除，应通知空中交通管制并安排在合适机场着陆。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-881",
@@ -25,7 +27,8 @@
       "audioText": "What sources of electrical power are available on your aircraft?",
       "audioTextZh": "你的航空器有哪些电源？",
       "referenceText": "The exact electrical system depends on the DA-40 variant. In general, the engine-driven alternator is the main source in flight, the aircraft battery provides power for starting and backup, and an external power source may be used on the ground. I confirm the installed sources and their limitations in the applicable aircraft flight manual.",
-      "referenceTextZh": "具体电气系统取决于 DA-40 的具体型号。通常，发动机驱动的交流发电机是飞行中的主电源，飞机电池用于起动和备用，外接电源可以在地面使用。我会在适用的飞机飞行手册中确认已安装电源及其限制。"
+      "referenceTextZh": "具体电气系统取决于 DA-40 的具体型号。通常，发动机驱动的交流发电机是飞行中的主电源，飞机电池用于起动和备用，外接电源可以在地面使用。我会在适用的飞机飞行手册中确认已安装电源及其限制。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-882",
@@ -33,7 +36,8 @@
       "audioText": "When is external electrical power used on an aircraft?",
       "audioTextZh": "航空器在什么时候使用外部电源？",
       "referenceText": "External electrical power is used while the aircraft is on the ground, normally before the engines are started. It is particularly useful when the APU is unavailable.",
-      "referenceTextZh": "外接电源在飞机位于地面时使用，通常在发动机起动前接通。APU 不可用时尤其有用。"
+      "referenceTextZh": "外接电源在飞机位于地面时使用，通常在发动机起动前接通。APU 不可用时尤其有用。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-883",
@@ -41,7 +45,8 @@
       "audioText": "When might the APU be used to supply electrical power?",
       "audioTextZh": "在什么情况下可以使用 APU 供电？",
       "referenceText": "On the ground, the APU may supply electrical power before the engines are started, especially when a ground power unit is unavailable. In flight, it may provide power after an engine failure if the APU is available for that operation.",
-      "referenceTextZh": "在地面，APU 可以在发动机起动前提供电力，尤其在地面电源车不可用时。飞行中，如果 APU 适用于该运行且实际可用，它可以在发动机失效后提供电力。"
+      "referenceTextZh": "在地面，APU 可以在发动机起动前提供电力，尤其在地面电源车不可用时。飞行中，如果 APU 适用于该运行且实际可用，它可以在发动机失效后提供电力。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-884",

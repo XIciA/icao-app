@@ -9,7 +9,8 @@
       "audioText": "What is Reduced Vertical Separation Minimum (RVSM)?",
       "audioTextZh": "什么是缩小垂直间隔标准（RVSM）？",
       "referenceText": "RVSM stands for Reduced Vertical Separation Minimum. It is an airspace standard that reduces the vertical separation between aircraft so that the available airspace can be used more efficiently.",
-      "referenceTextZh": "RVSM 是缩小垂直间隔最低标准的缩写。它是一项减小飞机之间垂直间隔的空域标准，使可用空域得到更高效的利用。"
+      "referenceTextZh": "RVSM 是缩小垂直间隔最低标准的缩写。它是一项减小飞机之间垂直间隔的空域标准，使可用空域得到更高效的利用。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-461",
@@ -17,7 +18,8 @@
       "audioText": "What are the lower and upper flight-level limits of Reduced Vertical Separation Minimum (RVSM) airspace?",
       "audioTextZh": "RVSM 空域的飞行高度层下限和上限分别是多少？",
       "referenceText": "RVSM airspace extends from flight level 290 to flight level 410, inclusive. Within that band, a vertical separation of 1,000 feet is applied between suitably approved aircraft. The aircraft and operator must meet the applicable RVSM requirements.",
-      "referenceTextZh": "RVSM 空域包括飞行高度层 290 至飞行高度层 410。在这一高度范围内，符合相关批准要求的飞机之间采用 1,000 英尺的垂直间隔。飞机和运营人必须满足适用的 RVSM 要求。"
+      "referenceTextZh": "RVSM 空域包括飞行高度层 290 至飞行高度层 410。在这一高度范围内，符合相关批准要求的飞机之间采用 1,000 英尺的垂直间隔。飞机和运营人必须满足适用的 RVSM 要求。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-462",
@@ -25,7 +27,8 @@
       "audioText": "What requirements must be met before an aircraft can operate in Reduced Vertical Separation Minimum (RVSM) airspace?",
       "audioTextZh": "航空器在 RVSM 空域运行前必须满足哪些要求？",
       "referenceText": "The aircraft must be RVSM certified, the operator must be authorized for RVSM operations, and the pilots must be trained in that operator's RVSM procedures.",
-      "referenceTextZh": "飞机必须通过 RVSM 审定，运营人必须获得 RVSM 运行批准，飞行员也必须接受该运营人 RVSM 程序的培训。"
+      "referenceTextZh": "飞机必须通过 RVSM 审定，运营人必须获得 RVSM 运行批准，飞行员也必须接受该运营人 RVSM 程序的培训。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-463",
@@ -33,7 +36,8 @@
       "audioText": "What should a pilot do if the autopilot fails in Reduced Vertical Separation Minimum (RVSM) airspace?",
       "audioTextZh": "在 RVSM 空域中自动驾驶仪失效时，飞行员应如何处置？",
       "referenceText": "If the autopilot failed in RVSM airspace, I would request clearance to leave RVSM airspace because the aircraft would no longer meet the applicable requirements.",
-      "referenceTextZh": "如果自动驾驶仪在 RVSM 空域内失效，我会申请许可离开 RVSM 空域，因为飞机将不再满足适用要求。"
+      "referenceTextZh": "如果自动驾驶仪在 RVSM 空域内失效，我会申请许可离开 RVSM 空域，因为飞机将不再满足适用要求。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-466",
@@ -41,7 +45,8 @@
       "audioText": "What are the operational advantages of Reduced Vertical Separation Minimum (RVSM) airspace?",
       "audioTextZh": "RVSM 空域有哪些运行优势？",
       "referenceText": "RVSM increases airspace capacity and gives pilots more opportunity to use an efficient cruising altitude. This can improve flight efficiency, reduce fuel consumption and delays, and lower operating costs.",
-      "referenceTextZh": "RVSM 增加了空域容量，并使飞行员有更多机会使用高效的巡航高度。这可以提高飞行效率、减少燃油消耗和延误，并降低运行成本。"
+      "referenceTextZh": "RVSM 增加了空域容量，并使飞行员有更多机会使用高效的巡航高度。这可以提高飞行效率、减少燃油消耗和延误，并降低运行成本。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-03"

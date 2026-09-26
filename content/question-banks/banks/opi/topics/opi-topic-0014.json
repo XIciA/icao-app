@@ -9,7 +9,8 @@
       "audioText": "Have you ever encountered a bird strike?",
       "audioTextZh": "你遇到过鸟击吗？",
       "referenceText": "No, I have never encountered a bird strike.",
-      "referenceTextZh": "没有，我从未遭遇过鸟击。"
+      "referenceTextZh": "没有，我从未遭遇过鸟击。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-218",
@@ -17,7 +18,8 @@
       "audioText": "During which phases of flight are bird strikes most likely to occur, and why?",
       "audioTextZh": "鸟击最容易发生在哪些飞行阶段？为什么？",
       "referenceText": "Bird strikes are most likely during takeoff and landing because birds are active at lower altitudes.",
-      "referenceTextZh": "鸟击最容易发生在起飞和着陆阶段，因为鸟类在较低高度活动。"
+      "referenceTextZh": "鸟击最容易发生在起飞和着陆阶段，因为鸟类在较低高度活动。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-219",
@@ -25,7 +27,8 @@
       "audioText": "Where can pilots obtain information about bird activity before departure?",
       "audioTextZh": "起飞前，飞行员可以从哪里获取鸟类活动信息？",
       "referenceText": "Before departure, pilots can obtain bird-activity information from ATIS, ATC, and reports from other pilots. They can also make a visual check of the airport area.",
-      "referenceTextZh": "离场前，飞行员可以从 ATIS、空中交通管制和其他飞行员报告中获取鸟类活动信息，还可以目视检查机场区域。"
+      "referenceTextZh": "离场前，飞行员可以从 ATIS、空中交通管制和其他飞行员报告中获取鸟类活动信息，还可以目视检查机场区域。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-220",
@@ -33,7 +36,8 @@
       "audioText": "How can bird strikes threaten flight safety?",
       "audioTextZh": "鸟击会如何威胁飞行安全？",
       "referenceText": "A bird strike may damage the nose, windshield, or engines. Bird ingestion can cause an engine surge, flameout, or failure. A windshield strike may also break the windshield and injure the flight crew.",
-      "referenceTextZh": "鸟击可能损坏机头、风挡或发动机。鸟被吸入发动机后可能导致喘振、熄火或失效。鸟撞风挡还可能使风挡破裂，并造成飞行机组受伤。"
+      "referenceTextZh": "鸟击可能损坏机头、风挡或发动机。鸟被吸入发动机后可能导致喘振、熄火或失效。鸟撞风挡还可能使风挡破裂，并造成飞行机组受伤。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-221",
@@ -41,7 +45,8 @@
       "audioText": "What measures can help prevent bird strikes?",
       "audioTextZh": "哪些措施有助于防止鸟击？",
       "referenceText": "Pilots can check ATIS, ATC information, and pilot reports before flight and maintain a good visual scan. If bird activity is reported along the flight path, they can request a route change or delay the approach or departure. Airport management can also disperse birds near the airport.",
-      "referenceTextZh": "飞行员可以在飞行前查看 ATIS、空中交通管制信息和飞行员报告，并保持良好的目视观察。如果航路上报告有鸟类活动，可以申请改变航路，或推迟进近或离场。机场管理部门也可以驱赶机场附近的鸟类。"
+      "referenceTextZh": "飞行员可以在飞行前查看 ATIS、空中交通管制信息和飞行员报告，并保持良好的目视观察。如果航路上报告有鸟类活动，可以申请改变航路，或推迟进近或离场。机场管理部门也可以驱赶机场附近的鸟类。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-223",
@@ -57,7 +62,8 @@
       "audioText": "How prepared do you feel to handle a bird strike?",
       "audioTextZh": "你觉得自己应对鸟击的准备有多充分？",
       "referenceText": "I feel prepared to handle a bird strike because I know the procedures for avoiding and responding to one, although I have never encountered one in flight.",
-      "referenceTextZh": "虽然我从未在飞行中遭遇鸟击，但我了解鸟击的预防和处置程序，因此认为自己已做好应对准备。"
+      "referenceTextZh": "虽然我从未在飞行中遭遇鸟击，但我了解鸟击的预防和处置程序，因此认为自己已做好应对准备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-230",

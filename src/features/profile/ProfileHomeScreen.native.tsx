@@ -13,6 +13,7 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { useProfile } from '@/features/account/profile-store.native';
 import { examGoal } from '@/features/account/profile-model';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
+import { ContactRow } from './ContactRow.native';
 import { AiAllowanceCard } from './AiAllowanceCard.native';
 
 const menu = [
@@ -110,12 +111,13 @@ export function ProfileHomeScreen() {
           {visibleMenu.map((item, index) => (
             <Row
               icon={item.icon}
-              isLast={index === visibleMenu.length - 1}
+              isLast={index === visibleMenu.length - 1 && Platform.OS === 'web' && !cloudWeb}
               key={item.slug}
               label={cloudWeb && item.slug === 'membership' ? '会员权益' : item.label}
               onPress={() => open(item.slug)}
             />
           ))}
+          {Platform.OS !== 'web' || cloudWeb ? <ContactRow /> : null}
         </RowGroup>
       </View>
     </AccountScreen>

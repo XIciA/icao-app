@@ -9,7 +9,8 @@
       "audioText": "When might a flight crew need to request a radio check from ATC?",
       "audioTextZh": "飞行机组在什么情况下可能需要请求空中交通管制部门进行无线电检查？",
       "referenceText": "A crew may request a radio check during its initial contact with ATC, including before pushback or engine start. A check may also be needed when a transmission is unclear or its readability is below the required standard.",
-      "referenceTextZh": "机组可以在首次联系空中交通管制时申请无线电检查，包括推出或起动发动机之前。通话内容听不清或可懂度低于所需标准时，也可能需要检查。"
+      "referenceTextZh": "机组可以在首次联系空中交通管制时申请无线电检查，包括推出或起动发动机之前。通话内容听不清或可懂度低于所需标准时，也可能需要检查。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-852",
@@ -17,7 +18,8 @@
       "audioText": "How should a pilot conduct a radio check with ATC?",
       "audioTextZh": "飞行员应如何与空中交通管制部门进行无线电检查？",
       "referenceText": "The pilot should first check that the headset and microphone are working and select the correct frequency. The pilot should then call the ATC station, identify the aircraft, request a radio check, and ask, \"How do you read me?\" Both sides should confirm that the transmission is clear.",
-      "referenceTextZh": "飞行员应先检查耳机和麦克风是否工作正常，并选择正确频率。随后呼叫空中交通管制电台、表明飞机身份、申请无线电检查，并询问“信号怎样？”双方都应确认通信内容收听清晰。"
+      "referenceTextZh": "飞行员应先检查耳机和麦克风是否工作正常，并选择正确频率。随后呼叫空中交通管制电台、表明飞机身份、申请无线电检查，并询问“信号怎样？”双方都应确认通信内容收听清晰。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-854",

@@ -9,7 +9,8 @@
       "audioText": "How does a magnetic compass indicate an aircraft's heading?",
       "audioTextZh": "磁罗盘如何指示航空器航向？",
       "referenceText": "A magnetized compass card rotates freely and aligns with the Earth's magnetic field. The pilot reads the aircraft's magnetic heading where the card meets the fixed lubber line on the compass case.",
-      "referenceTextZh": "磁化的罗盘卡可以自由转动，并与地球磁场对齐。飞行员在罗盘卡与罗盘外壳固定基准线相交的位置读取飞机的磁航向。"
+      "referenceTextZh": "磁化的罗盘卡可以自由转动，并与地球磁场对齐。飞行员在罗盘卡与罗盘外壳固定基准线相交的位置读取飞机的磁航向。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-345",
@@ -17,7 +18,8 @@
       "audioText": "What is the primary purpose of an aircraft's magnetic compass?",
       "audioTextZh": "航空器磁罗盘的主要用途是什么？",
       "referenceText": "The primary purpose of a magnetic compass is to show the aircraft's heading relative to magnetic north. It also provides a basic backup heading reference if electronic or gyroscopic systems are unavailable.",
-      "referenceTextZh": "磁罗盘的主要用途是显示飞机相对于磁北的航向。电子或陀螺系统不可用时，它还能提供基本的备用航向基准。"
+      "referenceTextZh": "磁罗盘的主要用途是显示飞机相对于磁北的航向。电子或陀螺系统不可用时，它还能提供基本的备用航向基准。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-345-part-2",
@@ -25,7 +27,8 @@
       "audioText": "What is the main advantage of a magnetic compass over gyroscopic heading instruments?",
       "audioTextZh": "与陀螺航向仪表相比，磁罗盘的主要优势是什么？",
       "referenceText": "Its main advantage is that it is self-contained and does not need electrical power or a vacuum system. It can therefore remain available when powered heading instruments fail.",
-      "referenceTextZh": "它的主要优点是自成系统，不需要电源或真空系统。因此，当需要供电的航向仪表失效时，磁罗盘仍然可以使用。"
+      "referenceTextZh": "它的主要优点是自成系统，不需要电源或真空系统。因此，当需要供电的航向仪表失效时，磁罗盘仍然可以使用。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-346",
@@ -33,7 +36,8 @@
       "audioText": "What are the main errors and limitations of a magnetic compass in flight, including acceleration and turning errors?",
       "audioTextZh": "磁罗盘在飞行中有哪些主要误差和局限性，包括加速误差和转弯误差？",
       "referenceText": "In the Northern Hemisphere, acceleration on an east or west heading can create a false turn toward north, while deceleration can indicate a turn toward south. When turning from a northerly heading, the compass tends to lag, and when turning from a southerly heading, it tends to lead. Magnetic dip can also make the card tilt and oscillate during maneuvers or turbulence.",
-      "referenceTextZh": "在北半球，飞机沿东向或西向航向加速时，磁罗盘会产生向北转弯的假指示；减速时则会指示向南转弯。从北向航向开始转弯时，罗盘指示往往滞后；从南向航向开始转弯时，指示往往超前。在机动或颠簸期间，磁倾角还会使罗盘卡倾斜和摆动。"
+      "referenceTextZh": "在北半球，飞机沿东向或西向航向加速时，磁罗盘会产生向北转弯的假指示；减速时则会指示向南转弯。从北向航向开始转弯时，罗盘指示往往滞后；从南向航向开始转弯时，指示往往超前。在机动或颠簸期间，磁倾角还会使罗盘卡倾斜和摆动。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-347",
@@ -41,7 +45,8 @@
       "audioText": "How and why should a directional gyro be aligned with the magnetic compass?",
       "audioTextZh": "应如何将航向陀螺与磁罗盘对准？为什么需要这样做？",
       "referenceText": "Before flight, I set the directional gyro to the magnetic-compass heading while the aircraft is stationary and away from magnetic interference. In flight, I recheck it during straight, level, unaccelerated flight and correct any drift. This is necessary because a free directional gyro gradually loses alignment, while the compass remains the basic magnetic reference.",
-      "referenceTextZh": "飞行前，当飞机处于静止状态并远离磁干扰时，我会按照磁罗盘航向设置航向陀螺仪。飞行中，我会在直线、平飞且无加速的状态下重新核对，并修正任何漂移。这样做很有必要，因为自由式航向陀螺仪会逐渐失准，而磁罗盘仍是基本的磁航向基准。"
+      "referenceTextZh": "飞行前，当飞机处于静止状态并远离磁干扰时，我会按照磁罗盘航向设置航向陀螺仪。飞行中，我会在直线、平飞且无加速的状态下重新核对，并修正任何漂移。这样做很有必要，因为自由式航向陀螺仪会逐渐失准，而磁罗盘仍是基本的磁航向基准。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-348",
@@ -49,7 +54,8 @@
       "audioText": "Does the aircraft type you fly have a magnetic compass, and where is it located?",
       "audioTextZh": "你所飞的机型是否配有磁罗盘？它位于什么位置？",
       "referenceText": "Yes, the DA-40 I fly has a magnetic compass. It is mounted near the centre of the cockpit above the main instrument panel, where both pilots can read it. I use it as a basic heading reference and as a backup for the electronic heading display.",
-      "referenceTextZh": "是的，我驾驶的 DA-40 配有磁罗盘。它安装在驾驶舱中部、主仪表板上方，两名飞行员都可以读到。我把它作为基本航向基准，也是电子航向显示的备份。"
+      "referenceTextZh": "是的，我驾驶的 DA-40 配有磁罗盘。它安装在驾驶舱中部、主仪表板上方，两名飞行员都可以读到。我把它作为基本航向基准，也是电子航向显示的备份。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-06"

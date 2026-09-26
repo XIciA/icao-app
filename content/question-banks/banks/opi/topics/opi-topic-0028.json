@@ -9,7 +9,8 @@
       "audioText": "Have you ever encountered turbulence during a flight?",
       "audioTextZh": "你在飞行中遇到过颠簸吗？",
       "referenceText": "Yes. During a training flight from Guanghan to Suining, I encountered severe turbulence while cruising at 1,800 metres. We maintained control and climbed to 2,100 metres, where the conditions became normal.",
-      "referenceTextZh": "是的。在一次从广汉飞往遂宁的训练飞行中，我在 1,800 米巡航时遭遇严重颠簸。我们控制好飞机并爬升到 2,100 米，之后飞行条件恢复正常。"
+      "referenceTextZh": "是的。在一次从广汉飞往遂宁的训练飞行中，我在 1,800 米巡航时遭遇严重颠簸。我们控制好飞机并爬升到 2,100 米，之后飞行条件恢复正常。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-428",
@@ -17,7 +18,8 @@
       "audioText": "Do you think turbulence is dangerous to flight safety? Why or why not?",
       "audioTextZh": "你认为颠簸会危及飞行安全吗？为什么？",
       "referenceText": "Light turbulence is usually manageable, but severe turbulence can be dangerous. It may make the aircraft difficult to control, cause an altitude deviation or structural damage, and injure people on board. For that reason, severe turbulence should be avoided when possible.",
-      "referenceTextZh": "轻度颠簸通常可以应对，但严重颠簸可能非常危险。它会使飞机难以操纵，造成高度偏差或结构损伤，并使机上人员受伤。因此，应尽可能避开严重颠簸。"
+      "referenceTextZh": "轻度颠簸通常可以应对，但严重颠簸可能非常危险。它会使飞机难以操纵，造成高度偏差或结构损伤，并使机上人员受伤。因此，应尽可能避开严重颠簸。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-429",
@@ -25,7 +27,8 @@
       "audioText": "Why is severe turbulence dangerous?",
       "audioTextZh": "为什么严重颠簸很危险？",
       "referenceText": "Severe turbulence can make the aircraft difficult to control and cause a sudden loss of speed or altitude. It may damage the fuselage or wings and injure crew members or passengers. It is especially hazardous during critical phases such as takeoff and landing.",
-      "referenceTextZh": "严重颠簸会使飞机难以操纵，并造成速度或高度突然下降。它可能损坏机身或机翼，使机组成员或旅客受伤。在起飞和着陆等关键阶段，危险尤其大。"
+      "referenceTextZh": "严重颠簸会使飞机难以操纵，并造成速度或高度突然下降。它可能损坏机身或机翼，使机组成员或旅客受伤。在起飞和着陆等关键阶段，危险尤其大。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-430",
@@ -33,7 +36,8 @@
       "audioText": "What damage can severe turbulence cause?",
       "audioTextZh": "严重颠簸会造成哪些损伤？",
       "referenceText": "Severe turbulence can cause structural damage to the aircraft, including damage to the fuselage and wings.",
-      "referenceTextZh": "严重颠簸会造成飞机结构损伤，包括机身和机翼损伤。"
+      "referenceTextZh": "严重颠簸会造成飞机结构损伤，包括机身和机翼损伤。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-432",
@@ -41,7 +45,8 @@
       "audioText": "What procedures should pilots follow to avoid clear-air turbulence?",
       "audioTextZh": "为避免晴空颠簸，飞行员应遵循哪些程序？",
       "referenceText": "Before flight, pilots should review weather forecasts, pilot reports, and information from ATC and brief the crew about possible clear-air turbulence. In flight, they should remain in contact with ATC and request a route or altitude change when necessary. The crew and passengers should fasten their seatbelts when turbulence is expected or encountered.",
-      "referenceTextZh": "飞行前，飞行员应查看天气预报、飞行员报告和空中交通管制信息，并向机组说明可能出现的晴空颠簸。飞行中应与管制保持联系，并在必要时申请改变航路或高度。预计或遭遇颠簸时，机组和旅客应系好安全带。"
+      "referenceTextZh": "飞行前，飞行员应查看天气预报、飞行员报告和空中交通管制信息，并向机组说明可能出现的晴空颠簸。飞行中应与管制保持联系，并在必要时申请改变航路或高度。预计或遭遇颠簸时，机组和旅客应系好安全带。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-434",

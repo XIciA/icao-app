@@ -9,7 +9,8 @@
       "audioText": "Why are lithium batteries classified as dangerous goods in aviation?",
       "audioTextZh": "为什么锂电池在航空运输中被归类为危险品？",
       "referenceText": "Lithium batteries store a large amount of energy in a small space. If they are damaged, short-circuited, or overheated, they can enter thermal runaway and produce smoke, intense heat, fire, or even an explosion. A lithium-battery fire can be difficult to control on an aircraft, so these batteries are treated as dangerous goods.",
-      "referenceTextZh": "锂电池在很小空间内储存大量能量。如果受损、短路或过热，可能进入热失控状态，产生烟雾、高温、火灾甚至爆炸。锂电池火灾在飞机上可能很难控制，因此这些电池被视为危险品。"
+      "referenceTextZh": "锂电池在很小空间内储存大量能量。如果受损、短路或过热，可能进入热失控状态，产生烟雾、高温、火灾甚至爆炸。锂电池火灾在飞机上可能很难控制，因此这些电池被视为危险品。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-818",
@@ -17,7 +18,8 @@
       "audioText": "What symptoms indicate a lithium battery is failing?",
       "audioTextZh": "哪些迹象表明锂电池出现故障？",
       "referenceText": "Warning signs include unusual heat, swelling or deformation, and hissing or other strange noises. Smoke or a burning smell can also indicate that the battery is failing.",
-      "referenceTextZh": "警示迹象包括异常发热、鼓胀或变形，以及嘶嘶声或其他异常声音。烟雾或烧焦气味也可能表明电池正在失效。"
+      "referenceTextZh": "警示迹象包括异常发热、鼓胀或变形，以及嘶嘶声或其他异常声音。烟雾或烧焦气味也可能表明电池正在失效。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-819",
@@ -25,7 +27,8 @@
       "audioText": "What should crew members do if a passenger's lithium-battery-powered device catches fire?",
       "audioTextZh": "如果乘客使用的锂电池供电设备起火，机组人员应如何处置？",
       "referenceText": "The crew should act immediately and use the available extinguisher to suppress the flames. They should then cool the device with water or another non-alcoholic liquid to prevent re-ignition and continue to monitor it because thermal runaway can restart. Other passengers should be kept clear, and the cockpit should be kept informed.",
-      "referenceTextZh": "机组应立即行动，使用可用灭火器压制火焰。随后应用水或其他不含酒精的液体冷却设备，防止复燃，并持续监控，因为热失控可能重新发生。应让其他旅客远离，并持续通知驾驶舱。"
+      "referenceTextZh": "机组应立即行动，使用可用灭火器压制火焰。随后应用水或其他不含酒精的液体冷却设备，防止复燃，并持续监控，因为热失控可能重新发生。应让其他旅客远离，并持续通知驾驶舱。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-820",
@@ -33,7 +36,8 @@
       "audioText": "Why are lithium battery fires particularly challenging on aircraft?",
       "audioTextZh": "为什么锂电池火灾在飞机上尤其难以处置？",
       "referenceText": "Lithium battery fires can burn intensely and may re-ignite after the flames appear to be out. Traditional extinguishers may not fully stop the reaction. On an aircraft, escape options are limited and smoke can spread through the cabin quickly, so early detection is critical.",
-      "referenceTextZh": "锂电池火灾燃烧猛烈，并可能在明火看似熄灭后复燃。传统灭火器未必能完全终止反应。飞机上的逃生选择有限，烟雾又会迅速蔓延，因此早期发现至关重要。"
+      "referenceTextZh": "锂电池火灾燃烧猛烈，并可能在明火看似熄灭后复燃。传统灭火器未必能完全终止反应。飞机上的逃生选择有限，烟雾又会迅速蔓延，因此早期发现至关重要。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-821",
@@ -41,7 +45,8 @@
       "audioText": "What regulations apply to passengers carrying spare lithium batteries?",
       "audioTextZh": "乘客携带备用锂电池时适用哪些规定？",
       "referenceText": "Spare lithium batteries must be carried in cabin baggage rather than checked baggage. Their terminals must be protected against short circuits, for example by using the original packaging or tape.",
-      "referenceTextZh": "备用锂电池必须放在手提行李中，不能放入托运行李。电池端子必须采取防短路保护，例如使用原包装或胶带。"
+      "referenceTextZh": "备用锂电池必须放在手提行李中，不能放入托运行李。电池端子必须采取防短路保护，例如使用原包装或胶带。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-822",
@@ -65,7 +70,8 @@
       "audioText": "How would you explain the main lithium battery safety rules to a passenger?",
       "audioTextZh": "你会如何向乘客说明锂电池的主要安全规定？",
       "referenceText": "I would explain that lithium batteries are normally safe, but a damaged battery can overheat and catch fire. The batteries should be kept in the cabin so that the crew can monitor them and respond quickly if there is a problem. This reduces the risk of an unnoticed fire in the cargo hold.",
-      "referenceTextZh": "我会解释，锂电池通常是安全的，但受损电池可能过热并起火。电池应留在客舱内，使机组能够监控，并在发生问题时迅速响应，从而降低货舱内火灾未被发现的风险。"
+      "referenceTextZh": "我会解释，锂电池通常是安全的，但受损电池可能过热并起火。电池应留在客舱内，使机组能够监控，并在发生问题时迅速响应，从而降低货舱内火灾未被发现的风险。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-827",

@@ -9,7 +9,8 @@
       "audioText": "What dangerous goods training has your company provided to you?",
       "audioTextZh": "你所在的公司为你提供过哪些危险品培训？",
       "referenceText": "I am not employed by an airline, so I have not received company dangerous-goods training. My aviation study has covered the main hazard classes, labels, hidden dangerous goods, and restrictions on items carried by passengers or crew. Airline personnel require approved initial and recurrent training for their assigned duties.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司危险品培训。我的航空学习涵盖了主要危险类别、标签、隐含危险品，以及旅客或机组携带物品的限制。航空公司人员必须接受与其职责相适应并经批准的初始和复训。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司危险品培训。我的航空学习涵盖了主要危险类别、标签、隐含危险品，以及旅客或机组携带物品的限制。航空公司人员必须接受与其职责相适应并经批准的初始和复训。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-168",
@@ -17,7 +18,8 @@
       "audioText": "What do you learn during dangerous goods training?",
       "audioTextZh": "你在危险品培训中会学习哪些内容？",
       "referenceText": "During dangerous goods training, we learn the regulations and categories of dangerous goods. We also learn how to identify and check them, how they should be transported, and how to deal with a leak during flight.",
-      "referenceTextZh": "在危险品培训中，我们会学习危险品的法规和类别。我们还会学习如何识别和检查危险品、如何运输危险品，以及飞行中发生泄漏时应如何处置。"
+      "referenceTextZh": "在危险品培训中，我们会学习危险品的法规和类别。我们还会学习如何识别和检查危险品、如何运输危险品，以及飞行中发生泄漏时应如何处置。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-171",
@@ -25,7 +27,8 @@
       "audioText": "What are some examples of dangerous goods transported by air?",
       "audioTextZh": "航空运输中常见的危险品有哪些？",
       "referenceText": "Examples of dangerous goods include lithium batteries, fireworks, oxygen cylinders, dry ice, paint, and lighters. Radioactive, flammable, explosive, toxic, and corrosive substances may also be classified as dangerous goods.",
-      "referenceTextZh": "危险品的例子包括锂电池、烟花、氧气瓶、干冰、油漆和打火机。放射性、易燃、爆炸性、有毒和腐蚀性物质也可能被归类为危险品。"
+      "referenceTextZh": "危险品的例子包括锂电池、烟花、氧气瓶、干冰、油漆和打火机。放射性、易燃、爆炸性、有毒和腐蚀性物质也可能被归类为危险品。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-173",
@@ -33,7 +36,8 @@
       "audioText": "Why are certain items classified as dangerous goods in aviation?",
       "audioTextZh": "为什么航空运输中的某些物品会被归类为危险品？",
       "referenceText": "Certain items are classified as dangerous goods because they may be flammable, explosive, or toxic. They can cause a fire, damage the aircraft, harm people on board, and endanger flight safety.",
-      "referenceTextZh": "某些物品被归类为危险品，是因为它们可能易燃、易爆或有毒。它们可能引发火灾、损坏飞机、伤害机上人员，并危及飞行安全。"
+      "referenceTextZh": "某些物品被归类为危险品，是因为它们可能易燃、易爆或有毒。它们可能引发火灾、损坏飞机、伤害机上人员，并危及飞行安全。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-175",
@@ -41,7 +45,8 @@
       "audioText": "What precautions should a pilot take when dangerous goods are being transported on the aircraft?",
       "audioTextZh": "飞机运输危险品时，飞行员应采取哪些预防措施？",
       "referenceText": "The pilot should review the loading information and confirm the type, quantity, packaging, stowage, and labeling of the dangerous goods. The crew should be briefed on the relevant emergency procedures. During flight, the aircraft and cargo area should be monitored for any leak or fire.",
-      "referenceTextZh": "飞行员应查看装载信息，并确认危险品的类型、数量、包装、存放位置和标签。机组应接受相关应急程序简令。飞行中，应监控飞机和货舱是否发生泄漏或火灾。"
+      "referenceTextZh": "飞行员应查看装载信息，并确认危险品的类型、数量、包装、存放位置和标签。机组应接受相关应急程序简令。飞行中，应监控飞机和货舱是否发生泄漏或火灾。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-176",
@@ -49,7 +54,8 @@
       "audioText": "What should the flight crew do if dangerous goods leak during a flight?",
       "audioTextZh": "飞行中发生危险品泄漏时，飞行机组应如何处置？",
       "referenceText": "The crew should follow the applicable SOP and dangerous-goods leakage checklist. The leak area should be isolated, passengers should be kept away, and first aid should be provided if needed. The crew should report the situation to ATC, request a priority landing and emergency services, and prepare for evacuation after landing if the situation cannot be controlled.",
-      "referenceTextZh": "机组应遵循适用的标准操作程序和危险品泄漏检查单。应隔离泄漏区域、让旅客远离，并在需要时提供急救。机组应向空中交通管制报告情况，申请优先着陆和应急服务；如果情况无法控制，还应为着陆后的撤离做好准备。"
+      "referenceTextZh": "机组应遵循适用的标准操作程序和危险品泄漏检查单。应隔离泄漏区域、让旅客远离，并在需要时提供急救。机组应向空中交通管制报告情况，申请优先着陆和应急服务；如果情况无法控制，还应为着陆后的撤离做好准备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-177",
@@ -57,7 +63,8 @@
       "audioText": "How often do you receive dangerous goods training?",
       "audioTextZh": "你多久接受一次危险品培训？",
       "referenceText": "I receive dangerous goods transportation training every two years.",
-      "referenceTextZh": "我每两年接受一次危险品运输培训。"
+      "referenceTextZh": "我每两年接受一次危险品运输培训。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-178",
@@ -65,7 +72,8 @@
       "audioText": "Why do pilots need specialized training in dangerous goods transportation?",
       "audioTextZh": "为什么飞行员需要接受危险品运输方面的专项培训？",
       "referenceText": "Pilots need specialized training because dangerous goods can threaten flight safety. The training helps them identify dangerous goods and understand how to handle a leak during flight.",
-      "referenceTextZh": "飞行员需要接受专门培训，因为危险品可能威胁飞行安全。培训帮助他们识别危险品，并了解飞行中发生泄漏时应如何处置。"
+      "referenceTextZh": "飞行员需要接受专门培训，因为危险品可能威胁飞行安全。培训帮助他们识别危险品，并了解飞行中发生泄漏时应如何处置。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-182",

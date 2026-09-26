@@ -9,7 +9,8 @@
       "audioText": "What legal fuel requirements must be met before a flight?",
       "audioTextZh": "飞行前必须满足哪些法规规定的燃油要求？",
       "referenceText": "Before a flight, the required fuel must include fuel to reach the destination, proceed to an alternate airport, hold if necessary, and maintain the required reserve.",
-      "referenceTextZh": "飞行前所需燃油必须包括飞往目的地、前往备降机场、必要时等待，以及保持规定储备所需的燃油。"
+      "referenceTextZh": "飞行前所需燃油必须包括飞往目的地、前往备降机场、必要时等待，以及保持规定储备所需的燃油。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-268",
@@ -17,7 +18,8 @@
       "audioText": "What is the maximum fuel capacity of the aircraft type you fly?",
       "audioTextZh": "你所飞机型的最大燃油容量是多少？",
       "referenceText": "I fly the DA-40 for flight training. Its maximum fuel capacity is 41 gallons, of which 39 gallons are usable.",
-      "referenceTextZh": "我使用 DA-40 进行飞行训练。它的最大燃油容量为 41 加仑，其中 39 加仑可用。"
+      "referenceTextZh": "我使用 DA-40 进行飞行训练。它的最大燃油容量为 41 加仑，其中 39 加仑可用。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-269",
@@ -25,7 +27,8 @@
       "audioText": "What factors should be considered when calculating the fuel required for a flight?",
       "audioTextZh": "计算一次飞行所需燃油时，应考虑哪些因素？",
       "referenceText": "The calculation should consider the flight distance and time, aircraft weight and balance, weather and wind, altitude and airspeed, and the aircraft's fuel-consumption rate.",
-      "referenceTextZh": "计算时应考虑飞行距离和时间、飞机重量和平衡、天气和风、高度和空速，以及飞机的燃油消耗率。"
+      "referenceTextZh": "计算时应考虑飞行距离和时间、飞机重量和平衡、天气和风、高度和空速，以及飞机的燃油消耗率。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-270",
@@ -33,7 +36,8 @@
       "audioText": "How can pilots determine the aircraft's remaining endurance in flight?",
       "audioTextZh": "飞行员如何确定航空器在飞行中的剩余续航时间？",
       "referenceText": "Pilots can estimate endurance from the remaining fuel quantity and the current fuel-consumption rate. They can compare this with the flight plan and adjust the estimate for flight time, speed, altitude, weather, and headwind.",
-      "referenceTextZh": "飞行员可以根据剩余燃油量和当前燃油消耗率估算续航时间。他们可以将结果与飞行计划比较，并根据飞行时间、速度、高度、天气和顶风修正估算。"
+      "referenceTextZh": "飞行员可以根据剩余燃油量和当前燃油消耗率估算续航时间。他们可以将结果与飞行计划比较，并根据飞行时间、速度、高度、天气和顶风修正估算。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-271",
@@ -57,7 +61,8 @@
       "audioText": "What should a flight crew do if a fuel leak is detected during refueling?",
       "audioTextZh": "加油期间发现燃油泄漏时，飞行机组应如何处置？",
       "referenceText": "The crew should stop refueling immediately and inform the ground staff. Fire extinguishers should be ready, and maintenance personnel should inspect and handle the leak.",
-      "referenceTextZh": "机组应立即停止加油并通知地面人员。应准备好灭火器，由维修人员检查并处理泄漏。"
+      "referenceTextZh": "机组应立即停止加油并通知地面人员。应准备好灭火器，由维修人员检查并处理泄漏。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-274",
@@ -65,7 +70,8 @@
       "audioText": "What should a flight crew do if a fuel leak is detected in flight?",
       "audioTextZh": "飞行中发现燃油泄漏时，飞行机组应如何处置？",
       "referenceText": "The crew should follow the applicable SOP and checklist and try to control the problem. They should advise ATC of the situation and, if necessary, divert to the nearest suitable airport. After landing, maintenance personnel should inspect the leak.",
-      "referenceTextZh": "机组应遵循适用的标准操作程序和检查单，并尽力控制问题。他们应向空中交通管制报告情况，并在必要时改航至最近的合适机场。着陆后，维修人员应检查泄漏。"
+      "referenceTextZh": "机组应遵循适用的标准操作程序和检查单，并尽力控制问题。他们应向空中交通管制报告情况，并在必要时改航至最近的合适机场。着陆后，维修人员应检查泄漏。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-275",
@@ -81,7 +87,8 @@
       "audioText": "What is your company's fuel policy?",
       "audioTextZh": "你所在公司的燃油政策是什么？",
       "referenceText": "I am not employed by an airline, so I follow my flight school's fuel policy and the applicable regulations. We plan enough usable fuel for the flight, expected contingencies, any required alternate, the required reserve, and additional operational needs. During flight, I compare actual fuel with the plan and land with the required reserve intact.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的燃油政策和适用法规。我们会为本次飞行、预计的意外情况、任何所需备降、规定储备和额外运行需要计划足够的可用燃油。飞行中，我会把实际燃油与计划比较，并在着陆时保留完整的规定储备。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的燃油政策和适用法规。我们会为本次飞行、预计的意外情况、任何所需备降、规定储备和额外运行需要计划足够的可用燃油。飞行中，我会把实际燃油与计划比较，并在着陆时保留完整的规定储备。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-277",
@@ -89,7 +96,8 @@
       "audioText": "How can cruising altitude affect an aircraft's fuel consumption?",
       "audioTextZh": "巡航高度会如何影响航空器的燃油消耗？",
       "referenceText": "At a higher cruising altitude, lower air density can reduce drag and help save fuel. However, fuel consumption also depends on aircraft limitations, weight, and engine performance, so pilots should select the optimum cruising altitude rather than simply flying as high as possible.",
-      "referenceTextZh": "在较高巡航高度，较低的空气密度会减小阻力并有助于节省燃油。不过，燃油消耗还取决于飞机限制、重量和发动机性能，因此飞行员应选择最佳巡航高度，而不是简单地飞得越高越好。"
+      "referenceTextZh": "在较高巡航高度，较低的空气密度会减小阻力并有助于节省燃油。不过，燃油消耗还取决于飞机限制、重量和发动机性能，因此飞行员应选择最佳巡航高度，而不是简单地飞得越高越好。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-278",
@@ -97,7 +105,8 @@
       "audioText": "Do you think pilots play an important role in reducing fuel consumption, and why?",
       "audioTextZh": "你认为飞行员在降低燃油消耗方面发挥着重要作用吗？为什么？",
       "referenceText": "Yes, pilots play an important role because their choices affect fuel consumption. They can select an economical speed, altitude, and route, use smooth control inputs, and avoid unnecessary holding or go-arounds. Fuel saving should always remain secondary to safety.",
-      "referenceTextZh": "是的，飞行员的选择会影响燃油消耗，因此他们发挥着重要作用。他们可以选择经济的速度、高度和航路，平稳操纵，并避免不必要的等待或复飞。节省燃油必须始终服从安全。"
+      "referenceTextZh": "是的，飞行员的选择会影响燃油消耗，因此他们发挥着重要作用。他们可以选择经济的速度、高度和航路，平稳操纵，并避免不必要的等待或复飞。节省燃油必须始终服从安全。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-280",
@@ -105,7 +114,8 @@
       "audioText": "What is your opinion of airline policies that encourage pilots to save fuel?",
       "audioTextZh": "你如何看待鼓励飞行员节省燃油的航空公司政策？",
       "referenceText": "I think such policies are positive because fuel saving can reduce operating costs and help the environment. However, safety must never be compromised. Pilots should not avoid a necessary go-around or reduce reserve fuel simply to save fuel.",
-      "referenceTextZh": "我认为这类政策是积极的，因为节省燃油可以降低运行成本并有利于环境。不过，绝不能牺牲安全。飞行员不能为了省油而避免必要的复飞或减少储备燃油。"
+      "referenceTextZh": "我认为这类政策是积极的，因为节省燃油可以降低运行成本并有利于环境。不过，绝不能牺牲安全。飞行员不能为了省油而避免必要的复飞或减少储备燃油。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-281",
@@ -113,7 +123,8 @@
       "audioText": "How can contaminated fuel affect flight safety?",
       "audioTextZh": "受污染的燃油会如何影响飞行安全？",
       "referenceText": "Contaminated fuel can block fuel filters or pipes and interrupt the fuel supply. It may reduce engine performance and cause power loss, vibration, flameout, engine failure, or damage to engine components.",
-      "referenceTextZh": "受污染的燃油会堵塞燃油滤或管路并中断供油。它可能降低发动机性能，并造成推力丧失、振动、熄火、发动机失效或发动机部件损坏。"
+      "referenceTextZh": "受污染的燃油会堵塞燃油滤或管路并中断供油。它可能降低发动机性能，并造成推力丧失、振动、熄火、发动机失效或发动机部件损坏。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-282",
@@ -225,7 +236,8 @@
       "audioText": "What can pilots do to reduce fuel consumption during a flight?",
       "audioTextZh": "飞行员在飞行中可以采取哪些措施降低燃油消耗？",
       "referenceText": "Pilots can select an economical cruising altitude and speed and request a direct route or straight-in approach when available. They can also avoid prolonged holding and unnecessary maneuvers and maintain stable flight.",
-      "referenceTextZh": "飞行员可以选择经济的巡航高度和速度，并在条件允许时申请直飞航路或直接进近。他们还可以避免长时间等待和不必要的机动，并保持稳定飞行。"
+      "referenceTextZh": "飞行员可以选择经济的巡航高度和速度，并在条件允许时申请直飞航路或直接进近。他们还可以避免长时间等待和不必要的机动，并保持稳定飞行。",
+      "studyTier": 2
     },
     {
       "id": "opi-core-298",
@@ -257,7 +269,8 @@
       "audioText": "What can cause aircraft fuel to become contaminated?",
       "audioTextZh": "哪些因素可能造成航空燃油污染？",
       "referenceText": "Fuel can become contaminated because of inadequate preflight inspection, poor maintenance, or an improperly filtered fuel supply. Water, sand, or other debris in the fuel tanks can also contaminate it.",
-      "referenceTextZh": "飞行前检查不充分、维修不当或燃油供应过滤不合格，都可能造成燃油污染。油箱中的水、沙粒或其他碎片也会污染燃油。"
+      "referenceTextZh": "飞行前检查不充分、维修不当或燃油供应过滤不合格，都可能造成燃油污染。油箱中的水、沙粒或其他碎片也会污染燃油。",
+      "studyTier": 2
     }
   ],
   "categoryId": "opi-category-05"

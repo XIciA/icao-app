@@ -9,7 +9,8 @@
       "audioText": "What is evidence-based training (EBT) in aviation?",
       "audioTextZh": "什么是航空循证训练（EBT）？",
       "referenceText": "Evidence-based training is an approach to pilot training and assessment that uses operational data, training records, and accident or incident analysis to identify important threats and training needs. It focuses on developing core pilot competencies in realistic situations rather than testing only isolated maneuvers.",
-      "referenceTextZh": "循证训练是一种飞行员训练与评估方法，它利用运行数据、训练记录及事故或事件分析来识别重要威胁和训练需求。它注重在真实情境中培养飞行员的核心胜任能力，而不是只考核孤立的机动动作。"
+      "referenceTextZh": "循证训练是一种飞行员训练与评估方法，它利用运行数据、训练记录及事故或事件分析来识别重要威胁和训练需求。它注重在真实情境中培养飞行员的核心胜任能力，而不是只考核孤立的机动动作。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-299",
@@ -17,7 +18,8 @@
       "audioText": "How is operational evidence used to shape an EBT program?",
       "audioTextZh": "如何利用运行证据设计 EBT 方案？",
       "referenceText": "An EBT programme uses evidence from normal operations, incidents, safety reports, and training and competency assessments. The data is analysed to identify recurring threats, errors, and performance gaps. Those findings shape the scenarios and training priorities, and later operational and training data provides a feedback loop for checking and improving the programme.",
-      "referenceTextZh": "循证训练方案会采用正常运行、事件、安全报告，以及训练与胜任能力评估中的证据。通过分析这些数据，可以找出反复出现的威胁、差错和能力不足之处。这些发现用于确定训练场景和训练重点，之后的运行与训练数据则形成反馈闭环，用于检查和改进方案。"
+      "referenceTextZh": "循证训练方案会采用正常运行、事件、安全报告，以及训练与胜任能力评估中的证据。通过分析这些数据，可以找出反复出现的威胁、差错和能力不足之处。这些发现用于确定训练场景和训练重点，之后的运行与训练数据则形成反馈闭环，用于检查和改进方案。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-300",
@@ -25,7 +27,8 @@
       "audioText": "How does EBT differ from traditional pilot training?",
       "audioTextZh": "EBT 与传统飞行员训练有何不同？",
       "referenceText": "Traditional training often concentrates on predetermined failures and can encourage rote learning. EBT uses data-driven scenarios that represent complex line operations more closely. It emphasizes how and why pilots act, rather than only whether they complete one maneuver.",
-      "referenceTextZh": "传统训练往往侧重预先设定的故障，并可能鼓励机械记忆。循证训练采用以数据为依据的场景，更贴近复杂的航线运行。它强调飞行员采取行动的方式和原因，而不只是看其能否完成某一个机动动作。"
+      "referenceTextZh": "传统训练往往侧重预先设定的故障，并可能鼓励机械记忆。循证训练采用以数据为依据的场景，更贴近复杂的航线运行。它强调飞行员采取行动的方式和原因，而不只是看其能否完成某一个机动动作。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-301",
@@ -33,7 +36,8 @@
       "audioText": "What are the main advantages of EBT?",
       "audioTextZh": "EBT 的主要优势有哪些？",
       "referenceText": "EBT focuses training on relevant threats identified from operational data. It develops core competencies such as decision-making and communication and gives pilots useful feedback on how they perform under pressure. This can prepare crews more effectively for complex and unexpected situations.",
-      "referenceTextZh": "循证训练把重点放在运行数据所识别的相关威胁上。它培养决策和沟通等核心胜任能力，并就飞行员在压力下的表现提供有价值的反馈。这能让机组更有效地应对复杂和意外情况。"
+      "referenceTextZh": "循证训练把重点放在运行数据所识别的相关威胁上。它培养决策和沟通等核心胜任能力，并就飞行员在压力下的表现提供有价值的反馈。这能让机组更有效地应对复杂和意外情况。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-302",
@@ -41,7 +45,8 @@
       "audioText": "What are core competencies in EBT, and what are some examples?",
       "audioTextZh": "EBT 中的核心胜任力是什么？能否举例说明？",
       "referenceText": "Core competencies are the basic skills and behaviors required for safe and effective flight operations. Examples include problem-solving and decision-making, situational awareness, workload management, leadership and teamwork, and communication.",
-      "referenceTextZh": "核心胜任能力是安全、有效开展飞行运行所需的基本技能和行为，例如解决问题与决策、情景意识、工作负荷管理、领导力与团队协作，以及沟通能力。"
+      "referenceTextZh": "核心胜任能力是安全、有效开展飞行运行所需的基本技能和行为，例如解决问题与决策、情景意识、工作负荷管理、领导力与团队协作，以及沟通能力。",
+      "studyTier": 2
     },
     {
       "id": "opi-extra-304",
