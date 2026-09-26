@@ -69,7 +69,7 @@ const reviewedFormalWebHashes = new Map([
   // Native short word taps select the row; legacy Web uses its unchanged tap-lookup branch.
   ["src/features/question-bank/components/ChoiceList.tsx", ["a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70", "d2716333d1cd8ca29ac6ce5417fe63363db272722e29f47cffbb8b2e50752ac4"]],
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
-  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "25ed6be6696f0b42e3826912d87bc03ced8da3df0a0354420bfd86c3dc825012"]],
+  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "fe8481feccadf35008d6254c8a7e20afe73ad0fff1e7aef68f7dae8922943a36"]],
   // 2026-09-20: redirect only the legacy repository's two imports to immutable,
   // byte-identical v13 snapshots so an APK link release cannot ship new banks.
   ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
