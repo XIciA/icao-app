@@ -69,7 +69,9 @@ const reviewedFormalWebHashes = new Map([
   // Native short word taps select the row; legacy Web uses its unchanged tap-lookup branch.
   ["src/features/question-bank/components/ChoiceList.tsx", ["a01ee82589be4232472395555408a25f8b76a963cf1e16b1fdb2d581395a8d70", "d2716333d1cd8ca29ac6ce5417fe63363db272722e29f47cffbb8b2e50752ac4"]],
   // Reviewed candidate metadata only; legacy display version remains 1.0.0.
-  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "fe8481feccadf35008d6254c8a7e20afe73ad0fff1e7aef68f7dae8922943a36"]],
+  // iOS 1.0.1 rebuild pins the exact app.json bytes from the 3542838 source,
+  // with only marketing/build identifiers changed.
+  ["app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "fe8481feccadf35008d6254c8a7e20afe73ad0fff1e7aef68f7dae8922943a36", "79f7b75cf315f15c985108411cd7c16814b4b986d23db5275077bc4d3e28fbcc"]],
   // 2026-09-20: redirect only the legacy repository's two imports to immutable,
   // byte-identical v13 snapshots so an APK link release cannot ship new banks.
   ["src/features/question-bank/data/repository.ts", ["0ac548558e76bfdbc726acb76f41e6ab0289d5b61e521221b75dc8b15a7f93db", "62cd533bc380b9e8c68f908ba2f7034eb5fb30c139a0f9e8dce62f623d6c13c6"]],
@@ -217,7 +219,7 @@ export function normalizeReviewedFormalWebInputs(expected, current) {
     }
     const pair = reviewedFormalWebHashes.get(file.path);
     const before = baseline.get(file.path);
-    if (!pair || (before?.sha256 ?? null) !== pair[0] || file.sha256 !== pair[1]) return [file];
+    if (!pair || (before?.sha256 ?? null) !== pair[0] || !pair.slice(1).includes(file.sha256)) return [file];
     // Existing protection ownership must remain identical. Added exact bridges
     // are not part of the legacy runtime and are pinned above on every check.
     if (before && before.sources.join('\0') !== file.sources.join('\0')) return [file];
