@@ -24,13 +24,14 @@ export class AdminUsersController {
     const rows=await this.database.db.execute(sql`
       with users as (
         select a.id as account_id,a.status,a.created_at,
+          (select d.payload->>'displayName' from user_documents d where d.user_id=a.id and d.document_key='account_profile') as display_name,
           (select nullif(u.phone,'') from account_identities i join auth.users u on u.id=i.auth_user_id where i.account_id=a.id and i.provider='phone' order by i.last_used_at desc limit 1) as phone,
           (select max(s.ends_at) from membership_entitlement_segments s where s.account_id=a.id and s.environment=${q.environment} and s.status='active') as membership_expires_at,
           exists(select 1 from membership_entitlement_segments s where s.account_id=a.id and s.environment=${q.environment} and s.status='active' and s.starts_at<=now() and s.ends_at>now()) as member_active,
           (select o.external_order_id from commerce_orders o where o.account_id=a.id and o.environment=${q.environment} order by o.purchased_at desc limit 1) as latest_order
         from accounts a
       ), filtered as (select * from users u where
-        (${q.query}='' or u.account_id::text=${q.query} or u.phone like ${'%'+q.query+'%'} or exists(select 1 from commerce_orders o where o.account_id=u.account_id and o.environment=${q.environment} and (o.id::text=${q.query} or o.external_order_id=${q.query})))
+        (${q.query}='' or u.account_id::text=${q.query} or u.phone like ${'%'+q.query+'%'} or strpos(lower(coalesce(u.display_name,'')),lower(${q.query}))>0 or exists(select 1 from commerce_orders o where o.account_id=u.account_id and o.environment=${q.environment} and (o.id::text=${q.query} or o.external_order_id=${q.query})))
         and (${q.membership}='all' or (${q.membership}='active' and member_active) or (${q.membership}='expired' and not member_active and membership_expires_at is not null) or (${q.membership}='none' and membership_expires_at is null)))
       select coalesce(jsonb_agg(page),'[]'::jsonb) as rows,(select count(*)::int from filtered) as total from (
         select * from filtered order by ${q.sort==='oldest'?sql`created_at asc,account_id asc`:sql`created_at desc,account_id desc`} limit ${q.limit} offset ${(q.page-1)*q.limit}
