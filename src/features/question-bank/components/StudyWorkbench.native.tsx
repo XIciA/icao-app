@@ -38,6 +38,7 @@ import { captureLearningWriteContext } from '@/features/sync/learning-sync.nativ
 import { sqliteLearningStore, type LearningStore } from '../platform/learning-store.native';
 import type { LearningRecord, QuestionBankId, StudyConsoleTab, StudyReviewKind } from '../types';
 import { AiReviewResultView } from './AiReviewResultView';
+import { useNoteDraft } from '../hooks/useNoteDraft';
 
 const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '我的笔记' };
 const AUTO_SAVE_DELAY_MS = 600;
@@ -135,7 +136,7 @@ type Props = {
   onTabChange: (tab: StudyConsoleTab) => void;
   onEditingTabChange: (tab?: 'mine' | 'notes') => void;
   onAnswerChange: (text: string) => void;
-  onNoteChange: (text: string) => void;
+  onNoteChange: (text: string) => void | Promise<boolean>;
   onRetrySave: () => void;
   onFeedback: () => void;
   onBeforeAiOperation?: () => Promise<void>;
@@ -183,6 +184,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     tabs,
     topicTitle,
   } = props;
+  const noteDraft = useNoteDraft(`${sessionId}:${bankId}:${cardKey}`, noteText, editingTab === 'notes', onNoteChange, saveError);
   // The screen may retain this cache while a collapsed card unmounts its workbench.
   const feedbackCacheOwner = useRef<StudyWorkbenchFeedbackCache>(feedbackCacheRef?.current ?? { sessionId, cards: new Map() });
   const [feedbackCache, setFeedbackCache] = useState(feedbackCacheOwner.current);
@@ -673,7 +675,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               </>}
             </View> : null}
           </View> : activeTab === 'reference' ? <View style={styles.referenceSection}>{referenceContent}</View> : <View style={styles.responseSection}>
-            {editing ? <TextInput accessibilityLabel="我的笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="我的笔记内容" style={styles.input}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '记录这道题的关键词、易错点或复盘想法'}</AppText></View>}
+            {editing ? <TextInput key={`${sessionId}:${cardKey}`} accessibilityLabel="我的笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={noteDraft.change} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteDraft.text} /> : <View accessibilityLabel="我的笔记内容" style={styles.input}><AppText color={noteDraft.text ? colors.foreground : colors.mutedForeground}>{noteDraft.text || '记录这道题的关键词、易错点或复盘想法'}</AppText></View>}
             {saveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{saveError}</AppText> : null}
           </View>}
         </View>

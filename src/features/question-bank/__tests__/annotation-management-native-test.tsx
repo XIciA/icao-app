@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { AnnotationFloatingPanel } from '../components/AnnotationToolbar.native';
 import { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } from '../annotations/types';
 const props = {
@@ -9,6 +9,16 @@ const props = {
   onManagingChange: jest.fn(), onSaveDefinition: jest.fn(async () => true), onDeleteDefinition: jest.fn(async () => true), definitionUsage: () => 3,
 };
 beforeEach(() => { jest.clearAllMocks(); props.onSaveDefinition.mockResolvedValue(true); });
+it.each(['tags', 'highlight'] as const)('%s keeps management outside the scrolling long labels and preserves selection', async (mode) => {
+  const definitions = DEFAULT_ANNOTATION_TAGS.map((definition, index) => ({ ...definition, label: `需要重点复习分类${index}` }));
+  const screen = await render(<AnnotationFloatingPanel {...props} width={240} mode={mode} tagDefinitions={definitions} highlightDefinitions={definitions} />);
+  const scroll = within(screen.getByTestId('annotation-options-scroll'));
+  expect(scroll.queryByLabelText('管理标注分类')).toBeNull();
+  await fireEvent.press(scroll.getByLabelText(mode === 'tags' ? `选择${definitions[0].label}` : `使用${definitions[0].label}高亮`));
+  expect(mode === 'tags' ? props.onTagToggle : props.onHighlightChange).toHaveBeenCalledWith(definitions[0].id);
+  await fireEvent.press(screen.getByLabelText('管理标注分类'));
+  expect(screen.getByLabelText('标注名称')).toBeTruthy();
+});
 it.each(['tags', 'highlight'] as const)('%s management selects definitions without applying them, saves rename and exits', async (mode) => {
   const screen = await render(<AnnotationFloatingPanel {...props} mode={mode} />);
   await fireEvent.press(screen.getByLabelText('管理标注分类'));

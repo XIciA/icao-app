@@ -256,27 +256,29 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
   managing?: boolean;
 }) {
   return (
-    <ScrollView contentContainerStyle={styles.options} horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
-      {definitions.map((definition) => {
-        const selected = selectedIds.includes(definition.id);
-        return (
-          <Pressable
-            accessibilityLabel={managing ? `编辑${definition.label}` : singleSelection ? `使用${definition.label}高亮` : `${selected ? '取消选择' : '选择'}${definition.label}`}
-            accessibilityState={{ selected }}
-            key={definition.id}
-            onPress={() => onSelect(definition.id)}
-            style={[styles.pill, selected ? styles.pillSelected : null]}
-          >
-            <View style={[styles.dot, { backgroundColor: annotationToneColors[definition.color] }]} />
-            <AppText color={selected ? colors.foreground : colors.mutedForeground} variant="micro">{definition.label}</AppText>
-            {selected ? <Check color={colors.primary} size={12} /> : null}
-          </Pressable>
-        );
-      })}
-      <Pressable accessibilityLabel="管理标注分类" onPress={onCreate} style={styles.addButton}>
+    <View style={styles.optionsRow}>
+      <ScrollView style={styles.optionsScroll} contentContainerStyle={styles.options} horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} testID="annotation-options-scroll">
+        {definitions.map((definition) => {
+          const selected = selectedIds.includes(definition.id);
+          return (
+            <Pressable
+              accessibilityLabel={managing ? `编辑${definition.label}` : singleSelection ? `使用${definition.label}高亮` : `${selected ? '取消选择' : '选择'}${definition.label}`}
+              accessibilityState={{ selected }}
+              key={definition.id}
+              onPress={() => onSelect(definition.id)}
+              style={[styles.pill, selected ? styles.pillSelected : null]}
+            >
+              <View style={[styles.dot, { backgroundColor: annotationToneColors[definition.color] }]} />
+              <AppText color={selected ? colors.foreground : colors.mutedForeground} variant="micro">{definition.label}</AppText>
+              {selected ? <Check color={colors.primary} size={12} /> : null}
+            </Pressable>
+          );
+        })}
+      </ScrollView>
+      <Pressable accessibilityLabel="管理标注分类" accessibilityRole="button" onPress={onCreate} style={styles.addButton}>
         <Pencil color={colors.mutedForeground} size={15} />
       </Pressable>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -286,11 +288,13 @@ const styles = StyleSheet.create({
   toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   floatingLayer: { ...StyleSheet.absoluteFillObject, zIndex: 40 },
   picker: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], padding: spacing[2.5], position: 'absolute', ...shadows.modal },
+  optionsRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], minWidth: 0 },
+  optionsScroll: { flex: 1, minWidth: 0 },
   options: { flexDirection: 'row', gap: spacing[2], paddingRight: spacing[1] },
-  pill: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 32, paddingHorizontal: spacing[2.5] },
+  pill: { alignItems: 'center', flexShrink: 0, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 32, paddingHorizontal: spacing[2.5] },
   pillSelected: { backgroundColor: colors.primary06, borderColor: colors.primary },
   dot: { borderRadius: radii.full, height: 8, width: 8 },
-  addButton: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 32, justifyContent: 'center', width: 32 },
+  addButton: { alignItems: 'center', flexShrink: 0, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 32, justifyContent: 'center', width: 32 },
   creator: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[2.5] },
   input: { backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, color: colors.foreground, minHeight: 36, paddingHorizontal: spacing[3] },
   creatorFooter: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5] },
