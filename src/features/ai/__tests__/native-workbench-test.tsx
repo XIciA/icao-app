@@ -44,7 +44,8 @@ jest.mock('@/components/ui', () => {
   return { ...actual, BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <View>{children}</View> : null };
 });
 const review = { grammar: { correctedText: 'We are ready.', issues: [] }, polishedText: 'We are ready to depart.', promptVersion: 'deepseek-review:v1' as const };
-function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef }: {
+function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn() }: {
+  notes?: string; onNoteChange?: (text: string) => void;
   initialAnswer?: string; token?: string;
   kind?: StudyReviewKind; card?: string; recording?: string; sessionId?: string;
   initialFeedback?: LearningRecord['aiResult']; workbenchRef?: Ref<StudyWorkbenchHandle>;
@@ -54,13 +55,13 @@ function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.
   const answerKey = `${sessionId}:${card}`;
   const answer = answers[answerKey] ?? initialAnswer;
   const [editingTab, setEditingTab] = useState<'mine' | 'notes'>();
-  return <StudyWorkbench activeTab="mine" answerText={answer} bankId={kind === 'exact-match' ? 'sentences900' : 'opi'} bankTitle="OPI" cardKey={card}
-    sourceCardId="original-q" newRecordingToken={token} reviewSource={{ bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) }} categoryTitle="运行" topicTitle="飞行" questionText="Question" noteText="" referenceContent={null} referenceLabel="参考答案"
+  return <StudyWorkbench activeTab={notes === undefined ? 'mine' : 'notes'} answerText={answer} bankId={kind === 'exact-match' ? 'sentences900' : 'opi'} bankTitle="OPI" cardKey={card}
+    sourceCardId="original-q" newRecordingToken={token} reviewSource={{ bankId: 'opi', categoryId: 'c', topicId: 't', version: 1, checksum: 'a'.repeat(64) }} categoryTitle="运行" topicTitle="飞行" questionText="Question" noteText={notes ?? ''} referenceContent={null} referenceLabel="参考答案"
     reviewKind={kind} recordingUri={recording} sessionId={sessionId} sessionStartedAt={new Date().toISOString()} tabs={['mine']}
     initialFeedback={initialFeedback} feedbackCacheRef={feedbackCacheRef} ref={workbenchRef} editingTab={editingTab}
     swipeGesture={Gesture.Pan().enabled(false)} learningStore={{ addRecord: mockSave }}
     onAnswerChange={(value) => { mockAnswer(value); setAnswers((current) => ({ ...current, [answerKey]: value })); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint}
-    onNoteChange={jest.fn()} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
+    onNoteChange={onNoteChange} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
 }
 beforeEach(() => {
   jest.clearAllMocks(); mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
@@ -70,6 +71,20 @@ beforeEach(() => {
 });
 
 async function score(screen: Awaited<ReturnType<typeof render>>) { await act(() => fireEvent.press(screen.getByLabelText('AI评分'))); }
+it('keeps the note editor and blurred content ahead of delayed storage without affecting answer actions', async () => {
+  const save = jest.fn();
+  const screen = await render(<Harness notes="原笔记" onNoteChange={save} />);
+  await fireEvent.press(screen.getByLabelText('编辑我的笔记'));
+  await fireEvent.changeText(screen.getByLabelText('我的笔记'), '你好 ATC\n第二行');
+  expect(screen.getByLabelText('我的笔记').props.value).toBe('你好 ATC\n第二行');
+  await screen.rerender(<Harness notes="你" onNoteChange={save} />);
+  expect(screen.getByLabelText('我的笔记').props.value).toBe('你好 ATC\n第二行');
+  await fireEvent(screen.getByLabelText('我的笔记'), 'blur');
+  expect(screen.getByText('你好 ATC\n第二行')).toBeTruthy();
+  expect(save).toHaveBeenCalledWith('你好 ATC\n第二行');
+  expect(mockAnswer).not.toHaveBeenCalled();
+  expect(mockCombined).not.toHaveBeenCalled();
+});
 it('defaults to no upload and two actions, then combines transcription and analysis for an empty answer', async () => {
   const screen = await render(<Harness initialAnswer="" token="fresh1" />);
   expect(mockCombined).not.toHaveBeenCalled(); expect(mockTranscribe).not.toHaveBeenCalled();
