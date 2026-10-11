@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { AppState, StyleSheet, View } from 'react-native';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import * as Speech from 'expo-speech';
+import { useQuestionRecording } from '@/platform/audio/use-question-recording';
 import { Headphones } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
 import { colors, spacing } from '@/theme';
@@ -10,23 +11,28 @@ import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { observeAudioInterruption } from '../../../../modules/icao-audio-interruption/src';
 
 type Phase = 'loading' | 'playing' | 'paused' | 'ended' | 'error';
-type Props = { exam?: boolean; autoPlay?: boolean; uri?: string; text?: string; label: string; resolving?: boolean; onRetry?: () => void; pauseRequest: number; onPlaybackStart?: () => void; practiceControls?: ReactNode };
+type Props = { exam?: boolean; autoPlay?: boolean; questionId?: string; uri?: string; text?: string; label: string; resolving?: boolean; onRetry?: () => void; pauseRequest: number; onPlaybackStart?: () => void; practiceControls?: ReactNode };
 
 /** Exam presentation of the shared study audio owner. No user transport controls. */
-export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, label, resolving, onRetry, pauseRequest, onPlaybackStart, practiceControls }: Props) {
+export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, uri: providedUri, text, label, resolving: providedResolving, onRetry: retryProvided, pauseRequest, onPlaybackStart, practiceControls }: Props) {
+  const recording = useQuestionRecording(providedUri ? undefined : questionId, text);
+  const uri = providedUri ?? recording.uri;
+  const resolving = providedResolving || recording.resolving;
+  const onRetry = () => { retryProvided?.(); recording.retry(); };
   const player = useSessionManagedAudioPlayer(null, { updateInterval: 200, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
-  const [phase, setPhase] = useState<Phase>(autoPlay ? 'loading' : 'paused');
+  const [awaitingAudioGesture, setAwaitingAudioGesture] = useState(() => Boolean(autoPlay && text?.trim() && Platform.OS === 'web'));
+  const [phase, setPhase] = useState<Phase>(autoPlay && !awaitingAudioGesture ? 'loading' : 'paused');
   const [interruptionReplay, setInterruptionReplay] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const lease = useRef<AudioLease | undefined>(undefined);
   const generation = useRef(0);
   const mounted = useRef(true);
   const appState = useRef(AppState.currentState ?? 'active');
-  const phaseRef = useRef<Phase>(autoPlay ? 'loading' : 'paused');
+  const phaseRef = useRef<Phase>(phase);
   const audible = useRef(false);
   const playbackPosition = useRef(0);
-  const wantPlay = useRef(autoPlay);
+  const wantPlay = useRef(autoPlay && !awaitingAudioGesture);
   const sourceReplacedStatus = useRef(status);
   const latestStatus = useRef(status);
   latestStatus.current = status;
@@ -42,6 +48,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   const operations = useRef({ play: (_restart = false) => {}, pause: () => {} });
 
   function fail(code: string) {
+    setAwaitingAudioGesture(false);
     emitAudioDiagnostic({ scope: 'playback', owner: 'study', level: 'error', code, reason: 'exam-question', phase: phaseRef.current });
     update('error');
   }
@@ -62,8 +69,9 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   }
   async function play(restart = false) {
     if (callbacks.current.resolving || appState.current !== 'active' || (systemInterrupted.current || (awaitingReplay.current && !restart))) return;
-    if (callbacks.current.uri && !latestStatus.current.isLoaded) { wantPlay.current = true; update('loading'); return; }
+    if (Platform.OS !== 'web' && callbacks.current.uri && !latestStatus.current.isLoaded) { wantPlay.current = true; update('loading'); return; }
     wantPlay.current = false;
+    setAwaitingAudioGesture(false);
     const request = ++generation.current;
     let acquired: AudioLease | undefined;
     try {
@@ -85,8 +93,8 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
         if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
         player.setPlaybackRate(1);
         player.play();
-        update('playing');
-      } else if (callbacks.current.text?.trim()) {
+        update(Platform.OS === 'web' ? 'loading' : 'playing');
+      } else if (callbacks.current.text?.trim() && Platform.OS !== 'web') {
         if (speechPaused.current && !restart) {
           await Speech.resume();
           if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
@@ -162,6 +170,7 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   useEffect(() => {
     if (resolving || !uri || status === sourceReplacedStatus.current) return;
     if (uri && wantPlay.current && status !== sourceReplacedStatus.current && status.isLoaded && status.playbackState !== 'error') operations.current.play();
+    if (Platform.OS === 'web' && status.playing && phaseRef.current === 'loading') update('playing');
     if (status.currentTime > 0) { audible.current = true; playbackPosition.current = status.currentTime; }
     if (awaitingReplay.current && status.playing) { try { player.pause(); } catch { /* Interruption is already paused. */ } }
     if (uri && status.didJustFinish && phaseRef.current === 'playing') { eligibleForInterruption.current = false; update('ended'); release(); }
@@ -186,10 +195,11 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, uri, text, lab
   }, [pauseRequest]);
 
   const canRetry = phase === 'error' && (!exam || !audible.current);
-  const labelText = phase === 'loading' ? '正在准备音频…' : phase === 'playing' ? '音频播放中' : phase === 'ended' ? '音频已播放' : interruptionReplay ? '音频已中断，可重播本题音频' : phase === 'error' ? '音频暂不可用，可继续作答或进入下一题' : '音频已中断，可继续作答或进入下一题';
+  const labelText = awaitingAudioGesture ? (resolving ? '正在准备音频…' : '点击播放题目') : phase === 'loading' ? '正在准备音频…' : phase === 'playing' ? '音频播放中' : phase === 'ended' ? '音频已播放' : interruptionReplay ? '音频已中断，可重播本题音频' : phase === 'error' ? '音频暂不可用，可继续作答或进入下一题' : '音频已中断，可继续作答或进入下一题';
   return <View style={styles.root}><View style={styles.row}><Headphones color={colors.mutedForeground} size={17} /><AppText variant="caption">{label}</AppText></View>
     <AppText accessibilityLiveRegion="polite" variant="caption">{labelText}</AppText>
-    {!exam ? <Button size="sm" variant="outline" onPress={() => { if (phase === 'playing') { eligibleForInterruption.current = false; operations.current.pause(); } else { awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(phase === 'ended' || phase === 'error' || interruptionReplay); } }}>{phase === 'playing' ? '暂停' : phase === 'ended' ? '重新播放' : '播放题目'}</Button> : null}
+    {!exam ? <Button size="sm" variant="outline" disabled={Platform.OS === 'web' && resolving} onPress={() => { if (phase === 'playing') { eligibleForInterruption.current = false; operations.current.pause(); } else { awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(phase === 'ended' || phase === 'error' || interruptionReplay); } }}>{phase === 'playing' ? '暂停' : phase === 'ended' ? '重新播放' : '播放题目'}</Button> : null}
+    {exam && awaitingAudioGesture ? <Button size="sm" variant="outline" disabled={resolving} onPress={() => operations.current.play()}>播放题目</Button> : null}
     {interruptionReplay && exam ? <Button size="sm" variant="outline" onPress={() => { if (appState.current !== 'active' || systemInterrupted.current) return; awaitingReplay.current = false; interrupted.current = false; setInterruptionReplay(false); operations.current.play(true); }}>重播本题音频</Button> : null}
     {canRetry ? <Button size="sm" variant="outline" onPress={() => { onRetry?.(); wantPlay.current = true; update('loading'); setLoadAttempt(value => value + 1); }}>重新加载音频</Button> : null}
     {practiceControls}

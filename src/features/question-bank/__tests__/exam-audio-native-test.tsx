@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { AppState, type AppStateStatus } from 'react-native';
+import { AppState, Platform, type AppStateStatus } from 'react-native';
 import * as Speech from 'expo-speech';
 import { audioSessionOrchestrator } from '@/platform/audio';
 import { ExamQuestionAudio } from '../components/ExamQuestionAudio.native';
@@ -90,6 +90,28 @@ it('uses existing system speech for an OPI question and never autoplays speech i
   await waitFor(() => expect(Speech.speak).toHaveBeenCalledTimes(1));
 });
 
+it('requires a browser gesture for recorded OPI audio and confirms actual playback', async () => {
+  jest.replaceProperty(Platform, 'OS', 'web');
+  const p = { ...props, text: 'Question', exam: false };
+  const screen = await render(<ExamQuestionAudio {...p} />);
+  await act(async () => { mockStatus = { ...mockStatus, isLoaded: true, playbackState: 'readyToPlay' }; await screen.rerender(<ExamQuestionAudio {...p} />); });
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(screen.getByText('点击播放题目')).toBeTruthy();
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+  expect(screen.getByText('正在准备音频…')).toBeTruthy();
+  await act(async () => { mockStatus = { ...mockStatus, playing: true, currentTime: 0.5 }; await screen.rerender(<ExamQuestionAudio {...p} />); });
+  expect(screen.getByText('音频播放中')).toBeTruthy();
+  expect(Speech.speak).not.toHaveBeenCalled();
+});
+it('never falls back to unsupported system speech on the website', async () => {
+  jest.replaceProperty(Platform, 'OS', 'web');
+  const screen = await render(<ExamQuestionAudio exam={false} autoPlay={false} text="Question" label="OPI" pauseRequest={0} />);
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(screen.getByText('音频暂不可用，可继续作答或进入下一题')).toBeTruthy());
+  expect(Speech.speak).not.toHaveBeenCalled();
+});
+
 it('does not resume on a late interruption end after recording', async () => {
   const screen = await playing();
   await act(() => mockInterruption?.({ phase: 'began' }));
@@ -154,4 +176,15 @@ it('waits for readiness when foreground returns before loading finishes', async 
   expect(mockPlayer.play).not.toHaveBeenCalled();
   await act(async () => { mockStatus = { ...mockStatus, isLoaded: true, playbackState: 'readyToPlay' }; await screen.rerender(<ExamQuestionAudio {...props} />); });
   await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+});
+
+it('lets a browser gesture start a file even when mobile preload has not loaded it', async () => {
+  jest.replaceProperty(Platform, 'OS', 'web');
+  const screen = await render(<ExamQuestionAudio {...props} exam={false} text="OPI question" />);
+  expect(mockStatus.isLoaded).toBe(false);
+  expect(screen.getByText('点击播放题目')).toBeTruthy();
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+  expect(screen.getByText('正在准备音频…')).toBeTruthy();
+  expect(Speech.speak).not.toHaveBeenCalled();
 });
