@@ -5,11 +5,8 @@ import { AppText } from '@/components/ui';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, spacing } from '@/theme';
 
-// Temporarily hide the header shortcut; the /download page remains available.
-const SHOW_HEADER_DOWNLOAD_LINK = false;
-
 export function WebAppDownloadLink() {
-  if (!SHOW_HEADER_DOWNLOAD_LINK || Platform.OS !== 'web' || !isEdgeOneProductionWeb()) return null;
+  if (Platform.OS !== 'web' || !isEdgeOneProductionWeb()) return null;
 
   return (
     <Link accessibilityLabel="下载 APP" href={'/download' as Href} style={styles.link}>
