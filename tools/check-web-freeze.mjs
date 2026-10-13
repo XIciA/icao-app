@@ -105,8 +105,8 @@ const reviewedFormalWebHashes = new Map([
   ["src/features/question-bank/recording/recording-engine.ts", ["de59e2b3c90f2f88b551ed02848f67a14c02ab16bd89733295cc592fb5d5403a", "c9c43d207ed469f238ff1325b18d59847fb2e55fec497fa80010a63117159665"]],
   // 2026-09-18: download link moves into existing headers; renders null on Vercel/Native.
   ['src/app/(tabs)/index.tsx', ['1db0d65bd730db78b7a8d9593f268031e093f4c02c85049b79a363adcdeda3ca', '3f2dbc096f2d1f20a793982ddc0125f18e3de49b37bad01c730870082608d1c2']],
-  // 2026-09-23: hide the EdgeOne header shortcut; Vercel/Native still render null.
-  ['src/components/platform/WebAppDownloadLink.tsx', [null, '68162ce602cee7841cbbb36fd53de4b7dcf84f240cd54bdb6afaf07045fc670a']],
+  // 2026-10-13: restore the EdgeOne header shortcut; Vercel/Native still render null.
+  ['src/components/platform/WebAppDownloadLink.tsx', [null, '1f19c9bc5d31315d0fde3b4a6aab6170237ccaa2e2b078644238edd54c71dc08']],
   ['patches/react-native-reanimated@4.2.1.patch', [null, '2110d0c65efd75dc19fcda10411a628c61202965736eba134ff69e42609f26bd']],
   ['.vercelignore', ['a3d50ec9c80c6644c5f67c9461ccd4b7ccd3378af4cad618e1f7931232156bdb', '916c0e0fe0a01d56b657ecd2d460fb5b17f3f882b56cf00e7d055989ef846909']],
   // Android CMake path patch; package versions and all JavaScript stay identical.
@@ -158,7 +158,7 @@ const reviewedFormalWebHashes = new Map([
     "src/features/content/AppDownloadScreen.tsx",
     [
       "87b29194e178462bdc81f85c264fa3e12be9027846c6c1264441eeabf9fa6947",
-      "56b8bb03e75118dfc707298ba60e804058945d068b1c9a703c1a6a0598236a21"
+      "0f3775f3e39513598f9bd60df9c29898ad92f47c1cf493fb0fc3892abe9e4d71"
     ]
   ],
   [
@@ -189,6 +189,10 @@ reviewedFormalWebHashes.set(reviewedStudyNativePath, [reviewedStudyNativeBaseHas
 
 // 2026-09-26: only two unused-in-legacy icon exports; existing exports unchanged.
 reviewedFormalWebHashes.set('src/components/ui/icons.ts', ['f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0', '90039b5045f3ce1bb0d679c1b3f8ad631fdf22759d0b4466f08f2c01bef1ea03']);
+
+// EdgeOne download lookup reuses the published update parser. The legacy branch
+// retains its existing environment URL and performs no manifest request.
+reviewedFormalWebHashes.set('src/features/app-updates/update-model.ts', [null, '5360f31166b3d4b2bdddcf64069b7f95fafb715b3bfa510ceedca741277b331e']);
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));

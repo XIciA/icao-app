@@ -1,4 +1,7 @@
 import { Link, useRouter, type Href } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
+import { APP_UPDATE_MANIFEST_URL, newerAppUpdate, parseAppUpdates, type AppUpdate } from '@/features/app-updates/update-model';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
@@ -35,6 +38,32 @@ function PlatformMark({ apple = false, color = colors.foreground }: { apple?: bo
 export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const router = useRouter();
   const { isMobile } = useWebLayout();
+  const usePublishedRelease = isEdgeOneProductionWeb();
+  const [release, setRelease] = useState<AppUpdate>();
+  const [downloadState, setDownloadState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    if (!usePublishedRelease) return;
+    const controller = new AbortController();
+    let active = true;
+    setDownloadState('loading');
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    void fetch(APP_UPDATE_MANIFEST_URL, { signal: controller.signal, cache: 'no-store' })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('download_manifest_unavailable');
+        const published = newerAppUpdate(parseAppUpdates(await response.json()), 'android-apk', '0.0.0', '0');
+        if (active) {
+          setRelease(published);
+          setDownloadState('ready');
+        }
+      })
+      .catch(() => { if (active) setDownloadState('error'); })
+      .finally(() => clearTimeout(timeout));
+    return () => { active = false; clearTimeout(timeout); controller.abort(); };
+  }, [usePublishedRelease, attempt]);
+  const androidUrl = usePublishedRelease ? release?.url : ANDROID_DOWNLOAD_URL;
+  const loadingDownload = usePublishedRelease && downloadState === 'loading';
+  const failedDownload = usePublishedRelease && downloadState === 'error';
   return (
     <Screen scroll contentStyle={styles.screen}>
       <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} />
@@ -72,15 +101,15 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
             <View style={styles.platformRow}>
               <View style={styles.platformIcon}><PlatformMark /></View>
               <View style={styles.platformCopy}><AppText variant="cardTitle">安卓版</AppText><AppText variant="micro" color={colors.mutedForeground}>Android 手机</AppText></View>
-              <AppText variant="micro" style={styles.badge}>{ANDROID_DOWNLOAD_URL ? '正式版' : '筹备中'}</AppText>
+              <AppText variant="micro" style={styles.badge}>{androidUrl ? (release ? `v${release.version}` : '正式版') : loadingDownload ? '查询中' : failedDownload ? '暂不可用' : '筹备中'}</AppText>
             </View>
-            {ANDROID_DOWNLOAD_URL ? <Link href={ANDROID_DOWNLOAD_URL as Href} asChild>
+            {androidUrl ? <Link href={androidUrl as Href} asChild>
               <Pressable accessibilityRole="link" style={styles.appleButton}>
                 <PlatformMark color={colors.primaryForeground} />
                 <AppText variant="button" color={colors.primaryForeground}>下载安卓 APK</AppText>
               </Pressable>
-            </Link> : <Button disabled accessibilityState={{ disabled: true }} variant="secondary" size="lg" style={styles.comingSoon}>敬请期待</Button>}
-            <AppText style={styles.hint}>{ANDROID_DOWNLOAD_URL ? '下载后打开安装包，按系统提示安装' : '安卓版暂未开放下载'}</AppText>
+            </Link> : failedDownload ? <Button onPress={() => setAttempt((value) => value + 1)} variant="secondary" size="lg">重新获取下载链接</Button> : <Button disabled accessibilityState={{ disabled: true }} variant="secondary" size="lg" style={styles.comingSoon}>{loadingDownload ? '正在获取下载链接' : '敬请期待'}</Button>}
+            <AppText style={styles.hint}>{androidUrl ? '下载后打开安装包，按系统提示安装' : loadingDownload ? '正在查询已发布版本' : failedDownload ? '下载信息加载失败，请重试' : '安卓版暂未开放下载'}</AppText>
           </Card>
         </View>
         <AppText style={styles.footer}>听你五个 · 航空英语学习助手</AppText>
