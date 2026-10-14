@@ -1,8 +1,10 @@
 # D1 首发平台决策
 
+> 历史记录：保留原任务的决定与状态，不是当前长期规则；原文“已确认”不授权或约束新任务。参见 [归档说明](README.md)。
+
 状态：已确认
 确认日期：2026-08-12
-关联需求：[Native App 正式商业上线总需求](../../workstreams/app-store-1.0.0/requirements.md)
+关联需求：[Native App 正式商业上线总需求](../../../workstreams/app-store-1.0.0/requirements.md)
 
 ## 决策
 

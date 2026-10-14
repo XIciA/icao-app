@@ -6,7 +6,7 @@
 
 ## 1. 目的
 
-本文件只补充本任务的长时间执行和恢复规则。通用执行循环仍以 `docs/rules/bigandsmall-workflows/orchestration-loop.md` 为准；本文件不改变已经确认的需求、技术方案和路线图。
+本文件只补充本任务的长时间执行和恢复规则。通用执行循环仍以 `docs/tools/workflows/orchestration-loop.md` 为准；本文件不改变已经确认的需求、技术方案和路线图。
 
 ## 2. 输入冻结
 

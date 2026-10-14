@@ -12,4 +12,5 @@
 - [Git 协作](git-workflow-note.md)
 - [本机签名与设备](local-signing-and-device.md)
 - [商业化负责人清单](commercialization-owner-checklist.md)
-- [大流程 / 小流程启动 Prompt](../../rules/bigandsmall-workflows/workflow-start-prompt-template.md)
+- [大流程 / 小流程启动 Prompt](../../tools/workflows/workflow-start-prompt-template.md)
+- [录音实现与排查参考](recording-implementation.md)

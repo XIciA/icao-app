@@ -7,7 +7,7 @@
 
 已交付 TestFlight：**1.0.0（3524032）**，Apple 处理状态 **VALID**，现有内部“测试”组可用。三项主要修复、两项细节和后台联合作业包含在同一发布源码 `6bea9f3203c55a69b9e79be4f72496e4c67d1bc7` 中。代码与安装包检查已完成，以下真实设备体验由用户录屏时验收。
 
-本机后台：双击桌面“听你五个后台.command”，Safari 打开管理页面；详细说明见[后台使用说明](../../../workstreams/local-admin-console/user-guide.md)。
+本机后台：双击桌面“听你五个后台.command”，Safari 打开管理页面；详细说明见[后台使用说明](../local-admin-console/user-guide.md)。
 
 ## 回来后查看的位置
 

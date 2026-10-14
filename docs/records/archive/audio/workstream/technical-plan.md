@@ -1,6 +1,6 @@
 # 录音与全局音频生命周期技术方案
 
-> 历史工作流：当前架构见 `docs/rules/problem-solving-and-maintenance/recording.md`，当前排障见
+> 历史工作流：当前架构见 `docs/resources/developer/recording-implementation.md`，当前排障见
 > `docs/records/incidents/audio-recording/README.md`。
 
 状态：2026-08-20 已由 Recording Engine 架构更新
@@ -37,4 +37,4 @@ native stop -> repository commit -> session RecordingAsset -> reveal/mine
 ## 详细规范
 
 所有权、错误码、排障、设备矩阵和后续变更 checklist 统一见
-`docs/rules/problem-solving-and-maintenance/recording.md`。
+`docs/resources/developer/recording-implementation.md`。

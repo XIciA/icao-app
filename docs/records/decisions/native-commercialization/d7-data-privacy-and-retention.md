@@ -1,10 +1,12 @@
 # D7 数据隐私、保留与用户权利决策
 
+> 历史记录：保留原任务的决定与状态，不是当前长期规则；原文“已确认”不授权或约束新任务。参见 [归档说明](README.md)。
+
 状态：已确认；1.0.0 含微信登录但不含微信支付，首发隐私边界和 App Store 隐私标签基线已批准；可视化 Ops
 延后到上架后
 初次确认日期：2026-08-12
 最近确认日期：2026-08-31
-关联需求：[iOS 1.0.0 最终上架总需求](../../workstreams/app-store-1.0.0-final-release/requirements.md)
+关联需求：[iOS 1.0.0 最终上架总需求](../../../workstreams/app-store-1.0.0-final-release/requirements.md)
 
 ## 原则
 

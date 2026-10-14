@@ -100,7 +100,7 @@
   source housekeeping 失败语义和部分迁移后的 forward-fix 计划。本地隔离聚焦测试于 2026-09-04
   通过；这不代表生产迁移或部署已经执行。
 - 正式执行继续受 [仓库与 GitHub 管理规则](../../rules/repository-and-github-management.md)、
-  [交付与验收规则](../../rules/problem-solving-and-maintenance/delivery-and-acceptance.md) 约束：只能从已进入
+  [交付与验收规则](../../rules/delivery-and-acceptance.md) 约束：只能从已进入
   干净 `origin/main` 的提交执行，并仍需生产迁移/部署的明确授权。Vercel 不在本候选范围内。
 
 ## 阶段 1：登录闭环与微信登录技术审计（2026-09-01）
