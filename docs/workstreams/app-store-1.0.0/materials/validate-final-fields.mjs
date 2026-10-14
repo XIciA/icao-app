@@ -1,5 +1,7 @@
 import { readFile } from 'node:fs/promises';
 
+// Archived decisions below only validate the preserved App Store 1.0.0 material set.
+// They are not project-wide rules or authorization for subsequent releases.
 const root = new URL('../../../../', import.meta.url);
 const [source, appJsonSource, nativeProducts, serverProducts, profileSource, accountSource, ...releaseSources] = await Promise.all([
   readFile(new URL('./app-store-connect-final-fields.md', import.meta.url), 'utf8'),
@@ -8,7 +10,7 @@ const [source, appJsonSource, nativeProducts, serverProducts, profileSource, acc
   readFile(new URL('services/api/src/commerce/product-catalog.ts', root), 'utf8'),
   readFile(new URL('src/features/profile/ProfileHomeScreen.tsx', root), 'utf8'),
   readFile(new URL('src/features/account/AccountScreen.tsx', root), 'utf8'),
-  readFile(new URL('docs/rules/decisions/d9-release-channels.md', root), 'utf8'),
+  readFile(new URL('docs/records/decisions/native-commercialization/d9-release-channels.md', root), 'utf8'),
   readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/requirements.md', root), 'utf8'),
   readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/roadmap.md', root), 'utf8'),
   readFile(new URL('docs/workstreams/app-store-1.0.0-final-release/technical-plan.md', root), 'utf8'),
@@ -19,10 +21,10 @@ const [source, appJsonSource, nativeProducts, serverProducts, profileSource, acc
   readFile(new URL('./evidence-and-owner-actions.md', import.meta.url), 'utf8'),
 ]);
 const [d2Source, d4Source, d7Source, d8Source] = await Promise.all([
-  readFile(new URL('docs/rules/decisions/d2-login-methods.md', root), 'utf8'),
-  readFile(new URL('docs/rules/decisions/d4-membership-and-pricing.md', root), 'utf8'),
-  readFile(new URL('docs/rules/decisions/d7-data-privacy-and-retention.md', root), 'utf8'),
-  readFile(new URL('docs/rules/decisions/d8-operations-console-structure.md', root), 'utf8'),
+  readFile(new URL('docs/records/decisions/native-commercialization/d2-login-methods.md', root), 'utf8'),
+  readFile(new URL('docs/records/decisions/native-commercialization/d4-membership-and-pricing.md', root), 'utf8'),
+  readFile(new URL('docs/records/decisions/native-commercialization/d7-data-privacy-and-retention.md', root), 'utf8'),
+  readFile(new URL('docs/records/decisions/native-commercialization/d8-operations-console-structure.md', root), 'utf8'),
 ]);
 const encoder = new TextEncoder();
 

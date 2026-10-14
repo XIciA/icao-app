@@ -8,7 +8,7 @@
 
 ## 1. 路线图定位
 
-本路线图承接已确认的 `requirements.md`、`technical-plan.md` 和已完成的 `technical-audit.md`，已按 `docs/rules/bigandsmall-workflows/orchestration-loop.md` 完成 B0 至 B8。
+本路线图承接已确认的 `requirements.md`、`technical-plan.md` 和已完成的 `technical-audit.md`，已按 `docs/tools/workflows/orchestration-loop.md` 完成 B0 至 B8。
 
 所有阶段保持 Web/设计仓库只读，不覆盖第二阶段 A 的认证、题库、资源和同步成果，不开发评测/模型调试工具。
 

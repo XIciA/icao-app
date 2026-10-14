@@ -229,7 +229,7 @@
   课程订单、微信咨询购买链路、社区、聊天或广告。
 - 数据库迁移必须先评审、备份并验证回滚，并在临执行前取得负责人明确确认；当前对生产 API/网关和
   内部 TestFlight 的授权不自动包含数据库迁移，也不包含正式商店提交。
-- 工作流：`docs/rules/bigandsmall-workflows/document-driven-development-workflow.md`
+- 工作流：`docs/tools/workflows/document-driven-development-workflow.md`
 - 验证标准：`docs/rules/verification-matrix.md`
 - 生产边界：`docs/rules/conditional/deployment-and-runtime-rules.md`
 - 商店材料：`docs/resources/operations/native-store-submission-materials.md`

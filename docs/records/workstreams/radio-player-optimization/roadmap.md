@@ -6,7 +6,7 @@
 
 ## 1. 路线图定位
 
-本文承接同目录的 `requirements.md`、`technical-plan.md` 和 `technical-audit.md`。用户确认四份大流程文档后，Codex 才按 `docs/rules/bigandsmall-workflows/orchestration-loop.md` 进入小流程，并在授权范围内按阶段连续执行。
+本文承接同目录的 `requirements.md`、`technical-plan.md` 和 `technical-audit.md`。用户确认四份大流程文档后，Codex 才按 `docs/tools/workflows/orchestration-loop.md` 进入小流程，并在授权范围内按阶段连续执行。
 
 当前路线图不授权立即修改随身听代码、原生配置、题库发布物或线上环境。
 

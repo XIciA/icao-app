@@ -48,7 +48,7 @@ consumer 原本已在服务器成功后发布权益，但 purchase 仍等待 fin
 
 ## 安装包与生产证据
 
-生产 API `production-migration-f8cee39f7bbc`、0049迁移及恢复演练成功。真实 AI 验证覆盖转写、语法、润色、航空实体保护和临时音频清理。后台实际 UI 验收见[后台实施记录](../../../workstreams/local-admin-console/phase-log.md)。
+生产 API `production-migration-f8cee39f7bbc`、0049迁移及恢复演练成功。真实 AI 验证覆盖转写、语法、润色、航空实体保护和临时音频清理。后台实际 UI 验收见[后台实施记录](../local-admin-console/phase-log.md)。
 
 Archive、Export、Apple validate、upload 均成功。归档隐私审计包含11份manifest；4个可执行文件没有 CallKit 链接，主程序无 CXCallObserver/CXProvider/CXCallController 未解析符号；`UIBackgroundModes`仅`audio`。品牌PNG真实内嵌于 `assets/assets/images/icon-native.png`，SHA256 `2e9401acce52ec48e675ca2d8df1e1659266cd0ad95698033880c5542967577b`。
 

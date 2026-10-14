@@ -9,13 +9,9 @@
 
 ## 1. 文档职责
 
-开始处理录音问题时，按需读取：
+当前入口是 [录音维护原则](../../../rules/recording.md)，具体实现见 [录音实现参考](../../../resources/developer/recording-implementation.md)。
+本文和 `docs/records/archive/audio/` 仅用于追溯既往诊断、根因和验收证据；下文保留的命令式措辞不构成现行规则。
 
-1. [`docs/rules/problem-solving-and-maintenance/recording.md`](../../../rules/problem-solving-and-maintenance/recording.md)：录音生命周期的当前架构规范和验收边界。
-2. 本文：唯一现行排障方法、诊断编号、已知根因和真机验收入口。
-3. `docs/records/archive/audio/`：只在需要追溯时读取的历史事故和已结束工作流。
-
-不得再创建第二份现行录音事故指南。需要修改架构不变量时，先修改主指南，再更新本文。
 非音频任务、只改无关文案/样式的任务不需要读取本目录。
 
 ## 2. 长期解决原则

@@ -1,5 +1,7 @@
 # 通用小流程：路线图驱动的自动执行循环
 
+> 可选工作方法：仅在当前任务采用本流程时使用；不构成项目长期规则，不自动增加审批或扩大授权。入口见 [工作工具](../README.md)。
+
 ## 极简速览
 
 ```text
@@ -202,7 +204,7 @@
 ## 阶段验证
 
 验证由项目、路线图和最终验收环境决定，并遵守
-[`交付与验收最简规则`](../problem-solving-and-maintenance/delivery-and-acceptance.md)。不得默认把模拟器、
+[`交付与验收最简规则`](../../rules/delivery-and-acceptance.md)。不得默认把模拟器、
 Development Build、Dev 真机和 Release/TestFlight 串成固定阶梯；先做与改动直接相关的快速检查，
 再进入用户指定的最终验收环境。
 
