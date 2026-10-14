@@ -222,7 +222,7 @@ describe('embeddedQuestionBankRepository', () => {
     ) ?? [];
 
     expect(listening?.declaredTopicCount).toBe(4);
-    expect(listening?.declaredCardCount).toBe(1612);
+    expect(listening?.declaredCardCount).toBe(1502);
     expect(listening?.categories).toHaveLength(4);
     expect(listeningCards).toHaveLength(40);
     expect(listeningCards.every((card) =>
@@ -252,7 +252,7 @@ describe('embeddedQuestionBankRepository', () => {
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1612, 900, 5751, 2321, 382]);
+      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1502, 900, 5751, 2321, 382]);
       expect(cards).toHaveLength(1044);
       expect(resourceManifest.files).toHaveLength(10371);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);

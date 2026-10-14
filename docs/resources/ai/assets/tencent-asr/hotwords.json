@@ -3,9 +3,9 @@
   "engine": "16k_en",
   "basis": "User-approved full-bank expansion. Initial 18 terms retain historical error evidence. New terms are corpus/context candidates, not measured accuracy gains; no audio calls this round.",
   "corpus": {
-    "cards": 10879,
+    "cards": 10769,
     "bankCounts": {
-      "listening": 1612,
+      "listening": 1502,
       "opi": 2234,
       "radiotelephony": 5751,
       "sentences900": 900,
@@ -23,8 +23,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 21,
-      "uniqueTextCount": 21,
+      "cardCount": 19,
+      "uniqueTextCount": 19,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -35,8 +35,7 @@
         "listening-fzy-110822",
         "listening-fzy-115191",
         "listening-fzy-116337",
-        "listening-fzy-116547",
-        "listening-fzy-116682"
+        "listening-fzy-116547"
       ],
       "examples": [
         {
@@ -87,8 +86,8 @@
       "category": "aviation-abbreviation",
       "weight": 5,
       "reason": "旧权重5实验602/604中tas变为tcas，有局部收益。",
-      "cardCount": 91,
-      "uniqueTextCount": 86,
+      "cardCount": 88,
+      "uniqueTextCount": 83,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -122,8 +121,8 @@
       "category": "aviation-abbreviation",
       "weight": 5,
       "reason": "旧权重5实验649中ios变为ils，有局部收益。",
-      "cardCount": 407,
-      "uniqueTextCount": 384,
+      "cardCount": 402,
+      "uniqueTextCount": 379,
       "sentence900Count": 12,
       "banks": [
         "listening",
@@ -223,8 +222,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "旧实验补全部分VOR，但405额外出现R；不能只依据词级编辑数采纳。",
-      "cardCount": 113,
-      "uniqueTextCount": 106,
+      "cardCount": 112,
+      "uniqueTextCount": 105,
       "sentence900Count": 35,
       "banks": [
         "listening",
@@ -382,8 +381,8 @@
       "category": "aviation-abbreviation",
       "weight": 5,
       "reason": "多处APU对应au而非仅拆字母，旧25词表未覆盖。",
-      "cardCount": 55,
-      "uniqueTextCount": 49,
+      "cardCount": 54,
+      "uniqueTextCount": 48,
       "sentence900Count": 10,
       "banks": [
         "listening",
@@ -417,8 +416,8 @@
       "category": "aviation-abbreviation",
       "weight": 5,
       "reason": "存在Our VR而非纯R V R呈现差异。",
-      "cardCount": 45,
-      "uniqueTextCount": 45,
+      "cardCount": 42,
+      "uniqueTextCount": 42,
       "sentence900Count": 8,
       "banks": [
         "listening",
@@ -452,8 +451,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 172,
-      "uniqueTextCount": 150,
+      "cardCount": 171,
+      "uniqueTextCount": 149,
       "sentence900Count": 8,
       "banks": [
         "listening",
@@ -651,8 +650,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 892,
-      "uniqueTextCount": 802,
+      "cardCount": 887,
+      "uniqueTextCount": 797,
       "sentence900Count": 4,
       "banks": [
         "listening",
@@ -753,8 +752,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 44,
-      "uniqueTextCount": 37,
+      "cardCount": 42,
+      "uniqueTextCount": 35,
       "sentence900Count": 2,
       "banks": [
         "listening",
@@ -1264,8 +1263,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 22,
-      "uniqueTextCount": 21,
+      "cardCount": 21,
+      "uniqueTextCount": 20,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -1276,7 +1275,6 @@
         "atc-scenario-0076-card-main-1303",
         "atc-scenario-0118-card-main-2034",
         "listening-fzy-110927",
-        "listening-fzy-116704",
         "listening-main-1210"
       ],
       "examples": [
@@ -1397,8 +1395,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 26,
-      "uniqueTextCount": 26,
+      "cardCount": 25,
+      "uniqueTextCount": 25,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -1407,7 +1405,6 @@
       "evidenceIds": [
         "listening-main-170",
         "listening-main-321",
-        "listening-main-694",
         "opi-core-147",
         "opi-core-148"
       ],
@@ -2177,8 +2174,8 @@
       "category": "radiotelephony-term",
       "weight": 5,
       "reason": "3处will go或we'll go；旧权重5/9未解决，不做强制替换。",
-      "cardCount": 120,
-      "uniqueTextCount": 114,
+      "cardCount": 119,
+      "uniqueTextCount": 113,
       "sentence900Count": 3,
       "banks": [
         "listening",
@@ -2245,8 +2242,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "2处radial对应radio；radio本身也是航空常用词，需检查反向误识别。",
-      "cardCount": 41,
-      "uniqueTextCount": 36,
+      "cardCount": 40,
+      "uniqueTextCount": 35,
       "sentence900Count": 4,
       "banks": [
         "listening",
@@ -2279,8 +2276,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 278,
-      "uniqueTextCount": 235,
+      "cardCount": 276,
+      "uniqueTextCount": 233,
       "sentence900Count": 18,
       "banks": [
         "listening",
@@ -2348,8 +2345,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 1185,
-      "uniqueTextCount": 1057,
+      "cardCount": 1168,
+      "uniqueTextCount": 1040,
       "sentence900Count": 2,
       "banks": [
         "listening",
@@ -2415,8 +2412,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 181,
-      "uniqueTextCount": 171,
+      "cardCount": 177,
+      "uniqueTextCount": 167,
       "sentence900Count": 11,
       "banks": [
         "listening",
@@ -2586,8 +2583,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 68,
-      "uniqueTextCount": 66,
+      "cardCount": 66,
+      "uniqueTextCount": 64,
       "sentence900Count": 2,
       "banks": [
         "listening",
@@ -2653,8 +2650,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 106,
-      "uniqueTextCount": 92,
+      "cardCount": 104,
+      "uniqueTextCount": 90,
       "sentence900Count": 8,
       "banks": [
         "listening",
@@ -2719,8 +2716,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 202,
-      "uniqueTextCount": 173,
+      "cardCount": 198,
+      "uniqueTextCount": 169,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -2753,8 +2750,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 212,
-      "uniqueTextCount": 171,
+      "cardCount": 210,
+      "uniqueTextCount": 169,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -2787,8 +2784,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 42,
-      "uniqueTextCount": 41,
+      "cardCount": 39,
+      "uniqueTextCount": 38,
       "sentence900Count": 4,
       "banks": [
         "listening",
@@ -2822,8 +2819,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 96,
-      "uniqueTextCount": 94,
+      "cardCount": 94,
+      "uniqueTextCount": 92,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -3025,8 +3022,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 57,
-      "uniqueTextCount": 53,
+      "cardCount": 56,
+      "uniqueTextCount": 52,
       "sentence900Count": 6,
       "banks": [
         "listening",
@@ -3125,8 +3122,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 393,
-      "uniqueTextCount": 352,
+      "cardCount": 387,
+      "uniqueTextCount": 346,
       "sentence900Count": 7,
       "banks": [
         "listening",
@@ -3160,8 +3157,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 2373,
-      "uniqueTextCount": 2210,
+      "cardCount": 2346,
+      "uniqueTextCount": 2183,
       "sentence900Count": 98,
       "banks": [
         "listening",
@@ -3195,8 +3192,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 17,
-      "uniqueTextCount": 14,
+      "cardCount": 16,
+      "uniqueTextCount": 13,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -3229,8 +3226,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 103,
-      "uniqueTextCount": 101,
+      "cardCount": 100,
+      "uniqueTextCount": 98,
       "sentence900Count": 9,
       "banks": [
         "listening",
@@ -3386,8 +3383,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 36,
-      "uniqueTextCount": 36,
+      "cardCount": 35,
+      "uniqueTextCount": 35,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -3397,7 +3394,6 @@
       "evidenceIds": [
         "listening-fzy-110632",
         "listening-fzy-110713",
-        "listening-fzy-110743",
         "listening-fzy-110893",
         "listening-fzy-116326"
       ],
@@ -3453,8 +3449,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 99,
-      "uniqueTextCount": 97,
+      "cardCount": 96,
+      "uniqueTextCount": 94,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -3556,8 +3552,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 142,
-      "uniqueTextCount": 137,
+      "cardCount": 137,
+      "uniqueTextCount": 132,
       "sentence900Count": 9,
       "banks": [
         "listening",
@@ -3591,8 +3587,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 48,
-      "uniqueTextCount": 47,
+      "cardCount": 47,
+      "uniqueTextCount": 46,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -3891,8 +3887,8 @@
       "category": "navigation-name",
       "weight": 2,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 183,
-      "uniqueTextCount": 152,
+      "cardCount": 182,
+      "uniqueTextCount": 151,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -4055,8 +4051,8 @@
       "category": "navigation-name",
       "weight": 2,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 13,
-      "uniqueTextCount": 10,
+      "cardCount": 12,
+      "uniqueTextCount": 9,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -5015,8 +5011,8 @@
       "category": "navigation-name",
       "weight": 2,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 36,
-      "uniqueTextCount": 34,
+      "cardCount": 35,
+      "uniqueTextCount": 33,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5079,8 +5075,8 @@
       "category": "navigation-name",
       "weight": 3,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 14,
-      "uniqueTextCount": 13,
+      "cardCount": 13,
+      "uniqueTextCount": 12,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5330,26 +5326,20 @@
       "category": "navigation-name",
       "weight": 3,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 2,
-      "uniqueTextCount": 2,
+      "cardCount": 1,
+      "uniqueTextCount": 1,
       "sentence900Count": 0,
       "banks": [
         "listening"
       ],
       "evidenceIds": [
-        "listening-main-1174",
-        "listening-main-277"
+        "listening-main-1174"
       ],
       "examples": [
         {
           "id": "listening-main-1174",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
           "context": "d landing, current position 10 miles east of LAMOT, Over.\nC: ACA 3248, roger your relayed MAYDAY for CCA 3256.\nQuestion: What do you le"
-        },
-        {
-          "id": "listening-main-277",
-          "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "d landing, current position 10 miles east of LAMOT, over. C: ACA 3428, roger your relayed MAYDAY for CCA 3256.\nQuestion: What do you le"
         }
       ]
     },
@@ -5358,26 +5348,20 @@
       "category": "navigation-name",
       "weight": 3,
       "reason": "已人工核对导航、航路或离到场程序上下文；短代码采用低权重，保留实际说法。",
-      "cardCount": 2,
-      "uniqueTextCount": 2,
+      "cardCount": 1,
+      "uniqueTextCount": 1,
       "sentence900Count": 0,
       "banks": [
         "listening"
       ],
       "evidenceIds": [
-        "listening-fzy-110925",
-        "listening-fzy-116647"
+        "listening-fzy-110925"
       ],
       "examples": [
         {
           "id": "listening-fzy-110925",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
           "context": "red to Shanghai flight planned route, follow ANRAT 2D departure, initial climb to 2100m, after departure, contact 127.9, squawk 5345.\nQ"
-        },
-        {
-          "id": "listening-fzy-116647",
-          "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "red to Shanghai, flight planed route, follow ANRAT-2D departure, initial climb to 1200m, after departure contact 127.9, squawk 5345.\nQ:"
         }
       ]
     },
@@ -5792,8 +5776,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 636,
-      "uniqueTextCount": 556,
+      "cardCount": 628,
+      "uniqueTextCount": 548,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5824,8 +5808,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 637,
-      "uniqueTextCount": 584,
+      "cardCount": 628,
+      "uniqueTextCount": 575,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5856,8 +5840,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 375,
-      "uniqueTextCount": 312,
+      "cardCount": 374,
+      "uniqueTextCount": 311,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5888,8 +5872,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 336,
-      "uniqueTextCount": 274,
+      "cardCount": 331,
+      "uniqueTextCount": 269,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5920,8 +5904,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 210,
-      "uniqueTextCount": 187,
+      "cardCount": 207,
+      "uniqueTextCount": 184,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -5952,8 +5936,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 187,
-      "uniqueTextCount": 127,
+      "cardCount": 186,
+      "uniqueTextCount": 126,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6017,8 +6001,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 255,
-      "uniqueTextCount": 201,
+      "cardCount": 253,
+      "uniqueTextCount": 199,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6049,8 +6033,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 366,
-      "uniqueTextCount": 292,
+      "cardCount": 362,
+      "uniqueTextCount": 288,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6081,8 +6065,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 70,
-      "uniqueTextCount": 49,
+      "cardCount": 68,
+      "uniqueTextCount": 47,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6180,8 +6164,8 @@
       "category": "proper-name",
       "weight": 2,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 24,
-      "uniqueTextCount": 24,
+      "cardCount": 20,
+      "uniqueTextCount": 20,
       "sentence900Count": 0,
       "banks": [
         "listening"
@@ -6280,8 +6264,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 824,
-      "uniqueTextCount": 779,
+      "cardCount": 821,
+      "uniqueTextCount": 776,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -6315,8 +6299,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 223,
-      "uniqueTextCount": 190,
+      "cardCount": 219,
+      "uniqueTextCount": 186,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6349,8 +6333,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 2108,
-      "uniqueTextCount": 1753,
+      "cardCount": 2102,
+      "uniqueTextCount": 1747,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6383,8 +6367,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 148,
-      "uniqueTextCount": 124,
+      "cardCount": 147,
+      "uniqueTextCount": 123,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6416,8 +6400,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 320,
-      "uniqueTextCount": 273,
+      "cardCount": 319,
+      "uniqueTextCount": 272,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6517,8 +6501,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 51,
-      "uniqueTextCount": 45,
+      "cardCount": 50,
+      "uniqueTextCount": 44,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6573,8 +6557,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 9,
-      "uniqueTextCount": 9,
+      "cardCount": 8,
+      "uniqueTextCount": 8,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6585,7 +6569,6 @@
         "listening-fzy-110925",
         "listening-fzy-116612",
         "listening-fzy-116623",
-        "listening-fzy-116647",
         "listening-main-1100"
       ],
       "examples": [

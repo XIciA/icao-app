@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 17,
-  "generatedAt": "2026-09-26T06:09:56.076Z",
+  "releaseVersion": 18,
+  "generatedAt": "2026-10-14T15:18:20.086Z",
   "totals": {
     "files": 603,
-    "textValues": 63941
+    "textValues": 62621
   },
   "files": [
     {
       "file": "content/question-banks/banks/listening/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "f28e7b001de078876b694bce8e21ff456e8ea6659e955c7312d254beac217914",
+      "textProjectionSha256": "96ab1d9ddeda6959fb74949477cce9fa5aebd945446c9e6ea1802138e1da0205",
       "status": "reviewed"
     },
     {
@@ -40,26 +40,26 @@
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-      "textValues": 7573,
-      "textProjectionSha256": "d2dfb4580fe6b180c77800b7119c9400a1a57569a2a6a5b7fd54272fc6707303",
+      "textValues": 7165,
+      "textProjectionSha256": "cc5ba00c490157e048cf92c87ae24e6f0de5bd08ec8689d05c1dd42c92f58c53",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-      "textValues": 3901,
-      "textProjectionSha256": "c44718a2530cea025f0a5c602e5a24a1012283547d79cfd798741f3c213c0a49",
+      "textValues": 3481,
+      "textProjectionSha256": "3e1f344c6e5dc2600a5b79b525f541879bc7c0aa29be56c0298336a65fdbe112",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-      "textValues": 4141,
-      "textProjectionSha256": "960c622801458c800524fd19e16d329f176fb48474c90223c8eb2953b8baeb56",
+      "textValues": 3901,
+      "textProjectionSha256": "fa1ca655f74e4e42ae6a6d498960199070afc966db75b16f3528203fca73f319",
       "status": "reviewed"
     },
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-      "textValues": 3733,
-      "textProjectionSha256": "77992e46c3a8212f6d7fcfe168021e1b1b20ec079ccee8661679e35c7e18e089",
+      "textValues": 3481,
+      "textProjectionSha256": "dce9fc2a042537ae14a2a58d559ab85c7b4a31f5c0ac10b1cddbf88e648978af",
       "status": "reviewed"
     },
     {

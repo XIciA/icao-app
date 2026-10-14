@@ -22,6 +22,8 @@ import { DatabaseService } from '../database/database.service';
 import { accounts, aiPointReservations, learningRecords, privacyActionReceipts, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
 import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
 
+import { emptyRetiredState, isRetiredCard, sanitizeRetiredAnnotations, sanitizeRetiredLearningRecord, sanitizeRetiredSyncPayload } from './retired-learning';
+
 const VOCABULARY_DOCUMENT_KEY = 'vocabulary';
 const ACCOUNT_PROFILE_KEY = 'account_profile';
 const accountProfileSchema = z.object({
@@ -165,7 +167,7 @@ export class SyncService {
         if (existingMutation) {
           if (existingMutation.payloadHash !== payloadHash) throw new ConflictException('mutation_id_reused');
           const previous = existingMutation.result as SyncPushResult | null;
-          output.push({ ...(previous ?? { mutationId: mutation.mutationId, status: 'duplicate' }), status: 'duplicate' });
+          output.push({ ...(previous ?? { mutationId: mutation.mutationId, status: 'duplicate' }), ...(previous?.authoritative ? { authoritative: sanitizeRetiredSyncPayload(mutation.kind, previous.authoritative as Record<string, unknown>) as SyncPushResult['authoritative'] } : {}), status: 'duplicate' });
           continue;
         }
 
@@ -209,6 +211,18 @@ export class SyncService {
       eq(userCardStates.cardId, mutation.payload.cardId),
     );
     const [current] = await tx.select().from(userCardStates).where(target).limit(1);
+    if (isRetiredCard(mutation.payload.bankId, mutation.payload.cardId)) {
+      const version = Math.max(mutation.payload.version, (current?.version ?? 0) + 1);
+      const updatedAt = new Date();
+      const state = emptyRetiredState(updatedAt.toISOString());
+      const values = { userId, bankId: mutation.payload.bankId, topicId: mutation.payload.topicId, cardId: mutation.payload.cardId, state, version, updatedAt };
+      if (current) await tx.update(userCardStates).set(values).where(target);
+      else await tx.insert(userCardStates).values(values);
+      const payload = { ...mutation.payload, state, version, updatedAt: updatedAt.toISOString() };
+      await tx.insert(syncChanges).values({ userId, kind: mutation.kind, entityKey: entityKey(mutation), payload, version });
+      return { mutationId: mutation.mutationId, status: 'accepted', authoritative: payload };
+    }
+
     if (current && mutation.payload.version <= current.version) {
       const currentState = current.state as CardStateMutation['payload']['state'];
       const gainedProgress = (mutation.payload.state.visited && !currentState.visited)
@@ -289,6 +303,10 @@ export class SyncService {
     mutation: LearningRecordMutation,
     aiResultGeneration: number,
   ): Promise<SyncPushResult> {
+    if (mutation.payload.record && mutation.payload.deleted !== true) {
+      const record = sanitizeRetiredLearningRecord(mutation.payload.record);
+      mutation = { ...mutation, payload: { ...mutation.payload, record, ...(record.deleted ? { deleted: true } : {}) } };
+    }
     const target = and(
       eq(learningRecords.userId, userId),
       eq(learningRecords.clientRecordId, mutation.payload.recordId),
@@ -317,18 +335,19 @@ export class SyncService {
     }
     const currentDeleted = (current?.payload as { deleted?: unknown } | undefined)?.deleted === true;
     if (currentDeleted && !deleting) {
+      // Old devices may carry versions newer than the deletion. Advance the
+      // tombstone so those clients actually apply it instead of skipping it.
+      const tombstoneVersion = Math.max(current!.version, version);
+      if (tombstoneVersion > current!.version) {
+        await tx.update(learningRecords).set({ version: tombstoneVersion, updatedAt: new Date() }).where(target);
+      }
       return {
-        mutationId: mutation.mutationId,
-        status: 'conflict',
-        authoritative: {
-          recordId: current!.clientRecordId,
-          deleted: true,
+        mutationId: mutation.mutationId, status: 'conflict',
+        authoritative: { recordId: current!.clientRecordId, deleted: true,
           record: current!.payload as Record<string, unknown>,
           ...(incomingIsAiResult ? { aiResultGeneration } : {}),
-          occurredAt: current!.occurredAt.toISOString(),
-          version: current!.version,
-          updatedAt: current!.updatedAt.toISOString(),
-        },
+          occurredAt: current!.occurredAt.toISOString(), version: tombstoneVersion,
+          updatedAt: new Date().toISOString() },
       };
     }
     const values = {
@@ -442,14 +461,14 @@ export class SyncService {
         status: 'conflict',
         authoritative: {
           documentKey: current.documentKey,
-          document: current.payload as Record<string, unknown>,
+          document: mutation.payload.documentKey === 'annotations' ? sanitizeRetiredAnnotations(current.payload as Record<string, unknown>) : current.payload as Record<string, unknown>,
           version: current.version,
           updatedAt: current.updatedAt.toISOString(),
         },
       };
     }
     if (mutation.payload.documentKey === 'annotations') {
-      mutation = { ...mutation, payload: { ...mutation.payload, document: preserveManagedAnnotations(current?.payload as Record<string, unknown> | undefined, mutation.payload.document) } };
+      mutation = { ...mutation, payload: { ...mutation.payload, document: sanitizeRetiredAnnotations(preserveManagedAnnotations(current?.payload as Record<string, unknown> | undefined, mutation.payload.document)) } };
     }
     const values = {
       userId,
@@ -538,7 +557,7 @@ export class SyncService {
         cursor: row.sequence,
         kind: row.kind as SyncChange['kind'],
         entityKey: row.entityKey,
-        payload: row.payload as Record<string, unknown>,
+        payload: sanitizeRetiredSyncPayload(row.kind, row.payload as Record<string, unknown>),
         version: row.version,
         changedAt: row.createdAt.toISOString(),
       }));

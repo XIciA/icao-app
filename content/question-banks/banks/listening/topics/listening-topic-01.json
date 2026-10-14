@@ -1,7 +1,7 @@
 {
   "id": "listening-topic-01",
   "name": "全部题目",
-  "declaredCardCount": 631,
+  "declaredCardCount": 597,
   "cards": [
     {
       "id": "listening-main-001",
@@ -134,27 +134,6 @@
       "correctChoiceIndex": 3,
       "referenceText": "正确答案：D. To ensure the safety.",
       "audio": "/question-bank-assets/audio/listening/fzy/de63545664cd5fe1120d.mp3"
-    },
-    {
-      "id": "listening-main-043",
-      "taskTitle": "10s航空英语-11",
-      "audioText": "Cockpit to ground, negative startup. There are some water drops dripping from the overhead electronic panel. No idea where they are from. We need to carry out a check.\nQuestion: Why can’t the pilots start up?",
-      "audioTextZh": "驾驶舱呼叫地面，不能启动。头顶电子面板上有水滴滴下来，不知道水是从哪里来的。我们需要进行检查。\n问题：飞行员为什么不能启动？",
-      "referenceText": "正确答案：B. The overhead panel drips",
-      "audio": "/question-bank-assets/audio/listening/main/043.mp3",
-      "choices": [
-        "There might be some unknown problems in the cockpit",
-        "The overhead panel drips",
-        "The water drainage valve needs checking",
-        "He can not drink water in the cockpit"
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "驾驶舱内可能存在不明故障",
-        "头顶面板在滴水",
-        "排水活门需要检查",
-        "他不能在驾驶舱喝水"
-      ]
     },
     {
       "id": "listening-main-044",
@@ -542,27 +521,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/c7bb48bda11d39e85c71.mp3"
     },
     {
-      "id": "listening-main-121",
-      "taskTitle": "10s航空英语-34",
-      "audioText": "If significant engine vibration occurs due to ice accumulation on the blades, the engine should be accelerated to a minimum of 70% N1 for approximately 15 seconds.\nQuestion: What causes the vibration?",
-      "audioTextZh": "如果叶片积冰导致发动机明显振动，应把发动机加速至至少70% N1，并保持约15秒。\n问题：是什么造成了发动机振动？",
-      "referenceText": "正确答案：C. Ice building on the blade",
-      "audio": "/question-bank-assets/audio/listening/main/121.mp3",
-      "choices": [
-        "Ice coming behind blades",
-        "Ice occurring in the wing",
-        "Ice building on the blade",
-        "Ice accumulating on the wing"
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "叶片后方结冰",
-        "机翼结冰",
-        "叶片上结冰",
-        "机翼上积冰"
-      ]
-    },
-    {
       "id": "listening-main-122",
       "taskTitle": "10秒航空英语-260",
       "audioText": "If you look at the weather chart, you might see a low-pressure area with precipitation approaching Xi’an.\nQ: What kind of weather is expected near Xi’an?",
@@ -903,28 +861,6 @@
       ]
     },
     {
-      "id": "listening-main-201",
-      "taskTitle": "10秒航空英语-190",
-      "audioText": "Ice, snow and frost must be removed before a flight, because they can seriously affect takeoff distance and climb up performance\nQ: What type of weather conditions are described in this statement?",
-      "audioTextZh": "在飞行前，应除掉飞机上的积冰，积雪和霜，因为它们会严重影响起飞距离和爬升性能。问：表述中提到的天气状况是什么样的？",
-      "studyTier": 1,
-      "choices": [
-        "A hot summer day.",
-        "Winter weather.",
-        "Windy and gusty conditions.",
-        "Fog and poor visibility."
-      ],
-      "choicesZh": [
-        "炎热的夏季",
-        "冬季天气",
-        "有风和阵风天气",
-        "有雾和低能见度"
-      ],
-      "correctChoiceIndex": 1,
-      "referenceText": "正确答案：B. Winter weather.",
-      "audio": "/question-bank-assets/audio/listening/fzy/e635464862683b4d33b0.mp3"
-    },
-    {
       "id": "listening-main-202",
       "taskTitle": "10秒航空英语-299",
       "audioText": "The light signal from the tower shows the flashing green means \"Return for landing and\ncleared to taxi\" while steady green means to be \"Cleared to land\".\nQuestion: What does the flashing green light signal from the control tower mean to an aircraft in flight?",
@@ -1073,28 +1009,6 @@
         "燃油",
         "燃烧"
       ]
-    },
-    {
-      "id": "listening-main-242",
-      "taskTitle": "10秒航空英语-303",
-      "audioText": "ICAO CAT III A limitations are decision height of 0 feet, RVR of 200m.\nQuestion: What are the limitations of a Category III A approach?",
-      "audioTextZh": "ICAO CAT III A的限制为决断高度0英尺，RVR 200米。\n问：III A类进近的限制是什么？",
-      "studyTier": 1,
-      "choices": [
-        "Decision height 200 feet.",
-        "RVR 200feet.",
-        "RVR 0 meters.",
-        "RVR 200 meters."
-      ],
-      "choicesZh": [
-        "决断高度200英尺",
-        "RVR 200英尺",
-        "RVR 0米",
-        "RVR 200米"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. RVR 200 meters.",
-      "audio": "/question-bank-assets/audio/listening/fzy/d22da314a72d710a270a.mp3"
     },
     {
       "id": "listening-main-243",
@@ -1289,27 +1203,6 @@
       ]
     },
     {
-      "id": "listening-main-285",
-      "taskTitle": "10s航空英语-93",
-      "audioText": "M1: The wear of carbon brakes is related to the number of applications and the pressure applied. M2: Yes, the proper use of carbon brakes will ... of them.\nQuestion: What is the main idea of the conversation?",
-      "audioTextZh": "说话人1：碳刹车的磨损与使用次数和施加的压力有关。说话人2：是的，正确使用碳刹车会……。\n问题：这段对话的中心意思是什么？",
-      "referenceText": "正确答案：A. More brakes more wear",
-      "audio": "/question-bank-assets/audio/listening/main/285.mp3",
-      "choices": [
-        "More brakes more wear",
-        "More forces, more wear",
-        "More wind, more wear",
-        "More pressure, more wear"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "刹车次数越多，磨损越大",
-        "作用力越大，磨损越大",
-        "风越大，磨损越大",
-        "压力越大，磨损越大"
-      ]
-    },
-    {
       "id": "listening-main-302",
       "taskTitle": "10s航空英语-96",
       "audioText": "When wind direction is changing, it is given as a range, such as variable from 270 to 330 degrees.\nQuestion: How large is the range from 270 to 330 degrees?",
@@ -1454,27 +1347,6 @@
         "维克多颠簸",
         "星期颠簸",
         "微弱颠簸"
-      ]
-    },
-    {
-      "id": "listening-main-329",
-      "taskTitle": "10s航空英语-107",
-      "audioText": "Heathrow Information C: cloud scattered at 3000 feet, broken at 5000 feet; wind 210 degrees at 8 knots; visibility 2 miles with light wind. Report established on the ILS for Runway 23.\nQuestion: What is the cloud cover at 5000 feet?",
-      "audioTextZh": "希思罗C通播：3000英尺疏云，5000英尺多云；风向210度、风速8节；能见度2英里，轻风。建立23跑道ILS后报告。\n问题：5000英尺处的云量状况是什么？",
-      "referenceText": "正确答案：A. Broken layer",
-      "audio": "/question-bank-assets/audio/listening/main/329.mp3",
-      "choices": [
-        "Broken layer",
-        "Overcast layer",
-        "No clouds",
-        "Scattered layer"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "多云层",
-        "阴天云层",
-        "无云",
-        "疏云层"
       ]
     },
     {
@@ -1626,27 +1498,6 @@
       ]
     },
     {
-      "id": "listening-main-353",
-      "taskTitle": "10s航空英语-117",
-      "audioText": "P: Ground, CSN 15, on taxiway N for Runway 27L. We see debris on the left side of the runway near the high-speed turnoff. It appears to be part of an engine cowling.\nQuestion: Where is the debris?",
-      "audioTextZh": "飞行员：地面，CSN 15，在N滑行道，前往27L跑道。我们看到跑道左侧、靠近快速脱离道的位置有碎片，看起来像发动机整流罩的一部分。\n问题：碎片在哪里？",
-      "referenceText": "正确答案：D. On the left side of the runway.",
-      "audio": "/question-bank-assets/audio/listening/main/353.mp3",
-      "choices": [
-        "On taxiway N.",
-        "On the high speed turn off.",
-        "On the right side of the runway.",
-        "On the left side of the runway."
-      ],
-      "correctChoiceIndex": 3,
-      "choicesZh": [
-        "N滑行道上",
-        "快速脱离道上",
-        "跑道右侧",
-        "跑道左侧"
-      ]
-    },
-    {
       "id": "listening-main-355",
       "taskTitle": "10s航空英语-119",
       "audioText": "P: Approach, good morning, CCA 512, descending through FL200, squawking 4123.\nQuestion: What is the squawk code of CCA 512?",
@@ -1753,27 +1604,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/5d32eae2b83e6deff75d.mp3"
     },
     {
-      "id": "listening-main-368",
-      "taskTitle": "10s航空英语-126",
-      "audioText": "A1: There is a height at which the pilot must have the runway approach lights in sight to continue the descent. If not, the pilot has to initiate a missed approach. A2: The height is very important for safety.\nQuestion: What were the men talking about?",
-      "audioTextZh": "说话人1：有一个高度，在该高度上飞行员必须看到跑道进近灯才能继续下降；如果看不到，就必须复飞。说话人2：这个高度对飞行安全非常重要。\n问题：他们在谈论什么？",
-      "referenceText": "正确答案：C. Decision height.",
-      "audio": "/question-bank-assets/audio/listening/main/368.mp3",
-      "choices": [
-        "Landing gear extending height.",
-        "Minimum clearance height.",
-        "Decision height.",
-        "Landing height."
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "起落架放下高度",
-        "最低净空高度",
-        "决断高",
-        "着陆高度"
-      ]
-    },
-    {
       "id": "listening-main-382",
       "taskTitle": "10s航空英语-129",
       "audioText": "The flight was delayed because 3 passengers were late. Then the tug was 10 minutes late, and the aircraft had to wait 15 minutes due to flow control.\nQuestion: How many passengers were late?",
@@ -1837,27 +1667,6 @@
       ]
     },
     {
-      "id": "listening-main-403",
-      "taskTitle": "10s航空英语-136",
-      "audioText": "The required runway lengths for takeoff and landing may vary considerably with changes in outside air temperature, runway surface, aircraft load, and field elevation.\nQuestion: According to the statement, which of the following will affect the required runway length for takeoff and landing?",
-      "audioTextZh": "起飞和着陆所需的跑道长度会随外界气温、跑道道面、飞机载荷和机场标高的变化而显著改变。\n问题：根据这段陈述，下列哪一项会影响起飞和着陆所需的跑道长度？",
-      "referenceText": "正确答案：D. Aircraft weight.",
-      "audio": "/question-bank-assets/audio/listening/main/403.mp3",
-      "choices": [
-        "Airport size.",
-        "Pilot skill.",
-        "Crosswind.",
-        "Aircraft weight."
-      ],
-      "correctChoiceIndex": 3,
-      "choicesZh": [
-        "机场大小",
-        "飞行员技能",
-        "侧风",
-        "航空器重量"
-      ]
-    },
-    {
       "id": "listening-main-404",
       "taskTitle": "10s航空英语-137",
       "audioText": "In a swept-wing aircraft, the aircraft structural limit with one flap down and the paired flap up is lower.\nQuestion: What type of aircraft is mentioned in the statement?",
@@ -1900,27 +1709,6 @@
       ]
     },
     {
-      "id": "listening-main-409",
-      "taskTitle": "10s航空英语-142",
-      "audioText": "During the preflight check, the co-pilot noticed hydraulic fluid near the landing gear bay without discovering any leak.\nQuestion: Where did the copilot find the leak of fluid?",
-      "audioTextZh": "飞行前检查期间，副驾驶注意到起落架舱附近有液压油，但没有发现任何泄漏点。\n问题：副驾驶在哪里发现了液压油？",
-      "referenceText": "正确答案：A. Nowhere.",
-      "audio": "/question-bank-assets/audio/listening/main/409.mp3",
-      "choices": [
-        "Nowhere.",
-        "Near hydraulic lines.",
-        "Near the gear bay.",
-        "Near the landing gear"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "没有发现",
-        "液压管路附近",
-        "起落架舱附近",
-        "起落架附近"
-      ]
-    },
-    {
       "id": "listening-main-410",
       "taskTitle": "10秒航空英语-256",
       "audioText": "The modern radar systems are so sensitive that they can allow the pilots to land completely blind in perfect safety.\nQ: Why can the pilot make a completely blind landing?",
@@ -1941,27 +1729,6 @@
       "correctChoiceIndex": 2,
       "referenceText": "正确答案：C. Because of modern radar systems.",
       "audio": "/question-bank-assets/audio/listening/fzy/10b7beea6d7107ddd81b.mp3"
-    },
-    {
-      "id": "listening-main-414",
-      "taskTitle": "10s航空英语-144",
-      "audioText": "P: Control, CSN 303, over OBC at 15, FL330, estimating PNO at 46, WFT next.\nQuestion: What is the immediate next reporting point?",
-      "audioTextZh": "飞行员：区调，CSN 303，15分飞越OBC，FL330，预计46分到达PNO，下一报告点WFT。\n问题：紧接着要到达的报告点是哪一个？",
-      "referenceText": "正确答案：B. PNO",
-      "audio": "/question-bank-assets/audio/listening/main/414.mp3",
-      "choices": [
-        "WFT",
-        "PNO",
-        "BW",
-        "OBC"
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "WFT",
-        "PNO",
-        "BW",
-        "OBC"
-      ]
     },
     {
       "id": "listening-main-417",
@@ -3751,27 +3518,6 @@
       ]
     },
     {
-      "id": "listening-main-634",
-      "taskTitle": "10s航空英语-247",
-      "audioText": "Ladies and Gentlemen, this is your captain speaking. We will begin descent in approximately five minutes and be landing in 30 minutes from now at local time 620.\nQuestion: When does the captain estimate the aircraft will land?",
-      "audioTextZh": "女士们、先生们，我是机长。我们将在约五分钟后开始下降，并将在30分钟后、当地时间620着陆。\n问题：机长预计飞机何时着陆？",
-      "referenceText": "正确答案：C. In 30 minutes.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q05.mp3",
-      "choices": [
-        "In 20 minutes.",
-        "In 5 minutes.",
-        "In 30 minutes.",
-        "In 6 minutes."
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "20分钟后",
-        "5分钟后",
-        "30分钟后",
-        "6分钟后"
-      ]
-    },
-    {
       "id": "listening-main-659",
       "taskTitle": "10秒航空英语-284",
       "audioText": "Accurate navigation is crucial in air traffic control as it ensures that aircraft are separated by a safe distance. This helps prevent mid-air collisions and allows for a smooth and safe flow of air traffic.\nQuestion: What is the importance of accurate navigation in air traffic control?",
@@ -3969,50 +3715,6 @@
       ]
     },
     {
-      "id": "listening-main-687",
-      "taskTitle": "10秒航空英语-296",
-      "audioText": "The controller who has only five-month experience on the job without awareness of a collision course and did not take any corrective action.\nQuestion: Why did not the controller take any corrective action?",
-      "audioTextZh": "该管制员仅有五个月工作经验，未意识到存在碰撞航向，也未采取任何纠正措施。\n问：该管制员为何未采取任何纠正措施？",
-      "studyTier": 1,
-      "choices": [
-        "He was not aware of the situation.",
-        "He is experienced enough.",
-        "The traffic was not on a collision course.",
-        "He did not have TCAS equipment."
-      ],
-      "choicesZh": [
-        "他未意识到该情况",
-        "他经验丰富",
-        "航空器并不处在碰撞航向",
-        "他没有TCAS设备"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. He was not aware of the situation.",
-      "audio": "/question-bank-assets/audio/listening/fzy/5c786598d910acf01129.mp3"
-    },
-    {
-      "id": "listening-main-688",
-      "taskTitle": "10秒航空英语-297",
-      "audioText": "The airline couldn't find a replacement aircraft, so the flight was cancelled, then the passengers had to be booked into a hotel until they can be put onto a new flight.\nQuestion: Why were the passengers booked into a hotel?",
-      "audioTextZh": "航空公司无法找到替班航空器，所以航班被取消了，随后乘客不得不被安排到酒店，直到重新被安排到另一架新飞机。\n问：乘客为什么被安排到酒店？",
-      "studyTier": 1,
-      "choices": [
-        "There was bad weather.",
-        "They stayed at a hotel.",
-        "Their aircraft was replaced",
-        "Their flight was cancelled."
-      ],
-      "choicesZh": [
-        "天气不好",
-        "他们待在酒店",
-        "他们的飞机被替换了",
-        "他们的航班被取消了"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. Their flight was cancelled.",
-      "audio": "/question-bank-assets/audio/listening/fzy/9220f2c7c14780c58c06.mp3"
-    },
-    {
       "id": "listening-main-689",
       "taskTitle": "10秒航空英语-192",
       "audioText": "The aircraft should be separated from the aircraft dumping fuel by at least 10 nm horizontal but not behind the aircraft dumping fuel.\nQ: What is the separation between two aircraft while fuel dumping?",
@@ -4033,49 +3735,6 @@
       "correctChoiceIndex": 1,
       "referenceText": "正确答案：B. 10 nm horizontal.",
       "audio": "/question-bank-assets/audio/listening/fzy/8d71ed985b0d117b51fc.mp3"
-    },
-    {
-      "id": "listening-main-692",
-      "taskTitle": "10秒航空英语-217",
-      "audioText": "The pilot is vacating the runway, his takeoff is aborted due to engine failure, he tells the controller he can taxi back by his own power.\nQ: What's the pilot's intention?",
-      "audioTextZh": "飞行员正在脱离跑道，他因为发动机故障中断起飞，但他告诉管制员可以自己滑回。\n问：飞行员的意图是？",
-      "studyTier": 2,
-      "choices": [
-        "To wait for a tug.",
-        "To ask for ATC instructions.",
-        "To taxi back under his own power.",
-        "To request emergency services."
-      ],
-      "choicesZh": [
-        "等待拖车。",
-        "请求管制员指令。",
-        "自己滑回。",
-        "请求紧急服务。"
-      ],
-      "correctChoiceIndex": 2,
-      "referenceText": "正确答案：C. To taxi back under his own power.",
-      "audio": "/question-bank-assets/audio/listening/fzy/49e3ab71209e79ea8de0.mp3"
-    },
-    {
-      "id": "listening-main-694",
-      "taskTitle": "10s航空英语-289",
-      "audioText": "M1: Crew Resource Management is a process using all available resources such as equipment, procedures, and people to achieve a safe and efficient operation of flight.\nM2: you are right.\nQuestion: What are they talking about?",
-      "audioTextZh": "M1: 机组资源管理是利用设备、程序和人员等所有可用资源，实现安全、高效飞行运行的过程。\nM2: 你说得对。\n问题：他们正在谈论什么？",
-      "referenceText": "正确答案：B. CRM.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-05-q19.mp3",
-      "choices": [
-        "OPI.",
-        "CRM.",
-        "VOR",
-        "MEL"
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "口语能力面试",
-        "机组资源管理",
-        "甚高频全向信标",
-        "最低设备清单"
-      ]
     },
     {
       "id": "listening-main-695",
@@ -4099,49 +3758,6 @@
       ]
     },
     {
-      "id": "listening-main-699",
-      "taskTitle": "10s航空英语-291",
-      "audioText": "The aircraft flew over touchdown zone and landed half down the runway, it break heavily and vacate the runway onto taxiway A4.\nQuestion: Where did the aircraft land?",
-      "audioTextZh": "航空器飞过接地区，在跑道中段着陆，随后重刹车，并经滑行道A4脱离跑道。\n问题：航空器在哪里着陆？",
-      "referenceText": "正确答案：B. Half way down the runway.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q11.mp3",
-      "choices": [
-        "At the end of the runway.",
-        "Half way down the runway.",
-        "At the Touchdown Zone.",
-        "On taxi way A4."
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "跑道末端",
-        "跑道中段",
-        "接地区",
-        "A4滑行道"
-      ]
-    },
-    {
-      "id": "listening-main-701",
-      "taskTitle": "10秒航空英语-206",
-      "audioText": "The flight was delayed because 3 passengers were late then the tug was 10 minutes late, the aircraft also had to wait 15 minutes due to flow control.\nQ: How many passengers were late?",
-      "audioTextZh": "飞机遭遇延误，原因是有3名乘客迟到，然后拖车晚了10分钟，因为流量管控，飞机又等了15分钟。问：有多少名乘客迟到了？",
-      "studyTier": 1,
-      "choices": [
-        "3",
-        "15",
-        "10",
-        "28"
-      ],
-      "choicesZh": [
-        "3",
-        "15",
-        "10",
-        "28"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. 3",
-      "audio": "/question-bank-assets/audio/listening/fzy/af3c1219f0e50fdecf27.mp3"
-    },
-    {
       "id": "listening-main-704",
       "taskTitle": "10s航空英语-295",
       "audioText": "In the swept wing aircraft, the aircraft strength limit of flaps down for paired flaps up is lower.\nQuestion: What type of aircraft is mentioned in the statement?",
@@ -4160,69 +3776,6 @@
         "变后掠翼飞机",
         "三角翼飞机",
         "后掠翼飞机"
-      ]
-    },
-    {
-      "id": "listening-main-705",
-      "taskTitle": "10s航空英语-296",
-      "audioText": "With the help of two cabin crew members, 35 passengers are evacuated the aircraft on the right side of aircraft, including 8 from the right wing.\nQuestion: How many passengers evacuated the aircraft on the right side?",
-      "audioTextZh": "在2名客舱机组成员的协助下，35名乘客从航空器右侧撤离，其中8名从右翼撤离。\n问题：有多少名乘客从航空器右侧撤离？",
-      "referenceText": "正确答案：C. 35",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q03.mp3",
-      "choices": [
-        "27",
-        "8",
-        "35",
-        "42"
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "27名",
-        "8名",
-        "35名",
-        "42名"
-      ]
-    },
-    {
-      "id": "listening-main-709",
-      "taskTitle": "10s航空英语-300",
-      "audioText": "A RJ is cleared to line up and be ready for immediate takeoff following a departing B747, and incoming traffic is on short final, wind condition is calm, weather is dry and clear.\nQuestion: Why is the departing traffic important to the captain of the RJ?",
-      "audioTextZh": "一架RJ获准跟在离场的B747之后进入跑道，并准备立即起飞；进场航空器正在短五边，风况为静风，天气干燥、晴朗。\n问题：为什么离场航空器对RJ机长很重要？",
-      "referenceText": "正确答案：A. Wake turbulence.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q16.mp3",
-      "choices": [
-        "Wake turbulence.",
-        "Poor visibility.",
-        "Braking conditions.",
-        "Weather conditions."
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "尾流颠簸",
-        "低能见度",
-        "刹车条件",
-        "天气条件"
-      ]
-    },
-    {
-      "id": "listening-main-710",
-      "taskTitle": "10s航空英语-301",
-      "audioText": "When the pilot hears a resolution advisory, he is only 30 seconds away for the collision, so there isn't enough time to advise ATC, the first priority is to take actions.\nQuestion: What's the first thing a pilot should do after getting an RA?",
-      "audioTextZh": "飞行员听到决断咨询时，距离碰撞仅有30秒，因此没有足够时间通知ATC，首要任务是立即采取行动。\n问题：飞行员收到RA后首先应当做什么？",
-      "referenceText": "正确答案：D. Follow the advisory",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q17.mp3",
-      "choices": [
-        "Advise ATC",
-        "Visually identify the other aircraft",
-        "Follow ATC instructions",
-        "Follow the advisory"
-      ],
-      "correctChoiceIndex": 3,
-      "choicesZh": [
-        "通知空中交通管制",
-        "目视识别另一架航空器",
-        "执行空中交通管制指令",
-        "执行决断咨询"
       ]
     },
     {
@@ -4538,27 +4091,6 @@
         "内话系统",
         "驾驶舱话音记录器",
         "旅客广播系统"
-      ]
-    },
-    {
-      "id": "listening-main-734",
-      "taskTitle": "10s航空英语-317",
-      "audioText": "Highest features in the vicinity of each flight leg will be far below the designed altitude and run away from line of flight.\nQuestion: What does the sentence mean?",
-      "audioTextZh": "每个航段附近的最高地物应远低于设计高度，并避开飞行航线。\n问题：这句话是什么意思？",
-      "referenceText": "正确答案：A. Flight route must be clear of obstacles.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q05.mp3",
-      "choices": [
-        "Flight route must be clear of obstacles.",
-        "Flight route must have the highest features.",
-        "Flight route must be below the flight line.",
-        "Flight route must follow the highest features."
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "飞行航路必须避开障碍物",
-        "飞行航路必须具有最高地形",
-        "飞行航路必须低于飞行航线",
-        "飞行航路必须沿最高地物飞行"
       ]
     },
     {
@@ -8129,27 +7661,6 @@
         "液压油受到污染",
         "航空电子设备过热",
         "鸟撞挡风玻璃"
-      ]
-    },
-    {
-      "id": "listening-main-944",
-      "taskTitle": "10s航空英语-490",
-      "audioText": "The hydraulic fluid is usually checked and replaced after a certain number of flight hours, typically around every 100 flight hours. Regular maintenance helps to ensure the proper functioning of the hydraulic system and prevent issues caused by degraded fluid.\nQuestion: How often is the hydraulic fluid typically checked and replaced?",
-      "audioTextZh": "通常在达到一定飞行小时数后检查并更换液压油，一般约为每100飞行小时。定期维护有助于确保液压系统正常工作，并防止油液劣化引发问题。\n问题：通常多久检查并更换一次液压油？",
-      "referenceText": "正确答案：B. After every 100 flight hours.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q02.mp3",
-      "choices": [
-        "Every flight.",
-        "After every 100 flight hours.",
-        "Once a year.",
-        "Only when there is a problem."
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "每次飞行",
-        "每100飞行小时后",
-        "每年一次",
-        "只在出现问题时"
       ]
     },
     {
@@ -11952,28 +11463,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/412f05b20b3cf83c0c02.mp3"
     },
     {
-      "id": "listening-fzy-116334",
-      "taskTitle": "10秒航空英语-167",
-      "audioText": "AFR656, when clear crossing traffic, turn left heading 050, confirm your level at 1500m.\nQ: When should they make the turn?",
-      "audioTextZh": "法航889，远离正在穿越的航空器后，左转航向050，证实你的高度在1500米。\n问：他们应在什么时候转弯？",
-      "studyTier": 0,
-      "choices": [
-        "to avoid crossing traffic",
-        "maintaining 1,500m",
-        "heading 050 degrees",
-        "when clear of crossing traffic"
-      ],
-      "choicesZh": [
-        "为了避开正在穿越的航空器。",
-        "保持1500米。",
-        "航向050。",
-        "当与穿越的航空器接触冲突时。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. when clear of crossing traffic",
-      "audio": "/question-bank-assets/audio/listening/fzy/98b446bc553c7f16335f.mp3"
-    },
-    {
       "id": "listening-fzy-116335",
       "taskTitle": "10秒航空英语-168",
       "audioText": "CSN210, at time 50 a departing Boeing757 reporting wind shear at 800 feet, airspeed loss 20 knots, strong right drift.\nQ: What danger might the pilot encounter?",
@@ -12370,28 +11859,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/eb0ac98aeb1564e653c1.mp3"
     },
     {
-      "id": "listening-fzy-116567",
-      "taskTitle": "10秒航空英语-198",
-      "audioText": "The greater the weight of the aircraft, the more intense will be the wake turbulence, particularly when it affects the aircraft has a short wing span than other general aircraft.\nQ: What phenomenon does this statement refer to?",
-      "audioTextZh": "飞机的重量越大，产生的尾流就越强，对那些翼展比通用飞机还要短的飞机来说，这种影响越明显。问：表述中提到的现象是什么？",
-      "studyTier": 1,
-      "choices": [
-        "Victor turbulence",
-        "Wake Turbulence",
-        "Week turbulence",
-        "Weak turbulence"
-      ],
-      "choicesZh": [
-        "Victor turbulence",
-        "尾流颠簸",
-        "Week turbulence",
-        "Weak turbulence"
-      ],
-      "correctChoiceIndex": 1,
-      "referenceText": "正确答案：B. Wake Turbulence",
-      "audio": "/question-bank-assets/audio/listening/fzy/a8b43077e4c7093d1bc3.mp3"
-    },
-    {
       "id": "listening-fzy-116568",
       "taskTitle": "10秒航空英语-199",
       "audioText": "Nickel-cadmium (Ni-Cd) batteries are frequently used in turbo propeller aircraft.\nQ: According to the statement, what type of aircraft is more likely to have a Ni-Cd battery?",
@@ -12456,28 +11923,6 @@
       "correctChoiceIndex": 2,
       "referenceText": "正确答案：C. Half headwind and full gust.",
       "audio": "/question-bank-assets/audio/listening/fzy/5614ede7eec9e1d725c5.mp3"
-    },
-    {
-      "id": "listening-main-274",
-      "taskTitle": "10秒航空英语-202",
-      "audioText": "AFR215, FL310 is not available at the moment, the alternative is FL350 advise.\nQ: Which statement is true?",
-      "audioTextZh": "法航215， 目前310高度层不可用，建议使用350高度层。问：下列表述正确的是？",
-      "studyTier": 2,
-      "choices": [
-        "FL350 is not available.",
-        "FL310 and FL350 are not available.",
-        "FL310 is now available.",
-        "FL350 is now available."
-      ],
-      "choicesZh": [
-        "高度层350不可用。",
-        "高度层310和高度层350都不可用。",
-        "高度层310目前可用。",
-        "高度层350目前可用。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. FL350 is now available.",
-      "audio": "/question-bank-assets/audio/listening/fzy/ea7cf3631625fd7e92c6.mp3"
     },
     {
       "id": "listening-fzy-116576",
@@ -12612,50 +12057,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/e6dd9801d52df5961028.mp3"
     },
     {
-      "id": "listening-main-253",
-      "taskTitle": "10秒航空英语-215",
-      "audioText": "CSN3342, don't park your aircraft here, the nose of the aircraft should be facing away from the hangar.\nQ: What does the speaker mean?",
-      "audioTextZh": "南方3342，不要把飞机停在这儿，飞机机头应当背对着机库。\n问：说话人的意思是？",
-      "studyTier": 1,
-      "choices": [
-        "The aircraft parked in a wrong position.",
-        "The aircraft was outside the ramp.",
-        "The aircraft parked in the hanger.",
-        "The aircraft was in a correct position."
-      ],
-      "choicesZh": [
-        "飞机停的位置不对。",
-        "飞机离开了机坪。",
-        "飞机停在了机库。",
-        "飞机停在了正确的位置。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. The aircraft parked in a wrong position.",
-      "audio": "/question-bank-assets/audio/listening/fzy/327528fc75684aa592aa.mp3"
-    },
-    {
-      "id": "listening-fzy-116621",
-      "taskTitle": "10秒航空英语-216",
-      "audioText": "CCA1 Heavy, cleared to land RW19R, do overtake the RG on your right, confirm you have them in sight.\nQ: Where is the other aircraft?",
-      "audioTextZh": "国航1，重型，可以落地，跑道19右，赶上位于右侧的巴西航空，确认你看到了航空器。\n问：另一个航空器在哪？",
-      "studyTier": 1,
-      "choices": [
-        "Behind and on the right.",
-        "Crossing from the right.",
-        "Opposite direction on the right.",
-        "Ahead and on the right."
-      ],
-      "choicesZh": [
-        "后部右侧。",
-        "从右侧穿越。",
-        "对面右侧。",
-        "前方右侧。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. Ahead and on the right.",
-      "audio": "/question-bank-assets/audio/listening/fzy/b21ee31ecc2f23dee240.mp3"
-    },
-    {
       "id": "listening-main-138",
       "taskTitle": "10秒航空英语-218",
       "audioText": "Mayday Mayday Mayday, BAW141, B747, we have a total electrical failure, request emergency landing, currently 10km west of Taiyuan, passing 7800m, heading 120.\nQ: What problem does BAW141 have?",
@@ -12744,94 +12145,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/ecaeeb9b58224f1e509d.mp3"
     },
     {
-      "id": "listening-main-272",
-      "taskTitle": "10秒航空英语-223",
-      "audioText": "BAW7421, RVR runway 27, touch down 200m, midpoint 300m, stop end 1000m.\nQ: What type of problem will the landing aircraft have?",
-      "audioTextZh": "英航7421，跑道27视距，接地点200米，中间段300米，停止端1000米。\n问：着陆的飞行器遇到了什么问题？",
-      "studyTier": 1,
-      "choices": [
-        "Poor visibility",
-        "Strong wind",
-        "Wind changing from 200 to 300",
-        "Touchdown area is blocked."
-      ],
-      "choicesZh": [
-        "低能见度。",
-        "强风。",
-        "风向从200变成300。",
-        "接地区域堵塞。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Poor visibility",
-      "audio": "/question-bank-assets/audio/listening/fzy/1811c41ec3508fb81d04.mp3"
-    },
-    {
-      "id": "listening-fzy-116661",
-      "taskTitle": "10秒航空英语-224",
-      "audioText": "BAW726, expedite descent to and maintain 3000 feet on QNH1012, join right downwind for runway 21L.\nQ: Which level should the aircraft descend to and maintain?",
-      "audioTextZh": "英航726， 加速下降并保持3000英尺，修正海压1012，加入右侧三边，跑道21左。\n问：飞机应下降和保持的高度是？",
-      "studyTier": 2,
-      "choices": [
-        "3,000 meters on QNH1012",
-        "3,000 feet on QNH1021",
-        "2,000 feet on QNH1021",
-        "3,000 feet on QNH1012"
-      ],
-      "choicesZh": [
-        "3000米，修正海压1012。",
-        "3000英尺，修正海压1021。",
-        "2000英尺，修正海压1021。",
-        "3000英尺，修正海压1012。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. 3,000 feet on QNH1012",
-      "audio": "/question-bank-assets/audio/listening/fzy/7fa016000c8b6d3576b8.mp3"
-    },
-    {
-      "id": "listening-main-1076",
-      "taskTitle": "10秒航空英语-225",
-      "audioText": "CSN302, turn right heading 040, descend to 900m, QFE1002.\nQ: Which of the following is true?",
-      "audioTextZh": "南方302，右转航向040，下降到900米，场压1002。\n问：下列正确的是？",
-      "studyTier": 1,
-      "choices": [
-        "Descend to 900m.",
-        "Heading 030.",
-        "Turn left.",
-        "QFE1012."
-      ],
-      "choicesZh": [
-        "下降到900米。",
-        "航向030。",
-        "左转。",
-        "场压1012。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Descend to 900m.",
-      "audio": "/question-bank-assets/audio/listening/fzy/10b5f81fc2ad56907c44.mp3"
-    },
-    {
-      "id": "listening-fzy-116669",
-      "taskTitle": "10秒航空英语-228",
-      "audioText": "This is your captain speaking, the weather in Berlin is clear with light westerly wind.\nQ: Which one of the following describes the weather in Berlin?",
-      "audioTextZh": "这是机长广播，柏林天气晴朗，伴有轻微西风。\n问：以下哪个是关于柏林天气的描述？",
-      "studyTier": 1,
-      "choices": [
-        "Wind 280/40. Visibility 10km.",
-        "Wind 280/40. Visibility 1km.",
-        "Wind 280/10. Visibility 1km.",
-        "Wind 280/5. Visibility 10km."
-      ],
-      "choicesZh": [
-        "风向280，40米每秒，能见度10公里。",
-        "风向280，40米每秒，能见度1公里。",
-        "风向280，10米每秒，能见度1公里。",
-        "风向280，5米每秒，能见度10公里。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. Wind 280/5. Visibility 10km.",
-      "audio": "/question-bank-assets/audio/listening/fzy/c6845760362e8c246e29.mp3"
-    },
-    {
       "id": "listening-fzy-116674",
       "taskTitle": "10秒航空英语-230",
       "audioText": "UAL889, when clear crossing traffic, turn left heading 050, confirm your level at 1500m.\nQ: When should they make the turn?",
@@ -12874,28 +12187,6 @@
       "correctChoiceIndex": 0,
       "referenceText": "正确答案：A. There is a balloon near the runway.",
       "audio": "/question-bank-assets/audio/listening/fzy/562c627d7c9423a25791.mp3"
-    },
-    {
-      "id": "listening-fzy-116676",
-      "taskTitle": "10秒航空英语-232",
-      "audioText": "CES5632, at time 50 a departing Boeing757 reporting wind shear at 800 feet, airspeed loss 20 knots, strong right drift.\nQ: What danger might the pilot encounter?",
-      "audioTextZh": "东方5632，在50分的时候一架离场的波音757报告在800英尺遇到风切变，速度损失20节，造成很强的右偏航。问：飞行员可能会遭遇什么危险？",
-      "studyTier": 1,
-      "choices": [
-        "Flying 20kts too fast.",
-        "Strong left drift.",
-        "Collision with a B757.",
-        "Sudden loss of airspeed."
-      ],
-      "choicesZh": [
-        "速度20节，速度过快。",
-        "很强的左偏航。",
-        "与波音757相撞。",
-        "速度的突然损失。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. Sudden loss of airspeed.",
-      "audio": "/question-bank-assets/audio/listening/fzy/86753a5de8f4b51f6dce.mp3"
     },
     {
       "id": "listening-fzy-116686",
@@ -13116,28 +12407,6 @@
       "correctChoiceIndex": 0,
       "referenceText": "正确答案：A. Holding position.",
       "audio": "/question-bank-assets/audio/listening/fzy/818863d2529c0a4231a9.mp3"
-    },
-    {
-      "id": "listening-fzy-116750",
-      "taskTitle": "10秒航空英语-253",
-      "audioText": "New York Departure, good morning. CCA818 climbing 3000 feet heading 220 direct to EIWAY.\nQ: What is the current heading for Air China 818?",
-      "audioTextZh": "纽约离场，早上好，国航818，爬升至3000英尺，航向220，直飞EIWAY。\n问：国航818目前的航向是？",
-      "studyTier": 1,
-      "choices": [
-        "320.",
-        "200.",
-        "300.",
-        "220."
-      ],
-      "choicesZh": [
-        "320。",
-        "200。",
-        "300。",
-        "220。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. 220.",
-      "audio": "/question-bank-assets/audio/listening/fzy/8dab0a1e860fcd8e3443.mp3"
     },
     {
       "id": "listening-fzy-116754",

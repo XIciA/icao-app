@@ -1,7 +1,7 @@
 {
   "id": "listening-topic-03",
   "name": "全部题目",
-  "declaredCardCount": 345,
+  "declaredCardCount": 325,
   "cards": [
     {
       "id": "listening-main-074",
@@ -153,27 +153,6 @@
       ]
     },
     {
-      "id": "listening-main-149",
-      "taskTitle": "20s航空英语-15",
-      "audioText": "When the aircraft was at 2000ft, flaps were lowered from 30 to 40. After passing the middle marker, the airspeed was decreased to 140 knots. At two miles from touchdown, rate of descent varied at times only by 100ft. In the end, a perfect landing was made because of these conditions.\nQuestion: What was the condition at 2 miles from touchdown?",
-      "audioTextZh": "飞机在2000英尺时，襟翼从30度放至40度。通过中指点标后，空速减至140节。在距接地点2海里处，下降率的波动一度只有100英尺。最终，在这些条件下完成了一次平稳着陆。\n问题：距接地点2海里时的情况如何？",
-      "referenceText": "正确答案：C. Rate of descent varied within 100 feet.",
-      "audio": "/question-bank-assets/audio/listening/main/149.mp3",
-      "choices": [
-        "Airspeed was approximately 140 knots.",
-        "Flaps were lowered from 30 to 40.",
-        "Rate of descent varied within 100 feet.",
-        "Speed increased to 173 knots."
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "空速约为140节",
-        "襟翼从30放至40",
-        "下降率变化在100英尺以内",
-        "速度增加至173节"
-      ]
-    },
-    {
       "id": "listening-main-150",
       "taskTitle": "20s航空英语-16",
       "audioText": "In serious emergency situations, pilots make a MAYDAY call requiring immediate assistance. In other urgent situations, pilots make a PAN PAN call. PAN means possible assistance needed. This is used when they are in an emergency but the danger does not threaten flight safety now. Pilots may request necessary steps to deal with the problem.\nQuestion: What does the PAN PAN abbreviation P.A.N. mean?",
@@ -279,27 +258,6 @@
       ]
     },
     {
-      "id": "listening-main-209",
-      "taskTitle": "20s航空英语-27",
-      "audioText": "The controller mistakenly tells the Cessna on the ground rather than the one in the air to execute a 360 turn. When he sees the one in the air not following his instructions, he repeats the command. The pilot on the ground taxis in a circle and says, 'I am doing this as far as I can.'\nQuestion: Whom did the controller want to execute a three-sixty turn?",
-      "audioTextZh": "管制员错误地指示地面上的塞斯纳做360度转弯，而这条指令本应发给空中的那架塞斯纳。当他看到空中的飞机没有执行指令时，又重复了一遍。地面上的飞行员则让飞机滑行转了一圈，并说：“我会尽我所能执行。”\n问题：管制员原本想让谁做360度转弯？",
-      "referenceText": "正确答案：D. A Cessna in the air",
-      "audio": "/question-bank-assets/audio/listening/main/209.mp3",
-      "choices": [
-        "A helicopter in the air.",
-        "A helicopter on the ground.",
-        "A Cessna on the ground.",
-        "A Cessna in the air"
-      ],
-      "correctChoiceIndex": 3,
-      "choicesZh": [
-        "一架空中的直升机",
-        "一架地面的直升机",
-        "一架地面的塞斯纳",
-        "一架空中的塞斯纳"
-      ]
-    },
-    {
       "id": "listening-main-228",
       "taskTitle": "20s航空英语-30",
       "audioText": "Precision approach runway CAT IIIA is intended for operations down to an RVR of the order of 200 m, with no decision height being applicable, using visual aids during the final phase of landing. CAT IIIB is intended down to an RVR of the order of 50 m, with no decision height being applicable, using visual aids for taxiing.\nQuestion: What is the minimum standard for CAT IIIA operation?",
@@ -382,27 +340,6 @@
         "9,500米",
         "11,500米",
         "12,500米"
-      ]
-    },
-    {
-      "id": "listening-main-288",
-      "taskTitle": "20s航空英语-41",
-      "audioText": "Obstacle clearance is based on aircraft climbing at 200ft per nm, crossing the end of the runway at 35ft AGL, and climbing to 400ft above airport elevation before turning unless otherwise specified by the procedure.\nQuestion: What is the limitation of obstacle clearance when the airplane is crossing the end of the runway?",
-      "audioTextZh": "越障标准以航空器保持每海里200英尺的爬升梯度、以高于地面35英尺的高度飞越跑道末端，并在转弯前爬升至机场标高以上400英尺为基础，除非程序另有规定。\n问题：飞机飞越跑道末端时的越障高度限制是多少？",
-      "referenceText": "正确答案：D. 35 feet",
-      "audio": "/question-bank-assets/audio/listening/main/288.mp3",
-      "choices": [
-        "400 feet",
-        "425 feet",
-        "200 feet",
-        "35 feet"
-      ],
-      "correctChoiceIndex": 3,
-      "choicesZh": [
-        "400英尺",
-        "425英尺",
-        "200英尺",
-        "35英尺"
       ]
     },
     {
@@ -533,27 +470,6 @@
       ]
     },
     {
-      "id": "listening-main-369",
-      "taskTitle": "20s航空英语-54",
-      "audioText": "M1: Captain, do you think maintenance check is one of the most important preflight activities? M2: Yes, it is. It will show if the airplane's condition is acceptable for flight. M1: I agree with you. The aircraft maintenance engineers should be licensed by the aviation authority to check the engine, airframe, and systems.\nQuestion: What should maintenance engineers do from this conversation?",
-      "audioTextZh": "男1：机长，你认为维修检查是最重要的飞行前活动之一吗？\n男2：是的。它可以确认飞机状态是否适合飞行。\n男1：我同意。航空维修工程师应取得航空主管部门颁发的执照，负责检查发动机、机体和各系统。\n问题：根据这段对话，维修工程师应该做什么？",
-      "referenceText": "正确答案：A. Inspect the engine, airframe, and systems",
-      "audio": "/question-bank-assets/audio/listening/main/369.mp3",
-      "choices": [
-        "Inspect the engine, airframe, and systems",
-        "Consult the engine, airframe, and systems",
-        "Replace the engine, airframe, and systems",
-        "Release the engine, airframe, and systems"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "检查发动机、机体和各系统",
-        "查阅发动机、机体和各系统",
-        "更换发动机、机体和各系统",
-        "放行发动机、机体和各系统"
-      ]
-    },
-    {
       "id": "listening-main-370",
       "taskTitle": "20s航空英语-55",
       "audioText": "The FT does not include levels within 1500 ft of the station elevation, and temperatures are not forecast for the 3000-foot level or for a level within 2500 ft of the station elevation. At Denver, for example, the forecast for the lower two levels is omitted because the station elevation is over 5000 ft.\nQuestion: Which of the following is the elevation of Denver Airport?",
@@ -575,27 +491,6 @@
       ]
     },
     {
-      "id": "listening-main-376",
-      "taskTitle": "20s航空英语-56",
-      "audioText": "P: PAN PAN, PAN PAN, PAN PAN, CCA 320, B747. We have shut down No. 2 engine due to excessive vibration. Heading now 120 degrees, altitude 600 meters, current position 20 miles east of HJU. Request return to your airport for immediate landing.\nQuestion: What type of aircraft was CCA 320?",
-      "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，CCA 320，机型B747。由于振动过大，我们已经关闭2号发动机；当前航向120度、高度600米，位置在HJU以东20海里。请求返回你方机场立即着陆。\n问题：CCA 320是什么机型？",
-      "referenceText": "正确答案：B. B747",
-      "audio": "/question-bank-assets/audio/listening/main/376.mp3",
-      "choices": [
-        "Airbus 340",
-        "B747",
-        "B737",
-        "Airbus 320"
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "空客A340",
-        "波音747",
-        "波音737",
-        "空客A320"
-      ]
-    },
-    {
       "id": "listening-main-388",
       "taskTitle": "20s航空英语-58",
       "audioText": "A runway strip including a precision approach runway shall practically extend at least 150 meters from the runway centerline for code number 3 or 4, and at least 75 meters for code number 1 or 2.\nQuestion: How does the runway strip of a precision runway extend from the runway centerline?",
@@ -614,27 +509,6 @@
         "代码数字为3或4时至少150米",
         "代码数字为1或2时最多75米",
         "代码数字为3或4时至少75米"
-      ]
-    },
-    {
-      "id": "listening-main-389",
-      "taskTitle": "20s航空英语-59",
-      "audioText": "When the aircraft was at 2000ft, flaps were lowered from 30 to 40. After passing the middle marker, the airspeed was decreased to 140 knots. At two miles from touchdown, rate of descent varied at one time by only 100ft. In the end, a perfect landing was made because of these conditions.\nQuestion: What was the condition at 2 miles from touchdown?",
-      "audioTextZh": "飞机在2,000英尺时，襟翼从30度放至40度。通过中指点标后，空速降至140节。在距接地点2海里处，下降率一度仅变化了100英尺。最终，飞机在这些条件下完成了一次完美着陆。\n问题：飞机距接地点2海里时的状态如何？",
-      "referenceText": "正确答案：C. Rate of descent varied within 100 feet.",
-      "audio": "/question-bank-assets/audio/listening/main/389.mp3",
-      "choices": [
-        "Airspeed was approximately 140 knots.",
-        "Flaps were lowered from 30 to 40.",
-        "Rate of descent varied within 100 feet.",
-        "Speed increased to 173 knots."
-      ],
-      "correctChoiceIndex": 2,
-      "choicesZh": [
-        "空速约为140节",
-        "襟翼从30放至40",
-        "下降率变化在100英尺以内",
-        "速度增加至173节"
       ]
     },
     {
@@ -1683,48 +1557,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/b5e3967aef0cc0a8743f.mp3"
     },
     {
-      "id": "listening-main-685",
-      "taskTitle": "20s航空英语-111",
-      "audioText": "P1: John, do you know there is a word that ATC will use to inform the pilot changed the last clearance and the new clearance supersede the preceding clearance.\nP2: Yes, yes, there is.\nQuestion: What word should be used in this situation?",
-      "audioTextZh": "P1: John，你知道ATC会使用哪个词来通知飞行员，上一项许可已经更改，新许可取代之前的许可吗？\nP2: 是的，是的，有这样一个词。\n问题：在这种情况下应当使用哪个词？",
-      "referenceText": "正确答案：B. Reclear",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-04-q03.mp3",
-      "choices": [
-        "Disregard",
-        "Reclear",
-        "Correction",
-        "Say again"
-      ],
-      "correctChoiceIndex": 1,
-      "choicesZh": [
-        "不予考虑",
-        "重新许可",
-        "更正",
-        "再说一遍"
-      ]
-    },
-    {
-      "id": "listening-main-690",
-      "taskTitle": "20s航空英语-113",
-      "audioText": "M1: The wear of carbon brakes is related to more numbers of application and pressure applications.\nM2: Yes, the proper use of carbon brakes will... of them.\nQuestion: What is the main idea of the conversation?",
-      "audioTextZh": "M1: 碳刹车的磨损与使用次数增多及施加压力有关。\nM2: 是的，正确使用碳刹车会……\n问题：这段对话的主要内容是什么？",
-      "referenceText": "正确答案：A. More brakes more wear.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-05-q13.mp3",
-      "choices": [
-        "More brakes more wear.",
-        "More forces, more wear.",
-        "More wind, more wear.",
-        "More pressure, more wear"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "刹车越多，磨损越大",
-        "受力越大，磨损越大",
-        "风越大，磨损越大",
-        "压力越大，磨损越大"
-      ]
-    },
-    {
       "id": "listening-main-696",
       "taskTitle": "20s航空英语-114",
       "audioText": "The clear ice was found between 0 degree and minus 10 degrees, mixed and clear ice between minus 10 degree to minus 15 degree and rime ice between minus 15 degree and minus 20 degree southeast.\nQuestion: What type of ice is usually found between 0 degrees to minus 10 degrees?",
@@ -2436,27 +2268,6 @@
         "航空器爬升至更高高度时，增压系统允许客舱压力下降",
         "增压系统调节客舱内部压力，模拟较低高度环境以提高乘客舒适度",
         "增压系统只在航空器达到30,000英尺或更高时启用"
-      ]
-    },
-    {
-      "id": "listening-main-925",
-      "taskTitle": "20s航空英语-150",
-      "audioText": "A wingtip vortex is found during takeoff, cruising and landing. When the aircraft fly with ground effect, the ground interferes with the wingtip vortex, which reduces the drag. When the aircraft is flying very near the ground, the vortex strength is much less, therefore, there is a large reduction of drag.\nQuestion: What's the main topic of the statement?",
-      "audioTextZh": "起飞、巡航和着陆期间都会产生翼尖涡。航空器在地面效应中飞行时，地面会干扰翼尖涡，从而减小阻力。航空器非常接近地面时，涡流强度小得多，因此阻力会大幅减小。\n问题：这段陈述的主题是什么？",
-      "referenceText": "正确答案：A. Vortex.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q01.mp3",
-      "choices": [
-        "Vortex.",
-        "Takeoff.",
-        "Cruise.",
-        "Wing Tips."
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "涡流",
-        "起飞",
-        "巡航",
-        "翼尖"
       ]
     },
     {
@@ -3552,27 +3363,6 @@
       ]
     },
     {
-      "id": "listening-main-1010",
-      "taskTitle": "20s航空英语-206",
-      "audioText": "During the instrument flight, most of your scan time will spent on the attitude indicator, you will realize the instrument flying is much more precise than your visual flying, this is because now you pay more attention to the performance of the instrument when you used to spend time looking out of aircraft.\nQuestion: What is the speaker mainly talking about?",
-      "audioTextZh": "仪表飞行期间，大部分仪表扫描时间会用于姿态指示器。你会发现仪表飞行比目视飞行精确得多，因为你现在更加关注仪表所显示的飞行性能，而过去则把时间用于观察航空器外部。\n问题：说话人主要在讲什么？",
-      "referenceText": "正确答案：A. Attitude indicator.",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q19.mp3",
-      "choices": [
-        "Attitude indicator.",
-        "Instrument performance.",
-        "Visual flying.",
-        "Instrument flying."
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "姿态指示器",
-        "仪表性能",
-        "目视飞行",
-        "仪表飞行"
-      ]
-    },
-    {
       "id": "listening-main-1011",
       "taskTitle": "20s航空英语-207",
       "audioText": "A British Airway B737 skidded off the runway at De Gol airport in Paris, on September 16, 2006 when landing in bad weather. There was no fatality, then passengers and two crew members were injured. The plane received minor structural damage.\nQuestion: How many people died in the accident in Paris?",
@@ -3759,27 +3549,6 @@
         "阴天云层",
         "无云",
         "疏云层"
-      ]
-    },
-    {
-      "id": "listening-main-1025",
-      "taskTitle": "20s航空英语-220",
-      "audioText": "The passenger of flight from Shanghai to Beijing were angry with the airline, about 20 minutes after takeoff, they had to turn back because air temperature was very hot, the cabin crew had known the air conditioning problem even before takeoff and informed the captain but he decided to take off anyway. After we returned to Beijing, the airline didn't apologize and offer compensation for the delay, which was more than 3 hours delay.\nQuestion: When was the captain informed of the problem?",
-      "audioTextZh": "从上海飞往北京的航班乘客对航空公司非常生气。起飞约20分钟后，他们因客舱温度很高而不得不返航。客舱机组甚至在起飞前就知道空调存在问题，并通知了机长，但机长仍决定起飞。我们返回北京后，航空公司既未道歉，也未对超过3小时的延误提供赔偿。\n问题：机长什么时候获知这一问题？",
-      "referenceText": "正确答案：A. Before takeoff",
-      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q18.mp3",
-      "choices": [
-        "Before takeoff",
-        "About 20 minutes after takeoff",
-        "After the delay",
-        "After returning to the airport"
-      ],
-      "correctChoiceIndex": 0,
-      "choicesZh": [
-        "起飞前",
-        "起飞后约20分钟",
-        "延误后",
-        "返回机场后"
       ]
     },
     {
@@ -5715,28 +5484,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/30b4254f8adfaebc4682.mp3"
     },
     {
-      "id": "listening-fzy-110826",
-      "taskTitle": "20秒航空英语-139",
-      "audioText": "Heathrow information C, clouds scattered at 3000 feet, broken at 5000 feet, wind 210 at 8 knots, visibility 2 miles in light rain, report established on ILS runway 23.\nQ: What is the cloud cover at 5000 ft?",
-      "audioTextZh": "希斯罗机场通播C，散云3000英尺，多云5000英尺，风向210，8节，小雨中能见度2海里，建立盲降进近跑道23后报。\n问：5000英尺处的云是什么云？",
-      "studyTier": 1,
-      "choices": [
-        "Broken layer.",
-        "Overcast layer.",
-        "No clouds.",
-        "Scattered layer."
-      ],
-      "choicesZh": [
-        "多云云层。",
-        "满天云云层。",
-        "无云。",
-        "散云云层。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Broken layer.",
-      "audio": "/question-bank-assets/audio/listening/fzy/5e196ade8748b0aea382.mp3"
-    },
-    {
       "id": "listening-fzy-110827",
       "taskTitle": "20秒航空英语-140",
       "audioText": "In the early days flight, pilot would find their way by following landmarks such as rivers, streams or railroads. This method is called pilotage. Today fly by pilotage is normally accomplished by comparing symbols on aeronautical charts with the corresponding features on the earth surface.\nQ: Which of the following can best explain pilotage flight?",
@@ -5759,28 +5506,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/3e1fae7aeeb76136f98d.mp3"
     },
     {
-      "id": "listening-fzy-110828",
-      "taskTitle": "20秒航空英语-141",
-      "audioText": "Good morning ladies and gentlemen, from the flight deck. Welcome aboard Transworld airlines flight 455 to St louis. We have leveled off and cruising at 35000 feet. We are turning off the fasten seat belts sign now, but for your safety, please keep your seat belts fastened when in your seats.\nQ: Which of the following is flight 455 now doing?",
-      "audioTextZh": "女士们，先生们，这里是机长广播，欢迎乘坐环球航空455航班前往圣路易斯。我们已经平飞，巡航高度35000英尺。现在，我们关闭了安全带指示灯，但是，为了你的安全，请您在就坐期间依然系好安全带。\n问：环球航空455航班现在在干吗？",
-      "studyTier": 1,
-      "choices": [
-        "Cruising.",
-        "Landing.",
-        "Descending.",
-        "Climbing."
-      ],
-      "choicesZh": [
-        "巡航。",
-        "着陆。",
-        "下降。",
-        "爬升。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Cruising.",
-      "audio": "/question-bank-assets/audio/listening/fzy/d2d06a91fd7471e2c8ea.mp3"
-    },
-    {
       "id": "listening-fzy-110831",
       "taskTitle": "20秒航空英语-149",
       "audioText": "Some kinds of weather can severely degrade the performance of an aircraft such as turbulence and mountain waves. Icing conditions can also be very dangerous. Pilots need to know that freezing rain, clouds or drizzle can cause ice to build up on the critical surfaces of an aircraft.\nQ: What kind of weather causes severe icing conditions?",
@@ -5801,28 +5526,6 @@
       "correctChoiceIndex": 3,
       "referenceText": "正确答案：D. freezing rain or drizzle.",
       "audio": "/question-bank-assets/audio/listening/fzy/c52d8fbb9342f18c7134.mp3"
-    },
-    {
-      "id": "listening-fzy-110832",
-      "taskTitle": "20秒航空英语-150",
-      "audioText": "Passengers on a flight to Shanghai from Beijing are angry at the airline. About 20 minutes after takeoff, they had to turn back because the cabin temperature was very hot. The cabin crew had doubted the air conditioning problem even before they take off and had informed the captain but he decided to take off anyway. After returning to Beijing, the airline didn’t apologize or offer compensation for the delay which was more than 3 hours.\nQ: When was the captain informed of the problem?",
-      "audioTextZh": "从北京前往上海航班上的乘客对航空公司很生气。起飞后约20分钟，飞机由于客舱温度过热而返航。乘务员早在起飞前就怀疑是空调系统出了问题，并上报给了机长，但是，机长依旧决定起飞。返航到北京后，航空公司没有任何道歉或者为本次延误提供补偿，即便延误超过了3小时。\n问：机长是什么时候得知飞机问题的？",
-      "studyTier": 1,
-      "choices": [
-        "before takeoff.",
-        "about 20 minutes after takeoff.",
-        "after the delay.",
-        "after returning to the airport."
-      ],
-      "choicesZh": [
-        "起飞前。",
-        "起飞后约20分钟。",
-        "延误后。",
-        "返航后。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. before takeoff.",
-      "audio": "/question-bank-assets/audio/listening/fzy/e66543fb8538cb42584a.mp3"
     },
     {
       "id": "listening-fzy-110834",
@@ -6023,28 +5726,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/1b594bb2783eca7d0a90.mp3"
     },
     {
-      "id": "listening-fzy-140523",
-      "taskTitle": "20秒航空英语-165",
-      "audioText": "Good morning, ladies and gentlemen, from the flight deck, welcome aboard EVA airline flight 455 to Hongkong, we have leveled off and cruising at 35000ft, we are turning off the “fasten the seatbelt” signs now but for your safety, please make your seatbelts while in your seat.\nQ: Which of the following is flight 455 now doing?",
-      "audioTextZh": "女士们，先生们，早上好，这里是机长广播，欢迎乘坐长荣航空455航班前往香港。我们已经平飞，巡航高度35000英尺。现在，我们关闭了安全带指示灯，但是，为了你的安全，请您在就坐期间依然系好安全带。\n问：455航班现在在干吗？",
-      "studyTier": 2,
-      "choices": [
-        "Cruising.",
-        "Landing.",
-        "Descending.",
-        "Climbing."
-      ],
-      "choicesZh": [
-        "巡航。",
-        "着陆。",
-        "下降。",
-        "爬升。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Cruising.",
-      "audio": "/question-bank-assets/audio/listening/fzy/940134f8a542cf874ef1.mp3"
-    },
-    {
       "id": "listening-main-041",
       "taskTitle": "20秒航空英语-97",
       "audioText": "Ground, CES5056, we found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the loading sheet. Would you recheck it and correct the mistakes?\nQ: What do you learn from the statement?",
@@ -6197,28 +5878,6 @@
       "correctChoiceIndex": 1,
       "referenceText": "正确答案：B. Visibility is reducing to 3000m overcast.",
       "audio": "/question-bank-assets/audio/listening/fzy/8e277a2de36b620aa4ad.mp3"
-    },
-    {
-      "id": "listening-fzy-116580",
-      "taskTitle": "20秒航空英语-104",
-      "audioText": "The localizer transmitter is situated on extended runway centerline beyond the suburban. The localizer is being normally defined the centerline of runway and extends along the approach path for 25 miles with 40 ILS channels within the frequency range of 108.10 to 111.95 MHZ (megahertz) to provide pilots with course guidance.\nQ: What is localizer used for?",
-      "audioTextZh": "航向台定位信标发射机安装在跑道中心延长线以外一定距离内。一般而言，定位信标被认为是跑道的中心线，并沿着进近路线延伸25海里，在载波频率108.10到111.95MHZ范围内，包含40个ILS频道，为飞行员提供航路指引。\n问：定位信标被用来做什么？",
-      "studyTier": 1,
-      "choices": [
-        "Horizontal guidance.",
-        "Both longitudinal and lateral guidance.",
-        "Vertical guidance.",
-        "Longitudinal guidance."
-      ],
-      "choicesZh": [
-        "水平引导。",
-        "纵向和横向引导。",
-        "垂直引导。",
-        "纵向引导。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Horizontal guidance.",
-      "audio": "/question-bank-assets/audio/listening/fzy/9ab67f0f64176fcbc94a.mp3"
     },
     {
       "id": "listening-fzy-116581",
@@ -6485,28 +6144,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/1f881a934a25741eeb0c.mp3"
     },
     {
-      "id": "listening-fzy-116696",
-      "taskTitle": "20秒航空英语-133",
-      "audioText": "The localizer transmitter is situated on extended runway centerline beyond the start ben. The localizer is being normally defined the centerline of runway and extends along the approach path for 25 miles with 40 ILS channels within the frequency range of 108.10 to 111.95 megahertz to provide pilots with course guidance.\nQ: What is localizer used for?",
-      "audioTextZh": "航向台定位信标发射机安装在跑道中心延长线以外一定距离内。一般而言，定位信标被认为是跑道的中心线，并沿着进近路线延伸25海里，在载波频率108.10到111.95MHZ范围内，包含40个ILS频道，为飞行员提供航路指引。\n问：定位信标被用来做什么？",
-      "studyTier": 1,
-      "choices": [
-        "Horizontal guidance.",
-        "Vertical guidance.",
-        "Longitudinal guidance.",
-        "Both longitudinal and lateral guidance."
-      ],
-      "choicesZh": [
-        "水平引导。",
-        "垂直引导。",
-        "纵向引导。",
-        "纵向引导和横向引导。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Horizontal guidance.",
-      "audio": "/question-bank-assets/audio/listening/fzy/74e54f60f9123946d77e.mp3"
-    },
-    {
       "id": "listening-fzy-116709",
       "taskTitle": "20秒航空英语-135",
       "audioText": "Required runway length for takeoff and landing might vary considerably with changes of outside temperature, runway surface, aircraft load and field elevation.\nQ: According to the statement, which of the following will NOT affect the required runway length for takeoff and landing?",
@@ -6571,28 +6208,6 @@
       "correctChoiceIndex": 3,
       "referenceText": "正确答案：D. The taxiways were blocked.",
       "audio": "/question-bank-assets/audio/listening/fzy/ae99c935d66d3810c657.mp3"
-    },
-    {
-      "id": "listening-fzy-116729",
-      "taskTitle": "20秒航空英语-143",
-      "audioText": "Most radios current manufactures have either 360 or 720 channel capacity. A 360-channel radio uses 50khz spacing between the channels such as 118.05 and 118.10. A 720-channel radio double the frequency available by using 25khz spacing.\nQ: What spacing does a 360-channel radio have between channels?",
-      "audioTextZh": "大部分的无线电制造商有360或720的频道容量。一个360频道容量的无线电使用50千赫作为频道与频道的间隔，比如118.05和118.10；一个720频道容量的无线电使用25千赫作为间隔，因此使得可用频道翻倍。\n问：一个360频道容量的无线电使用的频道与频道之间的间隔是多少？",
-      "studyTier": 1,
-      "choices": [
-        "25KHz channel spacing",
-        "50KHz channel spacing",
-        "20KHz channel spacing",
-        "15KHz channel spacing"
-      ],
-      "choicesZh": [
-        "25千赫间隔。",
-        "50千赫间隔。",
-        "20千赫间隔。",
-        "15千赫间隔。"
-      ],
-      "correctChoiceIndex": 1,
-      "referenceText": "正确答案：B. 50KHz channel spacing",
-      "audio": "/question-bank-assets/audio/listening/fzy/b7fe1644ec9df0e9b062.mp3"
     },
     {
       "id": "listening-fzy-110627",
@@ -6683,28 +6298,6 @@
       "audio": "/question-bank-assets/audio/listening/fzy/86942f363a85cf2a95ee.mp3"
     },
     {
-      "id": "listening-fzy-116760",
-      "taskTitle": "20秒航空英语-152",
-      "audioText": "An aircraft has just taken off, the crew is expecting to turn right and proceed to waypoint YB which is the exit point on the SID. As they pass 600m, Departure Control instructs them to turn right and proceed direct to VINI, a waypoint that the crew doesn’t understand or recognize, so the crew decide to contact Departure Control.\nQ: Why does the crew need to contact Departure Control?",
-      "audioTextZh": "飞机刚刚起飞，机组计划右转直飞航路点YB，这是标准仪表离场程序中的出口点。当他们过600米后，离场管制指示他们右转直飞VINI点，机组对这个点并不理解和清楚，于是，机组决定联系离场管制。\n问：机组成员为什么需要联系离场管制？",
-      "studyTier": 2,
-      "choices": [
-        "Waypoint VINI is unrecognized.",
-        "Proceed to initial waypoint YB.",
-        "VINI comes before YB.",
-        "Turn right upon passing 600m."
-      ],
-      "choicesZh": [
-        "不熟悉VINI航路点。",
-        "直飞初始航路点YB。",
-        "VINI点在YB点的前面。",
-        "过600米后右转。"
-      ],
-      "correctChoiceIndex": 0,
-      "referenceText": "正确答案：A. Waypoint VINI is unrecognized.",
-      "audio": "/question-bank-assets/audio/listening/fzy/2e4a497efc5558c714db.mp3"
-    },
-    {
       "id": "listening-main-126",
       "taskTitle": "20秒航空英语-153",
       "audioText": "My best friend used to fly for Thai airways, he lived there for more than 10 years until he was offered a much better job with Air France, now he is trying to decide whether he should take an even better job with Air China or stay in France, one problem is that he doesn’t speak Chinese.\nQ: Which statement is correct?",
@@ -6791,28 +6384,6 @@
       "correctChoiceIndex": 2,
       "referenceText": "正确答案：C. Reduce mental processing.",
       "audio": "/question-bank-assets/audio/listening/fzy/59d51eb102c101825e58.mp3"
-    },
-    {
-      "id": "listening-fzy-116826",
-      "taskTitle": "20秒航空英语-159",
-      "audioText": "Panpan Panpan Panpan, NW401 declaring an emergency, we have to shut down No. 2 engine due to bird strike and engine lost power, request return for immediate landing. Current position 10 miles south of YHU\nQ: Why was the engine shut down?",
-      "audioTextZh": "Panpan，Panpan，Panpan，西北航空401，宣布紧急状态，由于鸟击，飞机失去动力，我们已将二号发动机关闭，请求返航并立即着陆。目前位于YHU以南10海里。\n问：为什么关闭发动机？",
-      "studyTier": 2,
-      "choices": [
-        "Because of an engine fire.",
-        "Because of excessive turbine temperature.",
-        "Because of a fuel leak.",
-        "Because of bird ingestion."
-      ],
-      "choicesZh": [
-        "因为发动机起火。",
-        "因为涡轮温度过高。",
-        "因为燃油泄漏。",
-        "因为发动机吸入鸟。"
-      ],
-      "correctChoiceIndex": 3,
-      "referenceText": "正确答案：D. Because of bird ingestion.",
-      "audio": "/question-bank-assets/audio/listening/fzy/66f7cc4321fc982e094c.mp3"
     },
     {
       "id": "listening-fzy-219601",
