@@ -40,7 +40,7 @@ try {
         payload: { documentKey: 'annotations', document: clean, version: row.version + 1, updatedAt: now } });
     }
     const cleanRecords = new Map(records.map(row => [row.client_record_id, cleanJson(sanitizeRetiredLearningRecord(row.payload))]));
-    const deletedSessions = new Set(records.filter(row => cleanRecords.get(row.client_record_id).deleted === true && row.payload.recordType !== 'ai_result').map(row => row.payload.sessionId).filter(Boolean));
+    const deletedSessions = new Set(records.filter(row => row.payload.deleted !== true && cleanRecords.get(row.client_record_id).deleted === true && row.payload.recordType !== 'ai_result').map(row => row.payload.sessionId).filter(Boolean));
     for (const row of records) {
       if (row.payload.recordType === 'ai_result' && deletedSessions.has(row.payload.sessionId)) cleanRecords.set(row.client_record_id, cleanJson({ deleted: true, recordType: 'ai_result', sessionId: row.payload.sessionId }));
       const clean = cleanRecords.get(row.client_record_id);

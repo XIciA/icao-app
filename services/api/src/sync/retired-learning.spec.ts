@@ -29,3 +29,7 @@ it('cleans annotations and old mutation responses without deleting shared tag de
   expect(sanitizeRetiredSyncPayload('card_state', { bankId: 'listening', cardId: 'listening-main-1010', state: { completed: true, note: 'secret' }, updatedAt: 'date', version: 999 })).toMatchObject({ version: 999, state: emptyRetiredState('date') });
   expect(sanitizeRetiredSyncPayload('learning_record', { recordId: 'exam', record: { recordType: 'mock_exam', studyReview: review } })).toMatchObject({ deleted: true, record: { deleted: true } });
 });
+it('leaves existing unrelated deletion markers unchanged', () => {
+  const value = { deleted: true, recordType: 'session', sessionId: 'unrelated', reason: 'user_deleted' };
+  expect(sanitizeRetiredLearningRecord(value)).toBe(value);
+});

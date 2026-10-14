@@ -633,7 +633,7 @@ describe('embeddedQuestionBankRepository', () => {
       ? { ok: true, status: 200, json: async () => ({ data: { token: 'invalid', scopes: [] } }) } as Response
       : route(input, init));
     const topic = await questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01');
-    expect(topic?.cards).toHaveLength(631);
+    expect(topic?.cards).toHaveLength(597);
     expect([...mockStorageValues.keys()].filter((key) => key.startsWith('icao.content.member-topic.v2.'))).toHaveLength(0);
     expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
   });

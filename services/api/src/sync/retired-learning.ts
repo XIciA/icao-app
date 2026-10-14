@@ -17,7 +17,7 @@ const retiredItem = (value: unknown) => {
 };
 export function sanitizeRetiredLearningRecord(value: Value): Value {
   const tombstone = () => ({ deleted: true, recordType: value.recordType, sessionId: value.sessionId });
-  if (value.deleted === true) return tombstone();
+  if (value.deleted === true) return value;
   if (isRetiredCard(value.bankId, value.cardId)) return tombstone();
   let result = value;
   for (const key of ['studyReview', 'vercelStudyReview', 'vercelListeningReview']) {
