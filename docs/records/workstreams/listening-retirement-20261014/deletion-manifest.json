@@ -1,0 +1,891 @@
+{
+  "schemaVersion": 1,
+  "baseline": "origin/main",
+  "baselineCount": 1612,
+  "removedCurrent": 110,
+  "remaining": 1502,
+  "cards": [
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-fzy-110743",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-007",
+      "similarity": 0.9596412556053812
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-110826",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1023",
+      "similarity": 0.9447236180904522
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-110828",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1021",
+      "similarity": 0.9272727272727272
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-110832",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-346",
+      "similarity": 0.9333333333333333
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-110954",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-003",
+      "similarity": 0.9615384615384616
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-110960",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-016",
+      "similarity": 0.966804979253112
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-110962",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-018",
+      "similarity": 0.9800664451827242
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116334",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116674",
+      "similarity": 0.9572649572649573
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116336",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116567",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110596",
+      "similarity": 0.9409090909090909
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-116580",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110817",
+      "similarity": 0.9396551724137931
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116621",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116325",
+      "similarity": 0.9921259842519685
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116625",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116338",
+      "similarity": 0.9457364341085271
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116633",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110810",
+      "similarity": 0.9638157894736842
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116647",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110925",
+      "similarity": 0.9760956175298805
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116655",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116339",
+      "similarity": 0.9633911368015414
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116661",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116319",
+      "similarity": 0.9612903225806452
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116669",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116332",
+      "similarity": 0.9315068493150684
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-fzy-116673",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116321",
+      "similarity": 0.9461756373937678
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116676",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116335",
+      "similarity": 0.9773462783171522
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-fzy-116682",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110822",
+      "similarity": 0.9571106094808126
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-116696",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110817",
+      "similarity": 0.9523809523809523
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116704",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110927",
+      "similarity": 0.9813432835820896
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-fzy-116726",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-010",
+      "similarity": 0.9310344827586207
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-116729",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110821",
+      "similarity": 0.9587628865979382
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116731",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110943",
+      "similarity": 0.9260143198090692
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116732",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110944",
+      "similarity": 0.933579335793358
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-fzy-116746",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110632",
+      "similarity": 0.9502982107355865
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-fzy-116750",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110635",
+      "similarity": 0.9416342412451362
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-116760",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110834",
+      "similarity": 0.9869451697127938
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-116826",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110808",
+      "similarity": 0.9956521739130435
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-fzy-140523",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1021",
+      "similarity": 0.9501557632398754
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-035",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110968",
+      "similarity": 0.9824561403508771
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-036",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110969",
+      "similarity": 0.9771309771309772
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-043",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116529",
+      "similarity": 0.9797979797979798
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-059",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-013",
+      "similarity": 0.9606837606837607
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-080",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-018",
+      "similarity": 0.9401993355481728
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-1010",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-1025",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-346",
+      "similarity": 0.9600818833162743
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-1075",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116318",
+      "similarity": 0.9583333333333334
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-1076",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116320",
+      "similarity": 0.9545454545454546
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-1082",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116622",
+      "similarity": 0.9576547231270358
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-1094",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116674",
+      "similarity": 0.9218106995884774
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-1118",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-1166",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-110807",
+      "similarity": 0.9492273730684326
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-1183",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116762",
+      "similarity": 0.9333333333333333
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-1184",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116340",
+      "similarity": 0.9702602230483272
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-1199",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116753",
+      "similarity": 0.9402985074626866
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-1203",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-038",
+      "similarity": 0.9443447037701975
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-121",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116744",
+      "similarity": 0.9319371727748691
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-137",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1151",
+      "similarity": 0.9906542056074766
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-140",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-149",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1033",
+      "similarity": 0.9940298507462687
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-151",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1053",
+      "similarity": 0.9798994974874372
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-174",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116559",
+      "similarity": 0.9271523178807947
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-197",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1165",
+      "similarity": 0.9673202614379085
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-201",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-226969",
+      "similarity": 0.9562982005141388
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-209",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1012",
+      "similarity": 0.9319213313161876
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-213",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1060",
+      "similarity": 0.9711934156378601
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-217",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1168",
+      "similarity": 0.9580152671755725
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-236",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1170",
+      "similarity": 0.9338374291115312
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-240",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1172",
+      "similarity": 0.9888268156424581
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-242",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116547",
+      "similarity": 0.9242424242424242
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-253",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116324",
+      "similarity": 0.9844961240310077
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-272",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116330",
+      "similarity": 0.99581589958159
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-273",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1063",
+      "similarity": 0.9886363636363636
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-274",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-115189",
+      "similarity": 0.9900990099009901
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-277",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1174",
+      "similarity": 0.9945553539019963
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-285",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-226981",
+      "similarity": 0.9278350515463918
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-288",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1017",
+      "similarity": 0.9624796084828712
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-291",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1064",
+      "similarity": 0.9972144846796658
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-293",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1066",
+      "similarity": 0.9546279491833031
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-312",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1070",
+      "similarity": 0.9826589595375722
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-329",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1023",
+      "similarity": 0.9433962264150944
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-340",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1190",
+      "similarity": 0.9976689976689976
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-353",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1081",
+      "similarity": 0.9731182795698925
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-356",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1191",
+      "similarity": 0.9886914378029079
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-359",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1194",
+      "similarity": 0.9735234215885947
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-360",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1195",
+      "similarity": 0.9967637540453075
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-368",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1028",
+      "similarity": 0.9440993788819876
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-369",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1029",
+      "similarity": 0.9907773386034255
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-376",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1196",
+      "similarity": 0.9545454545454546
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-389",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1033",
+      "similarity": 0.9806835066864784
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-396",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116564",
+      "similarity": 0.9265175718849841
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-397",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1202",
+      "similarity": 0.9782608695652174
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-398",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-038",
+      "similarity": 0.9392857142857143
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-399",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1204",
+      "similarity": 0.9532710280373832
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-400",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1205",
+      "similarity": 0.953405017921147
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-403",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-116709",
+      "similarity": 0.946236559139785
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-409",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-414",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1096",
+      "similarity": 0.9873417721518988
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-418",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1207",
+      "similarity": 0.9837587006960556
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-434",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1102",
+      "similarity": 0.9864253393665159
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-436",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1104",
+      "similarity": 0.9841269841269841
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-02",
+      "cardId": "listening-main-453",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-1211",
+      "similarity": 0.9963235294117647
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-04",
+      "cardId": "listening-main-490",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-092",
+      "similarity": 0.9336734693877551
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-634",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-142",
+      "similarity": 0.9508928571428571
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-685",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-165",
+      "similarity": 0.9361702127659575
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-687",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-184",
+      "similarity": 0.9330024813895782
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-688",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-185",
+      "similarity": 0.9612756264236902
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-690",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-fzy-226981",
+      "similarity": 0.9794871794871794
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-692",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-304",
+      "similarity": 0.9235127478753541
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-694",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-321",
+      "similarity": 0.9603729603729604
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-699",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-363",
+      "similarity": 0.9667673716012085
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-701",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-382",
+      "similarity": 0.9560439560439561
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-705",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-405",
+      "similarity": 0.9607843137254902
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-709",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-428",
+      "similarity": 0.9704142011834319
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-710",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-429",
+      "similarity": 0.9766454352441614
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-734",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-444",
+      "similarity": 0.9691358024691358
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-755",
+      "reason": "explicit_screenshot"
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-03",
+      "cardId": "listening-main-925",
+      "reason": "transcript_similarity_gt_92",
+      "retainedCardId": "listening-main-127",
+      "similarity": 0.9618768328445748
+    },
+    {
+      "bankId": "listening",
+      "topicId": "listening-topic-01",
+      "cardId": "listening-main-944",
+      "reason": "explicit_screenshot"
+    }
+  ]
+}

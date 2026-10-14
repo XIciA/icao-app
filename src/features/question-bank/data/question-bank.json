@@ -4,12 +4,12 @@
     "title": "听力",
     "nameEn": "Listening",
     "description": "理解能力",
-    "summary": "4 题组 / 1612 题",
+    "summary": "4 题组 / 1502 题",
     "enabled": true,
     "statusLabel": "可练习",
     "icon": "headphones",
     "declaredTopicCount": 4,
-    "declaredCardCount": 1612,
+    "declaredCardCount": 1502,
     "categoryUnit": "分类",
     "topicUnit": "题组",
     "cardUnit": "题",
@@ -44,12 +44,12 @@
         "id": "listening-category-01",
         "name": "10s航空英语",
         "declaredTopicCount": 1,
-        "declaredCardCount": 631,
+        "declaredCardCount": 597,
         "topics": [
           {
             "id": "listening-topic-01",
             "name": "全部题目",
-            "declaredCardCount": 631,
+            "declaredCardCount": 597,
             "cards": [
               {
                 "id": "listening-main-001",
@@ -188,28 +188,6 @@
                 "referenceText": "正确答案：D. To ensure the safety.",
                 "audio": "/question-bank-assets/audio/listening/fzy/de63545664cd5fe1120d.mp3",
                 "audioDurationSeconds": 15.046
-              },
-              {
-                "id": "listening-main-043",
-                "taskTitle": "10s航空英语-11",
-                "audioText": "Cockpit to ground, negative startup. There are some water drops dripping from the overhead electronic panel. No idea where they are from. We need to carry out a check.\nQuestion: Why can’t the pilots start up?",
-                "audioTextZh": "驾驶舱呼叫地面，不能启动。头顶电子面板上有水滴滴下来，不知道水是从哪里来的。我们需要进行检查。\n问题：飞行员为什么不能启动？",
-                "referenceText": "正确答案：B. The overhead panel drips",
-                "audio": "/question-bank-assets/audio/listening/main/043.mp3",
-                "choices": [
-                  "There might be some unknown problems in the cockpit",
-                  "The overhead panel drips",
-                  "The water drainage valve needs checking",
-                  "He can not drink water in the cockpit"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "驾驶舱内可能存在不明故障",
-                  "头顶面板在滴水",
-                  "排水活门需要检查",
-                  "他不能在驾驶舱喝水"
-                ],
-                "audioDurationSeconds": 20.376
               },
               {
                 "id": "listening-main-044",
@@ -615,28 +593,6 @@
                 "audioDurationSeconds": 10.752
               },
               {
-                "id": "listening-main-121",
-                "taskTitle": "10s航空英语-34",
-                "audioText": "If significant engine vibration occurs due to ice accumulation on the blades, the engine should be accelerated to a minimum of 70% N1 for approximately 15 seconds.\nQuestion: What causes the vibration?",
-                "audioTextZh": "如果叶片积冰导致发动机明显振动，应把发动机加速至至少70% N1，并保持约15秒。\n问题：是什么造成了发动机振动？",
-                "referenceText": "正确答案：C. Ice building on the blade",
-                "audio": "/question-bank-assets/audio/listening/main/121.mp3",
-                "choices": [
-                  "Ice coming behind blades",
-                  "Ice occurring in the wing",
-                  "Ice building on the blade",
-                  "Ice accumulating on the wing"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "叶片后方结冰",
-                  "机翼结冰",
-                  "叶片上结冰",
-                  "机翼上积冰"
-                ],
-                "audioDurationSeconds": 21.312
-              },
-              {
                 "id": "listening-main-122",
                 "taskTitle": "10秒航空英语-260",
                 "audioText": "If you look at the weather chart, you might see a low-pressure area with precipitation approaching Xi’an.\nQ: What kind of weather is expected near Xi’an?",
@@ -993,29 +949,6 @@
                 "audioDurationSeconds": 14.64
               },
               {
-                "id": "listening-main-201",
-                "taskTitle": "10秒航空英语-190",
-                "audioText": "Ice, snow and frost must be removed before a flight, because they can seriously affect takeoff distance and climb up performance\nQ: What type of weather conditions are described in this statement?",
-                "audioTextZh": "在飞行前，应除掉飞机上的积冰，积雪和霜，因为它们会严重影响起飞距离和爬升性能。问：表述中提到的天气状况是什么样的？",
-                "studyTier": 1,
-                "choices": [
-                  "A hot summer day.",
-                  "Winter weather.",
-                  "Windy and gusty conditions.",
-                  "Fog and poor visibility."
-                ],
-                "choicesZh": [
-                  "炎热的夏季",
-                  "冬季天气",
-                  "有风和阵风天气",
-                  "有雾和低能见度"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. Winter weather.",
-                "audio": "/question-bank-assets/audio/listening/fzy/e635464862683b4d33b0.mp3",
-                "audioDurationSeconds": 16.491
-              },
-              {
                 "id": "listening-main-202",
                 "taskTitle": "10秒航空英语-299",
                 "audioText": "The light signal from the tower shows the flashing green means \"Return for landing and\ncleared to taxi\" while steady green means to be \"Cleared to land\".\nQuestion: What does the flashing green light signal from the control tower mean to an aircraft in flight?",
@@ -1171,29 +1104,6 @@
                   "燃烧"
                 ],
                 "audioDurationSeconds": 24.72
-              },
-              {
-                "id": "listening-main-242",
-                "taskTitle": "10秒航空英语-303",
-                "audioText": "ICAO CAT III A limitations are decision height of 0 feet, RVR of 200m.\nQuestion: What are the limitations of a Category III A approach?",
-                "audioTextZh": "ICAO CAT III A的限制为决断高度0英尺，RVR 200米。\n问：III A类进近的限制是什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Decision height 200 feet.",
-                  "RVR 200feet.",
-                  "RVR 0 meters.",
-                  "RVR 200 meters."
-                ],
-                "choicesZh": [
-                  "决断高度200英尺",
-                  "RVR 200英尺",
-                  "RVR 0米",
-                  "RVR 200米"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. RVR 200 meters.",
-                "audio": "/question-bank-assets/audio/listening/fzy/d22da314a72d710a270a.mp3",
-                "audioDurationSeconds": 12.816
               },
               {
                 "id": "listening-main-243",
@@ -1397,28 +1307,6 @@
                 "audioDurationSeconds": 19.008
               },
               {
-                "id": "listening-main-285",
-                "taskTitle": "10s航空英语-93",
-                "audioText": "M1: The wear of carbon brakes is related to the number of applications and the pressure applied. M2: Yes, the proper use of carbon brakes will ... of them.\nQuestion: What is the main idea of the conversation?",
-                "audioTextZh": "说话人1：碳刹车的磨损与使用次数和施加的压力有关。说话人2：是的，正确使用碳刹车会……。\n问题：这段对话的中心意思是什么？",
-                "referenceText": "正确答案：A. More brakes more wear",
-                "audio": "/question-bank-assets/audio/listening/main/285.mp3",
-                "choices": [
-                  "More brakes more wear",
-                  "More forces, more wear",
-                  "More wind, more wear",
-                  "More pressure, more wear"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "刹车次数越多，磨损越大",
-                  "作用力越大，磨损越大",
-                  "风越大，磨损越大",
-                  "压力越大，磨损越大"
-                ],
-                "audioDurationSeconds": 25.992
-              },
-              {
                 "id": "listening-main-302",
                 "taskTitle": "10s航空英语-96",
                 "audioText": "When wind direction is changing, it is given as a range, such as variable from 270 to 330 degrees.\nQuestion: How large is the range from 270 to 330 degrees?",
@@ -1571,28 +1459,6 @@
                   "微弱颠簸"
                 ],
                 "audioDurationSeconds": 21.384
-              },
-              {
-                "id": "listening-main-329",
-                "taskTitle": "10s航空英语-107",
-                "audioText": "Heathrow Information C: cloud scattered at 3000 feet, broken at 5000 feet; wind 210 degrees at 8 knots; visibility 2 miles with light wind. Report established on the ILS for Runway 23.\nQuestion: What is the cloud cover at 5000 feet?",
-                "audioTextZh": "希思罗C通播：3000英尺疏云，5000英尺多云；风向210度、风速8节；能见度2英里，轻风。建立23跑道ILS后报告。\n问题：5000英尺处的云量状况是什么？",
-                "referenceText": "正确答案：A. Broken layer",
-                "audio": "/question-bank-assets/audio/listening/main/329.mp3",
-                "choices": [
-                  "Broken layer",
-                  "Overcast layer",
-                  "No clouds",
-                  "Scattered layer"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "多云层",
-                  "阴天云层",
-                  "无云",
-                  "疏云层"
-                ],
-                "audioDurationSeconds": 26.688
               },
               {
                 "id": "listening-main-331",
@@ -1750,28 +1616,6 @@
                 "audioDurationSeconds": 26.256
               },
               {
-                "id": "listening-main-353",
-                "taskTitle": "10s航空英语-117",
-                "audioText": "P: Ground, CSN 15, on taxiway N for Runway 27L. We see debris on the left side of the runway near the high-speed turnoff. It appears to be part of an engine cowling.\nQuestion: Where is the debris?",
-                "audioTextZh": "飞行员：地面，CSN 15，在N滑行道，前往27L跑道。我们看到跑道左侧、靠近快速脱离道的位置有碎片，看起来像发动机整流罩的一部分。\n问题：碎片在哪里？",
-                "referenceText": "正确答案：D. On the left side of the runway.",
-                "audio": "/question-bank-assets/audio/listening/main/353.mp3",
-                "choices": [
-                  "On taxiway N.",
-                  "On the high speed turn off.",
-                  "On the right side of the runway.",
-                  "On the left side of the runway."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "N滑行道上",
-                  "快速脱离道上",
-                  "跑道右侧",
-                  "跑道左侧"
-                ],
-                "audioDurationSeconds": 17.208
-              },
-              {
                 "id": "listening-main-355",
                 "taskTitle": "10s航空英语-119",
                 "audioText": "P: Approach, good morning, CCA 512, descending through FL200, squawking 4123.\nQuestion: What is the squawk code of CCA 512?",
@@ -1883,28 +1727,6 @@
                 "audioDurationSeconds": 17.693
               },
               {
-                "id": "listening-main-368",
-                "taskTitle": "10s航空英语-126",
-                "audioText": "A1: There is a height at which the pilot must have the runway approach lights in sight to continue the descent. If not, the pilot has to initiate a missed approach. A2: The height is very important for safety.\nQuestion: What were the men talking about?",
-                "audioTextZh": "说话人1：有一个高度，在该高度上飞行员必须看到跑道进近灯才能继续下降；如果看不到，就必须复飞。说话人2：这个高度对飞行安全非常重要。\n问题：他们在谈论什么？",
-                "referenceText": "正确答案：C. Decision height.",
-                "audio": "/question-bank-assets/audio/listening/main/368.mp3",
-                "choices": [
-                  "Landing gear extending height.",
-                  "Minimum clearance height.",
-                  "Decision height.",
-                  "Landing height."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "起落架放下高度",
-                  "最低净空高度",
-                  "决断高",
-                  "着陆高度"
-                ],
-                "audioDurationSeconds": 23.352
-              },
-              {
                 "id": "listening-main-382",
                 "taskTitle": "10s航空英语-129",
                 "audioText": "The flight was delayed because 3 passengers were late. Then the tug was 10 minutes late, and the aircraft had to wait 15 minutes due to flow control.\nQuestion: How many passengers were late?",
@@ -1971,28 +1793,6 @@
                 "audioDurationSeconds": 12.696
               },
               {
-                "id": "listening-main-403",
-                "taskTitle": "10s航空英语-136",
-                "audioText": "The required runway lengths for takeoff and landing may vary considerably with changes in outside air temperature, runway surface, aircraft load, and field elevation.\nQuestion: According to the statement, which of the following will affect the required runway length for takeoff and landing?",
-                "audioTextZh": "起飞和着陆所需的跑道长度会随外界气温、跑道道面、飞机载荷和机场标高的变化而显著改变。\n问题：根据这段陈述，下列哪一项会影响起飞和着陆所需的跑道长度？",
-                "referenceText": "正确答案：D. Aircraft weight.",
-                "audio": "/question-bank-assets/audio/listening/main/403.mp3",
-                "choices": [
-                  "Airport size.",
-                  "Pilot skill.",
-                  "Crosswind.",
-                  "Aircraft weight."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "机场大小",
-                  "飞行员技能",
-                  "侧风",
-                  "航空器重量"
-                ],
-                "audioDurationSeconds": 21.312
-              },
-              {
                 "id": "listening-main-404",
                 "taskTitle": "10s航空英语-137",
                 "audioText": "In a swept-wing aircraft, the aircraft structural limit with one flap down and the paired flap up is lower.\nQuestion: What type of aircraft is mentioned in the statement?",
@@ -2037,28 +1837,6 @@
                 "audioDurationSeconds": 16.536
               },
               {
-                "id": "listening-main-409",
-                "taskTitle": "10s航空英语-142",
-                "audioText": "During the preflight check, the co-pilot noticed hydraulic fluid near the landing gear bay without discovering any leak.\nQuestion: Where did the copilot find the leak of fluid?",
-                "audioTextZh": "飞行前检查期间，副驾驶注意到起落架舱附近有液压油，但没有发现任何泄漏点。\n问题：副驾驶在哪里发现了液压油？",
-                "referenceText": "正确答案：A. Nowhere.",
-                "audio": "/question-bank-assets/audio/listening/main/409.mp3",
-                "choices": [
-                  "Nowhere.",
-                  "Near hydraulic lines.",
-                  "Near the gear bay.",
-                  "Near the landing gear"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "没有发现",
-                  "液压管路附近",
-                  "起落架舱附近",
-                  "起落架附近"
-                ],
-                "audioDurationSeconds": 15.408
-              },
-              {
                 "id": "listening-main-410",
                 "taskTitle": "10秒航空英语-256",
                 "audioText": "The modern radar systems are so sensitive that they can allow the pilots to land completely blind in perfect safety.\nQ: Why can the pilot make a completely blind landing?",
@@ -2080,28 +1858,6 @@
                 "referenceText": "正确答案：C. Because of modern radar systems.",
                 "audio": "/question-bank-assets/audio/listening/fzy/10b7beea6d7107ddd81b.mp3",
                 "audioDurationSeconds": 12.522
-              },
-              {
-                "id": "listening-main-414",
-                "taskTitle": "10s航空英语-144",
-                "audioText": "P: Control, CSN 303, over OBC at 15, FL330, estimating PNO at 46, WFT next.\nQuestion: What is the immediate next reporting point?",
-                "audioTextZh": "飞行员：区调，CSN 303，15分飞越OBC，FL330，预计46分到达PNO，下一报告点WFT。\n问题：紧接着要到达的报告点是哪一个？",
-                "referenceText": "正确答案：B. PNO",
-                "audio": "/question-bank-assets/audio/listening/main/414.mp3",
-                "choices": [
-                  "WFT",
-                  "PNO",
-                  "BW",
-                  "OBC"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "WFT",
-                  "PNO",
-                  "BW",
-                  "OBC"
-                ],
-                "audioDurationSeconds": 19.944
               },
               {
                 "id": "listening-main-417",
@@ -3976,28 +3732,6 @@
                 "audioDurationSeconds": 20.712
               },
               {
-                "id": "listening-main-634",
-                "taskTitle": "10s航空英语-247",
-                "audioText": "Ladies and Gentlemen, this is your captain speaking. We will begin descent in approximately five minutes and be landing in 30 minutes from now at local time 620.\nQuestion: When does the captain estimate the aircraft will land?",
-                "audioTextZh": "女士们、先生们，我是机长。我们将在约五分钟后开始下降，并将在30分钟后、当地时间620着陆。\n问题：机长预计飞机何时着陆？",
-                "referenceText": "正确答案：C. In 30 minutes.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q05.mp3",
-                "choices": [
-                  "In 20 minutes.",
-                  "In 5 minutes.",
-                  "In 30 minutes.",
-                  "In 6 minutes."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "20分钟后",
-                  "5分钟后",
-                  "30分钟后",
-                  "6分钟后"
-                ],
-                "audioDurationSeconds": 14.04
-              },
-              {
                 "id": "listening-main-659",
                 "taskTitle": "10秒航空英语-284",
                 "audioText": "Accurate navigation is crucial in air traffic control as it ensures that aircraft are separated by a safe distance. This helps prevent mid-air collisions and allows for a smooth and safe flow of air traffic.\nQuestion: What is the importance of accurate navigation in air traffic control?",
@@ -4204,52 +3938,6 @@
                 "audioDurationSeconds": 16.92
               },
               {
-                "id": "listening-main-687",
-                "taskTitle": "10秒航空英语-296",
-                "audioText": "The controller who has only five-month experience on the job without awareness of a collision course and did not take any corrective action.\nQuestion: Why did not the controller take any corrective action?",
-                "audioTextZh": "该管制员仅有五个月工作经验，未意识到存在碰撞航向，也未采取任何纠正措施。\n问：该管制员为何未采取任何纠正措施？",
-                "studyTier": 1,
-                "choices": [
-                  "He was not aware of the situation.",
-                  "He is experienced enough.",
-                  "The traffic was not on a collision course.",
-                  "He did not have TCAS equipment."
-                ],
-                "choicesZh": [
-                  "他未意识到该情况",
-                  "他经验丰富",
-                  "航空器并不处在碰撞航向",
-                  "他没有TCAS设备"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. He was not aware of the situation.",
-                "audio": "/question-bank-assets/audio/listening/fzy/5c786598d910acf01129.mp3",
-                "audioDurationSeconds": 12.096
-              },
-              {
-                "id": "listening-main-688",
-                "taskTitle": "10秒航空英语-297",
-                "audioText": "The airline couldn't find a replacement aircraft, so the flight was cancelled, then the passengers had to be booked into a hotel until they can be put onto a new flight.\nQuestion: Why were the passengers booked into a hotel?",
-                "audioTextZh": "航空公司无法找到替班航空器，所以航班被取消了，随后乘客不得不被安排到酒店，直到重新被安排到另一架新飞机。\n问：乘客为什么被安排到酒店？",
-                "studyTier": 1,
-                "choices": [
-                  "There was bad weather.",
-                  "They stayed at a hotel.",
-                  "Their aircraft was replaced",
-                  "Their flight was cancelled."
-                ],
-                "choicesZh": [
-                  "天气不好",
-                  "他们待在酒店",
-                  "他们的飞机被替换了",
-                  "他们的航班被取消了"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. Their flight was cancelled.",
-                "audio": "/question-bank-assets/audio/listening/fzy/9220f2c7c14780c58c06.mp3",
-                "audioDurationSeconds": 13.428
-              },
-              {
                 "id": "listening-main-689",
                 "taskTitle": "10秒航空英语-192",
                 "audioText": "The aircraft should be separated from the aircraft dumping fuel by at least 10 nm horizontal but not behind the aircraft dumping fuel.\nQ: What is the separation between two aircraft while fuel dumping?",
@@ -4271,51 +3959,6 @@
                 "referenceText": "正确答案：B. 10 nm horizontal.",
                 "audio": "/question-bank-assets/audio/listening/fzy/8d71ed985b0d117b51fc.mp3",
                 "audioDurationSeconds": 17.719
-              },
-              {
-                "id": "listening-main-692",
-                "taskTitle": "10秒航空英语-217",
-                "audioText": "The pilot is vacating the runway, his takeoff is aborted due to engine failure, he tells the controller he can taxi back by his own power.\nQ: What's the pilot's intention?",
-                "audioTextZh": "飞行员正在脱离跑道，他因为发动机故障中断起飞，但他告诉管制员可以自己滑回。\n问：飞行员的意图是？",
-                "studyTier": 2,
-                "choices": [
-                  "To wait for a tug.",
-                  "To ask for ATC instructions.",
-                  "To taxi back under his own power.",
-                  "To request emergency services."
-                ],
-                "choicesZh": [
-                  "等待拖车。",
-                  "请求管制员指令。",
-                  "自己滑回。",
-                  "请求紧急服务。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. To taxi back under his own power.",
-                "audio": "/question-bank-assets/audio/listening/fzy/49e3ab71209e79ea8de0.mp3",
-                "audioDurationSeconds": 14.741
-              },
-              {
-                "id": "listening-main-694",
-                "taskTitle": "10s航空英语-289",
-                "audioText": "M1: Crew Resource Management is a process using all available resources such as equipment, procedures, and people to achieve a safe and efficient operation of flight.\nM2: you are right.\nQuestion: What are they talking about?",
-                "audioTextZh": "M1: 机组资源管理是利用设备、程序和人员等所有可用资源，实现安全、高效飞行运行的过程。\nM2: 你说得对。\n问题：他们正在谈论什么？",
-                "referenceText": "正确答案：B. CRM.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-05-q19.mp3",
-                "choices": [
-                  "OPI.",
-                  "CRM.",
-                  "VOR",
-                  "MEL"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "口语能力面试",
-                  "机组资源管理",
-                  "甚高频全向信标",
-                  "最低设备清单"
-                ],
-                "audioDurationSeconds": 14.652
               },
               {
                 "id": "listening-main-695",
@@ -4340,51 +3983,6 @@
                 "audioDurationSeconds": 18.036
               },
               {
-                "id": "listening-main-699",
-                "taskTitle": "10s航空英语-291",
-                "audioText": "The aircraft flew over touchdown zone and landed half down the runway, it break heavily and vacate the runway onto taxiway A4.\nQuestion: Where did the aircraft land?",
-                "audioTextZh": "航空器飞过接地区，在跑道中段着陆，随后重刹车，并经滑行道A4脱离跑道。\n问题：航空器在哪里着陆？",
-                "referenceText": "正确答案：B. Half way down the runway.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q11.mp3",
-                "choices": [
-                  "At the end of the runway.",
-                  "Half way down the runway.",
-                  "At the Touchdown Zone.",
-                  "On taxi way A4."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "跑道末端",
-                  "跑道中段",
-                  "接地区",
-                  "A4滑行道"
-                ],
-                "audioDurationSeconds": 15.048
-              },
-              {
-                "id": "listening-main-701",
-                "taskTitle": "10秒航空英语-206",
-                "audioText": "The flight was delayed because 3 passengers were late then the tug was 10 minutes late, the aircraft also had to wait 15 minutes due to flow control.\nQ: How many passengers were late?",
-                "audioTextZh": "飞机遭遇延误，原因是有3名乘客迟到，然后拖车晚了10分钟，因为流量管控，飞机又等了15分钟。问：有多少名乘客迟到了？",
-                "studyTier": 1,
-                "choices": [
-                  "3",
-                  "15",
-                  "10",
-                  "28"
-                ],
-                "choicesZh": [
-                  "3",
-                  "15",
-                  "10",
-                  "28"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. 3",
-                "audio": "/question-bank-assets/audio/listening/fzy/af3c1219f0e50fdecf27.mp3",
-                "audioDurationSeconds": 15.726
-              },
-              {
                 "id": "listening-main-704",
                 "taskTitle": "10s航空英语-295",
                 "audioText": "In the swept wing aircraft, the aircraft strength limit of flaps down for paired flaps up is lower.\nQuestion: What type of aircraft is mentioned in the statement?",
@@ -4405,72 +4003,6 @@
                   "后掠翼飞机"
                 ],
                 "audioDurationSeconds": 14.364
-              },
-              {
-                "id": "listening-main-705",
-                "taskTitle": "10s航空英语-296",
-                "audioText": "With the help of two cabin crew members, 35 passengers are evacuated the aircraft on the right side of aircraft, including 8 from the right wing.\nQuestion: How many passengers evacuated the aircraft on the right side?",
-                "audioTextZh": "在2名客舱机组成员的协助下，35名乘客从航空器右侧撤离，其中8名从右翼撤离。\n问题：有多少名乘客从航空器右侧撤离？",
-                "referenceText": "正确答案：C. 35",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q03.mp3",
-                "choices": [
-                  "27",
-                  "8",
-                  "35",
-                  "42"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "27名",
-                  "8名",
-                  "35名",
-                  "42名"
-                ],
-                "audioDurationSeconds": 11.844
-              },
-              {
-                "id": "listening-main-709",
-                "taskTitle": "10s航空英语-300",
-                "audioText": "A RJ is cleared to line up and be ready for immediate takeoff following a departing B747, and incoming traffic is on short final, wind condition is calm, weather is dry and clear.\nQuestion: Why is the departing traffic important to the captain of the RJ?",
-                "audioTextZh": "一架RJ获准跟在离场的B747之后进入跑道，并准备立即起飞；进场航空器正在短五边，风况为静风，天气干燥、晴朗。\n问题：为什么离场航空器对RJ机长很重要？",
-                "referenceText": "正确答案：A. Wake turbulence.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q16.mp3",
-                "choices": [
-                  "Wake turbulence.",
-                  "Poor visibility.",
-                  "Braking conditions.",
-                  "Weather conditions."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "尾流颠簸",
-                  "低能见度",
-                  "刹车条件",
-                  "天气条件"
-                ],
-                "audioDurationSeconds": 16.488
-              },
-              {
-                "id": "listening-main-710",
-                "taskTitle": "10s航空英语-301",
-                "audioText": "When the pilot hears a resolution advisory, he is only 30 seconds away for the collision, so there isn't enough time to advise ATC, the first priority is to take actions.\nQuestion: What's the first thing a pilot should do after getting an RA?",
-                "audioTextZh": "飞行员听到决断咨询时，距离碰撞仅有30秒，因此没有足够时间通知ATC，首要任务是立即采取行动。\n问题：飞行员收到RA后首先应当做什么？",
-                "referenceText": "正确答案：D. Follow the advisory",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q17.mp3",
-                "choices": [
-                  "Advise ATC",
-                  "Visually identify the other aircraft",
-                  "Follow ATC instructions",
-                  "Follow the advisory"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "通知空中交通管制",
-                  "目视识别另一架航空器",
-                  "执行空中交通管制指令",
-                  "执行决断咨询"
-                ],
-                "audioDurationSeconds": 17.028
               },
               {
                 "id": "listening-main-711",
@@ -4801,28 +4333,6 @@
                   "旅客广播系统"
                 ],
                 "audioDurationSeconds": 15.588
-              },
-              {
-                "id": "listening-main-734",
-                "taskTitle": "10s航空英语-317",
-                "audioText": "Highest features in the vicinity of each flight leg will be far below the designed altitude and run away from line of flight.\nQuestion: What does the sentence mean?",
-                "audioTextZh": "每个航段附近的最高地物应远低于设计高度，并避开飞行航线。\n问题：这句话是什么意思？",
-                "referenceText": "正确答案：A. Flight route must be clear of obstacles.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q05.mp3",
-                "choices": [
-                  "Flight route must be clear of obstacles.",
-                  "Flight route must have the highest features.",
-                  "Flight route must be below the flight line.",
-                  "Flight route must follow the highest features."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "飞行航路必须避开障碍物",
-                  "飞行航路必须具有最高地形",
-                  "飞行航路必须低于飞行航线",
-                  "飞行航路必须沿最高地物飞行"
-                ],
-                "audioDurationSeconds": 10.584
               },
               {
                 "id": "listening-main-735",
@@ -8563,28 +8073,6 @@
                   "鸟撞挡风玻璃"
                 ],
                 "audioDurationSeconds": 17.46
-              },
-              {
-                "id": "listening-main-944",
-                "taskTitle": "10s航空英语-490",
-                "audioText": "The hydraulic fluid is usually checked and replaced after a certain number of flight hours, typically around every 100 flight hours. Regular maintenance helps to ensure the proper functioning of the hydraulic system and prevent issues caused by degraded fluid.\nQuestion: How often is the hydraulic fluid typically checked and replaced?",
-                "audioTextZh": "通常在达到一定飞行小时数后检查并更换液压油，一般约为每100飞行小时。定期维护有助于确保液压系统正常工作，并防止油液劣化引发问题。\n问题：通常多久检查并更换一次液压油？",
-                "referenceText": "正确答案：B. After every 100 flight hours.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q02.mp3",
-                "choices": [
-                  "Every flight.",
-                  "After every 100 flight hours.",
-                  "Once a year.",
-                  "Only when there is a problem."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "每次飞行",
-                  "每100飞行小时后",
-                  "每年一次",
-                  "只在出现问题时"
-                ],
-                "audioDurationSeconds": 7.74
               },
               {
                 "id": "listening-main-946",
@@ -12561,29 +12049,6 @@
                 "audioDurationSeconds": 12.625
               },
               {
-                "id": "listening-fzy-116334",
-                "taskTitle": "10秒航空英语-167",
-                "audioText": "AFR656, when clear crossing traffic, turn left heading 050, confirm your level at 1500m.\nQ: When should they make the turn?",
-                "audioTextZh": "法航889，远离正在穿越的航空器后，左转航向050，证实你的高度在1500米。\n问：他们应在什么时候转弯？",
-                "studyTier": 0,
-                "choices": [
-                  "to avoid crossing traffic",
-                  "maintaining 1,500m",
-                  "heading 050 degrees",
-                  "when clear of crossing traffic"
-                ],
-                "choicesZh": [
-                  "为了避开正在穿越的航空器。",
-                  "保持1500米。",
-                  "航向050。",
-                  "当与穿越的航空器接触冲突时。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. when clear of crossing traffic",
-                "audio": "/question-bank-assets/audio/listening/fzy/98b446bc553c7f16335f.mp3",
-                "audioDurationSeconds": 13.923
-              },
-              {
                 "id": "listening-fzy-116335",
                 "taskTitle": "10秒航空英语-168",
                 "audioText": "CSN210, at time 50 a departing Boeing757 reporting wind shear at 800 feet, airspeed loss 20 knots, strong right drift.\nQ: What danger might the pilot encounter?",
@@ -12998,29 +12463,6 @@
                 "audioDurationSeconds": 19.704
               },
               {
-                "id": "listening-fzy-116567",
-                "taskTitle": "10秒航空英语-198",
-                "audioText": "The greater the weight of the aircraft, the more intense will be the wake turbulence, particularly when it affects the aircraft has a short wing span than other general aircraft.\nQ: What phenomenon does this statement refer to?",
-                "audioTextZh": "飞机的重量越大，产生的尾流就越强，对那些翼展比通用飞机还要短的飞机来说，这种影响越明显。问：表述中提到的现象是什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Victor turbulence",
-                  "Wake Turbulence",
-                  "Week turbulence",
-                  "Weak turbulence"
-                ],
-                "choicesZh": [
-                  "Victor turbulence",
-                  "尾流颠簸",
-                  "Week turbulence",
-                  "Weak turbulence"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. Wake Turbulence",
-                "audio": "/question-bank-assets/audio/listening/fzy/a8b43077e4c7093d1bc3.mp3",
-                "audioDurationSeconds": 18.152
-              },
-              {
                 "id": "listening-fzy-116568",
                 "taskTitle": "10秒航空英语-199",
                 "audioText": "Nickel-cadmium (Ni-Cd) batteries are frequently used in turbo propeller aircraft.\nQ: According to the statement, what type of aircraft is more likely to have a Ni-Cd battery?",
@@ -13088,29 +12530,6 @@
                 "referenceText": "正确答案：C. Half headwind and full gust.",
                 "audio": "/question-bank-assets/audio/listening/fzy/5614ede7eec9e1d725c5.mp3",
                 "audioDurationSeconds": 16.387
-              },
-              {
-                "id": "listening-main-274",
-                "taskTitle": "10秒航空英语-202",
-                "audioText": "AFR215, FL310 is not available at the moment, the alternative is FL350 advise.\nQ: Which statement is true?",
-                "audioTextZh": "法航215， 目前310高度层不可用，建议使用350高度层。问：下列表述正确的是？",
-                "studyTier": 2,
-                "choices": [
-                  "FL350 is not available.",
-                  "FL310 and FL350 are not available.",
-                  "FL310 is now available.",
-                  "FL350 is now available."
-                ],
-                "choicesZh": [
-                  "高度层350不可用。",
-                  "高度层310和高度层350都不可用。",
-                  "高度层310目前可用。",
-                  "高度层350目前可用。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. FL350 is now available.",
-                "audio": "/question-bank-assets/audio/listening/fzy/ea7cf3631625fd7e92c6.mp3",
-                "audioDurationSeconds": 12.408
               },
               {
                 "id": "listening-fzy-116576",
@@ -13251,52 +12670,6 @@
                 "audioDurationSeconds": 10.3
               },
               {
-                "id": "listening-main-253",
-                "taskTitle": "10秒航空英语-215",
-                "audioText": "CSN3342, don't park your aircraft here, the nose of the aircraft should be facing away from the hangar.\nQ: What does the speaker mean?",
-                "audioTextZh": "南方3342，不要把飞机停在这儿，飞机机头应当背对着机库。\n问：说话人的意思是？",
-                "studyTier": 1,
-                "choices": [
-                  "The aircraft parked in a wrong position.",
-                  "The aircraft was outside the ramp.",
-                  "The aircraft parked in the hanger.",
-                  "The aircraft was in a correct position."
-                ],
-                "choicesZh": [
-                  "飞机停的位置不对。",
-                  "飞机离开了机坪。",
-                  "飞机停在了机库。",
-                  "飞机停在了正确的位置。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. The aircraft parked in a wrong position.",
-                "audio": "/question-bank-assets/audio/listening/fzy/327528fc75684aa592aa.mp3",
-                "audioDurationSeconds": 12.752
-              },
-              {
-                "id": "listening-fzy-116621",
-                "taskTitle": "10秒航空英语-216",
-                "audioText": "CCA1 Heavy, cleared to land RW19R, do overtake the RG on your right, confirm you have them in sight.\nQ: Where is the other aircraft?",
-                "audioTextZh": "国航1，重型，可以落地，跑道19右，赶上位于右侧的巴西航空，确认你看到了航空器。\n问：另一个航空器在哪？",
-                "studyTier": 1,
-                "choices": [
-                  "Behind and on the right.",
-                  "Crossing from the right.",
-                  "Opposite direction on the right.",
-                  "Ahead and on the right."
-                ],
-                "choicesZh": [
-                  "后部右侧。",
-                  "从右侧穿越。",
-                  "对面右侧。",
-                  "前方右侧。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. Ahead and on the right.",
-                "audio": "/question-bank-assets/audio/listening/fzy/b21ee31ecc2f23dee240.mp3",
-                "audioDurationSeconds": 10.483
-              },
-              {
                 "id": "listening-main-138",
                 "taskTitle": "10秒航空英语-218",
                 "audioText": "Mayday Mayday Mayday, BAW141, B747, we have a total electrical failure, request emergency landing, currently 10km west of Taiyuan, passing 7800m, heading 120.\nQ: What problem does BAW141 have?",
@@ -13389,98 +12762,6 @@
                 "audioDurationSeconds": 9.308
               },
               {
-                "id": "listening-main-272",
-                "taskTitle": "10秒航空英语-223",
-                "audioText": "BAW7421, RVR runway 27, touch down 200m, midpoint 300m, stop end 1000m.\nQ: What type of problem will the landing aircraft have?",
-                "audioTextZh": "英航7421，跑道27视距，接地点200米，中间段300米，停止端1000米。\n问：着陆的飞行器遇到了什么问题？",
-                "studyTier": 1,
-                "choices": [
-                  "Poor visibility",
-                  "Strong wind",
-                  "Wind changing from 200 to 300",
-                  "Touchdown area is blocked."
-                ],
-                "choicesZh": [
-                  "低能见度。",
-                  "强风。",
-                  "风向从200变成300。",
-                  "接地区域堵塞。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Poor visibility",
-                "audio": "/question-bank-assets/audio/listening/fzy/1811c41ec3508fb81d04.mp3",
-                "audioDurationSeconds": 14.663
-              },
-              {
-                "id": "listening-fzy-116661",
-                "taskTitle": "10秒航空英语-224",
-                "audioText": "BAW726, expedite descent to and maintain 3000 feet on QNH1012, join right downwind for runway 21L.\nQ: Which level should the aircraft descend to and maintain?",
-                "audioTextZh": "英航726， 加速下降并保持3000英尺，修正海压1012，加入右侧三边，跑道21左。\n问：飞机应下降和保持的高度是？",
-                "studyTier": 2,
-                "choices": [
-                  "3,000 meters on QNH1012",
-                  "3,000 feet on QNH1021",
-                  "2,000 feet on QNH1021",
-                  "3,000 feet on QNH1012"
-                ],
-                "choicesZh": [
-                  "3000米，修正海压1012。",
-                  "3000英尺，修正海压1021。",
-                  "2000英尺，修正海压1021。",
-                  "3000英尺，修正海压1012。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. 3,000 feet on QNH1012",
-                "audio": "/question-bank-assets/audio/listening/fzy/7fa016000c8b6d3576b8.mp3",
-                "audioDurationSeconds": 16.465
-              },
-              {
-                "id": "listening-main-1076",
-                "taskTitle": "10秒航空英语-225",
-                "audioText": "CSN302, turn right heading 040, descend to 900m, QFE1002.\nQ: Which of the following is true?",
-                "audioTextZh": "南方302，右转航向040，下降到900米，场压1002。\n问：下列正确的是？",
-                "studyTier": 1,
-                "choices": [
-                  "Descend to 900m.",
-                  "Heading 030.",
-                  "Turn left.",
-                  "QFE1012."
-                ],
-                "choicesZh": [
-                  "下降到900米。",
-                  "航向030。",
-                  "左转。",
-                  "场压1012。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Descend to 900m.",
-                "audio": "/question-bank-assets/audio/listening/fzy/10b5f81fc2ad56907c44.mp3",
-                "audioDurationSeconds": 10.744
-              },
-              {
-                "id": "listening-fzy-116669",
-                "taskTitle": "10秒航空英语-228",
-                "audioText": "This is your captain speaking, the weather in Berlin is clear with light westerly wind.\nQ: Which one of the following describes the weather in Berlin?",
-                "audioTextZh": "这是机长广播，柏林天气晴朗，伴有轻微西风。\n问：以下哪个是关于柏林天气的描述？",
-                "studyTier": 1,
-                "choices": [
-                  "Wind 280/40. Visibility 10km.",
-                  "Wind 280/40. Visibility 1km.",
-                  "Wind 280/10. Visibility 1km.",
-                  "Wind 280/5. Visibility 10km."
-                ],
-                "choicesZh": [
-                  "风向280，40米每秒，能见度10公里。",
-                  "风向280，40米每秒，能见度1公里。",
-                  "风向280，10米每秒，能见度1公里。",
-                  "风向280，5米每秒，能见度10公里。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. Wind 280/5. Visibility 10km.",
-                "audio": "/question-bank-assets/audio/listening/fzy/c6845760362e8c246e29.mp3",
-                "audioDurationSeconds": 11.006
-              },
-              {
                 "id": "listening-fzy-116674",
                 "taskTitle": "10秒航空英语-230",
                 "audioText": "UAL889, when clear crossing traffic, turn left heading 050, confirm your level at 1500m.\nQ: When should they make the turn?",
@@ -13525,29 +12806,6 @@
                 "referenceText": "正确答案：A. There is a balloon near the runway.",
                 "audio": "/question-bank-assets/audio/listening/fzy/562c627d7c9423a25791.mp3",
                 "audioDurationSeconds": 17.197
-              },
-              {
-                "id": "listening-fzy-116676",
-                "taskTitle": "10秒航空英语-232",
-                "audioText": "CES5632, at time 50 a departing Boeing757 reporting wind shear at 800 feet, airspeed loss 20 knots, strong right drift.\nQ: What danger might the pilot encounter?",
-                "audioTextZh": "东方5632，在50分的时候一架离场的波音757报告在800英尺遇到风切变，速度损失20节，造成很强的右偏航。问：飞行员可能会遭遇什么危险？",
-                "studyTier": 1,
-                "choices": [
-                  "Flying 20kts too fast.",
-                  "Strong left drift.",
-                  "Collision with a B757.",
-                  "Sudden loss of airspeed."
-                ],
-                "choicesZh": [
-                  "速度20节，速度过快。",
-                  "很强的左偏航。",
-                  "与波音757相撞。",
-                  "速度的突然损失。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. Sudden loss of airspeed.",
-                "audio": "/question-bank-assets/audio/listening/fzy/86753a5de8f4b51f6dce.mp3",
-                "audioDurationSeconds": 15.264
               },
               {
                 "id": "listening-fzy-116686",
@@ -13778,29 +13036,6 @@
                 "referenceText": "正确答案：A. Holding position.",
                 "audio": "/question-bank-assets/audio/listening/fzy/818863d2529c0a4231a9.mp3",
                 "audioDurationSeconds": 14.811
-              },
-              {
-                "id": "listening-fzy-116750",
-                "taskTitle": "10秒航空英语-253",
-                "audioText": "New York Departure, good morning. CCA818 climbing 3000 feet heading 220 direct to EIWAY.\nQ: What is the current heading for Air China 818?",
-                "audioTextZh": "纽约离场，早上好，国航818，爬升至3000英尺，航向220，直飞EIWAY。\n问：国航818目前的航向是？",
-                "studyTier": 1,
-                "choices": [
-                  "320.",
-                  "200.",
-                  "300.",
-                  "220."
-                ],
-                "choicesZh": [
-                  "320。",
-                  "200。",
-                  "300。",
-                  "220。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. 220.",
-                "audio": "/question-bank-assets/audio/listening/fzy/8dab0a1e860fcd8e3443.mp3",
-                "audioDurationSeconds": 12.382
               },
               {
                 "id": "listening-fzy-116754",
@@ -14178,12 +13413,12 @@
         "id": "listening-category-02",
         "name": "20s陆空通话",
         "declaredTopicCount": 1,
-        "declaredCardCount": 325,
+        "declaredCardCount": 290,
         "topics": [
           {
             "id": "listening-topic-02",
             "name": "全部题目",
-            "declaredCardCount": 325,
+            "declaredCardCount": 290,
             "cards": [
               {
                 "id": "listening-main-003",
@@ -14346,29 +13581,6 @@
                 "audioDurationSeconds": 37.12
               },
               {
-                "id": "listening-main-036",
-                "taskTitle": "20秒陆空通话-229",
-                "audioText": "P: Approach, SAS996, we’ve got a passenger on board with a very serious physical condition. We’ll need to land as soon as possible.\nC: SAS996, descend to 2,400m, cleared for straight-in approach runway 36.\nQ: What does the pilot of SAS996 want to do?",
-                "audioTextZh": "飞行员：进近，北欧996，机上有一名乘客情况危急，我们需要尽快着陆。\n管制员：北欧996，下降到2400米，可以直接进近，跑道36。\n问：北欧996的飞行员想要做什么？",
-                "studyTier": 2,
-                "choices": [
-                  "To have a straight-in approach.",
-                  "To land quickly.",
-                  "To evacuate the passengers on board.",
-                  "To check the weather condition."
-                ],
-                "choicesZh": [
-                  "直接进近。",
-                  "尽快着陆。",
-                  "撤离机上乘客。",
-                  "检查天气情况。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. To land quickly.",
-                "audio": "/question-bank-assets/audio/listening/fzy/110ff42d79eca451b458.mp3",
-                "audioDurationSeconds": 26.044
-              },
-              {
                 "id": "listening-main-038",
                 "taskTitle": "20秒陆空通话-231",
                 "audioText": "P: Ground, CSN3308, I have to go back to the apron and I need medical assistance upon my arrival. The flight attendant reported that a woman on board has miscarried and needs a doctor.\nC: CSN3308, right turn ahead at intersection E5. I will inform those concerned.\nQ: What happened on board?",
@@ -14507,28 +13719,6 @@
                 "audioDurationSeconds": 27.194
               },
               {
-                "id": "listening-main-059",
-                "taskTitle": "20s陆空通话-22",
-                "audioText": "P: Wuhan Control, JAL 782, we have a fast moving traffic in front us. It looks like a fighter from here. We don't have it on our TCAS, have you observed it? C: JAL 782, we didn't see it on our radar either, probably a fighter without a transponder or not using transponder.\nQuestion: What are they talking about?",
-                "audioTextZh": "飞行员：武汉管制，JAL 782，我们前方有一个快速移动的目标。从这里看像是一架战斗机。我们的TCAS上没有显示，你们观察到了吗？管制员：JAL 782，我们的雷达上也没有看到，可能是一架未安装应答机或未使用应答机的战斗机。\n问题：他们在谈论什么？",
-                "referenceText": "正确答案：C. Conflicting aircraft",
-                "audio": "/question-bank-assets/audio/listening/main/059.mp3",
-                "choices": [
-                  "Radar identification",
-                  "TCAS",
-                  "Conflicting aircraft",
-                  "Aircraft speed"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "雷达识别",
-                  "机载防撞系统",
-                  "冲突航空器",
-                  "航空器速度"
-                ],
-                "audioDurationSeconds": 27.792
-              },
-              {
                 "id": "listening-main-066",
                 "taskTitle": "20s陆空通话-23",
                 "audioText": "P: Control, CES 5402, YIH at 22, 9,800 m, estimating ENH at time 40. CTL: CES 5402, maintain present level and heading, report crossing ENH.\nQuestion: What is the pilot doing?",
@@ -14639,28 +13829,6 @@
                 "audioDurationSeconds": 51.168
               },
               {
-                "id": "listening-main-080",
-                "taskTitle": "20s陆空通话-29",
-                "audioText": "P: Control, JAL 785, TCAS descent, we have fast moving traffic on our TCAS indication. I am following the TCAS RA instructions to avoid the conflicting traffic. C: JAL 785, I just saw it on my radar. It must be a fighter according to its speed. Report at assigned altitude.\nQuestion: What did the aircraft encounter?",
-                "audioTextZh": "飞行员：管制，JAL 785，TCAS指令下降，我们的TCAS显示有一个快速移动的目标。我正在按照TCAS的RA指令避让冲突航空器。管制员：JAL 785，我刚在雷达上看到它。根据其速度判断，那一定是一架战斗机。到达指定高度时报告。\n问题：该飞机遇到了什么？",
-                "referenceText": "正确答案：D. An intruder",
-                "audio": "/question-bank-assets/audio/listening/main/080.mp3",
-                "choices": [
-                  "Depressurization",
-                  "A TCAS",
-                  "An altitude loss on the airborne radar",
-                  "An intruder"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "失压",
-                  "机载防撞系统",
-                  "机载雷达显示高度丢失",
-                  "入侵航空器"
-                ],
-                "audioDurationSeconds": 28.896
-              },
-              {
                 "id": "listening-main-087",
                 "taskTitle": "20s陆空通话-30",
                 "audioText": "C: DAL 541, Wuhan Ground, your departure has to be delayed due to the weather. P: Wuhan Ground, how long is the delay? C: DAL 541, wait till the wind calms down a little. I will call you back when it drops to 10 knots or less.\nQuestion: When will the controller contact the pilot again?",
@@ -14726,28 +13894,6 @@
                 "referenceText": "正确答案：D. A boy got into the main landing gear bay.",
                 "audio": "/question-bank-assets/audio/listening/fzy/7126937d58c527af7c9f.mp3",
                 "audioDurationSeconds": 32.616
-              },
-              {
-                "id": "listening-main-137",
-                "taskTitle": "20s陆空通话-38",
-                "audioText": "P: Wuhan Control, CSN 345. C: CSN 345, go ahead. P: There seems to be a bush fire just to the right of our position, about 40 miles. C: Can you give us the exact position, please? P: Stand by, we are 25 miles from LKO VOR on the 150 radial. C: Position copied, thank you, CSN 345.\nQuestion: Why did Wuhan Control want CSN 345's exact position?",
-                "audioTextZh": "飞行员：武汉区调，CSN 345。管制员：CSN 345，请讲。飞行员：我们当前位置右侧约40海里处似乎有一场灌木火灾。管制员：请提供准确位置。飞行员：稍等，我们位于LKO VOR台150度径向线、距台25海里处。管制员：位置已收到，谢谢，CSN 345。\n问题：武汉区调为什么需要CSN 345提供准确位置？",
-                "referenceText": "正确答案：D. The flight had noticed a bush fire.",
-                "audio": "/question-bank-assets/audio/listening/main/137.mp3",
-                "choices": [
-                  "The flight had made a position report.",
-                  "The flight found a crash site",
-                  "The flight had a cabin fire",
-                  "The flight had noticed a bush fire."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "该航班作了位置报告",
-                  "该航班发现了坠机地点",
-                  "该航班客舱着火",
-                  "该航班发现了灌木火灾"
-                ],
-                "audioDurationSeconds": 35.136
               },
               {
                 "id": "listening-main-158",
@@ -14816,50 +13962,6 @@
                 "audioDurationSeconds": 31.296
               },
               {
-                "id": "listening-main-197",
-                "taskTitle": "20s陆空通话-46",
-                "audioText": "NWA 18 is taxiing to Runway 23R via taxiway T P: NWA 18, holding short of Runway 16. C: NWA 18, cleared to cross runway without delay, traffic 3 miles final. P: NWA 18, unable to expedite, we are stopped. C: NWA 18, hold short of Runway 16, taxiing clearance canceled. P: NWA 18, holding short.\nQuestion: Describe what happened.",
-                "audioTextZh": "NWA 18正经T滑行道滑往23R跑道。飞行员：NWA 18，在16号跑道外等待。管制员：NWA 18，许可立即穿越跑道，最后进近航空器距跑道3海里。飞行员：NWA 18，无法加快滑行，我们已经停住。管制员：NWA 18，在16号跑道外等待，滑行许可取消。飞行员：NWA 18，在跑道外等待。\n问题：请描述发生了什么。",
-                "referenceText": "正确答案：D. They didn't accept the clearance to cross.",
-                "audio": "/question-bank-assets/audio/listening/main/197.mp3",
-                "choices": [
-                  "They were going too fast to stop.",
-                  "They crossed RW 16 and are holding short of taxiway T.",
-                  "They expedited their taxi across RW 16.",
-                  "They didn't accept the clearance to cross."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "他们速度太快，无法停下",
-                  "他们穿越了16跑道，正在T滑行道外等待",
-                  "他们加速滑行穿越16跑道",
-                  "他们没有接受穿越许可"
-                ],
-                "audioDurationSeconds": 27.96
-              },
-              {
-                "id": "listening-main-217",
-                "taskTitle": "20s陆空通话-49",
-                "audioText": "P: Wuhan Tower, BAW 70, we have lost steering capability, and we can't vacate the runway on our own. C: roger, BAW 70, advise your intention. P: we need a maintenance crew to examine our nose wheel and send a tug to tow us back to the terminal, BAW 70.\nQuestion: What happened to BAW 70?",
-                "audioTextZh": "飞行员：武汉塔台，BAW 70，我们失去了转向能力，无法自行脱离跑道。管制员：收到，BAW 70，报告你的意图。飞行员：我们需要维修人员检查前轮，并派一辆牵引车把我们拖回航站楼，BAW 70。\n问题：BAW 70发生了什么？",
-                "referenceText": "正确答案：A. Nose wheel cannot be steered.",
-                "audio": "/question-bank-assets/audio/listening/main/217.mp3",
-                "choices": [
-                  "Nose wheel cannot be steered.",
-                  "Nose wheel had a blown tyre.",
-                  "Hydraulic fluid was leaking.",
-                  "They were evacuating the passengers."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "前轮无法转向",
-                  "前轮爆胎",
-                  "液压油正在泄漏",
-                  "他们正在撤离乘客"
-                ],
-                "audioDurationSeconds": 25.656
-              },
-              {
                 "id": "listening-main-219",
                 "taskTitle": "20s陆空通话-51",
                 "audioText": "P: Wuhan Control, CSN 319, request descent. C: CSN 319, descend and maintain 4800m, rate of descent 2500ft per minute. P: descend and maintain 4800m, rate of descent 2500ft per minute, CSN 319.\nQuestion: What information is not contained?",
@@ -14880,50 +13982,6 @@
                   "下降率"
                 ],
                 "audioDurationSeconds": 28.896
-              },
-              {
-                "id": "listening-main-236",
-                "taskTitle": "20s陆空通话-52",
-                "audioText": "P: Shanghai, CES 324, good evening, maintaining 9500 m, squawk 3426. C: CES 324, roger, offset right 3 miles. P: Negative offset. We are a B737-500 with no automatic offset tracking capability, CES 324. C: CES 324, roger, fly flight-planned route.\nQuestion: Why did CES 324 not fly the offset?",
-                "audioTextZh": "飞行员：上海，CES 324，晚上好，保持9500米，应答机编码3426。管制员：CES 324，收到，向右偏置3海里。飞行员：无法偏置，我们是B737-500，没有自动偏置航迹跟踪能力，CES 324。管制员：CES 324，收到，按飞行计划航路飞行。\n问题：CES 324为什么没有偏置飞行？",
-                "referenceText": "正确答案：D. Due to lack of installed equipment.",
-                "audio": "/question-bank-assets/audio/listening/main/236.mp3",
-                "choices": [
-                  "They only had one GPS working.",
-                  "They wanted to fly flight planned route.",
-                  "Due to weather.",
-                  "Due to lack of installed equipment."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "他们只有一套GPS工作",
-                  "他们想按计划航路飞行",
-                  "由于天气",
-                  "由于未安装所需设备"
-                ],
-                "audioDurationSeconds": 31.968
-              },
-              {
-                "id": "listening-main-240",
-                "taskTitle": "20s陆空通话-54",
-                "audioText": "C: CCA 1, taxi into position and hold. P: There is a large flock of birds Runway 14R. C: CCA 1, the birds are there all the time. P: Do you have alternate runway? C: Runway 27L is available. Expect 15 minutes delay. P: CCA 1, we will accept a little delay. C: CCA 1, hold at present position, I can't approve it yet, opposite traffic on T.\nQuestion: Which of the statements is correct?",
-                "audioTextZh": "管制员：CCA 1，进跑道对正并等待。飞行员：14R跑道上有一大群鸟。管制员：CCA 1，那些鸟一直都在那里。飞行员：有其他可用跑道吗？管制员：27L跑道可用，预计延误15分钟。飞行员：CCA 1，我们愿意接受一点延误。管制员：CCA 1，在当前位置等待，我目前还不能批准，T滑行道上有相向航空器。\n问题：以下哪项说法正确？",
-                "referenceText": "正确答案：C. The crew requests a different runway.",
-                "audio": "/question-bank-assets/audio/listening/main/240.mp3",
-                "choices": [
-                  "The birds will be moved out of the way.",
-                  "The delay is too long, so they accept the clearance.",
-                  "The crew requests a different runway.",
-                  "Another runway is not available."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "鸟群将被赶走",
-                  "延误太久，所以他们接受许可",
-                  "机组请求另一条跑道",
-                  "没有其他跑道可用"
-                ],
-                "audioDurationSeconds": 29.232
               },
               {
                 "id": "listening-main-258",
@@ -14992,28 +14050,6 @@
                 "audioDurationSeconds": 28.728
               },
               {
-                "id": "listening-main-277",
-                "taskTitle": "20s陆空通话-59",
-                "audioText": "P: MAYDAY, MAYDAY, MAYDAY, ACA 3428 has intercepted a distress call from CCA 3256. I say again, CCA 3256, double engine failure, forced landing, current position 10 miles east of LAMOT, over. C: ACA 3428, roger your relayed MAYDAY for CCA 3256.\nQuestion: What do you learn from the exchange?",
-                "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，ACA 3428截获了CCA 3256的遇险呼叫。再说一遍，CCA 3256，两台发动机失效，实施强迫着陆，当前位置在LAMOT以东10海里。完毕。管制员：ACA 3428，收到你转报的CCA 3256 MAYDAY信息。\n问题：你从这段通话中了解到什么？",
-                "referenceText": "正确答案：C. Air China has an emergency",
-                "audio": "/question-bank-assets/audio/listening/main/277.mp3",
-                "choices": [
-                  "Air Canada has an emergency",
-                  "Air China is heading 200",
-                  "Air China has an emergency",
-                  "Air Canada has two engines failed"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "加拿大航空发生紧急情况",
-                  "中国国际航空航向200",
-                  "中国国际航空发生紧急情况",
-                  "加拿大航空两台发动机失效"
-                ],
-                "audioDurationSeconds": 30.6
-              },
-              {
                 "id": "listening-main-279",
                 "taskTitle": "20秒陆空通话-174",
                 "audioText": "P: Mayday, Mayday, Mayday, Beijing Control, SIA442, Boeing777, fire in the rear toilet, descending 3600m, request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060.\nC: SIA442, roger mayday, break, break, all stations on 126.3, stop transmitting, mayday.\nQ: What is the position of SIA442?",
@@ -15057,182 +14093,6 @@
                   "位置报告"
                 ],
                 "audioDurationSeconds": 32.664
-              },
-              {
-                "id": "listening-main-340",
-                "taskTitle": "20s陆空通话-73",
-                "audioText": "P: Ground, CSN 3251, request taxi. C: CSN 3251, for your information, KAL 236 and CCA 9018, both B747s, nearly collided on Runway 14R one minute ago. Stay there now, I will call you back. P: Roger, CSN 3251.\nQuestion: What happened?",
-                "audioTextZh": "飞行员：地面，CSN 3251，请求滑行。管制员：CSN 3251，提醒你，一分钟前KAL 236和CCA 9018两架B747在14R跑道险些相撞。现在原地等待，我会再呼叫你。飞行员：收到，CSN 3251。\n问题：发生了什么？",
-                "referenceText": "正确答案：C. There was almost a collision on the runway.",
-                "audio": "/question-bank-assets/audio/listening/main/340.mp3",
-                "choices": [
-                  "There was a runway incursion.",
-                  "There was a crash on the runway.",
-                  "There was almost a collision on the runway.",
-                  "There was a vehicle on the runway."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "发生了跑道侵入",
-                  "跑道上发生了相撞",
-                  "跑道上险些发生相撞",
-                  "跑道上有车辆"
-                ],
-                "audioDurationSeconds": 31.2
-              },
-              {
-                "id": "listening-main-356",
-                "taskTitle": "20s陆空通话-74",
-                "audioText": "P: Manchester Ground, UAL 94, we have a hydraulic problem, we have lost nose wheel steering, we have to hold position and request a tug to take us back to the gate. C: Roger, UAL 94, stand by. C: UAL 94, suggest you shut down the engine, there is a tug for the flight. P: UAL 94, roger.\nQuestion: What problem does UAL 94 have?",
-                "audioTextZh": "飞行员：曼彻斯特地面，UAL 94，我们出现液压故障，失去了前轮转向能力，必须在当前位置等待，并请求派牵引车把我们拖回登机口。管制员：收到，UAL 94，稍等。管制员：UAL 94，建议关闭发动机，牵引车已经前来。飞行员：UAL 94，收到。\n问题：UAL 94出现了什么问题？",
-                "referenceText": "正确答案：A. A hydraulic problem.",
-                "audio": "/question-bank-assets/audio/listening/main/356.mp3",
-                "choices": [
-                  "A hydraulic problem.",
-                  "An engine problem.",
-                  "The nose wheel has collapsed.",
-                  "The electrics in the nose of the aircraft."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "液压故障",
-                  "发动机故障",
-                  "前轮坍塌",
-                  "机头电气系统故障"
-                ],
-                "audioDurationSeconds": 28.896
-              },
-              {
-                "id": "listening-main-359",
-                "taskTitle": "20s陆空通话-76",
-                "audioText": "P: QFA 235, hold on taxiway A. C: QFA 235, hold short for departure, you are Number 2 after Airbus320. P: Holding short, Number 2 for departure, QFA 235. C: QFA 235, line up and wait. P: Line up and wait, QFA 235.\nQuestion: What was the departure sequence for QFA 235?",
-                "audioTextZh": "飞行员：QFA 235，在A滑行道等待。管制员：QFA 235，在跑道外等待离场，你排在空客A320之后，为第二个离场。飞行员：在跑道外等待，第二个离场，QFA 235。管制员：QFA 235，进跑道对正并等待。飞行员：进跑道对正并等待，QFA 235。\n问题：QFA 235的离场顺序是什么？",
-                "referenceText": "正确答案：B. Number 2",
-                "audio": "/question-bank-assets/audio/listening/main/359.mp3",
-                "choices": [
-                  "Number 4",
-                  "Number 2",
-                  "Number 1",
-                  "Number 3"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "第4个",
-                  "第2个",
-                  "第1个",
-                  "第3个"
-                ],
-                "audioDurationSeconds": 31.368
-              },
-              {
-                "id": "listening-main-360",
-                "taskTitle": "20s陆空通话-77",
-                "audioText": "C: AFR 201, have you reduced to approach speed? You are gaining on the aircraft ahead of you. P: AFR 201, unable to reduce speed, we have a problem with flaps. C: AFR 201, go around immediately, turn left heading 140, climb and maintain 4000ft for resequence ILS Runway 23L.\nQuestion: Why can't they reduce to approach speed?",
-                "audioTextZh": "管制员：AFR 201，你是否已减至进近速度？你正在接近前方航空器。飞行员：AFR 201，无法减速，我们的襟翼有故障。管制员：AFR 201，立即复飞，左转航向140，爬升并保持4000英尺，重新排序后对23L跑道实施ILS进近。\n问题：他们为什么无法减至进近速度？",
-                "referenceText": "正确答案：D. They can't extend their flaps.",
-                "audio": "/question-bank-assets/audio/listening/main/360.mp3",
-                "choices": [
-                  "They need a longer runway.",
-                  "They are coming in too fast.",
-                  "They have to go around.",
-                  "They can't extend their flaps."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "他们需要更长的跑道",
-                  "他们进近速度太快",
-                  "他们必须复飞",
-                  "他们无法放出襟翼"
-                ],
-                "audioDurationSeconds": 30.264
-              },
-              {
-                "id": "listening-main-396",
-                "taskTitle": "20s陆空通话-82",
-                "audioText": "P: CSN 7306, request 10 degrees heading change to the right of track to detour the CB. C: Roger, CSN 7306, turn right 10 degrees, heading 260. P: Right heading 260, CSN 7306. C: CSN 7306, clear of CB now, resume own navigation, report back on course.\nQuestion: Which heading will be suitable for the aircraft to come back on track?",
-                "audioTextZh": "飞行员：CSN 7306，请求向航迹右侧改变航向10度，绕飞积雨云。管制员：收到，CSN 7306，右转10度，航向260。飞行员：右转航向260，CSN 7306。管制员：CSN 7306，现已避开积雨云，恢复自主领航，回到航路时报告。\n问题：飞机使用什么航向适合返回原航迹？",
-                "referenceText": "正确答案：C. Turn left",
-                "audio": "/question-bank-assets/audio/listening/main/396.mp3",
-                "choices": [
-                  "heading 250",
-                  "Heading 260",
-                  "Turn left",
-                  "Turn right"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "航向250度",
-                  "航向260度",
-                  "左转",
-                  "右转"
-                ],
-                "audioDurationSeconds": 32.4
-              },
-              {
-                "id": "listening-main-398",
-                "taskTitle": "20s陆空通话-83",
-                "audioText": "P: Ground, CSN 3108, I have to go back to the apron and need medical assistance upon arrival. The flight attendant reported a woman on board is miscarrying and needs a doctor. C: CSN 3108, right turn ahead at intersection E5, we will inform those concerned.\nQuestion: What happened on board?",
-                "audioTextZh": "飞行员：地面，CSN 3108，我必须返回停机坪，并需要医疗人员接机。乘务员报告机上一名女性正在流产，需要医生。管制员：CSN 3108，在前方E5交叉口右转，我们会通知相关单位。\n问题：机上发生了什么？",
-                "referenceText": "正确答案：A. A Woman was in danger for miscarrying.",
-                "audio": "/question-bank-assets/audio/listening/main/398.mp3",
-                "choices": [
-                  "A Woman was in danger for miscarrying.",
-                  "A baby would be born.",
-                  "A flight attendant was going to give birth to a baby.",
-                  "The reported problem was undercarriage."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "一名女子有流产危险",
-                  "一名婴儿即将出生",
-                  "一名乘务员即将分娩",
-                  "报告的问题是起落架故障"
-                ],
-                "audioDurationSeconds": 30
-              },
-              {
-                "id": "listening-main-400",
-                "taskTitle": "20s陆空通话-84",
-                "audioText": "P: MAYDAY, MAYDAY, MAYDAY, AFR 966, intercepted a distress call from DLH 124. DLH 124 has a fuel emergency with 15 minutes endurance, requests landing priority. The aircraft position is 15 miles east, 9000ft. C: AFR 966, roger MAYDAY, break, break.\nQuestion: Which of the following statements is true?",
-                "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，AFR 966，截获了DLH 124的遇险呼叫。DLH 124发生燃油紧急情况，剩余续航时间15分钟，请求优先着陆。飞机位于以东15海里，高度9000英尺。管制员：AFR 966，收到MAYDAY，各台注意。\n问题：以下哪项说法正确？",
-                "referenceText": "正确答案：A. DLH 124 has fuel trouble.",
-                "audio": "/question-bank-assets/audio/listening/main/400.mp3",
-                "choices": [
-                  "DLH 124 has fuel trouble.",
-                  "AFR is at 9000 feet.",
-                  "AFR 966 requires landing priority.",
-                  "AFR 966 is 15 miles west."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "DLH 124遇到燃油问题",
-                  "AFR 966位于9,000英尺",
-                  "AFR 966要求优先着陆",
-                  "AFR 966位于西侧15海里"
-                ],
-                "audioDurationSeconds": 33.336
-              },
-              {
-                "id": "listening-main-453",
-                "taskTitle": "20s陆空通话-89",
-                "audioText": "P: BAW 309, we are unable to control pressurization, cabin altitude is rising rapidly, request immediate descent to FL120. C: BAW 309, roger, descend to FL120, report reaching. P: descending to FL120, wilco, BAW 309.\nQuestion: Which level is the aircraft descending to and for what reason?",
-                "audioTextZh": "飞行员：BAW 309，我们无法控制增压，座舱高度正在迅速上升，请求立即下降至FL120。管制员：BAW 309，收到，下降至FL120，到达时报告。飞行员：正在下降至FL120，照办，BAW 309。\n问题：飞机正下降到哪个高度，原因是什么？",
-                "referenceText": "正确答案：C. FL120 due to depressurization.",
-                "audio": "/question-bank-assets/audio/listening/main/453.mp3",
-                "choices": [
-                  "FL120 due to rising altitude",
-                  "FL210 due to depressurization",
-                  "FL120 due to depressurization.",
-                  "FL210 due to pressurization"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "因高度上升而在FL120",
-                  "因失压而在FL210",
-                  "因失压而在FL120",
-                  "因增压而在FL210"
-                ],
-                "audioDurationSeconds": 28.992
               },
               {
                 "id": "listening-main-458",
@@ -16423,28 +15283,6 @@
                 "audioDurationSeconds": 24.732
               },
               {
-                "id": "listening-main-1166",
-                "taskTitle": "20s陆空通话-148",
-                "audioText": "P: PANPAN, PANPAN, PANPAN, AFR 4095, B737, We have shut down No. 2 engine due to a birdstrike. Heading now 230, altitude 600m, current position 10 miles south of RTD. Request return for immediate landing.\nQuestion: Why was the engine shut down?",
-                "audioTextZh": "P: PANPAN，PANPAN，PANPAN，AFR 4095，B737，由于鸟击，我们已关闭No. 2发动机。当前航向230、高度600m，当前位置在RTD以南10 miles，请求返航立即着陆。\n问题：为什么关闭发动机？",
-                "referenceText": "正确答案：C. Because of a bird strike.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-02-q02.mp3",
-                "choices": [
-                  "Because of an engine fire.",
-                  "Because of excessive turbine temperature.",
-                  "Because of a bird strike.",
-                  "Because of a fuel leak."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "因为发动机起火",
-                  "因为涡轮温度过高",
-                  "因为遭遇鸟击",
-                  "因为燃油泄漏"
-                ],
-                "audioDurationSeconds": 25.956
-              },
-              {
                 "id": "listening-main-1168",
                 "taskTitle": "20s陆空通话-150",
                 "audioText": "P: Wuhan Tower, BAW 70, we have lost steering capability, and we can't vacate the runway on our own.\nC: roger, advise your intention.\nP: we need a maintenance crew to examine our nose wheel and...a tow back to the terminal, BAW 70.\nQuestion: What happened to BAW 70?",
@@ -16597,51 +15435,6 @@
                   "5L跑道为使用中的跑道"
                 ],
                 "audioDurationSeconds": 22.068
-              },
-              {
-                "id": "listening-main-1183",
-                "taskTitle": "20s陆空通话-165",
-                "audioText": "P: ACA 16, we need to descend to 2500m immediately due to pressurization problem.\nC: ACA 16, we can't descend you due to high ground. For descent, turn right, 020 degrees, then cleared to descend to 2000m at your discretion on 29.1 QNH.\nQuestion: What do they have to do before they can descend?",
-                "audioTextZh": "P: ACA 16，由于增压问题，我们需要立即下降至2500m。\nC: ACA 16，由于地势较高，我们无法让你下降。要下降，先右转航向020，然后按QNH 29.1由你自行决定下降至2000m。\n问题：他们下降前必须做什么？",
-                "referenceText": "正确答案：C. Turn to heading 020 degrees.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-03-q12.mp3",
-                "choices": [
-                  "They have a pressurization problem.",
-                  "Unable due to high ground.",
-                  "Turn to heading 020 degrees.",
-                  "Cleared to 2000 meters at pilot discretion."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "他们遇到增压问题",
-                  "由于地势较高而无法下降",
-                  "转到航向020度",
-                  "由飞行员自行决定下降至2,000米"
-                ],
-                "audioDurationSeconds": 24.732
-              },
-              {
-                "id": "listening-main-1184",
-                "taskTitle": "20秒陆空通话-196",
-                "audioText": "P: Tower, CCA710, approaching taxiway 23.\nC: CCA710, good evening, taxi to runway 07L via runway 07R, back track 07R to taxiway 11.\nP: Confirm taxi straight ahead CCA710.\nC: CCA710, negative, turn left, back track runway 07R to taxiway 11.\nQ: How are they going to get to taxiway 11?",
-                "audioTextZh": "飞行员：塔台，国航710，到达滑行道23。\n管制员：国航710，晚上好，通过跑道07右到跑道07左，在跑道07右调头进滑行道11。\n飞行员：确认直线滑行，国航710。\n管制员：不可，左转，在跑道07右调头然后进滑行道11。\n问：他们如何到滑行道11？",
-                "studyTier": 1,
-                "choices": [
-                  "back track on R/W 07R.",
-                  "on taxiway 23.",
-                  "taxi R/W 07L.",
-                  "taxi straight ahead."
-                ],
-                "choicesZh": [
-                  "在跑道07右调头。",
-                  "在滑行道23。",
-                  "滑到跑道07左。",
-                  "直线滑行。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. back track on R/W 07R.",
-                "audio": "/question-bank-assets/audio/listening/fzy/433adc1e988d3ca0bf30.mp3",
-                "audioDurationSeconds": 26.418
               },
               {
                 "id": "listening-main-1185",
@@ -16842,28 +15635,6 @@
                 "audioDurationSeconds": 29.016
               },
               {
-                "id": "listening-main-1199",
-                "taskTitle": "20s陆空通话-181",
-                "audioText": "P: Zhengzhou, CSN 309, request descent, our anti-icing system is inoperative.\nC: CSN 309, descend to 7000m, we had a pilot report one minutes ago there was moderate turbulence at 8000m over ZHO.\nP: down to 7000m, thanks for your alert, CSN 309.\nQuestion: Why does the pilot request descent?",
-                "audioTextZh": "P: 郑州，CSN 309，请求下降，我们的防冰系统失效。\nC: CSN 309，下降至7000m，1分钟前有飞行员报告ZHO上空8000m处有中度湍流。\nP: 下降至7000m，谢谢提醒，CSN 309。\n问题：飞行员为什么请求下降？",
-                "referenceText": "正确答案：D. Because of unserviceable anti-ice system.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-04-q08.mp3",
-                "choices": [
-                  "Because of poor visibility.",
-                  "Because of the thunderstorm alert.",
-                  "Because of moderate turbulence.",
-                  "Because of unserviceable anti-ice system."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "由于低能见度",
-                  "由于雷暴警报",
-                  "由于中度颠簸",
-                  "由于防冰系统失效"
-                ],
-                "audioDurationSeconds": 30.024
-              },
-              {
                 "id": "listening-main-1202",
                 "taskTitle": "20s陆空通话-184",
                 "audioText": "C: NWA 482, descend to FL290 now for crossing traffic, be leveled at FL290 in two minutes or less.\nP: roger, Descend to FL290 in two minutes or less for crossing, leaving FL330 now, NWA 482.\nQuestion: When should they begin their descent?",
@@ -16884,28 +15655,6 @@
                   "两分钟或更短时间内"
                 ],
                 "audioDurationSeconds": 20.376
-              },
-              {
-                "id": "listening-main-1203",
-                "taskTitle": "20s陆空通话-185",
-                "audioText": "P: Ground, CSN 3108, I have to go back to the apron and need medical assistance upon arrival, the flight attendant reported a woman onboard is miscarried and needs a doctor.\nC: CSN 3108, right turn ahead at intersection E5, we will inform those concerned.\nQuestion: What happened onboard?",
-                "audioTextZh": "P: 地面，CSN 3108，我必须返回停机坪，并在到达时需要医疗援助。乘务员报告机上一名女性流产，需要医生。\nC: CSN 3108，在前方E5交叉口右转，我们将通知相关人员。\n问题：机上发生了什么？",
-                "referenceText": "正确答案：A. A Woman was in danger for miscarrying.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-04-q12.mp3",
-                "choices": [
-                  "A Woman was in danger for miscarrying.",
-                  "A baby would be born.",
-                  "A flight attendant was going to give birth to a baby.",
-                  "The reported problem was undercarriage."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "一名女性有流产危险",
-                  "一名婴儿即将出生",
-                  "一名乘务员即将分娩",
-                  "报告的问题是起落架故障"
-                ],
-                "audioDurationSeconds": 26.64
               },
               {
                 "id": "listening-main-1204",
@@ -19470,29 +18219,6 @@
                 "audioDurationSeconds": 28.865
               },
               {
-                "id": "listening-fzy-110954",
-                "taskTitle": "20秒陆空通话-117",
-                "audioText": "PIL: Tower, CCA305, we cannot extend the nose gear due to a hydraulic problem. Request making a low pass for a visual check.\nCTL: CCA305, make a low pass not below 45m over runway 36.\nQ: What is the level for low pass?",
-                "audioTextZh": "飞：塔台，国航305，由于液压故障无法展开前起落架，请求低空通场目视检查。\n管：国航305，跑道36上方45米以上高度低空通场。\n问：低空通场的高度是多少？",
-                "studyTier": 0,
-                "choices": [
-                  "45m",
-                  "55m",
-                  "65m",
-                  "All of the other choices"
-                ],
-                "choicesZh": [
-                  "45米",
-                  "55米",
-                  "65米",
-                  "以上全部选项"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. All of the other choices",
-                "audio": "/question-bank-assets/audio/listening/fzy/ce68beb61b494801d7cb.mp3",
-                "audioDurationSeconds": 25.495
-              },
-              {
                 "id": "listening-main-011",
                 "taskTitle": "20秒陆空通话-118",
                 "audioText": "PIL: Tower, CSN3308, holding short of runway 36 right.\nCTL: CSN3308, line up after the landing 747, number two for departure.\nPIL: Roger, looking for traffic, traffic in sight. CSN3308.\nQ: What is the pilot doing?",
@@ -19537,52 +18263,6 @@
                 "referenceText": "正确答案：A. To get a SSR code",
                 "audio": "/question-bank-assets/audio/listening/fzy/19e6df206318f2850ccf.mp3",
                 "audioDurationSeconds": 32.758
-              },
-              {
-                "id": "listening-fzy-110960",
-                "taskTitle": "20秒陆空通话-123",
-                "audioText": "PIL: Wuhan Approach, ACA306, we have just found a note on board saying a bomb has been planted in the hold, request landing priority and emergency assistance.\nCTL: ACA306, Wuhan Approach, roger, descend to 900m, fly heading 050.\nQ: What happened on board?",
-                "audioTextZh": "飞：武汉进近，加航306，我们在机上发现一张便条，上面写着货舱内已被放置了炸弹，请求优先着陆和紧急援助。\n管：加航306，武汉进近，收到，下降到900米，航向050。\n问：飞机上发生了什么情况？",
-                "studyTier": 0,
-                "choices": [
-                  "A passenger on board is very sick",
-                  "There is a bomb threat on board",
-                  "A note was found in the hold",
-                  "There is a bomb on board"
-                ],
-                "choicesZh": [
-                  "一名乘客病情严重",
-                  "机上有炸弹威胁",
-                  "货舱内找到一张便条",
-                  "机上有炸弹"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. There is a bomb threat on board",
-                "audio": "/question-bank-assets/audio/listening/fzy/adac6e55dc3a75ee5892.mp3",
-                "audioDurationSeconds": 28.212
-              },
-              {
-                "id": "listening-fzy-110962",
-                "taskTitle": "20秒陆空通话-125",
-                "audioText": "PIL: Control, AFR785, TCAS descending, we have a fast moving traffic on my TCAS indication. I am following the TCAS RA instructions to avoid the conflicting traffic.\nCTL: AFR785, I just saw it on my radar. It must be a fighter according to its speed. Report TCAS altitude resumed.\nQ: What did the aircraft encounter?",
-                "audioTextZh": "飞：区调，法航785，TCAS下降。TCAS观察到有快速接近活动，我在根据TCAS RA指令避开冲突活动。\n管：法航785，我在雷达上看到了活动。根据速度肯定是战斗机，TCAS高度恢复时报告。\n问：飞机遭遇了什么情况？",
-                "studyTier": 0,
-                "choices": [
-                  "A TCAS",
-                  "An altitude loss on the airborne radar",
-                  "An intruder",
-                  "Depressurization"
-                ],
-                "choicesZh": [
-                  "TCAS",
-                  "机载雷达显示损失高度",
-                  "入侵飞机",
-                  "降压"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. An intruder",
-                "audio": "/question-bank-assets/audio/listening/fzy/50d0086c9048d0037675.mp3",
-                "audioDurationSeconds": 26.932
               },
               {
                 "id": "listening-main-031",
@@ -19675,29 +18355,6 @@
                 "referenceText": "正确答案：C. Begun the evacuation procedures.",
                 "audio": "/question-bank-assets/audio/listening/fzy/f603594bee58e2366f22.mp3",
                 "audioDurationSeconds": 20.715
-              },
-              {
-                "id": "listening-fzy-116336",
-                "taskTitle": "20秒陆空通话-138",
-                "audioText": "PIL: Chengdu Control, CSN4971, we are unable to control pressurization, cabin altitude is rising fast, request immediate descent to 3000m.\nCTL: CSN4971, descend 3000m, report reaching.\nPIL: Descending to 3000m. Report reaching, CSN4971.\nQ: What was the crew's initial maneuver?",
-                "audioTextZh": "飞行员：成都区调，南方4971，我们无法控制增压系统，客舱高度正迅速上升，请求立刻下降到3000米。\n管制员：南方4971，下降到3000米，到达后报。\n飞行员：下降到3000米，到达后报，南方4971。\n问：机组的初始操纵是什么？",
-                "studyTier": 0,
-                "choices": [
-                  "Evacuate",
-                  "Go to lower altitude",
-                  "Maintain altitude",
-                  "Climb to higher altitude"
-                ],
-                "choicesZh": [
-                  "撤离。",
-                  "下降到低高度。",
-                  "保持高度。",
-                  "爬升到更高高度。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. Go to lower altitude",
-                "audio": "/question-bank-assets/audio/listening/fzy/555489e55a8df0d56b36.mp3",
-                "audioDurationSeconds": 29.466
               },
               {
                 "id": "listening-fzy-116337",
@@ -20459,29 +19116,6 @@
                 "audioDurationSeconds": 23.623
               },
               {
-                "id": "listening-fzy-116625",
-                "taskTitle": "20秒陆空通话-182",
-                "audioText": "P: Mayday, mayday, mayday, ACA3428, I’ve intercepted mayday from CCA3256, I say again, CCA3256, double engine failure, forced landing, current position 10 miles east of LADIX, over.\nC: ACA3428, roger your relayed mayday from CCA3256.\nQ: What do you learn from the exchange?",
-                "audioTextZh": "飞行员：Mayday，Mayday，Mayday，加航3428，我收到国航3256的Mayday信息，我再说一遍，国航3256，双发失效，准备迫降，目前位置在LADIX以西10海里，完毕。\n管制员：加航3248，收到你转发的国航3256的Mayday信息。\n问：我们可以从对话中得到什么信息？",
-                "studyTier": 1,
-                "choices": [
-                  "Air China is heading 200.",
-                  "Air China has an emergency.",
-                  "Air Canada has two engines failed.",
-                  "Air Canada has an emergency."
-                ],
-                "choicesZh": [
-                  "国航航向200。",
-                  "国航遇险。",
-                  "加航双发失效。",
-                  "加航遇险。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. Air China has an emergency.",
-                "audio": "/question-bank-assets/audio/listening/fzy/704f88201691269bdf60.mp3",
-                "audioDurationSeconds": 27.541
-              },
-              {
                 "id": "listening-fzy-116626",
                 "taskTitle": "20秒陆空通话-183",
                 "audioText": "P: Manchester Ground, United 994, we have a hydraulic problem and have lost wheel steering, we will have to hold the position and we request you to send a tug to take us back to the gate\nC: Roger, United 994, standby\nC: United 994, suggest you shut down your engines, there’s a tug on its way.\nP: United 994, roger.\nQ: What problem does United 994 have?",
@@ -20503,29 +19137,6 @@
                 "referenceText": "正确答案：D. A hydraulic problem.",
                 "audio": "/question-bank-assets/audio/listening/fzy/6e890c62a59f14e169e8.mp3",
                 "audioDurationSeconds": 25.268
-              },
-              {
-                "id": "listening-fzy-116633",
-                "taskTitle": "20秒陆空通话-184",
-                "audioText": "A: Did you hear what captain Michael said, there were something about the date when the flight plan reports will be due.\nB: Yes, he said we could hand the flight plan reporting whenever we finish the filing, but it must be on Nov. 13th, if not before.\nQ: When would the flight plan reports be given to the captain?",
-                "audioTextZh": "A：你听到麦克机长说的了，关于飞行计划报告的时间？\nB：听到了，我们可以在我们写好后上交，如果不提前的话，那就是在11月13号。\n问：飞行计划报告什么时候给机长？",
-                "studyTier": 1,
-                "choices": [
-                  "On or before November 13.",
-                  "On or before November 3.",
-                  "Not before November.",
-                  "Not before November 13."
-                ],
-                "choicesZh": [
-                  "11月13号或之前。",
-                  "11月3号或之前。",
-                  "不早于11月。",
-                  "不早于11月13号。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. On or before November 13.",
-                "audio": "/question-bank-assets/audio/listening/fzy/699e55f8e99671cd738b.mp3",
-                "audioDurationSeconds": 27.416
               },
               {
                 "id": "listening-fzy-116643",
@@ -20572,52 +19183,6 @@
                 "referenceText": "正确答案：D. They missed the turn onto Tango.",
                 "audio": "/question-bank-assets/audio/listening/fzy/acc061ad83bbf2e56521.mp3",
                 "audioDurationSeconds": 23.85
-              },
-              {
-                "id": "listening-fzy-116647",
-                "taskTitle": "20秒陆空通话-190",
-                "audioText": "P: Tianjin Ground, CCA410, stand 203, information J, request ATC clearance.\nC: CCA410, cleared to Shanghai, flight planed route, follow ANRAT-2D departure, initial climb to 1200m, after departure contact 127.9, squawk 5345.\nQ: What is the SID and transponder code?",
-                "audioTextZh": "飞行员：天津地面，国航410，停机位203，通播J，请求管制许可。\n管制员：国航410，可以飞往上海，ANRAT-2D离场，初始爬升至1200米，离场后联系127.9，应答机5345。\n问：标准离场程序和应答机是什么？",
-                "studyTier": 1,
-                "choices": [
-                  "DRIVE 9D and 5345.",
-                  "DRIVE 2D and 3654.",
-                  "ANRAT 2D and 5345.",
-                  "ANRAT 9D and 5444."
-                ],
-                "choicesZh": [
-                  "DRIVE 9D和5345。",
-                  "DRIVE 2D和3654。",
-                  "ANRAT2D和5345。",
-                  "ANRAT9D和5444。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. ANRAT 2D and 5345.",
-                "audio": "/question-bank-assets/audio/listening/fzy/d3184353c1963e3254ca.mp3",
-                "audioDurationSeconds": 30.407
-              },
-              {
-                "id": "listening-fzy-116655",
-                "taskTitle": "20秒陆空通话-191",
-                "audioText": "P: Tower, CCA1452, ready for departure.\nC: CCA1452, clear for takeoff, maintain runway heading until 1800m, then turn right en-route, contact 126.25.\nP: Runway heading 1800m, then turn right, contact 126.25. Clear for takeoff, CCA1452.\nQ: What is not mentioned in the exchange?",
-                "audioTextZh": "飞行员：塔台，国航1452，准备好离场了。\n管制员：国航1452，可以起飞，保持跑道航向至1800米，然后在航路上右转，联系126.25。\n飞行员：跑道航向直达1800米，然后右转，联系126.25，可以起飞，国航1452。\n问：对话中，没有提及的是什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Transponder code.",
-                  "Frequency.",
-                  "Altitude.",
-                  "Heading."
-                ],
-                "choicesZh": [
-                  "应答机编码。",
-                  "频率。",
-                  "高度。",
-                  "航向。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Transponder code.",
-                "audio": "/question-bank-assets/audio/listening/fzy/95219c21837839d67fc5.mp3",
-                "audioDurationSeconds": 28.821
               },
               {
                 "id": "listening-fzy-116663",
@@ -20710,29 +19275,6 @@
                 "referenceText": "正确答案：D. Red warning lights appeared before V1.",
                 "audio": "/question-bank-assets/audio/listening/fzy/155ae1f04fc11c15dd67.mp3",
                 "audioDurationSeconds": 29.336
-              },
-              {
-                "id": "listening-fzy-116704",
-                "taskTitle": "20秒陆空通话-199",
-                "audioText": "C: JAL782 the Ground came to report that 2 white navigation lights and one strobe light below the APU exhaust off.\nP: Is that so, we have to check MEL.\nP: Ground, JAL782, this is not airworthy, we will taxi back to the park for a replacement.\nQ: Why did the aircraft taxi back?",
-                "audioTextZh": "管制员：日航782，地面报告说，2个白色的导航灯和APU下面的闪光灯不亮了。\n飞行员：真的吗？我们需要检查下最低设备清单。\n飞行员：地面，日航782，飞机不适航，我们需要滑回机坪然后更换下部件。\n问：飞机为什么滑回？",
-                "studyTier": 1,
-                "choices": [
-                  "Not within MEL requirements.",
-                  "Not in a repaired condition.",
-                  "Not in an APU section.",
-                  "Not in an air operating condition."
-                ],
-                "choicesZh": [
-                  "不在最低设备清单要求内。",
-                  "不符合维修条件。",
-                  "不在辅助动力单元部分。",
-                  "不符合飞行运行条件。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Not within MEL requirements.",
-                "audio": "/question-bank-assets/audio/listening/fzy/6d62ebbe3dd1e41c85b5.mp3",
-                "audioDurationSeconds": 26.096
               },
               {
                 "id": "listening-fzy-116705",
@@ -20850,52 +19392,6 @@
                 "audioDurationSeconds": 20.24
               },
               {
-                "id": "listening-fzy-116731",
-                "taskTitle": "20秒陆空通话-207",
-                "audioText": "P: Ground, CSN3251, request taxi.\nC: CSN3251, for information, Korean 236 and Air China 9018, both Boeing747s nearly collided on runway 14R, 1 minute ago. Stay there, I will call you back.\nP: Roger, holding, CSN3251.\nQ: What happened?",
-                "audioTextZh": "飞行员：地面，南方3251，请求滑行。\n管制员：南方3251，告知下，大韩航空236和国航9018，两架B747在一分钟前差点就在跑道14右上相撞了，原地等待，我等会呼叫你。\n飞行员：收到，原地等待，南方3251。\n问：发生了什么？",
-                "studyTier": 1,
-                "choices": [
-                  "There was a runway incursion.",
-                  "There was a crash on the runway.",
-                  "There was almost a collision on the runway.",
-                  "There was a vehicle on the runway"
-                ],
-                "choicesZh": [
-                  "跑道入侵。",
-                  "跑道上飞机失事。",
-                  "跑道上差点有航空器相撞。",
-                  "跑道上有汽车。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. There was almost a collision on the runway.",
-                "audio": "/question-bank-assets/audio/listening/fzy/c12c782030f6557edd54.mp3",
-                "audioDurationSeconds": 27.392
-              },
-              {
-                "id": "listening-fzy-116732",
-                "taskTitle": "20秒陆空通话-208",
-                "audioText": "C: TWA141, taxi to the holding point runway 36 via taxiways A4 and A. Taxi with caution, taxiway is slippery.\nC: TWA141, stop immediately. There is a conflicting traffic on the way to you.\nP: Ah, stopping, traffic in sight, TWA141.\nQ: What did the flight crew possibly see on their way?",
-                "audioTextZh": "管制员：环球141，通过滑行道A4，A滑行到跑道36等待点，谨慎滑行，滑行道有点滑。\n管制员：环球141，立即停下，有架冲突航空器朝你来了。\n飞行员：嗯，停下，看见航空器了，环球141。\n问：飞行机组在滑行中可能看到什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Parallel traffic.",
-                  "Diverging traffic.",
-                  "Oncoming traffic.",
-                  "Following traffic."
-                ],
-                "choicesZh": [
-                  "平行航空器。",
-                  "分向的航空器。",
-                  "迎面来的航空器。",
-                  "尾随的航空器。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. Oncoming traffic.",
-                "audio": "/question-bank-assets/audio/listening/fzy/935a8272804aa8e22c4d.mp3",
-                "audioDurationSeconds": 27.92
-              },
-              {
                 "id": "listening-fzy-116738",
                 "taskTitle": "20秒陆空通话-209",
                 "audioText": "P: Ground, AFR121, stand Z4, information F, ready for pushback and startup.\nC: AFR121, the tug A blue which was assigned to push back has some malfunction. I am working on sending another tug, standby.\nP: Wilco, AFR121.\nQ: Why does the controller ask AFR121 to wait?",
@@ -20917,52 +19413,6 @@
                 "referenceText": "正确答案：D. Tug has broken down.",
                 "audio": "/question-bank-assets/audio/listening/fzy/9ff498877985175be59c.mp3",
                 "audioDurationSeconds": 23.902
-              },
-              {
-                "id": "listening-main-293",
-                "taskTitle": "20秒陆空通话-210",
-                "audioText": "P: Mayday Mayday Mayday AFR214 we have fire in the rear toilet, descending to FL40, request emergency landing, position 45 miles northwest of the filed, heading 150.\nC: AFR214, roger mayday. Break, break, all stations, stop transmitting, Mayday.\nQ: What is the current situation of the aircraft?",
-                "audioTextZh": "飞行员：Mayday，Mayday，Mayday，法航214，后方厕所起火，下降到高度层40，请求紧急着陆，目前在机场西北45海里，航向150。\n管制员：法航214，收到Mayday，断开，断开，所有各台停止发话，有遇险活动。问：法航214现在的情况是什么？",
-                "studyTier": 2,
-                "choices": [
-                  "Fire in all toilets.",
-                  "Normal landing.",
-                  "Distress.",
-                  "Urgency."
-                ],
-                "choicesZh": [
-                  "所有厕所都起火。",
-                  "正常着陆。",
-                  "遇险。",
-                  "紧急。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. Distress.",
-                "audio": "/question-bank-assets/audio/listening/fzy/00934df7a6f617a89fcd.mp3",
-                "audioDurationSeconds": 25.913
-              },
-              {
-                "id": "listening-fzy-116746",
-                "taskTitle": "20秒陆空通话-211",
-                "audioText": "A: The right pedal's pressure is not sufficient when applied. We suspected it must be a leakage in the hydraulic system.\nB: We will put an auxiliary hydraulic pump on the system and sort it out.\nQ: What should be done to find the problem in hydraulic system?",
-                "audioTextZh": "A：踩右脚蹬的时候，感觉压力不足，我们怀疑液压系统泄漏。\nB：我们将打开备用液压泵，然后查明问题所在。\n问：将会做什么，来找出液压系统的问题？",
-                "studyTier": 1,
-                "choices": [
-                  "Turn on the hydraulic pipe.",
-                  "Turn on the auxiliary pump.",
-                  "Turn on the supplying line.",
-                  "Turn on the auxiliary gear box."
-                ],
-                "choicesZh": [
-                  "打开液压管路。",
-                  "打开备用液压泵。",
-                  "打开供油管路。",
-                  "打开辅助齿轮箱。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. Turn on the auxiliary pump.",
-                "audio": "/question-bank-assets/audio/listening/fzy/cf797090d7795d82c10c.mp3",
-                "audioDurationSeconds": 20.768
               },
               {
                 "id": "listening-fzy-116751",
@@ -21547,12 +19997,12 @@
         "id": "listening-category-03",
         "name": "20s航空英语",
         "declaredTopicCount": 1,
-        "declaredCardCount": 345,
+        "declaredCardCount": 325,
         "topics": [
           {
             "id": "listening-topic-03",
             "name": "全部题目",
-            "declaredCardCount": 345,
+            "declaredCardCount": 325,
             "cards": [
               {
                 "id": "listening-main-074",
@@ -21711,28 +20161,6 @@
                 "audioDurationSeconds": 29.592
               },
               {
-                "id": "listening-main-149",
-                "taskTitle": "20s航空英语-15",
-                "audioText": "When the aircraft was at 2000ft, flaps were lowered from 30 to 40. After passing the middle marker, the airspeed was decreased to 140 knots. At two miles from touchdown, rate of descent varied at times only by 100ft. In the end, a perfect landing was made because of these conditions.\nQuestion: What was the condition at 2 miles from touchdown?",
-                "audioTextZh": "飞机在2000英尺时，襟翼从30度放至40度。通过中指点标后，空速减至140节。在距接地点2海里处，下降率的波动一度只有100英尺。最终，在这些条件下完成了一次平稳着陆。\n问题：距接地点2海里时的情况如何？",
-                "referenceText": "正确答案：C. Rate of descent varied within 100 feet.",
-                "audio": "/question-bank-assets/audio/listening/main/149.mp3",
-                "choices": [
-                  "Airspeed was approximately 140 knots.",
-                  "Flaps were lowered from 30 to 40.",
-                  "Rate of descent varied within 100 feet.",
-                  "Speed increased to 173 knots."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "空速约为140节",
-                  "襟翼从30放至40",
-                  "下降率变化在100英尺以内",
-                  "速度增加至173节"
-                ],
-                "audioDurationSeconds": 27.792
-              },
-              {
                 "id": "listening-main-150",
                 "taskTitle": "20s航空英语-16",
                 "audioText": "In serious emergency situations, pilots make a MAYDAY call requiring immediate assistance. In other urgent situations, pilots make a PAN PAN call. PAN means possible assistance needed. This is used when they are in an emergency but the danger does not threaten flight safety now. Pilots may request necessary steps to deal with the problem.\nQuestion: What does the PAN PAN abbreviation P.A.N. mean?",
@@ -21843,28 +20271,6 @@
                 "audioDurationSeconds": 27.192
               },
               {
-                "id": "listening-main-209",
-                "taskTitle": "20s航空英语-27",
-                "audioText": "The controller mistakenly tells the Cessna on the ground rather than the one in the air to execute a 360 turn. When he sees the one in the air not following his instructions, he repeats the command. The pilot on the ground taxis in a circle and says, 'I am doing this as far as I can.'\nQuestion: Whom did the controller want to execute a three-sixty turn?",
-                "audioTextZh": "管制员错误地指示地面上的塞斯纳做360度转弯，而这条指令本应发给空中的那架塞斯纳。当他看到空中的飞机没有执行指令时，又重复了一遍。地面上的飞行员则让飞机滑行转了一圈，并说：“我会尽我所能执行。”\n问题：管制员原本想让谁做360度转弯？",
-                "referenceText": "正确答案：D. A Cessna in the air",
-                "audio": "/question-bank-assets/audio/listening/main/209.mp3",
-                "choices": [
-                  "A helicopter in the air.",
-                  "A helicopter on the ground.",
-                  "A Cessna on the ground.",
-                  "A Cessna in the air"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "一架空中的直升机",
-                  "一架地面的直升机",
-                  "一架地面的塞斯纳",
-                  "一架空中的塞斯纳"
-                ],
-                "audioDurationSeconds": 32.568
-              },
-              {
                 "id": "listening-main-228",
                 "taskTitle": "20s航空英语-30",
                 "audioText": "Precision approach runway CAT IIIA is intended for operations down to an RVR of the order of 200 m, with no decision height being applicable, using visual aids during the final phase of landing. CAT IIIB is intended down to an RVR of the order of 50 m, with no decision height being applicable, using visual aids for taxiing.\nQuestion: What is the minimum standard for CAT IIIA operation?",
@@ -21952,28 +20358,6 @@
                   "12,500米"
                 ],
                 "audioDurationSeconds": 30.36
-              },
-              {
-                "id": "listening-main-288",
-                "taskTitle": "20s航空英语-41",
-                "audioText": "Obstacle clearance is based on aircraft climbing at 200ft per nm, crossing the end of the runway at 35ft AGL, and climbing to 400ft above airport elevation before turning unless otherwise specified by the procedure.\nQuestion: What is the limitation of obstacle clearance when the airplane is crossing the end of the runway?",
-                "audioTextZh": "越障标准以航空器保持每海里200英尺的爬升梯度、以高于地面35英尺的高度飞越跑道末端，并在转弯前爬升至机场标高以上400英尺为基础，除非程序另有规定。\n问题：飞机飞越跑道末端时的越障高度限制是多少？",
-                "referenceText": "正确答案：D. 35 feet",
-                "audio": "/question-bank-assets/audio/listening/main/288.mp3",
-                "choices": [
-                  "400 feet",
-                  "425 feet",
-                  "200 feet",
-                  "35 feet"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "400英尺",
-                  "425英尺",
-                  "200英尺",
-                  "35英尺"
-                ],
-                "audioDurationSeconds": 31.368
               },
               {
                 "id": "listening-main-290",
@@ -22109,28 +20493,6 @@
                 "audioDurationSeconds": 31.728
               },
               {
-                "id": "listening-main-369",
-                "taskTitle": "20s航空英语-54",
-                "audioText": "M1: Captain, do you think maintenance check is one of the most important preflight activities? M2: Yes, it is. It will show if the airplane's condition is acceptable for flight. M1: I agree with you. The aircraft maintenance engineers should be licensed by the aviation authority to check the engine, airframe, and systems.\nQuestion: What should maintenance engineers do from this conversation?",
-                "audioTextZh": "男1：机长，你认为维修检查是最重要的飞行前活动之一吗？\n男2：是的。它可以确认飞机状态是否适合飞行。\n男1：我同意。航空维修工程师应取得航空主管部门颁发的执照，负责检查发动机、机体和各系统。\n问题：根据这段对话，维修工程师应该做什么？",
-                "referenceText": "正确答案：A. Inspect the engine, airframe, and systems",
-                "audio": "/question-bank-assets/audio/listening/main/369.mp3",
-                "choices": [
-                  "Inspect the engine, airframe, and systems",
-                  "Consult the engine, airframe, and systems",
-                  "Replace the engine, airframe, and systems",
-                  "Release the engine, airframe, and systems"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "检查发动机、机体和各系统",
-                  "查阅发动机、机体和各系统",
-                  "更换发动机、机体和各系统",
-                  "放行发动机、机体和各系统"
-                ],
-                "audioDurationSeconds": 32.904
-              },
-              {
                 "id": "listening-main-370",
                 "taskTitle": "20s航空英语-55",
                 "audioText": "The FT does not include levels within 1500 ft of the station elevation, and temperatures are not forecast for the 3000-foot level or for a level within 2500 ft of the station elevation. At Denver, for example, the forecast for the lower two levels is omitted because the station elevation is over 5000 ft.\nQuestion: Which of the following is the elevation of Denver Airport?",
@@ -22153,28 +20515,6 @@
                 "audioDurationSeconds": 31.2
               },
               {
-                "id": "listening-main-376",
-                "taskTitle": "20s航空英语-56",
-                "audioText": "P: PAN PAN, PAN PAN, PAN PAN, CCA 320, B747. We have shut down No. 2 engine due to excessive vibration. Heading now 120 degrees, altitude 600 meters, current position 20 miles east of HJU. Request return to your airport for immediate landing.\nQuestion: What type of aircraft was CCA 320?",
-                "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，CCA 320，机型B747。由于振动过大，我们已经关闭2号发动机；当前航向120度、高度600米，位置在HJU以东20海里。请求返回你方机场立即着陆。\n问题：CCA 320是什么机型？",
-                "referenceText": "正确答案：B. B747",
-                "audio": "/question-bank-assets/audio/listening/main/376.mp3",
-                "choices": [
-                  "Airbus 340",
-                  "B747",
-                  "B737",
-                  "Airbus 320"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "空客A340",
-                  "波音747",
-                  "波音737",
-                  "空客A320"
-                ],
-                "audioDurationSeconds": 32.496
-              },
-              {
                 "id": "listening-main-388",
                 "taskTitle": "20s航空英语-58",
                 "audioText": "A runway strip including a precision approach runway shall practically extend at least 150 meters from the runway centerline for code number 3 or 4, and at least 75 meters for code number 1 or 2.\nQuestion: How does the runway strip of a precision runway extend from the runway centerline?",
@@ -22195,28 +20535,6 @@
                   "代码数字为3或4时至少75米"
                 ],
                 "audioDurationSeconds": 29.664
-              },
-              {
-                "id": "listening-main-389",
-                "taskTitle": "20s航空英语-59",
-                "audioText": "When the aircraft was at 2000ft, flaps were lowered from 30 to 40. After passing the middle marker, the airspeed was decreased to 140 knots. At two miles from touchdown, rate of descent varied at one time by only 100ft. In the end, a perfect landing was made because of these conditions.\nQuestion: What was the condition at 2 miles from touchdown?",
-                "audioTextZh": "飞机在2,000英尺时，襟翼从30度放至40度。通过中指点标后，空速降至140节。在距接地点2海里处，下降率一度仅变化了100英尺。最终，飞机在这些条件下完成了一次完美着陆。\n问题：飞机距接地点2海里时的状态如何？",
-                "referenceText": "正确答案：C. Rate of descent varied within 100 feet.",
-                "audio": "/question-bank-assets/audio/listening/main/389.mp3",
-                "choices": [
-                  "Airspeed was approximately 140 knots.",
-                  "Flaps were lowered from 30 to 40.",
-                  "Rate of descent varied within 100 feet.",
-                  "Speed increased to 173 knots."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "空速约为140节",
-                  "襟翼从30放至40",
-                  "下降率变化在100英尺以内",
-                  "速度增加至173节"
-                ],
-                "audioDurationSeconds": 27.696
               },
               {
                 "id": "listening-main-390",
@@ -23313,50 +21631,6 @@
                 "audioDurationSeconds": 24.876
               },
               {
-                "id": "listening-main-685",
-                "taskTitle": "20s航空英语-111",
-                "audioText": "P1: John, do you know there is a word that ATC will use to inform the pilot changed the last clearance and the new clearance supersede the preceding clearance.\nP2: Yes, yes, there is.\nQuestion: What word should be used in this situation?",
-                "audioTextZh": "P1: John，你知道ATC会使用哪个词来通知飞行员，上一项许可已经更改，新许可取代之前的许可吗？\nP2: 是的，是的，有这样一个词。\n问题：在这种情况下应当使用哪个词？",
-                "referenceText": "正确答案：B. Reclear",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-04-q03.mp3",
-                "choices": [
-                  "Disregard",
-                  "Reclear",
-                  "Correction",
-                  "Say again"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "不予考虑",
-                  "重新许可",
-                  "更正",
-                  "再说一遍"
-                ],
-                "audioDurationSeconds": 19.116
-              },
-              {
-                "id": "listening-main-690",
-                "taskTitle": "20s航空英语-113",
-                "audioText": "M1: The wear of carbon brakes is related to more numbers of application and pressure applications.\nM2: Yes, the proper use of carbon brakes will... of them.\nQuestion: What is the main idea of the conversation?",
-                "audioTextZh": "M1: 碳刹车的磨损与使用次数增多及施加压力有关。\nM2: 是的，正确使用碳刹车会……\n问题：这段对话的主要内容是什么？",
-                "referenceText": "正确答案：A. More brakes more wear.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-05-q13.mp3",
-                "choices": [
-                  "More brakes more wear.",
-                  "More forces, more wear.",
-                  "More wind, more wear.",
-                  "More pressure, more wear"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "刹车越多，磨损越大",
-                  "受力越大，磨损越大",
-                  "风越大，磨损越大",
-                  "压力越大，磨损越大"
-                ],
-                "audioDurationSeconds": 22.824
-              },
-              {
                 "id": "listening-main-696",
                 "taskTitle": "20s航空英语-114",
                 "audioText": "The clear ice was found between 0 degree and minus 10 degrees, mixed and clear ice between minus 10 degree to minus 15 degree and rime ice between minus 15 degree and minus 20 degree southeast.\nQuestion: What type of ice is usually found between 0 degrees to minus 10 degrees?",
@@ -24103,28 +22377,6 @@
                   "增压系统只在航空器达到30,000英尺或更高时启用"
                 ],
                 "audioDurationSeconds": 19.512
-              },
-              {
-                "id": "listening-main-925",
-                "taskTitle": "20s航空英语-150",
-                "audioText": "A wingtip vortex is found during takeoff, cruising and landing. When the aircraft fly with ground effect, the ground interferes with the wingtip vortex, which reduces the drag. When the aircraft is flying very near the ground, the vortex strength is much less, therefore, there is a large reduction of drag.\nQuestion: What's the main topic of the statement?",
-                "audioTextZh": "起飞、巡航和着陆期间都会产生翼尖涡。航空器在地面效应中飞行时，地面会干扰翼尖涡，从而减小阻力。航空器非常接近地面时，涡流强度小得多，因此阻力会大幅减小。\n问题：这段陈述的主题是什么？",
-                "referenceText": "正确答案：A. Vortex.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q01.mp3",
-                "choices": [
-                  "Vortex.",
-                  "Takeoff.",
-                  "Cruise.",
-                  "Wing Tips."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "涡流",
-                  "起飞",
-                  "巡航",
-                  "翼尖"
-                ],
-                "audioDurationSeconds": 23.688
               },
               {
                 "id": "listening-main-928",
@@ -25271,28 +23523,6 @@
                 "audioDurationSeconds": 26.28
               },
               {
-                "id": "listening-main-1010",
-                "taskTitle": "20s航空英语-206",
-                "audioText": "During the instrument flight, most of your scan time will spent on the attitude indicator, you will realize the instrument flying is much more precise than your visual flying, this is because now you pay more attention to the performance of the instrument when you used to spend time looking out of aircraft.\nQuestion: What is the speaker mainly talking about?",
-                "audioTextZh": "仪表飞行期间，大部分仪表扫描时间会用于姿态指示器。你会发现仪表飞行比目视飞行精确得多，因为你现在更加关注仪表所显示的飞行性能，而过去则把时间用于观察航空器外部。\n问题：说话人主要在讲什么？",
-                "referenceText": "正确答案：A. Attitude indicator.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q19.mp3",
-                "choices": [
-                  "Attitude indicator.",
-                  "Instrument performance.",
-                  "Visual flying.",
-                  "Instrument flying."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "姿态指示器",
-                  "仪表性能",
-                  "目视飞行",
-                  "仪表飞行"
-                ],
-                "audioDurationSeconds": 23.256
-              },
-              {
                 "id": "listening-main-1011",
                 "taskTitle": "20s航空英语-207",
                 "audioText": "A British Airway B737 skidded off the runway at De Gol airport in Paris, on September 16, 2006 when landing in bad weather. There was no fatality, then passengers and two crew members were injured. The plane received minor structural damage.\nQuestion: How many people died in the accident in Paris?",
@@ -25489,28 +23719,6 @@
                   "疏云层"
                 ],
                 "audioDurationSeconds": 23.292
-              },
-              {
-                "id": "listening-main-1025",
-                "taskTitle": "20s航空英语-220",
-                "audioText": "The passenger of flight from Shanghai to Beijing were angry with the airline, about 20 minutes after takeoff, they had to turn back because air temperature was very hot, the cabin crew had known the air conditioning problem even before takeoff and informed the captain but he decided to take off anyway. After we returned to Beijing, the airline didn't apologize and offer compensation for the delay, which was more than 3 hours delay.\nQuestion: When was the captain informed of the problem?",
-                "audioTextZh": "从上海飞往北京的航班乘客对航空公司非常生气。起飞约20分钟后，他们因客舱温度很高而不得不返航。客舱机组甚至在起飞前就知道空调存在问题，并通知了机长，但机长仍决定起飞。我们返回北京后，航空公司既未道歉，也未对超过3小时的延误提供赔偿。\n问题：机长什么时候获知这一问题？",
-                "referenceText": "正确答案：A. Before takeoff",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q18.mp3",
-                "choices": [
-                  "Before takeoff",
-                  "About 20 minutes after takeoff",
-                  "After the delay",
-                  "After returning to the airport"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "起飞前",
-                  "起飞后约20分钟",
-                  "延误后",
-                  "返回机场后"
-                ],
-                "audioDurationSeconds": 27.504
               },
               {
                 "id": "listening-main-1026",
@@ -27534,29 +25742,6 @@
                 "audioDurationSeconds": 27.437
               },
               {
-                "id": "listening-fzy-110826",
-                "taskTitle": "20秒航空英语-139",
-                "audioText": "Heathrow information C, clouds scattered at 3000 feet, broken at 5000 feet, wind 210 at 8 knots, visibility 2 miles in light rain, report established on ILS runway 23.\nQ: What is the cloud cover at 5000 ft?",
-                "audioTextZh": "希斯罗机场通播C，散云3000英尺，多云5000英尺，风向210，8节，小雨中能见度2海里，建立盲降进近跑道23后报。\n问：5000英尺处的云是什么云？",
-                "studyTier": 1,
-                "choices": [
-                  "Broken layer.",
-                  "Overcast layer.",
-                  "No clouds.",
-                  "Scattered layer."
-                ],
-                "choicesZh": [
-                  "多云云层。",
-                  "满天云云层。",
-                  "无云。",
-                  "散云云层。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Broken layer.",
-                "audio": "/question-bank-assets/audio/listening/fzy/5e196ade8748b0aea382.mp3",
-                "audioDurationSeconds": 22.883
-              },
-              {
                 "id": "listening-fzy-110827",
                 "taskTitle": "20秒航空英语-140",
                 "audioText": "In the early days flight, pilot would find their way by following landmarks such as rivers, streams or railroads. This method is called pilotage. Today fly by pilotage is normally accomplished by comparing symbols on aeronautical charts with the corresponding features on the earth surface.\nQ: Which of the following can best explain pilotage flight?",
@@ -27580,29 +25765,6 @@
                 "audioDurationSeconds": 23.432
               },
               {
-                "id": "listening-fzy-110828",
-                "taskTitle": "20秒航空英语-141",
-                "audioText": "Good morning ladies and gentlemen, from the flight deck. Welcome aboard Transworld airlines flight 455 to St louis. We have leveled off and cruising at 35000 feet. We are turning off the fasten seat belts sign now, but for your safety, please keep your seat belts fastened when in your seats.\nQ: Which of the following is flight 455 now doing?",
-                "audioTextZh": "女士们，先生们，这里是机长广播，欢迎乘坐环球航空455航班前往圣路易斯。我们已经平飞，巡航高度35000英尺。现在，我们关闭了安全带指示灯，但是，为了你的安全，请您在就坐期间依然系好安全带。\n问：环球航空455航班现在在干吗？",
-                "studyTier": 1,
-                "choices": [
-                  "Cruising.",
-                  "Landing.",
-                  "Descending.",
-                  "Climbing."
-                ],
-                "choicesZh": [
-                  "巡航。",
-                  "着陆。",
-                  "下降。",
-                  "爬升。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Cruising.",
-                "audio": "/question-bank-assets/audio/listening/fzy/d2d06a91fd7471e2c8ea.mp3",
-                "audioDurationSeconds": 22.883
-              },
-              {
                 "id": "listening-fzy-110831",
                 "taskTitle": "20秒航空英语-149",
                 "audioText": "Some kinds of weather can severely degrade the performance of an aircraft such as turbulence and mountain waves. Icing conditions can also be very dangerous. Pilots need to know that freezing rain, clouds or drizzle can cause ice to build up on the critical surfaces of an aircraft.\nQ: What kind of weather causes severe icing conditions?",
@@ -27624,29 +25786,6 @@
                 "referenceText": "正确答案：D. freezing rain or drizzle.",
                 "audio": "/question-bank-assets/audio/listening/fzy/c52d8fbb9342f18c7134.mp3",
                 "audioDurationSeconds": 20.828
-              },
-              {
-                "id": "listening-fzy-110832",
-                "taskTitle": "20秒航空英语-150",
-                "audioText": "Passengers on a flight to Shanghai from Beijing are angry at the airline. About 20 minutes after takeoff, they had to turn back because the cabin temperature was very hot. The cabin crew had doubted the air conditioning problem even before they take off and had informed the captain but he decided to take off anyway. After returning to Beijing, the airline didn’t apologize or offer compensation for the delay which was more than 3 hours.\nQ: When was the captain informed of the problem?",
-                "audioTextZh": "从北京前往上海航班上的乘客对航空公司很生气。起飞后约20分钟，飞机由于客舱温度过热而返航。乘务员早在起飞前就怀疑是空调系统出了问题，并上报给了机长，但是，机长依旧决定起飞。返航到北京后，航空公司没有任何道歉或者为本次延误提供补偿，即便延误超过了3小时。\n问：机长是什么时候得知飞机问题的？",
-                "studyTier": 1,
-                "choices": [
-                  "before takeoff.",
-                  "about 20 minutes after takeoff.",
-                  "after the delay.",
-                  "after returning to the airport."
-                ],
-                "choicesZh": [
-                  "起飞前。",
-                  "起飞后约20分钟。",
-                  "延误后。",
-                  "返航后。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. before takeoff.",
-                "audio": "/question-bank-assets/audio/listening/fzy/e66543fb8538cb42584a.mp3",
-                "audioDurationSeconds": 29.03
               },
               {
                 "id": "listening-fzy-110834",
@@ -27856,29 +25995,6 @@
                 "audioDurationSeconds": 16.392
               },
               {
-                "id": "listening-fzy-140523",
-                "taskTitle": "20秒航空英语-165",
-                "audioText": "Good morning, ladies and gentlemen, from the flight deck, welcome aboard EVA airline flight 455 to Hongkong, we have leveled off and cruising at 35000ft, we are turning off the “fasten the seatbelt” signs now but for your safety, please make your seatbelts while in your seat.\nQ: Which of the following is flight 455 now doing?",
-                "audioTextZh": "女士们，先生们，早上好，这里是机长广播，欢迎乘坐长荣航空455航班前往香港。我们已经平飞，巡航高度35000英尺。现在，我们关闭了安全带指示灯，但是，为了你的安全，请您在就坐期间依然系好安全带。\n问：455航班现在在干吗？",
-                "studyTier": 2,
-                "choices": [
-                  "Cruising.",
-                  "Landing.",
-                  "Descending.",
-                  "Climbing."
-                ],
-                "choicesZh": [
-                  "巡航。",
-                  "着陆。",
-                  "下降。",
-                  "爬升。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Cruising.",
-                "audio": "/question-bank-assets/audio/listening/fzy/940134f8a542cf874ef1.mp3",
-                "audioDurationSeconds": 25.104
-              },
-              {
                 "id": "listening-main-041",
                 "taskTitle": "20秒航空英语-97",
                 "audioText": "Ground, CES5056, we found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the loading sheet. Would you recheck it and correct the mistakes?\nQ: What do you learn from the statement?",
@@ -28038,29 +26154,6 @@
                 "referenceText": "正确答案：B. Visibility is reducing to 3000m overcast.",
                 "audio": "/question-bank-assets/audio/listening/fzy/8e277a2de36b620aa4ad.mp3",
                 "audioDurationSeconds": 24.877
-              },
-              {
-                "id": "listening-fzy-116580",
-                "taskTitle": "20秒航空英语-104",
-                "audioText": "The localizer transmitter is situated on extended runway centerline beyond the suburban. The localizer is being normally defined the centerline of runway and extends along the approach path for 25 miles with 40 ILS channels within the frequency range of 108.10 to 111.95 MHZ (megahertz) to provide pilots with course guidance.\nQ: What is localizer used for?",
-                "audioTextZh": "航向台定位信标发射机安装在跑道中心延长线以外一定距离内。一般而言，定位信标被认为是跑道的中心线，并沿着进近路线延伸25海里，在载波频率108.10到111.95MHZ范围内，包含40个ILS频道，为飞行员提供航路指引。\n问：定位信标被用来做什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Horizontal guidance.",
-                  "Both longitudinal and lateral guidance.",
-                  "Vertical guidance.",
-                  "Longitudinal guidance."
-                ],
-                "choicesZh": [
-                  "水平引导。",
-                  "纵向和横向引导。",
-                  "垂直引导。",
-                  "纵向引导。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Horizontal guidance.",
-                "audio": "/question-bank-assets/audio/listening/fzy/9ab67f0f64176fcbc94a.mp3",
-                "audioDurationSeconds": 27.646
               },
               {
                 "id": "listening-fzy-116581",
@@ -28339,29 +26432,6 @@
                 "audioDurationSeconds": 12.442
               },
               {
-                "id": "listening-fzy-116696",
-                "taskTitle": "20秒航空英语-133",
-                "audioText": "The localizer transmitter is situated on extended runway centerline beyond the start ben. The localizer is being normally defined the centerline of runway and extends along the approach path for 25 miles with 40 ILS channels within the frequency range of 108.10 to 111.95 megahertz to provide pilots with course guidance.\nQ: What is localizer used for?",
-                "audioTextZh": "航向台定位信标发射机安装在跑道中心延长线以外一定距离内。一般而言，定位信标被认为是跑道的中心线，并沿着进近路线延伸25海里，在载波频率108.10到111.95MHZ范围内，包含40个ILS频道，为飞行员提供航路指引。\n问：定位信标被用来做什么？",
-                "studyTier": 1,
-                "choices": [
-                  "Horizontal guidance.",
-                  "Vertical guidance.",
-                  "Longitudinal guidance.",
-                  "Both longitudinal and lateral guidance."
-                ],
-                "choicesZh": [
-                  "水平引导。",
-                  "垂直引导。",
-                  "纵向引导。",
-                  "纵向引导和横向引导。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Horizontal guidance.",
-                "audio": "/question-bank-assets/audio/listening/fzy/74e54f60f9123946d77e.mp3",
-                "audioDurationSeconds": 26.671
-              },
-              {
                 "id": "listening-fzy-116709",
                 "taskTitle": "20秒航空英语-135",
                 "audioText": "Required runway length for takeoff and landing might vary considerably with changes of outside temperature, runway surface, aircraft load and field elevation.\nQ: According to the statement, which of the following will NOT affect the required runway length for takeoff and landing?",
@@ -28429,29 +26499,6 @@
                 "referenceText": "正确答案：D. The taxiways were blocked.",
                 "audio": "/question-bank-assets/audio/listening/fzy/ae99c935d66d3810c657.mp3",
                 "audioDurationSeconds": 22.813
-              },
-              {
-                "id": "listening-fzy-116729",
-                "taskTitle": "20秒航空英语-143",
-                "audioText": "Most radios current manufactures have either 360 or 720 channel capacity. A 360-channel radio uses 50khz spacing between the channels such as 118.05 and 118.10. A 720-channel radio double the frequency available by using 25khz spacing.\nQ: What spacing does a 360-channel radio have between channels?",
-                "audioTextZh": "大部分的无线电制造商有360或720的频道容量。一个360频道容量的无线电使用50千赫作为频道与频道的间隔，比如118.05和118.10；一个720频道容量的无线电使用25千赫作为间隔，因此使得可用频道翻倍。\n问：一个360频道容量的无线电使用的频道与频道之间的间隔是多少？",
-                "studyTier": 1,
-                "choices": [
-                  "25KHz channel spacing",
-                  "50KHz channel spacing",
-                  "20KHz channel spacing",
-                  "15KHz channel spacing"
-                ],
-                "choicesZh": [
-                  "25千赫间隔。",
-                  "50千赫间隔。",
-                  "20千赫间隔。",
-                  "15千赫间隔。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. 50KHz channel spacing",
-                "audio": "/question-bank-assets/audio/listening/fzy/b7fe1644ec9df0e9b062.mp3",
-                "audioDurationSeconds": 29.962
               },
               {
                 "id": "listening-fzy-110627",
@@ -28546,29 +26593,6 @@
                 "audioDurationSeconds": 15.89
               },
               {
-                "id": "listening-fzy-116760",
-                "taskTitle": "20秒航空英语-152",
-                "audioText": "An aircraft has just taken off, the crew is expecting to turn right and proceed to waypoint YB which is the exit point on the SID. As they pass 600m, Departure Control instructs them to turn right and proceed direct to VINI, a waypoint that the crew doesn’t understand or recognize, so the crew decide to contact Departure Control.\nQ: Why does the crew need to contact Departure Control?",
-                "audioTextZh": "飞机刚刚起飞，机组计划右转直飞航路点YB，这是标准仪表离场程序中的出口点。当他们过600米后，离场管制指示他们右转直飞VINI点，机组对这个点并不理解和清楚，于是，机组决定联系离场管制。\n问：机组成员为什么需要联系离场管制？",
-                "studyTier": 2,
-                "choices": [
-                  "Waypoint VINI is unrecognized.",
-                  "Proceed to initial waypoint YB.",
-                  "VINI comes before YB.",
-                  "Turn right upon passing 600m."
-                ],
-                "choicesZh": [
-                  "不熟悉VINI航路点。",
-                  "直飞初始航路点YB。",
-                  "VINI点在YB点的前面。",
-                  "过600米后右转。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Waypoint VINI is unrecognized.",
-                "audio": "/question-bank-assets/audio/listening/fzy/2e4a497efc5558c714db.mp3",
-                "audioDurationSeconds": 24.171
-              },
-              {
                 "id": "listening-main-126",
                 "taskTitle": "20秒航空英语-153",
                 "audioText": "My best friend used to fly for Thai airways, he lived there for more than 10 years until he was offered a much better job with Air France, now he is trying to decide whether he should take an even better job with Air China or stay in France, one problem is that he doesn’t speak Chinese.\nQ: Which statement is correct?",
@@ -28659,29 +26683,6 @@
                 "referenceText": "正确答案：C. Reduce mental processing.",
                 "audio": "/question-bank-assets/audio/listening/fzy/59d51eb102c101825e58.mp3",
                 "audioDurationSeconds": 24.511
-              },
-              {
-                "id": "listening-fzy-116826",
-                "taskTitle": "20秒航空英语-159",
-                "audioText": "Panpan Panpan Panpan, NW401 declaring an emergency, we have to shut down No. 2 engine due to bird strike and engine lost power, request return for immediate landing. Current position 10 miles south of YHU\nQ: Why was the engine shut down?",
-                "audioTextZh": "Panpan，Panpan，Panpan，西北航空401，宣布紧急状态，由于鸟击，飞机失去动力，我们已将二号发动机关闭，请求返航并立即着陆。目前位于YHU以南10海里。\n问：为什么关闭发动机？",
-                "studyTier": 2,
-                "choices": [
-                  "Because of an engine fire.",
-                  "Because of excessive turbine temperature.",
-                  "Because of a fuel leak.",
-                  "Because of bird ingestion."
-                ],
-                "choicesZh": [
-                  "因为发动机起火。",
-                  "因为涡轮温度过高。",
-                  "因为燃油泄漏。",
-                  "因为发动机吸入鸟。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. Because of bird ingestion.",
-                "audio": "/question-bank-assets/audio/listening/fzy/66f7cc4321fc982e094c.mp3",
-                "audioDurationSeconds": 21.089
               },
               {
                 "id": "listening-fzy-219601",
@@ -29312,12 +27313,12 @@
         "id": "listening-category-04",
         "name": "10s陆空通话",
         "declaredTopicCount": 1,
-        "declaredCardCount": 311,
+        "declaredCardCount": 290,
         "topics": [
           {
             "id": "listening-topic-04",
             "name": "全部题目",
-            "declaredCardCount": 311,
+            "declaredCardCount": 290,
             "cards": [
               {
                 "id": "listening-main-010",
@@ -29944,28 +27945,6 @@
                 "audioDurationSeconds": 23.448
               },
               {
-                "id": "listening-main-151",
-                "taskTitle": "10s陆空通话-51",
-                "audioText": "P: Tower, this is BAW 223, we are ready for departure on Runway 29L. C: BAW 223, your transmission is cutting in and out. Check your mike button and call back.\nQuestion: What was the problem in the transmission?",
-                "audioTextZh": "飞行员：塔台，这里是BAW 223，我们已准备好从29L跑道离场。\n管制员：BAW 223，你的通话时断时续，请检查麦克风按钮后重新呼叫。\n问题：无线电通话出了什么问题？",
-                "referenceText": "正确答案：D. Intermittent",
-                "audio": "/question-bank-assets/audio/listening/main/151.mp3",
-                "choices": [
-                  "Faint",
-                  "Low",
-                  "Jammed",
-                  "Intermittent"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "微弱",
-                  "低",
-                  "受到干扰",
-                  "断续"
-                ],
-                "audioDurationSeconds": 21.744
-              },
-              {
                 "id": "listening-main-152",
                 "taskTitle": "10s陆空通话-52",
                 "audioText": "C: SIA 122, you are No. 1 to land, continue to descend to 3000ft, speed at your own discretion.\nQuestion: Who decides the approach speed?",
@@ -30121,28 +28100,6 @@
                 "audioDurationSeconds": 21.552
               },
               {
-                "id": "listening-main-174",
-                "taskTitle": "10s陆空通话-60",
-                "audioText": "C: Turn left 30 degrees, when completing the turn, expect a traffic at your 2 o’clock, climbing, at 1000ft or below.\nQuestion: When will the traffic be at 2 o’clock?",
-                "audioTextZh": "管制员：左转30度，完成转弯后，预计在你两点钟方向有一架正在爬升的飞机，高度为1,000英尺或以下。\n问题：该飞机什么时候会出现在两点钟方向？",
-                "referenceText": "正确答案：D. After the turn",
-                "audio": "/question-bank-assets/audio/listening/main/174.mp3",
-                "choices": [
-                  "Before the turn",
-                  "As the traffic climbs",
-                  "At once",
-                  "After the turn"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "转弯前",
-                  "该航空器爬升时",
-                  "立即",
-                  "转弯后"
-                ],
-                "audioDurationSeconds": 16.872
-              },
-              {
                 "id": "listening-main-211",
                 "taskTitle": "10s陆空通话-68",
                 "audioText": "P: We can't get to de-icing pad on time, so for cooperation, we got a new slot time. C: Ok, I will see and put you a new departure slot.\nQuestion: Why do they need to get a new departure slot?",
@@ -30163,28 +28120,6 @@
                   "维修问题"
                 ],
                 "audioDurationSeconds": 17.136
-              },
-              {
-                "id": "listening-main-213",
-                "taskTitle": "10s陆空通话-70",
-                "audioText": "C: CCA 981, take first right, then T5, P to Gate 212. P: T5, P to Gate 212, CCA 981.\nQuestion: When did this conversation take place?",
-                "audioTextZh": "管制员：CCA 981，在第一个道口右转，然后经T5、P滑行道前往212号登机口。\n飞行员：经T5、P滑行道前往212号登机口，CCA 981。\n问题：这段对话发生在什么时候？",
-                "referenceText": "正确答案：D. During taxi in.",
-                "audio": "/question-bank-assets/audio/listening/main/213.mp3",
-                "choices": [
-                  "Before landing.",
-                  "During taxi out.",
-                  "Before takeoff.",
-                  "During taxi in."
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "着陆前",
-                  "滑出期间",
-                  "起飞前",
-                  "滑入期间"
-                ],
-                "audioDurationSeconds": 17.472
               },
               {
                 "id": "listening-main-215",
@@ -30385,28 +28320,6 @@
                 "audioDurationSeconds": 27.288
               },
               {
-                "id": "listening-main-273",
-                "taskTitle": "10s陆空通话-90",
-                "audioText": "C: NWA 14 heavy, moderate turbulence reported ahead above FL 380. Would you like a lower altitude? P: roger, is FL360 available, NWA 14 heavy.\nQuestion: Where is the reported turbulence?",
-                "audioTextZh": "管制员：NWA 14，重型，前方FL380以上报告有中度颠簸。你们需要较低高度吗？\n飞行员：收到，FL360可用吗？NWA 14，重型。\n问题：报告的颠簸位于哪里？",
-                "referenceText": "正确答案：B. Ahead and above FL 380.",
-                "audio": "/question-bank-assets/audio/listening/main/273.mp3",
-                "choices": [
-                  "At FL 360 or below.",
-                  "Ahead and above FL 380.",
-                  "Request descent to FL 360.",
-                  "Ahead and below FL 380."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "在FL360或以下",
-                  "前方且高于FL380",
-                  "请求下降至FL360",
-                  "前方且低于FL380"
-                ],
-                "audioDurationSeconds": 17.208
-              },
-              {
                 "id": "listening-main-275",
                 "taskTitle": "10s陆空通话-92",
                 "audioText": "C: NWA 152, Turn left heading 050, traffic will be at your 1 o'clock when she completes the turn.\nQuestion: When will the traffic be at 1 o'clock?",
@@ -30429,28 +28342,6 @@
                 "audioDurationSeconds": 15.504
               },
               {
-                "id": "listening-main-291",
-                "taskTitle": "10s陆空通话-93",
-                "audioText": "C: UAL 889, expect lower altitude until the climbing aircraft has passed, confirm you are leveling at 11,500m.\nQuestion: What altitude does the controller think UAL 889 is at right now?",
-                "audioTextZh": "管制员：UAL 889，在那架爬升飞机通过前，预计保持较低高度。确认你正在11,500米改平。\n问题：管制员认为UAL 889目前处于什么高度？",
-                "referenceText": "正确答案：B. Maintaining 11,500 m.",
-                "audio": "/question-bank-assets/audio/listening/main/291.mp3",
-                "choices": [
-                  "Climbing to 11,500 m.",
-                  "Maintaining 11,500 m.",
-                  "Descending to 11,500 m.",
-                  "Leaving 11,500 m."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "正在爬升至11,500米",
-                  "保持11,500米",
-                  "正在下降至11,500米",
-                  "正在离开11,500米"
-                ],
-                "audioDurationSeconds": 17.136
-              },
-              {
                 "id": "listening-main-292",
                 "taskTitle": "10s陆空通话-94",
                 "audioText": "C: CCA 173, climb straight ahead until passing 900m before turning right, cleared for takeoff, wind 340 degrees.\nQuestion: What does the controller ask the pilot to do?",
@@ -30471,28 +28362,6 @@
                   "放弃起飞"
                 ],
                 "audioDurationSeconds": 18.312
-              },
-              {
-                "id": "listening-main-312",
-                "taskTitle": "10s陆空通话-99",
-                "audioText": "C: UAL 321, caution, unknown balloon over right turning base of Runway 36 at time 32, altitude 300m, moving northbound 40km per hour.\nQuestion: Why should UAL 321 keep a good lookout?",
-                "audioTextZh": "管制员：UAL 321，注意，32分时在36号跑道右转四边上空发现不明气球，高度300米，正以每小时40公里向北移动。\n问题：UAL 321为什么要加强观察？",
-                "referenceText": "正确答案：A. There is a balloon near the runway.",
-                "audio": "/question-bank-assets/audio/listening/main/312.mp3",
-                "choices": [
-                  "There is a balloon near the runway.",
-                  "He is 40 KM per hour too fast.",
-                  "He is turning base for R/W36.",
-                  "His altitude is only 300 meters."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "跑道附近有气球",
-                  "他的速度快了每小时40千米",
-                  "他正在转入36跑道三边",
-                  "他的高度只有300米"
-                ],
-                "audioDurationSeconds": 21.816
               },
               {
                 "id": "listening-main-313",
@@ -30627,50 +28496,6 @@
                 "audioDurationSeconds": 16.272
               },
               {
-                "id": "listening-main-397",
-                "taskTitle": "10s陆空通话-122",
-                "audioText": "C: NWA 482, descend to FL290 now for crossing traffic, be level at FL290 in two minutes or less. P: Roger, descend to FL290 in two minutes or less for crossing traffic, leaving FL330 now, NWA 482.\nQuestion: When should they begin their descent?",
-                "audioTextZh": "管制员：NWA 482，为避让穿越冲突飞机，立即下降至FL290，并在两分钟以内于FL290改平。\n飞行员：收到，为避让穿越飞机，两分钟以内下降至FL290，现在离开FL330，NWA 482。\n问题：他们应该什么时候开始下降？",
-                "referenceText": "正确答案：B. Immediately",
-                "audio": "/question-bank-assets/audio/listening/main/397.mp3",
-                "choices": [
-                  "FL 330",
-                  "Immediately",
-                  "Crossing traffic",
-                  "2 minutes or less"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "FL330",
-                  "立即",
-                  "穿越航空器",
-                  "两分钟或更短时间内"
-                ],
-                "audioDurationSeconds": 23.688
-              },
-              {
-                "id": "listening-main-399",
-                "taskTitle": "10s陆空通话-123",
-                "audioText": "P: Wuhan Control, request go around the CB from the right. C: CCA 101, negative due to prohibited area. Turn left 40 degrees, track out 30km, report clear of CB.\nQuestion: Why was CCA 101 not allowed to turn to the left?",
-                "audioTextZh": "飞行员：武汉区调，请求从右侧绕飞积雨云。\n管制员：CCA 101，由于有禁区，不能批准。左转40度，向外飞30公里，脱离积雨云后报告。\n问题：为什么不允许CCA 101左转？",
-                "referenceText": "正确答案：A. Forbidden area",
-                "audio": "/question-bank-assets/audio/listening/main/399.mp3",
-                "choices": [
-                  "Forbidden area",
-                  "Helicopter training area",
-                  "Thunderstorm area",
-                  "Permitted area"
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "禁区",
-                  "直升机训练区",
-                  "雷暴区",
-                  "允许飞行区"
-                ],
-                "audioDurationSeconds": 23.088
-              },
-              {
                 "id": "listening-main-411",
                 "taskTitle": "10s陆空通话-124",
                 "audioText": "C: CCA 7634, overhead BEKOL, maintaining 1500m, entering the hold.\nQuestion: What action is CCA 7634 about to commence?",
@@ -30693,28 +28518,6 @@
                 "audioDurationSeconds": 15.336
               },
               {
-                "id": "listening-main-418",
-                "taskTitle": "10s陆空通话-128",
-                "audioText": "M1: Captain, the panel shows the aft cargo door was open. M2: Roger, check the cabin. M1: The cabin pressure is normal. M2: It might be a false indication. It happened last time. Report that to ATC.\nQuestion: What had happened?",
-                "audioTextZh": "男1：机长，面板显示后货舱门开着。\n男2：收到，检查客舱。\n男1：客舱压力正常。\n男2：可能是虚假指示，上次也发生过。把情况报告给空中交通管制。\n问题：发生了什么情况？",
-                "referenceText": "正确答案：C. There was a possible false indication.",
-                "audio": "/question-bank-assets/audio/listening/main/418.mp3",
-                "choices": [
-                  "ATC gave wrong instructions.",
-                  "They had lost some cargo.",
-                  "There was a possible false indication.",
-                  "The aft cargo door was open."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "空管发出了错误指令",
-                  "他们丢失了一些货物",
-                  "可能出现虚假指示",
-                  "后货舱门开着"
-                ],
-                "audioDurationSeconds": 26.424
-              },
-              {
                 "id": "listening-main-426",
                 "taskTitle": "10s陆空通话-130",
                 "audioText": "C: Remain in your present position, there is a towed aircraft passing behind.\nQuestion: What is the meaning of the controller's instruction?",
@@ -30735,50 +28538,6 @@
                   "原地等待"
                 ],
                 "audioDurationSeconds": 12.936
-              },
-              {
-                "id": "listening-main-434",
-                "taskTitle": "10s陆空通话-134",
-                "audioText": "C: UAL 223, RVR Runway 36L touchdown 600m, midpoint 850m, stop end missing. P: UAL 223.\nQuestion: What is the best RVR?",
-                "audioTextZh": "管制员：UAL 223，36L跑道跑道视程：接地区600米，中间段850米，停止端数据缺失。\n飞行员：UAL 223。\n问题：最好的跑道视程数值是多少？",
-                "referenceText": "正确答案：B. midpoint",
-                "audio": "/question-bank-assets/audio/listening/main/434.mp3",
-                "choices": [
-                  "Roll out",
-                  "midpoint",
-                  "touchdown",
-                  "stop end"
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "着陆滑跑区",
-                  "中点",
-                  "接地点",
-                  "停止道端"
-                ],
-                "audioDurationSeconds": 21.144
-              },
-              {
-                "id": "listening-main-436",
-                "taskTitle": "10s陆空通话-136",
-                "audioText": "C: CCA 785, behind departing AFR 74, cross Runway 14L behind, turn right on C, hold short of Runway 14R.\nQuestion: What are they going to do when they reach Runway 14L?",
-                "audioTextZh": "管制员：CCA 785，在离场的AFR 74之后穿越14L跑道，在C滑行道右转，在14R跑道外等待。\n问题：他们到达14L跑道时要做什么？",
-                "referenceText": "正确答案：C. Cross the RW behind AFR 74.",
-                "audio": "/question-bank-assets/audio/listening/main/436.mp3",
-                "choices": [
-                  "Cross RW 14L without delay.",
-                  "Position and hold.",
-                  "Cross the RW behind AFR 74.",
-                  "Turn right and backtrack on 14L"
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "立即穿越14L跑道",
-                  "进入位置等待",
-                  "在AFR 74后方穿越跑道",
-                  "右转并在14L跑道上反向滑行"
-                ],
-                "audioDurationSeconds": 18.072
               },
               {
                 "id": "listening-main-439",
@@ -30999,28 +28758,6 @@
                   "以上均不是"
                 ],
                 "audioDurationSeconds": 26.928
-              },
-              {
-                "id": "listening-main-490",
-                "taskTitle": "10s陆空通话-150",
-                "audioText": "P: NWA 546, please brighten up the approach lights. They look dim. C: NWA 546, they are already on maximum setting. Cleared to land. P: Cleared to land, five four six.\nQuestion: what is the weather probably like?",
-                "audioTextZh": "飞行员（P）：NWA 546，麻烦把进近灯调亮些。看起来很暗。\n管制员（C）：NWA 546，进近灯已经设置到最亮了。可以着陆。\n飞行员（P）：NWA 546，明白，可以着陆。\n问题：天气可能是什么样的？",
-                "referenceText": "正确答案：B. Dark.",
-                "audio": "/question-bank-assets/audio/listening/main/490.mp3",
-                "choices": [
-                  "Clear.",
-                  "Dark.",
-                  "Cloudy.",
-                  "Low ceiling."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "晴朗",
-                  "黑暗",
-                  "多云",
-                  "低云底"
-                ],
-                "audioDurationSeconds": 20.208
               },
               {
                 "id": "listening-main-492",
@@ -32013,29 +29750,6 @@
                 "audioDurationSeconds": 16.236
               },
               {
-                "id": "listening-main-1075",
-                "taskTitle": "10秒陆空通话-136",
-                "audioText": "C: UAL243, descend and maintain FL240.\nP: Control, can we have that at the pilot's discretion?\nQ: What was the pilot's intention under this situation?",
-                "audioTextZh": "管制员：美联航243，下降并保持高度层240。\n飞行员：区调，这个可以由飞行员自行决定吗？\n问：这个情况下，飞行员的意图是什么？",
-                "studyTier": 1,
-                "choices": [
-                  "To continue descent by ATC instruction.",
-                  "To decide how to fly by himself.",
-                  "To descend immediately.",
-                  "To decide when to descend by himself."
-                ],
-                "choicesZh": [
-                  "按照管制员的指令下降。",
-                  "自行决定如何飞。",
-                  "立即下降。",
-                  "自行决定下降时间。"
-                ],
-                "correctChoiceIndex": 3,
-                "referenceText": "正确答案：D. To decide when to descend by himself.",
-                "audio": "/question-bank-assets/audio/listening/fzy/f0e0bed112a27dcb9add.mp3",
-                "audioDurationSeconds": 14.48
-              },
-              {
                 "id": "listening-main-1080",
                 "taskTitle": "10s陆空通话-201",
                 "audioText": "C: BAW 480, flames coming out from your No. 3 engine on takeoff, please advise.\nP: roger, declaring an emergency, request immediate return, BAW 480.\nQuestion: Why are they declaring an emergency?",
@@ -32078,50 +29792,6 @@
                   "在跑道左侧"
                 ],
                 "audioDurationSeconds": 13.824
-              },
-              {
-                "id": "listening-main-1082",
-                "taskTitle": "10s陆空通话-203",
-                "audioText": "P: Guangzhou Departure, CSN 5469, airborne 600m, climbing to 3000m, request heading 290 due weather.\nQuestion: What stage of the flight does the transmission refer to?",
-                "audioTextZh": "P: 广州离场，CSN 5469，离地600m，正在爬升至3000m，由于天气原因请求航向290。\n问题：这段通话指的是哪个飞行阶段？",
-                "referenceText": "正确答案：A. After takeoff.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q09.mp3",
-                "choices": [
-                  "After takeoff.",
-                  "During the cruise.",
-                  "Receiving departure clearance.",
-                  "Before landing."
-                ],
-                "correctChoiceIndex": 0,
-                "choicesZh": [
-                  "起飞后",
-                  "巡航期间",
-                  "接收离场许可时",
-                  "着陆前"
-                ],
-                "audioDurationSeconds": 16.74
-              },
-              {
-                "id": "listening-main-1094",
-                "taskTitle": "10s陆空通话-209",
-                "audioText": "C: UAL 889, when clear of crossing traffic, turn left heading 150, confirm your level 1500.\nQuestion: When should they make the turn?",
-                "audioTextZh": "C: UAL 889，避开穿越航空器后，左转航向150，确认你的高度为1500。\n问题：他们应在什么时候转弯？",
-                "referenceText": "正确答案：D. When clear of crossing traffic",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q02.mp3",
-                "choices": [
-                  "Heading 050 degrees.",
-                  "Maintaining 1,500m.",
-                  "To avoid crossing traffic",
-                  "When clear of crossing traffic"
-                ],
-                "correctChoiceIndex": 3,
-                "choicesZh": [
-                  "航向050度",
-                  "保持1,500米",
-                  "避让穿越航空器",
-                  "避开穿越航空器后"
-                ],
-                "audioDurationSeconds": 11.124
               },
               {
                 "id": "listening-main-1095",
@@ -32276,28 +29946,6 @@
                   "时断时续"
                 ],
                 "audioDurationSeconds": 15.696
-              },
-              {
-                "id": "listening-main-1118",
-                "taskTitle": "10s陆空通话-217",
-                "audioText": "P: Beijing Ground, CCA 4014, radio check on 118.6, how do you read?\nC: CCA 4014, Beijing Ground, I read you 3, loud background whistle.\nQuestion: What's the radio signal of CCA 4104 like?",
-                "audioTextZh": "P: 北京地面，CCA 4014，在118.6进行无线电检查，听我的信号如何？\nC: CCA 4014，北京地面，信号强度3，有很响的背景哨声。\n问题：CCA 4104的无线电信号如何？",
-                "referenceText": "正确答案：C. Readable but with difficulty.",
-                "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q06.mp3",
-                "choices": [
-                  "Readable.",
-                  "Unreadable.",
-                  "Readable but with difficulty.",
-                  "Readable now and then."
-                ],
-                "correctChoiceIndex": 2,
-                "choicesZh": [
-                  "可以听懂",
-                  "无法听懂",
-                  "可以听懂但很困难",
-                  "时断时续"
-                ],
-                "audioDurationSeconds": 4.14
               },
               {
                 "id": "listening-main-1119",
@@ -34562,29 +32210,6 @@
                 "audioDurationSeconds": 21.316
               },
               {
-                "id": "listening-fzy-110743",
-                "taskTitle": "10秒陆空通话-93",
-                "audioText": "PIL: UAL303, we'll have to go back to the maintenance apron to check our flight controls. We found the rudder pedals are a bit tight.\nCTL: UAL303, roger, taxi to stand 12. We'll contact maintenance department.\nQ: What is the problem?",
-                "audioTextZh": "飞：美联航303，我们必须返回维修停机坪检查飞机的飞行控制。我们发现方向舵踏板有一些紧。\n管：美联航303，收到，滑到机位12。我们会联系维修部门。\n问：飞机遇到了什么问题？",
-                "studyTier": 0,
-                "choices": [
-                  "The rudder pedals are jammed",
-                  "The rudder controls are loose",
-                  "The rudder pedals are lost",
-                  "The rudder controls are quit"
-                ],
-                "choicesZh": [
-                  "方向舵踏板卡住",
-                  "方向舵控制过松",
-                  "方向舵踏板丢失",
-                  "方向舵控制停止"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. The rudder pedals are jammed",
-                "audio": "/question-bank-assets/audio/listening/fzy/e5c82a30854c4201d258.mp3",
-                "audioDurationSeconds": 22.857
-              },
-              {
                 "id": "listening-fzy-110745",
                 "taskTitle": "10秒陆空通话-95",
                 "audioText": "CTL: BAW141 continue on the inner taxiway, at M join the outer taxiway, cross 31L at K.\nPIL: OK by the inner taxiway and uh.., M outer taxiway and uh…, K A, cross 31L uh…BAW141.\nQ: What is the controller's taxi instruction?",
@@ -35183,75 +32808,6 @@
                 "audioDurationSeconds": 17.504
               },
               {
-                "id": "listening-fzy-116673",
-                "taskTitle": "10秒陆空通话-137",
-                "audioText": "C: CCA151, severe turbulence was reported at the FL290 over DAH.\nP: Roger, request alter the route because we have some problem with the yaw damper.\nQ: What does the pilot want to do?",
-                "audioTextZh": "管制员：国航151，在DAH上空高度层290上有强烈颠簸报告。\n飞行员：收到，我们的偏航阻尼有问题，请求改变航路。\n问：飞行员想要干什么？",
-                "studyTier": 1,
-                "choices": [
-                  "To report severe turbulence",
-                  "To use alternate route",
-                  "To divert to the alternate",
-                  "To fix yaw damper"
-                ],
-                "choicesZh": [
-                  "报告强烈颠簸。",
-                  "使用备用航路。",
-                  "改航备降。",
-                  "处理偏航阻尼。"
-                ],
-                "correctChoiceIndex": 1,
-                "referenceText": "正确答案：B. To use alternate route",
-                "audio": "/question-bank-assets/audio/listening/fzy/1aac20626f2c15d249a7.mp3",
-                "audioDurationSeconds": 19.312
-              },
-              {
-                "id": "listening-fzy-116682",
-                "taskTitle": "10秒陆空通话-138",
-                "audioText": "A: Do you know there’s a word that the controllers use to inform the pilot to ignore a taxi clearance, issued at the beginning of the transmission?\nB: Yes, there is an ICAO standard word.\nQ: What word should be used in this situation?",
-                "audioTextZh": "A：你知道管制员常使用的一个单词，这个单词用来告诉飞行员忽略掉开始发话中的滑行许可吗？\nB：知道，是有这个ICAO标准词汇。\n问：在这种情境下，应该使用的是哪个词？",
-                "studyTier": 2,
-                "choices": [
-                  "Cancel.",
-                  "Correction.",
-                  "Disregard.",
-                  "Acknowledge."
-                ],
-                "choicesZh": [
-                  "取消。",
-                  "更正。",
-                  "作废。",
-                  "请认收。"
-                ],
-                "correctChoiceIndex": 2,
-                "referenceText": "正确答案：C. Disregard.",
-                "audio": "/question-bank-assets/audio/listening/fzy/d9098d437e76d9c52f72.mp3",
-                "audioDurationSeconds": 19.736
-              },
-              {
-                "id": "listening-fzy-116726",
-                "taskTitle": "10秒陆空通话-139",
-                "audioText": "C: CES345, your departure time is 1400. Is that correct?\nP: Affirmative, that is our plan departure. I will call you 15 minutes before start-up.\nQ: When will the pilot contact ATC?",
-                "audioTextZh": "管制员：东方345，你的起飞时间是1400，是否正确？\n飞行员：是的，这是我们的计划起飞时间。我将在开车前15分呼叫你。\n问：飞行员什么时候联系管制员？",
-                "studyTier": 1,
-                "choices": [
-                  "Fifteen minutes before start-up.",
-                  "Fifty minutes before start-up.",
-                  "Fifty minutes before departure.",
-                  "Fifteen minutes before departure."
-                ],
-                "choicesZh": [
-                  "开车前15分钟。",
-                  "开车前50分钟。",
-                  "起飞前50分钟。",
-                  "起飞前15分钟。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. Fifteen minutes before start-up.",
-                "audio": "/question-bank-assets/audio/listening/fzy/325a8e96b0dc84b91bf4.mp3",
-                "audioDurationSeconds": 17.398
-              },
-              {
                 "id": "listening-fzy-116739",
                 "taskTitle": "10秒陆空通话-140",
                 "audioText": "C: United 223 RVR runway 36L, touch down 600m, midpoint 850m, stop end missing.\nP: United 223.\nQ: What is the best RVR?",
@@ -35503,29 +33059,6 @@
                 "referenceText": "正确答案：A. 4207, 250, DSG.",
                 "audio": "/question-bank-assets/audio/listening/fzy/f2ccaa5ebfe8ff0430f7.mp3",
                 "audioDurationSeconds": 23.562
-              },
-              {
-                "id": "listening-main-035",
-                "taskTitle": "10秒陆空通话-155",
-                "audioText": "P: Wuhan Control, CSN3342, HM at 35, 9,600m, estimating XSH at 50, next HG.\nC: CSN3342, Wuhan Control, can you lose 5 minutes en route due to traffic separation?\nQ: What does the controller want the pilot to do?",
-                "audioTextZh": "飞行员：武汉区调，南方3342，HM35分，高度9600米，预计XSH50分，下一个HG。\n管制员：南方3342，武汉区调，由于间隔，你能否在航路上消耗5分钟吗？\n问：管制员希望飞行员做什么？",
-                "studyTier": 1,
-                "choices": [
-                  "To keep enough space from the traffic ahead.",
-                  "To hold at present position for 5 minutes.",
-                  "To avoid the opposite traffic.",
-                  "To save more time."
-                ],
-                "choicesZh": [
-                  "与前方飞机保持足够间隔。",
-                  "在当前位置等待5分钟。",
-                  "避让反方向航空器。",
-                  "节省更多时间。"
-                ],
-                "correctChoiceIndex": 0,
-                "referenceText": "正确答案：A. To keep enough space from the traffic ahead.",
-                "audio": "/question-bank-assets/audio/listening/fzy/5806b739727aa0dd006e.mp3",
-                "audioDurationSeconds": 28.761
               },
               {
                 "id": "listening-fzy-116812",

@@ -37,7 +37,7 @@ it('ships the agreed crash practice units, counting full radio scenes and spoken
   const crash = (id: string) => scopeDataset(banks.find((bank) => bank.id === id)!, 'crash', 'icao5-first');
   const listening = crash('listening').categories.flatMap((category) => category.topics);
   expect(listening).toHaveLength(4);
-  expect(listening.map((item) => item.cards.length)).toEqual([25, 25, 25, 25]);
+  expect(listening.map((item) => item.cards.length)).toEqual([22, 23, 22, 24]);
   const radio = crash('radiotelephony').categories.flatMap((category) => category.topics);
   expect(crash('radiotelephony').summary).toBe('30 场景＋9 专项 / 614 卡');
   expect(radio.filter((item) => item.practiceKind !== 'scoring-points')).toHaveLength(30);

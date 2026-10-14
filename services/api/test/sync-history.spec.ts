@@ -17,6 +17,7 @@ function fixture(selections: unknown[][]) {
   const inserts: { table: unknown; values: Record<string, unknown> }[] = [];
   const tx = {
     execute: vi.fn(async () => undefined),
+    update: vi.fn(() => ({ set: () => ({ where: async () => undefined }) })),
     select: vi.fn(() => { const rows = selections.shift() ?? []; return { from: () => ({ where: () => ({ limit: async () => rows, then: (resolve: (value: unknown[]) => unknown) => Promise.resolve(rows).then(resolve) }) }) }; }),
     insert: vi.fn((table: unknown) => ({ values: (values: Record<string, unknown>) => { inserts.push({ table, values }); return { onConflictDoNothing: async () => undefined, onConflictDoUpdate: () => ({ returning: async () => [values] }) }; } })),
   };
@@ -43,7 +44,7 @@ it('a history tombstone rejects a newer offline copy and retains session identit
   const { internals, tx, inserts } = fixture([[deleted]]);
   const incoming = mutation(); incoming.payload.version = 99;
   const result = await internals.applyLearningRecord(tx, 'user', incoming, 0);
-  expect(result.status).toBe('conflict'); expect(result.authoritative).toMatchObject({ deleted: true, record: { sessionId: 'session-one' } });
+  expect(result.status).toBe('conflict'); expect(result.authoritative).toMatchObject({ deleted: true, version: 99, record: { sessionId: 'session-one' } });
   expect(inserts).toEqual([]);
 });
 it('AI arriving after its parent session was deleted is discarded without recreating content', async () => {
@@ -93,4 +94,12 @@ it.each([undefined, 'all'] as const)('keeps a saved scope for older profile writ
   const result = await internals.applyDocument(transaction, 'user', entry);
   expect(result).toMatchObject({ status: 'accepted', authoritative: { document: { displayName: '新名称', studyScope: studyScope ?? 'crash' } } });
   expect(update).toHaveBeenCalledWith(expect.objectContaining({ payload: expect.objectContaining({ studyScope: studyScope ?? 'crash' }) }));
+});
+
+it('clears a retired card even when an old device sends a higher version and completed state', async () => {
+  const { service, tx, inserts } = fixture([[{ bankId: 'listening', topicId: 'listening-topic-03', cardId: 'listening-main-1010', version: 2, state: { visited: true, completed: true, note: 'private' } }]]);
+  const internals = service as unknown as { applyCardState: (transaction: unknown, user: string, mutation: unknown) => Promise<SyncPushResult> };
+  const result = await internals.applyCardState(tx, 'user', { mutationId: 'old-card', kind: 'card_state', payload: { bankId: 'listening', topicId: 'listening-topic-03', cardId: 'listening-main-1010', version: 999, updatedAt: createdAt, state: { visited: true, completed: true, note: 'private' } } });
+  expect(result.authoritative).toMatchObject({ version: 999, state: { visited: false, completed: false, note: '' } });
+  expect(inserts.find(entry => entry.table === syncChanges)?.values.payload).toMatchObject({ version: 999, state: { completed: false } });
 });
