@@ -182,7 +182,7 @@
 - 用户确认“只使用现有 ECS、题库和同步优先、外部依赖延期”的方案边界。
 - 当前工作区未提交改动的归属清楚。
 
-以上条件已于 2026-07-12 满足。Codex 从 A0 按 `docs/rules/bigandsmall-workflows/orchestration-loop.md` 自动执行。
+以上条件已于 2026-07-12 满足。Codex 从 A0 按 `docs/tools/workflows/orchestration-loop.md` 自动执行。
 
 A2 内容工程增补于 2026-07-12 确认，A1 验收后按 A2.0 至 A2.3 执行。
 

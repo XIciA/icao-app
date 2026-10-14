@@ -6,7 +6,7 @@
 
 ## 1. 路线图定位
 
-本文承接同目录 `requirements.md`、`technical-plan.md` 和 `technical-audit.md`。路线图确认后，Codex 才按 `docs/rules/bigandsmall-workflows/orchestration-loop.md` 自动进入实施。
+本文承接同目录 `requirements.md`、`technical-plan.md` 和 `technical-audit.md`。路线图确认后，Codex 才按 `docs/tools/workflows/orchestration-loop.md` 自动进入实施。
 
 实施期间继续遵守：
 

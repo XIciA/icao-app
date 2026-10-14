@@ -15,7 +15,7 @@
 | 通用 UI | `src/components/ui/` |
 | 跨平台容器、弹层和 Web 布局 | `src/components/platform/` |
 | 实际页面与路由 | `app/`、`src/components/`、`src/features/` |
-| 历史视觉证据 | `docs/ui-screenshots/`、只读 `icao设计稿` 仓库 |
+| 历史视觉证据 | `docs/records/evidence/ui-screenshots/`、只读 `icao设计稿` 仓库 |
 
 代码令牌是精确数值来源；本文是语义和变更边界。旧 Web/Tailwind 配方已归档，不再以
 `app/globals.css`、`PhoneFrame` 或旧组件路径指导当前实现。
@@ -81,7 +81,7 @@
 ## 6. UI 工作方法
 
 1. 找到最接近的现有页面、共享组件和令牌。
-2. 核对 `docs/ui-screenshots/` 或只读设计基线中的视觉意图。
+2. 核对 `docs/records/evidence/ui-screenshots/` 或只读设计基线中的视觉意图。
 3. 在现有设计语言内适配真实内容、状态和平台，不复制旧 Web 技术配方。
 4. 在目标视口/设备渲染，检查正常、长文本、空态、加载、错误和交互状态。
 5. 如果需要改变全局颜色、字体角色、圆角体系、导航模型或组件气质，先获得用户确认，
@@ -89,6 +89,6 @@
 
 ## 7. 资产保护
 
-- 历史设计指南保存在 `docs/archive/design/`，原始截图保留在 `docs/ui-screenshots/`。
+- 历史设计指南保存在 `docs/records/archive/design/`，原始截图保留在 `docs/records/evidence/ui-screenshots/`。
 - 不删除设计基线或截图，除非已确认有等价可追溯替代且用户明确同意。
 - 页面局部适配不等于改变品牌；全局风格变更必须形成明确决策。

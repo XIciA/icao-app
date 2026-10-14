@@ -47,8 +47,7 @@ AI 辅助反馈、学习记录和内容资源浏览。视觉与交互延续既�
 - Native API：`services/api/` 与 `packages/contracts/`。
 - Web 运行时：`api/`、`vercel.json`、`scripts/materialize-web-*.mjs`。
 - 题库、内容与 AI 资产：对应工具生成的 manifest、release 文件和 `services/api/src/ai/assets/`。
-- 长期产品和架构边界：`docs/rules/总战略文档.md` 与
-  `docs/rules/architecture-decisions.md`。
+- 长期约束入口：[项目文档入口](../../README.md)；技术与权限边界见 [项目长期边界](../../rules/project-boundaries.md)。
 
 当数字或“进行中/已完成”状态与实现冲突时，先核对生成清单、测试和线上证据，再更新本文；
 不要把旧阶段日志当成当前事实。

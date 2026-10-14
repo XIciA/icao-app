@@ -1,57 +1,41 @@
 # ICAO App 文档入口
 
-文档只分为三类：人工维护规则、信息资源和过程记录。Codex 应从本页选择与当前任务直接相关
-的少量文档，不得遍历整个文档目录。
+这里是项目文档的唯一导航入口。根目录 AGENTS.md 和其他工具入口统一指向这里。
+只读取与当前任务相关的少量文件，不遍历全部文档。
 
-## 1. 人工维护规则：`docs/rules/`
+## 人工维护的长期约束
 
-这是唯一对 Codex 有持续约束力的文档区域。规则由用户明确制定；Codex 不得自行创建、扩写或
-提升长期规则。
+以下是长期约束的完整清单。由用户决定新增、修改或撤销；Codex 不得把自己的方案、工具方法或历史结论提升为规则。
 
-- [UI 风格与实现规范](rules/ui-style-guide.md)
-- [Native 商业化 D1—D9 决策](rules/decisions/)
-- [录音问题的解决与维护](rules/problem-solving-and-maintenance/recording.md)
-- [交付与验收最简规则](rules/problem-solving-and-maintenance/delivery-and-acceptance.md)
-- [GitHub 单主干与版本维护规则](rules/repository-and-github-management.md)
-- [普通任务小流程](rules/bigandsmall-workflows/orchestration-loop.md)
-- [复杂任务大流程](rules/bigandsmall-workflows/document-driven-development-workflow.md)
-- [大流程 / 小流程启动模板](rules/bigandsmall-workflows/workflow-start-prompt-template.md)
+| 文档 | 约束范围 |
+| --- | --- |
+| [项目长期边界](rules/project-boundaries.md) | 技术栈、职责唯一来源、权限、冻结范围与版本更新 |
+| [UI 风格规范](rules/ui-style-guide.md) | 品牌视觉、组件气质与核心交互 |
+| [仓库管理规则](rules/repository-and-github-management.md) | 单主干、提交、发布来源与清理 |
+| [交付与验收规则](rules/delivery-and-acceptance.md) | 最终环境、必要检查与验收状态 |
+| [录音维护原则](rules/recording.md) | 录音职责、资产有效性与防回归 |
 
-只读取与任务匹配的规则。商业化决策只在任务涉及对应产品范围时读取相关文件，不默认加载
-D1—D9 全部内容。
+## 工作方法与参考资料
 
-## 2. 信息资源：`docs/resources/`
+- [工具目录](tools/README.md)：大小流程、启动模板等按需选用的方法；不自动要求所有任务先写方案或等待审批。
+- `resources/project/`：项目状态与运行时说明，使用前对照代码和配置。
+- `resources/domain/`：ICAO、题库及音频文本资料。
+- `resources/ai/`：AI 能力与领域资产参考。
+- `resources/operations/`：运维与操作参考。
+- [开发者参考](resources/developer/README.md)：命令、本机操作和具体实现说明。
 
-这里保存产品事实、ICAO 与航空领域资料、AI 能力说明、内容规范、运维参考和开发者参考。
-它们帮助理解任务，但不会自行授予部署、发布、数据修改或规则变更权限。
+资料中的“必须”“已确认”等原文不能自行变成项目长期规则，也不能授予发布、付费、数据修改或外部操作权限。
 
-- `resources/project/`：当前产品状态与运行时拓扑。
-- `resources/domain/`：ICAO 考试、题库结构和音频文本等领域资料。
-- `resources/ai/`：AI 能力说明和领域资产入口；运行时事实仍以代码及 manifest 为准。
-- `resources/operations/`：发布、备案、账号与内容同步等按需操作参考。
-- `resources/developer/`：命令、本机操作、签名和人工清单。
+## 任务方案与历史记录
 
-## 3. 过程记录：`docs/records/`
+- [任务目录](workstreams/README.md)：任务范围内的需求、方案、盘点、路线和执行材料。只有当前用户确认采用的内容才指导对应任务；目录存在不表示任务正在执行。
+- `records/`：历史任务、证据、事故、迁移和归档资料；按回溯、排障或用户指定的需要读取。
+- [历史 D1—D9 决策](records/decisions/native-commercialization/README.md)：旧商业化任务的决策记录，已退出长期规则体系。
 
-这里保存 AI 和开发过程中的任务资料、日志、报告、截图、事故、迁移记录和旧文档，只用于
-回溯、审计、排障或回滚，不得约束新的开发任务。
+历史材料的“已确认”仅表示当时的确认，不能约束新任务。正在执行的方案也不能覆盖用户当前要求或自动扩大操作授权。
 
-- `records/workstreams/`：专题任务的需求、计划、阶段日志和收口材料。
-- `records/evidence/`：历史截图、构建和验收证据。
-- `records/incidents/`：历史故障与排障记录。
-- `records/migrations/`：迁移、发布与回滚记录。
-- `records/archive/`：已经被替代的规则、战略、设计和阶段材料。
+## 使用依据
 
-未被用户明确指定的记录不读取。记录中的旧命令、状态、限制和结论不能覆盖当前代码、当前
-用户目标或 `docs/rules/`。
-
-## 权威顺序
-
-1. 当前用户请求决定本次目标与权限。
-2. 代码、配置、测试和生成清单决定当前实现事实。
-3. 与任务直接相关的 `docs/rules/` 决定长期边界。
-4. `docs/resources/` 提供按需参考。
-5. `docs/records/` 只提供历史证据。
-
-普通任务不要求创建 workstream、phase log、technical plan 或 closeout。发现资料与实现冲突
-时，先核对事实并报告差异；未经用户明确要求，不把过程结论提升为新规则。
+当前用户请求确定目标和权限；人工长期约束规定持续边界；代码、配置、测试和生成清单证明当前实现事实。
+这三者发生差异时，核对并报告，不以旧记录替代当前事实，也不由 Codex 自行修改规则来消除差异。
+普通任务直接完成必要实现与验证；只有任务确实需要组织方案时，才选用工具目录中的流程。

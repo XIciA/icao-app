@@ -32,7 +32,7 @@ pnpm typecheck
 
 ## 文档
 
-人工维护规则、信息资源和过程记录统一从 [`docs/README.md`](docs/README.md) 进入。只有
-`docs/rules/` 对 Codex 有持续约束力；`docs/resources/` 和 `docs/records/` 均按需读取。
+项目文档统一从 [`docs/README.md`](docs/README.md) 进入。该入口列出人工维护的长期约束，
+并区分工作工具、参考资料、任务方案和历史记录；历史决策不会自动约束新任务。
 只读设计仓库和 `docs/records/evidence/ui-screenshots/` 保留视觉历史；当前实现路径和设计令牌
 以本仓库为准。

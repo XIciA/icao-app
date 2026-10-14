@@ -1,5 +1,7 @@
 # 大流程 / 小流程启动 Prompt 模板
 
+> 可选工作方法：仅在当前任务采用本流程时使用；不构成项目长期规则，不自动增加审批或扩大授权。入口见 [工作工具](../README.md)。
+
 用途：把下面模板复制给一个全新的 Codex agent，用于启动一次新的中大型 workstream。
 
 使用方式：
@@ -23,8 +25,8 @@
 
 必须先阅读：
 - AGENTS.md
-- docs/bigandsmall-workflows/document-driven-development-workflow.md
-- docs/bigandsmall-workflows/orchestration-loop.md
+- docs/tools/workflows/document-driven-development-workflow.md
+- docs/tools/workflows/orchestration-loop.md
 - 【可选：项目内类似 workstream 的范例文档路径】
 - 【可选：本任务已有草稿或旧文档路径】
 
@@ -49,7 +51,7 @@ docs/workstreams/【workstream-name】/
 - 文档保持短而准，同一原则只写一次。
 - 用户中途新增要求时，先分流到对应文档；如果影响已确认决策，暂停并说明要回到哪个决策层。
 - 不能删除、迁移、覆盖重要数据或资源，除非路线图明确写入并经过人工确认。
-- 不新增生产依赖，除非经过人工确认。
+- 新增生产依赖不得超出已确认方案的范围、成本或风险边界。
 - 不提交、推送、部署，除非我明确要求。
 
 大流程执行方式：
@@ -76,7 +78,7 @@ docs/workstreams/【workstream-name】/
 - 只有当 requirements.md、technical-plan.md、technical-audit.md、roadmap.md 都完成，并且我确认需求、方案、路线后，才进入小流程。
 
 小流程执行方式：
-- 按 docs/bigandsmall-workflows/orchestration-loop.md 执行。
+- 按 docs/tools/workflows/orchestration-loop.md 执行。
 - 默认 Codex 自动推进，不反复询问我。
 - Codex 是执行官，负责阶段规划、执行、审查、验证和必要记录。
 - 只有触发暂停条件时才停下来问我。
@@ -131,8 +133,8 @@ Agent 使用与成本控制：
 1. 输出 closeout.md。
 2. 总结完成了什么、验证结果、未做事项和剩余风险。
 3. 如本次真实暴露了流程问题，再少量优化：
-   - docs/bigandsmall-workflows/document-driven-development-workflow.md
-   - docs/bigandsmall-workflows/orchestration-loop.md
+   - docs/tools/workflows/document-driven-development-workflow.md
+   - docs/tools/workflows/orchestration-loop.md
 4. 只写真实暴露的问题和改进，不做空泛扩写。
 
 第一条回复应该做什么：

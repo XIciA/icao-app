@@ -48,13 +48,13 @@ iOS Development Build 使用 `com.readyoufife.ios.dev`，显示为“听你五�
 | 完整仓库 | `pnpm check` |
 | Expo 诊断 | `pnpm doctor` |
 
-验证范围按 `docs/rules/verification-matrix.md` 选择；不要把完整仓库检查当成所有局部或
+验证范围按 `docs/rules/delivery-and-acceptance.md` 选择；不要把完整仓库检查当成所有局部或
 文档改动的固定成本。
 
 ## 发布入口
 
 `pnpm release:android`、`pnpm release:ios` 和 `pnpm release:dual` 只在当前任务明确包含发布时
-使用。生产 API、Web 和数据库的权限边界见 `docs/rules/conditional/deployment-and-runtime-rules.md`。
+使用。生产 API、Web 和数据库的权限边界见 `docs/rules/project-boundaries.md`。
 
 本机 Xcode 签名、设备名、个人 Team、端口清理等可变信息见 `docs/resources/developer/`；使用前
 人工核对，不把个人环境写成项目级强制规则。
