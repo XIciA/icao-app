@@ -36,6 +36,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   commerce_orders: 'server_only',
   commerce_products: 'server_only',
   content_access_credentials: 'server_only',
+  content_work_orders: 'server_only',
   content_environment_session_grants: 'server_only',
   editorial_releases: 'server_only',
   feedback_attachments: 'server_only',

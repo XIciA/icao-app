@@ -19,7 +19,7 @@ export class ResourceController {
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<ResolvedResource>> {
     if (checksum !== undefined && !/^[a-f0-9]{64}$/.test(checksum)) throw new BadRequestException('invalid_resource_checksum');
-    if (!path || (!path.startsWith('/question-bank-assets/') && !path.startsWith('/editorial-assets/'))) {
+    if (!path || (!path.startsWith('/question-bank-assets/') && !path.startsWith('/editorial-assets/') && !/^\/pronunciation-assets\/[a-f0-9]{64}\.mp3$/.test(path))) {
       throw new BadRequestException('invalid_resource_path');
     }
     return {

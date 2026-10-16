@@ -2,8 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import postgres from 'postgres';
-import { assertHotspotReferences, assertImmutableRelease, contentChecksum, planNativeContentPublication, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
-import { resetLearningHistoryForContent } from './native-content-history-reset.mjs';
+import { assertHotspotReferences, assertImmutableRelease, assertQuestionIdentitiesPreserved, contentChecksum, planNativeContentPublication, prepareNativeContentRelease, selectNativeContentBanks } from './native-content-release.mjs';
 import { ensureNativeContentResource } from './native-content-resources.mjs';
 
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
@@ -37,7 +36,8 @@ if (process.argv.includes('--validate')) {
     }) },
   }).storage.from('question-bank-assets');
   try {
-    const resetHistory = process.env.RESET_LEARNING_HISTORY === '1';
+    if (process.env.RESET_LEARNING_HISTORY === '1') throw new Error('learning_history_reset_not_allowed');
+    const resetHistory = false;
     planNativeContentPublication(release, await sql`select bank_id, version, checksum from question_bank_releases`, resetHistory);
     const existing = new Map((await sql`select object_key, checksum from resource_objects where storage_bucket = 'question-bank-assets'`).map((row) => [row.object_key, row.checksum]));
     let checkedResources = 0;
@@ -51,12 +51,17 @@ if (process.argv.includes('--validate')) {
       checkedResources += 1;
       if (checkedResources % 100 === 0) console.log(`native_content_resources_verified count=${checkedResources}`);
     }
-    let historyReset;
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
       const publication = planNativeContentPublication(release,
         await tx`select bank_id, version, checksum from question_bank_releases`, resetHistory);
-      if (publication.resetHistory) historyReset = await resetLearningHistoryForContent(tx);
+      for (const bank of publication.banks) {
+        const [previous] = await tx`select payload, version from question_bank_releases where bank_id = ${bank.id} and active = true`;
+        if (previous) {
+          assertQuestionIdentitiesPreserved(previous.payload, bank.payload);
+          if (Number(previous.version) > bank.version) throw new Error('content_release_cannot_downgrade');
+        }
+      }
       const [appContent] = await tx`select payload from app_content_releases where active = true limit 1`;
       const opi = release.banks.find((bank) => bank.id === 'opi');
       if (appContent && opi) assertHotspotReferences(appContent.payload.hotspots, opi.payload);
@@ -74,7 +79,6 @@ if (process.argv.includes('--validate')) {
           on conflict (object_key) do nothing`;
       }
     });
-    if (historyReset) console.log(`content_history_reset ${JSON.stringify(historyReset)}`);
     console.log(`native_content_import_ok version=${release.version} banks=${release.banks.length} resources=${release.files.length}`);
   } finally { await sql.end({ timeout: 5 }); }
 }

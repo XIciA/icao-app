@@ -1,3 +1,4 @@
+import { ContentOrdersPage } from './ContentOrdersPage';
 import { ReportsPage } from './ReportsPage';
 import { EntitlementsPage } from './UsersPage';
 import type { OpsStaffSession } from '@icao/contracts';
@@ -56,7 +57,7 @@ export function App({ renderAiRules }: { renderAiRules?: (props: AiRulesPageProp
   const [local, setLocal] = useState(false);
   const [connecting, setConnecting] = useState(location.port === '4173');
   useEffect(() => { if (location.port !== '4173') return; void opsApi<{staff: OpsStaffSession['staff']}>('/local/session', {}, false).then(({staff}) => { setSession({staff} as OpsStaffSession); setLocal(true); }).catch(() => {}).finally(()=>setConnecting(false)); }, []);
-  const [page, setPage] = useState<'feedback' | 'ai' | 'usage' | 'clicks' | 'entitlements'>('feedback');
+  const [page, setPage] = useState<'content' | 'feedback' | 'ai' | 'usage' | 'clicks' | 'entitlements'>('feedback');
   const [dirty, setDirty] = useState(false);
   const [error, setError] = useState<string>();
   useEffect(() => {
@@ -89,12 +90,12 @@ export function App({ renderAiRules }: { renderAiRules?: (props: AiRulesPageProp
       <div className="ops-brand">听你五个 · 管理后台</div>
       <nav aria-label="管理功能" className="ops-tabs">
         <button className={page === 'feedback' ? 'active' : ''} aria-current={page === 'feedback' ? 'page' : undefined} onClick={() => changePage('feedback')}>用户反馈</button>
-        {(['clicks','usage','ai','entitlements'] as const).map(key=><button key={key} className={page===key?'active':''} onClick={()=>changePage(key)}>{key==='clicks'?'点击统计':key==='usage'?'AI 用量与费用':key==='ai'?'AI 规则设置':'用户权益'}</button>)}
+        {(['content','clicks','usage','ai','entitlements'] as const).map(key=><button key={key} className={page===key?'active':''} onClick={()=>changePage(key)}>{key==='content'?'内容发布':key==='clicks'?'点击统计':key==='usage'?'AI 用量与费用':key==='ai'?'AI 规则设置':'用户权益'}</button>)}
       </nav>
       <div className="ops-session"><span>{local ? "本地连接 · 正式数据" : session.staff.email}</span>{!local && <button className="link-button" onClick={() => void logout()}>退出</button>}</div>
     </header>
     <div className="ops-content"><ErrorNotice error={error} />
-      {page === 'feedback' ? <FeedbackPage /> : page === 'usage' || page === 'clicks' ? <ReportsPage key={page} kind={page} /> : page === 'entitlements' ? <EntitlementsPage /> : session.staff.role !== 'admin'
+      {page === 'content' ? <ContentOrdersPage admin={session.staff.role==='admin'} /> : page === 'feedback' ? <FeedbackPage /> : page === 'usage' || page === 'clicks' ? <ReportsPage key={page} kind={page} /> : page === 'entitlements' ? <EntitlementsPage /> : session.staff.role !== 'admin'
         ? <p className="notice">当前账号没有调整 AI 额度的权限。</p>
         : renderAiRules?.({ onDirtyChange: setDirty }) ?? <AiRulesPage onDirtyChange={setDirty} />}
     </div>

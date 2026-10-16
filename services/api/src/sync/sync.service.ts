@@ -37,6 +37,7 @@ const stateSchema = z.object({
   visited: z.boolean(),
   completed: z.boolean(),
   selectedChoiceIndex: z.number().int().nonnegative().optional(),
+  lastVisitedAt: z.string().datetime().optional(),
   recorded: z.boolean().optional(),
   recordingDurationMillis: z.number().int().nonnegative().optional(),
   tagIds: z.array(z.string()).optional(),
@@ -271,6 +272,9 @@ export class SyncService {
     const updatedAt = new Date(mutation.payload.updatedAt);
     const state = current ? {
       ...mutation.payload.state,
+      // Older installed clients do not send the new resume field. Their valid
+      // progress writes must not erase a position recorded by an updated client.
+      lastVisitedAt: mutation.payload.state.lastVisitedAt ?? (current.state as CardStateMutation['payload']['state']).lastVisitedAt,
       visited: (current.state as CardStateMutation['payload']['state']).visited || mutation.payload.state.visited,
       completed: (current.state as CardStateMutation['payload']['state']).completed || mutation.payload.state.completed,
       updatedAt: updatedAt.toISOString(),
@@ -286,7 +290,7 @@ export class SyncService {
     };
     if (current) await tx.update(userCardStates).set(values).where(target);
     else await tx.insert(userCardStates).values(values);
-    const payload = { ...mutation.payload, updatedAt: values.updatedAt.toISOString() };
+    const payload = { ...mutation.payload, state, updatedAt: values.updatedAt.toISOString() };
     await tx.insert(syncChanges).values({
       userId,
       kind: mutation.kind,

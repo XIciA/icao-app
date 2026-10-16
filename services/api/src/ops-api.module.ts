@@ -1,3 +1,6 @@
+import { ContentPreviewStorageService } from './admin/content-preview-storage.service';
+import { ContentWorkflowController } from './admin/content-workflow.controller';
+import { ContentWorkflowService } from './admin/content-workflow.service';
 import { AdminUsersController } from './admin/admin-users.controller';
 import { AdminGlobalResetService } from './admin/admin-global-reset.service';
 import { AdminReportsController } from './admin/admin-reports.controller';
@@ -34,8 +37,8 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [AdminUsersController, AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
-      providers: [
+      controllers: [ContentWorkflowController, AdminUsersController, AdminReportsController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
+      providers: [ContentWorkflowService, ContentPreviewStorageService,
         { provide: OPS_API_CONFIG, useValue: config },
         {
           provide: DatabaseService,

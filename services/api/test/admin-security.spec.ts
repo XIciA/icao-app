@@ -244,6 +244,13 @@ describe('ops login anti-abuse boundary', () => {
       expect(response.statusCode).toBe(200);
       expect(response.headers['x-icao-api-version']).toBe('ops-test');
       expect(response.json().data.service).toBe('icao-ops-api');
+      const payload = { revision: 1, draft: { notes: 'x'.repeat(2_600_000) } };
+      const draftResponse = await app.inject({ method: 'POST',
+        url: '/v1/admin/content-orders/00000000-0000-4000-8000-000000000001/prepare', payload });
+      // Parsing a real-sized draft reaches authentication rather than failing at 1 MiB.
+      expect(draftResponse.statusCode).toBe(401);
+      const ordinaryResponse = await app.inject({ method: 'POST', url: '/v1/admin/content-orders', payload });
+      expect(ordinaryResponse.statusCode).toBe(413);
     } finally {
       await app?.close();
       schemaGate.mockRestore();

@@ -16,7 +16,8 @@ export function prepareNativeContentRelease(manifest, resources, datasets, versi
       || !file.publicPath.startsWith('/question-bank-assets/') || /[?#\\]/.test(file.publicPath)
       || file.publicPath.split('/').some((part) => part === '..' || part === '.')) throw new Error('invalid_native_resource');
     const relative = file.publicPath.slice('/question-bank-assets/'.length);
-    const objectKey = `revisions/${file.bankId}/${file.checksum}/${relative}`;
+    const prefix = `revisions/${file.bankId}/${file.checksum}/`;
+    const objectKey = relative.startsWith(prefix) ? relative : `${prefix}${relative}`;
     const publicPath = `/question-bank-assets/${objectKey}`;
     if (paths.has(file.publicPath)) throw new Error('duplicate_native_resource');
     paths.set(file.publicPath, publicPath);
@@ -87,4 +88,13 @@ export function selectNativeContentBanks(release, bankIds) {
   const files = release.files.filter((file) => references.has(file.publicPath));
   if (files.length !== references.size) throw new Error('selected_resource_missing');
   return { ...release, banks, files };
+}
+
+/** History and annotations refer to this complete tuple. Retire in place instead
+ * of deleting/rekeying/moving; old release snapshots and resources stay immutable. */
+export function assertQuestionIdentitiesPreserved(previous, next) {
+  const identities = bank => new Map(bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.map(card => [card.id, `${category.id}/${topic.id}`]))));
+  const before = identities(previous), after = identities(next);
+  if (previous.id !== next.id) throw new Error('existing_bank_identity_must_be_preserved');
+  for (const [id, parent] of before) if (after.get(id) !== parent) throw new Error('existing_question_identity_must_be_preserved');
 }
