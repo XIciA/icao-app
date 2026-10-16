@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import type { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank';
+import type { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import type { useQuestionBankTopic } from '@/features/question-bank/hooks/useQuestionBankTopic.native';
 import type { QuestionBankDataset, QuestionBankTopic } from '@/features/question-bank/types';
 
@@ -14,14 +14,14 @@ const mockBankRetry = jest.fn();
 const mockTopicRetry = jest.fn();
 let mockCanGoBack = true;
 let mockParams: { bankId: string; categoryId: string; topicId: string; cardId?: string; returnTo?: 'radio' | 'annotations' };
-let mockBankState: ReturnType<typeof useQuestionBank>;
+let mockBankState: Omit<Extract<ReturnType<typeof useQuestionBank>, { status: 'ready' }>, 'catalog'> & { catalog?: QuestionBankDataset } | Exclude<ReturnType<typeof useQuestionBank>, { status: 'ready' }>;
 let mockTopicState: ReturnType<typeof useQuestionBankTopic>;
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
   useRouter: () => ({ back: mockBack, replace: mockReplace, push: mockPush, canGoBack: () => mockCanGoBack }),
 }));
-jest.mock('@/features/question-bank/hooks/useQuestionBank', () => ({ useQuestionBank: () => mockBankState }));
+jest.mock('@/features/question-bank/hooks/useQuestionBank.native', () => ({ useQuestionBank: () => mockBankState }));
 jest.mock('@/features/question-bank/hooks/useQuestionBankTopic.native', () => ({ useQuestionBankTopic: () => mockTopicState }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ studyScope: 'selected' }) }));
 jest.mock('@/features/question-bank/components/QuestionBankStudyScreen', () => ({
@@ -38,7 +38,7 @@ const topic: QuestionBankTopic = {
 // The route reads only the directory and access state; the existing study screen
 // remains responsible for rendering the complete dataset.
 const dataset = {
-  id: 'opi', categories: [{ id: 'category', name: 'Category', topics: [topic] }],
+  id: 'opi', declaredCardCount: 1, categories: [{ id: 'category', name: 'Category', topics: [topic] }],
   access: { membershipActive: true },
 } as QuestionBankDataset;
 
@@ -55,7 +55,7 @@ describe('Native study route recovery', () => {
     jest.clearAllMocks();
     mockCanGoBack = true;
     mockParams = { bankId: 'opi', categoryId: 'category', topicId: 'topic' };
-    mockBankState = { status: 'ready', data: dataset, source: 'remote', retry: mockBankRetry };
+    mockBankState = { status: 'ready', data: dataset, catalog: dataset, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'ready', topic, retry: mockTopicRetry };
   });
 
@@ -88,7 +88,8 @@ describe('Native study route recovery', () => {
     if (state === 'membership-required') mockTopicState = { status: state, retry: mockTopicRetry };
     else {
       mockParams.cardId = 'unavailable';
-      mockBankState = { status: 'ready', data: { ...dataset, access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
+      const lockedTopic = { ...topic, declaredCardCount: 2, scopeCardIds: { all: ['card', 'unavailable'], selected: ['card', 'unavailable'], crash: ['card', 'unavailable'] } };
+      mockBankState = { status: 'ready', data: { ...dataset, declaredCardCount: 2, categories: [{ ...dataset.categories[0], topics: [lockedTopic] }], access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
     }
     const screen = await render(<Page />);
     await fireEvent.press(screen.getByText('查看会员方案'));
@@ -108,18 +109,21 @@ describe('Native study route recovery', () => {
     expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
   });
 
-  it('offers a correctly labelled directory fallback for an unavailable question', async () => {
+  it('offers a retry when a missing body is not proof of deletion', async () => {
     mockCanGoBack = false;
     mockParams.cardId = 'removed';
+    mockBankState = { status: 'ready', data: dataset, catalog: { ...dataset, declaredCardCount: 2, categories: [{ ...dataset.categories[0], topics: [{ ...topic, declaredCardCount: 2, scopeCardIds: { all: ['card', 'removed'], selected: ['card', 'removed'], crash: ['card', 'removed'] } }] }] }, source: 'remote', retry: mockBankRetry };
     const screen = await render(<Page />);
-    expect(screen.getByText('原题不可用')).toBeTruthy();
-    await fireEvent.press(screen.getByText('返回题库'));
+    expect(screen.getByText('学习内容加载失败')).toBeTruthy();
+    await fireEvent.press(screen.getByText('重新加载'));
+    expect(mockTopicRetry).toHaveBeenCalled();
+    await fireEvent.press(screen.getByRole('button', { name: '返回' }));
     expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
   });
 
   it('does not suggest paying for a question excluded by the daily scope', async () => {
     mockParams.cardId = 'outside';
-    mockBankState = { status: 'ready', data: { ...dataset, access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
+    mockBankState = { status: 'ready', data: { ...dataset, declaredCardCount: 2, access: { ...dataset.access!, membershipActive: false } }, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'ready', topic, scopeExcludedCardIds: ['outside'], retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
@@ -139,7 +143,7 @@ describe('Native study route recovery', () => {
   });
 
   it('does not suggest paying for an excluded protected topic', async () => {
-    mockBankState = { status: 'ready', data: { ...dataset, categories: [{ ...dataset.categories[0], topics: [] }] }, source: 'remote', retry: mockBankRetry };
+    mockBankState = { status: 'ready', data: { ...dataset, categories: [{ ...dataset.categories[0], topics: [] }] }, catalog: dataset, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'membership-required', retry: mockTopicRetry };
     const screen = await render(<Page />);
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();

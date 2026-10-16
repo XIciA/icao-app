@@ -466,6 +466,16 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(mockSignOut).toHaveBeenCalledWith('local');
   });
 
+  it('rejects an explicit retry when secure storage is still unavailable, then permits recovery', async () => {
+    mockReadPendingAccountDeletion.mockRejectedValueOnce(new Error('secure_storage_unavailable')).mockRejectedValueOnce(new Error('secure_storage_unavailable'));
+    await render(<AuthProvider><MockAuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+    await act(async () => { await expect(currentAuth.retryAccountRestore()).rejects.toThrow('account_restore_unavailable'); });
+    expect(currentAuth.accountRestoreUnavailable).toBe(true);
+    await act(async () => { await currentAuth.retryAccountRestore(); });
+    expect(currentAuth.accountRestoreUnavailable).toBe(false);
+  });
+
   it('reports secure-store startup failures without claiming that account deletion is in progress', async () => {
     mockReadPendingAccountDeletion.mockRejectedValueOnce(new Error('secure_storage_unavailable'));
 

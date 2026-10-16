@@ -1,0 +1,20 @@
+import { act, renderHook, waitFor } from '@testing-library/react-native';
+import { questionBankRepository } from '../data/repository.native';
+import { useQuestionBankTopic } from '../hooks/useQuestionBankTopic.native';
+import type { QuestionBankTopic } from '../types';
+jest.mock('../data/repository.native', () => ({ questionBankRepository: { getTopic: jest.fn() } }));
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ studyScope: 'all' }) }));
+jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
+const topic: QuestionBankTopic = { id: 'topic', name: 'Topic', declaredCardCount: 1, cards: [{ id: 'card', taskTitle: 'Question', audioText: 'Text' }] };
+it('requests the directory release and never renders a superseded version response', async () => {
+  let old!: (topic: QuestionBankTopic) => void, latest!: (topic: QuestionBankTopic) => void;
+  jest.mocked(questionBankRepository.getTopic).mockReturnValueOnce(new Promise(done => { old = done; })).mockReturnValueOnce(new Promise(done => { latest = done; }));
+  const release = { bankId: 'listening', version: 1, checksum: 'a'.repeat(64) };
+  const hook = await renderHook<ReturnType<typeof useQuestionBankTopic>, { version: number }>(({ version }) => useQuestionBankTopic('listening', 'category', 'topic', { ...release, version }), { initialProps: { version: 1 } });
+  expect(questionBankRepository.getTopic).toHaveBeenCalledWith('listening', 'category', 'topic', release);
+  await hook.rerender({ version: 2 });
+  await act(async () => old(topic));
+  expect(hook.result.current.status).toBe('loading');
+  await act(async () => latest({ ...topic, name: 'New release' }));
+  await waitFor(() => expect(hook.result.current.topic?.name).toBe('New release'));
+});

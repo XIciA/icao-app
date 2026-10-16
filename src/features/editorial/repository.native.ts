@@ -39,7 +39,7 @@ async function fetchEditorial(path: string, init: RequestInit = {}) {
 }
 
 async function readCache<T>(key: string): Promise<Cached<T> | undefined> {
-  const raw = await Storage.getItem(key);
+  const raw = await Storage.getItem(key).catch(() => null);
   if (!raw) return undefined;
   try {
     return JSON.parse(raw) as Cached<T>;
@@ -49,7 +49,7 @@ async function readCache<T>(key: string): Promise<Cached<T> | undefined> {
 }
 
 async function writeCache<T>(key: string, value: T) {
-  await Storage.setItem(key, JSON.stringify({ ...value, cachedAt: new Date().toISOString() }));
+  await Storage.setItem(key, JSON.stringify({ ...value, cachedAt: new Date().toISOString() })).catch(() => undefined);
 }
 
 function assertList(value: EditorialListResponse) {

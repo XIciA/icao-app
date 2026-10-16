@@ -12,7 +12,9 @@ import { setProfileAccount, replaceProfileFromSync } from '@/features/account/pr
 import { normalizeProfile } from '@/features/account/profile-model';
 
 import { apiRequest } from '@/platform/api-client';
-import { findQuestionBankCardReference } from '@/features/question-bank/annotations/card-index';
+import { getEmbeddedQuestionBanks, loadQuestionBank } from '@/features/question-bank/data/repository.native';
+import { createCardDirectory } from '@/features/question-bank/data/card-directory';
+import { findQuestionBankCardReference } from '@/features/question-bank/annotations/card-index.native';
 import { createEmptyAnnotationStore, replaceAnnotationStoreFromSync } from '@/features/question-bank/annotations/annotation-store.native';
 import type { QuestionBankAnnotationStore } from '@/features/question-bank/annotations/types';
 import {
@@ -207,7 +209,7 @@ export async function inspectLearningSyncBinding(userId: string) {
 
 export async function bindLearningSync(userId: string, mode: 'upload-local' | 'cloud-only') {
   if (activeUserId !== undefined && activeUserId !== userId) throw new Error('sync_user_mismatch');
-  if (running) await running.catch(() => undefined);
+  await inCurrentLearningWorkspace(captureLearningWriteContext(), async () => {
   const snapshot = await localDataSnapshot();
   const snapshotKey = `${SNAPSHOT_PREFIX}${userId}.${Date.now()}`;
   await Storage.setItem(snapshotKey, JSON.stringify(snapshot));
@@ -215,6 +217,8 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
   const mutations: SyncMutation[] = [];
   const versions: Record<string, number> = {};
   if (mode === 'upload-local') {
+    const banks = await Promise.all(getEmbeddedQuestionBanks().map(async bank => (await loadQuestionBank(bank.id))?.dataset ?? bank));
+    const directory = createCardDirectory(banks);
     const currentTopics = new Set(Object.keys(snapshot)
       .filter((key) => key.startsWith(TOPIC_PREFIX))
       .map((key) => key.slice(TOPIC_PREFIX.length)));
@@ -224,8 +228,8 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
       if (key.startsWith(LEGACY_TOPIC_PREFIX) && currentTopics.has(topicId)) continue;
       const states = parseJson<Record<string, CardLearningState>>(raw, {});
       for (const [cardId, state] of Object.entries(states)) {
-        const reference = findQuestionBankCardReference(topicId, cardId);
-        if (!reference) continue;
+        const reference = directory.findLegacy(topicId, cardId);
+        if (!reference) throw new Error('部分本机学习记录尚无法关联题库，已保留原记录。请联网后重试同步。');
         const versionKey = cardVersionKey(reference.bankId, topicId, cardId);
         versions[versionKey] = 1;
         mutations.push({
@@ -297,6 +301,7 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
     versions,
   };
   await replaceQueuedSyncState(meta, mutations);
+  });
   return runLearningSync(userId);
 }
 
@@ -477,10 +482,10 @@ export async function applyPrivacyLearningDataReset(response: { aiResultGenerati
 export async function enqueueCardState(topicId: string, cardId: string, state: CardLearningState, bankId?: string, context = captureLearningWriteContext()) {
   assertLearningWriteContext(context);
   const reference = bankId ? { bankId } : findQuestionBankCardReference(topicId, cardId);
-  if (!reference) return;
   await queuedUpdate((meta, outbox) => {
     assertLearningWriteContext(context);
     if (!meta.boundUserId) return;
+    if (!reference) throw new Error('学习记录尚无法关联题库，请联网后重试。');
     const versionKey = cardVersionKey(reference.bankId, topicId, cardId);
     const version = (meta.versions[versionKey] ?? 0) + 1;
     meta.versions[versionKey] = version;
@@ -603,8 +608,7 @@ export async function mutateAnnotationsInCurrentWorkspace(context: LearningWrite
   return result;
 }
 
-export async function enqueueVocabularyDocument(state: VocabularyState) {
-  await queuedUpdate((meta, outbox) => {
+function appendVocabularyDocument(meta: SyncMeta, outbox: SyncMutation[], state: VocabularyState) {
     if (!meta.boundUserId) return;
     const versionKey = `document:${VOCABULARY_DOCUMENT_KEY}`;
     const version = (meta.versions[versionKey] ?? 0) + 1;
@@ -623,8 +627,22 @@ export async function enqueueVocabularyDocument(state: VocabularyState) {
         updatedAt: state.updatedAt,
       },
     });
+}
+
+export async function enqueueVocabularyDocument(state: VocabularyState, context = captureLearningWriteContext()) {
+  assertLearningWriteContext(context);
+  await queuedUpdate((meta, outbox) => { assertLearningWriteContext(context); appendVocabularyDocument(meta, outbox, state); });
+  scheduleLearningSync();
+}
+
+export async function mutateVocabularyInCurrentWorkspace(context: LearningWriteContext, update: () => Promise<VocabularyState>, shouldEnqueue: () => boolean = () => true) {
+  const result = await inCurrentLearningWorkspace(context, async () => {
+    const state = await update();
+    if (shouldEnqueue()) await queuedUpdate((meta, outbox) => appendVocabularyDocument(meta, outbox, state));
+    return state;
   });
   scheduleLearningSync();
+  return result;
 }
 
 function nextSyncBatch(outbox: SyncMutation[]) {

@@ -9,8 +9,10 @@ import { colors, fonts, radii, shadows, spacing } from '@/theme';
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankDataset, QuestionBankId } from '../types';
 import { annotationHighlightBackgrounds, annotationToneColors } from '../annotations/colors';
-import { getQuestionBankCardReference, getQuestionBankCardSource, questionBankCardTargetKey } from '../annotations/card-index';
-import { sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
+import { questionBankCardTargetKey } from '../annotations/card-index.native';
+import { useCardReferences } from '../annotations/use-card-references.native';
+import { cardIdentityKey, type CardReference } from '../data/card-references.native';
+import { contentFingerprint, sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationDefinition, QuestionAnnotationEntry } from '../annotations/types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
@@ -56,6 +58,7 @@ export function MyAnnotationsScreen() {
   const bankEntries = useMemo(() => Object.values(annotations.store.entries)
     .filter((entry) => bankId === 'all' || entry.bankId === bankId)
     .sort((left, right) => Date.parse(right.updatedAt) - Date.parse(left.updatedAt)), [annotations.store.entries, bankId]);
+  const references = useCardReferences(bankEntries);
   const tagEntries = useMemo(() => bankEntries.filter((entry) => entry.tagIds.length > 0), [bankEntries]);
   const highlightEntries = useMemo(() => bankEntries.filter((entry) => entry.highlights.length > 0), [bankEntries]);
   const noteEntries = useMemo(() => bankEntries.filter((entry) => Boolean(entry.note.trim())), [bankEntries]);
@@ -101,10 +104,13 @@ export function MyAnnotationsScreen() {
   }
 
   function openEntry(entry: QuestionAnnotationEntry) {
-    if (!getQuestionBankCardReference(entry)) return;
+    const resolved = references.values?.get(cardIdentityKey(entry));
+    if (resolved?.status === 'membership-required') { router.push('/account/membership'); return; }
+    if (resolved?.status !== 'ready' || !resolved.location) { references.retry(); return; }
+    const location = resolved.location;
     router.push({
       pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]',
-      params: { bankId: entry.bankId, categoryId: entry.categoryId, topicId: entry.topicId, cardId: entry.cardId, returnTo: 'annotations' },
+      params: { bankId: location.bankId, categoryId: location.categoryId, topicId: location.topicId, cardId: location.cardId, returnTo: 'annotations' },
     });
   }
 
@@ -156,9 +162,9 @@ export function MyAnnotationsScreen() {
           <StateCard icon={Search} title="本机标注读取失败" description={annotations.loadErrorMessage} action={<Button onPress={() => void annotations.refresh()} variant="outline">重试</Button>} />
         ) : visibleEntries.length ? (
           <View style={styles.list}>
-            {segment === 'tags' ? visibleTagEntries.map((entry) => <TagRow definitions={tagDefinitionMap} entry={entry} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
-            {segment === 'highlights' ? visibleHighlightEntries.map((entry) => <HighlightRow colorFilter={selectedColors} definitions={highlightDefinitionMap} entry={entry} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
-            {segment === 'notes' ? noteEntries.map((entry) => <NoteRow entry={entry} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
+            {segment === 'tags' ? visibleTagEntries.map((entry) => <TagRow definitions={tagDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
+            {segment === 'highlights' ? visibleHighlightEntries.map((entry) => <HighlightRow colorFilter={selectedColors} definitions={highlightDefinitionMap} entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
+            {segment === 'notes' ? noteEntries.map((entry) => <NoteRow entry={entry} resolution={references.values?.get(cardIdentityKey(entry))} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
           </View>
         ) : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
       </ScrollView>
@@ -167,15 +173,21 @@ export function MyAnnotationsScreen() {
   );
 }
 
-function TagRow({ definitions, entry, onPress }: { definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; onPress: () => void }) {
-  const reference = getQuestionBankCardReference(entry);
-  const available = Boolean(reference);
+function referenceMessage(value?: CardReference) {
+  if (!value) return '正在确认原题…';
+  if (value.status === 'ready') return value.location?.card?.taskTitle || value.location?.topicTitle || '查看原题';
+  return `${value.message}${value.status === 'unavailable' ? ' 点击重试' : value.status === 'membership-required' ? ' 点击查看会员权限' : ''}`;
+}
+
+function TagRow({ definitions, entry, onPress, resolution }: { definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
+  const reference = resolution?.location;
+  const available = resolution?.status !== 'not-found';
   const tags = entry.tagIds.flatMap((id) => definitions.get(id) ? [definitions.get(id)!] : []);
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
       <View style={styles.rowCopy}>
-        <AppText numberOfLines={2}>{getQuestionBankCardSource(entry)}</AppText>
-        <AppText variant="micro">{reference?.bankTitle ?? '原题内容已更新或不可用'} · {tags.map((tag) => tag.label).join('、')}</AppText>
+        <AppText numberOfLines={2}>{reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)}</AppText>
+        <AppText variant="micro">{referenceMessage(resolution)} · {tags.map((tag) => tag.label).join('、')}</AppText>
       </View>
       <View accessibilityLabel={`已添加${tags.length}个标签：${tags.map((tag) => tag.label).join('、')}`} style={styles.dotStack}>{tags.map((tag, index) => <View key={tag.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[tag.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
@@ -183,8 +195,8 @@ function TagRow({ definitions, entry, onPress }: { definitions: Map<string, Anno
   );
 }
 
-function HighlightRow({ colorFilter, definitions, entry, onPress }: { colorFilter: Set<string>; definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; onPress: () => void }) {
-  const available = Boolean(getQuestionBankCardReference(entry));
+function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: { colorFilter: Set<string>; definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
+  const available = resolution?.status !== 'not-found';
   const visible = entry.highlights.filter((highlight) => {
     if (!colorFilter.size) return true;
     const definition = definitions.get(highlight.colorId);
@@ -195,8 +207,8 @@ function HighlightRow({ colorFilter, definitions, entry, onPress }: { colorFilte
     const definition = definitions.get(highlight.colorId);
     return definition ? [[definition.id, definition] as const] : [];
   })).values());
-  const reference = getQuestionBankCardReference(entry);
-  const sourceText = first.blockId === 'question' ? reference?.card.audioText ?? '' : reference?.card.referenceText ?? '';
+  const reference = resolution?.location;
+  const sourceText = first.blockId === 'question' ? reference?.card?.audioText ?? '' : reference?.card?.referenceText ?? '';
   const sentenceRange = sentenceWordRangeAt(sourceText, first.wordIndex);
   const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
@@ -204,8 +216,8 @@ function HighlightRow({ colorFilter, definitions, entry, onPress }: { colorFilte
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
       <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[definition.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       <View style={styles.rowCopy}>
-        <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || getQuestionBankCardSource(entry)} highlights={visible} sourceText={sourceText} target={first} />
-        <AppText variant="micro">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
+        <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
+        <AppText variant="micro">{referenceMessage(resolution)} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
       </View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
@@ -219,6 +231,7 @@ function HighlightSentence({ definitions, fallback, highlights, sourceText, targ
   sourceText: string;
   target: QuestionAnnotationEntry['highlights'][number];
 }) {
+  if (target.contentFingerprint !== contentFingerprint(sourceText)) return <AppText numberOfLines={3}>{fallback}</AppText>;
   const range = sentenceWordRangeAt(sourceText, target.wordIndex);
   if (!range) return <AppText numberOfLines={3}>{fallback}</AppText>;
   const active = new Map(highlights.filter((highlight) => highlight.blockId === target.blockId).map((highlight) => [highlight.wordIndex, highlight]));
@@ -249,13 +262,12 @@ function HighlightSentence({ definitions, fallback, highlights, sourceText, targ
   );
 }
 
-function NoteRow({ entry, onPress }: { entry: QuestionAnnotationEntry; onPress: () => void }) {
-  const reference = getQuestionBankCardReference(entry);
-  const available = Boolean(reference);
+function NoteRow({ entry, onPress, resolution }: { entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
+  const available = resolution?.status !== 'not-found';
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
       <View style={styles.noteIcon}><NotebookPen color={colors.primary} size={16} /></View>
-      <View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant="micro">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {formatRelativeTime(entry.updatedAt)}</AppText></View>
+      <View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant="micro">{referenceMessage(resolution)} · {formatRelativeTime(entry.updatedAt)}</AppText></View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
   );

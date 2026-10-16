@@ -15,6 +15,8 @@ jest.mock('../persistence', () => ({
   writeVocabularyState: (state: VocabularyState) => mockWriteState(state),
 }));
 jest.mock('@/features/sync/learning-sync', () => ({
+  captureLearningWriteContext: () => ({}),
+  mutateVocabularyInCurrentWorkspace: async (_context: unknown, update: () => Promise<VocabularyState>, shouldEnqueue: () => boolean) => { const state = await update(); if (shouldEnqueue()) await mockEnqueueVocabulary(state); return state; },
   enqueueVocabularyDocument: (state: VocabularyState) => mockEnqueueVocabulary(state),
 }));
 

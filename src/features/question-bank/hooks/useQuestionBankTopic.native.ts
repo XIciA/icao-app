@@ -1,3 +1,4 @@
+import type { ContentReleaseReference } from '../data/content-version.native';
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { normalizeStudyScope, studyScopeCardIds } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
@@ -8,7 +9,7 @@ import {
   subscribeNativeCommerceEnvironment,
 } from '@/features/native-commercial-testflight/commerce-environment';
 import { ApiClientError } from '@/platform/api-client';
-import { questionBankRepository } from '../data/repository';
+import { questionBankRepository } from '../data/repository.native';
 import type { QuestionBankId, QuestionBankTopic } from '../types';
 
 type State =
@@ -17,7 +18,7 @@ type State =
   | { status: 'membership-required'; topic?: undefined; error?: undefined }
   | { status: 'error'; topic?: undefined; error: Error };
 
-export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categoryId: string | undefined, topicId: string | undefined) {
+export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categoryId: string | undefined, topicId: string | undefined, expected?: ContentReleaseReference, enabled = true) {
   const profile = useProfile();
   const environmentSnapshot = useSyncExternalStore(
     subscribeNativeCommerceEnvironment,
@@ -25,16 +26,21 @@ export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categor
     nativeCommerceEnvironmentSnapshot,
   );
   const [attempt, setAttempt] = useState(0);
-  const [state, setState] = useState<State>({ status: 'loading' });
+  const requestKey = JSON.stringify([bankId, categoryId, topicId, environmentSnapshot, attempt, expected, enabled]);
+  const [response, setResponse] = useState<{ key: string; value: State }>();
+  const state = useMemo<State>(() => response?.key === requestKey ? response.value : { status: 'loading' }, [response, requestKey]);
 
   useEffect(() => {
     let active = true;
+    const setState = (value: State) => setResponse({ key: requestKey, value });
     setState({ status: 'loading' });
+    if (!enabled) return () => { active = false; };
     if (!bankId || !categoryId || !topicId) {
       setState({ status: 'error', error: new Error('invalid_question_bank_topic') });
       return () => { active = false; };
     }
-    void questionBankRepository.getTopic(bankId, categoryId, topicId)
+    const requestedRelease = JSON.parse(requestKey)[5] as ContentReleaseReference | undefined;
+    void questionBankRepository.getTopic(bankId, categoryId, topicId, requestedRelease)
       .then((topic) => {
         if (!active) return;
         setState(topic ? { status: 'ready', topic } : { status: 'error', error: new Error('question_bank_topic_not_found') });
@@ -48,7 +54,7 @@ export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categor
         setState({ status: 'error', error: error instanceof Error ? error : new Error('question_bank_topic_load_failed') });
       });
     return () => { active = false; };
-  }, [attempt, bankId, categoryId, environmentSnapshot, topicId]);
+  }, [attempt, bankId, categoryId, environmentSnapshot, topicId, requestKey, enabled]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const projected = useMemo(() => {

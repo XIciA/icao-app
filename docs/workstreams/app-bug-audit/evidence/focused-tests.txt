@@ -1,0 +1,24 @@
+PASS src/features/question-bank/recording/__tests__/recording-engine-test.ts
+PASS src/features/info/__tests__/feedback-form-native-test.tsx
+PASS src/platform/__tests__/api-client-timeout-test.ts
+PASS src/features/question-bank/__tests__/image-question-card-test.tsx
+PASS src/features/ai/__tests__/ai-operation-failure-test.ts
+PASS src/platform/__tests__/api-client-auth-recovery-test.ts
+PASS src/features/native-commercial-testflight/__tests__/membership-expiry-native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/membership-page-test.tsx
+PASS src/features/question-bank/__tests__/annotation-save-boundary-native-test.tsx
+PASS src/features/sync/__tests__/learning-sync-native-test.ts
+PASS src/features/vocabulary/__tests__/persistence-test.ts
+PASS src/features/vocabulary/__tests__/word-favorites-screen-test.tsx
+PASS src/features/vocabulary/__tests__/vocabulary-screen-test.tsx
+PASS src/features/content/hotspot/__tests__/use-hotspot-access-native-test.tsx
+PASS src/features/content/hotspot/__tests__/hotspot-access-loader-native-test.ts
+PASS src/features/radio-player/__tests__/catalog-hydration-native-test.ts
+PASS src/features/radio-player/__tests__/provider-runtime-test.tsx
+PASS src/app/__tests__/question-bank-study-route.native-test.tsx
+PASS src/app/__tests__/auth-routing-test.tsx
+
+Test Suites: 19 passed, 19 total
+Tests:       153 passed, 153 total
+Snapshots:   0 total
+Time:        9.477 s

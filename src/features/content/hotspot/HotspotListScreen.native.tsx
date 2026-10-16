@@ -6,10 +6,10 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { AppText, Card, Screen, Tag } from '@/components/ui';
+import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
-import { loadHotspotBriefs, refreshHotspotBriefs } from './repository.native';
+import { loadHotspotBriefs, refreshHotspotDirectory } from './repository.native';
 
 const MONTH_EN = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -20,11 +20,15 @@ export function HotspotListScreen() {
 function HotspotListContent() {
   const router = useRouter();
   const [briefs, setBriefs] = useState(loadHotspotBriefs);
+  const [warning, setWarning] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   useFocusEffect(useCallback(() => {
     let active = true;
-    void refreshHotspotBriefs().then((items) => { if (active) setBriefs(items); }).catch(() => undefined);
+    void refreshHotspotDirectory().then((result) => { if (active) { setBriefs(result.briefs); setWarning(!!result.warning); } }).catch(() => { if (active) setWarning(true); });
     return () => { active = false; };
-  }, []));
+  // Manual retry intentionally recreates the focus effect.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attempt]));
 
   return (
     <Screen contentStyle={styles.screen} scroll>
@@ -40,6 +44,7 @@ function HotspotListContent() {
       </View>
 
       <View style={styles.list}>
+        {warning ? <View><AppText>暂时无法更新热点，正在显示本机已有内容，可能缺少最新考点。请联网后重试。</AppText><Button variant="outline" onPress={() => setAttempt(n => n + 1)}>重新加载热点</Button></View> : null}
         {briefs.length === 0 ? <AppText style={{ padding: spacing[4] }}>暂无热点内容</AppText> : null}
         {briefs.map((brief) => {
           const [, month, day] = brief.date.split('-');

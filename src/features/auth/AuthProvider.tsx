@@ -338,11 +338,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [initializeInternalAccount, setSessionSnapshot]);
 
   const restorePersistedAccount = useCallback(async () => {
-    if (!service) return;
+    if (!service) return false;
     const expectedMutation = sessionMutationRef.current;
     try {
       const deletionState = await inspectPendingAccountDeletion();
-      if (deletionState !== 'none') return;
+      if (deletionState !== 'none') return deletionState === 'unavailable' ? false : undefined;
       const next = sessionRef.current ?? await service.getSession();
       if (sessionMutationRef.current !== expectedMutation) return;
       if (!next) {
@@ -357,6 +357,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (sessionMutationRef.current !== expectedMutation) return;
       if (accountDeletionPendingRef.current) return;
       setAccountRestoreUnavailable(true);
+      return false;
     }
   }, [acceptAuthenticatedSession, inspectPendingAccountDeletion, service, setSessionSnapshot]);
 
@@ -785,13 +786,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async retryAccountRestore() {
       setRestoring(true);
       try {
-        await restorePersistedAccount();
+        if (await restorePersistedAccount() === false) throw new Error('account_restore_unavailable');
       } finally {
         setRestoring(false);
       }
     },
     async resumeAccountDeletion() {
-      await inspectPendingAccountDeletion();
+      if (await inspectPendingAccountDeletion() === 'unavailable') throw new Error('account_restore_unavailable');
     },
     async deleteAccount(authentication, confirm) {
       if (!service || !account || !session) return unavailable();

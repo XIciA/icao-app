@@ -13,7 +13,7 @@ import Storage from '@/platform/storage';
 const builtin = { ...textContent, hotspots: hotspotContent };
 if (!isAppContentSnapshot(builtin)) throw new Error('invalid_builtin_app_content');
 export const builtinAppContent: AppContentSnapshot = builtin;
-export type AppContentResult = { data: AppContentRelease; source: 'remote' | 'cache' | 'builtin' };
+export type AppContentResult = { data: AppContentRelease; source: 'remote' | 'cache' | 'builtin'; warning?: 'remote_unavailable' };
 const cacheKey = (base: string) => `icao.app-content.v1.${encodeURIComponent(base)}`;
 const pending = new Map<string, Promise<AppContentResult>>();
 
@@ -46,8 +46,8 @@ async function load(base: string): Promise<AppContentResult> {
       return { data, source: 'remote' };
     } catch { /* Last complete compatible content stays usable, including before login. */ }
   }
-  if (cached) return { data: cached, source: 'cache' };
-  return { data: { version: builtinAppContent.version, checksum: await checksum(builtinAppContent), payload: builtinAppContent }, source: 'builtin' };
+  if (cached) return { data: cached, source: 'cache', warning: 'remote_unavailable' };
+  return { data: { version: builtinAppContent.version, checksum: await checksum(builtinAppContent), payload: builtinAppContent }, source: 'builtin', warning: 'remote_unavailable' };
 }
 
 /** Call on normal entry. Do not subscribe a running study session to content changes. */

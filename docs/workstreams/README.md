@@ -5,6 +5,7 @@
 
 ## 现存材料
 
+- [App 异常输出与逻辑缺陷排查](app-bug-audit/README.md)：本次长任务的目标、证据、方案和接续记录；第一轮只读排查已完成，修复待启动，不属于长期规则。
 - [App Store 1.0.0](app-store-1.0.0/requirements.md)：原首发任务材料；收口文件仍标记未收口，本次不推断其实际发布状态。
 - [App Store 1.0.0 最终发布](app-store-1.0.0-final-release/requirements.md)：原候选发布方案，继续使用前需核实当前目标与候选版本。
 

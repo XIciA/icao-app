@@ -1,0 +1,5 @@
+{"probe":"A-002","directoryIds":10856,"staticIndexHits":1044,"missing":9812}
+{"probe":"A-005","unhandledReadRejection":"injected_storage_read_failure","readyAfterRejection":false}
+{"probe":"A-007-vocabulary","validRemoteResponse":true,"outcome":"rejected_due_to_optional_cache_write"}
+{"probe":"A-007-editorial","validRemoteResponse":true,"outcome":"rejected_due_to_optional_cache_write"}
+{"probe":"A-006","saveRejected":true,"viewAfterRejection":"testResult","handledByScreen":false}

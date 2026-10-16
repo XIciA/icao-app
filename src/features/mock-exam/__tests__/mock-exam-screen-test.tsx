@@ -1,10 +1,11 @@
-jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4-first' }) }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Platform } from 'react-native';
 
 import { MockExamScreen } from '@/features/content/MockExamScreen';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session.native';
 import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
+
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4-first' }) }));
 
 const { MockExamScreen: WebMockExamScreen } = jest.requireActual(
   '@/features/content/MockExamScreen.tsx',
@@ -74,7 +75,7 @@ describe('MockExamScreen', () => {
 
     await fireEvent.press(screen.getByText('开始完整练习'));
 
-    await waitFor(() => expect(screen.getByText('暂时无法生成试卷，请检查网络或调整板块后重试。')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('所选题库内容暂未加载完整，请重新生成；若持续失败，可通过帮助与反馈联系我们。尚未开始考试。')).toBeTruthy());
     expect(screen.queryByText(/private\.example|internal_failure/u)).toBeNull();
   });
 });

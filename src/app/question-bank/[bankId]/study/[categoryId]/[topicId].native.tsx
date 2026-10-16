@@ -1,3 +1,5 @@
+import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
+import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
@@ -9,7 +11,7 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
 import { BookX, Shield } from '@/components/ui/icons';
 import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
-import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank';
+import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import { useQuestionBankTopic } from '@/features/question-bank/hooks/useQuestionBankTopic.native';
 import type { QuestionBankId } from '@/features/question-bank/types';
 
@@ -24,7 +26,11 @@ export default function NativeQuestionBankStudyRoute() {
     returnTo?: 'annotations' | 'radio';
   }>();
   const bankState = useQuestionBank(bankId);
-  const topicState = useQuestionBankTopic(bankId, categoryId, topicId);
+  const rawCatalog = bankState.status === 'ready' ? (bankState.catalog ?? bankState.data) : undefined;
+  const location = rawCatalog && cardId ? createCardDirectory([rawCatalog]).get({ bankId, cardId }) : undefined;
+  const effectiveCategoryId = location?.categoryId ?? categoryId;
+  const effectiveTopicId = location?.topicId ?? topicId;
+  const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading');
   const returnFromRadio = returnTo === 'radio';
   const returnLabel = returnFromRadio ? '返回随身听'
     : returnTo === 'annotations' ? '返回我的标注'
@@ -46,10 +52,11 @@ export default function NativeQuestionBankStudyRoute() {
 
   if (bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
   const category = bankState.status === 'ready'
-    ? bankState.data.categories.find((item) => item.id === categoryId)
+    ? bankState.data.categories.find((item) => item.id === effectiveCategoryId)
     : undefined;
-  const catalogTopic = category?.topics.find((item) => item.id === topicId);
-  const removedCard = cardId && catalogTopic?.scopeCardIds && !catalogTopic.scopeCardIds.all.includes(cardId);
+  const catalogTopic = category?.topics.find((item) => item.id === effectiveTopicId);
+  const removedCard = bankState.status === 'ready' && bankState.source === 'remote' && rawCatalog
+    && directoryHasCompleteBank(rawCatalog) && cardId && !location;
   if (removedCard) {
     return stateScreen(<CenteredState actionLabel={returnLabel} description="原题内容已更新或不可用，请返回后选择其他内容。" icon={BookX}
       onAction={returnToSource} title="原题不可用" />);
@@ -58,7 +65,8 @@ export default function NativeQuestionBankStudyRoute() {
   // therefore knowable before a member-only topic request returns its text.
   const outsideCatalogScope = cardId && catalogTopic?.scopeCardIds
     && !catalogTopic.scopeCardIds[scope].includes(cardId);
-  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (!catalogTopic || outsideCatalogScope
+  const rawTopicExists = rawCatalog?.categories.some(category => category.topics.some(topic => topic.id === effectiveTopicId));
+  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (rawTopicExists && !catalogTopic || outsideCatalogScope
     || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {
@@ -78,7 +86,7 @@ export default function NativeQuestionBankStudyRoute() {
   }
   const topic = topicState.status === 'ready' ? topicState.topic : undefined;
   const targetCardMissing = Boolean(cardId && topic && !topic.cards.some((card) => card.id === cardId));
-  const lockedTarget = targetCardMissing && bankState.status === 'ready' && bankState.data.access?.membershipActive !== true;
+  const lockedTarget = targetCardMissing && bankState.status === 'ready' && bankState.source === 'remote' && bankState.data.access?.membershipActive === false;
 
   if (lockedTarget) {
     return stateScreen(
@@ -94,11 +102,11 @@ export default function NativeQuestionBankStudyRoute() {
   if (bankState.status === 'error' || topicState.status === 'error' || !category || !topic || targetCardMissing) {
     return stateScreen(
       <CenteredState
-        actionLabel={targetCardMissing || returnFromRadio ? returnLabel : '重新加载'}
-        description={targetCardMissing ? '原题内容已更新或不可用，请返回后选择其他内容。' : '当前学习主题不存在或读取失败，请返回后重试。'}
+        actionLabel={returnFromRadio ? returnLabel : '重新加载'}
+        description={targetCardMissing ? '原题暂时未能加载。请联网后重新加载；你的标注和学习记录仍保留。' : '学习内容暂时无法读取。请联网后重新加载；你的学习记录仍保留。'}
         icon={BookX}
-        onAction={targetCardMissing || returnFromRadio ? returnToSource : () => { bankState.retry(); topicState.retry(); }}
-        title={targetCardMissing ? '原题不可用' : '学习内容加载失败'}
+        onAction={returnFromRadio ? returnToSource : () => { bankState.retry(); topicState.retry(); }}
+        title="学习内容加载失败"
         tone="destructive"
       />
     );

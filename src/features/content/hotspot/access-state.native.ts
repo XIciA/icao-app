@@ -18,7 +18,7 @@ export type HotspotAccessResult =
   | (HotspotAccessFailureBase & { status: 'membership-required' })
   | (HotspotAccessFailureBase & { status: 'offline-authorization-expired' })
   | { status: 'not-found'; brief?: undefined; requestId?: string }
-  | (HotspotAccessFailureBase & { status: 'network-error' })
+  | { status: 'network-error'; brief?: OpiHotspotBrief; requestId?: string }
   | (HotspotAccessFailureBase & { status: 'content-unavailable' });
 
 const SAFE_REQUEST_ID_PATTERN = /^[A-Za-z0-9_-]{1,80}$/u;

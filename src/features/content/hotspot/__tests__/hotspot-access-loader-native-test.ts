@@ -129,8 +129,8 @@ describe('native OPI hotspot access loader', () => {
     });
   });
 
-  it('returns a safe not-found state for an unknown brief', async () => {
-    await expect(loadHotspotAccess('unknown-hotspot')).resolves.toEqual({ status: 'not-found' });
+  it('does not claim an unknown brief is deleted when the directory is offline', async () => {
+    await expect(loadHotspotAccess('unknown-hotspot')).resolves.toEqual({ status: 'network-error' });
     expect(mockLoadQuestionBank).not.toHaveBeenCalled();
   });
 
