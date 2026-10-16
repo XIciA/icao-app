@@ -10,7 +10,9 @@
       "audioTextZh": "飞行运行中的情景意识是什么？",
       "referenceText": "Situational awareness means knowing what is happening around the aircraft and understanding what it means for the flight. It includes noticing relevant information, understanding its significance, and anticipating what may happen next. For pilots, this includes the aircraft's position, weather, traffic, fuel, and system status.",
       "referenceTextZh": "情景意识是指知道飞机周围正在发生什么，并理解这对飞行意味着什么。它包括发现相关信息、理解其意义，并预判下一步可能发生的情况。对飞行员而言，这包括飞机位置、天气、交通、燃油和系统状态。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/4ba43660b8c10af93bb4b32e4699d016563f8d2163628080cfde3e94a3f935c8/audio/opi/opi-core-737.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-core-738",
@@ -19,7 +21,9 @@
       "audioTextZh": "丧失情景意识会如何影响飞行安全？",
       "referenceText": "A pilot who loses situational awareness may forget procedures, fail to follow SOPs, and make mistakes. These errors can create a serious risk to flight safety.",
       "referenceTextZh": "丧失情景意识的飞行员可能忘记程序、未遵守标准操作程序并发生差错。这些错误会对飞行安全造成严重风险。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/9a7cac697cb3d7d1ecb4c865511915214a37d16dda1e7f53b9dcf3d78045a25c/audio/opi/opi-core-738.mp3",
+      "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-core-739",
@@ -28,7 +32,9 @@
       "audioTextZh": "飞行员如何提高并保持情景意识？",
       "referenceText": "Pilots should monitor the radio frequencies throughout the flight. They should also follow the SOPs and cross-check important information.",
       "referenceTextZh": "飞行员应在整个飞行过程中守听无线电频率，还应遵循标准操作程序并交叉检查重要信息。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/40d531c055f56be296adc025abd5e6b480e0a7fd84073cc336fd35a4026facb9/audio/opi/opi-core-739.mp3",
+      "audioDurationSeconds": 3.456
     }
   ],
   "categoryId": "opi-category-04"

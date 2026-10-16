@@ -10,7 +10,9 @@
       "audioTextZh": "如果飞行员未评估着陆性能，可能会发生什么？",
       "referenceText": "The pilot may not know whether the runway conditions and available runway length are suitable for the landing. This creates a serious flight-safety risk.",
       "referenceTextZh": "飞行员可能无法确认跑道状况和可用跑道长度是否适合着陆，这会造成严重的飞行安全风险。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/ea67c71974834fde7816f19bcea8322a9cdc7c6d7e1392b676801647a0ef1a71/audio/opi/opi-core-580.mp3",
+      "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-core-581",
@@ -19,7 +21,9 @@
       "audioTextZh": "每次飞行评估起飞和着陆性能时，你会考虑哪些因素？",
       "referenceText": "For each flight, I consider the runway condition and length, braking action, flap setting, wind, and temperature when assessing takeoff and landing performance.",
       "referenceTextZh": "每次飞行评估起飞和着陆性能时，我都会考虑跑道状况和长度、制动作用、襟翼设置、风和温度。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/28dc9e9825941a11c23c389e03d3016f0f5d40665a3057d5643452b3a21b8c3c/audio/opi/opi-core-581.mp3",
+      "audioDurationSeconds": 4.8
     },
     {
       "id": "opi-core-582",
@@ -28,7 +32,9 @@
       "audioTextZh": "哪些飞机故障会影响着陆性能？",
       "referenceText": "Failures that can affect landing performance include an engine failure, a hydraulic-system failure, jammed flaps, and a brake malfunction.",
       "referenceTextZh": "会影响着陆性能的故障包括发动机失效、液压系统失效、襟翼卡阻和刹车故障。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/487af8927582434869c969cde68476162ebed9b9271d4db16811e1e1d6ca2971/audio/opi/opi-core-582.mp3",
+      "audioDurationSeconds": 3.144
     },
     {
       "id": "opi-core-552",
@@ -37,7 +43,9 @@
       "audioTextZh": "你所飞的飞机在起飞和着陆时适用哪些顺风限制？",
       "referenceText": "At my flight school, the operational tailwind limit for the DA-40 is 10 knots for both takeoff and landing. I must still calculate the required runway distance because a tailwind increases the ground roll. Runway condition, available distance, or another school restriction may require a lower limit.",
       "referenceTextZh": "在我的航校，DA-40 起飞和着陆的运行顺风限制都是 10 节。我仍须计算所需跑道距离，因为顺风会增加地面滑跑距离。跑道状况、可用距离或航校其他限制可能要求采用更低限值。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/aa375344fddb398993d7dfcbae08ad07ea2a7d47e53d247698fa8190f3372cfe/audio/opi/opi-core-552.mp3",
+      "audioDurationSeconds": 4.08
     }
   ],
   "categoryId": "opi-category-05"

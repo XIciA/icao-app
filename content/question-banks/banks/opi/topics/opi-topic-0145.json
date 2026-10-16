@@ -9,7 +9,9 @@
       "audioText": "What is a cost index (CI)?",
       "audioTextZh": "什么是成本指数（CI）？",
       "referenceText": "A cost index is a value entered in the flight management system to balance time-related operating costs against fuel costs. A higher cost index gives more priority to saving time, while a lower cost index gives more priority to fuel efficiency.",
-      "referenceTextZh": "成本指数是输入飞行管理系统的一个数值，用于平衡与时间有关的运行成本和燃油成本。成本指数越高，越优先节省时间；成本指数越低，越重视燃油效率。"
+      "referenceTextZh": "成本指数是输入飞行管理系统的一个数值，用于平衡与时间有关的运行成本和燃油成本。成本指数越高，越优先节省时间；成本指数越低，越重视燃油效率。",
+      "audio": "/question-bank-assets/revisions/opi/6e6a98f6fa784a996d0d9f406bd5c8f8e5adaaf5080b432ce018a82ae2123b68/audio/opi/opi-extra-351.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-extra-352",
@@ -17,7 +19,9 @@
       "audioText": "How can the selected cost index affect an aircraft's endurance?",
       "audioTextZh": "所选成本指数会如何影响航空器的续航能力？",
       "referenceText": "A higher cost index normally commands higher speeds and increases fuel flow, which can reduce endurance. A lower cost index favors fuel efficiency and can increase the time the aircraft can remain airborne.",
-      "referenceTextZh": "较高的成本指数通常会指令更高的速度并增加燃油流量，从而可能缩短续航时间。较低的成本指数更重视燃油效率，并可能延长飞机能够留空的时间。"
+      "referenceTextZh": "较高的成本指数通常会指令更高的速度并增加燃油流量，从而可能缩短续航时间。较低的成本指数更重视燃油效率，并可能延长飞机能够留空的时间。",
+      "audio": "/question-bank-assets/revisions/opi/47419d3673cd1c19bb75cc96aa6a914ee940231b622cabd412eb2404a791f59f/audio/opi/opi-extra-352.mp3",
+      "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-extra-353",
@@ -25,7 +29,9 @@
       "audioText": "Who determines the cost index for a flight?",
       "audioTextZh": "谁确定一次飞行所使用的成本指数？",
       "referenceText": "The cost index is normally determined by dispatch or flight operations according to fuel prices, the schedule, and company policy, and it is provided in the flight plan. The captain may change it during the flight when operational or fuel conditions require.",
-      "referenceTextZh": "成本指数通常由签派或飞行运行部门根据燃油价格、航班计划和公司政策确定，并在飞行计划中提供。飞行中，当运行或燃油状况有需要时，机长可以进行调整。"
+      "referenceTextZh": "成本指数通常由签派或飞行运行部门根据燃油价格、航班计划和公司政策确定，并在飞行计划中提供。飞行中，当运行或燃油状况有需要时，机长可以进行调整。",
+      "audio": "/question-bank-assets/revisions/opi/7a33df911b926353e3ee8e2011da4f1856d170bc56e7d5c8cc97a9edbb6ffb1a/audio/opi/opi-extra-353.mp3",
+      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-extra-354",
@@ -33,7 +39,9 @@
       "audioText": "Under what circumstances might a flight crew change the cost index during a flight?",
       "audioTextZh": "飞行机组在什么情况下可能会在飞行中更改成本指数？",
       "referenceText": "A crew might change the cost index to respond to changing weather, a delay, or a developing fuel situation. The flight management system then recalculates the planned climb, cruise, and descent speeds.",
-      "referenceTextZh": "机组可能会为了应对天气变化、延误或飞行中逐渐变化的燃油状况而调整成本指数。飞行管理系统随后会重新计算计划的爬升、巡航和下降速度。"
+      "referenceTextZh": "机组可能会为了应对天气变化、延误或飞行中逐渐变化的燃油状况而调整成本指数。飞行管理系统随后会重新计算计划的爬升、巡航和下降速度。",
+      "audio": "/question-bank-assets/revisions/opi/a686f45bb841d662bdb33e192280e6d0bf7ea7eb363bbc6b0a1752f063db6463/audio/opi/opi-extra-354.mp3",
+      "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-extra-354-part-2",
@@ -41,7 +49,9 @@
       "audioText": "Where is the cost index normally entered in the aircraft's flight management system?",
       "audioTextZh": "通常在航空器飞行管理系统的什么位置输入成本指数？",
       "referenceText": "The cost index is normally entered on an INIT or PERF page of the flight management system, depending on the aircraft.",
-      "referenceTextZh": "根据不同机型，成本指数通常输入飞行管理系统的 INIT 或 PERF 页面。"
+      "referenceTextZh": "根据不同机型，成本指数通常输入飞行管理系统的 INIT 或 PERF 页面。",
+      "audio": "/question-bank-assets/revisions/opi/61ebf32aa7bad4bd9ae23ee0d7e9e8127a77b129ce6e1c2250d2ca31cea612e8/audio/opi/opi-extra-354-part-2.mp3",
+      "audioDurationSeconds": 4.32
     },
     {
       "id": "opi-extra-355",
@@ -49,7 +59,9 @@
       "audioText": "What problems can result from entering an incorrect cost index?",
       "audioTextZh": "输入错误的成本指数可能造成哪些问题？",
       "referenceText": "If the cost index is too high, the aircraft may burn more fuel than planned and reduce the expected fuel margin. If it is too low, the aircraft may fly more slowly and experience delays or miss an assigned slot. The crew should therefore verify the cost index during preflight setup.",
-      "referenceTextZh": "如果成本指数过高，飞机可能消耗比计划更多的燃油，并减少预期的燃油裕度。如果成本指数过低，飞机可能飞得更慢，造成延误或错过指定时隙。因此，机组应在飞行前设置期间核实成本指数。"
+      "referenceTextZh": "如果成本指数过高，飞机可能消耗比计划更多的燃油，并减少预期的燃油裕度。如果成本指数过低，飞机可能飞得更慢，造成延误或错过指定时隙。因此，机组应在飞行前设置期间核实成本指数。",
+      "audio": "/question-bank-assets/revisions/opi/879a587e698ea2eab063b4ffa5b8c258804193049fd5006106f04e4b4c35eede/audio/opi/opi-extra-355.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-extra-356",
@@ -57,7 +69,9 @@
       "audioText": "How can the cost index affect the climb, cruise, and descent profiles?",
       "audioTextZh": "成本指数会如何影响爬升、巡航和下降剖面？",
       "referenceText": "A higher cost index generally produces higher target speeds in climb, cruise, and descent, giving more priority to time. A lower cost index generally produces more fuel-efficient target speeds. These speed changes alter the planned climb and descent profiles as well as cruise performance.",
-      "referenceTextZh": "较高的成本指数通常会产生更高的爬升、巡航和下降目标速度，更重视时间。较低的成本指数通常会产生燃油效率更高的目标速度。这些速度变化会影响计划的爬升和下降剖面，以及巡航性能。"
+      "referenceTextZh": "较高的成本指数通常会产生更高的爬升、巡航和下降目标速度，更重视时间。较低的成本指数通常会产生燃油效率更高的目标速度。这些速度变化会影响计划的爬升和下降剖面，以及巡航性能。",
+      "audio": "/question-bank-assets/revisions/opi/940eec03532ad6f3c99aa359cec172386d8c4e076bd6174fb8e25b7ab16276ea/audio/opi/opi-extra-356.mp3",
+      "audioDurationSeconds": 4.704
     },
     {
       "id": "opi-extra-357",
@@ -65,7 +79,9 @@
       "audioText": "What should a crew consider before changing the cost index when the fuel remaining is lower than planned?",
       "audioTextZh": "剩余燃油低于计划值时，机组在更改成本指数前应考虑哪些因素？",
       "referenceText": "Before changing the cost index, the crew should verify the fuel quantity and FMS prediction, destination and alternate requirements, weather, delays, and reserve fuel. They should compare the effect of the new speed on fuel burn and arrival time and coordinate with dispatch when required. Lowering the cost index cannot replace a minimum-fuel or fuel-emergency declaration when the applicable condition exists.",
-      "referenceTextZh": "调整成本指数前，机组应核实燃油量和飞行管理系统预测、目的地与备降要求、天气、延误情况和储备燃油。他们应比较新速度对燃油消耗和到达时间的影响，并在需要时与签派协调。当符合最低油量或燃油紧急状态的条件时，降低成本指数不能取代相应的宣布。"
+      "referenceTextZh": "调整成本指数前，机组应核实燃油量和飞行管理系统预测、目的地与备降要求、天气、延误情况和储备燃油。他们应比较新速度对燃油消耗和到达时间的影响，并在需要时与签派协调。当符合最低油量或燃油紧急状态的条件时，降低成本指数不能取代相应的宣布。",
+      "audio": "/question-bank-assets/revisions/opi/5c7bc3a9c61481254fbba3bd0bcd1b6addb5086cd67068b65f50ddb8ef45e73a/audio/opi/opi-extra-357.mp3",
+      "audioDurationSeconds": 5.088
     },
     {
       "id": "opi-extra-358",
@@ -73,7 +89,9 @@
       "audioText": "What factors influence the choice of a cost index for a flight?",
       "audioTextZh": "哪些因素会影响一次飞行的成本指数选择？",
       "referenceText": "The choice of cost index can be influenced by fuel prices, time-related costs, flight delays, the aircraft type, the route, and schedule requirements. The airline balances these factors to manage overall operating cost.",
-      "referenceTextZh": "成本指数的选择可能受燃油价格、时间相关成本、航班延误、机型、航路和时刻要求影响。航空公司会平衡这些因素，以管理总体运行成本。"
+      "referenceTextZh": "成本指数的选择可能受燃油价格、时间相关成本、航班延误、机型、航路和时刻要求影响。航空公司会平衡这些因素，以管理总体运行成本。",
+      "audio": "/question-bank-assets/revisions/opi/54efed10bf620e98c093d757e931fb14f29da1211015e71fc8248286f36bc142/audio/opi/opi-extra-358.mp3",
+      "audioDurationSeconds": 3.432
     },
     {
       "id": "opi-extra-359",
@@ -81,7 +99,9 @@
       "audioText": "Why might an operator use different cost indices for short-haul and long-haul flights?",
       "audioTextZh": "运营人为什么可能为短程和远程航班使用不同的成本指数？",
       "referenceText": "An operator may use a higher cost index on a short-haul flight when schedule and time costs are more important. On a long-haul flight, fuel is often a larger part of the operating cost, so a lower cost index may be more efficient. Weather or ATC delays can lead to further adjustments.",
-      "referenceTextZh": "当航班计划和时间成本更重要时，运营人可能在短途航班上使用较高的成本指数。远程航班的燃油往往占运行成本的更大部分，因此使用较低的成本指数可能更经济。天气或空中交通管制延误还可能导致进一步调整。"
+      "referenceTextZh": "当航班计划和时间成本更重要时，运营人可能在短途航班上使用较高的成本指数。远程航班的燃油往往占运行成本的更大部分，因此使用较低的成本指数可能更经济。天气或空中交通管制延误还可能导致进一步调整。",
+      "audio": "/question-bank-assets/revisions/opi/0e53694c42e919716933273e8e4e7fd62fde59db969dd99ebae64cf7b757a174/audio/opi/opi-extra-359.mp3",
+      "audioDurationSeconds": 4.584
     },
     {
       "id": "opi-extra-360",
@@ -89,7 +109,9 @@
       "audioText": "Why is the cost index important for flight efficiency?",
       "audioTextZh": "成本指数为什么对飞行效率很重要？",
       "referenceText": "The cost index helps an operator balance speed against fuel consumption according to its economic priorities. Selecting an appropriate value can control operating costs and support schedule requirements. It can also be adjusted when conditions such as delays or fuel status change.",
-      "referenceTextZh": "成本指数帮助运营人根据经济优先事项平衡速度与燃油消耗。选择合适的数值可以控制运行成本并满足航班计划要求。当延误或燃油状态等条件发生变化时，也可以调整成本指数。"
+      "referenceTextZh": "成本指数帮助运营人根据经济优先事项平衡速度与燃油消耗。选择合适的数值可以控制运行成本并满足航班计划要求。当延误或燃油状态等条件发生变化时，也可以调整成本指数。",
+      "audio": "/question-bank-assets/revisions/opi/9b5816fc71d430e0b31551a1ecf0859ac69926c564163b3c25fb07b5bb276738/audio/opi/opi-extra-360.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-extra-361",
@@ -97,7 +119,9 @@
       "audioText": "How can the cost index influence the calculated top of descent?",
       "audioTextZh": "成本指数会如何影响计算出的下降顶点？",
       "referenceText": "Depending on the aircraft's flight management system, a higher cost index may calculate a later top of descent and keep the aircraft at a higher speed for longer. A lower cost index may calculate an earlier descent that gives more priority to fuel efficiency.",
-      "referenceTextZh": "根据飞机所使用的飞行管理系统，较高的成本指数可能计算出更晚的下降顶点，使飞机以较高速度保持更长时间。较低的成本指数可能计算出更早的下降点，更重视燃油效率。"
+      "referenceTextZh": "根据飞机所使用的飞行管理系统，较高的成本指数可能计算出更晚的下降顶点，使飞机以较高速度保持更长时间。较低的成本指数可能计算出更早的下降点，更重视燃油效率。",
+      "audio": "/question-bank-assets/revisions/opi/75ed29402ea07a982849eae0af67d2446cea545c6f7a128847fcbdd616490d6c/audio/opi/opi-extra-361.mp3",
+      "audioDurationSeconds": 3.72
     }
   ],
   "categoryId": "opi-category-03"

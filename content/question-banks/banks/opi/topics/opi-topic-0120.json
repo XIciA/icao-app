@@ -10,7 +10,9 @@
       "audioTextZh": "你所飞的机型提供哪些失速警告指示？",
       "referenceText": "The aircraft type I fly provides a stall-warning horn and a voice warning.",
       "referenceTextZh": "我所飞的机型配有失速警告喇叭和语音警告。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/17b30d9ad85ab0ab4ab60956d0250b1cca7c025bc057256d6057bb0b2a55d284/audio/opi/opi-extra-116.mp3",
+      "audioDurationSeconds": 4.128
     },
     {
       "id": "opi-extra-117",
@@ -19,7 +21,9 @@
       "audioTextZh": "哪些因素可能导致航空器超过临界迎角并失速？",
       "referenceText": "An aerodynamic stall occurs when the aircraft exceeds its critical angle of attack. Strong low-level wind shear, severe icing, and excessive control input can all contribute to a stall.",
       "referenceTextZh": "当飞机超过临界迎角时，就会发生气动失速。强烈的低空风切变、严重结冰和过大的操纵输入都可能促成失速。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/837ef9fc00d9651e9bfdd4d52f7d65674f33873d6f4afaaac77370eff388a058/audio/opi/opi-extra-117.mp3",
+      "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-extra-118",
@@ -28,7 +32,9 @@
       "audioTextZh": "飞行机组应如何从气动失速中改出？",
       "referenceText": "At the first indication of a stall, the pilot should reduce the angle of attack enough to restore airflow over the wing. The pilot then levels the wings, applies thrust as required, and manages drag-producing devices according to the aircraft procedure. After the stall warning stops, the aircraft should return smoothly to the desired flight path without causing a secondary stall.",
       "referenceTextZh": "一出现失速迹象，飞行员就应充分减小迎角，使翼面气流恢复。随后应改平机翼，按需增加推力，并依据机型程序管理增阻装置。失速警告停止后，应平稳地使飞机回到所需飞行轨迹，同时避免发生二次失速。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/ee913b26828d429b1d6f21627e3e97ab2b5b0734f5e0dd0734a4dd03d1fb7437/audio/opi/opi-extra-118.mp3",
+      "audioDurationSeconds": 3.096
     },
     {
       "id": "opi-extra-119",
@@ -37,7 +43,9 @@
       "audioTextZh": "气动失速为什么危险？",
       "referenceText": "A stall can cause a rapid loss of altitude and may lead to loss of control. During takeoff or landing, the aircraft may not have enough height for recovery, which creates a serious risk of terrain impact.",
       "referenceTextZh": "失速会导致高度迅速损失，并可能造成飞机失控。在起飞或着陆阶段，飞机可能没有足够的高度完成改出，因此会产生严重的撞地风险。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/2a73d4ffffa56cfda8fc5e74e8046b68248b26848944b4c105ccf44c36bb4a5d/audio/opi/opi-extra-119.mp3",
+      "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-extra-120",
@@ -46,7 +54,9 @@
       "audioTextZh": "飞行员如何预防气动失速？",
       "referenceText": "Pilots should keep the angle of attack below the aircraft's critical value and maintain balanced, controlled flight. They should also obtain weather information before departure and avoid conditions that could lead to a stall.",
       "referenceTextZh": "飞行员应使迎角保持在飞机临界值以下，并维持协调、可控的飞行状态。他们还应在起飞前获取气象信息，避开可能导致失速的条件。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/2a3060ca796e1d814e0bce9c53102f2760f5a73a1e17d7916490d3f247605d65/audio/opi/opi-extra-120.mp3",
+      "audioDurationSeconds": 2.712
     }
   ],
   "categoryId": "opi-category-02"

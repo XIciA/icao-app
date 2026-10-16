@@ -9,7 +9,9 @@
       "audioText": "What are the main functions of an aircraft braking system?",
       "audioTextZh": "航空器刹车系统的主要功能有哪些？",
       "referenceText": "The braking system slows and stops the aircraft during landing, taxi, and a rejected takeoff. It also holds the aircraft stationary when parked and can assist directional control through differential braking on aircraft designed for it. On the DA-40, the wheel brakes are operated hydraulically.",
-      "referenceTextZh": "刹车系统用于在着陆、滑行和中断起飞时使飞机减速并停止。它还能在飞机停放时保持其静止；在采用相关设计的飞机上，差动刹车可以辅助方向控制。DA-40 的机轮刹车采用液压驱动。"
+      "referenceTextZh": "刹车系统用于在着陆、滑行和中断起飞时使飞机减速并停止。它还能在飞机停放时保持其静止；在采用相关设计的飞机上，差动刹车可以辅助方向控制。DA-40 的机轮刹车采用液压驱动。",
+      "audio": "/question-bank-assets/revisions/opi/a1fc36f94c79d494b6c3e6ad41e368e2a4a2cc134e8b7020eeb924ccf9a8bbd7/audio/opi/opi-extra-323.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-extra-324",
@@ -17,7 +19,9 @@
       "audioText": "How should a flight crew respond if the aircraft's normal braking system fails?",
       "audioTextZh": "航空器正常刹车系统失效时，飞行机组应如何处置？",
       "referenceText": "The crew should maintain directional control and use the approved brake-failure checklist. They should use any available alternate or emergency braking system as directed, reduce speed with aerodynamic drag or other approved means, and avoid actions that could make the failure worse. They should inform ATC, use the longest suitable runway, and arrange assistance after stopping.",
-      "referenceTextZh": "机组应保持方向控制，并执行经批准的刹车失效检查单。他们应按指示使用任何可用的备用或应急刹车系统，通过气动阻力或其他经批准的方式减速，并避免采取可能使故障恶化的行动。机组应通知空中交通管制，使用最长的合适跑道，并在飞机停止后安排支援。"
+      "referenceTextZh": "机组应保持方向控制，并执行经批准的刹车失效检查单。他们应按指示使用任何可用的备用或应急刹车系统，通过气动阻力或其他经批准的方式减速，并避免采取可能使故障恶化的行动。机组应通知空中交通管制，使用最长的合适跑道，并在飞机停止后安排支援。",
+      "audio": "/question-bank-assets/revisions/opi/0ee64e610f5fa6b9c7b6062ee63e241a305b5ef79b0a05fe748c9a60f946b11a/audio/opi/opi-extra-324.mp3",
+      "audioDurationSeconds": 4.248
     },
     {
       "id": "opi-extra-325",
@@ -25,7 +29,9 @@
       "audioText": "How should a crew decide whether it is safe to take off when runway braking action is poor?",
       "audioTextZh": "跑道刹车效应差时，机组应如何判断能否安全起飞？",
       "referenceText": "The crew should obtain the latest runway condition code, contaminant report, braking reports, wind, and temperature. They must calculate takeoff and accelerate-stop performance for the actual aircraft weight, configuration, and available runway, using approved data and the most limiting condition. If the limits or required safety margin cannot be met, they should not take off.",
-      "referenceTextZh": "机组应获取最新的跑道状况代码、污染物报告、刹车效应报告、风和温度。他们必须针对飞机实际重量、构型和可用跑道，使用经批准的数据和最不利条件计算起飞及加速停止性能。如果无法满足限制或规定的安全裕度，就不应起飞。"
+      "referenceTextZh": "机组应获取最新的跑道状况代码、污染物报告、刹车效应报告、风和温度。他们必须针对飞机实际重量、构型和可用跑道，使用经批准的数据和最不利条件计算起飞及加速停止性能。如果无法满足限制或规定的安全裕度，就不应起飞。",
+      "audio": "/question-bank-assets/revisions/opi/480bf0be1be03821ab843b7124641118a115af2179bc3ff57cd13d4294731fe5/audio/opi/opi-extra-325.mp3",
+      "audioDurationSeconds": 4.512
     },
     {
       "id": "opi-extra-325-part-2",
@@ -33,7 +39,9 @@
       "audioText": "How should a crew decide whether it is safe to land when runway braking action is poor?",
       "audioTextZh": "跑道刹车效应差时，机组应如何判断能否安全着陆？",
       "referenceText": "Before landing, the crew should use the latest runway condition, braking reports, wind, weather, and available length to calculate the required landing distance with the appropriate safety margin. They should also consider aircraft weight, configuration, system failures, and the reliability of the report. If a safe landing is not assured, they should use another runway, hold for improvement, or divert.",
-      "referenceTextZh": "着陆前，机组应根据最新跑道状况、刹车效应报告、风、天气和可用长度，计算具有适当安全裕度的所需着陆距离。他们还应考虑飞机重量、构型、系统失效和报告的可靠性。如果无法确保安全着陆，应改用其他跑道、等待条件改善或备降。"
+      "referenceTextZh": "着陆前，机组应根据最新跑道状况、刹车效应报告、风、天气和可用长度，计算具有适当安全裕度的所需着陆距离。他们还应考虑飞机重量、构型、系统失效和报告的可靠性。如果无法确保安全着陆，应改用其他跑道、等待条件改善或备降。",
+      "audio": "/question-bank-assets/revisions/opi/7d1ea79fbe257e31164fc5265fea41303ab1dc24604503d9955619ece683a84e/audio/opi/opi-extra-325-part-2.mp3",
+      "audioDurationSeconds": 4.272
     }
   ],
   "categoryId": "opi-category-06"

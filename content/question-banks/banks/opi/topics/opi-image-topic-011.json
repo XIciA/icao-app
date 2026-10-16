@@ -17,7 +17,9 @@
       "audioText": "What can you see in this picture of a tail-mounted engine fire?",
       "audioTextZh": "你能从这张尾置发动机起火的图片中看到什么？",
       "referenceText": "The picture shows flames and dark smoke coming from the rear engine of a three-engine aircraft. The fire appears to be concentrated around the tail-mounted engine. The exact cause of the fire is not visible.",
-      "referenceTextZh": "图片中，一架三发飞机的后部发动机冒出火焰和浓烟。火势似乎集中在尾置发动机周围。图片无法显示起火的确切原因。"
+      "referenceTextZh": "图片中，一架三发飞机的后部发动机冒出火焰和浓烟。火势似乎集中在尾置发动机周围。图片无法显示起火的确切原因。",
+      "audio": "/question-bank-assets/revisions/opi/a2149a04316baa9e0a6b4b222cb2119ddcb6ff7dd1ef4bac4c51fcea0032d1c9/audio/opi/opi-image-011-q01.mp3",
+      "audioDurationSeconds": 3.312
     },
     {
       "id": "opi-image-011-q02",
@@ -25,7 +27,9 @@
       "audioText": "What risks can a fire in a tail-mounted engine pose to an aircraft and its occupants?",
       "audioTextZh": "尾置发动机起火会给航空器及其乘员带来哪些风险？",
       "referenceText": "The main risks are smoke, fire spreading, system damage, passenger panic, and a possible evacuation.",
-      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损坏、旅客恐慌，以及可能需要撤离。"
+      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损坏、旅客恐慌，以及可能需要撤离。",
+      "audio": "/question-bank-assets/revisions/opi/f7a9b1dc32f065c714a0df28129bd45afcbd67508dba909c55ecf28cba22f90e/audio/opi/opi-image-011-q02.mp3",
+      "audioDurationSeconds": 4.608
     },
     {
       "id": "opi-image-011-q03",
@@ -33,7 +37,9 @@
       "audioText": "As the pilot in command, how would you respond to the tail-mounted engine fire shown in this picture?",
       "audioTextZh": "作为机长，你会如何处置图中所示的尾置发动机起火？",
       "referenceText": "For the tail-mounted engine fire, I would check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would divert as appropriate.",
-      "referenceTextZh": "对于尾置发动机起火，我会检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会视情况改航。"
+      "referenceTextZh": "对于尾置发动机起火，我会检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会视情况改航。",
+      "audio": "/question-bank-assets/revisions/opi/f58e0ae0d175a25d2bbc600ef75b749d4add8237974e9892ee0a88e8026f8f81/audio/opi/opi-image-011-q03.mp3",
+      "audioDurationSeconds": 5.328
     },
     {
       "id": "opi-image-011-q04",
@@ -41,7 +47,9 @@
       "audioText": "What measures can help reduce the risk of an in-flight engine fire?",
       "audioTextZh": "哪些措施可以降低发动机在飞行中起火的风险？",
       "referenceText": "Regular maintenance should detect fuel, oil, and hydraulic leaks and any damage to engine wiring or hot sections. Crews should complete careful preflight inspections, monitor engine indications, and respond promptly to abnormal temperatures, vibration, or warning messages. Good FOD control and correct engine-start procedures also reduce the risk.",
-      "referenceTextZh": "定期维修应发现燃油、滑油和液压油泄漏，以及发动机线路或高温部件的损伤。机组应认真完成飞行前检查，监控发动机指示，并及时处置温度异常、振动或警告信息。良好的外来物管理和正确的发动机起动程序也能降低风险。"
+      "referenceTextZh": "定期维修应发现燃油、滑油和液压油泄漏，以及发动机线路或高温部件的损伤。机组应认真完成飞行前检查，监控发动机指示，并及时处置温度异常、振动或警告信息。良好的外来物管理和正确的发动机起动程序也能降低风险。",
+      "audio": "/question-bank-assets/revisions/opi/550871372beacf2042fc092042e5897dcaa0fc3239ad961bc11ab068fcae2901/audio/opi/opi-image-011-q04.mp3",
+      "audioDurationSeconds": 3.528
     }
   ],
   "categoryId": "opi-category-08"

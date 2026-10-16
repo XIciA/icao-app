@@ -18,7 +18,9 @@
       "audioTextZh": "从图中你看到了什么？",
       "studyTier": 2,
       "referenceText": "I can see two aircraft encounter ground collision.\nThe tail of China Eastern Airlines aircraft is damaged by the starboard wing of China Southern Airlines plane.",
-      "referenceTextZh": "我可以看到两架飞机遭到了地面碰撞。\n一架东航飞机的机尾被南航飞机的机翼剐蹭了。"
+      "referenceTextZh": "我可以看到两架飞机遭到了地面碰撞。\n一架东航飞机的机尾被南航飞机的机翼剐蹭了。",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152400.mp3",
+      "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152401",
@@ -27,7 +29,9 @@
       "audioTextZh": "什么样的道面情况会造成地面冲突？",
       "studyTier": 1,
       "referenceText": "Many runway and taxiway problems will cause ground collision.\nFor example, slippery taxiway or lighting system inoperative, taxi way surface damage and so on.\nWhat’s more, the intersection runway or working progress adjacent to the runway can also cause ground collision.",
-      "referenceTextZh": "很多跑道和滑行道的问题都会造成地面冲突。\n比如，湿滑滑行道或者灯光系统故障，滑行道表面损坏等。\n此外，跑道交叉口或跑道附近进行施工作业也会导致地面冲突。"
+      "referenceTextZh": "很多跑道和滑行道的问题都会造成地面冲突。\n比如，湿滑滑行道或者灯光系统故障，滑行道表面损坏等。\n此外，跑道交叉口或跑道附近进行施工作业也会导致地面冲突。",
+      "audio": "/question-bank-assets/revisions/opi/b1f07a7764be625385139be7a524c404a1eed8340026cf051aac6689f350533a/audio/opi/opi-fzy-152401.mp3",
+      "audioDurationSeconds": 3
     },
     {
       "id": "opi-fzy-152402",
@@ -36,7 +40,9 @@
       "audioTextZh": "在滑行阶段，如果你不清楚机场布局，你会怎么做？",
       "studyTier": 1,
       "referenceText": "If I encounter this situation, I will listen to the controller’s instructions carefully.\nIf necessary, I will request a follow-me car to avoid any accidents.",
-      "referenceTextZh": "如果我遇到这样的情况，我会认真听管制员的指令。\n如有必要，我会请求引导车，来避免任何事故发生。"
+      "referenceTextZh": "如果我遇到这样的情况，我会认真听管制员的指令。\n如有必要，我会请求引导车，来避免任何事故发生。",
+      "audio": "/question-bank-assets/revisions/opi/7eced70c2ba8bec5711b0846c1ccf200df347d959fe7c644899eadc2636ab551/audio/opi/opi-fzy-152402.mp3",
+      "audioDurationSeconds": 4.92
     }
   ],
   "categoryId": "opi-category-08"

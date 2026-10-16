@@ -9,7 +9,9 @@
       "audioText": "What is your opinion of flight discipline?",
       "audioTextZh": "你如何看待飞行纪律？",
       "referenceText": "I think strong flight discipline is essential for flight safety because pilots control the aircraft and are responsible for everyone on board. Pilots should follow regulations and SOPs and share tasks properly in the cockpit. They should also avoid smoking in the cockpit and consuming alcohol before a flight.",
-      "referenceTextZh": "我认为良好的飞行作风对飞行安全至关重要，因为飞行员操纵飞机并对机上所有人负责。飞行员应遵守规章和标准操作程序，并在驾驶舱内合理分工。他们还应避免在驾驶舱吸烟和在飞行前饮酒。"
+      "referenceTextZh": "我认为良好的飞行作风对飞行安全至关重要，因为飞行员操纵飞机并对机上所有人负责。飞行员应遵守规章和标准操作程序，并在驾驶舱内合理分工。他们还应避免在驾驶舱吸烟和在飞行前饮酒。",
+      "audio": "/question-bank-assets/revisions/opi/bf169ce61af91697bae0e96182dee06e16750f3c1f9cf4c431d7ee1c36aaf139/audio/opi/opi-core-751.mp3",
+      "audioDurationSeconds": 2.088
     },
     {
       "id": "opi-core-752",
@@ -17,7 +19,9 @@
       "audioText": "How can flight discipline affect flight safety?",
       "audioTextZh": "飞行纪律会如何影响飞行安全？",
       "referenceText": "Poor flight discipline can cause pilots to ignore regulations and SOPs, forget procedures, and make mistakes. Undisciplined behaviour can also reduce situational awareness and lead to poor decisions, creating a serious risk to flight safety.",
-      "referenceTextZh": "不良飞行作风会使飞行员忽视规章和标准操作程序、忘记程序并发生差错。不守纪律的行为还会降低情景意识并导致错误决策，对飞行安全造成严重风险。"
+      "referenceTextZh": "不良飞行作风会使飞行员忽视规章和标准操作程序、忘记程序并发生差错。不守纪律的行为还会降低情景意识并导致错误决策，对飞行安全造成严重风险。",
+      "audio": "/question-bank-assets/revisions/opi/2d098acce3f30bfca6843f00ac804d18ade460e4d4ec422330c010eadbf8cdbe/audio/opi/opi-core-752.mp3",
+      "audioDurationSeconds": 2.688
     },
     {
       "id": "opi-core-753",
@@ -25,7 +29,9 @@
       "audioText": "How can pilots develop good flight discipline?",
       "audioTextZh": "飞行员如何养成良好的飞行纪律？",
       "referenceText": "Pilots can develop good flight discipline by maintaining the right attitude and respecting life, rules, and responsibility. They should also maintain professional conduct and never compromise basic safety standards.",
-      "referenceTextZh": "飞行员可以通过保持正确态度，并尊重生命、规则和责任来养成良好飞行作风。他们还应保持专业行为，绝不降低基本安全标准。"
+      "referenceTextZh": "飞行员可以通过保持正确态度，并尊重生命、规则和责任来养成良好飞行作风。他们还应保持专业行为，绝不降低基本安全标准。",
+      "audio": "/question-bank-assets/revisions/opi/9d21f0ed71da7cdd73d4d4f6f56d9313d8f8cca5bd1ce64d8b4ff5cc83287132/audio/opi/opi-core-753.mp3",
+      "audioDurationSeconds": 2.592
     },
     {
       "id": "opi-core-754",
@@ -33,7 +39,9 @@
       "audioText": "How does your company promote good flight discipline?",
       "audioTextZh": "你所在公司如何促进良好飞行纪律的养成？",
       "referenceText": "I am not employed by an airline, so I do not have a company flight-discipline programme. At my flight school, instructors promote discipline through clear procedures, checklists, standard calls, thorough briefings, and direct debriefing of any deviation. A typical airline would add recurrent training and operational monitoring.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的飞行作风培养计划。在航校，教员通过明确的程序、检查单、标准口令、充分的简令以及对偏差的直接讲评来培养良好作风。典型航空公司还会加入复训和运行监控。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的飞行作风培养计划。在航校，教员通过明确的程序、检查单、标准口令、充分的简令以及对偏差的直接讲评来培养良好作风。典型航空公司还会加入复训和运行监控。",
+      "audio": "/question-bank-assets/revisions/opi/553e33621726d972456458eb13aefc9d1ae0712f4b2bf3cf429627e150865e81/audio/opi/opi-core-754.mp3",
+      "audioDurationSeconds": 2.664
     }
   ],
   "categoryId": "opi-category-04"

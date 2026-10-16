@@ -9,7 +9,9 @@
       "audioText": "What is the pitot tube used for?",
       "audioTextZh": "皮托管有什么用途？",
       "referenceText": "The pitot tube collects total air pressure and provides an input used to measure the aircraft's airspeed.",
-      "referenceTextZh": "空速管收集全压，并提供用于测量飞机空速的输入信号。"
+      "referenceTextZh": "空速管收集全压，并提供用于测量飞机空速的输入信号。",
+      "audio": "/question-bank-assets/revisions/opi/d64c71041df7a1873f0f1bbdc027cb0a185d44e6e2dd5c93c213239e7fcf0d4c/audio/opi/opi-extra-334.mp3",
+      "audioDurationSeconds": 1.896
     },
     {
       "id": "opi-extra-335",
@@ -17,7 +19,9 @@
       "audioText": "How can a blocked pitot tube affect airspeed indications?",
       "audioTextZh": "皮托管堵塞会如何影响空速指示？",
       "referenceText": "A blocked pitot tube can make the airspeed indication incorrect or unreliable. The reading may fluctuate and mislead the pilots.",
-      "referenceTextZh": "空速管堵塞会导致空速指示错误或不可靠。读数可能发生波动并误导飞行员。"
+      "referenceTextZh": "空速管堵塞会导致空速指示错误或不可靠。读数可能发生波动并误导飞行员。",
+      "audio": "/question-bank-assets/revisions/opi/fe658d622fabdb8574deab3002645144cca09a7964b35bc055a0ce4fe0cd704c/audio/opi/opi-extra-335.mp3",
+      "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-extra-336",
@@ -25,7 +29,9 @@
       "audioText": "How should a flight crew respond to a suspected pitot-system blockage?",
       "audioTextZh": "怀疑皮托系统堵塞时，飞行机组应如何处置？",
       "referenceText": "The crew should follow the applicable QRH or aircraft procedure and use other reliable instruments to maintain control. If ice is suspected, the procedure may call for pitot heat. If the problem remains unresolved, the crew should inform ATC and consider diverting for maintenance.",
-      "referenceTextZh": "机组应执行适用的快速检查单或机型程序，并使用其他可靠仪表保持飞机控制。如果怀疑结冰，程序可能要求接通空速管加温。如果问题仍无法解决，机组应通知空中交通管制，并考虑备降进行维修。"
+      "referenceTextZh": "机组应执行适用的快速检查单或机型程序，并使用其他可靠仪表保持飞机控制。如果怀疑结冰，程序可能要求接通空速管加温。如果问题仍无法解决，机组应通知空中交通管制，并考虑备降进行维修。",
+      "audio": "/question-bank-assets/revisions/opi/c0a0c2341bd7744386a1c2c5597fc713851e088feaa36be131de3ce65fe5e49c/audio/opi/opi-extra-336.mp3",
+      "audioDurationSeconds": 3.792
     }
   ],
   "categoryId": "opi-category-06"

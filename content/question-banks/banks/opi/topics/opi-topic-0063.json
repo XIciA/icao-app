@@ -9,7 +9,9 @@
       "audioText": "Who is responsible for completing the flight logbook in your operation?",
       "audioTextZh": "在你所在的运行体系中，谁负责填写飞行记录本？",
       "referenceText": "In my flight training, the person assigned by the school completes the aircraft flight record. I am responsible for recording my own flight time correctly in my personal pilot logbook, and the instructor verifies the instructional details or completes the training record. Each document is handled according to the flight school's procedure.",
-      "referenceTextZh": "在我的飞行训练中，由航校指定的人员填写飞机飞行记录。我负责在个人飞行经历本中正确记录自己的飞行时间，教员则核实教学细节或填写训练记录。每份文件都按照航校程序处理。"
+      "referenceTextZh": "在我的飞行训练中，由航校指定的人员填写飞机飞行记录。我负责在个人飞行经历本中正确记录自己的飞行时间，教员则核实教学细节或填写训练记录。每份文件都按照航校程序处理。",
+      "audio": "/question-bank-assets/revisions/opi/dfa40ed79e8a8a594e821f7c24bd1c37e5c065c2739f9af32625345c1410c8d0/audio/opi/opi-core-667.mp3",
+      "audioDurationSeconds": 3.84
     },
     {
       "id": "opi-core-668",
@@ -17,7 +19,9 @@
       "audioText": "What requirements must be followed when completing a flight logbook?",
       "audioTextZh": "填写飞行记录本时必须遵守哪些要求？",
       "referenceText": "Under the SOP, the flight logbook should be completed during cruise or after landing when the engines are shut down and the parking brake is set. The crew should not make entries during ground movement or while changing flight levels. Every entry should be neat, clear, and correct.",
-      "referenceTextZh": "根据标准操作程序，飞行记录本应在巡航期间，或着陆后发动机关闭并设置停留刹车时填写。机组不应在地面移动或改变飞行高度层时填写。每项记录都应工整、清楚、正确。"
+      "referenceTextZh": "根据标准操作程序，飞行记录本应在巡航期间，或着陆后发动机关闭并设置停留刹车时填写。机组不应在地面移动或改变飞行高度层时填写。每项记录都应工整、清楚、正确。",
+      "audio": "/question-bank-assets/revisions/opi/6390cc3544cb5eab193e92673b521ec9a1adca25469bf73766915033a39d7d57/audio/opi/opi-core-668.mp3",
+      "audioDurationSeconds": 3.672
     },
     {
       "id": "opi-core-669",
@@ -26,7 +30,9 @@
       "audioTextZh": "飞行机组应在航空器维修记录本中查看哪些内容？",
       "referenceText": "The flight crew should review the date, the malfunctioning part, and the recorded maintenance work in the aircraft maintenance log.",
       "referenceTextZh": "飞行机组应查看飞机维修记录中的日期、故障部件和已记录的维修工作。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/e0c0992e5bcfdebb06244f95e9e3f3e196cbb034e3066d782bdc91cbf6ee3206/audio/opi/opi-core-669.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-core-670",
@@ -34,7 +40,9 @@
       "audioText": "When should a flight crew review the aircraft maintenance log?",
       "audioTextZh": "飞行机组应在什么时候查看航空器维修记录本？",
       "referenceText": "The flight crew should review the aircraft maintenance log before each flight as part of the preflight cockpit-system check. The captain then cross-checks the log and signs it.",
-      "referenceTextZh": "飞行机组应在每次飞行前查看飞机维修记录，作为驾驶舱系统飞行前检查的一部分。随后由机长交叉核对并签字。"
+      "referenceTextZh": "飞行机组应在每次飞行前查看飞机维修记录，作为驾驶舱系统飞行前检查的一部分。随后由机长交叉核对并签字。",
+      "audio": "/question-bank-assets/revisions/opi/a75d2932bbc635970156bdec0250de6dda7a9f7e6c4f7781f220a4fd5f2a590a/audio/opi/opi-core-670.mp3",
+      "audioDurationSeconds": 3.144
     },
     {
       "id": "opi-core-671",
@@ -43,7 +51,9 @@
       "audioTextZh": "飞行前查看航空器维修记录本为什么很重要？",
       "referenceText": "Reviewing the maintenance log helps the crew understand the aircraft’s condition and check whether it meets the applicable MEL requirements. This allows the crew to confirm that the aircraft is airworthy before the flight.",
       "referenceTextZh": "查看维修记录帮助机组了解飞机状态，并检查飞机是否满足适用的 MEL 要求，从而在飞行前确认飞机适航。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/2fc31e6c54c642617fec3942c2fb6ef6b901f018f39cc8b6da22b38741aff6a2/audio/opi/opi-core-671.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-core-672",
@@ -51,7 +61,9 @@
       "audioText": "When do you use the normal checklist during a flight?",
       "audioTextZh": "飞行中你在什么时候使用正常检查单？",
       "referenceText": "I use the normal checklist before engine start, before taxi and takeoff, during the climb and cruise when required, before descent and landing, and after landing and shutdown. I complete each checklist at the correct phase and avoid rushing it. During a high-workload moment, I first maintain control and use the checklist when it is safe to do so.",
-      "referenceTextZh": "我会在发动机起动前、滑行和起飞前、按需在爬升和巡航期间、下降和着陆前，以及着陆和关车后使用正常检查单。我在正确飞行阶段完成每份检查单，不会匆忙执行。工作负荷较高时，我先控制好飞机，再在安全时使用检查单。"
+      "referenceTextZh": "我会在发动机起动前、滑行和起飞前、按需在爬升和巡航期间、下降和着陆前，以及着陆和关车后使用正常检查单。我在正确飞行阶段完成每份检查单，不会匆忙执行。工作负荷较高时，我先控制好飞机，再在安全时使用检查单。",
+      "audio": "/question-bank-assets/revisions/opi/57297efaf634c3a113223c2e1895490425bf791db302a0e262583d4bcf50ed69/audio/opi/opi-core-672.mp3",
+      "audioDurationSeconds": 2.76
     },
     {
       "id": "opi-core-673",
@@ -59,7 +71,9 @@
       "audioText": "How do flight crew members coordinate when completing a checklist?",
       "audioTextZh": "执行检查单时，飞行机组成员如何配合？",
       "referenceText": "The pilot flying controls and monitors the aircraft while the pilot monitoring reads and completes the checklist. The pilot flying confirms each item, and both pilots cross-check the result. Critical steps are also confirmed verbally to reduce errors.",
-      "referenceTextZh": "操纵飞行员控制并监控飞机，监控飞行员则读出并完成检查单。操纵飞行员确认每一项，两名飞行员共同交叉检查结果。关键步骤还要进行口头确认，以减少差错。"
+      "referenceTextZh": "操纵飞行员控制并监控飞机，监控飞行员则读出并完成检查单。操纵飞行员确认每一项，两名飞行员共同交叉检查结果。关键步骤还要进行口头确认，以减少差错。",
+      "audio": "/question-bank-assets/revisions/opi/e8e145220bc4ff3d75b2590ebd2332dba1ede6268801944a7fce665737dce7ed/audio/opi/opi-core-673.mp3",
+      "audioDurationSeconds": 3.672
     },
     {
       "id": "opi-core-674",
@@ -67,7 +81,9 @@
       "audioText": "Which technical manuals or handbooks are available in your cockpit?",
       "audioTextZh": "你的驾驶舱内配有哪些技术手册或指南？",
       "referenceText": "In the DA-40 cockpit, I have the aircraft flight manual or pilot operating handbook, normal and emergency checklists, navigation charts, and the relevant airport information. Some documents may be carried electronically, but they must be current and accessible for the flight.",
-      "referenceTextZh": "在 DA-40 驾驶舱内，我备有飞机飞行手册或飞行员操作手册、正常和应急检查单、导航图以及相关机场信息。部分文件可以电子方式携带，但必须是现行版本并能在飞行中使用。"
+      "referenceTextZh": "在 DA-40 驾驶舱内，我备有飞机飞行手册或飞行员操作手册、正常和应急检查单、导航图以及相关机场信息。部分文件可以电子方式携带，但必须是现行版本并能在飞行中使用。",
+      "audio": "/question-bank-assets/revisions/opi/07fca02cc1619bd946f4be16bd96d787275c8f881123cdda9ed8b44ab2d6cae0/audio/opi/opi-core-674.mp3",
+      "audioDurationSeconds": 3.672
     },
     {
       "id": "opi-core-675",
@@ -75,7 +91,9 @@
       "audioText": "In which languages are your cockpit manuals available?",
       "audioTextZh": "你的驾驶舱手册提供哪些语言版本？",
       "referenceText": "Our cockpit manuals are available in both English and Chinese.",
-      "referenceTextZh": "我们的驾驶舱手册同时提供英文和中文版本。"
+      "referenceTextZh": "我们的驾驶舱手册同时提供英文和中文版本。",
+      "audio": "/question-bank-assets/revisions/opi/ac59d6e805810b98aea4c4144bab8d861a70bace69d81a23ed46bddf127679ea/audio/opi/opi-core-675.mp3",
+      "audioDurationSeconds": 3.0
     },
     {
       "id": "opi-core-675-part-2",
@@ -83,7 +101,9 @@
       "audioText": "Do you prefer to read cockpit manuals in English or Chinese, and why?",
       "audioTextZh": "你更喜欢阅读英文还是中文驾驶舱手册？为什么？",
       "referenceText": "I prefer to read the original English manuals because they save time and help improve my aviation English. Reading the original text also avoids possible errors in a translation.",
-      "referenceTextZh": "我更喜欢阅读英文原版手册，因为这样节省时间，也有助于提高我的航空英语。阅读原文还能避免译文中可能出现的错误。"
+      "referenceTextZh": "我更喜欢阅读英文原版手册，因为这样节省时间，也有助于提高我的航空英语。阅读原文还能避免译文中可能出现的错误。",
+      "audio": "/question-bank-assets/revisions/opi/b59f18a7eca2d5d473cc7e3c4c0ad7f4520579ef5a681429cdc60622dec539cd/audio/opi/opi-core-675-part-2.mp3",
+      "audioDurationSeconds": 4.296
     },
     {
       "id": "opi-core-676",
@@ -91,7 +111,9 @@
       "audioText": "Could electronic manuals eventually replace paper manuals in the cockpit?",
       "audioTextZh": "电子手册最终能否取代驾驶舱内的纸质手册？",
       "referenceText": "I do not think electronic manuals will completely replace paper manuals. Electronic versions are convenient for daily use, but they depend on electrical power and a working system. Paper manuals remain useful as a backup, so keeping both provides redundancy.",
-      "referenceTextZh": "我认为电子手册不会完全取代纸质手册。电子版本便于日常使用，但依赖电源和正常工作的系统。纸质手册仍可作为备份，因此同时保留两种形式可以提供冗余。"
+      "referenceTextZh": "我认为电子手册不会完全取代纸质手册。电子版本便于日常使用，但依赖电源和正常工作的系统。纸质手册仍可作为备份，因此同时保留两种形式可以提供冗余。",
+      "audio": "/question-bank-assets/revisions/opi/ee2b0c738629ea6579839f94d5aee5451206d702e336ce25f52db00bdc60001b/audio/opi/opi-core-676.mp3",
+      "audioDurationSeconds": 4.296
     },
     {
       "id": "opi-core-677",
@@ -99,7 +121,9 @@
       "audioText": "What types of items are covered by your normal checklist?",
       "audioTextZh": "你的正常检查单涵盖哪些类型的项目？",
       "referenceText": "Our normal checklist covers key items for phases such as pre-start, taxi, takeoff, cruise, approach, and landing. It includes aircraft-system checks, configuration items such as flaps and landing gear, and instrument verifications.",
-      "referenceTextZh": "我们的正常检查单涵盖起动前、滑行、起飞、巡航、进近和着陆等阶段的关键项目，包括飞机系统检查、襟翼和起落架等构型项目以及仪表核实。"
+      "referenceTextZh": "我们的正常检查单涵盖起动前、滑行、起飞、巡航、进近和着陆等阶段的关键项目，包括飞机系统检查、襟翼和起落架等构型项目以及仪表核实。",
+      "audio": "/question-bank-assets/revisions/opi/f3c9e7f201673dc20413f80c35a5d72706006d6683cb5e62edc38956a6a56a5c/audio/opi/opi-core-677.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-core-678",
@@ -107,7 +131,9 @@
       "audioText": "How often do you consult technical manuals or handbooks during a flight?",
       "audioTextZh": "飞行中你多久查阅一次技术手册或指南？",
       "referenceText": "I review the manuals during preflight planning and consult them whenever I need to confirm a limitation, performance figure, or unfamiliar procedure. In flight, I normally use the appropriate checklist rather than search through a long manual. If a manual is needed, I use it only when workload permits.",
-      "referenceTextZh": "我在飞行前计划时查阅手册，并在需要确认限制、性能数据或不熟悉的程序时使用手册。飞行中，我通常使用相应检查单，而不会在长篇手册中查找。如果确实需要手册，只会在工作负荷允许时使用。"
+      "referenceTextZh": "我在飞行前计划时查阅手册，并在需要确认限制、性能数据或不熟悉的程序时使用手册。飞行中，我通常使用相应检查单，而不会在长篇手册中查找。如果确实需要手册，只会在工作负荷允许时使用。",
+      "audio": "/question-bank-assets/revisions/opi/1b839b367796d0700da64e9c8326365bb6333caf3a7f3ba86141e915ec97912d/audio/opi/opi-core-678.mp3",
+      "audioDurationSeconds": 4.08
     },
     {
       "id": "opi-core-678-part-2",
@@ -115,7 +141,9 @@
       "audioText": "How easy or difficult are technical manuals or handbooks to use during a flight, and why?",
       "audioTextZh": "飞行中使用技术手册或指南容易还是困难？为什么？",
       "referenceText": "The checklists are easy to use because they are short and arranged by phase or condition. A full handbook can be more difficult during flight because it contains much more detail and searching takes time. Clear indexing and an electronic search function help, but the crew must still manage workload carefully.",
-      "referenceTextZh": "检查单简短，并按飞行阶段或情况编排，因此容易使用。完整手册细节多、查找耗时，在飞行中使用可能更困难。清晰索引和电子搜索功能会有所帮助，但机组仍须认真管理工作负荷。"
+      "referenceTextZh": "检查单简短，并按飞行阶段或情况编排，因此容易使用。完整手册细节多、查找耗时，在飞行中使用可能更困难。清晰索引和电子搜索功能会有所帮助，但机组仍须认真管理工作负荷。",
+      "audio": "/question-bank-assets/revisions/opi/0929da6a01cc12a2c020befcc38cd0817ccc3fcaae09de790cb279b326bfe85f/audio/opi/opi-core-678-part-2.mp3",
+      "audioDurationSeconds": 5.304
     },
     {
       "id": "opi-core-679",
@@ -123,7 +151,9 @@
       "audioText": "Do you prefer paper or electronic flight manuals, and why?",
       "audioTextZh": "你更喜欢纸质还是电子飞行手册？为什么？",
       "referenceText": "I prefer electronic flight manuals because the search function makes information easier to find. They also save space in the cockpit.",
-      "referenceTextZh": "我更喜欢电子飞行手册，因为搜索功能使信息更容易查找，也能节省驾驶舱空间。"
+      "referenceTextZh": "我更喜欢电子飞行手册，因为搜索功能使信息更容易查找，也能节省驾驶舱空间。",
+      "audio": "/question-bank-assets/revisions/opi/a7faacef3f2abcb3cb1c5d30195c7f2afb829c358d0490512d7e3fa29c0b33eb/audio/opi/opi-core-679.mp3",
+      "audioDurationSeconds": 3.864
     },
     {
       "id": "opi-core-681",
@@ -131,7 +161,9 @@
       "audioText": "What are the advantages and disadvantages of electronic manuals compared with paper manuals?",
       "audioTextZh": "与纸质手册相比，电子手册有哪些优点和缺点？",
       "referenceText": "Electronic manuals are portable, searchable, easy to update, and can combine many documents in one device. However, they depend on electrical power and can be affected by system failures or data-security problems. Pilots may also become over-reliant on the device, while a paper manual remains available during a power failure.",
-      "referenceTextZh": "电子手册便于携带和搜索、易于更新，并能在一个设备中整合多份文件。不过，它们依赖电源，并可能受系统故障或数据安全问题影响。飞行员也可能过度依赖设备，而纸质手册在断电时仍然可用。"
+      "referenceTextZh": "电子手册便于携带和搜索、易于更新，并能在一个设备中整合多份文件。不过，它们依赖电源，并可能受系统故障或数据安全问题影响。飞行员也可能过度依赖设备，而纸质手册在断电时仍然可用。",
+      "audio": "/question-bank-assets/revisions/opi/83377daa025ab289bf53f78002215ad157a8e2101ba910d9d701d81e3a147b0b/audio/opi/opi-core-681.mp3",
+      "audioDurationSeconds": 5.424
     },
     {
       "id": "opi-core-682",
@@ -139,7 +171,9 @@
       "audioText": "What is the purpose of the flight logbook used in your operation?",
       "audioTextZh": "你所在运行体系使用的飞行记录本有什么用途？",
       "referenceText": "Our flight logbook records important information such as training subjects and duration, instructor signatures, departure and landing times, fuel, persons on board, cargo, and aircraft malfunctions. It provides a record for training, flight operations, and maintenance.",
-      "referenceTextZh": "我们的飞行记录本记录训练科目和时长、教员签字、起飞和着陆时间、燃油、机上人员、货物以及飞机故障等重要信息，为训练、飞行运行和维修留下记录。"
+      "referenceTextZh": "我们的飞行记录本记录训练科目和时长、教员签字、起飞和着陆时间、燃油、机上人员、货物以及飞机故障等重要信息，为训练、飞行运行和维修留下记录。",
+      "audio": "/question-bank-assets/revisions/opi/638c1c3c783e00d2f8ad2bc2acf654b8b418215e297db5c9368e503b1551bdf5/audio/opi/opi-core-682.mp3",
+      "audioDurationSeconds": 3.24
     },
     {
       "id": "opi-core-683",
@@ -147,7 +181,9 @@
       "audioText": "Which do you find more difficult to read, an English manual or a Chinese manual, and why?",
       "audioTextZh": "英文手册和中文手册相比，你觉得哪一种更难阅读？为什么？",
       "referenceText": "I find an English manual more difficult because aviation terminology and long technical sentences can take more time to understand. A Chinese manual is faster for me to read, but I still study the English version because many aircraft documents and standard terms are written in English.",
-      "referenceTextZh": "我觉得英文手册更难，因为航空术语和较长的技术句子需要更多时间理解。中文手册读起来更快，但我仍会学习英文版，因为许多飞机文件和标准术语都使用英语。"
+      "referenceTextZh": "我觉得英文手册更难，因为航空术语和较长的技术句子需要更多时间理解。中文手册读起来更快，但我仍会学习英文版，因为许多飞机文件和标准术语都使用英语。",
+      "audio": "/question-bank-assets/revisions/opi/b1394b8b087ed9cdf60aaab4c7815d46b2eb1d898c305565605b9e203c9e2e3d/audio/opi/opi-core-683.mp3",
+      "audioDurationSeconds": 5.64
     },
     {
       "id": "opi-core-684",
@@ -155,7 +191,9 @@
       "audioText": "What operational manuals and documents should be available during a flight?",
       "audioTextZh": "飞行期间应备有哪些运行手册和文件？",
       "referenceText": "The available documents should include the Aircraft Flight Manual, Flight Crew Operations Manual, Quick Reference Handbook, Minimum Equipment List, and the necessary aeronautical and approach charts. They support normal and emergency operations.",
-      "referenceTextZh": "可用文件应包括飞机飞行手册、飞行机组操作手册、快速参考手册、最低设备清单，以及所需航空图和进近图。这些文件支持正常和应急运行。"
+      "referenceTextZh": "可用文件应包括飞机飞行手册、飞行机组操作手册、快速参考手册、最低设备清单，以及所需航空图和进近图。这些文件支持正常和应急运行。",
+      "audio": "/question-bank-assets/revisions/opi/8971b1e1b6d36fa02e7d9d7d953d45be1caf5d3e513eec808c42c62247459f24/audio/opi/opi-core-684.mp3",
+      "audioDurationSeconds": 4.008
     }
   ],
   "categoryId": "opi-category-05"

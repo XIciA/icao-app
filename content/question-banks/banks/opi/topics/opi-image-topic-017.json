@@ -17,7 +17,9 @@
       "audioText": "What types of serious failures could make it necessary for a large passenger aircraft to ditch at sea?",
       "audioTextZh": "哪些严重故障可能使大型客机必须在海上迫降？",
       "referenceText": "A ditching may become necessary after a total or major loss of engine thrust when no runway is within reach. Other possible reasons include an uncontrollable fire, fuel exhaustion, severe structural or flight-control damage, or the loss of essential systems. The crew would consider ditching only when continued flight or a safe landing on land was no longer possible.",
-      "referenceTextZh": "当发动机推力全部或大部分丧失，且没有可到达的跑道时，可能需要水上迫降。其他可能原因包括无法控制的火灾、燃油耗尽、严重的结构或飞行操纵损伤，以及关键系统丧失。只有在无法继续飞行或无法在陆地安全着陆时，机组才会考虑水上迫降。"
+      "referenceTextZh": "当发动机推力全部或大部分丧失，且没有可到达的跑道时，可能需要水上迫降。其他可能原因包括无法控制的火灾、燃油耗尽、严重的结构或飞行操纵损伤，以及关键系统丧失。只有在无法继续飞行或无法在陆地安全着陆时，机组才会考虑水上迫降。",
+      "audio": "/question-bank-assets/revisions/opi/e1e58726313dd981bfbda748e3727d7923acef225b89bb28a0d3bc424b8abee1/audio/opi/opi-image-017-q01.mp3",
+      "audioDurationSeconds": 5.52
     },
     {
       "id": "opi-image-017-q02",
@@ -25,7 +27,9 @@
       "audioText": "As captain, how would you manage a total loss of engine power over water if ditching became unavoidable?",
       "audioTextZh": "作为机长，如果航空器在水域上空丧失全部发动机动力且水上迫降已无法避免，你会如何处置？",
       "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist.",
-      "referenceTextZh": "我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。"
+      "referenceTextZh": "我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。",
+      "audio": "/question-bank-assets/revisions/opi/f12d75ab1af3d0a765c384aa6bdc7e5cad9cfec56130ce52c99116723f9dda2f/audio/opi/opi-image-017-q02.mp3",
+      "audioDurationSeconds": 5.736
     },
     {
       "id": "opi-image-017-q03",
@@ -33,7 +37,9 @@
       "audioText": "What should the flight crew do to evacuate an aircraft after a ditching?",
       "audioTextZh": "水上迫降后，飞行机组应如何组织人员撤离航空器？",
       "referenceText": "After the aircraft stops, the pilots should secure it as required and order an evacuation if remaining on board is unsafe. The crew should use only exits that are above the water and free from hazards, deploy the available slide-rafts or life rafts, and direct occupants to leave baggage behind. Everyone should move into the rafts, stay together, and use the survival and signalling equipment.",
-      "referenceTextZh": "飞机停止后，飞行员应按要求使飞机处于安全状态；如果留在机上不安全，就下令撤离。机组应只使用位于水面以上且没有危险的出口，展开可用的滑梯救生筏或救生筏，并指挥人员不要携带行李。所有人应进入救生筏、保持在一起，并使用救生和信号设备。"
+      "referenceTextZh": "飞机停止后，飞行员应按要求使飞机处于安全状态；如果留在机上不安全，就下令撤离。机组应只使用位于水面以上且没有危险的出口，展开可用的滑梯救生筏或救生筏，并指挥人员不要携带行李。所有人应进入救生筏、保持在一起，并使用救生和信号设备。",
+      "audio": "/question-bank-assets/revisions/opi/32d73fa6bf77c3a69c8159db90148f50e09fb3ff0ded16b90e2d95b03341dbb6/audio/opi/opi-image-017-q03.mp3",
+      "audioDurationSeconds": 3.696
     }
   ],
   "categoryId": "opi-category-08"

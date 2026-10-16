@@ -17,7 +17,9 @@
       "audioText": "What risks can snow and ice contamination on an aircraft pose to flight safety?",
       "audioTextZh": "航空器上的冰雪污染会给飞行安全带来哪些风险？",
       "referenceText": "Snow and ice contamination can reduce lift and increase drag. It may also lead to inaccurate airspeed indications and possible control difficulty. These effects may reduce safety margins and increase crew workload.",
-      "referenceTextZh": "冰雪污染会减小升力并增大阻力，还可能导致空速指示不准确和操纵困难。这些影响可能降低安全裕度并增加机组工作负荷。"
+      "referenceTextZh": "冰雪污染会减小升力并增大阻力，还可能导致空速指示不准确和操纵困难。这些影响可能降低安全裕度并增加机组工作负荷。",
+      "audio": "/question-bank-assets/revisions/opi/c1dfb00c3dea02b47cb9444eb35f5005b834d8c43af8eeabad42003072649783/audio/opi/opi-image-020-q01.mp3",
+      "audioDurationSeconds": 4.536
     },
     {
       "id": "opi-image-020-q02",
@@ -25,7 +27,9 @@
       "audioText": "How can ice contamination on a wing affect aircraft performance and handling?",
       "audioTextZh": "机翼结冰污染会如何影响航空器性能和操纵特性？",
       "referenceText": "Ice contamination changes the wing shape, reducing lift and increasing drag. It can raise the stall speed, reduce climb performance, and cause the wing to stall earlier and less predictably. It may also reduce control effectiveness and make the aircraft difficult to handle.",
-      "referenceTextZh": "冰污染会改变机翼外形，使升力减小、阻力增大。它会提高失速速度、降低爬升性能，并使机翼更早且更难预测地失速。它还可能降低操纵效能，使飞机难以操纵。"
+      "referenceTextZh": "冰污染会改变机翼外形，使升力减小、阻力增大。它会提高失速速度、降低爬升性能，并使机翼更早且更难预测地失速。它还可能降低操纵效能，使飞机难以操纵。",
+      "audio": "/question-bank-assets/revisions/opi/d63456b84d8377224c24ab0d1b10b0d528866bde219451d48dba74a139566058/audio/opi/opi-image-020-q02.mp3",
+      "audioDurationSeconds": 4.272
     },
     {
       "id": "opi-image-020-q03",
@@ -33,7 +37,9 @@
       "audioText": "What should pilots do if snow or ice is found on critical aircraft surfaces before departure?",
       "audioTextZh": "起飞前发现航空器关键表面有冰雪时，飞行员应怎么做？",
       "referenceText": "I would identify the snow or ice contamination, communicate clearly, follow the checklist, and choose the safest option according to the aircraft status and operating conditions.",
-      "referenceTextZh": "我会识别冰雪污染情况，保持清晰沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。"
+      "referenceTextZh": "我会识别冰雪污染情况，保持清晰沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/revisions/opi/1de6ed99c0936284d6d9a82f7a87a0512d86d12f7b3a939596ce422e57c84543/audio/opi/opi-image-020-q03.mp3",
+      "audioDurationSeconds": 5.304
     }
   ],
   "categoryId": "opi-category-08"

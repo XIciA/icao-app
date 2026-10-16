@@ -10,7 +10,9 @@
       "audioTextZh": "昨天休息得好吗？",
       "studyTier": 1,
       "referenceText": "Yes, I did, I had a good sleep last night./No, I didn’t, I was a little nervous and I had a poor sleep last night.",
-      "referenceTextZh": "是的，我昨天休息得很好。/不，我有点紧张，昨天没休息好。"
+      "referenceTextZh": "是的，我昨天休息得很好。/不，我有点紧张，昨天没休息好。",
+      "audio": "/question-bank-assets/revisions/opi/32aa4451f1bc374f1369f8b265869555d0abdd4bb989fd9ad5d72a5e1d1cadf1/audio/opi/opi-fzy-203079.mp3",
+      "audioDurationSeconds": 1.824
     },
     {
       "id": "opi-fzy-118180",
@@ -19,7 +21,9 @@
       "audioTextZh": "你觉得对飞行员来说保持身体健康是否重要？",
       "studyTier": 1,
       "referenceText": "Yes, of course, pilots must keep healthy to ensure the flight safety.",
-      "referenceTextZh": "当然重要，为了确保飞行安全，飞行员必须保持身体健康。"
+      "referenceTextZh": "当然重要，为了确保飞行安全，飞行员必须保持身体健康。",
+      "audio": "/question-bank-assets/revisions/opi/3c34d5973d810fa60d58175d53be6cf7b3f567dadcc3e4e5ad3adddc83bec4a5/audio/opi/opi-fzy-118180.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-fzy-118181",
@@ -28,7 +32,9 @@
       "audioTextZh": "你在尽力保持身体健康吗？",
       "studyTier": 0,
       "referenceText": "Yes, I pay much attention to my health. Health is very important to pilots, and it is closely related to the ﬂight safety.",
-      "referenceTextZh": "是的，我很重视我的健康状况。对于飞行员来说，健康状况非常重要，飞行员的健康与飞行安全有着紧密的联系。"
+      "referenceTextZh": "是的，我很重视我的健康状况。对于飞行员来说，健康状况非常重要，飞行员的健康与飞行安全有着紧密的联系。",
+      "audio": "/question-bank-assets/revisions/opi/f8aa111e6abfbbb33cbe98e94cfca2a839f7eda545929a76092cd86705c5a927/audio/opi/opi-fzy-118181.mp3",
+      "audioDurationSeconds": 1.536
     },
     {
       "id": "opi-fzy-203081",
@@ -37,7 +43,9 @@
       "audioTextZh": "你在尽力保持身体健康吗？",
       "studyTier": 1,
       "referenceText": "Yes, I pay much attention to my health. Health is very important to pilots, and it is closely related to the flight safety.",
-      "referenceTextZh": "是的，我很重视我的健康状况。对于飞行员来说，健康状况非常重要，健康与飞行安全有着紧密的联系。"
+      "referenceTextZh": "是的，我很重视我的健康状况。对于飞行员来说，健康状况非常重要，健康与飞行安全有着紧密的联系。",
+      "audio": "/question-bank-assets/revisions/opi/16ed1385a28de1c67fba92944fd76cff89aa43624732ce9bfd527320c093fdf7/audio/opi/opi-fzy-203081.mp3",
+      "audioDurationSeconds": 1.512
     },
     {
       "id": "opi-fzy-118182",
@@ -46,7 +54,9 @@
       "audioTextZh": "你通常什么时候锻炼？/你通常如何锻炼来保持身体健康？",
       "studyTier": 0,
       "referenceText": "I often do different exercises in my spare time. My favorite sport is basketball. Sometimes I ride a bike, go swimming or climb mountains with my family.",
-      "referenceTextZh": "空闲时我会做各种运动。我最喜欢打篮球，有时也会骑自行车、游泳或是和家人一起爬山。"
+      "referenceTextZh": "空闲时我会做各种运动。我最喜欢打篮球，有时也会骑自行车、游泳或是和家人一起爬山。",
+      "audio": "/question-bank-assets/revisions/opi/4a74f237301ba347c5b46d317dfb508b8dc9b991b67602a0dd6f7ee098e3ea91/audio/opi/opi-fzy-118182.mp3",
+      "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-fzy-203082",
@@ -55,7 +65,9 @@
       "audioTextZh": "你通常怎样进行锻炼?/你通常如何锻炼来保持身体健康？",
       "studyTier": 1,
       "referenceText": "I often do different exercises in my spare time. My favorite is basketball. Sometimes I ride a bike, go swimming or climb mountains with my family.",
-      "referenceTextZh": "空闲时我会做各种运动。我最喜欢打篮球，有时也会骑自行车、游泳或是和家人一起爬山。"
+      "referenceTextZh": "空闲时我会做各种运动。我最喜欢打篮球，有时也会骑自行车、游泳或是和家人一起爬山。",
+      "audio": "/question-bank-assets/revisions/opi/c675808a3094fc6ac667d148f87a717f42f607187ccc5126356f5712f514abbf/audio/opi/opi-fzy-203082.mp3",
+      "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-fzy-118183",
@@ -64,7 +76,9 @@
       "audioTextZh": "你认为保持健康最好的方法是什么？",
       "studyTier": 1,
       "referenceText": "In my opinion, the best way to keep fit is living a regular life, keeping a good mood, doing regular exercises and having a proper diet.",
-      "referenceTextZh": "我认为保持健康最好的方法是生活规律、保持好心情、经常锻炼、合理饮食。"
+      "referenceTextZh": "我认为保持健康最好的方法是生活规律、保持好心情、经常锻炼、合理饮食。",
+      "audio": "/question-bank-assets/revisions/opi/7c2e100fbe99b07a38623d3f8f8d9396488e499bcef16809682dd10982eb019b/audio/opi/opi-fzy-118183.mp3",
+      "audioDurationSeconds": 2.616
     },
     {
       "id": "opi-fzy-118184",
@@ -73,7 +87,9 @@
       "audioTextZh": "你如何平衡休息和工作？",
       "studyTier": 1,
       "referenceText": "During my work/duty time, I should work hard, and during my rest/spare time, I will have enough rest and I often do some exercise.",
-      "referenceTextZh": "我工作/值勤期间，我会努力工作；休息/空闲时间，我会充分地休息，有时也会做些运动。"
+      "referenceTextZh": "我工作/值勤期间，我会努力工作；休息/空闲时间，我会充分地休息，有时也会做些运动。",
+      "audio": "/question-bank-assets/revisions/opi/969c3aa368874ab5b6948b0f17f1fa2f5436146033a92bae77ec1026c4686bc4/audio/opi/opi-fzy-118184.mp3",
+      "audioDurationSeconds": 1.944
     },
     {
       "id": "opi-fzy-118185",
@@ -82,7 +98,9 @@
       "audioTextZh": "你认为飞行员在飞行任务之间有足够的休息时间吗？为什么？",
       "studyTier": 1,
       "referenceText": "Generally speaking, we should have 14 hours of rest between flights. I think it's enough.",
-      "referenceTextZh": "一般来说，我们在飞行任务之间要有14个小时的休息。我认为是足够了。"
+      "referenceTextZh": "一般来说，我们在飞行任务之间要有14个小时的休息。我认为是足够了。",
+      "audio": "/question-bank-assets/revisions/opi/f6e187d47ae4f5729f4f7b53b60984d6e071fd2ebba720a7a83a2f4758fb5c6d/audio/opi/opi-fzy-118185.mp3",
+      "audioDurationSeconds": 3.576
     }
   ],
   "categoryId": "opi-category-04"

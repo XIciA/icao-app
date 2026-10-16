@@ -9,7 +9,9 @@
       "audioText": "Under what circumstances should a pilot use an oxygen mask in flight?",
       "audioTextZh": "飞行中，飞行员应在什么情况下使用氧气面罩？",
       "referenceText": "A pilot should use an oxygen mask during a depressurization. It should also be used when there is smoke, fumes, or fire in the cockpit.",
-      "referenceTextZh": "飞机失压时，飞行员应使用氧气面罩。驾驶舱内出现烟雾、有害气体或火灾时，也应使用氧气面罩。"
+      "referenceTextZh": "飞机失压时，飞行员应使用氧气面罩。驾驶舱内出现烟雾、有害气体或火灾时，也应使用氧气面罩。",
+      "audio": "/question-bank-assets/revisions/opi/f88f0b5fec6cebca5f44c6dbf30befeebded0551658019909582dd181a0aa48e/audio/opi/opi-core-059.mp3",
+      "audioDurationSeconds": 3.936
     },
     {
       "id": "opi-core-067",
@@ -17,7 +19,9 @@
       "audioText": "How would you describe the oxygen system on the aircraft you fly?",
       "audioTextZh": "你会如何描述你所飞飞机的氧气系统？",
       "referenceText": "The DA-40 I use for training is not pressurised, and this example aircraft does not have a built-in passenger oxygen system. If a flight requires supplemental oxygen, approved portable equipment must be carried and used according to the applicable altitude rules. I check the equipment, quantity, and mask operation before such a flight.",
-      "referenceTextZh": "我用于训练的 DA-40 没有增压，这架示例飞机也没有内置的旅客供氧系统。如果某次飞行需要补充供氧，就必须携带获准的便携式设备，并按照适用的高度规定使用。执行此类飞行前，我会检查设备、氧气量和面罩功能。"
+      "referenceTextZh": "我用于训练的 DA-40 没有增压，这架示例飞机也没有内置的旅客供氧系统。如果某次飞行需要补充供氧，就必须携带获准的便携式设备，并按照适用的高度规定使用。执行此类飞行前，我会检查设备、氧气量和面罩功能。",
+      "audio": "/question-bank-assets/revisions/opi/49875409f0b1fd80523a1006c8bdec5dd8ae121cd5f9cfcce332f28eee0fb44a/audio/opi/opi-core-067.mp3",
+      "audioDurationSeconds": 3.576
     },
     {
       "id": "opi-core-074",
@@ -25,7 +29,9 @@
       "audioText": "When are oxygen masks automatically deployed during flight?",
       "audioTextZh": "飞行中，氧气面罩会在什么情况下自动释放？",
       "referenceText": "Passenger oxygen masks are automatically deployed when cabin altitude reaches the aircraft's deployment threshold, usually as a result of decompression.",
-      "referenceTextZh": "当座舱高度达到飞机设定的释放阈值时，旅客氧气面罩会自动释放并落下，这通常是由失压引起的。"
+      "referenceTextZh": "当座舱高度达到飞机设定的释放阈值时，旅客氧气面罩会自动释放并落下，这通常是由失压引起的。",
+      "audio": "/question-bank-assets/revisions/opi/5f015ed6e03f3c17658b16e8e9cd077988110c989380aa080a402b567595cc97/audio/opi/opi-core-074.mp3",
+      "audioDurationSeconds": 3.36
     }
   ],
   "categoryId": "opi-category-06"

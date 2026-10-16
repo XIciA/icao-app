@@ -9,7 +9,9 @@
       "audioText": "What do you think of the in-flight catering provided on your flights?",
       "audioTextZh": "你如何看待自己所飞航班提供的机上餐饮？",
       "referenceText": "My training flights do not provide in-flight catering, so I cannot assess it from a flight-crew perspective. In general, I think catering should be hygienic, easy to handle, and suitable for the length of the flight. Different meals for the two pilots can also reduce the risk of both becoming ill.",
-      "referenceTextZh": "我的训练飞行不提供机上配餐，因此无法从飞行机组角度评价。一般来说，我认为餐食应卫生、便于处理，并适合飞行时长。两名飞行员选择不同餐食，也能降低两人同时患病的风险。"
+      "referenceTextZh": "我的训练飞行不提供机上配餐，因此无法从飞行机组角度评价。一般来说，我认为餐食应卫生、便于处理，并适合飞行时长。两名飞行员选择不同餐食，也能降低两人同时患病的风险。",
+      "audio": "/question-bank-assets/revisions/opi/8bec2dd45e02aff782867b5b4e5ab8a4901f87e1728beccbbeb1db3b0478beae/audio/opi/opi-core-604.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-core-606",
@@ -17,7 +19,9 @@
       "audioText": "Should the captain and first officer avoid eating the same meal, and why?",
       "audioTextZh": "机长和副驾驶是否应避免食用同一种餐食？为什么？",
       "referenceText": "Yes, the captain and first officer should avoid eating the same meal. If one meal is contaminated, eating different meals reduces the risk that both pilots will become incapacitated by food poisoning.",
-      "referenceTextZh": "是的，机长和副驾驶应避免食用相同餐食。如果一份餐食受到污染，食用不同餐食可以降低两名飞行员同时因食物中毒而失能的风险。"
+      "referenceTextZh": "是的，机长和副驾驶应避免食用相同餐食。如果一份餐食受到污染，食用不同餐食可以降低两名飞行员同时因食物中毒而失能的风险。",
+      "audio": "/question-bank-assets/revisions/opi/e5bbc4208f136e22fade57431e9803765677e880f043f906c8c6ccd3bf5ae58d/audio/opi/opi-core-606.mp3",
+      "audioDurationSeconds": 3.912
     }
   ],
   "categoryId": "opi-category-05"

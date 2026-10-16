@@ -10,7 +10,9 @@
       "audioTextZh": "你今天好吗？（较正式的一种打招呼方式）",
       "studyTier": 0,
       "referenceText": "Good/Pretty good/Fine, thanks. /Just so so. /I feel terrible.",
-      "referenceTextZh": "我很好/非常好/很好，谢谢。/一般般吧。/感觉糟透了。"
+      "referenceTextZh": "我很好/非常好/很好，谢谢。/一般般吧。/感觉糟透了。",
+      "audio": "/question-bank-assets/revisions/opi/6751652ac31559ee261dbe4eded1cb3315f1f47b98c4ff02f479f2bf7cdbb74f/audio/opi/opi-fzy-118165.mp3",
+      "audioDurationSeconds": 1.344
     },
     {
       "id": "opi-fzy-151967",
@@ -19,7 +21,9 @@
       "audioTextZh": "你是飞行学员还是副驾驶？",
       "studyTier": 2,
       "referenceText": "I'm a student pilot/first officer/a captain / a flight instructor /a ground instructor.",
-      "referenceTextZh": "我是飞行学员/副驾驶/机长/飞行教员/地面教员。"
+      "referenceTextZh": "我是飞行学员/副驾驶/机长/飞行教员/地面教员。",
+      "audio": "/question-bank-assets/revisions/opi/f4f8a89917abeb598c0695cfcd7a87a1908e379915fefc8d3ca57307b8f3973c/audio/opi/opi-fzy-151967.mp3",
+      "audioDurationSeconds": 2.448
     },
     {
       "id": "opi-fzy-118166",
@@ -28,7 +32,9 @@
       "audioTextZh": "你今天过得怎么样？",
       "studyTier": 0,
       "referenceText": "Yes, I have a good day. / I feel good today.\n\nNo, I feel nervous/upset today.",
-      "referenceTextZh": "嗯，我今天过得不错。/我今天感觉不错。\n\n不太好，我今天觉得紧张/心烦意乱。"
+      "referenceTextZh": "嗯，我今天过得不错。/我今天感觉不错。\n\n不太好，我今天觉得紧张/心烦意乱。",
+      "audio": "/question-bank-assets/revisions/opi/9e6d55344fb4906a7d269ea2375b0a6807cb24924918f6c213fff096520165fd/audio/opi/opi-fzy-118166.mp3",
+      "audioDurationSeconds": 1.584
     },
     {
       "id": "opi-fzy-151968",
@@ -37,7 +43,9 @@
       "audioTextZh": "你飞什么类型的飞机？你能介绍一下吗？",
       "studyTier": 2,
       "referenceText": "I fly C172, there are some aircraft systems in C172, such as electrical system, flight control system, landing gear, communication and navigation (hydraulic system, pressurization, air conditioning system, oxygen system).",
-      "referenceTextZh": "我飞的是塞斯纳172，塞斯纳172有一些飞机系统，如电气系统，飞行控制系统，起落架，通信和导航系统(液压系统，增压系统，空调系统，氧气系统)。"
+      "referenceTextZh": "我飞的是塞斯纳172，塞斯纳172有一些飞机系统，如电气系统，飞行控制系统，起落架，通信和导航系统(液压系统，增压系统，空调系统，氧气系统)。",
+      "audio": "/question-bank-assets/revisions/opi/02db79664dd17185a46e8475d534f793a41b5d808dc18b7f8149d770079e1c06/audio/opi/opi-fzy-151968.mp3",
+      "audioDurationSeconds": 3.816
     },
     {
       "id": "opi-fzy-118167",
@@ -46,7 +54,9 @@
       "audioTextZh": "你现在紧张吗？",
       "studyTier": 0,
       "referenceText": "Yes, I'm a little nervous. /I feel nervous now. /I'm eager to pass the test, so I'm nervous now.\n\nNo, I'm not nervous. /I feel good. /No, I'm not nervous, because I believe I can pass the test.",
-      "referenceTextZh": "嗯，我有点儿紧张。/我觉得很紧张。/我很想通过这个考试，所以我现在很紧张。\n\n不，我不紧张。/我觉得挺好的。/不，我不紧张，因为我相信自己可以通过考试。"
+      "referenceTextZh": "嗯，我有点儿紧张。/我觉得很紧张。/我很想通过这个考试，所以我现在很紧张。\n\n不，我不紧张。/我觉得挺好的。/不，我不紧张，因为我相信自己可以通过考试。",
+      "audio": "/question-bank-assets/revisions/opi/c8e86dea663ce6b46a246b6c21bef59d006bde042a2487a38c1f65219c221178/audio/opi/opi-fzy-118167.mp3",
+      "audioDurationSeconds": 1.176
     },
     {
       "id": "opi-fzy-151969",
@@ -55,7 +65,9 @@
       "audioTextZh": "你今天好吗？你现在感到紧张吗？",
       "studyTier": 1,
       "referenceText": "I’m very good today. I feel a little nervous.",
-      "referenceTextZh": "我今天很好，我有一点紧张。"
+      "referenceTextZh": "我今天很好，我有一点紧张。",
+      "audio": "/question-bank-assets/revisions/opi/2f8c2f8fd3babea76bc5aeaa17a5e056d9ad789392e59620bd0c39ae3309eb5a/audio/opi/opi-fzy-151969.mp3",
+      "audioDurationSeconds": 3.048
     },
     {
       "id": "opi-fzy-118169",
@@ -64,7 +76,9 @@
       "audioTextZh": "你可以简单地自我介绍一下吗？/可不可以请你简单介绍一下自己？",
       "studyTier": 0,
       "referenceText": "I am 25 years old, and I come from Qingdao, Shandong province. Now I am a student pilot of Civil Aviation University of China (CAUC). I like flying, and it's my dream to fly in the blue sky.\nI am a commercial pilot with single-engine land/twin-engine land/double-engine land/multi-engine land and instrument rating, and after graduation, I will work in Joy Air/China Eastern Airlines.\nI'm 32 years old. I was born in Changchun. I used to be an Air Force pilot, and now I am working in China Southern Airlines. As for my character, I am an honest, kind and diligent young man with strong sense of responsibility. I have a happy family, and there are three members in my family, my wife, my son and I.",
-      "referenceTextZh": "我25岁了，来自山东青岛。我现在是中国民航大学的一名飞行学员。我喜欢飞行，能在蓝天中自由飞翔是我的梦想。\n\n我是一名具有单发陆地/双发陆地/双发陆地/多发陆地和仪表等级的商照飞行员。毕业后，我将去幸福航空/中国东方航空公司工作。\n\n我32岁了，来自长春。我曾经是一名空军飞行员，现在我在中国南方航空工作。关于性格，我是个诚实、友好、勤奋、责任感很强的人。我有一个幸福的家庭，家庭成员有三个，我的妻子，我儿子还有我。"
+      "referenceTextZh": "我25岁了，来自山东青岛。我现在是中国民航大学的一名飞行学员。我喜欢飞行，能在蓝天中自由飞翔是我的梦想。\n\n我是一名具有单发陆地/双发陆地/双发陆地/多发陆地和仪表等级的商照飞行员。毕业后，我将去幸福航空/中国东方航空公司工作。\n\n我32岁了，来自长春。我曾经是一名空军飞行员，现在我在中国南方航空工作。关于性格，我是个诚实、友好、勤奋、责任感很强的人。我有一个幸福的家庭，家庭成员有三个，我的妻子，我儿子还有我。",
+      "audio": "/question-bank-assets/revisions/opi/ad0edce44024f2c0abf976b2af5e48d6a410700a243c31193eee720fb75d15ed/audio/opi/opi-fzy-118169.mp3",
+      "audioDurationSeconds": 4.512
     },
     {
       "id": "opi-fzy-153334",
@@ -73,7 +87,9 @@
       "audioTextZh": "你的假期怎么过？",
       "studyTier": 1,
       "referenceText": "Generally speaking, I prefer to spend the holiday with my family, we may choose to travel together.",
-      "referenceTextZh": "一般而言，假期我会选择和家人一起度过，我们可能会选择一起出去旅游。"
+      "referenceTextZh": "一般而言，假期我会选择和家人一起度过，我们可能会选择一起出去旅游。",
+      "audio": "/question-bank-assets/revisions/opi/90aa82a0511db549f140e6499bb5ba6121f5a72ec6a2a6af1492703ea61ac563/audio/opi/opi-fzy-153334.mp3",
+      "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-fzy-153335",
@@ -82,7 +98,9 @@
       "audioTextZh": "你在哪里学习的飞行，在国内还是国外？",
       "studyTier": 1,
       "referenceText": "I learned to fly in BUAA (Beihang University), so it is in China.",
-      "referenceTextZh": "我在北航学的飞行，所以是在国内。"
+      "referenceTextZh": "我在北航学的飞行，所以是在国内。",
+      "audio": "/question-bank-assets/revisions/opi/f57b5d1a14833125f2bc0225782321bd3f35502da8bdabfc52ad4cb763783a7b/audio/opi/opi-fzy-153335.mp3",
+      "audioDurationSeconds": 2.592
     },
     {
       "id": "opi-fzy-153344",
@@ -91,7 +109,9 @@
       "audioTextZh": "你飞行了多少小时了？",
       "studyTier": 1,
       "referenceText": "I have flown 200 hours.",
-      "referenceTextZh": "我已经飞了200个小时了。"
+      "referenceTextZh": "我已经飞了200个小时了。",
+      "audio": "/question-bank-assets/revisions/opi/0ae90df945e70c6dee610730490ab0360396e3f9f211aebc96e3d736a960261f/audio/opi/opi-fzy-153344.mp3",
+      "audioDurationSeconds": 1.704
     },
     {
       "id": "opi-fzy-153345",
@@ -100,7 +120,9 @@
       "audioTextZh": "你能告诉我你的航校吗？",
       "studyTier": 1,
       "referenceText": "My flight school is Qingdao Jiutian International Flight Academy. It is located in Qingdao, Shandong province. There are many types of aircraft for us to have the flight training, for example, the Cessna 172 and PA44.",
-      "referenceTextZh": "我的航校是青岛九天国际航校，它位于山东青岛市。学校很多类型的飞机供我们进行飞行训练，比如：塞斯纳172和PA44。"
+      "referenceTextZh": "我的航校是青岛九天国际航校，它位于山东青岛市。学校很多类型的飞机供我们进行飞行训练，比如：塞斯纳172和PA44。",
+      "audio": "/question-bank-assets/revisions/opi/3747eda2d283f1f9c0f97dbf92ba5c9135946fd67aebc727acdd6575f78ec02e/audio/opi/opi-fzy-153345.mp3",
+      "audioDurationSeconds": 2.496
     },
     {
       "id": "opi-fzy-203061",
@@ -109,7 +131,9 @@
       "audioTextZh": "你是哪个航空公司的？",
       "studyTier": 1,
       "referenceText": "I come from Air china, Shanghai Branch.",
-      "referenceTextZh": "我来自于国航上海分公司。"
+      "referenceTextZh": "我来自于国航上海分公司。",
+      "audio": "/question-bank-assets/revisions/opi/082142f5d0dad7ad5c03e764877d70435fc8e6e48c7b8f2cac60840a00756832/audio/opi/opi-fzy-203061.mp3",
+      "audioDurationSeconds": 1.872
     },
     {
       "id": "opi-fzy-203062",
@@ -118,7 +142,9 @@
       "audioTextZh": "你飞过国际航班吗？",
       "studyTier": 1,
       "referenceText": "Yes, we used to fly the international flight, like the flights from Shanghai to Seoul, but during the outbreak of the COVID-19, our international flights have been slashed./No, I rarely fly the international flights, I often fly the domestic flights.",
-      "referenceTextZh": "是的，我过去经常飞国际航班，像上海到首尔，但在疫情爆发期间，我们的国际航班量锐减。/没有，我很少飞国际航班，经常飞国内。"
+      "referenceTextZh": "是的，我过去经常飞国际航班，像上海到首尔，但在疫情爆发期间，我们的国际航班量锐减。/没有，我很少飞国际航班，经常飞国内。",
+      "audio": "/question-bank-assets/revisions/opi/dd8641f817045860a7e5eb22cd05f638430e9ef53e346d4b0e5c78d910bb3ce4/audio/opi/opi-fzy-203062.mp3",
+      "audioDurationSeconds": 2.328
     },
     {
       "id": "opi-fzy-203063",
@@ -127,7 +153,9 @@
       "audioTextZh": "作为一名学员，你目前在哪个机场飞？",
       "studyTier": 1,
       "referenceText": "I'm flying in Luoyang base.",
-      "referenceTextZh": "目前我在洛阳基地飞行。"
+      "referenceTextZh": "目前我在洛阳基地飞行。",
+      "audio": "/question-bank-assets/revisions/opi/a530ac7477a4828f852122bb43bb84f8cf7552c8acd01891617682184dad80c2/audio/opi/opi-fzy-203063.mp3",
+      "audioDurationSeconds": 2.424
     },
     {
       "id": "opi-fzy-203064",
@@ -136,7 +164,9 @@
       "audioTextZh": "你总共飞了多少小时？",
       "studyTier": 1,
       "referenceText": "I have flown about 200 hours.",
-      "referenceTextZh": "我飞了大概200小时。"
+      "referenceTextZh": "我飞了大概200小时。",
+      "audio": "/question-bank-assets/revisions/opi/366758d081344f6e9ef6493c0e11160c0cc01fd0be085346115775a3d2626b21/audio/opi/opi-fzy-203064.mp3",
+      "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-fzy-203065",
@@ -145,7 +175,9 @@
       "audioTextZh": "你能描述一下自己在航校里的生活吗？",
       "studyTier": 1,
       "referenceText": "My life in the flight school are colorful. Usually, we have ground training and flight training, for example, we have learned the course about radio-telephony in English, the flight theory, the navigation and some other subjects in the ground training. When we have free time, we will play basketball with our flight instructors or read books with friends to learn flight knowledge.",
-      "referenceTextZh": "我在航校的生活丰富多彩。通常，我们会有地面理论课程和飞行训练课程，例如在地面理论课程中，我们会学习英语无线电陆空通话、飞行原理、领航还有其他科目。当我们有时间时，我们会和教员们一起打篮球或者和同学们一起看书来学习飞行知识。"
+      "referenceTextZh": "我在航校的生活丰富多彩。通常，我们会有地面理论课程和飞行训练课程，例如在地面理论课程中，我们会学习英语无线电陆空通话、飞行原理、领航还有其他科目。当我们有时间时，我们会和教员们一起打篮球或者和同学们一起看书来学习飞行知识。",
+      "audio": "/question-bank-assets/revisions/opi/825ddc154541df95cc6fd8be99861ede5025cc433acd084126dbc26660d7688e/audio/opi/opi-fzy-203065.mp3",
+      "audioDurationSeconds": 2.352
     },
     {
       "id": "opi-fzy-203066",
@@ -154,7 +186,9 @@
       "audioTextZh": "你们航校有哪些必修科目？",
       "studyTier": 1,
       "referenceText": "There are many compulsory subjects in my flight school. And we need to learn not only the relevant theoretical knowledge about aviation, but also some operating procedures on how to control the aircraft, for example, touch and go, traffic pattern, steep turn, stall recovery and so on.",
-      "referenceTextZh": "我们航校有很多必修课程。我们不仅需要学习相关的民航理论知识，还要学习一些操纵飞机的程序，譬如：连续起落，起落航线，大坡度转弯，失速改出等。"
+      "referenceTextZh": "我们航校有很多必修课程。我们不仅需要学习相关的民航理论知识，还要学习一些操纵飞机的程序，譬如：连续起落，起落航线，大坡度转弯，失速改出等。",
+      "audio": "/question-bank-assets/revisions/opi/4a6f779852dd078ff4c9af5a66e2254597cd5f9cce14462188663e0bafe898c1/audio/opi/opi-fzy-203066.mp3",
+      "audioDurationSeconds": 2.64
     },
     {
       "id": "opi-fzy-203067",
@@ -163,7 +197,9 @@
       "audioTextZh": "能谈一谈你们航校或者你们公司的飞行纪律/作风情况吗？",
       "studyTier": 1,
       "referenceText": "I’m a student pilot now. So, in my flight school, we need comply a lot of disciplines. For example, we can't drink alcohol 24 hours before the flight. We have to arrive at the airport 3 hours before the flight to get weather information and ATC clearance, etc.",
-      "referenceTextZh": "我现在是一名飞行学员，在我们航校，我们需要遵守很多规则。譬如说，我们在飞行前24小时不能喝酒；我们需要在飞行前3小时到达机场，获取天气信息和管制许可等。"
+      "referenceTextZh": "我现在是一名飞行学员，在我们航校，我们需要遵守很多规则。譬如说，我们在飞行前24小时不能喝酒；我们需要在飞行前3小时到达机场，获取天气信息和管制许可等。",
+      "audio": "/question-bank-assets/revisions/opi/193cda9bf180dccae9846bead59b44d1e8eaf01a647f40d340af26c02f76b330/audio/opi/opi-fzy-203067.mp3",
+      "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-fzy-203068",
@@ -172,7 +208,9 @@
       "audioTextZh": "你现在飞行的哪个阶段？",
       "studyTier": 1,
       "referenceText": "I have just finished my commercial flight and obtained the commercial pilot license (CPL), I will continue my instrument flying next month.",
-      "referenceTextZh": "我刚刚结束了商照飞行并且刚拿到了商照，下个月我开始飞仪表。"
+      "referenceTextZh": "我刚刚结束了商照飞行并且刚拿到了商照，下个月我开始飞仪表。",
+      "audio": "/question-bank-assets/revisions/opi/93380fea22fb7c8ecb2ed4689660e9505dabf0aab644de23f13179b0334f955d/audio/opi/opi-fzy-203068.mp3",
+      "audioDurationSeconds": 1.944
     }
   ],
   "categoryId": "opi-category-07"

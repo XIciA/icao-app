@@ -9,7 +9,9 @@
       "audioText": "What is Controller-Pilot Data Link Communications (CPDLC)?",
       "audioTextZh": "什么是管制员—飞行员数据链通信（CPDLC）？",
       "referenceText": "CPDLC stands for Controller-Pilot Data Link Communications. It is a data-link system that allows pilots and ATC to exchange text messages such as clearances, requests, and reports. It supplements voice communication and can reduce frequency congestion and misunderstandings.",
-      "referenceTextZh": "CPDLC 是管制员与飞行员数据链通信的缩写。它是一种数据链系统，使飞行员和空中交通管制能够交换管制许可、请求和报告等文字信息。它补充话音通信，并能缓解频率拥塞和减少误解。"
+      "referenceTextZh": "CPDLC 是管制员与飞行员数据链通信的缩写。它是一种数据链系统，使飞行员和空中交通管制能够交换管制许可、请求和报告等文字信息。它补充话音通信，并能缓解频率拥塞和减少误解。",
+      "audio": "/question-bank-assets/revisions/opi/69aedcda3a5586b1efe9a85ef10d9bd510e4cab3513d03ce60d485bc6e431cd9/audio/opi/opi-core-624.mp3",
+      "audioDurationSeconds": 4.392
     },
     {
       "id": "opi-core-626",
@@ -17,7 +19,9 @@
       "audioText": "How can pilots use Controller-Pilot Data Link Communications (CPDLC) to communicate with air traffic control after a two-way radio failure?",
       "audioTextZh": "双向无线电通信失效后，飞行员如何使用管制员—飞行员数据链通信（CPDLC）与空中交通管制部门通信？",
       "referenceText": "The pilots should first confirm that CPDLC is available. They can then send ATC a text message reporting the two-way radio failure and request further instructions. The crew should monitor the CPDLC display, follow the text clearance, and acknowledge receipt through the data link.",
-      "referenceTextZh": "飞行员应先确认 CPDLC 可用，然后向空中交通管制发送文字信息，报告双向无线电通信失效并申请进一步指令。机组应监控 CPDLC 显示、遵循文字许可，并通过数据链确认收到。"
+      "referenceTextZh": "飞行员应先确认 CPDLC 可用，然后向空中交通管制发送文字信息，报告双向无线电通信失效并申请进一步指令。机组应监控 CPDLC 显示、遵循文字许可，并通过数据链确认收到。",
+      "audio": "/question-bank-assets/revisions/opi/6785ee52ad5b17e6c59a32a3396d6f35e5ea9743cee01b912b3e6da41346ff86/audio/opi/opi-core-626.mp3",
+      "audioDurationSeconds": 9.408
     }
   ],
   "categoryId": "opi-category-03"

@@ -17,7 +17,9 @@
       "audioText": "What preparations should a flight crew make before taking off at night from the runway shown?",
       "audioTextZh": "从图中所示跑道夜间起飞前，飞行机组应做哪些准备？",
       "referenceText": "Before the night takeoff, I would brief the threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay or reject the takeoff.",
-      "referenceTextZh": "夜间起飞前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。"
+      "referenceTextZh": "夜间起飞前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。",
+      "audio": "/question-bank-assets/revisions/opi/34297d2711dce85a4d0877dafa1de7f456000525bcc71f3ac930ce706f3a940f/audio/opi/opi-image-003-q01.mp3",
+      "audioDurationSeconds": 4.728
     },
     {
       "id": "opi-image-003-q02",
@@ -25,7 +27,9 @@
       "audioText": "What hazards should pilots consider when taking off at night from the runway shown?",
       "audioTextZh": "从图中所示跑道夜间起飞时，飞行员应考虑哪些危险？",
       "referenceText": "At night, reduced visibility makes it harder to judge height, distance, terrain, and clouds. Spatial disorientation and higher cockpit workload can make the takeoff and departure more demanding. A thorough briefing and a careful instrument cross-check help control these risks.",
-      "referenceTextZh": "夜间能见度较低，更难判断高度、距离、地形和云层。空间定向障碍和较高的驾驶舱工作负荷会使起飞和离场更具挑战。充分的简令和谨慎的仪表交叉检查有助于控制这些风险。"
+      "referenceTextZh": "夜间能见度较低，更难判断高度、距离、地形和云层。空间定向障碍和较高的驾驶舱工作负荷会使起飞和离场更具挑战。充分的简令和谨慎的仪表交叉检查有助于控制这些风险。",
+      "audio": "/question-bank-assets/revisions/opi/82ee543faa5dcc483f34fad4cb58df2bf54ca3153192108e67ea15211eebb471/audio/opi/opi-image-003-q02.mp3",
+      "audioDurationSeconds": 4.176
     },
     {
       "id": "opi-image-003-q03",
@@ -33,7 +37,9 @@
       "audioText": "What types of runway lighting help pilots during takeoff and landing at night?",
       "audioTextZh": "哪些类型的跑道灯光可以在夜间起飞和着陆时帮助飞行员？",
       "referenceText": "Approach lights and runway-end identifier lights help pilots find and align with the runway. Threshold, edge, centerline, and touchdown-zone lights show the runway's position and usable landing area. Runway-end lights and visual glide-slope indicators provide additional guidance during landing, while edge and centerline lights also support takeoff.",
-      "referenceTextZh": "进近灯和跑道入口识别灯帮助飞行员找到跑道并与跑道对正。入口灯、边灯、中线灯和接地区灯显示跑道位置及可用着陆区域。跑道末端灯和目视下滑指示器在着陆时提供进一步引导，而边灯和中线灯也为起飞提供支持。"
+      "referenceTextZh": "进近灯和跑道入口识别灯帮助飞行员找到跑道并与跑道对正。入口灯、边灯、中线灯和接地区灯显示跑道位置及可用着陆区域。跑道末端灯和目视下滑指示器在着陆时提供进一步引导，而边灯和中线灯也为起飞提供支持。",
+      "audio": "/question-bank-assets/revisions/opi/62b67754854b15d6ed2eea6b56b78f4b7fb908b8707816d64ed3a5a3073ca0e0/audio/opi/opi-image-003-q03.mp3",
+      "audioDurationSeconds": 4.032
     }
   ],
   "categoryId": "opi-category-08"

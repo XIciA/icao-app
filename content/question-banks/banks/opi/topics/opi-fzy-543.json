@@ -10,7 +10,9 @@
       "audioTextZh": "你在哪里接受初级培训的？能否讲一下？",
       "studyTier": 0,
       "referenceText": "Yes. I had my initial training in CAFUC in 2008 and the aircraft type I flew was C172. I spent 2 years there with 40 classmates. At first stage, we studied ground theory and aircraft system in computer-based training (CBT). After we passed the test, a flight instructor guided us to practice flight control in the simulator. Initial\ntraining gave me a general idea about the aircraft. It is a very useful and helpful experience for me.",
-      "referenceTextZh": "好的。2008年我在中国民航飞行学院接受初级培训，飞的是C172。我和40名同学在这里学习了两年。第一阶段，我们学习了地面理论，并通过计算机辅助训练（CBT）熟悉了飞机构造。通过考试后，飞行教练指导我们在模拟机中练习飞行控制。初级训练后我对飞机有了大致了解。这对我来说是一段非常有用和有益的经验。"
+      "referenceTextZh": "好的。2008年我在中国民航飞行学院接受初级培训，飞的是C172。我和40名同学在这里学习了两年。第一阶段，我们学习了地面理论，并通过计算机辅助训练（CBT）熟悉了飞机构造。通过考试后，飞行教练指导我们在模拟机中练习飞行控制。初级训练后我对飞机有了大致了解。这对我来说是一段非常有用和有益的经验。",
+      "audio": "/question-bank-assets/revisions/opi/d09a14c99118adfa0b8df736cb5be914041b284d955bad5e93b25243da4961bd/audio/opi/opi-fzy-109958.mp3",
+      "audioDurationSeconds": 4.848
     },
     {
       "id": "opi-fzy-109959",
@@ -19,7 +21,9 @@
       "audioTextZh": "在飞行训练中，你认为哪部分是最困难的？你是怎样解决/克服它的？",
       "studyTier": 0,
       "referenceText": "In my flight training, especially during the primary training, I think the most difficult part is landing. In this stage, we have to consider many factors, descend rate, thrust, weather condition, approach speed and so on. All these factors will affect landing safety. Although it was a little bit difficult for me at first, I believe\npractice makes perfect, so I study hard and after hundred times of practice, I can make better landings now.\n\nIn my flight training, I think the most difficult part is to deal with abnormal situations. In order to cope with such situations, we should have much knowledge on aviation, practice more and try to familiarize ourselves with all kinds of abnormal procedures.",
-      "referenceTextZh": "在飞行训练中，特别是初级训练时，我认为最困难的部分是降落。在这个阶段，我们必须考虑诸多因素，下降率、推力、天气状况、进近速度等。所有这些因素都会影响降落安全。虽然起初这对我来说有点困难，但我相信熟能生巧。所以我努力练习，经过数百次实践，现在我可以更好地降落。\n\n飞行训练中，我觉得最困难的部分是处理异常状况。为了应对这些状况，我们应该学习更多的航天知识，勤加练习，让自己熟悉更多的非正常程序。"
+      "referenceTextZh": "在飞行训练中，特别是初级训练时，我认为最困难的部分是降落。在这个阶段，我们必须考虑诸多因素，下降率、推力、天气状况、进近速度等。所有这些因素都会影响降落安全。虽然起初这对我来说有点困难，但我相信熟能生巧。所以我努力练习，经过数百次实践，现在我可以更好地降落。\n\n飞行训练中，我觉得最困难的部分是处理异常状况。为了应对这些状况，我们应该学习更多的航天知识，勤加练习，让自己熟悉更多的非正常程序。",
+      "audio": "/question-bank-assets/revisions/opi/aff2c86488d4edee7e2682b3bc8f63df738f6bc8a05670124db77d94ba573af6/audio/opi/opi-fzy-109959.mp3",
+      "audioDurationSeconds": 5.352
     },
     {
       "id": "opi-fzy-109960",
@@ -28,7 +32,9 @@
       "audioTextZh": "你多久参加一次复训？",
       "studyTier": 0,
       "referenceText": "According to CCAR 121, I take the recurrent training every 12 months.",
-      "referenceTextZh": "根据局方121部规定，每12个月参加一次复训。"
+      "referenceTextZh": "根据局方121部规定，每12个月参加一次复训。",
+      "audio": "/question-bank-assets/revisions/opi/22cc6704d3dab8200f0072bf52d4e3482dabfd2fcbeba22f1cde1f4dd9bfd79e/audio/opi/opi-fzy-109960.mp3",
+      "audioDurationSeconds": 2.256
     },
     {
       "id": "opi-fzy-109961",
@@ -37,7 +43,9 @@
       "audioTextZh": "你多久参加一次熟练检查？",
       "studyTier": 0,
       "referenceText": "According to CCAR 121, I take the proficiency testing every 6 months.",
-      "referenceTextZh": "根据局方规定，每6个月参加一次熟练检查。"
+      "referenceTextZh": "根据局方规定，每6个月参加一次熟练检查。",
+      "audio": "/question-bank-assets/revisions/opi/9f0520456a87719b3f6ac6a289845f1257c0ad54b94a4bf3cfd183ef7f904d67/audio/opi/opi-fzy-109961.mp3",
+      "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-fzy-109962",
@@ -46,7 +54,9 @@
       "audioTextZh": "你公司多久进行一次模拟机复训？",
       "studyTier": 0,
       "referenceText": "Every six months.",
-      "referenceTextZh": "每六个月一次。"
+      "referenceTextZh": "每六个月一次。",
+      "audio": "/question-bank-assets/revisions/opi/7540252ceed94b0e295eec4813748d86321ece01c4cbdacc19adae466f337b3b/audio/opi/opi-fzy-109962.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-fzy-109963",
@@ -55,7 +65,9 @@
       "audioTextZh": "你认为参加模拟训练的目的是什么？",
       "studyTier": 0,
       "referenceText": "Well, I don't think the purpose of the simulator training is to completely take place of actual flight training but to thoroughly familiarize pilots with the aircraft concerned before they maneuver costly and riskily actual flight training. Simulator training also is useful for reviewing and familiarizing pilots with new modifications to existing aircraft.",
-      "referenceTextZh": "嗯，我认为参加模拟训练的目的并不完全是为了替代实际飞行训练，而是在飞行员们进行昂贵且危险的实际飞行训练演习之前，使之完全熟悉相关飞机。模拟训练有助于飞行员研究和熟悉现有飞机的改变。"
+      "referenceTextZh": "嗯，我认为参加模拟训练的目的并不完全是为了替代实际飞行训练，而是在飞行员们进行昂贵且危险的实际飞行训练演习之前，使之完全熟悉相关飞机。模拟训练有助于飞行员研究和熟悉现有飞机的改变。",
+      "audio": "/question-bank-assets/revisions/opi/8e8d0ac985802afee5bb3bbb32e715603aa1196f363b49a7f8f8896de77383fa/audio/opi/opi-fzy-109963.mp3",
+      "audioDurationSeconds": 3
     },
     {
       "id": "opi-fzy-109964",
@@ -64,7 +76,9 @@
       "audioTextZh": "你在哪里参加的模拟机训练？从中学到了什么？",
       "studyTier": 0,
       "referenceText": "I have my simulator training in Guanghan Simulator Training Center. During the training, I review/practice emergency procedures, which makes me more confident and courageous when facing abnormal situations.",
-      "referenceTextZh": "我在广州模拟训练中心进行模拟机训练。训练期间，我复习/练习了应急程序，这让我在面对异常状况的时候更加自信、勇敢。"
+      "referenceTextZh": "我在广州模拟训练中心进行模拟机训练。训练期间，我复习/练习了应急程序，这让我在面对异常状况的时候更加自信、勇敢。",
+      "audio": "/question-bank-assets/revisions/opi/b22d1a62b06a2b6bbdd4a89eb1d2f35366716c2091ba8f0baf64c0b39c3f9b3b/audio/opi/opi-fzy-109964.mp3",
+      "audioDurationSeconds": 3.648
     },
     {
       "id": "opi-fzy-109965",
@@ -73,7 +87,9 @@
       "audioTextZh": "你觉得你的复训怎么样？",
       "studyTier": 0,
       "referenceText": "In the recurrent training, there are lots of practice and training about many emergency procedures. I learned much about how to handle emergency situations, such as engine fire, hydraulic failure, communication failure, stall, aborted takeoff, emergency evacuation and so on. In our flight, although we normally can not encounter these conditions, there is a saying that “forewarned is forearmed”. We are required to continuously improve our flight skills and learn to handle/cope with the emergency conditions in the training.",
-      "referenceTextZh": "复训期间，我们要做大量的关于紧急程序的培训及实践。我学到了很多关于如何处理紧急状况的知识，包括处理发动机失火、液压故障、通讯故障、失速、起飞中断、紧急疏散等。尽管飞行中一般不会遇到这些情况，但俗话说“有备无患”。在训练中我们被要求不断提高飞行技能，学习解决紧急状况。"
+      "referenceTextZh": "复训期间，我们要做大量的关于紧急程序的培训及实践。我学到了很多关于如何处理紧急状况的知识，包括处理发动机失火、液压故障、通讯故障、失速、起飞中断、紧急疏散等。尽管飞行中一般不会遇到这些情况，但俗话说“有备无患”。在训练中我们被要求不断提高飞行技能，学习解决紧急状况。",
+      "audio": "/question-bank-assets/revisions/opi/38d765f8ab08ccb92cab8645e3f2a0ebe9caaf1839fed41c1a7d55488c2c0cf0/audio/opi/opi-fzy-109965.mp3",
+      "audioDurationSeconds": 2.232
     },
     {
       "id": "opi-fzy-109967",
@@ -82,7 +98,9 @@
       "audioTextZh": "能否列举一些模拟训练中的项目？",
       "studyTier": 0,
       "referenceText": "Yes, in the simulator training, we practice some procedures including engine fire, both engine failure, cabin depressurization, and so on.",
-      "referenceTextZh": "好的，在模拟训练中，我们练习一些应急程序，包括发动机熄火、两发失效、机舱减压等。"
+      "referenceTextZh": "好的，在模拟训练中，我们练习一些应急程序，包括发动机熄火、两发失效、机舱减压等。",
+      "audio": "/question-bank-assets/revisions/opi/2b3d8c4aadff8587e947e6297421f9fab60e05fe9d8464eb641be6f0e5937a1d/audio/opi/opi-fzy-109967.mp3",
+      "audioDurationSeconds": 2.808
     },
     {
       "id": "opi-fzy-109968",
@@ -91,7 +109,9 @@
       "audioTextZh": "你是否接受过疏散训练么？给我讲一下。",
       "studyTier": 0,
       "referenceText": "Yes, I have had evacuation training for many times. For example, when I had my initial training of evacuation in London, the flight instructor simulated the cockpit fire. As the pilot flew, my co-pilot and I had our oxygen masks worn. Then I requested the purser to execute the evacuation following the standard operation procedures. Whereafter I made an announcement through the passenger addressing system to tell the passengers the reasons and precautions in executing the emergency evacuation. In the process, everything was completed orderly and efficiently.",
-      "referenceTextZh": "是的，我接受过很多次疏散训练。例如，我在伦敦接受第一次疏散训练时，教员模拟了驾驶舱失火。作为训练的飞行员，我和副驾驶都带上了氧气面罩。之后我要求乘务长按照标准操作程序撤离，并通过定址系统告知乘客紧急疏散的原因和预防程序。整个过程中，一切都高效、有序地完成。"
+      "referenceTextZh": "是的，我接受过很多次疏散训练。例如，我在伦敦接受第一次疏散训练时，教员模拟了驾驶舱失火。作为训练的飞行员，我和副驾驶都带上了氧气面罩。之后我要求乘务长按照标准操作程序撤离，并通过定址系统告知乘客紧急疏散的原因和预防程序。整个过程中，一切都高效、有序地完成。",
+      "audio": "/question-bank-assets/revisions/opi/23175a7f2f418bf1ccaaf29b71b797f2e2a9e454e4915a62ed67fb3835de80d8/audio/opi/opi-fzy-109968.mp3",
+      "audioDurationSeconds": 4.104
     },
     {
       "id": "opi-fzy-109969",
@@ -100,7 +120,9 @@
       "audioTextZh": "请讲讲你所接受的模拟训练。",
       "studyTier": 0,
       "referenceText": "OK. In Air China, we had lots of chances to practice different kinds of simulator training both at home and aboard. The simulator training, I had received included initial training, transition training and recurrent training. For me, most knowledge of handling abnormal and emergency situations was got from simulator training.",
-      "referenceTextZh": "好的。在国航，我们有大量在国内外的进行各种模拟训练的机会。我所接受的模拟训练包括初级训练、改装训练和复训。对我来说，大部分处理异常和紧急情况的知识都是从模拟训练中获得的。"
+      "referenceTextZh": "好的。在国航，我们有大量在国内外的进行各种模拟训练的机会。我所接受的模拟训练包括初级训练、改装训练和复训。对我来说，大部分处理异常和紧急情况的知识都是从模拟训练中获得的。",
+      "audio": "/question-bank-assets/revisions/opi/c27a488665836e88951d0d90c4a46e7da39c54b70c8c2e62eadd7282e47d699d/audio/opi/opi-fzy-109969.mp3",
+      "audioDurationSeconds": 3.456
     },
     {
       "id": "opi-fzy-109970",
@@ -109,7 +131,9 @@
       "audioTextZh": "你认为模拟机训练的好处是什么？",
       "studyTier": 0,
       "referenceText": "I think simulator training has become very important in preparing for being a qualified pilot. Firstly, it helps pilots become familiar with abnormal situations. Practicing in a simulated environment can help a pilot remain level headed during crisis so that he/she can work effectively when dealing with emergency. Secondly, simulator training can help a pilot see the gaps in real flight. There could be some shortcomings in capability when flying, so during simulation training, a pilot gets the opportunity to practice more without risking the safety of aircraft and the people inside.",
-      "referenceTextZh": "我认为参加模拟机训练在成为合格飞行员的准备过程中是非常重要的。第一，它帮助飞行员熟悉异常情况。在一个模拟的环境中练习可以帮助飞行员在遇到危机时仍能保持头脑清醒，在处理紧急情况时更加高效地工作。第二，模拟训练可以让飞行员找到真实飞行中的一些不足之处。飞行员在真实飞行中可能有些能力不足之处，所以在模拟训练时，飞行员可以有更多的练习机会，而不会危及到飞机及机内人员的安全。"
+      "referenceTextZh": "我认为参加模拟机训练在成为合格飞行员的准备过程中是非常重要的。第一，它帮助飞行员熟悉异常情况。在一个模拟的环境中练习可以帮助飞行员在遇到危机时仍能保持头脑清醒，在处理紧急情况时更加高效地工作。第二，模拟训练可以让飞行员找到真实飞行中的一些不足之处。飞行员在真实飞行中可能有些能力不足之处，所以在模拟训练时，飞行员可以有更多的练习机会，而不会危及到飞机及机内人员的安全。",
+      "audio": "/question-bank-assets/revisions/opi/b652eeb56698bf024cc9102d0258ba509b8d96d10350ade3064795d99a7a706c/audio/opi/opi-fzy-109970.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-fzy-109971",
@@ -118,7 +142,9 @@
       "audioTextZh": "模拟训练对你的飞行事业有哪些显著的影响？",
       "studyTier": 0,
       "referenceText": "We practiced many simulated training about abnormal and emergency situations which might happen in real flight. Because of such training, we have been familiar with the procedure of various abnormal and emergency situations, which is very useful to ensure the flight safety.",
-      "referenceTextZh": "我们做过多次关于异常及紧急情况的模拟训练，这些情况都可能发生在真实飞行中。因为这些训练，我们已经熟悉了应对各种异常及紧急情况的操作程序，这对保证飞行安全来说是非常有用的。"
+      "referenceTextZh": "我们做过多次关于异常及紧急情况的模拟训练，这些情况都可能发生在真实飞行中。因为这些训练，我们已经熟悉了应对各种异常及紧急情况的操作程序，这对保证飞行安全来说是非常有用的。",
+      "audio": "/question-bank-assets/revisions/opi/8657a543af6ec275b58ccd5a1df2b822f8281f6a8bfed08a23e2356955156ef2/audio/opi/opi-fzy-109971.mp3",
+      "audioDurationSeconds": 4.344
     },
     {
       "id": "opi-fzy-109972",
@@ -127,7 +153,9 @@
       "audioTextZh": "你在训练中学到的最重要的东西是什么？",
       "studyTier": 0,
       "referenceText": "Leaving the practical and professional knowledge aside, I have acquired some important practical experience through many abnormal and emergency situation practices, I think it’s the most important thing I have learned that can make me qualified to handle lots of problems in my flight career in future.",
-      "referenceTextZh": "除了实用和专业的知识外，通过大量练习处理异常及紧急情况，我还获得了一些重要的实践经验。我认为我学到的最重要的东西就是通过这些练习我能够处理许多未来飞行生涯中可能遇到的问题。"
+      "referenceTextZh": "除了实用和专业的知识外，通过大量练习处理异常及紧急情况，我还获得了一些重要的实践经验。我认为我学到的最重要的东西就是通过这些练习我能够处理许多未来飞行生涯中可能遇到的问题。",
+      "audio": "/question-bank-assets/revisions/opi/ad02e3651a64a2b5866820bd3c4614fe5941dfb9ebe06186e198cdfe95484788/audio/opi/opi-fzy-109972.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-fzy-109973",
@@ -136,7 +164,9 @@
       "audioTextZh": "你在飞行训练中遇到的最难忘的事情是什么？",
       "studyTier": 0,
       "referenceText": "What impressed me most was that instructors went out of their way to teach us operating skills and made us deeply know what a pilot meant to a flight. At that time, I determined to try my best to take my responsibility to ensure the safety of the passengers on the flight.",
-      "referenceTextZh": "我印象最深刻的是，教员不辞辛苦教我们操作技巧，让我们深切地了解到飞行员对于飞机的意义。那时，我决定要尽我所能完成任务，保证机上乘客的安全。"
+      "referenceTextZh": "我印象最深刻的是，教员不辞辛苦教我们操作技巧，让我们深切地了解到飞行员对于飞机的意义。那时，我决定要尽我所能完成任务，保证机上乘客的安全。",
+      "audio": "/question-bank-assets/revisions/opi/22ada168fdfee90c87147d323e745503aa4ae799b7cce11ddb93918dc2071e8e/audio/opi/opi-fzy-109973.mp3",
+      "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-fzy-109974",
@@ -145,7 +175,9 @@
       "audioTextZh": "你能否选择自己喜欢的机型参加飞行训练？",
       "studyTier": 0,
       "referenceText": "No, I cannot. We pilots can’t make our own choices of types of aircraft. In fact, we get models distributed according to the hours we have flown and stages we have been training.",
-      "referenceTextZh": "不，无法选择。飞行员不能自行决定要飞的机型。实际上，我们是根据飞行时间和训练阶段来分配机型的。"
+      "referenceTextZh": "不，无法选择。飞行员不能自行决定要飞的机型。实际上，我们是根据飞行时间和训练阶段来分配机型的。",
+      "audio": "/question-bank-assets/revisions/opi/67be1664731e9e80afcf34583bd9e6f2a058df8edae350aec15bdf1d3d803cd8/audio/opi/opi-fzy-109974.mp3",
+      "audioDurationSeconds": 3.24
     },
     {
       "id": "opi-fzy-109975",
@@ -154,7 +186,9 @@
       "audioTextZh": "在模拟训练时，你练习过紧急程序么？",
       "studyTier": 0,
       "referenceText": "Yes. The emergency procedures are the most important parts of the simulator training. In the simulator training, we practiced almost every possibility of the emergency situations, especially some usual emergency, such as engine failure, engine fire, emergency descent, wind shear, emergency evacuation and so on.",
-      "referenceTextZh": "遇到过。紧急程序是模拟训练中最重要的部分。在训练中，我们几乎练习了所有可能发生的紧急情况，尤其是一些常发生的紧急情况，如发动机熄火、发动机起火、紧急下降、风切变、紧急疏散等。"
+      "referenceTextZh": "遇到过。紧急程序是模拟训练中最重要的部分。在训练中，我们几乎练习了所有可能发生的紧急情况，尤其是一些常发生的紧急情况，如发动机熄火、发动机起火、紧急下降、风切变、紧急疏散等。",
+      "audio": "/question-bank-assets/revisions/opi/309f89e3c8d3e8345096264b14045d81b7050d021715eb78d234c769a853f937/audio/opi/opi-fzy-109975.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-fzy-109977",
@@ -163,7 +197,9 @@
       "audioTextZh": "你在模拟机中练习过处理座舱降压么？你会如何处理这种情况？",
       "studyTier": 0,
       "referenceText": "Yes, I do. In the simulator, similar abnormal situations are usually set up and the flight crew need to complete the emergency procedures. We should wear the oxygen masks, at the same time, we need to make sure the passengers’ masks are deployed. Also, we should notify the ATC to request to deviate and descend immediately to a lower altitude to ensure the passengers to breathe without an oxygen mask and avoid any possible airframe damage.",
-      "referenceTextZh": "是的，我练习过。在模拟机中经常会设置非正常情况，机组人员需要完成紧急程序。我们应该戴上氧气面罩，同时要确保乘客的面罩也已戴好。此外我们应该通知ATC要求改航，并立即下降到较低的高度，以确保乘客能够正常呼吸，并避免机身受到任何损坏。"
+      "referenceTextZh": "是的，我练习过。在模拟机中经常会设置非正常情况，机组人员需要完成紧急程序。我们应该戴上氧气面罩，同时要确保乘客的面罩也已戴好。此外我们应该通知ATC要求改航，并立即下降到较低的高度，以确保乘客能够正常呼吸，并避免机身受到任何损坏。",
+      "audio": "/question-bank-assets/revisions/opi/e050580780c1c915d48dac7a065f5cc60404620098a16cc27d60cedfca690c49/audio/opi/opi-fzy-109977.mp3",
+      "audioDurationSeconds": 4.536
     },
     {
       "id": "opi-fzy-109978",
@@ -172,7 +208,9 @@
       "audioTextZh": "你每年要进行多长时间的模拟器训练？",
       "studyTier": 0,
       "referenceText": "I have 16 hours’ simulator training every time. It’s divided into 4 days, 4 hours a day, and I have simulator training twice every year, so all together I have 32 hours’ simulator training every year.",
-      "referenceTextZh": "我每次要进行16小时的模拟器训练。这16个小时分成四天完成，每天4小时。我每年要参加两次训练，所以每年共进行32小时训练。"
+      "referenceTextZh": "我每次要进行16小时的模拟器训练。这16个小时分成四天完成，每天4小时。我每年要参加两次训练，所以每年共进行32小时训练。",
+      "audio": "/question-bank-assets/revisions/opi/a7a778407428e0ccfcadd339ca9d423f748e5ad61c7a3525d552146ba7e723e8/audio/opi/opi-fzy-109978.mp3",
+      "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-fzy-109979",
@@ -181,7 +219,9 @@
       "audioTextZh": "说一下模拟机训练的优缺点。",
       "studyTier": 0,
       "referenceText": "Relative to real aircraft training, the simulator training has many advantages. Firstly, its cost is much lower. Pilots can practice as many times as they like. Secondly, there is no danger in practicing abnormal situations. Thirdly, the company bears no risk of fatal accidents, and there are also some disadvantages for simulator training. For example, because of the limitation of the existing technology, the feedback and movement of the simulator may not be as real as the real aircraft.",
-      "referenceTextZh": "好的。相较于真实训练，模拟机训练有许多优点。第一，成本相对较低。飞行员想练多少次都可以；第二，模拟机训练可以毫无风险地练习异常情况；第三，公司不用承担事故风险。同时模拟机训练也有一些缺点。例如，由于现有科技的限制，模拟机的反馈和动作都不是太真实。"
+      "referenceTextZh": "好的。相较于真实训练，模拟机训练有许多优点。第一，成本相对较低。飞行员想练多少次都可以；第二，模拟机训练可以毫无风险地练习异常情况；第三，公司不用承担事故风险。同时模拟机训练也有一些缺点。例如，由于现有科技的限制，模拟机的反馈和动作都不是太真实。",
+      "audio": "/question-bank-assets/revisions/opi/7d17019c9ef2645b56375975c526db85692e17b414ed55abaef6820ae4b70f66/audio/opi/opi-fzy-109979.mp3",
+      "audioDurationSeconds": 4.08
     }
   ],
   "categoryId": "opi-category-07"

@@ -17,7 +17,9 @@
       "audioText": "If you were the captain of one of these aircraft, how would you respond to the risk of a collision?",
       "audioTextZh": "如果你是图中其中一架航空器的机长，你会如何应对碰撞风险？",
       "referenceText": "I would recognize the risk as early as possible, maintain clear communication, and follow the standard operating procedures.",
-      "referenceTextZh": "我会尽早识别风险，保持清晰沟通，并遵循标准操作程序。"
+      "referenceTextZh": "我会尽早识别风险，保持清晰沟通，并遵循标准操作程序。",
+      "audio": "/question-bank-assets/revisions/opi/2102617325ab72c746f90589aa2f5152bf6f62831d7269a1ded90b43b3ebbf7a/audio/opi/opi-image-004-q01.mp3",
+      "audioDurationSeconds": 4.8
     },
     {
       "id": "opi-image-004-q02",
@@ -25,7 +27,9 @@
       "audioText": "What factors can cause aircraft to come dangerously close to each other?",
       "audioTextZh": "哪些因素可能导致航空器彼此危险接近？",
       "referenceText": "Possible factors include loss of separation, wake turbulence, a runway incursion, or a misunderstanding of ATC instructions. Human factors, weather, aircraft condition, the airport environment, and communication problems may also contribute.",
-      "referenceTextZh": "可能的因素包括间隔丧失、尾流、跑道侵入，或对空中交通管制指令的误解。人的因素、天气、飞机状况、机场环境和通信问题也可能起到作用。"
+      "referenceTextZh": "可能的因素包括间隔丧失、尾流、跑道侵入，或对空中交通管制指令的误解。人的因素、天气、飞机状况、机场环境和通信问题也可能起到作用。",
+      "audio": "/question-bank-assets/revisions/opi/b4d8383a9f81786047f58e7f9f1585188e29b688d9cf71e9edf1bea1d0e6fc50/audio/opi/opi-image-004-q02.mp3",
+      "audioDurationSeconds": 3.864
     }
   ],
   "categoryId": "opi-category-08"

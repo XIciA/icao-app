@@ -10,7 +10,9 @@
       "audioTextZh": "禁区、限制区和危险区的主要区别是什么？",
       "referenceText": "A prohibited area is airspace in which flight is prohibited. A restricted area is airspace in which flight is allowed only under specified conditions or with the required authorization. A danger area is airspace in which activities dangerous to aircraft may exist at stated times, so pilots must check its status.",
       "referenceTextZh": "禁区是禁止飞行的空域。限制区是只有在规定条件下或获得所需许可后才能飞行的空域。危险区是在规定时间内可能存在危及航空器活动的空域，因此飞行员必须核实其状态。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/f752b5e61680b5b8876b3cded189f0254e0e30d7d59b03975e1187ff98b470cf/audio/opi/opi-extra-379.mp3",
+      "audioDurationSeconds": 4.512
     },
     {
       "id": "opi-extra-380",
@@ -19,7 +21,9 @@
       "audioTextZh": "未遵守适用要求而进入禁区、限制区或危险区，可能产生哪些风险？",
       "referenceText": "Unauthorized entry can lead to a regulatory warning, violation, or investigation and may cause major operational delays. The aircraft could also be intercepted and required to land. Entering an active danger area may expose the aircraft to hazardous military or other activities.",
       "referenceTextZh": "未经授权进入这些空域可能受到监管警告、违规处理或调查，也可能造成严重运行延误。飞机还可能遭到拦截并被要求着陆。进入正在活动的危险区可能使飞机面临危险的军事活动或其他活动。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/f3f679052603e2da868f69926a4de5ec6289c9e65525474acdcdd332297a90cc/audio/opi/opi-extra-380.mp3",
+      "audioDurationSeconds": 7.104
     },
     {
       "id": "opi-extra-381",
@@ -28,7 +32,9 @@
       "audioTextZh": "航空器意外接近限制区时，飞行机组应怎么做？",
       "referenceText": "The crew should confirm the aircraft's position using the available navigation sources and make sure all crew members understand the situation. They should contact ATC promptly, report the problem, and request a clearance or deviation around the area. The aircraft should not enter unless the applicable authorization has been obtained.",
       "referenceTextZh": "机组应使用可用的导航来源确认飞机位置，并确保所有机组成员都了解当前情况。他们应立即联系空中交通管制，报告问题，并请求许可或绕飞该区域。未取得适用许可前，飞机不应进入。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/ab36148f7d833a57fe136da358f2059ed4837e97436e8204eabe91d2681ac2d3/audio/opi/opi-extra-381.mp3",
+      "audioDurationSeconds": 4.752
     },
     {
       "id": "opi-extra-382",
@@ -37,7 +43,9 @@
       "audioTextZh": "飞行前和飞行中，飞行员如何获取有关禁区、限制区和危险区的最新信息？",
       "referenceText": "Before flight, pilots should review NOTAMs, aeronautical charts, and the dispatch or AIS briefing for the areas and their active times. During flight, they can obtain updates from ATC and from available data-link services. A current onboard navigation database may also display the areas, but pilots should ask ATC if the status is uncertain.",
       "referenceTextZh": "飞行前，飞行员应通过航行通告、航图，以及签派或航行情报服务简令，了解这些区域及其活动时间。飞行中，可以从空中交通管制和可用的数据链服务获取更新。现行的机载导航数据库也可能显示这些区域，但状态不明确时，飞行员应向空中交通管制查询。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/4a7adea95c50a83eb5ade1a73ab05f13aa7aca6a9e8ddcf624d681073a521823/audio/opi/opi-extra-382.mp3",
+      "audioDurationSeconds": 6.744
     },
     {
       "id": "opi-extra-383",
@@ -45,7 +53,9 @@
       "audioText": "What factors should a pilot consider before accepting an ATC clearance through an active danger area?",
       "audioTextZh": "接受穿越正在活动的危险区的空中交通管制许可前，飞行员应考虑哪些因素？",
       "referenceText": "Before accepting the clearance, the crew should confirm the danger area's lateral and vertical limits, active time, current status, and the hazardous activity involved. They should check that entry is legally permitted, that the aircraft can remain within the clearance, and that fuel, weather, navigation, and an escape route are adequate. If the status or safety is uncertain, they should request a route around it.",
-      "referenceTextZh": "接受许可前，机组应确认危险区的水平和垂直边界、活动时间、当前状态，以及所涉及的危险活动。他们应核实进入该区域是否合法，飞机能否始终保持在许可范围内，以及燃油、天气、导航和退出航路是否满足要求。如果状态或安全性不明确，应请求绕飞该区域。"
+      "referenceTextZh": "接受许可前，机组应确认危险区的水平和垂直边界、活动时间、当前状态，以及所涉及的危险活动。他们应核实进入该区域是否合法，飞机能否始终保持在许可范围内，以及燃油、天气、导航和退出航路是否满足要求。如果状态或安全性不明确，应请求绕飞该区域。",
+      "audio": "/question-bank-assets/revisions/opi/74fd133f77ba7169f6a8aad242821e397724373f64aafe5d3d4843a2e2dc095b/audio/opi/opi-extra-383.mp3",
+      "audioDurationSeconds": 5.424
     },
     {
       "id": "opi-extra-384",
@@ -53,7 +63,9 @@
       "audioText": "How can a pilot identify prohibited, restricted, and danger areas on an aeronautical chart?",
       "audioTextZh": "飞行员如何在航图上识别禁区、限制区和危险区？",
       "referenceText": "These areas are shown by charted boundaries and identifying labels. The chart may also show their vertical limits, operating times, and references to NOTAM information. Because colors and symbols vary by chart, the pilot should use the chart legend to confirm each area's meaning.",
-      "referenceTextZh": "这些区域通过航图上的边界和识别标志来表示。航图还可能标明其垂直范围、活动时间和相关航行通告索引。由于不同航图的颜色和符号有所不同，飞行员应查阅图例，确认每个区域的含义。"
+      "referenceTextZh": "这些区域通过航图上的边界和识别标志来表示。航图还可能标明其垂直范围、活动时间和相关航行通告索引。由于不同航图的颜色和符号有所不同，飞行员应查阅图例，确认每个区域的含义。",
+      "audio": "/question-bank-assets/revisions/opi/6394755020fb328ebcab525d5d3b90788879a44a6a78b581521f14ae49e00b31/audio/opi/opi-extra-384.mp3",
+      "audioDurationSeconds": 5.784
     },
     {
       "id": "opi-extra-385",
@@ -62,7 +74,9 @@
       "audioTextZh": "发现航空器误入限制区后，飞行机组应立即怎么做？",
       "referenceText": "The crew should take prompt action to leave the restricted area by a safe route and contact ATC without delay. They should report the error, current position, and intentions while the crew continues normal duties. After landing, the event should be reported through the applicable company process.",
       "referenceTextZh": "机组应立即采取行动，沿安全航路离开限制区，并尽快联系空中交通管制。他们应报告误入情况、当前位置和意图，同时继续履行正常机组职责。着陆后，应按照适用的公司程序报告该事件。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/edbab37cbd5f5799737d6187d9b4a43872c4ff12e3080348de68a0ba983c79b6/audio/opi/opi-extra-385.mp3",
+      "audioDurationSeconds": 6.144
     }
   ],
   "categoryId": "opi-category-05"

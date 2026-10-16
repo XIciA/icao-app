@@ -17,7 +17,9 @@
       "audioText": "What are the main hazards of flying at night?",
       "audioTextZh": "夜间飞行的主要危险有哪些？",
       "referenceText": "The main hazards are reduced visibility, higher cockpit workload, spatial disorientation, and difficulty judging terrain or clouds.",
-      "referenceTextZh": "主要风险包括能见度降低、驾驶舱工作负荷增大、空间定向障碍，以及难以判断地形或云层。"
+      "referenceTextZh": "主要风险包括能见度降低、驾驶舱工作负荷增大、空间定向障碍，以及难以判断地形或云层。",
+      "audio": "/question-bank-assets/revisions/opi/29eea4219c2414faf5afa77a6fffabd1290c29ec20f9cd16929df2a44b892623/audio/opi/opi-image-001-q01.mp3",
+      "audioDurationSeconds": 2.232
     },
     {
       "id": "opi-image-001-q02",
@@ -25,7 +27,9 @@
       "audioText": "What preparations should pilots make before a night flight?",
       "audioTextZh": "飞行员在夜间飞行前应做哪些准备？",
       "referenceText": "Before a night flight, I would brief the threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay the flight.",
-      "referenceTextZh": "夜间飞行前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟飞行。"
+      "referenceTextZh": "夜间飞行前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟飞行。",
+      "audio": "/question-bank-assets/revisions/opi/8018c03190b96cf3ae5fd61a14082528fb0351e3aff0d7cf39d8321661c05901/audio/opi/opi-image-001-q02.mp3",
+      "audioDurationSeconds": 3.216
     }
   ],
   "categoryId": "opi-category-08"

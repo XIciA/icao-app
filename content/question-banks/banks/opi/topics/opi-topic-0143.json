@@ -9,7 +9,9 @@
       "audioText": "What are the potential risks that drones pose to manned aircraft?",
       "audioTextZh": "无人机可能给有人驾驶航空器带来哪些风险？",
       "referenceText": "A drone can collide with an aircraft, especially during takeoff or landing, and damage the windshield, engine, or other important surfaces. Engine ingestion could cause an engine failure or fire. A drone sighting can also increase crew workload and lead to diversions or airspace closures.",
-      "referenceTextZh": "无人机可能与飞机相撞，尤其是在起飞或着陆期间，并损坏风挡、发动机或其他重要表面。无人机被吸入发动机可能导致发动机失效或起火。发现无人机还会增加机组工作负荷，并可能造成备降或空域关闭。"
+      "referenceTextZh": "无人机可能与飞机相撞，尤其是在起飞或着陆期间，并损坏风挡、发动机或其他重要表面。无人机被吸入发动机可能导致发动机失效或起火。发现无人机还会增加机组工作负荷，并可能造成备降或空域关闭。",
+      "audio": "/question-bank-assets/revisions/opi/083382a6a1af27967903d739fa910575c31d105dcb5b5b9e2e18c3e73e6b47e2/audio/opi/opi-extra-338.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-extra-339",
@@ -17,7 +19,9 @@
       "audioText": "What visual clues might help a pilot identify a drone from the cockpit?",
       "audioTextZh": "飞行员在驾驶舱内可以借助哪些目视线索识别无人机？",
       "referenceText": "A drone may appear as a small dark object moving more slowly than a manned aircraft. A multirotor drone can have a cross-like or star-like shape. Hovering or sudden, unpredictable movements can also help distinguish it.",
-      "referenceTextZh": "无人机可能看起来像一个移动速度比有人驾驶飞机慢的小型深色物体。多旋翼无人机可能呈十字形或星形。悬停或突然且无法预测的移动也有助于辨别无人机。"
+      "referenceTextZh": "无人机可能看起来像一个移动速度比有人驾驶飞机慢的小型深色物体。多旋翼无人机可能呈十字形或星形。悬停或突然且无法预测的移动也有助于辨别无人机。",
+      "audio": "/question-bank-assets/revisions/opi/8d2a7cdc75aabaac0589c8835f997758be087037b3689627513ed202feb801fd/audio/opi/opi-extra-339.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-extra-340",
@@ -25,7 +29,9 @@
       "audioText": "How should a flight crew respond to a drone sighting near the aircraft, especially during approach?",
       "audioTextZh": "在航空器附近发现无人机时，特别是在进近过程中，飞行机组应如何处置？",
       "referenceText": "The crew should maintain a good visual scan and immediately report the drone's position and movement to ATC. They should assess the collision risk and request a deviation if necessary. If the drone threatens the approach path, the crew should go around using the standard procedure and continue coordinating with ATC.",
-      "referenceTextZh": "机组应保持良好的目视观察，并立即向空中交通管制报告无人机的位置和移动方向。他们应评估相撞风险，必要时请求绕飞。如果无人机威胁进近航迹，机组应按标准程序复飞，并继续与空中交通管制协调。"
+      "referenceTextZh": "机组应保持良好的目视观察，并立即向空中交通管制报告无人机的位置和移动方向。他们应评估相撞风险，必要时请求绕飞。如果无人机威胁进近航迹，机组应按标准程序复飞，并继续与空中交通管制协调。",
+      "audio": "/question-bank-assets/revisions/opi/c0e13e9b8b97cc3dbba7c962cd6654354d4dde3ae012195e146cd73e7e65244c/audio/opi/opi-extra-340.mp3",
+      "audioDurationSeconds": 5.328
     },
     {
       "id": "opi-extra-341",
@@ -33,7 +39,9 @@
       "audioText": "What information should you report to ATC when you see a drone?",
       "audioTextZh": "看到无人机时，你应向空中交通管制部门报告哪些信息？",
       "referenceText": "Report your callsign, position, altitude, and the time of the sighting. Give the drone's position relative to the aircraft and, if you can determine them, its altitude and direction of movement. A brief description of its size, shape, or color can also help.",
-      "referenceTextZh": "应报告本机呼号、位置、高度和发现无人机的时间。说明无人机相对于飞机的位置，并在能够判断时报告其高度和移动方向。对其大小、形状或颜色作简要描述也会有所帮助。"
+      "referenceTextZh": "应报告本机呼号、位置、高度和发现无人机的时间。说明无人机相对于飞机的位置，并在能够判断时报告其高度和移动方向。对其大小、形状或颜色作简要描述也会有所帮助。",
+      "audio": "/question-bank-assets/revisions/opi/ddb7cb088e1ef743cc24cb90c76bffdec1878f3fdf4cfa5721fa40edf48ce5cf/audio/opi/opi-extra-341.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-extra-342",
@@ -41,7 +49,9 @@
       "audioText": "How can pilots help mitigate the risks associated with drone operations?",
       "audioTextZh": "飞行员如何帮助降低无人机运行带来的风险？",
       "referenceText": "Pilots can maintain a careful visual scan, especially near airports, and report drone sightings promptly to ATC. They should review NOTAMs for planned drone activity and be particularly alert in those areas. Good crew coordination helps both pilots look for and respond to the threat.",
-      "referenceTextZh": "飞行员可以保持认真目视观察，尤其是在机场附近，并及时向空中交通管制报告发现的无人机。他们应查看航行通告中计划开展的无人机活动，并在相关区域格外警觉。良好的机组协作有助于两名飞行员共同发现并应对威胁。"
+      "referenceTextZh": "飞行员可以保持认真目视观察，尤其是在机场附近，并及时向空中交通管制报告发现的无人机。他们应查看航行通告中计划开展的无人机活动，并在相关区域格外警觉。良好的机组协作有助于两名飞行员共同发现并应对威胁。",
+      "audio": "/question-bank-assets/revisions/opi/89cd5cb6a9d79e8fca33aff9f51b96b98dd29529b9e58a569037da17ba80f5cb/audio/opi/opi-extra-342.mp3",
+      "audioDurationSeconds": 4.2
     }
   ],
   "categoryId": "opi-category-05"

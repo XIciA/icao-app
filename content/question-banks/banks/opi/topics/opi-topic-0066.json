@@ -9,7 +9,9 @@
       "audioText": "Why are human factors important to flight safety?",
       "audioTextZh": "人为因素为什么对飞行安全很重要？",
       "referenceText": "Human factors are important because pilot and crew performance directly affects flight safety. Fatigue or illness can weaken judgment, poor communication can cause misunderstandings, and loss of situational awareness or failure to follow SOPs can lead to serious errors. Good human performance helps the crew make sound decisions and manage risk.",
-      "referenceTextZh": "人为因素很重要，因为飞行员和机组表现直接影响飞行安全。疲劳或疾病会削弱判断，沟通不良会造成误解，情景意识丧失或未遵守标准操作程序会导致严重差错。良好的人员表现有助于机组作出合理决策并管理风险。"
+      "referenceTextZh": "人为因素很重要，因为飞行员和机组表现直接影响飞行安全。疲劳或疾病会削弱判断，沟通不良会造成误解，情景意识丧失或未遵守标准操作程序会导致严重差错。良好的人员表现有助于机组作出合理决策并管理风险。",
+      "audio": "/question-bank-assets/revisions/opi/865744c7b56797619d552099be620c3bd4d3875b989caf702e449a13cc685220/audio/opi/opi-core-707.mp3",
+      "audioDurationSeconds": 2.928
     },
     {
       "id": "opi-core-707-part-2",
@@ -17,7 +19,9 @@
       "audioText": "What types of human error can seriously threaten flight safety?",
       "audioTextZh": "哪些类型的人为错误会严重威胁飞行安全？",
       "referenceText": "Serious human errors include skipping checklist items, violating SOPs, or departing from established takeoff and landing procedures. Fatigue or illness can impair judgment, while non-standard phraseology and unclear communication can cause misunderstandings. Poor decisions under pressure and visual misjudgments in bad weather can also threaten safety.",
-      "referenceTextZh": "严重人为差错包括跳过检查单项目、违反标准操作程序，或偏离既定起飞和着陆程序。疲劳或疾病会损害判断，非标准通话用语和不清晰沟通会造成误解。压力下的错误决策和恶劣天气中的视觉误判也会威胁安全。"
+      "referenceTextZh": "严重人为差错包括跳过检查单项目、违反标准操作程序，或偏离既定起飞和着陆程序。疲劳或疾病会损害判断，非标准通话用语和不清晰沟通会造成误解。压力下的错误决策和恶劣天气中的视觉误判也会威胁安全。",
+      "audio": "/question-bank-assets/revisions/opi/88fd1cc807d5ec18cf3092ec7f970d89706cb1220f924797f95a55903320105c/audio/opi/opi-core-707-part-2.mp3",
+      "audioDurationSeconds": 3.6
     },
     {
       "id": "opi-core-708",
@@ -25,7 +29,9 @@
       "audioText": "How can flight crews reduce the risk of human error during flight operations?",
       "audioTextZh": "飞行机组如何降低飞行运行中的人为错误风险？",
       "referenceText": "Flight crews can reduce human error by following SOPs and checklists and by completing regular simulator and recurrent training. Good CRM, clear task sharing, effective communication, and cross-checking help the crew detect mistakes. Pilots should also maintain situational awareness and get enough rest to reduce fatigue.",
-      "referenceTextZh": "飞行机组可以通过遵循标准操作程序和检查单，并定期完成模拟机训练和复训来减少人为差错。良好 CRM、明确任务分工、有效沟通和交叉检查帮助机组发现错误。飞行员还应保持情景意识并充分休息，以减轻疲劳。"
+      "referenceTextZh": "飞行机组可以通过遵循标准操作程序和检查单，并定期完成模拟机训练和复训来减少人为差错。良好 CRM、明确任务分工、有效沟通和交叉检查帮助机组发现错误。飞行员还应保持情景意识并充分休息，以减轻疲劳。",
+      "audio": "/question-bank-assets/revisions/opi/aff2e1cbed8a5b6ca4f35f0d3085d2ca96994b36afb4ce37074edcc42b133132/audio/opi/opi-core-708.mp3",
+      "audioDurationSeconds": 4.296
     },
     {
       "id": "opi-core-712",
@@ -33,7 +39,9 @@
       "audioText": "How can pilots maintain an adequate safety margin during flight operations?",
       "audioTextZh": "飞行员如何在飞行运行中保持足够的安全裕度？",
       "referenceText": "Pilots can maintain a safety margin by dividing tasks clearly and cross-checking each other’s work. Effective communication and cooperation within the crew also help identify problems before they become serious.",
-      "referenceTextZh": "飞行员可以通过明确分工并相互交叉检查来保持安全裕度。机组内部有效沟通与合作，也有助于在问题变得严重前及时发现。"
+      "referenceTextZh": "飞行员可以通过明确分工并相互交叉检查来保持安全裕度。机组内部有效沟通与合作，也有助于在问题变得严重前及时发现。",
+      "audio": "/question-bank-assets/revisions/opi/6ad4b7177de139ff0b7d84ebf009256dee9ea86bb8c11dab0a3ab5b1d3881df4/audio/opi/opi-core-712.mp3",
+      "audioDurationSeconds": 4.344
     }
   ],
   "categoryId": "opi-category-04"

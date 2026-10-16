@@ -9,7 +9,9 @@
       "audioText": "How do you prepare the day before a flight?",
       "audioTextZh": "飞行前一天你会如何准备？",
       "referenceText": "The day before a flight, I review the route, weather forecasts, NOTAMs, airport charts, and relevant procedures. I also check the aircraft performance information, including weight and balance and fuel consumption, and make sure my licences and documents are valid. Finally, I get enough rest so that I will be alert.",
-      "referenceTextZh": "飞行前一天，我会查看航路、天气预报、航行通告、机场图和相关程序。我还会检查飞机性能信息，包括重量平衡和燃油消耗，并确认执照和文件有效。最后，我会充分休息，确保保持警觉。"
+      "referenceTextZh": "飞行前一天，我会查看航路、天气预报、航行通告、机场图和相关程序。我还会检查飞机性能信息，包括重量平衡和燃油消耗，并确认执照和文件有效。最后，我会充分休息，确保保持警觉。",
+      "audio": "/question-bank-assets/revisions/opi/9598f6e3d05b3d6eaf92d3bab5763f2e30b95899d808d916f3cfd98c1797b943/audio/opi/opi-extra-014.mp3",
+      "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-extra-018",
@@ -17,7 +19,9 @@
       "audioText": "What do you normally do during preflight preparation?",
       "audioTextZh": "飞行前准备期间你通常做什么？",
       "referenceText": "I review the weather, airport information, flight plan, fuel, and weight and balance. I complete the preflight briefing, check that the required manuals and documents are on board, and use the IMSAFE checklist to confirm that I am fit to fly. I then carry out a careful walk-around inspection.",
-      "referenceTextZh": "我会查看天气、机场信息、飞行计划、燃油以及重量平衡。我会完成飞行前简令，检查所需手册和文件是否在机上，并使用 IMSAFE 检查单确认自己适合飞行。随后认真进行绕机检查。"
+      "referenceTextZh": "我会查看天气、机场信息、飞行计划、燃油以及重量平衡。我会完成飞行前简令，检查所需手册和文件是否在机上，并使用 IMSAFE 检查单确认自己适合飞行。随后认真进行绕机检查。",
+      "audio": "/question-bank-assets/revisions/opi/df9342c89965de6a3e319b5ae984cfd9d591ef98865162a9a6b8cefd16315e44/audio/opi/opi-extra-018.mp3",
+      "audioDurationSeconds": 3.048
     },
     {
       "id": "opi-extra-029",
@@ -25,7 +29,9 @@
       "audioText": "How long does your preflight preparation usually take?",
       "audioTextZh": "你的飞行前准备通常需要多长时间？",
       "referenceText": "My preflight preparation usually takes one or two hours, although it may sometimes take a full day.",
-      "referenceTextZh": "我的飞行前准备通常需要一两个小时，但有时也可能需要一整天。"
+      "referenceTextZh": "我的飞行前准备通常需要一两个小时，但有时也可能需要一整天。",
+      "audio": "/question-bank-assets/revisions/opi/ed97f93f5c09ceaa88b2296d01f0d4de7827aa62562cc3fa1f161d9667aceda5/audio/opi/opi-extra-029.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-extra-030",
@@ -33,7 +39,9 @@
       "audioText": "What is the main purpose of flight planning?",
       "audioTextZh": "飞行计划的主要目的是什么？",
       "referenceText": "The main purpose of flight planning is to make the flight safe and efficient. It includes selecting a suitable route, calculating fuel, confirming alternate airports, assessing weather and airspace, and arranging crew tasks. Good planning reduces risk and helps the flight operate smoothly.",
-      "referenceTextZh": "飞行计划的主要目的是确保飞行安全高效。它包括选择合适航路、计算燃油、确认备降机场、评估天气和空域并安排机组任务。良好计划可以降低风险并使飞行顺利进行。"
+      "referenceTextZh": "飞行计划的主要目的是确保飞行安全高效。它包括选择合适航路、计算燃油、确认备降机场、评估天气和空域并安排机组任务。良好计划可以降低风险并使飞行顺利进行。",
+      "audio": "/question-bank-assets/revisions/opi/680b75a13e796efa0ea201e30ae1230d31ea41ee3dc94853a477bce56f49a54b/audio/opi/opi-extra-030.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-extra-033",
@@ -41,7 +49,9 @@
       "audioText": "How do you use a computer during preflight preparation?",
       "audioTextZh": "飞行前准备期间你如何使用计算机？",
       "referenceText": "I use a computer to obtain important preflight information, especially weather information and the flight plan.",
-      "referenceTextZh": "我使用计算机获取重要的飞行前信息，尤其是天气信息和飞行计划。"
+      "referenceTextZh": "我使用计算机获取重要的飞行前信息，尤其是天气信息和飞行计划。",
+      "audio": "/question-bank-assets/revisions/opi/9f1cac4f6132b999e29be6c872be8ee8976d947600689f9d30996cf7a7f6493f/audio/opi/opi-extra-033.mp3",
+      "audioDurationSeconds": 3.264
     },
     {
       "id": "opi-extra-037",
@@ -49,7 +59,9 @@
       "audioText": "What tasks do you complete in the briefing room before a flight?",
       "audioTextZh": "飞行前你会在准备室完成哪些工作？",
       "referenceText": "Before a flight, I review the route, weather, NOTAMs, airport charts, fuel, and weight and balance in the briefing room. I check the flight plan, aircraft performance, alternate airports, and any special procedures. I also confirm that my documents are valid and that I am fit to fly.",
-      "referenceTextZh": "飞行前，我会在准备室查看航路、天气、航行通告、机场图、燃油以及重量平衡。我会检查飞行计划、飞机性能、备降机场和任何特殊程序，还会确认文件有效并且自己适合飞行。"
+      "referenceTextZh": "飞行前，我会在准备室查看航路、天气、航行通告、机场图、燃油以及重量平衡。我会检查飞行计划、飞机性能、备降机场和任何特殊程序，还会确认文件有效并且自己适合飞行。",
+      "audio": "/question-bank-assets/revisions/opi/7a14b37ec86ad9287eba227832d69945cb6ad3a86c68cd14c9b8674255fdd072/audio/opi/opi-extra-037.mp3",
+      "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-extra-039",
@@ -57,7 +69,9 @@
       "audioText": "Do you think a preflight briefing between the captain and cabin crew should be mandatory? Why?",
       "audioTextZh": "你认为机长与客舱机组之间的飞行前协同会是否应为强制要求？为什么？",
       "referenceText": "Yes, I think it should be mandatory. The briefing allows the captain and cabin crew to discuss the weather, confirm their duties and responsibilities, and review possible abnormal or emergency situations. This helps the crew work together effectively during the flight.",
-      "referenceTextZh": "是的，我认为这应是强制要求。简令使机长和客舱机组能够讨论天气、确认职责，并查看可能发生的非正常或紧急情况。这有助于机组在飞行中有效合作。"
+      "referenceTextZh": "是的，我认为这应是强制要求。简令使机长和客舱机组能够讨论天气、确认职责，并查看可能发生的非正常或紧急情况。这有助于机组在飞行中有效合作。",
+      "audio": "/question-bank-assets/revisions/opi/592c1f9852cb334712a708485f7f81966b6c6bc6b79a42482bc1df912e991804/audio/opi/opi-extra-039.mp3",
+      "audioDurationSeconds": 5.232
     },
     {
       "id": "opi-extra-041",
@@ -65,7 +79,9 @@
       "audioText": "What information should a flight crew obtain before departure?",
       "audioTextZh": "起飞前，飞行机组应获取哪些信息？",
       "referenceText": "Before departure, the flight crew should obtain the relevant weather and airport information, review the aircraft's performance information, and confirm the flight plan.",
-      "referenceTextZh": "离场前，飞行机组应获取相关天气和机场信息，查看飞机性能信息，并确认飞行计划。"
+      "referenceTextZh": "离场前，飞行机组应获取相关天气和机场信息，查看飞机性能信息，并确认飞行计划。",
+      "audio": "/question-bank-assets/revisions/opi/47f8a769d35262d064a7ea709f600deb643f34f14a87d5ba1bb05a3f82137b0a/audio/opi/opi-extra-041.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-extra-045",
@@ -73,7 +89,9 @@
       "audioText": "Have you ever found an abnormal condition during a preflight check? If so, how was it handled?",
       "audioTextZh": "你是否曾在飞行前检查中发现异常情况？如果有，当时是如何处理的？",
       "referenceText": "No, I have never found an abnormal condition during a preflight check. If I found a problem with the aircraft, I would report it to the mechanics for a maintenance inspection.",
-      "referenceTextZh": "没有，我在飞行前检查中从未发现异常。如果发现飞机存在问题，我会向机务人员报告并申请维修检查。"
+      "referenceTextZh": "没有，我在飞行前检查中从未发现异常。如果发现飞机存在问题，我会向机务人员报告并申请维修检查。",
+      "audio": "/question-bank-assets/revisions/opi/2238d64437da45e433627927df59565e50a07cfd1bfd10badabe4f5d239c3c90/audio/opi/opi-extra-045.mp3",
+      "audioDurationSeconds": 5.544
     },
     {
       "id": "opi-extra-050",
@@ -81,7 +99,9 @@
       "audioText": "What is a preflight check?",
       "audioTextZh": "什么是飞行前检查？",
       "referenceText": "A preflight check is the inspection completed before flight to confirm that the aircraft is ready and airworthy. It includes an exterior walk-around of areas such as the wings, engines, and landing gear, as well as cockpit checks of the instruments, systems, and documents. Its purpose is to identify potential defects before departure.",
-      "referenceTextZh": "飞行前检查是在飞行前完成的检查，用于确认飞机已经准备好并且适航。它包括对机翼、发动机和起落架等区域进行外部绕机检查，以及在驾驶舱检查仪表、系统和文件，目的是在离场前发现潜在缺陷。"
+      "referenceTextZh": "飞行前检查是在飞行前完成的检查，用于确认飞机已经准备好并且适航。它包括对机翼、发动机和起落架等区域进行外部绕机检查，以及在驾驶舱检查仪表、系统和文件，目的是在离场前发现潜在缺陷。",
+      "audio": "/question-bank-assets/revisions/opi/155a283d3e506b67a42235852550085bca78e67fa536f2f9f16fd8bd3b86ec1a/audio/opi/opi-extra-050.mp3",
+      "audioDurationSeconds": 1.488
     },
     {
       "id": "opi-extra-051",
@@ -89,7 +109,9 @@
       "audioText": "What do you discuss when briefing the cabin crew before departure?",
       "audioTextZh": "与客舱机组进行飞行前协同会时，你会讨论哪些内容？",
       "referenceText": "I do not brief cabin crew because my DA-40 training flights do not carry them. In a typical airline briefing, the pilots and cabin crew would discuss flight time, weather and turbulence, expected service restrictions, security concerns, special passengers, and emergency communication. The briefing should also confirm how the crews will coordinate during abnormal situations.",
-      "referenceTextZh": "我不向客舱机组进行简令，因为我的 DA-40 训练飞行不搭载客舱机组。在典型航空公司简令中，飞行员和客舱机组会讨论飞行时间、天气和颠簸、预计服务限制、安保问题、特殊旅客和应急通信。简令还应确认出现非正常情况时双方如何协调。"
+      "referenceTextZh": "我不向客舱机组进行简令，因为我的 DA-40 训练飞行不搭载客舱机组。在典型航空公司简令中，飞行员和客舱机组会讨论飞行时间、天气和颠簸、预计服务限制、安保问题、特殊旅客和应急通信。简令还应确认出现非正常情况时双方如何协调。",
+      "audio": "/question-bank-assets/revisions/opi/9093415a259aea1a75e2050ef1c7947eb27f4050680d4ce52a040f4c609cf01e/audio/opi/opi-extra-051.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-extra-054",
@@ -97,7 +119,9 @@
       "audioText": "What does the cabin crew do before departure?",
       "audioTextZh": "起飞前，客舱机组会做哪些工作？",
       "referenceText": "Before departure, the cabin crew attends a safety briefing with the pilots and checks the emergency equipment and cabin facilities. They verify passenger boarding, maintain cabin order, and demonstrate safety procedures such as seat-belt use.",
-      "referenceTextZh": "离场前，客舱机组参加与飞行员进行的安全简令，并检查应急设备和客舱设施。他们核实旅客登机、维持客舱秩序，并演示安全带使用等安全程序。"
+      "referenceTextZh": "离场前，客舱机组参加与飞行员进行的安全简令，并检查应急设备和客舱设施。他们核实旅客登机、维持客舱秩序，并演示安全带使用等安全程序。",
+      "audio": "/question-bank-assets/revisions/opi/6b1ad4258ac2736df685980eed9bc3bdb0022e74bbc3c1ff75331b4d9afc17a2/audio/opi/opi-extra-054.mp3",
+      "audioDurationSeconds": 2.52
     }
   ],
   "categoryId": "opi-category-05"

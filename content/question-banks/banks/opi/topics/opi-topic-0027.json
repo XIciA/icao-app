@@ -9,7 +9,9 @@
       "audioText": "What are the main purposes of airport security screening?",
       "audioTextZh": "机场安检的主要目的是什么？",
       "referenceText": "Airport security screening is intended to detect and stop weapons, explosives, and other hazardous items from being brought on board. It helps protect passengers, crew, aircraft, and the airport from security threats.",
-      "referenceTextZh": "机场安检旨在发现并阻止武器、爆炸物和其他危险物品被带上飞机。它有助于保护旅客、机组、飞机和机场免受安保威胁。"
+      "referenceTextZh": "机场安检旨在发现并阻止武器、爆炸物和其他危险物品被带上飞机。它有助于保护旅客、机组、飞机和机场免受安保威胁。",
+      "audio": "/question-bank-assets/revisions/opi/6843465c48a4c6b64fb2e80e92cf6542711cced96a57f8a28d5df1b41a4cbd80/audio/opi/opi-core-419.mp3",
+      "audioDurationSeconds": 3.024
     },
     {
       "id": "opi-core-421",
@@ -17,7 +19,9 @@
       "audioText": "Why is it necessary to screen airport catering staff?",
       "audioTextZh": "为什么需要对机场配餐人员进行安检？",
       "referenceText": "Screening catering staff helps protect food safety and prevent potential security threats, including terrorist activity.",
-      "referenceTextZh": "对配餐人员进行安检有助于保障食品安全，并防范包括恐怖活动在内的潜在安保威胁。"
+      "referenceTextZh": "对配餐人员进行安检有助于保障食品安全，并防范包括恐怖活动在内的潜在安保威胁。",
+      "audio": "/question-bank-assets/revisions/opi/db9fb15f8933e3aa33fa80f0274199a9e0af64d49196d6406a4c480cb93ce2d3/audio/opi/opi-core-421.mp3",
+      "audioDurationSeconds": 3.216
     },
     {
       "id": "opi-core-422",
@@ -25,7 +29,9 @@
       "audioText": "What can airports and airlines do to strengthen aviation security?",
       "audioTextZh": "机场和航空公司可以采取哪些措施加强航空安保？",
       "referenceText": "Airports can introduce better screening equipment, enforce security procedures for personnel and cargo, improve management, and train ground staff. Airlines can train pilots and cabin crew to handle dangerous goods and security threats. Cooperation with police and fire services and stronger security awareness among staff and passengers can also help.",
-      "referenceTextZh": "机场可以引入更好的安检设备，严格执行人员和货物安保程序，改善管理并培训地面人员。航空公司可以培训飞行员和客舱机组处置危险品及安保威胁。与公安和消防部门合作，并增强员工和旅客的安保意识，也能发挥作用。"
+      "referenceTextZh": "机场可以引入更好的安检设备，严格执行人员和货物安保程序，改善管理并培训地面人员。航空公司可以培训飞行员和客舱机组处置危险品及安保威胁。与公安和消防部门合作，并增强员工和旅客的安保意识，也能发挥作用。",
+      "audio": "/question-bank-assets/revisions/opi/eaacd8fd858ee4d1a4a3ce1c75b1f864ea98f7b8835ee176df4552793d1882c9/audio/opi/opi-core-422.mp3",
+      "audioDurationSeconds": 3.816
     },
     {
       "id": "opi-core-423",
@@ -33,7 +39,9 @@
       "audioText": "Do you think airport security has improved over the past decade? Why or why not?",
       "audioTextZh": "你认为过去十年机场安保有所改善吗？为什么？",
       "referenceText": "Yes, I think airport security has improved over the past decade. Passengers and baggage are screened more carefully, more advanced detection equipment is used, and security staff receive more training. Airports also apply more security rules and procedures.",
-      "referenceTextZh": "是的，我认为机场安保在过去十年有所改善。旅客和行李接受了更仔细的检查，机场使用了更先进的探测设备，安保人员也接受了更多培训。机场还实施了更多安保规定和程序。"
+      "referenceTextZh": "是的，我认为机场安保在过去十年有所改善。旅客和行李接受了更仔细的检查，机场使用了更先进的探测设备，安保人员也接受了更多培训。机场还实施了更多安保规定和程序。",
+      "audio": "/question-bank-assets/revisions/opi/4e89260ac9e2540dda90779ddf3645848cce044d5d983c9059c5b355c147cb35/audio/opi/opi-core-423.mp3",
+      "audioDurationSeconds": 4.944
     },
     {
       "id": "opi-core-426",
@@ -41,7 +49,9 @@
       "audioText": "What measures can help prevent terrorist attacks against civil aviation?",
       "audioTextZh": "哪些措施有助于防止针对民用航空的恐怖袭击？",
       "referenceText": "Airports should strengthen security screening and use advanced equipment to detect dangerous goods, illegal weapons, and drugs. Security staff should receive regular training and follow SOPs carefully. Pilots and cabin crew should also train for hijacking or terrorist threats and take part in emergency drills.",
-      "referenceTextZh": "机场应加强安检，并使用先进设备探测危险品、非法武器和毒品。安保人员应定期接受培训并认真遵循标准操作程序。飞行员和客舱机组也应接受劫机或恐怖威胁处置训练，并参加应急演练。"
+      "referenceTextZh": "机场应加强安检，并使用先进设备探测危险品、非法武器和毒品。安保人员应定期接受培训并认真遵循标准操作程序。飞行员和客舱机组也应接受劫机或恐怖威胁处置训练，并参加应急演练。",
+      "audio": "/question-bank-assets/revisions/opi/4db48aa8de66ed75cfd2acea9c9d1d43366466ec69cc21842599ed26125713cc/audio/opi/opi-core-426.mp3",
+      "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-core-174",
@@ -49,7 +59,9 @@
       "audioText": "Why are passengers restricted from carrying certain liquids into the aircraft cabin?",
       "audioTextZh": "为什么会限制乘客携带某些液体进入客舱？",
       "referenceText": "Some liquids are difficult for security equipment to identify as dangerous, and different liquids could be combined to make an explosive device. Flammable liquids may also leak and cause fire or smoke in the cabin. These risks are why passengers cannot carry certain liquids on board.",
-      "referenceTextZh": "某些液体很难被安检设备识别为危险品，而且不同液体可能被混合制成爆炸装置。易燃液体也可能泄漏，并在客舱内引发火灾或烟雾。正是这些风险使旅客不能携带某些液体登机。"
+      "referenceTextZh": "某些液体很难被安检设备识别为危险品，而且不同液体可能被混合制成爆炸装置。易燃液体也可能泄漏，并在客舱内引发火灾或烟雾。正是这些风险使旅客不能携带某些液体登机。",
+      "audio": "/question-bank-assets/revisions/opi/3fedf6be9f17dd701a79d988a26da6792c9b6a174487bbf6c58684633076c8ca/audio/opi/opi-core-174.mp3",
+      "audioDurationSeconds": 4.56
     },
     {
       "id": "opi-core-736",
@@ -57,7 +69,9 @@
       "audioText": "What measures can help prevent bombs from being brought on board an aircraft?",
       "audioTextZh": "哪些措施有助于防止炸弹被带上飞机？",
       "referenceText": "Airports and airlines should use advanced security equipment and apply strict security checks to people and items going on board. Ground staff need thorough training, and cooperation with police and fire departments should be strengthened. Raising public security awareness can also help.",
-      "referenceTextZh": "机场和航空公司应使用先进安检设备，并对登机人员和物品实施严格安检。地面人员需要接受充分培训，还应加强与公安和消防部门的合作。提高公众安保意识也会有所帮助。"
+      "referenceTextZh": "机场和航空公司应使用先进安检设备，并对登机人员和物品实施严格安检。地面人员需要接受充分培训，还应加强与公安和消防部门的合作。提高公众安保意识也会有所帮助。",
+      "audio": "/question-bank-assets/revisions/opi/e87937333ec8c6a5eaabb75038c8884d36bd5bed949c6255ec113c41a46b4f53/audio/opi/opi-core-736.mp3",
+      "audioDurationSeconds": 3.816
     }
   ],
   "categoryId": "opi-category-05"

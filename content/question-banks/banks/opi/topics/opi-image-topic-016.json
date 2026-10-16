@@ -17,7 +17,9 @@
       "audioText": "What can cause an aircraft engine fire during ground operations?",
       "audioTextZh": "哪些因素可能导致航空器发动机在地面运行期间起火？",
       "referenceText": "Fuel leakage or overheating can cause an aircraft engine fire during ground operations.",
-      "referenceTextZh": "燃油泄漏或过热可能导致飞机在地面运行期间发生发动机火灾。"
+      "referenceTextZh": "燃油泄漏或过热可能导致飞机在地面运行期间发生发动机火灾。",
+      "audio": "/question-bank-assets/revisions/opi/0bf8fa6fb4b21b69c5e8a305b3d5f63b94cad6a7e63d284ed3feea19f9bcd061/audio/opi/opi-image-016-q01.mp3",
+      "audioDurationSeconds": 3.624
     },
     {
       "id": "opi-image-016-q02",
@@ -25,7 +27,9 @@
       "audioText": "What risks can an engine fire during taxi pose to the aircraft and its occupants?",
       "audioTextZh": "滑行期间发动机起火会给航空器及其乘员带来哪些风险？",
       "referenceText": "An engine fire during taxi may create smoke and an evacuation risk. These risks may reduce safety margins and increase crew workload.",
-      "referenceTextZh": "滑行期间发动机起火可能产生烟雾，并带来撤离风险。这些风险可能降低安全裕度并增加机组工作负荷。"
+      "referenceTextZh": "滑行期间发动机起火可能产生烟雾，并带来撤离风险。这些风险可能降低安全裕度并增加机组工作负荷。",
+      "audio": "/question-bank-assets/revisions/opi/e7eaec631699283bf704d52860cde802f2807ad33cef5cc72f97750ac7861bff/audio/opi/opi-image-016-q02.mp3",
+      "audioDurationSeconds": 4.584
     },
     {
       "id": "opi-image-016-q03",
@@ -33,7 +37,9 @@
       "audioText": "What preflight inspections can help reduce the risk of an engine fire during ground operations?",
       "audioTextZh": "哪些飞行前检查可以帮助降低发动机在地面运行期间起火的风险？",
       "referenceText": "The walk-around should look for fuel, oil, or hydraulic leaks, damaged wiring, loose panels, and signs of overheating around the engine. The crew should confirm that the nacelle and cowling are secure and that the intake is clear of FOD. Required maintenance checks should also confirm that the fire-detection and extinguishing systems are serviceable.",
-      "referenceTextZh": "绕机检查应查找燃油、滑油或液压油泄漏、线路损坏、面板松动，以及发动机周围的过热迹象。机组应确认短舱和整流罩固定可靠，进气口内没有外来物。规定的维修检查还应确认火警探测和灭火系统工作正常。"
+      "referenceTextZh": "绕机检查应查找燃油、滑油或液压油泄漏、线路损坏、面板松动，以及发动机周围的过热迹象。机组应确认短舱和整流罩固定可靠，进气口内没有外来物。规定的维修检查还应确认火警探测和灭火系统工作正常。",
+      "audio": "/question-bank-assets/revisions/opi/6c60d6f7539934bd82f0c75ddd117dae76cdbcb3cbeb41b6be037d09778a09f2/audio/opi/opi-image-016-q03.mp3",
+      "audioDurationSeconds": 5.232
     },
     {
       "id": "opi-image-016-q04",
@@ -41,7 +47,9 @@
       "audioText": "As captain, how would you respond to an engine fire detected during takeoff?",
       "audioTextZh": "作为机长，起飞过程中发现发动机起火时，你会如何处置？",
       "referenceText": "If the fire warning occurred before the takeoff decision speed and the aircraft could stop safely, I would reject the takeoff in accordance with the procedure. At or after the decision speed, I would continue the takeoff, maintain control, climb safely, and then complete the engine-fire memory actions and checklist. I would declare an emergency and arrange the earliest safe landing, treating a continuing fire as an immediate threat.",
-      "referenceTextZh": "如果火警出现在起飞决断速度之前，且飞机能够安全停下，我会按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，控制好飞机并安全爬升，然后完成发动机火警记忆项目和检查单。我会宣布紧急状态并安排尽早安全着陆，把持续燃烧的火情视为直接威胁。"
+      "referenceTextZh": "如果火警出现在起飞决断速度之前，且飞机能够安全停下，我会按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，控制好飞机并安全爬升，然后完成发动机火警记忆项目和检查单。我会宣布紧急状态并安排尽早安全着陆，把持续燃烧的火情视为直接威胁。",
+      "audio": "/question-bank-assets/revisions/opi/0bd8e66a69d239bf6ca91a3d6bcceba66eb73ba929af30d9b406b528ae628079/audio/opi/opi-image-016-q04.mp3",
+      "audioDurationSeconds": 4.392
     }
   ],
   "categoryId": "opi-category-08"

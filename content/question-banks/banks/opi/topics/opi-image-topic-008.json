@@ -17,7 +17,9 @@
       "audioText": "What can you see in the simulator training scene shown in this picture?",
       "audioTextZh": "你能从图中的模拟机训练场景中看到什么？",
       "referenceText": "I can see two pilots seated in a full-flight simulator. The cockpit has realistic flight instruments, controls, and outside visual displays. They appear to be practising normal or abnormal procedures in a controlled training environment.",
-      "referenceTextZh": "我看到两名飞行员坐在全动飞行模拟机内。驾驶舱配有逼真的飞行仪表、操纵装置和外部视景显示。他们似乎正在受控的训练环境中练习正常或非正常程序。"
+      "referenceTextZh": "我看到两名飞行员坐在全动飞行模拟机内。驾驶舱配有逼真的飞行仪表、操纵装置和外部视景显示。他们似乎正在受控的训练环境中练习正常或非正常程序。",
+      "audio": "/question-bank-assets/revisions/opi/218647637cb4f95f4fc3d68335a54b276d47509ac2d02fd56523645e675f528a/audio/opi/opi-image-008-q01.mp3",
+      "audioDurationSeconds": 3.576
     },
     {
       "id": "opi-image-008-q02",
@@ -25,7 +27,9 @@
       "audioText": "What are the benefits of simulator training?",
       "audioTextZh": "模拟机训练有哪些好处？",
       "referenceText": "Simulator training can improve situational awareness. It gives pilots clearer information, supports better monitoring, and gives them more time to make safe decisions.",
-      "referenceTextZh": "模拟机训练可以提高情景意识。它能为飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。"
+      "referenceTextZh": "模拟机训练可以提高情景意识。它能为飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。",
+      "audio": "/question-bank-assets/revisions/opi/609dce96da0abd2e6de6c9911d9895c86cf6da1ba3b62af18994594048f3948d/audio/opi/opi-image-008-q02.mp3",
+      "audioDurationSeconds": 2.376
     }
   ],
   "categoryId": "opi-category-08"

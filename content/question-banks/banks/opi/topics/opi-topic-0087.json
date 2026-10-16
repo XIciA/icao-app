@@ -9,7 +9,9 @@
       "audioText": "When should the flight crew make a passenger announcement (PA)?",
       "audioTextZh": "飞行机组应在什么时候进行旅客广播（PA）？",
       "referenceText": "The captain should make a passenger announcement when an emergency evacuation is required. The announcement should tell passengers to remain calm and follow the cabin crew's evacuation instructions.",
-      "referenceTextZh": "需要紧急撤离时，机长应向旅客广播。广播应要求旅客保持冷静，并遵循客舱机组的撤离指令。"
+      "referenceTextZh": "需要紧急撤离时，机长应向旅客广播。广播应要求旅客保持冷静，并遵循客舱机组的撤离指令。",
+      "audio": "/question-bank-assets/revisions/opi/3da0a6f25571dc888196a14cc722bdeabf66b1595479c8128d71904c0b61da78/audio/opi/opi-core-862.mp3",
+      "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-core-863",
@@ -17,7 +19,9 @@
       "audioText": "Should a passenger announcement be made if one pilot becomes incapacitated in flight? Why or why not?",
       "audioTextZh": "飞行中一名飞行员失能时，是否应进行旅客广播？为什么？",
       "referenceText": "Normally, the crew should not make a passenger announcement solely to say that a pilot has become incapacitated. Such an announcement could cause unnecessary panic in the cabin.",
-      "referenceTextZh": "通常不应仅为告知一名飞行员已经失能而向旅客广播，因为这可能在客舱内造成不必要的恐慌。"
+      "referenceTextZh": "通常不应仅为告知一名飞行员已经失能而向旅客广播，因为这可能在客舱内造成不必要的恐慌。",
+      "audio": "/question-bank-assets/revisions/opi/af194acc1a9948580845ddc15db5dec25be391bc1a9c9bbff78c4078150b4516/audio/opi/opi-core-863.mp3",
+      "audioDurationSeconds": 6.048
     },
     {
       "id": "opi-core-864",
@@ -25,7 +29,9 @@
       "audioText": "How should the cabin crew be informed if a pilot becomes incapacitated in flight?",
       "audioTextZh": "飞行中一名飞行员失能时，应如何通知客舱机组？",
       "referenceText": "The other pilot should first take control of the aircraft and then use the interphone to inform the cabin crew. The cabin crew should be asked to provide first aid to the incapacitated pilot.",
-      "referenceTextZh": "另一名飞行员应先接管飞机，然后使用内话通知客舱机组，并要求客舱机组为失能飞行员提供急救。"
+      "referenceTextZh": "另一名飞行员应先接管飞机，然后使用内话通知客舱机组，并要求客舱机组为失能飞行员提供急救。",
+      "audio": "/question-bank-assets/revisions/opi/25d442db101e1f88f47d2d85bdd0855163fb25ed8631fd537cb378acfaa3eb43/audio/opi/opi-core-864.mp3",
+      "audioDurationSeconds": 4.536
     }
   ],
   "categoryId": "opi-category-05"

@@ -10,7 +10,9 @@
       "audioTextZh": "什么是全球导航卫星系统（GNSS）？",
       "referenceText": "GNSS stands for Global Navigation Satellite System. It is a family of satellite navigation systems that includes GPS from the United States, GLONASS from Russia, BeiDou from China, and Galileo from Europe.",
       "referenceTextZh": "GNSS 是全球导航卫星系统的缩写。它是一系列卫星导航系统的统称，包括美国的 GPS、俄罗斯的 GLONASS、中国的北斗和欧洲的伽利略。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/36e20571a223db57a2dd4bd438b5da0124fd3ef6c0fec0968d69f3506e25a032/audio/opi/opi-core-513.mp3",
+      "audioDurationSeconds": 3.864
     },
     {
       "id": "opi-core-514",
@@ -19,7 +21,9 @@
       "audioTextZh": "全球导航卫星系统（GNSS）包括哪些卫星导航星座？",
       "referenceText": "GNSS includes GPS from the United States, GLONASS from Russia, Galileo from Europe, and the BeiDou Navigation Satellite System from China. It also includes other satellite navigation systems.",
       "referenceTextZh": "GNSS 包括美国的 GPS、俄罗斯的 GLONASS、欧洲的伽利略和中国的北斗卫星导航系统，也包括其他卫星导航系统。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/d1f84fdb71e7cfa1f4c4f5abed3221c73381c5abcd6077221dd6e05a7d6a42e2/audio/opi/opi-core-514.mp3",
+      "audioDurationSeconds": 6.648
     },
     {
       "id": "opi-core-785",
@@ -28,7 +32,9 @@
       "audioTextZh": "现代卫星导航有哪些优势？",
       "referenceText": "Modern satellite-based navigation can provide precise guidance worldwide and in different weather conditions. It can support flexible and direct routes, including operations in remote areas without ground navigation equipment. These capabilities can reduce pilot workload and may also reduce airline operating costs.",
       "referenceTextZh": "现代卫星导航可以在全球和不同天气条件下提供精确引导。它支持灵活和直接的航路，包括在没有地面导航设备的偏远地区运行。这些能力可以降低飞行员工作负荷，也可能降低航空公司运行成本。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/8a46718e48aeb03ddeeb7fb5a54c4d0067581d513c362d6a4b79afc6e3443ed1/audio/opi/opi-core-785.mp3",
+      "audioDurationSeconds": 3.432
     }
   ],
   "categoryId": "opi-category-03"

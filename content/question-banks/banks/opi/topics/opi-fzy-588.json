@@ -18,7 +18,9 @@
       "audioTextZh": "图中发生了什么？",
       "studyTier": 0,
       "referenceText": "In this picture, a Y-5 is in the nose over condition. The tail is up and the nose is down. Y-5 is a double-wing, single-engine aircraft. There are some Air Force officers around this aircraft. One of them is pointing to the landing gear, another one is climbing onto the fuselage. Maybe they are investigating this accident.",
-      "referenceTextZh": "在这幅图里，一架Y-5发生机头触地反转。机尾在上，机头在下。Y-5系列是双翼单发飞机。飞机附近有一些空军军官。其中一个指着起落架，还有一个人爬到机身上。他们可能在调查这一事故。"
+      "referenceTextZh": "在这幅图里，一架Y-5发生机头触地反转。机尾在上，机头在下。Y-5系列是双翼单发飞机。飞机附近有一些空军军官。其中一个指着起落架，还有一个人爬到机身上。他们可能在调查这一事故。",
+      "audio": "/question-bank-assets/revisions/opi/ada4c3183f405d6831ea20e498a66be4d34cf9b133218d87d1d9351d2b4113e3/audio/opi/opi-fzy-110417.mp3",
+      "audioDurationSeconds": 1.632
     },
     {
       "id": "opi-fzy-110418",
@@ -27,7 +29,9 @@
       "audioTextZh": "造成这一事故的原因有哪些？",
       "studyTier": 0,
       "referenceText": "In my opinion, the main reason for nose over was braking too hard and too early during landing. As for this accident shown in picture, maybe the pilot was not proficient in landing skills and didn't use the brakes correctly. Or maybe the pilot saw some traffic or obstacles on the runway and he wanted to brake the aircraft earlier, but it caused the nose over.",
-      "referenceTextZh": "就我看来，飞机机头触地反转的主要原因是着陆过程中刹车过早、用力过猛。从图中事故来看，可能是飞行员着陆技术不达标，未能正确使用刹车。或者飞行员看到跑道上有车辆或是障碍物，他想及早刹车，但造成了机头触地反转。"
+      "referenceTextZh": "就我看来，飞机机头触地反转的主要原因是着陆过程中刹车过早、用力过猛。从图中事故来看，可能是飞行员着陆技术不达标，未能正确使用刹车。或者飞行员看到跑道上有车辆或是障碍物，他想及早刹车，但造成了机头触地反转。",
+      "audio": "/question-bank-assets/revisions/opi/c71cefb81756f3e5cebed0cc5dc197e597a39a1680b85e05d3512353edc11bac/audio/opi/opi-fzy-110418.mp3",
+      "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-fzy-110419",
@@ -36,7 +40,9 @@
       "audioTextZh": "如果飞机失火，你会如何应对？",
       "studyTier": 0,
       "referenceText": "First, we must report the situation to the ATC, we intend to make emergency evacuation and ask for emergency services. Second, we must notify cabin crew to prepare for the emergency. At last, we can carry out the emergency evacuation checklist.",
-      "referenceTextZh": "首先，我们必须向ATC报告该情况。我们打算进行紧急疏散并请求紧急服务。之后我们必须通知机组人员做好准备。最后我们要执行紧急疏散程序。"
+      "referenceTextZh": "首先，我们必须向ATC报告该情况。我们打算进行紧急疏散并请求紧急服务。之后我们必须通知机组人员做好准备。最后我们要执行紧急疏散程序。",
+      "audio": "/question-bank-assets/revisions/opi/e8425688afbe0b2dac475abc676a816a9bd80088242d83e1e0ef40be710ad4b9/audio/opi/opi-fzy-110419.mp3",
+      "audioDurationSeconds": 2.448
     },
     {
       "id": "opi-fzy-110420",
@@ -45,7 +51,9 @@
       "audioTextZh": "如果遇到类似图中的紧急情况，你会怎样做？",
       "studyTier": 0,
       "referenceText": "If I met such situation, I would report the situation to the ATC and ask for emergency services. If necessary, I would make an emergency evacuation.",
-      "referenceTextZh": "如果我遇到这种情况，我会向ATC报告该情况，并请求紧急服务。必要的话，我会执行紧急疏散。"
+      "referenceTextZh": "如果我遇到这种情况，我会向ATC报告该情况，并请求紧急服务。必要的话，我会执行紧急疏散。",
+      "audio": "/question-bank-assets/revisions/opi/34e7640572afb5b83332a0e9c91563ddf68730e45b557f8a2c6b4320b85163bd/audio/opi/opi-fzy-110420.mp3",
+      "audioDurationSeconds": 4.608
     },
     {
       "id": "opi-fzy-110421",
@@ -54,7 +62,9 @@
       "audioTextZh": "从这次事故中我们可以学到什么？",
       "studyTier": 0,
       "referenceText": "On one hand, the pilot should always follow the Standard Operation Procedure and use the suitable braking at the suitable time. On the other hand, the company should give more training to the pilot on aircraft systems and landing skills, and be stricter in the annual proficiency check and upgrade training check.",
-      "referenceTextZh": "一方面，飞行员应失踪遵循标准的操作程序，在适当的时候刹车。另一方面，公司应让该飞行员多学习飞机系统，多练习着陆技巧，并在年度能力考核及升级培训考核时严格要求。"
+      "referenceTextZh": "一方面，飞行员应失踪遵循标准的操作程序，在适当的时候刹车。另一方面，公司应让该飞行员多学习飞机系统，多练习着陆技巧，并在年度能力考核及升级培训考核时严格要求。",
+      "audio": "/question-bank-assets/revisions/opi/3b69d2ecb0fe1313acaa2cad213b5d38ffd7b53fefe069f816b561f89ea75edf/audio/opi/opi-fzy-110421.mp3",
+      "audioDurationSeconds": 1.824
     },
     {
       "id": "opi-fzy-110422",
@@ -63,7 +73,9 @@
       "audioTextZh": "飞机的哪些组件可以帮助着陆？",
       "studyTier": 0,
       "referenceText": "Landing is accomplished by slowing down and descending to the runway. This speed reduction is accomplished by reducing thrust and inducing a greater amount of drag using flaps, landing gear or speed brakes. As the plane approaches the ground, the pilot will execute a flare to induce a gentle landing.",
-      "referenceTextZh": "着陆是通过减速下降到跑道实现的。减速是通过减小推力，使用襟翼、起落架和减速板诱导更大的力实现的。飞机接近地面时，飞行员操纵飞机做一个平飘，慢慢着陆。"
+      "referenceTextZh": "着陆是通过减速下降到跑道实现的。减速是通过减小推力，使用襟翼、起落架和减速板诱导更大的力实现的。飞机接近地面时，飞行员操纵飞机做一个平飘，慢慢着陆。",
+      "audio": "/question-bank-assets/revisions/opi/37d4035720d587c2dec4292c1cea21058d81504c7b181fbb2b4d910acc81b4e3/audio/opi/opi-fzy-110422.mp3",
+      "audioDurationSeconds": 3.12
     },
     {
       "id": "opi-fzy-110423",
@@ -72,7 +84,9 @@
       "audioTextZh": "你对飞机起落架的类型有什么了解？",
       "studyTier": 0,
       "referenceText": "It normally comes in two types:\none is conventional or \"taildragger\" undercarriage, where there are two main wheels towards the front of the aircraft and a single, much smaller, wheel or skid at the rear; the other is tricycle undercarriage where there are two main wheels under the wings and a third smaller wheel in the nose.",
-      "referenceTextZh": "飞机起落架有两种类型：常规型即三点式起落架，这种起落架前部有两个主轮，尾部有一个较小的轮子；另一种是前三点式起落架，其中机翼下有两个主轮，机头有一个小一点的轮子。"
+      "referenceTextZh": "飞机起落架有两种类型：常规型即三点式起落架，这种起落架前部有两个主轮，尾部有一个较小的轮子；另一种是前三点式起落架，其中机翼下有两个主轮，机头有一个小一点的轮子。",
+      "audio": "/question-bank-assets/revisions/opi/6f9c665d942a84fe4dc88a9ce995ee68941e0215ab3289a3a5875a98db71fd18/audio/opi/opi-fzy-110423.mp3",
+      "audioDurationSeconds": 3.288
     },
     {
       "id": "opi-fzy-110424",
@@ -81,7 +95,9 @@
       "audioTextZh": "能介绍下你们飞机上的起落架么？",
       "studyTier": 0,
       "referenceText": "I'm flying Citation 1. It has three landing gears, two main gears and one nose gear. Both of them have one wheel. The landing gear system is controlled by No.3 hydraulic system. The control handle is located on the main instrument panel and there are two positions on the handle (up and down position) to retract and extend the landing gears.",
-      "referenceTextZh": "我飞的是奖状1系列，它有三个起落架，包括两个主起落架和一个前起落架。每个都有一个车轮。起落架系统由3号液压系统控制。控制手柄在主仪表盘上，手柄上下两个位置可以用来操作收缩或伸展起落架。"
+      "referenceTextZh": "我飞的是奖状1系列，它有三个起落架，包括两个主起落架和一个前起落架。每个都有一个车轮。起落架系统由3号液压系统控制。控制手柄在主仪表盘上，手柄上下两个位置可以用来操作收缩或伸展起落架。",
+      "audio": "/question-bank-assets/revisions/opi/d9187ddb9648d435edbbf4ebba99aee633a758e628d7449b38423d61a9a0928c/audio/opi/opi-fzy-110424.mp3",
+      "audioDurationSeconds": 2.328
     }
   ],
   "categoryId": "opi-category-08"

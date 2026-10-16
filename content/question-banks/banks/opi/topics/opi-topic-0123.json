@@ -9,7 +9,9 @@
       "audioText": "How many flight hours have you accumulated in total?",
       "audioTextZh": "你总共积累了多少飞行小时？",
       "referenceText": "I have accumulated about 15 flight hours in total. Most of that time was gained through dual instruction on the DA-40. I am continuing to build experience as I prepare for my first solo flight.",
-      "referenceTextZh": "我累计飞行了大约 15 小时，其中大部分是在 DA-40 上进行的带飞训练。为了准备第一次单飞，我正在继续积累经验。"
+      "referenceTextZh": "我累计飞行了大约 15 小时，其中大部分是在 DA-40 上进行的带飞训练。为了准备第一次单飞，我正在继续积累经验。",
+      "audio": "/question-bank-assets/revisions/opi/0add6fd0e6b5b7a283f143e3724f8e4ca92a209b27739e9dc7eae22d55cb5660/audio/opi/opi-core-398.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-extra-144",
@@ -17,7 +19,9 @@
       "audioText": "What does your company's logo look like?",
       "audioTextZh": "你所在公司的标志是什么样的？",
       "referenceText": "I am a student pilot and have not officially joined an airline, so I do not have a company logo to describe.",
-      "referenceTextZh": "我是一名学员飞行员，尚未正式加入航空公司，因此没有可以介绍的公司标志。"
+      "referenceTextZh": "我是一名学员飞行员，尚未正式加入航空公司，因此没有可以介绍的公司标志。",
+      "audio": "/question-bank-assets/revisions/opi/5f7b0c1d9f1e31ef8495ffcb40446207dff412312cd228bbfb8f72856af42c1f/audio/opi/opi-extra-144.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-extra-150",
@@ -26,7 +30,9 @@
       "audioTextZh": "你在哪家航空公司工作？",
       "studyTier": 0,
       "referenceText": "I work for Air China, it is one of the biggest airlines and the only flag-carrier in China. It is based in Beijing and has 7 branches/branch companies all over the country. There are over 200 aircraft in the fleet with over 2000 pilots. The routes cover domestic and international cities. It flies to almost every important city in the world, for example, Moscow, Rome, Dubai, Tokyo, Los Angeles and so on.",
-      "referenceTextZh": "我在中国国航工作，国航是中国最大的航空公司之一，是中国唯一载国旗飞行的航空公司。国航总部在北京，在全国各地还有7个分公司。国航拥有200多架飞机，2000多名飞行员。国航航线遍布国内外，航班几乎可飞往全世界每个重要国家，例如：莫斯科、罗马、迪拜、东京、洛杉矶等。"
+      "referenceTextZh": "我在中国国航工作，国航是中国最大的航空公司之一，是中国唯一载国旗飞行的航空公司。国航总部在北京，在全国各地还有7个分公司。国航拥有200多架飞机，2000多名飞行员。国航航线遍布国内外，航班几乎可飞往全世界每个重要国家，例如：莫斯科、罗马、迪拜、东京、洛杉矶等。",
+      "audio": "/question-bank-assets/revisions/opi/6003e35e90188aeaf73a5cf04ab290b95600ee50334980bcd470905859636eed/audio/opi/opi-extra-150.mp3",
+      "audioDurationSeconds": 1.776
     },
     {
       "id": "opi-extra-152",
@@ -34,7 +40,9 @@
       "audioText": "How many years have you worked as a pilot?",
       "audioTextZh": "你从事飞行员工作多少年了？",
       "referenceText": "I have not worked as a professional pilot yet because I am still a student pilot. My aviation experience comes from flight training rather than employment. I plan to apply for a pilot position after I complete the required licences and training.",
-      "referenceTextZh": "我仍是一名飞行学员，因此还没有担任过职业飞行员。我的航空经历来自飞行训练，而不是受雇工作。完成规定的执照和训练后，我计划应聘飞行员职位。"
+      "referenceTextZh": "我仍是一名飞行学员，因此还没有担任过职业飞行员。我的航空经历来自飞行训练，而不是受雇工作。完成规定的执照和训练后，我计划应聘飞行员职位。",
+      "audio": "/question-bank-assets/revisions/opi/f1b7c18b3ac57470295cae79e3874f81e018b0fca4666993843aafab4d049eec/audio/opi/opi-extra-152.mp3",
+      "audioDurationSeconds": 2.232
     },
     {
       "id": "opi-extra-152-part-2",
@@ -42,7 +50,9 @@
       "audioText": "How long have you worked for your current company?",
       "audioTextZh": "你在目前所在的公司工作多长时间了？",
       "referenceText": "I do not have a current employer because I am still training at flight school. Therefore, I have not worked for a company as a pilot. My present focus is completing my training and building the experience needed for future employment.",
-      "referenceTextZh": "我仍在航校训练，目前没有雇主。因此，我还没有在任何公司担任过飞行员。现阶段我主要专注于完成训练，并积累未来就业所需的经验。"
+      "referenceTextZh": "我仍在航校训练，目前没有雇主。因此，我还没有在任何公司担任过飞行员。现阶段我主要专注于完成训练，并积累未来就业所需的经验。",
+      "audio": "/question-bank-assets/revisions/opi/8bc29ea46fa2344bdf9b0af23df12f619118feab2715e1384468ee9985e8e5a7/audio/opi/opi-extra-152-part-2.mp3",
+      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-extra-155",
@@ -50,7 +60,9 @@
       "audioText": "Do you like your company's logo, and why?",
       "audioTextZh": "你喜欢自己公司的标志吗？为什么？",
       "referenceText": "I have not joined an airline yet, so I do not have a company logo to evaluate. I do like my flight school's logo because it is simple, easy to recognise, and represents aviation training. A good logo should be clear and professional rather than too complicated.",
-      "referenceTextZh": "我还没有加入航空公司，所以没有可以评价的公司标志。我很喜欢航校的标志，因为它简洁、容易识别，也能体现飞行训练的特点。好的标志应当清晰、专业，不宜过于复杂。"
+      "referenceTextZh": "我还没有加入航空公司，所以没有可以评价的公司标志。我很喜欢航校的标志，因为它简洁、容易识别，也能体现飞行训练的特点。好的标志应当清晰、专业，不宜过于复杂。",
+      "audio": "/question-bank-assets/revisions/opi/e49ebd060cb64f9c64a31d2f629db948c7666088c42c04163590a445a65749f4/audio/opi/opi-extra-155.mp3",
+      "audioDurationSeconds": 2.568
     },
     {
       "id": "opi-extra-156",
@@ -58,7 +70,9 @@
       "audioText": "What is your favorite city, and why?",
       "audioTextZh": "你最喜欢哪座城市？为什么？",
       "referenceText": "My favourite city is Chengdu because it is my hometown and my family lives there. I enjoy its relaxed atmosphere, Sichuan food, and green public spaces. It also has many interesting places to visit, including the giant panda research base.",
-      "referenceTextZh": "我最喜欢的城市是成都，因为那里是我的家乡，我的家人也住在那里。我喜欢成都悠闲的氛围、川菜和绿意盎然的公共空间。那里还有许多有趣的景点，包括大熊猫繁育研究基地。"
+      "referenceTextZh": "我最喜欢的城市是成都，因为那里是我的家乡，我的家人也住在那里。我喜欢成都悠闲的氛围、川菜和绿意盎然的公共空间。那里还有许多有趣的景点，包括大熊猫繁育研究基地。",
+      "audio": "/question-bank-assets/revisions/opi/404c70b9c677da326b9799799fc3f8787b197234e12dd3727225abb6fd201d68/audio/opi/opi-extra-156.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-extra-157",
@@ -66,7 +80,9 @@
       "audioText": "What is the traffic like where you live now?",
       "audioTextZh": "你目前居住地的交通状况怎么样？",
       "referenceText": "I currently live in Xi'an. Traffic is often busy, and there are frequent traffic jams because it is a large city.",
-      "referenceTextZh": "我目前住在西安。作为一座大城市，这里的交通经常很繁忙，也时常堵车。"
+      "referenceTextZh": "我目前住在西安。作为一座大城市，这里的交通经常很繁忙，也时常堵车。",
+      "audio": "/question-bank-assets/revisions/opi/9f97ede14d398aeab465294ca7ff48a484b494d156bfc0f0f9d16c9653053b7e/audio/opi/opi-extra-157.mp3",
+      "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-extra-158",
@@ -74,7 +90,9 @@
       "audioText": "Which do you prefer, your hometown or the city where you live now, and why?",
       "audioTextZh": "你的家乡和目前居住的城市相比，你更喜欢哪一个？为什么？",
       "referenceText": "I prefer my hometown because I grew up there and know it very well. My family still lives there, which makes it especially important to me.",
-      "referenceTextZh": "我更喜欢自己的家乡，因为我在那里长大，对那里非常熟悉。我的家人现在仍住在那里，所以家乡对我格外重要。"
+      "referenceTextZh": "我更喜欢自己的家乡，因为我在那里长大，对那里非常熟悉。我的家人现在仍住在那里，所以家乡对我格外重要。",
+      "audio": "/question-bank-assets/revisions/opi/e68776751a72a57a96488a3aaeeb0b6342bf05619be4f915274b080e8b915689/audio/opi/opi-extra-158.mp3",
+      "audioDurationSeconds": 4.368
     },
     {
       "id": "opi-extra-163",
@@ -82,7 +100,9 @@
       "audioText": "What is your hometown famous for?",
       "audioTextZh": "你的家乡因什么而闻名？",
       "referenceText": "My hometown is Chengdu in Sichuan Province. It is famous for Sichuan food, especially hot pot and mapo tofu, and for attractions such as the Chengdu Research Base of Giant Panda Breeding.",
-      "referenceTextZh": "我的家乡是四川省成都市。那里以川菜闻名，尤其是火锅和麻婆豆腐，还有成都大熊猫繁育研究基地等景点。"
+      "referenceTextZh": "我的家乡是四川省成都市。那里以川菜闻名，尤其是火锅和麻婆豆腐，还有成都大熊猫繁育研究基地等景点。",
+      "audio": "/question-bank-assets/revisions/opi/c3ff9bfe1c66c2475afb2b1c804bdeb3409471d47eb1bd13fbffdba8daaa7e0e/audio/opi/opi-extra-163.mp3",
+      "audioDurationSeconds": 1.824
     },
     {
       "id": "opi-extra-164",
@@ -90,7 +110,9 @@
       "audioText": "What is the weather usually like in your hometown?",
       "audioTextZh": "你的家乡通常是什么天气？",
       "referenceText": "The weather in my hometown is usually mild and humid. Summers are not extremely hot, winters are relatively warm, and most of the rain falls in summer and autumn.",
-      "referenceTextZh": "我的家乡通常气候温和湿润。夏天不会极端炎热，冬天相对温暖，降雨大多集中在夏季和秋季。"
+      "referenceTextZh": "我的家乡通常气候温和湿润。夏天不会极端炎热，冬天相对温暖，降雨大多集中在夏季和秋季。",
+      "audio": "/question-bank-assets/revisions/opi/236580cde3d57e50bfc9df4fd8b260b172e1f3b866751a1fb6ed3f5b5932ae1c/audio/opi/opi-extra-164.mp3",
+      "audioDurationSeconds": 2.424
     },
     {
       "id": "opi-extra-165",
@@ -98,7 +120,9 @@
       "audioText": "How does your hometown compare with the city where you live now?",
       "audioTextZh": "你的家乡与目前居住的城市相比如何？",
       "referenceText": "My hometown is more relaxed, with a strong cultural atmosphere and a slower pace of life. The city where I live now is a busy aviation hub with a faster working rhythm and more convenient transport, especially for air travel.",
-      "referenceTextZh": "我的家乡生活节奏较慢，氛围更轻松，也有浓厚的文化气息。我现在居住的城市是一座繁忙的航空枢纽，工作节奏更快，交通也更便利，尤其是航空出行。"
+      "referenceTextZh": "我的家乡生活节奏较慢，氛围更轻松，也有浓厚的文化气息。我现在居住的城市是一座繁忙的航空枢纽，工作节奏更快，交通也更便利，尤其是航空出行。",
+      "audio": "/question-bank-assets/revisions/opi/935284e91bcdc7fc5e36c3cf47ca9f655d8e101c41bbee1a7f5f0aa08b964273/audio/opi/opi-extra-165.mp3",
+      "audioDurationSeconds": 3.096
     },
     {
       "id": "opi-extra-166",
@@ -106,7 +130,9 @@
       "audioText": "What interesting places can visitors see in your hometown?",
       "audioTextZh": "游客可以在你的家乡参观哪些有趣的地方？",
       "referenceText": "Visitors can see giant pandas at the Chengdu Research Base of Giant Panda Breeding. They can also visit Jinli Ancient Street to experience traditional Sichuan culture and the Dujiangyan Irrigation System to see remarkable ancient engineering.",
-      "referenceTextZh": "游客可以在成都大熊猫繁育研究基地看到大熊猫。他们也可以到锦里古街体验传统四川文化，或参观都江堰水利工程，了解非凡的古代工程技术。"
+      "referenceTextZh": "游客可以在成都大熊猫繁育研究基地看到大熊猫。他们也可以到锦里古街体验传统四川文化，或参观都江堰水利工程，了解非凡的古代工程技术。",
+      "audio": "/question-bank-assets/revisions/opi/6eec8af7e91ebb5a15581df34ff989213963a2140d75ab56e616ec9ceca74a80/audio/opi/opi-extra-166.mp3",
+      "audioDurationSeconds": 3.144
     },
     {
       "id": "opi-extra-167",
@@ -114,7 +140,9 @@
       "audioText": "What is your preferred mode of transportation, and why?",
       "audioTextZh": "你最喜欢哪种交通方式？为什么？",
       "referenceText": "I prefer to travel by air because it is fast and efficient, especially over long distances. It also lets me experience aviation directly.",
-      "referenceTextZh": "我更喜欢乘飞机旅行，因为它快捷高效，尤其适合长途出行。乘飞机也能让我直接感受航空。"
+      "referenceTextZh": "我更喜欢乘飞机旅行，因为它快捷高效，尤其适合长途出行。乘飞机也能让我直接感受航空。",
+      "audio": "/question-bank-assets/revisions/opi/722a4940cf45f412ca7eca08fae7b5fcb7494cb25ac104e5c49b7a1d0593393a/audio/opi/opi-extra-167.mp3",
+      "audioDurationSeconds": 3.12
     },
     {
       "id": "opi-extra-168",
@@ -122,7 +150,9 @@
       "audioText": "Do you think owning a car is necessary in your hometown, and why?",
       "audioTextZh": "你认为在家乡拥有一辆汽车有必要吗？为什么？",
       "referenceText": "It depends on a person's needs. A car is useful for families in suburban areas or people who often travel to remote places. For someone living downtown with convenient public transport, owning a car may not be necessary.",
-      "referenceTextZh": "这取决于个人需求。对住在郊区的家庭或经常前往偏远地区的人来说，汽车很有用。对住在市中心且公共交通便利的人来说，可能没有必要拥有汽车。"
+      "referenceTextZh": "这取决于个人需求。对住在郊区的家庭或经常前往偏远地区的人来说，汽车很有用。对住在市中心且公共交通便利的人来说，可能没有必要拥有汽车。",
+      "audio": "/question-bank-assets/revisions/opi/1710f8fc256d1cc9e2e4177aa7bec25fe11360f4d35c7ec1707217d0f06120fc/audio/opi/opi-extra-168.mp3",
+      "audioDurationSeconds": 3.816
     },
     {
       "id": "opi-extra-169",
@@ -130,7 +160,9 @@
       "audioText": "Which place abroad would you most like to visit, and why?",
       "audioTextZh": "你最想去国外的哪个地方？为什么？",
       "referenceText": "I have not travelled abroad yet, but I would most like to visit the United States. I would like to see its aviation museums and training institutions and learn more about aviation technology and training concepts.",
-      "referenceTextZh": "我还没有出国旅行过，但最想去美国。我想参观那里的航空博物馆和训练机构，进一步了解航空技术和训练理念。"
+      "referenceTextZh": "我还没有出国旅行过，但最想去美国。我想参观那里的航空博物馆和训练机构，进一步了解航空技术和训练理念。",
+      "audio": "/question-bank-assets/revisions/opi/0db189c4509605e66b876afbe2698364872f01443d61b2f67105eb633eeca77c/audio/opi/opi-extra-169.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-extra-170",
@@ -138,7 +170,9 @@
       "audioText": "Have you ever operated an international flight?",
       "audioTextZh": "你是否曾执行过国际航班？",
       "referenceText": "No, I have not operated an international flight yet. My flight experience is mainly limited to domestic training flights, although I have studied international flight operations in theory. I hope to gain experience on international routes after becoming a professional pilot.",
-      "referenceTextZh": "没有，我还没有执行过国际航班。我的飞行经历主要是国内训练飞行，不过我在理论上学习过国际飞行运行。成为职业飞行员后，我希望能积累国际航线经验。"
+      "referenceTextZh": "没有，我还没有执行过国际航班。我的飞行经历主要是国内训练飞行，不过我在理论上学习过国际飞行运行。成为职业飞行员后，我希望能积累国际航线经验。",
+      "audio": "/question-bank-assets/revisions/opi/d297612177ecf561a7a5f78740d660e7861da33be15dbd98e03615c28726f0e3/audio/opi/opi-extra-170.mp3",
+      "audioDurationSeconds": 2.616
     },
     {
       "id": "opi-extra-171",
@@ -146,7 +180,9 @@
       "audioText": "Does your company operate any international routes?",
       "audioTextZh": "你所在公司是否运营国际航线？",
       "referenceText": "I am not employed by an airline, so I do not have a company route network. My flight-school operations are domestic training flights rather than scheduled international services. I hope to gain international flying experience after completing my training and joining an airline.",
-      "referenceTextZh": "我没有在航空公司任职，因此没有公司的航线网络。我的航校运行是国内训练飞行，而不是定期国际航班。完成训练并加入航空公司后，我希望能获得国际飞行经验。"
+      "referenceTextZh": "我没有在航空公司任职，因此没有公司的航线网络。我的航校运行是国内训练飞行，而不是定期国际航班。完成训练并加入航空公司后，我希望能获得国际飞行经验。",
+      "audio": "/question-bank-assets/revisions/opi/3c1d0535bda12212090bbfa178fba42033174aeeb38e8585520464f4aa0b4c28/audio/opi/opi-extra-171.mp3",
+      "audioDurationSeconds": 2.76
     },
     {
       "id": "opi-extra-172",
@@ -154,7 +190,9 @@
       "audioText": "Do you prefer international or domestic routes, and why?",
       "audioTextZh": "你更喜欢国际航线还是国内航线？为什么？",
       "referenceText": "I appreciate both types of route. International routes offer opportunities to experience different cultures and aviation environments, while domestic routes involve more familiar procedures. For those reasons, I do not have a strong preference.",
-      "referenceTextZh": "我喜欢这两类航线。国际航线提供了体验不同文化和航空环境的机会，国内航线的运行程序则更加熟悉。因此，我没有明显的偏好。"
+      "referenceTextZh": "我喜欢这两类航线。国际航线提供了体验不同文化和航空环境的机会，国内航线的运行程序则更加熟悉。因此，我没有明显的偏好。",
+      "audio": "/question-bank-assets/revisions/opi/3fa78b257f2e6a20c0de301f2b47a535eb28a50e79af579f82c37bd1232b5f3e/audio/opi/opi-extra-172.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-extra-173",
@@ -162,7 +200,9 @@
       "audioText": "Do you prefer long-haul or short-haul routes, and why?",
       "audioTextZh": "你更喜欢远程航线还是短程航线？为什么？",
       "referenceText": "I do not have a strong preference. Long-haul routes require good physical fitness and fatigue management, while short-haul routes require pilots to adapt to frequent takeoffs and landings. Both types of route can help a pilot improve different skills.",
-      "referenceTextZh": "我没有明显的偏好。长途航线要求良好的身体素质和疲劳管理能力，短途航线则要求飞行员适应频繁的起飞和着陆。两类航线都能帮助飞行员提高不同方面的技能。"
+      "referenceTextZh": "我没有明显的偏好。长途航线要求良好的身体素质和疲劳管理能力，短途航线则要求飞行员适应频繁的起飞和着陆。两类航线都能帮助飞行员提高不同方面的技能。",
+      "audio": "/question-bank-assets/revisions/opi/68b83ef7f6dc16741970630ba8d9a0699d739234957817c77097c9324319ba2c/audio/opi/opi-extra-173.mp3",
+      "audioDurationSeconds": 3.216
     }
   ],
   "categoryId": "opi-category-07"

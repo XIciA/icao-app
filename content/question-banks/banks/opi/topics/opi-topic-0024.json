@@ -9,7 +9,9 @@
       "audioText": "How do pilots use the communication equipment available in the cockpit?",
       "audioTextZh": "飞行员如何使用驾驶舱内的通信设备？",
       "referenceText": "Pilots use VHF or HF radios and data links to communicate with ATC. They can use the passenger-address system for announcements, the interphone to speak with cabin crew or ground staff, and a satellite phone to contact company dispatch.",
-      "referenceTextZh": "飞行员使用 VHF 或 HF 无线电和数据链与空中交通管制通信。他们可以使用旅客广播系统进行广播，使用内话系统与客舱机组或地面人员通话，并使用卫星电话联系公司签派。"
+      "referenceTextZh": "飞行员使用 VHF 或 HF 无线电和数据链与空中交通管制通信。他们可以使用旅客广播系统进行广播，使用内话系统与客舱机组或地面人员通话，并使用卫星电话联系公司签派。",
+      "audio": "/question-bank-assets/revisions/opi/4277ad8446d951c4d5e0b2153783593ca5949108e1bd497e363265a753c1fa77/audio/opi/opi-core-359.mp3",
+      "audioDurationSeconds": 3.936
     },
     {
       "id": "opi-core-360",
@@ -17,7 +19,9 @@
       "audioText": "Where can pilots find their operator's guidance for handling a communication failure?",
       "audioTextZh": "飞行员可以在哪里找到所属运营人关于处置通信失效的指导？",
       "referenceText": "At my flight school, communication-failure guidance can be found in the checklist and SOP.",
-      "referenceTextZh": "在我的航校，可以从检查单和标准操作程序中找到通信失效处置指引。"
+      "referenceTextZh": "在我的航校，可以从检查单和标准操作程序中找到通信失效处置指引。",
+      "audio": "/question-bank-assets/revisions/opi/2d5336030603a69b3461756e3f2358fb93779b082c36430c70e123e4ac8ccb06/audio/opi/opi-core-360.mp3",
+      "audioDurationSeconds": 4.632
     },
     {
       "id": "opi-core-361",
@@ -25,7 +29,9 @@
       "audioText": "How should pilots respond if their radio transmitter fails?",
       "audioTextZh": "无线电发射机失效时，飞行员应如何处置？",
       "referenceText": "Pilots should follow the applicable SOP and checklist and recheck the headset, microphone, frequency, and transmitter. They should set the transponder to 7600 and continue monitoring ATC instructions if the receiver is still working.",
-      "referenceTextZh": "飞行员应遵循适用的标准操作程序和检查单，并重新检查耳机、麦克风、频率和发射机。他们应将应答机设为 7600；如果接收机仍能工作，就继续守听空中交通管制指令。"
+      "referenceTextZh": "飞行员应遵循适用的标准操作程序和检查单，并重新检查耳机、麦克风、频率和发射机。他们应将应答机设为 7600；如果接收机仍能工作，就继续守听空中交通管制指令。",
+      "audio": "/question-bank-assets/revisions/opi/73e445e906d7e09c765377b020da6cb83615a9e5770d847b0c63f097dbca0627/audio/opi/opi-core-361.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-core-362",
@@ -33,7 +39,9 @@
       "audioText": "How should pilots respond if their radio receiver fails?",
       "audioTextZh": "无线电接收机失效时，飞行员应如何处置？",
       "referenceText": "If the radio receiver fails but the transmitter still works, the pilots should set the transponder to 7600 and transmit blind on the appropriate frequency.",
-      "referenceTextZh": "如果无线电接收机失效但发射机仍能工作，飞行员应将应答机设为 7600，并在适当频率上进行盲发。"
+      "referenceTextZh": "如果无线电接收机失效但发射机仍能工作，飞行员应将应答机设为 7600，并在适当频率上进行盲发。",
+      "audio": "/question-bank-assets/revisions/opi/022d0b12db13b1457cda18d3ad31f94063359549a094dbed5f565d3207c9747b/audio/opi/opi-core-362.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-core-363",
@@ -41,7 +49,9 @@
       "audioText": "What human factors can reduce the effectiveness of pilot–controller communication?",
       "audioTextZh": "哪些人为因素会降低飞行员与管制员之间的沟通效果？",
       "referenceText": "Communication can become less effective when pilots or controllers use nonstandard phraseology, speak unclearly, or fail to confirm information when in doubt. High pilot workload and an incorrect frequency setting can also cause problems.",
-      "referenceTextZh": "飞行员或管制员使用非标准通话用语、表达不清，或有疑问时未核实信息，都会降低通信效果。飞行员工作负荷过高和频率设置错误也会造成问题。"
+      "referenceTextZh": "飞行员或管制员使用非标准通话用语、表达不清，或有疑问时未核实信息，都会降低通信效果。飞行员工作负荷过高和频率设置错误也会造成问题。",
+      "audio": "/question-bank-assets/revisions/opi/0b32ac4c6cf8a3c68434998763750c14a7091cc815d1eeb9420c15633f3c2c56/audio/opi/opi-core-363.mp3",
+      "audioDurationSeconds": 4.608
     },
     {
       "id": "opi-core-365",
@@ -49,7 +59,9 @@
       "audioText": "What environmental conditions can interfere with pilot–controller communication?",
       "audioTextZh": "哪些环境条件会干扰飞行员与管制员之间的通信？",
       "referenceText": "Loud external noise, malfunctioning communication equipment, an unstable signal, and interference from other transmissions can disrupt pilot–controller communication.",
-      "referenceTextZh": "较大的外部噪声、通信设备故障、信号不稳定以及其他发射造成的干扰，都会中断飞行员与管制员之间的通信。"
+      "referenceTextZh": "较大的外部噪声、通信设备故障、信号不稳定以及其他发射造成的干扰，都会中断飞行员与管制员之间的通信。",
+      "audio": "/question-bank-assets/revisions/opi/ba143bb8a7093527825ed209a2c500946d8b633a327d19f12546b84949a8d324/audio/opi/opi-core-365.mp3",
+      "audioDurationSeconds": 4.512
     },
     {
       "id": "opi-core-366",
@@ -57,7 +69,9 @@
       "audioText": "Which flight crew member normally handles radio communication with ATC?",
       "audioTextZh": "通常由哪名飞行机组成员负责与空中交通管制部门进行无线电通信？",
       "referenceText": "The pilot monitoring normally handles radio communication with ATC while the pilot flying concentrates on controlling and navigating the aircraft. The crew may reassign the duty when necessary, but the change should be clearly understood by both pilots.",
-      "referenceTextZh": "监控飞行员通常负责与空中交通管制进行无线电通信，操纵飞行员则专注于控制和导航飞机。机组可以在必要时重新分配这项职责，但两名飞行员都应清楚理解这一变更。"
+      "referenceTextZh": "监控飞行员通常负责与空中交通管制进行无线电通信，操纵飞行员则专注于控制和导航飞机。机组可以在必要时重新分配这项职责，但两名飞行员都应清楚理解这一变更。",
+      "audio": "/question-bank-assets/revisions/opi/0b6f7c4167435675db2d4a47254aba74b8a2a339ed172e6b71e31b5ea85e94fe/audio/opi/opi-core-366.mp3",
+      "audioDurationSeconds": 4.32
     },
     {
       "id": "opi-core-367",
@@ -65,7 +79,9 @@
       "audioText": "Why should pilots keep radio transmissions brief and relevant?",
       "audioTextZh": "飞行员为什么应使无线电通话简短并紧扣相关内容？",
       "referenceText": "Takeoff and approach are critical phases with a high pilot workload. Brief, relevant transmissions help pilots focus on controlling the aircraft and completing the checklist.",
-      "referenceTextZh": "起飞和进近是飞行员工作负荷较高的关键阶段。简短且相关的通话有助于飞行员专注于控制飞机和完成检查单。"
+      "referenceTextZh": "起飞和进近是飞行员工作负荷较高的关键阶段。简短且相关的通话有助于飞行员专注于控制飞机和完成检查单。",
+      "audio": "/question-bank-assets/revisions/opi/a55090d2b630479c920d946ec7df54b95fb76b61367a7a3a34deac18768cb3dc/audio/opi/opi-core-367.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-core-371",
@@ -73,7 +89,9 @@
       "audioText": "What are the main ways pilots can communicate with ATC?",
       "audioTextZh": "飞行员与空中交通管制部门通信的主要方式有哪些？",
       "referenceText": "The two main methods are voice communication by VHF or HF radio and text communication by data link, such as CPDLC. Radio supports real-time conversation, while data link can carry clearances and reports when voice communication is difficult.",
-      "referenceTextZh": "两种主要方式是通过 VHF 或 HF 无线电进行话音通信，以及通过 CPDLC 等数据链进行文字通信。无线电支持实时对话，数据链则可在话音通信困难时传递许可和报告。"
+      "referenceTextZh": "两种主要方式是通过 VHF 或 HF 无线电进行话音通信，以及通过 CPDLC 等数据链进行文字通信。无线电支持实时对话，数据链则可在话音通信困难时传递许可和报告。",
+      "audio": "/question-bank-assets/revisions/opi/829795511bfff3ea689d349b4ecdda8ad06f30b2f194003451968cf644f32cb1/audio/opi/opi-core-371.mp3",
+      "audioDurationSeconds": 3.168
     },
     {
       "id": "opi-core-374",
@@ -81,7 +99,9 @@
       "audioText": "What suggestions would you give air traffic controllers to improve communication with pilots?",
       "audioTextZh": "为了改善与飞行员的沟通，你会向空中交通管制员提出哪些建议？",
       "referenceText": "Controllers should use standard phraseology, speak clearly, and verify any information that is uncertain. They should provide flight and weather information promptly and maintain good communication with pilots. In an emergency, they should offer timely assistance.",
-      "referenceTextZh": "管制员应使用标准通话用语、表达清楚，并核实任何不确定的信息。他们应及时提供飞行和天气信息，并与飞行员保持良好沟通。出现紧急情况时，应及时提供协助。"
+      "referenceTextZh": "管制员应使用标准通话用语、表达清楚，并核实任何不确定的信息。他们应及时提供飞行和天气信息，并与飞行员保持良好沟通。出现紧急情况时，应及时提供协助。",
+      "audio": "/question-bank-assets/revisions/opi/f741e9b1b812b877ad236c8af65fae0b72ca92bee6c57054ee227211e2df29bb/audio/opi/opi-core-374.mp3",
+      "audioDurationSeconds": 4.992
     },
     {
       "id": "opi-core-376",
@@ -89,7 +109,9 @@
       "audioText": "Have you ever experienced a misunderstanding while communicating by radio in flight?",
       "audioTextZh": "你是否曾在飞行中通过无线电通信时遇到误解？",
       "referenceText": "No, I have never experienced a misunderstanding during radio communication in flight.",
-      "referenceTextZh": "没有，我在飞行中的无线电通信里从未遇到过误解。"
+      "referenceTextZh": "没有，我在飞行中的无线电通信里从未遇到过误解。",
+      "audio": "/question-bank-assets/revisions/opi/6908af896b324ef96690113256c4bbbb2c196a7dfb026a291fcc80f400c3a9fc/audio/opi/opi-core-376.mp3",
+      "audioDurationSeconds": 4.752
     },
     {
       "id": "opi-core-377",
@@ -97,7 +119,9 @@
       "audioText": "Can you describe an aviation incident in which a misunderstanding between pilots and controllers played a part?",
       "audioTextZh": "你能否描述一起航空事件，其中飞行员与管制员之间的误解是影响因素之一？",
       "referenceText": "The 1977 Tenerife accident is a well-known example. The KLM aircraft began its takeoff while the Pan Am aircraft was still on the runway, and unclear phraseology and overlapping radio transmissions contributed to the misunderstanding. The accident led to stronger emphasis on standard phraseology, complete readbacks, and clear takeoff clearances.",
-      "referenceTextZh": "1977 年特内里费事故是一个著名案例。泛美飞机仍在跑道上时，荷航飞机开始起飞，含糊的通话用语和重叠的无线电发射促成了误解。事故后，业界更加重视标准通话用语、完整复诵和明确的起飞许可。"
+      "referenceTextZh": "1977 年特内里费事故是一个著名案例。泛美飞机仍在跑道上时，荷航飞机开始起飞，含糊的通话用语和重叠的无线电发射促成了误解。事故后，业界更加重视标准通话用语、完整复诵和明确的起飞许可。",
+      "audio": "/question-bank-assets/revisions/opi/f416cf64571ce931de0064c4f6d48d32aafe605be1120b06adeed5ab08012c1a/audio/opi/opi-core-377.mp3",
+      "audioDurationSeconds": 5.832
     },
     {
       "id": "opi-core-382",
@@ -105,7 +129,9 @@
       "audioText": "Why is clear voice communication important to aviation safety?",
       "audioTextZh": "清晰的语音通信为什么对航空安全很重要？",
       "referenceText": "Clear voice communication quickly conveys pilot intentions and ATC instructions. It allows unclear information to be confirmed in real time and supports an effective response to emergencies. This reduces misunderstandings that could lead to a loss of separation or a runway incursion.",
-      "referenceTextZh": "清晰的话音通信能够迅速传达飞行员意图和空中交通管制指令。它使不明确的信息可以得到实时核实，并支持对紧急情况作出有效响应，从而减少可能导致间隔丧失或跑道侵入的误解。"
+      "referenceTextZh": "清晰的话音通信能够迅速传达飞行员意图和空中交通管制指令。它使不明确的信息可以得到实时核实，并支持对紧急情况作出有效响应，从而减少可能导致间隔丧失或跑道侵入的误解。",
+      "audio": "/question-bank-assets/revisions/opi/2b448ffdb8ca1d870b92a847744d42a603f102fa3c83645f0c0445a7aa5cb3c5/audio/opi/opi-core-382.mp3",
+      "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-core-383",
@@ -113,7 +139,9 @@
       "audioText": "What is your operator's procedure for a radio communication failure?",
       "audioTextZh": "你所属运营人规定的无线电通信失效程序是什么？",
       "referenceText": "My operator's procedure is to set the transponder to 7600 and try to re-establish communication by resetting the radios or using 121.5. We make blind transmissions and position reports as necessary.",
-      "referenceTextZh": "我所在运营人的程序是将应答机设为 7600，并通过重置无线电或使用 121.5 尝试恢复通信。必要时，我们会进行盲发和位置报告。"
+      "referenceTextZh": "我所在运营人的程序是将应答机设为 7600，并通过重置无线电或使用 121.5 尝试恢复通信。必要时，我们会进行盲发和位置报告。",
+      "audio": "/question-bank-assets/revisions/opi/314ae16058dbcef54bca527c4e68c2dc3d2bfc253e4ff87bb5f2fdf0307c273b/audio/opi/opi-core-383.mp3",
+      "audioDurationSeconds": 3.864
     },
     {
       "id": "opi-core-384",
@@ -121,7 +149,9 @@
       "audioText": "How should pilots respond if ATC uses non-standard phraseology?",
       "audioTextZh": "如果空中交通管制员使用非标准用语，飞行员应如何应对？",
       "referenceText": "Pilots should listen carefully, reply with standard radiotelephony phraseology, and read back the instruction correctly. If anything is unclear, they should ask ATC to confirm or repeat the instruction before taking further action.",
-      "referenceTextZh": "飞行员应认真守听，使用标准无线电话音回答，并正确复诵指令。如果有任何不清楚之处，应在采取进一步行动前请求空中交通管制确认或重复指令。"
+      "referenceTextZh": "飞行员应认真守听，使用标准无线电话音回答，并正确复诵指令。如果有任何不清楚之处，应在采取进一步行动前请求空中交通管制确认或重复指令。",
+      "audio": "/question-bank-assets/revisions/opi/37ab9ce4e7251d6044e735e5104bd6ca589e813ced14f8b4486ade3847b92d5c/audio/opi/opi-core-384.mp3",
+      "audioDurationSeconds": 4.152
     },
     {
       "id": "opi-core-385",
@@ -129,7 +159,9 @@
       "audioText": "What communication risks can arise when a controller has a strong accent?",
       "audioTextZh": "管制员口音浓重时，可能产生哪些通信风险？",
       "referenceText": "A strong accent may cause pilots to mishear or misunderstand an ATC instruction. This can lead to an incorrect altitude or route and may delay confirmation of the instruction.",
-      "referenceTextZh": "较重的口音可能使飞行员听错或误解空中交通管制指令，导致使用错误的高度或航路，并可能延误对指令的确认。"
+      "referenceTextZh": "较重的口音可能使飞行员听错或误解空中交通管制指令，导致使用错误的高度或航路，并可能延误对指令的确认。",
+      "audio": "/question-bank-assets/revisions/opi/c1c06a9e7c66df82414c2d064e24f53c8c62950644a890f63cf1c3e1c807c878/audio/opi/opi-core-385.mp3",
+      "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-core-643",
@@ -137,7 +169,9 @@
       "audioText": "Why can non-standard phraseology threaten flight safety?",
       "audioTextZh": "非标准用语为什么会威胁飞行安全？",
       "referenceText": "Non-standard phraseology can cause pilots and controllers to misunderstand each other. That misunderstanding may lead to a runway incursion or an accident.",
-      "referenceTextZh": "非标准通话用语会使飞行员和管制员彼此误解。这种误解可能导致跑道侵入或事故。"
+      "referenceTextZh": "非标准通话用语会使飞行员和管制员彼此误解。这种误解可能导致跑道侵入或事故。",
+      "audio": "/question-bank-assets/revisions/opi/20ee681169ad3c4411efbfaf5d3a865ed462d98968036466ea800eed0f9cdc27/audio/opi/opi-core-643.mp3",
+      "audioDurationSeconds": 3.384
     }
   ],
   "categoryId": "opi-category-05"

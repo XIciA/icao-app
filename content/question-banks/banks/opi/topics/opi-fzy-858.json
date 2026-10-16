@@ -18,7 +18,9 @@
       "audioTextZh": "你从图中可以看到什么？",
       "studyTier": 2,
       "referenceText": "From the picture I can see an airplane from Asiana Airlines made a forced landing.\nSome passengers were evacuating with their luggage.\nTwo emergency slides were deployed.\nThe dense smoke was coming from the aircraft.",
-      "referenceTextZh": "图中可以看到一架韩亚航空的飞机紧急迫降了。\n部分乘客提着行李从飞机撤离。\n两个紧急滑梯被放下。\n飞机正冒着浓烟。"
+      "referenceTextZh": "图中可以看到一架韩亚航空的飞机紧急迫降了。\n部分乘客提着行李从飞机撤离。\n两个紧急滑梯被放下。\n飞机正冒着浓烟。",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152440.mp3",
+      "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152441",
@@ -27,7 +29,9 @@
       "audioTextZh": "你在飞模拟机时候接受过紧急程序吗？",
       "studyTier": 1,
       "referenceText": "Yes. We learned and practiced how to evacuate in emergency situations.",
-      "referenceTextZh": "是的。我们学习和练习如何进行紧急撤离。"
+      "referenceTextZh": "是的。我们学习和练习如何进行紧急撤离。",
+      "audio": "/question-bank-assets/revisions/opi/a48dbf9867f7cd5ad5d7a81778b36e9d9900c40ec909eeacc23527d4b064ef26/audio/opi/opi-fzy-152441.mp3",
+      "audioDurationSeconds": 3.312
     },
     {
       "id": "opi-fzy-152442",
@@ -36,7 +40,9 @@
       "audioTextZh": "你认为紧急撤离的重要原则有哪些？",
       "studyTier": 1,
       "referenceText": "I think order is the most important principle in an emergency evacuation.\nBecause passengers will be panic in an emergency, which may affect the efficiency of emergency evacuation.",
-      "referenceTextZh": "我认为秩序是紧急撤离中最重要的原则。\n因为在紧急情况下，乘客会很慌乱，这会影响紧急撤离的效率。"
+      "referenceTextZh": "我认为秩序是紧急撤离中最重要的原则。\n因为在紧急情况下，乘客会很慌乱，这会影响紧急撤离的效率。",
+      "audio": "/question-bank-assets/revisions/opi/b88ad1309d8ddbe42b2f23735ffcac457523431c176bd9a7eca14388a6eb82e1/audio/opi/opi-fzy-152442.mp3",
+      "audioDurationSeconds": 2.88
     },
     {
       "id": "opi-fzy-152443",
@@ -45,7 +51,9 @@
       "audioTextZh": "紧急撤离时机组的职责有哪些？",
       "studyTier": 1,
       "referenceText": "For example, teach passengers how to use emergency equipment,\nshow the positions of evacuating exits and organize emergency evacuation orderly.",
-      "referenceTextZh": "例如：告知乘客紧急设备的用法，指明安全出口的位置以及组织乘客有序紧急撤离。"
+      "referenceTextZh": "例如：告知乘客紧急设备的用法，指明安全出口的位置以及组织乘客有序紧急撤离。",
+      "audio": "/question-bank-assets/revisions/opi/4e76d2f6e4596061350876b847d2aeb3679181ee9c8dfd3ac69a24e8750f993c/audio/opi/opi-fzy-152443.mp3",
+      "audioDurationSeconds": 3.6
     }
   ],
   "categoryId": "opi-category-08"

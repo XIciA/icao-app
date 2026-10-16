@@ -10,7 +10,9 @@
       "audioTextZh": "为什么复训对飞行员很重要？",
       "referenceText": "Recurrent training helps pilots review procedures and emergency actions, maintain their skills, and refresh knowledge that may have been forgotten. It also helps them adapt to changes in technology, procedures, and regulations and identify areas that need improvement. The training can improve communication and cooperation between crew members.",
       "referenceTextZh": "复训帮助飞行员复习程序和应急动作、保持技能，并更新可能已经遗忘的知识。它还帮助他们适应技术、程序和法规变化，并发现需要改进的方面。培训也能改善机组成员之间的沟通与合作。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/bf4477085b00815ce09a32b4ff1c535213eb30cab4d88fb62858f8ab5462fc96/audio/opi/opi-core-386.mp3",
+      "audioDurationSeconds": 2.664
     },
     {
       "id": "opi-core-387",
@@ -19,7 +21,9 @@
       "audioTextZh": "你在哪里接受复训？",
       "referenceText": "I have not received company recurrent training yet because I am still training at flight school. My current program includes simulator training there.",
       "referenceTextZh": "我尚未接受公司复训，因为目前仍在航校训练。我的现行训练计划包括航校的模拟机训练。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/239942d8a41d323ccd41c6add606685e41f1bfdaa302e333cf2ca72283f9f8b6/audio/opi/opi-core-387.mp3",
+      "audioDurationSeconds": 2.304
     },
     {
       "id": "opi-core-388",
@@ -28,7 +32,9 @@
       "audioTextZh": "你多久接受一次复训？",
       "referenceText": "At flight school, I receive simulator training once a month.",
       "referenceTextZh": "在航校，我每月接受一次模拟机训练。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/7f24180090f2875477e0f595c497fbe88488ea24dcd86da2bb2948ef61262366/audio/opi/opi-core-388.mp3",
+      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-core-388-part-2",
@@ -37,7 +43,9 @@
       "audioTextZh": "每次复训你要完成多少小时的训练？",
       "referenceText": "Each simulator training session at my flight school lasts about three hours, depending on the training subject.",
       "referenceTextZh": "航校每次模拟机训练大约持续三小时，具体取决于训练科目。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/548aec402eab697f95fac5472d160177e258e69e3d257024e5a10e734a4e38cf/audio/opi/opi-core-388-part-2.mp3",
+      "audioDurationSeconds": 4.176
     },
     {
       "id": "opi-core-389",
@@ -46,7 +54,9 @@
       "audioTextZh": "复训期间你会复习哪些科目？",
       "referenceText": "We review normal procedures such as traffic patterns, holding patterns, and precision approaches. We also practice abnormal situations such as a rejected takeoff, engine failure, and hydraulic-system failure.",
       "referenceTextZh": "我们会复习起落航线、等待航线和精密进近等正常程序，也会练习中断起飞、发动机失效和液压系统失效等非正常情况。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/e5c3ed47426b6af32d1cdd5bbc17f74ee73d7360dc90c41553c1b5703cd0c9a4/audio/opi/opi-core-389.mp3",
+      "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-core-390",
@@ -55,7 +65,9 @@
       "audioTextZh": "你觉得哪个复训科目最难？为什么？",
       "referenceText": "I find engine-failure training the most difficult because the DA-40 I fly has a single engine, so an engine failure means a complete loss of power. The situation requires quick decisions and actions, and choosing the right time and place for a forced landing is especially difficult for a less experienced pilot.",
       "referenceTextZh": "我认为发动机失效训练最困难，因为我飞的 DA-40 是单发飞机，发动机失效就意味着动力完全丧失。这种情况要求快速决策和行动，而对于经验较少的飞行员来说，选择迫降的正确时机和地点尤其困难。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/fa666f9e0821f55d970b9d27231a79acd86ce31f6d57c599a32a9da3e535ddf1/audio/opi/opi-core-390.mp3",
+      "audioDurationSeconds": 4.248
     },
     {
       "id": "opi-core-393",
@@ -63,7 +75,9 @@
       "audioText": "Does your airline provide training for operations at unfamiliar airports?",
       "audioTextZh": "你所在的航空公司是否提供陌生机场运行培训？",
       "referenceText": "I am not currently employed by an airline, so I have not received airline training for unfamiliar airports. At flight school, we prepare by reviewing charts, terrain, weather, runway information, and any special procedures. Simulator practice or an instructor briefing can be added when the airport presents unusual risks.",
-      "referenceTextZh": "我目前尚未受雇于航空公司，因此没有接受过针对不熟悉机场的航空公司培训。在航校，我们通过查看航图、地形、天气、跑道信息和任何特殊程序来准备。机场存在特殊风险时，还可以增加模拟机练习或教员简令。"
+      "referenceTextZh": "我目前尚未受雇于航空公司，因此没有接受过针对不熟悉机场的航空公司培训。在航校，我们通过查看航图、地形、天气、跑道信息和任何特殊程序来准备。机场存在特殊风险时，还可以增加模拟机练习或教员简令。",
+      "audio": "/question-bank-assets/revisions/opi/4a595a937af018c18c67df7ea16bf4bfeb2d1f609c8ae2167cf6be2bab66d6f2/audio/opi/opi-core-393.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-core-395",
@@ -71,7 +85,9 @@
       "audioText": "Where did you receive your initial flight training?",
       "audioTextZh": "你在哪里接受初始飞行训练？",
       "referenceText": "I received my initial flight training at Zhanghe Airport.",
-      "referenceTextZh": "我在漳河机场接受了初始飞行训练。"
+      "referenceTextZh": "我在漳河机场接受了初始飞行训练。",
+      "audio": "/question-bank-assets/revisions/opi/fffd6a1d60ff6fe90d74c0f3100c5ae3c31a670ae7125bc1e518a00c905cda55/audio/opi/opi-core-395.mp3",
+      "audioDurationSeconds": 2.496
     },
     {
       "id": "opi-core-395-part-2",
@@ -79,7 +95,9 @@
       "audioText": "When did you begin your initial flight training?",
       "audioTextZh": "你什么时候开始初始飞行训练？",
       "referenceText": "I began my initial flight training in March last year.",
-      "referenceTextZh": "我从去年三月开始初始飞行训练。"
+      "referenceTextZh": "我从去年三月开始初始飞行训练。",
+      "audio": "/question-bank-assets/revisions/opi/2ad2ee9af8b00d9b0bbf95641a234fa6994eebdfb44ca360f756275f7593d0d1/audio/opi/opi-core-395-part-2.mp3",
+      "audioDurationSeconds": 2.256
     },
     {
       "id": "opi-core-396",
@@ -87,7 +105,9 @@
       "audioText": "What was the most unforgettable moment of your flight training?",
       "audioTextZh": "飞行训练中最令你难忘的时刻是什么？",
       "referenceText": "My most unforgettable moment was my first solo flight. I was nervous at first, but I gradually calmed down and completed the flight successfully. After landing, I felt excited, proud, and more confident in my flying skills.",
-      "referenceTextZh": "我最难忘的时刻是第一次单飞。起初我很紧张，但逐渐冷静下来，并顺利完成飞行。着陆后，我感到兴奋、自豪，也对自己的飞行技能更有信心。"
+      "referenceTextZh": "我最难忘的时刻是第一次单飞。起初我很紧张，但逐渐冷静下来，并顺利完成飞行。着陆后，我感到兴奋、自豪，也对自己的飞行技能更有信心。",
+      "audio": "/question-bank-assets/revisions/opi/96cbcbfd9340d1441cdf513d5c4a7877a4d9fc3537a8fd535eefc1e39667ecba/audio/opi/opi-core-396.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-core-397",
@@ -95,7 +115,9 @@
       "audioText": "What have you learned from your flight instructors?",
       "audioTextZh": "你从飞行教员那里学到了什么？",
       "referenceText": "My flight instructors taught me flight skills, professional knowledge, and emergency procedures. They also taught me to put safety first, follow procedures, stay calm, and make responsible decisions. I learned the value of teamwork and effective communication as well.",
-      "referenceTextZh": "飞行教员教给我飞行技能、专业知识和应急程序。他们还教我把安全放在首位、遵循程序、保持冷静并作出负责任的决策。我也学到了团队合作和有效沟通的价值。"
+      "referenceTextZh": "飞行教员教给我飞行技能、专业知识和应急程序。他们还教我把安全放在首位、遵循程序、保持冷静并作出负责任的决策。我也学到了团队合作和有效沟通的价值。",
+      "audio": "/question-bank-assets/revisions/opi/0a7a2c368bfa3552bab5763185a9bba0fbafbdf55d42e52bcac8fe2adbb42d84/audio/opi/opi-core-397.mp3",
+      "audioDurationSeconds": 2.328
     },
     {
       "id": "opi-core-399",
@@ -104,7 +126,9 @@
       "audioTextZh": "你初始训练包含哪些训练科目？",
       "studyTier": 1,
       "referenceText": "We have learned many subjects during the initial flight training.\nSuch as local training, cross-country training, high speed approach, stall, steep turn and so on.",
-      "referenceTextZh": "初始训练我们学会了很多科目。\n比如：本场训练，转场训练，大速度进近，失速，大坡度转弯等。"
+      "referenceTextZh": "初始训练我们学会了很多科目。\n比如：本场训练，转场训练，大速度进近，失速，大坡度转弯等。",
+      "audio": "/question-bank-assets/revisions/opi/32c1cc9d42d28d563ff52cc803e098d1faa9a6dd2662c8a451bd7965dd2a9da3/audio/opi/opi-core-399.mp3",
+      "audioDurationSeconds": 2.928
     },
     {
       "id": "opi-core-400",
@@ -112,7 +136,9 @@
       "audioText": "Which subject did you find most difficult during your initial flight training?",
       "audioTextZh": "初始飞行训练中，你觉得哪个科目最难？",
       "referenceText": "I found stall training the most difficult because controlling the aircraft and recovering from a stall were challenging for me.",
-      "referenceTextZh": "我认为失速训练最困难，因为控制飞机并从失速中改出对我来说很有挑战。"
+      "referenceTextZh": "我认为失速训练最困难，因为控制飞机并从失速中改出对我来说很有挑战。",
+      "audio": "/question-bank-assets/revisions/opi/1aa8beec894dc49b542e81147e873446563b3a8a2dafae78b6be52090a928204/audio/opi/opi-core-400.mp3",
+      "audioDurationSeconds": 4.056
     },
     {
       "id": "opi-core-401",
@@ -120,7 +146,9 @@
       "audioText": "Can you describe your first solo flight?",
       "audioTextZh": "你能描述一下第一次单飞吗？",
       "referenceText": "My first solo took place on a sunny day with good visibility and calm wind. I flew two traffic patterns and completed a successful landing. It became one of the most unforgettable moments of my training.",
-      "referenceTextZh": "我的第一次单飞是在一个晴朗、能见度良好且风平稳的日子。我飞了两个起落航线并成功着陆。这成为我训练中最难忘的时刻之一。"
+      "referenceTextZh": "我的第一次单飞是在一个晴朗、能见度良好且风平稳的日子。我飞了两个起落航线并成功着陆。这成为我训练中最难忘的时刻之一。",
+      "audio": "/question-bank-assets/revisions/opi/2ee79d2abff53e6232ed01f9bdb57bd72a91a325e47d241e13ea12d5b2fc907f/audio/opi/opi-core-401.mp3",
+      "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-core-402",
@@ -129,7 +157,9 @@
       "audioTextZh": "你什么时候放的单飞？",
       "studyTier": 1,
       "referenceText": "My first solo fight was on May 1st, 2019 (about 2 years ago).",
-      "referenceTextZh": "我的第一次单飞是在2019年5月1日（大约两年前）。"
+      "referenceTextZh": "我的第一次单飞是在2019年5月1日（大约两年前）。",
+      "audio": "/question-bank-assets/revisions/opi/4b91f9f06ff0bc2948bc4492f77eafdb4a5688ec29aa6983d66f99eac13b15ab/audio/opi/opi-core-402.mp3",
+      "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-core-404",
@@ -138,7 +168,9 @@
       "audioTextZh": "从单飞中你学到了什么？",
       "studyTier": 1,
       "referenceText": "I have learned many things from my first solo flight.\nFirst, we should make good preflight preparation to make flight easier and safer.\nSecond, we should follow the checklist and follow SOP to ensure flight safety.",
-      "referenceTextZh": "我从单飞中学到了很多。\n首先，我们应该做好飞行前准备，使飞行简单安全。\n其次，我们应该遵照检查单和标准操作程序确保飞行安全。"
+      "referenceTextZh": "我从单飞中学到了很多。\n首先，我们应该做好飞行前准备，使飞行简单安全。\n其次，我们应该遵照检查单和标准操作程序确保飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/01d18196b42fcb941d7c3b112da3c5bddc8012610798532dbef9790bad8fcc36/audio/opi/opi-core-404.mp3",
+      "audioDurationSeconds": 2.28
     },
     {
       "id": "opi-core-405",
@@ -146,7 +178,9 @@
       "audioText": "When did you obtain your pilot licenses and ratings?",
       "audioTextZh": "你何时取得飞行员执照和等级？",
       "referenceText": "I have not obtained a pilot licence or additional ratings yet because I am still a student pilot. I am completing my flight training and will take the required tests when I meet the applicable experience and training requirements.",
-      "referenceTextZh": "我还没有取得飞行员执照或其他等级，因为我仍是一名学员飞行员。我正在完成飞行训练，达到适用的经历和训练要求后会参加规定考试。"
+      "referenceTextZh": "我还没有取得飞行员执照或其他等级，因为我仍是一名学员飞行员。我正在完成飞行训练，达到适用的经历和训练要求后会参加规定考试。",
+      "audio": "/question-bank-assets/revisions/opi/0fbf94f2bfcfdc5e72e0f5c143fb4735d184b74f4f92c2ff46bfc25462642f27/audio/opi/opi-core-405.mp3",
+      "audioDurationSeconds": 2.832
     },
     {
       "id": "opi-core-406",
@@ -154,7 +188,9 @@
       "audioText": "How many hours of simulator training have you completed?",
       "audioTextZh": "你已经完成了多少小时的模拟机训练？",
       "referenceText": "I have completed about 40 hours of simulator training.",
-      "referenceTextZh": "我已经完成大约 40 小时的模拟机训练。"
+      "referenceTextZh": "我已经完成大约 40 小时的模拟机训练。",
+      "audio": "/question-bank-assets/revisions/opi/78dfc969aaf4673bbdca920d6efbb9c3e984ea052bb5b3f8f6b9cb4a584f4948/audio/opi/opi-core-406.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-core-407",
@@ -162,7 +198,9 @@
       "audioText": "Why is simulator training important for pilots?",
       "audioTextZh": "为什么模拟机训练对飞行员很重要？",
       "referenceText": "Simulator training lets pilots practice complex, abnormal, and emergency situations without the risks of an actual flight. They can repeat a scenario until their handling skills improve. It also helps them learn aircraft systems and procedures and strengthen situational awareness and emergency response.",
-      "referenceTextZh": "模拟机训练让飞行员能够在没有实际飞行风险的情况下练习复杂、非正常和紧急情景。他们可以反复练习同一情景，直到操纵技能得到提高。训练还帮助他们学习飞机系统和程序，并增强情景意识和应急响应能力。"
+      "referenceTextZh": "模拟机训练让飞行员能够在没有实际飞行风险的情况下练习复杂、非正常和紧急情景。他们可以反复练习同一情景，直到操纵技能得到提高。训练还帮助他们学习飞机系统和程序，并增强情景意识和应急响应能力。",
+      "audio": "/question-bank-assets/revisions/opi/938c2e0d69db30a93b597c0375a2d5a251709ad8e6631dc2969b50103177c33e/audio/opi/opi-core-407.mp3",
+      "audioDurationSeconds": 2.784
     },
     {
       "id": "opi-core-408",
@@ -170,7 +208,9 @@
       "audioText": "What subjects can pilots practice during simulator training?",
       "audioTextZh": "飞行员可以在模拟机训练中练习哪些科目？",
       "referenceText": "Pilots can practice engine failures, engine fires, hydraulic and electrical failures, and flapless landings in a simulator.",
-      "referenceTextZh": "飞行员可以在模拟机中练习发动机失效、发动机火灾、液压和电气故障，以及无襟翼着陆。"
+      "referenceTextZh": "飞行员可以在模拟机中练习发动机失效、发动机火灾、液压和电气故障，以及无襟翼着陆。",
+      "audio": "/question-bank-assets/revisions/opi/590a1521bb8875d57e771c1e02be447aed0f2fd3e20f82cacf40931e6d99d42f/audio/opi/opi-core-408.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-core-409",
@@ -178,7 +218,9 @@
       "audioText": "Have you practiced handling a hydraulic system failure in a simulator? If so, how did you handle it?",
       "audioTextZh": "你在模拟机中练习过处置液压系统失效吗？如果练习过，你是如何处置的？",
       "referenceText": "Yes. In the simulator, I first stayed calm, checked the indications, and followed the applicable emergency procedure. I used the remaining or backup hydraulic system if available, maintained aircraft control, and coordinated with the instructor or other crew members. I then planned a diversion to a suitable alternate airport.",
-      "referenceTextZh": "是的。在模拟机中，我首先保持冷静、核对指示并遵循适用的应急程序。如果有可用的剩余或备用液压系统，我会使用它，同时控制好飞机，并与教员或其他机组成员协调。随后，我会计划改航至合适的备降机场。"
+      "referenceTextZh": "是的。在模拟机中，我首先保持冷静、核对指示并遵循适用的应急程序。如果有可用的剩余或备用液压系统，我会使用它，同时控制好飞机，并与教员或其他机组成员协调。随后，我会计划改航至合适的备降机场。",
+      "audio": "/question-bank-assets/revisions/opi/1a5a505422473ddd55136ae6957c6a4991a42cece88d53693f968b6b0b3f83dc/audio/opi/opi-core-409.mp3",
+      "audioDurationSeconds": 6.096
     },
     {
       "id": "opi-core-410",
@@ -186,7 +228,9 @@
       "audioText": "Do you enjoy simulator training? Why or why not?",
       "audioTextZh": "你喜欢模拟机训练吗？为什么？",
       "referenceText": "Yes, I enjoy simulator training because it helps me improve my flying skills.",
-      "referenceTextZh": "是的，我喜欢模拟机训练，因为它能帮助我提高飞行技能。"
+      "referenceTextZh": "是的，我喜欢模拟机训练，因为它能帮助我提高飞行技能。",
+      "audio": "/question-bank-assets/revisions/opi/7333054599790dc7f66b20f1676a81038c0209e855862b791080e0624e944079/audio/opi/opi-core-410.mp3",
+      "audioDurationSeconds": 3.288
     },
     {
       "id": "opi-core-111",
@@ -194,7 +238,9 @@
       "audioText": "Have you reviewed emergency procedures during simulator training? If so, which ones?",
       "audioTextZh": "你在模拟机训练中复习过应急程序吗？如果复习过，具体有哪些？",
       "referenceText": "Yes. I reviewed procedures for engine failure, depressurization, fire, bird strike, runway incursion, and evacuation. The training emphasized SOP compliance, decision-making, and crew coordination.",
-      "referenceTextZh": "是的。我复习了发动机失效、失压、火灾、鸟击、跑道侵入和撤离程序。培训强调遵守标准操作程序、决策和机组协调。"
+      "referenceTextZh": "是的。我复习了发动机失效、失压、火灾、鸟击、跑道侵入和撤离程序。培训强调遵守标准操作程序、决策和机组协调。",
+      "audio": "/question-bank-assets/revisions/opi/9a2c3112e231a5beec4cdbc613375b5f491a66bcfa3ff99fd5c5bcf210b25db6/audio/opi/opi-core-111.mp3",
+      "audioDurationSeconds": 5.328
     },
     {
       "id": "opi-extra-122",
@@ -202,7 +248,9 @@
       "audioText": "How would you describe your flight instructor?",
       "audioTextZh": "你会如何描述自己的飞行教员？",
       "referenceText": "My flight instructor is kind, supportive, professional, and strict about standards. He teaches aeronautical knowledge and flying techniques and always emphasizes safety, calm decision-making, teamwork, and good communication.",
-      "referenceTextZh": "我的飞行教员友善、乐于支持、专业，并且严格执行标准。他教授航空知识和飞行技术，始终强调安全、冷静决策、团队合作和良好沟通。"
+      "referenceTextZh": "我的飞行教员友善、乐于支持、专业，并且严格执行标准。他教授航空知识和飞行技术，始终强调安全、冷静决策、团队合作和良好沟通。",
+      "audio": "/question-bank-assets/revisions/opi/12801d26ca092e83fe3768317b8135a1dff1b2800d92b50f14a3e24dcf29c637/audio/opi/opi-extra-122.mp3",
+      "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-extra-136",
@@ -210,7 +258,9 @@
       "audioText": "Could you describe the flight school where you received your initial training?",
       "audioTextZh": "你能否介绍一下自己接受初始训练的飞行学校？",
       "referenceText": "My flight school is in a city with convenient transport. It has experienced flight instructors and ground teachers, modern training aircraft and simulators, and courses in theory, flying skills, and emergency handling. The school places strong emphasis on training safety and quality.",
-      "referenceTextZh": "我的航校位于一座交通便利的城市。学校拥有经验丰富的飞行教员和地面教员、现代化训练飞机和模拟机，并开设理论、飞行技能和应急处置课程。学校非常重视训练安全和质量。"
+      "referenceTextZh": "我的航校位于一座交通便利的城市。学校拥有经验丰富的飞行教员和地面教员、现代化训练飞机和模拟机，并开设理论、飞行技能和应急处置课程。学校非常重视训练安全和质量。",
+      "audio": "/question-bank-assets/revisions/opi/0a85d917f9ccb17e8cb747aa48cf29fabd5b9ed6dc959dd5d6ac5d1e08fb7870/audio/opi/opi-extra-136.mp3",
+      "audioDurationSeconds": 3.552
     }
   ],
   "categoryId": "opi-category-05"

@@ -10,7 +10,9 @@
       "audioTextZh": "飞行机组在什么情况下可能需要请求空中交通管制部门进行无线电检查？",
       "referenceText": "A crew may request a radio check during its initial contact with ATC, including before pushback or engine start. A check may also be needed when a transmission is unclear or its readability is below the required standard.",
       "referenceTextZh": "机组可以在首次联系空中交通管制时申请无线电检查，包括推出或起动发动机之前。通话内容听不清或可懂度低于所需标准时，也可能需要检查。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/6f5a902e1beec5b61bfcc68f7c3117e7d25b740936ee1f91895fe52be1f99c73/audio/opi/opi-core-851.mp3",
+      "audioDurationSeconds": 3.648
     },
     {
       "id": "opi-core-852",
@@ -19,7 +21,9 @@
       "audioTextZh": "飞行员应如何与空中交通管制部门进行无线电检查？",
       "referenceText": "The pilot should first check that the headset and microphone are working and select the correct frequency. The pilot should then call the ATC station, identify the aircraft, request a radio check, and ask, \"How do you read me?\" Both sides should confirm that the transmission is clear.",
       "referenceTextZh": "飞行员应先检查耳机和麦克风是否工作正常，并选择正确频率。随后呼叫空中交通管制电台、表明飞机身份、申请无线电检查，并询问“信号怎样？”双方都应确认通信内容收听清晰。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/f92b8452557fbf925f910529c5b60726a550a037a56709807a83311feb817413/audio/opi/opi-core-852.mp3",
+      "audioDurationSeconds": 3.024
     },
     {
       "id": "opi-core-854",
@@ -27,7 +31,9 @@
       "audioText": "Have you ever experienced a radio failure in flight?",
       "audioTextZh": "你是否曾在飞行中遇到无线电失效？",
       "referenceText": "No, I have never experienced a radio failure in flight.",
-      "referenceTextZh": "没有，我在飞行中从未遇到过无线电失效。"
+      "referenceTextZh": "没有，我在飞行中从未遇到过无线电失效。",
+      "audio": "/question-bank-assets/revisions/opi/3f4550a9c02c2969edb763347c7d1054f0b209b739ec4a7b6bc6420dcd996557/audio/opi/opi-core-854.mp3",
+      "audioDurationSeconds": 3.048
     },
     {
       "id": "opi-core-855",
@@ -35,7 +41,9 @@
       "audioText": "What procedure does your company require after a radio failure in flight?",
       "audioTextZh": "飞行中无线电失效后，你所在公司要求执行什么程序？",
       "referenceText": "I am not employed by an airline, so I follow my flight school's radio-failure procedure. I check the radio, headset, audio panel, and frequency, try another frequency or radio, and transmit blind if necessary. If communication is lost, I select code 7600 when applicable and follow the published VFR or IFR lost-communication procedure.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的无线电失效程序。我会检查无线电、耳机、音频面板和频率，尝试另一频率或无线电，并在必要时盲发。如果通信中断，我会在适用时选择代码 7600，并遵循公布的 VFR 或 IFR 失去通信程序。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的无线电失效程序。我会检查无线电、耳机、音频面板和频率，尝试另一频率或无线电，并在必要时盲发。如果通信中断，我会在适用时选择代码 7600，并遵循公布的 VFR 或 IFR 失去通信程序。",
+      "audio": "/question-bank-assets/revisions/opi/39cb5ef2145f16e3daf1d70aa25915f0a4492f24bf9b580c6acf67d08daa652f/audio/opi/opi-core-855.mp3",
+      "audioDurationSeconds": 4.08
     },
     {
       "id": "opi-core-856",
@@ -43,7 +51,9 @@
       "audioText": "How is responsibility for radiotelephony (RTF) communication with ATC normally assigned within a flight crew?",
       "audioTextZh": "飞行机组通常如何分配与空中交通管制部门进行无线电话通信（RTF）的职责？",
       "referenceText": "In a multi-crew cockpit, the pilot monitoring normally handles radio communication while the pilot flying controls and navigates the aircraft. The duties are confirmed during the briefing and may be reassigned if necessary. During my dual flight training, my instructor and I agree before flight who will make each radio call.",
-      "referenceTextZh": "在多机组驾驶舱内，监控飞行员通常负责无线电通信，操纵飞行员负责操纵和导航飞机。职责在简令中确认，并可在必要时重新分配。双人飞行训练时，我和教员会在飞行前约定由谁进行每次无线电通话。"
+      "referenceTextZh": "在多机组驾驶舱内，监控飞行员通常负责无线电通信，操纵飞行员负责操纵和导航飞机。职责在简令中确认，并可在必要时重新分配。双人飞行训练时，我和教员会在飞行前约定由谁进行每次无线电通话。",
+      "audio": "/question-bank-assets/revisions/opi/4d3cf4f0e3df13258393b5be9160e6516d289c0ef59c5e5c3b23f42548899e97/audio/opi/opi-core-856.mp3",
+      "audioDurationSeconds": 7.128
     },
     {
       "id": "opi-core-857",
@@ -51,7 +61,9 @@
       "audioText": "What does the radiotelephony phrase \"I read you five\" mean?",
       "audioTextZh": "无线电话用语“I read you five”是什么意思？",
       "referenceText": "\"I read you five\" means that the transmission is perfectly readable. It is the highest readability level and indicates that the signal is loud and clear.",
-      "referenceTextZh": "“信号五分”表示收到的通话内容完全清晰可懂。这是最高可懂度等级，表示信号响亮清晰。"
+      "referenceTextZh": "“信号五分”表示收到的通话内容完全清晰可懂。这是最高可懂度等级，表示信号响亮清晰。",
+      "audio": "/question-bank-assets/revisions/opi/f3db112f52578769bd3ec86fa18a6c256ee856720d66c6e3e907514120ff982b/audio/opi/opi-core-857.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-core-858",
@@ -59,7 +71,9 @@
       "audioText": "What should a pilot do if radio communication becomes intermittent or unreliable?",
       "audioTextZh": "无线电通信变得断续或不可靠时，飞行员应怎么做？",
       "referenceText": "The pilot should check the radio equipment and antenna, try an alternate frequency, and adjust the radio settings if necessary. While some communication remains, the pilot should use standard phraseology and keep transmissions brief. If communication fails completely, the pilot should follow the applicable radio-failure procedure and select code 7600 when required.",
-      "referenceTextZh": "飞行员应检查无线电设备和天线、尝试备用频率，并在必要时调整无线电设置。仍可通信时，应使用标准通话用语并保持通话简短。如果通信完全中断，应遵循适用的无线电失效程序，并在规定时选择代码 7600。"
+      "referenceTextZh": "飞行员应检查无线电设备和天线、尝试备用频率，并在必要时调整无线电设置。仍可通信时，应使用标准通话用语并保持通话简短。如果通信完全中断，应遵循适用的无线电失效程序，并在规定时选择代码 7600。",
+      "audio": "/question-bank-assets/revisions/opi/97e90a34063aa4cf1a2db1b435146c6bc876232513a809c7e722fa93b9056475/audio/opi/opi-core-858.mp3",
+      "audioDurationSeconds": 4.536
     }
   ],
   "categoryId": "opi-category-05"

@@ -10,7 +10,9 @@
       "audioTextZh": "你知道高原机场吗？",
       "studyTier": 1,
       "referenceText": "Yes, if the airport’s elevation is between 1500m (1524m) and 2400m (2438m), we call it high elevation/plateau airport, for example Kunming Changshui Airport is a high elevation airport;\nand if the elevation is above 2400m (2438m), we call it high plateau airport, for example, Daocheng Yading Airport is a high plateau airport.\nLanding at a high elevation airport is not easy, which requires high flying skills and very good aircraft performance.\nBesides, we may encounter some abnormal situations such as insufficient engine power, higher than normal terrain, and complicated adverse weather conditions.\nIt is very difficult for pilots to take off or land at high lands airport.",
-      "referenceTextZh": "是的，如果机场海拔在1524米到2438米之间，称之为一般高原机场，例如昆明长水国际机场就属于一般高原机场；\n如果机场海拔高于2438米，称之为高高原机场，例如稻城亚丁机场属于高高原机场。\n在高海拔机场着陆并不容易，这需要很高的飞行技能和非常好的飞机性能。\n除此之外，我们还会遇到一些异常情况，如发动机功率不足、比正常更高的地形、恶劣天气条件等。\n这些对飞行员来在高海拔机场起飞或者降落是非常困难的。"
+      "referenceTextZh": "是的，如果机场海拔在1524米到2438米之间，称之为一般高原机场，例如昆明长水国际机场就属于一般高原机场；\n如果机场海拔高于2438米，称之为高高原机场，例如稻城亚丁机场属于高高原机场。\n在高海拔机场着陆并不容易，这需要很高的飞行技能和非常好的飞机性能。\n除此之外，我们还会遇到一些异常情况，如发动机功率不足、比正常更高的地形、恶劣天气条件等。\n这些对飞行员来在高海拔机场起飞或者降落是非常困难的。",
+      "audio": "/question-bank-assets/revisions/opi/8931e43a97db585ccaa2fbc49bbe0de1f5baeb19c4d5704ba7ba43af3e6a05c8/audio/opi/opi-fzy-152176.mp3",
+      "audioDurationSeconds": 2.04
     },
     {
       "id": "opi-fzy-152177",
@@ -19,7 +21,9 @@
       "audioTextZh": "你知道如何在高海拔机场起飞和降落吗？",
       "studyTier": 1,
       "referenceText": "As the air density at high elevation airport is smaller, we need maximum thrust to takeoff.\nDuring climbing, we need more time to reach the scheduled altitude.\nDuring approach and landing, there is a tendency of greater ground speed.\nSo we must be careful about the aircraft performance during approach and landing.",
-      "referenceTextZh": "由于高海拔机场的空气密度较小，起飞需要最大推力。\n在爬升过程中，我们需要更多的时间到达预定高度。\n在进近和着陆过程中，飞机有较大地速的趋势。\n因此，我们必须注意飞机在进近和着陆过程中的性能。"
+      "referenceTextZh": "由于高海拔机场的空气密度较小，起飞需要最大推力。\n在爬升过程中，我们需要更多的时间到达预定高度。\n在进近和着陆过程中，飞机有较大地速的趋势。\n因此，我们必须注意飞机在进近和着陆过程中的性能。",
+      "audio": "/question-bank-assets/revisions/opi/ab3457c2cbd124ba25d6520506f0a2825891ad9680f6b97175ad260d0e66b8d7/audio/opi/opi-fzy-152177.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-fzy-152178",
@@ -28,7 +32,9 @@
       "audioTextZh": "如果你被通知飞高原机场，你需要做什么准备？",
       "studyTier": 1,
       "referenceText": "When my destination is a high elevation airport, I should make very careful preparations before takeoff.\nFirst, I must check the aircraft instruments and the systems carefully.\nThe oxygen system, oxygen pressure and oxygen masks should be in good condition.\nThen we should check the weather condition at the destination airport.\nDuring approach and landing, we should control the aircraft carefully to ensure a safe landing.",
-      "referenceTextZh": "当我的目的地是高海拔机场时，我应该在起飞前做非常仔细的准备。\n首先，我必须仔细检查飞机仪表和系统。\n氧气系统、氧气压力、氧气面罩应完好正常。\n然后我们应该检查目的地机场的天气情况。\n在进近和着陆过程中，我们要小心控制飞机，确保安全着陆。"
+      "referenceTextZh": "当我的目的地是高海拔机场时，我应该在起飞前做非常仔细的准备。\n首先，我必须仔细检查飞机仪表和系统。\n氧气系统、氧气压力、氧气面罩应完好正常。\n然后我们应该检查目的地机场的天气情况。\n在进近和着陆过程中，我们要小心控制飞机，确保安全着陆。",
+      "audio": "/question-bank-assets/revisions/opi/8cc28402f47abe92ceba16423e0362b9863552555bbaf4370e66ed8229f07442/audio/opi/opi-fzy-152178.mp3",
+      "audioDurationSeconds": 5.376
     },
     {
       "id": "opi-fzy-152179",
@@ -37,7 +43,9 @@
       "audioTextZh": "如果在高原机场遭遇到非正常情况，你如何处理？",
       "studyTier": 1,
       "referenceText": "If I encounter this situation, I will try my best to control my aircraft, pay attention to the surrounding terrains to avoid the collisions.\nAt the same time, I will report this situation to ATC and request priority landing.",
-      "referenceTextZh": "如果我遇到这样的情况，我会尽最大努力控制好飞机，注意周围西的地形来避免相撞。\n同时，我会把这个情况汇报给管制员，请求优先着陆。"
+      "referenceTextZh": "如果我遇到这样的情况，我会尽最大努力控制好飞机，注意周围西的地形来避免相撞。\n同时，我会把这个情况汇报给管制员，请求优先着陆。",
+      "audio": "/question-bank-assets/revisions/opi/77edad86f5b644d2f14485a14e7ba012d2fefc718fdfe809c01f38eb619d6a1c/audio/opi/opi-fzy-152179.mp3",
+      "audioDurationSeconds": 5.904
     },
     {
       "id": "opi-fzy-152181",
@@ -46,7 +54,9 @@
       "audioTextZh": "与海平面机场相比，高海拔机场飞行的飞机性能有什么不同？",
       "studyTier": 1,
       "referenceText": "If the aircraft flies in the high elevation airport, the air is thin/less, the aircraft engine performance will be reduced.\nWhen taking off, the aircraft needs more distance to reach the rotation speed (VR).\nWhen landing, the aircraft also needs more distance to reduce the speed.",
-      "referenceTextZh": "如果飞机在高原机场飞行，由于空气稀薄，飞机的发动机性能会降低。\n当起飞的时候，飞机需要更长的滑跑距离来到达抬轮速度。\n当着陆的时候，飞机需要更长的距离来减速。"
+      "referenceTextZh": "如果飞机在高原机场飞行，由于空气稀薄，飞机的发动机性能会降低。\n当起飞的时候，飞机需要更长的滑跑距离来到达抬轮速度。\n当着陆的时候，飞机需要更长的距离来减速。",
+      "audio": "/question-bank-assets/revisions/opi/e361aa3b2a5d6ce36a28be84a4b42755a1bc2c519b47097a290813d9f3a09206/audio/opi/opi-fzy-152181.mp3",
+      "audioDurationSeconds": 6.312
     },
     {
       "id": "opi-fzy-152182",
@@ -55,7 +65,9 @@
       "audioTextZh": "你们公司要求飞高原机场的特殊资质吗？",
       "studyTier": 1,
       "referenceText": "Yes. According to regulation, the captain must get special high elevation airport qualification, and under 55 years old.\nThe copilot must have more than 1200 flight hours.",
-      "referenceTextZh": "是的，根据规定，机长必须取得特殊的高原机场运行资格，并且在55岁以下。\n副驾驶必须有1200小时的飞行经历。"
+      "referenceTextZh": "是的，根据规定，机长必须取得特殊的高原机场运行资格，并且在55岁以下。\n副驾驶必须有1200小时的飞行经历。",
+      "audio": "/question-bank-assets/revisions/opi/050d5cf577e45b0c1e16db60cd526914aefdb2e9afa953350f4d37084200dad0/audio/opi/opi-fzy-152182.mp3",
+      "audioDurationSeconds": 5.232
     },
     {
       "id": "opi-fzy-152183",
@@ -64,7 +76,9 @@
       "audioTextZh": "你飞过复杂机场吗？什么是复杂机场？",
       "studyTier": 1,
       "referenceText": "No, I am a student pilot. I have never flown to complicated airports.\nI think many airports can be considered as complicated airports.\nFirst, if the airports have more complicated airport layout such as complicated runways and taxiways, they can be considered as complicated airports.\nSecond, if the airports have more variable weather conditions and more complicated terrains, they can be considered as complicated airports.",
-      "referenceTextZh": "我认为很多机场都可以被认为是复杂的机场。\n首先，如果机场布局比较复杂，如跑道、滑行道复杂，可以认为是复杂机场。\n其次，如果机场的天气条件变化较多，地形较为复杂，则可以认为是复杂机场。"
+      "referenceTextZh": "我认为很多机场都可以被认为是复杂的机场。\n首先，如果机场布局比较复杂，如跑道、滑行道复杂，可以认为是复杂机场。\n其次，如果机场的天气条件变化较多，地形较为复杂，则可以认为是复杂机场。",
+      "audio": "/question-bank-assets/revisions/opi/e895ae261c8433c362670bbc468839b46686475114d41637b9fab92219209b6a/audio/opi/opi-fzy-152183.mp3",
+      "audioDurationSeconds": 4.56
     },
     {
       "id": "opi-fzy-152185",
@@ -73,7 +87,9 @@
       "audioTextZh": "你更喜欢哪一个？简单机场还是复杂机场？",
       "studyTier": 1,
       "referenceText": "I prefer complicated airport, because it is challenging./I prefer simple airport, because it is easy to control the aircraft.",
-      "referenceTextZh": "我喜欢飞复杂机场，因为它更具挑战性。/我喜欢飞简单机场，因为易于操纵飞机。"
+      "referenceTextZh": "我喜欢飞复杂机场，因为它更具挑战性。/我喜欢飞简单机场，因为易于操纵飞机。",
+      "audio": "/question-bank-assets/revisions/opi/6dfb123701357c416298da18856a321adaf79bee408162a63f9ae1e0f41d1fbd/audio/opi/opi-fzy-152185.mp3",
+      "audioDurationSeconds": 4.128
     },
     {
       "id": "opi-fzy-152186",
@@ -82,7 +98,9 @@
       "audioTextZh": "你们公司有飞复杂机场的路线吗？",
       "studyTier": 1,
       "referenceText": "Yes, I work for Air China, we have many routes to fly complicated airports such as the flight from Beijing to Lasa.",
-      "referenceTextZh": "是的，我在国航工作，我们有很多飞往复杂机场的航线，比如从北京飞往拉萨。"
+      "referenceTextZh": "是的，我在国航工作，我们有很多飞往复杂机场的航线，比如从北京飞往拉萨。",
+      "audio": "/question-bank-assets/revisions/opi/1c5d16729908817ec6bf65aa1a0dcca3c4887cced00b5eb2b6bdb0e459e08b41/audio/opi/opi-fzy-152186.mp3",
+      "audioDurationSeconds": 3.12
     },
     {
       "id": "opi-fzy-152188",
@@ -91,7 +109,9 @@
       "audioTextZh": "如果你将在复杂机场复飞，你会注意什么？",
       "studyTier": 1,
       "referenceText": "I must pay attention to the surrounding terrains to avoid collisions.\nAnd l will be careful about the wind shear in the mountain areas.\nThe most important is that we should follow the standard missed approach procedure.",
-      "referenceTextZh": "我必须注意周围地形，避免撞击。\n同时，我也会注意山区风切变。\n最重要的是我们应该按照标准复飞程序复飞。"
+      "referenceTextZh": "我必须注意周围地形，避免撞击。\n同时，我也会注意山区风切变。\n最重要的是我们应该按照标准复飞程序复飞。",
+      "audio": "/question-bank-assets/revisions/opi/b50abe491c1098a62d4d88cddd0a01a5eb9d334bc12db084b2f2a97222b9932c/audio/opi/opi-fzy-152188.mp3",
+      "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-fzy-152189",
@@ -100,7 +120,9 @@
       "audioTextZh": "如果你将在一座不熟悉的机场降落，你会注意什么？",
       "studyTier": 2,
       "referenceText": "If we fly to an unfamiliar airport, before flight, we will make good pre-flight preparation to get important information such as the weather condition, the runway condition, the taxiways and so on. After landing, if necessary, we will request a follow-me car.",
-      "referenceTextZh": "如果我们要飞到陌生机场降落，飞行前，我们将做好飞行前准备，获取重要信息，比如天气状况，跑道状况，滑行道等等。\n着陆后，如有必要，我们可以请求引导车。"
+      "referenceTextZh": "如果我们要飞到陌生机场降落，飞行前，我们将做好飞行前准备，获取重要信息，比如天气状况，跑道状况，滑行道等等。\n着陆后，如有必要，我们可以请求引导车。",
+      "audio": "/question-bank-assets/revisions/opi/a395f02a7bd48c96f411339d9d2d33553cd2860040138d917a79d62f0f31af91/audio/opi/opi-fzy-152189.mp3",
+      "audioDurationSeconds": 3.456
     },
     {
       "id": "opi-fzy-152190",
@@ -109,7 +131,9 @@
       "audioTextZh": "你们公司提供不熟悉机场的训练吗？",
       "studyTier": 1,
       "referenceText": "Yes, our company provides some training to help pilots be familiar with new airport.\nFirst, we can have simulator flight to the new airport.\nSecond, we will fly with experienced pilots to be familiar with the new airport.",
-      "referenceTextZh": "是的，我们公司会提供一些训练帮助飞行员熟悉新机场。\n首先，我们可以通过模拟机训练熟悉飞往新机场的航线；\n其次，我们可以和有经验的飞行员一起飞行，熟悉新机场。"
+      "referenceTextZh": "是的，我们公司会提供一些训练帮助飞行员熟悉新机场。\n首先，我们可以通过模拟机训练熟悉飞往新机场的航线；\n其次，我们可以和有经验的飞行员一起飞行，熟悉新机场。",
+      "audio": "/question-bank-assets/revisions/opi/29d3d144b7a2ab036c7815c572b707e2b83a86813b606513ce3858a089bc9798/audio/opi/opi-fzy-152190.mp3",
+      "audioDurationSeconds": 2.736
     },
     {
       "id": "opi-fzy-152191",
@@ -118,7 +142,9 @@
       "audioTextZh": "如果你在不熟悉机场降落，但是你错过第一个快速脱离道，你会怎么做？",
       "studyTier": 1,
       "referenceText": "After landing on an unfamiliar airport, if we missed the first rapid exit, we will report the situation to ATC and request further instruction.",
-      "referenceTextZh": "如果我们在不熟悉机场降落，错过第一个快速脱离道，我们将向管制报告我们的情况，并且请求进一步指示。"
+      "referenceTextZh": "如果我们在不熟悉机场降落，错过第一个快速脱离道，我们将向管制报告我们的情况，并且请求进一步指示。",
+      "audio": "/question-bank-assets/revisions/opi/fb37b9515be9047e134b17183011f280da4d32cc614938b57716b10ed432b10b/audio/opi/opi-fzy-152191.mp3",
+      "audioDurationSeconds": 4.848
     },
     {
       "id": "opi-fzy-152192",
@@ -127,7 +153,9 @@
       "audioTextZh": "你曾经经历过在短窄跑道上起飞或降落吗？",
       "studyTier": 1,
       "referenceText": "No, I have never experienced takeoff or landing on short and narrow runways.",
-      "referenceTextZh": "没有，我从未经历过在短窄跑道上起飞或降落。"
+      "referenceTextZh": "没有，我从未经历过在短窄跑道上起飞或降落。",
+      "audio": "/question-bank-assets/revisions/opi/92041adca2785c8fe951a7510f4d05d9dcf5e7ed3e46bc80bfeffdeadcaf685f/audio/opi/opi-fzy-152192.mp3",
+      "audioDurationSeconds": 4.224
     },
     {
       "id": "opi-fzy-152193",
@@ -136,7 +164,9 @@
       "audioTextZh": "什么样的跑道可以被称为是短窄跑道？",
       "studyTier": 1,
       "referenceText": "If the runway is less than 45 meters wide and less than 1800 meters long for large aircraft and less than 2200 meters for heavy aircraft, it is called short and narrow runway, such as Meizhou Airport.",
-      "referenceTextZh": "如果跑道宽度小于45米，长度低于1800米（大飞机），长度低于2200米（重型机），这样的跑道被称作短窄跑道，例如梅州机场。"
+      "referenceTextZh": "如果跑道宽度小于45米，长度低于1800米（大飞机），长度低于2200米（重型机），这样的跑道被称作短窄跑道，例如梅州机场。",
+      "audio": "/question-bank-assets/revisions/opi/026d8b5033b6ab8a9285693dba0ac08823c14fb6f3f8bf4646771b7eeaf7bb32/audio/opi/opi-fzy-152193.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-fzy-152194",
@@ -145,7 +175,9 @@
       "audioTextZh": "什么因素可能导致飞机在着陆后冲出跑道？",
       "studyTier": 1,
       "referenceText": "There are many factors that may cause the aircraft overrun the runway after landing.\nFor example, brake malfunction, crosswind, wet runway surface, short and narrow runway, pilot not familiar with the airport.\nWhat’s more, if the aircraft is above the glide slope during landing, the aircraft may overrun the runway.",
-      "referenceTextZh": "导致飞机着陆后冲出跑道的因素有很多。\n如刹车失灵、侧风、湿滑跑道、短窄跑道、飞行员对机场不熟悉等。\n更重要的是，如果飞机在降落时高于下滑道，飞机可能会冲出跑道。"
+      "referenceTextZh": "导致飞机着陆后冲出跑道的因素有很多。\n如刹车失灵、侧风、湿滑跑道、短窄跑道、飞行员对机场不熟悉等。\n更重要的是，如果飞机在降落时高于下滑道，飞机可能会冲出跑道。",
+      "audio": "/question-bank-assets/revisions/opi/324bef13226fda85bd480a87dbd937ae30be95478757cac309a582eec1311d2a/audio/opi/opi-fzy-152194.mp3",
+      "audioDurationSeconds": 3.888
     },
     {
       "id": "opi-fzy-152195",
@@ -154,7 +186,9 @@
       "audioTextZh": "飞行员在窄短跑道上操纵有什么风险或威胁吗？它们是什么？",
       "studyTier": 1,
       "referenceText": "Yes, there are some risks when taking off or landing on short and narrow runways.\nIt may cause the aircraft to overrun the runway and cause structural damage and passenger injuries.\nIt also may reduce the safety margin.",
-      "referenceTextZh": "在短窄跑道上起飞或降落有一些风险。\n这会导致飞机冲出跑道，导致飞机结构损坏和乘客受伤。\n同时，在短窄跑道起落会降低安全裕度。"
+      "referenceTextZh": "在短窄跑道上起飞或降落有一些风险。\n这会导致飞机冲出跑道，导致飞机结构损坏和乘客受伤。\n同时，在短窄跑道起落会降低安全裕度。",
+      "audio": "/question-bank-assets/revisions/opi/68017fca55d57dabb56b6d897c5ce8ffe53fd2b0a194b3771908455360e87103/audio/opi/opi-fzy-152195.mp3",
+      "audioDurationSeconds": 5.016
     },
     {
       "id": "opi-fzy-152196",
@@ -163,7 +197,9 @@
       "audioTextZh": "在短窄跑道上起飞和降落时，飞行员可以做什么来保证飞行安全？",
       "studyTier": 1,
       "referenceText": "When takeoff and land on short and narrow runways, the pilot should pay attention to the direction of the plane, check the weight and braking of the aircraft.\nThe pilot should also pay attention to the weather conditions at the airport.\nLast but not least, the pilot should overcome the nervous mood, and avoid the tension and anxiety to ensure the flight skills.",
-      "referenceTextZh": "在短而窄的跑道上起飞和降落时，飞行员要注意飞机的方向，检查飞机的重量和刹车。\n飞行员还应该注意机场的天气情况。\n最后，克服紧张的情绪，避免紧张和焦虑，确保飞行技能。"
+      "referenceTextZh": "在短而窄的跑道上起飞和降落时，飞行员要注意飞机的方向，检查飞机的重量和刹车。\n飞行员还应该注意机场的天气情况。\n最后，克服紧张的情绪，避免紧张和焦虑，确保飞行技能。",
+      "audio": "/question-bank-assets/revisions/opi/44337cf6e38fc5d64066bd299d55a5632337c0a6874ab87859a1621715504e64/audio/opi/opi-fzy-152196.mp3",
+      "audioDurationSeconds": 5.328
     },
     {
       "id": "opi-fzy-166044",
@@ -172,7 +208,9 @@
       "audioTextZh": "你知道哪些跑道灯光系统？",
       "studyTier": 1,
       "referenceText": "Well, ad far as I know, there is Precision Approach Path Indicator (PAPI), Approach Lighting System (ALS), and so on.",
-      "referenceTextZh": "据我所知，有精密进近航道指示器，进近灯光系统等。"
+      "referenceTextZh": "据我所知，有精密进近航道指示器，进近灯光系统等。",
+      "audio": "/question-bank-assets/revisions/opi/c15301e49eba1abbe1479a3d443ff35cb230a3b76af3e0ac3b9497c5724a717c/audio/opi/opi-fzy-166044.mp3",
+      "audioDurationSeconds": 2.328
     },
     {
       "id": "opi-fzy-166045",
@@ -181,7 +219,9 @@
       "audioTextZh": "跑道灯光系统的作用是什么？",
       "studyTier": 1,
       "referenceText": "The runway lighting system is the visual aids of the airport, its purpose is to better guide the aircraft to safely approach and land, especially at night and under low cloud and low visibility conditions.",
-      "referenceTextZh": "灯光系统是机场的目视助航设备，其目的是更好地引导飞机安全进场着陆，尤其在夜间和低云、低能见度条件下的飞行时。"
+      "referenceTextZh": "灯光系统是机场的目视助航设备，其目的是更好地引导飞机安全进场着陆，尤其在夜间和低云、低能见度条件下的飞行时。",
+      "audio": "/question-bank-assets/revisions/opi/06ea68c65e3b55833e8dd2c0ee99220574f817d5a52fca8c608d3e53a4d1d4bb/audio/opi/opi-fzy-166045.mp3",
+      "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-fzy-214920",
@@ -190,7 +230,9 @@
       "audioTextZh": "带槽跑道的优势是什么？",
       "studyTier": 1,
       "referenceText": "A grooved runway increases friction and prevents the plane from skidding when there is water on the runway.",
-      "referenceTextZh": "带槽跑道可以增加摩擦力，避免跑道上有积水时飞机打滑。"
+      "referenceTextZh": "带槽跑道可以增加摩擦力，避免跑道上有积水时飞机打滑。",
+      "audio": "/question-bank-assets/revisions/opi/f1dcd5c4d005bab3851faa617d49ceb04d08273b70ef3b9f56faa9812b02870b/audio/opi/opi-fzy-214920.mp3",
+      "audioDurationSeconds": 2.304
     },
     {
       "id": "opi-fzy-214921",
@@ -199,7 +241,9 @@
       "audioTextZh": "作为你飞行前计划的一部分，你如何确定跑道是带槽的？",
       "studyTier": 1,
       "referenceText": "We can check the airport information to know if the runway is grooved.",
-      "referenceTextZh": "我们可以检查一下机场信息，看看跑道是否带槽。"
+      "referenceTextZh": "我们可以检查一下机场信息，看看跑道是否带槽。",
+      "audio": "/question-bank-assets/revisions/opi/dea40a5223c31f3640005ca1264ed23269a8f2183313603d369b16e60b38e823/audio/opi/opi-fzy-214921.mp3",
+      "audioDurationSeconds": 4.368
     },
     {
       "id": "opi-fzy-214922",
@@ -208,7 +252,9 @@
       "audioTextZh": "如果跑道上有积水，你会注意什么？",
       "studyTier": 1,
       "referenceText": "If there is standing water on the runway, I will confirm the braking action because the runway maybe slippery, therefore we should have good directional control of the aircraft.",
-      "referenceTextZh": "如果跑道上有积水，我会确认刹车性能，因为跑道可能很滑，所以我们要对飞机有很好的方向控制。"
+      "referenceTextZh": "如果跑道上有积水，我会确认刹车性能，因为跑道可能很滑，所以我们要对飞机有很好的方向控制。",
+      "audio": "/question-bank-assets/revisions/opi/2931ce9cc7e7927879639d51da8f883154bf7f8de510ceae62017e72fe5e10c8/audio/opi/opi-fzy-214922.mp3",
+      "audioDurationSeconds": 3.84
     }
   ],
   "categoryId": "opi-category-05"

@@ -9,7 +9,9 @@
       "audioText": "What training has your company provided on handling bomb threats on board?",
       "audioTextZh": "你所在的公司提供过哪些机上炸弹威胁处置培训？",
       "referenceText": "I am not employed by an airline, so I have not received company bomb-threat training. At flight school, I have learned the general priorities: maintain control, follow the applicable checklist, communicate discreetly, and coordinate with ATC and security authorities. Detailed search, landing, parking, and evacuation decisions require company-specific training.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司炸弹威胁培训。在航校，我学到的一般原则是控制好飞机、执行适用检查单、谨慎通信，并与空中交通管制和安保部门协调。具体搜查、着陆、停放和撤离决策需要公司专项培训。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司炸弹威胁培训。在航校，我学到的一般原则是控制好飞机、执行适用检查单、谨慎通信，并与空中交通管制和安保部门协调。具体搜查、着陆、停放和撤离决策需要公司专项培训。",
+      "audio": "/question-bank-assets/revisions/opi/9fa620258e4cd240f849ab8427748aeb3511b0167e50c458b20493f317421135/audio/opi/opi-core-730.mp3",
+      "audioDurationSeconds": 3.768
     },
     {
       "id": "opi-core-731",
@@ -17,7 +19,9 @@
       "audioText": "What should a pilot do after receiving a bomb threat against the aircraft during flight?",
       "audioTextZh": "飞行中收到针对本机的炸弹威胁后，飞行员应如何处置？",
       "referenceText": "The pilot should remain calm, maintain control, and follow the applicable bomb-threat procedure. The relevant crew or security personnel should be alerted to search for suspicious items without alarming the passengers. The pilot should inform ATC, request a landing as soon as possible, and ask for emergency and bomb-disposal support. A remote parking area and an evacuation after landing may also be required.",
-      "referenceTextZh": "飞行员应保持冷静、控制好飞机，并遵循适用的炸弹威胁程序。应通知相关机组或安保人员搜寻可疑物品，同时避免惊扰旅客。飞行员应通知空中交通管制、申请尽快着陆，并请求应急和排爆支援。还可能需要使用远机位，并在着陆后撤离。"
+      "referenceTextZh": "飞行员应保持冷静、控制好飞机，并遵循适用的炸弹威胁程序。应通知相关机组或安保人员搜寻可疑物品，同时避免惊扰旅客。飞行员应通知空中交通管制、申请尽快着陆，并请求应急和排爆支援。还可能需要使用远机位，并在着陆后撤离。",
+      "audio": "/question-bank-assets/revisions/opi/6626cd98c56d31118b4a5835f86716f7b338317daa1cee3bc99e3826aba7e956/audio/opi/opi-core-731.mp3",
+      "audioDurationSeconds": 4.464
     },
     {
       "id": "opi-core-732",
@@ -25,7 +29,9 @@
       "audioText": "What training has your company provided on handling suspicious items on board?",
       "audioTextZh": "你所在的公司提供过哪些机上可疑物品处置培训？",
       "referenceText": "I am not employed by an airline, so I have not received company training on suspicious items. My general training is to avoid touching or moving the item, keep people away, inform the appropriate crew member, and follow the security procedure. The crew should coordinate with ATC and specialist authorities rather than make an unsupported assessment.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司可疑物品培训。我的一般训练要求不要触碰或移动物品、让人员远离、通知适当的机组成员并遵循安保程序。机组应与空中交通管制和专业部门协调，而不能作出没有依据的判断。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司可疑物品培训。我的一般训练要求不要触碰或移动物品、让人员远离、通知适当的机组成员并遵循安保程序。机组应与空中交通管制和专业部门协调，而不能作出没有依据的判断。",
+      "audio": "/question-bank-assets/revisions/opi/10c96da22cfff88ebfb7881f21f73fe370cabb00ebb6ef4e559a25f333440c47/audio/opi/opi-core-732.mp3",
+      "audioDurationSeconds": 4.176
     },
     {
       "id": "opi-core-733",
@@ -33,7 +39,9 @@
       "audioText": "What procedures should be followed if a suspicious item is found on board during flight?",
       "audioTextZh": "飞行中发现机上可疑物品时，应遵循哪些程序？",
       "referenceText": "The pilots should report the situation to ATC, request a landing as soon as possible, and ask for bomb-disposal and other emergency services. They should also request a remote parking area and carry out an evacuation if necessary.",
-      "referenceTextZh": "飞行员应向空中交通管制报告情况、申请尽快着陆，并请求排爆和其他应急服务。还应申请远机位，并在必要时实施撤离。"
+      "referenceTextZh": "飞行员应向空中交通管制报告情况、申请尽快着陆，并请求排爆和其他应急服务。还应申请远机位，并在必要时实施撤离。",
+      "audio": "/question-bank-assets/revisions/opi/d369985599df5e06250a85d221b13d8ba72847583fa6becae2fbc69110ab6563/audio/opi/opi-core-733.mp3",
+      "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-extra-106",
@@ -41,7 +49,9 @@
       "audioText": "After a bomb threat is received while the aircraft is on the ground, should passengers be allowed to disembark immediately? Why or why not?",
       "audioTextZh": "飞机在地面收到炸弹威胁后，是否应允许乘客立即下机？为什么？",
       "referenceText": "No, not automatically. The captain should follow the bomb-threat checklist and coordinate with ATC and airport security. If possible, the aircraft should be moved away from terminals and other aircraft. Whether passengers disembark normally or evacuate should depend on the credibility of the threat and the advice of security personnel, because an uncoordinated response may cause panic and increase the risk.",
-      "referenceTextZh": "不能一律立即允许旅客下机。机长应执行炸弹威胁检查单，并与空中交通管制和机场安保部门协调。如果条件允许，应将飞机移离航站楼和其他飞机。旅客正常下机还是紧急撤离，应根据威胁可信度和安保人员意见决定，因为未经协调的响应可能引起恐慌并增大风险。"
+      "referenceTextZh": "不能一律立即允许旅客下机。机长应执行炸弹威胁检查单，并与空中交通管制和机场安保部门协调。如果条件允许，应将飞机移离航站楼和其他飞机。旅客正常下机还是紧急撤离，应根据威胁可信度和安保人员意见决定，因为未经协调的响应可能引起恐慌并增大风险。",
+      "audio": "/question-bank-assets/revisions/opi/9c58275e5a37c56d543d19e36c0077c02ef9fabb734b88744ed90e2b9a53614b/audio/opi/opi-extra-106.mp3",
+      "audioDurationSeconds": 7.776
     }
   ],
   "categoryId": "opi-category-02"

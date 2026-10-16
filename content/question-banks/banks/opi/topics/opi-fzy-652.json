@@ -10,7 +10,9 @@
       "audioTextZh": "你来自哪里？/你的家乡在哪儿？",
       "studyTier": 0,
       "referenceText": "I come from Beijing. / My hometown is in Chengdu, Sichuan Province, which is in the southern China.",
-      "referenceTextZh": "我来自北京。/我的家乡在四川成都，它位于中国的南方。"
+      "referenceTextZh": "我来自北京。/我的家乡在四川成都，它位于中国的南方。",
+      "audio": "/question-bank-assets/revisions/opi/7b584eb72a643bd7450dea6b2fd911e23004bfdb3150e1706f9bd7d85c952fb3/audio/opi/opi-fzy-118170.mp3",
+      "audioDurationSeconds": 2.256
     },
     {
       "id": "opi-fzy-151970",
@@ -19,7 +21,9 @@
       "audioTextZh": "你的家乡在哪里？你的家乡以什么闻名？",
       "studyTier": 2,
       "referenceText": "My hometown is Nanjing City, Jiangsu province.\nIt’s a big city in Eastern China.\nIt is famious for the Sun Yat-sen Mausoleum.",
-      "referenceTextZh": "我的家乡在江苏省南京市。\n它是一个中国东部地区的一个大城市。\n它以中山陵闻名。"
+      "referenceTextZh": "我的家乡在江苏省南京市。\n它是一个中国东部地区的一个大城市。\n它以中山陵闻名。",
+      "audio": "/question-bank-assets/revisions/opi/e840e8447c8c97283148c0857803be89ccbe95ed5409491d09982d243b002df9/audio/opi/opi-fzy-151970.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-fzy-118171",
@@ -28,7 +32,9 @@
       "audioTextZh": "你现在住在哪儿？和你的家乡相比，你更喜欢哪里？",
       "studyTier": 0,
       "referenceText": "My hometown is Nanjing, Jiangsu Province, and now I am living in Tianjin. Compared with Tianjin, I like my hometown better, as I was born and grew up there, I have been used to everything in my hometown, like its weather, and its culture, and most importantly, my family are all there.",
-      "referenceTextZh": "我的家乡在江苏南京，我现在住在天津。和天津相比，我更喜欢我的家乡，因为我在那里出生并长大，我习惯了家乡的一切，它的天气，它的文化，并且，我的家人也都在那里。"
+      "referenceTextZh": "我的家乡在江苏南京，我现在住在天津。和天津相比，我更喜欢我的家乡，因为我在那里出生并长大，我习惯了家乡的一切，它的天气，它的文化，并且，我的家人也都在那里。",
+      "audio": "/question-bank-assets/revisions/opi/9dee4ca38e89c08021d75999ba6c6a1b36619ef2637756b6af81111456a5a096/audio/opi/opi-fzy-118171.mp3",
+      "audioDurationSeconds": 4.368
     },
     {
       "id": "opi-fzy-203072",
@@ -37,7 +43,9 @@
       "audioTextZh": "你家乡的天气如何？",
       "studyTier": 1,
       "referenceText": "The weather in my hometown is dry, with little rainfall. It has four seasons, warm spring, hot summer, cool autumn, and cold winter.",
-      "referenceTextZh": "我家乡的天气很干燥，降水很少，四季分明，春季温暖，夏季炎热，秋季凉爽，冬季寒冷。"
+      "referenceTextZh": "我家乡的天气很干燥，降水很少，四季分明，春季温暖，夏季炎热，秋季凉爽，冬季寒冷。",
+      "audio": "/question-bank-assets/revisions/opi/bc441b1f4870ec68c82d9033404b7bff62c81bd065591db5c8681eaedbc4538b/audio/opi/opi-fzy-203072.mp3",
+      "audioDurationSeconds": 1.92
     },
     {
       "id": "opi-fzy-203073",
@@ -46,7 +54,9 @@
       "audioTextZh": "你可以比较下你的家乡和你现在居住的城市吗？",
       "studyTier": 1,
       "referenceText": "I come from Shenyang and now i am living in Guanghan, compared with Guanghan, my hometown is colder in winter, and drier in spring. I like Guanghan better, because the weather is comfortable and there are many delicious food here.",
-      "referenceTextZh": "我来自沈阳，现在在广汉。和广汉相比，我家乡的冬天更寒冷，春天更干燥。我更喜欢广汉，因为这儿的天气很舒服，而且这里有很多美食。"
+      "referenceTextZh": "我来自沈阳，现在在广汉。和广汉相比，我家乡的冬天更寒冷，春天更干燥。我更喜欢广汉，因为这儿的天气很舒服，而且这里有很多美食。",
+      "audio": "/question-bank-assets/revisions/opi/82b87e34b066cb9a10c918258b49d9ee3e6a3ed589aa66e1a570be3470874c93/audio/opi/opi-fzy-203073.mp3",
+      "audioDurationSeconds": 3.696
     },
     {
       "id": "opi-fzy-118173",
@@ -55,7 +65,9 @@
       "audioTextZh": "你的家乡以什么闻名？/你能说说你家乡有意思的地方吗？",
       "studyTier": 0,
       "referenceText": "My hometown is in Yunnan Province, it is famous/special for Shangri-la, Lijiang old town, Jade Dragon mountain, Dongshan Park and so on.",
-      "referenceTextZh": "我的家乡在云南，它以香格里拉，丽江老城，玉龙雪山和东山公园闻名天下。"
+      "referenceTextZh": "我的家乡在云南，它以香格里拉，丽江老城，玉龙雪山和东山公园闻名天下。",
+      "audio": "/question-bank-assets/revisions/opi/584d313d37ddc79774fc5f02afacb929a762572be42d4e87ae501ef3d93e62e5/audio/opi/opi-fzy-118173.mp3",
+      "audioDurationSeconds": 4.608
     },
     {
       "id": "opi-fzy-151971",
@@ -64,7 +76,9 @@
       "audioTextZh": "你能说出你家乡一些有趣的地方吗？",
       "studyTier": 1,
       "referenceText": "Yes, I can, there are many interesting places in my hometown, such as Changjiang River Bridge, Confucian Temple and so on.",
-      "referenceTextZh": "好的，我可以，我的家乡有很多有趣的地方，比如长江大桥，孔庙等。"
+      "referenceTextZh": "好的，我可以，我的家乡有很多有趣的地方，比如长江大桥，孔庙等。",
+      "audio": "/question-bank-assets/revisions/opi/45c251710858f50d38ef25990c7e4092d57bf9084e4d25c931fbca00351fde78/audio/opi/opi-fzy-151971.mp3",
+      "audioDurationSeconds": 2.856
     },
     {
       "id": "opi-fzy-118174",
@@ -73,7 +87,9 @@
       "audioTextZh": "你最喜欢家乡的是什么？",
       "studyTier": 0,
       "referenceText": "Well, the traffic, and the environment, because I live in the countryside, the sky is blue, the air is clear, and there isn't much traffic.",
-      "referenceTextZh": "交通，还有环境，因为我的家乡在农村，那里天空很蓝，空气清新，交通一点也不拥挤。"
+      "referenceTextZh": "交通，还有环境，因为我的家乡在农村，那里天空很蓝，空气清新，交通一点也不拥挤。",
+      "audio": "/question-bank-assets/revisions/opi/cb721e806bc07e7f8b3a6b73f39e57f99393439b2fac7e371bbec6d0e391752a/audio/opi/opi-fzy-118174.mp3",
+      "audioDurationSeconds": 2.04
     },
     {
       "id": "opi-fzy-118175",
@@ -82,7 +98,9 @@
       "audioTextZh": "你能否对比一下你的家乡和你现在居住的城市？",
       "studyTier": 0,
       "referenceText": "I come from Shenyang and now I am living in Guanghan. Compared with Guanghan, my hometown is much more colder in winter, and drier in spring. I like Guanghan better, because the weather is comfortable and there are so many delicious food here.",
-      "referenceTextZh": "我来自沈阳，现在在广汉。和广汉比，我家乡的冬天更寒冷，春天更干燥。我更喜欢广汉，因为这儿的天气很舒服，而且这里有很多美食。"
+      "referenceTextZh": "我来自沈阳，现在在广汉。和广汉比，我家乡的冬天更寒冷，春天更干燥。我更喜欢广汉，因为这儿的天气很舒服，而且这里有很多美食。",
+      "audio": "/question-bank-assets/revisions/opi/4a187406acea1a11123fd269e5a5e61fee8611c22b4d19ca4d71e583e147c77f/audio/opi/opi-fzy-118175.mp3",
+      "audioDurationSeconds": 3.888
     },
     {
       "id": "opi-fzy-118176",
@@ -91,7 +109,9 @@
       "audioTextZh": "你去过的最喜欢的城市是哪个？为什么？",
       "studyTier": 0,
       "referenceText": "I'm living in Beijing now, and I like it very much. It's a modern city with long history and deep culture.",
-      "referenceTextZh": "我现在住在北京，我很喜欢这里。这是一座历史悠久，富有文化古韵的现代化城市。"
+      "referenceTextZh": "我现在住在北京，我很喜欢这里。这是一座历史悠久，富有文化古韵的现代化城市。",
+      "audio": "/question-bank-assets/revisions/opi/a22f622fa5704dc95fc5ea8e201dd7ec3596b3cde3025573da524f75fba2d6f9/audio/opi/opi-fzy-118176.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-fzy-118177",
@@ -100,7 +120,9 @@
       "audioTextZh": "你去过国外吗？你最想去哪个国家？",
       "studyTier": 0,
       "referenceText": "Yes, I have, I have been to America, Australia, Japan and South Korea. Australia is my favorite country, and I went there last year.\nNo, I've never been abroad. If there is a chance, I'd like to go to France, because I like Paris and it's a romantic city in my heart.",
-      "referenceTextZh": "去过，我去过美国，澳大利亚，日本和韩国。澳大利亚是我最喜欢的国家，我是去年去的。\n没有，我从来没去过国外。如果有机会的话，我想去法国，因为我很喜欢巴黎，它在我心中是一座浪漫的城市。"
+      "referenceTextZh": "去过，我去过美国，澳大利亚，日本和韩国。澳大利亚是我最喜欢的国家，我是去年去的。\n没有，我从来没去过国外。如果有机会的话，我想去法国，因为我很喜欢巴黎，它在我心中是一座浪漫的城市。",
+      "audio": "/question-bank-assets/revisions/opi/0d194d7a24af3a05feb17d46a5793a1618ad246be2cad6cf7c446b133597c5ec/audio/opi/opi-fzy-118177.mp3",
+      "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-fzy-118178",
@@ -109,7 +131,9 @@
       "audioTextZh": "你喜欢旅行吗？如果喜欢，你去过哪些地方？哪些地方给你留下印象最深呢？",
       "studyTier": 0,
       "referenceText": "Yes, I do. I like travelling very much. I have been to many places, among which, Xiamen impressed me most, it's a coastal city with very beautiful scenery, and the seafood there is various and delicious.\nNo, I don't like travelling. I think it's really exhausting and tiring. I prefer to stay at home.",
-      "referenceTextZh": "是的，我喜欢旅行。我去过很多地方，其中厦门给我留下印象最深。它是沿海城市，景色非常美，并且那儿的海鲜非常多，非常好吃。\n不，我不喜欢旅行。我觉得旅游太累了，使人筋疲力尽，我更愿待在家里。"
+      "referenceTextZh": "是的，我喜欢旅行。我去过很多地方，其中厦门给我留下印象最深。它是沿海城市，景色非常美，并且那儿的海鲜非常多，非常好吃。\n不，我不喜欢旅行。我觉得旅游太累了，使人筋疲力尽，我更愿待在家里。",
+      "audio": "/question-bank-assets/revisions/opi/6e07fad6ce8982c98365259b92e9d32cdd139a8f94360eb70ad6788c6606ac5a/audio/opi/opi-fzy-118178.mp3",
+      "audioDurationSeconds": 4.776
     }
   ],
   "categoryId": "opi-category-07"
