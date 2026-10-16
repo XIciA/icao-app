@@ -10,7 +10,9 @@
       "audioTextZh": "你遇到过鸟击吗？",
       "referenceText": "No, I have never encountered a bird strike.",
       "referenceTextZh": "没有，我从未遭遇过鸟击。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/5487bd5c2d15d1368ee4ba7c40b3200adb2c658a305725c28327b729222096f2/audio/opi/opi-core-217.mp3",
+      "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-core-218",
@@ -19,7 +21,9 @@
       "audioTextZh": "鸟击最容易发生在哪些飞行阶段？为什么？",
       "referenceText": "Bird strikes are most likely during takeoff and landing because birds are active at lower altitudes.",
       "referenceTextZh": "鸟击最容易发生在起飞和着陆阶段，因为鸟类在较低高度活动。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/fd96bdbe5737f5a48df445648651638a98ac316c6cad0e12d8b6d8d64a5a4dcf/audio/opi/opi-core-218.mp3",
+      "audioDurationSeconds": 4.392
     },
     {
       "id": "opi-core-219",
@@ -28,7 +32,9 @@
       "audioTextZh": "起飞前，飞行员可以从哪里获取鸟类活动信息？",
       "referenceText": "Before departure, pilots can obtain bird-activity information from ATIS, ATC, and reports from other pilots. They can also make a visual check of the airport area.",
       "referenceTextZh": "离场前，飞行员可以从 ATIS、空中交通管制和其他飞行员报告中获取鸟类活动信息，还可以目视检查机场区域。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/d72ea218fcf9881936104a8076766e76b257a3e64f85bb2b159da7873f117fc2/audio/opi/opi-core-219.mp3",
+      "audioDurationSeconds": 4.104
     },
     {
       "id": "opi-core-220",
@@ -37,7 +43,9 @@
       "audioTextZh": "鸟击会如何威胁飞行安全？",
       "referenceText": "A bird strike may damage the nose, windshield, or engines. Bird ingestion can cause an engine surge, flameout, or failure. A windshield strike may also break the windshield and injure the flight crew.",
       "referenceTextZh": "鸟击可能损坏机头、风挡或发动机。鸟被吸入发动机后可能导致喘振、熄火或失效。鸟撞风挡还可能使风挡破裂，并造成飞行机组受伤。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/2e833f76b4cc795cec61b49bbe626eef137d9007edfde084204dea0d3a3a9131/audio/opi/opi-core-220.mp3",
+      "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-core-221",
@@ -46,7 +54,9 @@
       "audioTextZh": "哪些措施有助于防止鸟击？",
       "referenceText": "Pilots can check ATIS, ATC information, and pilot reports before flight and maintain a good visual scan. If bird activity is reported along the flight path, they can request a route change or delay the approach or departure. Airport management can also disperse birds near the airport.",
       "referenceTextZh": "飞行员可以在飞行前查看 ATIS、空中交通管制信息和飞行员报告，并保持良好的目视观察。如果航路上报告有鸟类活动，可以申请改变航路，或推迟进近或离场。机场管理部门也可以驱赶机场附近的鸟类。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/2fb34549aabb430cfb65e95c256341f87d9ddbd747534bce8699550bea16f3d6/audio/opi/opi-core-221.mp3",
+      "audioDurationSeconds": 2.496
     },
     {
       "id": "opi-core-223",
@@ -54,7 +64,9 @@
       "audioText": "What should a pilot do if an engine ingests a bird during initial climb?",
       "audioTextZh": "初始爬升过程中发动机吸入鸟类时，飞行员应如何处置？",
       "referenceText": "I would first maintain control of the aircraft and closely monitor the engine parameters. I would follow the SOP and complete the engine malfunction checklist, then report the situation and aircraft status to ATC. If engine performance deteriorated significantly, I would request a diversion to the nearest suitable airport and prepare for an emergency landing if necessary.",
-      "referenceTextZh": "我会首先控制好飞机，并密切监控发动机参数。我会遵循标准操作程序并完成发动机故障检查单，然后向空中交通管制报告情况和飞机状态。如果发动机性能明显恶化，我会申请改航至最近的合适机场，并在必要时准备紧急着陆。"
+      "referenceTextZh": "我会首先控制好飞机，并密切监控发动机参数。我会遵循标准操作程序并完成发动机故障检查单，然后向空中交通管制报告情况和飞机状态。如果发动机性能明显恶化，我会申请改航至最近的合适机场，并在必要时准备紧急着陆。",
+      "audio": "/question-bank-assets/revisions/opi/7913a562fe48e6482ac2cb373607528e280b55dd4c64f6b873de59c740d5501d/audio/opi/opi-core-223.mp3",
+      "audioDurationSeconds": 3.768
     },
     {
       "id": "opi-core-224",
@@ -63,7 +75,9 @@
       "audioTextZh": "你觉得自己应对鸟击的准备有多充分？",
       "referenceText": "I feel prepared to handle a bird strike because I know the procedures for avoiding and responding to one, although I have never encountered one in flight.",
       "referenceTextZh": "虽然我从未在飞行中遭遇鸟击，但我了解鸟击的预防和处置程序，因此认为自己已做好应对准备。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/3124b587ad2cfab957c4df769cd89c30121ae4dc86ef662186c8e3e60db4441d/audio/opi/opi-core-224.mp3",
+      "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-core-230",
@@ -71,7 +85,9 @@
       "audioText": "Who is responsible for controlling bird activity around an airport?",
       "audioTextZh": "谁负责控制机场周边的鸟类活动？",
       "referenceText": "The airport management department is responsible for controlling bird activity near the airport. It may send bird-control vehicles to disperse birds when activity is reported.",
-      "referenceTextZh": "机场管理部门负责控制机场附近的鸟类活动。收到鸟情报告后，可以派出驱鸟车辆驱散鸟群。"
+      "referenceTextZh": "机场管理部门负责控制机场附近的鸟类活动。收到鸟情报告后，可以派出驱鸟车辆驱散鸟群。",
+      "audio": "/question-bank-assets/revisions/opi/208fff9b29ccb751f88575274457b74e586067948ad899ccf56e0cb5ee4e7d54/audio/opi/opi-core-230.mp3",
+      "audioDurationSeconds": 3.744
     }
   ],
   "categoryId": "opi-category-02"

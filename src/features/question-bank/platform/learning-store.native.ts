@@ -23,7 +23,9 @@ function parseJson<T>(value: string | null, fallback: T): T {
   try {
     return JSON.parse(value) as T;
   } catch {
-    return fallback;
+    // Never replace unreadable existing user data with an empty progress map.
+    // Surface the recoverable load error and leave the stored bytes untouched.
+    throw new Error('learning_state_invalid');
   }
 }
 

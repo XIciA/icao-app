@@ -10,7 +10,9 @@
       "audioTextZh": "你喜欢运动吗？/你最喜欢的体育运动是什么？/你最喜欢的运动员是谁？",
       "studyTier": 0,
       "referenceText": "Yes, I like sports. I like playing football/basketball/badminton/volleyball. / I like running/swimming/cycling/skiing. My favorite sport star is Michael Jordan/Kobe Bryant/Messi/ Cristiano Ronaldo.\nNo, I don't like sports, I prefer to stay at home and play games.",
-      "referenceTextZh": "我喜欢运动。我喜欢踢足球/打篮球/打羽毛球/打排球。/我喜欢跑步/游泳/骑自行车/滑雪。我最喜欢的体育明星是乔丹/科比/梅西/C罗。\n\n不，我不喜欢运动，我更喜欢呆在家里玩游戏。"
+      "referenceTextZh": "我喜欢运动。我喜欢踢足球/打篮球/打羽毛球/打排球。/我喜欢跑步/游泳/骑自行车/滑雪。我最喜欢的体育明星是乔丹/科比/梅西/C罗。\n\n不，我不喜欢运动，我更喜欢呆在家里玩游戏。",
+      "audio": "/question-bank-assets/revisions/opi/b0f325287e172a977f5917de913bbc25c39a42588b71e566729f7683c36343fa/audio/opi/opi-fzy-118186.mp3",
+      "audioDurationSeconds": 4.68
     },
     {
       "id": "opi-fzy-151972",
@@ -19,7 +21,9 @@
       "audioTextZh": "闲暇时间你喜欢做什么？",
       "studyTier": 2,
       "referenceText": "In my spare time, I like playing basketball, running, swimming or playing computer games.",
-      "referenceTextZh": "在闲暇时间，我喜欢打篮球，跑步，游泳，或玩游戏。"
+      "referenceTextZh": "在闲暇时间，我喜欢打篮球，跑步，游泳，或玩游戏。",
+      "audio": "/question-bank-assets/revisions/opi/27d715cf1c2b50e58ed8161b6acc505178914e3e10c1e745c24b11061c742651/audio/opi/opi-fzy-151972.mp3",
+      "audioDurationSeconds": 2.232
     },
     {
       "id": "opi-fzy-118187",
@@ -28,7 +32,9 @@
       "audioTextZh": "你喜欢音乐吗？/你最喜欢哪种类型的音乐？/你最喜欢的歌手是谁？/你最喜欢哪首歌？",
       "studyTier": 0,
       "referenceText": "Yes, I like music/listening to music. I like pop music/rock/folk music/jazz/hiphop. My favorite singer is Michael Jackson/Eason Chan. My favorite song is Earth Song/Sleep Alone/Love.",
-      "referenceTextZh": "嗯，我喜欢音乐/听音乐。我喜欢流行/摇滚/民谣/爵士/嘻哈音乐。我最喜欢的歌手是迈克尔•杰克逊/陈奕迅。我最喜欢听的歌是Earth Song/ Sleep Alone/ Love。"
+      "referenceTextZh": "嗯，我喜欢音乐/听音乐。我喜欢流行/摇滚/民谣/爵士/嘻哈音乐。我最喜欢的歌手是迈克尔•杰克逊/陈奕迅。我最喜欢听的歌是Earth Song/ Sleep Alone/ Love。",
+      "audio": "/question-bank-assets/revisions/opi/66cd793ec4e5233a31698622692c804a64c1037d2bc4c2e94c2ce3cbc3aa3a5f/audio/opi/opi-fzy-118187.mp3",
+      "audioDurationSeconds": 6.528
     },
     {
       "id": "opi-fzy-151973",
@@ -37,7 +43,9 @@
       "audioTextZh": "喜欢运动吗？你最喜欢的运动明星是谁？",
       "studyTier": 1,
       "referenceText": "Yes, I like basketball, and my favorite basketball star is Yaoming.",
-      "referenceTextZh": "我喜欢打篮球，我最喜欢的篮球明星是姚明。"
+      "referenceTextZh": "我喜欢打篮球，我最喜欢的篮球明星是姚明。",
+      "audio": "/question-bank-assets/revisions/opi/61fde0bde359183cdaebd427325c6988bd95df1c7a4ebd3eaefb6df5c25ee646/audio/opi/opi-fzy-151973.mp3",
+      "audioDurationSeconds": 3.264
     },
     {
       "id": "opi-fzy-118188",
@@ -46,7 +54,9 @@
       "audioTextZh": "你喜欢去电影院/音乐会吗？/你多久去一次电影院？/你最喜欢的电视节目/电视剧是什么？",
       "studyTier": 0,
       "referenceText": "Yes, I like to go to the theatre/concert. I go to the cinema once a month. My favorite TV program is CCTV-5/talk show.\nNo, I don't like to go to the theatre/concert. I don't like to go to the cinema, because I prefer to watch movies at home.",
-      "referenceTextZh": "我喜欢去影院/音乐会。我一个月去一次电影院。我最喜欢的电视节目是中央-5体育频道/脱口秀。\n我不喜欢去影院/听音乐会。我不喜欢去电影院，我更喜欢在家里看电影。"
+      "referenceTextZh": "我喜欢去影院/音乐会。我一个月去一次电影院。我最喜欢的电视节目是中央-5体育频道/脱口秀。\n我不喜欢去影院/听音乐会。我不喜欢去电影院，我更喜欢在家里看电影。",
+      "audio": "/question-bank-assets/revisions/opi/32ef04d7de478b850a2b876a6e60de74b9f23e93206b71744d720a8c43e67258/audio/opi/opi-fzy-118188.mp3",
+      "audioDurationSeconds": 6.336
     },
     {
       "id": "opi-fzy-151974",
@@ -55,7 +65,9 @@
       "audioTextZh": "你最喜欢什么样的音乐？",
       "studyTier": 1,
       "referenceText": "I like pop music.",
-      "referenceTextZh": "我喜欢流行音乐。"
+      "referenceTextZh": "我喜欢流行音乐。",
+      "audio": "/question-bank-assets/revisions/opi/b5f79acf12f7a3c58d053ea69ad59765306a3c34c4a96eb765de002771368dae/audio/opi/opi-fzy-151974.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-fzy-118189",
@@ -64,7 +76,9 @@
       "audioTextZh": "你喜欢看书/看小说吗？你最喜欢的小说是什么？",
       "studyTier": 0,
       "referenceText": "Yes, I like reading novels. My favorite novel is The Ordinary World.",
-      "referenceTextZh": "我喜欢看小说。我最喜欢的小说是《平凡的世界》。"
+      "referenceTextZh": "我喜欢看小说。我最喜欢的小说是《平凡的世界》。",
+      "audio": "/question-bank-assets/revisions/opi/79de8bfe91d04d88e9ce9d45d3d782707b87ababddcfa5f44d83fd3569fd423e/audio/opi/opi-fzy-118189.mp3",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-fzy-151975",
@@ -73,7 +87,9 @@
       "audioTextZh": "多久去看一次电影？",
       "studyTier": 1,
       "referenceText": "About once a month.",
-      "referenceTextZh": "大概每个月去一次。"
+      "referenceTextZh": "大概每个月去一次。",
+      "audio": "/question-bank-assets/revisions/opi/62ea36dbd733197a9db995ac2d44b0660ced7cc7c156bcfe5c749d7a668dcdf9/audio/opi/opi-fzy-151975.mp3",
+      "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-118190",
@@ -82,7 +98,9 @@
       "audioTextZh": "你空闲时间喜欢做什么？空闲时，你喜欢跟家人一起吗？",
       "studyTier": 0,
       "referenceText": "In my spare time, I like to do sports/go shopping/play games at home. Yes, I like to spend my spare time with my family. It's precious time for me to be with my family.",
-      "referenceTextZh": "空闲时，我喜欢锻炼身体/购物/在家玩游戏。我空闲时间喜欢和家人一起度过，对我来说，和家人一起的时间是非常宝贵的。"
+      "referenceTextZh": "空闲时，我喜欢锻炼身体/购物/在家玩游戏。我空闲时间喜欢和家人一起度过，对我来说，和家人一起的时间是非常宝贵的。",
+      "audio": "/question-bank-assets/revisions/opi/1286af759bcfa18f598e9a44649ba76e7c5f50d493b0d0f690e8e5976de10ae0/audio/opi/opi-fzy-118190.mp3",
+      "audioDurationSeconds": 5.016
     },
     {
       "id": "opi-fzy-151976",
@@ -91,7 +109,9 @@
       "audioTextZh": "你最喜欢的电视节目是什么？",
       "studyTier": 1,
       "referenceText": "My favorite is Talk Show, I like it because it's interesting and humorous.",
-      "referenceTextZh": "我最喜欢脱口秀节目，因为有意思，也很幽默。"
+      "referenceTextZh": "我最喜欢脱口秀节目，因为有意思，也很幽默。",
+      "audio": "/question-bank-assets/revisions/opi/4dab60dd9cd56341908fa0715327428bb6a673d08e5957cb558e259592ce108c/audio/opi/opi-fzy-151976.mp3",
+      "audioDurationSeconds": 1.992
     },
     {
       "id": "opi-fzy-118191",
@@ -100,7 +120,9 @@
       "audioTextZh": "下班后你最喜欢的放松方式什么？你喜欢什么样的室外活动？",
       "studyTier": 0,
       "referenceText": "Sometimes I like doing sports, while sometimes I like listening to music to relax after work. I like to take a walk with my family.",
-      "referenceTextZh": "我有的时候喜欢去锻炼，有的时候喜欢下了班听听音乐来放松心情。我喜欢和家人一起出去散步。"
+      "referenceTextZh": "我有的时候喜欢去锻炼，有的时候喜欢下了班听听音乐来放松心情。我喜欢和家人一起出去散步。",
+      "audio": "/question-bank-assets/revisions/opi/88e62b9e5243fb3c7dd49f04f787887ef9923740e7a52133ede57107c4497ba8/audio/opi/opi-fzy-118191.mp3",
+      "audioDurationSeconds": 5.16
     },
     {
       "id": "opi-fzy-166042",
@@ -109,7 +131,9 @@
       "audioTextZh": "你的教员吸烟吗？",
       "studyTier": 1,
       "referenceText": "My instructor does not smoke, and he often tells us not to smoke.",
-      "referenceTextZh": "我的教员不吸烟，他也经常告诉我们不要吸烟。"
+      "referenceTextZh": "我的教员不吸烟，他也经常告诉我们不要吸烟。",
+      "audio": "/question-bank-assets/revisions/opi/b112746a0ebf772e8c77a7d65daa4773fda8cd993088a38b0acbce3fd09b8940/audio/opi/opi-fzy-166042.mp3",
+      "audioDurationSeconds": 1.848
     },
     {
       "id": "opi-fzy-118192",
@@ -118,7 +142,9 @@
       "audioTextZh": "你昨天过得好吗？你周末过得好吗？",
       "studyTier": 0,
       "referenceText": "Yes, I had a good day yesterday. /Everything was as usual. Yes, I had a good weekend.\nNo, I had a terrible/bad day yesterday. I had a busy/tired/exhausting weekend.",
-      "referenceTextZh": "是的，我昨天过得很好。/一切如常。是的，我周末过得不错。\n\n不好，我昨天过得很糟糕/不好。我周末很忙/累/疲惫。"
+      "referenceTextZh": "是的，我昨天过得很好。/一切如常。是的，我周末过得不错。\n\n不好，我昨天过得很糟糕/不好。我周末很忙/累/疲惫。",
+      "audio": "/question-bank-assets/revisions/opi/880c408af2d98123d5c35a68f556c5287165f8bf32419ee0706ed8f79c9f4c95/audio/opi/opi-fzy-118192.mp3",
+      "audioDurationSeconds": 3.216
     },
     {
       "id": "opi-fzy-166043",
@@ -127,7 +153,9 @@
       "audioTextZh": "你认为飞行员吸烟对吗？",
       "studyTier": 1,
       "referenceText": "No, I don't think pilots should smoke, especially in the cockpit. Smoking in the cockpit will not only pollute the cockpit environment, but also cause fire and this would be a great threat to flight safety.",
-      "referenceTextZh": "我觉得飞行员不应该吸烟，特别是在驾驶舱里更不能吸烟。飞行员在驾驶舱吸烟不仅会污染驾驶舱环境，也容易引发火灾，这会极大地威胁飞行安全。"
+      "referenceTextZh": "我觉得飞行员不应该吸烟，特别是在驾驶舱里更不能吸烟。飞行员在驾驶舱吸烟不仅会污染驾驶舱环境，也容易引发火灾，这会极大地威胁飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/d6304b9b659b0b50c01376c0d75d996682c803ca060cec640e13f55b39a8e6e9/audio/opi/opi-fzy-166043.mp3",
+      "audioDurationSeconds": 2.472
     }
   ],
   "categoryId": "opi-category-07"

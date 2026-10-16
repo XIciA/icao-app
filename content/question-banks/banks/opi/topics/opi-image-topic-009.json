@@ -17,7 +17,9 @@
       "audioText": "What are the main differences between a cockpit with traditional flight instruments and a modern glass cockpit?",
       "audioTextZh": "采用传统飞行仪表的驾驶舱与现代玻璃驾驶舱有哪些主要区别？",
       "referenceText": "Compared with traditional flight instruments, a modern glass cockpit gives pilots clearer information, supports better monitoring, and provides more time to make safe decisions. This can improve situational awareness.",
-      "referenceTextZh": "与传统飞行仪表相比，现代玻璃驾驶舱能向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。这有助于提高情景意识。"
+      "referenceTextZh": "与传统飞行仪表相比，现代玻璃驾驶舱能向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。这有助于提高情景意识。",
+      "audio": "/question-bank-assets/revisions/opi/b0b6f86b6fe1bfb046dc12667205ea85827f21b3aba41fcd58c765cebec4a664/audio/opi/opi-image-009-q01.mp3",
+      "audioDurationSeconds": 5.496
     },
     {
       "id": "opi-image-009-q02",
@@ -25,7 +27,9 @@
       "audioText": "What challenges do pilots face when flying an aircraft with traditional flight instruments?",
       "audioTextZh": "驾驶采用传统飞行仪表的航空器时，飞行员会面临哪些挑战？",
       "referenceText": "Traditional flight instruments can create a higher scan workload, provide less integrated information, and require more manual cross-checking.",
-      "referenceTextZh": "传统飞行仪表可能增加仪表扫描工作量，提供的综合信息较少，并要求飞行员进行更多人工交叉检查。"
+      "referenceTextZh": "传统飞行仪表可能增加仪表扫描工作量，提供的综合信息较少，并要求飞行员进行更多人工交叉检查。",
+      "audio": "/question-bank-assets/revisions/opi/06e8b8fca3a8e0d1e22976a3bb4238d3bf465bc6fb833f866583d4ed951a4440/audio/opi/opi-image-009-q02.mp3",
+      "audioDurationSeconds": 4.896
     }
   ],
   "categoryId": "opi-category-08"

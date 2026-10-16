@@ -9,7 +9,9 @@
       "audioText": "How should a flight crew respond if the landing gear does not extend during approach?",
       "audioTextZh": "进近过程中起落架无法放下时，飞行机组应如何处置？",
       "referenceText": "The crew should discontinue the approach, follow the SOP and checklist, and try the approved manual or gravity extension method. They may request a low pass for a visual check of the gear position. If the gear still cannot be extended, they should declare the emergency, prepare the crew and passengers for a gear-up landing, and be ready to evacuate after landing.",
-      "referenceTextZh": "机组应中止进近，执行标准操作程序和检查单，并尝试经批准的人工或重力放轮方法。他们可以申请低空通场，由地面人员目视检查起落架位置。如果起落架仍无法放下，应宣布紧急状态，让机组和旅客为收轮着陆做好准备，并准备在着陆后撤离。"
+      "referenceTextZh": "机组应中止进近，执行标准操作程序和检查单，并尝试经批准的人工或重力放轮方法。他们可以申请低空通场，由地面人员目视检查起落架位置。如果起落架仍无法放下，应宣布紧急状态，让机组和旅客为收轮着陆做好准备，并准备在着陆后撤离。",
+      "audio": "/question-bank-assets/revisions/opi/73b1d89b952b83a77c87fab9034dce4387b347aa78411205b495f9a29a9158ee/audio/opi/opi-core-482.mp3",
+      "audioDurationSeconds": 4.248
     },
     {
       "id": "opi-core-485",
@@ -17,7 +19,9 @@
       "audioText": "What is the function of the landing gear?",
       "audioTextZh": "起落架有什么作用？",
       "referenceText": "The landing gear supports the aircraft during taxi, the takeoff roll, and landing. It absorbs touchdown loads, allows ground steering, and supports braking after landing.",
-      "referenceTextZh": "起落架在滑行、起飞滑跑和着陆过程中支撑飞机。它吸收接地载荷，支持地面转向，并在着陆后配合制动。"
+      "referenceTextZh": "起落架在滑行、起飞滑跑和着陆过程中支撑飞机。它吸收接地载荷，支持地面转向，并在着陆后配合制动。",
+      "audio": "/question-bank-assets/revisions/opi/9b3204690246497b06a59a96d98838f6e30ba9c5b24bd7909dd45a4b16efd916/audio/opi/opi-core-485.mp3",
+      "audioDurationSeconds": 1.872
     },
     {
       "id": "opi-core-486",
@@ -25,7 +29,9 @@
       "audioText": "How can pilots confirm that the landing gear is down and locked if the normal indication is unavailable?",
       "audioTextZh": "正常指示不可用时，飞行员如何确认起落架已经放下并锁定？",
       "referenceText": "The crew should follow the abnormal checklist and use any alternate gear indicator fitted to the aircraft. If the normal indications remain unavailable, they may use an approved visual check or request a low pass so that ground personnel can report the gear position. An external view may not prove that the gear is locked, so the final decision must follow the approved procedure.",
-      "referenceTextZh": "机组应执行非正常检查单，并使用飞机安装的任何备用起落架指示器。如果正常指示仍不可用，可以进行经批准的目视检查，或申请低空通场，让地面人员报告起落架位置。外部观察未必能证明起落架已经锁定，因此最终决定必须遵循批准程序。"
+      "referenceTextZh": "机组应执行非正常检查单，并使用飞机安装的任何备用起落架指示器。如果正常指示仍不可用，可以进行经批准的目视检查，或申请低空通场，让地面人员报告起落架位置。外部观察未必能证明起落架已经锁定，因此最终决定必须遵循批准程序。",
+      "audio": "/question-bank-assets/revisions/opi/4a0a8db92b925df997be9d4927063b9ed32bad88d96a7166a27b4575fd0dd867/audio/opi/opi-core-486.mp3",
+      "audioDurationSeconds": 5.232
     },
     {
       "id": "opi-core-487",
@@ -33,7 +39,9 @@
       "audioText": "What procedure should a flight crew follow to use the alternate landing gear extension system?",
       "audioTextZh": "使用备用起落架放下系统时，飞行机组应遵循什么程序？",
       "referenceText": "The crew should use the abnormal checklist for the aircraft type. In general, they confirm the landing-gear problem, reduce speed and configure the aircraft as directed, operate the alternate extension system, and allow time for the gear to extend. They then verify the available indications and plan the landing according to the checklist.",
-      "referenceTextZh": "机组应使用该机型的非正常检查单。通常，他们先确认起落架问题，按指示减速并调整飞机构型，操作备用放轮系统，并留出足够时间让起落架放下。随后，他们核实可用指示，并按照检查单计划着陆。"
+      "referenceTextZh": "机组应使用该机型的非正常检查单。通常，他们先确认起落架问题，按指示减速并调整飞机构型，操作备用放轮系统，并留出足够时间让起落架放下。随后，他们核实可用指示，并按照检查单计划着陆。",
+      "audio": "/question-bank-assets/revisions/opi/a225058e15735cb274ec1c0c426e108db6d3d7446f2d3556afb866e17e362711/audio/opi/opi-core-487.mp3",
+      "audioDurationSeconds": 4.944
     },
     {
       "id": "opi-core-488",
@@ -41,7 +49,9 @@
       "audioText": "How does an alternate landing gear extension system work?",
       "audioTextZh": "备用起落架放下系统如何工作？",
       "referenceText": "If the normal hydraulic or electrical extension system fails, the alternate system can release the landing gear lock. The gear then extends under gravity.",
-      "referenceTextZh": "如果正常液压或电动放轮系统失效，备用系统可以释放起落架锁，使起落架在重力作用下放下。"
+      "referenceTextZh": "如果正常液压或电动放轮系统失效，备用系统可以释放起落架锁，使起落架在重力作用下放下。",
+      "audio": "/question-bank-assets/revisions/opi/4e13b0e40473a913d41a450864c0dc3a9a732077c7738e35b312169c85b340b3/audio/opi/opi-core-488.mp3",
+      "audioDurationSeconds": 3.144
     },
     {
       "id": "opi-core-490",
@@ -49,7 +59,9 @@
       "audioText": "How can pilots confirm that the landing gear is down and locked?",
       "audioTextZh": "飞行员如何确认起落架已经放下并锁定？",
       "referenceText": "Pilots should first check the landing gear indication lights and use any alternate indicator provided by the aircraft. If the indications are unavailable, they may use an approved visual check or request a low pass so that ATC or ground personnel can verify the gear position. The methods should be cross-checked in accordance with the SOP.",
-      "referenceTextZh": "飞行员应先检查起落架指示灯，并使用飞机提供的任何备用指示器。如果指示不可用，可以进行经批准的目视检查，或申请低空通场，让空中交通管制或地面人员确认起落架位置。应按照标准操作程序对各种方法进行交叉核实。"
+      "referenceTextZh": "飞行员应先检查起落架指示灯，并使用飞机提供的任何备用指示器。如果指示不可用，可以进行经批准的目视检查，或申请低空通场，让空中交通管制或地面人员确认起落架位置。应按照标准操作程序对各种方法进行交叉核实。",
+      "audio": "/question-bank-assets/revisions/opi/e05d6316cde73637939ff6d9fbd5ccd61bde59bc5e7325ca2066ec5a8aed1257/audio/opi/opi-core-490.mp3",
+      "audioDurationSeconds": 3.24
     },
     {
       "id": "opi-core-491",
@@ -57,7 +69,9 @@
       "audioText": "What can cause landing gear problems?",
       "audioTextZh": "哪些因素可能导致起落架出现问题？",
       "referenceText": "Landing gear problems can be caused by a hydraulic failure, electrical malfunction, mechanical wear, incorrect extension or retraction, a bird strike, foreign-object damage, a hard landing, or inadequate maintenance.",
-      "referenceTextZh": "起落架问题可能由液压失效、电气故障、机械磨损、放轮或收轮不当、鸟击、外来物损伤、重着陆或维修不足造成。"
+      "referenceTextZh": "起落架问题可能由液压失效、电气故障、机械磨损、放轮或收轮不当、鸟击、外来物损伤、重着陆或维修不足造成。",
+      "audio": "/question-bank-assets/revisions/opi/afde98fec0ce538cc3849f19c7b9b1c87b18d867697939d6f6144134b9c1709f/audio/opi/opi-core-491.mp3",
+      "audioDurationSeconds": 2.064
     },
     {
       "id": "opi-core-492",
@@ -65,7 +79,9 @@
       "audioText": "When is the landing gear normally extended during approach?",
       "audioTextZh": "进近过程中通常在什么时候放下起落架？",
       "referenceText": "The landing gear is normally extended at the altitude and airspeed specified by the SOP, early enough to confirm that it is fully down and locked and to maintain a stable approach.",
-      "referenceTextZh": "通常应在标准操作程序规定的高度和空速下放起落架，并留出足够时间确认起落架完全放下并锁定，同时保持稳定进近。"
+      "referenceTextZh": "通常应在标准操作程序规定的高度和空速下放起落架，并留出足够时间确认起落架完全放下并锁定，同时保持稳定进近。",
+      "audio": "/question-bank-assets/revisions/opi/b48d2d597f7e3a5f1c42e8ff6c51c981f8ba262e16ebb759b8c20670e3770b3b/audio/opi/opi-core-492.mp3",
+      "audioDurationSeconds": 3.024
     }
   ],
   "categoryId": "opi-category-06"

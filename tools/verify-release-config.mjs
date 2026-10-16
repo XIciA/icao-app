@@ -188,6 +188,7 @@ const clientTableGrantRevocation = (await Promise.all([
   'services/api/drizzle/0047_local_admin_statistics.sql',
   'services/api/drizzle/0048_ai_trial_eligibility_reason.sql',
   'services/api/drizzle/0049_admin_global_allowances.sql',
+  'services/api/drizzle/0052_content_work_orders.sql',
 ].map((file) => readFile(file, 'utf8')))).join('\n');
 const postgresBackup = await readFile('infra/backup/backup-postgres.sh', 'utf8');
 const isolatedRestore = await readFile('infra/backup/restore-isolated.sh', 'utf8');

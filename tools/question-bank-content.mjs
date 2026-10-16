@@ -22,7 +22,7 @@ const bankCapabilities = {
   listening: { audioMode: 'file', reviewMode: 'none', radioEligible: true, mockExamEligible: true },
   sentences900: { audioMode: 'file', reviewMode: 'exact-match', radioEligible: true, mockExamEligible: true },
   radiotelephony: { audioMode: 'file', reviewMode: 'grammar', radioEligible: false, mockExamEligible: true },
-  opi: { audioMode: 'generated', reviewMode: 'expression-analysis', radioEligible: false, mockExamEligible: true },
+  opi: { audioMode: 'file', reviewMode: 'expression-analysis', radioEligible: false, mockExamEligible: true },
   storytelling: { audioMode: 'file', reviewMode: 'grammar', radioEligible: true, mockExamEligible: true },
 };
 
@@ -187,8 +187,9 @@ function validate({ registry, banks, resources }, { full = false, requireResourc
     if (!bankIds.has(file.bankId)) fail(`resource_bank_missing:${file.objectKey}`);
     if (!allowedResourceMimeTypes.has(file.mimeType)) fail(`resource_mime_type:${file.objectKey}`);
     if (file.publicPath !== `/question-bank-assets/${file.sourceRelativePath}`) fail(`resource_public_path:${file.objectKey}`);
-    if (file.mimeType === 'audio/mpeg' && !file.sourceRelativePath.startsWith('audio/')) fail(`resource_audio_path:${file.objectKey}`);
-    if (file.mimeType.startsWith('image/') && !file.sourceRelativePath.startsWith('images/')) fail(`resource_image_path:${file.objectKey}`);
+    const resourceRelative = file.sourceRelativePath.replace(new RegExp(`^revisions/${file.bankId}/${file.checksum}/`), '');
+    if (file.mimeType === 'audio/mpeg' && !resourceRelative.startsWith('audio/')) fail(`resource_audio_path:${file.objectKey}`);
+    if (file.mimeType.startsWith('image/') && !resourceRelative.startsWith('images/')) fail(`resource_image_path:${file.objectKey}`);
     if (file.durationSeconds !== undefined && (!(file.durationSeconds > 0) || !Number.isFinite(file.durationSeconds))) fail(`resource_duration:${file.objectKey}`);
     if (!/^[a-f0-9]{64}$/.test(file.checksum)) fail(`resource_checksum:${file.objectKey}`);
     if (!Number.isInteger(file.sizeBytes) || file.sizeBytes < 1) fail(`resource_size:${file.objectKey}`);

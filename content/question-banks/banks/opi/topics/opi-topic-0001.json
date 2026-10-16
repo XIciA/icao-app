@@ -10,7 +10,9 @@
       "audioTextZh": "你在飞行中遇到过雷击吗？",
       "referenceText": "No, I have never encountered a lightning strike during flight. I know that lightning strikes are dangerous, so I avoid them during flight.",
       "referenceTextZh": "没有，我在飞行中从未遭遇过雷击。我知道雷击很危险，因此在飞行中会避开雷电活动区域。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/ae3b6a49f2f6a2328a34923e012d25fd1a86ae7fa49d548bfc8a57f7663201e3/audio/opi/opi-core-001.mp3",
+      "audioDurationSeconds": 3.024
     },
     {
       "id": "opi-core-002",
@@ -19,7 +21,9 @@
       "audioTextZh": "雷击最可能在哪些天气条件下发生？",
       "referenceText": "Lightning strikes are most likely to occur in thunderstorms or cumulonimbus clouds.",
       "referenceTextZh": "雷击最可能发生在雷暴或积雨云中。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/5539c47ba2a04b7e44b7a4a5adcf1f32598195f302eaf6f18d9cf4189012f834/audio/opi/opi-core-002.mp3",
+      "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-core-003",
@@ -28,7 +32,9 @@
       "audioTextZh": "为什么雷击会危及飞行安全？",
       "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause electrical failure or disrupt communication and navigation systems.",
       "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致电气故障，或使通信和导航系统中断。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/8e5c5e1aaca8c3e55a50b1a3fb40bdada551634ea0ec00520391eb818f1a8223/audio/opi/opi-core-003.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-core-004",
@@ -37,7 +43,9 @@
       "audioTextZh": "飞行中飞机遭遇雷击时，飞行员应如何处置？",
       "referenceText": "I would first maintain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situation to ATC. If the damage were severe, I would request a diversion to an alternate airport. After landing, I would request a maintenance inspection.",
       "referenceTextZh": "我会首先控制好飞机，并遵循标准操作程序和检查单。我会检查飞机是否存在结构或系统损伤，并向空中交通管制报告情况。如果损伤严重，我会申请改航至备降机场。着陆后，我会申请进行维修检查。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/27dfd98b169ce935508b3829212eeb96ba749461da50107a2658ef6b2de3703f/audio/opi/opi-core-004.mp3",
+      "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-core-005",
@@ -46,7 +54,9 @@
       "audioTextZh": "飞行员可以采取哪些措施降低遭遇雷击的风险？",
       "referenceText": "Before flight, I check the weather reports and avoid areas where lightning is likely. During flight, I monitor the weather radar and request a deviation from ATC if lightning is detected ahead. I also avoid cumulonimbus clouds and thunderstorm areas.",
       "referenceTextZh": "飞行前，我会查看天气报告，并避开可能发生雷电的区域。飞行中，我会监控气象雷达；如果前方探测到雷电，就向空中交通管制申请绕飞。我还会避开积雨云和雷暴区域。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/1046f2f92d4945e3d75f4011ba52a4c922a31a9f5c4a35a3f86906d15a3dae38/audio/opi/opi-core-005.mp3",
+      "audioDurationSeconds": 3.72
     },
     {
       "id": "opi-core-007",
@@ -55,7 +65,9 @@
       "audioTextZh": "雷击会对飞机造成哪些损伤？",
       "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause communication or navigation failure.",
       "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致通信或导航失效。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/add9eec1a1e3a98396a4df436b10d8012859c265d459a97a2dab77c893f1ad7b/audio/opi/opi-core-007.mp3",
+      "audioDurationSeconds": 3.0
     },
     {
       "id": "opi-core-012",
@@ -63,7 +75,9 @@
       "audioText": "During which phase of flight is an aircraft most likely to be struck by lightning?",
       "audioTextZh": "飞机在哪个飞行阶段最容易遭遇雷击？",
       "referenceText": "An aircraft is most likely to be struck by lightning during climb, descent, or holding rather than at normal cruise altitude. These phases often take it through active cloud layers at lower altitudes. The risk is greatest near thunderstorms and at levels where the temperature is close to freezing.",
-      "referenceTextZh": "飞机在爬升、下降或等待阶段比在正常巡航高度更容易遭到雷击，因为这些阶段常会穿过较低高度的活跃云层。雷暴附近以及温度接近冰点的高度层风险最大。"
+      "referenceTextZh": "飞机在爬升、下降或等待阶段比在正常巡航高度更容易遭到雷击，因为这些阶段常会穿过较低高度的活跃云层。雷暴附近以及温度接近冰点的高度层风险最大。",
+      "audio": "/question-bank-assets/revisions/opi/60127c01b24defb82e43f5405bf88edfc711d3f73057374edf76277228f19c07/audio/opi/opi-core-012.mp3",
+      "audioDurationSeconds": 4.104
     }
   ],
   "categoryId": "opi-category-01"

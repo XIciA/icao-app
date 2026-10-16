@@ -42,6 +42,9 @@ export type QuestionBankCapabilities = {
 };
 
 type QuestionBankCardBase = {
+  /** Retained for existing history; excluded from new practice. */
+  retired?: boolean;
+  examReported?: boolean;
   id: string;
   taskTitle: string;
   studyTier?: StudyTier;
@@ -49,6 +52,8 @@ type QuestionBankCardBase = {
 
 export type QuestionBankTextCard = QuestionBankCardBase & {
   kind?: 'text';
+  /** Exam feedback wording, keyed by hotspot ID; delivered with authorized question content. */
+  reportedPrompts?: Record<string, string[]>;
   audioText: string;
   audioTextZh?: string;
   referenceText?: string;
@@ -130,6 +135,7 @@ export type QuestionBankStudyItem = {
 
 export type CardLearningState = {
   visited: boolean;
+  lastVisitedAt?: string;
   completed: boolean;
   selectedChoiceIndex?: number;
   recorded?: boolean;
@@ -197,6 +203,7 @@ export type LearningRecord = {
   completedCount: number;
   totalCount: number;
   correctCount: number;
+  sessionRecap?: import('./lib/session-recap').SessionRecap;
   annotationCount?: number;
   noteCount?: number;
   feedbackCount?: number;

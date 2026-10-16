@@ -9,7 +9,9 @@
       "audioText": "What are hazardous attitudes in aviation?",
       "audioTextZh": "航空领域中的危险态度是什么？",
       "referenceText": "Hazardous attitudes in aviation include anti-authority, macho, impulsivity, invulnerability, and resignation. They can weaken safety awareness, crew communication, and cooperation, and increase the risk of human error.",
-      "referenceTextZh": "航空中的危险态度包括反权威、逞强、冲动、侥幸和消极认命。这些态度会削弱安全意识、机组沟通与合作，并增加人为差错风险。"
+      "referenceTextZh": "航空中的危险态度包括反权威、逞强、冲动、侥幸和消极认命。这些态度会削弱安全意识、机组沟通与合作，并增加人为差错风险。",
+      "audio": "/question-bank-assets/revisions/opi/e29b1b3832185c88f7312f382638bfb5e56acc13fff2a783292e0d15551acfd2/audio/opi/opi-core-748.mp3",
+      "audioDurationSeconds": 2.28
     },
     {
       "id": "opi-core-749",
@@ -18,7 +20,9 @@
       "audioTextZh": "危险态度如何影响飞行安全？",
       "studyTier": 1,
       "referenceText": "For example, if the pilot holds an anti-authority attitude, he may refuse to listen to the advice or suggestion of others, or he may disregard the rules and regulations. He may make mistake and make poor decision. This is very dangerous for flight safety.",
-      "referenceTextZh": "例如，如果飞行员持有反权威态度，他可能会拒绝听取别人的意见或建议，或者他可能会无视规章制度。他可能会犯错误，做出错误的决定。这对飞行安全是非常危险的。"
+      "referenceTextZh": "例如，如果飞行员持有反权威态度，他可能会拒绝听取别人的意见或建议，或者他可能会无视规章制度。他可能会犯错误，做出错误的决定。这对飞行安全是非常危险的。",
+      "audio": "/question-bank-assets/revisions/opi/f253086604f1d12322a128285f0d2793c45aac6b9df837146f2f2d6aafa1fa55/audio/opi/opi-core-749.mp3",
+      "audioDurationSeconds": 2.808
     },
     {
       "id": "opi-core-750",
@@ -26,7 +30,9 @@
       "audioText": "How can pilots recognize and manage hazardous attitudes?",
       "audioTextZh": "飞行员如何识别和管理危险态度？",
       "referenceText": "Pilots need self-awareness to recognize personal bias and hazardous attitudes. They can manage them by following regulations, SOPs, and manuals, strengthening CRM communication and cooperation, and learning from mistakes. Flight safety should take priority over personal bias.",
-      "referenceTextZh": "飞行员需要具备自我意识，才能发现个人偏见和危险态度。他们可以通过遵守规章、标准操作程序和手册，加强 CRM 沟通与合作，并从错误中学习来进行管理。飞行安全应优先于个人偏见。"
+      "referenceTextZh": "飞行员需要具备自我意识，才能发现个人偏见和危险态度。他们可以通过遵守规章、标准操作程序和手册，加强 CRM 沟通与合作，并从错误中学习来进行管理。飞行安全应优先于个人偏见。",
+      "audio": "/question-bank-assets/revisions/opi/3cfc0add9007621c1481a05aaa24b7f2038b4a95bef142f245945cf09e3dbfd3/audio/opi/opi-core-750.mp3",
+      "audioDurationSeconds": 3.432
     }
   ],
   "categoryId": "opi-category-04"

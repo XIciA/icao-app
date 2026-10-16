@@ -74,6 +74,15 @@ describe('StudyAudioPlayer', () => {
     jest.restoreAllMocks();
   });
 
+  it.each(['default','integrated-recording'] as const)('can retry an initial resource resolution failure with no URI (%s)', async variant => {
+    setTestPlatform('android');
+    const onRetry=jest.fn();
+    const screen=await render(<StudyAudioPlayer label="Missing address" playbackKey="missing" resolving={false} variant={variant} onRetry={onRetry}/>);
+    await fireEvent.press(screen.getByLabelText('重试音频'));
+    expect(onRetry).toHaveBeenCalledTimes(1);
+    expect(mockPlayer.replace).not.toHaveBeenCalled();
+  });
+
   it.each(['ios', 'android'] as const)('waits for the replacement source to load before %s autoplay', async (platform) => {
     setTestPlatform(platform);
     const screen = await render(

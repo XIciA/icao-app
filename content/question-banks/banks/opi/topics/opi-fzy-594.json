@@ -18,7 +18,9 @@
       "audioTextZh": "请描述图中正在发生的情况。",
       "studyTier": 0,
       "referenceText": "In the upper picture, an aircraft is colliding with the other one holding at the apron. Some people are around two aircraft. The aircraft is on fire producing thick smoke after collision as shown in the lower picture. Several fire engines and lots of firemen showing on the scene are extinguishing the fire.",
-      "referenceTextZh": "上图中，一架飞机和另一架正在停机坪等待的飞机相撞。一些人正站在这两架飞机附近。下图中，飞机在相撞后产生浓烟。消防车和消防员正在灭火。"
+      "referenceTextZh": "上图中，一架飞机和另一架正在停机坪等待的飞机相撞。一些人正站在这两架飞机附近。下图中，飞机在相撞后产生浓烟。消防车和消防员正在灭火。",
+      "audio": "/question-bank-assets/revisions/opi/dd4378b42a8cf3d970a061b3293bc1b5451122d4ee47eb18df0d134e4423733e/audio/opi/opi-fzy-110457.mp3",
+      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-fzy-110458",
@@ -27,7 +29,9 @@
       "audioTextZh": "引发这起悲剧的原因是什么？",
       "studyTier": 0,
       "referenceText": "I have heard of this crash before. It happened at Baiyun International Airport in 1990. The left aircraft shown in the first picture belonged to Xiamen Airline. It was hijacked, and the pilot struggled with hijackers and diverted to Baiyun Airport to make a forced landing. After landing, the aircraft rolled off the runway and collided with the other aircraft. More than one hundred people died in the accident.",
-      "referenceTextZh": "我曾听说过这起事故。事故发生在1990年的白云国际机场，第一张图中左侧的飞机属于厦门航空，这架飞机被劫持，飞行员与劫机者进行搏斗，飞机在白云机场迫降。飞机着陆后，飞机冲出跑道并与另一架飞机相撞，超过一百人在事故中丧生。"
+      "referenceTextZh": "我曾听说过这起事故。事故发生在1990年的白云国际机场，第一张图中左侧的飞机属于厦门航空，这架飞机被劫持，飞行员与劫机者进行搏斗，飞机在白云机场迫降。飞机着陆后，飞机冲出跑道并与另一架飞机相撞，超过一百人在事故中丧生。",
+      "audio": "/question-bank-assets/revisions/opi/8e5aa8e062e1715234891036163db838ee14b1436249bd0ebd8b914cfa06732c/audio/opi/opi-fzy-110458.mp3",
+      "audioDurationSeconds": 1.872
     },
     {
       "id": "opi-fzy-110459",
@@ -36,7 +40,9 @@
       "audioTextZh": "你知道驾驶舱中发生什么导致飞机冲出跑道吗？",
       "studyTier": 0,
       "referenceText": "It is reported that the hijacker attacked the pilot and intended to control the aircraft once the aircraft touched the runway, as a result, the aircraft was out of control and crashed into the other one.",
-      "referenceTextZh": "报道称劫机者袭击了飞行员并想要控制飞机，结果飞机在着陆后失去控制并冲向了另一架飞机。"
+      "referenceTextZh": "报道称劫机者袭击了飞行员并想要控制飞机，结果飞机在着陆后失去控制并冲向了另一架飞机。",
+      "audio": "/question-bank-assets/revisions/opi/49d0c8ac5f3dade1b4fcaea84ad1a75b7cb4826895b91a3c4066229ce61b7ed4/audio/opi/opi-fzy-110459.mp3",
+      "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-fzy-110460",
@@ -45,7 +51,9 @@
       "audioTextZh": "如果遭遇劫机你会怎样做？",
       "studyTier": 0,
       "referenceText": "I should not land blindly but maintain safety first. All in all, \"Safety First\" should be the principle. If hijackers wanted to fly to somewhere else, I would follow their intention, then I would try to contact ATC, our company or airport representatives to find some ways to handle the situation.",
-      "referenceTextZh": "我不会盲目降落，首先要保证飞行安全。总而言之，“安全第一”是原则。如果劫机者想飞到其它地方我会顺从他们的意图，然后试图联系ATC、我的公司或机场代表来想方法处理这种情况。"
+      "referenceTextZh": "我不会盲目降落，首先要保证飞行安全。总而言之，“安全第一”是原则。如果劫机者想飞到其它地方我会顺从他们的意图，然后试图联系ATC、我的公司或机场代表来想方法处理这种情况。",
+      "audio": "/question-bank-assets/revisions/opi/0624960e822fb34473726042568bf8ea6cf5f30d2b95a114d4dd742ca46ca180/audio/opi/opi-fzy-110460.mp3",
+      "audioDurationSeconds": 2.064
     },
     {
       "id": "opi-fzy-110461",
@@ -54,7 +62,9 @@
       "audioTextZh": "如果你是第一张图中正在停机坪等待的飞机的机长，这种情况你会怎样做？",
       "studyTier": 0,
       "referenceText": "Under that situation, I think I had no choice to avoid the collision, but after collision, if possible, I would turn off all power immediately. Command crew to open the cabin door, put down the slide and help to make the evacuation of passengers. I would be the last one to get off to ensure all passengers and crewmembers have left the plane.",
-      "referenceTextZh": "这种情况下，我认为无法避免相撞。但在那之前如果有可能，我会立刻将所有电源关闭，指挥机组成员打开客舱门，放下逃生滑梯让乘客逃生。我会在最后下飞机，确保所有乘客和机组成员已经离开飞机。"
+      "referenceTextZh": "这种情况下，我认为无法避免相撞。但在那之前如果有可能，我会立刻将所有电源关闭，指挥机组成员打开客舱门，放下逃生滑梯让乘客逃生。我会在最后下飞机，确保所有乘客和机组成员已经离开飞机。",
+      "audio": "/question-bank-assets/revisions/opi/2b82fb1490917c8cdc849a8c505e2dc4f35c029a74b31fdc8d189bf0ba98140e/audio/opi/opi-fzy-110461.mp3",
+      "audioDurationSeconds": 6.072
     },
     {
       "id": "opi-fzy-110462",
@@ -63,7 +73,9 @@
       "audioTextZh": "如何通知ATC有劫机情况？",
       "studyTier": 0,
       "referenceText": "The pilot under duress should squawk 7500 or vocally, by radio communication, transmit \"(Call sign) Transponder seven five zero zero.\" if possible and safe. The air traffic controller may ask the pilot to confirm that. The pilot under duress may respond that the aircraft is not being hijacked, but then conversely change to a different squawk code. A complete lack of a response would also be taken to indicate a possible hijacking.",
-      "referenceTextZh": "受胁迫时，飞行员应该设置应答机编码7500，或通过无线电通信应答机口头传输，“（呼号）应答机7500”。条件允许并安全的情况下。管制人员会向飞行员进行确认。受胁迫时飞行员可回复飞机未被劫机，然后设置不同的应答机编码，没有回复也表明可能发生了劫机。"
+      "referenceTextZh": "受胁迫时，飞行员应该设置应答机编码7500，或通过无线电通信应答机口头传输，“（呼号）应答机7500”。条件允许并安全的情况下。管制人员会向飞行员进行确认。受胁迫时飞行员可回复飞机未被劫机，然后设置不同的应答机编码，没有回复也表明可能发生了劫机。",
+      "audio": "/question-bank-assets/revisions/opi/c531946be732871189177e901bfab159b4478c6dd2d50f5797a1f3852b338304/audio/opi/opi-fzy-110462.mp3",
+      "audioDurationSeconds": 3.072
     },
     {
       "id": "opi-fzy-110463",
@@ -72,7 +84,9 @@
       "audioTextZh": "你曾有过异常的飞行经历吗？",
       "studyTier": 0,
       "referenceText": "I haven't met hijacking but have met a situation that electrical system powered off during approach. When problem happened, there was no indication at all. I had the aircraft in control immediately, and executed the checklist. Then I reported ATC our situation and requested landing priority. At last we were cleared for straight-in approach and landed successfully.",
-      "referenceTextZh": "我没有遇到过劫机，但曾在进场时遭遇电力系统关闭。情况发生前没有任何征兆，\n我立刻控制飞机并执行飞行检查。然后我向ATC报告情况并要求优先着陆，最后直线进近并成功着陆。"
+      "referenceTextZh": "我没有遇到过劫机，但曾在进场时遭遇电力系统关闭。情况发生前没有任何征兆，\n我立刻控制飞机并执行飞行检查。然后我向ATC报告情况并要求优先着陆，最后直线进近并成功着陆。",
+      "audio": "/question-bank-assets/revisions/opi/c601ae3e7cfb8f52559e2541cd04f020cbdd1c1e7040975d4c70fdfcb6f4cf33/audio/opi/opi-fzy-110463.mp3",
+      "audioDurationSeconds": 2.76
     },
     {
       "id": "opi-fzy-110464",
@@ -81,7 +95,9 @@
       "audioTextZh": "你认为处理异常事件时有什么重要的事情？",
       "studyTier": 0,
       "referenceText": "I think we should control the plane calmly and make judgments correctly, then order the flight crew to bear their own responsibilities. At the same time, we should report ATC the situation and request assistance.",
-      "referenceTextZh": "我认为，我们应该冷静地控制飞机并做出正确判断，然后命令机组成员承担各自的责任，同事，我们应该向ATC报告情况并请求援助。"
+      "referenceTextZh": "我认为，我们应该冷静地控制飞机并做出正确判断，然后命令机组成员承担各自的责任，同事，我们应该向ATC报告情况并请求援助。",
+      "audio": "/question-bank-assets/revisions/opi/55f5644214fd03ea39cd15dc03645924f512dcd82f3d20849218e4d5fc478ab1/audio/opi/opi-fzy-110464.mp3",
+      "audioDurationSeconds": 3.816
     }
   ],
   "categoryId": "opi-category-08"

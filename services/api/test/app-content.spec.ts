@@ -46,3 +46,18 @@ describe('fixed public app content', () => {
     expect(snapshot.legal.privacy.sections.some((clause) => clause.body.includes('不保存用户录音'))).toBe(true);
   });
 });
+
+it('keeps separate date/center entries for v2 and a readable merged projection for older clients', async () => {
+  const value=structuredClone(snapshot);
+  const first=value.hotspots.briefs[0]!;
+  value.hotspots.briefs=[{...first,id:'center-a',centers:['A']},{...first,id:'center-b',centers:['B']}];
+  const controller=new AppContentController(serviceWith(value));
+  const reply={header:vi.fn().mockReturnThis(),status:vi.fn()};
+  const modern=await controller.get(undefined,{id:'new',query:{hotspotFormat:'2'}} as never,reply as never);
+  const legacy=await controller.get(undefined,{id:'old',query:{}} as never,reply as never);
+  expect(modern?.data.payload.hotspots.briefs).toHaveLength(2);
+  expect(legacy?.data.payload.hotspots.briefs).toHaveLength(1);
+  expect(legacy?.data.payload.hotspots.briefs[0]?.centers).toEqual(['A','B']);
+  expect(legacy?.data.checksum).not.toBe(modern?.data.checksum);
+  expect(legacy?.data.checksum).toBe(appContentChecksum(legacy?.data.payload));
+});

@@ -9,7 +9,9 @@
       "audioText": "What is a head-up display (HUD)?",
       "audioTextZh": "什么是平视显示器（HUD）？",
       "referenceText": "HUD stands for head-up display. It projects flight information onto a transparent display in the pilot’s line of sight, including data such as heading, airspeed, altitude, attitude, and guidance. This allows the pilot to monitor important information while still looking outside.",
-      "referenceTextZh": "HUD 是平视显示器的缩写。它把航向、空速、高度、姿态和引导等飞行信息投射到飞行员视线内的透明显示屏上，使飞行员在观察外部的同时监控重要信息。"
+      "referenceTextZh": "HUD 是平视显示器的缩写。它把航向、空速、高度、姿态和引导等飞行信息投射到飞行员视线内的透明显示屏上，使飞行员在观察外部的同时监控重要信息。",
+      "audio": "/question-bank-assets/revisions/opi/1ac25af539031bab8f0b3b4ccc2880385c94bcb5bac2c130cdcc5dbe625662bc/audio/opi/opi-core-613.mp3",
+      "audioDurationSeconds": 2.424
     },
     {
       "id": "opi-core-614",
@@ -17,7 +19,9 @@
       "audioText": "Under what conditions can a HUD support operations at reduced landing minima?",
       "audioTextZh": "在什么条件下，HUD 可支持按较低的着陆最低标准运行？",
       "referenceText": "A HUD can support reduced landing minima only when the system is approved, installed, and serviceable for the intended operation. The operator and aircraft must be authorised, the crew must be trained and current, and the approach, runway facilities, and reported visibility must meet the approved requirements.",
-      "referenceTextZh": "只有当 HUD 已获准用于计划运行、正确安装并工作正常时，才能支持降低着陆最低标准。运营人和飞机必须获得授权，机组须经过培训并保持近期资格，进近、跑道设施和报告能见度也必须满足批准要求。"
+      "referenceTextZh": "只有当 HUD 已获准用于计划运行、正确安装并工作正常时，才能支持降低着陆最低标准。运营人和飞机必须获得授权，机组须经过培训并保持近期资格，进近、跑道设施和报告能见度也必须满足批准要求。",
+      "audio": "/question-bank-assets/revisions/opi/c0e48c4f439f10974ebe7d6dcb73ba8788fdfea1f1901acb68a09870ac2605ff/audio/opi/opi-core-614.mp3",
+      "audioDurationSeconds": 4.488
     },
     {
       "id": "opi-core-615",
@@ -25,7 +29,9 @@
       "audioText": "Besides a HUD, what other systems can be used for approved operations at reduced landing minima?",
       "audioTextZh": "除 HUD 外，还有哪些系统可用于经批准的较低着陆最低标准运行？",
       "referenceText": "Approved automatic-landing systems and enhanced flight vision systems can also support operations at reduced landing minima. Their use depends on the certification of the aircraft and equipment, operator authorisation, crew qualification, runway facilities, and the specific approach procedure.",
-      "referenceTextZh": "经批准的自动着陆系统和增强飞行视景系统也能支持降低着陆最低标准的运行。能否使用取决于飞机和设备审定、运营人授权、机组资质、跑道设施以及具体进近程序。"
+      "referenceTextZh": "经批准的自动着陆系统和增强飞行视景系统也能支持降低着陆最低标准的运行。能否使用取决于飞机和设备审定、运营人授权、机组资质、跑道设施以及具体进近程序。",
+      "audio": "/question-bank-assets/revisions/opi/0d32d5c60039665809930fbd6a384053d981e98343e1dfd3d29cd5d66c4a88a4/audio/opi/opi-core-615.mp3",
+      "audioDurationSeconds": 5.76
     },
     {
       "id": "opi-core-616",
@@ -33,7 +39,9 @@
       "audioText": "When do pilots use a HUD?",
       "audioTextZh": "飞行员什么时候使用 HUD？",
       "referenceText": "Pilots often use a HUD during takeoff and landing.",
-      "referenceTextZh": "飞行员经常在起飞和着陆期间使用 HUD。"
+      "referenceTextZh": "飞行员经常在起飞和着陆期间使用 HUD。",
+      "audio": "/question-bank-assets/revisions/opi/e777c907f68099daf203ea659e77c11a20b478052cb12dfce1ce99dad059ca1c/audio/opi/opi-core-616.mp3",
+      "audioDurationSeconds": 1.992
     },
     {
       "id": "opi-core-617",
@@ -41,7 +49,9 @@
       "audioText": "What are the advantages of using a HUD?",
       "audioTextZh": "使用 HUD 有哪些优势？",
       "referenceText": "A HUD allows pilots to see important flight information without looking down at the instrument panel. They can monitor the data while continuing to scan the outside environment. This can improve situational awareness and support flight safety.",
-      "referenceTextZh": "HUD 使飞行员无需低头看仪表板就能看到重要飞行信息。他们可以在继续观察外部环境的同时监控数据，从而提高情景意识并保障飞行安全。"
+      "referenceTextZh": "HUD 使飞行员无需低头看仪表板就能看到重要飞行信息。他们可以在继续观察外部环境的同时监控数据，从而提高情景意识并保障飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/668046e1e2f5960d8a216079541d15f06bc52a5b2916daa83ea13718484145b8/audio/opi/opi-core-617.mp3",
+      "audioDurationSeconds": 2.52
     },
     {
       "id": "opi-core-618",
@@ -49,7 +59,9 @@
       "audioText": "What training must a pilot complete before using a HUD in flight?",
       "audioTextZh": "飞行员在飞行中使用 HUD 前必须完成哪些培训？",
       "referenceText": "A pilot must complete both ground training and flight training before using a HUD in flight.",
-      "referenceTextZh": "飞行员在飞行中使用 HUD 前，必须同时完成地面训练和飞行训练。"
+      "referenceTextZh": "飞行员在飞行中使用 HUD 前，必须同时完成地面训练和飞行训练。",
+      "audio": "/question-bank-assets/revisions/opi/1bbb180c43f9bf562f6637392aa620bb43fb4544a1f0eafe4e0d524b5ca7dc0f/audio/opi/opi-core-618.mp3",
+      "audioDurationSeconds": 3.888
     },
     {
       "id": "opi-core-619",
@@ -57,7 +69,9 @@
       "audioText": "What operational benefits, if any, can a HUD provide when flying in heavy fog?",
       "audioTextZh": "在大雾中飞行时，HUD 是否能带来运行优势？如果能，有哪些？",
       "referenceText": "In heavy fog, a HUD can place flight data and guidance in the pilot’s line of sight and reduce the time spent looking down. This can improve situational awareness and approach stability and help the pilot maintain accurate runway alignment in low visibility.",
-      "referenceTextZh": "在浓雾中，HUD 可以把飞行数据和引导信息显示在飞行员视线内，减少低头查看仪表的时间。这能提高情景意识和进近稳定性，并帮助飞行员在低能见度下准确保持跑道对正。"
+      "referenceTextZh": "在浓雾中，HUD 可以把飞行数据和引导信息显示在飞行员视线内，减少低头查看仪表的时间。这能提高情景意识和进近稳定性，并帮助飞行员在低能见度下准确保持跑道对正。",
+      "audio": "/question-bank-assets/revisions/opi/6dc37de18777ed2b2909353512c470f09a744b42de7b6fe2274e487d0fcd0acd/audio/opi/opi-core-619.mp3",
+      "audioDurationSeconds": 5.424
     },
     {
       "id": "opi-core-620",
@@ -65,7 +79,9 @@
       "audioText": "Do you think the use of HUDs in adverse weather will become more common in the future?",
       "audioTextZh": "你认为未来在不利天气中使用 HUD 会更加普遍吗？",
       "referenceText": "Yes, I think HUD use in adverse weather will become more common. It can improve situational awareness in low visibility and support more reliable operations. As the technology develops, more airlines may install HUDs to improve operations and reduce some weather-related delays.",
-      "referenceTextZh": "是的，我认为 HUD 在恶劣天气中的应用会越来越普遍。它能提高低能见度下的情景意识，并支持更可靠的运行。随着技术发展，更多航空公司可能安装 HUD，以改善运行并减少部分天气延误。"
+      "referenceTextZh": "是的，我认为 HUD 在恶劣天气中的应用会越来越普遍。它能提高低能见度下的情景意识，并支持更可靠的运行。随着技术发展，更多航空公司可能安装 HUD，以改善运行并减少部分天气延误。",
+      "audio": "/question-bank-assets/revisions/opi/9817eb7ef64f9e4efc2d584f4fb35304731696414cc2b324eea5f159b146b2a2/audio/opi/opi-core-620.mp3",
+      "audioDurationSeconds": 4.104
     }
   ],
   "categoryId": "opi-category-03"

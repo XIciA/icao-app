@@ -71,8 +71,8 @@
       "taskTitle": "QFA 358-8",
       "audioText": "C: QFA 358, Wuhan Approach, LKO-2A arrival, descend to and maintain 1200 meters, be advised current information C, you are number 1.",
       "audioTextZh": "C：QFA 358，武汉进近，LKO-2A 进场，下降并保持 1200 米，请注意当前情报 C，你是第一架。",
-      "referenceText": "LKO-2A arrival, descend to and maintain 1200 meters, information C, QFA 358.",
-      "referenceTextZh": "LKO-2A 进场，下降并保持 1200 米，收到 C 情报，QFA 358。",
+      "referenceText": "LKO-2A arrival, descend to and maintain 1200 meters, information C, number 1, QFA 358.",
+      "referenceTextZh": "LKO-2A 进场，下降并保持 1200 米，收到 C 情报，第一架，QFA 358。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/087.mp3"
     },
     {

@@ -69,3 +69,8 @@ app-example
 # Local Tencent EdgeOne CLI state
 .edgeone/*
 .tef_dist/*
+
+# Durable audio inventory is tracked; generated binary files are published separately.
+/content/pronunciations/files/
+/content/pronunciations/*.tmp
+/content/question-banks/resources/files/revisions/

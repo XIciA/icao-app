@@ -9,7 +9,9 @@
       "audioText": "What is a cockpit voice recorder (CVR)?",
       "referenceText": "CVR stands for Cockpit Voice Recorder. It records cockpit audio, including crew communications, radio transmissions, warnings, and background sounds. The recordings can provide important information for accident investigations.",
       "audioTextZh": "什么是驾驶舱话音记录器（CVR）？",
-      "referenceTextZh": "CVR 是驾驶舱话音记录器的缩写。它记录驾驶舱内的声音，包括机组通话、无线电通信、警告声和背景声音。这些录音可以为事故调查提供重要信息。"
+      "referenceTextZh": "CVR 是驾驶舱话音记录器的缩写。它记录驾驶舱内的声音，包括机组通话、无线电通信、警告声和背景声音。这些录音可以为事故调查提供重要信息。",
+      "audio": "/question-bank-assets/revisions/opi/b751260b93674fa8cb62c740938ee13148f4390ad0e483318ede585b91b39861/audio/opi/opi-core-114.mp3",
+      "audioDurationSeconds": 2.76
     },
     {
       "id": "opi-core-115",
@@ -17,7 +19,9 @@
       "audioText": "Are all the aircraft in your company's fleet equipped with CVRs?",
       "audioTextZh": "你所在公司机队的所有飞机都配备 CVR 吗？",
       "referenceText": "I am not employed by a company with an operating fleet. The DA-40 I use for flight training is not equipped with a cockpit voice recorder. In commercial operations, whether every aircraft requires a CVR depends on the applicable regulations, aircraft category, and operation.",
-      "referenceTextZh": "我尚未受雇于拥有运行机队的公司。我用于飞行训练的 DA-40 没有安装驾驶舱话音记录器。在商业运行中，是否每架飞机都必须配备 CVR，取决于适用法规、飞机类别和运行类型。"
+      "referenceTextZh": "我尚未受雇于拥有运行机队的公司。我用于飞行训练的 DA-40 没有安装驾驶舱话音记录器。在商业运行中，是否每架飞机都必须配备 CVR，取决于适用法规、飞机类别和运行类型。",
+      "audio": "/question-bank-assets/revisions/opi/e870a26790baa3e3fa212776f9ba09272bb29010519b1465713eab2dc9b23cc3/audio/opi/opi-core-115.mp3",
+      "audioDurationSeconds": 3.624
     },
     {
       "id": "opi-core-116",
@@ -25,7 +29,9 @@
       "audioText": "What is the main purpose of a CVR?",
       "audioTextZh": "CVR 的主要用途是什么？",
       "referenceText": "A cockpit voice recorder records communications, warnings, and other relevant sounds in the cockpit. The recordings can provide important evidence for an accident or incident investigation.",
-      "referenceTextZh": "驾驶舱话音记录器会记录驾驶舱内的通信、警告声和其他相关声音。这些录音可以为事故或事件调查提供重要证据。"
+      "referenceTextZh": "驾驶舱话音记录器会记录驾驶舱内的通信、警告声和其他相关声音。这些录音可以为事故或事件调查提供重要证据。",
+      "audio": "/question-bank-assets/revisions/opi/2cf10b9d3a41807998526f269688daced081cf0362036c55bd9f2368c680064d/audio/opi/opi-core-116.mp3",
+      "audioDurationSeconds": 2.064
     },
     {
       "id": "opi-core-117",
@@ -33,7 +39,9 @@
       "audioText": "What is your opinion on using CVR recordings to monitor flight crews?",
       "audioTextZh": "你如何看待使用 CVR 录音监控飞行机组？",
       "referenceText": "I think using CVR recordings for supervision can be useful. It can encourage crews to follow SOPs, maintain professional communication, and reduce irrelevant talk in the cockpit. These practices can improve flight safety.",
-      "referenceTextZh": "我认为，使用 CVR 录音进行监督可能是有益的。它可以促使机组遵守标准操作程序、保持专业沟通，并减少驾驶舱内与飞行无关的交谈。这些做法有助于提高飞行安全。"
+      "referenceTextZh": "我认为，使用 CVR 录音进行监督可能是有益的。它可以促使机组遵守标准操作程序、保持专业沟通，并减少驾驶舱内与飞行无关的交谈。这些做法有助于提高飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/c70586c74f888a749658e34b8f7851029acc0453efda2c63db2cccae13060f2b/audio/opi/opi-core-117.mp3",
+      "audioDurationSeconds": 4.08
     },
     {
       "id": "opi-core-119",
@@ -41,7 +49,9 @@
       "audioText": "What types of audio does a CVR record in the cockpit?",
       "audioTextZh": "CVR 会记录驾驶舱内哪些类型的声音？",
       "referenceText": "A CVR records conversations among the flight crew, radio transmissions with ATC, interphone communication between the flight deck and cabin, and audible caution or warning signals in the cockpit.",
-      "referenceTextZh": "CVR 会记录飞行机组之间的交谈、与空中交通管制的无线电通信、驾驶舱与客舱之间的内话通信，以及驾驶舱内可听见的注意或警告信号。"
+      "referenceTextZh": "CVR 会记录飞行机组之间的交谈、与空中交通管制的无线电通信、驾驶舱与客舱之间的内话通信，以及驾驶舱内可听见的注意或警告信号。",
+      "audio": "/question-bank-assets/revisions/opi/5e63ba974682c054190cdc64aeb52be577aac80fbe48684fe646093f654185c9/audio/opi/opi-core-119.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-core-120",
@@ -49,7 +59,9 @@
       "audioText": "What recording-duration requirements apply to CVRs under ICAO standards?",
       "audioTextZh": "根据 ICAO 标准，CVR 适用哪些记录时长要求？",
       "referenceText": "ICAO standards require a cockpit voice recorder to retain at least the last two hours of operation. For an aeroplane with a maximum certificated takeoff mass above 27,000 kilograms whose individual certificate of airworthiness was first issued on or after 1 January 2021, the CVR must retain at least the last 25 hours. Older aircraft may therefore have a different required recording duration from newer aircraft.",
-      "referenceTextZh": "ICAO 标准要求驾驶舱话音记录器至少保留最近两小时的运行录音。对于最大审定起飞质量超过 27,000 千克，且单机适航证于 2021 年一月 1 日或之后首次颁发的飞机，CVR 必须至少保留最近 25 小时的录音。因此，较老飞机与较新飞机适用的记录时长要求可能不同。"
+      "referenceTextZh": "ICAO 标准要求驾驶舱话音记录器至少保留最近两小时的运行录音。对于最大审定起飞质量超过 27,000 千克，且单机适航证于 2021 年一月 1 日或之后首次颁发的飞机，CVR 必须至少保留最近 25 小时的录音。因此，较老飞机与较新飞机适用的记录时长要求可能不同。",
+      "audio": "/question-bank-assets/revisions/opi/f975c88d3bb3d200d56d70b87b53f1fab2bf2dbc986d4a7835e14c787c9e3a91/audio/opi/opi-core-120.mp3",
+      "audioDurationSeconds": 4.56
     },
     {
       "id": "opi-core-121",
@@ -57,7 +69,9 @@
       "audioText": "How does a CVR help investigators determine the causes of an aircraft accident?",
       "audioTextZh": "CVR 如何帮助调查人员确定航空器事故原因？",
       "referenceText": "A CVR gives investigators audio evidence from before and during an accident. They can analyze cockpit conversations and sounds to understand the crew's actions, decisions, communication, and the situation in the cockpit.",
-      "referenceTextZh": "CVR 为调查人员提供事故发生前和发生时的音频证据。他们可以分析驾驶舱对话和声音，了解机组的行动、决策、沟通以及驾驶舱内的情况。"
+      "referenceTextZh": "CVR 为调查人员提供事故发生前和发生时的音频证据。他们可以分析驾驶舱对话和声音，了解机组的行动、决策、沟通以及驾驶舱内的情况。",
+      "audio": "/question-bank-assets/revisions/opi/a285b42a06b2fe9edf3106d045c734900e6b043c7439908360460488cbce374b/audio/opi/opi-core-121.mp3",
+      "audioDurationSeconds": 4.656
     },
     {
       "id": "opi-core-123",
@@ -65,7 +79,9 @@
       "audioText": "How do older CVRs differ from modern CVRs?",
       "audioTextZh": "早期 CVR 与现代 CVR 有何不同？",
       "referenceText": "Modern CVRs generally have longer recording durations, better sound quality, more durable fire- and impact-resistant casings, and better compatibility with advanced aircraft systems than older CVRs.",
-      "referenceTextZh": "与较老的 CVR 相比，现代 CVR 通常记录时间更长、音质更好，防火抗冲击外壳更坚固，并且与先进飞机系统的兼容性更好。"
+      "referenceTextZh": "与较老的 CVR 相比，现代 CVR 通常记录时间更长、音质更好，防火抗冲击外壳更坚固，并且与先进飞机系统的兼容性更好。",
+      "audio": "/question-bank-assets/revisions/opi/f28b5f671bb9919dd417e8e87a9d8e12bfecb591c29ca350b46fee167f68196b/audio/opi/opi-core-123.mp3",
+      "audioDurationSeconds": 3.192
     },
     {
       "id": "opi-core-124",
@@ -73,7 +89,9 @@
       "audioText": "Why are CVRs designed to be highly visible?",
       "audioTextZh": "为什么 CVR 要设计得非常醒目？",
       "referenceText": "High visibility makes a CVR easier to locate and recover at an accident site, especially among debris, in water, or in low-light conditions.",
-      "referenceTextZh": "醒目的外观使 CVR 在事故现场更容易被发现和回收，尤其是在残骸中、水中或光线较暗的环境里。"
+      "referenceTextZh": "醒目的外观使 CVR 在事故现场更容易被发现和回收，尤其是在残骸中、水中或光线较暗的环境里。",
+      "audio": "/question-bank-assets/revisions/opi/003ee5592890d33932e4bd85c8aa2002ff021e198026ab8118673ac021931035/audio/opi/opi-core-124.mp3",
+      "audioDurationSeconds": 2.712
     },
     {
       "id": "opi-core-125",
@@ -81,7 +99,9 @@
       "audioText": "What should the crew do if the CVR malfunctions during a flight?",
       "audioTextZh": "飞行中 CVR 发生故障时，机组应如何处置？",
       "referenceText": "The crew should follow the applicable procedure, record the malfunction in the flight log, and inform ATC if required. After landing, they should report the problem to maintenance for repair.",
-      "referenceTextZh": "机组应遵循适用程序，在飞行记录本中记录故障，并在需要时通知空中交通管制。着陆后，应向维修部门报告问题并安排修理。"
+      "referenceTextZh": "机组应遵循适用程序，在飞行记录本中记录故障，并在需要时通知空中交通管制。着陆后，应向维修部门报告问题并安排修理。",
+      "audio": "/question-bank-assets/revisions/opi/69d83b505b291e9849db36420909181cc5f2a9d48e63d83533927a99f1d1e272/audio/opi/opi-core-125.mp3",
+      "audioDurationSeconds": 3.48
     },
     {
       "id": "opi-core-126",
@@ -89,7 +109,9 @@
       "audioText": "What ICAO standards govern whether a CVR must be installed on an aircraft?",
       "audioTextZh": "哪些 ICAO 标准规定了飞机是否必须安装 CVR？",
       "referenceText": "ICAO Annex 6 bases CVR requirements mainly on mass, engine type, crew requirement, and certification dates. Aeroplanes above 5,700 kilograms with an individual certificate of airworthiness first issued on or after 1 January 1987 must have a CVR. Turbine aeroplanes above 2,250 and up to 5,700 kilograms with a type-certification application on or after 1 January 2016 and requiring more than one pilot must have a CVR or a cockpit audio recording system.",
-      "referenceTextZh": "ICAO 附件 6 主要依据飞机质量、发动机类型、机组要求和审定日期规定 CVR 要求。最大质量超过 5,700 千克，且单机适航证于 1987 年一月 1 日或之后首次颁发的飞机必须配备 CVR。最大质量超过 2,250 千克且不超过 5,700 千克、型号合格证申请日期为 2016 年一月 1 日或之后，并且需要多于一名飞行员的涡轮飞机，必须配备 CVR 或驾驶舱音频记录系统。"
+      "referenceTextZh": "ICAO 附件 6 主要依据飞机质量、发动机类型、机组要求和审定日期规定 CVR 要求。最大质量超过 5,700 千克，且单机适航证于 1987 年一月 1 日或之后首次颁发的飞机必须配备 CVR。最大质量超过 2,250 千克且不超过 5,700 千克、型号合格证申请日期为 2016 年一月 1 日或之后，并且需要多于一名飞行员的涡轮飞机，必须配备 CVR 或驾驶舱音频记录系统。",
+      "audio": "/question-bank-assets/revisions/opi/f8aebb8f1e92b2beb6ae97096c1a1f57604a98787c60b3b74167c886c847299b/audio/opi/opi-core-126.mp3",
+      "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-core-127",
@@ -97,7 +119,9 @@
       "audioText": "How is a CVR test performed?",
       "audioTextZh": "如何进行 CVR 测试？",
       "referenceText": "A CVR test can generally be performed by pressing the CVR test button.",
-      "referenceTextZh": "通常可以按下 CVR 测试按钮来进行 CVR 测试。"
+      "referenceTextZh": "通常可以按下 CVR 测试按钮来进行 CVR 测试。",
+      "audio": "/question-bank-assets/revisions/opi/9442f5230f6668af58fd427de0dd96b189f51837b06488f105a9e6e9dd1f9f5f/audio/opi/opi-core-127.mp3",
+      "audioDurationSeconds": 2.064
     },
     {
       "id": "opi-core-130",
@@ -105,7 +129,9 @@
       "audioText": "How does a CVR store its audio recordings?",
       "audioTextZh": "CVR 如何存储录音？",
       "referenceText": "Microphones send audio signals to the CVR, which digitizes and stores them. Modern CVRs usually store the recordings in solid-state memory.",
-      "referenceTextZh": "麦克风将音频信号传送给 CVR，由 CVR 将其数字化并存储。现代 CVR 通常把录音保存在固态存储器中。"
+      "referenceTextZh": "麦克风将音频信号传送给 CVR，由 CVR 将其数字化并存储。现代 CVR 通常把录音保存在固态存储器中。",
+      "audio": "/question-bank-assets/revisions/opi/43448f404fd4d83e32de821428b06af7b801247027ba664695d4b5d285f13ace/audio/opi/opi-core-130.mp3",
+      "audioDurationSeconds": 2.784
     },
     {
       "id": "opi-core-131",
@@ -113,7 +139,9 @@
       "audioText": "What is a flight data recorder (FDR)?",
       "audioTextZh": "什么是飞行数据记录器（FDR）？",
       "referenceText": "FDR stands for flight data recorder. It records flight parameters such as airspeed, altitude, attitude, thrust, and control inputs for later analysis.",
-      "referenceTextZh": "FDR 是飞行数据记录器的缩写。它记录空速、高度、姿态、推力和操纵输入等飞行参数，以供之后分析。"
+      "referenceTextZh": "FDR 是飞行数据记录器的缩写。它记录空速、高度、姿态、推力和操纵输入等飞行参数，以供之后分析。",
+      "audio": "/question-bank-assets/revisions/opi/db5c000c232902697085621388a641b9286e85907460dfa2e8f71e07d08d1c98/audio/opi/opi-core-131.mp3",
+      "audioDurationSeconds": 2.544
     },
     {
       "id": "opi-core-132",
@@ -121,7 +149,9 @@
       "audioText": "What is an FDR used for?",
       "audioTextZh": "FDR 有什么用途？",
       "referenceText": "An FDR records flight parameters so investigators can track the aircraft's status and performance. The data helps authorities determine accident causes and improve flight safety.",
-      "referenceTextZh": "FDR 记录飞行参数，使调查人员能够追踪飞机状态和性能。这些数据有助于有关部门确定事故原因并提高飞行安全。"
+      "referenceTextZh": "FDR 记录飞行参数，使调查人员能够追踪飞机状态和性能。这些数据有助于有关部门确定事故原因并提高飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/bd54069dd32e5fc0d70493f46ae06f4e2ac41f08623bcdb1b0df5cdc4050a92f/audio/opi/opi-core-132.mp3",
+      "audioDurationSeconds": 1.704
     },
     {
       "id": "opi-core-133",
@@ -129,7 +159,9 @@
       "audioText": "What is your opinion of your company's policy on using CVR recordings to monitor flight crews?",
       "audioTextZh": "你如何看待你所在公司关于使用 CVR 录音监控飞行机组的政策？",
       "referenceText": "I am not employed by an airline, so I do not have a company policy on CVR monitoring. In my opinion, recordings should be used only for legitimate safety, investigation, or authorised training purposes, with tightly controlled access and proper privacy protection. They should not be used unfairly for routine punishment.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的 CVR 监听政策。在我看来，录音只能用于正当的安全、调查或经授权的培训目的，并应严格控制访问权限、妥善保护机组隐私。不应把录音不公正地用于日常惩罚。"
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的 CVR 监听政策。在我看来，录音只能用于正当的安全、调查或经授权的培训目的，并应严格控制访问权限、妥善保护机组隐私。不应把录音不公正地用于日常惩罚。",
+      "audio": "/question-bank-assets/revisions/opi/37e6573f5e02fa820a06a951dd0851f91a41d629d5937e970494db3e6cb39135/audio/opi/opi-core-133.mp3",
+      "audioDurationSeconds": 5.472
     },
     {
       "id": "opi-core-134",
@@ -137,7 +169,9 @@
       "audioText": "Does CVR monitoring affect your performance or freedom of action during flight?",
       "audioTextZh": "CVR 监控会影响你在飞行中的表现或行动自由吗？",
       "referenceText": "CVR monitoring does not prevent me from taking any action needed for safety. It makes me more conscious of using professional language, standard callouts, and clear coordination. My decisions are still based on the situation, the SOPs, and my responsibility for the flight.",
-      "referenceTextZh": "CVR 监听不会阻止我采取任何安全所需的行动。它会让我更加注意使用专业语言、标准口令和清晰协调。我的决策仍以实际情况、标准操作程序和我对飞行承担的责任为依据。"
+      "referenceTextZh": "CVR 监听不会阻止我采取任何安全所需的行动。它会让我更加注意使用专业语言、标准口令和清晰协调。我的决策仍以实际情况、标准操作程序和我对飞行承担的责任为依据。",
+      "audio": "/question-bank-assets/revisions/opi/a11f665ab209987c47a4ed62205a9af6c98733c9ea7aaff67c8cd9c1ea082fab/audio/opi/opi-core-134.mp3",
+      "audioDurationSeconds": 4.368
     }
   ],
   "categoryId": "opi-category-03"

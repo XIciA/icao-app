@@ -18,7 +18,9 @@
       "audioTextZh": "请问你可以对上图进行简单描述吗？",
       "studyTier": 0,
       "referenceText": "This picture shows the situation about a four-engine aircraft which is taking off. It has produced strong wake turbulence. There is a rotation point on the runway. There are two parallel runways in this picture. The distance between the centerline of the two runways is less than 760m.",
-      "referenceTextZh": "上图展示的是四引擎飞机起飞时的情况。飞机产生了很强的尾流涡流。跑道中的是旋转点。图中有两条平行跑道，两条跑道的中心线距离小于760米。"
+      "referenceTextZh": "上图展示的是四引擎飞机起飞时的情况。飞机产生了很强的尾流涡流。跑道中的是旋转点。图中有两条平行跑道，两条跑道的中心线距离小于760米。",
+      "audio": "/question-bank-assets/revisions/opi/7cc8b2af0acd50ac7697e589aae208fee5f2561a85327c42823db21fd40c85c9/audio/opi/opi-fzy-110312.mp3",
+      "audioDurationSeconds": 3.168
     },
     {
       "id": "opi-fzy-110313",
@@ -27,7 +29,9 @@
       "audioTextZh": "根据图片，你能够解释什么是尾流涡流吗？",
       "studyTier": 0,
       "referenceText": "Yes. Wake turbulence is used to describe the effect of the rotating air masses generated behind the wingtips of an aircraft, just like what the bottom picture shows.",
-      "referenceTextZh": "好的，尾流涡流形容的是飞机翼尖后产生的旋转气团，正如第二张图所示。"
+      "referenceTextZh": "好的，尾流涡流形容的是飞机翼尖后产生的旋转气团，正如第二张图所示。",
+      "audio": "/question-bank-assets/revisions/opi/dfd0ce17e088e50a41a1937656f7c81e2a4c9f198b29c4cae528b780d4eb5e77/audio/opi/opi-fzy-110313.mp3",
+      "audioDurationSeconds": 4.056
     },
     {
       "id": "opi-fzy-110314",
@@ -36,7 +40,9 @@
       "audioTextZh": "什么情况下需要避免尾流涡流？",
       "studyTier": 0,
       "referenceText": "I need to avoid this situation in many circumstances, especially when there is a heavy aircraft taking off ahead of me. During cruise and landing, I also need to avoid wake turbulence if there are heavy aircraft nearby.",
-      "referenceTextZh": "在很多情况下需要避免这种情况，尤其是在我之前有重型飞机起飞时。在巡航和着陆过程中，如果附近有重型飞机同样需要避免飞机尾流。"
+      "referenceTextZh": "在很多情况下需要避免这种情况，尤其是在我之前有重型飞机起飞时。在巡航和着陆过程中，如果附近有重型飞机同样需要避免飞机尾流。",
+      "audio": "/question-bank-assets/revisions/opi/1251fd370a2cd64d2c600f7090a13e034ff1ae09ae78b7187dbd9fe6053070ed/audio/opi/opi-fzy-110314.mp3",
+      "audioDurationSeconds": 2.352
     },
     {
       "id": "opi-fzy-110315",
@@ -45,7 +51,9 @@
       "audioTextZh": "如果飞机在爬升或巡航阶段应怎样避免飞机尾流？",
       "studyTier": 0,
       "referenceText": "My climb profile should be above the profile of previous aircraft. As for cruising, I must keep enough distance from other aircraft.",
-      "referenceTextZh": "爬升时，飞机的爬升剖面要高于之前的飞机。巡航时，必须要和其他飞机保持足够的距离。"
+      "referenceTextZh": "爬升时，飞机的爬升剖面要高于之前的飞机。巡航时，必须要和其他飞机保持足够的距离。",
+      "audio": "/question-bank-assets/revisions/opi/399a5a4e8d2138d8960302a0ba8efd4b4b12a4359ec51bcdcdf0226a7f7e6c80/audio/opi/opi-fzy-110315.mp3",
+      "audioDurationSeconds": 3.864
     },
     {
       "id": "opi-fzy-110316",
@@ -54,7 +62,9 @@
       "audioTextZh": "如图所示，如果正在起飞的飞机是波音747，你是另一条跑道上正准备起飞的波音737的机长，你会怎样做？",
       "studyTier": 0,
       "referenceText": "I will keep two minutes’ separation with B747, because the two parallel runways are separated by less than 760m, the minimum takeoff separation is two minutes to avoid wake turbulence.",
-      "referenceTextZh": "我会和波音747保持两分钟的间隔，因为两条平行跑道的中心线距离小于760米，所以最小起飞间隔为两分钟来避免尾流涡流。"
+      "referenceTextZh": "我会和波音747保持两分钟的间隔，因为两条平行跑道的中心线距离小于760米，所以最小起飞间隔为两分钟来避免尾流涡流。",
+      "audio": "/question-bank-assets/revisions/opi/1fd6bc84ab690a9e90c5245339cf3d2d3a04fa0fa96a36c77e96b943fb2cc33f/audio/opi/opi-fzy-110316.mp3",
+      "audioDurationSeconds": 11.088
     },
     {
       "id": "opi-fzy-110317",
@@ -63,7 +73,9 @@
       "audioTextZh": "重型飞机是否有一定标准？",
       "studyTier": 0,
       "referenceText": "Yes, there is. If the maximum certificated takeoff mass of aircraft type is more than 136,000kg, it is a heavy aircraft.",
-      "referenceTextZh": "有标准，最大起飞重量在136000千克以上的飞机为重型飞机。"
+      "referenceTextZh": "有标准，最大起飞重量在136000千克以上的飞机为重型飞机。",
+      "audio": "/question-bank-assets/revisions/opi/b1fe8f9915110012e65cd416770b8821528d5b8eb14d43f5c29433a803709793/audio/opi/opi-fzy-110317.mp3",
+      "audioDurationSeconds": 3.768
     },
     {
       "id": "opi-fzy-110318",
@@ -72,7 +84,9 @@
       "audioTextZh": "除了飞机尾流，飞机在飞行时还可能遇到哪些湍流？",
       "studyTier": 0,
       "referenceText": "The flight may meet kinds of turbulence like clear air turbulence, or turbulence caused by bad weather and so on.",
-      "referenceTextZh": "飞机可能遇到各种湍流，例如晴空湍流或由恶劣天气引发的湍流等。"
+      "referenceTextZh": "飞机可能遇到各种湍流，例如晴空湍流或由恶劣天气引发的湍流等。",
+      "audio": "/question-bank-assets/revisions/opi/19736e1b445e0e802dcb8a22569d01d2ea91cf601e4a9267a8c561a49d30583c/audio/opi/opi-fzy-110318.mp3",
+      "audioDurationSeconds": 5.112
     },
     {
       "id": "opi-fzy-110319",
@@ -81,7 +95,9 @@
       "audioTextZh": "飞行员在飞行时遇到湍流通常会怎样做？",
       "studyTier": 0,
       "referenceText": "It depends on the intensity of turbulence. If it is a light turbulence, I would maintain present heading and altitude of flight. If it is a medium or heavy turbulence, I would report the situation to ATC and request to change the altitude and heading if necessary. No matter what kind of turbulence we’re experiencing, I would advise passengers to fasten the harnesses for consideration of safety.",
-      "referenceTextZh": "这取决于湍流的强度。如果遭遇弱湍流，我会保持当前的航向和高度。如果遭遇严重的湍流，我会将情况报告给ATC，并且在有必要时请求改变高度和航向。不管遇到哪种湍流，考虑到安全因素，我都会建议乘客系紧安全带。"
+      "referenceTextZh": "这取决于湍流的强度。如果遭遇弱湍流，我会保持当前的航向和高度。如果遭遇严重的湍流，我会将情况报告给ATC，并且在有必要时请求改变高度和航向。不管遇到哪种湍流，考虑到安全因素，我都会建议乘客系紧安全带。",
+      "audio": "/question-bank-assets/revisions/opi/20f59d11619948ec527b66f29450b0f393a7f30f1e67fb83cafe26a6f70f6ce4/audio/opi/opi-fzy-110319.mp3",
+      "audioDurationSeconds": 3.696
     }
   ],
   "categoryId": "opi-category-08"

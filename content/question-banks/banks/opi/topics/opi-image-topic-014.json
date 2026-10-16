@@ -17,7 +17,9 @@
       "audioText": "What are the main advantages of a modern glass cockpit over a cockpit with traditional flight instruments?",
       "audioTextZh": "与采用传统飞行仪表的驾驶舱相比，现代玻璃驾驶舱有哪些主要优势？",
       "referenceText": "A modern glass cockpit can improve situational awareness. Compared with traditional flight instruments, it gives pilots clearer information, supports better monitoring, and provides more time to make safe decisions.",
-      "referenceTextZh": "现代玻璃驾驶舱可以提高情景意识。与传统飞行仪表相比，它向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。"
+      "referenceTextZh": "现代玻璃驾驶舱可以提高情景意识。与传统飞行仪表相比，它向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。",
+      "audio": "/question-bank-assets/revisions/opi/32a65877c050a3460d74067b20c6168c4b4939be141a92b0efb0b2bd265e9bc5/audio/opi/opi-image-014-q01.mp3",
+      "audioDurationSeconds": 5.424
     },
     {
       "id": "opi-image-014-q02",
@@ -25,7 +27,9 @@
       "audioText": "How do multiple display screens help pilots manage a flight?",
       "audioTextZh": "多个显示屏如何帮助飞行员管理飞行？",
       "referenceText": "Multiple screens can present flight, navigation, engine, system, and weather information in an organized way. They help both pilots monitor the same situation, compare information, and notice abnormal conditions quickly. Separate displays also provide useful redundancy, although the crew must still cross-check them and understand any display failure.",
-      "referenceTextZh": "多个显示屏可以有序呈现飞行、导航、发动机、系统和天气信息。它们有助于两名飞行员监控同一情况、比对信息并迅速发现异常。独立显示屏还能提供一定冗余，但机组仍须交叉检查，并了解显示故障的影响。"
+      "referenceTextZh": "多个显示屏可以有序呈现飞行、导航、发动机、系统和天气信息。它们有助于两名飞行员监控同一情况、比对信息并迅速发现异常。独立显示屏还能提供一定冗余，但机组仍须交叉检查，并了解显示故障的影响。",
+      "audio": "/question-bank-assets/revisions/opi/1be969e9cc039d7bd7a9594713415ee5531933167712786034c91ba7173bc75b/audio/opi/opi-image-014-q02.mp3",
+      "audioDurationSeconds": 3.528
     }
   ],
   "categoryId": "opi-category-08"

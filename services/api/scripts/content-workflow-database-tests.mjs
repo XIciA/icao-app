@@ -1,0 +1,76 @@
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import net from 'node:net';
+import { createHash } from 'node:crypto';
+import postgres from 'postgres';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import { ContentWorkflowService } from '../src/admin/content-workflow.service.ts';
+import { canonicalAppContentJson } from '@icao/contracts/app-content';
+const root=mkdtempSync(join(tmpdir(),'icao-cw-'));
+const data=join(root,'data'),socket=join(root,'socket');mkdirSync(socket);
+const port=await new Promise(resolve=>{const server=net.createServer();server.listen(0,'127.0.0.1',()=>{const p=server.address().port;server.close(()=>resolve(p));});});
+let db,started=false;
+const hash=value=>createHash('sha256').update(canonicalAppContentJson(value)).digest('hex');
+try {
+ execFileSync('initdb',['-D',data,'-A','trust','-U','postgres','--no-locale'],{stdio:'ignore'});
+ execFileSync('pg_ctl',['-D',data,'-o',`-F -k ${socket} -p ${port}`,'-w','start'],{stdio:'ignore'});started=true;
+ db=postgres(`postgresql://postgres@127.0.0.1:${port}/postgres`,{max:8,prepare:false,onnotice:()=>{}});
+ await db.unsafe('CREATE ROLE anon; CREATE ROLE authenticated;');
+ await db.unsafe(readFileSync(new URL('../drizzle/0052_content_work_orders.sql',import.meta.url),'utf8').replaceAll('--> statement-breakpoint',''));
+ await db.unsafe(`
+ CREATE TABLE question_bank_releases(id uuid primary key default gen_random_uuid(),bank_id text not null,version integer not null,checksum text not null,payload jsonb not null,active boolean default false,created_at timestamptz default now(),unique(bank_id,version),unique(bank_id,checksum));
+ CREATE TABLE app_content_releases(version integer primary key,checksum text not null,payload jsonb not null,active boolean default false,created_at timestamptz default now());
+ CREATE UNIQUE INDEX one_active_app ON app_content_releases(active) WHERE active=true;
+ CREATE TABLE resource_objects(object_key text primary key,module text,storage_bucket text,source_path text,checksum text,size_bytes bigint,mime_type text,status text,created_at timestamptz default now());
+ CREATE TABLE editorial_releases(id uuid primary key default gen_random_uuid(),version integer unique,checksum text unique,payload jsonb,active boolean default false,created_at timestamptz default now());
+ CREATE TABLE preserved_learning_fixture(id text primary key,payload jsonb);
+ INSERT INTO preserved_learning_fixture VALUES('old-user','{"progress":17,"notes":"旧笔记","highlights":[1,2],"favorites":["old"],"recording":"old.m4a"}');
+ `);
+ const previousLearning=await db`select * from preserved_learning_fixture`;
+ const card={id:'stable',taskTitle:'Question',audioText:'Question?',referenceText:'Answer.',referenceTextZh:'答案。',audio:'/question-bank-assets/old.mp3'};
+ const bank={id:'opi',declaredTopicCount:1,declaredCardCount:1,categories:[{id:'category',name:'Category',declaredTopicCount:1,declaredCardCount:1,topics:[{id:'topic',name:'Topic',declaredCardCount:1,cards:[card]}]}]};
+ await db`insert into question_bank_releases(bank_id,version,checksum,payload,active) values('opi',1,${hash(bank)},${db.json(bank)},true)`;
+ await db`insert into resource_objects(object_key,source_path,status) values('old.mp3',${card.audio},'ready')`;
+ const app={...JSON.parse(readFileSync(new URL('../../../content/app-content/text.json',import.meta.url),'utf8')),version:1,hotspots:{generatedAt:new Date().toISOString(),briefs:[]}};
+ await db`insert into app_content_releases(version,checksum,payload,active) values(1,${hash(app)},${db.json(app)},true)`;
+ const service=new ContentWorkflowService({db:drizzle(db)},{record:async()=>{}});
+ const request={id:'test',opsStaff:{id:'fixture-admin',role:'admin'}};
+ const input={kind:'opi',examDate:'2026-10-17',center:'Test A',text:'Question?'};
+ const duplicates=await Promise.all([service.create(input,request),service.create(input,request)]);
+ assert.equal(duplicates.filter(v=>v.duplicate).length,1);assert.equal(duplicates[0].order.id,duplicates[1].order.id);
+ async function stage(order,decisions=[{source:'Question?',kind:'similar',cardId:'stable'}],banks=[]) {
+  return service.stage(order.id,order.revision,{banks,hotspot:{id:`hotspot-${order.examDate}-${createHash('sha256').update(order.center).digest('hex').slice(0,12)}`,date:order.examDate,title:order.center,centers:[order.center],topics:[{topicId:'topic',topicTitle:'Topic',cardIds:['stable']}]},decisions,notes:''},request);
+ }
+ const ready=await stage(duplicates[0].order);
+ await assert.rejects(()=>service.append(ready.id,1,'stale',request),/content_order_changed_reload/);
+ const other=(await service.create({...input,center:'Test B'},request)).order;
+ const otherReady=await stage(other);
+ await Promise.all([service.publish(ready.id,ready.revision,request),service.publish(otherReady.id,otherReady.revision,request)]);
+ assert.equal((await db`select payload from app_content_releases where active=true`)[0].payload.hotspots.briefs.length,2);
+ await service.publish(ready.id,ready.revision,request);
+ assert.equal((await db`select count(*)::int n from app_content_releases`)[0].n,3);
+ const appended=await service.append(ready.id,ready.revision,'Unknown question',request);
+ const unresolved=await stage(appended,[{source:'Question?',kind:'original',cardId:'stable'},{source:'Unknown question',kind:'unresolved'}]);
+ await assert.rejects(()=>service.publish(unresolved.id,unresolved.revision,request),/unresolved_questions/);
+ const excluded=await service.exclude(unresolved.id,unresolved.revision,1,request);
+ await service.publish(excluded.id,excluded.revision,request);
+ const questions=(await service.create({kind:'questions',text:'Update answer'},request)).order;
+ const next=structuredClone(bank);next.categories[0].topics[0].cards[0].referenceText='Updated answer.';
+ const drafted=await service.stage(questions.id,1,{banks:[{bankId:'opi',baseChecksum:hash(bank),payload:next}],decisions:[],notes:''},request);
+ const second=(await service.create({kind:'questions',text:'Other update'},request)).order;
+ const conflicting=structuredClone(next);conflicting.categories[0].topics[0].cards[0].referenceText='Conflicting answer.';
+ const stale=await service.stage(second.id,1,{banks:[{bankId:'opi',baseChecksum:hash(bank),payload:conflicting}],decisions:[],notes:''},request);
+ await service.publish(drafted.id,drafted.revision,request);
+ await assert.rejects(()=>service.publish(stale.id,stale.revision,request),/content_base_changed_reprocess_order/);
+ assert.equal((await db`select count(*)::int n from question_bank_releases`)[0].n,2);
+ assert.deepEqual((await db`select payload from question_bank_releases where version=1`)[0].payload,bank);
+ assert.deepEqual(await db`select * from preserved_learning_fixture`,previousLearning);
+ console.log('content_workflow_database_ok duplicate_concurrency atomic_publication stale_revision unresolved_review old_snapshot_preserved learning_untouched');
+} finally {
+ if(db)await db.end({timeout:5});
+ if(started)execFileSync('pg_ctl',['-D',data,'-m','fast','-w','stop'],{stdio:'ignore'});
+ rmSync(root,{recursive:true,force:true});
+}

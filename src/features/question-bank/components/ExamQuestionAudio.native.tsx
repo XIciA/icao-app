@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { useAudioPlayerStatus } from 'expo-audio';
-import * as Speech from 'expo-speech';
 import { useQuestionRecording } from '@/platform/audio/use-question-recording';
 import { Headphones } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
@@ -36,9 +35,6 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
   const sourceReplacedStatus = useRef(status);
   const latestStatus = useRef(status);
   latestStatus.current = status;
-  const speechStarted = useRef(false);
-  const speechGeneration = useRef(0);
-  const speechPaused = useRef(false);
   const interrupted = useRef(false);
   const eligibleForInterruption = useRef(false);
   const systemInterrupted = useRef(false);
@@ -47,23 +43,22 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
   callbacks.current = { uri, text, resolving, onPlaybackStart };
   const operations = useRef({ play: (_restart = false) => {}, pause: () => {} });
 
-  function fail(code: string) {
+  const update = useCallback((next: Phase) => { phaseRef.current = next; if (mounted.current) setPhase(next); }, []);
+  const fail = useCallback((code: string) => {
     setAwaitingAudioGesture(false);
     emitAudioDiagnostic({ scope: 'playback', owner: 'study', level: 'error', code, reason: 'exam-question', phase: phaseRef.current });
     update('error');
-  }
-  function update(next: Phase) { phaseRef.current = next; if (mounted.current) setPhase(next); }
-  function releaseSpecific(current: AudioLease | undefined) {
+  }, [update]);
+  const releaseSpecific = useCallback((current: AudioLease | undefined) => {
     if (!current) return;
     if (lease.current?.token === current.token && lease.current.owner === current.owner) lease.current = undefined;
     void audioSessionOrchestrator.release(current).catch(() => undefined);
-  }
-  function release() { releaseSpecific(lease.current); }
+  }, []);
+  const release = useCallback(() => releaseSpecific(lease.current), [releaseSpecific]);
   function pause() {
     generation.current += 1;
     wantPlay.current = false;
     try { if (player.currentTime > 0) playbackPosition.current = player.currentTime; player.pause(); } catch { /* Released or unavailable media still allows exit. */ }
-    if (speechStarted.current) { speechPaused.current = true; void Speech.pause().catch(() => { speechPaused.current = false; }); }
     release();
     if (phaseRef.current !== 'ended') update('paused');
   }
@@ -80,12 +75,10 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
       lease.current = acquired;
       if (restart) {
         playbackPosition.current = 0;
-        if (speechStarted.current) { speechGeneration.current += 1; speechPaused.current = false; await Speech.stop(); speechStarted.current = false; }
       }
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
       eligibleForInterruption.current = true;
-      // File playback uses the same session owner as ordinary study. Only this
-      // component's own TTS may be stopped; unrelated speech is not a prerequisite.
+      // File playback uses the same session owner as ordinary study.
       if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
       callbacks.current.onPlaybackStart?.();
       if (callbacks.current.uri) {
@@ -94,22 +87,6 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
         player.setPlaybackRate(1);
         player.play();
         update(Platform.OS === 'web' ? 'loading' : 'playing');
-      } else if (callbacks.current.text?.trim() && Platform.OS !== 'web') {
-        if (speechPaused.current && !restart) {
-          await Speech.resume();
-          if (!mounted.current || request !== generation.current) { releaseSpecific(acquired); return; }
-          speechPaused.current = false; update('playing');
-        } else {
-          speechStarted.current = true;
-          const utterance = ++speechGeneration.current;
-          Speech.speak(callbacks.current.text.trim(), {
-            language: 'en-US', rate: 0.91, pitch: 1, useApplicationAudioSession: true,
-            onStart: () => { if (utterance === speechGeneration.current) { audible.current = true; if (phaseRef.current !== 'paused') update('playing'); else void Speech.pause().catch(() => undefined); } },
-            onDone: () => { if (utterance === speechGeneration.current) { eligibleForInterruption.current = false; update('ended'); release(); } },
-            onError: () => { if (utterance === speechGeneration.current) { update('error'); release(); } },
-          });
-          update('playing');
-        }
       } else { update('error'); release(); }
     } catch (error) {
       if (mounted.current && request === generation.current) fail(error && typeof error === 'object' && 'code' in error && typeof error.code === 'string' ? error.code : 'exam_play_start_failed');
@@ -123,7 +100,6 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
     const unregister = audioSessionOrchestrator.register('study', { deactivate: async () => {
       operations.current.pause();
       interrupted.current = false; eligibleForInterruption.current = false; awaitingReplay.current = false; setInterruptionReplay(false);
-      if (speechStarted.current) { speechPaused.current = false; speechGeneration.current += 1; await Speech.stop(); }
     } });
     const subscription = observeAudioInterruption(event => {
       if (event.phase === 'began') {
@@ -144,10 +120,10 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
       else if (next === 'active' && interrupted.current && !awaitingReplay.current) { interrupted.current = false; operations.current.play(); }
       else if (next === 'active' && phaseRef.current === 'loading') { wantPlay.current = true; setLoadAttempt(value => value + 1); }
     });
-    return () => { mounted.current = false; unregister(); subscription.remove(); appSubscription.remove(); generation.current += 1; try { player.pause(); } catch { /* Player disposed. */ } speechGeneration.current += 1; if (speechStarted.current) void Speech.stop().catch(() => undefined); release(); };
+    return () => { mounted.current = false; unregister(); subscription.remove(); appSubscription.remove(); generation.current += 1; try { player.pause(); } catch { /* Player disposed. */ } release(); };
   // One instance is mounted for each immutable exam item. Callbacks use refs.
    
-  }, [player]);
+  }, [player, release]);
 
   useEffect(() => {
     if (resolving) {
@@ -177,21 +153,20 @@ export function ExamQuestionAudio({ exam = true, autoPlay = true, questionId, ur
     if (uri && status.playbackState === 'error' && phaseRef.current !== 'error') { operations.current.pause(); eligibleForInterruption.current = false; fail('exam_media_load_failed'); }
   // The player status drives readiness; transports are stable per item.
    
-  }, [player, status, uri, resolving]);
+  }, [player, status, uri, resolving, release, fail, update]);
   useEffect(() => { if (!uri && text?.trim() && wantPlay.current && !resolving) operations.current.play(); }, [uri, text, resolving, loadAttempt]);
   useEffect(() => {
     // Signed URL resolution has its own timeout and retry path. The
     // player's 15-second startup watchdog only begins once media is resolved.
     if (resolving || (phase !== 'loading' && !(phase === 'playing' && !audible.current))) return;
-    const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; if (speechStarted.current) { speechGeneration.current += 1; void Speech.stop().catch(() => undefined); } fail('exam_first_frame_timeout'); } }, 15_000);
+    const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; fail('exam_first_frame_timeout'); } }, 15_000);
     return () => clearTimeout(timer);
-  }, [phase, loadAttempt, resolving]);
+  }, [phase, loadAttempt, resolving, fail]);
   const previousPauseRequest = useRef(pauseRequest);
   useEffect(() => {
     if (pauseRequest === previousPauseRequest.current) return;
     previousPauseRequest.current = pauseRequest;
     operations.current.pause(); eligibleForInterruption.current = false; interrupted.current = false; awaitingReplay.current = false; setInterruptionReplay(false);
-    if (speechStarted.current) { speechPaused.current = false; speechGeneration.current += 1; void Speech.stop().catch(() => undefined); }
   }, [pauseRequest]);
 
   const canRetry = phase === 'error' && (!exam || !audible.current);

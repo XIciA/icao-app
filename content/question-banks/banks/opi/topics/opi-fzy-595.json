@@ -18,7 +18,9 @@
       "audioTextZh": "请简要说明这张图片。",
       "studyTier": 0,
       "referenceText": "This is a Saab airplane stopping on the runway with its nose touching the ground. Its front landing gear remains stuck. A section of the runway has been foamed. There are many people surrounding it.",
-      "referenceTextZh": "图中是一架停在跑道，机头接触地面的萨博飞机。飞机的起落架被卡住不能动，跑道的一部分被喷洒了泡沫，有很多人正在围着这架飞机。"
+      "referenceTextZh": "图中是一架停在跑道，机头接触地面的萨博飞机。飞机的起落架被卡住不能动，跑道的一部分被喷洒了泡沫，有很多人正在围着这架飞机。",
+      "audio": "/question-bank-assets/revisions/opi/cb64fd3c39d3810527146424b3d6b0005722770cb765186f03b2699514cb4c5f/audio/opi/opi-fzy-110465.mp3",
+      "audioDurationSeconds": 2.64
     },
     {
       "id": "opi-fzy-110466",
@@ -27,7 +29,9 @@
       "audioTextZh": "这种情况可能是怎样发生的？",
       "studyTier": 0,
       "referenceText": "Based on what I can see in this picture, I guess the pilot made an emergency landing on the runway. The front landing gear couldn’t be extended and the crew had to land using the main landing gear. When it landed, the plane came down on the side wheels and finally stopped on its front belly, while the front landing gear remained stuck.",
-      "referenceTextZh": "根据我从图中看到的，我认为飞行员进行了紧急降落。飞机无法放下前起落架，必须使用主起落架。飞机着陆时倒在侧轮上，仍然无法放下前起落架，最后飞机机腹着地。"
+      "referenceTextZh": "根据我从图中看到的，我认为飞行员进行了紧急降落。飞机无法放下前起落架，必须使用主起落架。飞机着陆时倒在侧轮上，仍然无法放下前起落架，最后飞机机腹着地。",
+      "audio": "/question-bank-assets/revisions/opi/11cc8693ecea7cb6b68e791a315447de98573679536dc01bc4804ed732857aa0/audio/opi/opi-fzy-110466.mp3",
+      "audioDurationSeconds": 1.776
     },
     {
       "id": "opi-fzy-110467",
@@ -36,7 +40,9 @@
       "audioTextZh": "飞机前起落架无法放下时飞行员会怎样做？",
       "studyTier": 0,
       "referenceText": "They should advise ATC the situation first and request an emergency landing on a foamed runway. If there is excess fuel, they have to dump fuel to avoid a potential fire before it lands on a bed of foam.",
-      "referenceTextZh": "飞行员会首先将情况告知ATC并请求在喷洒泡沫的跑道紧急降落。飞机中有过量燃油时需要先进行放油，避免着陆前可能存在的火灾。"
+      "referenceTextZh": "飞行员会首先将情况告知ATC并请求在喷洒泡沫的跑道紧急降落。飞机中有过量燃油时需要先进行放油，避免着陆前可能存在的火灾。",
+      "audio": "/question-bank-assets/revisions/opi/2707336e768f2f9f998cee382680164bd3fb2d604dc61514120144725f255452/audio/opi/opi-fzy-110467.mp3",
+      "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-fzy-110468",
@@ -45,7 +51,9 @@
       "audioTextZh": "这种情况时飞行员会要求怎样的地面援助？",
       "studyTier": 0,
       "referenceText": "The pilot should request runway to be foamed. Besides, they would request other emergency services, such as ambulance and fire engines to be ready upon landing.",
-      "referenceTextZh": "飞行员会要求向跑道喷洒泡沫，此外还会请求其它紧急服务在降落前准备好，例如救护车和消防车。"
+      "referenceTextZh": "飞行员会要求向跑道喷洒泡沫，此外还会请求其它紧急服务在降落前准备好，例如救护车和消防车。",
+      "audio": "/question-bank-assets/revisions/opi/855edd2c88584ec1fbb4ce28b9df650c7ef1be781c6dd64d6fc0c47f371b41bd/audio/opi/opi-fzy-110468.mp3",
+      "audioDurationSeconds": 2.496
     },
     {
       "id": "opi-fzy-110469",
@@ -54,7 +62,9 @@
       "audioTextZh": "你曾经历过这种情况吗？",
       "studyTier": 0,
       "referenceText": "No, I haven’t met this situation. Only once our flight flew from NKG to PEK, the landing gear couldn’t be retracted after takeoff. The captain decided to return NKG airport immediately and we make a safe landing finally with nobody injured.",
-      "referenceTextZh": "不，没有。只有一次从南京飞往北京时，起飞后起落架无法收回，机长决定立刻返回南京机场，飞机安全着陆，没有人员受伤。"
+      "referenceTextZh": "不，没有。只有一次从南京飞往北京时，起飞后起落架无法收回，机长决定立刻返回南京机场，飞机安全着陆，没有人员受伤。",
+      "audio": "/question-bank-assets/revisions/opi/b33fd76c2604428e3a4ca8a47638c9a44d9d74520d142b9e03c5942f6788bf84/audio/opi/opi-fzy-110469.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-fzy-110470",
@@ -63,7 +73,9 @@
       "audioTextZh": "面临紧急情况，飞行员需要具备怎样的素质？",
       "studyTier": 0,
       "referenceText": "In order to handle emergency situations safely, pilots need to get strictly trained on different emergency situations in the simulator. They also need to have accurate judgment, brave decision making and good crew coordination. Pilots should keep calm and confident facing difficult situations, and furthermore, they should have ability to communicate with ATC in English when emergency situation happens in a foreign country.",
-      "referenceTextZh": "为了能够安全处理紧急情况，飞行员需要在紧急情况模拟器上接受严格训练。同时飞行员需要有正确判断、勇敢决策、与机组良好协作的能力。飞行员面临紧急情况时应保持冷静自信。此外，在国外发生紧急情况时，飞行员应有能力与ATC用英语交流。"
+      "referenceTextZh": "为了能够安全处理紧急情况，飞行员需要在紧急情况模拟器上接受严格训练。同时飞行员需要有正确判断、勇敢决策、与机组良好协作的能力。飞行员面临紧急情况时应保持冷静自信。此外，在国外发生紧急情况时，飞行员应有能力与ATC用英语交流。",
+      "audio": "/question-bank-assets/revisions/opi/ac107b89b969e467582abbcf2756a78c6896d8a8f628af2d6334d49f5fac5c96/audio/opi/opi-fzy-110470.mp3",
+      "audioDurationSeconds": 3.576
     }
   ],
   "categoryId": "opi-category-08"

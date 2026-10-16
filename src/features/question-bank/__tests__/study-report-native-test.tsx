@@ -1,3 +1,4 @@
+jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { StudyReport } from '../components/StudyReport.native';
 import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
@@ -16,7 +17,7 @@ it('returns from the readonly paper to the same completed result without leaving
   jest.mocked(loadLearningRecordReview).mockResolvedValue({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) });
   const leave = jest.fn();
   const screen = await render(<StudyReport record={record} noteCount={0} interaction="choices" onReturn={leave} />);
-  await fireEvent.press(screen.getByText('查看本次记录'));
+  await fireEvent.press(screen.getByText('全部学习记录'));
   await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
   await fireEvent.press(screen.getByText('返回结束页面'));
   expect(screen.getByText('听力成绩')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(leave).not.toHaveBeenCalled(); expect(loadLearningRecordReview).toHaveBeenCalledTimes(1);

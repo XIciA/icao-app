@@ -10,6 +10,7 @@ let mockStatus = { isLoaded: false, playbackState: 'loading', currentTime: 0, pl
 let mockInterruption: ((event: AudioInterruptionEvent) => void) | undefined;
 let mockAppState: ((state: AppStateStatus) => void) | undefined;
 let mockToken = 0;
+jest.mock('@/platform/audio/use-question-recording', () => ({ useQuestionRecording: () => ({uri:undefined,resolving:false,retry:jest.fn()}) }));
 jest.mock('expo-audio', () => ({ useAudioPlayerStatus: () => mockStatus }));
 jest.mock('expo-speech', () => ({ speak: jest.fn(), pause: jest.fn(async () => undefined), resume: jest.fn(async () => undefined), stop: jest.fn(async () => undefined) }));
 jest.mock('@/platform/audio', () => ({ useSessionManagedAudioPlayer: () => mockPlayer, audioSessionOrchestrator: { register: jest.fn(() => () => {}), acquire: jest.fn(async () => ({ owner: 'study', token: ++mockToken })), release: jest.fn(async () => undefined) } }));
@@ -80,14 +81,11 @@ it('does not replay audio when recording starts or when an interruption begins a
   await act(() => { mockInterruption?.({ phase: 'began' }); mockInterruption?.({ phase: 'ended' }); });
   expect(mockPlayer.play).toHaveBeenCalledTimes(1); expect(screen.queryByText('重播本题音频')).toBeNull();
 });
-it('uses existing system speech for an OPI question and never autoplays speech in readonly history', async () => {
-  const screen = await render(<ExamQuestionAudio text="What makes a good pilot?" label="OPI" pauseRequest={0} />);
-  await waitFor(() => expect(Speech.speak).toHaveBeenCalledWith('What makes a good pilot?', expect.objectContaining({ language: 'en-US', useApplicationAudioSession: true })));
-  await screen.unmount(); jest.mocked(Speech.speak).mockClear();
-  const history = await render(<ExamQuestionAudio exam={false} autoPlay={false} text="What makes a good pilot?" label="OPI" pauseRequest={0} />);
+it('never synthesizes a missing recording, including historical OPI text', async () => {
+  const screen = await render(<ExamQuestionAudio exam={false} autoPlay={false} text="What makes a good pilot?" label="OPI" pauseRequest={0} />);
+  await fireEvent.press(screen.getByText('播放题目'));
+  await waitFor(() => expect(screen.getByText('音频暂不可用，可继续作答或进入下一题')).toBeTruthy());
   expect(Speech.speak).not.toHaveBeenCalled();
-  await fireEvent.press(history.getByText('播放题目'));
-  await waitFor(() => expect(Speech.speak).toHaveBeenCalledTimes(1));
 });
 
 it('requires a browser gesture for recorded OPI audio and confirms actual playback', async () => {

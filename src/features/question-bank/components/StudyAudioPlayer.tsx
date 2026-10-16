@@ -433,10 +433,10 @@ export function StudyAudioPlayer({
   }
 
   function retry() {
-    if (!uri) return;
     cancelWebStartAttempt(Platform.OS === 'web' ? 'needs-gesture' : 'idle');
     loadTimeout.retry();
     onRetry?.();
+    if (!uri) return;
     pendingAutoPlayRef.current = Platform.OS !== 'web' || webAudioUnlockedRef.current;
     if (!tryReplacePlayer(uri) || !trySetPlaybackRate(speeds[speedIndex])) {
       pendingAutoPlayRef.current = false;
@@ -543,7 +543,7 @@ export function StudyAudioPlayer({
                 <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
                 <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
               </View>
-              {uri ? (
+              {uri || onRetry ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
                   <RotateCcw color={colors.destructive} size={15} />
                   <AppText color={colors.destructive} variant="caption">重试</AppText>
@@ -615,7 +615,7 @@ export function StudyAudioPlayer({
                 <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
                 <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
               </View>
-              {uri ? (
+              {uri || onRetry ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
                   <RotateCcw color={colors.destructive} size={15} />
                   <AppText color={colors.destructive} variant="caption">重试</AppText>

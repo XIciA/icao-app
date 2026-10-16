@@ -26,6 +26,11 @@ fi
 DISPLAY_VERSION=$(node -p "require('$PROJECT_ROOT/.generated/release/current.json').displayVersion")
 EXPECTED_VERSION_CODE=$(node -p "require('$PROJECT_ROOT/.generated/release/current.json').versionCode")
 EXPECTED_PACKAGE=$(node -p "require('$PROJECT_ROOT/.generated/release/current.json').androidPackage")
+CHANNEL=android
+if [ "${ICAO_APP_VARIANT:-}" = 'android-test' ]; then
+  EXPECTED_PACKAGE=$EXPECTED_PACKAGE.test
+  CHANNEL=android-test
+fi
 ANDROID_HOME=${ANDROID_HOME:-${HOME:?}/Library/Android/sdk}
 APKSIGNER=${ICAO_APKSIGNER:-$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort | tail -1)}
 APKANALYZER=${ICAO_APKANALYZER:-$ANDROID_HOME/cmdline-tools/latest/bin/apkanalyzer}
@@ -88,9 +93,12 @@ if grep -aEq '47\.109\.132\.161|api\.feizhuicao\.com|cloud\.feizhuicao\.com' "$T
   exit 1
 fi
 
-OUTPUT_DIR=$PROJECT_ROOT/.generated/releases/android/$DISPLAY_VERSION
+OUTPUT_DIR=$PROJECT_ROOT/.generated/releases/$CHANNEL/$DISPLAY_VERSION
 mkdir -p "$OUTPUT_DIR"
 OUTPUT_APK=$OUTPUT_DIR/feizhu-icao-$DISPLAY_VERSION.apk
+if [ "$CHANNEL" = android-test ]; then
+  OUTPUT_APK=$OUTPUT_DIR/feizhu-icao-android-test-$DISPLAY_VERSION.apk
+fi
 cp "$SOURCE_APK" "$OUTPUT_APK"
 SHA256=$(shasum -a 256 "$OUTPUT_APK" | awk '{print $1}')
 printf '%s  %s\n' "$SHA256" "$(basename "$OUTPUT_APK")" > "$OUTPUT_APK.sha256"

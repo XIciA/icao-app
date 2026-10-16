@@ -10,7 +10,9 @@
       "audioTextZh": "你所在的公司是否为飞行机组和客舱机组提供应对飞行机组成员失能的联合培训？如果没有，你认为这种培训是否必要？为什么？",
       "referenceText": "I am not currently employed by an airline, so I have not received company joint training. I think it is necessary because flight and cabin crews must communicate clearly, protect the flight deck, assist an incapacitated pilot, and coordinate the cabin response. Practising together helps both groups understand their duties before a real event.",
       "referenceTextZh": "我目前尚未受雇于航空公司，因此没有参加过公司联合训练。我认为这种训练很有必要，因为飞行机组和客舱机组必须清晰沟通、保护驾驶舱、协助失能飞行员，并协调客舱响应。共同练习有助于双方在真实事件发生前了解各自职责。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/adc78c094f60ce50955648f806ad14870c5bf6a457fbea514d4fbef6d71176f9/audio/opi/opi-core-239.mp3",
+      "audioDurationSeconds": 9.768
     },
     {
       "id": "opi-core-214",
@@ -19,7 +21,9 @@
       "audioTextZh": "飞行中一名飞行员失能时，另一名飞行员应如何处置？",
       "referenceText": "The remaining pilot should take control and stabilize the aircraft, using the autopilot if conditions allow. The cabin crew should be asked to assess the incapacitated pilot and provide first aid, while the remaining crew redistribute essential duties. The pilot should inform ATC and prepare to land at a suitable airport, requesting medical assistance when needed.",
       "referenceTextZh": "剩余飞行员应接管并稳定飞机，在条件允许时使用自动驾驶仪。应请客舱机组评估失能飞行员并提供急救，同时由其余机组重新分配关键职责。飞行员应通知空中交通管制，准备在合适机场着陆，并在需要时申请医疗协助。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/588a25603d396acea4d741631ede9363378f9f4947882b6e21201c287dbde560/audio/opi/opi-core-214.mp3",
+      "audioDurationSeconds": 4.776
     },
     {
       "id": "opi-core-529",
@@ -28,7 +32,9 @@
       "audioTextZh": "哪些运动最适合飞行员？为什么？",
       "referenceText": "I think swimming and running are suitable exercises for pilots. They improve cardiovascular fitness and endurance and can help pilots maintain a strong body and a sharp mind. Swimming is also a full-body exercise that is gentle on the joints and can reduce stress.",
       "referenceTextZh": "我认为游泳和跑步适合飞行员。它们可以改善心肺功能和耐力，帮助飞行员保持强健体魄和敏锐思维。游泳还是一种对关节冲击较小的全身运动，并能缓解压力。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/d9c4580303a72168f4849abe32b9b2f8727e50fd9f535e5043e65d8b84c09764/audio/opi/opi-core-529.mp3",
+      "audioDurationSeconds": 3.84
     },
     {
       "id": "opi-core-530",
@@ -36,7 +42,9 @@
       "audioText": "Why is it important for pilots to maintain good health?",
       "audioTextZh": "飞行员保持良好健康状况为什么很重要？",
       "referenceText": "Pilots control the aircraft and are responsible for everyone on board, so good health is important for flight safety. They need physical and mental fitness to maintain concentration, react quickly, and make accurate decisions. Fatigue, illness, or incapacitation can reduce their performance and endanger the flight.",
-      "referenceTextZh": "飞行员操纵飞机并对机上所有人负责，因此良好健康状况对飞行安全很重要。他们需要保持身心健康，才能集中注意、迅速反应并准确决策。疲劳、疾病或失能会降低表现并危及飞行。"
+      "referenceTextZh": "飞行员操纵飞机并对机上所有人负责，因此良好健康状况对飞行安全很重要。他们需要保持身心健康，才能集中注意、迅速反应并准确决策。疲劳、疾病或失能会降低表现并危及飞行。",
+      "audio": "/question-bank-assets/revisions/opi/b94e9cd255a814e9186fd68acd2b9cda88906ef6089c72975eca4340660ff779/audio/opi/opi-core-530.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-core-537",
@@ -44,7 +52,9 @@
       "audioText": "What should a pilot do if another crew member feels unwell during flight?",
       "audioTextZh": "飞行中另一名机组成员感到不适时，飞行员应怎么做？",
       "referenceText": "The pilot should ask about the crew member’s symptoms and assess how serious the condition is. If possible, the crew member can rest while another crew member covers the duties, and the condition should be monitored. If it becomes serious, the pilot should inform ATC, follow the applicable medical procedure, and consider a timely diversion.",
-      "referenceTextZh": "飞行员应询问机组成员的症状，并评估病情严重程度。如果条件允许，可以让该成员休息，由另一名机组成员接替职责，同时持续监控状况。如果病情达到严重程度，飞行员应通知空中交通管制，遵循适用医疗程序，并考虑及时改航。"
+      "referenceTextZh": "飞行员应询问机组成员的症状，并评估病情严重程度。如果条件允许，可以让该成员休息，由另一名机组成员接替职责，同时持续监控状况。如果病情达到严重程度，飞行员应通知空中交通管制，遵循适用医疗程序，并考虑及时改航。",
+      "audio": "/question-bank-assets/revisions/opi/4038cbd87635da9ef855d4a044628e04f9ea8348417ba8ccbe699ac824248b13/audio/opi/opi-core-537.mp3",
+      "audioDurationSeconds": 3.768
     },
     {
       "id": "opi-core-539",
@@ -52,7 +62,9 @@
       "audioText": "What should a pilot do if they feel unwell during flight?",
       "audioTextZh": "飞行员在飞行中感到不适时应怎么做？",
       "referenceText": "The pilot should report the condition to the other pilot, captain, or flight instructor without hiding it. Another qualified crew member should take control and assume the pilot’s duties while the condition is assessed. If the discomfort is serious, the crew can inform ATC, arrange a priority landing or diversion, and request medical assistance.",
-      "referenceTextZh": "飞行员应如实向另一名飞行员、机长或飞行教员报告身体不适。另一名合格机组成员应接管飞机并承担其职责，同时评估病情。如果不适严重，机组可以通知空中交通管制，安排优先着陆或改航，并申请医疗协助。"
+      "referenceTextZh": "飞行员应如实向另一名飞行员、机长或飞行教员报告身体不适。另一名合格机组成员应接管飞机并承担其职责，同时评估病情。如果不适严重，机组可以通知空中交通管制，安排优先着陆或改航，并申请医疗协助。",
+      "audio": "/question-bank-assets/revisions/opi/24d92246f28bd4224bf89a02bdab67e84ce6c2b68fe54d1feed7147541fb2f1a/audio/opi/opi-core-539.mp3",
+      "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-core-540",
@@ -60,7 +72,9 @@
       "audioText": "How do you usually exercise to stay fit?",
       "audioTextZh": "你通常通过哪些运动来保持身体健康？",
       "referenceText": "I usually jog on weekday mornings and swim at weekends. I sometimes play basketball to improve coordination and teamwork. I also stretch before and after exercise to reduce the risk of injury.",
-      "referenceTextZh": "我通常在工作日早晨慢跑，周末游泳。有时我也打篮球来提高协调能力和团队合作。运动前后我还会拉伸，以降低受伤风险。"
+      "referenceTextZh": "我通常在工作日早晨慢跑，周末游泳。有时我也打篮球来提高协调能力和团队合作。运动前后我还会拉伸，以降低受伤风险。",
+      "audio": "/question-bank-assets/revisions/opi/b131fee04600e5a8be521a428dc2fd1f59ba6a202dbff5b32c109437c672e0e6/audio/opi/opi-core-540.mp3",
+      "audioDurationSeconds": 2.544
     },
     {
       "id": "opi-core-541",
@@ -68,7 +82,9 @@
       "audioText": "Which daily habits are most important for keeping pilots fit and healthy?",
       "audioTextZh": "哪些日常习惯对飞行员保持身体健康最重要？",
       "referenceText": "The most important habits are regular exercise, a balanced diet, enough sleep, and a consistent daily schedule. Pilots should choose suitable activities such as swimming or jogging and avoid staying up late. A positive attitude also supports both physical and mental health.",
-      "referenceTextZh": "最重要的习惯包括规律锻炼、均衡饮食、充足睡眠和稳定作息。飞行员应选择游泳或慢跑等适合自己的活动，并避免熬夜。积极的心态也有助于身心健康。"
+      "referenceTextZh": "最重要的习惯包括规律锻炼、均衡饮食、充足睡眠和稳定作息。飞行员应选择游泳或慢跑等适合自己的活动，并避免熬夜。积极的心态也有助于身心健康。",
+      "audio": "/question-bank-assets/revisions/opi/2f081bf9e6e1d1df7c87059db7b1246f4696fe42cacf7ee046717f41ebb2bc68/audio/opi/opi-core-541.mp3",
+      "audioDurationSeconds": 3.912
     },
     {
       "id": "opi-core-542",
@@ -76,7 +92,9 @@
       "audioText": "How often do you undergo an aviation medical examination?",
       "audioTextZh": "你多久接受一次航空体检？",
       "referenceText": "I undergo an aviation medical examination every six months. It includes physical examinations, laboratory tests, and psychological evaluations. These regular checks help detect health problems early and confirm that I meet the medical standards for training and flying.",
-      "referenceTextZh": "我每六个月接受一次航空体检，包括身体检查、实验室检查和心理评估。这些定期检查有助于尽早发现健康问题，并确认我符合训练和飞行的医学标准。"
+      "referenceTextZh": "我每六个月接受一次航空体检，包括身体检查、实验室检查和心理评估。这些定期检查有助于尽早发现健康问题，并确认我符合训练和飞行的医学标准。",
+      "audio": "/question-bank-assets/revisions/opi/50ebbeb1ca468e44ed974f9fbb85ed328b0e0f4fdedc04ff63be9467393fa06a/audio/opi/opi-core-542.mp3",
+      "audioDurationSeconds": 3.552
     },
     {
       "id": "opi-core-773",
@@ -85,7 +103,9 @@
       "audioTextZh": "机组成员失能的常见原因有哪些？",
       "referenceText": "Common causes include sudden illness, serious injury, food poisoning, toxic-gas inhalation, and depressurization. Fatigue, stress, and lack of sleep can also impair a crew member’s ability to work and may lead to incapacitation.",
       "referenceTextZh": "常见原因包括突发疾病、严重受伤、食物中毒、有毒气体吸入和失压。疲劳、压力和睡眠不足也会损害机组成员的工作能力，并可能导致失能。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/5e912dbf067ea56f6d7f8df65e1994d8dc6ed6ce0f43f7a3a348937980f55b20/audio/opi/opi-core-773.mp3",
+      "audioDurationSeconds": 2.808
     },
     {
       "id": "opi-core-777",
@@ -94,7 +114,9 @@
       "audioTextZh": "飞行机组成员如何降低自身失能的风险？",
       "referenceText": "Flight crew members can reduce the risk by exercising regularly, eating a balanced diet, and having regular medical examinations. They should follow flight-duty-time rules, get enough rest, and manage stress to prevent fatigue. During depressurization or another relevant emergency, they should use oxygen masks promptly and follow the applicable safety procedure.",
       "referenceTextZh": "飞行机组成员可以通过规律锻炼、均衡饮食和定期体检来降低风险。他们应遵守飞行值勤时间规定、充分休息并管理压力，以防止疲劳。发生失压或其他相关紧急情况时，应立即使用氧气面罩并遵循适用安全程序。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/9593c6a8eacea55e29e40d96f4670d0fc8aabbc536405951df67b6d34e68b3dd/audio/opi/opi-core-777.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-core-778",
@@ -103,7 +125,9 @@
       "audioTextZh": "运营人如何降低与机组成员失能有关的安全风险？",
       "referenceText": "An operator can arrange reasonable duty and rest periods to reduce fatigue and provide training on incapacitation and emergency takeovers. It can equip aircraft with medical kits and encourage crews to report health problems promptly. The operator can then adjust schedules when necessary to protect flight safety.",
       "referenceTextZh": "运营人可以合理安排值勤和休息时间以减轻疲劳，并提供失能和紧急接替训练。运营人可以为飞机配备医疗箱，并鼓励机组及时报告健康问题；随后在必要时调整排班，以保护飞行安全。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/dc0b58feaecbafe366dca2c52ad5be475f8fa448f456596061b32e4445be2944/audio/opi/opi-core-778.mp3",
+      "audioDurationSeconds": 4.776
     }
   ],
   "categoryId": "opi-category-04"

@@ -18,3 +18,8 @@ test('ESM consumers load the same scope projection as the production API', async
     cards: [{ id: 'full' }, { id: 'core', studyTier: 1 }, { id: 'quick', studyTier: 2 }],
   }), { all: ['full', 'core', 'quick'], selected: ['core', 'quick'], crash: ['quick'] });
 });
+
+test('new reported exam questions do not silently enter selected content, and retired IDs leave new practice only', async () => {
+ const {studyScopeCardIds}=await import('@icao/contracts');
+ assert.deepEqual(studyScopeCardIds('opi',{cards:[{id:'old-selected',studyTier:2},{id:'new-exam',studyTier:0,examReported:true},{id:'retired',studyTier:2,retired:true}]}),{all:['old-selected','new-exam'],selected:['old-selected'],crash:['old-selected','new-exam']});
+});

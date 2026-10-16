@@ -10,7 +10,9 @@
       "audioTextZh": "开始复飞时，飞行机组应遵循什么一般程序？",
       "referenceText": "The crew should apply takeoff/go-around thrust, pitch the aircraft to the climb attitude, and adjust the landing gear and flaps for the go-around. They should follow the runway heading, climb to the altitude specified in the missed-approach procedure, and report to ATC.",
       "referenceTextZh": "机组应使用起飞复飞推力，使飞机上仰至爬升姿态，并按照复飞要求调整起落架和襟翼。他们应沿跑道航向飞行，爬升至复飞程序规定的高度，并向空中交通管制报告。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/9a447f91df43ef9e1ee5cc7029e728d73c72723028a5b18319cad4acff3c420d/audio/opi/opi-core-456.mp3",
+      "audioDurationSeconds": 4.176
     },
     {
       "id": "opi-core-459",
@@ -19,7 +21,9 @@
       "audioTextZh": "进近后段航空器仍高于下滑道时，飞行员应如何处置？",
       "referenceText": "A gentle correction may be attempted only if the deviation is controllable, the speed is normal, and the runway is visible. If the deviation cannot be corrected promptly or the approach is unstable, the pilot should go around.",
       "referenceTextZh": "只有在偏差可控、速度正常且跑道可见时，才可以尝试小幅修正。如果无法及时修正偏差或进近不稳定，飞行员应复飞。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/9fab3ed6e57e3fb4482be78ea3ce893c8cc706d139a951ac177272db835dd22c/audio/opi/opi-core-459.mp3",
+      "audioDurationSeconds": 4.44
     },
     {
       "id": "opi-core-081",
@@ -28,7 +32,9 @@
       "audioTextZh": "哪些情况可能需要飞行员复飞？",
       "referenceText": "A go-around may be required if the runway is not in sight at minimums, the approach is unstable or too fast, wind shear is encountered, or localizer guidance fluctuates. Other reasons include a runway incursion, a landing-gear or system problem, wind beyond the applicable limits, poor visibility, or an ATC instruction.",
       "referenceTextZh": "在最低标准处看不到跑道、进近不稳定或速度过大、遭遇风切变，或航向道引导波动时，都可能需要复飞。其他原因包括跑道侵入、起落架或系统故障、风超过适用限制、能见度不良，或空中交通管制指令。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/45a30df81befc5f2f1f3e5086a4bdafdcb5356d03f85b2a4dc32b2112efb8471/audio/opi/opi-core-081.mp3",
+      "audioDurationSeconds": 2.88
     },
     {
       "id": "opi-core-197",
@@ -37,7 +43,9 @@
       "audioTextZh": "在复杂机场复飞时，飞行员应考虑哪些因素？",
       "referenceText": "Pilots should follow the published missed-approach procedure and monitor nearby terrain and obstacles closely. They should consider the weather and possible mountain wind shear and maintain the appropriate speed and altitude. Good communication with ATC and coordination with the cabin crew are also important.",
       "referenceTextZh": "飞行员应遵循公布的复飞程序，并密切监控附近地形和障碍物。他们应考虑天气和可能的山地风切变，并保持适当的速度和高度。与空中交通管制保持良好沟通，并与客舱机组协调也很重要。",
-      "studyTier": 2
+      "studyTier": 2,
+      "audio": "/question-bank-assets/revisions/opi/55b37116b74daabb1f5e47e4f7328efcedb927664886cc6af146d9177031b666/audio/opi/opi-core-197.mp3",
+      "audioDurationSeconds": 3.6
     }
   ],
   "categoryId": "opi-category-05"

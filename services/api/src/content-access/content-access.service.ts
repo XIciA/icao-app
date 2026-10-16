@@ -73,7 +73,13 @@ function topicAccess(topic: ContentTopic, availableCardCount: number, freeCardCo
   };
 }
 
+function activeTopic(topic: ContentTopic): ContentTopic {
+  const cards = topic.cards.filter(card => card.retired !== true);
+  return cards.length === topic.cards.length ? topic : { ...topic, cards, declaredCardCount: cards.length };
+}
+
 function filterTopic(bankId: string, topic: ContentTopic, membershipActive: boolean) {
+  topic = activeTopic(topic);
   const freeCards = topic.cards.filter((card) => isFreeQuestionBankCard(bankId, topic.id, card.id));
   const cards = membershipActive ? topic.cards : freeCards;
   return {
@@ -85,6 +91,7 @@ function filterTopic(bankId: string, topic: ContentTopic, membershipActive: bool
 }
 
 function catalogTopic(bankId: string, topic: ContentTopic) {
+  topic = activeTopic(topic);
   const freeCards = topic.cards.filter((card) => isFreeQuestionBankCard(bankId, topic.id, card.id));
   return {
     ...topic,

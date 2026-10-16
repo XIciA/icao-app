@@ -18,7 +18,9 @@
       "audioTextZh": "可以说一下这张图片吗？",
       "studyTier": 1,
       "referenceText": "This picture is mainly about micro-burst.\nIt usually contains three stages: headwind, downdraft and tailwind.",
-      "referenceTextZh": "这张图片主要是有关微下击暴流的。微下击暴流通常包含三个阶段：逆风、下沉气流和顺风。"
+      "referenceTextZh": "这张图片主要是有关微下击暴流的。微下击暴流通常包含三个阶段：逆风、下沉气流和顺风。",
+      "audio": "/question-bank-assets/revisions/opi/d0f83f361db01b39ee4ff309532d35c2706d2a3d2a6f61bd4bf9b21c916c75d3/audio/opi/opi-fzy-152387.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-fzy-152388",
@@ -27,7 +29,9 @@
       "audioTextZh": "在什么样的天气条件下，你会遇到微下击暴流？",
       "studyTier": 1,
       "referenceText": "As far as I know, the micro-burst usually appears in thunderstorm or rain shower.\nIt is very dangerous to flight safety.",
-      "referenceTextZh": "据我所知，微下击暴流一般出现在雷暴或者强降雨天气中。\n它对飞行安全十分危险。"
+      "referenceTextZh": "据我所知，微下击暴流一般出现在雷暴或者强降雨天气中。\n它对飞行安全十分危险。",
+      "audio": "/question-bank-assets/revisions/opi/fdd4b2c1b946cac3f0b2e9a3eef6a5269e65b7b1052676fd72af4642e24f92fd/audio/opi/opi-fzy-152388.mp3",
+      "audioDurationSeconds": 3.792
     },
     {
       "id": "opi-fzy-152389",
@@ -36,7 +40,9 @@
       "audioTextZh": "穿越微下击暴流时会发生什么？",
       "studyTier": 1,
       "referenceText": "When flying through a micro-burst, the aircraft will become very unstable and difficult to control.\nAt the beginning, the aircraft speed and altitude will increase rapidly.\nWhen the aircraft passes the center of the micro-burst, tailwind will cause airspeed decrease, and the altitude will be lost suddenly.",
-      "referenceTextZh": "当飞机穿过微下击暴流时，飞机将变得很不稳定，很难控制。\n最初，速度和高度会快速上升。\n飞机通过微下击暴流中心时，顺风会使空速和高度突然下降。"
+      "referenceTextZh": "当飞机穿过微下击暴流时，飞机将变得很不稳定，很难控制。\n最初，速度和高度会快速上升。\n飞机通过微下击暴流中心时，顺风会使空速和高度突然下降。",
+      "audio": "/question-bank-assets/revisions/opi/784d9e1ca779658fdb21c7e71c021e40ffdc4dcde9e62cc9ed2739e7da411bff/audio/opi/opi-fzy-152389.mp3",
+      "audioDurationSeconds": 2.592
     }
   ],
   "categoryId": "opi-category-08"

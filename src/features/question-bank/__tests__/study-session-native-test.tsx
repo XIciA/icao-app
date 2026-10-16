@@ -197,3 +197,32 @@ it('saving a new local comparison on a historical answer creates its own parent 
   expect(hook.result.current.report?.feedbackCount).toBe(1);
   expect(hook.result.current.report?.studyReview?.answers[topic.cards[0].id]).toBe('original answer');
 });
+
+it('resumes ordinary practice by stable card identity without restoring old answers, and explicit links win', async () => {
+  const persistence = store();
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({
+    [topic.cards[2].id]: { visited: true, completed: true, selectedChoiceIndex: 1, note: '', updatedAt: '2026-10-01T10:00:00.000Z', lastVisitedAt: '2026-10-01T10:00:00.000Z' },
+  });
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(2);
+  expect(hook.result.current.cardState?.selectedChoiceIndex).toBeUndefined();
+  await act(() => hook.result.current.goTo(0));
+  await waitFor(() => expect(persistence.saveCardState).toHaveBeenCalledWith(topic.id, topic.cards[0].id, expect.objectContaining({ lastVisitedAt: expect.any(String) }), dataset.id, expect.anything()));
+  await hook.unmount();
+  const linked = await renderHook(() => useStudySession({ dataset, category, topic, initialCardId: topic.cards[1].id, store: persistence }));
+  await waitFor(() => expect(linked.result.current.hydrated).toBe(true));
+  expect(linked.result.current.currentIndex).toBe(1);
+});
+
+it('preserves the best available resume position for records saved by older clients', async () => {
+  const persistence = store();
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({
+    [topic.cards[1].id]: { visited: true, completed: true, note: 'Old note', updatedAt: '2026-09-01T10:00:00.000Z' },
+    [topic.cards[2].id]: { visited: false, completed: false, note: 'Unvisited annotation', updatedAt: '2026-09-02T10:00:00.000Z' },
+  });
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(1);
+  expect(hook.result.current.cardState?.selectedChoiceIndex).toBeUndefined();
+});

@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "sourceImage": "opi-feedback-oct15-oct16.png",
+  "status": "prepared-not-published",
+  "cases": [
+    {
+      "examDate": "2026-10-15",
+      "center": "广汉",
+      "operations": [
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-01",
+          "topicId": "opi-topic-0002",
+          "cardId": "opi-report-202610-deicing-procedure",
+          "card": {
+            "kind": "text",
+            "taskTitle": "飞行机组应遵循哪些地面除冰程序？",
+            "audioText": "What procedures should the flight crew follow for ground de-icing?",
+            "audioTextZh": "飞行机组应遵循哪些地面除冰程序？",
+            "referenceText": "We should follow the approved aircraft and company procedures, assess the contamination and coordinate the treatment with ground personnel. We must obtain confirmation that the treatment and required checks are complete, consider the applicable holdover time, and ensure that the aircraft is safe for takeoff.",
+            "referenceTextZh": "我们应遵循批准的机型和公司程序，评估污染情况，并与地面人员协调除冰作业。必须确认作业及规定检查已完成，考虑适用的保持时间，并确保飞机满足安全起飞条件。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        },
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-01",
+          "topicId": "opi-topic-0002",
+          "cardId": "opi-report-202610-deicing-configuration",
+          "card": {
+            "kind": "text",
+            "taskTitle": "地面除冰过程中，飞机应如何设置构型？",
+            "audioText": "How should the aircraft be configured during ground de-icing?",
+            "audioTextZh": "地面除冰过程中，飞机应如何设置构型？",
+            "referenceText": "The configuration depends on the aircraft type and the approved procedure. We should use the relevant checklist and coordinate with the de-icing team. The required positions of the flaps, slats, doors and ventilation controls must come from that procedure, rather than a general rule for all aircraft.",
+            "referenceTextZh": "具体构型取决于机型和批准的程序。我们应使用相应检查单，并与除冰人员协调。襟翼、缝翼、舱门和通风控制的规定位置应以该程序为准，不能对所有飞机套用同一种设置。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        }
+      ],
+      "decisions": [
+        {
+          "source": "冬季运行",
+          "kind": "similar",
+          "cardId": "opi-extra-330",
+          "englishPrompt": "Winter operations",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "除冰程序",
+          "kind": "new",
+          "cardId": "opi-report-202610-deicing-procedure",
+          "englishPrompt": "What procedures should the flight crew follow for ground de-icing?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        },
+        {
+          "source": "除冰过程中飞机应该是什么构型",
+          "kind": "new",
+          "cardId": "opi-report-202610-deicing-configuration",
+          "englishPrompt": "How should the aircraft be configured during ground de-icing?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        },
+        {
+          "source": "除冰液使用",
+          "kind": "similar",
+          "cardId": "opi-core-034",
+          "englishPrompt": "Use of de-icing and anti-icing fluids",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        }
+      ],
+      "notes": "依据 10 月 15—16 日反馈图整理；年份按本次 2026 年案例记录。主题式反馈保留为英文主题短语，不伪称考场完整问句。 “未考缩略词”为考试说明，不生成题目。除冰答案依据 FAA AC 120-58 与 EASA Air Operations 地面除冰程序；机型未知，不指定开关位置。"
+    },
+    {
+      "examDate": "2026-10-15",
+      "center": "广汉本部",
+      "operations": [
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-06",
+          "topicId": "opi-topic-0022",
+          "cardId": "opi-report-202610-high-oil-pressure",
+          "card": {
+            "kind": "text",
+            "taskTitle": "发动机滑油压力过高时，飞行员应如何处置？",
+            "audioText": "What should pilots do if engine oil pressure is too high?",
+            "audioTextZh": "发动机滑油压力过高时，飞行员应如何处置？",
+            "referenceText": "We should maintain control of the aircraft, verify the indication and check the other engine parameters. We should then follow the approved abnormal checklist for the aircraft and decide whether to continue, return or divert as required. The limits and any engine actions must come from the aircraft manual.",
+            "referenceTextZh": "我们应保持对飞机的控制，核实指示，并检查其他发动机参数。随后按照该机型批准的非正常检查单处置，并根据情况决定继续飞行、返航或备降。限制值和发动机操作必须以飞机手册为准。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        }
+      ],
+      "decisions": [
+        {
+          "source": "图片题：一个飞机停在停机坪上 4 个滑梯都打开了，问飞机有没有哪里损坏？",
+          "kind": "unresolved",
+          "reason": "缺少实际图片，无法核对是否与现有图片相同或判断图中损坏。"
+        },
+        {
+          "source": "危险品培训",
+          "kind": "similar",
+          "cardId": "opi-core-168",
+          "englishPrompt": "Dangerous goods training",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "危险品的分类",
+          "kind": "similar",
+          "cardId": "opi-fzy-110482",
+          "englishPrompt": "Classification of dangerous goods",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "对于危险品的培训有必要吗",
+          "kind": "similar",
+          "cardId": "opi-core-178",
+          "englishPrompt": "Is dangerous goods training necessary?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "机组的合作在面对紧急情况",
+          "kind": "similar",
+          "cardId": "opi-fzy-110438",
+          "englishPrompt": "How should crew members cooperate in an emergency?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "Bird strike",
+          "kind": "similar",
+          "cardId": "opi-core-220",
+          "englishPrompt": "Bird strikes",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "corporation 地勤",
+          "kind": "unresolved",
+          "reason": "原反馈未给出具体问题；corporation 是否指 cooperation、以及与地勤的关系无法确定。"
+        },
+        {
+          "source": "遇到滑油压力过高怎么办",
+          "kind": "new",
+          "cardId": "opi-report-202610-high-oil-pressure",
+          "englishPrompt": "What should pilots do if engine oil pressure is too high?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        },
+        {
+          "source": "天气适合飞行吗",
+          "kind": "similar",
+          "cardId": "opi-extra-138",
+          "englishPrompt": "Is the weather suitable for flying today?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "你飞的什么飞机",
+          "kind": "similar",
+          "cardId": "opi-core-058",
+          "englishPrompt": "What type of aircraft do you fly?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "冲出跑道",
+          "kind": "similar",
+          "cardId": "opi-core-189",
+          "englishPrompt": "Runway overruns",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "短窄跑道",
+          "kind": "similar",
+          "cardId": "opi-core-191",
+          "englishPrompt": "Operating on short and narrow runways",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "问你今天怎么样",
+          "kind": "similar",
+          "cardId": "opi-extra-137",
+          "englishPrompt": "How are you today?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "考了飞前应该准备什么",
+          "kind": "similar",
+          "cardId": "opi-extra-018",
+          "englishPrompt": "What preparations should pilots make before a flight?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        }
+      ],
+      "notes": "依据 10 月 15—16 日反馈图整理；年份按本次 2026 年案例记录。主题式反馈保留为英文主题短语，不伪称考场完整问句。"
+    },
+    {
+      "examDate": "2026-10-16",
+      "center": "国航北京",
+      "operations": [],
+      "decisions": [
+        {
+          "source": "可疑行李",
+          "kind": "similar",
+          "cardId": "opi-core-733",
+          "englishPrompt": "Suspicious baggage on board",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "短窄跑道",
+          "kind": "similar",
+          "cardId": "opi-core-191",
+          "englishPrompt": "Operating on short and narrow runways",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "冲出跑道",
+          "kind": "similar",
+          "cardId": "opi-core-189",
+          "englishPrompt": "Runway overruns",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "燃油政策",
+          "kind": "similar",
+          "cardId": "opi-core-276",
+          "englishPrompt": "Fuel policy",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "机务维修",
+          "kind": "similar",
+          "cardId": "opi-core-669",
+          "englishPrompt": "Aircraft maintenance and the maintenance log",
+          "reason": "原反馈仅列主题，先关联维修记录检查题；不把这一匹配声称为考场原话。"
+        }
+      ],
+      "notes": "依据 10 月 15—16 日反馈图整理；年份按本次 2026 年案例记录。主题式反馈保留为英文主题短语，不伪称考场完整问句。"
+    },
+    {
+      "examDate": "2026-10-16",
+      "center": "飞院本部",
+      "operations": [
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-07",
+          "topicId": "opi-topic-0121",
+          "cardId": "opi-report-202610-preferred-aircraft",
+          "card": {
+            "kind": "text",
+            "taskTitle": "你想飞哪种型号的飞机？为什么？",
+            "audioText": "Which type of aircraft would you like to fly, and why?",
+            "audioTextZh": "你想飞哪种型号的飞机？为什么？",
+            "referenceText": "I would like to fly the Airbus A320 because I am interested in its flight deck and fly-by-wire systems. It is widely used on airline routes, so learning to operate it would be useful for my career. However, safe operation and proper training are more important than my personal preference.",
+            "referenceTextZh": "我想飞空客 A320，因为我对它的驾驶舱和电传操纵系统很感兴趣。这种机型广泛用于航空公司的航线，学习驾驶它对我的职业发展有帮助。不过，安全运行和规范训练比个人偏好更重要。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        },
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-07",
+          "topicId": "opi-topic-0121",
+          "cardId": "opi-report-202610-door-open-takeoff",
+          "card": {
+            "kind": "text",
+            "taskTitle": "起飞过程中舱门打开时，飞行员应如何处置？",
+            "audioText": "What should pilots do if a door opens during takeoff?",
+            "audioTextZh": "起飞过程中舱门打开时，飞行员应如何处置？",
+            "referenceText": "The immediate priority is to maintain control of the aircraft. The crew should follow the approved procedure for the aircraft and the phase of takeoff. A decision to reject takeoff or continue must follow the applicable criteria. Once airborne, the crew should use the appropriate checklist, inform ATC and return or divert if required.",
+            "referenceTextZh": "首要任务是保持对飞机的控制。机组应遵循适用于该机型和起飞阶段的批准程序。中断或继续起飞的决定必须符合适用的判断标准。升空后，应执行相应检查单，通报管制，并在需要时返航或备降。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        },
+        {
+          "action": "add",
+          "bankId": "opi",
+          "categoryId": "opi-category-06",
+          "topicId": "opi-topic-0129",
+          "cardId": "opi-report-202610-advanced-navigation",
+          "card": {
+            "kind": "text",
+            "taskTitle": "驾驶舱可以增加哪些先进导航设备？",
+            "audioText": "What advanced navigation equipment could be added to a cockpit?",
+            "audioTextZh": "驾驶舱可以增加哪些先进导航设备？",
+            "referenceText": "Satellite navigation equipment and an integrated flight management system can help pilots plan and monitor a route. Clear navigation displays can also improve situational awareness. Any installation and its operational use must be approved, and pilots still need training and cross-checks rather than relying blindly on the equipment.",
+            "referenceTextZh": "卫星导航设备和集成的飞行管理系统可以帮助飞行员规划和监控航路。清晰的导航显示也有助于提高情景意识。设备安装和运行使用必须获得相应批准，飞行员仍需接受训练并进行交叉检查，不能盲目信赖设备。",
+            "studyTier": 0,
+            "examReported": true
+          }
+        }
+      ],
+      "decisions": [
+        {
+          "source": "fuel policy",
+          "kind": "similar",
+          "cardId": "opi-core-276",
+          "englishPrompt": "Fuel policy",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "高高度是不是更省油",
+          "kind": "similar",
+          "cardId": "opi-fzy-110126",
+          "englishPrompt": "Does flying at a higher altitude save fuel?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "乘客能否携带电池",
+          "kind": "similar",
+          "cardId": "opi-core-821",
+          "englishPrompt": "Can passengers carry batteries?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "飞行中乘客使用充电宝的危害",
+          "kind": "similar",
+          "cardId": "opi-core-833",
+          "englishPrompt": "What are the risks of using power banks during a flight?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "图片题：force landing",
+          "kind": "unresolved",
+          "reason": "未提供实际图片，不能确认与现有迫降图片相同。"
+        },
+        {
+          "source": "先进现代民航发展下飞行员该怎么做（大致意思）",
+          "kind": "similar",
+          "cardId": "opi-fzy-224773",
+          "englishPrompt": "How should pilots respond to developments in modern civil aviation?",
+          "reason": "现有题覆盖该反馈的提问意图；练习关联原题。"
+        },
+        {
+          "source": "喜欢哪种飞机为什么",
+          "kind": "new",
+          "cardId": "opi-report-202610-preferred-aircraft",
+          "englishPrompt": "Which type of aircraft would you like to fly, and why?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        },
+        {
+          "source": "起飞时舱门弹开如何处置",
+          "kind": "new",
+          "cardId": "opi-report-202610-door-open-takeoff",
+          "englishPrompt": "What should pilots do if a door opens during takeoff?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        },
+        {
+          "source": "哪些先进导航设备可以增加进驾驶舱",
+          "kind": "new",
+          "cardId": "opi-report-202610-advanced-navigation",
+          "englishPrompt": "What advanced navigation equipment could be added to a cockpit?",
+          "reason": "现有题涉及相关主题，但没有覆盖这一具体问题，单独新增。"
+        }
+      ],
+      "notes": "依据 10 月 15—16 日反馈图整理；年份按本次 2026 年案例记录。主题式反馈保留为英文主题短语，不伪称考场完整问句。"
+    }
+  ],
+  "references": [
+    "https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.information/documentNumber/120-58",
+    "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-air-operations?erules-id=ERULES-1963177438-12875",
+    "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/19_afh_ch18.pdf"
+  ]
+}

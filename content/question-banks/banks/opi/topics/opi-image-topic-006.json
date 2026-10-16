@@ -17,7 +17,9 @@
       "audioText": "What pre-takeoff preparations should a flight crew make in the winter conditions shown?",
       "audioTextZh": "在图中所示的冬季条件下起飞前，飞行机组应做哪些准备？",
       "referenceText": "I would brief the winter-weather threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay or reject the takeoff.",
-      "referenceTextZh": "我会对冬季天气威胁进行简令，检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。"
+      "referenceTextZh": "我会对冬季天气威胁进行简令，检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。",
+      "audio": "/question-bank-assets/revisions/opi/4a0da76cf456ddcee70e49c351b0832d99dcb613c86127a9e3ef8ed1675b35c3/audio/opi/opi-image-006-q01.mp3",
+      "audioDurationSeconds": 4.536
     },
     {
       "id": "opi-image-006-q02",
@@ -25,7 +27,9 @@
       "audioText": "What challenges do pilots face when operating in the winter weather shown?",
       "audioTextZh": "在图中所示的冬季天气下运行时，飞行员会面临哪些挑战？",
       "referenceText": "The main challenges are contaminated surfaces, low visibility, reduced braking action, and de-icing requirements.",
-      "referenceTextZh": "主要挑战包括道面污染、低能见度、制动作用降低，以及除冰要求。"
+      "referenceTextZh": "主要挑战包括道面污染、低能见度、制动作用降低，以及除冰要求。",
+      "audio": "/question-bank-assets/revisions/opi/64f7173554734225581eea71da5463169754986d7736b363eaf8074b213a14c9/audio/opi/opi-image-006-q02.mp3",
+      "audioDurationSeconds": 3.96
     }
   ],
   "categoryId": "opi-category-08"

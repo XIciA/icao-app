@@ -1,4 +1,4 @@
-import { nativeApplicationVersion, nativeBuildVersion } from 'expo-application';
+import { applicationId, nativeApplicationVersion, nativeBuildVersion } from 'expo-application';
 import { getIcaoDistributionEnvironment } from '@icao/distribution-environment';
 import { Linking, Platform } from 'react-native';
 import Storage from '@/platform/storage';
@@ -11,7 +11,7 @@ let inFlight: Promise<AppUpdate | undefined> | undefined;
 export async function checkAppUpdate(manual = false): Promise<AppUpdate | undefined> {
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return undefined;
   if (!manual && !inFlight && Date.now() - Number(await Storage.getItem(LAST_CHECK)) < 24 * 60 * 60 * 1000) return undefined;
-  const channel = Platform.OS === 'android' ? 'android-apk' : getIcaoDistributionEnvironment() === 'sandbox' ? 'ios-testflight' : 'ios-app-store';
+  const channel = Platform.OS === 'android' ? applicationId?.endsWith('.test') ? 'android-test' : 'android-apk' : getIcaoDistributionEnvironment() === 'sandbox' ? 'ios-testflight' : 'ios-app-store';
   if (!inFlight) {
     inFlight = (async () => {
       // Also throttle unsuccessful automatic attempts; manual checks always retry.
@@ -26,7 +26,7 @@ export async function checkAppUpdate(manual = false): Promise<AppUpdate | undefi
   if (!manual && result) {
     const dismissed = await Storage.getItem(DISMISSED);
     if (dismissed) {
-      try { const saved = JSON.parse(dismissed); if (saved.key === `${result.channel}:${result.version}:${result.build}` && Date.now() - saved.time < 7 * 24 * 60 * 60 * 1000) return undefined; } catch { /* A corrupt preference must not block manual updates. */ }
+      try { const saved = JSON.parse(dismissed); if (saved.key === `${result.channel}:${result.version}:${result.build}`) return undefined; } catch { /* A corrupt preference must not block manual updates. */ }
     }
   }
   return result;

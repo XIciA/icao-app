@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
-  "releaseVersion": 18,
-  "generatedAt": "2026-10-14T15:18:20.086Z",
+  "releaseVersion": 19,
+  "generatedAt": "2026-10-16T17:59:22.273Z",
   "totals": {
     "files": 603,
     "textValues": 62621
@@ -53,7 +53,7 @@
     {
       "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
       "textValues": 3901,
-      "textProjectionSha256": "fa1ca655f74e4e42ae6a6d498960199070afc966db75b16f3528203fca73f319",
+      "textProjectionSha256": "967611dce33444af5c9e345bec0f37e7f44076ef5b61cadd020a005db6c79f5e",
       "status": "reviewed"
     },
     {
@@ -905,7 +905,7 @@
     {
       "file": "content/question-banks/banks/opi/topics/opi-topic-0021.json",
       "textValues": 61,
-      "textProjectionSha256": "952bf2e14b0bfd5a882043e56241690665c6e8f30b9ec59dc2f610e6eafefd9c",
+      "textProjectionSha256": "8907a0d786ca969ae6adec23c31fdd3676b2e523ac775166b867bcadd13fb6c4",
       "status": "reviewed"
     },
     {
@@ -2483,7 +2483,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0005.json",
       "textValues": 76,
-      "textProjectionSha256": "eb67bfc2ec99a711c14251a5a360c928f0a305df7d1eb9c6b44df322f4a52f5a",
+      "textProjectionSha256": "1f33031c8f7fb8fba2d839589f5feeed271f2bcd9d85ddc57298ecf6804a959c",
       "status": "reviewed"
     },
     {
@@ -3575,7 +3575,7 @@
     {
       "file": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
       "textValues": 478,
-      "textProjectionSha256": "c45e73e0d62263231cb4a260529cfe9ad0cda41293c4638b9480003edd6c0e3c",
+      "textProjectionSha256": "eaeaeb60cbea99f9fc46389edc84eddaa778e94d3a3732dccafa3e9f430dfd1b",
       "status": "reviewed"
     },
     {

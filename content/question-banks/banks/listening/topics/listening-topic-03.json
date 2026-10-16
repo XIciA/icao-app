@@ -1171,14 +1171,14 @@
       "referenceText": "正确答案：B. Light turbulence.",
       "audio": "/question-bank-assets/audio/listening/main/588.mp3",
       "choices": [
-        "Ceiling at or below 5000 meters.",
+        "Ceiling at or below 5000 feet.",
         "Light turbulence.",
         "Visibility is 5 miles or less",
         "Icing of light or greater."
       ],
       "correctChoiceIndex": 1,
       "choicesZh": [
-        "云底高为5,000米或以下",
+        "云底高为5,000英尺或以下",
         "轻度颠簸",
         "能见度5英里或以下",
         "轻度或以上结冰"

@@ -9,7 +9,9 @@
       "audioText": "Does the aircraft type you fly use a control column or a sidestick?",
       "audioTextZh": "你所飞的机型使用驾驶杆还是侧杆？",
       "referenceText": "I fly the C172, which uses a control column.",
-      "referenceTextZh": "我飞的是 C172，它使用驾驶杆。"
+      "referenceTextZh": "我飞的是 C172，它使用驾驶杆。",
+      "audio": "/question-bank-assets/revisions/opi/b06fa62ca76709d0a9051b4d51b64c0a1db642bbb1b4069f627e9762fe133262/audio/opi/opi-extra-125.mp3",
+      "audioDurationSeconds": 3.84
     },
     {
       "id": "opi-extra-126",
@@ -17,7 +19,9 @@
       "audioText": "What are the main advantages and disadvantages of a control column compared with a sidestick?",
       "audioTextZh": "与侧杆相比，驾驶杆有哪些主要优点和缺点？",
       "referenceText": "A control column can give the pilot a physical sense of controlling the aircraft through its mechanical or hydraulic mechanism. Its main disadvantage compared with a sidestick is that it takes up more space in the cockpit.",
-      "referenceTextZh": "驾驶盘通过机械或液压机构，能够让飞行员获得操纵飞机的实体反馈。与侧杆相比，它的主要缺点是会占用更多驾驶舱空间。"
+      "referenceTextZh": "驾驶盘通过机械或液压机构，能够让飞行员获得操纵飞机的实体反馈。与侧杆相比，它的主要缺点是会占用更多驾驶舱空间。",
+      "audio": "/question-bank-assets/revisions/opi/592b6eca53e888d744e4c9254554b2a0c116c21142995c55e7b52eef0bee75fa/audio/opi/opi-extra-126.mp3",
+      "audioDurationSeconds": 5.04
     },
     {
       "id": "opi-extra-202",
@@ -25,7 +29,9 @@
       "audioText": "What are the main flight control surfaces on an aircraft?",
       "audioTextZh": "航空器的主要飞行操纵面有哪些？",
       "referenceText": "The primary flight control surfaces are the ailerons, elevator, and rudder. The ailerons control roll, the elevator controls pitch, and the rudder controls yaw.",
-      "referenceTextZh": "主要飞行操纵面是副翼、升降舵和方向舵。副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。"
+      "referenceTextZh": "主要飞行操纵面是副翼、升降舵和方向舵。副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。",
+      "audio": "/question-bank-assets/revisions/opi/b43ccacfd22897ee40d2ae2fb70ec79330a34f3ffa1c2195f118756f073cb5d1/audio/opi/opi-extra-202.mp3",
+      "audioDurationSeconds": 3.12
     },
     {
       "id": "opi-extra-203",
@@ -33,7 +39,9 @@
       "audioText": "Where are the main flight control surfaces located on an aircraft?",
       "audioTextZh": "航空器的主要飞行操纵面位于什么位置？",
       "referenceText": "The ailerons are located on the wings. The elevator and rudder are located on the tail.",
-      "referenceTextZh": "副翼位于机翼上，升降舵和方向舵位于飞机尾部。"
+      "referenceTextZh": "副翼位于机翼上，升降舵和方向舵位于飞机尾部。",
+      "audio": "/question-bank-assets/revisions/opi/668c6798bcb11f1b7f6d8a4b73fdde7116d98418fdddc075a3e009c338133d68/audio/opi/opi-extra-203.mp3",
+      "audioDurationSeconds": 3.696
     },
     {
       "id": "opi-extra-204",
@@ -41,7 +49,9 @@
       "audioText": "What functions do the main flight control surfaces perform?",
       "audioTextZh": "主要飞行操纵面发挥哪些作用？",
       "referenceText": "The ailerons control roll, the elevator controls pitch, and the rudder controls yaw.",
-      "referenceTextZh": "副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。"
+      "referenceTextZh": "副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。",
+      "audio": "/question-bank-assets/revisions/opi/529ff9de59e43634953fb33de0e52031452bcdbf5df95ee11c87152188005483/audio/opi/opi-extra-204.mp3",
+      "audioDurationSeconds": 3.456
     },
     {
       "id": "opi-extra-205",
@@ -49,7 +59,9 @@
       "audioText": "How can pilots check that the flight controls are working correctly before takeoff?",
       "audioTextZh": "起飞前，飞行员如何检查飞行操纵系统是否工作正常？",
       "referenceText": "During the walk-around inspection, pilots check the flight control surfaces and make sure they are not jammed. Before takeoff, they follow the applicable checklist and move the controls to verify that the ailerons, elevator, and rudder respond correctly.",
-      "referenceTextZh": "绕机检查时，飞行员会检查飞行操纵面，确认它们没有卡阻。起飞前，他们会执行适用的检查单并活动操纵装置，确认副翼、升降舵和方向舵响应正常。"
+      "referenceTextZh": "绕机检查时，飞行员会检查飞行操纵面，确认它们没有卡阻。起飞前，他们会执行适用的检查单并活动操纵装置，确认副翼、升降舵和方向舵响应正常。",
+      "audio": "/question-bank-assets/revisions/opi/9ec4aa52b2aa2b37674fb087f6e09e10542a923075faa850aeceff2cea66aeb6/audio/opi/opi-extra-205.mp3",
+      "audioDurationSeconds": 4.464
     },
     {
       "id": "opi-extra-206",
@@ -57,7 +69,9 @@
       "audioText": "What are the main operating limitations of your aircraft's flight control system?",
       "audioTextZh": "你所飞航空器的飞行操纵系统有哪些主要运行限制？",
       "referenceText": "The exact flight-control-system limitations depend on the DA-40 variant and installed equipment. Its conventional primary controls do not have a separate flight-control law or operating mode to select, so I operate within the approved airspeed, load-factor, weight, and centre-of-gravity limits. If an autopilot is installed, I follow its separate engagement and operating limits in the aircraft flight manual.",
-      "referenceTextZh": "飞行操纵系统的具体限制取决于 DA-40 的型号和安装设备。它采用传统的主飞行操纵系统，没有需要选择的独立飞行控制律或运行模式，因此我会遵守经批准的空速、载荷系数、重量和重心限制。如果安装了自动驾驶仪，我会遵守飞行手册中单独规定的接通和运行限制。"
+      "referenceTextZh": "飞行操纵系统的具体限制取决于 DA-40 的型号和安装设备。它采用传统的主飞行操纵系统，没有需要选择的独立飞行控制律或运行模式，因此我会遵守经批准的空速、载荷系数、重量和重心限制。如果安装了自动驾驶仪，我会遵守飞行手册中单独规定的接通和运行限制。",
+      "audio": "/question-bank-assets/revisions/opi/0ecb84fe85c7a39a2755b294da0e5f968ac806baabbb217a62f6f931a17a5a76/audio/opi/opi-extra-206.mp3",
+      "audioDurationSeconds": 4.272
     },
     {
       "id": "opi-extra-209",
@@ -65,7 +79,9 @@
       "audioText": "How should cockpit tasks be shared when the autopilot cannot be engaged?",
       "audioTextZh": "自动驾驶仪无法接通时，应如何分配驾驶舱工作？",
       "referenceText": "The pilot flying should control the aircraft manually. The pilot monitoring should read the checklist and monitor the aircraft's performance.",
-      "referenceTextZh": "操纵飞行员应人工控制飞机，监控飞行员应朗读检查单并监控飞机性能。"
+      "referenceTextZh": "操纵飞行员应人工控制飞机，监控飞行员应朗读检查单并监控飞机性能。",
+      "audio": "/question-bank-assets/revisions/opi/45b6f5fb8c45b3d772fc8818fa9ae3b2c5bae1e8f06a6f21dfba349fd8e3580e/audio/opi/opi-extra-209.mp3",
+      "audioDurationSeconds": 4.08
     }
   ],
   "categoryId": "opi-category-06"

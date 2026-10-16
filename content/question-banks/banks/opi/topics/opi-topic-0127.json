@@ -9,7 +9,9 @@
       "audioText": "How should a pilot respond to engine detonation in a piston-engine aircraft?",
       "audioTextZh": "活塞式航空器发生发动机爆震时，飞行员应如何处置？",
       "referenceText": "The pilot should reduce power, keep the engine within its temperature limits, and follow the piston-engine checklist. If the aircraft has mixture control, enriching the mixture may help cool the engine, while increasing cooling airflow may also be appropriate. The pilot should monitor the engine closely and land if the detonation or abnormal indications continue.",
-      "referenceTextZh": "飞行员应减小功率，使发动机保持在温度限制以内，并执行活塞发动机检查单。如果飞机配有混合比控制，适当加浓混合气可能有助于发动机冷却，增加冷却气流也可能合适。飞行员应严密监控发动机；如果爆震或异常指示持续存在，应尽快着陆。"
+      "referenceTextZh": "飞行员应减小功率，使发动机保持在温度限制以内，并执行活塞发动机检查单。如果飞机配有混合比控制，适当加浓混合气可能有助于发动机冷却，增加冷却气流也可能合适。飞行员应严密监控发动机；如果爆震或异常指示持续存在，应尽快着陆。",
+      "audio": "/question-bank-assets/revisions/opi/d0ec7ded6aa059e221e33832da466a0f65f9b6a2ac8b5172f66ff23a3d810acc/audio/opi/opi-core-321.mp3",
+      "audioDurationSeconds": 4.056
     },
     {
       "id": "opi-core-322",
@@ -17,7 +19,9 @@
       "audioText": "What should pilots do if an engine parameter indication is abnormal during cruise?",
       "audioTextZh": "巡航中发动机参数指示异常时，飞行员应如何处置？",
       "referenceText": "Pilots should follow the applicable SOP and checklist and compare the abnormal indication with other engine parameters. If the problem cannot be resolved, they should inform ATC and consider returning or diverting to a suitable airport.",
-      "referenceTextZh": "飞行员应执行适用的标准操作程序和检查单，并将异常指示与其他发动机参数进行比较。如果问题无法解决，应通知空中交通管制，并考虑返航或备降至合适的机场。"
+      "referenceTextZh": "飞行员应执行适用的标准操作程序和检查单，并将异常指示与其他发动机参数进行比较。如果问题无法解决，应通知空中交通管制，并考虑返航或备降至合适的机场。",
+      "audio": "/question-bank-assets/revisions/opi/66781ebada443e2dc4f9d1bd113a3b934de1fcf9ffd9576a90c15db6ce21918d/audio/opi/opi-core-322.mp3",
+      "audioDurationSeconds": 4.464
     },
     {
       "id": "opi-core-323",
@@ -25,7 +29,9 @@
       "audioText": "How should a flight crew respond to an engine failure during cruise?",
       "audioTextZh": "巡航中发动机失效时，飞行机组应如何处置？",
       "referenceText": "The crew should first maintain control of the aircraft and complete the applicable checklist. They may attempt a restart if the checklist calls for it. If the engine cannot be restarted, they should report their situation and position to ATC and prepare for an emergency landing.",
-      "referenceTextZh": "机组首先应保持飞机控制，并完成适用的检查单。如果检查单有要求，可以尝试重新启动发动机。如果发动机无法重新启动，应向空中交通管制报告情况和位置，并准备紧急着陆。"
+      "referenceTextZh": "机组首先应保持飞机控制，并完成适用的检查单。如果检查单有要求，可以尝试重新启动发动机。如果发动机无法重新启动，应向空中交通管制报告情况和位置，并准备紧急着陆。",
+      "audio": "/question-bank-assets/revisions/opi/5b8caa50717b59146badd521452521ac76d4d408468517fb9d297f50905f2a8b/audio/opi/opi-core-323.mp3",
+      "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-core-326",
@@ -33,7 +39,9 @@
       "audioText": "What can cause an aircraft engine problem?",
       "audioTextZh": "哪些因素可能导致航空器发动机出现问题？",
       "referenceText": "Aircraft engine problems can be caused by mechanical failures, foreign-object or bird ingestion, ice accumulation, contaminated fuel, fuel or oil leaks, and overheating. Poor maintenance can also contribute to mechanical problems.",
-      "referenceTextZh": "飞机发动机问题可能由机械故障、吸入外来物或鸟类、积冰、燃油污染、燃油或滑油泄漏，以及过热造成。维护不当也可能导致机械问题。"
+      "referenceTextZh": "飞机发动机问题可能由机械故障、吸入外来物或鸟类、积冰、燃油污染、燃油或滑油泄漏，以及过热造成。维护不当也可能导致机械问题。",
+      "audio": "/question-bank-assets/revisions/opi/e218044fec72d922e753a1c677af4d9d42181432f87cf02ca6c1bb9737046d09/audio/opi/opi-core-326.mp3",
+      "audioDurationSeconds": 2.28
     },
     {
       "id": "opi-core-327",
@@ -41,7 +49,9 @@
       "audioText": "What general priorities should pilots follow when handling an engine problem in flight?",
       "audioTextZh": "飞行中处置发动机问题时，飞行员应遵循哪些总体优先顺序？",
       "referenceText": "Pilots should first maintain control of the aircraft and follow the applicable SOP and checklist. They should identify the problem, take the appropriate action, and continue monitoring the engine parameters. They should also inform ATC and request a diversion or priority landing if necessary.",
-      "referenceTextZh": "飞行员首先应保持飞机控制，并执行适用的标准操作程序和检查单。他们应识别问题，采取相应措施，并继续监控发动机参数。必要时，还应通知空中交通管制并请求备降或优先着陆。"
+      "referenceTextZh": "飞行员首先应保持飞机控制，并执行适用的标准操作程序和检查单。他们应识别问题，采取相应措施，并继续监控发动机参数。必要时，还应通知空中交通管制并请求备降或优先着陆。",
+      "audio": "/question-bank-assets/revisions/opi/5f1442a1e14851e538a68b385d59cdfcbddbaa7fec1f649476894861d608e9be/audio/opi/opi-core-327.mp3",
+      "audioDurationSeconds": 4.56
     },
     {
       "id": "opi-core-329",
@@ -49,7 +59,9 @@
       "audioText": "What should pilots do if the exhaust gas temperature indication becomes abnormal in flight?",
       "audioTextZh": "飞行中排气温度指示异常时，飞行员应如何处置？",
       "referenceText": "The pilots should confirm the indication, compare it with the other engine parameters, and follow the applicable checklist. They should adjust power or mixture only as directed and monitor for rough running, fire, or loss of thrust. If the temperature remains abnormal or other signs appear, they should reduce the risk and land at a suitable airport.",
-      "referenceTextZh": "飞行员应核实指示，将其与其他发动机参数进行比较，并执行适用的检查单。只能按照检查单要求调整功率或混合比，同时监控发动机是否运转粗糙、起火或推力损失。如果温度持续异常或出现其他征兆，应降低风险并在合适的机场着陆。"
+      "referenceTextZh": "飞行员应核实指示，将其与其他发动机参数进行比较，并执行适用的检查单。只能按照检查单要求调整功率或混合比，同时监控发动机是否运转粗糙、起火或推力损失。如果温度持续异常或出现其他征兆，应降低风险并在合适的机场着陆。",
+      "audio": "/question-bank-assets/revisions/opi/65c71032554ff489304236f59f57e051ed7c7ea7330e9c61b45e0a512bd82bf6/audio/opi/opi-core-329.mp3",
+      "audioDurationSeconds": 4.968
     },
     {
       "id": "opi-core-332",
@@ -57,7 +69,9 @@
       "audioText": "What pilot errors can contribute to engine problems?",
       "audioTextZh": "哪些飞行员错误可能造成发动机问题？",
       "referenceText": "Pilot errors can include abrupt throttle changes, failing to use anti-ice equipment in icing conditions, exceeding engine temperature or pressure limits, and managing fuel incorrectly. Failing to follow the correct engine start and shutdown procedures can also contribute to problems.",
-      "referenceTextZh": "飞行员错误可能包括突然改变油门、在结冰条件下未使用防冰设备、超出发动机温度或压力限制，以及燃油管理不当。未遵守正确的发动机启动和关车程序也可能导致问题。"
+      "referenceTextZh": "飞行员错误可能包括突然改变油门、在结冰条件下未使用防冰设备、超出发动机温度或压力限制，以及燃油管理不当。未遵守正确的发动机启动和关车程序也可能导致问题。",
+      "audio": "/question-bank-assets/revisions/opi/6e64b34a0a4a08527ed4a4681f2686944ee5c5e2314d21e6a33d990615ae8292/audio/opi/opi-core-332.mp3",
+      "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-core-335",
@@ -65,7 +79,9 @@
       "audioText": "How can the failure of one engine affect flight safety?",
       "audioTextZh": "一台发动机失效会如何影响飞行安全？",
       "referenceText": "In a single-engine aircraft, an engine failure may require a forced landing. In a multi-engine aircraft, losing one engine reduces performance, increases crew workload, and requires careful control. The crew may also need to divert to a suitable airport.",
-      "referenceTextZh": "在单发飞机上，发动机失效可能需要迫降。在多发飞机上，一台发动机失效会降低飞机性能、增加机组工作负荷，并需要谨慎操纵。机组也可能需要备降至合适的机场。"
+      "referenceTextZh": "在单发飞机上，发动机失效可能需要迫降。在多发飞机上，一台发动机失效会降低飞机性能、增加机组工作负荷，并需要谨慎操纵。机组也可能需要备降至合适的机场。",
+      "audio": "/question-bank-assets/revisions/opi/d393011237961cbeb58c7f1b68e30af943996cbe2e4da40d74e197e64990640c/audio/opi/opi-core-335.mp3",
+      "audioDurationSeconds": 3.0
     },
     {
       "id": "opi-core-336",
@@ -73,7 +89,9 @@
       "audioText": "How can engine problems be prevented?",
       "audioTextZh": "如何预防发动机问题？",
       "referenceText": "Engine problems can be reduced through thorough preflight inspections, proper maintenance, and timely replacement of worn components. Pilots should monitor engine parameters in flight and use clean fuel.",
-      "referenceTextZh": "通过认真进行飞行前检查、正确维护并及时更换磨损部件，可以减少发动机问题。飞行员应在飞行中监控发动机参数，并使用清洁的燃油。"
+      "referenceTextZh": "通过认真进行飞行前检查、正确维护并及时更换磨损部件，可以减少发动机问题。飞行员应在飞行中监控发动机参数，并使用清洁的燃油。",
+      "audio": "/question-bank-assets/revisions/opi/3f666a13a1d0ee3baee7dcbc45cc1a90c9e0632697cbb917e69d9c4871a4d999/audio/opi/opi-core-336.mp3",
+      "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-extra-214",
@@ -81,7 +99,9 @@
       "audioText": "How should a flight crew respond to an uncontained engine failure in flight?",
       "audioTextZh": "飞行中发生非包容性发动机失效时，飞行机组应如何处置？",
       "referenceText": "The crew should maintain control, identify the failed engine, and complete the severe-engine-damage or fire checklist. They must monitor for secondary damage to fuel, hydraulic, electrical, flight-control, and pressurisation systems. The crew should declare an emergency, assess landing performance, and land at the nearest suitable airport as soon as the aircraft can be safely configured.",
-      "referenceTextZh": "机组应保持飞机控制，识别失效的发动机，并完成发动机严重损坏或失火检查单。他们必须监控燃油、液压、电气、飞行操纵和增压系统是否出现继发损坏。机组应宣布紧急状态，评估着陆性能，并在能够安全设置飞机构型后尽快降落在最近的合适机场。"
+      "referenceTextZh": "机组应保持飞机控制，识别失效的发动机，并完成发动机严重损坏或失火检查单。他们必须监控燃油、液压、电气、飞行操纵和增压系统是否出现继发损坏。机组应宣布紧急状态，评估着陆性能，并在能够安全设置飞机构型后尽快降落在最近的合适机场。",
+      "audio": "/question-bank-assets/revisions/opi/cc0c2817a83cecf5bd137ba83b8f93e5db5437b6a6c781c3210f912f2f440d25/audio/opi/opi-extra-214.mp3",
+      "audioDurationSeconds": 3.888
     },
     {
       "id": "opi-extra-214-part-2",
@@ -89,7 +109,9 @@
       "audioText": "How should a flight crew respond if an engine separates from the aircraft in flight?",
       "audioTextZh": "飞行中发动机从航空器上脱落时，飞行机组应如何处置？",
       "referenceText": "An engine separation can cause severe asymmetry, drag, structural damage, and the loss of several aircraft systems. The crew should maintain control, follow the applicable severe-damage checklist, and assess the remaining flight controls and systems. They should declare an emergency and land at the nearest suitable airport as soon as possible, using conservative manoeuvres and configuration changes.",
-      "referenceTextZh": "发动机脱落可能造成严重的不对称、阻力、结构损伤，以及多个飞机系统失效。机组应保持飞机控制，执行适用的严重损坏检查单，并评估其余飞行操纵装置和系统。他们应宣布紧急状态，采用保守的机动和构型改变，尽快降落在最近的合适机场。"
+      "referenceTextZh": "发动机脱落可能造成严重的不对称、阻力、结构损伤，以及多个飞机系统失效。机组应保持飞机控制，执行适用的严重损坏检查单，并评估其余飞行操纵装置和系统。他们应宣布紧急状态，采用保守的机动和构型改变，尽快降落在最近的合适机场。",
+      "audio": "/question-bank-assets/revisions/opi/f283ca79c6df6bbd16e3965fcca3b42f18517167b10302c9674316afbb5db2b6/audio/opi/opi-extra-214-part-2.mp3",
+      "audioDurationSeconds": 4.248
     },
     {
       "id": "opi-extra-216",
@@ -97,7 +119,9 @@
       "audioText": "Have you ever experienced an engine problem in flight? If so, what happened?",
       "audioTextZh": "你是否曾在飞行中遇到发动机问题？如果有，当时发生了什么？",
       "referenceText": "No, I have never experienced an engine problem in flight. However, I have practised engine failure, flameout, fire, and surge scenarios in the simulator.",
-      "referenceTextZh": "没有，我从未在飞行中遇到过发动机问题。不过，我在模拟机中练习过发动机失效、熄火、起火和喘振等情景。"
+      "referenceTextZh": "没有，我从未在飞行中遇到过发动机问题。不过，我在模拟机中练习过发动机失效、熄火、起火和喘振等情景。",
+      "audio": "/question-bank-assets/revisions/opi/762fb6e56c7acc47f1c80303187f5b9ac40662e5b464e7f3708e739774fc1522/audio/opi/opi-extra-216.mp3",
+      "audioDurationSeconds": 4.632
     },
     {
       "id": "opi-extra-220",
@@ -105,7 +129,9 @@
       "audioText": "Do you think flying with one engine inoperative is difficult for a pilot, and why?",
       "audioTextZh": "你认为一台发动机不工作时继续飞行对飞行员来说困难吗？为什么？",
       "referenceText": "Yes, I think it is difficult. With one engine inoperative, the aircraft has less power and can be more difficult to control.",
-      "referenceTextZh": "是的，我认为这很困难。一台发动机不工作时，飞机的动力会减小，也可能更难操纵。"
+      "referenceTextZh": "是的，我认为这很困难。一台发动机不工作时，飞机的动力会减小，也可能更难操纵。",
+      "audio": "/question-bank-assets/revisions/opi/7b5f3cde8230f4b6705fa72cd2e7268e1bfb6e701a591fb4722c5c9c7a1d7b0f/audio/opi/opi-extra-220.mp3",
+      "audioDurationSeconds": 4.704
     }
   ],
   "categoryId": "opi-category-06"

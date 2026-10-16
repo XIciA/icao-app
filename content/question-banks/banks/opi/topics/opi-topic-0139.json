@@ -9,7 +9,9 @@
       "audioText": "Which automated systems are commonly used in a modern cockpit?",
       "audioTextZh": "现代驾驶舱通常使用哪些自动化系统？",
       "referenceText": "Common automated cockpit systems include the autopilot, autothrottle, and autoland system.",
-      "referenceTextZh": "常见的驾驶舱自动化系统包括自动驾驶仪、自动油门和自动着陆系统。"
+      "referenceTextZh": "常见的驾驶舱自动化系统包括自动驾驶仪、自动油门和自动着陆系统。",
+      "audio": "/question-bank-assets/revisions/opi/c732e1bee46e60af623ec46b926bbe2db6f49f5b5d65b08703d22d1da6ead74a/audio/opi/opi-extra-326.mp3",
+      "audioDurationSeconds": 3.408
     },
     {
       "id": "opi-extra-327",
@@ -17,7 +19,9 @@
       "audioText": "How reliable are modern cockpit automation systems?",
       "audioTextZh": "现代驾驶舱自动化系统的可靠性如何？",
       "referenceText": "Modern cockpit automation systems are generally very reliable. Many systems have backup capability, so another system may be available if one becomes inoperative.",
-      "referenceTextZh": "现代驾驶舱自动化系统通常非常可靠。许多系统具有备份能力，因此一个系统失效时，可能还有另一个系统可用。"
+      "referenceTextZh": "现代驾驶舱自动化系统通常非常可靠。许多系统具有备份能力，因此一个系统失效时，可能还有另一个系统可用。",
+      "audio": "/question-bank-assets/revisions/opi/7cf5570725313c3c372e649a5e94e4b52bcee94e73efeb7eb779ac98c2d6f216/audio/opi/opi-extra-327.mp3",
+      "audioDurationSeconds": 3.048
     },
     {
       "id": "opi-extra-329",
@@ -25,7 +29,9 @@
       "audioText": "What is the role of pilots in today's highly automated cockpits?",
       "audioTextZh": "在当今高度自动化的驾驶舱中，飞行员发挥什么作用？",
       "referenceText": "In a highly automated cockpit, pilots manage and monitor the systems that help control the aircraft. Their role includes making sure the automation is operating as intended.",
-      "referenceTextZh": "在高度自动化的驾驶舱中，飞行员负责管理和监控协助控制飞机的系统。他们的职责包括确保自动化系统按预期工作。"
+      "referenceTextZh": "在高度自动化的驾驶舱中，飞行员负责管理和监控协助控制飞机的系统。他们的职责包括确保自动化系统按预期工作。",
+      "audio": "/question-bank-assets/revisions/opi/ca4abed9891b6b0a1935c734b966c9a5fb087d11ffe484854095257cf362c81b/audio/opi/opi-extra-329.mp3",
+      "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-extra-329-part-2",
@@ -33,7 +39,9 @@
       "audioText": "Do you think pilots have become too dependent on automation, and why?",
       "audioTextZh": "你认为飞行员是否变得过度依赖自动化？为什么？",
       "referenceText": "Yes, I think some pilots have become too dependent on automation. Automated systems perform much of the routine aircraft control, so pilots may spend more time monitoring and managing those systems.",
-      "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。"
+      "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。",
+      "audio": "/question-bank-assets/revisions/opi/b17f8eefbcd5e1d6d174e48ae15edfd56f560fb30829f93ac2cf5716a4850082/audio/opi/opi-extra-329-part-2.mp3",
+      "audioDurationSeconds": 4.08
     }
   ],
   "categoryId": "opi-category-06"

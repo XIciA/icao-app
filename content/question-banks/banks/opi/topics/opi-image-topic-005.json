@@ -17,7 +17,9 @@
       "audioText": "What appears to have happened to the landing gear of the aircraft in this picture?",
       "audioTextZh": "图中航空器的起落架似乎发生了什么？",
       "referenceText": "The aircraft appears to be sitting unusually low, and the main landing gear area seems to be under inspection. This suggests that part of the landing gear may have collapsed or failed to support the aircraft properly. The exact fault cannot be confirmed from the picture alone.",
-      "referenceTextZh": "飞机看起来位置异常低，主起落架区域似乎正在接受检查。这表明部分起落架可能已经坍塌，或未能正常支撑飞机。仅凭图片无法确认具体故障。"
+      "referenceTextZh": "飞机看起来位置异常低，主起落架区域似乎正在接受检查。这表明部分起落架可能已经坍塌，或未能正常支撑飞机。仅凭图片无法确认具体故障。",
+      "audio": "/question-bank-assets/revisions/opi/7ca6ab4a194752c0192d507829457caab633cd4e3c4ebf3e0eca0fa614c252df/audio/opi/opi-image-005-q01.mp3",
+      "audioDurationSeconds": 3.816
     },
     {
       "id": "opi-image-005-q01-part-2",
@@ -25,7 +27,9 @@
       "audioText": "What can cause an aircraft's landing gear to collapse or retract on the ground?",
       "audioTextZh": "哪些因素可能导致航空器起落架在地面坍塌或收起？",
       "referenceText": "A mechanical failure or a maintenance error can cause the landing gear to collapse or retract on the ground.",
-      "referenceTextZh": "机械故障或维修差错可能导致起落架在地面坍塌或意外收起。"
+      "referenceTextZh": "机械故障或维修差错可能导致起落架在地面坍塌或意外收起。",
+      "audio": "/question-bank-assets/revisions/opi/588404844872e6f2f6b49fec07d404c38c9a4dc4723432816aa478837d4b7c0d/audio/opi/opi-image-005-q01-part-2.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-image-005-q01-part-3",
@@ -33,7 +37,9 @@
       "audioText": "What consequences can result from a landing gear collapse or retraction on the ground?",
       "audioTextZh": "起落架在地面坍塌或收起可能造成哪些后果？",
       "referenceText": "A landing gear collapse or retraction on the ground can cause serious structural damage.",
-      "referenceTextZh": "起落架在地面坍塌或收起可能造成严重的结构损伤。"
+      "referenceTextZh": "起落架在地面坍塌或收起可能造成严重的结构损伤。",
+      "audio": "/question-bank-assets/revisions/opi/f9bc4c7e13347fd16371d7d08850faa4b3fadf5b1a53cfc21c5e3037fb3d0820/audio/opi/opi-image-005-q01-part-3.mp3",
+      "audioDurationSeconds": 4.536
     }
   ],
   "categoryId": "opi-category-08"

@@ -9,7 +9,9 @@
       "audioText": "What factors can affect an aircraft's center of gravity at takeoff?",
       "audioTextZh": "哪些因素会影响航空器起飞时的重心？",
       "referenceText": "The center of gravity at takeoff is affected by the amount and location of fuel, passengers, baggage, and cargo. The way these loads are distributed through the aircraft determines the final center-of-gravity position.",
-      "referenceTextZh": "飞机起飞时的重心受燃油、旅客、行李和货物的数量及其位置影响。这些载荷在飞机上的分布方式决定了最终的重心位置。"
+      "referenceTextZh": "飞机起飞时的重心受燃油、旅客、行李和货物的数量及其位置影响。这些载荷在飞机上的分布方式决定了最终的重心位置。",
+      "audio": "/question-bank-assets/revisions/opi/7679e95dc8b01bfc173cad6abc1b7789249934ad185d90d4aff11262365a191d/audio/opi/opi-extra-093.mp3",
+      "audioDurationSeconds": 3.72
     },
     {
       "id": "opi-extra-094",
@@ -17,7 +19,9 @@
       "audioText": "How can an excessively forward center of gravity affect an aircraft?",
       "audioTextZh": "重心过度靠前会如何影响航空器？",
       "referenceText": "An excessively forward center of gravity makes the aircraft harder to rotate and may increase the takeoff distance. It can also increase fuel consumption in cruise, although it generally increases longitudinal stability.",
-      "referenceTextZh": "重心过度靠前会使飞机更难抬前轮，并可能增加起飞距离。它还可能增加巡航燃油消耗，不过通常会提高纵向稳定性。"
+      "referenceTextZh": "重心过度靠前会使飞机更难抬前轮，并可能增加起飞距离。它还可能增加巡航燃油消耗，不过通常会提高纵向稳定性。",
+      "audio": "/question-bank-assets/revisions/opi/14cb1e9ab73559c9b4bab196652295579dd50691478fe0034e5eb99e6cd157de/audio/opi/opi-extra-094.mp3",
+      "audioDurationSeconds": 3.888
     }
   ],
   "categoryId": "opi-category-05"

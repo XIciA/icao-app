@@ -9,7 +9,9 @@
       "audioText": "What is an unstable approach?",
       "audioTextZh": "什么是不稳定进近？",
       "referenceText": "An unstable approach is one that does not meet the operator's stabilised-approach criteria by the required gate. The aircraft may be outside the permitted limits for flight path, speed, descent rate, configuration, thrust, or checklist completion. If the approach is not stabilised by the gate or later becomes unstable, the crew should go around.",
-      "referenceTextZh": "不稳定进近是指飞机在规定的高度门未达到运营人的稳定进近标准。飞机的飞行轨迹、速度、下降率、构型、推力或检查单完成情况可能超出允许范围。如果在高度门仍未稳定，或此后变得不稳定，机组应复飞。"
+      "referenceTextZh": "不稳定进近是指飞机在规定的高度门未达到运营人的稳定进近标准。飞机的飞行轨迹、速度、下降率、构型、推力或检查单完成情况可能超出允许范围。如果在高度门仍未稳定，或此后变得不稳定，机组应复飞。",
+      "audio": "/question-bank-assets/revisions/opi/33fd90b7c86b9003a2c7fc1163c22048f695dec36255332728d4883143debfee/audio/opi/opi-extra-108.mp3",
+      "audioDurationSeconds": 1.704
     },
     {
       "id": "opi-extra-110",
@@ -17,7 +19,9 @@
       "audioText": "What can cause an aircraft to deviate from the glide slope during an approach?",
       "audioTextZh": "哪些因素可能导致航空器在进近过程中偏离下滑道？",
       "referenceText": "Glide-slope deviation can result from wind shear, a downdraft, adverse weather, or high workload. Incorrect pitch or thrust control, navigation-aid inaccuracy, aircraft performance problems, or poor alignment with the approach path can also cause it.",
-      "referenceTextZh": "下滑道偏离可能由风切变、下沉气流、不利天气或工作负荷过高造成。俯仰或推力控制不当、导航设备不准确、飞机性能问题，或未与进近航迹正确对准，也可能导致下滑道偏离。"
+      "referenceTextZh": "下滑道偏离可能由风切变、下沉气流、不利天气或工作负荷过高造成。俯仰或推力控制不当、导航设备不准确、飞机性能问题，或未与进近航迹正确对准，也可能导致下滑道偏离。",
+      "audio": "/question-bank-assets/revisions/opi/fc78d6daac23d3ee17377bede5c8602b252e4b4e17f1fc3c6507ae3cdb3c8deb/audio/opi/opi-extra-110.mp3",
+      "audioDurationSeconds": 4.008
     },
     {
       "id": "opi-extra-111",
@@ -25,7 +29,9 @@
       "audioText": "What should a flight crew do if the aircraft deviates from the glide slope during an approach?",
       "audioTextZh": "航空器在进近过程中偏离下滑道时，飞行机组应怎么做？",
       "referenceText": "The crew should monitor airspeed, attitude, and thrust and make smooth corrections to regain the glide slope. If the deviation exceeds the permitted limits or cannot be corrected promptly, they should follow the SOP, go around, advise ATC, and prepare for another approach.",
-      "referenceTextZh": "机组应监控空速、姿态和推力，并平稳修正以重新回到下滑道。如果偏差超出允许范围，或无法及时修正，机组应遵循标准操作程序复飞，通知空中交通管制，并准备再次进近。"
+      "referenceTextZh": "机组应监控空速、姿态和推力，并平稳修正以重新回到下滑道。如果偏差超出允许范围，或无法及时修正，机组应遵循标准操作程序复飞，通知空中交通管制，并准备再次进近。",
+      "audio": "/question-bank-assets/revisions/opi/82d613f40f62742e8f23ea1379ce7063f62b47437a97d9663a511bce4d5dc6bc/audio/opi/opi-extra-111.mp3",
+      "audioDurationSeconds": 4.704
     }
   ],
   "categoryId": "opi-category-05"

@@ -9,7 +9,9 @@
       "audioText": "How should a flight crew respond when passengers become anxious during a long delay?",
       "referenceText": "The flight crew should explain the reason for the delay in a clear passenger announcement and continue to provide updated information. The cabin crew can offer food and drinks when available and speak calmly with anxious passengers.",
       "audioTextZh": "长时间延误导致乘客焦虑时，机组应如何应对？",
-      "referenceTextZh": "飞行机组应通过清晰的旅客广播说明延误原因，并继续提供最新信息。客舱机组可以在条件允许时提供食品和饮料，并冷静地与焦虑旅客沟通。"
+      "referenceTextZh": "飞行机组应通过清晰的旅客广播说明延误原因，并继续提供最新信息。客舱机组可以在条件允许时提供食品和饮料，并冷静地与焦虑旅客沟通。",
+      "audio": "/question-bank-assets/revisions/opi/be1167117b4e3690e587f11b830b2f88c4d01e2c8eaf13828567e5b751f14db7/audio/opi/opi-extra-003.mp3",
+      "audioDurationSeconds": 4.44
     },
     {
       "id": "opi-extra-004",
@@ -17,7 +19,9 @@
       "audioText": "How should a flight crew respond when passengers complain about a diversion?",
       "referenceText": "The crew should explain the reason for the diversion calmly and make clear that the decision was taken for safety. Passengers should receive timely updates, and the cabin crew can answer questions and provide basic services such as food or drinks when available.",
       "audioTextZh": "乘客抱怨备降时，机组应如何应对？",
-      "referenceTextZh": "机组应冷静说明备降原因，并明确这是出于安全作出的决定。应及时向旅客提供最新信息，客舱机组可回答问题，并在条件允许时提供食品或饮料等基本服务。"
+      "referenceTextZh": "机组应冷静说明备降原因，并明确这是出于安全作出的决定。应及时向旅客提供最新信息，客舱机组可回答问题，并在条件允许时提供食品或饮料等基本服务。",
+      "audio": "/question-bank-assets/revisions/opi/6f008e5e155b5663608f4ec3274d9da8901119073fd6723b38b1ad9fa47c4ed9/audio/opi/opi-extra-004.mp3",
+      "audioDurationSeconds": 3.864
     },
     {
       "id": "opi-extra-005",
@@ -25,7 +29,9 @@
       "audioText": "What should a flight crew do if a passenger becomes ill or feels unwell during flight?",
       "referenceText": "The flight crew should ask the cabin crew to provide first aid and monitor the passenger. They should inform ATC, and if the passenger's condition requires it, divert to a suitable airport and request medical assistance on arrival.",
       "audioTextZh": "飞行中乘客生病或感觉不适时，机组应如何处置？",
-      "referenceTextZh": "飞行机组应请客舱机组为旅客提供急救并监控其状况。他们应通知空中交通管制；如果旅客病情需要，就改航至合适机场，并申请在到达时提供医疗协助。"
+      "referenceTextZh": "飞行机组应请客舱机组为旅客提供急救并监控其状况。他们应通知空中交通管制；如果旅客病情需要，就改航至合适机场，并申请在到达时提供医疗协助。",
+      "audio": "/question-bank-assets/revisions/opi/4d4df3d8486b85abf318b94512c523c3d6cd5a4dc7a43304d253d3149a1bcd58/audio/opi/opi-extra-005.mp3",
+      "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-extra-006",
@@ -33,7 +39,9 @@
       "audioText": "What should a flight crew do if a drunk or unruly passenger disrupts a flight?",
       "referenceText": "The captain should ask the cabin crew and, if one is on board, the air marshal to de-escalate the situation, separate the passenger from others, and maintain cabin order. If the passenger remains dangerous, an air marshal who is present may restrain and monitor the person. If the situation cannot be controlled, the crew should inform ATC and arrange airport security assistance on arrival.",
       "audioTextZh": "醉酒或行为不当的乘客干扰飞行时，机组应如何处置？",
-      "referenceTextZh": "机长应请客舱机组以及机上的空中警察缓和局势、将该旅客与其他人分开并维持客舱秩序。如果旅客仍有危险，在场的空中警察可以对其进行约束和监控。如果无法控制局势，机组应通知空中交通管制，并安排机场安保人员在到达后提供协助。"
+      "referenceTextZh": "机长应请客舱机组以及机上的空中警察缓和局势、将该旅客与其他人分开并维持客舱秩序。如果旅客仍有危险，在场的空中警察可以对其进行约束和监控。如果无法控制局势，机组应通知空中交通管制，并安排机场安保人员在到达后提供协助。",
+      "audio": "/question-bank-assets/revisions/opi/64c80b0ec6136d529e47e16154609f194e717eba00425ac9417b9b57532f31a0/audio/opi/opi-extra-006.mp3",
+      "audioDurationSeconds": 4.152
     },
     {
       "id": "opi-extra-007",
@@ -41,7 +49,9 @@
       "audioText": "What should a flight crew do if passengers start fighting on board?",
       "referenceText": "The flight crew should ask the cabin crew to speak to the passengers and stop the fight. If they continue and cannot be controlled, an air marshal who is on board may restrain them. Airport police should be requested to deal with the passengers after landing.",
       "audioTextZh": "机上乘客开始打架时，机组应如何处置？",
-      "referenceTextZh": "飞行机组应请客舱机组与旅客沟通并制止打斗。如果他们继续打斗且无法控制，机上的空中警察可以对其进行约束。着陆后应请机场公安处理这些旅客。"
+      "referenceTextZh": "飞行机组应请客舱机组与旅客沟通并制止打斗。如果他们继续打斗且无法控制，机上的空中警察可以对其进行约束。着陆后应请机场公安处理这些旅客。",
+      "audio": "/question-bank-assets/revisions/opi/2bbbb7ab48d33f4a0f85c65435623387b9e24ac042f4241c59b4d2fc6f094d90/audio/opi/opi-extra-007.mp3",
+      "audioDurationSeconds": 3.432
     },
     {
       "id": "opi-core-100",
@@ -49,7 +59,9 @@
       "audioText": "What should a flight crew do if passengers are injured by turbulence?",
       "audioTextZh": "如果乘客因颠簸受伤，机组应如何处置？",
       "referenceText": "The pilots should maintain stable flight while the cabin crew provides first aid and asks whether a doctor is on board. The crew should inform ATC of the injuries. If necessary, they should request priority landing and arrange for an ambulance on arrival.",
-      "referenceTextZh": "飞行员应保持稳定飞行，同时由客舱机组提供急救并询问机上是否有医生。机组应向空中交通管制报告伤情。必要时应申请优先着陆，并安排救护车在到达时接应。"
+      "referenceTextZh": "飞行员应保持稳定飞行，同时由客舱机组提供急救并询问机上是否有医生。机组应向空中交通管制报告伤情。必要时应申请优先着陆，并安排救护车在到达时接应。",
+      "audio": "/question-bank-assets/revisions/opi/91e9be5bc029eb043a3510ffcb2518bd276bd636ee805ed1e6aec6e607d9448b/audio/opi/opi-core-100.mp3",
+      "audioDurationSeconds": 3.624
     },
     {
       "id": "opi-core-101",
@@ -57,7 +69,9 @@
       "audioText": "What should a flight crew do if a passenger has a heart attack during flight?",
       "audioTextZh": "飞行中如果乘客突发心脏病，机组应如何处置？",
       "referenceText": "The flight crew should ask the cabin crew to provide first aid and make an announcement to find a doctor on board. They should inform ATC, land at a suitable airport, and request medical assistance on arrival.",
-      "referenceTextZh": "飞行机组应请客舱机组提供急救，并广播寻找机上医生。他们应通知空中交通管制，在合适机场着陆，并申请在到达时提供医疗协助。"
+      "referenceTextZh": "飞行机组应请客舱机组提供急救，并广播寻找机上医生。他们应通知空中交通管制，在合适机场着陆，并申请在到达时提供医疗协助。",
+      "audio": "/question-bank-assets/revisions/opi/1296b0de8c111195d6a882fea85d6103018de88a58f4e8240b9c0deb5fea1a3a/audio/opi/opi-core-101.mp3",
+      "audioDurationSeconds": 3.816
     },
     {
       "id": "opi-extra-101",
@@ -65,7 +79,9 @@
       "audioText": "What should you do if a passenger refuses to check oversized baggage at the gate?",
       "audioTextZh": "如果乘客在登机口拒绝托运超大行李，你应如何处理？",
       "referenceText": "I would ask the purser to explain why the oversized baggage cannot be carried in the cabin and how it could injure people or affect flight safety. If the passenger still refused to comply, the captain could refuse boarding.",
-      "referenceTextZh": "我会请乘务长解释，超大行李为什么不能带入客舱，以及它可能如何造成人员受伤或影响飞行安全。如果旅客仍拒绝配合，机长可以拒绝其登机。"
+      "referenceTextZh": "我会请乘务长解释，超大行李为什么不能带入客舱，以及它可能如何造成人员受伤或影响飞行安全。如果旅客仍拒绝配合，机长可以拒绝其登机。",
+      "audio": "/question-bank-assets/revisions/opi/b313ace769dab27d0326103093315720dca628310400caa06ebcd6b8e760c27d/audio/opi/opi-extra-101.mp3",
+      "audioDurationSeconds": 4.272
     },
     {
       "id": "opi-extra-102",
@@ -73,7 +89,9 @@
       "audioText": "What should you do if a passenger refuses to turn off a mobile phone when instructed?",
       "audioTextZh": "如果乘客经要求后仍拒绝关闭手机，你应如何处理？",
       "referenceText": "The cabin crew or purser should explain that the instruction is related to flight safety and ask the passenger to comply. If the passenger continues to refuse and disrupts the operation, the crew can involve the air marshal and arrange for airport security to handle the matter.",
-      "referenceTextZh": "客舱机组或乘务长应说明该指令与飞行安全有关，并要求旅客配合。如果旅客继续拒绝并扰乱运行，机组可以让空中警察介入，并安排机场安保部门处理。"
+      "referenceTextZh": "客舱机组或乘务长应说明该指令与飞行安全有关，并要求旅客配合。如果旅客继续拒绝并扰乱运行，机组可以让空中警察介入，并安排机场安保部门处理。",
+      "audio": "/question-bank-assets/revisions/opi/0986443cd7acfb1b2b2ab29cd1a9f5cd7e8cf6ca016efea55df56bdc2e116707/audio/opi/opi-extra-102.mp3",
+      "audioDurationSeconds": 4.416
     }
   ],
   "categoryId": "opi-category-05"

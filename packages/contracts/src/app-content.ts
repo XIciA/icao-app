@@ -57,7 +57,7 @@ export function isAppContentSnapshot(value: unknown): value is AppContentSnapsho
         && exactKeys(topic, ['topicId', 'topicTitle', 'cardIds']) && text(topic.topicId, 160) && text(topic.topicTitle, 200)
         && items(topic.cardIds, 500) && topic.cardIds.length > 0 && topic.cardIds.every((id) => text(id, 160))
         && new Set(topic.cardIds).size === topic.cardIds.length))) return false;
-    if (!uniqueIds(briefs as Record<string, unknown>[]) || new Set(briefs.map((brief) => (brief as { date: string }).date)).size !== briefs.length) return false;
+    if (!uniqueIds(briefs as Record<string, unknown>[])) return false;
     if (!items(value.help, 100) || !value.help.every((item) => record(item) && exactKeys(item, ['id', 'question', 'answer'])
       && text(item.id, 100) && text(item.question, 300) && text(item.answer, 5000)) || !uniqueIds(value.help as Record<string, unknown>[])) return false;
     if (!record(value.legal) || !exactKeys(value.legal, ['agreement', 'privacy', 'thirdPartyServices'])) return false;

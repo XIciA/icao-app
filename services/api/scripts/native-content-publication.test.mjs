@@ -32,3 +32,17 @@ describe('content-addressed publication and history reset', () => {
     expect(planNativeContentPublication(partial,rows).banks[0].version).toBe(13);
   });
 });
+
+describe('ordinary publication preserves user history references',()=>{
+ it('retains exact question identity for edits and soft retirement',async()=>{
+  const {assertQuestionIdentitiesPreserved}=await import('./native-content-release.mjs');
+  const previous={id:'opi',categories:[{id:'c',topics:[{id:'t',cards:[{id:'one',audio:'old'}]}]}]};
+  const next=structuredClone(previous);Object.assign(next.categories[0].topics[0].cards[0],{retired:true,audio:'new'});
+  expect(()=>assertQuestionIdentitiesPreserved(previous,next)).not.toThrow();
+  next.categories[0].topics[0].id='moved';expect(()=>assertQuestionIdentitiesPreserved(previous,next)).toThrow('existing_question_identity_must_be_preserved');
+ });
+ it('fails before publication if existing IDs disappear',async()=>{
+  const {assertQuestionIdentitiesPreserved}=await import('./native-content-release.mjs');
+  expect(()=>assertQuestionIdentitiesPreserved({id:'opi',categories:[{id:'c',topics:[{id:'t',cards:[{id:'old'}]}]}]},{id:'opi',categories:[]})).toThrow('existing_question_identity_must_be_preserved');
+ });
+});

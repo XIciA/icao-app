@@ -20,6 +20,13 @@ export async function createOpsApp(config: OpsApiConfig = loadOpsConfig()) {
     }),
     { bufferLogs: true, rawBody: true },
   );
+  // Nest RouteConfig is Fastify's custom config, not its bodyLimit option.
+  // Only the authenticated structured-draft route accepts complete bank payloads.
+  app.getHttpAdapter().getInstance().addHook('onRoute', options => {
+    if (options.method === 'POST' && options.url === '/v1/admin/content-orders/:id/prepare') {
+      options.bodyLimit = 20_000_000;
+    }
+  });
   app.enableCors({
     origin: config.opsCorsOrigins,
     credentials: false,

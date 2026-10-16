@@ -287,7 +287,7 @@
       "id": "sentence900-main-479",
       "taskTitle": "Sentence479",
       "audioText": "We need to reconfigure the flight management computers for approach. Request holding instructions.",
-      "audioTextZh": "我们需要重新设置飞行管理计算机，申请等待指令。",
+      "audioTextZh": "我们需要为进近重新设置飞行管理计算机，申请等待指令。",
       "audio": "/question-bank-assets/audio/sentence900/rev13/sentence900-main-479-e8fe4042bc4e.mp3",
       "audioDurationSeconds": 5.825
     },

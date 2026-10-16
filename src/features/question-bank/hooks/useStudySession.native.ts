@@ -191,8 +191,22 @@ export function useStudySession(options: UseStudySessionOptions) {
       statesRef.current = initialStates;
       setStates(initialStates);
       attemptStates.current = Object.fromEntries(Object.entries(initialStates).map(([id, state]) => [id, { ...state, visited: false }]));
-      setCurrentIndex(startingIndex);
-      setVisitedIndexes(new Set([startingIndex]));
+      // Resume only ordinary topic practice. Explicit question links, exams and
+      // historical packages retain their own ordering and entry semantics.
+      let resumeIndex = startingIndex;
+      if (!packageInput && !initialCardId) {
+        let latest = 0;
+        items.forEach((entry, index) => {
+          const previous = saved[entry.id];
+          // Older clients saved visited/updatedAt before lastVisitedAt existed.
+          // Preserve their best available position on the first upgraded session.
+          const timestamp = Date.parse(previous?.lastVisitedAt ?? (previous?.visited ? previous.updatedAt : '') ?? '');
+          if (Number.isFinite(timestamp) && timestamp > latest) { latest = timestamp; resumeIndex = index; }
+        });
+      }
+      committedIndex.current = resumeIndex;
+      setCurrentIndex(resumeIndex);
+      setVisitedIndexes(new Set([resumeIndex]));
       setCompletedCardIds(new Set(Object.keys(initialStates).filter(id => initialStates[id].completed)));
       setRevealed(Boolean(historyReview && initialStates[items[startingIndex]?.id]?.selectedChoiceIndex !== undefined));
       setAutoReveal(false);
@@ -209,7 +223,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [historyRecord, historyReview, initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
+  }, [historyRecord, historyReview, initialBehavior, initialCardId, items, loadAttempt, packageInput, progressMode, startingIndex, store]);
 
   const resolveItem = useCallback((itemOrCardId: string) => {
     if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
@@ -253,10 +267,10 @@ export function useStudySession(options: UseStudySessionOptions) {
     if (!hydrated || loadError || !item) return;
     if (historyRecord) {
       attemptStates.current[item.id] = { ...(statesRef.current[item.id] ?? createEmptyCardState()), visited: true };
-    } else if (!statesRef.current[item.id]?.visited) {
-      persistCard(item.id, { visited: true });
+    } else {
+      persistCard(item.id, { visited: true, ...(!packageInput ? { lastVisitedAt: new Date().toISOString() } : {}) });
     }
-  }, [historyRecord, hydrated, item, loadError, persistCard]);
+  }, [historyRecord, hydrated, item, loadError, packageInput, persistCard]);
 
   const retrySave = useCallback(() => {
     if (!saveFailure || progressMode !== 'persistent') return;
@@ -370,7 +384,7 @@ export function useStudySession(options: UseStudySessionOptions) {
 
   const saveReport = useCallback(async (
     reason: 'abort' | 'complete',
-    metrics?: { annotationCount?: number; noteCount?: number },
+    metrics?: { annotationCount?: number; noteCount?: number; sessionRecap?: LearningRecord['sessionRecap'] },
     checkpoint = false,
   ) => {
     if (historyRecord && !practiceStarted.current) return undefined;
@@ -420,6 +434,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       studiedCount: selectedItems.filter((entry) => attemptStates.current[entry.id]?.visited).length,
       totalCount: selectedItems.length,
       correctCount,
+      sessionRecap: metrics?.sessionRecap,
       annotationCount: metrics?.annotationCount ?? legacyAnnotationCount,
       noteCount: metrics?.noteCount ?? legacyNoteCount,
       feedbackCount: feedbackCardIds.size,
@@ -453,7 +468,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     return operation;
   }, [examMode, saveReport]);
 
-  const finish = useCallback((reason: 'abort' | 'complete', metrics?: { annotationCount?: number; noteCount?: number }) => {
+  const finish = useCallback((reason: 'abort' | 'complete', metrics?: { annotationCount?: number; noteCount?: number; sessionRecap?: LearningRecord['sessionRecap'] }) => {
     if (savingReport.current) return savingReport.current;
     const operation = savingCheckpoint.current
       ? savingCheckpoint.current.catch(() => undefined).then(() => saveReport(reason, metrics))

@@ -18,7 +18,9 @@
       "audioTextZh": "你可以告诉我图中展示的是什么吗？",
       "studyTier": 0,
       "referenceText": "Okay, there are two types of aircraft, Boeing 747 and Airbus 380.",
-      "referenceTextZh": "好的，图中展示的是两种类型的飞机，波音747和空中客车A380。"
+      "referenceTextZh": "好的，图中展示的是两种类型的飞机，波音747和空中客车A380。",
+      "audio": "/question-bank-assets/revisions/opi/227a8a6cdb333a08587347491e0395794f27908ee989e39902afa94ec1543de9/audio/opi/opi-fzy-110225.mp3",
+      "audioDurationSeconds": 2.064
     },
     {
       "id": "opi-fzy-110226",
@@ -27,7 +29,9 @@
       "audioTextZh": "你曾经驾驶过图中这两种飞机吗？你更喜欢哪一种？为什么？",
       "studyTier": 0,
       "referenceText": "Yes, I have flown Boeing 747 / A380. / No, I haven't. Comparatively, I prefer A380. Because A380 has the world's highest capacity of passengers and the environment inside the cabin is closer to nature. Moreover, the noise of its taking off can be quite below the ICAO's current noise control standards. Besides, A380 owns the whole new design advantage. Meanwhile, it enlarges the common operating advantages of Airbus family to the area of extra-large airliner. / I prefer Boeing 747. Because compared to A380, the technology Boeing 747 used is more mature, and there are many optional types to choose. Besides, it is more efficient, faster and more environmentally friendly, and its maintenance is more convenient. What's more, more airlines use it.",
-      "referenceTextZh": "是的，我曾经驾驶过波音747/空中客车A380。/ 不，我没有驾驶过这两种飞机。比较而言，我更喜欢空中客车A380，因为空中客车A380是世界上载客量最大的飞机，机舱内环境更贴近自然。此外，空中客车A380起飞时的噪音远低于国际民航组织制定的噪音控制标准。空中客车A380拥有新设计的优势，同时还将空中客车系列飞机共同的运营优势扩大到了超大客机上。/ 我更喜欢波音747，因为和空中客车A380相比，波音747使用的技术更成熟，并且有更多可以选择的类型。此外，波音747更高效、更快、更环保，维护更方便。另外，使用波音747的航空公司更多。"
+      "referenceTextZh": "是的，我曾经驾驶过波音747/空中客车A380。/ 不，我没有驾驶过这两种飞机。比较而言，我更喜欢空中客车A380，因为空中客车A380是世界上载客量最大的飞机，机舱内环境更贴近自然。此外，空中客车A380起飞时的噪音远低于国际民航组织制定的噪音控制标准。空中客车A380拥有新设计的优势，同时还将空中客车系列飞机共同的运营优势扩大到了超大客机上。/ 我更喜欢波音747，因为和空中客车A380相比，波音747使用的技术更成熟，并且有更多可以选择的类型。此外，波音747更高效、更快、更环保，维护更方便。另外，使用波音747的航空公司更多。",
+      "audio": "/question-bank-assets/revisions/opi/e2e5bfe30ff4b8af70a2a16ddb5eb7b3700233ce8f0058f6bda81ab2dd71f6ce/audio/opi/opi-fzy-110226.mp3",
+      "audioDurationSeconds": 4.368
     },
     {
       "id": "opi-fzy-110227",
@@ -36,7 +40,9 @@
       "audioTextZh": "这两种飞机主要的区别是什么？",
       "studyTier": 0,
       "referenceText": "Compared to Boeing 747, A380 carries the largest capacity of passengers in the history of civil aircraft with providing about 35% more seats and 49% more floor space.",
-      "referenceTextZh": "和波音747相比，空中客车A380拥有民用飞机历史上最大的载客量，多提供约35%的座位和49%的地面空间。"
+      "referenceTextZh": "和波音747相比，空中客车A380拥有民用飞机历史上最大的载客量，多提供约35%的座位和49%的地面空间。",
+      "audio": "/question-bank-assets/revisions/opi/9e3ae502bd3a6c4d8a2e14d85b28f11cbd84664ab810ce7e35c9bd7b909b65db/audio/opi/opi-fzy-110227.mp3",
+      "audioDurationSeconds": 3
     },
     {
       "id": "opi-fzy-110228",
@@ -45,7 +51,9 @@
       "audioTextZh": "你喜欢驾驶大型飞机还是小型飞机？为什么？",
       "studyTier": 0,
       "referenceText": "I like flying big aircraft. First, the big aircraft is more comfortable for passengers and crew members. Second, its automatic systems are much easier to control and greatly reduced our workload. Third, it is still as safe and fast as the small aircraft and it can fly longer. However, nowadays many new technologies have been introduced in both big and small aircraft, so we can trust all of them.",
-      "referenceTextZh": "我喜欢驾驶大型飞机。第一，大型飞机让乘客和机组人员感到更舒适；第二，大型飞机的自动化系统更易于控制，能够大幅降低工作量；第三，和小型飞机相比，大型飞机同样安全、速度快，但是大型飞机飞行时间更久。然而，如今不论大型飞机还是小型飞机都引入了很多新技术，所以两种飞机都值得信赖。"
+      "referenceTextZh": "我喜欢驾驶大型飞机。第一，大型飞机让乘客和机组人员感到更舒适；第二，大型飞机的自动化系统更易于控制，能够大幅降低工作量；第三，和小型飞机相比，大型飞机同样安全、速度快，但是大型飞机飞行时间更久。然而，如今不论大型飞机还是小型飞机都引入了很多新技术，所以两种飞机都值得信赖。",
+      "audio": "/question-bank-assets/revisions/opi/2e4a213041fe41e688ab29d27ce949f9d1c99e09f43336cb18f0b8a375b4c6f5/audio/opi/opi-fzy-110228.mp3",
+      "audioDurationSeconds": 3.624
     },
     {
       "id": "opi-fzy-110229",
@@ -54,7 +62,9 @@
       "audioTextZh": "波音和空中客车最先进机型分别是什么？",
       "studyTier": 0,
       "referenceText": "The most advanced type of Boeing is Boeing 787, and the most advanced type of Airbus is A380.",
-      "referenceTextZh": "波音最先进的机型是波音787，空中客车最先进的机型是空中客车A380。"
+      "referenceTextZh": "波音最先进的机型是波音787，空中客车最先进的机型是空中客车A380。",
+      "audio": "/question-bank-assets/revisions/opi/eae8f4bf7e141f50e1f765e524ef15c136c14bce01b94f8c95c235257850f0d1/audio/opi/opi-fzy-110229.mp3",
+      "audioDurationSeconds": 3.456
     },
     {
       "id": "opi-fzy-110230",
@@ -63,7 +73,9 @@
       "audioTextZh": "波音和空中客车的飞行操纵系统有区别吗？",
       "studyTier": 0,
       "referenceText": "Flight control systems differ by aircraft type, not simply by manufacturer. Many Airbus aircraft use fly-by-wire, and Boeing aircraft such as the 777 and 787 also use fly-by-wire. The details and control laws must be compared for the specific models.",
-      "referenceTextZh": "飞行操纵系统的差异取决于具体机型，不能只按制造商品牌区分。许多空客飞机采用电传操纵，波音777和787等机型也采用电传操纵。具体系统和控制律应按机型比较。"
+      "referenceTextZh": "飞行操纵系统的差异取决于具体机型，不能只按制造商品牌区分。许多空客飞机采用电传操纵，波音777和787等机型也采用电传操纵。具体系统和控制律应按机型比较。",
+      "audio": "/question-bank-assets/revisions/opi/08930b86366470f2fb278d51c01054c4dc13da95b708c6e305c0dcf70bf7e3ad/audio/opi/opi-fzy-110230.mp3",
+      "audioDurationSeconds": 3.696
     },
     {
       "id": "opi-fzy-110231",
@@ -72,7 +84,9 @@
       "audioTextZh": "空中客车A380和波音747有什么相似之处？",
       "studyTier": 0,
       "referenceText": "They are both double deckers and both have 4 engines, and they are both wide-body aircraft.",
-      "referenceTextZh": "两种飞机都是双层飞机，都有四个发动机，并且都是宽体飞机。"
+      "referenceTextZh": "两种飞机都是双层飞机，都有四个发动机，并且都是宽体飞机。",
+      "audio": "/question-bank-assets/revisions/opi/e2d1b8f3962ed693605e9ea6d20d1c067eaa8d4d73e135db57dbf5b6270a04cf/audio/opi/opi-fzy-110231.mp3",
+      "audioDurationSeconds": 4.632
     },
     {
       "id": "opi-fzy-110232",
@@ -81,7 +95,9 @@
       "audioTextZh": "你认为哪种飞机安全性更好？波音747还是空中客车A380？",
       "studyTier": 0,
       "referenceText": "I would not conclude that the Boeing 747 is safer simply because of its control system type. The A380 has segregated, redundant flight control power sources and backup systems. A meaningful safety comparison needs evidence about the specific aircraft and operating conditions, not an assumption that fly-by-wire becomes unmanageable after a wiring fault.",
-      "referenceTextZh": "我不会仅凭操纵系统类型就断定波音747更安全。A380的飞行操纵系统具有相互隔离的冗余动力来源和备用系统。比较安全性需要具体机型和运行条件方面的证据，不能假定电传系统一旦出现线路故障就难以操纵。"
+      "referenceTextZh": "我不会仅凭操纵系统类型就断定波音747更安全。A380的飞行操纵系统具有相互隔离的冗余动力来源和备用系统。比较安全性需要具体机型和运行条件方面的证据，不能假定电传系统一旦出现线路故障就难以操纵。",
+      "audio": "/question-bank-assets/revisions/opi/d6e857d2a98e966cb0cb86fdfb658b04ac6864a6f0048b570d244c7743310451/audio/opi/opi-fzy-110232.mp3",
+      "audioDurationSeconds": 5.688
     }
   ],
   "categoryId": "opi-category-08"

@@ -10,7 +10,9 @@
       "audioTextZh": "ATIS指的是什么？",
       "studyTier": 1,
       "referenceText": "ATIS stands for Automatic Terminal Information Service.",
-      "referenceTextZh": "ATIS指的是自动终端情报服务。"
+      "referenceTextZh": "ATIS指的是自动终端情报服务。",
+      "audio": "/question-bank-assets/revisions/opi/7e2dfd928fecb5c3d46ab0ce4d7a2d376bff5b92466a7ca67990b7921f332e46/audio/opi/opi-fzy-152052.mp3",
+      "audioDurationSeconds": 1.512
     },
     {
       "id": "opi-fzy-152053",
@@ -19,7 +21,9 @@
       "audioTextZh": "飞行员什么时候会收听ATIS？",
       "studyTier": 1,
       "referenceText": "Pilots need to listen to ATIS before start up and approach.",
-      "referenceTextZh": "飞行员需要在开车和进近前收听ATIS。"
+      "referenceTextZh": "飞行员需要在开车和进近前收听ATIS。",
+      "audio": "/question-bank-assets/revisions/opi/01fde7e8b7343bb209c08eb39b05252aeed290f8a2c58ebf74838f862dd25323/audio/opi/opi-fzy-152053.mp3",
+      "audioDurationSeconds": 1.896
     },
     {
       "id": "opi-fzy-152054",
@@ -28,7 +32,9 @@
       "audioTextZh": "飞行员为什么需要收听ATIS广播？ATIS中包含哪些信息？",
       "studyTier": 2,
       "referenceText": "It tells us weather information and airport condition, which are very important for arriving and departing aircraft.\nIn ATIS, there are weather information and airport condition. For example, wind, visibility, QNH, runway in use, approach type and so on.",
-      "referenceTextZh": "ATIS告诉我们天气信息和机场情况，这对进场和离场的飞机非常重要。\nATIS中包含有天气信息和机场情况。例如：风、能见度、修正海压、使用跑道、进近类型等。"
+      "referenceTextZh": "ATIS告诉我们天气信息和机场情况，这对进场和离场的飞机非常重要。\nATIS中包含有天气信息和机场情况。例如：风、能见度、修正海压、使用跑道、进近类型等。",
+      "audio": "/question-bank-assets/revisions/opi/b68c3b721820dbca84ecc11392079969050f49b6088b4a55ad00192e177ddf0d/audio/opi/opi-fzy-152054.mp3",
+      "audioDurationSeconds": 5.88
     },
     {
       "id": "opi-fzy-152256",
@@ -37,7 +43,9 @@
       "audioTextZh": "RVSM指的是什么？",
       "studyTier": 1,
       "referenceText": "RVSM stands for Reduced Vertical Separation Minimum.",
-      "referenceTextZh": "RVSM指的是最小垂直间隔。"
+      "referenceTextZh": "RVSM指的是最小垂直间隔。",
+      "audio": "/question-bank-assets/revisions/opi/5e4252828cbebdda7b0671dd690b74a81a3e98776cd6db07c450baf2d86505b3/audio/opi/opi-fzy-152256.mp3",
+      "audioDurationSeconds": 1.992
     },
     {
       "id": "opi-fzy-152257",
@@ -46,7 +54,9 @@
       "audioTextZh": "实施RVSM的优势有哪些？",
       "studyTier": 1,
       "referenceText": "There are many advantages.\nFor example, it can increase airspace capacity and reduce flow control.\nIt can reduce controllers’ workload and increase flight safety.\nIt will reduce the fuel consumption, reduce the airline’s cost.",
-      "referenceTextZh": "有很多优点。\n例如，它可以提高空域容量减少流量控制。\n它可以减轻管制员工作负荷，保证飞行安全。\n它会减少燃油消耗，降低航空公司的成本。"
+      "referenceTextZh": "有很多优点。\n例如，它可以提高空域容量减少流量控制。\n它可以减轻管制员工作负荷，保证飞行安全。\n它会减少燃油消耗，降低航空公司的成本。",
+      "audio": "/question-bank-assets/revisions/opi/8075bb76e7e073d567d951f5febaddf08afe6a5428d585d2366c25d8ae9ce21d/audio/opi/opi-fzy-152257.mp3",
+      "audioDurationSeconds": 2.688
     },
     {
       "id": "opi-fzy-152258",
@@ -55,7 +65,9 @@
       "audioTextZh": "RVSM的最低高度和最高高度是多少？",
       "studyTier": 1,
       "referenceText": "As I know it’s between FL290 and FL410.",
-      "referenceTextZh": "据我所知是从飞行高度层FL290至FL410之间。"
+      "referenceTextZh": "据我所知是从飞行高度层FL290至FL410之间。",
+      "audio": "/question-bank-assets/revisions/opi/1c887167beab25a58d721f88a8e2d5fcb145dff5445a4a51007d2f5f7a629270/audio/opi/opi-fzy-152258.mp3",
+      "audioDurationSeconds": 3.624
     },
     {
       "id": "opi-fzy-152980",
@@ -64,7 +76,9 @@
       "audioTextZh": "CPDLC是什么？",
       "studyTier": 1,
       "referenceText": "CPDLC stands for Controller Pilot Data Link Communications. Its main function is to replace the voice communication between the air traffic controller and the pilot with data.",
-      "referenceTextZh": "CPDLC指的是管制员和驾驶员数据链通信，其主要功能是用数据来代替语音进行管制员和飞行员之间的交流。"
+      "referenceTextZh": "CPDLC指的是管制员和驾驶员数据链通信，其主要功能是用数据来代替语音进行管制员和飞行员之间的交流。",
+      "audio": "/question-bank-assets/revisions/opi/c47f902789453104e80954246cc40d2f8732a535d988ecde33db587070a1d429/audio/opi/opi-fzy-152980.mp3",
+      "audioDurationSeconds": 1.584
     },
     {
       "id": "opi-fzy-152981",
@@ -73,7 +87,9 @@
       "audioTextZh": "当双向无线电发生故障时，我们如何操作CPDLC与空管取得联系或听从空管的指示？",
       "studyTier": 1,
       "referenceText": "As far as I know, the PMF will operate the CPDLC procedure.\nAnd the PMF is responsible to report the information to the captain and carry out the procedure after receiving captain’s confirmation.\nThe PF will check and confirm the CPDLC procedure.\nNo matter the captain is the PF or PMF, he must make sure that the CPDLC information is correct.",
-      "referenceTextZh": "据我所知，监督飞行员将进行CPDLC信息的操作。\n监督飞行员有责任将CPDLC信息的操作向机长报告，在得到机长证实后执行。\n操纵飞行员将检查和确认CPDLC信息的操作。\n机长无论是操纵飞行员还是监督飞行员，都必须明确CPDLC信息的正确含义。"
+      "referenceTextZh": "据我所知，监督飞行员将进行CPDLC信息的操作。\n监督飞行员有责任将CPDLC信息的操作向机长报告，在得到机长证实后执行。\n操纵飞行员将检查和确认CPDLC信息的操作。\n机长无论是操纵飞行员还是监督飞行员，都必须明确CPDLC信息的正确含义。",
+      "audio": "/question-bank-assets/revisions/opi/f7d2c815216ffbe5907ff445d04e3d3770e3e3549b6fbe955ef9792c72cbda7f/audio/opi/opi-fzy-152981.mp3",
+      "audioDurationSeconds": 9.336
     },
     {
       "id": "opi-fzy-152987",
@@ -82,7 +98,9 @@
       "audioTextZh": "你知道CDFA吗？",
       "studyTier": 1,
       "referenceText": "CDFA stands for continuous descent final approach. It is a technique used in non-precision approach.",
-      "referenceTextZh": "我知道，CDFA指的是连续下降，最后进近。是非精密进近下使用的一种技术。"
+      "referenceTextZh": "我知道，CDFA指的是连续下降，最后进近。是非精密进近下使用的一种技术。",
+      "audio": "/question-bank-assets/revisions/opi/b46a4f6c39c5ffe438a221827b7c148024fab1db2564b029fdf0d9340cbf5de8/audio/opi/opi-fzy-152987.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-fzy-152988",
@@ -91,7 +109,9 @@
       "audioTextZh": "CDFA的优势是什么？",
       "studyTier": 1,
       "referenceText": "CDFA can increase pilot’s situation awareness and reduce pilot’s workload, what’s more, it provides more altitude for the pilot to go around and improves flight safety.",
-      "referenceTextZh": "CDFA可以提高飞行员的情景意识，同时也可以减轻飞行员的工作负荷。更重要的是，它为飞行员提供了更多的高度来进行复飞，提升了飞行安全。"
+      "referenceTextZh": "CDFA可以提高飞行员的情景意识，同时也可以减轻飞行员的工作负荷。更重要的是，它为飞行员提供了更多的高度来进行复飞，提升了飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/05f760053cd723d9c6323196eab2391da52ecf0f6cde33c2fdb1901d9b9574ad/audio/opi/opi-fzy-152988.mp3",
+      "audioDurationSeconds": 2.304
     },
     {
       "id": "opi-fzy-224608",
@@ -100,7 +120,9 @@
       "audioTextZh": "你知道CFIT吗？",
       "studyTier": 1,
       "referenceText": "CFIT stands for controlled flight into terrain, it is an accident in which human errors cause the plane to crash.",
-      "referenceTextZh": "CFIT指的是可控飞行撞地。它是一种飞行事故，指的是由于飞行员自身失误导致的飞机坠毁。"
+      "referenceTextZh": "CFIT指的是可控飞行撞地。它是一种飞行事故，指的是由于飞行员自身失误导致的飞机坠毁。",
+      "audio": "/question-bank-assets/revisions/opi/1a61a07682d9565d11aab2d8190b4a7f7e7ff60d2d105221a1c09f44d489190a/audio/opi/opi-fzy-224608.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-fzy-224609",
@@ -109,7 +131,9 @@
       "audioTextZh": "造成CFIT的原因是什么？",
       "studyTier": 1,
       "referenceText": "There are many reasons for this accidents, for example, bad weather, navigation system failure, ATC’s wrong instructions.",
-      "referenceTextZh": "有很多原因，如：恶劣天气，导航系统失效，管制员的错误指令等。"
+      "referenceTextZh": "有很多原因，如：恶劣天气，导航系统失效，管制员的错误指令等。",
+      "audio": "/question-bank-assets/revisions/opi/60e389471af4a1bb93a94a8d474d952d35a03576c2c56c972def355b11fa29df/audio/opi/opi-fzy-224609.mp3",
+      "audioDurationSeconds": 2.4
     },
     {
       "id": "opi-fzy-224610",
@@ -118,7 +142,9 @@
       "audioTextZh": "你知道什么是UAV吗？",
       "studyTier": 1,
       "referenceText": "UAV refers to Unmanned Aerial Vehicle, it is an aircraft, or drones, without pilots in the cockpit. They are currently widely used in areas such as aerial photography, agriculture, mapping, logistics and military affairs.",
-      "referenceTextZh": "UAV 指的是无人驾驶飞行器，或无人机，即一种没有飞行员的飞行器。它们目前广泛用于航拍、农业、测绘、物流及军事等领域。"
+      "referenceTextZh": "UAV 指的是无人驾驶飞行器，或无人机，即一种没有飞行员的飞行器。它们目前广泛用于航拍、农业、测绘、物流及军事等领域。",
+      "audio": "/question-bank-assets/revisions/opi/32a07f1f6cb5f84c68e337f937fc8d5575beb268e0ed8033123dbae073873f08/audio/opi/opi-fzy-224610.mp3",
+      "audioDurationSeconds": 1.704
     },
     {
       "id": "opi-fzy-224611",
@@ -127,7 +153,9 @@
       "audioTextZh": "如果在您的空域内出现无人机，将会产生什么样的后果呢？",
       "studyTier": 1,
       "referenceText": "If there are UAVs in the airspace, they could pose a potential threat to scheduled flights. For instance, they might cause flight delays, and in some cases, they could even lead to air miss or collisions.",
-      "referenceTextZh": "空域内如果有无人机，将会对定期航班造成潜在的威胁，比如，会造成航班延误，更有甚者可能会导致危险接近甚至相撞。"
+      "referenceTextZh": "空域内如果有无人机，将会对定期航班造成潜在的威胁，比如，会造成航班延误，更有甚者可能会导致危险接近甚至相撞。",
+      "audio": "/question-bank-assets/revisions/opi/4e869790496f20295aa2de3f9815f5c416502e9aae174e8992b843250f0fe5fe/audio/opi/opi-fzy-224611.mp3",
+      "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-fzy-224612",
@@ -136,7 +164,9 @@
       "audioTextZh": "你起飞的机场如果有无人机活动，你会怎么做？",
       "studyTier": 1,
       "referenceText": "I think I should report this situation to the ATC as quickly as possible. Then I will request delay departure, after all, avoiding action is of great importance.",
-      "referenceTextZh": "我认为我应该尽快将这一情况报告给空中交通管制部门。然后我会请求推迟起飞，毕竟避让动作是至关重要的。"
+      "referenceTextZh": "我认为我应该尽快将这一情况报告给空中交通管制部门。然后我会请求推迟起飞，毕竟避让动作是至关重要的。",
+      "audio": "/question-bank-assets/revisions/opi/131400118f9974a07d29d6a5d963dbae0a7fa4fdec69d8a8bc958d345a75b42e/audio/opi/opi-fzy-224612.mp3",
+      "audioDurationSeconds": 4.464
     },
     {
       "id": "opi-fzy-224613",
@@ -145,7 +175,9 @@
       "audioTextZh": "可以采取什么样的行动来降低无人机与商业航班的冲突？",
       "studyTier": 1,
       "referenceText": "Many parties are involved to reduce the possible conflicts between scheduled aircraft and UAVs, for example, the authorities should introduce relevant policies to enforce the establishment of prohibited areas, and at the same time, height restrictions should be set for the corresponding areas. Secondly, remote identification and monitoring of drones should be carried out through relevant technical means. Moreover, optimizing airspace management is also a good approach. Finally, drone pilots need to enhance their safety awareness and fly in compliance with regulations.",
-      "referenceTextZh": "减少商业航班与无人机之间可能出现的冲突，需要多方参与。局方应出台相关政策，强制设置禁飞区，同时相关区域应设置高度限制。其次，应通过相关技术手段进行无人机远程识别与监视，另外，优化空域管理也是一个好的办法，最后，无人机驾驶员需要提升自身安全意识，合规飞行。"
+      "referenceTextZh": "减少商业航班与无人机之间可能出现的冲突，需要多方参与。局方应出台相关政策，强制设置禁飞区，同时相关区域应设置高度限制。其次，应通过相关技术手段进行无人机远程识别与监视，另外，优化空域管理也是一个好的办法，最后，无人机驾驶员需要提升自身安全意识，合规飞行。",
+      "audio": "/question-bank-assets/revisions/opi/f902d488ca00d64b8457bc21d6f3c41f02be9c78bf4a2e9fc7c97050251d2cc2/audio/opi/opi-fzy-224613.mp3",
+      "audioDurationSeconds": 5.544
     },
     {
       "id": "opi-fzy-224614",
@@ -154,7 +186,9 @@
       "audioTextZh": "飞行员会在什么时候做客舱广播？",
       "studyTier": 1,
       "referenceText": "During each critical stage of the flight, the pilot will communicate with the passengers through PA, such as the welcome PA before takeoff and the weather update PA during the cruise phase. When any abnormal situation occurs during the flight, the pilot will also make a PA.",
-      "referenceTextZh": "飞行员在飞行各关键阶段，会通过客舱广播向乘客传递信息，例如起飞前的欢迎广播、巡航阶段的天气广播等，当飞行中出现异常情况时，也会做客舱广播。"
+      "referenceTextZh": "飞行员在飞行各关键阶段，会通过客舱广播向乘客传递信息，例如起飞前的欢迎广播、巡航阶段的天气广播等，当飞行中出现异常情况时，也会做客舱广播。",
+      "audio": "/question-bank-assets/revisions/opi/ef777ad43cf176e956e97c4b6eccf199012bce384fc875a7a8e329ca8ed63ec6/audio/opi/opi-fzy-224614.mp3",
+      "audioDurationSeconds": 1.68
     },
     {
       "id": "opi-fzy-224615",
@@ -163,7 +197,9 @@
       "audioTextZh": "关于AR和VR，你知道什么？",
       "studyTier": 1,
       "referenceText": "AR refers to augmented reality and VR refers to virtual reality. Both of them are new technologies and have been used in our simulator training.",
-      "referenceTextZh": "AR指的是增强现实，VR指的是虚拟现实。两者都是很先进的技术，也已经用于我们的模拟机训练。"
+      "referenceTextZh": "AR指的是增强现实，VR指的是虚拟现实。两者都是很先进的技术，也已经用于我们的模拟机训练。",
+      "audio": "/question-bank-assets/revisions/opi/7f4bc92e2c56fe374d65c8d16247904fa00cda8430a8b22b64e76c257187e6b0/audio/opi/opi-fzy-224615.mp3",
+      "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-fzy-224616",
@@ -172,7 +208,9 @@
       "audioTextZh": "在模拟机训练中使用AR和VR应用的优势是什么？",
       "studyTier": 1,
       "referenceText": "AR and VR technologies can make our simulator training more realistic, improve the quality of our training and flight skills, and better ensure flight safety.",
-      "referenceTextZh": "AR和VR技术可以让我们的模拟机训练更加真实，提升我们的训练质量和飞行技术，更好确保飞行安全。"
+      "referenceTextZh": "AR和VR技术可以让我们的模拟机训练更加真实，提升我们的训练质量和飞行技术，更好确保飞行安全。",
+      "audio": "/question-bank-assets/revisions/opi/4da5488359a3c08cc0769fa3e1a3b6cd13fd9f1df8cc0fc389d9d5fbf6dfeda7/audio/opi/opi-fzy-224616.mp3",
+      "audioDurationSeconds": 4.68
     }
   ],
   "categoryId": "opi-category-03"

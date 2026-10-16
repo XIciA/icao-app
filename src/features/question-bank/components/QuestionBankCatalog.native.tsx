@@ -1,5 +1,8 @@
+import { AirlineMark, hasAirlineMark } from './AirlineMark';
+import { SentenceExportScreen } from '../export/SentenceExportScreen';
 import { useRouter } from 'expo-router';
 import {
+  Download,
   BookOpenText,
   Check,
   ChevronDown,
@@ -41,8 +44,9 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   story: BookOpenText,
 };
 
-export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
+export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
+  const [exporting,setExporting] = useState(false);
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
   const [progressError, setProgressError] = useState(false);
@@ -93,9 +97,11 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
     return undefined;
   }
 
+  if (exporting) return <SentenceExportScreen dataset={exportDataset ?? dataset} onBack={() => setExporting(false)} />;
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
+        right={dataset.id === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="导出900句 PDF" hitSlop={10} onPress={() => setExporting(true)}><Download size={21} color={colors.primary}/></Pressable> : undefined}
         items={switcherItems}
         onBack={() => router.back()}
         onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}
@@ -110,6 +116,7 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
             const isExpanded = !singleTopic && expanded === category.id;
             const categoryLearned = category.topics.reduce((sum, topic) => sum + (progress[topic.id]?.learned ?? 0), 0);
             const Icon = icons[categoryIndex % icons.length];
+            const airline = dataset.id === 'radiotelephony' && hasAirlineMark(category.name);
             const singleLabel = singleTopic ? accessLabel(singleTopic) : undefined;
             return (
               <Card key={category.id} style={[styles.category, isExpanded ? styles.categoryExpanded : null]}>
@@ -118,8 +125,8 @@ export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: Qu
                   onPress={() => singleTopic ? openTopic(category, singleTopic) : setExpanded(isExpanded ? undefined : category.id)}
                   style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}
                 >
-                  <View style={[styles.categoryIcon, isExpanded ? styles.categoryIconExpanded : null]}>
-                    {singleTopic && isLocked(singleTopic)
+                  <View style={[styles.categoryIcon, airline ? styles.airlineIcon : isExpanded ? styles.categoryIconExpanded : null]}>
+                    {airline ? <AirlineMark code={category.name}/> : singleTopic && isLocked(singleTopic)
                       ? <Shield color={colors.primary} size={19} />
                       : <Icon color={isExpanded ? colors.primaryForeground : colors.primary} size={20} />}
                   </View>
@@ -202,6 +209,7 @@ const styles = StyleSheet.create({
   categoryExpanded: { borderColor: colors.primary20 },
   categoryHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 74, padding: spacing[4] },
   categoryIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 40, justifyContent: 'center', width: 40 },
+  airlineIcon: { borderRadius: radii.full },
   categoryIconExpanded: { backgroundColor: colors.primary },
   categoryCopy: { flex: 1, minWidth: 0 },
   accessPill: { backgroundColor: colors.primary10, borderRadius: radii.full, paddingHorizontal: spacing[2], paddingVertical: spacing[1] },

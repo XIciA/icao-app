@@ -14,8 +14,9 @@ function fail(reason) {
   throw new Error(`wechat_login_runtime:${reason}`);
 }
 
-export async function assertAndroidReleaseWechatArtifact({ bundle, manifestXml, applicationId, releaseConfiguration }) {
-  const capability = resolveWechatLoginReleaseCapability(releaseConfiguration);
+export async function assertAndroidReleaseWechatArtifact({ bundle, manifestXml, applicationId, releaseConfiguration, variant }) {
+  const testVariant = variant === 'android-test';
+  const capability = testVariant ? { enabled: false } : resolveWechatLoginReleaseCapability(releaseConfiguration);
   // Android's approved SDK includes APP payment. Public PayReq/merchant identifiers
   // are legitimate runtime inputs; credentials and alternate SDKs remain forbidden.
   if (/WECHAT_APP_SECRET|EXPO_PUBLIC_[A-Z0-9_]*WECHAT[A-Z0-9_]*SECRET|WECHAT_PAY_(?:API_V3_KEY|MERCHANT_PRIVATE_KEY)|-----BEGIN (?:RSA |EC |ENCRYPTED )?PRIVATE KEY-----/u.test(`${bundle}\n${manifestXml}`)) {
@@ -25,7 +26,7 @@ export async function assertAndroidReleaseWechatArtifact({ bundle, manifestXml, 
     fail('candidate_android_unapproved_sdk_marker');
   }
   const { manifest } = await parseStringPromise(manifestXml);
-  const approvedPackage = releaseConfiguration.android?.packageName;
+  const approvedPackage = testVariant ? `${releaseConfiguration.android?.packageName}.test` : releaseConfiguration.android?.packageName;
   if (!approvedPackage || applicationId !== approvedPackage || manifest?.$?.package !== approvedPackage) {
     fail('candidate_android_application_id_mismatch');
   }
@@ -61,7 +62,7 @@ export async function assertAndroidReleaseWechatArtifact({ bundle, manifestXml, 
   }
 }
 
-export async function verifyAndroidReleaseWechatArtifact(artifactPath, { analyzer, releaseConfiguration }) {
+export async function verifyAndroidReleaseWechatArtifact(artifactPath, { analyzer, releaseConfiguration, variant }) {
   const artifact = path.resolve(artifactPath);
   await access(artifact);
   const entries = execFileSync('unzip', ['-Z1', artifact], { encoding: 'utf8' }).split('\n');
@@ -71,5 +72,5 @@ export async function verifyAndroidReleaseWechatArtifact(artifactPath, { analyze
   if (!analyzer) fail('candidate_android_apkanalyzer_missing');
   const manifestXml = execFileSync(analyzer, ['manifest', 'print', artifact], { encoding: 'utf8' });
   const applicationId = execFileSync(analyzer, ['manifest', 'application-id', artifact], { encoding: 'utf8' }).trim();
-  await assertAndroidReleaseWechatArtifact({ bundle, manifestXml, applicationId, releaseConfiguration });
+  await assertAndroidReleaseWechatArtifact({ bundle, manifestXml, applicationId, releaseConfiguration, variant });
 }

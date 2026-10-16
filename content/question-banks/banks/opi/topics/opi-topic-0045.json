@@ -9,7 +9,9 @@
       "audioText": "Can you describe a long flight delay you have experienced?",
       "audioTextZh": "你能否描述一次自己经历过的航班长时间延误？",
       "referenceText": "Yes. I once experienced a long delay as a passenger on a flight from Yichang to Haikou. The flight was delayed for two hours because of air traffic flow control.",
-      "referenceTextZh": "是的。我曾作为旅客乘坐宜昌至海口的航班并经历长时间延误。由于空中交通流量控制，航班延误了两个小时。"
+      "referenceTextZh": "是的。我曾作为旅客乘坐宜昌至海口的航班并经历长时间延误。由于空中交通流量控制，航班延误了两个小时。",
+      "audio": "/question-bank-assets/revisions/opi/33952cf9e053f75e61dc9b26eb98de0757bd9613bff43dd8374b227c87538b6f/audio/opi/opi-core-554.mp3",
+      "audioDurationSeconds": 3.096
     },
     {
       "id": "opi-core-555",
@@ -17,7 +19,9 @@
       "audioText": "What are the main causes of flight delays?",
       "referenceText": "The main causes include adverse weather, air traffic congestion, flow control, and military activity. Aircraft technical problems and delays in ground services such as de-icing, refuelling, or loading can also affect departure time. Slow boarding, security checks, or other passenger-related issues may cause further delays.",
       "audioTextZh": "造成航班延误的主要原因有哪些？",
-      "referenceTextZh": "主要原因包括恶劣天气、空中交通拥堵、流量控制和军事活动。飞机技术问题，以及除冰、加油或装载等地面服务延误，也会影响离场时间。登机缓慢、安检或其他与旅客有关的问题还可能造成进一步延误。"
+      "referenceTextZh": "主要原因包括恶劣天气、空中交通拥堵、流量控制和军事活动。飞机技术问题，以及除冰、加油或装载等地面服务延误，也会影响离场时间。登机缓慢、安检或其他与旅客有关的问题还可能造成进一步延误。",
+      "audio": "/question-bank-assets/revisions/opi/b66603c2edf9e9b1655e7f7281af0b4d790a35d331e5f04c2d0fb4a62046a9fb/audio/opi/opi-core-555.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-core-556",
@@ -25,7 +29,9 @@
       "audioText": "Are long delays more common at large airports, and why?",
       "audioTextZh": "大型机场是否更常出现长时间延误？为什么？",
       "referenceText": "Long delays are generally more common at large airports. They handle more aircraft and passengers, often operate in congested airspace, and may have longer taxi routes and more procedures. Heavy ATC, passenger, and baggage-handling workloads can also increase the chance of delays.",
-      "referenceTextZh": "长时间延误通常更常见于大型机场。大型机场处理的飞机和旅客更多，常在拥挤空域运行，而且滑行路线更长、程序更多。繁重的空中交通管制、旅客和行李保障工作也会增加延误概率。"
+      "referenceTextZh": "长时间延误通常更常见于大型机场。大型机场处理的飞机和旅客更多，常在拥挤空域运行，而且滑行路线更长、程序更多。繁重的空中交通管制、旅客和行李保障工作也会增加延误概率。",
+      "audio": "/question-bank-assets/revisions/opi/1e93b15296c63b67552b185d1fac74f5044149af3e9bafcac1a4ab2b07da377a/audio/opi/opi-core-556.mp3",
+      "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-core-557",
@@ -33,7 +39,9 @@
       "audioText": "What can airlines and airports do to reduce flight delays?",
       "audioTextZh": "航空公司和机场可以采取哪些措施减少航班延误？",
       "referenceText": "Airlines can optimize flight schedules. Airport personnel can improve the efficiency of ground services, cooperate closely with flight crews, and upgrade airport facilities where needed.",
-      "referenceTextZh": "航空公司可以优化航班计划。机场人员可以提高地面服务效率，与飞行机组密切合作，并在需要时升级机场设施。"
+      "referenceTextZh": "航空公司可以优化航班计划。机场人员可以提高地面服务效率，与飞行机组密切合作，并在需要时升级机场设施。",
+      "audio": "/question-bank-assets/revisions/opi/2df89108e32a2cfbcbc0476d12c27567ce893930a26dc74f69c49d821c26da48/audio/opi/opi-core-557.mp3",
+      "audioDurationSeconds": 3.168
     },
     {
       "id": "opi-core-558",
@@ -41,7 +49,9 @@
       "audioText": "Should airlines compensate passengers after a long delay, and why?",
       "audioTextZh": "航班长时间延误后，航空公司是否应向旅客提供补偿？为什么？",
       "referenceText": "I think compensation should depend on the cause of the delay. If the airline is responsible because of a technical or management problem, compensation is reasonable. If the delay is caused by factors outside the airline’s control, such as severe weather or military activity, compensation may not be necessary. The airline can still offer accommodation or an alternative flight to reduce the passenger’s loss.",
-      "referenceTextZh": "我认为是否赔偿应取决于延误原因。如果延误由航空公司的技术或管理问题造成，赔偿是合理的。如果延误由恶劣天气或军事活动等航空公司无法控制的因素造成，可能无需赔偿。航空公司仍可提供住宿或替代航班，以减少旅客损失。"
+      "referenceTextZh": "我认为是否赔偿应取决于延误原因。如果延误由航空公司的技术或管理问题造成，赔偿是合理的。如果延误由恶劣天气或军事活动等航空公司无法控制的因素造成，可能无需赔偿。航空公司仍可提供住宿或替代航班，以减少旅客损失。",
+      "audio": "/question-bank-assets/revisions/opi/eb849c132b92170ef5e686b2b7c481e55e1b7214379fb259a97c00151953f70c/audio/opi/opi-core-558.mp3",
+      "audioDurationSeconds": 4.08
     },
     {
       "id": "opi-core-560",
@@ -49,7 +59,9 @@
       "audioText": "What factors can lead to air traffic flow control?",
       "audioTextZh": "哪些因素可能导致空中交通流量控制？",
       "referenceText": "Air traffic flow control can be caused by adverse weather such as thunderstorms, military activity, VIP flights, or an emergency that reduces available capacity.",
-      "referenceTextZh": "雷暴等恶劣天气、军事活动、要客航班，或降低可用容量的紧急情况，都可能导致空中交通流量控制。"
+      "referenceTextZh": "雷暴等恶劣天气、军事活动、要客航班，或降低可用容量的紧急情况，都可能导致空中交通流量控制。",
+      "audio": "/question-bank-assets/revisions/opi/89b533aab8805cf94cc06d1ad95c50098afc5afa14d077dd10f5351f84a360c5/audio/opi/opi-core-560.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-core-561",
@@ -57,7 +69,9 @@
       "audioText": "What types of airports are most likely to be affected by air traffic flow restrictions, and why?",
       "audioTextZh": "哪些类型的机场最容易受到空中交通流量限制的影响？为什么？",
       "referenceText": "Busy hubs and large international airports are most likely to face flow restrictions because they handle many takeoffs and landings. Airports with complex weather, frequent military activity, or an unexpected runway disruption may also be affected because their available capacity is reduced.",
-      "referenceTextZh": "繁忙枢纽和大型国际机场最容易受到流量限制，因为它们处理大量起飞和着陆。天气复杂、军事活动频繁或跑道突然中断的机场，也可能因可用容量下降而受到影响。"
+      "referenceTextZh": "繁忙枢纽和大型国际机场最容易受到流量限制，因为它们处理大量起飞和着陆。天气复杂、军事活动频繁或跑道突然中断的机场，也可能因可用容量下降而受到影响。",
+      "audio": "/question-bank-assets/revisions/opi/1e4f3baf2f7af8cef80adca9bd7e60ae8f571f33a9bee20faf92e1fb37be0628/audio/opi/opi-core-561.mp3",
+      "audioDurationSeconds": 5.496
     },
     {
       "id": "opi-core-562",
@@ -65,7 +79,9 @@
       "audioText": "What measures can reduce the need for air traffic flow restrictions?",
       "audioTextZh": "哪些措施可以减少实施空中交通流量限制的需要？",
       "referenceText": "The need for flow restrictions can be reduced by increasing airspace capacity, optimizing routes and navigation methods, and using more advanced ATC systems and procedures. Better cooperation between airlines and ATC, more efficient traffic management, improved airport facilities, and stronger weather forecasting can also help.",
-      "referenceTextZh": "可以通过增加空域容量、优化航路和导航方法，并采用更先进的空中交通管制系统和程序来减少流量限制需求。加强航空公司与管制部门的合作、提高交通管理效率、改善机场设施和增强天气预报能力也会有所帮助。"
+      "referenceTextZh": "可以通过增加空域容量、优化航路和导航方法，并采用更先进的空中交通管制系统和程序来减少流量限制需求。加强航空公司与管制部门的合作、提高交通管理效率、改善机场设施和增强天气预报能力也会有所帮助。",
+      "audio": "/question-bank-assets/revisions/opi/0a7158b12add9c6c551de5cf7aa1b6270daefcd14a379c91e66676048f871f4f/audio/opi/opi-core-562.mp3",
+      "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-core-563",
@@ -73,7 +89,9 @@
       "audioText": "What should a flight crew do during a long ground delay after passengers have boarded?",
       "audioTextZh": "旅客登机后遇到长时间地面延误时，飞行机组应怎么做？",
       "referenceText": "The flight crew should keep passengers informed about the reason for the delay and provide useful updates. They should coordinate with the cabin crew to maintain order, assist passengers, and provide food and drinks when appropriate. The pilots should also remain in contact with ATC and the dispatcher about the expected departure.",
-      "referenceTextZh": "飞行机组应向旅客说明延误原因并提供有用的最新信息。他们应与客舱机组协调，维持秩序、协助旅客，并在适当时提供食品和饮料。飞行员还应就预计离场时间与空中交通管制和签派员保持联系。"
+      "referenceTextZh": "飞行机组应向旅客说明延误原因并提供有用的最新信息。他们应与客舱机组协调，维持秩序、协助旅客，并在适当时提供食品和饮料。飞行员还应就预计离场时间与空中交通管制和签派员保持联系。",
+      "audio": "/question-bank-assets/revisions/opi/e085487884dd3171996260876aa9d6c1a9973ea7145a89a957498f3646744389/audio/opi/opi-core-563.mp3",
+      "audioDurationSeconds": 4.272
     }
   ],
   "categoryId": "opi-category-05"

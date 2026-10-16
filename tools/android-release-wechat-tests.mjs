@@ -160,3 +160,11 @@ test('the existing Android SDK checks reject versioned MTA coordinates in source
     assert.throws(() => run('com.tencent.mm.opensdk:wechat-sdk-android-with-mta:6.8.0'), /android_(?:tracking_sdk_present|tracking_sdk_resolved)/u);
   }
 });
+
+test('coinstalled Android tests use a distinct package without official WeChat callbacks', async () => {
+ const manifest=await generatedManifest(false);manifest.manifest.$.package=approvedPackage+'.test';
+ await assertAndroidReleaseWechatArtifact(input(manifest,{applicationId:approvedPackage+'.test',variant:'android-test'}));
+ await assert.rejects(assertAndroidReleaseWechatArtifact(input(manifest,{applicationId:approvedPackage,variant:'android-test'})),/application_id_mismatch/);
+ const official=await generatedManifest();official.manifest.$.package=approvedPackage+'.test';
+ await assert.rejects(assertAndroidReleaseWechatArtifact(input(official,{applicationId:approvedPackage+'.test',variant:'android-test'})),/exposes_wechat_configuration/);
+});

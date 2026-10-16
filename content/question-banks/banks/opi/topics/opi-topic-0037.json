@@ -9,7 +9,9 @@
       "audioText": "How can pilots detect cumulonimbus clouds or thunderstorms ahead during flight?",
       "audioTextZh": "飞行中，飞行员如何探测前方的积雨云或雷暴？",
       "referenceText": "Pilots can obtain information from ATC, look outside for visible cumulonimbus clouds, and monitor the airborne weather radar for cumulonimbus clouds or thunderstorms ahead. Good task sharing allows the pilot flying to control the aircraft while the pilot monitoring watches the weather information.",
-      "referenceTextZh": "飞行员可以从空中交通管制获取信息，目视查找积雨云，并利用机载气象雷达监控前方积雨云或雷暴。良好的任务分工使操纵飞行员能够控制飞机，监控飞行员则关注天气信息。"
+      "referenceTextZh": "飞行员可以从空中交通管制获取信息，目视查找积雨云，并利用机载气象雷达监控前方积雨云或雷暴。良好的任务分工使操纵飞行员能够控制飞机，监控飞行员则关注天气信息。",
+      "audio": "/question-bank-assets/revisions/opi/0020ab6dd764111ade5e6e612de9b28fab3843dc9d350ab14306954362365829/audio/opi/opi-core-494.mp3",
+      "audioDurationSeconds": 4.536
     },
     {
       "id": "opi-core-495",
@@ -17,7 +19,9 @@
       "audioText": "What hazards can cumulonimbus clouds and thunderstorms pose to an aircraft?",
       "audioTextZh": "积雨云和雷暴会给飞机带来哪些危险？",
       "referenceText": "Cumulonimbus clouds and thunderstorms may contain lightning, heavy rain, strong winds, and severe turbulence. These hazards can make the aircraft difficult to control, reduce visibility, damage the structure or electronic equipment, and injure passengers. Heavy rain may also contribute to an engine flameout.",
-      "referenceTextZh": "积雨云和雷暴中可能有雷电、强降雨、强风和严重颠簸。这些危险会使飞机难以操纵、降低能见度、损坏结构或电子设备，并使旅客受伤。强降雨还可能导致发动机熄火。"
+      "referenceTextZh": "积雨云和雷暴中可能有雷电、强降雨、强风和严重颠簸。这些危险会使飞机难以操纵、降低能见度、损坏结构或电子设备，并使旅客受伤。强降雨还可能导致发动机熄火。",
+      "audio": "/question-bank-assets/revisions/opi/69088883ef8f8093450776b0f318c5d2865b03b41913b2f49b303561c69bde43/audio/opi/opi-core-495.mp3",
+      "audioDurationSeconds": 4.224
     },
     {
       "id": "opi-core-496",
@@ -25,7 +29,9 @@
       "audioText": "Have you ever encountered a cumulonimbus cloud or thunderstorm during a flight? If so, what happened?",
       "audioTextZh": "你在飞行中遇到过积雨云或雷暴吗？如果遇到过，当时发生了什么？",
       "referenceText": "No, I have never flown into a cumulonimbus cloud or thunderstorm.",
-      "referenceTextZh": "没有，我从未飞入积雨云或雷暴。"
+      "referenceTextZh": "没有，我从未飞入积雨云或雷暴。",
+      "audio": "/question-bank-assets/revisions/opi/d6fbea22a91a1c48de7cda52d53b20134718250f1a559b520960b7a51e27a1be/audio/opi/opi-core-496.mp3",
+      "audioDurationSeconds": 5.856
     },
     {
       "id": "opi-core-497",
@@ -33,7 +39,9 @@
       "audioText": "How does a thunderstorm cell appear on the cockpit weather radar display?",
       "audioTextZh": "雷暴单体在驾驶舱气象雷达显示器上呈现什么样子？",
       "referenceText": "On the airborne weather radar display, the area of intense precipitation associated with a thunderstorm cell typically appears red.",
-      "referenceTextZh": "在机载气象雷达显示器上，与雷暴单体相关的强降水区域通常显示为红色。"
+      "referenceTextZh": "在机载气象雷达显示器上，与雷暴单体相关的强降水区域通常显示为红色。",
+      "audio": "/question-bank-assets/revisions/opi/16fd15963974ba9c2c0454d8b5f63a0360bb59cd0ffe26e4c2b8f6ec0acb899e/audio/opi/opi-core-497.mp3",
+      "audioDurationSeconds": 3.912
     },
     {
       "id": "opi-core-500",
@@ -41,7 +49,9 @@
       "audioText": "What should a pilot do if the weather radar indicates a thunderstorm ahead?",
       "audioTextZh": "如果气象雷达显示前方有雷暴，飞行员应如何处置？",
       "referenceText": "The pilot should advise ATC and request a deviation around the thunderstorm. The crew should monitor the weather radar, change the route to remain clear of the weather, and avoid flying through the thunderstorm. Once clear, the aircraft can rejoin the planned route.",
-      "referenceTextZh": "飞行员应通知空中交通管制，并申请绕开雷暴。机组应监控气象雷达、改变航路以远离危险天气，并避免穿越雷暴。脱离后，飞机可以重新加入计划航路。"
+      "referenceTextZh": "飞行员应通知空中交通管制，并申请绕开雷暴。机组应监控气象雷达、改变航路以远离危险天气，并避免穿越雷暴。脱离后，飞机可以重新加入计划航路。",
+      "audio": "/question-bank-assets/revisions/opi/97f89c5f65fc45d2ddd9161fdb46acfe42924ea26b10776d08cbd0023a1a6070/audio/opi/opi-core-500.mp3",
+      "audioDurationSeconds": 3.768
     },
     {
       "id": "opi-core-501",
@@ -49,7 +59,9 @@
       "audioText": "How does airborne weather radar estimate the intensity of precipitation?",
       "audioTextZh": "机载气象雷达如何估算降水强度？",
       "referenceText": "Airborne weather radar sends out microwave pulses that are reflected by water droplets or ice crystals in precipitation. It measures the strength of the returned signal: a stronger return indicates more intense precipitation, while a weaker return indicates lighter precipitation.",
-      "referenceTextZh": "机载气象雷达发射微波脉冲，脉冲会被降水中的水滴或冰晶反射。雷达测量返回信号的强度：回波越强表示降水越强，回波越弱表示降水较轻。"
+      "referenceTextZh": "机载气象雷达发射微波脉冲，脉冲会被降水中的水滴或冰晶反射。雷达测量返回信号的强度：回波越强表示降水越强，回波越弱表示降水较轻。",
+      "audio": "/question-bank-assets/revisions/opi/2f354c4f1faec9b1760f8bc6d8441873685a1d4aa1309dc3833b4901228d285b/audio/opi/opi-core-501.mp3",
+      "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-core-502",
@@ -57,7 +69,9 @@
       "audioText": "What is the main purpose of airborne weather radar?",
       "audioTextZh": "机载气象雷达的主要用途是什么？",
       "referenceText": "The main purpose of airborne weather radar is to show weather returns and help pilots identify hazardous precipitation ahead. Pilots use this information to avoid dangerous areas and choose a safer deviation path. They must also understand limitations such as attenuation and radar shadowing.",
-      "referenceTextZh": "机载气象雷达的主要用途是显示天气回波，帮助飞行员识别前方的危险降水。飞行员利用这些信息避开危险区域并选择更安全的绕飞路线。他们还必须了解衰减和雷达阴影等局限。"
+      "referenceTextZh": "机载气象雷达的主要用途是显示天气回波，帮助飞行员识别前方的危险降水。飞行员利用这些信息避开危险区域并选择更安全的绕飞路线。他们还必须了解衰减和雷达阴影等局限。",
+      "audio": "/question-bank-assets/revisions/opi/0aeca1b30f2a9fc53f26fdc65bc706c27168f43d6cff71a3744a0f155aaccbdd/audio/opi/opi-core-502.mp3",
+      "audioDurationSeconds": 2.544
     },
     {
       "id": "opi-core-503",
@@ -65,7 +79,9 @@
       "audioText": "How can pilots use airborne weather radar to avoid thunderstorms?",
       "audioTextZh": "飞行员如何使用机载气象雷达避开雷暴？",
       "referenceText": "Pilots can use the weather radar to locate heavy precipitation and monitor how the storm is changing. They should adjust the radar tilt to examine the weather near their flight level and request an ATC deviation when necessary. They should not try to fly through or under a thunderstorm, and they should continue to use visual observations and ATC information.",
-      "referenceTextZh": "飞行员可以利用气象雷达定位强降水并监控雷暴变化。他们应调整雷达俯仰角，查看本飞行高度附近的天气，并在必要时申请空中交通管制批准绕飞。不应尝试穿越雷暴或从雷暴下方飞过，还应继续结合目视观察和管制信息。"
+      "referenceTextZh": "飞行员可以利用气象雷达定位强降水并监控雷暴变化。他们应调整雷达俯仰角，查看本飞行高度附近的天气，并在必要时申请空中交通管制批准绕飞。不应尝试穿越雷暴或从雷暴下方飞过，还应继续结合目视观察和管制信息。",
+      "audio": "/question-bank-assets/revisions/opi/e7ef8cc31c5a2c7ae1f5c739377ffb9a46b99b68231f037e2688b4bf565aab4b/audio/opi/opi-core-503.mp3",
+      "audioDurationSeconds": 3.84
     },
     {
       "id": "opi-core-504",
@@ -73,7 +89,9 @@
       "audioText": "What are the limitations of weather radar?",
       "audioTextZh": "气象雷达有哪些局限性？",
       "referenceText": "Weather radar detects precipitation, so it does not show dry turbulence, clear-air turbulence, or volcanic ash directly. Heavy rain can attenuate the signal, and a strong return can hide weather behind it through radar shadowing. An incorrect tilt setting may also show ground returns instead of the weather of interest. Pilots should therefore use other weather information and visual observation as well.",
-      "referenceTextZh": "气象雷达探测的是降水，因此不能直接显示无降水回波的颠簸、晴空颠簸或火山灰。强降雨会使信号衰减，强回波还可能通过雷达阴影遮住其后方的天气。俯仰角设置不当也可能显示地面回波，而不是需要关注的天气。因此，飞行员还应使用其他天气信息和目视观察。"
+      "referenceTextZh": "气象雷达探测的是降水，因此不能直接显示无降水回波的颠簸、晴空颠簸或火山灰。强降雨会使信号衰减，强回波还可能通过雷达阴影遮住其后方的天气。俯仰角设置不当也可能显示地面回波，而不是需要关注的天气。因此，飞行员还应使用其他天气信息和目视观察。",
+      "audio": "/question-bank-assets/revisions/opi/3d35a3efa80d78d9abf28c4bb9a561cd44684303ca90b664aa5269aba18694b0/audio/opi/opi-core-504.mp3",
+      "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-core-506",
@@ -81,7 +99,9 @@
       "audioText": "What conditions are needed for a thunderstorm to develop?",
       "audioTextZh": "雷暴形成需要哪些条件？",
       "referenceText": "A thunderstorm needs moist air, an unstable atmosphere, and strong upward motion to develop.",
-      "referenceTextZh": "雷暴形成需要湿润空气、不稳定大气和强烈上升运动。"
+      "referenceTextZh": "雷暴形成需要湿润空气、不稳定大气和强烈上升运动。",
+      "audio": "/question-bank-assets/revisions/opi/7dcc80c8d92a9f3485a723340828af5e23b18fb877d46b62bbe9e3bcd8f6af11/audio/opi/opi-core-506.mp3",
+      "audioDurationSeconds": 2.808
     },
     {
       "id": "opi-core-507",
@@ -89,7 +109,9 @@
       "audioText": "What are the stages in the life cycle of a thunderstorm?",
       "audioTextZh": "雷暴的生命周期分为哪些阶段？",
       "referenceText": "A thunderstorm has three stages: developing, mature, and dissipating. The developing stage is dominated by updrafts as moisture condenses and the cloud grows. The mature stage has both updrafts and downdrafts, together with heavy rain, lightning, and thunder. In the dissipating stage, downdrafts dominate and the storm weakens.",
-      "referenceTextZh": "雷暴分为发展、成熟和消散三个阶段。发展阶段以上升气流为主，水汽凝结，云体增长。成熟阶段同时存在上升和下沉气流，并伴有强降雨、闪电和雷声。消散阶段以下沉气流为主，雷暴逐渐减弱。"
+      "referenceTextZh": "雷暴分为发展、成熟和消散三个阶段。发展阶段以上升气流为主，水汽凝结，云体增长。成熟阶段同时存在上升和下沉气流，并伴有强降雨、闪电和雷声。消散阶段以下沉气流为主，雷暴逐渐减弱。",
+      "audio": "/question-bank-assets/revisions/opi/ad20d60b9ab4ecb319bc1d98ed3a76b43963cec114b559abfd3a2020d30e62ad/audio/opi/opi-core-507.mp3",
+      "audioDurationSeconds": 2.952
     },
     {
       "id": "opi-core-508",
@@ -97,7 +119,9 @@
       "audioText": "What should pilots consider when deviating around a thunderstorm?",
       "audioTextZh": "绕飞雷暴时，飞行员应考虑哪些因素？",
       "referenceText": "Pilots should advise ATC about the thunderstorm and request an offset to the left or right of the planned track to avoid it.",
-      "referenceTextZh": "飞行员应向空中交通管制报告雷暴，并申请向计划航迹左侧或右侧偏置以避开雷暴。"
+      "referenceTextZh": "飞行员应向空中交通管制报告雷暴，并申请向计划航迹左侧或右侧偏置以避开雷暴。",
+      "audio": "/question-bank-assets/revisions/opi/e72696ec4ac3821d7ec3a52bca7cc43c3200dc70c7e4353fcfe7bfae81f27c32/audio/opi/opi-core-508.mp3",
+      "audioDurationSeconds": 3.432
     },
     {
       "id": "opi-core-509",
@@ -105,7 +129,9 @@
       "audioText": "In which season is a thunderstorm most likely to occur?",
       "audioTextZh": "哪个季节最容易出现雷暴？",
       "referenceText": "In many regions, thunderstorms are most likely to occur in summer because high temperatures can produce strong convection and cumulonimbus clouds. They can also occur in spring or autumn where the weather is unstable.",
-      "referenceTextZh": "在许多地区，雷暴最容易出现在夏季，因为高温会产生强对流和积雨云。天气不稳定时，春季或秋季也可能出现雷暴。"
+      "referenceTextZh": "在许多地区，雷暴最容易出现在夏季，因为高温会产生强对流和积雨云。天气不稳定时，春季或秋季也可能出现雷暴。",
+      "audio": "/question-bank-assets/revisions/opi/2c63c1353d5b850b9403c75b6ca65e838e1d1ac4d5d18711ad32cfe394a13ba9/audio/opi/opi-core-509.mp3",
+      "audioDurationSeconds": 3.0
     },
     {
       "id": "opi-core-511",
@@ -113,7 +139,9 @@
       "audioText": "What should a pilot do if a thunderstorm is affecting the airport?",
       "audioTextZh": "如果雷暴正在影响机场，飞行员应如何处置？",
       "referenceText": "If the aircraft is still on the ground, the pilot can delay departure and wait for the weather to improve. If the aircraft is airborne, the pilot can ask ATC to hold until conditions improve or request a diversion to an alternate airport.",
-      "referenceTextZh": "如果飞机仍在地面，飞行员可以推迟离场并等待天气好转。如果已经在空中，可以申请空中交通管制安排等待，直至条件改善，或申请改航至备降机场。"
+      "referenceTextZh": "如果飞机仍在地面，飞行员可以推迟离场并等待天气好转。如果已经在空中，可以申请空中交通管制安排等待，直至条件改善，或申请改航至备降机场。",
+      "audio": "/question-bank-assets/revisions/opi/060904db528de575d0926bfb1b526c96efc7dc9159908d1ff9dd0352c63864c7/audio/opi/opi-core-511.mp3",
+      "audioDurationSeconds": 3.384
     }
   ],
   "categoryId": "opi-category-01"

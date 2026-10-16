@@ -14,7 +14,7 @@ const builtin = { ...textContent, hotspots: hotspotContent };
 if (!isAppContentSnapshot(builtin)) throw new Error('invalid_builtin_app_content');
 export const builtinAppContent: AppContentSnapshot = builtin;
 export type AppContentResult = { data: AppContentRelease; source: 'remote' | 'cache' | 'builtin'; warning?: 'remote_unavailable' };
-const cacheKey = (base: string) => `icao.app-content.v1.${encodeURIComponent(base)}`;
+const cacheKey = (base: string) => `icao.app-content.v2.${encodeURIComponent(base)}`;
 const pending = new Map<string, Promise<AppContentResult>>();
 
 async function checksum(payload: AppContentSnapshot) {
@@ -34,7 +34,7 @@ async function load(base: string): Promise<AppContentResult> {
   if (base) {
     try {
       // Public legal access deliberately omits the session token and cannot trigger a login loop.
-      const response = await withApiRequestTimeout((signal) => fetch(`${base}/v1/app-content`, {
+      const response = await withApiRequestTimeout((signal) => fetch(`${base}/v1/app-content?hotspotFormat=2`, {
         signal, headers: { accept: 'application/json', ...(cached ? { 'if-none-match': `"${cached.checksum}"` } : {}) },
       }), undefined, 8000);
       if (response.status === 304 && cached) return { data: cached, source: 'cache' };

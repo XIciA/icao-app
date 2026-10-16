@@ -103,3 +103,15 @@ it('clears a retired card even when an old device sends a higher version and com
   expect(result.authoritative).toMatchObject({ version: 999, state: { visited: false, completed: false, note: '' } });
   expect(inserts.find(entry => entry.table === syncChanges)?.values.payload).toMatchObject({ version: 999, state: { completed: false } });
 });
+
+it('preserves new resume metadata on old-client writes and returns the actual merged cumulative progress', async () => {
+  const lastVisitedAt = '2026-10-16T00:00:00.000Z';
+  const { service, tx, inserts } = fixture([[{ bankId: 'listening', topicId: 'topic', cardId: 'card', version: 2,
+    state: { visited: true, completed: true, note: 'old', lastVisitedAt } }]]);
+  const internals = service as unknown as { applyCardState: (transaction: unknown, user: string, mutation: unknown) => Promise<SyncPushResult> };
+  const result = await internals.applyCardState(tx, 'user', { mutationId: 'old-client', kind: 'card_state', payload: {
+    bankId: 'listening', topicId: 'topic', cardId: 'card', version: 3, updatedAt: createdAt,
+    state: { visited: true, completed: false, note: 'edited' } } });
+  expect(result.authoritative).toMatchObject({ state: { visited: true, completed: true, note: 'edited', lastVisitedAt } });
+  expect(inserts.find(entry => entry.table === syncChanges)?.values.payload).toEqual(result.authoritative);
+});
