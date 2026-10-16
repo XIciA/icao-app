@@ -108,7 +108,9 @@ async function resolveHotspotFailure(
 }
 
 export async function loadHotspotAccess(briefId: string): Promise<HotspotAccessResult> {
-  const brief = await loadHotspotBrief(briefId);
+  let brief: OpiHotspotBrief | undefined;
+  try { brief = await loadHotspotBrief(briefId); }
+  catch { return { status: 'network-error' }; }
   if (!brief) return { status: 'not-found' };
 
   let targets: Map<string, TopicTarget> | undefined;

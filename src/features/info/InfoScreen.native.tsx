@@ -1,3 +1,4 @@
+import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import { AboutPage } from './AboutPage.native';
 import type { VersionedFeedbackQuestionContext } from '@icao/contracts/feedback-ops';
 import type {
@@ -192,12 +193,9 @@ function FeedbackPage() {
         Alert.alert('最多添加 3 张图片');
         return;
       }
-      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const permission = await requestPhotoSelectionPermission(() => void chooseImages(), () => mounted.current && !submission.current);
       if (!mounted.current) return;
-      if (!permission.granted) {
-        Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');
-        return;
-      }
+      if (!permission) return;
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ['images'],
         allowsMultipleSelection: true,

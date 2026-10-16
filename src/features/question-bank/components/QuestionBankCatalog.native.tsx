@@ -21,7 +21,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AppText, Card, Screen } from '@/components/ui';
+import { AppText, Button, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
@@ -41,10 +41,13 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   story: BookOpenText,
 };
 
-export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset }) {
+export function QuestionBankCatalog({ dataset, warning, onRetry }: { dataset: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
+  const [progressError, setProgressError] = useState(false);
+  const [progressReady, setProgressReady] = useState(false);
+  const [progressAttempt, setProgressAttempt] = useState(0);
   const scopedCatalog = useStudyCatalog();
   const scope = normalizeStudyScope(useProfile().studyScope);
   const switcherItems = useMemo(() => scopedCatalog.map((item) => ({
@@ -56,11 +59,12 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
 
   useEffect(() => {
     let active = true;
+    setProgressReady(false); setProgressError(false);
     void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
-      if (active) setProgress(next);
-    });
+      if (active) { setProgress(next); setProgressReady(true); }
+    }).catch(() => { if (active) setProgressError(true); });
     return () => { active = false; };
-  }, [dataset, scope]);
+  }, [dataset, scope, progressAttempt]);
 
   function isLocked(topic: QuestionBankTopic) {
     return dataset.access?.membershipActive !== true
@@ -99,6 +103,8 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
       />
       <View style={styles.scrollFrame}>
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
+          {warning ? <View><AppText>暂时无法更新题库，正在显示本机已有目录，最新内容可能尚未包含。</AppText><Button variant="outline" onPress={onRetry}>重新加载题库</Button></View> : null}
+          {progressError ? <View><AppText>学习进度暂时无法读取，记录未被清除。题目仍可学习。</AppText><Button variant="outline" onPress={() => setProgressAttempt(n => n + 1)}>重试读取进度</Button></View> : null}
           {dataset.categories.map((category, categoryIndex) => {
             const singleTopic = category.topics.length === 1 ? category.topics[0] : undefined;
             const isExpanded = !singleTopic && expanded === category.id;
@@ -127,9 +133,9 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
                   </View>
                   {singleLabel ? <View style={styles.accessPill}><AppText color={colors.primary} variant="micro">{singleLabel}</AppText></View> : null}
                   <View style={styles.countPill}>
-                    {categoryLearned >= category.declaredCardCount && category.declaredCardCount > 0 ? <Check color={colors.primary} size={12} /> : null}
+                    {progressReady && categoryLearned >= category.declaredCardCount && category.declaredCardCount > 0 ? <Check color={colors.primary} size={12} /> : null}
                     <AppText color={categoryLearned ? colors.primary : colors.mutedForeground} style={styles.countText} variant="micro">
-                      {categoryLearned}/{category.declaredCardCount}
+                      {progressReady ? `${categoryLearned}/${category.declaredCardCount}` : '进度待读取'}
                     </AppText>
                   </View>
                   {singleTopic
@@ -157,9 +163,9 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
                             <AppText numberOfLines={1} variant="button">{topic.name}</AppText>
                             <View style={styles.topicProgressRow}>
                               <View style={styles.topicProgressTrack}>
-                                <View style={[styles.topicProgressFill, { width: `${Math.min(100, (topicProgress.learned / Math.max(1, topicProgress.total)) * 100)}%` }]} />
+                                <View style={[styles.topicProgressFill, { width: `${!progressReady ? 0 : Math.min(100, (topicProgress.learned / Math.max(1, topicProgress.total)) * 100)}%` }]} />
                               </View>
-                              <AppText style={styles.topicCount} variant="micro">{label ?? `${topicProgress.learned}/${topicProgress.total}`}</AppText>
+                              <AppText style={styles.topicCount} variant="micro">{label ?? (progressReady ? `${topicProgress.learned}/${topicProgress.total}` : '进度待读取')}</AppText>
                             </View>
                           </View>
                           <ChevronRight color={colors.mutedForeground} size={17} />

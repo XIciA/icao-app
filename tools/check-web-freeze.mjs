@@ -47,7 +47,7 @@ const approvedNativeIncrementPaths = new Set([
 // both route implementations pinned; this is not a Native-suffix exemption.
 const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
 const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
-const reviewedStudyNativeHash = '3869d4c59d22f94a19e1d6b1b7db404483ca19c85770059dfaf9aa0f269a1782';
+const reviewedStudyNativeHash = '191397e34824130111034b6aa0ae768841eee8db08f51e8b1742430107110ade';
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
@@ -193,6 +193,25 @@ reviewedFormalWebHashes.set('src/components/ui/icons.ts', ['f4901f9193f07c3a9299
 // EdgeOne download lookup reuses the published update parser. The legacy branch
 // retains its existing environment URL and performs no manifest request.
 reviewedFormalWebHashes.set('src/features/app-updates/update-model.ts', [null, '5360f31166b3d4b2bdddcf64069b7f95fafb715b3bfa510ceedca741277b331e']);
+
+// 2026-10-17: exact Native bug-repair inputs included by Expo route discovery.
+// Web route siblings remain unchanged and router selection is regression-tested.
+// This does not allow arbitrary future Native edits or rebaseline the old website.
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [null, "d2b9ab2e37b46b5811dafc740346efd16b39870f8eed212349fd12336f6b7fca"]);
+reviewedFormalWebHashes.set("src/app/question-bank/[bankId]/index.native.tsx", [null, "26df3200b583169c3a96011c79a37cd5e69850cada4b797885302eef19162e20"]);
+reviewedFormalWebHashes.set("src/features/question-bank/annotations/card-index.native.ts", [null, "31f47e7c1f97615ade309221772369b19961dcb0a99ad0e18a8b80cc14e8924a"]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [null, "11837f54c72def83ddd7b8272c85a29c33f50a2fbfa22170e229102cb23bffaf"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/card-directory.ts", [null, "834b60ea7eb0a5cbbd192d303d07e35a1ca737287e5eaabf4cd67236dbff6550"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/content-version.native.ts", [null, "c3e4c8a714fc6f70958b026fbed9cc29b78d8d95bdde7e490a3b8742a4aabd22"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/member-content-cache.ts", [null, "689236f90d0ae0695f93e1f9af7903e1e79e9ac16d815260663d47ecaa46493a"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public-release.json", [null, "ca4c044413a4763a012e4a0ddc81743e0df75a6e128a76ece823194216acb7a7"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public.json", [null, "f35f3c8591bcb3148158b6dd602a8aa1b3e10ae4acc2d59cccf0785a32aa58e5"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/repository.native.ts", [null, "7902d631024ec6fbb0debc21cf01d96639bc5b892cf0c75bf520b1e113ec55e1"]);
+reviewedFormalWebHashes.set("src/features/question-bank/hooks/useQuestionBank.native.ts", [null, "26aa755295e1f9cd404aa9ef9a8e1536a0695f69eaa6e9ff4f6c5fe3ea3cae53"]);
+reviewedFormalWebHashes.set("src/features/question-bank/hooks/useStudyCatalog.native.ts", [null, "a9db57b4110e4910f4de91c9ba03308f7f053434bf83261de54b4bab2d7872f8"]);
+reviewedFormalWebHashes.set("src/features/sync/learning-sync.native.ts", [null, "31213b4ede0e658c8b5f244f22aabf0b057a477586eff2a07546a1a5d1067cdc"]);
+reviewedFormalWebHashes.set("src/features/question-bank/hooks/useQuestionBankTopic.native.ts", ["20a67d213b57d8de523a8ae33d3ccc6dd825eb56d11e0036288aaf3325b2a52f", "cc1b5308275595e7728bbdf0c7b6c74f4842cdd0bff10d652e71dd10db0ee069"]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "c23cf53f60ccb97c77b7677a94174ab143805e14f098ee788fe11bfc8b18c4c4"]);
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
   const baseline = new Map(expected.map(file => [file.path, file]));

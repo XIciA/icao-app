@@ -1,0 +1,3453 @@
+{
+  "summary": {
+    "date": "2026-10-16",
+    "scope": "src/**/*.ts,tsx excluding __tests__; candidate scan, not all hits independently verified",
+    "filesScanned": 381,
+    "filesWithCandidates": 138,
+    "candidateLines": 688
+  },
+  "files": [
+    {
+      "path": "src/app/_layout.tsx",
+      "hits": [
+        {
+          "line": 11,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 20,
+          "text": "SplashScreen.preventAutoHideAsync().catch(() => undefined);"
+        },
+        {
+          "line": 26,
+          "text": "if (fontsLoaded || fontError) SplashScreen.hideAsync().catch(() => undefined);"
+        },
+        {
+          "line": 78,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 80,
+          "text": "description=\"暂时无法读取本机安全登录状态，或无法向服务器确认账号请求。为保护账号与本机数据，确认成功前不会进入业务页面。\""
+        },
+        {
+          "line": 81,
+          "text": "onAction={() => { void auth.retryAccountRestore().catch(() => undefined); }}"
+        },
+        {
+          "line": 82,
+          "text": "title=\"暂时无法确认账号状态\""
+        },
+        {
+          "line": 88,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 91,
+          "text": "onAction={() => { void auth.resumeAccountDeletion().catch(() => undefined); }}"
+        },
+        {
+          "line": 166,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 170,
+          "text": "title=\"页面加载失败\""
+        },
+        {
+          "line": 171,
+          "text": "tone=\"destructive\""
+        }
+      ]
+    },
+    {
+      "path": "src/app/content/[slug].native.tsx",
+      "hits": [
+        {
+          "line": 6,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 35,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 37,
+          "text": "description=\"这个功能入口不存在、已更新或暂时不可用。\""
+        },
+        {
+          "line": 40,
+          "text": "title=\"无法打开此内容\""
+        }
+      ]
+    },
+    {
+      "path": "src/app/question-bank/[bankId]/index.tsx",
+      "hits": [
+        {
+          "line": 4,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 19,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 21,
+          "text": "description=\"题库数据暂时无法读取，请重试。\""
+        },
+        {
+          "line": 24,
+          "text": "title=\"题库加载失败\""
+        },
+        {
+          "line": 25,
+          "text": "tone=\"destructive\""
+        }
+      ]
+    },
+    {
+      "path": "src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx",
+      "hits": [
+        {
+          "line": 7,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 54,
+          "text": "return stateScreen(<CenteredState actionLabel={returnLabel} description=\"原题内容已更新或不可用，请返回后选择其他内容。\" icon={BookX}"
+        },
+        {
+          "line": 55,
+          "text": "onAction={returnToSource} title=\"原题不可用\" />);"
+        },
+        {
+          "line": 65,
+          "text": "return stateScreen(<CenteredState actionLabel=\"返回题库首页\" description=\"这部分内容不在当前考试目标或题库范围内。可回到首页调整题库范围，或在个人资料中查看考试目标。\" icon={BookX}"
+        },
+        {
+          "line": 70,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 85,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 96,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 98,
+          "text": "description={targetCardMissing ? '原题内容已更新或不可用，请返回后选择其他内容。' : '当前学习主题不存在或读取失败，请返回后重试。'}"
+        },
+        {
+          "line": 101,
+          "text": "title={targetCardMissing ? '原题不可用' : '学习内容加载失败'}"
+        },
+        {
+          "line": 102,
+          "text": "tone=\"destructive\""
+        },
+        {
+          "line": 108,
+          "text": "<CenteredState"
+        }
+      ]
+    },
+    {
+      "path": "src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx",
+      "hits": [
+        {
+          "line": 4,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 33,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 35,
+          "text": "description={targetCardMissing ? returnFromRadio ? '这条随身听内容已更新或不可用，请返回随身听选择其他曲目。' : '原题内容已更新或不可用，请返回“我的标注”选择其他内容。' : '当前学习主题不存在或读取失败，请返回后重试。'}"
+        },
+        {
+          "line": 38,
+          "text": "title={targetCardMissing ? '原题不可用' : '学习内容加载失败'}"
+        },
+        {
+          "line": 39,
+          "text": "tone=\"destructive\""
+        },
+        {
+          "line": 48,
+          "text": "<CenteredState"
+        }
+      ]
+    },
+    {
+      "path": "src/components/auth/login-screen.native.tsx",
+      "hits": [
+        {
+          "line": 53,
+          "text": "case 'phone_account_not_found': return '暂时无法发送验证码，请检查手机号或稍后重试。';"
+        },
+        {
+          "line": 54,
+          "text": "case 'phone_not_confirmed': return '暂时无法完成密码登录，请改用验证码验证或稍后重试。';"
+        },
+        {
+          "line": 56,
+          "text": "case 'phone_auth_unavailable': return '手机号登录暂时不可用，请稍后再试。';"
+        },
+        {
+          "line": 59,
+          "text": "case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';"
+        },
+        {
+          "line": 61,
+          "text": "case 'wechat_status_unavailable': return '暂时无法检查微信状态，请重试或使用其他方式登录。';"
+        },
+        {
+          "line": 62,
+          "text": "case 'wechat_auth_unavailable': return Platform.OS === 'ios' ? '当前微信暂不支持授权，请使用其他方式登录。' : '登录失败，请稍后重试。';"
+        },
+        {
+          "line": 63,
+          "text": "case 'wechat_auth_configuration_mismatch': return Platform.OS === 'ios' ? '微信登录正在配置，请改用手机号或 Apple 登录。' : '登录失败，请稍后重试。';"
+        },
+        {
+          "line": 65,
+          "text": "case 'wechat_auth_timeout': return '微信授权已超时，请重新登录。';"
+        },
+        {
+          "line": 67,
+          "text": "case 'invalid_wechat_auth_response': return '微信登录未完成，请重试或改用其他方式。';"
+        },
+        {
+          "line": 69,
+          "text": "case 'social_auth_unavailable': return '该登录方式暂时不可用，请改用其他方式。';"
+        },
+        {
+          "line": 70,
+          "text": "case 'auth_network_error': return '网络连接失败，请检查网络后重试。';"
+        },
+        {
+          "line": 71,
+          "text": "case 'auth_service_unavailable': return '认证服务暂时不可用，请稍后重试。';"
+        },
+        {
+          "line": 72,
+          "text": "case 'auth_session_storage_unavailable': return '设备无法安全保存登录状态，请检查存储权限后重试。';"
+        },
+        {
+          "line": 73,
+          "text": "case 'auth_request_not_completed': return '登录请求未完成，请稍后重试。';"
+        },
+        {
+          "line": 75,
+          "text": "default: return '登录失败，请稍后重试。';"
+        },
+        {
+          "line": 113,
+          "text": "}).catch(() => undefined);"
+        },
+        {
+          "line": 133,
+          "text": "void refreshWechatAvailability().catch(() => undefined);"
+        },
+        {
+          "line": 135,
+          "text": "if (state === 'active') void refreshWechatAvailability().catch(() => undefined);"
+        },
+        {
+          "line": 192,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 215,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 242,
+          "text": "Alert.alert('确认后继续', loginAgeCopy.consentError, ["
+        },
+        {
+          "line": 368,
+          "text": "await clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 384,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 398,
+          "text": "<AppText color={challengeExpired ? colors.destructive : undefined} variant=\"caption\">"
+        },
+        {
+          "line": 401,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 421,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 466,
+          "text": "{challengeExpired ? <AppText color={colors.destructive} variant=\"caption\">验证码已过期，请重新获取。</AppText> : null}"
+        },
+        {
+          "line": 467,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 474,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/components/auth/login-screen.tsx",
+      "hits": [
+        {
+          "line": 46,
+          "text": "case 'phone_account_not_found': return '暂时无法发送验证码，请检查手机号或稍后重试。';"
+        },
+        {
+          "line": 47,
+          "text": "case 'phone_not_confirmed': return '暂时无法完成密码登录，请改用验证码验证或稍后重试。';"
+        },
+        {
+          "line": 49,
+          "text": "case 'phone_auth_unavailable': return '手机号登录暂时不可用，请稍后再试。';"
+        },
+        {
+          "line": 52,
+          "text": "case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';"
+        },
+        {
+          "line": 56,
+          "text": "case 'invalid_wechat_auth_response': return '微信登录未完成，请重试或改用其他方式。';"
+        },
+        {
+          "line": 58,
+          "text": "case 'social_auth_unavailable': return '该登录方式暂时不可用，请改用其他方式。';"
+        },
+        {
+          "line": 59,
+          "text": "case 'auth_network_error': return '网络连接失败，请检查网络后重试。';"
+        },
+        {
+          "line": 60,
+          "text": "case 'auth_service_unavailable': return '认证服务暂时不可用，请稍后重试。';"
+        },
+        {
+          "line": 61,
+          "text": "case 'auth_session_storage_unavailable': return '设备无法安全保存登录状态，请检查存储权限后重试。';"
+        },
+        {
+          "line": 62,
+          "text": "case 'auth_request_not_completed': return '登录请求未完成，请稍后重试。';"
+        },
+        {
+          "line": 64,
+          "text": "default: return '登录失败，请稍后重试。';"
+        },
+        {
+          "line": 136,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 159,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 287,
+          "text": "await clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 303,
+          "text": "void clearPhoneOtpChallenge().catch(() => undefined);"
+        },
+        {
+          "line": 307,
+          "text": "return <AuthShell><AuthHeading title=\"正在恢复验证\" subtitle=\"正在安全读取尚未完成的手机号验证…\" /></AuthShell>;"
+        },
+        {
+          "line": 317,
+          "text": "<AppText color={challengeExpired ? colors.destructive : undefined} variant=\"caption\">"
+        },
+        {
+          "line": 320,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 341,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 387,
+          "text": "{challengeExpired ? <AppText color={colors.destructive} variant=\"caption\">验证码已过期，请重新获取。</AppText> : null}"
+        },
+        {
+          "line": 388,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 395,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/components/auth/login-screen.web.tsx",
+      "hits": [
+        {
+          "line": 18,
+          "text": "case 'auth_network_error': return '网络连接失败，请检查网络后重试。';"
+        },
+        {
+          "line": 22,
+          "text": "case 'auth_service_unavailable': return '登录服务暂时不可用，请稍后重试。';"
+        },
+        {
+          "line": 23,
+          "text": "case 'auth_session_storage_unavailable': return '浏览器禁止了本地存储，无法保存登录状态。请退出无痕模式后重试。';"
+        },
+        {
+          "line": 24,
+          "text": "default: return `登录失败（错误代码：${code}）`;"
+        },
+        {
+          "line": 103,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 174,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/components/platform/EdgeOneAlertHost.tsx",
+      "hits": [
+        {
+          "line": 18,
+          "text": "Alert.alert = (title, message, buttons, options) => {"
+        }
+      ]
+    },
+    {
+      "path": "src/components/screens/TabPlaceholderScreen.native.tsx",
+      "hits": [
+        {
+          "line": 43,
+          "text": "const visibleEntries = goal.banks.flatMap((id) => entries.filter((entry) => entry.slug === id).map((entry) => ({ ...entry, meta: catalog.find((bank) => bank.id === id)?.summary ?? '此范围暂无内容' })));"
+        }
+      ]
+    },
+    {
+      "path": "src/components/states/CenteredState.tsx",
+      "hits": [
+        {
+          "line": 22,
+          "text": "export function CenteredState({"
+        },
+        {
+          "line": 69,
+          "text": "destructive: { background: 'rgba(219,43,51,0.10)', foreground: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/components/states/GlobalLoadingScreen.native.tsx",
+      "hits": [
+        {
+          "line": 11,
+          "text": "<AppText variant=\"caption\">正在准备学习空间…</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/components/states/GlobalLoadingScreen.tsx",
+      "hits": [
+        {
+          "line": 16,
+          "text": "<AppText variant=\"caption\">正在准备学习空间…</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/components/states/NativeScreenBoundary.native.tsx",
+      "hits": [
+        {
+          "line": 8,
+          "text": "import { CenteredState } from './CenteredState';"
+        },
+        {
+          "line": 28,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 29,
+          "text": "title=\"页面暂时无法显示\""
+        }
+      ]
+    },
+    {
+      "path": "src/components/ui/Button.native.tsx",
+      "hits": [
+        {
+          "line": 64,
+          "text": "destructive: colors.destructiveForeground,"
+        },
+        {
+          "line": 85,
+          "text": "destructive: { backgroundColor: colors.destructive, borderColor: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/components/ui/Button.tsx",
+      "hits": [
+        {
+          "line": 64,
+          "text": "destructive: colors.destructiveForeground,"
+        },
+        {
+          "line": 84,
+          "text": "destructive: { backgroundColor: colors.destructive, borderColor: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/components/ui/Tag.tsx",
+      "hits": [
+        {
+          "line": 33,
+          "text": "destructive: { container: { backgroundColor: 'rgba(219,43,51,0.10)' }, text: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/components/ui/TextField.tsx",
+      "hits": [
+        {
+          "line": 27,
+          "text": "<AppText variant=\"caption\" color={colors.destructive}>"
+        },
+        {
+          "line": 47,
+          "text": "fieldError: { borderColor: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/AccountProfilePage.native.tsx",
+      "hits": [
+        {
+          "line": 79,
+          "text": "} catch { if (actionIsCurrent(action)) setError('图片读取失败，请重试。'); }"
+        },
+        {
+          "line": 97,
+          "text": "} catch { if (actionIsCurrent(action)) setError('资料保存未完成，请重试。'); }"
+        },
+        {
+          "line": 129,
+          "text": "{error ? <AppText accessibilityRole=\"alert\" color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/AccountScreen.tsx",
+      "hits": [
+        {
+          "line": 68,
+          "text": "runLearningSync(auth.account.accountId).catch(() => undefined),"
+        },
+        {
+          "line": 76,
+          "text": "} catch { setSignOutError('暂时无法确认保存状态，请稍后重试。'); }"
+        },
+        {
+          "line": 87,
+          "text": "} catch { setSignOutError('退出失败，请稍后重试。'); }"
+        },
+        {
+          "line": 106,
+          "text": "{signOutError ? <AppText color={colors.destructive} variant=\"caption\">{signOutError}</AppText> : null}"
+        },
+        {
+          "line": 107,
+          "text": "<Button disabled={!auth.session || signingOut} loading={signingOut} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => void prepareLogout()} variant=\"outline\">退出登录</Button>"
+        },
+        {
+          "line": 113,
+          "text": "{signOutError ? <AppText color={colors.destructive} variant=\"caption\">{signOutError}</AppText> : null}"
+        },
+        {
+          "line": 138,
+          "text": "void hasAiConsent().then(setAiConsent).catch(() => undefined);"
+        },
+        {
+          "line": 160,
+          "text": "setError('AI 数据处理同意撤回失败，请登录并稍后重试。');"
+        },
+        {
+          "line": 177,
+          "text": "setError('全部 AI 结果删除未完成，请保持登录并检查网络后重试。');"
+        },
+        {
+          "line": 194,
+          "text": "setError('学习数据清除未完成，请保持登录并重试；旧离线数据不会恢复已完成的云端清除。');"
+        },
+        {
+          "line": 201,
+          "text": "Alert.alert("
+        },
+        {
+          "line": 212,
+          "text": "Alert.alert("
+        },
+        {
+          "line": 245,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 360,
+          "text": ": '暂时无法发送验证码，请检查手机号或稍后重试');"
+        },
+        {
+          "line": 382,
+          "text": "setError('暂时无法重新发送验证码，请稍后重试');"
+        },
+        {
+          "line": 408,
+          "text": ": '绑定未完成，请稍后重试');"
+        },
+        {
+          "line": 430,
+          "text": "setError('暂时无法退出，请稍后重试');"
+        },
+        {
+          "line": 458,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 526,
+          "text": "} catch { if (activeRef.current) setError('验证码发送失败，请稍后重试。'); }"
+        },
+        {
+          "line": 536,
+          "text": "} catch { if (activeRef.current) setError('验证未完成，请检查验证码或重新获取。'); }"
+        },
+        {
+          "line": 562,
+          "text": "{expired ? <AppText color={colors.destructive} variant=\"caption\">验证码已过期，请重新获取。</AppText> : null}"
+        },
+        {
+          "line": 572,
+          "text": "<AppText color={passwordError ? colors.destructive : colors.mutedForeground} variant=\"micro\">"
+        },
+        {
+          "line": 576,
+          "text": "{confirmationError ? <AppText color={colors.destructive} variant=\"caption\">{confirmationError}</AppText> : null}"
+        },
+        {
+          "line": 579,
+          "text": "{error ? <AppText accessibilityRole=\"alert\" color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 599,
+          "text": "return '密码保存失败，请稍后重试';"
+        },
+        {
+          "line": 632,
+          "text": "'重新注册会获得新账号，无法恢复原数据',"
+        },
+        {
+          "line": 648,
+          "text": "setError(code === 'phone_otp_rate_limited' ? '验证码请求过于频繁，请稍后重试' : '验证码发送失败，请稍后重试');"
+        },
+        {
+          "line": 664,
+          "text": "Alert.alert('确认永久注销账号？', '账号、学习数据和会员权益将无法恢复。', ["
+        },
+        {
+          "line": 677,
+          "text": "else setError('暂时无法确认注销请求，请检查网络后重试；重复提交不会重复删除');"
+        },
+        {
+          "line": 687,
+          "text": "<View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View>"
+        },
+        {
+          "line": 691,
+          "text": "<Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant=\"micro\">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card>"
+        },
+        {
+          "line": 699,
+          "text": ") : <AppText color={colors.destructive} variant=\"caption\">当前账号没有可用的身份验证方式，请联系客服。</AppText>}"
+        },
+        {
+          "line": 709,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 719,
+          "text": "function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant=\"button\">{label}</AppText>{hint ? <AppText variant=\"micro\">{hint}</AppText> : null}</View>{value ? <AppText variant=\"caption\">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/AccountScreen.web.tsx",
+      "hits": [
+        {
+          "line": 39,
+          "text": ".catch(() => { if (active) setContentRelease('暂不可用'); });"
+        },
+        {
+          "line": 81,
+          "text": "<Button leading={<LogOut color={colors.destructive} size={16} />} onPress={() => void signOut()} variant=\"outline\">退出当前浏览器</Button>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/LoginMethodSheet.native.tsx",
+      "hits": [
+        {
+          "line": 52,
+          "text": "} catch { setError('验证码发送失败，请稍后重试。'); }"
+        },
+        {
+          "line": 73,
+          "text": "else setError('操作未完成，请稍后重试。');"
+        },
+        {
+          "line": 88,
+          "text": ": <AppText variant=\"caption\">验证方式：{options[0]?.label ?? '暂无可用方式'}</AppText>}"
+        },
+        {
+          "line": 97,
+          "text": "{error ? <AppText accessibilityRole=\"alert\" color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/privacy-action-state.ts",
+      "hits": [
+        {
+          "line": 43,
+          "text": "const next = stateQueue.catch(() => undefined).then(operation);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/privacy-self-service.native.ts",
+      "hits": [
+        {
+          "line": 34,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 40,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 50,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 68,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/privacy-self-service.ts",
+      "hits": [
+        {
+          "line": 26,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 31,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 40,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 55,
+          "text": "await runLearningSync(accountId).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/account/profile-store.native.ts",
+      "hits": [
+        {
+          "line": 27,
+          "text": "if (accountId) void readProfile().catch(() => undefined);"
+        },
+        {
+          "line": 51,
+          "text": "const next = writeQueue.catch(() => undefined).then(operation);"
+        },
+        {
+          "line": 106,
+          "text": "void readProfile().catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/AutoTranscriptionSetting.tsx",
+      "hits": [
+        {
+          "line": 27,
+          "text": "} catch { setError('设置未保存，请检查登录和网络后重试。'); }"
+        },
+        {
+          "line": 37,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/NativeAiRecovery.native.tsx",
+      "hits": [
+        {
+          "line": 11,
+          "text": "const recover = () => { void recoverPendingAiOperations().catch(() => undefined); };"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-client.native.ts",
+      "hits": [
+        {
+          "line": 61,
+          "text": "if (accepted) await Storage.setItem(consentKey(context.owner.accountId!), 'accepted').catch(() => undefined);"
+        },
+        {
+          "line": 62,
+          "text": "else await Storage.removeItem(consentKey(context.owner.accountId!)).catch(() => undefined);"
+        },
+        {
+          "line": 85,
+          "text": "await Storage.setItem(consentKey(context.owner.accountId!), 'accepted').catch(() => undefined);"
+        },
+        {
+          "line": 93,
+          "text": "await Storage.removeItem(consentKey(context.owner.accountId!)).catch(() => undefined);"
+        },
+        {
+          "line": 123,
+          "text": "return '暂时无法确认 AI 额度，请稍后重试。已有回答和反馈仍可查看。';"
+        },
+        {
+          "line": 128,
+          "text": "if (failure.code === 'ai_consent_required') await Storage.removeItem(consentKey(context.owner.accountId!)).catch(() => undefined);"
+        },
+        {
+          "line": 180,
+          "text": "const payload = await response.json().catch(() => undefined) as { requestId?: string; data?: T; error?: { code?: string } } | undefined;"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-client.ts",
+      "hits": [
+        {
+          "line": 32,
+          "text": "if (consentRequired(error)) await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 39,
+          "text": "if (accepted) await Storage.setItem(CONSENT_KEY, 'accepted').catch(() => undefined);"
+        },
+        {
+          "line": 40,
+          "text": "else await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 70,
+          "text": "await Storage.setItem(CONSENT_KEY, 'accepted').catch(() => undefined);"
+        },
+        {
+          "line": 76,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 132,
+          "text": "const payload = await response.json().catch(() => undefined) as { requestId?: string; data?: TranscribeResult; error?: { code?: string } } | undefined;"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-operation-failure.native.ts",
+      "hits": [
+        {
+          "line": 68,
+          "text": "if (['ai_insufficient_material', 'ai_material_too_long'].includes(code)) return { stage: 'response_validation' as const, retryable: false, userAction: 'none' as const, userMessage: '当前题目材料不足或过长，暂时无法可靠分析。录音和回答已保留。' };"
+        },
+        {
+          "line": 70,
+          "text": "if (code === 'ai_invalid_answer') return { stage: 'response_validation' as const, retryable: false, userAction: 'none' as const, userMessage: '当前回答无法分析，请编辑文字或重新录音后再试。' };"
+        },
+        {
+          "line": 74,
+          "text": "userMessage: '本次学习暂未保存，尚未发起 AI 处理，请重试。' };"
+        },
+        {
+          "line": 137,
+          "text": "userMessage: 'AI 服务尚未完成配置，请提交诊断信息并联系支持。',"
+        },
+        {
+          "line": 145,
+          "text": "userMessage: 'AI 服务暂时不可用，请稍后再试或提交诊断信息。',"
+        },
+        {
+          "line": 153,
+          "text": "userMessage: 'AI 服务暂时不可用，请稍后再试或提交诊断信息。',"
+        },
+        {
+          "line": 177,
+          "text": "userMessage: 'AI 服务响应超时，请检查网络后手动重试。',"
+        },
+        {
+          "line": 185,
+          "text": "userMessage: 'AI 服务暂时不可用，请稍后手动重试。',"
+        },
+        {
+          "line": 193,
+          "text": "? '录音上传失败，请检查网络后重试。'"
+        },
+        {
+          "line": 194,
+          "text": ": 'AI 请求失败，请检查网络后重试。',"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-operation-failure.ts",
+      "hits": [
+        {
+          "line": 121,
+          "text": "userMessage: 'AI 服务尚未完成配置，请提交诊断信息并联系支持。',"
+        },
+        {
+          "line": 161,
+          "text": "userMessage: 'AI 服务响应超时，请检查网络后手动重试。',"
+        },
+        {
+          "line": 169,
+          "text": "userMessage: 'AI 服务暂时不可用，请稍后手动重试。',"
+        },
+        {
+          "line": 177,
+          "text": "? '录音上传失败，请检查网络后重试。'"
+        },
+        {
+          "line": 178,
+          "text": ": 'AI 请求失败，请检查网络后重试。',"
+        }
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-operation-recovery.native.ts",
+      "hits": [
+        {
+          "line": 71,
+          "text": "if (running) return runningOwner === ownerKey ? running : running.catch(() => undefined).then(recoverPendingAiOperations);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/app-content/LegalConsentGate.native.tsx",
+      "hits": [
+        {
+          "line": 65,
+          "text": "} else setError('暂时无法保存确认，请检查网络后重试。');"
+        },
+        {
+          "line": 75,
+          "text": "catch { setError('退出未完成，请重试。'); }"
+        },
+        {
+          "line": 94,
+          "text": "{error ? <AppText accessibilityRole=\"alert\" color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/app-content/legal-consent.native.ts",
+      "hits": [
+        {
+          "line": 22,
+          "text": "await Storage.setItem(key(accountId), JSON.stringify(status)).catch(() => undefined);"
+        },
+        {
+          "line": 44,
+          "text": "await Storage.setItem(key(accountId), JSON.stringify({ accountId, releaseVersion: receipt.releaseVersion, ...documents, receipt } satisfies CachedConsent)).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/app-content/repository.native.ts",
+      "hits": [
+        {
+          "line": 45,
+          "text": "await Storage.setItem(cacheKey(base), JSON.stringify(data)).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/app-updates/AppUpdatePrompt.tsx",
+      "hits": [
+        {
+          "line": 20,
+          "text": "const run = () => { void checkAppUpdate().then((value) => { if (active) setUpdate(value); }).catch(() => undefined); };"
+        },
+        {
+          "line": 29,
+          "text": "try { const next = await checkAppUpdate(true); setUpdate(next); if (!next) setMessage('当前渠道暂无可用的新版本。'); }"
+        },
+        {
+          "line": 30,
+          "text": "catch { setMessage('暂时无法检查更新，请稍后重试。'); }"
+        },
+        {
+          "line": 33,
+          "text": "function later() { if (update) void dismissAppUpdate(update).catch(() => undefined); setUpdate(undefined); }"
+        },
+        {
+          "line": 41,
+          "text": "{message ? <AppText color={colors.destructive} variant=\"caption\">{message}</AppText> : null}"
+        },
+        {
+          "line": 42,
+          "text": "<Button onPress={() => { void openAppUpdate(update).catch(() => setMessage('无法打开更新入口，请稍后重试。')); }}>立即更新</Button>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/AccountRestoreState.native.tsx",
+      "hits": [
+        {
+          "line": 4,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 18,
+          "text": "catch { setError('操作未完成，请重试。'); }"
+        },
+        {
+          "line": 22,
+          "text": "<CenteredState title=\"暂时无法确认账号状态\" description=\"请重新检查，或退出当前登录后重试。本机学习数据会保留。\""
+        },
+        {
+          "line": 24,
+          "text": "{error ? <AppText color={colors.destructive} style={styles.action} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/AuthProvider.tsx",
+      "hits": [
+        {
+          "line": 402,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 429,
+          "text": "await acceptAuthenticatedSession(persisted).catch(() => undefined);"
+        },
+        {
+          "line": 441,
+          "text": "void runLearningSync().catch(() => undefined);"
+        },
+        {
+          "line": 458,
+          "text": "void inspectPendingAccountDeletion().catch(() => undefined);"
+        },
+        {
+          "line": 483,
+          "text": "await service?.signOut('local').catch(() => undefined);"
+        },
+        {
+          "line": 485,
+          "text": "await Promise.resolve(clearLocalAiConsent()).catch(() => undefined);"
+        },
+        {
+          "line": 550,
+          "text": "await service.signOut('local').catch(() => undefined);"
+        },
+        {
+          "line": 616,
+          "text": "await service.signOut('local').catch(() => undefined);"
+        },
+        {
+          "line": 739,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/AuthProvider.web.tsx",
+      "hits": [
+        {
+          "line": 89,
+          "text": "await service.signOut('local').catch(() => undefined);"
+        },
+        {
+          "line": 90,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 115,
+          "text": "if (cloudSyncEnabled) void runLearningSync().catch(() => undefined);"
+        },
+        {
+          "line": 169,
+          "text": "setBindingError('绑定或首次同步失败，本机数据仍保留，可稍后重试。');"
+        },
+        {
+          "line": 185,
+          "text": "setBindingError('本机归档或云端初始化失败，原数据仍保留，请稍后重试。');"
+        },
+        {
+          "line": 196,
+          "text": "await service.signOut('local').catch(() => undefined);"
+        },
+        {
+          "line": 197,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 248,
+          "text": "await clearLocalAiConsent().catch(() => undefined);"
+        },
+        {
+          "line": 274,
+          "text": "{bindingError ? <AppText color={colors.destructive} variant=\"caption\">{bindingError}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/auth-service.web.ts",
+      "hits": [
+        {
+          "line": 32,
+          "text": "const body = await response.json().catch(() => undefined) as"
+        },
+        {
+          "line": 174,
+          "text": "const body = await response.json().catch(() => undefined) as"
+        },
+        {
+          "line": 195,
+          "text": "void this.refreshSession().catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/phone-otp-challenge-store.ts",
+      "hits": [
+        {
+          "line": 113,
+          "text": "await phoneOtpStorage.removeItem(LEGACY_KEY).catch(() => undefined);"
+        },
+        {
+          "line": 164,
+          "text": "await phoneOtpStorage.removeItem(LEGACY_KEY).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/auth/secure-session-storage.ts",
+      "hits": [
+        {
+          "line": 12,
+          "text": "const current = previous.catch(() => undefined).then(operation);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/AppDownloadScreen.tsx",
+      "hits": [
+        {
+          "line": 104,
+          "text": "<AppText variant=\"micro\" style={styles.badge}>{androidUrl ? (release ? `v${release.version}` : '正式版') : loadingDownload ? '查询中' : failedDownload ? '暂不可用' : '筹备中'}</AppText>"
+        },
+        {
+          "line": 112,
+          "text": "<AppText style={styles.hint}>{androidUrl ? '下载后打开安装包，按系统提示安装' : loadingDownload ? '正在查询已发布版本' : failedDownload ? '下载信息加载失败，请重试' : '安卓版暂未开放下载'}</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/MockExamScreen.native.tsx",
+      "hits": [
+        {
+          "line": 47,
+          "text": "catch { if (generation.current === request) setError('暂时无法生成试卷，请检查网络或调整板块后重试。'); }"
+        },
+        {
+          "line": 56,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}<Button disabled={!selectedIds.length || busy} leading={<Sparkles color={colors.primaryForeground} size={18} />} onPress={() => void start()} size=\"lg\">{busy ? '正在生成试卷…' : selectedIds.length ? `开始${complete ? '完整' : '自选'}练习` : '请至少选择一个板块'}</Button>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/MockExamScreen.tsx",
+      "hits": [
+        {
+          "line": 32,
+          "text": "const start = async () => { if (!selectedIds.length) return; setBusy(true); setError(undefined); try { setStudyPackage(toQuestionBankStudyPackage(await buildMockExamSession({ examType, modules: selectedIds }))); } catch (value) { setError(value instanceof Error ? value.message : '试卷生成失败，请重试。'); } finally { setBusy(false); } };"
+        },
+        {
+          "line": 39,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}<Button disabled={!selectedIds.length || busy} leading={<Sparkles color={colors.primaryForeground} size={18} />} onPress={() => void start()} size=\"lg\">{busy ? '正在生成试卷…' : selectedIds.length ? `开始${complete ? '完整' : '自选'}模考` : '请至少选择一个板块'}</Button>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/RadioPlayerScreen.tsx",
+      "hits": [
+        {
+          "line": 31,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 166,
+          "text": "<CenteredState icon={Headphones} title={radio.error ? '曲目加载失败' : '当前范围暂无可播放内容'}"
+        },
+        {
+          "line": 197,
+          "text": "<AppText numberOfLines={1} style={styles.trackTitle}>{radio.currentTrack?.title ?? '正在准备曲目'}</AppText>"
+        },
+        {
+          "line": 207,
+          "text": "<AppText style={styles.englishText}>{radio.currentTrack?.audioText || '当前曲目暂无英文原文。'}</AppText>"
+        },
+        {
+          "line": 208,
+          "text": "{radio.subtitleMode === 'bilingual' ? <AppText style={styles.chineseText}>{radio.currentTrack?.audioTextZh || '当前曲目暂无中文译文。'}</AppText> : null}"
+        },
+        {
+          "line": 214,
+          "text": "{radio.error ? <View style={styles.errorRow}><AlertCircle color={colors.destructive} size={15} /><AppText color={colors.destructive} style={styles.errorCopy} variant=\"caption\">{radio.error}</AppText><Pressable accessibilityLabel=\"重试音频\" onPress={radio.retry} style={styles.retry}><RotateCcw color={colors.destructive} size={15} /><AppText color={colors.destructive} variant=\"caption\">重试</AppText></Pressable></View> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotAccessView.native.tsx",
+      "hits": [
+        {
+          "line": 11,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 52,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 70,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 81,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 83,
+          "text": "description=\"暂时无法连接内容服务，请检查网络后重试。\""
+        },
+        {
+          "line": 92,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 93,
+          "text": "description=\"该热点资讯不存在、已更新或已经下线。\""
+        },
+        {
+          "line": 95,
+          "text": "title=\"无法打开热点资讯\""
+        },
+        {
+          "line": 101,
+          "text": "<CenteredState"
+        },
+        {
+          "line": 103,
+          "text": "description={`内容服务暂时无法提供这期练习，请稍后重试。${requestId}`}"
+        },
+        {
+          "line": 106,
+          "text": "title=\"热点内容暂不可用\""
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotDetailScreen.tsx",
+      "hits": [
+        {
+          "line": 7,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 29,
+          "text": "if (!result?.dataset) throw new Error('OPI 题库数据读取失败，请稍后重试。');"
+        },
+        {
+          "line": 32,
+          "text": "setError(cause instanceof Error ? cause.message : '热点详情读取失败。');"
+        },
+        {
+          "line": 42,
+          "text": "<CenteredState description=\"该热点资讯不存在或已经下线。\" title=\"无法打开热点资讯\" tone=\"destructive\" />"
+        },
+        {
+          "line": 66,
+          "text": "<CenteredState actionLabel=\"重新加载\" description={error} onAction={() => void load()} title=\"热点详情读取失败\" tone=\"destructive\" />"
+        },
+        {
+          "line": 113,
+          "text": "if (!result?.dataset) throw new Error('OPI 题库数据读取失败，请稍后重试。');"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotListScreen.native.tsx",
+      "hits": [
+        {
+          "line": 25,
+          "text": "void refreshHotspotBriefs().then((items) => { if (active) setBriefs(items); }).catch(() => undefined);"
+        },
+        {
+          "line": 43,
+          "text": "{briefs.length === 0 ? <AppText style={{ padding: spacing[4] }}>暂无热点内容</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotStudyScreen.tsx",
+      "hits": [
+        {
+          "line": 6,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 27,
+          "text": "setError(cause instanceof Error ? cause.message : '热点练习包读取失败。');"
+        },
+        {
+          "line": 37,
+          "text": "<CenteredState description=\"该热点资讯不存在或已经下线。\" title=\"无法开始热点学习\" tone=\"destructive\" />"
+        },
+        {
+          "line": 45,
+          "text": "<CenteredState actionLabel=\"重新加载\" description={error} onAction={() => void load()} title=\"热点练习包读取失败\" tone=\"destructive\" />"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/build-hotspot-session.ts",
+      "hits": [
+        {
+          "line": 28,
+          "text": "throw new Error(`热点话题不存在：${hotspotTopic.topicId}`);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/resolve-hotspot-topics.native.ts",
+      "hits": [
+        {
+          "line": 10,
+          "text": "if (!topic) throw new Error(`热点话题不存在：${selected.topicId}`);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/editorial/EditorialArticleScreen.tsx",
+      "hits": [
+        {
+          "line": 7,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 15,
+          "text": "if (state.status === 'loading') return <Screen><TopBar title=\"资源文章\" /><CenteredState description=\"正在加载文章正文。\" title=\"加载中\" /></Screen>;"
+        },
+        {
+          "line": 16,
+          "text": "if (state.status === 'empty') return <Screen><TopBar title=\"资源文章\" /><CenteredState description=\"这篇文章不存在或已撤回。\" icon={FileQuestion} title=\"未找到文章\" /></Screen>;"
+        },
+        {
+          "line": 17,
+          "text": "if (state.status === 'error') return <Screen><TopBar title=\"资源文章\" /><CenteredState actionLabel=\"重新加载\" description=\"暂时无法获取文章，请检查网络后重试。\" onAction={state.retry} title=\"文章加载失败\" tone=\"destructive\" /></Screen>;"
+        },
+        {
+          "line": 25,
+          "text": "<AppText color={colors.foreground} style={styles.grow} variant=\"caption\">网络不可用，正在显示上次缓存的文章。</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/editorial/ResourceEditorialScreen.tsx",
+      "hits": [
+        {
+          "line": 7,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 22,
+          "text": "{state.status === 'loading' ? <CenteredState description=\"正在获取最新资源文章。\" title=\"加载中\" /> : null}"
+        },
+        {
+          "line": 23,
+          "text": "{state.status === 'empty' ? <CenteredState description=\"首篇文章正在准备中，请稍后再来。\" icon={FileText} title=\"暂无资源\" /> : null}"
+        },
+        {
+          "line": 24,
+          "text": "{state.status === 'error' ? <CenteredState actionLabel=\"重新加载\" description=\"暂时无法连接内容服务，请检查网络后重试。\" onAction={state.retry} title=\"资源加载失败\" tone=\"destructive\" /> : null}"
+        },
+        {
+          "line": 30,
+          "text": "<AppText color={colors.foreground} style={styles.noticeText} variant=\"caption\">网络不可用，正在显示上次缓存的内容。</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/editorial/repository.web.ts",
+      "hits": [
+        {
+          "line": 164,
+          "text": "void fetchEditorialRelease(identity).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/editorial/use-editorial.native.ts",
+      "hits": [
+        {
+          "line": 29,
+          "text": "coverUrl: await resolveEditorialCover(item).catch(() => undefined),"
+        },
+        {
+          "line": 62,
+          "text": "const coverUrl = await resolveEditorialCover(result.data.article).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/editorial/use-editorial.ts",
+      "hits": [
+        {
+          "line": 28,
+          "text": "coverUrl: await resolveEditorialCover(item).catch(() => undefined),"
+        },
+        {
+          "line": 59,
+          "text": "const coverUrl = await resolveEditorialCover(result.data.article).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/feedback/feedback-client.native.ts",
+      "hits": [
+        {
+          "line": 110,
+          "text": "const body = await response.json().catch(() => undefined) as"
+        }
+      ]
+    },
+    {
+      "path": "src/features/feedback/feedback-client.ts",
+      "hits": [
+        {
+          "line": 89,
+          "text": "const body = await response.json().catch(() => undefined) as"
+        }
+      ]
+    },
+    {
+      "path": "src/features/info/AboutPage.native.tsx",
+      "hits": [
+        {
+          "line": 20,
+          "text": "catch { setError('暂时无法打开备案查询，请稍后重试。'); }"
+        },
+        {
+          "line": 40,
+          "text": "{error ? <AppText accessibilityLiveRegion=\"polite\" color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/info/InfoScreen.native.tsx",
+      "hits": [
+        {
+          "line": 79,
+          "text": "}).catch(() => undefined);"
+        },
+        {
+          "line": 181,
+          "text": "Alert.alert('放弃本次反馈？', submitting ? '提交结果尚未确认。离开后将停止等待，服务端可能已经收到本次反馈。' : '未提交的文字和图片不会保存。', ["
+        },
+        {
+          "line": 192,
+          "text": "Alert.alert('最多添加 3 张图片');"
+        },
+        {
+          "line": 198,
+          "text": "Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');"
+        },
+        {
+          "line": 229,
+          "text": "Alert.alert("
+        },
+        {
+          "line": 235,
+          "text": "if (mounted.current) setError('暂时无法添加图片，请重试。已填写的内容仍保留。');"
+        },
+        {
+          "line": 376,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">{error}</AppText>"
+        },
+        {
+          "line": 402,
+          "text": "return '提交失败，请检查网络后重试。你的文字和图片已保留。';"
+        },
+        {
+          "line": 412,
+          "text": "void loadAppContent().then(({ data }) => { if (active) setDocument(data.payload.legal[documentId]); }).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/info/InfoScreen.tsx",
+      "hits": [
+        {
+          "line": 186,
+          "text": "Alert.alert('放弃本次反馈？', '未提交的文字和图片不会保存。', ["
+        },
+        {
+          "line": 195,
+          "text": "Alert.alert('最多添加 3 张图片');"
+        },
+        {
+          "line": 200,
+          "text": "Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');"
+        },
+        {
+          "line": 230,
+          "text": "Alert.alert("
+        },
+        {
+          "line": 357,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">{error}</AppText>"
+        },
+        {
+          "line": 383,
+          "text": "return '提交失败，请检查网络后重试。你的文字和图片已保留。';"
+        },
+        {
+          "line": 395,
+          "text": "Alert.alert('暂时无法打开应用商店', '请稍后在对应应用商店中搜索“听你五个”。');"
+        },
+        {
+          "line": 411,
+          "text": "Alert.alert('检查更新', `当前版本为 ${APP_DISPLAY_VERSION}。请前往对应应用商店查看是否有可用更新。`);"
+        },
+        {
+          "line": 469,
+          "text": "['退出、注销与责任', '您可以退出账号、退出全部设备或在应用内申请注销。注销会删除账号及依法无需继续保留的关联数据，且通常无法恢复。任何一方违反本协议或法律规定的，应依法承担相应责任。'],"
+        }
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/build-session.native.ts",
+      "hits": [
+        {
+          "line": 96,
+          "text": "throw new Error('OPI 暂无包含 5 道问答的可用话题，请返回后重试。');"
+        },
+        {
+          "line": 104,
+          "text": "for (const moduleId of selected) if (!datasets[moduleId]) throw new Error(`题库加载失败：${MOCK_EXAM_MODULE_LABELS[moduleId]}`);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/build-session.ts",
+      "hits": [
+        {
+          "line": 43,
+          "text": "for (const moduleId of selected) if (!datasets[moduleId]) throw new Error(`题库加载失败：${MOCK_EXAM_MODULE_LABELS[moduleId]}`);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/topic-loader.native.ts",
+      "hits": [
+        {
+          "line": 28,
+          "text": "throw new Error(`${dataset.title}题组加载失败：${topic.name}`);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/CommerceRuntimeProvider.native.tsx",
+      "hits": [
+        {
+          "line": 152,
+          "text": "return runtimeError('restore-timed-out', operation, '核对购买记录超时，请稍后重试。', {"
+        },
+        {
+          "line": 158,
+          "text": "return runtimeError('restore-failed', operation, '购买记录较多，暂时无法完成核对，请联系支持。', {"
+        },
+        {
+          "line": 164,
+          "text": "return runtimeError('restore-failed', operation, '恢复购买失败，请检查网络后重试。', {"
+        },
+        {
+          "line": 170,
+          "text": "return runtimeError('catalog-unavailable', operation, '暂时无法连接 App Store，请检查网络后重试。', {"
+        },
+        {
+          "line": 189,
+          "text": "return runtimeError('purchase-failed', operation, '购买暂时未完成，请稍后重试。', {"
+        },
+        {
+          "line": 401,
+          "text": "void activateQuestionBankContentAccount(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 537,
+          "text": "'本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',"
+        },
+        {
+          "line": 585,
+          "text": ": '暂时无法连接 App Store 或读取会员信息，请稍后重试。',"
+        },
+        {
+          "line": 595,
+          "text": "})().catch(() => undefined);"
+        },
+        {
+          "line": 648,
+          "text": "'自动核对暂时失败，可稍后手动刷新。',"
+        },
+        {
+          "line": 662,
+          "text": "lifecycle.drain(environmentActivation.catch(() => undefined));"
+        },
+        {
+          "line": 697,
+          "text": "}).catch(() => undefined).finally(() => operation.finish());"
+        },
+        {
+          "line": 736,
+          "text": "'本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',"
+        },
+        {
+          "line": 765,
+          "text": "'暂时无法完成购买核对，请勿重复下单。',"
+        },
+        {
+          "line": 774,
+          "text": "'状态更新失败，请检查网络后重试。',"
+        },
+        {
+          "line": 794,
+          "text": "'购买功能正在准备或已有操作进行中。',"
+        },
+        {
+          "line": 810,
+          "text": "'购买功能正在准备或已有操作进行中。',"
+        },
+        {
+          "line": 875,
+          "text": "operation.drain(clearUncertainPurchase(controller.accountId).catch(() => undefined));"
+        },
+        {
+          "line": 1012,
+          "text": "? '购买前准备等待超时，未发起扣款，请稍后重试。'"
+        },
+        {
+          "line": 1013,
+          "text": ": '购买前状态核对失败，未发起扣款，请稍后重试。',"
+        },
+        {
+          "line": 1049,
+          "text": "'恢复购买正在准备或已有操作进行中。',"
+        },
+        {
+          "line": 1105,
+          "text": "'本机上一笔购买记录无法安全核对，请勿重复下单并联系支持。',"
+        },
+        {
+          "line": 1148,
+          "text": "? '恢复失败，未决交易仍在核对，请勿重复下单。'"
+        },
+        {
+          "line": 1150,
+          "text": "? '恢复购买等待超时，请稍后重试。'"
+        },
+        {
+          "line": 1151,
+          "text": ": '恢复购买失败，请检查网络后重试。',"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/MembershipPage.native.tsx",
+      "hits": [
+        {
+          "line": 82,
+          "text": "catch { if (activeRef.current) setActionError('操作未完成，请稍后重试。'); }"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/MembershipPage.tsx",
+      "hits": [
+        {
+          "line": 107,
+          "text": ": '暂时无法读取 App Store 商品'}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/WebEntitlementProvider.tsx",
+      "hits": [
+        {
+          "line": 42,
+          "text": "if (valid(owner)) { setPhase('error'); setMessage('暂时无法同步会员权益，请检查网络后重新同步。'); }"
+        },
+        {
+          "line": 49,
+          "text": "void activateQuestionBankContentAccount(undefined).catch(() => undefined); return; }"
+        },
+        {
+          "line": 55,
+          "text": ".catch(() => { if (valid(owner)) { setPhase('error'); setMessage('会员状态准备失败，请刷新页面重试。'); } });"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/android-commerce-runtime.android.tsx",
+      "hits": [
+        {
+          "line": 98,
+          "text": "if (valid(owner) && !catalog.available) { setPhase('unavailable'); setMessage('微信支付暂不可用，请稍后重试。'); }"
+        },
+        {
+          "line": 99,
+          "text": "} catch { if (valid(owner)) { setPhase(pending.current ? 'pending' : 'error'); setMessage('暂时无法核对购买状态，请稍后重新检查。'); } }"
+        },
+        {
+          "line": 106,
+          "text": "void activateQuestionBankContentAccount(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 111,
+          "text": "if (valid(owner)) { setPhase('error'); setMessage('购买服务暂不可用，请稍后重试。'); }"
+        },
+        {
+          "line": 139,
+          "text": ": !status.configured || !status.supported ? '当前微信支付暂不可用，请稍后重试。' : undefined;"
+        },
+        {
+          "line": 142,
+          "text": "const message = '暂时无法检查微信状态，请稍后重试。';"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/commerce-environment.native.ts",
+      "hits": [
+        {
+          "line": 32,
+          "text": "const result = previous.catch(() => undefined).then(operation);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/commerce-transaction-coordinator.native.ts",
+      "hits": [
+        {
+          "line": 257,
+          "text": "await this.consumer.observeQuarantined?.(transaction).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/react-native-iap-storekit-client.native.ts",
+      "hits": [
+        {
+          "line": 46,
+          "text": "const result = connectionQueue.catch(() => undefined).then(operation);"
+        },
+        {
+          "line": 154,
+          "text": "await releaseConnection(this.connectionOwner, options).catch(() => undefined);"
+        },
+        {
+          "line": 177,
+          "text": "await releaseConnection(this.connectionOwner, options).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/native-commercial-testflight/wechat-pay-client.android.ts",
+      "hits": [
+        {
+          "line": 20,
+          "text": "try { void Promise.resolve(module.cancelPayment(checkout.id)).catch(() => undefined); } catch { /* Still reconcile the server order. */ }"
+        }
+      ]
+    },
+    {
+      "path": "src/features/profile/AiAllowanceCard.native.tsx",
+      "hits": [
+        {
+          "line": 31,
+          "text": "if (allowance.mode === 'unavailable') return { title: 'AI 每周使用限额', value: '暂时无法读取', detail: '' };"
+        },
+        {
+          "line": 90,
+          "text": "title: 'AI 每周使用限额', value: visible?.failed ? '暂时无法读取' : '正在读取…', detail: '',"
+        }
+      ]
+    },
+    {
+      "path": "src/features/profile/ContactRow.native.tsx",
+      "hits": [
+        {
+          "line": 22,
+          "text": "if (mounted.current) setFeedback(copied ? '已复制' : '复制失败，请重试');"
+        },
+        {
+          "line": 24,
+          "text": "if (mounted.current) setFeedback('复制失败，请重试');"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/annotation-store.ts",
+      "hits": [
+        {
+          "line": 183,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 205,
+          "text": "const queued = writeQueue.catch(() => undefined).then(() => writeStore(next));"
+        },
+        {
+          "line": 216,
+          "text": "const queued = writeQueue.catch(() => undefined).then(() => writeStore(next));"
+        },
+        {
+          "line": 224,
+          "text": "const queued = writeQueue.catch(() => undefined).then(() => writeStore(store));"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/card-index.ts",
+      "hits": [
+        {
+          "line": 52,
+          "text": "if (!reference) return '原题内容已更新或不可用';"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/use-question-annotations.ts",
+      "hits": [
+        {
+          "line": 38,
+          "text": "setLoadErrorMessage('本机标注读取失败，请重试。');"
+        },
+        {
+          "line": 66,
+          "text": "setSaveErrorMessage('标注保存失败，请检查本机存储后重试。');"
+        },
+        {
+          "line": 154,
+          "text": "setSaveErrorMessage('标注保存失败，请检查本机存储后重试。');"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AnnotationToolbar.native.tsx",
+      "hits": [
+        {
+          "line": 172,
+          "text": "Alert.alert('放弃未保存的修改？', '当前分类名称尚未保存。可以继续编辑，或放弃修改后离开。', ["
+        },
+        {
+          "line": 203,
+          "text": "if (!await onSaveDefinition?.(kind, definition?.id, name, tone)) { setError('保存未完成，请重试；每种颜色只能有一个名称。'); return; }"
+        },
+        {
+          "line": 205,
+          "text": "} catch { setError('保存失败，请重试。'); }"
+        },
+        {
+          "line": 212,
+          "text": "if (!await onDeleteDefinition?.(kind, definition.id)) { setError('删除未完成，请重试。'); return; }"
+        },
+        {
+          "line": 214,
+          "text": "} catch { setError('删除失败，请重试。'); }"
+        },
+        {
+          "line": 236,
+          "text": "{pendingTone ? <View style={{ gap: spacing[2] }}><AppText variant=\"caption\">切换颜色会放弃未保存的名称修改。</AppText><Button size=\"sm\" onPress={() => selectTone(pendingTone)}>放弃修改并切换</Button><Button size=\"sm\" variant=\"outline\" onPress={() => setPendingTone(undefined)}>继续编辑</Button></View> : null}"
+        },
+        {
+          "line": 238,
+          "text": "{error ? <AppText color={colors.destructive} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 240,
+          "text": "{definition ? <Pressable accessibilityLabel=\"删除当前分类\" disabled={busy} onPress={() => setDeleting(true)} style={styles.iconButton}><Trash2 color={colors.destructive} size={18} /></Pressable> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AnswerCardSheet.tsx",
+      "hits": [
+        {
+          "line": 38,
+          "text": "<Legend color={colors.destructive} label=\"答错\" />"
+        },
+        {
+          "line": 49,
+          "text": "const resultColor = result === 'correct' ? colors.answerCorrect : result === 'incorrect' ? colors.destructive : undefined;"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ChoiceList.tsx",
+      "hits": [
+        {
+          "line": 105,
+          "text": "{incorrect ? <View style={translationVisible ? styles.statusRevealed : null}><X accessibilityLabel=\"错误答案\" color={colors.destructive} size={18} /></View> : null}"
+        },
+        {
+          "line": 129,
+          "text": "letterIncorrect: { backgroundColor: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ExamQuestionAudio.native.tsx",
+      "hits": [
+        {
+          "line": 59,
+          "text": "void audioSessionOrchestrator.release(current).catch(() => undefined);"
+        },
+        {
+          "line": 107,
+          "text": "onStart: () => { if (utterance === speechGeneration.current) { audible.current = true; if (phaseRef.current !== 'paused') update('playing'); else void Speech.pause().catch(() => undefined); } },"
+        },
+        {
+          "line": 147,
+          "text": "return () => { mounted.current = false; unregister(); subscription.remove(); appSubscription.remove(); generation.current += 1; try { player.pause(); } catch { /* Player disposed. */ } speechGeneration.current += 1; if (speechStarted.current) void Speech.stop().catch(() => undefined); release(); };"
+        },
+        {
+          "line": 186,
+          "text": "const timer = setTimeout(() => { if (phaseRef.current === 'loading' || (phaseRef.current === 'playing' && !audible.current)) { operations.current.pause(); eligibleForInterruption.current = false; if (speechStarted.current) { speechGeneration.current += 1; void Speech.stop().catch(() => undefined); } fail('exam_first_frame_timeout'); } }, 15_000);"
+        },
+        {
+          "line": 194,
+          "text": "if (speechStarted.current) { speechPaused.current = false; speechGeneration.current += 1; void Speech.stop().catch(() => undefined); }"
+        },
+        {
+          "line": 198,
+          "text": "const labelText = awaitingAudioGesture ? (resolving ? '正在准备音频…' : '点击播放题目') : phase === 'loading' ? '正在准备音频…' : phase === 'playing' ? '音频播放中' : phase === 'ended' ? '音频已播放' : interruptionReplay ? '音频已中断，可重播本题音频' : phase === 'error' ? '音频暂不可用，可继续作答或进入下一题' : '音频已中断，可继续作答或进入下一题';"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ExamSpeakingPractice.native.tsx",
+      "hits": [
+        {
+          "line": 18,
+          "text": "const label = busy ? (controller.phase === 'finalizing' ? '正在保存…' : '正在准备…') : recording ? `松开结束 · ${Math.floor(controller.durationMillis / 1000)} 秒` : controller.asset ? '按住重录' : '按住说话';"
+        },
+        {
+          "line": 23,
+          "text": "{controller.error ? <AppText color={colors.destructive} variant=\"caption\">{controller.permissionDenied ? '需要麦克风权限；也可以不作答，继续下一题。' : controller.asset ? '重录未完成，原录音已保留，可以重试或继续。' : '录音未完成，可以重试或继续下一题。'}</AppText> : controller.asset && !recording ? <AppText variant=\"caption\">本题已录音 · {Math.floor(controller.asset.durationMillis / 1000)} 秒</AppText> : null}"
+        },
+        {
+          "line": 27,
+          "text": "const styles = StyleSheet.create({ root: { gap: spacing[2] }, record: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: spacing[2], backgroundColor: colors.primary, minHeight: 48, borderRadius: radii.full, paddingHorizontal: spacing[4] }, recording: { backgroundColor: colors.destructive } });"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ImageQuestionCard.tsx",
+      "hits": [
+        {
+          "line": 78,
+          "text": "<AppText color={colors.mutedForeground} variant=\"caption\">正在加载图片…</AppText>"
+        },
+        {
+          "line": 83,
+          "text": "<AlertCircle color={colors.destructive} size={24} />"
+        },
+        {
+          "line": 84,
+          "text": "<AppText variant=\"button\">{state === 'timeout' ? '图片加载超时' : '图片加载失败'}</AppText>"
+        },
+        {
+          "line": 89,
+          "text": "<RotateCcw color={colors.destructive} size={15} />"
+        },
+        {
+          "line": 90,
+          "text": "<AppText color={colors.destructive} variant=\"button\">重试</AppText>"
+        },
+        {
+          "line": 108,
+          "text": "retry: { alignItems: 'center', borderColor: colors.destructive, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], marginTop: spacing[1], minHeight: 36, paddingHorizontal: spacing[3] },"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/LearningRecordsScreen.native.tsx",
+      "hits": [
+        {
+          "line": 59,
+          "text": "} catch { if (mounted.current) setError('学习记录暂时无法读取，请重试。'); }"
+        },
+        {
+          "line": 88,
+          "text": "} catch { if (mounted.current) { failedRecord.current = record; setError('这次学习的记录暂时无法打开，请重试。'); } }"
+        },
+        {
+          "line": 94,
+          "text": "if (mounted.current) { failedDelete.current = record; setError('删除失败，请重试。'); }"
+        },
+        {
+          "line": 99,
+          "text": "Alert.alert('删除这次学习记录？', '将删除本次作答和 AI 反馈，保留题目笔记、标签和学习进度。', ["
+        },
+        {
+          "line": 123,
+          "text": "ListHeaderComponent={<View style={styles.header}><AppText variant=\"pageTitle\">最近学习</AppText>{error ? <View style={styles.error}><AppText color={colors.destructive}>{error}</AppText><Button variant=\"secondary\" onPress={() => { if (failedRecord.current) void open(failedRecord.current); else if (failedDelete.current) remove(failedDelete.current); else void loadPage(); }}>重试</Button></View> : null}</View>}"
+        },
+        {
+          "line": 130,
+          "text": "<Trash2 color={colors.destructiveForeground} size={20} /><AppText color={colors.destructiveForeground} variant=\"button\">删除</AppText>"
+        },
+        {
+          "line": 138,
+          "text": "{record.recordType === 'mock_exam' && record.reason !== 'complete' ? <Tag tone=\"accent\">未完成</Tag> : null}"
+        },
+        {
+          "line": 162,
+          "text": "delete: { alignItems: 'center', justifyContent: 'center', backgroundColor: colors.destructive, gap: spacing[1], paddingHorizontal: spacing[5] },"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/LearningRecordsScreen.tsx",
+      "hits": [
+        {
+          "line": 84,
+          "text": "setError('这次学习的逐题详情暂时无法读取，请重试。');"
+        },
+        {
+          "line": 98,
+          "text": "setError('这条 AI 结果暂时无法从云端删除，本机记录已保留，请稍后重试。');"
+        },
+        {
+          "line": 105,
+          "text": "Alert.alert('删除这条 AI 结果？', '删除后会同步到其他设备，不影响其他学习记录。', ["
+        },
+        {
+          "line": 126,
+          "text": "{error ? <AppText color={colors.destructive} style={styles.error} variant=\"caption\">{error}</AppText> : null}"
+        },
+        {
+          "line": 143,
+          "text": "<Trash2 color={colors.destructive} size={17} />"
+        },
+        {
+          "line": 156,
+          "text": ": <AppText color={colors.mutedForeground} variant=\"caption\">此记录未保存逐题详情</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/LegacyLookupPronunciation.tsx",
+      "hits": [
+        {
+          "line": 47,
+          "text": "{phase === 'error' ? <AppText accessibilityLiveRegion=\"polite\" variant=\"caption\" color={colors.destructive}>发音暂不可用，请重试</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/LookupPronunciation.tsx",
+      "hits": [
+        {
+          "line": 35,
+          "text": "if (current) await audioSessionOrchestrator.release(current).catch(() => undefined);"
+        },
+        {
+          "line": 68,
+          "text": "if (acquired) await audioSessionOrchestrator.release(acquired).catch(() => undefined);"
+        },
+        {
+          "line": 76,
+          "text": "{phase === 'error' ? <AppText accessibilityLiveRegion=\"polite\" variant=\"caption\" color={colors.destructive}>发音暂不可用，请重试</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/MyAnnotationsScreen.native.tsx",
+      "hits": [
+        {
+          "line": 156,
+          "text": "<StateCard icon={Search} title=\"本机标注读取失败\" description={annotations.loadErrorMessage} action={<Button onPress={() => void annotations.refresh()} variant=\"outline\">重试</Button>} />"
+        },
+        {
+          "line": 163,
+          "text": ") : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}"
+        },
+        {
+          "line": 178,
+          "text": "<AppText variant=\"micro\">{reference?.bankTitle ?? '原题内容已更新或不可用'} · {tags.map((tag) => tag.label).join('、')}</AppText>"
+        },
+        {
+          "line": 208,
+          "text": "<AppText variant=\"micro\">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>"
+        },
+        {
+          "line": 258,
+          "text": "<View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant=\"micro\">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {formatRelativeTime(entry.updatedAt)}</AppText></View>"
+        },
+        {
+          "line": 274,
+          "text": "return <StateCard description=\"正在读取本机标注…\" icon={Search} title=\"正在汇总\" />;"
+        },
+        {
+          "line": 277,
+          "text": "function EmptyState({ allBanks, filtered, segment }: { allBanks: boolean; filtered: boolean; segment: AnnotationSegment }) {"
+        },
+        {
+          "line": 279,
+          "text": "return <StateCard description={filtered ? '试试切换或清除颜色筛选。' : `在做题时给题目添加${label}，就会汇总到这里。`} icon={Search} title={filtered ? `没有匹配该颜色的${label}` : `${allBanks ? '全部题库' : '这个题库'}还没有${label}`} />;"
+        },
+        {
+          "line": 282,
+          "text": "function StateCard({ action, description, icon: Icon, title }: { action?: React.ReactNode; description: string; icon: LucideIcon; title: string }) {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/MyAnnotationsScreen.tsx",
+      "hits": [
+        {
+          "line": 160,
+          "text": "<StateCard icon={Search} title=\"本机标注读取失败\" description={annotations.loadErrorMessage} action={<Button onPress={() => void annotations.refresh()} variant=\"outline\">重试</Button>} />"
+        },
+        {
+          "line": 167,
+          "text": ") : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}"
+        },
+        {
+          "line": 182,
+          "text": "<AppText variant=\"micro\">{reference?.bankTitle ?? '原题内容已更新或不可用'} · {tags.map((tag) => tag.label).join('、')}</AppText>"
+        },
+        {
+          "line": 212,
+          "text": "<AppText variant=\"micro\">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 处高亮` : ''}</AppText>"
+        },
+        {
+          "line": 262,
+          "text": "<View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant=\"micro\">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {formatRelativeTime(entry.updatedAt)}</AppText></View>"
+        },
+        {
+          "line": 278,
+          "text": "return <StateCard description=\"正在读取本机标注…\" icon={Search} title=\"正在汇总\" />;"
+        },
+        {
+          "line": 281,
+          "text": "function EmptyState({ allBanks, filtered, segment }: { allBanks: boolean; filtered: boolean; segment: AnnotationSegment }) {"
+        },
+        {
+          "line": 283,
+          "text": "return <StateCard description={filtered ? '试试切换或清除颜色筛选。' : `在做题时给题目添加${label}，就会汇总到这里。`} icon={Search} title={filtered ? `没有匹配该颜色的${label}` : `${allBanks ? '全部题库' : '这个题库'}还没有${label}`} />;"
+        },
+        {
+          "line": 286,
+          "text": "function StateCard({ action, description, icon: Icon, title }: { action?: React.ReactNode; description: string; icon: LucideIcon; title: string }) {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/QuestionBankStudyScreen.native.tsx",
+      "hits": [
+        {
+          "line": 19,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 246,
+          "text": "} catch { setFinishError('成绩暂未保存，请重试。'); setCanLeaveWithoutSave(true); }"
+        },
+        {
+          "line": 324,
+          "text": "setFinishError('笔记或标注保存失败，请重试。');"
+        },
+        {
+          "line": 332,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 348,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 363,
+          "text": "setFinishError('笔记或标注保存失败，请重试。');"
+        },
+        {
+          "line": 369,
+          "text": "setFinishError('回答自动保存失败，请重试后收起。');"
+        },
+        {
+          "line": 570,
+          "text": "setFinishError('笔记或标注保存失败，请重试。');"
+        },
+        {
+          "line": 576,
+          "text": "setFinishError('回答自动保存失败，请重试后返回。');"
+        },
+        {
+          "line": 586,
+          "text": "setFinishError('学习记录保存失败，内容仍保留在当前页面，请重试。');"
+        },
+        {
+          "line": 596,
+          "text": "Alert.alert('仍然返回？', '尚未保存的本次作答可能丢失，已保存的学习记录不受影响。', ["
+        },
+        {
+          "line": 612,
+          "text": "setFinishError('笔记或标注保存失败，请重试。');"
+        },
+        {
+          "line": 618,
+          "text": "setFinishError('回答自动保存失败，请重试后提交纠错。');"
+        },
+        {
+          "line": 638,
+          "text": "setFinishError('回答自动保存失败，请重试后提交纠错。');"
+        },
+        {
+          "line": 658,
+          "text": "setFinishError('笔记或标注保存失败，请重试。');"
+        },
+        {
+          "line": 664,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 674,
+          "text": "setFinishError('学习报告保存失败，请重试。');"
+        },
+        {
+          "line": 687,
+          "text": "if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel=\"重新加载\" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title=\"学习内容加载失败\" tone=\"destructive\" /><Button variant=\"secondary\" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;"
+        },
+        {
+          "line": 794,
+          "text": "{finishError ? <AppText color={colors.destructive} style={styles.finishError} variant=\"caption\">{finishError}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/QuestionBankStudyScreen.tsx",
+      "hits": [
+        {
+          "line": 18,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 230,
+          "text": "setListeningSaveError('听力复盘尚未保存，请重试后再离开。');"
+        },
+        {
+          "line": 324,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 340,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 355,
+          "text": "setFinishError('回答自动保存失败，请重试后收起。');"
+        },
+        {
+          "line": 546,
+          "text": "setFinishError('回答自动保存失败，请重试后返回。');"
+        },
+        {
+          "line": 567,
+          "text": "setFinishError('回答自动保存失败，请重试后提交纠错。');"
+        },
+        {
+          "line": 586,
+          "text": "setFinishError('回答自动保存失败，请重试后提交纠错。');"
+        },
+        {
+          "line": 609,
+          "text": "setFinishError('回答自动保存失败，请重试后继续。');"
+        },
+        {
+          "line": 617,
+          "text": "setFinishError('学习报告保存失败，请重试。');"
+        },
+        {
+          "line": 628,
+          "text": "if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel=\"重新加载\" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title=\"学习内容加载失败\" tone=\"destructive\" /></SafeAreaView>;"
+        },
+        {
+          "line": 745,
+          "text": "<AppText variant=\"sectionTitle\">学习复盘{session.historyReview.items.some((entry) => !wasAnswered(session.historyReview!, entry.id) && !(entry.card.kind === 'image' && session.historyReview!.states[entry.id]?.completed)) ? ' · 未完成' : ''}</AppText>"
+        },
+        {
+          "line": 766,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">{listeningSaveError}</AppText>"
+        },
+        {
+          "line": 775,
+          "text": "<AppText>{session.answerText.trim() ? session.answerText : session.cardState?.recorded ? '本题仅录音，未保存文字答案' : '未作答'}</AppText>"
+        },
+        {
+          "line": 786,
+          "text": "{finishError ? <AppText color={colors.destructive} style={styles.finishError} variant=\"caption\">{finishError}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/SpeakingPracticePanel.tsx",
+      "hits": [
+        {
+          "line": 34,
+          "text": "return `请在浏览器的网站设置中允许麦克风，然后重新检测。若网站设置已允许但仍无法录音，请使用推荐浏览器打开。${preserved}`;"
+        },
+        {
+          "line": 38,
+          "text": "return `麦克风暂时不可用，请结束通话、会议或其它录音页面后重试。${preserved}`;"
+        },
+        {
+          "line": 40,
+          "text": "return `当前浏览器无法完成网页录音，请使用推荐浏览器继续。${preserved}`;"
+        },
+        {
+          "line": 56,
+          "text": "return `录音暂未开始，请重新按住录音；若仍无法使用，请切换推荐浏览器。${preserved}`;"
+        },
+        {
+          "line": 79,
+          "text": "if (error === 'playback_load_failed') return '录音回放准备失败，可以重试回放。';"
+        },
+        {
+          "line": 80,
+          "text": "if (error === 'playback_start_failed') return '录音回放启动失败，可以重试。';"
+        },
+        {
+          "line": 170,
+          "text": "? '正在准备麦克风…'"
+        },
+        {
+          "line": 224,
+          "text": "<AppText color={colors.destructive} style={styles.diagnosticErrorCopy} variant=\"caption\">{error}</AppText>"
+        },
+        {
+          "line": 343,
+          "text": "{playbackError ? <AppText color={isWeb ? colors.accent : colors.destructive} variant=\"caption\">{playbackError}</AppText> : null}"
+        },
+        {
+          "line": 414,
+          "text": "{!playback.status.isLoaded && !playback.error ? <AppText variant=\"caption\">正在准备录音回放…</AppText> : null}"
+        },
+        {
+          "line": 421,
+          "text": "{playbackError ? <AppText color={isWeb ? colors.accent : colors.destructive} variant=\"caption\">{playbackError}</AppText> : null}"
+        },
+        {
+          "line": 439,
+          "text": "recording: { backgroundColor: colors.destructive },"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyAudioPlayer.tsx",
+      "hits": [
+        {
+          "line": 153,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        },
+        {
+          "line": 541,
+          "text": "<AlertCircle color={colors.destructive} size={18} />"
+        },
+        {
+          "line": 543,
+          "text": "<AppText variant=\"button\">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>"
+        },
+        {
+          "line": 548,
+          "text": "<RotateCcw color={colors.destructive} size={15} />"
+        },
+        {
+          "line": 549,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">重试</AppText>"
+        },
+        {
+          "line": 613,
+          "text": "<AlertCircle color={colors.destructive} size={18} />"
+        },
+        {
+          "line": 615,
+          "text": "<AppText variant=\"button\">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>"
+        },
+        {
+          "line": 620,
+          "text": "<RotateCcw color={colors.destructive} size={15} />"
+        },
+        {
+          "line": 621,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">重试</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyAudioPlayer.web.tsx",
+      "hits": [
+        {
+          "line": 99,
+          "text": "detail: '浏览器无法读取音频数据；请检查网络后重试。',"
+        },
+        {
+          "line": 104,
+          "text": "detail: '浏览器无法解码这段音频；请重试或更换浏览器。',"
+        },
+        {
+          "line": 105,
+          "text": "title: '音频解码失败',"
+        },
+        {
+          "line": 115,
+          "text": "title: '音频启动超时',"
+        },
+        {
+          "line": 120,
+          "text": "title: '音频暂时不可用',"
+        },
+        {
+          "line": 197,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        },
+        {
+          "line": 730,
+          "text": "<AlertCircle color={colors.destructive} size={18} />"
+        },
+        {
+          "line": 732,
+          "text": "<AppText variant=\"button\">{failureCopy?.title ?? '音频加载失败'}</AppText>"
+        },
+        {
+          "line": 737,
+          "text": "<RotateCcw color={colors.destructive} size={15} />"
+        },
+        {
+          "line": 738,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">重试</AppText>"
+        },
+        {
+          "line": 806,
+          "text": "<AlertCircle color={colors.destructive} size={18} />"
+        },
+        {
+          "line": 808,
+          "text": "<AppText variant=\"button\">{failureCopy?.title ?? '音频加载失败'}</AppText>"
+        },
+        {
+          "line": 813,
+          "text": "<RotateCcw color={colors.destructive} size={15} />"
+        },
+        {
+          "line": 814,
+          "text": "<AppText color={colors.destructive} variant=\"caption\">重试</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyHistoryPersonalContent.native.tsx",
+      "hits": [
+        {
+          "line": 26,
+          "text": "<AppText>{currentAnswer || recoveredTranscript || (selectedChoiceIndex !== undefined ? `已选 ${String.fromCharCode(65 + selectedChoiceIndex)}` : recorded ? '本题仅录音，未保存文字回答' : '未作答')}</AppText>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyReport.native.tsx",
+      "hits": [
+        {
+          "line": 23,
+          "text": "catch { setError('记录暂时无法打开，请重试。'); }"
+        },
+        {
+          "line": 30,
+          "text": "{onContinue ? null : <Tag tone={complete ? 'primary' : 'accent'}>{exam && !complete ? '未完成' : '已结束'}</Tag>}"
+        },
+        {
+          "line": 37,
+          "text": "{error || externalError ? <AppText color={colors.destructive} variant=\"caption\">{error || externalError}</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyScopeSelector.tsx",
+      "hits": [
+        {
+          "line": 48,
+          "text": "{error ? <AppText accessibilityLiveRegion=\"polite\" color={colors.destructive} style={styles.error}>切换未保存，请重试</AppText> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyWorkbench.native.tsx",
+      "hits": [
+        {
+          "line": 315,
+          "text": "if (currentCardKey.current === snapshot.cardKey) setAutoSaveError('自动保存失败');"
+        },
+        {
+          "line": 656,
+          "text": "<AppText color={colors.destructive} style={styles.aiErrorCopy} variant=\"caption\">{transcriptionError}</AppText>"
+        },
+        {
+          "line": 660,
+          "text": "{autoSaveError ? <AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive} variant=\"micro\">{autoSaveError}</AppText> : null}"
+        },
+        {
+          "line": 666,
+          "text": "<AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive}>{reviewError}</AppText>"
+        },
+        {
+          "line": 679,
+          "text": "{saveError ? <AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive} variant=\"micro\">{saveError}</AppText> : null}"
+        },
+        {
+          "line": 690,
+          "text": "{showRetry ? <Pressable accessibilityLabel=\"重试保存\" accessibilityRole=\"button\" onPress={() => activeTab === 'mine' ? void persistCurrent() : onRetrySave()} style={styles.action}><AppText color={colors.destructive} variant=\"micro\">重试</AppText></Pressable> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyWorkbench.tsx",
+      "hits": [
+        {
+          "line": 219,
+          "text": "if (currentCardKey.current === snapshot.cardKey) setAutoSaveError('自动保存失败');"
+        },
+        {
+          "line": 551,
+          "text": "<AppText color={colors.destructive} style={styles.aiErrorCopy} variant=\"caption\">{transcriptionError}</AppText>"
+        },
+        {
+          "line": 554,
+          "text": "{autoSaveError ? <AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive} variant=\"micro\">{autoSaveError}</AppText> : null}"
+        },
+        {
+          "line": 558,
+          "text": "<AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive}>{reviewError}</AppText>"
+        },
+        {
+          "line": 571,
+          "text": "{saveError ? <AppText accessibilityLiveRegion=\"assertive\" color={colors.destructive} variant=\"micro\">{saveError}</AppText> : null}"
+        },
+        {
+          "line": 582,
+          "text": "{showRetry ? <Pressable accessibilityLabel=\"重试保存\" accessibilityRole=\"button\" onPress={() => activeTab === 'mine' ? void persistCurrent() : onRetrySave()} style={styles.action}><AppText color={colors.destructive} variant=\"micro\">重试</AppText></Pressable> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/member-content-cache.native.ts",
+      "hits": [
+        {
+          "line": 89,
+          "text": "const tail = previous.catch(() => undefined).then(() => gate);"
+        },
+        {
+          "line": 91,
+          "text": "await previous.catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/repository.native.ts",
+      "hits": [
+        {
+          "line": 70,
+          "text": ".catch(() => undefined);"
+        },
+        {
+          "line": 122,
+          "text": "await clearQuestionBankMemberContent(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 147,
+          "text": "await clearQuestionBankMemberContent(accountId).catch(() => undefined);"
+        },
+        {
+          "line": 191,
+          "text": "await clearQuestionBankMemberContent(accountId).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/repository.ts",
+      "hits": [
+        {
+          "line": 141,
+          "text": "} satisfies CachedRelease)).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useStudySession.native.ts",
+      "hits": [
+        {
+          "line": 208,
+          "text": "setLoadError('学习进度读取失败，请重试。');"
+        },
+        {
+          "line": 246,
+          "text": "setSaveFailure({ cardId: target.id, message: '保存失败，内容仍保留在当前页面。' });"
+        },
+        {
+          "line": 268,
+          "text": "setSaveFailure({ cardId: saveFailure.cardId, message: '再次保存失败，请稍后重试。' });"
+        },
+        {
+          "line": 452,
+          "text": "void operation.finally(() => { if (savingCheckpoint.current === operation) savingCheckpoint.current = undefined; }).catch(() => undefined);"
+        },
+        {
+          "line": 459,
+          "text": "? savingCheckpoint.current.catch(() => undefined).then(() => saveReport(reason, metrics))"
+        },
+        {
+          "line": 462,
+          "text": "void operation.finally(() => { if (savingReport.current === operation) savingReport.current = undefined; }).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useStudySession.ts",
+      "hits": [
+        {
+          "line": 197,
+          "text": "setLoadError('学习进度读取失败，请重试。');"
+        },
+        {
+          "line": 232,
+          "text": "setSaveFailure({ cardId: target.id, message: '保存失败，内容仍保留在当前页面。' });"
+        },
+        {
+          "line": 245,
+          "text": "setSaveFailure({ cardId: saveFailure.cardId, message: '再次保存失败，请稍后重试。' });"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-record-storage.native.ts",
+      "hits": [
+        {
+          "line": 19,
+          "text": "const result = writeQueue.catch(() => undefined).then(operation).then((value) => {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-record-storage.ts",
+      "hits": [
+        {
+          "line": 18,
+          "text": "await recordWriteQueue.catch(() => undefined);"
+        },
+        {
+          "line": 41,
+          "text": "await recordWriteQueue.catch(() => undefined);"
+        },
+        {
+          "line": 46,
+          "text": "const write = recordWriteQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 74,
+          "text": "if (expired.length) await Storage.multiRemove(expired.map((item) => reviewKey(item.id))).catch(() => undefined);"
+        },
+        {
+          "line": 82,
+          "text": "const write = recordWriteQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 92,
+          "text": "const write = recordWriteQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 96,
+          "text": "await Storage.removeItem(reviewKey(recordId)).catch(() => undefined);"
+        },
+        {
+          "line": 104,
+          "text": "const write = recordWriteQueue.catch(() => undefined).then(async () => {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-store.native.ts",
+      "hits": [
+        {
+          "line": 59,
+          "text": "const readOrMigrate = previousWrite.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 89,
+          "text": "topicWriteQueues.get(`${TOPIC_PREFIX}${topicId}`)?.catch(() => undefined)"
+        },
+        {
+          "line": 136,
+          "text": ".catch(() => undefined)"
+        },
+        {
+          "line": 172,
+          "text": "await Promise.all(Array.from(topicWriteQueues.values(), (pending) => pending.catch(() => undefined)));"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-store.ts",
+      "hits": [
+        {
+          "line": 58,
+          "text": "const readOrMigrate = previousWrite.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 86,
+          "text": "topicWriteQueues.get(`${TOPIC_PREFIX}${topicId}`)?.catch(() => undefined)"
+        },
+        {
+          "line": 132,
+          "text": ".catch(() => undefined)"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/remote-resource-service.native.ts",
+      "hits": [
+        {
+          "line": 60,
+          "text": "task.catch(() => undefined),"
+        },
+        {
+          "line": 79,
+          "text": "? await resolveOfflineMemberResource(path).catch(() => undefined)"
+        },
+        {
+          "line": 83,
+          "text": "const cachedValue = key ? await Storage.getItem(key).catch(() => undefined) : undefined;"
+        },
+        {
+          "line": 96,
+          "text": "} satisfies CachedResource)).catch(() => undefined);"
+        },
+        {
+          "line": 109,
+          "text": "void cacheMemberResource(path, visibleResource.url, visibleResource).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/expo-recorder-adapter.ts",
+      "hits": [
+        {
+          "line": 253,
+          "text": "await recorder.stop().catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/expo-recorder-adapter.web.ts",
+      "hits": [
+        {
+          "line": 367,
+          "text": "}).catch(() => undefined);"
+        },
+        {
+          "line": 389,
+          "text": "raw = await stopSession(session).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-engine.ts",
+      "hits": [
+        {
+          "line": 133,
+          "text": "microphone_device_unavailable: '麦克风暂时不可用。',"
+        },
+        {
+          "line": 135,
+          "text": "record_prepare_failed: '录音准备失败，请稍后重试。',"
+        },
+        {
+          "line": 136,
+          "text": "record_start_failed: '录音启动失败，请稍后重试。',"
+        },
+        {
+          "line": 137,
+          "text": "record_stop_failed: '录音停止失败，请重新录制。',"
+        },
+        {
+          "line": 139,
+          "text": "recording_audio_mode_failed: '录音音频模式切换失败，请稍后重试。',"
+        },
+        {
+          "line": 140,
+          "text": "recording_audio_mode_timeout: '录音音频模式切换超时，请稍后重试。',"
+        },
+        {
+          "line": 142,
+          "text": "recording_commit_failed: '录音保存失败，请重新录制。',"
+        },
+        {
+          "line": 145,
+          "text": "recording_finalization_timeout: '录音保存等待超时，请重新录制。',"
+        },
+        {
+          "line": 148,
+          "text": "recording_media_unreadable: '录音文件无法读取，请重新录制。',"
+        },
+        {
+          "line": 150,
+          "text": "recording_native_prepare_failed: '系统录音器准备失败，请稍后重试。',"
+        },
+        {
+          "line": 151,
+          "text": "recording_native_prepare_timeout: '系统录音器准备超时，请重新录制。',"
+        },
+        {
+          "line": 152,
+          "text": "recording_native_start_failed: '系统录音器启动失败，请稍后重试。',"
+        },
+        {
+          "line": 153,
+          "text": "recording_native_start_timeout: '系统录音器启动超时，请重新录制。',"
+        },
+        {
+          "line": 155,
+          "text": "recording_owner_pause_timeout: '上一段音频暂停超时，请稍后重试。',"
+        },
+        {
+          "line": 156,
+          "text": "recording_runtime_tainted: '系统录音器没有返回；正在隔离旧录音器。如仍无法重试，请重新启动 App。',"
+        },
+        {
+          "line": 158,
+          "text": "recording_stop_timeout: '系统录音器停止超时，请重新启动 App 后重试。',"
+        },
+        {
+          "line": 343,
+          "text": "await this.startPromise?.catch(() => undefined);"
+        },
+        {
+          "line": 456,
+          "text": "await this.startPromise?.catch(() => undefined);"
+        },
+        {
+          "line": 673,
+          "text": "const cancelled = await operation.runtime.cancel(operation).catch(() => undefined);"
+        },
+        {
+          "line": 760,
+          "text": "const raw = await operation.runtime.cancel(operation).catch(() => undefined);"
+        },
+        {
+          "line": 843,
+          "text": "await this.startPromise?.catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/use-recording-playback.ts",
+      "hits": [
+        {
+          "line": 110,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/use-recording-playback.web.ts",
+      "hits": [
+        {
+          "line": 75,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/radio-player/RadioPlayerProvider.browser.tsx",
+      "hits": [
+        {
+          "line": 96,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        },
+        {
+          "line": 124,
+          "text": "const remote = await resolveRemoteQuestionBankAsset(track.audioPath, { forceRefresh }).catch(() => undefined);"
+        },
+        {
+          "line": 155,
+          "text": "setSourceState({ loading: false, error: '音频加载失败，请重试或切换下一首' });"
+        },
+        {
+          "line": 178,
+          "text": "setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });"
+        },
+        {
+          "line": 243,
+          "text": "}).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); });"
+        },
+        {
+          "line": 311,
+          "text": "setSourceState({ loading: false, error: '音频加载超时，请重试' });"
+        },
+        {
+          "line": 321,
+          "text": "setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });"
+        }
+      ]
+    },
+    {
+      "path": "src/features/radio-player/RadioPlayerProvider.tsx",
+      "hits": [
+        {
+          "line": 102,
+          "text": "error: failed ? '播放器暂时无法启动，请重试' : undefined,"
+        },
+        {
+          "line": 207,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        },
+        {
+          "line": 266,
+          "text": "await mutateRadioPlayer(() => true, () => TrackPlayer.reset()).catch(() => undefined);"
+        },
+        {
+          "line": 510,
+          "text": "if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogError('播放目录加载失败，请重试');"
+        },
+        {
+          "line": 527,
+          "text": ".catch(() => undefined);"
+        },
+        {
+          "line": 568,
+          "text": "void activateAndRestore().catch(() => undefined).finally(() => { if (active) setRestored(true); });"
+        },
+        {
+          "line": 600,
+          "text": "void mutateRadioPlayer(() => !pendingPlay.current, () => TrackPlayer.pause()).catch(() => undefined);"
+        },
+        {
+          "line": 688,
+          "text": "}).catch(() => undefined);"
+        },
+        {
+          "line": 724,
+          "text": "void mutateRadioPlayer(() => !pendingPlay.current, () => TrackPlayer.pause()).then(() => releaseRadioLease(lease)).catch(() => undefined);"
+        },
+        {
+          "line": 747,
+          "text": "void mutateRadioPlayer(() => request === generation.current, () => TrackPlayer.pause()).catch(() => undefined);"
+        },
+        {
+          "line": 806,
+          "text": "setSourceState({ loading: false, error: '音频停止失败，请稍后重试' });"
+        },
+        {
+          "line": 846,
+          "text": "void replacePreparedUpcoming(catalog, track, nextMode, current.intervalSeconds).catch(() => undefined);"
+        },
+        {
+          "line": 855,
+          "text": "void mutateRadioPlayer(() => request === generation.current && stateRef.current.rate === nextRate, () => TrackPlayer.setRate(nextRate)).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/radio-player/RadioPlayerProvider.web.tsx",
+      "hits": [
+        {
+          "line": 75,
+          "text": "if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);"
+        },
+        {
+          "line": 103,
+          "text": "const remote = await resolveRemoteQuestionBankAsset(track.audioPath, { forceRefresh }).catch(() => undefined);"
+        },
+        {
+          "line": 129,
+          "text": "setSourceState({ loading: false, error: '音频加载失败，请重试或切换下一首' });"
+        },
+        {
+          "line": 146,
+          "text": "setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });"
+        },
+        {
+          "line": 195,
+          "text": "}).catch(() => undefined);"
+        },
+        {
+          "line": 260,
+          "text": "setSourceState({ loading: false, error: '音频加载超时，请重试' });"
+        },
+        {
+          "line": 270,
+          "text": "setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });"
+        }
+      ]
+    },
+    {
+      "path": "src/features/radio-player/operation-coordinator.ts",
+      "hits": [
+        {
+          "line": 8,
+          "text": "const task = this.tail.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 20,
+          "text": "if (value.status === 404 || /decode|format|not.found|not_found/i.test(value.code ?? '')) return '这条音频暂时无法播放，请重试或切换下一首';"
+        },
+        {
+          "line": 21,
+          "text": "if (/timed?.?out|timeout/i.test(`${value.code ?? ''} ${value.message ?? ''}`)) return '音频加载超时，请重试或切换下一首';"
+        }
+      ]
+    },
+    {
+      "path": "src/features/radio-player/radio-player-storage.ts",
+      "hits": [
+        {
+          "line": 42,
+          "text": "const operation = lifecycleQueue.catch(() => undefined).then(async () => {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/sync/learning-sync.native.ts",
+      "hits": [
+        {
+          "line": 143,
+          "text": "const next = writeQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 155,
+          "text": "const next = writeQueue.catch(() => undefined).then(() => Storage.multiSet(["
+        },
+        {
+          "line": 210,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 322,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 326,
+          "text": "const next = writeQueue.catch(() => undefined).then(() => Storage.multiRemove(keysToRemove));"
+        },
+        {
+          "line": 348,
+          "text": "const operation = accountSwitchQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 349,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 350,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 384,
+          "text": "accountSwitchQueue = operation.catch(() => undefined);"
+        },
+        {
+          "line": 398,
+          "text": "const operation = accountSwitchQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 399,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 406,
+          "text": "accountSwitchQueue = operation.catch(() => undefined);"
+        },
+        {
+          "line": 434,
+          "text": "const operation = accountSwitchQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 435,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 436,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 729,
+          "text": "await running.catch(() => undefined);"
+        },
+        {
+          "line": 734,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 741,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 759,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 795,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 800,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 832,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 874,
+          "text": "if (activeUserId === userId) void runLearningSync(userId).catch(() => undefined);"
+        },
+        {
+          "line": 879,
+          "text": "await writeQueue.catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/sync/learning-sync.ts",
+      "hits": [
+        {
+          "line": 123,
+          "text": "const next = writeQueue.catch(() => undefined).then(async () => {"
+        },
+        {
+          "line": 135,
+          "text": "const next = writeQueue.catch(() => undefined).then(() => Storage.multiSet(["
+        },
+        {
+          "line": 186,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 297,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 301,
+          "text": "const next = writeQueue.catch(() => undefined).then(() => Storage.multiRemove(keysToRemove));"
+        },
+        {
+          "line": 338,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 354,
+          "text": "if (running) await running.catch(() => undefined);"
+        },
+        {
+          "line": 538,
+          "text": "await running.catch(() => undefined);"
+        },
+        {
+          "line": 543,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 550,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 568,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 608,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 613,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 646,
+          "text": "await writeQueue.catch(() => undefined);"
+        },
+        {
+          "line": 688,
+          "text": "if (activeUserId === userId) void runLearningSync(userId).catch(() => undefined);"
+        },
+        {
+          "line": 693,
+          "text": "await writeQueue.catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/VocabularyScreen.tsx",
+      "hits": [
+        {
+          "line": 5,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 82,
+          "text": "<CenteredState icon={TriangleAlert} title=\"词汇资源暂时不可用\" description=\"首次使用需要联网获取词汇资源。请检查网络后重试。\" actionLabel=\"重新加载\" onAction={() => setLoadAttempt((value) => value + 1)} tone=\"destructive\" />"
+        },
+        {
+          "line": 84,
+          "text": "<CenteredState icon={BookOpen} title=\"正在准备词汇资源\" description=\"正在读取 838 条 ICAO 词汇和你的学习进度。\" />"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/WordFavoritesScreen.tsx",
+      "hits": [
+        {
+          "line": 6,
+          "text": "import { CenteredState } from '@/components/states/CenteredState';"
+        },
+        {
+          "line": 47,
+          "text": "<CenteredState description=\"正在读取你收藏的单词。\" icon={Star} title=\"正在准备单词收藏\" />"
+        },
+        {
+          "line": 61,
+          "text": "<AppText variant=\"button\">词书资源暂时不可用</AppText>"
+        },
+        {
+          "line": 87,
+          "text": "<CenteredState description=\"正在合并单词学习和题库查词中的收藏。\" icon={Star} title=\"正在准备单词收藏\" />"
+        },
+        {
+          "line": 89,
+          "text": "<CenteredState description=\"在单词学习或题库查词中点亮收藏星标后，会统一显示在这里。\" icon={Star} title=\"还没有收藏单词\" />"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyLibraryViews.tsx",
+      "hits": [
+        {
+          "line": 162,
+          "text": "['记错', stats.wrong, colors.destructive],"
+        },
+        {
+          "line": 165,
+          "text": "const confirmReset = () => Alert.alert('重新学习这本词书？', '会把本词书的学习状态恢复为“未学”，收藏不会删除。', ["
+        },
+        {
+          "line": 184,
+          "text": "<Button leading={<RotateCcw color={colors.destructive} size={16} />} onPress={confirmReset} size=\"lg\" variant=\"ghost\">重新学习</Button>"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyStudyViews.tsx",
+      "hits": [
+        {
+          "line": 128,
+          "text": "<SummaryCard color={colors.destructive} label=\"记错\" value={summary.wrong} />"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyTestViews.tsx",
+      "hits": [
+        {
+          "line": 30,
+          "text": "<Rule number=\"1\" title=\"每题 10 秒\" description=\"凭第一反应选择“认识”或“不认识”，超时按不认识计。\" />"
+        },
+        {
+          "line": 137,
+          "text": "<View accessibilityLabel={`剩余${seconds}秒`} style={[styles.timer, seconds <= 3 ? styles.timerUrgent : null]}><Clock3 color={seconds <= 3 ? colors.destructive : colors.primary} size={15} /><AppText color={seconds <= 3 ? colors.destructive : colors.primary} variant=\"button\">{seconds}</AppText></View>"
+        },
+        {
+          "line": 147,
+          "text": "<View style={styles.answerHeading}><View style={[styles.answerIcon, chosenCorrect ? styles.answerKnown : styles.answerUnknown]}>{chosenCorrect ? <Check color={colors.primary} size={18} /> : <X color={colors.destructive} size={18} />}</View><AppText variant=\"cardTitle\">{chosenCorrect ? '已记录为认识' : '已记录为不认识'}</AppText></View>"
+        },
+        {
+          "line": 149,
+          "text": "{chosenCorrect ? <Pressable accessibilityLabel=\"改为不认识\" onPress={reviseAsUnknown}><AppText color={colors.destructive} style={styles.center} variant=\"button\">刚才点错了，改为不认识</AppText></Pressable> : null}"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/progress-store.ts",
+      "hits": [
+        {
+          "line": 29,
+          "text": "const next = mutationQueue.catch(() => undefined).then(async () => {"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/repository.web.ts",
+      "hits": [
+        {
+          "line": 127,
+          "text": "void fetchVocabulary(identity).catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/speech.native.ts",
+      "hits": [
+        {
+          "line": 79,
+          "text": "Alert.alert('暂时无法播放发音', '请检查设备音量或系统语音设置。你仍然可以继续学习。');"
+        }
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/speech.ts",
+      "hits": [
+        {
+          "line": 55,
+          "text": "if (!played) Alert.alert('暂时无法播放发音', '请检查设备音量或系统语音设置。你仍然可以继续学习。');"
+        }
+      ]
+    },
+    {
+      "path": "src/features/web-content/release.web.ts",
+      "hits": [
+        {
+          "line": 101,
+          "text": "void refreshReleasePointer().catch(() => undefined);"
+        }
+      ]
+    },
+    {
+      "path": "src/platform/api-client.ts",
+      "hits": [
+        {
+          "line": 106,
+          "text": "const currentBeforeRefresh = await accessTokenProvider?.().catch(() => undefined);"
+        },
+        {
+          "line": 115,
+          "text": "refresh = accessTokenRefresher().catch(() => undefined).finally(() => {"
+        },
+        {
+          "line": 127,
+          "text": "const currentAfterRefresh = await accessTokenProvider?.().catch(() => undefined);"
+        },
+        {
+          "line": 183,
+          "text": "const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;"
+        },
+        {
+          "line": 195,
+          "text": "const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;"
+        }
+      ]
+    },
+    {
+      "path": "src/platform/api-client.web.ts",
+      "hits": [
+        {
+          "line": 89,
+          "text": "const refreshed = await accessTokenRefresher?.().catch(() => undefined);"
+        },
+        {
+          "line": 105,
+          "text": "const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;"
+        }
+      ]
+    },
+    {
+      "path": "src/platform/audio/audio-session-orchestrator.ts",
+      "hits": [
+        {
+          "line": 154,
+          "text": "const result = this.transition.catch(() => undefined).then(() => {"
+        }
+      ]
+    },
+    {
+      "path": "src/platform/diagnostics/safe-diagnostic-store.ts",
+      "hits": [
+        {
+          "line": 105,
+          "text": "const raw = await Storage.getItem(STORAGE_KEY).catch(() => null);"
+        },
+        {
+          "line": 126,
+          "text": "return writeQueue.catch(() => undefined).then(operation);"
+        },
+        {
+          "line": 174,
+          "text": "return operation.catch(() => undefined);"
+        },
+        {
+          "line": 183,
+          "text": "return operation.catch(() => undefined);"
+        },
+        {
+          "line": 193,
+          "text": "return operation.catch(() => undefined);"
+        },
+        {
+          "line": 203,
+          "text": "await clearSafeDiagnostics().catch(() => undefined);"
+        }
+      ]
+    }
+  ]
+}

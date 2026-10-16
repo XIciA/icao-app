@@ -239,3 +239,19 @@ test('legacy bank relocation preserves exact published bytes and rejects mutable
   const changedOwnership = { ...snapshot, sources: ['unreviewed'] };
   assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [changedOwnership]), [changedOwnership]);
 });
+
+test('bug repair root and directory Native routes leave the frozen Web siblings selected', () => {
+  const require = createRequire(import.meta.url);
+  const { getRoutes } = require('expo-router/build/getRoutesCore');
+  for (const platform of ['web', 'ios', 'android']) {
+    const loaded = [];
+    const context = key => { loaded.push(key); return { default: () => null }; };
+    context.keys = () => ['./_layout.tsx', './_layout.native.tsx', './question-bank/[bankId]/index.tsx', './question-bank/[bankId]/index.native.tsx'];
+    const routes = getRoutes(context, { platform, ignoreEntryPoints: true, skipGenerated: true, getSystemRoute: ({ defaults }) => defaults });
+    const suffix = platform === 'web' ? '.tsx' : '.native.tsx';
+    assert.equal(routes.contextKey, `./_layout${suffix}`);
+    assert.equal(routes.children[0].contextKey, `./question-bank/[bankId]/index${suffix}`);
+    routes.loadRoute(); routes.children[0].loadRoute();
+    assert.ok(loaded.every(key => platform !== 'web' || !key.endsWith('.native.tsx')));
+  }
+});

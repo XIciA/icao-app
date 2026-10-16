@@ -7,7 +7,7 @@ import {
   nativeCommerceEnvironmentSnapshot,
   subscribeNativeCommerceEnvironment,
 } from '@/features/native-commercial-testflight/commerce-environment';
-import { loadQuestionBank, type QuestionBankSource } from '../data/repository';
+import { loadQuestionBank, type QuestionBankSource } from '../data/repository.native';
 import type { QuestionBankDataset, QuestionBankId } from '../types';
 
 type State =
@@ -23,10 +23,13 @@ export function useQuestionBank(bankId: QuestionBankId | undefined) {
     nativeCommerceEnvironmentSnapshot,
   );
   const [attempt, setAttempt] = useState(0);
-  const [state, setState] = useState<State>({ status: 'loading' });
+  const requestKey = JSON.stringify([bankId, environmentSnapshot, attempt]);
+  const [response, setResponse] = useState<{ key: string; value: State }>();
+  const state = useMemo<State>(() => response?.key === requestKey ? response.value : { status: 'loading' }, [response, requestKey]);
 
   useEffect(() => {
     let active = true;
+    const setState = (value: State) => setResponse({ key: requestKey, value });
     setState({ status: 'loading' });
 
     if (!bankId) {
@@ -48,11 +51,11 @@ export function useQuestionBank(bankId: QuestionBankId | undefined) {
     return () => {
       active = false;
     };
-  }, [attempt, bankId, environmentSnapshot]);
+  }, [attempt, bankId, environmentSnapshot, requestKey]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const projected = useMemo(() => state.status === 'ready'
-    ? { ...state, data: scopeDataset(state.data, normalizeStudyScope(profile.studyScope), profile.target) }
+    ? { ...state, catalog: state.data, data: scopeDataset(state.data, normalizeStudyScope(profile.studyScope), profile.target) }
     : state, [state, profile.studyScope, profile.target]);
   return { ...projected, retry };
 }

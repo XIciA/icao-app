@@ -2,6 +2,13 @@
 // media and UI adapters still resolve as web modules. Vercel is never remapped.
 const path = require('node:path');
 const sharedModules = {
+  "src/app/_layout.tsx": "src/app/_layout.native.tsx",
+  "src/app/question-bank/[bankId]/index.tsx": "src/app/question-bank/[bankId]/index.native.tsx",
+  "src/features/question-bank/annotations/card-index.ts": "src/features/question-bank/annotations/card-index.native.ts",
+  "src/features/vocabulary/progress-store.ts": "src/features/vocabulary/progress-store.native.ts",
+  "src/features/vocabulary/repository.web.ts": "src/features/vocabulary/repository.native.ts",
+  "src/features/vocabulary/VocabularyScreen.tsx": "src/features/vocabulary/VocabularyScreen.native.tsx",
+  "src/features/vocabulary/WordFavoritesScreen.tsx": "src/features/vocabulary/WordFavoritesScreen.native.tsx",
   "src/features/question-bank/annotations/colors.ts": "src/features/question-bank/annotations/colors.native.ts",
   "src/features/question-bank/components/MyAnnotationsScreen.tsx": "src/features/question-bank/components/MyAnnotationsScreen.native.tsx",
   "src/config/app-version.web.ts": "src/config/app-version.ios.ts",

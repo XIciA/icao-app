@@ -1,3 +1,4 @@
+import { ApiClientError } from '@/platform/api-client';
 import { BookOpenText, Check, Headphones, MessageSquareQuote, Mic2, RadioTower, Sparkles } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -44,7 +45,7 @@ function MockExamContent() {
     const request = ++generation.current;
     setBusy(true); setError(undefined);
     try { const next = await buildMockExamSession({ examType, modules: selectedIds }); if (generation.current === request) setStudyPackage(toQuestionBankStudyPackage(next)); }
-    catch { if (generation.current === request) setError('暂时无法生成试卷，请检查网络或调整板块后重试。'); }
+    catch (error) { if (generation.current === request) setError(mockExamFailureMessage(error)); }
     finally { if (generation.current === request) setBusy(false); }
   };
   if (studyPackage) return <QuestionBankStudyScreen onReturn={() => setStudyPackage(undefined)} returnLabel={`返回${featureTitle}`} sourceRoute="/content/mock-exam" studyPackage={studyPackage} />;
@@ -59,3 +60,10 @@ function MockExamContent() {
 
 function Section({ title, right, children }: { title: string; right?: string; children: React.ReactNode }) { return <View style={styles.section}><View style={styles.row}><AppText variant="sectionTitle">{title}</AppText>{right ? <AppText variant="micro">{right}</AppText> : null}</View>{children}</View>; }
 const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 }, setup: { gap: spacing[5], padding: spacing[5], paddingBottom: spacing[6] }, hero: { gap: spacing[2] }, section: { gap: spacing[2] }, row: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }, types: { flexDirection: 'row', gap: spacing[2] }, type: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flex: 1, gap: 1, justifyContent: 'center', minHeight: 68, position: 'relative' }, typeCheck: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 18, justifyContent: 'center', position: 'absolute', right: 6, top: 6, width: 18 }, active: { backgroundColor: colors.primary06, borderColor: colors.primary }, center: { textAlign: 'center' }, moduleGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] }, module: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 58, padding: spacing[2], width: '48%' }, moduleIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 }, copy: { flex: 1 }, checkBox: { alignItems: 'center', borderColor: colors.border, borderRadius: 6, borderWidth: 1, height: 20, justifyContent: 'center', width: 20 }, checkBoxActive: { backgroundColor: colors.primary, borderColor: colors.primary }, notice: { gap: spacing[2] }, });
+
+export function mockExamFailureMessage(error: unknown) {
+  if (error instanceof ApiClientError && error.code === 'membership_required') return '所选板块包含会员内容，请在个人中心查看会员权益后重试。';
+  if (error instanceof Error && /^(题库数量不足：|OPI 暂无包含|请至少选择一个考试板块)/u.test(error.message)) return `${error.message} 可调整板块后重新生成。`;
+  if (error instanceof ApiClientError && ['request_timeout', 'network_error', 'network_unavailable'].includes(error.code)) return '题库请求未完成，请检查网络后重试。尚未开始考试。';
+  return '所选题库内容暂未加载完整，请重新生成；若持续失败，可通过帮助与反馈联系我们。尚未开始考试。';
+}

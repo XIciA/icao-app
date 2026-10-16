@@ -1,0 +1,215 @@
+Final source verification (no deployment or device acceptance)
+
+PASS src/features/question-bank/__tests__/study-audio-player-test.tsx (7.455 s)
+PASS src/features/question-bank/__tests__/study-natural-layout-test.tsx
+PASS src/features/question-bank/__tests__/repository-test.ts
+PASS src/features/question-bank/__tests__/speaking-practice-lifecycle-test.tsx
+PASS src/app/__tests__/base-flows-parity-test.tsx
+PASS src/features/question-bank/__tests__/my-annotations-screen-test.tsx
+PASS src/features/question-bank/__tests__/study-session-test.tsx
+PASS src/features/question-bank/__tests__/study-exit-flow-test.tsx
+PASS src/features/question-bank/__tests__/mock-exam-study-native-test.tsx
+PASS src/features/ai/__tests__/auto-transcribe-workbench-test.tsx
+PASS src/features/mock-exam/__tests__/mock-exam-screen-test.tsx
+PASS src/app/__tests__/auth-screen-test.tsx
+PASS src/features/auth/__tests__/auth-provider-test.tsx
+PASS src/platform/audio/__tests__/question-recording-browser-test.tsx
+PASS src/features/question-bank/__tests__/card-directory-native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/commerce-runtime-provider.native-test.tsx
+PASS src/features/question-bank/__tests__/study-scope-test.ts
+PASS src/features/ai/__tests__/native-workbench-test.tsx
+PASS src/features/question-bank/__tests__/topic-version-native-test.tsx
+PASS src/features/auth/__tests__/auth-service-test.ts
+PASS src/features/question-bank/__tests__/word-lookup-interaction-test.tsx
+PASS src/features/question-bank/__tests__/learning-records-native-test.tsx
+PASS src/features/question-bank/__tests__/study-audio-player-web-test.tsx
+PASS src/features/vocabulary/__tests__/vocabulary-screen-test.tsx
+PASS src/features/sync/__tests__/learning-sync-native-test.ts
+PASS src/app/__tests__/profile-tab-test.tsx
+PASS src/features/question-bank/__tests__/learning-store-migration-test.ts
+PASS src/features/content/hotspot/__tests__/hotspot-screen-test.tsx
+PASS src/platform/__tests__/app-runtime-diagnostic-cleanup-test.tsx
+PASS src/app/__tests__/question-bank-study-route.native-test.tsx
+PASS src/app/__tests__/question-bank-tab-test.tsx
+PASS src/app/__tests__/auth-routing-test.tsx
+PASS src/features/question-bank/__tests__/study-report-native-test.tsx
+PASS src/features/radio-player/__tests__/provider-web-isolation-test.tsx
+PASS src/features/question-bank/__tests__/study-session-native-test.tsx
+PASS src/features/content/courses/__tests__/course-catalog-screen-web-test.tsx
+PASS src/features/vocabulary/__tests__/vocabulary-study-view-test.tsx
+PASS src/features/radio-player/__tests__/radio-learning-entry-test.tsx
+PASS src/features/vocabulary/__tests__/word-favorites-screen-test.tsx
+PASS src/features/content/courses/__tests__/course-catalog-screen-test.tsx
+PASS src/features/ai/__tests__/ai-client-test.ts
+PASS src/features/question-bank/__tests__/learning-records-ai-label-test.tsx
+PASS src/features/question-bank/__tests__/annotation-management-native-test.tsx
+PASS src/features/question-bank/__tests__/annotation-components-test.tsx
+PASS src/features/content/hotspot/__tests__/use-hotspot-access-native-test.tsx
+PASS src/features/question-bank/__tests__/question-bank-catalog-native-test.tsx
+PASS src/features/native-commercial-testflight/__tests__/storekit-commerce-provider.native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/membership-page-test.tsx
+PASS src/features/question-bank/__tests__/study-history-native-test.ts
+PASS src/features/question-bank/__tests__/study-review-storage-test.ts
+PASS src/features/content/hotspot/__tests__/hotspot-access-screen-test.tsx
+PASS src/features/info/__tests__/feedback-form-native-test.tsx
+PASS src/features/content/hotspot/__tests__/hotspot-session-test.ts
+PASS src/features/native-commercial-testflight/__tests__/android-commerce-runtime.android-test.tsx
+PASS src/features/content/hotspot/__tests__/hotspot-access-loader-native-test.ts
+PASS src/features/question-bank/__tests__/exam-audio-native-test.tsx
+PASS src/features/content/hotspot/__tests__/hotspot-study-package-native-test.ts
+PASS src/features/radio-player/__tests__/queue-test.ts
+PASS src/features/sync/__tests__/learning-sync-test.ts
+PASS src/features/profile/__tests__/profile-membership-entry-native-test.tsx
+PASS src/features/mock-exam/__tests__/opi-materials-native-test.ts
+PASS src/features/radio-player/__tests__/provider-runtime-test.tsx
+PASS src/features/question-bank/__tests__/annotation-reference-ui-native-test.tsx
+PASS src/components/navigation/__tests__/floating-tab-bar-test.tsx
+PASS src/features/vocabulary/__tests__/save-action-native-test.tsx
+PASS src/features/web-content/__tests__/content-cache-web-test.ts
+PASS src/features/question-bank/__tests__/annotation-store-test.ts
+PASS src/features/question-bank/__tests__/audio-timeline-test.tsx
+PASS src/features/question-bank/__tests__/exam-recording-native-test.tsx
+PASS src/app/__tests__/discover-tab-test.tsx
+PASS src/components/auth/__tests__/login-screen-web-test.tsx
+PASS src/features/question-bank/recording/__tests__/expo-recorder-adapter.web-test.tsx
+PASS src/features/question-bank/recording/__tests__/use-recording-playback.web-test.tsx
+PASS src/features/question-bank/__tests__/study-engine-test.ts
+PASS src/features/question-bank/__tests__/study-card-stack-style-test.tsx
+PASS src/features/account/__tests__/account-profile-page-native-test.tsx
+PASS src/features/question-bank/recording/__tests__/expo-recorder-adapter-test.tsx
+PASS src/features/question-bank/__tests__/question-bank-catalog-web-test.tsx
+PASS src/features/question-bank/__tests__/answer-card-sheet-test.tsx
+PASS src/features/mock-exam/__tests__/build-session-test.ts
+PASS src/features/native-commercial-testflight/__tests__/react-native-iap-storekit-client.native-test.ts
+PASS src/features/radio-player/__tests__/track-player-runtime-test.ts
+PASS src/features/question-bank/__tests__/question-bank-audio-preload-web-test.tsx
+PASS src/components/states/__tests__/native-screen-boundary-test.tsx
+PASS src/features/question-bank/recording/__tests__/recording-repository-test.ts
+PASS src/features/ai/__tests__/auto-transcription-setting-test.tsx
+PASS src/features/feedback/__tests__/feedback-client-native-test.ts
+PASS src/features/question-bank/__tests__/resource-service-web-test.ts
+PASS src/features/content/hotspot/__tests__/hotspot-commerce-entitlement-integration.native-test.tsx
+PASS src/features/radio-player/__tests__/native-queue-test.ts
+PASS src/features/question-bank/__tests__/lookup-pronunciation-test.tsx
+PASS src/features/question-bank/__tests__/choice-list-test.tsx
+PASS src/features/native-commercial-testflight/__tests__/web-entitlement-provider-test.tsx
+PASS src/features/question-bank/recording/__tests__/recording-engine-test.ts
+PASS src/app/__tests__/content-route-release-test.tsx
+PASS src/features/profile/__tests__/ai-allowance-card-native-test.tsx
+PASS src/components/states/__tests__/global-loading-screen-test.tsx
+PASS src/features/auth/__tests__/auth-rules-test.ts
+PASS src/features/question-bank/recording/__tests__/use-recording-playback-test.tsx
+PASS src/components/brand/__tests__/app-brand-logo-test.tsx
+PASS src/features/vocabulary/__tests__/progress-store-native-test.tsx
+PASS src/features/auth/__tests__/auth-service-web-test.ts
+PASS src/features/vocabulary/__tests__/progress-store-test.ts
+PASS src/features/question-bank/__tests__/image-question-card-test.tsx
+PASS src/features/question-bank/__tests__/choice-list-native-lookup-test.tsx
+PASS src/features/question-bank/recording/__tests__/recording-repository.web-test.ts
+PASS src/components/platform/__tests__/app-content-frame-web-test.tsx
+PASS src/features/native-commercial-testflight/__tests__/commerce-environment-native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/commerce-transaction-coordinator.native-test.ts
+PASS src/features/app-updates/__tests__/app-updates-native-test.ts
+PASS src/platform/audio/__tests__/audio-session-orchestrator-test.ts
+PASS src/components/navigation/__tests__/top-bar-test.tsx
+PASS src/components/platform/__tests__/app-viewport-web-test.tsx
+PASS src/features/account/__tests__/privacy-self-service-test.ts
+PASS src/features/question-bank/__tests__/choice-list-web-lookup-test.tsx
+PASS src/components/ui/Screen.test.tsx
+PASS src/features/question-bank/__tests__/question-bank-asset-edgeone-web-test.tsx
+PASS src/features/question-bank/__tests__/card-references-native-test.ts
+PASS src/features/web-content/__tests__/release-web-test.ts
+PASS src/platform/audio/__tests__/browser-audio-player-test.ts
+PASS src/features/account/__tests__/privacy-action-state-test.ts
+PASS src/features/question-bank/__tests__/note-draft-test.tsx
+PASS src/features/ai/__tests__/exact-match-native-test.ts
+PASS src/features/feedback/__tests__/feedback-client-test.ts
+PASS src/features/account/__tests__/privacy-self-service-native-test.ts
+PASS src/features/question-bank/__tests__/static-word-lookup-repository-test.ts
+PASS src/platform/__tests__/api-client-edgeone-web-test.ts
+PASS src/features/vocabulary/__tests__/test-engine-test.ts
+PASS src/features/native-commercial-testflight/__tests__/membership-route-page.native-test.tsx
+PASS src/features/native-commercial-testflight/__tests__/wechat-pay-client.android-test.ts
+PASS src/features/content/courses/__tests__/course-promo-catalog-test.ts
+PASS src/features/auth/__tests__/wechat-native-auth-test.ts
+PASS src/components/platform/__tests__/use-app-viewport-dimensions-web-test.tsx
+PASS src/features/question-bank/recording/__tests__/recording-media-probe-test.ts
+PASS src/features/native-commercial-testflight/__tests__/ai-points-policy.native-test.ts
+PASS src/features/radio-player/__tests__/radio-player-account-lifecycle-test.ts
+PASS src/features/vocabulary/__tests__/speech-legacy-test.ts
+PASS src/features/account/__tests__/profile-avatar-native-test.ts
+PASS src/features/auth/__tests__/phone-otp-challenge-store-test.ts
+PASS src/platform/diagnostics/__tests__/safe-diagnostic-store-test.ts
+PASS src/features/question-bank/__tests__/content-credential-verifier-native-test.ts
+PASS src/features/question-bank/__tests__/annotation-save-boundary-native-test.tsx
+PASS src/features/native-commercial-testflight/__tests__/disabled-commerce-provider.native-test.ts
+PASS src/features/mock-exam/__tests__/topic-loader-native-test.ts
+PASS src/features/mock-exam/__tests__/legacy-draft-cleanup-test.ts
+PASS src/platform/audio/__tests__/session-managed-player-test.tsx
+PASS src/features/vocabulary/__tests__/speech-test.ts
+PASS src/features/question-bank/__tests__/catalog-progress-test.ts
+PASS src/features/radio-player/__tests__/catalog-hydration-native-test.ts
+PASS src/features/auth/__tests__/native-auth-intent-test.ts
+PASS src/config/__tests__/app-version-test.ts
+PASS src/features/vocabulary/__tests__/optional-cache-native-test.ts
+PASS src/features/vocabulary/__tests__/repository-test.ts
+PASS src/features/account/__tests__/profile-store-native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/commerce-runtime-operation.native-test.ts
+PASS src/features/mock-exam/__tests__/listening-exam-test.ts
+PASS src/features/auth/__tests__/secure-session-storage-test.ts
+PASS src/features/auth/__tests__/account-deletion-state-test.ts
+PASS src/features/auth/__tests__/login-release-surface-test.ts
+PASS src/components/platform/__tests__/web-layout-test.ts
+PASS src/features/question-bank/recording/__tests__/recording-container-validator-test.ts
+PASS src/features/native-commercial-testflight/__tests__/commerce-uncertain-purchase.native-test.ts
+PASS src/features/info/__tests__/legal-release-surface-test.ts
+PASS src/platform/__tests__/audio-upload.web-test.ts
+PASS src/features/native-commercial-testflight/__tests__/wechat-pay-transport.android-test.ts
+PASS src/features/content/__tests__/native-release-surface-test.ts
+PASS src/features/vocabulary/__tests__/favorites-test.ts
+PASS src/features/question-bank/__tests__/word-lookup-interaction-mode-test.ts
+PASS src/features/ai/__tests__/exact-match-test.ts
+PASS src/features/ai/__tests__/transcription-ui-capability-test.ts
+PASS src/features/radio-player/__tests__/radio-snapshot-test.ts
+PASS src/platform/__tests__/api-client-timeout-test.ts
+PASS src/features/native-commercial-testflight/__tests__/commerce-entitlement-events-test.ts
+PASS src/features/radio-player/__tests__/radio-interval-test.ts
+PASS src/features/content/courses/__tests__/course-promo-catalog-web-test.ts
+PASS src/features/app-updates/__tests__/update-model-test.ts
+PASS src/features/auth/__tests__/ui-acceptance-mode-test.ts
+PASS src/features/auth/__tests__/wechat-release-capability-test.ts
+PASS src/config/__tests__/web-runtime-test.ts
+PASS src/features/question-bank/__tests__/study-gestures-test.ts
+PASS src/platform/__tests__/photo-permission-native-test.ts
+PASS src/features/native-commercial-testflight/__tests__/membership-expiry-native-test.ts
+PASS src/features/ai/__tests__/ai-operation-failure-test.ts
+PASS src/platform/__tests__/api-client-auth-recovery-test.ts
+PASS src/features/vocabulary/__tests__/persistence-test.ts
+
+Test Suites: 185 passed, 185 total
+Tests:       1266 passed, 1266 total
+Snapshots:   0 total
+Time:        32.612 s, estimated 36 s
+
+$ node --test tools/check-web-freeze-tests.mjs
+✔ the approved Vercel snapshot matches exactly apart from verified Native build identifiers (6982.649791ms)
+✔ the reviewed Native study route delta keeps exact content, Web sibling and every other protected input pinned (5.131167ms)
+✔ the reviewed Native study route is included in context but selected only on iOS and Android by the installed router (0.330708ms)
+✔ the Native app config proof accepts only matching advanced build identifiers (6.310792ms)
+✔ the real Web resolver and CLI protect every selected input without post-filtering (48885.0025ms)
+✔ CLI builds without Git require the exact approved native build reference (14.774375ms)
+✔ formal Web review pins exact changes and never exempts later edits or unrelated inputs (1.006583ms)
+✔ legacy bank relocation preserves exact published bytes and rejects mutable or competing imports (0.385667ms)
+✔ bug repair root and directory Native routes leave the frozen Web siblings selected (0.507125ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55938.163
+
+TypeScript: passed (exit 0).
+Changed TypeScript/TSX ESLint: passed; initial import-order warnings in an existing test fixed and checked.
+Git diff --check: passed.

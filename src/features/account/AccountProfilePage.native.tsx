@@ -1,3 +1,4 @@
+import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -65,9 +66,9 @@ export function AccountProfilePage() {
     setPicking(true);
     setError('');
     try {
-      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const permission = await requestPhotoSelectionPermission(() => void chooseAvatar(), () => focused.current && currentAccount.current === action.accountId);
       if (!actionIsCurrent(action)) return;
-      if (!permission.granted) { setError('请在系统设置中允许访问照片后重试。'); return; }
+      if (!permission) return;
       const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], allowsEditing: true, aspect: [1, 1], quality: 1, base64: false });
       if (!actionIsCurrent(action) || result.canceled) return;
       const sourceUri = result.assets[0]?.uri;

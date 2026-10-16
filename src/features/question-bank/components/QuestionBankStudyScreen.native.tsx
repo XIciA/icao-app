@@ -1,3 +1,4 @@
+import { useSaveAction } from '@/features/vocabulary/use-save-action.native';
 import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
 import { type Href, useFocusEffect, useRouter } from 'expo-router';
@@ -27,7 +28,7 @@ import { contentReleaseOf } from '../data/content-version.native';
 import { contentFingerprint } from '../annotations/text';
 import { StudyHistoryPersonalContent } from './StudyHistoryPersonalContent.native';
 import { colors, fonts, motion, radii, spacing } from '@/theme';
-import { useWordFavorites } from '@/features/vocabulary/progress-store';
+import { useWordFavorites } from '@/features/vocabulary/progress-store.native';
 import { resolveListeningExamRange } from '@/features/mock-exam/listening-session.native';
 import { ExamQuestionAudio } from './ExamQuestionAudio.native';
 
@@ -103,6 +104,7 @@ function StudyContent(props: Props) {
       initialCardId: props.initialCardId,
     });
   const wordFavorites = useWordFavorites();
+  const favoriteSave = useSaveAction();
   const [newRecording, setNewRecording] = useState<{ cardKey: string; token: string }>();
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
@@ -812,7 +814,8 @@ function StudyContent(props: Props) {
                 accessibilityLabel={wordFavorites.isFavorite({ word: lookup.word }) ? '取消收藏' : '收藏'}
                 accessibilityRole="button"
                 hitSlop={8}
-                onPress={() => { void wordFavorites.toggleFavorite({ word: lookup.word }); }}
+                disabled={favoriteSave.saving || favoriteSave.failed || wordFavorites.ready === false || wordFavorites.error}
+                onPress={() => { void favoriteSave.run(() => wordFavorites.toggleFavorite({ word: lookup.word })); }}
                 style={({ pressed }) => [styles.lookupFavorite, pressed ? styles.lookupFavoritePressed : null]}
               >
                 <Star
@@ -823,6 +826,8 @@ function StudyContent(props: Props) {
               </Pressable>
             ) : null}
           </View>
+          {favoriteSave.panel()}
+          {wordFavorites.error ? <View><AppText>收藏暂时无法读取，请重试后再修改收藏。</AppText><Button onPress={wordFavorites.retry}>重试读取收藏</Button></View> : null}
           <AppText color={colors.mutedForeground}>{lookup?.ipa}</AppText>
           <AppText>{`航空释义：${lookup?.aviationMeaning ?? ''}`}</AppText>
           <AppText>{`常用释义：${lookup?.generalMeaning ?? ''}`}</AppText>

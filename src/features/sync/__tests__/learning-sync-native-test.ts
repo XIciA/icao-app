@@ -18,6 +18,8 @@ jest.mock('expo-sqlite/kv-store', () => ({
 jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
 
 
+import * as repository from '@/features/question-bank/data/repository.native';
+import { createEmptyVocabularyState, readVocabularyState, writeVocabularyState } from '@/features/vocabulary/persistence';
 import Storage from '@/platform/storage';
 import { ANNOTATION_STORAGE_KEY, createEmptyAnnotationEntry, createEmptyAnnotationStore, flushPendingAnnotationSaves, readAnnotationStore, updateAnnotationStore, retryAnnotationStoreWrite, setAnnotationEntry, resetAnnotationStoreCacheForTests } from '@/features/question-bank/annotations/annotation-store.native';
 import { questionBankCardTargetKey } from '@/features/question-bank/annotations/card-index';
@@ -27,7 +29,7 @@ import { getLearningRecords, loadLearningRecordReview, upsertLearningRecord, res
 import { captureStudyReview } from '@/features/question-bank/lib/study-review.native';
 import data from '@/features/question-bank/data/question-bank.json';
 import type { LearningRecord, QuestionBankDataset } from '@/features/question-bank/types';
-import { applyPrivacyAiResultReset, deleteLocalAiResult, applyPrivacyLearningDataReset, captureLearningWriteContext, assertLearningWriteContext, clearPersonalLearningData, deleteLearningHistory, enqueueAnnotationStore, enqueueAccountProfile, enqueueLearningRecord, getLearningSyncStatus, resetLearningSyncForTests, runLearningSync, setLearningSyncActiveUser, switchLearningSyncAccount } from '../learning-sync.native';
+import { bindLearningSync, mutateVocabularyInCurrentWorkspace, applyPrivacyAiResultReset, deleteLocalAiResult, applyPrivacyLearningDataReset, captureLearningWriteContext, assertLearningWriteContext, clearPersonalLearningData, deleteLearningHistory, enqueueAnnotationStore, enqueueAccountProfile, enqueueLearningRecord, getLearningSyncStatus, resetLearningSyncForTests, runLearningSync, setLearningSyncActiveUser, switchLearningSyncAccount } from '../learning-sync.native';
 const bank = data[0] as QuestionBankDataset;
 const category = bank.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
 const history = (): LearningRecord => ({ id: 'history-one', sessionId: 'session-one', recordType: 'session', bankId: bank.id, bankTitle: bank.title, categoryTitle: category.name, topicTitle: topic.name, createdAt: '2026-09-09T00:00:00.000Z', durationSeconds: 1, reason: 'abort', completedCount: 0, totalCount: 1, correctCount: 0, studyReview: captureStudyReview([{ id: card.id, card, topic, category, dataset: bank }], {}, {}) });
@@ -306,4 +308,46 @@ it('applies a pulled annotation document without waiting on its own running sync
   mockApiRequest.mockResolvedValue({ cursor: 1, hasMore: false, changes: [{ kind: 'document', entityKey: 'annotations', cursor: 1, version: 1, changedAt: history().createdAt, payload: { documentKey: 'annotations', document: noteStore('云端笔记'), version: 1, updatedAt: history().createdAt } }] });
   await runLearningSync('A');
   expect((await readAnnotationStore()).entries[annotationKey].note).toBe('云端笔记');
+});
+
+it('archives an accepted vocabulary write and outbox together before switching accounts', async () => {
+  await switchLearningSyncAccount('A');
+  const context = captureLearningWriteContext();
+  let release!: () => void, entered!: () => void;
+  const gate = new Promise<void>(done => { release = done; });
+  const started = new Promise<void>(done => { entered = done; });
+  const write = mutateVocabularyInCurrentWorkspace(context, async () => {
+    entered(); await gate;
+    return writeVocabularyState({ ...createEmptyVocabularyState(), words: { pilot: { status: 'known', favorite: true, updatedAt: '2026-10-16T00:00:00.000Z' } } });
+  });
+  await started;
+  const swap = switchLearningSyncAccount('B');
+  release(); await write; await swap;
+  expect((await readVocabularyState()).words).toEqual({});
+  expect((await getLearningSyncStatus()).pendingCount).toBe(0);
+  await switchLearningSyncAccount('A');
+  expect((await readVocabularyState()).words.pilot.favorite).toBe(true);
+  expect((await getLearningSyncStatus()).pendingCount).toBe(1);
+  await expect(mutateVocabularyInCurrentWorkspace(context, async () => createEmptyVocabularyState())).rejects.toThrow();
+});
+
+it('binds progress for a member identity without requiring its embedded text', async () => {
+  const banks = repository.getEmbeddedQuestionBanks();
+  const bank = banks[0], topic = bank.categories[0].topics[0];
+  const cardId = topic.scopeCardIds!.all.find(id => !topic.cards.some(card => card.id === id))!;
+  const load = jest.spyOn(repository, 'loadQuestionBank').mockImplementation(async id => ({ dataset: banks.find(bank => bank.id === id)!, source: 'embedded' }));
+  const state = { completed: true, favorite: true, updatedAt: '2026-10-16T00:00:00.000Z' };
+  mockValues.set(`icao.learning.v2.topic.${topic.id}`, JSON.stringify({ [cardId]: state }));
+  mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+    if (path === '/v1/sync/push') {
+      const body = JSON.parse(String(init?.body));
+      return { cursor: 1, results: body.mutations.map((mutation: { mutationId: string }) => ({ mutationId: mutation.mutationId, status: 'accepted' })) };
+    }
+    return { changes: [], cursor: 1, hasMore: false };
+  });
+  try {
+    await bindLearningSync('A', 'upload-local');
+    const push = mockApiRequest.mock.calls.find(call => call[0] === '/v1/sync/push')!;
+    expect(JSON.parse(push[1].body).mutations).toEqual(expect.arrayContaining([expect.objectContaining({ kind: 'card_state', payload: expect.objectContaining({ cardId, bankId: bank.id }) })]));
+  } finally { load.mockRestore(); }
 });

@@ -14,9 +14,9 @@ type State = { status: 'loading' } | HotspotAccessResult;
 function unexpectedHotspotAccessResult(briefId: string): HotspotAccessResult {
   try {
     const brief = getHotspotBrief(briefId);
-    return brief ? { status: 'content-unavailable', brief } : { status: 'not-found' };
+    return brief ? { status: 'content-unavailable', brief } : { status: 'network-error' };
   } catch {
-    return { status: 'not-found' };
+    return { status: 'network-error' };
   }
 }
 
