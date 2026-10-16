@@ -12,7 +12,7 @@
 
 ## 本轮交付与发布目标
 
-- 本轮更新完成后，三端交付同一轮功能：readyoufive.com 网站直接上线更新，iOS 发布最新 TestFlight 测试版本，Android 提供测试版 APK。
+- 本轮更新完成后，三端交付同一轮功能：readyoufife.com 网站直接上线更新，iOS 发布最新 TestFlight 测试版本，Android 提供测试版 APK。
 - 本轮 iOS 与 Android 采用测试渠道，不将本轮移动端更新作为正式版本发布给普通用户。
 - 在当前 App 下载页面的右上角或其他不抢眼的位置增加「测试版下载」入口，点击直接下载 Android 测试版 APK。
 - 现有正式版下载入口继续保留，测试版通过新增入口提供。

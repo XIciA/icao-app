@@ -1714,3 +1714,25 @@ printf 'drained=%s backup=%s sha=%s\n' "$old_api_drained" "$cutover_backup_name"
     await rm(root, { force: true, recursive: true });
   }
 });
+
+test('migration gates follow the reviewed schema table inventory and reject incomplete or unsafe evidence', async () => {
+  for (const file of ['scripts/rehearse-production-migrations.sh', 'scripts/apply-production-migrations.sh']) {
+    const source = await readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+    const guard = source.match(/if \(p\.status !== "verified"[\s\S]*?process\.exit\(1\);\n\s+\}/u)?.[0];
+    assert.ok(guard, file);
+    const valid = { status: 'verified', readOnly: true, requiredTables: SERVER_ONLY_PUBLIC_TABLES.length,
+      expectedPublicTables: SERVER_ONLY_PUBLIC_TABLES.length, actualPublicTables: SERVER_ONLY_PUBLIC_TABLES.length,
+      unclassifiedPublicTables: 0, missingPublicTables: 0, commerceProducts: 4, appleProductMappings: 5,
+      unvalidatedConstraints: 0, serverOnlyClientGrants: 0, unexpectedPublicTableOwners: 0,
+      defaultAclOwners: 1, serverOnlyClientDefaultTableGrants: 0, deviceDigestColumns: 0 };
+    const run = value => spawnSync(process.execPath, ['-e', `const p=JSON.parse(process.argv[1]);${guard}`, JSON.stringify(value)], { encoding: 'utf8' });
+    assert.equal(run(valid).status, 0, file);
+    assert.equal(run({ ...valid, requiredTables: 67, expectedPublicTables: 67, actualPublicTables: 67 }).status, 0, file);
+    for (const mutation of [{ actualPublicTables: valid.actualPublicTables - 1 }, { requiredTables: 0 },
+      { requiredTables: 0, expectedPublicTables: 0, actualPublicTables: 0 }, { unclassifiedPublicTables: 1 },
+      { missingPublicTables: 1 }, { serverOnlyClientGrants: 1 }, { serverOnlyClientDefaultTableGrants: 1 },
+      { unexpectedPublicTableOwners: 1 }, { readOnly: false }, { status: 'failed' }]) {
+      assert.equal(run({ ...valid, ...mutation }).status, 1, `${file}: ${JSON.stringify(mutation)}`);
+    }
+  }
+});

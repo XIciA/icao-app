@@ -6,7 +6,7 @@
 
 - 已 fetch origin，从 origin/main 创建短期分支 codex/feature-update-2026-10。
 - 原工作区已有 docs/records/workstreams/question-bank-study-scopes-20260920/discussion.md 修改及 output/ 未跟踪文件；保留，不混入本轮提交。
-- 已确认网站交付为 readyoufive.com，冻结 Vercel 旧站不在改动范围。
+- 已确认网站交付为 readyoufife.com，冻结 Vercel 旧站不在改动范围。
 
 ## 实施与验证状态（2026-10-17）
 
@@ -21,10 +21,15 @@
 - 900句 PDF 已生成普通与超长笔记样例并渲染检查，超长笔记完整续页；航司矢量图已检查。测试通过不代表真机验收通过。
 - OPI 图片案例整理为四张待审核工单素材，6 道新题及音频已准备。三项缺失图片/题意不明内容待人工确认是否排除，未自行排除或发布。
 - Android 测试版独立包名不复用正式包的微信注册，使用手机号登录、读取账号原会员权益；正式版包及微信功能保持原状。
-- 本轮尚未合并或发布。交付目标为 readyoufive.com、TestFlight 与独立 Android 测试 APK；不发布 App Store 正式版或替换正式 APK。
+- 主体代码已通过 PR #179 合入 main；正式发布进行中。交付目标为 readyoufife.com、TestFlight 与独立 Android 测试 APK；不发布 App Store 正式版或替换正式 APK。
 
 ## 专业内容与线上音频核查（2026-10-17）
 
 - listening-main-588：选项 A 改为 5000 feet / 英尺。题干只列中度或以上颠簸，B（轻度颠簸）仍是唯一未列项目；答案索引不变。
 - atc-scenario-0005-card-main-087：参考复诵补充 number 1 / 第一架，不修改管制原音频。核对 [CAA CAP 413 第24版](https://www.caa.co.uk/media/km2juvmx/cap413-edition-24-radio-telephony.pdf)，第6章第5页有包含 Number 1 的复诵例子，第7页也有省略该信息的例子；此处补全参考答案便于学习，不将其声称为普遍强制逐字复诵项。
 - listening-main-1162：反馈来自 Android 1.2.0、题库 v16；线上 v16 与当前 v18 指向同一音频。只读核查资源记录为 ready，完整文件 222092 字节，SHA-256 与本地一致，公开签名链接 Range 请求返回206和正确4096字节。当前没有证据表明服务器缺文件，继续核查客户端播放恢复路径；不声称已复现或已修好该用户的历史故障。
+
+## 生产恢复演练拦截（2026-10-17）
+
+- 第一轮隔离恢复已成功应用第 0052 条迁移，迁移账本为 53:0:0；结构校验器确认完整表分类、RLS、权限合同有效，但外层发布脚本仍硬编码 65 张表而拦截。正式数据库未执行迁移。
+- 修正演练和正式迁移的外层数量比较，使用已提交表分类清单派生的 expectedPublicTables，与实际表数量一致，并继续要求完整分类、无缺表、无越权及所有原有安全条件；不以放宽完整表清单解决该问题。
