@@ -1,3 +1,4 @@
+jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 import { render } from '@testing-library/react-native';
 
 import { AppStack } from '@/app/_layout';

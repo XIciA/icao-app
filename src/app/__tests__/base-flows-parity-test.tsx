@@ -1,3 +1,5 @@
+jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { getActiveOwner: () => undefined } }));
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'unavailable'}) }));
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

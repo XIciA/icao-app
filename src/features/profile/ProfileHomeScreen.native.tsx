@@ -83,10 +83,7 @@ export function ProfileHomeScreen() {
           <ProfileAvatar size={56} uri={profile.avatarUri} />
           <View style={styles.copy}>
             <AppText variant="sectionTitle">{profile.displayName}</AppText>
-            <AppText ellipsizeMode="middle" numberOfLines={1} style={styles.account} variant="caption">
-              {accountLabel}
-            </AppText>
-            <AppText variant="caption">目标：{examGoal(profile.target).label}</AppText>
+            <AppText color={colors.foreground} variant="button">目标：{examGoal(profile.target).label}</AppText>
           </View>
           <ChevronRight color={colors.mutedForeground} size={20} />
         </Card>

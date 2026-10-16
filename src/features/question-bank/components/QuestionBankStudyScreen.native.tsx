@@ -1,3 +1,5 @@
+import { annotatedThisSession } from '../lib/session-recap';
+import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { useSaveAction } from '@/features/vocabulary/use-save-action.native';
 import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
@@ -35,7 +37,7 @@ import { ExamQuestionAudio } from './ExamQuestionAudio.native';
 import { annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations-with-save.native';
-import type { AnnotationTextBlockId } from '../annotations/types';
+import type { AnnotationTextBlockId, QuestionBankAnnotationStore } from '../annotations/types';
 import { useStudySession } from '../hooks/useStudySession.native';
 import { useQuestionBankAsset } from '../hooks/useQuestionBankAsset';
 import { useQuestionBankAudioPreload } from '../hooks/useQuestionBankAudioPreload';
@@ -104,6 +106,9 @@ function StudyContent(props: Props) {
       initialCardId: props.initialCardId,
     });
   const wordFavorites = useWordFavorites();
+  const sessionWords = useRef(new Set<string>());
+  const sessionFavorites = useRef(new Set<string>());
+  const initialAnnotations = useRef<QuestionBankAnnotationStore | undefined>(undefined);
   const favoriteSave = useSaveAction();
   const [newRecording, setNewRecording] = useState<{ cardKey: string; token: string }>();
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
@@ -174,6 +179,7 @@ function StudyContent(props: Props) {
     cardId: card.id,
   } : undefined;
   const annotations = useQuestionAnnotations(target);
+  useEffect(() => { if (annotations.hydrated && !annotations.loadErrorMessage && !initialAnnotations.current) initialAnnotations.current = JSON.parse(JSON.stringify(annotations.store)); }, [annotations.hydrated, annotations.loadErrorMessage, annotations.store]);
   const flushAnnotationSaves = annotations.flushPendingSaves;
   const navigateAfterStudy = useCallback(() => {
     if (onReturn) {
@@ -515,7 +521,7 @@ function StudyContent(props: Props) {
     trackProductClick('dictionary');
     if (!lookupAllowed) return;
     const entry = findStaticWordLookup(word);
-    if (entry) setLookup(entry);
+    if (entry) { sessionWords.current.add(entry.word); setLookup(entry); }
   }
 
   async function changeToolMode(mode: 'dictionary' | 'highlight' | 'tags' | undefined) {
@@ -536,7 +542,8 @@ function StudyContent(props: Props) {
     void annotations.applyHighlightRange({ ...value, colorId: activeHighlightId });
   }
 
-  function sessionAnnotationMetrics() {
+  async function sessionAnnotationMetrics() {
+    const current = await readAnnotationStore();
     const targetKeys = new Set(Array.from(session.visitedIndexes).flatMap((index) => {
       const visited = session.items[index];
       return visited ? [questionBankCardTargetKey({
@@ -546,8 +553,12 @@ function StudyContent(props: Props) {
         cardId: visited.card.id,
       })] : [];
     }));
-    const entries = Object.values(annotations.store.entries).filter((entry) => targetKeys.has(questionBankCardTargetKey(entry)));
+    const entries = Object.values(current.entries).filter((entry) => targetKeys.has(questionBankCardTargetKey(entry)));
     return {
+      sessionRecap: {
+        annotatedCardIds: initialAnnotations.current ? annotatedThisSession(initialAnnotations.current, current, session.items.filter((_entry, index) => session.visitedIndexes.has(index))) : [],
+        words: [...sessionWords.current].map(word => ({ word, favorited: sessionFavorites.current.has(word) && wordFavorites.isFavorite({word}) })),
+      },
       annotationCount: entries.reduce((count, entry) => count + entry.tagIds.length + entry.highlights.length, 0),
       noteCount: entries.filter((entry) => entry.note.trim()).length,
     };
@@ -582,7 +593,7 @@ function StudyContent(props: Props) {
       setQuestionAudioPauseRequest((request) => request + 1);
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
-      await session.finish('abort', sessionAnnotationMetrics());
+      await session.finish('abort', await sessionAnnotationMetrics());
       setLeavingStudy(true);
     } catch {
       setFinishError('学习记录保存失败，内容仍保留在当前页面，请重试。');
@@ -670,7 +681,7 @@ function StudyContent(props: Props) {
       setQuestionAudioPauseRequest((request) => request + 1);
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
-      const savedRecord = await session.finish(reason, sessionAnnotationMetrics());
+      const savedRecord = await session.finish(reason, await sessionAnnotationMetrics());
       if (!savedRecord || session.historyRecord) setLeavingStudy(true);
     } catch {
       setFinishError('学习报告保存失败，请重试。');
@@ -815,7 +826,7 @@ function StudyContent(props: Props) {
                 accessibilityRole="button"
                 hitSlop={8}
                 disabled={favoriteSave.saving || favoriteSave.failed || wordFavorites.ready === false || wordFavorites.error}
-                onPress={() => { void favoriteSave.run(() => wordFavorites.toggleFavorite({ word: lookup.word })); }}
+                onPress={() => { const word = lookup.word; const wasFavorite = wordFavorites.isFavorite({word}); void favoriteSave.run(async () => { await wordFavorites.toggleFavorite({word}); if (!wasFavorite) sessionFavorites.current.add(word); }); }}
                 style={({ pressed }) => [styles.lookupFavorite, pressed ? styles.lookupFavoritePressed : null]}
               >
                 <Star

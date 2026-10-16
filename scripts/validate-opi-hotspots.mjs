@@ -29,16 +29,20 @@ assert(Array.isArray(index.briefs) && index.briefs.length > 0, 'empty_briefs');
 
 function validateIndex(index) {
 const briefIds = new Set();
-const briefDates = new Set();
+const briefDates = [];
+const dateCenters = new Set();
 for (const brief of index.briefs) {
   assert(typeof brief.id === 'string' && !briefIds.has(brief.id), `duplicate_brief_id:${brief.id}`);
-  assert(/^\d{4}-\d{2}-\d{2}$/.test(brief.date) && !briefDates.has(brief.date), `invalid_or_duplicate_date:${brief.date}`);
-  assert(brief.id === `hotspot-${brief.date}`, `brief_id_date_mismatch:${brief.id}`);
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(brief.date), `invalid_date:${brief.date}`);
+  assert(brief.id === `hotspot-${brief.date}` || brief.id.startsWith(`hotspot-${brief.date}-`), `brief_id_date_mismatch:${brief.id}`);
   assert(typeof brief.title === 'string' && brief.title.length > 0, `missing_title:${brief.id}`);
   assert(Array.isArray(brief.centers) && brief.centers.length > 0, `missing_centers:${brief.id}`);
   assert(Array.isArray(brief.topics) && brief.topics.length > 0, `missing_topics:${brief.id}`);
   briefIds.add(brief.id);
-  briefDates.add(brief.date);
+  briefDates.push(brief.date);
+  const dateCenter = `${brief.date}:${[...brief.centers].sort().join('|')}`;
+  assert(!dateCenters.has(dateCenter), `duplicate_date_center:${brief.id}`);
+  dateCenters.add(dateCenter);
 
   const topicIds = new Set();
   const cardIds = new Set();

@@ -57,7 +57,8 @@ describe('<ProfileTab />', () => {
     const screen = await render(<ProfileTab />);
 
     expect(screen.getByText('飞行学员')).toBeTruthy();
-    expect(screen.getByText('听你五个账号 · 已登录')).toBeTruthy();
+    expect(screen.queryByText('听你五个账号 · 已登录')).toBeNull();
+    expect(screen.getByLabelText('个人资料，听你五个账号 · 已登录')).toBeTruthy();
     expect(screen.getAllByText('0')).toHaveLength(2);
     expect(screen.getByText('目标：ICAO 4 初考')).toBeTruthy();
     expect(screen.getByText('已完成卡片')).toBeTruthy();
@@ -73,7 +74,8 @@ describe('<ProfileTab />', () => {
 
     const screen = await render(<ProfileTab />);
 
-    expect(screen.getByText('听你五个账号 · 起落平安')).toBeTruthy();
+    expect(screen.queryByText('听你五个账号 · 起落平安')).toBeNull();
+    expect(screen.getByLabelText('个人资料，听你五个账号 · 起落平安')).toBeTruthy();
   });
 
   it('shows a confirmation state while the local session is restoring', async () => {
@@ -81,7 +83,7 @@ describe('<ProfileTab />', () => {
 
     const screen = await render(<ProfileTab />);
 
-    expect(screen.getByText('正在确认账号…')).toBeTruthy();
+    expect(screen.getByLabelText('个人资料，正在确认账号…')).toBeTruthy();
     expect(screen.getAllByText('—')).toHaveLength(2);
     expect(readLearningProgressStats).not.toHaveBeenCalled();
   });

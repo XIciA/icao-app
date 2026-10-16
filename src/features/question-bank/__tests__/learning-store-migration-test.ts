@@ -61,6 +61,28 @@ describe('learning store migration', () => {
     resetLearningStoreForTests();
   });
 
+  it('preserves old annotations and retired question states when new content changes the visible topic', async () => {
+    const old = { visited: true, completed: true, note: '我的笔记', recorded: true,
+      tagIds: ['red'], highlights: [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'Legacy' }],
+      updatedAt: '2026-07-10T00:00:00.000Z' };
+    await Storage.setItem('icao.learning.v2.topic.migration-topic', JSON.stringify({ retired: old, legacy: old }));
+    const loaded = await sqliteLearningStore.getTopicStates(topic);
+    expect(loaded.retired).toEqual(old);
+    await sqliteLearningStore.saveCardState(topic.id, 'current', { visited: true, completed: false, note: '', updatedAt: '2026-10-17T00:00:00.000Z', lastVisitedAt: '2026-10-17T00:00:00.000Z' });
+    const saved = JSON.parse((await Storage.getItem('icao.learning.v2.topic.migration-topic'))!);
+    expect(saved.retired).toEqual(old);
+    expect(saved.legacy).toEqual(old);
+  });
+
+  it('does not silently erase unreadable old progress during a load or write', async () => {
+    const key = 'icao.learning.v2.topic.migration-topic';
+    const original = '{"legacy":';
+    await Storage.setItem(key, original);
+    await expect(sqliteLearningStore.getTopicStates(topic)).rejects.toThrow('learning_state_invalid');
+    await expect(sqliteLearningStore.saveCardState(topic.id, 'current', { visited: true, completed: false, note: '', updatedAt: '2026-10-17T00:00:00.000Z' })).rejects.toThrow('learning_state_invalid');
+    expect(await Storage.getItem(key)).toBe(original);
+  });
+
   it('merges partial v2 data over v1 and leaves the legacy key untouched', async () => {
     const legacyKey = 'icao.learning.v1.topic.migration-topic';
     const currentKey = 'icao.learning.v2.topic.migration-topic';

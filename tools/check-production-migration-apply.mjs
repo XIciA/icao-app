@@ -38,7 +38,7 @@ const clientTableGrantRevocationSource = [
   clientTableGrantRevocationBase,
   clientTableGrantRevocationExtension,
   ...await Promise.all(['0042_weekly_ai_allowance', '0043_app_content_releases',
-    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances']
+    '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0052_content_work_orders']
     .map(tag => readFile(`services/api/drizzle/${tag}.sql`, 'utf8'))),
 ].join('\n');
 
@@ -604,7 +604,7 @@ const schemaPublicTables = [...databaseSchemaSource.matchAll(/pgTable\('([^']+)'
   .map((match) => match[1])
   .sort();
 if (
-  schemaPublicTables.length !== 65
+  schemaPublicTables.length !== 66
   || JSON.stringify(schemaPublicTables) !== JSON.stringify(SERVER_ONLY_PUBLIC_TABLES)
   || JSON.stringify(Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort())
     !== JSON.stringify(schemaPublicTables)

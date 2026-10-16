@@ -5,7 +5,7 @@ import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
 import { QuestionBankCatalog } from '@/features/question-bank/components/QuestionBankCatalog.native';
-import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank';
+import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import type { QuestionBankId } from '@/features/question-bank/types';
 
 export default function QuestionBankCatalogRoute() {
@@ -27,5 +27,5 @@ export default function QuestionBankCatalogRoute() {
       </Screen>
     );
   }
-  return <QuestionBankCatalog dataset={state.data} warning={state.warning} onRetry={state.retry} />;
+  return <QuestionBankCatalog dataset={state.data} exportDataset={state.catalog} warning={state.warning} onRetry={state.retry} />;
 }

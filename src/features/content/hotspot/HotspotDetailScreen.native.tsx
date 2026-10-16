@@ -48,7 +48,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                         <AppText color={colors.primary} style={styles.questionIndex} variant="micro">
                           {String(cardIndex + 1).padStart(2, '0')}
                         </AppText>
-                        <AppText style={styles.questionText}>{card.audioText}</AppText>
+                        <AppText style={styles.questionText}>{card.kind !== 'image' && card.reportedPrompts?.[state.brief.id]?.join('\n') || card.audioText}</AppText>
                       </View>
                     ))}
                   </View>

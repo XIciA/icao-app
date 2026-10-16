@@ -37,7 +37,9 @@ pnpm check
 pnpm android:standalone
 
 DISPLAY_VERSION=$(node -p "require('./.generated/release/current.json').displayVersion")
-ANDROID_METADATA=".generated/releases/android/$DISPLAY_VERSION/android-release.json"
+CHANNEL=android
+if [ "${ICAO_APP_VARIANT:-}" = "android-test" ]; then CHANNEL=android-test; fi
+ANDROID_METADATA=".generated/releases/$CHANNEL/$DISPLAY_VERSION/android-release.json"
 if [ ! -f "$ANDROID_METADATA" ]; then
   echo "Android Release metadata is missing: $ANDROID_METADATA" >&2
   exit 1
@@ -54,9 +56,9 @@ fs.writeFileSync(path.join(path.dirname(metadataPath), 'acceptance-pending.json'
   status: 'pending-real-device-acceptance',
   candidate,
   checks: [
-    'install-and-same-signature-upgrade',
-    'phone-and-wechat-login',
-    'wechat-payment-return-entitlement-and-refund',
+    ...(candidate.packageName?.endsWith('.test')
+      ? ['coinstall-with-official-package', 'phone-login-and-existing-membership', 'wechat-entry-unavailable-for-unregistered-test-package']
+      : ['install-and-same-signature-upgrade', 'phone-and-wechat-login', 'wechat-payment-return-entitlement-and-refund']),
     'background-sequential-audio-and-lock-screen-controls',
     'microphone-permissions-recording-and-audio-routes',
     'ai-and-cross-platform-learning-sync',

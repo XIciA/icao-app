@@ -255,3 +255,19 @@ test('bug repair root and directory Native routes leave the frozen Web siblings 
     assert.ok(loaded.every(key => platform !== 'web' || !key.endsWith('.native.tsx')));
   }
 });
+
+test('the PDF and airline catalog stay on the unselected native route in frozen Vercel', () => {
+  const require = createRequire(import.meta.url);
+  const { getRoutes } = require('expo-router/build/getRoutesCore');
+  const nativeKey='./question-bank/[bankId]/index.native.tsx';
+  const webKey='./question-bank/[bankId]/index.tsx';
+  const loaded=[];
+  const context=key=>{loaded.push(key);return {default:()=>null};};
+  context.keys=()=>['./_layout.tsx',webKey,nativeKey];
+  const routes=getRoutes(context,{platform:'web',ignoreEntryPoints:true,skipGenerated:true,getSystemRoute:({defaults})=>defaults});
+  assert.equal(routes.children[0].contextKey,webKey);
+  routes.children[0].loadRoute();assert.ok(!loaded.includes(nativeKey));
+  const download=readFileSync(path.join(repositoryRoot,'src/features/content/AppDownloadScreen.tsx'),'utf8');
+  assert.match(download,/usePublishedRelease && testRelease/);
+  assert.match(download,/const usePublishedRelease = isEdgeOneProductionWeb\(\)/);
+});

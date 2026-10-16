@@ -357,6 +357,7 @@ if (androidArtifact) {
   await verifyAndroidReleaseWechatArtifact(androidArtifact, {
     analyzer: process.env.ICAO_APKANALYZER?.trim(),
     releaseConfiguration: approvedRelease,
+    variant: process.env.ICAO_APP_VARIANT,
   });
 }
 

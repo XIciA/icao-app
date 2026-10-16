@@ -181,20 +181,20 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact required 0051 journal entry', async () => {
+test('binds minimumSchemaVersion to the exact required 0052 journal entry', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0051_ops_reason_three_characters.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0052_content_work_orders.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
   const entry = journal.entries.at(-1);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 51);
-  assert.equal(entry.tag, '0051_ops_reason_three_characters');
-  assert.equal(entry.when, 1790131856686);
+  assert.equal(entry.idx, 52);
+  assert.equal(entry.tag, '0052_content_work_orders');
+  assert.equal(entry.when, 1792171270695);
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1790131856686'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1792171270695'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 
@@ -221,7 +221,7 @@ test('classifies every public Drizzle table as server-only with no unclassified 
   const schemaTables = [...schemaSource.matchAll(/pgTable\('([^']+)'/gu)]
     .map((match) => match[1])
     .sort();
-  assert.equal(schemaTables.length, 65);
+  assert.equal(schemaTables.length, 66);
   assert.deepEqual(SERVER_ONLY_PUBLIC_TABLES, schemaTables);
   assert.deepEqual(
     Object.keys(PUBLIC_TABLE_ACCESS_CLASSIFICATION).sort(),

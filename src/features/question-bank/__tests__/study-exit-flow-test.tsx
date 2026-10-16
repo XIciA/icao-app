@@ -1,3 +1,4 @@
+jest.mock('@/features/vocabulary/speech', () => jest.requireActual('@/features/vocabulary/speech.ts'));
 // These regression cases target the frozen generic/Web implementation.
 jest.mock('../components/QuestionBankStudyScreen', () => jest.requireActual('../components/QuestionBankStudyScreen.tsx'));
 jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
