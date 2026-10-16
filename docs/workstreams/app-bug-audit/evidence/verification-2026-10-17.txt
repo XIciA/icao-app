@@ -213,3 +213,12 @@ $ node --test tools/check-web-freeze-tests.mjs
 TypeScript: passed (exit 0).
 Changed TypeScript/TSX ESLint: passed; initial import-order warnings in an existing test fixed and checked.
 Git diff --check: passed.
+
+Supplemental account restoration checks:
+PASS src/app/__tests__/auth-routing-test.tsx
+PASS src/features/auth/__tests__/auth-provider-test.tsx
+
+Test Suites: 2 passed, 2 total
+Tests:       46 passed, 46 total
+Snapshots:   0 total
+Time:        1.598 s

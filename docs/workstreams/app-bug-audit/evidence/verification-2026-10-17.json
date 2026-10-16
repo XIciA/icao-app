@@ -57,6 +57,13 @@
     "src/features/vocabulary/repository.native.ts": "c5c4b244e0068a6b5856775e61ac0f977fb8e35c9b3f5d2fbbdfa368c5ddb3e7",
     "src/features/vocabulary/use-save-action.native.tsx": "ee5b62ef7cccccab7ff61f89bb685d9ce030b1136a383439b6f16ddbb58c6efb",
     "src/platform/__tests__/photo-permission-native-test.ts": "19c844de0492053caf1dfda3b87ea622c578c32969839f1fc4327ca65fc3993c",
-    "src/platform/photo-permission.native.ts": "71a6ce13b3d3f9260dbe9b3743178ee7d15e434a4d55e1dbb952b98e3dca6bc0"
+    "src/platform/photo-permission.native.ts": "71a6ce13b3d3f9260dbe9b3743178ee7d15e434a4d55e1dbb952b98e3dca6bc0",
+    "src/features/auth/AuthProvider.tsx": "069ce5207261e8c9d15faab60f1abb9612fcd2d7f87087787b74b33932a15965",
+    "src/features/auth/__tests__/auth-provider-test.tsx": "c24bd44786dec0b3a7405a103fad54536a0ffc759c17faa271bf9a69a927d173"
+  },
+  "supplementalAuthTests": {
+    "suites": 2,
+    "tests": 46,
+    "result": "passed"
   }
 }
