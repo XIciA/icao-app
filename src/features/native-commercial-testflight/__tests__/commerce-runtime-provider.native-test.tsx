@@ -58,6 +58,8 @@ import {
   CommerceRuntimeProvider,
   useCommerceRuntime,
 } from '../CommerceRuntimeProvider.native';
+import Storage from '@/platform/storage';
+import { getNativeCommerceEnvironment, subscribeNativeCommerceEnvironment } from '../commerce-environment.native';
 import { subscribeCommerceEntitlementChanges } from '../commerce-entitlement-events';
 
 const PRODUCTS: CommerceProductOffering[] = [
@@ -358,6 +360,85 @@ describe('<CommerceRuntimeProvider />', () => {
     });
   });
 
+  it.each([false, true])('keeps active production membership when historical Sandbox is active=%s', async (sandboxActive) => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
+    await Storage.setItem(`icao.commerce.environment.v1.${firstAccountId}`, 'sandbox');
+    const history = transaction('sandbox', 'old-test-purchase');
+    const fakeProvider = provider({ reconcileTransactions: jest.fn(() => inbox([history])) });
+    mockCreateProvider.mockReturnValue(fakeProvider);
+    mockApiRequest.mockImplementation(async (path: string) => {
+      if (path === '/v1/commerce/catalog') return CATALOG;
+      if (path === '/v1/commerce/entitlements/current') return {
+        production: entitlement('production', true), sandbox: entitlement('sandbox', sandboxActive),
+      };
+      if (path === '/v1/commerce/apple/transactions/verify') return {
+        created: false, transactionId: history.transactionReference, entitlement: entitlement('sandbox', sandboxActive),
+      };
+      throw new Error(`unexpected_api:${path}`);
+    });
+    const environments: string[] = [];
+    const unsubscribe = subscribeNativeCommerceEnvironment(() => environments.push(getNativeCommerceEnvironment()));
+    try {
+      await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+      await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+      expect(currentCommerce.entitlementEnvironment).toBe('production');
+      expect(currentCommerce.entitlement?.membership.active).toBe(true);
+      expect(environments).not.toContain('sandbox');
+      expect(fakeProvider.markServerVerified).toHaveBeenCalled();
+      await act(async () => { await currentCommerce.refresh(); });
+      expect(getNativeCommerceEnvironment()).toBe('production');
+    } finally { unsubscribe(); }
+  });
+
+  it('keeps free production access when the only historical purchase is expired', async () => {
+    mockDistributionEnvironment.mockReturnValue('sandbox');
+    const history = transaction('sandbox', 'expired-only');
+    mockCreateProvider.mockReturnValue(provider({ reconcileTransactions: jest.fn(() => inbox([history])) }));
+    mockApiRequest.mockImplementation(async (path: string) => {
+      if (path === '/v1/commerce/catalog') return CATALOG;
+      if (path === '/v1/commerce/entitlements/current') return ENTITLEMENTS;
+      if (path === '/v1/commerce/apple/transactions/verify') return {
+        created: false, transactionId: history.transactionReference, entitlement: entitlement('sandbox'),
+      };
+      throw new Error(`unexpected_api:${path}`);
+    });
+    await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+    await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+    expect(getNativeCommerceEnvironment()).toBe('production');
+    expect(currentCommerce.entitlement?.membership.active).toBe(false);
+  });
+
+  it('returns to production when an authorized sandbox membership expires while open', async () => {
+    jest.useFakeTimers();
+    mockDistributionEnvironment.mockReturnValue('sandbox');
+    const history = transaction('sandbox', 'expiring');
+    let expired = false;
+    const shortEntitlement = { ...entitlement('sandbox', true), membership: {
+      active: true, expiresAt: '2026-08-24T08:00:01.000Z',
+    } };
+    mockCreateProvider.mockReturnValue(provider({ reconcileTransactions: jest.fn(() => inbox([history])) }));
+    mockApiRequest.mockImplementation(async (path: string) => {
+      if (path === '/v1/commerce/catalog') return CATALOG;
+      if (path === '/v1/commerce/entitlements/current') return {
+        production: entitlement('production', expired), sandbox: expired ? entitlement('sandbox') : shortEntitlement,
+      };
+      if (path === '/v1/commerce/apple/transactions/verify') return {
+        created: false, transactionId: history.transactionReference, entitlement: shortEntitlement,
+      };
+      throw new Error(`unexpected_api:${path}`);
+    });
+    try {
+      await render(<CommerceRuntimeProvider><Probe /></CommerceRuntimeProvider>);
+      await waitFor(() => expect(currentCommerce.phase).toBe('ready'));
+      expect(getNativeCommerceEnvironment()).toBe('sandbox');
+      expired = true;
+      await act(async () => { await jest.advanceTimersByTimeAsync(1100); });
+      expect(getNativeCommerceEnvironment()).toBe('production');
+      expect(currentCommerce.entitlementEnvironment).toBe('production');
+      expect(currentCommerce.entitlement?.membership.active).toBe(true);
+    } finally { jest.useRealTimers(); }
+  });
+
   it('fails closed when the server and StoreKit catalogs diverge', async () => {
     mockApiRequest.mockImplementation((path: string) => {
       if (path === '/v1/commerce/catalog') return Promise.resolve({
@@ -581,7 +662,7 @@ describe('<CommerceRuntimeProvider />', () => {
     mockCreateProvider.mockReturnValue(fakeProvider);
     mockApiRequest.mockImplementation((path: string) => {
       if (path === '/v1/commerce/catalog') return Promise.resolve(CATALOG);
-      if (path === '/v1/commerce/entitlements/current') return Promise.resolve(ENTITLEMENTS);
+      if (path === '/v1/commerce/entitlements/current') return Promise.resolve({ ...ENTITLEMENTS, sandbox: entitlement('sandbox', true) });
       if (path === '/v1/commerce/apple/transactions/verify') {
         return Promise.resolve({
           created: false,

@@ -40,10 +40,10 @@ describe('Native commerce environment isolation', () => {
     expect(mockedDistributionEnvironment).not.toHaveBeenCalled();
   });
 
-  it('restores Sandbox only inside a TestFlight distribution', async () => {
+  it('does not restore Sandbox authorization from persisted purchase history', async () => {
     await Storage.setItem(`icao.commerce.environment.v1.${ACCOUNT_ID}`, 'sandbox');
-    await expect(activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox')).resolves.toBe('sandbox');
-    expect(getNativeCommerceEnvironment()).toBe('sandbox');
+    await expect(activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox')).resolves.toBe('production');
+    expect(getNativeCommerceEnvironment()).toBe('production');
 
     await expect(activateNativeCommerceEnvironment(ACCOUNT_ID, 'production')).resolves.toBe('production');
     expect(getNativeCommerceEnvironment()).toBe('production');
@@ -64,6 +64,14 @@ describe('Native commerce environment isolation', () => {
     expect(getNativeCommerceEnvironment()).toBe('sandbox');
   });
 
+  it('allows TestFlight to return to production after sandbox expires', async () => {
+    mockedDistributionEnvironment.mockReturnValue('sandbox');
+    await activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
+    await confirmNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
+    await expect(confirmNativeCommerceEnvironment(ACCOUNT_ID, 'production')).resolves.toBe(true);
+    expect(getNativeCommerceEnvironment()).toBe('production');
+  });
+
   it('does not let a delayed activation from an old account replace the current environment', async () => {
     const originalGetItem = jest.mocked(Storage.getItem).getMockImplementation();
     expect(originalGetItem).toBeDefined();
@@ -81,7 +89,7 @@ describe('Native commerce environment isolation', () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
       expect(releaseOldRead).toBeDefined();
       releaseOldRead?.('sandbox');
-      await expect(oldActivation).resolves.toBe('sandbox');
+      await expect(oldActivation).resolves.toBe('production');
       await expect(currentActivation).resolves.toBe('production');
 
       expect(getNativeCommerceEnvironment()).toBe('production');
@@ -106,7 +114,7 @@ describe('Native commerce environment isolation', () => {
         .resolves.toBe('production');
       expect(getNativeCommerceEnvironment()).toBe('production');
       releaseHungRead('sandbox');
-      await expect(oldActivation).resolves.toBe('sandbox');
+      await expect(oldActivation).resolves.toBe('production');
     } finally {
       if (originalGetItem) getItem.mockImplementation(originalGetItem);
       getItem.mockClear();
@@ -117,6 +125,7 @@ describe('Native commerce environment isolation', () => {
     mockedDistributionEnvironment.mockReturnValue('sandbox');
     await Storage.setItem(`icao.commerce.environment.v1.${ACCOUNT_ID}`, 'sandbox');
     await activateNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
+    await confirmNativeCommerceEnvironment(ACCOUNT_ID, 'sandbox');
     expect(getNativeCommerceEnvironment()).toBe('sandbox');
 
     let releaseRead!: (value: string | null) => void;
@@ -136,8 +145,8 @@ describe('Native commerce environment isolation', () => {
 
       await new Promise((resolve) => setTimeout(resolve, 0));
       releaseRead('sandbox');
-      await expect(activation).resolves.toBe('sandbox');
-      expect(getNativeCommerceEnvironment()).toBe('sandbox');
+      await expect(activation).resolves.toBe('production');
+      expect(getNativeCommerceEnvironment()).toBe('production');
     } finally {
       if (originalGetItem) jest.mocked(Storage.getItem).mockImplementation(originalGetItem);
     }
@@ -186,7 +195,7 @@ describe('Native commerce environment isolation', () => {
 
       await new Promise((resolve) => setTimeout(resolve, 0));
       releaseRead('sandbox');
-      await expect(activation).resolves.toBe('sandbox');
+      await expect(activation).resolves.toBe('production');
       expect(getNativeCommerceEnvironment()).toBe('production');
     } finally {
       if (originalGetItem) jest.mocked(Storage.getItem).mockImplementation(originalGetItem);

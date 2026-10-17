@@ -137,9 +137,9 @@ export async function activateNativeCommerceEnvironment(
     try {
       const storageKey = `${STORAGE_PREFIX}${accountId}`;
       const stored = await Storage.getItem(storageKey);
-      const environment = distributionEnvironment === 'sandbox' && stored === 'sandbox'
-        ? 'sandbox'
-        : 'production';
+      // Persisted purchase history is not authorization for this login session.
+      // Sandbox is activated only after a fresh server verification.
+      const environment = 'production' as const;
       if (
         options.signal?.aborted
         || !currentRequest(accountId, distributionEnvironment, generation)
@@ -187,8 +187,11 @@ export async function confirmNativeCommerceEnvironment(
   if (
     options.signal?.aborted
     || state.accountId !== accountId
-    || distributionEnvironment !== environment
+    || (environment === 'sandbox' && distributionEnvironment !== 'sandbox')
   ) return false;
+
+  if (state.status === 'active' && state.environment === environment
+    && state.distributionEnvironment === distributionEnvironment) return true;
 
   const generation = requestGeneration + 1;
   requestGeneration = generation;
