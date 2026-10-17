@@ -233,7 +233,7 @@ reviewedFormalWebHashes.set("src/features/question-bank/lib/study-scope.ts", [nu
 reviewedFormalWebHashes.set("src/features/question-bank/platform/learning-store.native.ts", [null, "70e8893800737cb12a8f1428105e47cf2ee57c361a9a6262ebbcc1e968668579"]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "739298c6f78b841930503fa468c59bf921ca303cec45e196a3706ddebc36efb4"]);
 reviewedFormalWebHashes.set("app.config.js", ["a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2", "f88c41ace896bad43495808b75f2dbf522ea1f0675a177958fc317117b7e106a"]);
-reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "06df5c9d6a6b9f95e3a7264846267c0beebe4c932c349346fe49be5a1087e28d"]);
+reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "ca531ddbfd564371db12858f096138c3cf6fb2fe98a262798f3d632ad10de068"]);
 reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e", "188be10136c308d53b13be0351d92a5a6d7db3ec54e5d0e7937f78e54fb242bd"]);
 reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "19eed3ec1891088e0b21e428162150a9429efd2ac757d822097ba9146b920360"]);
 reviewedFormalWebHashes.set("pnpm-lock.yaml", ["96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9", "78864173822a160e01e84db91ef6df5d61a1608c6830770d1a1cac35c187212b"]);

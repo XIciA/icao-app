@@ -310,19 +310,6 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
     setEntitlementChange(next);
   }, []);
 
-  useEffect(() => {
-    const controller = controllerRef.current;
-    const change = entitlementChange;
-    if (!controller || !change || change.accountId !== accountId || !change.snapshot) return;
-    const generation = generationRef.current;
-    const snapshot = change.snapshot;
-    return scheduleMembershipExpiry(snapshot, () => {
-      if (getCommerceEntitlementSnapshot() !== change) return;
-      publishEntitlement(controller, generation, change.environment,
-        { ...snapshot, membership: { ...snapshot.membership, active: false } }, 'membership-expired');
-    });
-  }, [accountId, entitlementChange, publishEntitlement]);
-
   const refreshEntitlement = useCallback(async (
     controller: Controller,
     generation: number,
@@ -337,9 +324,43 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
       ),
     );
     if (generation !== generationRef.current || controllerRef.current !== controller) return;
-    const environment = observedEnvironmentRef.current ?? 'production';
+    const environment = observedEnvironmentRef.current === 'sandbox'
+      && response.sandbox.membership.active
+      && !response.production.membership.active ? 'sandbox' : 'production';
+    if (!await confirmNativeCommerceEnvironment(controller.accountId, environment, { signal: operation.signal })) return;
+    if (generation !== generationRef.current || controllerRef.current !== controller) return;
+    observedEnvironmentRef.current = environment;
     publishEntitlement(controller, generation, environment, response[environment], reason);
   }, [publishEntitlement]);
+
+  useEffect(() => {
+    const controller = controllerRef.current;
+    const change = entitlementChange;
+    if (!controller || !change || change.accountId !== accountId || !change.snapshot) return;
+    const generation = generationRef.current;
+    const snapshot = change.snapshot;
+    return scheduleMembershipExpiry(snapshot, () => {
+      if (getCommerceEntitlementSnapshot() !== change) return;
+      publishEntitlement(controller, generation, change.environment,
+        { ...snapshot, membership: { ...snapshot.membership, active: false } }, 'membership-expired');
+      if (change.environment === 'sandbox') {
+        const expiredChange = getCommerceEntitlementSnapshot();
+        void (async () => {
+          await operationGateRef.current.whenIdle();
+          if (getCommerceEntitlementSnapshot() !== expiredChange) return;
+          if (generation !== generationRef.current || controllerRef.current !== controller) return;
+          if (!await confirmNativeCommerceEnvironment(controller.accountId, 'production')) return;
+          if (generation !== generationRef.current || controllerRef.current !== controller) return;
+          observedEnvironmentRef.current = 'production';
+          publishEntitlement(controller, generation, 'production', undefined, 'environment-change');
+          const operation = operationGateRef.current.begin({ deadlineMs: COMMERCE_RUNTIME_OPERATION_DEADLINE_MS });
+          if (!operation) return;
+          try { await refreshEntitlement(controller, generation, 'membership-expired', operation); }
+          finally { operation.finish(); }
+        })().catch(() => undefined);
+      }
+    });
+  }, [accountId, entitlementChange, publishEntitlement, refreshEntitlement]);
 
   const reconcileAndRefresh = useCallback(async (
     controller: Controller,
@@ -453,9 +474,28 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
             verified.transactionId !== transaction.transactionReference
             || verified.entitlement.environment !== environment
           ) return { state: 'deferred' } as const;
+          // A valid historical receipt can describe an expired entitlement.
+          // It must be acknowledged, but must not redirect learning to Sandbox.
+          let learningEnvironment = environment;
+          let learningEntitlement = verified.entitlement;
+          if (environment === 'sandbox') {
+            const entitlementRequest = apiRequest<CommerceEntitlementsResponse>(
+              '/v1/commerce/entitlements/current',
+              { signal: options?.signal },
+            );
+            options?.lifecycle?.trackRaw(entitlementRequest);
+            const current = await withAbortSignal(entitlementRequest, options?.signal);
+            if (options?.signal?.aborted || generation !== generationRef.current) return { state: 'deferred' } as const;
+            learningEntitlement = current.sandbox;
+            if (!verified.entitlement.membership.active || !current.sandbox.membership.active
+              || current.production.membership.active) {
+              learningEnvironment = 'production';
+              learningEntitlement = current.production;
+            }
+          }
           if (!await confirmNativeCommerceEnvironment(
             accountId,
-            environment,
+            learningEnvironment,
             { signal: options?.signal },
           )) {
             return { state: 'deferred' } as const;
@@ -463,14 +503,14 @@ function AppleCommerceRuntimeProvider({ children }: PropsWithChildren) {
           if (options?.signal?.aborted || generation !== generationRef.current) {
             return { state: 'deferred' } as const;
           }
-          observedEnvironmentRef.current = environment;
+          observedEnvironmentRef.current = learningEnvironment;
           const activeController = controllerRef.current;
           if (!activeController) return { state: 'deferred' } as const;
           publishEntitlement(
             activeController,
             generation,
-            environment,
-            verified.entitlement,
+            learningEnvironment,
+            learningEntitlement,
             'transaction-verification',
           );
           return {
