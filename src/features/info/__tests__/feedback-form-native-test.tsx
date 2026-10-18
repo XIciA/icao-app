@@ -1,10 +1,11 @@
-jest.mock('@/features/feedback/FeedbackHistory.native', () => ({ FeedbackHistory: () => null }));
-jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { InfoScreen } from '../InfoScreen.native';
 
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({}) }));
+jest.mock('@/features/feedback/FeedbackHistory.native', () => ({ FeedbackHistory: () => null }));
+jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 const mockSubmit = jest.fn();
 let mockParams: Record<string, string> = { slug: 'feedback', source: 'profile', compose: '1' };
 let mockId = 0;

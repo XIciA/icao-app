@@ -1,3 +1,4 @@
+import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { SessionRecapList } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
 import { CheckCircle2, ChevronRight, Flag } from '@/components/ui/icons';
@@ -12,6 +13,7 @@ import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from '../types';
 const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
 export function StudyReport({ record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
+  const tutorial = useTutorial();
   const [review, setReview] = useState<QuestionBankStudyPackage>();
   const [list,setList] = useState<'annotations'|'words'|'wrong'>();
   const [detail,setDetail] = useState(record);
@@ -24,7 +26,7 @@ export function StudyReport({ record, onReturn, returnLabel, interaction, onCont
   async function open(itemId?: string) {
     if (opening) return;
     setOpening(true); setError('');
-    try { const loaded = await loadLearningRecordReview(record); setDetail(loaded); const result = toStudyReviewPackage(itemId ? selectReview(loaded, new Set([itemId])) : loaded); if (!result) throw new Error('missing_review'); setReview(result); }
+    try { const loaded = await loadLearningRecordReview(record); setDetail(loaded); const result = toStudyReviewPackage(itemId ? selectReview(loaded, new Set([itemId])) : loaded); if (!result) throw new Error('missing_review'); setReview(result); tutorial?.event('recap'); }
     catch { setError('记录暂时无法打开，请重试。'); }
     finally { setOpening(false); }
   }
@@ -32,6 +34,7 @@ export function StudyReport({ record, onReturn, returnLabel, interaction, onCont
   if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<Screen><TopBar title="学习记录" onBack={returnToReport} /><AppText>正在打开记录…</AppText></Screen>}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={() => setList(undefined)} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen}>
+    <TutorialCoach inset={false} />
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
       {!onContinue && exam && !complete ? <Tag tone="accent">未完成</Tag> : null}
       <AppText variant="pageTitle">{onContinue || (listening && record.mockExam?.moduleIds.length === 1) ? '听力成绩' : exam ? '本次模拟考试已结束' : '本次学习已结束'}</AppText>
@@ -44,12 +47,12 @@ export function StudyReport({ record, onReturn, returnLabel, interaction, onCont
     {error || externalError ? <AppText color={colors.destructive} variant="caption">{error || externalError}</AppText> : null}
     {externalError && onExitWithoutSave ? <Button disabled={busy} onPress={onExitWithoutSave} variant="ghost">仍然返回</Button> : null}
     {onContinue ? <><Button disabled={busy} onPress={onContinue}>进入下一板块</Button><Button disabled={busy} variant="secondary" onPress={onEnd}>结束考试</Button></> : <>
-    <View><AppText variant="sectionTitle">本次回顾</AppText>
+    <TutorialTarget ids={['recap']}><View><AppText variant="sectionTitle">本次回顾</AppText>
       {Boolean(record.sessionRecap?.annotatedCardIds.length) && <ReviewRow title="标注题目" count={record.sessionRecap!.annotatedCardIds.length} onPress={() => setList('annotations')} />}
       {Boolean(record.sessionRecap?.words.length) && <ReviewRow title="查词与收藏" count={record.sessionRecap!.words.length} onPress={() => setList('words')} />}
       {objective.wrongIds.length > 0 && <ReviewRow title="错题回顾" count={objective.wrongIds.length} onPress={() => setList('wrong')} />}
       <ReviewRow title={opening ? '正在打开…' : '全部学习记录'} count={record.studiedCount ?? record.totalCount} onPress={() => { if (!opening) void open(); }} />
-    </View>
+    </View></TutorialTarget>
     <Button variant="secondary" onPress={onReturn}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
   </Screen>;
 }

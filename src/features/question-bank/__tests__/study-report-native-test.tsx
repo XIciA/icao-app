@@ -22,3 +22,32 @@ it('returns from the readonly paper to the same completed result without leaving
   await fireEvent.press(screen.getByText('返回结束页面'));
   expect(screen.getByText('听力成绩')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(leave).not.toHaveBeenCalled(); expect(loadLearningRecordReview).toHaveBeenCalledTimes(1);
 });
+
+it('marks tutorial recap complete only after the saved original question opens', async () => {
+  const { TutorialContext } = require('@/features/usage-guide/TutorialContext');
+  const { TUTORIAL_STEPS, emptyTutorialProgress } = require('@/features/usage-guide/tutorial-model');
+  const event = jest.fn();
+  const controller = { progress: { ...emptyTutorialProgress(), step: TUTORIAL_STEPS.findIndex((step: { id: string }) => step.id === 'recap') }, event, skip: jest.fn(), finish: jest.fn(), exit: jest.fn(), scroll: { current: null }, scrollOffset: { current: 0 } };
+  const screen = await render(<TutorialContext.Provider value={controller}><StudyReport record={record} noteCount={0} interaction="choices" onReturn={jest.fn()} /></TutorialContext.Provider>);
+  jest.mocked(loadLearningRecordReview).mockRejectedValueOnce(new Error('offline'));
+  await fireEvent.press(screen.getByText('全部学习记录'));
+  await waitFor(() => expect(screen.getByText('记录暂时无法打开，请重试。')).toBeTruthy());
+  expect(event).not.toHaveBeenCalled();
+  const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
+  jest.mocked(loadLearningRecordReview).mockResolvedValueOnce({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) });
+  await fireEvent.press(screen.getByText('全部学习记录'));
+  await waitFor(() => expect(event).toHaveBeenCalledWith('recap'));
+  expect(screen.getByText('返回结束页面')).toBeTruthy();
+});
+
+it('links a looked-up word back to its saved source question using the existing recap', async () => {
+  const dataset = data.find(bank => bank.id === 'sentences900') as QuestionBankDataset;
+  const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
+  const saved = { ...record, id: 'word-recap', recordType: 'session' as const, sessionRecap: { annotatedCardIds: [], words: [{ word: 'maintaining', favorited: true }] }, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) };
+  jest.mocked(loadLearningRecordReview).mockResolvedValueOnce(saved);
+  const screen = await render(<StudyReport record={saved} noteCount={0} interaction="speaking" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('查词与收藏'));
+  await fireEvent.press(screen.getByText(`回到 ${card.taskTitle}`));
+  await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
+  expect(loadLearningRecordReview).toHaveBeenLastCalledWith(saved);
+});

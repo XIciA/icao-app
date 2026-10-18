@@ -1,3 +1,4 @@
+import { UserGuideScreen } from '@/features/usage-guide/UserGuideScreen';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import { AboutPage } from './AboutPage.native';
@@ -7,22 +8,21 @@ import type {
   FeedbackDiagnosticFeature,
   FeedbackSource,
 } from '@icao/contracts';
-import { useFocusEffect, useNavigation, usePreventRemove } from '@react-navigation/native';
+import { useNavigation, usePreventRemove } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
-  BookOpen,
   CheckCircle2,
-  ChevronDown,
   ImagePlus,
   ShieldCheck,
   X,
 } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Image, Pressable, StyleSheet, View } from 'react-native';
 
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { TopBar } from '@/components/navigation/TopBar';
-import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
+import { AppText, Button, Screen, TextField } from '@/components/ui';
 import {
   createClientSubmissionId,
   submitFeedback,
@@ -33,8 +33,10 @@ import { builtinAppContent, loadAppContent } from '@/features/app-content/reposi
 import { LegalDocumentBody } from '@/features/app-content/LegalDocumentBody.native';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 
-type InfoSlug = 'about' | 'help' | 'feedback' | 'agreement' | 'privacy' | 'services';
-const pages: InfoSlug[] = ['about', 'help', 'feedback', 'agreement', 'privacy', 'services'];
+const SentenceTutorialScreen = lazy(() => import('@/features/usage-guide/SentenceTutorialScreen').then(module => ({ default: module.SentenceTutorialScreen })));
+
+type InfoSlug = 'about' | 'help' | 'guide' | 'tutorial' | 'feedback' | 'agreement' | 'privacy' | 'services';
+const pages: InfoSlug[] = ['about', 'help', 'guide', 'tutorial', 'feedback', 'agreement', 'privacy', 'services'];
 const MAX_IMAGE_COUNT = 3;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const CATEGORY_OPTIONS: { label: string; value: FeedbackCategory }[] = [
@@ -47,14 +49,15 @@ export function InfoScreen() {
   const params = useLocalSearchParams<FeedbackParams & { slug: InfoSlug }>();
   const { slug } = params;
   const resetKey = JSON.stringify([slug, params.source, params.sourceRoute, params.bankId, params.categoryId, params.topicId, params.cardId, params.bankVersion, params.bankChecksum, params.correlationId, params.feature]);
-  return <NativeScreenBoundary title={slug === 'about' ? '关于听你五个' : slug === 'feedback' ? '意见反馈' : slug === 'help' ? '帮助中心' : '政策与条款'} fallbackHref={slug === 'about' ? '/account/settings' : '/(tabs)/profile'} resetKey={resetKey}><InfoContent /></NativeScreenBoundary>;
+  return <NativeScreenBoundary title={slug === 'about' ? '关于听你五个' : slug === 'feedback' ? '意见反馈' : slug === 'tutorial' ? '新手教程' : slug === 'help' || slug === 'guide' ? '使用指南' : '政策与条款'} fallbackHref={slug === 'about' ? '/account/settings' : '/(tabs)/profile'} resetKey={resetKey}><InfoContent /></NativeScreenBoundary>;
 }
 
 function InfoContent() {
   const { slug, compose, source, feature } = useLocalSearchParams<{ slug: InfoSlug; compose?: string; source?: string; feature?: string }>();
   const page: InfoSlug = pages.includes(slug) ? slug : 'help';
   if (page === 'about') return <AboutPage />;
-  if (page === 'help') return <HelpPage />;
+  if (page === 'help' || page === 'guide') return <UserGuideScreen />;
+  if (page === 'tutorial') return <Suspense fallback={<GlobalLoadingScreen />}><SentenceTutorialScreen /></Suspense>;
   if (page === 'feedback') return compose === '1' || source === 'study' || feature ? <FeedbackPage /> : <FeedbackHistory />;
   return <LegalPage page={page} />;
 }
@@ -69,42 +72,6 @@ function Page({
   scroll?: boolean;
 }) {
   return <Screen scroll={scroll} keyboard contentStyle={styles.screen}><TopBar title={title} />{children}</Screen>;
-}
-
-function HelpPage() {
-  const [open, setOpen] = useState(-1);
-  const [faqs, setFaqs] = useState(builtinAppContent.help);
-  useFocusEffect(useCallback(() => {
-    let active = true;
-    void loadAppContent().then(({ data }) => {
-      if (active) { setFaqs(data.payload.help); setOpen(-1); }
-    }).catch(() => undefined);
-    return () => { active = false; };
-  }, []));
-  return (
-    <Page title="帮助中心">
-      <View style={styles.content}>
-        <View style={styles.faqList}>
-          {faqs.map(({ id, question, answer }, index) => (
-            <Pressable key={id} onPress={() => setOpen(open === index ? -1 : index)}>
-              <Card style={styles.faq}>
-                <View style={styles.row}>
-                  <BookOpen color={colors.primary} size={16} />
-                  <AppText style={styles.flex} variant="button">{question}</AppText>
-                  <ChevronDown
-                    color={colors.mutedForeground}
-                    size={16}
-                    style={{ transform: [{ rotate: open === index ? '180deg' : '0deg' }] }}
-                  />
-                </View>
-                {open === index ? <AppText style={styles.answer}>{answer}</AppText> : null}
-              </Card>
-            </Pressable>
-          ))}
-        </View>
-      </View>
-    </Page>
-  );
 }
 
 type FeedbackParams = {
@@ -458,10 +425,7 @@ const styles = StyleSheet.create({
   border: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth },
   menuIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 },
   flex: { flex: 1 },
-  faqList: { gap: spacing[2.5] },
-  faq: { gap: spacing[3], padding: spacing[3] },
   row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
-  answer: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: spacing[3] },
   feedback: { gap: spacing[4], padding: spacing[5] },
   context: { backgroundColor: colors.primary06, borderColor: colors.primary, borderRadius: radii.md, borderWidth: 1, gap: spacing[1], padding: spacing[3] },
   diagnosticNotice: { alignItems: 'flex-start', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.md, borderWidth: 1, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },

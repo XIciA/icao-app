@@ -281,3 +281,26 @@ test('tap recording resolves to the shared panel only in the formal EdgeOne runt
   assert.equal(edgeOneSharedModule(repositoryRoot,source,'ios','edgeone-production'),source);
   assert.equal(edgeOneSharedModule(repositoryRoot,source,'web','edgeone-production').filePath,path.join(repositoryRoot,'src/features/question-bank/components/SpeakingPracticePanel.native.tsx'));
 });
+
+test('usage-guide release admits only the exact reviewed version metadata and retains legacy display bytes', () => {
+  const result = spawnSync('git', ['show', 'c11d1dce:app.json'], { cwd: repositoryRoot, encoding: 'utf8' });
+  requireSuccess(result, 'read reviewed pre-guide configuration');
+  const previous = JSON.parse(result.stdout);
+  const release = structuredClone(previous);
+  release.expo.version = '1.3.2';
+  release.expo.ios.buildNumber = '3574504';
+  release.expo.android.versionCode = 3574504;
+  const digest = value => createHash('sha256').update(`${JSON.stringify(value, null, 2)}\n`).digest('hex');
+  assert.equal(digest(previous), 'a110f1040ef4f9b8f2facc2d10b2c82f05f563d2ae0ce0b9bcdabadda3f83ced');
+  assert.equal(digest(release), 'cdae79062c444e931f100a60d0881217ebd826a1dda1280e14a43ff113519d0c');
+  const expected = [{ path: 'app.json', sha256: '255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3', sources: ['explicit'] }];
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(release) }]), expected);
+  for (const altered of [
+    { ...release, expo: { ...release.expo, name: 'changed' } },
+    { ...release, expo: { ...release.expo, version: '1.3.3' } },
+    { ...release, expo: { ...release.expo, ios: { ...release.expo.ios, bundleIdentifier: 'changed' } } },
+  ]) {
+    assert.notDeepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(altered) }]), expected);
+  }
+  assert.equal(readFileSync(path.join(repositoryRoot, 'src/config/app-version.web.ts'), 'utf8'), "export const APP_DISPLAY_VERSION = '1.0.0';\n");
+});

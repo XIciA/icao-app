@@ -1,5 +1,3 @@
-jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { getActiveOwner: () => undefined } }));
-jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'unavailable'}) }));
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,6 +6,8 @@ import { AccountScreen } from '@/features/account/AccountScreen';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { InfoScreen } from '@/features/info/InfoScreen';
 
+jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { getActiveOwner: () => undefined } }));
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'unavailable'}) }));
 let mockInstalledVersion: string | null = '2.3.4';
 const mockBack = jest.fn();
 let mockCanGoBack = true;
@@ -92,6 +92,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 jest.mock('expo-router', () => ({
+  useFocusEffect: (callback: () => void) => { const React = jest.requireActual('react'); React.useEffect(callback, [callback]); },
   usePathname: () => '/info/about',
   useLocalSearchParams: () => mockParams,
   useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, push: mockRouterPush, replace: mockRouterReplace }),
@@ -379,11 +380,13 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText('我知道了')).toBeNull();
   });
 
-  it('routes the removed information hub to the help center', async () => {
+  it('routes the removed information hub to the usage guide', async () => {
     mockParams = { slug: 'hub' };
     const screen = await render(withSafeArea(<InfoScreen />));
     expect(screen.queryByText('信息与帮助')).toBeNull();
-    expect(screen.getByText('帮助中心')).toBeTruthy();
+    expect(screen.getByText('使用指南')).toBeTruthy();
+    expect(screen.getByText('开始新手教程')).toBeTruthy();
+    expect(screen.queryByText('帮助中心')).toBeNull();
     expect(screen.queryByText('法律条款')).toBeNull();
   });
 
