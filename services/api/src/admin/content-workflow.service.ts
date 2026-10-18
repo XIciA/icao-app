@@ -11,6 +11,7 @@ import type { OpsAuthenticatedRequest } from './admin.types';
 import { bankSchema, cardsOf, parseDraft, validateBank } from './content-workflow-validation';
 import { prepareAttachments, attachmentMetadata, type StoredAttachment } from './content-attachments';
 import { rebaseBank, containsBankChanges } from './content-workflow-rebase';
+import { replaceHistoricalHotspots, validateHotspotReferences, validateExclusions } from './content-workflow-history';
 type Tx = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 const checksum = (value: unknown) => createHash('sha256').update(canonicalAppContentJson(value)).digest('hex');
 
@@ -43,7 +44,7 @@ export class ContentWorkflowService {
   async previewCards(id:string) {
     const order=await this.get(id);const draft=parseDraft(order.draft);const sources=await this.sources();
     const linked=new Set(draft.decisions.map(d=>d.cardId));
-    for(const topic of draft.hotspot?.topics??[])for(const id of topic.cardIds)linked.add(id);
+    for(const brief of [...(draft.hotspot?[draft.hotspot]:[]),...(draft.hotspotUpdates?.briefs??[])])for(const topic of brief.topics)for(const id of topic.cardIds)linked.add(id);
     const result=[];
     for(const bank of sources.banks){
       const change=draft.banks.find(b=>b.bankId===bank.bankId);
@@ -62,6 +63,7 @@ export class ContentWorkflowService {
     const draft=parseDraft(order.draft);const sources=await this.sources();
     const problems:string[]=[];
     if(draft.hotspot){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||!app.hotspots.briefs.some(b=>b.id===draft.hotspot!.id&&checksum(b)===checksum(draft.hotspot)))problems.push('线上热点已变化或不存在');}
+    if(draft.hotspotUpdates){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||draft.hotspotUpdates.briefs.some(expected=>!app.hotspots.briefs.some(b=>b.id===expected.id&&checksum(b)===checksum(expected))))problems.push('线上历史热点已变化或不存在');}
     if(draft.article){const editorial=sources.editorial?.payload as EditorialReleaseSnapshot|undefined;const article=editorial?.articles.find(a=>a.id===draft.article!.id);if(!article||checksum({...article,publishedAt:null})!==checksum({...draft.article,publishedAt:null}))problems.push('线上文章已变化或不存在');}
     for(const change of draft.banks){const live=sources.banks.find(b=>b.bankId===change.bankId);if(!live){problems.push('线上题库不存在');continue;}const [base]=await this.database.db.select().from(questionBankReleases).where(and(eq(questionBankReleases.bankId,change.bankId),eq(questionBankReleases.checksum,change.baseChecksum))).limit(1);if(!base||!containsBankChanges(base.payload,change.payload,live.payload))problems.push('本工单更新的题目存在后续变更，请核对');}
     return {problems,checkedAt:new Date().toISOString(),path:draft.article?`/content/resources/${encodeURIComponent(draft.article.slug)}`:draft.hotspot?`/content/hotspot/${encodeURIComponent(draft.hotspot.id)}`:`/question-bank/${encodeURIComponent(draft.banks[0]?.bankId??'opi')}`};
@@ -119,8 +121,7 @@ export class ContentWorkflowService {
       if(current.kind==='opi' && draft.article) throw new BadRequestException('opi_order_mismatch');
       if(draft.article && draft.article.id!==`article-${id}`) throw new BadRequestException('article_identity_mismatch');
       if(draft.hotspot && draft.hotspot.id!==`hotspot-${current.examDate}-${createHash('sha256').update(current.center!).digest('hex').slice(0,12)}`) throw new BadRequestException('hotspot_identity_mismatch');
-      // Exclusion is an explicit reviewer action, never silently selected by automation.
-      if(draft.decisions.some(d=>d.kind==='excluded')) throw new BadRequestException('exclude_in_review_first');
+      if(draft.hotspotUpdates && current.kind!=='questions') throw new BadRequestException('historical_hotspot_order_mismatch');
       await this.validate(tx,draft);
       const [next]=await tx.update(contentWorkOrders).set({draft,status:'ready',processingNote:null,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
@@ -131,7 +132,8 @@ export class ContentWorkflowService {
     return this.database.db.transaction(async tx=>{
       const current=await this.lock(tx,id,revision);const draft=parseDraft(current.draft);
       if(current.status!=='ready' || draft.decisions[index]?.kind!=='unresolved') throw new BadRequestException('invalid_exclusion');
-      draft.decisions[index]={...draft.decisions[index],kind:'excluded'};
+      draft.decisions[index]={...draft.decisions[index],kind:'excluded',reason:draft.decisions[index]!.reason||'审核暂缓，待复核'};
+      await this.validate(tx,draft);
       const [next]=await tx.update(contentWorkOrders).set({draft,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
       await this.log(tx,request,id,'exclude',next.revision);return {...next,attachments:attachmentMetadata(next.attachments)};
@@ -155,10 +157,11 @@ export class ContentWorkflowService {
         await tx.update(questionBankReleases).set({active:false}).where(eq(questionBankReleases.bankId,change.bankId));
         await tx.insert(questionBankReleases).values({bankId:change.bankId,version:(latest?.version??0)+1,checksum:checksum(change.payload),payload:change.payload,active:true});
       }
-      if(draft.hotspot) {
+      if(draft.hotspot || draft.hotspotUpdates) {
         const [previous]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
         if(!previous || !isAppContentSnapshot(previous.payload)) throw new BadRequestException('app_content_not_available');
-        const payload={...previous.payload,version:previous.version+1,publishedAt:new Date().toISOString(),hotspots:{generatedAt:new Date().toISOString(),briefs:[...previous.payload.hotspots.briefs.filter(b=>b.id!==draft.hotspot!.id),draft.hotspot].sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id))}};
+        const briefs=draft.hotspotUpdates?replaceHistoricalHotspots(previous.payload,draft.hotspotUpdates):[...previous.payload.hotspots.briefs.filter(b=>b.id!==draft.hotspot!.id),draft.hotspot!].sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+        const payload={...previous.payload,version:previous.version+1,publishedAt:new Date().toISOString(),hotspots:{generatedAt:new Date().toISOString(),briefs}};
         if(!isAppContentSnapshot(payload)) throw new BadRequestException('invalid_hotspot_release');
         await tx.update(appContentReleases).set({active:false}).where(eq(appContentReleases.active,true));
         await tx.insert(appContentReleases).values({version:payload.version,checksum:checksum(payload),payload,active:true});
@@ -190,9 +193,31 @@ export class ContentWorkflowService {
       if(change.payload.id!==change.bankId) throw new BadRequestException('bank_id_mismatch');
       validateBank(change.payload,old.payload);
     }
+    validateExclusions(draft,available);
     const opi=draft.banks.find(b=>b.bankId==='opi')?.payload??available.find(b=>b.bankId==='opi')?.payload;
+    if(draft.hotspotUpdates) {
+      const [app]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
+      if(!app || !isAppContentSnapshot(app.payload)) throw new BadRequestException('app_content_not_available');
+      const briefs=replaceHistoricalHotspots(app.payload,draft.hotspotUpdates);
+      validateHotspotReferences(briefs,validateBank(opi,opi));
+      const selected=new Set(draft.hotspotUpdates.briefs.flatMap(b=>b.topics.flatMap(t=>t.cardIds)));
+      if([...selected].some(id=>!draft.decisions.some(d=>d.cardId===id&&!['excluded','unresolved'].includes(d.kind)))) throw new BadRequestException('hotspot_decision_invalid');
+    }
+    // Retiring a shared OPI card must not leave a live hotspot pointing to it.
+    const previousOpi=available.find(b=>b.bankId==='opi')?.payload;
+    if(opi && previousOpi){
+      const oldCards=new Map(cardsOf(bankSchema.parse(previousOpi)).map(e=>[e.card.id,e.card]));
+      const retired=new Set(cardsOf(bankSchema.parse(opi)).filter(e=>e.card.retired&&!oldCards.get(e.card.id)?.retired).map(e=>e.card.id));
+      if(retired.size){
+        const [app]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
+        if(!app || !isAppContentSnapshot(app.payload)) throw new BadRequestException('app_content_not_available');
+        const briefs=draft.hotspotUpdates?replaceHistoricalHotspots(app.payload,draft.hotspotUpdates):[...app.payload.hotspots.briefs.filter(b=>b.id!==draft.hotspot?.id),...(draft.hotspot?[draft.hotspot]:[])];
+        if(briefs.some(b=>b.topics.some(t=>t.cardIds.some(id=>retired.has(id)))))throw new BadRequestException('retired_question_still_referenced');
+      }
+    }
     if(draft.hotspot) {
       const bank=validateBank(opi,opi); const cards=cardsOf(bank);
+      validateHotspotReferences([draft.hotspot],bank);
       const ids=new Set<string>();
       for(const group of draft.hotspot.topics) for(const id of group.cardIds) {
         if(ids.has(id) || !cards.some(e=>e.topic.id===group.topicId && e.card.id===id && !e.card.retired)) throw new BadRequestException('hotspot_reference_invalid');ids.add(id);
@@ -212,8 +237,8 @@ export class ContentWorkflowService {
     for(const change of draft.banks) for(const {card} of cardsOf(bankSchema.parse(change.payload))) if(!card.retired) {
       if(card.audio) paths.add(card.audio); if(card.image) paths.add(card.image);
     }
-    if(draft.hotspot && opi) {
-      const ids=new Set(draft.hotspot.topics.flatMap(topic=>topic.cardIds));
+    if((draft.hotspot || draft.hotspotUpdates) && opi) {
+      const ids=new Set([...(draft.hotspot?[draft.hotspot]:[]),...(draft.hotspotUpdates?.briefs??[])].flatMap(b=>b.topics.flatMap(topic=>topic.cardIds)));
       for(const {card} of cardsOf(bankSchema.parse(opi))) if(ids.has(card.id)) {
         if(!card.audio) throw new BadRequestException('content_resource_not_ready');
         paths.add(card.audio);if(card.image)paths.add(card.image);

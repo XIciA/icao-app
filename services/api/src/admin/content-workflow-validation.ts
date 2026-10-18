@@ -30,6 +30,11 @@ export function validateBank(value: unknown, previous?: unknown): Bank {
       for (const ids of Object.values(topic.scopeCardIds ?? {})) if (!unique(ids) || ids.some(id=>!topic.cards.some(c=>c.id===id))) throw new BadRequestException('invalid_study_scope');
       for (const card of topic.cards) {
         if (card.retired) continue;
+        if(bank.id==='opi') {
+          const old=oldCards.get(card.id);
+          if(card.audioText!==old?.audioText && card.kind!=='image' && !card.audioText?.endsWith('?')) throw new BadRequestException('opi_question_must_be_complete');
+          for(const [id,prompts] of Object.entries(card.reportedPrompts??{})) if(JSON.stringify(prompts)!==JSON.stringify(old?.reportedPrompts?.[id]) && prompts.some(prompt=>!prompt.endsWith('?'))) throw new BadRequestException('opi_reported_question_must_be_complete');
+        }
         // An unrelated edit must not invalidate legacy content. New or changed cards
         // must meet their bank's complete format before publication.
         const practiceContent = (value: typeof card | undefined) => {
@@ -41,6 +46,7 @@ export function validateBank(value: unknown, previous?: unknown): Bank {
         if (JSON.stringify(practiceContent(oldCards.get(card.id))) === JSON.stringify(practiceContent(card))) continue;
         if (card.kind === 'image') { if (!card.image || !card.imageAlt) throw new BadRequestException('image_question_incomplete'); continue; }
         if (!card.audioText || !card.audio) throw new BadRequestException('question_audio_missing');
+        if (oldCards.get(card.id)?.audioText !== card.audioText && oldCards.get(card.id)?.audio === card.audio) throw new BadRequestException('changed_question_requires_new_audio');
         if (card.choices) {
           if (card.correctChoiceIndex === undefined || card.correctChoiceIndex >= card.choices.length) throw new BadRequestException('question_answer_missing');
         } else if (bank.id === 'sentences900') {
@@ -64,9 +70,11 @@ const block = z.discriminatedUnion('type',[
   z.object({type:z.literal('list'),ordered:z.boolean(),items:z.array(text).min(1)}),
   z.object({type:z.literal('callout'),tone:z.enum(['note','warning']),title:text.optional(),text}),
 ]);
+const hotspotSchema = z.object({id:text,date:z.iso.date(),title:text,centers:z.array(text).min(1),topics:z.array(z.object({topicId:text,topicTitle:text,cardIds:z.array(text).min(1)})).min(1)});
 export const draftSchema = z.object({
   banks:z.array(z.object({bankId:z.enum(['opi','listening','sentences900','radiotelephony','storytelling']),baseChecksum:z.string().regex(/^[a-f0-9]{64}$/),payload:z.record(z.string(),z.unknown())})).max(5),
-  hotspot:z.object({id:text,date:z.iso.date(),title:text,centers:z.array(text).length(1),topics:z.array(z.object({topicId:text,topicTitle:text,cardIds:z.array(text).min(1)})).min(1)}).optional(),
+  hotspot:hotspotSchema.extend({centers:z.array(text).length(1)}).optional(),
+  hotspotUpdates:z.object({baseChecksum:z.string().regex(/^[a-f0-9]{64}$/),briefs:z.array(hotspotSchema).min(1).max(500)}).optional(),
   article:z.object({id:text,slug:text,version:z.number().int().positive(),channel:z.literal('resource'),category:text,badge:text,title:text,summary:text,tags:z.array(text),publishedAt:z.string().nullable(),
     cover:z.object({publicPath:text,alt:text,width:z.literal(800),height:z.literal(500),mimeType:z.enum(['image/jpeg','image/png']),checksum:z.string().regex(/^[a-f0-9]{64}$/),sizeBytes:z.number().int().positive()}),
     blocks:z.array(block).min(1),sourceLinks:z.array(z.object({title:text,publisher:text,url:z.url().refine(url=>/^https?:/.test(url))})),
@@ -77,5 +85,6 @@ export function parseDraft(value: unknown): ContentDraft {
   const parsed=draftSchema.safeParse(value);
   if (!parsed.success) throw new BadRequestException('invalid_content_draft');
   if(new Set(parsed.data.banks.map(b=>b.bankId)).size!==parsed.data.banks.length) throw new BadRequestException('duplicate_bank');
+  if(parsed.data.hotspotUpdates && (parsed.data.hotspot || parsed.data.article)) throw new BadRequestException('historical_hotspots_exclusive');
   return parsed.data;
 }

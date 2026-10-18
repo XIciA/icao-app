@@ -46,10 +46,12 @@ def prepare(order,sources,plan,out):
    elif action=='update':
     patch=operation['card']
     if 'id' in patch and patch['id']!=card_id:raise ValueError('existing_identity_must_be_preserved')
-    if 'audioText' in patch and patch['audioText']!=card.get('audioText') and 'audio' not in patch:card.pop('audio',None)
+    old_text,old_audio=card.get('audioText'),card.get('audio')
     card.update(copy.deepcopy(patch))
+    if card.get('audioText')!=old_text and card.get('audio')==old_audio:card.pop('audio',None)
    else:raise ValueError('unknown_action')
   if not card.get('retired') and card.get('kind')!='image' and not card.get('audio'):audio(bank_id,card)
+  if action=='add' or (action=='update' and any(k in operation['card'] for k in ['studyTier','examReported'])):topic.pop('scopeCardIds',None)
   changed.add(bank_id)
  decisions=[];groups={}
  for decision in plan.get('decisions',[]):
@@ -65,10 +67,13 @@ def prepare(order,sources,plan,out):
   bank=banks[bank_id]['payload']
   for category in bank['categories']:
    for topic in category['topics']:
-    topic['declaredCardCount']=len(topic['cards']);topic.pop('scopeCardIds',None)
+    topic['declaredCardCount']=len(topic['cards'])
    category['declaredTopicCount']=len(category['topics']);category['declaredCardCount']=sum(len(t['cards']) for t in category['topics'])
   bank['declaredTopicCount']=sum(len(c['topics']) for c in bank['categories']);bank['declaredCardCount']=sum(c['declaredCardCount'] for c in bank['categories'])
  draft={'banks':[{'bankId':key,'baseChecksum':banks[key]['checksum'],'payload':banks[key]['payload']} for key in sorted(changed)],'decisions':decisions,'notes':plan.get('notes','')}
+ if plan.get('hotspotUpdates'):
+  if order['kind']!='questions':raise ValueError('historical_hotspot_order_mismatch')
+  draft['hotspotUpdates']=copy.deepcopy(plan['hotspotUpdates'])
  if hotspot_id:draft['hotspot']={'id':hotspot_id,'date':order['examDate'],'centers':[order['center']],'title':order['examDate']+' '+order['center']+' OPI','topics':list(groups.values())}
  write(out/'draft.json',{'id':order['id'],'revision':order['revision'],'draft':draft});write(out/'resources.json',{'schemaVersion':1,'files':resources})
  print(f'question_order_prepared banks={len(changed)} resources={len(resources)} decisions={len(decisions)}')
