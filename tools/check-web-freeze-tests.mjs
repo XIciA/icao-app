@@ -271,3 +271,13 @@ test('the PDF and airline catalog stay on the unselected native route in frozen 
   assert.match(download,/usePublishedRelease && testRelease/);
   assert.match(download,/const usePublishedRelease = isEdgeOneProductionWeb\(\)/);
 });
+
+
+test('tap recording resolves to the shared panel only in the formal EdgeOne runtime', () => {
+  const require = createRequire(import.meta.url);
+  const {edgeOneSharedModule} = require('./edgeone-shared-modules.cjs');
+  const source = {type:'sourceFile',filePath:path.join(repositoryRoot,'src/features/question-bank/components/SpeakingPracticePanel.tsx')};
+  for(const runtime of [undefined,'vercel','legacy']) assert.equal(edgeOneSharedModule(repositoryRoot,source,'web',runtime),source);
+  assert.equal(edgeOneSharedModule(repositoryRoot,source,'ios','edgeone-production'),source);
+  assert.equal(edgeOneSharedModule(repositoryRoot,source,'web','edgeone-production').filePath,path.join(repositoryRoot,'src/features/question-bank/components/SpeakingPracticePanel.native.tsx'));
+});

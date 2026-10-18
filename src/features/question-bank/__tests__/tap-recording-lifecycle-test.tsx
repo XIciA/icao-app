@@ -432,4 +432,18 @@ describe('Native tap recording lifecycle', () => {
     await screen.unmount();
   });
 
+  it('keeps the EdgeOne Web permission primer and records between two clicks', async () => {
+    setPlatform('web');
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    expect(mockRecorder.start).not.toHaveBeenCalled();
+    await act(async () => { fireEvent.press(screen.getByLabelText('开始录音')); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'pressOut'); });
+    expect(mockRecorder.stop).not.toHaveBeenCalled();
+    await act(async () => { fireEvent.press(screen.getByLabelText('停止录音')); });
+    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    expect(mockRecorder.stop).toHaveBeenCalledTimes(1);
+    await screen.unmount();
+  });
 });

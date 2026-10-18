@@ -123,6 +123,7 @@ configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 xcodebuild \
+  -jobs "${ICAO_IOS_BUILD_JOBS:-2}" \
   -workspace "$IOS_WORKSPACE" \
   -scheme "$IOS_SCHEME" \
   -configuration Release \

@@ -213,6 +213,9 @@ reviewedFormalWebHashes.set("src/features/sync/learning-sync.native.ts", [null, 
 reviewedFormalWebHashes.set("src/features/question-bank/hooks/useQuestionBankTopic.native.ts", ["20a67d213b57d8de523a8ae33d3ccc6dd825eb56d11e0036288aaf3325b2a52f", "cc1b5308275595e7728bbdf0c7b6c74f4842cdd0bff10d652e71dd10db0ee069"]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "c23cf53f60ccb97c77b7677a94174ab143805e14f098ee788fe11bfc8b18c4c4"]);
 
+// 2026-10-18 reviewed Native/EdgeOne PDF glyph repair, approved airline C, and tap recording.
+// Existing router selection keeps PDF/airlines unselected on Vercel; the EdgeOne bridge
+// remains guarded by edgeone-production. app.json only advances the Native build IDs.
 // 2026-10-17 Native/EdgeOne feature update: exact reviewed inputs only.
 // Legacy route siblings, legacy snapshots, version.web.ts and Vercel configuration remain unchanged.
 // PDF/font/catalog dependencies belong to the unselected native catalog route; the
@@ -221,19 +224,19 @@ reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "c23cf53f
 reviewedFormalWebHashes.set("assets/fonts/NotoSerifSC_600SemiBold.ttf", [null, "73bb1df903dc81dc528153b40c5602e516005482723255f6767e72281e317821"]);
 reviewedFormalWebHashes.set("src/app/question-bank/[bankId]/index.native.tsx", [null, "554e028b7b24f0edef94206bb9c0512d6c97d9d29b0a7893d114af7a8600731b"]);
 reviewedFormalWebHashes.set("src/features/app-updates/update-model.ts", [null, "722815395cf0fb511c4fa3d3c83c27d299e207156d8fa6a7059b31e612109e8d"]);
-reviewedFormalWebHashes.set("src/features/question-bank/components/AirlineMark.tsx", [null, "5e37880dac5b0706b13623dcee081da76e6d3f4281afd37e34f6dae66c81f7c8"]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/AirlineMark.tsx", [null, "e52a9854b098cec0700ab59db975424e4e60482dae855519c0887aa5b159e4de"]);
 reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [null, "41d33be6a4234d4aeb96f88b299cced4dff0a8b4a71d808193a698ebbc18ac9d"]);
 reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public-release.json", [null, "5f95032a6ab3c37bf1d9ef36f24397ad6d2bb644ba196aa0cdfcf8a07b1fa2c6"]);
 reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public.json", [null, "8cb210a06d26fba8bcd8160d2914d532435f768264193789527406f809e450db"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/SentenceExportScreen.tsx", [null, "f813399136f30c1645a71f4222744ffe2aa636326bbc33cb5f3de8c26492ccde"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/export-model.ts", [null, "6bb6d98076ec1098b36c3876d47002f4f14c8d44504ca54bd3133aa257bd82fc"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/pdf-platform.web.ts", [null, "50c7da311aaa05afc0d87b937348162c14324aa123ec27ef8dc36dcfcf8f70a1"]);
-reviewedFormalWebHashes.set("src/features/question-bank/export/sentences-pdf.ts", [null, "2fac2e3901064c6db1fd31957c161ddbe5c125a58b50b33643b77048e38cfdb8"]);
+reviewedFormalWebHashes.set("src/features/question-bank/export/sentences-pdf.ts", [null, "ffe028ee285faac36164c34d00840b22657db807aff3651e1154a7d12437193f"]);
 reviewedFormalWebHashes.set("src/features/question-bank/lib/study-scope.ts", [null, "8b0e531aec596be883cf3a5355430ad9d5bc02afc4dca19b572f3d3a9bf045a3"]);
 reviewedFormalWebHashes.set("src/features/question-bank/platform/learning-store.native.ts", [null, "70e8893800737cb12a8f1428105e47cf2ee57c361a9a6262ebbcc1e968668579"]);
-reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "739298c6f78b841930503fa468c59bf921ca303cec45e196a3706ddebc36efb4"]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "9bf305538bcf4dbc3e97b151e77cab2444268919ec78a3a7fbf992a6bdc1700a"]);
 reviewedFormalWebHashes.set("app.config.js", ["a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2", "f88c41ace896bad43495808b75f2dbf522ea1f0675a177958fc317117b7e106a"]);
-reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "ca531ddbfd564371db12858f096138c3cf6fb2fe98a262798f3d632ad10de068"]);
+reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "d362fa59097ba99477867294affc19eaef42aab65fde4dbaafbed907b761d0f8"]);
 reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e", "188be10136c308d53b13be0351d92a5a6d7db3ec54e5d0e7937f78e54fb242bd"]);
 reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "19eed3ec1891088e0b21e428162150a9429efd2ac757d822097ba9146b920360"]);
 reviewedFormalWebHashes.set("pnpm-lock.yaml", ["96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9", "78864173822a160e01e84db91ef6df5d61a1608c6830770d1a1cac35c187212b"]);

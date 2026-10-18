@@ -38,9 +38,13 @@ appId: ${APP_ID}
           point: "90%,48%"
 - assertVisible:
     id: "integrated-record-button"
-- longPressOn:
+- tapOn:
     id: "integrated-record-button"
-- assertVisible: "按住重新录音"
+- extendedWaitUntil:
+    visible: "点击停止.*0:0[1-9]"
+    timeout: 15000
+- tapOn: "停止录音"
+- assertVisible: "点击重新录音"
 - assertVisible: "我的回答"
 - assertVisible: "回放我的录音"
 - tapOn: "转写"
