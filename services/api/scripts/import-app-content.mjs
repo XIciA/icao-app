@@ -27,16 +27,20 @@ export function assertLegalDocumentVersions(previousPayloads, nextPayload) {
   }
 }
 
-export async function publishAppContent(database, release, { beforeActivation } = {}) {
-  await database.begin(async (sql) => {
+export async function publishAppContent(database, release, { beforeActivation, preserveActive = false } = {}) {
+  return await database.begin(async (sql) => {
     await sql`select pg_advisory_xact_lock(hashtext('app_content_publish'))`;
+    const [previous] = await sql`select version, checksum from app_content_releases where active = true limit 1`;
+    // API code deployment bootstraps an empty installation only. Live work-order
+    // content remains the authority, even when the image contains a newer seed.
+    if (preserveActive && previous) return { ...previous, activated: false };
+    if (previous && previous.version > release.version) throw new Error('app_content_version_regression');
     const [opi] = await sql`select payload from question_bank_releases where bank_id = 'opi' and active = true order by version desc limit 1`;
     assertHotspotReferences(release.payload.hotspots, opi?.payload);
     const published = await sql`select payload from app_content_releases`;
     assertLegalDocumentVersions(published.map((row) => row.payload), release.payload);
     const [existing] = await sql`select checksum from app_content_releases where version = ${release.version}`;
     if (existing && existing.checksum !== release.checksum) throw new Error('app_content_version_immutable');
-    const [previous] = await sql`select version, checksum from app_content_releases where active = true limit 1`;
     // Persist only immutable release identities before committing the activation.
     // A failed SQL transaction leaves the previous active content untouched.
     await beforeActivation?.({ schemaVersion: 1, previous: previous ?? null, next: { version: release.version, checksum: release.checksum } });
@@ -44,6 +48,7 @@ export async function publishAppContent(database, release, { beforeActivation } 
     await sql`insert into app_content_releases (version, checksum, payload, active)
       values (${release.version}, ${release.checksum}, ${sql.json(release.payload)}, true)
       on conflict (version) do update set active = true`;
+    return { version: release.version, checksum: release.checksum, activated: true };
   });
 }
 
@@ -96,11 +101,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     else {
       if (!process.env.DATABASE_URL) throw new Error('missing_DATABASE_URL');
       const database = postgres(process.env.DATABASE_URL, { max: 1, prepare: false });
-      try { await publishAppContent(database, release, activationIndex < 0 ? undefined : {
+      let result;
+      try { result = await publishAppContent(database, release, activationIndex < 0 ? undefined : {
+        preserveActive: true,
         beforeActivation: (checkpoint) => writeFileSync(resolve(process.argv[activationIndex + 1]), `${JSON.stringify(checkpoint)}\n`, { mode: 0o600, flag: 'wx' }),
       }); }
       finally { await database.end({ timeout: 5 }); }
-      console.log(`app_content_import_ok version=${release.version} checksum=${release.checksum}`);
+      console.log(`${result.activated ? 'app_content_import_ok' : 'app_content_preserved'} version=${result.version} checksum=${result.checksum}`);
     }
   }
 }
