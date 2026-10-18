@@ -1,14 +1,19 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { BookMarked, Bot, ChevronRight, Flame, FolderOpen, Highlighter, Play, Radio } from '@/components/ui/icons';
 import { TopBar } from '@/components/navigation/TopBar';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { loadQuestionBank } from '@/features/question-bank/data/repository.native';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { colors, radii, spacing } from '@/theme';
 import { HelpFaqList } from './HelpFaqList';
 import { readTutorialProgress } from './tutorial-progress';
 import { TUTORIAL_STEPS, type TutorialProgress } from './tutorial-model';
+
+const SentenceExportScreen = lazy(() => import('@/features/question-bank/export/SentenceExportScreen').then(module => ({ default: module.SentenceExportScreen })));
 
 export const GUIDE_FEATURES = [
   { slug: 'vocab', title: '单词学习', icon: BookMarked, description: '选择不同词书，结合释义、例句和发音积累词汇。按认识、模糊、忘记等状态学习，回顾薄弱词；30题动态测评帮助了解词汇识别情况，不等同于官方等级。词书与题库查词的收藏集中管理。' },
@@ -23,6 +28,17 @@ export function UserGuideScreen() {
   const accountId = auth.account?.accountId ?? (auth.uiAcceptanceMode ? 'ui-acceptance' : undefined);
   const [saved, setSaved] = useState<{ accountId: string; progress: TutorialProgress }>();
   const [error, setError] = useState('');
+  const [exportDataset, setExportDataset] = useState<{ accountId: string; dataset: QuestionBankDataset }>();
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState('');
+  const exportGeneration = useRef(0);
+  const exportOwner = useRef(accountId);
+  exportOwner.current = accountId;
+  useEffect(() => {
+    exportGeneration.current += 1;
+    setExportDataset(undefined); setExporting(false); setExportError('');
+    return () => { exportGeneration.current += 1; };
+  }, [accountId]);
   useFocusEffect(useCallback(() => {
     let active = true;
     setError('');
@@ -33,6 +49,19 @@ export function UserGuideScreen() {
   const complete = progress && progress.step >= TUTORIAL_STEPS.length;
   const started = progress && progress.step > 0;
   function start(restart = false) { router.push({ pathname: '/info/[slug]', params: { slug: 'tutorial', ...(restart ? { restart: '1' } : {}) } }); }
+  async function openExport() {
+    if (exporting || !accountId) return;
+    const generation = ++exportGeneration.current;
+    const isCurrent = () => exportGeneration.current === generation && exportOwner.current === accountId;
+    setExporting(true); setExportError('');
+    try {
+      const result = await loadQuestionBank('sentences900');
+      if (!result) throw new Error('bank_unavailable');
+      if (isCurrent()) setExportDataset({ accountId, dataset: result.dataset });
+    } catch { if (isCurrent()) setExportError('900句暂时无法读取，请联网后重试。'); }
+    finally { if (isCurrent()) setExporting(false); }
+  }
+  if (exportDataset?.accountId === accountId && exportDataset) return <Suspense fallback={<GlobalLoadingScreen />}><SentenceExportScreen dataset={exportDataset.dataset} onBack={() => setExportDataset(undefined)} /></Suspense>;
   return <Screen scroll contentStyle={styles.screen}>
     <TopBar title="使用指南" />
     <View style={styles.header}><AppText color={colors.primary} variant="micro">跟着学一题，了解全部功能</AppText><AppText variant="pageTitle">把每次练习，变成自己的积累。</AppText><AppText>从900句 Sentence1开始，亲手试一遍学习工具。其他学习方式，在下面快速了解。</AppText></View>
@@ -54,7 +83,7 @@ export function UserGuideScreen() {
     </View>)}
     <View style={styles.section}><AppText variant="sectionTitle">学习成果，还能这样用</AppText></View>
     <AppText>在「我的标注」集中查看标签、高亮和笔记；题库查词与单词学习的收藏统一放在「单词收藏」；结束后的练习保存在「学习记录」，可以回到对应题目。</AppText>
-    <Card style={styles.export}><AppText variant="cardTitle">导出自己的900句资料</AppText><AppText>按等级、已学习或有标注等范围筛选，可选择包含中文翻译、自己的高亮、标签和笔记，生成PDF。</AppText><Button variant="outline" onPress={() => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: 'sentences900', export: '1' } })}>前往900句导出</Button></Card>
+    <Card style={styles.export}><AppText variant="cardTitle">导出自己的900句资料</AppText><AppText>按等级、已学习或有标注等范围筛选，可选择包含中文翻译、自己的高亮、标签和笔记，生成PDF。</AppText>{exportError ? <AppText color={colors.destructive} variant="caption">{exportError}</AppText> : null}<Button disabled={exporting} loading={exporting} variant="outline" onPress={() => { void openExport(); }}>前往900句导出</Button></Card>
     <View style={styles.section}><AppText variant="sectionTitle">常见问题</AppText></View><HelpFaqList />
   </Screen>;
 }

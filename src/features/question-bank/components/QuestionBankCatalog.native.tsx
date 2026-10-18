@@ -44,9 +44,9 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   story: BookOpenText,
 };
 
-export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry, initialExport = false }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void; initialExport?: boolean }) {
+export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
-  const [exporting,setExporting] = useState(initialExport && dataset.id === 'sentences900');
+  const [exporting,setExporting] = useState(false);
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
   const [progressError, setProgressError] = useState(false);

@@ -9,7 +9,7 @@ import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.
 import type { QuestionBankId } from '@/features/question-bank/types';
 
 export default function QuestionBankCatalogRoute() {
-  const { bankId, export: exportRequested } = useLocalSearchParams<{ bankId: QuestionBankId; export?: string }>();
+  const { bankId } = useLocalSearchParams<{ bankId: QuestionBankId }>();
   const state = useQuestionBank(bankId);
 
   if (state.status === 'loading') return <GlobalLoadingScreen />;
@@ -27,5 +27,5 @@ export default function QuestionBankCatalogRoute() {
       </Screen>
     );
   }
-  return <QuestionBankCatalog initialExport={exportRequested === '1'} dataset={state.data} exportDataset={state.catalog} warning={state.warning} onRetry={state.retry} />;
+  return <QuestionBankCatalog dataset={state.data} exportDataset={state.catalog} warning={state.warning} onRetry={state.retry} />;
 }
