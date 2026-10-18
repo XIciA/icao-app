@@ -80,10 +80,10 @@ export function ProfileHomeScreen() {
         style={({ pressed }) => (pressed ? styles.pressed : null)}
       >
         <Card elevated style={styles.profile}>
-          <ProfileAvatar size={56} uri={profile.avatarUri} />
+          <View style={styles.avatar}><ProfileAvatar size={52} uri={profile.avatarUri} /></View>
           <View style={styles.copy}>
             <AppText variant="sectionTitle">{profile.displayName}</AppText>
-            <AppText color={colors.foreground} variant="button">目标：{examGoal(profile.target).label}</AppText>
+            <View style={styles.goalBadge}><AppText color={colors.primary} variant="button">{examGoal(profile.target).label}</AppText></View>
           </View>
           <ChevronRight color={colors.mutedForeground} size={20} />
         </Card>
@@ -123,7 +123,9 @@ export function ProfileHomeScreen() {
 
 const styles = StyleSheet.create({
   profile: { alignItems: 'center', borderRadius: radii.xxxl, flexDirection: 'row', gap: spacing[4] },
-  copy: { flex: 1 },
+  copy: { flex: 1, gap: spacing[2] },
+  avatar: { backgroundColor: colors.muted, borderRadius: radii.xl, padding: spacing[2] },
+  goalBadge: { alignSelf: 'flex-start', backgroundColor: colors.primary10, borderRadius: radii.sm, paddingHorizontal: spacing[3], paddingVertical: spacing[1] },
   account: { color: colors.foreground, marginTop: spacing[1] },
   stats: { flexDirection: 'row', gap: spacing[3], marginTop: spacing[3] },
   stat: { alignItems: 'center', flex: 1, paddingVertical: spacing[3] },

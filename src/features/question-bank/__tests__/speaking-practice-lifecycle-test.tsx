@@ -4,6 +4,9 @@ import { AppState, Platform } from 'react-native';
 import type { RecordingAsset, RawRecording } from '../recording/types';
 import { SpeakingPracticePanel } from '../components/SpeakingPracticePanel';
 
+// Exercise the frozen Web implementation explicitly; Jest normally prefers .native.
+jest.mock('../components/SpeakingPracticePanel', () => jest.requireActual('../components/SpeakingPracticePanel.tsx'));
+
 type Deferred<T> = { promise: Promise<T>; resolve: (value: T) => void };
 
 function deferred<T>(): Deferred<T> {

@@ -105,3 +105,15 @@ it.each(['blur', 'account', 'unmount'])('does not navigate when saving completes
   await act(async () => { saved.resolve(mockProfile as Awaited<ReturnType<typeof updateProfile>>); });
   expect(mockBack).not.toHaveBeenCalled(); expect(mockReplace).not.toHaveBeenCalled();
 });
+
+it.each([
+  {level: 'ICAO 4', type: '复考', target: 'icao4-recert'},
+  {level: 'ICAO 5', type: '初考', target: 'icao5-first'},
+  {level: 'ICAO 5', type: '复考', target: 'icao5-recert'},
+])('saves the existing target identity $target from the two selectors', async ({level, type, target}) => {
+  const screen = await render(<AccountProfilePage />);
+  await fireEvent.press(screen.getByLabelText(level));
+  await fireEvent.press(screen.getByLabelText(type));
+  await fireEvent.press(screen.getByText('保存修改'));
+  expect(updateProfile).toHaveBeenCalledWith({...mockProfile, target});
+});

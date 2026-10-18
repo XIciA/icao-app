@@ -26,7 +26,8 @@ function wrap(pieces:Piece[],font:PDFFont,size:number,width:number):Piece[][] {
 export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOptions,annotations:QuestionBankAnnotationStore,fontBytes:Uint8Array,exportedAt=new Date()) {
   const chosen=selectedSentences(rows,options);if(!chosen.length)throw new Error('export_empty');
   const doc=await PDFDocument.create();doc.registerFontkit(fontkit);
-  const font=await doc.embedFont(fontBytes,{subset:true});
+  // The bundled CJK font loses glyphs when fontkit subsets it; retain its original glyph IDs.
+  const font=await doc.embedFont(fontBytes,{subset:false});
   doc.setTitle('900句 · 我的学习资料');doc.setAuthor('听你五个');doc.setCreationDate(exportedAt);
   const width=595.28,height=841.89,margin=44,textX=111,textWidth=width-margin-textX;
   let page:PDFPage;let y=0;
