@@ -127,16 +127,11 @@ describe('<ProfileTab />', () => {
     expect(mockPush).toHaveBeenCalledWith('/word-favorites');
   });
 
-  it('copies the displayed contact number and reports clipboard failures', async () => {
-    const clipboard = jest.requireMock('expo-clipboard');
+  it('opens the guide directly and moves contact out of the profile', async () => {
     const screen = await render(<ProfileTab />);
-    expect(screen.getByText('157 3950 8390')).toBeTruthy();
-    await fireEvent.press(screen.getByLabelText('联系我们，复制手机号15739508390'));
-    expect(clipboard.setStringAsync).toHaveBeenCalledWith('15739508390');
-    expect(screen.getByText('已复制')).toBeTruthy();
-    clipboard.setStringAsync.mockResolvedValueOnce(false);
-    await fireEvent.press(screen.getByLabelText('联系我们，复制手机号15739508390'));
-    expect(screen.getByText('复制失败，请重试')).toBeTruthy();
+    await fireEvent.press(screen.getByText('使用指南'));
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/info/[slug]', params: { slug: 'guide' } });
+    expect(screen.queryByText('联系我们')).toBeNull();
   });
 
   it('opens the real feedback form from the profile menu', async () => {

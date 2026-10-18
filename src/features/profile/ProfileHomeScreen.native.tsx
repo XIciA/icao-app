@@ -1,7 +1,7 @@
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star } from '@/components/ui/icons';
+import { Bookmark, ChevronRight, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
@@ -14,7 +14,6 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { useProfile } from '@/features/account/profile-store.native';
 import { examGoal } from '@/features/account/profile-model';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
-import { ContactRow } from './ContactRow.native';
 import { AiAllowanceCard } from './AiAllowanceCard.native';
 
 const menu = [
@@ -22,6 +21,7 @@ const menu = [
   { slug: 'learning-records', label: '学习记录', icon: History },
   { slug: 'annotations', label: '我的标注', icon: Bookmark },
   { slug: 'word-favorites', label: '单词收藏', icon: Star },
+  { slug: 'guide', label: '使用指南', icon: HelpCircle },
   { slug: 'settings', label: '设置', icon: Settings },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
 ];
@@ -66,6 +66,7 @@ export function ProfileHomeScreen() {
     else if (slug === 'annotations') router.push('/annotations');
     else if (slug === 'word-favorites') router.push('/word-favorites');
     else if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
+    else if (slug === 'guide') router.push({ pathname: '/info/[slug]', params: { slug: 'guide' } });
     else if (slug === 'settings') router.push('/account/settings');
     else if (slug === 'feedback')
       router.push({
@@ -111,12 +112,11 @@ export function ProfileHomeScreen() {
           {visibleMenu.map((item, index) => (
             <View key={item.slug}><Row
               icon={item.icon}
-              isLast={index === visibleMenu.length - 1 && Platform.OS === 'web' && !cloudWeb}
+              isLast={index === visibleMenu.length - 1}
               label={cloudWeb && item.slug === 'membership' ? '会员权益' : item.label}
               onPress={() => open(item.slug)}
             />{item.slug === 'feedback' && feedbackUnread?.accountId === accountId && feedbackUnread?.value ? <View accessibilityLabel="反馈有新回复" style={styles.unreadDot}/> : null}</View>
           ))}
-          {Platform.OS !== 'web' || cloudWeb ? <ContactRow /> : null}
         </RowGroup>
       </View>
     </AccountScreen>

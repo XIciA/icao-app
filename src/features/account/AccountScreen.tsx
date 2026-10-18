@@ -12,6 +12,7 @@ import { useAuth, type AccountDeletionAuthentication } from '@/features/auth/Aut
 import { isValidPhonePassword, PHONE_PASSWORD_MIN_LENGTH, PHONE_PASSWORD_MAX_LENGTH, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { MembershipRoutePage } from '@/features/native-commercial-testflight/MembershipRoutePage';
+import { ContactRow } from '@/features/profile/ContactRow.native';
 import { AutoTranscriptionSetting } from '@/features/ai/AutoTranscriptionSetting';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
 import { getLearningSyncStatus, runLearningSync } from '@/features/sync/learning-sync';
@@ -100,7 +101,7 @@ function SettingsPage() {
           <Row first hint="当前由服务端统一使用通用英语模型" icon={Cloud} label="腾讯 ASR 模型" value={DEFAULT_TENCENT_ASR_MODEL} />
         </Section>
         <Section title="其他">
-          <Row first icon={Info} label="帮助中心" onPress={() => router.push('/info/help')} />
+          <ContactRow />
           <Row icon={Info} label="关于听你五个" onPress={() => router.push('/info/about')} />
         </Section>
         {signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}

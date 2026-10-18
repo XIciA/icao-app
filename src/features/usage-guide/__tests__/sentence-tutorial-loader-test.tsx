@@ -1,0 +1,30 @@
+import { loadSentenceTutorial } from '../tutorial-package';
+import { loadQuestionBank, questionBankRepository } from '@/features/question-bank/data/repository.native';
+import publicData from '@/features/question-bank/data/question-bank-public.json';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
+import { SENTENCE_ONE_ID } from '../tutorial-model';
+jest.mock('@/features/question-bank/data/repository.native', () => ({ loadQuestionBank: jest.fn(), questionBankRepository: { getTopic: jest.fn() }, getEmbeddedQuestionBanks: () => [] }));
+const bank = publicData.find(bank => bank.id === 'sentences900') as QuestionBankDataset;
+beforeEach(() => jest.clearAllMocks());
+it('uses the original Sentence1 and topic with persistent learning, without reimplementing content', async () => {
+  jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: bank, source: 'embedded' });
+  const result = await loadSentenceTutorial();
+  const item = result.items[0];
+  expect(result.items).toHaveLength(1);
+  expect(result.progressMode).toBe('persistent');
+  expect(item.card.id).toBe(SENTENCE_ONE_ID);
+  expect(item.card).toBe(item.topic.cards.find(card => card.id === SENTENCE_ONE_ID));
+  expect(item.dataset).toBe(bank);
+  expect(questionBankRepository.getTopic).not.toHaveBeenCalled();
+});
+it('loads a catalog-only topic through the existing repository and refuses a missing Sentence1', async () => {
+  const category = bank.categories[0], topic = category.topics[0];
+  const metadata = { ...bank, categories: [{ ...category, topics: [{ ...topic, cards: [] }] }] };
+  jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: metadata, source: 'remote' });
+  jest.mocked(questionBankRepository.getTopic).mockResolvedValueOnce(topic);
+  const result = await loadSentenceTutorial();
+  expect(result.items[0].card.id).toBe(SENTENCE_ONE_ID);
+  expect(questionBankRepository.getTopic).toHaveBeenCalledWith('sentences900', category.id, topic.id, undefined);
+  jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: { ...bank, categories: [] }, source: 'embedded' });
+  await expect(loadSentenceTutorial()).rejects.toThrow('tutorial_card_missing');
+});
