@@ -102,7 +102,7 @@ export class ContentWorkflowService {
     return this.database.db.transaction(async tx=>{
       const current=await this.lock(tx,id,revision);
       const existing=current.attachments as StoredAttachment[];
-      if(existing.length+added.length>5 || [...existing,...added].reduce((sum,file)=>sum+file.size,0)>8*1024*1024)throw new BadRequestException('工单附件最多 5 个，合计限 8 MB');
+      if(existing.length+added.length>5 || [...existing,...added].reduce((sum,file)=>sum+file.size,0)>8*1024*1024)throw new BadRequestException('content_attachment_size_invalid');
       const [next]=await tx.update(contentWorkOrders).set({attachments:[...existing,...added],text:current.text+'\n\n'+text,revision:revision+1,status:'pending',processingNote:null,draft:null,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
       await this.log(tx,request,id,'append',next.revision); return {...next,attachments:attachmentMetadata(next.attachments)};
