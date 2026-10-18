@@ -64,7 +64,7 @@ export class ContentWorkflowService {
     if(draft.hotspot){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||!app.hotspots.briefs.some(b=>b.id===draft.hotspot!.id&&checksum(b)===checksum(draft.hotspot)))problems.push('线上热点已变化或不存在');}
     if(draft.article){const editorial=sources.editorial?.payload as EditorialReleaseSnapshot|undefined;const article=editorial?.articles.find(a=>a.id===draft.article!.id);if(!article||checksum({...article,publishedAt:null})!==checksum({...draft.article,publishedAt:null}))problems.push('线上文章已变化或不存在');}
     for(const change of draft.banks){const live=sources.banks.find(b=>b.bankId===change.bankId);if(!live){problems.push('线上题库不存在');continue;}const liveCards=new Map(cardsOf(bankSchema.parse(live.payload)).map(e=>[e.card.id,e.card]));for(const {card} of cardsOf(bankSchema.parse(change.payload)))if(checksum(liveCards.get(card.id)??null)!==checksum(card)){problems.push('线上题库存在后续变更，请核对');break;}}
-    return {problems,checkedAt:new Date().toISOString(),path:draft.article?`/content/resources/${encodeURIComponent(draft.article.slug)}`:draft.hotspot?`/content/hotspot/${encodeURIComponent(draft.hotspot.id)}`:'/question-bank'};
+    return {problems,checkedAt:new Date().toISOString(),path:draft.article?`/content/resources/${encodeURIComponent(draft.article.slug)}`:draft.hotspot?`/content/hotspot/${encodeURIComponent(draft.hotspot.id)}`:`/question-bank/${encodeURIComponent(draft.banks[0]?.bankId??'opi')}`};
   }
   async previewResource(id:string,path:string) {
     const order=await this.get(id);const draft=parseDraft(order.draft);
