@@ -1,28 +1,21 @@
-# Editorial 内容源
+# Editorial 内容工具
 
-这里是资源文章与 OPI 热点的唯一维护源。原始文档不在此修改；每篇文章通过 `provenance.json` 记录原文件与 checksum。
+统一编辑、审核与归档标准见 [内容处理规则](../../docs/rules/content-processing.md)，工具分工见 [OPERATIONS.md](./OPERATIONS.md)。本目录保存历史文件式文章来源；后台工单发布后的当前有效文章由服务端快照提供，不能把本地 registry 当成线上全量清单。
 
-最小工作流：
-
-```text
-extract → editing → fact_checked → approved → build
-→ preview → preview_approved → publish → verify-live
-```
-
-正文只允许标题、二/三级标题、段落、无序/有序列表和 NOTE/WARNING callout。禁止 HTML、Markdown 图片和内嵌脚本。`dist/editorial-release/` 是确定性构建产物，不手工修改。
-
-常用命令：
+现有文件式工具：
 
 ```bash
-pnpm editorial:extract -- --source "原始资源资料/资源分享/文件.docx"
-pnpm editorial:extract -- --source "原始资源资料/资源分享/文件.pptx"
+pnpm editorial:extract -- --source "原始文件.docx"
+pnpm editorial:extract -- --source "原始文件.pptx"
 pnpm editorial:check
 pnpm editorial:build
 pnpm editorial:preview
 pnpm editorial:publish -- --confirm-preview-approved
-pnpm editorial:verify-live -- --base-url https://api.example.com --slug article-slug
+pnpm editorial:verify-live -- --base-url <api-url> --slug <slug>
 ```
 
-`extract` 支持 DOCX 与 PPTX。PPTX 输出按幻灯片顺序保留页码边界；仍须对源演示文稿进行视觉核验，以补足图像与图表中的信息。`publish` 仅在审核状态为 `preview_approved` 且显式传入确认参数时运行。生产发布前仍须按运维规则完成数据库备份、Migration 审核和 API 回滚准备。
+提取支持 DOCX 与 PPTX；仍须核对图像及图表包含的信息。原始文件不改写，来源与 checksum 可追溯；用户要求的归档移动需保留原路径记录并更新来源定位。
 
-跨 Agent 的执行约定、权限边界、交接格式和发布门禁见 [OPERATIONS.md](./OPERATIONS.md)。Codex Skill、Antigravity 或人工操作者都必须以该文档及本目录内容为准；它们不拥有独立的内容或发布记录。
+正文受现有结构限制，只支持标题、二／三级标题、段落、列表和 NOTE/WARNING callout；不支持任意 HTML、Markdown 图片或脚本。增加正文图片前核实合同和客户端支持。`dist/editorial-release/` 为确定性产物，不手工修改。
+
+使用历史发布脚本前必须核对完整线上快照和版本，避免覆盖后台工单已发布内容。技术确认参数不替代实际授权，也不增加另一轮人工审批。日常新内容优先复用当前工单处理和发布机制。
