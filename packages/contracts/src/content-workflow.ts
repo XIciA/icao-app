@@ -8,6 +8,8 @@ export type ContentQuestionDecision = { source: string; kind: 'original' | 'simi
 export type ContentDraft = {
   banks: { bankId: string; baseChecksum: string; payload: Record<string, unknown> }[];
   hotspot?: AppContentHotspotBrief;
+  /** Explicit replacement of existing historical briefs; never invents date/center identities. */
+  hotspotUpdates?: { baseChecksum: string; briefs: AppContentHotspotBrief[] };
   article?: EditorialArticle;
   decisions: ContentQuestionDecision[];
   notes: string;
