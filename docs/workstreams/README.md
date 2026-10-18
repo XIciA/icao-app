@@ -5,6 +5,8 @@
 
 ## 现存材料
 
+- [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；执行标准统一引用内容处理规则。
+
 - [2026 年 10 月功能更新](feature-update-2026-10/requirements.md)：本轮已确认需求；[执行记录](feature-update-2026-10/execution.md)与[内容工单操作](feature-update-2026-10/content-operations.md)。
 - [App 异常输出与逻辑缺陷排查](app-bug-audit/README.md)：本次长任务的目标、证据、方案和接续记录；第一轮只读排查已完成，修复待启动，不属于长期规则。
 - [App Store 1.0.0](app-store-1.0.0/requirements.md)：原首发任务材料；收口文件仍标记未收口，本次不推断其实际发布状态。
