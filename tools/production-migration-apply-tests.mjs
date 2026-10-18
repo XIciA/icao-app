@@ -181,20 +181,20 @@ test('derives the target from the immutable journal and binds 0034 through 0041 
   }), /entry_invalid/u);
 });
 
-test('binds minimumSchemaVersion to the exact required 0052 journal entry', async () => {
+test('binds minimumSchemaVersion to the exact required 0053 journal entry', async () => {
   const [journalSource, migrationSource, databaseServiceSource] = await Promise.all([
     readFile(new URL('../services/api/drizzle/meta/_journal.json', import.meta.url), 'utf8'),
-    readFile(new URL('../services/api/drizzle/0052_content_work_orders.sql', import.meta.url), 'utf8'),
+    readFile(new URL('../services/api/drizzle/0053_polite_peter_parker.sql', import.meta.url), 'utf8'),
     readFile(new URL('../services/api/src/database/database.service.ts', import.meta.url), 'utf8'),
   ]);
   const journal = JSON.parse(journalSource);
   const entry = journal.entries.at(-1);
   const hash = createHash('sha256').update(migrationSource).digest('hex');
-  assert.equal(entry.idx, 52);
-  assert.equal(entry.tag, '0052_content_work_orders');
-  assert.equal(entry.when, 1792171270695);
+  assert.equal(entry.idx, 53);
+  assert.equal(entry.tag, '0053_polite_peter_parker');
+  assert.equal(entry.when, 1792300901840);
   assert.ok(databaseServiceSource.includes(`MINIMUM_DATABASE_SCHEMA_VERSION = ${entry.idx}`));
-  assert.ok(databaseServiceSource.includes('createdAt: 1792171270695'));
+  assert.ok(databaseServiceSource.includes('createdAt: 1792300901840'));
   assert.ok(databaseServiceSource.includes(`hash: '${hash}'`));
 });
 

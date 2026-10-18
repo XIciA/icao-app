@@ -1321,12 +1321,15 @@ export const contentWorkOrders = pgTable('content_work_orders', {
   status: text('status').default('pending').notNull(),
   revision: integer('revision').default(1).notNull(),
   draft: jsonb('draft'),
+  submittedBy: text('submitted_by'),
+  processingNote: text('processing_note'),
+  attachments: jsonb('attachments').default([]).notNull(),
   publishedRevision: integer('published_revision'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, table => [
   uniqueIndex('content_work_orders_opi_date_center').on(table.examDate, table.center).where(sql`${table.kind} = 'opi'`),
   check('content_work_orders_kind', sql`${table.kind} IN ('opi','article','questions')`),
-  check('content_work_orders_status', sql`${table.status} IN ('pending','ready','published')`),
+  check('content_work_orders_status', sql`${table.status} IN ('pending','processing','ready','published')`),
   check('content_work_orders_revision', sql`${table.revision} > 0`),
 ]).enableRLS();

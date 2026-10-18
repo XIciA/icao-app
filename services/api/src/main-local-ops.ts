@@ -67,7 +67,7 @@ async function main(){
         res.setHeader('cache-control','no-store');
         if(path==='/local/session'){res.setHeader('content-type','application/json');res.end(JSON.stringify({data:{staff:current.staff}}));return;}
         if(!allowed.test(path)){res.writeHead(404).end();return;}
-        const bodyLimit=/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/prepare$/.test(path)?20_000_000:1_048_576;
+        const bodyLimit=/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/prepare$/.test(path)?20_000_000:(path==='/v1/admin/content-orders'||/^\/v1\/admin\/content-orders\/[0-9a-f-]+\/append$/.test(path))?12_000_000:1_048_576;
         const chunks:Buffer[]=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>bodyLimit){res.writeHead(413).end();return;}chunks.push(chunk);}
         const response=await app!.getHttpAdapter().getInstance().inject({method:(req.method ?? 'GET') as 'GET' | 'POST',url:path,headers:{authorization:`Bearer ${current.accessToken}`,'content-type':req.headers['content-type']??'application/json','x-ops-reason':'本地管理员查看与管理'},payload:size?Buffer.concat(chunks):undefined});
         res.writeHead(response.statusCode,{'content-type':response.headers['content-type']??'application/json'});res.end(response.rawPayload);return;

@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { and, desc, eq, inArray, sql } from 'drizzle-orm';
 import { createHash } from 'node:crypto';
-import type { ContentDraft, ContentOrderInput } from '@icao/contracts/content-workflow';
+import type { ContentDraft, ContentOrderInput, ContentAttachmentInput } from '@icao/contracts/content-workflow';
 import type { EditorialReleaseSnapshot } from '@icao/contracts';
 import { isAppContentSnapshot, canonicalAppContentJson } from '@icao/contracts/app-content';
 import { DatabaseService } from '../database/database.service';
@@ -9,6 +9,7 @@ import { contentWorkOrders, questionBankReleases, appContentReleases, editorialR
 import { AdminAuditService } from './admin-audit.service';
 import type { OpsAuthenticatedRequest } from './admin.types';
 import { bankSchema, cardsOf, parseDraft, validateBank } from './content-workflow-validation';
+import { prepareAttachments, attachmentMetadata, type StoredAttachment } from './content-attachments';
 import { rebaseBank } from './content-workflow-rebase';
 type Tx = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 const checksum = (value: unknown) => createHash('sha256').update(canonicalAppContentJson(value)).digest('hex');
@@ -17,13 +18,53 @@ const checksum = (value: unknown) => createHash('sha256').update(canonicalAppCon
 export class ContentWorkflowService {
   constructor(private readonly database: DatabaseService, private readonly audit: AdminAuditService) {}
   async list() {
-    const { id, kind, examDate, center, status, revision, publishedRevision, createdAt, updatedAt } = contentWorkOrders;
-    return this.database.db.select({ id, kind, examDate, center, status, revision, publishedRevision, createdAt, updatedAt })
-      .from(contentWorkOrders).orderBy(desc(updatedAt)).limit(500);
+    const rows = await this.database.db.select({id:contentWorkOrders.id, kind:contentWorkOrders.kind, examDate:contentWorkOrders.examDate, center:contentWorkOrders.center, status:contentWorkOrders.status, revision:contentWorkOrders.revision, publishedRevision:contentWorkOrders.publishedRevision, createdAt:contentWorkOrders.createdAt, updatedAt:contentWorkOrders.updatedAt, submittedBy:contentWorkOrders.submittedBy, processingNote:contentWorkOrders.processingNote, title:sql<string>`coalesce(${contentWorkOrders.draft}->'article'->>'title', split_part(${contentWorkOrders.text}, E'\\n', 1))`}).from(contentWorkOrders).orderBy(desc(contentWorkOrders.updatedAt)).limit(500);
+    return rows.map(row => ({...row, title:row.title.slice(0,100)}));
   }
   async get(id: string) {
     const [row]=await this.database.db.select().from(contentWorkOrders).where(eq(contentWorkOrders.id,id));
-    if(!row) throw new NotFoundException('content_order_not_found'); return row;
+    if(!row) throw new NotFoundException('content_order_not_found'); return {...row, attachments:attachmentMetadata(row.attachments)};
+  }
+  async attachment(id: string, attachmentId: string) {
+    const [row]=await this.database.db.select({attachments:contentWorkOrders.attachments}).from(contentWorkOrders).where(eq(contentWorkOrders.id,id));
+    const file=(row?.attachments as StoredAttachment[] | undefined)?.find(file=>file.id===attachmentId);
+    if(!file) throw new NotFoundException('attachment_not_found');
+    return file;
+  }
+  async transition(id:string, revision:number, status:'pending'|'processing', note:string, request:OpsAuthenticatedRequest) {
+    return this.database.db.transaction(async tx=>{
+      const current=await this.lock(tx,id,revision);
+      if(current.status==='published' || (status==='processing' && current.status!=='pending')) throw new ConflictException('content_order_changed_reload');
+      const [next]=await tx.update(contentWorkOrders).set({status,processingNote:note||null,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
+      await this.log(tx,request,id,status==='processing'?'start':'return',revision+1);
+      return {...next,attachments:attachmentMetadata(next!.attachments)};
+    });
+  }
+  async previewCards(id:string) {
+    const order=await this.get(id);const draft=parseDraft(order.draft);const sources=await this.sources();
+    const linked=new Set(draft.decisions.map(d=>d.cardId));
+    for(const topic of draft.hotspot?.topics??[])for(const id of topic.cardIds)linked.add(id);
+    const result=[];
+    for(const bank of sources.banks){
+      const change=draft.banks.find(b=>b.bankId===bank.bankId);
+      let base=bank.payload;
+      if(change){const [original]=await this.database.db.select().from(questionBankReleases).where(and(eq(questionBankReleases.bankId,bank.bankId),eq(questionBankReleases.checksum,change.baseChecksum))).limit(1);base=original?.payload??base;}
+      const originals=new Map(cardsOf(bankSchema.parse(base)).map(e=>[e.card.id,e.card]));
+      for(const entry of cardsOf(bankSchema.parse(change?.payload??bank.payload))){
+        const previous=originals.get(entry.card.id);const changed=Boolean(change)&&checksum(previous??null)!==checksum(entry.card);
+        if(changed||linked.has(entry.card.id))result.push({...entry.card,bankId:bank.bankId,topicTitle:entry.topic.name,change:changed?(entry.card.retired?'retired':previous?'updated':'new'):'linked'});
+      }
+    }
+    return result;
+  }
+  async verifyPublished(id:string) {
+    const order=await this.get(id);if(order.status!=='published')throw new ConflictException('content_order_not_published');
+    const draft=parseDraft(order.draft);const sources=await this.sources();
+    const problems:string[]=[];
+    if(draft.hotspot){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||!app.hotspots.briefs.some(b=>b.id===draft.hotspot!.id&&checksum(b)===checksum(draft.hotspot)))problems.push('线上热点已变化或不存在');}
+    if(draft.article){const editorial=sources.editorial?.payload as EditorialReleaseSnapshot|undefined;const article=editorial?.articles.find(a=>a.id===draft.article!.id);if(!article||checksum({...article,publishedAt:null})!==checksum({...draft.article,publishedAt:null}))problems.push('线上文章已变化或不存在');}
+    for(const change of draft.banks){const live=sources.banks.find(b=>b.bankId===change.bankId);if(!live){problems.push('线上题库不存在');continue;}const liveCards=new Map(cardsOf(bankSchema.parse(live.payload)).map(e=>[e.card.id,e.card]));for(const {card} of cardsOf(bankSchema.parse(change.payload)))if(checksum(liveCards.get(card.id)??null)!==checksum(card)){problems.push('线上题库存在后续变更，请核对');break;}}
+    return {problems,checkedAt:new Date().toISOString(),path:draft.article?`/content/resources/${encodeURIComponent(draft.article.slug)}`:draft.hotspot?`/content/hotspot/${encodeURIComponent(draft.hotspot.id)}`:'/question-bank'};
   }
   async previewResource(id:string,path:string) {
     const order=await this.get(id);const draft=parseDraft(order.draft);
@@ -42,24 +83,29 @@ export class ContentWorkflowService {
       editorial:(await this.database.db.select().from(editorialReleases).where(eq(editorialReleases.active,true)))[0] };
   }
   async create(input: ContentOrderInput, request: OpsAuthenticatedRequest) {
+    const {attachments:rawAttachments,...fields}=input;
+    const attachments=prepareAttachments(rawAttachments);
     return this.database.db.transaction(async tx=>{
       // Serialize duplicates so concurrent submissions cannot create two date/center orders.
       await tx.execute(sql`select pg_advisory_xact_lock(1781017)`);
       if(input.kind==='opi') {
         const [existing]=await tx.select().from(contentWorkOrders).where(and(eq(contentWorkOrders.examDate,input.examDate!),eq(contentWorkOrders.center,input.center!),eq(contentWorkOrders.kind,'opi')));
-        if(existing) return {order:existing,duplicate:true};
+        if(existing) return {order:{...existing,attachments:attachmentMetadata(existing.attachments)},duplicate:true};
       }
-      const [order]=await tx.insert(contentWorkOrders).values(input).returning();
+      const [order]=await tx.insert(contentWorkOrders).values({...fields,attachments,submittedBy:request.opsStaff!.email}).returning();
       if(!order) throw new Error('content_order_insert_failed');
-      await this.log(tx,request,order.id,'create',order.revision); return {order,duplicate:false};
+      await this.log(tx,request,order.id,'create',order.revision); return {order:{...order,attachments:attachmentMetadata(order.attachments)},duplicate:false};
     });
   }
-  async append(id:string, revision:number, text:string, request:OpsAuthenticatedRequest) {
+  async append(id:string, revision:number, text:string, request:OpsAuthenticatedRequest, attachments:ContentAttachmentInput[] = []) {
+    const added=prepareAttachments(attachments);
     return this.database.db.transaction(async tx=>{
       const current=await this.lock(tx,id,revision);
-      const [next]=await tx.update(contentWorkOrders).set({text:current.text+'\n\n'+text,revision:revision+1,status:'pending',draft:null,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
+      const existing=current.attachments as StoredAttachment[];
+      if(existing.length+added.length>5 || [...existing,...added].reduce((sum,file)=>sum+file.size,0)>8*1024*1024)throw new BadRequestException('工单附件最多 5 个，合计限 8 MB');
+      const [next]=await tx.update(contentWorkOrders).set({attachments:[...existing,...added],text:current.text+'\n\n'+text,revision:revision+1,status:'pending',processingNote:null,draft:null,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
-      await this.log(tx,request,id,'append',next.revision); return next;
+      await this.log(tx,request,id,'append',next.revision); return {...next,attachments:attachmentMetadata(next.attachments)};
     });
   }
   async stage(id:string,revision:number,value:unknown,request:OpsAuthenticatedRequest) {
@@ -76,9 +122,9 @@ export class ContentWorkflowService {
       // Exclusion is an explicit reviewer action, never silently selected by automation.
       if(draft.decisions.some(d=>d.kind==='excluded')) throw new BadRequestException('exclude_in_review_first');
       await this.validate(tx,draft);
-      const [next]=await tx.update(contentWorkOrders).set({draft,status:'ready',revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
+      const [next]=await tx.update(contentWorkOrders).set({draft,status:'ready',processingNote:null,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
-      await this.log(tx,request,id,'prepare',next.revision); return next;
+      await this.log(tx,request,id,'prepare',next.revision); return {...next,attachments:attachmentMetadata(next.attachments)};
     });
   }
   async exclude(id:string,revision:number,index:number,request:OpsAuthenticatedRequest) {
@@ -88,7 +134,7 @@ export class ContentWorkflowService {
       draft.decisions[index]={...draft.decisions[index],kind:'excluded'};
       const [next]=await tx.update(contentWorkOrders).set({draft,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
-      await this.log(tx,request,id,'exclude',next.revision);return next;
+      await this.log(tx,request,id,'exclude',next.revision);return {...next,attachments:attachmentMetadata(next.attachments)};
     });
   }
   async publish(id:string,revision:number,request:OpsAuthenticatedRequest) {
@@ -96,7 +142,7 @@ export class ContentWorkflowService {
       // All content publications share one transaction lock: no lost concurrent hotspot/article additions.
       await tx.execute(sql`select pg_advisory_xact_lock(hashtext('app_content_publish'))`);
       const current=await this.lock(tx,id,revision);
-      if(current.status==='published' && current.publishedRevision===revision) return current;
+      if(current.status==='published' && current.publishedRevision===revision) return {...current,attachments:attachmentMetadata(current.attachments)};
       if(current.status!=='ready') throw new ConflictException('content_order_not_ready');
       const draft=parseDraft(current.draft);
       if(draft.decisions.some(d=>d.kind==='unresolved')) throw new BadRequestException('unresolved_questions');
@@ -127,7 +173,7 @@ export class ContentWorkflowService {
       }
       const [next]=await tx.update(contentWorkOrders).set({status:'published',publishedRevision:revision,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
       if(!next) throw new Error('content_order_update_failed');
-      await this.log(tx,request,id,'publish',revision);return next;
+      await this.log(tx,request,id,'publish',revision);return {...next,attachments:attachmentMetadata(next.attachments)};
     });
   }
   private async validate(tx:Tx,draft:ContentDraft) {
@@ -165,6 +211,13 @@ export class ContentWorkflowService {
     const paths=new Set<string>();
     for(const change of draft.banks) for(const {card} of cardsOf(bankSchema.parse(change.payload))) if(!card.retired) {
       if(card.audio) paths.add(card.audio); if(card.image) paths.add(card.image);
+    }
+    if(draft.hotspot && opi) {
+      const ids=new Set(draft.hotspot.topics.flatMap(topic=>topic.cardIds));
+      for(const {card} of cardsOf(bankSchema.parse(opi))) if(ids.has(card.id)) {
+        if(!card.audio) throw new BadRequestException('content_resource_not_ready');
+        paths.add(card.audio);if(card.image)paths.add(card.image);
+      }
     }
     if(draft.article) paths.add(draft.article.cover.publicPath);
     if(paths.size) {

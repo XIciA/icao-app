@@ -29,6 +29,7 @@ try {
  CREATE TABLE preserved_learning_fixture(id text primary key,payload jsonb);
  INSERT INTO preserved_learning_fixture VALUES('old-user','{"progress":17,"notes":"旧笔记","highlights":[1,2],"favorites":["old"],"recording":"old.m4a"}');
  `);
+ await db.unsafe(readFileSync(new URL('../drizzle/0053_polite_peter_parker.sql',import.meta.url),'utf8').replaceAll('--> statement-breakpoint',''));
  const previousLearning=await db`select * from preserved_learning_fixture`;
  const card={id:'stable',taskTitle:'Question',audioText:'Question?',referenceText:'Answer.',referenceTextZh:'答案。',audio:'/question-bank-assets/old.mp3'};
  const bank={id:'opi',declaredTopicCount:1,declaredCardCount:1,categories:[{id:'category',name:'Category',declaredTopicCount:1,declaredCardCount:1,topics:[{id:'topic',name:'Topic',declaredCardCount:1,cards:[card]}]}]};
@@ -37,19 +38,32 @@ try {
  const app={...JSON.parse(readFileSync(new URL('../../../content/app-content/text.json',import.meta.url),'utf8')),version:1,hotspots:{generatedAt:new Date().toISOString(),briefs:[]}};
  await db`insert into app_content_releases(version,checksum,payload,active) values(1,${hash(app)},${db.json(app)},true)`;
  const service=new ContentWorkflowService({db:drizzle(db)},{record:async()=>{}});
- const request={id:'test',opsStaff:{id:'fixture-admin',role:'admin'}};
+ const request={id:'test',opsStaff:{id:'fixture-admin',role:'admin',email:'teacher@example.test'}};
  const input={kind:'opi',examDate:'2026-10-17',center:'Test A',text:'Question?'};
  const duplicates=await Promise.all([service.create(input,request),service.create(input,request)]);
  assert.equal(duplicates.filter(v=>v.duplicate).length,1);assert.equal(duplicates[0].order.id,duplicates[1].order.id);
  async function stage(order,decisions=[{source:'Question?',kind:'similar',cardId:'stable'}],banks=[]) {
   return service.stage(order.id,order.revision,{banks,hotspot:{id:`hotspot-${order.examDate}-${createHash('sha256').update(order.center).digest('hex').slice(0,12)}`,date:order.examDate,title:order.center,centers:[order.center],topics:[{topicId:'topic',topicTitle:'Topic',cardIds:['stable']}]},decisions,notes:''},request);
  }
+ const attached=(await service.create({kind:'article',text:'Source article',attachments:[{name:'source.txt',data:Buffer.from('原始文章').toString('base64')}]},request)).order;
+ assert.equal(attached.submittedBy,'teacher@example.test');assert.equal(attached.attachments[0].data,undefined);
+ assert.equal(Buffer.from((await service.attachment(attached.id,attached.attachments[0].id)).data,'base64').toString(),'原始文章');
+ const processing=await service.transition(attached.id,1,'processing','',request);
+ assert.equal(processing.status,'processing');
+ await assert.rejects(()=>service.transition(attached.id,1,'processing','',request),/content_order_changed_reload/);
+ const returned=await service.transition(attached.id,processing.revision,'pending','请补充标题',request);
+ assert.equal(returned.processingNote,'请补充标题');
+ const appendedSource=await service.append(attached.id,returned.revision,'补充',request,[{name:'extra.txt',data:Buffer.from('更多').toString('base64')}]);
+ assert.equal(appendedSource.attachments.length,2);
+ assert.equal((await service.list()).find(o=>o.id===attached.id).title,'Source article');
  const ready=await stage(duplicates[0].order);
  await assert.rejects(()=>service.append(ready.id,1,'stale',request),/content_order_changed_reload/);
+ assert.equal((await service.previewCards(ready.id))[0].id,'stable');
  const other=(await service.create({...input,center:'Test B'},request)).order;
  const otherReady=await stage(other);
  await Promise.all([service.publish(ready.id,ready.revision,request),service.publish(otherReady.id,otherReady.revision,request)]);
  assert.equal((await db`select payload from app_content_releases where active=true`)[0].payload.hotspots.briefs.length,2);
+ assert.deepEqual((await service.verifyPublished(ready.id)).problems,[]);
  await service.publish(ready.id,ready.revision,request);
  assert.equal((await db`select count(*)::int n from app_content_releases`)[0].n,3);
  const appended=await service.append(ready.id,ready.revision,'Unknown question',request);
