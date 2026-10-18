@@ -31,6 +31,11 @@ function fixture(batches:unknown[][]) {
   return {user,admin,db,conditions,writes,storage,audit};
 }
 describe('learner feedback history',()=>{
+  it.each([['in_progress','processing'],['cannot_reproduce','resolved']])('exposes historical %s as %s without rewriting records',async(stored,visible)=>{
+    const f=fixture([[{...ticket,status:stored}],[],[]]);
+    expect((await f.user.list(owner)).items[0]?.status).toBe(visible);
+    expect(f.writes).toHaveLength(0);
+  });
   it('limits every list and unread query to the authenticated account, and omits private fields',async()=>{
     const f=fixture([[{...ticket,contact:'private',diagnostics:{secret:'internal'}}],[reply],[reply]]);
     const result=await f.user.list(owner);
@@ -64,6 +69,12 @@ describe('learner feedback history',()=>{
   });
 });
 describe('public feedback replies',()=>{
+  it('writes the processing state supported by the original production constraint',async()=>{
+    const f=fixture([[ticket],[]]);vi.spyOn(f.admin,'feedbackDetail').mockResolvedValue({} as never);
+    await f.admin.replyToFeedback(ticket.ticketNumber,{clientReplyId:id,status:'processing',text:reply.text},{id,role:'support',email:'support@test',sessionId:id},'req');
+    expect(f.writes[1]).toMatchObject({status:'in_progress'});
+    expect(f.audit.record).toHaveBeenCalledWith(expect.objectContaining({afterState:{status:'in_progress'}}),expect.anything());
+  });
   it('validates bounded public text and supported states',()=>{
     expect(feedbackReplySchema.safeParse({clientReplyId:id,status:'resolved',text:'谢谢反馈'}).success).toBe(true);
     expect(feedbackReplySchema.safeParse({clientReplyId:id,status:'deleted'}).success).toBe(false);

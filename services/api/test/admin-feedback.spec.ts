@@ -38,6 +38,16 @@ function fixture(batches: unknown[][]) {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('feedback admin access', () => {
+  it.each([['processing','in_progress'],['resolved','cannot_reproduce']])('filters %s using compatible storage values', async (visible,stored) => {
+    const {service,queries}=fixture([[{...ticket,status:stored}]]);
+    const result=await service.feedbackQueue('查看用户反馈',staff,'request',undefined,30,visible);
+    expect(queries[0]?.params).toContain(stored);
+    expect(result.items[0]?.status).toBe(visible);
+  });
+  it('normalizes the historical processing state in admin detail',async()=>{
+    const {service}=fixture([[{...ticket,status:'in_progress'}],[],[]]);
+    expect((await service.feedbackDetail(ticket.ticketNumber,staff,'request')).status).toBe('processing');
+  });
   it('paginates with a stable timestamp and ID cursor, without silently dropping records after 100', async () => {
     const rows = Array.from({ length: 31 }, (_, index) => ({ ...ticket, id: `00000000-0000-4000-8000-${String(index).padStart(12, '0')}`, ticketNumber: `FB-260909-${String(index).padStart(8, '0')}` }));
     const { service, queries } = fixture([rows, [{ ...ticket, id }]]);
