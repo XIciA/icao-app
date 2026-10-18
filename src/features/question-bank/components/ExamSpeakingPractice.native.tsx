@@ -15,8 +15,8 @@ export function ExamSpeakingPractice(props: Props) {
 function ExamRecordingControl({ controller, onRecordingIntent, onInteractionChange, interactionGesture }: Props & { controller: SpeakingRecordingController }) {
   const recording = controller.phase === 'recording';
   const busy = ['requestingPermission', 'preparing', 'finalizing'].includes(controller.phase);
-  const label = busy ? (controller.phase === 'finalizing' ? '正在保存…' : '正在准备…') : recording ? `松开结束 · ${Math.floor(controller.durationMillis / 1000)} 秒` : controller.asset ? '按住重录' : '按住说话';
-  const control = <Pressable accessibilityRole="button" accessibilityLabel={recording ? '松开结束录音' : controller.asset ? '按住重新录音' : '按住说话'} disabled={busy} onPressIn={() => { onRecordingIntent?.(); onInteractionChange?.(true); controller.pressIn(); }} onPressOut={() => { void controller.pressOut(); }} style={[styles.record, recording && styles.recording]}>
+  const label = busy ? (controller.phase === 'finalizing' ? '正在保存…' : '正在准备…') : recording ? `点击停止 · ${Math.floor(controller.durationMillis / 1000)} 秒` : controller.asset ? '点击重录' : '开始录音';
+  const control = <Pressable accessibilityRole="button" accessibilityLabel={recording ? '停止录音' : controller.asset ? '点击重新录音' : '开始录音'} disabled={busy} onPress={() => { if (busy) return; if (recording) { void controller.pressOut(); return; } onRecordingIntent?.(); onInteractionChange?.(true); controller.pressIn(); }} style={[styles.record, recording && styles.recording]}>
     {recording ? <Square color={colors.primaryForeground} size={18} /> : <Mic color={colors.primaryForeground} size={18} />}<AppText color={colors.primaryForeground} variant="button">{label}</AppText>
   </Pressable>;
   return <View style={styles.root}>{interactionGesture ? <GestureDetector gesture={interactionGesture}>{control}</GestureDetector> : control}
