@@ -462,7 +462,7 @@ describe('base flow parity screens', () => {
   });
 
   it('submits a profile feedback form and shows only the ticket number', async () => {
-    mockParams = { slug: 'feedback', source: 'profile', sourceRoute: '/profile' };
+    mockParams = { slug: 'feedback', compose: '1', source: 'profile', sourceRoute: '/profile' };
     mockSubmitFeedback.mockResolvedValue({
       ticketNumber: 'FB-260723-A8K4Q2',
       status: 'received',
