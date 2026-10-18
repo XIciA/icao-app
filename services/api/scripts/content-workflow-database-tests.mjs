@@ -56,6 +56,17 @@ try {
  const appendedSource=await service.append(attached.id,returned.revision,'补充',request,[{name:'extra.txt',data:Buffer.from('更多').toString('base64')}]);
  assert.equal(appendedSource.attachments.length,2);
  assert.equal((await service.list()).find(o=>o.id===attached.id).title,'Source article');
+ const article={id:`article-${attached.id}`,slug:`article-${attached.id}`,version:1,channel:'resource',category:'学习分享',badge:'资料',title:'原始标题',summary:'原始文章',tags:[],publishedAt:null,cover:{publicPath:'/editorial-assets/cover.png',alt:'原始标题',width:800,height:500,mimeType:'image/png',checksum:'a'.repeat(64),sizeBytes:1},blocks:[{type:'paragraph',text:'原始文章'}],sourceLinks:[]};
+ await db`insert into resource_objects(object_key,source_path,status) values('cover.png',${article.cover.publicPath},'ready')`;
+ const articleReady=await service.stage(attached.id,appendedSource.revision,{banks:[],decisions:[],notes:'保留原文',article},request);
+ await service.publish(attached.id,articleReady.revision,request);
+ assert.deepEqual((await service.verifyPublished(attached.id)).problems,[]);
+ const liveArticle=(await db`select payload from editorial_releases where active=true`)[0].payload;
+ await service.append(attached.id,articleReady.revision,'调整排版',request);
+ assert.deepEqual((await db`select payload from editorial_releases where active=true`)[0].payload,liveArticle);
+ await db`delete from resource_objects where object_key='old.mp3'`;
+ await assert.rejects(()=>stage(duplicates[0].order),/content_resource_not_ready/);
+ await db`insert into resource_objects(object_key,source_path,status) values('old.mp3',${card.audio},'ready')`;
  const ready=await stage(duplicates[0].order);
  await assert.rejects(()=>service.append(ready.id,1,'stale',request),/content_order_changed_reload/);
  assert.equal((await service.previewCards(ready.id))[0].id,'stable');
