@@ -111,3 +111,9 @@ section { padding-top: 48px; }
 @media(max-width:900px) { .content-workspace { grid-template-columns:1fr; } }
 
 .content-resource-image { max-width: 100%; max-height: 360px; object-fit: contain; border-radius: 12px; }
+.feedback-filters { display:flex; gap:8px; flex-wrap:wrap; margin:24px 0; }
+.feedback-filters button { padding:10px 16px; border:0; border-radius:13px; background:transparent; color:#5D636F; }
+.feedback-filters button[aria-pressed=true] { color:#1F5ED9; background:#1F5ED910; }
+.feedback-detail label { display:grid; gap:10px; margin:20px 0; }
+.feedback-detail textarea { width:100%; box-sizing:border-box; font:inherit; line-height:1.7; padding:14px; border:1px solid #11161f24; border-radius:13px; resize:vertical; }
+.feedback-detail select { max-width:240px; }

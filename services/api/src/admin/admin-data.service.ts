@@ -19,6 +19,7 @@ import {
   aiPointLedgerEntries,
   commerceOrders,
   feedbackTickets,
+  feedbackReplies,
   feedbackAttachments,
   opsAuditEvents,
 } from '../database/schema';
@@ -212,6 +213,7 @@ export class AdminDataService {
     requestId: string,
     cursor?: string,
     limit = 30,
+    status?: string,
   ): Promise<OpsFeedbackListResponse> {
     let before: { createdAt: Date; id: string } | undefined;
     if (cursor) {
@@ -225,6 +227,7 @@ export class AdminDataService {
     const pageSize = Math.max(1, Math.min(50, limit));
     const rows = await this.database.db.select().from(feedbackTickets).where(and(
       gt(feedbackTickets.retentionAt, new Date()),
+      status ? eq(feedbackTickets.status, status) : undefined,
       before ? or(lt(feedbackTickets.createdAt, before.createdAt), and(
         eq(feedbackTickets.createdAt, before.createdAt), lt(feedbackTickets.id, before.id),
       )) : undefined,
@@ -275,7 +278,31 @@ export class AdminDataService {
         verified: ticket.questionVerified,
       } : null,
       attachments,
+      replies: (await this.database.db.select().from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id))
+        .orderBy(feedbackReplies.createdAt, feedbackReplies.id)).map(reply => ({ id: reply.id, text: reply.text, createdAt: reply.createdAt.toISOString() })),
     };
+  }
+
+  async replyToFeedback(number: string, input: { status: string; text?: string; clientReplyId: string }, staff: OpsAuthenticatedStaff, requestId: string) {
+    await this.database.db.transaction(async tx => {
+      const [ticket] = await tx.select().from(feedbackTickets).where(and(
+        eq(feedbackTickets.ticketNumber, number), gt(feedbackTickets.retentionAt, new Date()),
+      )).limit(1).for('update');
+      if (!ticket) throw new NotFoundException('feedback_not_found');
+      const [existing] = await tx.select().from(feedbackReplies).where(and(
+        eq(feedbackReplies.ticketId, ticket.id), eq(feedbackReplies.clientReplyId, input.clientReplyId),
+      )).limit(1);
+      if (existing) return;
+      const now = new Date();
+      if (input.text) await tx.insert(feedbackReplies).values({ ticketId: ticket.id, clientReplyId: input.clientReplyId, text: input.text, createdAt: now });
+      await tx.update(feedbackTickets).set({ status: input.status, updatedAt: now }).where(eq(feedbackTickets.id, ticket.id));
+      await this.audit.record({ requestId, actorStaffId: staff.id, actorRole: staff.role,
+        action: 'ops.feedback.reply', targetType: 'feedback_ticket', targetId: ticket.id,
+        reason: '更新反馈处理状态及对用户回复', beforeState: { status: ticket.status }, afterState: { status: input.status },
+        metadata: { hasPublicReply: !!input.text },
+      }, tx);
+    });
+    return this.feedbackDetail(number, staff, requestId);
   }
 
   async feedbackAttachment(ticketNumber: string, attachmentId: string, staff: OpsAuthenticatedStaff, requestId: string) {

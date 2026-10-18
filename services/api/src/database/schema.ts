@@ -552,6 +552,7 @@ export const inviteLoginAttempts = pgTable('invite_login_attempts', {
 }).enableRLS();
 
 export const feedbackTickets = pgTable('feedback_tickets', {
+  repliesReadAt: timestamp('replies_read_at', { withTimezone: true }),
   id: uuid('id').defaultRandom().primaryKey(),
   ticketNumber: text('ticket_number').notNull(),
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -592,6 +593,17 @@ export const feedbackTickets = pgTable('feedback_tickets', {
   index('feedback_tickets_question').on(table.bankId, table.cardId),
   index('feedback_tickets_diagnostics_expires').on(table.diagnosticsExpiresAt),
   index('feedback_tickets_retention').on(table.retentionAt),
+]).enableRLS();
+
+export const feedbackReplies = pgTable('feedback_replies', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  ticketId: uuid('ticket_id').notNull().references(() => feedbackTickets.id, { onDelete: 'cascade' }),
+  clientReplyId: uuid('client_reply_id').notNull(),
+  text: text('text').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('feedback_replies_ticket_client').on(table.ticketId, table.clientReplyId),
+  index('feedback_replies_ticket_created').on(table.ticketId, table.createdAt),
 ]).enableRLS();
 
 export const feedbackAttachments = pgTable('feedback_attachments', {

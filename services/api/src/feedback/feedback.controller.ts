@@ -1,5 +1,7 @@
-import { BadRequestException, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, Query, Res, Post, Req, UseGuards } from '@nestjs/common';
 import type { ApiSuccessEnvelope, FeedbackSubmissionResponse } from '@icao/contracts';
+import { z } from 'zod';
+import type { FastifyReply } from 'fastify';
 import type { Multipart } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -18,6 +20,32 @@ type MultipartRequest = AuthenticatedRequest & {
 @UseGuards(RequireAuthGuard)
 export class FeedbackController {
   constructor(private readonly feedback: FeedbackService) {}
+
+  @Get()
+  async list(@Req() request: AuthenticatedRequest, @Query('cursor') cursor: string | undefined, @Res({ passthrough: true }) reply: FastifyReply) {
+    if (cursor && cursor.length > 300) throw new BadRequestException('invalid_feedback_cursor');
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.feedback.list(request.user!.id, cursor) };
+  }
+
+  @Get('unread')
+  async unread(@Req() request: AuthenticatedRequest, @Res({ passthrough: true }) reply: FastifyReply) {
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.feedback.unread(request.user!.id) };
+  }
+
+  @Get(':number')
+  async detail(@Req() request: AuthenticatedRequest, @Param('number') number: string, @Res({ passthrough: true }) reply: FastifyReply) {
+    reply.header('cache-control', 'private, no-store');
+    return { requestId: request.id, data: await this.feedback.detail(request.user!.id, number) };
+  }
+
+  @Post(':number/read')
+  async read(@Req() request: AuthenticatedRequest, @Param('number') number: string, @Body() body: unknown) {
+    const parsed = z.object({ replyId: z.string().uuid() }).strict().safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_feedback_read');
+    return { requestId: request.id, data: await this.feedback.markRead(request.user!.id, number, parsed.data.replyId) };
+  }
 
   @Post()
   async submit(@Req() request: MultipartRequest): Promise<ApiSuccessEnvelope<FeedbackSubmissionResponse>> {

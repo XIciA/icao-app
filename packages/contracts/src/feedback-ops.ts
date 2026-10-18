@@ -27,4 +27,14 @@ export type OpsFeedbackDetail = OpsFeedbackQueueItem & {
   osVersion: string | null;
   question: (VersionedFeedbackQuestionContext & { verified: boolean }) | null;
   attachments: OpsFeedbackAttachment[];
+  replies?: FeedbackReply[];
 };
+
+export type FeedbackStatus = 'received' | 'processing' | 'resolved';
+export type FeedbackReply = { id: string; text: string; createdAt: string };
+export type MyFeedbackItem = {
+  ticketNumber: string; category: string; description: string; status: string;
+  createdAt: string; replies: FeedbackReply[]; unread: boolean;
+};
+export type MyFeedbackList = { items: MyFeedbackItem[]; nextCursor: string | null; unread: boolean };
+export type MyFeedbackDetail = MyFeedbackItem & { attachments: Array<{ id: string; url: string }> };

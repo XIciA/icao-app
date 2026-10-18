@@ -42,6 +42,12 @@ export class FeedbackAttachmentStorage {
     }
   }
 
+  async signedUrl(objectKey: string) {
+    const result = await this.storage.storage.from(BUCKET).createSignedUrl(objectKey, 300);
+    if (result.error || !result.data) throw new ServiceUnavailableException('feedback_image_unavailable');
+    return result.data.signedUrl;
+  }
+
   async remove(objectKeys: string[]) {
     if (objectKeys.length === 0) return;
     const result = await this.storage.storage.from(BUCKET).remove(objectKeys);

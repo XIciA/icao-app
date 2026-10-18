@@ -1,3 +1,4 @@
+jest.mock('@/features/feedback/FeedbackHistory.native', () => ({ FeedbackHistory: () => null }));
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -5,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { InfoScreen } from '../InfoScreen.native';
 
 const mockSubmit = jest.fn();
-let mockParams: Record<string, string> = { slug: 'feedback', source: 'profile' };
+let mockParams: Record<string, string> = { slug: 'feedback', source: 'profile', compose: '1' };
 let mockId = 0;
 jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams, useRouter: () => ({ canGoBack: () => true, back: jest.fn(), replace: jest.fn() }) }));
 jest.mock('@react-navigation/native', () => ({ useFocusEffect: jest.fn(), usePreventRemove: jest.fn(), useNavigation: () => ({ dispatch: jest.fn() }) }));
@@ -15,7 +16,7 @@ jest.mock('@/features/app-content/repository.native', () => ({ builtinAppContent
 function screen() {
   return <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, bottom: 34, left: 0, right: 0 } }}><InfoScreen /></SafeAreaProvider>;
 }
-beforeEach(() => { jest.clearAllMocks(); mockParams = { slug: 'feedback', source: 'profile' }; mockId = 0; });
+beforeEach(() => { jest.clearAllMocks(); mockParams = { slug: 'feedback', source: 'profile', compose: '1' }; mockId = 0; });
 
 it('keeps the form usable when the system photo picker fails', async () => {
   jest.mocked(ImagePicker.requestMediaLibraryPermissionsAsync).mockRejectedValueOnce(new Error('picker_unavailable'));
