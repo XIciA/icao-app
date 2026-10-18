@@ -33,3 +33,5 @@ OPI 热点与资源分享的编辑、审核授权和统一归档只有一套标�
 ## 完整发布验收
 
 每次 OPI 发布均执行 [内容处理规则的完整发布链路](../../docs/rules/content-processing.md#完整发布链路2026-10-19-用户确认固化)，包含正式题库、答案、独立音频、上线核验及归档。展示反馈问法与练习朗读文字须明确区分。历史批次先核对 [实现差距](../../docs/workstreams/content-workflow/chain-audit-2026-10-19.md)，不能直接把预览 JSON 当作可发布工单。
+
+历史多考点批次使用同一工单服务的 `hotspotUpdates`，具体字段与审核后执行步骤见 [历史批次发布操作](../../docs/workstreams/content-workflow/historical-publication.md)。不能将本地预览或代码合并当作内容已发布。

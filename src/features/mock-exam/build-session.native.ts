@@ -89,7 +89,7 @@ async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets
     const index = Math.floor(next() * candidates.length);
     const [chosen] = candidates.splice(index, 1);
     const chosenTopic = await hydrateMockExamTopic(data, chosen.category, chosen.topic);
-    const questions = chosenTopic.cards.filter((card) => card.kind !== 'image');
+    const questions = chosenTopic.cards.filter((card) => card.kind !== 'image' && !card.retired);
     // A topic image is supporting material, never one of the five answers.
     if (questions.length >= 5) return [section(moduleId, 'opi', `OPI · ${chosenTopic.name}`, data, chosen.category, chosenTopic, sample(questions, 5, next))];
   }
