@@ -40,3 +40,24 @@ export function rebaseBank(baseValue:unknown,draftValue:unknown,currentValue:unk
  result.declaredTopicCount=result.categories.reduce((n,c)=>n+c.topics.length,0);result.declaredCardCount=result.categories.reduce((n,c)=>n+c.declaredCardCount,0);
  return result;
 }
+
+/** A later, independent publication must not make an older work order look broken.
+ * Check only the fields changed by this order, while retaining unrelated live edits. */
+export function containsBankChanges(baseValue:unknown,draftValue:unknown,currentValue:unknown):boolean {
+ const base=bankSchema.parse(baseValue),draft=bankSchema.parse(draftValue),current=bankSchema.parse(currentValue);
+ const contains=(before:unknown,wanted:unknown,live:unknown,key=''):boolean=>{
+  if(same(before,wanted))return true;
+  if(['categories','topics','cards'].includes(key)&&Array.isArray(wanted)&&Array.isArray(live)){
+   const old=new Map((Array.isArray(before)?before:[]).map(v=>[v.id,v]));
+   const actual=new Map(live.map(v=>[v.id,v]));
+   return wanted.every(v=>contains(old.get(v.id),v,actual.get(v.id)));
+  }
+  if(wanted&&live&&typeof wanted==='object'&&typeof live==='object'&&!Array.isArray(wanted)&&!Array.isArray(live)){
+   const b=(before&&typeof before==='object'?before:{}) as Record<string,unknown>;
+   const w=wanted as Record<string,unknown>,a=live as Record<string,unknown>;
+   return [...new Set([...Object.keys(b),...Object.keys(w)])].every(name=>['declaredCardCount','declaredTopicCount','scopeCardIds'].includes(name)||contains(b[name],w[name],a[name],name));
+  }
+  return same(wanted,live);
+ };
+ return contains(base,draft,current);
+}
