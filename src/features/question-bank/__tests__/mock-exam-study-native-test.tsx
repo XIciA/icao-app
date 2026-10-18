@@ -79,7 +79,7 @@ it('uses the listening result itself as the final screen for a listening-only ex
   for (let index = 0; index < 19; index += 1) await act(async () => { await fireEvent.press(screen.getByLabelText('下一题')); });
   await fireEvent.press(screen.getByLabelText('提交听力'));
   await waitFor(() => expect(screen.getByText('听力成绩')).toBeTruthy());
-  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('全部学习记录')).toBeTruthy(); expect(screen.getByText('已结束')).toBeTruthy();
+  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('全部学习记录')).toBeTruthy(); expect(screen.queryByText('已结束')).toBeNull();
 });
 
 it('keeps the source picture visible beside its OPI question without creating an extra exam answer', async () => {

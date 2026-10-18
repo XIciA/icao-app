@@ -76,3 +76,9 @@ export const feedbackSubmissionSchema = z.object({
     context.addIssue({ code: 'custom', message: 'diagnostics_version_mismatch', path: ['diagnostics', 'appVersion'] });
   }
 });
+
+export const feedbackReplySchema = z.object({
+  status: z.enum(['received', 'processing', 'resolved']),
+  text: z.string().trim().max(1000).optional(),
+  clientReplyId: z.string().uuid(),
+}).strict();

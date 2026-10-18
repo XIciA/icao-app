@@ -1,11 +1,11 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, NotFoundException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import type { FeedbackSubmissionResponse } from '@icao/contracts';
 import type { VersionedFeedbackSubmissionPayload as FeedbackSubmissionPayload } from '@icao/contracts/feedback-ops';
-import { and, count, desc, eq, gte } from 'drizzle-orm';
+import { and, count, desc, eq, gt, gte, isNull, lt, or, sql } from 'drizzle-orm';
 import { randomUUID } from 'node:crypto';
 
 import { DatabaseService } from '../database/database.service';
-import { feedbackAttachments, feedbackTickets, questionBankReleases } from '../database/schema';
+import { feedbackAttachments, feedbackReplies, feedbackTickets, questionBankReleases } from '../database/schema';
 import { FeedbackAttachmentStorage } from './feedback-attachment-storage';
 import type { FeedbackImage } from './feedback-image';
 
@@ -156,6 +156,74 @@ export class FeedbackService {
     }
 
     return { ticketNumber: number, status: 'received', createdAt: createdAt.toISOString() };
+  }
+
+  private async ownedTicket(userId: string, number: string) {
+    const [ticket] = await this.database.db.select().from(feedbackTickets).where(and(
+      eq(feedbackTickets.userId, userId), eq(feedbackTickets.ticketNumber, number), gt(feedbackTickets.retentionAt, new Date()),
+    )).limit(1);
+    if (!ticket) throw new NotFoundException('feedback_not_found');
+    return ticket;
+  }
+
+  private async publicItem(ticket: typeof feedbackTickets.$inferSelect) {
+    const replies = await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
+      .from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id)).orderBy(feedbackReplies.createdAt, feedbackReplies.id);
+    return { ticketNumber: ticket.ticketNumber, category: ticket.category, description: ticket.description,
+      status: ticket.status, createdAt: ticket.createdAt.toISOString(),
+      unread: replies.some(reply => !ticket.repliesReadAt || reply.createdAt > ticket.repliesReadAt),
+      replies: replies.map(reply => ({ ...reply, createdAt: reply.createdAt.toISOString() })) };
+  }
+
+  async list(userId: string, cursor?: string) {
+    let before: { time: Date; id: string } | undefined;
+    if (cursor) {
+      try {
+        const value = JSON.parse(Buffer.from(cursor, 'base64url').toString());
+        if (!/^[a-f0-9-]{36}$/iu.test(value.id) || !Number.isFinite(Date.parse(value.time))) throw new Error();
+        before = { time: new Date(value.time), id: value.id };
+      } catch { throw new BadRequestException('invalid_feedback_cursor'); }
+    }
+    const rows = await this.database.db.select().from(feedbackTickets).where(and(
+      eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
+      before ? or(lt(feedbackTickets.createdAt, before.time), and(eq(feedbackTickets.createdAt, before.time), lt(feedbackTickets.id, before.id))) : undefined,
+    )).orderBy(desc(feedbackTickets.createdAt), desc(feedbackTickets.id)).limit(31);
+    const items = await Promise.all(rows.slice(0, 30).map(ticket => this.publicItem(ticket)));
+    const last = rows[29];
+    const { unread } = await this.unread(userId);
+    return { items, unread, nextCursor: rows.length > 30 && last
+      ? Buffer.from(JSON.stringify({ time: last.createdAt.toISOString(), id: last.id })).toString('base64url') : null };
+  }
+
+  async unread(userId: string) {
+    const unread = await this.database.db.select({ id: feedbackReplies.id }).from(feedbackReplies)
+      .innerJoin(feedbackTickets, eq(feedbackReplies.ticketId, feedbackTickets.id)).where(and(
+        eq(feedbackTickets.userId, userId), gt(feedbackTickets.retentionAt, new Date()),
+        or(isNull(feedbackTickets.repliesReadAt), gt(feedbackReplies.createdAt, feedbackTickets.repliesReadAt)),
+      )).limit(1);
+    return { unread: unread.length > 0 };
+  }
+
+  async detail(userId: string, number: string) {
+    const ticket = await this.ownedTicket(userId, number);
+    const images = await this.database.db.select().from(feedbackAttachments).where(and(
+      eq(feedbackAttachments.ticketId, ticket.id), gt(feedbackAttachments.expiresAt, new Date()), isNull(feedbackAttachments.deletedAt),
+    )).orderBy(feedbackAttachments.createdAt);
+    return { ...await this.publicItem(ticket), attachments: await Promise.all(images.map(async image => ({
+      id: image.id, url: await this.attachments.signedUrl(image.objectKey),
+    }))) };
+  }
+
+  async markRead(userId: string, number: string, replyId: string) {
+    const ticket = await this.ownedTicket(userId, number);
+    const [reply] = await this.database.db.select().from(feedbackReplies).where(and(
+      eq(feedbackReplies.ticketId, ticket.id), eq(feedbackReplies.id, replyId),
+    )).limit(1);
+    if (!reply) throw new NotFoundException('feedback_reply_not_found');
+    // Only acknowledge what the user actually viewed; a later reply remains unread.
+    await this.database.db.update(feedbackTickets).set({ repliesReadAt: sql`greatest(${feedbackTickets.repliesReadAt}, ${reply.createdAt.toISOString()})` })
+      .where(and(eq(feedbackTickets.id, ticket.id), eq(feedbackTickets.userId, userId)));
+    return { read: true };
   }
 
   async userObjectKeys(userId: string) {

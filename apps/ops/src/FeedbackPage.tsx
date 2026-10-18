@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { opsApi, opsResponse } from './api';
 
 const categoryLabel: Record<string, string> = { feature_suggestion: '功能建议', content_correction: '内容纠错', other: '其他' };
+const statuses: Record<string,string> = {received:'待处理',processing:'处理中',resolved:'已处理'};
 const date = (value: string) => new Date(value).toLocaleString('zh-CN', { hour12: false });
 const failure = (cause: unknown) => cause instanceof Error && cause.message === 'feedback_not_found'
   ? '这条反馈已不在有效保留期内。' : '读取失败，请重试。';
@@ -38,13 +39,19 @@ export function FeedbackPage() {
   const [detail, setDetail] = useState<OpsFeedbackDetail>();
   const [detailError, setDetailError] = useState<string>();
   const [attempt, setAttempt] = useState(0);
+  const [statusFilter,setStatusFilter] = useState('');
+  const [replyText,setReplyText] = useState('');
+  const [replyStatus,setReplyStatus] = useState('received');
+  const [saving,setSaving] = useState(false);
+  const [saveError,setSaveError] = useState('');
+  const replyKey = useRef<string | undefined>(undefined);
   const loading = useRef(false);
   const mounted = useRef(true);
   async function load(cursor?: string) {
     if (loading.current) return;
     loading.current = true; setBusy(true); setError(undefined);
     try {
-      const data = await opsApi<OpsFeedbackListResponse>(`/v1/admin/feedback${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ''}`);
+      const data = await opsApi<OpsFeedbackListResponse>(`/v1/admin/feedback?${new URLSearchParams({...(cursor?{cursor}:{}),...(statusFilter?{status:statusFilter}:{})})}`);
       if (!mounted.current) return;
       setItems((current) => cursor ? [...current, ...data.items.filter((next) => !current.some((row) => row.ticketNumber === next.ticketNumber))] : data.items);
       setNextCursor(data.nextCursor); setLoaded(true);
@@ -54,19 +61,35 @@ export function FeedbackPage() {
   useEffect(() => {
     mounted.current = true; void load();
     return () => { mounted.current = false; };
-  }, []);
+  }, [statusFilter]);
   useEffect(() => {
+    setReplyText('');setSaveError('');replyKey.current=undefined;
     setDetail(undefined); setDetailError(undefined);
     if (!selected) return;
     const controller = new AbortController();
     void opsApi<OpsFeedbackDetail>(`/v1/admin/feedback/${selected}`, { signal: controller.signal })
-      .then((data) => { if (!controller.signal.aborted) setDetail(data); })
+      .then((data) => { if (!controller.signal.aborted) {setDetail(data);setReplyStatus(data.status ?? 'received');} })
       .catch((cause) => { if (!controller.signal.aborted) setDetailError(failure(cause)); });
     return () => controller.abort();
   }, [selected, attempt]);
+  async function saveReply() {
+    if (!detail || saving) return;
+    setSaving(true); setSaveError('');
+    replyKey.current ??= crypto.randomUUID();
+    try {
+      const updated = await opsApi<OpsFeedbackDetail>(`/v1/admin/feedback/${detail.ticketNumber}/replies`, {
+        method:'POST', headers:{'content-type':'application/json'},
+        body:JSON.stringify({status:replyStatus,text:replyText.trim()||undefined,clientReplyId:replyKey.current}),
+      });
+      if(!mounted.current)return;
+      setDetail(updated);setReplyText('');replyKey.current=undefined;
+      setItems(old=>old.map(item=>item.ticketNumber===updated.ticketNumber?{...item,status:updated.status}:item));
+    } catch { if(mounted.current)setSaveError('未能保存，请重试。'); }
+    finally {if(mounted.current)setSaving(false);}
+  }
   return <section className="feedback-page">
     {selected ? <>
-      <button className="link-button" onClick={() => setSelected(undefined)}>返回反馈列表</button>
+      <button disabled={saving} className="link-button" onClick={() => {setSelected(undefined);void load();}}>返回反馈列表</button>
       <h1>反馈详情</h1>
       {detailError && <p role="alert" className="notice error">{detailError} <button onClick={() => setAttempt((value) => value + 1)}>重试</button></p>}
       {!detail && !detailError && <p aria-live="polite">正在载入…</p>}
@@ -74,6 +97,12 @@ export function FeedbackPage() {
         <div className="feedback-meta"><b>{detail.ticketNumber}</b><span>{categoryLabel[detail.category] ?? detail.category}</span><time>{date(detail.createdAt)}</time></div>
         <p className="feedback-description">{detail.description}</p>
         {detail.attachments.length > 0 && <div className="feedback-images">{detail.attachments.map((image) => <Attachment key={image.id} ticket={detail.ticketNumber} image={image} />)}</div>}
+        <h2>处理回复</h2>
+        {(detail.replies ?? []).map(reply=><div key={reply.id}><time>{date(reply.createdAt)}</time><p className="feedback-description">{reply.text}</p></div>)}
+        <label>处理状态<select disabled={saving} value={replyStatus} onChange={event=>{setReplyStatus(event.target.value);replyKey.current=undefined;}}>{Object.entries(statuses).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
+        <label>对用户回复<textarea disabled={saving} maxLength={1000} rows={4} value={replyText} placeholder="填写简短回复（选填）" onChange={event=>{setReplyText(event.target.value);replyKey.current=undefined;}}/></label>
+        {saveError&&<p role="alert">{saveError}</p>}
+        <button className="primary" disabled={saving} onClick={()=>void saveReply()}>{saving?'正在保存…':replyText.trim()?'保存并发送回复':'保存状态'}</button>
         <dl><dt>联系方式</dt><dd>{detail.contact || '未填写'}</dd>
           <dt>来源</dt><dd>{detail.source === 'study' ? '题目纠错' : '意见反馈'} · {detail.sourceRoute}</dd>
           <dt>版本与设备</dt><dd>{detail.appDisplayVersion} · {detail.platform} · {[detail.osName, detail.osVersion].filter(Boolean).join(' ')}</dd>
@@ -84,10 +113,10 @@ export function FeedbackPage() {
       </article>}
     </> : <>
       <h1>用户反馈</h1>
-      <p className="muted">查看用户提交的建议与题目纠错。</p>
+      <div className="feedback-filters">{[['','全部'],...Object.entries(statuses)].map(([value,label])=><button key={value} disabled={busy} aria-pressed={statusFilter===value} onClick={()=>{setStatusFilter(value ?? '');setItems([]);setNextCursor(null);setLoaded(false);}}>{label}</button>)}</div>
       {error && <p className="notice error" role="alert">{error} <button disabled={busy} onClick={() => void load(loaded ? nextCursor ?? undefined : undefined)}>重试</button></p>}
       <div className="result-list">{items.map((item) => <button className="result-card feedback-row" key={item.ticketNumber} onClick={() => setSelected(item.ticketNumber)}>
-        <span><strong>{categoryLabel[item.category] ?? item.category}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span aria-hidden>›</span>
+        <span><strong>{categoryLabel[item.category] ?? item.category}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
       </button>)}</div>
       {!busy && loaded && items.length === 0 && <p className="muted">暂无反馈。</p>}
       {busy && <p aria-live="polite">正在载入…</p>}

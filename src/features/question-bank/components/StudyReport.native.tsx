@@ -33,14 +33,14 @@ export function StudyReport({ record, onReturn, returnLabel, interaction, onCont
   if (list) return <SessionRecapList kind={list} record={detail} onBack={() => setList(undefined)} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen}>
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
-      {onContinue ? null : <Tag tone={complete ? 'primary' : 'accent'}>{exam && !complete ? '未完成' : '已结束'}</Tag>}
+      {!onContinue && exam && !complete ? <Tag tone="accent">未完成</Tag> : null}
       <AppText variant="pageTitle">{onContinue || (listening && record.mockExam?.moduleIds.length === 1) ? '听力成绩' : exam ? '本次模拟考试已结束' : '本次学习已结束'}</AppText>
       <AppText style={styles.center} variant="caption">{record.source === 'hotspot' ? record.hotspot?.title : `${record.bankTitle} · ${record.topicTitle}`}</AppText>
     </View>
     {listening ? <Card style={styles.card}><View style={styles.metric}><AppText variant="sectionTitle">听力</AppText><AppText color={colors.primary} variant="pageTitle">{listening.score} / 50</AppText></View><View style={styles.metric}><AppText variant="caption">练习等级</AppText><AppText color={colors.primary} variant="sectionTitle">{listening.level} 级</AppText></View><AppText variant="caption">答对 {listening.correctCount} / 20 题 · 作答 {listening.answeredCount} / 20 题</AppText></Card> : null}
     {!onContinue ? <Card style={styles.card}><View style={styles.metric}><AppText variant="caption">{exam ? '作答题数' : '本次学习'}</AppText><AppText variant="sectionTitle">{exam ? `${record.answeredCount ?? record.completedCount} / ${record.totalCount}` : `${record.studiedCount ?? record.totalCount} 题`}</AppText></View><View style={styles.metric}><AppText variant="caption">学习时长</AppText><AppText variant="button">{record.durationSeconds < 60 ? `${record.durationSeconds} 秒` : `${Math.floor(record.durationSeconds / 60)} 分`}</AppText></View></Card> : null}
     {!exam && interaction === 'choices' && objective.answered > 0 ? <View style={styles.metric}><AppText variant="caption">正确率</AppText><AppText variant="sectionTitle">{Math.round(objective.correct / objective.answered * 100)}% <AppText variant="caption">（{objective.correct}/{objective.answered}）</AppText></AppText></View> : null}
-    <AppText style={styles.center} variant="caption">{externalError ? '学习记录尚未保存，请重试' : '已保存到学习记录'}</AppText>
+    {externalError ? <AppText style={styles.center} color={colors.destructive} variant="caption">学习记录尚未保存，请重试</AppText> : null}
     {error || externalError ? <AppText color={colors.destructive} variant="caption">{error || externalError}</AppText> : null}
     {externalError && onExitWithoutSave ? <Button disabled={busy} onPress={onExitWithoutSave} variant="ghost">仍然返回</Button> : null}
     {onContinue ? <><Button disabled={busy} onPress={onContinue}>进入下一板块</Button><Button disabled={busy} variant="secondary" onPress={onEnd}>结束考试</Button></> : <>

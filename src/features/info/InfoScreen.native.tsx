@@ -1,3 +1,4 @@
+import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import { AboutPage } from './AboutPage.native';
 import type { VersionedFeedbackQuestionContext } from '@icao/contracts/feedback-ops';
@@ -50,11 +51,11 @@ export function InfoScreen() {
 }
 
 function InfoContent() {
-  const { slug } = useLocalSearchParams<{ slug: InfoSlug }>();
+  const { slug, compose, source, feature } = useLocalSearchParams<{ slug: InfoSlug; compose?: string; source?: string; feature?: string }>();
   const page: InfoSlug = pages.includes(slug) ? slug : 'help';
   if (page === 'about') return <AboutPage />;
   if (page === 'help') return <HelpPage />;
-  if (page === 'feedback') return <FeedbackPage />;
+  if (page === 'feedback') return compose === '1' || source === 'study' || feature ? <FeedbackPage /> : <FeedbackHistory />;
   return <LegalPage page={page} />;
 }
 
@@ -284,15 +285,15 @@ function FeedbackPage() {
         <View style={styles.result}>
           <View style={styles.resultIcon}><CheckCircle2 color={colors.primary} size={38} /></View>
           <AppText variant="sectionTitle">反馈已收到</AppText>
-          <AppText style={styles.center}>感谢你的反馈，请保存反馈编号。</AppText>
+
           <View style={styles.ticket}><AppText color={colors.primary} variant="cardTitle">{ticketNumber}</AppText></View>
           <View style={styles.resultActions}>
             <Button onPress={() => {
               if (source === 'study' && router.canGoBack()) { router.back(); return; }
               const routeBank = /^\/question-bank\/(listening|sentences900|radiotelephony|opi|storytelling)(?:\/|$)/.exec(params.sourceRoute ?? '')?.[1];
               if (source === 'study' && routeBank) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: routeBank } });
-              else router.replace('/(tabs)/profile');
-            }} size="lg">{source === 'study' ? '返回学习' : '返回我的'}</Button>
+              else router.replace({pathname:'/info/[slug]',params:{slug:'feedback'}});
+            }} size="lg">{source === 'study' ? '返回学习' : '查看反馈记录'}</Button>
             <Button onPress={reset} size="lg" variant="outline">再提一条</Button>
           </View>
         </View>
@@ -377,7 +378,6 @@ function FeedbackPage() {
         <Button disabled={description.trim().length < 5 || submitting} onPress={() => void submit()} size="lg" testID="feedback-submit">
           {submitting ? '正在提交…' : '提交反馈'}
         </Button>
-        <AppText style={styles.center} variant="micro">图片仅用于处理本次反馈，将保存在私有存储中。</AppText>
       </View>
     </Page>
   );

@@ -228,7 +228,9 @@ reviewedFormalWebHashes.set("src/features/question-bank/components/AirlineMark.t
 reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [null, "41d33be6a4234d4aeb96f88b299cced4dff0a8b4a71d808193a698ebbc18ac9d"]);
 reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public-release.json", [null, "5f95032a6ab3c37bf1d9ef36f24397ad6d2bb644ba196aa0cdfcf8a07b1fa2c6"]);
 reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public.json", [null, "8cb210a06d26fba8bcd8160d2914d532435f768264193789527406f809e450db"]);
-reviewedFormalWebHashes.set("src/features/question-bank/export/SentenceExportScreen.tsx", [null, "f813399136f30c1645a71f4222744ffe2aa636326bbc33cb5f3de8c26492ccde"]);
+reviewedFormalWebHashes.set("src/features/question-bank/export/SentenceExportScreen.tsx", [null, "0dcc76e9fd163f8e486caf3609079d1a473ea88e7ddb9755556b873a2ed8e480"]);
+// PDF loader is reachable only from the existing Native/EdgeOne export screen.
+reviewedFormalWebHashes.set("src/features/question-bank/export/pdf-generator.ts", [null, "e8a9949493a679aaac20e5d6da437354d1477ef12a7896c2ada4013468602a7e"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/export-model.ts", [null, "6bb6d98076ec1098b36c3876d47002f4f14c8d44504ca54bd3133aa257bd82fc"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/pdf-platform.web.ts", [null, "50c7da311aaa05afc0d87b937348162c14324aa123ec27ef8dc36dcfcf8f70a1"]);
 reviewedFormalWebHashes.set("src/features/question-bank/export/sentences-pdf.ts", [null, "4accd0a5ec6e53d3e6b9c95302b937340a893709ed0cbef96aafb44afef2b53f"]);
@@ -236,7 +238,7 @@ reviewedFormalWebHashes.set("src/features/question-bank/lib/study-scope.ts", [nu
 reviewedFormalWebHashes.set("src/features/question-bank/platform/learning-store.native.ts", [null, "70e8893800737cb12a8f1428105e47cf2ee57c361a9a6262ebbcc1e968668579"]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "eac98ef5283f7e0952aba218cd19c08ddfb3d4babb44c0c5bd0bd4f66eb0c865"]);
 reviewedFormalWebHashes.set("app.config.js", ["a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2", "f88c41ace896bad43495808b75f2dbf522ea1f0675a177958fc317117b7e106a"]);
-reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "458653313c79c73233e7cabb012b5974a8604b498cfea75f40ee101bfd7dcca7"]);
+reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "a110f1040ef4f9b8f2facc2d10b2c82f05f563d2ae0ce0b9bcdabadda3f83ced"]);
 reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e", "188be10136c308d53b13be0351d92a5a6d7db3ec54e5d0e7937f78e54fb242bd"]);
 reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "19eed3ec1891088e0b21e428162150a9429efd2ac757d822097ba9146b920360"]);
 reviewedFormalWebHashes.set("pnpm-lock.yaml", ["96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9", "78864173822a160e01e84db91ef6df5d61a1608c6830770d1a1cac35c187212b"]);

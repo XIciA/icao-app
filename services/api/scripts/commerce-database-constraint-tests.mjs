@@ -554,7 +554,7 @@ test('the cumulative migration enables RLS on every public table', () => {
     JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
     WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
   `).split(':').map(Number);
-  assert.equal(tableCount, 66, 'the exact production schema inventory must remain classified');
+  assert.equal(tableCount, 67, 'the exact production schema inventory must remain classified');
   assert.equal(rlsCount, tableCount);
 });
 
