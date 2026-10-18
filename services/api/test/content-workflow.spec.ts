@@ -26,7 +26,7 @@ it('does not reject unchanged legacy questions when editing another question',()
  const linked=structuredClone(value);Object.assign(linked.categories[0]!.topics[0]!.cards[0]!,{reportedPrompts:{'hotspot-2026-10-17-test':['Reported wording?']}});expect(validateBank(linked,value).id).toBe('opi');
 });
 
-import { rebaseBank } from '../src/admin/content-workflow-rebase';
+import { rebaseBank, containsBankChanges } from '../src/admin/content-workflow-rebase';
 it('rebases independent hotspot wording and new questions without losing either publication',()=>{
  const base=bank(),a=bank(),b=bank();
  Object.assign(a.categories[0]!.topics[0]!.cards[0]!,{reportedPrompts:{first:['First wording?']}});
@@ -40,4 +40,19 @@ it('rejects conflicting answer edits and retains an unrelated current edit',()=>
  expect(()=>rebaseBank(base,b,a)).toThrow('content_base_changed_reprocess_order');
  b.categories[0]!.topics[0]!.cards[0]!.referenceText=question.referenceText;Object.assign(b.categories[0]!.topics[0]!.cards[0]!,{reportedPrompts:{second:['New wording?']}});
  expect(rebaseBank(base,b,a).categories[0]!.topics[0]!.cards[0]!.referenceText).toBe('Answer A');
+});
+
+it('verifies only a published order delta while allowing subsequent independent content',()=>{
+ const base=bank(),draft=bank(),live=bank();draft.categories[0]!.topics[0]!.cards[0]!.referenceText='Published answer';
+ live.categories[0]!.topics[0]!.cards[0]!.referenceText='Published answer';
+ Object.assign(live.categories[0]!.topics[0]!.cards[0]!,{reportedPrompts:{later:['Later feedback']}});
+ live.categories[0]!.topics[0]!.cards.push({...question,id:'later-new'});
+ expect(containsBankChanges(base,draft,live)).toBe(true);
+ live.categories[0]!.topics[0]!.cards[0]!.referenceText='Replaced answer';expect(containsBankChanges(base,draft,live)).toBe(false);
+});
+it('detects missing newly published questions without rejecting their later independent metadata',()=>{
+ const base=bank(),draft=bank();draft.categories[0]!.topics[0]!.cards.push({...question,id:'new'});
+ expect(containsBankChanges(base,draft,base)).toBe(false);
+ const live=structuredClone(draft);Object.assign(live.categories[0]!.topics[0]!.cards[1]!,{reportedPrompts:{later:['Other feedback']}});
+ expect(containsBankChanges(base,draft,live)).toBe(true);
 });

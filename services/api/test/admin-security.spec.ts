@@ -250,7 +250,9 @@ describe('ops login anti-abuse boundary', () => {
       // Parsing a real-sized draft reaches authentication rather than failing at 1 MiB.
       expect(draftResponse.statusCode).toBe(401);
       const ordinaryResponse = await app.inject({ method: 'POST', url: '/v1/admin/content-orders', payload });
-      expect(ordinaryResponse.statusCode).toBe(413);
+      expect(ordinaryResponse.statusCode).toBe(401);
+      const unrelatedResponse = await app.inject({method:'POST',url:'/v1/admin/auth/login',payload});
+      expect(unrelatedResponse.statusCode).toBe(413);
     } finally {
       await app?.close();
       schemaGate.mockRestore();
