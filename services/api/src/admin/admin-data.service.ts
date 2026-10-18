@@ -1,3 +1,4 @@
+import { feedbackStatusForClient, feedbackStatusForStorage, feedbackStatusStorageFilter } from '../feedback/feedback-status';
 import type { OpsFeedbackListResponse, OpsFeedbackDetail } from '@icao/contracts/feedback-ops';
 import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type {
@@ -227,7 +228,7 @@ export class AdminDataService {
     const pageSize = Math.max(1, Math.min(50, limit));
     const rows = await this.database.db.select().from(feedbackTickets).where(and(
       gt(feedbackTickets.retentionAt, new Date()),
-      status ? eq(feedbackTickets.status, status) : undefined,
+      status ? inArray(feedbackTickets.status, feedbackStatusStorageFilter(status)) : undefined,
       before ? or(lt(feedbackTickets.createdAt, before.createdAt), and(
         eq(feedbackTickets.createdAt, before.createdAt), lt(feedbackTickets.id, before.id),
       )) : undefined,
@@ -242,7 +243,7 @@ export class AdminDataService {
     return {
       items: items.map((ticket) => ({
         ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
-        status: ticket.status, summary: feedbackSummary(ticket.description), source: ticket.source,
+        status: feedbackStatusForClient(ticket.status), summary: feedbackSummary(ticket.description), source: ticket.source,
         createdAt: ticket.createdAt.toISOString(),
       })),
       nextCursor: rows.length > pageSize && last
@@ -268,7 +269,7 @@ export class AdminDataService {
     });
     return {
       ticketNumber: ticket.ticketNumber, accountId: ticket.userId, category: ticket.category,
-      status: ticket.status, source: ticket.source, summary: feedbackSummary(ticket.description),
+      status: feedbackStatusForClient(ticket.status), source: ticket.source, summary: feedbackSummary(ticket.description),
       description: ticket.description, contact: ticket.contact, createdAt: ticket.createdAt.toISOString(),
       sourceRoute: ticket.sourceRoute, appDisplayVersion: ticket.appDisplayVersion,
       platform: ticket.platform, osName: ticket.osName, osVersion: ticket.osVersion,
@@ -295,10 +296,10 @@ export class AdminDataService {
       if (existing) return;
       const now = new Date();
       if (input.text) await tx.insert(feedbackReplies).values({ ticketId: ticket.id, clientReplyId: input.clientReplyId, text: input.text, createdAt: now });
-      await tx.update(feedbackTickets).set({ status: input.status, updatedAt: now }).where(eq(feedbackTickets.id, ticket.id));
+      await tx.update(feedbackTickets).set({ status: feedbackStatusForStorage(input.status), updatedAt: now }).where(eq(feedbackTickets.id, ticket.id));
       await this.audit.record({ requestId, actorStaffId: staff.id, actorRole: staff.role,
         action: 'ops.feedback.reply', targetType: 'feedback_ticket', targetId: ticket.id,
-        reason: '更新反馈处理状态及对用户回复', beforeState: { status: ticket.status }, afterState: { status: input.status },
+        reason: '更新反馈处理状态及对用户回复', beforeState: { status: ticket.status }, afterState: { status: feedbackStatusForStorage(input.status) },
         metadata: { hasPublicReply: !!input.text },
       }, tx);
     });

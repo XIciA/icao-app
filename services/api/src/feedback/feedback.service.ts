@@ -1,3 +1,4 @@
+import { feedbackStatusForClient } from './feedback-status';
 import { BadRequestException, NotFoundException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import type { FeedbackSubmissionResponse } from '@icao/contracts';
 import type { VersionedFeedbackSubmissionPayload as FeedbackSubmissionPayload } from '@icao/contracts/feedback-ops';
@@ -170,7 +171,7 @@ export class FeedbackService {
     const replies = await this.database.db.select({ id: feedbackReplies.id, text: feedbackReplies.text, createdAt: feedbackReplies.createdAt })
       .from(feedbackReplies).where(eq(feedbackReplies.ticketId, ticket.id)).orderBy(feedbackReplies.createdAt, feedbackReplies.id);
     return { ticketNumber: ticket.ticketNumber, category: ticket.category, description: ticket.description,
-      status: ticket.status, createdAt: ticket.createdAt.toISOString(),
+      status: feedbackStatusForClient(ticket.status), createdAt: ticket.createdAt.toISOString(),
       unread: replies.some(reply => !ticket.repliesReadAt || reply.createdAt > ticket.repliesReadAt),
       replies: replies.map(reply => ({ ...reply, createdAt: reply.createdAt.toISOString() })) };
   }
