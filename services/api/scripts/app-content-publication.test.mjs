@@ -61,6 +61,34 @@ afterAll(async () => {
 const active = async () => (await database`select version, checksum from app_content_releases where active = true`)[0] ?? null;
 
 describe('candidate app-content activation and deployment rollback', () => {
+  it.each([-1, 0, 1])('preserves live content when deployment seed offset is %i', async (offset) => {
+    const live = release(2);
+    await publishAppContent(database, live);
+    const before = await database`select * from app_content_releases order by version`;
+    let checkpointWritten = false;
+    expect(await publishAppContent(database, release(2 + offset), {
+      preserveActive: true, beforeActivation: () => { checkpointWritten = true; },
+    })).toEqual({ ...identity(live), activated: false });
+    expect(checkpointWritten).toBe(false);
+    expect(await database`select * from app_content_releases order by version`).toEqual(before);
+  });
+  it('bootstraps an empty deployment and supports checkpoint rollback', async () => {
+    const seed = release(); let checkpoint;
+    expect(await publishAppContent(database, seed, {
+      preserveActive: true, beforeActivation: value => { checkpoint = value; },
+    })).toEqual({ ...identity(seed), activated: true });
+    expect(await active()).toEqual(identity(seed));
+    await rollbackDeploymentAppContent(database, checkpoint);
+    expect(await active()).toBeNull();
+  });
+  it('rejects normal publication of an older version', async () => {
+    const original = release(), current = release(1);
+    await publishAppContent(database, original);
+    await publishAppContent(database, current);
+    await expect(publishAppContent(database, original)).rejects.toThrow('app_content_version_regression');
+    expect(await active()).toEqual(identity(current));
+  });
+
   it('records the previous identity before activation and can restore it idempotently', async () => {
     const original = release(), candidate = release(1);
     await publishAppContent(database, original);
