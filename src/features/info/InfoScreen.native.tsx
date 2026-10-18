@@ -1,3 +1,4 @@
+import { UserGuideScreen } from '@/features/usage-guide/UserGuideScreen';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import { AboutPage } from './AboutPage.native';
@@ -32,7 +33,6 @@ import { builtinAppContent, loadAppContent } from '@/features/app-content/reposi
 import { LegalDocumentBody } from '@/features/app-content/LegalDocumentBody.native';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 
-const UserGuideScreen = lazy(() => import('@/features/usage-guide/UserGuideScreen').then(module => ({ default: module.UserGuideScreen })));
 const SentenceTutorialScreen = lazy(() => import('@/features/usage-guide/SentenceTutorialScreen').then(module => ({ default: module.SentenceTutorialScreen })));
 
 type InfoSlug = 'about' | 'help' | 'guide' | 'tutorial' | 'feedback' | 'agreement' | 'privacy' | 'services';
@@ -56,7 +56,7 @@ function InfoContent() {
   const { slug, compose, source, feature } = useLocalSearchParams<{ slug: InfoSlug; compose?: string; source?: string; feature?: string }>();
   const page: InfoSlug = pages.includes(slug) ? slug : 'help';
   if (page === 'about') return <AboutPage />;
-  if (page === 'help' || page === 'guide') return <Suspense fallback={<GlobalLoadingScreen />}><UserGuideScreen /></Suspense>;
+  if (page === 'help' || page === 'guide') return <UserGuideScreen />;
   if (page === 'tutorial') return <Suspense fallback={<GlobalLoadingScreen />}><SentenceTutorialScreen /></Suspense>;
   if (page === 'feedback') return compose === '1' || source === 'study' || feature ? <FeedbackPage /> : <FeedbackHistory />;
   return <LegalPage page={page} />;
