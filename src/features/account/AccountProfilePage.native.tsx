@@ -20,7 +20,7 @@ export function AccountProfilePage() {
   const [saving, setSaving] = useState(false);
   const [picking, setPicking] = useState(false);
   const [error, setError] = useState('');
-  const edited = useRef(false);
+  const edited = useRef(new Set<'displayName' | 'target' | 'avatarUri'>());
   const accountId = auth.account?.accountId;
   const currentAccount = useRef(accountId);
   currentAccount.current = accountId;
@@ -41,11 +41,20 @@ export function AccountProfilePage() {
   useEffect(() => {
     if (draftAccount.current !== accountId) {
       draftAccount.current = accountId;
-      edited.current = false;
+      edited.current.clear();
       setDraft(profile);
     }
   }, [accountId, profile]);
-  useEffect(() => { if (!edited.current) setDraft(profile); }, [profile]);
+  useEffect(() => {
+    // A late cloud snapshot may refresh untouched fields while preserving the
+    // fields the user actually changed in this draft.
+    setDraft(current => ({
+      ...profile,
+      displayName: edited.current.has('displayName') ? current.displayName : profile.displayName,
+      target: edited.current.has('target') ? current.target : profile.target,
+      avatarUri: edited.current.has('avatarUri') ? current.avatarUri : profile.avatarUri,
+    }));
+  }, [profile]);
   const dirty = draft.displayName !== profile.displayName || draft.target !== profile.target || draft.avatarUri !== profile.avatarUri;
 
   function beginAction() {
@@ -74,7 +83,7 @@ export function AccountProfilePage() {
       if (!sourceUri) throw new Error('No selected image');
       const uri = await prepareProfileAvatar(sourceUri);
       if (!actionIsCurrent(action)) return;
-      edited.current = true;
+      edited.current.add('avatarUri');
       setDraft((current) => ({ ...current, avatarUri: uri }));
     } catch { if (actionIsCurrent(action)) setError('图片读取失败，请重试。'); }
     finally {
@@ -83,7 +92,7 @@ export function AccountProfilePage() {
   }
 
   async function save() {
-    if (!dirty) return;
+    if (!dirty || !edited.current.size) return;
     const displayName = draft.displayName.trim();
     if (!displayName || Array.from(displayName).length > 24) { setError('昵称需要为 1–24 个字符。'); return; }
     const action = beginAction();
@@ -91,7 +100,11 @@ export function AccountProfilePage() {
     setSaving(true);
     setError('');
     try {
-      await updateProfile({ ...draft, displayName });
+      await updateProfile({
+        ...(edited.current.has('displayName') ? { displayName } : {}),
+        ...(edited.current.has('target') ? { target: draft.target } : {}),
+        ...(edited.current.has('avatarUri') ? { avatarUri: draft.avatarUri } : {}),
+      });
       if (!actionIsCurrent(action)) return;
       if (router.canGoBack()) router.back(); else router.replace('/(tabs)/profile');
     } catch { if (actionIsCurrent(action)) setError('资料保存未完成，请重试。'); }
@@ -105,7 +118,7 @@ export function AccountProfilePage() {
   function chooseGoal(level: string, type: string) {
     const goal = EXAM_GOALS.find(item => item.id === `${level}-${type}`);
     if (!goal) return;
-    edited.current = true;
+    edited.current.add('target');
     setDraft(current => ({ ...current, target: goal.id }));
   }
 
@@ -122,7 +135,7 @@ export function AccountProfilePage() {
         </Pressable>
         <View style={styles.nicknameGroup}>
           <AppText color={colors.mutedForeground} variant="caption">昵称</AppText>
-          <TextInput accessibilityLabel="昵称" editable={!saving} maxLength={48} style={styles.nickname} onChangeText={(displayName) => { edited.current = true; setDraft((current) => ({ ...current, displayName })); setError(''); }} value={draft.displayName} />
+          <TextInput accessibilityLabel="昵称" editable={!saving} maxLength={48} style={styles.nickname} onChangeText={(displayName) => { edited.current.add('displayName'); setDraft((current) => ({ ...current, displayName })); setError(''); }} value={draft.displayName} />
         </View>
         <AppText variant="sectionTitle">备考目标</AppText>
         <View style={styles.goal}>

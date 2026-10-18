@@ -115,5 +115,36 @@ it.each([
   await fireEvent.press(screen.getByLabelText(level));
   await fireEvent.press(screen.getByLabelText(type));
   await fireEvent.press(screen.getByText('保存修改'));
-  expect(updateProfile).toHaveBeenCalledWith({...mockProfile, target});
+  expect(updateProfile).toHaveBeenCalledWith({target});
+});
+
+it('does not save a stale goal when cloud profile arrives during nickname editing', async () => {
+  const screen = await render(<AccountProfilePage />);
+  await fireEvent.changeText(screen.getByLabelText('昵称'), '新的昵称');
+  mockProfile = { ...mockProfile, target: 'icao5-first' };
+  await screen.rerender(<AccountProfilePage />);
+  await fireEvent.press(screen.getByText('保存修改'));
+  expect(updateProfile).not.toHaveBeenCalledWith(expect.objectContaining({ target: 'icao4-first' }));
+});
+
+it('refreshes untouched fields while retaining the edited nickname', async () => {
+  const screen = await render(<AccountProfilePage />);
+  await fireEvent.changeText(screen.getByLabelText('昵称'), '新的昵称');
+  mockProfile = { displayName: '云端昵称', target: 'icao5-first', avatarUri: jpeg };
+  await screen.rerender(<AccountProfilePage />);
+  expect(screen.getByLabelText('昵称').props.value).toBe('新的昵称');
+  expect(screen.getByLabelText('ICAO 5').props.accessibilityState.checked).toBe(true);
+  expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
+  await fireEvent.press(screen.getByText('保存修改'));
+  expect(updateProfile).toHaveBeenCalledWith({ displayName: '新的昵称' });
+});
+
+it('saves only the chosen goal when unrelated cloud fields change', async () => {
+  const screen = await render(<AccountProfilePage />);
+  await fireEvent.press(screen.getByLabelText('ICAO 5'));
+  mockProfile = { displayName: '云端昵称', target: 'icao4-first', avatarUri: jpeg };
+  await screen.rerender(<AccountProfilePage />);
+  expect(screen.getByLabelText('昵称').props.value).toBe('云端昵称');
+  await fireEvent.press(screen.getByText('保存修改'));
+  expect(updateProfile).toHaveBeenCalledWith({ target: 'icao5-first' });
 });
