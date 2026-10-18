@@ -41,8 +41,9 @@ appId: ${APP_ID}
 - tapOn:
     id: "integrated-record-button"
 - extendedWaitUntil:
-    visible: "点击停止.*0:0[1-9]"
+    visible: "停止录音"
     timeout: 15000
+- takeScreenshot: recording-started
 - tapOn: "停止录音"
 - assertVisible: "点击重新录音"
 - assertVisible: "我的回答"
