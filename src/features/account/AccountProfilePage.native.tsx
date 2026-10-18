@@ -2,12 +2,11 @@ import { requestPhotoSelectionPermission } from '@/platform/photo-permission.nat
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
-import { AppText, Button, Screen, TextField } from '@/components/ui';
-import { Pencil } from '@/components/ui/icons';
+import { AppText, Button, Screen } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { colors, radii, spacing } from '@/theme';
+import { colors, fonts, radii, spacing } from '@/theme';
 import { prepareProfileAvatar } from '../../../modules/icao-profile-avatar/src';
 import { EXAM_GOALS } from './profile-model';
 import { ProfileAvatar } from './ProfileAvatar';
@@ -101,26 +100,41 @@ export function AccountProfilePage() {
     }
   }
 
+  const goalLevel = draft.target.startsWith('icao5') ? 'icao5' : 'icao4';
+  const goalType = draft.target.endsWith('recert') ? 'recert' : 'first';
+  function chooseGoal(level: string, type: string) {
+    const goal = EXAM_GOALS.find(item => item.id === `${level}-${type}`);
+    if (!goal) return;
+    edited.current = true;
+    setDraft(current => ({ ...current, target: goal.id }));
+  }
+
   return (
     <Screen contentStyle={styles.screen} scroll>
       <TopBar title="个人资料" />
       <View style={styles.form}>
         <Pressable accessibilityRole="button" accessibilityLabel="更换头像" disabled={saving || picking} onPress={() => void chooseAvatar()} style={styles.avatar}>
-          <View style={styles.avatarImage}>
-            <ProfileAvatar size={74} uri={draft.avatarUri} />
-            <View pointerEvents="none" style={styles.editBadge}><Pencil color={colors.primaryForeground} size={9} /></View>
+          <ProfileAvatar size={64} uri={draft.avatarUri} />
+          <View style={styles.avatarCopy}>
+            <AppText variant="cardTitle">个人头像</AppText>
+            <AppText color={colors.primary} variant="body">{picking ? '正在读取…' : '更换头像'}</AppText>
           </View>
-          <AppText color={colors.primary} variant="caption">{picking ? '正在读取…' : '更换头像'}</AppText>
         </Pressable>
-        <TextField editable={!saving} label="昵称" maxLength={48} onChangeText={(displayName) => { edited.current = true; setDraft((current) => ({ ...current, displayName })); setError(''); }} value={draft.displayName} />
+        <View style={styles.nicknameGroup}>
+          <AppText color={colors.mutedForeground} variant="caption">昵称</AppText>
+          <TextInput accessibilityLabel="昵称" editable={!saving} maxLength={48} style={styles.nickname} onChangeText={(displayName) => { edited.current = true; setDraft((current) => ({ ...current, displayName })); setError(''); }} value={draft.displayName} />
+        </View>
+        <AppText variant="sectionTitle">备考目标</AppText>
         <View style={styles.goal}>
-          <AppText variant="button">备考目标</AppText>
+          <AppText color={colors.mutedForeground} variant="caption">目标等级</AppText>
           <View style={styles.options}>
-            {EXAM_GOALS.map((goal) => (
-              <Pressable accessibilityRole="radio" accessibilityState={{ checked: draft.target === goal.id, disabled: saving }} disabled={saving} key={goal.id} onPress={() => { edited.current = true; setDraft((current) => ({ ...current, target: goal.id })); }} style={[styles.option, draft.target === goal.id && styles.selected]}>
-                <AppText color={draft.target === goal.id ? colors.primary : colors.mutedForeground} variant="caption">{goal.label}</AppText>
-              </Pressable>
-            ))}
+            {(['icao4', 'icao5'] as const).map(level => <Pressable key={level} accessibilityRole="radio" accessibilityLabel={level === 'icao4' ? 'ICAO 4' : 'ICAO 5'} accessibilityState={{checked: goalLevel === level, disabled: saving}} disabled={saving} onPress={() => chooseGoal(level, goalType)} style={[styles.option, goalLevel === level && styles.selected]}><AppText color={goalLevel === level ? colors.primary : colors.mutedForeground} variant="button">{level === 'icao4' ? 'ICAO 4' : 'ICAO 5'}</AppText></Pressable>)}
+          </View>
+        </View>
+        <View style={styles.goal}>
+          <AppText color={colors.mutedForeground} variant="caption">考试类型</AppText>
+          <View style={styles.options}>
+            {(['first', 'recert'] as const).map(type => <Pressable key={type} accessibilityRole="radio" accessibilityLabel={type === 'first' ? '初考' : '复考'} accessibilityState={{checked: goalType === type, disabled: saving}} disabled={saving} onPress={() => chooseGoal(goalLevel, type)} style={[styles.option, goalType === type && styles.selected]}><AppText color={goalType === type ? colors.primary : colors.mutedForeground} variant="button">{type === 'first' ? '初考' : '复考'}</AppText></Pressable>)}
           </View>
         </View>
         <View style={styles.goal}>
@@ -137,11 +151,12 @@ export function AccountProfilePage() {
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   form: { gap: spacing[5], padding: spacing[5] },
-  avatar: { alignItems: 'center', alignSelf: 'center', gap: spacing[2], marginBottom: spacing[2] },
-  avatarImage: { position: 'relative' },
-  editBadge: { position: 'absolute', right: 0, bottom: 0, width: 20, height: 20, alignItems: 'center', justifyContent: 'center', borderRadius: radii.full, borderWidth: 2, borderColor: colors.card, backgroundColor: colors.primary },
-  goal: { gap: spacing[2] },
-  options: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
-  option: { alignItems: 'center', justifyContent: 'center', width: '48%', minHeight: 44, padding: spacing[2], borderWidth: 1, borderColor: colors.input, borderRadius: radii.md, backgroundColor: colors.card },
-  selected: { borderColor: colors.primary, backgroundColor: colors.primary10 },
+  avatar: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], marginBottom: spacing[2] },
+  avatarCopy: { gap: spacing[2] },
+  nicknameGroup: { gap: spacing[2], marginBottom: spacing[2] },
+  nickname: { borderBottomColor: colors.border, borderBottomWidth: 1, paddingVertical: spacing[3], color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 20 },
+  goal: { gap: spacing[3] },
+  options: { flexDirection: 'row', gap: spacing[2], padding: spacing[1], backgroundColor: colors.muted, borderRadius: radii.lg },
+  option: { alignItems: 'center', justifyContent: 'center', flex: 1, minHeight: 48, padding: spacing[2], borderRadius: radii.md },
+  selected: { backgroundColor: colors.card },
 });

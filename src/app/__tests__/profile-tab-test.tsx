@@ -60,7 +60,7 @@ describe('<ProfileTab />', () => {
     expect(screen.queryByText('听你五个账号 · 已登录')).toBeNull();
     expect(screen.getByLabelText('个人资料，听你五个账号 · 已登录')).toBeTruthy();
     expect(screen.getAllByText('0')).toHaveLength(2);
-    expect(screen.getByText('目标：ICAO 4 初考')).toBeTruthy();
+    expect(screen.getByText('ICAO 4 初考')).toBeTruthy();
     expect(screen.getByText('已完成卡片')).toBeTruthy();
     expect(screen.queryByText('学习次数')).toBeNull();
     expect(screen.queryByText(`© 2026 听你五个 · ${APP_DISPLAY_VERSION}`)).toBeNull();

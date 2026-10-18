@@ -53,7 +53,7 @@ function recordingErrorMessage(
       case 'record_prepare_failed':
         return `麦克风尚未准备好，请确认没有其它页面占用后再试。${preserved}`;
       case 'record_start_failed':
-        return `录音暂未开始，请重新点击录音；若仍无法使用，请切换推荐浏览器。${preserved}`;
+        return `录音暂未开始，请重新按住录音；若仍无法使用，请切换推荐浏览器。${preserved}`;
       case 'record_stop_failed':
       case 'recording_commit_failed':
         return `这次录音暂未完整保存，请再试一次。${preserved}`;
@@ -162,7 +162,8 @@ function SpeakingPracticePanelContent({
   const playbackError = playbackErrorMessage(playback.error, isWeb);
   const usePermissionPrimer = isWeb && (controller.permissionPrimerRequired || controller.permissionPrimerActive);
   const primingPermission = isWeb && controller.permissionPrimerActive;
-  const recordButtonDisabled = primingPermission || isBusy;
+  const recordButtonDisabled = primingPermission
+    || (isBusy && (!isWeb || controller.phase === 'finalizing'));
   const recordLabel = primingPermission
     ? '正在等待麦克风授权…'
     : controller.phase === 'requestingPermission' || controller.phase === 'preparing'
@@ -170,21 +171,21 @@ function SpeakingPracticePanelContent({
     : controller.phase === 'finalizing'
       ? '正在保存录音…'
       : isRecording
-        ? `点击停止 · ${formatDuration(controller.durationMillis)}`
+        ? `松开结束 · ${formatDuration(controller.durationMillis)}`
         : controller.permissionPrimerRequired
           ? '启用麦克风'
           : controller.replacing || integratedHasRecording
-            ? '点击重录'
-            : '开始录音';
+            ? '按住重录'
+            : '按住说话';
   const recordAccessibilityLabel = usePermissionPrimer
     ? '启用麦克风'
     : isRecording
-    ? '停止录音'
+    ? '松开结束录音'
     : controller.replacing || integratedHasRecording
-      ? '点击重新录音'
+      ? '按住重新录音'
       : mode === 'retell'
-        ? '点击开始复述'
-        : '开始录音';
+        ? '按住开始复述'
+        : '按住说话';
 
   async function togglePlayback() {
     if (playback.status.playing || playback.status.playbackState === 'starting') {
@@ -284,18 +285,19 @@ function SpeakingPracticePanelContent({
       accessibilityLabel={recordAccessibilityLabel}
       accessibilityState={{ disabled: recordButtonDisabled }}
       disabled={recordButtonDisabled}
-      onPress={() => {
-        if (recordButtonDisabled) return;
-        if (isRecording) {
-          void controller.pressOut();
-          return;
-        }
+      onPress={usePermissionPrimer ? () => {
         playback.pause();
         onRecordingIntent?.();
         onInteractionChange?.(true);
-        if (usePermissionPrimer) void controller.primePermission();
-        else controller.pressIn();
+        void controller.primePermission();
+      } : undefined}
+      onPressIn={usePermissionPrimer ? undefined : () => {
+        playback.pause();
+        onRecordingIntent?.();
+        onInteractionChange?.(true);
+        controller.pressIn();
       }}
+      onPressOut={usePermissionPrimer ? undefined : () => { void controller.pressOut(); }}
       style={[styles.recordButton, variant === 'integrated' ? styles.integratedRecordButton : null, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
       testID={variant === 'integrated' ? 'integrated-record-button' : undefined}
     >

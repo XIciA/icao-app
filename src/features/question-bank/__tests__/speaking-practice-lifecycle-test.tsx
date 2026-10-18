@@ -4,6 +4,9 @@ import { AppState, Platform } from 'react-native';
 import type { RecordingAsset, RawRecording } from '../recording/types';
 import { SpeakingPracticePanel } from '../components/SpeakingPracticePanel';
 
+// Exercise the frozen Web implementation explicitly; Jest normally prefers .native.
+jest.mock('../components/SpeakingPracticePanel', () => jest.requireActual('../components/SpeakingPracticePanel.tsx'));
+
 type Deferred<T> = { promise: Promise<T>; resolve: (value: T) => void };
 
 function deferred<T>(): Deferred<T> {
@@ -187,16 +190,13 @@ describe('SpeakingPracticePanel lifecycle', () => {
     jest.restoreAllMocks();
   });
 
-  it.each(['ios', 'android'] as const)('on %s records between taps and publishes without waiting for playback', async (platform) => {
-    setPlatform(platform);
+  it('publishes a valid recording without waiting for the playback player', async () => {
     const onInteractionChange = jest.fn();
     const screen = await render(<SpeakingPracticePanel {...commonProps} onInteractionChange={onInteractionChange} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
-    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'pressOut'); });
-    expect(mockRecorder.stop).not.toHaveBeenCalled();
-    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
 
     await waitFor(() => expect(mockCommitRaw).toHaveBeenCalledWith(expect.objectContaining({ cardId: 'card-1', sessionId: 'session-1' })));
     await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
@@ -210,9 +210,9 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockCommitRaw.mockRejectedValue(new Error('copy failed'));
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
-    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
 
     expect(mockDiscardRaw).not.toHaveBeenCalledWith(rawRecording);
     expect(commonProps.onRecorded).not.toHaveBeenCalled();
@@ -252,7 +252,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockRecorder.requestPermission.mockReturnValue(permission.promise);
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await screen.unmount();
     permission.resolve(true);
     await permission.promise;
@@ -272,7 +272,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.prepare).toHaveBeenCalled());
     await act(async () => {
       appStateListeners.forEach((listener) => listener('background'));
@@ -285,7 +285,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await screen.unmount();
   });
 
-  it('coalesces repeated stop taps into one native stop and one commit', async () => {
+  it('coalesces repeated release events into one native stop and one commit', async () => {
     const stopped = deferred<Extract<RawRecording, { kind: 'native-file' }>>();
     mockRecorder.stop.mockImplementation(async () => {
       const raw = await stopped.promise;
@@ -294,10 +294,10 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
-    const button = screen.getByLabelText('停止录音');
-    await fireEvent(button, 'press');
-    await fireEvent(button, 'press');
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    const button = screen.getByLabelText('松开结束录音');
+    await fireEvent(button, 'pressOut');
+    await fireEvent(button, 'pressOut');
     await waitFor(() => expect(mockRecorder.stop).toHaveBeenCalledTimes(1));
 
     await act(async () => {
@@ -319,8 +319,8 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
-    await fireEvent(screen.getByLabelText('停止录音'), 'press');
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut');
     await waitFor(() => expect(mockCommitRaw).toHaveBeenCalledTimes(1));
     appStateListeners.forEach((listener) => listener('background'));
     await act(async () => {
@@ -338,7 +338,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockRecorder.requestPermission.mockResolvedValue(false);
     const screen = await render(<SpeakingPracticePanel {...commonProps} recording={committedAsset} variant="integrated" />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('点击重新录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn'); });
 
     await waitFor(() => expect(screen.getByText('未获得麦克风权限，已保留原录音。')).toBeTruthy());
     expect(commonProps.onClear).not.toHaveBeenCalled();
@@ -351,7 +351,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockRecorder.prepare.mockRejectedValue(recorderFailure('recording_native_prepare_failed'));
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
 
     await waitFor(() => expect(screen.getByText(/系统录音器准备失败.*诊断编号/u)).toBeTruthy());
     expect(mockRecorder.prepare).toHaveBeenCalledTimes(1);
@@ -380,7 +380,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
     await act(async () => {
       appStateListeners.forEach((listener) => listener('background'));
@@ -400,7 +400,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockAcquire.mockRejectedValue(recorderFailure('owner_pause_timeout'));
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
 
     await waitFor(() => expect(screen.getByText(/上一段音频暂停超时.*诊断编号/u)).toBeTruthy());
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
@@ -487,16 +487,16 @@ describe('SpeakingPracticePanel lifecycle', () => {
     expect(mockRecorder.primePermission).toHaveBeenCalledTimes(1);
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
     expect(mockRecorder.start).not.toHaveBeenCalled();
-    expect(screen.queryByText('麦克风已启用，请点击录音')).toBeNull();
+    expect(screen.queryByText('麦克风已启用，请按住录音')).toBeNull();
 
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
     await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
     await screen.unmount();
   });
 
-  it('ignores repeat taps and release while Web permission is pending', async () => {
+  it('releases the Web permission stream when the user lets go before permission completes', async () => {
     setPlatform('web');
     const permission = deferred<boolean>();
     mockRecorder.cancel.mockResolvedValue(rawRecording);
@@ -504,23 +504,22 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
     mockRecorder.requestPermission.mockReturnValue(permission.promise);
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await act(async () => {
-      fireEvent(screen.getByLabelText('开始录音'), 'press');
-      fireEvent(screen.getByLabelText('开始录音'), 'pressOut');
+      fireEvent(screen.getByLabelText('按住说话'), 'pressOut');
       permission.resolve(true);
       await permission.promise;
       await Promise.resolve();
     });
 
-    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    expect(mockRecorder.stop).not.toHaveBeenCalled();
-    await act(async () => { fireEvent.press(screen.getByLabelText('停止录音')); });
-    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
+    expect(mockDiscardRaw).toHaveBeenCalledWith(rawRecording);
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
     await screen.unmount();
   });
 
-  it('ignores repeat taps and release during Web lease acquisition', async () => {
+  it('releases the Web permission stream and lease when the user lets go during lease acquisition', async () => {
     setPlatform('web');
     const acquired = deferred<{ owner: string; token: number }>();
     mockAcquire.mockReturnValue(acquired.promise);
@@ -528,21 +527,20 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockAcquire).toHaveBeenCalledWith('recording', 'recording-start'));
     await act(async () => {
-      fireEvent(screen.getByLabelText('开始录音'), 'press');
-      fireEvent(screen.getByLabelText('开始录音'), 'pressOut');
+      fireEvent(screen.getByLabelText('按住说话'), 'pressOut');
       acquired.resolve({ owner: 'recording', token: 17 });
       await acquired.promise;
       await Promise.resolve();
     });
 
-    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    expect(mockRecorder.stop).not.toHaveBeenCalled();
-    await act(async () => { fireEvent.press(screen.getByLabelText('停止录音')); });
-    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
+    expect(mockDiscardRaw).toHaveBeenCalledWith(rawRecording);
     expect(mockRelease).toHaveBeenCalledWith({ owner: 'recording', token: 17 });
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
     await screen.unmount();
   });
 
@@ -573,7 +571,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
       await permission.promise;
       await Promise.resolve();
     });
-    expect(screen.queryByText('麦克风已启用，请点击录音')).toBeNull();
+    expect(screen.queryByText('麦克风已启用，请按住录音')).toBeNull();
     expect(screen.getByLabelText('启用麦克风')).toBeTruthy();
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
     await screen.unmount();
@@ -611,7 +609,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const activePrimerButton = screen.getByLabelText('启用麦克风');
     expect(activePrimerButton.props.accessibilityState.disabled).toBe(true);
     expect(screen.getByText('正在等待麦克风授权…')).toBeTruthy();
-    fireEvent(activePrimerButton, 'press');
+    fireEvent(activePrimerButton, 'pressIn');
     expect(mockRecorder.requestPermission).not.toHaveBeenCalled();
     await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
 
@@ -651,8 +649,9 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
     for (let attempt = 0; attempt < 2; attempt += 1) {
-      await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+      await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
       await waitFor(() => expect(mockRecorder.prepare).toHaveBeenCalledTimes(attempt + 1));
+      await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressOut'); });
       if (attempt === 0) expect(screen.queryByText('当前浏览器暂不支持网页录音')).toBeNull();
     }
 
@@ -686,7 +685,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
     await act(async () => {
       appStateListeners.forEach((listener) => listener('background'));
@@ -711,17 +710,17 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
     await act(async () => {
       appStateListeners.forEach((listener) => listener('background'));
       await Promise.resolve();
     });
 
-    const busyButton = screen.getByLabelText('开始录音');
+    const busyButton = screen.getByLabelText('按住说话');
     expect(busyButton.props.accessibilityState.disabled).toBe(true);
     expect(screen.getByText('正在保存录音…')).toBeTruthy();
-    fireEvent(busyButton, 'press');
+    fireEvent(busyButton, 'pressIn');
     expect(mockRecorder.start).toHaveBeenCalledTimes(1);
     expect(screen.queryByText('本次录音已停止，请让页面保持在前台后重试。')).toBeNull();
 
@@ -740,7 +739,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
     await act(async () => {
       mockRuntimeListener?.({ reason: 'track-ended', type: 'interrupted' });
@@ -759,7 +758,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await act(async () => { fireEvent(screen.getByLabelText('开始录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
     await act(async () => {
       mockRuntimeListener?.({ code: 'recording_browser_unsupported', type: 'error' });
@@ -785,10 +784,10 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     expect(screen.getByText('启用麦克风')).toBeTruthy();
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
-    await waitFor(() => expect(screen.getByText('点击重录')).toBeTruthy());
-    await act(async () => { fireEvent(screen.getByLabelText('点击重新录音'), 'press'); });
+    await waitFor(() => expect(screen.getByText('按住重录')).toBeTruthy());
+    await act(async () => { fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
-    await act(async () => { fireEvent(screen.getByLabelText('停止录音'), 'press'); });
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
     await waitFor(() => expect(mockCommitRaw).toHaveBeenCalledTimes(1));
     await act(async () => {
       appStateListeners.forEach((listener) => listener('background'));

@@ -19,6 +19,8 @@ const inputs = [
   'src/features/ai/ai-client.ts',
   'src/features/question-bank/components/QuestionBankStudyScreen.tsx',
   'src/features/question-bank/components/SpeakingPracticePanel.tsx',
+  'src/features/question-bank/components/SpeakingPracticePanel.native.tsx',
+  'src/features/question-bank/components/ExamSpeakingPractice.native.tsx',
   'src/features/question-bank/components/StudyAudioPlayer.tsx',
   'src/features/question-bank/components/StudyTaskRenderer.tsx',
   'src/features/question-bank/components/StudyWorkbench.tsx',
