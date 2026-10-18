@@ -234,7 +234,7 @@ reviewedFormalWebHashes.set("src/features/question-bank/export/pdf-platform.web.
 reviewedFormalWebHashes.set("src/features/question-bank/export/sentences-pdf.ts", [null, "4accd0a5ec6e53d3e6b9c95302b937340a893709ed0cbef96aafb44afef2b53f"]);
 reviewedFormalWebHashes.set("src/features/question-bank/lib/study-scope.ts", [null, "8b0e531aec596be883cf3a5355430ad9d5bc02afc4dca19b572f3d3a9bf045a3"]);
 reviewedFormalWebHashes.set("src/features/question-bank/platform/learning-store.native.ts", [null, "70e8893800737cb12a8f1428105e47cf2ee57c361a9a6262ebbcc1e968668579"]);
-reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "9bf305538bcf4dbc3e97b151e77cab2444268919ec78a3a7fbf992a6bdc1700a"]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [null, "eac98ef5283f7e0952aba218cd19c08ddfb3d4babb44c0c5bd0bd4f66eb0c865"]);
 reviewedFormalWebHashes.set("app.config.js", ["a17b33af850819c55e67534656a4e6f0efb858b6d6841caf82ce8dc8db6589b2", "f88c41ace896bad43495808b75f2dbf522ea1f0675a177958fc317117b7e106a"]);
 reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "d362fa59097ba99477867294affc19eaef42aab65fde4dbaafbed907b761d0f8"]);
 reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e", "188be10136c308d53b13be0351d92a5a6d7db3ec54e5d0e7937f78e54fb242bd"]);
