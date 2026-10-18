@@ -359,8 +359,8 @@ fi
 
 mkdir -m 700 "$backup_dir/app-content"
 app_content_activation_armed=1
-# The mainline candidate owns both the importer and its fixed content sources.
-# Publication validates every hotspot reference before one atomic activation.
+# The mainline importer preserves live work-order content. Its fixed sources
+# are bootstrap seeds only; code deployment must not republish older snapshots.
 if ! docker run --rm \
   --network supabase_default \
   --env-file "$candidate_runtime_env" \
