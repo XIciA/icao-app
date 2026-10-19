@@ -5,30 +5,11 @@ const { createRequire } = require('node:module');
 const { IOSConfig, withBaseMod } = require('expo/config-plugins');
 const fromExpo = createRequire(require.resolve('expo/package.json'));
 const { generateImageAsync } = fromExpo('@expo/image-utils');
-const fromImageUtils = createRequire(fromExpo.resolve('@expo/image-utils'));
-const Jimp = fromImageUtils('jimp-compact');
 const { setIconAsync } = fromExpo('@expo/prebuild-config/build/plugins/icons/withAndroidIcons');
 const { setSplashImageDrawablesAsync } = fromExpo('@expo/prebuild-config/build/plugins/unversioned/expo-splash-screen/withAndroidSplashImages');
 
 const MASTER = 'assets/images/icon-native.png';
 const APPROVED_SHA256 = '2e9401acce52ec48e675ca2d8df1e1659266cd0ad95698033880c5542967577b';
-
-// The launcher applies its own mask. Launch-screen image views do not: apply the
-// same rounded treatment as our in-App logo, without changing the approved artwork.
-async function roundedSplash(source) {
-  const image = await Jimp.read(source);
-  const { width, height, data } = image.bitmap;
-  const radius = width * 0.22;
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const dx = Math.max(radius - (x + 0.5), (x + 0.5) - (width - radius), 0);
-      const dy = Math.max(radius - (y + 0.5), (y + 0.5) - (height - radius), 0);
-      const coverage = Math.max(0, Math.min(1, radius + 0.5 - Math.hypot(dx, dy)));
-      data[(y * width + x) * 4 + 3] = Math.round(255 * coverage);
-    }
-  }
-  return image.getBufferAsync(Jimp.MIME_PNG);
-}
 
 async function assertApprovedMaster(projectRoot) {
   const source = await fs.readFile(path.join(projectRoot, MASTER));
@@ -42,14 +23,14 @@ async function iosBrandProducts(projectRoot) {
   const artifacts = [
     { role: 'app-icon', directorySuffix: 'AppIcon.appiconset', file: 'App-Icon-1024x1024@1x.png', width: 1024, opaque: true },
     ...[1, 2, 3].map((scale) => ({ role: `splash-${scale}x`, directorySuffix: 'SplashScreenLogo.imageset',
-      file: scale === 1 ? 'image.png' : `image@${scale}x.png`, width: 160 * scale, opaque: false })),
+      file: scale === 1 ? 'image.png' : `image@${scale}x.png`, width: 320 * scale, opaque: false })),
   ];
   return Promise.all(artifacts.map(async (artifact) => {
     const { source } = await generateImageAsync({ projectRoot, cacheType: 'approved-native-brand' }, {
-      src: path.join(projectRoot, MASTER), width: artifact.width, height: artifact.width,
+      src: path.join(projectRoot, artifact.opaque ? MASTER : 'assets/images/startup-brand.png'), width: artifact.width, height: artifact.width,
       ...(artifact.opaque ? { removeTransparency: true, resizeMode: 'cover', backgroundColor: '#ffffff' } : {}),
     });
-    return { ...artifact, source: artifact.opaque ? source : await roundedSplash(source) };
+    return { ...artifact, source };
   }));
 }
 
@@ -73,10 +54,10 @@ function withNativeBrandAssets(config, platform) {
         await setIconAsync(projectRoot, { icon: path.join(projectRoot, MASTER), isAdaptive: false });
         const splashPath = path.join(projectRoot, '.generated/native-brand/android-rounded-splash.png');
         await fs.mkdir(path.dirname(splashPath), { recursive: true });
-        await fs.writeFile(splashPath, await roundedSplash(await fs.readFile(path.join(projectRoot, MASTER))));
+        await fs.writeFile(splashPath, await fs.readFile(path.join(projectRoot, 'assets/images/startup-brand.png')));
         await setSplashImageDrawablesAsync(result,
-          { image: splashPath, backgroundColor: '#FFFFFF', resizeMode: 'contain', imageWidth: 120 },
-          projectRoot, 120);
+          { image: splashPath, backgroundColor: '#FBFAF7', resizeMode: 'contain', imageWidth: 216 },
+          projectRoot, 216);
       }
       return result;
     },

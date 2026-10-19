@@ -10,7 +10,7 @@ import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
-import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
 import { AppText } from '@/components/ui';
 import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
@@ -23,11 +23,7 @@ SplashScreen.preventAutoHideAsync().catch(() => undefined);
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useAppFonts();
 
-  useEffect(() => {
-    if (fontsLoaded || fontError) SplashScreen.hideAsync().catch(() => undefined);
-  }, [fontError, fontsLoaded]);
-
-  if (!fontsLoaded && !fontError) return <GlobalLoadingScreen />;
+  if (!fontsLoaded && !fontError) return <StartupBrandScreen />;
 
   return (
     <GestureHandlerRootView style={styles.root}>
@@ -65,6 +61,11 @@ export function AppStack() {
   }
   const authRedirectInFlightRef = useRef(false);
   const publicDownload = Platform.OS === 'web' && pathname === '/download';
+  useEffect(() => {
+    if (auth.restoring && !publicDownload) return;
+    const frame = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(() => undefined); });
+    return () => cancelAnimationFrame(frame);
+  }, [auth.restoring, publicDownload]);
 
   useEffect(() => {
     if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !publicDownload && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
@@ -82,14 +83,14 @@ export function AppStack() {
     authRedirectInFlightRef.current = false;
   }, [auth, pathname, router]);
 
-  if (auth.restoring && !publicDownload) return <GlobalLoadingScreen />;
+  if (auth.restoring && !publicDownload) return <StartupBrandScreen />;
   if (auth.accountRestoreUnavailable && !publicDownload) {
     return (
-      <CenteredState
-        actionLabel={checking ? "正在检查…" : "重新检查"}
+      <StartupBrandScreen
+        busy={checking}
         description="暂时无法读取本机安全登录状态，或无法向服务器确认账号请求。为保护账号与本机数据，确认成功前不会进入业务页面。"
-        onAction={() => { void checkAccount(auth.retryAccountRestore); }}
-        title={checkFailed ? "检查未完成，请联网后重试" : "暂时无法确认账号状态"}
+        onRetry={() => { void checkAccount(auth.retryAccountRestore); }}
+        error={checkFailed ? "检查未完成，请联网后重试" : "暂时无法确认账号状态"}
       />
     );
   }

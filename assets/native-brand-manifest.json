@@ -41,30 +41,41 @@
           "role": "splash-1x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image.png",
-          "sha256": "f159de44271c0a0efa57babddadacd23075240189b3b7b6cc47173d9e8c0c04d",
-          "width": 160,
-          "height": 160,
+          "sha256": "a823f94c3406a0d750d38b3db65338322047ef17fb11f1c6ce591dba4b97c9e2",
+          "width": 320,
+          "height": 320,
           "hasAlpha": true
         },
         {
           "role": "splash-2x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@2x.png",
-          "sha256": "12b9979b39fea7b924829d718ae958d422bfe02b9812b70e783ac0e367a9c5eb",
-          "width": 320,
-          "height": 320,
+          "sha256": "ec7b5ba75298bb837794a50e867ee64e1acb9395cd70b2d10718e1f9e37c43a7",
+          "width": 640,
+          "height": 640,
           "hasAlpha": true
         },
         {
           "role": "splash-3x",
           "directorySuffix": "SplashScreenLogo.imageset",
           "file": "image@3x.png",
-          "sha256": "f05e7e96ab3cdf9a53ab77ad53dc7008ff17af50b0faa362259cfc846119d928",
-          "width": 480,
-          "height": 480,
+          "sha256": "aba8da5a2d2e74320d1b04d4eab1166e8a5c4cdc5c9759cf38209bb63bb419de",
+          "width": 960,
+          "height": 960,
           "hasAlpha": true
         }
-      ]
+      ],
+      "startup": {
+        "path": "assets/images/startup-brand.png",
+        "sha256": "e165261b71814f711a8610c733d5fc2ed36e590bdca6b9a148d06d0c33900f22",
+        "canvas": 320,
+        "logo": {
+          "left": 80,
+          "top": 30,
+          "size": 160
+        },
+        "note": "B composition from unchanged master and Noto Serif SC wordmark"
+      }
     },
     "nativeTreePolicy": {
       "authority": "clean-prebuild-only",
@@ -77,15 +88,15 @@
       "releaseVerificationCommand": "node tools/check-native-brand-assets.mjs --prebuild-root . --platform ios"
     },
     "splash": {
-      "backgroundColor": "#FFFFFF",
-      "imageWidth": 160,
-      "androidImageWidth": 120,
+      "backgroundColor": "#FBFAF7",
+      "imageWidth": 320,
+      "androidImageWidth": 216,
       "resizeMode": "contain",
       "safeArea": {
         "backgroundRgb": [
-          255,
-          255,
-          255
+          251,
+          250,
+          247
         ],
         "backgroundTolerance": 10,
         "minimumClearEdgeFraction": 0.04
@@ -129,7 +140,8 @@
       "public"
     ],
     "nonProductControlFiles": [
-      "assets/native-brand-manifest.json"
+      "assets/native-brand-manifest.json",
+      "assets/images/startup-brand.png"
     ]
   },
   "frozenExternalAssets": [
