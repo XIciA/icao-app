@@ -3,7 +3,7 @@ import { and, desc, eq, inArray, sql } from 'drizzle-orm';
 import { createHash } from 'node:crypto';
 import type { ContentDraft, ContentOrderInput, ContentAttachmentInput } from '@icao/contracts/content-workflow';
 import type { EditorialReleaseSnapshot } from '@icao/contracts';
-import { isAppContentSnapshot, canonicalAppContentJson } from '@icao/contracts/app-content';
+import { isAppContentSnapshot, canonicalAppContentJson, normalizeDailyHotspots, mergeHotspotFeedback, containsHotspotFeedback } from '@icao/contracts/app-content';
 import { DatabaseService } from '../database/database.service';
 import { contentWorkOrders, questionBankReleases, appContentReleases, editorialReleases, resourceObjects } from '../database/schema';
 import { AdminAuditService } from './admin-audit.service';
@@ -62,8 +62,9 @@ export class ContentWorkflowService {
     const order=await this.get(id);if(order.status!=='published')throw new ConflictException('content_order_not_published');
     const draft=parseDraft(order.draft);const sources=await this.sources();
     const problems:string[]=[];
-    if(draft.hotspot){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||!app.hotspots.briefs.some(b=>b.id===draft.hotspot!.id&&checksum(b)===checksum(draft.hotspot)))problems.push('线上热点已变化或不存在');}
-    if(draft.hotspotUpdates){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||draft.hotspotUpdates.briefs.some(expected=>!app.hotspots.briefs.some(b=>b.id===expected.id&&checksum(b)===checksum(expected))))problems.push('线上历史热点已变化或不存在');}
+    if(draft.hotspot){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||!containsHotspotFeedback(app.hotspots.briefs,draft.hotspot))problems.push('线上热点已变化或不存在');}
+    if(draft.normalizeHotspots){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||new Set(app.hotspots.briefs.map(b=>b.date)).size!==app.hotspots.briefs.length||checksum(normalizeDailyHotspots(app.hotspots.briefs))!==checksum(app.hotspots.briefs))problems.push('每日热点汇总未生效');}
+    if(draft.hotspotUpdates){const app=sources.appContent?.payload;if(!isAppContentSnapshot(app)||draft.hotspotUpdates.briefs.some(expected=>!containsHotspotFeedback(app.hotspots.briefs,expected)))problems.push('线上历史热点已变化或不存在');}
     if(draft.article){const editorial=sources.editorial?.payload as EditorialReleaseSnapshot|undefined;const article=editorial?.articles.find(a=>a.id===draft.article!.id);if(!article||checksum({...article,publishedAt:null})!==checksum({...draft.article,publishedAt:null}))problems.push('线上文章已变化或不存在');}
     for(const change of draft.banks){const live=sources.banks.find(b=>b.bankId===change.bankId);if(!live){problems.push('线上题库不存在');continue;}const [base]=await this.database.db.select().from(questionBankReleases).where(and(eq(questionBankReleases.bankId,change.bankId),eq(questionBankReleases.checksum,change.baseChecksum))).limit(1);if(!base||!containsBankChanges(base.payload,change.payload,live.payload))problems.push('本工单更新的题目存在后续变更，请核对');}
     return {problems,checkedAt:new Date().toISOString(),path:draft.article?`/content/resources/${encodeURIComponent(draft.article.slug)}`:draft.hotspot?`/content/hotspot/${encodeURIComponent(draft.hotspot.id)}`:`/question-bank/${encodeURIComponent(draft.banks[0]?.bankId??'opi')}`};
@@ -117,10 +118,11 @@ export class ContentWorkflowService {
       if(current.status==='published') throw new ConflictException('append_to_create_new_revision');
       if(current.kind==='opi' && (!draft.hotspot || draft.hotspot.date!==current.examDate || draft.hotspot.centers[0]!==current.center)) throw new BadRequestException('hotspot_order_mismatch');
       if(current.kind==='article' && (!draft.article || draft.hotspot || draft.banks.length)) throw new BadRequestException('article_order_mismatch');
-      if(current.kind==='questions' && (draft.hotspot || draft.article || !draft.banks.length)) throw new BadRequestException('question_order_mismatch');
+      if(current.kind==='questions' && (draft.hotspot || draft.article || (!draft.banks.length&&!draft.normalizeHotspots))) throw new BadRequestException('question_order_mismatch');
       if(current.kind==='opi' && draft.article) throw new BadRequestException('opi_order_mismatch');
       if(draft.article && draft.article.id!==`article-${id}`) throw new BadRequestException('article_identity_mismatch');
       if(draft.hotspot && draft.hotspot.id!==`hotspot-${current.examDate}-${createHash('sha256').update(current.center!).digest('hex').slice(0,12)}`) throw new BadRequestException('hotspot_identity_mismatch');
+      if(draft.normalizeHotspots && current.kind!=='questions') throw new BadRequestException('historical_hotspot_order_mismatch');
       if(draft.hotspotUpdates && current.kind!=='questions') throw new BadRequestException('historical_hotspot_order_mismatch');
       await this.validate(tx,draft);
       const [next]=await tx.update(contentWorkOrders).set({draft,status:'ready',processingNote:null,revision:revision+1,updatedAt:new Date()}).where(eq(contentWorkOrders.id,id)).returning();
@@ -157,10 +159,12 @@ export class ContentWorkflowService {
         await tx.update(questionBankReleases).set({active:false}).where(eq(questionBankReleases.bankId,change.bankId));
         await tx.insert(questionBankReleases).values({bankId:change.bankId,version:(latest?.version??0)+1,checksum:checksum(change.payload),payload:change.payload,active:true});
       }
-      if(draft.hotspot || draft.hotspotUpdates) {
+      if(draft.hotspot || draft.hotspotUpdates || draft.normalizeHotspots) {
         const [previous]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
         if(!previous || !isAppContentSnapshot(previous.payload)) throw new BadRequestException('app_content_not_available');
-        const briefs=draft.hotspotUpdates?replaceHistoricalHotspots(previous.payload,draft.hotspotUpdates):[...previous.payload.hotspots.briefs.filter(b=>b.id!==draft.hotspot!.id),draft.hotspot!].sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+        const briefs=draft.normalizeHotspots?normalizeDailyHotspots(previous.payload.hotspots.briefs):draft.hotspotUpdates?normalizeDailyHotspots(replaceHistoricalHotspots(previous.payload,draft.hotspotUpdates)):mergeHotspotFeedback(previous.payload.hotspots.briefs,draft.hotspot!,id);
+        const opi=(await tx.select().from(questionBankReleases).where(and(eq(questionBankReleases.bankId,'opi'),eq(questionBankReleases.active,true))))[0];
+        validateHotspotReferences(briefs,validateBank(opi?.payload,opi?.payload));
         const payload={...previous.payload,version:previous.version+1,publishedAt:new Date().toISOString(),hotspots:{generatedAt:new Date().toISOString(),briefs}};
         if(!isAppContentSnapshot(payload)) throw new BadRequestException('invalid_hotspot_release');
         await tx.update(appContentReleases).set({active:false}).where(eq(appContentReleases.active,true));
@@ -195,6 +199,12 @@ export class ContentWorkflowService {
     }
     validateExclusions(draft,available);
     const opi=draft.banks.find(b=>b.bankId==='opi')?.payload??available.find(b=>b.bankId==='opi')?.payload;
+    if(draft.normalizeHotspots){
+      const [app]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
+      if(!app||!isAppContentSnapshot(app.payload))throw new BadRequestException('app_content_not_available');
+      if(app.checksum!==draft.normalizeHotspots.baseChecksum)throw new ConflictException('hotspot_base_changed_reprocess_order');
+      validateHotspotReferences(normalizeDailyHotspots(app.payload.hotspots.briefs),validateBank(opi,opi));
+    }
     if(draft.hotspotUpdates) {
       const [app]=await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true));
       if(!app || !isAppContentSnapshot(app.payload)) throw new BadRequestException('app_content_not_available');
@@ -237,8 +247,10 @@ export class ContentWorkflowService {
     for(const change of draft.banks) for(const {card} of cardsOf(bankSchema.parse(change.payload))) if(!card.retired) {
       if(card.audio) paths.add(card.audio); if(card.image) paths.add(card.image);
     }
-    if((draft.hotspot || draft.hotspotUpdates) && opi) {
-      const ids=new Set([...(draft.hotspot?[draft.hotspot]:[]),...(draft.hotspotUpdates?.briefs??[])].flatMap(b=>b.topics.flatMap(topic=>topic.cardIds)));
+    if((draft.hotspot || draft.hotspotUpdates || draft.normalizeHotspots) && opi) {
+      const [app]=draft.normalizeHotspots?await tx.select().from(appContentReleases).where(eq(appContentReleases.active,true)):[];
+      const normalized=draft.normalizeHotspots&&isAppContentSnapshot(app?.payload)?normalizeDailyHotspots(app.payload.hotspots.briefs):[];
+      const ids=new Set([...(draft.hotspot?[draft.hotspot]:[]),...(draft.hotspotUpdates?.briefs??[]),...normalized].flatMap(b=>b.topics.flatMap(topic=>topic.cardIds)));
       for(const {card} of cardsOf(bankSchema.parse(opi))) if(ids.has(card.id)) {
         if(!card.audio) throw new BadRequestException('content_resource_not_ready');
         paths.add(card.audio);if(card.image)paths.add(card.image);

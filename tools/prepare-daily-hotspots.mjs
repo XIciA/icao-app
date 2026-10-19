@@ -1,0 +1,21 @@
+/** Read-only preparation. Production publication still uses the authenticated work-order service. */
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {join,resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {normalizeDailyHotspots,hotspotSources,isAppContentSnapshot,canonicalAppContentJson} from '@icao/contracts/app-content';
+const [input,output]=process.argv.slice(2);
+if(!input||!output)throw new Error('usage: tsx tools/prepare-daily-hotspots.mjs SOURCES_JSON OUTPUT_DIRECTORY');
+const source=JSON.parse(await readFile(input,'utf8')),app=source.appContent;
+const hash=v=>createHash('sha256').update(canonicalAppContentJson(v)).digest('hex');
+if(!app||!isAppContentSnapshot(app.payload)||app.checksum!==hash(app.payload))throw new Error('invalid_live_source');
+const normalized=normalizeDailyHotspots(app.payload.hotspots.briefs);
+if(!isAppContentSnapshot({...app.payload,hotspots:{...app.payload.hotspots,briefs:normalized}}))throw new Error('invalid_daily_result');
+const ids=briefs=>[...new Set(briefs.flatMap(b=>b.topics.flatMap(t=>t.cardIds)))].sort();
+if(JSON.stringify(ids(normalized))!==JSON.stringify(ids(app.payload.hotspots.briefs)))throw new Error('question_identity_changed');
+const expected={days:normalized.length,sourceEntries:normalized.flatMap(hotspotSources).length,uniqueCards:ids(normalized).length,references:normalized.reduce((n,b)=>n+b.topics.reduce((m,t)=>m+t.cardIds.length,0),0),bankChecksums:Object.fromEntries(source.banks.map(b=>[b.bankId,b.checksum])),previousAppVersion:app.version,previousAppChecksum:app.checksum};
+const out=resolve(output);await mkdir(out,{recursive:true});
+const save=(name,value)=>writeFile(join(out,name),JSON.stringify(value,null,2)+'\n');
+await save('create-order.json',{kind:'questions',text:'按用户2026-10-19最新授权：历史OPI热点一天一条，标准日期标题，保留全部考点和原始来源；同日后续反馈自动合并。仅归并目录，不修改题库、答案或音频。'});
+await save('draft.json',{id:'offline-not-a-server-order',revision:1,draft:{banks:[],normalizeHotspots:{baseChecksum:app.checksum},decisions:[],notes:'每日汇总迁移；保留原始来源ID作为别名，不修改学习记录或题库。'}});
+await save('expected-hotspots.json',normalized);await save('expected-summary.json',expected);
+console.log(JSON.stringify(expected));

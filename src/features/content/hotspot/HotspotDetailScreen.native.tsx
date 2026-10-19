@@ -1,11 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { AppText, Button, Card, Screen } from '@/components/ui';
+import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
@@ -17,11 +19,16 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
 
 function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
+  const params=useLocalSearchParams<{center?:string}>();
+  const [selection,setSelection]=useState(params.center??'all');
   const { retry, state } = useHotspotAccess(briefId);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
 
-  const totalQuestions = state.brief?.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0) ?? 0;
+  const selectedBrief=state.brief?selectHotspotSource(state.brief,selection):undefined;
+  const selectedIds=new Set(selectedBrief?.topics.flatMap(t=>t.cardIds));
+  const topics=state.status==='ready'?state.topics.map(t=>({...t,cards:t.cards.filter(c=>selectedIds.has(c.id))})).filter(t=>t.cards.length):[];
+  const totalQuestions = selectedBrief?.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0) ?? 0;
   return (
     <Screen contentStyle={styles.screen} scroll>
       <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
@@ -30,9 +37,15 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
 
         {state.status === 'ready' ? (
           <>
+            <View style={styles.filters}>
+              <Button size="sm" variant={selection==='all'?'primary':'outline'} onPress={()=>setSelection('all')}>全部考点</Button>
+              {hotspotCenters(state.brief).filter(center=>hotspotSources(state.brief).some(s=>s.kind==='feedback'&&s.centers.includes(center))).map(center=><Button key={center} size="sm" variant={selection===center?'primary':'outline'} onPress={()=>setSelection(center)}>{center}</Button>)}
+              {hotspotSources(state.brief).some(s=>s.kind==='general')?<Button size="sm" variant={selection==='general'?'primary':'outline'} onPress={()=>setSelection('general')}>本日综合反馈</Button>:null}
+            </View>
+            {hotspotSources(state.brief).some(s=>s.kind==='general')?<AppText variant="caption">历史综合反馈未逐题确认考点归属，单独保留供查看。</AppText>:null}
             <View style={styles.topicsSection}>
-              <AppText variant="sectionTitle">涵盖话题与问题（{state.topics.length}）</AppText>
-              {state.topics.map((topic, topicIndex) => (
+              <AppText variant="sectionTitle">涵盖话题与问题（{topics.length}）</AppText>
+              {topics.map((topic, topicIndex) => (
                 <Card key={topic.topicId} style={styles.topicCard}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicNumberBadge}>
@@ -48,7 +61,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                         <AppText color={colors.primary} style={styles.questionIndex} variant="micro">
                           {String(cardIndex + 1).padStart(2, '0')}
                         </AppText>
-                        <AppText style={styles.questionText}>{card.kind !== 'image' && card.reportedPrompts?.[state.brief.id]?.join('\n') || card.audioText}</AppText>
+                        <View style={styles.questionContent}><AppText>{card.kind !== 'image' && hotspotReportedPrompts(selectedBrief!,card).join('\n') || card.audioText}</AppText><View style={styles.filters}>{hotspotQuestionOrigins(selectedBrief!,card.id).map(origin=><Tag key={origin} tone="muted">{origin}</Tag>)}</View></View>
                       </View>
                     ))}
                   </View>
@@ -58,8 +71,9 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
             <Button
               onPress={() => router.push({
                 pathname: '/content/hotspot/[briefId]/study',
-                params: { briefId: state.brief.id },
+                params: { briefId: state.brief.id, ...(selection!=='all'?{center:selection}:{}) },
               })}
+              disabled={!totalQuestions}
               size="lg"
               style={styles.cta}
             >
@@ -81,6 +95,8 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   body: { gap: spacing[4], paddingBottom: spacing[10], paddingHorizontal: spacing[4] },
+  filters: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
+  questionContent: { flex: 1, gap: spacing[1.5] },
   topicsSection: { gap: spacing[3] },
   topicCard: { gap: spacing[3], padding: spacing[4] },
   topicHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },

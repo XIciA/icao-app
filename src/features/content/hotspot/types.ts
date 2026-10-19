@@ -6,13 +6,7 @@ export type OpiHotspotTopic = {
   cardIds: string[];
 };
 
-export type OpiHotspotBrief = {
-  id: string;
-  date: string;
-  title: string;
-  centers: string[];
-  topics: OpiHotspotTopic[];
-};
+export type OpiHotspotBrief = import('@icao/contracts/app-content').AppContentHotspotBrief;
 
 export type OpiHotspotIndex = {
   generatedAt: string;

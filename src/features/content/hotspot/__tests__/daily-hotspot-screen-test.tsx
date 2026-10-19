@@ -1,0 +1,26 @@
+import originalBanks from '@/features/question-bank/data/question-bank.json';
+import {render,fireEvent,waitFor} from '@testing-library/react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {normalizeDailyHotspots} from '@icao/contracts/app-content';
+import type {QuestionBankDataset} from '@/features/question-bank/types';
+import {HotspotDetailScreen} from '../HotspotDetailScreen.native';
+import {buildHotspotStudyPackage} from '../build-hotspot-study-package.native';
+import {resolveHotspotTopics} from '../resolve-hotspot-topics.native';
+const mockPush=jest.fn();
+const brief=normalizeDailyHotspots(['A','B'].map((center,i)=>({id:`source-${center}`,date:'2026-10-16',title:`Original ${center}`,centers:[center],topics:[{topicId:'t',topicTitle:'Topic',cardIds:i?['shared','b']:['shared','a']}]})))[0]!;
+const cards=['shared','a','b'].map(id=>({id,taskTitle:id,audioText:`Canonical ${id}?`,reportedPrompts:{'source-A':[`Reported ${id}?`],'source-B':[`Reported ${id}?`]}}));
+const topic={id:'t',name:'Topic',cards,declaredCardCount:3};
+const original=originalBanks.find(b=>b.id==='opi') as QuestionBankDataset;
+const dataset={...original,categories:[{...original.categories[0],id:'c',name:'C',topics:[topic]}]};
+const mockState={status:'ready',brief,topics:resolveHotspotTopics(brief,dataset),session:buildHotspotStudyPackage(brief,dataset)};
+jest.mock('expo-router',()=>({useLocalSearchParams:()=>({}),useRouter:()=>({push:mockPush,canGoBack:()=>true,back:jest.fn()})}));
+jest.mock('../use-hotspot-access.native',()=>({useHotspotAccess:()=>({state:mockState,retry:jest.fn()})}));
+it('deduplicates the day, shows source attribution and carries the selected center into practice',async()=>{
+ const screen=await render(<SafeAreaProvider initialMetrics={{frame:{height:812,width:375,x:0,y:0},insets:{bottom:34,left:0,right:0,top:47}}}><HotspotDetailScreen briefId={brief.id}/></SafeAreaProvider>);
+ expect(screen.getAllByText('Reported shared?')).toHaveLength(1);
+ expect(screen.getByText('Reported a?')).toBeTruthy();expect(screen.getByText('Reported b?')).toBeTruthy();
+ await fireEvent.press(screen.getByRole('button',{name:'B'}));
+ await waitFor(()=>expect(screen.queryByText('Reported a?')).toBeNull());expect(screen.getByText('Reported b?')).toBeTruthy();
+ await fireEvent.press(screen.getByText('开始学习（共 2 题）'));
+ expect(mockPush).toHaveBeenCalledWith({pathname:'/content/hotspot/[briefId]/study',params:{briefId:brief.id,center:'B'}});
+});

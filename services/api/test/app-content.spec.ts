@@ -61,3 +61,15 @@ it('keeps separate date/center entries for v2 and a readable merged projection f
   expect(legacy?.data.checksum).not.toBe(modern?.data.checksum);
   expect(legacy?.data.checksum).toBe(appContentChecksum(legacy?.data.payload));
 });
+
+it('serves provenance only to v3 while keeping v2 reference keys and legacy date summaries compatible',async()=>{
+ const {normalizeDailyHotspots}=await import('@icao/contracts/app-content');
+ const value=structuredClone(snapshot);const b=value.hotspots.briefs[0]!;
+ value.hotspots.briefs=normalizeDailyHotspots([{...b,id:'a',centers:['A']},{...b,id:'b',centers:['B']}]);
+ const controller=new AppContentController(serviceWith(value)),reply={header:vi.fn().mockReturnThis(),status:vi.fn()};
+ const current=await controller.get(undefined,{id:'new',query:{hotspotFormat:'3'}} as never,reply as never);
+ const v2=await controller.get(undefined,{id:'old',query:{hotspotFormat:'2'}} as never,reply as never);
+ expect(current?.data.payload.hotspots.briefs).toHaveLength(1);expect(current?.data.payload.hotspots.briefs[0]?.sources).toHaveLength(2);
+ expect(v2?.data.payload.hotspots.briefs).toHaveLength(2);expect(v2?.data.payload.hotspots.briefs.every(b=>!('sources' in b))).toBe(true);
+ expect(isAppContentSnapshot(v2?.data.payload)).toBe(true);
+});
