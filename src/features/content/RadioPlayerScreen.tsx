@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
   AlertCircle,
   BookOpenText,
@@ -99,6 +100,7 @@ function BreathingWaveform({ active, remaining }: { active: boolean; remaining?:
 
 export function RadioPlayerScreen() {
   const radio = useRadioPlayer();
+  const guide = useGuide();
   const router = useRouter();
   const { height } = useAppViewportDimensions();
   const [queueOpen, setQueueOpen] = useState(false);
@@ -111,6 +113,7 @@ export function RadioPlayerScreen() {
   const intervalSeconds = radio.intervalSeconds ?? 0;
 
   useEffect(() => activateSession(), [activateSession]);
+  useEffect(() => { if (radio.playing) guide?.event('radio-play'); }, [radio.playing, guide]);
   useEffect(() => { setGroup('全部'); setQuery(''); }, [radio.currentCatalog?.bankId]);
 
   const switcherItems = useMemo<QuestionBankSwitcherItem<RadioBankId>[]>(() => radio.catalogs.map((catalog) => ({
@@ -137,16 +140,17 @@ export function RadioPlayerScreen() {
     return () => cancelAnimationFrame(frame);
   }, [filteredTracks, queueOpen, radio.currentTrack]);
 
-  const cycleMode = () => radio.setMode(modes[(modes.indexOf(radio.mode) + 1) % modes.length]);
-  const cycleSubtitle = () => radio.setSubtitleMode(subtitleModes[(subtitleModes.indexOf(radio.subtitleMode) + 1) % subtitleModes.length]);
+  const cycleMode = () => { radio.setMode(modes[(modes.indexOf(radio.mode) + 1) % modes.length]); guide?.event('radio-order'); };
+  const cycleSubtitle = () => { radio.setSubtitleMode(subtitleModes[(subtitleModes.indexOf(radio.subtitleMode) + 1) % subtitleModes.length]); guide?.event('radio-subtitle'); };
   const cycleRate = () => {
     const index = radio.speedOptions.indexOf(radio.rate);
-    radio.setRate(radio.speedOptions[(index + 1) % radio.speedOptions.length]);
+    radio.setRate(radio.speedOptions[(index + 1) % radio.speedOptions.length]); guide?.event('radio-speed');
   };
   const enterStudy = () => {
     const track = radio.currentTrack;
     if (!track) return;
     radio.pause();
+    guide?.event('radio-study');
     router.push({
       pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]',
       params: {
@@ -174,6 +178,7 @@ export function RadioPlayerScreen() {
     <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
       <QuestionBankSwitcherHeader
+        guideId="radio-bank"
         items={switcherItems}
         onBack={() => router.back()}
         onSelect={radio.selectBank}
@@ -194,7 +199,7 @@ export function RadioPlayerScreen() {
           onPress={enterStudy}
           style={({ pressed }) => [styles.trackRow, pressed ? styles.trackRowPressed : null]}
         >
-          <AppText numberOfLines={1} style={styles.trackTitle}>{radio.currentTrack?.title ?? '正在准备曲目'}</AppText>
+          <GuideAnchor id="radio-study" /><AppText numberOfLines={1} style={styles.trackTitle}>{radio.currentTrack?.title ?? '正在准备曲目'}</AppText>
           <View style={styles.trackCount}><AppText color={colors.primary} style={styles.trackCountText} variant="micro">{radio.currentIndex + 1}/{radio.currentCatalog?.tracks.length ?? 0}</AppText></View>
           <ChevronRight color={colors.mutedForeground} size={15} />
         </Pressable>
@@ -215,16 +220,16 @@ export function RadioPlayerScreen() {
           <View style={styles.timelineWrap}><AudioTimeline disabled={radio.loading || radio.waitingForNext || Boolean(radio.error)} duration={radio.duration} onScrubEnd={radio.seek} position={radio.position} testID="radio-timeline" /></View>
           <View style={styles.transport}>
             <Pressable accessibilityLabel="上一首" hitSlop={6} onPress={() => void radio.previous()} style={({ pressed }) => [styles.transportButton, pressed ? styles.controlPressed : null]}><SkipBack color={colors.foreground} fill={colors.foreground} size={22} /></Pressable>
-            <Pressable accessibilityLabel={radio.error ? '重试音频' : radio.playing ? '暂停' : '播放'} disabled={radio.loading && !radio.error} onPress={() => radio.error ? radio.retry() : void radio.toggle()} style={({ pressed }) => [styles.playButton, pressed ? styles.playPressed : null]}>
-              {radio.loading || radio.buffering ? <ActivityIndicator color={colors.primaryForeground} /> : radio.error ? <RotateCcw color={colors.primaryForeground} size={24} /> : radio.playing ? <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={24} /> : <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={24} style={styles.playIcon} />}
+            <Pressable accessibilityLabel={radio.error ? '重试音频' : radio.playing ? '暂停' : '播放'} disabled={radio.loading && !radio.error} onPress={() => { if (radio.error) radio.retry(); else void radio.toggle(); }} style={({ pressed }) => [styles.playButton, pressed ? styles.playPressed : null]}>
+              <GuideAnchor id="radio-play" />{radio.loading || radio.buffering ? <ActivityIndicator color={colors.primaryForeground} /> : radio.error ? <RotateCcw color={colors.primaryForeground} size={24} /> : radio.playing ? <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={24} /> : <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={24} style={styles.playIcon} />}
             </Pressable>
             <Pressable accessibilityLabel="下一首" hitSlop={6} onPress={() => void radio.next(true)} style={({ pressed }) => [styles.transportButton, pressed ? styles.controlPressed : null]}><SkipForward color={colors.foreground} fill={colors.foreground} size={22} /></Pressable>
           </View>
           <View style={styles.secondaryControls}>
-            <Pressable accessibilityLabel={`播放模式：${modeCopy[radio.mode]}`} onPress={cycleMode} style={styles.secondaryAction}><ModeIcon mode={radio.mode} /><AppText color={colors.primary} variant="micro">{modeShortCopy[radio.mode]}</AppText></Pressable>
-            <Pressable accessibilityLabel={`播放倍速：${radio.rate}倍`} onPress={cycleRate} style={styles.secondaryAction}><AppText color={colors.primary} style={styles.speed}>{radio.rate}×</AppText><AppText color={colors.primary} variant="micro">倍速</AppText></Pressable>
-            <Pressable accessibilityLabel={`播放间隔：${intervalSeconds}秒`} onPress={() => setIntervalOpen(true)} style={styles.secondaryAction}><Clock3 color={colors.primary} size={18} /><AppText color={colors.primary} variant="micro">{radio.waitingForNext ? `${radio.intervalRemaining}s` : intervalSeconds ? `${intervalSeconds}s` : '间隔'}</AppText></Pressable>
-            <Pressable accessibilityLabel={`字幕模式：${subtitleCopy[radio.subtitleMode]}`} onPress={cycleSubtitle} style={styles.secondaryAction}><SubtitleIcon mode={radio.subtitleMode} /><AppText color={colors.primary} variant="micro">{subtitleShortCopy[radio.subtitleMode]}</AppText></Pressable>
+            <Pressable accessibilityLabel={`播放模式：${modeCopy[radio.mode]}`} onPress={cycleMode} style={styles.secondaryAction}><GuideAnchor id="radio-order" /><ModeIcon mode={radio.mode} /><AppText color={colors.primary} variant="micro">{modeShortCopy[radio.mode]}</AppText></Pressable>
+            <Pressable accessibilityLabel={`播放倍速：${radio.rate}倍`} onPress={cycleRate} style={styles.secondaryAction}><GuideAnchor id="radio-speed" /><AppText color={colors.primary} style={styles.speed}>{radio.rate}×</AppText><AppText color={colors.primary} variant="micro">倍速</AppText></Pressable>
+            <Pressable accessibilityLabel={`播放间隔：${intervalSeconds}秒`} onPress={() => setIntervalOpen(true)} style={styles.secondaryAction}><GuideAnchor id="radio-interval" /><Clock3 color={colors.primary} size={18} /><AppText color={colors.primary} variant="micro">{radio.waitingForNext ? `${radio.intervalRemaining}s` : intervalSeconds ? `${intervalSeconds}s` : '间隔'}</AppText></Pressable>
+            <Pressable accessibilityLabel={`字幕模式：${subtitleCopy[radio.subtitleMode]}`} onPress={cycleSubtitle} style={styles.secondaryAction}><GuideAnchor id="radio-subtitle" /><SubtitleIcon mode={radio.subtitleMode} /><AppText color={colors.primary} variant="micro">{subtitleShortCopy[radio.subtitleMode]}</AppText></Pressable>
           </View>
         </View>
       </View>
@@ -250,7 +255,7 @@ export function RadioPlayerScreen() {
           <View style={styles.intervalPresets}>
             {RADIO_INTERVAL_PRESETS.map((preset) => <Pressable accessibilityLabel={`设置播放间隔${preset}秒`} accessibilityState={{ selected: preset === intervalSeconds }} key={preset} onPress={() => radio.setIntervalSeconds(preset)} style={[styles.intervalPreset, preset === intervalSeconds ? styles.intervalPresetActive : null]}><AppText color={preset === intervalSeconds ? colors.primary : colors.mutedForeground} variant="button">{preset}s</AppText></Pressable>)}
           </View>
-          <Button onPress={() => setIntervalOpen(false)}>完成</Button>
+          <Button guideId="radio-interval" onPress={() => { setIntervalOpen(false); guide?.event('radio-interval'); }}>完成</Button>
         </View>
       </BottomSheet>
 

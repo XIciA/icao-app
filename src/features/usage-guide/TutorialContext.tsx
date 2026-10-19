@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useRef, type PropsWithChildren, type RefObject } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { AppText, Button } from '@/components/ui';
-import { colors, radii, spacing } from '@/theme';
+import { createContext, useContext, useEffect, useMemo, useRef, type PropsWithChildren, type RefObject } from 'react';
+import { ScrollView, View } from 'react-native';
+import { spacing } from '@/theme';
+import { GuideAnchor, useGuide } from './GuideBindings';
 import { TUTORIAL_STEPS, type TutorialProgress, type TutorialStepId, type TutorialTargetId } from './tutorial-model';
 
 export type TutorialController = {
@@ -10,6 +10,7 @@ export type TutorialController = {
   skip: () => void;
   finish: (recordId: string) => void;
   exit: () => void;
+  restart?: () => void;
   scroll: RefObject<ScrollView | null>;
   scrollOffset: RefObject<number>;
   saveError?: string;
@@ -40,31 +41,24 @@ export function TutorialTarget({ ids, scroll = false, children }: PropsWithChild
   if (!tutorial) return children;
   return <View collapsable={false} ref={ref} testID={active ? `tutorial-target-${step?.target}` : undefined}>
     {children}
-    {active ? <View pointerEvents="none" style={styles.outline} /> : null}
+    {ids.map(id => <GuideAnchor id={`sentence-${id}`} key={id} />)}
   </View>;
 }
 
-export function TutorialCoach({ ready = false, onExit, inset = true }: { ready?: boolean; onExit?: () => void; inset?: boolean }) {
-  const tutorial = useTutorial();
-  if (!tutorial) return null;
-  const step = TUTORIAL_STEPS[tutorial.progress.step];
-  return <View style={[styles.coach, !inset && { marginHorizontal: 0 }]} testID="tutorial-coach">
-    <View style={styles.heading}>
-      <AppText color={colors.primary} variant="micro">{step ? `新手教程 · ${tutorial.progress.step + 1} / ${TUTORIAL_STEPS.length}` : '新手教程 · 已完成'}</AppText>
-      <Button size="sm" variant="ghost" onPress={onExit ?? tutorial.exit}>{step ? '退出教程' : '返回使用指南'}</Button>
-    </View>
-    <AppText accessibilityLiveRegion="polite" variant="cardTitle">{step?.title ?? '本次新手教程已结束'}</AppText>
-    <AppText variant="caption">{step?.description ?? `完成 ${tutorial.progress.completed.length} 步，跳过 ${tutorial.progress.skipped.length} 步。标注、生词和练习记录都能在「我的」中找到。900句还可带个人标注导出PDF。`}</AppText>
-    {step ? <View style={styles.actions}>
-      <Button size="sm" variant="ghost" onPress={tutorial.skip}>跳过此步</Button>
-      {ready ? <Button size="sm" variant="outline" onPress={() => tutorial.event(step.id)}>已有内容，继续</Button> : null}
-    </View> : null}
-    {tutorial.saveError ? <AppText accessibilityLiveRegion="polite" color={colors.destructive} variant="caption">{tutorial.saveError}</AppText> : null}
-  </View>;
+export function TutorialCoach({ ready = false, onExit, onRestart }: { ready?: boolean; onExit?: () => void; onRestart?: () => void; inset?: boolean }) {
+  const tutorial = useTutorial(); const binding = useGuide();
+  const actions = useRef({ tutorial, onExit, onRestart }); actions.current = { tutorial, onExit, onRestart };
+  const legacy = binding?.legacy;
+  const progress = tutorial?.progress; const saveError = tutorial?.saveError;
+  const prompt = useMemo(() => {
+    if (!progress) return null;
+    const step = TUTORIAL_STEPS[progress.step];
+    return { target: step?.id === 'play' ? 'sentence-play' : step?.id === 'record' ? 'sentence-record' : step?.id === 'note' ? 'sentence-note' : step?.id === 'review' ? 'sentence-review' : step?.id === 'highlight' ? 'sentence-highlight-tool' : step?.id === 'tag' ? 'sentence-tag-tool' : `sentence-${step?.target ?? 'text'}`, text: step?.description ?? '学会了，接下来按自己的节奏练习。', index: progress.step, total: TUTORIAL_STEPS.length, completed: !step, error: saveError,
+      exit: () => { const a = actions.current; (a.onExit ?? a.tutorial?.exit)?.(); },
+      skip: () => { if (step) actions.current.tutorial?.skip(); else { const a = actions.current; (a.onRestart ?? a.tutorial?.restart ?? a.tutorial?.exit)?.(); } },
+      next: ready && step ? () => actions.current.tutorial?.event(step.id) : !step ? () => { const a = actions.current; (a.onExit ?? a.tutorial?.exit)?.(); } : undefined,
+    };
+  }, [progress, ready, saveError]);
+  useEffect(() => { legacy?.(prompt); return () => legacy?.(null); }, [legacy, prompt]);
+  return null;
 }
-const styles = StyleSheet.create({
-  coach: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderWidth: 1, borderRadius: radii.lg, paddingHorizontal: spacing[3], paddingVertical: spacing[2], gap: spacing[1], marginHorizontal: spacing[5], marginBottom: spacing[2] },
-  heading: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' },
-  actions: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' },
-  outline: { ...StyleSheet.absoluteFillObject, borderWidth: 2, borderColor: colors.primary, borderRadius: radii.md },
-});

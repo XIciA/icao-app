@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Clock3, ChevronRight, History, Target, Trash2 } from '@/components/ui/icons';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, View } from 'react-native';
@@ -27,6 +28,7 @@ export function LearningRecordsScreen() {
 }
 
 function LearningRecordsContent() {
+  const guide = useGuide();
   const [records, setRecords] = useState<LearningRecord[]>([]);
   const [reviewPackage, setReviewPackage] = useState<QuestionBankStudyPackage>();
   const [loading, setLoading] = useState(true);
@@ -84,7 +86,7 @@ function LearningRecordsContent() {
       const saved = await loadLearningRecordReview(record);
       const next = toStudyReviewPackage(saved);
       if (!next) throw new Error('study_review_invalid');
-      if (mounted.current) setReviewPackage(next);
+      if (mounted.current) { setReviewPackage(next); guide?.event('recap-record'); }
     } catch { if (mounted.current) { failedRecord.current = record; setError('这次学习的记录暂时无法打开，请重试。'); } }
     finally { openingRef.current = false; if (mounted.current) setOpeningId(undefined); }
   }
@@ -132,7 +134,7 @@ function LearningRecordsContent() {
         )}>
           <Card style={styles.card}>
             <Pressable accessibilityRole="button" accessibilityLabel={`查看${record.bankTitle} ${record.topicTitle}`} accessibilityActions={[{ name: 'delete', label: '删除这次学习记录' }]} onAccessibilityAction={event => { if (event.nativeEvent.actionName === 'delete') confirmDelete(record); }} disabled={busy} onPress={() => { void open(record); }} style={styles.content}>
-              <View style={styles.titleRow}>
+              <GuideAnchor id="recap-record" /><View style={styles.titleRow}>
                 <View style={styles.icon}><History color={colors.primary} size={18} /></View>
                 <View style={styles.copy}><AppText variant="cardTitle">{record.source === 'hotspot' ? 'OPI 热点' : record.recordType === 'mock_exam' ? '模拟考试' : record.bankTitle}</AppText><AppText variant="caption">{record.source === 'hotspot' ? record.hotspot?.title : record.recordType === 'mock_exam' ? record.categoryTitle : record.topicTitle}</AppText></View>
                 {record.recordType === 'mock_exam' && record.reason !== 'complete' ? <Tag tone="accent">未完成</Tag> : null}

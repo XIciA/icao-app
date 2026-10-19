@@ -37,7 +37,7 @@ export function SentenceTutorialScreen() {
     setState(undefined); setError(''); setSaveError('');
     if (!accountId) { setError('请先确认登录状态，再开始教程。'); return; }
     void (async () => {
-      let progress = restart === '1' ? emptyTutorialProgress() : await readTutorialProgress(accountId);
+      let progress = Boolean(restart) ? emptyTutorialProgress() : await readTutorialProgress(accountId);
       let record: LearningRecord | undefined;
       if (progress.recordId && progress.step >= TUTORIAL_STEPS.findIndex(step => step.id === 'recap')) {
         const saved = (await getLearningRecords()).find(record => record.id === progress.recordId);
@@ -48,7 +48,7 @@ export function SentenceTutorialScreen() {
       if (!active) return;
       current.current = progress;
       setState({ accountId, progress, studyPackage, record });
-      if (restart === '1') await writeTutorialProgress(accountId, progress);
+      if (Boolean(restart)) await writeTutorialProgress(accountId, progress);
     })().catch(() => { if (active) setError('教程或进度暂时无法读取。请联网后重试，已有学习数据仍保留。'); });
     return () => { active = false; };
   }, [accountId, restart, attempt]);
@@ -66,7 +66,8 @@ export function SentenceTutorialScreen() {
     update({ ...p, recordId, step: Math.max(p.step, recap), completed: p.step === recap - 1 ? [...new Set([...p.completed, 'finish' as const])] : p.completed });
   }, [update]);
   const exit = useCallback(() => router.replace({ pathname: '/info/[slug]', params: { slug: 'guide' } }), [router]);
-  const controller = useMemo(() => state && state.accountId === accountId ? { progress: state.progress, event, skip, finish, exit, scroll, scrollOffset, saveError } : null, [accountId, event, exit, finish, saveError, skip, state]);
+  const restartTutorial = useCallback(() => router.replace({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: String(Date.now()) } }), [router]);
+  const controller = useMemo(() => state && state.accountId === accountId ? { progress: state.progress, event, skip, finish, exit, restart: restartTutorial, scroll, scrollOffset, saveError } : null, [accountId, event, exit, finish, restartTutorial, saveError, skip, state]);
   if (error) return <Screen><TopBar title="新手教程" onBack={exit} /><CenteredState title="暂时无法开始教程" description={error} actionLabel="重试" onAction={() => setAttempt(n => n + 1)} /></Screen>;
   if (!state || !controller) return <Screen><TopBar title="新手教程" onBack={exit} /><GlobalLoadingScreen /></Screen>;
   return <TutorialContext.Provider value={controller}><View style={{ flex: 1 }}>

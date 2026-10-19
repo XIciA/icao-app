@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
   BarChart3,
   BookOpen,
@@ -74,6 +75,7 @@ export function VocabularyBooksView({
   onTest: () => void;
 }) {
   const insets = useSafeAreaInsets();
+  const guide = useGuide();
   return (
     <Screen contentStyle={styles.zero}>
       <TopBar title="单词学习" />
@@ -88,7 +90,7 @@ export function VocabularyBooksView({
         ) : null}
 
         <Pressable accessibilityLabel="开始30题词汇测评" onPress={onTest}>
-          <Card elevated style={styles.assessmentCard}>
+          <GuideAnchor id="vocab-test" /><Card elevated style={styles.assessmentCard}>
             <View style={styles.assessmentIcon}><BarChart3 color={colors.primary} size={24} /></View>
             <View style={styles.grow}>
               <View style={styles.rowBetween}>
@@ -106,8 +108,8 @@ export function VocabularyBooksView({
             const active = selected.has(book.id);
             const stats = statsByBook[book.id] ?? { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 };
             return (
-              <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => onToggle(book.id)}>
-                <Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
+              <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => { onToggle(book.id); guide?.event('vocab-book'); }}>
+                <GuideAnchor id="vocab-book" /><Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
                   <View style={[styles.bookIcon, active ? styles.selectedIcon : null]}>
                     {active ? <Check color={colors.primaryForeground} size={20} /> : <BookOpen color={colors.primary} size={20} />}
                   </View>
@@ -133,7 +135,7 @@ export function VocabularyBooksView({
       </ScrollView>
       <View style={[styles.sticky, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         <AppText style={styles.center}>{selected.size ? `已选择 ${selected.size} 本词书` : '请选择至少一本词书'}</AppText>
-        <Button disabled={!selected.size} leading={<Play color={colors.primaryForeground} size={16} />} onPress={onStart} size="lg">开始学习</Button>
+        <Button disabled={!selected.size} leading={<Play color={colors.primaryForeground} size={16} />} guideId="vocab-start" onPress={() => { onStart(); guide?.event('vocab-start'); }} size="lg">开始学习</Button>
       </View>
     </Screen>
   );

@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
@@ -19,6 +20,7 @@ export function HotspotListScreen() {
 
 function HotspotListContent() {
   const router = useRouter();
+  const guide = useGuide();
   const [briefs, setBriefs] = useState(loadHotspotBriefs);
   const [warning, setWarning] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -56,13 +58,13 @@ function HotspotListContent() {
             <Card key={brief.id} style={styles.card}>
               <Pressable
                 accessibilityLabel={`打开 ${brief.title}`}
-                onPress={() => router.push({
+                onPress={() => { guide?.event('hotspot-topic'); router.push({
                   pathname: '/content/hotspot/[briefId]',
                   params: { briefId: brief.id },
-                })}
+                }); }}
                 style={({ pressed }) => [styles.cardPressable, pressed ? styles.pressed : null]}
               >
-                <View style={styles.cardTop}>
+                <GuideAnchor id="hotspot-topic" /><View style={styles.cardTop}>
                   <View style={styles.dateBadge}>
                     <AppText color={colors.primary} style={styles.day} variant="sectionTitle">{day}</AppText>
                     <AppText color={colors.primary} style={styles.month} variant="micro">{monthLabel}</AppText>

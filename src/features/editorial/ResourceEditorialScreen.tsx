@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { ArrowRight, CalendarDays, FileText, WifiOff } from '@/components/ui/icons';
@@ -12,11 +13,12 @@ import { useResourceEditorial } from './use-editorial';
 
 export function ResourceEditorialScreen() {
   const router = useRouter();
+  const guide = useGuide();
   const state = useResourceEditorial();
   return (
     <Screen scroll contentStyle={styles.screen}>
       <TopBar title="资源分享" />
-      <View style={styles.intro}>
+      <View style={styles.intro}><GuideAnchor id="resource-filter" />
         <AppText>经过来源核验和专业编辑的航空英语备考方法与学习资源。</AppText>
       </View>
       {state.status === 'loading' ? <CenteredState description="正在获取最新资源文章。" title="加载中" /> : null}
@@ -34,9 +36,9 @@ export function ResourceEditorialScreen() {
             <Pressable
               accessibilityLabel={`阅读${item.title}`}
               key={item.slug}
-              onPress={() => router.push({ pathname: '/content/resources/[articleSlug]', params: { articleSlug: item.slug } })}
+              onPress={() => { guide?.event('resource-open'); router.push({ pathname: '/content/resources/[articleSlug]', params: { articleSlug: item.slug } }); }}
             >
-              <Card style={styles.card}>
+              <GuideAnchor id="resource-open" /><Card style={styles.card}>
                 {item.coverUrl ? <Image accessibilityLabel={item.cover.alt} contentFit="cover" source={{ uri: item.coverUrl }} style={styles.image} /> : <View style={styles.imageFallback}><FileText color={colors.primary} size={30} /></View>}
                 <View style={styles.copy}>
                   <Tag>{item.badge}</Tag>

@@ -1,6 +1,7 @@
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { useSaveAction } from './use-save-action.native';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
@@ -38,6 +39,7 @@ type SessionStatus = Exclude<VocabularyWordStatus, 'new'>;
 const emptySummary: VocabularySessionSummary = { known: 0, vague: 0, forgot: 0, wrong: 0 };
 
 export function VocabularyScreen() {
+  const guide = useGuide();
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
   const [loadError, setLoadError] = useState(false);
@@ -64,17 +66,40 @@ export function VocabularyScreen() {
   }, [loadAttempt]);
 
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
-  const startStudy = useCallback((words: VocabularyWord[], from: ReturnView) => {
+  const startStudy = useCallback((words: VocabularyWord[], from: ReturnView, resumeWord?: string) => {
     const unlearned = words.filter((word) => (progress.state.words[word.id]?.status ?? 'new') === 'new');
     const learned = words.filter((word) => (progress.state.words[word.id]?.status ?? 'new') !== 'new');
     setStudyWords([...unlearned, ...learned]);
-    setStudyIndex(0);
+    const ordered = [...unlearned, ...learned];
+    setStudyIndex(Math.max(0, ordered.findIndex(word => word.id === resumeWord)));
     setRevealed(false);
     setSessionStatuses({});
     setSessionSummary(emptySummary);
     setReturnView(from);
     setView('study');
   }, [progress.state.words]);
+
+  const restoredGuide = useRef(false);
+  useEffect(() => {
+    if (guide?.current !== 'vocab') { restoredGuide.current = false; return; }
+    if (!progress.ready || !books.length || restoredGuide.current) return;
+    restoredGuide.current = true;
+    const ids = guide.checkpointData?.vocabBooks ?? [];
+    if (ids.length) setSelected(new Set(ids.filter(id => books.some(book => book.id === id)) as VocabularyBookId[]));
+    if (guide.step && !['vocab-book', 'vocab-start', 'vocab-test'].includes(guide.step)) {
+      const chosen = books.filter(book => ids.includes(book.id));
+      const words = (chosen.length ? chosen : [books[0]!]).flatMap(book => book.words);
+      startStudy(words, 'books', guide.checkpointData?.vocabWord);
+      if (['vocab-meaning', 'vocab-favorite'].includes(guide.step)) setRevealed(true);
+    }
+  }, [books, guide, progress.ready, startStudy]);
+  useEffect(() => {
+    if (guide?.current === 'vocab' && guide.step === 'vocab-test') setView('books');
+  }, [guide]);
+  useEffect(() => {
+    if (guide?.current !== 'vocab' || !restoredGuide.current || !selected.size) return;
+    guide.checkpoint({ vocabBooks: [...selected], ...(studyWords[studyIndex] ? { vocabWord: studyWords[studyIndex]!.id } : {}) });
+  }, [guide, selected, studyIndex, studyWords]);
 
   if (progress.error) return <Screen><TopBar title="单词学习" /><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
@@ -106,6 +131,7 @@ export function VocabularyScreen() {
       return save.run(() => progress.setStatus(currentWord.id, status), () => {
         setSessionStatuses((current) => ({ ...current, [currentWord.id]: status }));
         setRevealed(true);
+        guide?.event('vocab-rating');
       });
     };
     const next = () => {
@@ -118,7 +144,7 @@ export function VocabularyScreen() {
       setSessionSummary(summary);
       setView('complete');
     };
-    return <VocabularyStudyView index={studyIndex} onChoose={recordStatus} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView index={studyIndex} onChoose={recordStatus} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {

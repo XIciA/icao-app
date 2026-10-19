@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import {
   AI_GENERATED_CONTENT_LABEL,
   DEEPSEEK_MODEL_FILING_DISCLOSURE,
@@ -524,7 +525,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.editAction, pressed && !aiBusy ? styles.pressed : null, aiBusy ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
+              <GuideAnchor id="sentence-note" /><AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
             {showReviewAction ? <Pressable
               accessibilityLabel={reviewLabel}
@@ -536,7 +537,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewDisplayLabel}</AppText>
+              <GuideAnchor id="sentence-review" /><AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewDisplayLabel}</AppText>
             </Pressable> : null}
           </View> : null}
         </View>

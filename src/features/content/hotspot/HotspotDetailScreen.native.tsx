@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useRouter } from 'expo-router';
 import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
@@ -17,6 +18,7 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
 
 function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
+  const guide = useGuide();
   const { retry, state } = useHotspotAccess(briefId);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
@@ -30,7 +32,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
 
         {state.status === 'ready' ? (
           <>
-            <View style={styles.topicsSection}>
+            <View style={styles.topicsSection}><GuideAnchor id="hotspot-article" />
               <AppText variant="sectionTitle">涵盖话题与问题（{state.topics.length}）</AppText>
               {state.topics.map((topic, topicIndex) => (
                 <Card key={topic.topicId} style={styles.topicCard}>
@@ -55,11 +57,11 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                 </Card>
               ))}
             </View>
-            <Button
-              onPress={() => router.push({
+            <Button guideId="hotspot-study"
+              onPress={() => { guide?.event('hotspot-study'); router.push({
                 pathname: '/content/hotspot/[briefId]/study',
                 params: { briefId: state.brief.id },
-              })}
+              }); }}
               size="lg"
               style={styles.cta}
             >

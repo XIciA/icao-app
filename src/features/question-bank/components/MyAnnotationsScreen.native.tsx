@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -36,6 +37,7 @@ const segments: { id: AnnotationSegment; label: string; icon: LucideIcon }[] = [
 
 export function MyAnnotationsScreen() {
   const router = useRouter();
+  const guide = useGuide();
   const annotations = useQuestionAnnotations();
   const banks = useMemo(getEmbeddedQuestionBanks, []);
   const [bankId, setBankId] = useState<BankFilter>('all');
@@ -108,6 +110,7 @@ export function MyAnnotationsScreen() {
     if (resolved?.status === 'membership-required') { router.push('/account/membership'); return; }
     if (resolved?.status !== 'ready' || !resolved.location) { references.retry(); return; }
     const location = resolved.location;
+    guide?.event('recap-question');
     router.push({
       pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]',
       params: { bankId: location.bankId, categoryId: location.categoryId, topicId: location.topicId, cardId: location.cardId, returnTo: 'annotations' },
@@ -115,6 +118,7 @@ export function MyAnnotationsScreen() {
   }
 
   const visibleEntries = segment === 'tags' ? visibleTagEntries : segment === 'highlights' ? visibleHighlightEntries : noteEntries;
+  useEffect(() => { if (guide?.current === 'recap' && annotations.hydrated) guide.checkpoint({ recapEmpty: visibleEntries.length === 0 }); }, [annotations.hydrated, guide, visibleEntries.length]);
 
   return (
     <Screen contentStyle={styles.screen}>
@@ -142,7 +146,7 @@ export function MyAnnotationsScreen() {
         </View>
 
         {colorOptions.length ? (
-          <View style={styles.filters}>
+          <View style={styles.filters}><GuideAnchor id="recap-filter" />
             <Pressable accessibilityState={{ selected: colorFilter.length === 0 }} onPress={() => setColorFilter([])} style={[styles.allFilter, colorFilter.length === 0 ? styles.filterActive : null]}>
               <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="button">全部</AppText>
             </Pressable>
@@ -184,7 +188,7 @@ function TagRow({ definitions, entry, onPress, resolution }: { definitions: Map<
   const available = resolution?.status !== 'not-found';
   const tags = entry.tagIds.flatMap((id) => definitions.get(id) ? [definitions.get(id)!] : []);
   return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
+    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
       <View style={styles.rowCopy}>
         <AppText numberOfLines={2}>{reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)}</AppText>
         <AppText variant="micro">{referenceMessage(resolution)} · {tags.map((tag) => tag.label).join('、')}</AppText>
@@ -213,7 +217,7 @@ function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: 
   const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
   return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
+    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
       <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[definition.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       <View style={styles.rowCopy}>
         <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
@@ -265,7 +269,7 @@ function HighlightSentence({ definitions, fallback, highlights, sourceText, targ
 function NoteRow({ entry, onPress, resolution }: { entry: QuestionAnnotationEntry; resolution?: CardReference; onPress: () => void }) {
   const available = resolution?.status !== 'not-found';
   return (
-    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
+    <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
       <View style={styles.noteIcon}><NotebookPen color={colors.primary} size={16} /></View>
       <View style={styles.rowCopy}><AppText numberOfLines={3}>{entry.note}</AppText><AppText variant="micro">{referenceMessage(resolution)} · {formatRelativeTime(entry.updatedAt)}</AppText></View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
