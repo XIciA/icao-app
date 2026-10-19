@@ -10,6 +10,7 @@ import type { GuidePrompt } from './GuideBindings';
 export type GuideNode = { id: string; layer: string; node: View };
 export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
   const insets = useSafeAreaInsets();
+  const [rootY, setRootY] = useState(0);
   const [keyboardTop, setKeyboardTop] = useState<number>();
   const [hidden, setHidden] = useState(false);
   const measuredFor = useRef('');
@@ -26,6 +27,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     const candidates = [...nodes.values()].filter(item => item.id === prompt?.target && item.layer === layer);
     const update = (next?: Box) => { if (measuredFor.current !== token) return; setTargetFor(token); setTarget(old => !next ? undefined : old && Object.keys(next).every(key => Math.abs(old[key as keyof Box] - next[key as keyof Box]) < 1) ? old : next); };
     root.current?.measureInWindow((rx, ry) => {
+      setRootY(ry);
       const check = (index: number) => {
         const item = candidates[index]; if (!item) { update(); return; }
         item.node.measureInWindow((x, y, width, height) => {
@@ -41,12 +43,13 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   useEffect(() => { if (!prompt || layer !== topLayer) return; measure(); const timer = setInterval(measure, 180); return () => clearInterval(timer); }, [layer, measure, prompt, topLayer]);
   if (!prompt || layer !== topLayer) return null;
   const focus = targetFor === `${layer}:${prompt.target}` ? target : undefined;
-  const position = guidePlacement(focus, size.width, keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop), bubbleHeight, { top: layer === 'root' ? insets.top : 0, bottom: insets.bottom });
+  const availableHeight = keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop - rootY);
+  const position = guidePlacement(focus, size.width, availableHeight, bubbleHeight, { top: layer === 'root' ? insets.top : 0, bottom: insets.bottom });
   const tip = focus ? Math.max(14, Math.min(position.width - 22, focus.x + focus.width / 2 - position.x - 4)) : 24;
   return <View pointerEvents="box-none" collapsable={false} ref={root} onLayout={event => setSize(event.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
     {focus && !prompt.completed ? <View testID="guide-focus" pointerEvents="none" style={[styles.focus, { left: focus.x - 4, top: focus.y - 4, width: focus.width + 8, height: focus.height + 8 }]} /> : null}
     {position.line && focus ? <Svg pointerEvents="none" style={StyleSheet.absoluteFill}><Line x1={focus.x + focus.width / 2} y1={focus.y + focus.height / 2} x2={position.x + position.width / 2} y2={position.y} stroke={colors.mutedForeground} strokeOpacity={0.45} strokeWidth={1} /><Circle cx={focus.x + focus.width / 2} cy={focus.y + focus.height / 2} r={2.5} fill={colors.mutedForeground} /></Svg> : null}
-    {size.width > 0 && !hidden ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(96, size.height - position.y - insets.bottom - 16) }]} testID="guide-bubble">
+    {size.width > 0 && !hidden ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(48, availableHeight - position.y - insets.bottom - 16) }]} testID="guide-bubble">
       {focus && !position.line && !position.compact && !prompt.completed ? <View pointerEvents="none" style={[styles.tip, { left: tip }, position.above ? styles.tipBottom : styles.tipTop]} /> : null}
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.bubbleContent}>
       <View style={styles.heading}><AppText variant="micro">{prompt.completed ? '已完成' : `${prompt.index + 1} / ${prompt.total}`}</AppText><Pressable accessibilityLabel="退出教程" hitSlop={8} onPress={prompt.exit} style={styles.smallAction}><AppText variant="body">×</AppText></Pressable></View>
