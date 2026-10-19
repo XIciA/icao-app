@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import type { ComponentProps, ReactNode } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 
@@ -10,6 +11,7 @@ type Size = 'sm' | 'md' | 'lg' | 'icon';
 
 type Props = Omit<ComponentProps<typeof Pressable>, 'children'> & {
   children: ReactNode;
+  guideId?: string;
   variant?: Variant;
   size?: Size;
   loading?: boolean;
@@ -18,6 +20,7 @@ type Props = Omit<ComponentProps<typeof Pressable>, 'children'> & {
 
 export function Button({
   children,
+  guideId,
   variant = 'primary',
   size = 'md',
   loading = false,
@@ -42,6 +45,7 @@ export function Button({
         typeof style === 'function' ? style(state) : style,
       ]}
     >
+      {guideId ? <GuideAnchor id={guideId} /> : null}
       {loading ? (
         <ActivityIndicator color={foreground} size="small" />
       ) : (
