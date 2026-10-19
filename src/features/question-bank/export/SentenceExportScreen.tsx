@@ -18,11 +18,12 @@ import { selectedSentences, type ExportOptions, type ExportSentence } from './ex
 import { exportFontBytes, storePdf, previewPdf, sharePdf, releasePdf } from './pdf-platform';
 const defaults:ExportOptions={levels:[],filter:'all',tagIds:[],translation:true,highlights:true,tags:true,notes:true};
 export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDataset;onBack:()=>void}) {
-  const guide = useGuide();
+  const guide = useGuide(); const guideTour=guide?.current; const guideStep=guide?.step;
   const [data,setData]=useState<{rows:ExportSentence[];annotations:QuestionBankAnnotationStore}>();const [attempt,setAttempt]=useState(0);
   const [options,setOptions]=useState<ExportOptions>({...defaults,levels:dataset.categories.map(c=>c.name)});
   const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [output,setOutput]=useState<{uri:string;pages:number;count:number}>();
   const outputUri=useRef<string | undefined>(undefined);const active=useRef(true);const context=useRef(captureLearningWriteContext()).current;
+  useEffect(()=>{if(guideTour==='export'&&guideStep==='export-scope'&&output){releasePdf(output.uri);outputUri.current=undefined;setError('');setOutput(undefined);}},[guideTour,guideStep,output]);
   useEffect(()=>{active.current=true;return()=>{active.current=false;if(outputUri.current)releasePdf(outputUri.current);};},[]);
   useEffect(()=>{let current=true;setError('');setData(undefined);
     void (async()=>{const annotations=await readAnnotationStore();const rows:ExportSentence[]=[];
