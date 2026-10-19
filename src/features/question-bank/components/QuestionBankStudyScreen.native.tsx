@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { TUTORIAL_STEPS } from '@/features/usage-guide/tutorial-model';
 import { annotatedThisSession } from '../lib/session-recap';
@@ -96,7 +97,12 @@ function StudyContent(props: Props) {
   const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
   const tutorial = useTutorial();
-  const tutorialExitRequested = useRef(false);
+  const guide = useGuide();
+  const guideExitAfterSave = useRef<(() => void) | null>(null);
+  const guideLeave = useRef<() => void>(() => undefined);
+  const guideCurrent = guide?.current; const registerGuideExit = guide?.guardExit;
+  useEffect(() => { if (!guideCurrent || !registerGuideExit) return; registerGuideExit(done => { guideExitAfterSave.current = done; guideLeave.current(); }); return () => registerGuideExit(null); }, [guideCurrent, registerGuideExit]);
+  const tutorialExitRequested = useRef<'exit' | 'restart' | false>(false);
   useFocusEffect(useCallback(() => { setClickStudyContext(props.dataset?.id ?? (props.studyPackage?.record.recordType === 'mock_exam' ? 'mock-exam' : 'study')); return () => setClickStudyContext('study'); }, [props.dataset?.id, props.studyPackage?.record.recordType]));
   const insets = useSafeAreaInsets();
   const { width: viewportWidth } = useAppViewportDimensions();
@@ -208,7 +214,8 @@ function StudyContent(props: Props) {
   }, [tutorial, session.historyRecord, session.hydrated, revealForTutorial]);
   const flushAnnotationSaves = annotations.flushPendingSaves;
   const navigateAfterStudy = useCallback(() => {
-    if (tutorialExitRequested.current && tutorial) { tutorial.exit(); return; }
+    if (guideExitAfterSave.current) { const done = guideExitAfterSave.current; guideExitAfterSave.current = null; done(); return; }
+    if (tutorialExitRequested.current && tutorial) { if (tutorialExitRequested.current === 'restart' && tutorial.restart) tutorial.restart(); else tutorial.exit(); return; }
     if (onReturn) {
       onReturn();
       return;
@@ -633,6 +640,8 @@ function StudyContent(props: Props) {
     }
   }
 
+  guideLeave.current = () => { if (session.report) setLeavingStudy(true); else void leaveStudy(); };
+
   function confirmExitWithoutSave() {
     if (!canLeaveWithoutSave || finishInFlight.current || taskInteractionActive) return;
     Alert.alert('仍然返回？', '尚未保存的本次作答可能丢失，已保存的学习记录不受影响。', [
@@ -731,7 +740,7 @@ function StudyContent(props: Props) {
 
   const entry = annotations.entry ? { ...annotations.entry, highlights: annotations.entry.highlights.filter((highlight) => highlight.contentFingerprint === contentFingerprint(highlight.blockId === 'question' ? card.audioText ?? '' : card.referenceText ?? '')) } : undefined;
   const transcript = card.kind === 'image' ? null : (
-    <TutorialTarget ids={['text', 'highlight']} scroll><View style={styles.cardContent}>
+    <TutorialTarget ids={['text', 'highlight']} scroll><View style={styles.cardContent}>{session.toolMode === 'highlight' ? <GuideAnchor id="sentence-highlight-tool" /> : null}
       <View style={styles.sectionTitle}><Languages color={colors.mutedForeground} size={15} /><AppText variant="button">{session.behavior.transcriptLabel}</AppText></View>
       <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={!managingAnnotations && annotations.highlightDefinitions.some((definition) => definition.id === activeHighlightId) && session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={lookupAllowed && dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.audioText} />
       {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
@@ -788,11 +797,11 @@ function StudyContent(props: Props) {
         {!examMode && historyContentAllowed ? <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable> : null}
         <Pressable accessibilityLabel={examMode ? "当前题号" : "打开答题卡"} disabled={examMode || taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}>{!examMode ? <Grid3X3 color={colors.mutedForeground} size={15} /> : null}<AppText style={styles.counter} variant="button">{navigationCurrentIndex + 1} / {navigationItemCount}</AppText></Pressable>
       </View>
-      <TutorialCoach onExit={() => { tutorialExitRequested.current = true; void leaveStudy(); }} ready={Boolean(guiding && ((tutorialStep === 'reveal' && session.revealed) || (tutorialStep === 'highlight' && annotations.entry?.highlights.length) || (tutorialStep === 'tag' && annotations.entry?.tagIds.length) || (tutorialStep === 'note' && annotations.entry?.note.trim())))} />
+      <TutorialCoach onRestart={() => { tutorialExitRequested.current = 'restart'; void leaveStudy(); }} onExit={() => { tutorialExitRequested.current = 'exit'; void leaveStudy(); }} ready={Boolean(guiding && ((tutorialStep === 'reveal' && session.revealed) || (tutorialStep === 'highlight' && annotations.entry?.highlights.length) || (tutorialStep === 'tag' && annotations.entry?.tagIds.length) || (tutorialStep === 'note' && annotations.entry?.note.trim()) || (tutorialStep === 'favorite' && lookup && wordFavorites.isFavorite({ word: lookup.word }))))} />
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
       {!imageCard && !listeningExamActive && historyContentAllowed ? <View testID="annotation-panel-anchor" onLayout={({ nativeEvent }) => setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height)} style={styles.tools}>
-        <TutorialTarget ids={['answer', 'highlight', 'tag']}><AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={listeningReviewActive ? undefined : <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { void changeToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { void changeToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { void changeToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void Promise.resolve(annotations.toggleTag(id)).then(saved => { if (saved && guiding) tutorial?.event('tag'); }); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} /></TutorialTarget>
+        <TutorialTarget ids={['answer', 'highlight', 'tag']}><AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={listeningReviewActive ? undefined : <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><GuideAnchor id="sentence-answer" /><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { void changeToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { void changeToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { void changeToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void Promise.resolve(annotations.toggleTag(id)).then(saved => { if (saved && guiding) tutorial?.event('tag'); }); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} /></TutorialTarget>
       </View> : null}
 
       {!imageCard && !listeningExamActive && historyContentAllowed && annotationPanelTop !== undefined ? (
@@ -868,8 +877,6 @@ function StudyContent(props: Props) {
               </Pressable></TutorialTarget>
             ) : null}
           </View>
-          {guiding && tutorialStep === 'favorite' && lookup && wordFavorites.isFavorite({ word: lookup.word }) ? <Button size="sm" variant="outline" onPress={() => { tutorial?.event('favorite'); setLookup(undefined); }}>已在词本中，继续</Button> : null}
-          {guiding && tutorialStep === 'favorite' ? <View style={{ gap: spacing[2] }}><AppText variant="caption">点亮星标，加入统一词本；已收藏时可以直接继续。</AppText><Button size="sm" variant="ghost" onPress={() => { tutorial?.skip(); setLookup(undefined); }}>跳过收藏</Button><Button size="sm" variant="ghost" onPress={() => { setLookup(undefined); void leaveStudy(); }}>退出教程</Button></View> : null}
           {favoriteSave.panel()}
           {wordFavorites.error ? <View><AppText>收藏暂时无法读取，请重试后再修改收藏。</AppText><Button onPress={wordFavorites.retry}>重试读取收藏</Button></View> : null}
           <AppText color={colors.mutedForeground}>{lookup?.ipa}</AppText>

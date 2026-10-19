@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from '@/components/ui/icons';
@@ -299,7 +300,7 @@ function SpeakingPracticePanelContent({
       style={[styles.recordButton, variant === 'integrated' ? styles.integratedRecordButton : null, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
       testID={variant === 'integrated' ? 'integrated-record-button' : undefined}
     >
-      {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
+      <GuideAnchor id="sentence-record" />{isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
       <AppText color={colors.primaryForeground} numberOfLines={1} style={variant === 'integrated' ? styles.integratedRecordLabel : null} variant="button">{recordLabel}</AppText>
     </Pressable>
   );

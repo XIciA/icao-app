@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
@@ -575,7 +576,7 @@ export function StudyAudioPlayer({
                 onPress={() => { if (!status.playing) trackProductClick('audio_play'); void toggle(); }}
                 style={({ pressed }) => [styles.integratedPlay, !audioControllable ? styles.controlDisabled : null, pressed ? styles.pressed : null]}
               >
-                {uri && !audioFailed && (!status.isLoaded || waitingForFirstFrame) ? (
+                <GuideAnchor id="sentence-play" />{uri && !audioFailed && (!status.isLoaded || waitingForFirstFrame) ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : status.playing ? (
                   <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />

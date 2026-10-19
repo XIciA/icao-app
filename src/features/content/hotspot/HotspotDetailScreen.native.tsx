@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
 import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -19,6 +20,7 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
 
 function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
+  const guide = useGuide();
   const params=useLocalSearchParams<{center?:string}>();
   const [selection,setSelection]=useState(params.center??'all');
   const { retry, state } = useHotspotAccess(briefId);
@@ -43,7 +45,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
               {hotspotSources(state.brief).some(s=>s.kind==='general')?<Button size="sm" variant={selection==='general'?'primary':'outline'} onPress={()=>setSelection('general')}>本日综合反馈</Button>:null}
             </View>
             {hotspotSources(state.brief).some(s=>s.kind==='general')?<AppText variant="caption">历史综合反馈未逐题确认考点归属，单独保留供查看。</AppText>:null}
-            <View style={styles.topicsSection}>
+            <View style={styles.topicsSection}><GuideAnchor id="hotspot-article" />
               <AppText variant="sectionTitle">涵盖话题与问题（{topics.length}）</AppText>
               {topics.map((topic, topicIndex) => (
                 <Card key={topic.topicId} style={styles.topicCard}>
@@ -68,11 +70,11 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                 </Card>
               ))}
             </View>
-            <Button
-              onPress={() => router.push({
+            <Button guideId="hotspot-study"
+              onPress={() => { guide?.event('hotspot-study'); router.push({
                 pathname: '/content/hotspot/[briefId]/study',
                 params: { briefId: state.brief.id, ...(selection!=='all'?{center:selection}:{}) },
-              })}
+              }); }}
               disabled={!totalQuestions}
               size="lg"
               style={styles.cta}

@@ -1,17 +1,17 @@
 /** Tutorial metadata only. Learning content and results stay in the existing stores. */
 export const SENTENCE_ONE_ID = 'sentence900-main-001';
 export const TUTORIAL_STEPS = [
-  { id: 'play', title: '先听一遍', description: '点击播放，听听 Sentence1。音频可以重播，也可以调整倍速。', target: 'audio' },
-  { id: 'reveal', title: '展开原文与答案', description: '点击上方「答案」，查看音频原文和中文翻译。', target: 'answer' },
-  { id: 'highlight', title: '标出自己的重点', description: '点击「高亮」选择颜色，再点选或拖选原文中的 Maintaining。', target: 'highlight' },
-  { id: 'tag', title: '给这道题加个标签', description: '点击「标签」，选择一个标签。以后可以在「我的标注」中按标签找题。', target: 'tag' },
-  { id: 'note', title: '记下一句学习笔记', description: '已为你切到「我的笔记」。点击编辑，记录一个要点，再点完成保存。', target: 'workbench' },
-  { id: 'lookup', title: '长按查一个词', description: '长按原文中的 Maintaining，查看音标、航空释义和常用释义。Web端可开启「查词」后点词。', target: 'text' },
-  { id: 'favorite', title: '把生词收进词本', description: '在查词结果里点亮星标。它与单词学习的收藏统一显示在「我的 → 单词收藏」。', target: 'favorite' },
-  { id: 'record', title: '试着读出这句话', description: '点击录音，读出 Maintaining FL310.，然后结束录音。保存成功后可以回放。', target: 'audio' },
-  { id: 'review', title: '看看转写与匹配结果', description: '点击「AI评分」，沿用正常的同意与额度流程；可能消耗转写额度。900句匹配原文，不评价发音。可跳过。', target: 'workbench' },
-  { id: 'finish', title: '结束这次学习', description: '点击底部「结束」，保存本次记录，再看看刚才留下的积累。', target: 'finish' },
-  { id: 'recap', title: '从回顾回到原题', description: '点开「标注题目」或「全部学习记录」，再打开 Sentence1。查过的词也在「查词与收藏」中。', target: 'recap' },
+  { id: 'play', title: '先听一遍', description: '点播放，先听一遍。', target: 'audio' },
+  { id: 'reveal', title: '展开原文与答案', description: '点这里，查看原文和翻译。', target: 'answer' },
+  { id: 'highlight', title: '标出自己的重点', description: '开启高亮，标出 Maintaining。', target: 'highlight' },
+  { id: 'tag', title: '给这道题加个标签', description: '给这道题加一个标签。', target: 'tag' },
+  { id: 'note', title: '记下一句学习笔记', description: '在「我的笔记」里记下一个要点，再点完成。', target: 'workbench' },
+  { id: 'lookup', title: '长按查一个词', description: '长按 Maintaining 查词；Web端可开启「查词」后点词。', target: 'text' },
+  { id: 'favorite', title: '把生词收进词本', description: '点亮星标，把这个词收入共用词本。', target: 'favorite' },
+  { id: 'record', title: '试着读出这句话', description: '点录音，读完后再点一次结束。', target: 'audio' },
+  { id: 'review', title: '看看转写与匹配结果', description: '点「AI评分」查看转写匹配；沿用原额度，不评价发音。', target: 'workbench' },
+  { id: 'finish', title: '结束这次学习', description: '点结束，看看这次学习的积累。', target: 'finish' },
+  { id: 'recap', title: '从回顾回到原题', description: '从回顾打开 Sentence1，找回刚才的标注和生词。', target: 'recap' },
 ] as const;
 export type TutorialStepId = typeof TUTORIAL_STEPS[number]['id'];
 export type TutorialTargetId = typeof TUTORIAL_STEPS[number]['target'];

@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { ArrowLeft, Check, ChevronDown, ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import { useMemo, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -14,6 +15,7 @@ export type QuestionBankSwitcherItem<Value extends string> = {
 
 export function QuestionBankSwitcherHeader<Value extends string>({
   accessibilityLabel = '切换题库',
+  guideId,
   items,
   onBack,
   onSelect,
@@ -22,6 +24,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
   value,
 }: {
   accessibilityLabel?: string;
+  guideId?: string;
   items: readonly QuestionBankSwitcherItem<Value>[];
   onBack: () => void;
   onSelect: (value: Value) => void;
@@ -29,6 +32,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
   showDivider?: boolean;
   value: Value;
 }) {
+  const guide = useGuide();
   const [visible, setVisible] = useState(false);
   const selected = useMemo(() => items.find((item) => item.value === value) ?? items[0], [items, value]);
 
@@ -53,6 +57,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
           onPress={() => setVisible(true)}
           style={({ pressed }) => [styles.moduleButton, pressed ? styles.modulePressed : null]}
         >
+          {guideId ? <GuideAnchor id={guideId} /> : null}
           <View style={styles.moduleIcon}><ActiveIcon color={colors.primary} size={19} /></View>
           <AppText numberOfLines={1} style={styles.moduleTitle} variant="sectionTitle">{selected.label}</AppText>
           <ChevronDown color={colors.mutedForeground} size={16} />
@@ -74,6 +79,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
                 onPress={() => {
                   setVisible(false);
                   if (!active) onSelect(item.value);
+                  if (guideId) guide?.event(guideId);
                 }}
                 style={({ pressed }) => [styles.sheetRow, active ? styles.sheetRowActive : null, pressed ? styles.sheetRowPressed : null]}
               >

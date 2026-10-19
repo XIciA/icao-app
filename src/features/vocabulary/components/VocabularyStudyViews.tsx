@@ -1,3 +1,4 @@
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
 import { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -37,6 +38,7 @@ export function VocabularyStudyView({
   onToggleFavorite: () => Promise<unknown> | unknown;
 }) {
   const insets = useSafeAreaInsets();
+  const guide = useGuide();
   const word = words[index]!;
   const progress = progressFor(word.id, state);
   const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
@@ -56,17 +58,17 @@ export function VocabularyStudyView({
       <View style={styles.topBar}>
         <Pressable accessibilityLabel="返回上一页" hitSlop={8} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
         <AppText variant="button">{index + 1} / {words.length}</AppText>
-        <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { void onToggleFavorite(); }} style={styles.iconButton}>
-          <Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
+        <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
+          <GuideAnchor id="vocab-favorite" /><Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>
       </View>
       <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
           <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-          <Pressable accessibilityLabel={`播放${word.word}发音`} onPress={() => { void speakVocabularyWithFeedback(word.word); }} style={styles.sound}><Volume2 color={colors.primary} size={20} /></Pressable>
+          <Pressable accessibilityLabel={`播放${word.word}发音`} onPress={() => { void speakVocabularyWithFeedback(word.word).then(success => { if (success) guide?.event('vocab-speech'); }); }} style={styles.sound}><GuideAnchor id="vocab-speech" /><Volume2 color={colors.primary} size={20} /></Pressable>
           {revealed ? (
-            <View style={styles.reveal}>
+            <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
               <AppText style={styles.meaning} variant="sectionTitle">{word.meaning}</AppText>
               <Card style={styles.exampleCard}>
                 <AppText style={styles.exampleEnglish}>{word.example}</AppText>
@@ -86,7 +88,7 @@ export function VocabularyStudyView({
             <Button onPress={onNext} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
           </View>
         ) : (
-          <View style={styles.actionRow}>
+          <View style={styles.actionRow}><GuideAnchor id="vocab-rating" />
             <Button onPress={() => choose('forgot')} size="lg" style={styles.flexButton} variant="outline">忘记</Button>
             <Button onPress={() => choose('vague')} size="lg" style={styles.flexButton} variant="secondary">模糊</Button>
             <Button onPress={() => choose('known')} size="lg" style={styles.flexButton}>认识</Button>

@@ -1,3 +1,4 @@
+import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
 import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
@@ -38,7 +39,7 @@ export default function RootLayout() {
               <AppRuntime>
                 <View style={styles.root}>
                   <StatusBar backgroundColor={colors.background} style="dark" />
-                  <AppStack />
+                  <GuideTourProvider><AppStack /></GuideTourProvider>
                 </View>
               </AppRuntime>
             </AuthProvider>

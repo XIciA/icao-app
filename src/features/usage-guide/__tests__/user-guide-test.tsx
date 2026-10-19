@@ -3,54 +3,49 @@ import { UserGuideScreen } from '../UserGuideScreen';
 import { loadQuestionBank } from '@/features/question-bank/data/repository.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { TUTORIAL_STEPS } from '../tutorial-model';
+import { GUIDE_ENTRIES } from '../guide-flows';
 jest.mock('react', () => ({ ...jest.requireActual('react'), lazy: () => jest.requireMock('@/features/question-bank/export/SentenceExportScreen').SentenceExportScreen }));
-const mockPush = jest.fn();
+const mockPush = jest.fn(), mockStart = jest.fn();
 let mockAccount = 'guide-a';
-const mockRead = jest.fn();
-const mockExport = jest.fn();
+const mockRead = jest.fn(), mockExport = jest.fn();
+jest.mock('../GuideBindings', () => ({ useGuide: () => ({ start: mockStart, pause: jest.fn() }) }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ loadQuestionBank: jest.fn() }));
 jest.mock('@/features/question-bank/export/SentenceExportScreen', () => ({ SentenceExportScreen: (props: unknown) => { mockExport(props); return null; } }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush, back: jest.fn(), canGoBack: () => true }), useFocusEffect: (fn: () => void) => jest.requireActual('react').useEffect(fn, [fn]) }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: mockAccount } }) }));
 jest.mock('../tutorial-progress', () => ({ readTutorialProgress: (...args: unknown[]) => mockRead(...args) }));
-jest.mock('../HelpFaqList', () => ({ HelpFaqList: () => null }));
-beforeEach(() => { mockPush.mockClear(); mockExport.mockClear(); mockAccount = 'guide-a'; mockRead.mockResolvedValue({ version: 1, step: 0, completed: [], skipped: [] }); });
-it('offers exactly the five discovery modules, the real tutorial route and existing export entry', async () => {
+beforeEach(() => { mockPush.mockClear(); mockStart.mockClear(); mockExport.mockClear(); mockAccount = 'guide-a'; mockRead.mockResolvedValue({ version: 1, step: 0, completed: [], skipped: [] }); });
+it('offers eight peer entries, no FAQ or marketing body, and reuses the real export component', async () => {
   const screen = await render(<UserGuideScreen />);
-  for (const title of ['单词学习', '随身听', 'OPI 热点', '资源分享', '模拟练习']) expect(screen.getByText(title)).toBeTruthy();
-  expect(screen.queryByText('意见反馈')).toBeNull();
-  await fireEvent.press(screen.getByText('开始新手教程'));
+  for (const { title } of GUIDE_ENTRIES) expect(screen.getByRole('button', { name: title })).toBeTruthy();
+  for (const removed of ['常见问题','意见反馈','发现更多学习方式','学习成果，还能这样用']) expect(screen.queryByText(removed)).toBeNull();
+  await fireEvent.press(screen.getByText('题库学习'));
   expect(mockPush).toHaveBeenCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
+  await fireEvent.press(screen.getByText('随身听')); expect(mockStart).toHaveBeenCalledWith('radio');
   jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'embedded' });
-  await fireEvent.press(screen.getByText('前往900句导出'));
+  await fireEvent.press(screen.getByText('900句导出'));
   await waitFor(() => expect(mockExport).toHaveBeenCalledWith(expect.objectContaining({ dataset: expect.objectContaining({ id: 'sentences900' }) })));
-  expect(loadQuestionBank).toHaveBeenCalledWith('sentences900');
 });
-it('offers continuation and restart without removing existing learning content', async () => {
+it('resumes on tap and allows restart by long press without changing learning data', async () => {
   mockRead.mockResolvedValue({ version: 1, step: 4, completed: [], skipped: [] });
   const screen = await render(<UserGuideScreen />);
-  await waitFor(() => expect(screen.getByText('继续教程')).toBeTruthy());
-  await fireEvent.press(screen.getByText('从头体验（保留学习数据）'));
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
+  await fireEvent.press(screen.getByText('题库学习'));
+  expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
+  await fireEvent(screen.getByText('题库学习'), 'longPress');
+  expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
 });
-it('never shows an old account resume state while the next account is loading', async () => {
+it('does not reuse a completed tutorial state for a different account', async () => {
   mockRead.mockResolvedValueOnce({ version: 1, step: TUTORIAL_STEPS.length, completed: [], skipped: [] });
-  const screen = await render(<UserGuideScreen />);
-  await waitFor(() => expect(screen.getByText('重新体验')).toBeTruthy());
-  mockAccount = 'guide-b'; mockRead.mockReturnValue(new Promise(() => {}));
-  await screen.rerender(<UserGuideScreen />);
-  expect(screen.queryByText('重新体验')).toBeNull();
-  expect(screen.getByText('开始新手教程')).toBeTruthy();
+  const screen = await render(<UserGuideScreen />); await act(async () => {});
+  await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
+  mockAccount = 'guide-b'; mockRead.mockReturnValue(new Promise(() => {})); await screen.rerender(<UserGuideScreen />);
+  await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
 });
-
 it('ignores an export catalog loaded for the previous account', async () => {
   let resolve!: (value: Awaited<ReturnType<typeof loadQuestionBank>>) => void;
   jest.mocked(loadQuestionBank).mockReturnValueOnce(new Promise(done => { resolve = done; }));
-  const screen = await render(<UserGuideScreen />);
-  await fireEvent.press(screen.getByText('前往900句导出'));
-  mockAccount = 'guide-b';
-  await screen.rerender(<UserGuideScreen />);
+  const screen = await render(<UserGuideScreen />); await fireEvent.press(screen.getByText('900句导出'));
+  mockAccount = 'guide-b'; await screen.rerender(<UserGuideScreen />);
   await act(async () => { resolve({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'remote' }); });
-  expect(mockExport).not.toHaveBeenCalled();
-  expect(screen.getByText('使用指南')).toBeTruthy();
+  expect(mockExport).not.toHaveBeenCalled(); expect(screen.getByText('使用指南')).toBeTruthy();
 });

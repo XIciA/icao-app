@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { Check, Highlighter, Pencil, Search, Tags, Trash2, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
@@ -119,7 +120,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('highlight'); toggleHighlightMode(); }}
           style={[styles.tool, highlightMode ? styles.toolActive : null]}
         >
-          <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
+          <GuideAnchor id="sentence-highlight-tool" /><Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">高亮</AppText>
         </Pressable>
       ) : null}
@@ -130,7 +131,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('tag'); toggleTags(); }}
           style={[styles.tool, tagMode ? styles.toolActive : null]}
         >
-          <Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
+          <GuideAnchor id="sentence-tag-tool" /><Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={tagMode ? colors.primary : colors.mutedForeground} variant="caption">标签</AppText>
         </Pressable>
       ) : null}
@@ -256,7 +257,7 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
   managing?: boolean;
 }) {
   return (
-    <View style={styles.optionsRow}>
+    <View style={styles.optionsRow}>{!singleSelection ? <GuideAnchor id="sentence-tag-tool" /> : null}
       <ScrollView style={styles.optionsScroll} contentContainerStyle={styles.options} horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} testID="annotation-options-scroll">
         {definitions.map((definition) => {
           const selected = selectedIds.includes(definition.id);

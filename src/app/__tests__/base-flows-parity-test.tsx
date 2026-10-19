@@ -385,7 +385,8 @@ describe('base flow parity screens', () => {
     const screen = await render(withSafeArea(<InfoScreen />));
     expect(screen.queryByText('信息与帮助')).toBeNull();
     expect(screen.getByText('使用指南')).toBeTruthy();
-    expect(screen.getByText('开始新手教程')).toBeTruthy();
+    expect(screen.getByRole('button', { name: '题库学习' })).toBeTruthy();
+    expect(screen.queryByText('常见问题')).toBeNull();
     expect(screen.queryByText('帮助中心')).toBeNull();
     expect(screen.queryByText('法律条款')).toBeNull();
   });

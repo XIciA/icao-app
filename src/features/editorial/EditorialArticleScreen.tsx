@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import type { EditorialBlock } from '@icao/contracts';
 import { Image } from 'expo-image';
 import { ExternalLink, FileQuestion, WifiOff } from '@/components/ui/icons';
@@ -26,7 +27,7 @@ export function EditorialArticleScreen({ slug }: { slug: string }) {
         </View>
       ) : null}
       {article.coverUrl ? <Image accessibilityLabel={article.cover.alt} contentFit="cover" source={{ uri: article.coverUrl }} style={styles.hero} /> : null}
-      <View style={styles.article}>
+      <View style={styles.article}><GuideAnchor id="resource-article" />
         <Tag>{article.badge}</Tag>
         <AppText style={styles.title} variant="pageTitle">{article.title}</AppText>
         <AppText style={styles.summary}>{article.summary}</AppText>
