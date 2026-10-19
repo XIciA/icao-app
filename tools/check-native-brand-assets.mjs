@@ -177,10 +177,10 @@ function validateClearEdges(png, minimum, label) {
   return fractions;
 }
 
-function validateOpaque(png, label) {
+function validateOpaque(png, label, minimumAlpha = 255) {
   if (!png.hasAlpha) return;
   for (let offset = png.channels - 1; offset < png.pixels.length; offset += png.channels) {
-    if (png.pixels[offset] !== 255) fail(`${label} unexpectedly contains transparent pixels.`);
+    if (png.pixels[offset] < minimumAlpha) fail(`${label} unexpectedly contains transparent pixels.`);
   }
 }
 
@@ -596,7 +596,9 @@ function validateGeneratedAndroid(prebuildRoot) {
   if (splashFiles.length !== 5) fail(`Expected five Android density splash images; found ${splashFiles.length}.`);
   const splashImages = splashFiles.map((file) => parsePng(readFileSync(file), repositoryPath(file)));
   for (const [index, splashImage] of splashImages.entries()) {
-    validateOpaque(splashImage, repositoryPath(splashFiles[index]));
+    // Expo background compositing can truncate anti-aliased alpha to 254.
+    // Keep icons/master strictly opaque; reject any larger loss in Android splash products.
+    validateOpaque(splashImage, repositoryPath(splashFiles[index]), 254);
     validateClearEdges(splashImage, 0.18, repositoryPath(splashFiles[index]));
   }
   const splashSizes = splashImages
