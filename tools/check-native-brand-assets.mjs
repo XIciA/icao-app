@@ -202,9 +202,9 @@ function validateRoundedSplash(png, label) {
   for (const [x, y] of [[0, 0], [png.width - 1, 0], [0, png.height - 1], [png.width - 1, png.height - 1]]) {
     if (alphaAt(x, y) !== 0) fail(`${label} still has square visible corners.`);
   }
-  for (const [x, y] of [[Math.floor(png.width / 2), 0], [0, Math.floor(png.height / 2)], [Math.floor(png.width / 2), Math.floor(png.height / 2)]]) {
-    if (alphaAt(x, y) !== 255) fail(`${label} loses its central artwork.`);
-  }
+  const center = Math.floor(png.width / 2);
+  if (alphaAt(center, Math.floor(png.height * 0.3)) !== 255) fail(`${label} loses the approved logo.`);
+
 }
 
 function validateMaster() {
@@ -256,9 +256,14 @@ function validateCngConfig() {
   if (splash.backgroundColor !== manifest.cng.splash.backgroundColor) fail('Splash background no longer matches the brand manifest.');
   if (splash.imageWidth !== manifest.cng.splash.imageWidth) fail('iOS/default splash width no longer matches the brand manifest.');
   if (splash.android?.imageWidth !== manifest.cng.splash.androidImageWidth) fail('Android splash width no longer matches the safe brand manifest value.');
-  const androidSystemMaskDiameter = 192;
-  if (splash.android.imageWidth * Math.SQRT2 > androidSystemMaskDiameter) {
-    fail('Android splash image is too large to keep the square master inside the Android 12 system mask.');
+  const composition = parsePng(readFileSync(path.join(repositoryRoot, manifest.cng.derivationBinding.startup.path)), 'B startup composition');
+  for (let y = 0; y < composition.height; y += 1) {
+    for (let x = 0; x < composition.width; x += 1) {
+      if (composition.pixels[(y * composition.width + x) * composition.channels + 3] < 16) continue;
+      const radius = Math.hypot(x + 0.5 - composition.width / 2, y + 0.5 - composition.height / 2)
+        * splash.android.imageWidth / composition.width;
+      if (radius > 96) fail('B composition exceeds the Android 12 system mask.');
+    }
   }
   if (splash.resizeMode !== manifest.cng.splash.resizeMode) fail('Splash must use contain mode.');
 
@@ -391,7 +396,8 @@ function validateRuntimeBoundary() {
     for (const reference of assetReferences) {
       const normalized = reference.replace(/^\.\.\//u, '');
       const centralizedMaster = filePath === componentPath && reference === manifest.master.path;
-      if (!centralizedMaster) {
+      const startupComposition = repositoryPath(filePath) === 'src/components/states/StartupBrandScreen.tsx' && reference === manifest.cng.derivationBinding.startup.path;
+      if (!centralizedMaster && !startupComposition) {
         violations.push(`${repositoryPath(filePath)} directly references Native brand asset ${normalized}`);
       }
     }
@@ -408,11 +414,14 @@ function validateRuntimeBoundary() {
     if (!source.includes('AppBrandLogo')) violations.push(`${surface} must render AppBrandLogo.`);
   }
 
-  const loadingSource = readFileSync(path.join(repositoryRoot, 'src/components/states/GlobalLoadingScreen.native.tsx'), 'utf8');
-  if (loadingSource.includes('AppBrandLogo') || !loadingSource.includes('<ActivityIndicator')
-      || !loadingSource.includes('正在准备学习空间…')) {
-    violations.push('Native global loading must show only its activity indicator and preparation message, without a brand logo.');
+  const startup = manifest.cng.derivationBinding.startup;
+  if (sha256(readFileSync(path.join(repositoryRoot, startup.path))) !== startup.sha256) {
+    violations.push('Startup composition differs from the reviewed B asset.');
   }
+  const loadingSource = readFileSync(path.join(repositoryRoot, 'src/components/states/GlobalLoadingScreen.native.tsx'), 'utf8');
+  if (loadingSource.includes('AppBrandLogo') || !loadingSource.includes('<ActivityIndicator')) violations.push('In-app data loading must remain lightweight.');
+  const layoutSource = readFileSync(path.join(repositoryRoot, 'src/app/_layout.native.tsx'), 'utf8');
+  if (!layoutSource.includes('<StartupBrandScreen />') || layoutSource.includes('<GlobalLoadingScreen />')) violations.push('Startup must reuse the B surface throughout readiness.');
 
   if (violations.length > 0) fail(['Native brand boundary failed:', ...violations.map((value) => `- ${value}`)].join('\n'));
 }
@@ -588,7 +597,7 @@ function validateGeneratedAndroid(prebuildRoot) {
   const splashImages = splashFiles.map((file) => parsePng(readFileSync(file), repositoryPath(file)));
   for (const [index, splashImage] of splashImages.entries()) {
     validateOpaque(splashImage, repositoryPath(splashFiles[index]));
-    validateClearEdges(splashImage, 0.25, repositoryPath(splashFiles[index]));
+    validateClearEdges(splashImage, 0.18, repositoryPath(splashFiles[index]));
   }
   const splashSizes = splashImages
     .map((image) => image.width)

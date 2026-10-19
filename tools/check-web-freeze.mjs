@@ -350,6 +350,13 @@ const exactProtectedPaths = [
 const protectedTrees = ['api', 'public'];
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
 
+// User-approved B startup across Native and EdgeOne; legacy renderer and injector stay unchanged.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "4e1931371a2b7e7e5d0b7000882f248cd1f4e08543a4c58b2e1cccbd574fb366"])]);
+reviewedFormalWebHashes.set("package.json", [...new Set([...(reviewedFormalWebHashes.get("package.json") ?? [null]), "0a9d8424f12dd09705fa8bc5fce2075c3463bc3f9afca1bd58e9a1b29d7f07f2"])]);
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "b43bee04dacbf5d9aeca6b7a1f75daba70c4daaf64ca094eccd73cbd7c53a96b"])]);
+reviewedFormalWebHashes.set("assets/images/startup-brand.png", [...new Set([...(reviewedFormalWebHashes.get("assets/images/startup-brand.png") ?? [null]), "e165261b71814f711a8610c733d5fc2ed36e590bdca6b9a148d06d0c33900f22"])]);
+reviewedFormalWebHashes.set("src/components/states/StartupBrandScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/states/StartupBrandScreen.tsx") ?? [null]), "bd8b43fa36d9841574ecf2121d9d49dc19efd0110ce1620f4f40b4f59e15d275"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
