@@ -248,7 +248,7 @@ reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197
 reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "19eed3ec1891088e0b21e428162150a9429efd2ac757d822097ba9146b920360"]);
 reviewedFormalWebHashes.set("pnpm-lock.yaml", ["96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9", "78864173822a160e01e84db91ef6df5d61a1608c6830770d1a1cac35c187212b"]);
 reviewedFormalWebHashes.set("src/components/ui/icons.ts", ["f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0", "6b26cc5ac53e12cfdf083c8676e532ea28558cd19e8b8a8b6e321989ab28a805"]);
-reviewedFormalWebHashes.set("src/features/content/AppDownloadScreen.tsx", ["87b29194e178462bdc81f85c264fa3e12be9027846c6c1264441eeabf9fa6947", "a91390f8c6c2aee2a56c019f9d1880d34332fb7ccbe2bb988b2ad7e34aeb7d84"]);
+reviewedFormalWebHashes.set("src/features/content/AppDownloadScreen.tsx", ["f2c7c33d4d518e2861d358e3b5416ee66976c6a773ded7044fda7ca0d7a672d0", "87b29194e178462bdc81f85c264fa3e12be9027846c6c1264441eeabf9fa6947", "a91390f8c6c2aee2a56c019f9d1880d34332fb7ccbe2bb988b2ad7e34aeb7d84"]);
 // Guide overlay exact reviewed bytes: formal provider is mounted only in the Native/EdgeOne layout.
 // Shared controls render their original host tree without that provider; no legacy layout, content or runtime config changes.
 reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? ["cdae79062c444e931f100a60d0881217ebd826a1dda1280e14a43ff113519d0c"]), "1aa3d48a88d0284e3d62cb3a5c8819be3b8787578a1661132997337f2708bac7"])]);
