@@ -1,6 +1,6 @@
 import { BadRequestException, ConflictException } from '@nestjs/common';
 import { createHash } from 'node:crypto';
-import { canonicalAppContentJson, type AppContentSnapshot, type AppContentHotspotBrief } from '@icao/contracts/app-content';
+import { canonicalAppContentJson, normalizeDailyHotspots, hotspotSources, type AppContentSnapshot, type AppContentHotspotBrief } from '@icao/contracts/app-content';
 import type { ContentDraft } from '@icao/contracts/content-workflow';
 import { cardsOf, type Bank } from './content-workflow-validation';
 
@@ -8,20 +8,24 @@ const hash = (value: unknown) => createHash('sha256').update(canonicalAppContent
 
 export function replaceHistoricalHotspots(app: AppContentSnapshot, update: NonNullable<ContentDraft['hotspotUpdates']>): AppContentHotspotBrief[] {
   if (hash(app) !== update.baseChecksum) throw new ConflictException('hotspot_base_changed_reprocess_order');
+  const originals=app.hotspots.briefs.flatMap(brief=>hotspotSources(brief).map(source=>({id:source.id,date:brief.date,title:source.title,centers:source.centers,topics:source.topics})));
   const replacements = new Map(update.briefs.map(brief => [brief.id, brief]));
   if (replacements.size !== update.briefs.length) throw new BadRequestException('duplicate_historical_hotspot');
   for (const brief of update.briefs) {
-    const previous = app.hotspots.briefs.find(item => item.id === brief.id);
-    if (!previous || previous.date !== brief.date || previous.title !== brief.title || hash(previous.centers) !== hash(brief.centers)) {
+    const previous = originals.find(item => item.id === brief.id);
+    if (!previous || previous.date !== brief.date || hash(previous.centers) !== hash(brief.centers)) {
       throw new BadRequestException('historical_hotspot_identity_must_be_preserved');
     }
   }
-  return app.hotspots.briefs.map(brief => replacements.get(brief.id) ?? brief);
+  const updated=originals.map(brief => replacements.get(brief.id) ?? brief);
+  if(!app.hotspots.briefs.some(b=>b.sources))return updated;
+  const sources=new Map(app.hotspots.briefs.flatMap(hotspotSources).map(s=>[s.id,s]));
+  return normalizeDailyHotspots(updated.map(brief=>({...brief,sources:[{...sources.get(brief.id)!,centers:brief.centers,topics:brief.topics}]})));
 }
 
 export function validateHotspotReferences(briefs: AppContentHotspotBrief[], bank: Bank) {
   const cards = new Map(cardsOf(bank).map(entry => [entry.card.id, entry]));
-  for (const brief of briefs) {
+  for (const brief of briefs.flatMap(brief=>[brief,...hotspotSources(brief)])) {
     const ids = new Set<string>();
     for (const group of brief.topics) for (const id of group.cardIds) {
       const entry = cards.get(id);

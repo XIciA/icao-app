@@ -70,10 +70,11 @@ const block = z.discriminatedUnion('type',[
   z.object({type:z.literal('list'),ordered:z.boolean(),items:z.array(text).min(1)}),
   z.object({type:z.literal('callout'),tone:z.enum(['note','warning']),title:text.optional(),text}),
 ]);
-const hotspotSchema = z.object({id:text,date:z.iso.date(),title:text,centers:z.array(text).min(1),topics:z.array(z.object({topicId:text,topicTitle:text,cardIds:z.array(text).min(1)})).min(1)});
+const hotspotSchema = z.object({id:text,date:z.iso.date(),title:text,centers:z.array(text).min(1),topics:z.array(z.object({topicId:text,topicTitle:text,cardIds:z.array(text).min(1)})).min(1)}).strict();
 export const draftSchema = z.object({
   banks:z.array(z.object({bankId:z.enum(['opi','listening','sentences900','radiotelephony','storytelling']),baseChecksum:z.string().regex(/^[a-f0-9]{64}$/),payload:z.record(z.string(),z.unknown())})).max(5),
   hotspot:hotspotSchema.extend({centers:z.array(text).length(1)}).optional(),
+  normalizeHotspots:z.object({baseChecksum:z.string().regex(/^[a-f0-9]{64}$/)}).optional(),
   hotspotUpdates:z.object({baseChecksum:z.string().regex(/^[a-f0-9]{64}$/),briefs:z.array(hotspotSchema).min(1).max(500)}).optional(),
   article:z.object({id:text,slug:text,version:z.number().int().positive(),channel:z.literal('resource'),category:text,badge:text,title:text,summary:text,tags:z.array(text),publishedAt:z.string().nullable(),
     cover:z.object({publicPath:text,alt:text,width:z.literal(800),height:z.literal(500),mimeType:z.enum(['image/jpeg','image/png']),checksum:z.string().regex(/^[a-f0-9]{64}$/),sizeBytes:z.number().int().positive()}),
@@ -85,6 +86,7 @@ export function parseDraft(value: unknown): ContentDraft {
   const parsed=draftSchema.safeParse(value);
   if (!parsed.success) throw new BadRequestException('invalid_content_draft');
   if(new Set(parsed.data.banks.map(b=>b.bankId)).size!==parsed.data.banks.length) throw new BadRequestException('duplicate_bank');
+  if(parsed.data.normalizeHotspots && (parsed.data.hotspot || parsed.data.hotspotUpdates || parsed.data.article || parsed.data.banks.length)) throw new BadRequestException('hotspot_normalization_exclusive');
   if(parsed.data.hotspotUpdates && (parsed.data.hotspot || parsed.data.article)) throw new BadRequestException('historical_hotspots_exclusive');
   return parsed.data;
 }

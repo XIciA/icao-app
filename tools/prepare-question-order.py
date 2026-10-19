@@ -74,7 +74,7 @@ def prepare(order,sources,plan,out):
  if plan.get('hotspotUpdates'):
   if order['kind']!='questions':raise ValueError('historical_hotspot_order_mismatch')
   draft['hotspotUpdates']=copy.deepcopy(plan['hotspotUpdates'])
- if hotspot_id:draft['hotspot']={'id':hotspot_id,'date':order['examDate'],'centers':[order['center']],'title':order['examDate']+' '+order['center']+' OPI','topics':list(groups.values())}
+ if hotspot_id:draft['hotspot']={'id':hotspot_id,'date':order['examDate'],'centers':[order['center']],'title':order['examDate'][:4]+'年'+str(int(order['examDate'][5:7]))+'月'+str(int(order['examDate'][8:10]))+'日 OPI 热点','topics':list(groups.values())}
  write(out/'draft.json',{'id':order['id'],'revision':order['revision'],'draft':draft});write(out/'resources.json',{'schemaVersion':1,'files':resources})
  print(f'question_order_prepared banks={len(changed)} resources={len(resources)} decisions={len(decisions)}')
 if __name__=='__main__':

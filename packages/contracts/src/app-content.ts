@@ -11,12 +11,21 @@ export type AppContentLegalDocument = {
   requiresReconsent: boolean;
   changeSummary?: string;
 };
+export type AppContentHotspotSource = {
+  id: string;
+  title: string;
+  centers: string[];
+  topics: { topicId: string; topicTitle: string; cardIds: string[] }[];
+  kind: 'feedback' | 'general';
+  orderId?: string;
+};
 export type AppContentHotspotBrief = {
   id: string;
   date: string;
   title: string;
   centers: string[];
   topics: { topicId: string; topicTitle: string; cardIds: string[] }[];
+  sources?: AppContentHotspotSource[];
 };
 export type AppContentSnapshot = {
   schemaVersion: 1;
@@ -49,7 +58,7 @@ export function isAppContentSnapshot(value: unknown): value is AppContentSnapsho
     if (!record(value.hotspots) || !exactKeys(value.hotspots, ['generatedAt', 'briefs']) || !text(value.hotspots.generatedAt, 40)
       || !items(value.hotspots.briefs, 1000)) return false;
     const briefs = value.hotspots.briefs;
-    if (!briefs.every((brief) => record(brief) && exactKeys(brief, ['id', 'date', 'title', 'centers', 'topics'])
+    if (!briefs.every((brief) => record(brief) && exactKeys(brief, ['id', 'date', 'title', 'centers', 'topics', 'sources'])
       && text(brief.id, 160) && date(brief.date) && text(brief.title, 200)
       && items(brief.centers, 30) && brief.centers.length > 0 && brief.centers.every((item) => text(item, 100))
       && items(brief.topics, 100) && brief.topics.length > 0
@@ -58,6 +67,29 @@ export function isAppContentSnapshot(value: unknown): value is AppContentSnapsho
         && items(topic.cardIds, 500) && topic.cardIds.length > 0 && topic.cardIds.every((id) => text(id, 160))
         && new Set(topic.cardIds).size === topic.cardIds.length))) return false;
     if (!uniqueIds(briefs as Record<string, unknown>[])) return false;
+    const sourceIds = new Set<string>();
+    for (const raw of briefs) {
+      const brief = raw as unknown as AppContentHotspotBrief;
+      if (brief.sources === undefined) continue;
+      if (!items(brief.sources, 500) || !brief.sources.length) return false;
+      const expected = new Set(brief.topics.flatMap(t => t.cardIds.map(id => `${t.topicId}/${id}`)));
+      const actual = new Set<string>();
+      for (const source of brief.sources) {
+        if (!record(source) || !exactKeys(source, ['id','title','centers','topics','kind','orderId'])
+          || !text(source.id,160) || sourceIds.has(source.id) || !text(source.title,200)
+          || !['feedback','general'].includes(source.kind) || (source.orderId !== undefined && !text(source.orderId,160))) return false;
+        // Reuse the strict reference-only validator; source data can never contain question bodies.
+        const sourceBrief = {id:source.id,date:brief.date,title:source.title,centers:source.centers,topics:source.topics};
+        const nested = {...value,hotspots:{generatedAt:value.hotspots.generatedAt,briefs:[sourceBrief]}};
+        if (!isAppContentSnapshot(nested)) return false;
+        sourceIds.add(source.id);
+        for (const topic of source.topics) for (const id of topic.cardIds) {
+          if (!brief.topics.some(t=>t.topicId===topic.topicId&&t.topicTitle===topic.topicTitle)) return false;
+          actual.add(`${topic.topicId}/${id}`);
+        }
+      }
+      if (expected.size !== actual.size || [...actual].some(id=>!expected.has(id))) return false;
+    }
     if (!items(value.help, 100) || !value.help.every((item) => record(item) && exactKeys(item, ['id', 'question', 'answer'])
       && text(item.id, 100) && text(item.question, 300) && text(item.answer, 5000)) || !uniqueIds(value.help as Record<string, unknown>[])) return false;
     if (!record(value.legal) || !exactKeys(value.legal, ['agreement', 'privacy', 'thirdPartyServices'])) return false;
@@ -108,4 +140,87 @@ export function legalConsentMatches(receipt: LegalConsentReceipt | null | undefi
   return Boolean(receipt && receipt.accountId === accountId && Number.isFinite(Date.parse(receipt.acceptedAt))
     && receipt.agreementConsentVersion === documents.agreement.consentVersion
     && receipt.privacyConsentVersion === documents.privacy.consentVersion);
+}
+
+/** One day is one directory entry. Source IDs remain usable as aliases and prompt keys. */
+const nonCenterLabels = new Set(['多考点反馈','冬季运行专题','综合反馈']);
+export function dailyHotspotTitle(date: string) {
+  const [year,month,day]=date.split('-');
+  return `${year}年${Number(month)}月${Number(day)}日 OPI 热点`;
+}
+export function hotspotCenters(brief: Pick<AppContentHotspotBrief,'centers'>) {
+  return [...new Set(brief.centers.map(center=>center.trim()).filter(center=>center&&!nonCenterLabels.has(center)))];
+}
+export function hotspotSources(brief: AppContentHotspotBrief): AppContentHotspotSource[] {
+  return brief.sources ?? [{id:brief.id,title:brief.title,centers:[...brief.centers],topics:brief.topics.map(t=>({...t,cardIds:[...t.cardIds]})),kind:brief.centers.length===1&&!nonCenterLabels.has(brief.centers[0]!)?'feedback':'general'}];
+}
+function unionHotspotTopics(sources: AppContentHotspotSource[]) {
+  const groups = new Map<string,AppContentHotspotBrief['topics'][number]>();
+  const owners = new Map<string,string>();
+  for(const source of sources)for(const group of source.topics){
+    const previous=groups.get(group.topicId);
+    if(previous&&previous.topicTitle!==group.topicTitle)throw new Error('hotspot_topic_title_conflict');
+    const next=previous??{...group,cardIds:[]};
+    for(const id of group.cardIds){
+      if(owners.has(id)&&owners.get(id)!==group.topicId)throw new Error('hotspot_card_topic_conflict');
+      owners.set(id,group.topicId);if(!next.cardIds.includes(id))next.cardIds.push(id);
+    }
+    groups.set(group.topicId,next);
+  }
+  return [...groups.values()];
+}
+export function normalizeDailyHotspots(briefs: AppContentHotspotBrief[]): AppContentHotspotBrief[] {
+  const days=new Map<string,AppContentHotspotBrief>();
+  const usedSources=new Map<string,string>();
+  for(const brief of briefs){
+    const previous=days.get(brief.date);
+    const sources=previous?.sources?[...previous.sources]:[];
+    for(const raw of hotspotSources(brief)){
+      const source={...raw,centers:[...raw.centers],topics:raw.topics.map(t=>({...t,cardIds:[...t.cardIds]}))};
+      if(usedSources.has(source.id)&&usedSources.get(source.id)!==brief.date)throw new Error('hotspot_source_date_conflict');
+      usedSources.set(source.id,brief.date);
+      const existing=sources.find(s=>s.id===source.id);
+      if(existing&&canonicalAppContentJson(existing)!==canonicalAppContentJson(source))throw new Error('hotspot_source_conflict');
+      if(!existing)sources.push(source);
+    }
+    const centers=[...new Set(sources.flatMap(source=>hotspotCenters(source)))];
+    days.set(brief.date,{id:previous?.id??brief.id,date:brief.date,title:dailyHotspotTitle(brief.date),centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources});
+  }
+  return [...days.values()].sort((a,b)=>b.date.localeCompare(a.date));
+}
+export function mergeHotspotFeedback(briefs: AppContentHotspotBrief[], incoming: AppContentHotspotBrief, orderId?: string) {
+  const daily=normalizeDailyHotspots(briefs);
+  const day=daily.find(b=>b.date===incoming.date);
+  if(incoming.sources)throw new Error('feedback_cannot_replace_daily_sources');
+  const source=hotspotSources(incoming)[0]!;
+  if(orderId)source.orderId=orderId;
+  if(!day)return normalizeDailyHotspots([...daily,{...incoming,id:`hotspot-${incoming.date}`,sources:[source]}]);
+  const previous=day.sources!.find(s=>s.id===source.id);
+  const merged=previous?{...previous,...source,title:previous.title,centers:[...new Set([...previous.centers,...source.centers])],topics:unionHotspotTopics([previous,source])}:source;
+  const sources=previous?day.sources!.map(s=>s.id===source.id?merged:s):[...day.sources!,merged];
+  return normalizeDailyHotspots(daily.map(b=>b.id===day.id?{...b,topics:unionHotspotTopics(sources),sources}:b));
+}
+export function selectHotspotSource(brief: AppContentHotspotBrief, selection: string): AppContentHotspotBrief {
+  if(selection==='all')return brief;
+  const sources=hotspotSources(brief).filter(s=>selection==='general'?s.kind==='general':s.kind==='feedback'&&s.centers.includes(selection));
+  const centers=[...new Set(sources.flatMap(hotspotCenters))];
+  return {...brief,centers:centers.length?centers:['综合反馈'],topics:unionHotspotTopics(sources),sources};
+}
+export function hotspotReportedPrompts(brief: AppContentHotspotBrief, card: {id:string;reportedPrompts?:Record<string,string[]>}) {
+  const sources=hotspotSources(brief).filter(s=>s.topics.some(t=>t.cardIds.includes(card.id)));
+  return [...new Set(sources.flatMap(s=>card.reportedPrompts?.[s.id]??[]))];
+}
+export function hotspotQuestionOrigins(brief: AppContentHotspotBrief, cardId: string) {
+  return [...new Set(hotspotSources(brief).filter(s=>s.topics.some(t=>t.cardIds.includes(cardId))).flatMap(s=>s.kind==='general'?['本日综合反馈']:hotspotCenters(s)))];
+}
+/** v2 callers have strict keys and source-keyed reportedPrompts. Keep their links readable. */
+export function compatibleHotspotBriefs(briefs: AppContentHotspotBrief[]): AppContentHotspotBrief[] {
+  return briefs.flatMap(brief=>brief.sources?brief.sources.map(s=>({id:s.id,date:brief.date,title:dailyHotspotTitle(brief.date),centers:[...s.centers],topics:s.topics.map(t=>({...t,cardIds:[...t.cardIds]}))})):[brief]);
+}
+export function containsHotspotFeedback(briefs:AppContentHotspotBrief[], expected:AppContentHotspotBrief) {
+  const sources=briefs.flatMap(hotspotSources);
+  return hotspotSources(expected).every(wanted=>{
+    const actual=sources.find(s=>s.id===wanted.id);
+    return actual&&wanted.centers.every(c=>actual.centers.includes(c))&&wanted.topics.every(t=>t.cardIds.every(id=>actual.topics.some(a=>a.topicId===t.topicId&&a.topicTitle===t.topicTitle&&a.cardIds.includes(id))));
+  });
 }

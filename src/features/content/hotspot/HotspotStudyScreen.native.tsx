@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
+import { selectHotspotSource } from '@icao/contracts/app-content';
+import { buildHotspotStudyPackage } from './build-hotspot-study-package.native';
 import type { Href } from 'expo-router';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
@@ -18,7 +21,15 @@ export function HotspotStudyScreen({ briefId }: { briefId: string }) {
 
 function HotspotStudyContent({ briefId }: { briefId: string }) {
   const router = useRouter();
+  const {center}=useLocalSearchParams<{center?:string}>();
   const { retry, state } = useHotspotAccess(briefId, { freezeReadyForStudy: true });
+  const studyPackage=useMemo(()=>{
+    if(state.status!=='ready')return undefined;
+    if(!center||center==='all')return state.session;
+    const brief=selectHotspotSource(state.brief,center);
+    const dataset=state.session.items[0]?.dataset;
+    return dataset&&brief.topics.length?buildHotspotStudyPackage(brief,dataset):state.session;
+  },[state,center]);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
 
@@ -40,14 +51,14 @@ function HotspotStudyContent({ briefId }: { briefId: string }) {
 
   const returnHref: Href = {
     pathname: '/content/hotspot/[briefId]',
-    params: { briefId: state.brief.id },
+    params: { briefId: state.brief.id, ...(center?{center}:{}) },
   };
   return (
     <QuestionBankStudyScreen
       returnHref={returnHref}
       returnLabel="返回热点详情"
       sourceRoute={`/content/hotspot/${state.brief.id}/study`}
-      studyPackage={state.session}
+      studyPackage={studyPackage!}
     />
   );
 }

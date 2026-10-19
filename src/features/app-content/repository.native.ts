@@ -34,7 +34,7 @@ async function load(base: string): Promise<AppContentResult> {
   if (base) {
     try {
       // Public legal access deliberately omits the session token and cannot trigger a login loop.
-      const response = await withApiRequestTimeout((signal) => fetch(`${base}/v1/app-content?hotspotFormat=2`, {
+      const response = await withApiRequestTimeout((signal) => fetch(`${base}/v1/app-content?hotspotFormat=3`, {
         signal, headers: { accept: 'application/json', ...(cached ? { 'if-none-match': `"${cached.checksum}"` } : {}) },
       }), undefined, 8000);
       if (response.status === 304 && cached) return { data: cached, source: 'cache' };

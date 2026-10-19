@@ -241,7 +241,9 @@ reviewedFormalWebHashes.set("app.config.js", ["a17b33af850819c55e67534656a4e6f0e
 // Usage-guide release: exact 1.3.2 / 3574504 metadata only. Legacy display
 // still resolves the unchanged app-version.web.ts (1.0.0). All other app.json
 // bytes match the previously reviewed 1.3.1 / 3574503 configuration.
-reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "a110f1040ef4f9b8f2facc2d10b2c82f05f563d2ae0ce0b9bcdabadda3f83ced", "cdae79062c444e931f100a60d0881217ebd826a1dda1280e14a43ff113519d0c"]);
+// User-authorized daily-hotspot App release 1.3.3 / 3574505; only expo.version and
+// matching native build IDs differ from ef6d16cb. Legacy Web version source is unchanged.
+reviewedFormalWebHashes.set("app.json", ["255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3", "a110f1040ef4f9b8f2facc2d10b2c82f05f563d2ae0ce0b9bcdabadda3f83ced", "cdae79062c444e931f100a60d0881217ebd826a1dda1280e14a43ff113519d0c", "1aa3d48a88d0284e3d62cb3a5c8819be3b8787578a1661132997337f2708bac7"]);
 reviewedFormalWebHashes.set("package.json", ["cee4cb5ab75e040dd58134578fb1001197f46747acb815219022848810a37c5e", "188be10136c308d53b13be0351d92a5a6d7db3ec54e5d0e7937f78e54fb242bd"]);
 reviewedFormalWebHashes.set("packages/contracts/src/index.ts", ["8f5607cd2cda4757a61894797a6f36b8d3f40248ae57206268d3c95562e2add4", "19eed3ec1891088e0b21e428162150a9429efd2ac757d822097ba9146b920360"]);
 reviewedFormalWebHashes.set("pnpm-lock.yaml", ["96bfa611b82a49b435aed6f477a788cb2efb0b78c776507ef78c155d9750fab9", "78864173822a160e01e84db91ef6df5d61a1608c6830770d1a1cac35c187212b"]);

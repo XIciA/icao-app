@@ -21,6 +21,7 @@ jest.mock('lucide-react-native', () => {
 });
 
 jest.mock('expo-router', () => ({
+  useLocalSearchParams: () => ({}),
   useRouter: () => ({ back: mockBack, canGoBack: () => mockCanGoBack, replace: mockReplace, push: mockPush }),
 }));
 
@@ -74,7 +75,7 @@ describe('OPI hotspot restricted states', () => {
     const screen = await render(withSafeArea(<HotspotDetailScreen briefId={brief.id} />));
 
     expect(screen.getAllByText(brief.title)).toHaveLength(2);
-    expect(screen.getByText(new RegExp(`本期包含 ${brief.topics.length} 个考试话题`))).toBeTruthy();
+    expect(screen.getByText(/本日汇总/)).toBeTruthy();
     expect(screen.getByText('完整练习需会员')).toBeTruthy();
     expect(screen.queryByText('membership_required')).toBeNull();
     expect(screen.queryByText('涵盖话题与问题')).toBeNull();
