@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react-native';
+import { GuideScrollView } from '../GuideScrollView';
+import { fireEvent, render } from '@testing-library/react-native';
 import { guidePlacement } from '../guide-placement';
 import { GuideAnchor, GuideModalScope } from '../GuideBindings';
 import { GUIDE_ENTRIES, GUIDE_FLOWS } from '../guide-flows';
@@ -34,4 +35,14 @@ it('leaves a gap around the real bottom action across phone sizes and safe areas
     expect(p.compact).toBe(false);expect(p.y+bubbleHeight).toBeLessThanOrEqual(target.y-16);
     expect(p.y).toBeGreaterThanOrEqual(75);
   }
+});
+
+it('preserves original scrolling props and event callbacks outside a tour', async () => {
+  const onScroll=jest.fn(); const style={padding:12};
+  const screen=await render(<GuideScrollView testID="normal-scroll" onScroll={onScroll} scrollEventThrottle={7} contentContainerStyle={style}><AppText>原有内容</AppText></GuideScrollView>);
+  const host=screen.getByTestId('normal-scroll');
+  expect(host.props.scrollEventThrottle).toBe(7);
+  const event={nativeEvent:{contentOffset:{x:0,y:80}}};await fireEvent.scroll(host,event);
+  expect(onScroll).toHaveBeenCalledTimes(1);expect(onScroll).toHaveBeenCalledWith(expect.objectContaining({nativeEvent:expect.objectContaining({contentOffset:{x:0,y:80}})}));
+  expect(screen.getByText('原有内容')).toBeTruthy();
 });
