@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
-import { canonicalAppContentJson, isAppContentSnapshot, type AppContentRelease } from '@icao/contracts/app-content';
+import { canonicalAppContentJson, isAppContentSnapshot, compatibleHotspotBriefs, dailyHotspotTitle, type AppContentRelease } from '@icao/contracts/app-content';
 import { desc, eq } from 'drizzle-orm';
 import { createHash } from 'node:crypto';
 
@@ -30,14 +30,14 @@ export function appContentChecksum(value: unknown) {
 /** Older clients require one brief per date; preserve their readable directory. */
 export function legacyHotspotRelease(release: AppContentRelease): AppContentRelease {
   const byDate = new Map<string, AppContentRelease['payload']['hotspots']['briefs'][number]>();
-  for (const source of release.payload.hotspots.briefs) {
+  for (const source of compatibleHotspotBriefs(release.payload.hotspots.briefs)) {
     const prior = byDate.get(source.date);
     if (!prior) {
       byDate.set(source.date, { ...source, centers: [...source.centers], topics: source.topics.map(topic => ({ ...topic, cardIds: [...topic.cardIds] })) });
       continue;
     }
     prior.centers = [...new Set([...prior.centers, ...source.centers])];
-    prior.title = `${source.date} 考试资讯`;
+    prior.title = dailyHotspotTitle(source.date);
     for (const topic of source.topics) {
       const existing = prior.topics.find(candidate => candidate.topicId === topic.topicId);
       if (existing) existing.cardIds = [...new Set([...existing.cardIds, ...topic.cardIds])];
@@ -46,4 +46,9 @@ export function legacyHotspotRelease(release: AppContentRelease): AppContentRele
   }
   const payload = { ...release.payload, hotspots: { ...release.payload.hotspots, briefs: [...byDate.values()] } };
   return { ...release, payload, checksum: appContentChecksum(payload) };
+}
+
+export function compatibleHotspotRelease(release: AppContentRelease): AppContentRelease {
+  const payload={...release.payload,hotspots:{...release.payload.hotspots,briefs:compatibleHotspotBriefs(release.payload.hotspots.briefs)}};
+  return {...release,payload,checksum:appContentChecksum(payload)};
 }

@@ -4,7 +4,7 @@
 
 ## 候选字段与版本要求
 
-历史批次使用 questions 工单，draft 与 plan 添加 `hotspotUpdates:{baseChecksum,briefs}`。baseChecksum 是读取时有效 App 内容快照的 checksum；briefs 只包含要替换的已有热点，保留 ID、日期、标题、考点。后台校验所有最终热点引用与题库目录、题目状态一致，并与 banks 在一个事务中发布。不得用新 OPI 工单伪造历史日期/单考点 ID。
+历史题目引用修订使用 questions 工单，draft 与 plan 添加 `hotspotUpdates:{baseChecksum,briefs}`。baseChecksum 是读取时有效 App 内容快照的 checksum；briefs 只包含要替换的已有热点，保留来源 ID、日期、考点；每日标题按最新规则统一。后台校验所有最终热点引用与题库目录、题目状态一致，并与 banks 在一个事务中发布。不得用新 OPI 工单伪造历史日期/单考点 ID。
 
 Ops 服务必须先运行包含本次兼容代码的 main 提交；不需要数据库迁移。客户端继续读取相同热点/题库合同。旧 Ops 不认识该字段，CLI prepare 会检测返回草稿字段是否被丢弃并报错，不能继续发布。代码进入 main 不会更新生产 Ops，也不会发布内容。
 
@@ -57,3 +57,12 @@ CLI 会核对审核文件与当前工单 ID、修订、草稿一致；版本或�
 候选在项目 `原始资源资料/资源分享与opi热点/未处理/OPI热点/2026-10-19_已发布热点全量试处理/发布候选/`，交接索引为 `.generated/content-processing-handoff.json`。候选包括原始线上快照、计划、结构化草稿、答案、两个不可变 MP3、变更说明与离线校验。大体积素材不作为代码提交。
 
 本次没有执行资源上传、工单创建、正式发布、生产部署、版本提升或迁移。音频解码校验不能代替试听；现有未改题的答案与音频复用，不声称所有历史材料均重新完成专业事实审查。
+
+
+## 每日汇总与后续增量
+
+当前标准已由内容处理规则的“每日热点结构与同日合并”覆盖旧场次分条方案。新 OPI 工单仍提供真实考试日期和单次反馈考点，发布服务自动合并该日并保留 source/orderId，不由处理者手拼每日全集。
+
+本轮历史归并通过 questions 草稿 `{banks:[],normalizeHotspots:{baseChecksum},decisions:[],notes}` 执行。它只规范化最新正式热点，不修改任何题库或音频；有并发版本变化则拒绝重做，不覆盖。
+
+历史来源修订时，hotspotUpdates 的 briefs 是各次来源引用，可用 compatibleHotspotBriefs 读取兼容引用结构；不能把每日全部问题误写成某一个考点的原始反馈。来源信息在新版 App 合同中随每日目录读取，老链接按来源 ID 解析到所属日期。

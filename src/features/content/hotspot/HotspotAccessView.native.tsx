@@ -1,3 +1,4 @@
+import { hotspotCenters, hotspotSources } from '@icao/contracts/app-content';
 import {
   AlertTriangle,
   Calendar,
@@ -24,15 +25,15 @@ export function HotspotBriefCard({ brief }: { brief: OpiHotspotBrief }) {
       <View style={styles.heroBadge}>
         <Calendar color={colors.primary} size={16} />
         <AppText color={colors.primary} style={styles.heroDateText} variant="caption">
-          {brief.date} 考点归档
+          每日考点反馈
         </AppText>
       </View>
       <AppText style={styles.heroTitle} variant="pageTitle">{brief.title}</AppText>
       <View style={styles.tagsRow}>
-        {brief.centers.map((center) => <Tag key={center}><MapPin size={11} /> {center}</Tag>)}
+        {hotspotCenters(brief).map((center) => <Tag key={center}><MapPin size={11} /> {center}</Tag>)}
       </View>
       <AppText>
-        本期包含 {brief.topics.length} 个考试话题，共 {totalQuestions} 道抽样练习题。
+        本日汇总 {hotspotSources(brief).length} 份反馈，共 {totalQuestions} 道题。
       </AppText>
     </Card>
   );

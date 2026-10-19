@@ -67,7 +67,7 @@ it('preserves historical identity and rejects stale snapshots, unknown IDs and d
  const update={baseChecksum:hash(app),briefs:[structuredClone(brief)]};
  expect(replaceHistoricalHotspots(app,update)).toEqual([brief]);
  expect(()=>replaceHistoricalHotspots(app,{...update,baseChecksum:'a'.repeat(64)})).toThrow('hotspot_base_changed');
- for(const patch of [{id:'new'},{date:'2026-02-14'},{centers:['A']},{title:'New title'}])expect(()=>replaceHistoricalHotspots(app,{...update,briefs:[{...brief,...patch}]})).toThrow('identity_must_be_preserved');
+ for(const patch of [{id:'new'},{date:'2026-02-14'},{centers:['A']}])expect(()=>replaceHistoricalHotspots(app,{...update,briefs:[{...brief,...patch}]})).toThrow('identity_must_be_preserved');
  expect(()=>replaceHistoricalHotspots(app,{...update,briefs:[brief,brief]})).toThrow('duplicate_historical');
 });
 it('requires exact topic names and active cards in every historical reference',()=>{

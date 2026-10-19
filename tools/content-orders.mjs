@@ -40,7 +40,7 @@ if(command==='fetch'){
 }else if(command==='bind'){
   if(!file||!process.argv[4])throw new Error('usage: bind <draft.json> <order.json>');
   const input=JSON.parse(await fs.readFile(file,'utf8')),order=JSON.parse(await fs.readFile(process.argv[4],'utf8'));
-  if(order.kind!=='questions'||!input.draft?.hotspotUpdates||!order.id||!order.revision||order.status==='published')throw new Error('invalid_historical_order_binding');
+  if(order.kind!=='questions'||!(input.draft?.hotspotUpdates||input.draft?.normalizeHotspots)||!order.id||!order.revision||order.status==='published')throw new Error('invalid_historical_order_binding');
   await fs.writeFile(file+'.bound.json',JSON.stringify({...input,id:order.id,revision:order.revision},null,2)+'\n');
   console.log('historical_candidate_bound');
 }else if(command==='create'){
@@ -67,7 +67,7 @@ if(command==='fetch'){
 }else if(command==='publish'){
   if(!file)throw new Error('usage: publish <order-id>');const order=await request(`/v1/admin/content-orders/${encodeURIComponent(file)}`);
   if(order.kind!=='questions')throw new Error('OPI_and_articles_require_review_in_admin');
-  if(order.draft?.hotspotUpdates&&!process.argv[4])throw new Error('historical_publish_requires_reviewed_prepared_file');
+  if((order.draft?.hotspotUpdates||order.draft?.normalizeHotspots)&&!process.argv[4])throw new Error('historical_publish_requires_reviewed_prepared_file');
   if(process.argv[4]){
     const expected=JSON.parse(await fs.readFile(process.argv[4],'utf8'));
     if(expected.id!==order.id||expected.revision!==order.revision||!isDeepStrictEqual(expected.draft,order.draft))throw new Error('reviewed_order_changed_reload');
