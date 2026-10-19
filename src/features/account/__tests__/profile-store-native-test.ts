@@ -69,3 +69,17 @@ it('uses the four approved home bank orders independently of exam module order',
     ['radiotelephony', 'opi', 'storytelling'],
   ]);
 });
+
+it('retires an old exam-only selection on local reads, edits and sync while preserving all and selected', async () => {
+  mockStorage.set('icao.account.profile.v2.account-a', JSON.stringify({ ...DEFAULT_PROFILE, studyScope: 'crash' }));
+  setProfileAccount('account-a');
+  expect(await readProfile()).toMatchObject({ studyScope: 'selected' });
+  await replaceProfileFromSync({ ...DEFAULT_PROFILE, studyScope: 'crash' });
+  expect(await readProfile()).toMatchObject({ studyScope: 'selected' });
+  expect(JSON.parse(mockStorage.get('icao.account.profile.v2.account-a')!)).toMatchObject({ studyScope: 'selected' });
+  for (const studyScope of ['all','selected'] as const) {
+    await updateProfile({ studyScope });
+    expect(await readProfile()).toMatchObject({ studyScope });
+    expect(mockEnqueue).toHaveBeenLastCalledWith(expect.objectContaining({ studyScope }));
+  }
+});

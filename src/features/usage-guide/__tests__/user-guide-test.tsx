@@ -7,14 +7,15 @@ import { GUIDE_ENTRIES } from '../guide-flows';
 jest.mock('react', () => ({ ...jest.requireActual('react'), lazy: () => jest.requireMock('@/features/question-bank/export/SentenceExportScreen').SentenceExportScreen }));
 const mockPush = jest.fn(), mockStart = jest.fn();
 let mockAccount = 'guide-a';
+let mockGuideCurrent: string | undefined;
 const mockRead = jest.fn(), mockExport = jest.fn();
-jest.mock('../GuideBindings', () => ({ useGuide: () => ({ start: mockStart, pause: jest.fn() }) }));
+jest.mock('../GuideBindings', () => ({ useGuide: () => ({ current: mockGuideCurrent, start: mockStart, pause: jest.fn() }) }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ loadQuestionBank: jest.fn() }));
 jest.mock('@/features/question-bank/export/SentenceExportScreen', () => ({ SentenceExportScreen: (props: unknown) => { mockExport(props); return null; } }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush, back: jest.fn(), canGoBack: () => true }), useFocusEffect: (fn: () => void) => jest.requireActual('react').useEffect(fn, [fn]) }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: mockAccount } }) }));
 jest.mock('../tutorial-progress', () => ({ readTutorialProgress: (...args: unknown[]) => mockRead(...args) }));
-beforeEach(() => { mockPush.mockClear(); mockStart.mockClear(); mockExport.mockClear(); mockAccount = 'guide-a'; mockRead.mockResolvedValue({ version: 1, step: 0, completed: [], skipped: [] }); });
+beforeEach(() => { mockPush.mockClear(); mockStart.mockClear(); mockExport.mockClear(); mockAccount = 'guide-a'; mockGuideCurrent = undefined; mockRead.mockResolvedValue({ version: 1, step: 0, completed: [], skipped: [] }); });
 it('offers eight peer entries, no FAQ or marketing body, and reuses the real export component', async () => {
   const screen = await render(<UserGuideScreen />);
   for (const { title } of GUIDE_ENTRIES) expect(screen.getByRole('button', { name: title })).toBeTruthy();
@@ -48,4 +49,15 @@ it('ignores an export catalog loaded for the previous account', async () => {
   mockAccount = 'guide-b'; await screen.rerender(<UserGuideScreen />);
   await act(async () => { resolve({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'remote' }); });
   expect(mockExport).not.toHaveBeenCalled(); expect(screen.getByText('使用指南')).toBeTruthy();
+});
+
+it('returns from the embedded export screen when its guide is exited', async () => {
+  mockGuideCurrent = 'export';
+  jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'embedded' });
+  const screen = await render(<UserGuideScreen />);
+  await fireEvent.press(screen.getByText('900句导出'));
+  await waitFor(() => expect(mockExport).toHaveBeenCalled());
+  mockGuideCurrent = undefined;
+  await screen.rerender(<UserGuideScreen />);
+  expect(screen.getByRole('button', { name: '900句导出' })).toBeTruthy();
 });

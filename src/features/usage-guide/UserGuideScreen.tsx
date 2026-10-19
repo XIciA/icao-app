@@ -21,6 +21,7 @@ const GUIDE_ICONS = { study: Highlighter, vocab: BookMarked, radio: Radio, hotsp
 export function UserGuideScreen() {
   const router = useRouter();
   const guide = useGuide();
+  const activeGuide = guide?.current;
   const auth = useAuth();
   const accountId = auth.account?.accountId ?? (auth.uiAcceptanceMode ? 'ui-acceptance' : undefined);
   const [saved, setSaved] = useState<{ accountId: string; progress: TutorialProgress }>();
@@ -29,6 +30,15 @@ export function UserGuideScreen() {
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState('');
   const exportGeneration = useRef(0);
+  const exportTourActive = useRef(false);
+  useEffect(() => {
+    if (activeGuide === 'export') exportTourActive.current = true;
+    else if (exportTourActive.current) {
+      exportTourActive.current = false;
+      exportGeneration.current += 1;
+      setExportDataset(undefined); setExporting(false); setExportError('');
+    }
+  }, [activeGuide]);
   const exportOwner = useRef(accountId);
   exportOwner.current = accountId;
   useEffect(() => {

@@ -1,18 +1,20 @@
 import { useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { Check, ChevronDown } from '@/components/ui/icons';
 import { AppText } from '@/components/ui';
 import { updateProfile, useProfile } from '@/features/account/profile-store.native';
 import { normalizeStudyScope, type StudyScope } from '@icao/contracts';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';
 
-const options: { value: StudyScope; title: string; description: string }[] = [
+const legacyOptions: { value: StudyScope; title: string; description: string }[] = [
   { value: 'all', title: '最全题库', description: '所有问题的大合集，涵盖所有的知识点与题型，包括变形题、热点题、易错题、精选题、难点题和考试真题，知识点有重合的地方，适用于刷题时间足够、有一定语言基础的同学' },
   { value: 'selected', title: '精选题库', description: '包含主要常见题型和所有基础知识点，本题库中所包含的知识点足以应对绝大部分ICAO考试，适用于英语基础平常，备考时间紧张的同学' },
   { value: 'crash', title: '考试真题', description: '包含各时期各大考点考试真题 （投稿有奖励）' },
 ];
 
 export function StudyScopeSelector() {
+  const options = isVercelLegacyWeb(Platform.OS) ? legacyOptions : legacyOptions.filter(option => option.value !== 'crash');
   const profile = useProfile();
   const scope = normalizeStudyScope(profile.studyScope);
   const [anchor, setAnchor] = useState<{ x: number; y: number }>();
