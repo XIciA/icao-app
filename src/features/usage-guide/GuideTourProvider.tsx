@@ -1,4 +1,4 @@
-import { usePathname, useRouter, type Href } from 'expo-router';
+import { useGlobalSearchParams, usePathname, useRouter, type Href } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -9,7 +9,10 @@ import { GUIDE_ENTRIES, GUIDE_FLOWS, type GuideId } from './guide-flows';
 import { readGuideProgress, writeGuideProgress } from './guide-progress';
 
 export function GuideTourProvider({ children }: PropsWithChildren) {
-  const router = useRouter(); const pathname = usePathname(); const auth = useAuth();
+  const router = useRouter(); const pathname = usePathname();
+  const params = useGlobalSearchParams<{ cardId?: string; center?: string; returnTo?: string }>();
+  const query = ['cardId', 'center', 'returnTo'].flatMap(key => { const value = params[key as keyof typeof params]; return typeof value === 'string' ? [`${key}=${encodeURIComponent(value)}`] : []; }).join('&');
+  const resumePath = query ? `${pathname}?${query}` : pathname; const auth = useAuth();
   const account = auth.account?.accountId ?? (auth.uiAcceptanceMode ? 'ui-acceptance' : undefined);
   const [tour, setTour] = useState<{ id: GuideId; index: number; account: string; checkpoint?: GuideCheckpoint }>();
   const [legacyPrompt, setLegacy] = useState<GuidePrompt | null>(null); const [layers, setLayers] = useState<string[]>([]); const [error, setError] = useState('');
@@ -40,8 +43,8 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   }), []);
   useEffect(() => {
     if (!tour || tour.account !== account || (pathname === '/info/guide' && tour.id !== 'export')) return;
-    void writeGuideProgress(tour.account, tour.id, { index: tour.index, path: pathname, checkpoint: tour.checkpoint }).then(() => { if (owner.current === tour.account) setError(''); }).catch(() => { if (owner.current === tour.account) setError('教程进度未保存；学习内容仍按正常流程保存。'); });
-  }, [account, pathname, tour]);
+    void writeGuideProgress(tour.account, tour.id, { index: tour.index, path: resumePath, checkpoint: tour.checkpoint }).then(() => { if (owner.current === tour.account) setError(''); }).catch(() => { if (owner.current === tour.account) setError('教程进度未保存；学习内容仍按正常流程保存。'); });
+  }, [account, pathname, resumePath, tour]);
   // Returning to the guide through the original back button pauses the tour.
   useEffect(() => { if (pathname === '/info/guide') setTour(undefined); }, [pathname]);
   const prompt = useMemo<GuidePrompt | null>(() => {

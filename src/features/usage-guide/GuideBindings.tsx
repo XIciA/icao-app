@@ -26,7 +26,7 @@ export function GuideAnchor({ id }: { id: string }) {
   const register = guide?.register;
   useEffect(() => { register?.(key, id, layer, node.current); return () => register?.(key, id, layer, null); }, [id, key, layer, register]);
   if (!guide) return null;
-  return <View accessible={false} collapsable={false} pointerEvents="none" ref={node} style={StyleSheet.absoluteFillObject} />;
+  return <View accessible={false} collapsable={false} pointerEvents="none" testID={`guide-anchor-${id}`} ref={node} style={StyleSheet.absoluteFillObject} />;
 }
 export function GuideModalScope({ children, visible }: PropsWithChildren<{ visible: boolean }>) {
   const guide = useGuide(); const id = useId(); const modal = guide?.modal;

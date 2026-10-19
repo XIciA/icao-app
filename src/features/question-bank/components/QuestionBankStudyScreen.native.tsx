@@ -100,7 +100,8 @@ function StudyContent(props: Props) {
   const guide = useGuide();
   const guideExitAfterSave = useRef<(() => void) | null>(null);
   const guideLeave = useRef<() => void>(() => undefined);
-  useEffect(() => { if (!guide?.current) return; const bind = guide.guardExit; bind(done => { guideExitAfterSave.current = done; guideLeave.current(); }); return () => bind(null); }, [guide?.current, guide?.guardExit]);
+  const guideCurrent = guide?.current; const registerGuideExit = guide?.guardExit;
+  useEffect(() => { if (!guideCurrent || !registerGuideExit) return; registerGuideExit(done => { guideExitAfterSave.current = done; guideLeave.current(); }); return () => registerGuideExit(null); }, [guideCurrent, registerGuideExit]);
   const tutorialExitRequested = useRef<'exit' | 'restart' | false>(false);
   useFocusEffect(useCallback(() => { setClickStudyContext(props.dataset?.id ?? (props.studyPackage?.record.recordType === 'mock_exam' ? 'mock-exam' : 'study')); return () => setClickStudyContext('study'); }, [props.dataset?.id, props.studyPackage?.record.recordType]));
   const insets = useSafeAreaInsets();
