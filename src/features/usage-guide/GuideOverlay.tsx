@@ -49,18 +49,18 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   return <View pointerEvents="box-none" collapsable={false} ref={root} onLayout={event => setSize(event.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
     {focus && !prompt.completed ? <View testID="guide-focus" pointerEvents="none" style={[styles.focus, { left: focus.x - 4, top: focus.y - 4, width: focus.width + 8, height: focus.height + 8 }]} /> : null}
     {position.line && focus ? <Svg pointerEvents="none" style={StyleSheet.absoluteFill}><Line x1={focus.x + focus.width / 2} y1={focus.y + focus.height / 2} x2={position.x + position.width / 2} y2={position.y} stroke={colors.mutedForeground} strokeOpacity={0.45} strokeWidth={1} /><Circle cx={focus.x + focus.width / 2} cy={focus.y + focus.height / 2} r={2.5} fill={colors.mutedForeground} /></Svg> : null}
-    {size.width > 0 && !hidden ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(48, availableHeight - position.y - insets.bottom - 16) }]} testID="guide-bubble">
-      {focus && !position.line && !position.compact && !prompt.completed ? <View pointerEvents="none" style={[styles.tip, { left: tip }, position.above ? styles.tipBottom : styles.tipTop]} /> : null}
+    {size.width > 0 && !hidden && (!prompt.completed || !prompt.target || focus) ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(48, availableHeight - position.y - insets.bottom - 16) }]} testID="guide-bubble">
+      {focus && !position.line && !position.compact ? <View pointerEvents="none" style={[styles.tip, { left: tip }, position.above ? styles.tipBottom : styles.tipTop]} /> : null}
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.bubbleContent}>
       <View style={styles.heading}><AppText variant="micro">{prompt.completed ? '已完成' : `${prompt.index + 1} / ${prompt.total}`}</AppText><Pressable accessibilityLabel="退出教程" hitSlop={8} onPress={prompt.exit} style={styles.smallAction}><AppText variant="body">×</AppText></Pressable></View>
       <AppText accessibilityLiveRegion="polite" variant="caption">{prompt.text}</AppText>
-      {!focus && !prompt.completed ? <AppText color={colors.mutedForeground} variant="micro">请滚动页面找到对应操作；操作按钮仍在原页面。</AppText> : null}
-      {position.compact && !prompt.completed ? <Pressable accessibilityRole="button" onPress={() => setHidden(true)}><AppText color={colors.primary} variant="micro">收起提示，操作页面</AppText></Pressable> : null}
+      {!focus && prompt.target && !prompt.completed ? <AppText color={colors.mutedForeground} variant="micro">目标暂未显示，页面加载后可滚动查找。</AppText> : null}
+      {position.compact ? <Pressable accessibilityRole="button" onPress={() => setHidden(true)}><AppText color={colors.primary} variant="micro">收起提示，操作页面</AppText></Pressable> : null}
       {prompt.error ? <AppText color={colors.destructive} variant="micro">{prompt.error}</AppText> : null}
-      <View style={styles.actions}><Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.skip} style={styles.smallAction}><AppText variant="micro">{prompt.completed ? '重新体验' : prompt.skipLabel ?? '跳过'}</AppText></Pressable>{prompt.next ? <Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.next} style={styles.smallAction}><AppText color={colors.primary} variant="micro">{prompt.completed ? '返回使用指南' : '继续'}</AppText></Pressable> : null}</View>
+      <View style={styles.actions}><Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.skip} style={styles.smallAction}><AppText variant="micro">{prompt.completed ? '重新体验' : prompt.skipLabel ?? '跳过'}</AppText></Pressable>{prompt.next ? <Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.next} style={styles.smallAction}><AppText color={colors.primary} variant="micro">{prompt.completed ? '返回使用指南' : prompt.index + 1 === prompt.total ? '完成引导' : '继续'}</AppText></Pressable> : null}</View>
       </ScrollView>
     </View> : null}
-    {hidden ? <Pressable accessibilityRole="button" accessibilityLabel="展开教程提示" onPress={() => setHidden(false)} style={[styles.restore, { top: (layer === 'root' ? insets.top : 0) + 16 }]}><AppText color={colors.primary} variant="micro">教程 {prompt.index + 1}/{prompt.total}</AppText></Pressable> : null}
+    {hidden ? <Pressable accessibilityRole="button" accessibilityLabel="展开教程提示" onPress={() => setHidden(false)} style={[styles.restore, { top: (layer === 'root' ? insets.top : 0) + 16 }]}><AppText color={colors.primary} variant="micro">{prompt.completed ? '教程已完成' : `教程 ${prompt.index + 1}/${prompt.total}`}</AppText></Pressable> : null}
   </View>;
 }
 const styles = StyleSheet.create({

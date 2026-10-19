@@ -21,5 +21,7 @@ export function GuideScrollView({ children, onScroll, ...props }: ScrollViewProp
       });
     });
   }, []);
+  // Legacy Web has no tour provider. Preserve its exact ScrollView props and events.
+  if (!guide?.current || !guide.step) return <ScrollView {...props} onScroll={onScroll}>{children}</ScrollView>;
   return <GuideScrollContext.Provider value={reveal}><ScrollView {...props} ref={scroll} scrollEventThrottle={16} onScroll={event => { offset.current = event.nativeEvent.contentOffset.y; onScroll?.(event); }}>{children}</ScrollView></GuideScrollContext.Provider>;
 }

@@ -35,3 +35,14 @@ it('advances the export tour only after a file is ready and keeps a failed attem
  await fireEvent.press(view.getByText('生成 PDF'));await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
  expect(event).toHaveBeenCalledTimes(1);expect(event).toHaveBeenCalledWith('export-generate');
 });
+
+it('returns to options when restarting the export guide from a generated result',async()=>{
+ const binding={current:'export',step:'export-generate',event:jest.fn(),register:jest.fn()} as unknown as GuideBinding;
+ const tree=(value:GuideBinding)=><SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={value}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>;
+ const view=await render(tree(binding));
+ await waitFor(()=>expect(view.getByText('已选择 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
+ await view.rerender(tree({...binding,step:'export-scope'}));
+ await waitFor(()=>expect(view.getByText('生成 PDF')).toBeTruthy());
+ expect(view.queryByText('PDF 已生成')).toBeNull();
+});

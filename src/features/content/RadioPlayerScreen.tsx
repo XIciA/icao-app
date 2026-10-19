@@ -239,7 +239,7 @@ export function RadioPlayerScreen() {
         <View style={styles.intervalSheet}>
           <AppText variant="sectionTitle">播放间隔</AppText>
           <View style={styles.intervalValueRow}><AppText color={colors.primary} style={styles.intervalValue}>{intervalSeconds}</AppText><AppText color={colors.mutedForeground} style={styles.intervalUnit}>秒</AppText></View>
-          <View style={styles.intervalTimeline}>
+          <View style={styles.intervalTimeline}><GuideAnchor id="radio-interval" />
             <AudioTimeline
               accessibilityLabel="播放间隔秒数"
               duration={RADIO_INTERVAL_MAX_SECONDS}
@@ -255,7 +255,7 @@ export function RadioPlayerScreen() {
           <View style={styles.intervalPresets}>
             {RADIO_INTERVAL_PRESETS.map((preset) => <Pressable accessibilityLabel={`设置播放间隔${preset}秒`} accessibilityState={{ selected: preset === intervalSeconds }} key={preset} onPress={() => radio.setIntervalSeconds(preset)} style={[styles.intervalPreset, preset === intervalSeconds ? styles.intervalPresetActive : null]}><AppText color={preset === intervalSeconds ? colors.primary : colors.mutedForeground} variant="button">{preset}s</AppText></Pressable>)}
           </View>
-          <Button guideId="radio-interval" onPress={() => { setIntervalOpen(false); guide?.event('radio-interval'); }}>完成</Button>
+          <Button onPress={() => { setIntervalOpen(false); guide?.event('radio-interval'); }}>完成</Button>
         </View>
       </BottomSheet>
 

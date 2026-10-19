@@ -23,6 +23,7 @@ import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/i
 import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording, transcribeAndReviewRecording, lookupAiOperation } from '@/features/ai/ai-client.native';
@@ -628,7 +629,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.editAction, pressed && !editDisabled ? styles.pressed : null, editDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
+              <GuideAnchor id="sentence-note" /><AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
             {showReviewAction ? <Pressable
               accessibilityLabel={reviewLabel}
@@ -640,7 +641,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+              <GuideAnchor id="sentence-review" /><AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
             </Pressable> : null}
           </View> : null}
         </View>

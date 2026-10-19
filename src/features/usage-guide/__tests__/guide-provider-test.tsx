@@ -33,3 +33,32 @@ it('restores the paused radio step without resetting real player preferences', a
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await fireEvent.press(screen.getByText('start'));
   await waitFor(()=>expect(screen.getByText('radio-interval')).toBeTruthy());expect(mockRead).toHaveBeenCalledWith('account-a','radio');expect(mockRouter.push).toHaveBeenCalledWith('/content/radio');
 });
+
+function ExportProbe() {
+  const guide = useGuide()!;
+  const element = guide.surface('root') as { props: { prompt: { target: string; completed?: boolean; skip: () => void } | null } };
+  return <><Button onPress={() => { void guide.start('export'); }}>start export</Button>
+    <Button onPress={() => guide.event('export-generate')}>generated</Button>
+    <Button onPress={() => element.props.prompt?.skip()}>skip generation</Button>
+    <AppText>{element.props.prompt?.target ?? 'idle'}</AppText>
+    <AppText>{element.props.prompt?.completed ? 'completed' : 'active'}</AppText></>;
+}
+it('anchors export completion to the actual generated result', async () => {
+  mockRead.mockResolvedValueOnce({index:3,path:'/question-bank/sentence/export'});
+  const screen=await render(<GuideTourProvider><ExportProbe /></GuideTourProvider>);
+  await fireEvent.press(screen.getByText('start export'));
+  await waitFor(()=>expect(screen.getByText('export-generate')).toBeTruthy());
+  await fireEvent.press(screen.getByText('generated'));
+  expect(screen.getByText('export-result')).toBeTruthy();
+  expect(screen.getByText('completed')).toBeTruthy();
+});
+it('exits export without claiming a generated result when generation is skipped', async () => {
+  mockRead.mockResolvedValueOnce({index:3,path:'/question-bank/sentence/export'});
+  const screen=await render(<GuideTourProvider><ExportProbe /></GuideTourProvider>);
+  await fireEvent.press(screen.getByText('start export'));
+  await waitFor(()=>expect(screen.getByText('export-generate')).toBeTruthy());
+  await fireEvent.press(screen.getByText('skip generation'));
+  expect(mockRouter.replace).toHaveBeenCalledWith('/info/guide');
+  expect(screen.getByText('idle')).toBeTruthy();
+  expect(screen.queryByText('completed')).toBeNull();
+});

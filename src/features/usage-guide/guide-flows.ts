@@ -42,7 +42,7 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   'mock-exam': [
     { id: 'mock-type', text: '先选择你要练习的考试类型。' },
     { id: 'mock-scope', text: '可以完整练习，也可以选择部分板块。' },
-    { id: 'mock-start', text: '准备好后，从这里开始模拟，也可以先完成教程。', read: true },
+    { id: 'mock-start', text: '点击下方的开始练习按钮，也可先完成引导。', read: true },
   ],
   recap: [
     { id: 'recap-filter', text: '高亮、标签和笔记都在这里，可按标签筛选。', read: true },
