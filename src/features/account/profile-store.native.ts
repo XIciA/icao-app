@@ -1,9 +1,20 @@
+import { Platform } from 'react-native';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
 import { useEffect, useState } from 'react';
 import Storage from '@/platform/storage';
 import { enqueueAccountProfile } from '@/features/sync/learning-sync.native';
-import { DEFAULT_PROFILE, normalizeProfile, type UserProfile } from './profile-model';
+import { DEFAULT_PROFILE, normalizeProfile as normalizeStoredProfile, type UserProfile } from './profile-model';
 
 export { DEFAULT_PROFILE, type UserProfile } from './profile-model';
+
+
+// Keep old synchronized documents readable after retiring the exam-only entry.
+function normalizeProfile(document: unknown): UserProfile {
+  const profile = normalizeStoredProfile(document);
+  return profile.studyScope === 'crash' && !isVercelLegacyWeb(Platform.OS)
+    ? { ...profile, studyScope: 'selected' }
+    : profile;
+}
 
 const PROFILE_PREFIX = 'icao.account.profile.v2.';
 let accountId: string | undefined;
