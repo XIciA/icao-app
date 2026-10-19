@@ -1,6 +1,6 @@
 # 当前运行时拓扑
 
-更新时间：2026-08-20
+更新时间：2026-10-20
 
 ## Native 正式链路
 
@@ -28,15 +28,26 @@
   EdgeOne 构建不复制整套音频。
 - Web 录音原件和设备缓存仍保存在当前浏览器，不进入三端云同步。
 
-### Vercel 独立体验站
+### 香港静态宣传站
 
-`Browser → Vercel 同源 Functions / 静态内容 / 静态题库资源`
+`Browser → 香港 VPS Nginx → public/promo 静态宣传页`
 
-- `vercel.json`、`api/` 和 Web 导出物定义正式 Web 边界。
-- Web 邀请码会话使用独立 cookie 机制。
-- Web 学习状态保存在浏览器本地，不调用 ECS API 或 Supabase，不参与 Native 云同步。
-- Web 发布前需生成并校验同源内容与题库资源。
-- 该站作为冻结的旧体验站保留；EdgeOne 上线不得改动其域名、部署或邀请码会话。
+- `https://feizhuicao.com/` 直接显示原 `/promo` 宣传页；`www` 统一跳转至根域名，
+  `/promo`、`/promo/` 和 `/promo/index.html` 永久跳转至首页。
+- 使用雨云香港 VPS `189.24.77.48` 的独立域名站点和 `/var/www/feizhuicao/` 目录；
+  与该服务器原有“会飞的猪”IP 刷题站分开，后者的程序、默认站点与数据库保持不变。
+- 此站仅部署 `public/promo/`；不提供邀请码登录、学习 API 或题库资源。
+- Nginx 配置和发布来源见 `infra/promo/`；证书续期沿用现有 Certbot 定时任务。
+
+### 旧 Vercel 体验站退役
+
+- 2026-10-20 用户明确授权停用和清理原 `feizhuicao.com` 的 Vercel 邀请码题库。
+- 退役范围是旧主站 `feizhuicao-website` 和 25 个旧内容/音频分片项目。
+- 旧站使用独立 cookie 和浏览器本地学习进度；本次不迁移或删除正式三端的账号、题库、
+  云端学习记录或数据库，也不处理用户浏览器中的历史缓存。
+- 共享仓库里的 `vercel-legacy`、`api/` 和旧快照暂留作兼容与历史追溯，不代表仍有对外运行
+  的 Vercel 题库，不在本次迁移中批量删除共享源码或重写冻结基线。
+- 迁移及验收记录见 `docs/records/releases/20261020-feizhuicao-hong-kong-promo.md`。
 
 ## 运行时选择与边界
 
