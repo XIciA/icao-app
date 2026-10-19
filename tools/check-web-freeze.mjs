@@ -288,6 +288,8 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-placement.ts", [...n
 reviewedFormalWebHashes.set("src/features/usage-guide/GuideScrollView.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideScrollView.tsx") ?? [null]), "fd783b4752ad21682dbacd6d923291ed8a2ac0f7d01cb43161dd6b645e0f3f20"])]);
 reviewedFormalWebHashes.set("src/features/usage-guide/guide-scroll-context.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-scroll-context.ts") ?? [null]), "a75708430d27d3194d5db678621f02c7f8eda460a7e55fb4d1d42db08fcbba04"])]);
 reviewedFormalWebHashes.set("src/features/content/RadioPlayerScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/content/RadioPlayerScreen.tsx") ?? []), "f82e18ce0c027317de2a0edf8e61825eca118c841f0582d7f7b417d16ffb057f"])]);
+// Unified 1.2.1 release: only native marketing/build metadata changes; frozen Web stays on its existing version module.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? []), "a43e706beec0ee7a3a592fc9cf02b38efd75edea288c6d491392dcfcdc154c37"])]);
 // End guide overlay exact pins
 
 export function normalizeReviewedFormalWebInputs(expected, current) {
