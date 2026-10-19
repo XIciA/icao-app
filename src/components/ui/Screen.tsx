@@ -2,7 +2,6 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   type ScrollViewProps,
   StyleSheet,
   View,
@@ -10,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { colors, spacing } from '@/theme';
 
@@ -32,7 +32,7 @@ export function Screen({
   background,
 }: Props) {
   const content = scroll ? (
-    <ScrollView
+    <GuideScrollView
       contentContainerStyle={[styles.content, styles.scrollContent, bottomInset ? styles.withTabBar : null, contentStyle]}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
@@ -40,7 +40,7 @@ export function Screen({
       {...scrollProps}
     >
       {children}
-    </ScrollView>
+    </GuideScrollView>
   ) : (
     <View style={[styles.content, styles.flex, bottomInset ? styles.withTabBar : null, contentStyle]}>
       {children}

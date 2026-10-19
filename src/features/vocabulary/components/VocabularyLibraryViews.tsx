@@ -1,3 +1,4 @@
+import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
   BarChart3,
@@ -79,7 +80,7 @@ export function VocabularyBooksView({
   return (
     <Screen contentStyle={styles.zero}>
       <TopBar title="单词学习" />
-      <ScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
+      <GuideScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
         <AppText style={styles.center}>从 838 条 ICAO 词汇中选择词书，按自己的节奏学习。</AppText>
 
         {warning ? (
@@ -104,12 +105,12 @@ export function VocabularyBooksView({
         </Pressable>
 
         <View style={styles.stack}>
-          {books.map((book) => {
+          {books.map((book, index) => {
             const active = selected.has(book.id);
             const stats = statsByBook[book.id] ?? { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 };
             return (
               <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => { onToggle(book.id); guide?.event('vocab-book'); }}>
-                <GuideAnchor id="vocab-book" /><Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
+                {index === 0 ? <GuideAnchor id="vocab-book" /> : null}<Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
                   <View style={[styles.bookIcon, active ? styles.selectedIcon : null]}>
                     {active ? <Check color={colors.primaryForeground} size={20} /> : <BookOpen color={colors.primary} size={20} />}
                   </View>
@@ -132,7 +133,7 @@ export function VocabularyBooksView({
           })}
         </View>
         {Object.keys(state.words).length ? <AppText style={styles.center} variant="caption">{Platform.OS === 'web' && !isEdgeOneProductionWeb() ? '学习状态已保存在当前浏览器，不与 App 同步。' : '学习状态已保存在当前账号，并纳入学习数据同步。'}</AppText> : null}
-      </ScrollView>
+      </GuideScrollView>
       <View style={[styles.sticky, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         <AppText style={styles.center}>{selected.size ? `已选择 ${selected.size} 本词书` : '请选择至少一本词书'}</AppText>
         <Button disabled={!selected.size} leading={<Play color={colors.primaryForeground} size={16} />} guideId="vocab-start" onPress={() => { onStart(); guide?.event('vocab-start'); }} size="lg">开始学习</Button>
