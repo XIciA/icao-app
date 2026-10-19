@@ -269,6 +269,7 @@ reviewedFormalWebHashes.set("src/features/usage-guide/GuideTourProvider.tsx", [.
 reviewedFormalWebHashes.set("src/features/usage-guide/guide-flows.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-flows.ts") ?? [null]), "71a2e50d904ec330cda501cff8750633d8a9ca7dbb7aeee7b49a1d484590e9ce"])]);
 reviewedFormalWebHashes.set("src/features/usage-guide/guide-placement.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-placement.ts") ?? [null]), "035d5fd5883e760260f481c22224d4295f5650b15663e8d4390938c2cea08177"])]);
 reviewedFormalWebHashes.set("src/features/usage-guide/guide-progress.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-progress.ts") ?? [null]), "c2b4c3412d5100ce653c01f92d6bac56e6ebe28107588193d5abfefc34a18d2b"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/StudyAudioPlayer.web.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyAudioPlayer.web.tsx") ?? ["f8c96ffdd0e4beb50c079062729dbd9a649c585ad45a5abce18e34b614cefb03"]), "6aa2f1701f6e5ea8fc1882161e15709f8120f6e3b4b79113261b96e7e1d79a7c"])]);
 // End guide overlay exact pins
 
 export function normalizeReviewedFormalWebInputs(expected, current) {

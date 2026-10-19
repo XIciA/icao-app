@@ -1,3 +1,4 @@
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
@@ -768,6 +769,7 @@ export function StudyAudioPlayer({
                   pressed ? styles.pressed : null,
                 ]}
               >
+                <GuideAnchor id="sentence-play" />
                 {waitingForFirstFrame ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : playing ? (
@@ -824,6 +826,7 @@ export function StudyAudioPlayer({
                 onPress={toggle}
                 style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
               >
+                <GuideAnchor id="sentence-play" />
                 {waitingForFirstFrame ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : playing ? (
