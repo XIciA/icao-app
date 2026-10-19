@@ -17,13 +17,13 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
     { id: 'radio-speed', text: '选一个听起来舒服的速度。' },
     { id: 'radio-interval', text: '调整每段之间的停顿，留出跟读时间。' },
     { id: 'radio-subtitle', text: '切换字幕，选择适合你的听练方式。' },
-    { id: 'radio-play', text: '设置好了，点这里开始听。' },
-    { id: 'radio-study', text: '想深入练习，点这里打开对应题目。' },
+    { id: 'radio-play', text: '设置好了，点击播放按钮开始听。' },
+    { id: 'radio-study', text: '点击曲目标题，打开对应题目深入练习。' },
   ],
   vocab: [
     { id: 'vocab-book', text: '选择想学的词书，可以组合选择。' },
-    { id: 'vocab-start', text: '点这里，开始学习所选词书。' },
-    { id: 'vocab-speech', text: '点这里，听听这个词。' },
+    { id: 'vocab-start', text: '点击「开始学习」，学习所选词书。' },
+    { id: 'vocab-speech', text: '点击发音按钮，听听这个词。' },
     { id: 'vocab-rating', text: '按实际情况，选择你的熟悉程度。' },
     { id: 'vocab-meaning', text: '结合释义和例句，理解它的用法。', read: true },
     { id: 'vocab-favorite', text: '点亮星标，和题库查词共用一个词本。' },
@@ -32,7 +32,7 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   hotspot: [
     { id: 'hotspot-topic', text: '选一个感兴趣的话题。' },
     { id: 'hotspot-article', text: '在这里了解话题内容和相关表达。', read: true },
-    { id: 'hotspot-study', text: '点这里，进入相关题目练习。' },
+    { id: 'hotspot-study', text: '点击「开始学习」，进入相关题目。' },
   ],
   resources: [
     { id: 'resource-filter', text: '在这里浏览航空英语备考方法和学习资料。', read: true },
@@ -54,6 +54,6 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
     { id: 'export-scope', text: '先选要整理的句子范围。' },
     { id: 'export-translation', text: '按需要决定是否包含中文翻译。', read: true },
     { id: 'export-personal', text: '可以把高亮、标签和笔记一起带走。', read: true },
-    { id: 'export-generate', text: '设置完成后，点这里生成 PDF，也可以先完成教程。', read: true },
+    { id: 'export-generate', text: '点击「生成 PDF」；生成成功后完成这一步。' },
   ],
 };
