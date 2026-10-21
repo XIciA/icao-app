@@ -1028,3 +1028,4 @@ export function studyScopeCardIds(bankId: string, topic: { studyTier?: unknown; 
   }
   return { all: topic.cards.filter((card) => !card.retired).map((card) => card.id), selected, crash };
 }
+export type { StabilityRoute, StabilityPoint, StabilityMonitor, StabilityAiBucket, StabilityDashboard } from './ops-stability';
