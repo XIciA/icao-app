@@ -1,7 +1,7 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { and, desc, eq, inArray, sql } from 'drizzle-orm';
 import { z } from 'zod';
-import type { WechatCheckout, WechatCheckoutRequest, WechatPayCatalog } from '@icao/contracts/wechat-pay';
+import type { WechatCheckout, WechatCheckoutRequest, WechatPayCatalog, WechatPayChannel } from '@icao/contracts/wechat-pay';
 import { DatabaseService } from '../database/database.service';
 import { accounts, wechatPaymentAttempts } from '../database/schema';
 import { AiUsageRulesService } from './ai-usage-rules.service';
@@ -12,7 +12,7 @@ import { WechatMerchantClient, WechatMerchantError } from './wechat-merchant-cli
 type Transaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 type Attempt = typeof wechatPaymentAttempts.$inferSelect;
 const amountSchema = z.object({ total: z.number().int().positive(), currency: z.literal('CNY') });
-const tradeSchema = z.object({ appid: z.string(), mchid: z.string(), out_trade_no: z.string(), trade_type: z.literal('APP').optional(),
+const tradeSchema = z.object({ appid: z.string(), mchid: z.string(), out_trade_no: z.string(), trade_type: z.enum(['APP', 'NATIVE']).optional(),
   transaction_id: z.string().optional(), trade_state: z.enum(['SUCCESS', 'REFUND', 'NOTPAY', 'CLOSED', 'REVOKED', 'USERPAYING', 'PAYERROR']),
   amount: amountSchema, success_time: z.string().datetime({ offset: true }).optional() });
 const refundSchema = z.object({ mchid: z.string().optional(), out_trade_no: z.string(), transaction_id: z.string(),
@@ -32,8 +32,9 @@ export class WechatPayService {
   constructor(private readonly database: DatabaseService, private readonly merchant: WechatMerchantClient,
     private readonly commerce: CommerceService, private readonly rules: AiUsageRulesService) {}
 
-  catalog(): WechatPayCatalog {
-    return { available: this.merchant.available, products: this.merchant.available ? WECHAT_MEMBERSHIP_PRODUCTS.map((product) => ({
+  catalog(channel: WechatPayChannel = 'APP'): WechatPayCatalog {
+    const available = channel === 'NATIVE' ? this.merchant.nativeAvailable : this.merchant.available;
+    return { available, products: available ? WECHAT_MEMBERSHIP_PRODUCTS.map((product) => ({
       productKey: product.productKey, title: product.displayName, amountFen: product.basePriceCnyFen,
       currency: 'CNY', durationDays: product.durationDays,
     })) : [] };
@@ -50,8 +51,10 @@ export class WechatPayService {
   }
   private async view(attempt: Attempt, includePayment = false): Promise<WechatCheckout> {
     return { id: attempt.id, productKey: attempt.productKey, amountFen: attempt.amountFen, currency: 'CNY',
-      state: attempt.state as WechatCheckout['state'], expiresAt: attempt.expiresAt.toISOString(),
-      ...(includePayment && attempt.state === 'pending' && attempt.prepayId && attempt.expiresAt.getTime() > Date.now()
+      state: attempt.state as WechatCheckout['state'], expiresAt: attempt.expiresAt.toISOString(), channel: attempt.tradeType as WechatPayChannel,
+      ...(attempt.tradeType === 'NATIVE' && attempt.state === 'pending' && attempt.codeUrl && attempt.expiresAt.getTime() > Date.now()
+        ? { codeUrl: attempt.codeUrl } : {}),
+      ...(includePayment && attempt.tradeType === 'APP' && attempt.state === 'pending' && attempt.prepayId && attempt.expiresAt.getTime() > Date.now()
         ? { payment: this.merchant.paymentParameters(attempt.prepayId) } : {}),
       ...(['paid', 'refunded'].includes(attempt.state)
         ? { entitlement: (await this.commerce.currentEntitlement(attempt.accountId)).production } : {}),
@@ -59,6 +62,8 @@ export class WechatPayService {
   }
   async create(owner: string, input: WechatCheckoutRequest): Promise<WechatCheckout> {
     this.merchant.config();
+    const channel = input.channel ?? 'APP';
+    if (channel === 'NATIVE' && !this.merchant.nativeAvailable) throw new ServiceUnavailableException('wechat_native_pay_unavailable');
     const product = WECHAT_MEMBERSHIP_PRODUCTS.find((candidate) => candidate.productKey === input.productKey);
     if (!product) throw new BadRequestException('wechat_product_unavailable');
     const attempt = await this.database.db.transaction(async (tx) => {
@@ -67,7 +72,7 @@ export class WechatPayService {
       const [previous] = await tx.select().from(wechatPaymentAttempts).where(and(eq(wechatPaymentAttempts.accountId, owner),
         eq(wechatPaymentAttempts.idempotencyKey, input.idempotencyKey))).limit(1);
       if (previous) {
-        if (previous.productKey !== input.productKey) throw new ConflictException('wechat_checkout_idempotency_conflict');
+        if (previous.productKey !== input.productKey || previous.tradeType !== channel) throw new ConflictException('wechat_checkout_idempotency_conflict');
         return previous;
       }
       const [pending] = await tx.select().from(wechatPaymentAttempts).where(and(eq(wechatPaymentAttempts.accountId, owner),
@@ -76,7 +81,7 @@ export class WechatPayService {
       const now = new Date();
       const rule = await this.rules.effective(tx, now);
       const [created] = await tx.insert(wechatPaymentAttempts).values({ accountId: owner, idempotencyKey: input.idempotencyKey,
-        productKey: product.productKey, description: `听你五个 ${product.displayName}`, durationDays: product.durationDays,
+        tradeType: channel, productKey: product.productKey, description: `听你五个 ${product.displayName}`, durationDays: product.durationDays,
         amountFen: product.basePriceCnyFen, aiUsageRuleVersionId: rule.id, expiresAt: new Date(now.getTime() + 30 * 60_000),
       }).returning();
       if (!created) throw new Error('wechat_checkout_insert_failed');
@@ -85,15 +90,19 @@ export class WechatPayService {
     const ready = await this.database.db.transaction(async (tx) => {
       const current = await this.lock(tx, attempt.id, owner);
       await this.active(tx, owner);
-      if (current.state !== 'pending' || current.prepayId || current.expiresAt.getTime() <= Date.now()) return current;
+      if (current.state !== 'pending' || current.prepayId || current.codeUrl || current.expiresAt.getTime() <= Date.now()) return current;
       const config = this.merchant.config();
-      const response = z.object({ prepay_id: z.string().min(1).max(64) }).safeParse(await this.merchant.request('POST', '/v3/pay/transactions/app', {
+      const raw = await this.merchant.request('POST', current.tradeType === 'NATIVE' ? '/v3/pay/transactions/native' : '/v3/pay/transactions/app', {
         appid: config.appId, mchid: config.merchantId, out_trade_no: tradeNumber(current.id),
         description: current.description, time_expire: current.expiresAt.toISOString(), notify_url: config.notifyUrl,
         amount: { total: current.amountFen, currency: 'CNY' },
-      }));
+      });
+      const response = (current.tradeType === 'NATIVE'
+        ? z.object({ code_url: z.string().max(512).regex(/^weixin:\/\/wxpay\/bizpayurl\?pr=[A-Za-z0-9_-]+$/u) })
+        : z.object({ prepay_id: z.string().min(1).max(64) })).safeParse(raw);
       if (!response.success) throw new BadRequestException('wechat_pay_invalid_response');
-      const [updated] = await tx.update(wechatPaymentAttempts).set({ prepayId: response.data.prepay_id, updatedAt: new Date() })
+      const payload = 'code_url' in response.data ? { codeUrl: response.data.code_url } : { prepayId: response.data.prepay_id };
+      const [updated] = await tx.update(wechatPaymentAttempts).set({ ...payload, updatedAt: new Date() })
         .where(eq(wechatPaymentAttempts.id, current.id)).returning();
       return updated!;
     });
@@ -123,7 +132,7 @@ export class WechatPayService {
       // Expiration alone is not proof of non-payment: close through WeChat after querying it.
       return current.state === 'pending' && current.expiresAt.getTime() <= Date.now() ? this.closePending(tx, current) : current;
     } catch (error) {
-      if (error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId) {
+      if (error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId && !attempt.codeUrl) {
         return attempt.expiresAt.getTime() <= Date.now() ? this.closePending(tx, attempt) : attempt;
       }
       throw error;
@@ -141,8 +150,8 @@ export class WechatPayService {
     let updates: Partial<Attempt> = {};
     if (trade.trade_state === 'SUCCESS' || trade.trade_state === 'REFUND') {
       // WeChat omits trade_type before payment. Paid orders still must prove the
-      // APP channel, provider transaction ID and payment time before fulfillment.
-      if (trade.trade_type !== 'APP' || !trade.transaction_id || !trade.success_time) throw new BadRequestException('wechat_pay_invalid_transaction');
+      // persisted channel, provider transaction ID and payment time before fulfillment.
+      if (trade.trade_type !== attempt.tradeType || !trade.transaction_id || !trade.success_time) throw new BadRequestException('wechat_pay_invalid_transaction');
       await this.commerce.fulfillWechatPayment(tx, { accountId: attempt.accountId, transactionId: trade.transaction_id,
         productKey: attempt.productKey, durationDays: attempt.durationDays, ruleVersionId: attempt.aiUsageRuleVersionId,
         paidAt: new Date(trade.success_time) });
@@ -171,7 +180,7 @@ export class WechatPayService {
         // A payment racing the close must be fulfilled, never discarded as expired/cancelled.
         return this.applyTrade(tx, attempt, await this.merchant.request('GET', `/v3/pay/transactions/out-trade-no/${tradeNumber(attempt.id)}?mchid=${config.merchantId}`));
       }
-      if (!(error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId)) throw error;
+      if (!(error instanceof WechatMerchantError && error.providerCode === 'ORDER_NOT_EXIST' && !attempt.prepayId && !attempt.codeUrl)) throw error;
     }
     const [updated] = await tx.update(wechatPaymentAttempts).set({ state: 'closed', updatedAt: new Date() })
       .where(eq(wechatPaymentAttempts.id, attempt.id)).returning();

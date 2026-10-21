@@ -3,6 +3,7 @@ import { createPrivateKey, createPublicKey } from 'node:crypto';
 export type WechatPayConfig = {
   appId: string; merchantId: string; apiV3Key: string; merchantSerial: string;
   privateKey: string; platformPublicKey: string; platformPublicKeyId: string; notifyUrl: string;
+  nativeEnabled?: boolean;
 };
 
 /** Payment uses the API's one environment loader; login AppSecret is not a payment credential. */
@@ -10,7 +11,9 @@ export function parseWechatPayConfig(environment: NodeJS.ProcessEnv, appId?: str
   const names = ['WECHAT_PAY_MCH_ID', 'WECHAT_PAY_API_V3_KEY', 'WECHAT_PAY_MERCHANT_SERIAL_NO',
     'WECHAT_PAY_MERCHANT_PRIVATE_KEY', 'WECHAT_PAY_PLATFORM_PUBLIC_KEY', 'WECHAT_PAY_PLATFORM_PUBLIC_KEY_ID', 'WECHAT_PAY_NOTIFY_URL'] as const;
   const values = names.map((name) => environment[name]?.trim());
-  if (!values.some(Boolean)) return undefined;
+  const nativeFlag = environment.WECHAT_PAY_NATIVE_ENABLED?.trim();
+  if (nativeFlag !== undefined && !['0', '1'].includes(nativeFlag)) throw new Error('invalid_wechat_pay_native_enabled');
+  if (!values.some(Boolean) && nativeFlag !== '1') return undefined;
   if (!appId || !values.every(Boolean)) throw new Error('incomplete_wechat_pay_configuration');
   const [merchantId, apiV3Key, merchantSerial, rawPrivateKey, rawPlatformPublicKey, platformPublicKeyId, notifyUrl] = values as string[];
   // Docker env-files carry PEM values on one line, as with the other server signing keys.
@@ -28,5 +31,5 @@ export function parseWechatPayConfig(environment: NodeJS.ProcessEnv, appId?: str
       || (signing.asymmetricKeyDetails?.modulusLength ?? 0) < 2048 || (verifying.asymmetricKeyDetails?.modulusLength ?? 0) < 2048) throw new Error();
   } catch { throw new Error('invalid_wechat_pay_configuration'); }
   return { appId, merchantId: merchantId!, apiV3Key: apiV3Key!, merchantSerial: merchantSerial!, privateKey: privateKey!,
-    platformPublicKey: platformPublicKey!, platformPublicKeyId: platformPublicKeyId!, notifyUrl: notifyUrl! };
+    platformPublicKey: platformPublicKey!, platformPublicKeyId: platformPublicKeyId!, notifyUrl: notifyUrl!, nativeEnabled: nativeFlag === '1' };
 }

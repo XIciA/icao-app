@@ -251,6 +251,12 @@ const androidPaymentFiles = new Set([
   'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatAuthModule.kt',
   'modules/icao-wechat-auth/android/src/main/java/com/icao/wechatauth/IcaoWechatPayCoordinator.kt',
 ]);
+// Named browser-only files implement the separately gated Native QR checkout.
+// iOS bundle/SDK checks below still reject any reachable payment implementation.
+const browserPaymentFiles = new Set([
+  'src/features/native-commercial-testflight/WebWechatCheckout.browser.tsx',
+  'src/features/native-commercial-testflight/__tests__/web-wechat-checkout.browser-test.tsx',
+]);
 function iosRelevantPluginSource(source) {
   return source
     .replace(/function androidPaymentCallbackSource\(packageName\) \{[\s\S]*?\n\}\n/gu, '')
@@ -264,7 +270,7 @@ for (const relativePath of clientFiles) {
   }
   const paymentSource = relativePath === 'plugins/with-wechat-auth.js' ? iosRelevantPluginSource(source) : source;
   for (const marker of forbiddenPaymentMarkers) {
-    if (!androidPaymentFiles.has(relativePath) && marker.test(paymentSource)) fail(`payment_marker:${relativePath}`);
+    if (!androidPaymentFiles.has(relativePath) && !browserPaymentFiles.has(relativePath) && marker.test(paymentSource)) fail(`payment_marker:${relativePath}`);
   }
 }
 

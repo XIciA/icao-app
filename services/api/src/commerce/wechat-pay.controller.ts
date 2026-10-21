@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, HttpCode, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpCode, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
 import type { RawBodyRequest } from '@nestjs/common';
 import type { FastifyRequest } from 'fastify';
 import { COMMERCE_ENVIRONMENT_HEADER } from '@icao/contracts';
@@ -6,7 +6,7 @@ import { z } from 'zod';
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { WechatPayService } from './wechat-pay.service';
-const createSchema = z.object({ productKey: z.string().min(1).max(64), idempotencyKey: z.uuid() }).strict();
+const createSchema = z.object({ productKey: z.string().min(1).max(64), idempotencyKey: z.uuid(), channel: z.enum(['APP', 'NATIVE']).optional() }).strict();
 const idSchema = z.uuid();
 
 @Controller('v1/commerce/wechat')
@@ -19,9 +19,10 @@ export class WechatPayController {
     if (id !== undefined && !idSchema.safeParse(id).success) throw new BadRequestException('invalid_wechat_checkout');
   }
   @Get('catalog')
-  catalog(@Req() request: AuthenticatedRequest) {
+  catalog(@Req() request: AuthenticatedRequest, @Query('channel') channel?: string) {
     this.validate(request);
-    return { requestId: request.id, data: this.payments.catalog() };
+    if (channel !== undefined && channel !== 'APP' && channel !== 'NATIVE') throw new BadRequestException('invalid_wechat_channel');
+    return { requestId: request.id, data: this.payments.catalog(channel) };
   }
   @Post('checkouts')
   @HttpCode(200)
