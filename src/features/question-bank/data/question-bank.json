@@ -4,12 +4,12 @@
     "title": "听力",
     "nameEn": "Listening",
     "description": "理解能力",
-    "summary": "4 题组 / 1502 题",
+    "summary": "4 题组 / 1501 题",
     "enabled": true,
     "statusLabel": "可练习",
     "icon": "headphones",
     "declaredTopicCount": 4,
-    "declaredCardCount": 1502,
+    "declaredCardCount": 1501,
     "categoryUnit": "分类",
     "topicUnit": "题组",
     "cardUnit": "题",
@@ -13413,12 +13413,12 @@
         "id": "listening-category-02",
         "name": "20s陆空通话",
         "declaredTopicCount": 1,
-        "declaredCardCount": 290,
+        "declaredCardCount": 289,
         "topics": [
           {
             "id": "listening-topic-02",
             "name": "全部题目",
-            "declaredCardCount": 290,
+            "declaredCardCount": 289,
             "cards": [
               {
                 "id": "listening-main-003",
@@ -14467,28 +14467,6 @@
                   "绕飞以避开天气"
                 ],
                 "audioDurationSeconds": 35.208
-              },
-              {
-                "id": "listening-main-598",
-                "taskTitle": "20s陆空通话-107",
-                "audioText": "P: Takeoff aborted. Engine two was low on power. Can we vacate 1st left? C: Do you wish to taxi back to the apron or to the threshold of 25? P: Back to Runway 25 please. C: Fine, first left, contact 121.9 for taxi instructions.\nQuestion: what do you learn from the messages?",
-                "audioTextZh": "飞行员（P）：中断起飞。二号发动机动力不足。我们能否从第一个左出口脱离跑道？\n管制员（C）：你希望滑回停机坪还是滑至25号跑道入口？\n飞行员（P）：请滑回25号跑道。\n管制员（C）：好的，从第一个左出口脱离，联系121.9获取滑行指令。\n问题：从对话中可以得知什么？",
-                "referenceText": "正确答案：B. The pilot is going to vacate the runway.",
-                "audio": "/question-bank-assets/audio/listening/main/598.mp3",
-                "choices": [
-                  "The pilot is going back to the apron.",
-                  "The pilot is going to vacate the runway.",
-                  "The pilot has a low pressure problem.",
-                  "The pilot has a taxiing problem."
-                ],
-                "correctChoiceIndex": 1,
-                "choicesZh": [
-                  "飞行员正在返回停机坪",
-                  "飞行员准备脱离跑道",
-                  "飞行员遇到低压问题",
-                  "飞行员遇到滑行问题"
-                ],
-                "audioDurationSeconds": 32.832
               },
               {
                 "id": "listening-main-614",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 7,
+  "version": 8,
   "files": [
     {
       "objectKey": "v1/audio/listening/main/001.mp3",
@@ -6567,17 +6567,6 @@
       "checksum": "726b2c9a9df446775069037d9808d6171e2855cc37e657cd74e0bc748badddbd",
       "status": "ready",
       "durationSeconds": 35.208
-    },
-    {
-      "objectKey": "v1/audio/listening/main/598.mp3",
-      "bankId": "listening",
-      "sourceRelativePath": "audio/listening/main/598.mp3",
-      "publicPath": "/question-bank-assets/audio/listening/main/598.mp3",
-      "sizeBytes": 262892,
-      "mimeType": "audio/mpeg",
-      "checksum": "5164e71d082b772b819379c3cbd78b866e00a290533d1d753bd56b4347180e80",
-      "status": "ready",
-      "durationSeconds": 32.832
     },
     {
       "objectKey": "v1/audio/listening/main/599.mp3",

@@ -9,46 +9,46 @@
       "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/83/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/82/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "status": "manual-review",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
       "textSha256": "46e46055fdd4a02ef52e772205075efa7ebb95c036b97f2ff125295938733248"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/84/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/83/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "status": "manual-review",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
       "textSha256": "e45b985743a5da63b1305f4914e0091bacbb8c5b57bda033b7ce28678c9db4ee"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/90/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/89/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "status": "manual-review",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
       "textSha256": "d3bbd413869e480330204281609873f103aba74fe186596e7c3a6ff739d0f6a9"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/125/audioText#DUPLICATED_COMPLETE_SENTENCE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/124/audioText#DUPLICATED_COMPLETE_SENTENCE",
       "rule": "DUPLICATED_COMPLETE_SENTENCE",
       "textSha256": "c647bbad74415f82ac4898e1f9f48bfda7bb0cb6451659f8a15c9ea4e2d75b23",
       "status": "manual-review",
       "reason": "管制员重复航路指令是为了纠正飞行员漏读HUR；英文及中文的重复均承载题意，应保留。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/125/audioTextZh#DUPLICATED_COMPLETE_SENTENCE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/124/audioTextZh#DUPLICATED_COMPLETE_SENTENCE",
       "rule": "DUPLICATED_COMPLETE_SENTENCE",
       "textSha256": "ab86a35e998162c2e7cb136079fa7edc79eb95c98ecaf9415e8d32924459f2dd",
       "status": "manual-review",
       "reason": "管制员重复航路指令是为了纠正飞行员漏读HUR；英文及中文的重复均承载题意，应保留。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/251/choicesZh/2#DUPLICATE_CHOICE",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/250/choicesZh/2#DUPLICATE_CHOICE",
       "rule": "DUPLICATE_CHOICE",
       "textSha256": "8bd7fc4b504c3b930baced5dcf897497be344fc23684dd015c00ee176de10af7",
       "status": "manual-review",
       "reason": "英文Lack of fuel与Fuel shortage为同义干扰项，中文都译燃油不足；正确项为Fuel leak，保留选项对应关系。"
     },
     {
-      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/62/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/61/audioText#AUDIO_DEPENDENT_ELLIPSIS",
       "status": "manual-review",
       "rule": "AUDIO_DEPENDENT_ELLIPSIS",
       "textSha256": "88af21db634aa38e88daf70b7748f129579be7118e0b9ff53e96a7d9703ee2f8"
