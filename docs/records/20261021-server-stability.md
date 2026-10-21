@@ -29,3 +29,14 @@
 - 本机探针不能在整机断电时对外告警；本轮没有接外部通知或异机监控。
 - 已通过：API 类型检查、聚焦 lint、API 构建；原 API/sync 聚焦测试与大上传策略测试；监控隐私投影与异常阈值测试。
 - 正式发布从本任务 PR 合入后的干净 `origin/main` 执行，精确提交通过 release tag 与服务器 monitor `SOURCE_COMMIT` 追溯。线上结果需结合 API readiness、容器健康、监控状态与发布后同步日志核对，不以本地测试代替用户验收。
+
+## 线上交付结果（北京时间 21:50 核对）
+
+- API 已发布 `stability-20261021-3e3de7c9`，来源 `3e3de7c9992625215933dc737caf6cb5d3b447ea`，标签 `release/api-production/20261021-3e3de7c9`。公网与本机 readiness 正常，API/数据库/Storage 容器健康。
+- 发布脚本配置预检通过，迁移计划 `applied=55 pending=0 drift=0`，没有执行迁移；既有 app content version 31 保持不变。当前镜像与环境配置另有本次发布的回滚备份。
+- 旧服务对声明 17 MiB 的请求返回 413；新服务完整接收 17 MiB JSON 后返回预期的 `invalid_access_token` 401，证明请求解析已通过且认证仍生效。使用无效诊断令牌，没有写入业务数据。
+- 发布后截至 21:50：真实同步 push 201 共 8 次、pull 200 共 9 次，没有新的 413；另有一次上述诊断 401。历史自然流量最后一次 413 为 19:49，不能仅根据发布后的零错误归因或宣称全部历史队列已恢复。
+- 监控来源 `ddf1f7d7aad7bb4aea9357a6b5cc6fe420f59e30`，标签 `release/monitor-production/20261021-ddf1f7d7`。已在生产 Python 3.10 执行两项单元测试并完成 systemd unit 校验。
+- `icao-monitor.timer` 已启用，服务 `Result=success` / `ExecMainStatus=0`；首批状态 `alerts=[]`，本机/公网探针正常，备份年龄约 18.3 小时。状态目录 0700、文件 0600，仅 root 可读。未知路径统一归类，不采集容器环境字段。
+- 发布后系统盘可用约 20.2 GiB，`df` 使用率约 65%；新增候选/运行镜像已计入。原回滚和所有备份仍保留，iOS/Android 包及正式渠道未变。
+- 聚合核对证据位于生产 `/opt/icao/backups/storage-cleanup-20261021/delivery-verification.json`。本轮没有容量压测、外部告警或异机恢复演练；终端用户的历史积压恢复仍待实际使用观察。
