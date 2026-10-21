@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "66ff16940c7c544782c0622be0d1a7c43947e6bd",
+  "releaseVersion": 26,
+  "verifiedAt": "2026-10-21T19:38:51.884Z",
+  "banks": [
+    {
+      "bankId": "listening",
+      "version": 26,
+      "checksum": "b0bb5eca2355f9e13580c4775a56caee4183be7df030544384a251dead7a79d3"
+    },
+    {
+      "bankId": "opi",
+      "version": 26,
+      "checksum": "3994dd78e200feda03abeda5a915894182aa9e512cc33d5cd016142a6e2d3626"
+    },
+    {
+      "bankId": "radiotelephony",
+      "version": 26,
+      "checksum": "5f918013ae11f2bc9b7b21c955677db8508b7c4d43bde7f2f12485c66d8c69f2"
+    },
+    {
+      "bankId": "sentences900",
+      "version": 26,
+      "checksum": "03e8c42d9268a790e825667cd20f007c23e9cda2c34984a005d8745e7011a2bf"
+    },
+    {
+      "bankId": "storytelling",
+      "version": 26,
+      "checksum": "fc80dfd1e1d1f62ea27b39ecec3f7262753a21f5e7277f776f7c6aa50c314933"
+    }
+  ],
+  "completePayloadReadback": "5 banks exactly equal prepared payloads including all card and scenario order",
+  "learningData": {
+    "annotationDocuments": 49,
+    "retainedHighlights": 804,
+    "rebasedDocuments": 7,
+    "rebasedHighlights": 163,
+    "notesAndTags": "unchanged"
+  },
+  "api": {
+    "release": "content-format-20261022-66ff1694",
+    "topicReadbacks": 5,
+    "signedAudioChecksums": 5,
+    "legacyAnnotationUpload": "verified",
+    "temporaryAccountCleanup": "verified"
+  },
+  "backup": "/opt/icao/runtime/releases/content-format-20261022-v26/annotations-before.json",
+  "rollbackApi": "stability-20261021-3e3de7c9"
+}
