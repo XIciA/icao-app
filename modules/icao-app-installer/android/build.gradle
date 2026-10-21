@@ -6,6 +6,10 @@ group = 'com.icao.appinstaller'
 version = '1.0.0'
 android {
   namespace "com.icao.appinstaller"
-  defaultConfig { minSdkVersion 24 }
+  defaultConfig {
+    versionCode 1
+    versionName project.version.toString()
+    minSdkVersion 24
+  }
 }
 dependencies { implementation project(':expo-modules-core') }
