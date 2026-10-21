@@ -1,48 +1,48 @@
 {
   "id": "opi-topic-0019",
   "name": "舱单",
-  "declaredCardCount": 4,
   "cards": [
     {
-      "id": "opi-core-303",
-      "taskTitle": "运行-舱单-1",
-      "audioText": "Who is responsible for providing the load sheet to the flight crew?",
-      "audioTextZh": "谁负责向飞行机组提供载重平衡舱单？",
-      "referenceText": "The operator is responsible for ensuring that the load sheet is prepared and provided to the flight crew. The work may be done by the operator's load-control staff or by an approved contracted provider. The person supervising the loading confirms the final load, and the captain verifies and accepts the mass-and-balance document before departure.",
-      "referenceTextZh": "运营人负责确保载重平衡表得到编制并提供给飞行机组。这项工作可以由运营人的配载人员或经批准的承包服务商完成。负责监督装载的人员确认最终装载情况，机长则在离场前核实并接受质量与平衡文件。",
-      "audio": "/question-bank-assets/revisions/opi/5abe5166da51d4090df4f585a94e51da3eb367b1fe0e63657c284f7c44d17bad/audio/opi/opi-core-303.mp3",
-      "audioDurationSeconds": 3.432
-    },
-    {
-      "id": "opi-core-304",
-      "taskTitle": "运行-舱单-2",
-      "audioText": "What is the purpose of a load sheet?",
-      "audioTextZh": "载重平衡舱单有什么用途？",
-      "referenceText": "A load sheet provides weight-and-balance information for preflight preparation. It helps the pilot check passenger and cargo loads, fuel quantity, and center of gravity and confirm that the aircraft is properly balanced.",
-      "referenceTextZh": "载重平衡表为飞行前准备提供重量和平衡信息。它帮助飞行员核对旅客和货物载荷、燃油量及重心，并确认飞机配载平衡正确。",
-      "audio": "/question-bank-assets/revisions/opi/303870a290dd871684b77d803924bdfb52912c1e55a6f45de04264e669902d1a/audio/opi/opi-core-304.mp3",
-      "audioDurationSeconds": 1.8
-    },
-    {
       "id": "opi-core-305",
-      "taskTitle": "运行-舱单-3",
+      "audio": "/question-bank-assets/revisions/opi/cde7a052c87d67376a49e1a55c878493d9d570d370b735ba378550514068c331/audio/opi/opi-core-305.mp3",
       "audioText": "What information is included on a load sheet?",
+      "taskTitle": "运行-舱单-3",
       "audioTextZh": "载重平衡舱单包含哪些信息？",
       "referenceText": "A load sheet may include the flight number, number of people on board, cargo and baggage weight, fuel quantity, zero-fuel weight, center of gravity, and takeoff and landing weights.",
       "referenceTextZh": "载重平衡表可能包括航班号、机上人数、货物和行李重量、燃油量、无燃油重量、重心以及起飞和着陆重量。",
-      "audio": "/question-bank-assets/revisions/opi/cde7a052c87d67376a49e1a55c878493d9d570d370b735ba378550514068c331/audio/opi/opi-core-305.mp3",
       "audioDurationSeconds": 2.424
     },
     {
       "id": "opi-core-307",
-      "taskTitle": "运行-舱单-4",
+      "audio": "/question-bank-assets/revisions/opi/8a6d4d4c9eabe545a0ed57a75d0c0f1c6e483a1291075499757759e57603bcc6/audio/opi/opi-core-307.mp3",
       "audioText": "How does the flight crew receive the load sheet before departure?",
+      "taskTitle": "运行-舱单-4",
       "audioTextZh": "起飞前，飞行机组如何收到载重平衡舱单？",
       "referenceText": "The flight crew may receive the load sheet as a paper document or by an approved electronic or data-link system. Before the captain accepts it, the crew checks the flight details, load figures, takeoff and landing weights, and centre-of-gravity information. Any last-minute change must be communicated and recorded.",
       "referenceTextZh": "飞行机组可以通过纸质文件或经批准的电子或数据链系统接收载重平衡表。机长接受文件前，机组会核对航班信息、载荷数据、起飞和着陆重量以及重心信息。任何临时变更都必须传达并记录。",
-      "audio": "/question-bank-assets/revisions/opi/8a6d4d4c9eabe545a0ed57a75d0c0f1c6e483a1291075499757759e57603bcc6/audio/opi/opi-core-307.mp3",
       "audioDurationSeconds": 3.288
+    },
+    {
+      "id": "opi-core-303",
+      "audio": "/question-bank-assets/revisions/opi/5abe5166da51d4090df4f585a94e51da3eb367b1fe0e63657c284f7c44d17bad/audio/opi/opi-core-303.mp3",
+      "audioText": "Who is responsible for providing the load sheet to the flight crew?",
+      "taskTitle": "运行-舱单-1",
+      "audioTextZh": "谁负责向飞行机组提供载重平衡舱单？",
+      "referenceText": "The operator is responsible for ensuring that the load sheet is prepared and provided to the flight crew. The work may be done by the operator's load-control staff or by an approved contracted provider. The person supervising the loading confirms the final load, and the captain verifies and accepts the mass-and-balance document before departure.",
+      "referenceTextZh": "运营人负责确保载重平衡表得到编制并提供给飞行机组。这项工作可以由运营人的配载人员或经批准的承包服务商完成。负责监督装载的人员确认最终装载情况，机长则在离场前核实并接受质量与平衡文件。",
+      "audioDurationSeconds": 3.432
+    },
+    {
+      "id": "opi-core-304",
+      "audio": "/question-bank-assets/revisions/opi/303870a290dd871684b77d803924bdfb52912c1e55a6f45de04264e669902d1a/audio/opi/opi-core-304.mp3",
+      "audioText": "What is the purpose of a load sheet?",
+      "taskTitle": "运行-舱单-2",
+      "audioTextZh": "载重平衡舱单有什么用途？",
+      "referenceText": "A load sheet provides weight-and-balance information for preflight preparation. It helps the pilot check passenger and cargo loads, fuel quantity, and center of gravity and confirm that the aircraft is properly balanced.",
+      "referenceTextZh": "载重平衡表为飞行前准备提供重量和平衡信息。它帮助飞行员核对旅客和货物载荷、燃油量及重心，并确认飞机配载平衡正确。",
+      "audioDurationSeconds": 1.8
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-05"
 }

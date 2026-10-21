@@ -1,88 +1,88 @@
 {
   "id": "opi-topic-0044",
   "name": "侧风着陆",
-  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-core-543",
-      "taskTitle": "气象-侧风着陆-1",
-      "audioText": "What actions should a pilot take when encountering a strong crosswind on approach?",
-      "audioTextZh": "进近过程中遇到强侧风时，飞行员应采取哪些措施？",
-      "referenceText": "The pilot should check the crosswind direction and speed and monitor the aircraft’s airspeed, altitude, attitude, and flight path closely. An appropriate crab or sideslip technique can be used to align the aircraft while avoiding over-control. The approach should remain stable, and the pilot should be ready to go around if the crosswind exceeds the applicable limit.",
-      "referenceTextZh": "飞行员应检查侧风方向和速度，并密切监控飞机的空速、高度、姿态和航迹。可以采用适当的蟹形修正或侧滑技术使飞机与跑道对正，同时避免过度操纵。进近应保持稳定，如果侧风超过适用限制，应随时准备复飞。",
-      "audio": "/question-bank-assets/revisions/opi/8c26edf575da205e2aca03a25e341c89817a27e1e29994615e4635d9ce8328f3/audio/opi/opi-core-543.mp3",
-      "audioDurationSeconds": 4.368
-    },
-    {
-      "id": "opi-core-544",
-      "taskTitle": "气象-侧风着陆-2",
-      "audioText": "How would you respond if the preceding aircraft went around because of strong crosswinds?",
-      "audioTextZh": "如果前机因强侧风复飞，你会如何处置？",
-      "referenceText": "I would confirm why the preceding aircraft went around and request a current wind check from ATC. I would compare the wind with our applicable limit and continue only if the approach remained within limits and stable. If the crosswind exceeded the limit or conditions deteriorated, I would go around.",
-      "referenceTextZh": "我会确认前机复飞的原因，并向空中交通管制申请最新风况检查。我会把风与本机适用限制比较，只有进近保持在限制内且稳定时才继续。如果侧风超过限制或条件恶化，我会复飞。",
-      "audio": "/question-bank-assets/revisions/opi/bd2bbbd1e477d077a7dff069f46e74b1ae9765220be1210f87be0bd5f7f393e4/audio/opi/opi-core-544.mp3",
-      "audioDurationSeconds": 4.56
-    },
-    {
-      "id": "opi-core-545",
-      "taskTitle": "气象-侧风着陆-3",
-      "audioText": "Do you consider a crosswind landing particularly hazardous? Why or why not?",
-      "audioTextZh": "你认为侧风着陆特别危险吗？为什么？",
-      "referenceText": "Yes, a strong crosswind can make a landing particularly hazardous. It can cause the aircraft to drift from the correct flight path, skid, or veer off the runway, and it can increase pilot workload. An unstable landing may also lead to a tail, wingtip, or engine strike, aircraft damage, or injuries.",
-      "referenceTextZh": "是的，强侧风会使着陆特别危险。它可能使飞机偏离正确航迹、侧滑或偏出跑道，并增加飞行员工作负荷。不稳定着陆还可能造成机尾、翼尖或发动机擦地、飞机损坏或人员受伤。",
-      "audio": "/question-bank-assets/revisions/opi/87797517b3ee7e38d58bd9219203bf3404aa7d38b790fa3669ae29976c860e06/audio/opi/opi-core-545.mp3",
-      "audioDurationSeconds": 4.776
-    },
-    {
-      "id": "opi-core-546",
-      "taskTitle": "气象-侧风着陆-4",
-      "audioText": "How would you decide whether to continue an approach when the crosswind is close to the applicable limit?",
-      "audioTextZh": "当侧风接近适用限制时，你会如何决定是否继续进近？",
-      "referenceText": "I would compare the actual crosswind with the applicable limit and consider the aircraft’s performance, visibility, and runway conditions. If the crosswind were close to the limit and the conditions were uncertain, I would make a conservative decision and go around rather than force the landing. I would also consider diverting to an alternate airport.",
-      "referenceTextZh": "我会把实际侧风与适用限制比较，并考虑飞机性能、能见度和跑道状况。如果侧风接近限制且条件不确定，我会作出保守决定并复飞，而不是勉强着陆。我也会考虑改航至备降机场。",
-      "audio": "/question-bank-assets/revisions/opi/ff52417347df767b4fd49a64ba96e1813be649e27f6963b6f1d7c2858ddd13ca/audio/opi/opi-core-546.mp3",
-      "audioDurationSeconds": 5.088
-    },
-    {
-      "id": "opi-core-547",
-      "taskTitle": "气象-侧风着陆-5",
-      "audioText": "What preparations should pilots make before arriving at a destination where strong crosswinds are forecast?",
-      "audioTextZh": "如果预报目的地有强侧风，飞行员在到达前应做哪些准备？",
-      "referenceText": "Pilots should obtain the latest wind information from ATC and compare the crosswind with the applicable limit. They should be prepared to go around if the limit is exceeded and consider diverting to an alternate airport.",
-      "referenceTextZh": "飞行员应从空中交通管制获取最新风况，并把侧风与适用限制比较。超过限制时应准备复飞，并考虑改航至备降机场。",
-      "audio": "/question-bank-assets/revisions/opi/e4d920df1046a90331536ef21fd5683b1a3990728b68fe42fc01877e5bea7e56/audio/opi/opi-core-547.mp3",
-      "audioDurationSeconds": 5.832
-    },
-    {
-      "id": "opi-core-548",
-      "taskTitle": "气象-侧风着陆-6",
-      "audioText": "What would you do if the crosswind exceeded the applicable limit but the other pilot insisted on landing?",
-      "audioTextZh": "如果侧风超过适用限制，但另一名飞行员坚持着陆，你会如何处理？",
-      "referenceText": "I would state the risk clearly, ask the other pilot to recheck the crosswind limit, and call for a go-around. I would emphasize that the crew must follow the applicable SOP and company policy. I would continue to support the safe go-around decision rather than accept a landing outside the limit.",
-      "referenceTextZh": "我会明确说明风险，请另一名飞行员重新核对侧风限制，并要求复飞。我会强调机组必须遵循适用的标准操作程序和公司政策。我会继续支持安全复飞的决定，而不会接受超限着陆。",
-      "audio": "/question-bank-assets/revisions/opi/c240651b3b60a4190252b778dc88fb8387b44f6113237a0af0a6aa7454c6f01f/audio/opi/opi-core-548.mp3",
-      "audioDurationSeconds": 5.304
-    },
-    {
       "id": "opi-core-549",
-      "taskTitle": "气象-侧风着陆-7",
+      "audio": "/question-bank-assets/revisions/opi/8d3270311a3f514acf72980333035225dabe9b3e421ffff43f69f163cb77dc30/audio/opi/opi-core-549.mp3",
       "audioText": "What should a flight crew monitor closely during a crosswind landing?",
+      "taskTitle": "气象-侧风着陆-7",
       "audioTextZh": "侧风着陆过程中，机组应密切监控哪些事项？",
       "referenceText": "The crew should monitor the crosswind direction and speed closely and request an updated wind check from ATC when needed. They should compare the current wind with the applicable operational limit and be prepared to go around if the limit is exceeded.",
       "referenceTextZh": "机组应密切监控侧风方向和速度，并在需要时向空中交通管制申请更新风况。他们应把当前风况与适用运行限制比较，并在超过限制时准备复飞。",
-      "audio": "/question-bank-assets/revisions/opi/8d3270311a3f514acf72980333035225dabe9b3e421ffff43f69f163cb77dc30/audio/opi/opi-core-549.mp3",
       "audioDurationSeconds": 3.648
     },
     {
       "id": "opi-core-551",
-      "taskTitle": "气象-侧风着陆-8",
+      "audio": "/question-bank-assets/revisions/opi/95bc5b33fa2156228d919544938e0d68aee5118c4d8ca1c4a292f4a561c25981/audio/opi/opi-core-551.mp3",
       "audioText": "What can happen if an aircraft lands in a strong crosswind?",
+      "taskTitle": "气象-侧风着陆-8",
       "audioTextZh": "飞机在强侧风中着陆可能会发生什么？",
       "referenceText": "A strong crosswind can cause the aircraft to skid, veer off, or overrun the runway. It may also lead to a tail strike or damage to the landing gear, engines, wings, or other structure. An unstable landing can injure crew members or passengers.",
       "referenceTextZh": "强侧风会使飞机侧滑、偏出或冲出跑道，还可能导致擦尾，或损坏起落架、发动机、机翼及其他结构。不稳定着陆会使机组成员或旅客受伤。",
-      "audio": "/question-bank-assets/revisions/opi/95bc5b33fa2156228d919544938e0d68aee5118c4d8ca1c4a292f4a561c25981/audio/opi/opi-core-551.mp3",
       "audioDurationSeconds": 3.168
+    },
+    {
+      "id": "opi-core-544",
+      "audio": "/question-bank-assets/revisions/opi/bd2bbbd1e477d077a7dff069f46e74b1ae9765220be1210f87be0bd5f7f393e4/audio/opi/opi-core-544.mp3",
+      "audioText": "How would you respond if the preceding aircraft went around because of strong crosswinds?",
+      "taskTitle": "气象-侧风着陆-2",
+      "audioTextZh": "如果前机因强侧风复飞，你会如何处置？",
+      "referenceText": "I would confirm why the preceding aircraft went around and request a current wind check from ATC. I would compare the wind with our applicable limit and continue only if the approach remained within limits and stable. If the crosswind exceeded the limit or conditions deteriorated, I would go around.",
+      "referenceTextZh": "我会确认前机复飞的原因，并向空中交通管制申请最新风况检查。我会把风与本机适用限制比较，只有进近保持在限制内且稳定时才继续。如果侧风超过限制或条件恶化，我会复飞。",
+      "audioDurationSeconds": 4.56
+    },
+    {
+      "id": "opi-core-547",
+      "audio": "/question-bank-assets/revisions/opi/e4d920df1046a90331536ef21fd5683b1a3990728b68fe42fc01877e5bea7e56/audio/opi/opi-core-547.mp3",
+      "audioText": "What preparations should pilots make before arriving at a destination where strong crosswinds are forecast?",
+      "taskTitle": "气象-侧风着陆-5",
+      "audioTextZh": "如果预报目的地有强侧风，飞行员在到达前应做哪些准备？",
+      "referenceText": "Pilots should obtain the latest wind information from ATC and compare the crosswind with the applicable limit. They should be prepared to go around if the limit is exceeded and consider diverting to an alternate airport.",
+      "referenceTextZh": "飞行员应从空中交通管制获取最新风况，并把侧风与适用限制比较。超过限制时应准备复飞，并考虑改航至备降机场。",
+      "audioDurationSeconds": 5.832
+    },
+    {
+      "id": "opi-core-543",
+      "audio": "/question-bank-assets/revisions/opi/8c26edf575da205e2aca03a25e341c89817a27e1e29994615e4635d9ce8328f3/audio/opi/opi-core-543.mp3",
+      "audioText": "What actions should a pilot take when encountering a strong crosswind on approach?",
+      "taskTitle": "气象-侧风着陆-1",
+      "audioTextZh": "进近过程中遇到强侧风时，飞行员应采取哪些措施？",
+      "referenceText": "The pilot should check the crosswind direction and speed and monitor the aircraft's airspeed, altitude, attitude, and flight path closely. An appropriate crab or sideslip technique can be used to align the aircraft while avoiding over-control. The approach should remain stable, and the pilot should be ready to go around if the crosswind exceeds the applicable limit.",
+      "referenceTextZh": "飞行员应检查侧风方向和速度，并密切监控飞机的空速、高度、姿态和航迹。可以采用适当的蟹形修正或侧滑技术使飞机与跑道对正，同时避免过度操纵。进近应保持稳定，如果侧风超过适用限制，应随时准备复飞。",
+      "audioDurationSeconds": 4.368
+    },
+    {
+      "id": "opi-core-545",
+      "audio": "/question-bank-assets/revisions/opi/87797517b3ee7e38d58bd9219203bf3404aa7d38b790fa3669ae29976c860e06/audio/opi/opi-core-545.mp3",
+      "audioText": "Do you consider a crosswind landing particularly hazardous? Why or why not?",
+      "taskTitle": "气象-侧风着陆-3",
+      "audioTextZh": "你认为侧风着陆特别危险吗？为什么？",
+      "referenceText": "Yes, a strong crosswind can make a landing particularly hazardous. It can cause the aircraft to drift from the correct flight path, skid, or veer off the runway, and it can increase pilot workload. An unstable landing may also lead to a tail, wingtip, or engine strike, aircraft damage, or injuries.",
+      "referenceTextZh": "是的，强侧风会使着陆特别危险。它可能使飞机偏离正确航迹、侧滑或偏出跑道，并增加飞行员工作负荷。不稳定着陆还可能造成机尾、翼尖或发动机擦地、飞机损坏或人员受伤。",
+      "audioDurationSeconds": 4.776
+    },
+    {
+      "id": "opi-core-548",
+      "audio": "/question-bank-assets/revisions/opi/c240651b3b60a4190252b778dc88fb8387b44f6113237a0af0a6aa7454c6f01f/audio/opi/opi-core-548.mp3",
+      "audioText": "What would you do if the crosswind exceeded the applicable limit but the other pilot insisted on landing?",
+      "taskTitle": "气象-侧风着陆-6",
+      "audioTextZh": "如果侧风超过适用限制，但另一名飞行员坚持着陆，你会如何处理？",
+      "referenceText": "I would state the risk clearly, ask the other pilot to recheck the crosswind limit, and call for a go-around. I would emphasize that the crew must follow the applicable SOP and company policy. I would continue to support the safe go-around decision rather than accept a landing outside the limit.",
+      "referenceTextZh": "我会明确说明风险，请另一名飞行员重新核对侧风限制，并要求复飞。我会强调机组必须遵循适用的标准操作程序和公司政策。我会继续支持安全复飞的决定，而不会接受超限着陆。",
+      "audioDurationSeconds": 5.304
+    },
+    {
+      "id": "opi-core-546",
+      "audio": "/question-bank-assets/revisions/opi/ff52417347df767b4fd49a64ba96e1813be649e27f6963b6f1d7c2858ddd13ca/audio/opi/opi-core-546.mp3",
+      "audioText": "How would you decide whether to continue an approach when the crosswind is close to the applicable limit?",
+      "taskTitle": "气象-侧风着陆-4",
+      "audioTextZh": "当侧风接近适用限制时，你会如何决定是否继续进近？",
+      "referenceText": "I would compare the actual crosswind with the applicable limit and consider the aircraft's performance, visibility, and runway conditions. If the crosswind were close to the limit and the conditions were uncertain, I would make a conservative decision and go around rather than force the landing. I would also consider diverting to an alternate airport.",
+      "referenceTextZh": "我会把实际侧风与适用限制比较，并考虑飞机性能、能见度和跑道状况。如果侧风接近限制且条件不确定，我会作出保守决定并复飞，而不是勉强着陆。我也会考虑改航至备降机场。",
+      "audioDurationSeconds": 5.088
     }
   ],
+  "declaredCardCount": 8,
   "categoryId": "opi-category-01"
 }

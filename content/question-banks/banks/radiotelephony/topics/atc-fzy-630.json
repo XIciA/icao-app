@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111552",
       "taskTitle": "2. BAW141 weather&traffic, etc.-1",
-      "audioText": "[Your call sign is BAW141, destination Beijing, estimate GUPAD 20, level 8900m, TYN 35, next ISGOD, contact Beijing Control, report in cloud at 10100m.]",
-      "audioTextZh": "【你的呼号是英航141，目的地北京，预计到达GUPAD 时间20分，高度8900米，TYN时间35分，下一个点ISGOD，联系北京区调，报告在10100米云中。】",
+      "audioText": "Your call sign is BAW141, destination Beijing, estimate GUPAD 20, level 8900m, TYN 35, next ISGOD, contact Beijing Control, report in cloud at 10100m.",
+      "audioTextZh": "你的呼号是英航141，目的地北京，预计到达GUPAD 时间20分，高度8900米，TYN时间35分，下一个点ISGOD，联系北京区调，报告在10100米云中。",
       "referenceText": "Beijing Control, BAW141 at 10100m in cloud, estimate GUPAD 20, maintaining 8900m, TYN 35, next ISGOD.",
       "referenceTextZh": "北京区调，英航141，高度10100米云中，预计到达GUPAD时间20分，高度8900米，到达TYN时间35分，下一点ISGOD。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/15d50a57794e43ed9ca4.mp3"
@@ -19,7 +19,7 @@
       "taskTitle": "2. BAW141 weather&traffic, etc.-2",
       "audioText": "BAW141, Beijing Control, previous aircraft have required diversions right of track due to weather, please advise if you require the same.[Meteorological radar shows that you are fine at this stage.]",
       "audioTextZh": "英航141，北京区调，前机因为天气原因要求改航至原航路右侧，如果有相同需求请通知。【气象雷达显示当前阶段状况良好。】",
-      "referenceText": "Negative, BAW141. (Radar shows normal. )",
+      "referenceText": "Negative, BAW141. (Radar shows normal.)",
       "referenceTextZh": "没有，英航141。（气象雷达显示当前阶段状况良好。）",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bf21a73e8e509b7dffae.mp3"
     },
@@ -35,7 +35,7 @@
     {
       "id": "radiotelephony-fzy-111555",
       "taskTitle": "2. BAW141 weather&traffic, etc.-4",
-      "audioText": "[There is CB ahead of you, request deviation 5 miles right of track.]",
+      "audioText": "There is CB ahead of you, request deviation 5 miles right of track.",
       "audioTextZh": "【飞机前方有积雨云，请求右偏航5海里。】",
       "referenceText": "Beijing Control, BAW141, request deviate/offset 5 miles right of track due to CB ahead.",
       "referenceTextZh": "北京区调，英航141，由于前方积雨云，请求右偏航5海里。",
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-111557",
       "taskTitle": "2. BAW141 weather&traffic, etc.-6",
-      "audioText": "BAW141, traffic information, detect primary radar signal at 1 o’clock, 50 kilometers, northwest bound, altitude unknown, we are unable to communicate with the aircraft.[Tell the controller that your TCAS has no indication of that aircraft, and confirm whether the traffic is in conflict with you.]",
+      "audioText": "BAW141, traffic information, detect primary radar signal at 1 o'clock, 50 kilometers, northwest bound, altitude unknown, we are unable to communicate with the aircraft.[Tell the controller that your TCAS has no indication of that aircraft, and confirm whether the traffic is in conflict with you.]",
       "audioTextZh": "英航141，活动通报，探测到1点钟方向有一次雷达信号，距离50千米，向西北飞行，高度未知，我们无法和该飞机取得联系。【告知管制员飞机上的TCAS系统未显示该飞机，并确认该交通是否和你有冲突。】",
       "referenceText": "Roger, we do not have TCAS indication, confirm that the unidentified aircraft will not be in conflict with us, BAW141.",
       "referenceTextZh": "收到，TCAS上没有显示，确认该不明身份的飞机是否和我们有冲突，英航141。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-111558",
       "taskTitle": "2. BAW141 weather&traffic, etc.-7",
-      "audioText": "BAW141, the aircraft is currently parallel to your track. You are closing on that aircraft, report sighting. [Tell the controller that you are crossing cloud and you can’t see the aircraft.]",
+      "audioText": "BAW141, the aircraft is currently parallel to your track. You are closing on that aircraft, report sighting. [Tell the controller that you are crossing cloud and you can't see the aircraft.]",
       "audioTextZh": "英航141，该飞机目前与你处于平行航道，你离它越来越近，能见报告。【告知管制员你正在穿越云层，无法看到该飞机。】",
       "referenceText": "We are crossing cloud. Negative contact with the aircraft, BAW141.",
       "referenceTextZh": "我们在云中穿梭，无法看见该飞机，英航141。",
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111560",
       "taskTitle": "2. BAW141 weather&traffic, etc.-9",
-      "audioText": "[You suffered lightning strike, make a distress call and request descent to 4200m.]",
-      "audioTextZh": "【遭遇雷击，发送遇险信号，请求下降4200米。】",
+      "audioText": "You suffered lightning strike, make a distress call and request descent to 4200m.",
+      "audioTextZh": "遭遇雷击，发送遇险信号，请求下降4200米。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY, Beijing Control, BAW141, lightning strike, request descent to 4200m.",
       "referenceTextZh": "MAYDAY, MAYDAY, MAYDAY，北京区调，英航141，雷击，请求下降4200米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b549efb8f575b519b1ef.mp3"
@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-111566",
       "taskTitle": "2. BAW141 weather&traffic, etc.-15",
-      "audioText": "BAW141, position 10 miles northeast of the field, 3 miles north of the extended center line of runway 36L, a correcting heading won’t be necessary, descend to 600m, report visual.",
+      "audioText": "BAW141, position 10 miles northeast of the field, 3 miles north of the extended center line of runway 36L, a correcting heading won't be necessary, descend to 600m, report visual.",
       "audioTextZh": "英航141，位于机场东北10海里，跑道36左延长线南部3海里，不需要修正航向，下降600米，能见跑道报告。",
       "referenceText": "Position 10 miles northeast of the field, 3 miles north of the extended center line of runway 36L,, descend to 600m, report visual, BAW141.",
       "referenceTextZh": "位于机场东北10海里，跑道36左延长线南部3海里，下降600米，能见机场后报告，英航141。",
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-111567",
       "taskTitle": "2. BAW141 weather&traffic, etc.-16",
-      "audioText": "[Tell the ATC that you have sighted the field.]",
+      "audioText": "Tell the ATC that you have sighted the field.",
       "audioTextZh": "【告知管制员你可以看到机场】",
       "referenceText": "Beijing Approach, BAW141. field in sight.",
       "referenceTextZh": "北京进近，英航141，看见跑道了。",

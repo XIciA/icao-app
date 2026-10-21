@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-224618",
       "taskTitle": "75-CSN3235 [风切变]-1",
-      "audioText": "B: [Your callsign is CSN3235, a flight from Beijing to Shanghai. You’re parking at 217, you’ve got information G. Contact Beijing Delivery and request ATC clearance.]",
+      "audioText": "B: [Your callsign is CSN3235, a flight from Beijing to Shanghai. You're parking at 217, you've got information G. Contact Beijing Delivery and request ATC clearance.]",
       "audioTextZh": "B：【你的呼号是南方3235，一架从北京飞往上海的航班，你现在在217号机位，你收到了通播G，联系北京放行，请求管制许可。】",
       "referenceText": "Beijing Delivery, CSN3235, gate 217, information G, request ATC clearance to Shanghai.",
       "referenceTextZh": "北京放行，南方3235，217机位，请求飞往上海的管制许可。",
@@ -44,9 +44,9 @@
     {
       "id": "radiotelephony-fzy-224622",
       "taskTitle": "75-CSN3235 [风切变]-5",
-      "audioText": "B: [All the passengers have boarded the aircraft, all cabin doors have been closed. You’re fully ready.]",
+      "audioText": "B: [All the passengers have boarded the aircraft, all cabin doors have been closed. You're fully ready.]",
       "audioTextZh": "B：【所有乘客已经登机，所有舱门已关闭，你现在完全准备好了。】",
-      "referenceText": "Beijing Ground, CSN3235, all the passengers have boarded the aircraft, all cabin doors have been closed. We’re fully ready.",
+      "referenceText": "Beijing Ground, CSN3235, all the passengers have boarded the aircraft, all cabin doors have been closed. We're fully ready.",
       "referenceTextZh": "北京地面，南方3235，所有乘客已经登机，所有舱门已经关闭，我们已经完全准备好了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8774286c66c00c315013.mp3"
     },
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-224624",
       "taskTitle": "75-CSN3235 [风切变]-7",
-      "audioText": "B: [Now you’re ready for pushback.]",
+      "audioText": "B: [Now you're ready for pushback.]",
       "audioTextZh": "B：【你现在准备好推出了。】",
       "referenceText": "Beijing Ground, CSN3235, request pushback.",
       "referenceTextZh": "北京地面，南方3235，请求推出。",
@@ -80,7 +80,7 @@
     {
       "id": "radiotelephony-fzy-224626",
       "taskTitle": "75-CSN3235 [风切变]-9",
-      "audioText": "B: [Now you’ve completed the pushback, you’re ready for taxi.]",
+      "audioText": "B: [Now you've completed the pushback, you're ready for taxi.]",
       "audioTextZh": "B：【你现在完成推出，准备好滑行了。】",
       "referenceText": "Beijing Ground, CSN3235, request taxi.",
       "referenceTextZh": "北京地面，南方3235，请求滑行。",
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-224628",
       "taskTitle": "75-CSN3235 [风切变]-11",
-      "audioText": "B: [Now you’re holding short of runway 08L, you’re ready for departure, contact Beijing Tower.]",
+      "audioText": "B: [Now you're holding short of runway 08L, you're ready for departure, contact Beijing Tower.]",
       "audioTextZh": "B：【你现在在跑道08左的外等待点，你准备好起飞了，联系北京塔台。】",
       "referenceText": "Beijing Tower, CSN3235, holding point of runway 08L, request departure.",
       "referenceTextZh": "北京塔台，南方3235，跑道08左的外等待点，请求起飞。",

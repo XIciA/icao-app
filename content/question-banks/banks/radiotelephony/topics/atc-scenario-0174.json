@@ -34,7 +34,7 @@
       "id": "atc-scenario-0174-card-main-3000",
       "taskTitle": "UAL 221-4",
       "audioText": "C: UAL 221, 13100m is available now, say your intention.\nB: tell the controller you are unable to accept 13100m because of performance.",
-      "audioTextZh": "C： UAL 221，13100m 当前可用，请说明你的意图。\nB： 告诉管制员，由于性能原因你无法接受 13100m。",
+      "audioTextZh": "C：UAL 221，13100m 当前可用，请说明你的意图。\nB：告诉管制员，由于性能原因你无法接受 13100m。",
       "referenceText": "negative, we are unable to accept 13,100 meters due to performance, UAL 221.",
       "referenceTextZh": "不行，由于性能原因，我们无法接受 13,100 米，UAL 221。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q04.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0174-card-main-3001",
       "taskTitle": "UAL 221-5",
       "audioText": "C: UAL 221, maintain present speed, expect higher level after IKUBA.\nB: tell the controller you are unable to maintain the speed due turbulence and ask to maintain mach decimal 82.",
-      "audioTextZh": "C： UAL 221，保持当前速度，预计飞越 IKUBA 后可使用更高高度。\nB： 告诉管制员由于颠簸你无法保持该速度，并请求保持 Mach 0.82。",
+      "audioTextZh": "C：UAL 221，保持当前速度，预计飞越 IKUBA 后可使用更高高度。\nB：告诉管制员由于颠簸你无法保持该速度，并请求保持 Mach 0.82。",
       "referenceText": "negative mach decimal eight tree due turbulence, request maintain decimal eight two, UAL 221.",
       "referenceTextZh": "不行，因颠簸无法保持 Mach 0.83，请求保持 Mach 0.82，UAL 221。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q05.mp3"

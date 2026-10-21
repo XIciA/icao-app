@@ -8,18 +8,18 @@
     {
       "id": "radiotelephony-fzy-111063",
       "taskTitle": "21. AFR986 abnormal indication, etc.-1",
-      "audioText": "[You are from Paris to Wuhan. You are flying at 11300m, approaching SIA. Call Xi’an Control.]",
+      "audioText": "You are from Paris to Wuhan. You are flying at 11300m, approaching SIA. Call Xi'an Control.",
       "audioTextZh": "你从巴黎飞往武汉。你正在11300米飞行，接近SIA，联系西安区调。】",
-      "referenceText": "Xi’an Control, AFR986, maintaining 11300m, approaching SIA.",
+      "referenceText": "Xi'an Control, AFR986, maintaining 11300m, approaching SIA.",
       "referenceTextZh": "西安区调，法航986，保持11300米，接近SIA。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1fc0f4776ce021cdf3e6.mp3"
     },
     {
       "id": "radiotelephony-fzy-111064",
       "taskTitle": "21. AFR986 abnormal indication, etc.-2",
-      "audioText": "AFR986, Xi’an Control, radar contact, maintain 11300m.[You are experiencing moderate turbulence. You want to know the turbulence report at other level.]",
+      "audioText": "AFR986, Xi'an Control, radar contact, maintain 11300m.[You are experiencing moderate turbulence. You want to know the turbulence report at other level.]",
       "audioTextZh": "法航986，西安区调，雷达已识别，保持11300米。【你遇到中度颠簸。想知道其它高度的颠簸报告。】",
-      "referenceText": "Xi’an Control, AFR986, we suffer from moderate turbulence, request turbulence condition at other levels,",
+      "referenceText": "Xi'an Control, AFR986, we suffer from moderate turbulence, request turbulence condition at other levels,",
       "referenceTextZh": "西安区调，法航986，我们遇到了颠簸，请求其它高度的颠簸情况。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b27beaddaedbb7cc15b1.mp3"
     },
@@ -28,7 +28,7 @@
       "taskTitle": "21. AFR986 abnormal indication, etc.-3",
       "audioText": "AFR986, you are the first aircraft in my sector. No one reported.[Tell the controller you want to descend to 10700m due to turbulence.]",
       "audioTextZh": "法航986，你在我这是第一架飞机。没有其它的报告。【告诉管制员，由于颠簸，你想下降到10700米。】",
-      "referenceText": "Xi’an Control, AFR986, request descent to 10700m due turbulence.",
+      "referenceText": "Xi'an Control, AFR986, request descent to 10700m due turbulence.",
       "referenceTextZh": "西安区调，法航986，由于颠簸，请求下降至10700米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/985d000fa59394846b61.mp3"
     },
@@ -37,7 +37,7 @@
       "taskTitle": "21. AFR986 abnormal indication, etc.-4",
       "audioText": "AFR986, descend and maintain 10700m approved.[You are experiencing severe turbulence at 10700m. The pitot static heating feature has malfunction. You want to fly back to 11300m to avoid turbulence and ice area. This is an urgent call.]",
       "audioTextZh": "法航986，可以下降保持10700米。【你在10700米遇到强烈颠簸。皮托管加热功能故障。你想飞回11300米，以躲避颠簸和结冰区。做紧急呼叫。】",
-      "referenceText": "PANPAN, PANPAN, PANPAN, Xi’an Control, AFR986, request climb to 11300m due severe turbulence and ice area at 10700m.",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Xi'an Control, AFR986, request climb to 11300m due severe turbulence and ice area at 10700m.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，西安区调，法航986，由于10700米处有强烈颠簸和结冰区，请求爬升11300米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ffa60c506d25778fd76.mp3"
     },
@@ -53,9 +53,9 @@
     {
       "id": "radiotelephony-fzy-111068",
       "taskTitle": "21. AFR986 abnormal indication, etc.-6",
-      "audioText": "[You are maintaining 11300m, call Xi’an Control.]",
+      "audioText": "You are maintaining 11300m, call Xi'an Control.",
       "audioTextZh": "【保持11300米，呼叫区调。】",
-      "referenceText": "Xi’an Control, AFR986, maintaining 11300m.",
+      "referenceText": "Xi'an Control, AFR986, maintaining 11300m.",
       "referenceTextZh": "西安区调，法航986，保持11300米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/230a06364c5a2609eb87.mp3"
     },
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-111070",
       "taskTitle": "21. AFR986 abnormal indication, etc.-8",
-      "audioText": "[You are flying at 11300m, squawk 3215. Call Zhengzhou Control.]",
-      "audioTextZh": "【你在11300米飞行，应答机3215，呼叫郑州区调。】",
+      "audioText": "You are flying at 11300m, squawk 3215. Call Zhengzhou Control.",
+      "audioTextZh": "你在11300米飞行，应答机3215，呼叫郑州区调。",
       "referenceText": "Zhengzhou Control, AFR986, maintaining 11300m, squawk 3215.",
       "referenceTextZh": "郑州区调，法航986，保持11300米，应答机3215。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f66959e80d3c88b03b1b.mp3"
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-111078",
       "taskTitle": "21. AFR986 abnormal indication, etc.-16",
-      "audioText": "[You left the icing area and your instruments have returned to normal. Report to Wuhan Tower. You have established on the ILS runway 36R.]",
-      "audioTextZh": "【你离开了积冰区域，机上的仪表全部恢复正常。报告武汉塔台。你已经建立了盲降跑道36右。】",
+      "audioText": "You left the icing area and your instruments have returned to normal. Report to Wuhan Tower. You have established on the ILS runway 36R.",
+      "audioTextZh": "你离开了积冰区域，机上的仪表全部恢复正常。报告武汉塔台。你已经建立了盲降跑道36右。",
       "referenceText": "Wuhan Tower, AFR986. The instruments normal now. Established ILS approach Runway 36R.",
       "referenceTextZh": "武汉塔台，法航986。仪表恢复正常了。建立盲降进近跑道36右。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/da3697ae906398032133.mp3"

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111685",
       "taskTitle": "9. JAL220 information relay, bird strike, APU failure-1",
-      "audioText": "[Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.]",
-      "audioTextZh": "【你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。】",
+      "audioText": "Your call sign is JAL220, from Tokyo to Wuhan, now you are cruising at 10400m, over OBLIK, you received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, inform this to Wuhan control.",
+      "audioTextZh": "你的呼号是日航220，从东京飞往武汉，现在你在10400米巡航，飞过OBLIK，你收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，告知武汉区调。",
       "referenceText": "Panpan Panpan Panpan, Wuhan Control, JAL220, cruising level 10400m, over OBLIK, we received an urgency call from CCA105, they encountered receiver failure and they are transmitting blind, request emergency assistance.",
       "referenceTextZh": "Panpan Panpan Panpan，武汉区调，日航220，在10400米巡航，飞过OBLIK，我们收到来自国航105的紧急呼叫，他们遭遇了接收机失效，现在正在盲发，申请紧急援助。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d26cb68f6e44de22fe26.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-111689",
       "taskTitle": "9. JAL220 information relay, bird strike, APU failure-5",
-      "audioText": "[During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.]",
-      "audioTextZh": "【在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。】",
+      "audioText": "During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.",
+      "audioTextZh": "在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。",
       "referenceText": "Mayday, Mayday, Mayday, Wuhan Approach, JAL220, we encountered bird strike during the descent. The windshield was broken. Request radar vectors and priority landing.",
       "referenceTextZh": "Mayday, Mayday, Mayday，武汉进近，日航220，我们在下降过程中遭遇鸟击。风挡玻璃破裂。请求雷达引导，优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6b998d71ef489373125e.mp3"

@@ -124,7 +124,7 @@
       "id": "atc-scenario-0059-card-main-1025",
       "taskTitle": "CCA 527-14",
       "audioText": "B: Now you are established with Guangzhou Approach, your assigned landing runway is 02 right, you want to land Runway 02L due performance.",
-      "audioTextZh": "B: 现在你已与 广州进近 建立联系，指定着陆跑道为 02R，由于性能原因你想落跑道 02L。",
+      "audioTextZh": "B: 现在你已与广州进近建立联系，指定着陆跑道为 02R，由于性能原因你想落跑道 02L。",
       "referenceText": "Guangzhou Approach, CCA 527, request Runway 02L due performance.",
       "referenceTextZh": "广州进近，CCA 527，因性能原因请求跑道 02L。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1025.mp3"
@@ -142,7 +142,7 @@
       "id": "atc-scenario-0059-card-main-1027",
       "taskTitle": "CCA 527-16",
       "audioText": "B: You have established on the localizer Runway 02R, contact Tower.",
-      "audioTextZh": "B: 你已建立跑道 02R 航向道，联系 塔台。",
+      "audioTextZh": "B: 你已建立跑道 02R 航向道，联系塔台。",
       "referenceText": "Guangzhou Tower, CCA 527, established on the localizer Runway 02R.",
       "referenceTextZh": "广州塔台，CCA 527，已建立跑道 02R 航向道。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1027.mp3"

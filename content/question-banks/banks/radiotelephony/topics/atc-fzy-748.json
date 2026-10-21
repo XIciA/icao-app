@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-151775",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-1",
-      "audioText": "[Your call sign is CES565, from Wuhan to Los Angeles, you are at gate 227, with information M, request ATC clearance.]",
+      "audioText": "Your call sign is CES565, from Wuhan to Los Angeles, you are at gate 227, with information M, request ATC clearance.",
       "audioTextZh": "你的呼号是东方565，从武汉到洛杉矶，你现在在227号停机位，通播M，请求放行许可。",
       "referenceText": "Wuhan Delivery, CES565, gate 227, information M, request ATC clearance to Los Angeles.",
       "referenceTextZh": "武汉放行，东方565，227号停机位，通播M，请求到洛杉矶的放行许可。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-151777",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-3",
-      "audioText": "[Now you are ready for pushback and startup, call Ground.]",
+      "audioText": "Now you are ready for pushback and startup, call Ground.",
       "audioTextZh": "[你现在准备好推出开车了，呼叫地面]",
       "referenceText": "Wuhan Ground, CES565, ready for push back and startup.",
       "referenceTextZh": "武汉地面，东方565，准备好推出开车了。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-151779",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-5",
-      "audioText": "[Now the pushback and startup is completed. Ask for taxi instructions.]",
+      "audioText": "Now the pushback and startup is completed. Ask for taxi instructions.",
       "audioTextZh": "[现在完成推出开车，请求滑行指令]",
       "referenceText": "Wuhan Ground, CES565, pushback and startup completed, request taxi instructions.",
       "referenceTextZh": "武汉地面，东方565，完成推出开车，请求滑行指令。",
@@ -56,14 +56,14 @@
       "audioText": "CES565, taxi via Z4, C, C1 to holding point of runway 36L.",
       "audioTextZh": "东方565，经由滑行道Z4, C，C1，跑道36左外等待。",
       "referenceText": "Taxi via Z4, C, C1 to holding point of runway 36L, CES565.",
-      "referenceTextZh": "经由滑行道Z4, C，C1，跑道36左外等待, 东方565。",
+      "referenceTextZh": "经由滑行道Z4, C，C1，跑道36左外等待，东方565。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c92445e04bab4d1077e6.mp3"
     },
     {
       "id": "radiotelephony-fzy-151781",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-7",
-      "audioText": "[Now you are at the holding point of runway 36L, you are ready for departure, call Tower.]",
-      "audioTextZh": "[你现在在跑道36左外等待，你准备好离场了，呼叫塔台]",
+      "audioText": "Now you are at the holding point of runway 36L, you are ready for departure, call Tower.",
+      "audioTextZh": "你现在在跑道36左外等待，你准备好离场了，呼叫塔台",
       "referenceText": "Wuhan Tower, CES565, holding point runway 36L, request departure.",
       "referenceTextZh": "武汉塔台，东方565,36左跑道外等待，请求离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/af38ba1d346f05e1b256.mp3"
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-151784",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-10",
-      "audioText": "[You are cruising at 3300m, you encountered the icing condition, request high level.]",
-      "audioTextZh": "[你现在巡航在3300米，你遇到积冰，请求高高度]",
+      "audioText": "You are cruising at 3300m, you encountered the icing condition, request high level.",
+      "audioTextZh": "你现在巡航在3300米，你遇到积冰，请求高高度",
       "referenceText": "Wuhan Control, CES565, maintaining 3300m, request high level due icing.",
       "referenceTextZh": "武汉区调，东方565，在3300米保持，由于积冰，请求高高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/29823c067ee7b70dded5.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-151786",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-12",
-      "audioText": "[Suddenly, you got a warning, you are leaking bleed air and the cabin altitude are slowly rising. Inform the controller you want to be level and might expect emergency descent.]",
-      "audioTextZh": "[突然，你收到一个报警，你正出现引气泄漏，客舱高度正在慢慢变高，告诉管制员你希望改平，并可能会紧急下降]",
+      "audioText": "Suddenly, you got a warning, you are leaking bleed air and the cabin altitude are slowly rising. Inform the controller you want to be level and might expect emergency descent.",
+      "audioTextZh": "突然，你收到一个报警，你正出现引气泄漏，客舱高度正在慢慢变高，告诉管制员你希望改平，并可能会紧急下降",
       "referenceText": "Panpan Panpan Panpan, Wuhan Control, CES565, request leveling and expect emergency descent due bleed air leaking and cabin altitude rising.",
       "referenceTextZh": "Panpan Panpan Panpan，武汉区调，东方565，由于引气泄漏，客舱高度变高，请求改平，并可能会紧急下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bdc0172e9153f96b5933.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-151787",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-13",
-      "audioText": "[The bleed air no longer supplies, high cabin altitude warning is triggered. Make an urgency call and tell the controller you want to make an emergency descent to 3000m and request radar vector.]",
-      "audioTextZh": "[引气停止供应，高客舱高度警告触发，宣布紧急情况，并告诉管制员你想紧急下降到3000米，并请求雷达引导]",
+      "audioText": "The bleed air no longer supplies, high cabin altitude warning is triggered. Make an urgency call and tell the controller you want to make an emergency descent to 3000m and request radar vector.",
+      "audioTextZh": "引气停止供应，高客舱高度警告触发，宣布紧急情况，并告诉管制员你想紧急下降到3000米，并请求雷达引导",
       "referenceText": "Panpan Panpan Panpan, Wuhan Control, CES565, we will make an emergency descent to 3000m and request radar vectors due high cabin altitude warning.",
       "referenceTextZh": "Panpan Panpan Panpan，武汉区调，东方565，我们将紧急下降到3000米，由于高客舱高度告警，请求雷达引导。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/54d9e859928317f3270c.mp3"
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-151789",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-15",
-      "audioText": "[Now you are reaching 3000m in icing condition, call Wuhan for landing information.]",
-      "audioTextZh": "[你现在到达3000米，遇到积冰，叫武汉，请求着陆信息]",
+      "audioText": "Now you are reaching 3000m in icing condition, call Wuhan for landing information.",
+      "audioTextZh": "你现在到达3000米，遇到积冰，叫武汉，请求着陆信息",
       "referenceText": "Wuhan Approach, CES565, reaching 3000m in icing condition, request landing information.",
       "referenceTextZh": "武汉进近，东方565，到达3000米，遇到积冰，请求着陆信息。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d2f837d97062dc6b60ca.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-151791",
       "taskTitle": "10-CES565 [积冰，座舱高度告警]-17",
-      "audioText": "[During approach, your slats cannot be extended, request the longer runway 36R and state the reason.]",
-      "audioTextZh": "[在进近过程中，你的缝翼无法打开，请求更长的跑道36右，并陈述原因]",
+      "audioText": "During approach, your slats cannot be extended, request the longer runway 36R and state the reason.",
+      "audioTextZh": "在进近过程中，你的缝翼无法打开，请求更长的跑道36右，并陈述原因",
       "referenceText": "Wuhan Approach, CES565, request the longer runway 36R due to slats extension problem.",
       "referenceTextZh": "武汉进近，东方565，由于缝翼打开问题，请求更长的跑道36右。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c5d7bd51dcd674b75937.mp3"

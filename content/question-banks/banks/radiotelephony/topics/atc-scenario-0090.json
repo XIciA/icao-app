@@ -105,7 +105,7 @@
     {
       "id": "atc-scenario-0090-card-main-1561",
       "taskTitle": "CES 232-12",
-      "audioText": "C: CES 232, we’ve had a good look at your undercarriage, your right main gear seems to be in the extended position, advise intentions.\nB: Tell Wuhan Tower the indication still shows right landing gear unlocked, you want to perform a hold over WHA as published.",
+      "audioText": "C: CES 232, we've had a good look at your undercarriage, your right main gear seems to be in the extended position, advise intentions.\nB: Tell Wuhan Tower the indication still shows right landing gear unlocked, you want to perform a hold over WHA as published.",
       "audioTextZh": "C：CES 232，我们已看清你的起落架，你的右主起落架似乎在放下位置，告知意图。\nB：告诉武汉塔台指示仍显示右起落架未锁定，你想在 WHA 上空按公布程序等待。",
       "referenceText": "Wuhan Tower, CES 232, the indication still shows right landing gear unlocked, request hold over WHA as published.",
       "referenceTextZh": "武汉塔台，CES 232，指示仍显示右起落架未锁定，请求在 WHA 按公布程序等待。",

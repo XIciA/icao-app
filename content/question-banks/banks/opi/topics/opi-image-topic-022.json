@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-022",
   "name": "山区夜间进近",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-022-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-022.jpg",
       "imageAlt": "山区夜间进近航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-022-q01",
-      "taskTitle": "图片题-022-01",
+      "audio": "/question-bank-assets/revisions/opi/d98db06d5e9e64a41ca2823d0c34f284caf1ad8f014c2128bbac2ea1c0e31975/audio/opi/opi-image-022-q01.mp3",
       "audioText": "What weather conditions can further reduce visibility during a night approach to an airport in mountainous terrain?",
+      "taskTitle": "图片题-022-01",
       "audioTextZh": "夜间进近山区机场时，哪些天气条件会进一步降低能见度？",
       "referenceText": "Low cloud, fog, rain, snow, and haze can all reduce visibility during a night approach. Blowing dust or snow may obscure the runway, while heavy precipitation on the windshield can make the lights harder to see. In mountainous terrain, cloud can also hide ridges and remove the few outside visual references available at night.",
       "referenceTextZh": "低云、雾、雨、雪和霾都会降低夜间进近时的能见度。风吹起的尘土或积雪可能遮蔽跑道，风挡上的强降水会使灯光更难看清。在山区，云层还可能遮住山脊，并使夜间本就有限的外部目视参照进一步减少。",
-      "audio": "/question-bank-assets/revisions/opi/d98db06d5e9e64a41ca2823d0c34f284caf1ad8f014c2128bbac2ea1c0e31975/audio/opi/opi-image-022-q01.mp3",
       "audioDurationSeconds": 5.76
     },
     {
       "id": "opi-image-022-q02",
-      "taskTitle": "图片题-022-02",
+      "audio": "/question-bank-assets/revisions/opi/84c1234bbf6acb3f11292f334bb635d3b580866b9510b8b2f5ddfa922a894de7/audio/opi/opi-image-022-q02.mp3",
       "audioText": "How do runway lights help pilots during a night approach and landing?",
+      "taskTitle": "图片题-022-02",
       "audioTextZh": "跑道灯光如何在夜间进近和着陆时帮助飞行员？",
       "referenceText": "Runway lights improve situational awareness by giving pilots clearer information, supporting better monitoring, and providing more time to make safe decisions during a night approach and landing.",
       "referenceTextZh": "跑道灯光能向飞行员提供更清晰的信息，帮助他们更好地监控，并在夜间进近和着陆时留出更多时间作出安全决策，从而提高情景意识。",
-      "audio": "/question-bank-assets/revisions/opi/84c1234bbf6acb3f11292f334bb635d3b580866b9510b8b2f5ddfa922a894de7/audio/opi/opi-image-022-q02.mp3",
       "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-image-022-q03",
-      "taskTitle": "图片题-022-03",
+      "audio": "/question-bank-assets/revisions/opi/6a90f6d0ba19f403b8ea1a8d3a1b959335d7a9bb308df4ff081593d526225803/audio/opi/opi-image-022-q03.mp3",
       "audioText": "What should a pre-descent briefing cover before a night approach to an airport in mountainous terrain?",
+      "taskTitle": "图片题-022-03",
       "audioTextZh": "夜间进近山区机场前，下降前简令应涵盖哪些内容？",
       "referenceText": "The briefing should cover low cloud, rain, fog, terrain shadow, and limited visual references. It should also address careful aircraft monitoring and the need for conservative action if safety margins are reduced.",
       "referenceTextZh": "简令应包括低云、降雨、雾、地形阴影和有限目视参照等内容。还应说明如何认真监控飞机，以及安全裕度降低时采取保守措施的必要性。",
-      "audio": "/question-bank-assets/revisions/opi/6a90f6d0ba19f403b8ea1a8d3a1b959335d7a9bb308df4ff081593d526225803/audio/opi/opi-image-022-q03.mp3",
       "audioDurationSeconds": 4.92
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

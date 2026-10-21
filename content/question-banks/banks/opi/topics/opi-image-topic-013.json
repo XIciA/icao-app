@@ -1,36 +1,36 @@
 {
   "id": "opi-image-topic-013",
   "name": "外来物损伤",
-  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-image-013-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-013.jpg",
       "imageAlt": "外来物损伤航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-013-q01",
+      "audio": "/question-bank-assets/revisions/opi/a3470d222192cdf138bac1553713aa7a12f4b43bf67813b5781f9eced92cad12/audio/opi/opi-image-013-q01.mp3",
+      "audioText": "What is FOD, and why is it hazardous?",
       "taskTitle": "图片题-013-01",
-      "audioText": "What is foreign object debris (FOD), and why is it hazardous?",
-      "audioTextZh": "什么是外来物（FOD）？它为什么危险？",
+      "audioTextZh": "什么是FOD？它为什么危险？",
       "referenceText": "FOD means foreign object debris or foreign object damage. It is hazardous because it can damage tyres, engines, and aircraft structures. Ramp inspections and runway cleaning are therefore important.",
       "referenceTextZh": "FOD 指外来物碎片或外来物损伤。它会危及安全，因为可能损坏轮胎、发动机和飞机结构。因此，机坪检查和跑道清扫十分重要。",
-      "audio": "/question-bank-assets/revisions/opi/a3470d222192cdf138bac1553713aa7a12f4b43bf67813b5781f9eced92cad12/audio/opi/opi-image-013-q01.mp3",
       "audioDurationSeconds": 3.72
     },
     {
       "id": "opi-image-013-q02",
-      "taskTitle": "图片题-013-02",
+      "audio": "/question-bank-assets/revisions/opi/afb9bcf7046d1e02c4a6021769a53c08cfb063b04ca77e066b1b564fbe917dbd/audio/opi/opi-image-013-q02.mp3",
       "audioText": "What measures can reduce the risk of foreign object debris being ingested by an aircraft engine?",
+      "taskTitle": "图片题-013-02",
       "audioTextZh": "哪些措施可以降低航空器发动机吸入外来物的风险？",
       "referenceText": "Airport operators should inspect and clean runways, taxiways, and aprons regularly. Airlines need good housekeeping and tool-control procedures, while crews should check the engine intake and nearby ground area during the walk-around. Pilots should also avoid using high thrust where loose debris may be drawn into an engine.",
       "referenceTextZh": "机场运营方应定期检查并清扫跑道、滑行道和机坪。航空公司需要做好现场管理和工具管控，机组则应在绕机检查时查看发动机进气口及附近地面。飞行员还应避免在松散碎片可能被吸入发动机的区域使用大推力。",
-      "audio": "/question-bank-assets/revisions/opi/afb9bcf7046d1e02c4a6021769a53c08cfb063b04ca77e066b1b564fbe917dbd/audio/opi/opi-image-013-q02.mp3",
       "audioDurationSeconds": 5.088
     }
   ],
+  "declaredCardCount": 3,
   "categoryId": "opi-category-08"
 }

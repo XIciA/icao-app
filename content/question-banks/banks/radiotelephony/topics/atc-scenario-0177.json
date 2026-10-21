@@ -34,7 +34,7 @@
       "id": "atc-scenario-0177-card-main-3049",
       "taskTitle": "QFA 701-4",
       "audioText": "C: QFA 701, the preceding aircraft just deviate 5 miles to the east, what's your intention?\nB: tell Wuhan Control you want to deviate 20 miles to the east to avoid the weather.",
-      "audioTextZh": "C： QFA 701，前机刚刚向东偏航 5 英里，你的意图是什么？\nB： 告诉武汉管制，为避开天气，你希望向东偏航 20 英里。",
+      "audioTextZh": "C：QFA 701，前机刚刚向东偏航 5 英里，你的意图是什么？\nB：告诉武汉管制，为避开天气，你希望向东偏航 20 英里。",
       "referenceText": "request deviate 20 miles to the east, QFA 701.",
       "referenceTextZh": "请求向东偏航 20 英里，QFA 701。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-077-qfa701-q04.mp3"

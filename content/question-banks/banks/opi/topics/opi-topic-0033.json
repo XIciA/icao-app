@@ -1,84 +1,84 @@
 {
   "id": "opi-topic-0033",
   "name": "PBN/RNAV/RNP进近",
-  "declaredCardCount": 7,
   "cards": [
     {
-      "id": "opi-core-467",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-1",
-      "audioText": "What is performance-based navigation (PBN)?",
-      "audioTextZh": "什么是基于性能的导航（PBN）？",
-      "referenceText": "PBN stands for performance-based navigation. It includes RNAV and RNP and can allow an aircraft to fly directly from one waypoint to another.",
-      "referenceTextZh": "PBN 是基于性能的导航的缩写。它包括 RNAV 和 RNP，并可使飞机直接从一个航路点飞往另一个航路点。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/2b40515147569210a8bf1d404f67ba6133166bd8784c0ba771655fae9cdcb304/audio/opi/opi-core-467.mp3",
-      "audioDurationSeconds": 3.096
-    },
-    {
-      "id": "opi-core-468",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-2",
-      "audioText": "What is required navigation performance (RNP)?",
-      "audioTextZh": "什么是所需导航性能（RNP）？",
-      "referenceText": "Required Navigation Performance is a navigation specification that sets the performance an aircraft must maintain for a particular operation. Unlike basic RNAV, RNP includes onboard performance monitoring and alerting, so the crew is warned if the system can no longer meet the required accuracy.",
-      "referenceTextZh": "所需导航性能是一种导航规范，规定飞机在特定运行中必须保持的性能。与基本 RNAV 不同，RNP 包含机载性能监控和告警功能，因此当系统无法继续满足所需精度时，机组会收到警告。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/f7d8fac901a7ed19b960edf04d6693fd99b7b8fe2061c7fab03c807f4f5ca9b0/audio/opi/opi-core-468.mp3",
-      "audioDurationSeconds": 3.336
-    },
-    {
-      "id": "opi-core-469",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-3",
-      "audioText": "What is area navigation (RNAV)?",
-      "audioTextZh": "什么是区域导航（RNAV）？",
-      "referenceText": "RNAV stands for area navigation. It is part of PBN and supports accurate navigation directly from one waypoint to another.",
-      "referenceTextZh": "RNAV 是区域导航的缩写。它是 PBN 的一部分，支持飞机从一个航路点准确地直接飞往另一个航路点。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/e70299d4a1c4698af5768969993a54d426e9e9e994eb565ce00f6fd3250ad46a/audio/opi/opi-core-469.mp3",
-      "audioDurationSeconds": 2.544
-    },
-    {
-      "id": "opi-core-471",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-4",
-      "audioText": "What is the difference between RNAV and RNP?",
-      "audioTextZh": "RNAV 与 RNP 有什么区别？",
-      "referenceText": "RNP requires onboard performance monitoring and alerting, while RNAV does not require that function.",
-      "referenceTextZh": "RNP 要求具备机载性能监控和告警功能，而 RNAV 不要求该功能。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/c2774d2722100a3c495338cd5158321d012cdfed1b14da4284836e63f2734759/audio/opi/opi-core-471.mp3",
-      "audioDurationSeconds": 2.808
-    },
-    {
       "id": "opi-core-781",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-5",
+      "audio": "/question-bank-assets/revisions/opi/d7deed2f2249743b1b9991cef196d0fa2c295645b7dccdac00559258c8d05a3f/audio/opi/opi-core-781.mp3",
       "audioText": "What is an RNP approach?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-5",
       "audioTextZh": "什么是 RNP 进近？",
       "referenceText": "An RNP approach uses GNSS as its navigation source and can provide both lateral and vertical guidance during an approach. It is useful at airports with complex terrain.",
       "referenceTextZh": "RNP 进近以 GNSS 为导航源，并可在进近过程中同时提供横向和垂直引导。它适用于地形复杂的机场。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/d7deed2f2249743b1b9991cef196d0fa2c295645b7dccdac00559258c8d05a3f/audio/opi/opi-core-781.mp3",
       "audioDurationSeconds": 1.68
     },
     {
       "id": "opi-core-782",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-6",
+      "audio": "/question-bank-assets/revisions/opi/d4f78bf677401e559f1f250013b190d1a98fead385ee144c045063291ba9809c/audio/opi/opi-core-782.mp3",
       "audioText": "What advantages does an RNP approach offer over other types of approaches?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-6",
       "audioTextZh": "与其他类型的进近相比，RNP 进近有哪些优势？",
       "referenceText": "An RNP approach can provide lateral and vertical guidance and may be used at airports with complex terrain or without ground navigation aids. A continuous descent can improve passenger comfort and situational awareness. The approach can also reduce pilot workload and the risk of controlled flight into terrain.",
       "referenceTextZh": "RNP 进近可以提供水平和垂直引导，并可用于地形复杂或没有地面导航设施的机场。连续下降可以改善旅客舒适度和情景意识。这种进近还可以降低飞行员工作负荷和可控飞行撞地风险。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/d4f78bf677401e559f1f250013b190d1a98fead385ee144c045063291ba9809c/audio/opi/opi-core-782.mp3",
       "audioDurationSeconds": 4.272
     },
     {
+      "id": "opi-core-468",
+      "audio": "/question-bank-assets/revisions/opi/f7d8fac901a7ed19b960edf04d6693fd99b7b8fe2061c7fab03c807f4f5ca9b0/audio/opi/opi-core-468.mp3",
+      "audioText": "What is RNP?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-2",
+      "audioTextZh": "什么是RNP？",
+      "referenceText": "Required Navigation Performance is a navigation specification that sets the performance an aircraft must maintain for a particular operation. Unlike basic RNAV, RNP includes onboard performance monitoring and alerting, so the crew is warned if the system can no longer meet the required accuracy.",
+      "referenceTextZh": "所需导航性能是一种导航规范，规定飞机在特定运行中必须保持的性能。与基本 RNAV 不同，RNP 包含机载性能监控和告警功能，因此当系统无法继续满足所需精度时，机组会收到警告。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-core-467",
+      "audio": "/question-bank-assets/revisions/opi/2b40515147569210a8bf1d404f67ba6133166bd8784c0ba771655fae9cdcb304/audio/opi/opi-core-467.mp3",
+      "audioText": "What is PBN?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-1",
+      "audioTextZh": "什么是PBN？",
+      "referenceText": "PBN stands for performance-based navigation. It includes RNAV and RNP and can allow an aircraft to fly directly from one waypoint to another.",
+      "referenceTextZh": "PBN 是基于性能的导航的缩写。它包括 RNAV 和 RNP，并可使飞机直接从一个航路点飞往另一个航路点。",
+      "audioDurationSeconds": 3.096
+    },
+    {
       "id": "opi-core-783",
-      "taskTitle": "缩略词-PBN/RNAV/RNP进近-7",
+      "audio": "/question-bank-assets/revisions/opi/5652124242a61edfc541cef86c638c2057edeb101511efe3171daa0e200e51ba/audio/opi/opi-core-783.mp3",
       "audioText": "Why are RNP approaches becoming increasingly common?",
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-7",
       "audioTextZh": "为什么 RNP 进近越来越普遍？",
       "referenceText": "RNP approaches can provide both lateral and vertical guidance. Because they are based on GNSS, they do not depend on ground navigation facilities and can be useful at remote airports or airports with complex terrain. This may also reduce infrastructure costs.",
       "referenceTextZh": "RNP 进近可以同时提供水平和垂直引导。由于它以 GNSS 为基础，不依赖地面导航设施，因此适用于偏远机场或地形复杂的机场。这也可能降低基础设施成本。",
-      "audio": "/question-bank-assets/revisions/opi/5652124242a61edfc541cef86c638c2057edeb101511efe3171daa0e200e51ba/audio/opi/opi-core-783.mp3",
       "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-core-469",
+      "audio": "/question-bank-assets/revisions/opi/e70299d4a1c4698af5768969993a54d426e9e9e994eb565ce00f6fd3250ad46a/audio/opi/opi-core-469.mp3",
+      "audioText": "What is RNAV?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-3",
+      "audioTextZh": "什么是RNAV？",
+      "referenceText": "RNAV stands for area navigation. It is part of PBN and supports accurate navigation directly from one waypoint to another.",
+      "referenceTextZh": "RNAV 是区域导航的缩写。它是 PBN 的一部分，支持飞机从一个航路点准确地直接飞往另一个航路点。",
+      "audioDurationSeconds": 2.544
+    },
+    {
+      "id": "opi-core-471",
+      "audio": "/question-bank-assets/revisions/opi/c2774d2722100a3c495338cd5158321d012cdfed1b14da4284836e63f2734759/audio/opi/opi-core-471.mp3",
+      "audioText": "What is the difference between RNAV and RNP?",
+      "studyTier": 2,
+      "taskTitle": "缩略词-PBN/RNAV/RNP进近-4",
+      "audioTextZh": "RNAV 与 RNP 有什么区别？",
+      "referenceText": "RNP requires onboard performance monitoring and alerting, while RNAV does not require that function.",
+      "referenceTextZh": "RNP 要求具备机载性能监控和告警功能，而 RNAV 不要求该功能。",
+      "audioDurationSeconds": 2.808
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-03"
 }

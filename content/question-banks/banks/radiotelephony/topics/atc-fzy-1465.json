@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-211137",
       "taskTitle": "54-CES556 [醉酒乘客]-1",
       "audioText": "B: [Your call sign is CES556, you are maintaining 9200m, ETA JTN at 55, squawk 1532; make an initial contact with Wuhan Control.]",
-      "audioTextZh": "【你的呼号是东方556，飞机保持9200米，预计到达JTN时间55分，应答机1532；和武汉区调建立初次联系。】",
+      "audioTextZh": "你的呼号是东方556，飞机保持9200米，预计到达JTN时间55分，应答机1532；和武汉区调建立初次联系。",
       "referenceText": "Wuhan Control, CES556, 9200m maintaining, ETA JTN 55, squawk 1532.",
       "referenceTextZh": "武汉区调，东方556，保持9200米。预计到达JTN时间55分，应答机1532。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1bfce2411e40524b12c.mp3"
@@ -36,7 +36,7 @@
       "id": "radiotelephony-fzy-211140",
       "taskTitle": "54-CES556 [醉酒乘客]-4",
       "audioText": "B: [You receive the report from cabin said that a drunk passenger is behaving irrationally affecting cabin services and disturbing cabin order. You suspect the higher cabin altitude make the passenger uncomfortable. You want to fly a lower level.]",
-      "audioTextZh": "【你收到客舱报告，一名醉酒乘客行为异常，影响客舱服务，扰乱客舱秩序。你怀疑较高的客舱压力让该乘客不舒服。你想请求较低高度。】",
+      "audioTextZh": "你收到客舱报告，一名醉酒乘客行为异常，影响客舱服务，扰乱客舱秩序。你怀疑较高的客舱压力让该乘客不舒服。你想请求较低高度。",
       "referenceText": "Wuhan Control, CES556, request descent due passenger uncomfortable.",
       "referenceTextZh": "武汉区调，东方556，乘客不舒服，请求下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/80c50384cbfe6505246d.mp3"
@@ -54,7 +54,7 @@
       "id": "radiotelephony-fzy-211142",
       "taskTitle": "54-CES556 [醉酒乘客]-6",
       "audioText": "B: [The passenger took out the overhead oxygen mask. He is being closely monitored. Report the situation to the controller and request descent.]",
-      "audioTextZh": "【该乘客拿出头顶上的氧气面罩。他被密切地监测。报告管制员该情况并请求下降。】",
+      "audioTextZh": "该乘客拿出头顶上的氧气面罩。他被密切地监测。报告管制员该情况并请求下降。",
       "referenceText": "Wuhan Control, CES556, request descent. The passenger took out the oxygen mask and being monitored.",
       "referenceTextZh": "武汉区调，东方556，请求下降。该乘客拿出氧气面罩，他已被监控起来。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8acb2da5fa418f553323.mp3"
@@ -90,7 +90,7 @@
       "id": "radiotelephony-fzy-211146",
       "taskTitle": "54-CES556 [醉酒乘客]-10",
       "audioText": "B: [You have received ATIS O and is proceeding direct to ZF, maintaining 6600m. Call Wuhan Approach.]",
-      "audioTextZh": "【你收到ATIS O，继续直飞ZF，6600米保持。呼叫武汉进近。】",
+      "audioTextZh": "你收到ATIS O，继续直飞ZF，6600米保持。呼叫武汉进近。",
       "referenceText": "Wuhan Approach, CES556, maintaining 6600m, information O, direct to ZF.",
       "referenceTextZh": "武汉进近，东方556，6600米保持，通播O，直飞ZF。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf99f22e870e8429993d.mp3"
@@ -108,7 +108,7 @@
       "id": "radiotelephony-fzy-211148",
       "taskTitle": "54-CES556 [醉酒乘客]-12",
       "audioText": "B: [You find the cumuliform clouds ahead; request turn left direct to HG. ]",
-      "audioTextZh": "【你发现前方有积雨云，请求左转直飞HG。】",
+      "audioTextZh": "你发现前方有积雨云，请求左转直飞HG。",
       "referenceText": "Wuhan Approach, CES556, Request turn left direct to HG due CBs ahead.",
       "referenceTextZh": "武汉进近，东方556，前方有积雨云，请求左转直飞HG。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/de83f7f220a91319b8ea.mp3"
@@ -135,7 +135,7 @@
       "id": "radiotelephony-fzy-211151",
       "taskTitle": "54-CES556 [醉酒乘客]-15",
       "audioText": "B: [While intercepting the localizer, the drunk passenger discharges the fire extinguisher. The purser make an emergency call said there is still passenger standing in the cabin. Inform the Wuhan Approach the situation and request terminate the approach, proceed to the holding area.]",
-      "audioTextZh": "【切入航道时，该醉酒乘客打开灭火器。接到乘务长的紧急呼叫，说仍有乘客站在客舱里。通知武汉进近该情况，请求中止进近，继续进入等待区。】",
+      "audioTextZh": "切入航道时，该醉酒乘客打开灭火器。接到乘务长的紧急呼叫，说仍有乘客站在客舱里。通知武汉进近该情况，请求中止进近，继续进入等待区。",
       "referenceText": "Wuhan Approach, CES556, request terminate the approach and hold due passenger discharges the fire extinguisher and some passengers standing in the cabin.",
       "referenceTextZh": "武汉进近，东方556，一名乘客打开灭火器，还有一些乘客站在客舱里，请求中止进近并等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5898a0fd741e6af16843.mp3"
@@ -153,7 +153,7 @@
       "id": "radiotelephony-fzy-211153",
       "taskTitle": "54-CES556 [醉酒乘客]-17",
       "audioText": "B: [Now the problematic passenger has been properly restrained. Advice the Approach you are ready to leave the hold. ]",
-      "audioTextZh": "【该问题乘客已被适当控制。告诉进近你已准备好离开等待区。】",
+      "audioTextZh": "该问题乘客已被适当控制。告诉进近你已准备好离开等待区。",
       "referenceText": "Wuhan Approach, CES556, request leave the hold and continue approach.",
       "referenceTextZh": "武汉进近，东方556，请求离开等待区继续进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1c890ccabb41901d4e64.mp3"

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111645",
       "taskTitle": "7. BAW038 ingestion, etc.-1",
-      "audioText": "[Your call sign is BAW038, from Beijing to London, passing 1200m climbing to 1800m, now contact Beijing Departure.]",
-      "audioTextZh": "【你的呼号是英航038，飞机从北京飞往伦敦，通过1200米，正在上升至1800米，现在联系北京离场。】",
+      "audioText": "Your call sign is BAW038, from Beijing to London, passing 1200m climbing to 1800m, now contact Beijing Departure.",
+      "audioTextZh": "你的呼号是英航038，飞机从北京飞往伦敦，通过1200米，正在上升至1800米，现在联系北京离场。",
       "referenceText": "Beijing Departure, BAW038, passing 1200m climbing to 1800m.",
       "referenceTextZh": "北京离场，英航038，通过1200米，正上升至1800米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/acf26e6ebd754186c283.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-111647",
       "taskTitle": "7. BAW038 ingestion, etc.-3",
-      "audioText": "[The aircraft ingested something, request descent to 3000m.]",
-      "audioTextZh": "【飞机吸入了某些东西，请求下降到3000米。】",
+      "audioText": "The aircraft ingested something, request descent to 3000m.",
+      "audioTextZh": "飞机吸入了某些东西，请求下降到3000米。",
       "referenceText": "Beijing Departure, BAW038, foreign object ingestion, request descent to 3000m.",
       "referenceTextZh": "北京离场，英航038，飞机吸入异物，请求下降到3000米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/96db1b412697883fba70.mp3"
@@ -116,7 +116,7 @@
     {
       "id": "radiotelephony-fzy-111657",
       "taskTitle": "7. BAW038 ingestion, etc.-13",
-      "audioText": "[You have established localizer.]",
+      "audioText": "You have established localizer.",
       "audioTextZh": "【你已经建立好航向道。】",
       "referenceText": "Beijing Approach, BAW038, established localizer.",
       "referenceTextZh": "北京进场，英航038，已建立航向道。",
@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-111659",
       "taskTitle": "7. BAW038 ingestion, etc.-15",
-      "audioText": "[You have established ILS.]",
+      "audioText": "You have established ILS.",
       "audioTextZh": "【你已经建立盲降。】",
       "referenceText": "Beijing Tower, BAW038, established ILS.",
       "referenceTextZh": "北京塔台，英航038，建立盲降。",

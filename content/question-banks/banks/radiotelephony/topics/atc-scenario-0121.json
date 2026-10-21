@@ -115,7 +115,7 @@
       "id": "atc-scenario-0121-card-main-2099",
       "taskTitle": "SIA 852-13",
       "audioText": "C: SIA 852, do you need anything else?\nB: Tell ATC that you require a tug to tow your aircraft back to the apron after the inspection.",
-      "audioTextZh": "C： SIA 852，你还需要其他帮助吗？\nB： 告诉 ATC，你需要一辆牵引车在检查后将航空器拖回机坪。",
+      "audioTextZh": "C：SIA 852，你还需要其他帮助吗？\nB：告诉 ATC，你需要一辆牵引车在检查后将航空器拖回机坪。",
       "referenceText": "Wuhan Tower, SIA 852, request a tug to tow us back to the apron.",
       "referenceTextZh": "武汉塔台，SIA 852，请求一辆牵引车将我们拖回机坪。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q13.mp3"

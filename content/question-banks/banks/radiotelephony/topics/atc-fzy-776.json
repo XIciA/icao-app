@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-152324",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-1",
-      "audioText": "[Your call sign is CSN582. You are at Gate K10 with information B. Request clearance from Chengdu Delivery.]",
-      "audioTextZh": "[你的呼号是南方582，你在K10停机位，通播B，向成都放行申请许可。]",
+      "audioText": "Your call sign is CSN582. You are at Gate K10 with information B. Request clearance from Chengdu Delivery.",
+      "audioTextZh": "你的呼号是南方582，你在K10停机位，通播B，向成都放行申请许可。",
       "referenceText": "Chengdu Delivery, CSN582, Gate K10, information B, request ATC clearance.",
       "referenceTextZh": "成都放行，南方582，K10停机位，通播B，请求放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d827b1ce7b4ef893d44e.mp3"
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-152327",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-4",
-      "audioText": "[You are now ready for start-up. Request pushback and permission to start your engines from Chengdu Ground.]",
-      "audioTextZh": "[你现在准备好开车了，向成都地面请求推出开车。]",
+      "audioText": "You are now ready for start-up. Request pushback and permission to start your engines from Chengdu Ground.",
+      "audioTextZh": "你现在准备好开车了，向成都地面请求推出开车。",
       "referenceText": "Chengdu Ground, CSN582, ready for/request pushback and start-up.",
       "referenceTextZh": "成都地面，南方582，准备好/请求推出开车了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f4c71afbd424f2d8d3f9.mp3"
@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-152330",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-7",
-      "audioText": "[During the search, the cabin crew find a bag that is not claimed by any passengers. Inform Ground about this and tell them that because there is no aircraft around you, you will hold at present position.]",
-      "audioTextZh": "[在寻找过程中，乘务员发现一个无人认领的包。告知地面此事，告诉他们，因为你周围没有航空器，你将原地等待。]",
+      "audioText": "During the search, the cabin crew find a bag that is not claimed by any passengers. Inform Ground about this and tell them that because there is no aircraft around you, you will hold at present position.",
+      "audioTextZh": "在寻找过程中，乘务员发现一个无人认领的包。告知地面此事，告诉他们，因为你周围没有航空器，你将原地等待。",
       "referenceText": "Chengdu Ground, CSN582, we found a bag unidentified (we found an unknown bag), request hold position due no aircraft around us.",
       "referenceTextZh": "成都地面，南方582，我们发现一个不明包裹，由于四周没有航空器，请求原地等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4821231f990440eb94c9.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-152332",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-9",
-      "audioText": "[It is late the day. The suspected bomb was an empty bag. You are at the holding point of runway 02. Tell ATC you are ready for takeoff.]",
-      "audioTextZh": "[天已晚，疑似炸弹的包是个空包，你在跑道02外等待点，你准备好起飞了。]",
+      "audioText": "It is late the day. The suspected bomb was an empty bag. You are at the holding point of runway 02. Tell ATC you are ready for takeoff.",
+      "audioTextZh": "天已晚，疑似炸弹的包是个空包，你在跑道02外等待点，你准备好起飞了。",
       "referenceText": "Chengdu Tower, CSN582, holding point of runway 02, ready for departure.",
       "referenceTextZh": "成都塔台，南方582，跑道02外等待点，准备好起飞了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/efbc319c538e46673147.mp3"
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-152334",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-11",
-      "audioText": "[You are departed from runway 02, call Tower.]",
+      "audioText": "You are departed from runway 02, call Tower.",
       "audioTextZh": "[你从跑道02离场，呼叫塔台。]",
       "referenceText": "Chengdu Tower, CSN582, airborne, runway 02.\n注：我们一般用airborne表示飞机离地了。",
       "referenceTextZh": "成都塔台，南方582，离地了，跑道02。",
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-152336",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-13",
-      "audioText": "[Contact Departure. Your altitude is now passing 1200m.]",
-      "audioTextZh": "[联系离场，你的高度现在已经过1200米。]",
+      "audioText": "Contact Departure. Your altitude is now passing 1200m.",
+      "audioTextZh": "联系离场，你的高度现在已经过1200米。",
       "referenceText": "Chengdu Departure, CSN582, passing 1200m.",
       "referenceTextZh": "成都离场，南方582，过1200米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c9040b4ada276840ec3a.mp3"
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-152338",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-15",
-      "audioText": "[As you are climbing, you notice a large unmanned balloon. Your position is 4 miles north of the airfield and current height is 2000 meters. Report this to ATC.]",
-      "audioTextZh": "[当你爬升时，你注意到一个大型无人气球，你的位置是机场以北4海里，当前高度2000米，将此报告给管制员。]",
+      "audioText": "As you are climbing, you notice a large unmanned balloon. Your position is 4 miles north of the airfield and current height is 2000 meters. Report this to ATC.",
+      "audioTextZh": "当你爬升时，你注意到一个大型无人气球，你的位置是机场以北4海里，当前高度2000米，将此报告给管制员。",
       "referenceText": "Chengdu Departure, CSN582, we have seen a large unmanned balloon. Our position is 4 miles north of the airfield and current height is 2000 meters.",
       "referenceTextZh": "成都离场，南方582，我们看到一个大型无人气球，我们位置是机场以北4海里，当前高度2000米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fcb24acbd597abc5898c.mp3"
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-152339",
       "taskTitle": "5-CSN582 [炸弹威胁，气球]-16",
-      "audioText": "[Before ATC replies you suddenly hit another balloon you did not see. The aircraft becomes difficult to control and you want to return to land at Chengdu. Tell ATC this. This is an Urgency call.]",
-      "audioTextZh": "[在管制员回复之前，你撞上了一个你没有注意到的气球，飞机变得很难控制，你想返场降落成都，告知管制员此事，这是一个紧急呼叫。]",
+      "audioText": "Before ATC replies you suddenly hit another balloon you did not see. The aircraft becomes difficult to control and you want to return to land at Chengdu. Tell ATC this. This is an Urgency call.",
+      "audioTextZh": "在管制员回复之前，你撞上了一个你没有注意到的气球，飞机变得很难控制，你想返场降落成都，告知管制员此事，这是一个紧急呼叫。",
       "referenceText": "PANPAN PANPAN PANPAN, Chengdu Departure, CSN582, we just hit a balloon, request return to Chengdu for landing.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，成都离场，南方582，我们撞上了一个气球，请求成都降落。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/70a838251081201fa6f4.mp3"

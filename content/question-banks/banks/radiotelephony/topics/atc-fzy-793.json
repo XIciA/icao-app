@@ -17,7 +17,7 @@
     {
       "id": "radiotelephony-fzy-152595",
       "taskTitle": "6-ACA517 [颠簸，发动机失效]-2",
-      "audioText": "ACA517, radar identified.\nThere’s moderate turbulence at 10,100m, ask if there’s any turbulence at 10,700m.",
+      "audioText": "ACA517, radar identified.\nThere's moderate turbulence at 10,100m, ask if there's any turbulence at 10,700m.",
       "audioTextZh": "加航517，雷达识别。\n[在10100米有中度颠簸，询问10700米是否有颠簸。]",
       "referenceText": "Guangzhou Control, ACA517, we encountered moderate turbulence at 10,100m, confirm there is turbulence at 10,700m.",
       "referenceTextZh": "广州区调，加航517，我们在10100米遇到中度颠簸，证实10700米是否有颠簸。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-152596",
       "taskTitle": "6-ACA517 [颠簸，发动机失效]-3",
-      "audioText": "ACA517, there’s no turbulence at 10,700m.\nAsk to climb to 10,700m due moderate turbulence.",
+      "audioText": "ACA517, there's no turbulence at 10,700m.\nAsk to climb to 10,700m due moderate turbulence.",
       "audioTextZh": "加航517，在10700米没有颠簸。\n由于中度颠簸，请求爬升至10700米。",
       "referenceText": "Request climb to 10,700m due moderate turbulence, ACA517.",
       "referenceTextZh": "由于中度颠簸，请求爬升至10700米，加航517。",

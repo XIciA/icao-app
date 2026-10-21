@@ -124,7 +124,7 @@
       "id": "atc-scenario-0164-card-main-2843",
       "taskTitle": "AFR 675-14",
       "audioText": "C: AFR 675, cleared for ILS approach Runway 36R.\nB: read back the ATC instructions and ask the controller the braking action of Runway 36R.",
-      "audioTextZh": "C： AFR 675，许可 ILS 进近 Runway 36R。\nB： 复诵 ATC 指令，并询问管制员 Runway 36R 的刹车效应。",
+      "audioTextZh": "C：AFR 675，许可 ILS 进近 Runway 36R。\nB：复诵 ATC 指令，并询问管制员 Runway 36R 的刹车效应。",
       "referenceText": "cleared for ILS approach Runway 36R, request the braking action of Runway 36R, AFR 675.",
       "referenceTextZh": "许可 ILS 进近 Runway 36R，请求 Runway 36R 的刹车效应，AFR 675。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-064-afr675-q14.mp3"

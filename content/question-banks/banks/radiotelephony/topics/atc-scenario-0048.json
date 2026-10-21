@@ -97,7 +97,7 @@
       "id": "atc-scenario-0048-card-main-827",
       "taskTitle": "ACA 909-11",
       "audioText": "B: You are just over ZF, make an initial contact with Wuhan Control.",
-      "audioTextZh": "B: 你刚过 ZF，与 武汉管制 建立初始联系。",
+      "audioTextZh": "B: 你刚过 ZF，与武汉管制建立初始联系。",
       "referenceText": "Wuhan Control, ACA 909, maintain 4500 meters, over ZF.",
       "referenceTextZh": "武汉管制，ACA 909，保持 4500 米，过 ZF。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/827.mp3"
@@ -142,7 +142,7 @@
       "id": "atc-scenario-0048-card-main-832",
       "taskTitle": "ACA 909-16",
       "audioText": "C: Roger, an ambulance and a physician will be ready.\nC: ACA 909, Wuhan Control, maintain 4200 meters, contact Approach on 118.9.",
-      "audioTextZh": "C: 收到，救护车和医生会准备好。\nC: ACA 909，武汉管制，保持 4200 米，联系 进近 118.9。",
+      "audioTextZh": "C: 收到，救护车和医生会准备好。\nC: ACA 909，武汉管制，保持 4200 米，联系进近 118.9。",
       "referenceText": "Maintain 4200 meters, 118.9, ACA 909.",
       "referenceTextZh": "保持 4200 米，118.9，ACA 909。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/832.mp3"
@@ -151,7 +151,7 @@
       "id": "atc-scenario-0048-card-main-833",
       "taskTitle": "ACA 909-17",
       "audioText": "B: Inform Wuhan Approach that you have a passenger suffering heart attack and request landing priority.",
-      "audioTextZh": "B: 通知 武汉进近 你有一名旅客心脏病发作，并请求着陆优先。",
+      "audioTextZh": "B: 通知武汉进近你有一名旅客心脏病发作，并请求着陆优先。",
       "referenceText": "Wuhan Approach, ACA 909, we have a passenger suffering heart attack, request priority for landing.",
       "referenceTextZh": "武汉进近，ACA 909，我们有一名旅客心脏病发作，请求着陆优先。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/833.mp3"

@@ -70,7 +70,7 @@
       "id": "atc-scenario-0184-card-main-3173",
       "taskTitle": "SIA 323-8",
       "audioText": "C: SIA 323, wind 200 degrees, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, ask Wuhan Tower to change to Runway 18L for departure.",
-      "audioTextZh": "C： SIA 323，风向 200 度，风速 8 米/秒。\nB： 顺风超过你的起飞限制，请求武汉塔台改用 Runway 18L 离场。",
+      "audioTextZh": "C：SIA 323，风向 200 度，风速 8 米/秒。\nB：顺风超过你的起飞限制，请求武汉塔台改用 Runway 18L 离场。",
       "referenceText": "Wuhan Tower, SIA 323, roger, the tailwind exceeds our takeoff limit, request change to Runway 18L.",
       "referenceTextZh": "武汉塔台，SIA 323，收到，顺风超过我们的起飞限制，请求改用 Runway 18L。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-085-sia323-q08.mp3"

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111210",
       "taskTitle": "29. CSN351 pages missing, etc.-1",
-      "audioText": "[You are CSN351, from Wuhan to Moscow, Gate 224, with information C, request ATC clearance.]",
-      "audioTextZh": "【你是南航351，从武汉飞往莫斯科，224号机位，通播C，请求ATC放行。】",
+      "audioText": "You are CSN351, from Wuhan to Moscow, Gate 224, with information C, request ATC clearance.",
+      "audioTextZh": "你是南航351，从武汉飞往莫斯科，224号机位，通播C，请求ATC放行。",
       "referenceText": "Wuhan Delivery, CSN351, Parking bay 224, information C, destination Moscow, request ATC clearance.",
       "referenceTextZh": "武汉放行，南航351，机位224，通播C，目的地莫斯科，请求ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/25d67a108cc4c03f831a.mp3"
@@ -26,9 +26,9 @@
     {
       "id": "radiotelephony-fzy-111212",
       "taskTitle": "29. CSN351 pages missing, etc.-3",
-      "audioText": "[The maintenance stuff has deferred an MEL item regarding APU. Contact Ground that you will be ready for start-up one engine at Gate in 5min.]",
-      "audioTextZh": "【维修人员根据MEL中APU的项目进行保留，告诉地面5分钟内你就可以在机位启动发动机。】",
-      "referenceText": "Wuhan Ground, CSN351, we’ll be ready to start-up one engine at Gate in 5min.",
+      "audioText": "The maintenance stuff has deferred an MEL item regarding APU. Contact Ground that you will be ready for start-up one engine at Gate in 5min.",
+      "audioTextZh": "维修人员根据MEL中APU的项目进行保留，告诉地面5分钟内你就可以在机位启动发动机。",
+      "referenceText": "Wuhan Ground, CSN351, we'll be ready to start-up one engine at Gate in 5min.",
       "referenceTextZh": "武汉地面，南航351，5分钟内我们就能启动好一台发动机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/377e1905dba217e79151.mp3"
     },
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-111214",
       "taskTitle": "29. CSN351 pages missing, etc.-5",
-      "audioText": "[You are ready for push, tell controller you can pushback and start-up.]",
-      "audioTextZh": "【你已准备好推出，告诉管制员你已准备好推出开车。】",
+      "audioText": "You are ready for push, tell controller you can pushback and start-up.",
+      "audioTextZh": "你已准备好推出，告诉管制员你已准备好推出开车。",
       "referenceText": "Wuhan Ground, CSN351, request pushback and start-up.",
       "referenceTextZh": "武汉地面，南航351，请求推出开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ef54c69987edaa9c40ac.mp3"
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-111216",
       "taskTitle": "29. CSN351 pages missing, etc.-7",
-      "audioText": "[You have pushed back and started-up already, call Ground.]",
+      "audioText": "You have pushed back and started-up already, call Ground.",
       "audioTextZh": "【你已经推出开车完毕，呼叫地面。】",
       "referenceText": "Wuhan Ground, CSN351, request taxi.",
       "referenceTextZh": "武汉地面，南航351，请求滑行。",
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111218",
       "taskTitle": "29. CSN351 pages missing, etc.-9",
-      "audioText": "[While taxiing, an auto brake caution message is displayed on aircraft’s warning system, so you stopped taxiing, advise Ground.]",
-      "audioTextZh": "【滑行时，警告系统显示自动刹车信息，因此你停止滑行，告诉地面。】",
+      "audioText": "While taxiing, an auto brake caution message is displayed on aircraft's warning system, so you stopped taxiing, advise Ground.",
+      "audioTextZh": "滑行时，警告系统显示自动刹车信息，因此你停止滑行，告诉地面。",
       "referenceText": "Wuhan Ground, CSN351, we stopped taxiing due a caution message.",
       "referenceTextZh": "武汉地面，南航351，收到一条预警信息，我们停下来了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/235752ee0054b3846d7f.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-111222",
       "taskTitle": "29. CSN351 pages missing, etc.-13",
-      "audioText": "[Two hours later, you are now cruising at 9500m, you are ETA WXI at 04, your squawk code is 3223, call Beijing Control.]",
-      "audioTextZh": "【两小时后，你在9500米巡航，预计到达WXI时间04分，应答机编码3223，呼叫北京区调。】",
+      "audioText": "Two hours later, you are now cruising at 9500m, you are ETA WXI at 04, your squawk code is 3223, call Beijing Control.",
+      "audioTextZh": "两小时后，你在9500米巡航，预计到达WXI时间04分，应答机编码3223，呼叫北京区调。",
       "referenceText": "Beijing Control, CSN351, maintaining 9500m, ETA WXI 04, squawk 3223.",
       "referenceTextZh": "北京区调，南航351，9500米保持，预计到达WXI时间04分，应答机3223。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/01c23c947164947dc2bc.mp3"
@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-111224",
       "taskTitle": "29. CSN351 pages missing, etc.-15",
-      "audioText": "CSN351, climb and maintain 10700m.[Tell Beijing control you’re too heavy, request a step climb to 10700m in about 10 minutes.]",
+      "audioText": "CSN351, climb and maintain 10700m.[Tell Beijing control you're too heavy, request a step climb to 10700m in about 10 minutes.]",
       "audioTextZh": "南航351，上升保持10700米。【告诉管制员机身太重，请求在10分钟内阶梯爬升至10700米。】",
       "referenceText": "Negative due weight, request a step climb to 10700m in about 10 minutes, CSN351.",
       "referenceTextZh": "由于飞机重量，不能爬升，请求在10分钟内阶梯爬升10700米，南航351。",

@@ -44,9 +44,9 @@
     {
       "id": "radiotelephony-fzy-152535",
       "taskTitle": "15-UAL219 [晴空颠簸，军机]-5",
-      "audioText": "TCAS shows a fast moving aircraft at 9 o’clock. Check with Wuhan Control if it is a conflicting traffic.",
+      "audioText": "TCAS shows a fast moving aircraft at 9 o'clock. Check with Wuhan Control if it is a conflicting traffic.",
       "audioTextZh": "TCAS显示，9点钟方向有一架快速移动的航空器，与武汉区调确认，是否为冲突航空器。",
-      "referenceText": "Wuhan control, UAL219, TCAS shows a traffic at 9 o’clock. Confirm it is a conflicting aircraft?",
+      "referenceText": "Wuhan control, UAL219, TCAS shows a traffic at 9 o'clock. Confirm it is a conflicting aircraft?",
       "referenceTextZh": "武汉区调，美联航219，TCAS显示9点钟方向有一架航空器，确认是否为冲突航空器？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e77677f81f67abcdd33d.mp3"
     },

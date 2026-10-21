@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-151909",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-1",
-      "audioText": "[Your call sign is ACA647, you are at stand 203, from Wuhan to Tokyo. You just got informed an illegal stowaway on board and he must be taken away by police. Contact Wuhan Ground to delay the pushback.]",
-      "audioTextZh": "[你的呼号是加航647，你现在在203号停机位，从武汉飞往东京，你刚刚得知一则消息，机上有一名非法偷渡者，必须被警察带走，联系武汉地面，推迟推出]",
+      "audioText": "Your call sign is ACA647, you are at stand 203, from Wuhan to Tokyo. You just got informed an illegal stowaway on board and he must be taken away by police. Contact Wuhan Ground to delay the pushback.",
+      "audioTextZh": "你的呼号是加航647，你现在在203号停机位，从武汉飞往东京，你刚刚得知一则消息，机上有一名非法偷渡者，必须被警察带走，联系武汉地面，推迟推出",
       "referenceText": "Wuhan Ground, ACA647, stand 203, request delay the pushback to disembark the illegal stowaway.",
       "referenceTextZh": "武汉地面，加航647，203号停机位，请求推迟推出，让非法偷渡者下飞机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/25f5f551b0791ef2a455.mp3"
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-151912",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-4",
-      "audioText": "[During taxiing, the visibility gets worse due sudden dust storm. Tell ATC and request hold position until the visibility gets better.]",
-      "audioTextZh": "[在滑行过程中，由于沙尘暴，能见度变差，告诉管制员，请求原地等待，直到能见度变好]",
+      "audioText": "During taxiing, the visibility gets worse due sudden dust storm. Tell ATC and request hold position until the visibility gets better.",
+      "audioTextZh": "在滑行过程中，由于沙尘暴，能见度变差，告诉管制员，请求原地等待，直到能见度变好",
       "referenceText": "Wuhan Ground, ACA647, request holding position until the visibility improves due dust storm.",
       "referenceTextZh": "武汉地面，加航647，由于沙尘暴，请求原地等待，直到能见度变好。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a6de1880795cdc29c053.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-151914",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-6",
-      "audioText": "[Now you are at the holding point of runway 18R, tell Tower you are ready for takeoff.]",
-      "audioTextZh": "[你现在在跑道18右等待点，告知管制员，你准备好起飞了]",
+      "audioText": "Now you are at the holding point of runway 18R, tell Tower you are ready for takeoff.",
+      "audioTextZh": "你现在在跑道18右等待点，告知管制员，你准备好起飞了",
       "referenceText": "Wuhan Tower, ACA647, holding point runway 18R, ready for departure.",
       "referenceTextZh": "武汉塔台，加航647，跑道18右等待点，准备好起飞了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/454dbca01448ecd63c1f.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-151916",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-8",
-      "audioText": "[During takeoff climbing, you encountered the wake turbulence from the preceding aircraft, contact departure to turn right to avoid it.]",
-      "audioTextZh": "[起飞爬升期间，你遇到前机产生的尾流，联系离场，请求右转避开]",
+      "audioText": "During takeoff climbing, you encountered the wake turbulence from the preceding aircraft, contact departure to turn right to avoid it.",
+      "audioTextZh": "起飞爬升期间，你遇到前机产生的尾流，联系离场，请求右转避开",
       "referenceText": "Wuhan Departure, ACA647, encountering wake turbulence, request turn right to avoid it.",
       "referenceTextZh": "武汉离场，加航647，遇到尾流，请求右转避开。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d3513518af91718e0968.mp3"
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-151918",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-10",
-      "audioText": "[Now you are leveling at 10700m, your onboard navigation computer has failed. You are flying on raw data, inform Wuhan Control the situation, and request radar vector.]",
-      "audioTextZh": "[你现在在10700米平飞，你的机载导航计算机故障，你现在按照原始数据飞行，告知武汉区调此情况，请求雷达引导]",
+      "audioText": "Now you are leveling at 10700m, your onboard navigation computer has failed. You are flying on raw data, inform Wuhan Control the situation, and request radar vector.",
+      "audioTextZh": "你现在在10700米平飞，你的机载导航计算机故障，你现在按照原始数据飞行，告知武汉区调此情况，请求雷达引导",
       "referenceText": "Wuhan Control, ACA647, leveling at 10700m, our onboard navigation computer has failed. We are flying on raw data, request radar vector.",
       "referenceTextZh": "武汉区调，加航647，在10700米平飞，我们的机载导航计算机故障，我们现在按照原始数据飞行，请求雷达引导。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8409c5d1293b347d508e.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-151919",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-11",
-      "audioText": "[ATC asks if you can remain RVSM airspace. Tell the controller you need 1 minute to perform the checklist and will advise.]",
-      "audioTextZh": "[管制员询问你是否可以保持RVSM空域。告知管制员，你需要1分钟来执行检查单，并将告知]",
+      "audioText": "ATC asks if you can remain RVSM airspace. Tell the controller you need 1 minute to perform the checklist and will advise.",
+      "audioTextZh": "管制员询问你是否可以保持RVSM空域。告知管制员，你需要1分钟来执行检查单，并将告知",
       "referenceText": "Wuhan Control, ACA647, request 1 minute to perform the checklist, and will advise.",
       "referenceTextZh": "武汉区调，加航647，请求1分钟来执行检查单，并将告知。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/194a0f6d88950454a0b6.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-151921",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-13",
-      "audioText": "[After finishing the checklist, you are unable to remain RVSM due equipment. The malfunction cannot be solved, and the autopilot failed.]",
-      "audioTextZh": "[完成检查单后，由于设备，你无法保持RVSM。故障无法解决，自动驾驶失效]",
+      "audioText": "After finishing the checklist, you are unable to remain RVSM due equipment. The malfunction cannot be solved, and the autopilot failed.",
+      "audioTextZh": "完成检查单后，由于设备，你无法保持RVSM。故障无法解决，自动驾驶失效",
       "referenceText": "Wuhan Control, ACA647, we can't remain RVSM due equipment and we can't solve the problem, the autopilot also failed.",
       "referenceTextZh": "武汉区调，加航647，由于设备，无法保持RVSM。我们无法解决故障，自动驾驶也失效了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ba808ce9389d9cf1ee0d.mp3"
@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-151923",
       "taskTitle": "17-ACA647 [非法偷渡，导航失效]-15",
-      "audioText": "[You want to maintain 8100m, and divert to Beijing.]",
+      "audioText": "You want to maintain 8100m, and divert to Beijing.",
       "audioTextZh": "[你想保持在8100米，并改航至北京]",
       "referenceText": "Wuhan Control, ACA647, request divert to Beijing and maintain 8100m.",
       "referenceTextZh": "武汉区调，加航647，请求改航至北京，并在8100米保持。",

@@ -34,7 +34,7 @@
       "id": "atc-scenario-0179-card-main-3084",
       "taskTitle": "QFA 358-4",
       "audioText": "C: QFA 358, Negative heading 050 due to restricted area.\nB: Tell Wuhan control you want to fly heading 030 for at least 5 minutes before you can resume course.",
-      "audioTextZh": "C： QFA 358，因限制区，不能使用航向 050。\nB： 告诉武汉管制，你希望保持航向 030 至少 5 分钟，然后才能恢复航路。",
+      "audioTextZh": "C：QFA 358，因限制区，不能使用航向 050。\nB：告诉武汉管制，你希望保持航向 030 至少 5 分钟，然后才能恢复航路。",
       "referenceText": "Wuhan Control, QFA 358, request heading 030 for at least five minutes",
       "referenceTextZh": "武汉管制，QFA 358，请求保持航向 030 至少 5 分钟。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q04.mp3"

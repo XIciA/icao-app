@@ -1,82 +1,82 @@
 {
   "id": "opi-fzy-581",
   "name": "Figure 25",
-  "declaredCardCount": 7,
   "cards": [
     {
       "id": "opi-fzy-581-image-1",
       "kind": "image",
-      "taskTitle": "Figure 25 · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-581.png",
       "imageAlt": "Figure 25，用于本话题的看图描述和问答",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "Figure 25 · 看图材料"
     },
     {
       "id": "opi-fzy-110367",
-      "taskTitle": "Figure 25-1",
+      "audio": "/question-bank-assets/revisions/opi/099605b96ad4db7bc5331e648e85aaefa4c46ee3a839d4b4ffaf04cb0e425c21/audio/opi/opi-fzy-110367.mp3",
       "audioText": "Please give a brief description of what is shown in the picture.",
-      "audioTextZh": "请简要描述图中展示的是什么。",
       "studyTier": 0,
+      "taskTitle": "Figure 25-1",
+      "audioTextZh": "请简要描述图中展示的是什么。",
       "referenceText": "The aircraft from Air France is sinking into the field. Some mechanics are around the engine of the aircraft. They seem to be checking the engine and a gendarmerie is watching the scene a little far away from the aircraft. A vehicle is standing behind the tail of the aircraft.",
       "referenceTextZh": "法国航空公司的一架飞机陷入了田地。修理工们正站在飞机引擎四周，看来正在检查引擎，一名宪兵站在远处看着飞机，在飞机的机尾有车辆。",
-      "audio": "/question-bank-assets/revisions/opi/099605b96ad4db7bc5331e648e85aaefa4c46ee3a839d4b4ffaf04cb0e425c21/audio/opi/opi-fzy-110367.mp3",
       "audioDurationSeconds": 2.976
     },
     {
       "id": "opi-fzy-110368",
-      "taskTitle": "Figure 25-2",
+      "audio": "/question-bank-assets/revisions/opi/77d17a136da3d123a1becd09706a11104850ae48ca8d7bd41103803aebbf2c88/audio/opi/opi-fzy-110368.mp3",
       "audioText": "What happened to the aircraft?",
-      "audioTextZh": "这架飞机发生了什么？",
       "studyTier": 0,
+      "taskTitle": "Figure 25-2",
+      "audioTextZh": "这架飞机发生了什么？",
       "referenceText": "In my opinion, the aircraft might have run out of the runway after aborting takeoff or the emergency landing for some reasons and sunk into the field.",
       "referenceTextZh": "我认为，这架飞机应该是在中断起飞后冲出了跑道，或因为一些原因紧急迫降之后陷入了田地。",
-      "audio": "/question-bank-assets/revisions/opi/77d17a136da3d123a1becd09706a11104850ae48ca8d7bd41103803aebbf2c88/audio/opi/opi-fzy-110368.mp3",
       "audioDurationSeconds": 1.584
     },
     {
       "id": "opi-fzy-110369",
-      "taskTitle": "Figure 25-3",
+      "audio": "/question-bank-assets/revisions/opi/9cb52b3d40bd044f3f8ddbceb57b76f3ba0d7d3912dc8a31640bbee8602c12fd/audio/opi/opi-fzy-110369.mp3",
       "audioText": "Could you imagine how did this happen?",
-      "audioTextZh": "你能设想一下这是怎样发生的吗？",
       "studyTier": 0,
+      "taskTitle": "Figure 25-3",
+      "audioTextZh": "你能设想一下这是怎样发生的吗？",
       "referenceText": "In the picture, lots of mechanics are around the engine, so I think probably there was something wrong with the engine of the aircraft during taking off or landing, which caused that they could not stop prior to reaching the end of the runway and sunk into mud.",
       "referenceTextZh": "上图中，修理工们正站在引擎周围，所以我认为飞机的引擎可能在起飞或降落时出现了问题，使飞机无法在跑道尽头前停止然后陷入了泥中。",
-      "audio": "/question-bank-assets/revisions/opi/9cb52b3d40bd044f3f8ddbceb57b76f3ba0d7d3912dc8a31640bbee8602c12fd/audio/opi/opi-fzy-110369.mp3",
       "audioDurationSeconds": 1.872
     },
     {
       "id": "opi-fzy-110370",
-      "taskTitle": "Figure 25-4",
+      "audio": "/question-bank-assets/revisions/opi/7e22e035b8316c909490954ba833a676a131b1a3972b1fa2ce85e9a073009d7b/audio/opi/opi-fzy-110370.mp3",
       "audioText": "What may lead to the aircraft running out of the runway?",
-      "audioTextZh": "什么原因会导致飞机冲出跑道？",
       "studyTier": 0,
+      "taskTitle": "Figure 25-4",
+      "audioTextZh": "什么原因会导致飞机冲出跑道？",
       "referenceText": "There are three possible factors I know may lead to the aircraft overshooting. First, landing at a high speed is dangerous and the aircraft may not be fully stopped on the runway. Second, brake or thrust reverser inoperative during roll is also a risk. Third, the runway is not long enough for taking off and the like.",
       "referenceTextZh": "我知道的共有三种可能的原因：第一，以高速降落。非常危险并且飞机可能无法在跑道完全停止；第二，横滚时刹车和反推装置不工作。第三，跑道长度不够起飞。",
-      "audio": "/question-bank-assets/revisions/opi/7e22e035b8316c909490954ba833a676a131b1a3972b1fa2ce85e9a073009d7b/audio/opi/opi-fzy-110370.mp3",
       "audioDurationSeconds": 2.688
     },
     {
       "id": "opi-fzy-110371",
-      "taskTitle": "Figure 25-5",
+      "audio": "/question-bank-assets/revisions/opi/c69f35c9e1e618eb11184c854e3a1e5598157ac30298a64da66eb7af61dafaf3/audio/opi/opi-fzy-110371.mp3",
       "audioText": "In what situation would a pilot choose to abort takeoff?",
-      "audioTextZh": "什么情况下飞行员会选择中断起飞？",
       "studyTier": 0,
+      "taskTitle": "Figure 25-5",
+      "audioTextZh": "什么情况下飞行员会选择中断起飞？",
       "referenceText": "There are some situations I know may cause aborted takeoff, fire on board, tire failure, wind shear and other extreme weather, suspected or actual technical failures, engine failure during the takeoff run, bird strike or unknown flying objects in the air, bad weather, or some barriers suddenly showing on the runway.",
       "referenceTextZh": "有些情况会导致中断起飞：飞机起火，轮胎失效，风切变等天气因素，可疑或存在的机械故障、起飞滑跑时的引擎故障、鸟击或空中的不明飞行物体、恶劣天气或跑道上突然出现的障碍。",
-      "audio": "/question-bank-assets/revisions/opi/c69f35c9e1e618eb11184c854e3a1e5598157ac30298a64da66eb7af61dafaf3/audio/opi/opi-fzy-110371.mp3",
       "audioDurationSeconds": 3.096
     },
     {
       "id": "opi-fzy-110372",
-      "taskTitle": "Figure 25-6",
-      "audioText": "What should be taken into account when the pilots decide whether to abort takeoff or not?",
-      "audioTextZh": "飞行员在决定是否应该中断起飞时应考虑什么？",
-      "studyTier": 0,
-      "referenceText": "An aborted takeoff is normally performed only if the aircraft’s speed is below the takeoff decision speed known as V1. Below V1, the airplane should be able to stop safely before the end of the runway. Above V1, the airplane may overshoot the runway if the takeoff is aborted. Takeoff is normally not aborted above V1, unless there is reason to doubt the airplane’s ability to fly, such as fire alarm, engine failure, wind shear and take-off configuration warning.",
-      "referenceTextZh": "通常当飞机的速度低于起飞决断速度即V1时，需要中断起飞。速度低于V1时，飞机能够在跑道尽头前安全停止。速度高于V1时，中断起飞可能会导致飞机冲出跑道。除非有火警，发动机失效，风切变，起飞形态警告以及飞行员认为会影响飞行安全的情况才会在V1后中断起飞。",
       "audio": "/question-bank-assets/revisions/opi/7738e9820a426ad33e4a1bdbe39c0fa424ca7ba3875d18722f7741afc54ca61b/audio/opi/opi-fzy-110372.mp3",
+      "audioText": "What should be taken into account when the pilots decide whether to abort takeoff or not?",
+      "studyTier": 0,
+      "taskTitle": "Figure 25-6",
+      "audioTextZh": "飞行员在决定是否应该中断起飞时应考虑什么？",
+      "referenceText": "An aborted takeoff is normally performed only if the aircraft's speed is below the takeoff decision speed known as V1. Below V1, the airplane should be able to stop safely before the end of the runway. Above V1, the airplane may overshoot the runway if the takeoff is aborted. Takeoff is normally not aborted above V1, unless there is reason to doubt the airplane's ability to fly, such as fire alarm, engine failure, wind shear and take-off configuration warning.",
+      "referenceTextZh": "通常当飞机的速度低于起飞决断速度即V1时，需要中断起飞。速度低于V1时，飞机能够在跑道尽头前安全停止。速度高于V1时，中断起飞可能会导致飞机冲出跑道。除非有火警，发动机失效，风切变，起飞形态警告以及飞行员认为会影响飞行安全的情况才会在V1后中断起飞。",
       "audioDurationSeconds": 4.584
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-08"
 }

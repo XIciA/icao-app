@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-152310",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-1",
-      "audioText": "[Your call sign is Air France 754, a flight from Paris to Guangzhou, you are leveling at 10100m, near DAPRO, squawk 3645, you are now at Wuhan control zone. Call Wuhan Control 128.75.]",
+      "audioText": "Your call sign is Air France 754, a flight from Paris to Guangzhou, you are leveling at 10100m, near DAPRO, squawk 3645, you are now at Wuhan control zone. Call Wuhan Control 128.75.",
       "audioTextZh": "你的呼号是法航754，从巴黎飞往广州，你的高度是10100米，接近DAPRO，应答机3645，你现在在武汉管制区域，呼叫武汉区调128.75。",
       "referenceText": "Wuhan Control, AFR754, 10100m, near DAPRO, squawk 3645.",
       "referenceTextZh": "武汉区调，法航754,10100米，接近DAPRO，应答机3645。",
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-152312",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-3",
-      "audioText": "[During climbing, you encountered CB and request 20 miles deviation to the west.]",
-      "audioTextZh": "[在爬升过程中，你遇到了积雨云，并请求西偏航20海里]",
+      "audioText": "During climbing, you encountered CB and request 20 miles deviation to the west.",
+      "audioTextZh": "在爬升过程中，你遇到了积雨云，并请求西偏航20海里",
       "referenceText": "Wuhan Control, AFR754, request 20 miles deviation to the west due CB.",
       "referenceTextZh": "武汉区调，法航754，由于积雨云，请求西偏航20海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd9ec08987ec800ecb09.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-152315",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-6",
-      "audioText": "[Your weather radar failed, make an emergency call to Wuhan Control and request divert to Wuhan airport.]",
-      "audioTextZh": "[你的气象雷达失效了，向武汉区调做紧急呼叫，并请求改航到武汉机场]",
+      "audioText": "Your weather radar failed, make an emergency call to Wuhan Control and request divert to Wuhan airport.",
+      "audioTextZh": "你的气象雷达失效了，向武汉区调做紧急呼叫，并请求改航到武汉机场",
       "referenceText": "Panpan, Panpan, Panpan, Wuhan Control, AFR754, our weather radar failed, request divert to Wuhan airport.",
       "referenceTextZh": "Panpan, Panpan, Panpan，武汉区调，法航754，我们的气象雷达失效了，请求改航到武汉机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7bd21a4a77dcca4cbe02.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-152317",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-8",
-      "audioText": "[Contact Wuhan Approach, tell them your situation and ask for the current weather information at Wuhan airport.]",
-      "audioTextZh": "[联系武汉进近，告诉他们你的清况，并询问当前武汉机场的天气信息]",
+      "audioText": "Contact Wuhan Approach, tell them your situation and ask for the current weather information at Wuhan airport.",
+      "audioTextZh": "联系武汉进近，告诉他们你的清况，并询问当前武汉机场的天气信息",
       "referenceText": "Wuhan Approach, AFR754, we are diverting to Wuhan airport due weather radar failure, confirm the weather in Wuhan.",
       "referenceTextZh": "武汉进近，法航754，由于气象雷达失效，我们正改航至武汉机场，证实武汉机场的天气。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/25b37c0a76b550761080.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-152318",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-9",
-      "audioText": "[During descent, you find the flaps are jammed at the fully retracted position, request to terminate approach and hold at WHA for trouble shooting.]",
-      "audioTextZh": "[在下降过程中，你发现襟翼完全卡阻在收上的位置，请求终止进近，在WHA等待，排除故障]",
+      "audioText": "During descent, you find the flaps are jammed at the fully retracted position, request to terminate approach and hold at WHA for trouble shooting.",
+      "audioTextZh": "在下降过程中，你发现襟翼完全卡阻在收上的位置，请求终止进近，在WHA等待，排除故障",
       "referenceText": "Wuhan Approach, AFR754, our flaps jammed, request to terminate approach and hold at WHA for trouble shooting.",
       "referenceTextZh": "武汉进近，法航754，我们的襟翼卡阻，请求终止进近，在WHA等待，排除故障。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2205427e6284b3f9e5e0.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-152320",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-11",
-      "audioText": "[After trouble shooting, you still cannot fix the problem, tell Wuhan Approach you are making high speed approach due flaps jam.]",
-      "audioTextZh": "[经过故障排除，你依旧无法解决问题，告知武汉进近，由于襟翼卡阻，你将进行大速度进近]",
+      "audioText": "After trouble shooting, you still cannot fix the problem, tell Wuhan Approach you are making high speed approach due flaps jam.",
+      "audioTextZh": "经过故障排除，你依旧无法解决问题，告知武汉进近，由于襟翼卡阻，你将进行大速度进近",
       "referenceText": "Wuhan Approach, AFR754, request high speed approach due flaps jam.",
       "referenceTextZh": "武汉进近，法航754，由于襟翼卡阻，请求大速度进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4bb12c6e638ae9048fb6.mp3"
@@ -107,7 +107,7 @@
     {
       "id": "radiotelephony-fzy-152321",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-12",
-      "audioText": "[Now contact Wuhan Tower and ask for braking action status.]",
+      "audioText": "Now contact Wuhan Tower and ask for braking action status.",
       "audioTextZh": "[联系武汉塔台，并询问跑道刹车效应]",
       "referenceText": "Wuhan Tower, AFR754, confirm braking action.",
       "referenceTextZh": "武汉塔台，法航754，证实刹车效应。",
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-152323",
       "taskTitle": "32-AFR754 [雷达失效，襟翼卡阻]-14",
-      "audioText": "[After landing, your aircraft skidded off the runway and your nose wheel is bogged, notify your situation and ask for emergency assistance.]",
+      "audioText": "After landing, your aircraft skidded off the runway and your nose wheel is bogged, notify your situation and ask for emergency assistance.",
       "audioTextZh": "着陆后，你的飞机偏出跑道，你的前轮陷进泥里了，告知你的情况并请求紧急救援。",
       "referenceText": "Wuhan Tower, AFR754, our aircraft skidded off the runway and the nose wheel is bogged, request emergency assistance.",
       "referenceTextZh": "武汉塔台，法航754，我们的飞机偏出跑道，前轮陷进泥里了，请求紧急救援。",

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-152342",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-1",
-      "audioText": "[Your call sign is CCA1432, destination Beijing. You are just handed to Beijing Approach, and maintaining 4200m with information S, your squawk code is 1026, contact Beijing Approach.]",
-      "audioTextZh": "【你的呼号是国航1432，目的地北京。你刚刚移交给北京进近，你现在正保持在4200米，收到通播S，你的应答机编码是1026，联系北京进近。】",
+      "audioText": "Your call sign is CCA1432, destination Beijing. You are just handed to Beijing Approach, and maintaining 4200m with information S, your squawk code is 1026, contact Beijing Approach.",
+      "audioTextZh": "你的呼号是国航1432，目的地北京。你刚刚移交给北京进近，你现在正保持在4200米，收到通播S，你的应答机编码是1026，联系北京进近。",
       "referenceText": "Beijing Approach, CCA1432, destination Beijing, maintaining 4200m with information S, squawk 1026.",
       "referenceTextZh": "北京进近，国航1432，目的地北京，正保持在4200米，通播S，应答机1026。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e010dabd2de4c2daa684.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-152344",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-3",
-      "audioText": "[Your weather radar shows that there is a thunderstorm developing near your destination, and it will affect your flight, you want to know your approach time.]",
-      "audioTextZh": "【你的气象雷达显示雷暴在你目的地机场附近形成，这将影响你的飞行，你想知道你的进近时间。】",
+      "audioText": "Your weather radar shows that there is a thunderstorm developing near your destination, and it will affect your flight, you want to know your approach time.",
+      "audioTextZh": "你的气象雷达显示雷暴在你目的地机场附近形成，这将影响你的飞行，你想知道你的进近时间。",
       "referenceText": "Beijing Approach, CCA1432, request approach time.",
       "referenceTextZh": "北京进近，国航1432，请求进近时间。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c81dc3c3cbc996f755dd.mp3"
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-152346",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-5",
-      "audioText": "C: CCA1432, negative, you have traffic at 12 o’clock and 5 miles, he is the number 1 for runway 18L.",
+      "audioText": "C: CCA1432, negative, you have traffic at 12 o'clock and 5 miles, he is the number 1 for runway 18L.",
       "audioTextZh": "国航1432，不可以，你12点钟方向5海里有航空器，他第一个落地跑道18左。",
       "referenceText": "Roger, CCA1432.",
       "referenceTextZh": "收到，国航1432。",
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-152347",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-6",
-      "audioText": "[Your weather radar shows a strong echo from the thunderstorm ahead. So you want radar vectors to go round the weather, ask for Beijing Approach.]",
-      "audioTextZh": "【你的气象雷达显示前方雷暴有很强回音。你想要雷达引导绕飞天气，请求北京进近。】",
+      "audioText": "Your weather radar shows a strong echo from the thunderstorm ahead. So you want radar vectors to go round the weather, ask for Beijing Approach.",
+      "audioTextZh": "你的气象雷达显示前方雷暴有很强回音。你想要雷达引导绕飞天气，请求北京进近。",
       "referenceText": "Beijing Approach, CCA1432, request radar vectors to go round the weather.",
       "referenceTextZh": "北京进近，国航1432，请求雷达引导，绕飞天气。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3ce7347cc235893b5fec.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-216909",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-11",
-      "audioText": "[You are 17nm from the airport, but the weather is deteriorating, so you want to perform straight-in ILS approach runway 18L, inform Beijing Tower.]",
-      "audioTextZh": "【你现在距离机场17海里，但是天气恶化，所以你想直接盲降进近跑道18左，联系北京塔台。】",
+      "audioText": "You are 17nm from the airport, but the weather is deteriorating, so you want to perform straight-in ILS approach runway 18L, inform Beijing Tower.",
+      "audioTextZh": "你现在距离机场17海里，但是天气恶化，所以你想直接盲降进近跑道18左，联系北京塔台。",
       "referenceText": "Beijing Tower, CCA1432, request straight-in ILS approach runway 18L (due weather).",
       "referenceTextZh": "北京塔台，国航1432，（由于天气）请求直接盲降进近直接进近跑道18左。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e4d6091a4dd6d28059a7.mp3"
@@ -127,7 +127,7 @@
       "taskTitle": "4-CCA1432 [雷暴，复飞]-14",
       "audioText": "C: CCA1432, can you reduce to 160 knots? You are losing separation with the preceding aircraft, I show you only 4 miles behind.\n[Tell the controller you can not accept 160 knots, because 180 knots is your minimum clean speed.]",
       "audioTextZh": "国航1432，你可以降低速度至160节吗？你与前机失去间隔，我看你只在他后方4海里。\n【告知管制员你无法接收160节，因为180节是你的最低光洁速度。】",
-      "referenceText": "Negative, unable to maintain 160 knots, 180 knots is our minimum clean speed, CCA1432.\n注：此处建议使用Negative, unable to... due这个结构来表示“由于...无法...”这一含义。",
+      "referenceText": "Negative, unable to maintain 160 knots, 180 knots is our minimum clean speed, CCA1432.\n注：此处建议使用Negative, unable to... due这个结构来表示“由于。..无法。..”这一含义。",
       "referenceTextZh": "不可以，不能保持160节，180节是我们最小的光洁速度了，国航1432。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0a9587988bb30ded3b3f.mp3"
     },
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-216914",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-16",
-      "audioText": "[Now you have intercepted the localizer runway 18L, report to Beijing Tower.]",
-      "audioTextZh": "【现在你截获了跑道18左的航向道，报告给北京塔台。】",
+      "audioText": "Now you have intercepted the localizer runway 18L, report to Beijing Tower.",
+      "audioTextZh": "现在你截获了跑道18左的航向道，报告给北京塔台。",
       "referenceText": "Beijing Tower, CCA1432, intercept the localizer runway 18L.",
       "referenceTextZh": "北京塔台，国航1432，截获了跑道18左的航向道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bfd57f50f2fc756bde36.mp3"
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-216916",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-18",
-      "audioText": "[You are now over outer marker.]",
+      "audioText": "You are now over outer marker.",
       "audioTextZh": "【你现在已经过了外指点信标台。】",
       "referenceText": "Beijing Tower, CCA1432, outer marker.",
       "referenceTextZh": "北京塔台，国航1432，过外指点信标台。",
@@ -179,8 +179,8 @@
     {
       "id": "radiotelephony-fzy-216918",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-20",
-      "audioText": "[The thunderstorm clouds obscured the runway threshold, you can not get the visual contact of the runway, you want to know if you can change to land on runway 18R.]",
-      "audioTextZh": "【雷暴云盖住了跑道入口，你无法目视跑道，你想知道你能否着陆到跑道18右。】",
+      "audioText": "The thunderstorm clouds obscured the runway threshold, you can not get the visual contact of the runway, you want to know if you can change to land on runway 18R.",
+      "audioTextZh": "雷暴云盖住了跑道入口，你无法目视跑道，你想知道你能否着陆到跑道18右。",
       "referenceText": "Beijing Tower, CCA1432, request change to land on runway 18R.",
       "referenceTextZh": "北京塔台，国航1432，请求更改至跑道18右着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/44c6a1cb0c1fc61a216c.mp3"
@@ -206,8 +206,8 @@
     {
       "id": "radiotelephony-fzy-216921",
       "taskTitle": "4-CCA1432 [雷暴，复飞]-23",
-      "audioText": "[You want to join the holding area for about 20 minutes until the weather improves, and then attempt another approach, inform Tower controller.]",
-      "audioTextZh": "【你想加入等待区域大约20分钟，直到天气变好，然后尝试再次进近，告知塔台管制。】",
+      "audioText": "You want to join the holding area for about 20 minutes until the weather improves, and then attempt another approach, inform Tower controller.",
+      "audioTextZh": "你想加入等待区域大约20分钟，直到天气变好，然后尝试再次进近，告知塔台管制。",
       "referenceText": "Beijing Tower, CCA1432, request join the holding area for about 20 minutes until the weather improves, and then attempt another approach.",
       "referenceTextZh": "北京塔台，国航1432，请求等待区域大约20分钟，直到天气变好，然后尝试再次进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/863b28775f4cf6753dd1.mp3"

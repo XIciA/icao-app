@@ -25,7 +25,7 @@
       "id": "atc-scenario-0161-card-main-2775",
       "taskTitle": "AFR 896-3",
       "audioText": "C: AFR 896, you are the first aircraft in my sector. There is no report here.\nB: Tell the controller you want to descent to 10,700 meters.",
-      "audioTextZh": "C： AFR 896，你是我管制区内的第一架航空器。这里没有报告。\nB： 告诉管制员你想下降至 10,700 米。",
+      "audioTextZh": "C：AFR 896，你是我管制区内的第一架航空器。这里没有报告。\nB：告诉管制员你想下降至 10,700 米。",
       "referenceText": "request descend to 10,700 meters, AFR 896.",
       "referenceTextZh": "请求下降至 10,700 米，AFR 896。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q03.mp3"
@@ -133,7 +133,7 @@
       "id": "atc-scenario-0161-card-main-2787",
       "taskTitle": "AFR 896-15",
       "audioText": "C: AFR 896, Radar shows you are at 4800 meters. What's your current GPS altitude?\nB: Tell the controller GPS altitude is 3600 meters, request descend to 1,800 meters.\nP: Wuhan Approach, AFR 896, our GPS altitude is 3600 meters, request descend to 1,800 meters.",
-      "audioTextZh": "C： AFR 896，雷达显示你位于 4800 米。你当前的 GPS 高度是多少？\nB： 告诉管制员 GPS 高度为 3600 米，请求下降至 1,800 米。\nP： 武汉进近，AFR 896，我们的 GPS 高度为 3600 米，请求下降至 1,800 米。",
+      "audioTextZh": "C：AFR 896，雷达显示你位于 4800 米。你当前的 GPS 高度是多少？\nB：告诉管制员 GPS 高度为 3600 米，请求下降至 1,800 米。\nP：武汉进近，AFR 896，我们的 GPS 高度为 3600 米，请求下降至 1,800 米。",
       "referenceText": "AFR 896, our GPS altitude is 3600 meters, request descent to 1800 meters.",
       "referenceTextZh": "AFR 896，我们的 GPS 高度为 3600 米，请求下降至 1800 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q15.mp3"
@@ -142,7 +142,7 @@
       "id": "atc-scenario-0161-card-main-2788",
       "taskTitle": "AFR 896-16",
       "audioText": "C: AFR 896, Another aircraft has information with regards to the differences between his barometric and GPS altitude. I have him on 3000 meters, his reported GPS is 3600 meters.\nB: acknowledge the transmission and request further descent and leave icing area.",
-      "audioTextZh": "C： AFR 896，另一架航空器提供了其气压高度与 GPS 高度差异的信息。我掌握的该机高度是 3000 米，其报告的 GPS 高度为 3600 米。\nB： 确认收到，并请求进一步下降以离开结冰区。",
+      "audioTextZh": "C：AFR 896，另一架航空器提供了其气压高度与 GPS 高度差异的信息。我掌握的该机高度是 3000 米，其报告的 GPS 高度为 3600 米。\nB：确认收到，并请求进一步下降以离开结冰区。",
       "referenceText": "request further descent, AFR 896.",
       "referenceTextZh": "请求进一步下降，AFR 896。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q16.mp3"

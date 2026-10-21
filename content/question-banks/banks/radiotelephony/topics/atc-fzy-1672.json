@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-224028",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-1",
-      "audioText": "B: [Your callsign is SIA308, a flight from Wuhan to Frankfurt. You’re parking at gate M5. You got the latest information G, contact Wuhan Delivery for ATC clearance.]",
+      "audioText": "B: [Your callsign is SIA308, a flight from Wuhan to Frankfurt. You're parking at gate M5. You got the latest information G, contact Wuhan Delivery for ATC clearance.]",
       "audioTextZh": "B: 你的呼号是新航308，从武汉飞往法兰克福。你现在在M5号停机位。你收到了最新的通播G，联系武汉放行，申请管制许可。",
       "referenceText": "Wuhan Delivery, SIA308, gate M5, information G, request ATC clearance to Frankfurt.",
       "referenceTextZh": "武汉放行，新航308，M5号机位，通播G，请求飞往法兰克福的管制许可。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-224030",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-3",
-      "audioText": "B: [Now you’ve completed pushback and start-up, you’re ready for taxi. Contact Wuhan Ground.]",
+      "audioText": "B: [Now you've completed pushback and start-up, you're ready for taxi. Contact Wuhan Ground.]",
       "audioTextZh": "B: 【你现在完成了推出开车，你准备好滑行了，联系武汉地面。】",
       "referenceText": "Wuhan Ground, SIA308, pushback and start-up completed, request taxi.",
       "referenceTextZh": "武汉地面，新航308，完成推出开车，请求滑行。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-224032",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-5",
-      "audioText": "B: [Now you’re holding at holding point E5, runway 04, contact Wuhan Tower and tell controller you’re ready for departure.]",
+      "audioText": "B: [Now you're holding at holding point E5, runway 04, contact Wuhan Tower and tell controller you're ready for departure.]",
       "audioTextZh": "B: 【现在你已经在跑道04外等待点E5，联系武汉塔台，告诉管制员你准备好起飞了。】",
       "referenceText": "Wuhan Tower, SIA308, holding point E5, runway 04, request departure.",
       "referenceTextZh": "武汉塔台，新航308，跑道04外等待点E5，请求起飞。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-224034",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-7",
-      "audioText": "B: [Now you’re airborne, passing 600m, climbing to 1600m, contact Wuhan Departure and ask for cancel SID and proceed to ZF.]",
+      "audioText": "B: [Now you're airborne, passing 600m, climbing to 1600m, contact Wuhan Departure and ask for cancel SID and proceed to ZF.]",
       "audioTextZh": "B: 【你现在已经起飞，过600米，正向1600米爬升，联系武汉离场，请求取消标准离场，直飞ZF。】",
       "referenceText": "Wuhan Departure, SIA308, airborne, passing 600m, climbing to 1600m, request cancel SID and proceed to ZF.",
       "referenceTextZh": "武汉离场，新航308，起飞了，过600米，正向1600米爬升，请求取消标准离场，直飞ZF。",
@@ -80,7 +80,7 @@
     {
       "id": "radiotelephony-fzy-224036",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-9",
-      "audioText": "B: [Now you’re en-route Germany, Rhein Radar Control, you’re cruising at FL360, make an initial contact with Rhein Radar Control.]",
+      "audioText": "B: [Now you're en-route Germany, Rhein Radar Control, you're cruising at FL360, make an initial contact with Rhein Radar Control.]",
       "audioTextZh": "B：【你现在已经在德国莱茵雷达管制区航路上，你现在在高度层360巡航。与莱茵雷达管制区进行初始通话。】",
       "referenceText": "Rhein Radar, SIA308, en-route, cruising at FL360.",
       "referenceTextZh": "莱茵雷达，新航308，在航路上，高度层360。",
@@ -107,18 +107,18 @@
     {
       "id": "radiotelephony-fzy-224039",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-12",
-      "audioText": "C: SIA308, roger Mayday, descend to and maintain FL100, keep us advised the situation on board and your intention.\nB: [Read back the instructions and tell the controller that you’re working the checklist and will advise.]",
+      "audioText": "C: SIA308, roger Mayday, descend to and maintain FL100, keep us advised the situation on board and your intention.\nB: [Read back the instructions and tell the controller that you're working the checklist and will advise.]",
       "audioTextZh": "C: 新航308，收到Mayday，下高度层100保持，告知我们机上情况以及你的意图。\nB：【复诵指令，告知管制员，你现在正在执行检查单。】",
-      "referenceText": "Descend to and maintain FL100, we’re working the checklist and will advise, SIA308.",
+      "referenceText": "Descend to and maintain FL100, we're working the checklist and will advise, SIA308.",
       "referenceTextZh": "下到高度层100保持，我们正在执行检查单，将会告知，新航308。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a003f762391be605fcb5.mp3"
     },
     {
       "id": "radiotelephony-fzy-224040",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-13",
-      "audioText": "B: [After completing the checklist, the smoke can’t be removed and you decide to divert to Paris, inform the controller your situation and intention.]",
+      "audioText": "B: [After completing the checklist, the smoke can't be removed and you decide to divert to Paris, inform the controller your situation and intention.]",
       "audioTextZh": "B：【完成检查单后，烟雾无法移除，你决定改航到巴黎，告知管制员你的情况以及意图。】",
-      "referenceText": "Rhein Radar, SIA308, the smoke can’t be removed, request divert to Paris.",
+      "referenceText": "Rhein Radar, SIA308, the smoke can't be removed, request divert to Paris.",
       "referenceTextZh": "莱茵雷达，新航308，烟雾无法移除，请求改航到巴黎。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/665d0db74f485bbaa93f.mp3"
     },
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-224043",
       "taskTitle": "70-SIA308 [驾驶舱烟雾，错过脱离道]-16",
-      "audioText": "B: [Now you’ve landed on runway 08L, but you missed the first rapid exit, report to Paris Tower and request vacate via the second rapid exit.]",
+      "audioText": "B: [Now you've landed on runway 08L, but you missed the first rapid exit, report to Paris Tower and request vacate via the second rapid exit.]",
       "audioTextZh": "B: 【现在你已经落地跑道08左，但是你错过了第一个快速脱离道，联系巴黎塔台，请求从第二个快速脱离道脱离。】",
       "referenceText": "Paris Tower, SIA308, we missed the first rapid exit, request vacate via the second rapid exit.",
       "referenceTextZh": "巴黎塔台，新航308，我们错过了第一个快速脱离道，请求经由第二个快速脱离道脱离。",

@@ -1,113 +1,113 @@
 {
   "id": "opi-topic-0086",
   "name": "紧急撤离",
-  "declaredCardCount": 10,
   "cards": [
     {
-      "id": "opi-core-861",
-      "taskTitle": "特情-紧急撤离-1",
-      "audioText": "Do you think an effective briefing with the cabin crew can improve the chances of a successful emergency evacuation? Why?",
-      "audioTextZh": "你认为与客舱机组进行有效简令能提高紧急撤离成功的可能性吗？为什么？",
-      "referenceText": "Yes. An effective briefing makes each crew member's responsibilities clear and improves teamwork between the flight crew and cabin crew. During an evacuation, that clarity helps the pilots complete their checklist while the cabin crew prepares and guides the passengers, making the process more orderly and efficient.",
-      "referenceTextZh": "是的。有效简令使每位机组成员的职责清楚，并改善飞行机组与客舱机组的合作。撤离期间，这种明确性使飞行员可以完成检查单，客舱机组则准备并引导旅客，使整个过程更有序、更高效。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/a203a56af7ef2bb22ca013789bd553f348cbeb57c728be997436c44734f252bb/audio/opi/opi-core-861.mp3",
-      "audioDurationSeconds": 6.936
-    },
-    {
-      "id": "opi-core-077",
-      "taskTitle": "特情-紧急撤离-2",
-      "audioText": "Under what circumstances is an emergency evacuation necessary?",
-      "audioTextZh": "在什么情况下需要进行紧急撤离？",
-      "referenceText": "An emergency evacuation may be necessary after an uncontrollable fire or smoke event, severe structural damage, a serious fuel leak, a forced landing, or the discovery of a bomb. More generally, it is required when remaining on the aircraft would threaten the lives of the passengers or crew.",
-      "referenceTextZh": "发生无法控制的火灾或烟雾、严重结构损伤、严重燃油泄漏、迫降或发现炸弹后，可能需要紧急撤离。更一般地说，只要留在飞机上会威胁旅客或机组生命，就必须撤离。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/985fb53e8e2741f30d32d212deb1ff59de5d910e6337c98d26f1e741de2ba3dc/audio/opi/opi-core-077.mp3",
-      "audioDurationSeconds": 3.888
-    },
-    {
-      "id": "opi-core-077-part-2",
-      "taskTitle": "特情-紧急撤离-3",
-      "audioText": "How should a flight crew prepare for an emergency evacuation?",
-      "audioTextZh": "机组应如何为紧急撤离做准备？",
-      "referenceText": "The flight crew should inform ATC that an evacuation is planned and make a passenger announcement. The cabin crew and passengers should be told to prepare, and the cabin crew should make the emergency exits and slides ready for use.",
-      "referenceTextZh": "飞行机组应通知空中交通管制计划撤离，并向旅客广播。应通知客舱机组和旅客做好准备，由客舱机组准备应急出口和滑梯。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/0cacf8f81f6719ce37df18f71163c3af3770a195cd4d453ca8bddec812d73cf5/audio/opi/opi-core-077-part-2.mp3",
-      "audioDurationSeconds": 3.504
-    },
-    {
-      "id": "opi-core-080",
-      "taskTitle": "特情-紧急撤离-4",
-      "audioText": "Who should be the last person to leave an aircraft during an emergency evacuation, and why?",
-      "audioTextZh": "紧急撤离时，谁应该最后离开飞机？为什么？",
-      "referenceText": "The captain should normally be the last person to leave because the captain is responsible for everyone on board. Before leaving, the captain should check that the passengers and other crew members have evacuated.",
-      "referenceTextZh": "机长通常应最后离开，因为机长对机上所有人负责。离开前，机长应确认旅客和其他机组成员都已经撤离。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/2f0b040badd3bc03fdf4f7e1a39dadeb8d56dad7961024b9dd25838f98367555/audio/opi/opi-core-080.mp3",
-      "audioDurationSeconds": 5.208
-    },
-    {
-      "id": "opi-core-094",
-      "taskTitle": "特情-紧急撤离-5",
-      "audioText": "How quickly should an emergency evacuation be completed?",
-      "audioTextZh": "紧急撤离应在多长时间内完成？",
-      "referenceText": "Once an emergency evacuation is required, it should be completed as soon as possible.",
-      "referenceTextZh": "一旦需要紧急撤离，就应尽快完成。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/41266e2d9a156f65a6444bf15046cf867f812a865e74acc9bcd85e6246b7c8d8/audio/opi/opi-core-094.mp3",
-      "audioDurationSeconds": 3.216
-    },
-    {
       "id": "opi-core-095",
-      "taskTitle": "特情-紧急撤离-6",
+      "audio": "/question-bank-assets/revisions/opi/1ac2a1a3faaf4772aa38d745835b9dbd53f6d4da1f5c922e2d78f9500a3cd9f8/audio/opi/opi-core-095.mp3",
       "audioText": "What procedures should a flight crew follow when conducting an emergency evacuation?",
+      "taskTitle": "特情-紧急撤离-6",
       "audioTextZh": "进行紧急撤离时，机组应遵循哪些程序？",
       "referenceText": "The crew should stop and secure the aircraft, shut down the engines and power as required, and complete the evacuation checklist. They should advise ATC, request emergency assistance, and coordinate with the cabin crew. The cabin crew should use safe exits, deploy slides when appropriate, direct passengers to leave their baggage, and move everyone away from the aircraft after evacuation.",
       "referenceTextZh": "机组应停稳并使飞机处于安全状态，按要求关闭发动机和电源，并完成撤离检查单。他们应通知空中交通管制、申请应急协助，并与客舱机组协调。客舱机组应使用安全出口、按需放出滑梯、指挥旅客不要携带行李，并在撤离后让所有人远离飞机。",
-      "audio": "/question-bank-assets/revisions/opi/1ac2a1a3faaf4772aa38d745835b9dbd53f6d4da1f5c922e2d78f9500a3cd9f8/audio/opi/opi-core-095.mp3",
       "audioDurationSeconds": 4.56
     },
     {
+      "id": "opi-core-113",
+      "audio": "/question-bank-assets/revisions/opi/82c2b0d5bdbd877c0690765f335626fcc033bd792d57dff701a90f1c006758b0/audio/opi/opi-core-113.mp3",
+      "audioText": "What are the cabin crew's duties during an emergency evacuation?",
+      "taskTitle": "特情-紧急撤离-10",
+      "audioTextZh": "紧急撤离时，客舱机组有哪些职责？",
+      "referenceText": "Cabin crew members guide passengers to the exits, assist vulnerable passengers, and maintain order. They open the usable emergency exits and deploy the slides, check the cabin for anyone remaining, and coordinate with the flight crew. They also report the evacuation status to the captain.",
+      "referenceTextZh": "客舱机组引导旅客前往出口、协助需要特别帮助的旅客并维持秩序。他们打开可用应急出口并放出滑梯，检查客舱内是否还有人员，并与飞行机组协调。他们还会向机长报告撤离状态。",
+      "audioDurationSeconds": 3.696
+    },
+    {
+      "id": "opi-core-077",
+      "audio": "/question-bank-assets/revisions/opi/985fb53e8e2741f30d32d212deb1ff59de5d910e6337c98d26f1e741de2ba3dc/audio/opi/opi-core-077.mp3",
+      "audioText": "Under what circumstances is an emergency evacuation necessary?",
+      "studyTier": 2,
+      "taskTitle": "特情-紧急撤离-2",
+      "audioTextZh": "在什么情况下需要进行紧急撤离？",
+      "referenceText": "An emergency evacuation may be necessary after an uncontrollable fire or smoke event, severe structural damage, a serious fuel leak, a forced landing, or the discovery of a bomb. More generally, it is required when remaining on the aircraft would threaten the lives of the passengers or crew.",
+      "referenceTextZh": "发生无法控制的火灾或烟雾、严重结构损伤、严重燃油泄漏、迫降或发现炸弹后，可能需要紧急撤离。更一般地说，只要留在飞机上会威胁旅客或机组生命，就必须撤离。",
+      "audioDurationSeconds": 3.888
+    },
+    {
+      "id": "opi-core-861",
+      "audio": "/question-bank-assets/revisions/opi/a203a56af7ef2bb22ca013789bd553f348cbeb57c728be997436c44734f252bb/audio/opi/opi-core-861.mp3",
+      "audioText": "Do you think an effective briefing with the cabin crew can improve the chances of a successful emergency evacuation? Why?",
+      "studyTier": 2,
+      "taskTitle": "特情-紧急撤离-1",
+      "audioTextZh": "你认为与客舱机组进行有效简令能提高紧急撤离成功的可能性吗？为什么？",
+      "referenceText": "Yes. An effective briefing makes each crew member's responsibilities clear and improves teamwork between the flight crew and cabin crew. During an evacuation, that clarity helps the pilots complete their checklist while the cabin crew prepares and guides the passengers, making the process more orderly and efficient.",
+      "referenceTextZh": "是的。有效简令使每位机组成员的职责清楚，并改善飞行机组与客舱机组的合作。撤离期间，这种明确性使飞行员可以完成检查单，客舱机组则准备并引导旅客，使整个过程更有序、更高效。",
+      "audioDurationSeconds": 6.936
+    },
+    {
+      "id": "opi-core-080",
+      "audio": "/question-bank-assets/revisions/opi/2f0b040badd3bc03fdf4f7e1a39dadeb8d56dad7961024b9dd25838f98367555/audio/opi/opi-core-080.mp3",
+      "audioText": "Who should be the last person to leave an aircraft during an emergency evacuation, and why?",
+      "studyTier": 2,
+      "taskTitle": "特情-紧急撤离-4",
+      "audioTextZh": "紧急撤离时，谁应该最后离开飞机？为什么？",
+      "referenceText": "The captain should normally be the last person to leave because the captain is responsible for everyone on board. Before leaving, the captain should check that the passengers and other crew members have evacuated.",
+      "referenceTextZh": "机长通常应最后离开，因为机长对机上所有人负责。离开前，机长应确认旅客和其他机组成员都已经撤离。",
+      "audioDurationSeconds": 5.208
+    },
+    {
+      "id": "opi-core-112",
+      "audio": "/question-bank-assets/revisions/opi/2929dafb9672a8d92737cac31b300228b5ba8596b77aa882378e683717225c64/audio/opi/opi-core-112.mp3",
+      "audioText": "What are the main principles of an emergency evacuation?",
+      "taskTitle": "特情-紧急撤离-9",
+      "audioTextZh": "紧急撤离的主要原则是什么？",
+      "referenceText": "The main principles are safety, speed, and order. The crew should guide passengers calmly, use safe exits rather than blocked ones, and coordinate closely between the cockpit and cabin. The captain remains responsible for confirming that the evacuation has been completed.",
+      "referenceTextZh": "主要原则是安全、迅速和有序。机组应冷静引导旅客，使用安全出口而不是受阻出口，并在驾驶舱和客舱之间密切协调。机长仍负责确认撤离已经完成。",
+      "audioDurationSeconds": 3.192
+    },
+    {
+      "id": "opi-core-077-part-2",
+      "audio": "/question-bank-assets/revisions/opi/0cacf8f81f6719ce37df18f71163c3af3770a195cd4d453ca8bddec812d73cf5/audio/opi/opi-core-077-part-2.mp3",
+      "audioText": "How should a flight crew prepare for an emergency evacuation?",
+      "studyTier": 2,
+      "taskTitle": "特情-紧急撤离-3",
+      "audioTextZh": "机组应如何为紧急撤离做准备？",
+      "referenceText": "The flight crew should inform ATC that an evacuation is planned and make a passenger announcement. The cabin crew and passengers should be told to prepare, and the cabin crew should make the emergency exits and slides ready for use.",
+      "referenceTextZh": "飞行机组应通知空中交通管制计划撤离，并向旅客广播。应通知客舱机组和旅客做好准备，由客舱机组准备应急出口和滑梯。",
+      "audioDurationSeconds": 3.504
+    },
+    {
       "id": "opi-core-096",
-      "taskTitle": "特情-紧急撤离-7",
+      "audio": "/question-bank-assets/revisions/opi/4066072abdc4a26deeeb179ff16ab522bee5a913fb8ee4ea24fde691de4b5696/audio/opi/opi-core-096.mp3",
       "audioText": "How can the flight crew assist the cabin crew during an emergency evacuation?",
+      "taskTitle": "特情-紧急撤离-7",
       "audioTextZh": "紧急撤离时，飞行机组如何协助客舱机组？",
       "referenceText": "The flight crew can make a passenger announcement explaining that an evacuation is required and indicating the evacuation route. After completing the evacuation checklist, the pilots can help the cabin crew move passengers out of the aircraft.",
       "referenceTextZh": "飞行机组可以向旅客广播，说明需要撤离并指明撤离路线。完成撤离检查单后，飞行员可以协助客舱机组让旅客离开飞机。",
-      "audio": "/question-bank-assets/revisions/opi/4066072abdc4a26deeeb179ff16ab522bee5a913fb8ee4ea24fde691de4b5696/audio/opi/opi-core-096.mp3",
       "audioDurationSeconds": 4.272
     },
     {
       "id": "opi-core-097",
-      "taskTitle": "特情-紧急撤离-8",
+      "audio": "/question-bank-assets/revisions/opi/9db2641a34c3cb50745f26622c8c561ee4b362aa48becf77d4a5539238ec93cb/audio/opi/opi-core-097.mp3",
       "audioText": "Have you taken part in joint emergency evacuation training with cabin crew? If so, what did it involve?",
+      "taskTitle": "特情-紧急撤离-8",
       "audioTextZh": "你参加过与客舱机组共同进行的紧急撤离培训吗？如果参加过，培训包括哪些内容？",
       "referenceText": "No, I have not taken part in joint emergency evacuation training with cabin crew. I understand that close communication and cooperation are essential for helping passengers leave the aircraft quickly and in an orderly way.",
       "referenceTextZh": "没有，我没有与客舱机组一起参加过联合紧急撤离训练。我知道，密切沟通和合作对于帮助旅客迅速、有序离开飞机至关重要。",
-      "audio": "/question-bank-assets/revisions/opi/9db2641a34c3cb50745f26622c8c561ee4b362aa48becf77d4a5539238ec93cb/audio/opi/opi-core-097.mp3",
       "audioDurationSeconds": 6.384
     },
     {
-      "id": "opi-core-112",
-      "taskTitle": "特情-紧急撤离-9",
-      "audioText": "What are the main principles of an emergency evacuation?",
-      "audioTextZh": "紧急撤离的主要原则是什么？",
-      "referenceText": "The main principles are safety, speed, and order. The crew should guide passengers calmly, use safe exits rather than blocked ones, and coordinate closely between the cockpit and cabin. The captain remains responsible for confirming that the evacuation has been completed.",
-      "referenceTextZh": "主要原则是安全、迅速和有序。机组应冷静引导旅客，使用安全出口而不是受阻出口，并在驾驶舱和客舱之间密切协调。机长仍负责确认撤离已经完成。",
-      "audio": "/question-bank-assets/revisions/opi/2929dafb9672a8d92737cac31b300228b5ba8596b77aa882378e683717225c64/audio/opi/opi-core-112.mp3",
-      "audioDurationSeconds": 3.192
-    },
-    {
-      "id": "opi-core-113",
-      "taskTitle": "特情-紧急撤离-10",
-      "audioText": "What are the cabin crew's duties during an emergency evacuation?",
-      "audioTextZh": "紧急撤离时，客舱机组有哪些职责？",
-      "referenceText": "Cabin crew members guide passengers to the exits, assist vulnerable passengers, and maintain order. They open the usable emergency exits and deploy the slides, check the cabin for anyone remaining, and coordinate with the flight crew. They also report the evacuation status to the captain.",
-      "referenceTextZh": "客舱机组引导旅客前往出口、协助需要特别帮助的旅客并维持秩序。他们打开可用应急出口并放出滑梯，检查客舱内是否还有人员，并与飞行机组协调。他们还会向机长报告撤离状态。",
-      "audio": "/question-bank-assets/revisions/opi/82c2b0d5bdbd877c0690765f335626fcc033bd792d57dff701a90f1c006758b0/audio/opi/opi-core-113.mp3",
-      "audioDurationSeconds": 3.696
+      "id": "opi-core-094",
+      "audio": "/question-bank-assets/revisions/opi/41266e2d9a156f65a6444bf15046cf867f812a865e74acc9bcd85e6246b7c8d8/audio/opi/opi-core-094.mp3",
+      "audioText": "How quickly should an emergency evacuation be completed?",
+      "studyTier": 2,
+      "taskTitle": "特情-紧急撤离-5",
+      "audioTextZh": "紧急撤离应在多长时间内完成？",
+      "referenceText": "Once an emergency evacuation is required, it should be completed as soon as possible.",
+      "referenceTextZh": "一旦需要紧急撤离，就应尽快完成。",
+      "audioDurationSeconds": 3.216
     }
   ],
+  "declaredCardCount": 10,
   "categoryId": "opi-category-02"
 }

@@ -1,60 +1,60 @@
 {
   "id": "opi-fzy-837",
   "name": "Flight manuals",
-  "declaredCardCount": 5,
   "cards": [
     {
       "id": "opi-fzy-837-image-1",
       "kind": "image",
-      "taskTitle": "Flight manuals · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-837.png",
       "imageAlt": "Flight manuals，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "studyTier": 1,
+      "taskTitle": "Flight manuals · 看图材料"
     },
     {
       "id": "opi-fzy-152367",
-      "taskTitle": "Flight manuals-1",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152367.mp3",
       "audioText": "What can you see from this picture?",
-      "audioTextZh": "从图中可以看到什么？",
       "studyTier": 1,
+      "taskTitle": "Flight manuals-1",
+      "audioTextZh": "从图中可以看到什么？",
       "referenceText": "From this picture, I can see a mechanic is handing over the worksheet with the captain.",
       "referenceTextZh": "从图中可以看到一名机务人员正在和机长交接工作单。",
-      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152367.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152368",
-      "taskTitle": "Flight manuals-2",
-      "audioText": "What kind of manuals should be carried during the flight?",
-      "audioTextZh": "在飞行中需要携带的手册都有哪些？",
-      "studyTier": 1,
-      "referenceText": "There are many manuals should be carried on the aircraft during the flight.\nFor example, MEL, AFM, FCOM and QRH.",
-      "referenceTextZh": "在一段飞行中，在飞机上需要携带很多手册。\n比如：最低设备清单、飞机飞行手册、 飞行机组操纵手册和快速检查单。",
       "audio": "/question-bank-assets/revisions/opi/da8a237fe434a1256e4e2f292c025c75c55e74c07cd7a86b4487207a0e06dbbc/audio/opi/opi-fzy-152368.mp3",
+      "audioText": "What kind of manuals should be carried during the flight?",
+      "studyTier": 1,
+      "taskTitle": "Flight manuals-2",
+      "audioTextZh": "在飞行中需要携带的手册都有哪些？",
+      "referenceText": "There are many manuals should be carried on the aircraft during the flight.\nFor example, MEL, AFM, FCOM and QRH.",
+      "referenceTextZh": "在一段飞行中，在飞机上需要携带很多手册。\n比如：最低设备清单、飞机飞行手册、飞行机组操纵手册和快速检查单。",
       "audioDurationSeconds": 2.832
     },
     {
       "id": "opi-fzy-152369",
-      "taskTitle": "Flight manuals-3",
+      "audio": "/question-bank-assets/revisions/opi/8945dca2f84e891aad4bac263bda09053425a8c7931e80406715e7d3a961f088/audio/opi/opi-fzy-152369.mp3",
       "audioText": "What are the role of normal checklist?",
-      "audioTextZh": "正常检查单的作用是什么？",
       "studyTier": 1,
+      "taskTitle": "Flight manuals-3",
+      "audioTextZh": "正常检查单的作用是什么？",
       "referenceText": "Normal checklist enhance flight safety by providing an opportunity to confirm that the safety critical aspects of the systems and aircraft configuration are correctly set.\nBy following normal checklist, many mistakes in setting will be identified and corrected before they may cause safety problems.",
       "referenceTextZh": "正常检查单通过检查系统的安全关键部分和飞机的配置是否设置正确来加强飞行安全。\n按照正常检查单，设置中出现的任何错误都会在其造成安全问题前被发现并纠正。",
-      "audio": "/question-bank-assets/revisions/opi/8945dca2f84e891aad4bac263bda09053425a8c7931e80406715e7d3a961f088/audio/opi/opi-fzy-152369.mp3",
       "audioDurationSeconds": 1.92
     },
     {
       "id": "opi-fzy-152370",
-      "taskTitle": "Flight manuals-4",
+      "audio": "/question-bank-assets/revisions/opi/c1d1826b3ed4c3af938bd0ee126e1fa7ce8f66003478bfc5a0db051f7b759e4d/audio/opi/opi-fzy-152370.mp3",
       "audioText": "Do you have to check the maintenance log book?",
-      "audioTextZh": "你们需要检查维修记录本吗？",
       "studyTier": 1,
+      "taskTitle": "Flight manuals-4",
+      "audioTextZh": "你们需要检查维修记录本吗？",
       "referenceText": "Yes, before the flight, we should check the maintenance log book.\nThere are many important information in the maintenance log book.\nIf we find any malfunction of the aircraft, we must file the maintenance/technical log book.",
       "referenceTextZh": "是的，飞行前我们必须检查维修记录本。\n在维修记录本中包含有很多重要的信息。\n如果我们发现故障，必须在维修记录本中填写。",
-      "audio": "/question-bank-assets/revisions/opi/c1d1826b3ed4c3af938bd0ee126e1fa7ce8f66003478bfc5a0db051f7b759e4d/audio/opi/opi-fzy-152370.mp3",
       "audioDurationSeconds": 2.304
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-08"
 }

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111745",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-1",
-      "audioText": "[You are the pilot of CSN6306 which is bound for Dalian. You are going to depart from Shanghai airport at Gate 23. Now call Delivery, and request your ATC clearance.]",
-      "audioTextZh": "【你是航班CSN6306的飞行员，飞机飞往大连。你正在上海机场23号停机位准备出发，现在联系放行并请求放行许可。】",
+      "audioText": "You are the pilot of CSN6306 which is bound for Dalian. You are going to depart from Shanghai airport at Gate 23. Now call Delivery, and request your ATC clearance.",
+      "audioTextZh": "你是航班CSN6306的飞行员，飞机飞往大连。你正在上海机场23号停机位准备出发，现在联系放行并请求放行许可。",
       "referenceText": "Shanghai Delivery, CSN6306, destination Dalian, Gate 23, request ATC clearance.",
       "referenceTextZh": "上海放行，南航6306，目的地大连，23号门，请求放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4268459193527668bdd5.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-111747",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-3",
-      "audioText": "[You are ready for push back.]",
+      "audioText": "You are ready for push back.",
       "audioTextZh": "【你已准备好推出。】",
       "referenceText": "Shanghai Ground, CSN6306, ready for push back.",
       "referenceTextZh": "上海地面，南航6306，准备推出。",
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-111750",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-6",
-      "audioText": "[You have finished pushback and start-up, ready for taxi, contact Shanghai Ground.]",
-      "audioTextZh": "【你已推出开车，准备滑行，联系上海地面。】",
+      "audioText": "You have finished pushback and start-up, ready for taxi, contact Shanghai Ground.",
+      "audioTextZh": "你已推出开车，准备滑行，联系上海地面。",
       "referenceText": "Shanghai Ground, CSN6306, request taxi.",
       "referenceTextZh": "上海地面，南航6306，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/dd3bc7cec4f530fd09ca.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111753",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-9",
-      "audioText": "[Now you are en route, the No.2 engine failed, call Shanghai Control to request descent.]",
-      "audioTextZh": "【现在你在航路上，2号发动机故障，联系上海区调并请求下降。】",
+      "audioText": "Now you are en route, the No.2 engine failed, call Shanghai Control to request descent.",
+      "audioTextZh": "现在你在航路上，2号发动机故障，联系上海区调并请求下降。",
       "referenceText": "Panpan, Panpan, Panpan, Shanghai Control, CSN6306, engine failure on No.2, request descent.",
       "referenceTextZh": "Panpan, Panpan, Panpan, 上海区调，南航6306，2号发动机故障，请求下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7e384582144681ac9291.mp3"
@@ -98,10 +98,10 @@
     {
       "id": "radiotelephony-fzy-111755",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-11",
-      "audioText": "[At 5400m, you are unable to maintain the present level, request descent to 4500m.]",
+      "audioText": "At 5400m, you are unable to maintain the present level, request descent to 4500m.",
       "audioTextZh": "到达5400米，飞机无法保持当前高度，请求下降到4500米。",
       "referenceText": "Shanghai Control, CSN6306. unable to maintain present level, request descent to 4500m.",
-      "referenceTextZh": "上海区调，南航6306，不能在当前高度保持， 请求下降到4500米。",
+      "referenceTextZh": "上海区调，南航6306，不能在当前高度保持，请求下降到4500米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/17075cff8246a0e2cccb.mp3"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-111758",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-14",
-      "audioText": "[Fuel dumping completed, request priority landing.]",
+      "audioText": "Fuel dumping completed, request priority landing.",
       "audioTextZh": "【飞机完成放油，请求优先着陆。】",
       "referenceText": "Shanghai Control, CSN6306, dump completed, request priority landing.",
       "referenceTextZh": "上海区调，南航6306，完成放油，请求优先着陆。",
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-111760",
       "taskTitle": "12. CSN6306 weather&dump fuel, etc.-16",
-      "audioText": "[Establish initial contact with Shanghai Approach, maintaining 3600m.]",
-      "audioTextZh": "【与上海进近建立起始联系，3600米保持。】",
+      "audioText": "Establish initial contact with Shanghai Approach, maintaining 3600m.",
+      "audioTextZh": "与上海进近建立起始联系，3600米保持。",
       "referenceText": "Shanghai Approach, CSN6306, maintaining 3600m.",
       "referenceTextZh": "上海进近，南航6306，3600米保持。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/92928e6b8116a59b5245.mp3"

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-151867",
       "taskTitle": "18-UAL403 [积冰，颠簸]-1",
-      "audioText": "[You are at Wuhan airport, before departure, you received the cabin report said there is ice build-up on the wing, you want to make a de-icing procedure, report to ground controller.]",
-      "audioTextZh": "[你现在在武汉机场，离场前，你收到一个客舱报告，称机翼上有积冰，你希望执行除冰程序，报告给地面管制员]",
+      "audioText": "You are at Wuhan airport, before departure, you received the cabin report said there is ice build-up on the wing, you want to make a de-icing procedure, report to ground controller.",
+      "audioTextZh": "你现在在武汉机场，离场前，你收到一个客舱报告，称机翼上有积冰，你希望执行除冰程序，报告给地面管制员",
       "referenceText": "Wuhan Ground, UAL403, request de-icing procedure.",
       "referenceTextZh": "武汉地面，美联航403，请求除冰程序。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f1b9b125a604e43c7502.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-151869",
       "taskTitle": "18-UAL403 [积冰，颠簸]-3",
-      "audioText": "[Inform Ground de-icing completed, request taxi.]",
+      "audioText": "Inform Ground de-icing completed, request taxi.",
       "audioTextZh": "[告知地面，除冰程序完成，请求滑行]",
       "referenceText": "Wuhan Ground, UAL403, de-icing completed, request taxi.",
       "referenceTextZh": "武汉地面，美联航403，除冰程序完成，请求滑行。",
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-151871",
       "taskTitle": "18-UAL403 [积冰，颠簸]-5",
-      "audioText": "[You notice ice contaminated on taxiways, and your de-icing fluid can only be effective for 30 minutes, tell Ground you need to make an intersection departure from Z4 before 0835Z.]",
-      "audioTextZh": "[你发现积冰污染了滑行道，你的除冰液有有效期仅为30分钟，告诉管制员，你需要在08：35Z前，从滑行道Z4进行减跑道起飞]",
+      "audioText": "You notice ice contaminated on taxiways, and your de-icing fluid can only be effective for 30 minutes, tell Ground you need to make an intersection departure from Z4 before 0835Z.",
+      "audioTextZh": "你发现积冰污染了滑行道，你的除冰液有有效期仅为30分钟，告诉管制员，你需要在08：35Z前，从滑行道Z4进行减跑道起飞",
       "referenceText": "Wuhan Ground, UAL403, request Z4 intersection departure before 0835Z due de-icing fluid is effective for 30min.",
       "referenceTextZh": "武汉地面，美联航403，由于除冰液有效期仅为30分钟，请求在08：35Z前，从滑行道Z4进行减跑道起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/92773b01b7f44afa091d.mp3"
@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-151873",
       "taskTitle": "18-UAL403 [积冰，颠簸]-7",
-      "audioText": "[Now you are cruising at 10200m, and encountering moderate turbulence. Ask control for a higher level.]",
-      "audioTextZh": "[你现在在10200米巡航，遭遇了中度颠簸，报告管制员，申请更高高度]",
+      "audioText": "Now you are cruising at 10200m, and encountering moderate turbulence. Ask control for a higher level.",
+      "audioTextZh": "你现在在10200米巡航，遭遇了中度颠簸，报告管制员，申请更高高度",
       "referenceText": "Wuhan Control, UAL403, request climbing due moderate turbulence.",
       "referenceTextZh": "武汉区调，美联航403，由于中度颠簸，请求爬升。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2dec02e75d617d8224ad.mp3"
@@ -116,7 +116,7 @@
     {
       "id": "radiotelephony-fzy-151879",
       "taskTitle": "18-UAL403 [积冰，颠簸]-13",
-      "audioText": "[Contact Guangzhou control and request descent to 4500m.]",
+      "audioText": "Contact Guangzhou control and request descent to 4500m.",
       "audioTextZh": "[联系广州区调，请求下降至4500米]",
       "referenceText": "Guangzhou Control, UAL403, request descent to 4500m.",
       "referenceTextZh": "广州区调，美联航403，请求下降至4500米。",
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-151881",
       "taskTitle": "18-UAL403 [积冰，颠簸]-15",
-      "audioText": "[You encountered some turbulence again, tell Guangzhou Control you want to deviate 10 miles to the right to avoid it.]",
-      "audioTextZh": "[你又一次遇到了颠簸，告诉广州区调，你想右偏10海里来避开颠簸]",
+      "audioText": "You encountered some turbulence again, tell Guangzhou Control you want to deviate 10 miles to the right to avoid it.",
+      "audioTextZh": "你又一次遇到了颠簸，告诉广州区调，你想右偏10海里来避开颠簸",
       "referenceText": "Guangzhou Control, UAL403, request deviate 10 miles to the right to avoid turbulence.",
       "referenceTextZh": "广州区调，美联航403，请求右偏10海里来避开颠簸。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e166ad3e91b2659284b2.mp3"

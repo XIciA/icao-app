@@ -1,103 +1,103 @@
 {
   "id": "opi-topic-0028",
   "name": "颠簸",
-  "declaredCardCount": 9,
   "cards": [
     {
-      "id": "opi-core-427",
-      "taskTitle": "气象-颠簸-1",
-      "audioText": "Have you ever encountered turbulence during a flight?",
-      "audioTextZh": "你在飞行中遇到过颠簸吗？",
-      "referenceText": "Yes. During a training flight from Guanghan to Suining, I encountered severe turbulence while cruising at 1,800 metres. We maintained control and climbed to 2,100 metres, where the conditions became normal.",
-      "referenceTextZh": "是的。在一次从广汉飞往遂宁的训练飞行中，我在 1,800 米巡航时遭遇严重颠簸。我们控制好飞机并爬升到 2,100 米，之后飞行条件恢复正常。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/0c4d4fd0907a0c9188b4150e2ed3bfafae7065c528023a29c632251be83cfb2c/audio/opi/opi-core-427.mp3",
-      "audioDurationSeconds": 2.832
-    },
-    {
-      "id": "opi-core-428",
-      "taskTitle": "气象-颠簸-2",
-      "audioText": "Do you think turbulence is dangerous to flight safety? Why or why not?",
-      "audioTextZh": "你认为颠簸会危及飞行安全吗？为什么？",
-      "referenceText": "Light turbulence is usually manageable, but severe turbulence can be dangerous. It may make the aircraft difficult to control, cause an altitude deviation or structural damage, and injure people on board. For that reason, severe turbulence should be avoided when possible.",
-      "referenceTextZh": "轻度颠簸通常可以应对，但严重颠簸可能非常危险。它会使飞机难以操纵，造成高度偏差或结构损伤，并使机上人员受伤。因此，应尽可能避开严重颠簸。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/f9e728d7b37954a242bfcd3d1663caf5f797129f3fc9711c89e5411ce474b84a/audio/opi/opi-core-428.mp3",
-      "audioDurationSeconds": 4.392
-    },
-    {
-      "id": "opi-core-429",
-      "taskTitle": "气象-颠簸-3",
-      "audioText": "Why is severe turbulence dangerous?",
-      "audioTextZh": "为什么严重颠簸很危险？",
-      "referenceText": "Severe turbulence can make the aircraft difficult to control and cause a sudden loss of speed or altitude. It may damage the fuselage or wings and injure crew members or passengers. It is especially hazardous during critical phases such as takeoff and landing.",
-      "referenceTextZh": "严重颠簸会使飞机难以操纵，并造成速度或高度突然下降。它可能损坏机身或机翼，使机组成员或旅客受伤。在起飞和着陆等关键阶段，危险尤其大。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/2e658af3b33a7fa39d6df8d681b24898fadc1376e127e1b9c950f6a37a625d1b/audio/opi/opi-core-429.mp3",
-      "audioDurationSeconds": 2.136
+      "id": "opi-core-434",
+      "audio": "/question-bank-assets/revisions/opi/82369f0fabfbc8611a6d853581674fbd2aa7685f467902fa262728b08368b4c8/audio/opi/opi-core-434.mp3",
+      "audioText": "What threats does clear-air turbulence pose to flight safety?",
+      "taskTitle": "气象-颠簸-6",
+      "audioTextZh": "晴空颠簸会对飞行安全构成哪些威胁？",
+      "referenceText": "Clear-air turbulence can be difficult to detect before the aircraft enters it. It can make the aircraft difficult to control, cause structural damage to the fuselage or wings, and injure passengers.",
+      "referenceTextZh": "飞机进入晴空颠簸前可能很难探测到它。晴空颠簸会使飞机难以操纵，造成机身或机翼结构损伤，并使旅客受伤。",
+      "audioDurationSeconds": 3.36
     },
     {
       "id": "opi-core-430",
-      "taskTitle": "气象-颠簸-4",
+      "audio": "/question-bank-assets/revisions/opi/dca061c4f4b11891e3ea3dd75c8f5392dacee85287fb32395a30331ec66fa76e/audio/opi/opi-core-430.mp3",
       "audioText": "What damage can severe turbulence cause?",
+      "studyTier": 2,
+      "taskTitle": "气象-颠簸-4",
       "audioTextZh": "严重颠簸会造成哪些损伤？",
       "referenceText": "Severe turbulence can cause structural damage to the aircraft, including damage to the fuselage and wings.",
       "referenceTextZh": "严重颠簸会造成飞机结构损伤，包括机身和机翼损伤。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/dca061c4f4b11891e3ea3dd75c8f5392dacee85287fb32395a30331ec66fa76e/audio/opi/opi-core-430.mp3",
+      "audioDurationSeconds": 2.376
+    },
+    {
+      "id": "opi-core-439",
+      "audio": "/question-bank-assets/revisions/opi/f1a2bc1fd6eb6aa30746230386da8dd3d62832a1a3475d485ae94d408828b9e8/audio/opi/opi-core-439.mp3",
+      "audioText": "What is CAT?",
+      "taskTitle": "气象-颠簸-8",
+      "audioTextZh": "什么是CAT？",
+      "referenceText": "CAT stands for clear-air turbulence. It is turbulence that occurs in clear air without visible clouds.",
+      "referenceTextZh": "CAT 是晴空颠簸的缩写。它是发生在没有可见云层的晴空中的颠簸。",
       "audioDurationSeconds": 2.376
     },
     {
       "id": "opi-core-432",
-      "taskTitle": "气象-颠簸-5",
+      "audio": "/question-bank-assets/revisions/opi/4132d35e960d2b493b3c6a814e1d47a7026802a0fdb081577c391aaf6c9e8654/audio/opi/opi-core-432.mp3",
       "audioText": "What procedures should pilots follow to avoid clear-air turbulence?",
+      "studyTier": 2,
+      "taskTitle": "气象-颠簸-5",
       "audioTextZh": "为避免晴空颠簸，飞行员应遵循哪些程序？",
       "referenceText": "Before flight, pilots should review weather forecasts, pilot reports, and information from ATC and brief the crew about possible clear-air turbulence. In flight, they should remain in contact with ATC and request a route or altitude change when necessary. The crew and passengers should fasten their seatbelts when turbulence is expected or encountered.",
       "referenceTextZh": "飞行前，飞行员应查看天气预报、飞行员报告和空中交通管制信息，并向机组说明可能出现的晴空颠簸。飞行中应与管制保持联系，并在必要时申请改变航路或高度。预计或遭遇颠簸时，机组和旅客应系好安全带。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/4132d35e960d2b493b3c6a814e1d47a7026802a0fdb081577c391aaf6c9e8654/audio/opi/opi-core-432.mp3",
       "audioDurationSeconds": 3.768
     },
     {
-      "id": "opi-core-434",
-      "taskTitle": "气象-颠簸-6",
-      "audioText": "What threats does clear-air turbulence pose to flight safety?",
-      "audioTextZh": "晴空颠簸会对飞行安全构成哪些威胁？",
-      "referenceText": "Clear-air turbulence can be difficult to detect before the aircraft enters it. It can make the aircraft difficult to control, cause structural damage to the fuselage or wings, and injure passengers.",
-      "referenceTextZh": "飞机进入晴空颠簸前可能很难探测到它。晴空颠簸会使飞机难以操纵，造成机身或机翼结构损伤，并使旅客受伤。",
-      "audio": "/question-bank-assets/revisions/opi/82369f0fabfbc8611a6d853581674fbd2aa7685f467902fa262728b08368b4c8/audio/opi/opi-core-434.mp3",
-      "audioDurationSeconds": 3.36
-    },
-    {
-      "id": "opi-core-435",
-      "taskTitle": "气象-颠簸-7",
-      "audioText": "How can pilots reduce the risks of turbulence during flight?",
-      "audioTextZh": "飞行中，飞行员如何降低颠簸带来的风险？",
-      "referenceText": "Pilots can obtain turbulence reports from other aircraft and ATC. If turbulence is encountered, they should report it to ATC and request an altitude change when appropriate. They should also inform the cabin crew and passengers to remain seated and fasten their seatbelts.",
-      "referenceTextZh": "飞行员可以从其他飞机和空中交通管制获得颠簸报告。遭遇颠簸时，应向管制报告，并在适当情况下申请改变高度。还应通知客舱机组和旅客保持就座并系好安全带。",
-      "audio": "/question-bank-assets/revisions/opi/c7feb38da4601909fa558f26f9ca1d7ce87e22fc734767f2cea277c3f6f88283/audio/opi/opi-core-435.mp3",
-      "audioDurationSeconds": 3.384
-    },
-    {
-      "id": "opi-core-439",
-      "taskTitle": "气象-颠簸-8",
-      "audioText": "What is clear-air turbulence (CAT)?",
-      "audioTextZh": "什么是晴空颠簸（CAT）？",
-      "referenceText": "CAT stands for clear-air turbulence. It is turbulence that occurs in clear air without visible clouds.",
-      "referenceTextZh": "CAT 是晴空颠簸的缩写。它是发生在没有可见云层的晴空中的颠簸。",
-      "audio": "/question-bank-assets/revisions/opi/f1a2bc1fd6eb6aa30746230386da8dd3d62832a1a3475d485ae94d408828b9e8/audio/opi/opi-core-439.mp3",
-      "audioDurationSeconds": 2.376
-    },
-    {
       "id": "opi-core-440",
-      "taskTitle": "气象-颠簸-9",
+      "audio": "/question-bank-assets/revisions/opi/46e24cc116c4907d2fddc498cc4e2598d24925a4c836bc1d446247ef58cbc1d8/audio/opi/opi-core-440.mp3",
       "audioText": "How can mountain-wave turbulence affect flight safety?",
+      "taskTitle": "气象-颠簸-9",
       "audioTextZh": "山岳波颠簸会如何影响飞行安全？",
       "referenceText": "Mountain-wave turbulence can cause violent shaking and make the aircraft difficult to control. It may lead to a loss of speed or altitude, structural damage, and injuries. It also increases pilot workload and the risk of unstable flight.",
       "referenceTextZh": "山地波颠簸会造成剧烈抖动，并使飞机难以操纵。它可能导致速度或高度损失、结构损伤和人员受伤，还会增加飞行员工作负荷和飞行不稳定的风险。",
-      "audio": "/question-bank-assets/revisions/opi/46e24cc116c4907d2fddc498cc4e2598d24925a4c836bc1d446247ef58cbc1d8/audio/opi/opi-core-440.mp3",
       "audioDurationSeconds": 3.096
+    },
+    {
+      "id": "opi-core-427",
+      "audio": "/question-bank-assets/revisions/opi/0c4d4fd0907a0c9188b4150e2ed3bfafae7065c528023a29c632251be83cfb2c/audio/opi/opi-core-427.mp3",
+      "audioText": "Have you ever encountered turbulence during a flight?",
+      "studyTier": 2,
+      "taskTitle": "气象-颠簸-1",
+      "audioTextZh": "你在飞行中遇到过颠簸吗？",
+      "referenceText": "Yes. During a training flight from Guanghan to Suining, I encountered severe turbulence while cruising at 1,800 metres. We maintained control and climbed to 2,100 metres, where the conditions became normal.",
+      "referenceTextZh": "是的。在一次从广汉飞往遂宁的训练飞行中，我在 1,800 米巡航时遭遇严重颠簸。我们控制好飞机并爬升到 2,100 米，之后飞行条件恢复正常。",
+      "audioDurationSeconds": 2.832
+    },
+    {
+      "id": "opi-core-429",
+      "audio": "/question-bank-assets/revisions/opi/2e658af3b33a7fa39d6df8d681b24898fadc1376e127e1b9c950f6a37a625d1b/audio/opi/opi-core-429.mp3",
+      "audioText": "Why is severe turbulence dangerous?",
+      "studyTier": 2,
+      "taskTitle": "气象-颠簸-3",
+      "audioTextZh": "为什么严重颠簸很危险？",
+      "referenceText": "Severe turbulence can make the aircraft difficult to control and cause a sudden loss of speed or altitude. It may damage the fuselage or wings and injure crew members or passengers. It is especially hazardous during critical phases such as takeoff and landing.",
+      "referenceTextZh": "严重颠簸会使飞机难以操纵，并造成速度或高度突然下降。它可能损坏机身或机翼，使机组成员或旅客受伤。在起飞和着陆等关键阶段，危险尤其大。",
+      "audioDurationSeconds": 2.136
+    },
+    {
+      "id": "opi-core-435",
+      "audio": "/question-bank-assets/revisions/opi/c7feb38da4601909fa558f26f9ca1d7ce87e22fc734767f2cea277c3f6f88283/audio/opi/opi-core-435.mp3",
+      "audioText": "How can pilots reduce the risks of turbulence during flight?",
+      "taskTitle": "气象-颠簸-7",
+      "audioTextZh": "飞行中，飞行员如何降低颠簸带来的风险？",
+      "referenceText": "Pilots can obtain turbulence reports from other aircraft and ATC. If turbulence is encountered, they should report it to ATC and request an altitude change when appropriate. They should also inform the cabin crew and passengers to remain seated and fasten their seatbelts.",
+      "referenceTextZh": "飞行员可以从其他飞机和空中交通管制获得颠簸报告。遭遇颠簸时，应向管制报告，并在适当情况下申请改变高度。还应通知客舱机组和旅客保持就座并系好安全带。",
+      "audioDurationSeconds": 3.384
+    },
+    {
+      "id": "opi-core-428",
+      "audio": "/question-bank-assets/revisions/opi/f9e728d7b37954a242bfcd3d1663caf5f797129f3fc9711c89e5411ce474b84a/audio/opi/opi-core-428.mp3",
+      "audioText": "Do you think turbulence is dangerous to flight safety? Why or why not?",
+      "studyTier": 2,
+      "taskTitle": "气象-颠簸-2",
+      "audioTextZh": "你认为颠簸会危及飞行安全吗？为什么？",
+      "referenceText": "Light turbulence is usually manageable, but severe turbulence can be dangerous. It may make the aircraft difficult to control, cause an altitude deviation or structural damage, and injure people on board. For that reason, severe turbulence should be avoided when possible.",
+      "referenceTextZh": "轻度颠簸通常可以应对，但严重颠簸可能非常危险。它会使飞机难以操纵，造成高度偏差或结构损伤，并使机上人员受伤。因此，应尽可能避开严重颠簸。",
+      "audioDurationSeconds": 4.392
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-01"
 }

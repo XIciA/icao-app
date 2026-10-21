@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-845",
   "name": "Plateau airport",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-fzy-845-image-1",
       "kind": "image",
-      "taskTitle": "Plateau airport · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-845.png",
       "imageAlt": "Plateau airport，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "studyTier": 1,
+      "taskTitle": "Plateau airport · 看图材料"
     },
     {
       "id": "opi-fzy-152393",
-      "taskTitle": "Plateau airport-1",
+      "audio": "/question-bank-assets/revisions/opi/e713afd9ce1989c29dde5c3b2a2ec49f0443c280b454c82c520d046721ed7e10/audio/opi/opi-fzy-152393.mp3",
       "audioText": "What is the picture mainly talking about?",
-      "audioTextZh": "这幅图片主要谈论的是什么？",
       "studyTier": 1,
+      "taskTitle": "Plateau airport-1",
+      "audioTextZh": "这幅图片主要谈论的是什么？",
       "referenceText": "The picture is mainly talking about high elevation/plateau airport.\nFrom the picture, we can see there are mountains surrounding the airport.",
       "referenceTextZh": "这幅图片主要在谈论高原机场。\n从中我们可以看到群山环绕在机场四周。",
-      "audio": "/question-bank-assets/revisions/opi/e713afd9ce1989c29dde5c3b2a2ec49f0443c280b454c82c520d046721ed7e10/audio/opi/opi-fzy-152393.mp3",
       "audioDurationSeconds": 2.16
     },
     {
       "id": "opi-fzy-152394",
-      "taskTitle": "Plateau airport-2",
+      "audio": "/question-bank-assets/revisions/opi/bfc75e1e77b66d3d4e0712f8ff521a3695e19e76c2e33eb765e944eb4a1b4913/audio/opi/opi-fzy-152394.mp3",
       "audioText": "Have you ever flown plateau airport?",
-      "audioTextZh": "你飞过高海拔机场吗？",
       "studyTier": 1,
+      "taskTitle": "Plateau airport-2",
+      "audioTextZh": "你飞过高海拔机场吗？",
       "referenceText": "No, I am still a student pilot, I have never flown plateau airport.\nBut as far as I know, flying plateau airport needs special flight technique and experience.",
       "referenceTextZh": "没有，我现在是一名飞行学员，我没有飞过高海拔机场。\n但是据我所知，在高原机场飞行需要特殊的飞行技术和经验。",
-      "audio": "/question-bank-assets/revisions/opi/bfc75e1e77b66d3d4e0712f8ff521a3695e19e76c2e33eb765e944eb4a1b4913/audio/opi/opi-fzy-152394.mp3",
       "audioDurationSeconds": 2.088
     },
     {
       "id": "opi-fzy-152395",
-      "taskTitle": "Plateau airport-3",
+      "audio": "/question-bank-assets/revisions/opi/bd60e40c0f2c3089b64a9cb2cc191379e8a99771b037aefdba02343352f1fe3f/audio/opi/opi-fzy-152395.mp3",
       "audioText": "Is there any special requirements for pilots flying plateau airport?",
-      "audioTextZh": "飞高原机场时，对机长有什么特殊要求吗？",
       "studyTier": 1,
+      "taskTitle": "Plateau airport-3",
+      "audioTextZh": "飞高原机场时，对机长有什么特殊要求吗？",
       "referenceText": "Yes, there are some special requirements for pilots flying plateau airport.\nFor example, pilots need get strict theoretical and simulator training.\nMeet certain accumulated flying hours.\nBe strong physically and mentally.",
       "referenceTextZh": "是的，飞高原机场需要飞行员满足一些特殊要求。\n例如：飞行员需要接受严格的理论和模拟机培训。\n达到一定的累计飞行小时数。\n强健的身体和良好的心理素质。",
-      "audio": "/question-bank-assets/revisions/opi/bd60e40c0f2c3089b64a9cb2cc191379e8a99771b037aefdba02343352f1fe3f/audio/opi/opi-fzy-152395.mp3",
       "audioDurationSeconds": 3.888
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

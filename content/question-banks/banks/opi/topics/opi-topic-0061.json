@@ -1,48 +1,48 @@
 {
   "id": "opi-topic-0061",
   "name": "控酒政策",
-  "declaredCardCount": 4,
   "cards": [
     {
+      "id": "opi-core-657",
+      "audio": "/question-bank-assets/revisions/opi/c83d18955a4fdd039055460dc023d13e2b84f479b816b360bb1df42d340aa2c1/audio/opi/opi-core-657.mp3",
+      "audioText": "Should flight crew be tested for alcohol before every flight, and why?",
+      "taskTitle": "人的因素-控酒政策-4",
+      "audioTextZh": "是否应在每次飞行前对飞行机组进行酒精检测？为什么？",
+      "referenceText": "Yes, I think flight crew should be tested for alcohol before every flight because the test supports flight safety.",
+      "referenceTextZh": "是的，我认为飞行机组应在每次飞行前接受酒精检测，因为检测有助于保障飞行安全。",
+      "audioDurationSeconds": 4.056
+    },
+    {
       "id": "opi-core-653",
-      "taskTitle": "人的因素-控酒政策-1",
+      "audio": "/question-bank-assets/revisions/opi/8bcaef037a3e2e200f93d89ff40e21d40cbd28cd0fa4e7bd911664c80899286e/audio/opi/opi-core-653.mp3",
       "audioText": "What is your company's policy on alcohol use by flight crew?",
+      "taskTitle": "人的因素-控酒政策-1",
       "audioTextZh": "你所在公司对飞行机组饮酒有什么规定？",
       "referenceText": "I am not employed by an airline. At my flight school, pilots must not fly or begin training while affected by alcohol, within the applicable waiting period after drinking, or when they are otherwise unfit for duty. They must also comply with any stricter legal or school alcohol limit.",
       "referenceTextZh": "我尚未受雇于航空公司。在我的航校，飞行员受到酒精影响、饮酒后仍处于适用等待期内，或因其他原因不适合值勤时，都不得飞行或开始训练。他们还必须遵守任何更严格的法律或航校酒精限制。",
-      "audio": "/question-bank-assets/revisions/opi/8bcaef037a3e2e200f93d89ff40e21d40cbd28cd0fa4e7bd911664c80899286e/audio/opi/opi-core-653.mp3",
       "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-core-655",
-      "taskTitle": "人的因素-控酒政策-2",
-      "audioText": "Why must pilots avoid drinking alcohol before flight duty?",
-      "audioTextZh": "飞行员为什么必须避免在执行飞行任务前饮酒？",
-      "referenceText": "Alcohol can reduce a pilot’s concentration, reaction speed, and judgment and can also cause fatigue or dizziness. These effects make it harder to control the aircraft, follow procedures, and make safe decisions. They increase the risk of human error and endanger flight safety.",
-      "referenceTextZh": "酒精会降低飞行员的注意力、反应速度和判断力，还可能造成疲劳或头晕。这些影响会增加控制飞机、遵循程序和作出安全决策的难度，增大人为差错风险并危及飞行安全。",
       "audio": "/question-bank-assets/revisions/opi/89fa60d8aa55f55fba26c309c4e1d470585a362678e3660430f3eb540d576d0a/audio/opi/opi-core-655.mp3",
+      "audioText": "Why must pilots avoid drinking alcohol before flight duty?",
+      "taskTitle": "人的因素-控酒政策-2",
+      "audioTextZh": "飞行员为什么必须避免在执行飞行任务前饮酒？",
+      "referenceText": "Alcohol can reduce a pilot's concentration, reaction speed, and judgment and can also cause fatigue or dizziness. These effects make it harder to control the aircraft, follow procedures, and make safe decisions. They increase the risk of human error and endanger flight safety.",
+      "referenceTextZh": "酒精会降低飞行员的注意力、反应速度和判断力，还可能造成疲劳或头晕。这些影响会增加控制飞机、遵循程序和作出安全决策的难度，增大人为差错风险并危及飞行安全。",
       "audioDurationSeconds": 3.456
     },
     {
       "id": "opi-core-656",
-      "taskTitle": "人的因素-控酒政策-3",
+      "audio": "/question-bank-assets/revisions/opi/474be00316270721da75d89d9a36ec921e91ce1fd79dde9aa3dc48ef13690b33/audio/opi/opi-core-656.mp3",
       "audioText": "What general rules govern alcohol use by pilots?",
+      "taskTitle": "人的因素-控酒政策-3",
       "audioTextZh": "哪些一般规则规范飞行员饮酒？",
       "referenceText": "Pilots must not perform flight duties while under the influence of alcohol or when alcohol could impair their judgment or reactions. They must observe the waiting period and concentration limits set by the applicable regulator and any stricter operator rule. If there is any doubt about fitness, the pilot should not fly.",
       "referenceTextZh": "飞行员在受到酒精影响，或酒精可能损害判断和反应时，不得执行飞行任务。他们必须遵守适用监管机构规定的等待期和浓度限制，以及运营人任何更严格的规定。只要对是否适合飞行存在疑问，就不应飞行。",
-      "audio": "/question-bank-assets/revisions/opi/474be00316270721da75d89d9a36ec921e91ce1fd79dde9aa3dc48ef13690b33/audio/opi/opi-core-656.mp3",
       "audioDurationSeconds": 2.976
-    },
-    {
-      "id": "opi-core-657",
-      "taskTitle": "人的因素-控酒政策-4",
-      "audioText": "Should flight crew be tested for alcohol before every flight, and why?",
-      "audioTextZh": "是否应在每次飞行前对飞行机组进行酒精检测？为什么？",
-      "referenceText": "Yes, I think flight crew should be tested for alcohol before every flight because the test supports flight safety.",
-      "referenceTextZh": "是的，我认为飞行机组应在每次飞行前接受酒精检测，因为检测有助于保障飞行安全。",
-      "audio": "/question-bank-assets/revisions/opi/c83d18955a4fdd039055460dc023d13e2b84f479b816b360bb1df42d340aa2c1/audio/opi/opi-core-657.mp3",
-      "audioDurationSeconds": 4.056
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-04"
 }

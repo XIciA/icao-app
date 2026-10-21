@@ -1,82 +1,82 @@
 {
   "id": "opi-fzy-559",
   "name": "Figure 2",
-  "declaredCardCount": 7,
   "cards": [
     {
       "id": "opi-fzy-559-image-1",
       "kind": "image",
-      "taskTitle": "Figure 2 · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-559.png",
       "imageAlt": "Figure 2，用于本话题的看图描述和问答",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "Figure 2 · 看图材料"
     },
     {
       "id": "opi-fzy-110193",
-      "taskTitle": "Figure 2-1",
+      "audio": "/question-bank-assets/revisions/opi/688b9d1c87f0c4d81fe2e6413c793fee3c0c74bf95d4b4e0161d14473ae98de2/audio/opi/opi-fzy-110193.mp3",
       "audioText": "Please describe what is shown in the picture.",
-      "audioTextZh": "请描述图中展示的是什么。",
       "studyTier": 0,
+      "taskTitle": "Figure 2-1",
+      "audioTextZh": "请描述图中展示的是什么。",
       "referenceText": "The picture shows a microburst encountered during takeoff. The airplane first encounters a headwind and experiences increasing performance (1), this is followed in short succession by a decreasing headwind component (2), a downdraft (3), and finally a strong tailwind (4), where 2 through 5 all result in decreasing performance of the airplane. Position (5) represents an extreme situation just prior to impact.",
       "referenceTextZh": "图中展示的是起飞途中遭遇微暴流。飞机首先遇到逆风并增加飞机性能（1） 随后减小顶风（2），下沉气流（3），然后是顺风增加（4），从（2）到（5）的结果是飞机性能的下降。（5）代表的是受到之前影响的极端条件。",
-      "audio": "/question-bank-assets/revisions/opi/688b9d1c87f0c4d81fe2e6413c793fee3c0c74bf95d4b4e0161d14473ae98de2/audio/opi/opi-fzy-110193.mp3",
       "audioDurationSeconds": 2.136
     },
     {
       "id": "opi-fzy-110194",
-      "taskTitle": "Figure 2-2",
+      "audio": "/question-bank-assets/revisions/opi/cd15d28c0507747b12dd7fd2f8eb2ed2e0e09068e1b98aa07421d0c150940a11/audio/opi/opi-fzy-110194.mp3",
       "audioText": "Can you say something about microburst?",
-      "audioTextZh": "你能介绍一下微暴流吗？",
       "studyTier": 0,
+      "taskTitle": "Figure 2-2",
+      "audioTextZh": "你能介绍一下微暴流吗？",
       "referenceText": "A microburst is an intense, localized downdraft which spreads out in all directions when it reaches the surface. Any convective cloud can produce this phenomenon, for example rain showers, virga and thunderstorms. A microburst creates severe horizontal and vertical wind shears which pose serious hazards to aircraft. When the downdraft approaches the surface, the wind flows outward from the core in all directions. This is usually a short-lived phenomenon, seldom lasting more than 15 minutes from the time the burst strikes the ground until it dissipates.",
       "referenceTextZh": "微下击暴流是一种强烈的局部下沉气流，气流到达地面后会向四周扩散。任何对流云都可产生这种现象，如大雨、幡状云和雷暴。微下击暴流在水平和垂直方向产生严重的风切变，对飞机造成严重危害。当下沉气流接近地面时，风从中心向四周扩散。这一现象持续时间通常较短，气流从到达地面至消失，很少持续15分钟以上。",
-      "audio": "/question-bank-assets/revisions/opi/cd15d28c0507747b12dd7fd2f8eb2ed2e0e09068e1b98aa07421d0c150940a11/audio/opi/opi-fzy-110194.mp3",
       "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-fzy-110195",
-      "taskTitle": "Figure 2-3",
+      "audio": "/question-bank-assets/revisions/opi/8d782a86ad2ae68692a69c67f0a821d27b3aca943ede8498261d9cf0a8ea8db0/audio/opi/opi-fzy-110195.mp3",
       "audioText": "What may occur if you fly through a microburst?",
-      "audioTextZh": "如果飞过微暴流将有可能发生什么？",
       "studyTier": 0,
+      "taskTitle": "Figure 2-3",
+      "audioTextZh": "如果飞过微暴流将有可能发生什么？",
       "referenceText": "When flying through a microburst, the aircraft will become very unstable and difficult to control. At the beginning, the speed and altitude increase rapidly. When the aircraft passes the center of the microburst, the tailwind will cause the airspeed decrease and the altitude will be lost suddenly.",
       "referenceTextZh": "当飞过微暴流时，飞机将变得不稳定并难以控制。最初，速度和高度会快速上升。飞机通过微暴流中心时，顺风会使风速和高度突然下降。",
-      "audio": "/question-bank-assets/revisions/opi/8d782a86ad2ae68692a69c67f0a821d27b3aca943ede8498261d9cf0a8ea8db0/audio/opi/opi-fzy-110195.mp3",
       "audioDurationSeconds": 2.472
     },
     {
       "id": "opi-fzy-110196",
-      "taskTitle": "Figure 2-4",
+      "audio": "/question-bank-assets/revisions/opi/032033b7ff43c6714a64c1ff8468f9fa423dd0e0d3c8a178e5af0d5f5bbbba12/audio/opi/opi-fzy-110196.mp3",
       "audioText": "If Tower advises a wind shear alert on your landing runway while you are 12 miles away, what would you do?",
-      "audioTextZh": "如果在距塔台12英里时收到风切变预警你会怎样做？",
       "studyTier": 0,
+      "taskTitle": "Figure 2-4",
+      "audioTextZh": "如果在距塔台12英里时收到风切变预警你会怎样做？",
       "referenceText": "I will make a holding pattern or go around. I will try another time if the fuel on board is enough in case I can fly to the alternation.",
       "referenceTextZh": "我会等待航线或复飞。我会选择再一次尝试重新进近，前提要保证飞机上的油料足够再次复飞飞到备降机场。",
-      "audio": "/question-bank-assets/revisions/opi/032033b7ff43c6714a64c1ff8468f9fa423dd0e0d3c8a178e5af0d5f5bbbba12/audio/opi/opi-fzy-110196.mp3",
       "audioDurationSeconds": 5.64
     },
     {
       "id": "opi-fzy-110197",
-      "taskTitle": "Figure 2-5",
+      "audio": "/question-bank-assets/revisions/opi/9582bc9caa3dd141a5a3aa3c5261eb312930bd15de3cdea80f78fa99c8b37c0d/audio/opi/opi-fzy-110197.mp3",
       "audioText": "Have you encountered wind shear? How do you deal with it?",
-      "audioTextZh": "你曾经遭遇过风切变吗？你是怎样处理的？",
       "studyTier": 0,
+      "taskTitle": "Figure 2-5",
+      "audioTextZh": "你曾经遭遇过风切变吗？你是怎样处理的？",
       "referenceText": "If I encountered wind shear, I would immediately follow the escape procedure and recovery guidance for my aircraft type. Once clear of the wind shear, I would report the encounter to ATC.",
       "referenceTextZh": "如果遭遇风切变，我会立即执行本机型的风切变脱离程序并遵循相应改出指引。脱离风切变后，我会向空管报告遭遇情况。",
-      "audio": "/question-bank-assets/revisions/opi/9582bc9caa3dd141a5a3aa3c5261eb312930bd15de3cdea80f78fa99c8b37c0d/audio/opi/opi-fzy-110197.mp3",
       "audioDurationSeconds": 3.144
     },
     {
       "id": "opi-fzy-110199",
-      "taskTitle": "Figure 2-6",
+      "audio": "/question-bank-assets/revisions/opi/84318bc1cca9524bb16bf4a01e960fd0883ce592282dbd3ce967f2fa5046c15a/audio/opi/opi-fzy-110199.mp3",
       "audioText": "What will you do if you encounter the microburst when landing?",
-      "audioTextZh": "如果在降落时遭遇微暴流你会怎么做？",
       "studyTier": 0,
+      "taskTitle": "Figure 2-6",
+      "audioTextZh": "如果在降落时遭遇微暴流你会怎么做？",
       "referenceText": "I would avoid an approach affected by a microburst. If an encounter occurred, I would immediately use the aircraft-specific wind shear escape procedure and recovery guidance, rather than improvise airspeed corrections.",
       "referenceTextZh": "我会避免在微下击暴流影响下继续进近；如果已经遭遇，我会立即按照本机型的风切变脱离程序和改出指引操作，而不是临时自行调整空速。",
-      "audio": "/question-bank-assets/revisions/opi/84318bc1cca9524bb16bf4a01e960fd0883ce592282dbd3ce967f2fa5046c15a/audio/opi/opi-fzy-110199.mp3",
       "audioDurationSeconds": 3.072
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-08"
 }

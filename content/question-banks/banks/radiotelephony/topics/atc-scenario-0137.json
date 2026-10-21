@@ -133,7 +133,7 @@
       "id": "atc-scenario-0137-card-main-2374",
       "taskTitle": "CES 5118-15",
       "audioText": "C: CES 5118, are you fully ready now? We have a slot time for departure in 10 minutes.\nB: You need to open the cabin door for adding passenger's food and drinks due to long delay. Advise ground you will need another 5 minutes for catering.",
-      "audioTextZh": "C： CES 5118，你现在完全准备好了吗？我们有一个 10 分钟后离场的时隙。\nB： 由于长时间延误，你需要打开舱门补充乘客的餐食和饮料。通知地面你还需要 5 分钟进行配餐。",
+      "audioTextZh": "C：CES 5118，你现在完全准备好了吗？我们有一个 10 分钟后离场的时隙。\nB：由于长时间延误，你需要打开舱门补充乘客的餐食和饮料。通知地面你还需要 5 分钟进行配餐。",
       "referenceText": "Wuhan Ground, CES 5118, we need to open the cabin door to add passengers' food and drinks due to the long delay. We need another five minutes for catering.",
       "referenceTextZh": "武汉地面，CES 5118，由于长时间延误，我们需要打开舱门补充乘客的餐食和饮料，还需要五分钟进行配餐。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-035-ces5118-q15.mp3"
@@ -187,7 +187,7 @@
       "id": "atc-scenario-0137-card-main-2380",
       "taskTitle": "CES 5118-21",
       "audioText": "C: CES 5118, Can you accept E1 intersection for departure? takeoff roll distance available 3300 m.\nB: tell tower you can accept it.",
-      "audioTextZh": "C： CES 5118，你能接受从 E1 交叉口离场吗？可用起飞滑跑距离为 3300 m。\nB： 告诉塔台你可以接受。",
+      "audioTextZh": "C：CES 5118，你能接受从 E1 交叉口离场吗？可用起飞滑跑距离为 3300 m。\nB：告诉塔台你可以接受。",
       "referenceText": "Wuhan Tower, CES 5118, affirm, we can accept an intersection departure from E1.",
       "referenceTextZh": "武汉塔台，CES 5118，可以，我们可以接受从 E1 交叉口离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-035-ces5118-q21.mp3"
@@ -196,7 +196,7 @@
       "id": "atc-scenario-0137-card-main-2381",
       "taskTitle": "CES 5118-22",
       "audioText": "C: CES 5118, roger, line up and wait via taxiway E1.\nB: Report to Tower that the aircraft in front of you is blocking E1.",
-      "audioTextZh": "C： CES 5118，收到，经 E1 滑行道进入跑道等待。\nB： 向塔台报告你前方的航空器挡住了 E1。",
+      "audioTextZh": "C：CES 5118，收到，经 E1 滑行道进入跑道等待。\nB：向塔台报告你前方的航空器挡住了 E1。",
       "referenceText": "Wuhan Tower, CES 5118, line up and wait via Taxiway E1, but the aircraft in front of us is blocking E1.",
       "referenceTextZh": "武汉塔台，CES 5118，经 E1 滑行道进入跑道等待，但我们前方的航空器挡住了 E1。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-035-ces5118-q22.mp3"
@@ -214,7 +214,7 @@
       "id": "atc-scenario-0137-card-main-2383",
       "taskTitle": "CES 5118-24",
       "audioText": "C: CES 5118, cleared for takeoff, Runway 18L, initially maintain runway heading, climb to 1,500 meters.",
-      "audioTextZh": "C： CES 5118，许可从 Runway 18L 起飞，起初保持跑道航向，爬升至 1,500 米。",
+      "audioTextZh": "C：CES 5118，许可从 Runway 18L 起飞，起初保持跑道航向，爬升至 1,500 米。",
       "referenceText": "cleared for takeoff, Runway 18L, initially maintain runway heading, climb to 1500 meters, CES 5118.",
       "referenceTextZh": "许可从 Runway 18L 起飞，起初保持跑道航向，爬升至 1500 米，CES 5118。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-035-ces5118-q24.mp3"

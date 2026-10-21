@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-021",
   "name": "鸟击",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-021-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-021.jpg",
       "imageAlt": "鸟击航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-021-q01",
-      "taskTitle": "图片题-021-01",
+      "audio": "/question-bank-assets/revisions/opi/749bc97998be37add474f6316b4261c7e8e95ef3d5b50e8d88a51cb21ca834cf/audio/opi/opi-image-021-q01.mp3",
       "audioText": "What visible bird-strike damage can you identify in this photograph?",
+      "taskTitle": "图片题-021-01",
       "audioTextZh": "你能从这张照片中识别出哪些明显的鸟击损伤？",
       "referenceText": "Flames and smoke are visible around one engine, and birds can be seen close to the aircraft. The engine may have ingested one or more birds and suffered serious damage. Internal damage cannot be confirmed from the photograph.",
       "referenceTextZh": "一台发动机周围可以看到火焰和烟雾，飞机附近还有鸟。发动机可能吸入了一只或多只鸟并受到严重损伤。照片无法确认内部损伤。",
-      "audio": "/question-bank-assets/revisions/opi/749bc97998be37add474f6316b4261c7e8e95ef3d5b50e8d88a51cb21ca834cf/audio/opi/opi-image-021-q01.mp3",
       "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-image-021-q02",
-      "taskTitle": "图片题-021-02",
+      "audio": "/question-bank-assets/revisions/opi/4076200c066f32d7774c92761d79a3d0f962989df16fad673fc3919961ea0ad1/audio/opi/opi-image-021-q02.mp3",
       "audioText": "As captain, how would you respond to a suspected bird strike in flight?",
+      "taskTitle": "图片题-021-02",
       "audioTextZh": "作为机长，怀疑飞行中发生鸟击时，你会如何处置？",
       "referenceText": "I would check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would divert as appropriate.",
       "referenceTextZh": "我会检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会视情况改航。",
-      "audio": "/question-bank-assets/revisions/opi/4076200c066f32d7774c92761d79a3d0f962989df16fad673fc3919961ea0ad1/audio/opi/opi-image-021-q02.mp3",
       "audioDurationSeconds": 4.032
     },
     {
       "id": "opi-image-021-q03",
-      "taskTitle": "图片题-021-03",
+      "audio": "/question-bank-assets/revisions/opi/7e2175031e56a885ff045c7d73cdee35d53fd8cbd5495aa5105b23ee52c4b79e/audio/opi/opi-image-021-q03.mp3",
       "audioText": "What environmental and operational factors increase the risk of a bird strike?",
+      "taskTitle": "图片题-021-03",
       "audioTextZh": "哪些环境和运行因素会增加鸟击风险？",
       "referenceText": "Bird-strike risk is highest near airports and at low altitude during takeoff, climb, approach, and landing. It increases during migration periods and around wetlands, open water, grass, rubbish sites, or other places that attract birds. Dawn, dusk, poor visibility, and airport activities that disturb flocks can make detection and avoidance more difficult.",
       "referenceTextZh": "鸟击风险在机场附近以及起飞、爬升、进近和着陆的低高度阶段最高。迁徙季节，以及湿地、开阔水域、草地、垃圾场或其他吸引鸟类的地点附近，风险会增大。黎明、黄昏、低能见度，以及惊扰鸟群的机场活动，都可能使发现和避让更加困难。",
-      "audio": "/question-bank-assets/revisions/opi/7e2175031e56a885ff045c7d73cdee35d53fd8cbd5495aa5105b23ee52c4b79e/audio/opi/opi-image-021-q03.mp3",
       "audioDurationSeconds": 4.32
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

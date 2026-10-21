@@ -62,8 +62,8 @@ assert.match(nativeRadioHydration, /nextRadioCatalogTopic/u);
 assert.doesNotMatch(nativeRadioHydration, /Promise\.all\(datasets|Promise\.all\(category\.topics/u);
 assert.match(nativeRadioProvider, /hydrateTrackTopic/u);
 assert.match(nativeRadioProvider, /hydrateFollowingTrackTopic/u);
-assert.equal(countCards(publicBanks), 1_044);
-assert.equal(countCards(sourceBanks), 10_856);
+assert.equal(countCards(publicBanks), 1_047);
+assert.equal(countCards(sourceBanks), 10_900);
 assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 1_000_000);
 
 console.log('native_content_access_boundary_ok');

@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-164694",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-1",
-      "audioText": "[Your callsign is UAL835, you are now at Guangzhou Control area, maintaining 8100 meters, over ATAGA, squawk 5703, contact Guangzhou Control.]",
+      "audioText": "Your callsign is UAL835, you are now at Guangzhou Control area, maintaining 8100 meters, over ATAGA, squawk 5703, contact Guangzhou Control.",
       "audioTextZh": "你的呼号是美联航835，你现在在广州区调范围，8100米保持，过ATAGA，应答机5703，联系广州区调。",
       "referenceText": "Guangzhou Control, UAL835, maintaining 8100 meters, over ATAGA, squawk 5703.",
       "referenceTextZh": "广州区调，美联航835，在8100米保持，过ATAGA，应答机5703。",
@@ -35,7 +35,7 @@
     {
       "id": "radiotelephony-fzy-164697",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-4",
-      "audioText": "[Your weather radar shows a red area 50 miles in front of you, you want to offset 5 miles to the right to avoid the thunderstorm, ask Guangzhou Control.]",
+      "audioText": "Your weather radar shows a red area 50 miles in front of you, you want to offset 5 miles to the right to avoid the thunderstorm, ask Guangzhou Control.",
       "audioTextZh": "你的气象雷达显示，前方50英里有雷暴，你想右偏5海里来飞避雷暴，请求广州区调。",
       "referenceText": "Guangzhou Control, UAL835, request offset 5 miles to the right to avoid thunderstorm.",
       "referenceTextZh": "广州区调，美联航835，请求右偏5海里避开雷暴。",
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-164699",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-6",
-      "audioText": "UAL835, due to temporary airspace limitations, reduce to mach decimal 72.\n[Tell ATC mach decimal 72 is not acceptable for you, it’s too slow for your aircraft. ]",
+      "audioText": "UAL835, due to temporary airspace limitations, reduce to mach decimal 72.\n[Tell ATC mach decimal 72 is not acceptable for you, it's too slow for your aircraft. ]",
       "audioTextZh": "美联航835，由于目前空域限制，减小马赫数至0.72。\n[告诉管制员，无法减小至马赫数0.72，对你的飞机来说太慢了。]",
       "referenceText": "negative, unable mach decimal 72, too slow for us, UAL835.",
       "referenceTextZh": "不行，无法马赫数0.72，对我们来说太慢了，美联航835。",
@@ -80,7 +80,7 @@
     {
       "id": "radiotelephony-fzy-164702",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-9",
-      "audioText": "[You are cruising 10100 meters, over OBLIK, call Wuhan Control.]",
+      "audioText": "You are cruising 10100 meters, over OBLIK, call Wuhan Control.",
       "audioTextZh": "你现在在10100米巡航，过OBLIK，呼叫武汉区调。",
       "referenceText": "Wuhan Control, UAL835, cruising 10100 meters, over OBLIK, squawk 5703.",
       "referenceTextZh": "武汉区调，美联航835，在10100米巡航，过OBLIK，应答机5703。",
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-164704",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-11",
-      "audioText": "[As you were descending, you executed TCAS climbing maneuver, report this situation to Wuhan. ]",
-      "audioTextZh": "[在下降过程中，你执行了TCAS爬升机动，将此情况报告给武汉。]",
+      "audioText": "As you were descending, you executed TCAS climbing maneuver, report this situation to Wuhan.",
+      "audioTextZh": "在下降过程中，你执行了TCAS爬升机动，将此情况报告给武汉。",
       "referenceText": "Wuhan Control, UAL 835, we executed TCAS climbing maneuver as we are descending.",
       "referenceTextZh": "武汉区调，美联航835，在下降过程中，我们执行了TCAS爬升机动。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/172f087815543c4a9dd5.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-164705",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-12",
-      "audioText": "[Now the conflicting traffic is clear, you resumed descend, tell ATC.]",
-      "audioTextZh": "[现在你和冲突航空器已解除冲突，继续下降，告诉管制员。]",
+      "audioText": "Now the conflicting traffic is clear, you resumed descend, tell ATC.",
+      "audioTextZh": "现在你和冲突航空器已解除冲突，继续下降，告诉管制员。",
       "referenceText": "Wuhan Control, UAL835, we are clear of traffic, we resumed descent.",
       "referenceTextZh": "武汉区调，美联航835，我们摆脱冲突，继续下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d649e3cd642883afba4c.mp3"
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-164707",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-14",
-      "audioText": "[The purser tells you, during the maneuver, there are 5 passengers injured, 2 of them are injured very seriously. Inform Wuhan Control.]",
-      "audioTextZh": "[乘务长告诉你，在机动期间，有5名乘客受伤，其中2名受重伤，告诉武汉区调。]",
+      "audioText": "The purser tells you, during the maneuver, there are 5 passengers injured, 2 of them are injured very seriously. Inform Wuhan Control.",
+      "audioTextZh": "乘务长告诉你，在机动期间，有5名乘客受伤，其中2名受重伤，告诉武汉区调。",
       "referenceText": "Wuhan Control, UAL835, we have 5 passengers injured, and 2 are very serious during the TCAS maneuver.",
       "referenceTextZh": "武汉区调，美联航835，在机动期间，我们有5名乘客受伤，其中2名受重伤。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9b8864bec5945c53bd7d.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-164710",
       "taskTitle": "28-UAL835 [TCAS爬升，乘客受伤]-17",
-      "audioText": "[You have captured the localizer for runway 36R, contact Wuhan Tower, confirm medical assistance is ready.]",
-      "audioTextZh": "[你截获了跑道36右的航向道，联系武汉塔台，证实医疗救援已就位。]",
+      "audioText": "You have captured the localizer for runway 36R, contact Wuhan Tower, confirm medical assistance is ready.",
+      "audioTextZh": "你截获了跑道36右的航向道，联系武汉塔台，证实医疗救援已就位。",
       "referenceText": "Wuhan Tower, UAL835, localizer established runway 36R, confirm medical service is ready.",
       "referenceTextZh": "武汉塔台，美联航835，建立跑道36右的航向道，证实医疗救援已就位。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/37e34fabc1feafd17440.mp3"

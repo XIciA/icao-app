@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-152564",
       "taskTitle": "9-QFA160 [导航问题，燃油短缺]-8",
-      "audioText": "B: Now you find you won’t have enough fuel to fly to Guangzhou. You decide to divert to Changsha airport. Notify Zhengzhou Control.",
+      "audioText": "B: Now you find you won't have enough fuel to fly to Guangzhou. You decide to divert to Changsha airport. Notify Zhengzhou Control.",
       "audioTextZh": "现在，你发现你没有足够的燃油飞往广州，你决定改航到长沙机场，告知郑州区调。",
       "referenceText": "Zhengzhou Control, QFA160, request divert to Changsha airport due fuel shortage.",
       "referenceTextZh": "郑州区调，QFA160，由于燃油短缺，请求改航长沙机场。",
@@ -137,7 +137,7 @@
       "audioText": "C: QFA160, roger, divert to Wuhan Airport approved, descend to and maintain 4800 meters, contact 120.45 when reaching.",
       "audioTextZh": "QFA160，收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45。",
       "referenceText": "Roger, divert to Wuhan Airport approved, descend to and maintain 4800 meters, contact 120.45 when reaching, QFA160.",
-      "referenceTextZh": "收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45， QFA160。",
+      "referenceTextZh": "收到，同意改航到武汉机场，下到4800米保持，到4800米后联系120.45，QFA160。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2720998fb5bcf1a437f0.mp3"
     },
     {

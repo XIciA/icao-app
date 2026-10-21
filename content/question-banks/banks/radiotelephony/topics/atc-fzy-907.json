@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-164680",
       "taskTitle": "2-CSN3109 [冰雹，颠簸]-3",
-      "audioText": "[Your weather radar shows that there is a thunderstorm 33 miles ahead, you want to climb to 10100m to fly over it, contact Beijing Control.]",
-      "audioTextZh": "[你的气象雷达显示前方33海里有雷暴，你想上10100米飞越雷暴，联系北京区调。]",
+      "audioText": "Your weather radar shows that there is a thunderstorm 33 miles ahead, you want to climb to 10100m to fly over it, contact Beijing Control.",
+      "audioTextZh": "你的气象雷达显示前方33海里有雷暴，你想上10100米飞越雷暴，联系北京区调。",
       "referenceText": "Beijing Control, CSN3109, our weather radar shows that there is a thunderstorm 33 miles ahead, request climb to 10100m to fly over it.\n注：此处答案可省略为：Beijing Control, CSN3109, request climb to 10100m due weather/bad weather/adverse weather.",
       "referenceTextZh": "北京区调，南方3109，我们的气象雷达显示前方33海里有雷暴，请求上10100米飞越雷暴。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d6244c7e5ae1b1996d05.mp3"
@@ -83,7 +83,7 @@
       "audioText": "CSN3109, when able, state your situation.\n[Inform the controller that your engines and control surfaces are working normally, but the outer windshield is cracked.]",
       "audioTextZh": "南方3109，可以的时候，陈述你的情况。\n[告知管制员，飞机发动机和操纵面正常，但是外侧风挡玻璃出现裂纹。]",
       "referenceText": "Our engines and control surfaces are working normally, but the outer windshield is cracked, CSN3109.",
-      "referenceTextZh": "飞机发动机和操纵面正常，但是外侧风挡玻璃出现裂纹， 南方3109。",
+      "referenceTextZh": "飞机发动机和操纵面正常，但是外侧风挡玻璃出现裂纹，南方3109。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f9634854afa6b9b75a09.mp3"
     },
     {
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-164692",
       "taskTitle": "2-CSN3109 [冰雹，颠簸]-15",
-      "audioText": "[You find an Airbus 320 block the taxiway W6 ahead, you now want to change taxiway to E6, call Beijing Ground.]",
-      "audioTextZh": "[你发现前方W6滑行道被一架A320挡住，你现在想更换至E6滑行道，呼叫北京地面。]",
+      "audioText": "You find an Airbus 320 block the taxiway W6 ahead, you now want to change taxiway to E6, call Beijing Ground.",
+      "audioTextZh": "你发现前方W6滑行道被一架A320挡住，你现在想更换至E6滑行道，呼叫北京地面。",
       "referenceText": "Beijing Ground, CSN3109, an Airbus 320 is blocking the taxiway W6 ahead, request change to taxiway E6.",
       "referenceTextZh": "北京地面，南方3109，前方W6滑行道被一架A320挡住，请求更换至E6滑行道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b9089e62c1b8f3ef1946.mp3"

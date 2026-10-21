@@ -1,109 +1,109 @@
 {
   "id": "opi-topic-0088",
   "name": "增压系统",
-  "declaredCardCount": 10,
   "cards": [
     {
-      "id": "opi-core-867",
-      "taskTitle": "飞机系统-增压系统-1",
-      "audioText": "Could you describe the pressurization system, if any, on the aircraft you fly?",
-      "audioTextZh": "你能否介绍所飞航空器的增压系统（如有）？",
-      "referenceText": "The DA-40 that I fly is not pressurized, so it does not have a cabin pressurization system.",
-      "referenceTextZh": "我飞的 DA-40 是非增压飞机，因此没有客舱增压系统。",
-      "audio": "/question-bank-assets/revisions/opi/1e0b26e3c1103622aea2529ad409508cf99a264d513515b5c5e51ff1437ade73/audio/opi/opi-core-867.mp3",
-      "audioDurationSeconds": 4.824
-    },
-    {
       "id": "opi-core-868",
-      "taskTitle": "飞机系统-增压系统-2",
+      "audio": "/question-bank-assets/revisions/opi/4de820a153244667b8e43c0ab9c704ce1e0f4852665939a4799f80ba0e8cc123/audio/opi/opi-core-868.mp3",
       "audioText": "Why do some aircraft need pressurization systems?",
+      "taskTitle": "飞机系统-增压系统-2",
       "audioTextZh": "为什么有些航空器需要增压系统？",
       "referenceText": "Some aircraft need pressurization systems to control cabin altitude and maintain adequate oxygen levels at high altitude. This helps prevent hypoxia and possible incapacitation while keeping the passengers and crew safe and comfortable.",
       "referenceTextZh": "有些飞机需要增压系统来控制客舱高度，并在高空维持足够氧气水平。这有助于防止缺氧和可能的失能，同时保持旅客和机组安全舒适。",
-      "audio": "/question-bank-assets/revisions/opi/4de820a153244667b8e43c0ab9c704ce1e0f4852665939a4799f80ba0e8cc123/audio/opi/opi-core-868.mp3",
-      "audioDurationSeconds": 3.0
+      "audioDurationSeconds": 3
     },
     {
-      "id": "opi-core-869",
-      "taskTitle": "9.非正常情况-7",
-      "audioText": "What can cause in-flight depressurization?",
-      "audioTextZh": "什么可以导致飞行中失压？",
-      "studyTier": 1,
-      "referenceText": "Many factors will cause the in-flight depressurization.\nFor example, structural damage, pressurization system failure.",
-      "referenceTextZh": "很多因素可以导致飞行中失压。\n比如：飞机结构破坏，增压系统故障。",
-      "audio": "/question-bank-assets/revisions/opi/d357cfbfd8753edd3a3ec9825c85fc055e58b9bb6301af431967240dcf08a528/audio/opi/opi-core-869.mp3",
-      "audioDurationSeconds": 2.376
-    },
-    {
-      "id": "opi-core-870",
-      "taskTitle": "飞机系统-增压系统-4",
-      "audioText": "How do slow and rapid depressurization differ in the risks they present?",
-      "audioTextZh": "缓慢失压和快速失压所带来的风险有何不同？",
-      "referenceText": "Rapid depressurization causes a sudden loss of pressure and oxygen, so the crew and passengers may become incapacitated before they can respond. Slow depressurization is less obvious because hypoxia develops gradually, making the problem difficult to detect. Both are dangerous, but they present different warning and response challenges.",
-      "referenceTextZh": "快速失压会使压力和氧气突然丧失，机组和旅客可能在作出反应前就失能。缓慢失压不明显，因为缺氧逐渐发展，问题更难发现。两者都很危险，但警示和响应方面的挑战不同。",
-      "audio": "/question-bank-assets/revisions/opi/36b84fbc077a859acaaadc3407ce7f224081f4aba5187269a1fba74c0c923d6e/audio/opi/opi-core-870.mp3",
-      "audioDurationSeconds": 3.888
+      "id": "opi-core-867",
+      "audio": "/question-bank-assets/revisions/opi/1e0b26e3c1103622aea2529ad409508cf99a264d513515b5c5e51ff1437ade73/audio/opi/opi-core-867.mp3",
+      "audioText": "Could you describe the pressurization system, if any, on the aircraft you fly?",
+      "taskTitle": "飞机系统-增压系统-1",
+      "audioTextZh": "你能否介绍所飞航空器的增压系统（如有）？",
+      "referenceText": "The DA-40 that I fly is not pressurized, so it does not have a cabin pressurization system.",
+      "referenceTextZh": "我飞的 DA-40 是非增压飞机，因此没有客舱增压系统。",
+      "audioDurationSeconds": 4.824
     },
     {
       "id": "opi-core-871",
-      "taskTitle": "飞机系统-增压系统-5",
+      "audio": "/question-bank-assets/revisions/opi/57661bda97af36d1e2887b8629753a99f624a22a97363a516dce544f4a3b8b4b/audio/opi/opi-core-871.mp3",
       "audioText": "What procedure does your company require for a rapid depressurization?",
+      "taskTitle": "飞机系统-增压系统-5",
       "audioTextZh": "快速失压时，你所在公司要求执行什么程序？",
       "referenceText": "I do not have a company rapid-depressurisation procedure because I am not employed by an airline and the DA-40 I use is not pressurised. In a pressurised multi-crew aircraft, the typical priorities are to use oxygen immediately, establish crew communication, control the aircraft, and follow the approved checklist. The crew then descends when required while maintaining terrain clearance and coordinates with ATC and the cabin crew.",
       "referenceTextZh": "我没有公司的快速失压程序，因为我尚未受雇于航空公司，而且我使用的 DA-40 是非增压飞机。在增压多机组飞机上，典型的首要动作是立即使用氧气、建立机组通信、控制飞机并执行批准的检查单。随后，机组在保持地形间隔的前提下按需下降，并与空中交通管制和客舱机组协调。",
-      "audio": "/question-bank-assets/revisions/opi/57661bda97af36d1e2887b8629753a99f624a22a97363a516dce544f4a3b8b4b/audio/opi/opi-core-871.mp3",
       "audioDurationSeconds": 3.912
     },
     {
-      "id": "opi-core-874",
-      "taskTitle": "飞机系统-增压系统-6",
-      "audioText": "What are the possible consequences of depressurization?",
-      "audioTextZh": "失压可能造成哪些后果？",
-      "referenceText": "Depressurization can cause pilots to lose consciousness because of a lack of oxygen. Passengers may feel unwell or suffer injuries. A severe event may involve structural damage and could ultimately lead to the loss of the aircraft.",
-      "referenceTextZh": "失压会因缺氧使飞行员失去意识。旅客可能感到不适或受伤。严重事件可能伴有结构损伤，并最终导致飞机损失。",
-      "audio": "/question-bank-assets/revisions/opi/5531aa0d51f0e630a84f4144385725cc139c5630a50b378bbe08ae4ca5141ca0/audio/opi/opi-core-874.mp3",
-      "audioDurationSeconds": 3.192
-    },
-    {
-      "id": "opi-core-875",
-      "taskTitle": "飞机系统-增压系统-7",
-      "audioText": "What should a flight crew do if depressurization occurs in flight?",
-      "audioTextZh": "飞行中发生失压时，飞行机组应怎么做？",
-      "referenceText": "The flight crew should put on their oxygen masks and make an emergency descent to a safe altitude. They should report the situation and their intentions to ATC and request emergency services.",
-      "referenceTextZh": "飞行机组应戴上氧气面罩，并紧急下降至安全高度。他们应向空中交通管制报告情况和意图，并申请应急服务。",
-      "audio": "/question-bank-assets/revisions/opi/7561fb528854a157995173a3e5d32fb5c2d93900568a58a8c07a1737da65d8b7/audio/opi/opi-core-875.mp3",
-      "audioDurationSeconds": 3.504
-    },
-    {
       "id": "opi-core-876",
-      "taskTitle": "飞机系统-增压系统-8",
+      "audio": "/question-bank-assets/revisions/opi/f4d8874d5e7e6babe04fa76556f48c469964ff2b4dd9f87e664053a1cf4a6a22/audio/opi/opi-core-876.mp3",
       "audioText": "How should a flight crew determine a safe altitude after a depressurization?",
+      "taskTitle": "飞机系统-增压系统-8",
       "audioTextZh": "失压后，飞行机组应如何确定安全高度？",
       "referenceText": "After using oxygen and starting the emergency descent, the crew should choose an altitude that provides enough oxygen while remaining above terrain and obstacles. About 10,000 feet or lower is normally desirable, but the minimum safe or sector altitude may require the aircraft to level higher. The crew should use charts, terrain information, and ATC assistance to determine the safe level.",
       "referenceTextZh": "使用氧气并开始紧急下降后，机组应选择既能提供足够氧气、又高于地形和障碍物的高度。通常希望下降到约 10,000 英尺或以下，但最低安全高度或扇区高度可能要求飞机在更高高度改平。机组应利用航图、地形信息和空中交通管制协助确定安全高度层。",
-      "audio": "/question-bank-assets/revisions/opi/f4d8874d5e7e6babe04fa76556f48c469964ff2b4dd9f87e664053a1cf4a6a22/audio/opi/opi-core-876.mp3",
       "audioDurationSeconds": 4.2
     },
     {
-      "id": "opi-core-877",
-      "taskTitle": "飞机系统-增压系统-9",
-      "audioText": "Does every pressurization problem require an emergency descent? Why or why not?",
-      "audioTextZh": "每次增压问题都需要紧急下降吗？为什么？",
-      "referenceText": "No. A minor or slowly developing pressurization problem may first be handled by checking the system and following the applicable checklist. A rapid or severe depressurization requires an emergency descent, and the crew may also need to divert and land.",
-      "referenceTextZh": "不一定。轻微或缓慢发展的增压问题，可以先检查系统并执行适用检查单。快速或严重失压需要紧急下降，机组还可能需要改航并着陆。",
-      "audio": "/question-bank-assets/revisions/opi/0b3dc694411c3dcf7a0d93865ef99e0ebec2f430cc93c5027c7c9ab8dd13639c/audio/opi/opi-core-877.mp3",
-      "audioDurationSeconds": 4.944
+      "id": "opi-core-874",
+      "audio": "/question-bank-assets/revisions/opi/5531aa0d51f0e630a84f4144385725cc139c5630a50b378bbe08ae4ca5141ca0/audio/opi/opi-core-874.mp3",
+      "audioText": "What are the possible consequences of depressurization?",
+      "taskTitle": "飞机系统-增压系统-6",
+      "audioTextZh": "失压可能造成哪些后果？",
+      "referenceText": "Depressurization can cause pilots to lose consciousness because of a lack of oxygen. Passengers may feel unwell or suffer injuries. A severe event may involve structural damage and could ultimately lead to the loss of the aircraft.",
+      "referenceTextZh": "失压会因缺氧使飞行员失去意识。旅客可能感到不适或受伤。严重事件可能伴有结构损伤，并最终导致飞机损失。",
+      "audioDurationSeconds": 3.192
+    },
+    {
+      "id": "opi-core-870",
+      "audio": "/question-bank-assets/revisions/opi/36b84fbc077a859acaaadc3407ce7f224081f4aba5187269a1fba74c0c923d6e/audio/opi/opi-core-870.mp3",
+      "audioText": "How do slow and rapid depressurization differ in the risks they present?",
+      "taskTitle": "飞机系统-增压系统-4",
+      "audioTextZh": "缓慢失压和快速失压所带来的风险有何不同？",
+      "referenceText": "Rapid depressurization causes a sudden loss of pressure and oxygen, so the crew and passengers may become incapacitated before they can respond. Slow depressurization is less obvious because hypoxia develops gradually, making the problem difficult to detect. Both are dangerous, but they present different warning and response challenges.",
+      "referenceTextZh": "快速失压会使压力和氧气突然丧失，机组和旅客可能在作出反应前就失能。缓慢失压不明显，因为缺氧逐渐发展，问题更难发现。两者都很危险，但警示和响应方面的挑战不同。",
+      "audioDurationSeconds": 3.888
     },
     {
       "id": "opi-core-878",
-      "taskTitle": "飞机系统-增压系统-10",
+      "audio": "/question-bank-assets/revisions/opi/bad16ba3f4ff68acab4b5823570c76eb3b02eef3bdb07a5940b322841732c77f/audio/opi/opi-core-878.mp3",
       "audioText": "How can a pilot recognize that depressurization has occurred?",
+      "taskTitle": "飞机系统-增压系统-10",
       "audioTextZh": "飞行员如何判断已经发生失压？",
       "referenceText": "A pilot may see an abnormal cabin-pressure differential, a rapid rise in cabin altitude or cabin rate, or a cabin-altitude warning. Other signs can include automatic deployment of oxygen masks, pressure discomfort in the ears or sinuses, and symptoms of hypoxia such as dizziness or blurred vision.",
       "referenceTextZh": "飞行员可能看到异常客舱压差、客舱高度或客舱高度变化率迅速上升，或收到客舱高度警告。其他迹象包括氧气面罩自动脱落、耳部或鼻窦压力不适，以及头晕或视物模糊等缺氧症状。",
-      "audio": "/question-bank-assets/revisions/opi/bad16ba3f4ff68acab4b5823570c76eb3b02eef3bdb07a5940b322841732c77f/audio/opi/opi-core-878.mp3",
       "audioDurationSeconds": 3.504
+    },
+    {
+      "id": "opi-core-875",
+      "audio": "/question-bank-assets/revisions/opi/7561fb528854a157995173a3e5d32fb5c2d93900568a58a8c07a1737da65d8b7/audio/opi/opi-core-875.mp3",
+      "audioText": "What should a flight crew do if depressurization occurs in flight?",
+      "taskTitle": "飞机系统-增压系统-7",
+      "audioTextZh": "飞行中发生失压时，飞行机组应怎么做？",
+      "referenceText": "The flight crew should put on their oxygen masks and make an emergency descent to a safe altitude. They should report the situation and their intentions to ATC and request emergency services.",
+      "referenceTextZh": "飞行机组应戴上氧气面罩，并紧急下降至安全高度。他们应向空中交通管制报告情况和意图，并申请应急服务。",
+      "audioDurationSeconds": 3.504
+    },
+    {
+      "id": "opi-core-869",
+      "audio": "/question-bank-assets/revisions/opi/d357cfbfd8753edd3a3ec9825c85fc055e58b9bb6301af431967240dcf08a528/audio/opi/opi-core-869.mp3",
+      "audioText": "What can cause in-flight depressurization?",
+      "studyTier": 1,
+      "taskTitle": "9.非正常情况-7",
+      "audioTextZh": "什么可以导致飞行中失压？",
+      "referenceText": "Many factors will cause the in-flight depressurization.\nFor example, structural damage, pressurization system failure.",
+      "referenceTextZh": "很多因素可以导致飞行中失压。\n比如：飞机结构破坏，增压系统故障。",
+      "audioDurationSeconds": 2.376
+    },
+    {
+      "id": "opi-core-877",
+      "audio": "/question-bank-assets/revisions/opi/0b3dc694411c3dcf7a0d93865ef99e0ebec2f430cc93c5027c7c9ab8dd13639c/audio/opi/opi-core-877.mp3",
+      "audioText": "Does every pressurization problem require an emergency descent? Why or why not?",
+      "taskTitle": "飞机系统-增压系统-9",
+      "audioTextZh": "每次增压问题都需要紧急下降吗？为什么？",
+      "referenceText": "No. A minor or slowly developing pressurization problem may first be handled by checking the system and following the applicable checklist. A rapid or severe depressurization requires an emergency descent, and the crew may also need to divert and land.",
+      "referenceTextZh": "不一定。轻微或缓慢发展的增压问题，可以先检查系统并执行适用检查单。快速或严重失压需要紧急下降，机组还可能需要改航并着陆。",
+      "audioDurationSeconds": 4.944
     }
   ],
+  "declaredCardCount": 10,
   "categoryId": "opi-category-06"
 }

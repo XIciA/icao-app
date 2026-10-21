@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-018",
   "name": "擦尾风险",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-018-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-018.jpg",
       "imageAlt": "擦尾风险航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-018-q01",
-      "taskTitle": "图片题-018-01",
+      "audio": "/question-bank-assets/revisions/opi/67f4aa94c331651725464819004bdaa7be8586a71b64d1bb25460f5ddb0287ff/audio/opi/opi-image-018-q01.mp3",
       "audioText": "What can you see in this picture of an apparent tail-strike event?",
+      "taskTitle": "图片题-018-01",
       "audioTextZh": "你能从这张疑似擦机尾事件的图片中看到什么？",
       "referenceText": "The aircraft is rotating for takeoff with a high nose-up attitude. Its rear fuselage appears to be contacting or scraping the runway. This is consistent with a tail strike, although the amount of damage cannot be judged from the picture.",
       "referenceTextZh": "飞机正以较大的机头上仰姿态抬轮起飞，其后机身似乎正在接触或擦碰跑道。这与擦尾现象相符，但无法从图片判断损伤程度。",
-      "audio": "/question-bank-assets/revisions/opi/67f4aa94c331651725464819004bdaa7be8586a71b64d1bb25460f5ddb0287ff/audio/opi/opi-image-018-q01.mp3",
       "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-image-018-q02",
-      "taskTitle": "图片题-018-02",
+      "audio": "/question-bank-assets/revisions/opi/c1a9b0002061b766e7324dd2f05b249b63b1d005953c90f601d407177c6553f3/audio/opi/opi-image-018-q02.mp3",
       "audioText": "How can takeoff weight affect the risk of a tail strike?",
+      "taskTitle": "图片题-018-02",
       "audioTextZh": "起飞重量会如何影响擦机尾风险？",
       "referenceText": "High takeoff weight is one factor that can increase the risk of a tail strike.",
       "referenceTextZh": "较大的起飞重量是可能增加擦尾风险的因素之一。",
-      "audio": "/question-bank-assets/revisions/opi/c1a9b0002061b766e7324dd2f05b249b63b1d005953c90f601d407177c6553f3/audio/opi/opi-image-018-q02.mp3",
-      "audioDurationSeconds": 3.0
+      "audioDurationSeconds": 3
     },
     {
       "id": "opi-image-018-q03",
-      "taskTitle": "图片题-018-03",
+      "audio": "/question-bank-assets/revisions/opi/0b9e390e9bbbbf25fd592c7002c5faa39a35ff3044c67d28ead16c8fa206e6ea/audio/opi/opi-image-018-q03.mp3",
       "audioText": "How can a flight crew reduce the risk of a tail strike?",
+      "taskTitle": "图片题-018-03",
       "audioTextZh": "飞行机组如何降低擦机尾风险？",
       "referenceText": "The crew should brief the tail-strike threat, check the relevant aircraft performance, coordinate clearly, and follow the checklist. If safety were not assured, the takeoff should be delayed or rejected.",
       "referenceTextZh": "机组应对擦尾威胁进行简令，检查相关飞机性能，保持清晰协调，并执行检查单。如果无法确保安全，应推迟起飞或中断起飞。",
-      "audio": "/question-bank-assets/revisions/opi/0b9e390e9bbbbf25fd592c7002c5faa39a35ff3044c67d28ead16c8fa206e6ea/audio/opi/opi-image-018-q03.mp3",
       "audioDurationSeconds": 2.928
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

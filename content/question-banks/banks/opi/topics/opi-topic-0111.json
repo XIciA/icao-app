@@ -1,58 +1,71 @@
 {
   "id": "opi-topic-0111",
   "name": "空调系统",
-  "declaredCardCount": 5,
   "cards": [
     {
-      "id": "opi-extra-060",
-      "taskTitle": "飞机系统-空调系统-1",
-      "audioText": "Have you ever experienced an aircraft air-conditioning system failure?",
-      "audioTextZh": "你是否曾遇到航空器空调系统失效？",
-      "referenceText": "No, I have never experienced an aircraft air-conditioning system failure in flight.",
-      "referenceTextZh": "没有，我从未在飞行中遇到过飞机空调系统失效。",
-      "audio": "/question-bank-assets/revisions/opi/f3ea05ff43981359aa0e5d7a3be5bc29e963cb7a1facda2821c7f13dbda5adfd/audio/opi/opi-extra-060.mp3",
-      "audioDurationSeconds": 3.864
-    },
-    {
-      "id": "opi-extra-061",
-      "taskTitle": "飞机系统-空调系统-2",
-      "audioText": "What factors should a flight crew consider when deciding whether to continue a flight after an air-conditioning system failure?",
-      "audioTextZh": "空调系统失效后，飞行机组决定是否继续飞行时应考虑哪些因素？",
-      "referenceText": "The crew should assess the extent of the failure, whether pressurization or cabin temperature is affected, and whether the checklist resolves the problem. They should also consider a suitable flight level and the effect on the passengers and crew. If safe conditions cannot be maintained, they should inform ATC and return or divert to a suitable airport.",
-      "referenceTextZh": "机组应评估故障范围、增压或客舱温度是否受到影响，以及检查单能否解决问题。他们还应考虑合适的飞行高度层和对旅客及机组的影响。如果无法维持安全条件，应通知空中交通管制并返航或改航至合适机场。",
-      "audio": "/question-bank-assets/revisions/opi/0c68a1e38147ce2d227107325bab50a198e0acb790fb53f2f2b0ea207b3e4d2f/audio/opi/opi-extra-061.mp3",
-      "audioDurationSeconds": 6.456
-    },
-    {
       "id": "opi-extra-062",
-      "taskTitle": "飞机系统-空调系统-3",
+      "audio": "/question-bank-assets/revisions/opi/a5005d5f4fd886a5c3d4bf58870ed2be4b0df96aa83e4b2436730e5da2e4ee7f/audio/opi/opi-extra-062.mp3",
       "audioText": "What are the main functions of an aircraft's air-conditioning system?",
+      "taskTitle": "飞机系统-空调系统-3",
       "audioTextZh": "航空器空调系统的主要功能有哪些？",
       "referenceText": "The air-conditioning system supplies warm or cool air to control cabin temperature. It also provides fresh air, helps control humidity, and supports cabin pressurization on aircraft where those functions are connected. These functions help keep the passengers and crew safe and comfortable.",
       "referenceTextZh": "空调系统提供热空气或冷空气以控制客舱温度，也提供新鲜空气、帮助控制湿度，并在相关功能相连的飞机上支持客舱增压。这些功能帮助旅客和机组保持安全舒适。",
-      "audio": "/question-bank-assets/revisions/opi/a5005d5f4fd886a5c3d4bf58870ed2be4b0df96aa83e4b2436730e5da2e4ee7f/audio/opi/opi-extra-062.mp3",
       "audioDurationSeconds": 3.384
     },
     {
+      "id": "opi-extra-060",
+      "audio": "/question-bank-assets/revisions/opi/f3ea05ff43981359aa0e5d7a3be5bc29e963cb7a1facda2821c7f13dbda5adfd/audio/opi/opi-extra-060.mp3",
+      "audioText": "Have you ever experienced an aircraft air-conditioning system failure?",
+      "taskTitle": "飞机系统-空调系统-1",
+      "audioTextZh": "你是否曾遇到航空器空调系统失效？",
+      "referenceText": "No, I have never experienced an aircraft air-conditioning system failure in flight.",
+      "referenceTextZh": "没有，我从未在飞行中遇到过飞机空调系统失效。",
+      "audioDurationSeconds": 3.864
+    },
+    {
       "id": "opi-extra-063",
-      "taskTitle": "飞机系统-空调系统-4",
+      "audio": "/question-bank-assets/revisions/opi/4898ab552c3409e5dcdb9e7e7dd944455da40ac2cba9886a624a6a48593f54f9/audio/opi/opi-extra-063.mp3",
       "audioText": "How can an air-conditioning system failure affect flight safety?",
+      "taskTitle": "飞机系统-空调系统-4",
       "audioTextZh": "空调系统失效会如何影响飞行安全？",
       "referenceText": "An air-conditioning failure can cause the cabin to become extremely hot or cold, leading to discomfort and possibly incapacitation. On aircraft where the systems are connected, it may also affect pressurization and contribute to a decompression event. The failure can also increase pilot workload.",
       "referenceTextZh": "空调失效会使客舱变得过热或过冷，造成人员不适并可能失能。在相关系统相连的飞机上，它还可能影响增压并促成失压事件。故障也会增加飞行员工作负荷。",
-      "audio": "/question-bank-assets/revisions/opi/4898ab552c3409e5dcdb9e7e7dd944455da40ac2cba9886a624a6a48593f54f9/audio/opi/opi-extra-063.mp3",
       "audioDurationSeconds": 3.6
     },
     {
+      "id": "opi-extra-061",
+      "audio": "/question-bank-assets/revisions/opi/0c68a1e38147ce2d227107325bab50a198e0acb790fb53f2f2b0ea207b3e4d2f/audio/opi/opi-extra-061.mp3",
+      "audioText": "What factors should a flight crew consider when deciding whether to continue a flight after an air-conditioning system failure?",
+      "taskTitle": "飞机系统-空调系统-2",
+      "audioTextZh": "空调系统失效后，飞行机组决定是否继续飞行时应考虑哪些因素？",
+      "referenceText": "The crew should assess the extent of the failure, whether pressurization or cabin temperature is affected, and whether the checklist resolves the problem. They should also consider a suitable flight level and the effect on the passengers and crew. If safe conditions cannot be maintained, they should inform ATC and return or divert to a suitable airport.",
+      "referenceTextZh": "机组应评估故障范围、增压或客舱温度是否受到影响，以及检查单能否解决问题。他们还应考虑合适的飞行高度层和对旅客及机组的影响。如果无法维持安全条件，应通知空中交通管制并返航或改航至合适机场。",
+      "audioDurationSeconds": 6.456
+    },
+    {
+      "id": "opi-intake-20261019-packs-takeoff",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb/audio/opi/opi-intake-20261019-packs-takeoff.mp3",
+      "audioText": "Why might an aircraft use a packs-off takeoff procedure?",
+      "studyTier": 0,
+      "taskTitle": "空调系统-收集反馈",
+      "audioTextZh": "为什么某些情况下飞机会采用关闭空调组件的起飞程序？",
+      "examReported": true,
+      "referenceText": "On some aircraft, reducing air-conditioning bleed demand can improve available takeoff performance. It is not required for every takeoff. The crew must use the approved configuration and performance calculation and follow the restoration procedure afterwards.",
+      "referenceTextZh": "某些飞机减少空调引气需求可改善可用起飞性能，但并非每次起飞都需要。机组必须采用获批构型和性能计算，并按程序随后恢复。",
+      "audioDurationSeconds": 3.192
+    },
+    {
       "id": "opi-extra-064",
-      "taskTitle": "飞机系统-空调系统-5",
+      "audio": "/question-bank-assets/revisions/opi/b1958d76d0873242342557a1b8ae03b36d1dcd3fce55410b00a87a9e09501a62/audio/opi/opi-extra-064.mp3",
       "audioText": "What should a flight crew do if the aircraft's air-conditioning system fails?",
+      "taskTitle": "飞机系统-空调系统-5",
       "audioTextZh": "航空器空调系统失效时，飞行机组应怎么做？",
       "referenceText": "The crew should follow the SOP and checklist and determine whether cabin temperature or pressurization is affected. They should use oxygen masks if required by a pressurization problem. If temperature cannot be controlled or safety is threatened, they should inform ATC and divert to a suitable airport.",
       "referenceTextZh": "机组应遵循标准操作程序和检查单，并判断客舱温度或增压是否受到影响。如果增压问题要求使用氧气面罩，就应及时使用。如果无法控制温度或安全受到威胁，应通知空中交通管制并改航至合适机场。",
-      "audio": "/question-bank-assets/revisions/opi/b1958d76d0873242342557a1b8ae03b36d1dcd3fce55410b00a87a9e09501a62/audio/opi/opi-extra-064.mp3",
       "audioDurationSeconds": 3.984
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-06"
 }

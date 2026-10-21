@@ -132,7 +132,7 @@
     {
       "id": "atc-scenario-0098-card-main-1701",
       "taskTitle": "CES 5118-15",
-      "audioText": "C: CES 5118, are you fully ready now?we have a slot time for departure in 10 minutes.\nB: You need to open the cabin door to add passenger food and drinks due to the long delay, advise Ground you will need another 5 minutes for catering.",
+      "audioText": "C: CES 5118, are you fully ready now? we have a slot time for departure in 10 minutes.\nB: You need to open the cabin door to add passenger food and drinks due to the long delay, advise Ground you will need another 5 minutes for catering.",
       "audioTextZh": "C：CES 5118，你现在完全准备好了吗？我们有一个 10 分钟后离场的时隙。\nB：由于长时间延误，你需要打开客舱门添加旅客餐食和饮料，告知地面你还需要 5 分钟配餐。",
       "referenceText": "We need to open the cabin door to add passenger's food and drinks due long delay, we need another 5 minutes for catering, CES 5118.",
       "referenceTextZh": "由于长时间延误，我们需要打开客舱门添加旅客餐食和饮料，我们需要另外 5 分钟配餐，CES 5118。",
@@ -177,7 +177,7 @@
     {
       "id": "atc-scenario-0098-card-main-1706",
       "taskTitle": "CES 5118-20",
-      "audioText": "C: Can you accept E1 intersection for departure?Takeoff roll distance available 3300 meters.\nB: Tell the Tower you can accept.",
+      "audioText": "C: Can you accept E1 intersection for departure? Takeoff roll distance available 3300 meters.\nB: Tell the Tower you can accept.",
       "audioTextZh": "C：你能接受 E1 交叉口离场吗？可用起飞滑跑距离 3300 米。\nB：告诉塔台你可以接受。",
       "referenceText": "Affirm, we can accept intersection departure from E1, CES 5118.",
       "referenceTextZh": "可以，我们可以接受 E1 交叉口离场，CES 5118。",

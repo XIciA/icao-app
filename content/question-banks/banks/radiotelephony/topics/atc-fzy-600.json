@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-110991",
       "taskTitle": "17. UAL921 depressurization, etc.-1",
-      "audioText": "[Your callsign is UAL921, you are from Wuhan to San Francisco, ready for taxi, call Wuhan Ground.]",
-      "audioTextZh": "【你的呼号是UAL921，你从武汉飞往旧金山，准备滑行，呼叫武汉地面。】",
+      "audioText": "Your callsign is UAL921, you are from Wuhan to San Francisco, ready for taxi, call Wuhan Ground.",
+      "audioTextZh": "你的呼号是UAL921，你从武汉飞往旧金山，准备滑行，呼叫武汉地面。",
       "referenceText": "Wuhan Ground, UAL921, from Wuhan to San Francisco, request taxi.",
       "referenceTextZh": "武汉地面，美联航921，从武汉飞往旧金山，请求滑出。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6ffdc74c5dbf763dc198.mp3"
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-110994",
       "taskTitle": "17. UAL921 depressurization, etc.-4",
-      "audioText": "[You are holding short of runway 04, you are ready for departure, call Tower.]",
-      "audioTextZh": "【你在跑道04外等待，已经准备好起飞，呼叫塔台。】",
+      "audioText": "You are holding short of runway 04, you are ready for departure, call Tower.",
+      "audioTextZh": "你在跑道04外等待，已经准备好起飞，呼叫塔台。",
       "referenceText": "Wuhan Tower, UAL921, holding short runway 04, ready for departure.",
       "referenceTextZh": "武汉塔台，美联航921，跑道04外等待，准备好起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/433a2c7219b6c28dd595.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-110996",
       "taskTitle": "17. UAL921 depressurization, etc.-6",
-      "audioText": "[You are passing 600m for 1500m, call Departure.]",
-      "audioTextZh": "【飞机通过600米爬升1500米，呼叫离场。】",
+      "audioText": "You are passing 600m for 1500m, call Departure.",
+      "audioTextZh": "飞机通过600米爬升1500米，呼叫离场。",
       "referenceText": "Wuhan Departure, UAL921, airborne runway 04, passing 600m for 1500m.",
       "referenceTextZh": "武汉离场，美联航921，04号起飞，通过600米上升1500米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1468ee5b31fd88c7b136.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-110998",
       "taskTitle": "17. UAL921 depressurization, etc.-8",
-      "audioText": "[Purser tells you a passenger has heard abnormal noises from aft cabin. You decide to level off at 2700m. Advice Departure your intention to level off due to possible problem in cabin.]",
-      "audioTextZh": "【乘务长告诉你一位乘客听到机舱尾部发出异常噪音。你决定在2700米平飞。告诉离场，由于客舱可能出现问题，你想要平飞。】",
+      "audioText": "Purser tells you a passenger has heard abnormal noises from aft cabin. You decide to level off at 2700m. Advice Departure your intention to level off due to possible problem in cabin.",
+      "audioTextZh": "乘务长告诉你一位乘客听到机舱尾部发出异常噪音。你决定在2700米平飞。告诉离场，由于客舱可能出现问题，你想要平飞。",
       "referenceText": "Wuhan Departure, UAL921, request level off at 2700m due possible problem in cabin.",
       "referenceTextZh": "武汉离场，美联航921，由于客舱可能出现问题，请求2700米平飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b3bfecaa8b91b167cfef.mp3"
@@ -89,7 +89,7 @@
     {
       "id": "radiotelephony-fzy-111000",
       "taskTitle": "17. UAL921 depressurization, etc.-10",
-      "audioText": "UAL921, Departure, what’s the malfunction of your aircraft?[Aircraft levels off. No one else can confirm the noise that the particular passenger heard. You check: all the instruments are indicating normally. You decide: continue the flight and request for a higher level. Call Departure.]",
+      "audioText": "UAL921, Departure, what's the malfunction of your aircraft?[Aircraft levels off. No one else can confirm the noise that the particular passenger heard. You check: all the instruments are indicating normally. You decide: continue the flight and request for a higher level. Call Departure.]",
       "audioTextZh": "美联航921，离场，飞机出现什么故障了？【飞机平飞。其它人都无法确认该乘客听到的噪音。你检查发现所有仪表显示正常。你决定继续飞行，并请求更高的高度。呼叫离场。】",
       "referenceText": "Wuhan Departure, UAL921, the aircraft normal now, continue the flight and request higher level.",
       "referenceTextZh": "武汉离场，美联航921，目前飞机正常，继续飞行，请求高高度。",
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-111002",
       "taskTitle": "17. UAL921 depressurization, etc.-12",
-      "audioText": "[You are cruising at 10700m, over HFE at 22, squawk 5316, call Shanghai Control.]",
-      "audioTextZh": "【你在10700米巡航，过HFE时间22分，应答机5316，呼叫上海区调。】",
+      "audioText": "You are cruising at 10700m, over HFE at 22, squawk 5316, call Shanghai Control.",
+      "audioTextZh": "你在10700米巡航，过HFE时间22分，应答机5316，呼叫上海区调。",
       "referenceText": "Shanghai Control, UAL921, maintaining 10700m, over HFE 22, squawk 5316.",
       "referenceTextZh": "上海区调，美联航921，10700米保持，HFE 22分，应答机5316。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8708c2341b6c2ff83be4.mp3"
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-111004",
       "taskTitle": "17. UAL921 depressurization, etc.-14",
-      "audioText": "[Strong sound from cabin. Your instrument indicates cabin altitude is rising slowly. Slow depressurization is suspected. Request immediate descent from 10700m to 3000m. This is an urgent call.]",
-      "audioTextZh": "【座舱内有巨大声响。你的仪表显示座舱压力正在慢慢升高。疑似缓慢释压。请求立即从10700米下降至3000米。紧急呼叫。】",
+      "audioText": "Strong sound from cabin. Your instrument indicates cabin altitude is rising slowly. Slow depressurization is suspected. Request immediate descent from 10700m to 3000m. This is an urgent call.",
+      "audioTextZh": "座舱内有巨大声响。你的仪表显示座舱压力正在慢慢升高。疑似缓慢释压。请求立即从10700米下降至3000米。紧急呼叫。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Shanghai Control, UAL921. There is slow depressurization in cabin, request descent from 10700m to 3000m.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，上海区调，美联航921，客舱缓慢释压，请求离开10700米下降到3000米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c4dad281942c0864c95e.mp3"

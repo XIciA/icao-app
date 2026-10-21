@@ -3,10 +3,10 @@
   "engine": "16k_en",
   "basis": "User-approved full-bank expansion. Initial 18 terms retain historical error evidence. New terms are corpus/context candidates, not measured accuracy gains; no audio calls this round.",
   "corpus": {
-    "cards": 10769,
+    "cards": 10813,
     "bankCounts": {
       "listening": 1502,
-      "opi": 2234,
+      "opi": 2278,
       "radiotelephony": 5751,
       "sentences900": 900,
       "storytelling": 382
@@ -41,12 +41,12 @@
         {
           "id": "listening-fzy-110822",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "inning of a transmission?\nB: Yes, there's an ICAO standard word.\nQ: What word should be used in the situation?\n正确答案：A. Acknowledge"
+          "context": "inning of a transmission?\nB: Yes, there's an ICAO standard word.\nQ: What word should be used in the situation?\n正确答案：A. Acknowledge."
         },
         {
           "id": "listening-fzy-115191",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "ing of the transmission?\nB: Yes, there is an ICAO standard word.\nQ: What word are they talking about in this conversation?\n正确答案：A. Dis"
+          "context": "ing of the transmission?\nB: Yes, there is an ICAO standard word.\nQ: What word are they talking about in this conversation?\n正确答案：A. Disregard."
         }
       ]
     },
@@ -72,12 +72,12 @@
         {
           "id": "opi-extra-362",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0146.json",
-          "context": "What does a CAAC inspector typically examine during a ramp inspection?\nA CAAC ramp inspector may exam"
+          "context": "What does a CAAC inspector typically examine during a ramp inspection?\nA CAAC ramp inspector may examine crew licenses and"
         },
         {
           "id": "opi-extra-364",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0146.json",
-          "context": "s may a flight crew need to present during a CAAC ramp inspection?\nThe crew may need to present pilot licenses, medical certificates, "
+          "context": "s may a flight crew need to present during a CAAC ramp inspection?\nThe crew may need to present pilot licenses, medical certificates, company identificatio"
         }
       ]
     },
@@ -86,8 +86,8 @@
       "category": "aviation-abbreviation",
       "weight": 5,
       "reason": "旧权重5实验602/604中tas变为tcas，有局部收益。",
-      "cardCount": 88,
-      "uniqueTextCount": 83,
+      "cardCount": 89,
+      "uniqueTextCount": 84,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -122,7 +122,7 @@
       "weight": 5,
       "reason": "旧权重5实验649中ios变为ils，有局部收益。",
       "cardCount": 402,
-      "uniqueTextCount": 379,
+      "uniqueTextCount": 378,
       "sentence900Count": 12,
       "banks": [
         "listening",
@@ -276,7 +276,7 @@
         {
           "id": "sentence900-main-087",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "Cleared to destination, BK02 RNAV Departure, initially 3000 feet,departure frequency 125.4, squawk 3311."
+          "context": "Cleared to destination, BK02 RNAV Departure, initially 3000 feet, departure frequency 125.4, squawk 3311."
         },
         {
           "id": "sentence900-main-361",
@@ -407,7 +407,7 @@
         {
           "id": "sentence900-main-521",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "The APU fire seems to be extinguished. Request fire trucks on standby and stairs vehicle to "
+          "context": "The APU fire seems to be extinguished. Request fire trucks on standby and stairs vehicle to disembark the passenge"
         }
       ]
     },
@@ -471,7 +471,7 @@
         {
           "id": "sentence900-main-005",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "Continue descent to 3000 feet，QNH 1012."
+          "context": "Continue descent to 3000 feet, QNH 1012."
         },
         {
           "id": "sentence900-main-094",
@@ -536,7 +536,7 @@
         {
           "id": "sentence900-main-075",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Cleared to the 180 radial of PER VOR at 15 DME. Hold south, left hand pattern, outbound time 2 minutes, expect approach clearance a"
+          "context": "Cleared to the 180 radial of PER VOR at 15 DME. Hold south, left hand pattern, outbound time 2 minutes, expect approach clearance at 37."
         },
         {
           "id": "sentence900-main-305",
@@ -550,8 +550,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 42,
-      "uniqueTextCount": 40,
+      "cardCount": 43,
+      "uniqueTextCount": 41,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -650,8 +650,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 887,
-      "uniqueTextCount": 797,
+      "cardCount": 892,
+      "uniqueTextCount": 799,
       "sentence900Count": 4,
       "banks": [
         "listening",
@@ -676,7 +676,7 @@
         {
           "id": "sentence900-main-086",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "Gate15, information C, ready to copy ATC clearance."
+          "context": "Gate 15, information C, ready to copy ATC clearance."
         }
       ]
     },
@@ -738,12 +738,12 @@
         {
           "id": "sentence900-main-277",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "NOTAM says glide slope for Runway15 is unserviceable,confirm."
+          "context": "NOTAM says glide slope for Runway 15 is unserviceable, confirm."
         },
         {
           "id": "sentence900-main-649",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "The NOTAM says the ILS is unserviceable, but we are still picking up the Morse Code, confirm i"
+          "context": "The NOTAM says the ILS is unserviceable, but we are still picking up the Morse Code, confirm it is still in operat"
         }
       ]
     },
@@ -893,7 +893,7 @@
         {
           "id": "sentence900-main-443",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "have malfunctioned. Request rapid descent to MEA ."
+          "context": "have malfunctioned. Request rapid descent to MEA."
         },
         {
           "id": "sentence900-main-840",
@@ -932,7 +932,7 @@
         {
           "id": "opi-core-521",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0041.json",
-          "context": "tion of the Ground Proximity Warning System (GPWS)?\nThe function of GPWS is to help prevent controlled flight into terrain. It monitor"
+          "context": "What is the function of GPWS?\nThe function of GPWS is to help prevent controlled flight into terrain. It monitors the aircraft's proxi"
         }
       ]
     },
@@ -965,7 +965,7 @@
         {
           "id": "atc-scenario-0074-card-main-1278",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0074.json",
-          "context": "y 36R, tell the controller you can't see the PAPI lights.\nGuangzhou Tower, CSN 817, established on ILS approach Runway 36R, we can't s"
+          "context": "y 36R, tell the controller you can't see the PAPI lights.\nGuangzhou Tower, CSN 817, established on ILS approach Runway 36R, we can't see the PAPI lights."
         }
       ]
     },
@@ -998,7 +998,7 @@
         {
           "id": "listening-main-1237",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "127, go around, fly runway heading, possible FOD on the runway.\nQuestion: Why did the controller instruct DAL 127 go around.\n正确答案：B. "
+          "context": "127, go around, fly runway heading, possible FOD on the runway. Question: Why did the controller instruct DAL 127 go around.\n正确答案：B. Due possible foreign o"
         }
       ]
     },
@@ -1030,7 +1030,7 @@
         {
           "id": "opi-fzy-224313",
           "source": "content/question-banks/banks/opi/topics/opi-fzy-1679.json",
-          "context": "What is ELT?\nELT is short for Emergency Locator Transmitter. It is an important safety device on"
+          "context": "What is ELT?\nELT is short for Emergency Locator Transmitter. It is an important safety device on aircraft, used to aut"
         }
       ]
     },
@@ -1058,12 +1058,12 @@
         {
           "id": "sentence900-main-650",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "We have an engine failure. Following ETOPS procedure, request descent to FL200, maintain high speed and proceed direct to alter"
+          "context": "We have an engine failure. Following ETOPS procedure, request descent to FL200, maintain high speed and proceed direct to alternate airport."
         },
         {
           "id": "listening-main-210",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "Climbing in ETOPS and extended range twin engine operation of flight requires understanding of operati"
+          "context": "Climbing in ETOPS and extended range twin engine operation of flight requires understanding of operational procedure, crit"
         }
       ]
     },
@@ -1088,12 +1088,12 @@
         {
           "id": "sentence900-main-732",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "The latest SIGMET says a super-cell thunderstorm is developing at our destination. Is our flight affec"
+          "context": "The latest SIGMET says a super-cell thunderstorm is developing at our destination. Is our flight affected?"
         },
         {
           "id": "radiotelephony-fzy-223734",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1671.json",
-          "context": " [Now you are leveling at 10400m, the latest SIGMET says a super cell thunderstorm is developing along your route, you want to deviate 2"
+          "context": " [Now you are leveling at 10400m, the latest SIGMET says a super cell thunderstorm is developing along your route, you want to deviate 20 miles to the left"
         }
       ]
     },
@@ -1217,12 +1217,12 @@
         {
           "id": "atc-scenario-0005-card-main-086",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0005.json",
-          "context": ": You are maintaining 5100 meters, over LKO, ATIS B received, now contact Wuhan Approach.\nWuhan Approach, QFA 358, maintaining 5100 me"
+          "context": ": You are maintaining 5100 meters, over LKO, ATIS B received, now contact Wuhan Approach.\nWuhan Approach, QFA 358, maintaining 5100 meters, over LKO, infor"
         },
         {
           "id": "atc-scenario-0007-card-main-112",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0007.json",
-          "context": " you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Singapore.\nWuhan Delivery, SIA 852, stand 7, information"
+          "context": " you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Singapore.\nWuhan Delivery, SIA 852, stand 7, information M, request clearance"
         }
       ]
     },
@@ -1249,12 +1249,12 @@
         {
           "id": "listening-main-789",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "The primary purpose of an SOP in aviation is to define standardized procedures for consistency, efficiency, and sa"
+          "context": "The primary purpose of an SOP in aviation is to define standardized procedures for consistency, efficiency, and safety. This helps reduc"
         },
         {
           "id": "opi-core-004",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0001.json",
-          "context": "ntain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situatio"
+          "context": "ntain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situation to ATC. If the damag"
         }
       ]
     },
@@ -1281,12 +1281,12 @@
         {
           "id": "atc-scenario-0076-card-main-1303",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0076.json",
-          "context": "B: The maintenance staff has deferred an MEL item regarding APU, contact Ground and tell the controller you will be ready to star"
+          "context": "B: The maintenance staff has deferred an MEL item regarding APU, contact Ground and tell the controller you will be ready to start 1 engine at the bay "
         },
         {
           "id": "atc-scenario-0118-card-main-2034",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0118.json",
-          "context": "B: The maintenance staff has deferred an MEL item regarding APU, contact Ground and tell the controller you will be ready to star"
+          "context": "B: The maintenance staff has deferred an MEL item regarding APU, contact Ground and tell the controller you will be ready to start 1 engine at the bay "
         }
       ]
     },
@@ -1315,12 +1315,12 @@
         {
           "id": "listening-fzy-110505",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "g Control, CSN633, from Guanghan to Luoyang, VFR 3600m QNH 1008, estimating zone boundary 1052, VENON 02, information R.\nQ: What is t"
+          "context": "g Control, CSN633, from Guanghan to Luoyang, VFR 3600m QNH 1008, estimating zone boundary 1052, VENON 02, information R.\nQ: What is the ETA to the zone bou"
         },
         {
           "id": "listening-fzy-110528",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "PIL: The weather is below VFR criteria. There is a fog band obscuring the south end of the runway, request instrum"
+          "context": "PIL: The weather is below VFR criteria. There is a fog band obscuring the south end of the runway, request instrument approach landing, "
         }
       ]
     },
@@ -1348,12 +1348,12 @@
         {
           "id": "listening-main-1212",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "ed factors. Sources of pilots' errors in the IFR environment include misunderstanding a chart, failure to understand a clearance, ina"
+          "context": "ed factors. Sources of pilots' errors in the IFR environment include misunderstanding a chart, failure to understand a clearance, inability to use equipmen"
         },
         {
           "id": "listening-main-481",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "According to AIM, the pilot should file an IFR flight plan at least four hours before departure. However, it is common for many pro"
+          "context": "According to AIM, the pilot should file an IFR flight plan at least four hours before departure. However, it is common for many professional pilots to fi"
         }
       ]
     },
@@ -1381,12 +1381,12 @@
         {
           "id": "listening-main-677",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "nutes of its operation.\nQuestion: What's the CVR's recording duration requirement of fixed-wing airplanes and helicopters?\n正确答案：D. At"
+          "context": "nutes of its operation. Question: What's the CVR's recording duration requirement of fixed-wing airplanes and helicopters?\n正确答案：D. At least 30 minutes."
         },
         {
           "id": "opi-core-114",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0006.json",
-          "context": "What is a cockpit voice recorder (CVR)?\nCVR stands for Cockpit Voice Recorder. It records cockpit audio, including crew co"
+          "context": "What is CVR?\nCVR stands for Cockpit Voice Recorder. It records cockpit audio, including crew communications, radio tra"
         }
       ]
     },
@@ -1395,8 +1395,8 @@
       "category": "aviation-abbreviation",
       "weight": 2,
       "reason": "题库原文中的明确航空专业缩写，低权重领域提示。",
-      "cardCount": 25,
-      "uniqueTextCount": 25,
+      "cardCount": 26,
+      "uniqueTextCount": 26,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -1417,7 +1417,7 @@
         {
           "id": "listening-main-321",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "estion: What are they talking about?\n正确答案：B. CRM"
+          "context": "estion: What are they talking about?\n正确答案：B. CRM."
         }
       ]
     },
@@ -1444,12 +1444,12 @@
         {
           "id": "listening-main-1219",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": " with electronic flight instrument displays (EFIS) instead of traditional mechanical gauges. These systems offer greater functionality"
+          "context": " with electronic flight instrument displays (EFIS) instead of traditional mechanical gauges. These systems offer greater functionality, integration, and si"
         },
         {
           "id": "listening-main-774",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "Electronic Flight Instrument Systems (EFIS) are standard in modern aircraft, replacing traditional analog gauges with digital s"
+          "context": "Electronic Flight Instrument Systems (EFIS) are standard in modern aircraft, replacing traditional analog gauges with digital screens that provide i"
         }
       ]
     },
@@ -1475,12 +1475,12 @@
         {
           "id": "opi-core-572",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0046.json",
-          "context": "traffic. It has adopted technologies such as HUD, GNSS, and artificial intelligence and strengthened international cooperation. The d"
+          "context": "traffic. It has adopted technologies such as HUD, GNSS, and artificial intelligence and strengthened international cooperation. The development of domestic"
         },
         {
           "id": "opi-core-613",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0053.json",
-          "context": "What is a head-up display (HUD)?\nHUD stands for head-up display. It projects flight information onto a transparent "
+          "context": "What is HUD?\nHUD stands for head-up display. It projects flight information onto a transparent display in the pilot's "
         }
       ]
     },
@@ -1507,12 +1507,12 @@
         {
           "id": "listening-main-1225",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "rol and follow the Quick Reference Handbook (QRH) procedures to ensure safe handling of the situation before attempting any correctiv"
+          "context": "rol and follow the Quick Reference Handbook (QRH) procedures to ensure safe handling of the situation before attempting any corrective action. Question: In"
         },
         {
           "id": "opi-core-198",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0016.json",
-          "context": "nding terrain, follow the applicable SOP and QRH, and report the situation to ATC. They can request assistance or a priority landing "
+          "context": "nding terrain, follow the applicable SOP and QRH, and report the situation to ATC. They can request assistance or a priority landing and consider diverting"
         }
       ]
     },
@@ -1541,12 +1541,12 @@
         {
           "id": "listening-main-787",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "The Primary Flight Display (PFD) is a key component of the EFIS system, showing critical flight parameters like airs"
+          "context": "The Primary Flight Display (PFD) is a key component of the EFIS system, showing critical flight parameters like airspeed, altitude, attitu"
         },
         {
           "id": "opi-core-837",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0083.json",
-          "context": "ss cockpit uses digital displays such as the PFD and MFD to combine attitude, altitude, airspeed, navigation, and weather information"
+          "context": "ss cockpit uses digital displays such as the PFD and MFD to combine attitude, altitude, airspeed, navigation, and weather information. These displays can a"
         }
       ]
     },
@@ -1573,12 +1573,12 @@
         {
           "id": "opi-core-513",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0039.json",
-          "context": "hat is a Global Navigation Satellite System (GNSS)?\nGNSS stands for Global Navigation Satellite System. It is a family of satellite na"
+          "context": "What is GNSS?\nGNSS stands for Global Navigation Satellite System. It is a family of satellite navigation systems that "
         },
         {
           "id": "opi-core-514",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0039.json",
-          "context": "d in the Global Navigation Satellite System (GNSS)?\nGNSS includes GPS from the United States, GLONASS from Russia, Galileo from Europe"
+          "context": "te navigation constellations are included in GNSS?\nGNSS includes GPS from the United States, GLONASS from Russia, Galileo from Europe, and the BeiDou Navig"
         }
       ]
     },
@@ -1606,12 +1606,12 @@
         {
           "id": "listening-main-1008",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": " accidents are loss of control in flight and CFIT. System or component failure, powerplant, system or component failure, non-powerplan"
+          "context": " accidents are loss of control in flight and CFIT. System or component failure, powerplant, system or component failure, non-powerplant, midair collisions "
         },
         {
           "id": "listening-main-676",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": ": What is the speaker talking about?\n正确答案：D. CFIT"
+          "context": ": What is the speaker talking about?\n正确答案：D. CFIT."
         }
       ]
     },
@@ -1643,7 +1643,7 @@
         {
           "id": "opi-core-262",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0041.json",
-          "context": "How can EGPWS support safe operations at a complex airport?\nAt a complex airport, EGPWS can warn t"
+          "context": "How can EGPWS support safe operations at a complex airport?\nAt a complex airport, EGPWS can warn the crew when the air"
         }
       ]
     },
@@ -1670,12 +1670,12 @@
         {
           "id": "listening-main-786",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "The MFD in a digital cockpit serves as a supplementary display for navigation, weather, comm"
+          "context": "The MFD in a digital cockpit serves as a supplementary display for navigation, weather, communication, and engine "
         },
         {
           "id": "opi-core-837",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0083.json",
-          "context": "it uses digital displays such as the PFD and MFD to combine attitude, altitude, airspeed, navigation, and weather information. These "
+          "context": "it uses digital displays such as the PFD and MFD to combine attitude, altitude, airspeed, navigation, and weather information. These displays can also prov"
         }
       ]
     },
@@ -1703,12 +1703,12 @@
         {
           "id": "listening-fzy-110884",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": ".\nCTL: CES205, if able, report problem.\nPIL: ECAM indicated nose landing gear alignment failure, CES205.\nQ: Which of the following mig"
+          "context": ".\nCTL: CES205, if able, report problem.\nPIL: ECAM indicated nose landing gear alignment failure, CES205.\nQ: Which of the following might have caused the mi"
         },
         {
           "id": "listening-main-083",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "mperature indication in the wheel well on my ECAM.\nQuestion: Why does the flight crew request to come back?\n正确答案：C. Undercarriage over"
+          "context": "mperature indication in the wheel well on my ECAM. Question: Why does the flight crew request to come back?\n正确答案：C. Undercarriage overheating."
         }
       ]
     },
@@ -1734,12 +1734,12 @@
         {
           "id": "opi-core-621",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0054.json",
-          "context": "What is an electronic flight bag (EFB)?\nEFB stands for electronic flight bag. It is a digital device that can store manual"
+          "context": "What is EFB?\nEFB stands for electronic flight bag. It is a digital device that can store manuals, charts, flight plans"
         },
         {
           "id": "opi-core-622",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0054.json",
-          "context": "Do you often use an EFB in your daily flight operations?\nYes, I often use an EFB in daily flight operations."
+          "context": "Do you often use an EFB in your daily flight operations?\nYes, I often use an EFB in daily flight operations. It gives me important"
         }
       ]
     },
@@ -1766,12 +1766,12 @@
         {
           "id": "listening-main-678",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": " of lift and drag devices. The purpose of an FDR is to collect and record data from a variety of aircraft sensors onto a medium desig"
+          "context": " of lift and drag devices. The purpose of an FDR is to collect and record data from a variety of aircraft sensors onto a medium designed to survive an acci"
         },
         {
           "id": "opi-core-131",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0006.json",
-          "context": "What is a flight data recorder (FDR)?\nFDR stands for flight data recorder. It records flight parameters such as airspeed"
+          "context": "What is FDR?\nFDR stands for flight data recorder. It records flight parameters such as airspeed, altitude, attitude, t"
         }
       ]
     },
@@ -1797,12 +1797,12 @@
         {
           "id": "opi-extra-369",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0147.json",
-          "context": "How does a visual approach slope indicator (VASI) help a pilot during an approach?\nA VASI is a light system beside the runway that he"
+          "context": "How does VASI help a pilot during an approach?\nA VASI is a light system beside the runway that helps a pilot judge the "
         },
         {
           "id": "opi-extra-370",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0147.json",
-          "context": "s between a visual approach slope indicator (VASI) and a precision approach path indicator (PAPI)?\nA VASI normally uses two or three l"
+          "context": "What are the main differences between VASI and PAPI?\nA VASI normally uses two or three light bars and gives broader red-and-white indications of the"
         }
       ]
     },
@@ -1828,12 +1828,12 @@
         {
           "id": "atc-scenario-0029-card-main-506",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0029.json",
-          "context": "C: BAW 141, Beijing roger, Beijing CAVOK, your position is 25 miles northeast of VYK ON a heading of about 070, expect small "
+          "context": "C: BAW 141, Beijing roger, Beijing CAVOK, your position is 25 miles northeast of VYK ON a heading of about 070, expect small correcting turns to "
         },
         {
           "id": "listening-fzy-110758",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "way 36L, runway surface wet. Wind 040, 6m/s. CAVOK, temperature 30, dew point 24, QNH 1010. Work in progress near beginning of runway 3"
+          "context": "way 36L, runway surface wet. Wind 040, 6m/s. CAVOK, temperature 30, dew point 24, QNH 1010. Work in progress near beginning of runway 36L, taxiway B closed"
         }
       ]
     },
@@ -1858,12 +1858,12 @@
         {
           "id": "listening-fzy-110616",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "track to destination Orange County, standard VORTAC one departure, runway 23R, squawk 2512, call radar 125.6 when airborne.\nQ: What is t"
+          "context": "track to destination Orange County, standard VORTAC one departure, runway 23R, squawk 2512, call radar 125.6 when airborne.\nQ: What is the squawk code?\n正确答"
         },
         {
           "id": "story-koala-060",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "rn to intercept the 160 degree radial of the VORTAC. It appears the pilot likely misinterpreted the missed approach instructions by maki"
+          "context": "rn to intercept the 160 degree radial of the VORTAC. It appears the pilot likely misinterpreted the missed approach instructions by making the right hand t"
         }
       ]
     },
@@ -1889,12 +1889,12 @@
         {
           "id": "listening-main-544",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "ay expect reports from pilots regarding VOR, ADF, low frequency navigation receivers, impairment of Air ground communications capabil"
+          "context": "ay expect reports from pilots regarding VOR, ADF, low frequency navigation receivers, impairment of Air ground communications capability, or other equipmen"
         },
         {
           "id": "opi-fzy-109905",
           "source": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
-          "context": "s, for instance, automatic direction finder (ADF), inertial navigation, compasses, radar navigation, VHF omnidirectional range (VOR) "
+          "context": "s, for instance, automatic direction finder (ADF), inertial navigation, compasses, radar navigation, VHF omnidirectional range (VOR) and global navigation "
         }
       ]
     },
@@ -1919,7 +1919,7 @@
         {
           "id": "listening-main-891",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "Engine Indications and Crew Alerting System (EICAS) provides real-time monitoring of engine performance and alerts the crew to anomalie"
+          "context": "Engine Indications and Crew Alerting System (EICAS) provides real-time monitoring of engine performance and alerts the crew to anomalies such as flameouts "
         },
         {
           "id": "opi-extra-376",
@@ -1948,7 +1948,7 @@
         {
           "id": "listening-fzy-110669",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "009, informed dispatcher of your problem via ACARS so they are aware of your delay of about 30 minutes.\nPIL: Roger, CSN3009.\nQ: What di"
+          "context": "009, informed dispatcher of your problem via ACARS so they are aware of your delay of about 30 minutes.\nPIL: Roger, CSN3009.\nQ: What did the controller inf"
         },
         {
           "id": "opi-fzy-224480",
@@ -1976,7 +1976,7 @@
         {
           "id": "opi-core-467",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0033.json",
-          "context": "What is performance-based navigation (PBN)?\nPBN stands for performance-based navigation. It includes RNAV and RNP and can allo"
+          "context": "What is PBN?\nPBN stands for performance-based navigation. It includes RNAV and RNP and can allow an aircraft to fly di"
         },
         {
           "id": "opi-core-469",
@@ -2032,12 +2032,12 @@
         {
           "id": "listening-fzy-110702",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "est taxi delay.\nCTL: CES5215, do you require GPU assistance?\nPIL: Affirm, correction, negative, APU is available now.\nQ: What might t"
+          "context": "est taxi delay.\nCTL: CES5215, do you require GPU assistance?\nPIL: Affirm, correction, negative, APU is available now.\nQ: What might the pilot want to do?\n正"
         },
         {
           "id": "listening-main-549",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "und services for us, and see if we can use a GPU? C: NWA 146, stand by, I will inform them.\nQuestion: what does the crew want?\n正确答案：B"
+          "context": "und services for us, and see if we can use a GPU? C: NWA 146, stand by, I will inform them.\nQuestion: what does the crew want?\n正确答案：B. To start up with gro"
         }
       ]
     },
@@ -2060,12 +2060,12 @@
         {
           "id": "listening-main-012",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "has a transponder on board?\n正确答案：A. To get a SSR code"
+          "context": "has a transponder on board?\n正确答案：A. To get a SSR code."
         },
         {
           "id": "listening-main-1169",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": ".\nQuestion: What is the squawk code (=squawk/SSR code)?\n正确答案：C. 2512"
+          "context": ".\nQuestion: What is the squawk code (=squawk/SSR code)?\n正确答案：C. 2512."
         }
       ]
     },
@@ -2088,12 +2088,12 @@
         {
           "id": "radiotelephony-fzy-111406",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-622.json",
-          "context": "UAL865, direct to IAF of runway 36R, contact Wuhan Control 125.5.[Read Back]\nDirect to IAF of runway 36R, "
+          "context": "UAL865, direct to IAF of runway 36R, contact Wuhan Control 125.5.[Read Back]\nDirect to IAF of runway 36R, Wuhan Control 125.5, U"
         },
         {
           "id": "radiotelephony-fzy-111407",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-622.json",
-          "context": "[Tell Wuhan Control, you are directing to IAF of runway 36R, declare you are minimum fuel. Ask to direct to FAF of runway 36R. Thi"
+          "context": "Tell Wuhan Control, you are directing to IAF of runway 36R, declare you are minimum fuel. Ask to direct to FAF of runway 36R. This is an urgency call.\n"
         }
       ]
     },
@@ -2116,7 +2116,7 @@
         {
           "id": "radiotelephony-fzy-111407",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-622.json",
-          "context": "clare you are minimum fuel. Ask to direct to FAF of runway 36R. This is an urgency call.]\nPANPAN, PANPAN, PANPAN, Wuhan Control, UAL8"
+          "context": "clare you are minimum fuel. Ask to direct to FAF of runway 36R. This is an urgency call.\nPANPAN, PANPAN, PANPAN, Wuhan Control, UAL865, minimum fuel, reque"
         },
         {
           "id": "radiotelephony-fzy-111408",
@@ -2143,7 +2143,7 @@
         {
           "id": "opi-core-834",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0082.json",
-          "context": "How does a SNOWTAM differ from other Notices to Airmen (NOTAMs)?\nA NOTAM provides general operational i"
+          "context": "How does a SNOWTAM differ from other Notices to Airmen (NOTAMs)?\nA NOTAM provides general operational information about c"
         }
       ]
     },
@@ -2165,7 +2165,7 @@
         {
           "id": "listening-fzy-219601",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "uding the weather forecast, the flight plan, VOLMET, NOTAM etc. Nowadays the electronic flight packages have been widely used in modern "
+          "context": "uding the weather forecast, the flight plan, VOLMET, NOTAM etc. Nowadays the electronic flight packages have been widely used in modern aircraft.\nQ: Which "
         }
       ]
     },
@@ -2262,12 +2262,12 @@
         {
           "id": "sentence900-main-075",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Cleared to the 180 radial of PER VOR at 15 DME. Hold south, left hand pattern, outbound time 2 minutes, expect"
+          "context": "Cleared to the 180 radial of PER VOR at 15 DME. Hold south, left hand pattern, outbound time 2 minutes, expect approach clearance"
         },
         {
           "id": "sentence900-main-316",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Hold on the 265 radial of BKM VOR between 25 and 30 miles DME, FL100, inbound track 085, right hand pattern"
+          "context": "Hold on the 265 radial of BKM VOR between 25 and 30 miles DME, FL100, inbound track 085, right hand pattern, expected approach"
         }
       ]
     },
@@ -2297,12 +2297,12 @@
         {
           "id": "sentence900-main-078",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": ", initial altitude 7000 feet. HZ01 Departure,squawk 2563, departure frequency 124.35."
+          "context": " initial altitude 7000 feet. HZ01 Departure, squawk 2563, departure frequency 124.35."
         },
         {
           "id": "sentence900-main-079",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "ned route, D03 Departure,cruising level 230, squawk 3763."
+          "context": "ed route, D03 Departure, cruising level 230, squawk 3763."
         }
       ]
     },
@@ -2499,12 +2499,12 @@
         {
           "id": "atc-scenario-0014-card-main-236",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0014.json",
-          "context": "C: SIA 334, readback correct, when ready for push back and start up, contact Ground 118.9.\n118.9, SIA 334"
+          "context": "C: SIA 334, readback correct, when ready for push back and start up, contact Ground 118.9.\n118.9, SIA 334."
         },
         {
           "id": "atc-scenario-0116-card-main-1999",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0116.json",
-          "context": "CSN 3102, readback correct, contact Beijing Ground on 121.95 when ready for pushback and startup.\n121.9"
+          "context": "CSN 3102, readback correct, contact Beijing Ground on 121.95 when ready for pushback and startup.\n121.95, CSN 3102."
         }
       ]
     },
@@ -2514,7 +2514,7 @@
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
       "cardCount": 186,
-      "uniqueTextCount": 183,
+      "uniqueTextCount": 182,
       "sentence900Count": 11,
       "banks": [
         "listening",
@@ -2651,7 +2651,7 @@
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
       "cardCount": 104,
-      "uniqueTextCount": 90,
+      "uniqueTextCount": 89,
       "sentence900Count": 8,
       "banks": [
         "listening",
@@ -2736,12 +2736,12 @@
         {
           "id": "atc-scenario-0009-card-main-150",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0009.json",
-          "context": "clare an emergency and make a Distress call.\nMAYDAY MAYDAY MAYDAY, HongKong Control, SIA 101, request immediately divert to HongKong due"
+          "context": "clare an emergency and make a Distress call.\nMAYDAY MAYDAY MAYDAY, HongKong Control, SIA 101, request immediately divert to HongKong due cabin fire."
         },
         {
           "id": "atc-scenario-0009-card-main-151",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0009.json",
-          "context": "C: SIA 101, roger your MAYDAY, fly heading 010 and descend to FL110.\nFly heading 010 and descend to FL110, SIA 101"
+          "context": "C: SIA 101, roger your MAYDAY, fly heading 010 and descend to FL110.\nFly heading 010 and descend to FL110, SIA 101."
         }
       ]
     },
@@ -2770,12 +2770,12 @@
         {
           "id": "atc-scenario-0001-card-main-019",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "adar vector to Beijing for priority landing.\nPANPAN PANPAN PANPAN, Beijing Approach, QFA 432, No.1 and No.2 engines have failed due to s"
+          "context": "adar vector to Beijing for priority landing.\nPANPAN PANPAN PANPAN, Beijing Approach, QFA 432, No.1 and No.2 engines have failed due to sandstorm, request r"
         },
         {
           "id": "atc-scenario-0003-card-main-053",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0003.json",
-          "context": "rs and then return to land at Wuhan Airport.\nPANPAN PANPAN PANPAN, Wuhan Approach, QFA 923, 1 of our hydraulic systems has failed, reque"
+          "context": "rs and then return to land at Wuhan Airport.\nPANPAN PANPAN PANPAN, Wuhan Approach, QFA 923, 1 of our hydraulic systems has failed, request level off at 450"
         }
       ]
     },
@@ -2820,7 +2820,7 @@
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
       "cardCount": 94,
-      "uniqueTextCount": 92,
+      "uniqueTextCount": 91,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -2869,12 +2869,12 @@
         {
           "id": "story-koala-083",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "ver the aircraft position in relation to the glideslope during the automatic approach. The flight was conducted at night in the weather cond"
+          "context": "ver the aircraft position in relation to the glideslope during the automatic approach. The flight was conducted at night in the weather conditions, which i"
         },
         {
           "id": "story-koala-093",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": ", one pilot believed they were capturing the glideslope, the other pilot believed they were on localizer and above glide. The crew changed f"
+          "context": ", one pilot believed they were capturing the glideslope, the other pilot believed they were on localizer and above glide. The crew changed from automatic g"
         }
       ]
     },
@@ -2944,7 +2944,7 @@
         {
           "id": "listening-main-583",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": ", the approach and turbulence air with gusty crosswind may require the use of partial flaps.\nQuestion: what may be required to use for an a"
+          "context": ", the approach and turbulence air with gusty crosswind may require the use of partial flaps. Question: what may be required to use for an approach and turb"
         }
       ]
     },
@@ -2979,7 +2979,7 @@
         {
           "id": "atc-scenario-0008-card-main-132",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0008.json",
-          "context": "ing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.\nWuhan Tower, SIA 123, wind sock shows strong tailw"
+          "context": "ing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.\nWuhan Tower, SIA 123, wind sock shows strong tailwind, request wind"
         }
       ]
     },
@@ -3013,7 +3013,7 @@
         {
           "id": "listening-main-1209",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "C: CCA 981, windshear warning, strong low level windshear observed in the vicinity of Beijing airport at 1"
+          "context": "C: CCA 981, windshear warning, strong low level windshear observed in the vicinity of Beijing airport at 1400 hours, what'"
         }
       ]
     },
@@ -3081,7 +3081,7 @@
         {
           "id": "listening-fzy-110697",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "L: CCA121, line up and wait, traffic turning upwind.\nPIL: Roger, line up and wait, CCA121.\nQ: According to the statement, why must CCA12"
+          "context": "L: CCA121, line up and wait, traffic turning upwind.\nPIL: Roger, line up and wait, CCA121.\nQ: According to the statement, why must CCA121 hold?\n正确答案：C. An "
         }
       ]
     },
@@ -3108,12 +3108,12 @@
         {
           "id": "listening-fzy-116571",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "When flying an approach in a strong gusty headwind, Vref should be adjusted by half the headwind and full gust speed.\nQ: In windy condi"
+          "context": "When flying an approach in a strong gusty headwind, Vref should be adjusted by half the headwind and full gust speed.\nQ: In windy conditions, how much s"
         },
         {
           "id": "opi-core-045",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0003.json",
-          "context": " slope during approach?\nA sudden increase in headwind can raise indicated airspeed and lift, causing the aircraft to move above the glide "
+          "context": " slope during approach?\nA sudden increase in headwind can raise indicated airspeed and lift, causing the aircraft to move above the glide slope. A downdraf"
         }
       ]
     },
@@ -3123,7 +3123,7 @@
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
       "cardCount": 387,
-      "uniqueTextCount": 346,
+      "uniqueTextCount": 345,
       "sentence900Count": 7,
       "banks": [
         "listening",
@@ -3157,9 +3157,9 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 2346,
-      "uniqueTextCount": 2183,
-      "sentence900Count": 98,
+      "cardCount": 2354,
+      "uniqueTextCount": 2188,
+      "sentence900Count": 99,
       "banks": [
         "listening",
         "opi",
@@ -3217,7 +3217,7 @@
         {
           "id": "atc-scenario-0015-card-main-250",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0015.json",
-          "context": "B: Your position is just over LKO, the next waypoint is DAPRO, ETA at time 34, make the standard position report and request climb.\nWuhan"
+          "context": "B: Your position is just over LKO, the next waypoint is DAPRO, ETA at time 34, make the standard position report and request climb.\nWuhan Control, AFR 113"
         }
       ]
     },
@@ -3227,7 +3227,7 @@
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
       "cardCount": 100,
-      "uniqueTextCount": 98,
+      "uniqueTextCount": 97,
       "sentence900Count": 9,
       "banks": [
         "listening",
@@ -3247,7 +3247,7 @@
         {
           "id": "sentence900-main-581",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "o abort takeoff because I didn’t receive any airspeed indication."
+          "context": "o abort takeoff because I didn't receive any airspeed indication."
         },
         {
           "id": "sentence900-main-582",
@@ -3274,7 +3274,7 @@
         {
           "id": "listening-fzy-110500",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "IL: Wuhan Tower, CSN206, thrust reverser and airbrake failed, request taxi back to apron.\nQ: Which parts of the aircraft have problems?\n正确"
+          "context": "IL: Wuhan Tower, CSN206, thrust reverser and airbrake failed, request taxi back to apron.\nQ: Which parts of the aircraft have problems?\n正确答案：C. Thrust reve"
         }
       ]
     },
@@ -3307,7 +3307,7 @@
         {
           "id": "sentence900-main-682",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "We still cannot retract the thrust reverser. Our approach speed will be higher than normal. Request vectors for the longest Runw"
+          "context": "We still cannot retract the thrust reverser. Our approach speed will be higher than normal. Request vectors for the longest Runway."
         }
       ]
     },
@@ -3369,12 +3369,12 @@
         {
           "id": "listening-fzy-110846",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "er one. Confirm current condition.\nPIL: Left aileron is out of control due torn-off wing tip, AFR230.\nQ: According to the dialogue, which"
+          "context": "er one. Confirm current condition.\nPIL: Left aileron is out of control due torn-off wing tip, AFR230.\nQ: According to the dialogue, which part of the aircr"
         },
         {
           "id": "listening-main-076",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "been struck by lightning, the right outboard aileron was damaged. C: SIA 303, make sure there’s no other damage to the aircraft. P: I am "
+          "context": "been struck by lightning, the right outboard aileron was damaged. C: SIA 303, make sure there's no other damage to the aircraft. P: I am checking now. I wi"
         }
       ]
     },
@@ -3401,12 +3401,12 @@
         {
           "id": "listening-fzy-110632",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "A: The rudder pedal’s pressure is not sufficient when apply. We suspect it must be leakage in the "
+          "context": "A: The rudder pedal's pressure is not sufficient when apply. We suspect it must be leakage in the hydraulic system.\nB"
         },
         {
           "id": "listening-fzy-110713",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "p to 20 degrees, something is wrong with the rudder.\nCTL: CCA108, confirm you have a problem with the radar?\nQ: According to the pilot, "
+          "context": "p to 20 degrees, something is wrong with the rudder.\nCTL: CCA108, confirm you have a problem with the radar?\nQ: According to the pilot, what was malfunctio"
         }
       ]
     },
@@ -3440,7 +3440,7 @@
         {
           "id": "atc-scenario-0062-card-main-1073",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0062.json",
-          "context": "F, and that you had to abort takeoff because flap setting is incorrect.\nWuhan Ground, CCA 976, runway vacated at F, we had to abort ta"
+          "context": "F, and that you had to abort takeoff because flap setting is incorrect.\nWuhan Ground, CCA 976, runway vacated at F, we had to abort takeoff due to incorrec"
         }
       ]
     },
@@ -3449,8 +3449,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 96,
-      "uniqueTextCount": 94,
+      "cardCount": 97,
+      "uniqueTextCount": 95,
       "sentence900Count": 5,
       "banks": [
         "listening",
@@ -3484,8 +3484,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 21,
-      "uniqueTextCount": 21,
+      "cardCount": 22,
+      "uniqueTextCount": 22,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -3504,12 +3504,12 @@
         {
           "id": "atc-scenario-0092-card-main-1596",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0092.json",
-          "context": "B: During approach, your slats can't be extended, request the longer Runway 36R and state the reason.\nWuhan Approac"
+          "context": "B: During approach, your slats can't be extended, request the longer Runway 36R and state the reason.\nWuhan Approach, CES 565, our slat"
         },
         {
           "id": "atc-scenario-0133-card-main-2305",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0133.json",
-          "context": "during approach, your slats can't be extended, request the longer Runway 36R and state the reason.\nWuhan Approac"
+          "context": "during approach, your slats can't be extended, request the longer Runway 36R and state the reason.\nWuhan Approach, CES 565, our slat"
         }
       ]
     },
@@ -3538,12 +3538,12 @@
         {
           "id": "atc-scenario-0102-card-main-1765",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0102.json",
-          "context": "our aircraft left wingtip collided with left stabilizer of Airbus 330 during taxiing, report it to the controller and ask for assistance.\nBe"
+          "context": "our aircraft left wingtip collided with left stabilizer of Airbus 330 during taxiing, report it to the controller and ask for assistance.\nBeijing East Grou"
         },
         {
           "id": "listening-fzy-110551",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "asked the first officer to check whether the stabilizer was jammed.\nQ: According to the statement, what problem might the aircraft have?\n正确答"
+          "context": "asked the first officer to check whether the stabilizer was jammed.\nQ: According to the statement, what problem might the aircraft have?\n正确答案：D. Pitch trim"
         }
       ]
     },
@@ -3606,12 +3606,12 @@
         {
           "id": "atc-scenario-0035-card-main-607",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
-          "context": "icates cabin altitude is rising slowly, slow depressurization is suspected, request immediate descent from 10700 meters to 3000 meters. This is an"
+          "context": "icates cabin altitude is rising slowly, slow depressurization is suspected, request immediate descent from 10700 meters to 3000 meters. This is an Urgency "
         },
         {
           "id": "atc-scenario-0067-card-main-1155",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0067.json",
-          "context": "bin pressure, tell the controller the due to depressurization, you're initiating an emergency descent. You do not consider this to be a Distress o"
+          "context": "bin pressure, tell the controller the due to depressurization, you're initiating an emergency descent. You do not consider this to be a Distress or Urgency"
         }
       ]
     },
@@ -3645,7 +3645,7 @@
         {
           "id": "listening-fzy-110852",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "PIL: PANPAN, PANPAN, PANPAN, CSN309. Decompression in the cockpit. Request priority landing. We heard a thump, our windshield panel app"
+          "context": "PIL: PANPAN, PANPAN, PANPAN, CSN309. Decompression in the cockpit. Request priority landing. We heard a thump, our windshield panel appears to be c"
         }
       ]
     },
@@ -3679,7 +3679,7 @@
         {
           "id": "listening-main-905",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "Rapid decompression can lead to hypoxia and physical symptoms like dizziness and nosebleeds, but not increased body temperat"
+          "context": "Rapid decompression can lead to hypoxia and physical symptoms like dizziness and nosebleeds, but not increased body temperature. Question: Whi"
         }
       ]
     },
@@ -3688,8 +3688,8 @@
       "category": "radiotelephony-term",
       "weight": 2,
       "reason": "题库通话或航空技术语境中出现的术语，仅低权重提示，不做替换。",
-      "cardCount": 38,
-      "uniqueTextCount": 38,
+      "cardCount": 39,
+      "uniqueTextCount": 39,
       "sentence900Count": 1,
       "banks": [
         "listening",
@@ -3713,7 +3713,7 @@
         {
           "id": "listening-fzy-110753",
           "source": "content/question-banks/banks/listening/topics/listening-topic-03.json",
-          "context": "ituations, such as double hydraulic failure, ditching, engine fire, etc. Thus, if they encountered the problems in real flight, they could"
+          "context": "ituations, such as double hydraulic failure, ditching, engine fire, etc. Thus, if they encountered the problems in real flight, they could make decisions c"
         }
       ]
     },
@@ -3796,7 +3796,7 @@
         {
           "id": "sentence900-main-420",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "Cleared to destination airport via DAPRO, flight planned route,FL240, join A1 at FL240."
+          "context": "Cleared to destination airport via DAPRO, flight planned route, FL240, join A1 at FL240."
         }
       ]
     },
@@ -3850,7 +3850,7 @@
         {
           "id": "sentence900-main-316",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Hold on the 265 radial of BKM VOR between 25 and 30 miles DME, FL100, inbound track 085, right hand pattern, expec"
+          "context": "Hold on the 265 radial of BKM VOR between 25 and 30 miles DME, FL100, inbound track 085, right hand pattern, expected approach time 1022"
         }
       ]
     },
@@ -3873,7 +3873,7 @@
         {
           "id": "sentence900-main-403",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "maintaining FL310, estimating MLT at 55,next NLD."
+          "context": "aintaining FL310, estimating MLT at 55, next NLD."
         },
         {
           "id": "sentence900-main-404",
@@ -3906,12 +3906,12 @@
         {
           "id": "sentence900-main-080",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "nation via flight planned route, Runway 36R, LKO-01 Departure, initially climb to 4500 feet, cruising level 310, when airborne contac"
+          "context": "nation via flight planned route, Runway 36R, LKO-01 Departure, initially climb to 4500 feet, cruising level 310, when airborne contact 119.7, squawk 2515."
         },
         {
           "id": "atc-scenario-0003-card-main-041",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0003.json",
-          "context": "ngeles via flight planned route, Runway 36R, LKO-01 departure, initial climb 1500 meters, cruising level 9800 meters, after departure"
+          "context": "ngeles via flight planned route, Runway 36R, LKO-01 departure, initial climb 1500 meters, cruising level 9800 meters, after departure, contact 119.7, squaw"
         }
       ]
     },
@@ -3938,7 +3938,7 @@
         {
           "id": "sentence900-main-053",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "Position OBLIK at 0646, maintaining FL310, estimating ZF 0658,WUH next."
+          "context": "Position OBLIK at 0646, maintaining FL310, estimating ZF 0658, WUH next."
         },
         {
           "id": "atc-scenario-0002-card-main-029",
@@ -3976,7 +3976,7 @@
         {
           "id": "atc-scenario-0011-card-main-192",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0011.json",
-          "context": "arture, radar contact, turn right, direct to WHA, climb to and maintain 3000 meters.\nTurn right, direct to WHA, climb to and maintain"
+          "context": "arture, radar contact, turn right, direct to WHA, climb to and maintain 3000 meters.\nTurn right, direct to WHA, climb to and maintain 3000m, SIA 323."
         }
       ]
     },
@@ -4009,7 +4009,7 @@
         {
           "id": "atc-scenario-0002-card-main-021",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "zhou, you are maintaining 11000 meters, over WXI, your transponder code is 4525, make an initial contact with Zhengzhou Control.\nZhen"
+          "context": "zhou, you are maintaining 11000 meters, over WXI, your transponder code is 4525, make an initial contact with Zhengzhou Control.\nZhengzhou Control, QFA 160"
         }
       ]
     },
@@ -4042,7 +4042,7 @@
         {
           "id": "atc-scenario-0018-card-main-309",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0018.json",
-          "context": "3000 meters on QNH 1012, turn left direct to HUR, hold as published.\nDescend to and maintain 3000 meters on QNH 1012, turn left direc"
+          "context": "3000 meters on QNH 1012, turn left direct to HUR, hold as published.\nDescend to and maintain 3000 meters on QNH 1012, turn left direct to HUR, hold as publ"
         }
       ]
     },
@@ -4075,7 +4075,7 @@
         {
           "id": "atc-scenario-0002-card-main-024",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": ", you can expect further climb after passing ZHO, but for now, continue descent to 9200 meters, reduced to minimum speed due to tempo"
+          "context": ", you can expect further climb after passing ZHO, but for now, continue descent to 9200 meters, reduced to minimum speed due to temporary airways restricti"
         }
       ]
     },
@@ -4103,12 +4103,12 @@
         {
           "id": "sentence900-main-053",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": " 0646, maintaining FL310, estimating ZF 0658,WUH next."
+          "context": "0646, maintaining FL310, estimating ZF 0658, WUH next."
         },
         {
           "id": "atc-scenario-0037-card-main-641",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0037.json",
-          "context": "ting ZF at time 0658, your next way point is WUH, make a standard position report to Wuhan Control.\nWuhan Control, UAL 805, over OBLI"
+          "context": "ting ZF at time 0658, your next way point is WUH, make a standard position report to Wuhan Control.\nWuhan Control, UAL 805, over OBLIK 0646, maintaining 11"
         }
       ]
     },
@@ -4140,7 +4140,7 @@
         {
           "id": "atc-scenario-0086-card-main-1480",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0086.json",
-          "context": " flight planned route, departure Runway 08L, LMN-41 departure, initial climb 1500 meters, cruising level 9200 meters, after departure"
+          "context": " flight planned route, departure Runway 08L, LMN-41 departure, initial climb 1500 meters, cruising level 9200 meters, after departure, contact 119.8, squaw"
         }
       ]
     },
@@ -4171,7 +4171,7 @@
         {
           "id": "atc-scenario-0047-card-main-815",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0047.json",
-          "context": "hou Approach, radar contact, track direct to CGO, descend to 3000 meters, expect radar vector ILS Runway 12.\nTrack direct to CGO, des"
+          "context": "hou Approach, radar contact, track direct to CGO, descend to 3000 meters, expect radar vector ILS Runway 12.\nTrack direct to CGO, descend to 3000 meters, e"
         }
       ]
     },
@@ -4200,7 +4200,7 @@
         {
           "id": "listening-fzy-110656",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "PLT: Beijing Ground, CCA102, request Gate number.\nCTL: CCA102, say again request.\nPIL: R"
+          "context": "PLT: Beijing Ground, CCA102, request Gate number.\nCTL: CCA102, say again request.\nPIL: Request Gate number, CC"
         }
       ]
     },
@@ -4222,7 +4222,7 @@
         {
           "id": "sentence900-main-074",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Hold south of AMS VOR at 9000 feet, inbound track 270 degrees,left hand pattern, outbound time 1 minut"
+          "context": "Hold south of AMS VOR at 9000 feet, inbound track 270 degrees, left hand pattern, outbound time 1 minute. Expect further cle"
         }
       ]
     },
@@ -4244,7 +4244,7 @@
         {
           "id": "sentence900-main-073",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "Cleared to LHR, hold at LHR as published. Maintain 8000 feet.Expect further clearance at 18."
+          "context": "Cleared to LHR, hold at LHR as published. Maintain 8000 feet. Expect further clearance at 18."
         }
       ]
     },
@@ -4266,7 +4266,7 @@
         {
           "id": "sentence900-main-079",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "Cleared to destination via ZAM, flight planned route, D03 Departure,cruising level 230, squawk 3763."
+          "context": "Cleared to destination via ZAM, flight planned route, D03 Departure, cruising level 230, squawk 3763."
         }
       ]
     },
@@ -4288,7 +4288,7 @@
         {
           "id": "sentence900-main-403",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "Passing POU at 43, maintaining FL310, estimating MLT at 55,next NLD."
+          "context": "Passing POU at 43, maintaining FL310, estimating MLT at 55, next NLD."
         }
       ]
     },
@@ -4310,7 +4310,7 @@
         {
           "id": "sentence900-main-403",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
-          "context": "ing POU at 43, maintaining FL310, estimating MLT at 55,next NLD."
+          "context": "ing POU at 43, maintaining FL310, estimating MLT at 55, next NLD."
         }
       ]
     },
@@ -4523,12 +4523,12 @@
         {
           "id": "sentence900-main-053",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
-          "context": "OBLIK at 0646, maintaining FL310, estimating ZF 0658,WUH next."
+          "context": "OBLIK at 0646, maintaining FL310, estimating ZF 0658, WUH next."
         },
         {
           "id": "sentence900-main-081",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Cleared via ZF-01 Departure, initial altitude 5000 feet. Departure frequency 125.9. Cruising level "
+          "context": "Cleared via ZF-01 Departure, initial altitude 5000 feet. Departure frequency 125.9. Cruising level 290, departure Runway 0"
         }
       ]
     },
@@ -4556,12 +4556,12 @@
         {
           "id": "sentence900-main-082",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "via flight plan route. Departure Runway 36L. HZ-01 Departure. Initial altitude 5000 feet. Cruising level 330. Departure frequency 11"
+          "context": "via flight plan route. Departure Runway 36L. HZ-01 Departure. Initial altitude 5000 feet. Cruising level 330. Departure frequency 119.45, squawk 5667."
         },
         {
           "id": "atc-scenario-0001-card-main-002",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "ight planned route, runway in use Runway 26, HZ-01 departure, initial climb to 600 meters on QNH, after departure, contact 128.75, s"
+          "context": "ight planned route, runway in use Runway 26, HZ-01 departure, initial climb to 600 meters on QNH, after departure, contact 128.75, squawk 3421.\nCleared to "
         }
       ]
     },
@@ -4594,7 +4594,7 @@
         {
           "id": "atc-scenario-0080-card-main-1368",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
-          "context": "n standard, resume own navigation, direct to YV, via flight planned route.\nClimb to 5400 meters on standard, resume own navigation, "
+          "context": "n standard, resume own navigation, direct to YV, via flight planned route.\nClimb to 5400 meters on standard, resume own navigation, direct to YV via flight"
         }
       ]
     },
@@ -4651,7 +4651,7 @@
         {
           "id": "story-pepec-0158",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "l Airlines Airbus 330-300, performing flight LX-155 from Mumbai (India) to Zurich (Switzerland) with 231 people on board, was enrout"
+          "context": "l Airlines Airbus 330-300, performing flight LX-155 from Mumbai (India) to Zurich (Switzerland) with 231 people on board, was enroute at FL340 about 510nm "
         }
       ]
     },
@@ -4680,7 +4680,7 @@
         {
           "id": "opi-fzy-109888",
           "source": "content/question-banks/banks/opi/topics/opi-fzy-541.json",
-          "context": "ft did you fly in your flight school?\nI flew TB-20 and PA-42 in my flight school. TB-20 is light, single engine, pistonpowered aircr"
+          "context": "ft did you fly in your flight school?\nI flew TB-20 and PA-42 in my flight school. TB-20 is light, single engine, pistonpowered aircraft designed in the lat"
         }
       ]
     },
@@ -4709,7 +4709,7 @@
         {
           "id": "listening-main-489",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "P: ASA 304, ML in 2 minutes. C: ASA 304, proceed to GC and hold at FL150 due to traffic congestion."
+          "context": "P: ASA 304, ML in 2 minutes. C: ASA 304, proceed to GC and hold at FL150 due to traffic congestion. P: Standard pattern GC"
         }
       ]
     },
@@ -4926,7 +4926,7 @@
         {
           "id": "sentence900-main-317",
           "source": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
-          "context": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns, limiting outbound distance 24 DME"
+          "context": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns, limiting outbound distance 24 DME."
         }
       ]
     },
@@ -4997,12 +4997,12 @@
         {
           "id": "atc-scenario-0029-card-main-506",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0029.json",
-          "context": "AVOK, your position is 25 miles northeast of VYK ON a heading of about 070, expect small correcting turns to the left in 5 miles.\nExp"
+          "context": "AVOK, your position is 25 miles northeast of VYK ON a heading of about 070, expect small correcting turns to the left in 5 miles.\nExpect small correcting t"
         },
         {
           "id": "atc-scenario-0032-card-main-549",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0032.json",
-          "context": "d to London via flight planned route, follow VYK-05D departure, initial climb 9800 meters on 1023, cruising level 10400 meters, after"
+          "context": "d to London via flight planned route, follow VYK-05D departure, initial climb 9800 meters on 1023, cruising level 10400 meters, after departure contact 120"
         }
       ]
     },
@@ -5061,12 +5061,12 @@
         {
           "id": "atc-scenario-0033-card-main-562",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0033.json",
-          "context": "L 221, you are maintaining 9200 meters, over IKUBA, squawking 5536, make initial contact with Shanghai Control.\nShanghai Control, UAL 2"
+          "context": "L 221, you are maintaining 9200 meters, over IKUBA, squawking 5536, make initial contact with Shanghai Control.\nShanghai Control, UAL 221, maintaining 9200"
         },
         {
           "id": "atc-scenario-0069-card-main-1181",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0069.json",
-          "context": "ijing, you are maintaining 5400 meters, over IKUBA, squawking 5655, make initial contact with Beijing Approach.\nBeijing Approach, CCA 4"
+          "context": "ijing, you are maintaining 5400 meters, over IKUBA, squawking 5655, make initial contact with Beijing Approach.\nBeijing Approach, CCA 432, maintaining 5400"
         }
       ]
     },
@@ -5098,7 +5098,7 @@
         {
           "id": "atc-scenario-0082-card-main-1415",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0082.json",
-          "context": ": CSN 311, roger, leave the hold, proceed to LADIX, descent to 6000 meters, contact Beijing Approach on 119.35, we have informed them a"
+          "context": ": CSN 311, roger, leave the hold, proceed to LADIX, descent to 6000 meters, contact Beijing Approach on 119.35, we have informed them about your situation."
         }
       ]
     },
@@ -5125,12 +5125,12 @@
         {
           "id": "atc-scenario-0019-card-main-320",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0019.json",
-          "context": "ht planned route, initial climb 6600 meters, RENOB-32 departure, request level change for 10400 meters en route, squawk 1725, Runway 36"
+          "context": "ht planned route, initial climb 6600 meters, RENOB-32 departure, request level change for 10400 meters en route, squawk 1725, Runway 36R, departure frequen"
         },
         {
           "id": "atc-scenario-0052-card-main-887",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0052.json",
-          "context": "ngKong via flight planned route, Runway 36L, RENOB-02 departure, initial altitude 900 meters, expect en-route altitude 10 minutes after"
+          "context": "ngKong via flight planned route, Runway 36L, RENOB-02 departure, initial altitude 900 meters, expect en-route altitude 10 minutes after departure, departur"
         }
       ]
     },
@@ -5187,12 +5187,12 @@
         {
           "id": "atc-scenario-0034-card-main-590",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0034.json",
-          "context": "end to 4500 meters, reach 4500 meters before ATAGA, start descent at own discretion.\nDescend to 4500 meters, reach 4500 meters before A"
+          "context": "end to 4500 meters, reach 4500 meters before ATAGA, start descent at own discretion.\nDescend to 4500 meters, reach 4500 meters before ATAGA, start descent "
         },
         {
           "id": "atc-scenario-0059-card-main-1022",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0059.json",
-          "context": "t approved, when clear of whether, direct to ATAGA.\nOffset 15 miles to the east approved, when clear of whether, direct to ATAGA, CCA 5"
+          "context": "t approved, when clear of whether, direct to ATAGA.\nOffset 15 miles to the east approved, when clear of whether, direct to ATAGA, CCA 527."
         }
       ]
     },
@@ -5219,12 +5219,12 @@
         {
           "id": "atc-scenario-0080-card-main-1369",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
-          "context": "hows a build-up around YV, request direct to KAKAT.\nBeijing Departure, CSN 202, our weather radar shows a build-up around YV, request d"
+          "context": "hows a build-up around YV, request direct to KAKAT.\nBeijing Departure, CSN 202, our weather radar shows a build-up around YV, request direct to KAKAT."
         },
         {
           "id": "atc-scenario-0080-card-main-1371",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
-          "context": ", 5400 meters maintaining, request direct to KAKAT due to weather.\nBeijing Control, CSN 202, 5400 meters maintaining, request direct to"
+          "context": ", 5400 meters maintaining, request direct to KAKAT due to weather.\nBeijing Control, CSN 202, 5400 meters maintaining, request direct to KAKAT due weather."
         }
       ]
     },
@@ -5251,12 +5251,12 @@
         {
           "id": "atc-scenario-0079-card-main-1350",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0079.json",
-          "context": "eared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 m"
+          "context": "eared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.\n"
         },
         {
           "id": "atc-scenario-0157-card-main-2704",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0157.json",
-          "context": "eared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 m"
+          "context": "eared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.\n"
         }
       ]
     },
@@ -5283,12 +5283,12 @@
         {
           "id": "listening-fzy-110860",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "PIL: Beijing Control, UAL897, POLHO 42, 10700m maintaining, squawk 0026, request 11300m.\nCTL: UAL897, Beijing, radar con"
+          "context": "PIL: Beijing Control, UAL897, POLHO 42, 10700m maintaining, squawk 0026, request 11300m.\nCTL: UAL897, Beijing, radar contact, can you accept"
         },
         {
           "id": "listening-fzy-110870",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "45km southeast of Beijing at 8900m, estimate POLHO at 55, request cross route R343 at POLHO.\nCTL: BAW245, Beijing Control, cross R343 a"
+          "context": "45km southeast of Beijing at 8900m, estimate POLHO at 55, request cross route R343 at POLHO.\nCTL: BAW245, Beijing Control, cross R343 at POLHO approved, 55"
         }
       ]
     },
@@ -5312,12 +5312,12 @@
         {
           "id": "radiotelephony-fzy-223732",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1671.json",
-          "context": "01, turn left heading 048 degrees, direct to BOGRO, and then join airway A461.\nTurn left heading 048 degrees, direct to BOGRO, and then"
+          "context": "01, turn left heading 048 degrees, direct to BOGRO, and then join airway A461.\nTurn left heading 048 degrees, direct to BOGRO, and then join airway A461, C"
         },
         {
           "id": "radiotelephony-fzy-223733",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1671.json",
-          "context": "C: CSN3001, report your estimated time over BOGRO.\nB: [Advise controller your estimated time over BOGRO is 1045.]\nETA BOGRO 1045, CSN3"
+          "context": "C: CSN3001, report your estimated time over BOGRO.\nB: [Advise controller your estimated time over BOGRO is 1045.]\nETA BOGRO 1045, CSN3001."
         }
       ]
     },
@@ -5339,7 +5339,7 @@
         {
           "id": "listening-main-1174",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "d landing, current position 10 miles east of LAMOT, Over.\nC: ACA 3248, roger your relayed MAYDAY for CCA 3256.\nQuestion: What do you le"
+          "context": "d landing, current position 10 miles east of LAMOT, Over.\nC: ACA 3248, roger your relayed MAYDAY for CCA 3256.\nQuestion: What do you learn from the exchang"
         }
       ]
     },
@@ -5361,7 +5361,7 @@
         {
           "id": "listening-fzy-110925",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "red to Shanghai flight planned route, follow ANRAT 2D departure, initial climb to 2100m, after departure, contact 127.9, squawk 5345.\nQ"
+          "context": "red to Shanghai flight planned route, follow ANRAT 2D departure, initial climb to 2100m, after departure, contact 127.9, squawk 5345.\nQ: What are the SID a"
         }
       ]
     },
@@ -5384,12 +5384,12 @@
         {
           "id": "atc-scenario-0044-card-main-749",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0044.json",
-          "context": " Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.\nHongko"
+          "context": " Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.\nHongkong Center, JAL 220, "
         },
         {
           "id": "atc-scenario-0182-card-main-3134",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0182.json",
-          "context": " Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.\nHongko"
+          "context": " Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.\nHongkong Center, JAL 220, "
         }
       ]
     },
@@ -5412,12 +5412,12 @@
         {
           "id": "atc-scenario-0029-card-main-495",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0029.json",
-          "context": "ate GUPAD 20, level 8900 meters, TYN35, next ISGOD, contact Beijing Control, report in cloud at 10100 meters.\nBeijing Control, BAW 141,"
+          "context": "ate GUPAD 20, level 8900 meters, TYN35, next ISGOD, contact Beijing Control, report in cloud at 10100 meters.\nBeijing Control, BAW 141, estimate GUPAD 20, "
         },
         {
           "id": "radiotelephony-fzy-111552",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-630.json",
-          "context": "estimate GUPAD 20, level 8900m, TYN 35, next ISGOD, contact Beijing Control, report in cloud at 10100m.]\nBeijing Control, BAW141 at 101"
+          "context": "estimate GUPAD 20, level 8900m, TYN 35, next ISGOD, contact Beijing Control, report in cloud at 10100m.\nBeijing Control, BAW141 at 10100m in cloud, estimat"
         }
       ]
     },
@@ -5440,12 +5440,12 @@
         {
           "id": "radiotelephony-fzy-209828",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1447.json",
-          "context": "321, Guangzhou Control, roger, fly direct to PAVTU and then turn left and join airway H24.\nFly direct to PAVTU and then turn left and j"
+          "context": "321, Guangzhou Control, roger, fly direct to PAVTU and then turn left and join airway H24.\nFly direct to PAVTU and then turn left and join airway H24, CCA3"
         },
         {
           "id": "radiotelephony-fzy-224908",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1453.json",
-          "context": "321, Guangzhou Control, roger, fly direct to PAVTU and then turn left and join airway H24.\nFly direct to PAVTU and then turn left and j"
+          "context": "321, Guangzhou Control, roger, fly direct to PAVTU and then turn left and join airway H24.\nFly direct to PAVTU and then turn left and join airway H24, CCA3"
         }
       ]
     },
@@ -5468,12 +5468,12 @@
         {
           "id": "radiotelephony-fzy-224086",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1675.json",
-          "context": " are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]\nBeijing"
+          "context": " are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]\nBeijing Control, CSN905, ma"
         },
         {
           "id": "radiotelephony-fzy-224828",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1449.json",
-          "context": " are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]\nBeijing"
+          "context": " are cruising at 10400m, you are approaching BIDOG. Your squawk number is 2332. Make the initial contact with Beijing Control.]\nBeijing Control, CSN905, ma"
         }
       ]
     },
@@ -5552,12 +5552,12 @@
         {
           "id": "atc-scenario-0080-card-main-1379",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
-          "context": "C: CSN 202, turn right direct to GITUM, descend to and maintain 3600 meters.\nTurn right direct to GITUM, descend to and mai"
+          "context": "C: CSN 202, turn right direct to GITUM, descend to and maintain 3600 meters.\nTurn right direct to GITUM, descend to and maintain 3600 meters, C"
         },
         {
           "id": "radiotelephony-fzy-111582",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-631.json",
-          "context": "CSN6202, turn right direct to GITUM, descend to and maintain 3600m.\nTurn right direct to GITUM, descend to and maintain "
+          "context": "CSN6202, turn right direct to GITUM, descend to and maintain 3600m.\nTurn right direct to GITUM, descend to and maintain 3600m, CSN6202."
         }
       ]
     },
@@ -5580,7 +5580,7 @@
         {
           "id": "radiotelephony-fzy-219125",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-1512.json",
-          "context": "ur call sign is CCA1368, you are approaching DUGEB, maintaining 5400m, squawk 1021 with information B, contact Beijing Approach.]\nBeiji"
+          "context": "ur call sign is CCA1368, you are approaching DUGEB, maintaining 5400m, squawk 1021 with information B, contact Beijing Approach.\nBeijing Approach, CCA1368,"
         },
         {
           "id": "radiotelephony-fzy-219126",
@@ -5608,12 +5608,12 @@
         {
           "id": "atc-scenario-0096-card-main-1646",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0096.json",
-          "context": "Beijing, 4800 meters maintaining, estimating DOGAR 05, information F, now contact Beijing Approach.\nBeijing Approach, CES 102, 4800 met"
+          "context": "Beijing, 4800 meters maintaining, estimating DOGAR 05, information F, now contact Beijing Approach.\nBeijing Approach, CES 102, 4800 metres maintaining, est"
         },
         {
           "id": "atc-scenario-0096-card-main-1647",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0096.json",
-          "context": "C: CES 102, Beijing Approach, DOGAR-03 arrival, expect ILS approach Runway 01, maintain 4800 meters.\nDOGAR-03 arrival, e"
+          "context": "C: CES 102, Beijing Approach, DOGAR-03 arrival, expect ILS approach Runway 01, maintain 4800 meters.\nDOGAR-03 arrival, expect ILS approach R"
         }
       ]
     },
@@ -5635,7 +5635,7 @@
         {
           "id": "listening-main-411",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "C: CCA 7634, overhead BEKOL, maintaining 1500m, entering the hold.\nQuestion: What action is CCA 7634 about to co"
+          "context": "C: CCA 7634, overhead BEKOL, maintaining 1500m, entering the hold.\nQuestion: What action is CCA 7634 about to commence?\n正确答案：D. Fly "
         }
       ]
     },
@@ -5657,7 +5657,7 @@
         {
           "id": "listening-fzy-110885",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "m.\nCTL: CCA102, roger. Are you able to cross INTIK at 0053?\nPIL: Affirm, CCA102.\nCTL: CCA102, cross INTIK 0053 or later due spacing.\nQ:"
+          "context": "m.\nCTL: CCA102, roger. Are you able to cross INTIK at 0053?\nPIL: Affirm, CCA102.\nCTL: CCA102, cross INTIK 0053 or later due spacing.\nQ: When should CCA102 "
         }
       ]
     },
@@ -5679,7 +5679,7 @@
         {
           "id": "radiotelephony-fzy-111627",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-634.json",
-          "context": "sign is CCA983, from Los Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.]\nBeijing Control, CCA983, from L"
+          "context": "sign is CCA983, from Los Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.\nBeijing Control, CCA983, from Los Angeles to Beijing"
         }
       ]
     },
@@ -5701,7 +5701,7 @@
         {
           "id": "radiotelephony-fzy-111627",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-634.json",
-          "context": "s Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.]\nBeijing Control, CCA983, from Los Angeles to Beijing, "
+          "context": "s Angeles to Beijing, DABMA 30, level 9800m, SABEM 45, contact Beijing Control.\nBeijing Control, CCA983, from Los Angeles to Beijing, DABMA 30, maintaining"
         }
       ]
     },
@@ -5723,7 +5723,7 @@
         {
           "id": "radiotelephony-fzy-111724",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-639.json",
-          "context": "all sign is CES220, destination Pudong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.]\nBeijin"
+          "context": "all sign is CES220, destination Pudong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.\nBeijing Control, CES220, ov"
         }
       ]
     },
@@ -5745,7 +5745,7 @@
         {
           "id": "radiotelephony-fzy-111724",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-639.json",
-          "context": "ong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.]\nBeijing Control, CES220, over NIXAL 0025,"
+          "context": "ong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.\nBeijing Control, CES220, over NIXAL 0025, level 12500m, estima"
         }
       ]
     },
@@ -5767,7 +5767,7 @@
         {
           "id": "radiotelephony-fzy-111724",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-fzy-639.json",
-          "context": "025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.]\nBeijing Control, CES220, over NIXAL 0025, level 12500m, es"
+          "context": "025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.\nBeijing Control, CES220, over NIXAL 0025, level 12500m, estimate DOTOS 0035, ne"
         }
       ]
     },
@@ -5794,12 +5794,12 @@
         {
           "id": "atc-scenario-0044-card-main-746",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0044.json",
-          "context": "g, you have intercepted an Urgency call from CCA 105, CCA 105 was transmitting blind due to receiver failure, he intended to request "
+          "context": "g, you have intercepted an Urgency call from CCA 105, CCA 105 was transmitting blind due to receiver failure, he intended to request priority landing at Xi"
         },
         {
           "id": "atc-scenario-0052-card-main-886",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0052.json",
-          "context": "B: Your call sign is CCA 101 at Beijing Airport, your parking bay is 531 with information S, request ATC clea"
+          "context": "B: Your call sign is CCA 101 at Beijing Airport, your parking bay is 531 with information S, request ATC clearance to HongKong.\nBei"
         }
       ]
     },
@@ -5858,12 +5858,12 @@
         {
           "id": "atc-scenario-0015-card-main-245",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0015.json",
-          "context": "C: AFR 113, behind the CES 737 on short final, line up behind.\nBehind the CES 737 on short final, line up behin"
+          "context": "C: AFR 113, behind the CES 737 on short final, line up behind.\nBehind the CES 737 on short final, line up behind, AFR 113."
         },
         {
           "id": "atc-scenario-0089-card-main-1530",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0089.json",
-          "context": "B: Your call sign is CES 556, from Seoul to Wuhan, you are maintaining 9200 meters, approaching JTN, squawkin"
+          "context": "B: Your call sign is CES 556, from Seoul to Wuhan, you are maintaining 9200 meters, approaching JTN, squawking 1532, make an initia"
         }
       ]
     },
@@ -5890,12 +5890,12 @@
         {
           "id": "atc-scenario-0033-card-main-562",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0033.json",
-          "context": "B: Your call sign is UAL 221, you are maintaining 9200 meters, over IKUBA, squawking 5536, make initial conta"
+          "context": "B: Your call sign is UAL 221, you are maintaining 9200 meters, over IKUBA, squawking 5536, make initial contact with Shanghai Contr"
         },
         {
           "id": "atc-scenario-0033-card-main-563",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0033.json",
-          "context": "C: UAL 221, maintain 9200 meters, direct to XSH.\nMaintain 9200 meters, direct to XSH, UAL 2"
+          "context": "C: UAL 221, maintain 9200 meters, direct to XSH.\nMaintain 9200 meters, direct to XSH, UAL 221."
         }
       ]
     },
@@ -5922,12 +5922,12 @@
         {
           "id": "atc-scenario-0026-card-main-445",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0026.json",
-          "context": "B: Your call sign is BAW 120, you are maintaining 11000 meters over WXI, squawking 4521, make initial contact"
+          "context": "B: Your call sign is BAW 120, you are maintaining 11000 meters over WXI, squawking 4521, make initial contact with Zhengzhou Contro"
         },
         {
           "id": "atc-scenario-0026-card-main-446",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0026.json",
-          "context": "C: BAW 120, Zhengzhou Control, radar identified, descend and maintain 9200 meters.\nB: You w"
+          "context": "C: BAW 120, Zhengzhou Control, radar identified, descend and maintain 9200 meters.\nB: You want to maintain presen"
         }
       ]
     },
@@ -5954,12 +5954,12 @@
         {
           "id": "atc-scenario-0001-card-main-001",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "B: Your call sign is QFA 432, you are parking at gate 24, you have got information H, ask Shanghai Delivery f"
+          "context": "B: Your call sign is QFA 432, you are parking at gate 24, you have got information H, ask Shanghai Delivery for ATC clearance to Be"
         },
         {
           "id": "atc-scenario-0001-card-main-002",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "C: QFA 432, cleared to Beijing via flight planned route, runway in use Runway 26, HZ-01 dep"
+          "context": "C: QFA 432, cleared to Beijing via flight planned route, runway in use Runway 26, HZ-01 departure, initial climb "
         }
       ]
     },
@@ -5987,12 +5987,12 @@
         {
           "id": "atc-scenario-0007-card-main-112",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0007.json",
-          "context": "B: Your call sign is SIA 852, you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Si"
+          "context": "B: Your call sign is SIA 852, you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Singapore.\nWuhan Deliver"
         },
         {
           "id": "atc-scenario-0007-card-main-113",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0007.json",
-          "context": "C: SIA 852, cleared to Singapore via flight planned route, follow ZF-03 departure, initial "
+          "context": "C: SIA 852, cleared to Singapore via flight planned route, follow ZF-03 departure, initial climb to 1800 meters, "
         }
       ]
     },
@@ -6019,7 +6019,7 @@
         {
           "id": "atc-scenario-0046-card-main-779",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0046.json",
-          "context": "B: Your call sign is ACA 219, from Vancouver to Wuhan, you are maintaining 11000 meters, over OBLIK, squawkin"
+          "context": "B: Your call sign is ACA 219, from Vancouver to Wuhan, you are maintaining 11000 meters, over OBLIK, squawking 3555, make an initia"
         },
         {
           "id": "atc-scenario-0046-card-main-780",
@@ -6051,7 +6051,7 @@
         {
           "id": "atc-scenario-0015-card-main-242",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0015.json",
-          "context": "B: Your call sign is AFR 113, you're holding at holding point E1, Runway 04, you are fully ready.\nWuhan Tower"
+          "context": "B: Your call sign is AFR 113, you're holding at holding point E1, Runway 04, you are fully ready.\nWuhan Tower, AFR 113, holding at "
         },
         {
           "id": "atc-scenario-0015-card-main-243",
@@ -6083,12 +6083,12 @@
         {
           "id": "atc-scenario-0043-card-main-731",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0043.json",
-          "context": "B: Your call sign is JAL 602, a flight from Tokyo to Wuhan, now you are over DAPRO, maintaining 10100 meters,"
+          "context": "B: Your call sign is JAL 602, a flight from Tokyo to Wuhan, now you are over DAPRO, maintaining 10100 meters, make initial contact "
         },
         {
           "id": "atc-scenario-0043-card-main-732",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0043.json",
-          "context": " offset 5 miles to the right.\nWuhan Control, JAL 602, we have an indication of a thunderstorm 50 km ahead, request offset 5 miles to "
+          "context": " offset 5 miles to the right.\nWuhan Control, JAL 602, we have an indication of a thunderstorm 50 km ahead, request offset 5 miles to the right."
         }
       ]
     },
@@ -6117,7 +6117,7 @@
         {
           "id": "atc-scenario-0042-card-main-711",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0042.json",
-          "context": "B: Your call sign is KLM 88, you are at gate 504, the boarding hasn't been completed and you have catering de"
+          "context": "B: Your call sign is KLM 88, you are at gate 504, the boarding hasn't been completed and you have catering delay, you have to delay"
         },
         {
           "id": "atc-scenario-0042-card-main-712",
@@ -6150,12 +6150,12 @@
         {
           "id": "atc-scenario-0109-card-main-1885",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0109.json",
-          "context": "SIA 123, turn right, track direct to DAL A, descend and maintain 2,100 meters on QNH 1015, expect Runway 22.\nturn right, dire"
+          "context": "SIA 123, turn right, track direct to DAL A, descend and maintain 2,100 meters on QNH 1015, expect Runway 22.\nturn right, direct to DAL A, descend a"
         },
         {
           "id": "atc-scenario-0112-card-main-1932",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0112.json",
-          "context": "CSN 557, turn left, direct to DAL A, climb to 1,200 meters, contact Wuhan Approach on 119.25.\nturn left, direct to DAL"
+          "context": "CSN 557, turn left, direct to DAL A, climb to 1,200 meters, contact Wuhan Approach on 119.25.\nturn left, direct to DAL A, climb to 1200 mete"
         }
       ]
     },
@@ -6181,12 +6181,12 @@
         {
           "id": "listening-main-079",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "P: Mayday, Mayday, Mayday, Control, NWA 808, emergency descend due to rapid depressurization. Now, 8,400 m descending to 4,2"
+          "context": "P: Mayday, Mayday, Mayday, Control, NWA 808, emergency descend due to rapid depressurization. Now, 8,400 m descending to 4,200 m. Request priority"
         },
         {
           "id": "listening-main-090",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "P: Wuhan Approach, NWA 808, could you turn up the approach lights? CTL: NWA 808, I am sorry, they are alrea"
+          "context": "P: Wuhan Approach, NWA 808, could you turn up the approach lights? CTL: NWA 808, I am sorry, they are already at maximum.\nQuestio"
         }
       ]
     },
@@ -6196,7 +6196,7 @@
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
       "cardCount": 177,
-      "uniqueTextCount": 171,
+      "uniqueTextCount": 169,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6215,12 +6215,12 @@
         {
           "id": "atc-scenario-0001-card-main-008",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "g, you noticed some smoke coming from APU on Boeing 747 ahead of you, report this to ATC.\nShanghai Ground, QFA 432, we notice some smoke"
+          "context": "g, you noticed some smoke coming from APU on Boeing 747 ahead of you, report this to ATC.\nShanghai Ground, QFA 432, we notice some smoke coming from APU on"
         },
         {
           "id": "atc-scenario-0001-card-main-019",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": "B: Your aircraft is Boeing 747, suddenly, number 1 number 2 engines have failed due to sandstorm, report it to "
+          "context": "B: Your aircraft is Boeing 747, suddenly, number 1 number 2 engines have failed due to sandstorm, report it to Beijing Approach, a"
         }
       ]
     },
@@ -6229,8 +6229,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 159,
-      "uniqueTextCount": 156,
+      "cardCount": 160,
+      "uniqueTextCount": 157,
       "sentence900Count": 6,
       "banks": [
         "listening",
@@ -6290,7 +6290,7 @@
         {
           "id": "atc-scenario-0001-card-main-001",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": ", ask Shanghai Delivery for ATC clearance to Beijing.\nShanghai Delivery, QFA 432, gate 24, information H, request ATC clearance to Beijin"
+          "context": ", ask Shanghai Delivery for ATC clearance to Beijing.\nShanghai Delivery, QFA 432, gate 24, information H, request ATC clearance to Beijing."
         }
       ]
     },
@@ -6299,8 +6299,8 @@
       "category": "proper-name",
       "weight": 3,
       "reason": "题库出现的航司代码、机型厂商或地点名称，按实际原文拼写提示。",
-      "cardCount": 219,
-      "uniqueTextCount": 186,
+      "cardCount": 220,
+      "uniqueTextCount": 187,
       "sentence900Count": 0,
       "banks": [
         "listening",
@@ -6319,7 +6319,7 @@
         {
           "id": "atc-scenario-0001-card-main-001",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
-          "context": " at gate 24, you have got information H, ask Shanghai Delivery for ATC clearance to Beijing.\nShanghai Delivery, QFA 432, gate 24, informat"
+          "context": " at gate 24, you have got information H, ask Shanghai Delivery for ATC clearance to Beijing.\nShanghai Delivery, QFA 432, gate 24, information H, request AT"
         },
         {
           "id": "atc-scenario-0001-card-main-004",
@@ -6353,12 +6353,12 @@
         {
           "id": "atc-scenario-0002-card-main-031",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "g to the left, turn right 5 degrees, contact Wuhan Control on 134.7, request diversion from Wuhan Control.\nRoger, turn right 5 degrees,"
+          "context": "g to the left, turn right 5 degrees, contact Wuhan Control on 134.7, request diversion from Wuhan Control.\nRoger, turn right 5 degrees, 134.7, QFA 160."
         },
         {
           "id": "atc-scenario-0002-card-main-032",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": " meters, over OBLIK, squawking 4525, contact Wuhan Control.\nWuhan Control, QFA 160, maintaining 9200 meters, over OBLIK, squawking 4525"
+          "context": " meters, over OBLIK, squawking 4525, contact Wuhan Control.\nWuhan Control, QFA 160, maintaining 9200 meters, over OBLIK, squawking 4525."
         }
       ]
     },
@@ -6386,12 +6386,12 @@
         {
           "id": "atc-scenario-0002-card-main-021",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "r code is 4525, make an initial contact with Zhengzhou Control.\nZhengzhou Control, QFA 160, maintaining 11000 meters, over WXI, squawking 4"
+          "context": "r code is 4525, make an initial contact with Zhengzhou Control.\nZhengzhou Control, QFA 160, maintaining 11000 meters, over WXI, squawking 4525."
         },
         {
           "id": "atc-scenario-0002-card-main-022",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "C: QFA 160, Zhengzhou Control, radar contact, descend and maintain 10400 meters.\nDescend and maintain 1040"
+          "context": "C: QFA 160, Zhengzhou Control, radar contact, descend and maintain 10400 meters.\nDescend and maintain 10400 meters, QFA 16"
         }
       ]
     },
@@ -6420,12 +6420,12 @@
         {
           "id": "atc-scenario-0002-card-main-021",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "call sign is QFA 160, a flight from Tokyo to Guangzhou, you are maintaining 11000 meters, over WXI, your transponder code is 4525, make an "
+          "context": "call sign is QFA 160, a flight from Tokyo to Guangzhou, you are maintaining 11000 meters, over WXI, your transponder code is 4525, make an initial contact "
         },
         {
           "id": "atc-scenario-0002-card-main-028",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
-          "context": "ou find you don't have enough fuel to fly to Guangzhou and you decide to divert to Changsha Airport, notify Zhengzhou Control.\nZhengzhou Co"
+          "context": "ou find you don't have enough fuel to fly to Guangzhou and you decide to divert to Changsha Airport, notify Zhengzhou Control.\nZhengzhou Control, QFA 160, "
         }
       ]
     },
@@ -6454,12 +6454,12 @@
         {
           "id": "atc-scenario-0044-card-main-746",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0044.json",
-          "context": ", he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.\nPANPAN PANPAN PANPAN, Xiamen Approach, JAL 22"
+          "context": ", he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.\nPANPAN PANPAN PANPAN, Xiamen Approach, JAL 220, we have intercep"
         },
         {
           "id": "atc-scenario-0182-card-main-3131",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0182.json",
-          "context": ", he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.\nPANPAN PANPAN PANPAN, Xiamen Approach, JAL 22"
+          "context": ", he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.\nPANPAN PANPAN PANPAN, Xiamen Approach, JAL 220, we have intercep"
         }
       ]
     },
@@ -6487,12 +6487,12 @@
         {
           "id": "atc-scenario-0070-card-main-1196",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0070.json",
-          "context": "B: Your call sign is CCA 368, a flight from Shenzhen to Beijing, your weather radar indicates a squall line near VYK, contact Beijing App"
+          "context": "B: Your call sign is CCA 368, a flight from Shenzhen to Beijing, your weather radar indicates a squall line near VYK, contact Beijing Approach and request"
         },
         {
           "id": "atc-scenario-0151-card-main-2607",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0151.json",
-          "context": "Your call sign is CCA 1368, a flight from Shenzhen to Beijing, your weather radar indicates a squall line near VYK, contact Beijing App"
+          "context": "Your call sign is CCA 1368, a flight from Shenzhen to Beijing, your weather radar indicates a squall line near VYK, contact Beijing Approach and request"
         }
       ]
     },
@@ -6521,12 +6521,12 @@
         {
           "id": "atc-scenario-0014-card-main-232",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0014.json",
-          "context": "B: Your call sign is SIA 334 from Chengdu to Beijing, you are at stand 34, information I received, request ATC clearance.\nChen"
+          "context": "B: Your call sign is SIA 334 from Chengdu to Beijing, you are at stand 34, information I received, request ATC clearance.\nChengdu Delivery, SIA "
         },
         {
           "id": "atc-scenario-0014-card-main-234",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0014.json",
-          "context": "inform ATC and request repeat the clearance.\nChengdu Delivery, SIA 334, the ATC clearance has been disturbed, request repeat the clearanc"
+          "context": "inform ATC and request repeat the clearance.\nChengdu Delivery, SIA 334, the ATC clearance has been disturbed, request repeat the clearance."
         }
       ]
     },
@@ -6548,7 +6548,7 @@
         {
           "id": "story-kongguan-057",
           "source": "content/question-banks/banks/storytelling/topics/story-atc-basic.json",
-          "context": "8, performed passenger transport flight from Chongqing to Lhasa with 88 people on board. He was descending towards Lhasa when the crew appl"
+          "context": "8, performed passenger transport flight from Chongqing to Lhasa with 88 people on board. He was descending towards Lhasa when the crew applied flaps, the f"
         }
       ]
     },
@@ -6575,12 +6575,12 @@
         {
           "id": "listening-fzy-110925",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "PIL: Tianjin Ground, CCA410, stand 203, information J, request ATC clearance.\nCTL: CCA410, cleare"
+          "context": "PIL: Tianjin Ground, CCA410, stand 203, information J, request ATC clearance.\nCTL: CCA410, cleared to Shanghai flig"
         },
         {
           "id": "listening-fzy-116612",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "P: Tianjin Control, CSN4971, we are unable to control pressurization, cabin altitude is rising "
+          "context": "P: Tianjin Control, CSN4971, we are unable to control pressurization, cabin altitude is rising fast, request imme"
         }
       ]
     },
@@ -6609,12 +6609,12 @@
         {
           "id": "atc-scenario-0035-card-main-610",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
-          "context": "odate an aircraft of your size. Hongqiao and Pudong Airport has longer runway and can definitely accommodate your aircraft, advise your "
+          "context": "odate an aircraft of your size. Hongqiao and Pudong Airport has longer runway and can definitely accommodate your aircraft, advise your intention?\nB: Ask r"
         },
         {
           "id": "atc-scenario-0035-card-main-611",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
-          "context": "rect to HSH, expect radar vectors to land at Pudong Airport, contact Shanghai Approach on 128.35.\nDirect to HSH, expect radar vectors to"
+          "context": "rect to HSH, expect radar vectors to land at Pudong Airport, contact Shanghai Approach on 128.35.\nDirect to HSH, expect radar vectors to land at Pudong Air"
         }
       ]
     },
@@ -6641,12 +6641,12 @@
         {
           "id": "atc-scenario-0104-card-main-1795",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0104.json",
-          "context": "B: Contact Baiyun Approach, tell him you have got information G.\nBaiyun Approach, CSN 303, received in"
+          "context": "B: Contact Baiyun Approach, tell him you have got information G.\nBaiyun Approach, CSN 303, received information G."
         },
         {
           "id": "atc-scenario-0104-card-main-1797",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0104.json",
-          "context": " a flapless landing.\nPANPAN, PANPAN, PANPAN, Baiyun Approach, CSN 303, we have a flap extension due to prior icing issue; perhaps a micr"
+          "context": " a flapless landing.\nPANPAN, PANPAN, PANPAN, Baiyun Approach, CSN 303, we have a flap extension due to prior icing issue; perhaps a micro-switch malfunctio"
         }
       ]
     },
@@ -6668,7 +6668,7 @@
         {
           "id": "story-pepec-0058",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "n to Wuhan. As the aircraft approached Wuhan Tianhe Airport, it encountered a strong thunderstorm and severe wind shear. Despite poor we"
+          "context": "n to Wuhan. As the aircraft approached Wuhan Tianhe Airport, it encountered a strong thunderstorm and severe wind shear. Despite poor weather, the pilots d"
         }
       ]
     },
@@ -6690,7 +6690,7 @@
         {
           "id": "story-kongguan-057",
           "source": "content/question-banks/banks/storytelling/topics/story-atc-basic.json",
-          "context": "passenger transport flight from Chongqing to Lhasa with 88 people on board. He was descending towards Lhasa when the crew applied flaps"
+          "context": "passenger transport flight from Chongqing to Lhasa with 88 people on board. He was descending towards Lhasa when the crew applied flaps, the flaps however "
         }
       ]
     },
@@ -6713,12 +6713,12 @@
         {
           "id": "listening-fzy-110838",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "PIL: MAYDAY, MAYDAY, MAYDAY, Urumqi Control, AFR561, request immediate descent, we're running into dust cloud, possible "
+          "context": "PIL: MAYDAY, MAYDAY, MAYDAY, Urumqi Control, AFR561, request immediate descent, we're running into dust cloud, possible volcanic ashes, No."
         },
         {
           "id": "listening-fzy-219594",
           "source": "content/question-banks/banks/listening/topics/listening-topic-04.json",
-          "context": "PIL: Urumqi Approach, CCA123, we collided with a giant vulture head on, it came through the righ"
+          "context": "PIL: Urumqi Approach, CCA123, we collided with a giant vulture head on, it came through the right wind-screen, the "
         }
       ]
     },
@@ -6744,12 +6744,12 @@
         {
           "id": "listening-fzy-219611",
           "source": "content/question-banks/banks/listening/topics/listening-topic-02.json",
-          "context": "g an emergency descent. We’ll try to land at Qingdao.\nQ: What did the pilot encounter?\n正确答案：C. Mid-air collision"
+          "context": "g an emergency descent. We'll try to land at Qingdao.\nQ: What did the pilot encounter?\n正确答案：C. Mid-air collision."
         },
         {
           "id": "opi-core-892",
           "source": "content/question-banks/banks/opi/topics/opi-topic-0090.json",
-          "context": "in?\nYes, I have. Once I flew from Beijing to Qingdao in a hot summer, during the landing, I encountered heavy rain, the visibility decrea"
+          "context": "in?\nYes, I have. Once I flew from Beijing to Qingdao in a hot summer, during the landing, I encountered heavy rain, the visibility decreased quickly. But f"
         }
       ]
     },
@@ -6774,12 +6774,12 @@
         {
           "id": "listening-main-1111",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "Pilot: \"Kunming Ground, UAL 789, radio check on 120.3.\"\nController: \"UAL 789, Kunming Ground, read y"
+          "context": "Pilot: \"Kunming Ground, UAL 789, radio check on 120.3.\" Controller: \"UAL 789, Kunming Ground, read you 2. You are cut "
         },
         {
           "id": "opi-fzy-110328",
           "source": "content/question-banks/banks/opi/topics/opi-fzy-575.json",
-          "context": "ficult than others?\nI think routes flying to Kunming or Dalian are more difficult. We usually have to deal with the high-altitude airfiel"
+          "context": "ficult than others?\nI think routes flying to Kunming or Dalian are more difficult. We usually have to deal with the high-altitude airfield and heavy season"
         }
       ]
     },
@@ -6808,12 +6808,12 @@
         {
           "id": "atc-scenario-0035-card-main-610",
           "source": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
-          "context": "C: UAL 831, the closest airport is Nanjing Airport, current visibility is marginal, I have to check if they can accommodate an "
+          "context": "C: UAL 831, the closest airport is Nanjing Airport, current visibility is marginal, I have to check if they can accommodate an aircraft of your s"
         },
         {
           "id": "listening-fzy-110573",
           "source": "content/question-banks/banks/listening/topics/listening-topic-01.json",
-          "context": "PIL: Nanjing Control, CES5102, we’ve got a blow out on our main gear, unable to taxi. There appea"
+          "context": "PIL: Nanjing Control, CES5102, we've got a blow out on our main gear, unable to taxi. There appears to be debris on"
         }
       ]
     },
@@ -6837,12 +6837,12 @@
         {
           "id": "story-koala-004",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "ts included Beijing, Guangzhou, Shanghai and Taipei. It was the first ever non-stop, round-trip charter flight across the Taiwan Straits"
+          "context": "ts included Beijing, Guangzhou, Shanghai and Taipei. It was the first ever non-stop, round-trip charter flight across the Taiwan Straits in 56 years. It wa"
         },
         {
           "id": "story-koala-046",
           "source": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
-          "context": "ed regularly in very warm, humid places like Taipei and Hong Kong. But Boeing maintains that with proper maintenance, aircraft aging sho"
+          "context": "ed regularly in very warm, humid places like Taipei and Hong Kong. But Boeing maintains that with proper maintenance, aircraft aging should not be a proble"
         }
       ]
     }

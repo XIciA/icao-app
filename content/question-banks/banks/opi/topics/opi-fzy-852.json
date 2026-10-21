@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-852",
   "name": "FOI",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-fzy-852-image-1",
       "kind": "image",
-      "taskTitle": "FOI · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-852.png",
       "imageAlt": "FOI，用于本话题的看图描述和问答",
-      "studyTier": 2
+      "studyTier": 2,
+      "taskTitle": "FOI · 看图材料"
     },
     {
       "id": "opi-fzy-152410",
-      "taskTitle": "FOI-1",
-      "audioText": "Can you say what happened from this picture?",
-      "audioTextZh": "你能说一下这幅图片中发生了什么吗？",
-      "studyTier": 2,
-      "referenceText": "It’s a foreign object ingestion, a big cargo box was ingested into one of the engines. It may cause damage to the engine.",
-      "referenceTextZh": "这是外物吸入。一个大货箱被吸入发动机，可能导致发动机损坏。",
       "audio": "/question-bank-assets/revisions/opi/18718022225297018959f4eecfe5fd5be1dfa33667461bf3032fb3241e427241/audio/opi/opi-fzy-152410.mp3",
+      "audioText": "Can you say what happened from this picture?",
+      "studyTier": 2,
+      "taskTitle": "FOI-1",
+      "audioTextZh": "你能说一下这幅图片中发生了什么吗？",
+      "referenceText": "It's a foreign object ingestion, a big cargo box was ingested into one of the engines. It may cause damage to the engine.",
+      "referenceTextZh": "这是外物吸入。一个大货箱被吸入发动机，可能导致发动机损坏。",
       "audioDurationSeconds": 2.112
     },
     {
       "id": "opi-fzy-152411",
-      "taskTitle": "FOI-2",
+      "audio": "/question-bank-assets/revisions/opi/adf98e544918a13c47e45c7fbd30ab7b3d652fcf099aacb85301417607e3d2f8/audio/opi/opi-fzy-152411.mp3",
       "audioText": "What do you know about FOI?",
-      "audioTextZh": "你知道什么是FOI吗？",
       "studyTier": 1,
+      "taskTitle": "FOI-2",
+      "audioTextZh": "你知道什么是FOI吗？",
       "referenceText": "FOI means foreign object ingestion.\nIf foreign objects ingested into the engine, it may cause engine problems.\nSuch as engine flame-out, engine failure, and engine surge.",
       "referenceTextZh": "FOI指的是发动机吸入外物。\n如果发动机吸入外物，会造成发动机问题。\n比如：发动机熄火，发动机失效和发动机喘振。",
-      "audio": "/question-bank-assets/revisions/opi/adf98e544918a13c47e45c7fbd30ab7b3d652fcf099aacb85301417607e3d2f8/audio/opi/opi-fzy-152411.mp3",
       "audioDurationSeconds": 1.848
     },
     {
       "id": "opi-fzy-152412",
-      "taskTitle": "FOI-3",
+      "audio": "/question-bank-assets/revisions/opi/07e5d011c54dfc28c9ecba651470aacf185920fcae3611436f697c43d46e0fa6/audio/opi/opi-fzy-152412.mp3",
       "audioText": "If you find some foreign objects on the runway when you are preparing for departure, what should you do?",
-      "audioTextZh": "当你在准备起飞时发现跑道上有异物，你会怎么做？",
       "studyTier": 1,
+      "taskTitle": "FOI-3",
+      "audioTextZh": "当你在准备起飞时发现跑道上有异物，你会怎么做？",
       "referenceText": "If I encounter this situation, first I will delay the takeoff.\nThen, I will report this situation to ATC and ask for ground staff to deal with the problem.\nWhen the runway is clean and clear, I will continue the departure.",
       "referenceTextZh": "如果我遇到这种情况，首先，我会延迟起飞。\n然后我会将情况报告给管制员，请求地面人员处理这个问题。\n等到跑道干净后，我再继续起飞。",
-      "audio": "/question-bank-assets/revisions/opi/07e5d011c54dfc28c9ecba651470aacf185920fcae3611436f697c43d46e0fa6/audio/opi/opi-fzy-152412.mp3",
       "audioDurationSeconds": 5.4
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

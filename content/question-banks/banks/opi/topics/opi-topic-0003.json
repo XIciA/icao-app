@@ -1,198 +1,198 @@
 {
   "id": "opi-topic-0003",
   "name": "风切变",
-  "declaredCardCount": 19,
   "cards": [
     {
-      "id": "opi-core-035",
-      "taskTitle": "气象-风切变-1",
-      "audioText": "What is wind shear?",
-      "audioTextZh": "什么是风切变？",
-      "referenceText": "Wind shear is a sudden change in wind speed or direction over a short distance or within a small area. It can cause rapid changes in aircraft airspeed and altitude.",
-      "referenceTextZh": "风切变是风速或风向在很短距离或很小区域内突然发生变化。它会使飞机空速和高度迅速改变。",
-      "audio": "/question-bank-assets/revisions/opi/b506c6b17fb95d9e81407682390db55deb983b1faef5e55c1c33c3b79ebbf564/audio/opi/opi-core-035.mp3",
-      "audioDurationSeconds": 0.984
-    },
-    {
-      "id": "opi-core-036",
-      "taskTitle": "气象-风切变-2",
-      "audioText": "Where is wind shear most likely to occur?",
-      "audioTextZh": "风切变最可能在哪里发生？",
-      "referenceText": "Wind shear is most likely near thunderstorms and convective cells, especially close to the ground where microbursts can affect takeoff and approach. It can also occur near frontal weather and strong changes in surface wind. Low-level wind shear is particularly dangerous because there is little height available for recovery.",
-      "referenceTextZh": "风切变最容易发生在雷暴和强对流单体附近，尤其在接近地面的区域，微下击暴流会影响起飞和进近。它也可能出现在锋面天气和地面风发生强烈变化的区域。低空风切变特别危险，因为可用于改出的高度很少。",
-      "audio": "/question-bank-assets/revisions/opi/eb6fc4d2f4f61d18a19ca1d6f1bcaa229e74f7666cdf746d96888e84bcac4500/audio/opi/opi-core-036.mp3",
-      "audioDurationSeconds": 2.208
-    },
-    {
-      "id": "opi-core-037",
-      "taskTitle": "气象-风切变-3",
-      "audioText": "Have you ever received a wind shear warning in flight?",
-      "audioTextZh": "你在飞行中收到过风切变警告吗？",
-      "referenceText": "No, I have never received a wind shear warning in flight. I fly a DA-40 for flight training, and that aircraft does not have a wind shear warning system.",
-      "referenceTextZh": "没有，我在飞行中从未收到过风切变警告。我使用 DA-40 进行飞行训练，这种飞机没有风切变警告系统。",
-      "audio": "/question-bank-assets/revisions/opi/997614da1759bd2d1e03afd78c1488630ae0b87052355c6c706ae25af6198738/audio/opi/opi-core-037.mp3",
-      "audioDurationSeconds": 2.76
-    },
-    {
-      "id": "opi-core-038",
-      "taskTitle": "气象-风切变-4",
-      "audioText": "What are the possible consequences if a pilot ignores a wind shear warning?",
-      "audioTextZh": "如果飞行员忽视风切变警告，可能会造成哪些后果？",
-      "referenceText": "If a pilot ignores a wind shear warning, the aircraft may experience sudden airspeed and altitude changes. It may become difficult to control and could stall or crash.",
-      "referenceTextZh": "如果飞行员忽视风切变警告，飞机的空速和高度可能突然变化。飞机可能变得难以操纵，并可能失速或坠毁。",
-      "audio": "/question-bank-assets/revisions/opi/0712c70e48f3d1ea440697dc1f66354aaaf983161296518be20a4b1edc713815/audio/opi/opi-core-038.mp3",
-      "audioDurationSeconds": 3.984
-    },
-    {
-      "id": "opi-core-039",
-      "taskTitle": "气象-风切变-5",
-      "audioText": "How are pilots warned about wind shear on your aircraft?",
-      "audioTextZh": "你所飞的飞机通过什么方式向飞行员发出风切变警告？",
-      "referenceText": "The DA-40 I fly does not have a wind shear warning system. On large commercial aircraft, weather radar and EGPWS can provide a wind shear warning to the pilots.",
-      "referenceTextZh": "我飞的 DA-40 没有风切变警告系统。在大型商用飞机上，气象雷达和 EGPWS 可以向飞行员提供风切变警告。",
-      "audio": "/question-bank-assets/revisions/opi/4700b36cf3a2ca8a9ce49dddbe6f87b4ac6789e7a5fff2dd98076a53b68f987c/audio/opi/opi-core-039.mp3",
-      "audioDurationSeconds": 2.856
-    },
-    {
-      "id": "opi-core-040",
-      "taskTitle": "气象-风切变-6",
-      "audioText": "Why is wind shear a threat to flight safety?",
-      "audioTextZh": "为什么风切变会威胁飞行安全？",
-      "referenceText": "Wind shear can cause sudden increases or decreases in airspeed and a rapid loss of altitude. The aircraft may become difficult to control, stall, or crash.",
-      "referenceTextZh": "风切变会使空速突然增大或减小，并造成高度迅速下降。飞机可能变得难以操纵、失速，甚至坠毁。",
-      "audio": "/question-bank-assets/revisions/opi/d8e390299743a56396ef0e06d4549e82f95c1222cecfff3b8e64f4df9c7f466d/audio/opi/opi-core-040.mp3",
-      "audioDurationSeconds": 2.28
-    },
-    {
-      "id": "opi-core-041",
-      "taskTitle": "气象-风切变-7",
-      "audioText": "Have you ever encountered wind shear in flight?",
-      "audioTextZh": "你在飞行中遇到过风切变吗？",
-      "referenceText": "Yes, I once encountered wind shear during a training flight. The aircraft's speed and altitude changed abruptly. I maintained control, communicated with ATC, and adjusted the flight parameters to recover from the situation.",
-      "referenceTextZh": "是的，我曾在一次训练飞行中遭遇风切变。飞机的速度和高度突然变化。我控制好飞机，与空中交通管制沟通，并调整飞行参数，使飞机恢复正常状态。",
-      "audio": "/question-bank-assets/revisions/opi/4ce6592277f73c37cca108c5c3cbf2437559a4f777134bdb5407e7598eedd310/audio/opi/opi-core-041.mp3",
-      "audioDurationSeconds": 2.448
-    },
-    {
-      "id": "opi-core-042",
-      "taskTitle": "气象-风切变-8",
-      "audioText": "What should pilots do if they hear a \"GO-AROUND, WINDSHEAR AHEAD\" warning during approach?",
-      "audioTextZh": "进近过程中听到“复飞，前方风切变”警告时，飞行员应如何处置？",
-      "referenceText": "The pilots should go around immediately. They should use TOGA thrust, maintain the required configuration until clear of the wind shear, and closely monitor airspeed, altitude, attitude, and vertical speed.",
-      "referenceTextZh": "飞行员应立即复飞。他们应使用 TOGA 推力，在脱离风切变之前保持规定的构型，并密切监控空速、高度、姿态和垂直速度。",
-      "audio": "/question-bank-assets/revisions/opi/cd94a3215186414d5331f557cc55a3b248a2834e4dd3fca6c2802b9664601665/audio/opi/opi-core-042.mp3",
-      "audioDurationSeconds": 4.728
-    },
-    {
-      "id": "opi-core-043",
-      "taskTitle": "气象-风切变-9",
-      "audioText": "What should pilots do if they encounter wind shear during the takeoff roll before V1?",
-      "audioTextZh": "在 V1 前的起飞滑跑阶段遇到风切变时，飞行员应如何处置？",
-      "referenceText": "Before V1, the pilots should reject the takeoff by reducing power, using rudder to keep the aircraft straight, and applying the brakes to stop on the runway.",
-      "referenceTextZh": "在 V1 之前，飞行员应减小推力，使用方向舵保持飞机直线，并使用刹车使飞机停在跑道上，从而中断起飞。",
-      "audio": "/question-bank-assets/revisions/opi/3c84aadd9f712ab524afda473146920064c178d79c8c88c00d02508bc7234979/audio/opi/opi-core-043.mp3",
-      "audioDurationSeconds": 4.656
-    },
-    {
-      "id": "opi-core-044",
-      "taskTitle": "气象-风切变-10",
-      "audioText": "What would you do if you encountered wind shear and a sudden loss of airspeed as the aircraft approached rotation speed?",
-      "audioTextZh": "飞机接近抬前轮速度时，如果遭遇风切变并且空速突然下降，你会如何处置？",
-      "referenceText": "If the event were recognized before the takeoff decision speed and a safe rejection could be initiated, I would maintain directional control and reject the takeoff in accordance with the procedure. At or after the decision speed, I would continue, rotate normally at the calculated rotation speed, and follow the wind-shear escape guidance. I would avoid configuration changes until the aircraft was clear of the shear.",
-      "referenceTextZh": "如果在起飞决断速度之前识别到该情况，并且能够安全中断起飞，我会保持方向控制并按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，按计算的抬轮速度正常抬轮，并遵循风切变逃逸指引。在飞机脱离风切变之前，我会避免改变构型。",
-      "audio": "/question-bank-assets/revisions/opi/c5f3c7588b0087f188956a110cf38344fc239bf7fb99b6cf4be064c5ca955f04/audio/opi/opi-core-044.mp3",
-      "audioDurationSeconds": 5.88
-    },
-    {
       "id": "opi-core-045",
-      "taskTitle": "气象-风切变-11",
+      "audio": "/question-bank-assets/revisions/opi/90c4f914a112dbad37faee43c461663226ee8b5e568e9aaef3082790d3c06bba/audio/opi/opi-core-045.mp3",
       "audioText": "How can wind shear cause an aircraft to deviate from the glide slope during approach?",
+      "taskTitle": "气象-风切变-11",
       "audioTextZh": "进近过程中，风切变如何导致飞机偏离下滑道？",
       "referenceText": "A sudden increase in headwind can raise indicated airspeed and lift, causing the aircraft to move above the glide slope. A downdraft or a change to tailwind can reduce airspeed and lift and push it below the glide slope. Because these changes can occur quickly, large corrections may make the approach unstable.",
       "referenceTextZh": "顶风突然增强会使指示空速和升力增大，导致飞机高于下滑道。下沉气流或变为顺风会使空速和升力减小，并将飞机推至下滑道以下。由于这些变化可能迅速发生，过大的修正会使进近变得不稳定。",
-      "audio": "/question-bank-assets/revisions/opi/90c4f914a112dbad37faee43c461663226ee8b5e568e9aaef3082790d3c06bba/audio/opi/opi-core-045.mp3",
       "audioDurationSeconds": 4.464
     },
     {
-      "id": "opi-core-048",
-      "taskTitle": "气象-风切变-12",
-      "audioText": "Why is low-level wind shear more hazardous than wind shear at higher altitudes?",
-      "audioTextZh": "为什么低空风切变比高空风切变更危险？",
-      "referenceText": "Low-level wind shear occurs close to the ground, often during takeoff, climb, approach, or landing. A sudden loss of airspeed or altitude leaves less time and height for recovery, and nearby terrain or buildings may be difficult to clear.",
-      "referenceTextZh": "低空风切变发生在接近地面的区域，通常出现在起飞、爬升、进近或着陆阶段。空速或高度突然下降会使飞行员用于改出的时间和高度更少，附近地形或建筑物也可能难以越过。",
-      "audio": "/question-bank-assets/revisions/opi/e1b88d2f4b912084727891785a463bc9e503413e3361f9b82aa04745b3bbd354/audio/opi/opi-core-048.mp3",
-      "audioDurationSeconds": 4.104
+      "id": "opi-core-040",
+      "audio": "/question-bank-assets/revisions/opi/d8e390299743a56396ef0e06d4549e82f95c1222cecfff3b8e64f4df9c7f466d/audio/opi/opi-core-040.mp3",
+      "audioText": "Why is wind shear a threat to flight safety?",
+      "taskTitle": "气象-风切变-6",
+      "audioTextZh": "为什么风切变会威胁飞行安全？",
+      "referenceText": "Wind shear can cause sudden increases or decreases in airspeed and a rapid loss of altitude. The aircraft may become difficult to control, stall, or crash.",
+      "referenceTextZh": "风切变会使空速突然增大或减小，并造成高度迅速下降。飞机可能变得难以操纵、失速，甚至坠毁。",
+      "audioDurationSeconds": 2.28
     },
     {
-      "id": "opi-core-049",
-      "taskTitle": "气象-风切变-13",
-      "audioText": "How should pilots respond to a wind shear warning in flight?",
-      "audioTextZh": "飞行中收到风切变警告时，飞行员应如何处置？",
-      "referenceText": "During takeoff, the pilots should maintain control, add power, and leave the wind shear area. During landing, they should go around.",
-      "referenceTextZh": "起飞过程中，飞行员应控制好飞机，增加推力并离开风切变区域。着陆过程中则应复飞。",
-      "audio": "/question-bank-assets/revisions/opi/a1ebe149f103770a496152c5ab62ab4a1278bf06eeb759390f0186ad1fa28ee4/audio/opi/opi-core-049.mp3",
-      "audioDurationSeconds": 3.12
+      "id": "opi-core-044",
+      "audio": "/question-bank-assets/revisions/opi/c5f3c7588b0087f188956a110cf38344fc239bf7fb99b6cf4be064c5ca955f04/audio/opi/opi-core-044.mp3",
+      "audioText": "What would you do if you encountered wind shear and a sudden loss of airspeed as the aircraft approached rotation speed?",
+      "taskTitle": "气象-风切变-10",
+      "audioTextZh": "飞机接近抬前轮速度时，如果遭遇风切变并且空速突然下降，你会如何处置？",
+      "referenceText": "If the event were recognized before the takeoff decision speed and a safe rejection could be initiated, I would maintain directional control and reject the takeoff in accordance with the procedure. At or after the decision speed, I would continue, rotate normally at the calculated rotation speed, and follow the wind-shear escape guidance. I would avoid configuration changes until the aircraft was clear of the shear.",
+      "referenceTextZh": "如果在起飞决断速度之前识别到该情况，并且能够安全中断起飞，我会保持方向控制并按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，按计算的抬轮速度正常抬轮，并遵循风切变逃逸指引。在飞机脱离风切变之前，我会避免改变构型。",
+      "audioDurationSeconds": 5.88
     },
     {
-      "id": "opi-core-050",
-      "taskTitle": "气象-风切变-14",
-      "audioText": "What should pilots do if they encounter wind shear during takeoff?",
-      "audioTextZh": "起飞过程中遇到风切变时，飞行员应如何处置？",
-      "referenceText": "If wind shear is encountered before V1, the pilots should not continue the takeoff. If it is encountered after V1, they should maintain aircraft control, add power, and leave the wind shear area.",
-      "referenceTextZh": "如果在 V1 之前遭遇风切变，飞行员不应继续起飞。如果在 V1 之后遭遇，应控制好飞机，增加推力并离开风切变区域。",
-      "audio": "/question-bank-assets/revisions/opi/a17dda06df96cfede57907128e94f8493fa6267eeb1e22907e236ab11d355363/audio/opi/opi-core-050.mp3",
-      "audioDurationSeconds": 3.432
+      "id": "opi-core-039",
+      "audio": "/question-bank-assets/revisions/opi/4700b36cf3a2ca8a9ce49dddbe6f87b4ac6789e7a5fff2dd98076a53b68f987c/audio/opi/opi-core-039.mp3",
+      "audioText": "How are pilots warned about wind shear on your aircraft?",
+      "taskTitle": "气象-风切变-5",
+      "audioTextZh": "你所飞的飞机通过什么方式向飞行员发出风切变警告？",
+      "referenceText": "The DA-40 I fly does not have a wind shear warning system. On large commercial aircraft, weather radar and EGPWS can provide a wind shear warning to the pilots.",
+      "referenceTextZh": "我飞的 DA-40 没有风切变警告系统。在大型商用飞机上，气象雷达和 EGPWS 可以向飞行员提供风切变警告。",
+      "audioDurationSeconds": 2.856
+    },
+    {
+      "id": "opi-core-041",
+      "audio": "/question-bank-assets/revisions/opi/4ce6592277f73c37cca108c5c3cbf2437559a4f777134bdb5407e7598eedd310/audio/opi/opi-core-041.mp3",
+      "audioText": "Have you ever encountered wind shear in flight?",
+      "taskTitle": "气象-风切变-7",
+      "audioTextZh": "你在飞行中遇到过风切变吗？",
+      "referenceText": "Yes, I once encountered wind shear during a training flight. The aircraft's speed and altitude changed abruptly. I maintained control, communicated with ATC, and adjusted the flight parameters to recover from the situation.",
+      "referenceTextZh": "是的，我曾在一次训练飞行中遭遇风切变。飞机的速度和高度突然变化。我控制好飞机，与空中交通管制沟通，并调整飞行参数，使飞机恢复正常状态。",
+      "audioDurationSeconds": 2.448
     },
     {
       "id": "opi-core-051",
-      "taskTitle": "气象-风切变-15",
+      "audio": "/question-bank-assets/revisions/opi/ffcd833bf26e2e1de677d2ad4d6a8a8597de6a6613ca9580b4f4ba8ff0ecd196/audio/opi/opi-core-051.mp3",
       "audioText": "How can wind shear affect aircraft performance?",
+      "taskTitle": "气象-风切变-15",
       "audioTextZh": "风切变会如何影响飞机性能？",
       "referenceText": "Wind shear may cause the aircraft's airspeed to increase or decrease, and it may cause a loss of altitude.",
       "referenceTextZh": "风切变可能使飞机空速增大或减小，也可能造成高度损失。",
-      "audio": "/question-bank-assets/revisions/opi/ffcd833bf26e2e1de677d2ad4d6a8a8597de6a6613ca9580b4f4ba8ff0ecd196/audio/opi/opi-core-051.mp3",
       "audioDurationSeconds": 2.76
     },
     {
-      "id": "opi-core-052",
-      "taskTitle": "气象-风切变-16",
-      "audioText": "What would you do if low-level wind shear were forecast for takeoff?",
-      "audioTextZh": "如果预报起飞时会出现低空风切变，你会如何处置？",
-      "referenceText": "If low-level wind shear were forecast before takeoff, I would delay the takeoff or change to another runway.",
-      "referenceTextZh": "如果起飞前预报有低空风切变，我会推迟起飞或改用另一条跑道。",
-      "audio": "/question-bank-assets/revisions/opi/5d49e674bb467c4586244549dc171e93022cf2f1c4c0ca6f4da5d643758357b0/audio/opi/opi-core-052.mp3",
-      "audioDurationSeconds": 3.384
-    },
-    {
-      "id": "opi-core-053",
-      "taskTitle": "气象-风切变-17",
-      "audioText": "How can pilots recognize that they have encountered wind shear?",
-      "audioTextZh": "飞行员如何判断飞机已经遭遇风切变？",
-      "referenceText": "Pilots may recognize wind shear from sudden changes in airspeed, ground speed, or vertical speed.",
-      "referenceTextZh": "飞行员可以通过空速、地速或垂直速度突然变化来识别风切变。",
-      "audio": "/question-bank-assets/revisions/opi/a31a39236f9c2ad1e506662cbe0ef7754c2df928d02120c3c5d1b38cdb25c963/audio/opi/opi-core-053.mp3",
-      "audioDurationSeconds": 3.384
-    },
-    {
       "id": "opi-core-055",
-      "taskTitle": "气象-风切变-18",
+      "audio": "/question-bank-assets/revisions/opi/a7232ca02d788ccac8ad325cced90a7a19e2a96085e77e5a35cc439d3979f85d/audio/opi/opi-core-055.mp3",
       "audioText": "What measures can help reduce accidents caused by wind shear?",
+      "taskTitle": "气象-风切变-18",
       "audioTextZh": "哪些措施有助于减少风切变造成的事故？",
       "referenceText": "Pilots can check forecasts, ATIS, and NOTAMs before flight and avoid takeoff or landing in areas affected by wind shear. In flight, they can use weather radar and pilot reports and monitor wind changes. Training, predictive wind shear systems, and timely ATC alerts also help reduce accidents.",
       "referenceTextZh": "飞行员可以在飞行前查看预报、ATIS 和航行通告，并避免在受风切变影响的区域起飞或着陆。飞行中可以利用气象雷达和飞行员报告，并监控风的变化。训练、预测式风切变系统以及空中交通管制及时发出的警告也有助于减少事故。",
-      "audio": "/question-bank-assets/revisions/opi/a7232ca02d788ccac8ad325cced90a7a19e2a96085e77e5a35cc439d3979f85d/audio/opi/opi-core-055.mp3",
       "audioDurationSeconds": 3.288
     },
     {
       "id": "opi-core-057",
-      "taskTitle": "气象-风切变-19",
+      "audio": "/question-bank-assets/revisions/opi/78814b3737b39d708163c59c22aadb9919a240922b4345038bc25d61bc81713e/audio/opi/opi-core-057.mp3",
       "audioText": "During which seasons is wind shear most likely to occur?",
+      "taskTitle": "气象-风切变-19",
       "audioTextZh": "哪些季节最容易出现风切变？",
       "referenceText": "The season depends on the local climate, so there is no single answer worldwide. Convective wind shear is most likely during the local thunderstorm season, while frontal and inversion-related wind shear can occur at other times. Pilots should use current forecasts, reports, and local weather patterns rather than relying only on the time of year.",
       "referenceTextZh": "具体季节取决于当地气候，因此全球没有统一答案。对流性风切变最常见于当地雷暴季节，而锋面或逆温相关的风切变也可能在其他时段发生。飞行员应依据当前预报、报告和当地天气规律，而不能只看季节。",
-      "audio": "/question-bank-assets/revisions/opi/78814b3737b39d708163c59c22aadb9919a240922b4345038bc25d61bc81713e/audio/opi/opi-core-057.mp3",
       "audioDurationSeconds": 2.976
+    },
+    {
+      "id": "opi-core-049",
+      "audio": "/question-bank-assets/revisions/opi/a1ebe149f103770a496152c5ab62ab4a1278bf06eeb759390f0186ad1fa28ee4/audio/opi/opi-core-049.mp3",
+      "audioText": "How should pilots respond to a wind shear warning in flight?",
+      "taskTitle": "气象-风切变-13",
+      "audioTextZh": "飞行中收到风切变警告时，飞行员应如何处置？",
+      "referenceText": "During takeoff, the pilots should maintain control, add power, and leave the wind shear area. During landing, they should go around.",
+      "referenceTextZh": "起飞过程中，飞行员应控制好飞机，增加推力并离开风切变区域。着陆过程中则应复飞。",
+      "audioDurationSeconds": 3.12
+    },
+    {
+      "id": "opi-core-038",
+      "audio": "/question-bank-assets/revisions/opi/0712c70e48f3d1ea440697dc1f66354aaaf983161296518be20a4b1edc713815/audio/opi/opi-core-038.mp3",
+      "audioText": "What are the possible consequences if a pilot ignores a wind shear warning?",
+      "taskTitle": "气象-风切变-4",
+      "audioTextZh": "如果飞行员忽视风切变警告，可能会造成哪些后果？",
+      "referenceText": "If a pilot ignores a wind shear warning, the aircraft may experience sudden airspeed and altitude changes. It may become difficult to control and could stall or crash.",
+      "referenceTextZh": "如果飞行员忽视风切变警告，飞机的空速和高度可能突然变化。飞机可能变得难以操纵，并可能失速或坠毁。",
+      "audioDurationSeconds": 3.984
+    },
+    {
+      "id": "opi-core-050",
+      "audio": "/question-bank-assets/revisions/opi/a17dda06df96cfede57907128e94f8493fa6267eeb1e22907e236ab11d355363/audio/opi/opi-core-050.mp3",
+      "audioText": "What should pilots do if they encounter wind shear during takeoff?",
+      "taskTitle": "气象-风切变-14",
+      "audioTextZh": "起飞过程中遇到风切变时，飞行员应如何处置？",
+      "referenceText": "If wind shear is encountered before V1, the pilots should not continue the takeoff. If it is encountered after V1, they should maintain aircraft control, add power, and leave the wind shear area.",
+      "referenceTextZh": "如果在 V1 之前遭遇风切变，飞行员不应继续起飞。如果在 V1 之后遭遇，应控制好飞机，增加推力并离开风切变区域。",
+      "audioDurationSeconds": 3.432
+    },
+    {
+      "id": "opi-core-052",
+      "audio": "/question-bank-assets/revisions/opi/5d49e674bb467c4586244549dc171e93022cf2f1c4c0ca6f4da5d643758357b0/audio/opi/opi-core-052.mp3",
+      "audioText": "What would you do if low-level wind shear were forecast for takeoff?",
+      "taskTitle": "气象-风切变-16",
+      "audioTextZh": "如果预报起飞时会出现低空风切变，你会如何处置？",
+      "referenceText": "If low-level wind shear were forecast before takeoff, I would delay the takeoff or change to another runway.",
+      "referenceTextZh": "如果起飞前预报有低空风切变，我会推迟起飞或改用另一条跑道。",
+      "audioDurationSeconds": 3.384
+    },
+    {
+      "id": "opi-core-035",
+      "audio": "/question-bank-assets/revisions/opi/b506c6b17fb95d9e81407682390db55deb983b1faef5e55c1c33c3b79ebbf564/audio/opi/opi-core-035.mp3",
+      "audioText": "What is wind shear?",
+      "taskTitle": "气象-风切变-1",
+      "audioTextZh": "什么是风切变？",
+      "referenceText": "Wind shear is a sudden change in wind speed or direction over a short distance or within a small area. It can cause rapid changes in aircraft airspeed and altitude.",
+      "referenceTextZh": "风切变是风速或风向在很短距离或很小区域内突然发生变化。它会使飞机空速和高度迅速改变。",
+      "audioDurationSeconds": 0.984
+    },
+    {
+      "id": "opi-core-037",
+      "audio": "/question-bank-assets/revisions/opi/997614da1759bd2d1e03afd78c1488630ae0b87052355c6c706ae25af6198738/audio/opi/opi-core-037.mp3",
+      "audioText": "Have you ever received a wind shear warning in flight?",
+      "taskTitle": "气象-风切变-3",
+      "audioTextZh": "你在飞行中收到过风切变警告吗？",
+      "referenceText": "No, I have never received a wind shear warning in flight. I fly a DA-40 for flight training, and that aircraft does not have a wind shear warning system.",
+      "referenceTextZh": "没有，我在飞行中从未收到过风切变警告。我使用 DA-40 进行飞行训练，这种飞机没有风切变警告系统。",
+      "audioDurationSeconds": 2.76
+    },
+    {
+      "id": "opi-core-036",
+      "audio": "/question-bank-assets/revisions/opi/eb6fc4d2f4f61d18a19ca1d6f1bcaa229e74f7666cdf746d96888e84bcac4500/audio/opi/opi-core-036.mp3",
+      "audioText": "Where is wind shear most likely to occur?",
+      "taskTitle": "气象-风切变-2",
+      "audioTextZh": "风切变最可能在哪里发生？",
+      "referenceText": "Wind shear is most likely near thunderstorms and convective cells, especially close to the ground where microbursts can affect takeoff and approach. It can also occur near frontal weather and strong changes in surface wind. Low-level wind shear is particularly dangerous because there is little height available for recovery.",
+      "referenceTextZh": "风切变最容易发生在雷暴和强对流单体附近，尤其在接近地面的区域，微下击暴流会影响起飞和进近。它也可能出现在锋面天气和地面风发生强烈变化的区域。低空风切变特别危险，因为可用于改出的高度很少。",
+      "audioDurationSeconds": 2.208
+    },
+    {
+      "id": "opi-core-043",
+      "audio": "/question-bank-assets/revisions/opi/3c84aadd9f712ab524afda473146920064c178d79c8c88c00d02508bc7234979/audio/opi/opi-core-043.mp3",
+      "audioText": "What should pilots do if they encounter wind shear during the takeoff roll before V1?",
+      "taskTitle": "气象-风切变-9",
+      "audioTextZh": "在 V1 前的起飞滑跑阶段遇到风切变时，飞行员应如何处置？",
+      "referenceText": "Before V1, the pilots should reject the takeoff by reducing power, using rudder to keep the aircraft straight, and applying the brakes to stop on the runway.",
+      "referenceTextZh": "在 V1 之前，飞行员应减小推力，使用方向舵保持飞机直线，并使用刹车使飞机停在跑道上，从而中断起飞。",
+      "audioDurationSeconds": 4.656
+    },
+    {
+      "id": "opi-core-048",
+      "audio": "/question-bank-assets/revisions/opi/e1b88d2f4b912084727891785a463bc9e503413e3361f9b82aa04745b3bbd354/audio/opi/opi-core-048.mp3",
+      "audioText": "Why is low-level wind shear more hazardous than wind shear at higher altitudes?",
+      "taskTitle": "气象-风切变-12",
+      "audioTextZh": "为什么低空风切变比高空风切变更危险？",
+      "referenceText": "Low-level wind shear occurs close to the ground, often during takeoff, climb, approach, or landing. A sudden loss of airspeed or altitude leaves less time and height for recovery, and nearby terrain or buildings may be difficult to clear.",
+      "referenceTextZh": "低空风切变发生在接近地面的区域，通常出现在起飞、爬升、进近或着陆阶段。空速或高度突然下降会使飞行员用于改出的时间和高度更少，附近地形或建筑物也可能难以越过。",
+      "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-core-053",
+      "audio": "/question-bank-assets/revisions/opi/a31a39236f9c2ad1e506662cbe0ef7754c2df928d02120c3c5d1b38cdb25c963/audio/opi/opi-core-053.mp3",
+      "audioText": "How can pilots recognize that they have encountered wind shear?",
+      "taskTitle": "气象-风切变-17",
+      "audioTextZh": "飞行员如何判断飞机已经遭遇风切变？",
+      "referenceText": "Pilots may recognize wind shear from sudden changes in airspeed, ground speed, or vertical speed.",
+      "referenceTextZh": "飞行员可以通过空速、地速或垂直速度突然变化来识别风切变。",
+      "audioDurationSeconds": 3.384
+    },
+    {
+      "id": "opi-core-042",
+      "audio": "/question-bank-assets/revisions/opi/cd94a3215186414d5331f557cc55a3b248a2834e4dd3fca6c2802b9664601665/audio/opi/opi-core-042.mp3",
+      "audioText": "What should pilots do if they hear a \"GO-AROUND, WINDSHEAR AHEAD\" warning during approach?",
+      "taskTitle": "气象-风切变-8",
+      "audioTextZh": "进近过程中听到“复飞，前方风切变”警告时，飞行员应如何处置？",
+      "referenceText": "The pilots should go around immediately. They should use TOGA thrust, maintain the required configuration until clear of the wind shear, and closely monitor airspeed, altitude, attitude, and vertical speed.",
+      "referenceTextZh": "飞行员应立即复飞。他们应使用 TOGA 推力，在脱离风切变之前保持规定的构型，并密切监控空速、高度、姿态和垂直速度。",
+      "audioDurationSeconds": 4.728
     }
   ],
+  "declaredCardCount": 19,
   "categoryId": "opi-category-01"
 }

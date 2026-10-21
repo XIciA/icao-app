@@ -1,71 +1,71 @@
 {
   "id": "opi-fzy-1716",
   "name": "Sandstorm",
-  "declaredCardCount": 6,
   "cards": [
     {
       "id": "opi-fzy-1716-image-1",
       "kind": "image",
-      "taskTitle": "Sandstorm · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-1716.png",
       "imageAlt": "Sandstorm，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "studyTier": 1,
+      "taskTitle": "Sandstorm · 看图材料"
     },
     {
       "id": "opi-fzy-226657",
-      "taskTitle": "Sandstorm-1",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-226657.mp3",
       "audioText": "What can you see from this picture?",
-      "audioTextZh": "从这张图片中，你可以看到什什么？",
       "studyTier": 1,
+      "taskTitle": "Sandstorm-1",
+      "audioTextZh": "从这张图片中，你可以看到什什么？",
       "referenceText": "From this picture, I can see that there are many planes parked on the apron, but not far away, there is a very strong sandstorm. The visibility in the area affected by the sandstorm has significantly decreased.",
       "referenceTextZh": "从这张图片上，我可以看到有很多飞机停在机坪上，但是不远处，有很强的沙尘暴，沙尘暴影响的区域，能见度显著降低。",
-      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-226657.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-226658",
-      "taskTitle": "Sandstorm-2",
+      "audio": "/question-bank-assets/revisions/opi/528144d63e1815d3c19748be43411dd8643369fc1327ae56c1905daddcbaa1d6/audio/opi/opi-fzy-226658.mp3",
       "audioText": "What impacts do sandstorms have on engine start-up?",
-      "audioTextZh": "沙尘暴对发动机启动有什么影响？",
       "studyTier": 1,
+      "taskTitle": "Sandstorm-2",
+      "audioTextZh": "沙尘暴对发动机启动有什么影响？",
       "referenceText": "Sandstorms are harmful to engines. Sand can damage compressor blades, clog fuel systems, and damage internal parts. This may lead to poor performance, compressor stalls, or even flameout during start-up. Pilots should follow special procedures, like delaying start-up or using reduced thrust, and always perform careful inspections afterward.",
       "referenceTextZh": "沙尘暴对发动机有害。沙子会损坏压气机叶片，堵塞燃料系统，并损坏内部部件。这可能导致性能不佳，压缩机失速，甚至在启动时熄火。飞行员应该遵循特殊程序，比如延迟启动或降低推力，并在启动后进行仔细的检查。",
-      "audio": "/question-bank-assets/revisions/opi/528144d63e1815d3c19748be43411dd8643369fc1327ae56c1905daddcbaa1d6/audio/opi/opi-fzy-226658.mp3",
       "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-fzy-226659",
-      "taskTitle": "Sandstorm-3",
+      "audio": "/question-bank-assets/revisions/opi/54ffd1575565099fb4f8591eaa8498b8a08c66e5cffeb03a14364a81f4fc64f8/audio/opi/opi-fzy-226659.mp3",
       "audioText": "How could sandstorms affect visibility?",
-      "audioTextZh": "沙尘暴是如何影响能见度的？",
       "studyTier": 1,
+      "taskTitle": "Sandstorm-3",
+      "audioTextZh": "沙尘暴是如何影响能见度的？",
       "referenceText": "Sandstorms significantly reduce visibility by filling the air with dust and sand particles. This makes it hard for pilots to see runways, other aircraft, or obstacles. In severe cases, visibility can drop to only a few meters. Pilots then have to rely on instruments and may decide to delay takeoff or land at another airport.",
       "referenceTextZh": "沙尘暴使空气中充满灰尘和沙粒，大大降低了能见度。这使得飞行员很难看到跑道、其他飞机或障碍物。在严重的情况下，能见度可能下降到只有几米。然后，飞行员不得不依靠仪表，并可能决定推迟起飞或在另一个机场降落。",
-      "audio": "/question-bank-assets/revisions/opi/54ffd1575565099fb4f8591eaa8498b8a08c66e5cffeb03a14364a81f4fc64f8/audio/opi/opi-fzy-226659.mp3",
       "audioDurationSeconds": 2.304
     },
     {
       "id": "opi-fzy-226660",
-      "taskTitle": "Sandstorm-4",
+      "audio": "/question-bank-assets/revisions/opi/1168097f15c1d1836db0d0608c0b1bf6f3db208d5790aad9fcaba254faa38c44/audio/opi/opi-fzy-226660.mp3",
       "audioText": "Does the sandstorm have effects on the static system?",
-      "audioTextZh": "沙尘暴对静压系统有影响吗？",
       "studyTier": 1,
+      "taskTitle": "Sandstorm-4",
+      "audioTextZh": "沙尘暴对静压系统有影响吗？",
       "referenceText": "Yes, sandstorms can clog the static ports, which measure air pressure. If blocked, the altimeter, airspeed indicator, and vertical speed indicator give wrong readings. This is dangerous because pilots may misjudge speed or altitude. So, static ports should be covered on the ground and checked carefully before flight.",
       "referenceTextZh": "是的，沙尘暴会堵塞测量气压的静态端口。如果阻塞，高度计，空速指示器和垂直速度指示器给出错误的读数。这很危险，因为飞行员可能会误判速度或高度。因此，在飞行前应将静态端口覆盖在地面上并仔细检查。",
-      "audio": "/question-bank-assets/revisions/opi/1168097f15c1d1836db0d0608c0b1bf6f3db208d5790aad9fcaba254faa38c44/audio/opi/opi-fzy-226660.mp3",
       "audioDurationSeconds": 2.832
     },
     {
       "id": "opi-fzy-226661",
-      "taskTitle": "Sandstorm-5",
+      "audio": "/question-bank-assets/revisions/opi/ac0bcddadfc23223c0b468f9d0cae48f46031c115eb8f0741093f3d740a72716/audio/opi/opi-fzy-226661.mp3",
       "audioText": "What would you do if there was a sandstorm forecast at your destination airport?",
-      "audioTextZh": "如果你的目的地机场有沙尘暴预报，你会怎么做？",
       "studyTier": 1,
+      "taskTitle": "Sandstorm-5",
+      "audioTextZh": "如果你的目的地机场有沙尘暴预报，你会怎么做？",
       "referenceText": "I would check the sandstorm forecast details and calculate extra fuel for holding and diversion. I would also select an alternate airport with good weather. Before landing, I would ask ATC for the latest conditions. If visibility or winds are unsafe, I would go around and divert. I would never risk landing in a severe sandstorm.",
       "referenceTextZh": "我会检查沙尘暴预报的细节，计算等待和备降所需的额外燃料。我还会选择一个天气好的备用机场。在降落前，我会向空管询问最新情况。如果能见度或风向不安全，我会绕道备降。我绝不会冒险在严重的沙尘暴中着陆。",
-      "audio": "/question-bank-assets/revisions/opi/ac0bcddadfc23223c0b468f9d0cae48f46031c115eb8f0741093f3d740a72716/audio/opi/opi-fzy-226661.mp3",
       "audioDurationSeconds": 4.104
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-08"
 }

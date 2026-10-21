@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-152275",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-1",
-      "audioText": "[Your call sign is QFA653, from Sydney to Wuhan, cruising at 10700m, squawk 3211. Now you are entering Wuhan Control area. Make an initial contact with Wuhan Control.]",
+      "audioText": "Your call sign is QFA653, from Sydney to Wuhan, cruising at 10700m, squawk 3211. Now you are entering Wuhan Control area. Make an initial contact with Wuhan Control.",
       "audioTextZh": "你的呼号是澳航653，从悉尼飞往武汉，巡航高度10700米，应答机3211。你现在正在进入武汉管制区域，与武汉区调进行初始联络。",
       "referenceText": "Wuhan Control, QFA653, 10700m, squawk 3211.",
       "referenceTextZh": "武汉区调，澳航653，（高度）10700米，应答机3211。",
@@ -26,17 +26,17 @@
     {
       "id": "radiotelephony-fzy-152277",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-3",
-      "audioText": "[You find thunderstorms building up near LKO, ask the controller how the preceding aircraft avoided the weather.]",
-      "audioTextZh": "[你发现雷暴正在LKO附近形成，询问管制员，前机是如何避免天气的]",
+      "audioText": "You find thunderstorms building up near LKO, ask the controller how the preceding aircraft avoided the weather.",
+      "audioTextZh": "你发现雷暴正在LKO附近形成，询问管制员，前机是如何避免天气的",
       "referenceText": "Wuhan Control, QFA653, thunderstorm near LKO, how did preceding aircraft avoid weather?",
-      "referenceTextZh": "武汉区调，澳航635， LKO附近有雷暴，前机是如何避开天气的？",
+      "referenceTextZh": "武汉区调，澳航635，LKO附近有雷暴，前机是如何避开天气的？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b5e322afd0f850b7434c.mp3"
     },
     {
       "id": "radiotelephony-fzy-152278",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-4",
-      "audioText": "Preceding aircraft just deviate 5 miles to the east, what’s your intention?\n[Tell ATC you want to deviate 20 miles to the east to avoid the weather.]",
-      "audioTextZh": "前机向东偏航5海里，你的意图是什么?\n[告诉管制员，你想向东偏航20海里来避开天气]",
+      "audioText": "Preceding aircraft just deviate 5 miles to the east, what's your intention?\n[Tell ATC you want to deviate 20 miles to the east to avoid the weather.]",
+      "audioTextZh": "前机向东偏航5海里，你的意图是什么？\n[告诉管制员，你想向东偏航20海里来避开天气]",
       "referenceText": "Request deviate 20 miles to the east to avoid the weather, QFA653",
       "referenceTextZh": "请求向东偏航20海里来避开天气，澳航653。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3dd47538912b033dfc75.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-152279",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-5",
-      "audioText": "[You are approaching the top of the descent point, but there is CBs at lower level, ask Wuhan Control to delay descent.]",
-      "audioTextZh": "[你正在接近下降点的顶部，但是在较低高度层有积雨云，告知武汉区调，推迟下降]",
+      "audioText": "You are approaching the top of the descent point, but there is CBs at lower level, ask Wuhan Control to delay descent.",
+      "audioTextZh": "你正在接近下降点的顶部，但是在较低高度层有积雨云，告知武汉区调，推迟下降",
       "referenceText": "Wuhan Control, QFA653, request delay descent due CBs at lower level.",
       "referenceTextZh": "武汉区调，澳航653，由于较低高度层有积雨云，请求推迟下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c503d395e12d7a80563.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-152280",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-6",
-      "audioText": "[Now the thunderstorm is building up to the south of the airport, arrival through LKO is difficult. Ask Wuhan Control to approach from the north and use ZF arrival.]",
-      "audioTextZh": "[现在，雷暴正在机场南部形成，通过LKO进场很困难，告诉武汉区调，从北部进近，使用ZF进场]",
+      "audioText": "Now the thunderstorm is building up to the south of the airport, arrival through LKO is difficult. Ask Wuhan Control to approach from the north and use ZF arrival.",
+      "audioTextZh": "现在，雷暴正在机场南部形成，通过LKO进场很困难，告诉武汉区调，从北部进近，使用ZF进场",
       "referenceText": "Wuhan Control, QFA653, request approach from the north and use ZF arrival due thunderstorm.",
       "referenceTextZh": "武汉区调，澳航653，由于雷暴，请求从北部进近，使用ZF进场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2bbf7bb08d5e521546f2.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-152282",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-8",
-      "audioText": "[Now there is small CBs in front of you, request maneuver to the right within 2 miles.]",
-      "audioTextZh": "[现在，你前方有一小团积雨云，请求在2海里内向右转]",
+      "audioText": "Now there is small CBs in front of you, request maneuver to the right within 2 miles.",
+      "audioTextZh": "现在，你前方有一小团积雨云，请求在2海里内向右转",
       "referenceText": "Wuhan Control, QFA653, request maneuver to the right within 2 miles due CBs ahead.",
       "referenceTextZh": "武汉区调，澳航653，由于前方积雨云，请求2海里内右转。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/be8e92ab8b8a2e1c9992.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-152283",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-9",
-      "audioText": "[During descent, your nose wheel is inoperative, inform Wuhan Approach of the situation and tell them you will stop on the runway after landing.]",
-      "audioTextZh": "[在下降过程中，你的前轮失效，将情况通知武汉进场，并告诉他们你着陆后将在跑道上停下]",
+      "audioText": "During descent, your nose wheel is inoperative, inform Wuhan Approach of the situation and tell them you will stop on the runway after landing.",
+      "audioTextZh": "在下降过程中，你的前轮失效，将情况通知武汉进场，并告诉他们你着陆后将在跑道上停下",
       "referenceText": "Wuhan Approach, QFA653, nose wheel failed, request stop on the runway after landing.",
       "referenceTextZh": "武汉进近，澳航653，前轮失效，请求着陆后在跑道上停下。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fca67a61df54ba8563c2.mp3"
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-152284",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-10",
-      "audioText": "[You are about to use the VOR/DME approach runway 22, but the weather is deteriorating, ask Wuhan Tower for ILS approach runway 18L.]",
-      "audioTextZh": "[你将使用VOR/DME进近，跑道22，但是天气正在恶化。告诉武汉塔台，使用ILS进近，跑道18左]",
+      "audioText": "You are about to use the VOR/DME approach runway 22, but the weather is deteriorating, ask Wuhan Tower for ILS approach runway 18L.",
+      "audioTextZh": "你将使用VOR/DME进近，跑道22，但是天气正在恶化。告诉武汉塔台，使用ILS进近，跑道18左",
       "referenceText": "Wuhan Tower, QFA653, request ILS approach runway 18L due to weather deteriorating.",
       "referenceTextZh": "武汉塔台，澳航653，由于天气恶化，请求ILS进近，跑道18左。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/851075652abd46edc191.mp3"
@@ -107,7 +107,7 @@
     {
       "id": "radiotelephony-fzy-152286",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-12",
-      "audioText": "[The approach lights is not bright enough, ask Tower to increase the brightness of the approach lights.]",
+      "audioText": "The approach lights is not bright enough, ask Tower to increase the brightness of the approach lights.",
       "audioTextZh": "进近灯光不够亮，告诉塔台，提高进近灯光的亮度。",
       "referenceText": "Wuhan Tower, QFA653, request brighten/turn up the approach lights.",
       "referenceTextZh": "武汉塔台，澳航653，请求提高进近灯光亮度。",
@@ -116,7 +116,7 @@
     {
       "id": "radiotelephony-fzy-152287",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-13",
-      "audioText": "[You are executing a missed approach because of poor visibility, inform Tower.]",
+      "audioText": "You are executing a missed approach because of poor visibility, inform Tower.",
       "audioTextZh": "由于能见度差，你正在进行复飞，告知塔台。",
       "referenceText": "Wuhan Tower, QFA653, going around due poor visibility.",
       "referenceTextZh": "武汉塔台，澳航653，由于能见度差，复飞了。",
@@ -126,7 +126,7 @@
       "id": "radiotelephony-fzy-152288",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-14",
       "audioText": "QFA653, follow the standard missed approach procedure.",
-      "audioTextZh": "澳航653， 按照标准复飞程序复飞。",
+      "audioTextZh": "澳航653，按照标准复飞程序复飞。",
       "referenceText": "Following the standard missed approach procedure, QFA653.",
       "referenceTextZh": "按照标准复飞程序复飞，澳航653。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/84bea2e27faf17a726a8.mp3"
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-152290",
       "taskTitle": "24-QFA653 [雷暴，前轮故障]-16",
-      "audioText": "[Now you are at Wuhan Airport, the tow truck is not in position. Ask for a tug.]",
+      "audioText": "Now you are at Wuhan Airport, the tow truck is not in position. Ask for a tug.",
       "audioTextZh": "你现在在武汉机场，但是拖车未就位，请求拖车。",
       "referenceText": "Wuhan Ground, QFA653, tug not in position, request a tug.",
       "referenceTextZh": "武汉地面，澳航653，拖车未就位，请求拖车。",

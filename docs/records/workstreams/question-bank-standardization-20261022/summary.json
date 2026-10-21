@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 26,
+  "summary": {
+    "listening": {
+      "cards": 1502,
+      "changedCards": 1482
+    },
+    "sentences900": {
+      "cards": 900,
+      "changedCards": 59
+    },
+    "radiotelephony": {
+      "cards": 5751,
+      "changedCards": 1018
+    },
+    "opi": {
+      "cards": 2365,
+      "changedCards": 290
+    },
+    "storytelling": {
+      "cards": 382,
+      "changedCards": 382
+    }
+  },
+  "textChanges": 12856,
+  "reorderedGroups": 181
+}

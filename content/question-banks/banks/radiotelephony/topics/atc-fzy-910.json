@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-164882",
       "taskTitle": "26-CCA527 [雷暴]-1",
-      "audioText": "[You are at gate 221, with information C, ask for ATC clearance from Shanghai to Guangzhou.]",
-      "audioTextZh": "[你现在在221号机位，通播C，请求从上海飞往广州的放行许可。]",
+      "audioText": "You are at gate 221, with information C, ask for ATC clearance from Shanghai to Guangzhou.",
+      "audioTextZh": "你现在在221号机位，通播C，请求从上海飞往广州的放行许可。",
       "referenceText": "Shanghai Delivery, CCA527, gate 221, information C, request ATC clearance to Guangzhou.",
       "referenceTextZh": "上海放行，国航527，221号机位，通播C，请求从上海飞往广州的放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/97666298ed472b88bfdf.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-164884",
       "taskTitle": "26-CCA527 [雷暴]-3",
-      "audioText": "[Now you are on taxiway Z4, you are ready to taxi and request taxi instructions.]",
-      "audioTextZh": "[你现在在滑行道Z4，你准备好滑行了，请求滑行指令。]",
+      "audioText": "Now you are on taxiway Z4, you are ready to taxi and request taxi instructions.",
+      "audioTextZh": "你现在在滑行道Z4，你准备好滑行了，请求滑行指令。",
       "referenceText": "Shanghai Ground, CCA527, taxiway Z4, ready to taxi.",
       "referenceTextZh": "上海地面，国航527，Z4滑行道，准备好滑行了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9ff194b5960a0f4f3cd2.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-164887",
       "taskTitle": "26-CCA527 [雷暴]-6",
-      "audioText": "[Now you are at the threshold of Runway 36R, ask Tower for takeoff clearance.]",
-      "audioTextZh": "[你现在在跑道36右的入口，向塔台请求起飞许可。]",
+      "audioText": "Now you are at the threshold of Runway 36R, ask Tower for takeoff clearance.",
+      "audioTextZh": "你现在在跑道36右的入口，向塔台请求起飞许可。",
       "referenceText": "Shanghai Tower, CCA527, threshold of runway 36R, request departure.",
       "referenceTextZh": "上海塔台，国航527，在跑道36右入口，请求起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/eb00748f79ebd12f287a.mp3"
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-164889",
       "taskTitle": "26-CCA527 [雷暴]-8",
-      "audioText": "[You just took off, passing 600m, contact departure.]",
+      "audioText": "You just took off, passing 600m, contact departure.",
       "audioTextZh": "[你起飞了，过600米，联系离场。]",
       "referenceText": "Shanghai Departure, CCA527, passing 600m.",
       "referenceTextZh": "上海离场，国航527，过600米。",
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-164891",
       "taskTitle": "26-CCA527 [雷暴]-10",
-      "audioText": "[Now you are at cruising level, the thunderstorm is detected in front of you. You want to make a 15 miles deviation to the east of the current track from Guangzhou Control.]",
-      "audioTextZh": "[你现在到达巡航高度，前方检测到雷暴，你想在广州区调内从当前航路上东偏航15海里。]",
+      "audioText": "Now you are at cruising level, the thunderstorm is detected in front of you. You want to make a 15 miles deviation to the east of the current track from Guangzhou Control.",
+      "audioTextZh": "你现在到达巡航高度，前方检测到雷暴，你想在广州区调内从当前航路上东偏航15海里。",
       "referenceText": "Guangzhou Control, CCA527, (10400m maintaining) request deviate 15 miles to the east due thunderstorm.",
       "referenceTextZh": "广州区调，国航527，（正保持10400米）由于雷暴，请求东偏航15海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ac9151c1d3852430a789.mp3"
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-164895",
       "taskTitle": "26-CCA527 [雷暴]-14",
-      "audioText": "[Now you are established with the Guangzhou Approach, your assigned landing runway is 02R, you want to land on runway 02L.]",
-      "audioTextZh": "[现在你与广州进近建立联系，指定给你的跑道是02右，你想在跑道02左降落。]",
+      "audioText": "Now you are established with the Guangzhou Approach, your assigned landing runway is 02R, you want to land on runway 02L.",
+      "audioTextZh": "现在你与广州进近建立联系，指定给你的跑道是02右，你想在跑道02左降落。",
       "referenceText": "Guangzhou Approach, CCA527, request land on runway 02L.",
       "referenceTextZh": "广州进近，国航527，请求在跑道02左降落。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f0d9f4cd8ca2ff56ca27.mp3"
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-164897",
       "taskTitle": "26-CCA527 [雷暴]-16",
-      "audioText": "[Now you are established on ILS runway 02R, contact Tower.]",
+      "audioText": "Now you are established on ILS runway 02R, contact Tower.",
       "audioTextZh": "[你现在建立跑道02右盲降，联系塔台。]",
       "referenceText": "Guangzhou Tower, CCA527, established on ILS runway 02R.",
       "referenceTextZh": "广州塔台，国航527，建立跑道02右盲降。",

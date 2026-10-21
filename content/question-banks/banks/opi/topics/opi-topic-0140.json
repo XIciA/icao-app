@@ -1,74 +1,118 @@
 {
   "id": "opi-topic-0140",
   "name": "冬夏季运行",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-extra-330",
-      "taskTitle": "气象-冬夏季运行-1",
-      "audioText": "What factors should pilots consider during winter operations?",
-      "audioTextZh": "冬季运行中，飞行员应考虑哪些因素？",
-      "referenceText": "Pilots should review the weather for icing conditions along the planned route. Before takeoff, they must make sure that ice has not accumulated on the aircraft and arrange deicing when required. They should also consider that runway braking action may be poor.",
-      "referenceTextZh": "飞行员应查看计划航路沿线是否存在结冰天气。起飞前，必须确保飞机没有积冰，并在需要时安排除冰。他们还应考虑跑道刹车效应可能较差。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/e94f7d214d972a5bd9711009133b22321bcc1316edf67fa81dec5a73e886043c/audio/opi/opi-extra-330.mp3",
-      "audioDurationSeconds": 3.408
-    },
-    {
-      "id": "opi-extra-331",
-      "taskTitle": "气象-冬夏季运行-2",
-      "audioText": "What hazards can pilots face during summer operations?",
-      "audioTextZh": "夏季运行中，飞行员可能面临哪些危险？",
-      "referenceText": "Summer operations can expose pilots to thunderstorms, heavy rain, and lightning.",
-      "referenceTextZh": "夏季运行可能使飞行员面临雷暴、大雨和雷电。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/4af7e794c3cefa3f1d54569bc38dda0b504cbcd7cf8fcaa3f6c806e9fe62c92b/audio/opi/opi-extra-331.mp3",
-      "audioDurationSeconds": 3.264
-    },
-    {
-      "id": "opi-supplement-20260926-cold-check",
-      "taskTitle": "冬季运行延伸-1",
-      "audioText": "How can cold weather affect a pilot during the walk-around inspection, and how can the pilot manage this risk?",
-      "audioTextZh": "寒冷天气会如何影响飞行员的绕机检查？应如何管理这一风险？",
-      "referenceText": "Cold and discomfort can make it harder to concentrate and may tempt a pilot to rush. I would dress appropriately, allow enough time, and follow the inspection checklist carefully. If I became too cold to inspect properly, I would take a break and resume when ready.",
-      "referenceTextZh": "寒冷和不适可能影响注意力，也可能使飞行员急于结束检查。我会穿着合适的衣物，留出充分时间，并认真按照检查单完成检查。如果冷得无法正常检查，我会休息后再继续。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/bd689580c7a684a3005ccddd74dac62d9f0846a8b1ed7083049ca316e25c0e58/audio/opi/opi-supplement-20260926-cold-check.mp3",
-      "audioDurationSeconds": 5.976
+      "id": "opi-intake-20261019-snow-protection",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3",
+      "audioText": "How can pilots reduce the risks caused by snow and ice during flight operations?",
+      "studyTier": 0,
+      "taskTitle": "冬夏季运行-收集反馈",
+      "audioTextZh": "飞行员如何降低飞行运行中冰雪带来的风险？",
+      "examReported": true,
+      "referenceText": "We should assess the weather and contamination, use approved de-icing and anti-icing procedures, and check aircraft and runway conditions. We also need to monitor conditions as they change and delay or change the plan when safe operating conditions cannot be met.",
+      "referenceTextZh": "应评估天气及污染，使用获批除防冰程序，检查飞机和跑道状况，持续监控变化，在无法满足安全运行条件时延误或调整计划。",
+      "audioDurationSeconds": 4.584
     },
     {
       "id": "opi-supplement-20260926-winter-delay",
-      "taskTitle": "冬季运行延伸-2",
+      "audio": "/question-bank-assets/revisions/opi/05087e630a13a77512875d21c89c0189992b91638d62eb9061cfd525057bffac/audio/opi/opi-supplement-20260926-winter-delay.mp3",
       "audioText": "How would you update the crew briefing after a long delay in snowy weather?",
+      "studyTier": 2,
+      "taskTitle": "冬季运行延伸-2",
       "audioTextZh": "在降雪天气中长时间延误后，你会如何更新机组简令？",
       "referenceText": "I would review the latest weather, runway conditions, and relevant notices with the crew. We would reassess the plan, clarify our tasks, and review any required de-icing procedures. If conditions had changed, we would update the plan using the aircraft manuals and company procedures.",
       "referenceTextZh": "我会与机组重新查看最新天气、跑道状况和相关通告。我们会重新评估计划，明确分工，并复习需要执行的除冰程序。若条件发生变化，会依据飞机手册和公司程序调整计划。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/05087e630a13a77512875d21c89c0189992b91638d62eb9061cfd525057bffac/audio/opi/opi-supplement-20260926-winter-delay.mp3",
       "audioDurationSeconds": 3.72
     },
     {
+      "id": "opi-intake-20261019-hot-ground",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270/audio/opi/opi-intake-20261019-hot-ground.mp3",
+      "audioText": "What hazards should pilots consider during ground operations in very hot weather?",
+      "studyTier": 0,
+      "taskTitle": "冬夏季运行-收集反馈",
+      "audioTextZh": "在非常炎热的天气下进行地面运行，飞行员应考虑哪些危险？",
+      "examReported": true,
+      "referenceText": "High temperatures can affect aircraft performance, equipment temperatures, and crew alertness. I would check the aircraft limitations and performance data, monitor relevant indications, and manage hydration and exposure to heat.",
+      "referenceTextZh": "高温可能影响飞机性能、设备温度及机组警觉性。我会核对飞机限制和性能资料，监控相关指示，并注意补水及减少热暴露。",
+      "audioDurationSeconds": 4.344
+    },
+    {
+      "id": "opi-intake-20261019-snowstorm",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3/audio/opi/opi-intake-20261019-snowstorm.mp3",
+      "audioText": "What hazards can a snowstorm create for flight operations?",
+      "studyTier": 0,
+      "taskTitle": "冬夏季运行-收集反馈",
+      "audioTextZh": "暴风雪可能给飞行运行带来哪些危险？",
+      "examReported": true,
+      "referenceText": "A snowstorm can reduce visibility and contaminate aircraft surfaces, taxiways, and runways. This can affect navigation on the ground, takeoff and landing performance, and the departure schedule. We should assess the conditions and follow the approved winter procedures.",
+      "referenceTextZh": "暴风雪可降低能见度，并使飞机表面、滑行道及跑道受到污染，影响地面引导、起降性能及离场安排。应评估条件并遵循获批冬季程序。",
+      "audioDurationSeconds": 3.36
+    },
+    {
+      "id": "opi-supplement-20260926-cold-check",
+      "audio": "/question-bank-assets/revisions/opi/bd689580c7a684a3005ccddd74dac62d9f0846a8b1ed7083049ca316e25c0e58/audio/opi/opi-supplement-20260926-cold-check.mp3",
+      "audioText": "How can cold weather affect a pilot during the walk-around inspection, and how can the pilot manage this risk?",
+      "studyTier": 2,
+      "taskTitle": "冬季运行延伸-1",
+      "audioTextZh": "寒冷天气会如何影响飞行员的绕机检查？应如何管理这一风险？",
+      "referenceText": "Cold and discomfort can make it harder to concentrate and may tempt a pilot to rush. I would dress appropriately, allow enough time, and follow the inspection checklist carefully. If I became too cold to inspect properly, I would take a break and resume when ready.",
+      "referenceTextZh": "寒冷和不适可能影响注意力，也可能使飞行员急于结束检查。我会穿着合适的衣物，留出充分时间，并认真按照检查单完成检查。如果冷得无法正常检查，我会休息后再继续。",
+      "audioDurationSeconds": 5.976
+    },
+    {
       "id": "opi-supplement-20260926-winter-training",
-      "taskTitle": "冬季运行延伸-3",
+      "audio": "/question-bank-assets/revisions/opi/d927f672b962d5916585741929bf1852c540051d9519ef583ce3cea960af25c0/audio/opi/opi-supplement-20260926-winter-training.mp3",
       "audioText": "How can simulator training help pilots prepare for winter operations?",
+      "studyTier": 2,
+      "taskTitle": "冬季运行延伸-3",
       "audioTextZh": "模拟机训练如何帮助飞行员准备冬季运行？",
       "referenceText": "Simulator training lets pilots practise handling winter threats in a controlled environment. I would use it to improve crew coordination, workload management, and decision-making when conditions change. After each session, I would review mistakes with the instructor and identify what to improve.",
       "referenceTextZh": "模拟机训练让飞行员能在受控环境中练习应对冬季运行威胁。我会利用训练改善条件变化时的机组协作、工作负荷管理和决策。每次训练后，我会与教员复盘错误并明确改进方向。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/d927f672b962d5916585741929bf1852c540051d9519ef583ce3cea960af25c0/audio/opi/opi-supplement-20260926-winter-training.mp3",
       "audioDurationSeconds": 4.152
     },
     {
       "id": "opi-supplement-20260926-winter-pressure",
-      "taskTitle": "冬季运行延伸-4",
+      "audio": "/question-bank-assets/revisions/opi/35efa78ba495636aef8455b44d45c71db3946cc71a1230cf10cea105c4b7e4a5/audio/opi/opi-supplement-20260926-winter-pressure.mp3",
       "audioText": "What would you do if you felt pressured to rush the preflight preparation on a cold day?",
+      "studyTier": 2,
+      "taskTitle": "冬季运行延伸-4",
       "audioTextZh": "如果在寒冷天气中感到压力，想匆忙完成飞行前准备，你会怎么做？",
       "referenceText": "I would tell the other pilot that we need enough time to complete the preparation properly. We would work through the required checks, share tasks clearly, and avoid distractions. A delay is preferable to missing an important safety item. I would raise any unresolved concern before departure.",
       "referenceTextZh": "我会告诉另一名飞行员，我们需要充分时间认真完成准备。我们会完成规定检查，明确分工，并避免干扰。相比遗漏重要安全项目，延误更可接受。起飞前，我会提出任何尚未解决的顾虑。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/35efa78ba495636aef8455b44d45c71db3946cc71a1230cf10cea105c4b7e4a5/audio/opi/opi-supplement-20260926-winter-pressure.mp3",
       "audioDurationSeconds": 4.512
+    },
+    {
+      "id": "opi-extra-331",
+      "audio": "/question-bank-assets/revisions/opi/4af7e794c3cefa3f1d54569bc38dda0b504cbcd7cf8fcaa3f6c806e9fe62c92b/audio/opi/opi-extra-331.mp3",
+      "audioText": "What hazards can pilots face during summer operations?",
+      "studyTier": 2,
+      "taskTitle": "气象-冬夏季运行-2",
+      "audioTextZh": "夏季运行中，飞行员可能面临哪些危险？",
+      "referenceText": "Summer operations can expose pilots to thunderstorms, heavy rain, and lightning.",
+      "referenceTextZh": "夏季运行可能使飞行员面临雷暴、大雨和雷电。",
+      "audioDurationSeconds": 3.264
+    },
+    {
+      "id": "opi-extra-330",
+      "audio": "/question-bank-assets/revisions/opi/e94f7d214d972a5bd9711009133b22321bcc1316edf67fa81dec5a73e886043c/audio/opi/opi-extra-330.mp3",
+      "audioText": "What factors should pilots consider during winter operations?",
+      "studyTier": 2,
+      "taskTitle": "气象-冬夏季运行-1",
+      "audioTextZh": "冬季运行中，飞行员应考虑哪些因素？",
+      "referenceText": "Pilots should review the weather for icing conditions along the planned route. Before takeoff, they must make sure that ice has not accumulated on the aircraft and arrange deicing when required. They should also consider that runway braking action may be poor.",
+      "referenceTextZh": "飞行员应查看计划航路沿线是否存在结冰天气。起飞前，必须确保飞机没有积冰，并在需要时安排除冰。他们还应考虑跑道刹车效应可能较差。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-994d6a668c07": [
+          "What factors should pilots consider during winter operations?"
+        ]
+      },
+      "audioDurationSeconds": 3.408
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-01"
 }

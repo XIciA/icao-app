@@ -43,7 +43,7 @@
       "id": "atc-scenario-0171-card-main-2954",
       "taskTitle": "UAL 805-5",
       "audioText": "C: UAL 805, reduce speed to mach decimal 72.\nB: Advise Zhengzhou Control mach decimal 72 is not acceptable, it's too low for your aircraft.",
-      "audioTextZh": "C： UAL 805，将速度减至 Mach 0.72。\nB： 通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
+      "audioTextZh": "C：UAL 805，将速度减至 Mach 0.72。\nB：通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
       "referenceText": "negative, mach decimal seven two is not acceptable due it's too low, UAL 805.",
       "referenceTextZh": "不行，Mach 0.72不可接受，因为太低，UAL 805。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q05.mp3"

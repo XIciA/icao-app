@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111703",
       "taskTitle": "10. UAL887 pregnant woman, etc.-1",
-      "audioText": "[Your call sign is UAL887, destination Hong Kong, over POLHO 20, level 10100m, estimate TMR 45, next TZH, contact Beijing Control.]",
-      "audioTextZh": "【你的呼号是UAL（美联航）887，目的地香港，过POLHO 20分，高度10100米，预计TMR 45分，下个报告点TZH，联系北京区调。】",
+      "audioText": "Your call sign is UAL887, destination Hong Kong, over POLHO 20, level 10100m, estimate TMR 45, next TZH, contact Beijing Control.",
+      "audioTextZh": "你的呼号是UAL（美联航）887，目的地香港，过POLHO 20分，高度10100米，预计TMR 45分，下个报告点TZH，联系北京区调。",
       "referenceText": "Beijing Control, UAL887, 10100m maintaining, POLHO 20, estimate TMR 45, next TZH.",
       "referenceTextZh": "北京区调，美联航887，101000米保持，POLHO 20分，预计TMR 45分，下个报告点TZH。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bcdb5111fc1b2067b6b7.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-111705",
       "taskTitle": "10. UAL887 pregnant woman, etc.-3",
-      "audioText": "[A flight attendant reports that a pregnant woman is about to give birth.]",
+      "audioText": "A flight attendant reports that a pregnant woman is about to give birth.",
       "audioTextZh": "【乘务员报告一位孕妇即将生产。】",
       "referenceText": "PANPAN PANPAN PANPAN, Beijing Control, UAL887, a pregnant woman on board is about to give birth.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，北京区调，美联航887，机上一位孕妇即将生产。",
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-111710",
       "taskTitle": "10. UAL887 pregnant woman, etc.-8",
-      "audioText": "[You are descending to 3600m, contact Beijing Approach.]",
+      "audioText": "You are descending to 3600m, contact Beijing Approach.",
       "audioTextZh": "【你已下降到3600米，联系北京进近。】",
       "referenceText": "Beijing Approach, UAL887, descending to 3600m.",
       "referenceTextZh": "北京进近，美联航887，下降到3600米。",
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-111716",
       "taskTitle": "10. UAL887 pregnant woman, etc.-14",
-      "audioText": "[You have established localizer.]",
+      "audioText": "You have established localizer.",
       "audioTextZh": "【你已经建立航道。】",
       "referenceText": "Beijing Approach, UAL887, established localizer.",
       "referenceTextZh": "北京进近，美联航887，建立航道。",
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-111718",
       "taskTitle": "10. UAL887 pregnant woman, etc.-16",
-      "audioText": "[Report to Tower that you have established ILS.]",
+      "audioText": "Report to Tower that you have established ILS.",
       "audioTextZh": "【报告塔台你已经建立盲降。】",
       "referenceText": "Beijing Tower, UAL887, established ILS.",
       "referenceTextZh": "北京塔台，美联航887，建立盲降。",
@@ -179,7 +179,7 @@
     {
       "id": "radiotelephony-fzy-111722",
       "taskTitle": "10. UAL887 pregnant woman, etc.-20",
-      "audioText": "[When you are landing, tail strike occurs, request assistance from Tower.]",
+      "audioText": "When you are landing, tail strike occurs, request assistance from Tower.",
       "audioTextZh": "【着陆时飞机擦机尾，向塔台请求援助。】",
       "referenceText": "Beijing Tower, UAL887, tail strike when landing, request emergency assistance.",
       "referenceTextZh": "北京塔台，美联航887，着陆时擦机尾，请求紧急援助。",

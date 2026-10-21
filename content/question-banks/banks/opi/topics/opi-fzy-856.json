@@ -1,82 +1,82 @@
 {
   "id": "opi-fzy-856",
   "name": "Belly landing",
-  "declaredCardCount": 7,
   "cards": [
     {
       "id": "opi-fzy-856-image-1",
       "kind": "image",
-      "taskTitle": "Belly landing · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-856.png",
       "imageAlt": "Belly landing，用于本话题的看图描述和问答",
-      "studyTier": 2
+      "studyTier": 2,
+      "taskTitle": "Belly landing · 看图材料"
     },
     {
       "id": "opi-fzy-152433",
-      "taskTitle": "Belly landing-1",
+      "audio": "/question-bank-assets/revisions/opi/f8846794b2713354d3813d729f1f7384489b5f197bae55a0548b80154d6907b2/audio/opi/opi-fzy-152433.mp3",
       "audioText": "How to describe this picture?",
-      "audioTextZh": "如何描述这张图片？",
       "studyTier": 2,
+      "taskTitle": "Belly landing-1",
+      "audioTextZh": "如何描述这张图片？",
       "referenceText": "The picture shows an airplane from Polish Airlines encountered landing gear problems, the pilot made a belly landing at last.\nI can see smoke was coming from the aircraft.",
       "referenceTextZh": "图片中一架波兰航空的飞机遭遇起落架故障，飞行员最后机腹着陆。\n我能看到飞机有烟冒出。",
-      "audio": "/question-bank-assets/revisions/opi/f8846794b2713354d3813d729f1f7384489b5f197bae55a0548b80154d6907b2/audio/opi/opi-fzy-152433.mp3",
       "audioDurationSeconds": 1.632
     },
     {
       "id": "opi-fzy-152434",
-      "taskTitle": "Belly landing-2",
+      "audio": "/question-bank-assets/revisions/opi/6bf4a92eb1e885d35d5e9c4866df91f345682d2f96feba763bb08febec89ea15/audio/opi/opi-fzy-152434.mp3",
       "audioText": "What may cause the landing gear problems?",
-      "audioTextZh": "什么会导致飞机起落架问题？",
       "studyTier": 1,
+      "taskTitle": "Belly landing-2",
+      "audioTextZh": "什么会导致飞机起落架问题？",
       "referenceText": "Usually, the majority of landing gear problems are caused by hydraulic system failures.",
       "referenceTextZh": "通常情况下，起落架问题大部分是由于液压系统故障导致的。",
-      "audio": "/question-bank-assets/revisions/opi/6bf4a92eb1e885d35d5e9c4866df91f345682d2f96feba763bb08febec89ea15/audio/opi/opi-fzy-152434.mp3",
       "audioDurationSeconds": 2.184
     },
     {
       "id": "opi-fzy-152435",
-      "taskTitle": "Belly landing-3",
+      "audio": "/question-bank-assets/revisions/opi/216edc69df36ecc8ef0ac3854a0cf65a48316467e296ffa2f3aec6a7749e5bca/audio/opi/opi-fzy-152435.mp3",
       "audioText": "How do you determine whether the landing gears are extended or not?",
-      "audioTextZh": "你如何确定起落架是否放下？",
       "studyTier": 1,
+      "taskTitle": "Belly landing-3",
+      "audioTextZh": "你如何确定起落架是否放下？",
       "referenceText": "I fly C172, our landing gear is fixed/non-retractable landing gear.\nAs far as I know, there are green lights indication on the panel to show the landing gear conditions.",
       "referenceTextZh": "我飞的是塞斯纳172，飞机的起落架是固定式的。\n据我所知，在显示面板上会有绿灯显示起落架的状态。",
-      "audio": "/question-bank-assets/revisions/opi/216edc69df36ecc8ef0ac3854a0cf65a48316467e296ffa2f3aec6a7749e5bca/audio/opi/opi-fzy-152435.mp3",
       "audioDurationSeconds": 3.384
     },
     {
       "id": "opi-fzy-152436",
-      "taskTitle": "Belly landing-4",
+      "audio": "/question-bank-assets/revisions/opi/fd673cc9209c12ca4e9567206cdc2dd608ef70f0d9c0c13b71c8ef61de35e44e/audio/opi/opi-fzy-152436.mp3",
       "audioText": "During approach and landing phases, when will you extend the landing gear?",
-      "audioTextZh": "在进近和着陆阶段，你什么时候放下起落架？",
       "studyTier": 1,
+      "taskTitle": "Belly landing-4",
+      "audioTextZh": "在进近和着陆阶段，你什么时候放下起落架？",
       "referenceText": "I fly A320. In general, when the aircraft is at about 2000 feet or 10 nm from the runway, I will extend the landing gear.",
       "referenceTextZh": "我飞的是空客320，一般情况下，在高度2000英尺或者距离跑道10海里的时候，我会放下起落架。",
-      "audio": "/question-bank-assets/revisions/opi/fd673cc9209c12ca4e9567206cdc2dd608ef70f0d9c0c13b71c8ef61de35e44e/audio/opi/opi-fzy-152436.mp3",
       "audioDurationSeconds": 3.912
     },
     {
       "id": "opi-fzy-153275",
-      "taskTitle": "Belly landing-5",
+      "audio": "/question-bank-assets/revisions/opi/371750391c7a295619e9c9b9193f6a9270e2d5f9c1e8abcbabe94a4cc9c45676/audio/opi/opi-fzy-153275.mp3",
       "audioText": "What are the functions of the aircraft landing gears?",
-      "audioTextZh": "起落架的功能是什么？",
       "studyTier": 1,
+      "taskTitle": "Belly landing-5",
+      "audioTextZh": "起落架的功能是什么？",
       "referenceText": "The landing gear is used to support the aircraft and to provide steering.",
       "referenceTextZh": "起落架用于支撑飞机，以及提供飞机转向。",
-      "audio": "/question-bank-assets/revisions/opi/371750391c7a295619e9c9b9193f6a9270e2d5f9c1e8abcbabe94a4cc9c45676/audio/opi/opi-fzy-153275.mp3",
       "audioDurationSeconds": 2.64
     },
     {
       "id": "opi-fzy-153276",
-      "taskTitle": "Belly landing-6",
+      "audio": "/question-bank-assets/revisions/opi/3af580b14dc6f63f45bac4a76fa8494712e8ecfc367af29d528dcf38b4a86b79/audio/opi/opi-fzy-153276.mp3",
       "audioText": "When do you make a belly landing?",
-      "audioTextZh": "你在什么情况下会进行机腹着陆？",
       "studyTier": 1,
+      "taskTitle": "Belly landing-6",
+      "audioTextZh": "你在什么情况下会进行机腹着陆？",
       "referenceText": "In most cases, we perform belly landing when the landing gear is unable to release due to hydraulic failure, or when the landing gear is stuck due to foreign object.",
       "referenceTextZh": "在大部分情况下，当由于飞机液压系统出现故障，从而导致起落架无法释出，或者飞机起落架因为外物导致卡阻时，我们会执行机腹着陆。",
-      "audio": "/question-bank-assets/revisions/opi/3af580b14dc6f63f45bac4a76fa8494712e8ecfc367af29d528dcf38b4a86b79/audio/opi/opi-fzy-153276.mp3",
       "audioDurationSeconds": 1.728
     }
   ],
+  "declaredCardCount": 7,
   "categoryId": "opi-category-08"
 }

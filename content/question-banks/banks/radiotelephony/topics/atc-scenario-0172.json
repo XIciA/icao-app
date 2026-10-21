@@ -16,7 +16,7 @@
       "id": "atc-scenario-0172-card-main-2967",
       "taskTitle": "UAL 811-2",
       "audioText": "C: UAL 811, roger PANPAN, break, break, AFR 103, descend to 3000 meters on QNH1021.\nB: You relay the message to AFR 103.",
-      "audioTextZh": "C： UAL 811，收到 PANPAN，暂停，暂停，AFR 103，在 QNH 1021 上下降至 3000 米。\nB： 你将该信息转发给 AFR 103。",
+      "audioTextZh": "C：UAL 811，收到 PANPAN，暂停，暂停，AFR 103，在 QNH 1021 上下降至 3000 米。\nB：你将该信息转发给 AFR 103。",
       "referenceText": "AFR 103, UAL 811, roger PANPAN, descend to 3000 meters QNH 1021.",
       "referenceTextZh": "AFR 103，UAL 811，收到 PANPAN，在 QNH 1021 上下降至 3000 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q02.mp3"
@@ -70,7 +70,7 @@
       "id": "atc-scenario-0172-card-main-2973",
       "taskTitle": "UAL 811-8",
       "audioText": "C: UAL 811, reduce speed to mach decimal 72.\nB: Advise Zhengzhou Control mach decimal 72 is not acceptable, it's too low for your aircraft.",
-      "audioTextZh": "C： UAL 811，将速度减至 Mach 0.72。\nB： 通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
+      "audioTextZh": "C：UAL 811，将速度减至 Mach 0.72。\nB：通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
       "referenceText": "negative, mach decimal seven two is too low (for our aircraft), UAL 811",
       "referenceTextZh": "不行，Mach 0.72太低（对我们的航空器而言），UAL 811。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q08.mp3"

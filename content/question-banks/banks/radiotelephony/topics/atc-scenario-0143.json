@@ -43,7 +43,7 @@
       "id": "atc-scenario-0143-card-main-2467",
       "taskTitle": "CCA 725-5",
       "audioText": "B: While you are starting the engines, 1 of the engine starters failed, contact Ground to request hold at present position to carry out emergency procedure.",
-      "audioTextZh": "B: 开车时，一台发动机起动机失效，联系 地面请求在当前位置等待以执行应急程序。",
+      "audioTextZh": "B: 开车时，一台发动机起动机失效，联系地面请求在当前位置等待以执行应急程序。",
       "referenceText": "Wuhan Ground, CCA 725, 1 of the engine starters failed, request hold at present position to carry out emergency procedure.",
       "referenceTextZh": "武汉地面，CCA 725，一台发动机起动机失效，请求在当前位置等待以执行应急程序。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-041-cca725-q05.mp3"
@@ -115,7 +115,7 @@
       "id": "atc-scenario-0143-card-main-2475",
       "taskTitle": "CCA 725-13",
       "audioText": "C: CCA 725, what assistance do you need?\nB: Tell the controller you need a tug to tow you back to the terminal.",
-      "audioTextZh": "C： CCA 725，你需要什么协助？\nB： 告诉管制员你需要一辆牵引车将你拖回航站楼。",
+      "audioTextZh": "C：CCA 725，你需要什么协助？\nB：告诉管制员你需要一辆牵引车将你拖回航站楼。",
       "referenceText": "Wuhan Tower, CCA 725, request a tug to tow us back to the terminal.",
       "referenceTextZh": "武汉塔台，CCA 725，请求一辆牵引车将我们拖回航站楼。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-041-cca725-q13.mp3"

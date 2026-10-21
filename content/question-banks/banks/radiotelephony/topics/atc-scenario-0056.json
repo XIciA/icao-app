@@ -97,7 +97,7 @@
       "id": "atc-scenario-0056-card-main-964",
       "taskTitle": "CCA 124-11",
       "audioText": "B: Contact the Tower and tell them you are approaching the end of your taxi at the holding point, and you are now ready for takeoff.",
-      "audioTextZh": "B: 联系 塔台，告诉他们你接近滑行终点的等待点，现在准备起飞。",
+      "audioTextZh": "B: 联系塔台，告诉他们你接近滑行终点的等待点，现在准备起飞。",
       "referenceText": "Beijing Tower, CCA 124, we are approaching the holding point of Runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA 124，我们正接近跑道 36R 等待点，准备离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/964.mp3"
@@ -115,7 +115,7 @@
       "id": "atc-scenario-0056-card-main-966",
       "taskTitle": "CCA 124-13",
       "audioText": "B: Now you are ready for takeoff, call the Tower.",
-      "audioTextZh": "B: 现在你准备起飞，呼叫 塔台。",
+      "audioTextZh": "B: 现在你准备起飞，呼叫塔台。",
       "referenceText": "Beijing Tower, CCA 124, ready for departure.",
       "referenceTextZh": "北京塔台，CCA 124，准备离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/966.mp3"

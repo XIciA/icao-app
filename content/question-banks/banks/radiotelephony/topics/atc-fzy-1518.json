@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-219507",
       "taskTitle": "63-CES5227 [襟翼问题]-1",
-      "audioText": "[Your call-sign is CES5227, from Wuhan to London Heathrow. Now you are at gate 26, information F, request your ATC clearance.]",
-      "audioTextZh": "【你的呼号是东方5227，从武汉到伦敦希斯罗。你现在在26号机位，通播F，请求管制许可。】",
+      "audioText": "Your call-sign is CES5227, from Wuhan to London Heathrow. Now you are at gate 26, information F, request your ATC clearance.",
+      "audioTextZh": "你的呼号是东方5227，从武汉到伦敦希斯罗。你现在在26号机位，通播F，请求管制许可。",
       "referenceText": "Wuhan Delivery, CES5227, gate 26, information F, request ATC clearance to London Heathrow.",
       "referenceTextZh": "武汉放行，东方5227，26号机位，通播F，请求飞往伦敦希斯罗的管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/991bf817bc6816a909df.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-219509",
       "taskTitle": "63-CES5227 [襟翼问题]-3",
-      "audioText": "[Contact Wuhan Ground and request your taxi clearance.]",
+      "audioText": "Contact Wuhan Ground and request your taxi clearance.",
       "audioTextZh": "【联系武汉地面，请求滑行许可。】",
       "referenceText": "Wuhan Ground, CES5227, request taxi instruction.",
       "referenceTextZh": "武汉地面，东方5227，请求滑行指令。",
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-219511",
       "taskTitle": "63-CES5227 [襟翼问题]-5",
-      "audioText": "[You are holding short of runway 36R on E2, request cross runway 36R, contact Tower.]",
-      "audioTextZh": "【你现在在跑道36右外等待点E2上，请求穿越跑道36右，联系塔台。】",
+      "audioText": "You are holding short of runway 36R on E2, request cross runway 36R, contact Tower.",
+      "audioTextZh": "你现在在跑道36右外等待点E2上，请求穿越跑道36右，联系塔台。",
       "referenceText": "Wuhan Tower, CES5227, holding short of runway 36R on E2, request cross runway 36R.",
       "referenceTextZh": "武汉塔台，东方5227，跑道36右外等待点E2上，请求穿越跑道36右。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e3c82b930833e4a32dd.mp3"
@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-219513",
       "taskTitle": "63-CES5227 [襟翼问题]-7",
-      "audioText": "[You are at holding point of runway 04, request departure clearance.]",
-      "audioTextZh": "【你现在在跑道04外等待点，请求离场许可。】",
+      "audioText": "You are at holding point of runway 04, request departure clearance.",
+      "audioTextZh": "你现在在跑道04外等待点，请求离场许可。",
       "referenceText": "Wuhan Tower, CES5227, holding point of runway 04, request departure.",
       "referenceTextZh": "武汉塔台，东方5227，跑道04外等待点，请求离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/aaba16226cf794f2c0db.mp3"
@@ -74,14 +74,14 @@
       "audioText": "C: CES5227, Wuhan Tower, after airborne, fly runway heading to 600m, follow SID fly to HZ, when airborne contact 126.3, cleared for takeoff, runway 04.",
       "audioTextZh": "C: 东方5227，武汉塔台，离地后，跑道航向上到600米，按照标准离场程序飞往HZ，离地后，联系126.3，可以起飞，跑道04。",
       "referenceText": "Runway heading to 600m, follow SID fly to HZ, 126.3, cleared for takeoff, runway 04, CES5227.",
-      "referenceTextZh": "跑道航向上到600米，按照标准离场程序飞往HZ，126.3， 可以起飞，跑道04，东方5227。",
+      "referenceTextZh": "跑道航向上到600米，按照标准离场程序飞往HZ，126.3，可以起飞，跑道04，东方5227。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d52c94cefab1acb0aa51.mp3"
     },
     {
       "id": "radiotelephony-fzy-219515",
       "taskTitle": "63-CES5227 [襟翼问题]-9",
-      "audioText": "[During climb, your trailing flaps cannot be fully retracted, contact Departure, state your situation and request fly to the holding area to perform checklist.]",
-      "audioTextZh": "【爬升过程中，你的后襟翼不能完全收上，联系离场，说明你的情况并请求飞到等待区执行检查单。】",
+      "audioText": "During climb, your trailing flaps cannot be fully retracted, contact Departure, state your situation and request fly to the holding area to perform checklist.",
+      "audioTextZh": "爬升过程中，你的后襟翼不能完全收上，联系离场，说明你的情况并请求飞到等待区执行检查单。",
       "referenceText": "Wuhan Departure, CES5227, trailing flaps cannot be fully retracted, request fly to the holding area to perform checklist.",
       "referenceTextZh": "武汉离场，东方5227，后襟翼不能完全收上，请求飞到等待区执行检查单。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/81fd1a99246224a39e58.mp3"
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-219517",
       "taskTitle": "63-CES5227 [襟翼问题]-11",
-      "audioText": "[After you finish the checklist, you cannot fix the flaps problem, you want to request another approach, inform Departure.]",
-      "audioTextZh": "【在完成检查表后，你依然无法解决襟翼问题，你想申请再次进近，通知离场。】",
+      "audioText": "After you finish the checklist, you cannot fix the flaps problem, you want to request another approach, inform Departure.",
+      "audioTextZh": "在完成检查表后，你依然无法解决襟翼问题，你想申请再次进近，通知离场。",
       "referenceText": "Wuhan Departure, CES5227, we cannot fix the flaps problem, request another approach.",
       "referenceTextZh": "武汉离场，东方5227，我们无法解决襟翼问题，请求再次进近。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3286f57065de59190633.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-219519",
       "taskTitle": "63-CES5227 [襟翼问题]-13",
-      "audioText": "[Because you can not fully extend the flaps, ask for the longest available runway from Tower controller.]",
-      "audioTextZh": "【因为你不能完全展开襟翼，请向塔台管制员申请最长可用跑道。】",
+      "audioText": "Because you can not fully extend the flaps, ask for the longest available runway from Tower controller.",
+      "audioTextZh": "因为你不能完全展开襟翼，请向塔台管制员申请最长可用跑道。",
       "referenceText": "Wuhan Tower, CES5227, we can not fully extend the flaps, request the longest available runway.",
       "referenceTextZh": "武汉塔台，东方5227，我们无法完全展开襟翼，申请最长可用跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6c5ad84249097cd14e0d.mp3"

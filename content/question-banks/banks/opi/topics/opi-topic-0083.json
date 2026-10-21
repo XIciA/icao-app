@@ -1,88 +1,88 @@
 {
   "id": "opi-topic-0083",
   "name": "模拟/数字仪表与驾驶舱",
-  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-core-835",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-1",
-      "audioText": "What are the main features of traditional analog cockpit instruments?",
-      "audioTextZh": "传统模拟式驾驶舱仪表有哪些主要特点？",
-      "referenceText": "Traditional analog cockpits use separate instruments, and each instrument normally presents one main type of information. For example, the airspeed indicator shows airspeed, the attitude indicator shows the aircraft's attitude, and the altimeter shows altitude.",
-      "referenceTextZh": "传统模拟式驾驶舱使用彼此独立的仪表，每块仪表通常只显示一种主要信息。例如，空速表显示空速，姿态仪显示飞机姿态，高度表显示高度。",
-      "audio": "/question-bank-assets/revisions/opi/fa8cb115d391b5d94eb3d065a02774e249c668833095f7dae284386addee8bd4/audio/opi/opi-core-835.mp3",
-      "audioDurationSeconds": 3.624
-    },
-    {
       "id": "opi-core-836",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-2",
+      "audio": "/question-bank-assets/revisions/opi/a74f484a2d923cf2a8899527ebb7aad46965692f17284aa705b547acdd990f3e/audio/opi/opi-core-836.mp3",
       "audioText": "How do analog and digital cockpit instruments compare in terms of their advantages and limitations?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-2",
       "audioTextZh": "模拟式与数字式驾驶舱仪表在优点和局限性方面相比如何？",
       "referenceText": "Analog instruments are relatively simple and reliable, but each one normally shows a single type of information, so pilots must scan several instruments. Digital displays can integrate more data, provide clear indications and automatic warnings, and reduce workload. However, they depend on electrical power and may be affected by system failures, and excessive reliance on automation can weaken manual skills.",
       "referenceTextZh": "模拟仪表相对简单可靠，但每块通常只显示一种信息，因此飞行员必须扫描多块仪表。数字显示可以整合更多数据、提供清晰指示和自动警告，并降低工作负荷。不过，它依赖电源且可能受系统故障影响，过度依赖自动化也会削弱人工飞行技能。",
-      "audio": "/question-bank-assets/revisions/opi/a74f484a2d923cf2a8899527ebb7aad46965692f17284aa705b547acdd990f3e/audio/opi/opi-core-836.mp3",
       "audioDurationSeconds": 5.448
     },
     {
+      "id": "opi-core-843",
+      "audio": "/question-bank-assets/revisions/opi/478bf02b790deda7cd0e0c30fc7e8ab7b9557096be4a4875f49058ee93bd17f1/audio/opi/opi-core-843.mp3",
+      "audioText": "How can modern cockpit equipment improve flight safety?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-6",
+      "audioTextZh": "现代驾驶舱设备如何提高飞行安全？",
+      "referenceText": "Modern cockpit equipment can reduce workload and some human errors through automation. Systems such as EFIS, EGPWS, and TCAS improve situational awareness, while GPS and RNP support precise navigation. Timely warnings for hazards such as wind shear also help pilots respond more effectively.",
+      "referenceTextZh": "现代驾驶舱设备可以通过自动化降低工作负荷并减少部分人为差错。EFIS、EGPWS 和 TCAS 等系统可以提高情景意识，GPS 和 RNP 则支持精确导航。对风切变等危险及时发出警告，也有助于飞行员更有效地响应。",
+      "audioDurationSeconds": 3.12
+    },
+    {
+      "id": "opi-core-841",
+      "audio": "/question-bank-assets/revisions/opi/f997b5b6a5c9b1491c06adb27c311b19e981862e7e9e966455cbac75fcfe68f7/audio/opi/opi-core-841.mp3",
+      "audioText": "What are the benefits and limitations of a highly automated cockpit?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-5",
+      "audioTextZh": "高度自动化的驾驶舱有哪些优点和局限性？",
+      "referenceText": "A highly automated cockpit can reduce pilot workload, improve flight precision and efficiency, and provide automatic monitoring and warnings. However, the systems depend on electrical power and can malfunction. Pilots may also become too dependent on automation, so they need to maintain their manual flying skills.",
+      "referenceTextZh": "高度自动化的驾驶舱可以降低飞行员工作负荷、提高飞行精度和效率，并提供自动监控和警告。不过，系统依赖电源并可能发生故障。飞行员也可能过度依赖自动化，因此需要保持人工飞行技能。",
+      "audioDurationSeconds": 3.576
+    },
+    {
+      "id": "opi-core-847",
+      "audio": "/question-bank-assets/revisions/opi/d474805ad48be56e86df2f15ca599c74e4ff98515064f20dffc31ce5922bad33/audio/opi/opi-core-847.mp3",
+      "audioText": "How can a modern cockpit help pilots maintain awareness of the aircraft and its surroundings?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-8",
+      "audioTextZh": "现代驾驶舱如何帮助飞行员保持对航空器及周围环境的了解？",
+      "referenceText": "Pilots combine outside visual observation with information from modern cockpit systems. EFIS can present navigation, weather-radar, and terrain information, while TCAS provides traffic alerts. Sensors and reports from ATC or other pilots can add current wind, weather, and airspace information.",
+      "referenceTextZh": "飞行员把外部目视观察与现代驾驶舱系统的信息结合使用。EFIS 可以显示导航、气象雷达和地形信息，TCAS 提供交通警告。传感器以及空中交通管制或其他飞行员的报告，还能补充当前风况、天气和空域信息。",
+      "audioDurationSeconds": 4.944
+    },
+    {
+      "id": "opi-core-846",
+      "audio": "/question-bank-assets/revisions/opi/2da4ce1e9e8ad2f2b16f2cb75a50cbfc2996ff412b8c7bcc19080accdb737e22/audio/opi/opi-core-846.mp3",
+      "audioText": "What information is normally presented on PFD?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-7",
+      "audioTextZh": "PFD通常显示哪些信息？",
+      "referenceText": "A primary flight display normally shows airspeed, altitude, attitude, heading, and vertical speed. It can also present localizer and glide-slope indications together with other navigation guidance.",
+      "referenceTextZh": "主飞行显示器通常显示空速、高度、姿态、航向和垂直速度，还可以同时显示航向道、下滑道指示和其他导航引导。",
+      "audioDurationSeconds": 4.776
+    },
+    {
+      "id": "opi-core-835",
+      "audio": "/question-bank-assets/revisions/opi/fa8cb115d391b5d94eb3d065a02774e249c668833095f7dae284386addee8bd4/audio/opi/opi-core-835.mp3",
+      "audioText": "What are the main features of traditional analog cockpit instruments?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-1",
+      "audioTextZh": "传统模拟式驾驶舱仪表有哪些主要特点？",
+      "referenceText": "Traditional analog cockpits use separate instruments, and each instrument normally presents one main type of information. For example, the airspeed indicator shows airspeed, the attitude indicator shows the aircraft's attitude, and the altimeter shows altitude.",
+      "referenceTextZh": "传统模拟式驾驶舱使用彼此独立的仪表，每块仪表通常只显示一种主要信息。例如，空速表显示空速，姿态仪显示飞机姿态，高度表显示高度。",
+      "audioDurationSeconds": 3.624
+    },
+    {
       "id": "opi-core-837",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-3",
+      "audio": "/question-bank-assets/revisions/opi/e14ae9cb0e854148ed034d78a8ac58aacfac53feda866708f927dfcf326bc336/audio/opi/opi-core-837.mp3",
       "audioText": "How does a modern glass cockpit differ from a conventional cockpit?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-3",
       "audioTextZh": "现代玻璃驾驶舱与传统驾驶舱有何不同？",
       "referenceText": "A conventional cockpit uses separate analog instruments, with each instrument showing a particular type of flight information. A modern glass cockpit uses digital displays such as the PFD and MFD to combine attitude, altitude, airspeed, navigation, and weather information. These displays can also provide automatic warnings and reduce the pilot's scanning workload.",
       "referenceTextZh": "传统驾驶舱使用彼此独立的模拟仪表，每块仪表显示一种特定飞行信息。现代玻璃驾驶舱使用 PFD 和 MFD 等数字显示器，整合姿态、高度、空速、导航和天气信息。这些显示器还能提供自动警告并减少飞行员的仪表扫描工作量。",
-      "audio": "/question-bank-assets/revisions/opi/e14ae9cb0e854148ed034d78a8ac58aacfac53feda866708f927dfcf326bc336/audio/opi/opi-core-837.mp3",
       "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-core-840",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-4",
+      "audio": "/question-bank-assets/revisions/opi/4b7b7e3d394a37aea3a7ba4b0f25b38c989a45dcb261ced1e7d8034835d8fc77/audio/opi/opi-core-840.mp3",
       "audioText": "What additional modern equipment do you think would improve flight safety?",
+      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-4",
       "audioTextZh": "你认为增加哪些现代设备可以提高飞行安全？",
       "referenceText": "I think equipment such as GPS, weather radar, and TCAS can improve flight safety. GPS provides navigation information, weather radar helps the crew identify hazardous weather, and TCAS helps pilots avoid traffic conflicts.",
       "referenceTextZh": "我认为 GPS、气象雷达和 TCAS 等设备能够提高飞行安全。GPS 提供导航信息，气象雷达帮助机组识别危险天气，TCAS 则帮助飞行员避免交通冲突。",
-      "audio": "/question-bank-assets/revisions/opi/4b7b7e3d394a37aea3a7ba4b0f25b38c989a45dcb261ced1e7d8034835d8fc77/audio/opi/opi-core-840.mp3",
       "audioDurationSeconds": 3.696
-    },
-    {
-      "id": "opi-core-841",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-5",
-      "audioText": "What are the benefits and limitations of a highly automated cockpit?",
-      "audioTextZh": "高度自动化的驾驶舱有哪些优点和局限性？",
-      "referenceText": "A highly automated cockpit can reduce pilot workload, improve flight precision and efficiency, and provide automatic monitoring and warnings. However, the systems depend on electrical power and can malfunction. Pilots may also become too dependent on automation, so they need to maintain their manual flying skills.",
-      "referenceTextZh": "高度自动化的驾驶舱可以降低飞行员工作负荷、提高飞行精度和效率，并提供自动监控和警告。不过，系统依赖电源并可能发生故障。飞行员也可能过度依赖自动化，因此需要保持人工飞行技能。",
-      "audio": "/question-bank-assets/revisions/opi/f997b5b6a5c9b1491c06adb27c311b19e981862e7e9e966455cbac75fcfe68f7/audio/opi/opi-core-841.mp3",
-      "audioDurationSeconds": 3.576
-    },
-    {
-      "id": "opi-core-843",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-6",
-      "audioText": "How can modern cockpit equipment improve flight safety?",
-      "audioTextZh": "现代驾驶舱设备如何提高飞行安全？",
-      "referenceText": "Modern cockpit equipment can reduce workload and some human errors through automation. Systems such as EFIS, EGPWS, and TCAS improve situational awareness, while GPS and RNP support precise navigation. Timely warnings for hazards such as wind shear also help pilots respond more effectively.",
-      "referenceTextZh": "现代驾驶舱设备可以通过自动化降低工作负荷并减少部分人为差错。EFIS、EGPWS 和 TCAS 等系统可以提高情景意识，GPS 和 RNP 则支持精确导航。对风切变等危险及时发出警告，也有助于飞行员更有效地响应。",
-      "audio": "/question-bank-assets/revisions/opi/478bf02b790deda7cd0e0c30fc7e8ab7b9557096be4a4875f49058ee93bd17f1/audio/opi/opi-core-843.mp3",
-      "audioDurationSeconds": 3.12
-    },
-    {
-      "id": "opi-core-846",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-7",
-      "audioText": "What information is normally presented on a primary flight display (PFD)?",
-      "audioTextZh": "主飞行显示器（PFD）通常显示哪些信息？",
-      "referenceText": "A primary flight display normally shows airspeed, altitude, attitude, heading, and vertical speed. It can also present localizer and glide-slope indications together with other navigation guidance.",
-      "referenceTextZh": "主飞行显示器通常显示空速、高度、姿态、航向和垂直速度，还可以同时显示航向道、下滑道指示和其他导航引导。",
-      "audio": "/question-bank-assets/revisions/opi/2da4ce1e9e8ad2f2b16f2cb75a50cbfc2996ff412b8c7bcc19080accdb737e22/audio/opi/opi-core-846.mp3",
-      "audioDurationSeconds": 4.776
-    },
-    {
-      "id": "opi-core-847",
-      "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-8",
-      "audioText": "How can a modern cockpit help pilots maintain awareness of the aircraft and its surroundings?",
-      "audioTextZh": "现代驾驶舱如何帮助飞行员保持对航空器及周围环境的了解？",
-      "referenceText": "Pilots combine outside visual observation with information from modern cockpit systems. EFIS can present navigation, weather-radar, and terrain information, while TCAS provides traffic alerts. Sensors and reports from ATC or other pilots can add current wind, weather, and airspace information.",
-      "referenceTextZh": "飞行员把外部目视观察与现代驾驶舱系统的信息结合使用。EFIS 可以显示导航、气象雷达和地形信息，TCAS 提供交通警告。传感器以及空中交通管制或其他飞行员的报告，还能补充当前风况、天气和空域信息。",
-      "audio": "/question-bank-assets/revisions/opi/d474805ad48be56e86df2f15ca599c74e4ff98515064f20dffc31ce5922bad33/audio/opi/opi-core-847.mp3",
-      "audioDurationSeconds": 4.944
     }
   ],
+  "declaredCardCount": 8,
   "categoryId": "opi-category-06"
 }

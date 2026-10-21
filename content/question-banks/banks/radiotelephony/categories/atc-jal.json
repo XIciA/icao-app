@@ -4,13 +4,13 @@
   "declaredTopicCount": 8,
   "declaredCardCount": 118,
   "topicIds": [
-    "atc-scenario-0043",
     "atc-scenario-0044",
-    "atc-scenario-0181",
+    "atc-scenario-0043",
     "atc-scenario-0182",
-    "atc-fzy-1689",
-    "atc-fzy-637",
     "atc-fzy-786",
-    "atc-fzy-859"
+    "atc-fzy-637",
+    "atc-fzy-859",
+    "atc-fzy-1689",
+    "atc-scenario-0181"
   ]
 }
