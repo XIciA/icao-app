@@ -14,6 +14,9 @@ import urllib.request
 STATE = Path('/var/lib/icao-monitor')
 REQUIRED = {'icao-api', 'icao-gateway', 'icao-ops-api', 'icao-ops-web',
             'supabase-db', 'supabase-storage', 'supabase-auth', 'supabase-kong'}
+API_GROUPS = {'sync', 'question-banks', 'ai', 'resources', 'commerce',
+              'product-clicks', 'account', 'legal-consent', 'content-access',
+              'app-content', 'auth', 'hooks', 'feedback', 'vocabulary', 'editorial'}
 
 
 def run(*args):
@@ -37,7 +40,9 @@ def summarize_logs(lines):
             path = item.get('req', {}).get('url', '').split('?')[0]
             # Keep only fixed service prefixes, never query values, IDs or IPs.
             parts = path.strip('/').split('/')
-            route = '/'.join(parts[:2]) if parts[0] in ('v1', 'health') else 'other'
+            known_api = len(parts) >= 2 and parts[0] == 'v1' and parts[1] in API_GROUPS
+            known_health = parts[:2] in (['health', 'ready'], ['health', 'live'])
+            route = '/'.join(parts[:2]) if known_api or known_health else 'other'
             requests[request_id] = route
         elif item.get('msg') == 'request completed':
             route = requests.pop(request_id, 'unknown')
@@ -102,12 +107,12 @@ def collect():
     memory = {line.split(':')[0]: int(line.split()[1]) * 1024
               for line in Path('/proc/meminfo').read_text().splitlines()}
     containers = {}
+    state_format = ('{"id":{{json .Id}},"running":{{json .State.Running}},'
+                    '"health":{{with index .State "Health"}}{{json .Status}}{{else}}"none"{{end}},'
+                    '"restarts":{{.RestartCount}}}')
     for name in REQUIRED:
         try:
-            item = json.loads(run('docker', 'inspect', name))[0]
-            containers[name] = {'id': item['Id'], 'running': item['State']['Running'],
-                                'health': item['State'].get('Health', {}).get('Status', 'none'),
-                                'restarts': item['RestartCount']}
+            containers[name] = json.loads(run('docker', 'inspect', '--format', state_format, name))
         except (subprocess.SubprocessError, ValueError, KeyError):
             containers[name] = {'running': False}
     probes = {}
