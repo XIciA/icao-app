@@ -2,7 +2,8 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { ApiClientError } from '@/platform/api-client';
 import { WebWechatCheckout } from '../WebWechatCheckout.browser';
 
-jest.mock('expo-crypto', () => ({ randomUUID: () => '80000000-0000-4000-8000-000000000099' }));
+const mockUuid = jest.fn();
+jest.mock('expo-crypto', () => ({ randomUUID: () => mockUuid() }));
 let mockAccount = 'account-a';
 let mockUser = 'user-a';
 const mockApi = jest.fn();
@@ -21,7 +22,7 @@ const checkout = () => ({ id: '80000000-0000-4000-8000-000000000001', channel: '
   amountFen: 6800, currency: 'CNY', state: 'pending', expiresAt: new Date(Date.now() + 60_000).toISOString(), codeUrl: 'weixin://wxpay/bizpayurl?pr=fixture' });
 let mockPending: ReturnType<typeof checkout> | null;
 beforeEach(() => {
-  jest.clearAllMocks(); mockAccount = 'account-a'; mockUser = 'user-a'; mockPending = null;
+  jest.clearAllMocks(); mockUuid.mockReturnValueOnce('80000000-0000-4000-8000-000000000099').mockReturnValue('80000000-0000-4000-8000-000000000100'); mockAccount = 'account-a'; mockUser = 'user-a'; mockPending = null;
   window.addEventListener = jest.fn(); window.removeEventListener = jest.fn();
   mockApi.mockImplementation(async (path: string, _token: string, options?: RequestInit) => {
     if (path.includes('/catalog')) return { available: true, products: [product] };
@@ -89,6 +90,7 @@ it('keeps an uncertain creation key stable and requires reconciliation before re
   await waitFor(() => expect(view.getByLabelText('微信支付二维码，请使用另一台设备的微信扫一扫')).toBeTruthy());
   const writes = mockApi.mock.calls.filter(([, , options]) => options?.method === 'POST');
   expect(JSON.parse(writes[1]![2].body)).toEqual(input);
+  expect(mockUuid).toHaveBeenCalledTimes(1);
 });
 
 it('discards a delayed QR from a previous account and does not refresh the new account', async () => {

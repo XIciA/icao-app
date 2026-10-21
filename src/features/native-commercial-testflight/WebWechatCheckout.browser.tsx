@@ -54,7 +54,7 @@ function AccountCheckout({ userId }: { userId: string }) {
     if (!mounted.current) return;
     pending.current = isPending(result) ? result : null;
     setOrder(result);
-    if (!isPending(result)) retry.current = undefined;
+    if (result && !isPending(result)) retry.current = undefined;
     if (result?.state === 'paid' || result?.state === 'refunded') {
       setMessage(result.state === 'paid' ? '支付成功，正在同步会员权益。' : '订单已退款，正在同步权益。');
       await refreshEntitlement.current();
@@ -78,7 +78,7 @@ function AccountCheckout({ userId }: { userId: string }) {
       const result = current ? await apiRequestWithAccessToken<WechatCheckout>(`${root}/checkouts/${encodeURIComponent(current.id)}`, token) : null;
       if (!mounted.current) return;
       await apply(result);
-      if (!result) setMessage(undefined);
+      if (!result) setMessage(retry.current ? '上次下单结果仍未确认，请选择原套餐重试或重新检查订单。' : undefined);
       setLoaded(true);
     } catch {
       if (mounted.current) setMessage('暂时无法核对支付状态，请重新检查；请勿重复付款。');
@@ -102,6 +102,7 @@ function AccountCheckout({ userId }: { userId: string }) {
 
   const purchase = async (product: Product) => {
     if (!mounted.current || busy.current || pending.current || !catalog?.available || !loaded) return;
+    if (retry.current && retry.current.productKey !== product.productKey) return;
     busy.current = true; setWorking(true); setMessage('正在创建支付订单…');
     try {
       const token = await freshToken();
@@ -140,7 +141,7 @@ function AccountCheckout({ userId }: { userId: string }) {
     <AppText variant="cardTitle">微信扫码购买会员</AppText>
     <AppText variant="caption">会员有效期与 AI 点数跟随当前账号，网页和 APP 同步。套餐为单次购买，不自动续费。</AppText>
     {catalog?.available ? catalog.products.map((product) => <Button key={product.productKey}
-      variant="secondary" disabled={working || !loaded || Boolean(pending.current)} onPress={() => { void purchase(product); }}>
+      variant="secondary" disabled={working || !loaded || Boolean(pending.current) || Boolean(retry.current && retry.current.productKey !== product.productKey)} onPress={() => { void purchase(product); }}>
       {`${product.title} · ¥${(product.amountFen / 100).toFixed(2)}`}
     </Button>) : <AppText variant="caption">{catalog ? '网页微信支付暂未开放，可在 APP 购买后同步权益。' : '正在读取支付服务…'}</AppText>}
     {live ? <>
