@@ -32,6 +32,7 @@ export function StabilityPage({ onUsage }: { onUsage: () => void }) {
   const missingCost = ai.reduce((n, r) => n + r.missingCost, 0);
   const capabilities = [...new Set(ai.map(r => r.capability))];
   const aiSeries: ChartSeries[] = capabilities.map(capability => ({ label: capabilityNames[capability] ?? capability, points: ai.filter(r => r.capability === capability).map(r => ({ at: r.at, value: r.succeeded + r.failed ? r.succeeded / (r.succeeded + r.failed) * 100 : null, note: `${r.succeeded}/${r.succeeded + r.failed} 次已结束调用成功` })) }));
+  const aiLatency: ChartSeries[] = capabilities.map(capability => ({ label: capabilityNames[capability] ?? capability, points: ai.filter(r => r.capability === capability).map(r => ({ at: r.at, value: r.p95Ms == null ? null : r.p95Ms / 1000, note: `${r.succeeded} 次成功调用；失败不计入耗时` })) }));
   const latencySeries: ChartSeries[] = ['v1/sync', 'v1/question-banks'].map(name => ({ label: name === 'v1/sync' ? '同步接口' : '题库接口', points: points.map(p => ({ at: p.at, value: routeP95(p, name) == null ? null : routeP95(p, name)! / 1000, note: `${p.api.routes[name]?.count ?? 0} 条响应；含非成功响应` })) }));
   const completed = points.reduce((n, p) => n + p.api.completed, 0), serverErrors = points.reduce((n, p) => n + statusCount(p, '5'), 0);
   const activity = data?.activity ?? [];
@@ -50,8 +51,8 @@ export function StabilityPage({ onUsage }: { onUsage: () => void }) {
       {visible('experience') && <article className="stability-panel">
         <h2>用户体验</h2><div className="stability-stats"><Stat label="AI 已结束调用成功率" value={pct(rate.rate)}/><Stat label="AI 已结束调用" value={data.ai ? `${rate.completed} 次` : '—'}/><Stat label="接口 5xx / 已完成请求" value={completed ? `${serverErrors} / ${completed}` : '—'}/></div>
         <TrendChart title="AI 每小时调用成功率" unit="%" series={aiSeries} percent from={from} to={to} gapMs={65 * 60_000}/>
-        <TrendChart title="服务端每五分钟 P95" unit="秒" series={latencySeries} from={from} to={to}/>
-        <details><summary>指标说明与采集范围</summary><p>AI 成功率＝成功调用 ÷（成功＋失败调用），共 {rate.completed} 次；一次用户操作可能产生多次调用。P95 表示该五分钟内 95% 响应不超过的耗时，包含非成功响应，不把各窗口 P95 再平均。</p><p>手机启动、音频出声、客户端同步队列、支付到账完整耗时：未接入。以上为服务器与 AI 记录，不能代表手机端完整体验。</p><p>空白时段表示无采样；{points.some(p => p.api.truncated) ? '部分五分钟日志达到读取上限，接口统计可能不完整。' : '接口来源为有上限的应用日志采样。'}AI 来源：{data.sources.ai === 'ok' ? 'ai_usage_logs' : '本次不可用'}。</p></details>
+        <TrendChart title="AI 成功调用每小时 P95" unit="秒" series={aiLatency} from={from} to={to} gapMs={65 * 60_000}/>
+        <details open={category === 'experience'}><summary>同步 / 题库耗时与采集说明</summary><TrendChart title="服务端每五分钟 P95" unit="秒" series={latencySeries} from={from} to={to}/><p>AI 成功率＝成功调用 ÷（成功＋失败调用），共 {rate.completed} 次；一次用户操作可能产生多次调用。P95 表示窗口内 95% 样本不超过的耗时；AI 仅统计成功调用，服务端接口包含非成功响应。不把各窗口 P95 再平均。</p><p>手机启动、音频出声、客户端同步队列、支付到账完整耗时：未接入。以上为服务器与 AI 记录，不能代表手机端完整体验。</p><p>空白时段表示无采样；{points.some(p => p.api.truncated) ? '部分五分钟日志达到读取上限，接口统计可能不完整。' : '接口来源为有上限的应用日志采样。'}AI 来源：{data.sources.ai === 'ok' ? 'ai_usage_logs' : '本次不可用'}。</p></details>
       </article>}
       {visible('capacity') && <article className="stability-panel">
         <h2>资源与容量</h2><div className="stability-stats"><Stat label="今日有点击的账户" value={data.sources.activity === 'ok' ? `${todayActive ?? 0} 人` : '—'}/><Stat label="最近五分钟请求" value={stale ? '—' : `${latest!.api.completed} 次`}/><Stat label="磁盘可用" value={latest?.diskAvailableBytes == null ? '—' : `${(latest.diskAvailableBytes / 1024 ** 3).toFixed(1)} GiB`}/></div>
