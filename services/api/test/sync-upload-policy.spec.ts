@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { describe, expect, it } from 'vitest';
 import { registerSyncUploadPolicy, SYNC_UPLOAD_BODY_LIMIT } from '../src/sync/sync-upload-policy';
 
@@ -11,6 +12,21 @@ function server() {
 }
 
 describe('released-client sync uploads', () => {
+  it('also applies with the production Nest raw-body parser', async () => {
+    const adapter = new FastifyAdapter({ bodyLimit: 16 * 1024 * 1024 });
+    adapter.registerParserMiddleware(undefined, true);
+    const app = adapter.getInstance();
+    registerSyncUploadPolicy(app);
+    app.post('/v1/sync/push', async (request) => ({ bytes: JSON.stringify(request.body).length }));
+    try {
+      const payload = JSON.stringify({ snapshot: 'x'.repeat(17 * 1024 * 1024) });
+      const result = await app.inject({ method: 'POST', url: '/v1/sync/push', payload,
+        headers: { 'content-type': 'application/json', authorization: 'Bearer fixture' } });
+      expect(result.statusCode).toBe(200);
+      expect(result.json().bytes).toBe(payload.length);
+    } finally { await app.close(); }
+  });
+
   it('rejects unauthenticated large uploads before buffering the body', async () => {
     const app = server();
     try {
