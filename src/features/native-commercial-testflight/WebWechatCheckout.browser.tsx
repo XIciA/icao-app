@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { create as createQrCode } from 'qrcode';
+import { qrcodegen } from '@/vendor/qrcodegen';
 import { randomUUID } from 'expo-crypto';
 import type { WechatCheckout, WechatPayCatalog } from '@icao/contracts/wechat-pay';
 import { AppText, Button, Card } from '@/components/ui';
@@ -17,11 +17,11 @@ const isPending = (order: WechatCheckout | null) => order?.state === 'pending' |
 
 /** Encode locally: no payment URL or account information goes to a QR image service. */
 export function WechatPaymentQr({ value }: { value: string }) {
-  const qr = createQrCode(value, { errorCorrectionLevel: 'M' });
-  const size = qr.modules.size;
+  const qr = qrcodegen.QrCode.encodeText(value, qrcodegen.QrCode.Ecc.MEDIUM);
+  const size = qr.size;
   let path = '';
   for (let y = 0; y < size; y += 1) for (let x = 0; x < size; x += 1) {
-    if (qr.modules.get(y, x)) path += `M${x + 4} ${y + 4}h1v1h-1z`;
+    if (qr.getModule(x, y)) path += `M${x + 4} ${y + 4}h1v1h-1z`;
   }
   return <View style={styles.qr} accessibilityRole="image" accessibilityLabel="微信支付二维码，请使用另一台设备的微信扫一扫">
     <Svg width={224} height={224} viewBox={`0 0 ${size + 8} ${size + 8}`}>
