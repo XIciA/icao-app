@@ -18,8 +18,10 @@
 
 ## 工作方法与参考资料
 
-- [工具目录](tools/README.md)：大小流程、启动模板等按需选用的方法；不自动要求所有任务先写方案或等待审批。
-- `resources/project/`：项目状态与运行时说明，使用前对照代码和配置。
+- [项目管理概览与产品状态](resources/project/product-state.md)：各渠道交付、待验事项与下一步；链接原始证据。
+- [运行时拓扑](resources/project/runtime-topology.md)：Native、EdgeOne 产品 Web、宣传站与退役站点关系。
+- [工具目录](tools/README.md)：常用工具的用途、输入输出、副作用与验证入口，以及可选流程模板。
+- `resources/project/`：状态与运行时参考，使用前对照代码、配置和交付证据。
 - `resources/domain/`：ICAO、题库及音频文本资料。
 - `resources/ai/`：AI 能力与领域资产参考。
 - `resources/operations/`：运维与操作参考。
