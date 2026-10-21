@@ -81,7 +81,7 @@ export function run() {
     summary[bankId] = { cards, changedCards };
   }
   registry.releaseVersion = 26;
-  registry.releasedAt = '2026-10-22T00:00:00.000Z';
+  registry.releasedAt = '2026-10-21T19:02:07.000Z';
   write(join(source, 'registry.json'), registry);
   write(join(recordRoot, 'text-changes.json'), { schemaVersion: 1, changes });
   write(join(recordRoot, 'order-changes.json'), { schemaVersion: 1, orders });
