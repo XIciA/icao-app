@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { monitorSchema, readMonitor } from '../src/admin/admin-stability.service';
 import { AdminStabilityService } from '../src/admin/admin-stability.service';
 import type { DatabaseService } from '../src/database/database.service';
-import type { StabilityAiBucket, StabilityPoint } from '@icao/contracts';
+import type { StabilityAiBucket, StabilityPoint } from '@icao/contracts/ops-stability';
 
 describe('stability measurements', () => {
   it('projects the monitor schema without copying arbitrary fields', () => {

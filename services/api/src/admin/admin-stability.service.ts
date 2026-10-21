@@ -4,7 +4,7 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { sql } from 'drizzle-orm';
 import { z } from 'zod';
-import type { StabilityAiBucket, StabilityDashboard, StabilityMonitor } from '@icao/contracts';
+import type { StabilityAiBucket, StabilityDashboard, StabilityMonitor } from '@icao/contracts/ops-stability';
 import { DatabaseService } from '../database/database.service';
 
 const nonnegative = z.number().finite().nonnegative();

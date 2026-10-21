@@ -1,4 +1,4 @@
-import type { StabilityAiBucket, StabilityPoint } from '@icao/contracts';
+import type { StabilityAiBucket, StabilityPoint } from '@icao/contracts/ops-stability';
 
 export const capabilityNames: Record<string, string> = { transcribe: '语音转写', grammar_review: '语法纠错', polish: '表达优化' };
 export const shanghaiDay = (at: string) => new Date(at).toLocaleDateString('sv-SE', { timeZone: 'Asia/Shanghai' });

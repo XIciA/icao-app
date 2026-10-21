@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { StabilityDashboard } from '@icao/contracts';
+import type { StabilityDashboard } from '@icao/contracts/ops-stability';
 import { opsApi } from './api';
 import { Occupancy, TrendChart, type ChartSeries } from './StabilityCharts';
 import { aiRate, capabilityNames, costBuckets, monitorEvents, routeP95, shanghaiDay, stamp, statusCount } from './stability-data';
