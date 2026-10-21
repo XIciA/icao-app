@@ -1,0 +1,20 @@
+[Unit]
+Description=ICAO production health and capacity snapshot
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/icao/runtime/monitor/current/monitor.py
+TimeoutStartSec=2min
+UMask=0077
+Nice=10
+MemoryMax=192M
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+StateDirectory=icao-monitor
+StateDirectoryMode=0700
+StandardOutput=journal
+StandardError=journal
