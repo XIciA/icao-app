@@ -81,7 +81,9 @@ if (
   || appJson.expo.ios?.bundleIdentifier !== 'com.readyoufife.ios'
   || !/^[1-9]\d*$/u.test(currentBuild)
   || !Number.isSafeInteger(Number(currentBuild))
-  || appJson.expo.android?.versionCode !== Number(currentBuild)
+  // Android can ship independently of an already approved iOS build.
+  || !Number.isSafeInteger(appJson.expo.android?.versionCode)
+  || appJson.expo.android.versionCode <= 0
 ) {
   fail('native_app_identity_drift');
 }

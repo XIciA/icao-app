@@ -305,3 +305,19 @@ test('usage-guide release admits only the exact reviewed version metadata and re
   }
   assert.equal(readFileSync(path.join(repositoryRoot, 'src/config/app-version.web.ts'), 'utf8'), "export const APP_DISPLAY_VERSION = '1.0.0';\n");
 });
+
+test('Android installer release admits only its reviewed build increment and preserves iOS and legacy Web', () => {
+  const result = spawnSync('git', ['show', '1186fd54:app.json'], { cwd: repositoryRoot, encoding: 'utf8' });
+  requireSuccess(result, 'read pre-installer configuration');
+  const previous = JSON.parse(result.stdout);
+  const release = structuredClone(previous);
+  release.expo.android.versionCode = 3578875;
+  const digest = value => createHash('sha256').update(`${JSON.stringify(value, null, 2)}\n`).digest('hex');
+  assert.equal(digest(release), 'f8cacb4271315ce54305ef241c5a7b2f7d1169f0bb75f98c32ae98635038600e');
+  assert.equal(release.expo.ios.buildNumber, '3576434');
+  assert.equal(release.expo.version, '1.2.1');
+  const expected = [{ path: 'app.json', sha256: '255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3', sources: ['explicit'] }];
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(release) }]), expected);
+  release.expo.web.output = 'static';
+  assert.notDeepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(release) }]), expected);
+});
