@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-21",
+  "sourceCommit": "00097e45edc9619d842937e076be5587163dc9bb",
+  "sourcePr": "https://github.com/XIciA/icao-app/pull/210",
+  "androidTag": "release/android/v1.2.1-b3578875",
+  "android": {
+    "channel": "android-apk",
+    "version": "1.2.1",
+    "build": 3578875,
+    "available": true,
+    "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-1.2.1-b3578875.apk",
+    "sha256": "19c8d92632cc13098d7ac97e539c0b053fea69fa118277ccbdf28dc4ce8a920e",
+    "sizeBytes": 135546989,
+    "notes": "新增应用内下载更新、下载进度与取消；下载完成后校验安装包并打开系统安装界面，支持安装授权后继续安装。同步 1.2.1 正式版的使用指南、每日 OPI 热点、PDF 导出与品牌启动体验。",
+    "publishedAt": "2026-10-21T08:28:44.268806Z"
+  },
+  "ios": {
+    "channel": "ios-app-store",
+    "version": "1.2.1",
+    "build": 3576434,
+    "available": true,
+    "url": "https://apps.apple.com/cn/app/id6800583111",
+    "notes": "• 新增分步使用指南，帮助熟悉题库学习、单词、随身听、热点、资料与模拟练习。\n• OPI 热点按日期集中整理，保留考点与来源，并可进入相关题目学习。\n• 支持将900句学习内容、高亮、标签和笔记整理为 PDF。\n• 优化引导提示和按钮交互，修复单词学习、播放间隔与 PDF 导出中的体验问题。\n• 统一品牌启动画面，改善首次打开时的加载衔接。",
+    "publishedAt": "2026-10-20T18:18:10Z"
+  },
+  "artifactValidation": {
+    "sourceCommit": "00097e45edc9619d842937e076be5587163dc9bb",
+    "package": "com.readyoufife.app",
+    "version": "1.2.1",
+    "build": 3578875,
+    "sha256": "19c8d92632cc13098d7ac97e539c0b053fea69fa118277ccbdf28dc4ce8a920e",
+    "sizeBytes": 135546989,
+    "certificateSha256": "25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629",
+    "matchesPreviousOfficialSigner": true,
+    "installPermission": true,
+    "providerExported": false,
+    "providerGrantsReadUri": true,
+    "previousVersion": "1.2.0",
+    "previousBuild": 3538342
+  },
+  "publicValidation": {
+    "oldOfficialAndroid": "1.2.1 / 3578875 offered",
+    "currentOfficialAndroid": "no update",
+    "oldOfficialIos": "1.2.1 / 3576434 offered",
+    "currentOfficialIos": "no update",
+    "testChannels": "unchanged",
+    "publicApkHttpStatus": 200,
+    "publicApkSize": 135546989
+  },
+  "androidPublication": {
+    "channel": "android-apk",
+    "version": "1.2.1",
+    "build": 3578875,
+    "url": "https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-1.2.1-b3578875.apk",
+    "backup": "/opt/icao/releases/app-updates-20261021-00097e45/backups/updates-before-20261021T083109004595Z.json"
+  },
+  "iosPublication": {
+    "channel": "ios-app-store",
+    "version": "1.2.1",
+    "build": 3576434,
+    "url": "https://apps.apple.com/cn/app/id6800583111",
+    "backup": "/opt/icao/releases/app-updates-20261021-00097e45/backups/updates-before-20261021T081036133221Z.json"
+  },
+  "checks": {
+    "pnpmCheck": "passed",
+    "frontendSuites": 204,
+    "frontendTests": 1373,
+    "focusedUpdateTests": 24,
+    "webFreeze": "passed",
+    "nativeAndroidRelease": "passed",
+    "mainlineCi": "https://github.com/XIciA/icao-app/actions/runs/39567230076",
+    "realDeviceInstallation": "pending-user-acceptance"
+  }
+}
