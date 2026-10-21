@@ -1,0 +1,12 @@
+[Unit]
+Description=Sample ICAO production health every five minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+RandomizedDelaySec=15s
+Persistent=true
+Unit=icao-monitor.service
+
+[Install]
+WantedBy=timers.target

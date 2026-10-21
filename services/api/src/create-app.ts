@@ -7,6 +7,7 @@ import { HttpErrorFilter } from './http-error.filter';
 import multipart from '@fastify/multipart';
 import { loadConfig, type ApiConfig } from './config';
 import { DatabaseService } from './database/database.service';
+import { registerSyncUploadPolicy } from './sync/sync-upload-policy';
 
 export async function createApp(config: ApiConfig = loadConfig()) {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({
@@ -20,6 +21,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
   });
   app.enableCors(apiCorsOptions(config.corsOrigins));
   app.useGlobalFilters(new HttpErrorFilter());
+  registerSyncUploadPolicy(app.getHttpAdapter().getInstance());
   await app.register(multipart, {
     limits: { fileSize: 8 * 1024 * 1024, files: 3, fields: 8, parts: 12 },
   });
