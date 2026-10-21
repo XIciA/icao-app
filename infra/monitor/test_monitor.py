@@ -18,6 +18,12 @@ class MonitorTests(unittest.TestCase):
         self.assertEqual(result['routes']['v1/sync']['p95_ms'], 3)
         self.assertNotIn('secret', json.dumps(result))
         self.assertNotIn('private', json.dumps(result))
+        unknown = summarize_logs([
+            json.dumps({'msg': 'incoming request', 'reqId': 'c', 'req': {'url': '/v1/private-user-id/detail'}}),
+            json.dumps({'msg': 'request completed', 'reqId': 'c', 'res': {'statusCode': 404}, 'responseTime': 1}),
+        ])
+        self.assertNotIn('private-user-id', json.dumps(unknown))
+        self.assertIn('other', unknown['routes'])
 
     def test_resource_and_dependency_alerts(self):
         healthy = {'disk': {'used_percent': 60, 'available_bytes': 20 * 1024**3},
