@@ -290,6 +290,9 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-scroll-context.ts", 
 reviewedFormalWebHashes.set("src/features/content/RadioPlayerScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/content/RadioPlayerScreen.tsx") ?? []), "f82e18ce0c027317de2a0edf8e61825eca118c841f0582d7f7b417d16ffb057f"])]);
 // Unified 1.2.1 release: only native marketing/build metadata changes; frozen Web stays on its existing version module.
 reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? []), "a43e706beec0ee7a3a592fc9cf02b38efd75edea288c6d491392dcfcdc154c37"])]);
+// Web payment preparation changes only shared marketing metadata to 1.2.2.
+// Native build identities and the frozen 1.0.0 Web version module retain their exact bytes.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? []), "9485ba3c9def7c14183af2cbf1e3304676b60067f08504853d5be51843ad848d"])]);
 // End guide overlay exact pins
 
 export function normalizeReviewedFormalWebInputs(expected, current) {

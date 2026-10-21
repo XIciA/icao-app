@@ -321,3 +321,24 @@ test('Android installer release admits only its reviewed build increment and pre
   release.expo.web.output = 'static';
   assert.notDeepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(release) }]), expected);
 });
+
+// Reproduce only the metadata delta required by the payment task's display-version bump.
+test('payment preparation admits its exact marketing version while preserving build identities and legacy Web', () => {
+  const result = spawnSync('git', ['show', 'd909c0ff:app.json'], { cwd: repositoryRoot, encoding: 'utf8' });
+  requireSuccess(result, 'read pre-payment mainline metadata');
+  const previous = JSON.parse(result.stdout);
+  const release = structuredClone(previous);
+  release.expo.version = '1.2.2';
+  const digest = value => createHash('sha256').update(`${JSON.stringify(value, null, 2)}\n`).digest('hex');
+  assert.equal(digest(release), '9485ba3c9def7c14183af2cbf1e3304676b60067f08504853d5be51843ad848d');
+  assert.deepEqual(release.expo.ios, previous.expo.ios);
+  assert.deepEqual(release.expo.android, previous.expo.android);
+  const expected = [{ path: 'app.json', sha256: '255bfdaf744cc57b0d402c255ce67e7a157587e5a6eb579010c3b397b18d53c3', sources: ['explicit'] }];
+  assert.deepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(release) }]), expected);
+  for (const altered of [
+    { ...release, expo: { ...release.expo, name: 'changed' } },
+    { ...release, expo: { ...release.expo, web: { ...release.expo.web, output: 'static' } } },
+    { ...release, expo: { ...release.expo, version: '1.2.3' } },
+  ]) assert.notDeepEqual(normalizeReviewedFormalWebInputs(expected, [{ ...expected[0], sha256: digest(altered) }]), expected);
+  assert.equal(readFileSync(path.join(repositoryRoot, 'src/config/app-version.web.ts'), 'utf8'), "export const APP_DISPLAY_VERSION = '1.0.0';\n");
+});
