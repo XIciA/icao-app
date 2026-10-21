@@ -13,6 +13,7 @@
 | [UI 风格规范](rules/ui-style-guide.md) | 品牌视觉、组件气质与核心交互 |
 | [仓库管理规则](rules/repository-and-github-management.md) | 单主干、提交、发布来源与清理 |
 | [交付与验收规则](rules/delivery-and-acceptance.md) | 最终环境、必要检查与验收状态 |
+| [产品更新与发布流程](rules/product-update-workflow.md) | 默认测试交付、产品 Web 直接上线、移动端正式发布确认与更新提示 |
 | [内容处理规则](rules/content-processing.md) | OPI 完整英文问题、资源文章保真、统一审核与归档 |
 | [录音维护原则](rules/recording.md) | 录音职责、资产有效性与防回归 |
 
