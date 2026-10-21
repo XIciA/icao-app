@@ -30,7 +30,11 @@ export function StabilityPage({ onUsage }: { onUsage: () => void }) {
   const costKnown = ai.some(r => r.estimatedCny != null);
   const estimated = ai.reduce((n, r) => n + (r.estimatedCny ?? 0), 0);
   const missingCost = ai.reduce((n, r) => n + r.missingCost, 0);
-  const capabilities = [...new Set(ai.map(r => r.capability))];
+  const order = Object.keys(capabilityNames);
+  const capabilities = [...new Set(ai.map(r => r.capability))].sort((a, b) => {
+    const rank = (v: string) => order.includes(v) ? order.indexOf(v) : 99;
+    return rank(a) - rank(b) || a.localeCompare(b);
+  });
   const aiSeries: ChartSeries[] = capabilities.map(capability => ({ label: capabilityNames[capability] ?? capability, points: ai.filter(r => r.capability === capability).map(r => ({ at: r.at, value: r.succeeded + r.failed ? r.succeeded / (r.succeeded + r.failed) * 100 : null, note: `${r.succeeded}/${r.succeeded + r.failed} 次已结束调用成功` })) }));
   const aiLatency: ChartSeries[] = capabilities.map(capability => ({ label: capabilityNames[capability] ?? capability, points: ai.filter(r => r.capability === capability).map(r => ({ at: r.at, value: r.p95Ms == null ? null : r.p95Ms / 1000, note: `${r.succeeded} 次成功调用；失败不计入耗时` })) }));
   const latencySeries: ChartSeries[] = ['v1/sync', 'v1/question-banks'].map(name => ({ label: name === 'v1/sync' ? '同步接口' : '题库接口', points: points.map(p => ({ at: p.at, value: routeP95(p, name) == null ? null : routeP95(p, name)! / 1000, note: `${p.api.routes[name]?.count ?? 0} 条响应；含非成功响应` })) }));
