@@ -10,12 +10,17 @@ import { loadOpsConfig } from './config';
 import { AdminAuthService } from './admin/admin-auth.service';
 import { runOpsStaffProvision } from './admin/admin-provisioning';
 import { totpCodeAt } from './admin/admin-crypto';
+import { refreshLocalMonitor } from './admin/local-monitor-bridge';
 import type { OpsStaffSession } from '@icao/contracts';
 
 async function main(){
   const root=resolve(__dirname,'../../..');
   const home=join(homedir(),'.config/icao-app/local-ops');
   await mkdir(home,{recursive:true,mode:0o700});
+  let monitorRefreshing=false;
+  const refreshMonitor=async()=>{if(monitorRefreshing)return;monitorRefreshing=true;try{await refreshLocalMonitor(root,home,join(homedir(),'.ssh/icao_app_codex'));}catch{/* Timestamp preserves missing/stale state. */}finally{monitorRefreshing=false;}};
+  void refreshMonitor();
+  const monitorTimer=setInterval(()=>void refreshMonitor(),60_000);monitorTimer.unref();
   const settingsPath=join(home,'connection.json');
   let settings:Record<string,string>;
   try { const info=await stat(settingsPath);if(info.mode&0o077)throw new Error('private_file_permissions');settings=JSON.parse(await readFile(settingsPath,'utf8')); }
@@ -55,7 +60,7 @@ async function main(){
     session=await auth.login({email:settings.email!,password:settings.password!,totpCode:totpCodeAt(delivery.totpSecret),deviceName:'本地管理后台'},randomUUID(),'127.0.0.1');await writeFile(sessionPath,JSON.stringify(session),{mode:0o600});return session;}
   await authenticate();
   const cookie=randomBytes(32).toString('hex');const dist=join(root,'apps/ops/dist');
-  const allowed=/^\/v1\/admin\/(?:content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
+  const allowed=/^\/v1\/admin\/(?:stability|content-orders(?:\/[^?]*)?|feedback(?:\/[^?]*)?|ai-rules(?:\/(?:preview|publish))?|users(?:\/(?:search|operations|[\w-]+\/detail|reset-allowances\/(?:preview|[\w-]+\/execute)))?|reports\/(?:usage|clicks|accounts\/[\w-]+)|review-entitlements\/(?:preview|[\w-]+\/execute))(?:\?.*)?$/;
   const server=createServer(async(req,res)=>{
     try{
       if(req.headers.host!=='127.0.0.1:4173'||req.headers['sec-fetch-site']==='cross-site'){res.writeHead(403).end();return;}

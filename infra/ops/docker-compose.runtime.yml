@@ -12,6 +12,8 @@ services:
     env_file:
       - /opt/icao/runtime/ops-api/.env
     read_only: true
+    volumes:
+      - /var/lib/icao-monitor/dashboard:/run/icao-monitor:ro
     tmpfs:
       - /tmp
     security_opt:

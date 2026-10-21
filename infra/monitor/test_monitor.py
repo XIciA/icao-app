@@ -1,10 +1,38 @@
 import copy
 import json
 import unittest
+import datetime
+import tempfile
+from pathlib import Path
 from monitor import REQUIRED, alerts_for, summarize_logs
+from dashboard_export import dashboard, project, write_dashboard
 
 
 class MonitorTests(unittest.TestCase):
+    def test_export_only_contains_safe_aggregates_and_preserves_missingness(self):
+        snapshot = {'at': '2026-10-22T00:00:00+00:00', 'secret': 'private-secret',
+                    'containers': {'icao-api': {'id': 'private-container-id', 'running': True, 'health': 'healthy'}, 'private-name': {}},
+                    'api_last_5m': {'routes': {'v1/sync': {'count': 1, 'p95_ms': 20}, 'private-url': {'count': 1}}},
+                    'alerts': ['warning:api_latency:v1/sync', 'critical:private-secret']}
+        result = project(snapshot)
+        encoded = json.dumps(result)
+        self.assertNotIn('private', encoded)
+        self.assertIsNone(result['cpuPercent'])
+        self.assertIsNone(result['memoryPercent'])
+        self.assertEqual(result['api']['routes']['v1/sync']['statuses'], {})
+        self.assertEqual(result['alerts'], ['warning:api_latency:v1/sync'])
+
+    def test_export_deduplicates_history_omits_future_and_publishes_readable_file(self):
+        now = datetime.datetime(2026, 10, 22, tzinfo=datetime.timezone.utc)
+        with tempfile.TemporaryDirectory() as folder:
+            point = {'at': '2026-10-21T23:55:00+00:00'}
+            future = {'at': '2026-10-23T00:00:00+00:00'}
+            Path(folder, 'history-2026-10-21.ndjson').write_text(json.dumps(point) + '\n' + json.dumps(point) + '\n' + json.dumps(future) + '\ninvalid')
+            self.assertEqual(len(dashboard(folder, now)['points']), 1)
+            self.assertIsNone(dashboard(folder, now)['deepseek'])
+            write_dashboard(folder)
+            self.assertEqual(Path(folder, 'dashboard/dashboard.json').stat().st_mode & 0o777, 0o644)
+
     def test_private_request_fields_are_not_persisted(self):
         lines = [
             {'msg': 'incoming request', 'reqId': 'a', 'req': {'url': '/v1/sync/push?token=secret', 'remoteAddress': 'private'}},
