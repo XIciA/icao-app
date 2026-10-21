@@ -36,6 +36,10 @@ const terms = [
   ['performance-based navigation', '基于性能的导航', 'PBN'],
   ['required navigation performance', '所需导航性能', 'RNP'],
   ['area navigation', '区域导航', 'RNAV'],
+  ['sustainable aviation fuel', '可持续航空燃料', 'SAF'],
+  ['snow notice', '雪情通告', 'SNOWTAM'],
+  ['notice to airmen', '航行通告', 'NOTAM'],
+  ['Pilot English Proficiency Examination of CAAC', '中国民航飞行人员英语等级考试', 'PEPEC'],
 ];
 const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export const textFields = ['taskTitle', 'audioText', 'audioTextZh', 'referenceText', 'referenceTextZh', 'choices', 'choicesZh', 'imageAlt'];

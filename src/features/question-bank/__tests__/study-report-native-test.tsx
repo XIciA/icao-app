@@ -42,7 +42,7 @@ it('marks tutorial recap complete only after the saved original question opens',
 
 it('links a looked-up word back to its saved source question using the existing recap', async () => {
   const dataset = data.find(bank => bank.id === 'sentences900') as QuestionBankDataset;
-  const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
+  const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards.find(card => card.audioText.toLowerCase().includes('maintaining'))!;
   const saved = { ...record, id: 'word-recap', recordType: 'session' as const, sessionRecap: { annotatedCardIds: [], words: [{ word: 'maintaining', favorited: true }] }, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) };
   jest.mocked(loadLearningRecordReview).mockResolvedValueOnce(saved);
   const screen = await render(<StudyReport record={saved} noteCount={0} interaction="speaking" onReturn={jest.fn()} />);

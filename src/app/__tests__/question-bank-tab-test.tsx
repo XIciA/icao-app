@@ -52,7 +52,7 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('陆空通话')).toBeTruthy();
     expect(screen.getByText('310 场景＋9 专项 / 5751 卡')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
-    expect(screen.getByText('238 话题 / 2321 卡')).toBeTruthy();
+    expect(screen.getByText('238 话题 / 2361 卡')).toBeTruthy();
     expect(screen.queryByText('故事复诵')).toBeNull();
     await fireEvent.press(screen.getByLabelText('打开个人资料'));
     expect(mockPush).toHaveBeenCalledWith('/account/profile');

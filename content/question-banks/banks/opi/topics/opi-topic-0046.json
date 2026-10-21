@@ -8,7 +8,7 @@
       "audioText": "What are the main advantages of SAF compared with conventional jet fuel?",
       "studyTier": 2,
       "taskTitle": "其它-航空发展与新技术-14",
-      "audioTextZh": "与传统航空喷气燃料相比，可持续航空燃料（SAF）有哪些主要优势？",
+      "audioTextZh": "与传统航空喷气燃料相比，SAF有哪些主要优势？",
       "referenceText": "SAF can produce lower lifecycle carbon emissions than conventional jet fuel. It can also reduce particulate and sulfur-oxide emissions, which can improve local air quality near airports. SAF can be blended for use in existing engines and refuelling infrastructure, and using waste feedstocks can support a circular economy.",
       "referenceTextZh": "SAF 的全生命周期碳排放可以低于传统喷气燃料。它还能减少颗粒物和硫氧化物排放，改善机场附近的局部空气质量。SAF 可以混合后用于现有发动机和加油基础设施，使用废弃物原料也有助于循环经济。",
       "audioDurationSeconds": 4.08
@@ -54,7 +54,7 @@
       "audioText": "What are the main challenges of using SAF in commercial aviation?",
       "studyTier": 2,
       "taskTitle": "其它-航空发展与新技术-15",
-      "audioTextZh": "在商业航空中使用可持续航空燃料（SAF）面临哪些主要挑战？",
+      "audioTextZh": "在商业航空中使用SAF面临哪些主要挑战？",
       "referenceText": "The main challenges are high cost and limited supply. Production capacity is still limited, and collecting enough suitable feedstock at scale can be difficult. Certification and testing take time, while transport and storage must be managed carefully to prevent contamination.",
       "referenceTextZh": "主要挑战是成本高和供应有限。目前产能仍然不足，大规模收集足够的合适原料也很困难。认证和测试需要时间，运输和储存则必须认真管理以防污染。",
       "audioDurationSeconds": 3.696
@@ -186,7 +186,7 @@
       "audioText": "What is sustainable aviation fuel, or SAF?",
       "studyTier": 2,
       "taskTitle": "其它-航空发展与新技术-13",
-      "audioTextZh": "什么是可持续航空燃料（SAF）？",
+      "audioTextZh": "什么是SAF？",
       "referenceText": "SAF stands for sustainable aviation fuel. It is aviation fuel made from renewable sources such as used cooking oil, agricultural waste, animal fats, or household waste. It can reduce lifecycle carbon emissions and can be blended with conventional jet fuel for use in existing aircraft engines.",
       "referenceTextZh": "SAF 是可持续航空燃料的缩写。它由废弃食用油、农业废弃物、动物脂肪或生活垃圾等可再生来源制成。它可以减少全生命周期碳排放，并能与传统喷气燃料混合后用于现有飞机发动机。",
       "audioDurationSeconds": 3.048
@@ -196,7 +196,7 @@
       "audio": "/question-bank-assets/revisions/opi/f3587833bdf0cbc4339e3d6a54d5f2fafa888fbebcf95d5a3a054ce7c555f5cb/audio/opi/opi-extra-390.mp3",
       "audioText": "What role can SAF play in aviation's transition toward net-zero carbon emissions?",
       "taskTitle": "其它-航空发展与新技术-16",
-      "audioTextZh": "在航空业向净零碳排放转型的过程中，可持续航空燃料（SAF）可以发挥什么作用？",
+      "audioTextZh": "在航空业向净零碳排放转型的过程中，SAF可以发挥什么作用？",
       "referenceText": "SAF can play an important role by reducing lifecycle emissions from aircraft that are already in service. Because it can be used with the existing fleet, it offers a more immediate option than technologies that require completely new aircraft designs. Wider use will still require major investment, greater production capacity, lower costs, and more feedstock.",
       "referenceTextZh": "SAF 可以通过降低现役飞机的全生命周期排放发挥重要作用。由于它能用于现有机队，与需要全新飞机设计的技术相比，可以更快投入使用。扩大应用仍需要大量投资、更高产能、更低成本和更多原料。",
       "audioDurationSeconds": 4.848

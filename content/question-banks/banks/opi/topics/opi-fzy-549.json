@@ -74,7 +74,7 @@
       "audioText": "Is this the first time for you to take the PEPEC test?",
       "studyTier": 1,
       "taskTitle": "Examination-6",
-      "audioTextZh": "这是你第一次参加中国民航飞行人员英语等级考试(PEPEC)吗？",
+      "audioTextZh": "这是你第一次参加PEPEC吗？",
       "referenceText": "Yes, it is. /No, it's the second time.",
       "referenceTextZh": "是的。/不，第二次。",
       "audioDurationSeconds": 2.952

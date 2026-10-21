@@ -25189,6 +25189,9 @@
     "opi-core-727#audioTextZh": [
       "3ba1c49e6169daa40c2aaf6927ab4cd5d1e2cda4b0292d9bc7a0145e6989c081"
     ],
+    "opi-core-834#audioTextZh": [
+      "9115df76511e30316d758a62b9d28f9aca1e5d761ad0a1bf0cc84686ac67c94f"
+    ],
     "opi-extra-075#audioText": [
       "60153618e3605afefe5e48fdbba0f70f18d4244c17523506aed4af8d1b00884a"
     ],
@@ -25465,6 +25468,18 @@
     "opi-core-572#referenceText": [
       "e0acc30e58241dfc5cc049a598b7ab269c8e122a2a07daba2b83dedde751a6a2"
     ],
+    "opi-extra-387#audioTextZh": [
+      "4c9739007cf56f160611d876810f84f418cbef5efc0314b8cb0eb5ba8d3828cb"
+    ],
+    "opi-extra-388#audioTextZh": [
+      "30325a14b103664dcc7763ff3abbb6bdfa0e5c28397c8eb8ef56bfd0a2cb8714"
+    ],
+    "opi-extra-389#audioTextZh": [
+      "0ed9cfe12dfafe71352bd8134d21803a899f773778a7dc1f21214a7186834677"
+    ],
+    "opi-extra-390#audioTextZh": [
+      "da58c780e043cf9903627aa671c7da9d0a0522a93e65facd68913d1a2fec5fbd"
+    ],
     "opi-intake-20261019-recent-development#referenceText": [
       "f3b16a95d640e84f4108914697ba8df050372f4189c70c771971d47ed58dfaa4"
     ],
@@ -25542,6 +25557,9 @@
     ],
     "opi-fzy-110130#referenceText": [
       "ac6d3ace203185aabcde825ef28471f3c70248e3f2d5d607d680b663b2ac3542"
+    ],
+    "opi-fzy-203086#audioTextZh": [
+      "273c38bb245b604a96bbe20eafa22259c7d864e02d895f1cc7fc32be0fb10f32"
     ],
     "opi-fzy-203086#referenceText": [
       "417a413e9cf680344a50cd05960d6968ef4c972d22bb491862ed3b7076cf3bc3"

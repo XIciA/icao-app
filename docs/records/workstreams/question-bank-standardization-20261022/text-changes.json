@@ -141951,6 +141951,17 @@
     {
       "bankId": "opi",
       "categoryId": "opi-category-03",
+      "topicId": "opi-topic-0082",
+      "cardId": "opi-core-834",
+      "field": "audioTextZh",
+      "before": "雪情通告（SNOWTAM）与其他航行通告（NOTAM）有何不同？",
+      "after": "SNOWTAM与其他NOTAM有何不同？",
+      "beforeSha256": "11b219887f01a5399ae0744ff970a24d0709857b3cb4cd454b2846c0be600030",
+      "afterSha256": "9115df76511e30316d758a62b9d28f9aca1e5d761ad0a1bf0cc84686ac67c94f"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-03",
       "topicId": "opi-topic-0113",
       "cardId": "opi-extra-075",
       "field": "audioText",
@@ -142964,6 +142975,50 @@
       "bankId": "opi",
       "categoryId": "opi-category-07",
       "topicId": "opi-topic-0046",
+      "cardId": "opi-extra-387",
+      "field": "audioTextZh",
+      "before": "什么是可持续航空燃料（SAF）？",
+      "after": "什么是SAF？",
+      "beforeSha256": "7a00a45bd45bd5e6582062fae0ffc7fc4e9efb148adc5729ccb221685cedcc38",
+      "afterSha256": "4c9739007cf56f160611d876810f84f418cbef5efc0314b8cb0eb5ba8d3828cb"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-07",
+      "topicId": "opi-topic-0046",
+      "cardId": "opi-extra-388",
+      "field": "audioTextZh",
+      "before": "与传统航空喷气燃料相比，可持续航空燃料（SAF）有哪些主要优势？",
+      "after": "与传统航空喷气燃料相比，SAF有哪些主要优势？",
+      "beforeSha256": "39b697e109f7a3507af6dbe3534fea3ea2a0cf59917e93d2dc8c770ea32b4d1e",
+      "afterSha256": "30325a14b103664dcc7763ff3abbb6bdfa0e5c28397c8eb8ef56bfd0a2cb8714"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-07",
+      "topicId": "opi-topic-0046",
+      "cardId": "opi-extra-389",
+      "field": "audioTextZh",
+      "before": "在商业航空中使用可持续航空燃料（SAF）面临哪些主要挑战？",
+      "after": "在商业航空中使用SAF面临哪些主要挑战？",
+      "beforeSha256": "3d1c5a10fb4bda1256ea0f9c421fc5347d0f39ad15f4c97f5783b4b9279e433c",
+      "afterSha256": "0ed9cfe12dfafe71352bd8134d21803a899f773778a7dc1f21214a7186834677"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-07",
+      "topicId": "opi-topic-0046",
+      "cardId": "opi-extra-390",
+      "field": "audioTextZh",
+      "before": "在航空业向净零碳排放转型的过程中，可持续航空燃料（SAF）可以发挥什么作用？",
+      "after": "在航空业向净零碳排放转型的过程中，SAF可以发挥什么作用？",
+      "beforeSha256": "a2fe7284f0b51749fbab7a52e30deeba598789db0bf2db9c73c219663e217ee9",
+      "afterSha256": "da58c780e043cf9903627aa671c7da9d0a0522a93e65facd68913d1a2fec5fbd"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-07",
+      "topicId": "opi-topic-0046",
       "cardId": "opi-intake-20261019-recent-development",
       "field": "referenceText",
       "before": "One example from 2025 is the start of regular C919 commercial service on the Shanghai–Hong Kong route on January 1. This expanded the aircraft’s commercial network beyond its earlier mainland routes. It illustrates how a new aircraft type can gradually enter a wider range of operations.",
@@ -143245,6 +143300,17 @@
       "after": "Yes, I feel good in the test. I've tried my best in the last months, so I believe I can smile at the result whatever I fail or pass this time. And I hope I'll be the lucky dog.",
       "beforeSha256": "9408b953d034bd06f0f1b37f5d3d9c4b6cecae051bf406ee5ebec527448d8053",
       "afterSha256": "ac6d3ace203185aabcde825ef28471f3c70248e3f2d5d607d680b663b2ac3542"
+    },
+    {
+      "bankId": "opi",
+      "categoryId": "opi-category-07",
+      "topicId": "opi-fzy-549",
+      "cardId": "opi-fzy-203086",
+      "field": "audioTextZh",
+      "before": "这是你第一次参加中国民航飞行人员英语等级考试(PEPEC)吗？",
+      "after": "这是你第一次参加PEPEC吗？",
+      "beforeSha256": "ca702d3672db09be4fecc05a73658aab99341683083a8a2a3261bb2fb59937a1",
+      "afterSha256": "273c38bb245b604a96bbe20eafa22259c7d864e02d895f1cc7fc32be0fb10f32"
     },
     {
       "bankId": "opi",
