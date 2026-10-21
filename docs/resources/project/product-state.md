@@ -1,53 +1,54 @@
-# 当前产品状态
+# 项目管理概览与产品状态
 
-更新时间：2026-08-24
+核对日期：2026-10-21（北京时间）
 
-本文只描述当前产品事实与端侧定位。具体数量、版本和资源清单以代码及生成清单为准。
+本页汇总管理所需的产品状态、交付和待验事项。依据是仓库实现与已保存的发布证据，
+本次整理未连接生产环境重新验收；“已发布”均指对应记录中的结果。
 
-## 产品定位
+## 产品与运行链路
 
-听你五个（Read You 5）是面向 ICAO 英语学习与训练的产品。核心闭环包括题库学习、音频训练、录音与转写、
-AI 辅助反馈、学习记录和内容资源浏览。视觉与交互延续既定品牌，不因平台拆分而改变产品身份。
+听你五个（Read You 5）面向 ICAO 英语学习与训练，覆盖题库学习、音频训练、录音与转写、
+AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web 使用同仓 React Native、Expo、TypeScript。
 
-## Native（iOS / Android）
+| 产品 / 站点 | 定位与实现 |
+| --- | --- |
+| iOS / Android | 正式包分别为 `com.readyoufife.ios`、`com.readyoufife.app`；账号、学习同步和联网能力连接 ECS API 与 Supabase |
+| `readyoufife.com` | EdgeOne 产品 Web，复用正式账号、API、题库与学习同步；浏览器录音原件留在本机 |
+| `feizhuicao.com` | 香港 Nginx 静态宣传站，页面来源为 `public/promo/`，不提供旧邀请码题库服务 |
+| 旧 Vercel 体验站 | 10 月 20 日迁移记录确认退役；仓库保留 `vercel-legacy` 兼容实现与冻结校验，不代表仍对外服务 |
 
-- React Native + Expo + TypeScript 是正式移动端实现。
-- 正式 iOS Bundle ID 为 `com.readyoufife.ios`，Android 包名为 `com.readyoufife.app`，正式 URL Scheme 为 `readyoufife`。
-- 当前已发布的 TestFlight 账号入口使用中国大陆 `+86` 手机号，验证码/密码复用同一 Supabase phone
-  identity；邀请码已退出 Native 登录。仓库中的 1.0.0 候选提供 Apple（iOS）、手机号验证码和手机号
-  密码，微信登录延期。Apple 用户可稍后自愿绑定未占用手机号；已占用手机号只提示退出后登录原账号，
-  不自动归并账号或转移学习/商业数据。学习数据与权益归永久 `accountId`，不直接归手机号或
-  `auth.users.id`。新构建仍待生产迁移、外部配置及 TestFlight 真机验收。
-- 真实短信供应商为阿里云；资质主体“云启航科（成都）科技有限公司”、短信签名“云启航科成都”和
-  通用验证码模板已经审核并完成真实发送、代表号码收件。用户当前没有“听你五个”注册商标，而阿里云
-  当前页面只允许企事业单位名或已注册商标来源，因此不得以不实来源提交“听你五个”；该品牌签名延期到
-  商标注册完成或具备平台认可材料后。三网到达和多实例共享风控仍待完成。
-- Send SMS Hook 不提供可靠的注册/登录/找回用途，因此三种流程共用一条通用验证码模板。仓库源码已将
-  OTP 意图、近期认证、防重放和相关限流状态迁移至 PostgreSQL；生产效果仍以迁移演练与部署验收为准。
-- 内部 TestFlight 的非生产 Auth 配置只允许可到期、白名单式测试 OTP；正式包必须关闭所有测试 OTP，
-  且不得将测试覆盖层与阿里云真实短信覆盖层同时启用。
-- 账号、学习记录与需要联网的正式能力连接 App ECS API 与 Supabase。当前线上链路仍以已验证 `+86`
-  手机号为入口；下一版本地候选的 API 将合法 Supabase 身份解析为活跃 `accountId`，普通业务访问不把
-  手机号或 OTP 登录方式写死为前置条件。
-- TestFlight 商业能力默认关闭：只存在无法触发真实渠道的支付接口占位和内部 AI 点数测试策略，
-  未接 StoreKit、支付宝或微信支付 SDK，也不产生真实订单或权益。
-- 正式题库、音频、录音、AI 和真实反馈能力由各自现有共享模块负责，不建立功能内的平行副本。
-- Development Build 是能力边界；原生依赖、权限、插件或配置改变时需要重新构建。
+域名、运行时选择与服务边界统一见[运行时拓扑](runtime-topology.md)，不在本页重复维护部署细节。
 
-## Web
+## 最近交付与验收
 
-- Web 是同一仓库的 Expo Web 产品体验，但运行时与 Native 解耦。
-- Web 通过 Vercel Functions 和同源静态资源提供邀请码校验、内容和题库资源。
-- Web 的邀请码会话与浏览器本地数据不接入 ECS、Supabase 或 Native 云同步。
-- Web 与 Native 共享品牌、内容语义和核心交互意图，不要求共享后端身份与数据生命周期。
+版本按渠道分别记录，不用某一个展示版本推断所有平台的实际安装包或服务版本。
 
-## 当前事实的来源
+| 渠道 / 服务 | 最近有证据的交付 | 验收边界 / 证据 |
+| --- | --- | --- |
+| Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
+| App Store | 1.2.1 / 3576434，10 月 21 日记录确认已上架，并补齐正式更新清单 | 本轮未重编译 iOS；上架与功能真机验收分别判断。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
+| iOS TestFlight | 1.2.1 / 3576434，10 月 20 日记录为 VALID、内部测试组可用 | 10 月 21 日未改该渠道；1.2.1 当前构建的真机效果不能由旧版结果替代。[记录](../../records/releases/20261020-startup-b-1.2.1.md) |
+| EdgeOne 产品 Web | 10 月 20 日启动优化已发布，deployment `dpgp9zsw76jf` | 导出与公网资源校验见[启动发布记录](../../records/releases/20261020-startup-b-1.2.1.md)；10 月 21 日下载入口随公开清单更新，未重新部署网页 |
+| 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
+| API / 内容运营后台 | 10 月 17 日功能更新记录包含正式迁移、API 与后台交付、OPI 审核发布 | 是该任务的已保存证据，不据此推断此后服务器一直未变。[执行记录](../../workstreams/feature-update-2026-10/execution.md) |
 
-- 实现与路由：`app/`、`src/`。
-- Native API：`services/api/` 与 `packages/contracts/`。
-- Web 运行时：`api/`、`vercel.json`、`scripts/materialize-web-*.mjs`。
-- 题库、内容与 AI 资产：对应工具生成的 manifest、release 文件和 `services/api/src/ai/assets/`。
-- 长期约束入口：[项目文档入口](../../README.md)；技术与权限边界见 [项目长期边界](../../rules/project-boundaries.md)。
+## 当前关注与下一步
 
-当数字或“进行中/已完成”状态与实现冲突时，先核对生成清单、测试和线上证据，再更新本文；
-不要把旧阶段日志当成当前事实。
+- **交付待验**：优先补 Android 1.2.1 真机升级闭环，以及当前 1.2.1 构建启动衔接的设备体验；确认结果后回填对应交付记录。
+- **缺陷排查**：非音频修复与本地回归已完成，不再标为“修复待启动”；剩余跨端 / 真机风险以[任务首页](../../workstreams/app-bug-audit/README.md)和[完成记录](../../workstreams/app-bug-audit/completion-2026-10-17.md)为准。该任务本身没有发布候选包。
+- **内容运营**：10 月功能更新的四张 OPI 样例工单已完成批准后的发布，未决三项按当时用户确认排除；不再把首轮“待审核”当作最终状态。[最终结果](../../workstreams/feature-update-2026-10/execution.md)
+- **旧任务收口**：1.0.0 任务仍保存旧材料与未填写的收口文件，不再用于描述当前上架版本；保留路径以兼容发布材料校验。[任务索引](../../workstreams/README.md)
+
+以上是待核对事项，不代表新任务已经启动或获得外部操作授权。
+
+## 实现事实与日常维护入口
+
+- App 展示版本：[app-version.ts](../../../src/config/app-version.ts)；安装包版本、构建号和渠道以对应发布证据为准。
+- 页面与业务：`app/`、`src/`；API 与合同：`services/api/`、`packages/contracts/`。
+- Web 模式：[web-runtime.ts](../../../src/config/web-runtime.ts)；站点关系见[运行时拓扑](runtime-topology.md)。
+- 商业能力：仓库已有 [iOS StoreKit 客户端](../../../src/features/native-commercial-testflight/react-native-iap-storekit-client.native.ts)与服务端合同，旧“未接 StoreKit、只有占位接口”描述已失效；源码存在不等于真实支付或全部渠道已验收，具体启用状态需按构建、运行配置和交付证据核对。
+- 任务与进度：[任务索引](../../workstreams/README.md)；常用能力与副作用：[工具清单](../../tools/README.md)；具体命令：[命令参考](../developer/development-command-reference.md)。
+- 长期约束仍只从[项目文档入口](../../README.md)进入，本页不新增规则。
+
+维护时可直接更新受影响的一行并链接证据：任务结束核对状态，交付后核对渠道与待验项；
+历史过程留在原记录，避免在概览中累积流水日志。

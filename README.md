@@ -6,10 +6,10 @@
 ## 当前平台边界
 
 - Native 使用正式账号、ECS API、Supabase、题库/音频、学习记录、录音、AI 与反馈链路。
-- Web 使用 Vercel 同源 Functions、静态内容/题库资源与浏览器本地数据，不调用 ECS/Supabase。
-- 品牌与核心学习语义跨平台一致，身份、存储、音频和部署生命周期按平台隔离。
+- 产品 Web `readyoufife.com` 由 EdgeOne 托管，与 Native 共用 ECS API、Supabase 身份与学习同步；浏览器录音原件保留在本机。
+- `feizhuicao.com` 是香港静态宣传站；旧 Vercel 邀请码体验站已退役，仓库保留兼容实现与冻结校验。
 
-最新事实见 [`docs/resources/project/product-state.md`](docs/resources/project/product-state.md) 与
+项目管理概览、各渠道交付与待验事项见 [`docs/resources/project/product-state.md`](docs/resources/project/product-state.md) 与
 [`docs/resources/project/runtime-topology.md`](docs/resources/project/runtime-topology.md)。
 
 ## 常用入口
@@ -19,7 +19,7 @@ pnpm install
 pnpm start
 pnpm ios
 pnpm android
-pnpm web
+EXPO_PUBLIC_ICAO_WEB_RUNTIME=edgeone-production pnpm web
 pnpm typecheck
 ```
 

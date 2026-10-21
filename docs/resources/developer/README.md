@@ -9,6 +9,9 @@
 
 当前笔记：
 
+- [常用命令](development-command-reference.md)与[工具清单](../../tools/README.md)
+- [项目管理概览](../project/product-state.md)
+
 - [Git 协作](git-workflow-note.md)
 - [本机签名与设备](local-signing-and-device.md)
 - [商业化负责人清单](commercialization-owner-checklist.md)
