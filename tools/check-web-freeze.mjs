@@ -357,6 +357,9 @@ reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(revie
 reviewedFormalWebHashes.set("assets/images/startup-brand.png", [...new Set([...(reviewedFormalWebHashes.get("assets/images/startup-brand.png") ?? [null]), "e165261b71814f711a8610c733d5fc2ed36e590bdca6b9a148d06d0c33900f22"])]);
 reviewedFormalWebHashes.set("src/components/states/StartupBrandScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/states/StartupBrandScreen.tsx") ?? [null]), "bd8b43fa36d9841574ecf2121d9d49dc19efd0110ce1620f4f40b4f59e15d275"])]);
 
+// Android 1.2.1 installer release advances only Android versionCode; iOS 3576434 and legacy Web stay fixed.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "f8cacb4271315ce54305ef241c5a7b2f7d1169f0bb75f98c32ae98635038600e"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
