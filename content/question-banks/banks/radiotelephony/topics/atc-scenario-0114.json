@@ -133,7 +133,7 @@
       "id": "atc-scenario-0114-card-main-1972",
       "taskTitle": "CSN 3102-15",
       "audioText": "C: CSN 3102, what assistance do you need?\nB: tell the controller you need medical services upon landing.",
-      "audioTextZh": "C： CSN 3102，你需要什么协助？\nB： 告诉管制员你需要落地时提供医疗服务。",
+      "audioTextZh": "C：CSN 3102，你需要什么协助？\nB：告诉管制员你需要落地时提供医疗服务。",
       "referenceText": "request medical services upon landing, CSN 3102.",
       "referenceTextZh": "请求落地时提供医疗服务，CSN 3102。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q15.mp3"

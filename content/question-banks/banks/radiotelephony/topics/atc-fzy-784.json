@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-152462",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-1",
-      "audioText": "[Your callsign is ACA909; your destination is Beijing, and you are leaving 1,200m and say good-bye to Wuhan Tower. Contact Wuhan Departure, and request to climb.]",
+      "audioText": "Your callsign is ACA909; your destination is Beijing, and you are leaving 1,200m and say good-bye to Wuhan Tower. Contact Wuhan Departure, and request to climb.",
       "audioTextZh": "你的呼号是加航909，你的目的地是北京，你现在离开1200米，和武汉塔台说了再见。联系武汉离场，请求爬升。",
       "referenceText": "Wuhan Departure, ACA909, leaving 1,200m, request further climb.",
       "referenceTextZh": "武汉离场，加航909，离开1200米，请求进一步爬升。",
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-152464",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-3",
-      "audioText": "[You just reached 1,800 m, and you got some moderate chop at the level, inform the controller about that and request 4,500 m.]",
-      "audioTextZh": "[你刚到达1800米，你在此高度遇到中度颠簸，告知管制员这个清况，请求上4500米]",
+      "audioText": "You just reached 1,800 m, and you got some moderate chop at the level, inform the controller about that and request 4,500 m.",
+      "audioTextZh": "你刚到达1800米，你在此高度遇到中度颠簸，告知管制员这个清况，请求上4500米",
       "referenceText": "Wuhan Departure, ACA909, maintaining 1,800 m, we have encountered moderate turbulence, request 4,500 m.",
       "referenceTextZh": "武汉离场，加航909，在1800米保持，我们遇到了中度颠簸，请求上4500米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b759fbe9f04ba16df023.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-152466",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-5",
-      "audioText": "[Inform the controller that the weather radar shows a cumulonimbus on route ahead about 30 Km, and your level is 3,900 m.]",
-      "audioTextZh": "[告知管制员，气象雷达显示前方30千米处有积雨云，你高度为3900米]",
+      "audioText": "Inform the controller that the weather radar shows a cumulonimbus on route ahead about 30 Km, and your level is 3,900 m.",
+      "audioTextZh": "告知管制员，气象雷达显示前方30千米处有积雨云，你高度为3900米",
       "referenceText": "Wuhan Departure, ACA909, maintaining 3,900 m; the radar indicates a CB ahead of us, about 30 km",
       "referenceTextZh": "武汉离场，加航909，在3900米保持，雷达显示前方大概30千米处有积雨云。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/66f3b5f984e4d8b3d0a1.mp3"
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-152469",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-8",
-      "audioText": "ACA909, now you are clear of weather, climb to 4,500 m, turn right heading 030 to rejoin the ZF-1 departure.\n[Acknowledge the controller’s instruction and tell him you want to fly to ZF directly from present position.]",
+      "audioText": "ACA909, now you are clear of weather, climb to 4,500 m, turn right heading 030 to rejoin the ZF-1 departure.\n[Acknowledge the controller's instruction and tell him you want to fly to ZF directly from present position.]",
       "audioTextZh": "加航909，你现在脱离天气了，爬升至4500米，右转航向030，再次加入ZF-1离场程序。\n[认收管制员指令，告诉管制员你想从当前位置直飞ZF]",
       "referenceText": "Roger, climb to 4,500 m. Request direct to ZF. ACA909",
       "referenceTextZh": "收到，爬升至4500米，请求直飞ZF，加航909。",
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-152472",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-11",
-      "audioText": "[You are just over ZF, make an initial contact with Wuhan Control.]",
+      "audioText": "You are just over ZF, make an initial contact with Wuhan Control.",
       "audioTextZh": "[你刚飞过ZF，与武汉区调做初始联络]",
       "referenceText": "Wuhan Control, ACA909, 4,500 m, over ZF.",
       "referenceTextZh": "武汉区调，加航909，,4500米，过ZF。",
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-152474",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-13",
-      "audioText": "[A flight attendant told you that there is a male passenger suffering a heart attack. Inform the controller about that, and tell him you want to go back to Wuhan. This is an urgent call.]",
-      "audioTextZh": "[一名乘务员告诉你，一名男性乘客遭遇心脏病。告知管制员情况，告诉他你想返回武汉，这是一个紧急呼叫]",
+      "audioText": "A flight attendant told you that there is a male passenger suffering a heart attack. Inform the controller about that, and tell him you want to go back to Wuhan. This is an urgent call.",
+      "audioTextZh": "一名乘务员告诉你，一名男性乘客遭遇心脏病。告知管制员情况，告诉他你想返回武汉，这是一个紧急呼叫",
       "referenceText": "Panpan, Panpan, Panpan, Wuhan Control, ACA909, we have a male passenger suffering heart attack, request direct back to Wuhan.",
       "referenceTextZh": "Panpan, Panpan, Panpan，武汉区调，加航909，我们有一名男性乘客遭遇心脏病，请求返回武汉。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/22ae4f26d5135a04f054.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-152478",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-17",
-      "audioText": "[Inform Wuhan Approach that you have a passenger suffering heart attack, and request landing priority.]",
-      "audioTextZh": "[告知武汉进近，你有一名乘客遭遇心脏病，并请求优先着陆]",
+      "audioText": "Inform Wuhan Approach that you have a passenger suffering heart attack, and request landing priority.",
+      "audioTextZh": "告知武汉进近，你有一名乘客遭遇心脏病，并请求优先着陆",
       "referenceText": "Wuhan Approach, ACA909, 4200m, we have a passenger suffering heart attack, request priority landing.",
       "referenceTextZh": "武汉进近，加航909，高度4200米，我们有一名乘客遭遇心脏病，请求优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d31ad3d55be4c94d238b.mp3"
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-152479",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-18",
-      "audioText": "ACA909, Wuhan Approach, roger, radar contact, follow ZF-01A arrival, and descend to 1,800 m on QNH 1013. Information D is valid.\n[Readback the controller’s instruction, and ask the detail of information D because you could not receive the information on the radio.]",
+      "audioText": "ACA909, Wuhan Approach, roger, radar contact, follow ZF-01A arrival, and descend to 1,800 m on QNH 1013. Information D is valid.\n[Readback the controller's instruction, and ask the detail of information D because you could not receive the information on the radio.]",
       "audioTextZh": "加航909，武汉进近，收到，雷达识别，按照ZF-01A进场，下降到1800米，QNH1013，通播D有效。\n[复诵管制员的指令，询问通播D的细节，因为你在无线电收不到通播。]",
       "referenceText": "Roger, follow ZF-01A arrival; descend to 1,800 m on QNH 1013. Can you repeat the ATIS D, we are unable to pick up on the radio, ACA909.",
       "referenceTextZh": "收到，按照ZF-01A进场，下降到1800米，QNH1013，你能重复通播D吗，我们无线电无法接收此通播，加航909。",
@@ -179,8 +179,8 @@
     {
       "id": "radiotelephony-fzy-152481",
       "taskTitle": "7-ACA909 [积雨云，乘客心脏病]-20",
-      "audioText": "[Inform the controller that you want to land at runway 18L visually to save time.]",
-      "audioTextZh": "[告知管制员，为了节省时间，你想目视着陆，跑道18左]",
+      "audioText": "Inform the controller that you want to land at runway 18L visually to save time.",
+      "audioTextZh": "告知管制员，为了节省时间，你想目视着陆，跑道18左",
       "referenceText": "Wuhan Approach, ACA909, request to make a visual approach and land for runway 18L to save time.",
       "referenceTextZh": "武汉进近，加航909，为了节省时间，请求目视进近并在跑道18左着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/af24a2785cd65bf3124d.mp3"

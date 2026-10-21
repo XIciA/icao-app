@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-219485",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-1",
-      "audioText": "[Your call-sign is UAL887, a passenger flight from Tokyo to Guangzhou. You are now flying at 9500m, estimating OBLIK at 35, squawking 5355. Make an initial contact with Beijing Control.]",
-      "audioTextZh": "【你的呼号是美联航887，一架从东京飞往广州的客运航班。你现在在9500米飞行，预计过OBLIK时间35分，应答机5355。与北京区调进行初始联系。】",
+      "audioText": "Your call-sign is UAL887, a passenger flight from Tokyo to Guangzhou. You are now flying at 9500m, estimating OBLIK at 35, squawking 5355. Make an initial contact with Beijing Control.",
+      "audioTextZh": "你的呼号是美联航887，一架从东京飞往广州的客运航班。你现在在9500米飞行，预计过OBLIK时间35分，应答机5355。与北京区调进行初始联系。",
       "referenceText": "Beijing Control, UAL887, 9500m maintaining, ETA OBLIK 35, squawk 5355.",
       "referenceTextZh": "北京区调，美联航887，正保持在9500米，预计过OBLIK时间35分，应答机5355。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5042f262ceebf98ee54d.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-219487",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-3",
-      "audioText": "[You have an indication of cumulonimbus about 40km ahead, therefore, you want to turn right to go round it.]",
-      "audioTextZh": "【前方40公里处显示有积雨云，因此，你想右转绕飞。】",
+      "audioText": "You have an indication of cumulonimbus about 40km ahead, therefore, you want to turn right to go round it.",
+      "audioTextZh": "前方40公里处显示有积雨云，因此，你想右转绕飞。",
       "referenceText": "Beijing Control, UAL887, we have an indication of CB about 40km ahead, request turn right to avoid it.",
       "referenceTextZh": "北京区调，美联航887，前方40公里处显示有积雨云，请求右转绕飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/acab53e3c2e5b4c45fe1.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-219489",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-5",
-      "audioText": "[You are now clear of cumulonimbus and closing back to your original course, report to the controller.]",
-      "audioTextZh": "【你现在离开积雨云，正返回原航路，告知管制员。】",
+      "audioText": "You are now clear of cumulonimbus and closing back to your original course, report to the controller.",
+      "audioTextZh": "你现在离开积雨云，正返回原航路，告知管制员。",
       "referenceText": "Beijing Control, UAL887, clear of CB and returning back to our original course.",
       "referenceTextZh": "北京区调，美联航887，离开积雨云，正返回原航路。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c1f04eb298a45afa3413.mp3"
@@ -54,7 +54,7 @@
       "id": "radiotelephony-fzy-219490",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-6",
       "audioText": "C: UAL887, Beijing Control, roger, report joining.\n[Later...]\n[A flight attendant reports that a pregnant woman is about to deliver a baby, and she is in severe pain. Inform Beijing Control the situation. This is an emergency call.]",
-      "audioTextZh": "C:美联航887，北京区调，收到，加入后报。\n【后来...】\n【一名乘务员报告说一名怀孕乘客要生孩子，她现在疼得厉害。告知北京区调，这是一个紧急呼叫。】",
+      "audioTextZh": "C:美联航887，北京区调，收到，加入后报。\n【后来。..】\n【一名乘务员报告说一名怀孕乘客要生孩子，她现在疼得厉害。告知北京区调，这是一个紧急呼叫。】",
       "referenceText": "Panpan Panpan Panpan, Beijing Control, UAL887, a pregnant woman is on board is about to deliver a baby, she is in severe pain.",
       "referenceTextZh": "Panpan Panpan Panpan，北京区调，美联航887，一名怀孕乘客将要在飞机上生孩子，她现在疼得厉害。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c2c35b090a9cc04acd0c.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-219493",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-9",
-      "audioText": "[Make a passenger address to find if any doctor or nurse is available to offer help.]",
-      "audioTextZh": "【进行机上广播，看是否能找到医生或护士。】",
+      "audioText": "Make a passenger address to find if any doctor or nurse is available to offer help.",
+      "audioTextZh": "进行机上广播，看是否能找到医生或护士。",
       "referenceText": "Ladies and gentlemen, this is your captain speaking: a female passenger is about to give birth on the plane, so if you are a doctor or nurse, please kindly offer some help, thank you so much!",
       "referenceTextZh": "女士们，先生们，这里是机长广播：一名女性乘客将要在飞机上生孩子，因此如果你是医生或者护士，请提供帮助，谢谢。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0c271e44dd234550ad56.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-219496",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-12",
-      "audioText": "[Contact Wuhan Approach and ask controller to arrange doctor and ambulance on arrival.]",
-      "audioTextZh": "【联系武汉进近，请求管制员安排医生和救护车在着陆后就位。】",
+      "audioText": "Contact Wuhan Approach and ask controller to arrange doctor and ambulance on arrival.",
+      "audioTextZh": "联系武汉进近，请求管制员安排医生和救护车在着陆后就位。",
       "referenceText": "Wuhan Approach, UAL887, request doctor and ambulance on arrival.",
       "referenceTextZh": "武汉进近，美联航887，请求着陆后医生和救护车就位。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bd284ddd65e776fa78b7.mp3"
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-219500",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-16",
-      "audioText": "[Now you have intercepted the localizer of runway 04R, inform Tower controller. ]",
-      "audioTextZh": "【你现在已经截获跑道04右航向道，告知塔台管制员。】",
+      "audioText": "Now you have intercepted the localizer of runway 04R, inform Tower controller.",
+      "audioTextZh": "你现在已经截获跑道04右航向道，告知塔台管制员。",
       "referenceText": "Wuhan Tower, UAL887, intercepted the localizer of runway 04R.",
       "referenceTextZh": "武汉塔台，美联航887，截获跑道04右航向道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d4591da9cf25ec9a0577.mp3"
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-219502",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-18",
-      "audioText": "[Now you are over outer marker.]",
+      "audioText": "Now you are over outer marker.",
       "audioTextZh": "【你现在已经过了外指点标。】",
       "referenceText": "Wuhan Tower, UAL887, over outer marker.",
       "referenceTextZh": "武汉塔台，美联航887，过外指点标。",
@@ -179,8 +179,8 @@
     {
       "id": "radiotelephony-fzy-219504",
       "taskTitle": "62-UAL887 [积雨云，怀孕乘客]-20",
-      "audioText": "[During landing, you hear a loud bang and the plane bounces. You suspect the plane has encountered a tail strike. Inform this to the controller and request ground staff to have a visual check of your tail section at the gate.]",
-      "audioTextZh": "【在着陆中，你听到了一声巨响，飞机弹跳。你怀疑飞机遇到了擦机尾。告知管制员该情况，请求地面人员在你到达机位后目视检查机尾部分。】",
+      "audioText": "During landing, you hear a loud bang and the plane bounces. You suspect the plane has encountered a tail strike. Inform this to the controller and request ground staff to have a visual check of your tail section at the gate.",
+      "audioTextZh": "在着陆中，你听到了一声巨响，飞机弹跳。你怀疑飞机遇到了擦机尾。告知管制员该情况，请求地面人员在你到达机位后目视检查机尾部分。",
       "referenceText": "Wuhan Tower, UAL887, we hear a loud bang and the plane bounces during landing, suspect a tail strike, request ground staff to have a visual check of our tail section at the gate.",
       "referenceTextZh": "武汉塔台，美联航887，我们听到了一声巨响，飞机弹跳，怀疑飞机遇到了擦机尾，请求地面人员在机位目视检查机尾部分。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf2e5d565890622768c2.mp3"

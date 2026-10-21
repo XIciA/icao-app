@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-209456",
       "taskTitle": "34-CES529 [增压系统问题]-1",
       "audioText": "B: [Your call sign is CES529, a flight from Wuhan to Shanghai, you are near departure time, one passenger was found taking some forbidden goods on board, you have to check his luggage again, contact Wuhan Delivery and request delay the flight.]",
-      "audioTextZh": "【你的呼号是东方529，一架从武汉飞往上海的航班，你现在接近离场时间，一名乘客发现携带违禁物品登机，你需要再次检查他的行李，联系武汉放行，请求推迟航班。】",
+      "audioTextZh": "你的呼号是东方529，一架从武汉飞往上海的航班，你现在接近离场时间，一名乘客发现携带违禁物品登机，你需要再次检查他的行李，联系武汉放行，请求推迟航班。",
       "referenceText": "Wuhan Delivery, CES529, a passenger has taken some forbidden goods on board, we are checking the luggage again, request delay our flight.",
       "referenceTextZh": "武汉放行，东方529，一名乘客发现携带违禁物品登机，我们需要再次检查他的行李，请求推迟航班。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a3fb79ea29c78e1e30e7.mp3"
@@ -36,7 +36,7 @@
       "id": "radiotelephony-fzy-209459",
       "taskTitle": "34-CES529 [增压系统问题]-4",
       "audioText": "B: [Now you have completed push back and start up procedures. You are ready for taxi.]",
-      "audioTextZh": "【现在你已经完成推出开车程序，你准备好滑行了。】",
+      "audioTextZh": "现在你已经完成推出开车程序，你准备好滑行了。",
       "referenceText": "Wuhan Ground, CES529, push back and start up completed, request taxi. （可以直接说request taxi）",
       "referenceTextZh": "武汉地面，东方529，已经推出开车，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/92235c8a3b3b133d16c7.mp3"
@@ -54,7 +54,7 @@
       "id": "radiotelephony-fzy-209461",
       "taskTitle": "34-CES529 [增压系统问题]-6",
       "audioText": "B: [Now you are airborne, leaving 1200m for 2400m, make an initial contact with Wuhan Departure.]",
-      "audioTextZh": "【现在你已离地，从1200米飞往2400米，与武汉离场建立初始联系。】",
+      "audioTextZh": "现在你已离地，从1200米飞往2400米，与武汉离场建立初始联系。",
       "referenceText": "Wuhan Departure, CES529, airborne, leaving 1200m for 2400m.",
       "referenceTextZh": "武汉离场，东方529，离地了，从1200米飞往2400米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2748bb00d024e1a82c1d.mp3"
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-209463",
       "taskTitle": "34-CES529 [增压系统问题]-8",
-      "audioText": "[Now you are over ZF, maintaining 5100m, squawk 2515, make an initial contact with Wuhan Control.]",
-      "audioTextZh": "【现在你在ZF上空，5100米保持，应答机2515，与武汉区调建立初始联系。】",
+      "audioText": "Now you are over ZF, maintaining 5100m, squawk 2515, make an initial contact with Wuhan Control.",
+      "audioTextZh": "现在你在ZF上空，5100米保持，应答机2515，与武汉区调建立初始联系。",
       "referenceText": "Wuhan Control, CES529, over ZF, maintaining 5100m, squawk 2515.",
       "referenceTextZh": "武汉区调，东方529，过ZF，在5100米保持，应答机2515。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c46cd1dcc3a0908069f8.mp3"
@@ -90,7 +90,7 @@
       "id": "radiotelephony-fzy-209465",
       "taskTitle": "34-CES529 [增压系统问题]-10",
       "audioText": "B: [Now you are cruising at 10700m. Your instruments indicate one of your air conditioning packs has malfunctioned, contact Shanghai Control and request to descend to a lower level.]",
-      "audioTextZh": "【目前你在10700米巡航，仪表显示一个空调组件失效，联系上海区调，请求下降到较低高度。】",
+      "audioTextZh": "目前你在10700米巡航，仪表显示一个空调组件失效，联系上海区调，请求下降到较低高度。",
       "referenceText": "Shanghai Control, CES529, maintain 10700m, request descent due one air conditioning pack has malfunctioned.",
       "referenceTextZh": "上海区调，东方529，10700米保持，由于一个空调组件失效，请求下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c01be75d268bc93d9cad.mp3"
@@ -126,7 +126,7 @@
       "id": "radiotelephony-fzy-209469",
       "taskTitle": "34-CES529 [增压系统问题]-14",
       "audioText": "B: [During emergency descent, the cabin crew reported five passengers in the cabin are seriously injured, inform the situation to Shanghai Control and request divert to Hangzhou.]",
-      "audioTextZh": "【在紧急下降过程中，乘务员报告客舱内5名乘客受伤严重，将情况告知上海区调，请求备降至杭州。】",
+      "audioTextZh": "在紧急下降过程中，乘务员报告客舱内5名乘客受伤严重，将情况告知上海区调，请求备降至杭州。",
       "referenceText": "Shanghai Control, CES529, 5 passengers were injured during emergency descent, request to divert to Hangzhou.",
       "referenceTextZh": "上海区调，东方529，在紧急下降过程中，有5名乘客受伤严重，请求备降至杭州。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0b4c4d3e81a2d3c93a47.mp3"

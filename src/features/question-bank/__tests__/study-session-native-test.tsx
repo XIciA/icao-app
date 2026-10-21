@@ -226,3 +226,19 @@ it('preserves the best available resume position for records saved by older clie
   expect(hook.result.current.currentIndex).toBe(1);
   expect(hook.result.current.cardState?.selectedChoiceIndex).toBeUndefined();
 });
+
+it('keeps progress and recording evidence on the original card when topic order changes', async () => {
+  const persistence = store();
+  const originalCard = topic.cards[2];
+  const reordered = { ...topic, cards: [originalCard, topic.cards[0], topic.cards[1]] };
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({
+    [originalCard.id]: { visited: true, completed: true, selectedChoiceIndex: 1, recorded: true, recordingDurationMillis: 3200, note: '', updatedAt: '2026-10-21T10:00:00.000Z', lastVisitedAt: '2026-10-21T10:00:00.000Z' },
+  });
+  const hook = await renderHook(() => useStudySession({ dataset, category, topic: reordered, store: persistence }));
+  await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(0);
+  expect(hook.result.current.card.id).toBe(originalCard.id);
+  expect(hook.result.current.card.audio).toBe(originalCard.audio);
+  await waitFor(() => expect(persistence.saveCardState).toHaveBeenCalledWith(topic.id, originalCard.id, expect.objectContaining({ completed: true, selectedChoiceIndex: 1, recorded: true, recordingDurationMillis: 3200 }), dataset.id, expect.anything()));
+  await hook.unmount();
+});

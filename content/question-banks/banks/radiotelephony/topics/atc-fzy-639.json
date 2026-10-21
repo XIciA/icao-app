@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111724",
       "taskTitle": "11. CES220 warning&spoiler, etc.-1",
-      "audioText": "[You call sign is CES220, destination Pudong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.]",
-      "audioTextZh": "【你的呼号是CES220，目的地浦东。NIXAL上方0025，高度12500米，预计DOTOS 0035，下个报告点TODOM。联系北京区调。】",
+      "audioText": "You call sign is CES220, destination Pudong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.",
+      "audioTextZh": "你的呼号是CES220，目的地浦东。NIXAL上方0025，高度12500米，预计DOTOS 0035，下个报告点TODOM。联系北京区调。",
       "referenceText": "Beijing Control, CES220, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM.",
       "referenceTextZh": "北京区调，东方220，NIXAL上方0025，高度12500米，预计DOTOS 0035，下个报告点TODOM。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0ccdae3ed9e963bdd1f3.mp3"
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-111727",
       "taskTitle": "11. CES220 warning&spoiler, etc.-4",
-      "audioText": "[The plane encounters a strong head wind, and fuel is running out, the warning light is on, request alternate to Beijing airport.]",
-      "audioTextZh": "【飞机遭遇强烈顶风，燃料正在耗尽，燃料示警灯亮了，请求备降北京机场。】",
+      "audioText": "The plane encounters a strong head wind, and fuel is running out, the warning light is on, request alternate to Beijing airport.",
+      "audioTextZh": "飞机遭遇强烈顶风，燃料正在耗尽，燃料示警灯亮了，请求备降北京机场。",
       "referenceText": "PANPAN PANPAN PANPAN, Beijing Control, CES220, request alternate to Beijing airport, we are running out of fuel due to head winds en route, our fuel light is on.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，北京区调，东方220，请求备降北京机场，由于巡航途中顶风燃料快耗尽，燃料警示灯亮着。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3a7c9722d4b9a80516f6.mp3"
@@ -152,7 +152,7 @@
     {
       "id": "radiotelephony-fzy-111740",
       "taskTitle": "11. CES220 warning&spoiler, etc.-17",
-      "audioText": "[Report to Beijing Tower that you have established ILS.]",
+      "audioText": "Report to Beijing Tower that you have established ILS.",
       "audioTextZh": "【向北京塔台报告你已经建立盲降。】",
       "referenceText": "Beijing Tower, CES220, established on ILS.",
       "referenceTextZh": "北京塔台，东方220，已建立盲降。",
@@ -179,8 +179,8 @@
     {
       "id": "radiotelephony-fzy-111743",
       "taskTitle": "11. CES220 warning&spoiler, etc.-20",
-      "audioText": "[Request Beijing Tower to turn down the approach lights to grade 3, they look too bright from your aircraft.]",
-      "audioTextZh": "【向北京塔台请求将进场灯的亮度调为3级，从机内看进场灯太过明亮。】",
+      "audioText": "Request Beijing Tower to turn down the approach lights to grade 3, they look too bright from your aircraft.",
+      "audioTextZh": "向北京塔台请求将进场灯的亮度调为3级，从机内看进场灯太过明亮。",
       "referenceText": "Beijing Tower, CES220, request turn down the approach light to grade 3, they look too bright from here.",
       "referenceTextZh": "北京塔台，东方220，请示调暗进场灯亮度到3级，在五边上看进近灯太亮。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/371523fd891531a3aa70.mp3"

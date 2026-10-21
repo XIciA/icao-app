@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111169",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-1",
-      "audioText": "[Your call sign is CES582 from Wuhan to Beijing. Parking at Gate 223. When you are ready, request ATC clearance.]",
-      "audioTextZh": "【你的呼号是东方582，飞机从武汉飞往北京。停机位223号。准备好时，请求ATC放行。】",
+      "audioText": "Your call sign is CES582 from Wuhan to Beijing. Parking at Gate 223. When you are ready, request ATC clearance.",
+      "audioTextZh": "你的呼号是东方582，飞机从武汉飞往北京。停机位223号。准备好时，请求ATC放行。",
       "referenceText": "Wuhan Delivery, CES582, Gate 223, destination Beijing request ATC clearance.",
       "referenceTextZh": "武汉放行，东方582，223号机位，目的地北京，请求ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4ac8636dad1a43921b8a.mp3"
@@ -17,7 +17,7 @@
     {
       "id": "radiotelephony-fzy-111170",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-2",
-      "audioText": "CES582, Wuhan Delivery, standby one, I’ll check your flight plan.",
+      "audioText": "CES582, Wuhan Delivery, standby one, I'll check your flight plan.",
       "audioTextZh": "东方582，武汉放行，稍等，我要检查你的飞行计划。",
       "referenceText": "Standing by, CES582.",
       "referenceTextZh": "稍等，东方582。",
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-111171",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-3",
-      "audioText": "[Flight attendant told you passengers have boarded. All cargo doors are closed. Now report ready for clearance.]",
-      "audioTextZh": "【乘务员告诉你乘客登机完毕。货舱门已关闭。现在报告准备好。】",
+      "audioText": "Flight attendant told you passengers have boarded. All cargo doors are closed. Now report ready for clearance.",
+      "audioTextZh": "乘务员告诉你乘客登机完毕。货舱门已关闭。现在报告准备好。",
       "referenceText": "Wuhan Delivery, CES582, request ATC clearance.",
       "referenceTextZh": "武汉放行，东方582，请求ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f8be0b301204c1f193b9.mp3"
@@ -53,8 +53,8 @@
     {
       "id": "radiotelephony-fzy-111174",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-6",
-      "audioText": "[5 minutes later, no call from Delivery, ask about duration and reason of the delay.]",
-      "audioTextZh": "【5分钟后，未收到放行消息，询问等待时间及延误的原因。】",
+      "audioText": "5 minutes later, no call from Delivery, ask about duration and reason of the delay.",
+      "audioTextZh": "5分钟后，未收到放行消息，询问等待时间及延误的原因。",
       "referenceText": "Wuhan Delivery, CES582, confirm duration and reason of the delay.",
       "referenceTextZh": "武汉放行，东方582，证实延误时间和原因。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/266e8a5a1381899c91fa.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111177",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-9",
-      "audioText": "[One hour later, the weather is getting better and the airport is open. Now ask for your departure sequence.]",
-      "audioTextZh": "【一小时后，天气好转，机场开了。现在向管制员询问你的离场顺序。】",
+      "audioText": "One hour later, the weather is getting better and the airport is open. Now ask for your departure sequence.",
+      "audioTextZh": "一小时后，天气好转，机场开了。现在向管制员询问你的离场顺序。",
       "referenceText": "Wuhan Delivery, CES582, request my departure sequence.",
       "referenceTextZh": "武汉放行，东方582，询问下我的离场顺序。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9fbf646185d378a1e2bf.mp3"
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-111179",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-11",
-      "audioText": "[Inform Wuhan Ground you are ready pushback and start-up.]",
+      "audioText": "Inform Wuhan Ground you are ready pushback and start-up.",
       "audioTextZh": "【通知武汉地面你已经准备好推出开车。】",
       "referenceText": "Wuhan Ground, CES582, request pushback and start-up.",
       "referenceTextZh": "武汉地面，东方582，请求推出开车。",
@@ -109,7 +109,7 @@
       "taskTitle": "27. CES582 delay&tug not ready, etc.-12",
       "audioText": "CES582, Wuhan Ground, pushback and start-up approved, facing north.[You realize the tug is not in position yet. Advise Ground Control you need another 5 minutes to be ready.]",
       "audioTextZh": "东方582，同意推出开车，头朝北。【你发现拖车没在。告诉地面指挥你还需要5分钟准备好。】",
-      "referenceText": "Wuhan Ground, CES582, request another 5 minutes’ due tug not in position.",
+      "referenceText": "Wuhan Ground, CES582, request another 5 minutes' due tug not in position.",
       "referenceTextZh": "武汉地面，东方582，由于拖车没到位，请求再等待5分钟。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7de5cbe7c56af9c34b5c.mp3"
     },
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-111182",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-14",
-      "audioText": "CES582 Ground, confirm fully ready? We have a slot time for departure in 10 minutes.[You need to open the cabin door to add passenger food and drinks due to the long delay. Advise Ground you’ll need another 5 minutes for catering.]",
+      "audioText": "CES582 Ground, confirm fully ready? We have a slot time for departure in 10 minutes.[You need to open the cabin door to add passenger food and drinks due to the long delay. Advise Ground you'll need another 5 minutes for catering.]",
       "audioTextZh": "东方582，地面，证实完全准备好了么？给你的离场是时间是10分钟之内。【由于长时间延误，你需要打开客舱门，装载乘客食物和饮料。告诉地面，你需要5分钟进行配餐。】",
       "referenceText": "Request another 5 minutes due catering, CES582.",
       "referenceTextZh": "因为配餐，请求再推迟5分钟，东方582。",
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-111184",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-16",
-      "audioText": "[5 minutes later, catering completed. Call ready.]",
+      "audioText": "5 minutes later, catering completed. Call ready.",
       "audioTextZh": "【5分钟后，配餐完毕。报告准备好。】",
       "referenceText": "Wuhan Ground, CES582, Request pushback and start-up.",
       "referenceTextZh": "武汉地面，东方582，请求推出开车。",
@@ -161,7 +161,7 @@
     {
       "id": "radiotelephony-fzy-111186",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-18",
-      "audioText": "[Engine start completed, now request for taxi.]",
+      "audioText": "Engine start completed, now request for taxi.",
       "audioTextZh": "【发动机启动完毕，请求滑行。】",
       "referenceText": "Wuhan Ground, CES582, request taxi.",
       "referenceTextZh": "武汉地面，东方582，请求滑行。",
@@ -188,7 +188,7 @@
     {
       "id": "radiotelephony-fzy-111189",
       "taskTitle": "27. CES582 delay&tug not ready, etc.-21",
-      "audioText": "[Report to the Wuhan Tower that the aircraft in front of you is blocking E1.]",
+      "audioText": "Report to the Wuhan Tower that the aircraft in front of you is blocking E1.",
       "audioTextZh": "【报告武汉塔台，前机挡住了滑行道E1。】",
       "referenceText": "Wuhan Tower, CES582, the aircraft in front of us block E1.",
       "referenceTextZh": "武汉塔台，东方582，前方有飞机挡住了滑行道E1。",

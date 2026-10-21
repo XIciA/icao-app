@@ -16,7 +16,7 @@
       "id": "atc-scenario-0110-card-main-1888",
       "taskTitle": "UAL 403-2",
       "audioText": "C: UAL 403, where do you want to de-ice?\nB: Tell the controller you want to de-ice on taxiway Z4.\nP: Wuhan Ground, UAL 403, request de-icing on taxiway Z4.",
-      "audioTextZh": "C： UAL 403，你想在哪里除冰？\nB： 告诉管制员你想在 Z4 滑行道除冰。\nP： 武汉地面，UAL 403，请求在 Z4 滑行道除冰。",
+      "audioTextZh": "C：UAL 403，你想在哪里除冰？\nB：告诉管制员你想在 Z4 滑行道除冰。\nP：武汉地面，UAL 403，请求在 Z4 滑行道除冰。",
       "referenceText": "Wuhan Ground, UAL 403, request de-icing on Taxiway Z4.",
       "referenceTextZh": "武汉地面，UAL 403，请求在 Z4 滑行道除冰。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-003-ual403-q02.mp3"
@@ -61,7 +61,7 @@
       "id": "atc-scenario-0110-card-main-1893",
       "taskTitle": "UAL 403-7",
       "audioText": "C: UAL 403, 10,700 meters and 11300 meters are both available, which one do you prefer?\nB: Tell the controller you want to climb to 10,700 meters.",
-      "audioTextZh": "C： UAL 403，10,700 米和 11300 米均可用，你希望选择哪一个？\nB： 告诉管制员你想爬升至 10,700 米。",
+      "audioTextZh": "C：UAL 403，10,700 米和 11300 米均可用，你希望选择哪一个？\nB：告诉管制员你想爬升至 10,700 米。",
       "referenceText": "Guangzhou Control, UAL 403, request climb to 10,700 meters.",
       "referenceTextZh": "广州管制，UAL 403，请求爬升至 10,700 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-003-ual403-q07.mp3"
@@ -70,7 +70,7 @@
       "id": "atc-scenario-0110-card-main-1894",
       "taskTitle": "UAL 403-8",
       "audioText": "C: UAL 403, radar shows you are a bit higher than your assigned level, check your altitude.\nB: tell the controller you are running into some turbulence.",
-      "audioTextZh": "C： UAL 403，雷达显示你略高于指定高度，检查高度。\nB： 告诉管制员你正遭遇一些颠簸。",
+      "audioTextZh": "C：UAL 403，雷达显示你略高于指定高度，检查高度。\nB：告诉管制员你正遭遇一些颠簸。",
       "referenceText": "Guangzhou Control, UAL 403, we are running into some turbulence.",
       "referenceTextZh": "广州管制，UAL 403，我们正遭遇一些颠簸。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-003-ual403-q08.mp3"
@@ -88,7 +88,7 @@
       "id": "atc-scenario-0110-card-main-1896",
       "taskTitle": "UAL 403-10",
       "audioText": "C: UAL 403, there is no turbulence report at 11300 meters.\nB: Tell the controller you want to climb to 11300 meters due turbulence.",
-      "audioTextZh": "C： UAL 403，11300 米没有颠簸报告。\nB： 告诉管制员你想因颠簸爬升至 11300 米。",
+      "audioTextZh": "C：UAL 403，11300 米没有颠簸报告。\nB：告诉管制员你想因颠簸爬升至 11300 米。",
       "referenceText": "Guangzhou Control, UAL 403, roger, request climb to 11,300 meters due turbulence.",
       "referenceTextZh": "广州管制，UAL 403，收到，因颠簸请求爬升至 11,300 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-003-ual403-q10.mp3"

@@ -133,7 +133,7 @@
       "id": "atc-scenario-0047-card-main-812",
       "taskTitle": "ACA 331-15",
       "audioText": "B: After cabin check, tell Zhengzhou Control the toxic fume might be caused by dangerous goods leaking in the cargo hold.",
-      "audioTextZh": "B: 客舱检查后，告诉 郑州管制，有毒烟雾可能由货舱危险品泄漏引起。",
+      "audioTextZh": "B: 客舱检查后，告诉郑州管制，有毒烟雾可能由货舱危险品泄漏引起。",
       "referenceText": "Zhengzhou Control, ACA 331, the toxic fume might be caused by dangerous goods leaking in the cargo hold.",
       "referenceTextZh": "郑州管制，ACA 331，有毒烟雾可能由货舱危险品泄漏引起。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/812.mp3"
@@ -169,7 +169,7 @@
       "id": "atc-scenario-0047-card-main-816",
       "taskTitle": "ACA 331-19",
       "audioText": "C: ACA 331, what assistance do you need?\nB: Tell Zhengzhou Approach you need an ambulance and dangerous goods specialists.",
-      "audioTextZh": "C: ACA 331，你需要什么援助？\nB: 告诉 郑州进近 你需要救护车和危险品专家。",
+      "audioTextZh": "C: ACA 331，你需要什么援助？\nB: 告诉郑州进近你需要救护车和危险品专家。",
       "referenceText": "Request an ambulance and dangerous goods specialists, ACA 331.",
       "referenceTextZh": "请求救护车和危险品专家，ACA 331。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/816.mp3"

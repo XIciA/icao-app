@@ -134,7 +134,7 @@
     {
       "id": "radiotelephony-fzy-224100",
       "taskTitle": "73-CSN905 [冷锋，位置报]-15",
-      "audioText": "C: CSN905, roger, left heading of 180 degrees approved, what is your status?\nN: [Readback the controller’s instructions and notify Beijing Control that some electrical equipment have malfunctioned, including the transponders.]",
+      "audioText": "C: CSN905, roger, left heading of 180 degrees approved, what is your status?\nN: [Readback the controller's instructions and notify Beijing Control that some electrical equipment have malfunctioned, including the transponders.]",
       "audioTextZh": "C：南方905，收到，可以左转航向180度。你那边状况如何？\nN: 【复诵管制的指令，通知北京区调，部分电子设备包括应答机发生故障。】",
       "referenceText": "Left heading of 180 degrees, some electrical equipment have malfunctioned, including the transponders, CSN905.",
       "referenceTextZh": "左转航向180度，部分电子设备包括应答机发生故障，南方905。",

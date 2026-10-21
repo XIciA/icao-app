@@ -16,7 +16,7 @@
       "id": "atc-scenario-0066-card-main-1135",
       "taskTitle": "CCA 101-2",
       "audioText": "C: CCA 101, Beijing Ground, where do you want to de-ice?\nB: Tell Ground you want to de-ice on taxiway D7.",
-      "audioTextZh": "C: CCA 101，北京地面，你想在哪里除冰？\nB: 告诉 地面 你想在滑行道 D7 除冰。",
+      "audioTextZh": "C: CCA 101，北京地面，你想在哪里除冰？\nB: 告诉地面你想在滑行道 D7 除冰。",
       "referenceText": "Request to de-ice on taxiway D7, CCA 101.",
       "referenceTextZh": "请求在滑行道 D7 除冰，CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1135.mp3"
@@ -25,7 +25,7 @@
       "id": "atc-scenario-0066-card-main-1136",
       "taskTitle": "CCA 101-3",
       "audioText": "B: Inform Ground de-icing completed on D7, ready to taxi.",
-      "audioTextZh": "B: 通知 地面，在 D7 除冰完成，准备滑行。",
+      "audioTextZh": "B: 通知地面，在 D7 除冰完成，准备滑行。",
       "referenceText": "Beijing Ground, CCA 101, de-icing completed on D7, ready to taxi.",
       "referenceTextZh": "北京地面，CCA 101，D7 除冰完成，准备滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1136.mp3"
@@ -43,7 +43,7 @@
       "id": "atc-scenario-0066-card-main-1138",
       "taskTitle": "CCA 101-5",
       "audioText": "B: Your de-icing fluid is only effective for 30 minutes, tell Ground that you need to take off before 0900 and request an intersection departure from Z4.",
-      "audioTextZh": "B: 你的除冰液只有效 30 分钟，告诉 地面 你需要在 0900 前起飞，并请求从 Z4 交叉口离场。",
+      "audioTextZh": "B: 你的除冰液只有效 30 分钟，告诉地面你需要在 0900 前起飞，并请求从 Z4 交叉口离场。",
       "referenceText": "Beijing Ground, CCA 101, our de-icing fluid is only effective for 30 minutes, we need to take off before 0900, request intersection departure from Z4.",
       "referenceTextZh": "北京地面，CCA 101，我们的除冰液只有效 30 分钟，需要在 0900 前起飞，请求从 Z4 交叉口离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1138.mp3"
@@ -61,7 +61,7 @@
       "id": "atc-scenario-0066-card-main-1140",
       "taskTitle": "CCA 101-7",
       "audioText": "C: CCA 101, stop immediately, a catering truck has just knocked an engine of your plane.\nB: Ask Ground which engine it is.",
-      "audioTextZh": "C: CCA 101，立即停止，一辆配餐车刚撞到了你飞机的一台发动机。\nB: 询问 地面 是哪台发动机。",
+      "audioTextZh": "C: CCA 101，立即停止，一辆配餐车刚撞到了你飞机的一台发动机。\nB: 询问地面是哪台发动机。",
       "referenceText": "Roger, which engine has been knocked? CCA 101.",
       "referenceTextZh": "收到，哪台发动机被撞？CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1140.mp3"
@@ -78,7 +78,7 @@
     {
       "id": "atc-scenario-0066-card-main-1142",
       "taskTitle": "CCA 101-9",
-      "audioText": "C: Roger, CCA 101, I’ll send out the fire brigade.",
+      "audioText": "C: Roger, CCA 101, I'll send out the fire brigade.",
       "audioTextZh": "C: 收到，CCA 101，我会派消防队。",
       "referenceText": "Roger, thanks, CCA 101.",
       "referenceTextZh": "收到，谢谢，CCA 101。",

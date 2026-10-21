@@ -115,7 +115,7 @@
       "id": "atc-scenario-0150-card-main-2602",
       "taskTitle": "CCA 321-13",
       "audioText": "B: During final approach, you find the ILS area is not clear and you are going around, inform Wuhan Tower.",
-      "audioTextZh": "B: 最后进近中，你发现 ILS 区域未净空，正在复飞，通知 武汉塔台。",
+      "audioTextZh": "B: 最后进近中，你发现 ILS 区域未净空，正在复飞，通知武汉塔台。",
       "referenceText": "Wuhan Tower, CCA 321, ILS area is not clear, going around.",
       "referenceTextZh": "武汉塔台，CCA 321，ILS 区域未净空，复飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-048-cca321-q13.mp3"
@@ -142,7 +142,7 @@
       "id": "atc-scenario-0150-card-main-2605",
       "taskTitle": "CCA 321-16",
       "audioText": "C: CCA 321, hold position, the follow-me car is on the way for you.\nB: Tell the controller you have seen the follow-me car.",
-      "audioTextZh": "C： CCA 321，保持位置，引导车正在赶来。\nB： 告诉管制员你已看到引导车。",
+      "audioTextZh": "C：CCA 321，保持位置，引导车正在赶来。\nB：告诉管制员你已看到引导车。",
       "referenceText": "hold position, follow-me car in sight, CCA 321.",
       "referenceTextZh": "保持位置，已看到引导车，CCA 321。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-048-cca321-q16.mp3"

@@ -1,98 +1,98 @@
 {
   "id": "opi-topic-0094",
   "name": "备降与改航",
-  "declaredCardCount": 9,
   "cards": [
     {
-      "id": "opi-extra-013",
-      "taskTitle": "运行-备降与改航-1",
-      "audioText": "Do you select an alternate airport for every flight? Why or why not?",
-      "audioTextZh": "你是否为每次飞行都选择备降机场？为什么？",
-      "referenceText": "No, not for every flight. I do not plan an alternate for traffic-circuit training, but for cross-country training I plan suitable departure, en-route, and destination alternates.",
-      "referenceTextZh": "不是每次飞行都需要。我不会为起落航线训练计划备降机场，但在转场训练中会计划合适的起飞、航路和目的地备降机场。",
-      "audio": "/question-bank-assets/revisions/opi/448911260ff5322370cdb4ae0bf80c0de06216baf97b811618b7d0518e88a604/audio/opi/opi-extra-013.mp3",
-      "audioDurationSeconds": 4.056
-    },
-    {
-      "id": "opi-extra-015",
-      "taskTitle": "运行-备降与改航-2",
-      "audioText": "What circumstances may cause a flight to divert?",
-      "audioTextZh": "哪些情况可能导致航班备降？",
-      "referenceText": "A flight may divert because of an aircraft problem such as a system failure, structural damage, fire, or depressurization. Medical emergencies, bomb threats, or hijacking may also require a diversion. Other causes include bad weather, low visibility, or restrictions at the destination.",
-      "referenceTextZh": "系统失效、结构损伤、火灾或失压等飞机问题可能导致备降。医疗紧急情况、炸弹威胁或劫机也可能要求备降。其他原因包括恶劣天气、低能见度或目的地限制。",
-      "audio": "/question-bank-assets/revisions/opi/9f500f651331a2dca4b9eaf9e2da7dce086a96edb02eee48d9076cf4bb11d53c/audio/opi/opi-extra-015.mp3",
-      "audioDurationSeconds": 2.688
-    },
-    {
-      "id": "opi-extra-017",
-      "taskTitle": "运行-备降与改航-3",
-      "audioText": "Who should the flight crew coordinate with during a diversion?",
-      "audioTextZh": "备降过程中，飞行机组应与哪些人员或单位协调？",
-      "referenceText": "During a diversion, the pilots should first coordinate within the flight crew. They should then contact ATC for clearance and guidance, keep the company dispatcher informed, and coordinate the revised plan with the alternate airport.",
-      "referenceTextZh": "备降期间，飞行员应先在飞行机组内部协调，然后联系空中交通管制获取许可和引导，通知公司签派员，并与备降机场协调修改后的计划。",
-      "audio": "/question-bank-assets/revisions/opi/4187efc09cd0fc71b292365e549b4578915bf1e97293152d4d034332a81b218d/audio/opi/opi-extra-017.mp3",
-      "audioDurationSeconds": 3.0
-    },
-    {
-      "id": "opi-extra-019",
-      "taskTitle": "运行-备降与改航-4",
-      "audioText": "As a first officer, what would you do if you disagreed with the captain about a diversion?",
-      "audioTextZh": "作为副驾驶，如果你对机长的备降决定有不同意见，你会怎么做？",
-      "referenceText": "I would discuss the issue with the captain again, explain my view, and suggest that we follow the SOP and company policy.",
-      "referenceTextZh": "我会再次与机长讨论这个问题，说明自己的观点，并建议我们遵循标准操作程序和公司政策。",
-      "audio": "/question-bank-assets/revisions/opi/f87db1471eb32baf2298a51fe1e281bc2efdd7bde2cf96548dcd07e17b11a822/audio/opi/opi-extra-019.mp3",
-      "audioDurationSeconds": 4.584
-    },
-    {
-      "id": "opi-extra-021",
-      "taskTitle": "运行-备降与改航-5",
-      "audioText": "Have you ever experienced a diversion? If so, what happened?",
-      "audioTextZh": "你是否曾经历过备降？如果有，当时发生了什么？",
-      "referenceText": "No, I have never experienced a diversion.",
-      "referenceTextZh": "没有，我从未经历过备降。",
-      "audio": "/question-bank-assets/revisions/opi/071d382dba2cc4d22f860d59f188244ef374490448978ae2165f0072be8132cc/audio/opi/opi-extra-021.mp3",
-      "audioDurationSeconds": 3.816
-    },
-    {
       "id": "opi-extra-023",
-      "taskTitle": "运行-备降与改航-6",
+      "audio": "/question-bank-assets/revisions/opi/5c06556f194ebe9d09767cdcaee0f2d052e153447c7bc04876db81969fb4df84/audio/opi/opi-extra-023.mp3",
       "audioText": "What factors should a flight crew consider when selecting a diversion airport?",
+      "taskTitle": "运行-备降与改航-6",
       "audioTextZh": "选择备降机场时，飞行机组应考虑哪些因素？",
       "referenceText": "The crew should consider the weather, fuel endurance, runway length and condition, and the airport's available facilities. Ground handling, fire and medical services, and maintenance support may also affect the choice.",
       "referenceTextZh": "机组应考虑天气、燃油续航能力、跑道长度和状况以及机场可用设施。地面保障、消防和医疗服务以及维修支援也可能影响选择。",
-      "audio": "/question-bank-assets/revisions/opi/5c06556f194ebe9d09767cdcaee0f2d052e153447c7bc04876db81969fb4df84/audio/opi/opi-extra-023.mp3",
       "audioDurationSeconds": 3.936
     },
     {
+      "id": "opi-extra-038",
+      "audio": "/question-bank-assets/revisions/opi/47aa23d54945486946d48399f0001f08d385885f1803d41cfb9971e12a8b1f9b/audio/opi/opi-extra-038.mp3",
+      "audioText": "What preparations should a flight crew make after deciding to divert?",
+      "taskTitle": "运行-备降与改航-9",
+      "audioTextZh": "决定备降后，飞行机组应做哪些准备？",
+      "referenceText": "The crew should inform ATC of the situation and request clearance to the diversion airport. They should obtain its weather and runway information, update the flight plan in the FMS if the aircraft is equipped with one, and brief the cabin crew and passengers about the diversion.",
+      "referenceTextZh": "机组应向空中交通管制报告情况，并申请前往备降机场的许可。他们应获取该机场天气和跑道信息；如果飞机配有 FMS，就更新飞行计划，并向客舱机组和旅客作备降简令。",
+      "audioDurationSeconds": 3.72
+    },
+    {
+      "id": "opi-extra-015",
+      "audio": "/question-bank-assets/revisions/opi/9f500f651331a2dca4b9eaf9e2da7dce086a96edb02eee48d9076cf4bb11d53c/audio/opi/opi-extra-015.mp3",
+      "audioText": "What circumstances may cause a flight to divert?",
+      "taskTitle": "运行-备降与改航-2",
+      "audioTextZh": "哪些情况可能导致航班备降？",
+      "referenceText": "A flight may divert because of an aircraft problem such as a system failure, structural damage, fire, or depressurization. Medical emergencies, bomb threats, or hijacking may also require a diversion. Other causes include bad weather, low visibility, or restrictions at the destination.",
+      "referenceTextZh": "系统失效、结构损伤、火灾或失压等飞机问题可能导致备降。医疗紧急情况、炸弹威胁或劫机也可能要求备降。其他原因包括恶劣天气、低能见度或目的地限制。",
+      "audioDurationSeconds": 2.688
+    },
+    {
+      "id": "opi-extra-021",
+      "audio": "/question-bank-assets/revisions/opi/071d382dba2cc4d22f860d59f188244ef374490448978ae2165f0072be8132cc/audio/opi/opi-extra-021.mp3",
+      "audioText": "Have you ever experienced a diversion? If so, what happened?",
+      "taskTitle": "运行-备降与改航-5",
+      "audioTextZh": "你是否曾经历过备降？如果有，当时发生了什么？",
+      "referenceText": "No, I have never experienced a diversion.",
+      "referenceTextZh": "没有，我从未经历过备降。",
+      "audioDurationSeconds": 3.816
+    },
+    {
+      "id": "opi-extra-019",
+      "audio": "/question-bank-assets/revisions/opi/f87db1471eb32baf2298a51fe1e281bc2efdd7bde2cf96548dcd07e17b11a822/audio/opi/opi-extra-019.mp3",
+      "audioText": "As a first officer, what would you do if you disagreed with the captain about a diversion?",
+      "taskTitle": "运行-备降与改航-4",
+      "audioTextZh": "作为副驾驶，如果你对机长的备降决定有不同意见，你会怎么做？",
+      "referenceText": "I would discuss the issue with the captain again, explain my view, and suggest that we follow the SOP and company policy.",
+      "referenceTextZh": "我会再次与机长讨论这个问题，说明自己的观点，并建议我们遵循标准操作程序和公司政策。",
+      "audioDurationSeconds": 4.584
+    },
+    {
       "id": "opi-extra-025",
-      "taskTitle": "运行-备降与改航-7",
+      "audio": "/question-bank-assets/revisions/opi/2a5e6a361105ad19ae32050883194a6455368a3d2760fe174b6a463ffa5ab5e0/audio/opi/opi-extra-025.mp3",
       "audioText": "What assistance can ATC provide to a flight that is diverting?",
+      "taskTitle": "运行-备降与改航-7",
       "audioTextZh": "空中交通管制部门可以为正在备降的航班提供哪些协助？",
       "referenceText": "ATC can provide or relay available weather information for the route and alternate airport. It may also provide runway-condition information, details about available ground services, and relevant minimum safe altitude information.",
       "referenceTextZh": "空中交通管制可以提供或转发航路和备降机场的可用天气信息，也可能提供跑道状况、可用地面服务以及相关最低安全高度的信息。",
-      "audio": "/question-bank-assets/revisions/opi/2a5e6a361105ad19ae32050883194a6455368a3d2760fe174b6a463ffa5ab5e0/audio/opi/opi-extra-025.mp3",
       "audioDurationSeconds": 3.504
     },
     {
       "id": "opi-extra-028",
-      "taskTitle": "运行-备降与改航-8",
+      "audio": "/question-bank-assets/revisions/opi/edab01ba502bb4147e2ccb21970f51ae74686642d5b968419e9b6e32723cbd34/audio/opi/opi-extra-028.mp3",
       "audioText": "What factors should a flight crew consider when deciding whether to divert or return?",
+      "taskTitle": "运行-备降与改航-8",
       "audioTextZh": "决定备降还是返航时，飞行机组应考虑哪些因素？",
       "referenceText": "The crew should compare the available fuel, en-route weather, and conditions at the possible airports. They should also consider the facilities and assistance available, the safe altitude along each route, and the aircraft's landing weight if returning.",
       "referenceTextZh": "机组应比较可用燃油、航路天气和各候选机场的条件，还应考虑可用设施和协助、每条航路的安全高度，以及返航时飞机的着陆重量。",
-      "audio": "/question-bank-assets/revisions/opi/edab01ba502bb4147e2ccb21970f51ae74686642d5b968419e9b6e32723cbd34/audio/opi/opi-extra-028.mp3",
       "audioDurationSeconds": 4.272
     },
     {
-      "id": "opi-extra-038",
-      "taskTitle": "运行-备降与改航-9",
-      "audioText": "What preparations should a flight crew make after deciding to divert?",
-      "audioTextZh": "决定备降后，飞行机组应做哪些准备？",
-      "referenceText": "The crew should inform ATC of the situation and request clearance to the diversion airport. They should obtain its weather and runway information, update the flight plan in the FMS if the aircraft is equipped with one, and brief the cabin crew and passengers about the diversion.",
-      "referenceTextZh": "机组应向空中交通管制报告情况，并申请前往备降机场的许可。他们应获取该机场天气和跑道信息；如果飞机配有 FMS，就更新飞行计划，并向客舱机组和旅客作备降简令。",
-      "audio": "/question-bank-assets/revisions/opi/47aa23d54945486946d48399f0001f08d385885f1803d41cfb9971e12a8b1f9b/audio/opi/opi-extra-038.mp3",
-      "audioDurationSeconds": 3.72
+      "id": "opi-extra-013",
+      "audio": "/question-bank-assets/revisions/opi/448911260ff5322370cdb4ae0bf80c0de06216baf97b811618b7d0518e88a604/audio/opi/opi-extra-013.mp3",
+      "audioText": "Do you select an alternate airport for every flight? Why or why not?",
+      "taskTitle": "运行-备降与改航-1",
+      "audioTextZh": "你是否为每次飞行都选择备降机场？为什么？",
+      "referenceText": "No, not for every flight. I do not plan an alternate for traffic-circuit training, but for cross-country training I plan suitable departure, en-route, and destination alternates.",
+      "referenceTextZh": "不是每次飞行都需要。我不会为起落航线训练计划备降机场，但在转场训练中会计划合适的起飞、航路和目的地备降机场。",
+      "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-extra-017",
+      "audio": "/question-bank-assets/revisions/opi/4187efc09cd0fc71b292365e549b4578915bf1e97293152d4d034332a81b218d/audio/opi/opi-extra-017.mp3",
+      "audioText": "Who should the flight crew coordinate with during a diversion?",
+      "taskTitle": "运行-备降与改航-3",
+      "audioTextZh": "备降过程中，飞行机组应与哪些人员或单位协调？",
+      "referenceText": "During a diversion, the pilots should first coordinate within the flight crew. They should then contact ATC for clearance and guidance, keep the company dispatcher informed, and coordinate the revised plan with the alternate airport.",
+      "referenceTextZh": "备降期间，飞行员应先在飞行机组内部协调，然后联系空中交通管制获取许可和引导，通知公司签派员，并与备降机场协调修改后的计划。",
+      "audioDurationSeconds": 3
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-05"
 }

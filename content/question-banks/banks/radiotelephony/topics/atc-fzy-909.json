@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-164736",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-1",
-      "audioText": "[Your call sign is SIA323. Stand 217, from Wuhan to Singapore, information V. Request ATC clearance to Singapore.]",
+      "audioText": "Your call sign is SIA323. Stand 217, from Wuhan to Singapore, information V. Request ATC clearance to Singapore.",
       "audioTextZh": "你的呼号是新航323，217号停机位，从武汉飞往新加坡，通播V，请求飞往新加坡的飞行的许可。",
       "referenceText": "Wuhan Delivery, SIA323, stand217, information V, destination Singapore, request ATC clearance.",
       "referenceTextZh": "武汉放行，新航323, 217号停机位，通播V，目的地新加坡，请求放行许可。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-164738",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-3",
-      "audioText": "[You are now ready, contact Ground to request pushback and start-up.]",
+      "audioText": "You are now ready, contact Ground to request pushback and start-up.",
       "audioTextZh": "现在你准备好了，联系地面，请求推出开车。",
       "referenceText": "Wuhan Ground, SIA323, request pushback and start-up.",
       "referenceTextZh": "武汉地面，新航323，请求推出开车。",
@@ -44,7 +44,7 @@
     {
       "id": "radiotelephony-fzy-164740",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-5",
-      "audioText": "[Now you are at holding point of runway 36R, contact Tower for takeoff clearance.]",
+      "audioText": "Now you are at holding point of runway 36R, contact Tower for takeoff clearance.",
       "audioTextZh": "现在你在跑道36右外等待点，联系塔台，请求起飞许可。",
       "referenceText": "Wuhan Tower, SIA323. We are at holding point of runway 36R, request departure.",
       "referenceTextZh": "武汉塔台，新航323，我们现在在跑道36右外等待点，请求起飞。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-164742",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-7",
-      "audioText": "[During takeoff rolling, you find there is a ground vehicle crossing runway 36R. Tell ATC your decision to abort takeoff due runway incursion. ]",
+      "audioText": "During takeoff rolling, you find there is a ground vehicle crossing runway 36R. Tell ATC your decision to abort takeoff due runway incursion.",
       "audioTextZh": "在起飞滑跑中，你发现一辆地面车辆正在穿越跑道36右，告诉管制员，由于跑道入侵，你决定中断起飞。",
       "referenceText": "Wuhan Tower, SIA323, we are aborting takeoff due runway incursion, a ground vehicle is crossing runway.",
       "referenceTextZh": "武汉塔台，新航323，由于跑道入侵，我们中断起飞了，一辆汽车正在穿越跑道。",
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-164747",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-11",
-      "audioText": "[You have departed from RWY 36L, shortly after liftoff, your starboard engine was on fire, and the EGT is very high, so you have to shut down this engine, make a distress call.]",
+      "audioText": "You have departed from RWY 36L, shortly after liftoff, your starboard engine was on fire, and the EGT is very high, so you have to shut down this engine, make a distress call.",
       "audioTextZh": "你已经从跑道36左起飞，起飞不久后，你右侧发动机起火，排气温度非常高，因此你关闭了该发动机，做遇险通话。",
       "referenceText": "MAYDAY MAYDAY MAYDAY. Wuhan Tower, SIA323, right engine on fire, EGT is too high, we are shutting down the engine.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY. 武汉塔台，新航323，右侧发动机起火，排气温度过高，我们关闭了该发动机。",
@@ -110,7 +110,7 @@
       "audioText": "SIA323, roger MAYDAY. Say your intention.\n[Tell the Tower you want to jettison fuel and return to Wuhan airport.]",
       "audioTextZh": "新航323，收到MAYDAY，说出你的意图。\n告诉塔台，你想放油，然后返回武汉机场。",
       "referenceText": "Request fuel dumping and return to Wuhan airport, SIA323.",
-      "referenceTextZh": "请求放油，返回武汉机场， 新航323。",
+      "referenceTextZh": "请求放油，返回武汉机场，新航323。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f283932b967df775e8f4.mp3"
     },
     {
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-164754",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-16",
-      "audioText": "[Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.]",
+      "audioText": "Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.",
       "audioTextZh": "告诉武汉进近，完成放油，请求雷达引导至跑道22。",
       "referenceText": "Wuhan Approach, SIA323, fuel dumping completed, request radar vector for runway 22.",
       "referenceTextZh": "武汉进近，新航323，完成放油，请求雷达引导至跑道22。",
@@ -152,7 +152,7 @@
     {
       "id": "radiotelephony-fzy-164755",
       "taskTitle": "12-SIA323 [跑道入侵，发动机起火]-17",
-      "audioText": "[You are now established on ILS approach runway 22, contact Tower.]",
+      "audioText": "You are now established on ILS approach runway 22, contact Tower.",
       "audioTextZh": "你现在建立ILS进近，跑道22，联系塔台。",
       "referenceText": "Wuhan Tower, SIA323, established ILS approach runway 22.",
       "referenceTextZh": "武汉塔台，新航323，建立ILS进近，跑道22。",

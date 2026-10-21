@@ -7,7 +7,7 @@
       "id": "atc-scenario-0069-card-main-1181",
       "taskTitle": "CCA 432-1",
       "audioText": "B: Your call sign is CCA 432, you are performing a flight from Guangzhou to Beijing, you are maintaining 5400 meters, over IKUBA, squawking 5655, make initial contact with Beijing Approach.",
-      "audioTextZh": "B: 你的呼号是 CCA 432，执行 Guangzhou 到 Beijing 航班，保持 5400 米，过 IKUBA，应答机 5655，与 北京进近 建立初始联系。",
+      "audioTextZh": "B: 你的呼号是 CCA 432，执行 Guangzhou 到 Beijing 航班，保持 5400 米，过 IKUBA，应答机 5655，与北京进近建立初始联系。",
       "referenceText": "Beijing Approach, CCA 432, maintaining 5400 meters, over IKUBA, squawking 5655.",
       "referenceTextZh": "北京进近，CCA 432，保持 5400 米，过 IKUBA，应答机 5655。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1181.mp3"

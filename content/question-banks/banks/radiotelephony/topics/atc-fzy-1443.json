@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-209471",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-1",
       "audioText": "B: [Your call sign is CES769, a flight from Wuhan to Amsterdam. You are parking at Stand 223. You have received information C, request ATC clearance.]",
-      "audioTextZh": "【你的呼号是东方769，一架从武汉飞往阿姆斯特丹的飞机。你现在停在223号停机位，你已经收到通播C，请求管制放行许可。】",
+      "audioTextZh": "你的呼号是东方769，一架从武汉飞往阿姆斯特丹的飞机。你现在停在223号停机位，你已经收到通播C，请求管制放行许可。",
       "referenceText": "Wuhan Delivery, CES769, stand 223, information C, request ATC clearance to Amsterdam.",
       "referenceTextZh": "武汉放行，东方769，223号停机位，通播C，请求飞往阿姆斯特丹的放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/010d3836ce368b3dbde8.mp3"
@@ -27,7 +27,7 @@
       "id": "radiotelephony-fzy-209473",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-3",
       "audioText": "B: [Two passengers are quarreling loudly in the cabin, and the air security are needed to remove the passengers away, report it to Wuhan Delivery, and request to delay the flight.]",
-      "audioTextZh": "【两名乘客在客舱大吵起来，需要安保人员将他们送下飞机。将情况报告给武汉放行，请求推迟航班。】",
+      "audioTextZh": "两名乘客在客舱大吵起来，需要安保人员将他们送下飞机。将情况报告给武汉放行，请求推迟航班。",
       "referenceText": "Wuhan Delivery, CES769, two passengers are quarreling loudly in the cabin, we need air security to remove the passengers, and request to delay the flight.",
       "referenceTextZh": "武汉放行，东方769，两名乘客在客舱大吵起来，我们需要安保人员将他们送下飞机，请求推迟航班。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/db629936cd0a9251d062.mp3"
@@ -45,7 +45,7 @@
       "id": "radiotelephony-fzy-209475",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-5",
       "audioText": "B: [Now the passengers have been removed by the airport security. You are ready to copy ATC clearance.]",
-      "audioTextZh": "【现在乘客已经被安保人员送下飞机，你准备好抄收放行许可了。】",
+      "audioTextZh": "现在乘客已经被安保人员送下飞机，你准备好抄收放行许可了。",
       "referenceText": "Wuhan Delivery, CES769, we are fully ready to copy ATC clearance.",
       "referenceTextZh": "武汉放行，东方769，我们准备好抄收管制许可了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bdf18a60e5cc0f6cedd3.mp3"
@@ -63,7 +63,7 @@
       "id": "radiotelephony-fzy-209477",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-7",
       "audioText": "B: [Now you are holding at holding point runway 36, contact Wuhan Tower.]",
-      "audioTextZh": "【你现在在跑道36的外等待点等待，联系武汉塔台。】",
+      "audioTextZh": "你现在在跑道36的外等待点等待，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CES769, holding at holding point of runway 36.",
       "referenceTextZh": "武汉塔台，东方769，在跑道36的外等待点等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a8c5244fec009a144a08.mp3"
@@ -99,7 +99,7 @@
       "id": "radiotelephony-fzy-209481",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-11",
       "audioText": "B: [Now you are airborne, passing 600m for 1200m, contact Wuhan Departure and request further climb.]",
-      "audioTextZh": "【现在你已经离地，正在过600米飞往1200米，联系武汉离场请求进一步爬升。】",
+      "audioTextZh": "现在你已经离地，正在过600米飞往1200米，联系武汉离场请求进一步爬升。",
       "referenceText": "Wuhan Departure, CES769, airborne, passing 600m for 1200m, request further climb.",
       "referenceTextZh": "武汉离场，东方769，离地了，过600米，飞往1200米，请求进一步爬升。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3578f6f44b973f793105.mp3"
@@ -117,7 +117,7 @@
       "id": "radiotelephony-fzy-209483",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-13",
       "audioText": "B: [During climb, your instrument shows that cabin temperature is too high, report it to the controller and ask to level off to perform the checklist.]",
-      "audioTextZh": "【在爬升过程中，你的仪表显示客舱温度过高，将此报告给管制员，请求平飞并执行检查单。】",
+      "audioTextZh": "在爬升过程中，你的仪表显示客舱温度过高，将此报告给管制员，请求平飞并执行检查单。",
       "referenceText": "Wuhan Departure, CES769, cabin temperature is too high, request level off to perform the checklist.",
       "referenceTextZh": "武汉离场，东方769，客舱温度过高，请求平飞并执行检查单。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7df1e485e3b4ce8e8e2e.mp3"
@@ -135,7 +135,7 @@
       "id": "radiotelephony-fzy-209485",
       "taskTitle": "65-CES769 [乘客争吵，客舱温度高]-15",
       "audioText": "B: [After performing the checklist, you decide to dump fuel and return for landing.]",
-      "audioTextZh": "【当执行完检查单，你决定放油并返场着陆。】",
+      "audioTextZh": "当执行完检查单，你决定放油并返场着陆。",
       "referenceText": "Wuhan Departure, CES769, request dump fuel and return for landing.",
       "referenceTextZh": "武汉离场，东方769，请求放油并返场着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3641fb5a412ddb2a683a.mp3"

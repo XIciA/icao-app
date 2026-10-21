@@ -25,7 +25,7 @@
       "id": "atc-scenario-0071-card-main-1214",
       "taskTitle": "CSN 542-3",
       "audioText": "C: CSN 542, read back correct, when ready for push back and start up, contact Ground 121.85.",
-      "audioTextZh": "C: CSN 542，复诵正确，准备推出和开车时联系 地面 121.85。",
+      "audioTextZh": "C: CSN 542，复诵正确，准备推出和开车时联系地面 121.85。",
       "referenceText": "121.85, CSN 542.",
       "referenceTextZh": "121.85，CSN 542。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1214.mp3"
@@ -61,7 +61,7 @@
       "id": "atc-scenario-0071-card-main-1218",
       "taskTitle": "CSN 542-7",
       "audioText": "B: During the search, the cabin crew find a bag that is not claimed by any passengers, inform Ground about this and tell them that because there are no aircraft around you, you will hold position.",
-      "audioTextZh": "B: 搜查期间，客舱机组发现一个无人认领的包，通知 地面，并告诉他们由于你周围没有飞机，你将原地等待。",
+      "audioTextZh": "B: 搜查期间，客舱机组发现一个无人认领的包，通知地面，并告诉他们由于你周围没有飞机，你将原地等待。",
       "referenceText": "Chengdu Ground, CSN 542, the cabin crew found a bag that is not claimed by any passenger, request hold position due there are no aircraft around us.",
       "referenceTextZh": "成都地面，CSN 542，客舱机组发现一个无人认领的包，由于我们周围没有飞机，请求原地等待。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1218.mp3"

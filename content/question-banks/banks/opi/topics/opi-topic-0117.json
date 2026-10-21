@@ -1,63 +1,63 @@
 {
   "id": "opi-topic-0117",
   "name": "劫机与非法干扰",
-  "declaredCardCount": 5,
   "cards": [
     {
-      "id": "opi-extra-096",
-      "taskTitle": "特情-劫机与非法干扰-1",
-      "audioText": "What training has your company provided on handling hijacking incidents?",
-      "audioTextZh": "你所在的公司提供过哪些劫机事件处置培训？",
-      "referenceText": "I am not employed by an airline, so I have not received company hijacking training. At flight school, I have learned the general priorities: maintain control, avoid actions that could increase the danger, use code 7500 when it can be selected safely, and communicate with ATC discreetly. Detailed responses require approved security training and procedures.",
-      "referenceTextZh": "我没有在航空公司任职，因此没有接受过公司的劫机处置训练。在航校，我学习过一般原则：保持飞机控制，避免采取可能加剧危险的行动，在能够安全操作时使用应答机代码 7500，并谨慎地与空中交通管制通信。具体处置需要遵循经批准的安保培训和程序。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/b84ae746e0cd28bb745f109440762018ae9d32dd8363c48a1c71c1a5f6f5f83a/audio/opi/opi-extra-096.mp3",
-      "audioDurationSeconds": 3.888
-    },
-    {
       "id": "opi-extra-097",
-      "taskTitle": "特情-劫机与非法干扰-2",
+      "audio": "/question-bank-assets/revisions/opi/e189ed01e8b77e23f215c6e58384e613812511ec0456af08d4860fdd2cec2588/audio/opi/opi-extra-097.mp3",
       "audioText": "What should a pilot do if a hijacking occurs during flight?",
+      "studyTier": 2,
+      "taskTitle": "特情-劫机与非法干扰-2",
       "audioTextZh": "飞行中发生劫机时，飞行员应如何处置？",
       "referenceText": "The cabin crew should try to inform the pilots, and the pilots should select transponder code 7500 if they can do so safely. They should monitor the cabin situation, advise ATC when possible, and arrange to land at a suitable airport with security assistance available on arrival.",
       "referenceTextZh": "客舱机组应设法通知飞行员；如果能够安全操作，飞行员应将应答机设置为 7500。他们应监控客舱情况，在可能时通知空中交通管制，并安排在适合且落地后能够获得安保支援的机场着陆。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/e189ed01e8b77e23f215c6e58384e613812511ec0456af08d4860fdd2cec2588/audio/opi/opi-extra-097.mp3",
       "audioDurationSeconds": 3.192
     },
     {
-      "id": "opi-extra-098",
-      "taskTitle": "特情-劫机与非法干扰-3",
-      "audioText": "Have you ever experienced a hijacking incident?",
-      "audioTextZh": "你经历过劫机事件吗？",
-      "referenceText": "No, I have never experienced a hijacking incident.",
-      "referenceTextZh": "没有，我从未经历过劫机事件。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/012362d68a00fc4f09b52213cfb4c3fb095942ed5f9f69c4b25b3c492f5ceee8/audio/opi/opi-extra-098.mp3",
-      "audioDurationSeconds": 2.736
-    },
-    {
-      "id": "opi-extra-103",
-      "taskTitle": "特情-劫机与非法干扰-4",
-      "audioText": "What is unlawful interference in civil aviation, and what are some examples?",
-      "audioTextZh": "什么是民用航空非法干扰行为？有哪些例子？",
-      "referenceText": "Unlawful interference is an act that threatens the safety of civil aviation. Examples include hijacking, bomb threats, sabotage of aircraft or airport facilities, taking hostages, and forcible entry into a cockpit.",
-      "referenceTextZh": "非法干扰行为是指威胁民用航空安全的行为，例如劫机、炸弹威胁、破坏航空器或机场设施、劫持人质，以及强行闯入驾驶舱。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/1ab9ed8e16ff999629ce0e08e30f7f8b775d7608f71c94ffd4934dc6890b7870/audio/opi/opi-extra-103.mp3",
-      "audioDurationSeconds": 4.416
-    },
-    {
       "id": "opi-extra-105",
-      "taskTitle": "特情-劫机与非法干扰-5",
+      "audio": "/question-bank-assets/revisions/opi/f656bb92b70ebc64c649800b60a6731b5b54501831a739091deb1c73b46e53fe/audio/opi/opi-extra-105.mp3",
       "audioText": "What communication procedure should a pilot follow if a hijacker takes control of the cockpit?",
+      "studyTier": 2,
+      "taskTitle": "特情-劫机与非法干扰-5",
       "audioTextZh": "如果劫机者控制了驾驶舱，飞行员应遵循什么通信程序？",
       "referenceText": "If it can be done safely, the pilot should select transponder code 7500 to alert ATC without speaking. The pilot should not announce the hijacking explicitly over the radio unless it is safe to do so, and should maintain normal communication when possible. The airline's hijacking communication procedure should be followed.",
       "referenceTextZh": "如果能够安全操作，飞行员应将应答机设置为 7500，在不通话的情况下向空中交通管制发出警报。除非能够确保安全，否则飞行员不应在无线电中明确宣布发生劫机，并应尽可能保持正常通信。应遵守航空公司的劫机通信程序。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/f656bb92b70ebc64c649800b60a6731b5b54501831a739091deb1c73b46e53fe/audio/opi/opi-extra-105.mp3",
       "audioDurationSeconds": 5.28
+    },
+    {
+      "id": "opi-extra-103",
+      "audio": "/question-bank-assets/revisions/opi/1ab9ed8e16ff999629ce0e08e30f7f8b775d7608f71c94ffd4934dc6890b7870/audio/opi/opi-extra-103.mp3",
+      "audioText": "What is unlawful interference in civil aviation, and what are some examples?",
+      "studyTier": 2,
+      "taskTitle": "特情-劫机与非法干扰-4",
+      "audioTextZh": "什么是民用航空非法干扰行为？有哪些例子？",
+      "referenceText": "Unlawful interference is an act that threatens the safety of civil aviation. Examples include hijacking, bomb threats, sabotage of aircraft or airport facilities, taking hostages, and forcible entry into a cockpit.",
+      "referenceTextZh": "非法干扰行为是指威胁民用航空安全的行为，例如劫机、炸弹威胁、破坏航空器或机场设施、劫持人质，以及强行闯入驾驶舱。",
+      "audioDurationSeconds": 4.416
+    },
+    {
+      "id": "opi-extra-098",
+      "audio": "/question-bank-assets/revisions/opi/012362d68a00fc4f09b52213cfb4c3fb095942ed5f9f69c4b25b3c492f5ceee8/audio/opi/opi-extra-098.mp3",
+      "audioText": "Have you ever experienced a hijacking incident?",
+      "studyTier": 2,
+      "taskTitle": "特情-劫机与非法干扰-3",
+      "audioTextZh": "你经历过劫机事件吗？",
+      "referenceText": "No, I have never experienced a hijacking incident.",
+      "referenceTextZh": "没有，我从未经历过劫机事件。",
+      "audioDurationSeconds": 2.736
+    },
+    {
+      "id": "opi-extra-096",
+      "audio": "/question-bank-assets/revisions/opi/b84ae746e0cd28bb745f109440762018ae9d32dd8363c48a1c71c1a5f6f5f83a/audio/opi/opi-extra-096.mp3",
+      "audioText": "What training has your company provided on handling hijacking incidents?",
+      "studyTier": 2,
+      "taskTitle": "特情-劫机与非法干扰-1",
+      "audioTextZh": "你所在的公司提供过哪些劫机事件处置培训？",
+      "referenceText": "I am not employed by an airline, so I have not received company hijacking training. At flight school, I have learned the general priorities: maintain control, avoid actions that could increase the danger, use code 7500 when it can be selected safely, and communicate with ATC discreetly. Detailed responses require approved security training and procedures.",
+      "referenceTextZh": "我没有在航空公司任职，因此没有接受过公司的劫机处置训练。在航校，我学习过一般原则：保持飞机控制，避免采取可能加剧危险的行动，在能够安全操作时使用应答机代码 7500，并谨慎地与空中交通管制通信。具体处置需要遵循经批准的安保培训和程序。",
+      "audioDurationSeconds": 3.888
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-02"
 }

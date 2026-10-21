@@ -106,7 +106,7 @@
       "id": "atc-scenario-0122-card-main-2113",
       "taskTitle": "SIA 308-12",
       "audioText": "C: SIA 308, roger MAYDAY, descend to and maintain FL100, keep us advised the situation on board and your intention.\nB: read back the instructions and tell the controller you are working the checklist and will advise.",
-      "audioTextZh": "C： SIA 308，收到 MAYDAY，下降至并保持 FL100，随时通报机上情况和你的意图。\nB： 复诵指令，并告诉管制员你正在执行检查单，稍后报告。",
+      "audioTextZh": "C：SIA 308，收到 MAYDAY，下降至并保持 FL100，随时通报机上情况和你的意图。\nB：复诵指令，并告诉管制员你正在执行检查单，稍后报告。",
       "referenceText": "Descend and maintain FL110, we are working the checklist, will advise, SIA 308.",
       "referenceTextZh": "下降至并保持 FL110，我们正在执行检查单，稍后报告，SIA 308。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-019-sia308-q12.mp3"

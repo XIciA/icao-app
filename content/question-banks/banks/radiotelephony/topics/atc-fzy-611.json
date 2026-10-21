@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111192",
       "taskTitle": "28. CSN339 thunderstorm, etc.-1",
-      "audioText": "[You are CSN339, parking at Gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.]",
-      "audioTextZh": "【你是南航339，停在51号机位，通播C，从武汉飞往广州，请求ATC放行。】",
+      "audioText": "You are CSN339, parking at Gate 51, with Information C, from Wuhan to Guangzhou, ask for ATC clearance.",
+      "audioTextZh": "你是南航339，停在51号机位，通播C，从武汉飞往广州，请求ATC放行。",
       "referenceText": "Wuhan Delivery, CSN339, Parking bay 51, information C, destination Guangzhou, request ATC clearance.",
       "referenceTextZh": "武汉放行，南航339，51号机位，通播C，目的地广州，请求ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/819a51eeb0957ff7d2d2.mp3"
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-111195",
       "taskTitle": "28. CSN339 thunderstorm, etc.-4",
-      "audioText": "[1 hour has passed, ask controller how long would you wait.]",
-      "audioTextZh": "【1小时过去了，询问管制员你还要等多久。】",
+      "audioText": "1 hour has passed, ask controller how long would you wait.",
+      "audioTextZh": "1小时过去了，询问管制员你还要等多久。",
       "referenceText": "Wuhan Delivery, CSN339. How long shall we delay?",
       "referenceTextZh": "武汉放行，南航339。我们还要等多久？",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5ae1d74a8d2ce39bbf77.mp3"
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-111197",
       "taskTitle": "28. CSN339 thunderstorm, etc.-6",
-      "audioText": "[You are now ready for pushback and start-up. Call Wuhan Ground.]",
+      "audioText": "You are now ready for pushback and start-up. Call Wuhan Ground.",
       "audioTextZh": "【你已准备好推出开车。呼叫武汉地面。】",
       "referenceText": "Wuhan Ground, CSN339, request pushback and start-up.",
       "referenceTextZh": "武汉地面，南航339，请求推出开车。",
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-111199",
       "taskTitle": "28. CSN339 thunderstorm, etc.-8",
-      "audioText": "[You have completed pushback and start-up, request taxi.]",
+      "audioText": "You have completed pushback and start-up, request taxi.",
       "audioTextZh": "【你完成了推出开车，请求滑行。】",
       "referenceText": "Wuhan Ground, CSN339, request taxi.",
       "referenceTextZh": "武汉地面，南航339，请求滑行。",
@@ -89,7 +89,7 @@
     {
       "id": "radiotelephony-fzy-111201",
       "taskTitle": "28. CSN339 thunderstorm, etc.-10",
-      "audioText": "[Now you are ready for takeoff. Call Wuhan Tower.]",
+      "audioText": "Now you are ready for takeoff. Call Wuhan Tower.",
       "audioTextZh": "【你已准备好起飞。呼叫武汉塔台。】",
       "referenceText": "Wuhan Tower, CSN339, request departure.",
       "referenceTextZh": "武汉塔台，南航339，请求起飞。",
@@ -107,7 +107,7 @@
     {
       "id": "radiotelephony-fzy-111203",
       "taskTitle": "28. CSN339 thunderstorm, etc.-12",
-      "audioText": "[You are airborne, call Wuhan Departure.]",
+      "audioText": "You are airborne, call Wuhan Departure.",
       "audioTextZh": "【你已离地，呼叫武汉离场。】",
       "referenceText": "Wuhan Departure, CSN339, airborne.",
       "referenceTextZh": "武汉离场，南航339，离地了。",
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-111206",
       "taskTitle": "28. CSN339 thunderstorm, etc.-15",
-      "audioText": "[You found one of your hydraulic systems is failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.]",
-      "audioTextZh": "【你发现机上一个液压系统失效，紧急呼叫ATC，告诉其该情况并请求在3900米平飞，之后返回武汉机场。】",
+      "audioText": "You found one of your hydraulic systems is failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.",
+      "audioTextZh": "你发现机上一个液压系统失效，紧急呼叫ATC，告诉其该情况并请求在3900米平飞，之后返回武汉机场。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, CSN339, we have one hydraulic system failure, request level off at 3900m and then return to Wuhan airport.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉区调，南航339，机上一个液压系统失效，请求在3900米平飞，之后返回武汉机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f8d3572bd350ee3be218.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-111208",
       "taskTitle": "28. CSN339 thunderstorm, etc.-17",
-      "audioText": "[A thunderstorm was detected near LKO, ask to deviate 20 miles to the left.]",
-      "audioTextZh": "【探测到LKO附近有雷暴，请求向左偏航20海里。】",
+      "audioText": "A thunderstorm was detected near LKO, ask to deviate 20 miles to the left.",
+      "audioTextZh": "探测到LKO附近有雷暴，请求向左偏航20海里。",
       "referenceText": "Wuhan Control, CSN339, request offset 20miles left of track due weather.",
       "referenceTextZh": "武汉区调，南航339，由于天气原因，请求向左偏20海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ca824f96639d3215e7f9.mp3"

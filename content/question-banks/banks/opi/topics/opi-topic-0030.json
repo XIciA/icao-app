@@ -1,68 +1,68 @@
 {
   "id": "opi-topic-0030",
   "name": "中断起飞",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-core-446",
-      "taskTitle": "运行-中断起飞-1",
-      "audioText": "How should a flight crew respond if an engine fire leads to a rejected takeoff?",
-      "audioTextZh": "发动机起火导致中断起飞时，飞行机组应如何处置？",
-      "referenceText": "The crew should work together to complete the rejected-takeoff checklist, maintain directional control, and stop the aircraft on the runway. They should advise ATC and request emergency services. The cabin crew should prepare passengers and be ready for an evacuation if the captain decides that one is necessary.",
-      "referenceTextZh": "机组应合作完成中断起飞检查单，保持方向控制，并将飞机停在跑道上。他们应通知空中交通管制并申请应急服务。如果机长认为需要撤离，客舱机组应让旅客做好准备并随时执行撤离。",
-      "audio": "/question-bank-assets/revisions/opi/81baab94a83d778f7f07b57f17ad738c2f828de043b0e8fe1375b1dd38de3dc9/audio/opi/opi-core-446.mp3",
-      "audioDurationSeconds": 4.224
-    },
-    {
-      "id": "opi-core-448",
-      "taskTitle": "运行-中断起飞-2",
-      "audioText": "What conditions may lead a flight crew to reject a takeoff?",
-      "audioTextZh": "哪些情况可能导致飞行机组中断起飞？",
-      "referenceText": "Before V1, a crew may reject a takeoff because of a serious warning, an engine or other system failure, abnormal noise or vibration, a tire problem, slow acceleration, an incorrect takeoff configuration, a fire or wind-shear warning, a bird strike, or a runway incursion.",
-      "referenceTextZh": "在 V1 之前，机组可能因严重警告、发动机或其他系统失效、异常噪声或振动、轮胎问题、加速缓慢、起飞构型错误、火警或风切变警告、鸟击或跑道侵入而中断起飞。",
-      "audio": "/question-bank-assets/revisions/opi/1df491b397ad6a71ffdbc5b9ec3c4fa99753b358eae26bcea7cb05fc74fbb902/audio/opi/opi-core-448.mp3",
-      "audioDurationSeconds": 3.144
-    },
-    {
-      "id": "opi-core-449",
-      "taskTitle": "运行-中断起飞-3",
-      "audioText": "What is the general procedure for a rejected takeoff?",
-      "audioTextZh": "中断起飞的一般程序是什么？",
-      "referenceText": "The exact procedure depends on the aircraft. In general, the crew reduces power, maintains directional control on the runway, and applies the brakes to stop. After the aircraft has stopped, the crew reports the situation to ATC and informs the passengers and other crew members.",
-      "referenceTextZh": "具体程序取决于机型。通常，机组减小推力、在跑道上保持方向控制，并使用刹车停车。飞机停下后，机组应向空中交通管制报告情况，并通知旅客和其他机组成员。",
-      "audio": "/question-bank-assets/revisions/opi/eb4cf7849366332fdaf9d90de8a4a289c581d00874c7d707d3bd1fe437729930/audio/opi/opi-core-449.mp3",
-      "audioDurationSeconds": 2.88
-    },
-    {
       "id": "opi-core-450",
-      "taskTitle": "运行-中断起飞-4",
+      "audio": "/question-bank-assets/revisions/opi/cdde8f7bd5ba614276d09df295668a45932cc786dcc109d5079f414378564249/audio/opi/opi-core-450.mp3",
       "audioText": "What are the possible consequences of rejecting a takeoff after V1?",
+      "taskTitle": "运行-中断起飞-4",
       "audioTextZh": "在 V1 之后中断起飞可能产生哪些后果？",
       "referenceText": "After V1, the aircraft may not have enough runway remaining to stop. A rejected takeoff could then lead to a runway overrun, structural or tire damage, fire, and serious injuries to crew members or passengers.",
       "referenceTextZh": "在 V1 之后，剩余跑道可能不足以停车。此时中断起飞可能导致冲出跑道、结构或轮胎损伤、火灾，以及机组成员或旅客严重受伤。",
-      "audio": "/question-bank-assets/revisions/opi/cdde8f7bd5ba614276d09df295668a45932cc786dcc109d5079f414378564249/audio/opi/opi-core-450.mp3",
       "audioDurationSeconds": 4.056
     },
     {
       "id": "opi-core-452",
-      "taskTitle": "运行-中断起飞-5",
+      "audio": "/question-bank-assets/revisions/opi/99ba71717e033016f9991233dc32f85214929a7cdec914c577be8be2ba69bdec/audio/opi/opi-core-452.mp3",
       "audioText": "How should a flight crew respond if a warning occurs during the takeoff roll?",
+      "taskTitle": "运行-中断起飞-5",
       "audioTextZh": "起飞滑跑过程中出现警告时，飞行机组应如何处置？",
       "referenceText": "The crew should identify the warning and apply the operator's rejected-takeoff criteria. Before the V1 decision point, the captain may reject for a serious condition when a safe stop is possible. After passing that decision point, the crew normally continues the takeoff, maintains control, and handles the warning after becoming airborne using the approved procedure.",
       "referenceTextZh": "机组应识别警告，并采用运营人的中断起飞标准。在 V1 决断点之前，如果情况严重且能够安全停车，机长可以中断起飞。越过该决断点后，机组通常继续起飞、保持控制，并在离地后按照批准程序处置警告。",
-      "audio": "/question-bank-assets/revisions/opi/99ba71717e033016f9991233dc32f85214929a7cdec914c577be8be2ba69bdec/audio/opi/opi-core-452.mp3",
       "audioDurationSeconds": 3.84
     },
     {
+      "id": "opi-core-448",
+      "audio": "/question-bank-assets/revisions/opi/1df491b397ad6a71ffdbc5b9ec3c4fa99753b358eae26bcea7cb05fc74fbb902/audio/opi/opi-core-448.mp3",
+      "audioText": "What conditions may lead a flight crew to reject a takeoff?",
+      "taskTitle": "运行-中断起飞-2",
+      "audioTextZh": "哪些情况可能导致飞行机组中断起飞？",
+      "referenceText": "Before V1, a crew may reject a takeoff because of a serious warning, an engine or other system failure, abnormal noise or vibration, a tire problem, slow acceleration, an incorrect takeoff configuration, a fire or wind-shear warning, a bird strike, or a runway incursion.",
+      "referenceTextZh": "在 V1 之前，机组可能因严重警告、发动机或其他系统失效、异常噪声或振动、轮胎问题、加速缓慢、起飞构型错误、火警或风切变警告、鸟击或跑道侵入而中断起飞。",
+      "audioDurationSeconds": 3.144
+    },
+    {
+      "id": "opi-core-449",
+      "audio": "/question-bank-assets/revisions/opi/eb4cf7849366332fdaf9d90de8a4a289c581d00874c7d707d3bd1fe437729930/audio/opi/opi-core-449.mp3",
+      "audioText": "What is the general procedure for a rejected takeoff?",
+      "taskTitle": "运行-中断起飞-3",
+      "audioTextZh": "中断起飞的一般程序是什么？",
+      "referenceText": "The exact procedure depends on the aircraft. In general, the crew reduces power, maintains directional control on the runway, and applies the brakes to stop. After the aircraft has stopped, the crew reports the situation to ATC and informs the passengers and other crew members.",
+      "referenceTextZh": "具体程序取决于机型。通常，机组减小推力、在跑道上保持方向控制，并使用刹车停车。飞机停下后，机组应向空中交通管制报告情况，并通知旅客和其他机组成员。",
+      "audioDurationSeconds": 2.88
+    },
+    {
       "id": "opi-core-454",
-      "taskTitle": "运行-中断起飞-6",
+      "audio": "/question-bank-assets/revisions/opi/fd27c33a28de765a1c088df4e97ed6d233e27367dc2d9cc0941c5b2f52322f97/audio/opi/opi-core-454.mp3",
       "audioText": "How does V1 affect the decision to continue or reject a takeoff?",
+      "taskTitle": "运行-中断起飞-6",
       "audioTextZh": "V1 如何影响继续起飞或中断起飞的决策？",
       "referenceText": "V1 is the takeoff decision speed. The crew must make the stop-or-go decision before reaching it, and the first stopping action for a rejected takeoff must begin by V1 to remain within the calculated accelerate-stop distance. After passing V1, the crew normally continues the takeoff and deals with the problem after becoming airborne.",
       "referenceTextZh": "V1 是起飞决断速度。机组必须在达到该速度前作出停或走的决定；若要在计算的加速停止距离内完成中断起飞，第一个停车动作必须最迟在 V1 开始。越过 V1 后，机组通常继续起飞，并在离地后处置问题。",
-      "audio": "/question-bank-assets/revisions/opi/fd27c33a28de765a1c088df4e97ed6d233e27367dc2d9cc0941c5b2f52322f97/audio/opi/opi-core-454.mp3",
       "audioDurationSeconds": 3.864
+    },
+    {
+      "id": "opi-core-446",
+      "audio": "/question-bank-assets/revisions/opi/81baab94a83d778f7f07b57f17ad738c2f828de043b0e8fe1375b1dd38de3dc9/audio/opi/opi-core-446.mp3",
+      "audioText": "How should a flight crew respond if an engine fire leads to a rejected takeoff?",
+      "taskTitle": "运行-中断起飞-1",
+      "audioTextZh": "发动机起火导致中断起飞时，飞行机组应如何处置？",
+      "referenceText": "The crew should work together to complete the rejected-takeoff checklist, maintain directional control, and stop the aircraft on the runway. They should advise ATC and request emergency services. The cabin crew should prepare passengers and be ready for an evacuation if the captain decides that one is necessary.",
+      "referenceTextZh": "机组应合作完成中断起飞检查单，保持方向控制，并将飞机停在跑道上。他们应通知空中交通管制并申请应急服务。如果机长认为需要撤离，客舱机组应让旅客做好准备并随时执行撤离。",
+      "audioDurationSeconds": 4.224
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-05"
 }

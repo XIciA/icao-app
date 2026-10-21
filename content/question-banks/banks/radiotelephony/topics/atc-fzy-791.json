@@ -28,7 +28,7 @@
       "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-3",
       "audioText": "The maintenance staff has deferred an MEL item regarding APU, contact Ground that you will be ready for start up one engine at bay in 5 mins.",
       "audioTextZh": "机务人员保留了APU的一个项目，告知地面，你准备好在5分钟后，在停机位启动一台发动机。",
-      "referenceText": "Wuhan Ground, CSN371, we’ll be ready to start up one engine at bay in 5mins.",
+      "referenceText": "Wuhan Ground, CSN371, we'll be ready to start up one engine at bay in 5mins.",
       "referenceTextZh": "武汉地面，南方371，我们准备好在5分钟后，在停机位启动一台发动机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5766baa3019bf42ca65f.mp3"
     },
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-152575",
       "taskTitle": "43-CSN371 [自动刹车告警，手册问题]-6",
-      "audioText": "While taxing, an auto brake caution message is displayed on aircraft’s warning system, so you stopped taxing, advise Ground.",
+      "audioText": "While taxing, an auto brake caution message is displayed on aircraft's warning system, so you stopped taxing, advise Ground.",
       "audioTextZh": "在滑行中，一条自动刹车告警信息出现在飞机的告警系统中，因此你停止滑行，告知地面。",
       "referenceText": "Wuhan Ground, CZ371, we have autobrake caution message, we are stopping taxi.",
       "referenceTextZh": "武汉地面，南方371，我们有一个自动刹车告警信息，我们停止滑行了。",

@@ -1,4 +1,5 @@
 import { retiredQuestionCards } from './retired-question-cards';
+import { rebaseFormattedAnnotations } from './question-bank-format-compat';
 
 type Value = Record<string, unknown>;
 const object = (value: unknown): Value => value && typeof value === 'object' && !Array.isArray(value) ? value as Value : {};
@@ -7,9 +8,9 @@ export function isRetiredCard(bankId: unknown, cardId: unknown) { return retired
 export function emptyRetiredState(updatedAt: string) { return { visited: false, completed: false, note: '', updatedAt }; }
 export function sanitizeRetiredAnnotations(value: Value): Value {
   if (!value.entries || typeof value.entries !== 'object') return value;
-  return { ...value, entries: Object.fromEntries(Object.entries(object(value.entries)).filter(([, entry]) => {
+  return rebaseFormattedAnnotations({ ...value, entries: Object.fromEntries(Object.entries(object(value.entries)).filter(([, entry]) => {
     const item = object(entry); return !isRetiredCard(item.bankId, item.cardId);
-  })) };
+  })) });
 }
 const retiredItem = (value: unknown) => {
   const item = object(value); const source = object(item.source);

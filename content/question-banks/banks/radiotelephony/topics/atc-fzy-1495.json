@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-214224",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-1",
       "audioText": "N: [Your call sign is CCA1301, from Beijing to Guangzhou. You are now at stand 133, with information F. Ask for your ATC clearance.]",
-      "audioTextZh": "【你的呼号是国航1301，从北京飞往广州。你现在在133停机位，收到通播F，请求你的管制许可。】",
+      "audioTextZh": "你的呼号是国航1301，从北京飞往广州。你现在在133停机位，收到通播F，请求你的管制许可。",
       "referenceText": "Beijing Delivery, CCA1301, stand 133, information F, request ATC clearance.",
       "referenceTextZh": "北京放行，国航1301,133停机位，通播F，请求管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a29023d4afe09cb8ae52.mp3"
@@ -45,7 +45,7 @@
       "id": "radiotelephony-fzy-214228",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-5",
       "audioText": "N: [All engines have been started, everything checked out normal, request taxi instructions.]",
-      "audioTextZh": "【所有发动机已经启动，所有项目检查正常，请求滑行指令。】",
+      "audioTextZh": "所有发动机已经启动，所有项目检查正常，请求滑行指令。",
       "referenceText": "Beijing Ground, CCA1301, request taxi instructions.",
       "referenceTextZh": "北京地面，国航1301，请求滑行指令。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/71e8b44a9baacaf05937.mp3"
@@ -63,7 +63,7 @@
       "id": "radiotelephony-fzy-214230",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-7",
       "audioText": "N: [You are now at holding point of runway 35R. You want to take off immediately.]",
-      "audioTextZh": "【你现在在跑道35右外等待点，你想立即起飞。】",
+      "audioTextZh": "你现在在跑道35右外等待点，你想立即起飞。",
       "referenceText": "Beijing Tower, CCA1301, holding point of runway 35R, request immediate departure.",
       "referenceTextZh": "北京塔台，国航1301，跑道35右外等待点，请求立即起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5aaf043d3d6bc578c0a6.mp3"
@@ -71,7 +71,7 @@
     {
       "id": "radiotelephony-fzy-214231",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-8",
-      "audioText": "C: CCA1301, Beijing Tower, negative at the moment, traffic on final, hold short of runway 35R, report the traffic on final in sight.\nN: [Inform the controller you’ve got the visual contact to the aircraft.]",
+      "audioText": "C: CCA1301, Beijing Tower, negative at the moment, traffic on final, hold short of runway 35R, report the traffic on final in sight.\nN: [Inform the controller you've got the visual contact to the aircraft.]",
       "audioTextZh": "国航1301，北京塔台，暂时不行，五边上有航空器，在跑道35右外等待，看到五边上的航空器后报。\n【告知管制员你已经看到航空器了。】",
       "referenceText": "Roger, holding short of runway 35R, traffic in sight, CCA1301.",
       "referenceTextZh": "收到，在跑道35右外等待，看到航空器了，国航1301。",
@@ -99,8 +99,8 @@
       "id": "radiotelephony-fzy-214234",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-11",
       "audioText": "N: [During the takeoff rolling, you read high starboard engine vibration. For safety precautions, you performed a rejected takeoff and shut down the starboard engine. Inform controller your situation, and you also want to know if there is any visual fire on the landing gears and tyres.]",
-      "audioTextZh": "【在起飞滑跑期间，你的右发抖震偏高，出于安全起见，你执行了中断起飞并关闭了右发。告知管制员此情况，并且你想知道起落架和轮胎处是否有明火。】",
-      "referenceText": "Beijing Tower, CCA1301, we aborted takeoff due right engine vibration, and we’ve shut down the engine. Confirm if there is any visual fire on the landing gears and tyres.",
+      "audioTextZh": "在起飞滑跑期间，你的右发抖震偏高，出于安全起见，你执行了中断起飞并关闭了右发。告知管制员此情况，并且你想知道起落架和轮胎处是否有明火。",
+      "referenceText": "Beijing Tower, CCA1301, we aborted takeoff due right engine vibration, and we've shut down the engine. Confirm if there is any visual fire on the landing gears and tyres.",
       "referenceTextZh": "北京塔台，国航1301，由于右发抖震，我们执行了中断起飞，我们已经关断了右发。证实我们的起落架和轮胎处是否有明火。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bfe16a1945dba0996d8a.mp3"
     },
@@ -110,7 +110,7 @@
       "audioText": "C: CCA1301, Beijing Tower, negative, no visual fire on the landing gears or tyres, report intention.\nN: [Tell the controller you want to vacate runway and taxi to the ramp for a thorough check but you have to wait to cool the brakes for about 5 minutes. ]",
       "audioTextZh": "国航1301，北京塔台，不，起落架和轮胎处没有明火。报告意图。\n【告知管制员你想脱离跑道，滑行至机坪进行全面检查，但是你需要等待大约5分钟来冷却刹车。】",
       "referenceText": "Roger, request vacate runway and taxi to the ramp for a check after cooling the brakes for about 5 minutes., CCA1301",
-      "referenceTextZh": "收到，请求冷却刹车大概5分钟后脱离跑道，滑行至机坪进行全面检查， 国航1301。",
+      "referenceTextZh": "收到，请求冷却刹车大概5分钟后脱离跑道，滑行至机坪进行全面检查，国航1301。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/4a7d3fed16801ce514a1.mp3"
     },
     {
@@ -135,7 +135,7 @@
       "id": "radiotelephony-fzy-214238",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-15",
       "audioText": "N: [During taxi back, you noticed an A320 ahead of you is leaking a significant amount of fuel from the bottom of the left engine. Tell ATC about the situation. ]",
-      "audioTextZh": "【在滑行过程中，你发现前面的A320从左发底部漏出大量燃油。告知管制员此情况。】",
+      "audioTextZh": "在滑行过程中，你发现前面的A320从左发底部漏出大量燃油。告知管制员此情况。",
       "referenceText": "Beijing Ground, CCA1301, an A320 ahead of us is leaking fuel from left engine.",
       "referenceTextZh": "北京地面，国航1301，我们前面的A320左发正在漏油。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1abedbfe059f510bbe60.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-214240",
       "taskTitle": "55-CCA1301 [中断起飞，A320漏油]-17",
-      "audioText": "N: [It is late in the night, the maintenance engineers have fixed all the problems and you’re now on the runway 35R. Request takeoff clearance.]",
-      "audioTextZh": "【现在已经是夜里，机务人员已经解决了所有问题，你现在在跑道35右。请求起飞许可。】",
+      "audioText": "N: [It is late in the night, the maintenance engineers have fixed all the problems and you're now on the runway 35R. Request takeoff clearance.]",
+      "audioTextZh": "现在已经是夜里，机务人员已经解决了所有问题，你现在在跑道35右。请求起飞许可。",
       "referenceText": "Beijing Tower, CCA1301, runway 35R, request departure clearance.",
       "referenceTextZh": "北京塔台，国航1301，跑道35右，请求离场许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e25c35260d37959c52cf.mp3"

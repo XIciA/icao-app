@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111782",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-1",
-      "audioText": "[Your call sign is CCA991, you are just over CD at 6000m, ask Beijing Approach to transfer you to Beijing Control.]",
-      "audioTextZh": "【你的呼号是CCA991，飞机通过CD保持6000米，向北京进近请求移交至北京区调。】",
+      "audioText": "Your call sign is CCA991, you are just over CD at 6000m, ask Beijing Approach to transfer you to Beijing Control.",
+      "audioTextZh": "你的呼号是CCA991，飞机通过CD保持6000米，向北京进近请求移交至北京区调。",
       "referenceText": "Beijing Approach, CCA991, 6000m maintaining, over CD, request change to Beijing Control.",
       "referenceTextZh": "北京进近，国航991，保持6000米过CD，请求换频到北京区调。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/58917b8acf0fcdcc2a31.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-111784",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-3",
-      "audioText": "[Make an initial contact with Beijing Control, 6600m maintaining, request 10400m.]",
-      "audioTextZh": "【与北京区调建立初次联系，6600米保持，请求上升到10400米。】",
+      "audioText": "Make an initial contact with Beijing Control, 6600m maintaining, request 10400m.",
+      "audioTextZh": "与北京区调建立初次联系，6600米保持，请求上升到10400米。",
       "referenceText": "Beijing Control, CCA991, 6600m maintaining. Request climb to 10400m.",
       "referenceTextZh": "北京区调，国航991，6600米保持，请求上升到10400米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/76822f2edf3f1434a806.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-111786",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-5",
-      "audioText": "[Inform the controller that you have an indication of weather about 40km ahead of you, request turn right heading 240.]",
-      "audioTextZh": "【通知管控员你前方40千米有天气显示，请求右转航向240。】",
+      "audioText": "Inform the controller that you have an indication of weather about 40km ahead of you, request turn right heading 240.",
+      "audioTextZh": "通知管控员你前方40千米有天气显示，请求右转航向240。",
       "referenceText": "Beijing Control, CCA991. We have an indication of bad weather about 40km ahead of us, request turn right heading 240.",
       "referenceTextZh": "北京区调，国航991，我们前方40千米有恶劣天气，请求右转航向240。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e40f277b6bd5c2fb71d6.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111790",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-9",
-      "audioText": "[Inform the controller that you have cleared of CB and request direct to WXI.]",
-      "audioTextZh": "【通知管制员你已远离积雨云，请求直飞WXI。】",
+      "audioText": "Inform the controller that you have cleared of CB and request direct to WXI.",
+      "audioTextZh": "通知管制员你已远离积雨云，请求直飞WXI。",
       "referenceText": "Beijing Control, CCA991, cleared of weather, request direct to WXI.",
       "referenceTextZh": "北京区调，国航991，天气没影响，请求直飞WXI。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/811951a417e0225325ce.mp3"
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-111792",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-11",
-      "audioText": "[Tell the controller you are on course at 10400m.]",
+      "audioText": "Tell the controller you are on course at 10400m.",
       "audioTextZh": "【告知管制员你在10400米归航。】",
       "referenceText": "Beijing Control, CCA991, course resumed at 10400m.",
       "referenceTextZh": "北京区调，国航991，10400米归航。",
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-111793",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-12",
-      "audioText": "[You find smoke coming from engine bleed air system. Declare urgency to ATC, request lower level.]",
-      "audioTextZh": "【你发现发动机引气系统有烟冒出，向ATC宣布紧急，请求更低高度。】",
+      "audioText": "You find smoke coming from engine bleed air system. Declare urgency to ATC, request lower level.",
+      "audioTextZh": "你发现发动机引气系统有烟冒出，向ATC宣布紧急，请求更低高度。",
       "referenceText": "PANPAN PANPAN PANPAN, Beijing Control, CCA991, smoke is coming from engine bleed system, request lower level.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，北京区调，国航991，发动机引气系统有烟冒出，请求更低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bf99b612bb930255c66d.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-111798",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-17",
-      "audioText": "[Make a distress call for Beijing Approach, report engine fire, request landing as soon as possible.]",
-      "audioTextZh": "【向北京进近发出遇险信号，报告发动机起火情况，请求尽快着陆。】",
+      "audioText": "Make a distress call for Beijing Approach, report engine fire, request landing as soon as possible.",
+      "audioTextZh": "向北京进近发出遇险信号，报告发动机起火情况，请求尽快着陆。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Beijing Approach, CCA991, engine fire, request expedite landing clearance.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，北京进近，国航991，发动机起火，请求紧急着陆许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/baa308a2d6485948bb9f.mp3"
@@ -170,8 +170,8 @@
     {
       "id": "radiotelephony-fzy-111800",
       "taskTitle": "14. CCA991 weather&engine fire, etc.-19",
-      "audioText": "[Inform the controller that you have open flames in the cargo compartment and rear cabin. Several passengers are hurt, request medical and fire services on landing.]",
-      "audioTextZh": "【通知管制员飞机货舱和客舱后部有明火，几位乘客受伤，请求着陆后提供医疗和消防服务。】",
+      "audioText": "Inform the controller that you have open flames in the cargo compartment and rear cabin. Several passengers are hurt, request medical and fire services on landing.",
+      "audioTextZh": "通知管制员飞机货舱和客舱后部有明火，几位乘客受伤，请求着陆后提供医疗和消防服务。",
       "referenceText": "(Mayday Mayday, mayday) Beijing Approach, CCA991. Request medical and fire services on landing. We have open flames in the cargo compartment and rear cabin. Several passengers are hurt.",
       "referenceTextZh": "（Mayday Mayday, mayday）北京进近，国航991。请求着陆后医疗和消防服务，货舱和客舱后部有明火，几位乘客受伤。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1357a4da80344124bf7e.mp3"

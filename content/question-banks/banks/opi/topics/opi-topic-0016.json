@@ -1,256 +1,285 @@
 {
   "id": "opi-topic-0016",
   "name": "复杂/特殊机场运行",
-  "declaredCardCount": 24,
   "cards": [
     {
-      "id": "opi-core-189",
-      "taskTitle": "运行-复杂/特殊机场运行-1",
-      "audioText": "What factors can cause an aircraft to overrun the runway after landing?",
-      "audioTextZh": "哪些因素可能导致航空器着陆后冲出跑道？",
-      "referenceText": "A runway overrun can result from an unstable or high approach, a tailwind, poor braking action on a wet, icy, or snowy runway, or landing without the normal flap configuration. Brake or thrust-reverser problems, a short runway, or exceeding aircraft performance limits can also contribute.",
-      "referenceTextZh": "冲出跑道可能由进近不稳定或偏高、顺风、湿滑、结冰或积雪跑道制动作用不良，或未使用正常襟翼构型着陆造成。刹车或反推故障、跑道较短，或超出飞机性能限制也可能促成冲出跑道。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/b268a79e0f5774858dfb5accfb7dc8b437059cbe95a41e86aaaa24dcfcf73805/audio/opi/opi-core-189.mp3",
-      "audioDurationSeconds": 3.816
-    },
-    {
-      "id": "opi-core-190",
-      "taskTitle": "运行-复杂/特殊机场运行-2",
-      "audioText": "Have you ever taken off from or landed on a short and narrow runway?",
-      "audioTextZh": "你是否曾在短而窄的跑道上起飞或着陆？",
-      "referenceText": "No, I have never taken off from or landed on a short and narrow runway. However, I have received relevant simulator training.",
-      "referenceTextZh": "没有，我从未在短而窄的跑道上起飞或着陆。不过，我接受过相关的模拟机训练。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/2a23515b0bd11e9a86fbfc92ae47c08ffb8b9f1b209c97c99db0ae8761870f97/audio/opi/opi-core-190.mp3",
-      "audioDurationSeconds": 3.576
-    },
-    {
-      "id": "opi-core-191",
-      "taskTitle": "运行-复杂/特殊机场运行-3",
-      "audioText": "How can pilots safely take off from and land on short and narrow runways?",
-      "audioTextZh": "飞行员如何在短而窄的跑道上安全起飞和着陆？",
-      "referenceText": "Pilots should assess the weather, runway condition, and aircraft performance before flight and follow the applicable SOP. They should use the full available runway, maintain directional control during takeoff, and determine the required landing distance before landing. They should conduct an approach briefing, confirm how duties will be shared, and be prepared to reject the takeoff, go around, or divert if needed.",
-      "referenceTextZh": "飞行员应在飞行前评估天气、跑道状况和飞机性能，并遵循适用的标准操作程序。起飞时应使用全部可用跑道并保持方向控制；着陆前应计算所需着陆距离。机组还应进行进近简令、确认职责分工，并做好在需要时中断起飞、复飞或改航的准备。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/4ecfff311bca55d80746a8b773e97ba23f722a4b173757880a25cc9c41169dc6/audio/opi/opi-core-191.mp3",
-      "audioDurationSeconds": 4.104
-    },
-    {
-      "id": "opi-core-192",
-      "taskTitle": "运行-复杂/特殊机场运行-4",
-      "audioText": "What makes a runway short and narrow for a particular aircraft?",
-      "audioTextZh": "对特定航空器而言，哪些因素会使一条跑道显得短而窄？",
-      "referenceText": "Whether a runway is short and narrow depends on the aircraft type. The same runway may be normal for a DA-40 but short and narrow for a larger aircraft such as a B747 or A320.",
-      "referenceTextZh": "跑道是否短而窄取决于飞机类型。同一条跑道对 DA-40 可能很正常，但对 B747 或 A320 等较大型飞机可能属于短窄跑道。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/de8cf8802b147f9390183e2fbeda551a943c29e6f2d10e438e0709f4b1ffd429/audio/opi/opi-core-192.mp3",
-      "audioDurationSeconds": 3.432
-    },
-    {
-      "id": "opi-core-193",
-      "taskTitle": "运行-复杂/特殊机场运行-5",
-      "audioText": "What hazards do pilots face when operating on short and narrow runways?",
-      "audioTextZh": "在短而窄的跑道上运行时，飞行员会面临哪些危险？",
-      "referenceText": "On a short runway, an aircraft may overrun the end. On a narrow runway, it may veer off the side. Either event can damage the aircraft, injure people on board, and reduce the safety margin.",
-      "referenceTextZh": "在短跑道上，飞机可能冲出跑道末端；在窄跑道上，飞机可能偏出跑道侧边。两种情况都可能损坏飞机、使机上人员受伤，并降低安全裕度。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/8b2b5742aae091065b310aa8e3db918badc1f9b4b1526023955379216edfe59f/audio/opi/opi-core-193.mp3",
-      "audioDurationSeconds": 4.056
-    },
-    {
-      "id": "opi-core-195",
-      "taskTitle": "运行-复杂/特殊机场运行-6",
-      "audioText": "How should a flight crew prepare before a flight to a high-elevation airport?",
-      "audioTextZh": "飞往高海拔机场前，飞行机组应如何准备？",
-      "referenceText": "Before the flight, I would analyse the terrain and weather and review the runway conditions and the airport's arrival and departure procedures. I would check aircraft performance, including the effect of aircraft weight, and make sure the aircraft was in good condition. I would also discuss possible emergency situations and the relevant procedures with the crew.",
-      "referenceTextZh": "飞行前，我会分析地形和天气，查看跑道状况以及机场的进离场程序。我会检查飞机性能，包括飞机重量的影响，并确认飞机状态良好。我还会与机组讨论可能发生的紧急情况及相关程序。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/ff4055827313b727fe7421cbde4f5494f5467ecf42429a14b150fb834b056989/audio/opi/opi-core-195.mp3",
-      "audioDurationSeconds": 4.032
-    },
-    {
-      "id": "opi-core-196",
-      "taskTitle": "运行-复杂/特殊机场运行-7",
-      "audioText": "How should a flight crew prepare for landing at a high-elevation airport?",
-      "audioTextZh": "飞行机组应如何为在高海拔机场着陆做准备？",
-      "referenceText": "The crew should review the airport elevation, terrain, weather, runway condition, and special arrival or missed-approach procedures. They should calculate landing performance with the expected weight and conditions, because high density altitude increases true airspeed and landing distance. The approach should be carefully briefed and stabilized, with a clear go-around plan.",
-      "referenceTextZh": "机组应查看机场标高、地形、天气、跑道状况，以及特殊的进场或复飞程序。应根据预计重量和条件计算着陆性能，因为高密度高度会增大真空速和着陆距离。进近应经过认真简令并保持稳定，同时明确复飞方案。",
-      "audio": "/question-bank-assets/revisions/opi/15d9ab83723a4956c70460abd33dc2965840ebb4f39e8f79a5271ba2991b3009/audio/opi/opi-core-196.mp3",
-      "audioDurationSeconds": 3.744
-    },
-    {
-      "id": "opi-core-198",
-      "taskTitle": "运行-复杂/特殊机场运行-8",
-      "audioText": "What priorities should pilots follow when responding to an abnormal situation at a high-elevation airport?",
-      "audioTextZh": "在高海拔机场处置非正常情况时，飞行员应遵循哪些优先顺序？",
-      "referenceText": "The first priority is to remain calm and maintain aircraft control. The pilots should monitor the surrounding terrain, follow the applicable SOP and QRH, and report the situation to ATC. They can request assistance or a priority landing and consider diverting to an alternate airport.",
-      "referenceTextZh": "首要任务是保持冷静并控制好飞机。飞行员应监控周围地形，遵循适用的标准操作程序和快速检查单，并向空中交通管制报告情况。他们可以申请协助或优先着陆，并考虑改航至备降机场。",
-      "audio": "/question-bank-assets/revisions/opi/4c5cbd8bdb258ee1c5c3af049bad52984381df75a687f6bf8924831992aadc0f/audio/opi/opi-core-198.mp3",
-      "audioDurationSeconds": 5.856
-    },
-    {
-      "id": "opi-core-200",
-      "taskTitle": "运行-复杂/特殊机场运行-9",
-      "audioText": "How does a high-elevation airport affect aircraft performance compared with an airport near sea level?",
-      "audioTextZh": "与接近海平面的机场相比，高海拔机场会如何影响航空器性能？",
-      "referenceText": "At a high-elevation airport, lower air density reduces engine performance and climb gradient. The aircraft needs a longer distance for takeoff and landing than it would near sea level.",
-      "referenceTextZh": "在高海拔机场，较低的空气密度会降低发动机性能和爬升梯度。与海平面附近相比，飞机起飞和着陆需要更长的距离。",
-      "audio": "/question-bank-assets/revisions/opi/41ed93bf3a0daa4936e0309f879995685aabd5ed5a2f8b05bcfc28cb2b818ed4/audio/opi/opi-core-200.mp3",
-      "audioDurationSeconds": 5.472
-    },
-    {
-      "id": "opi-core-201",
-      "taskTitle": "运行-复杂/特殊机场运行-10",
-      "audioText": "What qualifications may be required for pilots operating at high-elevation airports?",
-      "audioTextZh": "在高海拔机场运行的飞行员可能需要具备哪些资格？",
-      "referenceText": "Pilots may need sufficient flying experience, special ground and simulator training, and an appropriate medical examination before operating at high-elevation airports.",
-      "referenceTextZh": "飞行员在高海拔机场运行前，可能需要具备足够的飞行经验、接受专门的地面和模拟机训练，并完成适当的体检。",
-      "audio": "/question-bank-assets/revisions/opi/739eeb175320f7562fa82b705dea18bfc6b80866d0761bdbcbd9031db7520564/audio/opi/opi-core-201.mp3",
-      "audioDurationSeconds": 4.992
-    },
-    {
-      "id": "opi-core-202",
-      "taskTitle": "运行-复杂/特殊机场运行-11",
-      "audioText": "What is a high-elevation airport?",
-      "audioTextZh": "什么是高海拔机场？",
-      "referenceText": "A high-elevation airport is an airport located high above sea level. The lower air density can reduce engine performance and increase the takeoff and landing distances.",
-      "referenceTextZh": "高海拔机场是位于海拔较高地区的机场。较低的空气密度会降低发动机性能，并增加起飞和着陆距离。",
-      "audio": "/question-bank-assets/revisions/opi/b50f62beeb77c964b4a734b82093b3c1d755ad83f5e6607f2dbad9cda1660efa/audio/opi/opi-core-202.mp3",
-      "audioDurationSeconds": 1.872
-    },
-    {
-      "id": "opi-core-203",
-      "taskTitle": "运行-复杂/特殊机场运行-12",
-      "audioText": "How should pilots manage takeoffs and landings at high-elevation airports?",
-      "audioTextZh": "飞行员应如何管理高海拔机场的起飞和着陆？",
-      "referenceText": "Pilots should consider the aircraft weight, confirm that the runway length is sufficient, and follow the applicable SOP. During takeoff, they should pay close attention to the surrounding terrain, airspeed, and attitude. For landing, they should maintain a stable approach and monitor the speed closely.",
-      "referenceTextZh": "飞行员应考虑飞机重量，确认跑道长度足够，并遵循适用的标准操作程序。起飞过程中，应密切注意周围地形、空速和姿态。着陆时，应保持稳定进近并密切监控速度。",
-      "audio": "/question-bank-assets/revisions/opi/16a136d3c18d549dd30e433c3c391e2f1b57f2b1033ae75f4352b99e04441063/audio/opi/opi-core-203.mp3",
-      "audioDurationSeconds": 4.152
-    },
-    {
-      "id": "opi-core-204",
-      "taskTitle": "运行-复杂/特殊机场运行-13",
-      "audioText": "Have you ever operated at a high-elevation airport?",
-      "audioTextZh": "你是否曾在高海拔机场运行过？",
-      "referenceText": "No, I have not operated at a high-elevation airport because I am still a student pilot.",
-      "referenceTextZh": "没有，我还没有在高海拔机场运行过，因为我仍是一名学员飞行员。",
-      "audio": "/question-bank-assets/revisions/opi/3f85b18b6a4d6d287bd51881d620081fab135ef26b8329212d415acf9a227b62/audio/opi/opi-core-204.mp3",
-      "audioDurationSeconds": 2.928
-    },
-    {
-      "id": "opi-core-241",
-      "taskTitle": "运行-复杂/特殊机场运行-14",
-      "audioText": "Have you ever operated at a complex airport?",
-      "audioTextZh": "你是否曾在复杂机场运行过？",
-      "referenceText": "No. I am a student pilot, and I have never taken off from or landed at a complex airport.",
-      "referenceTextZh": "没有。我是一名学员飞行员，从未在复杂机场起飞或着陆。",
-      "audio": "/question-bank-assets/revisions/opi/eba673867da0d6c6930ba636a4075d15cd97c787d5876b3a32ddf89751ba2aea/audio/opi/opi-core-241.mp3",
-      "audioDurationSeconds": 2.664
-    },
-    {
-      "id": "opi-core-242",
-      "taskTitle": "运行-复杂/特殊机场运行-15",
-      "audioText": "What should pilots consider when taking off from or landing at a coastal airport?",
-      "audioTextZh": "在沿海机场起飞或着陆时，飞行员应考虑哪些因素？",
-      "referenceText": "Pilots should consider changeable weather at coastal airports, including possible thunderstorms or wind shear, and avoid those conditions when necessary.",
-      "referenceTextZh": "飞行员应考虑沿海机场多变的天气，包括可能出现的雷暴或风切变，并在必要时避开这些条件。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/165c502fbda088bfce341a9caf66d7abdc81faec844f3316a7aed18345cd41d8/audio/opi/opi-core-242.mp3",
-      "audioDurationSeconds": 4.248
-    },
-    {
-      "id": "opi-core-245",
-      "taskTitle": "运行-复杂/特殊机场运行-16",
-      "audioText": "What abnormal situations may arise during operations at a high-elevation airport?",
-      "audioTextZh": "在高海拔机场运行时，可能出现哪些非正常情况？",
-      "referenceText": "Pilots may encounter low-level wind shear at a high-elevation airport. A runway overrun may also occur if the available runway is too short or the aircraft is too heavy.",
-      "referenceTextZh": "飞行员在高海拔机场可能遭遇低空风切变。如果可用跑道太短或飞机过重，也可能发生冲出跑道。",
-      "audio": "/question-bank-assets/revisions/opi/99a76d72ae366880fdb9b36f5c91959689b9af859e5c7e5910f8988ea9dcacec/audio/opi/opi-core-245.mp3",
-      "audioDurationSeconds": 4.704
-    },
-    {
-      "id": "opi-core-246",
-      "taskTitle": "运行-复杂/特殊机场运行-17",
-      "audioText": "What features can make an airport operationally complex?",
-      "audioTextZh": "哪些特征会使机场的运行环境变得复杂？",
-      "referenceText": "An airport can be operationally complex because of complicated runway or taxiway layouts, difficult weather conditions, or challenging terrain.",
-      "referenceTextZh": "复杂的跑道或滑行道布局、困难的天气条件或具有挑战性的地形，都可能使机场在运行上较为复杂。",
-      "audio": "/question-bank-assets/revisions/opi/b590c41ad52cba8b549a86c629c954e1ac4d241abddb4aba566e08b1ca8b996e/audio/opi/opi-core-246.mp3",
-      "audioDurationSeconds": 3.336
-    },
-    {
-      "id": "opi-core-248",
-      "taskTitle": "运行-复杂/特殊机场运行-18",
-      "audioText": "What is a coastal airport?",
-      "audioTextZh": "什么是沿海机场？",
-      "referenceText": "A coastal airport is an airport located beside or close to the sea or another large body of water.",
-      "referenceTextZh": "沿海机场是位于海边或靠近海洋及其他大型水域的机场。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/06079d51ab81f8b259188648b8887cb37cdf00a68fff3e02245365bc74e109be/audio/opi/opi-core-248.mp3",
-      "audioDurationSeconds": 1.56
-    },
-    {
-      "id": "opi-core-249",
-      "taskTitle": "运行-复杂/特殊机场运行-19",
-      "audioText": "What qualifications may be required for pilots operating at a complex airport?",
-      "audioTextZh": "在复杂机场运行的飞行员可能需要具备哪些资格？",
-      "referenceText": "Pilots may need the appropriate medical certification, relevant training, a simulator test, and recent takeoff and landing experience at that type of airport.",
-      "referenceTextZh": "飞行员可能需要具备适当的体检合格证、接受相关培训、通过模拟机测试，并具有近期在该类机场起飞和着陆的经历。",
-      "audio": "/question-bank-assets/revisions/opi/b441e092c27b3ab33452459fcb6e12afeded14fedfad767fbf557449f6119f8a/audio/opi/opi-core-249.mp3",
-      "audioDurationSeconds": 4.728
-    },
-    {
-      "id": "opi-core-256",
-      "taskTitle": "运行-复杂/特殊机场运行-20",
-      "audioText": "Which do you prefer: operating at a complex airport or at a less demanding airport?",
-      "audioTextZh": "你更喜欢在哪种机场运行：复杂机场还是运行难度较低的机场？",
-      "referenceText": "I prefer a less demanding airport because the conditions are usually more stable and the operational risks are lower. However, operating at a complex airport can improve my skills and situational awareness.",
-      "referenceTextZh": "我更喜欢运行难度较低的机场，因为那里的条件通常更稳定，运行风险也较低。不过，在复杂机场运行可以提高我的技能和情景意识。",
-      "audio": "/question-bank-assets/revisions/opi/23236ffa5491f74b7563e48dbec143e0295ef3dc87a1539d3ea1676355beda74/audio/opi/opi-core-256.mp3",
-      "audioDurationSeconds": 4.992
-    },
-    {
-      "id": "opi-core-257",
-      "taskTitle": "运行-复杂/特殊机场运行-21",
-      "audioText": "Does your airline operate flights to any complex airports?",
-      "audioTextZh": "你所在的航空公司是否运营飞往复杂机场的航班？",
-      "referenceText": "I am not employed by an airline, so I cannot claim that my airline serves complex airports. In a typical operation, airports with high terrain, rapidly changing weather, high elevation, or short runways may require special qualifications, detailed briefings, and careful performance calculations. The crew follows the published procedures and operator requirements and keeps a clear diversion or go-around plan.",
-      "referenceTextZh": "我尚未受雇于航空公司，因此不能声称自己的航空公司飞往复杂机场。在典型运行中，地形较高、天气快速变化、海拔较高或跑道较短的机场，可能要求特殊资质、详细简令和仔细的性能计算。机组应遵循公布程序和运营人要求，并制定明确的改航或复飞方案。",
-      "audio": "/question-bank-assets/revisions/opi/b535b0e47564eaba3f771e04e4d79ad7e5cb9f356657061ba77fc4faabfa97d3/audio/opi/opi-core-257.mp3",
-      "audioDurationSeconds": 3.336
-    },
-    {
-      "id": "opi-core-265",
-      "taskTitle": "运行-复杂/特殊机场运行-22",
-      "audioText": "Have you received simulator training for operations at complex airports?",
-      "audioTextZh": "你是否接受过复杂机场运行的模拟机培训？",
-      "referenceText": "Yes, I have received simulator training for complex-airport operations. It covered short or narrow runways, complex terrain, adverse weather, special procedures, and go-arounds. The training focused on situational awareness and safe approach and landing techniques.",
-      "referenceTextZh": "是的，我接受过复杂机场运行的模拟机训练。训练涵盖短窄跑道、复杂地形、恶劣天气、特殊程序和复飞，重点是情景意识以及安全的进近和着陆技术。",
-      "audio": "/question-bank-assets/revisions/opi/049e2a8d79676a7b42f48eec85ba1fb4587b23d636fb36e0ecd26a836a8de969/audio/opi/opi-core-265.mp3",
-      "audioDurationSeconds": 4.272
-    },
-    {
       "id": "opi-core-266",
-      "taskTitle": "运行-复杂/特殊机场运行-23",
+      "audio": "/question-bank-assets/revisions/opi/2a031447a387d5e69dee5dd18ff4462adaa3bfec24c9e7022c73b72bf3d688e4/audio/opi/opi-core-266.mp3",
       "audioText": "How can pilots make a safe landing at a complex airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-23",
       "audioTextZh": "飞行员如何在复杂机场安全着陆？",
       "referenceText": "Pilots should prepare thoroughly by studying the terrain, weather, and procedures and completing a detailed performance assessment. They should maintain a stable approach, control speed and attitude carefully, and monitor the instruments and ATC instructions. They should be ready to go around if conditions deteriorate.",
       "referenceTextZh": "飞行员应通过研究地形、天气和程序，并完成详细的性能评估来充分准备。他们应保持稳定进近，谨慎控制速度和姿态，并监控仪表及空中交通管制指令。如果条件恶化，应随时准备复飞。",
-      "audio": "/question-bank-assets/revisions/opi/2a031447a387d5e69dee5dd18ff4462adaa3bfec24c9e7022c73b72bf3d688e4/audio/opi/opi-core-266.mp3",
       "audioDurationSeconds": 3.336
     },
     {
+      "id": "opi-core-189",
+      "audio": "/question-bank-assets/revisions/opi/b268a79e0f5774858dfb5accfb7dc8b437059cbe95a41e86aaaa24dcfcf73805/audio/opi/opi-core-189.mp3",
+      "audioText": "What factors can cause an aircraft to overrun the runway after landing?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-1",
+      "audioTextZh": "哪些因素可能导致航空器着陆后冲出跑道？",
+      "referenceText": "A runway overrun can result from an unstable or high approach, a tailwind, poor braking action on a wet, icy, or snowy runway, or landing without the normal flap configuration. Brake or thrust-reverser problems, a short runway, or exceeding aircraft performance limits can also contribute.",
+      "referenceTextZh": "冲出跑道可能由进近不稳定或偏高、顺风、湿滑、结冰或积雪跑道制动作用不良，或未使用正常襟翼构型着陆造成。刹车或反推故障、跑道较短，或超出飞机性能限制也可能促成冲出跑道。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "What factors can cause an aircraft to overrun the runway after landing?"
+        ],
+        "hotspot-2026-10-16-4621d2bec1c8": [
+          "What factors can cause an aircraft to overrun the runway after landing?"
+        ]
+      },
+      "audioDurationSeconds": 3.816
+    },
+    {
       "id": "opi-core-392",
-      "taskTitle": "运行-复杂/特殊机场运行-24",
+      "audio": "/question-bank-assets/revisions/opi/cebe01acc7a4f831ca313ae145a6840c5019a62453478ba5071cdce4e778f422/audio/opi/opi-core-392.mp3",
       "audioText": "What should a pilot do before landing at an unfamiliar airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-24",
       "audioTextZh": "在陌生机场着陆前，飞行员应做什么？",
       "referenceText": "The pilot should study the airport charts, NOTAMs, ATIS, weather, runway and taxiway conditions, and approach procedures. The pilot should communicate with ATC, monitor the instruments closely, and be prepared for a go-around.",
       "referenceTextZh": "飞行员应研究机场图、航行通告、ATIS、天气、跑道和滑行道状况以及进近程序。飞行员应与空中交通管制沟通，密切监控仪表，并做好复飞准备。",
-      "audio": "/question-bank-assets/revisions/opi/cebe01acc7a4f831ca313ae145a6840c5019a62453478ba5071cdce4e778f422/audio/opi/opi-core-392.mp3",
       "audioDurationSeconds": 3.36
+    },
+    {
+      "id": "opi-core-198",
+      "audio": "/question-bank-assets/revisions/opi/4c5cbd8bdb258ee1c5c3af049bad52984381df75a687f6bf8924831992aadc0f/audio/opi/opi-core-198.mp3",
+      "audioText": "What priorities should pilots follow when responding to an abnormal situation at a high-elevation airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-8",
+      "audioTextZh": "在高海拔机场处置非正常情况时，飞行员应遵循哪些优先顺序？",
+      "referenceText": "The first priority is to remain calm and maintain aircraft control. The pilots should monitor the surrounding terrain, follow the applicable SOP and QRH, and report the situation to ATC. They can request assistance or a priority landing and consider diverting to an alternate airport.",
+      "referenceTextZh": "首要任务是保持冷静并控制好飞机。飞行员应监控周围地形，遵循适用的标准操作程序和快速检查单，并向空中交通管制报告情况。他们可以申请协助或优先着陆，并考虑改航至备降机场。",
+      "audioDurationSeconds": 5.856
+    },
+    {
+      "id": "opi-core-241",
+      "audio": "/question-bank-assets/revisions/opi/eba673867da0d6c6930ba636a4075d15cd97c787d5876b3a32ddf89751ba2aea/audio/opi/opi-core-241.mp3",
+      "audioText": "Have you ever operated at a complex airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-14",
+      "audioTextZh": "你是否曾在复杂机场运行过？",
+      "referenceText": "No. I am a student pilot, and I have never taken off from or landed at a complex airport.",
+      "referenceTextZh": "没有。我是一名学员飞行员，从未在复杂机场起飞或着陆。",
+      "audioDurationSeconds": 2.664
+    },
+    {
+      "id": "opi-core-202",
+      "audio": "/question-bank-assets/revisions/opi/b50f62beeb77c964b4a734b82093b3c1d755ad83f5e6607f2dbad9cda1660efa/audio/opi/opi-core-202.mp3",
+      "audioText": "What is a high-elevation airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-11",
+      "audioTextZh": "什么是高海拔机场？",
+      "referenceText": "A high-elevation airport is an airport located high above sea level. The lower air density can reduce engine performance and increase the takeoff and landing distances.",
+      "referenceTextZh": "高海拔机场是位于海拔较高地区的机场。较低的空气密度会降低发动机性能，并增加起飞和着陆距离。",
+      "audioDurationSeconds": 1.872
+    },
+    {
+      "id": "opi-core-195",
+      "audio": "/question-bank-assets/revisions/opi/ff4055827313b727fe7421cbde4f5494f5467ecf42429a14b150fb834b056989/audio/opi/opi-core-195.mp3",
+      "audioText": "How should a flight crew prepare before a flight to a high-elevation airport?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-6",
+      "audioTextZh": "飞往高海拔机场前，飞行机组应如何准备？",
+      "referenceText": "Before the flight, I would analyse the terrain and weather and review the runway conditions and the airport's arrival and departure procedures. I would check aircraft performance, including the effect of aircraft weight, and make sure the aircraft was in good condition. I would also discuss possible emergency situations and the relevant procedures with the crew.",
+      "referenceTextZh": "飞行前，我会分析地形和天气，查看跑道状况以及机场的进离场程序。我会检查飞机性能，包括飞机重量的影响，并确认飞机状态良好。我还会与机组讨论可能发生的紧急情况及相关程序。",
+      "audioDurationSeconds": 4.032
+    },
+    {
+      "id": "opi-core-246",
+      "audio": "/question-bank-assets/revisions/opi/b590c41ad52cba8b549a86c629c954e1ac4d241abddb4aba566e08b1ca8b996e/audio/opi/opi-core-246.mp3",
+      "audioText": "What features can make an airport operationally complex?",
+      "taskTitle": "运行-复杂/特殊机场运行-17",
+      "audioTextZh": "哪些特征会使机场的运行环境变得复杂？",
+      "referenceText": "An airport can be operationally complex because of complicated runway or taxiway layouts, difficult weather conditions, or challenging terrain.",
+      "referenceTextZh": "复杂的跑道或滑行道布局、困难的天气条件或具有挑战性的地形，都可能使机场在运行上较为复杂。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-core-203",
+      "audio": "/question-bank-assets/revisions/opi/16a136d3c18d549dd30e433c3c391e2f1b57f2b1033ae75f4352b99e04441063/audio/opi/opi-core-203.mp3",
+      "audioText": "How should pilots manage takeoffs and landings at high-elevation airports?",
+      "taskTitle": "运行-复杂/特殊机场运行-12",
+      "audioTextZh": "飞行员应如何管理高海拔机场的起飞和着陆？",
+      "referenceText": "Pilots should consider the aircraft weight, confirm that the runway length is sufficient, and follow the applicable SOP. During takeoff, they should pay close attention to the surrounding terrain, airspeed, and attitude. For landing, they should maintain a stable approach and monitor the speed closely.",
+      "referenceTextZh": "飞行员应考虑飞机重量，确认跑道长度足够，并遵循适用的标准操作程序。起飞过程中，应密切注意周围地形、空速和姿态。着陆时，应保持稳定进近并密切监控速度。",
+      "audioDurationSeconds": 4.152
+    },
+    {
+      "id": "opi-core-256",
+      "audio": "/question-bank-assets/revisions/opi/23236ffa5491f74b7563e48dbec143e0295ef3dc87a1539d3ea1676355beda74/audio/opi/opi-core-256.mp3",
+      "audioText": "Which do you prefer: operating at a complex airport or at a less demanding airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-20",
+      "audioTextZh": "你更喜欢在哪种机场运行：复杂机场还是运行难度较低的机场？",
+      "referenceText": "I prefer a less demanding airport because the conditions are usually more stable and the operational risks are lower. However, operating at a complex airport can improve my skills and situational awareness.",
+      "referenceTextZh": "我更喜欢运行难度较低的机场，因为那里的条件通常更稳定，运行风险也较低。不过，在复杂机场运行可以提高我的技能和情景意识。",
+      "audioDurationSeconds": 4.992
+    },
+    {
+      "id": "opi-core-242",
+      "audio": "/question-bank-assets/revisions/opi/165c502fbda088bfce341a9caf66d7abdc81faec844f3316a7aed18345cd41d8/audio/opi/opi-core-242.mp3",
+      "audioText": "What should pilots consider when taking off from or landing at a coastal airport?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-15",
+      "audioTextZh": "在沿海机场起飞或着陆时，飞行员应考虑哪些因素？",
+      "referenceText": "Pilots should consider changeable weather at coastal airports, including possible thunderstorms or wind shear, and avoid those conditions when necessary.",
+      "referenceTextZh": "飞行员应考虑沿海机场多变的天气，包括可能出现的雷暴或风切变，并在必要时避开这些条件。",
+      "audioDurationSeconds": 4.248
+    },
+    {
+      "id": "opi-core-192",
+      "audio": "/question-bank-assets/revisions/opi/de8cf8802b147f9390183e2fbeda551a943c29e6f2d10e438e0709f4b1ffd429/audio/opi/opi-core-192.mp3",
+      "audioText": "What makes a runway short and narrow for a particular aircraft?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-4",
+      "audioTextZh": "对特定航空器而言，哪些因素会使一条跑道显得短而窄？",
+      "referenceText": "Whether a runway is short and narrow depends on the aircraft type. The same runway may be normal for a DA-40 but short and narrow for a larger aircraft such as a B747 or A320.",
+      "referenceTextZh": "跑道是否短而窄取决于飞机类型。同一条跑道对 DA-40 可能很正常，但对 B747 或 A320 等较大型飞机可能属于短窄跑道。",
+      "audioDurationSeconds": 3.432
+    },
+    {
+      "id": "opi-core-191",
+      "audio": "/question-bank-assets/revisions/opi/4ecfff311bca55d80746a8b773e97ba23f722a4b173757880a25cc9c41169dc6/audio/opi/opi-core-191.mp3",
+      "audioText": "How can pilots safely take off from and land on short and narrow runways?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-3",
+      "audioTextZh": "飞行员如何在短而窄的跑道上安全起飞和着陆？",
+      "referenceText": "Pilots should assess the weather, runway condition, and aircraft performance before flight and follow the applicable SOP. They should use the full available runway, maintain directional control during takeoff, and determine the required landing distance before landing. They should conduct an approach briefing, confirm how duties will be shared, and be prepared to reject the takeoff, go around, or divert if needed.",
+      "referenceTextZh": "飞行员应在飞行前评估天气、跑道状况和飞机性能，并遵循适用的标准操作程序。起飞时应使用全部可用跑道并保持方向控制；着陆前应计算所需着陆距离。机组还应进行进近简令、确认职责分工，并做好在需要时中断起飞、复飞或改航的准备。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "What should pilots consider when taking off from or landing on short and narrow runways?"
+        ],
+        "hotspot-2026-10-16-4621d2bec1c8": [
+          "What should pilots consider when taking off from or landing on short and narrow runways?"
+        ]
+      },
+      "audioDurationSeconds": 4.104
+    },
+    {
+      "id": "opi-core-257",
+      "audio": "/question-bank-assets/revisions/opi/b535b0e47564eaba3f771e04e4d79ad7e5cb9f356657061ba77fc4faabfa97d3/audio/opi/opi-core-257.mp3",
+      "audioText": "Does your airline operate flights to any complex airports?",
+      "taskTitle": "运行-复杂/特殊机场运行-21",
+      "audioTextZh": "你所在的航空公司是否运营飞往复杂机场的航班？",
+      "referenceText": "I am not employed by an airline, so I cannot claim that my airline serves complex airports. In a typical operation, airports with high terrain, rapidly changing weather, high elevation, or short runways may require special qualifications, detailed briefings, and careful performance calculations. The crew follows the published procedures and operator requirements and keeps a clear diversion or go-around plan.",
+      "referenceTextZh": "我尚未受雇于航空公司，因此不能声称自己的航空公司飞往复杂机场。在典型运行中，地形较高、天气快速变化、海拔较高或跑道较短的机场，可能要求特殊资质、详细简令和仔细的性能计算。机组应遵循公布程序和运营人要求，并制定明确的改航或复飞方案。",
+      "audioDurationSeconds": 3.336
+    },
+    {
+      "id": "opi-core-200",
+      "audio": "/question-bank-assets/revisions/opi/41ed93bf3a0daa4936e0309f879995685aabd5ed5a2f8b05bcfc28cb2b818ed4/audio/opi/opi-core-200.mp3",
+      "audioText": "How does a high-elevation airport affect aircraft performance compared with an airport near sea level?",
+      "taskTitle": "运行-复杂/特殊机场运行-9",
+      "audioTextZh": "与接近海平面的机场相比，高海拔机场会如何影响航空器性能？",
+      "referenceText": "At a high-elevation airport, lower air density reduces engine performance and climb gradient. The aircraft needs a longer distance for takeoff and landing than it would near sea level.",
+      "referenceTextZh": "在高海拔机场，较低的空气密度会降低发动机性能和爬升梯度。与海平面附近相比，飞机起飞和着陆需要更长的距离。",
+      "audioDurationSeconds": 5.472
+    },
+    {
+      "id": "opi-intake-20261019-parallel-runways",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470/audio/opi/opi-intake-20261019-parallel-runways.mp3",
+      "audioText": "What are parallel runways, and what should pilots pay attention to when operating near them?",
+      "studyTier": 0,
+      "taskTitle": "复杂/特殊机场运行-收集反馈",
+      "audioTextZh": "什么是平行跑道，在其附近运行时飞行员应注意什么？",
+      "examReported": true,
+      "referenceText": "Parallel runways are aligned in the same or nearly the same direction. Pilots must positively identify their assigned runway and follow the clearance and published procedures. They should be alert to confusion with the adjacent runway and to nearby traffic.",
+      "referenceTextZh": "平行跑道的方向相同或近似相同。飞行员必须明确识别指定跑道并遵循许可及公布程序，警惕误认相邻跑道及附近交通。",
+      "audioDurationSeconds": 5.016
+    },
+    {
+      "id": "opi-core-249",
+      "audio": "/question-bank-assets/revisions/opi/b441e092c27b3ab33452459fcb6e12afeded14fedfad767fbf557449f6119f8a/audio/opi/opi-core-249.mp3",
+      "audioText": "What qualifications may be required for pilots operating at a complex airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-19",
+      "audioTextZh": "在复杂机场运行的飞行员可能需要具备哪些资格？",
+      "referenceText": "Pilots may need the appropriate medical certification, relevant training, a simulator test, and recent takeoff and landing experience at that type of airport.",
+      "referenceTextZh": "飞行员可能需要具备适当的体检合格证、接受相关培训、通过模拟机测试，并具有近期在该类机场起飞和着陆的经历。",
+      "audioDurationSeconds": 4.728
+    },
+    {
+      "id": "opi-core-265",
+      "audio": "/question-bank-assets/revisions/opi/049e2a8d79676a7b42f48eec85ba1fb4587b23d636fb36e0ecd26a836a8de969/audio/opi/opi-core-265.mp3",
+      "audioText": "Have you received simulator training for operations at complex airports?",
+      "taskTitle": "运行-复杂/特殊机场运行-22",
+      "audioTextZh": "你是否接受过复杂机场运行的模拟机培训？",
+      "referenceText": "Yes, I have received simulator training for complex-airport operations. It covered short or narrow runways, complex terrain, adverse weather, special procedures, and go-arounds. The training focused on situational awareness and safe approach and landing techniques.",
+      "referenceTextZh": "是的，我接受过复杂机场运行的模拟机训练。训练涵盖短窄跑道、复杂地形、恶劣天气、特殊程序和复飞，重点是情景意识以及安全的进近和着陆技术。",
+      "audioDurationSeconds": 4.272
+    },
+    {
+      "id": "opi-core-248",
+      "audio": "/question-bank-assets/revisions/opi/06079d51ab81f8b259188648b8887cb37cdf00a68fff3e02245365bc74e109be/audio/opi/opi-core-248.mp3",
+      "audioText": "What is a coastal airport?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-18",
+      "audioTextZh": "什么是沿海机场？",
+      "referenceText": "A coastal airport is an airport located beside or close to the sea or another large body of water.",
+      "referenceTextZh": "沿海机场是位于海边或靠近海洋及其他大型水域的机场。",
+      "audioDurationSeconds": 1.56
+    },
+    {
+      "id": "opi-core-204",
+      "audio": "/question-bank-assets/revisions/opi/3f85b18b6a4d6d287bd51881d620081fab135ef26b8329212d415acf9a227b62/audio/opi/opi-core-204.mp3",
+      "audioText": "Have you ever operated at a high-elevation airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-13",
+      "audioTextZh": "你是否曾在高海拔机场运行过？",
+      "referenceText": "No, I have not operated at a high-elevation airport because I am still a student pilot.",
+      "referenceTextZh": "没有，我还没有在高海拔机场运行过，因为我仍是一名学员飞行员。",
+      "audioDurationSeconds": 2.928
+    },
+    {
+      "id": "opi-core-201",
+      "audio": "/question-bank-assets/revisions/opi/739eeb175320f7562fa82b705dea18bfc6b80866d0761bdbcbd9031db7520564/audio/opi/opi-core-201.mp3",
+      "audioText": "What qualifications may be required for pilots operating at high-elevation airports?",
+      "taskTitle": "运行-复杂/特殊机场运行-10",
+      "audioTextZh": "在高海拔机场运行的飞行员可能需要具备哪些资格？",
+      "referenceText": "Pilots may need sufficient flying experience, special ground and simulator training, and an appropriate medical examination before operating at high-elevation airports.",
+      "referenceTextZh": "飞行员在高海拔机场运行前，可能需要具备足够的飞行经验、接受专门的地面和模拟机训练，并完成适当的体检。",
+      "audioDurationSeconds": 4.992
+    },
+    {
+      "id": "opi-core-193",
+      "audio": "/question-bank-assets/revisions/opi/8b2b5742aae091065b310aa8e3db918badc1f9b4b1526023955379216edfe59f/audio/opi/opi-core-193.mp3",
+      "audioText": "What hazards do pilots face when operating on short and narrow runways?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-5",
+      "audioTextZh": "在短而窄的跑道上运行时，飞行员会面临哪些危险？",
+      "referenceText": "On a short runway, an aircraft may overrun the end. On a narrow runway, it may veer off the side. Either event can damage the aircraft, injure people on board, and reduce the safety margin.",
+      "referenceTextZh": "在短跑道上，飞机可能冲出跑道末端；在窄跑道上，飞机可能偏出跑道侧边。两种情况都可能损坏飞机、使机上人员受伤，并降低安全裕度。",
+      "audioDurationSeconds": 4.056
+    },
+    {
+      "id": "opi-core-245",
+      "audio": "/question-bank-assets/revisions/opi/99a76d72ae366880fdb9b36f5c91959689b9af859e5c7e5910f8988ea9dcacec/audio/opi/opi-core-245.mp3",
+      "audioText": "What abnormal situations may arise during operations at a high-elevation airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-16",
+      "audioTextZh": "在高海拔机场运行时，可能出现哪些非正常情况？",
+      "referenceText": "Pilots may encounter low-level wind shear at a high-elevation airport. A runway overrun may also occur if the available runway is too short or the aircraft is too heavy.",
+      "referenceTextZh": "飞行员在高海拔机场可能遭遇低空风切变。如果可用跑道太短或飞机过重，也可能发生冲出跑道。",
+      "audioDurationSeconds": 4.704
+    },
+    {
+      "id": "opi-core-190",
+      "audio": "/question-bank-assets/revisions/opi/2a23515b0bd11e9a86fbfc92ae47c08ffb8b9f1b209c97c99db0ae8761870f97/audio/opi/opi-core-190.mp3",
+      "audioText": "Have you ever taken off from or landed on a short and narrow runway?",
+      "studyTier": 2,
+      "taskTitle": "运行-复杂/特殊机场运行-2",
+      "audioTextZh": "你是否曾在短而窄的跑道上起飞或着陆？",
+      "referenceText": "No, I have never taken off from or landed on a short and narrow runway. However, I have received relevant simulator training.",
+      "referenceTextZh": "没有，我从未在短而窄的跑道上起飞或着陆。不过，我接受过相关的模拟机训练。",
+      "audioDurationSeconds": 3.576
+    },
+    {
+      "id": "opi-core-196",
+      "audio": "/question-bank-assets/revisions/opi/15d9ab83723a4956c70460abd33dc2965840ebb4f39e8f79a5271ba2991b3009/audio/opi/opi-core-196.mp3",
+      "audioText": "How should a flight crew prepare for landing at a high-elevation airport?",
+      "taskTitle": "运行-复杂/特殊机场运行-7",
+      "audioTextZh": "飞行机组应如何为在高海拔机场着陆做准备？",
+      "referenceText": "The crew should review the airport elevation, terrain, weather, runway condition, and special arrival or missed-approach procedures. They should calculate landing performance with the expected weight and conditions, because high density altitude increases true airspeed and landing distance. The approach should be carefully briefed and stabilized, with a clear go-around plan.",
+      "referenceTextZh": "机组应查看机场标高、地形、天气、跑道状况，以及特殊的进场或复飞程序。应根据预计重量和条件计算着陆性能，因为高密度高度会增大真空速和着陆距离。进近应经过认真简令并保持稳定，同时明确复飞方案。",
+      "audioDurationSeconds": 3.744
     }
   ],
+  "declaredCardCount": 25,
   "categoryId": "opi-category-05"
 }

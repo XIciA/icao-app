@@ -1,38 +1,38 @@
 {
   "id": "opi-topic-0054",
   "name": "EFB",
-  "declaredCardCount": 3,
   "cards": [
     {
-      "id": "opi-core-621",
-      "taskTitle": "缩略词-EFB-1",
-      "audioText": "What is an electronic flight bag (EFB)?",
-      "audioTextZh": "什么是电子飞行包（EFB）？",
-      "referenceText": "EFB stands for electronic flight bag. It is a digital device that can store manuals, charts, flight plans, NOTAMs, weather information, and airport data. Pilots use it for preflight preparation and as an in-flight reference, reducing the need for paper documents.",
-      "referenceTextZh": "EFB 是电子飞行包的缩写。它是一种可存储手册、航图、飞行计划、航行通告、天气信息和机场数据的数字设备。飞行员用它进行飞行前准备和飞行中查阅，从而减少纸质文件的使用。",
-      "audio": "/question-bank-assets/revisions/opi/40169d73af8097d06949512984689624d1809ee7f0bae3db9c28a046c5a19442/audio/opi/opi-core-621.mp3",
-      "audioDurationSeconds": 2.736
-    },
-    {
       "id": "opi-core-622",
-      "taskTitle": "缩略词-EFB-2",
+      "audio": "/question-bank-assets/revisions/opi/2720c1a944245a2f4c8fdd52c654d933b4ed034c0016cb791f8f733808d4f791/audio/opi/opi-core-622.mp3",
       "audioText": "Do you often use an EFB in your daily flight operations?",
+      "taskTitle": "缩略词-EFB-2",
       "audioTextZh": "你在日常飞行运行中经常使用 EFB 吗？",
       "referenceText": "Yes, I often use an EFB in daily flight operations. It gives me important information that supports the safety and efficiency of the flight.",
       "referenceTextZh": "是的，我在日常飞行运行中经常使用 EFB。它向我提供保障飞行安全和效率的重要信息。",
-      "audio": "/question-bank-assets/revisions/opi/2720c1a944245a2f4c8fdd52c654d933b4ed034c0016cb791f8f733808d4f791/audio/opi/opi-core-622.mp3",
       "audioDurationSeconds": 3.384
     },
     {
       "id": "opi-core-623",
-      "taskTitle": "缩略词-EFB-3",
+      "audio": "/question-bank-assets/revisions/opi/5a1284c69928f4f46a3798baad08146486de7841eff7feec90a23646ba4310d2/audio/opi/opi-core-623.mp3",
       "audioText": "Which EFB applications do you use most often during preflight preparation?",
+      "taskTitle": "缩略词-EFB-3",
       "audioTextZh": "飞行前准备期间，你最常使用哪些 EFB 应用程序？",
       "referenceText": "During preflight preparation, I most often use EFB applications for the flight plan, weather forecasts, NOTAMs, airport information, and aeronautical charts. I also use them to check loading information, aircraft performance data, and the MEL.",
       "referenceTextZh": "飞行前准备时，我最常使用 EFB 应用查看飞行计划、天气预报、航行通告、机场信息和航空图。我还用它们检查装载信息、飞机性能数据和 MEL。",
-      "audio": "/question-bank-assets/revisions/opi/5a1284c69928f4f46a3798baad08146486de7841eff7feec90a23646ba4310d2/audio/opi/opi-core-623.mp3",
       "audioDurationSeconds": 4.68
+    },
+    {
+      "id": "opi-core-621",
+      "audio": "/question-bank-assets/revisions/opi/40169d73af8097d06949512984689624d1809ee7f0bae3db9c28a046c5a19442/audio/opi/opi-core-621.mp3",
+      "audioText": "What is EFB?",
+      "taskTitle": "缩略词-EFB-1",
+      "audioTextZh": "什么是EFB？",
+      "referenceText": "EFB stands for electronic flight bag. It is a digital device that can store manuals, charts, flight plans, NOTAMs, weather information, and airport data. Pilots use it for preflight preparation and as an in-flight reference, reducing the need for paper documents.",
+      "referenceTextZh": "EFB 是电子飞行包的缩写。它是一种可存储手册、航图、飞行计划、航行通告、天气信息和机场数据的数字设备。飞行员用它进行飞行前准备和飞行中查阅，从而减少纸质文件的使用。",
+      "audioDurationSeconds": 2.736
     }
   ],
+  "declaredCardCount": 3,
   "categoryId": "opi-category-03"
 }

@@ -7,7 +7,7 @@
       "id": "atc-scenario-0072-card-main-1232",
       "taskTitle": "CSN 342-1",
       "audioText": "B: Your call sign is CSN 342, you are just over ZF and maintaining 4500 meters, you are about to enter the Area control airspace. Make an initial contact with Wuhan Control.",
-      "audioTextZh": "B: 你的呼号是 CSN 342，刚过 ZF，保持 4500 米，即将进入区域管制空域。与 武汉管制 建立初始联系。",
+      "audioTextZh": "B: 你的呼号是 CSN 342，刚过 ZF，保持 4500 米，即将进入区域管制空域。与武汉管制建立初始联系。",
       "referenceText": "Wuhan Control, CSN 342, over ZF, maintaining 4500 meters.",
       "referenceTextZh": "武汉管制，CSN 342，过 ZF，保持 4500 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1232.mp3"
@@ -61,7 +61,7 @@
       "id": "atc-scenario-0072-card-main-1238",
       "taskTitle": "CSN 342-7",
       "audioText": "B: Inform Wuhan Control that you have just received an anonymous call saying there is a bomb on board your aircraft.",
-      "audioTextZh": "B: 通知 武汉管制，你刚收到匿名电话称飞机上有炸弹。",
+      "audioTextZh": "B: 通知武汉管制，你刚收到匿名电话称飞机上有炸弹。",
       "referenceText": "Wuhan Control, CSN 342, we have just received an anonymous calls saying there is a bomb on board our aircraft.",
       "referenceTextZh": "武汉管制，CSN 342，我们刚收到匿名电话称我们飞机上有炸弹。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1238.mp3"
@@ -106,7 +106,7 @@
       "id": "atc-scenario-0072-card-main-1243",
       "taskTitle": "CSN 342-12",
       "audioText": "B: Make an initial contact with Wuhan Approach, inform the controller that you have received an anonymous call saying there is a bomb on board your aircraft, and you are returning to Wuhan.",
-      "audioTextZh": "B: 与 武汉进近 建立初始联系，通知管制员你收到匿名电话称飞机上有炸弹，并且正在返回 Wuhan。",
+      "audioTextZh": "B: 与武汉进近建立初始联系，通知管制员你收到匿名电话称飞机上有炸弹，并且正在返回 Wuhan。",
       "referenceText": "Wuhan Approach, CSN 342, maintaining 4800 meters, over ZF, we have received an anonymous call saying there is a bomb on board our aircraft, and we are turning back to land at Wuhan Airport.",
       "referenceTextZh": "武汉进近，CSN 342，保持 4800 米，过 ZF，我们收到匿名电话称飞机上有炸弹，正在返回 Wuhan Airport 着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1243.mp3"

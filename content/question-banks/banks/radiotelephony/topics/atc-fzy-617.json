@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111301",
       "taskTitle": "34. SIA151 flammable liquid, etc.-1",
-      "audioText": "[You are SIA151 from Singapore to Shanghai, now you are in Hong Kong area, cruising level at FL390, you are encountering severe icing at FL390 and want lower level.]",
-      "audioTextZh": "【你是新航151，从新加坡飞往上海，现在在香港空域，巡航高度层390，你在高度层390遇到了强烈积冰，想下降到较低高度。】",
+      "audioText": "You are SIA151 from Singapore to Shanghai, now you are in Hong Kong area, cruising level at FL390, you are encountering severe icing at FL390 and want lower level.",
+      "audioTextZh": "你是新航151，从新加坡飞往上海，现在在香港空域，巡航高度层390，你在高度层390遇到了强烈积冰，想下降到较低高度。",
       "referenceText": "Hong Kong Radar, SIA151, request lower level due severe icing.",
       "referenceTextZh": "香港雷达，新航151，由于强烈积冰，请求较更低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/42e73413a3c8640ffb0a.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-111303",
       "taskTitle": "34. SIA151 flammable liquid, etc.-3",
-      "audioText": "[During descending, you observed lightning to your right and aircraft was shaking, you suspect you have suffered lightning strike. Tell ATC this situation and request 10nm deviation to the left.]",
-      "audioTextZh": "【下降时，你发现右侧有闪电，机身一直摇晃，怀疑遭到了雷击。告诉ATC当前状况，请求向左偏航10海里。】",
+      "audioText": "During descending, you observed lightning to your right and aircraft was shaking, you suspect you have suffered lightning strike. Tell ATC this situation and request 10nm deviation to the left.",
+      "audioTextZh": "下降时，你发现右侧有闪电，机身一直摇晃，怀疑遭到了雷击。告诉ATC当前状况，请求向左偏航10海里。",
       "referenceText": "Hong Kong Control, SIA151, request 10nm deviation to the left due weather and we suspect we have suffered lightning strike.",
       "referenceTextZh": "香港区调，新航151，由于天气原因，同时我们怀疑飞机遭到了雷击，请求向左偏10海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e095f3540ec4bf37fd76.mp3"
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-111305",
       "taskTitle": "34. SIA151 flammable liquid, etc.-5",
-      "audioText": "[The purser report there is strange smell coming from the rear cabin. Tell ATC this situation and request further descent as a precaution.]",
-      "audioTextZh": "【乘务长报告称后舱内传出异味。告诉ATC该情况，同时请求进一步下降作为预防措施。】",
+      "audioText": "The purser report there is strange smell coming from the rear cabin. Tell ATC this situation and request further descent as a precaution.",
+      "audioTextZh": "乘务长报告称后舱内传出异味。告诉ATC该情况，同时请求进一步下降作为预防措施。",
       "referenceText": "Hong Kong Control, SIA151, there is strange smell from our rear cabin, request descent as a precaution.",
       "referenceTextZh": "香港区调，新航151，飞机后舱有异味，请求下降作为预防。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/50982a6f9d27e4b079b0.mp3"
@@ -65,7 +65,7 @@
       "audioText": "SIA151, confirm dangerous cargo on board?[Tell ATC you are carrying some flammable liquid in the aft cargo compartment.]",
       "audioTextZh": "新航151，证实机上是否有危险物品？【告诉ATC后货舱内有一些易燃液体。】",
       "referenceText": "Affirm, we are carrying some flammable liquid in the aft cargo compartment. SIA151.",
-      "referenceTextZh": "是的， 飞机后货舱内有一些易燃液体。新航151。",
+      "referenceTextZh": "是的，飞机后货舱内有一些易燃液体。新航151。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/7c3ab1b2d7b7ccd9cbae.mp3"
     },
     {
@@ -89,7 +89,7 @@
     {
       "id": "radiotelephony-fzy-111310",
       "taskTitle": "34. SIA151 flammable liquid, etc.-10",
-      "audioText": "[Tell ATC you may stop on runway and evacuate passengers there.]",
+      "audioText": "Tell ATC you may stop on runway and evacuate passengers there.",
       "audioTextZh": "【告诉ATC你可能停在跑道上疏散乘客。】",
       "referenceText": "Hong Kong Control, SIA151, we may stop on runway and evacuate passengers.",
       "referenceTextZh": "香港区调，新航151，我们可能停在跑道上疏散乘客。",
@@ -134,8 +134,8 @@
     {
       "id": "radiotelephony-fzy-111315",
       "taskTitle": "34. SIA151 flammable liquid, etc.-15",
-      "audioText": "[Call Hong Kong Approach and tell controller you are in urgency situation, ask priority land.]",
-      "audioTextZh": "【呼叫香港进近，告诉管制员你处于紧急状态，请求优先着陆。】",
+      "audioText": "Call Hong Kong Approach and tell controller you are in urgency situation, ask priority land.",
+      "audioTextZh": "呼叫香港进近，告诉管制员你处于紧急状态，请求优先着陆。",
       "referenceText": "Hong Kong Approach, SIA151, smoke in cabin, request priority land.",
       "referenceTextZh": "香港进近，新航151，客舱有烟雾，请求优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b2503b18846f32150958.mp3"
@@ -152,8 +152,8 @@
     {
       "id": "radiotelephony-fzy-111317",
       "taskTitle": "34. SIA151 flammable liquid, etc.-17",
-      "audioText": "[Tell ATC you need to park at remote area and disembark passengers there.]",
-      "audioTextZh": "【告诉ATC你需要停在远机位，让乘客在那里下飞机。】",
+      "audioText": "Tell ATC you need to park at remote area and disembark passengers there.",
+      "audioTextZh": "告诉ATC你需要停在远机位，让乘客在那里下飞机。",
       "referenceText": "Hong Kong Approach, SIA151, request to park at the remote apron and disembark passengers there.",
       "referenceTextZh": "香港进近，新航151，请求在停在远机位，让乘客在那里下飞机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/543e1b0c3dcf95e40576.mp3"

@@ -1,23 +1,23 @@
 {
   "id": "opi-category-01",
   "name": "气象",
+  "declaredCardCount": 203,
   "declaredTopicCount": 15,
-  "declaredCardCount": 195,
   "topicIds": [
+    "opi-fzy-655",
+    "opi-topic-0134",
     "opi-topic-0001",
-    "opi-topic-0002",
+    "opi-fzy-544",
     "opi-topic-0003",
-    "opi-topic-0021",
-    "opi-topic-0028",
-    "opi-topic-0037",
-    "opi-topic-0044",
     "opi-topic-0080",
+    "opi-fzy-1677",
+    "opi-topic-0044",
+    "opi-topic-0037",
+    "opi-topic-0002",
     "opi-topic-0090",
     "opi-topic-0115",
-    "opi-topic-0134",
+    "opi-topic-0021",
     "opi-topic-0140",
-    "opi-fzy-1677",
-    "opi-fzy-544",
-    "opi-fzy-655"
+    "opi-topic-0028"
   ]
 }

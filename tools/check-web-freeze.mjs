@@ -290,6 +290,15 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-scroll-context.ts", 
 reviewedFormalWebHashes.set("src/features/content/RadioPlayerScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/content/RadioPlayerScreen.tsx") ?? []), "f82e18ce0c027317de2a0edf8e61825eca118c841f0582d7f7b417d16ffb057f"])]);
 // Unified 1.2.1 release: only native marketing/build metadata changes; frozen Web stays on its existing version module.
 reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? []), "a43e706beec0ee7a3a592fc9cf02b38efd75edea288c6d491392dcfcdc154c37"])]);
+// 2026-10-22 user-authorized App content formatting/reorder. The legacy bank
+// snapshot, Vercel routes/build commands and app-version.web.ts are unchanged.
+// Public catalogs and scope logic are selected only by the Native/EdgeOne
+// repository path; require.context still inventories these exact files.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? []), "04d33f4a496b5a8d79c31cb4b0dd13c0174fbbb9e19c05d52178a9275b8c0aa0"])]);
+reviewedFormalWebHashes.set("package.json", [...new Set([...(reviewedFormalWebHashes.get("package.json") ?? []), "ec44e0f28beda97592d17934c6d3d089c78f26424479681c3cfc4c1dcb608cac"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public.json", [null, "e0fda83acd34edfbc0e9128c1c58dae794b218c6de953097b7e3e037f6066f44"]);
+reviewedFormalWebHashes.set("src/features/question-bank/data/question-bank-public-release.json", [null, "14fa89397036a2941ad556c24ddcfbbe662ae88af96b85a3333e38a419396b77"]);
+reviewedFormalWebHashes.set("src/features/question-bank/lib/study-scope.ts", [null, "71b95604abe64314989878dce3ceccaa4ef4f3c2a77e3deef0685e605ad31435"]);
 // End guide overlay exact pins
 
 export function normalizeReviewedFormalWebInputs(expected, current) {

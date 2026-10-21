@@ -25,7 +25,7 @@
       "id": "atc-scenario-0067-card-main-1146",
       "taskTitle": "CCA 1089-3",
       "audioText": "C: CCA 1089, read back correct, when ready for push back and start up, contact Ground on 121.75.",
-      "audioTextZh": "C: CCA 1089，复诵正确，准备推出和开车时联系 地面 121.75。",
+      "audioTextZh": "C: CCA 1089，复诵正确，准备推出和开车时联系地面 121.75。",
       "referenceText": "121.75, CCA 1089.",
       "referenceTextZh": "121.75，CCA 1089。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1146.mp3"
@@ -34,7 +34,7 @@
       "id": "atc-scenario-0067-card-main-1147",
       "taskTitle": "CCA 1089-4",
       "audioText": "B: Tell Ground you are ready for push back and start up.",
-      "audioTextZh": "B: 告诉 地面 你准备推出和开车。",
+      "audioTextZh": "B: 告诉地面你准备推出和开车。",
       "referenceText": "Beijing Ground, CCA 1089, ready for push back and start up.",
       "referenceTextZh": "北京地面，CCA 1089，准备推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1147.mp3"
@@ -88,7 +88,7 @@
       "id": "atc-scenario-0067-card-main-1153",
       "taskTitle": "CCA 1089-10",
       "audioText": "B: You are now at the holding point of Runway 36R, you've already contacted Tower, now tell the Tower you are ready for takeoff.",
-      "audioTextZh": "B: 现在你在跑道 36R 等待点，已联系 塔台，现在告诉 塔台 你准备起飞。",
+      "audioTextZh": "B: 现在你在跑道 36R 等待点，已联系塔台，现在告诉塔台你准备起飞。",
       "referenceText": "Beijing Tower, CCA 1089, hold at holding point Runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA 1089，在跑道 36R 等待点等待，准备离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1153.mp3"

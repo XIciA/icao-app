@@ -1,48 +1,74 @@
 {
   "id": "opi-topic-0139",
   "name": "飞行自动化系统",
-  "declaredCardCount": 4,
   "cards": [
     {
-      "id": "opi-extra-326",
-      "taskTitle": "飞机系统-飞行自动化系统-1",
-      "audioText": "Which automated systems are commonly used in a modern cockpit?",
-      "audioTextZh": "现代驾驶舱通常使用哪些自动化系统？",
-      "referenceText": "Common automated cockpit systems include the autopilot, autothrottle, and autoland system.",
-      "referenceTextZh": "常见的驾驶舱自动化系统包括自动驾驶仪、自动油门和自动着陆系统。",
-      "audio": "/question-bank-assets/revisions/opi/c732e1bee46e60af623ec46b926bbe2db6f49f5b5d65b08703d22d1da6ead74a/audio/opi/opi-extra-326.mp3",
-      "audioDurationSeconds": 3.408
-    },
-    {
-      "id": "opi-extra-327",
-      "taskTitle": "飞机系统-飞行自动化系统-2",
-      "audioText": "How reliable are modern cockpit automation systems?",
-      "audioTextZh": "现代驾驶舱自动化系统的可靠性如何？",
-      "referenceText": "Modern cockpit automation systems are generally very reliable. Many systems have backup capability, so another system may be available if one becomes inoperative.",
-      "referenceTextZh": "现代驾驶舱自动化系统通常非常可靠。许多系统具有备份能力，因此一个系统失效时，可能还有另一个系统可用。",
-      "audio": "/question-bank-assets/revisions/opi/7cf5570725313c3c372e649a5e94e4b52bcee94e73efeb7eb779ac98c2d6f216/audio/opi/opi-extra-327.mp3",
-      "audioDurationSeconds": 3.048
+      "id": "opi-intake-20261019-automation-definition",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb/audio/opi/opi-intake-20261019-automation-definition.mp3",
+      "audioText": "What does automation mean in a modern aircraft cockpit?",
+      "studyTier": 0,
+      "taskTitle": "飞行自动化系统-收集反馈",
+      "audioTextZh": "现代飞机驾驶舱中的自动化是什么意思？",
+      "examReported": true,
+      "referenceText": "Automation means that systems perform or support tasks that would otherwise require direct manual action, such as controlling the flight path or managing guidance. Pilots still need to select suitable modes, monitor performance, and intervene when necessary.",
+      "referenceTextZh": "自动化指由系统执行或辅助原本需要直接人工操作的任务，例如控制航迹或管理引导。飞行员仍需选择合适模式、监控运行并在必要时介入。",
+      "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-extra-329",
-      "taskTitle": "飞机系统-飞行自动化系统-3",
+      "audio": "/question-bank-assets/revisions/opi/ca4abed9891b6b0a1935c734b966c9a5fb087d11ffe484854095257cf362c81b/audio/opi/opi-extra-329.mp3",
       "audioText": "What is the role of pilots in today's highly automated cockpits?",
+      "taskTitle": "飞机系统-飞行自动化系统-3",
       "audioTextZh": "在当今高度自动化的驾驶舱中，飞行员发挥什么作用？",
       "referenceText": "In a highly automated cockpit, pilots manage and monitor the systems that help control the aircraft. Their role includes making sure the automation is operating as intended.",
       "referenceTextZh": "在高度自动化的驾驶舱中，飞行员负责管理和监控协助控制飞机的系统。他们的职责包括确保自动化系统按预期工作。",
-      "audio": "/question-bank-assets/revisions/opi/ca4abed9891b6b0a1935c734b966c9a5fb087d11ffe484854095257cf362c81b/audio/opi/opi-extra-329.mp3",
       "audioDurationSeconds": 3.528
     },
     {
+      "id": "opi-extra-326",
+      "audio": "/question-bank-assets/revisions/opi/c732e1bee46e60af623ec46b926bbe2db6f49f5b5d65b08703d22d1da6ead74a/audio/opi/opi-extra-326.mp3",
+      "audioText": "Which automated systems are commonly used in a modern cockpit?",
+      "taskTitle": "飞机系统-飞行自动化系统-1",
+      "audioTextZh": "现代驾驶舱通常使用哪些自动化系统？",
+      "referenceText": "Common automated cockpit systems include the autopilot, autothrottle, and autoland system.",
+      "referenceTextZh": "常见的驾驶舱自动化系统包括自动驾驶仪、自动油门和自动着陆系统。",
+      "audioDurationSeconds": 3.408
+    },
+    {
+      "id": "opi-intake-20261019-automation-degradation",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a/audio/opi/opi-intake-20261019-automation-degradation.mp3",
+      "audioText": "How should a flight crew respond if the level of automation is reduced unexpectedly?",
+      "studyTier": 0,
+      "taskTitle": "飞行自动化系统-收集反馈",
+      "audioTextZh": "自动化等级意外降低时，机组应该如何应对？",
+      "examReported": true,
+      "referenceText": "The crew should first maintain control and confirm the active modes and available capability. They should share tasks clearly, apply the relevant procedures, and select a level of automation they can safely manage. The plan may need to change if a required capability is lost.",
+      "referenceTextZh": "机组应首先保持操纵，确认当前模式和可用能力，明确分工，执行相关程序，并选择能够安全管理的自动化等级。如果失去所需能力，可能需要调整计划。",
+      "audioDurationSeconds": 4.344
+    },
+    {
+      "id": "opi-extra-327",
+      "audio": "/question-bank-assets/revisions/opi/7cf5570725313c3c372e649a5e94e4b52bcee94e73efeb7eb779ac98c2d6f216/audio/opi/opi-extra-327.mp3",
+      "audioText": "How reliable are modern cockpit automation systems?",
+      "taskTitle": "飞机系统-飞行自动化系统-2",
+      "audioTextZh": "现代驾驶舱自动化系统的可靠性如何？",
+      "referenceText": "Modern cockpit automation systems are generally very reliable. Many systems have backup capability, so another system may be available if one becomes inoperative.",
+      "referenceTextZh": "现代驾驶舱自动化系统通常非常可靠。许多系统具有备份能力，因此一个系统失效时，可能还有另一个系统可用。",
+      "audioDurationSeconds": 3.048
+    },
+    {
       "id": "opi-extra-329-part-2",
-      "taskTitle": "飞机系统-飞行自动化系统-4",
+      "audio": "/question-bank-assets/revisions/opi/b17f8eefbcd5e1d6d174e48ae15edfd56f560fb30829f93ac2cf5716a4850082/audio/opi/opi-extra-329-part-2.mp3",
       "audioText": "Do you think pilots have become too dependent on automation, and why?",
+      "taskTitle": "飞机系统-飞行自动化系统-4",
       "audioTextZh": "你认为飞行员是否变得过度依赖自动化？为什么？",
       "referenceText": "Yes, I think some pilots have become too dependent on automation. Automated systems perform much of the routine aircraft control, so pilots may spend more time monitoring and managing those systems.",
       "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。",
-      "audio": "/question-bank-assets/revisions/opi/b17f8eefbcd5e1d6d174e48ae15edfd56f560fb30829f93ac2cf5716a4850082/audio/opi/opi-extra-329-part-2.mp3",
       "audioDurationSeconds": 4.08
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-06"
 }

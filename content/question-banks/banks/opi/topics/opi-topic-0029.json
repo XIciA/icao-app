@@ -1,48 +1,61 @@
 {
   "id": "opi-topic-0029",
   "name": "夜航",
-  "declaredCardCount": 4,
   "cards": [
     {
-      "id": "opi-core-441",
-      "taskTitle": "运行-夜航-1",
-      "audioText": "Which airport visual aids help pilots land safely at night?",
-      "audioTextZh": "哪些机场目视助航设施可以帮助飞行员在夜间安全着陆？",
-      "referenceText": "Useful visual aids include approach lights, runway edge lights, runway centerline lights, and PAPI lights.",
-      "referenceTextZh": "有用的目视助航设施包括进近灯、跑道边灯、跑道中线灯和 PAPI 灯。",
-      "audio": "/question-bank-assets/revisions/opi/ea08f631dc29c7e2bbb1c5d4749fbece473741f65502152b522ade9c477667ca/audio/opi/opi-core-441.mp3",
-      "audioDurationSeconds": 3.36
-    },
-    {
       "id": "opi-core-442",
-      "taskTitle": "运行-夜航-2",
+      "audio": "/question-bank-assets/revisions/opi/d3950dfcf78522dfa97ed3497b96b84b7de3681e8ec8a80ea5ea5f815dca52cb/audio/opi/opi-core-442.mp3",
       "audioText": "What are the main differences between flying during the day and flying at night?",
+      "taskTitle": "运行-夜航-2",
       "audioTextZh": "昼间飞行与夜间飞行的主要区别是什么？",
       "referenceText": "Day flight usually provides better outside visual references, so landmarks, terrain, and objects are easier to see. At night, those references and visual contact with the runway are more limited, so pilots depend more on instruments and airport lighting. Visual illusions are also more likely at night.",
       "referenceTextZh": "昼间飞行通常有更好的外部目视参照，因此地标、地形和物体更容易看清。夜间这些参照和与跑道的目视接触更有限，飞行员会更依赖仪表和机场灯光。夜间也更容易产生视觉错觉。",
-      "audio": "/question-bank-assets/revisions/opi/d3950dfcf78522dfa97ed3497b96b84b7de3681e8ec8a80ea5ea5f815dca52cb/audio/opi/opi-core-442.mp3",
       "audioDurationSeconds": 3.912
     },
     {
       "id": "opi-core-444",
-      "taskTitle": "运行-夜航-3",
+      "audio": "/question-bank-assets/revisions/opi/826200763214a77bf08e92f6d3e65e983989e4de5687dfce8fd93ede2b49cc27/audio/opi/opi-core-444.mp3",
       "audioText": "What are the main components of a runway lighting system?",
+      "taskTitle": "运行-夜航-3",
       "audioTextZh": "跑道灯光系统主要由哪些部分组成？",
       "referenceText": "The main runway lighting components include runway edge lights, centerline lights, threshold lights, and touchdown-zone lights.",
       "referenceTextZh": "跑道灯光的主要组成包括跑道边灯、中线灯、入口灯和接地区灯。",
-      "audio": "/question-bank-assets/revisions/opi/826200763214a77bf08e92f6d3e65e983989e4de5687dfce8fd93ede2b49cc27/audio/opi/opi-core-444.mp3",
       "audioDurationSeconds": 2.832
     },
     {
+      "id": "opi-core-441",
+      "audio": "/question-bank-assets/revisions/opi/ea08f631dc29c7e2bbb1c5d4749fbece473741f65502152b522ade9c477667ca/audio/opi/opi-core-441.mp3",
+      "audioText": "Which airport visual aids help pilots land safely at night?",
+      "taskTitle": "运行-夜航-1",
+      "audioTextZh": "哪些机场目视助航设施可以帮助飞行员在夜间安全着陆？",
+      "referenceText": "Useful visual aids include approach lights, runway edge lights, runway centerline lights, and PAPI lights.",
+      "referenceTextZh": "有用的目视助航设施包括进近灯、跑道边灯、跑道中线灯和 PAPI 灯。",
+      "audioDurationSeconds": 3.36
+    },
+    {
+      "id": "opi-intake-20261019-navigation-lights",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb/audio/opi/opi-intake-20261019-navigation-lights.mp3",
+      "audioText": "What is the purpose of an aircraft's navigation lights?",
+      "studyTier": 0,
+      "taskTitle": "夜航-收集反馈",
+      "audioTextZh": "飞机航行灯的作用是什么？",
+      "examReported": true,
+      "referenceText": "Navigation lights help other pilots identify an aircraft's orientation, especially at night. The red light is on the left, the green light is on the right, and a white light is visible from the rear. They support visual recognition and collision avoidance.",
+      "referenceTextZh": "航行灯帮助其他飞行员判断飞机方向，夜间尤其重要。左侧红灯、右侧绿灯，后方可见白灯，有助于目视识别和防撞。",
+      "audioDurationSeconds": 2.904
+    },
+    {
       "id": "opi-core-445",
-      "taskTitle": "运行-夜航-4",
+      "audio": "/question-bank-assets/revisions/opi/e2e0250cc56c69b97b947e89d99c0e316c088e78d6697ef195b2ca3d4aef524d/audio/opi/opi-core-445.mp3",
       "audioText": "What functions does runway lighting provide during night operations?",
+      "taskTitle": "运行-夜航-4",
       "audioTextZh": "跑道灯光在夜间运行中发挥哪些作用？",
       "referenceText": "Runway lighting makes the runway boundaries and centerline easier to see at night. It helps pilots judge their position, align the aircraft with the runway, and conduct safer takeoffs and landings.",
       "referenceTextZh": "跑道灯光使飞行员在夜间更容易看清跑道边界和中线。它有助于判断位置、使飞机与跑道对正，并更安全地起飞和着陆。",
-      "audio": "/question-bank-assets/revisions/opi/e2e0250cc56c69b97b947e89d99c0e316c088e78d6697ef195b2ca3d4aef524d/audio/opi/opi-core-445.mp3",
       "audioDurationSeconds": 3.648
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-05"
 }

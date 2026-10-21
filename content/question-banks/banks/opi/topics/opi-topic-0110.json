@@ -1,28 +1,28 @@
 {
   "id": "opi-topic-0110",
   "name": "失控",
-  "declaredCardCount": 2,
   "cards": [
     {
-      "id": "opi-extra-055",
-      "taskTitle": "特情-失控-1",
-      "audioText": "What can cause an aircraft to lose control in flight?",
-      "audioTextZh": "哪些因素可能导致航空器在飞行中失去控制？",
-      "referenceText": "Loss of control can result from major failures of the flight-control, hydraulic, electrical, or engine systems. Pilot error, poor situational awareness, or exceeding aircraft limits can also be factors. Severe icing, turbulence, wind shear, thunderstorms, or an onboard fire may also lead to loss of control.",
-      "referenceTextZh": "飞行操纵、液压、电气或发动机系统发生严重故障，可能导致失去控制。飞行员差错、情景意识不足或超出飞机限制也可能是因素。严重结冰、颠簸、风切变、雷暴或机上火灾同样可能造成失控。",
-      "audio": "/question-bank-assets/revisions/opi/d6abdd50d61bee692ea4346957385bac939d154863d1792902f38ca65c0a9acc/audio/opi/opi-extra-055.mp3",
-      "audioDurationSeconds": 2.856
-    },
-    {
       "id": "opi-extra-056",
-      "taskTitle": "特情-失控-2",
+      "audio": "/question-bank-assets/revisions/opi/f476a5edd5e92cea4e2256b77e50833836ac3b66b8780ac6712caaac748020c9/audio/opi/opi-extra-056.mp3",
       "audioText": "What should a flight crew do if they lose control of the aircraft during flight?",
+      "taskTitle": "特情-失控-2",
       "audioTextZh": "飞行中航空器失去控制时，飞行机组应怎么做？",
       "referenceText": "The crew's first priority is to recover control by following the applicable SOP, memory items, and emergency checklist. Once able, the crew should advise ATC of the situation. If control cannot be restored, they should declare distress and prepare for a forced landing or ditching.",
       "referenceTextZh": "机组首要任务是按照适用的标准操作程序、记忆项目和应急检查单恢复控制。条件允许后，应向空中交通管制报告情况。如果无法恢复控制，应宣布遇险并准备迫降或水上迫降。",
-      "audio": "/question-bank-assets/revisions/opi/f476a5edd5e92cea4e2256b77e50833836ac3b66b8780ac6712caaac748020c9/audio/opi/opi-extra-056.mp3",
       "audioDurationSeconds": 3.984
+    },
+    {
+      "id": "opi-extra-055",
+      "audio": "/question-bank-assets/revisions/opi/d6abdd50d61bee692ea4346957385bac939d154863d1792902f38ca65c0a9acc/audio/opi/opi-extra-055.mp3",
+      "audioText": "What can cause an aircraft to lose control in flight?",
+      "taskTitle": "特情-失控-1",
+      "audioTextZh": "哪些因素可能导致航空器在飞行中失去控制？",
+      "referenceText": "Loss of control can result from major failures of the flight-control, hydraulic, electrical, or engine systems. Pilot error, poor situational awareness, or exceeding aircraft limits can also be factors. Severe icing, turbulence, wind shear, thunderstorms, or an onboard fire may also lead to loss of control.",
+      "referenceTextZh": "飞行操纵、液压、电气或发动机系统发生严重故障，可能导致失去控制。飞行员差错、情景意识不足或超出飞机限制也可能是因素。严重结冰、颠簸、风切变、雷暴或机上火灾同样可能造成失控。",
+      "audioDurationSeconds": 2.856
     }
   ],
+  "declaredCardCount": 2,
   "categoryId": "opi-category-02"
 }

@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-010",
   "name": "发动机整流罩损伤",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-010-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-010.jpg",
       "imageAlt": "发动机整流罩损伤航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-010-q01",
-      "taskTitle": "图片题-010-01",
+      "audio": "/question-bank-assets/revisions/opi/a42260ca9e20751b9390b231d84ec3e350bb35533227c381a31658ea8623d677/audio/opi/opi-image-010-q01.mp3",
       "audioText": "What damage can you see on the aircraft in this picture?",
+      "taskTitle": "图片题-010-01",
       "audioTextZh": "这张图片中的飞机有哪些损伤？",
       "referenceText": "The cowling around one engine is open or partly missing, and internal components are exposed. The nacelle area appears to be damaged. The picture does not provide enough detail to determine the cause or the full extent of the damage.",
       "referenceTextZh": "一台发动机周围的整流罩已经打开或部分缺失，内部部件暴露在外。短舱区域看起来已经受损。图片细节不足，无法判断损伤原因和完整范围。",
-      "audio": "/question-bank-assets/revisions/opi/a42260ca9e20751b9390b231d84ec3e350bb35533227c381a31658ea8623d677/audio/opi/opi-image-010-q01.mp3",
       "audioDurationSeconds": 2.904
     },
     {
       "id": "opi-image-010-q02",
-      "taskTitle": "图片题-010-02",
+      "audio": "/question-bank-assets/revisions/opi/2da56e5cc31dbfa989d2e1640bdf91bbd6197db7e6f94ca89e441c2d3be088f6/audio/opi/opi-image-010-q02.mp3",
       "audioText": "What actions should a pilot take if engine cowling damage occurs during cruise?",
+      "taskTitle": "图片题-010-02",
       "audioTextZh": "巡航过程中如果发动机整流罩发生损坏，飞行员应采取哪些措施？",
       "referenceText": "I would monitor the aircraft carefully for engine vibration, possible debris, performance loss, or further structural damage. I would be ready to take conservative action if these risks reduced the safety margin.",
       "referenceTextZh": "我会密切监控飞机，注意发动机振动、可能的碎片、性能下降或进一步的结构损伤。如果这些风险降低了安全裕度，我会准备采取保守措施。",
-      "audio": "/question-bank-assets/revisions/opi/2da56e5cc31dbfa989d2e1640bdf91bbd6197db7e6f94ca89e441c2d3be088f6/audio/opi/opi-image-010-q02.mp3",
       "audioDurationSeconds": 4.248
     },
     {
       "id": "opi-image-010-q03",
-      "taskTitle": "图片题-010-03",
+      "audio": "/question-bank-assets/revisions/opi/4e116cab6cb130a7bb3e6c77c5647eb83238ad911f05b0c06f585c60b255b732/audio/opi/opi-image-010-q03.mp3",
       "audioText": "What inspections should be performed to help prevent engine cowling failures?",
+      "taskTitle": "图片题-010-03",
       "audioTextZh": "应进行哪些检查，以帮助防止发动机整流罩失效？",
       "referenceText": "The preflight inspection should check that every cowling panel is correctly seated and that all latches and fasteners are secure. Maintenance inspections should look for worn hinges, damaged fasteners, cracks, distortion, and previous repairs. After maintenance work, the cowling should be closed, documented, and independently checked as required.",
       "referenceTextZh": "飞行前检查应确认每块整流罩面板都正确就位，所有锁扣和紧固件均已固定。维修检查应查找铰链磨损、紧固件损坏、裂纹、变形和既往修理痕迹。维修工作完成后，应按要求关闭整流罩、做好记录并进行独立复查。",
-      "audio": "/question-bank-assets/revisions/opi/4e116cab6cb130a7bb3e6c77c5647eb83238ad911f05b0c06f585c60b255b732/audio/opi/opi-image-010-q03.mp3",
       "audioDurationSeconds": 4.152
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

@@ -49,8 +49,8 @@ if (command === 'check') {
   const sentences = cards.filter((card) => card.bank === 'sentences900').sort((a, b) => a.id.localeCompare(b.id));
   assert.equal(sentences.length, 900);
   assert.deepEqual(training.trimEnd().split('\n').sort(), sentences.map((card) => card.audioText.trim()).sort());
-  assert.equal(createHash('sha256').update(training).digest('hex'), '9879f608d7743eb6862a47fd114a41de3321b58d58d08fdb2bb85d61660dc2dd');
-  console.log(`Tencent ASR assets valid: ${asset.items.length} source-backed hotwords, 900 unchanged training sentences; no network calls.`);
+  assert.equal(createHash('sha256').update(training).digest('hex'), '381a278bc654053218f1846aea0fd23d0a31860dc93212c6cf1aab47f12b37ba');
+  console.log(`Tencent ASR assets valid: ${asset.items.length} source-backed hotwords, 900 format-normalized training sentences; no network calls.`);
 } else if (command === 'candidates') {
   // Inventory only: selection remains a reviewed edit to hotwords.json, never automatic promotion.
   const inventory = new Map();

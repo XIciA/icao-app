@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-209426",
       "taskTitle": "48-ACA219 [复飞，改航]-1",
       "audioText": "B: [Your call sign is ACA219, you are now maintaining at 10700m, over ZHO at 35, next OBLIK at 50, make a standard position report to Wuhan Control.]",
-      "audioTextZh": "【你的呼号是加航219，你现在保持在10700米，过ZHO，35分，下一航路点OBLIK，50分，向武汉区调做一个标准位置报。】",
+      "audioTextZh": "你的呼号是加航219，你现在保持在10700米，过ZHO，35分，下一航路点OBLIK，50分，向武汉区调做一个标准位置报。",
       "referenceText": "Wuhan Control, ACA219, 10700m, over ZHO at 35, next OBLIK at 50.",
       "referenceTextZh": "武汉区调，加航219，10700米，过ZHO 35分，下一航路点OBLIK，50分。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/25dab36cc08700099911.mp3"
@@ -26,8 +26,8 @@
     {
       "id": "radiotelephony-fzy-209428",
       "taskTitle": "48-ACA219 [复飞，改航]-3",
-      "audioText": "B: [Now you’ve over OBLIK at time 03, report to Wuhan Control.]",
-      "audioTextZh": "【现在你已经飞过OBLIK 03分，报告给武汉区调。】",
+      "audioText": "B: [Now you've over OBLIK at time 03, report to Wuhan Control.]",
+      "audioTextZh": "现在你已经飞过OBLIK 03分，报告给武汉区调。",
       "referenceText": "Wuhan Control, ACA219, over OBLIK at 03.",
       "referenceTextZh": "武汉区调，加航219，过OBLIK，03分。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fdb032f500f2b60a8c27.mp3"
@@ -63,7 +63,7 @@
       "id": "radiotelephony-fzy-209432",
       "taskTitle": "48-ACA219 [复飞，改航]-7",
       "audioText": "B: [Now you have established on ILS approach, runway 36R, you are 15 miles from touch down, contact Wuhan Tower.]",
-      "audioTextZh": "【现在你已经建立盲降进近，跑道36右，你距离接地点15海里，联系武汉塔台。】",
+      "audioTextZh": "现在你已经建立盲降进近，跑道36右，你距离接地点15海里，联系武汉塔台。",
       "referenceText": "Wuhan Tower, ACA219, established on ILS approach, runway 36R, 15 miles from touch down.",
       "referenceTextZh": "武汉塔台，加航219，已经建立盲降进近，跑道36右，距离接地点15海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2b74ca68c4f91c40f616.mp3"
@@ -81,7 +81,7 @@
       "id": "radiotelephony-fzy-209434",
       "taskTitle": "48-ACA219 [复飞，改航]-9",
       "audioText": "B: [Now you are 10 miles from touchdown, ask Wuhan Tower for the cloud base.]",
-      "audioTextZh": "【你距离接地点10海里，向武汉塔台询问云底高。】",
+      "audioTextZh": "你距离接地点10海里，向武汉塔台询问云底高。",
       "referenceText": "Wuhan Tower, ACA 219, 10 miles from touchdown, request/confirm cloud base.",
       "referenceTextZh": "武汉塔台，加航219，距离接地点10海里，请求/证实云底高。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/0ca5c8e7b3c4417fa8a6.mp3"
@@ -99,7 +99,7 @@
       "id": "radiotelephony-fzy-209436",
       "taskTitle": "48-ACA219 [复飞，改航]-11",
       "audioText": "B: [At the minimum, you are unable to see the approach lights, you are carrying out a missed approach procedure, advise Tower.]",
-      "audioTextZh": "【在最低高度，你无法看到进近灯，你执行了复飞程序，告知塔台。】",
+      "audioTextZh": "在最低高度，你无法看到进近灯，你执行了复飞程序，告知塔台。",
       "referenceText": "Wuhan Tower, ACA219, no contact at minimum, going around.",
       "referenceTextZh": "武汉塔台，加航219，最低高度无法目视，复飞了。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/36aa0bb4e76081f73fd6.mp3"
@@ -117,7 +117,7 @@
       "id": "radiotelephony-fzy-209438",
       "taskTitle": "48-ACA219 [复飞，改航]-13",
       "audioText": "B: [Now You are climbing to the missed approach altitude, you decided to divert to Changsha airport, inform Wuhan Tower.]",
-      "audioTextZh": "【你现在爬升到复飞高度，你决定改航至长沙机场，告知武汉塔台。】",
+      "audioTextZh": "你现在爬升到复飞高度，你决定改航至长沙机场，告知武汉塔台。",
       "referenceText": "Wuhan Tower, ACA219, request divert to Changsha airport.",
       "referenceTextZh": "武汉塔台，加航219，请求改航至长沙机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/764ad4d416ddb8546fa3.mp3"

@@ -1,38 +1,38 @@
 {
   "id": "opi-topic-0069",
   "name": "QRH",
-  "declaredCardCount": 3,
   "cards": [
     {
-      "id": "opi-core-724",
-      "taskTitle": "缩略词-QRH-1",
-      "audioText": "What is a Quick Reference Handbook (QRH)?",
-      "audioTextZh": "什么是快速检查单（QRH）？",
-      "referenceText": "QRH stands for Quick Reference Handbook. It gives flight crews quick access to checklists and procedural guidance. This helps pilots respond correctly to operational problems, reduce errors, and manage workload.",
-      "referenceTextZh": "QRH 是快速参考手册的缩写。它使飞行机组可以迅速查阅检查单和程序指导，帮助飞行员正确处置运行问题、减少差错并管理工作负荷。",
-      "audio": "/question-bank-assets/revisions/opi/98e4370fedcde303ce6776a6d3639f38b2d2db878b9ab3de32aaf556ab8624db/audio/opi/opi-core-724.mp3",
-      "audioDurationSeconds": 2.88
-    },
-    {
       "id": "opi-core-725",
+      "audio": "/question-bank-assets/revisions/opi/15ab9462efef0cf1b7d292846fe37c9acc774830063c5bd3f4250593cfd89221/audio/opi/opi-core-725.mp3",
+      "audioText": "How does an interactive QRH differ from a conventional QRH?",
       "taskTitle": "缩略词-QRH-2",
-      "audioText": "How does an interactive Quick Reference Handbook (QRH) differ from a conventional QRH?",
-      "audioTextZh": "交互式快速检查单（QRH）与传统 QRH 有何不同？",
+      "audioTextZh": "交互式QRH与传统 QRH 有何不同？",
       "referenceText": "An interactive QRH provides interactive checklists with notes that help pilots understand what to do, how to do it, and why each step is needed. It can also offer aircraft-specific customization, electronic updates, navigation, and search functions. A conventional QRH mainly presents the procedures without those interactive notes and functions.",
       "referenceTextZh": "交互式快速参考手册（QRH）提供带有说明的交互式检查单，帮助飞行员理解要做什么、如何做以及每一步为何需要。它还可以提供机型定制、电子更新、导航和搜索功能。传统 QRH 主要呈现程序，没有这些交互说明和功能。",
-      "audio": "/question-bank-assets/revisions/opi/15ab9462efef0cf1b7d292846fe37c9acc774830063c5bd3f4250593cfd89221/audio/opi/opi-core-725.mp3",
       "audioDurationSeconds": 5.976
     },
     {
       "id": "opi-core-727",
+      "audio": "/question-bank-assets/revisions/opi/f319a03e56442a9ebe8d1e7a6662446aee2926fe83b2beaa884c8e4d45daa877/audio/opi/opi-core-727.mp3",
+      "audioText": "Why is QRH useful to flight crews?",
       "taskTitle": "缩略词-QRH-3",
-      "audioText": "Why is a Quick Reference Handbook (QRH) useful to flight crews?",
-      "audioTextZh": "快速检查单（QRH）为什么对飞行机组很有用？",
+      "audioTextZh": "QRH为什么对飞行机组很有用？",
       "referenceText": "A QRH gives the crew checklists and procedures to follow when an emergency occurs. It can improve situational awareness, reduce workload and human error, and support flight safety.",
       "referenceTextZh": "发生紧急情况时，快速参考手册（QRH）为机组提供需要执行的检查单和程序。它可以提高情景意识、降低工作负荷和人为差错，并保障飞行安全。",
-      "audio": "/question-bank-assets/revisions/opi/f319a03e56442a9ebe8d1e7a6662446aee2926fe83b2beaa884c8e4d45daa877/audio/opi/opi-core-727.mp3",
       "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-core-724",
+      "audio": "/question-bank-assets/revisions/opi/98e4370fedcde303ce6776a6d3639f38b2d2db878b9ab3de32aaf556ab8624db/audio/opi/opi-core-724.mp3",
+      "audioText": "What is QRH?",
+      "taskTitle": "缩略词-QRH-1",
+      "audioTextZh": "什么是QRH？",
+      "referenceText": "QRH stands for Quick Reference Handbook. It gives flight crews quick access to checklists and procedural guidance. This helps pilots respond correctly to operational problems, reduce errors, and manage workload.",
+      "referenceTextZh": "QRH 是快速参考手册的缩写。它使飞行机组可以迅速查阅检查单和程序指导，帮助飞行员正确处置运行问题、减少差错并管理工作负荷。",
+      "audioDurationSeconds": 2.88
     }
   ],
+  "declaredCardCount": 3,
   "categoryId": "opi-category-03"
 }

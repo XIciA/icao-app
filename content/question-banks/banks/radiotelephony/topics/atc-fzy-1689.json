@@ -89,16 +89,16 @@
     {
       "id": "radiotelephony-fzy-224657",
       "taskTitle": "76-JAL503 [气球，火山爆发]-10",
-      "audioText": "N: [When you were over HG, a balloon was in your 12 o’clock position. You have just taken evasive actions. Report this situation to ATC.]",
+      "audioText": "N: [When you were over HG, a balloon was in your 12 o'clock position. You have just taken evasive actions. Report this situation to ATC.]",
       "audioTextZh": "N：【当你过HG后，在你12点钟方向有一个气球，你执行了避让动作，将此情况告知管制员。】",
-      "referenceText": "Wuhan Departure, JAL503, over HG, we encountered a balloon at our 12 o’clock, we took evasive action.",
+      "referenceText": "Wuhan Departure, JAL503, over HG, we encountered a balloon at our 12 o'clock, we took evasive action.",
       "referenceTextZh": "武汉离场，日航503，过HG，我们在12点钟方向遇到了一个气球，我们采取了避让动作。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/23e95922888bc458d5bd.mp3"
     },
     {
       "id": "radiotelephony-fzy-224658",
       "taskTitle": "76-JAL503 [气球，火山爆发]-11",
-      "audioText": "C: JAL503, can you describe the balloon? Was any object clinging to the balloon?\nN: [Tell the controller it is difficult to judge the size of the balloon, it is probably a parade balloon, there isn’t any object clinging to the balloon.]",
+      "audioText": "C: JAL503, can you describe the balloon? Was any object clinging to the balloon?\nN: [Tell the controller it is difficult to judge the size of the balloon, it is probably a parade balloon, there isn't any object clinging to the balloon.]",
       "audioTextZh": "C：日航503，你能描述一下那个气球的情况吗？气球上有没有附着什么东西？\nN：【告知管制员很难判断气球的大小，它可能是游行用的气球，气球上没有附着任何物体。】",
       "referenceText": "Difficult to judge the size, possibly a parade balloon, no objects clinging to it, JAL503.",
       "referenceTextZh": "很难判断气球的大小，它可能是游行用的气球，气球上没有附着任何物体，日航503。",

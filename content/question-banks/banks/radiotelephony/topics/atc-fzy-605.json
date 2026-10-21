@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111080",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-1",
-      "audioText": "[Your call sign is AFR971, you are passing 3900m for 3600m. Contact Wuhan Approach.]",
-      "audioTextZh": "【你的呼号是法航971，你正在通过3900米，下降3600米。联系武汉进近。】",
+      "audioText": "Your call sign is AFR971, you are passing 3900m for 3600m. Contact Wuhan Approach.",
+      "audioTextZh": "你的呼号是法航971，你正在通过3900米，下降3600米。联系武汉进近。",
       "referenceText": "Wuhan Approach, AFR971, leaving 3900m for 3600m.",
       "referenceTextZh": "武汉进近，法航971，离开3900米，下降3600米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/bcd26eaceb817481b35a.mp3"
@@ -53,9 +53,9 @@
     {
       "id": "radiotelephony-fzy-111085",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-6",
-      "audioText": "AFR971, hold at DA as published.[Read back the controller’s instructions. And ask the reason for the hold.]",
+      "audioText": "AFR971, hold at DA as published.[Read back the controller's instructions. And ask the reason for the hold.]",
       "audioTextZh": "法航971，在DA标准等待。【复诵管制员的指令。询问等待的原因。】",
-      "referenceText": "Holding at DA as published, What’s the reason for the hold? AFR971.",
+      "referenceText": "Holding at DA as published, What's the reason for the hold? AFR971.",
       "referenceTextZh": "在DA标准等待，等待的原因是什么？法航971。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1f14b773d8dba4a4a888.mp3"
     },
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-111087",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-8",
-      "audioText": "[The EGT of your starboard engine is fluctuating, state this situation to the controller. Ask to leave the holding pattern right away.]",
-      "audioTextZh": "【飞机右侧发动机的排气温度不稳定，把这一情况报告给管制员。请求立刻离开等待航线。】",
+      "audioText": "The EGT of your starboard engine is fluctuating, state this situation to the controller. Ask to leave the holding pattern right away.",
+      "audioTextZh": "飞机右侧发动机的排气温度不稳定，把这一情况报告给管制员。请求立刻离开等待航线。",
       "referenceText": "Wuhan Approach, AFR971, The EGT of the right engine is fluctuating, request leave the holding pattern now.",
       "referenceTextZh": "武汉进近，法航971。右侧发动机的排气温度不稳定，请求现在离开等待程序。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/59325785386b7add4c04.mp3"
@@ -89,7 +89,7 @@
     {
       "id": "radiotelephony-fzy-111089",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-10",
-      "audioText": "AFR971, standby, traffic at your 3 o’clock maintaining 1800m crossing from your right to left, report visual.[Tell the controller you have seen the conflicting aircraft.]",
+      "audioText": "AFR971, standby, traffic at your 3 o'clock maintaining 1800m crossing from your right to left, report visual.[Tell the controller you have seen the conflicting aircraft.]",
       "audioTextZh": "法航971，稍等，你3点钟方向，高度1800米，有一架飞机正在从你右侧穿越到左侧，能见报告。【告诉管制员你已经看到了冲突航空器。】",
       "referenceText": "Wuhan Approach, AFR971, traffic in sight.",
       "referenceTextZh": "武汉进近，法航971，看到航空器了。",
@@ -98,8 +98,8 @@
     {
       "id": "radiotelephony-fzy-111090",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-11",
-      "audioText": "[Your starboard engine has failed, make an urgency call, and ask for landing priority. ]",
-      "audioTextZh": "【飞机右侧发动机失效，做紧急呼叫，并申请优先降落。】",
+      "audioText": "Your starboard engine has failed, make an urgency call, and ask for landing priority.",
+      "audioTextZh": "飞机右侧发动机失效，做紧急呼叫，并申请优先降落。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Approach, AFR971, our right engine has failed, request priority landing.",
       "referenceTextZh": "PANPAN, PANPAN, PANPAN，武汉进近，法航971，飞机右侧发动机失效，请求优先降落。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/d31a8ce140e9280a722e.mp3"
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-111093",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-14",
-      "audioText": "[Your heading is 060 and your altitude is 900m, contact Wuhan Tower and tell him about the condition of your aircraft.]",
-      "audioTextZh": "【你的航向是060，高度900米，联系武汉塔台，告诉其飞机目前情况。】",
+      "audioText": "Your heading is 060 and your altitude is 900m, contact Wuhan Tower and tell him about the condition of your aircraft.",
+      "audioTextZh": "你的航向是060，高度900米，联系武汉塔台，告诉其飞机目前情况。",
       "referenceText": "Wuhan Tower, AFR971, heading 060, altitude 900m, our right engine has failed.",
       "referenceTextZh": "武汉塔台，法航971，航向060，高度900米，飞机右侧发动机失效。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f002ce5e09352fdaf646.mp3"
@@ -152,7 +152,7 @@
     {
       "id": "radiotelephony-fzy-111096",
       "taskTitle": "22. AFR971 fluctuating EGT, etc.-17",
-      "audioText": "[Report you have established localizer runway 36L.]",
+      "audioText": "Report you have established localizer runway 36L.",
       "audioTextZh": "【报告你已经建立了跑道36左航道。】",
       "referenceText": "Wuhan Tower, AFR971, established localizer runway 36L.",
       "referenceTextZh": "武汉塔台，跑道36左航道已经建立。",

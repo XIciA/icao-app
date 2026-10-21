@@ -160,7 +160,7 @@
       "id": "atc-scenario-0183-card-main-3163",
       "taskTitle": "KLM 88-18",
       "audioText": "C: KLM 88, roger, follow the published missed approach procedure, climb to 1,200 meters. If able, advise further intentions.\nB: read back the instruction and tell the controller that you want to circle to Runway 18L for visual approach.",
-      "audioTextZh": "C： KLM 88，收到，执行公布的复飞程序，爬升至 1,200 米。如可以，报告后续意图。\nB： 复诵指令，并告诉管制员你希望盘旋至 Runway 18L 做目视进近。",
+      "audioTextZh": "C：KLM 88，收到，执行公布的复飞程序，爬升至 1,200 米。如可以，报告后续意图。\nB：复诵指令，并告诉管制员你希望盘旋至 Runway 18L 做目视进近。",
       "referenceText": "follow the published missed approach procedure, climb to 1200 meters, request circle to Runway 18L visual approach, KLM 88.",
       "referenceTextZh": "执行公布的复飞程序，爬升至 1200 米，请求盘旋至 Runway 18L 做目视进近，KLM 88。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q18.mp3"

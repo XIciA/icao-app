@@ -1,36 +1,36 @@
 {
   "id": "opi-image-topic-019",
   "name": "地面保障事故",
-  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-image-019-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-019.jpg",
       "imageAlt": "地面保障事故航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-019-q01",
-      "taskTitle": "图片题-019-01",
+      "audio": "/question-bank-assets/revisions/opi/d7645be31a4d98edcf49c9116d50d9cdd9375bc85c0593268205e38bda7b1e58/audio/opi/opi-image-019-q01.mp3",
       "audioText": "What factors may have contributed to the ground-handling accident shown in this picture?",
+      "taskTitle": "图片题-019-01",
       "audioTextZh": "哪些因素可能促成图中所示的地面作业事故？",
       "referenceText": "The aircraft appears to have collided with ground equipment near its forward fuselage. Possible contributing factors include poor communication, inadequate clearance, incorrect positioning, or a loss of control during towing or pushback. The picture alone cannot establish the exact cause.",
       "referenceTextZh": "飞机的前机身附近似乎与地面设备发生碰撞。可能的促成因素包括沟通不畅、间距不足、位置错误，或牵引、推出时失去控制。仅凭图片无法确定确切原因。",
-      "audio": "/question-bank-assets/revisions/opi/d7645be31a4d98edcf49c9116d50d9cdd9375bc85c0593268205e38bda7b1e58/audio/opi/opi-image-019-q01.mp3",
       "audioDurationSeconds": 4.416
     },
     {
       "id": "opi-image-019-q02",
-      "taskTitle": "图片题-019-02",
+      "audio": "/question-bank-assets/revisions/opi/cae7ef04916f2870d1263fa0d3e4db1329ecd71c6db016d68cc89ea3090bd480/audio/opi/opi-image-019-q02.mp3",
       "audioText": "How can ground-handling accidents involving aircraft be prevented?",
+      "taskTitle": "图片题-019-02",
       "audioTextZh": "如何预防涉及航空器的地面作业事故？",
       "referenceText": "The crew should recognize ground-handling risks early, maintain clear communication, and follow the standard operating procedures.",
       "referenceTextZh": "机组应尽早识别地面保障风险，保持清晰沟通，并遵循标准操作程序。",
-      "audio": "/question-bank-assets/revisions/opi/cae7ef04916f2870d1263fa0d3e4db1329ecd71c6db016d68cc89ea3090bd480/audio/opi/opi-image-019-q02.mp3",
       "audioDurationSeconds": 3.648
     }
   ],
+  "declaredCardCount": 3,
   "categoryId": "opi-category-08"
 }

@@ -1,104 +1,110 @@
 {
   "id": "opi-fzy-597",
   "name": "Figure 41",
-  "declaredCardCount": 9,
   "cards": [
     {
       "id": "opi-fzy-597-image-1",
       "kind": "image",
-      "taskTitle": "Figure 41 · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-597.png",
       "imageAlt": "Figure 41，用于本话题的看图描述和问答",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "Figure 41 · 看图材料"
     },
     {
       "id": "opi-fzy-110479",
-      "taskTitle": "Figure 41-1",
+      "audio": "/question-bank-assets/revisions/opi/c944877fb00c1e434dc8c07517ab5b9833d62f3ca464b2c724626b638b6569c9/audio/opi/opi-fzy-110479.mp3",
       "audioText": "What can you see in the picture?",
-      "audioTextZh": "从图中可以看到什么？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-1",
+      "audioTextZh": "从图中可以看到什么？",
       "referenceText": "This is the dangerous goods label of lithium battery transportation.",
       "referenceTextZh": "这是运输锂电池的危险品标签。",
-      "audio": "/question-bank-assets/revisions/opi/c944877fb00c1e434dc8c07517ab5b9833d62f3ca464b2c724626b638b6569c9/audio/opi/opi-fzy-110479.mp3",
       "audioDurationSeconds": 1.584
     },
     {
       "id": "opi-fzy-110480",
-      "taskTitle": "Figure 41-2",
+      "audio": "/question-bank-assets/revisions/opi/04023348240661ca239667233963452d54b43a81897f0edfc4023af57c4b606e/audio/opi/opi-fzy-110480.mp3",
       "audioText": "Can you say something about lithium battery according to this picture?",
-      "audioTextZh": "能描述一下这张图的细节么？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-2",
+      "audioTextZh": "能描述一下这张图的细节么？",
       "referenceText": "Lithium batteries are inflammable, explosive materials. It should handle carefully and avoid fire during transportation.",
       "referenceTextZh": "锂电池是易燃、易爆物质，运输时需谨慎处理，远离火源。",
-      "audio": "/question-bank-assets/revisions/opi/04023348240661ca239667233963452d54b43a81897f0edfc4023af57c4b606e/audio/opi/opi-fzy-110480.mp3",
       "audioDurationSeconds": 3.576
     },
     {
       "id": "opi-fzy-110481",
-      "taskTitle": "Figure 41-3",
+      "audio": "/question-bank-assets/revisions/opi/d6a164da587e6751440c0671f815dfd588ffd6dff788c8103891960690a9d45c/audio/opi/opi-fzy-110481.mp3",
       "audioText": "would you like to say something about dangerous goods?",
-      "audioTextZh": "能否介绍一下危险品？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-3",
+      "audioTextZh": "能否介绍一下危险品？",
       "referenceText": "In my opinion, dangerous goods refer to the regulated materials which are harmful to aircraft, personnel and cargo by temperature change, aircraft vibration and space limitations. For example, dry ice, paint and lights are all dangerous goods in air transportation.",
       "referenceTextZh": "在我看来，危险品是指在航空运输过程中，会因温度变化、飞机震动以及空间限制等因素的改变，对飞机、机上人员以及货物造成伤害的相关物品。比如，在航空运输中，干冰、油漆、车灯等都是危险品。",
-      "audio": "/question-bank-assets/revisions/opi/d6a164da587e6751440c0671f815dfd588ffd6dff788c8103891960690a9d45c/audio/opi/opi-fzy-110481.mp3",
       "audioDurationSeconds": 2.688
     },
     {
       "id": "opi-fzy-110482",
-      "taskTitle": "Figure 41-4",
+      "audio": "/question-bank-assets/revisions/opi/875ce98ef930180adcbe2f4ad2c774ed4527c1580de0c472236ff0c0b8856df0/audio/opi/opi-fzy-110482.mp3",
+      "retired": true,
       "audioText": "What are the types pf dangerous goods in aviation?",
-      "audioTextZh": "航空中的危险物品有哪几种？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-4",
+      "audioTextZh": "航空中的危险物品有哪几种？",
       "referenceText": "According to different requirements of air transportation, dangerous goods can be divided into three classes: the first class, dangerous goods that can transport in accordance of regulations. The second class of dangerous goods can only transport in compliance with regulations. The last class of goods can be transported under no circumstance with about 300 species. Any dangerous goods that are flammable, explosive and dangerous is prohibited to transport in any case.",
       "referenceTextZh": "根据航空运输的不同要求，危险品可以分为三类：第一类，在符合相关规定的情况下，可以进行航空运输的危险品。第二类是在正常情况下不可以运输，但满足相关要求后，航空运输时不受限制的危险品，共2种；最后一类是在任何情况下均禁止航空运输的危险品，这类危险品有近300种。所以易燃、易爆、易发生危险反应的任何危险物品，在任何情况下都禁止使用航空运输。",
-      "audio": "/question-bank-assets/revisions/opi/875ce98ef930180adcbe2f4ad2c774ed4527c1580de0c472236ff0c0b8856df0/audio/opi/opi-fzy-110482.mp3",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "Classification of dangerous goods"
+        ]
+      },
       "audioDurationSeconds": 3.048
     },
     {
       "id": "opi-fzy-110483",
-      "taskTitle": "Figure 41-5",
+      "audio": "/question-bank-assets/revisions/opi/76db52aa714ff997340689c8dd47a9fdf5ef23c77156c1bddcb38ecca538e92a/audio/opi/opi-fzy-110483.mp3",
       "audioText": "Are lithium batteries dangerous goods?",
-      "audioTextZh": "锂电池是危险品么？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-5",
+      "audioTextZh": "锂电池是危险品么？",
       "referenceText": "According to the relevant regulations promulgated by ICAO, lithium batteries are classified as dangerous goods. During flying, passengers need to put proper amounts of extra battery into handbag. Passengers should power off the device which has lithium batteries and pay attention to avoid accidental starting. Meanwhile, passengers should also take protection measures to prevent explosion due to friction, collisions, and short circuit.",
       "referenceTextZh": "根据国际民航组织颁布的相关规定，锂电池被列为危险品。乘坐飞机时，乘客需将合理数量的备用电池放入手提包内携带登机。乘机时需将所携带锂电池设备电源关闭，注意防止设备意外启动。同时乘客还应做好保护措施，防止其因摩擦、碰撞、短路而爆炸。",
-      "audio": "/question-bank-assets/revisions/opi/76db52aa714ff997340689c8dd47a9fdf5ef23c77156c1bddcb38ecca538e92a/audio/opi/opi-fzy-110483.mp3",
       "audioDurationSeconds": 2.208
     },
     {
       "id": "opi-fzy-110484",
-      "taskTitle": "Figure 41-6",
-      "audioText": "What are the risks of taking lithium batteries on board?",
-      "audioTextZh": "携带锂电池登机的危险有哪些？",
-      "studyTier": 0,
-      "referenceText": "Lithium-ion batteries are the “time bomb”which threat flight safety, it is likely to combust spontaneously and spread to the entire cargo. Illegal carrying of lithium batteries will be harmful to personal and property safety. Serious consequences will be subject to legal penalty.",
-      "referenceTextZh": "锂电池是威胁飞行安全的“定时炸弹”，因为其很可能会发生自燃，从而点燃整个货舱。违规携带锂电池，会危害到乘客人身及财产安全，造成严重后果，还会受到法律制裁。",
       "audio": "/question-bank-assets/revisions/opi/b4bcd9c197a0317076766ce13d74ebdeb540c01fb4a03b81119e163632feb1f9/audio/opi/opi-fzy-110484.mp3",
+      "audioText": "What are the risks of taking lithium batteries on board?",
+      "studyTier": 0,
+      "taskTitle": "Figure 41-6",
+      "audioTextZh": "携带锂电池登机的危险有哪些？",
+      "referenceText": "Lithium-ion batteries are the \"time bomb\"which threat flight safety, it is likely to combust spontaneously and spread to the entire cargo. Illegal carrying of lithium batteries will be harmful to personal and property safety. Serious consequences will be subject to legal penalty.",
+      "referenceTextZh": "锂电池是威胁飞行安全的“定时炸弹”，因为其很可能会发生自燃，从而点燃整个货舱。违规携带锂电池，会危害到乘客人身及财产安全，造成严重后果，还会受到法律制裁。",
       "audioDurationSeconds": 2.928
     },
     {
       "id": "opi-fzy-110485",
-      "taskTitle": "Figure 41-7",
+      "audio": "/question-bank-assets/revisions/opi/84485a9023c1f7537207dfce7d8d8688e7beae0a2b5a96acff0607c2c55a5d2b/audio/opi/opi-fzy-110485.mp3",
       "audioText": "What topics do you discuss during dangerous goods training?",
-      "audioTextZh": "在危险品训练中，你们都学了什么知识？",
       "studyTier": 0,
+      "taskTitle": "Figure 41-7",
+      "audioTextZh": "在危险品训练中，你们都学了什么知识？",
       "referenceText": "In the dangerous goods training of our company, we studied about the nature, feature and packing measures of dangerous goods and responses facing with accident.",
       "referenceTextZh": "在公司组织的危险品训练中，我们主要学习了危险品的性质及特征、危险品包装方法以及发生意外时的应对措施。",
-      "audio": "/question-bank-assets/revisions/opi/84485a9023c1f7537207dfce7d8d8688e7beae0a2b5a96acff0607c2c55a5d2b/audio/opi/opi-fzy-110485.mp3",
       "audioDurationSeconds": 3.288
     },
     {
       "id": "opi-fzy-110486",
-      "taskTitle": "Figure 41-8",
-      "audioText": "If the flammable liquid leaks, what should crew member do?",
-      "audioTextZh": "如果易燃液体泄漏，机组人员应如何应对？",
-      "studyTier": 0,
-      "referenceText": "When the flammable liquid leakage is founded, we shouldn’t try to put out the fire by water but inform the fire department. If the goods are loaded on board and burst into leakage, the pilot can only takeoff only after the cabin is cleaned. If leakage is found after taking off, the pilot should inform the controller immediately and request a quick landing and emergency rescue. Crew members should comfort passengers and perform emergency evacuation on landing.",
-      "referenceTextZh": "发现易燃液体泄漏，不要用水灭火，应及时通知消防部门。如果装载到飞机上后发现包装泄漏，则应仔细清理机舱，确认清理干净才可起飞。如果在起飞后发现泄漏，应及时通知管制员，请求快速着陆，提供紧急援救，机组成员应安抚乘客，并在降落后进行紧急疏散。",
       "audio": "/question-bank-assets/revisions/opi/f3a633993fd2cae713a8749ddea06b97707abd766577db78346ffa7b324ddbdc/audio/opi/opi-fzy-110486.mp3",
+      "audioText": "If the flammable liquid leaks, what should crew member do?",
+      "studyTier": 0,
+      "taskTitle": "Figure 41-8",
+      "audioTextZh": "如果易燃液体泄漏，机组人员应如何应对？",
+      "referenceText": "When the flammable liquid leakage is founded, we shouldn't try to put out the fire by water but inform the fire department. If the goods are loaded on board and burst into leakage, the pilot can only takeoff only after the cabin is cleaned. If leakage is found after taking off, the pilot should inform the controller immediately and request a quick landing and emergency rescue. Crew members should comfort passengers and perform emergency evacuation on landing.",
+      "referenceTextZh": "发现易燃液体泄漏，不要用水灭火，应及时通知消防部门。如果装载到飞机上后发现包装泄漏，则应仔细清理机舱，确认清理干净才可起飞。如果在起飞后发现泄漏，应及时通知管制员，请求快速着陆，提供紧急援救，机组成员应安抚乘客，并在降落后进行紧急疏散。",
       "audioDurationSeconds": 3.312
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-08"
 }

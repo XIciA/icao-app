@@ -235,7 +235,7 @@ describe('embeddedQuestionBankRepository', () => {
     )).toBe(true);
     expect(listeningCards.reduce((total, card) =>
       total + (card.kind !== 'image' && Array.isArray(card.choicesZh) ? card.choicesZh.length : 0), 0)).toBe(160);
-    expect(listening?.categories[0].topics[0].cards[0]).toMatchObject({
+    expect(listeningCards.find(card => card.id === 'listening-main-001')).toMatchObject({
       id: 'listening-main-001',
       audio: '/question-bank-assets/audio/listening/fzy/26c34fea0b90a1cc7c64.mp3',
       correctChoiceIndex: 1,
@@ -246,21 +246,21 @@ describe('embeddedQuestionBankRepository', () => {
     });
   });
 
-  it('keeps only the 1,044 confirmed free cards and their media references in the Native fallback', () => {
+  it('keeps only the 1,047 confirmed free cards and their media references in the Native fallback', () => {
     const resources = new Map(resourceManifest.files.map((resource) => [resource.publicPath, resource]));
 
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1502, 900, 5751, 2321, 382]);
-      expect(cards).toHaveLength(1044);
-      expect(resourceManifest.files).toHaveLength(12605);
+      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1502, 900, 5751, 2365, 382]);
+      expect(cards).toHaveLength(1047);
+      expect(resourceManifest.files).toHaveLength(12651);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
 
       const imageCards = cards.filter(({ bankId, card }) => bankId === 'opi' && card.kind === 'image');
       expect(imageCards).toHaveLength(0);
       const opiAudio = cards.filter(({ bankId }) => bankId === 'opi');
-      expect(opiAudio).toHaveLength(44);
+      expect(opiAudio).toHaveLength(47);
       expect(opiAudio.every(({card}) => Boolean(card.audio) && resources.has(card.audio!))).toBe(true);
 
       const expectedAudio = (bankId: string, cardId: string) => {

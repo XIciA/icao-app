@@ -181,7 +181,7 @@
       "audioTextZh": "东方565，经由滑行道Z4, C，C1，滑行至跑道36左外等待点。",
       "studyTier": 0,
       "referenceText": "Taxi via Z4, C, C1 to holding point of runway 36L, CES565.",
-      "referenceTextZh": "经由滑行道Z4, C，C1，跑道36左外等待, 东方565。",
+      "referenceTextZh": "经由滑行道Z4, C，C1，跑道36左外等待，东方565。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c92445e04bab4d1077e6.mp3"
     },
     {
@@ -367,8 +367,8 @@
     {
       "id": "radiotelephony-fzy-224816",
       "taskTitle": "采分点练习-滑行指令-7",
-      "audioText": "[As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.]",
-      "audioTextZh": "【在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。】",
+      "audioText": "As you are taxiing on taxiway A3, you noticed several baggage are scattered on A3 about 400 meters ahead of your aircraft. Tell Ground Control why you have stopped taxiing and ask ground staff to retrieve the baggage.",
+      "audioTextZh": "在滑行道A3上滑行时，你发现机身前方400米处散落着几件行李。告诉地面管制你为什么停止滑行，要求地面工作人员收走行李。",
       "studyTier": 2,
       "referenceText": "Wuhan Ground, QFA953, we found several baggage scattered on A3. We stop taxi and holding present position, request ground service to retrieve the baggage.",
       "referenceTextZh": "武汉地面，澳航953，我们发现滑行道A3上散落着几件行李。我们停止滑行，原地等待，请求地面工作人员收走行李。",
@@ -418,7 +418,7 @@
       "id": "radiotelephony-fzy-224823",
       "taskTitle": "采分点练习-滑行指令-14",
       "audioText": "KLM88, taxi via taxiway Z, Z4, A2, E2 and M1 to the holding point of runway 35, taxi with caution due workmen near taxiway Z.",
-      "audioTextZh": "荷航88， 经由Z，Z4，A2，E2，M1，滑行至35跑道等待点，谨慎滑行，滑行道Z附近有工人。",
+      "audioTextZh": "荷航88，经由Z，Z4，A2，E2，M1，滑行至35跑道等待点，谨慎滑行，滑行道Z附近有工人。",
       "studyTier": 2,
       "referenceText": "Roger. Taxi via taxiway Z, Z4, A2, E2, M1 to the holding point of runway 35, thanks, KLM88.",
       "referenceTextZh": "经由Z，Z4，A2，E2，M1滑行至35跑道外等待点，谢谢，荷航88。",
@@ -437,7 +437,7 @@
     {
       "id": "radiotelephony-fzy-224825",
       "taskTitle": "采分点练习-滑行指令-16",
-      "audioText": "C: QFA432,,taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
+      "audioText": "C: QFA432,, taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
       "audioTextZh": "澳航432，经由滑行道F，C1和B滑行至跑道26等待点。注意机位319尽头有施工。",
       "studyTier": 2,
       "referenceText": "Taxi via F, C1, B to holding point runway 26, roger caution, QFA432.",

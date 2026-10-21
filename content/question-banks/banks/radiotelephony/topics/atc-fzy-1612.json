@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-219613",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-1",
       "audioText": "N: [Your call sign is ACA521, a flight from Wuhan to Toronto. You are at Gate 232, you have got the latest ATIS T, contact Wuhan Delivery and request ATC clearance.]",
-      "audioTextZh": "【你的呼号是加航521，从武汉飞往多伦多。你现在在232机位，你收到最新通播T，联系武汉放行，请求管制许可。】",
+      "audioTextZh": "你的呼号是加航521，从武汉飞往多伦多。你现在在232机位，你收到最新通播T，联系武汉放行，请求管制许可。",
       "referenceText": "Wuhan Delivery, ACA521, Gate 232 with information T, request ATC clearance to Toronto.",
       "referenceTextZh": "武汉放行，加航521，232机位，通播T，请求飞往多伦多的管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/69d4127619797b567279.mp3"
@@ -27,7 +27,7 @@
       "id": "radiotelephony-fzy-219615",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-3",
       "audioText": "N: [Now you have completed push-back and startup. You are ready to taxi, contact Wuhan Ground.]",
-      "audioTextZh": "【你现在完成了推出开车。你准备好滑行，联系武汉地面。】",
+      "audioTextZh": "你现在完成了推出开车。你准备好滑行，联系武汉地面。",
       "referenceText": "Wuhan Ground, ACA521, push-back and startup completed, request taxi.",
       "referenceTextZh": "武汉地面，加航521，完成推出开车，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/099c88d8fa2ff5edd3b1.mp3"
@@ -45,7 +45,7 @@
       "id": "radiotelephony-fzy-219617",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-5",
       "audioText": "N: [Now you see there is an obstruction ahead of you on taxiway A3. You confirm the taxi instructions with Wuhan Ground.]",
-      "audioTextZh": "【在前方滑行道A3上，你看到了一个障碍物，你想与武汉地面证实滑行指令。】",
+      "audioTextZh": "在前方滑行道A3上，你看到了一个障碍物，你想与武汉地面证实滑行指令。",
       "referenceText": "Wuhan Ground, ACA521, obstruction ahead on taxiway A3, confirm taxi instructions.",
       "referenceTextZh": "武汉地面，加航521，滑行道A3上有障碍物，证实滑行指令。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fbe6e5ed5de9989ad63f.mp3"
@@ -72,7 +72,7 @@
       "id": "radiotelephony-fzy-219620",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-8",
       "audioText": "N: [Now you are holding at holding point E5, runway 04, you are fully ready, contact Wuhan Tower.]",
-      "audioTextZh": "【你现在在跑道04外等待点E5，你完全准备好了，联系武汉塔台。】",
+      "audioTextZh": "你现在在跑道04外等待点E5，你完全准备好了，联系武汉塔台。",
       "referenceText": "Wuhan Tower, ACA521, holding at holding point E5, runway 04, ready for departure.",
       "referenceTextZh": "武汉塔台，加航521，04跑道E5等待点，请求起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ab55817b01f5ec8407fb.mp3"
@@ -90,7 +90,7 @@
       "id": "radiotelephony-fzy-219622",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-10",
       "audioText": "N: [Now you are airborne, you are passing 1200m, climbing to 2400m, make an initial contact with Wuhan Departure.]",
-      "audioTextZh": "【现在你已离地，正通过1200米上到2400米，与武汉离场建立初始联系。】",
+      "audioTextZh": "现在你已离地，正通过1200米上到2400米，与武汉离场建立初始联系。",
       "referenceText": "Wuhan Departure, ACA521, airborne, passing 1200m, climbing to 2400m.",
       "referenceTextZh": "武汉离场，加航521，离地了，正通过1200米上到2400米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/92f63c4cf2612b3cfc9b.mp3"
@@ -107,9 +107,9 @@
     {
       "id": "radiotelephony-fzy-219624",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-12",
-      "audioText": "N: [Your TCAS indicates there is a conflicting traffic at 2 o’clock, 300m above your level. Confirm with Wuhan Control if it is in conflict with your aircraft.]",
-      "audioTextZh": "【你的TCAS指示2点钟有一架冲突航空器，在你高度层上方300米。与武汉区调证实是否与你是冲突航空器。】",
-      "referenceText": "Wuhan Control, ACA521, TCAS indication of traffic 2 o’clock 300m above, confirm it is a conflicting traffic.",
+      "audioText": "N: [Your TCAS indicates there is a conflicting traffic at 2 o'clock, 300m above your level. Confirm with Wuhan Control if it is in conflict with your aircraft.]",
+      "audioTextZh": "你的TCAS指示2点钟有一架冲突航空器，在你高度层上方300米。与武汉区调证实是否与你是冲突航空器。",
+      "referenceText": "Wuhan Control, ACA521, TCAS indication of traffic 2 o'clock 300m above, confirm it is a conflicting traffic.",
       "referenceTextZh": "武汉区调，加航521，TCAS指示2点钟方向有一架航空器，在我们上方300米，证实它是否是一架冲突航空器。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/158fa1e6f55c94368af9.mp3"
     },
@@ -117,7 +117,7 @@
       "id": "radiotelephony-fzy-219625",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-13",
       "audioText": "C: ACA521, negative. It is parallel to your flight track.",
-      "audioTextZh": "加航521，不是的， 它与你航迹平行。",
+      "audioTextZh": "加航521，不是的，它与你航迹平行。",
       "referenceText": "Roger thanks, ACA521.",
       "referenceTextZh": "收到，谢谢，加航521。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c0d4b7bcd21be17e84e5.mp3"
@@ -126,7 +126,7 @@
       "id": "radiotelephony-fzy-219626",
       "taskTitle": "64-ACA521 [滑行道障碍物，机长心脏病]-14",
       "audioText": "N: [During cruise, the captain suddenly suffered from heart attack, make a distress call to Wuhan Control and request immediate return for priority landing.]",
-      "audioTextZh": "【在巡航时，机长突然遇到心脏病，与武汉区调进行遇险通话，请求立刻返航进行优先着陆。】",
+      "audioTextZh": "在巡航时，机长突然遇到心脏病，与武汉区调进行遇险通话，请求立刻返航进行优先着陆。",
       "referenceText": "Mayday Mayday Mayday, Wuhan Control, ACA521, captain heart attack, request immediate return for priority landing.",
       "referenceTextZh": "Mayday Mayday Mayday，武汉区调，加航521，机长心脏病发作，请求立即返航。优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a3c1b251ac5d7c817e76.mp3"

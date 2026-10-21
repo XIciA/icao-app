@@ -35,10 +35,10 @@
     {
       "id": "radiotelephony-fzy-215457",
       "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-4",
-      "audioText": "C: QFA432,,taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
+      "audioText": "C: QFA432,, taxi via F, C1 and B to holding point runway 26. Caution work in progress at the end of gate 319.",
       "audioTextZh": "澳航432，经由滑行道F，C1和B滑行至跑道26等待点。注意机位319尽头有施工。",
       "referenceText": "Taxi via F, C1, B to holding point runway 26, roger caution, QFA432.",
-      "referenceTextZh": "经由滑行道F，C1和B滑行至跑道26等待点，收到 。",
+      "referenceTextZh": "经由滑行道F，C1和B滑行至跑道26等待点，收到。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1e8ac4bcfd24e4dd8fde.mp3"
     },
     {
@@ -80,9 +80,9 @@
     {
       "id": "radiotelephony-fzy-215462",
       "taskTitle": "50-QFA432 [沙尘暴，发动机失效]-9",
-      "audioText": "C: QFA432, maintain 3300 meters, opposite traffic 1 o’clock 10 miles, report clear of traffic.",
+      "audioText": "C: QFA432, maintain 3300 meters, opposite traffic 1 o'clock 10 miles, report clear of traffic.",
       "audioTextZh": "澳航432，保持3300米，对面航空器1点钟方向，10海里，解除冲突后报。",
-      "referenceText": "Maintain 3300 meters, opposite traffic 1 o’clock, 10 miles, report clear of traffic, QFA432.",
+      "referenceText": "Maintain 3300 meters, opposite traffic 1 o'clock, 10 miles, report clear of traffic, QFA432.",
       "referenceTextZh": "保持3300米，对面航空器1点钟方向，10海里，解除冲突后报，澳航432。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/07165b621f710590f9ca.mp3"
     },

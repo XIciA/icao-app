@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-224979",
       "taskTitle": "81-CSN3118 [积冰，复飞]-7",
-      "audioText": "N: [After leaving the icing level, you are rid of your aircraft’s icing problems, and will continue your approach to Wuhan airport. Information D received. Make an initial contact with Wuhan Approach.]",
+      "audioText": "N: [After leaving the icing level, you are rid of your aircraft's icing problems, and will continue your approach to Wuhan airport. Information D received. Make an initial contact with Wuhan Approach.]",
       "audioTextZh": "N：【离开积冰高度后，你解决了飞机的积冰问题，你将继续进近武汉机场，你收到了通播D，与武汉进近进行初始联系。】",
       "referenceText": "Wuhan Approach, CSN3118, maintaining 4200m, information D received.",
       "referenceTextZh": "武汉进近，南方3118，正保持4200米，通播D。",
@@ -200,7 +200,7 @@
       "audioText": "C: CSN3118, go around as published, the aircraft on the runway has rejected takeoff, possibly due to blown tyre, a runway inspection is scheduled as soon as he is able to vacate, I will notify you when the runway is ready.",
       "audioTextZh": "C：南方3118，按公布的程序复飞，跑道上飞机中断起飞了，大概是因为胎爆，他可以脱离后，将尽快进行跑道检查，跑道可用时，我会通知你。",
       "referenceText": "Roger, go around as published, CSN3118.",
-      "referenceTextZh": "收到 ，按发布的程序复飞，南方3118。",
+      "referenceTextZh": "收到，按发布的程序复飞，南方3118。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2f5154d6c1b88be204d4.mp3"
     },
     {

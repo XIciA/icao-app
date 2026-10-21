@@ -1,88 +1,101 @@
 {
   "id": "opi-topic-0004",
   "name": "应急设备",
-  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-core-058-part-2",
-      "taskTitle": "特情-应急设备-1",
-      "audioText": "What emergency equipment is available in the cockpit of the aircraft you fly?",
-      "audioTextZh": "你所飞飞机的驾驶舱内配备了哪些应急设备？",
-      "referenceText": "The example DA-40 I use for training carries a portable fire extinguisher within reach of the pilots and the emergency equipment required by its approved equipment list. It does not have transport-aircraft equipment such as quick-donning masks, protective breathing equipment, or escape ropes. Before flight, I verify the equipment actually installed and required for the planned operation.",
-      "referenceTextZh": "我用于训练的示例 DA-40 在飞行员触手可及的位置配有便携式灭火器，并携带其批准设备清单规定的应急设备。它没有快戴式面罩、防护式呼吸设备或逃生绳等运输机设备。飞行前，我会核实飞机实际安装的设备以及本次运行所需的设备。",
-      "audio": "/question-bank-assets/revisions/opi/1a98a9660a45d0e42dac4117af50f2b1f92adc9a03191e5eb9a0dc508cbb0453/audio/opi/opi-core-058-part-2.mp3",
-      "audioDurationSeconds": 4.176
-    },
-    {
-      "id": "opi-core-060",
-      "taskTitle": "特情-应急设备-2",
-      "audioText": "Does the aircraft type you fly have evacuation slides? If so, where are they located?",
-      "audioTextZh": "你所飞的机型配有撤离滑梯吗？如果有，安装在哪里？",
-      "referenceText": "No. I fly a DA-40 for flight training, and it does not have evacuation slides.",
-      "referenceTextZh": "没有。我使用 DA-40 进行飞行训练，这种飞机没有撤离滑梯。",
-      "audio": "/question-bank-assets/revisions/opi/369cee38011799dc2d86963d23c54e2eaf1ab91dca75599a27dc9f5abb740284/audio/opi/opi-core-060.mp3",
-      "audioDurationSeconds": 5.496
-    },
-    {
-      "id": "opi-core-061",
-      "taskTitle": "特情-应急设备-3",
-      "audioText": "How many evacuation slides are installed on the aircraft type you fly?",
-      "audioTextZh": "你所飞的机型安装了多少个撤离滑梯？",
-      "referenceText": "I fly the C172, which has no evacuation slides.",
-      "referenceTextZh": "我飞的是 C172，这种飞机没有撤离滑梯。",
-      "audio": "/question-bank-assets/revisions/opi/d8f61358cc6739e305b297ef8383e1b3d17de57ec2f5d88c9451e767846802b4/audio/opi/opi-core-061.mp3",
-      "audioDurationSeconds": 4.2
-    },
-    {
-      "id": "opi-core-062",
-      "taskTitle": "特情-应急设备-4",
-      "audioText": "Under what circumstances should evacuation slides be used?",
-      "audioTextZh": "在什么情况下应使用撤离滑梯？",
-      "referenceText": "Evacuation slides should be deployed when an emergency evacuation is required, for example because of a bomb on board, an engine fire, or smoke in the cabin.",
-      "referenceTextZh": "需要紧急撤离时应放出撤离滑梯，例如机上有炸弹、发动机起火或客舱出现烟雾。",
-      "audio": "/question-bank-assets/revisions/opi/52e01bfb97350c75399d9d8202b2e6219095f993a1d26da581b5e380e52dd616/audio/opi/opi-core-062.mp3",
-      "audioDurationSeconds": 3.528
-    },
-    {
-      "id": "opi-core-063",
-      "taskTitle": "特情-应急设备-5",
-      "audioText": "Have you ever heard of an evacuation slide being deployed accidentally during ground operations?",
-      "audioTextZh": "你听说过地面运行期间撤离滑梯意外释放的情况吗？",
-      "referenceText": "Yes. I heard about a passenger opening an overwing emergency exit on the ground, which caused the slide to deploy.",
-      "referenceTextZh": "是的。我听说过一名旅客在地面打开翼上应急出口，导致滑梯放出的事件。",
-      "audio": "/question-bank-assets/revisions/opi/7650976f365c362d72506e347e8359eff5f039f7ad0a7a8557a72b49dd6ade62/audio/opi/opi-core-063.mp3",
-      "audioDurationSeconds": 5.304
-    },
-    {
       "id": "opi-core-064",
-      "taskTitle": "特情-应急设备-6",
+      "audio": "/question-bank-assets/revisions/opi/9817181df205a01e10698df67c6e2c8c04b10c139a7585d2587e130f128c386d/audio/opi/opi-core-064.mp3",
       "audioText": "Why are pilots required to be familiar with emergency equipment?",
+      "taskTitle": "特情-应急设备-6",
       "audioTextZh": "为什么要求飞行员熟悉应急设备？",
       "referenceText": "Pilots need to know the location and function of emergency equipment so they can use it quickly and correctly during an emergency.",
       "referenceTextZh": "飞行员需要了解应急设备的位置和功能，以便在紧急情况下快速、正确地使用。",
-      "audio": "/question-bank-assets/revisions/opi/9817181df205a01e10698df67c6e2c8c04b10c139a7585d2587e130f128c386d/audio/opi/opi-core-064.mp3",
       "audioDurationSeconds": 3.696
     },
     {
-      "id": "opi-core-068",
-      "taskTitle": "特情-应急设备-7",
-      "audioText": "How easy is the emergency equipment on your aircraft to use?",
-      "audioTextZh": "你所飞飞机上的应急设备是否容易使用？",
-      "referenceText": "The emergency equipment on my aircraft is designed to be easy to reach and convenient to use. It includes fire extinguishers, oxygen masks, a flashlight, a first-aid kit, and life vests.",
-      "referenceTextZh": "我所飞机型的应急设备设计得便于接近和使用，包括灭火器、氧气面罩、手电筒、急救箱和救生衣。",
-      "audio": "/question-bank-assets/revisions/opi/ee6b83ad81317eae2fd60f8f475d60d9aa17457ab60899892401f32b0cdb632e/audio/opi/opi-core-068.mp3",
-      "audioDurationSeconds": 3.408
+      "id": "opi-core-058-part-2",
+      "audio": "/question-bank-assets/revisions/opi/1a98a9660a45d0e42dac4117af50f2b1f92adc9a03191e5eb9a0dc508cbb0453/audio/opi/opi-core-058-part-2.mp3",
+      "audioText": "What emergency equipment is available in the cockpit of the aircraft you fly?",
+      "taskTitle": "特情-应急设备-1",
+      "audioTextZh": "你所飞飞机的驾驶舱内配备了哪些应急设备？",
+      "referenceText": "The example DA-40 I use for training carries a portable fire extinguisher within reach of the pilots and the emergency equipment required by its approved equipment list. It does not have transport-aircraft equipment such as quick-donning masks, protective breathing equipment, or escape ropes. Before flight, I verify the equipment actually installed and required for the planned operation.",
+      "referenceTextZh": "我用于训练的示例 DA-40 在飞行员触手可及的位置配有便携式灭火器，并携带其批准设备清单规定的应急设备。它没有快戴式面罩、防护式呼吸设备或逃生绳等运输机设备。飞行前，我会核实飞机实际安装的设备以及本次运行所需的设备。",
+      "audioDurationSeconds": 4.176
+    },
+    {
+      "id": "opi-core-062",
+      "audio": "/question-bank-assets/revisions/opi/52e01bfb97350c75399d9d8202b2e6219095f993a1d26da581b5e380e52dd616/audio/opi/opi-core-062.mp3",
+      "audioText": "Under what circumstances should evacuation slides be used?",
+      "taskTitle": "特情-应急设备-4",
+      "audioTextZh": "在什么情况下应使用撤离滑梯？",
+      "referenceText": "Evacuation slides should be deployed when an emergency evacuation is required, for example because of a bomb on board, an engine fire, or smoke in the cabin.",
+      "referenceTextZh": "需要紧急撤离时应放出撤离滑梯，例如机上有炸弹、发动机起火或客舱出现烟雾。",
+      "audioDurationSeconds": 3.528
+    },
+    {
+      "id": "opi-intake-20261019-slide-risks",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36/audio/opi/opi-intake-20261019-slide-risks.mp3",
+      "audioText": "What risks should crew members consider when using evacuation slides?",
+      "studyTier": 0,
+      "taskTitle": "应急设备-收集反馈",
+      "audioTextZh": "使用应急滑梯时机组应考虑哪些风险？",
+      "examReported": true,
+      "referenceText": "People can be injured if an exit is unsafe, the slide is not usable, or passengers carry baggage. Fire, obstacles, and strong wind may also create hazards. Crew members should assess the exit and direct passengers according to the evacuation procedures.",
+      "referenceTextZh": "出口不安全、滑梯不可用或旅客携带行李都可能造成人员受伤。火情、障碍物和强风也可能形成危险。机组应评估出口并按撤离程序引导旅客。",
+      "audioDurationSeconds": 3.912
     },
     {
       "id": "opi-core-072",
-      "taskTitle": "特情-应急设备-8",
+      "audio": "/question-bank-assets/revisions/opi/f24999ac820602193972a4d0d4ead84f39f2654196b3d7aa9c5e4ca5d713d1b1/audio/opi/opi-core-072.mp3",
       "audioText": "What functions do evacuation slides serve?",
+      "taskTitle": "特情-应急设备-8",
       "audioTextZh": "撤离滑梯有哪些用途？",
       "referenceText": "Evacuation slides help people on board leave the aircraft as quickly as possible during an evacuation.",
       "referenceTextZh": "撤离滑梯可以帮助机上人员在撤离时尽快离开飞机。",
-      "audio": "/question-bank-assets/revisions/opi/f24999ac820602193972a4d0d4ead84f39f2654196b3d7aa9c5e4ca5d713d1b1/audio/opi/opi-core-072.mp3",
       "audioDurationSeconds": 2.616
+    },
+    {
+      "id": "opi-core-063",
+      "audio": "/question-bank-assets/revisions/opi/7650976f365c362d72506e347e8359eff5f039f7ad0a7a8557a72b49dd6ade62/audio/opi/opi-core-063.mp3",
+      "audioText": "Have you ever heard of an evacuation slide being deployed accidentally during ground operations?",
+      "taskTitle": "特情-应急设备-5",
+      "audioTextZh": "你听说过地面运行期间撤离滑梯意外释放的情况吗？",
+      "referenceText": "Yes. I heard about a passenger opening an overwing emergency exit on the ground, which caused the slide to deploy.",
+      "referenceTextZh": "是的。我听说过一名旅客在地面打开翼上应急出口，导致滑梯放出的事件。",
+      "audioDurationSeconds": 5.304
+    },
+    {
+      "id": "opi-core-060",
+      "audio": "/question-bank-assets/revisions/opi/369cee38011799dc2d86963d23c54e2eaf1ab91dca75599a27dc9f5abb740284/audio/opi/opi-core-060.mp3",
+      "audioText": "Does the aircraft type you fly have evacuation slides? If so, where are they located?",
+      "taskTitle": "特情-应急设备-2",
+      "audioTextZh": "你所飞的机型配有撤离滑梯吗？如果有，安装在哪里？",
+      "referenceText": "No. I fly a DA-40 for flight training, and it does not have evacuation slides.",
+      "referenceTextZh": "没有。我使用 DA-40 进行飞行训练，这种飞机没有撤离滑梯。",
+      "audioDurationSeconds": 5.496
+    },
+    {
+      "id": "opi-core-068",
+      "audio": "/question-bank-assets/revisions/opi/ee6b83ad81317eae2fd60f8f475d60d9aa17457ab60899892401f32b0cdb632e/audio/opi/opi-core-068.mp3",
+      "audioText": "How easy is the emergency equipment on your aircraft to use?",
+      "taskTitle": "特情-应急设备-7",
+      "audioTextZh": "你所飞飞机上的应急设备是否容易使用？",
+      "referenceText": "The emergency equipment on my aircraft is designed to be easy to reach and convenient to use. It includes fire extinguishers, oxygen masks, a flashlight, a first-aid kit, and life vests.",
+      "referenceTextZh": "我所飞机型的应急设备设计得便于接近和使用，包括灭火器、氧气面罩、手电筒、急救箱和救生衣。",
+      "audioDurationSeconds": 3.408
+    },
+    {
+      "id": "opi-core-061",
+      "audio": "/question-bank-assets/revisions/opi/d8f61358cc6739e305b297ef8383e1b3d17de57ec2f5d88c9451e767846802b4/audio/opi/opi-core-061.mp3",
+      "audioText": "How many evacuation slides are installed on the aircraft type you fly?",
+      "taskTitle": "特情-应急设备-3",
+      "audioTextZh": "你所飞的机型安装了多少个撤离滑梯？",
+      "referenceText": "I fly the C172, which has no evacuation slides.",
+      "referenceTextZh": "我飞的是 C172，这种飞机没有撤离滑梯。",
+      "audioDurationSeconds": 4.2
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-02"
 }

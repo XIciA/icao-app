@@ -1,94 +1,107 @@
 {
   "id": "opi-topic-0137",
   "name": "灭火器",
-  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-extra-314",
-      "taskTitle": "特情-灭火器-1",
-      "audioText": "How many portable fire extinguishers are carried on the aircraft you fly?",
-      "audioTextZh": "你所飞的飞机配备了多少个便携式灭火器？",
-      "referenceText": "The DA-40 used at my flight school carries one portable fire extinguisher within reach of the pilots. I confirm that it is present, secured, and serviceable during the preflight inspection. The number and type must always match the aircraft's approved equipment list.",
-      "referenceTextZh": "我所在航校使用的 DA-40 配有一具便携式灭火器，放置在飞行员能够拿到的位置。飞行前检查时，我会确认灭火器在位、固定妥当且状态良好。其数量和类型必须始终符合飞机经批准的设备清单。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/37f1205b710e8e995077350f58fcc04944717381f0f5d24b6732e393361a1b7a/audio/opi/opi-extra-314.mp3",
-      "audioDurationSeconds": 4.176
-    },
-    {
-      "id": "opi-extra-315",
-      "taskTitle": "特情-灭火器-2",
-      "audioText": "When should a portable fire extinguisher be discharged during a flight?",
-      "audioTextZh": "飞行中应在什么情况下使用便携式灭火器？",
-      "referenceText": "A portable extinguisher should be discharged when there is a fire for which that extinguishing agent is suitable and the crew can attack it without losing control of the aircraft. The crew should raise the alarm, isolate electrical power or fuel when appropriate, keep an escape route, and aim at the base of the flames. It should not be discharged merely as a precaution or test.",
-      "referenceTextZh": "当发生的火灾适合使用该灭火剂，且机组能够在不影响飞机控制的情况下灭火时，才应使用便携式灭火器。机组应发出火警，视情况隔离电源或燃油，保留撤离通道，并将灭火剂喷向火焰根部。不得仅为预防或测试而喷射灭火剂。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/a115ec96316c2bf5d2378c186fe310b71aff115bad0e834e1cdd1962e248a1a5/audio/opi/opi-extra-315.mp3",
-      "audioDurationSeconds": 3.672
-    },
-    {
       "id": "opi-extra-318",
-      "taskTitle": "特情-灭火器-3",
+      "audio": "/question-bank-assets/revisions/opi/9b41f6df1b95c4143d71f769e2b5dcc94b30eb3c419c6628d5054e4cf280041d/audio/opi/opi-extra-318.mp3",
       "audioText": "What types of fire extinguishers are carried on an aircraft?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-3",
       "audioTextZh": "飞机上配备了哪些类型的灭火器？",
       "referenceText": "Aircraft may carry water extinguishers for ordinary combustible materials such as paper, wood, or textiles. They may also carry Halon or another clean-agent extinguisher for electrical and flammable-liquid fires.",
       "referenceTextZh": "飞机可能配备水基灭火器，用于扑灭纸张、木材或织物等普通可燃物引发的火灾。也可能配备哈龙或其他洁净气体灭火器，用于扑灭电气和易燃液体火灾。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/9b41f6df1b95c4143d71f769e2b5dcc94b30eb3c419c6628d5054e4cf280041d/audio/opi/opi-extra-318.mp3",
       "audioDurationSeconds": 3.312
     },
     {
-      "id": "opi-extra-319",
-      "taskTitle": "特情-灭火器-4",
-      "audioText": "What precautions should be taken when using a fire extinguisher in the cockpit or cabin?",
-      "audioTextZh": "在驾驶舱或客舱使用灭火器时，应采取哪些预防措施？",
-      "referenceText": "Keep a clear escape route and move other people away from the area as much as possible. For an electrical fire, isolate power to the affected equipment if it is safe to do so. Avoid breathing extinguisher vapors in a confined space, and direct the agent at the base of the fire.",
-      "referenceTextZh": "应保持撤离通道畅通，并尽可能让其他人员远离该区域。对于电气火灾，如果能够安全操作，应切断受影响设备的电源。在密闭空间中要避免吸入灭火剂蒸气，并将灭火剂喷向火焰根部。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/7584e7b74909c545df955fa3717208c0526518fc910602be4dff5ffc1ced5280/audio/opi/opi-extra-319.mp3",
-      "audioDurationSeconds": 4.68
-    },
-    {
-      "id": "opi-extra-320",
-      "taskTitle": "特情-灭火器-5",
-      "audioText": "Which type of fire extinguisher should be used for an electrical fire behind a cockpit panel, and why?",
-      "audioTextZh": "驾驶舱面板后方发生电气火灾时，应使用哪种灭火器？为什么？",
-      "referenceText": "A clean-agent extinguisher, such as a Halon or Halotron type, should be used for an electrical fire behind a cockpit panel. The agent is non-conductive and leaves no residue, so it reduces the risk of electrical shock and secondary damage to avionics.",
-      "referenceTextZh": "驾驶舱面板后方发生电气火灾时，应使用哈龙或 Halotron 类型的洁净气体灭火器。此类灭火剂不导电且不会留下残留物，因此可以降低触电以及航空电子设备继发损坏的风险。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/fac6d8bb79fbcfdc759446b82c9da25749580c91507bdb3d70cd7e41257409f9/audio/opi/opi-extra-320.mp3",
-      "audioDurationSeconds": 5.856
-    },
-    {
       "id": "opi-extra-321",
-      "taskTitle": "特情-灭火器-6",
+      "audio": "/question-bank-assets/revisions/opi/16512131eb69dfc308dade3202d1215444a78ac40077bd19f282fca1d59cbe92/audio/opi/opi-extra-321.mp3",
       "audioText": "What should a crew member do first after discovering a fire on board, before using an extinguisher?",
+      "taskTitle": "特情-灭火器-6",
       "audioTextZh": "机组成员发现机上火灾后，在使用灭火器之前首先应做什么？",
       "referenceText": "The crew member should immediately alert the other crew members with a clear fire warning. The crew should then begin the applicable emergency memory items or checklist before using the extinguisher as directed.",
       "referenceTextZh": "机组成员应立即发出清晰的火警，提醒其他机组成员。随后，机组应先开始执行适用的紧急记忆项目或检查单，再按照指示使用灭火器。",
-      "audio": "/question-bank-assets/revisions/opi/16512131eb69dfc308dade3202d1215444a78ac40077bd19f282fca1d59cbe92/audio/opi/opi-extra-321.mp3",
       "audioDurationSeconds": 5.568
     },
     {
+      "id": "opi-extra-319",
+      "audio": "/question-bank-assets/revisions/opi/7584e7b74909c545df955fa3717208c0526518fc910602be4dff5ffc1ced5280/audio/opi/opi-extra-319.mp3",
+      "audioText": "What precautions should be taken when using a fire extinguisher in the cockpit or cabin?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-4",
+      "audioTextZh": "在驾驶舱或客舱使用灭火器时，应采取哪些预防措施？",
+      "referenceText": "Keep a clear escape route and move other people away from the area as much as possible. For an electrical fire, isolate power to the affected equipment if it is safe to do so. Avoid breathing extinguisher vapors in a confined space, and direct the agent at the base of the fire.",
+      "referenceTextZh": "应保持撤离通道畅通，并尽可能让其他人员远离该区域。对于电气火灾，如果能够安全操作，应切断受影响设备的电源。在密闭空间中要避免吸入灭火剂蒸气，并将灭火剂喷向火焰根部。",
+      "audioDurationSeconds": 4.68
+    },
+    {
       "id": "opi-core-065",
-      "taskTitle": "特情-灭火器-7",
+      "audio": "/question-bank-assets/revisions/opi/30e5fd17ced41a1879f898a90a5175329b8874c5f25bf3f70edd53ac57f00e60/audio/opi/opi-core-065.mp3",
       "audioText": "What could happen if a flight crew accidentally discharges a fire extinguisher?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-7",
       "audioTextZh": "如果机组意外释放灭火瓶，可能会发生什么？",
       "referenceText": "An accidental discharge can reduce the firefighting agent available for a real emergency. It may also cause temporary poor visibility or breathing discomfort and could affect nearby electrical or electronic equipment.",
       "referenceTextZh": "灭火器意外喷射会减少真正发生紧急情况时可用的灭火剂。它还可能暂时降低能见度、引起呼吸不适，并可能影响附近的电气或电子设备。",
-      "studyTier": 2,
-      "audio": "/question-bank-assets/revisions/opi/30e5fd17ced41a1879f898a90a5175329b8874c5f25bf3f70edd53ac57f00e60/audio/opi/opi-core-065.mp3",
       "audioDurationSeconds": 4.176
     },
     {
       "id": "opi-core-066",
-      "taskTitle": "特情-灭火器-8",
+      "audio": "/question-bank-assets/revisions/opi/9ed0989e4e0362cebbc92940e0aae91b243bca9f74ce3c78b32e4fbbc7fc807a/audio/opi/opi-core-066.mp3",
       "audioText": "What procedure should a flight crew follow when discharging an engine fire extinguisher?",
+      "taskTitle": "特情-灭火器-8",
       "audioTextZh": "释放发动机灭火瓶时，机组应遵循什么程序？",
       "referenceText": "The crew must follow the aircraft's engine-fire checklist and positively identify the affected engine before taking action. The checklist may direct the crew to reduce its thrust, shut it down, isolate the fuel supply, and then discharge the fire extinguisher.",
       "referenceTextZh": "机组必须执行飞机的发动机失火检查单，并在采取行动前明确识别受影响的发动机。检查单可能要求机组减小该发动机的推力、将其关停、隔离燃油供应，然后释放灭火剂。",
-      "audio": "/question-bank-assets/revisions/opi/9ed0989e4e0362cebbc92940e0aae91b243bca9f74ce3c78b32e4fbbc7fc807a/audio/opi/opi-core-066.mp3",
       "audioDurationSeconds": 4.584
+    },
+    {
+      "id": "opi-extra-320",
+      "audio": "/question-bank-assets/revisions/opi/fac6d8bb79fbcfdc759446b82c9da25749580c91507bdb3d70cd7e41257409f9/audio/opi/opi-extra-320.mp3",
+      "audioText": "Which type of fire extinguisher should be used for an electrical fire behind a cockpit panel, and why?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-5",
+      "audioTextZh": "驾驶舱面板后方发生电气火灾时，应使用哪种灭火器？为什么？",
+      "referenceText": "A clean-agent extinguisher, such as a Halon or Halotron type, should be used for an electrical fire behind a cockpit panel. The agent is non-conductive and leaves no residue, so it reduces the risk of electrical shock and secondary damage to avionics.",
+      "referenceTextZh": "驾驶舱面板后方发生电气火灾时，应使用哈龙或 Halotron 类型的洁净气体灭火器。此类灭火剂不导电且不会留下残留物，因此可以降低触电以及航空电子设备继发损坏的风险。",
+      "audioDurationSeconds": 5.856
+    },
+    {
+      "id": "opi-extra-315",
+      "audio": "/question-bank-assets/revisions/opi/a115ec96316c2bf5d2378c186fe310b71aff115bad0e834e1cdd1962e248a1a5/audio/opi/opi-extra-315.mp3",
+      "audioText": "When should a portable fire extinguisher be discharged during a flight?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-2",
+      "audioTextZh": "飞行中应在什么情况下使用便携式灭火器？",
+      "referenceText": "A portable extinguisher should be discharged when there is a fire for which that extinguishing agent is suitable and the crew can attack it without losing control of the aircraft. The crew should raise the alarm, isolate electrical power or fuel when appropriate, keep an escape route, and aim at the base of the flames. It should not be discharged merely as a precaution or test.",
+      "referenceTextZh": "当发生的火灾适合使用该灭火剂，且机组能够在不影响飞机控制的情况下灭火时，才应使用便携式灭火器。机组应发出火警，视情况隔离电源或燃油，保留撤离通道，并将灭火剂喷向火焰根部。不得仅为预防或测试而喷射灭火剂。",
+      "audioDurationSeconds": 3.672
+    },
+    {
+      "id": "opi-intake-20261019-portable-extinguisher",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74/audio/opi/opi-intake-20261019-portable-extinguisher.mp3",
+      "audioText": "How should a crew member use a portable fire extinguisher on an aircraft?",
+      "studyTier": 0,
+      "taskTitle": "灭火器-收集反馈",
+      "audioTextZh": "机组成员应如何使用机载手提灭火器？",
+      "examReported": true,
+      "referenceText": "I would alert the crew, identify the fire, and use an extinguisher suitable for it, following the aircraft procedure and the instructions on the unit. I would avoid inhaling smoke, keep an escape route available, and monitor for reignition.",
+      "referenceTextZh": "我会通知机组，判断火情，依据飞机程序及瓶身说明选择合适的灭火器。我会避免吸入烟雾，保留逃生通道，并监控是否复燃。",
+      "audioDurationSeconds": 3.984
+    },
+    {
+      "id": "opi-extra-314",
+      "audio": "/question-bank-assets/revisions/opi/37f1205b710e8e995077350f58fcc04944717381f0f5d24b6732e393361a1b7a/audio/opi/opi-extra-314.mp3",
+      "audioText": "How many portable fire extinguishers are carried on the aircraft you fly?",
+      "studyTier": 2,
+      "taskTitle": "特情-灭火器-1",
+      "audioTextZh": "你所飞的飞机配备了多少个便携式灭火器？",
+      "referenceText": "The DA-40 used at my flight school carries one portable fire extinguisher within reach of the pilots. I confirm that it is present, secured, and serviceable during the preflight inspection. The number and type must always match the aircraft's approved equipment list.",
+      "referenceTextZh": "我所在航校使用的 DA-40 配有一具便携式灭火器，放置在飞行员能够拿到的位置。飞行前检查时，我会确认灭火器在位、固定妥当且状态良好。其数量和类型必须始终符合飞机经批准的设备清单。",
+      "audioDurationSeconds": 4.176
     }
   ],
+  "declaredCardCount": 9,
   "categoryId": "opi-category-02"
 }

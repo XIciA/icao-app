@@ -1,0 +1,225 @@
+{
+  "source": "active production OPI version 25; synchronized 2026-10-22",
+  "rows": [
+    {
+      "id": "opi-report-202610-deicing-procedure",
+      "textSha256": "5a050c1c7e6044c56aa75e2de6509b99f26dead3bf6c6e3be651186d9e7f4aae",
+      "path": "/question-bank-assets/revisions/opi/9a02985ff0da4f98e4db83c0f4856d13ef7b954e1c11239925fff700c67ae4de/audio/opi/opi-report-202610-deicing-procedure.mp3"
+    },
+    {
+      "id": "opi-report-202610-deicing-configuration",
+      "textSha256": "fd392905279156bacc3d183b6c03ee72ec728de2ecf7901a3ffec5315c7c773c",
+      "path": "/question-bank-assets/revisions/opi/ed6fd163569177ac9d2bcd12e61b7d6d4a510540f5f82bf37b08d506fa3da0bf/audio/opi/opi-report-202610-deicing-configuration.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-deicing-fluid",
+      "textSha256": "41f8b72a341d62ae93054341b425739746af644f466b25260979b4ebcf46e6f8",
+      "path": "/question-bank-assets/revisions/opi/2f5fb21d59fa5469052e69b4bba140e5f2b96b7c8a9e0bd05ffb40878770de1d/audio/opi/opi-intake-20261019-deicing-fluid.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-radar-precautions",
+      "textSha256": "ccd62ccf203fa2c4991a74c1ff07f25068247028a44a003402f4792a564352b9",
+      "path": "/question-bank-assets/revisions/opi/30843626959c4b7aae3f95779e3a4e722d8d20bbd644173e1c3e19fb56696508/audio/opi/opi-intake-20261019-radar-precautions.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-radar-failure",
+      "textSha256": "9ce720e0fa652e8d8ac16d754f15c25f18f2233ae8a87f96f36934696f8de043",
+      "path": "/question-bank-assets/revisions/opi/270b439d8556b2c74b36c92ad5ba11b0aff0ae8fd08e12cb3762960efc7567d7/audio/opi/opi-intake-20261019-radar-failure.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-hot-ground",
+      "textSha256": "68fd1518e01942d6213c0290e404b2d3997328234b54dc9e0414c2a1d4bc2748",
+      "path": "/question-bank-assets/revisions/opi/a620948f398799092808a0e4ad69089c608b76b269b485f264fd66f13c784270/audio/opi/opi-intake-20261019-hot-ground.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-snowstorm",
+      "textSha256": "ce127dc4e30887f92e82cb1af4ec551fd138300476dc5004991b8c3041c27cec",
+      "path": "/question-bank-assets/revisions/opi/1e8a84e50d3eb1aecd4246d1522e357bcfa0fc24994226c0f3cc17302b2710f3/audio/opi/opi-intake-20261019-snowstorm.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-snow-protection",
+      "textSha256": "3f28ccdb71ec1df5df4f6279843c7409975fbf172dfb9bbbea8b4e679aff5423",
+      "path": "/question-bank-assets/revisions/opi/be67ae4ea2e53fb71fef7054d0518c5407a02ec261743d9ac8c14c6124dcba5e/audio/opi/opi-intake-20261019-snow-protection.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-slide-risks",
+      "textSha256": "b81c9abf2c694c5a78ce85633aac9288756b96806c59826fee03572c35b2ad7b",
+      "path": "/question-bank-assets/revisions/opi/becf624ecc6398715676ec33a20c5252e6d4faa30811a5e8b9c41bff93ab8b36/audio/opi/opi-intake-20261019-slide-risks.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-forced-landing",
+      "textSha256": "fa8cf06733d9972d65158b20f0c2e520ba877182cccc846cd0f0bb91bf9bae07",
+      "path": "/question-bank-assets/revisions/opi/5861157f08da299824a7aa237897644e95771f2c801627f5d051a9c5e494f085/audio/opi/opi-intake-20261019-forced-landing.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-notoc",
+      "textSha256": "ac56db7792e15133612dfa9f5c872f8a213ea23936d0c1e410e3ab72296788eb",
+      "path": "/question-bank-assets/revisions/opi/4e3b62eade53131799d6641347ec1ed409ea08f77a10aa88566b1080b5eb5df6/audio/opi/opi-intake-20261019-notoc.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-dg-classification",
+      "textSha256": "27c40e92da970e85ec20c6020578f4973b2c1c0d1fc67edeb32a255d62204dfc",
+      "path": "/question-bank-assets/revisions/opi/991f1fef002f191ef6996dc4e866689eb2f9ab22c40be69d1cae3736dc5663e4/audio/opi/opi-intake-20261019-dg-classification.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-tcas-types",
+      "textSha256": "f627a79f548fe4267f21e9df632b35aa0fed60429396a8fb78344c3f75416fb4",
+      "path": "/question-bank-assets/revisions/opi/503f400822efc6db27c67028415ff5f1748e7c7dcbe728f0681b8991d20cd0e7/audio/opi/opi-intake-20261019-tcas-types.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-ditching-cooperation",
+      "textSha256": "c56fabdde2b5bf23fdde1a8739043646185ef9cedf969ae1941639e85493873a",
+      "path": "/question-bank-assets/revisions/opi/8a670f42eafe9bb70df50afd5b14fe81beede71d492175d6fefc1ac85277e6b7/audio/opi/opi-intake-20261019-ditching-cooperation.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-portable-extinguisher",
+      "textSha256": "aa057246f68f3152ba897e670af21d1bc5b065cfd3c95f42759877af1320ad8e",
+      "path": "/question-bank-assets/revisions/opi/26949a0e885d5b1a446d571d5282113fb3d88fa57e9a84aab47617493996ed74/audio/opi/opi-intake-20261019-portable-extinguisher.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-gps-interference",
+      "textSha256": "9de1117a32473cad4a20de78d84baec01c0cb965340e679f68dfb3cd3d639947",
+      "path": "/question-bank-assets/revisions/opi/367f1c774dadca35e21e2a61bc286b1da6703ad5b95372ec91afc040e7ae8000/audio/opi/opi-intake-20261019-gps-interference.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-crm-benefits",
+      "textSha256": "b6aa6ba967859e379a0248dc466acf8e9e5ce9601d8e5b07cf201ac666d66de7",
+      "path": "/question-bank-assets/revisions/opi/2d91ecff82084035fb04f2a4b654eb07eddf599e48f4c80faf9281f56c0db6eb/audio/opi/opi-intake-20261019-crm-benefits.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-captain-sa",
+      "textSha256": "bec422daeaa3fba1713bc85c8e1166addf28289479640ec00420cb6abb84d238",
+      "path": "/question-bank-assets/revisions/opi/ec75361a0d07e8e2e8ad3dbce12c456540c122c82c5572de3469a5a69c60aaa9/audio/opi/opi-intake-20261019-captain-sa.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-duty-calculation",
+      "textSha256": "f8db04b63016d7ef3d081abbac9ded12ce62045529b29106d8595975ef19a398",
+      "path": "/question-bank-assets/revisions/opi/4520a577b52ab85bc4bcec1fdf0b029d7fba82bbd9420b9e490476122e5d8576/audio/opi/opi-intake-20261019-duty-calculation.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-rest-policy",
+      "textSha256": "9805bbb30a08b5f93b88f0b6491718105fbb85da5d277407b0d3b12b022968e6",
+      "path": "/question-bank-assets/revisions/opi/3d6fe0acda46db007e2086f7f657f24042d665d56086c61caa889a1a2e310715/audio/opi/opi-intake-20261019-rest-policy.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-delay-rest",
+      "textSha256": "4c0543de2dce808a0a43f306342e5d55990fb4afaff151bb3485b9a2817873ca",
+      "path": "/question-bank-assets/revisions/opi/ba29ae228a07ada165646215f71a2fd3fe4be67b7cb7ad88c0f10308d22356c7/audio/opi/opi-intake-20261019-delay-rest.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-parallel-runways",
+      "textSha256": "a91dba941281f75bc96750f8a776d0167af8dd47a01070e8a116ec183c0379bb",
+      "path": "/question-bank-assets/revisions/opi/22473891a4209b32fa3230482936f4727a02a1d7b70b74628a46522a2506d470/audio/opi/opi-intake-20261019-parallel-runways.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-atc-handover",
+      "textSha256": "9660e1b8f4004197023350ef9a1a8cbf7b0d1855ca9f5d9169f7c3cf66fca540",
+      "path": "/question-bank-assets/revisions/opi/6ef09dd22e5c57a08e6fe6e3e1b991020d680111a93ff1625947a79ed3a302bc/audio/opi/opi-intake-20261019-atc-handover.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-emergency-training-benefits",
+      "textSha256": "9577306118862423f284f0c0d532affe7fdfaf209fd696442a5197031e37f29e",
+      "path": "/question-bank-assets/revisions/opi/38a5812c508a877518806431e5aee378358dbfaeea93739edc9c01f36e9189b7/audio/opi/opi-intake-20261019-emergency-training-benefits.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-navigation-lights",
+      "textSha256": "faa336bc0917f4b0097e9dd310c3945557bb0297265d9ab0aa47ea25af2b2d8b",
+      "path": "/question-bank-assets/revisions/opi/073f879d4c7116f24624627201b1e929173cbe24e11f489f48138ec2196166bb/audio/opi/opi-intake-20261019-navigation-lights.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-lowvis-goaround",
+      "textSha256": "292e14a20611bcbdc649b1a1799d67be0e871099b7ce47dd68c07fb062b0e23f",
+      "path": "/question-bank-assets/revisions/opi/e0131ce2ca7591e607f298dcb68ead03b5704d05f5af39a0389c190ee855a9d4/audio/opi/opi-intake-20261019-lowvis-goaround.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-approach-threats",
+      "textSha256": "08e8941ed85344185c71e4e5e172c0273baf5d041fb15993973a07a5c7e8fa93",
+      "path": "/question-bank-assets/revisions/opi/d1583daab731a0a4e8d5583fd3c28a132971269f22ed74527310a1751b802d09/audio/opi/opi-intake-20261019-approach-threats.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-cat3-requirements",
+      "textSha256": "afb583b11a3dc93ceab85cb8635fd5ca720c4d9a80ebc06d5d3f2e45975d543e",
+      "path": "/question-bank-assets/revisions/opi/2b85266cade173f7f769aacc896c8111d99db84d1bf1dead9650a22cf71bed4d/audio/opi/opi-intake-20261019-cat3-requirements.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-cat2-minima",
+      "textSha256": "18d3c7caa3acc783edcba7b6784a4c4efe6ceaeb37fa499aee600de25c67d087",
+      "path": "/question-bank-assets/revisions/opi/8129faccb5b36c31cde06b37c1e4d41adb43372f9b131a1af7578c2ae024c541/audio/opi/opi-intake-20261019-cat2-minima.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-cat2-equipment",
+      "textSha256": "ca7e76ad5ca0995acd8d01f965607b49b6063d5ce614b2eea1f51c03016ca1cf",
+      "path": "/question-bank-assets/revisions/opi/1b4f8c47f616be5ead7b8a6f0795b7e6038c23ff632a4b9157f5326f52a80d8a/audio/opi/opi-intake-20261019-cat2-equipment.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-tyre-speed",
+      "textSha256": "cd4a55f8dd17c0b3c727693e97ce1dc10bbfd9806998aa94fcc35292d2f8445c",
+      "path": "/question-bank-assets/revisions/opi/3b7a10293174a9a6d12c57156d4c4ac958a3c98c00fc7d0660e9595fc6180473/audio/opi/opi-intake-20261019-tyre-speed.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-runway-condition-report",
+      "textSha256": "33034bdc900ab42cd1681afb7aaf233de9e0d97654e9e707ee93623e474c67e0",
+      "path": "/question-bank-assets/revisions/opi/5d72b6bd3f4d9765b525d0f696ee07cc2d4f5202320821822a08cb80bb6e13c5/audio/opi/opi-intake-20261019-runway-condition-report.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-contaminated-runway",
+      "textSha256": "09c5e55bfe8f2dfa6cf892dcef92960d3a8a25dbb57e11489f48bdcddcd14a90",
+      "path": "/question-bank-assets/revisions/opi/0ac6360b4153127cf4281c437c0622f6b15b7d26b9780f32c2add85192d3d4e1/audio/opi/opi-intake-20261019-contaminated-runway.mp3"
+    },
+    {
+      "id": "opi-report-202610-high-oil-pressure",
+      "textSha256": "9304f7ca5ba3de106c7441278a73582a702a852b6d78e874479890833528124b",
+      "path": "/question-bank-assets/revisions/opi/6f2b0f990ffd07188fba7553a97185e1d05d490346b247882e244348a5aa8fb1/audio/opi/opi-report-202610-high-oil-pressure.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-engine-warmup",
+      "textSha256": "dd55413d2449285ec87bc08f85ad2e826ae6ac20d9d47aa57f84537e961f64b3",
+      "path": "/question-bank-assets/revisions/opi/15954da1d32b620db7eec2045f70a9816027cacb24890c0d1e67cb6725415a4d/audio/opi/opi-intake-20261019-engine-warmup.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-engine-runup",
+      "textSha256": "8c29e5f3c6138c62acc9999d056f1bfa63dd3699527237977eff48cf5261a0b5",
+      "path": "/question-bank-assets/revisions/opi/9384b567287d4f24b5337351748e2d4ade8af9e5c807ad8293770450f1bbf7ae/audio/opi/opi-intake-20261019-engine-runup.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-packs-takeoff",
+      "textSha256": "d9cce461e22bb7f52b362db0529cefa8f84d96d2c7940ef23a3fd771de03a9c2",
+      "path": "/question-bank-assets/revisions/opi/0e491ac29d1090be6a5ed825c7c7347c1e8777226702d38d5f16e385ed4a75fb/audio/opi/opi-intake-20261019-packs-takeoff.mp3"
+    },
+    {
+      "id": "opi-report-202610-advanced-navigation",
+      "textSha256": "6f06d1c80936bb0c7812217cc7a99019edbc7464c834d1c11d922217876bb3db",
+      "path": "/question-bank-assets/revisions/opi/3b4e7495ca2afc8216c3ce6a5c96bdb280811a55d31048a27800d319a9e3d014/audio/opi/opi-report-202610-advanced-navigation.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-automation-degradation",
+      "textSha256": "f051d754546d17eaf84360c787b5a1414e81e470bd656e84b7d0a5030c24d62c",
+      "path": "/question-bank-assets/revisions/opi/1850e62c1e86892f1f0342abbfb50a6d0e51cc7c18b384dc9f3043ae89ebe23a/audio/opi/opi-intake-20261019-automation-degradation.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-automation-definition",
+      "textSha256": "04a1ee76c17a9daa05a7a290016fdfd596446b3d10dd6f2f254aed844d1daba6",
+      "path": "/question-bank-assets/revisions/opi/6edb94f023f9f496c28ba46b044b78c92d992c365c446529fe35ba955e7a40bb/audio/opi/opi-intake-20261019-automation-definition.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-recent-development",
+      "textSha256": "f47cd549f803d821b049c60df200074dacfc9740136810f962292125ea514aaa",
+      "path": "/question-bank-assets/revisions/opi/bb9f5207f350231b91a31480746f6d83c9524d58cf7c8be21d43aac27d77cb74/audio/opi/opi-intake-20261019-recent-development.mp3"
+    },
+    {
+      "id": "opi-intake-20261019-technology-interest",
+      "textSha256": "18bbffbff5a5d4af4d86dc21c25a93bd4bf9da06357d682c1bea7433fd97dc3c",
+      "path": "/question-bank-assets/revisions/opi/50979d832e801629efb68a6ae5d736f531139b2f9ea26f8c3116425cd14f542a/audio/opi/opi-intake-20261019-technology-interest.mp3"
+    },
+    {
+      "id": "opi-report-202610-preferred-aircraft",
+      "textSha256": "73d7cc161069c7a9ed52860732bb89d71bf2a7a5f461d28902068599cd14790a",
+      "path": "/question-bank-assets/revisions/opi/b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474/audio/opi/opi-report-202610-preferred-aircraft.mp3"
+    },
+    {
+      "id": "opi-report-202610-door-open-takeoff",
+      "textSha256": "86249120f54574f5bac70263b9dd8bc7df75eac515c68e17a51b2c122516c563",
+      "path": "/question-bank-assets/revisions/opi/93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa/audio/opi/opi-report-202610-door-open-takeoff.mp3"
+    }
+  ]
+}

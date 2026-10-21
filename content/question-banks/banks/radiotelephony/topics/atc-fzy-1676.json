@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-224104",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-1",
-      "audioText": "B: [You’re the pilot of CES5325, which is bound for Wuhan. You’ve just been handed over from Hefei Control. You’re over IKUBA at 23, and your level is at 8400m, call Wuhan Control.]",
+      "audioText": "B: [You're the pilot of CES5325, which is bound for Wuhan. You've just been handed over from Hefei Control. You're over IKUBA at 23, and your level is at 8400m, call Wuhan Control.]",
       "audioTextZh": "B：【你是东方5325的飞行员，目的地武汉。你刚刚从合肥区调交接过来。你23分过IKUBA，高度8400米，呼叫武汉区调。】",
       "referenceText": "Wuhan Control, CES5325, over IKUBA at 23, maintain 8400m.",
       "referenceTextZh": "武汉区调，南方5325，23分过IKUBA，正保持8400米。",
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-224106",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-3",
-      "audioText": "B: [You’ve just followed your TCAS RA instruction. You’ve stopped your descent at nearly 6800m, and track out 9km right of the course, report to ATC.]",
+      "audioText": "B: [You've just followed your TCAS RA instruction. You've stopped your descent at nearly 6800m, and track out 9km right of the course, report to ATC.]",
       "audioTextZh": "B：【你已执行了TCAS RA指令。你已停止下降，高度维持在约6800米，并偏航右转偏离原航线9公里，现向空管报告。】",
       "referenceText": "Wuhan Control, CES5325, our TCAS instructed us to stop descent at 6800m, and we are tracking out 9km right of the course.",
       "referenceTextZh": "武汉区调，东方5325，TCAS指示我们在6800米停止下降，我们偏航右转偏离原航线9公里。",
@@ -35,7 +35,7 @@
     {
       "id": "radiotelephony-fzy-224107",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-4",
-      "audioText": "C: Roger, CES5325, you’ve just passed the traffic, descend to 6000m and turn left heading 170 immediately, there is military activity in the area right now.",
+      "audioText": "C: Roger, CES5325, you've just passed the traffic, descend to 6000m and turn left heading 170 immediately, there is military activity in the area right now.",
       "audioTextZh": "C：收到，东方5325，你刚刚过冲突航空器，立刻下6000米并左转航向170，该区域目前有军事活动。",
       "referenceText": "Roger, descend to 6000m and turn left heading 170 immediately, CES5325.",
       "referenceTextZh": "收到，立刻下6000米并左转航向170，东方5325。",
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-224110",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-7",
-      "audioText": "C: CES5325, we’ve notified the other relevant parties, please give us more description about your present situation.\nB: [Report to ATC that No.3 engine has flamed out and it is even harder to overcome the banking tendency. You guess there might be more damages to the left wing.]",
+      "audioText": "C: CES5325, we've notified the other relevant parties, please give us more description about your present situation.\nB: [Report to ATC that No.3 engine has flamed out and it is even harder to overcome the banking tendency. You guess there might be more damages to the left wing.]",
       "audioTextZh": "C：东方5325，我们已通知相关单位，请详细描述你目前的状况。\nB：【向空管报告：3号发动机已熄火，飞机倾斜趋势加剧，难以改平。推测左侧机翼可能还有更多损伤。】",
       "referenceText": "No.3 engine has flamed out and it is even harder to overcome the banking tendency. We suspect there might be some more damages to the left wing, CES5325.",
       "referenceTextZh": "3号发动机已熄火，飞机倾斜趋势加剧，难以改平。我们推测左侧机翼可能还有更多损伤，东方5325。",
@@ -89,16 +89,16 @@
     {
       "id": "radiotelephony-fzy-224113",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-10",
-      "audioText": "B: [Now you’re over XSH at 4800m, call Wuhan Approach and inform them that you’re in distress now.]",
+      "audioText": "B: [Now you're over XSH at 4800m, call Wuhan Approach and inform them that you're in distress now.]",
       "audioTextZh": "B：【现在你已经过XSH，高度4800米，联系武汉进近，告知他们你现在遇险了。】",
-      "referenceText": "Mayday Mayday Mayday, Wuhan Approach, CES5325, we’ve been struck by foreign objects, No.3 engine flame out and the aircraft tends to bank, we are now passing XSH at 4800m.",
+      "referenceText": "Mayday Mayday Mayday, Wuhan Approach, CES5325, we've been struck by foreign objects, No.3 engine flame out and the aircraft tends to bank, we are now passing XSH at 4800m.",
       "referenceTextZh": "Mayday Mayday Mayday，武汉进近，东方5325，我们被外物损伤，3号发动机熄火，飞机有倾斜趋势，我们现在已经过XSH，高度4800米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/9e138d3524f50305f0f6.mp3"
     },
     {
       "id": "radiotelephony-fzy-224114",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-11",
-      "audioText": "C: CES5325, roger Mayday, the Center controller has told us your situation, you’ll have the top priority. Descend to 1200m on QNH1018, expect ILS approach runway 36R, you’re No.1.",
+      "audioText": "C: CES5325, roger Mayday, the Center controller has told us your situation, you'll have the top priority. Descend to 1200m on QNH1018, expect ILS approach runway 36R, you're No.1.",
       "audioTextZh": "C：东方5325，收到Mayday，区调已经告知我们你的情况，你享有优先权。下1200米，修压1018，预计盲降进近跑道36右，你是第一个。",
       "referenceText": "Descend to 1200m on QNH1018, expect ILS approach runway 36R, No.1, CES5325.",
       "referenceTextZh": "下1200米，修压1018，预计盲降进近跑道36右，第一个，东方5325。",
@@ -116,7 +116,7 @@
     {
       "id": "radiotelephony-fzy-224116",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-13",
-      "audioText": "C: CES5325, let me see, the latest ATIS shows, wind 310 degrees, at 11m/s, but it’s variable.",
+      "audioText": "C: CES5325, let me see, the latest ATIS shows, wind 310 degrees, at 11m/s, but it's variable.",
       "audioTextZh": "C：东方5325，最新的ATIS显示，风向310度，11米每秒，但是风向风速不定。",
       "referenceText": "Roger, CES5325.",
       "referenceTextZh": "收到，东方5325。",
@@ -143,7 +143,7 @@
     {
       "id": "radiotelephony-fzy-224119",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-16",
-      "audioText": "B: [Now you’ve fully established on the ILS runway 36R, call Wuhan Approach.]",
+      "audioText": "B: [Now you've fully established on the ILS runway 36R, call Wuhan Approach.]",
       "audioTextZh": "B：【现在你已经完全建立跑道36右的航向道，联系武汉进近。】",
       "referenceText": "Wuhan Approach, CES5325, established on the ILS runway 36R.",
       "referenceTextZh": "武汉进近，东方5325，已经完全建立跑道36右的航向道。",
@@ -170,7 +170,7 @@
     {
       "id": "radiotelephony-fzy-224122",
       "taskTitle": "74-CES5325 [TCAS RA，外物损伤]-19",
-      "audioText": "C: CES5325, radar identified, continue ILS approach runway 36R, you’re No.1, report the outer marker.",
+      "audioText": "C: CES5325, radar identified, continue ILS approach runway 36R, you're No.1, report the outer marker.",
       "audioTextZh": "C：东方5325，雷达看见了，继续盲降进近跑道36右，你是第一个，外指点标报。",
       "referenceText": "Continue ILS approach runway 36R, No.1, wilco, CES5325.",
       "referenceTextZh": "继续盲降进近跑道36右，第一个，照办，东方5325。",

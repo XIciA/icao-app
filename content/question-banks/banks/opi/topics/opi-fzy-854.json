@@ -1,60 +1,60 @@
 {
   "id": "opi-fzy-854",
   "name": "Engine fire",
-  "declaredCardCount": 5,
   "cards": [
     {
       "id": "opi-fzy-854-image-1",
       "kind": "image",
-      "taskTitle": "Engine fire · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-854.png",
       "imageAlt": "Engine fire，用于本话题的看图描述和问答",
-      "studyTier": 2
+      "studyTier": 2,
+      "taskTitle": "Engine fire · 看图材料"
     },
     {
       "id": "opi-fzy-152425",
-      "taskTitle": "Engine fire-1",
+      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152425.mp3",
       "audioText": "What can you see from this picture?",
-      "audioTextZh": "从图中你能看到什么？",
       "studyTier": 2,
+      "taskTitle": "Engine fire-1",
+      "audioTextZh": "从图中你能看到什么？",
       "referenceText": "From the picture I can see an airplane is encountering engine fire after take-off.\nThe flame is coming from starboard engine. This emergency situation poses a threat to flight safety.",
       "referenceTextZh": "从图中我们可以看到有一架飞机在起飞后不久遭遇了发动机起火。\n火焰从右侧发动机冒出。这个紧急情况对飞行安全构成威胁。",
-      "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152425.mp3",
       "audioDurationSeconds": 1.752
     },
     {
       "id": "opi-fzy-152426",
-      "taskTitle": "Engine fire-2",
+      "audio": "/question-bank-assets/revisions/opi/29f820bae01e247125e5f788a22cb45f17da23d38a041d6e2397492d5d751eec/audio/opi/opi-fzy-152426.mp3",
       "audioText": "What may cause engine fire during flight?",
-      "audioTextZh": "在飞行中什么会导致发动机起火？",
       "studyTier": 1,
+      "taskTitle": "Engine fire-2",
+      "audioTextZh": "在飞行中什么会导致发动机起火？",
       "referenceText": "There are many reasons for engine fire during flight.\nFor example, engine mechanical failure, fuel problems, bird strike, foreign object ingestion and so on.",
       "referenceTextZh": "造成飞行中发动机起火的原因有很多。\n比如：发动机机械故障、燃油问题、鸟击、外物吸入等。",
-      "audio": "/question-bank-assets/revisions/opi/29f820bae01e247125e5f788a22cb45f17da23d38a041d6e2397492d5d751eec/audio/opi/opi-fzy-152426.mp3",
       "audioDurationSeconds": 2.28
     },
     {
       "id": "opi-fzy-152427",
-      "taskTitle": "Engine fire-3",
+      "audio": "/question-bank-assets/revisions/opi/a5767fe55fdcce1e26789fc82e3ebfea0fd27147d74288d454b1ffcbb8e0368f/audio/opi/opi-fzy-152427.mp3",
       "audioText": "If one engine failed during flight, will it threat flight safety?",
-      "audioTextZh": "在飞行中，如果一个发动机失效，会威胁飞行安全吗？",
       "studyTier": 1,
+      "taskTitle": "Engine fire-3",
+      "audioTextZh": "在飞行中，如果一个发动机失效，会威胁飞行安全吗？",
       "referenceText": "It all depends.\nFor single engine aircraft, one engine failure will make it lose power, the situation is very dangerous.\nWhile for double-engine or multiple-engine aircraft, if one engine fails, the rest of engines will still work. Pilots can still fly a period of time, and make a successful landing.",
       "referenceTextZh": "要看情况而定。\n对于单引擎飞机，如果遇到引擎故障，飞机就会失去动力，情况会很危险。\n而对于双引擎或多引擎的飞机，如果一个引擎出现故障，其余的引擎仍能工作，飞行员仍能飞行一段时间，并安全成功着陆。",
-      "audio": "/question-bank-assets/revisions/opi/a5767fe55fdcce1e26789fc82e3ebfea0fd27147d74288d454b1ffcbb8e0368f/audio/opi/opi-fzy-152427.mp3",
       "audioDurationSeconds": 3.528
     },
     {
       "id": "opi-fzy-152428",
-      "taskTitle": "Engine fire-4",
+      "audio": "/question-bank-assets/revisions/opi/d1c4e0b20ba59f2380751dd34ed14fecdd16d0c7e4582e19936b9bf48f567057/audio/opi/opi-fzy-152428.mp3",
       "audioText": "How to avoid engine problems?",
-      "audioTextZh": "如何防止发动机问题发生？",
       "studyTier": 1,
+      "taskTitle": "Engine fire-4",
+      "audioTextZh": "如何防止发动机问题发生？",
       "referenceText": "First, we should make careful inspection during walk-around check to avoid engine malfunctions.\nSecond, we should never use contaminated fuel.\nLast, we should operate the aircraft according to SOP.",
       "referenceTextZh": "首先，绕机检查时仔细检查发动机，避免发动机故障。\n第二，我们禁止使用被污染的燃油。\n最后，我们应该按照标准程序操纵飞机。",
-      "audio": "/question-bank-assets/revisions/opi/d1c4e0b20ba59f2380751dd34ed14fecdd16d0c7e4582e19936b9bf48f567057/audio/opi/opi-fzy-152428.mp3",
       "audioDurationSeconds": 1.8
     }
   ],
+  "declaredCardCount": 5,
   "categoryId": "opi-category-08"
 }

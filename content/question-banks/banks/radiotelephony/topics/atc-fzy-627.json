@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111494",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-1",
-      "audioText": "[Your call sign is CSN421. You are just over ZF and maintaining 4500m. You are about to enter the Area Control airspace. Make an initial contact with Wuhan Control.]",
-      "audioTextZh": "【你的呼号是南航421，刚过ZF，4500米保持。你即将进入区域管制空域。和武汉区调进行初次联系。】",
+      "audioText": "Your call sign is CSN421. You are just over ZF and maintaining 4500m. You are about to enter the Area Control airspace. Make an initial contact with Wuhan Control.",
+      "audioTextZh": "你的呼号是南航421，刚过ZF，4500米保持。你即将进入区域管制空域。和武汉区调进行初次联系。",
       "referenceText": "Wuhan Control, CSN421, over ZF, maintaining 4500m.",
       "referenceTextZh": "武汉区调，南航421，过ZF，4500米保持。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/77ae80d2c86cd7c8d610.mp3"
@@ -17,7 +17,7 @@
     {
       "id": "radiotelephony-fzy-111495",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-2",
-      "audioText": "[Ask Wuhan Control for 8900m.]",
+      "audioText": "Ask Wuhan Control for 8900m.",
       "audioTextZh": "【向武汉区调请求爬升8900米。】",
       "referenceText": "Wuhan Control, CSN421, request climb to 8900m.",
       "referenceTextZh": "武汉区调，南航421，请求爬升8900米。",
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-111497",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-4",
-      "audioText": "[Inform the controller that you have encountered a severe Clear Air Turbulence, and ask for 8900m.]",
-      "audioTextZh": "【通知管制员你遇到了强烈的晴空乱流，请求爬升至8900米。】",
+      "audioText": "Inform the controller that you have encountered a severe Clear Air Turbulence, and ask for 8900m.",
+      "audioTextZh": "通知管制员你遇到了强烈的晴空乱流，请求爬升至8900米。",
       "referenceText": "Wuhan Control, CSN421, we have encountered a severe clear air Turbulence, request 8900m.",
       "referenceTextZh": "武汉区调，南航421，我们遇到了强烈的晴空乱流，请求爬升8900米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a6cd5be58b4f5e1742c3.mp3"
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-111499",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-6",
-      "audioText": "CSN421, Wuhan Control, is there any damage to the aircraft or passenger injuries?[Tell the controller that there isn’t any damage, and the purser told you that passengers are OK.]",
+      "audioText": "CSN421, Wuhan Control, is there any damage to the aircraft or passenger injuries?[Tell the controller that there isn't any damage, and the purser told you that passengers are OK.]",
       "audioTextZh": "南航421，武汉区调，飞机有损伤么？乘客有受伤么？【告诉管制员飞机没有任何损伤，乘务长说乘客也没受伤。】",
       "referenceText": "No damage and the purser reported that the passengers are OK, CSN421.",
       "referenceTextZh": "没有损伤，乘务长说乘客也都很安全，南航421。",
@@ -62,8 +62,8 @@
     {
       "id": "radiotelephony-fzy-111500",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-7",
-      "audioText": "[Inform Wuhan Control that you have just received an anonymous call saying there is a bomb on board your aircraft.]",
-      "audioTextZh": "【通知武汉区调你刚接到匿名电话称机上有炸弹。】",
+      "audioText": "Inform Wuhan Control that you have just received an anonymous call saying there is a bomb on board your aircraft.",
+      "audioTextZh": "通知武汉区调你刚接到匿名电话称机上有炸弹。",
       "referenceText": "(Mayday Mayday Mayday) Wuhan Control, CSN421, we have just received an anonymous call saying there is a bomb on board.",
       "referenceTextZh": "(Mayday Mayday Mayday) 武汉区调，南航421，我们刚接到匿名电话，称飞机上有炸弹。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/406f55b3504fbb9bf1ad.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-111505",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-12",
-      "audioText": "[Make an initial contact with Wuhan Approach; inform the controller that you have received an anonymous call saying there is a bomb on board your aircraft, and you are returning to Wuhan.]",
-      "audioTextZh": "【和武汉进近进行初次联系；通知管制员你收到匿名电话，称飞机上有炸弹，你正在返回武汉。】",
+      "audioText": "Make an initial contact with Wuhan Approach; inform the controller that you have received an anonymous call saying there is a bomb on board your aircraft, and you are returning to Wuhan.",
+      "audioTextZh": "和武汉进近进行初次联系；通知管制员你收到匿名电话，称飞机上有炸弹，你正在返回武汉。",
       "referenceText": "Wuhan Approach, CSN421, maintaining 4800m, over ZF. We have received an anonymous call saying there is a bomb on board. We are turning back to land at Wuhan airport.",
       "referenceTextZh": "武汉进近，南航421，4800米保持，过ZF。我们收到匿名电话，称飞机上有炸弹，我们正在返回降落到武汉。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/172ecd8b7abaa2946582.mp3"
@@ -152,7 +152,7 @@
     {
       "id": "radiotelephony-fzy-111510",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-17",
-      "audioText": "[Inform the controller that you have captured the signal of the localizer.]",
+      "audioText": "Inform the controller that you have captured the signal of the localizer.",
       "audioTextZh": "【通知管制员你已截获航向道信号。】",
       "referenceText": "Wuhan Approach, CSN421, localizer established.",
       "referenceTextZh": "武汉进近，南航421，航道已建立。",
@@ -170,8 +170,8 @@
     {
       "id": "radiotelephony-fzy-111512",
       "taskTitle": "44. CSN421 CAT&bomb, etc.-19",
-      "audioText": "[Later, you cannot see the runway at decision altitude during approach, inform tower controller that you need to make another approach.]",
-      "audioTextZh": "【过了一会儿，在决断高度你无法看到跑道，通知塔台管制员你需要重新进近。】",
+      "audioText": "Later, you cannot see the runway at decision altitude during approach, inform tower controller that you need to make another approach.",
+      "audioTextZh": "过了一会儿，在决断高度你无法看到跑道，通知塔台管制员你需要重新进近。",
       "referenceText": "Wuhan Tower, CSN421, we are going around, no contact at minima.",
       "referenceTextZh": "武汉塔台，南航421，我们复飞了，最低标准不能见跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c455e651e4c6369214a2.mp3"

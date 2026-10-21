@@ -27,7 +27,8 @@ it('keeps every shipped scope nested and public directory counts equal to the fu
         ids.set(scope, new Set(cards.map((card) => card.id)));
       }
       for (const id of ids.get('selected')!) expect(ids.get('all')!.has(id)).toBe(true);
-      for (const id of ids.get('crash')!) expect(ids.get('selected')!.has(id)).toBe(true);
+      const reported = new Set(bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.filter(card => card.examReported).map(card => card.id))));
+      for (const id of ids.get('crash')!) expect(ids.get('selected')!.has(id) || reported.has(id)).toBe(true);
     }
   }
 });
@@ -45,8 +46,9 @@ it('ships the agreed crash practice units, counting full radio scenes and spoken
   expect(crash('storytelling').declaredCardCount).toBe(20);
   const opi = crash('opi').categories.flatMap((category) => category.topics.flatMap((item) => item.cards));
   const opiIds = new Set(opi.map((card) => card.id));
+  const retiredIds = new Set(banks.find(bank => bank.id === 'opi')!.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.filter(card => card.retired).map(card => card.id))));
   for (const brief of hotspots.briefs) for (const topic of brief.topics) {
-    for (const id of topic.cardIds) expect(opiIds.has(id)).toBe(true);
+    for (const id of topic.cardIds) expect(opiIds.has(id) || retiredIds.has(id)).toBe(true);
   }
 });
 

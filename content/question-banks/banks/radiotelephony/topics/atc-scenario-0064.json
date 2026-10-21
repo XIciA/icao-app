@@ -115,7 +115,7 @@
       "id": "atc-scenario-0064-card-main-1111",
       "taskTitle": "CCA 321-13",
       "audioText": "B: During final approach, you find the ILS area is not clear and you are going around, inform Wuhan Tower.",
-      "audioTextZh": "B: 最后进近中，你发现 ILS 区域未净空，正在复飞，通知 武汉塔台。",
+      "audioTextZh": "B: 最后进近中，你发现 ILS 区域未净空，正在复飞，通知武汉塔台。",
       "referenceText": "Wuhan Tower, CCA 321, ILS area is not clear, going around.",
       "referenceTextZh": "武汉塔台，CCA 321，ILS 区域未净空，复飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1111.mp3"

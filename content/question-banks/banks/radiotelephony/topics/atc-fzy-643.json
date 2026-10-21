@@ -8,7 +8,7 @@
     {
       "id": "radiotelephony-fzy-111803",
       "taskTitle": "15. UAL895 autothrottle problem, etc.-1",
-      "audioText": "[Your call sign is UAL895, destination Beijing, approaching POLHO, estimate POLHO 30, level 12100m, TMR 50, next TZH, now contact Beijing Control and request clearance to cross the national boundary line.]",
+      "audioText": "Your call sign is UAL895, destination Beijing, approaching POLHO, estimate POLHO 30, level 12100m, TMR 50, next TZH, now contact Beijing Control and request clearance to cross the national boundary line.",
       "audioTextZh": "你的呼号是UAL（美联航）895，目的地北京，正在接近POLHO，预计POLHO 30分，高度12100米，TMR 50分，下个报告点TZH，现在联系北京区调并请求穿越国境线许可。",
       "referenceText": "Beijing Control, UAL895, 12100m maintaining, estimate POLHO 30, TMR 50, next TZH, request clearance for entry.",
       "referenceTextZh": "北京区调，美联航895，12100米保持，预计POLHO 30分，TMR 50分，下个报告点TZH，请求进入许可。",
@@ -35,8 +35,8 @@
     {
       "id": "radiotelephony-fzy-111806",
       "taskTitle": "15. UAL895 autothrottle problem, etc.-4",
-      "audioText": "[Now you are over POLHO at 30, report Beijing Control for further advice.]",
-      "audioTextZh": "【过POLHO 30分，报告北京区调，请求进一步指令。】",
+      "audioText": "Now you are over POLHO at 30, report Beijing Control for further advice.",
+      "audioTextZh": "过POLHO 30分，报告北京区调，请求进一步指令。",
       "referenceText": "Beijing Control, UAL895, over POLHO 30, advise instruction.",
       "referenceTextZh": "北京区调，美联航895，过POLHO 30分，请求指令。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b484552ec95ecc1bb5f2.mp3"
@@ -62,7 +62,7 @@
     {
       "id": "radiotelephony-fzy-111809",
       "taskTitle": "15. UAL895 autothrottle problem, etc.-7",
-      "audioText": "[5 minutes later.][You have some autothrottle system problems, you’d like to descend to 8900m to complete some checklists.]",
+      "audioText": "[5 minutes later.][You have some autothrottle system problems, you'd like to descend to 8900m to complete some checklists.]",
       "audioTextZh": "【5分钟后】【飞机自动油门系统出现故障，你想下降到8900米完成检查单。】",
       "referenceText": "(Panpan Panpan Panpan) Beijing Control, UAL895, autothrottle system failure, request descent to 8900m for check.",
       "referenceTextZh": "(Panpan Panpan Panpan) 北京区调，美联航895，自动油门系统故障，请求下降到8900米检查。",
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-111814",
       "taskTitle": "15. UAL895 autothrottle problem, etc.-12",
-      "audioText": "[Establish initial contact with Beijing Approach, you are 4500m maintaining and flying direct to HUR.]",
-      "audioTextZh": "【与北京进近建立初次联系，4500米保持，正在直飞HUR。】",
+      "audioText": "Establish initial contact with Beijing Approach, you are 4500m maintaining and flying direct to HUR.",
+      "audioTextZh": "与北京进近建立初次联系，4500米保持，正在直飞HUR。",
       "referenceText": "Beijing Approach, UAL895, 4500m maintaining, direct to HUR.",
       "referenceTextZh": "北京进近，美联航895，4500米保持，直飞HUR。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/a096c885e9a9dc1bd421.mp3"

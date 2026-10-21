@@ -115,7 +115,7 @@
       "id": "atc-scenario-0068-card-main-1173",
       "taskTitle": "CCA 301-13",
       "audioText": "B: Now you have vacated Runway 36R via E2 and ask Beijing Tower the reasons for rejected takeoff.",
-      "audioTextZh": "B: 现在你已通过 E2 脱离跑道 36R，并询问 北京塔台 中断起飞的原因。",
+      "audioTextZh": "B: 现在你已通过 E2 脱离跑道 36R，并询问北京塔台中断起飞的原因。",
       "referenceText": "Beijing Tower, CCA 301, Runway 36R vacated via E2, confirm the reasons for rejected takeoff.",
       "referenceTextZh": "北京塔台，CCA 301，已通过 E2 脱离跑道 36R，确认中断起飞原因。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1173.mp3"

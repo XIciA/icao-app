@@ -1,48 +1,48 @@
 {
   "id": "opi-topic-0119",
   "name": "烟雾",
-  "declaredCardCount": 4,
   "cards": [
     {
-      "id": "opi-extra-113",
-      "taskTitle": "特情-烟雾-1",
-      "audioText": "What can cause smoke in an aircraft cockpit?",
-      "audioTextZh": "哪些因素会导致飞机驾驶舱内出现烟雾？",
-      "referenceText": "Cockpit smoke can be caused by an electrical-system fault, worn or damaged wiring, or a leak involving dangerous goods.",
-      "referenceTextZh": "驾驶舱烟雾可能由电气系统故障、线路磨损或损坏，或危险品泄漏引起。",
-      "audio": "/question-bank-assets/revisions/opi/189e4379109e6ace8bb5520872053a702f61a8477a458c805d339a6b22cce42c/audio/opi/opi-extra-113.mp3",
-      "audioDurationSeconds": 2.376
-    },
-    {
-      "id": "opi-extra-114",
-      "taskTitle": "特情-烟雾-2",
-      "audioText": "What should a flight crew do if smoke is reported in the cabin?",
-      "audioTextZh": "如果报告客舱内有烟雾，机组应如何处置？",
-      "referenceText": "The cabin crew should identify the source if possible and use the available extinguishers if there is a fire. The flight crew should report the situation to ATC, arrange an emergency landing at a suitable airport, and request fire and medical services. The appropriate ventilation system may be used if the procedure calls for it.",
-      "referenceTextZh": "客舱机组应尽可能查明烟雾来源；如果发生火灾，应使用可用的灭火器。飞行机组应向空中交通管制报告情况，安排在合适的机场紧急着陆，并请求消防和医疗服务。如果程序有要求，可以使用相应的通风系统。",
-      "audio": "/question-bank-assets/revisions/opi/e7a7bb793005353c1a4f087cc9b86f1aca79796cbc10cb21743f1495dbb1a1e9/audio/opi/opi-extra-114.mp3",
-      "audioDurationSeconds": 3.144
-    },
-    {
       "id": "opi-extra-115",
-      "taskTitle": "特情-烟雾-3",
+      "audio": "/question-bank-assets/revisions/opi/b1dec826d486f7f74cdad185c05447863d327d8a5de8e5d72b37c5ae4bf0caab/audio/opi/opi-extra-115.mp3",
       "audioText": "Have you heard of an aviation accident caused by smoke or fire on board? If so, what happened? If not, do you think smoke or fire could cause an accident, and why?",
+      "taskTitle": "特情-烟雾-3",
       "audioTextZh": "你听说过由机上烟雾或火灾引发的航空事故吗？如果听说过，当时发生了什么？如果没有，你认为烟雾或火灾可能导致事故吗？为什么？",
       "referenceText": "No, I have not heard of a specific accident. However, I believe smoke or fire could cause one because it can develop rapidly and may eventually make the aircraft difficult or impossible to control.",
       "referenceTextZh": "没有，我没有听说过某起具体事故。不过，我认为烟雾或火灾可能导致事故，因为它会迅速发展，并最终可能使飞机难以甚至无法控制。",
-      "audio": "/question-bank-assets/revisions/opi/b1dec826d486f7f74cdad185c05447863d327d8a5de8e5d72b37c5ae4bf0caab/audio/opi/opi-extra-115.mp3",
       "audioDurationSeconds": 9.984
     },
     {
       "id": "opi-core-076",
-      "taskTitle": "特情-烟雾-4",
+      "audio": "/question-bank-assets/revisions/opi/6f0b8f0f286989c3559f91653f5c3d757def48b9fc0ff569c08fa7ce5eafc386/audio/opi/opi-core-076.mp3",
       "audioText": "What should a flight crew do if smoke or an unusual smell is detected in the cockpit?",
+      "taskTitle": "特情-烟雾-4",
       "audioTextZh": "如果驾驶舱内出现烟雾或异常气味，机组应如何处置？",
       "referenceText": "The crew should put on oxygen masks and smoke goggles as required and follow the applicable smoke or fire checklist. They should identify and isolate the source if possible. They should advise ATC, declare an emergency when appropriate, land at a suitable airport, and request fire and medical services.",
       "referenceTextZh": "机组应按要求戴上氧气面罩和防烟护目镜，并执行适用的烟雾或火警检查单。他们应尽可能查明并隔离源头。机组还应通知空中交通管制，在适当时宣布紧急状态，在合适的机场着陆，并请求消防和医疗服务。",
-      "audio": "/question-bank-assets/revisions/opi/6f0b8f0f286989c3559f91653f5c3d757def48b9fc0ff569c08fa7ce5eafc386/audio/opi/opi-core-076.mp3",
       "audioDurationSeconds": 4.464
+    },
+    {
+      "id": "opi-extra-113",
+      "audio": "/question-bank-assets/revisions/opi/189e4379109e6ace8bb5520872053a702f61a8477a458c805d339a6b22cce42c/audio/opi/opi-extra-113.mp3",
+      "audioText": "What can cause smoke in an aircraft cockpit?",
+      "taskTitle": "特情-烟雾-1",
+      "audioTextZh": "哪些因素会导致飞机驾驶舱内出现烟雾？",
+      "referenceText": "Cockpit smoke can be caused by an electrical-system fault, worn or damaged wiring, or a leak involving dangerous goods.",
+      "referenceTextZh": "驾驶舱烟雾可能由电气系统故障、线路磨损或损坏，或危险品泄漏引起。",
+      "audioDurationSeconds": 2.376
+    },
+    {
+      "id": "opi-extra-114",
+      "audio": "/question-bank-assets/revisions/opi/e7a7bb793005353c1a4f087cc9b86f1aca79796cbc10cb21743f1495dbb1a1e9/audio/opi/opi-extra-114.mp3",
+      "audioText": "What should a flight crew do if smoke is reported in the cabin?",
+      "taskTitle": "特情-烟雾-2",
+      "audioTextZh": "如果报告客舱内有烟雾，机组应如何处置？",
+      "referenceText": "The cabin crew should identify the source if possible and use the available extinguishers if there is a fire. The flight crew should report the situation to ATC, arrange an emergency landing at a suitable airport, and request fire and medical services. The appropriate ventilation system may be used if the procedure calls for it.",
+      "referenceTextZh": "客舱机组应尽可能查明烟雾来源；如果发生火灾，应使用可用的灭火器。飞行机组应向空中交通管制报告情况，安排在合适的机场紧急着陆，并请求消防和医疗服务。如果程序有要求，可以使用相应的通风系统。",
+      "audioDurationSeconds": 3.144
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-02"
 }

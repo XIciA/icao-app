@@ -88,7 +88,7 @@
       "id": "atc-scenario-0052-card-main-895",
       "taskTitle": "CCA 101-10",
       "audioText": "B: It is much later, you initiate approach, you have reached 15000 meters and request further descent, call HongKong Approach.",
-      "audioTextZh": "B: 很久以后，你开始进近，已到达 15000 米并请求继续下降，呼叫 香港进近。",
+      "audioTextZh": "B: 很久以后，你开始进近，已到达 15000 米并请求继续下降，呼叫香港进近。",
       "referenceText": "HongKong Approach, CCA 101, maintain 15000m, request further descent.",
       "referenceTextZh": "香港进近，CCA 101，保持 15000 米，请求继续下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/895.mp3"
@@ -96,7 +96,7 @@
     {
       "id": "atc-scenario-0052-card-main-896",
       "taskTitle": "CCA 101-11",
-      "audioText": "C: CCA 101, maintain 15000 meters, opposite traffic 2 o’clock 10 miles, report clear of traffic.\nB: Tell the controller you are clear of the other aircraft and request to fly lower.",
+      "audioText": "C: CCA 101, maintain 15000 meters, opposite traffic 2 o'clock 10 miles, report clear of traffic.\nB: Tell the controller you are clear of the other aircraft and request to fly lower.",
       "audioTextZh": "C: CCA 101，保持 15000 米，相对交通 2 点钟方向 10 海里，报告脱离交通。\nB: 告诉管制员你已脱离另一架飞机，并请求降低高度。",
       "referenceText": "HongKong Approach, CCA 101, clear of traffic, request to fly lower.",
       "referenceTextZh": "香港进近，CCA 101，脱离交通，请求降低高度。",

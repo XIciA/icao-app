@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111338",
       "taskTitle": "36. SIA854 tyre burst, etc.-1",
-      "audioText": "[Your call sign is SIA854, you are at Wuhan Airport, Stand 7, received ATIS M, request ATC clearance to Singapore.]",
-      "audioTextZh": "【你的呼号是新航854，你在武汉机场，7号机位，收到通播M，向ATC申请放行至新加坡。】",
+      "audioText": "Your call sign is SIA854, you are at Wuhan Airport, Stand 7, received ATIS M, request ATC clearance to Singapore.",
+      "audioTextZh": "你的呼号是新航854，你在武汉机场，7号机位，收到通播M，向ATC申请放行至新加坡。",
       "referenceText": "Wuhan Delivery, SIA854, Stand 7, information M, destination Singapore, request ATC clearance.",
       "referenceTextZh": "武汉放行，新航854，7号机位，通播M，目的地新加坡，申请ATC放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3b2bfb674cfc58bb9e8f.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-111340",
       "taskTitle": "36. SIA854 tyre burst, etc.-3",
-      "audioText": "[Now you are ready for pushback and start-up, contact Wuhan Ground.]",
+      "audioText": "Now you are ready for pushback and start-up, contact Wuhan Ground.",
       "audioTextZh": "【你已准备好推出开车，联系武汉地面。】",
       "referenceText": "Wuhan Ground, SIA854, request pushback and start-up.",
       "referenceTextZh": "武汉地面，新航854，请求推出开车。",
@@ -53,7 +53,7 @@
     {
       "id": "radiotelephony-fzy-111343",
       "taskTitle": "36. SIA854 tyre burst, etc.-6",
-      "audioText": "[A few minutes later, contact Ground request a new clearance.]",
+      "audioText": "A few minutes later, contact Ground request a new clearance.",
       "audioTextZh": "【几分钟后，联系地面请求新的放行许可。】",
       "referenceText": "Wuhan Ground, SIA854, request pushback and start up.",
       "referenceTextZh": "武汉地面，新航854，请求推出开车。",
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-111345",
       "taskTitle": "36. SIA854 tyre burst, etc.-8",
-      "audioText": "[You have completed the pushback and start-up procedures, you decided to make an intersection departure from E2. Contact Ground to request intersection departure from E2.]",
-      "audioTextZh": "【你已完成推出开车程序，决定从滑行道E2减跑道起飞。联系地面，请求从滑行道E2减跑道起飞。】",
+      "audioText": "You have completed the pushback and start-up procedures, you decided to make an intersection departure from E2. Contact Ground to request intersection departure from E2.",
+      "audioTextZh": "你已完成推出开车程序，决定从滑行道E2减跑道起飞。联系地面，请求从滑行道E2减跑道起飞。",
       "referenceText": "Wuhan Ground, SIA854, request an intersection departure from E2.",
       "referenceTextZh": "武汉地面，新航854，请求在滑行道E2减跑道起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/6d070822c833cbd2f4ac.mp3"
@@ -89,8 +89,8 @@
     {
       "id": "radiotelephony-fzy-111347",
       "taskTitle": "36. SIA854 tyre burst, etc.-10",
-      "audioText": "[During taxiing, you find a vehicle broken down on taxiway A, you have stopped the aircraft, inform ATC about this situation and request airport services to tow away the vehicle.]",
-      "audioTextZh": "【滑行中，你发现滑行道A上有一抛锚车辆，你停下飞机，通知ATC该情况，请求机场服务拖走该车辆。】",
+      "audioText": "During taxiing, you find a vehicle broken down on taxiway A, you have stopped the aircraft, inform ATC about this situation and request airport services to tow away the vehicle.",
+      "audioTextZh": "滑行中，你发现滑行道A上有一抛锚车辆，你停下飞机，通知ATC该情况，请求机场服务拖走该车辆。",
       "referenceText": "Wuhan Ground, SIA854, there is a vehicle broken down on taxiway A, we stopped the aircraft, request airport services to tow away the vehicle.",
       "referenceTextZh": "武汉地面，新航854，滑行道A上有一抛锚车辆，我们停下飞机，请求机场服务拖走该车辆。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2d7ac8ba34a4850c97f0.mp3"
@@ -116,8 +116,8 @@
     {
       "id": "radiotelephony-fzy-111350",
       "taskTitle": "36. SIA854 tyre burst, etc.-13",
-      "audioText": "[During the takeoff roll, your nose wheel ran over a sharp object on the runway surface and a nose wheel tire burst. You aborted takeoff. Notify Wuhan Tower and request fire engines and maintenance..]",
-      "audioTextZh": "【起飞滑跑时，飞机前轮碾过锋利的道面上的锋利物体，前胎爆炸。你中止起飞。通知武汉塔台，请求消防车和维修服务。】",
+      "audioText": "During the takeoff roll, your nose wheel ran over a sharp object on the runway surface and a nose wheel tire burst. You aborted takeoff. Notify Wuhan Tower and request fire engines and maintenance..",
+      "audioTextZh": "起飞滑跑时，飞机前轮碾过锋利的道面上的锋利物体，前胎爆炸。你中止起飞。通知武汉塔台，请求消防车和维修服务。",
       "referenceText": "(Panpan Panpan Panpan) Wuhan Tower, SIA854, we aborted takeoff due ran over a sharp object and our nose wheel tire burst, request fire trucks and maintenance.",
       "referenceTextZh": "(Panpan Panpan Panpan) 武汉塔台，新航854，我们飞机前轮碾过道面上的锋利物体，前胎爆炸，中断起飞了，请求消防车和维修服务。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/2c2a7449f63bcffd5ff0.mp3"
@@ -143,8 +143,8 @@
     {
       "id": "radiotelephony-fzy-111354",
       "taskTitle": "36. SIA854 tyre burst, etc.-16",
-      "audioText": "[Request passenger stairs and shuttle bus to be ready at the apron after contact Ground.]",
-      "audioTextZh": "【联系地面，请求在停机坪处准备好客梯车及摆渡车。】",
+      "audioText": "Request passenger stairs and shuttle bus to be ready at the apron after contact Ground.",
+      "audioTextZh": "联系地面，请求在停机坪处准备好客梯车及摆渡车。",
       "referenceText": "Wuhan Ground, SIA854, request passenger stairs and shuttle bus to be ready at the apron",
       "referenceTextZh": "武汉地面，新航854，请求在停机坪处准备好客梯车及摆渡车。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/cf739e70acb7efa00ab1.mp3"

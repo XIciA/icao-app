@@ -21,6 +21,11 @@ const wordLookupDatasetPath = join(root, 'content/word-lookup/dataset.json');
 // Exact-value approval for the user's September 900-sentence source replacement.
 // It supersedes historical wording corrections, not validation of later edits.
 const accepted900 = JSON.parse(readFileSync(join(root, 'docs/records/workstreams/sentences900-opi-resource-update/accepted-text.json'), 'utf8')).fields;
+const acceptedFormat = JSON.parse(readFileSync(join(root, 'docs/records/workstreams/question-bank-standardization-20261022/accepted-format.json'), 'utf8')).fields;
+function isAcceptedFormat(record) {
+  const field = /^\d+$/u.test(record.field) ? record.pointer.split('/').at(-2) : record.field;
+  return Boolean(acceptedFormat[`${record.cardId ?? record.topicId}#${field}`]?.includes(sha256(record.text)));
+}
 function isAccepted900(record) {
   return record.bankId === 'sentences900' && accepted900[`${record.cardId}#${record.field}`] === sha256(record.text);
 }
@@ -1404,6 +1409,7 @@ function applyReviewedRecordReplacements(record) {
 }
 
 export function normalizeDeterministicText(record) {
+  if (isAcceptedFormat(record)) return record.text;
   if (isAccepted900(record)) return record.text;
   let next = applyKnownTypoReplacements(applyReviewedRecordReplacements(record))
     .replace(/[\uFEFF\u200B-\u200D\u2060]/gu, '')
@@ -2227,8 +2233,13 @@ function check() {
       const decoded = part.replaceAll('~1', '/').replaceAll('~0', '~');
       return /^\d+$/u.test(decoded) ? Number(decoded) : decoded;
     });
+    // Array positions are presentation order, not durable correction identity.
+    if (entry.cardId && path[0] === 'cards') {
+      path[1] = fileValue.json.cards.findIndex(card => card.id === entry.cardId);
+      if (path[1] < 0) fail(`missing_corrected_card:${entry.cardId}`);
+    }
     const current = valueAtPath(fileValue.json, path);
-    if (current !== entry.after && !isAccepted900({ ...entry, text: current })) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
+    if (current !== entry.after && !isAccepted900({ ...entry, text: current }) && !isAcceptedFormat({ ...entry, text: current })) fail(`correction_not_applied:${correctionLocatorKey(entry)}`);
   }
   console.log(`question_bank_text_check_ok texts=${sources.records.length} files=${sources.files.size} candidates=${candidates.length} reviewed=${decisions.size} corrections=${ledger.corrections.length}`);
 }

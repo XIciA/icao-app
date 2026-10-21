@@ -3,7 +3,8 @@ import { examGoal, type ExamGoal } from '@/features/account/profile-model';
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 
 export function scopeTopic(bankId: QuestionBankId, topic: QuestionBankTopic, scope: StudyScope): QuestionBankTopic {
-  if ((scope === 'all' || bankId === 'sentences900') && !topic.cards.some(card => card.retired)) return topic;
+  if ((scope === 'all' || bankId === 'sentences900') && !topic.cards.some(card => card.retired)
+    && (!topic.scopeCardIds || topic.scopeCardIds.all.length === topic.declaredCardCount)) return topic;
   const index = topic.scopeCardIds ?? studyScopeCardIds(bankId, topic);
   const ids = new Set(index[bankId === 'sentences900' ? 'all' : scope]);
   for (const card of topic.cards) if (card.retired) ids.delete(card.id);

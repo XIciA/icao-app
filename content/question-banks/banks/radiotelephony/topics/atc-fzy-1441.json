@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-209441",
       "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-1",
       "audioText": "B: [Your call sign is ACA331, from Wuhan to Vancouver, pushback and start up have been completed, request Wuhan Ground for taxi instructions.]",
-      "audioTextZh": "【你的呼号是加航331，从武汉飞往温哥华，已经完成了推出开车，向武汉地面请求滑行指令。】",
+      "audioTextZh": "你的呼号是加航331，从武汉飞往温哥华，已经完成了推出开车，向武汉地面请求滑行指令。",
       "referenceText": "Wuhan Ground, ACA331, push back and start up completed, request taxi.",
       "referenceTextZh": "武汉地面，加航331，完成了推出开车，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/14b7010201d663a9c32d.mp3"
@@ -54,7 +54,7 @@
       "id": "radiotelephony-fzy-209446",
       "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-6",
       "audioText": "B: [Now you have vacated runway 18R via C4, report to Ground.]",
-      "audioTextZh": "【你现在经由C4脱离跑道18右，报告给地面。】",
+      "audioTextZh": "你现在经由C4脱离跑道18右，报告给地面。",
       "referenceText": "Wuhan Ground, ACA331, we have vacated runway 18R via C4.",
       "referenceTextZh": "武汉地面，加航331，我们已经经由C4脱离跑道18右。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e696c8d032ffd8e3c0ba.mp3"
@@ -72,7 +72,7 @@
       "id": "radiotelephony-fzy-209448",
       "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-8",
       "audioText": "B: [Now you are airborne, climbing to 1800m, you see a helicopter on 10 o'clock above. It is closing to your aircraft. Inform Wuhan Departure and ask for a right turn to avoid the traffic.]",
-      "audioTextZh": "【现在你已经离地，爬升至1800米，你看到上方10点钟方向有一架直升机，它正在靠近你的飞机。报告给武汉离场，请求右转躲避航空器。】",
+      "audioTextZh": "现在你已经离地，爬升至1800米，你看到上方10点钟方向有一架直升机，它正在靠近你的飞机。报告给武汉离场，请求右转躲避航空器。",
       "referenceText": "Wuhan Departure, ACA331, airborne, climbing to 1800m, there is a helicopter on 10 o'clock above. It is closing to our aircraft, request right turn to avoid it.",
       "referenceTextZh": "武汉离场，加航331，离地了，爬升至1800米，10点钟方向有一架直升机，它正在靠近我们飞机，请求右转躲避航空器。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1b5cfd8fcd622317dd28.mp3"
@@ -99,7 +99,7 @@
       "id": "radiotelephony-fzy-209451",
       "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-11",
       "audioText": "B: [You are now at cruising level 9500m, over OBLIK, make an initial contact with Zhengzhou Control, your squawk number is 5655.]",
-      "audioTextZh": "【你现在在9500米巡航，飞过OBLIK，与郑州区调建立初始联系，你的应答机编码是5655。】",
+      "audioTextZh": "你现在在9500米巡航，飞过OBLIK，与郑州区调建立初始联系，你的应答机编码是5655。",
       "referenceText": "Zhengzhou Control, ACA331, maintaining 9500m, over OBLIK, squawking 5655.",
       "referenceTextZh": "郑州区调，加航331，在9500米保持，过OBLIK，应答机5655。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/ba85228c9a9e18255cc9.mp3"
@@ -117,7 +117,7 @@
       "id": "radiotelephony-fzy-209453",
       "taskTitle": "49-ACA331 [有毒气体，冲突航空器]-13",
       "audioText": "B: [Suddenly, your cabin crew reports there are toxic fume in the rear cabin. You decide to expedite descend for smoke removal. Make a distress call to Zhengzhou Control and request to level off at 3000m.]",
-      "audioTextZh": "【突然，乘务员报告后客舱有有毒气体。你决定加速下降进行除烟程序。向郑州区调做遇险呼叫，请求在3000米平飞。】",
+      "audioTextZh": "突然，乘务员报告后客舱有有毒气体。你决定加速下降进行除烟程序。向郑州区调做遇险呼叫，请求在3000米平飞。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Zhengzhou Control, ACA331, there are toxic fume in the rear cabin. Request expedite descend for smoke removal and level off at 3000m.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，郑州区调，加航331，后客舱有有毒气体，请求加速下降进行除烟程序，并在3000米改平。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e8519ea03ed4458e3985.mp3"

@@ -60,7 +60,7 @@
     {
       "id": "atc-scenario-0101-card-main-1748",
       "taskTitle": "SIA 544-7",
-      "audioText": "C: I don’t know the exact reason. The only thing I know is that you have not been cleared by Customs.\nB: You tell the controller that you have the clearance sheet together with a waybill.",
+      "audioText": "C: I don't know the exact reason. The only thing I know is that you have not been cleared by Customs.\nB: You tell the controller that you have the clearance sheet together with a waybill.",
       "audioTextZh": "C：我不知道确切原因。我只知道你们还没有获得海关放行。\nB：你告诉管制员你有放行单和运单。",
       "referenceText": "Ground, SIA 544, we have a clearance sheet together with a waybill right here with us.",
       "referenceTextZh": "地面，SIA 544，我们这里有放行单和运单。",
@@ -132,7 +132,7 @@
     {
       "id": "atc-scenario-0101-card-main-1756",
       "taskTitle": "SIA 544-15",
-      "audioText": "C: SIA 544, wait there. Don’t let the passengers get off the aircraft. The policemen will be on the scene in a minute.",
+      "audioText": "C: SIA 544, wait there. Don't let the passengers get off the aircraft. The policemen will be on the scene in a minute.",
       "audioTextZh": "C: SIA 544，在那里等待。不要让旅客下机。警察一分钟后到现场。",
       "referenceText": "Roger, SIA 544.",
       "referenceTextZh": "收到，SIA 544。",

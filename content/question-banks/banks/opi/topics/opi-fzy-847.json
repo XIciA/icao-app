@@ -1,49 +1,49 @@
 {
   "id": "opi-fzy-847",
   "name": "Complicated airport",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-fzy-847-image-1",
       "kind": "image",
-      "taskTitle": "Complicated airport · 看图材料",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-847.png",
       "imageAlt": "Complicated airport，用于本话题的看图描述和问答",
-      "studyTier": 1
+      "studyTier": 1,
+      "taskTitle": "Complicated airport · 看图材料"
     },
     {
       "id": "opi-fzy-152420",
-      "taskTitle": "Complicated airport-1",
+      "audio": "/question-bank-assets/revisions/opi/3d4b961def2f223728a06c186e2e9bdb56c2529aab74f8f347473bba7c8f291d/audio/opi/opi-fzy-152420.mp3",
       "audioText": "Have you had any complicated airport training in simulator?",
-      "audioTextZh": "你在模拟机里面接受过复杂机场的训练吗？",
       "studyTier": 1,
+      "taskTitle": "Complicated airport-1",
+      "audioTextZh": "你在模拟机里面接受过复杂机场的训练吗？",
       "referenceText": "Yes, I received some complicated airport training in simulator.\nIt largely improves my flight skills and techniques.",
       "referenceTextZh": "是的，我在模拟机里接受过相关复杂机场的训练。\n它极大的提升了我的飞行技术和技巧。",
-      "audio": "/question-bank-assets/revisions/opi/3d4b961def2f223728a06c186e2e9bdb56c2529aab74f8f347473bba7c8f291d/audio/opi/opi-fzy-152420.mp3",
       "audioDurationSeconds": 3.264
     },
     {
       "id": "opi-fzy-152421",
-      "taskTitle": "Complicated airport-2",
+      "audio": "/question-bank-assets/revisions/opi/052e95067000aa3ada9bb9fbb0b3bbfde229f5aeea81aa2b8f6d50f0883a4b7a/audio/opi/opi-fzy-152421.mp3",
       "audioText": "How to make a successful landing at a complicated airport?",
-      "audioTextZh": "如何在复杂机场成功着陆？",
       "studyTier": 1,
+      "taskTitle": "Complicated airport-2",
+      "audioTextZh": "如何在复杂机场成功着陆？",
       "referenceText": "We should pay attention to the surrounding environments including complicated weather conditions.\nmake a stable approach, and make sure speed and heading are correctly set.",
       "referenceTextZh": "我们应关注机场周围环境，包括复杂的天气条件。\n做稳定进近，并确保速度和航向设置正确。",
-      "audio": "/question-bank-assets/revisions/opi/052e95067000aa3ada9bb9fbb0b3bbfde229f5aeea81aa2b8f6d50f0883a4b7a/audio/opi/opi-fzy-152421.mp3",
       "audioDurationSeconds": 3.336
     },
     {
       "id": "opi-fzy-153578",
-      "taskTitle": "Complicated airport-3",
+      "audio": "/question-bank-assets/revisions/opi/111d9d1ee11c9f8daa70b1e0fe4bc063882868f729e1acc25f8d5e26557fff94/audio/opi/opi-fzy-153578.mp3",
       "audioText": "What can you learn from this picture?",
-      "audioTextZh": "从这张图上你可以看到什么？",
       "studyTier": 1,
+      "taskTitle": "Complicated airport-3",
+      "audioTextZh": "从这张图上你可以看到什么？",
       "referenceText": "From this picture, I can see a complicated airport with short and narrow runway. The airport is located near the seaside, it is very easy for pilots to encounter wind shear when landing on this airport.",
       "referenceTextZh": "从这张图上，我看到一个有窄短跑道的复杂机场，机场位于海边，在这种机场降落时，飞行员很容易遭遇风切变。",
-      "audio": "/question-bank-assets/revisions/opi/111d9d1ee11c9f8daa70b1e0fe4bc063882868f729e1acc25f8d5e26557fff94/audio/opi/opi-fzy-153578.mp3",
       "audioDurationSeconds": 1.752
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

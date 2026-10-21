@@ -1,178 +1,219 @@
 {
   "id": "opi-topic-0121",
   "name": "机型与职业",
-  "declaredCardCount": 17,
   "cards": [
     {
-      "id": "opi-core-058",
-      "taskTitle": "其它-机型与职业-1",
-      "audioText": "What type of aircraft do you currently fly?",
-      "audioTextZh": "你目前飞哪种型号的飞机？",
-      "referenceText": "I am a student pilot, and I currently fly the DA-40 for flight training.",
-      "referenceTextZh": "我是一名学员飞行员，目前使用 DA-40 进行飞行训练。",
-      "audio": "/question-bank-assets/revisions/opi/0ed92ce351887bdffc02db98849259da9f391575b162a7cc2b808dae50094931/audio/opi/opi-core-058.mp3",
-      "audioDurationSeconds": 2.568
-    },
-    {
-      "id": "opi-core-571",
-      "taskTitle": "其它-机型与职业-2",
-      "audioText": "What are your plans for your future aviation career?",
-      "audioTextZh": "你对未来的航空职业生涯有什么规划？",
-      "referenceText": "I plan to obtain my commercial pilot licence and then join a reputable airline. I hope to build experience steadily, become a captain in the future, and contribute to safe flight operations.",
-      "referenceTextZh": "我计划先取得商用驾驶员执照，然后加入一家信誉良好的航空公司。我希望稳步积累经验，将来成为机长，并为飞行安全作出贡献。",
-      "audio": "/question-bank-assets/revisions/opi/5ffbe30c06b4a43d47d1e02bed9845664b999fd75302a1230dfafd986a387284/audio/opi/opi-core-571.mp3",
-      "audioDurationSeconds": 2.76
-    },
-    {
-      "id": "opi-extra-058",
-      "taskTitle": "其它-机型与职业-3",
-      "audioText": "What are the main operating limitations of the aircraft type you fly?",
-      "audioTextZh": "你所飞机型的主要运行限制有哪些？",
-      "referenceText": "I fly a DA-40, but the exact numerical limitations depend on the variant. The main limits cover airspeed, engine operation, aircraft weight and centre of gravity, manoeuvring and load factor, flap use, and approved weather or icing conditions. I obtain the applicable values from the flight manual and cockpit placards before flight; any demonstrated crosswind value is considered separately from a mandatory operating limitation.",
-      "referenceTextZh": "我驾驶 DA-40，但具体数值限制取决于不同型号。主要限制包括空速、发动机运行、飞机重量与重心、机动与载荷系数、襟翼使用，以及获准飞行的天气或结冰条件。飞行前，我会从飞行手册和驾驶舱标牌中获取适用数值；经验证的侧风值与强制性运行限制应分别看待。",
-      "audio": "/question-bank-assets/revisions/opi/93e95b0bdf007c28bfe8e38afbb52466bd4388d1afabf6eaa76d03c9fed66352/audio/opi/opi-extra-058.mp3",
-      "audioDurationSeconds": 3.792
-    },
-    {
-      "id": "opi-extra-121",
-      "taskTitle": "其它-机型与职业-4",
-      "audioText": "Do you like the aircraft type you currently fly, and why?",
-      "audioTextZh": "你喜欢目前所飞的机型吗？为什么？",
-      "referenceText": "Yes, I like the aircraft I currently fly. It was the first aircraft I flew as a pilot, so it is special to me. It also performs well and is easy to control.",
-      "referenceTextZh": "是的，我喜欢目前驾驶的飞机。它是我作为飞行员驾驶的第一架飞机，所以对我来说很特别。它的性能也不错，而且容易操纵。",
-      "audio": "/question-bank-assets/revisions/opi/feb0eb96c28cf387de72dc9f1cf0036e8a6079d1be7f807c32d4eda5adfb1ffc/audio/opi/opi-extra-121.mp3",
-      "audioDurationSeconds": 3.504
-    },
-    {
-      "id": "opi-extra-123",
-      "taskTitle": "其它-机型与职业-5",
-      "audioText": "What has been the most unforgettable experience of your aviation career?",
-      "audioTextZh": "你的航空职业生涯中最难忘的经历是什么？",
-      "referenceText": "My most unforgettable experience was my first solo flight last year. The sky was clear, visibility was acceptable, and the wind was calm. I felt nervous at first, but my instructor encouraged me, and I completed three traffic patterns safely.",
-      "referenceTextZh": "我最难忘的经历是去年的第一次单飞。当时天空晴朗，能见度可以接受，风也很小。起初我有些紧张，但教员鼓励了我，最后我安全完成了三个起落航线。",
-      "audio": "/question-bank-assets/revisions/opi/445f3d214b7675b26de2f757f85874e228a1f282f2ccc45336cce4849e7729d9/audio/opi/opi-extra-123.mp3",
-      "audioDurationSeconds": 3.744
-    },
-    {
-      "id": "opi-extra-127",
-      "taskTitle": "其它-机型与职业-6",
-      "audioText": "If you could choose, would you prefer to fly a Boeing or an Airbus aircraft, and why?",
-      "audioTextZh": "如果可以选择，你更愿意驾驶波音还是空客飞机？为什么？",
-      "referenceText": "I would prefer to fly an Airbus. Its side-stick layout provides more space around the pilot's seat, which I find comfortable. I also like its fly-by-wire technology because it can reduce pilot workload.",
-      "referenceTextZh": "我更愿意驾驶空客飞机。它的侧杆布局让驾驶座周围有更大的空间，我觉得很舒适。我也喜欢它的电传操纵技术，因为这项技术可以减轻飞行员的工作负荷。",
-      "audio": "/question-bank-assets/revisions/opi/345efd23b26145f9b6cd8fc23d8667ce30a43625c4987e27e252d1fdb7a1142e/audio/opi/opi-extra-127.mp3",
-      "audioDurationSeconds": 4.824
-    },
-    {
-      "id": "opi-extra-128",
-      "taskTitle": "其它-机型与职业-7",
-      "audioText": "What general differences do pilots notice between Boeing and Airbus flight decks?",
-      "audioTextZh": "飞行员通常会注意到波音与空客驾驶舱之间有哪些差异？",
-      "referenceText": "A common difference is the primary control interface. Boeing flight decks typically use control columns, while Airbus flight decks use side-sticks.",
-      "referenceTextZh": "一个常见区别是主要操纵装置。波音驾驶舱通常使用驾驶盘，而空客驾驶舱使用侧杆。",
-      "audio": "/question-bank-assets/revisions/opi/5ea6911ec237fa06c04b997e329b540b2992fa3768c7912202cf7781c6a555a7/audio/opi/opi-extra-128.mp3",
-      "audioDurationSeconds": 4.488
-    },
-    {
-      "id": "opi-extra-129",
-      "taskTitle": "其它-机型与职业-8",
-      "audioText": "What do you consider the main technological strengths and limitations of the aircraft type you currently fly?",
-      "audioTextZh": "你认为目前所飞机型的主要技术优势和局限性是什么？",
-      "referenceText": "I currently fly the C172. Its main strength is that it is easy to control, which makes it suitable for initial training. Its limitations include relatively modest operating altitude and endurance.",
-      "referenceTextZh": "我目前驾驶 C172。它的主要优点是容易操纵，因此适合初始训练。它的局限包括运行高度和续航能力相对有限。",
-      "audio": "/question-bank-assets/revisions/opi/e06d48c41d79013aea58ac2eff6d6ab4eb922ce8c4b2849ef49fcf9515955200/audio/opi/opi-extra-129.mp3",
-      "audioDurationSeconds": 5.904
-    },
-    {
-      "id": "opi-extra-130",
-      "taskTitle": "其它-机型与职业-9",
-      "audioText": "What is the passenger capacity of the aircraft type you fly?",
-      "audioTextZh": "你所飞机型的载客量是多少？",
-      "referenceText": "I fly the C172, which can accommodate two passengers.",
-      "referenceTextZh": "我飞的是 C172，它可以搭载两名乘客。",
-      "audio": "/question-bank-assets/revisions/opi/ed191c9097448229f0d576f4f7d112a80c212cc246825bfa9cfcd9b2ac9b018a/audio/opi/opi-extra-130.mp3",
-      "audioDurationSeconds": 3.48
-    },
-    {
-      "id": "opi-extra-131",
-      "taskTitle": "其它-机型与职业-10",
-      "audioText": "Which aircraft types are operated in your company's fleet?",
-      "audioTextZh": "你所在公司的机队运营哪些机型？",
-      "referenceText": "I am not employed by an airline, so I do not have a company fleet. My flight school operates the DA-40, which is the aircraft I currently use for training. Other aircraft may be available at the school, but I do not claim to fly them.",
-      "referenceTextZh": "我没有在航空公司任职，因此没有所谓的公司机队。我的航校使用 DA-40，这也是我目前用于训练的飞机。学校可能还有其他飞机，但我不会声称自己驾驶过它们。",
-      "audio": "/question-bank-assets/revisions/opi/cd6cc8c1423d6e38ba343db031a126df4140dff3f43b68c8755bb0b761a7fc44/audio/opi/opi-extra-131.mp3",
-      "audioDurationSeconds": 3.168
-    },
-    {
       "id": "opi-extra-133",
-      "taskTitle": "其它-机型与职业-11",
+      "audio": "/question-bank-assets/revisions/opi/9907a2153f5748673ce8043441c1715b270b41f3bfee0b17ac684656e8971733/audio/opi/opi-extra-133.mp3",
       "audioText": "How does the aircraft you fly now compare with the aircraft you flew during flight training?",
+      "taskTitle": "其它-机型与职业-11",
       "audioTextZh": "你现在所飞的航空器与飞行训练期间驾驶的航空器相比如何？",
       "referenceText": "I am still in flight training, so the aircraft I fly now is the same DA-40 that I use for training. I like its predictable handling and modern cockpit, and it is suitable for learning normal procedures and instrument flying. I have not yet transitioned to a different aircraft type.",
       "referenceTextZh": "我仍在接受飞行训练，所以我现在驾驶的就是训练所用的 DA-40。我喜欢它稳定且易于预判的操纵特性和现代化驾驶舱，它适合学习正常程序和仪表飞行。我还没有改装到其他机型。",
-      "audio": "/question-bank-assets/revisions/opi/9907a2153f5748673ce8043441c1715b270b41f3bfee0b17ac684656e8971733/audio/opi/opi-extra-133.mp3",
       "audioDurationSeconds": 4.752
     },
     {
       "id": "opi-extra-134",
-      "taskTitle": "其它-机型与职业-12",
+      "audio": "/question-bank-assets/revisions/opi/e2f51690ba531dc2361e28aa8ca64bd6352358a38b3ebe081fdc588d17437ec0/audio/opi/opi-extra-134.mp3",
       "audioText": "What is your opinion of large commercial aircraft designed and manufactured in China?",
+      "taskTitle": "其它-机型与职业-12",
       "audioTextZh": "你如何看待中国设计和制造的大型商用飞机？",
       "referenceText": "I have a positive opinion of Chinese-designed commercial aircraft such as the ARJ21 and C919. They use advanced equipment and systems designed to support safe and comfortable operations. I am proud of their development and would be interested in flying one in the future.",
       "referenceTextZh": "我对 ARJ21 和 C919 等中国设计的商用飞机持积极看法。它们采用先进的设备和系统，旨在支持安全、舒适的运行。我为它们的发展感到自豪，也有兴趣将来驾驶其中一种机型。",
-      "audio": "/question-bank-assets/revisions/opi/e2f51690ba531dc2361e28aa8ca64bd6352358a38b3ebe081fdc588d17437ec0/audio/opi/opi-extra-134.mp3",
       "audioDurationSeconds": 4.416
     },
     {
-      "id": "opi-core-849",
-      "taskTitle": "其它-机型与职业-13",
-      "audioText": "Which aircraft type ratings have you held?",
-      "audioTextZh": "你曾持有哪些航空器型别等级？",
-      "referenceText": "I have not held an aircraft type rating. I am still training on the DA-40 at flight school, so I do not claim an airline-aircraft qualification. I would need to complete the approved training and checks before holding any type rating.",
-      "referenceTextZh": "我还没有取得任何型别等级。目前我仍在航校使用 DA-40 训练，因此不会声称自己具备航空公司飞机的资质。取得任何型别等级前，我都需要完成批准的训练和检查。",
-      "audio": "/question-bank-assets/revisions/opi/1544816596b5e30d6ba7d8a60c3b289b427b26c15761e1587b45807019d0f795/audio/opi/opi-core-849.mp3",
-      "audioDurationSeconds": 2.304
-    },
-    {
-      "id": "opi-core-866",
-      "taskTitle": "其它-机型与职业-14",
-      "audioText": "What are the main systems on the aircraft type you fly?",
-      "audioTextZh": "你所飞的机型有哪些主要系统？",
-      "referenceText": "The main systems on the aircraft I fly include the navigation, electrical, and communication systems.",
-      "referenceTextZh": "我所驾驶的飞机主要系统包括导航系统、电气系统和通信系统。",
-      "audio": "/question-bank-assets/revisions/opi/5e2210012d31fc6dfd96977f97c5b5dd0c48663558831dfa098f590ffc609ec4/audio/opi/opi-core-866.mp3",
-      "audioDurationSeconds": 3.0
-    },
-    {
       "id": "opi-extra-142",
-      "taskTitle": "其它-机型与职业-15",
+      "audio": "/question-bank-assets/revisions/opi/790eccb7f0b61b30c87eb2b852b3b6429c32dadbfd40c011eed8862bfb4d5ffe/audio/opi/opi-extra-142.mp3",
       "audioText": "Would you like to work for a foreign airline, and why?",
+      "taskTitle": "其它-机型与职业-15",
       "audioTextZh": "你愿意为外国航空公司工作吗？为什么？",
       "referenceText": "Yes, I would consider working for a foreign airline. It would allow me to experience a different aviation culture and management system, improve my cross-cultural communication, and develop my professional skills.",
       "referenceTextZh": "是的，我会考虑到外国航空公司工作。这样可以让我体验不同的航空文化和管理体系，提高跨文化沟通能力，并发展自己的专业技能。",
-      "audio": "/question-bank-assets/revisions/opi/790eccb7f0b61b30c87eb2b852b3b6429c32dadbfd40c011eed8862bfb4d5ffe/audio/opi/opi-extra-142.mp3",
-      "audioDurationSeconds": 3.0
+      "audioDurationSeconds": 3
+    },
+    {
+      "id": "opi-extra-123",
+      "audio": "/question-bank-assets/revisions/opi/445f3d214b7675b26de2f757f85874e228a1f282f2ccc45336cce4849e7729d9/audio/opi/opi-extra-123.mp3",
+      "audioText": "What has been the most unforgettable experience of your aviation career?",
+      "taskTitle": "其它-机型与职业-5",
+      "audioTextZh": "你的航空职业生涯中最难忘的经历是什么？",
+      "referenceText": "My most unforgettable experience was my first solo flight last year. The sky was clear, visibility was acceptable, and the wind was calm. I felt nervous at first, but my instructor encouraged me, and I completed three traffic patterns safely.",
+      "referenceTextZh": "我最难忘的经历是去年的第一次单飞。当时天空晴朗，能见度可以接受，风也很小。起初我有些紧张，但教员鼓励了我，最后我安全完成了三个起落航线。",
+      "audioDurationSeconds": 3.744
     },
     {
       "id": "opi-extra-143",
-      "taskTitle": "其它-机型与职业-16",
+      "audio": "/question-bank-assets/revisions/opi/75da633e12a45c76f2a4617987f429d079d8496df386f5c1512ebf02d99d1586/audio/opi/opi-extra-143.mp3",
       "audioText": "What challenges might a pilot face when working for a foreign airline?",
+      "taskTitle": "其它-机型与职业-16",
       "audioTextZh": "飞行员为外国航空公司工作时可能面临哪些挑战？",
       "referenceText": "A pilot may face language barriers when communicating with colleagues and controllers. The pilot also has to adapt to different aviation regulations, operating procedures, cultural expectations, and working rhythms. Integrating into a new team can take time.",
       "referenceTextZh": "飞行员在与同事和管制员沟通时可能遇到语言障碍，还需要适应不同的航空法规、运行程序、文化习惯和工作节奏。融入一个新团队可能需要一些时间。",
-      "audio": "/question-bank-assets/revisions/opi/75da633e12a45c76f2a4617987f429d079d8496df386f5c1512ebf02d99d1586/audio/opi/opi-extra-143.mp3",
       "audioDurationSeconds": 3.816
     },
     {
+      "id": "opi-extra-129",
+      "audio": "/question-bank-assets/revisions/opi/e06d48c41d79013aea58ac2eff6d6ab4eb922ce8c4b2849ef49fcf9515955200/audio/opi/opi-extra-129.mp3",
+      "audioText": "What do you consider the main technological strengths and limitations of the aircraft type you currently fly?",
+      "taskTitle": "其它-机型与职业-8",
+      "audioTextZh": "你认为目前所飞机型的主要技术优势和局限性是什么？",
+      "referenceText": "I currently fly the C172. Its main strength is that it is easy to control, which makes it suitable for initial training. Its limitations include relatively modest operating altitude and endurance.",
+      "referenceTextZh": "我目前驾驶 C172。它的主要优点是容易操纵，因此适合初始训练。它的局限包括运行高度和续航能力相对有限。",
+      "audioDurationSeconds": 5.904
+    },
+    {
+      "id": "opi-extra-121",
+      "audio": "/question-bank-assets/revisions/opi/feb0eb96c28cf387de72dc9f1cf0036e8a6079d1be7f807c32d4eda5adfb1ffc/audio/opi/opi-extra-121.mp3",
+      "audioText": "Do you like the aircraft type you currently fly, and why?",
+      "taskTitle": "其它-机型与职业-4",
+      "audioTextZh": "你喜欢目前所飞的机型吗？为什么？",
+      "referenceText": "Yes, I like the aircraft I currently fly. It was the first aircraft I flew as a pilot, so it is special to me. It also performs well and is easy to control.",
+      "referenceTextZh": "是的，我喜欢目前驾驶的飞机。它是我作为飞行员驾驶的第一架飞机，所以对我来说很特别。它的性能也不错，而且容易操纵。",
+      "audioDurationSeconds": 3.504
+    },
+    {
       "id": "opi-extra-151",
-      "taskTitle": "其它-机型与职业-17",
+      "audio": "/question-bank-assets/revisions/opi/13f9d45bde2fcf5ea10a214382b5ea58fbd309695ae931d414294113ae8aa25f/audio/opi/opi-extra-151.mp3",
       "audioText": "Which aircraft types have you flown?",
+      "taskTitle": "其它-机型与职业-17",
       "audioTextZh": "你飞过哪些机型？",
       "referenceText": "I have flown the DA-40 during my flight training. It is the only aircraft type I claim to have flown.",
       "referenceTextZh": "我在飞行训练期间驾驶过 DA-40。这是我唯一声称驾驶过的机型。",
-      "audio": "/question-bank-assets/revisions/opi/13f9d45bde2fcf5ea10a214382b5ea58fbd309695ae931d414294113ae8aa25f/audio/opi/opi-extra-151.mp3",
       "audioDurationSeconds": 1.992
+    },
+    {
+      "id": "opi-core-849",
+      "audio": "/question-bank-assets/revisions/opi/1544816596b5e30d6ba7d8a60c3b289b427b26c15761e1587b45807019d0f795/audio/opi/opi-core-849.mp3",
+      "audioText": "Which aircraft type ratings have you held?",
+      "taskTitle": "其它-机型与职业-13",
+      "audioTextZh": "你曾持有哪些航空器型别等级？",
+      "referenceText": "I have not held an aircraft type rating. I am still training on the DA-40 at flight school, so I do not claim an airline-aircraft qualification. I would need to complete the approved training and checks before holding any type rating.",
+      "referenceTextZh": "我还没有取得任何型别等级。目前我仍在航校使用 DA-40 训练，因此不会声称自己具备航空公司飞机的资质。取得任何型别等级前，我都需要完成批准的训练和检查。",
+      "audioDurationSeconds": 2.304
+    },
+    {
+      "id": "opi-core-058",
+      "audio": "/question-bank-assets/revisions/opi/0ed92ce351887bdffc02db98849259da9f391575b162a7cc2b808dae50094931/audio/opi/opi-core-058.mp3",
+      "audioText": "What type of aircraft do you currently fly?",
+      "taskTitle": "其它-机型与职业-1",
+      "audioTextZh": "你目前飞哪种型号的飞机？",
+      "referenceText": "I am a student pilot, and I currently fly the DA-40 for flight training.",
+      "referenceTextZh": "我是一名学员飞行员，目前使用 DA-40 进行飞行训练。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "What type of aircraft do you fly?"
+        ]
+      },
+      "audioDurationSeconds": 2.568
+    },
+    {
+      "id": "opi-extra-131",
+      "audio": "/question-bank-assets/revisions/opi/cd6cc8c1423d6e38ba343db031a126df4140dff3f43b68c8755bb0b761a7fc44/audio/opi/opi-extra-131.mp3",
+      "audioText": "Which aircraft types are operated in your company's fleet?",
+      "taskTitle": "其它-机型与职业-10",
+      "audioTextZh": "你所在公司的机队运营哪些机型？",
+      "referenceText": "I am not employed by an airline, so I do not have a company fleet. My flight school operates the DA-40, which is the aircraft I currently use for training. Other aircraft may be available at the school, but I do not claim to fly them.",
+      "referenceTextZh": "我没有在航空公司任职，因此没有所谓的公司机队。我的航校使用 DA-40，这也是我目前用于训练的飞机。学校可能还有其他飞机，但我不会声称自己驾驶过它们。",
+      "audioDurationSeconds": 3.168
+    },
+    {
+      "id": "opi-core-866",
+      "audio": "/question-bank-assets/revisions/opi/5e2210012d31fc6dfd96977f97c5b5dd0c48663558831dfa098f590ffc609ec4/audio/opi/opi-core-866.mp3",
+      "audioText": "What are the main systems on the aircraft type you fly?",
+      "taskTitle": "其它-机型与职业-14",
+      "audioTextZh": "你所飞的机型有哪些主要系统？",
+      "referenceText": "The main systems on the aircraft I fly include the navigation, electrical, and communication systems.",
+      "referenceTextZh": "我所驾驶的飞机主要系统包括导航系统、电气系统和通信系统。",
+      "audioDurationSeconds": 3
+    },
+    {
+      "id": "opi-extra-128",
+      "audio": "/question-bank-assets/revisions/opi/5ea6911ec237fa06c04b997e329b540b2992fa3768c7912202cf7781c6a555a7/audio/opi/opi-extra-128.mp3",
+      "audioText": "What general differences do pilots notice between Boeing and Airbus flight decks?",
+      "taskTitle": "其它-机型与职业-7",
+      "audioTextZh": "飞行员通常会注意到波音与空客驾驶舱之间有哪些差异？",
+      "referenceText": "A common difference is the primary control interface. Boeing flight decks typically use control columns, while Airbus flight decks use side-sticks.",
+      "referenceTextZh": "一个常见区别是主要操纵装置。波音驾驶舱通常使用驾驶盘，而空客驾驶舱使用侧杆。",
+      "audioDurationSeconds": 4.488
+    },
+    {
+      "id": "opi-report-202610-preferred-aircraft",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/b7c45dda740f02c784cf0f8151b96e1130112de407c9a839fcb3e740198dd474/audio/opi/opi-report-202610-preferred-aircraft.mp3",
+      "audioText": "Which type of aircraft would you like to fly, and why?",
+      "studyTier": 0,
+      "taskTitle": "你想飞哪种型号的飞机？为什么？",
+      "audioTextZh": "你想飞哪种型号的飞机？为什么？",
+      "examReported": true,
+      "referenceText": "I would like to fly the Airbus A320 because I am interested in its flight deck and fly-by-wire systems. It is widely used on airline routes, so learning to operate it would be useful for my career. However, safe operation and proper training are more important than my personal preference.",
+      "referenceTextZh": "我想飞空客 A320，因为我对它的驾驶舱和电传操纵系统很感兴趣。这种机型广泛用于航空公司的航线，学习驾驶它对我的职业发展有帮助。不过，安全运行和规范训练比个人偏好更重要。",
+      "reportedPrompts": {
+        "hotspot-2026-10-16-4235b14d8b8d": [
+          "Which type of aircraft would you like to fly, and why?"
+        ]
+      },
+      "audioDurationSeconds": 3.144
+    },
+    {
+      "id": "opi-extra-127",
+      "audio": "/question-bank-assets/revisions/opi/345efd23b26145f9b6cd8fc23d8667ce30a43625c4987e27e252d1fdb7a1142e/audio/opi/opi-extra-127.mp3",
+      "audioText": "If you could choose, would you prefer to fly a Boeing or an Airbus aircraft, and why?",
+      "taskTitle": "其它-机型与职业-6",
+      "audioTextZh": "如果可以选择，你更愿意驾驶波音还是空客飞机？为什么？",
+      "referenceText": "I would prefer to fly an Airbus. Its side-stick layout provides more space around the pilot's seat, which I find comfortable. I also like its fly-by-wire technology because it can reduce pilot workload.",
+      "referenceTextZh": "我更愿意驾驶空客飞机。它的侧杆布局让驾驶座周围有更大的空间，我觉得很舒适。我也喜欢它的电传操纵技术，因为这项技术可以减轻飞行员的工作负荷。",
+      "audioDurationSeconds": 4.824
+    },
+    {
+      "id": "opi-report-202610-door-open-takeoff",
+      "kind": "text",
+      "audio": "/question-bank-assets/revisions/opi/93488816fe85548090885102076df59eca7092596caeb0790431ec03612a42aa/audio/opi/opi-report-202610-door-open-takeoff.mp3",
+      "audioText": "What should pilots do if a door opens during takeoff?",
+      "studyTier": 0,
+      "taskTitle": "起飞过程中舱门打开时，飞行员应如何处置？",
+      "audioTextZh": "起飞过程中舱门打开时，飞行员应如何处置？",
+      "examReported": true,
+      "referenceText": "The immediate priority is to maintain control of the aircraft. The crew should follow the approved procedure for the aircraft and the phase of takeoff. A decision to reject takeoff or continue must follow the applicable criteria. Once airborne, the crew should use the appropriate checklist, inform ATC and return or divert if required.",
+      "referenceTextZh": "首要任务是保持对飞机的控制。机组应遵循适用于该机型和起飞阶段的批准程序。中断或继续起飞的决定必须符合适用的判断标准。升空后，应执行相应检查单，通报管制，并在需要时返航或备降。",
+      "reportedPrompts": {
+        "hotspot-2026-10-16-4235b14d8b8d": [
+          "What should pilots do if a door opens during takeoff?"
+        ]
+      },
+      "audioDurationSeconds": 2.976
+    },
+    {
+      "id": "opi-extra-130",
+      "audio": "/question-bank-assets/revisions/opi/ed191c9097448229f0d576f4f7d112a80c212cc246825bfa9cfcd9b2ac9b018a/audio/opi/opi-extra-130.mp3",
+      "audioText": "What is the passenger capacity of the aircraft type you fly?",
+      "taskTitle": "其它-机型与职业-9",
+      "audioTextZh": "你所飞机型的载客量是多少？",
+      "referenceText": "I fly the C172, which can accommodate two passengers.",
+      "referenceTextZh": "我飞的是 C172，它可以搭载两名乘客。",
+      "audioDurationSeconds": 3.48
+    },
+    {
+      "id": "opi-core-571",
+      "audio": "/question-bank-assets/revisions/opi/5ffbe30c06b4a43d47d1e02bed9845664b999fd75302a1230dfafd986a387284/audio/opi/opi-core-571.mp3",
+      "audioText": "What are your plans for your future aviation career?",
+      "taskTitle": "其它-机型与职业-2",
+      "audioTextZh": "你对未来的航空职业生涯有什么规划？",
+      "referenceText": "I plan to obtain my commercial pilot licence and then join a reputable airline. I hope to build experience steadily, become a captain in the future, and contribute to safe flight operations.",
+      "referenceTextZh": "我计划先取得商用驾驶员执照，然后加入一家信誉良好的航空公司。我希望稳步积累经验，将来成为机长，并为飞行安全作出贡献。",
+      "audioDurationSeconds": 2.76
+    },
+    {
+      "id": "opi-extra-058",
+      "audio": "/question-bank-assets/revisions/opi/93e95b0bdf007c28bfe8e38afbb52466bd4388d1afabf6eaa76d03c9fed66352/audio/opi/opi-extra-058.mp3",
+      "audioText": "What are the main operating limitations of the aircraft type you fly?",
+      "taskTitle": "其它-机型与职业-3",
+      "audioTextZh": "你所飞机型的主要运行限制有哪些？",
+      "referenceText": "I fly a DA-40, but the exact numerical limitations depend on the variant. The main limits cover airspeed, engine operation, aircraft weight and centre of gravity, manoeuvring and load factor, flap use, and approved weather or icing conditions. I obtain the applicable values from the flight manual and cockpit placards before flight; any demonstrated crosswind value is considered separately from a mandatory operating limitation.",
+      "referenceTextZh": "我驾驶 DA-40，但具体数值限制取决于不同型号。主要限制包括空速、发动机运行、飞机重量与重心、机动与载荷系数、襟翼使用，以及获准飞行的天气或结冰条件。飞行前，我会从飞行手册和驾驶舱标牌中获取适用数值；经验证的侧风值与强制性运行限制应分别看待。",
+      "audioDurationSeconds": 3.792
     }
   ],
+  "declaredCardCount": 19,
   "categoryId": "opi-category-07"
 }

@@ -79,7 +79,7 @@
       "id": "atc-scenario-0013-card-main-223",
       "taskTitle": "SIA 308-9",
       "audioText": "B: Now you are en route Germany, Rhein Radar Control, you are cruising at FL360, make an initial contact with Rhein Radar Control.",
-      "audioTextZh": "B：现在你在前往德国航路上，莱茵雷达管制，巡航高度 FL360，与 莱茵雷达管制 首次联系。",
+      "audioTextZh": "B：现在你在前往德国航路上，莱茵雷达管制，巡航高度 FL360，与莱茵雷达管制首次联系。",
       "referenceText": "Rhein Radar, SIA 308, en route, cruising at FL360.",
       "referenceTextZh": "Rhein Radar，SIA 308，航路中，巡航高度 FL360。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/223.mp3"

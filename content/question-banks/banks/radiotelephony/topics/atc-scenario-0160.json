@@ -25,7 +25,7 @@
       "id": "atc-scenario-0160-card-main-2756",
       "taskTitle": "CSN 302-3",
       "audioText": "C: CSN 302, report tug is ready.\nB: Tell the controller the tug is in position and you are ready for pushback.",
-      "audioTextZh": "C： CSN 302，报告牵引车是否准备好。\nB： 告诉管制员牵引车已就位，你已准备好推出。",
+      "audioTextZh": "C：CSN 302，报告牵引车是否准备好。\nB：告诉管制员牵引车已就位，你已准备好推出。",
       "referenceText": "The tug, ready, ready for pushback request pushback, CSN 302.",
       "referenceTextZh": "牵引车已准备好，已准备好推出，请求推出，CSN 302。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q03.mp3"
@@ -106,7 +106,7 @@
       "id": "atc-scenario-0160-card-main-2765",
       "taskTitle": "CSN 302-12",
       "audioText": "C: CSN 302, line up and wait Runway 19, caution thunderstorm building up at the departure end of Runway 19.\nB: Read back ATC clearance and request right turn when airborne due weather.",
-      "audioTextZh": "C： CSN 302，进入 Runway 19 等待，注意 Runway 19 离场端有雷暴发展。\nB： 复诵 ATC 许可，并因天气原因请求离地后右转。",
+      "audioTextZh": "C：CSN 302，进入 Runway 19 等待，注意 Runway 19 离场端有雷暴发展。\nB：复诵 ATC 许可，并因天气原因请求离地后右转。",
       "referenceText": "line up and wait Runway 19, request right turn due weather, CSN 302.",
       "referenceTextZh": "进入 Runway 19 等待，因天气原因请求右转，CSN 302。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q12.mp3"

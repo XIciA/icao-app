@@ -1,69 +1,79 @@
 {
   "id": "opi-topic-0122",
   "name": "问好",
-  "declaredCardCount": 6,
   "cards": [
     {
-      "id": "opi-extra-137",
-      "taskTitle": "其它-问好-1",
-      "audioText": "How are you today?",
-      "audioTextZh": "你今天感觉怎么样？",
-      "referenceText": "I am doing well today, thank you for asking.",
-      "referenceTextZh": "我今天状态很好，谢谢关心。",
-      "audio": "/question-bank-assets/revisions/opi/a0527dd3646b62fd8ae4cf72806a42f21b008584d8c0c95dfbc407b7a46bdec9/audio/opi/opi-extra-137.mp3",
-      "audioDurationSeconds": 1.032
-    },
-    {
-      "id": "opi-extra-138",
-      "taskTitle": "其它-问好-2",
-      "audioText": "What is the weather like today, and is it suitable for flying?",
-      "audioTextZh": "今天天气怎么样？适合飞行吗？",
-      "referenceText": "The sky is clear, visibility is acceptable, and the wind is calm. There is plenty of sunshine, so it is a good day for flying.",
-      "referenceTextZh": "天空晴朗，能见度可以接受，风也很小。阳光充足，因此今天很适合飞行。",
-      "audio": "/question-bank-assets/revisions/opi/9eb1baec61fbe565fd4c76635580ae96c8a8b9c3bf339bf6a3798b2750112787/audio/opi/opi-extra-138.mp3",
-      "audioDurationSeconds": 3.264
-    },
-    {
       "id": "opi-extra-139",
-      "taskTitle": "其它-问好-3",
+      "audio": "/question-bank-assets/revisions/opi/49ce15916791b7e71c0621f65951d398864f8f572ab4e2f3cdc80e7c6c84b514/audio/opi/opi-extra-139.mp3",
       "audioText": "How did you get to the test center today?",
+      "taskTitle": "其它-问好-3",
       "audioTextZh": "你今天是怎么到达考试中心的？",
       "referenceText": "I came to the test center by subway. It was convenient and punctual, and I avoided the road traffic.",
       "referenceTextZh": "我是乘地铁到考试中心的。地铁方便准时，也让我避开了道路交通。",
-      "audio": "/question-bank-assets/revisions/opi/49ce15916791b7e71c0621f65951d398864f8f572ab4e2f3cdc80e7c6c84b514/audio/opi/opi-extra-139.mp3",
       "audioDurationSeconds": 2.256
     },
     {
-      "id": "opi-extra-140",
-      "taskTitle": "Health-1",
-      "audioText": "Did you sleep well last night?",
-      "audioTextZh": "你昨晚上睡得好吗？",
-      "studyTier": 0,
-      "referenceText": "Yes, I did. I slept very well last night.\n\nNo, I didn't, because it's hard for me to sleep in a different place.",
-      "referenceTextZh": "嗯，我昨晚睡得挺好。\n\n不好，我换了地方就很难入睡。",
-      "audio": "/question-bank-assets/revisions/opi/d386a050b1df1785643dc2d8b3b9b140b5e2a1d5ba6472609f25add6d9aa6dac/audio/opi/opi-extra-140.mp3",
-      "audioDurationSeconds": 1.584
+      "id": "opi-extra-137",
+      "audio": "/question-bank-assets/revisions/opi/a0527dd3646b62fd8ae4cf72806a42f21b008584d8c0c95dfbc407b7a46bdec9/audio/opi/opi-extra-137.mp3",
+      "audioText": "How are you today?",
+      "taskTitle": "其它-问好-1",
+      "audioTextZh": "你今天感觉怎么样？",
+      "referenceText": "I am doing well today, thank you for asking.",
+      "referenceTextZh": "我今天状态很好，谢谢关心。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "How are you today?"
+        ]
+      },
+      "audioDurationSeconds": 1.032
     },
     {
       "id": "opi-extra-141",
-      "taskTitle": "其它-问好-5",
+      "audio": "/question-bank-assets/revisions/opi/654c38a175197d5ad3f362e8c1161c4138492f0a427d854a327891ef69975016/audio/opi/opi-extra-141.mp3",
       "audioText": "What are you going to do after this test?",
+      "taskTitle": "其它-问好-5",
       "audioTextZh": "这次考试结束后你打算做什么？",
       "referenceText": "After the test, I will review the main topics and identify the areas I need to improve. I will also continue practising spoken aviation English to prepare for future flight work.",
       "referenceTextZh": "考试后，我会复习主要话题，找出自己需要提高的方面。我也会继续练习航空英语口语，为今后的飞行工作做准备。",
-      "audio": "/question-bank-assets/revisions/opi/654c38a175197d5ad3f362e8c1161c4138492f0a427d854a327891ef69975016/audio/opi/opi-extra-141.mp3",
       "audioDurationSeconds": 2.256
     },
     {
+      "id": "opi-extra-138",
+      "audio": "/question-bank-assets/revisions/opi/9eb1baec61fbe565fd4c76635580ae96c8a8b9c3bf339bf6a3798b2750112787/audio/opi/opi-extra-138.mp3",
+      "audioText": "What is the weather like today, and is it suitable for flying?",
+      "taskTitle": "其它-问好-2",
+      "audioTextZh": "今天天气怎么样？适合飞行吗？",
+      "referenceText": "The sky is clear, visibility is acceptable, and the wind is calm. There is plenty of sunshine, so it is a good day for flying.",
+      "referenceTextZh": "天空晴朗，能见度可以接受，风也很小。阳光充足，因此今天很适合飞行。",
+      "reportedPrompts": {
+        "hotspot-2026-10-15-29023a596778": [
+          "Is the weather suitable for flying today?"
+        ]
+      },
+      "audioDurationSeconds": 3.264
+    },
+    {
       "id": "opi-extra-145",
-      "taskTitle": "其它-问好-6",
+      "audio": "/question-bank-assets/revisions/opi/2126d40073b446a8da08a7f5921ee22813902c8f8dea0ffc0f20d0490a3d33a9/audio/opi/opi-extra-145.mp3",
       "audioText": "Which part of the ICAO English test do you find most difficult, and why?",
+      "taskTitle": "其它-问好-6",
       "audioTextZh": "你觉得 ICAO 英语考试的哪个部分最难？为什么？",
       "referenceText": "I find the interactive communication section the most difficult, especially when discussing complex emergency situations. It requires fluent expression, accurate aviation terminology, and a quick response to the examiner's questions.",
       "referenceTextZh": "我觉得互动交流部分最难，尤其是讨论复杂紧急情况时。它要求表达流利、航空术语准确，并能迅速回答考官的问题。",
-      "audio": "/question-bank-assets/revisions/opi/2126d40073b446a8da08a7f5921ee22813902c8f8dea0ffc0f20d0490a3d33a9/audio/opi/opi-extra-145.mp3",
       "audioDurationSeconds": 4.536
+    },
+    {
+      "id": "opi-extra-140",
+      "audio": "/question-bank-assets/revisions/opi/d386a050b1df1785643dc2d8b3b9b140b5e2a1d5ba6472609f25add6d9aa6dac/audio/opi/opi-extra-140.mp3",
+      "audioText": "Did you sleep well last night?",
+      "studyTier": 0,
+      "taskTitle": "Health-1",
+      "audioTextZh": "你昨晚上睡得好吗？",
+      "referenceText": "Yes, I did. I slept very well last night.\n\nNo, I didn't, because it's hard for me to sleep in a different place.",
+      "referenceTextZh": "嗯，我昨晚睡得挺好。\n\n不好，我换了地方就很难入睡。",
+      "audioDurationSeconds": 1.584
     }
   ],
+  "declaredCardCount": 6,
   "categoryId": "opi-category-07"
 }

@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111530",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-1",
-      "audioText": "[Your call sign is AFR126, destination Beijing, 8900m maintaining, over TMR, TZH 10, squawk 6021, now contact Beijing Control.]",
-      "audioTextZh": "【你的呼号是法航126，目的地北京，高度8900米，应答机6021，飞过TMR, 到达TZH时间10分，现在联系北京区调。】",
+      "audioText": "Your call sign is AFR126, destination Beijing, 8900m maintaining, over TMR, TZH 10, squawk 6021, now contact Beijing Control.",
+      "audioTextZh": "你的呼号是法航126，目的地北京，高度8900米，应答机6021，飞过TMR, 到达TZH时间10分，现在联系北京区调。",
       "referenceText": "Beijing Control, AFR126, 8900m maintaining, over TMR, TZH 10, squawk 6021.",
       "referenceTextZh": "北京区调，法航126，高度8900米保持，过TMR，预计TZH时间10分，应答机6021。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c8f8155a2d4fa2d8cc2.mp3"
@@ -26,7 +26,7 @@
     {
       "id": "radiotelephony-fzy-111532",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-3",
-      "audioText": "[Ask the controller which runway is in use.]",
+      "audioText": "Ask the controller which runway is in use.",
       "audioTextZh": "【询问管制员哪条跑道可用。】",
       "referenceText": "Beijing Control, AFR126, request runway in use.",
       "referenceTextZh": "北京区调，法航126，申请可用跑道。",
@@ -44,8 +44,8 @@
     {
       "id": "radiotelephony-fzy-111534",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-5",
-      "audioText": "[Ask whether you can use KM03 arrival and land on runway 01.]",
-      "audioTextZh": "【询问是否可以KM03进场，降落在跑道01上。】",
+      "audioText": "Ask whether you can use KM03 arrival and land on runway 01.",
+      "audioTextZh": "询问是否可以KM03进场，降落在跑道01上。",
       "referenceText": "Beijing Control, AFR126, if available, request KM03 arrival, landing on runway 01.",
       "referenceTextZh": "北京区调，法航126，如果可以，请求KM03进场，着陆跑道01.",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3a4cc7db0a2a75be66a3.mp3"
@@ -80,8 +80,8 @@
     {
       "id": "radiotelephony-fzy-111538",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-9",
-      "audioText": "[Over KM, maintaining 4500m, contact Beijing Approach and request runway 01, KM03 arrival.]",
-      "audioTextZh": "【在KM上方，保持4500米，联系北京进近，请求跑道01，KM03进场。】",
+      "audioText": "Over KM, maintaining 4500m, contact Beijing Approach and request runway 01, KM03 arrival.",
+      "audioTextZh": "在KM上方，保持4500米，联系北京进近，请求跑道01，KM03进场。",
       "referenceText": "Beijing Approach, AFR126, over KM, maintaining 4500m, request runway 01, KM03 arrival.",
       "referenceTextZh": "北京进近，法航126，过KM，保持4500米，请求跑道01，KM03进场。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/10c14603094dbd0794e1.mp3"
@@ -98,7 +98,7 @@
     {
       "id": "radiotelephony-fzy-111540",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-11",
-      "audioText": "[Tell the controller that your flap has some problems.]",
+      "audioText": "Tell the controller that your flap has some problems.",
       "audioTextZh": "【告知管制员襟翼有问题】",
       "referenceText": "Beijing Approach, AFR126, our flap has some problems.",
       "referenceTextZh": "北京进近，法航126，我们的襟翼有问题。",
@@ -125,7 +125,7 @@
     {
       "id": "radiotelephony-fzy-111543",
       "taskTitle": "1. AFR126 flap&fuel problem, etc.-14",
-      "audioText": "[Operations are now normal, request landing.]",
+      "audioText": "Operations are now normal, request landing.",
       "audioTextZh": "【操作正常，请求降落。】",
       "referenceText": "Beijing Approach, AFR126, operations are now normal, request landing/to cancel hold.",
       "referenceTextZh": "北京进近，法航126，操作正常，请求着陆（取消等待）。",

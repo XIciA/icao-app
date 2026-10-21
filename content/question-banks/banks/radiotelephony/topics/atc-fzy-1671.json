@@ -9,7 +9,7 @@
       "id": "radiotelephony-fzy-223722",
       "taskTitle": "69-CSN3001 [雷暴，医疗特情]-1",
       "audioText": "B: [Your call sign is CSN3001, a Boeing 737 from Guangzhou to Wuhan. You are now at gate 185 with information X, request ATC clearance.]",
-      "audioTextZh": "【你的呼号是南方3001，一架从广州飞往武汉的波音737。你现在在185号停机位，收到通播X，请求管制许可。】",
+      "audioTextZh": "你的呼号是南方3001，一架从广州飞往武汉的波音737。你现在在185号停机位，收到通播X，请求管制许可。",
       "referenceText": "Guangzhou Delivery, CSN3001, gate 185 with information X, request ATC clearance to Wuhan.",
       "referenceTextZh": "广州放行，南方3001，185号停机位，通播X，请求去往武汉的管制许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/c68d076e774482b7e499.mp3"
@@ -63,7 +63,7 @@
       "id": "radiotelephony-fzy-223728",
       "taskTitle": "69-CSN3001 [雷暴，医疗特情]-7",
       "audioText": "B: [You are now at the holding point of runway 02R, you are ready for departure.]",
-      "audioTextZh": "【现在你在跑道02右的外等待点，你准备好起飞了。】",
+      "audioTextZh": "现在你在跑道02右的外等待点，你准备好起飞了。",
       "referenceText": "Guangzhou Tower, CSN3001, holding point of runway 02R, request departure.",
       "referenceTextZh": "广州塔台，南方3001，跑道02右的外等待点，申请起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/8760eb513a5c7b3431e2.mp3"
@@ -81,7 +81,7 @@
       "id": "radiotelephony-fzy-223730",
       "taskTitle": "69-CSN3001 [雷暴，医疗特情]-9",
       "audioText": "B: [You are now airborne, passing 1500ft, make an initial contact with Guangzhou Departure.]",
-      "audioTextZh": "【你现在离地了，通过1500英尺，与广州离场建立初始联系。】",
+      "audioTextZh": "你现在离地了，通过1500英尺，与广州离场建立初始联系。",
       "referenceText": "Guangzhou Departure, CSN3001, airborne, passing 1500ft.",
       "referenceTextZh": "广州离场，南方3001，离地了，过1500英尺。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/5c66fbb5733abb03fd1a.mp3"
@@ -117,7 +117,7 @@
       "id": "radiotelephony-fzy-223734",
       "taskTitle": "69-CSN3001 [雷暴，医疗特情]-13",
       "audioText": "B: [Now you are leveling at 10400m, the latest SIGMET says a super cell thunderstorm is developing along your route, you want to deviate 20 miles to the left, call Guangzhou Control.]",
-      "audioTextZh": "【你现在在10400米平飞，最新的气象报显示一个超级单体雷暴正在你的航路航生成，你想左偏置20海里，呼叫广州区调。】",
+      "audioTextZh": "你现在在10400米平飞，最新的气象报显示一个超级单体雷暴正在你的航路航生成，你想左偏置20海里，呼叫广州区调。",
       "referenceText": "Guangzhou Control, CSN3001, request 20 miles deviation to the left due thunderstorm.",
       "referenceTextZh": "广州区调，南方3001，由于雷暴，请求左偏20海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/fef9ed2f05c1877cc0ac.mp3"
@@ -135,7 +135,7 @@
       "id": "radiotelephony-fzy-223736",
       "taskTitle": "69-CSN3001 [雷暴，医疗特情]-15",
       "audioText": "B: [After deviating 20 miles left, you observe the thunderstorm is expanding, therefore, you need additional 10 miles left deviation.]",
-      "audioTextZh": "【左偏置20海里后，你发现雷暴范围正在扩大，因此，你需要再左偏10海里。】",
+      "audioTextZh": "左偏置20海里后，你发现雷暴范围正在扩大，因此，你需要再左偏10海里。",
       "referenceText": "Guangzhou Control, CSN3001, request additional 10 miles left deviation, thunderstorm is extending.",
       "referenceTextZh": "广州区调，南方3001，请求再左偏10海里，雷暴范围正在扩大。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/07f8fe005b297d573b0a.mp3"

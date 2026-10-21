@@ -1,46 +1,46 @@
 {
   "id": "opi-image-topic-023",
   "name": "地面火灾应急",
-  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-023-image",
       "kind": "image",
-      "taskTitle": "图片观察",
       "image": "/question-bank-assets/images/opi/image-questions/image-topic-023.jpg",
       "imageAlt": "地面火灾应急航空场景图片",
-      "studyTier": 0
+      "studyTier": 0,
+      "taskTitle": "图片观察"
     },
     {
       "id": "opi-image-023-q01",
-      "taskTitle": "图片题-023-01",
+      "audio": "/question-bank-assets/revisions/opi/bb4e201aef8d1e74adf5958ff968ec673cff66765687d1e980e1e24cafec2827/audio/opi/opi-image-023-q01.mp3",
       "audioText": "What can you see in this picture of a ground-fire emergency?",
+      "taskTitle": "图片题-023-01",
       "audioTextZh": "你能从这张地面火灾紧急情况的图片中看到什么？",
       "referenceText": "A passenger aircraft is on the ground with a major fire and heavy black smoke around it. Another aircraft is parked nearby, close to the burning aircraft. The fire appears intense, but its source and the condition of the occupants cannot be determined from the picture.",
       "referenceTextZh": "一架客机停在地面，周围发生严重火灾并冒出大量黑烟。另一架飞机停在附近，距离起火飞机很近。火势看起来非常猛烈，但无法从图片判断火源和机上人员状况。",
-      "audio": "/question-bank-assets/revisions/opi/bb4e201aef8d1e74adf5958ff968ec673cff66765687d1e980e1e24cafec2827/audio/opi/opi-image-023-q01.mp3",
       "audioDurationSeconds": 3.12
     },
     {
       "id": "opi-image-023-q02",
-      "taskTitle": "图片题-023-02",
+      "audio": "/question-bank-assets/revisions/opi/e3badedc22ff0582c142ddc2b593d46eac45aa2c6fcf09a36c29fb5bd03226b9/audio/opi/opi-image-023-q02.mp3",
       "audioText": "What factors can increase the risk of an aircraft fire on the ground?",
+      "taskTitle": "图片题-023-02",
       "audioTextZh": "哪些因素会增加航空器在地面起火的风险？",
       "referenceText": "Fuel, hot brakes, leaking fluids, and nearby ground equipment can increase the risk of an aircraft fire on the ground.",
       "referenceTextZh": "燃油、高温刹车、泄漏的液体和附近的地面设备都会增加飞机在地面起火的风险。",
-      "audio": "/question-bank-assets/revisions/opi/e3badedc22ff0582c142ddc2b593d46eac45aa2c6fcf09a36c29fb5bd03226b9/audio/opi/opi-image-023-q02.mp3",
       "audioDurationSeconds": 3.648
     },
     {
       "id": "opi-image-023-q03",
-      "taskTitle": "图片题-023-03",
+      "audio": "/question-bank-assets/revisions/opi/14dfa490aa79aca072c8e0ae7912e25340ed96b59385c64bcbe09ec63e383940/audio/opi/opi-image-023-q03.mp3",
       "audioText": "If your aircraft were parked near the burning aircraft shown, how would you protect your aircraft and its occupants?",
+      "taskTitle": "图片题-023-03",
       "audioTextZh": "如果你的航空器停在图中起火航空器附近，你会如何保护自己的航空器及其乘员？",
       "referenceText": "I would alert ground control and the cabin crew immediately and stop boarding or servicing activities. If there were enough time and it was safe and authorized, I would have the aircraft moved away from the fire. Otherwise, I would shut it down and evacuate through exits away from the flames and smoke, directing everyone to assemble upwind at a safe distance.",
       "referenceTextZh": "我会立即通知地面管制和客舱机组，并停止登机或保障作业。如果时间充足且安全并获得许可，我会让飞机移离火场。否则，我会关闭飞机，并通过远离火焰和烟雾的出口撤离，指挥所有人到上风向的安全距离集合。",
-      "audio": "/question-bank-assets/revisions/opi/14dfa490aa79aca072c8e0ae7912e25340ed96b59385c64bcbe09ec63e383940/audio/opi/opi-image-023-q03.mp3",
       "audioDurationSeconds": 5.928
     }
   ],
+  "declaredCardCount": 4,
   "categoryId": "opi-category-08"
 }

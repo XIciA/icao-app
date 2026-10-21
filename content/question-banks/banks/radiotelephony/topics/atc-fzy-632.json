@@ -8,8 +8,8 @@
     {
       "id": "radiotelephony-fzy-111590",
       "taskTitle": "4. AFR101 explosives, etc.-1",
-      "audioText": "[Your call sign is AFR101, your destination is Paris, you are going to depart from Beijing airport at Gate 301. Now call Beijing Delivery, and request ATC clearance.]",
-      "audioTextZh": "【你的呼号是法航101，目的地巴黎，从北京出发，301号机位，现在联系北京放行，请求放行。】",
+      "audioText": "Your call sign is AFR101, your destination is Paris, you are going to depart from Beijing airport at Gate 301. Now call Beijing Delivery, and request ATC clearance.",
+      "audioTextZh": "你的呼号是法航101，目的地巴黎，从北京出发，301号机位，现在联系北京放行，请求放行。",
       "referenceText": "Beijing Delivery, AFR101, Gate 301, request ATC clearance.",
       "referenceTextZh": "北京放行，法航101，机位301，请求放行。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b0cf83d4fcb1b96ca74a.mp3"
@@ -35,7 +35,7 @@
     {
       "id": "radiotelephony-fzy-111593",
       "taskTitle": "4. AFR101 explosives, etc.-4",
-      "audioText": "[You are ready for pushback and startup, call Ground.]",
+      "audioText": "You are ready for pushback and startup, call Ground.",
       "audioTextZh": "【已准备好推出开车，联系地面。】",
       "referenceText": "Beijing Ground, AFR101, (Gate 301) request pushback and startup.",
       "referenceTextZh": "北京地面，法航101，（301号机位）请求推出开车。",
@@ -71,8 +71,8 @@
     {
       "id": "radiotelephony-fzy-111597",
       "taskTitle": "4. AFR101 explosives, etc.-8",
-      "audioText": "[All engines have been started, everything checked out normal, received information G, request taxi from Beijing Ground.]",
-      "audioTextZh": "【发动机都已起动，一切检查正常，收到通播G，向北京地面请求滑行。】",
+      "audioText": "All engines have been started, everything checked out normal, received information G, request taxi from Beijing Ground.",
+      "audioTextZh": "发动机都已起动，一切检查正常，收到通播G，向北京地面请求滑行。",
       "referenceText": "Beijing Ground, AFR101, information G, ready for taxi/request taxi instruction.",
       "referenceTextZh": "北京地面，法航101，通播G，准备滑出/请求滑行指令。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/b21add507d6a0f4ddc37.mp3"
@@ -107,8 +107,8 @@
     {
       "id": "radiotelephony-fzy-111601",
       "taskTitle": "4. AFR101 explosives, etc.-12",
-      "audioText": "[Now you are airborne. Contact Beijing Departure, you are passing 1200m and climbing to 1800m.]",
-      "audioTextZh": "【现在已起飞。联系北京离场，正在过1200米，往1800米爬升。】",
+      "audioText": "Now you are airborne. Contact Beijing Departure, you are passing 1200m and climbing to 1800m.",
+      "audioTextZh": "现在已起飞。联系北京离场，正在过1200米，往1800米爬升。",
       "referenceText": "Beijing Departure, AFR101, passing 1200m climbing to 1800m.",
       "referenceTextZh": "北京离场，法航101，通过1200米，正上升至1800米。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/1949ff240b447408dfaf.mp3"
@@ -125,8 +125,8 @@
     {
       "id": "radiotelephony-fzy-111603",
       "taskTitle": "4. AFR101 explosives, etc.-14",
-      "audioText": "[Flight attendant reports that there is a man carrying explosives on his body and attempting to detonate them. Require emergency descent to 3000m.]",
-      "audioTextZh": "【机组人员报告称有一名男子身上携带爆炸物，并试图引爆它。请求紧急下降至3000米。】",
+      "audioText": "Flight attendant reports that there is a man carrying explosives on his body and attempting to detonate them. Require emergency descent to 3000m.",
+      "audioTextZh": "机组人员报告称有一名男子身上携带爆炸物，并试图引爆它。请求紧急下降至3000米。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY, Beijing Departure, AFR101, request descent to 3000m, a man is carrying explosives on his body and attempting to detonate them.",
       "referenceTextZh": "MAYDAY，MAYDAY，MAYDAY，北京离场，法航101，请求下降至3000米，一名男子身上携带爆炸物，并试图引爆它。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/e631c2d2f9750cd993e2.mp3"

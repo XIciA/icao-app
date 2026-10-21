@@ -43,7 +43,7 @@
       "id": "atc-scenario-0181-card-main-3120",
       "taskTitle": "JAL 602-5",
       "audioText": "C: JAL 60210700 meters not available due to military activity at the moment, can you accept 11300 meters?\nB: tell the controller you are unable to climb to 11300 meters due performance.",
-      "audioTextZh": "C： JAL 602，因军事活动，目前 10700 米不可用，能否接受 11300 米？\nB： 告诉管制员，因性能原因你无法爬升至 11300 米。",
+      "audioTextZh": "C：JAL 602，因军事活动，目前 10700 米不可用，能否接受 11300 米？\nB：告诉管制员，因性能原因你无法爬升至 11300 米。",
       "referenceText": "negative, unable 2300 meters, due performance, JAL 602.",
       "referenceTextZh": "不行，因性能原因无法爬升至 2300 米，JAL 602。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-082-jal602-q05.mp3"
@@ -70,7 +70,7 @@
       "id": "atc-scenario-0181-card-main-3123",
       "taskTitle": "JAL 602-8",
       "audioText": "C: JAL 602, negative, heading 240 is not available due restricted area. Deviation to the left is available, say your intention.\nB: tell the controller you want to turn left heading 080.",
-      "audioTextZh": "C： JAL 602，不行，因限制区，航向 240 不可用。可以向左偏航，报告你的意图。\nB： 告诉管制员你希望左转航向 080。",
+      "audioTextZh": "C：JAL 602，不行，因限制区，航向 240 不可用。可以向左偏航，报告你的意图。\nB：告诉管制员你希望左转航向 080。",
       "referenceText": "roger, request turn left heading 080, JAL 602.",
       "referenceTextZh": "收到，请求左转航向 080，JAL 602。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-082-jal602-q08.mp3"
@@ -133,7 +133,7 @@
       "id": "atc-scenario-0181-card-main-3130",
       "taskTitle": "JAL 602-15",
       "audioText": "C: JAL 602, roger, you are No. 1, expect radar vectors, do you require any medical assistance on arrival?\nB: Tell the controller you need medical assistance and you will open the rear cabin door to deplane the sick passenger by a stretcher.",
-      "audioTextZh": "C： JAL 602，收到，你是第 1 个，预计雷达引导。到达时是否需要医疗援助？\nB： 告诉管制员你需要医疗援助，并将打开后舱门，用担架将患病旅客送下飞机。",
+      "audioTextZh": "C：JAL 602，收到，你是第 1 个，预计雷达引导。到达时是否需要医疗援助？\nB：告诉管制员你需要医疗援助，并将打开后舱门，用担架将患病旅客送下飞机。",
       "referenceText": "request medical assistance, open the rear cabin door, deplane the sick passenger stretcher, JAL 602.",
       "referenceTextZh": "请求医疗援助，打开后舱门，用担架将患病旅客送下飞机，JAL 602。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-082-jal602-q15.mp3"

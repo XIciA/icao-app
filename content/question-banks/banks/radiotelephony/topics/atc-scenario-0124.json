@@ -70,7 +70,7 @@
       "id": "atc-scenario-0124-card-main-2141",
       "taskTitle": "BAW 352-8",
       "audioText": "C: BAW 352, Hefei airport is available, confirm you are diverting to Hefei?\nB: tell the controller you are not diverting to Hefei at the moment and you still want to fly to Wuhan.",
-      "audioTextZh": "C： BAW 352，合肥机场可用，确认你正备降合肥？\nB： 告诉管制员你目前不备降合肥，仍想飞往武汉。",
+      "audioTextZh": "C：BAW 352，合肥机场可用，确认你正备降合肥？\nB：告诉管制员你目前不备降合肥，仍想飞往武汉。",
       "referenceText": "we are not diverting to Hefei now, we still want to fly to Wuhan, BAW 352.",
       "referenceTextZh": "我们现在不备降合肥，仍想飞往武汉，BAW 352。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-021-baw2352-q08.mp3"

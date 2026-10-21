@@ -107,9 +107,9 @@
     {
       "id": "radiotelephony-fzy-225016",
       "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-12",
-      "audioText": "N: [The obstruction has been removed, you continue to taxi on taxiway A. When approaching the intersection A7, you find a B737 at your 10 o’clock position taxiing from left to right. You have stopped your aircraft, report this situation to controller.]",
+      "audioText": "N: [The obstruction has been removed, you continue to taxi on taxiway A. When approaching the intersection A7, you find a B737 at your 10 o'clock position taxiing from left to right. You have stopped your aircraft, report this situation to controller.]",
       "audioTextZh": "N：【障碍物被移除，你继续在滑行道A上滑行，当接近联络道A7的时候，你发现10点钟方向有一架B737正从左向右滑行，你停下了飞机，告知管制员这个情况。】",
-      "referenceText": "Wuhan Ground, CSN3347, we continue to taxi on taxiway A, when approaching the intersection A7, we find a B737 at our 10 o’clock taxiing from left to right, we have stopped the aircraft.",
+      "referenceText": "Wuhan Ground, CSN3347, we continue to taxi on taxiway A, when approaching the intersection A7, we find a B737 at our 10 o'clock taxiing from left to right, we have stopped the aircraft.",
       "referenceTextZh": "武汉地面，南方3347，我们继续在滑行道A上滑行，当我们到达A7的时候，我们发现10点钟方向上有一架B737正从左向右滑行，我们停下了飞机。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/3884ad790c0ebe76fd86.mp3"
     },
@@ -134,9 +134,9 @@
     {
       "id": "radiotelephony-fzy-225019",
       "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-15",
-      "audioText": "C: CSN3347, wind 240 degrees at 10 m/s.\nN: [The wind speed has exceeded your aircraft’s tailwind limitation. You decide to change to runway 18L for takeoff. State your request and reason to the controller.]",
+      "audioText": "C: CSN3347, wind 240 degrees at 10 m/s.\nN: [The wind speed has exceeded your aircraft's tailwind limitation. You decide to change to runway 18L for takeoff. State your request and reason to the controller.]",
       "audioTextZh": "C：南方3347，风向240，10米每秒。\nN：【风速超过了你的顺风限制，你决定改到跑道18左起飞，向管制员告知你的请求及原因。】",
-      "referenceText": "Wuhan Ground, CSN3347, the wind speed has exceeded our aircraft’s tailwind limitation, request change to runway 18L for takeoff.",
+      "referenceText": "Wuhan Ground, CSN3347, the wind speed has exceeded our aircraft's tailwind limitation, request change to runway 18L for takeoff.",
       "referenceTextZh": "武汉地面，南方3347，风速超过飞机的顺风限制，我请求改到跑道18左起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/052dafac9bff84685a54.mp3"
     },
@@ -188,9 +188,9 @@
     {
       "id": "radiotelephony-fzy-225025",
       "taskTitle": "82-CSN3347 [发动机启动问题，地面障碍物]-21",
-      "audioText": "N: [Your aircraft is in Wuhan Control area, cruising at 10100m. Suddenly, your instruments indicate that there is a conflicting traffic at your 2 o’clock position passing from right to left. Report your situation to ATC.]",
+      "audioText": "N: [Your aircraft is in Wuhan Control area, cruising at 10100m. Suddenly, your instruments indicate that there is a conflicting traffic at your 2 o'clock position passing from right to left. Report your situation to ATC.]",
       "audioTextZh": "N：【你的飞机现在在武汉区调管制区，巡航高度10100米，突然，你的仪表指示有一架冲突航空器在你的2点钟方向，正在从右向左穿越，告知管制员你的情况。】",
-      "referenceText": "Wuhan Control, CSN3347, cruising at 10100m. Our instruments indicate that there is a conflicting traffic at 2 o’clock position passing from right to left.",
+      "referenceText": "Wuhan Control, CSN3347, cruising at 10100m. Our instruments indicate that there is a conflicting traffic at 2 o'clock position passing from right to left.",
       "referenceTextZh": "武汉区调，南方3347，在10100米巡航，我们的仪表指示在2点钟方向有一架冲突航空器正从右向左穿越。",
       "audio": "/question-bank-assets/audio/radiotelephony/fzy/f45d5dfdfadb4d56c075.mp3"
     },
