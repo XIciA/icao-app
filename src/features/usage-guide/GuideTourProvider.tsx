@@ -22,13 +22,14 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   const checkpoint = useCallback((value?: GuideCheckpoint) => setCheckpoint(current => JSON.stringify(current) === JSON.stringify(value) ? current : value), []);
   const [error, setError] = useState('');
   const [suspended, suspend] = useState(false);
+  const [openingSetupBank, setOpeningSetupBank] = useState(false);
   const progress = useRef<GuideProgress>(emptyGuideProgress());
   const nodes = useRef(new Map<string, GuideNode>()).current;
   const owner = useRef(account); owner.current = account;
   const active = useRef(tour); active.current = tour;
   const automatic = auth.canAccessApp !== false && eligibleForAutomaticGuide(auth.account?.createdAt);
   useEffect(() => {
-    let live = true; active.current = undefined; setTour(undefined); checkpoint(undefined); suspend(false); setLoaded(undefined); setError(''); progress.current = emptyGuideProgress();
+    let live = true; setOpeningSetupBank(false); active.current = undefined; setTour(undefined); checkpoint(undefined); suspend(false); setLoaded(undefined); setError(''); progress.current = emptyGuideProgress();
     if (account) void readGuideProgress(account).then(value => { if (live && owner.current === account) { progress.current = value; setLoaded(account); } }).catch(() => { if (live) setError('教学进度暂时无法读取，请稍后重试。'); });
     return () => { live = false; };
   }, [account, loadAttempt]);
@@ -44,7 +45,14 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     const next = { ...current, done: [...current.done, id], remaining: current.remaining.slice(1) };
     active.current = next; setTour(next.remaining.length || next.id === 'study' ? next : undefined);
   }, [loaded, persist]);
-  const pause = useCallback(() => { active.current = undefined; setTour(undefined); }, []);
+  const pause = useCallback(() => { active.current = undefined; setTour(undefined); setOpeningSetupBank(false); }, []);
+  useEffect(() => {
+    // The destination must own the route before its scope anchor is taught.
+    if (openingSetupBank && pathname === '/') {
+      event('setup-bank');
+      setOpeningSetupBank(false);
+    }
+  }, [event, openingSetupBank, pathname]);
   const exit = useCallback(() => {
     if (active.current) persist({ ...progress.current, skipped: [...new Set([...progress.current.skipped, active.current.id])] });
     pause();
@@ -64,7 +72,8 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (!entry || !account || loaded !== account) return;
     const next: Tour = { id: entry.id, mode: 'manual', remaining: entry.id === 'study' ? ['study-open'] : (GUIDE_FLOWS[entry.id] ?? []).map(step => step.id), done: [] };
     active.current = next; setTour(next); checkpoint(undefined);
-    if (entry.id !== 'export') router.push(entry.route as Href);
+    if (entry.id === 'study' || entry.id === 'setup') router.navigate(entry.route as Href);
+    else if (entry.id !== 'export') router.push(entry.route as Href);
   }, [account, loaded, router]);
   // Automatic module entry uses exactly the same definitions and event handling.
   useEffect(() => {
@@ -73,7 +82,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (entry) offer(entry.id, (GUIDE_FLOWS[entry.id] ?? []).map(step => step.id));
     else if ((pathname === '/' || pathname === '/profile') && remainingGuideSteps((GUIDE_FLOWS.setup ?? []).map(step => step.id), progress.current, 'setup').length) {
       offer('setup', (GUIDE_FLOWS.setup ?? []).map(step => step.id));
-      if (pathname !== '/profile') router.push('/(tabs)/profile');
+      if (pathname !== '/profile') router.navigate('/(tabs)/profile');
     }
   }, [account, automatic, loaded, offer, pathname, router, tour]);
   useEffect(() => {
@@ -97,15 +106,19 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   const selectedStep = tour?.remaining[0] === 'study-open' ? { id: 'study-open', title: '从一次真实学习开始', text: '选择题库和题目，进入学习后会逐步教学。', read: true } : (GUIDE_FLOWS[tour?.id ?? 'study'] ?? []).find(value => value.id === tour?.remaining[0]);
   const emptyRecap = selectedStep?.id === 'recap-question' && checkpointData?.recapEmpty;
   const step = emptyRecap ? { ...selectedStep, target: 'recap-filter', text: '还没有标注，先开始一次学习，留下自己的重点。', read: true } : selectedStep;
-  const prompt = useMemo<GuidePrompt | null>(() => step && !suspended && loaded === account ? {
+  const prompt = useMemo<GuidePrompt | null>(() => step && !suspended && !openingSetupBank && loaded === account ? {
     target: step.target ?? step.id, title: step.title ?? GUIDE_ENTRIES.find(entry => entry.id === tour?.id)?.title ?? '使用指南', text: step.text,
     index: tour?.done.length ?? 0, total: (tour?.done.length ?? 0) + (tour?.remaining.length ?? 0), error,
     skip: exit, exit, next: step.read ? () => {
       if (emptyRecap) { void start('study'); return; }
+      if (step.id === 'setup-bank') {
+        setOpeningSetupBank(true);
+        router.navigate('/(tabs)');
+        return;
+      }
       event(step.id);
-      if (step.id === 'setup-bank') router.push('/(tabs)');
     } : undefined,
-  } : null, [account, loaded, emptyRecap, error, event, exit, router, start, step, suspended, tour]);
+  } : null, [account, loaded, emptyRecap, error, event, exit, router, start, step, suspended, openingSetupBank, tour]);
   const topLayer = layers.at(-1) ?? 'root';
   const surface = useCallback((layer: string) => <GuideOverlay layer={layer} nodes={nodes} prompt={prompt} topLayer={topLayer} />, [nodes, prompt, topLayer]);
   const binding = useMemo(() => ({ event, register, modal, surface, start, pause, exit, offer, suspend, retry, ready: loaded === account, error, target: step?.target ?? step?.id, checkpoint, checkpointData, current: tour?.id, step: tour?.remaining[0] }), [account, loaded, error, event, register, modal, surface, start, pause, exit, offer, checkpointData, step, tour]);

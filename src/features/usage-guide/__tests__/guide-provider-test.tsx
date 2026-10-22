@@ -3,7 +3,7 @@ import { Button, AppText } from '@/components/ui';
 import { GuideTourProvider } from '../GuideTourProvider';
 import { useGuide, type GuidePrompt } from '../GuideBindings';
 import { emptyGuideProgress } from '../guide-progress';
-const mockRouter = { push: jest.fn(), replace: jest.fn() };
+const mockRouter = { push: jest.fn(), navigate: jest.fn(), replace: jest.fn() };
 let mockAccount = 'account-a', mockCreatedAt: string | undefined, mockPath = '/content/radio';
 const mockRead = jest.fn(), mockWrite = jest.fn().mockResolvedValue(undefined);
 jest.mock('expo-router', () => ({ useRouter: () => mockRouter, usePathname: () => mockPath }));
@@ -25,9 +25,10 @@ function Probe() {
     <Button onPress={() => prompt?.skip()}>skip</Button>
     <Button onPress={guide.pause}>pause</Button>
     <Button onPress={() => guide.suspend(true)}>transition</Button>
+    <Button onPress={() => prompt?.next?.()}>next</Button>
     <AppText>{prompt ? 'visible' : 'hidden'}</AppText></>;
 }
-beforeEach(() => { mockAccount='account-a'; mockCreatedAt=undefined; mockPath='/content/radio'; mockRead.mockReset().mockResolvedValue(emptyGuideProgress()); mockWrite.mockClear(); mockRouter.push.mockClear(); mockRouter.replace.mockClear(); });
+beforeEach(() => { mockAccount='account-a'; mockCreatedAt=undefined; mockPath='/content/radio'; mockRead.mockReset().mockResolvedValue(emptyGuideProgress()); mockWrite.mockClear(); mockRouter.push.mockClear(); mockRouter.navigate.mockClear(); mockRouter.replace.mockClear(); });
 it('does not auto-teach an old/unknown account, but manual teaching uses real events and exits in place', async () => {
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);
   await act(async()=>{}); expect(screen.getByText('no-tour')).toBeTruthy();
@@ -58,7 +59,7 @@ it('teaches shared capabilities once and adds only newly available capabilities 
 it('manual study replays capabilities using the same engine without a fixed sample route', async () => {
   mockRead.mockResolvedValue({version:3,completed:['study-highlight'],skipped:['study']});
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
-  await fireEvent.press(screen.getByText('study'));expect(mockRouter.push).toHaveBeenCalledWith('/(tabs)');
+  await fireEvent.press(screen.getByText('study'));expect(mockRouter.navigate).toHaveBeenCalledWith('/(tabs)');
   await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
 });
 it('ignores old-account reads and hides the previous account tour immediately', async () => {
@@ -73,4 +74,21 @@ it('hides teaching during navigation transitions', async () => {
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
   await fireEvent.press(screen.getByText('start'));expect(screen.getByText('visible')).toBeTruthy();
   await fireEvent.press(screen.getByText('transition'));expect(screen.getByText('hidden')).toBeTruthy();
+});
+
+it('commits setup scope teaching only after navigation reaches the bank tab', async () => {
+  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/profile';
+  mockRead.mockResolvedValue({ version: 3, completed: ['setup-profile','setup-level','setup-type','setup-save'], skipped: [] });
+  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
+  await waitFor(() => expect(screen.getByText('setup-bank')).toBeTruthy());
+  await fireEvent.press(screen.getByText('next'));
+  expect(mockRouter.navigate).toHaveBeenCalledWith('/(tabs)');
+  expect(mockRouter.push).not.toHaveBeenCalled();
+  expect(screen.getByText('hidden')).toBeTruthy();
+  expect(screen.queryByText('setup-scope')).toBeNull();
+  mockPath = '/';
+  await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
+  await waitFor(() => expect(screen.getByText('setup-scope')).toBeTruthy());
+  expect(screen.getByText('visible')).toBeTruthy();
+  expect(mockWrite).toHaveBeenLastCalledWith('account-a', expect.objectContaining({ completed: ['setup-profile','setup-level','setup-type','setup-save','setup-bank'] }));
 });

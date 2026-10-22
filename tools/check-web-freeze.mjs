@@ -440,6 +440,11 @@ reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.n
 
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "0943a65e6a849ee08e58959ae260e5156b05bffe723dc5a3f992b4b549434919"])]);
 
+// Guided tab pager repair: only formal surfaces with an active guide disable animation.
+// Legacy Vercel still receives animationEnabled=true; provider is not mounted there.
+reviewedFormalWebHashes.set("src/app/(tabs)/_layout.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/(tabs)/_layout.tsx") ?? ["fd5a80c19c26a902df5886dbee47df6c4498b9d95e7278cb5161686f0e7edcee"]), "a88f72520624410758bc85df55f4c4005de24552fc5f7a7e835b3a7d18d85e31"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideTourProvider.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideTourProvider.tsx") ?? [null]), "9fc3108bf523635fc66f1d49e454a3b844b76cce9561c8cbff3d73cb1f3d9d2b"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
