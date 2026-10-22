@@ -4,7 +4,25 @@ import { readLearningProgressStats } from '@/features/question-bank/platform/lea
 import { useAuth } from '@/features/auth/AuthProvider';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 
-import ProfileTab from '../(tabs)/profile';
+import ProfileRoute from '../(tabs)/profile';
+import { SafeAreaInsetsContext, SafeAreaFrameContext } from 'react-native-safe-area-context';
+import { CommerceRuntimeContext } from '@/features/native-commercial-testflight/commerce-runtime-context.native';
+import type { CommerceRuntimeValue } from '@/features/native-commercial-testflight/commerce-runtime-types';
+
+const commerce: CommerceRuntimeValue = {
+  supported: true, phase: 'loading', offerings: [],
+  purchase: async () => ({ ok: false, message: 'not requested by this screen test' }),
+  restorePurchases: async () => ({ ok: false, message: 'not requested by this screen test' }),
+  refresh: async () => {},
+};
+function ProfileTab() {
+  return <SafeAreaFrameContext.Provider value={{ x: 0, y: 0, width: 390, height: 844 }}>
+    <SafeAreaInsetsContext.Provider value={{ top: 47, bottom: 34, left: 0, right: 0 }}>
+      <CommerceRuntimeContext.Provider value={commerce}><ProfileRoute /></CommerceRuntimeContext.Provider>
+    </SafeAreaInsetsContext.Provider>
+  </SafeAreaFrameContext.Provider>;
+}
+
 
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(async () => true) }));
 const mockPush = jest.fn();
