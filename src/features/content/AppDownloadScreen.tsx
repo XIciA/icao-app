@@ -40,6 +40,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const { isMobile } = useWebLayout();
   const usePublishedRelease = isEdgeOneProductionWeb();
   const [release, setRelease] = useState<AppUpdate>();
+  const [testRelease, setTestRelease] = useState<AppUpdate>();
   const [downloadState, setDownloadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -55,6 +56,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
         const published = newerAppUpdate(releases, 'android-apk', '0.0.0', '0');
         if (active) {
           setRelease(published);
+          setTestRelease(newerAppUpdate(releases, 'android-test', '0.0.0', '0'));
           setDownloadState('ready');
         }
       })
@@ -67,7 +69,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const failedDownload = usePublishedRelease && downloadState === 'error';
   return (
     <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} />
+      <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} right={testRelease ? <Link href={testRelease.url as Href} asChild><Pressable accessibilityRole="link" accessibilityLabel="下载 Android 测试版" style={{ padding: spacing.sm }}><AppText variant="caption" color={colors.mutedForeground}>Android 测试版</AppText></Pressable></Link> : undefined} />
       <View style={styles.content}>
         <View style={styles.hero}>
           <View style={styles.logo}><AppBrandLogo size="lg" accessibilityLabel="听你五个 Logo" /></View>
