@@ -1,7 +1,6 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import { Platform } from 'react-native';
 import { ProfileHomeScreen } from '../ProfileHomeScreen.native';
-jest.mock('lucide-react-native/icons/crown', () => ({ __esModule: true, default: () => null }));
 jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => ({phase:'ready', entitlement: {serverTime:'2026-10-22T00:00:00Z',membership:{active:true,expiresAt:'2026-11-14T00:00:00Z'}}}) }));
 jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 

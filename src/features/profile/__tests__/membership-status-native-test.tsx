@@ -1,6 +1,5 @@
 import type { CommerceEntitlementSummary } from '@icao/contracts';
 import { membershipPresentation } from '../MembershipStatus.native';
-jest.mock('lucide-react-native/icons/crown', () => ({ __esModule: true, default: () => null }));
 jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({ useCommerceRuntime: jest.fn() }));
 function snapshot(active:boolean, expiresAt:string|null) {return {serverTime:'2026-10-22T00:00:00Z',membership:{active,expiresAt}} as CommerceEntitlementSummary;}
 it('uses one VIP identity with separate status copy for all membership states', () => {

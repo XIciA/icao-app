@@ -71,7 +71,7 @@ it('runs sequentially with no answer/tool/previous controls, shows listening sco
   await waitFor(() => expect(screen.getByText('口语作答')).toBeTruthy());
   await fireEvent.press(screen.getByText('结束'));
   await waitFor(() => expect(screen.getByText('本次模拟考试已结束')).toBeTruthy());
-  expect(screen.getByText('未完成')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(screen.getByText('全部学习记录')).toBeTruthy();
+  expect(screen.getByText('未完成')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(screen.getByText('本次学习记录')).toBeTruthy();
   const calls = jest.mocked(sqliteLearningStore.addRecord).mock.calls;
   expect(calls).toHaveLength(2); expect(calls[0][0].id).toBe(calls[1][0].id);
 });
@@ -81,7 +81,7 @@ it('uses the listening result itself as the final screen for a listening-only ex
   for (let index = 0; index < 19; index += 1) await act(async () => { await fireEvent.press(screen.getByLabelText('下一题')); });
   await fireEvent.press(screen.getByLabelText('提交听力'));
   await waitFor(() => expect(screen.getByText('听力成绩')).toBeTruthy());
-  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('全部学习记录')).toBeTruthy(); expect(screen.queryByText('已结束')).toBeNull();
+  expect(screen.queryByText('进入下一板块')).toBeNull(); expect(screen.getByText('本次学习记录')).toBeTruthy(); expect(screen.queryByText('已结束')).toBeNull();
 });
 
 it('keeps the source picture visible beside its OPI question without creating an extra exam answer', async () => {
