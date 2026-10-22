@@ -392,6 +392,18 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-progress.ts", [...ne
 reviewedFormalWebHashes.set("src/features/usage-guide/tutorial-model.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/tutorial-model.ts") ?? [null]), "091c67ee58bdcf0cd1124e64f8d0ca9349819fd532bd7e5613e9f4aa3d78a089"])]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a96b7e9da47b6f12893f3b29f8da88e8fa64c15d599e323e5eedbc0e4d84ecf8"])]);
 
+// Reviewed 2026-10-22: user-selected E icons on Native/formal EdgeOne only.
+// Lucide re-exports are byte-identical; shared styles retain the legacy Web branch.
+// Exact bytes only: no Vercel page, runtime mapping, or manifest is rebaselined.
+reviewedFormalWebHashes.set("src/components/ui/icons.ts", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/icons.ts") ?? ["f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0"]), "03b9fe5278c8892888b3b8c69ebed2087fb742f4085c1828c68bd42ada446c7b"])]);
+reviewedFormalWebHashes.set("src/components/ui/lucide-icons.ts", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/lucide-icons.ts") ?? [null]), "6b26cc5ac53e12cfdf083c8676e532ea28558cd19e8b8a8b6e321989ab28a805"])]);
+reviewedFormalWebHashes.set("src/components/ui/light-icons.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/light-icons.tsx") ?? [null]), "469334c81da81c272ece6411f9904f43c078841e1341261307fd7107ad967cd5"])]);
+reviewedFormalWebHashes.set("src/components/account/account-ui.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/account/account-ui.tsx") ?? ["2f23e8906b0b0857e86d1eed9dce4f1fd823a1007ffad7d4926b3bdf48b27572"]), "baa4d834c762d506754a94e6f02140e86d8dee7efaa230feab90173c9e95e7a7"])]);
+reviewedFormalWebHashes.set("src/components/navigation/FloatingTabBar.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/navigation/FloatingTabBar.tsx") ?? ["c06a968802279863c22a201b549f18b36e1b347899ff8bf84d7d3f39680ed898"]), "cf78f32ec17d805529e72aa81f707b4a71323ad49d46d3eb1f23d62fb696b838"])]);
+reviewedFormalWebHashes.set("src/theme/tokens.ts", [...new Set([...(reviewedFormalWebHashes.get("src/theme/tokens.ts") ?? ["a12723112d79fb8ce78395ebea79ae2057f8cedfde0788b7cfa5b55a9e0e22fb"]), "24b7e8a7e97304dc7a69bde85ebed0ca998c98eb901f9e341c40dcc4cfb1c027"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/QuestionBankCatalog.native.tsx") ?? [null]), "cac5edc15abd071cd793bdb3a008170b5f24ad53e112ed55fb29bcf8bbeb399f"])]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "0e0c040707ea8a2f51d904193855221baa6c0fa93d2010a0e262e30dc679fceb"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
