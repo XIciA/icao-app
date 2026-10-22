@@ -1,5 +1,4 @@
-import { useRouter } from 'expo-router';
-import { useGlobalSearchParams, usePathname, type Href } from 'expo-router';
+import { useGlobalSearchParams, usePathname, useRouter, type Href } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -36,7 +35,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (entry.id !== 'export') router.push((!complete && saved?.path ? saved.path : entry.route) as Href);
   }, [account, router]);
   const pause = useCallback(() => { generation.current++; setTour(undefined); setLegacy(null); }, []);
-  const exit = useCallback(() => { const done = () => { generation.current++; setTour(undefined); setLegacy(null); router.dismissTo('/info/guide'); }; if (exitGuard.current) exitGuard.current(done); else done(); }, [router]);
+  const exit = useCallback(() => { const done = () => { generation.current++; setTour(undefined); setLegacy(null); router.replace('/info/guide'); }; if (exitGuard.current) exitGuard.current(done); else done(); }, [router]);
   const advance = useCallback((id?: string) => setTour(current => {
     if (!current || current.account !== owner.current) return current;
     const steps = GUIDE_FLOWS[current.id] ?? [], step = steps[current.index];

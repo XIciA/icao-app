@@ -1,4 +1,4 @@
-import { createNavigationGate } from '../useAppRouter';
+import { createNavigationGate } from '../useAppRouter.native';
 
 it('dispatches a burst of forward or back taps only once and unlocks for the next interaction', () => {
   let now = 1000;

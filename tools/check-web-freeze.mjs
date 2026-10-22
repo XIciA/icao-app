@@ -47,7 +47,7 @@ const approvedNativeIncrementPaths = new Set([
 // both route implementations pinned; this is not a Native-suffix exemption.
 const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
 const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
-const reviewedStudyNativeHash = '191397e34824130111034b6aa0ae768841eee8db08f51e8b1742430107110ade';
+const reviewedStudyNativeHash = '6ec8139209ae328fee40a3e51b553a781dbc80a23e22e17852dbb9c78a35ee79';
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
@@ -357,6 +357,14 @@ const exactProtectedPaths = [
 ];
 
 const protectedTrees = ['api', 'public'];
+// 2026-10-22: user-requested Native navigation repair. Shared legacy screens
+// remain byte-identical; Native variants carry the toolbar, radio and list changes.
+// Existing installed-router tests prove the root/catalog/study Web siblings remain
+// selected. The only new shared dependency forwards Expo Router without a guard.
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [null, "5dc9c8fbb575dec1447b0ec2f20f45cb15be0733c2a0f696c49cf0eb33b79668"]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [null, "e900b27c08ca5ddc10c19379381eecf912e1aea07e31c4ed969855e3b7205473"]);
+reviewedFormalWebHashes.set("src/components/navigation/useAppRouter.ts", [null, "a47ad6396c5f3efa5d3586386bc55ae6c7bcc7bac45a5b9c925331c40bc23194"]);
+
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
 
 // User-approved B startup across Native and EdgeOne; legacy renderer and injector stay unchanged.

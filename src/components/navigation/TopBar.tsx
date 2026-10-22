@@ -1,8 +1,10 @@
-import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useRouter } from 'expo-router';
 import { ArrowLeft, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+
 import { colors, radii, spacing } from '@/theme';
+
 import { AppText } from '../ui';
 
 type Props = {

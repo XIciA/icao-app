@@ -21,7 +21,7 @@ import {
   SkipBack,
   SkipForward,
 } from '@/components/ui/icons';
-import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
@@ -166,7 +166,7 @@ export function RadioPlayerScreen() {
   if (!isVercelLegacyWeb(Platform.OS) && radio.catalogs.length === 0 && !radio.loading) {
     return <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-        <TopBar title="随身听" onBack={() => Platform.OS === 'web' || router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />
+        <TopBar title="随身听" onBack={() => router.back()} />
         <CenteredState icon={Headphones} title={radio.error ? '曲目加载失败' : '当前范围暂无可播放内容'}
           description={radio.error ?? '随身听包含听力、语句复诵和故事复述。当前考试目标或题库范围内没有这些内容，可以返回题库继续练习。'}
           actionLabel={radio.error ? '重新加载' : '返回题库'} onAction={radio.error ? radio.retry : () => router.push('/(tabs)')} />
@@ -180,7 +180,7 @@ export function RadioPlayerScreen() {
       <QuestionBankSwitcherHeader
         guideId="radio-bank"
         items={switcherItems}
-        onBack={() => Platform.OS === 'web' || router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')}
+        onBack={() => router.back()}
         onSelect={radio.selectBank}
         right={
           <Pressable accessibilityLabel="打开播放队列" hitSlop={8} onPress={() => setQueueOpen(true)} style={({ pressed }) => [styles.headerAction, pressed ? styles.headerActionPressed : null]}>
