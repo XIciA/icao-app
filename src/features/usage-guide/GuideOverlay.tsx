@@ -1,77 +1,106 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Keyboard, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useEffect, useId, useRef, useState } from 'react';
+import { AppState, Keyboard, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Svg, { Circle, Line } from 'react-native-svg';
+import Svg, { Circle, Defs, Line, Mask, Rect } from 'react-native-svg';
 import { AppText } from '@/components/ui';
-import { colors, radii, shadows, spacing } from '@/theme';
+import { colors, radii, spacing } from '@/theme';
 import { guidePlacement, type Box } from './guide-placement';
 import type { GuidePrompt } from './GuideBindings';
 
 export type GuideNode = { id: string; layer: string; node: View };
+const same = (a?: Box, b?: Box) => !!a && !!b && (['x', 'y', 'width', 'height'] as const).every(key => Math.abs(a[key] - b[key]) < 1);
+/** A transparent spotlight over the actual control, never a cloned interactive target. */
 export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
-  const insets = useSafeAreaInsets();
-  const [rootY, setRootY] = useState(0);
+  const insets = useSafeAreaInsets(), maskId = useId().replace(/:/g, '');
+  const root = useRef<View>(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [focus, setFocus] = useState<{ key: string; box: Box }>();
   const [keyboardTop, setKeyboardTop] = useState<number>();
-  const [hidden, setHidden] = useState(false);
-  const measuredFor = useRef('');
-  const [targetFor, setTargetFor] = useState('');
-  useEffect(() => { setHidden(false); }, [prompt?.target, prompt?.completed]);
+  const [rootY, setRootY] = useState(0);
+  const [textHeight, setTextHeight] = useState(110);
+  const [foreground, setForeground] = useState(true);
+  const key = `${layer}:${prompt?.target}`;
   useEffect(() => {
-    const show = Keyboard.addListener('keyboardDidShow', event => setKeyboardTop(event.endCoordinates.screenY));
-    const hide = Keyboard.addListener('keyboardDidHide', () => setKeyboardTop(undefined));
-    return () => { show.remove(); hide.remove(); };
+    const shown = Keyboard.addListener('keyboardDidShow', e => setKeyboardTop(e.endCoordinates.screenY));
+    const hidden = Keyboard.addListener('keyboardDidHide', () => setKeyboardTop(undefined));
+    const app = AppState.addEventListener('change', value => setForeground(value === 'active'));
+    return () => { shown.remove(); hidden.remove(); app.remove(); };
   }, []);
-  const root = useRef<View>(null); const [size, setSize] = useState({ width: 0, height: 0 }); const [target, setTarget] = useState<Box>(); const [bubbleHeight, setBubbleHeight] = useState(120);
-  const measure = useCallback(() => {
-    const token = `${layer}:${prompt?.target}`; measuredFor.current = token;
-    const candidates = [...nodes.values()].filter(item => item.id === prompt?.target && item.layer === layer);
-    const update = (next?: Box) => { if (measuredFor.current !== token) return; setTargetFor(token); setTarget(old => !next ? undefined : old && Object.keys(next).every(key => Math.abs(old[key as keyof Box] - next[key as keyof Box]) < 1) ? old : next); };
-    root.current?.measureInWindow((rx, ry) => {
-      setRootY(ry);
-      const check = (index: number) => {
-        const item = candidates[index]; if (!item) { update(); return; }
-        item.node.measureInWindow((x, y, width, height) => {
-          const left = Math.max(0, x - rx), top = Math.max(0, y - ry);
-          const right = Math.min(size.width, x - rx + width), bottom = Math.min(Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - ry), y - ry + height);
-          if (width <= 0 || height <= 0 || right <= left || bottom <= top) { check(index + 1); return; }
-          update({ x: left, y: top, width: right - left, height: bottom - top });
-        });
-      };
-      check(0);
-    });
-  }, [layer, nodes, prompt?.target, size, keyboardTop]);
-  useEffect(() => { if (!prompt || layer !== topLayer) return; measure(); const timer = setInterval(measure, 180); return () => clearInterval(timer); }, [layer, measure, prompt, topLayer]);
-  if (!prompt || layer !== topLayer) return null;
-  const focus = targetFor === `${layer}:${prompt.target}` ? target : undefined;
-  const availableHeight = keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop - rootY);
-  const position = guidePlacement(focus, size.width, availableHeight, bubbleHeight, { top: layer === 'root' ? insets.top : 0, bottom: insets.bottom });
-  const tip = focus ? Math.max(14, Math.min(position.width - 22, focus.x + focus.width / 2 - position.x - 4)) : 24;
-  return <View pointerEvents="box-none" collapsable={false} ref={root} onLayout={event => setSize(event.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
-    {focus && !prompt.completed ? <View testID="guide-focus" pointerEvents="none" style={[styles.focus, { left: focus.x - 4, top: focus.y - 4, width: focus.width + 8, height: focus.height + 8 }]} /> : null}
-    {position.line && focus ? <Svg pointerEvents="none" style={StyleSheet.absoluteFill}><Line x1={focus.x + focus.width / 2} y1={focus.y + focus.height / 2} x2={position.x + position.width / 2} y2={position.y} stroke={colors.mutedForeground} strokeOpacity={0.45} strokeWidth={1} /><Circle cx={focus.x + focus.width / 2} cy={focus.y + focus.height / 2} r={2.5} fill={colors.mutedForeground} /></Svg> : null}
-    {size.width > 0 && !hidden && (!prompt.completed || !prompt.target || focus) ? <View onLayout={event => setBubbleHeight(event.nativeEvent.layout.height)} style={[styles.bubble, { left: position.x, top: position.y, width: position.width, maxHeight: Math.max(48, availableHeight - position.y - insets.bottom - 16) }]} testID="guide-bubble">
-      {focus && !position.line && !position.compact ? <View pointerEvents="none" style={[styles.tip, { left: tip }, position.above ? styles.tipBottom : styles.tipTop]} /> : null}
-      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.bubbleContent}>
-      <View style={styles.heading}><AppText variant="micro">{prompt.completed ? '已完成' : `${prompt.index + 1} / ${prompt.total}`}</AppText><Pressable accessibilityLabel="退出教程" hitSlop={8} onPress={prompt.exit} style={styles.smallAction}><AppText variant="body">×</AppText></Pressable></View>
-      <AppText accessibilityLiveRegion="polite" variant="caption">{prompt.text}</AppText>
-      {!focus && prompt.target && !prompt.completed ? <AppText color={colors.mutedForeground} variant="micro">目标暂未显示，页面加载后可滚动查找。</AppText> : null}
-      {position.compact ? <Pressable accessibilityRole="button" onPress={() => setHidden(true)}><AppText color={colors.primary} variant="micro">收起提示，操作页面</AppText></Pressable> : null}
-      {prompt.error ? <AppText color={colors.destructive} variant="micro">{prompt.error}</AppText> : null}
-      <View style={styles.actions}><Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.skip} style={styles.smallAction}><AppText variant="micro">{prompt.completed ? '重新体验' : prompt.skipLabel ?? '跳过'}</AppText></Pressable>{prompt.next ? <Pressable accessibilityRole="button" hitSlop={6} onPress={prompt.next} style={styles.smallAction}><AppText color={colors.primary} variant="micro">{prompt.completed ? '返回使用指南' : prompt.index + 1 === prompt.total ? '完成引导' : '继续'}</AppText></Pressable> : null}</View>
-      </ScrollView>
-    </View> : null}
-    {hidden ? <Pressable accessibilityRole="button" accessibilityLabel="展开教程提示" onPress={() => setHidden(false)} style={[styles.restore, { top: (layer === 'root' ? insets.top : 0) + 16 }]}><AppText color={colors.primary} variant="micro">{prompt.completed ? '教程已完成' : `教程 ${prompt.index + 1}/${prompt.total}`}</AppText></Pressable> : null}
+  useEffect(() => {
+    if (!prompt || layer !== topLayer || !foreground) { setFocus(undefined); return; }
+    let alive = true, frame = 0, busy = false, started = 0, serial = 0, previous: Box | undefined;
+    // Measure on animation frames. Moving or absent targets hide the mask until stable,
+    // including native interactive dismissal and changing modal coordinate spaces.
+    const tick = () => {
+      if (!alive) return;
+      frame = requestAnimationFrame(tick);
+      if (busy && Date.now() - started > 150) { busy = false; previous = undefined; setFocus(undefined); }
+      if (busy || !root.current) return;
+      busy = true; started = Date.now(); const sample = ++serial;
+      root.current.measureInWindow((rx, ry) => {
+        if (!alive || sample !== serial) return;
+        setRootY(ry);
+        const candidates = [...nodes.values()].filter(value => value.id === prompt.target && value.layer === layer);
+        const check = (index: number) => {
+          if (!alive || sample !== serial) return;
+          const candidate = candidates[index];
+          if (!candidate) { busy = false; previous = undefined; setFocus(undefined); return; }
+          candidate.node.measureInWindow((x, y, width, height) => {
+            if (!alive || sample !== serial) return;
+            const maxHeight = Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - ry);
+            if (width <= 0 || height <= 0 || x + width <= rx || x >= rx + size.width || y + height <= ry || y >= ry + maxHeight) { check(index + 1); return; }
+            const left = Math.max(0, x - rx - 5), top = Math.max(0, y - ry - 5);
+            const box = { x: left, y: top, width: Math.min(size.width, x - rx + width + 5) - left, height: Math.min(maxHeight, y - ry + height + 5) - top };
+            const stable = same(previous, box); previous = box; busy = false;
+            setFocus(old => stable ? old?.key === key && same(old.box, box) ? old : { key, box } : undefined);
+          });
+        };
+        check(0);
+      });
+    };
+    tick();
+    return () => { alive = false; cancelAnimationFrame(frame); };
+  }, [foreground, key, keyboardTop, layer, nodes, prompt?.target, size.height, size.width, topLayer]);
+  if (!prompt || layer !== topLayer || !foreground) return null;
+  const measured = focus?.key === key ? focus.box : undefined;
+  const height = keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop - rootY);
+  const target = measured && prompt.next ? { ...measured, height: Math.min(measured.height, Math.max(44, height - textHeight - insets.top - insets.bottom - 160)) } : measured;
+  const position = guidePlacement(target, size.width, height, textHeight, { top: layer === 'root' ? insets.top + 48 : 48, bottom: insets.bottom + 60 });
+  const show = !!target && !position.compact;
+  const blocks = show ? [
+    { left: 0, top: 0, width: size.width, height: target.y },
+    { left: 0, top: target.y + target.height, width: size.width, height: Math.max(0, height - target.y - target.height) },
+    { left: 0, top: target.y, width: target.x, height: target.height },
+    { left: target.x + target.width, top: target.y, width: Math.max(0, size.width - target.x - target.width), height: target.height },
+  ] : [];
+  const lineX = target ? Math.max(position.x + 12, Math.min(position.x + position.width - 12, target.x + target.width / 2)) : 0;
+  const lineStart = target ? position.above ? target.y - 3 : target.y + target.height + 3 : 0;
+  const lineEnd = position.above ? position.y + textHeight + 4 : position.y - 4;
+  return <View ref={root} collapsable={false} pointerEvents="box-none" onLayout={e => setSize(e.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
+    {show ? <>
+      <Svg pointerEvents="none" width={size.width} height={height} style={StyleSheet.absoluteFill}>
+        <Defs><Mask id={maskId}><Rect width={size.width} height={height} fill="white" /><Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /></Mask></Defs>
+        <Rect width={size.width} height={height} fill={colors.foreground} fillOpacity={0.68} mask={`url(#${maskId})`} />
+        <Line x1={lineX} y1={lineStart} x2={lineX} y2={lineEnd} stroke={colors.card} strokeWidth={1} />
+        <Circle cx={lineX} cy={lineStart} r={2} fill={colors.card} />
+      </Svg>
+      {blocks.map((block, index) => <View key={index} accessible={false} onStartShouldSetResponder={() => true} style={[styles.block, block]} />)}
+      <View onLayout={e => setTextHeight(e.nativeEvent.layout.height)} style={[styles.hint, { left: position.x, top: position.y, width: position.width }]} testID="guide-hint">
+        <AppText color={colors.card} variant="button" style={styles.center}>{prompt.title}</AppText>
+        <AppText accessibilityLiveRegion="polite" color={colors.card} variant="caption" style={styles.center}>{prompt.text}</AppText>
+        {prompt.error ? <AppText color={colors.card} variant="caption">{prompt.error}</AppText> : null}
+        {prompt.next ? <Pressable accessibilityRole="button" onPress={prompt.next} style={styles.action}><AppText color={colors.card} variant="button">知道了</AppText></Pressable> : null}
+      </View>
+    </> : null}
+    <Pressable accessibilityRole="button" accessibilityLabel="跳过教学" onPress={prompt.skip} style={[styles.skip, target && target.y + target.height > height - insets.bottom - 85 ? { top: layer === 'root' ? insets.top + 8 : 8 } : { bottom: size.height - height + insets.bottom + 16 }, !show && styles.skipOnPage]}><AppText color={show ? colors.card : colors.mutedForeground} variant="caption">跳过教学</AppText></Pressable>
   </View>;
 }
 const styles = StyleSheet.create({
   root: { ...StyleSheet.absoluteFillObject, zIndex: 10000 },
-  focus: { position: 'absolute', borderRadius: radii.lg, borderColor: colors.primary, borderWidth: 2 },
-  restore: { position: 'absolute', right: 16, padding: spacing[2], borderRadius: radii.md, borderWidth: 1, borderColor: colors.primary, backgroundColor: colors.card },
-  bubble: { position: 'absolute', backgroundColor: colors.card, borderColor: colors.border, borderWidth: StyleSheet.hairlineWidth, borderRadius: radii.lg, ...shadows.floating },
-  bubbleContent: { padding: spacing[3], gap: spacing[2] },
-  smallAction: { minWidth: 44, minHeight: 36, justifyContent: 'center', alignItems: 'center' },
-  heading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  actions: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: spacing[1] },
-  tip: { position: 'absolute', width: 9, height: 9, backgroundColor: colors.card, transform: [{ rotate: '45deg' }], borderColor: colors.border },
-  tipTop: { top: -5, borderTopWidth: StyleSheet.hairlineWidth, borderLeftWidth: StyleSheet.hairlineWidth }, tipBottom: { bottom: -5, borderBottomWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth },
+  block: { position: 'absolute' },
+  hint: { position: 'absolute', gap: spacing[2] },
+  center: { textAlign: 'center' },
+  action: { minHeight: 44, alignSelf: 'center', justifyContent: 'center', paddingHorizontal: spacing[4] },
+  skip: { position: 'absolute', right: spacing[4], minHeight: 44, paddingHorizontal: spacing[4], borderRadius: radii.full, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.card, justifyContent: 'center' },
+  skipOnPage: { backgroundColor: colors.background, borderColor: colors.border },
 });

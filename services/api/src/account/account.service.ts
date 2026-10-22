@@ -50,6 +50,7 @@ export class AccountService {
   }
 
   async summary(accountId: string, phone?: string): Promise<AccountSummary> {
+    const [account] = await this.database.db.select({ createdAt: accounts.createdAt }).from(accounts).where(eq(accounts.id, accountId)).limit(1);
     const providers = await this.identities.providersForAccount(accountId);
     let resolvedPhone = isChinaMobileE164(phone) ? phone : undefined;
     let hasPassword = false;
@@ -60,6 +61,7 @@ export class AccountService {
     }
     return {
       accountId,
+      createdAt: account?.createdAt.toISOString(),
       hasPassword,
       phone: resolvedPhone,
       phoneBound: providers.includes('phone'),

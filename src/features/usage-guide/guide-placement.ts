@@ -2,7 +2,7 @@ export type Box = { x: number; y: number; width: number; height: number };
 export type GuideViewport = { top?: number; bottom?: number };
 /** Keep the callout outside the target; large reading regions use a compact edge hint. */
 export function guidePlacement(target: Box | undefined, width: number, height: number, bubbleHeight: number, viewport: GuideViewport = {}) {
-  const margin = 16, gap = 16, top = (viewport.top ?? 0) + margin;
+  const margin = 16, gap = 38, top = (viewport.top ?? 0) + margin;
   const bottom = height - (viewport.bottom ?? 0) - margin;
   const bubbleWidth = Math.min(280, Math.max(0, width - margin * 2));
   const x = target ? Math.max(margin, Math.min(target.x + target.width / 2 - bubbleWidth / 2, width - bubbleWidth - margin)) : margin;
