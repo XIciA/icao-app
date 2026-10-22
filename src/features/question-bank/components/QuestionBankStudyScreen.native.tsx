@@ -1,3 +1,4 @@
+import { useRouter as useExitRouter } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
@@ -98,6 +99,7 @@ export function QuestionBankStudyScreen(props: Props) {
 function StudyContent(props: Props) {
   const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
+  const exitRouter = useExitRouter();
   const tutorial = useTutorial();
   const guide = useGuide();
   const pauseGuide = guide?.pause;
@@ -226,7 +228,9 @@ function StudyContent(props: Props) {
       return;
     }
     if (router.canGoBack()) {
-      router.back();
+      // This resumes a prevented swipe after saving. It must not be swallowed
+      // by the transition/tap gate; leavingStudy dispatches it only once.
+      exitRouter.back();
       return;
     }
     if (returnHref) {
@@ -243,7 +247,7 @@ function StudyContent(props: Props) {
     }
     if (dataset) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
     else router.replace('/(tabs)');
-  }, [dataset, onReturn, returnHref, returnTo, router, guideCurrent, pauseGuide]);
+  }, [dataset, exitRouter, onReturn, returnHref, returnTo, router, guideCurrent, pauseGuide]);
 
   usePreventRemove(!leavingStudy && (!session.report || Boolean(onReturn && session.historyRecord)), () => { void leaveStudy(); });
 

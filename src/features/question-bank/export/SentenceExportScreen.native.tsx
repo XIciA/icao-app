@@ -44,8 +44,7 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
     const uri=await storePdf(result.bytes);if(!active.current){releasePdf(uri);return;}outputUri.current=uri;setOutput({uri,pages:result.pageCount,count:result.sentenceCount});guide?.event('export-generate');
   }catch{if(active.current)setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');}finally{if(active.current)setBusy(false);}}
   async function open(action:()=>Promise<void>,message:string){if(busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);await action();}catch{if(active.current)setError(message);}finally{if(active.current)setBusy(false);}}
-  const back = ()=>{if(busy)return;if(output){setError('');releasePdf(output.uri);outputUri.current=undefined;setOutput(undefined);}else onBack();};
-  useLocalBack(true, back);
+  const back = useLocalBack(true, ()=>{if(busy)return;if(output){setError('');releasePdf(output.uri);outputUri.current=undefined;setOutput(undefined);}else onBack();});
   return <Screen scroll><TopBar title={output?'我的900句 PDF':'导出900句'} onBack={back}/>
     {error?<View style={styles.section}><AppText color={colors.destructive}>{error}</AppText>{!data?<Button onPress={()=>setAttempt(v=>v+1)}>重新读取</Button>:null}</View>:null}
     {output?<View style={styles.section}><GuideAnchor id="export-result" /><AppText variant="sectionTitle">PDF 已生成</AppText><AppText>{output.count} 句 · {output.pages} 页 · A4</AppText><Button disabled={busy} onPress={()=>void open(()=>previewPdf(output.uri),'PDF 预览未能打开，请重试或选择保存。')}>预览 PDF</Button><Button disabled={busy} variant="secondary" onPress={()=>void open(()=>sharePdf(output.uri),'未能打开保存或分享，请重试。')}>保存或分享 PDF</Button></View>:<>

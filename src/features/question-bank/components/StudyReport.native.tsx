@@ -1,15 +1,15 @@
+import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { TutorialCoach, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { SessionRecapList } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
 import { CheckCircle2, ChevronRight, Flag } from '@/components/ui/icons';
-import { lazy, Suspense, useState, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { TopBar } from '@/components/navigation/TopBar';
 import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
 import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from '../types';
@@ -24,21 +24,26 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
   const [detail,setDetail] = useState(record);
   const objective = objectiveReview(record.studyReview);
   const [opening, setOpening] = useState(false);
+  const openingRequest = useRef(0);
+  const openingBusy = useRef(false);
+  useEffect(() => () => { openingRequest.current++; }, []);
   const [error, setError] = useState('');
   const exam = record.recordType === 'mock_exam';
   const complete = record.reason === 'complete';
   const listening = record.mockExam?.listeningResult;
   async function open(itemId?: string) {
-    if (opening) return;
+    if (openingBusy.current) return;
+    openingBusy.current = true;
+    const request = ++openingRequest.current;
     setOpening(true); setError('');
-    try { const loaded = await loadLearningRecordReview(record); setDetail(loaded); const result = toStudyReviewPackage(itemId ? selectReview(loaded, new Set([itemId])) : loaded); if (!result) throw new Error('missing_review'); setReview(result); tutorial?.event('recap'); }
-    catch { setError('记录暂时无法打开，请重试。'); }
-    finally { setOpening(false); }
+    try { const loaded = await loadLearningRecordReview(record); if (request !== openingRequest.current) return; setDetail(loaded); const result = toStudyReviewPackage(itemId ? selectReview(loaded, new Set([itemId])) : loaded); if (!result) throw new Error('missing_review'); setReview(result); tutorial?.event('recap'); }
+    catch { if (request === openingRequest.current) setError('记录暂时无法打开，请重试。'); }
+    finally { if (request === openingRequest.current) { openingBusy.current = false; setOpening(false); } }
   }
-  useLocalBack(!review && (Boolean(list) || Boolean(localReturn && !onContinue)), () => { if (list) setList(undefined); else onReturn(); });
+  const back = useLocalBack(!review && (Boolean(list) || Boolean(localReturn && !onContinue)), () => { openingRequest.current++; openingBusy.current = false; setOpening(false); if (list) setList(undefined); else onReturn(); });
   const returnToReport = () => setReview(undefined);
-  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<Screen><TopBar title="学习记录" onBack={returnToReport} /><AppText>正在打开记录…</AppText></Screen>}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
-  if (list) return <SessionRecapList kind={list} record={detail} onBack={() => setList(undefined)} onOpen={id => { void open(id); }} />;
+  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
+  if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen}>
     <TutorialCoach inset={false} />
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
@@ -59,7 +64,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
       {objective.wrongIds.length > 0 && <ReviewRow title="错题回顾" count={objective.wrongIds.length} onPress={() => setList('wrong')} />}
       <ReviewRow anchor={!record.sessionRecap?.annotatedCardIds.length ? 'sentence-recap' : undefined} title={opening ? '正在打开…' : '全部学习记录'} count={record.studiedCount ?? record.totalCount} onPress={() => { if (!opening) void open(); }} />
     </View>
-    <Button variant="secondary" onPress={onReturn}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
+    <Button variant="secondary" onPress={back}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
   </Screen>;
 }
 function ReviewRow({title,count,onPress,anchor}:{title:string;count:number;onPress:()=>void;anchor?:string}) {
