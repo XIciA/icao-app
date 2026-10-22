@@ -6,12 +6,15 @@ import { Platform } from 'react-native';
 /** One navigation action per tap burst, without changing route identity or history. */
 export function createNavigationGate(now = Date.now) {
   let until = 0;
+  let transitioning = false;
   const run = (action: () => void) => {
-    if (now() < until) return;
+    if (transitioning || now() < until) return;
     until = now() + 450;
     try { action(); } catch (error) { until = 0; throw error; }
   };
   run.reset = () => { until = 0; };
+  run.beginTransition = () => { transitioning = true; };
+  run.endTransition = () => { transitioning = false; until = 0; };
   return run;
 }
 
@@ -30,7 +33,19 @@ export function useAppRouter() {
   const navigation = useContext(NavigationContext ?? emptyNavigationContext);
   const localGate = useRef(createNavigationGate());
   const run = useMemo(() => navigation ? navigationGateFor(navigation) : localGate.current, [navigation]);
-  useEffect(() => navigation?.addListener('focus', () => screenGates.get(navigation)?.reset()), [navigation]);
+  useEffect(() => {
+    if (!navigation) return;
+    const gate = screenGates.get(navigation)!;
+    // Native-stack emits these for both button-driven and interactive transitions.
+    const listen = navigation.addListener as (event: string, callback: () => void) => () => void;
+    const unsubscribe = [
+      listen('focus', gate.reset),
+      listen('transitionStart', gate.beginTransition),
+      listen('transitionEnd', gate.endTransition),
+      listen('gestureCancel', gate.endTransition),
+    ];
+    return () => unsubscribe.forEach(remove => remove());
+  }, [navigation]);
   return useMemo(() => Platform.OS === 'web' ? router : ({
     ...router,
     push: (...args: Parameters<typeof router.push>) => run(() => router.push(...args)),

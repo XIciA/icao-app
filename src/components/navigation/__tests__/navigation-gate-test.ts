@@ -39,3 +39,21 @@ it('shares a burst across different controls on one screen but allows the next s
   expect(back).toHaveBeenCalledTimes(1);
   jest.restoreAllMocks();
 });
+
+
+it('blocks button taps throughout an interactive swipe and unlocks when it completes or cancels', () => {
+  let now = 1000;
+  const gate = createNavigationGate(() => now);
+  const back = jest.fn();
+  gate.beginTransition();
+  now += 5000; // Holding a swipe longer than the tap interval must remain protected.
+  gate(back);
+  expect(back).not.toHaveBeenCalled();
+  gate.endTransition();
+  gate(back);
+  expect(back).toHaveBeenCalledTimes(1);
+  gate.beginTransition();
+  gate.endTransition(); // Canceled gesture.
+  gate(back);
+  expect(back).toHaveBeenCalledTimes(2);
+});
