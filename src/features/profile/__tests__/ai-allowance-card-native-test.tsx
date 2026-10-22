@@ -1,7 +1,7 @@
-jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AiAllowanceCard, allowanceCopy } from '../AiAllowanceCard.native';
 import type { AiAllowanceResponse, AiAllowanceSummary } from '@icao/contracts/commerce-rules';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 let mockAccountId = 'account-a';
 let mockEnvironment = { accountId: 'account-a', environment: 'production', status: 'active', generation: 1 };

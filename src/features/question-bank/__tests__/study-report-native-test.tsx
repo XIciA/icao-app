@@ -1,11 +1,12 @@
-jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
-jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
+import { GuideBindingContext } from '@/features/usage-guide/GuideBindings';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { StudyReport } from '../components/StudyReport.native';
 import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
 import { captureStudyReview } from '../lib/study-review.native';
 import data from '../data/question-bank.json';
 import type { LearningRecord, QuestionBankDataset } from '../types';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
+jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
 let mockBackHandler: (() => void) | undefined;
 jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: (enabled: boolean, back: () => void) => { mockBackHandler = enabled ? back : undefined; } }));
 jest.mock('react', () => ({ ...jest.requireActual('react'), lazy: () => jest.requireMock('../components/QuestionBankStudyScreen.native').QuestionBankStudyScreen }));
@@ -27,9 +28,8 @@ it('returns from the readonly paper to the same completed result without leaving
 });
 
 it('marks tutorial recap complete only after the saved original question opens', async () => {
-  const { GuideBindingContext } = require('@/features/usage-guide/GuideBindings');
   const event = jest.fn();
-  const controller = { current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
+  const controller = { modal: jest.fn(), surface: jest.fn(() => null), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn(), current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
   const screen = await render(<GuideBindingContext.Provider value={controller}><StudyReport record={record} noteCount={0} interaction="choices" onReturn={jest.fn()} /></GuideBindingContext.Provider>);
   jest.mocked(loadLearningRecordReview).mockRejectedValueOnce(new Error('offline'));
   await fireEvent.press(screen.getByText('本次学习记录'));
@@ -84,4 +84,19 @@ it('opens the saved session answer card and enters a selected question', async (
   await waitFor(() => expect(screen.getByText('共 2 题')).toBeTruthy());
   await fireEvent.press(screen.getByLabelText('第 2 题'));
   await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
+});
+
+it('cancels a slow question open when the answer card is closed', async () => {
+  const dataset = data[0] as QuestionBankDataset, category = dataset.categories[0], topic = category.topics[0], card = topic.cards[0];
+  const saved = {...record,studyReview:captureStudyReview([{id:card.id,dataset,category,topic,card}],{},{})};
+  let resolve!: (value:LearningRecord)=>void;
+  jest.mocked(loadLearningRecordReview).mockResolvedValueOnce(saved).mockReturnValueOnce(new Promise(done=>{resolve=done;}));
+  const screen = await render(<StudyReport record={saved} noteCount={0} interaction="choices" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(() => expect(screen.getByLabelText('第 1 题')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('第 1 题'));
+  await fireEvent.press(screen.getByLabelText('关闭答题卡'));
+  await act(async () => resolve(saved));
+  expect(screen.queryByText('返回结束页面')).toBeNull();
+  expect(screen.queryByLabelText('第 1 题')).toBeNull();
 });

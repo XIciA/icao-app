@@ -424,6 +424,11 @@ reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.n
 reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx") ?? [null]), "50d6b0cf34a0d65be6dab5fa4f2178103170fa9b4c7fe16b877db4144dcdd9ac"])]);
 
 
+// Approved seven-page UI: exact formal-Web adapters; legacy siblings and runtime gate remain unchanged.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "68eb8b44937e9be8c5a79380467ee6baa4fbf5572e0791f0f2a19b63d00c137d"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/MyAnnotationsScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/MyAnnotationsScreen.native.tsx") ?? [null]), "6ee408e2f8180c7f02af528e42b0d7263cc8b51ddfebaf7a2710d24209f40952"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyReport.native.tsx") ?? [null]), "3a2f577f79b1806ddc8f4d7626d7741cf736c98ae94fa2a15044d803478a9e66"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }

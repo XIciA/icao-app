@@ -81,7 +81,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
       <ReviewRow title="查看答题卡" onPress={() => { void openAnswerCard(); }} />
     </View>
     <Button variant="secondary" onPress={back}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
-    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={snapshot?.items.length ?? 0} current={-1} marked={new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => setAnswerCard(false)} onSelect={index => { const item = snapshot?.items[index]; if (item) void open(item.id); }} />
+    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={snapshot?.items.length ?? 0} current={-1} marked={new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => { const item = snapshot?.items[index]; if (item) void open(item.id); }} />
   </Screen>;
 }
 function ReviewRow({title,count,onPress,anchor}:{title:string;count?:number;onPress:()=>void;anchor?:string}) {
