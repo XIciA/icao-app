@@ -402,6 +402,14 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-progress.ts", [...ne
 reviewedFormalWebHashes.set("src/features/usage-guide/tutorial-model.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/tutorial-model.ts") ?? [null]), "091c67ee58bdcf0cd1124e64f8d0ca9349819fd532bd7e5613e9f4aa3d78a089"])]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a96b7e9da47b6f12893f3b29f8da88e8fa64c15d599e323e5eedbc0e4d84ecf8"])]);
 
+// 2026-10-22: formal EdgeOne navigation adapters only. Resolver tests prove
+// every mapping is bypassed for Vercel; legacy module sources remain unchanged.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "16ae62b15a25be92cb68ebcdf1d5821c08eaa1a186c4faf07d58f431e2859253"])]);
+
+// User-requested 1.2.2 candidate: only marketing version and build identifiers
+// change; the legacy Web display version remains frozen at 1.0.0.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "d0796787d159446436e5db631b062f633adc7902a645e4c73399d99f59d2e05e"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }
