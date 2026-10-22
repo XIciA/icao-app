@@ -343,7 +343,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const deletionState = await inspectPendingAccountDeletion();
       if (deletionState !== 'none') return deletionState === 'unavailable' ? false : undefined;
-      const next = sessionRef.current ?? await service.getSession();
+      // A failed bootstrap may leave an in-memory session whose token expires
+      // before retry. Re-read through the auth service so refresh/invalidation
+      // runs instead of replaying that stale token indefinitely.
+      const next = await service.getSession();
       if (sessionMutationRef.current !== expectedMutation) return;
       if (!next) {
         setSessionSnapshot(undefined, true);
