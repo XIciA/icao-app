@@ -35,7 +35,8 @@ describe('MockExamScreen', () => {
   it('keeps the selection page and hands the generated package to the shared study screen', async () => {
     const screen = await render(<MockExamScreen />);
 
-    expect(screen.getAllByText('模拟考试')).toHaveLength(2);
+    expect(screen.getAllByText('模拟考试')).toHaveLength(1);
+    expect(screen.queryByText('PRACTICE SESSION')).toBeNull();
     expect(screen.queryByText(/模考/u)).toBeNull();
     expect(screen.getByText('考试类型')).toBeTruthy();
     expect(screen.getByText('考试板块')).toBeTruthy();
