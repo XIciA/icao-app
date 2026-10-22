@@ -25,8 +25,11 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   useEffect(() => () => { generation.current++; }, []);
   const register = useCallback((key: string, id: string, layer: string, node: View | null) => { if (node) nodes.set(key, { id, layer, node }); else nodes.delete(key); }, [nodes]);
   const modal = useCallback((id: string, open: boolean) => setLayers(current => open ? [...current.filter(value => value !== id), id] : current.filter(value => value !== id)), []);
+  const startUntil = useRef(0);
   const start = useCallback(async (id: string, restart = false) => {
     const entry = GUIDE_ENTRIES.find(value => value.id === id); if (!entry || !account) return;
+    if (Date.now() < startUntil.current) return;
+    startUntil.current = Date.now() + 450;
     const request = ++generation.current;
     if (entry.id === 'study') { setTour(undefined); router.push((restart ? '/info/tutorial?restart=1' : entry.route) as Href); return; }
     let saved; try { saved = restart ? undefined : await readGuideProgress(account, entry.id); } catch { setError('进度暂时无法读取，学习数据不受影响。'); }
@@ -36,7 +39,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (entry.id !== 'export') router.push((!complete && saved?.path ? saved.path : entry.route) as Href);
   }, [account, router]);
   const pause = useCallback(() => { generation.current++; setTour(undefined); setLegacy(null); }, []);
-  const exit = useCallback(() => { const done = () => { generation.current++; setTour(undefined); setLegacy(null); router.dismissTo('/info/guide'); }; if (exitGuard.current) exitGuard.current(done); else done(); }, [router]);
+  const exit = useCallback(() => { let dispatched = false; const done = () => { if (dispatched) return; dispatched = true; generation.current++; setTour(undefined); setLegacy(null); router.dismissTo('/info/guide'); }; if (exitGuard.current) exitGuard.current(done); else done(); }, [router]);
   const advance = useCallback((id?: string) => setTour(current => {
     if (!current || current.account !== owner.current) return current;
     const steps = GUIDE_FLOWS[current.id] ?? [], step = steps[current.index];

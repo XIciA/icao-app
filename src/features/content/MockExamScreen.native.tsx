@@ -30,6 +30,7 @@ function MockExamContent() {
   const profile = useProfile();
   const touchedType = useRef(false);
   const generation = useRef(0);
+  const starting = useRef(false);
   const [examType, setExamType] = useState<MockExamType>('icao4-first');
   const [selected, setSelected] = useState<Set<MockExamModuleId>>(() => new Set(MOCK_EXAM_MODULES['icao4-first']));
   const [studyPackage, setStudyPackage] = useState<QuestionBankStudyPackage>();
@@ -42,13 +43,14 @@ function MockExamContent() {
   const complete = selectedIds.length === allowed.length;
   const chooseType = (next: MockExamType) => { if (busy) return; touchedType.current = true; setExamType(next); setSelected(new Set(MOCK_EXAM_MODULES[next])); setError(undefined); guide?.event('mock-type'); };
   const start = async () => {
-    if (!selectedIds.length || busy) return;
+    if (!selectedIds.length || starting.current) return;
+    starting.current = true;
     touchedType.current = true;
     const request = ++generation.current;
     setBusy(true); setError(undefined);
     try { const next = await buildMockExamSession({ examType, modules: selectedIds }); if (generation.current === request) { setStudyPackage(toQuestionBankStudyPackage(next)); guide?.event('mock-start'); } }
     catch (error) { if (generation.current === request) setError(mockExamFailureMessage(error)); }
-    finally { if (generation.current === request) setBusy(false); }
+    finally { if (generation.current === request) { starting.current = false; setBusy(false); } }
   };
   if (studyPackage) return <QuestionBankStudyScreen onReturn={() => setStudyPackage(undefined)} returnLabel={`返回${featureTitle}`} sourceRoute="/content/mock-exam" studyPackage={studyPackage} />;
   return <Screen scroll contentStyle={styles.screen}><TopBar title={featureTitle} /><View style={styles.setup}>

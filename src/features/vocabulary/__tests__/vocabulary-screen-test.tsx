@@ -91,8 +91,32 @@ describe('VocabularyScreen', () => {
     expect(screen.queryByLabelText('退出测评')).toBeNull();
     fireEvent.press(screen.getByLabelText('返回'));
     await waitFor(() => expect(screen.getByText('开始 30 题测评')).toBeTruthy());
+    const clock = jest.spyOn(Date, 'now').mockReturnValue(Date.now() + 451);
     await act(async () => { mockLocalBack?.(); });
+    clock.mockRestore();
     await waitFor(() => expect(screen.getByText('ICAO考前预习')).toBeTruthy());
     expect(mockLocalBack).toBeUndefined();
   });
+});
+
+it('leaves a replay started from the completed word list without cycling between list and result', async () => {
+  const words = mockBooks[0].words;
+  mockBooks[0].words = words.slice(0, 1);
+  let now = 1000;
+  const clock = jest.spyOn(Date, 'now').mockImplementation(() => now);
+  try {
+    const screen = await render(withSafeArea(<VocabularyScreen />));
+    await fireEvent.press(screen.getByLabelText('选择ICAO考前预习'));
+    await fireEvent.press(screen.getByText('开始学习'));
+    await fireEvent.press(screen.getByText('认识'));
+    await fireEvent.press(screen.getByText('完成本轮'));
+    await fireEvent.press(screen.getByText('查看本轮单词'));
+    await fireEvent.press(screen.getByText('学习当前 1 词'));
+    await fireEvent.press(screen.getByText('认识'));
+    await fireEvent.press(screen.getByText('完成本轮'));
+    await act(async () => mockLocalBack?.());
+    expect(screen.getByText('ICAO考前预习')).toBeTruthy();
+    expect(mockLocalBack).toBeUndefined();
+    now += 451;
+  } finally { mockBooks[0].words = words; clock.mockRestore(); }
 });

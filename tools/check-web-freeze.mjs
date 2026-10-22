@@ -47,7 +47,7 @@ const approvedNativeIncrementPaths = new Set([
 // both route implementations pinned; this is not a Native-suffix exemption.
 const reviewedStudyNativePath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
 const reviewedStudyWebPath = 'src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx';
-const reviewedStudyNativeHash = '6ec8139209ae328fee40a3e51b553a781dbc80a23e22e17852dbb9c78a35ee79';
+const reviewedStudyNativeHash = '2b177e658925a57f5be28d7a17f2240b4a3559afed8312f23b472fb7bb12c296';
 const reviewedStudyNativeBaseHash = 'f0df1d0b8ba31c22302c3ceffe4a6244e64a34341a6e85d1175f4dfd1fce6e4d';
 const reviewedStudyWebHash = '2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39';
 
@@ -364,6 +364,9 @@ const protectedTrees = ['api', 'public'];
 reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [null, "5dc9c8fbb575dec1447b0ec2f20f45cb15be0733c2a0f696c49cf0eb33b79668"]);
 reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [null, "e900b27c08ca5ddc10c19379381eecf912e1aea07e31c4ed969855e3b7205473"]);
 reviewedFormalWebHashes.set("src/components/navigation/useAppRouter.ts", [null, "a47ad6396c5f3efa5d3586386bc55ae6c7bcc7bac45a5b9c925331c40bc23194"]);
+
+// Native route handlers now share tap protection; the Web sibling is unchanged.
+reviewedFormalWebHashes.set("src/app/content/[slug].native.tsx", [...(reviewedFormalWebHashes.get("src/app/content/[slug].native.tsx") ?? ["acfd42af3f57657d0e64e3011348c8a94eb5b15df47d493fe3753c50eea35b86"]), "f7f0f6d2941b14786baf86a0461f89e9b8760a1bbed639a56f1242d80de42aef"]);
 
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
 
