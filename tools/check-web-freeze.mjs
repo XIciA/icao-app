@@ -409,6 +409,30 @@ reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...
 // User-requested 1.2.2 candidate: only marketing version and build identifiers
 // change; the legacy Web display version remains frozen at 1.0.0.
 reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "d0796787d159446436e5db631b062f633adc7902a645e4c73399d99f59d2e05e"])]);
+// Reviewed 2026-10-22: user-selected E icons on Native/formal EdgeOne only.
+// Lucide re-exports are byte-identical; Native icon containers are lighter.
+// Account/vocabulary views are EdgeOne mapped; shared styles retain legacy branches.
+// Exact bytes only: no Vercel page or manifest is rebaselined.
+reviewedFormalWebHashes.set("src/components/ui/icons.ts", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/icons.ts") ?? ["f4901f9193f07c3a9299371f5aa1173389ec1dc5c531645dca1152c780f504d0"]), "03b9fe5278c8892888b3b8c69ebed2087fb742f4085c1828c68bd42ada446c7b"])]);
+reviewedFormalWebHashes.set("src/components/ui/lucide-icons.ts", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/lucide-icons.ts") ?? [null]), "6b26cc5ac53e12cfdf083c8676e532ea28558cd19e8b8a8b6e321989ab28a805"])]);
+reviewedFormalWebHashes.set("src/components/ui/light-icons.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/ui/light-icons.tsx") ?? [null]), "469334c81da81c272ece6411f9904f43c078841e1341261307fd7107ad967cd5"])]);
+reviewedFormalWebHashes.set("src/components/navigation/FloatingTabBar.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/components/navigation/FloatingTabBar.tsx") ?? ["c06a968802279863c22a201b549f18b36e1b347899ff8bf84d7d3f39680ed898"]), "cf78f32ec17d805529e72aa81f707b4a71323ad49d46d3eb1f23d62fb696b838"])]);
+reviewedFormalWebHashes.set("src/theme/tokens.ts", [...new Set([...(reviewedFormalWebHashes.get("src/theme/tokens.ts") ?? ["a12723112d79fb8ce78395ebea79ae2057f8cedfde0788b7cfa5b55a9e0e22fb"]), "24b7e8a7e97304dc7a69bde85ebed0ca998c98eb901f9e341c40dcc4cfb1c027"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankCatalog.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/QuestionBankCatalog.native.tsx") ?? [null]), "cac5edc15abd071cd793bdb3a008170b5f24ad53e112ed55fb29bcf8bbeb399f"])]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "27b8939adc7f4fefa13780a37de5b1a5bfb0c18f5e03a784c2a853b5d17bccaa"])]);
+reviewedFormalWebHashes.set("src/features/account/AccountScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/account/AccountScreen.tsx") ?? [null]), "37634273a5ff292d6f259fc55f9a51657ab0587d3252bb15abce8216ca895290"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/QuestionBankSwitcherHeader.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/QuestionBankSwitcherHeader.tsx") ?? ["a24c9202c1b53f437a86a9e43ef2ca0765aae8002f225ff873f060c219a32a24"]), "3fead692e652a8fdc764bc01b296e39c58dbb5c920cd5079e6b4d189f2a5ee3d"])]);
+reviewedFormalWebHashes.set("src/features/content/MockExamScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/content/MockExamScreen.native.tsx") ?? [null]), "14b2d1d960245c2a861f18dd19b5c636f6faaeebb5c78a41598037c166b59091"])]);
+reviewedFormalWebHashes.set("src/features/info/InfoScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/info/InfoScreen.native.tsx") ?? [null]), "c8be57989872276c3a4c6578cfc31fe10a6609455b36aec3ff0b865ed65e92b6"])]);
+reviewedFormalWebHashes.set("src/features/profile/ContactRow.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/profile/ContactRow.native.tsx") ?? [null]), "a12167e7d1222ac5a0e1f7e491f8a8d5136efd95f34044dd0013e80784f90f29"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/MyAnnotationsScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/MyAnnotationsScreen.native.tsx") ?? [null]), "3cb774d488234bad36fbd5228a29e0ae0286184200c8918e2dcad1dfb78e46c5"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/LearningRecordsScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/LearningRecordsScreen.native.tsx") ?? [null]), "359e96ddfa9ecaa19a7fb4e63a3319be0f80ca4de20dc354f9cb37d22461de17"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyReport.native.tsx") ?? [null]), "3ec0bbe7753e1486339a6ac523a1b9ac853e836b41021b6c7276aa26bb23e3e9"])]);
+reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx") ?? [null]), "50d6b0cf34a0d65be6dab5fa4f2178103170fa9b4c7fe16b877db4144dcdd9ac"])]);
+
+
+// Integrated E icons and navigation maps; legacy runtime remains unmapped.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a2d4ff233c7f2da3e692ad2ea04cdbbe119b868ef1941ca5ea77ced592a0c2ed"])]);
 
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
