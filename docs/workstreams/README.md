@@ -8,6 +8,8 @@
 
 ## 现存材料
 
+- [会员定价与后续统一提审](membership-pricing/README.md)：2026-10-22 三档长期售价与划线价、苹果后台调价结果；本轮不构建、不提审，待其他任务完成后统一提交。
+
 - [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；执行标准统一引用内容处理规则。
 
 - [2026 年 10 月功能更新](feature-update-2026-10/requirements.md)：本轮已确认需求；[执行记录](feature-update-2026-10/execution.md)与[内容工单操作](feature-update-2026-10/content-operations.md)。

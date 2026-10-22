@@ -98,11 +98,16 @@ function MembershipContent() {
       {products.map((product) => {
         const offering = commerce.offerings.find((item) => item.productKey === product.key);
         const selected = selectedKey === product.key;
+        const originalPrice = offering?.currencyCode === 'CNY'
+          ? listMembershipProducts().find((item) => item.key === product.key)?.originalPriceCny
+          : undefined;
         return <Pressable key={product.key} accessibilityRole="radio" accessibilityLabel={`${product.durationDays}天会员`}
           accessibilityState={{ selected, disabled: busy || pending }} disabled={busy || pending}
           onPress={() => setSelectedKey(product.key)} style={({ pressed }) => [styles.plan, selected && styles.selectedPlan, pressed && styles.pressed]}>
           <AppText color={selected ? colors.primary : colors.foreground} variant="button">{product.durationDays}天</AppText>
           <AppText color={selected ? colors.primary : colors.foreground} variant="cardTitle">{offering?.localizedPrice ?? '—'}</AppText>
+          {originalPrice != null ? <AppText color={colors.mutedForeground} variant="caption" style={styles.originalPrice}
+            accessibilityLabel={`原价${originalPrice}元`}>¥{originalPrice}</AppText> : null}
         </Pressable>;
       })}
     </View>
@@ -141,6 +146,7 @@ const styles = StyleSheet.create({
   plans: { flexDirection: 'row', gap: spacing[2], marginTop: spacing[2] },
   plan: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing[2], paddingHorizontal: spacing[1], paddingVertical: spacing[4], borderRadius: radii.lg, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
   selectedPlan: { backgroundColor: colors.primary08, borderColor: colors.primary }, pressed: { opacity: 0.8 },
+  originalPrice: { textDecorationLine: 'line-through' },
   purchase: { marginTop: spacing[1] }, center: { textAlign: 'center' },
   footer: { flexDirection: 'row', justifyContent: 'center', gap: spacing[5] }, terms: { gap: spacing[4] },
 });

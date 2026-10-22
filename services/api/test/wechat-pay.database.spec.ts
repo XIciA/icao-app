@@ -120,7 +120,7 @@ describe('WeChat checkout joins the existing commerce ledger', () => {
   it('rejects new day-pass purchases but settles an existing paid day pass exactly once', () => scenario(async (tx) => {
     const accountId = await owner(tx);
     const { service, paid } = fixture(tx);
-    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[7, 6800], [31, 15800], [93, 35800]]);
+    expect(service.catalog().products.map((p) => [p.durationDays, p.amountFen])).toEqual([[7, 1200], [31, 3800], [93, 9800]]);
     await expect(service.create(accountId, { productKey: 'membership_1d_v1', idempotencyKey: randomUUID() })).rejects.toThrow('wechat_product_unavailable');
     // Represent a pending checkout saved before the offering was retired.
     const checkout = await service.create(accountId, { productKey: 'membership_7d_v1', idempotencyKey: randomUUID() });
@@ -173,7 +173,7 @@ describe('WeChat checkout joins the existing commerce ledger', () => {
     const trade = paid(checkout.id); trade.amount = { total: 1, currency: 'CNY' };
     await expect(service.status(accountId, checkout.id)).rejects.toThrow('wechat_pay_transaction_mismatch');
     expect(await tx.select().from(schema.commerceOrders)).toHaveLength(0);
-    trade.amount = { total: 15800, currency: 'CNY' }; trade.appid = 'wrong-app';
+    trade.amount = { total: 3800, currency: 'CNY' }; trade.appid = 'wrong-app';
     await expect(service.status(accountId, checkout.id)).rejects.toThrow('wechat_pay_transaction_mismatch');
   }));
   it('allows cancelling an unpaid checkout, and never marks an already paid checkout cancelled', () => scenario(async (tx) => {
