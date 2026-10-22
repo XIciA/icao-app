@@ -3,7 +3,7 @@ import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect } from 'expo-router';
-import { AnnotationMark, ChevronRight, History, GuideMark, FeedbackMark, Settings, MembershipMark, WordFavorites } from '@/components/ui/icons';
+import { Bookmark, ChevronRight, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { AppText, Card } from '@/components/ui';
@@ -18,13 +18,13 @@ import { ProfileAvatar } from '@/features/account/ProfileAvatar';
 import { MembershipStatus } from './MembershipStatus.native';
 
 const menu = [
-  { slug: 'membership', label: '会员与购买', icon: MembershipMark },
+  { slug: 'membership', label: '会员与购买', icon: Star },
   { slug: 'learning-records', label: '学习记录', icon: History },
-  { slug: 'annotations', label: '我的标注', icon: AnnotationMark },
-  { slug: 'word-favorites', label: '单词收藏', icon: WordFavorites },
-  { slug: 'guide', label: '使用指南', icon: GuideMark },
+  { slug: 'annotations', label: '我的标注', icon: Bookmark },
+  { slug: 'word-favorites', label: '单词收藏', icon: Star },
+  { slug: 'guide', label: '使用指南', icon: HelpCircle },
   { slug: 'settings', label: '设置', icon: Settings },
-  { slug: 'feedback', label: '意见反馈', icon: FeedbackMark },
+  { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
 ];
 
 export function ProfileHomeScreen() {

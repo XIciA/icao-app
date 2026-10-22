@@ -5,7 +5,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { BookMarked, FolderOpen, Flame, Radio, Library, Bot, Sparkles, type LucideIcon } from '@/components/ui/icons';
+import { BookOpen, FileText, Flame, Headphones, Library, Mic, Sparkles, type LucideIcon } from '@/components/ui/icons';
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { useCommerceRuntime } from './CommerceRuntimeProvider';
@@ -15,11 +15,11 @@ import type { CommerceRuntimeOffering } from './commerce-runtime-types';
 const benefits: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: Library, title: '解锁会员题库', detail: '完整会员题库内容' },
   { icon: Sparkles, title: '每周 AI 学习额度', detail: '转写、语法纠错与表达优化' },
-  { icon: BookMarked, title: '单词学习', detail: '航空词汇记忆与测试' },
-  { icon: Radio, title: '随身听', detail: '音频播放与跟听' },
-  { icon: Bot, title: '模拟考试', detail: '按题目练习与作答' },
+  { icon: BookOpen, title: '单词学习', detail: '航空词汇记忆与测试' },
+  { icon: Headphones, title: '随身听', detail: '音频播放与跟听' },
+  { icon: Mic, title: '模拟考试', detail: '按题目练习与作答' },
   { icon: Flame, title: 'OPI 热点', detail: '热点资讯与关联练习' },
-  { icon: FolderOpen, title: '资源分享', detail: '畅读备考文章' },
+  { icon: FileText, title: '资源分享', detail: '畅读备考文章' },
 ];
 
 function displayDate(value: string | number | undefined | null) {
@@ -31,7 +31,7 @@ function displayDate(value: string | number | undefined | null) {
 
 function Benefit({ icon: Icon, title, detail }: { icon: LucideIcon; title: string; detail: string }) {
   return <View style={styles.benefit}>
-    <View style={styles.icon}><Icon color={colors.primary} size={21} /></View>
+    <View style={styles.icon}><Icon color={colors.primary} size={19} /></View>
     <View style={styles.flex}><AppText variant="button">{title}</AppText><AppText variant="micro" color={colors.mutedForeground}>{detail}</AppText></View>
   </View>;
 }
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   screen: { gap: spacing[4] }, flex: { flex: 1 },
   benefits: { gap: spacing[4], padding: spacing[4] },
   benefit: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
-  icon: { alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, width: 36, height: 36 },
+  icon: { alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary08, borderRadius: radii.full, width: 36, height: 36 },
   benefitGrid: { flexDirection: 'row', flexWrap: 'wrap', rowGap: spacing[5] },
   half: { width: '50%', paddingRight: spacing[2] },
   plans: { flexDirection: 'row', gap: spacing[2], marginTop: spacing[2] },

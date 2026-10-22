@@ -16,7 +16,7 @@ function fixture(t) {
   put('components/ui/lucide-icons.ts', "export type { LucideIcon } from 'lucide-react-native';\nexport { default as AlertCircle } from 'lucide-react-native/icons/circle-alert';\n");
   put('components/ui/light-icons.tsx', "import type { LucideProps } from 'lucide-react-native';\nexport const MembershipMark = createLightIcon('MembershipMark');\n");
   put('screen.tsx', "import { AlertCircle, MembershipMark } from '@/components/ui/icons';\n");
-  return { put, check: () => checkLucideBoundary(root).violations };
+  return { put, remove: file => fs.unlinkSync(path.join(root, 'src', file)), check: () => checkLucideBoundary(root).violations };
 }
 
 test('accepts controlled split gateways and approved custom icons including root type imports', t => {
@@ -55,4 +55,12 @@ test('rejects unapproved light symbols', t => {
 test('checks the native gateway as well as the browser gateway', t => {
   const f = fixture(t); f.put('components/ui/icons.native.ts', "export { MembershipMark } from './light-icons';");
   assert.match(f.check().join('\n'), /icons.native.ts does not export imported runtime icon AlertCircle/);
+});
+
+test('accepts the restored single Lucide gateway without native or light icon files', t => {
+  const f = fixture(t);
+  f.put('components/ui/icons.ts', "export type { LucideIcon } from 'lucide-react-native';\nexport { default as AlertCircle } from 'lucide-react-native/icons/circle-alert';\n");
+  f.put('screen.tsx', "import { AlertCircle } from '@/components/ui/icons';\n");
+  for (const file of ['icons.native.ts', 'lucide-icons.ts', 'light-icons.tsx']) f.remove(`components/ui/${file}`);
+  assert.deepEqual(f.check(), []);
 });

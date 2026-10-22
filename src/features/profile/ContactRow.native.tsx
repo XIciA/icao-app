@@ -42,7 +42,7 @@ export function ContactRow() {
 }
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing[2], minHeight: 60, paddingHorizontal: spacing[4] },
-  icon: { alignItems: 'center', justifyContent: 'center', width: 36, height: 36, backgroundColor: colors.primary045, borderRadius: radii.full },
+  icon: { alignItems: 'center', justifyContent: 'center', width: 36, height: 36, backgroundColor: colors.primary08, borderRadius: radii.lg },
   label: { flexGrow: 1, flexShrink: 1 }, number: { color: colors.mutedForeground, flexShrink: 0 },
   pressed: { backgroundColor: colors.secondary },
   feedback: { paddingHorizontal: spacing[4], paddingBottom: spacing[2], textAlign: 'right' },

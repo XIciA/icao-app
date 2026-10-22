@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { AppText, BottomSheet, Button } from '@/components/ui';
-import { MembershipMark } from '@/components/ui/icons';
+import { Star } from '@/components/ui/icons';
 import { useCommerceRuntime } from '@/features/native-commercial-testflight/CommerceRuntimeProvider';
 import type { CommerceEntitlementSummary } from '@icao/contracts';
 import { colors, radii, spacing } from '@/theme';
@@ -17,7 +17,7 @@ export function membershipPresentation(entitlement?: CommerceEntitlementSummary)
 }
 export function VipBadge({ active }: { active: boolean }) {
   const color = active ? colors.accent : colors.mutedForeground;
-  return <View style={[styles.badge, { borderColor: active ? colors.accent : colors.border }]}><MembershipMark size={14} color={color} /><AppText color={color} variant="micro">VIP</AppText></View>;
+  return <View style={[styles.badge, { borderColor: active ? colors.accent : colors.border }]}><Star size={14} color={color} /><AppText color={color} variant="micro">VIP</AppText></View>;
 }
 export function MembershipStatus({ displayName }: { displayName?: string }) {
   const commerce = useCommerceRuntime(); const router = useAppRouter(); const [open, setOpen] = useState(false);

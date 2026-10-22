@@ -85,7 +85,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries }
             >
               <View style={styles.row}>
                 <View style={styles.iconBox}>
-                  <Icon color={colors.primary} size={24} />
+                  <Icon color={colors.primary} size={21} strokeWidth={2} />
                 </View>
                 <View style={styles.copy}>
                   <View style={styles.titleLine}>
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
   row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3.5] },
   iconBox: {
     alignItems: 'center',
-    backgroundColor: colors.primary045,
-    borderRadius: radii.full,
+    backgroundColor: colors.primary08,
+    borderRadius: radii.xl,
     height: 44,
     justifyContent: 'center',
     width: 44,
