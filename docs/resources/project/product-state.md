@@ -28,14 +28,17 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | --- | --- | --- |
 | Android 正式版 | 1.2.1 / 3578875，10 月 21 日 APK 与正式更新清单已发布 | 包身份、签名、公开文件摘要及升级条件校验通过；真机下载、权限往返、系统安装和数据保留仍待用户验收。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
 | App Store | 1.2.1 / 3576434，10 月 21 日记录确认已上架，并补齐正式更新清单 | 本轮未重编译 iOS；上架与功能真机验收分别判断。[记录](../../records/releases/20261021-app-updates-1.2.1.md) |
-| iOS TestFlight | 1.2.1 / 3576434，10 月 20 日记录为 VALID、内部测试组可用 | 10 月 21 日未改该渠道；1.2.1 当前构建的真机效果不能由旧版结果替代。[记录](../../records/releases/20261020-startup-b-1.2.1.md) |
-| EdgeOne 产品 Web | 10 月 20 日启动优化已发布，deployment `dpgp9zsw76jf` | 导出与公网资源校验见[启动发布记录](../../records/releases/20261020-startup-b-1.2.1.md)；10 月 21 日下载入口随公开清单更新，未重新部署网页 |
+| Android 测试版 | 1.2.4 / 3580360，独立包名 `com.readyoufife.app.test`，官网次要入口可下载 | 签名及公网 APK 摘要通过，正式下载保持 1.2.1；待真机验收。[记录](../../records/releases/20261022-unified-guide-1.2.4.md) |
+| iOS TestFlight | 1.2.4 / 3576435，10 月 22 日既有上传完成、Apple VALID、已有 1 个内部组关联 | 未主动分组、未更新渠道清单；用户要求最终完整批次统一为 1.2.2，由统筹后续构建。此批次尚未真机验收。[记录](../../records/releases/20261022-unified-guide-1.2.4.md) |
+| EdgeOne 产品 Web | 10 月 22 日统一聚光灯引导已发布，deployment `dp447qbag0n7` | 公网脚本摘要和下载入口验证通过；使用指南体验待用户验收。[记录](../../records/releases/20261022-unified-guide-1.2.4.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
-| ECS API | 10 月 22 日已有发布 `content-format-20261022-66ff1694`；本次后台部署未替换普通 API | 当前发布见[题库发布记录](../../records/releases/20261022-question-bank-standardization.md)。同步大快照修复与历史积压观察见[稳定性记录](../../records/20261021-server-stability.md) |
+| ECS API | 10 月 22 日 `guide-20261022-41fd90d4`，账号接口提供业务注册时间 | 健康、临时账号及真实 AI 验证通过，无迁移，内容版本保持 31。[记录](../../records/releases/20261022-unified-guide-1.2.4.md)。同步观察见[稳定性记录](../../records/20261021-server-stability.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
 | 内容运营后台 | 10 月 22 日部署 `ops-stability-20261022-b83fef3a`，新增四类稳定性图表 | 真实登录、数据、权限隔离和桌面/手机布局验证通过；备份与隔离恢复通过，用户效果待验。[发布记录](../../records/20261022-stability-dashboard.md)；既有内容运营交付见[执行记录](../../workstreams/feature-update-2026-10/execution.md) |
 
 ## 当前关注与下一步
+
+- **本轮统一交付**：用户最终要求完整内容统一标识为 1.2.2，内部 build 继续递增。当前已发布的 1.2.4 是使用引导任务在统筹协调前启动的批次；不得误记为六项任务全部完成。后续整合与模拟器逐页点击验收由统筹任务负责。
 
 - **服务器稳定性**：线上后台已提供体验、容量、费用、事件与恢复图表；基础监控只在服务器保留告警。真实并发、完整客户端耗时、服务器到期日及套餐余量仍未接入，容量上限尚未经压测确认。继续观察同步历史队列恢复。[本轮证据](../../records/20261022-stability-dashboard.md)
 - **交付待验**：优先补 Android 1.2.1 真机升级闭环，以及当前 1.2.1 构建启动衔接的设备体验；确认结果后回填对应交付记录。
