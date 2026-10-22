@@ -1,7 +1,6 @@
-import { isFormalAppSurface } from '@/config/web-runtime';
 import { useRouter } from 'expo-router';
 import { ArrowLeft, ChevronRight } from '@/components/ui/icons';
-import { Image, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import type { PropsWithChildren } from 'react';
 
 import { AppText, Card, Screen } from '@/components/ui';
@@ -43,7 +42,7 @@ export function Row({
     <View style={[styles.row, !isLast && styles.rowBorder]}>
       {Icon ? (
         <View style={styles.iconBox}>
-          <Icon color={colors.primary} size={isFormalAppSurface(Platform.OS) ? 21 : 18} />
+          <Icon color={colors.primary} size={18} />
         </View>
       ) : null}
       <AppText style={styles.rowLabel} variant="button">{label}</AppText>
@@ -85,6 +84,6 @@ const styles = StyleSheet.create({
   rowBorder: { borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth },
   rowPressed: { backgroundColor: colors.secondary },
   rowLabel: { flex: 1 },
-  iconBox: { alignItems: 'center', backgroundColor: isFormalAppSurface(Platform.OS) ? colors.primary045 : colors.primary08, borderRadius: isFormalAppSurface(Platform.OS) ? radii.full : radii.lg, height: 36, justifyContent: 'center', width: 36 },
+  iconBox: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 },
   avatar: { alignItems: 'center', backgroundColor: colors.primary10, justifyContent: 'center', overflow: 'hidden' },
 });
