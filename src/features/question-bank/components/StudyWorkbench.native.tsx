@@ -614,6 +614,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     <Fragment>
       <GestureDetector gesture={swipeGesture}>
       <View>
+        {editing && activeTab === 'notes' ? <GuideAnchor id="sentence-note" /> : null}
         <View style={styles.header} testID="study-workbench-header">
           <View style={styles.headerTitle}>
             {activeTab === 'mine' ? <MessageSquareText color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-mine" /> : activeTab === 'reference' ? <BookOpenCheck color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-reference" /> : <NotebookPen color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-notes" />}
@@ -630,7 +631,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.editAction, pressed && !editDisabled ? styles.pressed : null, editDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <GuideAnchor id="sentence-note" /><AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
+              {!editing ? <GuideAnchor id="sentence-note" /> : null}<AppText color={editDisabled ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
             {showReviewAction ? <Pressable
               accessibilityLabel={reviewLabel}
@@ -642,7 +643,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              <GuideAnchor id="sentence-review" /><AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+              {!reviewDisabled ? <GuideAnchor id="sentence-review" /> : null}<AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
             </Pressable> : null}
           </View> : null}
         </View>

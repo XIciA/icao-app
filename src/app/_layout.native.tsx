@@ -1,4 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
 import { Stack, SplashScreen, usePathname, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -48,6 +49,7 @@ export default function RootLayout() {
 }
 
 export function AppStack() {
+  const guide = useGuide();
   const auth = useAuth();
   const pathname = usePathname();
   const router = useRouter();
@@ -109,6 +111,7 @@ export function AppStack() {
   return (
     <View style={styles.root}>
       <Stack
+            screenListeners={{ transitionStart: () => guide?.suspend(true), transitionEnd: () => guide?.suspend(false) }}
             screenOptions={{
               animation: 'slide_from_right',
               animationDuration: 220,

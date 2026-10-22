@@ -1,9 +1,10 @@
 import { useLocalBack } from '@/components/navigation/useLocalBack';
-import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { TutorialCoach, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { SessionRecapList } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
 import { CheckCircle2, ChevronRight, Flag } from '@/components/ui/icons';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
@@ -15,6 +16,9 @@ import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from 
 const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
 export function StudyReport({ localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
   const tutorial = useTutorial();
+  const guide = useGuide();
+  const offer = guide?.offer;
+  useEffect(() => { if (record.recordType !== 'mock_exam' && !externalError) offer?.('study', ['study-recap']); }, [offer, record.id, record.recordType, externalError]);
   const [review, setReview] = useState<QuestionBankStudyPackage>();
   const [list,setList] = useState<'annotations'|'words'|'wrong'>();
   const [detail,setDetail] = useState(record);
@@ -49,16 +53,16 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
     {error || externalError ? <AppText color={colors.destructive} variant="caption">{error || externalError}</AppText> : null}
     {externalError && onExitWithoutSave ? <Button disabled={busy} onPress={onExitWithoutSave} variant="ghost">仍然返回</Button> : null}
     {onContinue ? <><Button disabled={busy} onPress={onContinue}>进入下一板块</Button><Button disabled={busy} variant="secondary" onPress={onEnd}>结束考试</Button></> : <>
-    <TutorialTarget ids={['recap']}><View><AppText variant="sectionTitle">本次回顾</AppText>
-      {Boolean(record.sessionRecap?.annotatedCardIds.length) && <ReviewRow title="标注题目" count={record.sessionRecap!.annotatedCardIds.length} onPress={() => setList('annotations')} />}
+    <View><AppText variant="sectionTitle">本次回顾</AppText>
+      {Boolean(record.sessionRecap?.annotatedCardIds.length) && <ReviewRow title="标注题目" count={record.sessionRecap!.annotatedCardIds.length} onPress={() => { setList('annotations'); tutorial?.event('recap'); }} anchor="sentence-recap" />}
       {Boolean(record.sessionRecap?.words.length) && <ReviewRow title="查词与收藏" count={record.sessionRecap!.words.length} onPress={() => setList('words')} />}
       {objective.wrongIds.length > 0 && <ReviewRow title="错题回顾" count={objective.wrongIds.length} onPress={() => setList('wrong')} />}
-      <ReviewRow title={opening ? '正在打开…' : '全部学习记录'} count={record.studiedCount ?? record.totalCount} onPress={() => { if (!opening) void open(); }} />
-    </View></TutorialTarget>
+      <ReviewRow anchor={!record.sessionRecap?.annotatedCardIds.length ? 'sentence-recap' : undefined} title={opening ? '正在打开…' : '全部学习记录'} count={record.studiedCount ?? record.totalCount} onPress={() => { if (!opening) void open(); }} />
+    </View>
     <Button variant="secondary" onPress={onReturn}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
   </Screen>;
 }
-function ReviewRow({title,count,onPress}:{title:string;count:number;onPress:()=>void}) {
-  return <Pressable accessibilityRole="button" onPress={onPress} style={{flexDirection:'row',alignItems:'center',gap:spacing[3],paddingVertical:spacing[4],borderBottomWidth:1,borderBottomColor:colors.border}}><AppText style={{flex:1}}>{title}</AppText><AppText variant="caption">{count}</AppText><ChevronRight size={18} color={colors.mutedForeground}/></Pressable>;
+function ReviewRow({title,count,onPress,anchor}:{title:string;count:number;onPress:()=>void;anchor?:string}) {
+  return <Pressable accessibilityRole="button" onPress={onPress} style={{flexDirection:'row',alignItems:'center',gap:spacing[3],paddingVertical:spacing[4],borderBottomWidth:1,borderBottomColor:colors.border}}>{anchor ? <GuideAnchor id={anchor} /> : null}<AppText style={{flex:1}}>{title}</AppText><AppText variant="caption">{count}</AppText><ChevronRight size={18} color={colors.mutedForeground}/></Pressable>;
 }
 const styles = StyleSheet.create({ screen: { paddingVertical: spacing[6], gap: spacing[4] }, hero: { alignItems: 'center', gap: spacing[3] }, icon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 72, justifyContent: 'center', width: 72 }, center: { textAlign: 'center' }, card: { gap: spacing[4] }, metric: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing[3] } });
