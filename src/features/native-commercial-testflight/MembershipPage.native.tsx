@@ -1,8 +1,8 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useEffect, useRef, useState } from 'react';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { BookOpen, FileText, Flame, Headphones, Library, Mic, Sparkles, type LucideIcon } from '@/components/ui/icons';

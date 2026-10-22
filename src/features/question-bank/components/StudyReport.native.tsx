@@ -1,3 +1,4 @@
+import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { SessionRecapList } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
@@ -12,7 +13,7 @@ import { loadLearningRecordReview } from '../platform/learning-record-storage.na
 import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from '../types';
 const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
-export function StudyReport({ record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
+export function StudyReport({ localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
   const tutorial = useTutorial();
   const [review, setReview] = useState<QuestionBankStudyPackage>();
   const [list,setList] = useState<'annotations'|'words'|'wrong'>();
@@ -30,6 +31,7 @@ export function StudyReport({ record, onReturn, returnLabel, interaction, onCont
     catch { setError('记录暂时无法打开，请重试。'); }
     finally { setOpening(false); }
   }
+  useLocalBack(!review && (Boolean(list) || Boolean(localReturn && !onContinue)), () => { if (list) setList(undefined); else onReturn(); });
   const returnToReport = () => setReview(undefined);
   if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<Screen><TopBar title="学习记录" onBack={returnToReport} /><AppText>正在打开记录…</AppText></Screen>}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={() => setList(undefined)} onOpen={id => { void open(id); }} />;

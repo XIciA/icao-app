@@ -1,4 +1,5 @@
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useFocusEffect } from 'expo-router';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { BookMarked, Bot, ChevronRight, Flame, FolderOpen, Highlighter, Radio, Download, NotebookPen } from '@/components/ui/icons';

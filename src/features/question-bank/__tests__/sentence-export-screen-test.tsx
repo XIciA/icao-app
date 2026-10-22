@@ -3,6 +3,7 @@ import { generateSentencesPdf } from '../export/pdf-generator';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SentenceExportScreen } from '../export/SentenceExportScreen';
+jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: jest.fn() }));
 jest.mock('../annotations/card-index.native',()=>({questionBankCardTargetKey:()=> 'card'}));
 const mockPreview=jest.fn(),mockShare=jest.fn();
 jest.mock('@/features/sync/learning-sync.native',()=>({captureLearningWriteContext:()=>undefined,assertLearningWriteContext:jest.fn()}));

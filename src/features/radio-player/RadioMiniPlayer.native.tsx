@@ -1,9 +1,9 @@
-import { usePathname, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { usePathname } from 'expo-router';
 import { Headphones, Pause, Play, SkipForward, X } from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import { AppText } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { colors, radii, shadows, spacing } from '@/theme';

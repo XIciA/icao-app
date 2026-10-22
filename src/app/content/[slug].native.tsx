@@ -1,7 +1,7 @@
-import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import { FileQuestion } from '@/components/ui/icons';
 import { Platform } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { Screen } from '@/components/ui';

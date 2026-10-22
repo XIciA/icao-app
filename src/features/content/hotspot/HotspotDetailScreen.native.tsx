@@ -1,10 +1,10 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
 import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { Sparkles } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';

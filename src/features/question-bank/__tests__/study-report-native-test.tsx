@@ -1,10 +1,12 @@
 jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { StudyReport } from '../components/StudyReport.native';
 import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
 import { captureStudyReview } from '../lib/study-review.native';
 import data from '../data/question-bank.json';
 import type { LearningRecord, QuestionBankDataset } from '../types';
+let mockBackHandler: (() => void) | undefined;
+jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: (enabled: boolean, back: () => void) => { mockBackHandler = enabled ? back : undefined; } }));
 jest.mock('react', () => ({ ...jest.requireActual('react'), lazy: () => jest.requireMock('../components/QuestionBankStudyScreen.native').QuestionBankStudyScreen }));
 jest.mock('../platform/learning-record-storage.native', () => ({ loadLearningRecordReview: jest.fn() }));
 jest.mock('../components/QuestionBankStudyScreen.native', () => {
@@ -50,4 +52,11 @@ it('links a looked-up word back to its saved source question using the existing 
   await fireEvent.press(screen.getByText(`回到 ${card.taskTitle}`));
   await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
   expect(loadLearningRecordReview).toHaveBeenLastCalledWith(saved);
+});
+
+it('returns from an embedded exam result to setup on system back', async () => {
+  const onReturn = jest.fn();
+  await render(<StudyReport localReturn record={record} noteCount={0} interaction="choices" onReturn={onReturn} />);
+  await act(async () => { mockBackHandler?.(); });
+  expect(onReturn).toHaveBeenCalledTimes(1);
 });

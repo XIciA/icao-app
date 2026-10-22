@@ -1,15 +1,15 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { hotspotCenters } from '@icao/contracts/app-content';
 import { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { useRouter } from 'expo-router';
-import { ChevronRight, Flame, MapPin } from '@/components/ui/icons';
+import { ChevronRight, MapPin } from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 import { loadHotspotBriefs, refreshHotspotDirectory } from './repository.native';
 
@@ -35,16 +35,6 @@ function HotspotListContent() {
   return (
     <Screen contentStyle={styles.screen} scroll>
       <TopBar title="OPI 热点" />
-      <View style={styles.header}>
-        <View style={styles.titleRow}>
-          <View style={styles.iconBox}><Flame color={colors.accent} size={22} /></View>
-          <View style={styles.headerText}>
-            <AppText variant="pageTitle">每日考点资讯</AppText>
-            <AppText>按考试日期整理，进入即可学习对应题目。</AppText>
-          </View>
-        </View>
-      </View>
-
       <View style={styles.list}>
         {warning ? <View><AppText>暂时无法更新热点，正在显示本机已有内容，可能缺少最新考点。请联网后重试。</AppText><Button variant="outline" onPress={() => setAttempt(n => n + 1)}>重新加载热点</Button></View> : null}
         {briefs.length === 0 ? <AppText style={{ padding: spacing[4] }}>暂无热点内容</AppText> : null}
@@ -82,11 +72,7 @@ function HotspotListContent() {
 
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
-  header: { paddingHorizontal: spacing[4], paddingVertical: spacing[4] },
-  titleRow: { flexDirection: 'row', gap: spacing[3] },
-  iconBox: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.xl, height: 48, justifyContent: 'center', width: 48 },
-  headerText: { flex: 1, gap: spacing[1] },
-  list: { gap: spacing[3], paddingBottom: spacing[8], paddingHorizontal: spacing[4] },
+  list: { paddingTop: spacing[4], gap: spacing[3], paddingBottom: spacing[8], paddingHorizontal: spacing[4] },
   card: { overflow: 'hidden', padding: 0 },
   cardPressable: { padding: spacing[4] },
   pressed: { opacity: 0.78, transform: [{ scale: 0.99 }] },

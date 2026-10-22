@@ -1,8 +1,11 @@
 /* eslint-disable import/first */
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import type { VocabularyBook, VocabularyDataset } from '../types';
+
+let mockLocalBack: (() => void) | undefined;
+jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: (enabled: boolean, back: () => void) => { mockLocalBack = enabled ? back : undefined; } }));
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -88,5 +91,8 @@ describe('VocabularyScreen', () => {
     expect(screen.queryByLabelText('退出测评')).toBeNull();
     fireEvent.press(screen.getByLabelText('返回'));
     await waitFor(() => expect(screen.getByText('开始 30 题测评')).toBeTruthy());
+    await act(async () => { mockLocalBack?.(); });
+    await waitFor(() => expect(screen.getByText('ICAO考前预习')).toBeTruthy());
+    expect(mockLocalBack).toBeUndefined();
   });
 });

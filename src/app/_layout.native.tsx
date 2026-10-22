@@ -1,5 +1,6 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
-import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps, type Href } from 'expo-router';
+import { Stack, SplashScreen, usePathname, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -112,7 +113,8 @@ export function AppStack() {
               animation: 'slide_from_right',
               animationDuration: 220,
               contentStyle: { backgroundColor: colors.background },
-              fullScreenGestureEnabled: true,
+              fullScreenGestureEnabled: false,
+              gestureDirection: 'horizontal',
               gestureEnabled: true,
               headerShown: false,
             }}
@@ -128,7 +130,7 @@ export function AppStack() {
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
-                options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
@@ -138,7 +140,7 @@ export function AppStack() {
               {includeNativeProtectedRoutes ? (
                 <Stack.Screen
                   name="content/hotspot/[briefId]/study"
-                  options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+                  options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />

@@ -122,7 +122,7 @@ function LearningRecordsContent() {
       keyExtractor={(record) => record.id}
       contentContainerStyle={styles.list}
       onEndReached={() => { if (hasMore && !loading) void loadPage(records.length); }}
-      ListHeaderComponent={<View style={styles.header}><AppText variant="pageTitle">最近学习</AppText>{error ? <View style={styles.error}><AppText color={colors.destructive}>{error}</AppText><Button variant="secondary" onPress={() => { if (failedRecord.current) void open(failedRecord.current); else if (failedDelete.current) remove(failedDelete.current); else void loadPage(); }}>重试</Button></View> : null}</View>}
+      ListHeaderComponent={error ? <View style={styles.error}><AppText color={colors.destructive}>{error}</AppText><Button variant="secondary" onPress={() => { if (failedRecord.current) void open(failedRecord.current); else if (failedDelete.current) remove(failedDelete.current); else void loadPage(); }}>重试</Button></View> : null}
       ListEmptyComponent={loading ? <AppText>正在读取记录…</AppText> : !error ? <Card style={styles.empty}><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText variant="caption">完成或结束一次练习后会显示在这里。</AppText></Card> : null}
       ListFooterComponent={loading && records.length ? <AppText variant="caption">正在读取…</AppText> : null}
       renderItem={({ item: record, index }) => <View style={styles.group}>
@@ -155,7 +155,7 @@ function LearningRecordsContent() {
 }
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, list: { paddingHorizontal: spacing[5], paddingBottom: spacing[6], gap: spacing[3] },
-  header: { gap: spacing[3], paddingVertical: spacing[4] }, group: { gap: spacing[2] }, day: { paddingHorizontal: spacing[1], paddingTop: spacing[2] },
+  group: { gap: spacing[2] }, day: { paddingHorizontal: spacing[1], paddingTop: spacing[2] },
   error: { gap: spacing[2] }, empty: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[6] },
   swipe: { borderRadius: radii.xxl }, card: { gap: spacing[2] }, content: { gap: spacing[3] }, titleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
   icon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 40, justifyContent: 'center', width: 40 }, copy: { flex: 1 },

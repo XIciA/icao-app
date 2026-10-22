@@ -32,6 +32,7 @@ it('resumes on tap and allows restart by long press without changing learning da
   const screen = await render(<UserGuideScreen />);
   await fireEvent.press(screen.getByText('题库学习'));
   expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
+  await new Promise(resolve => setTimeout(resolve, 460));
   await fireEvent(screen.getByText('题库学习'), 'longPress');
   expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
 });
@@ -39,6 +40,7 @@ it('does not reuse a completed tutorial state for a different account', async ()
   mockRead.mockResolvedValueOnce({ version: 1, step: TUTORIAL_STEPS.length, completed: [], skipped: [] });
   const screen = await render(<UserGuideScreen />); await act(async () => {});
   await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
+  await new Promise(resolve => setTimeout(resolve, 460));
   mockAccount = 'guide-b'; mockRead.mockReturnValue(new Promise(() => {})); await screen.rerender(<UserGuideScreen />);
   await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
 });
@@ -46,6 +48,7 @@ it('ignores an export catalog loaded for the previous account', async () => {
   let resolve!: (value: Awaited<ReturnType<typeof loadQuestionBank>>) => void;
   jest.mocked(loadQuestionBank).mockReturnValueOnce(new Promise(done => { resolve = done; }));
   const screen = await render(<UserGuideScreen />); await fireEvent.press(screen.getByText('900句导出'));
+  await new Promise(resolve => setTimeout(resolve, 460));
   mockAccount = 'guide-b'; await screen.rerender(<UserGuideScreen />);
   await act(async () => { resolve({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'remote' }); });
   expect(mockExport).not.toHaveBeenCalled(); expect(screen.getByText('使用指南')).toBeTruthy();

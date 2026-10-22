@@ -1,9 +1,8 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
 import { ArrowRight, CalendarDays, FileText, WifiOff } from '@/components/ui/icons';
-import { Pressable, StyleSheet, View } from 'react-native';
-
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Card, Screen, Tag } from '@/components/ui';
@@ -18,9 +17,9 @@ export function ResourceEditorialScreen() {
   return (
     <Screen scroll contentStyle={styles.screen}>
       <TopBar title="资源分享" />
-      <View style={styles.intro}><GuideAnchor id="resource-filter" />
+      {Platform.OS === 'web' ? <View style={styles.intro}><GuideAnchor id="resource-filter" />
         <AppText>经过来源核验和专业编辑的航空英语备考方法与学习资源。</AppText>
-      </View>
+      </View> : <GuideAnchor id="resource-filter" />}
       {state.status === 'loading' ? <CenteredState description="正在获取最新资源文章。" title="加载中" /> : null}
       {state.status === 'empty' ? <CenteredState description="首篇文章正在准备中，请稍后再来。" icon={FileText} title="暂无资源" /> : null}
       {state.status === 'error' ? <CenteredState actionLabel="重新加载" description="暂时无法连接内容服务，请检查网络后重试。" onAction={state.retry} title="资源加载失败" tone="destructive" /> : null}

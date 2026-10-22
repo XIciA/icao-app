@@ -9,6 +9,7 @@ import NativeQuestionBankStudyRoute from '../question-bank/[bankId]/study/[categ
 
 const mockBack = jest.fn();
 const mockReplace = jest.fn();
+const mockDismissTo = jest.fn();
 const mockPush = jest.fn();
 const mockBankRetry = jest.fn();
 const mockTopicRetry = jest.fn();
@@ -19,7 +20,7 @@ let mockTopicState: ReturnType<typeof useQuestionBankTopic>;
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, replace: mockReplace, push: mockPush, canGoBack: () => mockCanGoBack }),
+  useRouter: () => ({ back: mockBack, replace: mockReplace, dismissTo: mockDismissTo, push: mockPush, canGoBack: () => mockCanGoBack }),
 }));
 jest.mock('@/features/question-bank/hooks/useQuestionBank.native', () => ({ useQuestionBank: () => mockBankState }));
 jest.mock('@/features/question-bank/hooks/useQuestionBankTopic.native', () => ({ useQuestionBankTopic: () => mockTopicState }));
@@ -129,7 +130,7 @@ describe('Native study route recovery', () => {
     expect(screen.getByText('不在当前学习范围')).toBeTruthy();
     expect(screen.queryByText('查看会员方案')).toBeNull();
     await fireEvent.press(screen.getByText('返回题库首页'));
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockDismissTo).toHaveBeenCalledWith('/(tabs)');
   });
 
   it('does not suggest paying for a deleted question when the topic itself is protected', async () => {
