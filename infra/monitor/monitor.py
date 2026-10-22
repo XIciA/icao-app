@@ -20,6 +20,16 @@ API_GROUPS = {'sync', 'question-banks', 'ai', 'resources', 'commerce',
               'app-content', 'auth', 'hooks', 'feedback', 'vocabulary', 'editorial'}
 
 
+def balance_due(balance, now=None):
+    """Node emits UTC Z; Python 3.10 needs an explicit +00:00 offset."""
+    now = time.time() if now is None else now
+    try:
+        at = datetime.datetime.fromisoformat(balance['at'].replace('Z', '+00:00')).timestamp()
+        return now - at >= 3600 or at > now + 300
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return True
+
+
 def run(*args):
     return subprocess.check_output(args, text=True, stderr=subprocess.DEVNULL, timeout=30)
 
@@ -164,7 +174,7 @@ def main():
         snapshot['deepseek_balance'] = previous.get('deepseek_balance')
         # Balance is read inside the existing API container; the key never leaves it.
         balance = snapshot['deepseek_balance']
-        if not balance or time.time() - datetime.datetime.fromisoformat(balance['at']).timestamp() >= 3600:
+        if balance_due(balance):
             try:
                 code = """(async()=>{const k=process.env.DEEPSEEK_API_KEY;if(!k)process.exit(1);const r=await fetch('https://api.deepseek.com/user/balance',{headers:{Authorization:'Bearer '+k},signal:AbortSignal.timeout(5000)});if(!r.ok)process.exit(1);const d=await r.json();process.stdout.write(JSON.stringify({at:new Date().toISOString(),available:d.is_available===true,balances:(d.balance_infos||[]).filter(b=>['CNY','USD'].includes(b.currency)&&Number.isFinite(Number(b.total_balance))).map(b=>({currency:b.currency,total:Number(b.total_balance)}))}));})().catch(()=>process.exit(1))"""
                 snapshot['deepseek_balance'] = json.loads(run('docker', 'exec', 'icao-api', 'node', '-e', code))

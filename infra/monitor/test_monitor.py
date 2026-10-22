@@ -4,11 +4,20 @@ import unittest
 import datetime
 import tempfile
 from pathlib import Path
-from monitor import REQUIRED, alerts_for, summarize_logs
+from monitor import REQUIRED, alerts_for, summarize_logs, balance_due
 from dashboard_export import dashboard, project, write_dashboard
 
 
 class MonitorTests(unittest.TestCase):
+    def test_balance_cache_accepts_node_utc_timestamp_on_python310(self):
+        at = datetime.datetime(2026, 10, 22, tzinfo=datetime.timezone.utc).timestamp()
+        balance = {'at': '2026-10-22T00:00:00.000Z'}
+        self.assertFalse(balance_due(balance, at + 300))
+        self.assertTrue(balance_due(balance, at + 3600))
+        self.assertTrue(balance_due(balance, at - 301))
+        for invalid in (None, {}, {'at': 'bad'}, {'at': None}):
+            self.assertTrue(balance_due(invalid, at))
+
     def test_export_only_contains_safe_aggregates_and_preserves_missingness(self):
         snapshot = {'at': '2026-10-22T00:00:00+00:00', 'secret': 'private-secret',
                     'containers': {'icao-api': {'id': 'private-container-id', 'running': True, 'health': 'healthy'}, 'private-name': {}},
