@@ -1,3 +1,4 @@
+import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Clock3, ChevronRight, History, Target, Trash2 } from '@/components/ui/icons';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
@@ -105,7 +106,7 @@ function LearningRecordsContent() {
   }
   const returnToList = () => { restoreOffset.current = true; setReviewPackage(undefined); };
   if (reviewPackage) return <NativeScreenBoundary title="学习记录" onExit={returnToList} resetKey={reviewPackage.id}>
-    <Suspense fallback={<Screen><TopBar title="学习记录" onBack={returnToList} /><AppText>正在打开记录…</AppText></Screen>}>
+    <Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToList} />}>
       <StudyHistoryScreen key={reviewPackage.id} onReturn={returnToList} returnLabel="返回学习记录" sourceRoute="/learning-records" studyPackage={reviewPackage} />
     </Suspense>
   </NativeScreenBoundary>;

@@ -1,3 +1,4 @@
+import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { type Href } from 'expo-router';
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
@@ -22,18 +23,24 @@ export function NativeScreenBoundary({ title, fallbackHref = '/(tabs)', onExit, 
     if (router.canGoBack()) router.back();
     else router.replace(fallbackHref);
   });
-  return <ScreenBoundary key={resetKey} fallback={(retry) => (
-    <Screen contentStyle={styles.screen}>
-      {allowExit ? <TopBar title={title} onBack={exit} /> : null}
-      <CenteredState
-        title="页面暂时无法显示"
-        description="可以重新加载，或返回后再试。"
-        actionLabel="重新加载"
-        onAction={retry}
-        secondary={allowExit ? <Button onPress={exit} style={styles.returnButton} variant="outline">返回</Button> : undefined}
-      />
-    </Screen>
-  )}>{children}</ScreenBoundary>;
+  return <ScreenBoundary key={resetKey} fallback={(retry) => onExit && allowExit
+    ? <LocalFailure title={title} retry={retry} onExit={onExit} />
+    : <Failure title={title} retry={retry} exit={exit} allowExit={allowExit} />
+  }>{children}</ScreenBoundary>;
+}
+
+function LocalFailure({ title, retry, onExit }: { title: string; retry: () => void; onExit: () => void }) {
+  const exit = useLocalBack(true, onExit);
+  return <Failure title={title} retry={retry} exit={exit} allowExit />;
+}
+
+function Failure({ title, retry, exit, allowExit }: { title: string; retry: () => void; exit: () => void; allowExit: boolean }) {
+  return <Screen contentStyle={styles.screen}>
+    {allowExit ? <TopBar title={title} onBack={exit} /> : null}
+    <CenteredState title="页面暂时无法显示" description="可以重新加载，或返回后再试。"
+      actionLabel="重新加载" onAction={retry}
+      secondary={allowExit ? <Button onPress={exit} style={styles.returnButton} variant="outline">返回</Button> : undefined} />
+  </Screen>;
 }
 
 class ScreenBoundary extends Component<PropsWithChildren<{ fallback: (retry: () => void) => ReactNode }>, { failed: boolean }> {

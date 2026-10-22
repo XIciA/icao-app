@@ -130,6 +130,7 @@ function FeedbackPage() {
   const [ticketNumber, setTicketNumber] = useState('');
   const mounted = useRef(true);
   const submission = useRef<AbortController | undefined>(undefined);
+  const confirmingExit = useRef(false);
   const dirty = description.length > 0 || contact.length > 0 || images.length > 0;
 
   useEffect(() => {
@@ -148,10 +149,12 @@ function FeedbackPage() {
   }, [diagnosticCorrelationId, initialCategory, initialDescription, params.bankId, params.cardId, params.categoryId, params.topicId, source]);
 
   usePreventRemove(dirty && !ticketNumber, ({ data }) => {
+    if (confirmingExit.current) return;
+    confirmingExit.current = true;
     Alert.alert('放弃本次反馈？', submitting ? '提交结果尚未确认。离开后将停止等待，服务端可能已经收到本次反馈。' : '未提交的文字和图片不会保存。', [
-      { text: '继续填写', style: 'cancel' },
-      { text: '放弃', style: 'destructive', onPress: () => { submission.current?.abort(); navigation.dispatch(data.action); } },
-    ]);
+      { text: '继续填写', style: 'cancel', onPress: () => { confirmingExit.current = false; } },
+      { text: '放弃', style: 'destructive', onPress: () => { confirmingExit.current = false; submission.current?.abort(); navigation.dispatch(data.action); } },
+    ], { onDismiss: () => { confirmingExit.current = false; } });
   });
 
   async function chooseImages() {

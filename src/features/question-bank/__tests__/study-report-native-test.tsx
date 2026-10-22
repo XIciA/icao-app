@@ -59,3 +59,16 @@ it('returns from an embedded exam result to setup on system back', async () => {
   await act(async () => { mockBackHandler?.(); });
   expect(onReturn).toHaveBeenCalledTimes(1);
 });
+
+it('does not reopen a review when its slow load finishes after returning', async () => {
+  let resolve!: (value: LearningRecord) => void;
+  jest.mocked(loadLearningRecordReview).mockReturnValueOnce(new Promise(done => { resolve = done; }));
+  const leave = jest.fn();
+  const screen = await render(<StudyReport localReturn record={record} noteCount={0} interaction="choices" onReturn={leave} />);
+  await fireEvent.press(screen.getByText('全部学习记录'));
+  await act(async () => { mockBackHandler?.(); });
+  const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
+  await act(async () => resolve({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) }));
+  expect(leave).toHaveBeenCalledTimes(1);
+  expect(screen.queryByText('返回结束页面')).toBeNull();
+});
