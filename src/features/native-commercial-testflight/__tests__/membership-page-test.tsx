@@ -1,6 +1,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
 
 import { MembershipPage } from '../MembershipPage.native';
 
@@ -30,6 +31,33 @@ describe('Native membership purchase page', () => {
     jest.clearAllMocks(); mockParams = {};
     mockPurchase.mockResolvedValue({ ok: true }); mockRefresh.mockResolvedValue(undefined); mockRestore.mockResolvedValue({ ok: true });
     mockCommerce = runtimeValue();
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  it.each(['ios', 'android'] as const)('shows CNY channel prices above the struck original prices on %s', async (platform) => {
+    jest.replaceProperty(Platform, 'OS', platform);
+    mockCommerce = runtimeValue({ offerings: [
+      { productKey: 'membership_7d_v1', durationDays: 7, localizedPrice: '¥12', currencyCode: 'CNY' },
+      { productKey: 'membership_31d_v1', durationDays: 31, localizedPrice: '¥38', currencyCode: 'CNY' },
+      { productKey: 'membership_93d_v1', durationDays: 93, localizedPrice: '¥98', currencyCode: 'CNY' },
+    ] });
+    const screen = await render(<Page />);
+    for (const price of ['¥12', '¥38', '¥98']) expect(screen.getByText(price)).toBeTruthy();
+    for (const original of [68, 158, 358]) {
+      expect(screen.getByLabelText(`原价${original}元`)).toHaveStyle({ textDecorationLine: 'line-through' });
+      expect(screen.getByText(`¥${original}`)).toBeTruthy();
+    }
+    expect(screen.getByText('开通31天会员 · ¥38')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('radio', { name: '7天会员' }));
+    expect(screen.getByText('开通7天会员 · ¥12')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('membership-purchase'));
+    expect(mockPurchase).toHaveBeenCalledWith('membership_7d_v1');
+  });
+
+  it('does not compare foreign currency prices with CNY original prices', async () => {
+    const screen = await render(<Page />);
+    expect(screen.getByText('HK$31.00')).toBeTruthy();
+    expect(screen.queryByLabelText(/原价/u)).toBeNull();
   });
 
   it('shows seven read-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
@@ -86,6 +114,7 @@ describe('Native membership purchase page', () => {
     mockCommerce = runtimeValue({ phase: 'error', offerings: [], error: { retryable: true, userMessage: '商品暂时无法读取' } });
     const screen = await render(<Page />);
     expect(screen.getAllByText('—')).toHaveLength(3);
+    expect(screen.queryByLabelText(/原价/u)).toBeNull();
     await fireEvent.press(screen.getByTestId('membership-purchase'));
     expect(mockPurchase).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('重新检查'));

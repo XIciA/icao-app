@@ -95,7 +95,7 @@ describe('commercial product catalog', () => {
         key: 'membership_7d_v1',
         apple: 'com.readyoufife.ios.membership.7d.v1',
         days: 7,
-        fen: 6_800,
+        fen: 1_200,
         cadence: 31,
         batches: [[0, 250]],
       },
@@ -111,7 +111,7 @@ describe('commercial product catalog', () => {
         key: 'membership_31d_v1',
         apple: 'com.readyoufife.ios.membership.31d.v1',
         days: 31,
-        fen: 15_800,
+        fen: 3_800,
         cadence: 31,
         batches: [[0, 1_000]],
       },
@@ -127,7 +127,7 @@ describe('commercial product catalog', () => {
         key: 'membership_93d_v1',
         apple: 'com.readyoufife.ios.membership.93d.v1',
         days: 93,
-        fen: 35_800,
+        fen: 9_800,
         cadence: 31,
         batches: [[0, 1_000], [31, 1_000], [62, 1_000]],
       },
@@ -138,7 +138,7 @@ describe('commercial product catalog', () => {
       productKey: product.productKey,
     })));
     expect(ACTIVE_MEMBERSHIP_PRODUCTS.map((product) => [product.durationDays, product.basePriceCnyFen]))
-      .toEqual([[7, 6_800], [31, 15_800], [93, 35_800]]);
+      .toEqual([[7, 1_200], [31, 3_800], [93, 9_800]]);
   });
 });
 
