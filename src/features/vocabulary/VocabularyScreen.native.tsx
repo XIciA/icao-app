@@ -163,7 +163,7 @@ export function VocabularyScreen() {
 
   if (view === 'complete') {
     const weakWords = studyWords.filter((word) => ['vague', 'forgot', 'wrong'].includes(sessionStatuses[word.id] ?? ''));
-    return <VocabularyCompletionView onBack={back} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={studyWords.length} />;
+    return <VocabularyCompletionView returnLabel={sessionOrigin.current === 'list' ? '返回单词列表' : sessionOrigin.current === 'detail' ? '返回词书详情' : '返回词书'} onBack={back} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={studyWords.length} />;
   }
 
   if (view === 'sessionList' && studyWords.length) {

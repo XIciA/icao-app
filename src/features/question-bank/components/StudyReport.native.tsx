@@ -57,7 +57,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
   }
   const back = useLocalBack(!review && (Boolean(list) || Boolean(localReturn && !onContinue)), () => { openingRequest.current++; openingBusy.current = false; setOpening(false); if (list) setList(undefined); else onReturn(); });
   const returnToReport = () => setReview(undefined);
-  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel="返回结束页面" /></Suspense></NativeScreenBoundary>;
+  if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词与收藏' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen}>
     <TutorialCoach inset={false} />

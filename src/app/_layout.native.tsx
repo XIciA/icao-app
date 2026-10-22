@@ -114,10 +114,15 @@ export function AppStack() {
       <Stack
             screenListeners={{ transitionStart: () => guide?.suspend(true), transitionEnd: () => guide?.suspend(false) }}
             screenOptions={{
-              animation: 'slide_from_right',
+              // iOS 26 edge recognizers can receive touches without beginning. Use
+              // the RNS pan recognizer, confined to the first 24 points so study
+              // gestures elsewhere remain untouched. It needs a custom animation.
+              animation: Platform.OS === 'ios' ? 'simple_push' : 'slide_from_right',
+              animationMatchesGesture: Platform.OS === 'ios',
               animationDuration: 220,
               contentStyle: { backgroundColor: colors.background },
-              fullScreenGestureEnabled: false,
+              fullScreenGestureEnabled: Platform.OS === 'ios',
+              gestureResponseDistance: Platform.OS === 'ios' ? { start: 0, end: 24 } : undefined,
               gestureDirection: 'horizontal',
               gestureEnabled: true,
               headerShown: false,
@@ -134,7 +139,7 @@ export function AppStack() {
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
-                options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
+                options={{ gestureEnabled: true }}
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
@@ -144,7 +149,7 @@ export function AppStack() {
               {includeNativeProtectedRoutes ? (
                 <Stack.Screen
                   name="content/hotspot/[briefId]/study"
-                  options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
+                  options={{ gestureEnabled: true }}
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />

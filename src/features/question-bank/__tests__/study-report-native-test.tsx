@@ -50,8 +50,10 @@ it('links a looked-up word back to its saved source question using the existing 
   const screen = await render(<StudyReport record={saved} noteCount={0} interaction="speaking" onReturn={jest.fn()} />);
   await fireEvent.press(screen.getByText('查词与收藏'));
   await fireEvent.press(screen.getByText(`回到 ${card.taskTitle}`));
-  await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
+  await waitFor(() => expect(screen.getByText('返回查词与收藏')).toBeTruthy());
   expect(loadLearningRecordReview).toHaveBeenLastCalledWith(saved);
+  await fireEvent.press(screen.getByText('返回查词与收藏'));
+  expect(screen.getByText(`回到 ${card.taskTitle}`)).toBeTruthy();
 });
 
 it('returns from an embedded exam result to setup on system back', async () => {

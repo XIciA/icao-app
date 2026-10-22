@@ -122,3 +122,20 @@ it('leaves a replay started from the completed word list without cycling between
     now += 451;
   } finally { mockBooks[0].words = words; clock.mockRestore(); }
 });
+
+it('labels the completion return for the originating word list and returns there', async () => {
+  const words = mockBooks[0].words;
+  mockBooks[0].words = words.slice(0, 1);
+  try {
+    const screen = await render(withSafeArea(<VocabularyScreen />));
+    await fireEvent.press(screen.getByLabelText('查看ICAO考前预习详情'));
+    await fireEvent.press(screen.getByText('查看单词列表'));
+    await fireEvent.press(screen.getByText('学习当前 1 词'));
+    await fireEvent.press(screen.getByText('认识'));
+    await fireEvent.press(screen.getByText('完成本轮'));
+    expect(screen.getByText('返回单词列表')).toBeTruthy();
+    expect(screen.queryByText('返回词书')).toBeNull();
+    await fireEvent.press(screen.getByText('返回单词列表'));
+    expect(screen.getByText('学习当前 1 词')).toBeTruthy();
+  } finally { mockBooks[0].words = words; }
+});
