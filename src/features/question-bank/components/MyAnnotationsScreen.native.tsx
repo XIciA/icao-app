@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
   dotStack: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
   stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
   stackDotOverlap: { marginLeft: -5 },
-  noteIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 34, justifyContent: 'center', width: 34 },
+  noteIcon: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 34, justifyContent: 'center', width: 34 },
   pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
   unavailable: { opacity: 0.58 },
   stateCard: { alignItems: 'center', borderStyle: 'dashed', gap: spacing[3], marginTop: spacing[8], paddingHorizontal: spacing[6], paddingVertical: spacing[8] },
