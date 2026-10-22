@@ -236,10 +236,10 @@ export function RadioPlayerScreen() {
       </AppContentFrame>
 
       <BottomSheet accessibilityLabel="播放间隔" onClose={() => setIntervalOpen(false)} visible={intervalOpen}>
-        <View style={styles.intervalSheet}>
+        <View style={styles.intervalSheet}><GuideAnchor id="radio-interval" />
           <AppText variant="sectionTitle">播放间隔</AppText>
           <View style={styles.intervalValueRow}><AppText color={colors.primary} style={styles.intervalValue}>{intervalSeconds}</AppText><AppText color={colors.mutedForeground} style={styles.intervalUnit}>秒</AppText></View>
-          <View style={styles.intervalTimeline}><GuideAnchor id="radio-interval" />
+          <View style={styles.intervalTimeline}>
             <AudioTimeline
               accessibilityLabel="播放间隔秒数"
               duration={RADIO_INTERVAL_MAX_SECONDS}
