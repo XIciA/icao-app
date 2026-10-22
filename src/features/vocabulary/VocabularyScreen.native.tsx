@@ -48,6 +48,7 @@ export function VocabularyScreen() {
   const progress = useVocabularyProgress(books);
   const save = useSaveAction();
   const [view, setView] = useState<ViewName>('books');
+  const sessionOrigin = useRef<ReturnView>('books');
   const [returnView, setReturnView] = useState<ReturnView>('books');
   const [activeBookId, setActiveBookId] = useState<VocabularyBookId>('preview');
   const [selected, setSelected] = useState<Set<VocabularyBookId>>(new Set());
@@ -76,6 +77,7 @@ export function VocabularyScreen() {
     setRevealed(false);
     setSessionStatuses({});
     setSessionSummary(emptySummary);
+    if (from !== 'sessionList') sessionOrigin.current = from;
     setReturnView(from);
     setView('study');
   }, [progress.state.words]);
@@ -105,12 +107,13 @@ export function VocabularyScreen() {
   const backView = () => {
     if (save.saving || save.failed) return;
     if (view === 'list') setView('detail');
-    else if (view === 'study' || view === 'complete') setView(returnView);
+    else if (view === 'study') setView(returnView);
+    else if (view === 'complete') setView(sessionOrigin.current);
     else if (view === 'sessionList') setView('complete');
     else if (view === 'testRun') setView('testIntro');
     else setView('books');
   };
-  useLocalBack(view !== 'books' && !progress.error, backView);
+  const back = useLocalBack(view !== 'books' && !progress.error, backView);
 
   if (progress.error) return <Screen><TopBar title="单词学习" /><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
@@ -129,11 +132,11 @@ export function VocabularyScreen() {
   }
 
   if (view === 'detail' && activeBook) {
-    return <VocabularyBookDetailView book={activeBook} onBack={() => setView('books')} onList={() => setView('list')} onReset={() => save.run(() => progress.resetBook(activeBook))} onStudy={() => startStudy(activeBook.words, 'detail')} stats={progress.statsByBook[activeBook.id]!} />;
+    return <VocabularyBookDetailView book={activeBook} onBack={back} onList={() => setView('list')} onReset={() => save.run(() => progress.resetBook(activeBook))} onStudy={() => startStudy(activeBook.words, 'detail')} stats={progress.statsByBook[activeBook.id]!} />;
   }
 
   if (view === 'list' && activeBook) {
-    return <VocabularyWordListView book={activeBook} onBack={() => setView('detail')} onStart={(words) => startStudy(words, 'list')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
+    return <VocabularyWordListView book={activeBook} onBack={back} onStart={(words) => startStudy(words, 'list')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
   }
 
   if (view === 'study' && studyWords.length) {
@@ -155,30 +158,30 @@ export function VocabularyScreen() {
       setSessionSummary(summary);
       setView('complete');
     };
-    return <VocabularyStudyView index={studyIndex} onChoose={recordStatus} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {
     const weakWords = studyWords.filter((word) => ['vague', 'forgot', 'wrong'].includes(sessionStatuses[word.id] ?? ''));
-    return <VocabularyCompletionView onBack={() => setView(returnView)} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={studyWords.length} />;
+    return <VocabularyCompletionView onBack={back} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={studyWords.length} />;
   }
 
   if (view === 'sessionList' && studyWords.length) {
     const sourceBook = books.find((book) => book.id === studyWords[0]!.bookId)!;
     const sessionBook = { ...sourceBook, name: '本轮单词', description: '本轮学习队列中的全部词汇。', words: studyWords };
-    return <VocabularyWordListView book={sessionBook} onBack={() => setView('complete')} onStart={(words) => startStudy(words, 'sessionList')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
+    return <VocabularyWordListView book={sessionBook} onBack={back} onStart={(words) => startStudy(words, 'sessionList')} onToggleFavorite={(word) => save.run(() => progress.toggleFavorite(word))} state={progress.state} />;
   }
 
   if (view === 'testIntro') {
-    return <VocabularyTestIntroView lastTest={progress.state.lastTest} onBack={() => setView('books')} onStart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} />;
+    return <VocabularyTestIntroView lastTest={progress.state.lastTest} onBack={back} onStart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} />;
   }
 
   if (view === 'testRun') {
-    return <VocabularyTestRunner books={books} key={testRunKey} onExit={() => setView('testIntro')} onFinish={(result) => { void save.run(() => progress.saveTestResult(result), () => { setCurrentTestResult(result); setView('testResult'); }); }} />;
+    return <VocabularyTestRunner books={books} key={testRunKey} onExit={back} onFinish={(result) => { void save.run(() => progress.saveTestResult(result), () => { setCurrentTestResult(result); setView('testResult'); }); }} />;
   }
 
   if (view === 'testResult' && currentTestResult) {
-    return <VocabularyTestResultView onBack={() => setView('books')} onRestart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} result={currentTestResult} />;
+    return <VocabularyTestResultView onBack={back} onRestart={() => { setTestRunKey((value) => value + 1); setView('testRun'); }} result={currentTestResult} />;
   }
 
   return (

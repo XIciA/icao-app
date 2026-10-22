@@ -1,4 +1,5 @@
-import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 import { FileQuestion } from '@/components/ui/icons';
 import { Platform } from 'react-native';
 
@@ -36,7 +37,7 @@ export default function ContentRoute() {
           actionLabel="返回发现"
           description="这个功能入口不存在、已更新或暂时不可用。"
           icon={FileQuestion}
-          onAction={() => router.replace('/(tabs)/discover')}
+          onAction={() => router.dismissTo('/(tabs)/discover')}
           title="无法打开此内容"
         />
       </Screen>
