@@ -1,4 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
 import { examGoal } from '@/features/account/profile-model';
@@ -54,7 +55,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
       contentStyle={styles.content}
       scroll
     >
-      <View style={styles.header}>
+      <View style={styles.header}><GuideAnchor id="study-open" />
         {headerLeading || headerTrailing ? (
           <View style={styles.toolbar}>
             <View>{headerLeading}</View>

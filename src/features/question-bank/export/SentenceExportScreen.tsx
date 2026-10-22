@@ -1,3 +1,4 @@
+import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from './pdf-generator';
 import { useEffect, useRef, useState } from 'react';
@@ -19,6 +20,8 @@ import { exportFontBytes, storePdf, previewPdf, sharePdf, releasePdf } from './p
 const defaults:ExportOptions={levels:[],filter:'all',tagIds:[],translation:true,highlights:true,tags:true,notes:true};
 export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDataset;onBack:()=>void}) {
   const guide = useGuide(); const guideTour=guide?.current; const guideStep=guide?.step;
+  const offer = guide?.offer;
+  useEffect(() => { offer?.('export', (GUIDE_FLOWS.export ?? []).map(step => step.id)); }, [offer]);
   const [data,setData]=useState<{rows:ExportSentence[];annotations:QuestionBankAnnotationStore}>();const [attempt,setAttempt]=useState(0);
   const [options,setOptions]=useState<ExportOptions>({...defaults,levels:dataset.categories.map(c=>c.name)});
   const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [output,setOutput]=useState<{uri:string;pages:number;count:number}>();

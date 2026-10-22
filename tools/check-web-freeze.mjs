@@ -377,6 +377,21 @@ reviewedFormalWebHashes.set("src/components/states/StartupBrandScreen.tsx", [...
 // Android 1.2.1 installer release advances only Android versionCode; iOS 3576434 and legacy Web stay fixed.
 reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "f8cacb4271315ce54305ef241c5a7b2f7d1169f0bb75f98c32ae98635038600e"])]);
 
+// 2026-10-22 unified teaching: exact Native/formal EdgeOne dependencies.
+// Frozen Web layout/download siblings remain byte-identical and selected on legacy Web.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "ebded6341791acd9260f881666a0a3af8b85bff23d1077c666bdcfaa618af0a0"])]);
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "cb84aa7e7d038dc673ff50abe00209aeb2a87d98bcbc4ca88e1d017da71eb9f2"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/export/SentenceExportScreen.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/export/SentenceExportScreen.tsx") ?? [null]), "8095b874da959aa9d9b542f0220c38719794b88d6b3e69a67a4f51c171eae10b"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideBindings.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideBindings.tsx") ?? [null]), "9ca5a114e3f3d7e5cdce21636ce69b14b67fa777b79536becbae495c2df6d14e"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideOverlay.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideOverlay.tsx") ?? [null]), "0bca6343bbbaaf6449b4c2a268f54a552f4b98a1a928ed575fe2f6791f53d2bc"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideScrollView.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideScrollView.tsx") ?? [null]), "d049367612371c3a0415d0db6a835785b38ebf1068282d92d05e54c97a0691f9"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideTourProvider.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideTourProvider.tsx") ?? [null]), "a7166af45a47770c2e29f0143741bcff029487887ee401eb514c11f97cb4741a"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/guide-flows.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-flows.ts") ?? [null]), "e5e2bd35d399a2354505cc5f31907042efd78bbd71f3e4fcacbad57200a4ab66"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/guide-placement.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-placement.ts") ?? [null]), "ee51f418eb2558b14d26294e581a9ba658568db22b20f4155b2172614846e9b9"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/guide-progress.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/guide-progress.ts") ?? [null]), "51ed8d39b34d05b8e495bacfb0d2ead57444f86dd3baa4a7440e113ff8b8fc79"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/tutorial-model.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/tutorial-model.ts") ?? [null]), "091c67ee58bdcf0cd1124e64f8d0ca9349819fd532bd7e5613e9f4aa3d78a089"])]);
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a96b7e9da47b6f12893f3b29f8da88e8fa64c15d599e323e5eedbc0e4d84ecf8"])]);
+
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
 }

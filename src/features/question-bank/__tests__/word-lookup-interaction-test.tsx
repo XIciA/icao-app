@@ -12,7 +12,7 @@ const mockFindStaticWordLookup = jest.fn((word: string) => word === 'deviation' 
 } : undefined);
 const mockToggleFavorite = jest.fn();
 
-jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: jest.requireActual('react').createContext(undefined), usePreventRemove: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ replace: jest.fn() }) }));
 jest.mock('react-native-safe-area-context', () => {
   const { View } = jest.requireActual('react-native');

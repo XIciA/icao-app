@@ -1,4 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect } from 'expo-router';
@@ -28,6 +29,7 @@ const menu = [
 
 export function ProfileHomeScreen() {
   const router = useRouter();
+  const guide = useGuide();
   const auth = useAuth();
   const profile = useProfile();
   const cloudWeb = Platform.OS === 'web' && isEdgeOneProductionWeb();
@@ -80,9 +82,10 @@ export function ProfileHomeScreen() {
     <AccountScreen>
       <Pressable
         accessibilityLabel={`个人资料，${accountLabel}`}
-        onPress={() => open('profile-detail')}
+        onPress={() => { guide?.event('setup-profile'); open('profile-detail'); }}
         style={({ pressed }) => (pressed ? styles.pressed : null)}
       >
+        <GuideAnchor id="setup-profile" /><GuideAnchor id="setup-bank" />
         <Card elevated style={styles.profile}>
           <ProfileAvatar size={60} uri={profile.avatarUri} />
           <View style={styles.copy}>

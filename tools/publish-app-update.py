@@ -17,8 +17,8 @@ MANIFEST = '/app-releases/updates.json'
 
 def validate(release):
     channel = release.get('channel')
-    if channel not in ('ios-app-store', 'android-apk') or release.get('available') is not True:
-        raise ValueError('Only available official releases may be published')
+    if channel not in ('ios-app-store', 'android-apk', 'android-test') or release.get('available') is not True:
+        raise ValueError('Only available supported releases may be published')
     if not re.fullmatch(r'\d+\.\d+\.\d+', release.get('version', '')):
         raise ValueError('Invalid version')
     if type(release.get('build')) is not int or release['build'] <= 0:
@@ -68,7 +68,7 @@ def main():
     backup = Path(args.backup_dir) / ('updates-before-' + stamp + '.json')
     backup.parent.mkdir(parents=True, exist_ok=True)
     backup.write_bytes(previous)
-    if release['channel'] == 'android-apk':
+    if release['channel'] in ('android-apk', 'android-test'):
         if not args.apk:
             raise ValueError('APK path required')
         apk = Path(args.apk).read_bytes()

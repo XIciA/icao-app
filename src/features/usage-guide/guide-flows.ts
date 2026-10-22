@@ -1,5 +1,8 @@
+import { TUTORIAL_STEPS, studyStepId } from './tutorial-model';
+
 export const GUIDE_ENTRIES = [
-  { id: 'study', title: '题库学习', description: '用 Sentence1 体验一次完整学习', route: '/info/tutorial' },
+  { id: 'setup', title: '备考设置', description: '设置目标等级与题库范围', route: '/(tabs)/profile' },
+  { id: 'study', title: '题库学习', description: '选择题库，在实际学习中体验功能', route: '/(tabs)' },
   { id: 'vocab', title: '单词学习', description: '选词书、学单词、了解掌握情况', route: '/content/vocab' },
   { id: 'radio', title: '随身听', description: '按自己的节奏，随时听练', route: '/content/radio' },
   { id: 'hotspot', title: 'OPI 热点', description: '看热点内容，进入相关练习', route: '/content/hotspot' },
@@ -9,8 +12,17 @@ export const GUIDE_ENTRIES = [
   { id: 'export', title: '900句导出', description: '把学习积累整理成 PDF', route: '/info/guide?export=1' },
 ] as const;
 export type GuideId = typeof GUIDE_ENTRIES[number]['id'];
-export type GuideStep = { id: string; text: string; read?: boolean };
+export type GuideStep = { id: string; text: string; title?: string; target?: string; read?: boolean };
 export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
+  setup: [
+    { id: 'setup-profile', text: '打开个人资料，设置备考目标。' },
+    { id: 'setup-level', text: '选择目标等级。' },
+    { id: 'setup-type', text: '选择初考或复考。' },
+    { id: 'setup-save', text: '保存备考目标。' },
+    { id: 'setup-bank', text: '前往题库，选择学习范围。', read: true },
+    { id: 'setup-scope', text: '选择精选题库或最全题库。' },
+  ],
+  study: TUTORIAL_STEPS.map(step => ({ id: studyStepId(step.id), title: step.title, text: step.description, target: ({ play: 'sentence-play', highlight: 'sentence-highlight-tool', tag: 'sentence-tag-tool', note: 'sentence-note', record: 'sentence-record', review: 'sentence-review' } as Record<string, string>)[step.id] ?? `sentence-${step.target}` })),
   radio: [
     { id: 'radio-bank', text: '在这里切换900句、听力或故事复述。' },
     { id: 'radio-order', text: '试着切换顺序、随机或单曲循环。' },
@@ -47,8 +59,6 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   recap: [
     { id: 'recap-filter', text: '高亮、标签和笔记都在这里，可按标签筛选。', read: true },
     { id: 'recap-question', text: '点题目，可以带着原标注继续学习。' },
-    { id: 'recap-records', text: '返回“我的 → 学习记录”，查看练习回顾。', read: true },
-    { id: 'recap-record', text: '点开一条记录，再从回顾中返回对应题目。' },
   ],
   export: [
     { id: 'export-scope', text: '先选要整理的句子范围。' },

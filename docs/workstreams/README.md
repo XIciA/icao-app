@@ -9,6 +9,7 @@
 ## 现存材料
 
 - [会员定价与后续统一提审](membership-pricing/README.md)：2026-10-22 三档长期售价与划线价、苹果后台调价结果；本轮不构建、不提审，待其他任务完成后统一提交。
+- [使用指南与首次使用引导](guide-and-onboarding-2026-10/requirements.md)：统一教学逻辑、极简细线聚光灯；[执行记录](guide-and-onboarding-2026-10/execution.md)。
 
 - [内容发布完整链路核验](content-workflow/chain-audit-2026-10-19.md)：题库、音频、历史热点兼容能力与当前差距；执行标准统一引用内容处理规则。
 

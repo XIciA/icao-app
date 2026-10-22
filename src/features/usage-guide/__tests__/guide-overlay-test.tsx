@@ -18,8 +18,8 @@ it('adds no host elements in existing screens when no tour provider is mounted',
   const anchor=await render(<GuideAnchor id="radio-bank" />);expect(anchor.toJSON()).toBeNull();
   const modal=await render(<GuideModalScope visible><AppText>原有弹层</AppText></GuideModalScope>);expect(modal.getByText('原有弹层')).toBeTruthy();expect(modal.queryByTestId('guide-overlay')).toBeNull();
 });
-it('has eight distinct entrances and a complete radio-to-study chain', () => {
-  expect(new Set(GUIDE_ENTRIES.map(e=>e.id)).size).toBe(8);
+it('has nine distinct entrances and a complete radio-to-study chain', () => {
+  expect(new Set(GUIDE_ENTRIES.map(e=>e.id)).size).toBe(9);
   expect(GUIDE_FLOWS.radio?.map(s=>s.id)).toEqual(['radio-bank','radio-order','radio-speed','radio-interval','radio-subtitle','radio-play','radio-study']);
   for(const steps of Object.values(GUIDE_FLOWS))for(const step of steps)expect(step.text.length).toBeLessThan(46);
 });

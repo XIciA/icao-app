@@ -1,19 +1,26 @@
+import { NavigationContext } from '@react-navigation/native';
+import type { GuideId } from './guide-flows';
 import { GuideScrollContext } from './guide-scroll-context';
-import { createContext, useContext, useEffect, useId, useRef, useCallback, type PropsWithChildren, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export type GuidePrompt = { target: string; text: string; index: number; total: number; next?: () => void; skip: () => void; exit: () => void; completed?: boolean; error?: string; skipLabel?: string };
+export type GuidePrompt = { target: string; title?: string; text: string; index: number; total: number; next?: () => void; skip: () => void; exit: () => void; error?: string };
 export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean };
 export type GuideBinding = {
   event: (id: string) => void;
-  guardExit: (handler: ((done: () => void) => void) | null) => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
   surface: (layer: string) => ReactNode;
-  legacy: (prompt: GuidePrompt | null) => void;
-  start: (id: string, restart?: boolean) => Promise<void>;
+  offer: (id: GuideId, steps: string[]) => void;
+  exit: () => void;
+  start: (id: string) => Promise<void>;
   current?: string;
+  ready?: boolean;
+  retry?: () => void;
+  error?: string;
   step?: string;
+  target?: string;
+  suspend: (value: boolean) => void;
   pause: () => void;
   checkpoint: (value: GuideCheckpoint) => void;
   checkpointData?: GuideCheckpoint;
@@ -26,11 +33,20 @@ export function useGuide() { return useContext(GuideBindingContext); }
 export function GuideAnchor({ id }: { id: string }) {
   const guide = useGuide(); const layer = useContext(LayerContext); const key = useId(); const node = useRef<View>(null);
   const reveal = useContext(GuideScrollContext);
-  const active = guide?.step === id;
-  const revealTarget = useCallback(() => { if (active && node.current) reveal?.(node.current, id); }, [active, id, reveal]);
+  const active = guide?.target === id;
+  const navigation = useContext(NavigationContext);
+  const [focused, setFocused] = useState(navigation?.isFocused() ?? true);
+  useEffect(() => {
+    if (!navigation) return;
+    setFocused(navigation.isFocused());
+    const onFocus = navigation.addListener('focus', () => setFocused(true));
+    const onBlur = navigation.addListener('blur', () => setFocused(false));
+    return () => { onFocus(); onBlur(); };
+  }, [navigation]);
+  const revealTarget = useCallback(() => { if (active && focused && node.current) reveal?.(node.current, id); }, [active, focused, id, reveal]);
   useEffect(() => { const frame = requestAnimationFrame(revealTarget); return () => cancelAnimationFrame(frame); }, [revealTarget]);
   const register = guide?.register;
-  useEffect(() => { register?.(key, id, layer, node.current); return () => register?.(key, id, layer, null); }, [id, key, layer, register]);
+  useEffect(() => { register?.(key, id, layer, focused ? node.current : null); return () => register?.(key, id, layer, null); }, [focused, id, key, layer, register]);
   if (!guide) return null;
   return <View accessible={false} collapsable={false} pointerEvents="none" testID={`guide-anchor-${id}`} ref={node} onLayout={revealTarget} style={StyleSheet.absoluteFillObject} />;
 }

@@ -196,6 +196,7 @@ function fixture(options: {
   );
   return {
     accountPhones,
+    preselect,
     identities,
     phoneAuth,
     recentAuth,
@@ -986,5 +987,16 @@ describe('AccountService phone binding', () => {
     await expect(service.updatePassword(source, 'newpassword10'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
+  });
+});
+
+
+describe('AccountService onboarding identity', () => {
+  it('returns the business-account creation timestamp rather than an identity timestamp', async () => {
+    const f = fixture();
+    f.preselect.limit.mockResolvedValueOnce([{ createdAt: new Date('2026-10-01T03:00:00Z') }] as never);
+    const summary = await f.service.summary(f.target.user.id);
+    expect(summary.createdAt).toBe('2026-10-01T03:00:00.000Z');
+    expect(summary.accountId).toBe(f.target.user.id);
   });
 });

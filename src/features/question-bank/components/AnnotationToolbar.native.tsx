@@ -120,7 +120,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('highlight'); toggleHighlightMode(); }}
           style={[styles.tool, highlightMode ? styles.toolActive : null]}
         >
-          <GuideAnchor id="sentence-highlight-tool" /><Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
+          {!highlightMode ? <GuideAnchor id="sentence-highlight-tool" /> : null}<Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">高亮</AppText>
         </Pressable>
       ) : null}
@@ -131,7 +131,7 @@ export function AnnotationToolbar({
           onPress={() => { trackProductClick('tag'); toggleTags(); }}
           style={[styles.tool, tagMode ? styles.toolActive : null]}
         >
-          <GuideAnchor id="sentence-tag-tool" /><Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
+          {!tagMode ? <GuideAnchor id="sentence-tag-tool" /> : null}<Tags color={tagMode ? colors.primary : colors.mutedForeground} size={14} />
           <AppText color={tagMode ? colors.primary : colors.mutedForeground} variant="caption">标签</AppText>
         </Pressable>
       ) : null}

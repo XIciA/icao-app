@@ -1,4 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect } from 'expo-router';
@@ -15,6 +16,7 @@ import { updateProfile, useProfile } from './profile-store.native';
 
 export function AccountProfilePage() {
   const router = useRouter();
+  const guide = useGuide();
   const auth = useAuth();
   const profile = useProfile();
   const [draft, setDraft] = useState(profile);
@@ -93,7 +95,7 @@ export function AccountProfilePage() {
   }
 
   async function save() {
-    if (!dirty || !edited.current.size) return;
+    if ((!dirty || !edited.current.size) && guide?.step !== 'setup-save') return;
     const displayName = draft.displayName.trim();
     if (!displayName || Array.from(displayName).length > 24) { setError('昵称需要为 1–24 个字符。'); return; }
     const action = beginAction();
@@ -107,6 +109,7 @@ export function AccountProfilePage() {
         ...(edited.current.has('avatarUri') ? { avatarUri: draft.avatarUri } : {}),
       });
       if (!actionIsCurrent(action)) return;
+      guide?.event('setup-save');
       if (router.canGoBack()) router.back(); else router.replace('/(tabs)/profile');
     } catch { if (actionIsCurrent(action)) setError('资料保存未完成，请重试。'); }
     finally {
@@ -140,15 +143,15 @@ export function AccountProfilePage() {
         </View>
         <AppText variant="sectionTitle">备考目标</AppText>
         <View style={styles.goal}>
-          <AppText color={colors.mutedForeground} variant="caption">目标等级</AppText>
+          <GuideAnchor id="setup-level" /><AppText color={colors.mutedForeground} variant="caption">目标等级</AppText>
           <View style={styles.options}>
-            {(['icao4', 'icao5'] as const).map(level => <Pressable key={level} accessibilityRole="radio" accessibilityLabel={level === 'icao4' ? 'ICAO 4' : 'ICAO 5'} accessibilityState={{checked: goalLevel === level, disabled: saving}} disabled={saving} onPress={() => chooseGoal(level, goalType)} style={[styles.option, goalLevel === level && styles.selected]}><AppText color={goalLevel === level ? colors.primary : colors.mutedForeground} variant="button">{level === 'icao4' ? 'ICAO 4' : 'ICAO 5'}</AppText></Pressable>)}
+            {(['icao4', 'icao5'] as const).map(level => <Pressable key={level} accessibilityRole="radio" accessibilityLabel={level === 'icao4' ? 'ICAO 4' : 'ICAO 5'} accessibilityState={{checked: goalLevel === level, disabled: saving}} disabled={saving} onPress={() => { chooseGoal(level, goalType); guide?.event('setup-level'); }} style={[styles.option, goalLevel === level && styles.selected]}><AppText color={goalLevel === level ? colors.primary : colors.mutedForeground} variant="button">{level === 'icao4' ? 'ICAO 4' : 'ICAO 5'}</AppText></Pressable>)}
           </View>
         </View>
         <View style={styles.goal}>
-          <AppText color={colors.mutedForeground} variant="caption">考试类型</AppText>
+          <GuideAnchor id="setup-type" /><AppText color={colors.mutedForeground} variant="caption">考试类型</AppText>
           <View style={styles.options}>
-            {(['first', 'recert'] as const).map(type => <Pressable key={type} accessibilityRole="radio" accessibilityLabel={type === 'first' ? '初考' : '复考'} accessibilityState={{checked: goalType === type, disabled: saving}} disabled={saving} onPress={() => chooseGoal(goalLevel, type)} style={[styles.option, goalType === type && styles.selected]}><AppText color={goalType === type ? colors.primary : colors.mutedForeground} variant="button">{type === 'first' ? '初考' : '复考'}</AppText></Pressable>)}
+            {(['first', 'recert'] as const).map(type => <Pressable key={type} accessibilityRole="radio" accessibilityLabel={type === 'first' ? '初考' : '复考'} accessibilityState={{checked: goalType === type, disabled: saving}} disabled={saving} onPress={() => { chooseGoal(goalLevel, type); guide?.event('setup-type'); }} style={[styles.option, goalType === type && styles.selected]}><AppText color={goalType === type ? colors.primary : colors.mutedForeground} variant="button">{type === 'first' ? '初考' : '复考'}</AppText></Pressable>)}
           </View>
         </View>
         <View style={styles.goal}>
@@ -156,7 +159,7 @@ export function AccountProfilePage() {
           <AppText selectable variant="caption">{auth.account?.accountId ?? '正在读取…'}</AppText>
         </View>
         {error ? <AppText accessibilityRole="alert" color={colors.destructive} variant="caption">{error}</AppText> : null}
-        <Button disabled={!dirty || saving || picking} loading={saving} onPress={() => void save()} size="lg">保存修改</Button>
+        <View><GuideAnchor id="setup-save" /><Button disabled={(!dirty && guide?.step !== 'setup-save') || saving || picking} loading={saving} onPress={() => void save()} size="lg">保存修改</Button></View>
       </View>
     </Screen>
   );

@@ -2,7 +2,6 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { UserGuideScreen } from '../UserGuideScreen';
 import { loadQuestionBank } from '@/features/question-bank/data/repository.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
-import { TUTORIAL_STEPS } from '../tutorial-model';
 import { GUIDE_ENTRIES } from '../guide-flows';
 jest.mock('react', () => ({ ...jest.requireActual('react'), lazy: () => jest.requireMock('@/features/question-bank/export/SentenceExportScreen').SentenceExportScreen }));
 const mockPush = jest.fn(), mockStart = jest.fn();
@@ -14,35 +13,17 @@ jest.mock('@/features/question-bank/data/repository.native', () => ({ loadQuesti
 jest.mock('@/features/question-bank/export/SentenceExportScreen', () => ({ SentenceExportScreen: (props: unknown) => { mockExport(props); return null; } }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush, back: jest.fn(), canGoBack: () => true }), useFocusEffect: (fn: () => void) => jest.requireActual('react').useEffect(fn, [fn]) }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: mockAccount } }) }));
-jest.mock('../tutorial-progress', () => ({ readTutorialProgress: (...args: unknown[]) => mockRead(...args) }));
 beforeEach(() => { mockPush.mockClear(); mockStart.mockClear(); mockExport.mockClear(); mockAccount = 'guide-a'; mockGuideCurrent = undefined; mockRead.mockResolvedValue({ version: 1, step: 0, completed: [], skipped: [] }); });
-it('offers eight peer entries, no FAQ or marketing body, and reuses the real export component', async () => {
+it('offers all shared teaching entries, no FAQ or marketing body, and reuses the real export component', async () => {
   const screen = await render(<UserGuideScreen />);
   for (const { title } of GUIDE_ENTRIES) expect(screen.getByRole('button', { name: title })).toBeTruthy();
   for (const removed of ['常见问题','意见反馈','发现更多学习方式','学习成果，还能这样用']) expect(screen.queryByText(removed)).toBeNull();
   await fireEvent.press(screen.getByText('题库学习'));
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
+  expect(mockStart).toHaveBeenCalledWith('study');
   await fireEvent.press(screen.getByText('随身听')); expect(mockStart).toHaveBeenCalledWith('radio');
   jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'embedded' });
   await fireEvent.press(screen.getByText('900句导出'));
   await waitFor(() => expect(mockExport).toHaveBeenCalledWith(expect.objectContaining({ dataset: expect.objectContaining({ id: 'sentences900' }) })));
-});
-it('resumes on tap and allows restart by long press without changing learning data', async () => {
-  mockRead.mockResolvedValue({ version: 1, step: 4, completed: [], skipped: [] });
-  const screen = await render(<UserGuideScreen />);
-  await fireEvent.press(screen.getByText('题库学习'));
-  expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
-  await new Promise(resolve => setTimeout(resolve, 460));
-  await fireEvent(screen.getByText('题库学习'), 'longPress');
-  expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
-});
-it('does not reuse a completed tutorial state for a different account', async () => {
-  mockRead.mockResolvedValueOnce({ version: 1, step: TUTORIAL_STEPS.length, completed: [], skipped: [] });
-  const screen = await render(<UserGuideScreen />); await act(async () => {});
-  await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: '1' } });
-  await new Promise(resolve => setTimeout(resolve, 460));
-  mockAccount = 'guide-b'; mockRead.mockReturnValue(new Promise(() => {})); await screen.rerender(<UserGuideScreen />);
-  await fireEvent.press(screen.getByText('题库学习')); expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/info/[slug]', params: { slug: 'tutorial' } });
 });
 it('ignores an export catalog loaded for the previous account', async () => {
   let resolve!: (value: Awaited<ReturnType<typeof loadQuestionBank>>) => void;
@@ -54,7 +35,7 @@ it('ignores an export catalog loaded for the previous account', async () => {
   expect(mockExport).not.toHaveBeenCalled(); expect(screen.getByText('使用指南')).toBeTruthy();
 });
 
-it('returns from the embedded export screen when its guide is exited', async () => {
+it('keeps the actual export screen open when teaching is exited', async () => {
   mockGuideCurrent = 'export';
   jest.mocked(loadQuestionBank).mockResolvedValueOnce({ dataset: { id: 'sentences900' } as QuestionBankDataset, source: 'embedded' });
   const screen = await render(<UserGuideScreen />);
@@ -62,5 +43,5 @@ it('returns from the embedded export screen when its guide is exited', async () 
   await waitFor(() => expect(mockExport).toHaveBeenCalled());
   mockGuideCurrent = undefined;
   await screen.rerender(<UserGuideScreen />);
-  expect(screen.getByRole('button', { name: '900句导出' })).toBeTruthy();
+  expect(screen.queryByRole('button', { name: '900句导出' })).toBeNull();
 });
