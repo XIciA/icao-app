@@ -1,3 +1,4 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
 import { examGoal } from '@/features/account/profile-model';
@@ -5,7 +6,7 @@ import { useProfile } from '@/features/account/profile-store.native';
 import { ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { useRouter } from 'expo-router';
+
 import { useStudyCatalog } from '@/features/question-bank/hooks/useStudyCatalog.native';
 import { StudyScopeSelector } from '@/features/question-bank/components/StudyScopeSelector';
 

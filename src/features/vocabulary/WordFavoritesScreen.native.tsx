@@ -54,10 +54,8 @@ export function WordFavoritesScreen() {
           contentContainerStyle={styles.listContent}
           data={items}
           keyExtractor={(item) => item.key}
-          ListHeaderComponent={(
+          ListHeaderComponent={loadError || loadingVocabulary ? (
             <View style={styles.header}>
-              <AppText variant="pageTitle">单词收藏</AppText>
-              <AppText variant="caption">集中查看你在单词学习和题库查词中收藏的词汇。</AppText>
               {loadError ? (
                 <View style={styles.warning}>
                   <WifiOff color={colors.accent} size={18} />
@@ -71,7 +69,7 @@ export function WordFavoritesScreen() {
                 </View>
               ) : loadingVocabulary ? <AppText variant="micro">正在补充词书收藏内容…</AppText> : null}
             </View>
-          )}
+          ) : null}
           ListEmptyComponent={(
             <View style={styles.partialEmpty}>
               <BookOpen color={colors.mutedForeground} size={28} />

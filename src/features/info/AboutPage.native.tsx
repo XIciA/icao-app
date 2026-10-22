@@ -1,9 +1,8 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { AppUpdatePrompt } from '@/features/app-updates/AppUpdatePrompt';
 import { nativeApplicationVersion } from 'expo-application';
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
-
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Card, Screen } from '@/components/ui';

@@ -1,9 +1,9 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
@@ -122,15 +122,9 @@ export function MyAnnotationsScreen() {
 
   return (
     <Screen contentStyle={styles.screen}>
-      <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.back()} onSelect={chooseBank} value={bankId} />
+      <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)/profile')} onSelect={chooseBank} value={bankId} />
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.titleRow}>
-          <AppText style={styles.pageTitle} variant="pageTitle">我的标注</AppText>
-          <AppText color={colors.primary} variant="micro">本机数据 · {bankId === 'all' ? '全部题库' : '当前题库'}</AppText>
-        </View>
-        <AppText variant="caption">集中查看你在{bankId === 'all' ? '全部题库' : '当前题库'}打的标签、高亮与笔记。</AppText>
-
         <View style={styles.segmented}>
           {segments.map((item) => {
             const Icon = item.icon;
@@ -309,8 +303,6 @@ function StateCard({ action, description, icon: Icon, title }: { action?: React.
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   scroll: { flexGrow: 1, paddingBottom: spacing[8], paddingHorizontal: spacing[5], paddingTop: spacing[4] },
-  titleRow: { alignItems: 'baseline', flexDirection: 'row', justifyContent: 'space-between' },
-  pageTitle: { fontFamily: fonts.serifSemibold },
   segmented: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1], marginTop: spacing[4], padding: spacing[1] },
   segment: { alignItems: 'center', borderRadius: radii.full, flex: 1, flexDirection: 'row', gap: spacing[1.5], justifyContent: 'center', minHeight: 42, paddingHorizontal: spacing[2] },
   segmentActive: { backgroundColor: colors.primary10 },

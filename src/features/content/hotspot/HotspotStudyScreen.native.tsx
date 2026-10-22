@@ -1,10 +1,10 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useMemo } from 'react';
 import { selectHotspotSource } from '@icao/contracts/app-content';
 import { buildHotspotStudyPackage } from './build-hotspot-study-package.native';
 import type { Href } from 'expo-router';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';

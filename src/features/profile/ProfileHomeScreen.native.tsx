@@ -1,10 +1,10 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { Bookmark, ChevronRight, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
-
 import { AppText, Card } from '@/components/ui';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';

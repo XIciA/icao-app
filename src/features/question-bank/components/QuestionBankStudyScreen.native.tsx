@@ -1,3 +1,4 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { TUTORIAL_STEPS } from '@/features/usage-guide/tutorial-model';
@@ -6,7 +7,7 @@ import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { useSaveAction } from '@/features/vocabulary/use-save-action.native';
 import { setClickStudyContext, trackProductClick } from '@/platform/product-clicks.native';
 import { usePreventRemove } from '@react-navigation/native';
-import { type Href, useFocusEffect, useRouter } from 'expo-router';
+import { type Href, useFocusEffect } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Alert, Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -220,6 +221,10 @@ function StudyContent(props: Props) {
       onReturn();
       return;
     }
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
     if (returnHref) {
       router.dismissTo(returnHref);
       return;
@@ -238,8 +243,10 @@ function StudyContent(props: Props) {
 
   usePreventRemove(!leavingStudy && (!session.report || Boolean(onReturn && session.historyRecord)), () => { void leaveStudy(); });
 
+  const exitDispatched = useRef(false);
   useEffect(() => {
-    if (!leavingStudy) return;
+    if (!leavingStudy || exitDispatched.current) return;
+    exitDispatched.current = true;
     navigateAfterStudy();
   }, [leavingStudy, navigateAfterStudy]);
 
@@ -462,6 +469,8 @@ function StudyContent(props: Props) {
   const { questionSwipeGesture, recordingInteractionGesture, workbenchSwipeGesture } = useMemo(() => {
     const questionGesture = Gesture.Pan()
       .enabled(questionSwipeEnabled)
+      // Reserve the left edge for the native interactive back gesture.
+      .hitSlop({ left: -24 })
       .maxPointers(1)
       .activeOffsetX([-24, 24])
       .failOffsetY([-14, 14])
@@ -732,7 +741,7 @@ function StudyContent(props: Props) {
   }
 
   if (session.report && !session.historyRecord) {
-    return <StudyReport interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
+    return <StudyReport localReturn={Boolean(onReturn)} interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
   if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;

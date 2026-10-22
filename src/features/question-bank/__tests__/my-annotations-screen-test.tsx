@@ -94,7 +94,7 @@ describe('<MyAnnotationsScreen />', () => {
 
   it('separates annotation kinds, filters by color, and routes to the exact card', async () => {
     const screen = await render(<MyAnnotationsScreen />);
-    expect(screen.getByText('我的标注')).toBeTruthy();
+    expect(screen.queryByText('我的标注')).toBeNull();
     expect(screen.getByText('全部题库')).toBeTruthy();
     await waitFor(() => expect(screen.getByText(/UAL\s?919/)).toBeTruthy());
     expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
@@ -123,7 +123,7 @@ describe('<MyAnnotationsScreen />', () => {
 
     expect(screen.queryByText('Maintaining FL310.')).toBeNull();
     await waitFor(() => expect(screen.getByText(/UAL\s?919/)).toBeTruthy());
-    expect(screen.getByText('本机数据 · 当前题库')).toBeTruthy();
+    expect(screen.queryByText('本机数据 · 当前题库')).toBeNull();
   });
 });
 

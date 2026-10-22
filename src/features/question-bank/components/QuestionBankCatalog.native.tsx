@@ -1,6 +1,8 @@
+import { useFocusEffect } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { AirlineMark, hasAirlineMark } from './AirlineMark';
 import { SentenceExportScreen } from '../export/SentenceExportScreen';
-import { useRouter } from 'expo-router';
+
 import {
   Download,
   BookOpenText,
@@ -20,7 +22,7 @@ import {
   Wrench,
   type LucideIcon,
 } from '@/components/ui/icons';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -61,14 +63,16 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
     value: item.id,
   })), [scopedCatalog]);
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     let active = true;
     setProgressReady(false); setProgressError(false);
     void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
       if (active) { setProgress(next); setProgressReady(true); }
     }).catch(() => { if (active) setProgressError(true); });
     return () => { active = false; };
-  }, [dataset, scope, progressAttempt]);
+  // Manual retry reloads progress while the catalog remains focused.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataset, scope, progressAttempt]));
 
   function isLocked(topic: QuestionBankTopic) {
     return dataset.access?.membershipActive !== true
@@ -103,7 +107,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
       <QuestionBankSwitcherHeader
         right={dataset.id === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="导出900句 PDF" hitSlop={10} onPress={() => setExporting(true)}><Download size={21} color={colors.primary}/></Pressable> : undefined}
         items={switcherItems}
-        onBack={() => router.back()}
+        onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}
         onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}
         value={dataset.id}
       />
@@ -186,7 +190,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
           })}
         </ScrollView>
       </View>
-      <CatalogBottomNav onNavigate={(route) => router.replace(route)} />
+      <CatalogBottomNav onNavigate={(route) => router.dismissTo(route)} />
     </Screen>
   );
 }

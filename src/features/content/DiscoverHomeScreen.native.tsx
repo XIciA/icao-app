@@ -1,5 +1,5 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
-import { useRouter } from 'expo-router';
 import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import {
   BookMarked,

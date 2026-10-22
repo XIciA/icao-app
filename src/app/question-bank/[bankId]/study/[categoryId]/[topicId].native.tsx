@@ -4,7 +4,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
@@ -37,9 +36,9 @@ export default function NativeQuestionBankStudyRoute() {
       : router.canGoBack() ? '返回上一页'
         : bankState.status === 'ready' ? '返回题库' : '返回首页';
   const returnToSource = () => {
-    if (returnFromRadio) router.replace('/content/radio');
+    if (router.canGoBack()) router.back();
+    else if (returnFromRadio) router.replace('/content/radio');
     else if (returnTo === 'annotations') router.replace('/annotations');
-    else if (router.canGoBack()) router.back();
     else if (bankState.status === 'ready') router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: bankState.data.id } });
     else router.replace('/(tabs)');
   };
@@ -71,7 +70,7 @@ export default function NativeQuestionBankStudyRoute() {
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {
     return stateScreen(<CenteredState actionLabel="返回题库首页" description="这部分内容不在当前考试目标或题库范围内。可回到首页调整题库范围，或在个人资料中查看考试目标。" icon={BookX}
-      onAction={() => router.replace('/(tabs)')} title="不在当前学习范围" />);
+      onAction={() => router.dismissTo('/(tabs)')} title="不在当前学习范围" />);
   }
   if (topicState.status === 'membership-required') {
     return stateScreen(

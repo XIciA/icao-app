@@ -1,6 +1,7 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
 import * as ImagePicker from 'expo-image-picker';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';

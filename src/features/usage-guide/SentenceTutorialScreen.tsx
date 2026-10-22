@@ -1,4 +1,5 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -65,7 +66,7 @@ export function SentenceTutorialScreen() {
     const recap = TUTORIAL_STEPS.findIndex(step => step.id === 'recap');
     update({ ...p, recordId, step: Math.max(p.step, recap), completed: p.step === recap - 1 ? [...new Set([...p.completed, 'finish' as const])] : p.completed });
   }, [update]);
-  const exit = useCallback(() => router.replace({ pathname: '/info/[slug]', params: { slug: 'guide' } }), [router]);
+  const exit = useCallback(() => router.dismissTo('/info/guide'), [router]);
   const restartTutorial = useCallback(() => router.replace({ pathname: '/info/[slug]', params: { slug: 'tutorial', restart: String(Date.now()) } }), [router]);
   const controller = useMemo(() => state && state.accountId === accountId ? { progress: state.progress, event, skip, finish, exit, restart: restartTutorial, scroll, scrollOffset, saveError } : null, [accountId, event, exit, finish, restartTutorial, saveError, skip, state]);
   if (error) return <Screen><TopBar title="新手教程" onBack={exit} /><CenteredState title="暂时无法开始教程" description={error} actionLabel="重试" onAction={() => setAttempt(n => n + 1)} /></Screen>;

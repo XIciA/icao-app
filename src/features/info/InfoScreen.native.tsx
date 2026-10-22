@@ -1,3 +1,4 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { UserGuideScreen } from '@/features/usage-guide/UserGuideScreen';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory.native';
 import { requestPhotoSelectionPermission } from '@/platform/photo-permission.native';
@@ -10,7 +11,7 @@ import type {
 } from '@icao/contracts';
 import { useNavigation, usePreventRemove } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import {
   CheckCircle2,
   ImagePlus,
@@ -259,7 +260,7 @@ function FeedbackPage() {
               if (source === 'study' && router.canGoBack()) { router.back(); return; }
               const routeBank = /^\/question-bank\/(listening|sentences900|radiotelephony|opi|storytelling)(?:\/|$)/.exec(params.sourceRoute ?? '')?.[1];
               if (source === 'study' && routeBank) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: routeBank } });
-              else router.replace({pathname:'/info/[slug]',params:{slug:'feedback'}});
+              else router.dismissTo('/info/feedback');
             }} size="lg">{source === 'study' ? '返回学习' : '查看反馈记录'}</Button>
             <Button onPress={reset} size="lg" variant="outline">再提一条</Button>
           </View>

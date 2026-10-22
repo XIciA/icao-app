@@ -1,10 +1,9 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
-import { useRouter } from 'expo-router';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from '@/components/ui/icons';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
-
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';

@@ -6,10 +6,11 @@ import { InfoScreen } from '../InfoScreen.native';
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({}) }));
 jest.mock('@/features/feedback/FeedbackHistory.native', () => ({ FeedbackHistory: () => null }));
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+const mockDismissTo = jest.fn();
 const mockSubmit = jest.fn();
 let mockParams: Record<string, string> = { slug: 'feedback', source: 'profile', compose: '1' };
 let mockId = 0;
-jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams, useRouter: () => ({ canGoBack: () => true, back: jest.fn(), replace: jest.fn() }) }));
+jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams, useRouter: () => ({ canGoBack: () => true, back: jest.fn(), replace: jest.fn(), dismissTo: mockDismissTo }) }));
 jest.mock('@react-navigation/native', () => ({ useFocusEffect: jest.fn(), usePreventRemove: jest.fn(), useNavigation: () => ({ dispatch: jest.fn() }) }));
 jest.mock('expo-image-picker', () => ({ requestMediaLibraryPermissionsAsync: jest.fn(), launchImageLibraryAsync: jest.fn() }));
 jest.mock('@/features/feedback/feedback-client.native', () => ({ createClientSubmissionId: () => `id-${++mockId}`, submitFeedback: (...args: unknown[]) => mockSubmit(...args) }));
@@ -58,4 +59,15 @@ it('freezes editing while submitting and ignores a late result after navigating 
   await act(async () => resolve({ ticketNumber: 'FB-OLD' }));
   expect(view.queryByText('FB-OLD')).toBeNull();
   expect(view.getByPlaceholderText('请描述题目中需要纠正的内容。').props.value).toBe('');
+});
+
+it('returns to the existing feedback history after successful submission', async () => {
+  mockSubmit.mockResolvedValue({ ticketNumber: 'FB-261022-00000001' });
+  const view = await render(screen());
+  await fireEvent.changeText(view.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '这是一条测试反馈');
+  await fireEvent.press(view.getByTestId('feedback-submit'));
+  await waitFor(() => expect(view.getByText('查看反馈记录')).toBeTruthy());
+  await fireEvent.press(view.getByText('查看反馈记录'));
+  expect(mockDismissTo).toHaveBeenCalledTimes(1);
+  expect(mockDismissTo).toHaveBeenCalledWith('/info/feedback');
 });

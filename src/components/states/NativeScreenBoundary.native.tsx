@@ -1,7 +1,7 @@
-import { type Href, useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { type Href } from 'expo-router';
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
-
 import { TopBar } from '@/components/navigation/TopBar';
 import { Button, Screen } from '@/components/ui';
 import { spacing } from '@/theme';

@@ -1,3 +1,4 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import {
   AI_GENERATED_CONTENT_LABEL,
@@ -8,7 +9,7 @@ import type { AiOperationLookup } from '@icao/contracts/commerce-rules';
 import { autoTranscriptionEnabled } from '@/features/ai/auto-transcription.native';
 import { LearningAnalysisView } from './LearningAnalysisView';
 import { randomUUID } from 'expo-crypto';
-import { usePathname, useRouter } from 'expo-router';
+import { usePathname } from 'expo-router';
 import {
   Fragment,
   forwardRef,

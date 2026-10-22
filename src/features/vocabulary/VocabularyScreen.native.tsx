@@ -1,3 +1,4 @@
+import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { useSaveAction } from './use-save-action.native';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
@@ -100,6 +101,16 @@ export function VocabularyScreen() {
     if (guide?.current !== 'vocab' || !restoredGuide.current || !selected.size) return;
     guide.checkpoint({ vocabBooks: [...selected], ...(studyWords[studyIndex] ? { vocabWord: studyWords[studyIndex]!.id } : {}) });
   }, [guide, selected, studyIndex, studyWords]);
+
+  const backView = () => {
+    if (save.saving || save.failed) return;
+    if (view === 'list') setView('detail');
+    else if (view === 'study' || view === 'complete') setView(returnView);
+    else if (view === 'sessionList') setView('complete');
+    else if (view === 'testRun') setView('testIntro');
+    else setView('books');
+  };
+  useLocalBack(view !== 'books' && !progress.error, backView);
 
   if (progress.error) return <Screen><TopBar title="单词学习" /><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
