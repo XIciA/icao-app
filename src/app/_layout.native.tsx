@@ -1,3 +1,4 @@
+import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation/route-identity.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
 import { Stack, SplashScreen, usePathname, type ErrorBoundaryProps, type Href } from 'expo-router';
@@ -144,8 +145,8 @@ export function AppStack() {
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />
-              <Stack.Screen name="account/[slug]" />
-              <Stack.Screen name="info/[slug]" />
+              <Stack.Screen name="account/[slug]" dangerouslySingular={accountRouteIdentity} />
+              <Stack.Screen name="info/[slug]" dangerouslySingular={infoRouteIdentity} />
             </Stack.Protected>
       </Stack>
       <UiAcceptanceBadge />

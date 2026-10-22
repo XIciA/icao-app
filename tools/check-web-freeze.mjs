@@ -368,6 +368,9 @@ reviewedFormalWebHashes.set("src/components/navigation/useAppRouter.ts", [null, 
 // Native route handlers now share tap protection; the Web sibling is unchanged.
 reviewedFormalWebHashes.set("src/app/content/[slug].native.tsx", [...(reviewedFormalWebHashes.get("src/app/content/[slug].native.tsx") ?? ["acfd42af3f57657d0e64e3011348c8a94eb5b15df47d493fe3753c50eea35b86"]), "f7f0f6d2941b14786baf86a0461f89e9b8760a1bbed639a56f1242d80de42aef"]);
 
+// Account/info dynamic route identities affect only the Native stack.
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "aa2bb9a438451bf99071555059f03607b6602b81e3e11e0a53d6f2e63a5fe2ce"]);
+
 const webImplementationPattern = /\.web\.(?:[cm]?[jt]sx?)$/u;
 
 // User-approved B startup across Native and EdgeOne; legacy renderer and injector stay unchanged.
