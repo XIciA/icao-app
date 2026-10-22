@@ -1,4 +1,5 @@
-import { act, render, waitFor } from '@testing-library/react-native';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AiAllowanceCard, allowanceCopy } from '../AiAllowanceCard.native';
 import type { AiAllowanceResponse, AiAllowanceSummary } from '@icao/contracts/commerce-rules';
 
@@ -108,4 +109,15 @@ it.each(['weekly', 'trial'] as const)('retains %s percentage and a single separa
 it('does not let an exhausted gift obscure the original trial eligibility reason', () => {
   expect(allowanceCopy({ ...response(0, 'unavailable').allowance,
     reason: 'trial_already_claimed', bonus: { available: 0, expiresAt: null } }).value).toBe('体验额度已领取');
+});
+
+it('keeps the profile allowance in one row and shows reset time only in details', async () => {
+  const weekly = response(68, 'weekly'); weekly.allowance.resetAt = '2026-10-26T00:00:00Z';
+  mockApiRequest.mockResolvedValue(weekly);
+  const screen = await render(<AiAllowanceCard compact />);
+  await waitFor(() => expect(screen.getByText('剩余 68%')).toBeTruthy());
+  expect(screen.queryByRole('progressbar')).toBeNull();
+  expect(screen.queryByText(/重置时间/)).toBeNull();
+  await fireEvent.press(screen.getByLabelText('本周 AI 额度'));
+  expect(screen.getByText(/重置时间/)).toBeTruthy();
 });

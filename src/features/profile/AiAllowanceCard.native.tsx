@@ -4,7 +4,8 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useState, useSyncExternalStore } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
 
-import { AppText, Card } from '@/components/ui';
+import { AppText, BottomSheet, Button, Card } from '@/components/ui';
+import { DetailRow } from '@/components/ui/DetailGroup';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { getNativeCommerceEnvironmentState, subscribeNativeCommerceEnvironment } from '@/features/native-commercial-testflight/commerce-environment.native';
@@ -39,7 +40,8 @@ export function allowanceCopy(allowance: AiAllowanceSummary) {
 }
 
 /** A read-only view of the existing account/environment allowance owner. */
-export function AiAllowanceCard() {
+export function AiAllowanceCard({ compact = false }: { compact?: boolean }) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const { account, accountReady } = useAuth();
   const environment = useSyncExternalStore(subscribeNativeCommerceEnvironment, getNativeCommerceEnvironmentState);
   const accountId = accountReady ? account?.accountId : undefined;
@@ -90,6 +92,15 @@ export function AiAllowanceCard() {
     title: 'AI 每周使用限额', value: visible?.failed ? '暂时无法读取' : '正在读取…', detail: '',
   };
   const showProgress = allowance && (allowance.mode === 'weekly' || allowance.mode === 'trial');
+  if (compact) return <>
+    <DetailRow label={allowance?.mode === 'trial' ? 'AI 体验额度' : '本周 AI 额度'} onPress={() => setDetailsOpen(true)}><AppText color={colors.primary} variant="caption">{copy.value}</AppText></DetailRow>
+    <BottomSheet visible={detailsOpen} onClose={() => setDetailsOpen(false)} accessibilityLabel="AI 额度详情"><View style={{ gap: spacing[4] }}>
+      <AppText variant="sectionTitle">{copy.title}</AppText><AppText color={colors.primary} variant="cardTitle">{copy.value}</AppText>
+      {copy.detail ? <AppText variant="caption">{copy.detail}</AppText> : null}
+      {showProgress && allowance?.bonus && allowance.bonus.available > 0 ? <AppText variant="caption">额外赠送额度可用{allowance.bonus.expiresAt ? ` · 最早到期：${localTime(allowance.bonus.expiresAt)}` : ''}</AppText> : null}
+      <Button variant="secondary" onPress={() => setDetailsOpen(false)}>关闭</Button>
+    </View></BottomSheet>
+  </>;
   return <Card style={styles.card}>
     <View style={styles.row}>
       <AppText style={styles.title}>{copy.title}</AppText>

@@ -1,11 +1,13 @@
+import { useAuth } from '@/features/auth/AuthProvider';
+import { captureLearningWriteContext } from '@/features/sync/learning-sync.native';
 import { useSaveAction } from './use-save-action.native';
-import { BookOpen, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
+import { BookOpen, ChevronDown, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { CenteredState } from '@/components/states/CenteredState';
-import { AppText, Card, Screen, Tag } from '@/components/ui';
+import { AppText, Button, Screen } from '@/components/ui';
 import { getStaticWordLookupEntries } from '@/features/question-bank/static-word-lookup/repository';
 import { colors, radii, spacing } from '@/theme';
 
@@ -15,6 +17,10 @@ import { loadVocabulary, type VocabularyLoadResult } from './repository.native';
 
 export function WordFavoritesScreen() {
   const favorites = useWordFavorites();
+  const auth = useAuth();
+  const [expanded, setExpanded] = useState<string>();
+  const [removed, setRemoved] = useState<{ item: WordFavoriteItem; context: ReturnType<typeof captureLearningWriteContext> }>();
+  useEffect(() => { setRemoved(undefined); setExpanded(undefined); }, [auth.account?.accountId]);
   const save = useSaveAction();
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
@@ -52,6 +58,7 @@ export function WordFavoritesScreen() {
       ) : items.length || loadError ? (
         <FlatList
           contentContainerStyle={styles.listContent}
+          extraData={expanded}
           data={items}
           keyExtractor={(item) => item.key}
           ListHeaderComponent={loadError || loadingVocabulary ? (
@@ -77,10 +84,11 @@ export function WordFavoritesScreen() {
               <AppText style={styles.center} variant="caption">词书资源恢复后会自动补齐其中的收藏。</AppText>
             </View>
           )}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <FavoriteWordCard
-              item={item}
-              onRemove={() => save.run(() => favorites.setFavorite({ word: item.word, wordId: item.wordIds[0] }, false))}
+              item={item} expanded={expanded === item.key} first={index === 0} last={index === items.length - 1}
+              onToggle={() => setExpanded(current => current === item.key ? undefined : item.key)}
+              onRemove={() => { const context = captureLearningWriteContext(); return save.run(() => favorites.setFavorite({ word: item.word, wordId: item.wordIds[0] }, false), () => setRemoved({ item, context }), context); }}
             />
           )}
           showsVerticalScrollIndicator={false}
@@ -90,41 +98,40 @@ export function WordFavoritesScreen() {
       ) : (
         <CenteredState description="在单词学习或题库查词中点亮收藏星标后，会统一显示在这里。" icon={Star} title="还没有收藏单词" />
       )}
+      {removed ? <View style={styles.undo}><AppText variant="caption" style={{flex:1}}>已取消收藏 {removed.item.word}</AppText><Button variant="ghost" size="sm" onPress={() => void save.run(() => favorites.setFavorite({word:removed.item.word,wordId:removed.item.wordIds[0]},true),()=>setRemoved(undefined),removed.context)}>撤销</Button><Button variant="ghost" size="sm" onPress={()=>setRemoved(undefined)}>关闭</Button></View> : null}
     </Screen>
   );
 }
 
-function FavoriteWordCard({ item, onRemove }: { item: WordFavoriteItem; onRemove: () => Promise<unknown> | unknown }) {
-  return (
-    <Card elevated style={styles.card}>
-      <View style={styles.titleRow}>
-        <View style={styles.titleCopy}>
-          <AppText variant="sectionTitle">{item.word}</AppText>
-          <View style={styles.tags}>
-            {item.sources.includes('vocabulary') ? <Tag tone="primary">单词学习</Tag> : null}
-            {item.sources.includes('lookup') ? <Tag tone="accent">题库查词</Tag> : null}
-          </View>
-        </View>
-        <Pressable accessibilityLabel={`取消收藏${item.word}`} hitSlop={8} onPress={() => { void onRemove(); }} style={({ pressed }) => [styles.favoriteButton, pressed ? styles.pressed : null]}>
-          <Star color={colors.accent} fill={colors.accent} size={21} />
-        </Pressable>
-      </View>
-      <AppText color={colors.foreground}>{item.meaning}</AppText>
-      {item.sources.includes('lookup') && item.aviationMeaning !== item.meaning ? <AppText variant="caption">航空释义：{item.aviationMeaning}</AppText> : null}
+function FavoriteWordCard({ item, expanded, first, last, onToggle, onRemove }: { item: WordFavoriteItem; expanded: boolean; first: boolean; last: boolean; onToggle: () => void; onRemove: () => Promise<unknown> | unknown }) {
+  return <View style={[styles.card, first && styles.first, last && styles.last]}>
+    <View style={styles.titleRow}>
+      <Pressable accessibilityRole="button" accessibilityLabel={`查看 ${item.word} 释义`} accessibilityState={{expanded}} onPress={onToggle} style={styles.expand}>
+        <View style={styles.titleCopy}><AppText variant="cardTitle">{item.word}</AppText><AppText variant="caption">{item.meaning}</AppText></View>
+        {expanded ? <ChevronDown size={16} color={colors.mutedForeground} style={{transform:[{rotate:'180deg'}]}}/> : <ChevronDown size={16} color={colors.mutedForeground}/>}
+      </Pressable>
+      <Pressable accessibilityLabel={`取消收藏${item.word}`} onPress={() => { void onRemove(); }} style={styles.favoriteButton}><Star color={colors.accent} fill={colors.accent} size={20}/></Pressable>
+    </View>
+    {expanded ? <View style={styles.detail}>
+      {item.aviationMeaning ? <AppText variant="caption">航空释义：{item.aviationMeaning}</AppText> : null}
       {item.generalMeaning ? <AppText variant="caption">常用释义：{item.generalMeaning}</AppText> : null}
+      <AppText variant="micro">来源：{item.sources.map(source => source === 'lookup' ? '题库查词' : '单词学习').join('、')}</AppText>
       {item.bookNames.length ? <AppText variant="micro">词书：{item.bookNames.join('、')}</AppText> : null}
-    </Card>
-  );
+    </View> : null}
+  </View>;
 }
 
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
-  listContent: { gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] },
+  listContent: { padding: spacing[5], paddingBottom: spacing[8] },
   header: { gap: spacing[2], paddingBottom: spacing[2] },
   warning: { alignItems: 'center', backgroundColor: 'rgba(183,118,16,0.10)', borderRadius: radii.lg, flexDirection: 'row', gap: spacing[3], marginTop: spacing[2], padding: spacing[3] },
   warningCopy: { flex: 1 },
   retry: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 },
-  card: { gap: spacing[2], padding: spacing[4] },
+  card: { gap: spacing[2], padding: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: StyleSheet.hairlineWidth },
+  first: {borderTopLeftRadius:radii.xl,borderTopRightRadius:radii.xl},last:{borderBottomLeftRadius:radii.xl,borderBottomRightRadius:radii.xl},
+  expand:{flex:1,flexDirection:'row',alignItems:'center',gap:spacing[2],minHeight:44},detail:{gap:spacing[2],borderTopWidth:1,borderTopColor:colors.border,paddingTop:spacing[3]},
+  undo:{flexDirection:'row',alignItems:'center',gap:spacing[2],padding:spacing[3],backgroundColor:colors.card},
   titleRow: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' },
   titleCopy: { flex: 1, gap: spacing[2] },
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },

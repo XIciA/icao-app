@@ -1,3 +1,4 @@
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 jest.mock('../components/LookupPronunciation', () => ({ LookupPronunciation: () => null }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { StudyReport } from '../components/StudyReport.native';
@@ -19,7 +20,7 @@ it('returns from the readonly paper to the same completed result without leaving
   jest.mocked(loadLearningRecordReview).mockResolvedValue({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) });
   const leave = jest.fn();
   const screen = await render(<StudyReport record={record} noteCount={0} interaction="choices" onReturn={leave} />);
-  await fireEvent.press(screen.getByText('全部学习记录'));
+  await fireEvent.press(screen.getByText('本次学习记录'));
   await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
   await fireEvent.press(screen.getByText('返回结束页面'));
   expect(screen.getByText('听力成绩')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(leave).not.toHaveBeenCalled(); expect(loadLearningRecordReview).toHaveBeenCalledTimes(1);
@@ -31,12 +32,12 @@ it('marks tutorial recap complete only after the saved original question opens',
   const controller = { current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
   const screen = await render(<GuideBindingContext.Provider value={controller}><StudyReport record={record} noteCount={0} interaction="choices" onReturn={jest.fn()} /></GuideBindingContext.Provider>);
   jest.mocked(loadLearningRecordReview).mockRejectedValueOnce(new Error('offline'));
-  await fireEvent.press(screen.getByText('全部学习记录'));
+  await fireEvent.press(screen.getByText('本次学习记录'));
   await waitFor(() => expect(screen.getByText('记录暂时无法打开，请重试。')).toBeTruthy());
   expect(event).not.toHaveBeenCalled();
   const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
   jest.mocked(loadLearningRecordReview).mockResolvedValueOnce({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) });
-  await fireEvent.press(screen.getByText('全部学习记录'));
+  await fireEvent.press(screen.getByText('本次学习记录'));
   await waitFor(() => expect(event).toHaveBeenCalledWith('study-recap'));
   expect(screen.getByText('返回结束页面')).toBeTruthy();
 });
@@ -65,10 +66,22 @@ it('does not reopen a review when its slow load finishes after returning', async
   jest.mocked(loadLearningRecordReview).mockReturnValueOnce(new Promise(done => { resolve = done; }));
   const leave = jest.fn();
   const screen = await render(<StudyReport localReturn record={record} noteCount={0} interaction="choices" onReturn={leave} />);
-  await fireEvent.press(screen.getByText('全部学习记录'));
+  await fireEvent.press(screen.getByText('本次学习记录'));
   await act(async () => { mockBackHandler?.(); });
   const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
   await act(async () => resolve({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) }));
   expect(leave).toHaveBeenCalledTimes(1);
   expect(screen.queryByText('返回结束页面')).toBeNull();
+});
+
+it('opens the saved session answer card and enters a selected question', async () => {
+  const dataset = data[0] as QuestionBankDataset, category = dataset.categories[0], topic = category.topics[0];
+  const items = topic.cards.slice(0, 2).map(card => ({id:card.id,dataset,category,topic,card}));
+  const saved = {...record, studyReview:captureStudyReview(items, {}, {})};
+  jest.mocked(loadLearningRecordReview).mockResolvedValue(saved);
+  const screen = await render(<StudyReport record={saved} noteCount={0} interaction="choices" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(() => expect(screen.getByText('共 2 题')).toBeTruthy());
+  await fireEvent.press(screen.getByLabelText('第 2 题'));
+  await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
 });

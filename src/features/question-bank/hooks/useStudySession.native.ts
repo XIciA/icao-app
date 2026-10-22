@@ -502,6 +502,9 @@ export function useStudySession(options: UseStudySessionOptions) {
     cardState,
     currentIndex,
     visitedIndexes,
+    // Presentation only: cumulative visits must not import past answers into this attempt.
+    learnedIndexes: new Set(items.flatMap((entry, index) =>
+      persistentStates.current[entry.id]?.visited || states[entry.id]?.visited ? [index] : [])),
     completedCardIds,
     revealed,
     autoReveal,
