@@ -1,6 +1,7 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import type { ReactNode } from 'react';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';

@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { ArrowLeft, Eye, EyeOff, Check } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';

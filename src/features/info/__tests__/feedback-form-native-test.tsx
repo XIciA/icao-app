@@ -1,3 +1,5 @@
+import { Alert } from 'react-native';
+import { usePreventRemove } from '@react-navigation/native';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
@@ -70,4 +72,20 @@ it('returns to the existing feedback history after successful submission', async
   await fireEvent.press(view.getByText('查看反馈记录'));
   expect(mockDismissTo).toHaveBeenCalledTimes(1);
   expect(mockDismissTo).toHaveBeenCalledWith('/info/feedback');
+});
+
+
+it('shows one discard confirmation for repeated swipes and permits retry after cancel', async () => {
+  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+  const view = await render(screen());
+  await fireEvent.changeText(view.getByPlaceholderText('请详细描述你的建议或遇到的问题。'), '保留这条反馈');
+  const back = jest.mocked(usePreventRemove).mock.calls.at(-1)![1];
+  const event = { data: { action: { type: 'GO_BACK' } } };
+  await act(async () => { back(event); back(event); });
+  expect(alert).toHaveBeenCalledTimes(1);
+  await act(async () => alert.mock.calls[0][2]![0].onPress?.());
+  await act(async () => back(event));
+  expect(alert).toHaveBeenCalledTimes(2);
+  expect(view.getByDisplayValue('保留这条反馈')).toBeTruthy();
+  alert.mockRestore();
 });

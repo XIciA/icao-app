@@ -75,7 +75,7 @@ test('the reviewed Native study route delta keeps exact content, Web sibling and
 test('the reviewed Native study route is included in context but selected only on iOS and Android by the installed router', () => {
   const require = createRequire(import.meta.url);
   const { getRoutes } = require('expo-router/build/getRoutesCore');
-  const nativeKey = './question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx';
+  for (const nativeKey of ['./question-bank/[bankId]/study/[categoryId]/[topicId].native.tsx', './content/[slug].native.tsx']) {
   const webKey = nativeKey.replace('.native.tsx', '.tsx');
   for (const platform of ['web', 'ios', 'android']) {
     const loaded = [];
@@ -90,6 +90,7 @@ test('the reviewed Native study route is included in context but selected only o
     routes.children[0].loadRoute();
     assert.equal(loaded.includes(selected), true);
     assert.equal(loaded.includes(platform === 'web' ? nativeKey : webKey), false);
+  }
   }
 });
 

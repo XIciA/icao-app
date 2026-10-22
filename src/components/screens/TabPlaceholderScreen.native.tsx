@@ -36,7 +36,7 @@ type Props = {
 };
 
 // The existing route uses this component only for the question-bank home.
-export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, onEntryPress }: Props) {
+export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries }: Props) {
   const profile = useProfile();
   const router = useRouter();
   const headerLeading = <Pressable accessibilityRole="button" accessibilityLabel="打开个人资料" hitSlop={6} onPress={() => router.push('/account/profile')} style={({ pressed }) => pressed ? { opacity: 0.7 } : undefined}><ProfileAvatar size={40} uri={profile.avatarUri} /></Pressable>;
@@ -80,7 +80,7 @@ export function TabPlaceholderScreen({ title, eyebrow, headerTrailing, entries, 
               accessibilityLabel={`${entry.title}，${enabled ? '打开' : '功能开发中'}`}
               disabled={!enabled}
               key={entry.slug}
-              onPress={() => { trackProductClick('bank_open',entry.slug); onEntryPress(entry); }}
+              onPress={() => { trackProductClick('bank_open',entry.slug); router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } }); }}
               style={!enabled ? styles.disabled : null}
             >
               <View style={styles.row}>
