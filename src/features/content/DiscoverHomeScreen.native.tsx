@@ -72,12 +72,12 @@ function SectionTitle({ title, en }: { title: string; en: string }) {
 
 function Feature({ entry, onPress }: { entry: Entry; onPress: () => void }) {
   const Icon = entry.icon;
-  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => [styles.feature, pressed ? styles.pressed : null]}><View style={styles.icon}><Icon color={colors.primary} size={20} />{entry.mock ? <View style={styles.soonDot} /> : null}</View><AppText style={styles.featureLabel} variant="caption">{entry.title}</AppText></Pressable>;
+  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => [styles.feature, pressed ? styles.pressed : null]}><View style={styles.icon}><Icon color={colors.primary} size={24} />{entry.mock ? <View style={styles.soonDot} /> : null}</View><AppText style={styles.featureLabel} variant="caption">{entry.title}</AppText></Pressable>;
 }
 
 function ListEntry({ entry, onPress, emphasis }: { entry: Entry; onPress: () => void; emphasis?: boolean }) {
   const Icon = entry.icon;
-  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => pressed ? styles.pressed : null}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 23 : 20} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={2} variant="caption">{entry.description}</AppText></View><ChevronRight color={colors.mutedForeground} size={17} /></Card></Pressable>;
+  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => pressed ? styles.pressed : null}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 27 : 24} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={2} variant="caption">{entry.description}</AppText></View><ChevronRight color={colors.mutedForeground} size={17} /></Card></Pressable>;
 }
 
 const styles = StyleSheet.create({
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   featureCard: { padding: spacing[3] },
   grid: { flexDirection: 'row' },
   feature: { alignItems: 'center', flex: 1, gap: spacing[1.5], paddingVertical: spacing[1.5] },
-  icon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.xl, height: 44, justifyContent: 'center', width: 44 },
+  icon: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   largeIcon: { height: 50, width: 50 },
   featureLabel: { color: colors.foreground, fontFamily: fonts.sansMedium, textAlign: 'center' },
   soonDot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 8, opacity: 0.5, position: 'absolute', right: -2, top: -2, width: 8 },

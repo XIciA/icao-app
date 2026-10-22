@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   group: { gap: spacing[2] }, day: { paddingHorizontal: spacing[1], paddingTop: spacing[2] },
   error: { gap: spacing[2] }, empty: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[6] },
   swipe: { borderRadius: radii.xxl }, card: { gap: spacing[2] }, content: { gap: spacing[3] }, titleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
-  icon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 40, justifyContent: 'center', width: 40 }, copy: { flex: 1 },
+  icon: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 }, copy: { flex: 1 },
   metrics: { alignItems: 'center', borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3], paddingTop: spacing[3] },
   metric: { alignItems: 'center', flexDirection: 'row', gap: spacing[1] }, date: { color: colors.mutedForeground, flex: 1, textAlign: 'right' },
   delete: { alignItems: 'center', justifyContent: 'center', backgroundColor: colors.destructive, gap: spacing[1], paddingHorizontal: spacing[5] },
