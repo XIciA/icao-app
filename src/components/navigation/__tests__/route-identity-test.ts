@@ -6,7 +6,12 @@ function stack(name: string, identity: typeof infoRouteIdentity, initial: Record
   const options = { routeNames: [name], routeParamList: { [name]: initial }, routeGetIdList: { [name]: ({ params }: { params?: object }) => identity(name, (params ?? {}) as Record<string, unknown>) } };
   let state = router.getInitialState(options);
   return {
-    act(action: ReturnType<typeof StackActions.push>) { state = router.getStateForAction(state, action, options)!; return state; },
+    act(action: Parameters<typeof router.getStateForAction>[1]) {
+      const next = router.getStateForAction(state, action, options);
+      if (!next) throw new Error('Unhandled test navigation action');
+      state = router.getRehydratedState(next, options);
+      return state;
+    },
   };
 }
 
