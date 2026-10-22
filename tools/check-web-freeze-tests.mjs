@@ -268,9 +268,7 @@ test('the PDF and airline catalog stay on the unselected native route in frozen 
   assert.equal(routes.children[0].contextKey,webKey);
   routes.children[0].loadRoute();assert.ok(!loaded.includes(nativeKey));
   const download=readFileSync(path.join(repositoryRoot,'src/features/content/AppDownloadScreen.tsx'),'utf8');
-  assert.match(download, /newerAppUpdate\(releases, 'android-apk'/);
-  assert.match(download, /newerAppUpdate\(releases, 'android-test'/);
-  assert.match(download, /testRelease \? <Link/);
+  assert.doesNotMatch(download,/测试版下载|testRelease/);
   assert.match(download,/newerAppUpdate\(releases, 'android-apk'/);
   assert.match(download,/const usePublishedRelease = isEdgeOneProductionWeb\(\)/);
 });
