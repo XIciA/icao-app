@@ -1,3 +1,4 @@
+// Keep the frozen renderer regression suite separate from the new Native answer card.
 import { render } from '@testing-library/react-native';
 import { Platform, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -6,6 +7,7 @@ import { colors } from '@/theme';
 import * as webRuntime from '@/config/web-runtime';
 
 import { AnswerCardSheet, answerCardWebGridStyle, answerCardWebNumberStyle } from '../components/AnswerCardSheet';
+jest.mock('../components/AnswerCardSheet', () => jest.requireActual('../components/AnswerCardSheet.tsx'));
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -13,7 +15,7 @@ jest.mock('lucide-react-native', () => {
   return { Check: Icon, X: Icon };
 });
 
-describe('<AnswerCardSheet />', () => {
+describe('legacy <AnswerCardSheet />', () => {
   it('uses a five-column capped grid with vertically centered question labels', async () => {
     const screen = await render(
       <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 375, height: 812 }, insets: { top: 0, right: 0, bottom: 0, left: 0 } }}>
@@ -76,7 +78,7 @@ describe('Vercel answer results and tag badges', () => {
     expect(StyleSheet.flatten(screen.getByText('2').props.style).color).toBe(colors.answerCorrect);
   });
 
-  it.each(['ios', 'android', 'edgeone'])('shows answer results and tags on %s while retaining the current marker', async (surface) => {
+  it.each(['ios', 'android', 'edgeone'])('keeps the legacy renderer answer results on %s while retaining the current marker', async (surface) => {
     Object.defineProperty(Platform, 'OS', { configurable: true, value: surface === 'edgeone' ? 'web' : surface });
     if (surface === 'edgeone') jest.spyOn(webRuntime, 'isVercelLegacyWeb').mockReturnValue(false);
     const screen = await render(sheet());

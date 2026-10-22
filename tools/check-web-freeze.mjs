@@ -433,6 +433,12 @@ reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyLibrar
 
 // Integrated E icons and navigation maps; legacy runtime remains unmapped.
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a2d4ff233c7f2da3e692ad2ea04cdbbe119b868ef1941ca5ea77ced592a0c2ed"])]);
+// Approved seven-page UI: exact formal-Web adapters; legacy siblings and runtime gate remain unchanged.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "68eb8b44937e9be8c5a79380467ee6baa4fbf5572e0791f0f2a19b63d00c137d"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/MyAnnotationsScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/MyAnnotationsScreen.native.tsx") ?? [null]), "6ee408e2f8180c7f02af528e42b0d7263cc8b51ddfebaf7a2710d24209f40952"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyReport.native.tsx") ?? [null]), "3a2f577f79b1806ddc8f4d7626d7741cf736c98ae94fa2a15044d803478a9e66"])]);
+
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "0943a65e6a849ee08e58959ae260e5156b05bffe723dc5a3f992b4b549434919"])]);
 
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
