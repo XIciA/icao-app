@@ -69,7 +69,7 @@ export function AppDownloadScreen({ onBack }: { onBack?: () => void } = {}) {
   const failedDownload = usePublishedRelease && downloadState === 'error';
   return (
     <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} right={testRelease ? <Link href={testRelease.url as Href} asChild><Pressable accessibilityRole="link" accessibilityLabel="下载 Android 测试版" style={{ padding: spacing.sm }}><AppText variant="caption" color={colors.mutedForeground}>Android 测试版</AppText></Pressable></Link> : undefined} />
+      <TopBar title="听你五个 APP" onBack={onBack ?? (() => router.replace('/(tabs)/discover'))} right={testRelease ? <Link href={testRelease.url as Href} asChild><Pressable accessibilityRole="link" accessibilityLabel="下载 Android 测试版" style={{ padding: spacing[2] }}><AppText variant="caption" color={colors.mutedForeground}>Android 测试版</AppText></Pressable></Link> : undefined} />
       <View style={styles.content}>
         <View style={styles.hero}>
           <View style={styles.logo}><AppBrandLogo size="lg" accessibilityLabel="听你五个 Logo" /></View>
