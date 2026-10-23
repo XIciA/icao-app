@@ -59,3 +59,12 @@ API 与产品 Web 已部署；账号注册时间字段和真实 AI 链路验证�
 ### 接续依赖
 
 完成最终模拟器候选的触控与视觉、会员指南，以及录音→授权→转写→编辑→分析→展示→失败恢复；检查通过后经 PR 合入 main，从干净最新 origin/main 构建交付，记录版本、标签与回滚依据。用户要求额度剩余 2% 时停止所有任务并保存接续点。
+
+### 续做检查点（2026-10-23 晚）
+
+- 草稿 PR #235：`https://github.com/XIciA/icao-app/pull/235`，分支 `codex/guest-profile-guide`。未合并。
+- 最终模拟器包 bundle SHA256：`a0021bce824e6fcf8bb5f99a7730e4e7bc95f8769f4af369af5aab335552e72b`；已安装并用专用临时账号登录。原生按需登录回原题库、个人卡片空白点击、VIP 独立弹层、首次设置六步与重启不重现均通过。
+- 原生题库实际播放、展开原文、长按查词和录音开始/结束已验证。原有标注与笔记同步显示。AI 数据处理同意未确认，已点击“暂不使用”，未提交本次录音分析；录音回放和后续 AI 完整链路仍待验收。
+- GitHub CI 冻结门禁失败，不能合并发布。已定位共享静态导入扩大旧 Vercel 依赖图，运行时条件并不足以隔离。已将 index/profile/AppModal/RadioPlayer 的正式实现原样移入 Native/Browser 入口，通过既有 EdgeOne resolver 精确映射；4 个旧站文件逐字节恢复 `a5bf1741`。此小阶段 TypeScript、4 套 33 项专项和 resolver 4 项检查通过。
+- 冻结门禁仍待处理：5 个指南共享模块的旧站依赖隔离，以及 Native 路由选择与确切内容证明。未更新冻结基线、未放宽哈希批准。详细待办在 `.generated/guest-profile-guide/platform-isolation-continuation.txt`；当前模拟器包先于此平台文件隔离，下一候选需重新打包。
+- 会员账号等待用户自行登录正式身份 App；Dev 中已有登录保持原状。测试账号文件 `.generated/guest-profile-guide/account.json` 为 0600，不纳入 Git。恢复任务前先看上述证据，不重复创建账号或清理用户数据。

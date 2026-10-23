@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react-native';
 import { Text } from 'react-native';
-import { AppModal } from '../AppModal.web';
+import { AppModal } from '../AppModal.browser';
 import { AppModalHostContext } from '../modal-host-context';
 import { GuideBindingContext, type GuideBinding } from '@/features/usage-guide/GuideBindings';
 

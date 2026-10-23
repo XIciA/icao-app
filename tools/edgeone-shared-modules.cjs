@@ -2,6 +2,11 @@
 // media and UI adapters still resolve as web modules. Vercel is never remapped.
 const path = require('node:path');
 const sharedModules = {
+  "src/app/index.tsx": "src/app/index.native.tsx",
+  "src/app/(tabs)/profile.tsx": "src/app/(tabs)/profile.native.tsx",
+  "src/components/platform/AppModal.web.tsx": "src/components/platform/AppModal.browser.tsx",
+  "src/features/content/RadioPlayerScreen.tsx": "src/features/content/RadioPlayerScreen.browser.tsx",
+
   "src/components/navigation/useAppRouter.ts": "src/components/navigation/useAppRouter.native.ts",
   "src/components/navigation/TopBar.tsx": "src/components/navigation/TopBar.native.tsx",
   "src/components/account/account-ui.tsx": "src/components/account/account-ui.native.tsx",
