@@ -455,7 +455,7 @@ reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyStudyV
 // iOS-only left-edge responder dispatches the existing navigation action; legacy Web root is unchanged.
 reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "7c68ed321bc47930ad16383ad9b441c47e1118364545fde4f08c35abae379c9e"])]);
 
-reviewedFormalWebHashes.set("src/components/navigation/EdgeBackRegion.native.tsx", [null, "4f1820c0b849a7029440c584a38154228999a15425c67e2007c6df86a976f3af"]);
+reviewedFormalWebHashes.set("src/components/navigation/EdgeBackRegion.native.tsx", [null, "d2e2f6e8376f15bbfc5272f283ccef9c64ffdc28d5f81e9a4967b756cbda5534"]);
 
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;

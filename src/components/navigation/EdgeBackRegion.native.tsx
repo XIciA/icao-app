@@ -17,12 +17,17 @@ export function EdgeBackRegion({ children, enabled, navigation }: {
   navigation: { canGoBack(): boolean; goBack(): void };
 }) {
   const startX = useRef(-1);
+  const cancelled = useRef(false);
   const responder = useMemo(() => PanResponder.create({
     // PanResponder x0 is assigned only after grant; capture the initial touch separately.
     onStartShouldSetPanResponderCapture: event => { startX.current = event.nativeEvent.pageX; return false; },
     onMoveShouldSetPanResponderCapture: (_, gesture) => enabled && navigation.canGoBack() && startsEdgeBack(gesture, startX.current),
+    onPanResponderGrant: () => { cancelled.current = false; },
+    onPanResponderStart: (_, gesture) => { if (gesture.numberActiveTouches > 1) cancelled.current = true; },
+    onPanResponderMove: (_, gesture) => { if (gesture.numberActiveTouches > 1) cancelled.current = true; },
+    onPanResponderTerminate: () => { cancelled.current = true; },
     onPanResponderRelease: (_, gesture) => {
-      if (enabled && navigation.canGoBack() && completesEdgeBack(gesture)) navigation.goBack();
+      if (!cancelled.current && enabled && navigation.canGoBack() && completesEdgeBack(gesture)) navigation.goBack();
     },
     onPanResponderTerminationRequest: () => true,
   }), [enabled, navigation]);

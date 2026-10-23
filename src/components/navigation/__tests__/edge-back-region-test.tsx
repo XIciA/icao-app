@@ -21,6 +21,12 @@ it('dispatches only a completed left-edge right drag through the screen navigati
   handlers.onPanResponderRelease?.(event, gesture({ dx: 30 }));
   handlers.onPanResponderTerminate?.(event, gesture());
   expect(navigation.goBack).not.toHaveBeenCalled();
+  handlers.onPanResponderGrant?.(event, gesture());
+  handlers.onPanResponderStart?.(event, gesture({ numberActiveTouches: 2 }));
+  handlers.onPanResponderMove?.(event, gesture({ numberActiveTouches: 1 }));
+  handlers.onPanResponderRelease?.(event, gesture({ numberActiveTouches: 0 }));
+  expect(navigation.goBack).not.toHaveBeenCalled();
+  handlers.onPanResponderGrant?.(event, gesture());
   handlers.onPanResponderRelease?.(event, gesture());
   expect(navigation.goBack).toHaveBeenCalledTimes(1);
   spy.mockRestore();
