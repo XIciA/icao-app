@@ -31,7 +31,7 @@ export function AppRuntime({ children }: PropsWithChildren) {
     <CommerceRuntimeProvider>
       {auth.canAccessApp ? <NativeAiRecovery key={auth.account?.accountId} /> : null}
       {auth.canAccessApp ? <AppUpdatePrompt /> : null}
-      <RadioPlayerProvider>{children}<RadioMiniPlayer /></RadioPlayerProvider>
+      <RadioPlayerProvider>{children}{auth.canAccessApp ? <RadioMiniPlayer /> : null}</RadioPlayerProvider>
     </CommerceRuntimeProvider>
   );
 }

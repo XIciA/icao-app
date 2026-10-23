@@ -5,7 +5,7 @@ import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, Button, Screen } from '@/components/ui';
 import { colors, spacing } from '@/theme';
 
-export function AccountRestoreState({ retry, signOut }: { retry(): Promise<void>; signOut(): Promise<void> }) {
+export function AccountRestoreState({ retry, signOut, onBrowse }: { retry(): Promise<void>; signOut(): Promise<void>; onBrowse?: () => void }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const actionRef = useRef(false);
@@ -24,6 +24,7 @@ export function AccountRestoreState({ retry, signOut }: { retry(): Promise<void>
         {error ? <AppText color={colors.destructive} style={styles.action} variant="caption">{error}</AppText> : null}
         <Button disabled={busy} onPress={() => { void run(retry); }} style={styles.action}>重新检查</Button>
         <Button disabled={busy} onPress={() => { void run(signOut); }} style={styles.action} variant="outline">退出登录</Button>
+        {onBrowse ? <Button onPress={onBrowse} style={styles.action} variant="ghost">暂不登录，继续浏览</Button> : null}
       </>} />
   </Screen>;
 }

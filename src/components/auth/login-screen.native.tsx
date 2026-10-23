@@ -1,6 +1,8 @@
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, type Href } from 'expo-router';
+import { useAppRouter } from '@/components/navigation/useAppRouter';
+import { publicLoginReturn } from '@/features/auth/guest-access';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
@@ -77,11 +79,12 @@ export function loginErrorMessage(code: string) {
 }
 
 export function LoginScreen() {
-  return <NativeScreenBoundary title="登录 / 注册" allowExit={false}><LoginContent /></NativeScreenBoundary>;
+  return <NativeScreenBoundary title="登录 / 注册" fallbackHref="/(tabs)"><LoginContent /></NativeScreenBoundary>;
 }
 
 function LoginContent() {
-  const { mode } = useLocalSearchParams<{ mode?: string }>();
+  const { mode, returnTo, reason } = useLocalSearchParams<{ mode?: string; returnTo?: string; reason?: string }>();
+  const router = useAppRouter();
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
   const [wechatInstalled, setWechatInstalled] = useState(false);
@@ -374,6 +377,12 @@ function LoginContent() {
     }
   }
 
+  function cancelLogin() {
+    if (submitting) return;
+    auth.consumePendingPath();
+    router.dismissTo(publicLoginReturn(returnTo) as Href);
+  }
+
   function changePhone() {
     challengeRequestRef.current += 1;
     const purpose = challenge?.purpose;
@@ -385,7 +394,7 @@ function LoginContent() {
   }
 
   if (challengeRestoring) {
-    return <AuthShell showBack={false}><AuthHeading title="正在恢复验证" /></AuthShell>;
+    return <AuthShell onBack={cancelLogin}><AuthHeading title="正在恢复验证" /></AuthShell>;
   }
 
   if (codePurpose === 'recovery') {
@@ -427,12 +436,13 @@ function LoginContent() {
   }
 
   return (
-    <AuthShell showBack={false}>
+    <AuthShell onBack={cancelLogin}>
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
         <AuthHeading title="登录 / 注册" />
         <WebAppDownloadLink />
       </View>
+      {reason ? <AppText variant="caption">{reason}</AppText> : null}
       <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
@@ -497,6 +507,7 @@ function LoginContent() {
           </View>
         </>
       ) : null}
+      <Button disabled={submitting} onPress={cancelLogin} variant="ghost">暂不登录，继续浏览</Button>
     </AuthShell>
   );
 }

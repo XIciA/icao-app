@@ -1,4 +1,4 @@
-import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useLoginEntry } from '@/features/auth/use-login-entry';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import {
@@ -39,8 +39,8 @@ const courseEntry: Entry = {
 };
 
 export function DiscoverHomeScreen() {
-  const router = useRouter();
-  const open = (slug: string) => { trackProductClick('feature_open', slug); router.push({ pathname: '/content/[slug]', params: { slug } }); };
+  const login = useLoginEntry();
+  const open = (slug: string) => { trackProductClick('feature_open', slug); login(`/content/${slug}`, '登录后使用学习功能'); };
   const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
   const features: Entry[] = [
     ...standardFeatures,

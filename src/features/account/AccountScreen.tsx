@@ -84,7 +84,7 @@ function SettingsPage() {
     try {
       await auth.signOut();
       setConfirm(false);
-      router.replace('/auth/login');
+      router.replace('/(tabs)');
     } catch { setSignOutError('退出失败，请稍后重试。'); }
     finally { setSigningOut(false); }
   }
@@ -667,7 +667,7 @@ function DeleteAccountPage() {
           { text: '永久注销', style: 'destructive', onPress: () => resolve(true) },
         ], { cancelable: true, onDismiss: () => resolve(false) });
       }));
-      router.replace('/auth/login');
+      router.replace('/(tabs)');
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : '';
       if (code === 'invalid_phone_or_password' || code === 'invalid_credentials') setError('登录密码不正确，请重新输入');
