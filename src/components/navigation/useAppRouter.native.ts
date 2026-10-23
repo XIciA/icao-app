@@ -2,6 +2,7 @@ import { NavigationContext } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { createContext, useContext, useEffect, useMemo, useRef } from 'react';
 import { Platform } from 'react-native';
+import { isVercelLegacyWeb } from '@/config/web-runtime';
 
 /** One navigation action per tap burst, without changing route identity or history. */
 export function createNavigationGate(now = Date.now) {
@@ -40,13 +41,17 @@ export function useAppRouter() {
     const listen = navigation.addListener as (event: string, callback: () => void) => () => void;
     const unsubscribe = [
       listen('focus', gate.reset),
-      listen('transitionStart', gate.beginTransition),
-      listen('transitionEnd', gate.endTransition),
-      listen('gestureCancel', gate.endTransition),
+      // Web does not emit native-stack transition completion events. Its tap
+      // gate still shares screen ownership and unlocks when focus returns.
+      ...(Platform.OS === 'web' ? [] : [
+        listen('transitionStart', gate.beginTransition),
+        listen('transitionEnd', gate.endTransition),
+        listen('gestureCancel', gate.endTransition),
+      ]),
     ];
     return () => unsubscribe.forEach(remove => remove());
   }, [navigation]);
-  return useMemo(() => Platform.OS === 'web' ? router : ({
+  return useMemo(() => isVercelLegacyWeb(Platform.OS) ? router : ({
     ...router,
     push: (...args: Parameters<typeof router.push>) => run(() => router.push(...args)),
     back: () => run(() => router.back()),

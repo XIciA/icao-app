@@ -1,8 +1,12 @@
-jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 import { render } from '@testing-library/react-native';
+import { Platform } from 'react-native';
 
 import { AppStack } from '@/app/_layout';
+import { AppStack as NativeAppStack } from '@/app/_layout.native';
 import IndexRoute from '@/app/index';
+
+jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
+const mockStackOptions = jest.fn();
 
 let mockSession: { user: { id: string } } | undefined;
 let mockCanAccessApp = false;
@@ -45,7 +49,7 @@ jest.mock('@/features/question-bank/recording/recording-repository', () => ({ re
 jest.mock('expo-router', () => {
   const React = jest.requireActual('react');
   const { Text } = jest.requireActual('react-native');
-  const Stack = ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children);
+  const Stack = ({ children, screenOptions }: { children: React.ReactNode; screenOptions: unknown }) => { mockStackOptions(screenOptions); return React.createElement(React.Fragment, null, children); };
   function MockScreen({ name }: { name: string }) {
     return React.createElement(Text, { testID: `screen-${name}` }, name);
   }
@@ -161,4 +165,18 @@ describe('authentication routing', () => {
     expect(mockReplace).toHaveBeenCalledWith('/content/hotspot/hotspot-2026-07-10/study');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
+});
+
+it.each(['ios', 'android', 'web'] as const)('keeps edge-return animation platform scoped on %s', async platform => {
+  const original = Platform.OS;
+  Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+  mockCanAccessApp = true;
+  try {
+    await render(<NativeAppStack />);
+    expect(mockStackOptions).toHaveBeenLastCalledWith(expect.objectContaining({
+      animation: 'slide_from_right',
+      fullScreenGestureEnabled: false,
+      gestureEnabled: platform !== 'ios', headerShown: false,
+    }));
+  } finally { Object.defineProperty(Platform, 'OS', { configurable: true, value: original }); }
 });

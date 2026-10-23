@@ -402,6 +402,13 @@ reviewedFormalWebHashes.set("src/features/usage-guide/guide-progress.ts", [...ne
 reviewedFormalWebHashes.set("src/features/usage-guide/tutorial-model.ts", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/tutorial-model.ts") ?? [null]), "091c67ee58bdcf0cd1124e64f8d0ca9349819fd532bd7e5613e9f4aa3d78a089"])]);
 reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a96b7e9da47b6f12893f3b29f8da88e8fa64c15d599e323e5eedbc0e4d84ecf8"])]);
 
+// 2026-10-22: formal EdgeOne navigation adapters only. Resolver tests prove
+// every mapping is bypassed for Vercel; legacy module sources remain unchanged.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "16ae62b15a25be92cb68ebcdf1d5821c08eaa1a186c4faf07d58f431e2859253"])]);
+
+// User-requested 1.2.2 candidate: only marketing version and build identifiers
+// change; the legacy Web display version remains frozen at 1.0.0.
+reviewedFormalWebHashes.set("app.json", [...new Set([...(reviewedFormalWebHashes.get("app.json") ?? [null]), "d0796787d159446436e5db631b062f633adc7902a645e4c73399d99f59d2e05e"])]);
 // Reviewed 2026-10-22: user-selected E icons on Native/formal EdgeOne only.
 // Lucide re-exports are byte-identical; Native icon containers are lighter.
 // Account/vocabulary views are EdgeOne mapped; shared styles retain legacy branches.
@@ -423,6 +430,32 @@ reviewedFormalWebHashes.set("src/features/question-bank/components/LearningRecor
 reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyReport.native.tsx") ?? [null]), "3ec0bbe7753e1486339a6ac523a1b9ac853e836b41021b6c7276aa26bb23e3e9"])]);
 reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/vocabulary/components/VocabularyLibraryViews.native.tsx") ?? [null]), "50d6b0cf34a0d65be6dab5fa4f2178103170fa9b4c7fe16b877db4144dcdd9ac"])]);
 
+
+// Integrated E icons and navigation maps; legacy runtime remains unmapped.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "a2d4ff233c7f2da3e692ad2ea04cdbbe119b868ef1941ca5ea77ced592a0c2ed"])]);
+// Approved seven-page UI: exact formal-Web adapters; legacy siblings and runtime gate remain unchanged.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "68eb8b44937e9be8c5a79380467ee6baa4fbf5572e0791f0f2a19b63d00c137d"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/MyAnnotationsScreen.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/MyAnnotationsScreen.native.tsx") ?? [null]), "6ee408e2f8180c7f02af528e42b0d7263cc8b51ddfebaf7a2710d24209f40952"])]);
+reviewedFormalWebHashes.set("src/features/question-bank/components/StudyReport.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/question-bank/components/StudyReport.native.tsx") ?? [null]), "3a2f577f79b1806ddc8f4d7626d7741cf736c98ae94fa2a15044d803478a9e66"])]);
+
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "0943a65e6a849ee08e58959ae260e5156b05bffe723dc5a3f992b4b549434919"])]);
+
+// Guided tab pager repair: only formal surfaces with an active guide disable animation.
+// Legacy Vercel still receives animationEnabled=true; provider is not mounted there.
+reviewedFormalWebHashes.set("src/app/(tabs)/_layout.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/(tabs)/_layout.tsx") ?? ["fd5a80c19c26a902df5886dbee47df6c4498b9d95e7278cb5161686f0e7edcee"]), "a88f72520624410758bc85df55f4c4005de24552fc5f7a7e835b3a7d18d85e31"])]);
+reviewedFormalWebHashes.set("src/features/usage-guide/GuideTourProvider.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/usage-guide/GuideTourProvider.tsx") ?? [null]), "9fc3108bf523635fc66f1d49e454a3b844b76cce9561c8cbff3d73cb1f3d9d2b"])]);
+
+// User-requested icon rollback: remove only the formal EdgeOne native-icon override.
+// All functional mappings remain; Vercel still bypasses this remapping entirely.
+reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...(reviewedFormalWebHashes.get("tools/edgeone-shared-modules.cjs") ?? [null]), "dedf7310c682a454173749d7f8f79880a87eca52018b173cda6d43aecb2a38d4"])]);
+
+// Native completion labels follow local return origins; shared default text and legacy callers are unchanged.
+reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyStudyViews.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/vocabulary/components/VocabularyStudyViews.tsx") ?? [null]), "84d11ab643c8b0e82d25c31a27535a77e66bfb4990f8d3644d2bbb4d62449957"])]);
+
+// iOS-only left-edge responder dispatches the existing navigation action; legacy Web root is unchanged.
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "7c68ed321bc47930ad16383ad9b441c47e1118364545fde4f08c35abae379c9e"])]);
+
+reviewedFormalWebHashes.set("src/components/navigation/EdgeBackRegion.native.tsx", [null, "d2e2f6e8376f15bbfc5272f283ccef9c64ffdc28d5f81e9a4967b756cbda5534"]);
 
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;

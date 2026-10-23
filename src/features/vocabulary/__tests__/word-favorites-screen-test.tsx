@@ -1,3 +1,5 @@
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({account:{accountId:'a'}}) }));
+jest.mock('@/features/sync/learning-sync.native', () => ({ captureLearningWriteContext: () => ({accountId:'a'}), assertLearningWriteContext: jest.fn() }));
 /* eslint-disable import/first */
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -17,10 +19,10 @@ jest.mock('lucide-react-native', () => {
 jest.mock('expo-router', () => ({
   useRouter: () => ({ back: jest.fn(), replace: jest.fn(), canGoBack: () => true }),
 }));
-jest.mock('../repository', () => ({
+jest.mock('../repository.native', () => ({
   loadVocabulary: () => mockLoadVocabulary(),
 }));
-jest.mock('../progress-store', () => ({
+jest.mock('../progress-store.native', () => ({
   migrateLegacyVocabularyFavorites: (books: VocabularyBook[]) => mockMigrateFavorites(books),
   useWordFavorites: () => mockUseWordFavorites(),
 }));
@@ -32,7 +34,7 @@ jest.mock('@/features/question-bank/static-word-lookup/repository', () => ({
 }));
 
 import { favoriteKeyForWord } from '../favorites';
-import { WordFavoritesScreen } from '../WordFavoritesScreen';
+import { WordFavoritesScreen } from '../WordFavoritesScreen.native';
 
 const book: VocabularyBook = {
   id: 'preview',
@@ -94,14 +96,19 @@ describe('WordFavoritesScreen', () => {
   it('merges sources, sorts favorites, and removes from the unified list action', async () => {
     const screen = await renderScreen();
 
-    await waitFor(() => expect(screen.getByText(/词书：/)).toBeTruthy());
+    await waitFor(() => expect(mockMigrateFavorites).toHaveBeenCalledWith([book]));
+    expect(screen.queryByText(/词书：/)).toBeNull();
+    await fireEvent.press(screen.getByLabelText('查看 deviation 释义'));
+    expect(screen.getByText(/词书：/)).toBeTruthy();
     expect(screen.getAllByText('deviation')).toHaveLength(1);
-    expect(screen.getByText('单词学习')).toBeTruthy();
-    expect(screen.getAllByText('题库查词')).toHaveLength(2);
+    expect(screen.getByText(/来源：.*单词学习/)).toBeTruthy();
+    expect(screen.getByText(/来源：.*题库查词/)).toBeTruthy();
     expect(mockMigrateFavorites).toHaveBeenCalledWith([book]);
 
-    fireEvent.press(screen.getByLabelText('取消收藏deviation'));
+    await fireEvent.press(screen.getByLabelText('取消收藏deviation'));
     expect(mockSetFavorite).toHaveBeenCalledWith({ word: 'deviation', wordId: 'preview-0001' }, false);
+    await fireEvent.press(screen.getByText('撤销'));
+    expect(mockSetFavorite).toHaveBeenLastCalledWith({ word: 'deviation', wordId: 'preview-0001' }, true);
   });
 
   it('shows the empty state after resources load with no favorites', async () => {
@@ -124,8 +131,9 @@ describe('WordFavoritesScreen', () => {
   it.each([360, 375, 390, 430])('renders the merged list at %ipx without dropping actions', async (width) => {
     const screen = await renderScreen(width);
 
-    await waitFor(() => expect(screen.getByLabelText('取消收藏deviation')).toBeTruthy());
-    expect(screen.getByText('单词学习')).toBeTruthy();
-    expect(screen.getAllByText('题库查词')).toHaveLength(2);
+    await waitFor(() => expect(mockMigrateFavorites).toHaveBeenCalledWith([book]));
+    await fireEvent.press(screen.getByLabelText('查看 deviation 释义'));
+    expect(screen.getByText(/来源：.*单词学习/)).toBeTruthy();
+    expect(screen.getByText(/来源：.*题库查词/)).toBeTruthy();
   });
 });

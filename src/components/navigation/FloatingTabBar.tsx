@@ -1,7 +1,6 @@
-import { isFormalAppSurface } from '@/config/web-runtime';
 import type { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { Compass, Library, UserRound, type LucideIcon } from '@/components/ui/icons';
-import { Animated, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
@@ -53,9 +52,9 @@ export function FloatingTabBar({ state, descriptors, navigation, position }: Mat
                 pointerEvents="none"
                 style={[styles.iconSlot, { transform: [{ translateX: iconShift }] }]}
               >
-                <Icon color={colors.mutedForeground} size={20} strokeWidth={isFormalAppSurface(Platform.OS) ? 1.5 : 2} />
+                <Icon color={colors.mutedForeground} size={20} strokeWidth={2} />
                 <Animated.View style={[styles.activeIcon, { opacity: activation }]}>
-                  <Icon color={colors.primary} size={20} strokeWidth={isFormalAppSurface(Platform.OS) ? 1.5 : 2} />
+                  <Icon color={colors.primary} size={20} strokeWidth={2} />
                 </Animated.View>
               </Animated.View>
               <Animated.View

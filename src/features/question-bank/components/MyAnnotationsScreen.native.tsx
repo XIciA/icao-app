@@ -5,7 +5,7 @@ import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AppText, Button, Card, Screen } from '@/components/ui';
-import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { colors, fonts, radii, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankDataset, QuestionBankId } from '../types';
@@ -127,11 +127,9 @@ export function MyAnnotationsScreen() {
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.segmented}>
           {segments.map((item) => {
-            const Icon = item.icon;
             const active = segment === item.id;
             return (
               <Pressable accessibilityState={{ selected: active }} key={item.id} onPress={() => chooseSegment(item.id)} style={[styles.segment, active ? styles.segmentActive : null]}>
-                <Icon color={active ? colors.primary : colors.mutedForeground} size={16} />
                 <AppText color={active ? colors.primary : colors.mutedForeground} variant="button">{item.label}</AppText>
                 <View style={[styles.count, active ? styles.countActive : null]}><AppText color={active ? colors.primary : colors.mutedForeground} style={styles.countText} variant="micro">{countForSegment(item.id)}</AppText></View>
               </Pressable>
@@ -303,9 +301,9 @@ function StateCard({ action, description, icon: Icon, title }: { action?: React.
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   scroll: { flexGrow: 1, paddingBottom: spacing[8], paddingHorizontal: spacing[5], paddingTop: spacing[4] },
-  segmented: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1], marginTop: spacing[4], padding: spacing[1] },
-  segment: { alignItems: 'center', borderRadius: radii.full, flex: 1, flexDirection: 'row', gap: spacing[1.5], justifyContent: 'center', minHeight: 42, paddingHorizontal: spacing[2] },
-  segmentActive: { backgroundColor: colors.primary10 },
+  segmented: { backgroundColor: colors.muted, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], marginTop: 0, padding: spacing[1] },
+  segment: { alignItems: 'center', borderRadius: radii.md, flex: 1, flexDirection: 'row', gap: spacing[1.5], justifyContent: 'center', minHeight: 42, paddingHorizontal: spacing[2] },
+  segmentActive: { backgroundColor: colors.card },
   count: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, minWidth: 20, paddingHorizontal: 5, paddingVertical: 2 },
   countActive: { backgroundColor: colors.primary10 },
   countText: { fontFamily: fonts.monoRegular },
@@ -314,13 +312,13 @@ const styles = StyleSheet.create({
   colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
-  list: { gap: spacing[2.5], marginTop: spacing[4] },
-  rowCard: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 82, padding: spacing[4], ...shadows.card },
+  list: { marginTop: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: radii.xl, paddingHorizontal: spacing[4], overflow: 'hidden' },
+  rowCard: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 82, paddingVertical: spacing[4] },
   rowCopy: { flex: 1, gap: spacing[2] },
   dotStack: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
   stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
   stackDotOverlap: { marginLeft: -5 },
-  noteIcon: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 34, justifyContent: 'center', width: 34 },
+  noteIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 34, justifyContent: 'center', width: 34 },
   pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
   unavailable: { opacity: 0.58 },
   stateCard: { alignItems: 'center', borderStyle: 'dashed', gap: spacing[3], marginTop: spacing[8], paddingHorizontal: spacing[6], paddingVertical: spacing[8] },

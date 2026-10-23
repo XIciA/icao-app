@@ -1,4 +1,5 @@
 import { useRouter as useExitRouter } from 'expo-router';
+import { answerCardMarkers } from '../annotations/answer-card-markers.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
@@ -59,7 +60,7 @@ import type {
 } from '../types';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar.native';
-import { AnswerCardSheet } from './AnswerCardSheet';
+import { AnswerCardSheet } from './AnswerCardSheet.native';
 import { LookupPronunciation } from './LookupPronunciation';
 import { InteractiveStudyText } from './InteractiveStudyText';
 import { ImageQuestionCard } from './ImageQuestionCard';
@@ -174,7 +175,6 @@ function StudyContent(props: Props) {
   const lookupAllowed = !examMode && historyContentAllowed;
   useEffect(() => { if (!lookupAllowed) setLookup(undefined); }, [lookupAllowed]);
   const listeningReviewActive = false;
-  const listeningSegmentNavigationActive = false;
   const navigationStartIndex = 0;
   const navigationEndIndex = totalItems - 1;
   const navigationItemCount = totalItems;
@@ -525,43 +525,9 @@ function StudyContent(props: Props) {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
     return definition ? [annotationToneColors[definition.color]] : [];
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
-  const answerCardMarked = useMemo(() => {
-    if (session.historyReview) {
-      return new Set(session.items.flatMap((entry, index) => {
-        const state = session.states[entry.id];
-        return state?.selectedChoiceIndex !== undefined || state?.recorded || session.answers[entry.id]?.trim() ? [index] : [];
-      }));
-    }
-    if (listeningSegmentNavigationActive && listeningExamRange) {
-      return new Set(listeningExamRange.items.flatMap((entry, index) => (
-        session.states?.[entry.id]?.selectedChoiceIndex !== undefined ? [index] : []
-      )));
-    }
-    if (vercelLegacyWeb) {
-      return new Set(session.items.flatMap((entry, index) => (
-        session.states?.[entry.id]?.completed ? [index] : []
-      )));
-    }
-    return session.visitedIndexes;
-  }, [listeningExamRange, listeningSegmentNavigationActive, session.answers, session.historyReview, session.items, session.states, session.visitedIndexes, vercelLegacyWeb]);
-  const answerCardMarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '已答' : '已学';
-  const answerCardResults = useMemo(() => {
-    if (examMode) return undefined;
-    return session.items.map((entry) => {
-      const selected = session.states[entry.id]?.selectedChoiceIndex;
-      const correct = entry.card.correctChoiceIndex;
-      if (entry.dataset.id !== 'listening' || selected === undefined || correct === undefined) return undefined;
-      return selected === correct ? 'correct' as const : 'incorrect' as const;
-    });
-  }, [examMode, session.items, session.states]);
-  const answerCardTagColors = useMemo(() => session.items.map((entry) => {
-    const key = questionBankCardTargetKey({ bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id, cardId: entry.card.id });
-    return (annotations.store.entries[key]?.tagIds ?? []).flatMap((id) => {
-      const definition = annotations.tagDefinitions.find((tag) => tag.id === id);
-      return definition ? [annotationToneColors[definition.color]] : [];
-    });
-  }), [annotations.store.entries, annotations.tagDefinitions, session.items]);
-  const answerCardUnmarkedLabel = listeningSegmentNavigationActive || session.historyRecord ? '未答' : '未学';
+  const cardMarkers = useMemo(() => answerCardMarkers(session.items, annotations.store), [session.items, annotations.store]);
+  const answerCardTagColors = cardMarkers.map(value => value.tags);
+  const answerCardHighlightColors = cardMarkers.map(value => value.highlights);
   const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
   const dictionaryMode = lookupInteraction === 'tap';
   const annotationMode = session.toolMode === 'highlight' || session.toolMode === 'tags'
@@ -870,7 +836,7 @@ function StudyContent(props: Props) {
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet results={answerCardResults} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={answerCardMarked} markedLabel={answerCardMarkedLabel} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} unmarkedLabel={answerCardUnmarkedLabel} visible={!examMode && answerCardVisible} />
+      <AnswerCardSheet highlightColors={answerCardHighlightColors} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={session.learnedIndexes} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} visible={!examMode && answerCardVisible} />
       <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>

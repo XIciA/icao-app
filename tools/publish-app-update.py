@@ -17,7 +17,7 @@ MANIFEST = '/app-releases/updates.json'
 
 def validate(release):
     channel = release.get('channel')
-    if channel not in ('ios-app-store', 'android-apk', 'android-test') or release.get('available') is not True:
+    if channel not in ('ios-app-store', 'ios-testflight', 'android-apk', 'android-test') or release.get('available') is not True:
         raise ValueError('Only available supported releases may be published')
     if not re.fullmatch(r'\d+\.\d+\.\d+', release.get('version', '')):
         raise ValueError('Invalid version')
@@ -29,6 +29,10 @@ def validate(release):
     if channel == 'ios-app-store':
         if release['url'] != 'https://apps.apple.com/cn/app/id6800583111':
             raise ValueError('Invalid App Store URL')
+    elif channel == 'ios-testflight':
+        if release['url'] != 'https://testflight.apple.com/' and not re.fullmatch(
+                r'https://testflight\.apple\.com/join/[A-Za-z0-9]+', release['url']):
+            raise ValueError('Invalid TestFlight URL')
     else:
         if not re.fullmatch(re.escape(BASE + '/public/app-releases/android/') + r'[A-Za-z0-9._-]+\.apk', release['url']):
             raise ValueError('Invalid APK URL')

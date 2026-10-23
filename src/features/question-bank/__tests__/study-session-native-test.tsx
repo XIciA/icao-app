@@ -242,3 +242,13 @@ it('keeps progress and recording evidence on the original card when topic order 
   await waitFor(() => expect(persistence.saveCardState).toHaveBeenCalledWith(topic.id, originalCard.id, expect.objectContaining({ completed: true, selectedChoiceIndex: 1, recorded: true, recordingDurationMillis: 3200 }), dataset.id, expect.anything()));
   await hook.unmount();
 });
+
+it('exposes cumulative learned indexes without importing earlier answers or adding them to this attempt', async () => {
+  const persistence = store();
+  jest.mocked(persistence.getTopicStates).mockResolvedValue({[topic.cards[1].id]: {visited:true,completed:true,selectedChoiceIndex:1,note:'',updatedAt:'2026-08-01T00:00:00.000Z'}});
+  const hook = await renderHook(() => useStudySession({dataset,category,topic,store:persistence,initialCardId:topic.cards[0].id}));
+  await waitFor(() => expect(hook.result.current.cardState?.visited).toBe(true));
+  expect(hook.result.current.learnedIndexes).toEqual(new Set([0,1]));
+  expect(hook.result.current.states[topic.cards[1].id]?.selectedChoiceIndex).toBeUndefined();
+  expect(hook.result.current.visitedIndexes).toEqual(new Set([0]));
+});

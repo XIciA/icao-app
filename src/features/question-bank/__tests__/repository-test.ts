@@ -686,7 +686,11 @@ describe('embeddedQuestionBankRepository', () => {
     const download = File.downloadFileAsync;
     let release!: () => void;
     const held = new Promise<void>((resolve) => { release = resolve; });
+    let notifyDownloadsStarted!: () => void;
+    const downloadsStarted = new Promise<void>(resolve => { notifyDownloadsStarted = resolve; });
+    let starts = 0;
     const downloading = jest.spyOn(File, 'downloadFileAsync').mockImplementation(async (...args) => {
+      if (++starts === 2) notifyDownloadsStarted();
       await held;
       return download(...args);
     });
@@ -694,10 +698,17 @@ describe('embeddedQuestionBankRepository', () => {
     const first = cacheMemberResource(paths[0], 'https://example.test/first', metadata);
     const duplicate = cacheMemberResource(paths[0], 'https://example.test/first-refreshed', metadata);
     const second = cacheMemberResource(paths[1], 'https://example.test/second', metadata);
+    // Observe completion immediately, including failures, before account cleanup.
+    // A 1-second polling window races native hashing under full-suite load.
+    const completed = Promise.all([first, duplicate, second]);
     try {
-      await waitFor(() => expect(downloading).toHaveBeenCalledTimes(2));
-    } finally { release(); }
-    const results = await Promise.all([first, duplicate, second]);
+      await Promise.race([downloadsStarted, completed.then(() => { throw new Error('downloads_completed_before_two_transfers_started'); })]);
+      expect(downloading).toHaveBeenCalledTimes(2);
+    } finally {
+      release();
+      await Promise.allSettled([first, duplicate, second]);
+    }
+    const results = await completed;
     expect(results[0]).toBe(results[1]);
     expect(results[0]).not.toBe(results[2]);
     expect(mockFiles.size).toBe(2);

@@ -102,6 +102,7 @@ export function VocabularyStudyView({
 const statusText: Record<VocabularyWordStatus, string> = { new: '未学', known: '认识', vague: '模糊', forgot: '忘记', wrong: '记错' };
 
 export function VocabularyCompletionView({
+  returnLabel = '返回词书',
   total,
   summary,
   onBack,
@@ -111,6 +112,7 @@ export function VocabularyCompletionView({
 }: {
   total: number;
   summary: VocabularySessionSummary;
+  returnLabel?: string;
   onBack: () => void;
   onRestart: () => void;
   onReview: () => void;
@@ -133,7 +135,7 @@ export function VocabularyCompletionView({
         <Button disabled={!needsReview} onPress={onReview} size="lg">复习本轮薄弱词</Button>
         <Button onPress={onViewWords} size="lg" variant="outline">查看本轮单词</Button>
         <Button leading={<RotateCcw color={colors.foreground} size={17} />} onPress={onRestart} size="lg" variant="outline">再学一遍</Button>
-        <Button onPress={onBack} size="lg" variant="ghost">返回词书</Button>
+        <Button onPress={onBack} size="lg" variant="ghost">{returnLabel}</Button>
       </View>
     </Screen>
   );

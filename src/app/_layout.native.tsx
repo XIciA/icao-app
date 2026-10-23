@@ -1,3 +1,4 @@
+import { EdgeBackRegion } from '@/components/navigation/EdgeBackRegion.native';
 import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation/route-identity.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
@@ -112,6 +113,9 @@ export function AppStack() {
   return (
     <View style={styles.root}>
       <Stack
+            screenLayout={({ children, navigation, route }) => Platform.OS === 'ios'
+              ? <EdgeBackRegion enabled={!['index', '(tabs)', 'auth/[slug]'].includes(route.name)} navigation={navigation}>{children}</EdgeBackRegion>
+              : children}
             screenListeners={{ transitionStart: () => guide?.suspend(true), transitionEnd: () => guide?.suspend(false) }}
             screenOptions={{
               animation: 'slide_from_right',
@@ -119,7 +123,7 @@ export function AppStack() {
               contentStyle: { backgroundColor: colors.background },
               fullScreenGestureEnabled: false,
               gestureDirection: 'horizontal',
-              gestureEnabled: true,
+              gestureEnabled: Platform.OS !== 'ios',
               headerShown: false,
             }}
           >
@@ -134,7 +138,7 @@ export function AppStack() {
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
-                options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
+                options={{ gestureEnabled: Platform.OS !== 'ios' }}
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
@@ -144,7 +148,7 @@ export function AppStack() {
               {includeNativeProtectedRoutes ? (
                 <Stack.Screen
                   name="content/hotspot/[briefId]/study"
-                  options={{ fullScreenGestureEnabled: false, gestureEnabled: true }}
+                  options={{ gestureEnabled: Platform.OS !== 'ios' }}
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />

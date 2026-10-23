@@ -2,9 +2,13 @@
 // media and UI adapters still resolve as web modules. Vercel is never remapped.
 const path = require('node:path');
 const sharedModules = {
-  "src/features/vocabulary/components/VocabularyLibraryViews.tsx": "src/features/vocabulary/components/VocabularyLibraryViews.native.tsx",
+  "src/components/navigation/useAppRouter.ts": "src/components/navigation/useAppRouter.native.ts",
+  "src/components/navigation/TopBar.tsx": "src/components/navigation/TopBar.native.tsx",
   "src/components/account/account-ui.tsx": "src/components/account/account-ui.native.tsx",
-  "src/components/ui/icons.ts": "src/components/ui/icons.native.ts",
+  "src/app/content/[slug].tsx": "src/app/content/[slug].native.tsx",
+  "src/features/editorial/ResourceEditorialScreen.tsx": "src/features/editorial/ResourceEditorialScreen.native.tsx",
+  "src/features/vocabulary/components/VocabularyLibraryViews.tsx": "src/features/vocabulary/components/VocabularyLibraryViews.native.tsx",
+  "src/features/question-bank/export/SentenceExportScreen.tsx": "src/features/question-bank/export/SentenceExportScreen.native.tsx",
   "src/features/content/AppDownloadScreen.tsx": "src/features/content/AppDownloadScreen.native.tsx",
   "src/features/radio-player/RadioMiniPlayer.tsx": "src/features/radio-player/RadioMiniPlayer.native.tsx",
   "src/features/question-bank/components/SpeakingPracticePanel.tsx": "src/features/question-bank/components/SpeakingPracticePanel.native.tsx",

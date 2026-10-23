@@ -42,7 +42,7 @@ export function Row({
     <View style={[styles.row, !isLast && styles.rowBorder]}>
       {Icon ? (
         <View style={styles.iconBox}>
-          <Icon color={colors.primary} size={21} />
+          <Icon color={colors.primary} size={18} />
         </View>
       ) : null}
       <AppText style={styles.rowLabel} variant="button">{label}</AppText>
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
   rowBorder: { borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth },
   rowPressed: { backgroundColor: colors.secondary },
   rowLabel: { flex: 1 },
-  iconBox: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 36, justifyContent: 'center', width: 36 },
+  iconBox: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 },
   avatar: { alignItems: 'center', backgroundColor: colors.primary10, justifyContent: 'center', overflow: 'hidden' },
 });

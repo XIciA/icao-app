@@ -130,7 +130,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
                   style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}
                 >
                   <View style={[styles.categoryIcon, airline ? styles.airlineIcon : isExpanded ? styles.categoryIconExpanded : null]}>
-                    {airline ? <AirlineMark code={category.name} size={20}/> : singleTopic && isLocked(singleTopic)
+                    {airline ? <AirlineMark code={category.name}/> : singleTopic && isLocked(singleTopic)
                       ? <Shield color={colors.primary} size={19} />
                       : <Icon color={isExpanded ? colors.primaryForeground : colors.primary} size={20} />}
                   </View>
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   category: { padding: 0, ...shadows.card },
   categoryExpanded: { borderColor: colors.primary20 },
   categoryHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 74, padding: spacing[4] },
-  categoryIcon: { alignItems: 'center', backgroundColor: colors.primary045, borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
+  categoryIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 40, justifyContent: 'center', width: 40 },
   airlineIcon: { borderRadius: radii.full },
   categoryIconExpanded: { backgroundColor: colors.primary },
   categoryCopy: { flex: 1, minWidth: 0 },

@@ -36,3 +36,18 @@ test('legacy runtime keeps its original radio and commerce providers', () => {
     assert.match(edgeOneSharedModule(root, resolution, 'web', 'edgeone-production').filePath, /\.browser\.tsx$/);
   }
 });
+
+test('formal web includes navigation and invalid-content recovery without changing legacy resolution', () => {
+  const expected = {
+    'src/components/navigation/useAppRouter.ts': 'src/components/navigation/useAppRouter.native.ts',
+    'src/components/navigation/TopBar.tsx': 'src/components/navigation/TopBar.native.tsx',
+    'src/components/account/account-ui.tsx': 'src/components/account/account-ui.native.tsx',
+    'src/app/content/[slug].tsx': 'src/app/content/[slug].native.tsx',
+    'src/features/editorial/ResourceEditorialScreen.tsx': 'src/features/editorial/ResourceEditorialScreen.native.tsx',
+  };
+  for (const [source, target] of Object.entries(expected)) {
+    const resolution = { type: 'sourceFile', filePath: path.join(root, source) };
+    assert.equal(edgeOneSharedModule(root, resolution, 'web', 'edgeone-production').filePath, path.join(root, target));
+    assert.equal(edgeOneSharedModule(root, resolution, 'web', 'vercel-legacy'), resolution);
+  }
+});

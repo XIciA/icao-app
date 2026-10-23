@@ -28,7 +28,6 @@ export const colors = {
   border: 'rgba(17, 22, 31, 0.09)',
   input: 'rgba(17, 22, 31, 0.12)',
   ring: '#1F5ED9',
-  primary045: 'rgba(31, 94, 217, 0.045)',
   primary06: 'rgba(31, 94, 217, 0.06)',
   primary08: 'rgba(31, 94, 217, 0.08)',
   primary10: 'rgba(31, 94, 217, 0.10)',
