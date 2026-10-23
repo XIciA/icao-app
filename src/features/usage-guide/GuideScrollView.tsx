@@ -10,9 +10,9 @@ export const GuideScrollView = forwardRef<ScrollView, ScrollViewProps>(function 
   const activeTarget = useRef(guide?.target); activeTarget.current = guide?.target;
   useEffect(() => { last.current = undefined; }, [guide?.step]);
   const reveal = useCallback((node: View, target: string) => {
-    if (target !== activeTarget.current || last.current === node) return;
+    if (target !== activeTarget.current || last.current !== undefined) return;
     scroll.current?.getNativeScrollRef()?.measureInWindow((_x, y, _w, height) => node.measureInWindow((_tx, ty, tw, th) => {
-      if (target !== activeTarget.current || !tw || !th || !height || last.current === node) return;
+      if (target !== activeTarget.current || !tw || !th || !height || last.current !== undefined) return;
       last.current = node;
       if (ty < y + 60 || ty + Math.min(th, 80) > y + height - 80) scroll.current?.scrollTo({ y: Math.max(0, offset.current + ty - y - 100), animated: true });
     }));

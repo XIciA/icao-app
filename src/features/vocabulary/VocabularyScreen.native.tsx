@@ -106,6 +106,7 @@ export function VocabularyScreen() {
 
   const backView = () => {
     if (save.saving || save.failed) return;
+    if (guide?.current === 'vocab') guide.pause();
     if (view === 'list') setView('detail');
     else if (view === 'study') setView(returnView);
     else if (view === 'complete') setView(sessionOrigin.current);

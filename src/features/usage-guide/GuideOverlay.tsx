@@ -19,7 +19,16 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   const [rootY, setRootY] = useState(0);
   const [textHeight, setTextHeight] = useState(110);
   const [foreground, setForeground] = useState(true);
-  const key = `${layer}:${prompt?.target}`;
+  const [compactCollapsed, setCompactCollapsed] = useState(false);
+  const [fallbackReady, setFallbackReady] = useState(false);
+  const targetId = prompt?.target;
+  const key = `${layer}:${targetId}`;
+  useEffect(() => {
+    setCompactCollapsed(false);
+    setFallbackReady(false);
+    const timer = setTimeout(() => setFallbackReady(true), 500);
+    return () => clearTimeout(timer);
+  }, [key, layer, topLayer]);
   useEffect(() => {
     const shown = Keyboard.addListener('keyboardDidShow', e => setKeyboardTop(e.endCoordinates.screenY));
     const hidden = Keyboard.addListener('keyboardDidHide', () => setKeyboardTop(undefined));
@@ -27,7 +36,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     return () => { shown.remove(); hidden.remove(); app.remove(); };
   }, []);
   useEffect(() => {
-    if (!prompt || layer !== topLayer || !foreground) { setFocus(undefined); return; }
+    if (!targetId || layer !== topLayer || !foreground) { setFocus(undefined); return; }
     let alive = true, frame = 0, busy = false, started = 0, serial = 0, previous: Box | undefined;
     // Measure on animation frames. Moving or absent targets hide the mask until stable,
     // including native interactive dismissal and changing modal coordinate spaces.
@@ -40,7 +49,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
       root.current.measureInWindow((rx, ry) => {
         if (!alive || sample !== serial) return;
         setRootY(ry);
-        const candidates = [...nodes.values()].filter(value => value.id === prompt.target && value.layer === layer);
+        const candidates = [...nodes.values()].filter(value => value.id === targetId && value.layer === layer);
         const check = (index: number) => {
           if (!alive || sample !== serial) return;
           const candidate = candidates[index];
@@ -60,13 +69,14 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     };
     tick();
     return () => { alive = false; cancelAnimationFrame(frame); };
-  }, [foreground, key, keyboardTop, layer, nodes, prompt?.target, size.height, size.width, topLayer]);
+  }, [foreground, key, keyboardTop, layer, nodes, targetId, size.height, size.width, topLayer]);
   if (!prompt || layer !== topLayer || !foreground) return null;
   const measured = focus?.key === key ? focus.box : undefined;
   const height = keyboardTop === undefined ? size.height : Math.min(size.height, keyboardTop - rootY);
   const target = measured && prompt.next ? { ...measured, height: Math.min(measured.height, Math.max(44, height - textHeight - insets.top - insets.bottom - 160)) } : measured;
   const position = guidePlacement(target, size.width, height, textHeight, { top: layer === 'root' ? insets.top + 48 : 48, bottom: insets.bottom + 60 });
   const show = !!target && !position.compact;
+  const showCompact = !show && fallbackReady && size.width > 0 && height > 0;
   const blocks = show ? [
     { left: 0, top: 0, width: size.width, height: target.y },
     { left: 0, top: target.y + target.height, width: size.width, height: Math.max(0, height - target.y - target.height) },
@@ -92,12 +102,25 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
         {prompt.next ? <Pressable accessibilityRole="button" onPress={prompt.next} style={styles.action}><AppText color={colors.card} variant="button">知道了</AppText></Pressable> : null}
       </View>
     </> : null}
+    {showCompact ? <View style={[styles.compactHint, { left: position.x, top: position.y, width: position.width }]} testID="guide-compact-hint">
+      <Pressable accessibilityRole="button" accessibilityLabel={compactCollapsed ? '展开教学提示' : '收起教学提示'} onPress={() => setCompactCollapsed(value => !value)} style={styles.compactToggle}>
+        <AppText variant="button" style={{ flex: 1 }}>{prompt.title}</AppText>
+        <AppText variant="micro">{compactCollapsed ? '展开' : '收起'}</AppText>
+      </Pressable>
+      {!compactCollapsed ? <>
+        <AppText accessibilityLiveRegion="polite" variant="caption">{prompt.text}</AppText>
+        {prompt.error ? <AppText color={colors.destructive} variant="caption">{prompt.error}</AppText> : null}
+        {prompt.next ? <Pressable accessibilityRole="button" onPress={prompt.next} style={styles.action}><AppText color={colors.primary} variant="button">知道了</AppText></Pressable> : null}
+      </> : null}
+    </View> : null}
     <Pressable accessibilityRole="button" accessibilityLabel="跳过教学" onPress={prompt.skip} style={[styles.skip, target && target.y + target.height > height - insets.bottom - 85 ? { top: layer === 'root' ? insets.top + 8 : 8 } : { bottom: size.height - height + insets.bottom + 16 }, !show && styles.skipOnPage]}><AppText color={show ? colors.card : colors.mutedForeground} variant="caption">跳过教学</AppText></Pressable>
   </View>;
 }
 const styles = StyleSheet.create({
   root: { ...StyleSheet.absoluteFillObject, zIndex: 10000 },
   block: { position: 'absolute' },
+  compactHint: { position: 'absolute', backgroundColor: colors.card, borderColor: colors.border, borderWidth: StyleSheet.hairlineWidth, borderRadius: radii.md, paddingHorizontal: spacing[3], paddingBottom: spacing[2], gap: spacing[1] },
+  compactToggle: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: spacing[2] },
   hint: { position: 'absolute', gap: spacing[2] },
   center: { textAlign: 'center' },
   action: { minHeight: 44, alignSelf: 'center', justifyContent: 'center', paddingHorizontal: spacing[4] },

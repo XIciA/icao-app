@@ -8,6 +8,7 @@ export type GuidePrompt = { target: string; title?: string; text: string; index:
 export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean };
 export type GuideBinding = {
   event: (id: string) => void;
+  availability: (key: string, module: GuideId, message?: string) => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
   surface: (layer: string) => ReactNode;
@@ -54,4 +55,17 @@ export function GuideModalScope({ children, visible }: PropsWithChildren<{ visib
   const guide = useGuide(); const id = useId(); const modal = guide?.modal;
   useEffect(() => { if (visible) modal?.(id, true); return () => modal?.(id, false); }, [id, modal, visible]);
   return <LayerContext.Provider value={id}>{children}{visible ? guide?.surface(id) : null}</LayerContext.Provider>;
+}
+
+/** An unavailable real feature must remain operable without recording a fake completion. */
+export function useGuideAvailability(module: GuideId, message?: string) {
+  const guide = useGuide(), key = useId(), navigation = useContext(NavigationContext);
+  const availability = guide?.availability;
+  useEffect(() => {
+    const update = () => availability?.(key, module, (!navigation || navigation.isFocused()) ? message : undefined);
+    update();
+    const offFocus = navigation?.addListener('focus', update);
+    const offBlur = navigation?.addListener('blur', () => availability?.(key, module, undefined));
+    return () => { offFocus?.(); offBlur?.(); availability?.(key, module, undefined); };
+  }, [availability, key, message, module, navigation]);
 }

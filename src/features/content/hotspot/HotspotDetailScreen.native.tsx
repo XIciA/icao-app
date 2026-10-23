@@ -1,5 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
 import { hotspotCenters, hotspotSources, selectHotspotSource, hotspotReportedPrompts, hotspotQuestionOrigins } from '@icao/contracts/app-content';
 import { useLocalSearchParams } from 'expo-router';
@@ -24,6 +24,8 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
   const params=useLocalSearchParams<{center?:string}>();
   const [selection,setSelection]=useState(params.center??'all');
   const { retry, state } = useHotspotAccess(briefId);
+  useGuideAvailability('hotspot', state.status === 'membership-required' ? '完整练习需要会员。可查看会员权益，或跳过教学继续浏览。'
+    : state.status === 'loading' || state.status === 'ready' ? undefined : '热点暂时无法打开。可在页面重试或返回列表；教学进度不会误记为完成。');
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
 

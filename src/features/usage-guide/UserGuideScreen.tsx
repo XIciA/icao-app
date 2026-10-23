@@ -38,7 +38,7 @@ export function UserGuideScreen() {
     try {
       const result = await loadQuestionBank('sentences900');
       if (!result) throw new Error('bank_unavailable');
-      if (isCurrent()) setExportDataset({ accountId, dataset: result.dataset });
+      if (isCurrent()) { setExportDataset({ accountId, dataset: result.dataset }); void guide?.start('export'); }
     } catch { if (isCurrent()) setExportError('900句暂时无法读取，请联网后重试。'); }
     finally { if (isCurrent()) setExporting(false); }
   }
@@ -49,7 +49,7 @@ export function UserGuideScreen() {
     {GUIDE_ENTRIES.map(({ id, title, description }) => {
       const Icon = GUIDE_ICONS[id];
       return <Pressable accessibilityRole="button" accessibilityLabel={title} disabled={guide?.ready === false} key={id} onPress={() => {
-        if (id === 'export') { void guide?.start(id); void openExport(); }
+        if (id === 'export') { void openExport(); }
         else void guide?.start(id);
       }} style={({ pressed }) => [styles.entry, pressed && { opacity: 0.7 }]}>
         <Icon color={colors.primary} size={21} /><View style={styles.copy}><AppText variant="cardTitle">{title}</AppText><AppText variant="caption">{description}</AppText></View><ChevronRight color={colors.mutedForeground} size={16} />
