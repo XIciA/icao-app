@@ -1,21 +1,19 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect } from 'expo-router';
-import { Bookmark, ChevronRight, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
+import { Bookmark, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
-import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { AppText, Card } from '@/components/ui';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
 import { AccountScreen, RowGroup, Row } from '@/components/account/account-ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { useProfile } from '@/features/account/profile-store.native';
-import { examGoal } from '@/features/account/profile-model';
-import { ProfileAvatar } from '@/features/account/ProfileAvatar';
-import { MembershipStatus } from './MembershipStatus.native';
+import { ProfileIdentityCard } from './ProfileIdentityCard.native';
 
 const menu = [
   { slug: 'membership', label: '会员与购买', icon: Star },
@@ -80,14 +78,11 @@ export function ProfileHomeScreen() {
 
   return (
     <AccountScreen>
-      <Card style={styles.profile}><GuideAnchor id="setup-profile" /><GuideAnchor id="setup-bank" />
-        <View style={styles.identity}>
-          <Pressable accessibilityLabel={`个人资料，${accountLabel}`} onPress={() => { guide?.event('setup-profile'); open('profile-detail'); }}><ProfileAvatar size={60} uri={profile.avatarUri} /></Pressable>
-          <View style={styles.copy}><MembershipStatus displayName={profile.displayName} /></View>
-          <Pressable accessibilityLabel="查看个人资料" onPress={() => { guide?.event('setup-profile'); open('profile-detail'); }} style={styles.profileLink}><ChevronRight color={colors.mutedForeground} size={20} /></Pressable>
-        </View>
-        <View style={styles.goalRow}><AppText variant="caption">备考目标</AppText><AppText variant="caption" color={colors.foreground}>{examGoal(profile.target).label}</AppText></View>
-      </Card>
+      <ProfileIdentityCard
+        profile={profile}
+        accountLabel={accountLabel}
+        onOpenProfile={() => { guide?.event('setup-profile'); open('profile-detail'); }}
+      />
       <View style={styles.stats}>
         <Card style={styles.stat}>
           <AppText style={styles.value} variant="pageTitle">
@@ -120,17 +115,8 @@ export function ProfileHomeScreen() {
 
 const styles = StyleSheet.create({
   unreadDot: {position:'absolute',right:40,top:26,width:8,height:8,borderRadius:4,backgroundColor:colors.destructive},
-  profile: { borderRadius: radii.xxxl, gap: spacing[4] },
-  identity: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
-  profileLink: { minHeight: 44, width: 28, alignItems: 'center', justifyContent: 'center' },
-  goalRow: { borderTopColor: colors.border, borderTopWidth: 1, paddingTop: spacing[4], flexDirection: 'row', justifyContent: 'space-between', gap: spacing[3] },
-  copy: { flex: 1, gap: spacing[2] },
-  goalBadge: { alignSelf: 'flex-start', backgroundColor: colors.primary10, borderRadius: radii.sm, paddingHorizontal: spacing[3], paddingVertical: spacing[1] },
-  account: { color: colors.foreground, marginTop: spacing[1] },
   stats: { flexDirection: 'row', gap: spacing[3], marginTop: spacing[3] },
   stat: { alignItems: 'center', flex: 1, paddingVertical: spacing[3] },
   value: { fontSize: 24, lineHeight: 31 },
   menuSpacing: { marginTop: spacing[5] },
-  footer: { marginTop: spacing[5], textAlign: 'center' },
-  pressed: { opacity: 0.82, transform: [{ scale: 0.98 }] },
 });
