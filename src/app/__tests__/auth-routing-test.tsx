@@ -174,10 +174,9 @@ it.each(['ios', 'android', 'web'] as const)('keeps edge-return animation platfor
   try {
     await render(<NativeAppStack />);
     expect(mockStackOptions).toHaveBeenLastCalledWith(expect.objectContaining({
-      animation: platform === 'ios' ? 'simple_push' : 'slide_from_right', animationMatchesGesture: platform === 'ios',
-      fullScreenGestureEnabled: platform === 'ios',
-      gestureResponseDistance: platform === 'ios' ? { start: 0, end: 24 } : undefined,
-      gestureEnabled: true, headerShown: false,
+      animation: 'slide_from_right',
+      fullScreenGestureEnabled: false,
+      gestureEnabled: platform !== 'ios', headerShown: false,
     }));
   } finally { Object.defineProperty(Platform, 'OS', { configurable: true, value: original }); }
 });

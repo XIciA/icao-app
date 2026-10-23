@@ -1,3 +1,4 @@
+import { EdgeBackRegion } from '@/components/navigation/EdgeBackRegion.native';
 import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation/route-identity.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
@@ -112,19 +113,17 @@ export function AppStack() {
   return (
     <View style={styles.root}>
       <Stack
+            screenLayout={({ children, navigation, route }) => Platform.OS === 'ios'
+              ? <EdgeBackRegion enabled={!['index', '(tabs)', 'auth/[slug]'].includes(route.name)} navigation={navigation}>{children}</EdgeBackRegion>
+              : children}
             screenListeners={{ transitionStart: () => guide?.suspend(true), transitionEnd: () => guide?.suspend(false) }}
             screenOptions={{
-              // iOS 26 edge recognizers can receive touches without beginning. Use
-              // the RNS pan recognizer, confined to the first 24 points so study
-              // gestures elsewhere remain untouched. It needs a custom animation.
-              animation: Platform.OS === 'ios' ? 'simple_push' : 'slide_from_right',
-              animationMatchesGesture: Platform.OS === 'ios',
+              animation: 'slide_from_right',
               animationDuration: 220,
               contentStyle: { backgroundColor: colors.background },
-              fullScreenGestureEnabled: Platform.OS === 'ios',
-              gestureResponseDistance: Platform.OS === 'ios' ? { start: 0, end: 24 } : undefined,
+              fullScreenGestureEnabled: false,
               gestureDirection: 'horizontal',
-              gestureEnabled: true,
+              gestureEnabled: Platform.OS !== 'ios',
               headerShown: false,
             }}
           >
@@ -139,7 +138,7 @@ export function AppStack() {
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
-                options={{ gestureEnabled: true }}
+                options={{ gestureEnabled: Platform.OS !== 'ios' }}
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
@@ -149,7 +148,7 @@ export function AppStack() {
               {includeNativeProtectedRoutes ? (
                 <Stack.Screen
                   name="content/hotspot/[briefId]/study"
-                  options={{ gestureEnabled: true }}
+                  options={{ gestureEnabled: Platform.OS !== 'ios' }}
                 />
               ) : null}
               <Stack.Screen name="content/resources/[articleSlug]" />

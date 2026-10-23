@@ -452,8 +452,10 @@ reviewedFormalWebHashes.set("tools/edgeone-shared-modules.cjs", [...new Set([...
 // Native completion labels follow local return origins; shared default text and legacy callers are unchanged.
 reviewedFormalWebHashes.set("src/features/vocabulary/components/VocabularyStudyViews.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/features/vocabulary/components/VocabularyStudyViews.tsx") ?? [null]), "84d11ab643c8b0e82d25c31a27535a77e66bfb4990f8d3644d2bbb4d62449957"])]);
 
-// iOS-only custom pan is confined to the left 24pt; legacy Web root is unchanged.
-reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "d8d69d6f666a630b43358b2eb0715524a8c12aabcc901967ad95ad0b2d800b64"])]);
+// iOS-only left-edge responder dispatches the existing navigation action; legacy Web root is unchanged.
+reviewedFormalWebHashes.set("src/app/_layout.native.tsx", [...new Set([...(reviewedFormalWebHashes.get("src/app/_layout.native.tsx") ?? [null]), "7c68ed321bc47930ad16383ad9b441c47e1118364545fde4f08c35abae379c9e"])]);
+
+reviewedFormalWebHashes.set("src/components/navigation/EdgeBackRegion.native.tsx", [null, "4f1820c0b849a7029440c584a38154228999a15425c67e2007c6df86a976f3af"]);
 
 function expoResolutionContext(context, platform) {
   return platform === 'web' ? { ...context, preferNativePlatform: false } : context;
