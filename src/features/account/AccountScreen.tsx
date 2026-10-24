@@ -441,7 +441,7 @@ function BindPhonePage() {
         if (!activeRef.current) return;
         grantRef.current = grantId;
         await requestCode();
-        if (activeRef.current) setShowVerification(false);
+        // The verification sheet closes after its own exit transition.
       }} /> : null}
       <View style={styles.form}>
         <View style={styles.passwordIntro}>

@@ -25,11 +25,13 @@ it('clears an actual preview failure when returning to options and permits anoth
 });
 
 it('advances the export tour only after a file is ready and keeps a failed attempt retryable',async()=>{
+ jest.mocked(generateSentencesPdf).mockClear();
  const event=jest.fn(); let reject!: (error:Error)=>void;
  jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>new Promise((_resolve,no)=>{reject=no;}));
  const view=await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={{event,register:jest.fn()} as unknown as GuideBinding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>);
  await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
- expect(view.getByLabelText('正在生成 PDF…')).toBeTruthy();expect(view.getByText('正在处理 PDF，内容较多时请稍候…')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
+ expect(view.getByLabelText('正在生成 PDF…')).toBeTruthy();expect(view.queryByText('正在处理 PDF，内容较多时请稍候…')).toBeNull();expect(view.getByText('导出设置')).toBeTruthy();expect(view.getByText('将导出 1 句')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
+ await fireEvent.press(view.getByLabelText('正在生成 PDF…'));expect(generateSentencesPdf).toHaveBeenCalledTimes(1);
  reject(new Error('test generation failure'));
  await waitFor(()=>expect(view.getByText('PDF 生成失败，请重试。学习笔记和进度不会受到影响。')).toBeTruthy());
  expect(event).not.toHaveBeenCalledWith('export-generate');

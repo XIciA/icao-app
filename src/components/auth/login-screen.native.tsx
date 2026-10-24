@@ -557,11 +557,13 @@ function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
       <AppText variant="micro">·</AppText>
       <TextLink label="查看隐私政策" onPress={() => setOpenDocument('privacy')} />
     </View>
-    {openDocument ? <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible>
+    <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible={Boolean(openDocument)}>
+      {openDocument ? <>
       <Screen contentStyle={{ paddingHorizontal: 0 }} scroll header={<TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />}>
         <LegalDocumentBody document={documents[openDocument]} />
       </Screen>
-    </AppModal> : null}
+      </> : null}
+    </AppModal>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import { buildMockExamSession as buildNative } from '../build-session.native';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session';
 
@@ -98,4 +99,20 @@ it('keeps seeded selections fixed with no repeated source questions and rejects 
   expect(first.sections.filter(section => section.moduleId === 'listening').map(section => section.items.length)).toEqual([5, 5, 5, 5]);
   expect(first.sections.filter(section => section.moduleId === 'sentences900').map(section => section.items.length)).toEqual([4, 4, 4, 4, 4]);
   await expect(buildNative({ examType: 'icao4-first', modules: [] })).rejects.toThrow('至少选择');
+});
+
+
+it('draws identical listening sources by stable category IDs after display labels change', async () => {
+ const config={examType:'icao4-first' as const,modules:['listening' as const]};
+ const before=await buildNative(config,109);
+ const read=questionBankRepository.getDataset.bind(questionBankRepository);
+ const renamed=jest.spyOn(questionBankRepository,'getDataset').mockImplementation(async id=>{
+  const dataset=await read(id);
+  return dataset && id==='listening'?{...dataset,categories:dataset.categories.map(c=>({...c,name:`新显示名称 ${c.id}`}))}:dataset;
+ });
+ try {
+  const after=await buildNative(config,109);
+  expect(after.items.map(item=>item.source)).toEqual(before.items.map(item=>item.source));
+  expect(after.sections.map(section=>section.items[0].source.categoryId)).toEqual(['listening-category-01','listening-category-04','listening-category-03','listening-category-02']);
+ } finally {renamed.mockRestore();}
 });

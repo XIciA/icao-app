@@ -39,6 +39,8 @@ function createBook(id: VocabularyBook['id'], name: string, count: number): Voca
   };
 }
 
+const mockSetStatus = jest.fn(async (_id: string, _status: string): Promise<void> => undefined);
+
 const mockBooks = [
   createBook('preview', 'ICAO考前预习', 360),
   createBook('icao4', 'ICAO 4 必会', 372),
@@ -61,7 +63,7 @@ jest.mock('../progress-store', () => ({
     ready: true,
     state: { schemaVersion: 1, words: {}, updatedAt: new Date(0).toISOString() },
     statsByBook: Object.fromEntries(mockBooks.map((book) => [book.id, { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 }])),
-    setStatus: jest.fn(async () => undefined),
+    setStatus: mockSetStatus,
     toggleFavorite: jest.fn(async () => undefined),
     resetBook: jest.fn(async () => undefined),
     saveTestResult: jest.fn(async () => undefined),
@@ -138,4 +140,24 @@ it('labels the completion return for the originating word list and returns there
     await fireEvent.press(screen.getByText('返回单词列表'));
     expect(screen.getByText('学习当前 1 词')).toBeTruthy();
   } finally { mockBooks[0].words = words; }
+});
+
+
+it('confirms a wrong mark only after saving and clears the feedback on the next word', async () => {
+ const words=mockBooks[0].words;mockBooks[0].words=words.slice(0,2);mockSetStatus.mockClear();
+ try {
+  const screen=await render(withSafeArea(<VocabularyScreen/>));
+  await fireEvent.press(screen.getByLabelText('选择ICAO考前预习'));await fireEvent.press(screen.getByText('开始学习'));
+  await fireEvent.press(screen.getByText('认识'));
+  let complete!:()=>void;mockSetStatus.mockImplementationOnce(()=>new Promise<void>(resolve=>{complete=resolve;}));
+  await fireEvent.press(screen.getByLabelText('记错了'));
+  expect(screen.queryByText('已标记记错')).toBeNull();expect(screen.getByText('word 0')).toBeTruthy();
+  await act(async()=>complete());expect(screen.getByText('已标记记错')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText('已标记记错'));expect(mockSetStatus).toHaveBeenCalledTimes(2);
+  await fireEvent.press(screen.getByText('下一词'));expect(screen.queryByText('已标记记错')).toBeNull();
+  expect(screen.getByText('word 1')).toBeTruthy();await fireEvent.press(screen.getByText('模糊'));
+  mockSetStatus.mockRejectedValueOnce(new Error('write failed'));await fireEvent.press(screen.getByLabelText('记错了'));
+  expect(screen.queryByText('已标记记错')).toBeNull();expect(screen.getByText('保存尚未完成')).toBeTruthy();
+  await fireEvent.press(screen.getByText('重试保存'));expect(screen.getByText('已标记记错')).toBeTruthy();
+ } finally {mockBooks[0].words=words;mockSetStatus.mockReset().mockResolvedValue(undefined);}
 });

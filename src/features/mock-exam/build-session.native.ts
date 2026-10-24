@@ -1,3 +1,4 @@
+import { LISTENING_CATEGORY_ORDER } from '@/features/question-bank/lib/question-titles';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import type {
   QuestionBankCard,
@@ -31,11 +32,12 @@ function section(moduleId: MockExamModuleId, id: string, title: string, dataset:
 async function buildModule(moduleId: MockExamModuleId, expert: boolean, datasets: Record<QuestionBankId, QuestionBankDataset>, next: () => number) {
   if (moduleId === 'listening') {
     const result = [];
-    for (const [index, name] of ['10s航空英语', '10s陆空通话', '20s航空英语', '20s陆空通话'].entries()) {
+    for (const [index, categoryId] of LISTENING_CATEGORY_ORDER.entries()) {
       const data = datasets.listening;
-      const group = category(data, name);
+      const group = data.categories.find(category => category.id === categoryId);
+      if (!group) throw new Error(`听力缺少分类：${categoryId}`);
       const groupTopic = await hydrateMockExamTopic(data, group, topic(group));
-      result.push(section(moduleId, `listening-${index + 1}`, `听力 · ${name}`, data, group, groupTopic, sample(groupTopic.cards, 5, next)));
+      result.push(section(moduleId, `listening-${index + 1}`, `听力 · ${group.name}`, data, group, groupTopic, sample(groupTopic.cards, 5, next)));
     }
     return result;
   }

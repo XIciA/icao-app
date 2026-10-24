@@ -3,7 +3,7 @@ import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
 import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from './pdf-generator';
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Check } from '@/components/ui/icons';
 import { AppText, BottomSheet, Button, Screen } from '@/components/ui';
 import { TopBar } from '@/components/navigation/TopBar';
@@ -59,7 +59,6 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
   const tagLabels = data?.annotations.tagDefinitions.filter(tag => options.tagIds.includes(tag.id)).map(tag => tag.label).join('、') || '不限标签';
   return <Screen contentStyle={styles.screen} header={<TopBar title={output?'我的900句 PDF':'导出900句'} onBack={back}/>}>
     <GuideScrollView contentContainerStyle={styles.content}>
-      {busy ? <View accessibilityLiveRegion="polite" style={styles.section}><ActivityIndicator color={colors.primary}/><AppText>正在处理 PDF，内容较多时请稍候…</AppText></View> : null}
       {error?<View style={styles.section}><AppText color={colors.destructive}>{error}</AppText>{!data?<Button onPress={()=>setAttempt(v=>v+1)}>重新读取</Button>:null}</View>:null}
       {output?<View style={styles.section}><GuideAnchor id="export-result" /><AppText variant="sectionTitle">PDF 已生成</AppText><AppText>{output.count} 句 · {output.pages} 页 · A4</AppText><Button disabled={busy} onPress={()=>void open(()=>previewPdf(output.uri),'PDF 预览未能打开，请重试或选择保存。')}>预览 PDF</Button><Button disabled={busy} variant="secondary" onPress={()=>void open(()=>sharePdf(output.uri),'未能打开保存或分享，请重试。')}>保存或分享 PDF</Button></View>:<>
         <DetailGroup title="导出设置">

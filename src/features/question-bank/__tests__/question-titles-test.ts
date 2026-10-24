@@ -8,8 +8,8 @@ it('renames listening and story questions without touching order, identity, audi
     if (!['listening', 'storytelling'].includes(bank.id)) continue;
     const before = JSON.stringify(bank);
     const projected = naturalDatasetTitles(bank);
-    bank.categories.forEach((category, c) => category.topics.forEach((topic, t) => {
-      const changed = projected.categories[c].topics[t];
+    bank.categories.forEach(category => category.topics.forEach(topic => {
+      const changed = projected.categories.find(item => item.id === category.id)!.topics.find(item => item.id === topic.id)!;
       expect(changed.cards.map(card => card.id)).toEqual(topic.cards.map(card => card.id));
       topic.cards.forEach((card, i) => {
         expect(changed.cards[i]).toEqual({ ...card, taskTitle: changed.cards[i].taskTitle });
