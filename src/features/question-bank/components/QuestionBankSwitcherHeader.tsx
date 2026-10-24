@@ -66,7 +66,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
       </View>
 
       <BottomSheet accessibilityLabel={accessibilityLabel} onClose={() => setVisible(false)} visible={visible}>
-        <View style={styles.sheetContent}>
+        <View style={styles.sheetContent}>{guideId ? <GuideAnchor id={guideId} /> : null}
           <AppText variant="sectionTitle">切换题库</AppText>
           {items.map((item) => {
             const Icon = item.icon;

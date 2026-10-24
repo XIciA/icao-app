@@ -2,8 +2,8 @@ import { useRouter as useExitRouter } from 'expo-router';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { TutorialCoach, TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
+import { GuideAnchor, useGuide, useGuideTarget } from '@/features/usage-guide/GuideBindings';
+import { TutorialTarget, useTutorial } from '@/features/usage-guide/TutorialContext';
 import { TUTORIAL_STEPS } from '@/features/usage-guide/tutorial-model';
 import { annotatedThisSession } from '../lib/session-recap';
 import { readAnnotationStore } from '../annotations/annotation-store.native';
@@ -208,6 +208,14 @@ function StudyContent(props: Props) {
   } : undefined;
   const annotations = useQuestionAnnotations(target);
   useEffect(() => { if (annotations.hydrated && !annotations.loadErrorMessage && !initialAnnotations.current) initialAnnotations.current = JSON.parse(JSON.stringify(annotations.store)); }, [annotations.hydrated, annotations.loadErrorMessage, annotations.store]);
+  useGuideTarget('study-reveal', 'sentence-answer', session.revealed ? '原文和翻译已经展开，可以继续。' : undefined, session.revealed);
+  const existingHighlight = !!annotations.entry?.highlights.length;
+  const existingTag = !!annotations.entry?.tagIds.length;
+  const existingNote = !!annotations.entry?.note.trim();
+  useGuideTarget('study-highlight', existingHighlight ? 'sentence-text' : 'sentence-highlight-tool', existingHighlight ? '这里已有高亮，可保留并继续，也可以补充标记。' : session.toolMode === 'highlight' ? '选中原文中想记住的词，保存高亮。' : undefined, existingHighlight);
+  useGuideTarget('study-tag', 'sentence-tag-tool', existingTag ? '这道题已有标签，可保留并继续。' : undefined, existingTag);
+  useGuideTarget('study-note', 'sentence-workbench', existingNote ? '这里已有笔记，可保留并继续，也可以编辑后完成保存。' : '在“我的笔记”中编辑内容，再点完成保存。', existingNote && !editingWorkbenchTab);
+  useGuideTarget('study-favorite', 'sentence-favorite', lookup && wordFavorites.isFavorite({word: lookup.word}) ? '这个词已在词本中，可以继续。' : undefined, !!lookup && wordFavorites.isFavorite({word: lookup.word}));
   useEffect(() => {
     if (!guiding || !session.hydrated || !tutorialStep || tutorialStep === 'play' || tutorialStep === 'reveal' || tutorialStep === 'favorite') return;
     revealForTutorial(true);
@@ -780,7 +788,7 @@ function StudyContent(props: Props) {
         {!examMode && historyContentAllowed ? <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable> : null}
         <Pressable accessibilityLabel={examMode ? "当前题号" : "打开答题卡"} disabled={examMode || taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}>{!examMode ? <Grid3X3 color={colors.mutedForeground} size={15} /> : null}<AppText style={styles.counter} variant="button">{navigationCurrentIndex + 1} / {navigationItemCount}</AppText></Pressable>
       </View>
-      <TutorialCoach ready={Boolean(guiding && ((tutorialStep === 'reveal' && session.revealed) || (tutorialStep === 'highlight' && annotations.entry?.highlights.length) || (tutorialStep === 'tag' && annotations.entry?.tagIds.length) || (tutorialStep === 'note' && annotations.entry?.note.trim()) || (tutorialStep === 'favorite' && lookup && wordFavorites.isFavorite({ word: lookup.word }))))} />
+
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
       {!imageCard && !listeningExamActive && historyContentAllowed ? <View testID="annotation-panel-anchor" onLayout={({ nativeEvent }) => setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height)} style={styles.tools}>

@@ -1,5 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
 import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -39,6 +39,7 @@ export function MyAnnotationsScreen() {
   const router = useRouter();
   const guide = useGuide();
   const annotations = useQuestionAnnotations();
+  useGuideAvailability('recap', annotations.loadErrorMessage || undefined);
   const banks = useMemo(getEmbeddedQuestionBanks, []);
   const [bankId, setBankId] = useState<BankFilter>('all');
   const [segment, setSegment] = useState<AnnotationSegment>('tags');
@@ -118,14 +119,14 @@ export function MyAnnotationsScreen() {
   }
 
   const visibleEntries = segment === 'tags' ? visibleTagEntries : segment === 'highlights' ? visibleHighlightEntries : noteEntries;
-  useEffect(() => { if (guide?.current === 'recap' && annotations.hydrated) guide.checkpoint({ recapEmpty: visibleEntries.length === 0 }); }, [annotations.hydrated, guide, visibleEntries.length]);
+  useEffect(() => { if (guide?.current === 'recap' && guide.step !== 'recap-record' && annotations.hydrated && !annotations.loadErrorMessage) guide.checkpoint({ recapEmpty: visibleEntries.length === 0 }); }, [annotations.hydrated, annotations.loadErrorMessage, guide, visibleEntries.length]);
 
   return (
     <Screen contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)/profile')} onSelect={chooseBank} value={bankId} />
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.segmented}>
+        <View style={styles.segmented}><GuideAnchor id="recap-filter" />
           {segments.map((item) => {
             const active = segment === item.id;
             return (
@@ -138,7 +139,7 @@ export function MyAnnotationsScreen() {
         </View>
 
         {colorOptions.length ? (
-          <View style={styles.filters}><GuideAnchor id="recap-filter" />
+          <View style={styles.filters}>
             <Pressable accessibilityState={{ selected: colorFilter.length === 0 }} onPress={() => setColorFilter([])} style={[styles.allFilter, colorFilter.length === 0 ? styles.filterActive : null]}>
               <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="button">全部</AppText>
             </Pressable>

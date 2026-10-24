@@ -1,4 +1,3 @@
-import { TutorialCoach } from '@/features/usage-guide/TutorialContext';
 import { normalizeStaticLookupWord } from '../static-word-lookup/normalize';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -20,7 +19,7 @@ export function SessionRecapList({kind,record,onBack,onOpen}:{kind:'annotations'
   const selected=new Set(kind==='annotations'?record.sessionRecap?.annotatedCardIds:objectiveReview(record.studyReview).wrongIds);
   const items=record.studyReview?.items.filter(item=>selected.has(kind==='annotations'?item.card.id:item.id))??[];
   const words=(record.sessionRecap?.words??[]).filter(word=>!onlyFavorites||word.favorited);
-  return <Screen scroll header={<TopBar title={title} onBack={onBack}/>}><TutorialCoach inset={false} />
+  return <Screen scroll header={<TopBar title={title} onBack={onBack}/>}>
     {kind==='words'?<><Button variant={onlyFavorites?'secondary':'ghost'} onPress={()=>setOnlyFavorites(value=>!value)}>{onlyFavorites?'本次收藏':'全部查词'}</Button>{words.map(({word})=>{const entry=findStaticWordLookup(word);return <View key={word} style={styles.item}><View style={styles.row}><AppText variant="cardTitle">{word}</AppText><LookupPronunciation word={word}/><Pressable accessibilityLabel={favorites.isFavorite({word})?'取消收藏':'收藏单词'} onPress={()=>void save.run(()=>favorites.toggleFavorite({word}))}><Star size={20} color={colors.accent} fill={favorites.isFavorite({word})?colors.accent:'transparent'}/></Pressable></View><AppText variant="caption">{entry?.ipa}</AppText><AppText>{entry?.aviationMeaning??entry?.generalMeaning}</AppText>{record.studyReview?.items.filter(item => [item.card.audioText, item.card.referenceText].some(text => text?.split(/\s+/).some(token => normalizeStaticLookupWord(token) === normalizeStaticLookupWord(word)))).map(item => <Button key={item.id} size="sm" variant="ghost" onPress={() => onOpen(item.id)}>回到 {item.card.taskTitle}</Button>)}</View>;})}</>:items.map(item=>{
       const entry=annotations.store.entries[questionBankCardTargetKey({bankId:item.dataset.id,categoryId:item.category.id,topicId:item.topic.id,cardId:item.card.id})];
       return <Pressable accessibilityRole="button" key={item.id} onPress={()=>onOpen(item.id)} style={styles.item}><View style={styles.row}><AppText variant="button" style={{flex:1}}>{item.card.taskTitle}</AppText><ChevronRight color={colors.mutedForeground} size={20}/></View><AppText numberOfLines={2}>{item.card.audioText??(item.card.kind==='image'?item.card.imageAlt:'')}</AppText>{kind==='annotations'?<>

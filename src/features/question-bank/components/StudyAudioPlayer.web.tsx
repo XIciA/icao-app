@@ -1,4 +1,4 @@
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
@@ -672,6 +672,8 @@ export function StudyAudioPlayer({
   }
 
   const audioFailed = !uri || playback.phase === 'error';
+  const guide = useGuide();
+  useGuideAvailability('study', guide?.step === 'study-play' && audioFailed && !resolving ? '音频暂时无法播放，可重试或暂不听音频继续教学。' : undefined);
   const audioControllable = Boolean(uri && playback.phase !== 'error');
   const waitingForFirstFrame = playback.phase === 'starting';
   const playing = playback.phase === 'playing' || playback.phase === 'buffering';

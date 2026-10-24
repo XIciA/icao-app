@@ -12,3 +12,15 @@ it('keeps completed capabilities and skipped modules distinct', () => {
   expect(remainingGuideSteps(['study-highlight','study-lookup'],progress,'study')).toEqual(['study-lookup']);
   expect(remainingGuideSteps(['radio-play'],progress,'radio')).toEqual([]);
 });
+
+it('restores stable task identities but discards an obsolete or unrelated task graph', () => {
+  const radio = {module:'radio',done:['radio-bank'],remaining:['radio-speed']};
+  const saved = {version:3,definition:1,completed:['radio-bank'],skipped:[],resumes:{radio}};
+  expect(parseGuideProgress(JSON.stringify(saved)).resumes?.radio.remaining).toEqual(['radio-speed']);
+  expect(parseGuideProgress(JSON.stringify({...saved,resumes:{radio:{...radio,remaining:['old-card']}}})).resumes).toBeUndefined();
+  expect(parseGuideProgress(JSON.stringify({...saved,definition:0})).resumes).toBeUndefined();
+});
+it('sanitizes restored vocabulary metadata before a screen consumes it', () => {
+  const parsed=parseGuideProgress(JSON.stringify({version:3,definition:1,completed:[],skipped:[],resumes:{vocab:{module:'vocab',done:[],remaining:['vocab-start'],checkpoint:{vocabBooks:'bad',vocabWord:42,recapEmpty:true}}}}));
+  expect(parsed.resumes?.vocab.checkpoint).toEqual({});
+});

@@ -3,7 +3,7 @@ import { Button, AppText } from '@/components/ui';
 import { GuideTourProvider } from '../GuideTourProvider';
 import { useGuide, useGuideAvailability, type GuidePrompt } from '../GuideBindings';
 import { emptyGuideProgress } from '../guide-progress';
-jest.mock('../study-guide-entry', () => ({ studyGuideEntry: jest.fn(async () => ({ pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]', params: { bankId: 'radiotelephony', categoryId: 'c', topicId: 't', cardId: 'first' } })) }));
+jest.mock('../study-guide-entry', () => ({ studyGuideEntry: jest.fn(async () => ({ pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]', params: { bankId: 'sentences900', categoryId: 'c', topicId: 't', cardId: 'first' } })) }));
 const mockRouter = { push: jest.fn(), navigate: jest.fn(), replace: jest.fn() };
 let mockCanAccess = true;
 let mockAccount = 'account-a', mockCreatedAt: string | undefined, mockPath = '/content/radio';
@@ -30,6 +30,9 @@ function Probe() {
     <Button onPress={() => guide.event('hotspot-topic')}>open hotspot</Button>
     <Button onPress={() => guide.event('radio-bank')}>select bank</Button>
     <Button onPress={() => guide.event('radio-speed')}>wrong event</Button>
+    <Button onPress={() => guide.confirm?.('radio-bank', false)}>invalid selection</Button>
+    <Button onPress={() => guide.confirm?.('radio-bank', true)}>valid selection</Button>
+    <Button onPress={() => { void guide.start('records'); }}>records</Button>
     <Button onPress={() => prompt?.skip()}>skip</Button>
     <Button onPress={guide.pause}>pause</Button>
     <Button onPress={() => guide.suspend(true)}>transition</Button>
@@ -69,10 +72,10 @@ it('teaches shared capabilities once and adds only newly available capabilities 
   await fireEvent.press(screen.getByText('offer extended'));
   expect(screen.getByText('study-record')).toBeTruthy();
 });
-it('manual study opens a real LT question and replays the same capability engine', async () => {
+it('manual study opens Sentence1 and replays the same capability engine', async () => {
   mockRead.mockResolvedValue({version:3,completed:['study-highlight'],skipped:['study']});
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
-  await fireEvent.press(screen.getByText('study'));expect(mockRouter.push).toHaveBeenCalledWith(expect.objectContaining({params:expect.objectContaining({bankId:'radiotelephony',cardId:'first'})}));
+  await fireEvent.press(screen.getByText('study'));expect(mockRouter.push).toHaveBeenCalledWith(expect.objectContaining({params:expect.objectContaining({bankId:'sentences900',cardId:'first'})}));
   await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
 });
 it('ignores old-account reads and hides the previous account tour immediately', async () => {
@@ -132,7 +135,7 @@ it('leaves an unavailable step pending and resumes it when the real feature reco
   await fireEvent.press(screen.getByText('unavailable'));
   expect(screen.getByText('音频不可用，请重试')).toBeTruthy();
   await fireEvent.press(screen.getByText('next'));
-  expect(screen.getByText('radio-bank')).toBeTruthy(); expect(mockWrite).not.toHaveBeenCalled();
+  expect(screen.getByText('radio-bank')).toBeTruthy(); expect(mockWrite.mock.calls.every(([, value]) => value.completed.length === 0)).toBe(true);
   await fireEvent.press(screen.getByText('available'));
   expect(screen.queryByText('音频不可用，请重试')).toBeNull();
   await fireEvent.press(screen.getByText('select bank'));
@@ -150,7 +153,7 @@ it('keeps interrupted teaching paused on the same page, then offers it on a fres
   mockPath = '/content/radio'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
   await waitFor(() => expect(screen.getByText('radio-bank')).toBeTruthy());
 });
-it('removes detail teaching when returning to a hotspot list instead of leaving a stale target', async () => {
+it('restores the entrance task when returning to a hotspot list instead of leaving a stale target', async () => {
   mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/content/hotspot';
   const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
   await waitFor(() => expect(screen.getByText('hotspot-topic')).toBeTruthy());
@@ -158,7 +161,7 @@ it('removes detail teaching when returning to a hotspot list instead of leaving 
   mockPath = '/content/hotspot/example'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
   expect(screen.getByText('hotspot-article')).toBeTruthy();
   mockPath = '/content/hotspot'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  expect(screen.getByText('no-tour')).toBeTruthy();
+  expect(screen.getByText('hotspot-topic')).toBeTruthy();
 });
 
 function PersistentUnavailableScreen({ message }: { message?: string }) {
@@ -178,7 +181,7 @@ it('re-registers an unchanged availability message for a new account and clears 
   await screen.rerender(tree());
   expect(screen.queryByText('当前音频不可用')).toBeNull();
   expect(screen.getByText('radio-bank')).toBeTruthy();
-  expect(mockWrite).not.toHaveBeenCalled();
+  expect(mockWrite.mock.calls.every(([, value]) => value.completed.length === 0)).toBe(true);
 });
 it('does not carry an old account availability registration into a new tour', async () => {
   const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
@@ -201,7 +204,7 @@ it('never teaches setup or redirects profile/bank tabs, even with unfinished old
     mockPath=path;await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
     expect(screen.getByText('no-tour')).toBeTruthy();
   }
-  expect(mockRouter.navigate).not.toHaveBeenCalled();expect(mockWrite).not.toHaveBeenCalled();
+  expect(mockRouter.navigate).not.toHaveBeenCalled();expect(mockWrite.mock.calls.every(([, value]) => value.completed.length === 0)).toBe(true);
 });
 
 it('allows unavailable scoring to be skipped without recording a successful score or restarting the step', async () => {
@@ -210,4 +213,31 @@ it('allows unavailable scoring to be skipped without recording a successful scor
   await fireEvent.press(screen.getByText('review failed'));await fireEvent.press(screen.getByText('next'));
   expect(screen.getByText('study-finish')).toBeTruthy();
   expect(mockWrite).toHaveBeenLastCalledWith('account-a',expect.objectContaining({completed:[],skippedSteps:['study-review']}));
+});
+
+it('resumes a pending task by identity without restoring coordinates or a stale route', async () => {
+  mockRead.mockResolvedValue({...emptyGuideProgress(),definition:1,resumes:{radio:{module:'radio',done:['radio-bank'],remaining:['radio-speed']}}});
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('start'));
+  expect(screen.getByText('radio-speed')).toBeTruthy();expect(mockRouter.push).toHaveBeenCalledWith('/content/radio');
+});
+it('does not advance an invalid choice, and consumes a successful action only once', async () => {
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('start'));await fireEvent.press(screen.getByText('invalid selection'));
+  await fireEvent.press(screen.getByText('select bank'));expect(screen.getByText('radio-bank')).toBeTruthy();
+  await fireEvent.press(screen.getByText('valid selection'));await fireEvent.press(screen.getByText('select bank'));
+  await fireEvent.press(screen.getByText('select bank'));expect(screen.getByText('radio-order')).toBeTruthy();
+});
+it('opens record teaching independently without navigating through annotations', async () => {
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('records'));
+  expect(mockRouter.push).toHaveBeenCalledWith('/learning-records');expect(screen.getByText('recap-record')).toBeTruthy();
+});
+
+it('keeps independent module checkpoints when the user tries another guide', async () => {
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('start'));await fireEvent.press(screen.getByText('select bank'));
+  await fireEvent.press(screen.getByText('pause'));await fireEvent.press(screen.getByText('study'));
+  await fireEvent.press(screen.getByText('pause'));await fireEvent.press(screen.getByText('start'));
+  expect(screen.getByText('radio-order')).toBeTruthy();
 });

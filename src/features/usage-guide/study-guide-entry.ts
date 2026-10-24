@@ -1,12 +1,13 @@
 import { loadQuestionBank } from '@/features/question-bank/data/repository.native';
 
-/** LT (陆空通话): enter the real catalog, never manufacture a sample question. */
+import { STUDY_GUIDE_CARD } from './tutorial-model';
+export { STUDY_GUIDE_CARD } from './tutorial-model';
+/** Explicit teaching selects Sentence1 from the authoritative, unfiltered catalog. */
 export async function studyGuideEntry() {
-  const result = await loadQuestionBank('radiotelephony');
-  const category = result?.dataset.categories.find(value => value.topics.some(topic => topic.cards.some(card => !card.retired)));
-  const topic = category?.topics.find(value => value.cards.some(card => !card.retired));
-  const card = topic?.cards.find(value => !value.retired);
-  if (!category || !topic || !card) throw new Error('guide_entry_unavailable');
+  const result = await loadQuestionBank('sentences900');
+  const category = result?.dataset.categories.find(value => value.topics.some(topic => topic.cards.some(card => card.id === STUDY_GUIDE_CARD) || topic.scopeCardIds?.all.includes(STUDY_GUIDE_CARD)));
+  const topic = category?.topics.find(value => value.cards.some(card => card.id === STUDY_GUIDE_CARD) || value.scopeCardIds?.all.includes(STUDY_GUIDE_CARD));
+  if (!category || !topic) throw new Error('guide_entry_unavailable');
   return { pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]' as const,
-    params: { bankId: 'radiotelephony', categoryId: category.id, topicId: topic.id, cardId: card.id } };
+    params: { bankId: 'sentences900', categoryId: category.id, topicId: topic.id, cardId: STUDY_GUIDE_CARD, guide: 'study' } };
 }

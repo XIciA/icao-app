@@ -1,4 +1,4 @@
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
@@ -99,6 +99,8 @@ export function StudyAudioPlayer({
   const integrated = variant === 'integrated-recording';
   const webStartTimedOut = Platform.OS === 'web' && webStartState === 'timed-out';
   const audioFailed = !uri || loadTimeout.timedOut || webStartTimedOut || status.playbackState === 'error';
+  const guide = useGuide();
+  useGuideAvailability('study', guide?.step === 'study-play' && audioFailed && !resolving ? '音频暂时无法播放，可重试或暂不听音频继续教学。' : undefined);
   const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && !webStartTimedOut && status.playbackState !== 'error');
   const displayDuration = status.duration > 0 ? status.duration : durationHint ?? 0;
   const waitingForFirstFrame = Platform.OS === 'web' && webStartState === 'starting';
