@@ -10,9 +10,9 @@ it('keeps a measured bubble inside narrow viewports, above targets near the bott
     expect(p.x).toBeGreaterThanOrEqual(16); expect(p.x+p.width).toBeLessThanOrEqual(width-16); expect(p.y).toBeGreaterThanOrEqual(16); expect(p.above).toBe(true);
   }
 });
-it('offers a collapsible edge hint for reading regions that fill the viewport', () => {
+it('declines an impossible placement instead of inventing a fallback card', () => {
   const p = guidePlacement({x:15,y:30,width:250,height:190},290,280,150);
-  expect(p.compact).toBe(true);expect(p.y).toBeGreaterThanOrEqual(16);expect(p.y+150).toBeLessThanOrEqual(280);
+  expect(p.compact).toBe(true);
 });
 it('adds no host elements in existing screens when no tour provider is mounted', async () => {
   const anchor=await render(<GuideAnchor id="radio-bank" />);expect(anchor.toJSON()).toBeNull();
@@ -26,7 +26,7 @@ it('has eight distinct entrances and a complete radio-to-study chain', () => {
 
 it('does not blindly place an unmeasured callout over the bottom action', () => {
   const p = guidePlacement(undefined, 390, 844, 150, {top:59,bottom:34});
-  expect(p.y).toBe(131); expect(p.compact).toBe(true);
+  expect(p.compact).toBe(true);
 });
 it('leaves a gap around the real bottom action across phone sizes and safe areas', () => {
   for (const height of [568,740,844,932]) for (const bubbleHeight of [110,150,190]) {

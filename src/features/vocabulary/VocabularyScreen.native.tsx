@@ -1,5 +1,5 @@
 import { useLocalBack } from '@/components/navigation/useLocalBack';
-import { useGuide } from '@/features/usage-guide/GuideBindings';
+import { useGuide, useGuideConfirmation, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useSaveAction } from './use-save-action.native';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -52,6 +52,7 @@ export function VocabularyScreen() {
   const [returnView, setReturnView] = useState<ReturnView>('books');
   const [activeBookId, setActiveBookId] = useState<VocabularyBookId>('preview');
   const [selected, setSelected] = useState<Set<VocabularyBookId>>(new Set());
+  useGuideConfirmation('vocab-book', selected.size > 0);
   const [studyWords, setStudyWords] = useState<VocabularyWord[]>([]);
   const [studyIndex, setStudyIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -69,6 +70,7 @@ export function VocabularyScreen() {
     return () => { active = false; };
   }, [loadAttempt]);
 
+  useGuideAvailability('vocab', progress.error ? '学习进度读取失败，请重试读取。' : loadError ? '词汇资源暂时不可用，请重新加载。' : undefined);
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView, resumeWord?: string) => {
     const unlearned = words.filter((word) => (progress.state.words[word.id]?.status ?? 'new') === 'new');
@@ -91,16 +93,14 @@ export function VocabularyScreen() {
     restoredGuide.current = true;
     const ids = guide.checkpointData?.vocabBooks ?? [];
     if (ids.length) setSelected(new Set(ids.filter(id => books.some(book => book.id === id)) as VocabularyBookId[]));
-    if (guide.step && !['vocab-book', 'vocab-start', 'vocab-test'].includes(guide.step)) {
+    if (guide.step && !['vocab-book', 'vocab-start'].includes(guide.step)) {
       const chosen = books.filter(book => ids.includes(book.id));
-      const words = (chosen.length ? chosen : [books[0]!]).flatMap(book => book.words);
+      if (!chosen.length) { setSelected(new Set()); setView('books'); guide.rewind?.('vocab-book'); return; }
+      const words = chosen.flatMap(book => book.words);
       startStudy(words, 'books', guide.checkpointData?.vocabWord);
-      if (['vocab-meaning', 'vocab-favorite'].includes(guide.step)) setRevealed(true);
+      if (['vocab-meaning', 'vocab-favorite', 'vocab-next'].includes(guide.step)) setRevealed(true);
     }
   }, [books, guide, progress.ready, startStudy]);
-  useEffect(() => {
-    if (guide?.current === 'vocab' && guide.step === 'vocab-test') setView('books');
-  }, [guide]);
   useEffect(() => {
     if (guide?.current !== 'vocab' || !restoredGuide.current || !selected.size) return;
     guide.checkpoint({ vocabBooks: [...selected], ...(studyWords[studyIndex] ? { vocabWord: studyWords[studyIndex]!.id } : {}) });

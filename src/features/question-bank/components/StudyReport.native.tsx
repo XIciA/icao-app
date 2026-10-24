@@ -6,7 +6,7 @@ import { readAnnotationStore } from '../annotations/annotation-store.native';
 import { AnswerCardSheet } from './AnswerCardSheet.native';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { TutorialCoach, useTutorial } from '@/features/usage-guide/TutorialContext';
+import { useTutorial } from '@/features/usage-guide/TutorialContext';
 import { SessionRecapList } from './SessionRecapList.native';
 import { objectiveReview, selectReview } from '../lib/session-recap';
 import { CheckCircle2, ChevronRight, Flag } from '@/components/ui/icons';
@@ -80,7 +80,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词与收藏' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
   return <Screen scroll contentStyle={styles.screen} header={<TopBar title="学习回顾" onBack={onContinue && onEnd ? () => { if (!busy) onEnd(); } : back} />}>
-    <TutorialCoach inset={false} />
+
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
       {!onContinue && exam && !complete ? <Tag tone="accent">未完成</Tag> : null}
       <AppText variant="pageTitle">{onContinue || (listening && record.mockExam?.moduleIds.length === 1) ? '听力成绩' : exam ? '本次模拟考试已结束' : '本次学习已结束'}</AppText>

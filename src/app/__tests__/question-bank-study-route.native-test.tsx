@@ -14,7 +14,7 @@ const mockPush = jest.fn();
 const mockBankRetry = jest.fn();
 const mockTopicRetry = jest.fn();
 let mockCanGoBack = true;
-let mockParams: { bankId: string; categoryId: string; topicId: string; cardId?: string; returnTo?: 'radio' | 'annotations' };
+let mockParams: { bankId: string; categoryId: string; topicId: string; cardId?: string; guide?: string; returnTo?: 'radio' | 'annotations' };
 let mockBankState: Omit<Extract<ReturnType<typeof useQuestionBank>, { status: 'ready' }>, 'catalog'> & { catalog?: QuestionBankDataset } | Exclude<ReturnType<typeof useQuestionBank>, { status: 'ready' }>;
 let mockTopicState: ReturnType<typeof useQuestionBankTopic>;
 
@@ -58,6 +58,17 @@ describe('Native study route recovery', () => {
     mockParams = { bankId: 'opi', categoryId: 'category', topicId: 'topic' };
     mockBankState = { status: 'ready', data: dataset, catalog: dataset, source: 'remote', retry: mockBankRetry };
     mockTopicState = { status: 'ready', topic, retry: mockTopicRetry };
+  });
+
+  it('opens explicit Sentence1 teaching from the raw catalog without changing the daily exam scope', async () => {
+    const first = {...topic, cards:[{...topic.cards[0],id:'sentence900-main-001'}]};
+    const raw = {...dataset,id:'sentences900',categories:[{...dataset.categories[0],topics:[first]}]} as QuestionBankDataset;
+    mockParams = {bankId:'sentences900',categoryId:'category',topicId:'topic',cardId:'sentence900-main-001',guide:'study'};
+    mockBankState = {status:'ready',data:{...raw,categories:[]},catalog:raw,source:'remote',retry:mockBankRetry};
+    mockTopicState = {status:'ready',topic:first,retry:mockTopicRetry};
+    const screen=await render(<Page/>);
+    expect(screen.getByTestId('existing-study-screen')).toBeTruthy();
+    expect(screen.queryByText('不在当前学习范围')).toBeNull();
   });
 
   it('keeps the existing study screen for available questions', async () => {

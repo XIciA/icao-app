@@ -88,9 +88,9 @@ export function VocabularyStudyView({
       </ScrollView>
       <View style={[styles.actions, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         {revealed ? (
-          <View key={`${word.id}:revealed`} style={styles.actionRow}>
+          <View key={`${word.id}:revealed`} style={styles.actionRow}><GuideAnchor id="vocab-next" />
             <Button accessibilityLabel={markedWrong ? '已标记记错' : '记错了'} accessibilityState={{ busy, disabled: busy || markedWrong }} disabled={busy || markedWrong} leading={markedWrong ? <Check size={16} color={colors.primary} /> : undefined} onPress={() => { void onWrong(); }} size="lg" style={[styles.flexButton, markedWrong ? styles.markedWrong : null]} variant="outline">{markedWrong ? '已标记记错' : '记错了'}</Button>
-            <Button disabled={busy} onPress={onNext} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
+            <Button disabled={busy} onPress={() => { guide?.event('vocab-next'); onNext(); }} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
           </View>
         ) : (
           <View key={`${word.id}:rating`} style={styles.actionRow}><GuideAnchor id="vocab-rating" />

@@ -1,5 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useState } from 'react';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from '@/components/ui/icons';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -158,7 +158,9 @@ function SpeakingPracticePanelContent({
   const isRecording = controller.phase === 'recording';
   const isBusy = ['requestingPermission', 'preparing', 'finalizing'].includes(controller.phase);
   const integratedHasRecording = variant === 'integrated' && Boolean(controller.asset);
+  const guide = useGuide();
   const error = recordingErrorMessage(controller.error, Boolean(controller.asset), isWeb);
+  useGuideAvailability('study', guide?.step === 'study-record' ? error : undefined);
   const playbackError = playbackErrorMessage(playback.error, isWeb);
   const usePermissionPrimer = isWeb && (controller.permissionPrimerRequired || controller.permissionPrimerActive);
   const primingPermission = isWeb && controller.permissionPrimerActive;

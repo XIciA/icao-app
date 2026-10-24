@@ -1,5 +1,5 @@
 import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { Clock3, ChevronRight, History, Target, Trash2 } from '@/components/ui/icons';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, View } from 'react-native';
@@ -37,6 +37,10 @@ function LearningRecordsContent() {
   const [openingId, setOpeningId] = useState<string>();
   const [deletingId, setDeletingId] = useState<string>();
   const [error, setError] = useState('');
+  useGuideAvailability('recap', error || undefined);
+  const checkpoint = guide?.checkpoint;
+  const teachingRecords = guide?.current === 'recap' && guide.step === 'recap-record';
+  useEffect(() => { if (teachingRecords && !loading && !error) checkpoint?.({ recordsEmpty: records.length === 0 }); }, [checkpoint, loading, records.length, error, teachingRecords]);
   const loadingRef = useRef(false);
   const openingRef = useRef(false);
   const mounted = useRef(true);

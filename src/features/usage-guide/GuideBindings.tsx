@@ -4,17 +4,20 @@ import { GuideScrollContext } from './guide-scroll-context';
 import { createContext, useContext, useEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export type GuidePrompt = { target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string };
-export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean };
+export type GuidePrompt = { identity?: string; target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string; reading?: boolean; interactive?: boolean; blocked?: boolean };
+export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean; recordsEmpty?: boolean };
 export type GuideBinding = {
   event: (id: string) => void;
+  rewind?: (step: string) => void;
+  confirm?: (step: string, allowed: boolean) => void;
+  focus?: (step: string, target: string, text?: string, complete?: boolean) => void;
   availability: (key: string, module: GuideId, message?: string) => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
   surface: (layer: string) => ReactNode;
   offer: (id: GuideId, steps: string[]) => void;
   exit: () => void;
-  start: (id: string) => Promise<void>;
+  start: (id: string, restart?: boolean) => Promise<void>;
   current?: string;
   ready?: boolean;
   retry?: () => void;
@@ -36,14 +39,19 @@ export function GuideAnchor({ id }: { id: string }) {
   const reveal = useContext(GuideScrollContext);
   const active = guide?.target === id;
   const navigation = useContext(NavigationContext);
+  const suspend = guide?.suspend;
   const [focused, setFocused] = useState(navigation?.isFocused() ?? true);
   useEffect(() => {
     if (!navigation) return;
     setFocused(navigation.isFocused());
     const onFocus = navigation.addListener('focus', () => setFocused(true));
     const onBlur = navigation.addListener('blur', () => setFocused(false));
-    return () => { onFocus(); onBlur(); };
-  }, [navigation]);
+    const onStart = navigation.addListener('transitionStart' as never, () => setFocused(false));
+    const restore = () => { setFocused(navigation.isFocused()); suspend?.(false); };
+    const onEnd = navigation.addListener('transitionEnd' as never, restore);
+    const onCancel = navigation.addListener('gestureCancel' as never, restore);
+    return () => { onFocus(); onBlur(); onStart(); onEnd(); onCancel(); };
+  }, [navigation, suspend]);
   const revealTarget = useCallback(() => { if (active && focused && node.current) reveal?.(node.current, id); }, [active, focused, id, reveal]);
   useEffect(() => { const frame = requestAnimationFrame(revealTarget); return () => cancelAnimationFrame(frame); }, [revealTarget]);
   const register = guide?.register;
@@ -68,4 +76,15 @@ export function useGuideAvailability(module: GuideId, message?: string) {
     const offBlur = navigation?.addListener('blur', () => availability?.(key, module, undefined));
     return () => { offFocus?.(); offBlur?.(); availability?.(key, module, undefined); };
   }, [availability, key, message, module, navigation]);
+}
+
+/** Confirmation observes business validity; it never changes the business selection. */
+export function useGuideConfirmation(step: string, allowed: boolean) {
+  const guide = useGuide(), confirm = guide?.confirm, active = guide?.step === step;
+  useEffect(() => { confirm?.(step, allowed); }, [confirm, step, allowed, active]);
+}
+
+export function useGuideTarget(step: string, target: string, text?: string, complete?: boolean) {
+  const guide = useGuide(), focus = guide?.focus, active = guide?.step === step;
+  useEffect(() => { if (active) focus?.(step, target, text, complete); }, [active, focus, step, target, text, complete]);
 }

@@ -1,13 +1,38 @@
+import type { GuideCheckpoint } from './GuideBindings';
+import { GUIDE_FLOWS, RECORD_GUIDE, type GuideId } from './guide-flows';
 import Storage from '@/platform/storage';
 
 /** A single account-scoped owner for both manual and automatic teaching. */
-export type GuideProgress = { version: 3; completed: string[]; skipped: string[]; skippedSteps?: string[] };
+export type GuideResume = { module: GuideId; remaining: string[]; done: string[]; records?: boolean; checkpoint?: GuideCheckpoint };
+export type GuideProgress = { version: 3; completed: string[]; skipped: string[]; skippedSteps?: string[]; definition?: 1; resumes?: Record<string, GuideResume> };
 export const emptyGuideProgress = (): GuideProgress => ({ version: 3, completed: [], skipped: [] });
+function parseResume(candidate: unknown): GuideResume | undefined {
+  if (!candidate || typeof candidate !== 'object') return;
+  const value = candidate as GuideResume;
+  if (!Object.prototype.hasOwnProperty.call(GUIDE_FLOWS, value.module)) return;
+  const ids = new Set((value.records ? RECORD_GUIDE : GUIDE_FLOWS[value.module] ?? []).map(step => step.id));
+  if (value.module === 'study') ids.add('study-open');
+  if (!Array.isArray(value.remaining) || !value.remaining.length || !value.remaining.every(id => typeof id === 'string' && ids.has(id)) || !Array.isArray(value.done) || !value.done.every(id => typeof id === 'string' && ids.has(id))) return;
+  const raw = value.checkpoint;
+  const checkpoint: GuideCheckpoint | undefined = raw && typeof raw === 'object' ? {
+    ...(Array.isArray(raw.vocabBooks) && raw.vocabBooks.every(id => typeof id === 'string') ? { vocabBooks: raw.vocabBooks.slice(0, 20) } : {}),
+    ...(typeof raw.vocabWord === 'string' ? { vocabWord: raw.vocabWord } : {}),
+  } : undefined;
+  return { module: value.module, remaining: [...new Set(value.remaining)], done: [...new Set(value.done)], records: value.module === 'recap' && value.records === true, checkpoint };
+}
 export function parseGuideProgress(raw: string | null): GuideProgress {
   try {
     const value = JSON.parse(raw ?? 'null');
     if (value?.version !== 3) return emptyGuideProgress();
-    return { version: 3, completed: Array.isArray(value.completed) ? value.completed.filter((id: unknown): id is string => typeof id === 'string') : [], skippedSteps: Array.isArray(value.skippedSteps) ? value.skippedSteps.filter((id: unknown): id is string => typeof id === 'string') : [], skipped: Array.isArray(value.skipped) ? value.skipped.filter((id: unknown): id is string => typeof id === 'string') : [] };
+    const resumes: Record<string, GuideResume> = {};
+    if (value.definition === 1 && value.resumes && typeof value.resumes === 'object') {
+      for (const [key, candidate] of Object.entries(value.resumes)) {
+        const parsed = parseResume(candidate);
+        if (parsed && key === (parsed.records ? 'records' : parsed.module)) resumes[key] = parsed;
+      }
+    }
+    const strings = (items: unknown): string[] => Array.isArray(items) ? [...new Set(items.filter((id): id is string => typeof id === 'string'))] : [];
+    return { version: 3, ...(Object.keys(resumes).length ? { definition: 1, resumes } : {}), completed: strings(value.completed), skippedSteps: strings(value.skippedSteps), skipped: strings(value.skipped) };
   } catch { return emptyGuideProgress(); }
 }
 let writes = Promise.resolve();
@@ -16,7 +41,7 @@ export async function readGuideProgress(account: string) {
   return parseGuideProgress(await Storage.getItem(`icao.guide.v3.${account}`));
 }
 export function writeGuideProgress(account: string, value: GuideProgress) {
-  const snapshot = JSON.stringify(value);
+  const snapshot = JSON.stringify({ ...value, definition: 1 });
   const next = writes.catch(() => undefined).then(() => Storage.setItem(`icao.guide.v3.${account}`, snapshot));
   writes = next.catch(() => undefined);
   return next;

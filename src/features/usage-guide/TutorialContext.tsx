@@ -1,4 +1,4 @@
-import { useEffect, useMemo, type PropsWithChildren } from 'react';
+import { useMemo, type PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { GuideAnchor, useGuide } from './GuideBindings';
 import { TUTORIAL_STEPS, studyStepId, type TutorialStepId, type TutorialTargetId } from './tutorial-model';
@@ -16,10 +16,4 @@ export function useTutorial() {
 }
 export function TutorialTarget({ ids, children }: PropsWithChildren<{ ids: readonly TutorialTargetId[] }>) {
   return <View collapsable={false}>{children}{ids.map(id => <GuideAnchor id={`sentence-${id}`} key={id} />)}</View>;
-}
-export function TutorialCoach({ ready = false }: { ready?: boolean; inset?: boolean }) {
-  const guide = useGuide();
-  const event = guide?.event, step = guide?.step;
-  useEffect(() => { if (ready && step?.startsWith('study-')) event?.(step); }, [ready, step, event]);
-  return null;
 }
