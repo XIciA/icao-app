@@ -82,7 +82,8 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   // Keyboard bounds affect callout placement, never the full-screen backdrop.
   const availableHeight = Math.max(0, Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - rootY));
   const target = !transitioning && hasFocus ? focus.box : undefined;
-  const skipTop = layer === 'root' ? insets.top : 8;
+  // All surfaces use physical safe-area coordinates, including native full-screen modals.
+  const skipTop = Math.max(0, insets.top - rootY);
   if (target || !skipPosition.current || skipPosition.current.width !== Math.min(112, Math.max(0, size.width - 32))) skipPosition.current = guideSkipPlacement(target, size.width, skipTop);
   const skipBox = skipPosition.current;
   const position = guidePlacement(target, size.width, availableHeight, textHeight, { top: Math.max(skipTop + 44, skipBox.y + skipBox.height + 8), bottom: insets.bottom + 160 });
@@ -99,7 +100,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   const lineEnd = position.above ? position.y + textHeight + 4 : position.y - 4;
   if (!active || !prompt) return null;
   const blocks = target ? [
-    { left: 0, top: layer === 'root' ? insets.top + 48 : 0, width: size.width, height: Math.max(0, target.y - (layer === 'root' ? insets.top + 48 : 0)) },
+    { left: 0, top: layer === 'root' ? skipTop + 48 : 0, width: size.width, height: Math.max(0, target.y - (layer === 'root' ? skipTop + 48 : 0)) },
     { left: 0, top: target.y + target.height, width: size.width, height: Math.max(0, size.height - target.y - target.height) },
     { left: 0, top: target.y, width: target.x, height: target.height },
     { left: target.x + target.width, top: target.y, width: Math.max(0, size.width - target.x - target.width), height: target.height },
