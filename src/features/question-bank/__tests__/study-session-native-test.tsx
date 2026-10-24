@@ -4,7 +4,7 @@ import { useStudySession } from '../hooks/useStudySession.native';
 import { toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningStore } from '../platform/learning-store.native';
 import type { LearningRecord, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage } from '../types';
-jest.mock('../recording/recording-repository', () => ({ recordingRepository: { cleanupSession: jest.fn(), discard: jest.fn() } }));
+jest.mock('../recording/recording-repository', () => ({ recordingRepository: { cleanupSession: jest.fn(), discard: jest.fn(), retainSessionForLogin: jest.fn(), releaseSessionFromLogin: jest.fn() } }));
 let mockSessionNumber = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `unique-${++mockSessionNumber}` }));
 const dataset = data[0] as QuestionBankDataset;
@@ -263,4 +263,23 @@ it('opens the selected item in a complete answer-card package without marking ot
   expect(hook.result.current.items.map(item=>item.id)).toEqual(items.map(item=>item.id));
   expect(hook.result.current.learnedIndexes.has(0)).toBe(false);
   expect(hook.result.current.learnedIndexes.has(2)).toBe(true);
+});
+
+it('restores the actual RecordingAsset and answer after the guest study screen unmounts for login', async () => {
+  const persistence = store();
+  const first = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence }));
+  await waitFor(() => expect(first.result.current.hydrated).toBe(true));
+  const asset = { byteSize: 64044, cardId: topic.cards[0].id, createdAt: '2026-10-25T00:00:00.000Z', durationMillis: 2000,
+    format: 'wav' as const, id: 'committed-asset', mimeType: 'audio/wav', sessionId: first.result.current.sessionId,
+    storageKind: 'native-file' as const, uri: `file:///cache/icao-recordings/${first.result.current.sessionId}/committed.wav` };
+  await act(async () => { first.result.current.recordAnswer(asset); first.result.current.updateAnswer('My recorded answer'); });
+  let token = '';
+  await act(async () => { token = await first.result.current.prepareLogin(); });
+  const previousSession = first.result.current.sessionId;
+  await first.unmount();
+  const restored = await renderHook(() => useStudySession({ dataset, category, topic, store: persistence, loginResume: token }));
+  await waitFor(() => expect(restored.result.current.hydrated).toBe(true));
+  expect(restored.result.current.recording).toEqual(asset);
+  expect(restored.result.current.answerText).toBe('My recorded answer');
+  expect(restored.result.current.sessionId).toBe(previousSession);
 });

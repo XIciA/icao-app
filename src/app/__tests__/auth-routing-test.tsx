@@ -174,12 +174,12 @@ describe('authentication routing', () => {
     expect(screen.queryByText('private account data')).toBeNull();
   });
 
-  it('preserves a protected deep link including its selected card', async () => {
+  it('allows a learning deep link without triggering the global login gate', async () => {
     mockPathname = '/question-bank/listening/study/main/topic';
     mockSearchParams = { bankId: 'listening', categoryId: 'main', topicId: 'topic', cardId: 'card-2' };
     await render(<NativeAppStack />);
-    expect(mockRememberPendingPath).toHaveBeenCalledWith('/question-bank/listening/study/main/topic?cardId=card-2');
-    expect(mockReplace).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/listening/study/main/topic?cardId=card-2', returnTo: '/(tabs)' } });
+    expect(mockRememberPendingPath).not.toHaveBeenCalled();
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 
   it('allows catalogue browsing during account restore and recovery failure', async () => {

@@ -1,3 +1,4 @@
+import { retainStudyForLogin, peekStudyLogin, finishStudyLogin } from '../recording/login-continuation.native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { captureLearningWriteContext, assertLearningWriteContext } from '@/features/sync/learning-sync.native';
@@ -39,7 +40,7 @@ type PackageStudySessionOptions = {
   store?: LearningStore;
 };
 
-export type UseStudySessionOptions = LegacyStudySessionOptions | PackageStudySessionOptions;
+export type UseStudySessionOptions = (LegacyStudySessionOptions | PackageStudySessionOptions) & { loginResume?: string };
 
 const EMPTY_STUDY_BEHAVIOR: StudyBehavior = {
   taskKind: 'recording',
@@ -96,6 +97,9 @@ export function useStudySession(options: UseStudySessionOptions) {
   const legacyTopic = 'studyPackage' in options ? undefined : options.topic;
   const initialCardId = 'studyPackage' in options ? options.studyPackage.initialItemId : options.initialCardId;
   const store = options.store ?? sqliteLearningStore;
+  const loginKey = legacyDataset && legacyTopic ? `${legacyDataset.id}/${legacyTopic.id}` : '';
+  const [loginResume] = useState(() => peekStudyLogin(options.loginResume, loginKey));
+  useEffect(() => { finishStudyLogin(options.loginResume); }, [options.loginResume]);
   const writeContext = useRef(captureLearningWriteContext()).current;
   const persistentStates = useRef<Record<string, CardLearningState>>({});
   const savingReport = useRef<Promise<LearningRecord | undefined> | undefined>(undefined);
@@ -129,9 +133,9 @@ export function useStudySession(options: UseStudySessionOptions) {
   );
   const configuredStartedAt = packageInput?.startedAt;
   const configuredStartedAtMillis = configuredStartedAt ? Date.parse(configuredStartedAt) : Number.NaN;
-  const startedAt = useRef(Number.isFinite(configuredStartedAtMillis) ? configuredStartedAtMillis : Date.now()).current;
+  const startedAt = useRef(loginResume?.startedAt ?? (Number.isFinite(configuredStartedAtMillis) ? configuredStartedAtMillis : Date.now())).current;
   const sessionId = useRef(
-    packageInput?.id ?? `study-${startedAt.toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    loginResume?.sessionId ?? packageInput?.id ?? `study-${startedAt.toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
   ).current;
   const sessionStartedAt = useRef(
     Number.isFinite(configuredStartedAtMillis) && configuredStartedAt
@@ -159,7 +163,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   const [toolMode, setToolModeState] = useState<StudyToolMode>();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const answersRef = useRef(answers);
-  const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>({});
+  const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>(loginResume?.recordings ?? {});
   const recordingsRef = useRef(recordings);
   const [feedbackCardIds, setFeedbackCardIds] = useState<Set<string>>(() => new Set());
   const [playRequestToken, setPlayRequestToken] = useState(1);
@@ -185,8 +189,8 @@ export function useStudySession(options: UseStudySessionOptions) {
     const hydrate = (saved: Record<string, CardLearningState>) => {
       if (!active) return;
       persistentStates.current = saved;
-      const initialStates = historyReview ? Object.fromEntries(Object.entries(historyReview.states).map(([id, state]) => [id, { ...state }])) : {};
-      answersRef.current = historyReview ? { ...historyReview.answers } : {};
+      const initialStates = historyReview ? Object.fromEntries(Object.entries(historyReview.states).map(([id, state]) => [id, { ...state }])) : loginResume?.states ?? {};
+      answersRef.current = historyReview ? { ...historyReview.answers } : loginResume?.answers ?? {};
       setAnswers(answersRef.current);
       statesRef.current = initialStates;
       setStates(initialStates);
@@ -223,7 +227,7 @@ export function useStudySession(options: UseStudySessionOptions) {
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [historyRecord, historyReview, initialBehavior, initialCardId, items, loadAttempt, packageInput, progressMode, startingIndex, store]);
+  }, [historyRecord, historyReview, initialBehavior, initialCardId, items, loadAttempt, packageInput, progressMode, startingIndex, store, loginResume]);
 
   const resolveItem = useCallback((itemOrCardId: string) => {
     if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
@@ -484,6 +488,11 @@ export function useStudySession(options: UseStudySessionOptions) {
   }, [examMode, items.length, listeningRange, saveReport]);
 
   useEffect(() => () => recordingRepository.cleanupSession(sessionId), [sessionId]);
+  const prepareLogin = useCallback(async () => {
+    await saveCheckpoint();
+    return retainStudyForLogin({ key: loginKey, sessionId, startedAt,
+      states: { ...statesRef.current }, answers: { ...answersRef.current }, recordings: { ...recordingsRef.current } }, recordingRepository);
+  }, [loginKey, saveCheckpoint, sessionId, startedAt]);
 
   return {
     examMode,
@@ -533,6 +542,7 @@ export function useStudySession(options: UseStudySessionOptions) {
     markFeedback,
     finish,
     saveCheckpoint,
+    prepareLogin,
     saveListeningResult,
   };
 }

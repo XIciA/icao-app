@@ -10,14 +10,14 @@ import type {
   QuestionBankRelease,
   QuestionBankTopicRelease,
 } from '@icao/contracts';
-import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION } from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, FREE_CONTENT_SELECTION_VERSION } from '@icao/contracts';
 
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 import {
   getNativeCommerceEnvironment,
   nativeCommerceEnvironmentSnapshot,
 } from '@/features/native-commercial-testflight/commerce-environment';
-import { ApiClientError, apiFetch, apiRequest, getApiBaseUrl } from '@/platform/api-client';
+import { ApiClientError, apiAccessToken, apiFetch, apiRequest, getApiBaseUrl } from '@/platform/api-client';
 import {
   clearQuestionBankMemberContent,
   currentQuestionBankContentAccountId,
@@ -27,7 +27,7 @@ import {
 } from './member-content-cache';
 
 const datasets = (publicData as QuestionBankDataset[]).map(naturalDatasetTitles);
-const CATALOG_CACHE_PREFIX = 'icao.content.v3.catalog.';
+const CATALOG_CACHE_PREFIX = 'icao.content.v4.catalog.';
 const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.'];
 
 type CachedRelease = QuestionBankRelease<QuestionBankDataset> & { cachedAt: string };
@@ -108,7 +108,7 @@ export const remoteQuestionBankRepository = {
     const accessState = (cached?.dataset as QuestionBankDataset | undefined)?.access?.membershipActive === true ? 'member' : 'free';
     const headers = {
       [COMMERCE_ENVIRONMENT_HEADER]: environment,
-      ...(cached ? { 'if-none-match': `"${cached.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${accessState}"` } : {}),
+      ...(cached ? { 'if-none-match': `"${cached.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${FREE_CONTENT_SELECTION_VERSION}.${accessState}"` } : {}),
     };
     const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
     assertContentContextCurrent(context);
@@ -222,8 +222,19 @@ export const questionBankRepository: QuestionBankRepository = {
     return (await loadQuestionBank(id))?.dataset;
   },
   async getTopic(bankId, categoryId, topicId, expected) {
-    const topic = getApiBaseUrl() ? await remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId, expected)
-      : await embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+    let topic: QuestionBankTopic | undefined;
+    try {
+      topic = getApiBaseUrl() ? await remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId, expected)
+        : await embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+    } catch (error) {
+      if (error instanceof ApiClientError && error.code === 'content_account_changed') throw error;
+      if (currentQuestionBankContentAccountId() || await apiAccessToken()) throw error;
+      // The embedded payload contains only the generated public subset. Guests
+      // can still study it offline or during the server rollout.
+      topic = await embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+      if (!topic) throw error;
+    }
+    if (topic?.access?.level === 'member' && topic.cards.length === 0) throw new ApiClientError('membership_required', 403);
     return topic ? naturalTopicTitles(bankId, topic) : undefined;
   },
 };

@@ -1,3 +1,4 @@
+import { cancelStudyLogin } from '@/features/question-bank/recording/login-continuation.native';
 import { maskChinaMobile, normalizeChinaMobile } from '@icao/contracts';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useLocalSearchParams, type Href } from 'expo-router';
@@ -27,7 +28,7 @@ import {
   type PersistedPhoneOtpChallenge,
   writePhoneOtpChallenge,
 } from '@/features/auth/phone-otp-challenge-store';
-import { colors, radii, spacing } from '@/theme';
+import { colors, spacing } from '@/theme';
 
 import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui-native';
 
@@ -379,6 +380,7 @@ function LoginContent() {
 
   function cancelLogin() {
     if (submitting) return;
+    cancelStudyLogin();
     auth.consumePendingPath();
     router.dismissTo(publicLoginReturn(returnTo) as Href);
   }
@@ -443,7 +445,7 @@ function LoginContent() {
         <WebAppDownloadLink />
       </View>
       {reason ? <AppText variant="caption">{reason}</AppText> : null}
-      <LoginMethodTabs disabled={submitting} method={loginMethod} onChange={(method) => { setLoginMethod(method); setPassword(''); setError(''); }} />
+      <AppText variant="caption">继续你的 ICAO 学习之旅。</AppText>
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
         {loginMethod === 'otp' ? (
@@ -457,7 +459,7 @@ function LoginContent() {
               label="验证码"
               maxLength={6}
               onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))}
-              placeholder={challenge ? '请输入6位验证码' : '请先获取验证码'}
+              placeholder="请输入验证码"
               textContentType={Platform.OS === 'ios' ? 'oneTimeCode' : undefined}
               trailing={(
                 <Pressable
@@ -475,16 +477,17 @@ function LoginContent() {
             />
             {challengeExpired ? <AppText color={colors.destructive} variant="caption">验证码已过期，请重新获取。</AppText> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            <Button disabled={submitting || !challenge || challengeExpired || code.length !== 6} loading={submitting} onPress={() => void verifyCode()} size="lg">登录 / 注册</Button>
           </>
         ) : (
           <>
             <PasswordField label="登录密码" onChangeText={setPassword} placeholder="请输入登录密码" value={password} />
             <View style={styles.endLink}><TextLink label="忘记密码" onPress={() => { setEntryView('recovery'); setError(''); }} /></View>
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            <Button disabled={submitting} loading={submitting} onPress={() => void submitPasswordLogin()} size="lg">密码登录</Button>
           </>
         )}
+        <View style={styles.endLink}><TextLink label={loginMethod === 'otp' ? '密码登录' : '验证码登录'} onPress={() => {
+          if (!submitting) { setLoginMethod(loginMethod === 'otp' ? 'password' : 'otp'); setPassword(''); setError(''); }
+        }} /></View>
         <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => {
           if (!submitting) {
             acceptedRef.current = !acceptedRef.current;
@@ -493,6 +496,7 @@ function LoginContent() {
           }
         }} />
         <LegalLinks documents={legalDocuments} />
+        <Button disabled={submitting || !accepted || !normalizeChinaMobile(phone) || (loginMethod === 'otp' ? !challenge || challengeExpired || code.length !== 6 : !password)} loading={submitting} onPress={() => void (loginMethod === 'otp' ? verifyCode() : submitPasswordLogin())} size="lg">登录 / 注册</Button>
       </View>
 {thirdPartyLoginAvailable ? (
         <>
@@ -523,29 +527,7 @@ function SocialButton({ accessibilityLabel, kind, onPress }: { accessibilityLabe
 }
 
 function PhoneField({ value, onChangeText }: { value: string; onChangeText: (value: string) => void }) {
-  return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="中国大陆手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
-}
-
-function LoginMethodTabs({ disabled, method, onChange }: { disabled: boolean; method: LoginMethod; onChange: (method: LoginMethod) => void }) {
-  return (
-    <View accessibilityRole="tablist" style={styles.methodTabs}>
-      {(['otp', 'password'] as const).map((item) => {
-        const selected = item === method;
-        return (
-          <Pressable
-            accessibilityRole="tab"
-            accessibilityState={{ selected }}
-            disabled={disabled}
-            key={item}
-            onPress={() => onChange(item)}
-            style={[styles.methodTab, selected && styles.methodTabSelected]}
-          >
-            <AppText color={selected ? colors.primary : colors.mutedForeground} variant="button">{item === 'otp' ? '验证码登录' : '密码登录'}</AppText>
-          </Pressable>
-        );
-      })}
-    </View>
-  );
+  return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
 }
 
 function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
@@ -553,9 +535,9 @@ function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
   return (
     <>
     <View style={styles.legalLinks}>
-      <TextLink label="查看用户协议" onPress={() => setOpenDocument('agreement')} />
+      <TextLink label="用户协议" onPress={() => setOpenDocument('agreement')} />
       <AppText variant="micro">·</AppText>
-      <TextLink label="查看隐私政策" onPress={() => setOpenDocument('privacy')} />
+      <TextLink label="隐私政策" onPress={() => setOpenDocument('privacy')} />
     </View>
     <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible={Boolean(openDocument)}>
       {openDocument ? <>
@@ -573,10 +555,7 @@ const styles = StyleSheet.create({
   socialSection: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], justifyContent: 'center' },
   socialButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: 28, borderWidth: 1, height: 56, justifyContent: 'center', width: 56 },
   appleSocialButton: { backgroundColor: colors.foreground, borderColor: colors.foreground },
-  methodTabs: { backgroundColor: colors.secondary, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
-  methodTab: { alignItems: 'center', borderRadius: radii.md, flex: 1, minHeight: 42, justifyContent: 'center' },
-  methodTabSelected: { backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1 },
-  form: { gap: spacing[4], marginTop: spacing[5] },
+  form: { gap: spacing[3], marginTop: spacing[5] },
   inlineLinks: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'center' },
   endLink: { alignItems: 'flex-end' },
   legalLinks: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },

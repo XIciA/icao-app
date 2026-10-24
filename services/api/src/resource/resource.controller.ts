@@ -2,12 +2,12 @@ import { BadRequestException, Controller, Get, Headers, Query, Req, UseGuards } 
 import { COMMERCE_ENVIRONMENT_HEADER, type ApiSuccessEnvelope, type ResolvedResource } from '@icao/contracts';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
-import { RequireAuthGuard } from '../auth/require-auth.guard';
+import { OptionalAuthGuard } from '../auth/require-auth.guard';
 import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { ResourceService } from './resource.service';
 
 @Controller('v1/resources')
-@UseGuards(RequireAuthGuard)
+@UseGuards(OptionalAuthGuard)
 export class ResourceController {
   constructor(private readonly resources: ResourceService) {}
 
@@ -25,9 +25,9 @@ export class ResourceController {
     return {
       requestId: request.id,
       data: await this.resources.resolve(
-        request.user!.id,
+        request.user?.id,
         path,
-        request.auth!.sessionId,
+        request.auth?.sessionId,
         contentCommerceEnvironment(environmentHeader),
         checksum,
       ),

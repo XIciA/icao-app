@@ -58,8 +58,8 @@ describe('<QuestionBankTab />', () => {
     expect(mockUseProfile).not.toHaveBeenCalled();
     expect(screen.queryByLabelText('切换学习范围')).toBeNull();
     await fireEvent.press(screen.getByLabelText('900 句，打开'));
-    expect(mockRememberPendingPath).toHaveBeenCalledWith('/question-bank/sentences900');
-    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/sentences900', returnTo: '/', reason: '登录后进入题库学习' } });
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'sentences900' } });
+    expect(mockRememberPendingPath).not.toHaveBeenCalled();
   });
 
   it('opens login explicitly from the public avatar', async () => {

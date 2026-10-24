@@ -4,14 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { AppText, TextField, Screen } from '@/components/ui';
-import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 // Shared implementation behind the explicit iOS and Android entry points.
 
 export function AuthShell({ children, showBack = true, onBack }: { children: React.ReactNode; showBack?: boolean; onBack?: () => void }) {
   return (
-    <Screen background={<SoftGlow intensity={0.9} size={350} style={styles.glow} />} keyboard scroll contentStyle={styles.screen}>
+    <Screen keyboard scroll contentStyle={styles.screen}>
       {showBack ? <AuthTopBar onBack={onBack} /> : null}
       {children}
     </Screen>
@@ -175,8 +174,7 @@ export function Divider({ label }: { label: string }) {
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingHorizontal: spacing[5], position: 'relative' },
-  glow: { right: -155, top: -175 },
+  screen: { paddingHorizontal: spacing[5], position: 'relative', width: '100%', maxWidth: 520, alignSelf: 'center' },
   back: { alignItems: 'center', height: 42, justifyContent: 'center', marginLeft: -spacing[2], marginTop: spacing[1], width: 42 },
   heading: { gap: spacing[1.5], marginTop: spacing[1] },
   authField: { gap: spacing[2] },

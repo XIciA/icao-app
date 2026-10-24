@@ -1,3 +1,5 @@
+jest.mock('@/features/auth/GuestLearningBoundary.native', () => ({ GuestLearningBoundary: ({children}: {children: React.ReactNode}) => children }));
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockPush }));
 import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -25,7 +27,7 @@ jest.mock('expo-router', () => ({
 jest.mock('@/features/question-bank/hooks/useQuestionBank.native', () => ({ useQuestionBank: () => mockBankState }));
 jest.mock('@/features/question-bank/hooks/useQuestionBankTopic.native', () => ({ useQuestionBankTopic: () => mockTopicState }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ studyScope: 'selected' }) }));
-jest.mock('@/features/question-bank/components/QuestionBankStudyScreen', () => ({
+jest.mock('@/features/question-bank/components/QuestionBankStudyScreen.native', () => ({
   QuestionBankStudyScreen: () => {
     const { View } = jest.requireActual<typeof import('react-native')>('react-native');
     return <View testID="existing-study-screen" />;
@@ -105,7 +107,7 @@ describe('Native study route recovery', () => {
     }
     const screen = await render(<Page />);
     await fireEvent.press(screen.getByText('查看会员方案'));
-    expect(mockPush).toHaveBeenCalledWith('/account/membership');
+    expect(mockPush).toHaveBeenCalledWith(`/account/membership?next=${encodeURIComponent('/question-bank/opi/study/category/topic' + (state === 'locked-card' ? '?cardId=unavailable' : ''))}`, '登录后查看会员题库');
     await fireEvent.press(screen.getByRole('button', { name: '返回' }));
     expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: 'opi' } });
   });

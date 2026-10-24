@@ -26,6 +26,9 @@ function formatForWebBlob(blob: Blob): 'm4a' | 'ogg' | 'webm' | undefined {
 type StoredAsset = { asset: RecordingAsset; createdAt: number };
 
 export class RecordingRepository {
+  private readonly loginSessions = new Set<string>();
+  retainSessionForLogin(sessionId: string) { this.loginSessions.add(sessionId); }
+  releaseSessionFromLogin(sessionId: string) { this.loginSessions.delete(sessionId); }
   private readonly assets = new Map<string, StoredAsset>();
   private readonly mediaProbe: RecordingMediaProbe;
 
@@ -106,6 +109,7 @@ export class RecordingRepository {
   }
 
   cleanupSession(sessionId: string) {
+    if (this.loginSessions.has(sessionId)) return;
     for (const { asset } of this.assets.values()) if (asset.sessionId === sessionId) this.discard(asset);
   }
 

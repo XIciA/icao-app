@@ -1,3 +1,5 @@
+import { useAuth } from '@/features/auth/AuthProvider';
+import { useLoginEntry } from '@/features/auth/use-login-entry';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import {
@@ -143,6 +145,7 @@ type Props = {
   onFeedback: () => void;
   onNoteCompleted?: () => void;
   onBeforeAiOperation?: () => Promise<void>;
+  onBeforeLogin?: () => Promise<string>;
 };
 
 export type StudyWorkbenchHandle = {
@@ -170,6 +173,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     onEditingTabChange,
     onFeedback,
     onBeforeAiOperation,
+    onBeforeLogin,
     onNoteChange,
     onRetrySave,
     onTabChange,
@@ -431,7 +435,29 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     updateFeedback({ aiOperation: operation });
   }, [cardKey, onBeforeAiOperation, persistCurrent, updateFeedback, writeContext]);
 
+  const auth = useAuth();
+  const login = useLoginEntry();
+  const preparingLogin = useRef(false);
   async function performAi(action: AiAction, automatic = false, textOverride?: string) {
+    if (!auth.canAccessApp) {
+      if (automatic || preparingLogin.current) return;
+      preparingLogin.current = true;
+      const requestCardKey = cardKey;
+      setBusy(action); setError(undefined); setFailedAction(undefined); setFailureDiagnosticId(undefined);
+      try {
+        if (!await persistCurrent()) return;
+        const token = await onBeforeLogin?.();
+        login(`${pathname}?cardId=${encodeURIComponent(sourceCardId)}${token ? `&loginResume=${encodeURIComponent(token)}` : ''}`, '登录后使用 AI 免费体验或会员额度');
+      } catch {
+        if (currentCardKey.current !== requestCardKey) return;
+        setFailedAction(action); setFailureRetryable(true); setFailureNeedsDiagnostic(false);
+        setError('学习内容暂未保存，暂时无法登录。请重试，录音与作答仍保留在当前页面。');
+      } finally {
+        preparingLogin.current = false;
+        if (currentCardKey.current === requestCardKey) setBusy(undefined);
+      }
+      return;
+    }
     if (activeRequest.current) {
       if (action === 'review' && busy === 'transcribe') queuedReview.current = true;
       return;

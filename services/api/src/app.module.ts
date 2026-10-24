@@ -34,7 +34,7 @@ import { PhoneSecurityRetentionService } from './auth/phone-security-retention.s
 import { RecentAuthController } from './auth/recent-auth.controller';
 import { RecentAuthService } from './auth/recent-auth.service';
 import { RECENT_AUTH_PASSWORD_VERIFIER, SupabaseRecentAuthPasswordVerifier } from './auth/recent-auth-password.verifier';
-import { RequireAuthGuard } from './auth/require-auth.guard';
+import { RequireAuthGuard, OptionalAuthGuard } from './auth/require-auth.guard';
 import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
 import { AliyunSmsProvider } from './auth/sms/aliyun-sms.provider';
@@ -109,6 +109,7 @@ import { AppleServerReconciliationService } from './commerce/apple-server-reconc
     AppleServerReconciliationService,
     AppleNotificationReconciliationService,
     RequireAuthGuard,
+    OptionalAuthGuard,
     AliyunSmsProvider,
     SmsDeliveryAuthority,
     SupabaseSmsHookService,

@@ -1,3 +1,7 @@
+let mockAuthenticated = true;
+const mockLoginEntry = jest.fn();
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({canAccessApp: mockAuthenticated}) }));
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockLoginEntry }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { createRef, useState, type Ref } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
@@ -44,7 +48,8 @@ jest.mock('@/components/ui', () => {
   return { ...actual, BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <View>{children}</View> : null };
 });
 const review = { grammar: { correctedText: 'We are ready.', issues: [] }, polishedText: 'We are ready to depart.', promptVersion: 'deepseek-review:v1' as const };
-function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn(), onNoteCompleted }: {
+function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn(), onNoteCompleted, onBeforeLogin }: {
+  onBeforeLogin?: () => Promise<string>;
   onNoteCompleted?: () => void;
   notes?: string; onNoteChange?: (text: string) => void;
   initialAnswer?: string; token?: string;
@@ -61,11 +66,11 @@ function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.
     reviewKind={kind} recordingUri={recording} sessionId={sessionId} sessionStartedAt={new Date().toISOString()} tabs={['mine']}
     initialFeedback={initialFeedback} feedbackCacheRef={feedbackCacheRef} ref={workbenchRef} editingTab={editingTab}
     swipeGesture={Gesture.Pan().enabled(false)} learningStore={{ addRecord: mockSave }}
-    onAnswerChange={(value) => { mockAnswer(value); setAnswers((current) => ({ ...current, [answerKey]: value })); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint}
+    onAnswerChange={(value) => { mockAnswer(value); setAnswers((current) => ({ ...current, [answerKey]: value })); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint} onBeforeLogin={onBeforeLogin}
     onNoteCompleted={onNoteCompleted} onNoteChange={onNoteChange} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
 }
 beforeEach(() => {
-  jest.clearAllMocks(); mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
+  jest.clearAllMocks(); mockAuthenticated = true; mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
   mockCombined.mockResolvedValue({ transcript: 'We are ready.', review, aiPoints: { charged: 10, remaining: 90 } });
   mockTranscribe.mockResolvedValue({ transcript: 'Standalone transcript.' });
   mockReview.mockResolvedValue(review);
@@ -225,4 +230,29 @@ it('does not complete note teaching on typing, dictation updates or blur, only o
   await fireEvent.press(screen.getByLabelText('完成我的笔记'));
   await waitFor(()=>expect(completed).toHaveBeenCalledTimes(1));
   expect(save).toHaveBeenLastCalledWith('一段完整笔记');
+});
+
+it('saves before asking a guest to log in, without uploading audio or consuming AI quota', async () => {
+  mockAuthenticated = false;
+  const screen = await render(<Harness />);
+  await score(screen);
+  await waitFor(() => expect(mockLoginEntry).toHaveBeenCalled());
+  expect(mockReview).not.toHaveBeenCalled();
+  expect(mockTranscribe).not.toHaveBeenCalled();
+  expect(mockCombined).not.toHaveBeenCalled();
+});
+it('keeps guest answers and recording on a failed login handoff and allows retry without AI upload', async () => {
+  mockAuthenticated = false;
+  const handoff = jest.fn().mockRejectedValueOnce(new Error('disk_busy')).mockResolvedValueOnce('saved-study');
+  const screen = await render(<Harness onBeforeLogin={handoff} />);
+  await score(screen);
+  await waitFor(() => expect(screen.getByText('学习内容暂未保存，暂时无法登录。请重试，录音与作答仍保留在当前页面。')).toBeTruthy());
+  expect(mockLoginEntry).not.toHaveBeenCalled();
+  expect(screen.getByText('My previous answer.')).toBeTruthy();
+  expect(mockAnswer).not.toHaveBeenCalled();
+  await fireEvent.press(screen.getByTestId('study-workbench-ai-retry'));
+  await waitFor(() => expect(mockLoginEntry).toHaveBeenCalledWith(expect.stringContaining('loginResume=saved-study'), expect.any(String)));
+  expect(mockReview).not.toHaveBeenCalled();
+  expect(mockTranscribe).not.toHaveBeenCalled();
+  expect(mockCombined).not.toHaveBeenCalled();
 });
