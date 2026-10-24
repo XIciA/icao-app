@@ -111,9 +111,9 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
   }
   function later() { if (installLock.current) return; if (update) void dismissAppUpdate(update).catch(() => undefined); setUpdate(undefined); }
   return <>
-    {reminder && safe && !manual ? <BottomSheet visible onClose={() => setReminder(undefined)}><View style={{gap:spacing[3]}}><AppText variant="sectionTitle">{reminder.phase === 'expired' ? '会员已到期' : '会员即将到期'}</AppText><AppText>到期日期：{new Date(reminder.expiresAt).toLocaleDateString('zh-CN')}</AppText><AppText variant="caption">续费后可继续使用会员题库和服务，已有学习记录会为你保留。</AppText><Button onPress={() => { setReminder(undefined); router.push('/account/membership'); }}>去续费</Button><Button variant="outline" onPress={() => setReminder(undefined)}>暂时不用</Button></View></BottomSheet> : null}
+    <BottomSheet visible={Boolean(reminder && safe && !manual)} onClose={() => setReminder(undefined)}>{reminder ? <View style={{gap:spacing[3]}}><AppText variant="sectionTitle">{reminder.phase === 'expired' ? '会员已到期' : '会员即将到期'}</AppText><AppText>到期日期：{new Date(reminder.expiresAt).toLocaleDateString('zh-CN')}</AppText><AppText variant="caption">续费后可继续使用会员题库和服务，已有学习记录会为你保留。</AppText><Button onPress={() => { setReminder(undefined); router.push('/account/membership'); }}>去续费</Button><Button variant="outline" onPress={() => setReminder(undefined)}>暂时不用</Button></View> : null}</BottomSheet>
     {manual ? <View style={{ gap: spacing[2] }}><Button variant="outline" disabled={busy} onPress={() => { void check(); }}>{busy ? '正在检查…' : '检查更新'}</Button>{message && !update ? <AppText variant="caption">{message}</AppText> : null}</View> : null}
-    {update && safe && !reminder ? <BottomSheet visible onClose={later}>
+    <BottomSheet visible={Boolean(update && safe && !reminder)} onClose={later}>
       {update ? <View style={{ gap: spacing[3] }}>
         <AppText variant="sectionTitle">发现新版本 {update.version}</AppText>
         <AppText>{update.notes}</AppText>
@@ -129,6 +129,6 @@ export function AppUpdatePrompt({ manual = false }: { manual?: boolean }) {
         {downloadProgress !== undefined ? <Button variant="outline" onPress={() => downloadController.current?.abort()}>取消下载</Button>
           : <Button variant="outline" disabled={installBusy} onPress={later}>稍后再说</Button>}
       </View> : null}
-    </BottomSheet> : null}
+    </BottomSheet>
   </>;
 }

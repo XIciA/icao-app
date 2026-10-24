@@ -25,3 +25,23 @@ it('keeps the modal mounted through close animation and supports reopening befor
     await screen.unmount();
   } finally {jest.useRealTimers();}
 });
+
+
+it('retains closing content and footer until exit completes, without accepting hidden actions', async () => {
+ jest.useFakeTimers();
+ try {
+  const closed=jest.fn();
+  const tree=(visible:boolean,content:string)=><BottomSheet visible={visible} onClose={()=>undefined} onClosed={closed} footer={<Text>{content} footer</Text>}><Text>{content}</Text></BottomSheet>;
+  const screen=await render(tree(true,'original lookup'));
+  await fireEvent.press(screen.getByLabelText('present-modal'));await act(async()=>{jest.advanceTimersByTime(300);});
+  await screen.rerender(tree(false,'cleared picker'));
+  expect(screen.getByText('original lookup',{includeHiddenElements:true})).toBeTruthy();
+  expect(screen.getByText('original lookup footer',{includeHiddenElements:true})).toBeTruthy();
+  expect(screen.queryByText('cleared picker',{includeHiddenElements:true})).toBeNull();
+  expect(screen.queryByText('original lookup')).toBeNull();expect(closed).not.toHaveBeenCalled();
+  await screen.rerender(tree(true,'new lookup'));await act(async()=>{jest.advanceTimersByTime(300);});
+  expect(screen.getByText('new lookup')).toBeTruthy();expect(closed).not.toHaveBeenCalled();
+  await screen.rerender(tree(false,'cleared again'));await act(async()=>{jest.advanceTimersByTime(300);});
+  expect(screen.getByText('modal-closed')).toBeTruthy();expect(closed).toHaveBeenCalledTimes(1);
+ } finally {jest.useRealTimers();}
+});

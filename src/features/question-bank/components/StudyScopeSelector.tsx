@@ -19,7 +19,10 @@ export function StudyScopeSelector() {
   const profile = useProfile();
   const guide = useGuide();
   const scope = normalizeStudyScope(profile.studyScope);
+  // Native Modal retains its children during fade-out. Keep their measured
+  // position until the next opening instead of snapping to fallback coordinates.
   const [anchor, setAnchor] = useState<{ x: number; y: number }>();
+  const [visible, setVisible] = useState(false);
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
   const [error, setError] = useState(false);
@@ -28,22 +31,22 @@ export function StudyScopeSelector() {
   const menuWidth = Math.min(300, width - 32);
   async function choose(next: StudyScope) {
     if (pending.current) return;
-    if (next === scope) { guide?.event('setup-scope'); setAnchor(undefined); return; }
+    if (next === scope) { guide?.event('setup-scope'); setVisible(false); return; }
     pending.current = true;
     setBusy(true); setError(false);
-    try { await updateProfile({ studyScope: next }); guide?.event('setup-scope'); setAnchor(undefined); }
+    try { await updateProfile({ studyScope: next }); guide?.event('setup-scope'); setVisible(false); }
     catch { setError(true); }
     finally { pending.current = false; setBusy(false); }
   }
   return <>
     <View style={styles.row}>
-      <Pressable ref={button} accessibilityRole="button" accessibilityLabel={`切换题库范围，当前${options.find((item) => item.value === scope)?.title}`} accessibilityState={{ expanded: Boolean(anchor) }} onPress={() => button.current?.measureInWindow((x, y, w, h) => { setError(false); setAnchor({ x: x + w, y: y + h }); })} style={styles.trigger}>
+      <Pressable ref={button} accessibilityRole="button" accessibilityLabel={`切换题库范围，当前${options.find((item) => item.value === scope)?.title}`} accessibilityState={{ expanded: visible }} onPress={() => button.current?.measureInWindow((x, y, w, h) => { setError(false); setAnchor({ x: x + w, y: y + h }); setVisible(true); })} style={styles.trigger}>
         <GuideAnchor id="setup-scope" /><AppText variant="button">{options.find((item) => item.value === scope)?.title}</AppText><ChevronDown color={colors.primary} size={16} />
       </Pressable>
     </View>
-    <Modal transparent animationType="fade" visible={Boolean(anchor)} onRequestClose={() => setAnchor(undefined)}>
-      <GuideModalScope visible={Boolean(anchor)}><Pressable accessibilityLabel="关闭题库范围菜单" style={StyleSheet.absoluteFill} onPress={() => setAnchor(undefined)} />
-      <View accessibilityViewIsModal style={[styles.menu, { width: menuWidth, maxHeight: height * 0.65, left: Math.max(16, Math.min((anchor?.x ?? width - 16) - menuWidth, width - menuWidth - 16)), top: Math.min((anchor?.y ?? 80) + 6, height * 0.3) }]}>
+    <Modal transparent animationType="fade" visible={visible} onRequestClose={() => setVisible(false)}>
+      <GuideModalScope visible={visible}><Pressable accessibilityLabel="关闭题库范围菜单" style={StyleSheet.absoluteFill} onPress={() => setVisible(false)} />
+      <View accessibilityLabel="题库范围选项" accessibilityViewIsModal style={[styles.menu, { width: menuWidth, maxHeight: height * 0.65, left: Math.max(16, Math.min((anchor?.x ?? width - 16) - menuWidth, width - menuWidth - 16)), top: Math.min((anchor?.y ?? 80) + 6, height * 0.3) }]}>
         <GuideAnchor id="setup-scope" /><ScrollView>
           {options.map((option) => <Pressable key={option.value} accessibilityRole="button" accessibilityLabel={`选择${option.title}`} accessibilityState={{ selected: scope === option.value, disabled: busy }} disabled={busy} onPress={() => { void choose(option.value); }} style={[styles.option, scope === option.value ? styles.selected : null]}>
             <View style={styles.copy}><AppText variant="cardTitle" color={scope === option.value ? colors.primary : colors.foreground}>{option.title}</AppText><AppText variant="caption">{option.description}</AppText></View>

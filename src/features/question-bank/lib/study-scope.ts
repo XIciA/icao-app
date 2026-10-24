@@ -1,15 +1,22 @@
 import { isFreeQuestionBankCard, studyScopeCardIds, type StudyScope } from '@icao/contracts';
 import { examGoal, type ExamGoal } from '@/features/account/profile-model';
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
+import { naturalDatasetTitles, naturalTopicTitles } from './question-titles';
+
+// A visible listening scope is its own numbered list. Identity and stored order
+// remain card IDs; numbering must happen after scope/access filtering.
+function displayTopic(bankId: QuestionBankId, topic: QuestionBankTopic) {
+  return bankId === 'listening' ? naturalTopicTitles(bankId, topic, topic.cards.map(card => card.id)) : topic;
+}
 
 export function scopeTopic(bankId: QuestionBankId, topic: QuestionBankTopic, scope: StudyScope): QuestionBankTopic {
   if ((scope === 'all' || bankId === 'sentences900') && !topic.cards.some(card => card.retired)
-    && (!topic.scopeCardIds || topic.scopeCardIds.all.length === topic.declaredCardCount)) return topic;
+    && (!topic.scopeCardIds || topic.scopeCardIds.all.length === topic.declaredCardCount)) return displayTopic(bankId, topic);
   const index = topic.scopeCardIds ?? studyScopeCardIds(bankId, topic);
   const ids = new Set(index[bankId === 'sentences900' ? 'all' : scope]);
   for (const card of topic.cards) if (card.retired) ids.delete(card.id);
   const cards = topic.cards.filter((card) => ids.has(card.id));
-  return {
+  return displayTopic(bankId, {
     ...topic, cards, declaredCardCount: ids.size,
     access: topic.access ? {
       ...topic.access,
@@ -17,12 +24,13 @@ export function scopeTopic(bankId: QuestionBankId, topic: QuestionBankTopic, sco
       availableCardCount: cards.length,
       level: [...ids].every((id) => isFreeQuestionBankCard(bankId, topic.id, id)) ? 'free' : 'member',
     } : undefined,
-  };
+  });
 }
 
 /** One display projection for home counts, catalog, study and listening queues.
  * Never used by mock-exam builders, which load the complete authoritative bank. */
 export function scopeDataset(dataset: QuestionBankDataset, scope: StudyScope, target: ExamGoal): QuestionBankDataset {
+  dataset = naturalDatasetTitles(dataset);
   const allowed = (examGoal(target).banks as readonly QuestionBankId[]).includes(dataset.id);
   const categories = allowed ? dataset.categories
     .filter((category) => !(dataset.id === 'sentences900' && target === 'icao4-first' && category.name === '5级'))

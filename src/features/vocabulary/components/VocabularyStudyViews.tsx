@@ -1,5 +1,5 @@
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
-import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
+import { Check, CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
 import { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -18,6 +18,7 @@ export type VocabularySessionSummary = Record<'known' | 'vague' | 'forgot' | 'wr
 
 export function VocabularyStudyView({
   busy = false,
+  savedStatus,
   words,
   index,
   revealed,
@@ -29,6 +30,7 @@ export function VocabularyStudyView({
   onToggleFavorite,
 }: {
   busy?: boolean;
+  savedStatus?: VocabularyWordStatus;
   words: VocabularyWord[];
   index: number;
   revealed: boolean;
@@ -43,6 +45,7 @@ export function VocabularyStudyView({
   const guide = useGuide();
   const word = words[index]!;
   const progress = progressFor(word.id, state);
+  const markedWrong = savedStatus === 'wrong';
   const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
 
   useEffect(() => {
@@ -86,7 +89,7 @@ export function VocabularyStudyView({
       <View style={[styles.actions, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         {revealed ? (
           <View key={`${word.id}:revealed`} style={styles.actionRow}><GuideAnchor id="vocab-next" />
-            <Button disabled={busy} onPress={() => { void onWrong(); }} size="lg" style={styles.flexButton} variant="outline">记错了</Button>
+            <Button accessibilityLabel={markedWrong ? '已标记记错' : '记错了'} accessibilityState={{ busy, disabled: busy || markedWrong }} disabled={busy || markedWrong} leading={markedWrong ? <Check size={16} color={colors.primary} /> : undefined} onPress={() => { void onWrong(); }} size="lg" style={[styles.flexButton, markedWrong ? styles.markedWrong : null]} variant="outline">{markedWrong ? '已标记记错' : '记错了'}</Button>
             <Button disabled={busy} onPress={() => { guide?.event('vocab-next'); onNext(); }} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
           </View>
         ) : (
@@ -147,6 +150,7 @@ function SummaryCard({ label, value, color }: { label: string; value: number; co
 }
 
 const styles = StyleSheet.create({
+  markedWrong: { backgroundColor: colors.primary06, borderColor: colors.primary20, opacity: 1 },
   zero: { paddingHorizontal: 0 },
   topBar: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[3] },
   iconButton: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },

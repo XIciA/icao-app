@@ -162,7 +162,7 @@ export function VocabularyScreen() {
       setSessionSummary(summary);
       setView('complete');
     };
-    return <VocabularyStudyView busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView savedStatus={sessionStatuses[currentWord.id]} busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {

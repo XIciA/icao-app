@@ -1,9 +1,9 @@
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 
-/** Display names never identify a question. Resolve the full directory before scope filtering. */
-export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTopic): QuestionBankTopic {
+/** Display names never identify a question; a caller can supply its final visible order. */
+export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTopic, displayOrder?: readonly string[]): QuestionBankTopic {
   if (bankId !== 'listening' && bankId !== 'storytelling') return topic;
-  const order = topic.scopeCardIds?.all ?? topic.cards.filter(card => !card.retired).map(card => card.id);
+  const order = displayOrder ?? topic.scopeCardIds?.all ?? topic.cards.filter(card => !card.retired).map(card => card.id);
   const numbers = new Map(order.map((id, index) => [id, index + 1]));
   const cards = topic.cards.map(card => {
     const number = numbers.get(card.id);
@@ -16,7 +16,15 @@ export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTo
 }
 export function naturalDatasetTitles(dataset: QuestionBankDataset): QuestionBankDataset {
   if (dataset.id !== 'listening' && dataset.id !== 'storytelling') return dataset;
-  return { ...dataset, categories: dataset.categories.map(category => ({ ...category,
+  const categories = dataset.id === 'listening' ? [...dataset.categories].sort((a, b) => listeningRank(a.id) - listeningRank(b.id)) : dataset.categories;
+  return { ...dataset, categories: categories.map(category => ({ ...category,
+    name: dataset.id === 'listening' ? category.name.replace(/(\d+)s/g, '$1秒') : category.name,
     topics: category.topics.map(topic => naturalTopicTitles(dataset.id, topic)),
   })) };
+}
+
+export const LISTENING_CATEGORY_ORDER = ['listening-category-01', 'listening-category-04', 'listening-category-03', 'listening-category-02'] as const;
+function listeningRank(id: string) {
+  const rank = (LISTENING_CATEGORY_ORDER as readonly string[]).indexOf(id);
+  return rank === -1 ? LISTENING_CATEGORY_ORDER.length : rank;
 }
