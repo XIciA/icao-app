@@ -55,6 +55,8 @@ export function VocabularyScreen() {
   const [studyWords, setStudyWords] = useState<VocabularyWord[]>([]);
   const [studyIndex, setStudyIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  const advancingIndex = useRef(studyIndex);
+  advancingIndex.current = studyIndex;
   const [sessionStatuses, setSessionStatuses] = useState<Record<string, SessionStatus>>({});
   const [sessionSummary, setSessionSummary] = useState<VocabularySessionSummary>(emptySummary);
   const [testRunKey, setTestRunKey] = useState(0);
@@ -105,7 +107,7 @@ export function VocabularyScreen() {
   }, [guide, selected, studyIndex, studyWords]);
 
   const backView = () => {
-    if (save.saving || save.failed) return;
+    if (save.isPending() || save.failed) return;
     if (guide?.current === 'vocab') guide.pause();
     if (view === 'list') setView('detail');
     else if (view === 'study') setView(returnView);
@@ -116,13 +118,12 @@ export function VocabularyScreen() {
   };
   const back = useLocalBack(view !== 'books' && !progress.error, backView);
 
-  if (progress.error) return <Screen><TopBar title="单词学习" /><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
+  if (progress.error) return <Screen header={<TopBar title="单词学习" />}><CenteredState icon={TriangleAlert} title="学习进度读取失败" description="本机进度暂时无法读取，尚未开始新的学习记录。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={progress.retry} /></Screen>;
 
   function content() {
   if (!loadResult || !progress.ready) {
     return (
-      <Screen contentStyle={{ paddingHorizontal: 0 }}>
-        <TopBar title="单词学习" />
+      <Screen contentStyle={{ paddingHorizontal: 0 }} header={<TopBar title="单词学习" />}>
         {loadError ? (
           <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={() => setLoadAttempt((value) => value + 1)} tone="destructive" />
         ) : (
@@ -150,6 +151,8 @@ export function VocabularyScreen() {
       });
     };
     const next = () => {
+      if (save.isPending() || save.failed || advancingIndex.current !== studyIndex) return;
+      advancingIndex.current = studyIndex + 1;
       if (studyIndex < studyWords.length - 1) {
         setStudyIndex((value) => value + 1);
         setRevealed(false);
@@ -159,7 +162,7 @@ export function VocabularyScreen() {
       setSessionSummary(summary);
       setView('complete');
     };
-    return <VocabularyStudyView index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {

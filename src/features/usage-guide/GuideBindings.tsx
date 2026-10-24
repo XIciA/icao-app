@@ -4,7 +4,7 @@ import { GuideScrollContext } from './guide-scroll-context';
 import { createContext, useContext, useEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export type GuidePrompt = { target: string; title?: string; text: string; index: number; total: number; next?: () => void; skip: () => void; exit: () => void; error?: string };
+export type GuidePrompt = { target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string };
 export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean };
 export type GuideBinding = {
   event: (id: string) => void;

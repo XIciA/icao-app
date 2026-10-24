@@ -3,6 +3,7 @@ import { Button, AppText } from '@/components/ui';
 import { GuideTourProvider } from '../GuideTourProvider';
 import { useGuide, useGuideAvailability, type GuidePrompt } from '../GuideBindings';
 import { emptyGuideProgress } from '../guide-progress';
+jest.mock('../study-guide-entry', () => ({ studyGuideEntry: jest.fn(async () => ({ pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]', params: { bankId: 'radiotelephony', categoryId: 'c', topicId: 't', cardId: 'first' } })) }));
 const mockRouter = { push: jest.fn(), navigate: jest.fn(), replace: jest.fn() };
 let mockCanAccess = true;
 let mockAccount = 'account-a', mockCreatedAt: string | undefined, mockPath = '/content/radio';
@@ -22,6 +23,8 @@ function Probe() {
     <Button onPress={() => guide.event('study-highlight')}>highlight</Button>
     <Button onPress={() => guide.event('study-lookup')}>lookup</Button>
     <Button onPress={() => guide.offer('study', ['study-finish'])}>offer finish</Button>
+    <Button onPress={() => guide.offer('study', ['study-review','study-finish'])}>offer review</Button>
+    <Button onPress={() => guide.availability('review', 'study', '评分暂未完成')}>review failed</Button>
     <Button onPress={() => { guide.event('study-finish'); guide.offer('study', ['study-recap']); }}>finish saved</Button>
     <Button onPress={() => guide.event('study-recap')}>recap</Button>
     <Button onPress={() => guide.event('hotspot-topic')}>open hotspot</Button>
@@ -61,13 +64,15 @@ it('teaches shared capabilities once and adds only newly available capabilities 
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
   await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
   await fireEvent.press(screen.getByText('highlight'));await fireEvent.press(screen.getByText('lookup'));
-  await fireEvent.press(screen.getByText('pause'));await fireEvent.press(screen.getByText('offer extended'));
+  await fireEvent.press(screen.getByText('pause'));
+  mockPath='/question-bank/opi/study/c/t';await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
+  await fireEvent.press(screen.getByText('offer extended'));
   expect(screen.getByText('study-record')).toBeTruthy();
 });
-it('manual study replays capabilities using the same engine without a fixed sample route', async () => {
+it('manual study opens a real LT question and replays the same capability engine', async () => {
   mockRead.mockResolvedValue({version:3,completed:['study-highlight'],skipped:['study']});
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
-  await fireEvent.press(screen.getByText('study'));expect(mockRouter.navigate).toHaveBeenCalledWith('/(tabs)');
+  await fireEvent.press(screen.getByText('study'));expect(mockRouter.push).toHaveBeenCalledWith(expect.objectContaining({params:expect.objectContaining({bankId:'radiotelephony',cardId:'first'})}));
   await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
 });
 it('ignores old-account reads and hides the previous account tour immediately', async () => {
@@ -84,22 +89,7 @@ it('hides teaching during navigation transitions', async () => {
   await fireEvent.press(screen.getByText('transition'));expect(screen.getByText('hidden')).toBeTruthy();
 });
 
-it('commits setup scope teaching only after navigation reaches the bank tab', async () => {
-  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/profile';
-  mockRead.mockResolvedValue({ version: 3, completed: ['setup-profile','setup-level','setup-type','setup-save'], skipped: [] });
-  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('setup-bank')).toBeTruthy());
-  await fireEvent.press(screen.getByText('next'));
-  expect(mockRouter.navigate).toHaveBeenCalledWith('/(tabs)');
-  expect(mockRouter.push).not.toHaveBeenCalled();
-  expect(screen.getByText('hidden')).toBeTruthy();
-  expect(screen.queryByText('setup-scope')).toBeNull();
-  mockPath = '/';
-  await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('setup-scope')).toBeTruthy());
-  expect(screen.getByText('visible')).toBeTruthy();
-  expect(mockWrite).toHaveBeenLastCalledWith('account-a', expect.objectContaining({ completed: ['setup-profile','setup-level','setup-type','setup-save','setup-bank'] }));
-});
+
 
 it('completes the study tour after saving and opening its recap', async () => {
   const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>); await act(async () => {});
@@ -121,13 +111,7 @@ it('clears teaching immediately when account access is lost, even with a cached 
   await fireEvent.press(screen.getByText('start'));
   expect(screen.getByText('no-tour')).toBeTruthy();
 });
-it('resumes unfinished setup on the page that owns its next field', async () => {
-  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/';
-  mockRead.mockResolvedValue({ version: 3, completed: ['setup-profile'], skipped: [] });
-  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('setup-level')).toBeTruthy());
-  expect(mockRouter.navigate).toHaveBeenCalledWith('/account/profile');
-});
+
 it('does not redirect a newly logged-in user away from their requested question bank', async () => {
   mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/question-bank/sentences900';
   const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>); await act(async () => {});
@@ -154,23 +138,7 @@ it('leaves an unavailable step pending and resumes it when the real feature reco
   await fireEvent.press(screen.getByText('select bank'));
   expect(screen.getByText('radio-order')).toBeTruthy();
 });
-it('does not restart completed setup when revisiting profile and bank tabs', async () => {
-  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/profile';
-  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('setup-profile')).toBeTruthy());
-  await fireEvent.press(screen.getByText('do setup-profile'));
-  mockPath = '/account/profile'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  for (const id of ['setup-level','setup-type','setup-save']) await fireEvent.press(screen.getByText(`do ${id}`));
-  await fireEvent.press(screen.getByText('next'));
-  mockPath = '/'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await fireEvent.press(screen.getByText('do setup-scope'));
-  expect(screen.getByText('no-tour')).toBeTruthy();
-  for (const path of ['/profile','/account/profile','/profile','/']) {
-    mockPath = path; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-    expect(screen.getByText('no-tour')).toBeTruthy();
-  }
-  expect(mockWrite).toHaveBeenLastCalledWith('account-a', expect.objectContaining({completed:['setup-profile','setup-level','setup-type','setup-save','setup-bank','setup-scope']}));
-});
+
 
 it('keeps interrupted teaching paused on the same page, then offers it on a fresh visit', async () => {
   mockCreatedAt = '2026-10-23T00:00:00Z';
@@ -223,4 +191,23 @@ it('does not carry an old account availability registration into a new tour', as
   await fireEvent.press(screen.getByText('start'));
   expect(screen.queryByText('音频不可用，请重试')).toBeNull();
   expect(screen.getByText('radio-bank')).toBeTruthy();
+});
+
+it('never teaches setup or redirects profile/bank tabs, even with unfinished old setup progress', async () => {
+  mockCreatedAt='2026-10-23T00:00:00Z';mockPath='/profile';
+  mockRead.mockResolvedValue({version:3,completed:['setup-profile'],skipped:[]});
+  const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
+  for(const path of ['/','/account/profile','/profile']) {
+    mockPath=path;await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
+    expect(screen.getByText('no-tour')).toBeTruthy();
+  }
+  expect(mockRouter.navigate).not.toHaveBeenCalled();expect(mockWrite).not.toHaveBeenCalled();
+});
+
+it('allows unavailable scoring to be skipped without recording a successful score or restarting the step', async () => {
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('study'));await fireEvent.press(screen.getByText('offer review'));
+  await fireEvent.press(screen.getByText('review failed'));await fireEvent.press(screen.getByText('next'));
+  expect(screen.getByText('study-finish')).toBeTruthy();
+  expect(mockWrite).toHaveBeenLastCalledWith('account-a',expect.objectContaining({completed:[],skippedSteps:['study-review']}));
 });

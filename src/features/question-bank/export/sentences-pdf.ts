@@ -67,6 +67,8 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
   }
   let previousLevel='';
   for(const row of chosen){
+    // Release the JS thread between rows so progress indicators and cancellation stay responsive.
+    await new Promise<void>(resolve => setTimeout(resolve, 0));
     const highlights=options.highlights?row.annotation?.highlights??[]:[];
     const fingerprint=contentFingerprint(row.card.audioText);
     const pieces=tokenizeStudyText(row.card.audioText).map(token=>{

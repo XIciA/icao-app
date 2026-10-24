@@ -48,8 +48,7 @@ export default function NativeQuestionBankStudyRoute() {
     else router.replace('/(tabs)');
   };
   const stateScreen = (children: ReactNode) => (
-    <Screen>
-      <TopBar title="题库学习" onBack={returnToSource} />
+    <Screen header={<TopBar title="题库学习" onBack={returnToSource} />}>
       {children}
     </Screen>
   );

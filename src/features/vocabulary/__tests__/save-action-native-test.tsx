@@ -34,3 +34,14 @@ it('blocks duplicate submissions and prevents retry into a different account', a
   expect(write).toHaveBeenCalledTimes(1);
   expect(advance).not.toHaveBeenCalled();
 });
+
+it('keeps successful routine saves on the page without opening a saving modal', async () => {
+  let complete!: () => void;
+  const screen=await render(<Page/>);
+  let pending!: Promise<void>;
+  await act(async()=>{pending=save.run(()=>new Promise<void>(resolve=>{complete=resolve;}));});
+  expect(save.saving).toBe(true);expect(save.isPending()).toBe(true);
+  expect(screen.queryByText('正在保存')).toBeNull();expect(screen.getByText('原学习页面')).toBeTruthy();
+  await act(async()=>{complete();await pending;});
+  expect(save.saving).toBe(false);
+});

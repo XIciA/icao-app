@@ -12,8 +12,7 @@ export function LearningReportScreen() {
       background={<SoftGlow intensity={0.6} size={300} style={styles.glow} />}
       contentStyle={styles.screen}
       scroll
-    >
-      <TopBar title="学习报告" />
+     header={<TopBar title="学习报告" />}>
 
       <View style={styles.container}>
         {/* 正在开发主卡片 */}

@@ -94,7 +94,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   const legacyDataset = 'studyPackage' in options ? undefined : options.dataset;
   const legacyCategory = 'studyPackage' in options ? undefined : options.category;
   const legacyTopic = 'studyPackage' in options ? undefined : options.topic;
-  const initialCardId = 'studyPackage' in options ? undefined : options.initialCardId;
+  const initialCardId = 'studyPackage' in options ? options.studyPackage.initialItemId : options.initialCardId;
   const store = options.store ?? sqliteLearningStore;
   const writeContext = useRef(captureLearningWriteContext()).current;
   const persistentStates = useRef<Record<string, CardLearningState>>({});
@@ -121,7 +121,7 @@ export function useStudySession(options: UseStudySessionOptions) {
   }, [historyRecord, packageInput]);
   const examMode = recordDescriptor?.recordType === 'mock_exam' && !historyRecord;
   const listeningRange = useMemo(() => resolveListeningExamRange(packageInput), [packageInput]);
-  const startingIndex = Math.max(0, initialCardId ? items.findIndex((item) => item.card.id === initialCardId) : 0);
+  const startingIndex = Math.max(0, initialCardId ? items.findIndex((item) => packageInput ? item.id === initialCardId : item.card.id === initialCardId) : 0);
   const initialItem = items[startingIndex];
   const initialBehavior = useMemo(
     () => initialItem ? getStudyBehavior(initialItem.dataset) : EMPTY_STUDY_BEHAVIOR,

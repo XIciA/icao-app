@@ -8,6 +8,8 @@
 
 ## 现存材料
 
+- [学习与全局交互修复](learning-ui-repair-20261024/README.md)：2026-10-24全量口述需求、逐项进度与三端测试交付台账。
+
 - [会员定价与后续统一提审](membership-pricing/README.md)：2026-10-22 三档长期售价与划线价、苹果后台调价结果；本轮不构建、不提审，待其他任务完成后统一提交。
 - [使用指南与首次使用引导](guide-and-onboarding-2026-10/requirements.md)：统一教学逻辑、极简细线聚光灯；[执行记录](guide-and-onboarding-2026-10/execution.md)。
 

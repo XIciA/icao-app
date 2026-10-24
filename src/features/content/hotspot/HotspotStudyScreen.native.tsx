@@ -31,12 +31,11 @@ function HotspotStudyContent({ briefId }: { briefId: string }) {
     return dataset&&brief.topics.length?buildHotspotStudyPackage(brief,dataset):state.session;
   },[state,center]);
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
-  if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
 
   if (state.status !== 'ready') {
     return (
-      <Screen contentStyle={styles.screen} scroll>
-        <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
+      <Screen contentStyle={styles.screen} scroll header={<TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />}>
         <View style={styles.body}>
           {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
           <HotspotAccessNotice

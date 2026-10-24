@@ -85,8 +85,7 @@ function MembershipContent() {
   const label = busy ? commerce.phase === 'restoring' ? '正在恢复购买…' : commerce.phase === 'purchasing' ? '正在确认购买…' : '正在核对…'
     : pending ? '等待购买确认' : selected ? `${active ? '续费' : '开通'}${selected.durationDays}天会员 · ${selected.localizedPrice}` : '正在读取套餐价格';
 
-  return <Screen bottomInset contentStyle={styles.screen} scroll>
-    <TopBar title={active ? '会员续费' : '会员开通'} />
+  return <Screen bottomInset contentStyle={styles.screen} scroll header={<TopBar title={active ? '会员续费' : '会员开通'} />}>
     {active && expiresLabel ? <AppText variant="caption">有效期至 {expiresLabel}</AppText> : null}
     <Card style={styles.benefits}>
       <AppText color={colors.mutedForeground} variant="caption">会员权益</AppText>

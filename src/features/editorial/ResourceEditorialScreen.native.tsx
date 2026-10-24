@@ -16,8 +16,7 @@ export function ResourceEditorialScreen() {
   const state = useResourceEditorial();
   useGuideAvailability('resources', state.status === 'error' ? '资源加载失败，可在页面重新加载，也可以跳过教学。' : state.status === 'empty' ? '暂时没有资源文章，可跳过教学，稍后再来。' : undefined);
   return (
-    <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="资源分享" />
+    <Screen scroll contentStyle={styles.screen} header={<TopBar title="资源分享" />}>
       {Platform.OS === 'web' ? <View style={styles.intro}><GuideAnchor id="resource-filter" />
         <AppText>经过来源核验和专业编辑的航空英语备考方法与学习资源。</AppText>
       </View> : <GuideAnchor id="resource-filter" />}

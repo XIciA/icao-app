@@ -1,3 +1,4 @@
+import { TopBar } from '@/components/navigation/TopBar';
 import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
 import { readAnnotationStore } from '../annotations/annotation-store.native';
@@ -15,9 +16,9 @@ import { colors, radii, spacing } from '@/theme';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
 import { loadLearningRecordReview } from '../platform/learning-record-storage.native';
 import { getStudyReview, toStudyReviewPackage } from '../lib/study-review.native';
-import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction } from '../types';
+import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction, QuestionBankStudyItem } from '../types';
 const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
-export function StudyReport({ localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
+export function StudyReport({ answerScope, localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { answerScope?: { items: QuestionBankStudyItem[]; learned: Set<number>; current: number }; localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
   const tutorial = useTutorial();
   const guide = useGuide();
   const offer = guide?.offer;
@@ -29,6 +30,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
   const [markers, setMarkers] = useState<ReturnType<typeof answerCardMarkers>>([]);
   const [answerCard, setAnswerCard] = useState(false);
   const snapshot = getStudyReview(detail);
+  const answerItems = answerScope?.items ?? snapshot?.items ?? [];
   const [opening, setOpening] = useState(false);
   const openingRequest = useRef(0);
   const openingBusy = useRef(false);
@@ -51,7 +53,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
     openingBusy.current = true;
     const request = ++openingRequest.current;
     setOpening(true); setError('');
-    try { const loaded = await loadLearningRecordReview(record); if (!getStudyReview(loaded)) throw new Error('missing_review'); const annotations = await readAnnotationStore(); if (request !== openingRequest.current) return; setMarkers(answerCardMarkers(getStudyReview(loaded)!.items, annotations)); setDetail(loaded); setAnswerCard(true); }
+    try { const loaded = await loadLearningRecordReview(record); if (!getStudyReview(loaded)) throw new Error('missing_review'); const annotations = await readAnnotationStore(); if (request !== openingRequest.current) return; setMarkers(answerCardMarkers(answerScope?.items ?? getStudyReview(loaded)!.items, annotations)); setDetail(loaded); setAnswerCard(true); }
     catch { if (request === openingRequest.current) setError('记录暂时无法打开，请重试。'); }
     finally { if (request === openingRequest.current) { openingBusy.current = false; setOpening(false); } }
   }
@@ -59,7 +61,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
   const returnToReport = () => setReview(undefined);
   if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词与收藏' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
-  return <Screen scroll contentStyle={styles.screen}>
+  return <Screen scroll contentStyle={styles.screen} header={<TopBar title="学习回顾" onBack={back} />}>
     <TutorialCoach inset={false} />
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
       {!onContinue && exam && !complete ? <Tag tone="accent">未完成</Tag> : null}
@@ -67,7 +69,7 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
       <AppText style={styles.center} variant="caption">{record.source === 'hotspot' ? record.hotspot?.title : `${record.bankTitle} · ${record.topicTitle}`}</AppText>
     </View>
     {listening ? <Card style={styles.card}><View style={styles.metric}><AppText variant="sectionTitle">听力</AppText><AppText color={colors.primary} variant="pageTitle">{listening.score} / 50</AppText></View><View style={styles.metric}><AppText variant="caption">练习等级</AppText><AppText color={colors.primary} variant="sectionTitle">{listening.level} 级</AppText></View><AppText variant="caption">答对 {listening.correctCount} / 20 题 · 作答 {listening.answeredCount} / 20 题</AppText></Card> : null}
-    {!onContinue ? <Card style={styles.summary}><View style={styles.summaryMetric}><AppText variant="caption">{exam ? '作答题数' : '本次学习'}</AppText><AppText variant="sectionTitle">{exam ? `${record.answeredCount ?? record.completedCount} / ${record.totalCount}` : `${record.studiedCount ?? record.totalCount} 题`}</AppText></View><View style={styles.summaryMetric}><AppText variant="caption">学习时长</AppText><AppText variant="button">{record.durationSeconds < 60 ? `${record.durationSeconds} 秒` : `${Math.floor(record.durationSeconds / 60)} 分`}</AppText></View></Card> : null}
+    {!onContinue ? <Card style={styles.summary}><View style={styles.summaryMetric}><AppText variant="caption">{exam ? '作答题数' : '本次学习'}</AppText><AppText variant="sectionTitle">{exam ? `${record.answeredCount ?? record.completedCount} / ${record.totalCount}` : `${record.studiedCount ?? record.totalCount} 题`}</AppText></View><View style={styles.summaryMetric}><AppText variant="caption">学习时长</AppText><AppText variant="sectionTitle">{record.durationSeconds < 60 ? `${record.durationSeconds} 秒` : `${Math.floor(record.durationSeconds / 60)} 分`}</AppText></View></Card> : null}
     {!exam && interaction === 'choices' && objective.answered > 0 ? <View style={styles.metric}><AppText variant="caption">正确率</AppText><AppText variant="sectionTitle">{Math.round(objective.correct / objective.answered * 100)}% <AppText variant="caption">（{objective.correct}/{objective.answered}）</AppText></AppText></View> : null}
     {externalError ? <AppText style={styles.center} color={colors.destructive} variant="caption">学习记录尚未保存，请重试</AppText> : null}
     {error || externalError ? <AppText color={colors.destructive} variant="caption">{error || externalError}</AppText> : null}
@@ -81,7 +83,16 @@ export function StudyReport({ localReturn, record, onReturn, returnLabel, intera
       <ReviewRow title="查看答题卡" onPress={() => { void openAnswerCard(); }} />
     </View>
     <Button variant="secondary" onPress={back}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
-    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={snapshot?.items.length ?? 0} current={-1} marked={new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => { const item = snapshot?.items[index]; if (item) void open(item.id); }} />
+    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={answerItems.length} current={answerScope?.current ?? -1} marked={answerScope?.learned ?? new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => {
+      const item = answerItems[index];
+      if (!item) return;
+      if (!answerScope) { void open(item.id); return; }
+      setAnswerCard(false);
+      setReview({ id: `answer-card-${Date.now().toString(36)}`, startedAt: new Date().toISOString(),
+        progressMode: 'persistent', items: answerScope.items, initialItemId: item.id,
+        record: { bankId: record.bankId, bankTitle: record.bankTitle, categoryTitle: record.categoryTitle,
+          topicTitle: record.topicTitle, recordType: 'session', source: record.source, hotspot: record.hotspot } });
+    }} />
   </Screen>;
 }
 function ReviewRow({title,count,onPress,anchor}:{title:string;count?:number;onPress:()=>void;anchor?:string}) {

@@ -1,4 +1,4 @@
-import { useContext, useEffect, type ReactNode } from 'react';
+import { useContext, useEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import type { ModalProps } from 'react-native';
 
@@ -15,18 +15,20 @@ type AppModalProps = Omit<ModalProps, 'onDismiss' | 'onRequestClose' | 'onShow'>
 export function AppModal({ children, onDismiss, onRequestClose, onShow, visible = true }: AppModalProps) {
   const host = useContext(AppModalHostContext);
 
+  const callbacks = useRef({ onDismiss, onRequestClose, onShow });
+  callbacks.current = { onDismiss, onRequestClose, onShow };
   useEffect(() => {
     if (!visible) return;
-    onShow?.();
+    callbacks.current.onShow?.();
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onRequestClose?.();
+      if (event.key === 'Escape') callbacks.current.onRequestClose?.();
     };
     document.addEventListener('keydown', closeOnEscape);
     return () => {
       document.removeEventListener('keydown', closeOnEscape);
-      onDismiss?.();
+      callbacks.current.onDismiss?.();
     };
-  }, [onDismiss, onRequestClose, onShow, visible]);
+  }, [visible]);
 
   if (!visible || !host) return null;
   return createPortal(<GuideModalScope visible={visible}>{children}</GuideModalScope>, host);

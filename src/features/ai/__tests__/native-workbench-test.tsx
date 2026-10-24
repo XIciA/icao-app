@@ -44,7 +44,8 @@ jest.mock('@/components/ui', () => {
   return { ...actual, BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <View>{children}</View> : null };
 });
 const review = { grammar: { correctedText: 'We are ready.', issues: [] }, polishedText: 'We are ready to depart.', promptVersion: 'deepseek-review:v1' as const };
-function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn() }: {
+function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.m4a', sessionId = 'study-1', initialAnswer = 'My previous answer.', token, initialFeedback, workbenchRef, feedbackCacheRef, notes, onNoteChange = jest.fn(), onNoteCompleted }: {
+  onNoteCompleted?: () => void;
   notes?: string; onNoteChange?: (text: string) => void;
   initialAnswer?: string; token?: string;
   kind?: StudyReviewKind; card?: string; recording?: string; sessionId?: string;
@@ -61,7 +62,7 @@ function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.
     initialFeedback={initialFeedback} feedbackCacheRef={feedbackCacheRef} ref={workbenchRef} editingTab={editingTab}
     swipeGesture={Gesture.Pan().enabled(false)} learningStore={{ addRecord: mockSave }}
     onAnswerChange={(value) => { mockAnswer(value); setAnswers((current) => ({ ...current, [answerKey]: value })); }} onFeedback={mockFeedback} onBeforeAiOperation={mockCheckpoint}
-    onNoteChange={onNoteChange} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
+    onNoteCompleted={onNoteCompleted} onNoteChange={onNoteChange} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
 }
 beforeEach(() => {
   jest.clearAllMocks(); mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
@@ -209,4 +210,19 @@ it('allows flushing and preserves category feedback through collapse without rep
   await act(() => ref.current!.flushAutoSave()); await screen.unmount();
   const remounted = await render(<Harness workbenchRef={ref} feedbackCacheRef={cache} />);
   expect(remounted.getByText('We are ready to depart.')).toBeTruthy(); expect(mockReview).toHaveBeenCalledTimes(1);
+});
+
+it('does not complete note teaching on typing, dictation updates or blur, only on explicit saved completion', async () => {
+  const completed=jest.fn(), save=jest.fn();
+  const screen=await render(<Harness notes="" onNoteChange={save} onNoteCompleted={completed}/>);
+  await fireEvent.press(screen.getByLabelText('编辑我的笔记'));
+  await fireEvent.changeText(screen.getByLabelText('我的笔记'), '一');
+  expect(completed).not.toHaveBeenCalled();
+  await fireEvent.changeText(screen.getByLabelText('我的笔记'), '一段完整笔记');
+  await fireEvent(screen.getByLabelText('我的笔记'), 'blur');
+  expect(completed).not.toHaveBeenCalled();
+  await fireEvent.press(screen.getByLabelText('编辑我的笔记'));
+  await fireEvent.press(screen.getByLabelText('完成我的笔记'));
+  await waitFor(()=>expect(completed).toHaveBeenCalledTimes(1));
+  expect(save).toHaveBeenLastCalledWith('一段完整笔记');
 });

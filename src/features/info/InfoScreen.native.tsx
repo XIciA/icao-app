@@ -72,7 +72,7 @@ function Page({
   children: React.ReactNode;
   scroll?: boolean;
 }) {
-  return <Screen scroll={scroll} keyboard contentStyle={styles.screen}><TopBar title={title} />{children}</Screen>;
+  return <Screen scroll={scroll} keyboard contentStyle={styles.screen} header={<TopBar title={title} />}>{children}</Screen>;
 }
 
 type FeedbackParams = {

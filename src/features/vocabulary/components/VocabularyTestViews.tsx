@@ -21,8 +21,7 @@ import { VocabularyProgress } from './VocabularyProgress';
 
 export function VocabularyTestIntroView({ lastTest, onBack, onStart }: { lastTest?: VocabularyTestResult; onBack: () => void; onStart: () => void }) {
   return (
-    <Screen scroll contentStyle={styles.zero}>
-      <TopBar title="词汇测评" onBack={onBack} />
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="词汇测评" onBack={onBack} />}>
       <View style={styles.page}>
         <View style={styles.hero}><BarChart3 color={colors.primary} size={34} /></View>
         <View style={styles.heading}><AppText variant="pageTitle">30 题词汇测评</AppText><AppText style={styles.center}>快速了解当前词汇识别情况，并得到下一步学习建议。</AppText></View>
@@ -161,8 +160,7 @@ export function VocabularyTestRunner({ books, onExit, onFinish }: { books: Vocab
 export function VocabularyTestResultView({ result, onBack, onRestart }: { result: VocabularyTestResult; onBack: () => void; onRestart: () => void }) {
   const wrong = result.answers.filter((answer) => !answer.correct);
   return (
-    <Screen scroll contentStyle={styles.zero}>
-      <TopBar title="测评结果" onBack={onBack} />
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="测评结果" onBack={onBack} />}>
       <View style={styles.page}>
         <View style={styles.resultHero}><AppText color={colors.primary} style={styles.score} variant="pageTitle">{result.totalRate}%</AppText><AppText variant="caption">答对 {result.correct} / {result.total}</AppText><Tag>{result.verdict}</Tag></View>
         <Card style={styles.resultCard}><AppText variant="cardTitle">结果判断</AppText><AppText>{result.judgment}</AppText></Card>

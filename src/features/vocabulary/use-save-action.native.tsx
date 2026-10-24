@@ -29,7 +29,7 @@ export function useSaveAction() {
     }
   }
   function panel() {
-    if (!saving && !retry) return null;
+    if (!retry) return null;
     return <Card style={{ gap: spacing[3], padding: spacing[5] }}>
       <AppText variant="cardTitle">{saving ? '正在保存' : '保存尚未完成'}</AppText>
       <AppText>{saving ? '请稍候，保存完成后继续。' : '本次操作未完整保存。请检查设备可用空间后重试；当前页面仍保留。若已切换账号，请返回重新进入。'}</AppText>
@@ -37,9 +37,9 @@ export function useSaveAction() {
     </Card>;
   }
   function wrap(children: ReactNode) {
-    return <>{children}<AppModal transparent visible={saving || !!retry} animationType="fade" onRequestClose={() => { if (!saving) setRetry(undefined); }}>
+    return <>{children}<AppModal transparent visible={!!retry} animationType="fade" onRequestClose={() => { if (!saving) setRetry(undefined); }}>
       <View style={{ flex: 1, justifyContent: 'center', padding: spacing[5], backgroundColor: colors.overlay }}>{panel()}</View>
     </AppModal></>;
   }
-  return { run, wrap, panel, saving, failed: !!retry };
+  return { run, wrap, panel, saving, failed: !!retry, isPending: () => pending.current };
 }

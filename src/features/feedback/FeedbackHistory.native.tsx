@@ -52,7 +52,7 @@ function History({account}:{account?:string}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[account,selected,page,attempt]));
   const back = () => { if (router.canGoBack()) router.back(); else router.replace(selected ? '/info/feedback' : '/(tabs)/profile'); };
-  return <Screen contentStyle={styles.screen}><TopBar title={selected?'反馈详情':'意见反馈'} onBack={back}/>
+  return <Screen contentStyle={styles.screen} header={<TopBar title={selected?'反馈详情':'意见反馈'} onBack={back}/>}>
     <ScrollView style={styles.body} contentContainerStyle={[styles.content, { paddingBottom: spacing[4] + (selected ? insets.bottom : 0) }]} showsVerticalScrollIndicator={false}>
     {error ? <View style={styles.section}><AppText color={colors.destructive}>{error}</AppText><Button variant="ghost" onPress={() => setAttempt(v=>v+1)}>重试</Button></View> : null}
     {busy && <AppText style={styles.section}>正在读取…</AppText>}

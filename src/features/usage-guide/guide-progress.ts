@@ -1,13 +1,13 @@
 import Storage from '@/platform/storage';
 
 /** A single account-scoped owner for both manual and automatic teaching. */
-export type GuideProgress = { version: 3; completed: string[]; skipped: string[] };
+export type GuideProgress = { version: 3; completed: string[]; skipped: string[]; skippedSteps?: string[] };
 export const emptyGuideProgress = (): GuideProgress => ({ version: 3, completed: [], skipped: [] });
 export function parseGuideProgress(raw: string | null): GuideProgress {
   try {
     const value = JSON.parse(raw ?? 'null');
     if (value?.version !== 3) return emptyGuideProgress();
-    return { version: 3, completed: Array.isArray(value.completed) ? value.completed.filter((id: unknown): id is string => typeof id === 'string') : [], skipped: Array.isArray(value.skipped) ? value.skipped.filter((id: unknown): id is string => typeof id === 'string') : [] };
+    return { version: 3, completed: Array.isArray(value.completed) ? value.completed.filter((id: unknown): id is string => typeof id === 'string') : [], skippedSteps: Array.isArray(value.skippedSteps) ? value.skippedSteps.filter((id: unknown): id is string => typeof id === 'string') : [], skipped: Array.isArray(value.skipped) ? value.skipped.filter((id: unknown): id is string => typeof id === 'string') : [] };
   } catch { return emptyGuideProgress(); }
 }
 let writes = Promise.resolve();
@@ -27,5 +27,5 @@ export function eligibleForAutomaticGuide(createdAt?: string) {
   return !!createdAt && Number.isFinite(Date.parse(createdAt)) && Date.parse(createdAt) >= Date.parse(ONBOARDING_COHORT_START);
 }
 export function remainingGuideSteps(ids: string[], progress: GuideProgress, module: string) {
-  return progress.skipped.includes(module) ? [] : ids.filter(id => !progress.completed.includes(id));
+  return progress.skipped.includes(module) ? [] : ids.filter(id => !progress.completed.includes(id) && !progress.skippedSteps?.includes(id));
 }

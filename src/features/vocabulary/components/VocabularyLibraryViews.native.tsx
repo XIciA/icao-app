@@ -76,8 +76,7 @@ export function VocabularyBooksView({
   const insets = useSafeAreaInsets();
   const guide = useGuide();
   return (
-    <Screen contentStyle={styles.zero}>
-      <TopBar title="单词学习" />
+    <Screen contentStyle={styles.zero} header={<TopBar title="单词学习" />}>
       <GuideScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
 
         {warning ? (
@@ -166,8 +165,7 @@ export function VocabularyBookDetailView({
     { text: '确认重置', style: 'destructive', onPress: () => { void onReset(); } },
   ]);
   return (
-    <Screen scroll contentStyle={styles.zero}>
-      <TopBar title="单词学习" onBack={onBack} />
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="单词学习" onBack={onBack} />}>
       <View style={styles.page}>
         <Card style={styles.detailCard}>
           <AppText variant="pageTitle">{book.name}</AppText>
@@ -218,8 +216,7 @@ export function VocabularyWordListView({
   const filters = [['all', '全部'], ['new', '未学'], ['known', '认识'], ['vague', '模糊'], ['forgot', '忘记'], ['wrong', '记错'], ['favorite', '收藏']] as const;
 
   return (
-    <Screen keyboard contentStyle={styles.zero}>
-      <TopBar title={book.name} onBack={onBack} />
+    <Screen keyboard contentStyle={styles.zero} header={<TopBar title={book.name} onBack={onBack} />}>
       <View style={styles.listHeader}>
         <View style={styles.search}>
           <Search color={colors.mutedForeground} size={17} />
