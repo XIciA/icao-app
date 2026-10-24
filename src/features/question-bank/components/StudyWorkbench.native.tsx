@@ -437,12 +437,24 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 
   const auth = useAuth();
   const login = useLoginEntry();
+  const preparingLogin = useRef(false);
   async function performAi(action: AiAction, automatic = false, textOverride?: string) {
     if (!auth.canAccessApp) {
-      if (!automatic) {
+      if (automatic || preparingLogin.current) return;
+      preparingLogin.current = true;
+      const requestCardKey = cardKey;
+      setBusy(action); setError(undefined); setFailedAction(undefined); setFailureDiagnosticId(undefined);
+      try {
         if (!await persistCurrent()) return;
         const token = await onBeforeLogin?.();
         login(`${pathname}?cardId=${encodeURIComponent(sourceCardId)}${token ? `&loginResume=${encodeURIComponent(token)}` : ''}`, '登录后使用 AI 免费体验或会员额度');
+      } catch {
+        if (currentCardKey.current !== requestCardKey) return;
+        setFailedAction(action); setFailureRetryable(true); setFailureNeedsDiagnostic(false);
+        setError('学习内容暂未保存，暂时无法登录。请重试，录音与作答仍保留在当前页面。');
+      } finally {
+        preparingLogin.current = false;
+        if (currentCardKey.current === requestCardKey) setBusy(undefined);
       }
       return;
     }
