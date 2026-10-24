@@ -1,3 +1,5 @@
+import { ContentAccessService } from '../content-access/content-access.service';
+import { contentCommerceEnvironment } from '../content-access/content-access.environment';
 import { BadRequestException, Controller, Get, Headers, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
 import type {
   ApiSuccessEnvelope,
@@ -14,7 +16,7 @@ import { EditorialService } from './editorial.service';
 @Controller('v1/editorial')
 @UseGuards(RequireAuthGuard)
 export class EditorialController {
-  constructor(private readonly editorial: EditorialService) {}
+  constructor(private readonly contentAccess: ContentAccessService, private readonly editorial: EditorialService) {}
 
   @Get()
   async list(
@@ -23,6 +25,7 @@ export class EditorialController {
     @Req() request: AuthenticatedRequest,
     @Res({ passthrough: true }) reply: FastifyReply,
   ): Promise<ApiSuccessEnvelope<EditorialListResponse> | undefined> {
+    await this.contentAccess.assertMembership(request.user!.id, request.auth!.sessionId, contentCommerceEnvironment(String(request.headers['x-icao-commerce-environment'] ?? 'production')));
     if (channel !== 'resource' && channel !== 'opi_hotspot') throw new BadRequestException('invalid_editorial_channel');
     const data = await this.editorial.list(channel satisfies EditorialChannel);
     if (this.applyCacheHeaders(data.checksum, ifNoneMatch, reply)) return undefined;
@@ -36,6 +39,7 @@ export class EditorialController {
     @Req() request: AuthenticatedRequest,
     @Res({ passthrough: true }) reply: FastifyReply,
   ): Promise<ApiSuccessEnvelope<EditorialDetailResponse> | undefined> {
+    await this.contentAccess.assertMembership(request.user!.id, request.auth!.sessionId, contentCommerceEnvironment(String(request.headers['x-icao-commerce-environment'] ?? 'production')));
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new BadRequestException('invalid_editorial_slug');
     const data = await this.editorial.get(slug);
     if (this.applyCacheHeaders(data.checksum, ifNoneMatch, reply)) return undefined;

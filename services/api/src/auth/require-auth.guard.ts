@@ -27,3 +27,14 @@ export class RequireAuthGuard implements CanActivate {
     return true;
   }
 }
+
+/** Anonymous reads are allowed only where this guard is explicitly installed.
+ * A supplied invalid/expired token is never downgraded to a guest identity. */
+@Injectable()
+export class OptionalAuthGuard implements CanActivate {
+  constructor(private readonly required: RequireAuthGuard) {}
+  canActivate(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
+    return request.headers.authorization === undefined ? true : this.required.canActivate(context);
+  }
+}

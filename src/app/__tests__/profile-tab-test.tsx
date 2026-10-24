@@ -154,11 +154,10 @@ describe('<ProfileTab />', () => {
     expect(mockPush).toHaveBeenCalledWith('/word-favorites');
   });
 
-  it('opens the guide directly and moves contact out of the profile', async () => {
+  it('removes the manual guide entry while retaining the normal account menu', async () => {
     const screen = await render(<ProfileTab />);
-    await fireEvent.press(screen.getByText('使用指南'));
-    expect(mockPush).toHaveBeenCalledWith({ pathname: '/info/[slug]', params: { slug: 'guide' } });
-    expect(screen.queryByText('联系我们')).toBeNull();
+    expect(screen.queryByText('使用指南')).toBeNull();
+    expect(screen.getByText('设置')).toBeTruthy();
   });
 
   it('opens the real feedback form from the profile menu', async () => {

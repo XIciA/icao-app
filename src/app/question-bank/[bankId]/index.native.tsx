@@ -1,3 +1,4 @@
+import { GuestLearningBoundary } from '@/features/auth/GuestLearningBoundary.native';
 import { useLocalSearchParams } from 'expo-router';
 import { LibraryBig } from '@/components/ui/icons';
 
@@ -8,7 +9,9 @@ import { QuestionBankCatalog } from '@/features/question-bank/components/Questio
 import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank.native';
 import type { QuestionBankId } from '@/features/question-bank/types';
 
-export default function QuestionBankCatalogRoute() {
+export default function QuestionBankCatalogRoute() { return <GuestLearningBoundary><QuestionBankCatalogRouteBody /></GuestLearningBoundary>; }
+
+function QuestionBankCatalogRouteBody() {
   const { bankId } = useLocalSearchParams<{ bankId: QuestionBankId }>();
   const state = useQuestionBank(bankId);
 

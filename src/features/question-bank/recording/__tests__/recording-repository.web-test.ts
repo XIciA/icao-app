@@ -69,6 +69,17 @@ describe('Web RecordingRepository', () => {
     await expect(repository().commitRaw(raw(600, 2_000, ''))).rejects.toMatchObject({ code: 'recording_file_incomplete' });
   });
 
+  it('keeps the committed Blob URL valid across login teardown until playback resumes', async () => {
+    const repo = repository();
+    const asset = await repo.commitRaw(raw(600));
+    repo.retainSessionForLogin(asset.sessionId);
+    repo.cleanupSession(asset.sessionId);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+    repo.releaseSessionFromLogin(asset.sessionId);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+    repo.cleanupSession(asset.sessionId);
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith(asset.uri);
+  });
   it('revokes only URLs belonging to committed assets', async () => {
     const repo = repository();
     const asset = await repo.commitRaw(raw(600));

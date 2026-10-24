@@ -1,4 +1,4 @@
-import { isFreeQuestionBankCard, studyScopeCardIds, type StudyScope } from '@icao/contracts';
+import { studyScopeCardIds, type StudyScope } from '@icao/contracts';
 import { examGoal, type ExamGoal } from '@/features/account/profile-model';
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 import { naturalDatasetTitles, naturalTopicTitles } from './question-titles';
@@ -22,7 +22,7 @@ export function scopeTopic(bankId: QuestionBankId, topic: QuestionBankTopic, sco
       ...topic.access,
       declaredCardCount: ids.size,
       availableCardCount: cards.length,
-      level: [...ids].every((id) => isFreeQuestionBankCard(bankId, topic.id, id)) ? 'free' : 'member',
+      level: [...ids].every((id) => topic.access!.freeCardIds ? topic.access!.freeCardIds.includes(id) : topic.access!.level === 'free') ? 'free' : 'member',
     } : undefined,
   });
 }

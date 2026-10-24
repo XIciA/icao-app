@@ -36,8 +36,8 @@ export class QuestionBankService {
 
   async get(
     bankId: string,
-    accountId: string,
-    sessionId: string,
+    accountId: string | undefined,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
   ): Promise<QuestionBankRelease> {
     return this.contentAccess.getCatalog(bankId, accountId, sessionId, environment);
@@ -47,8 +47,8 @@ export class QuestionBankService {
     bankId: string,
     categoryId: string,
     topicId: string,
-    accountId: string,
-    sessionId: string,
+    accountId: string | undefined,
+    sessionId: string | undefined,
     environment: CommerceEnvironment,
     expected?: { version: number; checksum?: string },
   ) {

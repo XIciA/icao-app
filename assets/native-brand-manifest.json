@@ -141,7 +141,8 @@
     ],
     "nonProductControlFiles": [
       "assets/native-brand-manifest.json",
-      "assets/images/startup-brand.png"
+      "assets/images/startup-brand.png",
+      "assets/illustrations/guest-learning-bookmark.png"
     ]
   },
   "frozenExternalAssets": [

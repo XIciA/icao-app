@@ -63,7 +63,16 @@ assert.match(nativeRadioHydration, /nextRadioCatalogTopic/u);
 assert.doesNotMatch(nativeRadioHydration, /Promise\.all\(datasets|Promise\.all\(category\.topics/u);
 assert.match(nativeRadioProvider, /hydrateTrackTopic/u);
 assert.match(nativeRadioProvider, /hydrateFollowingTrackTopic/u);
-assert.equal(countCards(publicBanks), 1_047);
+const expectedFreeCounts = sourceBanks.map(bank => {
+  const topics = bank.categories.flatMap(category => category.topics);
+  const live = topic => topic.cards.filter(card => !card.retired);
+  if (bank.id === 'sentences900') return topics.flatMap(live).length;
+  if (bank.id === 'listening') return bank.categories.reduce((sum, category) => sum + Math.min(10, category.topics.flatMap(live).length), 0);
+  if (bank.id === 'radiotelephony') return topics.filter(topic => live(topic).length).slice(0, 1).flatMap(live).length;
+  if (bank.id === 'opi') return topics.filter(topic => live(topic).length).slice(0, 3).flatMap(live).length;
+  return bank.id === 'storytelling' ? Math.min(3, topics.flatMap(live).length) : 0;
+});
+assert.deepEqual(publicBanks.map(bank => countCards([bank])), expectedFreeCounts);
 assert.equal(countCards(sourceBanks), 10_900);
 assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 1_000_000);
 

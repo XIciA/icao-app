@@ -46,13 +46,14 @@ export function TabPlaceholderScreen(props: Props) {
 function GuestQuestionBankHome(props: Props) {
   const login = useLoginEntry();
   const status = publicAccountStatus(useAuth());
+  const router = useRouter();
   const headerLeading = <Pressable accessibilityRole="button" accessibilityLabel={accountEntryLabel(status)} hitSlop={6}
     disabled={status === 'restoring'} style={styles.accountEntry}
     onPress={() => login('/account/profile')}><ProfileAvatar size={40} uri={null} />
     {status !== 'guest' ? <AppText variant="caption" style={styles.accountEntryText}>{accountEntryLabel(status)}</AppText> : null}
   </Pressable>;
   return <QuestionBankHome {...props} headerLeading={headerLeading} guest
-    onEntryPress={(entry) => login(`/question-bank/${entry.slug}`, '登录后进入题库学习')} />;
+    onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />;
 }
 
 function AuthenticatedQuestionBankHome(props: Props) {

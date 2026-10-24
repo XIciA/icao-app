@@ -27,7 +27,7 @@ it('keeps profile and target with their account across logout and account change
   await updateProfile({ displayName: '学员 A', target: 'icao5-recert' });
   expect(mockEnqueue).toHaveBeenLastCalledWith(expect.objectContaining({ target: 'icao5-recert' }));
   setProfileAccount(undefined);
-  expect(await readProfile()).toEqual(DEFAULT_PROFILE);
+  expect(await readProfile()).toEqual({ ...DEFAULT_PROFILE, target: 'icao5-first', studyScope: 'all' });
   setProfileAccount('account-b');
   expect(await readProfile()).toEqual(DEFAULT_PROFILE);
   await replaceProfileFromSync({ displayName: '学员 B', target: 'icao4-recert' });

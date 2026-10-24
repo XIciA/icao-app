@@ -1,3 +1,4 @@
+import { MemberFeatureGate } from '@/features/auth/MemberFeatureGate.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { Redirect, useLocalSearchParams } from 'expo-router';
 import { FileQuestion } from '@/components/ui/icons';
@@ -26,6 +27,10 @@ const KNOWN_CONTENT_SLUGS = new Set([
 ]);
 
 export default function ContentRoute() {
+  return <MemberFeatureGate><ContentRouteBody /></MemberFeatureGate>;
+}
+
+function ContentRouteBody() {
   const router = useRouter();
   const { slug: rawSlug } = useLocalSearchParams<{ slug?: string | string[] }>();
   const slug = Array.isArray(rawSlug) ? rawSlug[0] ?? '' : rawSlug ?? '';

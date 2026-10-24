@@ -1,3 +1,4 @@
+jest.mock('@/features/auth/MemberFeatureGate.native', () => ({ MemberFeatureGate: ({children}: {children: React.ReactNode}) => children }));
 import { fireEvent, render } from '@testing-library/react-native';
 
 import ContentRoute from '../content/[slug]';

@@ -1,3 +1,7 @@
+let mockAuthenticated = true;
+const mockLoginEntry = jest.fn();
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({canAccessApp: mockAuthenticated}) }));
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockLoginEntry }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { createRef, useState, type Ref } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
@@ -65,7 +69,7 @@ function Harness({ kind = 'opi-analysis', card = 'q1', recording = 'file:///one.
     onNoteCompleted={onNoteCompleted} onNoteChange={onNoteChange} onRetrySave={jest.fn()} onEditingTabChange={setEditingTab} onTabChange={jest.fn()} />;
 }
 beforeEach(() => {
-  jest.clearAllMocks(); mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
+  jest.clearAllMocks(); mockAuthenticated = true; mockHasConsent.mockResolvedValue(true); mockAuto.mockResolvedValue(false); mockLookup.mockResolvedValue({ state: 'missing' });
   mockCombined.mockResolvedValue({ transcript: 'We are ready.', review, aiPoints: { charged: 10, remaining: 90 } });
   mockTranscribe.mockResolvedValue({ transcript: 'Standalone transcript.' });
   mockReview.mockResolvedValue(review);
@@ -225,4 +229,14 @@ it('does not complete note teaching on typing, dictation updates or blur, only o
   await fireEvent.press(screen.getByLabelText('完成我的笔记'));
   await waitFor(()=>expect(completed).toHaveBeenCalledTimes(1));
   expect(save).toHaveBeenLastCalledWith('一段完整笔记');
+});
+
+it('saves before asking a guest to log in, without uploading audio or consuming AI quota', async () => {
+  mockAuthenticated = false;
+  const screen = await render(<Harness />);
+  await score(screen);
+  await waitFor(() => expect(mockLoginEntry).toHaveBeenCalled());
+  expect(mockReview).not.toHaveBeenCalled();
+  expect(mockTranscribe).not.toHaveBeenCalled();
+  expect(mockCombined).not.toHaveBeenCalled();
 });

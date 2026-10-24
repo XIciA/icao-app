@@ -40,7 +40,7 @@ const courseEntry: Entry = {
 
 export function DiscoverHomeScreen() {
   const login = useLoginEntry();
-  const open = (slug: string) => { trackProductClick('feature_open', slug); login(`/content/${slug}`, '登录后使用学习功能'); };
+  const open = (slug: string) => { trackProductClick('feature_open', slug); login(`/content/${slug}`, '登录后查看会员功能'); };
   const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
   const features: Entry[] = [
     ...standardFeatures,
@@ -53,6 +53,7 @@ export function DiscoverHomeScreen() {
     <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset contentStyle={styles.screen} scroll>
       <View style={styles.header}>
         <View style={styles.headingRow}><AppText variant="pageTitle">发现</AppText><WebAppDownloadLink /></View>
+        <AppText variant="caption">以下功能均为会员专享</AppText>
         <AppText>{courseAvailable ? '功能、资源与课程，探索更多学习方式。' : '功能与资源，探索更多学习方式。'}</AppText>
       </View>
       <SectionTitle en="Features" title="功能" />

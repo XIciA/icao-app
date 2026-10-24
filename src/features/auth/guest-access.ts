@@ -1,4 +1,4 @@
-/** The public catalogue never grants learning or account access. */
+/** Public learning is filtered by content access; account and discover tools remain protected. */
 const publicPaths = new Set(['/', '/discover', '/profile', '/download', '/info/about', '/info/agreement', '/info/privacy', '/info/services']);
 
 export function normalizedAppPath(path: string) {
@@ -8,11 +8,12 @@ export function normalizedAppPath(path: string) {
 
 export function isGuestPublicPath(path: string) {
   const pathname = normalizedAppPath(path);
-  return publicPaths.has(pathname) || /^\/legal\/(agreement|privacy|services)$/u.test(pathname);
+  return /^\/question-bank\/[^/]+(?:\/study\/[^/]+\/[^/]+)?$/u.test(pathname) || publicPaths.has(pathname) || /^\/legal\/(agreement|privacy|services)$/u.test(pathname);
 }
 
 export function isPublicStackScreen(name: string, params?: object) {
   if (['index', '(tabs)', 'auth/[slug]', 'download'].includes(name)) return true;
+  if (['question-bank/[bankId]/index', 'question-bank/[bankId]/study/[categoryId]/[topicId]'].includes(name)) return true;
   if (name === 'legal/[slug]') return ['agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
   return name === 'info/[slug]' && ['about', 'agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
 }
