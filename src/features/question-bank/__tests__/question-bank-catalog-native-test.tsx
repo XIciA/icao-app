@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { fireEvent, render, within } from '@testing-library/react-native';
 
 import type { QuestionBankDataset } from '../types';
 import { QuestionBankCatalog } from '../components/QuestionBankCatalog.native';
@@ -67,9 +67,20 @@ describe('<QuestionBankCatalog /> Native content access', () => {
     const screen = await render(<QuestionBankCatalog dataset={dataset} />);
 
     expect(screen.getByText('会员')).toBeTruthy();
+    // Lock status must not replace the category's content meaning.
+    expect(screen.getByTestId('category-symbol-weather', { includeHiddenElements: true })).toBeTruthy();
     await fireEvent.press(screen.getByText('会员话题'));
     expect(mockPush).toHaveBeenCalledWith('/account/membership?from=learning');
   });
+});
+
+it('keeps semantic icons with stable category IDs after filtering, reordering and renaming', async () => {
+  const weather = { ...dataset.categories[0], name: '气象' };
+  const systems = { ...weather, id: 'opi-category-06', name: '飞机系统' };
+  const screen = await render(<QuestionBankCatalog dataset={{ ...dataset, categories: [weather, systems] }} />);
+  await screen.rerender(<QuestionBankCatalog dataset={{ ...dataset, categories: [{ ...systems, name: 'Aircraft systems' }, { ...weather, name: 'Weather' }] }} />);
+  expect(within(screen.getByTestId(`catalog-icon-${systems.id}`)).getByTestId('category-symbol-systems', { includeHiddenElements: true })).toBeTruthy();
+  expect(within(screen.getByTestId(`catalog-icon-${weather.id}`)).getByTestId('category-symbol-weather', { includeHiddenElements: true })).toBeTruthy();
 });
 
 it('keeps specialty and airline icons unchanged and preserves the disclosure after repeated expand/collapse', async () => {
