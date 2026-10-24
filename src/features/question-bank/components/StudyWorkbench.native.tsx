@@ -24,7 +24,7 @@ import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/i
 import { ActivityIndicator, Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
-import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability, useGuideTarget } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording, transcribeAndReviewRecording, lookupAiOperation } from '@/features/ai/ai-client.native';
@@ -602,7 +602,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }
 
   const aiBusy = Boolean(busy);
-  useGuideAvailability('study', guide?.step !== 'study-review' ? undefined : busy ? 'AI 正在处理，请稍候。可取消当前操作，或暂不评分继续教学。' : error ? 'AI 暂未完成，请在页面重试，或暂不评分继续教学。已有内容会保留。' : undefined);
+  useGuideTarget('study-review', consentKind ? 'study-ai-consent' : 'sentence-review', consentKind ? '阅读数据处理说明，自行选择是否使用本次 AI 评分。' : undefined);
+  useGuideAvailability('study', guide?.step !== 'study-review' ? undefined : busy ? '正在转写并分析，可稍候，也可暂不评分继续教学。' : error ? 'AI 暂未完成，可重试或暂不评分继续教学。已有内容会保留。' : undefined, busy ? 'waiting' : 'unavailable');
   const waitingText = busy === 'transcribe' ? '正在转写…' : !answerText.trim() && recordingUri ? '正在转写并分析…' : '正在分析回答…';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
@@ -705,7 +706,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
         <View style={styles.consentOverlay}>
           <View accessibilityLabel="AI 数据处理提示" style={[styles.consentDialog, Platform.OS === 'ios' && styles.nativeConsentDialog]}>
-            <AppText variant="sectionTitle">AI 数据处理提示</AppText>
+            <GuideAnchor id="study-ai-consent" /><AppText variant="sectionTitle">AI 数据处理提示</AppText>
             <ScrollView style={styles.nativeConsentBody} contentContainerStyle={styles.nativeConsentContent}>
               <AppText>同意后，点击 AI评分时会进行必要的转写与文字分析；如果你另行开启自动转写，新录音结束后会自动上传：</AppText>
               <AppText>录音发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。</AppText>

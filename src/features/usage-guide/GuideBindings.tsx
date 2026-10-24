@@ -1,17 +1,17 @@
 import { NavigationContext } from '@react-navigation/native';
 import type { GuideId } from './guide-flows';
 import { GuideScrollContext } from './guide-scroll-context';
-import { createContext, useContext, useEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export type GuidePrompt = { identity?: string; target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string; reading?: boolean; interactive?: boolean; blocked?: boolean };
+export type GuidePrompt = { identity?: string; target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string; reading?: boolean; interactive?: boolean; activity?: 'waiting' | 'unavailable'; transitioning?: boolean };
 export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean; recordsEmpty?: boolean };
 export type GuideBinding = {
   event: (id: string) => void;
   rewind?: (step: string) => void;
   confirm?: (step: string, allowed: boolean) => void;
   focus?: (step: string, target: string, text?: string, complete?: boolean) => void;
-  availability: (key: string, module: GuideId, message?: string) => void;
+  availability: (key: string, module: GuideId, message?: string, kind?: 'waiting' | 'unavailable') => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
   surface: (layer: string) => ReactNode;
@@ -61,21 +61,21 @@ export function GuideAnchor({ id }: { id: string }) {
 }
 export function GuideModalScope({ children, visible }: PropsWithChildren<{ visible: boolean }>) {
   const guide = useGuide(); const id = useId(); const modal = guide?.modal;
-  useEffect(() => { if (visible) modal?.(id, true); return () => modal?.(id, false); }, [id, modal, visible]);
+  useLayoutEffect(() => { if (visible) modal?.(id, true); return () => modal?.(id, false); }, [id, modal, visible]);
   return <LayerContext.Provider value={id}>{children}{visible ? guide?.surface(id) : null}</LayerContext.Provider>;
 }
 
 /** An unavailable real feature must remain operable without recording a fake completion. */
-export function useGuideAvailability(module: GuideId, message?: string) {
+export function useGuideAvailability(module: GuideId, message?: string, kind: 'waiting' | 'unavailable' = 'unavailable') {
   const guide = useGuide(), key = useId(), navigation = useContext(NavigationContext);
   const availability = guide?.availability;
   useEffect(() => {
-    const update = () => availability?.(key, module, (!navigation || navigation.isFocused()) ? message : undefined);
+    const update = () => availability?.(key, module, (!navigation || navigation.isFocused()) ? message : undefined, kind);
     update();
     const offFocus = navigation?.addListener('focus', update);
     const offBlur = navigation?.addListener('blur', () => availability?.(key, module, undefined));
     return () => { offFocus?.(); offBlur?.(); availability?.(key, module, undefined); };
-  }, [availability, key, message, module, navigation]);
+  }, [availability, key, message, module, navigation, kind]);
 }
 
 /** Confirmation observes business validity; it never changes the business selection. */

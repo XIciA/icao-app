@@ -37,9 +37,9 @@ function LearningRecordsContent() {
   const [openingId, setOpeningId] = useState<string>();
   const [deletingId, setDeletingId] = useState<string>();
   const [error, setError] = useState('');
-  useGuideAvailability('recap', error || undefined);
+  useGuideAvailability('records', error || undefined);
   const checkpoint = guide?.checkpoint;
-  const teachingRecords = guide?.current === 'recap' && guide.step === 'recap-record';
+  const teachingRecords = guide?.current === 'records' && guide.step === 'recap-record';
   useEffect(() => { if (teachingRecords && !loading && !error) checkpoint?.({ recordsEmpty: records.length === 0 }); }, [checkpoint, loading, records.length, error, teachingRecords]);
   const loadingRef = useRef(false);
   const openingRef = useRef(false);
@@ -127,7 +127,7 @@ function LearningRecordsContent() {
       contentContainerStyle={styles.list}
       onEndReached={() => { if (hasMore && !loading) void loadPage(records.length); }}
       ListHeaderComponent={error ? <View style={styles.error}><AppText color={colors.destructive}>{error}</AppText><Button variant="secondary" onPress={() => { if (failedRecord.current) void open(failedRecord.current); else if (failedDelete.current) remove(failedDelete.current); else void loadPage(); }}>重试</Button></View> : null}
-      ListEmptyComponent={loading ? <AppText>正在读取记录…</AppText> : !error ? <Card style={styles.empty}><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText variant="caption">完成或结束一次练习后会显示在这里。</AppText></Card> : null}
+      ListEmptyComponent={loading ? <AppText>正在读取记录…</AppText> : !error ? <Card style={styles.empty}><GuideAnchor id="recap-records-empty" /><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText variant="caption">完成或结束一次练习后会显示在这里。</AppText></Card> : null}
       ListFooterComponent={loading && records.length ? <AppText variant="caption">正在读取…</AppText> : null}
       renderItem={({ item: record, index }) => <View style={styles.group}>
         {index === 0 || dayKey(records[index - 1].createdAt) !== dayKey(record.createdAt) ? <AppText variant="caption" style={styles.day}>{dayLabel(record.createdAt)}</AppText> : null}

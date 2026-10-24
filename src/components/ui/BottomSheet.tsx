@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type PropsWithChildren, type 
 import { Animated, Easing, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { useLastVisibleValue } from '@/components/platform/useLastVisibleValue';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
@@ -18,6 +19,8 @@ type Props = PropsWithChildren<{
 
 export function BottomSheet({ visible, onClose, onClosed, children, footer, scrollable = true, accessibilityLabel = '底部弹层' }: Props) {
   const insets = useSafeAreaInsets();
+  const guide = useGuide();
+  const teaching = !!guide?.current && guide.ready !== false;
   const content = useLastVisibleValue(visible, { children, footer, scrollable, accessibilityLabel });
   const closed = useRef(onClosed); closed.current = onClosed;
   const { height } = useAppViewportDimensions();
@@ -45,7 +48,7 @@ export function BottomSheet({ visible, onClose, onClosed, children, footer, scro
   return (
     <AppModal animationType="none" onShow={onShow} onRequestClose={onClose} transparent visible={mounted}>
       <View accessibilityLabel={content.accessibilityLabel} pointerEvents={visible ? 'auto' : 'none'} accessibilityElementsHidden={!visible} importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'} style={styles.root}>
-        <Animated.View style={[StyleSheet.absoluteFill, styles.overlay, { opacity: progress }]} />
+        <Animated.View style={[StyleSheet.absoluteFill, styles.overlay, { opacity: teaching ? 0 : progress }]} />
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
         <Animated.View style={[styles.sheet, { transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [height, 0] }) }], maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
           <View style={styles.handle} />

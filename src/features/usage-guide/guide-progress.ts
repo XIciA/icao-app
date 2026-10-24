@@ -1,16 +1,17 @@
 import type { GuideCheckpoint } from './GuideBindings';
-import { GUIDE_FLOWS, RECORD_GUIDE, type GuideId } from './guide-flows';
+import { GUIDE_FLOWS, type GuideId } from './guide-flows';
 import Storage from '@/platform/storage';
 
 /** A single account-scoped owner for both manual and automatic teaching. */
-export type GuideResume = { module: GuideId; remaining: string[]; done: string[]; records?: boolean; checkpoint?: GuideCheckpoint };
+export type GuideResume = { module: GuideId; remaining: string[]; done: string[]; checkpoint?: GuideCheckpoint };
 export type GuideProgress = { version: 3; completed: string[]; skipped: string[]; skippedSteps?: string[]; definition?: 1; resumes?: Record<string, GuideResume> };
 export const emptyGuideProgress = (): GuideProgress => ({ version: 3, completed: [], skipped: [] });
 function parseResume(candidate: unknown): GuideResume | undefined {
   if (!candidate || typeof candidate !== 'object') return;
-  const value = candidate as GuideResume;
+  const legacy = candidate as GuideResume & { records?: boolean };
+  const value: GuideResume = { ...legacy, module: legacy.module === 'recap' && legacy.records ? 'records' : legacy.module };
   if (!Object.prototype.hasOwnProperty.call(GUIDE_FLOWS, value.module)) return;
-  const ids = new Set((value.records ? RECORD_GUIDE : GUIDE_FLOWS[value.module] ?? []).map(step => step.id));
+  const ids = new Set((GUIDE_FLOWS[value.module] ?? []).map(step => step.id));
   if (value.module === 'study') ids.add('study-open');
   if (!Array.isArray(value.remaining) || !value.remaining.length || !value.remaining.every(id => typeof id === 'string' && ids.has(id)) || !Array.isArray(value.done) || !value.done.every(id => typeof id === 'string' && ids.has(id))) return;
   const raw = value.checkpoint;
@@ -18,7 +19,7 @@ function parseResume(candidate: unknown): GuideResume | undefined {
     ...(Array.isArray(raw.vocabBooks) && raw.vocabBooks.every(id => typeof id === 'string') ? { vocabBooks: raw.vocabBooks.slice(0, 20) } : {}),
     ...(typeof raw.vocabWord === 'string' ? { vocabWord: raw.vocabWord } : {}),
   } : undefined;
-  return { module: value.module, remaining: [...new Set(value.remaining)], done: [...new Set(value.done)], records: value.module === 'recap' && value.records === true, checkpoint };
+  return { module: value.module, remaining: [...new Set(value.remaining)], done: [...new Set(value.done)], checkpoint };
 }
 export function parseGuideProgress(raw: string | null): GuideProgress {
   try {
@@ -28,7 +29,7 @@ export function parseGuideProgress(raw: string | null): GuideProgress {
     if (value.definition === 1 && value.resumes && typeof value.resumes === 'object') {
       for (const [key, candidate] of Object.entries(value.resumes)) {
         const parsed = parseResume(candidate);
-        if (parsed && key === (parsed.records ? 'records' : parsed.module)) resumes[key] = parsed;
+        if (parsed && key === parsed.module) resumes[key] = parsed;
       }
     }
     const strings = (items: unknown): string[] => Array.isArray(items) ? [...new Set(items.filter((id): id is string => typeof id === 'string'))] : [];
