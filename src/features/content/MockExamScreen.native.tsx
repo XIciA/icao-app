@@ -1,4 +1,4 @@
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideConfirmation, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { ApiClientError } from '@/platform/api-client';
 import { BookOpenText, Check, Headphones, MessageSquareQuote, Mic2, RadioTower, Sparkles } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
@@ -40,8 +40,10 @@ function MockExamContent() {
   useEffect(() => { if (!touchedType.current) { setExamType(profile.target); setSelected(new Set(MOCK_EXAM_MODULES[profile.target])); } }, [profile.target]);
   const allowed = MOCK_EXAM_MODULES[examType];
   const selectedIds = allowed.filter((id) => selected.has(id));
+  useGuideConfirmation('mock-scope', selectedIds.length > 0);
+  useGuideAvailability('mock-exam', error);
   const complete = selectedIds.length === allowed.length;
-  const chooseType = (next: MockExamType) => { if (busy) return; touchedType.current = true; setExamType(next); setSelected(new Set(MOCK_EXAM_MODULES[next])); setError(undefined); guide?.event('mock-type'); };
+  const chooseType = (next: MockExamType) => { if (busy) return; touchedType.current = true; setExamType(next); setSelected(new Set(MOCK_EXAM_MODULES[next])); setError(undefined);  };
   const start = async () => {
     if (!selectedIds.length || starting.current) return;
     starting.current = true;
@@ -55,7 +57,7 @@ function MockExamContent() {
   if (studyPackage) return <QuestionBankStudyScreen onReturn={() => setStudyPackage(undefined)} returnLabel={`返回${featureTitle}`} sourceRoute="/content/mock-exam" studyPackage={studyPackage} />;
   return <Screen scroll contentStyle={styles.screen} header={<TopBar title={featureTitle} />}><View style={styles.setup}>
     <Section title="考试类型"><View style={styles.types}><GuideAnchor id="mock-type" />{(Object.keys(MOCK_EXAM_MODULES) as MockExamType[]).map((id) => <Pressable disabled={busy} key={id} onPress={() => chooseType(id)} style={[styles.type, examType === id && styles.active]}><AppText style={styles.center} variant="sectionTitle">{MOCK_EXAM_TYPE_LABELS[id].replace(' 初考', '').replace(' 复考', '')}</AppText><View style={styles.typeCaption}><AppText color={examType === id ? colors.primary : colors.mutedForeground} variant="caption">{id.endsWith('recert') ? '复考' : '初考'}</AppText>{examType === id ? <View style={styles.typeCheck}><Check color={colors.primaryForeground} size={10} /></View> : null}</View></Pressable>)}</View></Section>
-    <Section right={`已选 ${selectedIds.length}/${allowed.length}`} title="考试板块"><View style={styles.moduleGrid}><GuideAnchor id="mock-scope" />{modules.filter((entry) => allowed.includes(entry.id)).map((entry) => { const Icon = entry.icon; const checked = selected.has(entry.id); return <Pressable disabled={busy} key={entry.id} onPress={() => { touchedType.current = true; guide?.event('mock-scope'); setSelected((current) => { const next = new Set(current); if (next.has(entry.id)) next.delete(entry.id); else next.add(entry.id); return next; }); }} style={[styles.module, checked && styles.active]}><View style={styles.moduleIcon}><Icon color={checked ? colors.primary : colors.mutedForeground} size={18} /></View><AppText style={styles.copy} variant="button">{entry.title}</AppText><View style={[styles.checkBox, checked && styles.checkBoxActive]}>{checked ? <Check color={colors.primaryForeground} size={11} /> : null}</View></Pressable>; })}</View><AppText variant="micro">{complete ? '已选择全部规则板块，将生成一套完整练习卷。' : '当前为自选练习，学习记录会保留所选板块。'}</AppText></Section>
+    <Section right={`已选 ${selectedIds.length}/${allowed.length}`} title="考试板块"><View style={styles.moduleGrid}><GuideAnchor id="mock-scope" />{modules.filter((entry) => allowed.includes(entry.id)).map((entry) => { const Icon = entry.icon; const checked = selected.has(entry.id); return <Pressable disabled={busy} key={entry.id} onPress={() => { touchedType.current = true;  setSelected((current) => { const next = new Set(current); if (next.has(entry.id)) next.delete(entry.id); else next.add(entry.id); return next; }); }} style={[styles.module, checked && styles.active]}><View style={styles.moduleIcon}><Icon color={checked ? colors.primary : colors.mutedForeground} size={18} /></View><AppText style={styles.copy} variant="button">{entry.title}</AppText><View style={[styles.checkBox, checked && styles.checkBoxActive]}>{checked ? <Check color={colors.primaryForeground} size={11} /> : null}</View></Pressable>; })}</View><AppText variant="micro">{complete ? '已选择全部规则板块，将生成一套完整练习卷。' : '当前为自选练习，学习记录会保留所选板块。'}</AppText></Section>
     <Card style={styles.notice}><AppText variant="button">本次说明</AppText><AppText variant="caption">题目音频自动播放，不能重播或返回上一题。未作答可以继续，口语可重录。听力提交后显示本次分数和练习等级。</AppText></Card>
     {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button guideId="mock-start" disabled={!selectedIds.length || busy} leading={<Sparkles color={colors.primaryForeground} size={18} />} onPress={() => void start()} size="lg">{busy ? '正在生成试卷…' : selectedIds.length ? `开始${complete ? '完整' : '自选'}练习` : '请至少选择一个板块'}</Button>
   </View></Screen>;

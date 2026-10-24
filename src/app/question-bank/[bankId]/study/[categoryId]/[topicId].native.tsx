@@ -1,3 +1,4 @@
+import { STUDY_GUIDE_CARD } from '@/features/usage-guide/tutorial-model';
 import { useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
@@ -19,13 +20,15 @@ import type { QuestionBankId } from '@/features/question-bank/types';
 export default function NativeQuestionBankStudyRoute() {
   const router = useRouter();
   const scope = normalizeStudyScope(useProfile().studyScope);
-  const { bankId, categoryId, topicId, cardId, returnTo } = useLocalSearchParams<{
+  const { bankId, categoryId, topicId, cardId, returnTo, guide } = useLocalSearchParams<{
     bankId: QuestionBankId;
     categoryId: string;
     topicId: string;
     cardId?: string;
+    guide?: string;
     returnTo?: 'annotations' | 'radio';
   }>();
+  const manualTeaching = guide === 'study' && bankId === 'sentences900' && cardId === STUDY_GUIDE_CARD;
   const bankState = useQuestionBank(bankId);
   const rawCatalog = bankState.status === 'ready' ? (bankState.catalog ?? bankState.data) : undefined;
   const location = rawCatalog && cardId ? createCardDirectory([rawCatalog]).get({ bankId, cardId }) : undefined;
@@ -55,7 +58,7 @@ export default function NativeQuestionBankStudyRoute() {
 
   if (bankState.status === 'loading' || topicState.status === 'loading') return stateScreen(<GlobalLoadingScreen />);
   const category = bankState.status === 'ready'
-    ? bankState.data.categories.find((item) => item.id === effectiveCategoryId)
+    ? (manualTeaching ? rawCatalog : bankState.data)?.categories.find((item) => item.id === effectiveCategoryId)
     : undefined;
   const catalogTopic = category?.topics.find((item) => item.id === effectiveTopicId);
   const removedCard = bankState.status === 'ready' && bankState.source === 'remote' && rawCatalog
@@ -69,7 +72,7 @@ export default function NativeQuestionBankStudyRoute() {
   const outsideCatalogScope = cardId && catalogTopic?.scopeCardIds
     && !catalogTopic.scopeCardIds[scope].includes(cardId);
   const rawTopicExists = rawCatalog?.categories.some(category => category.topics.some(topic => topic.id === effectiveTopicId));
-  const outsideSelection = bankState.status === 'ready' && topicState.status !== 'error' && (rawTopicExists && !catalogTopic || outsideCatalogScope
+  const outsideSelection = !manualTeaching && bankState.status === 'ready' && topicState.status !== 'error' && (rawTopicExists && !catalogTopic || outsideCatalogScope
     || (topicState.status === 'ready' && ((cardId && topicState.scopeExcludedCardIds?.includes(cardId))
       || topicState.topic.declaredCardCount === 0)));
   if (outsideSelection) {
@@ -125,5 +128,5 @@ export default function NativeQuestionBankStudyRoute() {
       />
     );
   }
-  return <QuestionBankStudyScreen category={category} dataset={bankState.data} initialCardId={cardId} returnTo={returnTo} topic={topic} />;
+  return <QuestionBankStudyScreen category={category} dataset={manualTeaching ? rawCatalog! : bankState.data} initialCardId={cardId} returnTo={returnTo} topic={topic} />;
 }

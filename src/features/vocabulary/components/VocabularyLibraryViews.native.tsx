@@ -87,7 +87,7 @@ export function VocabularyBooksView({
         ) : null}
 
         <Pressable accessibilityLabel="开始30题词汇测评" onPress={onTest}>
-          <GuideAnchor id="vocab-test" /><Card elevated style={styles.assessmentCard}>
+          <Card elevated style={styles.assessmentCard}>
             <View style={styles.assessmentIcon}><BarChart3 color={colors.primary} size={24} /></View>
             <View style={styles.grow}>
               <View style={styles.rowBetween}>
@@ -100,13 +100,13 @@ export function VocabularyBooksView({
           </Card>
         </Pressable>
 
-        <View style={styles.stack}>
-          {books.map((book, index) => {
+        <View style={styles.stack}><GuideAnchor id="vocab-book" />
+          {books.map((book) => {
             const active = selected.has(book.id);
             const stats = statsByBook[book.id] ?? { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 };
             return (
-              <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => { onToggle(book.id); guide?.event('vocab-book'); }}>
-                {index === 0 ? <GuideAnchor id="vocab-book" /> : null}<Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
+              <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => onToggle(book.id)}>
+                <Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
                   <View style={[styles.bookIcon, active ? styles.selectedIcon : null]}>
                     {active ? <Check color={colors.primaryForeground} size={20} /> : <BookOpen color={colors.primary} size={20} />}
                   </View>

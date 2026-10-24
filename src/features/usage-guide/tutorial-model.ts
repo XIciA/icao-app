@@ -1,3 +1,4 @@
+export const STUDY_GUIDE_CARD = 'sentence900-main-001';
 /** Shared capability definitions. No example bank, word or card is embedded here. */
 export const TUTORIAL_STEPS = [
   { id: 'play', title: '先听一遍', description: '点播放，听一遍当前题目。', target: 'audio' },
