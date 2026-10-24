@@ -1,7 +1,3 @@
-jest.mock('@/features/vocabulary/speech', () => jest.requireActual('@/features/vocabulary/speech.ts'));
-// These regression cases target the frozen generic/Web implementation.
-jest.mock('../components/QuestionBankStudyScreen', () => jest.requireActual('../components/QuestionBankStudyScreen.tsx'));
-jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Platform } from 'react-native';
@@ -13,6 +9,27 @@ import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
 import { captureListeningReview, toListeningReviewPackage } from '@/features/mock-exam/listening-review';
 import type { CardLearningState, LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyItem, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
+
+jest.mock('@/features/vocabulary/speech', () => jest.requireActual('@/features/vocabulary/speech.ts'));
+// These regression cases target the historical generic/Web implementation.
+jest.mock('../components/QuestionBankStudyScreen', () => jest.requireActual('../components/QuestionBankStudyScreen.tsx'));
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
+
+// Each case chooses its runtime; Native and ordinary cases retain the formal default.
+let mockWebRuntime: 'edgeone-production' | 'vercel-legacy' = 'edgeone-production';
+jest.mock('@/config/web-runtime', () => {
+  const actual = jest.requireActual('@/config/web-runtime');
+  return {
+    ...actual,
+    get WEB_RUNTIME() { return mockWebRuntime; },
+    isEdgeOneProductionWeb: () => mockWebRuntime === 'edgeone-production',
+    isVercelLegacyWeb: (platform: string, runtime = mockWebRuntime) => actual.isVercelLegacyWeb(platform, runtime),
+    isFormalAppSurface: (platform: string, runtime = mockWebRuntime) => actual.isFormalAppSurface(platform, runtime),
+  };
+});
+beforeEach(() => { mockWebRuntime = 'edgeone-production'; });
+afterEach(() => { mockWebRuntime = 'edgeone-production'; });
+
 
 const mockFinish = jest.fn();
 const mockSaveListeningResult = jest.fn(async () => undefined);
@@ -329,6 +346,7 @@ describe('study exit flow', () => {
 
   it('reviews an incomplete mixed paper without scoring it, hiding unanswered items, or mounting the recorder/editor', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     try {
       const pkg = listeningExamPackage(true);
@@ -557,6 +575,7 @@ describe('study exit flow', () => {
 
   it('settles the 20-question Vercel listening exam before read-only review and continuation', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     mockSessionOverride = useMockListeningExamSession;
     const studyPackage = listeningExamPackage(true);
@@ -609,6 +628,7 @@ describe('study exit flow', () => {
 
   it('opens saved listening results locked and returns to history without finishing or saving again', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     mockSessionOverride = useMockListeningExamSession;
     try {
@@ -637,6 +657,7 @@ describe('study exit flow', () => {
 
   it('marks a Vercel question learned on manual play and reflects it in the answer card', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     mockSessionOverride = useMockPersistentLearningSession;
 
@@ -653,6 +674,7 @@ describe('study exit flow', () => {
   });
   it('uses the latest choice in the Vercel question list and leaves unanswered questions neutral', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     const pkg = { ...listeningExamPackage(), progressMode: 'persistent' as const };
     mockSessionOverride = function useLatestChoiceSession() { return useMockListeningExamSession({ studyPackage: pkg }); };

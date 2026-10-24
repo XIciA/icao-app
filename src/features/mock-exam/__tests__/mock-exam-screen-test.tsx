@@ -1,3 +1,10 @@
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { Platform } from 'react-native';
+
+import { MockExamScreen } from '@/features/content/MockExamScreen';
+import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session.native';
+import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
+
 // Exercise the historical implementation explicitly, independently of the formal Web default.
 jest.mock('@/config/web-runtime', () => {
   const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
@@ -10,12 +17,6 @@ jest.mock('@/config/web-runtime', () => {
   }
 });
 
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { Platform } from 'react-native';
-
-import { MockExamScreen } from '@/features/content/MockExamScreen';
-import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session.native';
-import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
 
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4-first' }) }));
 

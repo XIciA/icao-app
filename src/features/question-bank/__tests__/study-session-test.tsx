@@ -1,6 +1,3 @@
-// Legacy coverage stays pinned to the frozen Web path; Native has a separate session suite.
-jest.mock('../hooks/useStudySession', () => jest.requireActual('../hooks/useStudySession.ts'));
-jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
 import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react-native';
 import { Platform, Pressable, Text, View } from 'react-native';
 import { toListeningReviewPackage } from '@/features/mock-exam/listening-review';
@@ -16,6 +13,26 @@ import type {
   QuestionBankTopic,
   LearningRecord,
 } from '../types';
+
+// Legacy coverage stays pinned to the historical Web path; Native has a separate session suite.
+jest.mock('../hooks/useStudySession', () => jest.requireActual('../hooks/useStudySession.ts'));
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
+
+// Each case chooses its runtime; Native and ordinary cases retain the formal default.
+let mockWebRuntime: 'edgeone-production' | 'vercel-legacy' = 'edgeone-production';
+jest.mock('@/config/web-runtime', () => {
+  const actual = jest.requireActual('@/config/web-runtime');
+  return {
+    ...actual,
+    get WEB_RUNTIME() { return mockWebRuntime; },
+    isEdgeOneProductionWeb: () => mockWebRuntime === 'edgeone-production',
+    isVercelLegacyWeb: (platform: string, runtime = mockWebRuntime) => actual.isVercelLegacyWeb(platform, runtime),
+    isFormalAppSurface: (platform: string, runtime = mockWebRuntime) => actual.isFormalAppSurface(platform, runtime),
+  };
+});
+beforeEach(() => { mockWebRuntime = 'edgeone-production'; });
+afterEach(() => { mockWebRuntime = 'edgeone-production'; });
+
 
 jest.mock('../recording/recording-repository', () => ({
   recordingRepository: {
@@ -161,6 +178,7 @@ describe('useStudySession', () => {
 
   it('saves a listening checkpoint, keeps one record on finish, and reopens immutable answers without writes', async () => {
     const originalPlatform = Platform.OS;
+    mockWebRuntime = 'vercel-legacy';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     try {
       const packageValue = studyPackage();
@@ -378,7 +396,11 @@ describe('useStudySession', () => {
 
 describe('Vercel partial and ordinary study history', () => {
   const originalPlatform = Platform.OS;
-  beforeEach(() => { jest.clearAllMocks(); Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' }); });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockWebRuntime = 'vercel-legacy';
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+  });
   afterEach(() => { Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform }); });
 
   it('saves a partial mixed package, restores text and choices, and never saves or records during review', async () => {

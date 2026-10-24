@@ -1,3 +1,9 @@
+import {
+  getQuestionBankAssetBaseUrl,
+  resolveQuestionBankAsset,
+  resolveRemoteQuestionBankAsset,
+} from '../platform/resource-service.web';
+
 // Exercise the historical implementation explicitly, independently of the formal Web default.
 jest.mock('@/config/web-runtime', () => {
   const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
@@ -10,11 +16,6 @@ jest.mock('@/config/web-runtime', () => {
   }
 });
 
-import {
-  getQuestionBankAssetBaseUrl,
-  resolveQuestionBankAsset,
-  resolveRemoteQuestionBankAsset,
-} from '../platform/resource-service.web';
 
 describe('question-bank Web resource service', () => {
   const originalSameOriginAssets = process.env.EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_ASSETS;

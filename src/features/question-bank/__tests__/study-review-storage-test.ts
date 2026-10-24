@@ -1,3 +1,14 @@
+import { Platform } from 'react-native';
+import Storage from '@/platform/storage';
+import data from '../data/question-bank.json';
+import { captureStudyReview, toStudyReviewPackage } from '../lib/study-review';
+import { clearLearningRecords, getLearningRecords, loadLearningRecordReview, resetLearningRecordStorageForTests, upsertLearningRecord } from '../platform/learning-record-storage';
+import type { LearningRecord, QuestionBankDataset } from '../types';
+
+// This suite verifies the historical Vercel implementation, independent of Jest's iOS resolver.
+jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
+jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));
+
 // Exercise the historical implementation explicitly, independently of the formal Web default.
 jest.mock('@/config/web-runtime', () => {
   const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
@@ -10,15 +21,6 @@ jest.mock('@/config/web-runtime', () => {
   }
 });
 
-// This suite verifies the historical Vercel implementation, independent of Jest's iOS resolver.
-jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
-jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));
-import { Platform } from 'react-native';
-import Storage from '@/platform/storage';
-import data from '../data/question-bank.json';
-import { captureStudyReview, toStudyReviewPackage } from '../lib/study-review';
-import { clearLearningRecords, getLearningRecords, loadLearningRecordReview, resetLearningRecordStorageForTests, upsertLearningRecord } from '../platform/learning-record-storage';
-import type { LearningRecord, QuestionBankDataset } from '../types';
 
 const dataset = data[0] as QuestionBankDataset;
 const category = dataset.categories[0];

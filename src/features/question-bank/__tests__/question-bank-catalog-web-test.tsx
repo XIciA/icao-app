@@ -1,3 +1,9 @@
+import { act, render, waitFor } from '@testing-library/react-native';
+import { Platform } from 'react-native';
+
+import type { QuestionBankDataset } from '../types';
+import { loadCatalogProgress } from '../lib/catalog-progress';
+
 // Exercise the historical implementation explicitly, independently of the formal Web default.
 jest.mock('@/config/web-runtime', () => {
   const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
@@ -10,11 +16,6 @@ jest.mock('@/config/web-runtime', () => {
   }
 });
 
-import { act, render, waitFor } from '@testing-library/react-native';
-import { Platform } from 'react-native';
-
-import type { QuestionBankDataset } from '../types';
-import { loadCatalogProgress } from '../lib/catalog-progress';
 
 const { QuestionBankCatalog } = jest.requireActual('../components/QuestionBankCatalog.tsx') as typeof import('../components/QuestionBankCatalog');
 

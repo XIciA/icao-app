@@ -1,15 +1,3 @@
-// Exercise the historical implementation explicitly, independently of the formal Web default.
-jest.mock('@/config/web-runtime', () => {
-  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
-  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
-  try {
-    return jest.requireActual('@/config/web-runtime');
-  } finally {
-    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
-    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
-  }
-});
-
 import type { VocabularyBook, VocabularyDataset } from '@/features/vocabulary/types';
 
 const mockStorage = new Map<string, string>();
@@ -39,6 +27,19 @@ jest.mock('@/features/web-content/release', () => ({
 import { loadResourceEditorial } from '@/features/editorial/repository.web';
 // eslint-disable-next-line import/first
 import { loadVocabulary } from '@/features/vocabulary/repository.web';
+
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
+
 
 function createBook(id: VocabularyBook['id'], count: number): VocabularyBook {
   const level = id === 'preview' ? 1 : id === 'icao4' ? 2 : 3;
