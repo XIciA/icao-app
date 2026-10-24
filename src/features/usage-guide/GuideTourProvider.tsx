@@ -116,7 +116,10 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     const current = active.current;
     if (current && current.id !== id) return;
     const remaining = current?.mode === 'manual' ? ids.filter(step => !current.done.includes(step)) : remainingGuideSteps(ids, progress.current, id);
-    if (!current && (!automatic || !remaining.length || pausedPath.current === currentPath.current)) return;
+    // These business views can close and reopen inside the same route. Their mount
+    // offers drive teaching; route-driven modules still suppress immediate reopening.
+    const pausedRouteEntry = pausedPath.current === currentPath.current && id !== 'study' && id !== 'export';
+    if (!current && (!automatic || !remaining.length || pausedRouteEntry)) return;
     if (current && !remaining.length && ids.includes('study-recap')) { active.current = undefined; setTour(undefined); return; }
     if (current && JSON.stringify(current.remaining) === JSON.stringify(remaining)) return;
     const next: Tour = { id, mode: current?.mode ?? 'automatic', remaining, done: current?.done ?? [] };

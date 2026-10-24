@@ -322,3 +322,13 @@ it('waits for the actual study/export view to offer its usable capabilities',asy
  await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
  expect(mockRouter.push).not.toHaveBeenCalled();
 });
+
+it('resumes locally reopened export teaching without requiring a route change',async()=>{
+ mockCreatedAt='2026-10-23T00:00:00Z';mockPath='/question-bank/sentences900';
+ const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+ await fireEvent.press(screen.getByText('offer export'));expect(screen.getByText('export-levels')).toBeTruthy();
+ await fireEvent.press(screen.getByText('next'));expect(screen.getByText('export-scope')).toBeTruthy();
+ await fireEvent.press(screen.getByText('pause'));expect(screen.getByText('no-tour')).toBeTruthy();
+ await fireEvent.press(screen.getByText('offer export'));expect(screen.getByText('export-scope')).toBeTruthy();
+ expect(mockRouter.push).not.toHaveBeenCalled();
+});
