@@ -46,3 +46,5 @@
 - 清单备份目录`/opt/icao/backups/app-updates-20261024-followup/`；回退相关测试渠道时提取单渠道复用publisher，先验证旧制品，禁止整份旧清单覆盖其他渠道。
 - 脱敏证据在`/Users/zhouyide/.codex/icao-guide-release-20261022/.generated/release-137/`，包含`source.json`、`ci-final.log`、`web-deploy.json`、`web-verification.json`、`testflight-availability.json`、`android-signature-verification.json`、两份发布回执及`channels-verification.json`。签名报告/制品保留在发布clone既有`.generated/`目录。
 - **代码检查通过、三端候选已交付；用户真机和浏览器体验待验。** 点击步骤见[本轮10项验收清单](../../workstreams/learning-followup-five-20261024/acceptance-checklist.md)，前轮固定导航、答题卡等沿用[原清单](../../workstreams/learning-ui-repair-20261024/acceptance-checklist.md)。构建/200/摘要不代替动画、键盘、连续触控、保存失败和历史记录体验验收。
+
+收口：代码与发布记录均已合入主干，任务临时分支已删除，发布clone干净且等于origin/main；服务器本轮六个暂存文件已删除，制品与备份保留。应用归档工具将本任务工作区标记为“protected by a pinned task or workspace”，因此保留干净、无任务分支的受保护工作区，不绕过保护删除。指南任务报告其工作区也受固定保护；不改动其他任务或原目录。
