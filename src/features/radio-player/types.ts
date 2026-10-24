@@ -15,6 +15,10 @@ export type RadioTrack = {
   title: string;
   audioText: string;
   audioTextZh?: string;
+  referenceText?: string;
+  referenceTextZh?: string;
+  referenceLabel?: string;
+  materials?: { image: string; imageAlt: string }[];
   audioPath: string;
   durationSeconds: number;
   stableIndex: number;

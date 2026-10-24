@@ -1,4 +1,5 @@
 import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
+import { radioCardContent, radioDuration } from './track-content';
 import { hydrateRadioCatalogDatasets } from './catalog-hydration.native';
 import {
   getEmbeddedQuestionBanks,
@@ -12,9 +13,11 @@ import type { StudyScope } from '@icao/contracts';
 import type { ExamGoal } from '@/features/account/profile-model';
 export type RadioStudySelection = { scope: StudyScope; target: ExamGoal };
 
+// Formal app policy includes every enabled bank. The legacy radioEligible flag
+// remains unchanged in the frozen Web content contract.
 export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?: RadioStudySelection): RadioCatalog[] {
   return (selection ? datasets.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : datasets)
-    .filter((bank) => bank.capabilities?.radioEligible)
+    .filter((bank) => bank.enabled && bank.declaredCardCount > 0)
     .map((bank) => {
       let stableIndex = 0;
       return {
@@ -22,7 +25,7 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
         title: bank.title,
         nameEn: bank.nameEn,
         tracks: bank.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.flatMap((card) => {
-          if (card.kind === 'image' || !card.audio) return [];
+          if (card.retired || card.kind === 'image' || !card.audio) return [];
           const track = {
             id: card.id,
             bankId: bank.id,
@@ -34,8 +37,10 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
             title: card.taskTitle,
             audioText: card.audioText,
             audioTextZh: card.audioTextZh,
+            ...radioCardContent(bank.id, card),
+            materials: bank.id === 'opi' ? topic.cards.flatMap((material) => material.kind === 'image' && !material.retired ? [{ image: material.image, imageAlt: material.imageAlt }] : []) : undefined,
             audioPath: card.audio,
-            durationSeconds: card.audioDurationSeconds ?? 0,
+            durationSeconds: radioDuration(card.audio, card.audioDurationSeconds),
             stableIndex,
           };
           stableIndex += 1;
@@ -43,21 +48,24 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
         }))),
       };
     })
-    .filter((catalog) => catalog.tracks.length > 0);
+    // Keep an authorized empty directory selectable while its protected topics
+    // are still metadata-only. Otherwise a new bank can never be hydrated.
+    .filter((catalog) => catalog.tracks.length > 0 || datasets.find(bank => bank.id === catalog.bankId)?.access?.membershipActive === true);
 }
 
 export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection) {
   return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection);
 }
 
-export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean } = {}) {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; isCurrent?: () => boolean } = {}) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
+    if (options.isCurrent && !options.isCurrent()) throw new Error('content_request_cancelled');
     const current = getNativeCommerceEnvironmentState();
     if (current.accountId !== owner.accountId || current.generation !== owner.generation) throw new Error('content_account_changed');
   };
   const embedded = getEmbeddedQuestionBanks();
-  const eligible = embedded.filter((bank) => bank.capabilities?.radioEligible);
+  const eligible = embedded.filter((bank) => bank.enabled);
   const durationByAudio = new Map(
     eligible.flatMap((bank) => bank.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.flatMap((card) => (
       card.kind !== 'image' && card.audio && card.audioDurationSeconds ? [[card.audio, card.audioDurationSeconds] as const] : []
@@ -84,7 +92,9 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
   const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
   // App startup uses metadata only. Expand authorized text when the radio session opens.
   if (!options.complete) return scoped;
-  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner);
+  const hydrationScope = options.bankId ? scoped.filter(bank => bank.id === options.bankId) : scoped;
+  const expanded = await hydrateRadioCatalogDatasets(hydrationScope, assertOwner);
+  const hydrated = scoped.map(bank => expanded.find(candidate => candidate.id === bank.id) ?? bank);
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
 
