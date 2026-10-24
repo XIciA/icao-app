@@ -6,6 +6,8 @@ import { emptyGuideProgress } from '../guide-progress';
 jest.mock('../study-guide-entry', () => ({ studyGuideEntry: jest.fn(async () => ({ pathname: '/question-bank/[bankId]/study/[categoryId]/[topicId]', params: { bankId: 'sentences900', categoryId: 'c', topicId: 't', cardId: 'first' } })) }));
 const mockRouter = { push: jest.fn(), navigate: jest.fn(), replace: jest.fn() };
 let mockCanAccess = true;
+let mockTestingAvailable = true;
+jest.mock('../guide-testing', () => ({ isGuideTestingAvailable: () => mockTestingAvailable }));
 let mockAccount = 'account-a', mockCreatedAt: string | undefined, mockPath = '/content/radio';
 const mockRead = jest.fn(), mockWrite = jest.fn().mockResolvedValue(undefined);
 jest.mock('expo-router', () => ({ useRouter: () => mockRouter, usePathname: () => mockPath }));
@@ -16,8 +18,11 @@ function Probe() {
   const guide = useGuide()!;
   const prompt = (guide.surface('root') as { props: { prompt: GuidePrompt | null } }).props.prompt;
   return <><AppText>{guide.step ?? 'idle'}</AppText><AppText>{guide.current ?? 'no-tour'}</AppText>
+    <Button onPress={() => { void guide.resetForTesting?.(); }}>reset new user</Button>
+    <AppText>{guide.error ?? 'no-error'}</AppText>
     <Button onPress={() => { void guide.start('radio'); }}>start</Button>
     <Button onPress={() => { void guide.start('study'); }}>study</Button>
+    <Button onPress={() => guide.offer('export', ['export-levels','export-scope'])}>offer export</Button>
     <Button onPress={() => guide.offer('study', ['study-highlight','study-lookup'])}>offer basic</Button>
     <Button onPress={() => guide.offer('study', ['study-highlight','study-lookup','study-record'])}>offer extended</Button>
     <Button onPress={() => guide.event('study-highlight')}>highlight</Button>
@@ -42,7 +47,7 @@ function Probe() {
     <Button onPress={() => guide.availability('test', 'radio')}>available</Button>
     {['setup-profile', 'setup-level', 'setup-type', 'setup-save', 'setup-scope'].map(id => <Button key={id} onPress={() => guide.event(id)}>{`do ${id}`}</Button>)}</>;
 }
-beforeEach(() => { mockCanAccess=true; mockAccount='account-a'; mockCreatedAt=undefined; mockPath='/content/radio'; mockRead.mockReset().mockResolvedValue(emptyGuideProgress()); mockWrite.mockClear(); mockRouter.push.mockClear(); mockRouter.navigate.mockClear(); mockRouter.replace.mockClear(); });
+beforeEach(() => { mockTestingAvailable=true; mockCanAccess=true; mockAccount='account-a'; mockCreatedAt=undefined; mockPath='/content/radio'; mockRead.mockReset().mockResolvedValue(emptyGuideProgress()); mockWrite.mockClear(); mockRouter.push.mockClear(); mockRouter.navigate.mockClear(); mockRouter.replace.mockClear(); });
 it('does not auto-teach an old/unknown account, but manual teaching uses real events and exits in place', async () => {
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);
   await act(async()=>{}); expect(screen.getByText('no-tour')).toBeTruthy();
@@ -248,4 +253,82 @@ it('does not navigate after the user leaves while a manual study entrance is loa
   mockPath='/profile';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
   await act(async()=>resolve({pathname:'/question-bank/[bankId]/study/[categoryId]/[topicId]',params:{bankId:'sentences900',categoryId:'c',topicId:'t',cardId:'sentence900-main-001'}}));
   expect(mockRouter.push).not.toHaveBeenCalled();expect(screen.getByText('no-tour')).toBeTruthy();
+});
+
+it('resets guide progress for an old account and teaches only the feature visited next', async () => {
+  mockPath='/profile';
+  mockRead.mockResolvedValue({version:3,completed:['radio-bank'],skipped:['radio'],skippedSteps:['study-play'],resumes:{radio:{module:'radio',remaining:['radio-speed'],done:['radio-bank']}}});
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('reset new user'));
+  await waitFor(()=>expect(mockWrite).toHaveBeenCalledWith('account-a',{version:3,testNewUser:true,completed:[],skipped:[]}));
+  expect(screen.getByText('no-tour')).toBeTruthy();expect(mockRouter.push).not.toHaveBeenCalled();
+  mockPath='/content/radio';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  await waitFor(()=>expect(screen.getByText('radio-bank')).toBeTruthy());
+  await fireEvent.press(screen.getByText('skip'));
+  mockPath='/profile';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  mockPath='/content/radio';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  expect(screen.getByText('no-tour')).toBeTruthy();
+  mockPath='/content/hotspot';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  await waitFor(()=>expect(screen.getByText('hotspot-topic')).toBeTruthy());
+});
+
+it('restores the test new-user flag after restart but ignores it in production', async () => {
+  mockRead.mockResolvedValue({...emptyGuideProgress(),testNewUser:true});
+  mockTestingAvailable=false;
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  expect(screen.getByText('no-tour')).toBeTruthy();
+  await fireEvent.press(screen.getByText('reset new user'));expect(mockWrite).not.toHaveBeenCalled();
+  mockTestingAvailable=true;await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  await waitFor(()=>expect(screen.getByText('radio-bank')).toBeTruthy());
+});
+
+it('does not report a failed reset as new-user eligibility',async()=>{
+  mockPath='/profile';mockWrite.mockRejectedValueOnce(new Error('storage_unavailable'));
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('reset new user'));
+  await waitFor(()=>expect(screen.getByText('重置未保存，请重试。')).toBeTruthy());
+  mockPath='/content/radio';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  expect(screen.getByText('no-tour')).toBeTruthy();
+});
+
+it('deduplicates resets and ignores the previous account reset completion',async()=>{
+  mockPath='/profile';let finish!:()=>void;
+  mockWrite.mockImplementationOnce(()=>new Promise<void>(resolve=>{finish=resolve;}));
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('reset new user'));await fireEvent.press(screen.getByText('reset new user'));
+  expect(mockWrite).toHaveBeenCalledTimes(1);
+  mockAccount='account-b';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>finish());
+  mockPath='/content/radio';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  expect(screen.getByText('no-tour')).toBeTruthy();
+  expect(mockWrite.mock.calls.every(([account])=>account==='account-a')).toBe(true);
+});
+
+it.each([
+ ['/content/vocab','vocab-book'],['/content/radio','radio-bank'],['/content/hotspot','hotspot-topic'],
+ ['/content/resources','resource-open'],['/content/mock-exam','mock-type'],['/annotations','recap-filter'],['/learning-records','recap-record'],
+])('teaches the visited module at %s without redirecting elsewhere',async(path,step)=>{
+ mockCreatedAt='2026-10-23T00:00:00Z';mockPath=path;
+ const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);
+ await waitFor(()=>expect(screen.getByText(step)).toBeTruthy());expect(mockRouter.push).not.toHaveBeenCalled();
+});
+
+it('waits for the actual study/export view to offer its usable capabilities',async()=>{
+ mockCreatedAt='2026-10-23T00:00:00Z';mockPath='/question-bank/sentences900';
+ const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+ expect(screen.getByText('no-tour')).toBeTruthy();
+ await fireEvent.press(screen.getByText('offer export'));expect(screen.getByText('export-levels')).toBeTruthy();
+ await fireEvent.press(screen.getByText('pause'));
+ mockPath='/question-bank/sentences900/study/c/t';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+ await fireEvent.press(screen.getByText('offer basic'));expect(screen.getByText('study-highlight')).toBeTruthy();
+ expect(mockRouter.push).not.toHaveBeenCalled();
+});
+
+it('resumes locally reopened export teaching without requiring a route change',async()=>{
+ mockCreatedAt='2026-10-23T00:00:00Z';mockPath='/question-bank/sentences900';
+ const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+ await fireEvent.press(screen.getByText('offer export'));expect(screen.getByText('export-levels')).toBeTruthy();
+ await fireEvent.press(screen.getByText('next'));expect(screen.getByText('export-scope')).toBeTruthy();
+ await fireEvent.press(screen.getByText('pause'));expect(screen.getByText('no-tour')).toBeTruthy();
+ await fireEvent.press(screen.getByText('offer export'));expect(screen.getByText('export-scope')).toBeTruthy();
+ expect(mockRouter.push).not.toHaveBeenCalled();
 });

@@ -1,3 +1,4 @@
+import { isGuideTestingAvailable } from './guide-testing';
 import { studyGuideEntry } from './study-guide-entry';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { usePathname, type Href } from 'expo-router';
@@ -21,6 +22,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   const [loaded, setLoaded] = useState<string>();
   const [loadAttempt, setLoadAttempt] = useState(0);
   const retry = useCallback(() => setLoadAttempt(value => value + 1), []);
+  const resetting = useRef(false);
   const [tour, setTour] = useState<Tour>();
   const [layers, setLayers] = useState<string[]>([]);
   const [activities, setActivities] = useState<Record<string, { account: string; module: GuideId; message: string; kind: 'waiting' | 'unavailable' }>>({});
@@ -48,7 +50,8 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   const nodes = useRef(new Map<string, GuideNode>()).current;
   const owner = useRef(account); owner.current = account;
   const active = useRef(tour); active.current = tour;
-  const automatic = auth.canAccessApp !== false && eligibleForAutomaticGuide(auth.account?.createdAt);
+  const testingAvailable = isGuideTestingAvailable();
+  const automatic = auth.canAccessApp !== false && (eligibleForAutomaticGuide(auth.account?.createdAt) || testingAvailable && progress.current.testNewUser === true);
   useEffect(() => {
     let live = true; navigationRequest.current++; pausedPath.current = undefined; active.current = undefined; setTour(undefined); checkpoint(undefined); suspend(false); setLoaded(undefined); setError(''); setFocusOverride(undefined); setConfirmations({}); progress.current = emptyGuideProgress();
     if (account) void readGuideProgress(account).then(value => { if (live && owner.current === account) { progress.current = value; setLoaded(account); } }).catch(() => { if (live) setError('教学进度暂时无法读取，请稍后重试。'); });
@@ -81,6 +84,26 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   }, []);
 
   const pause = useCallback(() => { navigationRequest.current++; pausedPath.current = currentPath.current; active.current = undefined; setTour(undefined); suspend(false); }, []);
+  const resetForTesting = useCallback(async () => {
+    if (!isGuideTestingAvailable() || !account || loaded !== account || resetting.current) return false;
+    resetting.current = true;
+    const request = ++navigationRequest.current;
+    active.current = undefined; setTour(undefined); setLoaded(undefined);
+    checkpoint(undefined); setConfirmations({}); setFocusOverride(undefined); suspend(false);
+    const next: GuideProgress = { ...emptyGuideProgress(), testNewUser: true };
+    try {
+      // The same write queue orders earlier progress writes before this reset.
+      await writeGuideProgress(account, next);
+      if (owner.current !== account || navigationRequest.current !== request) return false;
+      progress.current = next; pausedPath.current = undefined; setError(''); setLoaded(account);
+      return true;
+    } catch {
+      if (owner.current === account && navigationRequest.current === request) {
+        setLoaded(account); setError('重置未保存，请重试。');
+      }
+      return false;
+    } finally { resetting.current = false; }
+  }, [account, checkpoint, loaded]);
   const exit = useCallback(() => {
     if (active.current) {
       const resumes = { ...progress.current.resumes }; delete resumes[active.current.id];
@@ -93,7 +116,10 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     const current = active.current;
     if (current && current.id !== id) return;
     const remaining = current?.mode === 'manual' ? ids.filter(step => !current.done.includes(step)) : remainingGuideSteps(ids, progress.current, id);
-    if (!current && (!automatic || !remaining.length || pausedPath.current === currentPath.current)) return;
+    // These business views can close and reopen inside the same route. Their mount
+    // offers drive teaching; route-driven modules still suppress immediate reopening.
+    const pausedRouteEntry = pausedPath.current === currentPath.current && id !== 'study' && id !== 'export';
+    if (!current && (!automatic || !remaining.length || pausedRouteEntry)) return;
     if (current && !remaining.length && ids.includes('study-recap')) { active.current = undefined; setTour(undefined); return; }
     if (current && JSON.stringify(current.remaining) === JSON.stringify(remaining)) return;
     const next: Tour = { id, mode: current?.mode ?? 'automatic', remaining, done: current?.done ?? [] };
@@ -186,6 +212,6 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
   } : null, [account, loaded, activity, error, exit, step, suspended, tour, currentFocus, pathname, optionalLabel, canContinue, continueStep]);
   const topLayer = layers.at(-1) ?? 'root';
   const surface = useCallback((layer: string) => <GuideOverlay layer={layer} nodes={nodes} prompt={layer !== 'root' && prompt && tour?.id !== 'study' ? { ...prompt, next: undefined, interactive: true } : prompt} topLayer={topLayer} />, [nodes, prompt, topLayer, tour?.id]);
-  const binding = useMemo(() => ({ event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, suspend, retry, ready: !!account && loaded === account, error, target: currentFocus?.target ?? step?.target ?? step?.id, checkpoint, checkpointData, current: tour?.id, step: tour?.remaining[0] }), [account, loaded, error, event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, checkpoint, checkpointData, retry, step, tour, currentFocus]);
+  const binding = useMemo(() => ({ event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, suspend, resetForTesting, testingResetAvailable: testingAvailable && !!account, retry, ready: !!account && loaded === account, error, target: currentFocus?.target ?? step?.target ?? step?.id, checkpoint, checkpointData, current: tour?.id, step: tour?.remaining[0] }), [account, loaded, error, event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, checkpoint, checkpointData, retry, step, tour, currentFocus, resetForTesting, testingAvailable]);
   return <GuideBindingContext.Provider value={binding}><View style={{ flex: 1 }}>{children}<GuideRootSurface layer="root" nodes={nodes} prompt={prompt} topLayer={topLayer} /></View></GuideBindingContext.Provider>;
 }

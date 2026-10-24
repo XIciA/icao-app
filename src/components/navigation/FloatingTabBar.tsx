@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import { AppText } from '../ui';
+import { FLOATING_TAB_BAR_HEIGHT } from './tab-bar-metrics';
 
 const metadata: Record<string, { label: string; icon: LucideIcon }> = {
   index: { label: '题库', icon: Library },
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
     zIndex: 50,
   },
   pill: {
+    height: FLOATING_TAB_BAR_HEIGHT,
     alignItems: 'center',
     backgroundColor: colors.background72,
     borderColor: colors.border,

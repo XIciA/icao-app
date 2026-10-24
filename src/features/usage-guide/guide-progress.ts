@@ -4,7 +4,7 @@ import Storage from '@/platform/storage';
 
 /** A single account-scoped owner for both manual and automatic teaching. */
 export type GuideResume = { module: GuideId; remaining: string[]; done: string[]; checkpoint?: GuideCheckpoint };
-export type GuideProgress = { version: 3; completed: string[]; skipped: string[]; skippedSteps?: string[]; definition?: 1; resumes?: Record<string, GuideResume> };
+export type GuideProgress = { version: 3; testNewUser?: boolean; completed: string[]; skipped: string[]; skippedSteps?: string[]; definition?: 1; resumes?: Record<string, GuideResume> };
 export const emptyGuideProgress = (): GuideProgress => ({ version: 3, completed: [], skipped: [] });
 function parseResume(candidate: unknown): GuideResume | undefined {
   if (!candidate || typeof candidate !== 'object') return;
@@ -33,7 +33,7 @@ export function parseGuideProgress(raw: string | null): GuideProgress {
       }
     }
     const strings = (items: unknown): string[] => Array.isArray(items) ? [...new Set(items.filter((id): id is string => typeof id === 'string'))] : [];
-    return { version: 3, ...(Object.keys(resumes).length ? { definition: 1, resumes } : {}), completed: strings(value.completed), skippedSteps: strings(value.skippedSteps), skipped: strings(value.skipped) };
+    return { version: 3, ...(value.testNewUser === true ? { testNewUser: true } : {}), ...(Object.keys(resumes).length ? { definition: 1, resumes } : {}), completed: strings(value.completed), skippedSteps: strings(value.skippedSteps), skipped: strings(value.skipped) };
   } catch { return emptyGuideProgress(); }
 }
 let writes = Promise.resolve();
