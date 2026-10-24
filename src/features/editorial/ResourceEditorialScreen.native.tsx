@@ -1,5 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { Image } from 'expo-image';
 import { ArrowRight, CalendarDays, FileText, WifiOff } from '@/components/ui/icons';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -14,6 +14,7 @@ export function ResourceEditorialScreen() {
   const router = useRouter();
   const guide = useGuide();
   const state = useResourceEditorial();
+  useGuideAvailability('resources', state.status === 'error' ? '资源加载失败，可在页面重新加载，也可以跳过教学。' : state.status === 'empty' ? '暂时没有资源文章，可跳过教学，稍后再来。' : undefined);
   return (
     <Screen scroll contentStyle={styles.screen}>
       <TopBar title="资源分享" />

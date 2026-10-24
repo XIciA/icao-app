@@ -45,3 +45,12 @@ it('keeps the actual export screen open when teaching is exited', async () => {
   await screen.rerender(<UserGuideScreen />);
   expect(screen.queryByRole('button', { name: '900句导出' })).toBeNull();
 });
+
+it('does not start an export tour when its real catalog cannot load', async () => {
+  jest.mocked(loadQuestionBank).mockRejectedValueOnce(new Error('offline'));
+  const screen = await render(<UserGuideScreen />);
+  await fireEvent.press(screen.getByText('900句导出'));
+  await waitFor(() => expect(screen.getByText('900句暂时无法读取，请联网后重试。')).toBeTruthy());
+  expect(mockStart).not.toHaveBeenCalled();
+  expect(mockExport).not.toHaveBeenCalled();
+});

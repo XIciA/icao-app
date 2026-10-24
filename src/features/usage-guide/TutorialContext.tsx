@@ -10,7 +10,7 @@ export function useTutorial() {
   return useMemo(() => current === 'study' && TUTORIAL_STEPS.some(step => studyStepId(step.id) === stepId) ? {
     progress: { step: TUTORIAL_STEPS.findIndex(step => studyStepId(step.id) === stepId) },
     event: (id: TutorialStepId) => event?.(studyStepId(id)),
-    finish: (_recordId: string) => offer?.('study', [studyStepId('recap')]),
+    finish: (_recordId: string) => { event?.(studyStepId('finish')); offer?.('study', [studyStepId('recap')]); },
     exit: () => exit?.(), restart: () => { void start?.('study'); },
   } : null, [current, stepId, event, offer, exit, start]);
 }

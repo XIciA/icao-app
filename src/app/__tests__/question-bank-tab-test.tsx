@@ -4,9 +4,13 @@ import { DEFAULT_PROFILE, type ExamGoal } from '@/features/account/profile-model
 import QuestionBankTab from '../(tabs)';
 
 const mockPush = jest.fn();
+let mockCanAccessApp = true;
+const mockRememberPendingPath = jest.fn();
+const mockUseProfile = jest.fn(() => mockProfile);
 let mockProfile = { ...DEFAULT_PROFILE };
 
-jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
+jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockUseProfile() }));
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ canAccessApp: mockCanAccessApp, rememberPendingPath: mockRememberPendingPath }) }));
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -27,6 +31,7 @@ jest.mock('lucide-react-native', () => {
 });
 
 jest.mock('expo-router', () => ({
+  usePathname: () => '/',
   useRouter: () => ({ push: mockPush }),
   useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]),
 }));
@@ -38,7 +43,31 @@ jest.mock('react-native-safe-area-context', () => ({
 describe('<QuestionBankTab />', () => {
   beforeEach(() => {
     mockPush.mockClear();
+    mockCanAccessApp = true;
+    mockRememberPendingPath.mockClear();
+    mockUseProfile.mockClear();
     mockProfile = { ...DEFAULT_PROFILE, studyScope: 'all' };
+  });
+
+  it('shows the public five-bank catalogue without reading any previous account profile', async () => {
+    mockCanAccessApp = false;
+    mockProfile = { ...mockProfile, target: 'icao4-recert', avatarUri: 'https://private.example/avatar.png' };
+    const screen = await render(<QuestionBankTab />);
+    expect(screen.getAllByLabelText(/，打开$/)).toHaveLength(5);
+    expect(screen.getByText('故事复诵')).toBeTruthy();
+    expect(mockUseProfile).not.toHaveBeenCalled();
+    expect(screen.queryByLabelText('切换学习范围')).toBeNull();
+    await fireEvent.press(screen.getByLabelText('900 句，打开'));
+    expect(mockRememberPendingPath).toHaveBeenCalledWith('/question-bank/sentences900');
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/sentences900', returnTo: '/', reason: '登录后进入题库学习' } });
+  });
+
+  it('opens login explicitly from the public avatar', async () => {
+    mockCanAccessApp = false;
+    const screen = await render(<QuestionBankTab />);
+    await fireEvent.press(screen.getByLabelText('登录 / 注册'));
+    expect(mockRememberPendingPath).toHaveBeenCalledWith('/account/profile');
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/account/profile', returnTo: '/' } });
   });
 
   it('defaults to ICAO 4 first-exam banks without adding an onboarding choice or another profile entrance', async () => {

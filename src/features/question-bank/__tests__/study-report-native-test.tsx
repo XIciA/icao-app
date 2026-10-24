@@ -29,7 +29,7 @@ it('returns from the readonly paper to the same completed result without leaving
 
 it('marks tutorial recap complete only after the saved original question opens', async () => {
   const event = jest.fn();
-  const controller = { modal: jest.fn(), surface: jest.fn(() => null), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn(), current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
+  const controller = { availability: jest.fn(), modal: jest.fn(), surface: jest.fn(() => null), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn(), current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
   const screen = await render(<GuideBindingContext.Provider value={controller}><StudyReport record={record} noteCount={0} interaction="choices" onReturn={jest.fn()} /></GuideBindingContext.Provider>);
   jest.mocked(loadLearningRecordReview).mockRejectedValueOnce(new Error('offline'));
   await fireEvent.press(screen.getByText('本次学习记录'));

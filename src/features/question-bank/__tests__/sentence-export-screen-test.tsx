@@ -47,3 +47,27 @@ it('returns to options when restarting the export guide from a generated result'
  await waitFor(()=>expect(view.getByText('生成 PDF')).toBeTruthy());
  expect(view.queryByText('PDF 已生成')).toBeNull();
 });
+
+it('waits for the multi-select scope sheet to close before advancing teaching', async () => {
+ const event = jest.fn();
+ const binding = { current:'export', step:'export-scope', event, register:jest.fn(), surface:()=>null } as unknown as GuideBinding;
+ const view = await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={binding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>);
+ await waitFor(() => expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByRole('checkbox', { name:'3级' }));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('全选'));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('完成'));
+ expect(event).toHaveBeenCalledTimes(1); expect(event).toHaveBeenCalledWith('export-scope');
+ expect(view.queryByText('导出范围')).toBeNull();
+ event.mockClear();
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByRole('checkbox', { name:'3级' }));
+ await fireEvent.press(view.getByText('完成'));
+ expect(event).not.toHaveBeenCalled();
+ await fireEvent.press(view.getByText('范围'));
+ await fireEvent.press(view.getByText('全选'));
+ await fireEvent.press(view.getByLabelText('关闭弹层'));
+ expect(event).not.toHaveBeenCalled();
+});

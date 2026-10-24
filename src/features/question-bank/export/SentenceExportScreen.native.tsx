@@ -1,6 +1,6 @@
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from './pdf-generator';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -46,7 +46,8 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
     })().catch(()=>{if(current)setError('资料读取失败，已有记录未被修改，请重试。');});return()=>{current=false;};
   },[attempt,context,dataset]);
   const count=data?selectedSentences(data.rows,options).length:0;
-  function toggleLevel(level:string){guide?.event('export-scope');setOptions(current=>({...current,levels:current.levels.includes(level)?current.levels.filter(l=>l!==level):[...current.levels,level]}));}
+  useGuideAvailability('export', error ? '导出暂未成功，请在页面重试，也可以跳过教学。已有学习记录会保留。' : data && !count ? '当前条件没有可导出的句子，请调整范围或筛选，也可以跳过教学。' : undefined);
+  function toggleLevel(level:string){setOptions(current=>({...current,levels:current.levels.includes(level)?current.levels.filter(l=>l!==level):[...current.levels,level]}));}
   async function generate(){if(!data||busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);
     const result=await generateSentencesPdf(data.rows,options,data.annotations,await exportFontBytes());assertLearningWriteContext(context);
     const uri=await storePdf(result.bytes);if(!active.current){releasePdf(uri);return;}outputUri.current=uri;setOutput({uri,pages:result.pageCount,count:result.sentenceCount});guide?.event('export-generate');
@@ -72,11 +73,11 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
     {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><Button guideId="export-generate" disabled={!data||!count||busy} onPress={()=>void generate()}>{busy?'正在生成 PDF…':'生成 PDF'}</Button></View>:null}
     <BottomSheet visible={!!picker} onClose={()=>setPicker(undefined)} accessibilityLabel={picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}>
       <View style={styles.section}><AppText variant="sectionTitle">{picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}</AppText>
-        {picker==='levels'?<><Button variant="ghost" onPress={()=>{setOptions(current=>({...current,levels:dataset.categories.map(c=>c.name)}));guide?.event('export-scope');}}>全选</Button>{dataset.categories.map(c=><Option key={c.id} label={c.name} selected={options.levels.includes(c.name)} onPress={()=>toggleLevel(c.name)}/>)}</>:null}
+        {picker==='levels'?<><Button variant="ghost" onPress={()=>{setOptions(current=>({...current,levels:dataset.categories.map(c=>c.name)}));}}>全选</Button>{dataset.categories.map(c=><Option key={c.id} label={c.name} selected={options.levels.includes(c.name)} onPress={()=>toggleLevel(c.name)}/>)}</>:null}
         {picker==='filter'?(['all','learned','annotated'] as const).map(filter=><Option key={filter} label={filters[filter]} selected={options.filter===filter} onPress={()=>{setOptions(current=>({...current,filter}));guide?.event('export-scope');setPicker(undefined);}}/>):null}
         {picker==='language'?[true,false].map(translation=><Option key={String(translation)} label={translation?'中英对照':'仅英文'} selected={options.translation===translation} onPress={()=>{setOptions(current=>({...current,translation}));guide?.event('export-translation');setPicker(undefined);}}/>):null}
         {picker==='tags'?<><AppText variant="caption">匹配任一所选标签；不选表示不限标签。</AppText>{data?.annotations.tagDefinitions.map(tag=><Option key={tag.id} label={tag.label} selected={options.tagIds.includes(tag.id)} onPress={()=>setOptions(current=>({...current,tagIds:current.tagIds.includes(tag.id)?current.tagIds.filter(id=>id!==tag.id):[...current.tagIds,tag.id]}))}/>)}</>:null}
-        <Button variant="secondary" onPress={()=>setPicker(undefined)}>完成</Button>
+        <Button variant="secondary" onPress={()=>{setPicker(undefined);if((picker==='levels'||picker==='filter')&&options.levels.length)guide?.event('export-scope');}}>完成</Button>
       </View>
     </BottomSheet>
   </Screen>;

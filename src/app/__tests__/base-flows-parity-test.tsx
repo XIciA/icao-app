@@ -66,6 +66,7 @@ jest.mock('@/features/feedback/feedback-client', () => ({
 
 jest.mock('@/features/auth/AuthProvider', () => ({
   useAuth: () => ({
+    canAccessApp: true,
     account: mockAccount,
     session: mockAuthSession,
     passwordChangePurpose: mockPasswordChangePurpose,

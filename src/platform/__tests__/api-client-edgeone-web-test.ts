@@ -13,8 +13,9 @@ describe('EdgeOne Web API client', () => {
     else process.env.EXPO_PUBLIC_ICAO_API_URL = originalApiUrl;
   });
 
-  it('calls the Production ECS API with the Supabase bearer token', async () => {
-    process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'edgeone-production';
+  it.each([undefined, 'edgeone-production'])('calls the Production ECS API with the Supabase bearer token for runtime %s', async (runtime) => {
+    if (runtime === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = runtime;
     process.env.EXPO_PUBLIC_ICAO_API_URL = 'https://api.readyoufife.com';
 
     await jest.isolateModulesAsync(async () => {
@@ -38,8 +39,8 @@ describe('EdgeOne Web API client', () => {
     });
   });
 
-  it('preserves the existing Vercel same-origin function routes by default', async () => {
-    delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  it('preserves the explicitly selected legacy same-origin function routes', async () => {
+    process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
     await jest.isolateModulesAsync(async () => {
       const api = require('../api-client.web') as typeof import('../api-client.web');
       const fetchMock = jest.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({

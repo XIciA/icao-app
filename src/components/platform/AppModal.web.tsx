@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import type { ModalProps } from 'react-native';
 
 import { AppModalHostContext } from './modal-host-context';
+import { GuideModalScope } from '@/features/usage-guide/GuideBindings';
 
 type AppModalProps = Omit<ModalProps, 'onDismiss' | 'onRequestClose' | 'onShow'> & {
   children?: ReactNode;
@@ -28,5 +29,5 @@ export function AppModal({ children, onDismiss, onRequestClose, onShow, visible 
   }, [onDismiss, onRequestClose, onShow, visible]);
 
   if (!visible || !host) return null;
-  return createPortal(children, host);
+  return createPortal(<GuideModalScope visible={visible}>{children}</GuideModalScope>, host);
 }

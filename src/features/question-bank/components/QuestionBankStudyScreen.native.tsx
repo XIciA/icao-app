@@ -190,6 +190,7 @@ function StudyContent(props: Props) {
     ...(session.behavior.workbenchTabs.includes('notes') ? ['study-note'] : []),
     ...(!imageCard && dataset.study.tools.dictionary && card.audioText ? ['study-lookup', 'study-favorite'] : []),
     ...(session.behavior.workbenchTabs.includes('mine') ? ['study-record', 'study-review'] : []),
+    'study-finish',
   ].join(',') : '';
   const offerGuide = guide?.offer;
   useEffect(() => { if (availableTutorialSteps) offerGuide?.('study', availableTutorialSteps.split(',')); }, [availableTutorialSteps, offerGuide]);
@@ -210,7 +211,7 @@ function StudyContent(props: Props) {
   useEffect(() => {
     if (!guiding || !session.hydrated || !tutorialStep || tutorialStep === 'play' || tutorialStep === 'reveal' || tutorialStep === 'favorite') return;
     revealForTutorial(true);
-    setTutorialTool(undefined);
+    setTutorialTool(Platform.OS === 'web' && tutorialStep === 'lookup' ? 'dictionary' : undefined);
     setLookup(undefined);
     setEditingWorkbenchTab(undefined);
     Keyboard.dismiss();

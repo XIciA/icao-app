@@ -26,6 +26,7 @@ const mockBack = jest.fn();
 const mockCanGoBack = jest.fn();
 const mockPush = jest.fn();
 const mockReplace = jest.fn();
+const mockDismissTo = jest.fn();
 let mockParams: Record<string, string> = { slug: 'login' };
 
 jest.mock('lucide-react-native', () => {
@@ -36,7 +37,7 @@ jest.mock('lucide-react-native', () => {
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, canGoBack: mockCanGoBack, push: mockPush, replace: mockReplace }),
+  useRouter: () => ({ back: mockBack, canGoBack: mockCanGoBack, push: mockPush, replace: mockReplace, dismissTo: mockDismissTo }),
 }));
 
 jest.mock('@/features/auth/AuthProvider', () => ({
@@ -83,6 +84,21 @@ async function renderLoginScreen() {
 }
 
 describe('<LoginScreen />', () => {
+  it('cancels login back to its public source and clears the saved target', async () => {
+    mockParams = { slug: 'login', returnTo: '/discover' };
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByText('暂不登录，继续浏览'));
+    expect(mockConsumePendingPath).toHaveBeenCalled();
+    expect(mockDismissTo).toHaveBeenCalledWith('/discover');
+  });
+
+  it('does not let a private or external return destination create a login loop', async () => {
+    mockParams = { slug: 'login', returnTo: '/account/profile' };
+    const screen = await renderLoginScreen();
+    await fireEvent.press(screen.getByLabelText('返回'));
+    expect(mockDismissTo).toHaveBeenCalledWith('/(tabs)');
+  });
+
   beforeEach(() => {
     jest.spyOn(AppState, 'addEventListener').mockReset().mockReturnValue({ remove: jest.fn() });
     jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
@@ -118,10 +134,10 @@ describe('<LoginScreen />', () => {
     mockReplace.mockClear();
   });
 
-  it('does not show a back button or a welcome step at the mandatory login entry', async () => {
+  it('shows a way back to browsing without adding a welcome step', async () => {
     mockCanGoBack.mockReturnValue(true);
     const screen = await renderLoginScreen();
-    expect(screen.queryByLabelText('返回')).toBeNull();
+    expect(screen.getByLabelText('返回')).toBeTruthy();
     expect(screen.queryByText('开始使用')).toBeNull();
     expect(mockBack).not.toHaveBeenCalled();
     expect(mockReplace).not.toHaveBeenCalled();
@@ -132,7 +148,7 @@ describe('<LoginScreen />', () => {
     const screen = await renderLoginScreen();
     await fireEvent.press(screen.getByLabelText('返回'));
     expect(screen.getByText('登录 / 注册')).toBeTruthy();
-    expect(screen.queryByLabelText('返回')).toBeNull();
+    expect(screen.getByLabelText('返回')).toBeTruthy();
     expect(mockReplace).not.toHaveBeenCalled();
   });
 

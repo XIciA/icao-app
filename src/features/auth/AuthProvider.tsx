@@ -15,7 +15,6 @@ import type { PersistedPhoneOtpChallenge } from './phone-otp-challenge-store';
 import { UI_ACCEPTANCE_MODE_AVAILABLE } from './ui-acceptance-mode';
 import { acceptLegalDocuments, getLegalConsentStatus } from '@/features/app-content/legal-consent.native';
 import { LegalConsentGate } from '@/features/app-content/LegalConsentGate.native';
-import { AccountRestoreState } from './AccountRestoreState.native';
 
 export type LoginLegalDocuments = { agreement: AppContentLegalDocument; privacy: AppContentLegalDocument };
 
@@ -868,8 +867,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return <AuthContext.Provider value={value}>
-    {accountRestoreUnavailable && session && !accountDeletionPending
-      ? <AccountRestoreState retry={value.retryAccountRestore} signOut={value.signOut} /> : children}
+    {children}
     <LegalConsentGate accountId={accountReady && !restoring && !uiAcceptanceMode ? account?.accountId : undefined}
       onSignOut={value.signOut} onStatus={applyLegalStatus} status={legalStatus} />
   </AuthContext.Provider>;

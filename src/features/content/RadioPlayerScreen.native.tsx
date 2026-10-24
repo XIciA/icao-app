@@ -1,4 +1,4 @@
-import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import {
   AlertCircle,
   BookOpenText,
@@ -101,6 +101,7 @@ function BreathingWaveform({ active, remaining }: { active: boolean; remaining?:
 export function RadioPlayerScreen() {
   const radio = useRadioPlayer();
   const guide = useGuide();
+  useGuideAvailability('radio', radio.error ? '音频暂时无法播放，请在页面重试，也可以跳过教学。' : !radio.loading && !radio.catalogs.length ? '当前范围没有可播放内容。请返回题库调整范围，或跳过教学。' : undefined);
   const router = useRouter();
   const { height } = useAppViewportDimensions();
   const [queueOpen, setQueueOpen] = useState(false);

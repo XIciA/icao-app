@@ -129,7 +129,7 @@ it('keeps presets and completion inside the interval tutorial target', async () 
   const event = jest.fn();
   const screen = await render(
     <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
-      <GuideBindingContext.Provider value={{ event, surface: () => null, register: jest.fn(), modal: jest.fn(), offer: jest.fn(), exit: jest.fn(), start: jest.fn(), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn() }}><RadioPlayerScreen /></GuideBindingContext.Provider>
+      <GuideBindingContext.Provider value={{ availability: jest.fn(), event, surface: () => null, register: jest.fn(), modal: jest.fn(), offer: jest.fn(), exit: jest.fn(), start: jest.fn(), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn() }}><RadioPlayerScreen /></GuideBindingContext.Provider>
     </SafeAreaProvider>,
   );
   await fireEvent.press(screen.getByLabelText('播放间隔：0秒'));

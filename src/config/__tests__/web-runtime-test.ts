@@ -9,26 +9,27 @@ describe('Web runtime selection', () => {
     else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = original;
   });
 
-  it('keeps the existing Vercel runtime as the safe default', () => {
-    delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
-    jest.isolateModules(() => {
-      const runtime = require('../web-runtime') as typeof import('../web-runtime');
-      expect(runtime.WEB_RUNTIME).toBe('vercel-legacy');
-      expect(runtime.isEdgeOneProductionWeb()).toBe(false);
-      expect(runtime.isVercelLegacyWeb('web')).toBe(true);
-      expect(runtime.isFormalAppSurface('web')).toBe(false);
-      expect(runtime.isFormalAppSurface('ios')).toBe(true);
-    });
-  });
-
-  it('enables the cloud-backed runtime only with the explicit build value', () => {
-    process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'edgeone-production';
+  it.each([undefined, '', 'unknown', 'edgeone-production'])('uses the formal web runtime for %s', (value) => {
+    if (value === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = value;
     jest.isolateModules(() => {
       const runtime = require('../web-runtime') as typeof import('../web-runtime');
       expect(runtime.WEB_RUNTIME).toBe('edgeone-production');
       expect(runtime.isEdgeOneProductionWeb()).toBe(true);
       expect(runtime.isVercelLegacyWeb('web')).toBe(false);
       expect(runtime.isFormalAppSurface('web')).toBe(true);
+      expect(runtime.isFormalAppSurface('ios')).toBe(true);
+    });
+  });
+
+  it('retains the explicit legacy value for historical compatibility', () => {
+    process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+    jest.isolateModules(() => {
+      const runtime = require('../web-runtime') as typeof import('../web-runtime');
+      expect(runtime.WEB_RUNTIME).toBe('vercel-legacy');
+      expect(runtime.isEdgeOneProductionWeb()).toBe(false);
+      expect(runtime.isVercelLegacyWeb('web')).toBe(true);
+      expect(runtime.isFormalAppSurface('web')).toBe(false);
     });
   });
 });

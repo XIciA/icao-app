@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | iOS | 构建并上传 TestFlight，确认 Apple 处理完成及目标测试组可访问 | 不提交 App Store 审核，不发布 App Store 正式版 |
 | Android | 构建独立测试 APK，更新 `android-test` 渠道，并在 `readyoufife.com/download` 提供测试版下载入口 | 不替换正式 APK、正式下载主按钮或 `android-apk` 渠道 |
-| 产品 Web | 受影响的 `readyoufife.com` 页面通过必要检查后直接部署 EdgeOne | 是用户明确指定的直接上线例外，不等待移动端正式上线确认；不包括旧 Vercel 站、宣传站或其他站点 |
+| 产品 Web | 受影响的 `readyoufife.com` 页面通过必要检查后直接部署 EdgeOne | 是用户明确指定的直接上线例外，不等待移动端正式上线确认；不包括宣传站或其他独立站点 |
 
 Android 测试入口置于下载页右上角、左上角等次要位置，清楚标注“测试版”，与正式版下载分开。
 具体位置遵守[UI 风格规范](ui-style-guide.md)，不要求用户每次重新选择。
@@ -74,7 +74,7 @@ iOS 和 Android 测试渠道可以提示对应测试用户更新；正式渠道�
   EdgeOne 产品 Web 上线；不需要重复取得相同授权。当前用户缩小范围或要求暂停时，以当前要求为准。
 - 后端生产部署、数据库迁移、批量业务数据 / 内容发布仍按[项目长期边界](project-boundaries.md)
   核对明确授权，不能由“Web 直接上线”推导。若测试交付依赖这些操作且未获授权，说明具体依赖，不伪报交付完成。
-- Vercel 冻结保持有效；宣传站、后台等独立站点不因本规则自动获得改动或部署授权。
+- 旧 Vercel 端已退役，其冻结约束已撤销；宣传站、后台等独立站点不因本规则自动获得改动或部署授权。
 - 源码合并、干净主干构建、版本 / 标签与发布追溯遵守[仓库管理规则](repository-and-github-management.md)；
   检查与目标包验收遵守[交付与验收规则](delivery-and-acceptance.md)，本规则不增加固定验收阶梯。
 - 交付后更新已有发布记录与[项目管理概览](../resources/project/product-state.md)，分别写明

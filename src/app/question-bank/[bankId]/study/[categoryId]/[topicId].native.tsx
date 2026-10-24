@@ -1,3 +1,4 @@
+import { useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { createCardDirectory, directoryHasCompleteBank } from '@/features/question-bank/data/card-directory';
 import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
@@ -31,6 +32,9 @@ export default function NativeQuestionBankStudyRoute() {
   const effectiveCategoryId = location?.categoryId ?? categoryId;
   const effectiveTopicId = location?.topicId ?? topicId;
   const topicState = useQuestionBankTopic(bankId, effectiveCategoryId, effectiveTopicId, contentReleaseOf(rawCatalog), bankState.status !== 'loading');
+  useGuideAvailability('study', topicState.status === 'membership-required' ? '这部分题目需要会员，可查看会员方案或返回选择免费内容。'
+    : bankState.status === 'error' || topicState.status === 'error' ? '题目暂时无法加载，请在页面重试或返回选择其他内容。'
+      : topicState.status === 'ready' && !topicState.topic.cards.length ? '当前没有可学习的题目，请返回选择其他内容或跳过教学。' : undefined);
   const returnFromRadio = returnTo === 'radio';
   const returnLabel = returnFromRadio ? '返回随身听'
     : returnTo === 'annotations' ? '返回我的标注'

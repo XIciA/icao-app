@@ -5,6 +5,19 @@ import { MockExamScreen } from '@/features/content/MockExamScreen';
 import { buildMockExamSession, toQuestionBankStudyPackage } from '../build-session.native';
 import { discardLegacyMockExamDraft } from '../legacy-draft-cleanup';
 
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
+
+
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ target: 'icao4-first' }) }));
 
 const { MockExamScreen: WebMockExamScreen } = jest.requireActual(

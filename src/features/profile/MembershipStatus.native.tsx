@@ -19,14 +19,22 @@ export function VipBadge({ active }: { active: boolean }) {
   const color = active ? colors.accent : colors.mutedForeground;
   return <View style={[styles.badge, { borderColor: active ? colors.accent : colors.border }]}><Star size={14} color={color} /><AppText color={color} variant="micro">VIP</AppText></View>;
 }
-export function MembershipStatus({ displayName }: { displayName?: string }) {
+export function MembershipStatus({ pill = false }: { pill?: boolean }) {
   const commerce = useCommerceRuntime(); const router = useAppRouter(); const [open, setOpen] = useState(false);
   const membership = membershipPresentation(commerce.entitlement);
+  const statusLabel = commerce.phase === 'error' && !commerce.entitlement ? '会员状态暂时无法读取' : membership.label;
   useEffect(() => { setOpen(false); }, [commerce.entitlementChange?.accountId]);
   return <>
-    <Pressable accessibilityRole="button" accessibilityLabel={`查看会员状态，${membership.label}`} onPress={() => setOpen(true)} style={[styles.trigger, displayName === undefined && styles.compact]}>
-      {displayName !== undefined ? <View style={styles.identity}><AppText numberOfLines={1} style={styles.name} variant="sectionTitle">{displayName}</AppText><VipBadge active={membership.active} /></View> : <VipBadge active={membership.active} />}
-      <AppText style={{flexShrink:1}} variant="caption">{commerce.phase === 'error' && !commerce.entitlement ? '会员状态暂时无法读取' : membership.label}</AppText>
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={`查看会员状态，${statusLabel}`}
+      onPress={(event) => { event.stopPropagation(); setOpen(true); }}
+      style={({ pressed }) => [styles.trigger, pill && styles.pill, pill && !membership.active && styles.inactivePill, pressed && styles.pressed]}
+    >
+      {pill ? <Star size={16} color={membership.active ? colors.accent : colors.mutedForeground} /> : <VipBadge active={membership.active} />}
+      <AppText color={pill && membership.active ? colors.accent : colors.mutedForeground} style={styles.status} variant="caption">
+        {pill ? 'VIP · ' : ''}{statusLabel}
+      </AppText>
     </Pressable>
     <BottomSheet visible={open} onClose={() => setOpen(false)} accessibilityLabel="会员状态"><View style={styles.sheet}>
       <AppText variant="sectionTitle">会员状态</AppText><VipBadge active={membership.active} /><AppText variant="cardTitle">{membership.label}</AppText>
@@ -35,4 +43,12 @@ export function MembershipStatus({ displayName }: { displayName?: string }) {
     </View></BottomSheet>
   </>;
 }
-const styles = StyleSheet.create({ badge: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, flexShrink: 0, width: 58, height: 32, borderWidth: 1, borderRadius: radii.sm }, compact: { flexDirection: 'row', alignItems: 'center', gap: spacing[2] }, trigger: { gap: spacing[1.5], minWidth: 0 }, identity: { flexDirection: 'row', alignItems: 'center', gap: spacing[2] }, name: { flexShrink: 1 }, sheet: { gap: spacing[4] } });
+const styles = StyleSheet.create({
+  badge: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, flexShrink: 0, width: 58, height: 32, borderWidth: 1, borderRadius: radii.sm },
+  trigger: { flexDirection: 'row', alignItems: 'center', gap: spacing[2], minWidth: 0, maxWidth: '100%', minHeight: 44, alignSelf: 'flex-start' },
+  pill: { borderRadius: radii.full, paddingHorizontal: spacing[3], paddingVertical: spacing[2], backgroundColor: 'rgba(183, 118, 16, 0.06)', borderWidth: 1, borderColor: 'rgba(183, 118, 16, 0.16)' },
+  inactivePill: { backgroundColor: colors.muted, borderColor: colors.border },
+  status: { flexShrink: 1 },
+  pressed: { opacity: 0.72 },
+  sheet: { gap: spacing[4] },
+});
