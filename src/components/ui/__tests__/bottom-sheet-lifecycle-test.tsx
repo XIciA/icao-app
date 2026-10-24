@@ -15,6 +15,7 @@ it('keeps the modal mounted through close animation and supports reopening befor
     await act(async()=>{jest.advanceTimersByTime(300);});
     await screen.rerender(tree(false));
     expect(screen.getByText('modal-open')).toBeTruthy();
+    expect(screen.queryByText('题库列表')).toBeNull();
     await screen.rerender(tree(true));
     await act(async()=>{jest.advanceTimersByTime(300);});
     expect(screen.getByText('modal-open')).toBeTruthy();

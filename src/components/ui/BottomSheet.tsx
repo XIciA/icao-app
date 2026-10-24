@@ -22,7 +22,7 @@ export function BottomSheet({ visible, onClose, children, footer, scrollable = t
   const [presented, setPresented] = useState(false);
   const progress = useRef(new Animated.Value(0)).current;
   const requested = useRef(visible); requested.current = visible;
-  const onShow = useCallback(() => setPresented(true), []);
+  const onShow = useCallback(() => { if (requested.current) setPresented(true); }, []);
   useEffect(() => { if (visible) setMounted(true); else if (!presented) setMounted(false); }, [presented, visible]);
   useEffect(() => {
     if (!mounted || !presented) return;
@@ -40,7 +40,7 @@ export function BottomSheet({ visible, onClose, children, footer, scrollable = t
 
   return (
     <AppModal animationType="none" onShow={onShow} onRequestClose={onClose} transparent visible={mounted}>
-      <View accessibilityLabel={accessibilityLabel} style={styles.root}>
+      <View accessibilityLabel={accessibilityLabel} pointerEvents={visible ? 'auto' : 'none'} accessibilityElementsHidden={!visible} importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'} style={styles.root}>
         <Animated.View style={[StyleSheet.absoluteFill, styles.overlay, { opacity: progress }]} />
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
         <Animated.View style={[styles.sheet, { transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [height, 0] }) }], maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
