@@ -241,3 +241,13 @@ it('keeps independent module checkpoints when the user tries another guide', asy
   await fireEvent.press(screen.getByText('pause'));await fireEvent.press(screen.getByText('start'));
   expect(screen.getByText('radio-order')).toBeTruthy();
 });
+
+it('does not navigate after the user leaves while a manual study entrance is loading', async () => {
+  let resolve!: (value: unknown) => void;
+  jest.requireMock('../study-guide-entry').studyGuideEntry.mockImplementationOnce(() => new Promise(done => { resolve=done; }));
+  const screen=await render(<GuideTourProvider><Probe/></GuideTourProvider>);await act(async()=>{});
+  await fireEvent.press(screen.getByText('study'));
+  mockPath='/profile';await screen.rerender(<GuideTourProvider><Probe/></GuideTourProvider>);
+  await act(async()=>resolve({pathname:'/question-bank/[bankId]/study/[categoryId]/[topicId]',params:{bankId:'sentences900',categoryId:'c',topicId:'t',cardId:'sentence900-main-001'}}));
+  expect(mockRouter.push).not.toHaveBeenCalled();expect(screen.getByText('no-tour')).toBeTruthy();
+});

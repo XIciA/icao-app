@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { BookMarked, Bot, ChevronRight, Flame, FolderOpen, Highlighter, Radio, Download, NotebookPen, HelpCircle } from '@/components/ui/icons';
 import { TopBar } from '@/components/navigation/TopBar';
@@ -24,6 +25,7 @@ export function UserGuideScreen() {
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState('');
   const exportGeneration = useRef(0);
+  useFocusEffect(useCallback(() => () => { exportGeneration.current += 1; setExporting(false); }, []));
   const exportOwner = useRef(accountId);
   exportOwner.current = accountId;
   useEffect(() => {

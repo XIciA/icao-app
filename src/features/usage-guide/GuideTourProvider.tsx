@@ -111,16 +111,17 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (!entry || !account || loaded !== account) return;
     pausedPath.current = undefined;
     const request = ++navigationRequest.current;
+    const entrancePath = currentPath.current;
     if (entry.id === 'study') {
       try {
         const destination = await studyGuideEntry();
-        if (owner.current !== account || request !== navigationRequest.current) return;
+        if (owner.current !== account || request !== navigationRequest.current || currentPath.current !== entrancePath) return;
         const saved = !restart ? progress.current.resumes?.study : undefined;
         const done = saved?.done.filter(id => !['study-record','study-review','study-finish','study-recap','study-lookup','study-favorite'].includes(id)) ?? [];
         const next: Tour = { id: 'study', mode: 'manual', remaining: ['study-open'], done };
         active.current = next; setTour(next); checkpoint(undefined); suspend(false);
         router.push(destination);
-      } catch { if (owner.current === account && request === navigationRequest.current) setError('900句第一句暂时无法读取，请联网后重试。'); }
+      } catch { if (owner.current === account && request === navigationRequest.current && currentPath.current === entrancePath) setError('900句第一句暂时无法读取，请联网后重试。'); }
       return;
     }
     const previous = progress.current.resumes?.[records ? 'records' : entry.id];
