@@ -7,8 +7,14 @@ let mockHighlightDeleted = false;
 const mockPush = jest.fn();
 const mockRefresh = jest.fn(async () => undefined);
 
+jest.mock('../annotations/card-index.native', () => {
+  const actual = jest.requireActual('../annotations/card-index.native');
+  const { createCardDirectory } = jest.requireActual('../data/card-directory');
+  const directory = createCardDirectory(require('../data/question-bank.json'));
+  return { ...actual, getQuestionBankCardReference: (target: object) => directory.get(target) };
+});
 jest.mock('../annotations/use-card-references.native', () => ({ useCardReferences: (targets: { bankId: string; cardId: string }[]) => {
-  const { getQuestionBankCardReference } = jest.requireActual('../annotations/card-index.native');
+  const { getQuestionBankCardReference } = jest.requireMock('../annotations/card-index.native');
   return { values: new Map(targets.map(target => [`${target.bankId}:${target.cardId}`, { status: 'ready', location: getQuestionBankCardReference(target) }])), retry: jest.fn() };
 } }));
 
@@ -64,7 +70,7 @@ jest.mock('../annotations/use-question-annotations', () => ({
           topicId: 'listening-topic-01',
           cardId: 'listening-main-001',
           tagIds: ['memory'],
-          highlights: mockHighlightDeleted ? [] : [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: jest.requireActual('../annotations/text').contentFingerprint(jest.requireActual('../annotations/card-index.native').getQuestionBankCardReference({ bankId: 'listening', cardId: 'listening-main-001' }).card.audioText) }],
+          highlights: mockHighlightDeleted ? [] : [{ blockId: 'question', wordIndex: 0, colorId: 'yellow', quote: 'UAL919,', sentence: 'UAL 919, was struck by lightning.', contentFingerprint: jest.requireActual('../annotations/text').contentFingerprint(jest.requireMock('../annotations/card-index.native').getQuestionBankCardReference({ bankId: 'listening', cardId: 'listening-main-001' }).card.audioText) }],
           note: '复习雷击通话',
           updatedAt: '2026-07-12T00:00:00.000Z',
         },

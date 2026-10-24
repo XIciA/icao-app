@@ -235,64 +235,29 @@ describe('embeddedQuestionBankRepository', () => {
     )).toBe(true);
     expect(listeningCards.reduce((total, card) =>
       total + (card.kind !== 'image' && Array.isArray(card.choicesZh) ? card.choicesZh.length : 0), 0)).toBe(160);
-    expect(listeningCards.find(card => card.id === 'listening-main-001')).toMatchObject({
-      id: 'listening-main-001',
-      audio: '/question-bank-assets/audio/listening/fzy/26c34fea0b90a1cc7c64.mp3',
-      correctChoiceIndex: 1,
-    });
+    expect(listeningCards[0]).toMatchObject({ id: 'listening-main-950', taskTitle: '10秒航空英语-1' });
     expect(resourceManifest.files[0]).toMatchObject({
       publicPath: '/question-bank-assets/audio/listening/main/001.mp3',
       sizeBytes: 152876,
     });
   });
 
-  it('keeps only the 1,047 confirmed free cards and their media references in the Native fallback', () => {
-    const resources = new Map(resourceManifest.files.map((resource) => [resource.publicPath, resource]));
-
-    const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
-    return Promise.all(banks).then((datasets) => {
-      const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1502, 900, 5751, 2365, 382]);
-      expect(cards).toHaveLength(1047);
-      expect(resourceManifest.files).toHaveLength(12651);
-      expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
-
-      const imageCards = cards.filter(({ bankId, card }) => bankId === 'opi' && card.kind === 'image');
-      expect(imageCards).toHaveLength(0);
-      const opiAudio = cards.filter(({ bankId }) => bankId === 'opi');
-      expect(opiAudio).toHaveLength(47);
-      expect(opiAudio.every(({card}) => Boolean(card.audio) && resources.has(card.audio!))).toBe(true);
-
-      const expectedAudio = (bankId: string, cardId: string) => {
-        if (bankId === 'listening') return `/question-bank-assets/audio/listening/main/${cardId.slice(-3)}.mp3`;
-        if (bankId === 'sentences900') return `/question-bank-assets/audio/sentence900/main/${cardId.slice(-3)}.mp3`;
-        if (bankId === 'radiotelephony') return `/question-bank-assets/audio/radiotelephony/main/${cardId.split('-').at(-1)}.mp3`;
-        const match = cardId.match(/^story-(koala|kongguan|wing)-(\d{3})$/);
-        return match ? `/question-bank-assets/audio/storytelling/${match[1]}/${match[2]}.mp3` : undefined;
-      };
-      const legacyCards = cards.filter(({ bankId, card }) =>
-        bankId !== 'opi' && bankId !== 'sentences900' && card.audio && !card.audio.includes('/web-v5/') && !card.audio.includes('/web-v6/') && !card.audio.includes('/fzy/'));
-      expect(legacyCards.filter(({ bankId, card }) => card.audio !== expectedAudio(bankId, card.id))).toEqual([]);
-
-      const sentenceCards = cards.filter(({ bankId }) => bankId === 'sentences900');
-      expect(sentenceCards.length).toBeGreaterThan(0);
-      expect(sentenceCards.every(({ card }) =>
-        card.audio?.startsWith(`/question-bank-assets/audio/sentence900/rev13/${card.id}-`)
-        && resources.has(card.audio))).toBe(true);
-
-      const webCards = cards.filter(({ card }) => card.audio?.includes('/web-v5/') || card.audio?.includes('/web-v6/'));
-      expect(webCards).toHaveLength(0);
-      expect(webCards.every(({ bankId, card }) =>
-        new RegExp(`^/question-bank-assets/audio/${bankId}/web-v[56]/pepec-[a-z0-9_-]+\\.mp3$`).test(card.audio ?? ''))).toBe(true);
-      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v5/'))).toHaveLength(0);
-      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v6/'))).toHaveLength(0);
-      expect(new Set(webCards.map(({ card }) => card.audio)).size).toBe(0);
-
-      expect(resources.get('/question-bank-assets/audio/listening/main/454.mp3')).toMatchObject({ sizeBytes: 128300 });
-      expect(resources.get('/question-bank-assets/audio/listening/main/595.mp3')).toMatchObject({ sizeBytes: 404780 });
-      expect(cards.some(({ card }) => card.audio === '/question-bank-assets/audio/listening/main/454.mp3')).toBe(false);
-      expect(cards.some(({ card }) => card.audio === '/question-bank-assets/audio/listening/main/595.mp3')).toBe(false);
-    });
+  it('embeds only release-order free cards and their existing media, while retaining full directory counts', async () => {
+    const resources = new Set(resourceManifest.files.map(resource => resource.publicPath));
+    const banks = await Promise.all(getEmbeddedQuestionBankIds().map(id => embeddedQuestionBankRepository.getDataset(id)));
+    const cards = banks.flatMap(bank => bank?.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)) ?? []);
+    expect(banks.map(bank => bank?.declaredCardCount)).toEqual([1502, 900, 5751, 2365, 382]);
+    expect(banks.map(bank => bank!.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)).length)).toEqual([40, 900, 18, 23, 3]);
+    expect(cards).toHaveLength(984);
+    expect(cards.filter(card => card.audio && !resources.has(card.audio))).toEqual([]);
+    expect(cards.filter(card => card.kind === 'image' && !resources.has(card.image))).toEqual([]);
+    expect(resourceManifest.files).toHaveLength(12651);
+    const full = require('../data/question-bank.json') as QuestionBankDataset[];
+    for (const bank of banks) {
+      const source = full.find(item => item.id === bank!.id)!;
+      if (source.id === 'listening') expect(bank!.categories.map(category => category.topics.flatMap(topic => topic.cards).map(card => card.id)))
+        .toEqual(bank!.categories.map(category => source.categories.find(item => item.id === category.id)!.topics.flatMap(topic => topic.cards).filter(card => !card.retired).slice(0, 10).map(card => card.id)));
+    }
   });
 
   it('loads and caches a remote release through the unified repository', async () => {
@@ -310,7 +275,7 @@ describe('embeddedQuestionBankRepository', () => {
     const result = await loadQuestionBank('listening');
     expect(result).toMatchObject({ source: 'remote', dataset: { id: 'listening' } });
     expect(mockStorageValues.has('icao.content.v1.bank.listening')).toBe(false);
-    expect(mockStorageValues.has(`icao.content.v3.catalog.${accountId}.production.listening`)).toBe(true);
+    expect(mockStorageValues.has(`icao.content.v4.catalog.${accountId}.production.listening`)).toBe(true);
   });
 
   it('falls back to the embedded release when the remote API fails without cache', async () => {
@@ -648,7 +613,7 @@ describe('embeddedQuestionBankRepository', () => {
       access: { policyVersion: 'content-access-v2', environment: 'production', membershipActive: false, membershipExpiresAt: null },
     } }) } as Response);
     await expect(questionBankRepository.getTopic('listening', 'listening-category-01', 'listening-topic-01'))
-      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-001' })]) });
+      .resolves.toMatchObject({ cards: expect.arrayContaining([expect.objectContaining({ id: 'listening-main-950' })]) });
   });
 
   it('returns authorized online audio before optional offline download completes, then retains the verified offline copy', async () => {

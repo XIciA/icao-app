@@ -147,7 +147,7 @@ describe('<LoginScreen />', () => {
     mockParams = { slug: 'login', mode: 'recovery' };
     const screen = await renderLoginScreen();
     await fireEvent.press(screen.getByLabelText('返回'));
-    expect(screen.getByText('登录 / 注册')).toBeTruthy();
+    expect(screen.getAllByText('登录 / 注册')).toHaveLength(2);
     expect(screen.getByLabelText('返回')).toBeTruthy();
     expect(mockReplace).not.toHaveBeenCalled();
   });
@@ -155,7 +155,7 @@ describe('<LoginScreen />', () => {
   it('offers Apple, WeChat, OTP, and password login with approved WeChat configuration', async () => {
     const screen = await renderLoginScreen();
 
-    expect(screen.getByText('验证码登录')).toBeTruthy();
+    expect(screen.getByText('验证码')).toBeTruthy();
     expect(screen.getByText('密码登录')).toBeTruthy();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
     expect(screen.getByTestId('wechat-sign-in')).toBeTruthy();
@@ -163,7 +163,7 @@ describe('<LoginScreen />', () => {
     expect(screen.getByRole('checkbox')).toBeTruthy();
     expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
 
-    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('密码登录'));
 
     expect(screen.getByText('登录密码')).toBeTruthy();
     expect(screen.getByText('忘记密码')).toBeTruthy();
@@ -177,7 +177,7 @@ describe('<LoginScreen />', () => {
     const screen = await renderLoginScreen();
     expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
-    expect(screen.getByRole('tab', { name: '密码登录' })).toBeTruthy();
+    expect(screen.getByText('密码登录')).toBeTruthy();
     await act(async () => finish(false));
     expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
   });
@@ -187,7 +187,7 @@ describe('<LoginScreen />', () => {
     const screen = await renderLoginScreen();
     expect(screen.queryByTestId('wechat-sign-in')).toBeNull();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
-    expect(screen.getByRole('tab', { name: '密码登录' })).toBeTruthy();
+    expect(screen.getByText('密码登录')).toBeTruthy();
   });
 
   it('refreshes on foreground, ignores older results, and removes its subscription', async () => {
@@ -352,11 +352,11 @@ describe('<LoginScreen />', () => {
     mockConsumePendingPath.mockReturnValue('/question-bank');
     const screen = await renderLoginScreen();
 
-    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('密码登录'));
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), 'Flight2026safe');
     await fireEvent.press(screen.getByRole('checkbox'));
-    await fireEvent.press(screen.getByRole('button', { name: '密码登录' }));
+    await fireEvent.press(screen.getByRole('button', { name: '登录 / 注册' }));
 
     expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('+8613800138000', 'Flight2026safe');
     expect(mockReplace).not.toHaveBeenCalledWith('/question-bank');
@@ -364,11 +364,11 @@ describe('<LoginScreen />', () => {
 
   it.each(['Old123', `${'a'.repeat(63)}1`])('keeps existing-password login compatible without applying new-password limits (%#)', async (password) => {
     const screen = await renderLoginScreen();
-    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('密码登录'));
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), password);
     await fireEvent.press(screen.getByRole('checkbox'));
-    await fireEvent.press(screen.getByRole('button', { name: '密码登录' }));
+    await fireEvent.press(screen.getByRole('button', { name: '登录 / 注册' }));
     expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('+8613800138000', password);
     expect(screen.queryByText('密码需为8–32位，并同时包含字母和数字。')).toBeNull();
   });
@@ -376,7 +376,7 @@ describe('<LoginScreen />', () => {
   it('verifies an existing phone before routing to password recovery', async () => {
     const screen = await renderLoginScreen();
 
-    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('密码登录'));
     await fireEvent.press(screen.getByText('忘记密码'));
 
     expect(screen.getByText('重置密码')).toBeTruthy();
@@ -407,7 +407,7 @@ describe('<LoginScreen />', () => {
     }));
     const screen = await renderLoginScreen();
 
-    await fireEvent.press(screen.getByRole('tab', { name: '密码登录' }));
+    await fireEvent.press(screen.getByText('密码登录'));
     await fireEvent.press(screen.getByText('忘记密码'));
     await fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000');
     await fireEvent.press(screen.getByText('获取重置验证码'));

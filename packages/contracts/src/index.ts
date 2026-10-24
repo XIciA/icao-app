@@ -288,7 +288,9 @@ export type QuestionBankRelease<T = unknown> = {
   dataset: T;
 };
 
+// Offline credential format stays compatible with released clients.
 export const CONTENT_ACCESS_POLICY_VERSION = 'content-access-v2' as const;
+export const FREE_CONTENT_SELECTION_VERSION = 'release-order-v1' as const;
 export const CONTENT_CREDENTIAL_PUBLIC_KEY_BASE64 = 'BQlsdWBZzpqVcLcfGjShw1FB9ivfULrySNBj25xar/g=' as const;
 export const COMMERCE_ENVIRONMENT_HEADER = 'x-icao-commerce-environment' as const;
 
@@ -298,6 +300,8 @@ export type QuestionBankContentAccess = {
   level: ContentAccessLevel;
   availableCardCount: number;
   declaredCardCount: number;
+  /** IDs selected from the authoritative release, before user filtering. */
+  freeCardIds?: string[];
 };
 
 export type QuestionBankAccessSummary = {
@@ -335,46 +339,22 @@ export type ContentAccessCredential = {
   scopes: ContentAccessScope[];
 };
 
-const FREE_LISTENING_CARD_IDS = new Set([
-  'listening-main-001', 'listening-main-002', 'listening-main-005', 'listening-main-021',
-  'listening-main-022', 'listening-main-024', 'listening-main-025', 'listening-main-029',
-  'listening-main-041', 'listening-main-042',
-  'listening-main-003', 'listening-main-008', 'listening-main-009', 'listening-main-011',
-  'listening-main-012', 'listening-main-013', 'listening-main-018', 'listening-main-031',
-  'listening-main-032', 'listening-main-033',
-  'listening-main-004', 'listening-main-053', 'listening-main-074', 'listening-main-093',
-  'listening-main-095', 'listening-main-111', 'listening-main-112', 'listening-main-126',
-  'listening-main-127', 'listening-main-128',
-  'listening-main-006', 'listening-main-007', 'listening-main-010', 'listening-main-014',
-  'listening-main-015', 'listening-main-016', 'listening-main-017', 'listening-main-019',
-  'listening-main-020', 'listening-main-023',
-]);
-
-const FREE_RADIOTELEPHONY_TOPIC_IDS = new Set([
-  'atc-scenario-0001',
-  'atc-scenario-0002',
-  'atc-scenario-0003',
-]);
-
-const FREE_OPI_TOPIC_IDS = new Set([
-  'opi-topic-0001',
-  'opi-topic-0002',
-  'opi-topic-0003',
-]);
-
-const FREE_STORYTELLING_CARD_IDS = new Set([
-  'story-wing-001',
-  'story-wing-002',
-  'story-wing-003',
-]);
-
-export function isFreeQuestionBankCard(bankId: string, topicId: string, cardId: string) {
-  if (bankId === 'sentences900') return true;
-  if (bankId === 'listening') return FREE_LISTENING_CARD_IDS.has(cardId);
-  if (bankId === 'radiotelephony') return FREE_RADIOTELEPHONY_TOPIC_IDS.has(topicId);
-  if (bankId === 'opi') return FREE_OPI_TOPIC_IDS.has(topicId);
-  if (bankId === 'storytelling') return FREE_STORYTELLING_CARD_IDS.has(cardId);
-  return false;
+/** Release order is authoritative; filtering/search never recalculates free access. */
+export type FreeAccessBank = {
+  id: string;
+  categories: readonly { topics: readonly { id: string; cards: readonly { id: string; retired?: unknown }[] }[] }[];
+};
+export function freeQuestionBankCardIds(bank: FreeAccessBank): Set<string> {
+  const topics = bank.categories.flatMap(category => category.topics);
+  const active = (topic: typeof topics[number]) => topic.cards.filter(card => card.retired !== true);
+  if (bank.id === 'sentences900') return new Set(topics.flatMap(topic => active(topic).map(card => card.id)));
+  if (bank.id === 'listening') return new Set(bank.categories.flatMap(category =>
+    category.topics.flatMap(topic => active(topic)).slice(0, 10).map(card => card.id)));
+  if (bank.id === 'radiotelephony' || bank.id === 'opi') return new Set(
+    topics.filter(topic => active(topic).length > 0).slice(0, bank.id === 'opi' ? 3 : 1)
+      .flatMap(topic => active(topic).map(card => card.id)));
+  if (bank.id === 'storytelling') return new Set(topics.flatMap(topic => active(topic)).slice(0, 3).map(card => card.id));
+  return new Set();
 }
 
 export type ResolvedResource = {

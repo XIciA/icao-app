@@ -16,7 +16,7 @@ export type GuideStep = { id: string; text: string; title?: string; target?: str
 export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   study: TUTORIAL_STEPS.map(step => ({ id: studyStepId(step.id), title: step.title, text: step.description, read: step.id === 'recap', target: ({ play: 'sentence-play', highlight: 'sentence-highlight-tool', tag: 'sentence-tag-tool', note: 'sentence-note', record: 'sentence-record', review: 'sentence-review' } as Record<string, string>)[step.id] ?? `sentence-${step.target}` })),
   radio: [
-    { id: 'radio-bank', text: '在这里切换900句、听力或故事复述。' },
+    { id: 'radio-bank', text: '在这里切换要收听的题库。' },
     { id: 'radio-order', text: '可切换顺序、随机或单曲循环，也可保留当前模式。', read: true },
     { id: 'radio-speed', text: '调整播放速度，也可以保留当前速度。', read: true },
     { id: 'radio-interval', text: '调整每段之间的停顿，留出跟读时间。' },

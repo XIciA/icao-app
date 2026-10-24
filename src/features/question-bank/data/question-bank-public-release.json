@@ -1,4 +1,6 @@
 {
   "policyVersion": "content-access-v2",
-  "checksum": "e0fda83acd34edfbc0e9128c1c58dae794b218c6de953097b7e3e037f6066f44"
+  "FREE_CONTENT_SELECTION_VERSION": "release-order-v1",
+  "freeSelectionVersion": "release-order-v1",
+  "checksum": "258c4c0363e30dddc01a3574c7d4e9a18efdfd74b654a1256f5985d40b06fa88"
 }

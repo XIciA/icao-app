@@ -1,3 +1,6 @@
+import { ContentAccessService } from '../src/content-access/content-access.service';
+import { QuestionBankService } from '../src/question-bank/question-bank.service';
+import { ResourceService } from '../src/resource/resource.service';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -122,6 +125,12 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
       assertMinimumSchemaVersion: async () => undefined,
       ping: async () => undefined,
     })
+    .overrideProvider(ContentAccessService)
+    .useValue({ assertMembership: async () => undefined })
+    .overrideProvider(QuestionBankService)
+    .useValue({ list: async () => [] })
+    .overrideProvider(ResourceService)
+    .useValue({ resolve: async () => ({ publicPath: '/question-bank-assets/test.mp3', url: 'https://example.com/free.mp3' }) })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
     .overrideProvider(AccountIdentityService)
@@ -838,7 +847,7 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('requires authentication for question banks, vocabulary, resources, editorial, feedback and AI', async () => {
+  it('allows anonymous content reads but protects discovery, feedback and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
     const responses = await Promise.all([
@@ -849,9 +858,9 @@ describe('API foundation', () => {
       app.inject({ method: 'POST', url: '/v1/feedback' }),
       app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
     ]);
-    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401, 401, 401, 401]);
-    expect(responses.map((response) => response.json().error.code)).toEqual([
-      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+    expect(responses.map((response) => response.statusCode)).toEqual([200, 401, 200, 401, 401, 401]);
+    expect(responses.filter(response => response.statusCode === 401).map((response) => response.json().error.code)).toEqual([
+      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
     ]);
     await app.close();
   });

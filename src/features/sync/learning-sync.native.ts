@@ -89,7 +89,7 @@ export function assertLearningWriteContext(context: LearningWriteContext, aiResu
 
 class SyncIdentityChangedError extends Error {}
 
-function assertSyncIdentity(userId: string, epoch: number) {
+function assertSyncIdentity(userId: string | undefined, epoch: number) {
   if (identityEpoch !== epoch || (activeUserId !== undefined && activeUserId !== userId)) {
     throw new SyncIdentityChangedError('sync_identity_changed');
   }
@@ -347,7 +347,13 @@ async function clearLearningPayloadData({ includeAiConsent = true, keepSnapshots
 }
 
 /** Swap the existing local learning workspace without merging accounts. */
+export async function switchLearningSyncToGuest(): Promise<void> {
+  return switchLearningWorkspace();
+}
 export async function switchLearningSyncAccount(userId: string): Promise<void> {
+  return switchLearningWorkspace(userId);
+}
+async function switchLearningWorkspace(userId?: string): Promise<void> {
   setLearningSyncActiveUser(userId);
   const epoch = identityEpoch;
   const operation = accountSwitchQueue.catch(() => undefined).then(async () => {
@@ -356,21 +362,31 @@ export async function switchLearningSyncAccount(userId: string): Promise<void> {
     assertSyncIdentity(userId, epoch);
     const previous = await readMeta();
     assertSyncIdentity(userId, epoch);
-    if (previous.boundUserId === userId) { scheduleLearningSync(); return; }
+    const claimKey = userId ? `${SNAPSHOT_PREFIX}guest-claim.${userId}` : undefined;
+    const finishClaim = async () => {
+      if (!claimKey) return;
+      const pending = await Storage.getItem(claimKey);
+      if (!pending) return;
+      await mergeGuestLearningSnapshot(JSON.parse(pending) as Record<string, string>);
+      await Storage.removeItem(`${SNAPSHOT_PREFIX}guest`);
+      // Keep the recovery claim until the first successful cloud reconciliation.
+    };
+    if (previous.boundUserId === userId) { await finishClaim(); if (userId) scheduleLearningSync(); return; }
     // Once started, complete this workspace swap before another swap may begin.
     // Aborting halfway would archive a partly cleared workspace on the next login.
     learningResetEpoch += 1;
-    const workspaceKey = (owner: string) => `${SNAPSHOT_PREFIX}account.${owner}`;
+    const workspaceKey = (owner?: string) => owner ? `${SNAPSHOT_PREFIX}account.${owner}` : `${SNAPSHOT_PREFIX}guest`;
+    const guest = userId && !previous.boundUserId ? await localDataSnapshot() : undefined;
+    if (guest && claimKey) await Storage.setItem(claimKey, JSON.stringify(guest));
     const keys = (await Storage.getAllKeys()).filter((key) =>
       key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX) || key.startsWith(MIGRATION_PREFIX)
       || key === LEARNING_RECORDS_KEY || key.startsWith(`${LEARNING_RECORDS_KEY}.`)
       || [META_KEY, OUTBOX_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
-    if (previous.boundUserId) {
-      const values = await Storage.multiGet(keys);
-      await Storage.setItem(workspaceKey(previous.boundUserId), JSON.stringify(values));
-    }
+    const values = await Storage.multiGet(keys);
+    await Storage.setItem(workspaceKey(previous.boundUserId), JSON.stringify(values));
     const saved = await Storage.getItem(workspaceKey(userId));
     await clearLearningPayloadData({ includeAiConsent: false, keepSnapshots: true });
+    await replaceQueuedSyncState({ ...defaultMeta(), boundUserId: userId }, []);
     const restored = parseJson<[string, string | null][]>(saved, []);
     const pairs = restored.filter((pair): pair is [string, string] => Array.isArray(pair) && typeof pair[0] === 'string' && typeof pair[1] === 'string');
     const restoredMeta = parseJson<SyncMeta>(pairs.find(([key]) => key === META_KEY)?.[1] ?? null, defaultMeta());
@@ -384,10 +400,77 @@ export async function switchLearningSyncAccount(userId: string): Promise<void> {
       await replaceQueuedSyncState({ ...defaultMeta(), boundUserId: userId }, []);
     }
     assertSyncIdentity(userId, epoch);
-    scheduleLearningSync();
+    // Guest data is claimed once by the account that completes login. Archive
+    // remains available for recovery until the merge and outbox writes finish.
+    await finishClaim();
+    if (userId) scheduleLearningSync();
   });
   accountSwitchQueue = operation.catch(() => undefined);
   return operation;
+}
+
+async function mergeGuestLearningSnapshot(snapshot: Record<string, string>) {
+  const context = captureLearningWriteContext();
+  for (const [key, raw] of Object.entries(snapshot)) {
+    if (!key.startsWith(TOPIC_PREFIX)) continue;
+    const topicId = key.slice(TOPIC_PREFIX.length);
+    const existing = parseJson<Record<string, CardLearningState>>(await Storage.getItem(key), {});
+    const incoming = parseJson<Record<string, CardLearningState>>(raw, {});
+    for (const [cardId, state] of Object.entries(incoming)) {
+      if (existing[cardId] && existing[cardId].updatedAt > state.updatedAt) continue;
+      const reference = findQuestionBankCardReference(topicId, cardId);
+      if (!reference) throw new Error('guest_learning_reference_unavailable');
+      existing[cardId] = state;
+      const pending = await readOutbox();
+      if (!pending.some(mutation => mutation.kind === 'card_state' && mutation.payload.bankId === reference.bankId
+        && mutation.payload.topicId === topicId && mutation.payload.cardId === cardId && JSON.stringify(mutation.payload.state) === JSON.stringify(state))) {
+        await enqueueCardState(topicId, cardId, state, reference.bankId, context);
+      }
+    }
+    await Storage.setItem(key, JSON.stringify(existing));
+  }
+  const records = parseJson<LearningRecord[]>(snapshot[LEARNING_RECORDS_KEY] ?? null, []);
+  const existingRecords = new Map((await getLearningRecords({ includeDetails: true })).map(record => [record.id, record]));
+  for (const record of records) {
+    const previous = existingRecords.get(record.id);
+    if (previous && (previous.updatedAt ?? previous.createdAt) > (record.updatedAt ?? record.createdAt)) continue;
+    await upsertLearningRecord(record);
+    const pending = await readOutbox();
+    if (!pending.some(mutation => mutation.kind === 'learning_record' && mutation.payload.recordId === record.id)) {
+      await enqueueLearningRecord(record, context);
+    }
+  }
+  const incoming = parseJson<QuestionBankAnnotationStore | undefined>(snapshot[ANNOTATIONS_KEY] ?? null, undefined);
+  if (incoming && hasAnnotationData(incoming)) {
+    const existing = parseJson<QuestionBankAnnotationStore>(await Storage.getItem(ANNOTATIONS_KEY), createEmptyAnnotationStore());
+    const entries = { ...existing.entries };
+    for (const [key, entry] of Object.entries(incoming.entries)) {
+      if (!entries[key] || entries[key].updatedAt <= entry.updatedAt) entries[key] = entry;
+    }
+    const mergeDefinitions = (before: typeof existing.tagDefinitions, after: typeof incoming.tagDefinitions) =>
+      [...new Map([...after, ...before].map(definition => [definition.id, definition])).values()];
+    const merged = { ...existing, entries, tagDefinitions: mergeDefinitions(existing.tagDefinitions, incoming.tagDefinitions),
+      highlightDefinitions: mergeDefinitions(existing.highlightDefinitions, incoming.highlightDefinitions) };
+    await replaceAnnotationStoreFromSync(merged);
+    const pending = await readOutbox();
+    if (!pending.some(mutation => mutation.kind === 'document' && mutation.payload.documentKey === 'annotations'
+      && JSON.stringify(mutation.payload.document) === JSON.stringify(merged))) await enqueueAnnotationStore(merged, context);
+  }
+  const guestVocabulary = normalizeVocabularyState(parseJson(snapshot[VOCABULARY_STORAGE_KEY] ?? null, undefined));
+  if (hasVocabularyData(guestVocabulary)) {
+    const existing = normalizeVocabularyState(parseJson(await Storage.getItem(VOCABULARY_STORAGE_KEY), undefined));
+    const words = { ...existing.words };
+    for (const [id, word] of Object.entries(guestVocabulary.words)) {
+      if (!words[id] || words[id].updatedAt <= word.updatedAt) words[id] = word;
+    }
+    const lastTest = guestVocabulary.lastTest && (!existing.lastTest || guestVocabulary.lastTest.completedAt > existing.lastTest.completedAt)
+      ? guestVocabulary.lastTest : existing.lastTest;
+    const merged = { ...existing, words, lastTest, updatedAt: existing.updatedAt > guestVocabulary.updatedAt ? existing.updatedAt : guestVocabulary.updatedAt };
+    await replaceVocabularyStateFromSync(merged);
+    const pending = await readOutbox();
+    if (!pending.some(mutation => mutation.kind === 'document' && mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY
+      && JSON.stringify(mutation.payload.document) === JSON.stringify(merged))) await enqueueVocabularyDocument(merged, context);
+  }
 }
 
 export async function archiveAndBindEmptyLearningSync(userId: string) {
@@ -405,7 +488,7 @@ export async function clearPersonalLearningData(ownerUserId?: string) {
     const meta = await readMeta();
     if (meta.boundUserId === requestedOwner) await clearActiveLearningData({ keepSnapshots: true });
     const snapshots = (await Storage.getAllKeys()).filter((key) =>
-      key === `${SNAPSHOT_PREFIX}account.${requestedOwner}` || key.startsWith(`${SNAPSHOT_PREFIX}${requestedOwner}.`));
+      key === `${SNAPSHOT_PREFIX}guest-claim.${requestedOwner}` || key === `${SNAPSHOT_PREFIX}account.${requestedOwner}` || key.startsWith(`${SNAPSHOT_PREFIX}${requestedOwner}.`));
     if (snapshots.length) await Storage.multiRemove(snapshots);
   });
   accountSwitchQueue = operation.catch(() => undefined);
@@ -416,7 +499,10 @@ function isAccountProfileMutation(mutation: SyncMutation) {
   return mutation.kind === 'document' && mutation.payload.documentKey === ACCOUNT_PROFILE_KEY;
 }
 
-async function resetLearningGeneration(meta: SyncMeta, dataGeneration: number, aiResultGeneration: number) {
+async function resetLearningGeneration(meta: SyncMeta, dataGeneration: number, aiResultGeneration: number, preserveGuestClaim = false) {
+  const claimKey = meta.boundUserId ? `${SNAPSHOT_PREFIX}guest-claim.${meta.boundUserId}` : undefined;
+  const claim = claimKey && preserveGuestClaim ? await Storage.getItem(claimKey) : undefined;
+  if (claimKey && !preserveGuestClaim) await Storage.removeItem(claimKey);
   await clearLearningPayloadData({ includeAiConsent: false });
   // Account profile survives a learning-only reset, including edits not uploaded yet.
   await queuedUpdate((latest, outbox) => {
@@ -428,6 +514,7 @@ async function resetLearningGeneration(meta: SyncMeta, dataGeneration: number, a
     outbox.splice(0, outbox.length, ...outbox.filter(isAccountProfileMutation));
     Object.assign(meta, latest);
   });
+  if (claim) await mergeGuestLearningSnapshot(JSON.parse(claim) as Record<string, string>);
 }
 
 function isAiResultMutation(mutation: SyncMutation) {
@@ -780,7 +867,7 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           const responseDataGeneration = response.dataGeneration ?? meta.dataGeneration;
           const responseAiResultGeneration = response.aiResultGeneration ?? meta.aiResultGeneration;
           if (response.resetLearningData || responseDataGeneration !== meta.dataGeneration) {
-            await resetLearningGeneration(meta, responseDataGeneration, responseAiResultGeneration);
+            await resetLearningGeneration(meta, responseDataGeneration, responseAiResultGeneration, true);
             continue;
           }
           const resetAiResults = Boolean(
@@ -821,7 +908,7 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           const responseDataGeneration = response.dataGeneration ?? meta.dataGeneration;
           const responseAiResultGeneration = response.aiResultGeneration ?? meta.aiResultGeneration;
           if (responseDataGeneration !== meta.dataGeneration) {
-            await resetLearningGeneration(meta, responseDataGeneration, responseAiResultGeneration);
+            await resetLearningGeneration(meta, responseDataGeneration, responseAiResultGeneration, true);
             // Re-read from zero because older cursors can predate a preserved profile.
             continue;
           } else if (responseAiResultGeneration !== meta.aiResultGeneration) {
@@ -857,6 +944,7 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
         latestMeta.lastSyncedAt = new Date().toISOString();
         delete latestMeta.lastError;
       });
+      await Storage.removeItem(`${SNAPSHOT_PREFIX}guest-claim.${expectedUserId}`);
       return getLearningSyncStatus();
     } catch (error) {
       if (error instanceof SyncIdentityChangedError) return getLearningSyncStatus();

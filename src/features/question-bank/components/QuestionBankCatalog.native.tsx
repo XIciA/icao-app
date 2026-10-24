@@ -1,3 +1,4 @@
+import { useLoginEntry } from '@/features/auth/use-login-entry';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
@@ -79,9 +80,11 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
       && topic.access.availableCardCount === 0;
   }
 
+  const login = useLoginEntry();
   function openTopic(category: QuestionBankCategory, topic: QuestionBankTopic) {
     if (isLocked(topic)) {
-      router.push('/account/membership?from=learning');
+      const next = `/question-bank/${dataset.id}/study/${category.id}/${topic.id}`;
+      login(`/account/membership?next=${encodeURIComponent(next)}`, '登录后查看会员题库');
       return;
     }
     router.push({

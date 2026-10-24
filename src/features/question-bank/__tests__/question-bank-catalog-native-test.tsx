@@ -4,6 +4,7 @@ import type { QuestionBankDataset } from '../types';
 import { QuestionBankCatalog } from '../components/QuestionBankCatalog.native';
 
 const mockPush = jest.fn();
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockPush }));
 jest.mock('../export/SentenceExportScreen',()=>({SentenceExportScreen:({onBack}:{onBack:()=>void})=>{const {Button}=jest.requireActual('react-native');return <Button title="关闭测试导出" onPress={onBack}/>;}}));
 
 jest.mock('expo-router', () => ({
@@ -70,7 +71,7 @@ describe('<QuestionBankCatalog /> Native content access', () => {
     // Lock status must not replace the category's content meaning.
     expect(screen.getByTestId('category-symbol-weather', { includeHiddenElements: true })).toBeTruthy();
     await fireEvent.press(screen.getByText('会员话题'));
-    expect(mockPush).toHaveBeenCalledWith('/account/membership?from=learning');
+    expect(mockPush).toHaveBeenCalledWith('/account/membership?next=%2Fquestion-bank%2Fopi%2Fstudy%2Fopi-category-01%2Fopi-topic-0004', '登录后查看会员题库');
   });
 });
 

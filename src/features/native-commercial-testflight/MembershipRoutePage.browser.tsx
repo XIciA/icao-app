@@ -1,6 +1,7 @@
-import { useRouter, type Href } from 'expo-router';
-import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useRouter, useLocalSearchParams, type Href } from 'expo-router';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback, useEffect, useRef } from 'react';
+import { safeAppDestination } from '@/features/auth/guest-access';
 import { View } from 'react-native';
 import { AccountScreen, AccountTopBar } from '@/components/account/account-ui';
 import { AppText, Button, Card } from '@/components/ui';
@@ -12,11 +13,23 @@ import { MembershipPage } from './MembershipPage';
 function WebMembership() {
   const commerce = useCommerceRuntime();
   const router = useRouter();
+  const { next } = useLocalSearchParams<{ next?: string }>();
+  const focused = useIsFocused();
+  const resumed = useRef(false);
   const refresh = commerce.refresh;
   useFocusEffect(useCallback(() => { void refresh(); }, [refresh]));
   const membership = commerce.entitlement?.membership;
   const loading = commerce.phase === 'loading' || commerce.phase === 'reconciling';
   const expiry = membership?.expiresAt ? new Date(membership.expiresAt) : undefined;
+  const active = membership?.active === true && (!expiry || expiry.getTime() > Date.now());
+  useEffect(() => {
+    if (!focused) { resumed.current = false; return; }
+    const target = safeAppDestination(next);
+    if (active && !resumed.current && target && !target.startsWith('/account/membership')) {
+      resumed.current = true;
+      router.replace(target as Href);
+    }
+  }, [active, focused, next, router]);
   return <AccountScreen>
     <AccountTopBar title="会员权益" />
     <View style={{ gap: spacing[4] }}>

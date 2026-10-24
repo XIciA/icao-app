@@ -1,15 +1,15 @@
 import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, publicLoginReturn, safeAppDestination } from '../guest-access';
 
 describe('guest access boundary', () => {
-  it.each(['/', '/(tabs)', '/(tabs)/profile', '/profile', '/discover', '/download', '/legal/agreement', '/legal/privacy'])('allows only public browsing at %s', path => {
+  it.each(['/', '/(tabs)', '/(tabs)/profile', '/profile', '/discover', '/download', '/legal/agreement', '/legal/privacy', '/question-bank/listening', '/question-bank/listening/study/main/topic'])('allows only public browsing at %s', path => {
     expect(isGuestPublicPath(path)).toBe(true);
   });
-  it.each(['/question-bank/listening', '/question-bank/listening/study/main/topic', '/account/profile', '/learning-records', '/content/radio', '/content/mock-exam', '/info/guide', '/info/feedback', '/legal/feedback', '/legal/tutorial'])('requires login at %s', path => {
+  it.each(['/account/profile', '/learning-records', '/content/radio', '/content/mock-exam', '/info/guide', '/info/feedback', '/legal/feedback', '/legal/tutorial'])('requires login at %s', path => {
     expect(isGuestPublicPath(path)).toBe(false);
   });
   it('keeps parameterized account and learning screens unmounted for guests', () => {
     expect(isPublicStackScreen('account/[slug]', { slug: 'profile' })).toBe(false);
-    expect(isPublicStackScreen('question-bank/[bankId]/index', { bankId: 'listening' })).toBe(false);
+    expect(isPublicStackScreen('question-bank/[bankId]/index', { bankId: 'listening' })).toBe(true);
     expect(isPublicStackScreen('info/[slug]', { slug: 'feedback' })).toBe(false);
     expect(isPublicStackScreen('legal/[slug]', { slug: 'feedback' })).toBe(false);
     expect(isPublicStackScreen('info/[slug]', { slug: 'privacy' })).toBe(true);
