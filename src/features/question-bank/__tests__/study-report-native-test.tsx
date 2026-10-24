@@ -126,3 +126,10 @@ it('shows the complete learning scope after a partial session and opens an unlea
   expect(screen.getByText('未学习 1')).toBeTruthy();
   progress.mockRestore();
 });
+
+it('routes the fixed checkpoint back button through exam completion instead of bypassing the attempt', async()=>{
+  const end=jest.fn(),leave=jest.fn();
+  const screen=await render(<StudyReport record={record} noteCount={0} interaction="choices" onReturn={leave} onContinue={jest.fn()} onEnd={end}/>);
+  await fireEvent.press(screen.getByLabelText('返回'));
+  expect(end).toHaveBeenCalledTimes(1);expect(leave).not.toHaveBeenCalled();
+});

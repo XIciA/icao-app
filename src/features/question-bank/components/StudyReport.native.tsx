@@ -79,7 +79,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   const returnToReport = () => setReview(undefined);
   if (review) return <NativeScreenBoundary title="学习记录" onExit={returnToReport} resetKey={review.id}><Suspense fallback={<LocalBackLoadingScreen title="学习记录" onBack={returnToReport} />}><HistoryScreen studyPackage={review} onReturn={returnToReport} returnLabel={list === 'words' ? '返回查词与收藏' : list === 'annotations' ? '返回标注题目' : list === 'wrong' ? '返回错题回顾' : '返回结束页面'} /></Suspense></NativeScreenBoundary>;
   if (list) return <SessionRecapList kind={list} record={detail} onBack={back} onOpen={id => { void open(id); }} />;
-  return <Screen scroll contentStyle={styles.screen} header={<TopBar title="学习回顾" onBack={back} />}>
+  return <Screen scroll contentStyle={styles.screen} header={<TopBar title="学习回顾" onBack={onContinue && onEnd ? () => { if (!busy) onEnd(); } : back} />}>
     <TutorialCoach inset={false} />
     <View style={styles.hero}><View style={styles.icon}>{complete ? <CheckCircle2 color={colors.primary} size={34} /> : <Flag color={colors.primary} size={32} />}</View>
       {!onContinue && exam && !complete ? <Tag tone="accent">未完成</Tag> : null}
