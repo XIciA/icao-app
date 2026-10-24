@@ -1,3 +1,4 @@
+import { sqliteLearningStore } from '../platform/learning-store.native';
 import { GuideBindingContext } from '@/features/usage-guide/GuideBindings';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { StudyReport } from '../components/StudyReport.native';
@@ -108,8 +109,9 @@ it('shows the complete learning scope after a partial session and opens an unlea
   const dataset=data[0] as QuestionBankDataset, category=dataset.categories[0], topic=category.topics[0];
   const items=topic.cards.slice(0,3).map(card=>({id:card.id,dataset,category,topic,card}));
   const saved={...record,recordType:'session' as const,totalCount:1,studiedCount:1,studyReview:captureStudyReview(items.slice(0,1),{}, {})};
+  const progress=jest.spyOn(sqliteLearningStore,'getTopicStates').mockResolvedValue({[items[0].card.id]:{visited:true} as never});
   jest.mocked(loadLearningRecordReview).mockResolvedValue(saved);
-  const screen=await render(<StudyReport record={saved} answerScope={{items,learned:new Set([0]),current:0}} noteCount={0} interaction="choices" onReturn={jest.fn()}/>);
+  const screen=await render(<StudyReport record={saved} answerScope={{items,current:0}} noteCount={0} interaction="choices" onReturn={jest.fn()}/>);
   await fireEvent.press(screen.getByText('查看答题卡'));
   await waitFor(()=>expect(screen.getByText('共 3 题')).toBeTruthy());
   expect(screen.getByText('已学习 1')).toBeTruthy();expect(screen.getByText('未学习 2')).toBeTruthy();
@@ -117,4 +119,10 @@ it('shows the complete learning scope after a partial session and opens an unlea
   await waitFor(()=>expect(mockOpenedPackage?.initialItemId).toBe(items[2].id));
   expect(mockOpenedPackage?.items.map(item=>item.id)).toEqual(items.map(item=>item.id));
   expect(mockOpenedPackage?.studyReviewRecord).toBeUndefined();
+  await fireEvent.press(screen.getByText('返回结束页面'));
+  progress.mockResolvedValue({[items[0].card.id]:{visited:true} as never,[items[2].card.id]:{visited:true} as never});
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(()=>expect(screen.getByText('已学习 2')).toBeTruthy());
+  expect(screen.getByText('未学习 1')).toBeTruthy();
+  progress.mockRestore();
 });

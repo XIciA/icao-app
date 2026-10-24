@@ -1,3 +1,4 @@
+import { sqliteLearningStore } from '../platform/learning-store.native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
@@ -18,7 +19,7 @@ import { loadLearningRecordReview } from '../platform/learning-record-storage.na
 import { getStudyReview, toStudyReviewPackage } from '../lib/study-review.native';
 import type { LearningRecord, QuestionBankStudyPackage, StudyInteraction, QuestionBankStudyItem } from '../types';
 const HistoryScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
-export function StudyReport({ answerScope, localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { answerScope?: { items: QuestionBankStudyItem[]; learned: Set<number>; current: number }; localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
+export function StudyReport({ answerScope, localReturn, record, onReturn, returnLabel, interaction, onContinue, onEnd, onExitWithoutSave, busy, error: externalError }: { answerScope?: { items: QuestionBankStudyItem[]; current: number }; localReturn?: boolean; onContinue?: () => void; onEnd?: () => void; onExitWithoutSave?: () => void; busy?: boolean; error?: string; record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction; returnLabel?: string }) {
   const tutorial = useTutorial();
   const guide = useGuide();
   const offer = guide?.offer;
@@ -29,6 +30,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   const objective = objectiveReview(record.studyReview);
   const [markers, setMarkers] = useState<ReturnType<typeof answerCardMarkers>>([]);
   const [answerCard, setAnswerCard] = useState(false);
+  const [answerMarked, setAnswerMarked] = useState<Set<number>>();
   const snapshot = getStudyReview(detail);
   const answerItems = answerScope?.items ?? snapshot?.items ?? [];
   const [opening, setOpening] = useState(false);
@@ -53,7 +55,23 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
     openingBusy.current = true;
     const request = ++openingRequest.current;
     setOpening(true); setError('');
-    try { const loaded = await loadLearningRecordReview(record); if (!getStudyReview(loaded)) throw new Error('missing_review'); const annotations = await readAnnotationStore(); if (request !== openingRequest.current) return; setMarkers(answerCardMarkers(answerScope?.items ?? getStudyReview(loaded)!.items, annotations)); setDetail(loaded); setAnswerCard(true); }
+    try {
+      const loaded = await loadLearningRecordReview(record);
+      const saved = getStudyReview(loaded);
+      if (!saved) throw new Error('missing_review');
+      const items = answerScope?.items ?? saved.items;
+      const annotations = await readAnnotationStore();
+      // Re-read the existing progress owner: a nested answer-card session may
+      // have learned more questions while this completion screen stayed mounted.
+      const topics = new Map(items.map(item => [`${item.dataset.id}:${item.topic.id}`, item.topic]));
+      const states = answerScope ? new Map(await Promise.all([...topics].map(async ([key, topic]) =>
+        [key, await sqliteLearningStore.getTopicStates(topic)] as const))) : undefined;
+      const marked = new Set(items.flatMap((item, index) =>
+        (states ? states.get(`${item.dataset.id}:${item.topic.id}`)?.[item.card.id]?.visited : saved.states[item.id]?.visited) ? [index] : []));
+      if (request !== openingRequest.current) return;
+      setAnswerMarked(marked);
+      setMarkers(answerCardMarkers(items, annotations)); setDetail(loaded); setAnswerCard(true);
+    }
     catch { if (request === openingRequest.current) setError('记录暂时无法打开，请重试。'); }
     finally { if (request === openingRequest.current) { openingBusy.current = false; setOpening(false); } }
   }
@@ -83,7 +101,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
       <ReviewRow title="查看答题卡" onPress={() => { void openAnswerCard(); }} />
     </View>
     <Button variant="secondary" onPress={back}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
-    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={answerItems.length} current={answerScope?.current ?? -1} marked={answerScope?.learned ?? new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => {
+    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={answerItems.length} current={answerScope?.current ?? -1} marked={answerMarked ?? new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => {
       const item = answerItems[index];
       if (!item) return;
       if (!answerScope) { void open(item.id); return; }
