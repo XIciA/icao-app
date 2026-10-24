@@ -92,7 +92,8 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
   const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
   // App startup uses metadata only. Expand authorized text when the radio session opens.
   if (!options.complete) return scoped;
-  const expanded = await hydrateRadioCatalogDatasets(options.bankId ? scoped.filter(bank => bank.id === options.bankId) : scoped, assertOwner);
+  const hydrationScope = options.bankId ? scoped.filter(bank => bank.id === options.bankId) : scoped;
+  const expanded = await hydrateRadioCatalogDatasets(hydrationScope, assertOwner);
   const hydrated = scoped.map(bank => expanded.find(candidate => candidate.id === bank.id) ?? bank);
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
