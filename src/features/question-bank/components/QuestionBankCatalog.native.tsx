@@ -1,3 +1,4 @@
+import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { AirlineMark, hasAirlineMark } from './AirlineMark';
@@ -48,6 +49,7 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
 
 export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
+  const guide = useGuide();
   const [exporting,setExporting] = useState(false);
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
@@ -101,7 +103,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
     return undefined;
   }
 
-  if (exporting) return <SentenceExportScreen dataset={exportDataset ?? dataset} onBack={() => setExporting(false)} />;
+  if (exporting) return <SentenceExportScreen dataset={exportDataset ?? dataset} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader

@@ -34,3 +34,10 @@ it('migrates the old records branch into its independent module without losing a
   expect(parsed.resumes?.recap.remaining).toEqual(['recap-question']);
   expect(parsed.completed).toEqual(['recap-filter']);
 });
+
+it('persists a boolean test new-user marker without treating malformed values as enabled',()=>{
+ for(const value of [true,false,'true',1]) {
+  const parsed=parseGuideProgress(JSON.stringify({...emptyGuideProgress(),testNewUser:value}));
+  expect(parsed.testNewUser).toBe(value===true?true:undefined);
+ }
+});
