@@ -24,3 +24,13 @@ it('sanitizes restored vocabulary metadata before a screen consumes it', () => {
   const parsed=parseGuideProgress(JSON.stringify({version:3,definition:1,completed:[],skipped:[],resumes:{vocab:{module:'vocab',done:[],remaining:['vocab-start'],checkpoint:{vocabBooks:'bad',vocabWord:42,recapEmpty:true}}}}));
   expect(parsed.resumes?.vocab.checkpoint).toEqual({});
 });
+
+it('migrates the old records branch into its independent module without losing annotation progress', () => {
+  const parsed=parseGuideProgress(JSON.stringify({version:3,definition:1,completed:['recap-filter'],skipped:[],resumes:{
+    records:{module:'recap',records:true,done:[],remaining:['recap-record']},
+    recap:{module:'recap',done:['recap-filter'],remaining:['recap-question']},
+  }}));
+  expect(parsed.resumes?.records.module).toBe('records');
+  expect(parsed.resumes?.recap.remaining).toEqual(['recap-question']);
+  expect(parsed.completed).toEqual(['recap-filter']);
+});

@@ -23,6 +23,7 @@
 - [项目管理概览与产品状态](resources/project/product-state.md)：各渠道交付、待验事项与下一步；链接原始证据。
 - [运行时拓扑](resources/project/runtime-topology.md)：Native、EdgeOne 产品 Web、宣传站与退役站点关系。
 - [工具目录](tools/README.md)：常用工具的用途、输入输出、副作用与验证入口，以及可选流程模板。
+- [使用指南步骤清单](resources/project/usage-guide.md)：唯一维护的模块步骤、提示、推进条件及异常恢复说明。
 - `resources/project/`：状态与运行时参考，使用前对照代码、配置和交付证据。
 - `resources/domain/`：ICAO、题库及音频文本资料。
 - `resources/ai/`：AI 能力与领域资产参考。

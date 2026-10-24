@@ -19,3 +19,33 @@ it('never flashes or advances an unmeasured fallback card and always allows leav
     await screen.unmount();
   } finally { jest.useRealTimers(); }
 });
+
+it('keeps one full-height backdrop through step changes, keyboard events, scoring and navigation', async () => {
+  const { Keyboard, StyleSheet } = jest.requireActual('react-native') as typeof import('react-native');
+  const listeners = new Map<string,(event: import('react-native').KeyboardEvent)=>void>();
+  const addListener = Keyboard.addListener.bind(Keyboard);
+  const subscription = jest.spyOn(Keyboard,'addListener').mockImplementation((name, callback) => {
+    listeners.set(name,callback); return addListener(name,callback);
+  });
+  const base={target:'sentence-play',title:'题库学习',text:'点播放',index:0,total:2,skip:jest.fn(),exit:jest.fn()};
+  try {
+    const tree=(changes:object={})=><GuideOverlay layer="root" topLayer="root" nodes={new Map()} prompt={{...base,...changes}}/>;
+    const screen=await render(tree());
+    await fireEvent(screen.getByTestId('guide-overlay'),'layout',{nativeEvent:{layout:{x:0,y:0,width:390,height:844}}});
+    const check=()=>{
+      expect(screen.getByTestId('guide-mask').props.height).toBe(844);
+      const style=StyleSheet.flatten(screen.getByRole('button',{name:'跳过教学'}).props.style);
+      expect(style.width).toBe(112);expect(style.right).toBeUndefined();
+      expect(screen.getByTestId('guide-backdrop')).toBeTruthy();
+    };
+    check();
+    await act(async()=>listeners.get('keyboardDidShow')?.({duration:0,easing:'keyboard',endCoordinates:{screenY:480,screenX:0,width:390,height:364}})); check();
+    await screen.rerender(tree({identity:'next',target:'sentence-text'})); check();
+    await act(async()=>listeners.get('keyboardDidHide')?.({duration:0,easing:'keyboard',endCoordinates:{screenY:844,screenX:0,width:390,height:0}})); check();
+    await screen.rerender(tree({activity:'waiting',next:jest.fn(),nextLabel:'暂不评分，继续教学'})); check();
+    expect(screen.getByText('暂不评分，继续教学')).toBeTruthy();
+    await screen.rerender(tree({transitioning:true})); check();
+    expect(screen.queryByTestId('guide-hint')).toBeNull();
+    await screen.unmount();
+  } finally { subscription.mockRestore(); }
+});

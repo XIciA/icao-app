@@ -26,7 +26,7 @@ export async function stopVocabularySpeech() {
   cancelCurrent?.();
 }
 
-async function playFile(text: string, request: number): Promise<SpeechResult> {
+async function playFile(text: string, request: number, onStart?: () => void): Promise<SpeechResult> {
   const normalized = normalizePronunciation(text);
   if (!normalized) return 'failed';
   const hash = await digestStringAsync(CryptoDigestAlgorithm.SHA256, normalized);
@@ -40,7 +40,7 @@ async function playFile(text: string, request: number): Promise<SpeechResult> {
     if (request !== generation) return 'cancelled';
     return await new Promise<SpeechResult>((resolve) => {
       let settled = false;
-      let started = false;
+      let started = false, notified = false;
       let subscription: { remove: () => void } | undefined;
       let timer: ReturnType<typeof setTimeout>;
       const finish = (result: SpeechResult) => {
@@ -63,6 +63,7 @@ async function playFile(text: string, request: number): Promise<SpeechResult> {
         try { player.play(); } catch { finish('failed'); }
       };
       subscription = player.addListener('playbackStatusUpdate', status => {
+        if (request === generation && !settled && status.playing && !notified) { notified = true; onStart?.(); }
         if (status.playbackState === 'error') finish('failed');
         else if (status.didJustFinish) finish('done');
         else if (status.isLoaded) start();
@@ -75,13 +76,13 @@ async function playFile(text: string, request: number): Promise<SpeechResult> {
   }
 }
 
-async function runVocabularySpeech(word: string, example?: string) {
+async function runVocabularySpeech(word: string, example?: string, onStart?: () => void) {
   ensureRegistered();
   const request = ++generation;
   cancelCurrent?.();
   let result: SpeechResult = 'cancelled';
   try {
-    result = await playFile(word, request);
+    result = await playFile(word, request, onStart);
     if (result === 'done' && request === generation && example?.trim()) result = await playFile(example, request);
   } catch { result = request === generation ? 'failed' : 'cancelled'; }
   return { request, result };
@@ -90,8 +91,8 @@ export async function speakVocabulary(word: string, example?: string) {
   const { request, result } = await runVocabularySpeech(word, example);
   return request === generation && result === 'done';
 }
-export async function speakVocabularyWithFeedback(word: string, example?: string) {
-  const { request, result } = await runVocabularySpeech(word, example);
+export async function speakVocabularyWithFeedback(word: string, example?: string, onStart?: () => void) {
+  const { request, result } = await runVocabularySpeech(word, example, onStart);
   if (request === generation && result === 'failed') Alert.alert('暂时无法播放发音', '请检查网络后重试。你仍然可以继续学习。');
   return request === generation && result === 'done';
 }

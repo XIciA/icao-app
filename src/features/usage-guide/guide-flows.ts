@@ -7,13 +7,14 @@ export const GUIDE_ENTRIES = [
   { id: 'hotspot', title: 'OPI 热点', description: '看热点内容，进入相关练习', route: '/content/hotspot' },
   { id: 'resources', title: '资源分享', description: '查找并阅读备考资料', route: '/content/resources' },
   { id: 'mock-exam', title: '模拟练习', description: '选择板块，体验模拟作答', route: '/content/mock-exam' },
-  { id: 'recap', title: '标注与回顾', description: '找回重点、笔记和学习记录', route: '/annotations' },
+  { id: 'records', title: '回顾学习记录', description: '回看学过的题目和作答', route: '/learning-records' },
+  { id: 'recap', title: '回顾我的标注', description: '找回高亮、标签和笔记', route: '/annotations' },
   { id: 'export', title: '900句导出', description: '把学习积累整理成 PDF', route: '/info/guide?export=1' },
 ] as const;
 export type GuideId = typeof GUIDE_ENTRIES[number]['id'];
 export type GuideStep = { id: string; text: string; title?: string; target?: string; read?: boolean };
 export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
-  study: TUTORIAL_STEPS.map(step => ({ id: studyStepId(step.id), title: step.title, text: step.description, target: ({ play: 'sentence-play', highlight: 'sentence-highlight-tool', tag: 'sentence-tag-tool', note: 'sentence-note', record: 'sentence-record', review: 'sentence-review' } as Record<string, string>)[step.id] ?? `sentence-${step.target}` })),
+  study: TUTORIAL_STEPS.map(step => ({ id: studyStepId(step.id), title: step.title, text: step.description, read: step.id === 'recap', target: ({ play: 'sentence-play', highlight: 'sentence-highlight-tool', tag: 'sentence-tag-tool', note: 'sentence-note', record: 'sentence-record', review: 'sentence-review' } as Record<string, string>)[step.id] ?? `sentence-${step.target}` })),
   radio: [
     { id: 'radio-bank', text: '在这里切换900句、听力或故事复述。' },
     { id: 'radio-order', text: '可切换顺序、随机或单曲循环，也可保留当前模式。', read: true },
@@ -34,18 +35,16 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
   ],
   hotspot: [
     { id: 'hotspot-topic', text: '选择一期热点，查看对应考点和问题。' },
-    { id: 'hotspot-article', text: '这里列出本期话题、英文问题和来源，可按考点查看。', read: true },
-    { id: 'hotspot-study', text: '点击「开始学习」，进入相关题目。' },
   ],
   resources: [
     { id: 'resource-open', text: '点开一份资料看看。' },
-    { id: 'resource-article', text: '在这里阅读完整内容。', read: true },
   ],
   'mock-exam': [
     { id: 'mock-type', text: '选择考试类型，也可以保留当前选择。', read: true },
     { id: 'mock-scope', text: '选好练习板块，至少保留一个；也可保留当前选择。', read: true },
     { id: 'mock-start', text: '点击下方的开始练习按钮，也可先完成引导。', read: true },
   ],
+  records: [{ id: 'recap-record', text: '点开一次学习记录，回看当时的题目和作答。' }],
   recap: [
     { id: 'recap-filter', text: '切换标签、高亮或笔记，按题库和标记查找。', read: true },
     { id: 'recap-question', text: '点题目，可以带着原标注继续学习。' },
@@ -58,8 +57,3 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
     { id: 'export-generate', text: '点击「生成 PDF」；生成成功后完成这一步。' },
   ],
 };
-
-/** Both tasks belong to the existing review entrance and run independently. */
-export const RECORD_GUIDE: GuideStep[] = [
-  { id: 'recap-record', text: '点开一次学习记录，回看当时的题目和作答。' },
-];

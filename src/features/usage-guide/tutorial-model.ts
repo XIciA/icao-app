@@ -11,7 +11,7 @@ export const TUTORIAL_STEPS = [
   { id: 'record', title: '试着读出来', description: '点录音，读完后再点一次结束。', target: 'audio' },
   { id: 'review', title: '看看学习反馈', description: '点 AI 评分，查看本次作答的反馈。', target: 'workbench' },
   { id: 'finish', title: '保存本次学习', description: '点击结束，保存本次学习并查看积累。', target: 'finish' },
-  { id: 'recap', title: '找回刚才的积累', description: '点开本次回顾，找回刚才的题目和学习积累。', target: 'recap' },
+  { id: 'recap', title: '找回刚才的积累', description: '这里可以查看学习记录、标注题目、查词收藏和答题卡。', target: 'recap' },
 ] as const;
 export type TutorialStepId = typeof TUTORIAL_STEPS[number]['id'];
 export type TutorialTargetId = typeof TUTORIAL_STEPS[number]['target'] | 'finish';

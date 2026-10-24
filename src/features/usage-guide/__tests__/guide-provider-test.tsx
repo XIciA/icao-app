@@ -86,10 +86,10 @@ it('ignores old-account reads and hides the previous account tour immediately', 
   await fireEvent.press(screen.getByText('start'));expect(screen.getByText('radio-bank')).toBeTruthy();
   await fireEvent.press(screen.getByText('select bank'));expect(mockWrite).toHaveBeenLastCalledWith('account-b',expect.objectContaining({skipped:[]}));
 });
-it('hides teaching during navigation transitions', async () => {
+it('keeps the teaching surface mounted during navigation transitions', async () => {
   const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);await act(async()=>{});
   await fireEvent.press(screen.getByText('start'));expect(screen.getByText('visible')).toBeTruthy();
-  await fireEvent.press(screen.getByText('transition'));expect(screen.getByText('hidden')).toBeTruthy();
+  await fireEvent.press(screen.getByText('transition'));expect(screen.getByText('visible')).toBeTruthy();
 });
 
 
@@ -120,13 +120,11 @@ it('does not redirect a newly logged-in user away from their requested question 
   const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>); await act(async () => {});
   expect(screen.getByText('no-tour')).toBeTruthy(); expect(mockRouter.navigate).not.toHaveBeenCalled();
 });
-it('reopens the topic selection before resuming hotspot detail teaching', async () => {
-  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/content/hotspot';
-  mockRead.mockResolvedValue({ version: 3, completed: ['hotspot-topic'], skipped: [] });
-  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('hotspot-topic')).toBeTruthy());
-  await fireEvent.press(screen.getByText('open hotspot'));
-  expect(screen.getByText('hotspot-article')).toBeTruthy();
+it('does not reintroduce completed hotspot entrance teaching', async () => {
+  mockCreatedAt='2026-10-23T00:00:00Z'; mockPath='/content/hotspot';
+  mockRead.mockResolvedValue({version:3,completed:['hotspot-topic'],skipped:[]});
+  const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>); await act(async()=>{});
+  expect(screen.getByText('no-tour')).toBeTruthy();
 });
 
 it('leaves an unavailable step pending and resumes it when the real feature recovers', async () => {
@@ -153,15 +151,15 @@ it('keeps interrupted teaching paused on the same page, then offers it on a fres
   mockPath = '/content/radio'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
   await waitFor(() => expect(screen.getByText('radio-bank')).toBeTruthy());
 });
-it('restores the entrance task when returning to a hotspot list instead of leaving a stale target', async () => {
-  mockCreatedAt = '2026-10-23T00:00:00Z'; mockPath = '/content/hotspot';
-  const screen = await render(<GuideTourProvider><Probe /></GuideTourProvider>);
-  await waitFor(() => expect(screen.getByText('hotspot-topic')).toBeTruthy());
+it('ends hotspot teaching on selection and does not restart on returning from details', async () => {
+  mockCreatedAt='2026-10-23T00:00:00Z'; mockPath='/content/hotspot';
+  const screen=await render(<GuideTourProvider><Probe /></GuideTourProvider>);
+  await waitFor(()=>expect(screen.getByText('hotspot-topic')).toBeTruthy());
   await fireEvent.press(screen.getByText('open hotspot'));
-  mockPath = '/content/hotspot/example'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  expect(screen.getByText('hotspot-article')).toBeTruthy();
-  mockPath = '/content/hotspot'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
-  expect(screen.getByText('hotspot-topic')).toBeTruthy();
+  mockPath='/content/hotspot/example'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
+  expect(screen.getByText('no-tour')).toBeTruthy();
+  mockPath='/content/hotspot'; await screen.rerender(<GuideTourProvider><Probe /></GuideTourProvider>);
+  expect(screen.getByText('no-tour')).toBeTruthy();
 });
 
 function PersistentUnavailableScreen({ message }: { message?: string }) {

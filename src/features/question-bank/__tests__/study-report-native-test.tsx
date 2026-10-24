@@ -29,18 +29,21 @@ it('returns from the readonly paper to the same completed result without leaving
   expect(screen.getByText('听力成绩')).toBeTruthy(); expect(screen.getByText('0 / 50')).toBeTruthy(); expect(leave).not.toHaveBeenCalled(); expect(loadLearningRecordReview).toHaveBeenCalledTimes(1);
 });
 
-it('marks tutorial recap complete only after the saved original question opens', async () => {
+it('highlights the entire recap and leaves completion to the shared guide action', async () => {
   const event = jest.fn();
   const controller = { availability: jest.fn(), modal: jest.fn(), surface: jest.fn(() => null), suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn(), current: 'study', step: 'study-recap', event, offer: jest.fn(), register: jest.fn(), exit: jest.fn(), start: jest.fn() };
   const screen = await render(<GuideBindingContext.Provider value={controller}><StudyReport record={record} noteCount={0} interaction="choices" onReturn={jest.fn()} /></GuideBindingContext.Provider>);
+  expect(screen.getByTestId('guide-anchor-sentence-recap')).toBeTruthy();
+  expect(event).not.toHaveBeenCalled();
   jest.mocked(loadLearningRecordReview).mockRejectedValueOnce(new Error('offline'));
   await fireEvent.press(screen.getByText('本次学习记录'));
   await waitFor(() => expect(screen.getByText('记录暂时无法打开，请重试。')).toBeTruthy());
-  expect(event).not.toHaveBeenCalled();
+  expect(event).toHaveBeenCalledWith('study-recap');
   const dataset = data[0] as QuestionBankDataset; const category = dataset.categories[0]; const topic = category.topics[0]; const card = topic.cards[0];
   jest.mocked(loadLearningRecordReview).mockResolvedValueOnce({ ...record, studyReview: captureStudyReview([{ id: card.id, dataset, category, topic, card }], {}, {}) });
   await fireEvent.press(screen.getByText('本次学习记录'));
-  await waitFor(() => expect(event).toHaveBeenCalledWith('study-recap'));
+  await waitFor(() => expect(screen.getByText('返回结束页面')).toBeTruthy());
+  expect(event).toHaveBeenCalledWith('study-recap');
   expect(screen.getByText('返回结束页面')).toBeTruthy();
 });
 

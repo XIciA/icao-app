@@ -54,3 +54,10 @@ it('does not start an export tour when its real catalog cannot load', async () =
   expect(mockStart).not.toHaveBeenCalled();
   expect(mockExport).not.toHaveBeenCalled();
 });
+
+it('opens the two review guides directly without an intermediate choice sheet', async () => {
+  const screen=await render(<UserGuideScreen/>);
+  await fireEvent.press(screen.getByText('回顾学习记录'));expect(mockStart).toHaveBeenLastCalledWith('records');
+  await fireEvent.press(screen.getByText('回顾我的标注'));expect(mockStart).toHaveBeenLastCalledWith('recap');
+  expect(screen.queryByText('选择要体验的内容')).toBeNull();
+});

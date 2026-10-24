@@ -1,6 +1,6 @@
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { Check, CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -44,14 +44,31 @@ export function VocabularyStudyView({
   const insets = useSafeAreaInsets();
   const guide = useGuide();
   const word = words[index]!;
+  const [speechLoading, setSpeechLoading] = useState(false);
+  const speechRequest = useRef(0), speechPending = useRef(false);
   const progress = progressFor(word.id, state);
   const markedWrong = savedStatus === 'wrong';
   const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
 
   useEffect(() => {
+    const requests = speechRequest;
+    requests.current++; speechPending.current = false; setSpeechLoading(false);
     void speakVocabulary(word.word);
-    return () => { void stopVocabularySpeech(); };
+    return () => { requests.current++; speechPending.current = false; void stopVocabularySpeech(); };
   }, [word.id, word.word]);
+
+  const playWord = () => {
+    if (speechPending.current) return;
+    const request = ++speechRequest.current;
+    speechPending.current = true; setSpeechLoading(true);
+    const release = () => {
+      if (request !== speechRequest.current) return false;
+      speechPending.current = false; setSpeechLoading(false); return true;
+    };
+    void speakVocabularyWithFeedback(word.word, undefined, () => {
+      if (release()) guide?.event('vocab-speech');
+    }).finally(release);
+  };
 
   const choose = (status: Exclude<VocabularyWordStatus, 'new' | 'wrong'>) => {
     void onChoose(status);
@@ -71,7 +88,7 @@ export function VocabularyStudyView({
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
           <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-          <Pressable accessibilityLabel={`播放${word.word}发音`} onPress={() => { void speakVocabularyWithFeedback(word.word).then(success => { if (success) guide?.event('vocab-speech'); }); }} style={styles.sound}><GuideAnchor id="vocab-speech" /><Volume2 color={colors.primary} size={20} /></Pressable>
+          <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
               <AppText style={styles.meaning} variant="sectionTitle">{word.meaning}</AppText>

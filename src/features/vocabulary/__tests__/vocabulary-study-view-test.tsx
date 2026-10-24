@@ -64,3 +64,25 @@ describe('VocabularyStudyView', () => {
     expect(screen.getByLabelText('收藏')).toBeTruthy();
   });
 });
+
+it('advances on manual playback start, deduplicates loading taps and ignores callbacks after leaving', async () => {
+  const bindings=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
+  const speech=jest.requireMock('../speech') as {speakVocabularyWithFeedback:jest.Mock};
+  const event=jest.fn();
+  const spy=jest.spyOn(bindings,'useGuide').mockReturnValue({current:'vocab',event,availability:jest.fn(),register:jest.fn(),modal:jest.fn(),surface:()=>null,offer:jest.fn(),exit:jest.fn(),start:jest.fn(async()=>undefined),suspend:jest.fn(),pause:jest.fn(),checkpoint:jest.fn()});
+  let started:(()=>void)|undefined, finish!: (value:boolean)=>void;
+  speech.speakVocabularyWithFeedback.mockImplementation((_word: string,_example:unknown,onStart:()=>void)=>{started=onStart;return new Promise<boolean>(resolve=>{finish=resolve;});});
+  try {
+    const {act}=jest.requireActual('@testing-library/react-native') as typeof import('@testing-library/react-native');
+    const screen=await renderStudy(390);
+    speech.speakVocabularyWithFeedback.mockClear();
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    expect(speech.speakVocabularyWithFeedback).toHaveBeenCalledTimes(1);expect(event).not.toHaveBeenCalled();
+    await act(async()=>started?.());expect(event).toHaveBeenCalledWith('vocab-speech');
+    await act(async()=>finish(true));
+    await fireEvent.press(screen.getByLabelText('播放deviation发音'));
+    await screen.unmount();
+    await act(async()=>{started?.();finish(false);});expect(event).toHaveBeenCalledTimes(1);
+  } finally {spy.mockRestore();}
+});

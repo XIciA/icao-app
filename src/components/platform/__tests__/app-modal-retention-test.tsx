@@ -6,7 +6,7 @@ jest.mock('react-native',()=>{
  const Modal=({children}:{children:React.ReactNode})=><actual.View>{children}</actual.View>;
  return Object.create(actual,{Modal:{value:Modal}});
 });
-jest.mock('@/features/usage-guide/GuideBindings',()=>({GuideModalScope:({children}:{children:React.ReactNode})=>children}));
+jest.mock('@/features/usage-guide/GuideBindings',()=>({useGuide:()=>null,GuideModalScope:({children}:{children:React.ReactNode})=>children}));
 it('preserves the last shown native modal content and coordinates while dismissing',async()=>{
  const tree=(visible:boolean,text:string)=><AppModal visible={visible} animationType="fade"><View accessibilityLabel="positioned menu" style={{top:visible?180:0}}><Text>{text}</Text></View></AppModal>;
  const screen=await render(tree(true,'speed options'));

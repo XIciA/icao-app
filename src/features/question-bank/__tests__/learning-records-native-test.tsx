@@ -68,3 +68,13 @@ it('shows a recovered ASR transcript without discarding a later edited answer', 
   await screen.rerender(<StudyHistoryPersonalContent definitions={[]} answer="" recorded feedback={{ questionId: 'q-1', transcript: '', rawTranscript: 'recovered speech' }} />);
   expect(screen.queryByText('本题仅录音，未保存文字回答')).toBeNull(); expect(screen.getByText('recovered speech')).toBeTruthy();
 });
+
+it('registers a real empty-state target for the independent records guide',async()=>{
+ const {GuideBindingContext}=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
+ const checkpoint=jest.fn();
+ const guide={current:'records',step:'recap-record',event:jest.fn(),availability:jest.fn(),register:jest.fn(),modal:jest.fn(),surface:()=>null,offer:jest.fn(),exit:jest.fn(),start:jest.fn(async()=>undefined),suspend:jest.fn(),pause:jest.fn(),checkpoint};
+ jest.mocked(getLearningRecordPage).mockResolvedValue({records:[],hasMore:false});
+ const screen=await render(<GuideBindingContext.Provider value={guide}><LearningRecordsScreen/></GuideBindingContext.Provider>);
+ await waitFor(()=>expect(screen.getByTestId('guide-anchor-recap-records-empty')).toBeTruthy());
+ expect(checkpoint).toHaveBeenCalledWith({recordsEmpty:true});
+});
