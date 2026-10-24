@@ -1,5 +1,7 @@
 # 1.3.7 / 3583088 验收清单
 
+三端已交付，来源和渠道见[发布记录](../../records/releases/20261024-learning-followup-1.3.7.md)。前轮固定导航、答题卡、字体等项目仍按[完整前轮清单](../learning-ui-repair-20261024/acceptance-checklist.md)逐项验收。
+
 iOS TestFlight、Android独立测试版和readyoufife.com分别记录；不卸载、不清空原账号。尚未触发的异常分支记“暂未验”，不能当作通过。旧学习快照保持原内容和关联，不改写历史数据。
 
 | 项目 | 点击与操作 | 通过标准 | iOS / Android / Web |
