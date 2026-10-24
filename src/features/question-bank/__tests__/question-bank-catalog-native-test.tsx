@@ -72,6 +72,36 @@ describe('<QuestionBankCatalog /> Native content access', () => {
   });
 });
 
+it('keeps specialty and airline icons unchanged and preserves the disclosure after repeated expand/collapse', async () => {
+  const { StyleSheet } = jest.requireActual('react-native');
+  const { colors } = jest.requireActual('@/theme');
+  const bank: QuestionBankDataset = { ...dataset, id: 'radiotelephony', icon: 'radioTower', categories: [
+    { ...dataset.categories[0], id: 'atc-scoring-points', name: '专项训练', declaredTopicCount: 2, topics: [
+      { ...dataset.categories[0].topics[0], id: 'special-a', name: '放行许可', practiceKind: 'scoring-points' },
+      { ...dataset.categories[0].topics[0], id: 'special-b', name: '初始联系', practiceKind: 'scoring-points' },
+    ] },
+    { ...dataset.categories[0], id: 'airline', name: 'CCA', declaredTopicCount: 2, topics: [
+      { ...dataset.categories[0].topics[0], id: 'airline-a' }, { ...dataset.categories[0].topics[0], id: 'airline-b' },
+    ] },
+  ] };
+  const screen = await render(<QuestionBankCatalog dataset={bank} />);
+  for (const category of bank.categories) {
+    for (let i = 0; i < 3; i++) {
+      const arrow = () => screen.getByTestId(`catalog-disclosure-${category.id}`);
+      const icon = () => screen.getByTestId(`catalog-icon-${category.id}`);
+      expect(StyleSheet.flatten(arrow().props.style).transform).toEqual([{ rotate: '0deg' }]);
+      await fireEvent.press(screen.getByRole('button', { name: `${category.name}，展开` }));
+      expect(screen.getByRole('button', { name: `${category.name}，收起` }).props.accessibilityState.expanded).toBe(true);
+      expect(StyleSheet.flatten(arrow().props.style).transform).toEqual([{ rotate: '180deg' }]);
+      expect(StyleSheet.flatten(icon().props.style).backgroundColor).toBe(colors.primary10);
+      await fireEvent.press(screen.getByRole('button', { name: `${category.name}，收起` }));
+      expect(StyleSheet.flatten(arrow().props.style).transform).toEqual([{ rotate: '0deg' }]);
+      expect(arrow().props.children).toBeTruthy();
+      expect(StyleSheet.flatten(icon().props.style).backgroundColor).toBe(colors.primary10);
+    }
+  }
+});
+
 it('pauses automatic export teaching when returning to the catalog without a route change',async()=>{
  const {GuideBindingContext}=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
  const pause=jest.fn();

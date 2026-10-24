@@ -28,3 +28,14 @@ it('uses the complete directory for public/filtered content instead of renumberi
     }
   }
 });
+it('labels the radiotelephony scoring group 专项训练 without changing content, identity or airline names', () => {
+  const bank = (data as QuestionBankDataset[]).find(item => item.id === 'radiotelephony')!;
+  const before = JSON.stringify(bank);
+  const projected = naturalDatasetTitles(bank);
+  expect(projected.categories.find(item => item.id === 'atc-scoring-points')?.name).toBe('专项训练');
+  bank.categories.forEach(category => {
+    const next = projected.categories.find(item => item.id === category.id)!;
+    expect(next).toEqual({ ...category, name: category.id === 'atc-scoring-points' ? '专项训练' : category.name });
+  });
+  expect(JSON.stringify(bank)).toBe(before);
+});

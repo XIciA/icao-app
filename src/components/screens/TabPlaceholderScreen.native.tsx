@@ -12,7 +12,6 @@ import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { useStudyCatalog } from '@/features/question-bank/hooks/useStudyCatalog.native';
-import { StudyScopeSelector } from '@/features/question-bank/components/StudyScopeSelector';
 
 import { colors, radii, spacing } from '@/theme';
 
@@ -68,7 +67,7 @@ function AuthenticatedQuestionBankHome(props: Props) {
     onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />;
 }
 
-function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entries, onEntryPress, guest = false }: Props & { guest?: boolean }) {
+function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entries, onEntryPress }: Props & { guest?: boolean }) {
   return (
     <Screen
       background={(
@@ -85,7 +84,7 @@ function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entri
         {headerLeading || headerTrailing ? (
           <View style={styles.toolbar}>
             <View>{headerLeading}</View>
-            <View style={styles.actions}>{!guest && <StudyScopeSelector />}{headerTrailing}</View>
+            <View style={styles.actions}>{headerTrailing}</View>
           </View>
         ) : null}
         {eyebrow ? (

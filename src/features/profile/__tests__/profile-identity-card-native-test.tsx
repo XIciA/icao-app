@@ -17,7 +17,7 @@ it.each([390, 1200])('keeps profile and VIP actions separate at width %s', async
   jest.mocked(useWindowDimensions).mockReturnValue({ width, height: 844, fontScale: 1, scale: 3 });
   const onOpen = jest.fn();
   const screen = await render(<ProfileIdentityCard profile={{ ...DEFAULT_PROFILE, target: 'icao5-first' }} accountLabel="已登录" onOpenProfile={onOpen} />);
-  expect(screen.getByText('ICAO 5 · 初考')).toBeTruthy();
+  expect(screen.queryByText('ICAO 5 · 初考')).toBeNull();
   expect(screen.getByText('VIP · 剩余 25 天')).toBeTruthy();
   expect(screen.queryByText('备考目标')).toBeNull();
   await fireEvent.press(screen.getByTestId('profile-card-open'));
@@ -34,7 +34,7 @@ it('retains a full accessible name for long nicknames and supports a recertifica
   jest.mocked(useWindowDimensions).mockReturnValue({ width: 320, height: 844, fontScale: 2, scale: 3 });
   const name = '正在准备航空英语考试的飞行学员';
   const screen = await render(<ProfileIdentityCard profile={{ ...DEFAULT_PROFILE, displayName: name, target: 'icao4-recert' }} accountLabel="已登录" onOpenProfile={jest.fn()} />);
-  expect(screen.getByRole('button', { name: `查看个人资料，${name}，ICAO 4 · 复考，已登录` })).toBeTruthy();
-  expect(screen.getByText('ICAO 4 · 复考')).toBeTruthy();
+  expect(screen.getByRole('button', { name: `查看个人资料，${name}，已登录` })).toBeTruthy();
+  expect(screen.queryByText('ICAO 4 · 复考')).toBeNull();
   expect(screen.getAllByText('VIP · 剩余 25 天')).toHaveLength(1);
 });

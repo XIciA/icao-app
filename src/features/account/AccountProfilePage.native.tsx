@@ -4,7 +4,7 @@ import { requestPhotoSelectionPermission } from '@/platform/photo-permission.nat
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, BottomSheet, Button, Screen } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -16,7 +16,6 @@ import { DetailGroup, DetailRow } from '@/components/ui/DetailGroup';
 import { AiAllowanceCard } from '@/features/profile/AiAllowanceCard.native';
 import { MembershipStatus, membershipPresentation } from '@/features/profile/MembershipStatus.native';
 import { useCommerceRuntime } from '@/features/native-commercial-testflight/CommerceRuntimeProvider';
-import { EXAM_GOALS } from './profile-model';
 import { ProfileAvatar } from './ProfileAvatar';
 import { updateProfile, useProfile } from './profile-store.native';
 
@@ -24,7 +23,7 @@ export function AccountProfilePage() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const commerce = useCommerceRuntime();
-  const [editing, setEditing] = useState<'name' | 'level' | 'type'>();
+  const [editing, setEditing] = useState<'name'>();
   const [nameInput, setNameInput] = useState('');
   const guide = useGuide();
   const auth = useAuth();
@@ -33,7 +32,7 @@ export function AccountProfilePage() {
   const [saving, setSaving] = useState(false);
   const [picking, setPicking] = useState(false);
   const [error, setError] = useState('');
-  const edited = useRef(new Set<'displayName' | 'target' | 'avatarUri'>());
+  const edited = useRef(new Set<'displayName' | 'avatarUri'>());
   const accountId = auth.account?.accountId;
   const currentAccount = useRef(accountId);
   currentAccount.current = accountId;
@@ -65,11 +64,10 @@ export function AccountProfilePage() {
     setDraft(current => ({
       ...profile,
       displayName: edited.current.has('displayName') ? current.displayName : profile.displayName,
-      target: edited.current.has('target') ? current.target : profile.target,
       avatarUri: edited.current.has('avatarUri') ? current.avatarUri : profile.avatarUri,
     }));
   }, [profile]);
-  const dirty = draft.displayName !== profile.displayName || draft.target !== profile.target || draft.avatarUri !== profile.avatarUri;
+  const dirty = draft.displayName !== profile.displayName || draft.avatarUri !== profile.avatarUri;
 
   function beginAction() {
     if (!focused.current || !accountId || pendingAction.current) return undefined;
@@ -116,7 +114,6 @@ export function AccountProfilePage() {
     try {
       await updateProfile({
         ...(edited.current.has('displayName') ? { displayName } : {}),
-        ...(edited.current.has('target') ? { target: draft.target } : {}),
         ...(edited.current.has('avatarUri') ? { avatarUri: draft.avatarUri } : {}),
       });
       if (!actionIsCurrent(action)) return;
@@ -128,14 +125,6 @@ export function AccountProfilePage() {
     }
   }
 
-  const goalLevel = draft.target.startsWith('icao5') ? 'icao5' : 'icao4';
-  const goalType = draft.target.endsWith('recert') ? 'recert' : 'first';
-  function chooseGoal(level: string, type: string) {
-    const goal = EXAM_GOALS.find(item => item.id === `${level}-${type}`);
-    if (!goal) return;
-    edited.current.add('target');
-    setDraft(current => ({ ...current, target: goal.id }));
-  }
 
   return (
     <Screen contentStyle={styles.screen} keyboard header={<TopBar title="个人资料" />}>
@@ -143,10 +132,6 @@ export function AccountProfilePage() {
         <DetailGroup title="基本资料">
           <DetailRow label="头像" disabled={saving || picking} onPress={() => void chooseAvatar()}><ProfileAvatar size={48} uri={draft.avatarUri} /></DetailRow>
           <DetailRow label="昵称" last disabled={saving || picking} onPress={() => { setNameInput(draft.displayName); setEditing('name'); }}>{draft.displayName}</DetailRow>
-        </DetailGroup>
-        <DetailGroup title="备考目标">
-          <View><GuideAnchor id="setup-level" /><DetailRow label="目标等级" disabled={saving || picking} onPress={() => setEditing('level')}>{goalLevel === 'icao4' ? 'ICAO 4' : 'ICAO 5'}</DetailRow></View>
-          <View><GuideAnchor id="setup-type" /><DetailRow label="考试类型" last disabled={saving || picking} onPress={() => setEditing('type')}>{goalType === 'first' ? '初考' : '复考'}</DetailRow></View>
         </DetailGroup>
         <DetailGroup title="会员与账号">
           <DetailRow label="会员"><MembershipStatus /></DetailRow>
@@ -157,10 +142,12 @@ export function AccountProfilePage() {
         {error ? <AppText accessibilityRole="alert" color={colors.destructive} variant="caption">{error}</AppText> : null}
       </GuideScrollView>
       <View style={[styles.dock, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}><GuideAnchor id="setup-save" /><Button disabled={(!dirty && guide?.step !== 'setup-save') || saving || picking} loading={saving} onPress={() => void save()} size="lg">保存修改</Button></View>
-      <BottomSheet visible={!!editing} onClose={() => setEditing(undefined)} accessibilityLabel={editing === 'name' ? '修改昵称' : editing === 'level' ? '目标等级' : '考试类型'}>
+      <BottomSheet visible={!!editing} onClose={() => setEditing(undefined)} accessibilityLabel="修改昵称">
         <View style={styles.editor}>
-          <AppText variant="sectionTitle">{editing === 'name' ? '修改昵称' : editing === 'level' ? '目标等级' : '考试类型'}</AppText>
-          {editing === 'name' ? <><TextInput accessibilityLabel="编辑昵称" maxLength={48} style={styles.nickname} value={nameInput} onChangeText={setNameInput} /><AppText variant="caption">1–24 个字符</AppText><Button disabled={!nameInput.trim() || Array.from(nameInput.trim()).length > 24} onPress={() => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName: nameInput.trim() })); setError(''); setEditing(undefined); }}>完成</Button></> : (editing === 'level' ? ['icao4', 'icao5'] : ['first', 'recert']).map(value => <Pressable key={value} accessibilityRole="radio" accessibilityLabel={value === 'icao4' ? 'ICAO 4' : value === 'icao5' ? 'ICAO 5' : value === 'first' ? '初考' : '复考'} accessibilityState={{ checked: value === (editing === 'level' ? goalLevel : goalType) }} style={styles.option} onPress={() => { if (editing === 'level') { chooseGoal(value, goalType); guide?.event('setup-level'); } else { chooseGoal(goalLevel, value); guide?.event('setup-type'); } setEditing(undefined); }}><AppText color={value === (editing === 'level' ? goalLevel : goalType) ? colors.primary : colors.foreground}>{({ icao4: 'ICAO 4', icao5: 'ICAO 5', first: '初考', recert: '复考' })[value as 'icao4' | 'icao5' | 'first' | 'recert']}</AppText></Pressable>)}
+          <AppText variant="sectionTitle">修改昵称</AppText>
+          <TextInput accessibilityLabel="编辑昵称" maxLength={48} style={styles.nickname} value={nameInput} onChangeText={setNameInput} />
+          <AppText variant="caption">1–24 个字符</AppText>
+          <Button disabled={!nameInput.trim() || Array.from(nameInput.trim()).length > 24} onPress={() => { edited.current.add('displayName'); setDraft(current => ({ ...current, displayName: nameInput.trim() })); setError(''); setEditing(undefined); }}>完成</Button>
         </View>
       </BottomSheet>
     </Screen>
@@ -171,5 +158,4 @@ const styles = StyleSheet.create({
   dock: { borderTopWidth: 1, borderTopColor: colors.border, paddingHorizontal: spacing[5], paddingTop: spacing[4], backgroundColor: colors.background },
   editor: { gap: spacing[4] }, accountId: { textAlign: 'right' },
   nickname: { borderColor: colors.input, borderWidth: 1, borderRadius: radii.md, padding: spacing[3], color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 16 },
-  option: { minHeight: 48, paddingVertical: spacing[3], borderBottomWidth: 1, borderBottomColor: colors.border },
 });

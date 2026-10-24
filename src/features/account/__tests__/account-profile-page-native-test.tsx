@@ -112,18 +112,11 @@ it.each(['blur', 'account', 'unmount'])('does not navigate when saving completes
   expect(mockBack).not.toHaveBeenCalled(); expect(mockReplace).not.toHaveBeenCalled();
 });
 
-it.each([
-  {level: 'ICAO 4', type: '复考', target: 'icao4-recert'},
-  {level: 'ICAO 5', type: '初考', target: 'icao5-first'},
-  {level: 'ICAO 5', type: '复考', target: 'icao5-recert'},
-])('saves the existing target identity $target from the two selectors', async ({level, type, target}) => {
+it('keeps the profile editor focused on identity without duplicate exam selectors', async () => {
   const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('目标等级'));
-  await fireEvent.press(screen.getByRole('radio', {name:level}));
-  await fireEvent.press(screen.getByLabelText('考试类型'));
-  await fireEvent.press(screen.getByRole('radio', {name:type}));
-  await fireEvent.press(screen.getByText('保存修改'));
-  expect(updateProfile).toHaveBeenCalledWith({target});
+  expect(screen.queryByText('备考目标')).toBeNull();
+  expect(screen.queryByLabelText('目标等级')).toBeNull();
+  expect(screen.queryByLabelText('考试类型')).toBeNull();
 });
 
 it('does not save a stale goal when cloud profile arrives during nickname editing', async () => {
@@ -145,19 +138,7 @@ it('refreshes untouched fields while retaining the edited nickname', async () =>
   mockProfile = { displayName: '云端昵称', target: 'icao5-first', avatarUri: jpeg };
   await screen.rerender(<AccountProfilePage />);
   expect(screen.getByText('新的昵称')).toBeTruthy();
-  expect(screen.getByText('ICAO 5')).toBeTruthy();
   expect(screen.getByTestId('avatar').props.children).toBe(jpeg);
   await fireEvent.press(screen.getByText('保存修改'));
   expect(updateProfile).toHaveBeenCalledWith({ displayName: '新的昵称' });
-});
-
-it('saves only the chosen goal when unrelated cloud fields change', async () => {
-  const screen = await render(<AccountProfilePage />);
-  await fireEvent.press(screen.getByLabelText('目标等级'));
-  await fireEvent.press(screen.getByRole('radio', {name:'ICAO 5'}));
-  mockProfile = { displayName: '云端昵称', target: 'icao4-first', avatarUri: jpeg };
-  await screen.rerender(<AccountProfilePage />);
-  expect(screen.getByText('云端昵称')).toBeTruthy();
-  await fireEvent.press(screen.getByText('保存修改'));
-  expect(updateProfile).toHaveBeenCalledWith({ target: 'icao5-first' });
 });

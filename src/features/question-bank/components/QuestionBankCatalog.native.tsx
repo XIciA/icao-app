@@ -128,13 +128,15 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
               <Card key={category.id} style={[styles.category, isExpanded ? styles.categoryExpanded : null]}>
                 <Pressable
                   accessibilityRole="button"
+                  accessibilityLabel={`${category.name}，${singleTopic ? '打开' : isExpanded ? '收起' : '展开'}`}
+                  accessibilityState={singleTopic ? undefined : { expanded: isExpanded }}
                   onPress={() => singleTopic ? openTopic(category, singleTopic) : setExpanded(isExpanded ? undefined : category.id)}
                   style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}
                 >
-                  <View style={[styles.categoryIcon, airline ? styles.airlineIcon : isExpanded ? styles.categoryIconExpanded : null]}>
+                  <View testID={`catalog-icon-${category.id}`} style={[styles.categoryIcon, airline && styles.airlineIcon]}>
                     {airline ? <AirlineMark code={category.name}/> : singleTopic && isLocked(singleTopic)
                       ? <Shield color={colors.primary} size={19} />
-                      : <Icon color={isExpanded ? colors.primaryForeground : colors.primary} size={20} />}
+                      : <Icon color={colors.primary} size={20} />}
                   </View>
                   <View style={styles.categoryCopy}>
                     <AppText variant="cardTitle">{category.name}</AppText>
@@ -151,9 +153,10 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
                       {progressReady ? `${categoryLearned}/${category.declaredCardCount}` : '进度待读取'}
                     </AppText>
                   </View>
-                  {singleTopic
-                    ? <ChevronRight color={colors.mutedForeground} size={20} />
-                    : <ChevronDown color={colors.mutedForeground} size={20} style={isExpanded ? styles.rotated : undefined} />}
+                  {/* Rotate a stable layout view, never the SVG itself. Explicitly reset after collapse. */}
+                  <View testID={`catalog-disclosure-${category.id}`} pointerEvents="none" style={[styles.disclosure, !singleTopic && isExpanded ? styles.rotated : styles.unrotated]}>
+                    {singleTopic ? <ChevronRight color={colors.mutedForeground} size={20} /> : <ChevronDown color={colors.mutedForeground} size={20} />}
+                  </View>
                 </Pressable>
                 {isExpanded ? (
                   <View style={styles.topicList}>
@@ -216,12 +219,13 @@ const styles = StyleSheet.create({
   categoryHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 74, padding: spacing[4] },
   categoryIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 40, justifyContent: 'center', width: 40 },
   airlineIcon: { borderRadius: radii.full },
-  categoryIconExpanded: { backgroundColor: colors.primary },
   categoryCopy: { flex: 1, minWidth: 0 },
   accessPill: { backgroundColor: colors.primary10, borderRadius: radii.full, paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
   countPill: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, flexDirection: 'row', gap: 3, paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
   countText: { fontFamily: fonts.monoRegular },
+  disclosure: { height: 20, width: 20, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   rotated: { transform: [{ rotate: '180deg' }] },
+  unrotated: { transform: [{ rotate: '0deg' }] },
   topicList: { borderTopColor: colors.border, borderTopWidth: 1 },
   topic: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 62, paddingHorizontal: spacing[4], paddingVertical: spacing[3] },
   topicNumber: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, height: 25, justifyContent: 'center', width: 25 },
