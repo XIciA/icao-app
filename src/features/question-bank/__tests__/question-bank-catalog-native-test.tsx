@@ -4,6 +4,7 @@ import type { QuestionBankDataset } from '../types';
 import { QuestionBankCatalog } from '../components/QuestionBankCatalog.native';
 
 const mockPush = jest.fn();
+jest.mock('../export/SentenceExportScreen',()=>({SentenceExportScreen:({onBack}:{onBack:()=>void})=>{const {Button}=jest.requireActual('react-native');return <Button title="关闭测试导出" onPress={onBack}/>;}}));
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ back: jest.fn(), push: mockPush, replace: jest.fn() }),
@@ -69,4 +70,14 @@ describe('<QuestionBankCatalog /> Native content access', () => {
     await fireEvent.press(screen.getByText('会员话题'));
     expect(mockPush).toHaveBeenCalledWith('/account/membership?from=learning');
   });
+});
+
+it('pauses automatic export teaching when returning to the catalog without a route change',async()=>{
+ const {GuideBindingContext}=jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
+ const pause=jest.fn();
+ const guide={current:'export',event:jest.fn(),availability:jest.fn(),register:jest.fn(),modal:jest.fn(),surface:()=>null,offer:jest.fn(),exit:jest.fn(),start:jest.fn(async()=>undefined),suspend:jest.fn(),pause,checkpoint:jest.fn()};
+ const screen=await render(<GuideBindingContext.Provider value={guide}><QuestionBankCatalog dataset={{...dataset,id:'sentences900'}}/></GuideBindingContext.Provider>);
+ await fireEvent.press(screen.getByLabelText('导出900句 PDF'));
+ await fireEvent.press(screen.getByText('关闭测试导出'));expect(pause).toHaveBeenCalledTimes(1);
+ expect(screen.getByLabelText('导出900句 PDF')).toBeTruthy();
 });

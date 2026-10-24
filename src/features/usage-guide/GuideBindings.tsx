@@ -20,6 +20,8 @@ export type GuideBinding = {
   start: (id: string, restart?: boolean) => Promise<void>;
   current?: string;
   ready?: boolean;
+  testingResetAvailable?: boolean;
+  resetForTesting?: () => Promise<boolean>;
   retry?: () => void;
   error?: string;
   step?: string;
