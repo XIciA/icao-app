@@ -34,7 +34,7 @@ iOS 开发包使用 `com.readyoufife.ios.dev`，正式包使用 `com.readyoufife
 | Web 源码检查 | `pnpm check:web:source` | 检查图标导入边界与宣传资源 |
 
 EdgeOne 的公开环境变量与部署配置见[上线参考](../operations/edgeone-three-client-web-rollout.md)。
-旧 `web:export`、`web:deploy:export` 和 `check:web` 保留在 scripts 中，不作为当前 EdgeOne 的默认入口。
+旧 `web:export` 和 `check:web` 保留在 scripts 中，不作为当前 EdgeOne 的默认入口。Vercel 专用 `web:deploy:export` 已于 2026-10-24 退役。
 宣传站使用 `public/promo/` 与独立 Nginx，见[宣传站说明](../../../infra/promo/README.md)。
 
 ## 定向检查与内容工具

@@ -51,3 +51,30 @@ test('formal web includes navigation and invalid-content recovery without changi
     assert.equal(edgeOneSharedModule(root, resolution, 'web', 'vercel-legacy'), resolution);
   }
 });
+
+test('Metro defaults ordinary web builds to formal auth and shared app routes', () => {
+  const vm = require('node:vm');
+  const source = fs.readFileSync(path.join(root, 'metro.config.js'), 'utf8');
+  for (const value of [undefined, '', 'unknown', 'edgeone-production', 'vercel-legacy']) {
+    const sandbox = {
+      __dirname: root,
+      module: { exports: {} },
+      process: { env: { EXPO_PUBLIC_ICAO_WEB_RUNTIME: value } },
+      require(name) {
+        if (name === 'expo/metro-config') return { getDefaultConfig: () => ({ resolver: { assetExts: [] } }) };
+        if (name === './tools/edgeone-shared-modules.cjs') return { edgeOneSharedModule };
+        throw new Error(`Unexpected Metro dependency: ${name}`);
+      },
+    };
+    vm.runInNewContext(source, sandbox, { filename: 'metro.config.js' });
+    const { resolveRequest } = sandbox.module.exports.resolver;
+    for (const file of ['src/features/auth/AuthProvider.web.tsx', 'src/app/_layout.tsx']) {
+      const resolution = { type: 'sourceFile', filePath: path.join(root, file) };
+      const context = { resolveRequest: () => resolution };
+      const expected = value === 'vercel-legacy' ? file : sharedModules[file];
+      assert.equal(resolveRequest(context, './module', 'web').filePath, path.join(root, expected));
+      assert.equal(resolveRequest(context, './module', 'ios'), resolution);
+      assert.equal(resolveRequest(context, './module', 'android'), resolution);
+    }
+  }
+});

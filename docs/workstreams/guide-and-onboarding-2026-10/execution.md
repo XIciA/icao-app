@@ -68,3 +68,11 @@ API 与产品 Web 已部署；账号注册时间字段和真实 AI 链路验证�
 - GitHub CI 冻结门禁失败，不能合并发布。已定位共享静态导入扩大旧 Vercel 依赖图，运行时条件并不足以隔离。已将 index/profile/AppModal/RadioPlayer 的正式实现原样移入 Native/Browser 入口，通过既有 EdgeOne resolver 精确映射；4 个旧站文件逐字节恢复 `a5bf1741`。此小阶段 TypeScript、4 套 33 项专项和 resolver 4 项检查通过。
 - 冻结门禁仍待处理：5 个指南共享模块的旧站依赖隔离，以及 Native 路由选择与确切内容证明。未更新冻结基线、未放宽哈希批准。详细待办在 `.generated/guest-profile-guide/platform-isolation-continuation.txt`；当前模拟器包先于此平台文件隔离，下一候选需重新打包。
 - 会员账号等待用户自行登录正式身份 App；Dev 中已有登录保持原状。测试账号文件 `.generated/guest-profile-guide/account.json` 为 0600，不纳入 Git。恢复任务前先看上述证据，不重复创建账号或清理用户数据。
+
+### 2026-10-24 发布范围更新
+
+用户明确将三端实际体验验收交由本人完成，要求代码检查后交付 TestFlight、Android 独立测试 APK 和 https://readyoufife.com（EdgeOne）。不提交 App Store 正式审核、不替换 Android 正式渠道，不部署后端或数据库。候选保持 1.3.5 / 3582074，高于既有 1.3.4。
+
+用户明确撤销 Vercel 冻结长期约束：同步规则、删除冻结检查与旧部署入口；撤销上一轮为旧站专门复制的四个实现及 resolver 映射。普通 Web 默认选择现行 EdgeOne 产品逻辑；保留尚被共享代码引用的历史实现和显式兼容测试，不再作为交付端。
+
+真实三端全流程验收标记待用户完成，旧测试记录不升级为本轮用户验收证据。本轮继续执行锁定依赖下的完整代码检查、干净 main 构建、制品签名与渠道可用性核验。

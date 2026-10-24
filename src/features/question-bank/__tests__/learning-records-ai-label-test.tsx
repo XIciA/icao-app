@@ -1,4 +1,16 @@
-// Frozen Vercel/legacy history coverage; current Native has one session list.
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
+
+// Historical Vercel/legacy history coverage; current Native has one session list.
 jest.mock('../components/LearningRecordsScreen', () => jest.requireActual('../components/LearningRecordsScreen.tsx'));
 jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
 jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));

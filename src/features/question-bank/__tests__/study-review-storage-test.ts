@@ -1,4 +1,16 @@
-// This suite verifies the frozen Vercel implementation, independent of Jest's iOS resolver.
+// Exercise the historical implementation explicitly, independently of the formal Web default.
+jest.mock('@/config/web-runtime', () => {
+  const previous = process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+  process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = 'vercel-legacy';
+  try {
+    return jest.requireActual('@/config/web-runtime');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_RUNTIME = previous;
+  }
+});
+
+// This suite verifies the historical Vercel implementation, independent of Jest's iOS resolver.
 jest.mock('../lib/study-review', () => jest.requireActual('../lib/study-review.ts'));
 jest.mock('../platform/learning-record-storage', () => jest.requireActual('../platform/learning-record-storage.ts'));
 import { Platform } from 'react-native';

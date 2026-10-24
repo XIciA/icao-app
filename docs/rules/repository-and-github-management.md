@@ -9,7 +9,7 @@
 ## 1. 唯一主干
 
 - `main` 是唯一长期分支、唯一持续开发基线和唯一正式代码事实来源。
-- iOS、Android、EdgeOne Web、Vercel Web、ECS API、数据库迁移、内容和热修均不得建立长期
+- iOS、Android、EdgeOne Web、ECS API、数据库迁移、内容和热修均不得建立长期
   平台分支、发布分支或第二主线。
 - 所有任务从最新 `origin/main` 开始，并在任务完成前回到 `main`。
 - 正式代码不得只存在于本机、额外 worktree、未推送提交或未合并分支。
@@ -50,7 +50,7 @@ origin/main → codex/<任务名> → 实现与验证 → PR → main → 删除
 
 - TestFlight 和 App Store；
 - Android 正式签名制品；
-- EdgeOne Production 与冻结的 Vercel 旧站；
+- EdgeOne Production；
 - ECS API 生产镜像；
 - 数据库迁移；
 - 对外发布的正式题库、内容和资源。
@@ -59,8 +59,7 @@ origin/main → codex/<任务名> → 实现与验证 → PR → main → 删除
 number 的准备属于源码改动，必须先在临时分支提交并合入 `main`，不得在构建过程中临时修改
 源码后直接发布。回滚只能使用已经验证的不可变产物或 annotated release tag。
 
-生产部署和数据库迁移仍需用户明确授权；进入 `main` 不自动授权线上动作。Vercel 项目继续
-默认冻结，不因 `main` 更新自动构建或部署。
+生产部署和数据库迁移仍需用户明确授权；进入 `main` 不自动授权线上动作。旧 Vercel 端已退役，不再作为构建、检查或发布目标。
 
 ## 5. 版本标签与发布记录
 
@@ -71,7 +70,6 @@ release/ios-testflight/v<版本>-b<构建号>
 release/ios-app-store/v<版本>-b<构建号>
 release/android/v<版本>-b<构建号>
 release/web-edgeone/<日期>-<短SHA>
-release/web-vercel-legacy/<日期>-<短SHA>
 release/api-production/<日期>-<短SHA>
 ```
 

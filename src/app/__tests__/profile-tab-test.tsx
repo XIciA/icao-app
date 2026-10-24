@@ -4,7 +4,7 @@ import { readLearningProgressStats } from '@/features/question-bank/platform/lea
 import { useAuth } from '@/features/auth/AuthProvider';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 
-import ProfileRoute from '../(tabs)/profile.native';
+import ProfileRoute from '../(tabs)/profile';
 import { SafeAreaInsetsContext, SafeAreaFrameContext } from 'react-native-safe-area-context';
 import { CommerceRuntimeContext } from '@/features/native-commercial-testflight/commerce-runtime-context.native';
 import type { CommerceRuntimeValue } from '@/features/native-commercial-testflight/commerce-runtime-types';

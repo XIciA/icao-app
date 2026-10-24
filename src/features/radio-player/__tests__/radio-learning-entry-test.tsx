@@ -2,7 +2,7 @@ import { GuideBindingContext } from '@/features/usage-guide/GuideBindings';
 import { fireEvent, render, within } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { RadioPlayerScreen } from '@/features/content/RadioPlayerScreen.native';
+import { RadioPlayerScreen } from '@/features/content/RadioPlayerScreen';
 
 const mockPause = jest.fn();
 const mockPush = jest.fn();

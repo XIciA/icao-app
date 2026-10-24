@@ -3,7 +3,7 @@ import { Platform, Text } from 'react-native';
 
 import { AppStack } from '@/app/_layout';
 import { AppStack as NativeAppStack } from '@/app/_layout.native';
-import IndexRoute from '@/app/index.native';
+import IndexRoute from '@/app/index';
 
 jest.mock('@/features/app-updates/AppUpdatePrompt', () => ({ AppUpdatePrompt: () => null }));
 const mockStackOptions = jest.fn();
