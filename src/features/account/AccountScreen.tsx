@@ -47,7 +47,7 @@ function AccountContent() {
 }
 
 function Page({ title, children, scroll = true }: { title: string; children: React.ReactNode; scroll?: boolean }) {
-  return <Screen contentStyle={styles.screen} scroll={scroll}><TopBar title={title} />{children}</Screen>;
+  return <Screen contentStyle={styles.screen} scroll={scroll} header={<TopBar title={title} />}>{children}</Screen>;
 }
 
 function SettingsPage() {

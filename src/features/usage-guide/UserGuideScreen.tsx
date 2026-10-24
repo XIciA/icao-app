@@ -43,8 +43,7 @@ export function UserGuideScreen() {
     finally { if (isCurrent()) setExporting(false); }
   }
   if (exportDataset?.accountId === accountId && exportDataset) return <Suspense fallback={<GlobalLoadingScreen />}><SentenceExportScreen dataset={exportDataset.dataset} onBack={() => { setExportDataset(undefined); guide?.pause(); }} /></Suspense>;
-  return <Screen scroll contentStyle={styles.screen}>
-    <TopBar title="使用指南" />
+  return <Screen scroll contentStyle={styles.screen} header={<TopBar title="使用指南" />}>
     {guide?.error ? <View><AppText color={colors.destructive} variant="caption">{guide.error}</AppText>{guide.ready === false ? <Button variant="ghost" onPress={guide.retry}>重试读取进度</Button> : null}</View> : null}
     {GUIDE_ENTRIES.map(({ id, title, description }) => {
       const Icon = GUIDE_ICONS[id];

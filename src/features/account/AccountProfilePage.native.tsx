@@ -138,8 +138,7 @@ export function AccountProfilePage() {
   }
 
   return (
-    <Screen contentStyle={styles.screen} keyboard>
-      <TopBar title="个人资料" />
+    <Screen contentStyle={styles.screen} keyboard header={<TopBar title="个人资料" />}>
       <GuideScrollView contentContainerStyle={styles.form} keyboardShouldPersistTaps="handled">
         <DetailGroup title="基本资料">
           <DetailRow label="头像" disabled={saving || picking} onPress={() => void chooseAvatar()}><ProfileAvatar size={48} uri={draft.avatarUri} /></DetailRow>

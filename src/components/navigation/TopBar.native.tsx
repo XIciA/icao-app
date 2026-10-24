@@ -42,7 +42,7 @@ export function TopBar({ title, onBack, close = false, right }: Props) {
 const styles = StyleSheet.create({
   bar: {
     alignItems: 'center',
-    backgroundColor: colors.background72,
+    backgroundColor: colors.background,
     borderBottomColor: colors.border,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
   iconButton: {
     alignItems: 'center',
     borderRadius: radii.full,
-    height: 40,
+    height: 44,
     justifyContent: 'center',
-    width: 40,
+    width: 44,
   },
   pressed: { backgroundColor: colors.secondary, transform: [{ scale: 0.95 }] },
-  title: { flex: 1, fontSize: 16, textAlign: 'center' },
-  action: { alignItems: 'center', justifyContent: 'center', minHeight: 40, width: 40 },
+  title: { flex: 1, textAlign: 'center' },
+  action: { alignItems: 'center', justifyContent: 'center', minHeight: 44, width: 40 },
 });

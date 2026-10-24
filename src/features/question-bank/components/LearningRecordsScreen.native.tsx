@@ -112,8 +112,7 @@ function LearningRecordsContent() {
   </NativeScreenBoundary>;
 
   const busy = Boolean(openingId || deletingId);
-  return <Screen contentStyle={styles.screen}>
-    <TopBar title="学习记录" />
+  return <Screen contentStyle={styles.screen} header={<TopBar title="学习记录" />}>
     <FlatList
       ref={listRef}
       onScroll={event => { scrollOffset.current = event.nativeEvent.contentOffset.y; }}

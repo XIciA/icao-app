@@ -17,6 +17,7 @@ import { VocabularyProgress } from './VocabularyProgress';
 export type VocabularySessionSummary = Record<'known' | 'vague' | 'forgot' | 'wrong', number>;
 
 export function VocabularyStudyView({
+  busy = false,
   words,
   index,
   revealed,
@@ -27,6 +28,7 @@ export function VocabularyStudyView({
   onNext,
   onToggleFavorite,
 }: {
+  busy?: boolean;
   words: VocabularyWord[];
   index: number;
   revealed: boolean;
@@ -56,9 +58,9 @@ export function VocabularyStudyView({
   return (
     <Screen contentStyle={styles.zero}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel="返回上一页" hitSlop={8} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
+        <Pressable accessibilityLabel="返回上一页" hitSlop={8} disabled={busy} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
         <AppText variant="button">{index + 1} / {words.length}</AppText>
-        <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
+        <Pressable disabled={busy} accessibilityState={{ busy }} accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { if (guide?.current === 'vocab' && favorite) guide.event('vocab-favorite'); else void onToggleFavorite(); }} style={styles.iconButton}>
           <GuideAnchor id="vocab-favorite" /><Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>
       </View>
@@ -83,15 +85,15 @@ export function VocabularyStudyView({
       </ScrollView>
       <View style={[styles.actions, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         {revealed ? (
-          <View style={styles.actionRow}>
-            <Button onPress={() => { void onWrong(); }} size="lg" style={styles.flexButton} variant="outline">记错了</Button>
-            <Button onPress={onNext} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
+          <View key={`${word.id}:revealed`} style={styles.actionRow}>
+            <Button disabled={busy} onPress={() => { void onWrong(); }} size="lg" style={styles.flexButton} variant="outline">记错了</Button>
+            <Button disabled={busy} onPress={onNext} size="lg" style={styles.flexButton}>{index === words.length - 1 ? '完成本轮' : '下一词'}</Button>
           </View>
         ) : (
-          <View style={styles.actionRow}><GuideAnchor id="vocab-rating" />
-            <Button onPress={() => choose('forgot')} size="lg" style={styles.flexButton} variant="outline">忘记</Button>
-            <Button onPress={() => choose('vague')} size="lg" style={styles.flexButton} variant="secondary">模糊</Button>
-            <Button onPress={() => choose('known')} size="lg" style={styles.flexButton}>认识</Button>
+          <View key={`${word.id}:rating`} style={styles.actionRow}><GuideAnchor id="vocab-rating" />
+            <Button disabled={busy} onPress={() => choose('forgot')} size="lg" style={styles.flexButton} variant="outline">忘记</Button>
+            <Button disabled={busy} onPress={() => choose('vague')} size="lg" style={styles.flexButton} variant="secondary">模糊</Button>
+            <Button disabled={busy} onPress={() => choose('known')} size="lg" style={styles.flexButton}>认识</Button>
           </View>
         )}
       </View>
@@ -120,8 +122,7 @@ export function VocabularyCompletionView({
 }) {
   const needsReview = summary.vague + summary.forgot + summary.wrong;
   return (
-    <Screen scroll contentStyle={styles.zero}>
-      <TopBar title="本轮完成" onBack={onBack} />
+    <Screen scroll contentStyle={styles.zero} header={<TopBar title="本轮完成" onBack={onBack} />}>
       <View style={styles.completionPage}>
         <View style={styles.completionHero}><CheckCircle2 color={colors.primary} size={36} /></View>
         <View style={styles.completionHeading}><AppText variant="pageTitle">完成 {total} 词</AppText><AppText style={styles.center}>学习状态已经保存。优先回看不稳定词汇，效果会更好。</AppText></View>

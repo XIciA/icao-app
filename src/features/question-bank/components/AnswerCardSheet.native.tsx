@@ -17,7 +17,7 @@ export function AnswerCardSheet(props: Props) {
   const learned = Array.from(marked).filter(index => index >= 0 && index < total).length;
   return <BottomSheet accessibilityLabel="答题卡" visible={visible} onClose={onClose}>
     <View style={styles.header}><AppText variant="sectionTitle">答题卡</AppText><Pressable accessibilityLabel="关闭答题卡" onPress={onClose} style={styles.close}><X size={20} color={colors.foreground} /></Pressable></View>
-    <View style={styles.stats}><AppText variant="caption">共 {total} 题</AppText><AppText variant="caption">已学习 {learned}</AppText><AppText variant="caption">未学习 {total - learned}</AppText></View>
+    <View style={styles.stats}><AppText variant="body">共 {total} 题</AppText><AppText variant="body">已学习 {learned}</AppText><AppText variant="body">未学习 {total - learned}</AppText></View>
     <View style={styles.legend}><Legend label="当前" current /><Legend label="已学习" learned /><Legend label="未学习" /></View>
     <View style={styles.grid}>{Array.from({ length: total }, (_, index) => {
       const studied = marked.has(index), selected = current === index;
@@ -31,11 +31,11 @@ export function AnswerCardSheet(props: Props) {
   </BottomSheet>;
 }
 function Legend({ label, current, learned }: { label: string; current?: boolean; learned?: boolean }) {
-  return <View style={styles.legendItem}><View style={[styles.legendDot, learned && styles.learned, current && styles.current]} /><AppText variant="micro">{label}</AppText></View>;
+  return <View style={styles.legendItem}><View style={[styles.legendDot, learned && styles.learned, current && styles.current]} /><AppText variant="body">{label}</AppText></View>;
 }
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, close: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-  stats: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: spacing[3] }, legend: { flexDirection: 'row', gap: spacing[4], flexWrap: 'wrap', marginBottom: spacing[3] }, legendItem: { flexDirection: 'row', alignItems: 'center', gap: spacing[1] }, legendDot: { width: 10, height: 10, borderRadius: radii.full, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.background },
+  stats: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2], justifyContent: 'space-between', marginVertical: spacing[3] }, legend: { flexDirection: 'row', gap: spacing[4], flexWrap: 'wrap', marginBottom: spacing[3] }, legendItem: { flexDirection: 'row', alignItems: 'center', gap: spacing[1] }, legendDot: { width: 10, height: 10, borderRadius: radii.full, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.background },
   grid: { flexDirection: 'row', flexWrap: 'wrap', width: '100%', maxWidth: 368, alignSelf: 'center', paddingVertical: spacing[2] }, cell: { width: '20%', alignItems: 'center', paddingVertical: spacing[3] },
   number: { width: 48, height: 48, borderRadius: radii.full, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.background, alignItems: 'center', justifyContent: 'center' }, learned: { backgroundColor: colors.primary10, borderColor: colors.primary10 }, current: { borderWidth: 2, borderColor: colors.primary }, numberText: { fontFamily: fonts.monoRegular, textAlign: 'center' },
   tags: { position: 'absolute', right: -2, top: -3, flexDirection: 'row' }, dot: { height: 13, width: 13, borderRadius: radii.full, borderWidth: 2, borderColor: colors.card }, dotOverlap: { marginLeft: -5 },

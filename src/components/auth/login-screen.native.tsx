@@ -558,8 +558,7 @@ function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
       <TextLink label="查看隐私政策" onPress={() => setOpenDocument('privacy')} />
     </View>
     {openDocument ? <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible>
-      <Screen contentStyle={{ paddingHorizontal: 0 }} scroll>
-        <TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />
+      <Screen contentStyle={{ paddingHorizontal: 0 }} scroll header={<TopBar onBack={() => setOpenDocument(undefined)} title={documents[openDocument].title} />}>
         <LegalDocumentBody document={documents[openDocument]} />
       </Screen>
     </AppModal> : null}

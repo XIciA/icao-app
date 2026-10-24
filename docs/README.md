@@ -10,6 +10,7 @@
 | 文档 | 约束范围 |
 | --- | --- |
 | [项目长期边界](rules/project-boundaries.md) | 技术栈、职责唯一来源、权限、维护范围与版本更新 |
+| [工程维护要求](rules/engineering-maintenance.md) | 根因修复、完整流程、兼容性与长任务接续 |
 | [UI 风格规范](rules/ui-style-guide.md) | 品牌视觉、组件气质与核心交互 |
 | [仓库管理规则](rules/repository-and-github-management.md) | 单主干、提交、发布来源与清理 |
 | [交付与验收规则](rules/delivery-and-acceptance.md) | 最终环境、必要检查与验收状态 |

@@ -21,10 +21,10 @@ import {
   useState,
 } from 'react';
 import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/icons';
-import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Keyboard, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
-import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
 import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording, transcribeAndReviewRecording, lookupAiOperation } from '@/features/ai/ai-client.native';
@@ -141,6 +141,7 @@ type Props = {
   onNoteChange: (text: string) => void | Promise<boolean>;
   onRetrySave: () => void;
   onFeedback: () => void;
+  onNoteCompleted?: () => void;
   onBeforeAiOperation?: () => Promise<void>;
 };
 
@@ -150,6 +151,7 @@ export type StudyWorkbenchHandle = {
 
 export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function StudyWorkbench(props, ref) {
   const router = useRouter();
+  const guide = useGuide();
   const pathname = usePathname();
   const {
     activeTab,
@@ -569,11 +571,14 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const editing = Boolean(editableTab && editingTab === editableTab);
   const editAccessibilityLabel = editing ? `完成${title}` : `编辑${title}`;
 
-  function finishEditing() {
+  function finishEditing(completeNote = false) {
     answerInputRef.current?.blur();
     noteInputRef.current?.blur();
     Keyboard.dismiss();
     onEditingTabChange(undefined);
+    if (completeNote && activeTab === 'notes' && noteDraft.text.trim()) {
+      void Promise.resolve(onNoteChange(noteDraft.text)).then(saved => { if (saved !== false && currentCardKey.current === cardKey) props.onNoteCompleted?.(); });
+    }
     if (activeTab === 'mine') void persistCurrent();
   }
 
@@ -597,6 +602,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }
 
   const aiBusy = Boolean(busy);
+  useGuideAvailability('study', guide?.step !== 'study-review' ? undefined : busy ? 'AI 正在处理，请稍候。可取消当前操作，或暂不评分继续教学。' : error ? 'AI 暂未完成，请在页面重试，或暂不评分继续教学。已有内容会保留。' : undefined);
   const waitingText = busy === 'transcribe' ? '正在转写…' : !answerText.trim() && recordingUri ? '正在转写并分析…' : '正在分析回答…';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
@@ -627,7 +633,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               accessibilityState={{ disabled: editDisabled }}
               disabled={editDisabled}
               hitSlop={4}
-              onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)}
+              onPress={() => editing ? finishEditing(true) : onEditingTabChange(editableTab)}
               style={({ pressed }) => [styles.editAction, pressed && !editDisabled ? styles.pressed : null, editDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
@@ -643,7 +649,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              {!reviewDisabled ? <GuideAnchor id="sentence-review" /> : null}<AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+              <GuideAnchor id="sentence-review" /><AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
             </Pressable> : null}
           </View> : null}
         </View>
@@ -665,7 +671,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
               {visibleRawTranscript ? <View><AppText variant="button">本次转写</AppText><AppText testID="study-workbench-raw-transcript">{visibleRawTranscript}</AppText></View> : null}
               {visibleAnalyzedTranscript ? <View><AppText variant="button">分析时的回答</AppText><AppText testID="study-workbench-analyzed-transcript">{visibleAnalyzedTranscript}</AppText></View> : null}
-              {busy === 'review' ? <AppText color={colors.mutedForeground}>{waitingText}</AppText> : reviewError ? <>
+              {busy === 'review' ? <View accessibilityLiveRegion="polite"><ActivityIndicator color={colors.primary}/><AppText color={colors.mutedForeground}>{waitingText}</AppText></View> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
                 <View style={styles.aiErrorButtons}>
                   {failureRetryable ? <Pressable accessibilityLabel="重试 AI评分" accessibilityRole="button" onPress={() => { trackProductClick('analysis'); void reviewAnswer(); }} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable> : null}

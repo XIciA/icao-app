@@ -19,8 +19,7 @@ export function AboutPage() {
     catch { setError('暂时无法打开备案查询，请稍后重试。'); }
   }
   return (
-    <Screen scroll>
-      <TopBar title="关于听你五个" onBack={() => router.canGoBack() ? router.back() : router.replace('/account/settings')} />
+    <Screen scroll header={<TopBar title="关于听你五个" onBack={() => router.canGoBack() ? router.back() : router.replace('/account/settings')} />}>
       <View style={styles.content}>
         <View style={styles.brand}>
           <AppBrandLogo size="lg" />

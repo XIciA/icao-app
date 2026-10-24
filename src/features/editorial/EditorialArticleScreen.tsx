@@ -13,13 +13,12 @@ import { useEditorialArticle } from './use-editorial';
 
 export function EditorialArticleScreen({ slug }: { slug: string }) {
   const state = useEditorialArticle(slug);
-  if (state.status === 'loading') return <Screen><TopBar title="资源文章" /><CenteredState description="正在加载文章正文。" title="加载中" /></Screen>;
-  if (state.status === 'empty') return <Screen><TopBar title="资源文章" /><CenteredState description="这篇文章不存在或已撤回。" icon={FileQuestion} title="未找到文章" /></Screen>;
-  if (state.status === 'error') return <Screen><TopBar title="资源文章" /><CenteredState actionLabel="重新加载" description="暂时无法获取文章，请检查网络后重试。" onAction={state.retry} title="文章加载失败" tone="destructive" /></Screen>;
+  if (state.status === 'loading') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="正在加载文章正文。" title="加载中" /></Screen>;
+  if (state.status === 'empty') return <Screen header={<TopBar title="资源文章" />}><CenteredState description="这篇文章不存在或已撤回。" icon={FileQuestion} title="未找到文章" /></Screen>;
+  if (state.status === 'error') return <Screen header={<TopBar title="资源文章" />}><CenteredState actionLabel="重新加载" description="暂时无法获取文章，请检查网络后重试。" onAction={state.retry} title="文章加载失败" tone="destructive" /></Screen>;
   const article = state.value;
   return (
-    <Screen scroll contentStyle={styles.screen}>
-      <TopBar title="资源文章" />
+    <Screen scroll contentStyle={styles.screen} header={<TopBar title="资源文章" />}>
       {state.warning ? (
         <View style={styles.cacheNotice}>
           <WifiOff color={colors.accent} size={16} />

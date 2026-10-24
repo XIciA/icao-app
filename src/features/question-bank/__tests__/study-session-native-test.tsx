@@ -252,3 +252,15 @@ it('exposes cumulative learned indexes without importing earlier answers or addi
   expect(hook.result.current.states[topic.cards[1].id]?.selectedChoiceIndex).toBeUndefined();
   expect(hook.result.current.visitedIndexes).toEqual(new Set([0]));
 });
+
+it('opens the selected item in a complete answer-card package without marking other questions visited', async () => {
+  const persistence=store();
+  const items=topic.cards.map(card=>({id:card.id,dataset,category,topic,card}));
+  const studyPackage:QuestionBankStudyPackage={id:'answer-card-return',startedAt:new Date().toISOString(),progressMode:'persistent',initialItemId:items[2].id,items,record:{bankId:dataset.id,bankTitle:dataset.title,categoryTitle:category.name,topicTitle:topic.name,recordType:'session'}};
+  const hook=await renderHook(()=>useStudySession({studyPackage,store:persistence}));
+  await waitFor(()=>expect(hook.result.current.hydrated).toBe(true));
+  expect(hook.result.current.currentIndex).toBe(2);
+  expect(hook.result.current.items.map(item=>item.id)).toEqual(items.map(item=>item.id));
+  expect(hook.result.current.learnedIndexes.has(0)).toBe(false);
+  expect(hook.result.current.learnedIndexes.has(2)).toBe(true);
+});

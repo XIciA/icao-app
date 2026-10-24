@@ -78,9 +78,8 @@ export function LegalConsentGate({ accountId, status, onStatus, onSignOut }: Pro
 
   if (!visible || !status) return null;
   return <AppModal animationType="fade" presentationStyle="fullScreen" visible onRequestClose={() => { if (!busy && document) setDocument(undefined); }}>
-    <Screen contentStyle={styles.screen} scroll>
+    <Screen contentStyle={styles.screen} scroll header={document ? <TopBar onBack={() => setDocument(undefined)} title={status[document].title} /> : undefined}>
       {document ? <>
-        <TopBar onBack={() => setDocument(undefined)} title={status[document].title} />
         <LegalDocumentBody document={status[document]} />
       </> : <View style={styles.content}>
         <AppText variant="pageTitle">{status.receipt ? '协议已更新' : '确认用户协议'}</AppText>

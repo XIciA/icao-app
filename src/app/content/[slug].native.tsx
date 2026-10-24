@@ -31,8 +31,7 @@ export default function ContentRoute() {
   const slug = Array.isArray(rawSlug) ? rawSlug[0] ?? '' : rawSlug ?? '';
   if (!KNOWN_CONTENT_SLUGS.has(slug)) {
     return (
-      <Screen>
-        <TopBar title="发现" />
+      <Screen header={<TopBar title="发现" />}>
         <CenteredState
           actionLabel="返回发现"
           description="这个功能入口不存在、已更新或暂时不可用。"

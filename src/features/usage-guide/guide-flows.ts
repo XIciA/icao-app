@@ -1,8 +1,7 @@
 import { TUTORIAL_STEPS, studyStepId } from './tutorial-model';
 
 export const GUIDE_ENTRIES = [
-  { id: 'setup', title: '备考设置', description: '设置目标等级与题库范围', route: '/(tabs)/profile' },
-  { id: 'study', title: '题库学习', description: '选择题库，在实际学习中体验功能', route: '/(tabs)' },
+  { id: 'study', title: '题库学习', description: '从陆空通话第一题体验真实学习', route: '/(tabs)' },
   { id: 'vocab', title: '单词学习', description: '选词书、学单词、了解掌握情况', route: '/content/vocab' },
   { id: 'radio', title: '随身听', description: '按自己的节奏，随时听练', route: '/content/radio' },
   { id: 'hotspot', title: 'OPI 热点', description: '看热点内容，进入相关练习', route: '/content/hotspot' },
@@ -14,14 +13,6 @@ export const GUIDE_ENTRIES = [
 export type GuideId = typeof GUIDE_ENTRIES[number]['id'];
 export type GuideStep = { id: string; text: string; title?: string; target?: string; read?: boolean };
 export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
-  setup: [
-    { id: 'setup-profile', text: '打开个人资料，设置备考目标。' },
-    { id: 'setup-level', text: '选择目标等级。' },
-    { id: 'setup-type', text: '选择初考或复考。' },
-    { id: 'setup-save', text: '保存备考目标。' },
-    { id: 'setup-bank', text: '前往题库，选择学习范围。', read: true },
-    { id: 'setup-scope', text: '选择精选题库或最全题库。' },
-  ],
   study: TUTORIAL_STEPS.map(step => ({ id: studyStepId(step.id), title: step.title, text: step.description, target: ({ play: 'sentence-play', highlight: 'sentence-highlight-tool', tag: 'sentence-tag-tool', note: 'sentence-note', record: 'sentence-record', review: 'sentence-review' } as Record<string, string>)[step.id] ?? `sentence-${step.target}` })),
   radio: [
     { id: 'radio-bank', text: '在这里切换900句、听力或故事复述。' },

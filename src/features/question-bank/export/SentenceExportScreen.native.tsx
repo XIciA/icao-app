@@ -3,7 +3,7 @@ import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
 import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from './pdf-generator';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { Check } from '@/components/ui/icons';
 import { AppText, BottomSheet, Button, Screen } from '@/components/ui';
 import { TopBar } from '@/components/navigation/TopBar';
@@ -45,19 +45,21 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
       assertLearningWriteContext(context);if(current)setData({rows,annotations});
     })().catch(()=>{if(current)setError('资料读取失败，已有记录未被修改，请重试。');});return()=>{current=false;};
   },[attempt,context,dataset]);
+  const generating = useRef(false);
   const count=data?selectedSentences(data.rows,options).length:0;
   useGuideAvailability('export', error ? '导出暂未成功，请在页面重试，也可以跳过教学。已有学习记录会保留。' : data && !count ? '当前条件没有可导出的句子，请调整范围或筛选，也可以跳过教学。' : undefined);
   function toggleLevel(level:string){setOptions(current=>({...current,levels:current.levels.includes(level)?current.levels.filter(l=>l!==level):[...current.levels,level]}));}
-  async function generate(){if(!data||busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);
+  async function generate(){if(!data||busy||generating.current)return;generating.current=true;setBusy(true);setError('');try{assertLearningWriteContext(context);
     const result=await generateSentencesPdf(data.rows,options,data.annotations,await exportFontBytes());assertLearningWriteContext(context);
     const uri=await storePdf(result.bytes);if(!active.current){releasePdf(uri);return;}outputUri.current=uri;setOutput({uri,pages:result.pageCount,count:result.sentenceCount});guide?.event('export-generate');
-  }catch{if(active.current)setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');}finally{if(active.current)setBusy(false);}}
+  }catch{if(active.current)setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');}finally{generating.current=false;if(active.current)setBusy(false);}}
   async function open(action:()=>Promise<void>,message:string){if(busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);await action();}catch{if(active.current)setError(message);}finally{if(active.current)setBusy(false);}}
   const back = useLocalBack(true, ()=>{if(busy)return;if(output){setError('');releasePdf(output.uri);outputUri.current=undefined;setOutput(undefined);}else onBack();});
   const filters = {all:'全部句子',learned:'已学习句子',annotated:'有标注句子'};
   const tagLabels = data?.annotations.tagDefinitions.filter(tag => options.tagIds.includes(tag.id)).map(tag => tag.label).join('、') || '不限标签';
-  return <Screen contentStyle={styles.screen}><TopBar title={output?'我的900句 PDF':'导出900句'} onBack={back}/>
+  return <Screen contentStyle={styles.screen} header={<TopBar title={output?'我的900句 PDF':'导出900句'} onBack={back}/>}>
     <GuideScrollView contentContainerStyle={styles.content}>
+      {busy ? <View accessibilityLiveRegion="polite" style={styles.section}><ActivityIndicator color={colors.primary}/><AppText>正在处理 PDF，内容较多时请稍候…</AppText></View> : null}
       {error?<View style={styles.section}><AppText color={colors.destructive}>{error}</AppText>{!data?<Button onPress={()=>setAttempt(v=>v+1)}>重新读取</Button>:null}</View>:null}
       {output?<View style={styles.section}><GuideAnchor id="export-result" /><AppText variant="sectionTitle">PDF 已生成</AppText><AppText>{output.count} 句 · {output.pages} 页 · A4</AppText><Button disabled={busy} onPress={()=>void open(()=>previewPdf(output.uri),'PDF 预览未能打开，请重试或选择保存。')}>预览 PDF</Button><Button disabled={busy} variant="secondary" onPress={()=>void open(()=>sharePdf(output.uri),'未能打开保存或分享，请重试。')}>保存或分享 PDF</Button></View>:<>
         <DetailGroup title="导出设置">
@@ -70,7 +72,7 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
         <AppText variant="caption">所选等级合并导出。英文原文始终保留，高亮、标签和笔记可独立选择。</AppText>
       </>}
     </GuideScrollView>
-    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><Button guideId="export-generate" disabled={!data||!count||busy} onPress={()=>void generate()}>{busy?'正在生成 PDF…':'生成 PDF'}</Button></View>:null}
+    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><Button guideId="export-generate" accessibilityLabel={busy ? '正在生成 PDF…' : '生成 PDF'} accessibilityState={{ busy }} loading={busy} disabled={!data||!count||busy} onPress={()=>void generate()}>{busy?'正在生成 PDF…':'生成 PDF'}</Button></View>:null}
     <BottomSheet visible={!!picker} onClose={()=>setPicker(undefined)} accessibilityLabel={picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}>
       <View style={styles.section}><AppText variant="sectionTitle">{picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}</AppText>
         {picker==='levels'?<><Button variant="ghost" onPress={()=>{setOptions(current=>({...current,levels:dataset.categories.map(c=>c.name)}));}}>全选</Button>{dataset.categories.map(c=><Option key={c.id} label={c.name} selected={options.levels.includes(c.name)} onPress={()=>toggleLevel(c.name)}/>)}</>:null}

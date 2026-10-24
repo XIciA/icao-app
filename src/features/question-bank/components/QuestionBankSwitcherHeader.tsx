@@ -59,7 +59,7 @@ export function QuestionBankSwitcherHeader<Value extends string>({
         >
           {guideId ? <GuideAnchor id={guideId} /> : null}
           <View style={styles.moduleIcon}><ActiveIcon color={colors.primary} size={19} /></View>
-          <AppText numberOfLines={1} style={styles.moduleTitle} variant="sectionTitle">{selected.label}</AppText>
+          <AppText numberOfLines={1} style={styles.moduleTitle} variant="cardTitle">{selected.label}</AppText>
           <ChevronDown color={colors.mutedForeground} size={16} />
         </Pressable>
         <View style={styles.headerButton}>{right}</View>
@@ -99,9 +99,9 @@ export function QuestionBankSwitcherHeader<Value extends string>({
 }
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', flexDirection: 'row', minHeight: 64, paddingHorizontal: spacing[3] },
+  header: { alignItems: 'center', flexDirection: 'row', minHeight: 52, paddingHorizontal: spacing[3] },
   headerDivider: { borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth },
-  headerButton: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
+  headerButton: { alignItems: 'center', borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   pressed: { backgroundColor: colors.secondary },
   moduleButton: { alignItems: 'center', borderRadius: radii.full, flex: 1, flexDirection: 'row', gap: spacing[2], justifyContent: 'center', minHeight: 46, minWidth: 0 },
   modulePressed: { opacity: 0.72 },

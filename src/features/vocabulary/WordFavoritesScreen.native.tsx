@@ -49,8 +49,7 @@ export function WordFavoritesScreen() {
   const loadingVocabulary = !loadResult && !loadError;
 
   return save.wrap(
-    <Screen contentStyle={styles.screen}>
-      <TopBar title="单词收藏" />
+    <Screen contentStyle={styles.screen} header={<TopBar title="单词收藏" />}>
       {favorites.error ? (
         <CenteredState icon={Star} title="收藏读取失败" description="本机收藏暂时无法读取，记录未被清除。请检查设备可用空间后重试。" actionLabel="重试读取" onAction={favorites.retry} />
       ) : !favorites.ready ? (

@@ -27,15 +27,14 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
   useGuideAvailability('hotspot', state.status === 'membership-required' ? '完整练习需要会员。可查看会员权益，或跳过教学继续浏览。'
     : state.status === 'loading' || state.status === 'ready' ? undefined : '热点暂时无法打开。可在页面重试或返回列表；教学进度不会误记为完成。');
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
-  if (state.status === 'loading') return <Screen contentStyle={styles.screen}><TopBar onBack={goBack} title="OPI 热点" /><GlobalLoadingScreen /></Screen>;
+  if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
 
   const selectedBrief=state.brief?selectHotspotSource(state.brief,selection):undefined;
   const selectedIds=new Set(selectedBrief?.topics.flatMap(t=>t.cardIds));
   const topics=state.status==='ready'?state.topics.map(t=>({...t,cards:t.cards.filter(c=>selectedIds.has(c.id))})).filter(t=>t.cards.length):[];
   const totalQuestions = selectedBrief?.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0) ?? 0;
   return (
-    <Screen contentStyle={styles.screen} scroll>
-      <TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />
+    <Screen contentStyle={styles.screen} scroll header={<TopBar onBack={goBack} title={state.brief?.title ?? 'OPI 热点'} />}>
       <View style={styles.body}>
         {state.brief ? <HotspotBriefCard brief={state.brief} /> : null}
 

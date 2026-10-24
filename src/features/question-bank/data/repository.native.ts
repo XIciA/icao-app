@@ -1,3 +1,4 @@
+import { naturalDatasetTitles, naturalTopicTitles } from '../lib/question-titles';
 import { sameContentRelease, withContentRelease, type ContentReleaseReference } from './content-version.native';
 import publicData from './question-bank-public.json';
 import publicRelease from './question-bank-public-release.json';
@@ -25,7 +26,7 @@ import {
   writeMemberTopicCache,
 } from './member-content-cache';
 
-const datasets = publicData as QuestionBankDataset[];
+const datasets = (publicData as QuestionBankDataset[]).map(naturalDatasetTitles);
 const CATALOG_CACHE_PREFIX = 'icao.content.v3.catalog.';
 const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.'];
 
@@ -200,14 +201,14 @@ export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBank
   if (getApiBaseUrl()) {
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);
-      if (remote) return { dataset: remote, source: 'remote' };
+      if (remote) return { dataset: naturalDatasetTitles(remote), source: 'remote' };
     } catch {
       const cached = await readCachedCatalog(
         currentQuestionBankContentAccountId(),
         getNativeCommerceEnvironment(),
         id,
       );
-      if (cached) return { dataset: cached.dataset, source: 'cache', warning: 'question_bank_remote_unavailable' };
+      if (cached) return { dataset: naturalDatasetTitles(cached.dataset), source: 'cache', warning: 'question_bank_remote_unavailable' };
       const embedded = await embeddedQuestionBankRepository.getDataset(id);
       return embedded ? { dataset: embedded, source: 'embedded', warning: 'question_bank_remote_unavailable' } : undefined;
     }
@@ -221,8 +222,9 @@ export const questionBankRepository: QuestionBankRepository = {
     return (await loadQuestionBank(id))?.dataset;
   },
   async getTopic(bankId, categoryId, topicId, expected) {
-    if (getApiBaseUrl()) return remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId, expected);
-    return embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+    const topic = getApiBaseUrl() ? await remoteQuestionBankRepository.getTopic(bankId, categoryId, topicId, expected)
+      : await embeddedQuestionBankRepository.getTopic(bankId, categoryId, topicId);
+    return topic ? naturalTopicTitles(bankId, topic) : undefined;
   },
 };
 

@@ -27,3 +27,15 @@ it('moves web teaching into the modal layer and releases it when dismissed', asy
     Object.defineProperty(globalThis, 'document', { configurable: true, value: previous });
   }
 });
+
+it('does not dismiss or re-present a visible modal when its callbacks change on rerender', async () => {
+  const previous=globalThis.document;
+  Object.defineProperty(globalThis,'document',{configurable:true,value:{addEventListener:jest.fn(),removeEventListener:jest.fn()}});
+  const show=jest.fn(),dismiss=jest.fn();
+  const tree=()=> <AppModalHostContext.Provider value={{} as HTMLElement}><AppModal visible onShow={()=>show()} onDismiss={()=>dismiss()} onRequestClose={()=>undefined}><Text>词义</Text></AppModal></AppModalHostContext.Provider>;
+  try {
+    const screen=await render(tree());await screen.rerender(tree());
+    expect(show).toHaveBeenCalledTimes(1);expect(dismiss).not.toHaveBeenCalled();
+    await screen.unmount();expect(dismiss).toHaveBeenCalledTimes(1);
+  } finally {Object.defineProperty(globalThis,'document',{configurable:true,value:previous});}
+});

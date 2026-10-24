@@ -182,6 +182,7 @@ export type StudyReviewSnapshot = {
 };
 
 export type QuestionBankStudyPackage = {
+  initialItemId?: string;
   id: string;
   startedAt: string;
   items: QuestionBankStudyItem[];
