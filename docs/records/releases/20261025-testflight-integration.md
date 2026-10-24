@@ -1,12 +1,13 @@
 # 2026-10-25 多任务整合与 TestFlight 交付
 
-状态：整合 1.3.10 / 3583787 候选并验证中，尚未上传本轮候选；用户真机验收未开始。
+状态：1.3.10 / 3583787 代码整合、完整检查、Release 归档、导出及 Apple 校验通过；生产 API 部署等待用户明确授权，TestFlight 尚未上传，真机验收未开始。
 
 ## 已核对的基线
 
 - 用户要求协调截图中的任务，将已实现的新改动整合并上传最新 TestFlight。本轮最终交付目标为 iOS 测试版，不提交 App Store 正式审核。
 - Apple 查询确认上一可用候选为 1.3.7 / 3583088，Build ID `fdb062b1-be32-4c9e-aacb-76a7192c3463`，状态 VALID、未过期。
 - 源码基线 `39c51b13927a0652c5049779b318ee62bad6a965`，来自 `origin/main`。原始工作目录停在旧任务分支且有其他修改，整合使用独立工作区，不挪用或清理其他任务文件。
+- 整合 [PR #248](https://github.com/XIciA/icao-app/pull/248) 已合入 `origin/main`，候选源码 `34f0c4ed699fc35ea5ea5b33d3a405434d33c77e`。发布 clone 为干净 `main == origin/main`；与已通过检查的整合头 `e450a9816ea203832a467cabeb8983f44d9c2384` 完整代码树一致。
 
 ## 改动清单与交叉核对
 
@@ -23,7 +24,7 @@
 - 登录任务审查识别并修复三项风险：保留签名凭据 `content-access-v2`，将免费选择规则与目录缓存独立升级；以账号归属的待认领快照支持游客合并中断后幂等重试；登录期间通过现有 RecordingRepository 保留实际录音资产，并一次性交接原题、作答与会话。已有真实 WAV 文件、浏览器录音 URL 保留/清理及学习会话恢复测试；这不代表手机麦克风已验收。
 - 交叉导航修复：目的地使用本路由参数，会员门禁仅在页面聚焦时跳转，并防止重复进入登录页；回归覆盖后台页面不抢占导航。
 - 最后修复了游客触发 AI 登录前保存失败的路径：捕获本机交接失败并显示重试提示，保留当前页面、录音与作答；保存成功后再跳转。`38dd2b18` 的 34 项相关测试和类型检查通过。
-- 本轮为一次多任务整合，PR #248 使用普通 merge，保留登录任务的父提交关系，便于核对来源并统一收口 #249；不重写已经发布的提交。
+- 原计划使用普通 merge 保留父提交关系，但 GitHub 仓库仅允许 squash，平台拒绝了普通合并。因此 PR #248 改为 squash 合入，并完整记录原任务提交 SHA；合入后核对整合头与主干完整代码树一致，原任务 #249 按已被整合收口。没有修改仓库合并设置，也没有重写已发布提交。
 - 只读核对生产 API 为 `guide-20261022-41fd90d4`。数据库五题库 active release 均为 v26；将本地正式内容通过现有 `prepareNativeContentRelease` 规范化为原生资源路径后，五份摘要与生产完全一致。游客免费清单可以直接从既有 active release 派生，不需要重新发布题库或数据库迁移；新路由及权限仍需 API 代码部署授权。
 
 ## 验证证据
@@ -32,12 +33,22 @@
 - 初步 `pnpm check:ci` 通过：前端 230 套件 / 1,573 项、API 67 文件 / 682 项；类型检查通过，ESLint 0 错误 / 19 个既有警告。此项不替代正式发布所需的 `pnpm check`。
 - 初次执行发现 pnpm 在 CI 与非 CI 环境间切换会改变 `enableGlobalVirtualStore` 并自动刷新依赖。已撤回自动产生的锁文件改动，用 `CI=true`、冻结锁安装和 `pnpm_config_verify_deps_before_run=error` 统一后续检查/发布环境；不将依赖升级混入本轮。
 - 冻结锁环境下完整 `pnpm check` 通过（北京时间 2026-10-25 02:46）：前端 230 套件 / 1,573 项、API 67 文件 / 682 项；内容、类型、静态和发布配置检查通过。尚需登录合入后的受影响回归与最终发布门禁。
-- 登录任务本地检查：前端 231 套件 / 1,585 项（追加失败路径修复前），API 68 文件 / 688 项；`pnpm check:ci`、类型与 iOS JS export 通过。最终整合全量结果以本轮后续检查记录为准。
-- 最终整合检查、候选身份/签名/运行时、Apple 处理和测试组可访问性仍待记录。
+- 最终整合的完整 `pnpm check` 通过：前端 231 套件 / 1,586 项、API 68 文件 / 688 项，类型、内容、音频及发布配置检查通过；Lint 0 错误 / 34 项测试文件警告。权威题库和媒体清单相对已完成 SHA-256 校验的基线没有变化。
+- [CI 40125978506](https://github.com/XIciA/icao-app/actions/runs/40125978506) 全部通过，包括数据库约束、仓库检查、无 TS 加载器合同及 EdgeOne 导出；TestFlight 构建前聚焦录音 15 套件 / 191 项通过。
+- 脱敏本机证据保存在 `/Users/zhouyide/.codex/icao-guide-release-20261022/.generated/release-integration/`。旧 AI-live 证据仍在 24 小时内，验证器指纹和当前旧 API 版本相同，用于本地归档准备；不是新 API 部署后的真实能力验收。若 API 部署，上传前必须重新验证新 API 并通过实际发布门禁。
+- 候选正式 Bundle ID、版本、签名及生产运行时校验通过；归档隐私与 SDK 审计通过（11 份隐私清单、3 份内嵌代码）。Apple altool 于北京时间 2026-10-25 04:02:38 返回 `VERIFY SUCCEEDED with no errors`。
 
 ## 交付与回滚
 
-尚未上传本轮候选，尚未修改任何测试/正式渠道清单。最终交付后补记精确 commit、版本、build、annotated tag、制品摘要、Apple Build ID、测试组与回滚目标；代码检查通过不代表用户真机验收通过。
+尚未上传本轮候选，尚未修改任何测试/正式渠道清单。尚无新 Apple Build ID，也未创建正式发布标签；候选包生成与 Apple 校验不代表 TestFlight 已交付或用户真机验收通过。
+
+### 已准备的 iOS 制品
+
+- 源码 `34f0c4ed699fc35ea5ea5b33d3a405434d33c77e`；Bundle ID `com.readyoufife.ios`；1.3.10 / 3583787。
+- Release 归档：`/Users/zhouyide/.codex/icao-guide-release-20261022/.generated/testflight/ICAO-3583787-prepared.xcarchive`；导出 IPA：同目录下 `export-3583787-prepared/app.ipa`。
+- IPA 为 40,900,400 字节；SHA-256：`06facfee43298a7bf75402cd4f2222dabaacc5ceac24d00809e4be8e238cba75`。候选源码与录音关键代码指纹保存在 `.generated/testflight/candidate.json`，归档审计在 `archive-audit-3583787-prepared.json`。
+- 归档本体明确返回 `ARCHIVE SUCCEEDED`，标准归档验证完成。首次启动器在子进程运行期间被编辑，返回后因读取偏移出现末尾命令错误（外层返回 127）；这不是 Xcode 编译失败。随后独立完成了身份/签名检查、归档审计、`EXPORT SUCCEEDED` 与 Apple 完整校验，没有重建或修改已归档源码。
+- 回滚/旧测试目标仍为已有 TestFlight 1.3.7 / 3583088；当前 iOS/Android 正式渠道与 Android 测试渠道未修改。发布前清单快照保存在 `.generated/release-integration/evidence/updates-before.json`。
 
 ### 登录方案的 API 依赖（待最终验证及授权）
 
@@ -45,3 +56,9 @@
 - 使用现有 `scripts/deploy-api-release.sh` 从精确、干净的 `origin/main` 构建及切换容器，不直接在运行容器里拼接业务代码。题库 v26 与数据库结构保持不变，不执行内容批量发布或迁移。
 - 发布脚本会保存原容器镜像、Compose 和运行配置，并验证切换后的 readiness/线上 release identity。只读盘点时的旧 API release 为 `guide-20261022-41fd90d4`，镜像为 `sha256:8dbedcdd6db418bf4008adba8868db770fca2ed51d05b839009b4ea2056de379`；实际切换前必须再次核对并以脚本备份为准。
 - API 部署后需验证游客免费访问、会员限制、旧凭据格式兼容及真实 AI-live；随后才将依赖新 API 的 TestFlight 候选交付给测试组。API 部署尚未执行，不能把客户端上传授权等同于后端部署授权。
+- 共享生产 API 的新免费范围与发现页会员规则也会作用于使用相同接口的旧客户端；该影响已在用户确认问题中明确说明，未收到回答前不执行依赖操作。
+- 待部署源码已从干净主干打包为 `.generated/release-integration/api-prepared/source.tar.gz`，SHA-256 `b9d5eef9187846140d2b75cb76f39de2f78b5ab82d413704b9a2a55d23459461`；其文件范围与现有 API 发布入口一致。
+
+### 接续位置
+
+用户明确授权后，先核对 `origin/main` 与候选源码、已有制品摘要及配置，再从干净主干使用既有 API 发布入口部署；验证游客免费题目/音频、保护内容与无效令牌拒绝、sandbox 隔离及新 API 真实 AI-live。发布门禁通过后上传现有已校验 IPA，等待 Apple VALID 并确认既有内部测试组可访问，再更新 `ios-testflight` 清单、annotated tag 和本记录。未获授权前不执行上述依赖操作；不重新运行已完成且没有变化的检查或重建相同候选。
