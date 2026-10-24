@@ -1,7 +1,8 @@
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
-import { AirlineMark, hasAirlineMark } from './AirlineMark';
+import { hasAirlineMark } from './AirlineMark';
+import { QuestionBankCategoryIcon } from './QuestionBankCategoryIcon';
 import { SentenceExportScreen } from '../export/SentenceExportScreen';
 
 import {
@@ -10,8 +11,6 @@ import {
   Check,
   ChevronDown,
   ChevronRight,
-  CloudLightning,
-  Cog,
   Compass,
   Headphones,
   Library,
@@ -20,7 +19,6 @@ import {
   RadioTower,
   Shield,
   UserRound,
-  Wrench,
   type LucideIcon,
 } from '@/components/ui/icons';
 import { useCallback, useMemo, useState } from 'react';
@@ -38,7 +36,6 @@ import { useStudyCatalog } from '../hooks/useStudyCatalog.native';
 import { useProfile } from '@/features/account/profile-store.native';
 import { normalizeStudyScope } from '@icao/contracts';
 
-const icons: LucideIcon[] = [CloudLightning, Cog, RadioTower, Wrench];
 const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   headphones: Headphones,
   sentences: MessageSquareQuote,
@@ -117,11 +114,10 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
           {warning ? <View><AppText>暂时无法更新题库，正在显示本机已有目录，最新内容可能尚未包含。</AppText><Button variant="outline" onPress={onRetry}>重新加载题库</Button></View> : null}
           {progressError ? <View><AppText>学习进度暂时无法读取，记录未被清除。题目仍可学习。</AppText><Button variant="outline" onPress={() => setProgressAttempt(n => n + 1)}>重试读取进度</Button></View> : null}
-          {dataset.categories.map((category, categoryIndex) => {
+          {dataset.categories.map((category) => {
             const singleTopic = category.topics.length === 1 ? category.topics[0] : undefined;
             const isExpanded = !singleTopic && expanded === category.id;
             const categoryLearned = category.topics.reduce((sum, topic) => sum + (progress[topic.id]?.learned ?? 0), 0);
-            const Icon = icons[categoryIndex % icons.length];
             const airline = dataset.id === 'radiotelephony' && hasAirlineMark(category.name);
             const singleLabel = singleTopic ? accessLabel(singleTopic) : undefined;
             return (
@@ -134,9 +130,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
                   style={({ pressed }) => [styles.categoryHeader, pressed ? styles.pressed : null]}
                 >
                   <View testID={`catalog-icon-${category.id}`} style={[styles.categoryIcon, airline && styles.airlineIcon]}>
-                    {airline ? <AirlineMark code={category.name}/> : singleTopic && isLocked(singleTopic)
-                      ? <Shield color={colors.primary} size={19} />
-                      : <Icon color={colors.primary} size={20} />}
+                    <QuestionBankCategoryIcon bankId={dataset.id} categoryId={category.id} categoryName={category.name} />
                   </View>
                   <View style={styles.categoryCopy}>
                     <AppText variant="cardTitle">{category.name}</AppText>
@@ -146,12 +140,14 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
                         : `${category.declaredTopicCount} ${category.topics.every((topic) => topic.practiceKind === 'scoring-points') ? '专项' : dataset.topicUnit} / ${category.declaredCardCount} ${dataset.cardUnit}`}
                     </AppText>
                   </View>
-                  {singleLabel ? <View style={styles.accessPill}><AppText color={colors.primary} variant="micro">{singleLabel}</AppText></View> : null}
-                  <View style={styles.countPill}>
-                    {progressReady && categoryLearned >= category.declaredCardCount && category.declaredCardCount > 0 ? <Check color={colors.primary} size={12} /> : null}
-                    <AppText color={categoryLearned ? colors.primary : colors.mutedForeground} style={styles.countText} variant="micro">
-                      {progressReady ? `${categoryLearned}/${category.declaredCardCount}` : '进度待读取'}
-                    </AppText>
+                  <View style={styles.categoryStatus}>
+                    {singleLabel ? <View style={styles.accessPill}><AppText color={colors.primary} variant="micro">{singleLabel}</AppText></View> : null}
+                    <View style={styles.countPill}>
+                      {progressReady && categoryLearned >= category.declaredCardCount && category.declaredCardCount > 0 ? <Check color={colors.primary} size={12} /> : null}
+                      <AppText color={categoryLearned ? colors.primary : colors.mutedForeground} style={styles.countText} variant="micro">
+                        {progressReady ? `${categoryLearned}/${category.declaredCardCount}` : '进度待读取'}
+                      </AppText>
+                    </View>
                   </View>
                   {/* Rotate a stable layout view, never the SVG itself. Explicitly reset after collapse. */}
                   <View testID={`catalog-disclosure-${category.id}`} pointerEvents="none" style={[styles.disclosure, !singleTopic && isExpanded ? styles.rotated : styles.unrotated]}>
@@ -220,6 +216,7 @@ const styles = StyleSheet.create({
   categoryIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 40, justifyContent: 'center', width: 40 },
   airlineIcon: { borderRadius: radii.full },
   categoryCopy: { flex: 1, minWidth: 0 },
+  categoryStatus: { alignItems: 'flex-end', gap: spacing[1], flexShrink: 0 },
   accessPill: { backgroundColor: colors.primary10, borderRadius: radii.full, paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
   countPill: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, flexDirection: 'row', gap: 3, paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
   countText: { fontFamily: fonts.monoRegular },
