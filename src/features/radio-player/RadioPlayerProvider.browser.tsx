@@ -42,6 +42,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
   const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceEntitlementSnapshotVersion, commerceEntitlementSnapshotVersion);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
+  const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState<string>();
   const profile = useProfile();
   const selection = useMemo(() => ({ scope: normalizeStudyScope(profile.studyScope), target: profile.target }), [profile.studyScope, profile.target]);
@@ -228,7 +229,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     clearIntervalTimer(); player.pause(); player.replace(null);
     void releaseLease();
     setLoadedCatalogs({ owner: contentOwner, catalogs: embeddedCatalogs });
-    setCatalogError(undefined); setSourceState({ loading: false });
+    setCatalogError(undefined); setCatalogLoading(false); setSourceState({ loading: false });
     if (!signedIn) setSessionVisible(false);
     setTrackId(embeddedCatalogs[0]?.tracks[0]?.id ?? ''); setBankTrackIds({});
     setShuffle({ history: [], cursor: -1 });
@@ -238,11 +239,12 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     if (auth.restoring || !auth.session || !sessionVisible) return;
     let active = true;
     setCatalogError(undefined);
-    void loadRadioCatalogs(selection).then((nextCatalogs) => {
+    setCatalogLoading(true);
+    void loadRadioCatalogs(selection, bankId, () => active && contentOwnerRef.current === contentOwner).then((nextCatalogs) => {
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
-    }).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); });
+    }).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
-  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
+  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection, bankId]);
 
   useEffect(() => {
     let active = true;
@@ -420,7 +422,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     waitingForNext,
     speedOptions,
     playing,
-    loading: sourceState.loading,
+    loading: sourceState.loading || catalogLoading,
     buffering,
     error: catalogError ?? sourceState.error,
     position,
@@ -438,7 +440,14 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       const savedId = bankTrackIds[nextBankId];
       const nextId = savedId && catalog?.tracks.some((track) => track.id === savedId) ? savedId : catalog?.tracks[0]?.id;
       const track = catalog?.tracks.find((item) => item.id === nextId);
-      if (!catalog || !track) return;
+      if (!catalog) return;
+      if (!track || (savedId && !catalog.tracks.some(track => track.id === savedId))) {
+        stopAndClear();
+        setSessionVisible(true);
+        setBankId(catalog.bankId);
+        setTrackId(savedId ?? '');
+        return;
+      }
       pendingPlay.current = false;
       setBankId(catalog.bankId);
       setTrackId(track.id);
@@ -458,7 +467,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       if (currentTrack) void prepareTrack(currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,
-  }), [bankTrackIds, buffering, catalogError, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
+  }), [bankTrackIds, buffering, catalogError, catalogLoading, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
 
   return <RadioContext.Provider value={value}>{children}</RadioContext.Provider>;
 }

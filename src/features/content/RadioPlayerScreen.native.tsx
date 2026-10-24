@@ -9,6 +9,8 @@ import {
   Clock3,
   Headphones,
   Languages,
+  Mic,
+  RadioTower,
   ListMusic,
   MessageSquareQuote,
   Pause,
@@ -34,6 +36,7 @@ import { isVercelLegacyWeb } from '@/config/web-runtime';
 import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { SoftGlow } from '@/components/visual/SoftGlow';
+import { RadioSubtitles } from '@/features/radio-player/RadioSubtitles';
 import { AudioTimeline, formatAudioTime } from '@/features/question-bank/components/AudioTimeline';
 import { QuestionBankSwitcherHeader, type QuestionBankSwitcherItem } from '@/features/question-bank/components/QuestionBankSwitcherHeader';
 import { RADIO_INTERVAL_MAX_SECONDS, RADIO_INTERVAL_PRESETS } from '@/features/radio-player/radio-interval';
@@ -53,6 +56,8 @@ const radioBankIcons: Partial<Record<RadioBankId, typeof Headphones>> = {
   listening: Headphones,
   sentences900: MessageSquareQuote,
   storytelling: BookOpenText,
+  radiotelephony: RadioTower,
+  opi: Mic,
 };
 
 function ModeIcon({ mode, color = colors.primary, size = 18 }: { mode: RadioPlaybackMode; color?: string; size?: number }) {
@@ -122,7 +127,7 @@ export function RadioPlayerScreen() {
   const switcherItems = useMemo<QuestionBankSwitcherItem<RadioBankId>[]>(() => radio.catalogs.map((catalog) => ({
     icon: radioBankIcons[catalog.bankId] ?? Headphones,
     label: catalog.title,
-    summary: `${catalog.tracks.length} 题`,
+    summary: catalog.tracks.length ? `${catalog.tracks.length} 题` : '选择后加载题目',
     value: catalog.bankId,
   })), [radio.catalogs]);
   const groups = useMemo(() => ['全部', ...new Set((radio.currentCatalog?.tracks ?? []).map((track) => track.topicTitle))], [radio.currentCatalog]);
@@ -171,7 +176,7 @@ export function RadioPlayerScreen() {
       <AppContentFrame style={styles.contentFrame}>
         <TopBar title="随身听" onBack={() => Platform.OS === 'web' || router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />
         <CenteredState icon={Headphones} title={radio.error ? '曲目加载失败' : '当前范围暂无可播放内容'}
-          description={radio.error ?? '随身听包含听力、语句复诵和故事复述。当前考试目标或题库范围内没有这些内容，可以返回题库继续练习。'}
+          description={radio.error ?? '当前考试目标或题库范围内暂无可播放内容，可以调整学习范围后重试。'}
           actionLabel={radio.error ? '重新加载' : '返回题库'} onAction={radio.error ? radio.retry : () => router.push('/(tabs)')} />
       </AppContentFrame>
     </SafeAreaView>;
@@ -203,7 +208,7 @@ export function RadioPlayerScreen() {
           style={({ pressed }) => [styles.trackRow, pressed ? styles.trackRowPressed : null]}
         >
           <GuideAnchor id="radio-study" /><AppText numberOfLines={1} style={styles.trackTitle}>{radio.currentTrack?.title ?? '正在准备曲目'}</AppText>
-          <View style={styles.trackCount}><AppText color={colors.primary} style={styles.trackCountText} variant="micro">{radio.currentIndex + 1}/{radio.currentCatalog?.tracks.length ?? 0}</AppText></View>
+          <View style={styles.trackCount}><AppText color={colors.primary} style={styles.trackCountText} variant="micro">{radio.currentTrack ? `${radio.currentIndex + 1}/${radio.currentCatalog?.tracks.length ?? 0}` : '—'}</AppText></View>
           <ChevronRight color={colors.mutedForeground} size={15} />
         </Pressable>
 
@@ -211,10 +216,7 @@ export function RadioPlayerScreen() {
           {radio.subtitleMode === 'off' ? (
             <BreathingWaveform active={radio.playing && !radio.waitingForNext} remaining={radio.waitingForNext ? radio.intervalRemaining : undefined} />
           ) : (
-            <ScrollView contentContainerStyle={styles.subtitleContent} showsVerticalScrollIndicator={false} style={styles.subtitleScroll}>
-              <AppText style={styles.englishText}>{radio.currentTrack?.audioText || '当前曲目暂无英文原文。'}</AppText>
-              {radio.subtitleMode === 'bilingual' ? <AppText style={styles.chineseText}>{radio.currentTrack?.audioTextZh || '当前曲目暂无中文译文。'}</AppText> : null}
-            </ScrollView>
+            <RadioSubtitles key={radio.currentTrack?.id} mode={radio.subtitleMode} track={radio.currentTrack} />
           )}
         </View>
 
@@ -312,10 +314,6 @@ const styles = StyleSheet.create({
   waveform: { alignItems: 'center', flexDirection: 'row', gap: 5, height: 72, justifyContent: 'center', width: 96 },
   waveBar: { backgroundColor: colors.primary, borderRadius: radii.full, maxHeight: 58, opacity: 0.84, width: 4 },
   waitingCopy: { bottom: spacing[2], fontFamily: fonts.monoRegular, position: 'absolute' },
-  subtitleScroll: { alignSelf: 'stretch', flex: 1 },
-  subtitleContent: { gap: spacing[5], paddingBottom: spacing[4], paddingHorizontal: spacing[2], paddingTop: spacing[5] },
-  englishText: { color: colors.foreground, fontSize: 16, lineHeight: 26 },
-  chineseText: { color: colors.mutedForeground, fontSize: 14, lineHeight: 23 },
   controlDock: { paddingTop: spacing[1], width: '100%' },
   timelineWrap: { height: 52 },
   errorRow: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.06)', borderRadius: radii.md, flexDirection: 'row', gap: spacing[2], marginBottom: spacing[1], paddingHorizontal: spacing[3], paddingVertical: spacing[2] },
