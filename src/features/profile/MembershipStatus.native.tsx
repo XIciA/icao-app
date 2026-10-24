@@ -13,7 +13,7 @@ export function membershipPresentation(entitlement?: CommerceEntitlementSummary)
   const expires = expiresAt ? new Date(expiresAt).toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }) : '—';
   // Access stays owned by commerce; this only formats the service snapshot.
   const days = expiresAt ? Math.max(0, Math.ceil((Date.parse(expiresAt) - Date.parse(entitlement.serverTime)) / 86_400_000)) : 0;
-  return { active, expires, label: active ? `剩余 ${days} 天${days <= 3 ? ' · 即将到期' : ''}` : expiresAt ? '会员已过期' : '未开通会员' };
+  return { active, expires, label: active ? `剩余 ${days} 天` : expiresAt ? '会员已过期' : '未开通会员' };
 }
 export function VipBadge({ active }: { active: boolean }) {
   const color = active ? colors.accent : colors.mutedForeground;

@@ -3,13 +3,12 @@ import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { unreadFeedback } from '@/features/feedback/feedback-history-client.native';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useFocusEffect } from 'expo-router';
-import { Bookmark, History, HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
+import { HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, StyleSheet, View } from 'react-native';
-import { AppText, Card } from '@/components/ui';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, spacing } from '@/theme';
-import { readLearningProgressStats } from '@/features/question-bank/platform/learning-store.native';
+import { ProfileLearningCard } from './ProfileLearningCard.native';
 import { AccountScreen, RowGroup, Row } from '@/components/account/account-ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { useProfile } from '@/features/account/profile-store.native';
@@ -17,9 +16,6 @@ import { ProfileIdentityCard } from './ProfileIdentityCard.native';
 
 const menu = [
   { slug: 'membership', label: '会员与购买', icon: Star },
-  { slug: 'learning-records', label: '学习记录', icon: History },
-  { slug: 'annotations', label: '我的标注', icon: Bookmark },
-  { slug: 'word-favorites', label: '单词收藏', icon: Star },
   { slug: 'guide', label: '使用指南', icon: HelpCircle },
   { slug: 'settings', label: '设置', icon: Settings },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
@@ -34,7 +30,6 @@ export function ProfileHomeScreen() {
   const visibleMenu = menu.filter((item) => Platform.OS !== 'web' || cloudWeb
     || (item.slug !== 'membership' && item.slug !== 'feedback'));
   const [feedbackUnread, setFeedbackUnread] = useState<{accountId:string;value:boolean}>();
-  const [progress, setProgress] = useState<{ accountId: string; learnedCards: number; completedCards: number }>();
   const accountId = auth.accountReady ? auth.account?.accountId : undefined;
   useFocusEffect(
     useCallback(() => {
@@ -42,9 +37,6 @@ export function ProfileHomeScreen() {
       const refresh = () => {
         if (!accountId) return;
         void unreadFeedback().then(result => { if(active)setFeedbackUnread({accountId,value:result.unread}); }).catch(() => undefined);
-        void readLearningProgressStats().then((stats) => {
-          if (active) setProgress({ accountId, ...stats });
-        }).catch(() => { if (active) setProgress(undefined); });
       };
       refresh();
       const foreground = AppState.addEventListener('change', (state) => { if (state === 'active') refresh(); });
@@ -54,7 +46,6 @@ export function ProfileHomeScreen() {
       };
     }, [accountId]),
   );
-  const stats = progress?.accountId === accountId ? progress : undefined;
   const accountLabel = auth.restoring
     ? '正在确认账号…'
     : auth.session
@@ -62,10 +53,7 @@ export function ProfileHomeScreen() {
       : '尚未登录';
 
   function open(slug: string) {
-    if (slug === 'learning-records') router.push('/learning-records');
-    else if (slug === 'annotations') router.push('/annotations');
-    else if (slug === 'word-favorites') router.push('/word-favorites');
-    else if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
+    if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
     else if (slug === 'guide') router.push({ pathname: '/info/[slug]', params: { slug: 'guide' } });
     else if (slug === 'settings') router.push('/account/settings');
     else if (slug === 'feedback')
@@ -83,20 +71,7 @@ export function ProfileHomeScreen() {
         accountLabel={accountLabel}
         onOpenProfile={() => { guide?.event('setup-profile'); open('profile-detail'); }}
       />
-      <View style={styles.stats}>
-        <Card style={styles.stat}>
-          <AppText style={styles.value} variant="pageTitle">
-            {stats?.learnedCards ?? '—'}
-          </AppText>
-          <AppText variant="caption">已学卡片</AppText>
-        </Card>
-        <Card style={styles.stat}>
-          <AppText style={styles.value} variant="pageTitle">
-            {stats?.completedCards ?? '—'}
-          </AppText>
-          <AppText variant="caption">已完成卡片</AppText>
-        </Card>
-      </View>
+      <ProfileLearningCard />
       <View style={styles.menuSpacing}>
         <RowGroup>
           {visibleMenu.map((item, index) => (
@@ -115,8 +90,5 @@ export function ProfileHomeScreen() {
 
 const styles = StyleSheet.create({
   unreadDot: {position:'absolute',right:40,top:26,width:8,height:8,borderRadius:4,backgroundColor:colors.destructive},
-  stats: { flexDirection: 'row', gap: spacing[3], marginTop: spacing[3] },
-  stat: { alignItems: 'center', flex: 1, paddingVertical: spacing[3] },
-  value: { fontSize: 24, lineHeight: 31 },
   menuSpacing: { marginTop: spacing[5] },
 });

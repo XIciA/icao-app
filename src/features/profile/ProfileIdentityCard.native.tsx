@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { AppText, Card } from '@/components/ui';
-import { BookOpen, ChevronRight } from '@/components/ui/icons';
+import { ChevronRight } from '@/components/ui/icons';
 import { ProfileAvatar } from '@/features/account/ProfileAvatar';
-import { examGoal, type UserProfile } from '@/features/account/profile-model';
+import type { UserProfile } from '@/features/account/profile-model';
 import { GuideAnchor } from '@/features/usage-guide/GuideBindings';
 import { colors, radii, spacing } from '@/theme';
 import { MembershipStatus } from './MembershipStatus.native';
@@ -16,21 +16,16 @@ export function ProfileIdentityCard({ profile, accountLabel, onOpenProfile }: {
   const window = useWindowDimensions();
   const [width, setWidth] = useState<number>();
   const compact = (width ?? window.width) / window.fontScale < 560;
-  const goal = examGoal(profile.target).label.replace(/ (初考|复考)$/u, ' · $1');
   const badges = <View pointerEvents="box-none" style={styles.badges}>
     <MembershipStatus pill />
-    <View pointerEvents="none" style={styles.goal}>
-      <BookOpen color={colors.primary} size={16} />
-      <AppText color={colors.primary} style={styles.goalText} variant="caption">{goal}</AppText>
-    </View>
   </View>;
 
   return <Card onLayout={(event) => setWidth(event.nativeEvent.layout.width)} style={styles.card}>
-    <GuideAnchor id="setup-profile" /><GuideAnchor id="setup-bank" />
+    <GuideAnchor id="setup-profile" />
     {/* Sibling targets keep the full profile surface clickable without nested buttons on Web. */}
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`查看个人资料，${profile.displayName}，${goal}，${accountLabel}`}
+      accessibilityLabel={`查看个人资料，${profile.displayName}，${accountLabel}`}
       onPress={onOpenProfile}
       style={({ pressed }) => [StyleSheet.absoluteFill, styles.profileTarget, pressed && styles.pressed]}
       testID="profile-card-open"
@@ -54,6 +49,4 @@ const styles = StyleSheet.create({
   identity: { flexDirection: 'row', alignItems: 'center', gap: spacing[3] },
   copy: { flex: 1, minWidth: 0, gap: spacing[2] },
   badges: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', gap: spacing[2] },
-  goal: { flexDirection: 'row', alignItems: 'center', gap: spacing[2], maxWidth: '100%', minHeight: 44, paddingHorizontal: spacing[3], paddingVertical: spacing[2], borderRadius: radii.full, backgroundColor: colors.primary06, borderColor: colors.primary10, borderWidth: 1 },
-  goalText: { flexShrink: 1 },
 });

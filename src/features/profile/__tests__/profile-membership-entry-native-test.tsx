@@ -13,7 +13,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ accountRead
   session: { user: { displayName: '飞行学员' } }, restoring: false }) }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => ({ displayName: '飞行学员', target: 'icao4-first' }) }));
 jest.mock('@/features/account/ProfileAvatar', () => ({ ProfileAvatar: () => null }));
-jest.mock('../AiAllowanceCard.native', () => ({ AiAllowanceCard: () => null }));
+jest.mock('../ProfileLearningCard.native', () => ({ ProfileLearningCard: () => null }));
 jest.mock('@/features/question-bank/platform/learning-store.native', () => ({
   readLearningProgressStats: async () => ({ learnedCards: 0, completedCards: 0 }),
 }));
