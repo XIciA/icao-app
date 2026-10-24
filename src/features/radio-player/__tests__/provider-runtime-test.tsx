@@ -66,11 +66,22 @@ describe('radio native queue integration', () => {
   beforeEach(() => { mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
 
+  it('can select an authorized bank whose protected questions are not loaded yet', async () => {
+    mockCatalogs.push({ bankId: 'radiotelephony', title: '陆空通话', nameEn: 'Radiotelephony', tracks: [] });
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      await act(() => mockContext.selectBank('radiotelephony')); await flush();
+      expect(mockContext.currentCatalog?.bankId).toBe('radiotelephony');
+      expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: true, bankId: 'radiotelephony' }));
+    } finally { await view.unmount(); mockCatalogs.pop(); }
+  });
+
   it('keeps startup metadata-only and expands authorized text when the radio session opens', async () => {
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
-    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), { complete: false });
+    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: false, bankId: 'listening' }));
     await act(() => mockContext.activateSession()); await flush();
-    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), { complete: true });
+    expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: true, bankId: 'listening' }));
     await view.unmount();
   });
 

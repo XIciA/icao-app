@@ -498,7 +498,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     topicHydrations.current.clear();
     setCatalogLoading(true);
     setCatalogError(undefined);
-    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible }).then((datasets) => {
+    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration }).then((datasets) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
       catalogDatasets.current = datasets;
       const next = deriveRadioCatalogs(datasets, selectionRef.current);
@@ -515,7 +515,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, catalogRetry, commerceEnvironmentSnapshot, selection, sessionVisible]);
+  }, [auth.restoring, auth.session, bankId, catalogRetry, commerceEnvironmentSnapshot, selection, sessionVisible]);
 
   useEffect(() => {
     if (auth.restoring) return;
@@ -944,7 +944,16 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       const nextId = bankTrackIds[nextBankId] && catalog?.tracks.some((track) => track.id === bankTrackIds[nextBankId])
         ? bankTrackIds[nextBankId]!
         : catalog?.tracks[0]?.id;
-      if (!catalog || !nextId) return;
+      if (!catalog) return;
+      if (!nextId) {
+        stopAndClear();
+        setSessionVisible(true);
+        stateRef.current.bankId = nextBankId;
+        stateRef.current.trackId = '';
+        setBankId(nextBankId);
+        setTrackId('');
+        return;
+      }
       stateRef.current.bankId = nextBankId;
       stateRef.current.shuffle = { history: [nextId], cursor: 0 };
       setBankId(nextBankId);
