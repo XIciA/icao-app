@@ -53,8 +53,8 @@
 
 ## 运行时选择与边界
 
-- `EXPO_PUBLIC_ICAO_WEB_RUNTIME=edgeone-production` 才启用三端同步站；未设置时默认
-  `vercel-legacy`，这是尚存的实现默认值，不表示旧站仍受维护；当前产品 Web 构建明确设置 EdgeOne 运行时。
+- 普通 Web 默认使用 `edgeone-production`，Metro 与业务运行时选择一致；当前产品 Web 构建也显式设置该值。
+  仅显式 `vercel-legacy` 保留历史实现兼容，不是部署入口或维护目标。
 - 不因 Web 的本地存储策略削弱 Native 的账号与云端能力。
 - 不在客户端、文档、部署包或日志中写入运行时密钥。
 - 数据库迁移与普通 API 发布分开审批、备份和验收。
