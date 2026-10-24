@@ -77,6 +77,23 @@ describe('radio native queue integration', () => {
     } finally { await view.unmount(); mockCatalogs.pop(); }
   });
 
+  it('restores a remembered member question after switching back to an unloaded bank', async () => {
+    mockCatalogs.push({ bankId: 'radiotelephony', title: '陆空通话', nameEn: 'Radiotelephony', tracks: [] });
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    try {
+      await act(() => mockContext.activateSession()); await flush();
+      await act(() => mockContext.selectTrack('t4', false)); await flush();
+      mockCatalogs[0].tracks = mockTracks.slice(0, 1);
+      await act(() => mockContext.selectBank('radiotelephony')); await flush();
+      mockLoadCatalogs.mockImplementation(async (_selection, options) => {
+        if (options?.complete) mockCatalogs[0].tracks = mockTracks;
+        return [];
+      });
+      await act(() => mockContext.selectBank('listening')); await flush();
+      expect(mockContext.currentTrack?.id).toBe('t4');
+    } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; mockCatalogs.pop(); }
+  });
+
   it('keeps startup metadata-only and expands authorized text when the radio session opens', async () => {
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
     expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: false, bankId: 'listening' }));

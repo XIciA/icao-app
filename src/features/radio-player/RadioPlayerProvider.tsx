@@ -941,17 +941,19 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     previous,
     selectBank: (nextBankId) => {
       const catalog = catalogs.find((item) => item.bankId === nextBankId);
-      const nextId = bankTrackIds[nextBankId] && catalog?.tracks.some((track) => track.id === bankTrackIds[nextBankId])
-        ? bankTrackIds[nextBankId]!
+      const savedId = bankTrackIds[nextBankId];
+      const nextId = savedId && catalog?.tracks.some((track) => track.id === savedId)
+        ? savedId
         : catalog?.tracks[0]?.id;
       if (!catalog) return;
-      if (!nextId) {
+      if (!nextId || (savedId && !catalog.tracks.some(track => track.id === savedId))) {
+        // Keep the remembered member question until the selected bank expands.
         stopAndClear();
         setSessionVisible(true);
         stateRef.current.bankId = nextBankId;
-        stateRef.current.trackId = '';
+        stateRef.current.trackId = savedId ?? '';
         setBankId(nextBankId);
-        setTrackId('');
+        setTrackId(savedId ?? '');
         return;
       }
       stateRef.current.bankId = nextBankId;

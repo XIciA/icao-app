@@ -441,11 +441,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       const nextId = savedId && catalog?.tracks.some((track) => track.id === savedId) ? savedId : catalog?.tracks[0]?.id;
       const track = catalog?.tracks.find((item) => item.id === nextId);
       if (!catalog) return;
-      if (!track) {
+      if (!track || (savedId && !catalog.tracks.some(track => track.id === savedId))) {
         stopAndClear();
         setSessionVisible(true);
         setBankId(catalog.bankId);
-        setTrackId('');
+        setTrackId(savedId ?? '');
         return;
       }
       pendingPlay.current = false;
