@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "rewriteRelativeImportExtensions": true,
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
