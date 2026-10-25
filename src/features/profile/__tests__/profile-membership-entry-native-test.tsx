@@ -23,10 +23,10 @@ afterEach(() => { Object.defineProperty(Platform, 'OS', { configurable: true, va
 it.each(['ios', 'android'])('shows exactly one membership entry on %s and navigates to the same account route', async (platform) => {
   Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
   const screen = await render(<ProfileHomeScreen />);
-  expect(screen.getAllByText('会员与购买')).toHaveLength(1);
+  expect(screen.getAllByText('会员购买')).toHaveLength(1);
   expect(screen.queryByText(/© 2026|蜀ICP备/)).toBeNull();
   expect(screen.queryByText('关于听你五个')).toBeNull();
-  await fireEvent.press(screen.getByText('会员与购买'));
+  await fireEvent.press(screen.getByText('会员购买'));
   expect(mockPush).toHaveBeenCalledTimes(1);
   expect(mockPush).toHaveBeenCalledWith('/account/membership');
 });
@@ -34,7 +34,7 @@ it.each(['ios', 'android'])('shows exactly one membership entry on %s and naviga
 it('does not expose Native payment in a web surface', async () => {
   Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
   const screen = await render(<ProfileHomeScreen />);
-  expect(screen.queryByText('会员与购买')).toBeNull();
+  expect(screen.queryByText('会员购买')).toBeNull();
 });
 
 it('offers one-click reset only when the shared controller enables testing and reports completion inline',async()=>{

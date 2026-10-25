@@ -222,15 +222,15 @@ describe('authentication routing', () => {
     expect(mockConsumePendingPath).toHaveBeenCalled();
   });
 
-  it('restores the selected destination after refreshing the login page', async () => {
+  it('finishes a refreshed login in My regardless of its original destination', async () => {
     mockCanAccessApp = true;
     mockPathname = '/auth/login';
     mockSearchParams = { next: '/question-bank/sentences900' };
     await render(<NativeAppStack />);
-    expect(mockReplace).toHaveBeenCalledWith('/question-bank/sentences900');
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
   });
 
-  it('keeps the opened login destination when a rapid second tap overwrites pending memory', async () => {
+  it('finishes login in My after rapid taps on different destinations', async () => {
     mockPathname = '/auth/login';
     mockSearchParams = { next: '/question-bank/sentences900?cardId=first' };
     const screen = await render(<NativeAppStack />);
@@ -238,18 +238,18 @@ describe('authentication routing', () => {
     mockConsumePendingPath.mockReturnValue('/question-bank/listening');
     mockCanAccessApp = true;
     await screen.rerender(<NativeAppStack />);
-    expect(mockReplace).toHaveBeenCalledWith('/question-bank/sentences900?cardId=first');
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
     expect(mockReplace).not.toHaveBeenCalledWith('/question-bank/listening');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
 
-  it('falls back to safe pending memory when the login URL target is unsafe', async () => {
+  it('finishes in My when the login URL target is unsafe', async () => {
     mockCanAccessApp = true;
     mockPathname = '/auth/login';
     mockSearchParams = { next: '//external.example' };
     mockConsumePendingPath.mockReturnValue('/question-bank/listening');
     await render(<NativeAppStack />);
-    expect(mockReplace).toHaveBeenCalledWith('/question-bank/listening');
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
 
@@ -258,17 +258,17 @@ describe('authentication routing', () => {
     mockPathname = '/auth/login';
     mockSearchParams = { next: '//external.example' };
     await render(<NativeAppStack />);
-    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
   });
 
-  it('enters the remembered destination only after the authenticated guard is ready', async () => {
+  it('finishes login in My only after the authenticated guard is ready', async () => {
     mockCanAccessApp = true;
     mockPathname = '/auth/login';
     mockConsumePendingPath.mockReturnValue('/content/hotspot/hotspot-2026-07-10/study');
 
     await render(<AppStack />);
 
-    expect(mockReplace).toHaveBeenCalledWith('/content/hotspot/hotspot-2026-07-10/study');
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)/profile');
     expect(mockConsumePendingPath).toHaveBeenCalledTimes(1);
   });
 });

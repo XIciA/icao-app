@@ -16,7 +16,7 @@ it('remembers the selected question bank before opening login from the catalogue
   const { result } = await renderHook(() => useLoginEntry());
   await act(() => result.current('/question-bank/listening', '登录后进入题库学习'));
   expect(mockRemember).toHaveBeenCalledWith('/question-bank/listening');
-  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/listening', returnTo: '/', reason: '登录后进入题库学习' } });
+  expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/question-bank/listening', returnTo: '/' } });
   expect(mockRemember.mock.invocationCallOrder[0]).toBeLessThan(mockPush.mock.invocationCallOrder[0]);
 });
 

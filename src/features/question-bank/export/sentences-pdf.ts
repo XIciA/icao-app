@@ -31,7 +31,15 @@ function wrap(pieces:Piece[],font:PDFFont,latin:PDFFont,size:number,width:number
   }
   return lines;
 }
-export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOptions,annotations:QuestionBankAnnotationStore,fontBytes:Uint8Array,exportedAt=new Date()) {
+export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOptions,annotations:QuestionBankAnnotationStore,fontBytes:Uint8Array,exportedAt=new Date(),execution: { signal?: AbortSignal; yieldControl?: () => Promise<void> } = {}) {
+  const check = () => { if (execution.signal?.aborted) throw new Error('export_cancelled'); };
+  const yieldControl = execution.yieldControl ?? (() => new Promise<void>(resolve => setTimeout(resolve, 0)));
+  let yieldedAt = performance.now();
+  const cooperate = async (force = false) => {
+    check();
+    if (force || performance.now() - yieldedAt >= 12) { await yieldControl(); check(); yieldedAt = performance.now(); }
+  };
+  await cooperate(true);
   const chosen=selectedSentences(rows,options);if(!chosen.length)throw new Error('export_empty');
   const doc=await PDFDocument.create();doc.registerFontkit(fontkit);
   // The bundled CJK font loses glyphs when fontkit subsets it; retain its original glyph IDs.
@@ -67,6 +75,7 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
   }
   let previousLevel='';
   for(const row of chosen){
+    await cooperate();
     // Release the JS thread between rows so progress indicators and cancellation stay responsive.
     await new Promise<void>(resolve => setTimeout(resolve, 0));
     const highlights=options.highlights?row.annotation?.highlights??[]:[];
@@ -88,5 +97,8 @@ export async function buildSentencesPdf(rows:ExportSentence[],options:ExportOpti
     english.forEach(parts=>line(parts,10.5,textX));translated.forEach(parts=>line(parts,9,textX,muted));notes.forEach(parts=>line(parts,9,textX,muted));y-=9;
   }
   const pages=doc.getPages();pages.forEach((p,index)=>p.drawText(`${index+1} / ${pages.length}`,{font:latin,size:9,x:width/2-12,y:25,color:muted}));
-  return {bytes:await doc.save(),pageCount:pages.length,sentenceCount:chosen.length};
+  await cooperate(true);
+  const bytes = await doc.save({ objectsPerTick: 16 });
+  check();
+  return {bytes,pageCount:pages.length,sentenceCount:chosen.length};
 }

@@ -1,14 +1,16 @@
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
-import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
+import { BookOpenText, ChevronRight, Highlighter, NotebookPen, Search, Tag as TagIcon, type LucideIcon } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
-import type { QuestionBankDataset, QuestionBankId } from '../types';
+import type { QuestionBankId } from '../types';
 import { annotationHighlightBackgrounds, annotationToneColors } from '../annotations/colors';
 import { questionBankCardTargetKey } from '../annotations/card-index.native';
 import { useCardReferences } from '../annotations/use-card-references.native';
@@ -21,13 +23,7 @@ import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 type AnnotationSegment = 'tags' | 'highlights' | 'notes';
 type BankFilter = QuestionBankId | 'all';
 
-const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
-  headphones: Headphones,
-  sentences: MessageSquareQuote,
-  radioTower: RadioTower,
-  mic: Mic2,
-  story: BookOpenText,
-};
+
 
 const segments: { id: AnnotationSegment; label: string; icon: LucideIcon }[] = [
   { id: 'tags', label: '标签', icon: TagIcon },
@@ -280,7 +276,7 @@ function formatRelativeTime(value: string) {
 }
 
 function LoadingState() {
-  return <StateCard description="正在读取本机标注…" icon={Search} title="正在汇总" />;
+  return <GlobalLoadingScreen />;
 }
 
 function EmptyState({ allBanks, filtered, segment }: { allBanks: boolean; filtered: boolean; segment: AnnotationSegment }) {

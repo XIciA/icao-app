@@ -15,6 +15,7 @@ let mockQueue: any[] = [];
 let mockActive = 0;
 let mockPlaybackHandler: ((event: any) => void) | undefined;
 let mockContext: RadioPlayerContextValue;
+let mockPlayback = 'paused';
 let mockDeactivate: () => Promise<void>;
 const mockResolve = jest.fn(async (path: string) => `file://${path}`);
 const mockPlay = jest.fn(async () => undefined);
@@ -51,7 +52,7 @@ jest.mock('react-native-track-player', () => ({
     skipToNext: async () => { mockActive += 1; mockPlaybackHandler?.({ type: 'active', track: mockQueue[mockActive] }); },
     pause: () => mockPause(), play: () => mockPlay(),
   },
-  usePlaybackState: () => ({ state: 'paused' }), useProgress: () => ({ position: 0, duration: 20 }),
+  usePlaybackState: () => ({ state: mockPlayback }), useProgress: () => ({ position: 0, duration: 20 }),
   State: { Paused: 'paused', Playing: 'playing', Ended: 'ended', Buffering: 'buffering', Loading: 'loading' },
   RepeatMode: { Off: 'off', Track: 'track' },
   Event: { PlaybackActiveTrackChanged: 'active', PlaybackError: 'error', PlaybackQueueEnded: 'ended', RemoteDuck: 'duck' },
@@ -63,7 +64,7 @@ async function flush() { await act(async () => { for (let i = 0; i < 80; i += 1)
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>((r) => { resolve = r; }); return { promise, resolve }; }
 
 describe('radio native queue integration', () => {
-  beforeEach(() => { mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
+  beforeEach(() => { mockPlayback = 'paused'; mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
 
   it('can select an authorized bank whose protected questions are not loaded yet', async () => {
@@ -105,11 +106,12 @@ describe('radio native queue integration', () => {
   it('shows directory failures and lets the user retry without restarting the app', async () => {
     mockLoadCatalogs.mockRejectedValueOnce(new Error('network unavailable'));
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
-    expect(mockContext.error).toBe('播放目录加载失败，请重试');
+    expect(mockContext.catalogError).toBe('播放目录加载失败，请重试'); expect(mockContext.error).toBeUndefined();
     expect(mockContext.loading).toBe(false);
-    await act(() => mockContext.retry()); await flush();
+    await act(() => mockContext.retryCatalog?.()); await flush();
     expect(mockLoadCatalogs).toHaveBeenCalledTimes(2);
     expect(mockContext.error).toBeUndefined();
+    expect(mockContext.catalogError).toBeUndefined();
     expect(mockContext.loading).toBe(false);
     expect(mockContext.catalogs[0].tracks).toHaveLength(6);
     await view.unmount();
@@ -316,4 +318,21 @@ describe('radio native queue integration', () => {
     await view.unmount();
   });
 
+});
+
+
+it('keeps playing, pause and timeline available while directory hydration is still pending', async () => {
+  let finish!: (value: never[]) => void;
+  mockLoadCatalogs.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+  mockPlayback = 'playing';
+  const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+  expect(mockContext.catalogLoading).toBe(true);
+  expect(mockContext.loading).toBe(false);
+  expect(mockContext.buffering).toBe(false);
+  expect(mockContext.playing).toBe(true);
+  await act(() => mockContext.pause()); await flush();
+  expect(mockPause).toHaveBeenCalled();
+  await act(async () => finish([])); await flush();
+  expect(mockContext.catalogLoading).toBe(false);
+  await view.unmount();
 });

@@ -1,5 +1,7 @@
+import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
+import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
-import { useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import { useFocusEffect } from 'expo-router';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { hasAirlineMark } from './AirlineMark';
@@ -8,21 +10,15 @@ import { SentenceExportScreen } from '../export/SentenceExportScreen';
 
 import {
   Download,
-  BookOpenText,
   Check,
   ChevronDown,
   ChevronRight,
   Compass,
-  Headphones,
   Library,
-  MessageSquareQuote,
-  Mic2,
-  RadioTower,
   Shield,
   UserRound,
-  type LucideIcon,
 } from '@/components/ui/icons';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -37,17 +33,13 @@ import { useStudyCatalog } from '../hooks/useStudyCatalog.native';
 import { useProfile } from '@/features/account/profile-store.native';
 import { normalizeStudyScope } from '@icao/contracts';
 
-const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
-  headphones: Headphones,
-  sentences: MessageSquareQuote,
-  radioTower: RadioTower,
-  mic: Mic2,
-  story: BookOpenText,
-};
+
 
 export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
   const guide = useGuide();
+  const offer = guide?.offer;
+  useEffect(() => { if (dataset.id === 'sentences900') offer?.('export', (GUIDE_FLOWS.export ?? []).map(step => step.id)); }, [dataset.id, offer]);
   const [exporting,setExporting] = useState(false);
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<CatalogProgressMap>({});
@@ -107,7 +99,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
-        right={dataset.id === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="导出900句 PDF" hitSlop={10} onPress={() => setExporting(true)}><Download size={21} color={colors.primary}/></Pressable> : undefined}
+        right={dataset.id === 'sentences900' ? <Pressable style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }} accessibilityRole="button" accessibilityLabel="导出900句 PDF" onPress={() => { guide?.event('export-open'); setExporting(true); }}><GuideAnchor id="export-open" /><Download size={21} color={colors.primary}/></Pressable> : undefined}
         items={switcherItems}
         onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}
         onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}

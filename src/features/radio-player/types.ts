@@ -46,6 +46,10 @@ export type RadioPlayerContextValue = {
   playing: boolean;
   loading: boolean;
   buffering: boolean;
+  /** Directory refresh never blocks the current audio controls. */
+  catalogLoading?: boolean;
+  catalogError?: string;
+  retryCatalog?: () => void;
   error?: string;
   position: number;
   duration: number;

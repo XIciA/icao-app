@@ -36,7 +36,7 @@ type AuthContextValue = {
   account?: NativeAccountSummary;
   session?: AppSession;
   passwordChangePurpose?: 'recovery' | 'setup';
-  passwordChangeReturnPath?: '/(tabs)' | '/account/security';
+  passwordChangeReturnPath?: '/(tabs)/profile' | '/account/security';
   uiAcceptanceAvailable: boolean;
   uiAcceptanceMode: boolean;
   consumePendingPath(): string | undefined;
@@ -511,7 +511,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       && passwordAuthorization.expiresAt > Date.now()
       ? passwordAuthorization.purpose
       : undefined,
-    passwordChangeReturnPath: passwordAuthorization?.origin === 'security' ? '/account/security' : '/(tabs)',
+    passwordChangeReturnPath: passwordAuthorization?.origin === 'security' ? '/account/security' : '/(tabs)/profile',
     uiAcceptanceAvailable: UI_ACCEPTANCE_MODE_AVAILABLE,
     uiAcceptanceMode,
     consumePendingPath() { const value = pendingPath; setPendingPath(undefined); return value; },

@@ -3,7 +3,7 @@ import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
-import { Stack, SplashScreen, usePathname, useGlobalSearchParams, type ErrorBoundaryProps, type Href } from 'expo-router';
+import { Stack, SplashScreen, usePathname, useGlobalSearchParams, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -14,10 +14,11 @@ import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { EdgeOneAlertHost } from '@/components/platform/EdgeOneAlertHost';
 import { CenteredState } from '@/components/states/CenteredState';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
 import { AppText, Button, Screen } from '@/components/ui';
 import { AccountRestoreState } from '@/features/auth/AccountRestoreState.native';
-import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, safeAppDestination } from '@/features/auth/guest-access';
+import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen } from '@/features/auth/guest-access';
 import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
@@ -108,11 +109,10 @@ export function AppStack() {
     if (!auth.restoring && auth.canAccessApp && pathname?.startsWith('/auth/')) {
       if (authRedirectInFlightRef.current) return;
       authRedirectInFlightRef.current = true;
-      const saved = safeAppDestination(auth.consumePendingPath());
-      // The active login route owns the intent. A suppressed rapid second tap
-      // can update pending memory without opening another login route.
-      const current = safeAppDestination(typeof searchParams.next === 'string' ? searchParams.next : undefined);
-      router.replace((current ?? saved ?? '/(tabs)') as Href);
+      auth.consumePendingPath();
+      // Ordinary login always finishes in My on the current client. Password
+      // recovery still completes its explicit credential-reset flow first.
+      router.replace(auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : '/(tabs)/profile');
       return;
     }
     authRedirectInFlightRef.current = false;
@@ -120,9 +120,7 @@ export function AppStack() {
 
   // Keep the navigator mounted while account checks fail or run. This makes
   // “continue browsing” usable even on a cold-start private deep link.
-  const accountState = auth.restoring ? <Screen><CenteredState
-    title="正在恢复登录" description="正在确认登录状态，你也可以先浏览题库。"
-    secondary={<Button onPress={continueBrowsing} variant="ghost">暂不登录，继续浏览</Button>} /></Screen>
+  const accountState = auth.restoring ? <GlobalLoadingScreen />
     : auth.accountRestoreUnavailable ? <AccountRestoreState retry={auth.retryAccountRestore} signOut={auth.signOut} onBrowse={continueBrowsing} />
     : auth.accountDeletionPending ? <Screen><CenteredState
         actionLabel={checking ? "正在检查…" : "重新检查"}
@@ -138,7 +136,7 @@ export function AppStack() {
             screenLayout={({ children, navigation, route }) => {
               if (accountState && (route.name === 'auth/[slug]' || !isPublicStackScreen(route.name, route.params))) return accountState;
               // Never mount a protected page (or its data hooks) for a guest.
-              if ((!auth.canAccessApp && !isPublicStackScreen(route.name, route.params)) || (auth.canAccessApp && route.name === 'auth/[slug]')) return <View style={styles.root} />;
+              if ((!auth.canAccessApp && !isPublicStackScreen(route.name, route.params)) || (auth.canAccessApp && route.name === 'auth/[slug]')) return <GlobalLoadingScreen />;
               return Platform.OS === 'ios'
                 ? <EdgeBackRegion enabled={!['index', '(tabs)', 'auth/[slug]'].includes(route.name)} navigation={navigation}>{children}</EdgeBackRegion>
                 : children;

@@ -8,7 +8,7 @@ export const GuideScrollView = forwardRef<ScrollView, ScrollViewProps>(function 
   const scroll = useRef<ScrollView>(null), offset = useRef(0), last = useRef<View | undefined>(undefined);
   const guide = useGuide();
   const activeTarget = useRef(guide?.target); activeTarget.current = guide?.target;
-  useEffect(() => { last.current = undefined; }, [guide?.step]);
+  useEffect(() => { last.current = undefined; }, [guide?.step, guide?.target]);
   const reveal = useCallback((node: View, target: string) => {
     if (target !== activeTarget.current || last.current !== undefined) return;
     scroll.current?.getNativeScrollRef()?.measureInWindow((_x, y, _w, height) => node.measureInWindow((_tx, ty, tw, th) => {

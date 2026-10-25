@@ -422,9 +422,12 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     waitingForNext,
     speedOptions,
     playing,
-    loading: sourceState.loading || catalogLoading,
+    loading: sourceState.loading,
+    catalogLoading,
+    catalogError,
+    retryCatalog: () => setCatalogAttempt(value => value + 1),
     buffering,
-    error: catalogError ?? sourceState.error,
+    error: sourceState.error,
     position,
     duration,
     sessionVisible,
@@ -463,7 +466,6 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     setRate,
     setIntervalSeconds,
     retry: () => {
-      if (catalogError) { setCatalogAttempt(value => value + 1); return; }
       if (currentTrack) void prepareTrack(currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,

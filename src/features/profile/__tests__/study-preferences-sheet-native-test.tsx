@@ -17,8 +17,8 @@ it('keeps all three choices in one draft and saves only target and range atomica
   await fireEvent.press(screen.getByRole('radio', { name: 'ICAO 5' }));
   await fireEvent.press(screen.getByRole('radio', { name: '复考' }));
   await fireEvent.press(screen.getByRole('radio', { name: '最全题库' }));
-  expect(screen.getByText(/所有问题的大合集/)).toBeTruthy();
-  expect(screen.getByText('适用于刷题时间足够、有一定语言基础的同学。')).toBeTruthy();
+  expect(screen.getByText(/汇集精选内容与更多拓展题目/)).toBeTruthy();
+  expect(screen.getByText('适合备考时间充足，希望扩大练习范围、加强综合训练的同学。')).toBeTruthy();
   expect(updateProfile).not.toHaveBeenCalled();
   await fireEvent.press(screen.getByText('完成'));
   expect(updateProfile).toHaveBeenCalledWith({ target: 'icao5-recert', studyScope: 'all' });
@@ -33,7 +33,7 @@ it('discards cancelled choices and opens with the latest profile', async () => {
   await screen.rerender(<StudyPreferencesSheet visible={false} accountId="a" profile={DEFAULT_PROFILE} onClose={close} />);
   await screen.rerender(<StudyPreferencesSheet visible accountId="a" profile={DEFAULT_PROFILE} onClose={close} />);
   expect(screen.getByRole('radio', { name: '精选题库' }).props.accessibilityState.checked).toBe(true);
-  expect(screen.getByText(/包含主要常见题型/)).toBeTruthy();
+  expect(screen.getByText(/聚焦主要常见题型/)).toBeTruthy();
 });
 it('retains the draft on save failure and lets the user retry', async () => {
   jest.mocked(updateProfile).mockRejectedValueOnce(new Error('offline'));

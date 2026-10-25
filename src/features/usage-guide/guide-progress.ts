@@ -33,6 +33,7 @@ export function parseGuideProgress(raw: string | null): GuideProgress {
       }
     }
     const strings = (items: unknown): string[] => Array.isArray(items) ? [...new Set(items.filter((id): id is string => typeof id === 'string'))] : [];
+    if (Array.isArray(value.completed) && value.completed.some((id: unknown) => typeof id === 'string' && id.startsWith('export-')) && !value.completed.includes('export-open')) value.completed.push('export-open');
     return { version: 3, ...(value.testNewUser === true ? { testNewUser: true } : {}), ...(Object.keys(resumes).length ? { definition: 1, resumes } : {}), completed: strings(value.completed), skippedSteps: strings(value.skippedSteps), skipped: strings(value.skipped) };
   } catch { return emptyGuideProgress(); }
 }

@@ -1,3 +1,4 @@
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { useRouter as useExitRouter } from 'expo-router';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
@@ -135,6 +136,7 @@ function StudyContent(props: Props) {
   const [activeHighlightId, setActiveHighlightId] = useState('green');
   const [managingAnnotations, setManagingAnnotations] = useState(false);
   const [annotationPanelTop, setAnnotationPanelTop] = useState<number>();
+  const pendingFavoriteTeaching = useRef(false);
   const [lookup, setLookup] = useState<StaticWordLookupEntry>();
   useFocusEffect(useCallback(() => () => setLookup(undefined), []));
   const [finishing, setFinishing] = useState(false);
@@ -728,7 +730,7 @@ function StudyContent(props: Props) {
     return <StudyReport answerScope={!session.examMode && !session.historyRecord ? { items: session.items, current: session.currentIndex } : undefined} localReturn={Boolean(onReturn)} interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (listeningCheckpoint) return <StudyReport record={listeningCheckpoint} noteCount={0} interaction="choices" onReturn={navigateAfterStudy} busy={finishing} error={finishError} onExitWithoutSave={canLeaveWithoutSave ? confirmExitWithoutSave : undefined} onEnd={() => { void finish('abort'); }} onContinue={() => { if (!finishing && listeningExamRange) { session.goTo(listeningExamRange.endIndex + 1); setListeningCheckpoint(undefined); } }} />;
-  if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
+  if (!session.hydrated) return <SafeAreaView style={styles.state}><GlobalLoadingScreen /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
   if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /><Button variant="secondary" onPress={() => { void leaveStudy(); }}>返回</Button></SafeAreaView>;
 
   const entry = annotations.entry ? { ...annotations.entry, highlights: annotations.entry.highlights.filter((highlight) => highlight.contentFingerprint === contentFingerprint(highlight.blockId === 'question' ? card.audioText ?? '' : card.referenceText ?? '')) } : undefined;
@@ -848,7 +850,7 @@ function StudyContent(props: Props) {
       </AppContentFrame>
 
       <AnswerCardSheet highlightColors={answerCardHighlightColors} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={session.learnedIndexes} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} visible={!examMode && answerCardVisible} />
-      <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
+      <BottomSheet accessibilityLabel="查词结果" onClosed={() => { if (pendingFavoriteTeaching.current) { pendingFavoriteTeaching.current = false; if (guide?.current === 'study' && guide.step === 'study-favorite') guide.event('study-favorite'); } else if (guide?.current === 'study' && guide.step === 'study-favorite') guide.rewind?.('study-lookup'); }} onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
             <AppText style={styles.lookupTitle} variant="pageTitle">{lookup?.word}</AppText>
@@ -859,7 +861,7 @@ function StudyContent(props: Props) {
                 accessibilityRole="button"
                 hitSlop={8}
                 disabled={favoriteSave.saving || favoriteSave.failed || wordFavorites.ready === false || wordFavorites.error}
-                onPress={() => { const word = lookup.word; const wasFavorite = wordFavorites.isFavorite({word}); void favoriteSave.run(async () => { await wordFavorites.toggleFavorite({word}); if (!wasFavorite) sessionFavorites.current.add(word); }, () => { if (!wasFavorite && guiding) { tutorial?.event('favorite'); setLookup(undefined); } }); }}
+                onPress={() => { const word = lookup.word; const wasFavorite = wordFavorites.isFavorite({word}); void favoriteSave.run(async () => { await wordFavorites.toggleFavorite({word}); if (!wasFavorite) sessionFavorites.current.add(word); }, () => { if (!wasFavorite && guiding) { pendingFavoriteTeaching.current = true; setLookup(undefined); } }); }}
                 style={({ pressed }) => [styles.lookupFavorite, pressed ? styles.lookupFavoritePressed : null]}
               >
                 {favoriteSave.saving ? <ActivityIndicator size="small" color={colors.accent} /> : <Star

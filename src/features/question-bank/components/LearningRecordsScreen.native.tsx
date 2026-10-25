@@ -1,3 +1,4 @@
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
 import { GuideAnchor, useGuide, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
 import { Clock3, ChevronRight, History, Target, Trash2 } from '@/components/ui/icons';
@@ -127,7 +128,7 @@ function LearningRecordsContent() {
       contentContainerStyle={styles.list}
       onEndReached={() => { if (hasMore && !loading) void loadPage(records.length); }}
       ListHeaderComponent={error ? <View style={styles.error}><AppText color={colors.destructive}>{error}</AppText><Button variant="secondary" onPress={() => { if (failedRecord.current) void open(failedRecord.current); else if (failedDelete.current) remove(failedDelete.current); else void loadPage(); }}>重试</Button></View> : null}
-      ListEmptyComponent={loading ? <AppText>正在读取记录…</AppText> : !error ? <Card style={styles.empty}><GuideAnchor id="recap-records-empty" /><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText variant="caption">完成或结束一次练习后会显示在这里。</AppText></Card> : null}
+      ListEmptyComponent={loading ? <GlobalLoadingScreen /> : !error ? <Card style={styles.empty}><GuideAnchor id="recap-records-empty" /><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText variant="caption">完成或结束一次练习后会显示在这里。</AppText></Card> : null}
       ListFooterComponent={loading && records.length ? <AppText variant="caption">正在读取…</AppText> : null}
       renderItem={({ item: record, index }) => <View style={styles.group}>
         {index === 0 || dayKey(records[index - 1].createdAt) !== dayKey(record.createdAt) ? <AppText variant="caption" style={styles.day}>{dayLabel(record.createdAt)}</AppText> : null}

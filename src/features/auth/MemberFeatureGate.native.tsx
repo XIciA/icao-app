@@ -2,7 +2,9 @@ import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { useLocalSearchParams, usePathname, type Href } from 'expo-router';
 import { useIsFocused } from '@react-navigation/native';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
-import { AppText, Button, Screen } from '@/components/ui';
+import { Button, Screen } from '@/components/ui';
+import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { CenteredState } from '@/components/states/CenteredState';
 import { TopBar } from '@/components/navigation/TopBar';
 import { useAuth } from './AuthProvider';
 import { useLoginEntry } from './use-login-entry';
@@ -41,8 +43,8 @@ export function MemberFeatureGate({ children }: PropsWithChildren) {
     }
   }, [auth.canAccessApp, active, commerce.entitlement, commerce.phase, destination, focused]); // eslint-disable-line react-hooks/exhaustive-deps
   if (auth.canAccessApp && active) return children;
-  return <Screen header={<TopBar title="会员功能" onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />}>
-    <AppText variant="sectionTitle">{commerce.phase === 'error' ? '暂时无法确认会员状态' : '正在确认会员权益…'}</AppText>
-    {commerce.phase === 'error' ? <Button variant="outline" onPress={() => { void commerce.refresh(); }}>重新检查</Button> : null}
+  if (commerce.phase !== 'error') return <GlobalLoadingScreen />;
+  return <Screen header={<TopBar title="暂时无法打开" onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)/discover')} />}>
+    <CenteredState title="暂时无法确认会员状态" description="请检查网络后重试。" secondary={<Button variant="outline" onPress={() => { void commerce.refresh(); }}>重新检查</Button>} />
   </Screen>;
 }

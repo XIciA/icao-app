@@ -57,11 +57,11 @@ export function ProfileLearningCard() {
   const visibleResult = result?.owner === owner && result.catalog === catalog ? result : undefined;
   const goal = examGoal(profile.target);
   const scopeTitle = STUDY_SCOPE_OPTIONS.find(option => option.value === scope)?.title ?? '精选题库';
-  // Keep all five section positions on one line; counts use two lines so real four-digit totals fit.
+  // Keep the selected goal and scope together, with inline progress totals.
   return <>
     <Card style={styles.card} testID="profile-learning-card">
       <Pressable accessibilityRole="button" accessibilityLabel={`备考设置，${goal.label}，${scopeTitle}`} accessibilityHint="打开底部抽屉，修改目标等级、考试类型和题库范围" disabled={!accountId} onPress={() => setPreferencesAccount(accountId)} style={({ pressed }) => [styles.result, pressed && styles.pressed]}>
-        <View style={styles.summary}><AppText variant="button">{goal.label.replace(/ (初考|复考)$/u, ' · $1')}</AppText><View style={styles.divider} /><AppText variant="button">{scopeTitle}</AppText></View>
+        <View style={styles.summary}><AppText numberOfLines={1} maxFontSizeMultiplier={1.3} style={styles.heading} variant="button">{goal.label.replace(/ (初考|复考)$/u, ' · $1')}</AppText><View style={styles.divider} /><AppText numberOfLines={1} maxFontSizeMultiplier={1.3} style={styles.heading} variant="button">{scopeTitle}</AppText></View>
         <ChevronRight size={17} color={colors.mutedForeground} />
       </Pressable>
       <View style={styles.progress}>
@@ -89,13 +89,14 @@ export function ProfileLearningCard() {
 const styles = StyleSheet.create({
   card: { padding: 0, marginTop: spacing[4], overflow: 'hidden' },
   result: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing[2], paddingHorizontal: spacing[4], paddingVertical: spacing[3] },
-  summary: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: spacing[2] },
+  summary: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: spacing[2] },
+  heading: { fontFamily: fonts.serifSemibold, fontSize: 15, lineHeight: 23, flexShrink: 1 },
   divider: { width: 1, height: 16, backgroundColor: colors.border },
-  progress: { height: 124, paddingHorizontal: spacing[2], paddingTop: spacing[3], flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start' },
-  part: { flexShrink: 1, minWidth: 44, alignItems: 'center', gap: spacing[2] },
+  progress: { minHeight: 104, paddingHorizontal: spacing[2], paddingTop: spacing[3], flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start' },
+  part: { flex: 1, minWidth: 0, alignItems: 'center', gap: spacing[2] },
   ring: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
-  count: { alignItems: 'center' }, learned: { fontFamily: fonts.monoRegular }, total: { fontFamily: fonts.monoRegular, fontSize: 11, lineHeight: 16 },
-  status: { height: 24, alignItems: 'center', justifyContent: 'center' },
+  count: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: 3 }, learned: { fontFamily: fonts.monoRegular, fontSize: 13, lineHeight: 20 }, total: { fontFamily: fonts.monoRegular, fontSize: 10, lineHeight: 16 },
+  status: { minHeight: 8, alignItems: 'center', justifyContent: 'center' },
   shortcuts: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.border, flexDirection: 'row', paddingVertical: spacing[4] },
   shortcut: { flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center', gap: spacing[2] },
   pressed: { opacity: 0.72 },

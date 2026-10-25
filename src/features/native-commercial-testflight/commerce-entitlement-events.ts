@@ -72,6 +72,11 @@ export function subscribeCommerceEntitlementChanges(
  */
 export function publishCommerceEntitlementChange(change: EntitlementPublication) {
   if (change.generation !== activeGeneration) return snapshot;
+  // A response requested before a purchase can finish after server verification.
+  // The shared owner must not replace the verified membership with older data.
+  if (snapshot?.generation === change.generation && snapshot.environment === change.environment
+    && snapshot.snapshot && change.snapshot
+    && Date.parse(change.snapshot.serverTime) < Date.parse(snapshot.snapshot.serverTime)) return snapshot;
   return commit(change);
 }
 

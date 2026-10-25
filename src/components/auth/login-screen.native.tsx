@@ -7,7 +7,6 @@ import { publicLoginReturn } from '@/features/auth/guest-access';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 
-import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import { AppBrandLogo } from '@/components/brand/AppBrandLogo';
 import { AppText, Button, Screen, TextField } from '@/components/ui';
 import { useAuth, type LoginLegalDocuments } from '@/features/auth/AuthProvider';
@@ -84,7 +83,7 @@ export function LoginScreen() {
 }
 
 function LoginContent() {
-  const { mode, returnTo, reason } = useLocalSearchParams<{ mode?: string; returnTo?: string; reason?: string }>();
+  const { mode, returnTo } = useLocalSearchParams<{ mode?: string; returnTo?: string; reason?: string }>();
   const router = useAppRouter();
   const auth = useAuth();
   const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
@@ -442,9 +441,7 @@ function LoginContent() {
       <View style={styles.brandRow}>
         <AppBrandLogo decorative size="sm" testID="login-brand-logo" />
         <AuthHeading title="登录 / 注册" />
-        <WebAppDownloadLink />
       </View>
-      {reason ? <AppText variant="caption">{reason}</AppText> : null}
       <AppText variant="caption">继续你的 ICAO 学习之旅。</AppText>
       <View style={styles.form}>
         <PhoneField onChangeText={updatePhone} value={phone} />
@@ -488,14 +485,13 @@ function LoginContent() {
         <View style={styles.endLink}><TextLink label={loginMethod === 'otp' ? '密码登录' : '验证码登录'} onPress={() => {
           if (!submitting) { setLoginMethod(loginMethod === 'otp' ? 'password' : 'otp'); setPassword(''); setError(''); }
         }} /></View>
-        <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => {
+        <LegalLinks documents={legalDocuments} checked={accepted} label={loginAgeCopy.consentLabel} onToggle={() => {
           if (!submitting) {
             acceptedRef.current = !acceptedRef.current;
             setAccepted(acceptedRef.current);
             auth.rememberLoginConsent(acceptedRef.current ? legalDocuments : undefined);
           }
         }} />
-        <LegalLinks documents={legalDocuments} />
         <Button disabled={submitting || !accepted || !normalizeChinaMobile(phone) || (loginMethod === 'otp' ? !challenge || challengeExpired || code.length !== 6 : !password)} loading={submitting} onPress={() => void (loginMethod === 'otp' ? verifyCode() : submitPasswordLogin())} size="lg">登录 / 注册</Button>
       </View>
 {thirdPartyLoginAvailable ? (
@@ -530,14 +526,18 @@ function PhoneField({ value, onChangeText }: { value: string; onChangeText: (val
   return <AuthField autoCapitalize="none" keyboardType="phone-pad" label="手机号" maxLength={14} onChangeText={onChangeText} placeholder="请输入11位手机号" prefix="+86" value={value} />;
 }
 
-function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
+function LegalLinks({ documents, checked, label, onToggle }: { documents: LoginLegalDocuments; checked: boolean; label: string; onToggle: () => void }) {
   const [openDocument, setOpenDocument] = useState<'agreement' | 'privacy'>();
   return (
     <>
-    <View style={styles.legalLinks}>
-      <TextLink label="用户协议" onPress={() => setOpenDocument('agreement')} />
-      <AppText variant="micro">·</AppText>
-      <TextLink label="隐私政策" onPress={() => setOpenDocument('privacy')} />
+    <View style={styles.consent}>
+      <Checkbox checked={checked} accessibilityLabel={label} label="" onPress={onToggle} />
+      <AppText style={styles.consentText} variant="caption">
+        <AppText onPress={onToggle} variant="caption">{label.split('用户协议')[0]}</AppText>
+        <AppText accessibilityRole="link" color={colors.primary} onPress={() => setOpenDocument('agreement')} variant="caption">用户协议</AppText>
+        <AppText onPress={onToggle} variant="caption">与</AppText>
+        <AppText accessibilityRole="link" color={colors.primary} onPress={() => setOpenDocument('privacy')} variant="caption">隐私政策</AppText>
+      </AppText>
     </View>
     <AppModal animationType="slide" onRequestClose={() => setOpenDocument(undefined)} visible={Boolean(openDocument)}>
       {openDocument ? <>
@@ -551,6 +551,8 @@ function LegalLinks({ documents }: { documents: LoginLegalDocuments }) {
 }
 
 const styles = StyleSheet.create({
+  consent: { flexDirection: 'row', alignItems: 'center', gap: spacing[2] },
+  consentText: { flex: 1, lineHeight: 20 },
   brandRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], marginTop: spacing[1] },
   socialSection: { alignItems: 'center', flexDirection: 'row', gap: spacing[4], justifyContent: 'center' },
   socialButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: 28, borderWidth: 1, height: 56, justifyContent: 'center', width: 56 },

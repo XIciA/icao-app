@@ -27,7 +27,7 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
   const [picker,setPicker]=useState<'levels'|'filter'|'language'|'tags'>();
   const guide = useGuide();
   const offer = guide?.offer;
-  useEffect(() => { offer?.('export', (GUIDE_FLOWS.export ?? []).map(step => step.id)); }, [offer]);
+  useEffect(() => { offer?.('export', (GUIDE_FLOWS.export ?? []).filter(step => step.id !== 'export-open').map(step => step.id)); }, [offer]);
   const [data,setData]=useState<{rows:ExportSentence[];annotations:QuestionBankAnnotationStore}>();const [attempt,setAttempt]=useState(0);
   const [options,setOptions]=useState<ExportOptions>({...defaults,levels:dataset.categories.map(c=>c.name)});
   const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [output,setOutput]=useState<{uri:string;pages:number;count:number}>();
@@ -45,13 +45,16 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
     })().catch(()=>{if(current)setError('资料读取失败，已有记录未被修改，请重试。');});return()=>{current=false;};
   },[attempt,context,dataset]);
   const generating = useRef(false);
+  const generationAbort = useRef<AbortController | undefined>(undefined);
+  useEffect(() => () => generationAbort.current?.abort(), []);
   const count=data?selectedSentences(data.rows,options).length:0;
   useGuideConfirmation('export-levels', !!data && options.levels.length > 0);
   useGuideConfirmation('export-scope', !!data && count > 0);
   useGuideAvailability('export', error ? '导出暂未成功，请在页面重试，也可以跳过教学。已有学习记录会保留。' : data && !count ? '当前条件没有可导出的句子，请调整范围或筛选，也可以跳过教学。' : undefined);
   function toggleLevel(level:string){setOptions(current=>({...current,levels:current.levels.includes(level)?current.levels.filter(l=>l!==level):[...current.levels,level]}));}
-  async function generate(){if(!data||busy||generating.current)return;generating.current=true;setBusy(true);setError('');try{assertLearningWriteContext(context);
-    const result=await generateSentencesPdf(data.rows,options,data.annotations,await exportFontBytes());assertLearningWriteContext(context);
+  async function generate(){if(!data||busy||generating.current)return;generating.current=true;const controller=new AbortController();generationAbort.current=controller;setBusy(true);setError('');try{assertLearningWriteContext(context);
+    const result=await generateSentencesPdf(data.rows,options,data.annotations,await exportFontBytes(),new Date(),{signal:controller.signal});assertLearningWriteContext(context);
+    if(controller.signal.aborted || !active.current)return;
     const uri=await storePdf(result.bytes);if(!active.current){releasePdf(uri);return;}outputUri.current=uri;setOutput({uri,pages:result.pageCount,count:result.sentenceCount});guide?.event('export-generate');
   }catch{if(active.current)setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');}finally{generating.current=false;if(active.current)setBusy(false);}}
   async function open(action:()=>Promise<void>,message:string){if(busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);await action();}catch{if(active.current)setError(message);}finally{if(active.current)setBusy(false);}}
