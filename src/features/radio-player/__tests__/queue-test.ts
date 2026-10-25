@@ -33,7 +33,7 @@ describe('radio player queue', () => {
     expect(catalogs.map((catalog) => [catalog.bankId, catalog.tracks.filter(track => !track.requiresMembership).length])).toEqual([
       ['listening', 40],
       ['sentences900', 900],
-      ['radiotelephony', 18],
+      ['radiotelephony', 17],
       ['storytelling', 3],
       ['opi', 23],
     ]);

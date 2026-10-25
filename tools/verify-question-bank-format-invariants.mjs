@@ -50,4 +50,5 @@ for (const order of orders) {
   assert.deepEqual([...order.before].sort(), [...order.after].sort());
   if (order.before.length > 1) assert(order.after.every((id, index) => id !== order.before[index]), `fixed_position:${order.topicId ?? order.categoryId}`);
 }
-console.log('format_invariants_ok banks=5 cards=10900 identity_media_answers_scopes_and_lexical_content_preserved');
+const cardCount = sourceBanks.flatMap(bank => bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards))).length;
+console.log(`format_invariants_ok banks=${sourceBanks.length} cards=${cardCount} identity_media_answers_scopes_and_lexical_content_preserved`);
