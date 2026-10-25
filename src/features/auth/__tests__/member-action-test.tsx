@@ -18,7 +18,7 @@ it('opens active membership and lets the destination gate handle an unknown enti
   const hook=await renderHook(useMemberAction);
   await act(()=>hook.result.current('/content/mock-exam'));
   expect(mockPush).toHaveBeenLastCalledWith('/content/mock-exam');
-  mockCommerce={phase:'error'};await hook.rerender();
+  mockCommerce={phase:'error'};await hook.rerender(undefined);
   await act(()=>hook.result.current('/content/mock-exam'));
   expect(mockPush).toHaveBeenLastCalledWith('/content/mock-exam');
 });
