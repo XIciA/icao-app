@@ -62,3 +62,15 @@ it('indexes audio cards only and never includes question/answer text or media UR
   ];
   expect(questionBankRadioEntries({ cards })).toEqual([{ id: 'audio', title: 'Question 1', durationSeconds: 12 }]);
 });
+
+it.each(['all', 'selected', 'crash'] as const)('keeps the complete %s directory for non-members without exposing protected content', scope => {
+  const selection = { scope, target: 'icao5-first' as const };
+  const nonMemberDirectory = directory.map(bank => ({ ...bank, access: { ...member, membershipActive: false } }));
+  const actual = deriveRadioCatalogs(nonMemberDirectory, selection);
+  const expected = deriveRadioCatalogs(source, selection);
+  expect(actual.map(bank => ({id:bank.bankId, ids:bank.tracks.map(track=>track.id)})))
+    .toEqual(expected.map(bank => ({id:bank.bankId, ids:bank.tracks.map(track=>track.id)})));
+  const locked = actual.flatMap(bank=>bank.tracks).filter(track=>track.requiresMembership);
+  expect(locked.length).toBeGreaterThan(0);
+  expect(locked.every(track=>!track.audioText && !track.audioPath && track.contentLoaded === false)).toBe(true);
+});
