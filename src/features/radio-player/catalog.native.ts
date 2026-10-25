@@ -1,4 +1,5 @@
 import { orderQuestionBanks } from '@/features/question-bank/lib/bank-order';
+import { contentReleaseOf, sameContentRelease } from '@/features/question-bank/data/content-version.native';
 import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
 import { radioCardContent, radioDuration } from './track-content';
 import { hydrateRadioCatalogDatasets } from './catalog-hydration.native';
@@ -61,7 +62,7 @@ export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection): Radio
   return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection).map(catalog => ({ ...catalog, complete: false }));
 }
 
-export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; isCurrent?: () => boolean; onProgress?: (datasets: QuestionBankDataset[]) => void } = {}) {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; getPriorityBankId?: () => RadioCatalog['bankId']; previousDatasets?: QuestionBankDataset[]; isCurrent?: () => boolean; onProgress?: (datasets: QuestionBankDataset[]) => void } = {}) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
     if (options.isCurrent && !options.isCurrent()) throw new Error('content_request_cancelled');
@@ -93,6 +94,23 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
     } satisfies QuestionBankDataset;
   }));
   assertOwner();
+  // Reuse only this owner's same-release authorized progress. Never carry
+  // member text across an entitlement or release change.
+  for (const bank of loaded) {
+    const previous = options.previousDatasets?.find(item => item.id === bank.id);
+    const release = contentReleaseOf(bank);
+    if (!previous || !release || !sameContentRelease(previous, release)
+      || bank.access?.membershipActive !== true || previous.access?.membershipActive !== true) continue;
+    for (const category of bank.categories) {
+      const oldCategory = previous.categories.find(item => item.id === category.id);
+      category.topics = category.topics.map(topic => {
+        const oldTopic = oldCategory?.topics.find(item => item.id === topic.id);
+        return oldTopic && oldTopic.cards.length > topic.cards.length
+          ? { ...topic, cards: oldTopic.cards, access: topic.access ? { ...topic.access, availableCardCount: oldTopic.cards.length } : undefined }
+          : topic;
+      });
+    }
+  }
   const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
   // App startup uses metadata only. Expand authorized text when the radio session opens.
   if (!options.complete) return scoped;
@@ -101,7 +119,7 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
     options.onProgress?.(selection ? datasets.map(bank => scopeDataset(bank, selection.scope, selection.target)) : datasets);
   };
   publish(scoped);
-  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner, publish, options.bankId);
+  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner, publish, options.getPriorityBankId ?? options.bankId);
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
 

@@ -3,6 +3,6 @@ import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets
 
 export { deriveRadioCatalogs, getEmbeddedRadioCatalogs };
 
-export async function loadRadioCatalogs(selection?: RadioStudySelection, bankId?: RadioBankId, isCurrent?: () => boolean, onProgress?: (catalogs: ReturnType<typeof deriveRadioCatalogs>) => void) {
-  return deriveRadioCatalogs(await loadRadioCatalogDatasets(selection, { complete: true, bankId, isCurrent, onProgress: datasets => onProgress?.(deriveRadioCatalogs(datasets, selection)) }), selection);
+export async function loadRadioCatalogs(selection?: RadioStudySelection, bankId?: RadioBankId, isCurrent?: () => boolean, onProgress?: (catalogs: ReturnType<typeof deriveRadioCatalogs>) => void, getPriorityBankId?: () => RadioBankId) {
+  return deriveRadioCatalogs(await loadRadioCatalogDatasets(selection, { complete: true, bankId, getPriorityBankId, isCurrent, onProgress: datasets => onProgress?.(deriveRadioCatalogs(datasets, selection)) }), selection);
 }
