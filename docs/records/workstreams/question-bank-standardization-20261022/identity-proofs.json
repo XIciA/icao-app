@@ -12,9 +12,9 @@
       "dependentSequenceChecksum": "c141342208869a82a94b143e6cc73761829a15ad2128e8cdb002408a4e595ef9"
     },
     "radiotelephony": {
-      "cards": 5751,
-      "checksum": "7f6cf17b64058aa561c4b066335634809346fce75dd0fb5eee2fb97796b3247a",
-      "dependentSequenceChecksum": "02adad79e81fb552d9a1d1d4e0788d4263b8da16a883a8a4e876382ded824022"
+      "cards": 5750,
+      "checksum": "4104a73c17f0f56b25d169a173d3bcf128a7c0eac9c52a2128682bfbff69445f",
+      "dependentSequenceChecksum": "f2146f876b9346ea737653f2424083e4a61e77686053433845c5d9193f776cea"
     },
     "sentences900": {
       "cards": 900,

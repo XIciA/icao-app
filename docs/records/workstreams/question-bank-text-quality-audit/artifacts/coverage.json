@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
   "releaseVersion": 26,
-  "generatedAt": "2026-10-21T18:47:59.610Z",
+  "generatedAt": "2026-10-25T17:43:29.848Z",
   "totals": {
     "files": 603,
-    "textValues": 62841
+    "textValues": 62836
   },
   "files": [
     {
@@ -1547,7 +1547,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/bank.json",
       "textValues": 10,
-      "textProjectionSha256": "5b2ac044d09b0bc6b20e23f1236a1dd4840c780b1c991bb1b6b62931a462d013",
+      "textProjectionSha256": "20989fdd5583c8ec88c518c10e16dba7200b39ce525fca403f2e7c3a911518ca",
       "status": "reviewed"
     },
     {
@@ -2356,8 +2356,8 @@
     },
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-fzy-790.json",
-      "textValues": 91,
-      "textProjectionSha256": "652331aa6bd545c55d0e7f43546f5cb42f88e2df25baac41a3330a250e9f9c39",
+      "textValues": 86,
+      "textProjectionSha256": "2926867c248006d001a985a7287f0f1c2a50bf0d179a24ba2ff63c0d2e470de0",
       "status": "reviewed"
     },
     {
@@ -3455,7 +3455,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0172.json",
       "textValues": 76,
-      "textProjectionSha256": "aefe57387c501b159f7e632d99e0a454c10cf3ce22d5bc3911440151c5961856",
+      "textProjectionSha256": "7753e29286e3a838f8682703d0e12f7a572c384e5231b7d35b1864d47fbb852d",
       "status": "reviewed"
     },
     {

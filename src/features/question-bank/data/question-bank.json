@@ -41164,12 +41164,12 @@
     "title": "陆空通话",
     "nameEn": "Radiotelephony",
     "description": "结构 词汇 理解能力",
-    "summary": "319 场景 / 5751 卡",
+    "summary": "319 场景 / 5750 卡",
     "enabled": true,
     "statusLabel": "可练习",
     "icon": "radioTower",
     "declaredTopicCount": 319,
-    "declaredCardCount": 5751,
+    "declaredCardCount": 5750,
     "categoryUnit": "航司",
     "topicUnit": "场景",
     "cardUnit": "卡",
@@ -41205,12 +41205,12 @@
         "id": "atc-qfa",
         "name": "QFA",
         "declaredTopicCount": 17,
-        "declaredCardCount": 303,
+        "declaredCardCount": 302,
         "topics": [
           {
             "id": "atc-fzy-790",
             "name": "QFA160 [导航问题，燃油短缺]",
-            "declaredCardCount": 18,
+            "declaredCardCount": 17,
             "studyTier": 1,
             "practiceKind": "scenario",
             "cards": [
@@ -41223,16 +41223,6 @@
                 "referenceTextZh": "郑州区调，澳航160，从东京飞往广州，我们在11000米巡航，飞过WX。",
                 "audio": "/question-bank-assets/audio/radiotelephony/fzy/f41ebbd434181ed63351.mp3",
                 "audioDurationSeconds": 14.55
-              },
-              {
-                "id": "radiotelephony-fzy-152558",
-                "taskTitle": "9-QFA160 [导航问题，燃油短缺]-2",
-                "audioText": "C: QFA160, Zhengzhou Control, radar contact, maintain 10500 meters.",
-                "audioTextZh": "澳航160，郑州区调，雷达识别，10500米保持。",
-                "referenceText": "Roger, maintain 10500 meters, QFA160.",
-                "referenceTextZh": "收到，10500米保持，澳航160。",
-                "audio": "/question-bank-assets/audio/radiotelephony/fzy/ec88efeb3535ad91e559.mp3",
-                "audioDurationSeconds": 11.912
               },
               {
                 "id": "radiotelephony-fzy-152559",
@@ -58206,8 +58196,8 @@
                 "taskTitle": "UAL 811-12",
                 "audioText": "you are over OBLIK at time 1200Z, maintaining 11,000 meters, you are estimating ZF at time 1230, your next waypoint is WUH, make a standard position report to Wuhan Control.",
                 "audioTextZh": "你在 1200Z 时飞越 OBLIK，保持 11,000 米，预计 1230 时到达 ZF，下一个航路点是 WUH，向武汉管制作标准位置报告。",
-                "referenceText": "Wuhan Control, UAL 811, OBLIK1200Z, 2000 meters, estimating ZF1230 Z, WUH next.",
-                "referenceTextZh": "武汉管制，UAL 811，1200Z 飞越 OBLIK，2000 米，预计 1230Z 到达 ZF，下一个航路点 WUH。",
+                "referenceText": "Wuhan Control, UAL 811, OBLIK1200Z, 11000 meters, estimating ZF1230 Z, WUH next.",
+                "referenceTextZh": "武汉管制，UAL 811，1200Z 飞越 OBLIK，11000 米，预计 1230Z 到达 ZF，下一个航路点 WUH。",
                 "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q12.mp3"
               },
               {
