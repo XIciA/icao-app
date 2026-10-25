@@ -19,7 +19,7 @@ export function VipBadge({ active }: { active: boolean }) {
   const color = active ? colors.accent : colors.mutedForeground;
   return <View style={[styles.badge, { borderColor: active ? colors.accent : colors.border }]}><Star size={14} color={color} /><AppText color={color} variant="micro">VIP</AppText></View>;
 }
-export function MembershipStatus({ pill = false }: { pill?: boolean }) {
+export function MembershipStatus({ pill = false, align = 'start' }: { pill?: boolean; align?: 'start' | 'end' }) {
   const commerce = useCommerceRuntime(); const router = useAppRouter(); const [open, setOpen] = useState(false);
   const membership = membershipPresentation(commerce.entitlement);
   const statusLabel = commerce.phase === 'error' && !commerce.entitlement ? '会员状态暂时无法读取' : membership.label;
@@ -29,7 +29,7 @@ export function MembershipStatus({ pill = false }: { pill?: boolean }) {
       accessibilityRole="button"
       accessibilityLabel={`查看会员状态，${statusLabel}`}
       onPress={(event) => { event.stopPropagation(); setOpen(true); }}
-      style={({ pressed }) => [styles.trigger, pill && styles.pill, pill && !membership.active && styles.inactivePill, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.trigger, align === 'end' && styles.alignEnd, pill && styles.pill, pill && !membership.active && styles.inactivePill, pressed && styles.pressed]}
     >
       {pill ? <Star size={16} color={membership.active ? colors.accent : colors.mutedForeground} /> : <VipBadge active={membership.active} />}
       <AppText color={pill && membership.active ? colors.accent : colors.mutedForeground} style={styles.status} variant="caption">
@@ -46,6 +46,7 @@ export function MembershipStatus({ pill = false }: { pill?: boolean }) {
 const styles = StyleSheet.create({
   badge: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, flexShrink: 0, width: 58, height: 32, borderWidth: 1, borderRadius: radii.sm },
   trigger: { flexDirection: 'row', alignItems: 'center', gap: spacing[2], minWidth: 0, maxWidth: '100%', minHeight: 44, alignSelf: 'flex-start' },
+  alignEnd: { alignSelf: 'flex-end' },
   pill: { borderRadius: radii.full, paddingHorizontal: spacing[3], paddingVertical: spacing[2], backgroundColor: 'rgba(183, 118, 16, 0.06)', borderWidth: 1, borderColor: 'rgba(183, 118, 16, 0.16)' },
   inactivePill: { backgroundColor: colors.muted, borderColor: colors.border },
   status: { flexShrink: 1 },

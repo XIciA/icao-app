@@ -1,3 +1,5 @@
+jest.mock('@/features/auth/use-member-action', () => ({useMemberAction:()=>mockPush}));
+jest.mock('../use-hotspot-overview.native', () => ({useHotspotOverview:()=>({retry:mockRetry,state:mockState})}));
 import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -124,4 +126,16 @@ describe('OPI hotspot restricted states', () => {
 
     expect(screen.getByText(expectedText)).toBeTruthy();
   });
+});
+
+it('shows full public questions and routes Start learning through the member action', async () => {
+  const brief = loadHotspotBriefs()[0];
+  const id = brief.topics[0].cardIds[0];
+  mockState = {status:'ready',brief,topics:[{...brief.topics[0],cards:[{id,prompt:'How do you avoid severe weather?'}]}]} as unknown as HotspotAccessResult;
+  const screen = await render(withSafeArea(<HotspotDetailScreen briefId={brief.id} />));
+  expect(screen.getByText('How do you avoid severe weather?')).toBeTruthy();
+  expect(screen.queryByText('question-bank-study')).toBeNull();
+  await fireEvent.press(screen.getByText(/开始学习/));
+  expect(mockPush).toHaveBeenCalledWith(`/content/hotspot/${encodeURIComponent(brief.id)}/study`);
+  expect(mockUseHotspotAccess).not.toHaveBeenCalled();
 });

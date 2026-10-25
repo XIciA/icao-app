@@ -47,10 +47,10 @@ it('uses a bundled directory with an older API only when the exact source releas
   expect(withEmbeddedRadioDirectory({ ...legacy, contentRelease: { ...bank.contentRelease!, checksum: '0'.repeat(64) } } as QuestionBankDataset, fallback).categories[0].topics[0].radioEntries).toBeUndefined();
 });
 
-it('does not expose member track positions to a free account', () => {
+it('exposes locked member positions while preserving the same free playable subset', () => {
   const publicOnly = deriveRadioCatalogs(embedded);
   const withIndex = deriveRadioCatalogs(embedded.map(bank => ({ ...bank, categories: bank.categories.map(category => ({ ...category, topics: category.topics.map(({ radioEntries: _entries, ...topic }) => topic) })) })));
-  expect(publicOnly.map(bank => bank.tracks.map(track => track.id))).toEqual(withIndex.map(bank => bank.tracks.map(track => track.id)));
+  expect(publicOnly.map(bank => bank.tracks.filter(track => !track.requiresMembership).map(track => track.id))).toEqual(withIndex.map(bank => bank.tracks.map(track => track.id)));
 });
 
 it('indexes audio cards only and never includes question/answer text or media URLs', () => {
@@ -61,4 +61,16 @@ it('indexes audio cards only and never includes question/answer text or media UR
     { id: 'text-only', taskTitle: 'No audio' },
   ];
   expect(questionBankRadioEntries({ cards })).toEqual([{ id: 'audio', title: 'Question 1', durationSeconds: 12 }]);
+});
+
+it.each(['all', 'selected', 'crash'] as const)('keeps the complete %s directory for non-members without exposing protected content', scope => {
+  const selection = { scope, target: 'icao5-first' as const };
+  const nonMemberDirectory = directory.map(bank => ({ ...bank, access: { ...member, membershipActive: false } }));
+  const actual = deriveRadioCatalogs(nonMemberDirectory, selection);
+  const expected = deriveRadioCatalogs(source, selection);
+  expect(actual.map(bank => ({id:bank.bankId, ids:bank.tracks.map(track=>track.id)})))
+    .toEqual(expected.map(bank => ({id:bank.bankId, ids:bank.tracks.map(track=>track.id)})));
+  const locked = actual.flatMap(bank=>bank.tracks).filter(track=>track.requiresMembership);
+  expect(locked.length).toBeGreaterThan(0);
+  expect(locked.every(track=>!track.audioText && !track.audioPath && track.contentLoaded === false)).toBe(true);
 });

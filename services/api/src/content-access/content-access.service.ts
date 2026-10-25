@@ -1,3 +1,4 @@
+import type { AppContentHotspotBrief, AppContentHotspotOverview } from '@icao/contracts/app-content';
 import { BadRequestException, ForbiddenException, HttpException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import {
   CONTENT_ACCESS_POLICY_VERSION,
@@ -193,6 +194,25 @@ export class ContentAccessService {
       }
     }
     throw new ForbiddenException('membership_required');
+  }
+
+  async hotspotOverview(brief: AppContentHotspotBrief): Promise<AppContentHotspotOverview> {
+    const release = await this.activeRelease('opi');
+    const available = new Map(release.dataset.categories.flatMap(category => category.topics.map(topic => [topic.id, topic] as const)));
+    return { brief, topics: brief.topics.map(reference => {
+      const topic = available.get(reference.topicId);
+      const cards = new Map(topic?.cards.filter(card => card.retired !== true).map(card => [card.id, card]));
+      return { topicId: reference.topicId, topicTitle: reference.topicTitle, cards: reference.cardIds.map(id => {
+        const card = cards.get(id);
+        if (!card || typeof card.audioText !== 'string') throw new NotFoundException('hotspot_question_unavailable');
+        // Allowlist every field: the full card also contains protected answers and audio.
+        const reportedPrompts = card.reportedPrompts && typeof card.reportedPrompts === 'object'
+          ? Object.fromEntries(Object.entries(card.reportedPrompts).filter((entry): entry is [string, string[]] =>
+            Array.isArray(entry[1]) && entry[1].every(value => typeof value === 'string')))
+          : undefined;
+        return { id, prompt: card.audioText, ...(reportedPrompts ? { reportedPrompts } : {}) };
+      }) };
+    }) };
   }
 
   async assertMembership(accountId: string, sessionId: string, environment: CommerceEnvironment) {

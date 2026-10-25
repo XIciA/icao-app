@@ -25,7 +25,11 @@ export type OpsFeedbackDetail = OpsFeedbackQueueItem & {
   platform: string;
   osName: string | null;
   osVersion: string | null;
-  question: (VersionedFeedbackQuestionContext & { verified: boolean }) | null;
+  question: (VersionedFeedbackQuestionContext & {
+    verified: boolean;
+    displayName?: string;
+    displayNameSource?: 'submitted_release' | 'current_release';
+  }) | null;
   attachments: OpsFeedbackAttachment[];
   replies?: FeedbackReply[];
 };

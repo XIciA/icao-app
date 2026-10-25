@@ -15,8 +15,12 @@ export type StoredFeedbackImage = FeedbackImage & {
 @Injectable()
 export class FeedbackAttachmentStorage {
   private readonly storage: SupabaseClient;
+  private readonly internalUrl: string;
+  private readonly publicUrl: string;
 
   constructor(@Inject(API_CONFIG) config: ApiConfig) {
+    this.internalUrl = config.supabaseUrl.replace(/\/+$/, '');
+    this.publicUrl = config.supabasePublicUrl.replace(/\/+$/, '');
     this.storage = createClient(config.supabaseUrl, config.supabaseSecretKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
     });
@@ -45,7 +49,9 @@ export class FeedbackAttachmentStorage {
   async signedUrl(objectKey: string) {
     const result = await this.storage.storage.from(BUCKET).createSignedUrl(objectKey, 300);
     if (result.error || !result.data) throw new ServiceUnavailableException('feedback_image_unavailable');
-    return result.data.signedUrl;
+    // Signing happens on the private storage origin; phones need the public one,
+    // just like question audio and ASR staging downloads.
+    return result.data.signedUrl.replace(this.internalUrl, this.publicUrl);
   }
 
   async remove(objectKeys: string[]) {

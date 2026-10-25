@@ -95,6 +95,9 @@ export function FeedbackPage() {
       {!detail && !detailError && <p aria-live="polite">正在载入…</p>}
       {detail && <article className="feedback-detail">
         <div className="feedback-meta"><b>{detail.ticketNumber}</b><span>{categoryLabel[detail.category] ?? detail.category}</span><time>{date(detail.createdAt)}</time></div>
+        <p className="feedback-description"><strong>{detail.source === 'study' ? '题目反馈' : '意见反馈'}</strong>
+          {detail.source === 'study' && (detail.question?.displayName ? <> · {detail.question.displayName}</> : ' · 题名暂无法核实，原始题目编号见下方')}
+        </p>
         <p className="feedback-description">{detail.description}</p>
         {detail.attachments.length > 0 && <div className="feedback-images">{detail.attachments.map((image) => <Attachment key={image.id} ticket={detail.ticketNumber} image={image} />)}</div>}
         <h2>处理回复</h2>
@@ -106,7 +109,9 @@ export function FeedbackPage() {
         <dl><dt>联系方式</dt><dd>{detail.contact || '未填写'}</dd>
           <dt>来源</dt><dd>{detail.source === 'study' ? '题目纠错' : '意见反馈'} · {detail.sourceRoute}</dd>
           <dt>版本与设备</dt><dd>{detail.appDisplayVersion} · {detail.platform} · {[detail.osName, detail.osVersion].filter(Boolean).join(' ')}</dd>
-          {detail.question && <><dt>关联题目</dt><dd>{[detail.question.bankId, detail.question.categoryId, detail.question.topicId, detail.question.cardId].join(' / ')}<br />
+          {detail.question && <><dt>关联题目</dt><dd>{detail.question.displayName && <>{detail.question.displayName}<br />
+            <small>{detail.question.displayNameSource === 'submitted_release' ? '反馈时题目名称' : '按当前题库定位的名称'}</small><br /></>}
+            {[detail.question.bankId, detail.question.categoryId, detail.question.topicId, detail.question.cardId].join(' / ')}<br />
             {detail.question.bankVersion ? `题库版本 ${detail.question.bankVersion}` : '题库版本未提供'} · {detail.question.verified ? '来源已核实' : '来源待核实'}
             {detail.question.bankChecksum && <small className="checksum">{detail.question.bankChecksum}</small>}</dd></>}
         </dl>
@@ -116,7 +121,7 @@ export function FeedbackPage() {
       <div className="feedback-filters">{[['','全部'],...Object.entries(statuses)].map(([value,label])=><button key={value} disabled={busy} aria-pressed={statusFilter===value} onClick={()=>{setStatusFilter(value ?? '');setItems([]);setNextCursor(null);setLoaded(false);}}>{label}</button>)}</div>
       {error && <p className="notice error" role="alert">{error} <button disabled={busy} onClick={() => void load(loaded ? nextCursor ?? undefined : undefined)}>重试</button></p>}
       <div className="result-list">{items.map((item) => <button className="result-card feedback-row" key={item.ticketNumber} onClick={() => setSelected(item.ticketNumber)}>
-        <span><strong>{categoryLabel[item.category] ?? item.category}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
+        <span><strong>{categoryLabel[item.category] ?? item.category} · {item.source === 'study' ? '题目反馈' : '意见反馈'}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
       </button>)}</div>
       {!busy && loaded && items.length === 0 && <p className="muted">暂无反馈。</p>}
       {busy && <p aria-live="polite">正在载入…</p>}

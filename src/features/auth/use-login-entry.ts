@@ -17,7 +17,7 @@ export function useLoginEntry() {
     auth.rememberPendingPath(target);
     // Let the existing protected-route account gate handle restoration or
     // consent. Opening a fresh login form would misrepresent a retained session.
-    if (publicAccountStatus(auth) !== 'guest') { router.push(target as Href); return; }
-    router.push({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : {}), returnTo: publicLoginReturn(pathname) } });
+    if (publicAccountStatus(auth) !== 'guest' && target.split('?')[0] !== '/account/membership') { router.push(target as Href); return; }
+    router.push({ pathname: '/auth/[slug]', params: { slug: 'login', next: target, ...(target.split('?')[0] === '/account/membership' ? { intent: 'membership' } : isExternalContentEntry(incomingUrl, pathname, target) ? { intent: 'external' } : {}), returnTo: publicLoginReturn(pathname) } });
   };
 }

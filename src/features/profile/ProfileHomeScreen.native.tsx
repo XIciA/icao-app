@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   testing: { position: 'absolute', right: spacing[4], alignItems: 'flex-end', gap: spacing[2] },
   resetButton: { backgroundColor: colors.card, borderColor: colors.primary, borderWidth: StyleSheet.hairlineWidth, borderRadius: radii.full, minHeight: 44, paddingHorizontal: spacing[4], justifyContent: 'center' },
-  unreadDot: {position:'absolute',right:40,top:26,width:8,height:8,borderRadius:4,backgroundColor:colors.destructive},
+  unreadDot: {position:'absolute',right:40,top:26,width:8,height:8,borderRadius:4,backgroundColor:colors.primary},
   menuSpacing: { marginTop: spacing[5] },
 });

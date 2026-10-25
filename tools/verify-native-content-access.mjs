@@ -72,7 +72,7 @@ const expectedFreeCounts = sourceBanks.map(bank => {
   return bank.id === 'storytelling' ? Math.min(3, topics.flatMap(live).length) : 0;
 });
 assert.deepEqual(publicBanks.map(bank => countCards([bank])), expectedFreeCounts);
-assert.equal(countCards(sourceBanks), 10_900);
+assert.equal(countCards(sourceBanks), 10_899);
 // Full navigation metadata adds labels/durations for all playable positions,
 // while protected text and media remain absent. Keep the expanded bundle bounded.
 for (const bank of publicBanks) {

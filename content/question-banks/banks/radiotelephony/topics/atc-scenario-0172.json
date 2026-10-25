@@ -107,8 +107,8 @@
       "taskTitle": "UAL 811-12",
       "audioText": "you are over OBLIK at time 1200Z, maintaining 11,000 meters, you are estimating ZF at time 1230, your next waypoint is WUH, make a standard position report to Wuhan Control.",
       "audioTextZh": "你在 1200Z 时飞越 OBLIK，保持 11,000 米，预计 1230 时到达 ZF，下一个航路点是 WUH，向武汉管制作标准位置报告。",
-      "referenceText": "Wuhan Control, UAL 811, OBLIK1200Z, 2000 meters, estimating ZF1230 Z, WUH next.",
-      "referenceTextZh": "武汉管制，UAL 811，1200Z 飞越 OBLIK，2000 米，预计 1230Z 到达 ZF，下一个航路点 WUH。",
+      "referenceText": "Wuhan Control, UAL 811, OBLIK1200Z, 11000 meters, estimating ZF1230 Z, WUH next.",
+      "referenceTextZh": "武汉管制，UAL 811，1200Z 飞越 OBLIK，11000 米，预计 1230Z 到达 ZF，下一个航路点 WUH。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q12.mp3"
     },
     {

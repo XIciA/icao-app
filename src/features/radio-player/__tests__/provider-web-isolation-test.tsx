@@ -1,3 +1,4 @@
+jest.mock('@/components/navigation/useAppRouter', () => ({useAppRouter:()=>({push:jest.fn()})}));
 /* eslint-disable import/first */
 import React from 'react';
 import { act, render } from '@testing-library/react-native';

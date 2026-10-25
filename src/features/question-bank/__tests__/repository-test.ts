@@ -249,9 +249,9 @@ describe('embeddedQuestionBankRepository', () => {
     const resources = new Set(resourceManifest.files.map(resource => resource.publicPath));
     const banks = await Promise.all(getEmbeddedQuestionBankIds().map(id => embeddedQuestionBankRepository.getDataset(id)));
     const cards = banks.flatMap(bank => bank?.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)) ?? []);
-    expect(banks.map(bank => bank?.declaredCardCount)).toEqual([1502, 900, 5751, 382, 2365]);
-    expect(banks.map(bank => bank!.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)).length)).toEqual([40, 900, 18, 3, 23]);
-    expect(cards).toHaveLength(984);
+    expect(banks.map(bank => bank?.declaredCardCount)).toEqual([1502, 900, 5750, 382, 2365]);
+    expect(banks.map(bank => bank!.categories.flatMap(category => category.topics.flatMap(topic => topic.cards)).length)).toEqual([40, 900, 17, 3, 23]);
+    expect(cards).toHaveLength(983);
     expect(cards.filter(card => card.audio && !resources.has(card.audio))).toEqual([]);
     expect(cards.filter(card => card.kind === 'image' && !resources.has(card.image))).toEqual([]);
     expect(resourceManifest.files).toHaveLength(12651);

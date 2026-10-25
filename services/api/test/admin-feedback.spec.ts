@@ -79,6 +79,33 @@ describe('feedback admin access', () => {
     const { service } = fixture([[]]);
     await expect(service.feedbackDetail(ticket.ticketNumber, staff, 'request')).rejects.toThrow('feedback_not_found');
   });
+  it('shows the question name from the submitted release rather than the current directory', async () => {
+    const payload = { title: '陆空通话', categories: [{ id: 'main', name: 'QFA', topics: [{ id: 'topic1', name: 'QFA160 [导航问题，燃油短缺]', cards: [{ id: 'card1', taskTitle: '9-QFA160 [导航问题，燃油短缺]-2' }] }] }] };
+    const { service, queries } = fixture([[ticket], [], [], [{ payload, checksum: ticket.bankChecksum }]]);
+    const detail = await service.feedbackDetail(ticket.ticketNumber, staff, 'request');
+    expect(detail.question?.displayName).toBe('陆空通话 / QFA / QFA160 [导航问题，燃油短缺] / 9-QFA160 [导航问题，燃油短缺]-2');
+    expect(detail.question?.displayNameSource).toBe('submitted_release');
+    expect(queries[3]?.params).toContain(2);
+    expect(queries[3]?.where).toContain('"version" =');
+    expect(queries[3]?.where).not.toContain('"active"');
+  });
+  it('does not fabricate a name when the submitted release checksum differs', async () => {
+    const payload = { categories: [{ id: 'main', topics: [{ id: 'topic1', cards: [{ id: 'card1', taskTitle: 'A different question' }] }] }] };
+    const { service } = fixture([[ticket], [], [], [{ payload, checksum: 'b'.repeat(64) }]]);
+    const detail = await service.feedbackDetail(ticket.ticketNumber, staff, 'request');
+    expect(detail.question?.displayName).toBeUndefined();
+    expect(detail.question?.cardId).toBe('card1');
+  });
+  it('preserves identifiers when a question is unavailable and labels unversioned names as current', async () => {
+    const missing = fixture([[ticket], [], [], [{ payload: { categories: [] }, checksum: ticket.bankChecksum }]]);
+    expect((await missing.service.feedbackDetail(ticket.ticketNumber, staff, 'request')).question?.displayName).toBeUndefined();
+    const oldTicket = { ...ticket, bankVersion: null, bankChecksum: null };
+    const payload = { title: 'OPI', categories: [{ id: 'main', name: 'Main', topics: [{ id: 'topic1', name: 'Topic', cards: [{ id: 'card1', taskTitle: 'Question 1' }] }] }] };
+    const current = fixture([[oldTicket], [], [], [{ payload, checksum: 'b'.repeat(64) }]]);
+    const detail = await current.service.feedbackDetail(ticket.ticketNumber, staff, 'request');
+    expect(detail.question?.displayNameSource).toBe('current_release');
+    expect(current.queries[3]?.where).toContain('"active"');
+  });
   it('checks both ticket and image identity plus retention before authorizing storage access', async () => {
     const { service, queries } = fixture([[]]);
     await expect(service.feedbackAttachment(ticket.ticketNumber, id, staff, 'request')).rejects.toThrow('feedback_attachment_not_found');

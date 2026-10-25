@@ -11,7 +11,8 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 import { HotspotAccessNotice, HotspotBriefCard } from './HotspotAccessView.native';
-import { useHotspotAccess } from './use-hotspot-access.native';
+import { useHotspotOverview } from './use-hotspot-overview.native';
+import { useMemberAction } from '@/features/auth/use-member-action';
 
 export function HotspotDetailScreen({ briefId }: { briefId: string }) {
   return <NativeScreenBoundary title="OPI 热点" fallbackHref="/content/hotspot" resetKey={briefId}><HotspotDetailContent briefId={briefId} /></NativeScreenBoundary>;
@@ -19,9 +20,10 @@ export function HotspotDetailScreen({ briefId }: { briefId: string }) {
 
 function HotspotDetailContent({ briefId }: { briefId: string }) {
   const router = useRouter();
+  const openMember = useMemberAction();
   const params=useLocalSearchParams<{center?:string}>();
   const [selection,setSelection]=useState(params.center??'all');
-  const { retry, state } = useHotspotAccess(briefId);
+  const { retry, state } = useHotspotOverview(briefId);
 
   const goBack = () => { if (router.canGoBack()) router.back(); else router.replace('/content/hotspot'); };
   if (state.status === 'loading') return <Screen contentStyle={styles.screen} header={<TopBar onBack={goBack} title="OPI 热点" />}><GlobalLoadingScreen /></Screen>;
@@ -61,7 +63,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
                         <AppText color={colors.primary} style={styles.questionIndex} variant="micro">
                           {String(cardIndex + 1).padStart(2, '0')}
                         </AppText>
-                        <View style={styles.questionContent}><AppText>{card.kind !== 'image' && hotspotReportedPrompts(selectedBrief!,card).join('\n') || card.audioText}</AppText><View style={styles.filters}>{hotspotQuestionOrigins(selectedBrief!,card.id).map(origin=><Tag key={origin} tone="muted">{origin}</Tag>)}</View></View>
+                        <View style={styles.questionContent}><AppText>{hotspotReportedPrompts(selectedBrief!,card).join('\n') || card.prompt}</AppText><View style={styles.filters}>{hotspotQuestionOrigins(selectedBrief!,card.id).map(origin=><Tag key={origin} tone="muted">{origin}</Tag>)}</View></View>
                       </View>
                     ))}
                   </View>
@@ -69,10 +71,7 @@ function HotspotDetailContent({ briefId }: { briefId: string }) {
               ))}
             </View>
             <Button
-              onPress={() => { router.push({
-                pathname: '/content/hotspot/[briefId]/study',
-                params: { briefId: state.brief.id, ...(selection!=='all'?{center:selection}:{}) },
-              }); }}
+              onPress={() => openMember(`/content/hotspot/${encodeURIComponent(state.brief.id)}/study${selection !== 'all' ? `?center=${encodeURIComponent(selection)}` : ''}`)}
               disabled={!totalQuestions}
               size="lg"
               style={styles.cta}

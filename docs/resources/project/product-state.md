@@ -32,11 +32,13 @@ AI 反馈、学习记录、热点与资源浏览。iOS、Android 和产品 Web �
 | iOS TestFlight | 1.3.14 / 3584951，10 月 25 日 Apple VALID，内部“测试”组 IN_BETA_TESTING；测试更新清单已更新 | 原生词频角标与随身听目录修复，继承本轮反馈UI及指南等修复；包校验和测试组访问通过，用户真机验收待完成。[记录](../../records/releases/20261025-radio-frequency-1.3.14.md) |
 | EdgeOne 产品 Web | readyoufife.com 已上线，源码 `4e462045`，deployment `dpvzkuuok4wq` | 随身听加载/数量与词频说明同步交付；公网脚本摘要通过，浏览器加载提示和切换已观察，完整体验待验。[记录](../../records/releases/20261025-radio-frequency-1.3.14.md) |
 | 宣传站 | 10 月 20 日迁至香港，旧 Vercel 站退役 | 静态资源摘要、跳转与浏览器交互已核验。[迁移记录](../../records/releases/20261020-feizhuicao-hong-kong-promo.md) |
-| ECS API | 10 月 25 日 `vocabulary-20261025-83f6fb8f`，新增词书目录与 506 份发音资源已发布 | 用户单独明确授权；新目录、原三本保留、发音资源及真实 AI 检查通过，无结构迁移或题库重发。[记录](../../records/releases/20261025-question-bank-core-vocabulary-1.3.11.md) |
+| ECS API | 10 月 26 日 `study-radio-20261026-49ef2bcd` 已上线，支持完整随身听目录与新账号首次备考设置 | 用户已授权；配置、只读迁移计划、readiness、匿名目录/受限题组403和真实AI验证通过；无迁移，原内容v31保留。后续发现页权益、反馈与词书API待统一交付。[协调记录](../../records/releases/20261026-coordinated-testflight.md) |
 | 基础监控 | 10 月 22 日部署 `74d1d5d4`，五分钟采集 CPU、内存、磁盘及服务状态，余额缓存读取正常 | 自动定时运行验证通过，告警仅留服务器；部署后磁盘可用约 14 GiB，未删除回滚与备份。[记录](../../records/20261022-stability-dashboard.md) |
 | 内容运营后台 | 10 月 22 日部署 `ops-stability-20261022-b83fef3a`，新增四类稳定性图表 | 真实登录、数据、权限隔离和桌面/手机布局验证通过；备份与隔离恢复通过，用户效果待验。[发布记录](../../records/20261022-stability-dashboard.md)；既有内容运营交付见[执行记录](../../workstreams/feature-update-2026-10/execution.md) |
 
 ## 当前关注与下一步
+
+- **10 月 26 日统一TestFlight进行中**：用户要求覆盖3584951后本轮全部改动。首阶段PR #266已合主干，发现页权益、反馈/删题及统计修正经组合检查，三本词书仍在整理。最终计划1.3.15/build3584952，尚未上传，线上TestFlight仍1.3.14/build3584951；不以中间阶段代替最终交付。[统一记录](../../records/releases/20261026-coordinated-testflight.md)
 
 - **1.3.14 原生词频角标及随身听目录（10 月 25 日）**：修复已进入main（4e462045，PR #261），前端1626项、API688项通过；iOS TestFlight和产品Web已交付。用户重点验收角标贴词且居中、目录完整加载及切换后保留内容。GitHub CI因账号付款/额度问题未启动，已保存本地检查证据。[记录](../../records/releases/20261025-radio-frequency-1.3.14.md)
 

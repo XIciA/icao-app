@@ -21,6 +21,7 @@ export type RadioTrack = {
   materials?: { image: string; imageAlt: string }[];
   /** Directory entries are selectable before protected text/media is loaded. */
   contentLoaded?: boolean;
+  requiresMembership?: boolean;
   audioPath: string;
   durationSeconds: number;
   stableIndex: number;

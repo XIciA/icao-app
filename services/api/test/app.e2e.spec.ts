@@ -847,7 +847,7 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('allows anonymous content reads but protects discovery, feedback and AI', async () => {
+  it('allows anonymous free discovery reads but protects feedback and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
     const responses = await Promise.all([
@@ -858,9 +858,9 @@ describe('API foundation', () => {
       app.inject({ method: 'POST', url: '/v1/feedback' }),
       app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
     ]);
-    expect(responses.map((response) => response.statusCode)).toEqual([200, 401, 200, 401, 401, 401]);
+    expect(responses.map((response) => response.statusCode)).toEqual([200, 200, 200, 200, 401, 401]);
     expect(responses.filter(response => response.statusCode === 401).map((response) => response.json().error.code)).toEqual([
-      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+      'missing_bearer_token', 'missing_bearer_token',
     ]);
     await app.close();
   });
