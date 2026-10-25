@@ -1,7 +1,7 @@
-jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { act, fireEvent, render } from '@testing-library/react-native';
 import { Text } from 'react-native';
 import { useSaveAction } from '../use-save-action.native';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 let mockOwner = 0;
 jest.mock('@/features/sync/learning-sync.native', () => ({
   captureLearningWriteContext: () => mockOwner,

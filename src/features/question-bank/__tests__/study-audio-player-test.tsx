@@ -1,4 +1,3 @@
-jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AppState, Platform, StyleSheet, View } from 'react-native';
 
@@ -8,6 +7,7 @@ import {
   StudyAudioPlayer,
   WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS,
 } from '../components/StudyAudioPlayer';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 const mockSetAudioModeAsync = jest.fn(async (_mode: unknown): Promise<void> => undefined);
 const mockSetIsAudioActiveAsync = jest.fn(async (_active: boolean): Promise<void> => undefined);

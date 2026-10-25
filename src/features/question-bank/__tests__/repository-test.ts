@@ -58,6 +58,8 @@ jest.mock('expo-file-system', () => {
   return { Directory: MockDirectory, File: MockFile, Paths: { document: new MockDirectory('file:///document'), cache: new MockDirectory('file:///cache') } };
 });
 
+import { beginCommerceEntitlementGeneration, publishCommerceEntitlementChange, resetCommerceEntitlementEventsForTests } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { remoteQuestionBankRepository } from '../data/repository.native';
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank, questionBankRepository } from '../data/repository';
 import {
   activateQuestionBankContentAccount,
@@ -191,6 +193,7 @@ describe('embeddedQuestionBankRepository', () => {
   });
 
   afterEach(async () => {
+    resetCommerceEntitlementEventsForTests();
     await activateQuestionBankContentAccount(undefined);
     mockStorageValues.clear();
     mockSecureValues.clear();
@@ -590,6 +593,30 @@ describe('embeddedQuestionBankRepository', () => {
       { bankId: 'listening', categoryId: 'listening-category-01', topicId: 'listening-topic-01' }) }) } as Response);
     await expect(loading).rejects.toMatchObject({ code: 'content_account_changed' });
     expect([...mockSecureValues.keys()].filter((key) => key.startsWith('icao.content.credential.v2.'))).toHaveLength(0);
+  });
+
+  it('rejects a late free catalog before it can overwrite the refreshed member cache', async () => {
+    const { accountId, request } = await authenticatedContentApi();
+    const owner = beginCommerceEntitlementGeneration(accountId);
+    let release!: (value: Response) => void;
+    let started!: () => void;
+    const requested = new Promise<void>(resolve => { started = resolve; });
+    request.mockImplementationOnce(async () => { started(); return new Promise<Response>(resolve => { release = resolve; }); });
+    const oldRequest = remoteQuestionBankRepository.getDataset('opi');
+    await requested;
+    publishCommerceEntitlementChange({ ...owner, reason: 'purchase', snapshot: {
+      serverTime: '2026-10-25T01:00:00Z', membership: { active: true },
+    } as never });
+    const member = await remoteQuestionBankRepository.getDataset('opi');
+    const key = `icao.content.v4.catalog.${accountId}.production.opi`;
+    const cached = mockStorageValues.get(key);
+    expect(member?.access?.membershipActive).toBe(true);
+    release({ ok: true, status: 200, json: async () => ({ data: {
+      bankId: 'opi', version: 12, checksum: 'ab'.repeat(32),
+      dataset: { ...member, access: { ...member!.access, membershipActive: false } },
+    } }) } as Response);
+    await expect(oldRequest).rejects.toMatchObject({ code: 'content_account_changed' });
+    expect(mockStorageValues.get(key)).toBe(cached);
   });
 
   it('never writes or trusts an invalidly signed offline credential even when the authenticated online topic succeeds', async () => {

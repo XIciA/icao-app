@@ -1,4 +1,3 @@
-jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react-native/pure';
 import { AppState } from 'react-native';
 
@@ -6,6 +5,7 @@ import {
   StudyAudioPlayer,
   WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS,
 } from '../components/StudyAudioPlayer.web';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 const mockAcquire = jest.fn();
 const mockRelease = jest.fn();
