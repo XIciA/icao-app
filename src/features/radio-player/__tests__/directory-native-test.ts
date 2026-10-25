@@ -47,10 +47,10 @@ it('uses a bundled directory with an older API only when the exact source releas
   expect(withEmbeddedRadioDirectory({ ...legacy, contentRelease: { ...bank.contentRelease!, checksum: '0'.repeat(64) } } as QuestionBankDataset, fallback).categories[0].topics[0].radioEntries).toBeUndefined();
 });
 
-it('does not expose member track positions to a free account', () => {
+it('exposes locked member positions while preserving the same free playable subset', () => {
   const publicOnly = deriveRadioCatalogs(embedded);
   const withIndex = deriveRadioCatalogs(embedded.map(bank => ({ ...bank, categories: bank.categories.map(category => ({ ...category, topics: category.topics.map(({ radioEntries: _entries, ...topic }) => topic) })) })));
-  expect(publicOnly.map(bank => bank.tracks.map(track => track.id))).toEqual(withIndex.map(bank => bank.tracks.map(track => track.id)));
+  expect(publicOnly.map(bank => bank.tracks.filter(track => !track.requiresMembership).map(track => track.id))).toEqual(withIndex.map(bank => bank.tracks.map(track => track.id)));
 });
 
 it('indexes audio cards only and never includes question/answer text or media URLs', () => {

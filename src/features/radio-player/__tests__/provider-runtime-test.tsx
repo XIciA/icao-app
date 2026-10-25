@@ -7,7 +7,7 @@ import { RadioOperationCoordinator } from '../operation-coordinator';
 
 const mockTracks = Array.from({ length: 6 }, (_, i) => ({ id: `t${i}`, bankId: 'listening', bankTitle: '听力', categoryId: 'c', categoryTitle: 'C', topicId: 'topic', topicTitle: 'T', title: `T${i}`, audioText: '', audioPath: `/audio/${i}.mp3`, durationSeconds: 20, stableIndex: i }));
 const mockCatalogs = [{ bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: mockTracks }];
-const mockSession = { user: { id: 'user-a' } };
+let mockSession: {user:{id:string}} | undefined = { user: { id: 'user-a' } };
 let mockProfile = { studyScope: 'all', target: 'icao4-first' };
 const mockSelectionCatalogs = (selection?: { scope: string }) => selection?.scope === 'crash'
   ? [{ ...mockCatalogs[0], tracks: mockTracks.slice(0, 2) }] : mockCatalogs;
@@ -349,4 +349,19 @@ it('refreshes radio content on same-account membership activation without waitin
  await act(()=>{publishCommerceEntitlementChange({...owner,reason:'manual-refresh',snapshot:{serverTime:'2026-10-25T01:01:00Z',membership:{active:true,expiresAt:'2027-01-01T00:00:00Z'}} as never});});await flush();
  expect(mockLoadCatalogs.mock.calls.length).toBe(before+1);
  await view.unmount();resetCommerceEntitlementEventsForTests();
+});
+
+it('allows an unsigned guest to load the directory and play free audio', async () => {
+  const session = mockSession;
+  mockSession = undefined;
+  mockLoadCatalogs.mockResolvedValue([]);
+  mockResolve.mockImplementation(async path => `file://${path}`);
+  const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>);
+  try {
+    await flush();
+    expect(mockLoadCatalogs).toHaveBeenCalled();
+    await act(async () => { await mockContext.play(); });
+    await flush();
+    expect(mockQueue.some(track => track.radioTrackId === mockTracks[0].id)).toBe(true);
+  } finally { await view.unmount(); mockSession = session; }
 });

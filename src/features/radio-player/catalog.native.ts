@@ -32,19 +32,20 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
         nameEn: bank.nameEn,
         tracks: bank.categories.flatMap((category) => category.topics.flatMap((topic) => {
           const cards = new Map(topic.cards.map(card => [card.id, card]));
-          const entries = bank.access?.membershipActive === true && topic.radioEntries
+          const entries = topic.radioEntries
             ? topic.radioEntries : topic.cards.flatMap(card => card.retired || card.kind === 'image' || !card.audio ? [] : [{ id: card.id, title: card.taskTitle, durationSeconds: card.audioDurationSeconds ?? 0 }]);
           return entries.flatMap((entry) => {
             const card = cards.get(entry.id);
             if (!card) {
               return [{ id: entry.id, bankId: bank.id, bankTitle: bank.title, categoryId: category.id, categoryTitle: category.name,
                 topicId: topic.id, topicTitle: topic.name, title: entry.title || `${topic.name}-${stableIndex + 1}`,
-                audioText: '', audioPath: '', durationSeconds: entry.durationSeconds, stableIndex: stableIndex++, contentLoaded: false }];
+                audioText: '', audioPath: '', durationSeconds: entry.durationSeconds, stableIndex: stableIndex++, contentLoaded: false, requiresMembership: !topic.access?.freeCardIds?.includes(entry.id) }];
             }
             if (card.retired || card.kind === 'image' || !card.audio) return [];
             const track = {
               id: card.id,
               contentLoaded: true,
+              requiresMembership: topic.access ? !topic.access.freeCardIds?.includes(card.id) : false,
               bankId: bank.id,
               bankTitle: bank.title,
               categoryId: category.id,
