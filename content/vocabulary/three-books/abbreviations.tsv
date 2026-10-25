@@ -1,0 +1,88 @@
+# 缩写|归属|英文全称|中文释义|发音文本
+ATC|preview|air traffic control|空中交通管制|A T C
+ILS|icao4|instrument landing system|仪表着陆系统|I L S
+VOR|icao4|VHF omnidirectional radio range|甚高频全向信标|V O R
+QNH|icao4||修正海平面气压；高度表采用该设置时可指示海拔高度|Q N H
+GPS|preview|global positioning system|全球定位系统|G P S
+DME|icao4|distance measuring equipment|测距设备|D M E
+RVSM|icao5|reduced vertical separation minimum|缩小垂直间隔标准|R V S M
+CB|icao4|cumulonimbus|积雨云；注意电气语境中CB也可表示断路器|C B
+ATIS|icao4|automatic terminal information service|自动航站情报服务|A T I S
+SID|icao4|standard instrument departure|标准仪表离场|S I D
+RNAV|icao5|area navigation|区域导航|R NAV
+NDB|icao4|non-directional beacon|无方向性信标|N D B
+ICAO|preview|International Civil Aviation Organization|国际民用航空组织|I KAY OH
+NOTAM|icao4|notice to airmen|航行通告|NOTAM
+CVR|icao4|cockpit voice recorder|驾驶舱语音记录器|C V R
+GPWS|icao4|ground proximity warning system|近地警告系统|G P W S
+FMS|icao4|flight management system|飞行管理系统|F M S
+PFD|icao4|primary flight display|主飞行显示器|P F D
+VHF|icao4|very high frequency|甚高频|V H F
+EFIS|icao5|electronic flight instrument system|电子飞行仪表系统|E F I S
+CRM|icao4|crew resource management|机组资源管理|C R M
+CPDLC|icao5|controller-pilot data link communications|管制员与驾驶员数据链通信|C P D L C
+PAPI|icao4|precision approach path indicator|精密进近航径指示器|PAPI
+CFIT|icao5|controlled flight into terrain|可控飞行撞地|C F I T
+RNP|icao5|required navigation performance|所需导航性能|R N P
+SOP|icao4|standard operating procedure|标准操作程序|S O P
+QRH|icao4|quick reference handbook|快速检查手册|Q R H
+EBT|icao5|evidence-based training|循证训练|E B T
+HF|icao4|high frequency|高频|H F
+IMC|icao4|instrument meteorological conditions|仪表气象条件|I M C
+ECAM|icao5|electronic centralized aircraft monitor|电子集中式飞机监控系统|ECAM
+IFR|icao4|instrument flight rules|仪表飞行规则|I F R
+AC|icao4|alternating current|交流电|A C
+DC|icao4|direct current|直流电|D C
+STAR|icao4|standard terminal arrival route|标准仪表进场航线|STAR
+FDR|icao4|flight data recorder|飞行数据记录器|F D R
+AGL|icao4|above ground level|高于地面；以地面为基准的高度|A G L
+VMC|icao4|visual meteorological conditions|目视气象条件|V M C
+GNSS|icao5|global navigation satellite system|全球导航卫星系统|G N S S
+CAAC|preview|Civil Aviation Administration of China|中国民用航空局|C A A C
+ELT|icao5|emergency locator transmitter|应急定位发射机|E L T
+ETOPS|icao5|extended operations|延程运行|ETOPS
+NTSB|icao5|National Transportation Safety Board|美国国家运输安全委员会|N T S B
+ND|icao4|navigation display|导航显示器|N D
+SAF|icao5|sustainable aviation fuel|可持续航空燃料|S A F
+FAA|preview|Federal Aviation Administration|美国联邦航空管理局|F A A
+RTF|icao4|radiotelephony|无线电话通信|R T F
+CAVOK|icao4|ceiling and visibility OK|能见度、云及天气满足规定条件的气象报文用语|CAVOK
+SIGMET|icao4|significant meteorological information|重要气象情报|SIGMET
+ADF|icao4|automatic direction finder|自动定向仪|A D F
+QFE|icao5||场面气压；以规定机场基准面为高度表基准的气压设置|Q F E
+MFD|icao5|multifunction display|多功能显示器|M F D
+MSL|icao4|mean sea level|平均海平面|M S L
+EICAS|icao5|engine indication and crew alerting system|发动机指示与机组告警系统|EICAS
+CDU|icao5|control display unit|控制显示组件|C D U
+AIS|icao5|aeronautical information service|航空情报服务|A I S
+PBN|icao5|performance-based navigation|基于性能的导航|P B N
+ACARS|icao5|aircraft communications addressing and reporting system|飞机通信寻址与报告系统|ACARS
+AAIB|icao5|Air Accidents Investigation Branch|英国航空事故调查局|A A I B
+EASA|icao5|European Union Aviation Safety Agency|欧盟航空安全局|EASA
+OCA|icao5|obstacle clearance altitude|超障高度|O C A
+VREF|icao4|reference landing speed|着陆参考速度|V REF
+FMC|icao5|flight management computer|飞行管理计算机|F M C
+AED|icao5|automated external defibrillator|自动体外除颤器|A E D
+ALS|icao4|approach lighting system|进近灯光系统|A L S
+METAR|icao4|meteorological aerodrome report|机场例行天气报告|METAR
+TAF|icao4|terminal aerodrome forecast|机场预报|TAF
+PWS|icao5|predictive windshear system|预测式风切变系统|P W S
+TAWS|icao5|terrain awareness and warning system|地形感知与警告系统|TAWS
+TOGA|icao4|takeoff and go-around|起飞与复飞；相关推力或操纵模式|TOGA
+PIREP|icao5|pilot report|驾驶员报告|PIREP
+QNE|icao5||标准气压设置；通常采用1013.25百帕作为飞行高度层基准|Q N E
+PAR|icao5|precision approach radar|精密进近雷达|P A R
+UHF|icao5|ultra high frequency|特高频|U H F
+UAV|icao4|unmanned aerial vehicle|无人驾驶航空器|U A V
+RAT|icao5|ram air turbine|冲压空气涡轮|R A T
+VORTAC|icao5|VOR and TACAN|甚高频全向信标与战术空中导航设备合装台|VORTAC
+MEL|icao4|minimum equipment list|最低设备清单|M E L
+CDL|icao5|configuration deviation list|构型偏离清单|C D L
+SAT|icao5|static air temperature|静温|S A T
+TAT|icao5|total air temperature|总温|T A T
+ISA|icao5|International Standard Atmosphere|国际标准大气|I S A
+TEM|icao5|threat and error management|威胁与差错管理|T E M
+PPE|icao5|personal protective equipment|个人防护装备|P P E
+IRS|icao5|inertial reference system|惯性基准系统|I R S
+HUD|icao5|head-up display|平视显示器|H U D
+SSR|icao4|secondary surveillance radar|二次监视雷达|S S R

@@ -54,7 +54,7 @@ async function cached() {
 }
 
 async function fetchVocabulary(identity: string) {
-  const response = await fetch(await resolveWebContentUrl('/vocabulary/dataset.json'), {
+  const response = await fetch(await resolveWebContentUrl('/vocabulary/three-books.json'), {
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MILLISECONDS),
   });
   if (!response.ok) throw new Error(`vocabulary_http_${response.status}`);
@@ -74,6 +74,7 @@ async function readCloudCache() {
   try {
     const value = JSON.parse(raw) as CachedCloudRelease;
     validateVocabularyDataset(value.dataset);
+    if (value.dataset.catalogId !== 'three-books-v3') return undefined;
     return value;
   } catch {
     return undefined;
@@ -83,7 +84,7 @@ async function readCloudCache() {
 async function loadCloudVocabulary(): Promise<VocabularyLoadResult> {
   const local = await readCloudCache();
   try {
-    const response = await apiFetch('/v1/vocabulary?catalog=question-bank-core', {
+    const response = await apiFetch('/v1/vocabulary?catalog=three-books-v3', {
       headers: local ? { 'if-none-match': `"${local.checksum}"` } : undefined,
     });
     if (response.status === 304 && local) return { dataset: local.dataset, source: 'cache' };
@@ -91,6 +92,7 @@ async function loadCloudVocabulary(): Promise<VocabularyLoadResult> {
     const body = await response.json() as ApiSuccessEnvelope<VocabularyRelease>;
     const release = body.data;
     validateVocabularyDataset(release.dataset);
+    if (release.dataset.catalogId !== 'three-books-v3') throw new Error('vocabulary_catalog_upgrade_required');
     await Storage.setItem(CLOUD_CACHE_KEY, JSON.stringify({
       ...release,
       cachedAt: new Date().toISOString(),

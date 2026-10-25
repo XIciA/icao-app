@@ -27,6 +27,7 @@ function coreBookPath() {
 export class VocabularyService {
   private readonly release: VocabularyRelease;
   private readonly expandedRelease: VocabularyRelease;
+  private readonly unifiedRelease: VocabularyRelease;
 
   constructor() {
     const bytes = readFileSync(datasetPath());
@@ -46,10 +47,16 @@ export class VocabularyService {
     };
     validateVocabularyCatalog(expanded);
     this.expandedRelease = { version: expanded.version, checksum: createHash('sha256').update(JSON.stringify(expanded)).digest('hex'), dataset: expanded };
+    const unifiedPath = [join(__dirname, 'three-books.json'), resolve(process.cwd(), '../../content/vocabulary/three-books/dataset.json'), resolve(process.cwd(), 'content/vocabulary/three-books/dataset.json')].find(path => existsSync(path));
+    if (!unifiedPath) throw new Error('three_book_vocabulary_missing');
+    const unifiedBytes = readFileSync(unifiedPath);
+    const unified = validateVocabularyCatalog(JSON.parse(unifiedBytes.toString('utf8')) as VocabularyDataset);
+    if (unified.catalogId !== 'three-books-v3') throw new Error('invalid_vocabulary_catalog');
+    this.unifiedRelease = { version: unified.version, checksum: createHash('sha256').update(unifiedBytes).digest('hex'), dataset: unified };
   }
 
   get(catalog?: string) {
     // Old clients validate exactly three books. Their response and ETag stay unchanged.
-    return catalog === 'question-bank-core' ? this.expandedRelease : this.release;
+    return catalog === 'three-books-v3' ? this.unifiedRelease : catalog === 'question-bank-core' ? this.expandedRelease : this.release;
   }
 }

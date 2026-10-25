@@ -22,6 +22,7 @@ async function readCachedRelease() {
   try {
     const cached = JSON.parse(raw) as CachedVocabularyRelease;
     validateVocabularyDataset(cached.dataset);
+    if (cached.dataset.catalogId !== 'three-books-v3') return undefined;
     return cached;
   } catch {
     return undefined;
@@ -36,7 +37,7 @@ export async function loadVocabulary(): Promise<VocabularyLoadResult> {
   }
 
   try {
-    const response = await apiFetch('/v1/vocabulary?catalog=question-bank-core', {
+    const response = await apiFetch('/v1/vocabulary?catalog=three-books-v3', {
       headers: cached ? { 'if-none-match': `"${cached.checksum}"` } : undefined,
     });
     if (response.status === 304 && cached) return { dataset: cached.dataset, source: 'cache' };
@@ -44,6 +45,7 @@ export async function loadVocabulary(): Promise<VocabularyLoadResult> {
     const body = await response.json() as ApiSuccessEnvelope<VocabularyRelease>;
     const release = body.data;
     validateVocabularyDataset(release.dataset);
+    if (release.dataset.catalogId !== 'three-books-v3') throw new Error('vocabulary_catalog_upgrade_required');
     await Storage.setItem(CACHE_KEY, JSON.stringify({ ...release, cachedAt: new Date().toISOString() } satisfies CachedVocabularyRelease));
     return { dataset: release.dataset, source: 'remote' };
   } catch (error) {

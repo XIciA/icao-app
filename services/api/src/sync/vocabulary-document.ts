@@ -1,3 +1,4 @@
+import { migrateVocabularyDocument } from '@icao/contracts';
 import { z } from 'zod';
 
 const progressSchema = z.object({
@@ -19,7 +20,7 @@ export const vocabularyDocumentSchema = z.object({
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
   updatedAt: z.string().datetime(),
-});
+}).transform(value => migrateVocabularyDocument(value));
 
 export type VocabularyDocument = z.infer<typeof vocabularyDocumentSchema>;
 

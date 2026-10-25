@@ -1,3 +1,5 @@
+import { orderVocabularySession } from './study-order';
+import { useStudyOrder } from './use-study-order';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -42,6 +44,7 @@ export function VocabularyScreen() {
   const [loadError, setLoadError] = useState(false);
   const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
   const progress = useVocabularyProgress(books);
+  const { order, chooseOrder } = useStudyOrder();
   const [view, setView] = useState<ViewName>('books');
   const [returnView, setReturnView] = useState<ReturnView>('books');
   const [activeBookId, setActiveBookId] = useState<VocabularyBookId>('preview');
@@ -63,16 +66,16 @@ export function VocabularyScreen() {
 
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView) => {
-    const unlearned = words.filter((word) => (progress.state.words[word.id]?.status ?? 'new') === 'new');
-    const learned = words.filter((word) => (progress.state.words[word.id]?.status ?? 'new') !== 'new');
-    setStudyWords([...unlearned, ...learned]);
+    const ordered = orderVocabularySession(words, progress.state, order);
+    if (!ordered.length) return;
+    setStudyWords(ordered);
     setStudyIndex(0);
     setRevealed(false);
     setSessionStatuses({});
     setSessionSummary(emptySummary);
     setReturnView(from);
     setView('study');
-  }, [progress.state.words]);
+  }, [progress.state, order]);
 
   if (!loadResult || !progress.ready) {
     return (
@@ -88,7 +91,7 @@ export function VocabularyScreen() {
   }
 
   if (view === 'detail' && activeBook) {
-    return <VocabularyBookDetailView book={activeBook} onBack={() => setView('books')} onList={() => setView('list')} onReset={() => progress.resetBook(activeBook)} onStudy={() => startStudy(activeBook.words, 'detail')} stats={progress.statsByBook[activeBook.id]!} />;
+    return <VocabularyBookDetailView order={order} onOrderChange={chooseOrder} book={activeBook} onBack={() => setView('books')} onList={() => setView('list')} onReset={() => progress.resetBook(activeBook)} onStudy={() => startStudy(activeBook.words, 'detail')} stats={progress.statsByBook[activeBook.id]!} />;
   }
 
   if (view === 'list' && activeBook) {
@@ -139,6 +142,8 @@ export function VocabularyScreen() {
 
   return (
     <VocabularyBooksView
+      order={order}
+      onOrderChange={chooseOrder}
       books={books}
       lastTest={progress.state.lastTest}
       onDetail={(id) => { setActiveBookId(id); setView('detail'); }}

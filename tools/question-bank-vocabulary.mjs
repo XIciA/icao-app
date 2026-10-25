@@ -15,15 +15,15 @@ export function normalizeText(text) {
 
 export function compileRule(rule) {
   assert(rule.forms?.length && rule.forms.every(f => typeof f === 'string' && f.trim()), 'frequency_forms_missing');
-  const forms = [...new Set(rule.forms.map(f => normalizeText(f).toLowerCase()))].sort((a,b) => b.length-a.length || a.localeCompare(b));
+  const forms = [...new Set(rule.forms.map(f => rule.caseSensitive ? normalizeText(f) : normalizeText(f).toLowerCase()))].sort((a,b) => b.length-a.length || a.localeCompare(b));
   // A hyphenated prefix is part of a word: e.g. non-precision is not precision.
-  const pattern = new RegExp(`(?<![a-z0-9-])(?:${forms.map(f => escape(f).replace(/ /g, '[ -]+')).join('|')})(?![a-z0-9-])`, 'gi');
+  const pattern = new RegExp(`(?<![a-z0-9-])(?:${forms.map(f => escape(f).replace(/ /g, '[ -]+')).join('|')})(?![a-z0-9-])`, rule.caseSensitive ? 'g' : 'gi');
   const expressions = Object.fromEntries(['includeContext','excludeContext','excludeBefore','excludeAfter'].map(k => [k,(rule[k]??[]).map(p => new RegExp(p,'i'))]));
   return { pattern, expressions };
 }
 
-export function matchOccurrences(text, compiled) {
-  const clean = normalizeText(text), hits = [], excluded = [];
+export function matchOccurrences(text, compiled, alreadyNormalized = false) {
+  const clean = alreadyNormalized ? text : normalizeText(text), hits = [], excluded = [];
   compiled.pattern.lastIndex=0;
   for (const match of clean.matchAll(compiled.pattern)) {
     const start=match.index, end=start+match[0].length;
