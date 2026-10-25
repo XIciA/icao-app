@@ -22,14 +22,14 @@ const mockPlay = jest.fn(async () => undefined);
 const mockPause = jest.fn(async () => undefined);
 const mockAcquire = jest.fn(async () => ({ token: 'lease' }));
 const mockCoordinator = new RadioOperationCoordinator();
-const mockLoadCatalogs = jest.fn(async (_selection?: unknown, _options?: { complete?: boolean }) => []);
+const mockLoadCatalogs = jest.fn(async (_selection?: unknown, _options?: { complete?: boolean; onProgress?: (datasets: never[]) => void }) => []);
 
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ restoring: false, session: mockSession }) }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
 jest.mock('@/features/question-bank/data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveQuestionBankAsset: () => undefined, resolveRemoteQuestionBankAsset: (path: string) => mockResolve(path) }));
-jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: (...args: Parameters<typeof mockLoadCatalogs>) => mockLoadCatalogs(...args), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => mockSelectionCatalogs(selection) }));
+jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: (...args: Parameters<typeof mockLoadCatalogs>) => mockLoadCatalogs(...args), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => [...mockSelectionCatalogs(selection)] }));
 jest.mock('../catalog-hydration.native', () => ({ hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: () => mockAcquire(), release: async () => undefined, register: (_owner: string, client: { deactivate: () => Promise<void> }) => { mockDeactivate = client.deactivate; return () => undefined; } } }));
 jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: async () => undefined, registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
@@ -72,9 +72,10 @@ describe('radio native queue integration', () => {
     const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
     try {
       await act(() => mockContext.activateSession()); await flush();
+      const calls = mockLoadCatalogs.mock.calls.length;
       await act(() => mockContext.selectBank('radiotelephony')); await flush();
       expect(mockContext.currentCatalog?.bankId).toBe('radiotelephony');
-      expect(mockLoadCatalogs).toHaveBeenLastCalledWith(expect.anything(), expect.objectContaining({ complete: true, bankId: 'radiotelephony' }));
+      expect(mockLoadCatalogs).toHaveBeenCalledTimes(calls); // Switching must not cancel whole-directory hydration.
     } finally { await view.unmount(); mockCatalogs.pop(); }
   });
 
@@ -86,11 +87,11 @@ describe('radio native queue integration', () => {
       await act(() => mockContext.selectTrack('t4', false)); await flush();
       mockCatalogs[0].tracks = mockTracks.slice(0, 1);
       await act(() => mockContext.selectBank('radiotelephony')); await flush();
-      mockLoadCatalogs.mockImplementation(async (_selection, options) => {
-        if (options?.complete) mockCatalogs[0].tracks = mockTracks;
-        return [];
-      });
       await act(() => mockContext.selectBank('listening')); await flush();
+      await act(() => {
+        mockCatalogs[0].tracks = mockTracks;
+        mockLoadCatalogs.mock.calls.at(-1)?.[1]?.onProgress?.([]);
+      }); await flush();
       expect(mockContext.currentTrack?.id).toBe('t4');
     } finally { await view.unmount(); mockCatalogs[0].tracks = mockTracks; mockCatalogs.pop(); }
   });

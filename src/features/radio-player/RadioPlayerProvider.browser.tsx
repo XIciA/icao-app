@@ -9,7 +9,7 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 import Storage from '@/platform/storage';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
-import { commerceEntitlementSnapshotVersion, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
+import { commerceContentAccessSnapshot, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 
 import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
@@ -40,7 +40,7 @@ function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: strin
 
 export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
-  const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceEntitlementSnapshotVersion, commerceEntitlementSnapshotVersion);
+  const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceContentAccessSnapshot, commerceContentAccessSnapshot);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
   const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState<string>();
@@ -240,11 +240,12 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     let active = true;
     setCatalogError(undefined);
     setCatalogLoading(true);
-    void loadRadioCatalogs(selection, bankId, () => active && contentOwnerRef.current === contentOwner).then((nextCatalogs) => {
+    const publish = (nextCatalogs: RadioCatalog[]) => {
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
-    }).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
+    };
+    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
-  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection, bankId]);
+  }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
 
   useEffect(() => {
     let active = true;

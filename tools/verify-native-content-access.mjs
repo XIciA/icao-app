@@ -52,8 +52,7 @@ assert.match(nativeRadioCatalog, /loadRadioCatalogDatasets/u);
 // Directory text expands through the existing authorized repository only after
 // the radio session opens; app startup still retrieves public metadata only.
 assert.match(nativeRadioCatalog, /if \(!options\.complete\) return scoped/u);
-assert.match(nativeRadioCatalog, /const hydrationScope = options\.bankId \? scoped\.filter\(bank => bank\.id === options\.bankId\) : scoped/u);
-assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(hydrationScope, assertOwner\)/u);
+assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner, publish, options\.bankId\)/u);
 assert.match(nativeRadioProvider, /complete: sessionVisible/u);
 assert.match(nativeRadioHydration, /membershipActive === true/u);
 assert.match(nativeRadioHydration, /Math\.min\(3, work\.length\)/u);
