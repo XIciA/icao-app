@@ -12,7 +12,7 @@ import type {
   QuestionBankRelease,
   QuestionBankTopicRelease,
 } from '@icao/contracts';
-import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, FREE_CONTENT_SELECTION_VERSION } from '@icao/contracts';
+import { COMMERCE_ENVIRONMENT_HEADER, CONTENT_ACCESS_POLICY_VERSION, QUESTION_BANK_CATALOG_VERSION, FREE_CONTENT_SELECTION_VERSION } from '@icao/contracts';
 
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 import {
@@ -29,8 +29,8 @@ import {
 } from './member-content-cache';
 
 const datasets = orderQuestionBanks((publicData as QuestionBankDataset[]).map(naturalDatasetTitles));
-const CATALOG_CACHE_PREFIX = 'icao.content.v4.catalog.';
-const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.'];
+const CATALOG_CACHE_PREFIX = 'icao.content.v5.catalog.';
+const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.', 'icao.content.v4.catalog.'];
 
 type CachedRelease = QuestionBankRelease<QuestionBankDataset> & { cachedAt: string };
 export type QuestionBankSource = 'remote' | 'cache' | 'embedded';
@@ -110,9 +110,10 @@ export const remoteQuestionBankRepository = {
     const { accountId, environment } = context;
     const cached = await readCachedCatalog(accountId, environment, id);
     const accessState = (cached?.dataset as QuestionBankDataset | undefined)?.access?.membershipActive === true ? 'member' : 'free';
+    const hasRadioDirectory = cached?.dataset.categories?.every(category => category.topics.every(topic => Array.isArray(topic.radioEntries)));
     const headers = {
       [COMMERCE_ENVIRONMENT_HEADER]: environment,
-      ...(cached ? { 'if-none-match': `"${cached.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${FREE_CONTENT_SELECTION_VERSION}.${accessState}"` } : {}),
+      ...(cached && hasRadioDirectory ? { 'if-none-match': `"${cached.checksum}.${CONTENT_ACCESS_POLICY_VERSION}.${FREE_CONTENT_SELECTION_VERSION}.${QUESTION_BANK_CATALOG_VERSION}.${accessState}"` } : {}),
     };
     const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
     assertContentContextCurrent(context);

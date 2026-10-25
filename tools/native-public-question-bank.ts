@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { CONTENT_ACCESS_POLICY_VERSION, FREE_CONTENT_SELECTION_VERSION, freeQuestionBankCardIds, studyScopeCardIds } from '../packages/contracts/src/index';
+import { CONTENT_ACCESS_POLICY_VERSION, FREE_CONTENT_SELECTION_VERSION, freeQuestionBankCardIds, studyScopeCardIds, questionBankRadioEntries } from '../packages/contracts/src/index';
 
 type Card = Record<string, unknown> & { id: string };
 type Topic = Record<string, unknown> & { id: string; declaredCardCount: number; cards: Card[] };
@@ -17,6 +17,7 @@ const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourcePath = resolve(repositoryRoot, 'src/features/question-bank/data/question-bank.json');
 const outputPath = resolve(repositoryRoot, 'src/features/question-bank/data/question-bank-public.json');
 const releasePath = resolve(repositoryRoot, 'src/features/question-bank/data/question-bank-public-release.json');
+const sourceRelease = JSON.parse(readFileSync(resolve(repositoryRoot, 'src/features/question-bank/data/question-bank-release.json'), 'utf8')) as { releaseVersion: number };
 const source = JSON.parse(readFileSync(sourcePath, 'utf8')) as Dataset[];
 const output = source.map((bank) => {
 const freeIds = freeQuestionBankCardIds(bank);
@@ -29,6 +30,7 @@ return ({
       return {
         ...topic,
         scopeCardIds: studyScopeCardIds(bank.id, topic),
+        radioEntries: questionBankRadioEntries(topic),
         cards,
         access: {
           freeCardIds: cards.map(card => card.id),
@@ -52,6 +54,7 @@ const json = `${JSON.stringify(output)}\n`;
 const release = `${JSON.stringify({
   policyVersion: CONTENT_ACCESS_POLICY_VERSION, FREE_CONTENT_SELECTION_VERSION,
   freeSelectionVersion: FREE_CONTENT_SELECTION_VERSION,
+  sourceReleases: source.map(bank => ({ bankId: bank.id, version: sourceRelease.releaseVersion, checksum: createHash('sha256').update(`${JSON.stringify(bank, null, 2)}\n`).digest('hex') })),
   checksum: createHash('sha256').update(json).digest('hex'),
 }, null, 2)}\n`;
 

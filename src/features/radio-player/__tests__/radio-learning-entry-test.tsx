@@ -2,6 +2,7 @@ import { GuideBindingContext } from '@/features/usage-guide/GuideBindings';
 import { fireEvent, render, within } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import type { RadioTrack } from '../types';
 import { RadioPlayerScreen } from '@/features/content/RadioPlayerScreen.native';
 
 const mockPause = jest.fn();
@@ -28,6 +29,9 @@ const mockTrack = {
   stableIndex: 0,
 };
 
+let mockDirectoryTracks: RadioTrack[] = [mockTrack as RadioTrack];
+const mockSelectTrack = jest.fn();
+
 jest.mock('expo-router', () => ({ useRouter: () => ({ back: jest.fn(), push: mockPush }) }));
 jest.mock('lucide-react-native', () => {
   const { View: MockView } = jest.requireActual('react-native');
@@ -36,8 +40,8 @@ jest.mock('lucide-react-native', () => {
 });
 jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
   useRadioPlayer: () => ({
-    catalogs: [{ bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: [mockTrack] }],
-    currentCatalog: { bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: [mockTrack] },
+    catalogs: [{ bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: mockDirectoryTracks }],
+    currentCatalog: { bankId: 'listening', title: '听力', nameEn: 'Listening', tracks: mockDirectoryTracks },
     currentTrack: mockTrack,
     currentIndex: 0,
     mode: 'order',
@@ -60,7 +64,7 @@ jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
     next: jest.fn(),
     previous: jest.fn(),
     selectBank: jest.fn(),
-    selectTrack: jest.fn(),
+    selectTrack: mockSelectTrack,
     setMode: jest.fn(),
     setSubtitleMode: jest.fn(),
     setRate: jest.fn(),
@@ -72,6 +76,8 @@ jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
 
 describe('radio learning entry', () => {
   beforeEach(() => {
+    mockDirectoryTracks = [mockTrack as RadioTrack];
+    mockSelectTrack.mockReset();
     mockPause.mockReset();
     mockPush.mockReset();
     mockSetIntervalSeconds.mockReset();
@@ -141,4 +147,17 @@ it('keeps presets and completion inside the interval tutorial target', async () 
   expect(event).not.toHaveBeenCalledWith('radio-interval');
   await fireEvent.press(screen.getByText('完成'));
   expect(event).toHaveBeenCalledWith('radio-interval');
+});
+
+
+it('shows the full total and selects an unloaded late question by its position', async () => {
+  mockDirectoryTracks = Array.from({ length: 100 }, (_, index) => ({ ...mockTrack, id: `entry-${index}`, title: `Topic item ${index}`, stableIndex: index, bankId: 'listening', contentLoaded: false, audioPath: '', audioText: '' }));
+  const screen = await render(<SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}><RadioPlayerScreen /></SafeAreaProvider>);
+  expect(screen.getByText('1/100')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText('打开播放队列'));
+  await fireEvent.changeText(screen.getByLabelText('搜索播放队列'), '100');
+  await fireEvent.press(screen.getByLabelText('播放 Topic item 99'));
+  expect(mockSelectTrack).toHaveBeenCalledWith('entry-99', true);
+  await screen.unmount();
+  mockDirectoryTracks = [mockTrack as RadioTrack];
 });
