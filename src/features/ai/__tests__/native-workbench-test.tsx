@@ -1,3 +1,4 @@
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 let mockAuthenticated = true;
 const mockLoginEntry = jest.fn();
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({canAccessApp: mockAuthenticated}) }));

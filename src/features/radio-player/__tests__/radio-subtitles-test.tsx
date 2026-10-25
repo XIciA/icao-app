@@ -3,7 +3,7 @@ import { RadioSubtitles } from '../RadioSubtitles';
 import type { RadioTrack } from '../types';
 jest.mock('@/features/question-bank/components/ImageQuestionCard', () => ({ ImageQuestionCard: ({ imageAlt }: { imageAlt: string }) => { const { Text } = jest.requireActual('react-native'); return <Text>{imageAlt}</Text>; } }));
 jest.mock('../RadioImageThumbnail', () => ({ RadioImageThumbnail: ({ onPress }: { onPress: () => void }) => { const { Pressable, Text } = jest.requireActual('react-native'); return <Pressable accessibilityLabel="查看题目大图" onPress={onPress}><Text>题目图片</Text></Pressable>; } }));
-jest.mock('react-native-safe-area-context', () => ({ ...jest.requireActual('react-native-safe-area-context'), useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
+jest.mock('react-native-safe-area-context', () => ({ ...jest.requireActual('react-native-safe-area-context/jest/mock').default, useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 const track: RadioTrack = { id: 'q', bankId: 'opi', bankTitle: 'OPI', categoryId: 'c', categoryTitle: 'C', topicId: 't', topicTitle: 'T', title: 'Q', audioText: 'Question?', audioTextZh: '问题？', referenceLabel: '参考答案', referenceText: 'Answer.', referenceTextZh: '答案。', durationSeconds: 3, stableIndex: 0, audioPath: '/q.mp3' };
 
 it('shows both original and answer with both translations in bilingual mode', async () => {

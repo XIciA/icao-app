@@ -1,3 +1,4 @@
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
