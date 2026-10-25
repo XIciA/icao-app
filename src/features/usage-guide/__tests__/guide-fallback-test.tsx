@@ -77,3 +77,17 @@ it('uses only the foreground portal backdrop on Web', async () => {
     await screen.unmount();
   } finally {Object.defineProperty(Platform,'OS',{configurable:true,value:previous});}
 });
+
+it('keeps the moving sheet mask local and the modal controls free of a second backdrop',async()=>{
+ const prompt={target:'export-levels',text:'选择范围',index:0,total:2,skip:jest.fn(),exit:jest.fn()};
+ const backdrop={current:null};
+ const controls=await render(<GuideOverlay layer="sheet" topLayer="sheet" backdrop={backdrop} nodes={new Map()} prompt={prompt}/>);
+ expect(controls.queryByTestId('guide-backdrop')).toBeNull();
+ expect(controls.getByRole('button',{name:'跳过教学'})).toBeTruthy();
+ const local=await render(<GuideOverlay layer="sheet" topLayer="sheet" backdropOnly nodes={new Map()} prompt={prompt}/>);
+ await fireEvent(local.getByTestId('guide-overlay'),'layout',{nativeEvent:{layout:{x:0,y:0,width:390,height:260}}});
+ expect(local.getByTestId('guide-mask').props.height).toBe(260);
+ expect(local.queryByRole('button',{name:'跳过教学'})).toBeNull();
+ expect(local.queryByTestId('guide-hint')).toBeNull();
+ await controls.unmount();await local.unmount();
+});

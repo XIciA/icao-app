@@ -1,3 +1,4 @@
+jest.mock('react-native-safe-area-context',()=>jest.requireActual('react-native-safe-area-context/jest/mock').default);
 import { GuideBindingContext, type GuideBinding } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from '../export/pdf-generator';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
@@ -30,8 +31,8 @@ it('advances the export tour only after a file is ready and keeps a failed attem
  jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>new Promise((_resolve,no)=>{reject=no;}));
  const view=await render(<SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={{event,register:jest.fn()} as unknown as GuideBinding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>);
  await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
- expect(view.getByLabelText('正在生成 PDF…')).toBeTruthy();expect(view.queryByText('正在处理 PDF，内容较多时请稍候…')).toBeNull();expect(view.getByText('导出设置')).toBeTruthy();expect(view.getByText('将导出 1 句')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
- await fireEvent.press(view.getByLabelText('正在生成 PDF…'));expect(generateSentencesPdf).toHaveBeenCalledTimes(1);
+ expect(view.getByText('正在导出，请稍等…')).toBeTruthy();expect(view.getByRole('button', {name:'取消导出'})).toBeTruthy();expect(view.queryByText('正在处理 PDF，内容较多时请稍候…')).toBeNull();expect(view.getByText('导出设置')).toBeTruthy();expect(view.getByText('将导出 1 句')).toBeTruthy();expect(event).not.toHaveBeenCalledWith('export-generate');
+ expect(view.queryByRole('button', {name:'生成 PDF'})).toBeNull();expect(generateSentencesPdf).toHaveBeenCalledTimes(1);
  reject(new Error('test generation failure'));
  await waitFor(()=>expect(view.getByText('PDF 生成失败，请重试。学习笔记和进度不会受到影响。')).toBeTruthy());
  expect(event).not.toHaveBeenCalledWith('export-generate');
@@ -94,4 +95,54 @@ it('keeps an in-flight PDF job alive when teaching exits and releases it on page
   await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
   await view.unmount();
   expect(signal?.aborted).toBe(true);
+});
+
+function pending<T>() {
+ let resolve!: (value:T)=>void;
+ const promise=new Promise<T>(done=>{resolve=done;});
+ return {promise,resolve};
+}
+const pdfResult={bytes:new Uint8Array(),pageCount:1,sentenceCount:1};
+it('cancels without an error and ignores the old completion while a new export is running', async()=>{
+ const first=pending<typeof pdfResult>(),second=pending<typeof pdfResult>();
+ jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>first.promise).mockImplementationOnce(()=>second.promise);
+ const platform=jest.requireMock('../export/pdf-platform') as {storePdf:jest.Mock};
+ platform.storePdf.mockClear();
+ const view=await render(<SentenceExportScreen dataset={dataset} onBack={jest.fn()}/>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(jest.mocked(generateSentencesPdf).mock.calls.at(-1)?.[5]?.signal).toBeDefined());
+ const signal=jest.mocked(generateSentencesPdf).mock.calls.at(-1)![5]!.signal!;
+ await fireEvent.press(view.getByText('取消导出'));
+ expect(signal.aborted).toBe(true);
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await act(async()=>first.resolve(pdfResult));
+ expect(view.queryByText('PDF 已生成')).toBeNull();
+ expect(view.getByText('取消导出')).toBeTruthy();
+ expect(platform.storePdf).not.toHaveBeenCalled();
+ await act(async()=>second.resolve(pdfResult));
+ expect(view.getByText('PDF 已生成')).toBeTruthy();
+ expect(platform.storePdf).toHaveBeenCalledTimes(1);
+});
+it('releases a file saved after cancellation without advancing teaching',async()=>{
+ const platform=jest.requireMock('../export/pdf-platform') as {storePdf:jest.Mock;releasePdf:jest.Mock};
+ const saved=pending<string>();platform.storePdf.mockClear();platform.storePdf.mockImplementationOnce(()=>saved.promise);
+ const event=jest.fn();
+ const view=await render(<GuideBindingContext.Provider value={{event,register:jest.fn()} as unknown as GuideBinding}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+ await fireEvent.press(view.getByText('生成 PDF'));
+ await waitFor(()=>expect(platform.storePdf).toHaveBeenCalled());
+ await fireEvent.press(view.getByText('取消导出'));
+ await act(async()=>saved.resolve('file:///cancelled.pdf'));
+ expect(platform.releasePdf).toHaveBeenCalledWith('file:///cancelled.pdf');
+ expect(view.queryByText('PDF 已生成')).toBeNull();
+ expect(view.getByText('生成 PDF')).toBeTruthy();
+ expect(event).not.toHaveBeenCalled();
+});
+it('lets back cancel an active job and return without waiting for completion',async()=>{
+ const job=pending<typeof pdfResult>();jest.mocked(generateSentencesPdf).mockImplementationOnce(()=>job.promise);
+ const onBack=jest.fn();const view=await render(<SentenceExportScreen dataset={dataset} onBack={onBack}/>);
+ await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());await fireEvent.press(view.getByText('生成 PDF'));
+ await fireEvent.press(view.getByLabelText('返回'));expect(onBack).toHaveBeenCalledTimes(1);
+ await act(async()=>job.resolve(pdfResult));expect(view.queryByText('PDF 已生成')).toBeNull();
 });

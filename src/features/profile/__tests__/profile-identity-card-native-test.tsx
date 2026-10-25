@@ -5,7 +5,7 @@ import { DEFAULT_PROFILE } from '@/features/account/profile-model';
 
 jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 jest.mock('@/features/account/ProfileAvatar', () => ({ ProfileAvatar: () => null }));
-jest.mock('@/features/usage-guide/GuideBindings', () => ({ useGuide:()=>null, GuideAnchor: () => null, GuideModalScope: ({ children }: { children: React.ReactNode }) => children }));
+jest.mock('@/features/usage-guide/GuideBindings', () => ({ useGuide:()=>null, GuideAnchor: () => null, GuideSheetBackdrop: () => null, GuideModalScope: ({ children }: { children: React.ReactNode }) => children }));
 jest.mock('@/components/navigation/useAppRouter', () => ({ useAppRouter: () => ({ push: jest.fn() }) }));
 jest.mock('react-native/Libraries/Utilities/useWindowDimensions', () => ({ __esModule: true, default: jest.fn(() => ({ width: 390, height: 844, fontScale: 1, scale: 3 })) }));
 const mockCommerce = { phase: 'ready', entitlement: { serverTime: '2026-10-23T00:00:00Z', membership: { active: true, expiresAt: '2026-11-17T00:00:00Z' } } };

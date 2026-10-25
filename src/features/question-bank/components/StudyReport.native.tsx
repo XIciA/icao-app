@@ -1,3 +1,4 @@
+import { listeningAnswerResults } from '../lib/listening-answer-results';
 import { sqliteLearningStore } from '../platform/learning-store.native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { LocalBackLoadingScreen } from '@/components/states/LocalBackLoadingScreen.native';
@@ -28,6 +29,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
   const objective = objectiveReview(record.studyReview);
   const [markers, setMarkers] = useState<ReturnType<typeof answerCardMarkers>>([]);
   const [answerCard, setAnswerCard] = useState(false);
+  const [answerResults, setAnswerResults] = useState<ReturnType<typeof listeningAnswerResults>>();
   const [answerMarked, setAnswerMarked] = useState<Set<number>>();
   const snapshot = getStudyReview(detail);
   const answerItems = answerScope?.items ?? snapshot?.items ?? [];
@@ -67,6 +69,9 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
       const marked = new Set(items.flatMap((item, index) =>
         (states ? states.get(`${item.dataset.id}:${item.topic.id}`)?.[item.card.id]?.visited : saved.states[item.id]?.visited) ? [index] : []));
       if (request !== openingRequest.current) return;
+      setAnswerResults(listeningAnswerResults(items, item => states
+        ? states.get(`${item.dataset.id}:${item.topic.id}`)?.[item.card.id]
+        : saved.states[item.id]));
       setAnswerMarked(marked);
       setMarkers(answerCardMarkers(items, annotations)); setDetail(loaded); setAnswerCard(true);
     }
@@ -99,7 +104,7 @@ export function StudyReport({ answerScope, localReturn, record, onReturn, return
       <ReviewRow title="查看答题卡" onPress={() => { void openAnswerCard(); }} />
     </View>
     <Button variant="secondary" onPress={back}>{returnLabel ?? (exam ? '返回模拟考试' : '返回题库')}</Button></>}
-    <AnswerCardSheet tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={answerItems.length} current={answerScope?.current ?? -1} marked={answerMarked ?? new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => {
+    <AnswerCardSheet results={answerResults} tagColors={markers.map(value => value.tags)} highlightColors={markers.map(value => value.highlights)} visible={answerCard} total={answerItems.length} current={answerScope?.current ?? -1} marked={answerMarked ?? new Set(snapshot?.items.flatMap((item,index) => snapshot.states[item.id]?.visited ? [index] : []) ?? [])} onClose={() => { openingRequest.current++; openingBusy.current = false; setOpening(false); setAnswerCard(false); }} onSelect={index => {
       const item = answerItems[index];
       if (!item) return;
       if (!answerScope) { void open(item.id); return; }

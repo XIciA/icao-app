@@ -3,6 +3,7 @@ import { AppState, Platform } from 'react-native';
 
 import type { RecordingAsset, RawRecording } from '../recording/types';
 import { SpeakingPracticePanel } from '../components/SpeakingPracticePanel';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 // Exercise the frozen Web implementation explicitly; Jest normally prefers .native.
 jest.mock('../components/SpeakingPracticePanel', () => jest.requireActual('../components/SpeakingPracticePanel.tsx'));

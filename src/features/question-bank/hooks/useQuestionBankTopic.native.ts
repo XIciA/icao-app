@@ -1,3 +1,4 @@
+import { commerceContentAccessSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import type { ContentReleaseReference } from '../data/content-version.native';
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { normalizeStudyScope, studyScopeCardIds } from '@icao/contracts';
@@ -25,8 +26,9 @@ export function useQuestionBankTopic(bankId: QuestionBankId | undefined, categor
     nativeCommerceEnvironmentSnapshot,
     nativeCommerceEnvironmentSnapshot,
   );
+  const accessSnapshot = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceContentAccessSnapshot, commerceContentAccessSnapshot);
   const [attempt, setAttempt] = useState(0);
-  const requestKey = JSON.stringify([bankId, categoryId, topicId, environmentSnapshot, attempt, expected, enabled]);
+  const requestKey = JSON.stringify([bankId, categoryId, topicId, environmentSnapshot, attempt, expected, enabled, accessSnapshot]);
   const [response, setResponse] = useState<{ key: string; value: State }>();
   const state = useMemo<State>(() => response?.key === requestKey ? response.value : { status: 'loading' }, [response, requestKey]);
 

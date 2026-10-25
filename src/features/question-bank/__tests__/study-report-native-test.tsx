@@ -136,3 +136,44 @@ it('routes the fixed checkpoint back button through exam completion instead of b
   await fireEvent.press(screen.getByLabelText('返回'));
   expect(end).toHaveBeenCalledTimes(1);expect(leave).not.toHaveBeenCalled();
 });
+
+it('keeps historical listening results tied to the saved attempt without reading newer progress', async () => {
+  const dataset = data.find(bank => bank.id === 'listening') as QuestionBankDataset;
+  const category = dataset.categories[0], topic = category.topics[0];
+  const items = topic.cards.slice(0, 3).map(card => ({ id: card.id, dataset, category, topic, card }));
+  const state = { visited: true, completed: true, note: '', updatedAt: '2026-10-25' };
+  const saved = { ...record, studyReview: captureStudyReview(items, {
+    [items[0].id]: { ...state, selectedChoiceIndex: items[0].card.correctChoiceIndex },
+    [items[1].id]: { ...state, selectedChoiceIndex: (items[1].card.correctChoiceIndex! + 1) % 3 },
+    [items[2].id]: { ...state, completed: false },
+  }, {}) };
+  const progress = jest.spyOn(sqliteLearningStore, 'getTopicStates');
+  jest.mocked(loadLearningRecordReview).mockResolvedValue(saved);
+  const screen = await render(<StudyReport record={saved} noteCount={0} interaction="choices" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(() => expect(screen.getByLabelText('第 1 题').props.accessibilityHint).toBe('答对'));
+  expect(screen.getByLabelText('第 2 题').props.accessibilityHint).toBe('答错');
+  expect(screen.getByLabelText('第 3 题').props.accessibilityHint).toBe('已学习');
+  expect(progress).not.toHaveBeenCalled();
+  progress.mockRestore();
+});
+
+it('refreshes listening results from the same live progress owner when reopening a completion card', async () => {
+  const dataset = data.find(bank => bank.id === 'listening') as QuestionBankDataset;
+  const category = dataset.categories[0], topic = category.topics[0], card = topic.cards[0];
+  const items = [{ id: card.id, dataset, category, topic, card }];
+  const saved = { ...record, recordType: 'session' as const, studyReview: captureStudyReview(items, {}, {}) };
+  const state = { visited: true, completed: true, note: '', updatedAt: '2026-10-25' };
+  const progress = jest.spyOn(sqliteLearningStore, 'getTopicStates').mockResolvedValue({
+    [card.id]: { ...state, selectedChoiceIndex: (card.correctChoiceIndex! + 1) % 3 },
+  });
+  jest.mocked(loadLearningRecordReview).mockResolvedValue(saved);
+  const screen = await render(<StudyReport record={saved} answerScope={{ items, current: 0 }} noteCount={0} interaction="choices" onReturn={jest.fn()} />);
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(() => expect(screen.getByLabelText('第 1 题').props.accessibilityHint).toBe('答错'));
+  await fireEvent.press(screen.getByLabelText('关闭答题卡'));
+  progress.mockResolvedValue({ [card.id]: { ...state, selectedChoiceIndex: card.correctChoiceIndex } });
+  await fireEvent.press(screen.getByText('查看答题卡'));
+  await waitFor(() => expect(screen.getByLabelText('第 1 题').props.accessibilityHint).toBe('答对'));
+  progress.mockRestore();
+});

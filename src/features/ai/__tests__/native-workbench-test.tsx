@@ -1,7 +1,3 @@
-let mockAuthenticated = true;
-const mockLoginEntry = jest.fn();
-jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({canAccessApp: mockAuthenticated}) }));
-jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockLoginEntry }));
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { createRef, useState, type Ref } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
@@ -9,6 +5,11 @@ import { StudyWorkbench, type StudyWorkbenchHandle, type StudyWorkbenchFeedbackC
 import { AiOperationFailure } from '@/features/ai/ai-operation-failure.native';
 import { ApiClientError } from '@/platform/api-client';
 import type { LearningRecord, StudyReviewKind } from '@/features/question-bank/types';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
+let mockAuthenticated = true;
+const mockLoginEntry = jest.fn();
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({canAccessApp: mockAuthenticated}) }));
+jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockLoginEntry }));
 const mockHasConsent = jest.fn(async () => true);
 const mockAcceptConsent = jest.fn(async () => undefined);
 const mockTranscribe = jest.fn();

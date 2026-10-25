@@ -1,3 +1,4 @@
+import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { naturalDatasetTitles, naturalTopicTitles } from '../lib/question-titles';
 import { sameContentRelease, withContentRelease, type ContentReleaseReference } from './content-version.native';
 import publicData from './question-bank-public.json';
@@ -47,6 +48,7 @@ function contentContext() {
     accountGeneration: questionBankContentAccountGeneration(),
     environment: getNativeCommerceEnvironment(),
     environmentSnapshot: nativeCommerceEnvironmentSnapshot(),
+    contentAccessSnapshot: commerceContentAccessSnapshot(),
   };
 }
 
@@ -54,7 +56,8 @@ function contentContextIsCurrent(context: ReturnType<typeof contentContext>) {
   return context.accountId === currentQuestionBankContentAccountId()
     && context.accountGeneration === questionBankContentAccountGeneration()
     && context.environment === getNativeCommerceEnvironment()
-    && context.environmentSnapshot === nativeCommerceEnvironmentSnapshot();
+    && context.environmentSnapshot === nativeCommerceEnvironmentSnapshot()
+    && context.contentAccessSnapshot === commerceContentAccessSnapshot();
 }
 
 function assertContentContextCurrent(context: ReturnType<typeof contentContext>) {

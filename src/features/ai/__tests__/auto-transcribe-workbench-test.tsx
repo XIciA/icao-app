@@ -1,6 +1,7 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
+jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 // Keep coverage for the frozen shared/Web implementation; Native has its own suite.
 const { StudyWorkbench } = jest.requireActual('@/features/question-bank/components/StudyWorkbench.tsx') as typeof import('@/features/question-bank/components/StudyWorkbench');

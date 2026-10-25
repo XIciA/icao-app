@@ -16,7 +16,7 @@ jest.mock('@/features/native-commercial-testflight/commerce-entitlement-events',
 jest.mock('../data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/platform/product-clicks.native', () => ({ trackProductClick: jest.fn(), setClickStudyContext: jest.fn() }));
 jest.mock('expo-router', () => ({ useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]), useRouter: () => mockRouter }));
-jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: MockView, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) }));
+jest.mock('react-native-safe-area-context', () => ({ ...jest.requireActual('react-native-safe-area-context/jest/mock').default, SafeAreaView: MockView, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) }));
 jest.mock('@react-navigation/native', () => ({ NavigationContext: jest.requireActual('react').createContext(undefined), usePreventRemove: (enabled: boolean, callback: () => void) => { if (enabled) mockSystemBack = callback; } }));
 jest.mock('react-native-reanimated', () => ({ ...jest.requireActual('react-native-reanimated/mock'), useReducedMotion: () => true }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
