@@ -161,3 +161,22 @@ it('confirms a wrong mark only after saving and clears the feedback on the next 
   await fireEvent.press(screen.getByText('重试保存'));expect(screen.getByText('已标记记错')).toBeTruthy();
  } finally {mockBooks[0].words=words;mockSetStatus.mockReset().mockResolvedValue(undefined);}
 });
+
+it('opens the 409-entry core book through the existing learning flow with frequency and recorded pronunciation', async () => {
+  const core = jest.requireActual('../../../../content/vocabulary/question-bank-core/book.json') as VocabularyBook;
+  mockBooks.push(core);
+  try {
+    const screen = await render(withSafeArea(<VocabularyScreen />));
+    await waitFor(() => expect(screen.getByText('全题库高频核心词')).toBeTruthy());
+    expect(screen.getByText('409 词')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('选择全题库高频核心词'));
+    await fireEvent.press(screen.getByText('开始学习'));
+    const first = core.words[0]!;
+    expect(screen.getByText(first.word)).toBeTruthy();
+    expect(screen.getByText(/题库原文 .*次/)).toBeTruthy();
+    expect(jest.requireMock('../speech').speakVocabulary).toHaveBeenCalledWith(first.pronunciationText);
+    await screen.unmount();
+  } finally {
+    mockBooks.pop();
+  }
+});

@@ -15,6 +15,10 @@ def collect():
     for book in json.loads((ROOT/'content/vocabulary/dataset.json').read_text())['books']:
         for word in book['words']:
             texts.update(normalize(word[k]) for k in ('word', 'example') if word.get(k))
+    core = ROOT/'content/vocabulary/question-bank-core/source.json'
+    if core.exists():
+        for word in json.loads(core.read_text())['entries']:
+            texts.update(normalize(text) for text in (word['word'], word.get('pronunciationText', word['word']), word['example']))
     for entry in json.loads((ROOT/'src/features/question-bank/static-word-lookup/data/dataset.json').read_text())['entries']:
         texts.update(normalize(entry[k]) for k in ('word', 'example') if isinstance(entry.get(k), str) and entry[k].strip())
     return sorted(texts)

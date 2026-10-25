@@ -525,7 +525,16 @@ export type EditorialReleaseSnapshot = {
   articles: EditorialArticle[];
 };
 
-export type VocabularyBookId = 'preview' | 'icao4' | 'icao5';
+export type VocabularyBookId = 'preview' | 'icao4' | 'icao5' | 'question-bank-core';
+
+export type VocabularyFrequency = {
+  scope: 'question-bank-audio-text';
+  occurrences: number;
+  cardCount: number;
+  byBank: Record<string, number>;
+  corpusVersion: number;
+  corpusChecksum: string;
+};
 
 export type VocabularyWord = {
   id: string;
@@ -535,6 +544,8 @@ export type VocabularyWord = {
   meaning: string;
   example: string;
   exampleTranslation: string;
+  pronunciationText?: string;
+  frequency?: VocabularyFrequency;
   source: {
     name: string;
     rowIndex: number;
@@ -547,6 +558,7 @@ export type VocabularyBook = {
   level: 1 | 2 | 3;
   name: string;
   description: string;
+  assessmentEligible?: boolean;
   words: VocabularyWord[];
 };
 
@@ -569,6 +581,8 @@ export type VocabularyRelease = {
   checksum: string;
   dataset: VocabularyDataset;
 };
+
+export { validateVocabularyCatalog } from './vocabulary-catalog';
 
 export type SyncCardState = {
   visited: boolean;

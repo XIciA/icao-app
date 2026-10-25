@@ -12,6 +12,7 @@ import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
 import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
 import type { VocabularyState, VocabularyWord, VocabularyWordStatus } from '../types';
+import { VocabularyFrequency } from './VocabularyFrequency';
 import { VocabularyProgress } from './VocabularyProgress';
 
 export type VocabularySessionSummary = Record<'known' | 'vague' | 'forgot' | 'wrong', number>;
@@ -53,9 +54,9 @@ export function VocabularyStudyView({
   useEffect(() => {
     const requests = speechRequest;
     requests.current++; speechPending.current = false; setSpeechLoading(false);
-    void speakVocabulary(word.word);
+    void speakVocabulary(word.pronunciationText ?? word.word);
     return () => { requests.current++; speechPending.current = false; void stopVocabularySpeech(); };
-  }, [word.id, word.word]);
+  }, [word.id, word.word, word.pronunciationText]);
 
   const playWord = () => {
     if (speechPending.current) return;
@@ -65,14 +66,14 @@ export function VocabularyStudyView({
       if (request !== speechRequest.current) return false;
       speechPending.current = false; setSpeechLoading(false); return true;
     };
-    void speakVocabularyWithFeedback(word.word, undefined, () => {
+    void speakVocabularyWithFeedback(word.pronunciationText ?? word.word, undefined, () => {
       if (release()) guide?.event('vocab-speech');
     }).finally(release);
   };
 
   const choose = (status: Exclude<VocabularyWordStatus, 'new' | 'wrong'>) => {
     void onChoose(status);
-    void speakVocabulary(word.word, word.example);
+    void speakVocabulary(word.pronunciationText ?? word.word, word.example);
   };
 
   return (
@@ -88,6 +89,7 @@ export function VocabularyStudyView({
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
           <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
+          <VocabularyFrequency key={word.id} word={word} />
           <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />

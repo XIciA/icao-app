@@ -939,6 +939,16 @@ describe('API foundation', () => {
     expect(etag).toMatch(/^"[a-f0-9]{64}"$/);
     const cached = await app.inject({ method: 'GET', url: '/v1/vocabulary', headers: { ...headers, 'if-none-match': etag! } });
     expect(cached.statusCode).toBe(304);
+    const expanded = await app.inject({ method: 'GET', url: '/v1/vocabulary?catalog=question-bank-core', headers: { ...headers, 'if-none-match': etag! } });
+    expect(expanded.statusCode).toBe(200);
+    const books = expanded.json().data.dataset.books;
+    expect(books.map((book: { words: unknown[] }) => book.words.length)).toEqual([360, 372, 106, 409]);
+    expect(books.slice(0, 3)).toEqual(response.json().data.dataset.books);
+    expect(books[3].assessmentEligible).toBe(false);
+    expect(books[3].words.every((word: { example: string; exampleTranslation: string; pronunciationText: string; frequency: unknown }) => word.example && word.exampleTranslation && word.pronunciationText && word.frequency)).toBe(true);
+    expect(expanded.headers.etag).not.toBe(etag);
+    const coreCached = await app.inject({ method: 'GET', url: '/v1/vocabulary?catalog=question-bank-core', headers: { ...headers, 'if-none-match': expanded.headers.etag! } });
+    expect(coreCached.statusCode).toBe(304);
     await app.close();
   });
 

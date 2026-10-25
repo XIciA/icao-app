@@ -29,7 +29,7 @@ export type VocabularyTestQuestion = {
 };
 
 const levels: VocabularyTestLevel[] = [3, 4, 5];
-const levelByBook: Record<VocabularyBookId, VocabularyTestLevel> = { preview: 3, icao4: 4, icao5: 5 };
+const levelByBook: Partial<Record<VocabularyBookId, VocabularyTestLevel>> = { preview: 3, icao4: 4, icao5: 5 };
 const modeOrder: VocabularyTestMode[] = ['weak', 'normal', 'strong'];
 const adaptive: Record<VocabularyTestMode, Partial<Record<VocabularyTestLevel, number>>> = {
   weak: { 3: 60, 4: 40 },
@@ -43,13 +43,13 @@ const verification: Record<VocabularyTestMode, Partial<Record<VocabularyTestLeve
 };
 
 export function toVocabularyTestWords(books: VocabularyBook[]): VocabularyTestWord[] {
-  return books.flatMap((book) => book.words.map((word) => ({
+  return books.filter(book => book.assessmentEligible !== false && levelByBook[book.id] !== undefined).flatMap((book) => book.words.map((word) => ({
     id: word.id,
     word: word.word,
     meaning: word.meaning,
     bookId: book.id,
     bookName: book.name,
-    level: levelByBook[book.id],
+    level: levelByBook[book.id]!,
   })));
 }
 

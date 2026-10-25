@@ -34,6 +34,7 @@ import type {
 } from '../types';
 import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
+import { VocabularyFrequency } from './VocabularyFrequency';
 import { VocabularyProgress } from './VocabularyProgress';
 
 const statusLabels: Record<VocabularyWordStatus, string> = {
@@ -81,7 +82,7 @@ export function VocabularyBooksView({
     <Screen contentStyle={styles.zero}>
       <TopBar title="单词学习" />
       <GuideScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
-        <AppText style={styles.center}>从 838 条 ICAO 词汇中选择词书，按自己的节奏学习。</AppText>
+        <AppText style={styles.center}>从 {books.reduce((total, book) => total + book.words.length, 0)} 条 ICAO 词汇中选择词书，按自己的节奏学习。</AppText>
 
         {warning ? (
           <View style={styles.warning}>
@@ -258,8 +259,8 @@ export function VocabularyWordListView({
               </Pressable>
               {open ? (
                 <View style={styles.wordDetail}>
-                  <View style={styles.rowBetween}><AppText style={styles.wordMeaning} variant="cardTitle">{word.meaning}</AppText><Pressable accessibilityLabel={`播放${word.word}及例句`} onPress={() => { void speakVocabularyWithFeedback(word.word, word.example); }} style={styles.sound}><Volume2 color={colors.primary} size={18} /></Pressable></View>
-                  <View style={styles.exampleBox}><AppText>{word.example}</AppText><AppText variant="caption">{word.exampleTranslation}</AppText></View>
+                  <View style={styles.rowBetween}><AppText style={styles.wordMeaning} variant="cardTitle">{word.meaning}</AppText><Pressable accessibilityLabel={`播放${word.word}及例句`} onPress={() => { void speakVocabularyWithFeedback(word.pronunciationText ?? word.word, word.example); }} style={styles.sound}><Volume2 color={colors.primary} size={18} /></Pressable></View>
+                  <VocabularyFrequency key={word.id} word={word} /><View style={styles.exampleBox}><AppText>{word.example}</AppText><AppText variant="caption">{word.exampleTranslation}</AppText></View>
                 </View>
               ) : null}
             </Card>
