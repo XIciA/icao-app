@@ -1,3 +1,4 @@
+jest.mock('@/features/native-commercial-testflight/CommerceRuntimeProvider', () => ({useCommerceRuntime:()=>({phase:'ready', entitlement:{membership:{active:false}}})}));
 import { fireEvent, render } from '@testing-library/react-native';
 
 import DiscoverTab from '../(tabs)/discover';
@@ -24,13 +25,13 @@ jest.mock('expo-router', () => ({ usePathname: () => '/discover', useRouter: () 
 
 describe('<DiscoverTab />', () => {
   beforeEach(() => { jest.clearAllMocks(); mockCanAccessApp = true; });
-  it('lets guests browse feature descriptions and requests login only when opening one', async () => {
+  it('lets guests open free discovery features without login', async () => {
     mockCanAccessApp = false;
     const screen = await render(<DiscoverTab />);
     expect(mockPush).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByLabelText('打开单词学习'));
-    expect(mockRememberPendingPath).toHaveBeenCalledWith('/content/vocab');
-    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/vocab', returnTo: '/discover' } });
+    expect(mockRememberPendingPath).not.toHaveBeenCalled();
+    expect(mockPush).toHaveBeenCalledWith('/content/vocab');
   });
   it('lets a guest open the course promotion without login', async () => {
     mockCanAccessApp = false;
@@ -50,4 +51,11 @@ describe('<DiscoverTab />', () => {
     await fireEvent.press(screen.getByLabelText('打开体系课程'));
     expect(mockPush).toHaveBeenCalledWith('/content/courses');
   });
+});
+
+it('sends a guest to membership only when choosing mock practice', async () => {
+  mockCanAccessApp = false;
+  const screen = await render(<DiscoverTab />);
+  await fireEvent.press(screen.getByLabelText('打开模拟练习'));
+  expect(mockPush).toHaveBeenCalledWith('/account/membership?next=%2Fcontent%2Fmock-exam');
 });

@@ -1,11 +1,13 @@
+import { useIsFocused } from '@react-navigation/native';
+import { safeAppDestination } from '@/features/auth/guest-access';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useEffect, useRef, useState } from 'react';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, type Href } from 'expo-router';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { NativeScreenBoundary } from '@/components/states/NativeScreenBoundary.native';
-import { BookOpen, FileText, Flame, Headphones, Library, Mic, Sparkles, type LucideIcon } from '@/components/ui/icons';
+import { Flame, Headphones, Library, Mic, Sparkles, type LucideIcon } from '@/components/ui/icons';
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 import { useCommerceRuntime } from './CommerceRuntimeProvider';
@@ -15,11 +17,9 @@ import type { CommerceRuntimeOffering } from './commerce-runtime-types';
 const benefits: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: Library, title: '解锁会员题库', detail: '完整会员题库内容' },
   { icon: Sparkles, title: '每周 AI 学习额度', detail: '转写、语法纠错与表达优化' },
-  { icon: BookOpen, title: '单词学习', detail: '航空词汇记忆与测试' },
-  { icon: Headphones, title: '随身听', detail: '音频播放与跟听' },
-  { icon: Mic, title: '模拟考试', detail: '按题目练习与作答' },
-  { icon: Flame, title: 'OPI 热点', detail: '热点资讯与关联练习' },
-  { icon: FileText, title: '资源分享', detail: '畅读备考文章' },
+  { icon: Headphones, title: '会员音频', detail: '随身听解锁会员音频与跟听' },
+  { icon: Mic, title: '模拟练习', detail: '按题目练习与作答' },
+  { icon: Flame, title: 'OPI 热点', detail: '参考答案、音频与作答练习；热点概览免费' },
 ];
 
 function displayDate(value: string | number | undefined | null) {
@@ -43,7 +43,8 @@ export function MembershipPage() {
 function MembershipContent() {
   const commerce = useCommerceRuntime();
   const router = useRouter();
-  const { from } = useLocalSearchParams<{ from?: string }>();
+  const { from, next } = useLocalSearchParams<{ from?: string; next?: string }>();
+  const focused = useIsFocused();
   const [selectedKey, setSelectedKey] = useState<CommerceRuntimeOffering['productKey']>('membership_31d_v1');
   const [showTerms, setShowTerms] = useState(false);
   const [actionError, setActionError] = useState('');
@@ -69,11 +70,15 @@ function MembershipContent() {
   const status = actionError || commerce.error?.userMessage || commerce.message;
 
   useEffect(() => {
-    if (from !== 'learning' || !active || commerce.phase !== 'ready' || returnedRef.current) return;
+    if (!focused) { returnedRef.current = false; return; }
+    if (!active || commerce.phase !== 'ready' || returnedRef.current) return;
+    const target = safeAppDestination(next);
+    if (target && !target.startsWith('/account/membership')) { returnedRef.current = true; router.replace(target as Href); return; }
+    if (from !== 'learning') return;
     returnedRef.current = true;
     if (router.canGoBack()) router.back();
     else router.replace('/(tabs)');
-  }, [active, commerce.phase, from, router]);
+  }, [active, commerce.phase, focused, from, next, router]);
 
   async function run(action: () => Promise<unknown>) {
     if (actionRef.current) return;

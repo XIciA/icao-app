@@ -1,4 +1,5 @@
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
+import { useMemberAction } from '@/features/auth/use-member-action';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
@@ -41,11 +42,14 @@ const courseEntry: Entry = {
 
 export function DiscoverHomeScreen() {
   const login = useLoginEntry();
+  const openMember = useMemberAction();
   const router = useRouter();
   const open = (slug: string) => {
     trackProductClick('feature_open', slug);
     if (slug === 'courses') router.push('/content/courses');
-    else login(`/content/${slug}`, '登录后查看会员功能');
+    else if (slug === 'mock-exam') openMember(`/content/${slug}`);
+    else if (slug === 'ai-report') login(`/content/${slug}`, '登录后查看会员功能');
+    else router.push(`/content/${slug}` as import('expo-router').Href);
   };
   const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
   const features: Entry[] = [

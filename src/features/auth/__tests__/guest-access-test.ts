@@ -1,15 +1,15 @@
 import { postLoginDestination, destinationWithQuery, isGuestPublicPath, isPublicStackScreen, publicLoginReturn, safeAppDestination } from '../guest-access';
 
 describe('guest access boundary', () => {
-  it.each(['/', '/(tabs)', '/(tabs)/profile', '/profile', '/discover', '/download', '/content/courses', '/legal/agreement', '/legal/privacy', '/question-bank/listening', '/question-bank/listening/study/main/topic'])('allows only public browsing at %s', path => {
+  it.each(['/', '/(tabs)', '/(tabs)/profile', '/profile', '/discover', '/download', '/content/courses', '/content/vocab', '/content/radio', '/content/hotspot', '/content/hotspot/day', '/content/resources', '/content/resources/article', '/account/membership', '/content/mock-exam', '/legal/agreement', '/legal/privacy', '/question-bank/listening', '/question-bank/listening/study/main/topic'])('allows only public browsing at %s', path => {
     expect(isGuestPublicPath(path)).toBe(true);
   });
-  it.each(['/account/profile', '/learning-records', '/content/radio', '/content/mock-exam', '/info/guide', '/info/feedback', '/legal/feedback', '/legal/tutorial'])('requires login at %s', path => {
+  it.each(['/account/profile', '/learning-records', '/info/guide', '/info/feedback', '/legal/feedback', '/legal/tutorial'])('requires login at %s', path => {
     expect(isGuestPublicPath(path)).toBe(false);
   });
-  it('keeps parameterized account and learning screens unmounted for guests', () => {
+  it('allows public discovery screens while account screens remain protected', () => {
     expect(isPublicStackScreen('content/[slug]', { slug: 'courses' })).toBe(true);
-    expect(isPublicStackScreen('content/[slug]', { slug: 'radio' })).toBe(false);
+    expect(isPublicStackScreen('content/[slug]', { slug: 'radio' })).toBe(true);
     expect(isPublicStackScreen('content/[slug]', { slug: ['courses', 'radio'] })).toBe(false);
     expect(isPublicStackScreen('account/[slug]', { slug: 'profile' })).toBe(false);
     expect(isPublicStackScreen('question-bank/[bankId]/index', { bankId: 'listening' })).toBe(true);
@@ -39,4 +39,9 @@ it('only resumes explicit content links, never remembered tabs or account pages'
   expect(postLoginDestination({ intent: 'external', next: '/content/resources/article' })).toBe('/content/resources/article');
   expect(postLoginDestination({ intent: 'external', next: '/account/profile' })).toBe('/(tabs)');
   expect(postLoginDestination({ intent: 'external', next: '//other.example' })).toBe('/(tabs)');
+});
+
+it('returns a deliberate membership login to the original purchase target', () => {
+  expect(postLoginDestination({intent:'membership', next:'/account/membership?next=%2Fcontent%2Fmock-exam'})).toBe('/account/membership?next=%2Fcontent%2Fmock-exam');
+  expect(postLoginDestination({intent:'membership', next:'/account/settings'})).toBe('/(tabs)');
 });

@@ -33,7 +33,7 @@ describe('fixed public app content', () => {
     await expect(serviceWith({ ...snapshot, schemaVersion: 2 }).get()).rejects.toThrow('app_content_release_invalid');
   });
   it('serves metadata with revalidation and returns 304 for exact content', async () => {
-    const controller = new AppContentController(serviceWith());
+    const controller = new AppContentController(serviceWith(), {} as never);
     const reply = { header: vi.fn().mockReturnThis(), status: vi.fn() };
     const data = await controller.get(undefined, { id: 'test' } as never, reply as never);
     expect(data?.data.payload.legal.agreement.version).toBe(snapshot.legal.agreement.version);
@@ -51,7 +51,7 @@ it('keeps separate date/center entries for v2 and a readable merged projection f
   const value=structuredClone(snapshot);
   const first=value.hotspots.briefs[0]!;
   value.hotspots.briefs=[{...first,id:'center-a',centers:['A']},{...first,id:'center-b',centers:['B']}];
-  const controller=new AppContentController(serviceWith(value));
+  const controller=new AppContentController(serviceWith(value), {} as never);
   const reply={header:vi.fn().mockReturnThis(),status:vi.fn()};
   const modern=await controller.get(undefined,{id:'new',query:{hotspotFormat:'2'}} as never,reply as never);
   const legacy=await controller.get(undefined,{id:'old',query:{}} as never,reply as never);
@@ -66,7 +66,7 @@ it('serves provenance only to v3 while keeping v2 reference keys and legacy date
  const {normalizeDailyHotspots}=await import('@icao/contracts/app-content');
  const value=structuredClone(snapshot);const b=value.hotspots.briefs[0]!;
  value.hotspots.briefs=normalizeDailyHotspots([{...b,id:'a',centers:['A']},{...b,id:'b',centers:['B']}]);
- const controller=new AppContentController(serviceWith(value)),reply={header:vi.fn().mockReturnThis(),status:vi.fn()};
+ const controller=new AppContentController(serviceWith(value), {} as never),reply={header:vi.fn().mockReturnThis(),status:vi.fn()};
  const current=await controller.get(undefined,{id:'new',query:{hotspotFormat:'3'}} as never,reply as never);
  const v2=await controller.get(undefined,{id:'old',query:{hotspotFormat:'2'}} as never,reply as never);
  expect(current?.data.payload.hotspots.briefs).toHaveLength(1);expect(current?.data.payload.hotspots.briefs[0]?.sources).toHaveLength(2);

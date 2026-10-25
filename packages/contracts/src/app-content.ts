@@ -224,3 +224,13 @@ export function containsHotspotFeedback(briefs:AppContentHotspotBrief[], expecte
     return actual&&wanted.centers.every(c=>actual.centers.includes(c))&&wanted.topics.every(t=>t.cardIds.every(id=>actual.topics.some(a=>a.topicId===t.topicId&&a.topicTitle===t.topicTitle&&a.cardIds.includes(id))));
   });
 }
+
+/** Public hotspot overview: a strict projection without answers, media or study payloads. */
+export type AppContentHotspotOverview = {
+  brief: AppContentHotspotBrief;
+  topics: {
+    topicId: string;
+    topicTitle: string;
+    cards: { id: string; prompt: string; reportedPrompts?: Record<string, string[]> }[];
+  }[];
+};

@@ -1,5 +1,5 @@
-/** Public learning and course promotion are browsable; account and learning tools remain protected. */
-const publicPaths = new Set(['/', '/discover', '/profile', '/download', '/content/courses', '/info/about', '/info/agreement', '/info/privacy', '/info/services']);
+/** Discovery browsing is public; mock practice and hotspot study mount only their member gate. */
+const publicPaths = new Set(['/', '/discover', '/profile', '/download', '/content/courses', '/content/vocab', '/content/radio', '/content/hotspot', '/content/resources', '/content/mock-exam', '/account/membership', '/info/about', '/info/agreement', '/info/privacy', '/info/services']);
 
 export function normalizedAppPath(path: string) {
   const pathname = path.split(/[?#]/u)[0].replace(/^\/\(tabs\)(?=\/|$)/u, '') || '/';
@@ -8,13 +8,15 @@ export function normalizedAppPath(path: string) {
 
 export function isGuestPublicPath(path: string) {
   const pathname = normalizedAppPath(path);
-  return /^\/question-bank\/[^/]+(?:\/study\/[^/]+\/[^/]+)?$/u.test(pathname) || publicPaths.has(pathname) || /^\/legal\/(agreement|privacy|services)$/u.test(pathname);
+  return (/^\/content\/hotspot\/[^/]+(?:\/study)?$/u.test(pathname) || /^\/content\/resources\/[^/]+$/u.test(pathname)) || /^\/question-bank\/[^/]+(?:\/study\/[^/]+\/[^/]+)?$/u.test(pathname) || publicPaths.has(pathname) || /^\/legal\/(agreement|privacy|services)$/u.test(pathname);
 }
 
 export function isPublicStackScreen(name: string, params?: object) {
   if (['index', '(tabs)', 'auth/[slug]', 'download'].includes(name)) return true;
   if (['question-bank/[bankId]/index', 'question-bank/[bankId]/study/[categoryId]/[topicId]'].includes(name)) return true;
-  if (name === 'content/[slug]' && (params as { slug?: unknown } | undefined)?.slug === 'courses') return true;
+  if (name === 'content/[slug]' && ['courses', 'vocab', 'radio', 'hotspot', 'resources', 'mock-exam'].includes(String((params as { slug?: unknown } | undefined)?.slug))) return true;
+  if (['content/hotspot/[briefId]', 'content/hotspot/[briefId]/study', 'content/resources/[articleSlug]'].includes(name)) return true;
+  if (name === 'account/[slug]' && (params as { slug?: unknown } | undefined)?.slug === 'membership') return true;
   if (name === 'legal/[slug]') return ['agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
   return name === 'info/[slug]' && ['about', 'agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
 }
@@ -46,6 +48,7 @@ export function destinationWithQuery(pathname: string, params: Record<string, st
 /** Ordinary account entry never restores a previous tab or private account page. */
 export function postLoginDestination(params: Record<string, string | string[] | undefined>) {
   const target = typeof params.next === 'string' ? safeAppDestination(params.next) : undefined;
+  if (params.intent === 'membership' && target && normalizedAppPath(target) === '/account/membership') return target;
   if (params.intent === 'external' && target) {
     const path = normalizedAppPath(target);
     if (/^\/question-bank\/[^/]+(?:\/study\/[^/]+\/[^/]+)?$/u.test(path)
