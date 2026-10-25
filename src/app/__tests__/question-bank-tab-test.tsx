@@ -97,8 +97,8 @@ describe('<QuestionBankTab />', () => {
   it.each<[ExamGoal, string[]]>([
     ['icao4-first', ['听力', '900 句', '陆空通话', 'OPI']],
     ['icao4-recert', ['陆空通话', 'OPI']],
-    ['icao5-first', ['听力', '900 句', '陆空通话', 'OPI', '故事复诵']],
-    ['icao5-recert', ['陆空通话', 'OPI', '故事复诵']],
+    ['icao5-first', ['听力', '900 句', '陆空通话', '故事复诵', 'OPI']],
+    ['icao5-recert', ['陆空通话', '故事复诵', 'OPI']],
   ])('shows the confirmed module set for %s', async (target, expected) => {
     mockProfile = { ...mockProfile, target };
     const screen = await render(<QuestionBankTab />);

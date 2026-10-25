@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -50,29 +50,32 @@ export function InteractiveStudyText({
   const tokens = useMemo(() => tokenizeStudyText(text), [text]);
   const definitionMap = useMemo(() => new Map(definitions.map((definition) => [definition.id, definition])), [definitions]);
   const highlightMap = useMemo(() => new Map(highlights.filter((item) => item.blockId === blockId).map((item) => [item.wordIndex, item])), [blockId, highlights]);
-  const boxesRef = useRef(new Map<number, LayoutRectangle>());
+  // A new text block owns fresh layout boxes; the keyed flow remounts its words.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const boxes = useMemo(() => new Map<number, LayoutRectangle>(), [text, blockId]);
+  const suppressTapRef = useRef(false);
+  const originRef = useRef<{ x: number; y: number } | undefined>(undefined);
   const dragRef = useRef<DragSelection | undefined>(undefined);
   const [dragSelection, setDragSelection] = useState<DragSelection>();
 
   const wordAt = useCallback((x: number, y: number) => {
-    for (const [wordIndex, box] of boxesRef.current) {
+    for (const [wordIndex, box] of boxes) {
       if (x >= box.x - 3 && x <= box.x + box.width + 3 && y >= box.y - 3 && y <= box.y + box.height + 3) return wordIndex;
     }
     return undefined;
-  }, []);
+  }, [boxes]);
 
   const beginDrag = useCallback((x: number, y: number) => {
     const wordIndex = wordAt(x, y);
     if (wordIndex === undefined) return;
-    const existing = highlights.find((item) => item.blockId === blockId && item.wordIndex === wordIndex);
     const next: DragSelection = {
-      action: existing?.colorId === activeHighlightId ? 'remove' : 'apply',
+      action: 'apply',
       endWordIndex: wordIndex,
       startWordIndex: wordIndex,
     };
     dragRef.current = next;
     setDragSelection(next);
-  }, [activeHighlightId, blockId, highlights, wordAt]);
+  }, [wordAt]);
 
   const updateDrag = useCallback((x: number, y: number) => {
     const current = dragRef.current;
@@ -91,17 +94,36 @@ export function InteractiveStudyText({
 
   const clearDrag = useCallback(() => {
     dragRef.current = undefined;
+    originRef.current = undefined;
     setDragSelection(undefined);
   }, []);
 
+  useEffect(() => {
+    clearDrag();
+  }, [text, blockId, clearDrag]);
+  useEffect(() => { clearDrag(); }, [highlightMode, activeHighlightId, clearDrag]);
+
   const dragGesture = useMemo(() => Gesture.Pan()
     .enabled(highlightMode)
-    .activateAfterLongPress(220)
-    .onStart((event) => beginDrag(event.x, event.y))
+    .minDistance(4)
+    .onTouchesDown((event, manager) => {
+      suppressTapRef.current = false;
+      const touch = event.changedTouches[0];
+      if (!touch || wordAt(touch.x, touch.y) === undefined) { manager.fail(); return; }
+      originRef.current = { x: touch.x, y: touch.y };
+    })
+    .onStart((event) => {
+      suppressTapRef.current = true;
+      const origin = originRef.current;
+      if (origin) beginDrag(origin.x, origin.y);
+      else beginDrag(event.x - event.translationX, event.y - event.translationY);
+      updateDrag(event.x, event.y);
+    })
     .onUpdate((event) => updateDrag(event.x, event.y))
-    .onEnd(commitDrag)
+    .onEnd((_event, success) => { if (success) commitDrag(); })
     .onFinalize(clearDrag)
-    .runOnJS(true), [beginDrag, clearDrag, commitDrag, highlightMode, updateDrag]);
+    .runOnJS(true)
+    .withTestId('highlight-brush'), [beginDrag, clearDrag, commitDrag, highlightMode, updateDrag, wordAt]);
 
   const previewStart = dragSelection ? Math.min(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
   const previewEnd = dragSelection ? Math.max(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
@@ -115,8 +137,8 @@ export function InteractiveStudyText({
   };
 
   return (
-    <GestureDetector gesture={dragGesture}>
-      <View collapsable={false} style={styles.textFlow}>
+    <GestureDetector gesture={dragGesture} touchAction={highlightMode ? 'none' : 'auto'}>
+      <View key={`${blockId}:${text}`} collapsable={false} style={styles.textFlow}>
         {tokens.map((token, tokenIndex) => {
           if (token.whitespace) return null;
           const index = token.wordIndex!;
@@ -141,7 +163,9 @@ export function InteractiveStudyText({
               <Fragment key={`${index}-${token.text}`}>
                 <InteractiveWordTarget
                   accessibilityLabel={lookupByTap ? `查词：${token.text}` : `${active ? '更新或取消' : '添加'}高亮：${token.text}`}
-                  onPress={lookupByTap ? () => onLookup(lookupWord!) : () => onHighlight({
+                  emphasize={!highlightMode}
+                  onLayout={(event) => boxes.set(index, event.nativeEvent.layout)}
+                  onPress={lookupByTap ? () => onLookup(lookupWord!) : () => !suppressTapRef.current && onHighlight({
                     blockId,
                     wordIndex: index,
                     quote: token.text,
@@ -160,10 +184,12 @@ export function InteractiveStudyText({
           return (
             <Fragment key={`${index}-${token.text}`}>
               <Text
+                suppressHighlighting={highlightMode}
+                selectable={false}
                 accessibilityLabel={highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupByLongPress ? `长按查词：${token.text}` : undefined}
-                onLayout={(event) => boxesRef.current.set(index, event.nativeEvent.layout)}
-                onLongPress={lookupByLongPress ? () => onLookup(lookupWord!) : undefined}
-                onPress={highlightMode ? () => onHighlight({
+                onLayout={(event) => boxes.set(index, event.nativeEvent.layout)}
+                onLongPress={highlightMode ? () => undefined : lookupByLongPress ? () => onLookup(lookupWord!) : undefined}
+                onPress={highlightMode ? () => !suppressTapRef.current && onHighlight({
                   blockId,
                   wordIndex: index,
                   quote: token.text,

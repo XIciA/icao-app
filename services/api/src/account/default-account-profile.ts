@@ -12,5 +12,5 @@ export function createDefaultAccountProfile() {
     const j = randomInt(i + 1);
     [suffix[i], suffix[j]] = [suffix[j], suffix[i]];
   }
-  return { displayName: `飞行员${suffix.join('')}`, avatarUri: null, target: 'icao4-first' as const };
+  return { displayName: `飞行员${suffix.join('')}`, avatarUri: null, target: 'icao4-first' as const, studyScope: 'selected' as const, studySetup: 'pending' as const };
 }

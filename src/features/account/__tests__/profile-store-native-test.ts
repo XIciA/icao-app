@@ -65,8 +65,8 @@ it('uses the four approved home bank orders independently of exam module order',
   expect(EXAM_GOALS.map(({ banks }) => banks)).toEqual([
     ['listening', 'sentences900', 'radiotelephony', 'opi'],
     ['radiotelephony', 'opi'],
-    ['listening', 'sentences900', 'radiotelephony', 'opi', 'storytelling'],
-    ['radiotelephony', 'opi', 'storytelling'],
+    ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'],
+    ['radiotelephony', 'storytelling', 'opi'],
   ]);
 });
 
@@ -82,4 +82,17 @@ it('retires an old exam-only selection on local reads, edits and sync while pres
     expect(await readProfile()).toMatchObject({ studyScope });
     expect(mockEnqueue).toHaveBeenLastCalledWith(expect.objectContaining({ studyScope }));
   }
+});
+
+it('never invents first setup for legacy accounts and preserves completion across devices', async () => {
+  expect(normalizeProfile({ ...DEFAULT_PROFILE }).studySetup).toBeUndefined();
+  setProfileAccount('new');
+  await replaceProfileFromSync({ ...DEFAULT_PROFILE, studySetup: 'pending' });
+  expect((await readProfile()).studySetup).toBe('pending');
+  await updateProfile({ studySetup: 'completed' });
+  expect(mockEnqueue).toHaveBeenLastCalledWith(expect.objectContaining({ studySetup: 'completed' }));
+  setProfileAccount('other');
+  expect((await readProfile()).studySetup).toBeUndefined();
+  await replaceProfileFromSync({ ...DEFAULT_PROFILE, studySetup: 'completed' });
+  expect((await readProfile()).studySetup).toBe('completed');
 });
