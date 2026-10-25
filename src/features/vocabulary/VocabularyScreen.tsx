@@ -81,7 +81,7 @@ export function VocabularyScreen() {
         {loadError ? (
           <CenteredState icon={TriangleAlert} title="词汇资源暂时不可用" description="首次使用需要联网获取词汇资源。请检查网络后重试。" actionLabel="重新加载" onAction={() => setLoadAttempt((value) => value + 1)} tone="destructive" />
         ) : (
-          <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 838 条 ICAO 词汇和你的学习进度。" />
+          <CenteredState icon={BookOpen} title="正在准备词汇资源" description="正在读取 ICAO 词书和你的学习进度。" />
         )}
       </Screen>
     );

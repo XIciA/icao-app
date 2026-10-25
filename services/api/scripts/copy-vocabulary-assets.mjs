@@ -6,3 +6,4 @@ await copyFile(
   new URL('../../../content/vocabulary/dataset.json', import.meta.url),
   new URL('dataset.json', destination),
 );
+await copyFile(new URL('../../../content/vocabulary/question-bank-core/book.json', import.meta.url), new URL('question-bank-core.json', destination));

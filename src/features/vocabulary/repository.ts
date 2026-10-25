@@ -1,3 +1,4 @@
+import { validateVocabularyCatalog } from '@icao/contracts';
 import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, VocabularyDataset, VocabularyRelease } from '@icao/contracts';
 
@@ -13,24 +14,7 @@ export type VocabularyLoadResult = {
   warning?: 'vocabulary_remote_unavailable';
 };
 
-export function validateVocabularyDataset(dataset: VocabularyDataset) {
-  const expected: Record<string, number> = { preview: 360, icao4: 372, icao5: 106 };
-  if (dataset.schemaVersion !== 1 || dataset.books.length !== 3) throw new Error('invalid_vocabulary_dataset');
-  const ids = new Set<string>();
-  let total = 0;
-  for (const book of dataset.books) {
-    if (expected[book.id] !== book.words.length) throw new Error(`invalid_vocabulary_book:${book.id}`);
-    for (const word of book.words) {
-      if (ids.has(word.id) || word.bookId !== book.id || !word.word || !word.meaning || !word.example || !word.exampleTranslation) {
-        throw new Error(`invalid_vocabulary_word:${word.id}`);
-      }
-      ids.add(word.id);
-      total += 1;
-    }
-  }
-  if (total !== 838) throw new Error('invalid_vocabulary_total');
-  return dataset;
-}
+export const validateVocabularyDataset = validateVocabularyCatalog;
 
 async function readCachedRelease() {
   const raw = await Storage.getItem(CACHE_KEY);
@@ -52,7 +36,7 @@ export async function loadVocabulary(): Promise<VocabularyLoadResult> {
   }
 
   try {
-    const response = await apiFetch('/v1/vocabulary', {
+    const response = await apiFetch('/v1/vocabulary?catalog=question-bank-core', {
       headers: cached ? { 'if-none-match': `"${cached.checksum}"` } : undefined,
     });
     if (response.status === 304 && cached) return { dataset: cached.dataset, source: 'cache' };

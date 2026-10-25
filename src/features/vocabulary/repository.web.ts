@@ -1,3 +1,4 @@
+import { validateVocabularyCatalog } from '@icao/contracts';
 import type { ApiSuccessEnvelope, VocabularyDataset, VocabularyRelease } from '@icao/contracts';
 
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
@@ -20,24 +21,7 @@ export type VocabularyLoadResult = {
   warning?: 'vocabulary_remote_unavailable';
 };
 
-export function validateVocabularyDataset(dataset: VocabularyDataset) {
-  const expected: Record<string, number> = { preview: 360, icao4: 372, icao5: 106 };
-  if (dataset.schemaVersion !== 1 || dataset.books.length !== 3) throw new Error('invalid_vocabulary_dataset');
-  const ids = new Set<string>();
-  let total = 0;
-  for (const book of dataset.books) {
-    if (expected[book.id] !== book.words.length) throw new Error(`invalid_vocabulary_book:${book.id}`);
-    for (const word of book.words) {
-      if (ids.has(word.id) || word.bookId !== book.id || !word.word || !word.meaning || !word.example || !word.exampleTranslation) {
-        throw new Error(`invalid_vocabulary_word:${word.id}`);
-      }
-      ids.add(word.id);
-      total += 1;
-    }
-  }
-  if (total !== 838) throw new Error('invalid_vocabulary_total');
-  return dataset;
-}
+export const validateVocabularyDataset = validateVocabularyCatalog;
 
 function releaseIdentity(release: Awaited<ReturnType<typeof loadWebContentRelease>>) {
   return release.releaseChecksum ?? release.releaseId ?? release.baseUrl;
@@ -99,7 +83,7 @@ async function readCloudCache() {
 async function loadCloudVocabulary(): Promise<VocabularyLoadResult> {
   const local = await readCloudCache();
   try {
-    const response = await apiFetch('/v1/vocabulary', {
+    const response = await apiFetch('/v1/vocabulary?catalog=question-bank-core', {
       headers: local ? { 'if-none-match': `"${local.checksum}"` } : undefined,
     });
     if (response.status === 304 && local) return { dataset: local.dataset, source: 'cache' };

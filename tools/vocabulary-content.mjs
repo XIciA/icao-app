@@ -97,6 +97,14 @@ async function check() {
     }
   }
   assert(total === 838, `invalid_total:${total}`);
+  const core = await readJson(join(root, 'content/vocabulary/question-bank-core/book.json'));
+  assert(core.id === 'question-bank-core' && core.words.length === 409 && core.assessmentEligible === false, 'invalid_core_book');
+  for (const word of core.words) {
+    assert(!ids.has(word.id) && word.bookId === core.id, `invalid_core_word:${word.id}`);
+    ids.add(word.id);
+    for (const key of ['word','meaning','example','exampleTranslation','pronunciationText']) assert(word[key]?.trim(), `invalid_core_${key}:${word.id}`);
+    assert(word.frequency?.scope === 'question-bank-audio-text' && Number.isInteger(word.frequency.occurrences) && word.frequency.occurrences >= 0, `invalid_core_frequency:${word.id}`);
+  }
   console.log(`vocabulary_check_ok books=${dataset.books.length} words=${total} checksum=${checksum(dataset)}`);
 }
 
