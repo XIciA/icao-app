@@ -16,7 +16,7 @@
     {
       "bankId": "radiotelephony",
       "version": 26,
-      "checksum": "6d0893a5a76cd63819f1739a340fa41dcf5a341b0fa844ace38b5d5dd09e9edd"
+      "checksum": "824e2b5a7ec1f2abc420edb9ddeb27969f78ed9f9491adbb4b66fbc7ab09d5e3"
     },
     {
       "bankId": "opi",
@@ -29,5 +29,5 @@
       "checksum": "cde4b45c5e2bfd4f67fd0325c60daba4a38a816e51e9d24212bc181871bc2d7e"
     }
   ],
-  "checksum": "785b6894fa59bf34bd7f94b75c65f28ea7ac49c3c3602c75c76d08ea90d2597a"
+  "checksum": "f37fc34bb8928954df9ca124d484ff2c297f19d55baada2e7e1b3b34302e7e94"
 }
