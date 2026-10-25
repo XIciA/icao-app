@@ -9,6 +9,7 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 
 import { isWordFavorite } from '../favorites';
+import { vocabularyFrequencyBadge } from '../frequency';
 import { progressFor } from '../progress-store';
 import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
 import type { VocabularyState, VocabularyWord, VocabularyWordStatus } from '../types';
@@ -88,8 +89,12 @@ export function VocabularyStudyView({
       <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
-          <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-          <VocabularyFrequency key={word.id} word={word} />
+          <View style={[styles.wordHeading, vocabularyFrequencyBadge(word.frequency) ? styles.wordHeadingWithBadge : null]}>
+            <View style={styles.wordAnchor}>
+              <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
+              <View pointerEvents="none" style={styles.frequencyBadge}><VocabularyFrequency compact key={word.id} word={word} /></View>
+            </View>
+          </View>
           <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
@@ -177,6 +182,11 @@ const styles = StyleSheet.create({
   studyContent: { flexGrow: 1, padding: spacing[5] },
   wordCenter: { alignItems: 'center', flex: 1, gap: spacing[4], justifyContent: 'center', minHeight: 430 },
   studyWord: { fontSize: 36, lineHeight: 46, textAlign: 'center' },
+  wordHeading: { alignItems: 'center', width: '100%' },
+  // Equal side reserves keep the word itself centered; the badge never joins its flex row.
+  wordHeadingWithBadge: { paddingHorizontal: spacing[16] },
+  wordAnchor: { alignSelf: 'center', maxWidth: '100%' },
+  frequencyBadge: { position: 'absolute', left: '100%', marginLeft: spacing[1], top: 0, width: 60 },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   reveal: { alignItems: 'center', gap: spacing[5], width: '100%' },
   meaning: { fontSize: 20, lineHeight: 30, textAlign: 'center' },

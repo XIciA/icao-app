@@ -8,3 +8,9 @@ export function vocabularyFrequencyLabel(frequency?: VocabularyFrequency) {
   const band = [1000, 500, 200, 100, 50, 10].find(value => count >= value);
   return `题库原文 ${band ? `${band}+` : count}次`;
 }
+
+export function vocabularyFrequencyBadge(frequency?: VocabularyFrequency) {
+  const label = vocabularyFrequencyLabel(frequency);
+  if (!label || frequency?.occurrences === 0) return undefined;
+  return label.replace('题库原文 ', '').replace('次', '');
+}
