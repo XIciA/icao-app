@@ -1,3 +1,4 @@
+import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
@@ -34,13 +35,18 @@ const courseEntry: Entry = {
   slug: 'courses',
   title: '体系课程',
   en: 'Courses',
-  description: '从入门到冲刺的系统化课程体系',
+  description: '飞猪 ICAO · 从入门到冲刺',
   icon: GraduationCap,
 };
 
 export function DiscoverHomeScreen() {
   const login = useLoginEntry();
-  const open = (slug: string) => { trackProductClick('feature_open', slug); login(`/content/${slug}`, '登录后查看会员功能'); };
+  const router = useRouter();
+  const open = (slug: string) => {
+    trackProductClick('feature_open', slug);
+    if (slug === 'courses') router.push('/content/courses');
+    else login(`/content/${slug}`, '登录后查看会员功能');
+  };
   const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
   const features: Entry[] = [
     ...standardFeatures,
@@ -60,8 +66,10 @@ export function DiscoverHomeScreen() {
         <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle en="Resources" title="资源" />
-      <View style={styles.list}>{resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
-      {courseAvailable ? <><SectionTitle en="Courses" title="课程" /><ListEntry emphasis entry={courseEntry} onPress={() => open(courseEntry.slug)} /></> : null}
+      <View style={styles.list}>
+        {resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}
+        {courseAvailable ? <ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} /> : null}
+      </View>
     </Screen>
   );
 }

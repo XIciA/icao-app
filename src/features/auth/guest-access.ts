@@ -1,5 +1,5 @@
-/** Public learning is filtered by content access; account and discover tools remain protected. */
-const publicPaths = new Set(['/', '/discover', '/profile', '/download', '/info/about', '/info/agreement', '/info/privacy', '/info/services']);
+/** Public learning and course promotion are browsable; account and learning tools remain protected. */
+const publicPaths = new Set(['/', '/discover', '/profile', '/download', '/content/courses', '/info/about', '/info/agreement', '/info/privacy', '/info/services']);
 
 export function normalizedAppPath(path: string) {
   const pathname = path.split(/[?#]/u)[0].replace(/^\/\(tabs\)(?=\/|$)/u, '') || '/';
@@ -14,6 +14,7 @@ export function isGuestPublicPath(path: string) {
 export function isPublicStackScreen(name: string, params?: object) {
   if (['index', '(tabs)', 'auth/[slug]', 'download'].includes(name)) return true;
   if (['question-bank/[bankId]/index', 'question-bank/[bankId]/study/[categoryId]/[topicId]'].includes(name)) return true;
+  if (name === 'content/[slug]' && (params as { slug?: unknown } | undefined)?.slug === 'courses') return true;
   if (name === 'legal/[slug]') return ['agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
   return name === 'info/[slug]' && ['about', 'agreement', 'privacy', 'services'].includes(String((params as { slug?: unknown } | undefined)?.slug));
 }
