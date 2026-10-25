@@ -1,6 +1,6 @@
 # 综合修复、单词UI与1.3.12统一测试交付
 
-状态：iOS TestFlight与产品Web已交付；Android测试包由单词任务继续处理，用户体验待验收。
+状态：iOS TestFlight、Android独立测试版与产品Web均已交付，用户体验待验收。
 
 ## 授权与源码
 
@@ -37,7 +37,12 @@
 
 ### Android独立测试版
 
-等待iOS构建释放现有发布目录，由单词任务继续处理。
+- 包名com.readyoufife.app.test，版本1.3.12 / build3584843，构建源码保持63d2103e，与iOS/Web一致。完整pnpm check及签名构建通过；没有修改依赖图或覆盖iOS归档/IPA。
+- APK 137,433,001字节，SHA-256 afadede05ecac8b02e1e48908c74a2a42323f94be564e643f6aabc52a9190590；v2签名验证通过，证书SHA-256为25d4fe5523417289da5fe0bf970593b98fe4ea658883edeb5792906e31456629，与既有测试包一致。
+- [下载测试APK](https://cloud.readyoufife.com/storage/v1/object/public/app-releases/android/feizhu-icao-android-test-1.3.12-b3584843.apk)；[官网测试入口](https://readyoufife.com/download)读取android-test渠道。独立公网完整下载返回200，大小与SHA-256均与本地、发布器一致。
+- 只更新android-test清单，独立回读为1.3.12/3584843；iOS测试清单及两个正式渠道与Android发布前逐项一致。两个正式渠道也与本轮交付前逐项一致。备份/opt/icao/backups/app-updates-vocab-ui-20261025/updates-before-20261025T122906970411Z.json。
+- annotated tag release/android-test/v1.3.12-b3584843已推送；旧1.3.11测试APK作为不可变历史制品保留，不以降级安装承诺保留本地数据。
+- 证据与制品位于现有发布clone的.generated/vocab-ui-delivery/及.generated/releases/android-test/1.3.12/，包含完整检查、签名报告、发布器回读、独立公网摘要及渠道前后比较。测试版安装、账号同步和新UI真机体验待用户验收。
 
 ## 追溯与待验
 
