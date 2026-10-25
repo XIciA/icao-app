@@ -1,4 +1,4 @@
-import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWordUpdates, vocabularyLegacyIds, vocabularyLegacyFavorites } from './vocabulary-migration-data';
+import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWordUpdates, vocabularyLegacyIds, vocabularyLegacyFavorites } from './vocabulary-migration-data.ts';
 
 type Progress = { status: 'new' | 'known' | 'vague' | 'forgot' | 'wrong'; favorite: boolean; updatedAt: string };
 type Document = { words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
