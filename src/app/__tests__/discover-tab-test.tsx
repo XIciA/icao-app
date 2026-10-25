@@ -12,6 +12,7 @@ jest.mock('lucide-react-native', () => {
     FileText: Icon,
     Flame: Icon,
     FolderOpen: Icon,
+    GraduationCap: Icon,
     Radio: Icon,
   };
 });
@@ -31,14 +32,22 @@ describe('<DiscoverTab />', () => {
     expect(mockRememberPendingPath).toHaveBeenCalledWith('/content/vocab');
     expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/vocab', returnTo: '/discover' } });
   });
-  it('exposes launch learning entries without the course catalog', async () => {
+  it('lets a guest open the course promotion without login', async () => {
+    mockCanAccessApp = false;
     const screen = await render(<DiscoverTab />);
-    ['单词学习', '随身听', '模拟练习', 'OPI 热点', '资源分享'].forEach((label) => {
+    await fireEvent.press(screen.getByLabelText('打开体系课程'));
+    expect(mockPush).toHaveBeenCalledWith('/content/courses');
+    expect(mockRememberPendingPath).not.toHaveBeenCalled();
+  });
+  it('exposes the course catalog below learning resources', async () => {
+    const screen = await render(<DiscoverTab />);
+    ['单词学习', '随身听', '模拟练习', 'OPI 热点', '资源分享', '体系课程'].forEach((label) => {
       expect(screen.getByText(label)).toBeTruthy();
     });
     expect(screen.queryByText('AI 模考')).toBeNull();
     expect(screen.queryByText('学习报告')).toBeNull();
-    expect(screen.queryByText('体系课程')).toBeNull();
-    expect(screen.queryByText('从入门到冲刺的系统化课程体系')).toBeNull();
+    expect(screen.getByText('飞猪 ICAO · 从入门到冲刺')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('打开体系课程'));
+    expect(mockPush).toHaveBeenCalledWith('/content/courses');
   });
 });

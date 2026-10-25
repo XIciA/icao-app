@@ -27,6 +27,9 @@ const KNOWN_CONTENT_SLUGS = new Set([
 ]);
 
 export default function ContentRoute() {
+  const { slug } = useLocalSearchParams<{ slug?: string | string[] }>();
+  const contentSlug = Array.isArray(slug) ? slug[0] : slug;
+  if (contentSlug === 'courses') return <ContentRouteBody />;
   return <MemberFeatureGate><ContentRouteBody /></MemberFeatureGate>;
 }
 
