@@ -11,7 +11,6 @@ const GUIDE_ICONS = { study: Highlighter, vocab: BookMarked, radio: Radio, hotsp
 export function UserGuideScreen() {
   const guide = useGuide();
   return <Screen scroll contentStyle={styles.screen} header={<TopBar title="使用指南" />}>
-    <AppText variant="caption">选择一项功能，重新查看教程。</AppText>
     {guide?.error ? <View><AppText color={colors.destructive} variant="caption">{guide.error}</AppText>{guide.ready === false ? <Button variant="ghost" onPress={guide.retry}>重试读取进度</Button> : null}</View> : null}
     {GUIDE_ENTRIES.map(({ id, title, description }) => {
       const Icon = GUIDE_ICONS[id];
