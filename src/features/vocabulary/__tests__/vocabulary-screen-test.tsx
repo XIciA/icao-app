@@ -87,6 +87,8 @@ describe('VocabularyScreen', () => {
     expect(screen.getByText('360 词')).toBeTruthy();
     expect(screen.getByText('372 词')).toBeTruthy();
     expect(screen.getByText('106 词')).toBeTruthy();
+    expect(screen.getByText('提前熟悉民航基础词汇，为 ICAO 学习打好基础。')).toBeTruthy();
+    expect(screen.queryByText('请选择至少一本词书')).toBeNull();
     fireEvent.press(screen.getByLabelText('开始30题词汇测评'));
     await waitFor(() => expect(screen.getByText('每题 10 秒')).toBeTruthy());
     expect(screen.getByText('开始 30 题测评')).toBeTruthy();
@@ -173,7 +175,8 @@ it('opens the 409-entry core book through the existing learning flow with freque
     await fireEvent.press(screen.getByText('开始学习'));
     const first = core.words[0]!;
     expect(screen.getByText(first.word)).toBeTruthy();
-    expect(screen.getByText(/题库原文 .*次/)).toBeTruthy();
+    expect(screen.getByLabelText(/题库原文 .*次/)).toBeTruthy();
+    expect(screen.queryByText(/题库原文 .*次/)).toBeNull();
     expect(jest.requireMock('../speech').speakVocabulary).toHaveBeenCalledWith(first.pronunciationText);
     await screen.unmount();
   } finally {

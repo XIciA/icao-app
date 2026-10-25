@@ -2,8 +2,6 @@ import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
   BarChart3,
-  BookOpen,
-  Check,
   ChevronDown,
   ChevronRight,
   List,
@@ -33,6 +31,8 @@ import type {
 } from '../types';
 import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
+import { vocabularyBookDescription } from '../book-description';
+import { VocabularyBookCard } from './VocabularyBookCard';
 import { VocabularyFrequency } from './VocabularyFrequency';
 import { VocabularyProgress } from './VocabularyProgress';
 
@@ -88,15 +88,15 @@ export function VocabularyBooksView({
         ) : null}
 
         <Pressable accessibilityLabel="开始30题词汇测评" onPress={onTest}>
-          <Card elevated style={styles.assessmentCard}>
+          <Card style={styles.assessmentCard}>
             <View style={styles.assessmentIcon}><BarChart3 color={colors.primary} size={24} /></View>
             <View style={styles.grow}>
               <View style={styles.rowBetween}>
-                <AppText variant="sectionTitle">30 题词汇测评</AppText>
+                <AppText variant="cardTitle">30 题词汇测评</AppText>
                 <ChevronRight color={colors.primary} size={18} />
               </View>
-              <AppText style={styles.description}>每题 10 秒，根据作答情况动态调整难度，给出分级学习建议。</AppText>
-              {lastTest ? <AppText color={colors.primary} variant="caption">上次结果：{lastTest.verdict} · {lastTest.totalRate}%</AppText> : <AppText variant="caption">约 5 分钟 · 非官方等级结论</AppText>}
+              <AppText variant="caption">每题 10 秒 · 约 5 分钟</AppText>
+              {lastTest ? <AppText color={colors.primary} variant="caption">上次结果：{lastTest.verdict} · {lastTest.totalRate}%</AppText> : null}
             </View>
           </Card>
         </Pressable>
@@ -106,32 +106,16 @@ export function VocabularyBooksView({
             const active = selected.has(book.id);
             const stats = statsByBook[book.id] ?? { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 };
             return (
-              <Pressable accessibilityLabel={`${active ? '取消选择' : '选择'}${book.name}`} key={book.id} onPress={() => onToggle(book.id)}>
-                <Card elevated style={[styles.bookCard, active ? styles.selectedCard : null]}>
-                  <View style={[styles.bookIcon, active ? styles.selectedIcon : null]}>
-                    {active ? <Check color={colors.primaryForeground} size={20} /> : <BookOpen color={colors.primary} size={20} />}
-                  </View>
-                  <View style={styles.grow}>
-                    <View style={styles.rowBetween}>
-                      <AppText variant="sectionTitle">{book.name}</AppText>
-                      <AppText variant="caption">{book.words.length} 词</AppText>
-                    </View>
-                    <AppText style={styles.description}>{book.description}</AppText>
-                    <AppText variant="micro">已学习 {stats.learned} / {stats.total}</AppText>
-                    <VocabularyProgress value={stats.total ? stats.learned / stats.total : 0} />
-                    <Pressable accessibilityLabel={`查看${book.name}详情`} onPress={(event) => { event.stopPropagation(); onDetail(book.id); }} style={styles.link}>
-                      <AppText color={colors.primary} variant="button">查看详情</AppText>
-                      <ChevronRight color={colors.primary} size={15} />
-                    </Pressable>
-                  </View>
-                </Card>
-              </Pressable>
+              <View key={book.id}>
+                <VocabularyBookCard book={book} stats={stats} selected={active}
+                  onToggle={() => { onToggle(book.id); guide?.event('vocab-book'); }}
+                  onDetail={() => onDetail(book.id)} />
+              </View>
             );
           })}
         </View>
       </GuideScrollView>
       <View style={[styles.sticky, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
-        <AppText style={styles.center}>{selected.size ? `已选择 ${selected.size} 本词书` : '请选择至少一本词书'}</AppText>
         <Button disabled={!selected.size} leading={<Play color={colors.primaryForeground} size={16} />} guideId="vocab-start" onPress={() => { onStart(); guide?.event('vocab-start'); }} size="lg">开始学习</Button>
       </View>
     </Screen>
@@ -170,7 +154,7 @@ export function VocabularyBookDetailView({
       <View style={styles.page}>
         <Card style={styles.detailCard}>
           <AppText variant="pageTitle">{book.name}</AppText>
-          <AppText style={styles.description}>{book.description}</AppText>
+          <AppText style={styles.description}>{vocabularyBookDescription(book)}</AppText>
           <View style={styles.rowBetween}><AppText variant="caption">学习进度</AppText><AppText variant="caption">{stats.learned} / {stats.total}</AppText></View>
           <VocabularyProgress value={stats.total ? stats.learned / stats.total : 0} />
         </Card>
@@ -270,20 +254,15 @@ export function VocabularyWordListView({
 const styles = StyleSheet.create({
   zero: { paddingHorizontal: 0 },
   grow: { flex: 1 },
-  page: { gap: spacing[4], padding: spacing[5], paddingBottom: spacing[6] },
+  page: { gap: spacing[4], padding: spacing[4], paddingBottom: spacing[6] },
   center: { textAlign: 'center' },
   stack: { gap: spacing[3] },
   warning: { alignItems: 'center', backgroundColor: 'rgba(183,118,16,0.10)', borderRadius: radii.lg, flexDirection: 'row', gap: spacing[2], padding: spacing[3] },
   warningText: { flex: 1 },
-  assessmentCard: { alignItems: 'center', borderColor: colors.primary20, flexDirection: 'row', gap: spacing[3], padding: spacing[5] },
-  assessmentIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 50, justifyContent: 'center', width: 50 },
-  bookCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3], padding: spacing[5] },
-  selectedCard: { borderColor: colors.primary },
-  bookIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 44, justifyContent: 'center', width: 44 },
-  selectedIcon: { backgroundColor: colors.primary },
+  assessmentCard: { alignItems: 'center', borderColor: colors.primary20, flexDirection: 'row', gap: spacing[3], padding: spacing[4], borderRadius: radii.xl },
+  assessmentIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.lg, height: 42, justifyContent: 'center', width: 42 },
   rowBetween: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' },
   description: { color: colors.mutedForeground, lineHeight: 22 },
-  link: { alignItems: 'center', alignSelf: 'flex-start', flexDirection: 'row', gap: spacing[1], paddingTop: spacing[1] },
   sticky: { backgroundColor: colors.background72, borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[3] },
   detailCard: { gap: spacing[3], padding: spacing[5] },
   stats: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3] },

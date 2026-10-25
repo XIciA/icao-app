@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import type { VocabularyFrequency as Frequency } from '@icao/contracts';
 import core from '../../../../content/vocabulary/question-bank-core/book.json';
 import legacy from '../../../../content/vocabulary/dataset.json';
-import { vocabularyFrequencyLabel } from '../frequency';
+import { vocabularyFrequencyBadge, vocabularyFrequencyLabel } from '../frequency';
 import { VocabularyFrequency } from '../components/VocabularyFrequency';
 import { validateVocabularyDataset } from '../repository';
 import { toVocabularyTestWords } from '../test-engine';
@@ -18,6 +18,15 @@ it('shows a frequency band only on the new book',async()=>{
   expect(view.getByText('题库原文 50+次')).toBeTruthy();
   await view.rerender(<VocabularyFrequency word={legacy.books[0]!.words[0] as VocabularyWord}/>);
   expect(view.queryByText('题库原文 50+次')).toBeNull();
+});
+it('keeps the short study badge accessible and omits absent or zero frequency',async()=>{
+  const word={...(core.words[0] as VocabularyWord),frequency:frequency(576)};
+  const view=await render(<VocabularyFrequency compact word={word}/>);
+  expect(view.getByText('500+')).toBeTruthy();
+  expect(view.getByLabelText('题库原文 500+次')).toBeTruthy();
+  expect(vocabularyFrequencyBadge(frequency(0))).toBeUndefined();
+  await view.rerender(<VocabularyFrequency compact word={legacy.books[0]!.words[0] as VocabularyWord}/>);
+  expect(view.queryByText('500+')).toBeNull();
 });
 it('validates both catalog generations, preserves old books and keeps ungraded core entries out of level assessment',()=>{
   const old=legacy as VocabularyDataset;
