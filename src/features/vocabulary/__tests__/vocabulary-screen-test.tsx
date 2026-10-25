@@ -183,3 +183,30 @@ it('opens the 409-entry core book through the existing learning flow with freque
     mockBooks.pop();
   }
 });
+
+it('keeps compact-card details separate from multi-selection and guide confirmation', async () => {
+  const { GuideBindingContext } = jest.requireActual('@/features/usage-guide/GuideBindings') as typeof import('@/features/usage-guide/GuideBindings');
+  const confirm = jest.fn(), event = jest.fn();
+  const binding = {
+    current: 'vocab', step: 'vocab-book', target: 'vocab-book', confirm, event,
+    availability: jest.fn(), register: jest.fn(), modal: jest.fn(), surface: () => null,
+    offer: jest.fn(), exit: jest.fn(), start: jest.fn(async () => undefined),
+    suspend: jest.fn(), pause: jest.fn(), checkpoint: jest.fn(),
+  };
+  const screen = await render(withSafeArea(<GuideBindingContext.Provider value={binding}><VocabularyScreen /></GuideBindingContext.Provider>));
+  await waitFor(() => expect(screen.getByText('ICAO考前预习')).toBeTruthy());
+  expect(screen.getAllByTestId('guide-anchor-vocab-book')).toHaveLength(1);
+  expect(confirm).toHaveBeenLastCalledWith('vocab-book', false);
+  await fireEvent.press(screen.getByLabelText('查看ICAO考前预习详情'));
+  expect(screen.getByText('查看单词列表')).toBeTruthy();
+  expect(event).not.toHaveBeenCalledWith('vocab-book');
+  await fireEvent.press(screen.getByLabelText('返回'));
+  await fireEvent.press(screen.getByLabelText('选择ICAO考前预习'));
+  expect(confirm).toHaveBeenLastCalledWith('vocab-book', true);
+  await fireEvent.press(screen.getByLabelText('选择ICAO 4 必会'));
+  await fireEvent.press(screen.getByLabelText('取消选择ICAO考前预习'));
+  expect(confirm).toHaveBeenLastCalledWith('vocab-book', true);
+  await fireEvent.press(screen.getByLabelText('取消选择ICAO 4 必会'));
+  expect(confirm).toHaveBeenLastCalledWith('vocab-book', false);
+  expect(event).not.toHaveBeenCalledWith('vocab-book');
+});

@@ -101,14 +101,14 @@ export function VocabularyBooksView({
           </Card>
         </Pressable>
 
-        <View style={styles.stack}><GuideAnchor id="vocab-book" />
-          {books.map((book) => {
+        <View style={styles.stack}>
+          {books.map((book, index) => {
             const active = selected.has(book.id);
             const stats = statsByBook[book.id] ?? { total: book.words.length, learned: 0, known: 0, vague: 0, forgot: 0, wrong: 0, favorite: 0 };
             return (
-              <View key={book.id}>
+              <View key={book.id}>{index === 0 ? <GuideAnchor id="vocab-book" /> : null}
                 <VocabularyBookCard book={book} stats={stats} selected={active}
-                  onToggle={() => { onToggle(book.id); guide?.event('vocab-book'); }}
+                  onToggle={() => onToggle(book.id)}
                   onDetail={() => onDetail(book.id)} />
               </View>
             );
