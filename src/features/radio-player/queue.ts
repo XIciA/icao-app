@@ -1,3 +1,4 @@
+import { canPlayRadioTrack } from './access';
 import type { RadioPlaybackMode, RadioTrack } from './types';
 
 export type ShuffleState = { history: string[]; cursor: number };
@@ -15,9 +16,13 @@ export function nextTrack(
   shuffle: ShuffleState,
   random = Math.random,
 ) {
+  tracks = tracks.filter(canPlayRadioTrack);
+  const allowed = new Set(tracks.map(track => track.id));
+  const before = shuffle.history.slice(0, shuffle.cursor + 1).filter(id => allowed.has(id));
+  shuffle = { history: [...before, ...shuffle.history.slice(shuffle.cursor + 1).filter(id => allowed.has(id))], cursor: before.length - 1 };
   if (!tracks.length) return { trackId: undefined, shuffle };
-  if (mode === 'repeatOne') return { trackId: currentId, shuffle };
-  const currentIndex = Math.max(0, tracks.findIndex((track) => track.id === currentId));
+  if (mode === 'repeatOne' && allowed.has(currentId)) return { trackId: currentId, shuffle };
+  const currentIndex = tracks.findIndex((track) => track.id === currentId);
   if (mode === 'order') return { trackId: tracks[(currentIndex + 1) % tracks.length].id, shuffle };
   if (shuffle.cursor < shuffle.history.length - 1) {
     const cursor = shuffle.cursor + 1;
@@ -41,12 +46,16 @@ export function nextManualTrack(
 }
 
 export function previousTrack(tracks: RadioTrack[], currentId: string, mode: RadioPlaybackMode, shuffle: ShuffleState) {
+  tracks = tracks.filter(canPlayRadioTrack);
+  const allowed = new Set(tracks.map(track => track.id));
+  const before = shuffle.history.slice(0, shuffle.cursor + 1).filter(id => allowed.has(id));
+  shuffle = { history: [...before, ...shuffle.history.slice(shuffle.cursor + 1).filter(id => allowed.has(id))], cursor: before.length - 1 };
   if (!tracks.length) return { trackId: undefined, shuffle };
   if (mode === 'shuffle' && shuffle.cursor > 0) {
     const cursor = shuffle.cursor - 1;
     return { trackId: shuffle.history[cursor], shuffle: { ...shuffle, cursor } };
   }
-  const currentIndex = Math.max(0, tracks.findIndex((track) => track.id === currentId));
-  const trackId = tracks[(currentIndex - 1 + tracks.length) % tracks.length].id;
+  const currentIndex = tracks.findIndex((track) => track.id === currentId);
+  const trackId = tracks[(Math.max(0, currentIndex) - 1 + tracks.length) % tracks.length].id;
   return { trackId, shuffle: mode === 'shuffle' ? selectShuffleTrack(shuffle, trackId) : shuffle };
 }

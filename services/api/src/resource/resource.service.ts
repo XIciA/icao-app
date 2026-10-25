@@ -1,4 +1,4 @@
-import { ForbiddenException, Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, desc, eq, inArray } from 'drizzle-orm';
 import type { CommerceEnvironment, ResolvedResource } from '@icao/contracts';
@@ -35,10 +35,6 @@ export class ResourceService {
     environment: CommerceEnvironment,
     checksum?: string,
   ): Promise<ResolvedResource> {
-    if (publicPath.startsWith('/editorial-assets/')) {
-      if (!accountId || !sessionId) throw new ForbiddenException('membership_required');
-      await this.contentAccess.assertMembership(accountId, sessionId, environment);
-    }
     const [resource] = await this.database.db.select().from(resourceObjects)
       .where(and(eq(resourceObjects.sourcePath, publicPath), checksum
         ? and(eq(resourceObjects.checksum, checksum), inArray(resourceObjects.status, ['ready', 'superseded']))

@@ -1,3 +1,4 @@
+jest.mock('@react-navigation/native', () => ({...jest.requireActual('@react-navigation/native'), useIsFocused:()=>true}));
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -6,10 +7,11 @@ import { Platform } from 'react-native';
 import { MembershipPage } from '../MembershipPage.native';
 
 const mockBack = jest.fn();
+const mockReplace = jest.fn();
 const mockPurchase = jest.fn();
 const mockRefresh = jest.fn();
 const mockRestore = jest.fn();
-let mockParams: { from?: string } = {};
+let mockParams: { from?: string; next?: string } = {};
 let mockCommerce: ReturnType<typeof runtimeValue>;
 function runtimeValue(overrides: Record<string, unknown> = {}) {
   return {
@@ -21,7 +23,7 @@ function runtimeValue(overrides: Record<string, unknown> = {}) {
   };
 }
 jest.mock('expo-router', () => ({ useLocalSearchParams: () => mockParams,
-  useRouter: () => ({ back: mockBack, canGoBack: () => true, replace: jest.fn() }) }));
+  useRouter: () => ({ back: mockBack, canGoBack: () => true, replace: mockReplace }) }));
 jest.mock('../CommerceRuntimeProvider', () => ({ useCommerceRuntime: () => mockCommerce }));
 
 function Page() { return <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, bottom: 34, left: 0, right: 0 } }}><MembershipPage /></SafeAreaProvider>; }
@@ -60,9 +62,9 @@ describe('Native membership purchase page', () => {
     expect(screen.queryByLabelText(/原价/u)).toBeNull();
   });
 
-  it('shows seven read-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
+  it('shows member-only benefits, three equal choices and one button with the selected StoreKit price', async () => {
     const screen = await render(<Page />);
-    for (const title of ['解锁会员题库', '每周 AI 学习额度', '单词学习', '随身听', '模拟考试', 'OPI 热点', '资源分享']) expect(screen.getByText(title)).toBeTruthy();
+    for (const title of ['解锁会员题库', '每周 AI 学习额度', '会员音频', '模拟练习', 'OPI 热点']) expect(screen.getByText(title)).toBeTruthy();
     expect(screen.getByText('会员权益')).toBeTruthy();
     expect(screen.queryByText('权益相同，仅时长不同')).toBeNull();
     expect(screen.queryByText(/到期不自动续费/u)).toBeNull();
@@ -139,4 +141,14 @@ describe('Native membership purchase page', () => {
     await screen.rerender(<Page />);
     await waitFor(() => expect(mockBack).toHaveBeenCalledTimes(1));
   });
+});
+
+it('resumes the chosen member activity after purchase', async () => {
+  mockParams = {next:'/content/mock-exam'};
+  mockCommerce = runtimeValue();
+  const screen = await render(<Page />);
+  expect(mockReplace).not.toHaveBeenCalled();
+  mockCommerce = runtimeValue({entitlement:{membership:{active:true}}});
+  await screen.rerender(<Page />);
+  expect(mockReplace).toHaveBeenCalledWith('/content/mock-exam');
 });
