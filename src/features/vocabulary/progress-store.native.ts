@@ -1,3 +1,4 @@
+import { migrateVocabularyDocument } from '@icao/contracts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { assertLearningWriteContext, captureLearningWriteContext, mutateVocabularyInCurrentWorkspace } from '@/features/sync/learning-sync.native';
@@ -29,9 +30,10 @@ async function mutateVocabularyState(updater: (state: VocabularyState) => Vocabu
   let changed = false;
   let result = createEmptyVocabularyState();
   const next = mutationQueue.catch(() => undefined).then(() => mutateVocabularyInCurrentWorkspace(context, async () => {
-    const current = await readVocabularyState();
+    const original = await readVocabularyState({ migrate: false });
+    const current = migrateVocabularyDocument(original);
     const updated = updater(current);
-    if (updated === current) {
+    if (updated === current && current === original) {
       result = current;
       return current;
     }

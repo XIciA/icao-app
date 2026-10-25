@@ -164,24 +164,27 @@ it('confirms a wrong mark only after saving and clears the feedback on the next 
  } finally {mockBooks[0].words=words;mockSetStatus.mockReset().mockResolvedValue(undefined);}
 });
 
-it('opens the 409-entry core book through the existing learning flow with frequency and recorded pronunciation', async () => {
-  const core = jest.requireActual('../../../../content/vocabulary/question-bank-core/book.json') as VocabularyBook;
-  mockBooks.push(core);
+it('uses only the three reorganized books and exposes order before starting without changing the study controls', async () => {
+  const catalog = jest.requireActual('../../../../content/vocabulary/three-books/dataset.json') as {books:VocabularyBook[]};
+  const original = [...mockBooks];
+  mockBooks.splice(0,mockBooks.length,...catalog.books);
   try {
     const screen = await render(withSafeArea(<VocabularyScreen />));
-    await waitFor(() => expect(screen.getByText('全题库高频核心词')).toBeTruthy());
-    expect(screen.getByText('409 词')).toBeTruthy();
-    await fireEvent.press(screen.getByLabelText('选择全题库高频核心词'));
+    await waitFor(() => expect(screen.getByText('ICAO 4 必会')).toBeTruthy());
+    expect(screen.queryByText('全题库高频核心词')).toBeNull();
+    expect(screen.getByLabelText('按频率')).toBeTruthy();
+    expect(screen.getByLabelText('乱序学习')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('选择ICAO 4 必会'));
     await fireEvent.press(screen.getByText('开始学习'));
-    const first = core.words[0]!;
+    const first = [...catalog.books[1]!.words].sort((a,b)=>(b.frequency?.occurrences??0)-(a.frequency?.occurrences??0))[0]!;
     expect(screen.getByText(first.word)).toBeTruthy();
-    expect(screen.getByLabelText(/题库原文 .*次/)).toBeTruthy();
-    expect(screen.queryByText(/题库原文 .*次/)).toBeNull();
+    expect(screen.getByLabelText(/词频档位 .*\+/)).toBeTruthy();
+    expect(screen.getByText('忘记')).toBeTruthy();
+    expect(screen.getByText('模糊')).toBeTruthy();
+    expect(screen.getByText('认识')).toBeTruthy();
     expect(jest.requireMock('../speech').speakVocabulary).toHaveBeenCalledWith(first.pronunciationText);
     await screen.unmount();
-  } finally {
-    mockBooks.pop();
-  }
+  } finally { mockBooks.splice(0,mockBooks.length,...original); }
 });
 
 it('keeps compact-card details separate from multi-selection and guide confirmation', async () => {

@@ -523,7 +523,7 @@ export class SyncService {
     );
     const [current] = await tx.select().from(userDocuments).where(target).limit(1);
     const document = current
-      ? mergeVocabularyDocuments(current.payload, incoming.data)
+      ? mergeVocabularyDocuments(current.payload, mutation.payload.document)
       : incoming.data;
     const version = current ? Math.max(current.version + 1, mutation.payload.version) : mutation.payload.version;
     const updatedAt = new Date(document.updatedAt);
