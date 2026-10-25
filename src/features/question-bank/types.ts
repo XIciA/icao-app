@@ -1,5 +1,6 @@
 import type {
   StudyTier,
+  QuestionBankRadioEntry,
   StudyScopeCardIds,
   GrammarCorrectionIssue,
   QuestionBankAccessSummary,
@@ -89,6 +90,7 @@ export type QuestionBankTopic = {
   cards: QuestionBankCard[];
   studyTier?: StudyTier;
   scopeCardIds?: StudyScopeCardIds;
+  radioEntries?: QuestionBankRadioEntry[];
   practiceKind?: 'scenario' | 'scoring-points';
   access?: QuestionBankContentAccess;
 };

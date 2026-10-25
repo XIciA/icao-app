@@ -18,6 +18,7 @@ export function scopeTopic(bankId: QuestionBankId, topic: QuestionBankTopic, sco
   const cards = topic.cards.filter((card) => ids.has(card.id));
   return displayTopic(bankId, {
     ...topic, cards, declaredCardCount: ids.size,
+    radioEntries: topic.radioEntries?.filter(entry => ids.has(entry.id)),
     access: topic.access ? {
       ...topic.access,
       declaredCardCount: ids.size,

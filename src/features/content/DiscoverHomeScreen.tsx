@@ -58,8 +58,11 @@ export function DiscoverHomeScreen() {
         <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle title="资源" en="Resources" />
-      <View style={styles.list}>{visibleResources.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
-      {courseAvailable ? <><SectionTitle title="课程" en="Courses" /><ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis /></> : null}
+      <View style={styles.list}>
+        {visibleResources.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}
+        {courseAvailable && !isVercelLegacyWeb(Platform.OS) ? <ListEntry entry={{ ...courseEntry, description: '飞猪 ICAO · 从入门到冲刺' }} onPress={() => open(courseEntry.slug)} /> : null}
+      </View>
+      {courseAvailable && isVercelLegacyWeb(Platform.OS) ? <><SectionTitle title="课程" en="Courses" /><ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis /></> : null}
     </Screen>
   );
 }

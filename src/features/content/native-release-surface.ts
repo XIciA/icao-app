@@ -1,6 +1,6 @@
 import { isFormalAppSurface, type WebRuntime, WEB_RUNTIME } from '@/config/web-runtime';
 
-const HIDDEN_FORMAL_APP_CONTENT_SLUGS = new Set(['ai-report', 'courses']);
+const HIDDEN_FORMAL_APP_CONTENT_SLUGS = new Set(['ai-report']);
 
 export type MockExamDiscoverCopy = Readonly<{
   title: string;

@@ -1045,3 +1045,13 @@ export function studyScopeCardIds(bankId: string, topic: { studyTier?: unknown; 
   }
   return { all: topic.cards.filter((card) => !card.retired).map((card) => card.id), selected, crash };
 }
+
+
+/** Public navigation metadata only; question/answer text and media URLs stay
+ * behind the existing authorized topic/resource endpoints. */
+export type QuestionBankRadioEntry = { id: string; title: string; durationSeconds: number };
+export const QUESTION_BANK_CATALOG_VERSION = 'radio-directory-v1';
+export function questionBankRadioEntries(topic: { cards: readonly { id: string; taskTitle?: unknown; audio?: unknown; audioDurationSeconds?: unknown; kind?: unknown; retired?: unknown }[] }): QuestionBankRadioEntry[] {
+  return topic.cards.flatMap(card => card.retired === true || card.kind === 'image' || typeof card.audio !== 'string' || !card.audio
+    ? [] : [{ id: card.id, title: typeof card.taskTitle === 'string' ? card.taskTitle : '', durationSeconds: typeof card.audioDurationSeconds === 'number' ? card.audioDurationSeconds : 0 }]);
+}

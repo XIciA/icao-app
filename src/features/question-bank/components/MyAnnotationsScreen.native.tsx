@@ -143,7 +143,7 @@ export function MyAnnotationsScreen() {
               const active = selectedColors.has(option.id);
               return (
                 <Pressable accessibilityLabel={`筛选${option.label}`} accessibilityState={{ selected: active }} key={option.id} onPress={() => toggleColor(option.id)} style={[styles.colorFilter, active ? styles.filterActive : null]}>
-                  <View style={[styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
+                  <View style={[segment === 'highlights' ? styles.filterLine : styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
                   <AppText color={active ? colors.primary : colors.foreground} variant="button">{option.label}</AppText>
                 </Pressable>
               );
@@ -207,7 +207,7 @@ function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: 
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}><GuideAnchor id="recap-question" />
-      <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[definition.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
+      <View accessibilityLabel={`高亮颜色：${uniqueDefinitions.map(definition => definition.label).join('、')}`} style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackLine, { backgroundColor: annotationToneColors[definition.color], zIndex: uniqueDefinitions.length - index }, index ? styles.stackLineOverlap : null]} />)}</View>
       <View style={styles.rowCopy}>
         <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || reference?.card?.audioText || reference?.card?.taskTitle || reference?.topicTitle || referenceMessage(resolution)} highlights={visible} sourceText={sourceText} target={first} />
         <AppText variant="micro">{referenceMessage(resolution)} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 个词被高亮` : ''}</AppText>
@@ -308,6 +308,9 @@ const styles = StyleSheet.create({
   allFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 34, paddingHorizontal: spacing[3] },
   colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
+  filterLine: { borderRadius: radii.full, height: 6, width: 16 },
+  stackLine: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 1, height: 6, width: 16 },
+  stackLineOverlap: { marginLeft: -7 },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
   list: { marginTop: spacing[4], backgroundColor: colors.card, borderColor: colors.border, borderWidth: 1, borderRadius: radii.xl, paddingHorizontal: spacing[4], overflow: 'hidden' },
   rowCard: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', gap: spacing[3], minHeight: 82, paddingVertical: spacing[4] },

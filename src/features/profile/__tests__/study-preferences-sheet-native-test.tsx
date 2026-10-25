@@ -58,3 +58,25 @@ it('does not close another account sheet when an old save finishes', async () =>
   expect(close).not.toHaveBeenCalled();
   expect(screen.getByRole('radio', { name: 'ICAO 4' }).props.accessibilityState.checked).toBe(true);
 });
+
+it('dismisses first setup without saving abandoned choices and persists completion', async () => {
+  const close = jest.fn();
+  const screen = await render(<StudyPreferencesSheet initialSetup visible accountId="a" profile={{ ...DEFAULT_PROFILE, studySetup: 'pending' }} onClose={close} />);
+  await fireEvent.press(screen.getByRole('radio', { name: 'ICAO 5' }));
+  await fireEvent.press(screen.getByLabelText('取消备考设置'));
+  expect(updateProfile).toHaveBeenCalledWith({ studySetup: 'completed' });
+  expect(close).toHaveBeenCalledTimes(1);
+});
+it('completes first setup even when the default choices are retained', async () => {
+  const screen = await render(<StudyPreferencesSheet initialSetup visible accountId="a" profile={{ ...DEFAULT_PROFILE, studySetup: 'pending' }} onClose={jest.fn()} />);
+  await fireEvent.press(screen.getByText('完成'));
+  expect(updateProfile).toHaveBeenCalledWith({ target: 'icao4-first', studyScope: 'selected', studySetup: 'completed' });
+});
+it('does not silently dismiss first setup when completion cannot be persisted', async () => {
+  jest.mocked(updateProfile).mockRejectedValueOnce(new Error('disk unavailable'));
+  const close = jest.fn();
+  const screen = await render(<StudyPreferencesSheet initialSetup visible accountId="a" profile={{ ...DEFAULT_PROFILE, studySetup: 'pending' }} onClose={close} />);
+  await fireEvent.press(screen.getByLabelText('关闭弹层'));
+  expect(close).not.toHaveBeenCalled();
+  expect(screen.getByRole('alert')).toBeTruthy();
+});

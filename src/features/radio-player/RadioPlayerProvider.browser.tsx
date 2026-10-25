@@ -1,3 +1,5 @@
+import type { QuestionBankDataset } from '@/features/question-bank/types';
+import { hydrateRadioCatalogTopic, mergeRadioCatalogProgress } from './catalog-hydration.native';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
 import { useBrowserAudioPlayer } from '@/platform/audio/browser-audio-player';
@@ -11,7 +13,7 @@ import Storage from '@/platform/storage';
 import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { commerceContentAccessSnapshot, getCommerceEntitlementSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 
-import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
+import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog.browser';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
 import { clampRadioInterval } from './radio-interval';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
@@ -41,6 +43,7 @@ function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: strin
 export function RadioPlayerProvider({ children }: PropsWithChildren) {
   const auth = useAuth();
   const entitlementRevision = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceContentAccessSnapshot, commerceContentAccessSnapshot);
+  const catalogDatasets = useRef<QuestionBankDataset[]>([]);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
   const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState<string>();
@@ -144,6 +147,16 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       player.pause();
       await releaseLease();
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
+      if (track.contentLoaded === false) {
+        const hydrated = await hydrateRadioCatalogTopic(catalogDatasets.current, track.bankId, track.categoryId, track.topicId);
+        if (request !== generation.current || owner !== contentOwnerRef.current) return;
+        catalogDatasets.current = mergeRadioCatalogProgress(hydrated, catalogDatasets.current);
+        const nextCatalogs = deriveRadioCatalogs(catalogDatasets.current, selection);
+        const ready = nextCatalogs.find(bank => bank.bankId === track.bankId)?.tracks.find(item => item.id === track.id);
+        if (!ready?.audioPath) throw new Error('radio_topic_unavailable');
+        track = ready;
+        setLoadedCatalogs({ owner, catalogs: nextCatalogs });
+      }
       const uri = await resolveTrack(track, forceRefresh);
       if (request !== generation.current || owner !== contentOwnerRef.current) return;
       player.replace(uri);
@@ -155,7 +168,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       pendingPlay.current = false;
       setSourceState({ loading: false, error: '音频加载失败，请重试或切换下一首' });
     }
-  }, [clearIntervalTimer, player, releaseLease, resolveTrack]);
+  }, [clearIntervalTimer, player, releaseLease, resolveTrack, selection]);
 
   const startPreparedPlayback = useCallback(async () => {
     if (!currentTrack || preparedTrackId.current !== currentTrack.id || !status.isLoaded) return;
@@ -228,6 +241,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     preparedTrackId.current = undefined; loadingTrackId.current = undefined; installedTrackId.current = undefined;
     clearIntervalTimer(); player.pause(); player.replace(null);
     void releaseLease();
+    catalogDatasets.current = [];
     setLoadedCatalogs({ owner: contentOwner, catalogs: embeddedCatalogs });
     setCatalogError(undefined); setCatalogLoading(false); setSourceState({ loading: false });
     if (!signedIn) setSessionVisible(false);
@@ -241,9 +255,15 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     setCatalogError(undefined);
     setCatalogLoading(true);
     const publish = (nextCatalogs: RadioCatalog[]) => {
+      if (catalogDatasets.current.length) nextCatalogs = deriveRadioCatalogs(catalogDatasets.current, selection);
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
     };
-    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
+    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish, () => stateRef.current.bankId, {
+      previousDatasets: catalogDatasets.current,
+      onDatasets: datasets => {
+        if (active && contentOwnerRef.current === contentOwner) catalogDatasets.current = mergeRadioCatalogProgress(datasets, catalogDatasets.current);
+      },
+    }).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
   }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
 

@@ -30,6 +30,7 @@ const accountProfileSchema = z.object({
   displayName: z.string().trim().min(1).refine((value) => Array.from(value).length <= 24),
   target: z.enum(['icao4-first', 'icao4-recert', 'icao5-first', 'icao5-recert']),
   studyScope: z.enum(['all', 'selected', 'crash']).optional(),
+  studySetup: z.enum(['pending', 'completed']).optional(),
   avatarUri: z.string().max(180_000).regex(/^data:image\/(?:jpeg|png);base64,[A-Za-z0-9+/]+=*$/u).nullable(),
 });
 
@@ -458,6 +459,21 @@ export class SyncService {
       if (previousScope === 'all' || previousScope === 'selected' || previousScope === 'crash') {
         mutation = { ...mutation, payload: { ...mutation.payload, document: { ...mutation.payload.document, studyScope: previousScope } } };
       }
+    }
+    // Completion is monotonic; old clients must not remove or resurrect setup.
+    if (mutation.payload.documentKey === ACCOUNT_PROFILE_KEY) {
+      const previousSetup = (current?.payload as Record<string, unknown> | undefined)?.studySetup;
+      if (previousSetup === 'completed' || (previousSetup === 'pending' && mutation.payload.document.studySetup === undefined)) {
+        mutation = { ...mutation, payload: { ...mutation.payload, document: { ...mutation.payload.document, studySetup: previousSetup } } };
+      }
+    }
+    if (current && mutation.payload.documentKey === ACCOUNT_PROFILE_KEY
+      && mutation.payload.version <= current.version
+      && mutation.payload.document.studySetup === 'completed'
+      && (current.payload as Record<string, unknown>).studySetup === 'pending') {
+      // A delayed completion may merge without reverting newer profile choices.
+      mutation = { ...mutation, payload: { ...mutation.payload, version: current.version + 1,
+        document: { ...(current.payload as Record<string, unknown>), studySetup: 'completed' } } };
     }
     if (current && mutation.payload.version <= current.version) {
       return {

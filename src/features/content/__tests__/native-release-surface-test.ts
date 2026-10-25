@@ -1,9 +1,9 @@
 import { isContentAvailableOnPlatform, resolveMockExamDiscoverCopy } from '../native-release-surface';
 
-describe('formal App 1.0.0 content surface', () => {
-  it('hides the course catalog on both Native platforms while preserving learning content', () => {
+describe('formal App content surface', () => {
+  it('opens the course catalog on both Native platforms while keeping the report hidden', () => {
     for (const platform of ['ios', 'android']) {
-      expect(isContentAvailableOnPlatform('courses', platform)).toBe(false);
+      expect(isContentAvailableOnPlatform('courses', platform)).toBe(true);
       expect(isContentAvailableOnPlatform('ai-report', platform)).toBe(false);
       expect(isContentAvailableOnPlatform('vocab', platform)).toBe(true);
       expect(isContentAvailableOnPlatform('hotspot', platform)).toBe(true);
@@ -11,8 +11,8 @@ describe('formal App 1.0.0 content surface', () => {
     }
   });
 
-  it('applies the same launch gate to EdgeOne production Web', () => {
-    expect(isContentAvailableOnPlatform('courses', 'web', 'edgeone-production')).toBe(false);
+  it('opens courses on EdgeOne production Web', () => {
+    expect(isContentAvailableOnPlatform('courses', 'web', 'edgeone-production')).toBe(true);
     expect(isContentAvailableOnPlatform('ai-report', 'web', 'edgeone-production')).toBe(false);
     expect(isContentAvailableOnPlatform('mock-exam', 'web', 'edgeone-production')).toBe(true);
   });

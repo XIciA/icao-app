@@ -1,7 +1,8 @@
-jest.mock('@/features/auth/MemberFeatureGate.native', () => ({ MemberFeatureGate: ({children}: {children: React.ReactNode}) => children }));
 import { fireEvent, render } from '@testing-library/react-native';
 
 import ContentRoute from '../content/[slug]';
+
+jest.mock('@/features/auth/MemberFeatureGate.native', () => ({ MemberFeatureGate: ({children}: {children: React.ReactNode}) => children }));
 
 const mockSlug = jest.fn<string, []>();
 const mockDismissTo = jest.fn();
@@ -44,13 +45,20 @@ jest.mock('@/features/content/VocabScreen', () => {
 describe('<ContentRoute /> Native 1.0.0 gates', () => {
   beforeEach(() => mockDismissTo.mockClear());
 
-  it.each(['courses', 'ai-report'])('redirects a direct %s route before rendering hidden content', async (slug) => {
+  it.each(['ai-report'])('redirects a direct %s route before rendering hidden content', async (slug) => {
     mockSlug.mockReturnValue(slug);
     const screen = await render(<ContentRoute />);
 
     expect(screen.getByText('redirect:/(tabs)/discover')).toBeTruthy();
     expect(screen.queryByText('learning-report')).toBeNull();
     expect(screen.queryByText(`library:${slug}`)).toBeNull();
+  });
+
+  it('opens the course catalog through the existing library route', async () => {
+    mockSlug.mockReturnValue('courses');
+    const screen = await render(<ContentRoute />);
+    expect(screen.getByText('library:courses')).toBeTruthy();
+    expect(screen.queryByText('redirect:/(tabs)/discover')).toBeNull();
   });
 
   it('keeps the launch vocabulary route reachable', async () => {

@@ -1,18 +1,22 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import type { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { GestureResponderEvent, LayoutChangeEvent, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { colors } from '@/theme';
 
 export function InteractiveWordTarget({
   accessibilityLabel,
+  emphasize = true,
+  onLayout,
   children,
   onPress,
   style,
   textStyle,
 }: {
   accessibilityLabel: string;
+  emphasize?: boolean;
+  onLayout?: (event: LayoutChangeEvent) => void;
   children: ReactNode;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
@@ -21,7 +25,7 @@ export function InteractiveWordTarget({
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const emphasized = focused || hovered || pressed;
+  const emphasized = emphasize && (focused || hovered || pressed);
 
   function handlePress(event: GestureResponderEvent) {
     event.stopPropagation();
@@ -30,6 +34,7 @@ export function InteractiveWordTarget({
 
   return (
     <Pressable
+      onLayout={onLayout}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
       onBlur={() => setFocused(false)}
@@ -37,6 +42,7 @@ export function InteractiveWordTarget({
       onHoverIn={() => setHovered(true)}
       onHoverOut={() => setHovered(false)}
       onPress={handlePress}
+      onLongPress={!emphasize ? () => undefined : undefined}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       style={[styles.target, style]}

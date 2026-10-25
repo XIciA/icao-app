@@ -2,5 +2,32 @@
   "policyVersion": "content-access-v2",
   "FREE_CONTENT_SELECTION_VERSION": "release-order-v1",
   "freeSelectionVersion": "release-order-v1",
-  "checksum": "258c4c0363e30dddc01a3574c7d4e9a18efdfd74b654a1256f5985d40b06fa88"
+  "sourceReleases": [
+    {
+      "bankId": "listening",
+      "version": 26,
+      "checksum": "24b3a25218ef300f9517b05d17fb3a0dd8aea5da0cc33a17a86512f0250a2b3b"
+    },
+    {
+      "bankId": "sentences900",
+      "version": 26,
+      "checksum": "d751280f47e1fbc6c6482cd39581acb8def494c5bac7293cd41b2465ad1a96a0"
+    },
+    {
+      "bankId": "radiotelephony",
+      "version": 26,
+      "checksum": "6d0893a5a76cd63819f1739a340fa41dcf5a341b0fa844ace38b5d5dd09e9edd"
+    },
+    {
+      "bankId": "opi",
+      "version": 26,
+      "checksum": "0488b53969fcf7b092ee02f3b0618f5d7c7827c0f40bb4163178cea61d184071"
+    },
+    {
+      "bankId": "storytelling",
+      "version": 26,
+      "checksum": "cde4b45c5e2bfd4f67fd0325c60daba4a38a816e51e9d24212bc181871bc2d7e"
+    }
+  ],
+  "checksum": "785b6894fa59bf34bd7f94b75c65f28ea7ac49c3c3602c75c76d08ea90d2597a"
 }

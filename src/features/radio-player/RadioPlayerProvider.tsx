@@ -23,7 +23,7 @@ import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
 import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets } from './catalog.native';
-import { hydrateRadioCatalogTopic, nextRadioCatalogTopic } from './catalog-hydration.native';
+import { mergeRadioCatalogProgress, hydrateRadioCatalogTopic, nextRadioCatalogTopic } from './catalog-hydration.native';
 import { reportRadioFailure, radioCanRetry, radioErrorMessage, withRadioTimeout } from './operation-coordinator';
 import { clampRadioInterval } from './radio-interval';
 import {
@@ -156,6 +156,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const nativeTransitionTrackId = useRef<string | undefined>(undefined);
   const nativeTrackInstance = useRef(0);
   const activeNativeContentTrack = useRef<NativeRadioContentTrack | undefined>(undefined);
+  const catalogDatasetOwner = useRef<string | undefined>(undefined);
   const catalogDatasets = useRef<QuestionBankDataset[]>(getEmbeddedQuestionBanks().map((bank) => scopeDataset(bank, selection.scope, selection.target)));
   const catalogHydrationGeneration = useRef(0);
   const topicHydrations = useRef(new Map<string, Promise<void>>());
@@ -323,6 +324,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
 
   const resolveTrack = useCallback(async (track: RadioTrack, forceRefresh = false, isCurrent: () => boolean = () => true): Promise<NativeRadioContentTrack> => {
     const request = generation.current;
+    if (track.contentLoaded === false) {
+      const hydrated = await hydrateTrackTopic(track);
+      if (request !== generation.current || !isCurrent()) throw new Error('content_request_cancelled');
+      if (hydrated.track?.id !== track.id || !hydrated.track.audioPath) throw new Error('radio_topic_unavailable');
+      track = hydrated.track;
+    }
     const local = resolveQuestionBankAsset(track.audioPath);
     const remote = await withRadioTimeout(resolveRemoteQuestionBankAsset(track.audioPath, { forceRefresh, preferDownloaded: true, isCurrent: () => request === generation.current && isCurrent() }));
     const uri = remote ?? local;
@@ -340,7 +347,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       radioTrackKind: 'content',
       radioGeneration: request,
     };
-  }, []);
+  }, [hydrateTrackTopic]);
 
   const chooseUpcoming = useCallback(async (catalog: RadioCatalog, track: RadioTrack, currentMode: RadioPlaybackMode, currentShuffle: ShuffleState) => {
     if (currentMode === 'repeatOne') return track;
@@ -498,10 +505,14 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     const requestGeneration = catalogHydrationGeneration.current + 1;
     catalogHydrationGeneration.current = requestGeneration;
     topicHydrations.current.clear();
+    const owner = JSON.stringify([auth.session.user.id, commerceEnvironmentSnapshot, contentAccessSnapshot, selection]);
+    const previousDatasets = catalogDatasetOwner.current === owner ? catalogDatasets.current : undefined;
     setCatalogLoading(true);
     setCatalogError(undefined);
     const publish = (datasets: QuestionBankDataset[]) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
+      datasets = mergeRadioCatalogProgress(datasets, catalogDatasetOwner.current === owner ? catalogDatasets.current : []);
+      catalogDatasetOwner.current = owner;
       catalogDatasets.current = datasets;
       const next = deriveRadioCatalogs(datasets, selectionRef.current);
       if (next.length) {
@@ -509,7 +520,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
         setCatalogs(next);
       }
     };
-    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId: stateRef.current.bankId, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration, onProgress: publish }).then(publish).catch(() => {
+    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId: stateRef.current.bankId, getPriorityBankId: () => stateRef.current.bankId, previousDatasets, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration, onProgress: publish }).then(publish).catch(() => {
       if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogError('播放目录加载失败，请重试');
     }).finally(() => {
       if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogLoading(false);

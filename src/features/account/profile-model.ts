@@ -4,12 +4,12 @@ import { normalizeStudyScope, type StudyScope } from '@icao/contracts';
 export const EXAM_GOALS = [
   { id: 'icao4-first', label: 'ICAO 4 初考', banks: ['listening', 'sentences900', 'radiotelephony', 'opi'] },
   { id: 'icao4-recert', label: 'ICAO 4 复考', banks: ['radiotelephony', 'opi'] },
-  { id: 'icao5-first', label: 'ICAO 5 初考', banks: ['listening', 'sentences900', 'radiotelephony', 'opi', 'storytelling'] },
-  { id: 'icao5-recert', label: 'ICAO 5 复考', banks: ['radiotelephony', 'opi', 'storytelling'] },
+  { id: 'icao5-first', label: 'ICAO 5 初考', banks: ['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi'] },
+  { id: 'icao5-recert', label: 'ICAO 5 复考', banks: ['radiotelephony', 'storytelling', 'opi'] },
 ] as const satisfies readonly { id: string; label: string; banks: readonly QuestionBankId[] }[];
 
 export type ExamGoal = typeof EXAM_GOALS[number]['id'];
-export type UserProfile = { displayName: string; avatarUri: string | null; target: ExamGoal; studyScope?: StudyScope };
+export type UserProfile = { displayName: string; avatarUri: string | null; target: ExamGoal; studyScope?: StudyScope; studySetup?: 'pending' | 'completed' };
 export const MAX_PROFILE_AVATAR_LENGTH = 180_000;
 export const DEFAULT_PROFILE: Readonly<UserProfile> = Object.freeze({
   avatarUri: null,
@@ -29,6 +29,7 @@ export function normalizeProfile(value: unknown): UserProfile {
     displayName: name && Array.from(name).length <= 24 ? name : DEFAULT_PROFILE.displayName,
     target: examGoal(data.target).id,
     studyScope: normalizeStudyScope(data.studyScope),
+    ...(data.studySetup === 'pending' || data.studySetup === 'completed' ? { studySetup: data.studySetup } : {}),
     // Local file paths are deliberately not accepted as cross-device profile data.
     avatarUri: typeof data.avatarUri === 'string'
       && data.avatarUri.length <= MAX_PROFILE_AVATAR_LENGTH

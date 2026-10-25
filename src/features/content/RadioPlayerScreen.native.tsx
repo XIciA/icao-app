@@ -128,6 +128,7 @@ export function RadioPlayerScreen() {
     return (radio.currentCatalog?.tracks ?? []).filter((track) => {
       if (group !== '全部' && track.topicTitle !== group) return false;
       if (!keyword) return true;
+      if (/^\d+$/.test(keyword)) return track.stableIndex + 1 === Number(keyword);
       return `${track.title}\n${track.audioText}\n${track.audioTextZh ?? ''}`.toLocaleLowerCase().includes(keyword);
     });
   }, [group, query, radio.currentCatalog]);
@@ -178,7 +179,7 @@ export function RadioPlayerScreen() {
   return (
     <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-      {radio.catalogLoading ? <AppText variant="caption">正在加载完整目录…</AppText> : null}
+      {radio.catalogLoading ? <AppText variant="caption">正在后台准备题目…</AppText> : null}
       {radio.catalogError ? <Pressable accessibilityRole="button" onPress={radio.retryCatalog}><AppText variant="caption" color={colors.primary}>目录更新失败，点击重试；当前音频仍可播放。</AppText></Pressable> : null}
       <QuestionBankSwitcherHeader
         guideId="radio-bank"
@@ -262,7 +263,7 @@ export function RadioPlayerScreen() {
       <BottomSheet accessibilityLabel="播放队列" onClose={() => setQueueOpen(false)} scrollable={false} visible={queueOpen}>
         <View style={{ height: Math.min(height * 0.78, 650) }}>
           <View style={styles.sheetHeader}><View style={styles.grow}><AppText variant="sectionTitle">播放队列</AppText><AppText variant="caption">{radio.currentCatalog?.title} · {radio.currentCatalog?.complete === false ? '加载中' : `${radio.currentCatalog?.tracks.length ?? 0} 首`} · {modeCopy[radio.mode]}</AppText></View><ModeIcon color={colors.mutedForeground} mode={radio.mode} size={18} /></View>
-          <TextField accessibilityLabel="搜索播放队列" onChangeText={setQuery} placeholder="搜索标题、英文或中文" trailing={<Search color={colors.mutedForeground} size={17} />} value={query} />
+          <TextField accessibilityLabel="搜索播放队列" onChangeText={setQuery} placeholder="输入题号或搜索标题、原文" trailing={<Search color={colors.mutedForeground} size={17} />} value={query} />
           <ScrollView contentContainerStyle={styles.groupFilters} horizontal showsHorizontalScrollIndicator={false} style={styles.groupScroll}>
             {groups.map((item) => <Pressable key={item} onPress={() => setGroup(item)} style={[styles.groupFilter, group === item ? styles.groupFilterActive : null]}><AppText color={group === item ? colors.primary : colors.mutedForeground} numberOfLines={1} variant="caption">{item}</AppText></Pressable>)}
           </ScrollView>
