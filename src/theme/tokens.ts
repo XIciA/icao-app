@@ -23,6 +23,7 @@ export const colors = {
   destructive: '#DB2B33',
   destructiveForeground: '#FFFFFF',
   answerCorrect: '#34C98A',
+  successForeground: '#18734E',
   answerCorrectBackground: 'rgba(52, 201, 138, 0.10)',
   answerCorrectBorder: 'rgba(52, 201, 138, 0.45)',
   border: 'rgba(17, 22, 31, 0.09)',
