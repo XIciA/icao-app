@@ -1,4 +1,4 @@
-import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, publicLoginReturn, safeAppDestination } from '../guest-access';
+import { postLoginDestination, destinationWithQuery, isGuestPublicPath, isPublicStackScreen, publicLoginReturn, safeAppDestination } from '../guest-access';
 
 describe('guest access boundary', () => {
   it.each(['/', '/(tabs)', '/(tabs)/profile', '/profile', '/discover', '/download', '/legal/agreement', '/legal/privacy', '/question-bank/listening', '/question-bank/listening/study/main/topic'])('allows only public browsing at %s', path => {
@@ -27,4 +27,13 @@ describe('guest access boundary', () => {
     expect(publicLoginReturn('/account/profile')).toBe('/(tabs)');
     expect(publicLoginReturn(undefined)).toBe('/(tabs)');
   });
+});
+
+it('only resumes explicit content links, never remembered tabs or account pages', () => {
+  expect(postLoginDestination({ next: '/(tabs)/profile' })).toBe('/(tabs)');
+  expect(postLoginDestination({ next: '/question-bank/listening' })).toBe('/(tabs)');
+  expect(postLoginDestination({ intent: 'external', next: '/question-bank/listening/study/main/topic?cardId=2' })).toBe('/question-bank/listening/study/main/topic?cardId=2');
+  expect(postLoginDestination({ intent: 'external', next: '/content/resources/article' })).toBe('/content/resources/article');
+  expect(postLoginDestination({ intent: 'external', next: '/account/profile' })).toBe('/(tabs)');
+  expect(postLoginDestination({ intent: 'external', next: '//other.example' })).toBe('/(tabs)');
 });

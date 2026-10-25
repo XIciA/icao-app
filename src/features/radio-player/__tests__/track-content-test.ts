@@ -7,9 +7,9 @@ const datasets = banks as QuestionBankDataset[];
 
 it('includes every active text question from all five banks, with measured durations', () => {
   const catalogs = deriveRadioCatalogs(datasets);
-  expect(catalogs.map(bank => bank.bankId)).toEqual(['listening', 'sentences900', 'radiotelephony', 'opi', 'storytelling']);
+  expect(catalogs.map(bank => bank.bankId)).toEqual(['listening', 'sentences900', 'radiotelephony', 'storytelling', 'opi']);
   const questionIds = datasets.flatMap(bank => bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.filter(card => card.kind !== 'image' && !card.retired).map(card => card.id))));
-  expect(catalogs.flatMap(bank => bank.tracks.map(track => track.id))).toEqual(questionIds);
+  expect(catalogs.flatMap(bank => bank.tracks.map(track => track.id)).sort()).toEqual([...questionIds].sort());
   expect(catalogs.flatMap(bank => bank.tracks).every(track => track.durationSeconds > 0)).toBe(true);
   const imageTopic = datasets.find(bank => bank.id === 'opi')!.categories.flatMap(category => category.topics).find(topic => topic.cards.some(card => card.kind === 'image' && !card.retired))!;
   const materials = imageTopic.cards.flatMap(card => card.kind === 'image' && !card.retired ? [{ image: card.image, imageAlt: card.imageAlt }] : []);

@@ -8,8 +8,8 @@ import { updateProfile } from '@/features/account/profile-store.native';
 import { STUDY_SCOPE_OPTIONS } from '@/features/question-bank/lib/study-scope-options';
 import { colors, radii, spacing } from '@/theme';
 
-type Props = { visible: boolean; accountId?: string; profile: UserProfile; onClose: () => void };
-export function StudyPreferencesSheet({ visible, accountId, profile, onClose }: Props) {
+type Props = { visible: boolean; accountId?: string; profile: UserProfile; onClose: () => void; initialSetup?: boolean };
+export function StudyPreferencesSheet({ visible, accountId, profile, onClose, initialSetup = false }: Props) {
   const [draft, setDraft] = useState(profile);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
@@ -30,19 +30,22 @@ export function StudyPreferencesSheet({ visible, accountId, profile, onClose }: 
     const target = examGoal(`${nextLevel}-${nextType}`).id;
     setDraft(current => ({ ...current, target })); setError(false);
   }
-  async function save() {
+  async function save(discardDraft = false) {
     if (pending.current || !accountId) return;
-    if (draft.target === profile.target && scope === normalizeStudyScope(profile.studyScope)) { onClose(); return; }
+    if (!initialSetup && (discardDraft || (draft.target === profile.target && scope === normalizeStudyScope(profile.studyScope)))) { onClose(); return; }
     const id = ++request.current, owner = accountId;
     pending.current = true; setSaving(true); setError(false);
     const current = () => id === request.current && latest.current.visible && latest.current.accountId === owner;
     try {
-      await updateProfile({ target: draft.target, studyScope: scope });
+      await updateProfile({
+        ...(!discardDraft ? { target: draft.target, studyScope: scope } : {}),
+        ...(initialSetup ? { studySetup: 'completed' as const } : {}),
+      });
       if (current()) latest.current.onClose();
     } catch { if (current()) setError(true); }
     finally { if (current()) { pending.current = false; setSaving(false); } }
   }
-  const close = () => { if (!pending.current) onClose(); };
+  const close = () => { if (!pending.current) void save(true); };
   function choice(value: string, title: string, checked: boolean, onPress: () => void) {
     return <Pressable key={value} accessibilityRole="radio" accessibilityLabel={title} accessibilityState={{ checked, disabled: saving }} disabled={saving} onPress={onPress} style={({ pressed }) => [styles.option, checked && styles.selected, pressed && styles.pressed]}>
       <AppText variant="button" color={checked ? colors.primary : colors.foreground}>{title}</AppText>

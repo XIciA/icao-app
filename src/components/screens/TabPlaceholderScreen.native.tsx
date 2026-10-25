@@ -1,3 +1,4 @@
+import { InitialStudySetup } from '@/features/profile/InitialStudySetup.native';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
@@ -64,8 +65,10 @@ function AuthenticatedQuestionBankHome(props: Props) {
   const goal = examGoal(profile.target);
   const catalog = useStudyCatalog();
   const visibleEntries = goal.banks.flatMap((id) => entries.filter((entry) => entry.slug === id).map((entry) => ({ ...entry, meta: catalog.find((bank) => bank.id === id)?.summary ?? '此范围暂无内容' })));
-  return <QuestionBankHome {...props} headerLeading={headerLeading} entries={visibleEntries}
-    onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />;
+  return <><QuestionBankHome {...props} headerLeading={headerLeading} entries={visibleEntries}
+    onEntryPress={(entry) => router.push({ pathname: '/question-bank/[bankId]', params: { bankId: entry.slug } })} />
+    <InitialStudySetup />
+  </>;
 }
 
 function QuestionBankHome({ title, eyebrow, headerLeading, headerTrailing, entries, onEntryPress }: Props & { guest?: boolean }) {

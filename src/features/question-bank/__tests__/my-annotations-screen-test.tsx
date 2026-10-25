@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { MyAnnotationsScreen } from '../components/MyAnnotationsScreen';
@@ -147,4 +148,18 @@ it('keeps a filter attached to its stable class ID after renaming, and clears de
   expect(screen.queryByLabelText('高亮词：UAL919,')).toBeNull();
   await fireEvent.press(screen.getByText('笔记'));
   expect(screen.getByText('复习雷击通话')).toBeTruthy();
+});
+
+it('uses short lines for highlights while tags retain round dots', async () => {
+  mockHighlightName = undefined; mockHighlightDeleted = false;
+  const screen = await render(<MyAnnotationsScreen />);
+  await fireEvent.press(screen.getByText('高亮'));
+  const stack = screen.getByLabelText('高亮颜色：记忆');
+  const line = stack.props.children[0];
+  expect(StyleSheet.flatten(line.props.style)).toMatchObject({ height: 6, borderWidth: 1 });
+  await fireEvent.press(screen.getByText('标签'));
+  const tags = screen.getAllByLabelText(/已添加.*个标签/);
+  expect(tags.length).toBeGreaterThan(0);
+  const dot = tags[0].props.children[0];
+  expect(StyleSheet.flatten(dot.props.style)).toMatchObject({ height: 13 });
 });

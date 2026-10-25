@@ -1,6 +1,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 import { useLoginEntry } from '../use-login-entry';
 
+let mockIncomingUrl: string | null = null;
+jest.mock('expo-linking', () => ({ useURL: () => mockIncomingUrl }));
 const mockPush = jest.fn();
 const mockRemember = jest.fn();
 let mockCanAccess = false;
@@ -10,7 +12,7 @@ jest.mock('@/components/navigation/useAppRouter', () => ({ useAppRouter: () => (
 jest.mock('expo-router', () => ({ usePathname: () => mockPathname }));
 jest.mock('../AuthProvider', () => ({ useAuth: () => ({ canAccessApp: mockCanAccess, rememberPendingPath: mockRemember, ...mockAccountState }) }));
 
-beforeEach(() => { jest.clearAllMocks(); mockCanAccess = false; mockPathname = '/'; mockAccountState = {}; });
+beforeEach(() => { jest.clearAllMocks(); mockIncomingUrl = null; mockCanAccess = false; mockPathname = '/'; mockAccountState = {}; });
 
 it('remembers the selected question bank before opening login from the catalogue', async () => {
   const { result } = await renderHook(() => useLoginEntry());
@@ -47,4 +49,12 @@ it.each([
   await act(() => result.current('/question-bank/listening'));
   expect(mockRemember).toHaveBeenCalledWith('/question-bank/listening');
   expect(mockPush).toHaveBeenCalledWith('/question-bank/listening');
+});
+
+it('retains an incoming public study link through the login entry', async () => {
+  mockPathname = '/question-bank/listening/study/cat/topic';
+  mockIncomingUrl = 'readyoufife://question-bank/listening/study/cat/topic?cardId=2';
+  const { result } = await renderHook(() => useLoginEntry());
+  await act(() => result.current(`${mockPathname}?cardId=2`));
+  expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ intent: 'external', next: `${mockPathname}?cardId=2` }) }));
 });

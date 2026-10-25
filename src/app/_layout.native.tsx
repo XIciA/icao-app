@@ -18,7 +18,7 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { StartupBrandScreen } from '@/components/states/StartupBrandScreen';
 import { AppText, Button, Screen } from '@/components/ui';
 import { AccountRestoreState } from '@/features/auth/AccountRestoreState.native';
-import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen } from '@/features/auth/guest-access';
+import { destinationWithQuery, isGuestPublicPath, isPublicStackScreen, postLoginDestination } from '@/features/auth/guest-access';
 import { appErrorBoundaryDescription, includeNativeProtectedRoutes } from '@/config/native-route-surface';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
@@ -102,7 +102,7 @@ export function AppStack() {
     auth.rememberPendingPath(destination);
     // Replace the blocked deep link so cancelling login cannot return to a
     // protected page and immediately open login again.
-    router.replace({ pathname: '/auth/[slug]', params: { slug: 'login', next: destination, returnTo: '/(tabs)' } });
+    router.replace({ pathname: '/auth/[slug]', params: { slug: 'login', next: destination, intent: 'external', returnTo: '/(tabs)' } });
   }, [auth, pathname, publicPage, router, searchParams]);
 
   useEffect(() => {
@@ -110,9 +110,8 @@ export function AppStack() {
       if (authRedirectInFlightRef.current) return;
       authRedirectInFlightRef.current = true;
       auth.consumePendingPath();
-      // Ordinary login always finishes in My on the current client. Password
-      // recovery still completes its explicit credential-reset flow first.
-      router.replace(auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : '/(tabs)/profile');
+      // Recovery retains its credential-reset flow; ordinary login opens the banks.
+      router.replace(auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : postLoginDestination(searchParams));
       return;
     }
     authRedirectInFlightRef.current = false;

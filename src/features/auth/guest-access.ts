@@ -41,3 +41,28 @@ export function destinationWithQuery(pathname: string, params: Record<string, st
   }
   return `${pathname}${query.size ? `?${query.toString()}` : ''}`;
 }
+
+/** Ordinary account entry never restores a previous tab or private account page. */
+export function postLoginDestination(params: Record<string, string | string[] | undefined>) {
+  const target = typeof params.next === 'string' ? safeAppDestination(params.next) : undefined;
+  if (params.intent === 'external' && target) {
+    const path = normalizedAppPath(target);
+    if (/^\/question-bank\/[^/]+(?:\/study\/[^/]+\/[^/]+)?$/u.test(path)
+      || /^\/content\/(?:hotspot|resources)\/[^/]+(?:\/study)?$/u.test(path)) return target;
+  }
+  return '/(tabs)';
+}
+
+/** Match the current content page to an actual incoming app/universal link. */
+export function isExternalContentEntry(url: string | null | undefined, pathname: string, destination: string) {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url);
+    if (!['readyoufife:', 'https:', 'http:'].includes(parsed.protocol)) return false;
+    if (parsed.protocol !== 'readyoufife:' && parsed.hostname !== 'readyoufife.com' && parsed.hostname !== 'www.readyoufife.com') return false;
+    const incoming = parsed.protocol === 'readyoufife:' ? `/${parsed.host}${parsed.pathname}` : parsed.pathname;
+    return normalizedAppPath(incoming) === normalizedAppPath(pathname)
+      && normalizedAppPath(destination) === normalizedAppPath(pathname)
+      && postLoginDestination({ intent: 'external', next: destination }) !== '/(tabs)';
+  } catch { return false; }
+}

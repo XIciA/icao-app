@@ -1,3 +1,4 @@
+import { orderQuestionBanks } from '@/features/question-bank/lib/bank-order';
 import { getNativeCommerceEnvironmentState } from '@/features/native-commercial-testflight/commerce-environment.native';
 import { radioCardContent, radioDuration } from './track-content';
 import { hydrateRadioCatalogDatasets } from './catalog-hydration.native';
@@ -16,7 +17,7 @@ export type RadioStudySelection = { scope: StudyScope; target: ExamGoal };
 // Formal app policy includes every enabled bank. The legacy radioEligible flag
 // remains unchanged in the frozen Web content contract.
 export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?: RadioStudySelection): RadioCatalog[] {
-  return (selection ? datasets.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : datasets)
+  return orderQuestionBanks(selection ? datasets.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : datasets)
     .filter((bank) => bank.enabled && bank.declaredCardCount > 0)
     .map((bank) => {
       let stableIndex = 0;

@@ -1,3 +1,4 @@
+import { orderQuestionBanks } from '../lib/bank-order';
 import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { naturalDatasetTitles, naturalTopicTitles } from '../lib/question-titles';
 import { sameContentRelease, withContentRelease, type ContentReleaseReference } from './content-version.native';
@@ -27,7 +28,7 @@ import {
   writeMemberTopicCache,
 } from './member-content-cache';
 
-const datasets = (publicData as QuestionBankDataset[]).map(naturalDatasetTitles);
+const datasets = orderQuestionBanks((publicData as QuestionBankDataset[]).map(naturalDatasetTitles));
 const CATALOG_CACHE_PREFIX = 'icao.content.v4.catalog.';
 const LEGACY_CACHE_PREFIXES = ['icao.content.v1.bank.', 'icao.content.v2.catalog.'];
 
