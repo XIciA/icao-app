@@ -1,8 +1,8 @@
-const { readFileSync } = jest.requireActual('fs') as { readFileSync: (path: string) => Uint8Array };
 import { PDFDocument } from 'pdf-lib';
 import { buildSentencesPdf } from '../export/sentences-pdf';
 import type { ExportOptions, ExportSentence } from '../export/export-model';
 import type { QuestionBankAnnotationStore } from '../annotations/types';
+const { readFileSync } = jest.requireActual('fs') as { readFileSync: (path: string) => Uint8Array };
 const options:ExportOptions={levels:['4级'],filter:'all',tagIds:[],translation:true,highlights:false,tags:false,notes:false};
 const rows=Array.from({length:12},(_,index)=>({level:'4级',learned:true,card:{kind:'text',id:`s${index}`,taskTitle:`Sentence${index+1}`,audioText:'Maintain present heading and report passing the waypoint.',audioTextZh:'保持当前航向，飞越航路点时报告。'}})) as unknown as ExportSentence[];
 const annotations={entries:{},tagDefinitions:[],highlightDefinitions:[]} as unknown as QuestionBankAnnotationStore;

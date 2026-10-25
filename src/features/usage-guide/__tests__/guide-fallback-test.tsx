@@ -64,3 +64,16 @@ it('retains the page backdrop behind a native modal without a second set of acti
   expect(screen.getByRole('button',{name:'跳过教学'})).toBeTruthy();
   await screen.unmount();
 });
+
+
+it('uses only the foreground portal backdrop on Web', async () => {
+  const {Platform}=jest.requireActual('react-native') as typeof import('react-native');
+  const previous=Platform.OS;
+  Object.defineProperty(Platform,'OS',{configurable:true,value:'web'});
+  try {
+    const prompt={target:'export-levels',text:'选择范围',index:0,total:2,skip:jest.fn(),exit:jest.fn()};
+    const screen=await render(<GuideOverlay layer="root" topLayer="sheet" nodes={new Map()} prompt={prompt}/>);
+    expect(screen.queryByTestId('guide-backdrop')).toBeNull();
+    await screen.unmount();
+  } finally {Object.defineProperty(Platform,'OS',{configurable:true,value:previous});}
+});

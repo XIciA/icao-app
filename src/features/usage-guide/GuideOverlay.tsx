@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type RefObject } from 'react';
-import { AppState, Keyboard, Pressable, StyleSheet, View } from 'react-native';
+import { AppState, Keyboard, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, Defs, Line, Mask, Rect } from 'react-native-svg';
 import { AppText } from '@/components/ui';
@@ -26,7 +26,8 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop }: { bac
   // Keep that backdrop mounted through presentation/dismissal; the modal draws
   // only over its opaque sheet, avoiding both white gaps and double dimming.
   const foregroundSurface = layer === topLayer;
-  const active = !!prompt && foreground && (layer === 'root' || foregroundSurface);
+  const active = !!prompt && foreground && (foregroundSurface || Platform.OS !== 'web' && layer === 'root');
+  const clipBackdrop = Platform.OS !== 'web' ? backdrop : undefined;
   const [backdropBox, setBackdropBox] = useState<Box>();
   const targetId = prompt?.target;
   const key = `${layer}:${prompt?.identity ?? targetId}:${targetId}`;
@@ -62,7 +63,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop }: { bac
       root.current.measureInWindow((rx, ry) => {
         if (!alive || sample !== serial) return;
         setRootY(ry);
-        backdrop?.current?.measureInWindow((x, y, width, height) => {
+        clipBackdrop?.current?.measureInWindow((x, y, width, height) => {
           if (!alive) return;
           const box = { x: x - rx, y: y - ry, width, height };
           setBackdropBox(old => same(old, box) ? old : box);
@@ -88,7 +89,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop }: { bac
     };
     tick();
     return () => { alive = false; cancelAnimationFrame(frame); };
-  }, [active, foregroundSurface, transitioning, key, layer, nodes, targetId, size.height, size.width, attempt, backdrop]);
+  }, [active, foregroundSurface, transitioning, key, layer, nodes, targetId, size.height, size.width, attempt, clipBackdrop]);
   // Keyboard bounds affect callout placement, never the full-screen backdrop.
   const availableHeight = Math.max(0, Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - rootY));
   const target = foregroundSurface && !transitioning && hasFocus ? focus.box : undefined;
@@ -117,7 +118,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop }: { bac
   ] : [{ left: 0, top: skipTop + 44, width: size.width, height: Math.max(0, size.height - skipTop - 44) }];
   return <View ref={root} collapsable={false} pointerEvents="box-none" onLayout={e => setSize(e.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
     <View pointerEvents="none" style={[StyleSheet.absoluteFill, layer === 'root' && !size.height && { backgroundColor: colors.foreground, opacity: 0.68 }]} testID="guide-backdrop"><Svg testID="guide-mask" pointerEvents="none" width={size.width} height={size.height} style={StyleSheet.absoluteFill}>
-      <Defs><Mask id={maskId}><Rect width={size.width} height={size.height} fill={backdrop ? "black" : "white"} />{backdrop && backdropBox ? <Rect x={backdropBox.x} y={backdropBox.y} width={backdropBox.width} height={backdropBox.height} fill="white" /> : null}{show ? <Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /> : null}</Mask></Defs>
+      <Defs><Mask id={maskId}><Rect width={size.width} height={size.height} fill={clipBackdrop ? "black" : "white"} />{clipBackdrop && backdropBox ? <Rect x={backdropBox.x} y={backdropBox.y} width={backdropBox.width} height={backdropBox.height} fill="white" /> : null}{show ? <Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /> : null}</Mask></Defs>
       <Rect width={size.width} height={size.height} fill={colors.foreground} fillOpacity={0.68} mask={`url(#${maskId})`} />
       {show ? <><Line x1={lineX} y1={lineStart} x2={lineX} y2={lineEnd} stroke={colors.card} strokeWidth={1} /><Circle cx={lineX} cy={lineStart} r={2} fill={colors.card} /></> : null}
     </Svg></View>

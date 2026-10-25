@@ -99,7 +99,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
-        right={dataset.id === 'sentences900' ? <Pressable accessibilityRole="button" accessibilityLabel="导出900句 PDF" hitSlop={10} onPress={() => { guide?.event('export-open'); setExporting(true); }}><GuideAnchor id="export-open" /><Download size={21} color={colors.primary}/></Pressable> : undefined}
+        right={dataset.id === 'sentences900' ? <Pressable style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }} accessibilityRole="button" accessibilityLabel="导出900句 PDF" onPress={() => { guide?.event('export-open'); setExporting(true); }}><GuideAnchor id="export-open" /><Download size={21} color={colors.primary}/></Pressable> : undefined}
         items={switcherItems}
         onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}
         onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}
