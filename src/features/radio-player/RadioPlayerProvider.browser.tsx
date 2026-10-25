@@ -243,7 +243,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     const publish = (nextCatalogs: RadioCatalog[]) => {
       if (active && contentOwnerRef.current === contentOwner && nextCatalogs.length) setLoadedCatalogs({ owner: contentOwner, catalogs: nextCatalogs });
     };
-    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
+    void loadRadioCatalogs(selection, stateRef.current.bankId, () => active && contentOwnerRef.current === contentOwner, publish, () => stateRef.current.bankId).then(publish).catch(() => { if (active && contentOwnerRef.current === contentOwner && formalWeb) setCatalogError('播放列表加载失败，请检查网络后重试'); }).finally(() => { if (active) setCatalogLoading(false); });
     return () => { active = false; };
   }, [auth.restoring, auth.session, sessionVisible, entitlementRevision, catalogAttempt, contentOwner, formalWeb, selection]);
 
