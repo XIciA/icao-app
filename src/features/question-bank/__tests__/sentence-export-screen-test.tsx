@@ -1,6 +1,6 @@
 import { GuideBindingContext, type GuideBinding } from '@/features/usage-guide/GuideBindings';
 import { generateSentencesPdf } from '../export/pdf-generator';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SentenceExportScreen } from '../export/SentenceExportScreen.native';
 jest.mock('@react-navigation/native', () => ({ ...jest.requireActual('@react-navigation/native'), usePreventRemove: jest.fn() }));
@@ -73,4 +73,25 @@ it('waits for the multi-select scope sheet to close before advancing teaching', 
  await fireEvent.press(view.getByText('全选'));
  await fireEvent.press(view.getByLabelText('关闭弹层'));
  expect(event).not.toHaveBeenCalled();
+});
+
+
+it('keeps an in-flight PDF job alive when teaching exits and releases it on page unmount', async () => {
+  let complete!: (value: {bytes:Uint8Array;pageCount:number;sentenceCount:number}) => void;
+  jest.mocked(generateSentencesPdf).mockImplementationOnce(() => new Promise(resolve => { complete = resolve; }));
+  const event=jest.fn();
+  const guide={current:'export',step:'export-generate',event,register:jest.fn(),surface:()=>null} as unknown as GuideBinding;
+  const tree=(value:GuideBinding)=><SafeAreaProvider initialMetrics={{frame:{x:0,y:0,width:390,height:844},insets:{top:0,left:0,right:0,bottom:0}}}><GuideBindingContext.Provider value={value}><SentenceExportScreen dataset={dataset} onBack={jest.fn()}/></GuideBindingContext.Provider></SafeAreaProvider>;
+  const view=await render(tree(guide));
+  await waitFor(()=>expect(view.getByText('将导出 1 句')).toBeTruthy());
+  await fireEvent.press(view.getByText('生成 PDF'));
+  await waitFor(()=>expect(generateSentencesPdf).toHaveBeenCalled());
+  const call=jest.mocked(generateSentencesPdf).mock.calls.at(-1)!;
+  const signal=call[5]?.signal;
+  await view.rerender(tree({...guide,current:undefined}));
+  expect(signal?.aborted).toBe(false);
+  await act(async()=>complete({bytes:new Uint8Array(),pageCount:1,sentenceCount:1}));
+  await waitFor(()=>expect(view.getByText('PDF 已生成')).toBeTruthy());
+  await view.unmount();
+  expect(signal?.aborted).toBe(true);
 });

@@ -5,7 +5,7 @@ import { unreadFeedback } from '@/features/feedback/feedback-history-client.nati
 import { trackProductClick } from '@/platform/product-clicks.native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from 'expo-router';
-import { MessageCircle, Settings, Star } from '@/components/ui/icons';
+import { HelpCircle, MessageCircle, Settings, Star } from '@/components/ui/icons';
 import { useCallback, useState } from 'react';
 import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '@/components/ui';
@@ -18,9 +18,10 @@ import { useProfile } from '@/features/account/profile-store.native';
 import { ProfileIdentityCard } from './ProfileIdentityCard.native';
 
 const menu = [
-  { slug: 'membership', label: '会员与购买', icon: Star },
-  { slug: 'settings', label: '设置', icon: Settings },
+  { slug: 'membership', label: '会员购买', icon: Star },
+  { slug: 'guide', label: '使用指南', icon: HelpCircle },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
+  { slug: 'settings', label: '设置', icon: Settings },
 ];
 
 export function ProfileHomeScreen() {

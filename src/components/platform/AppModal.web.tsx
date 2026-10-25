@@ -1,18 +1,19 @@
-import { useContext, useEffect, useRef, type ReactNode } from 'react';
+import { useContext, useEffect, useRef, type ReactNode, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
-import type { ModalProps } from 'react-native';
+import type { ModalProps, View } from 'react-native';
 
 import { AppModalHostContext } from './modal-host-context';
 import { GuideModalScope } from '@/features/usage-guide/GuideBindings';
 
 type AppModalProps = Omit<ModalProps, 'onDismiss' | 'onRequestClose' | 'onShow'> & {
   children?: ReactNode;
+  guideBackdropRef?: RefObject<View | null>;
   onDismiss?: () => void;
   onRequestClose?: () => void;
   onShow?: () => void;
 };
 
-export function AppModal({ children, onDismiss, onRequestClose, onShow, visible = true }: AppModalProps) {
+export function AppModal({ children, onDismiss, onRequestClose, onShow, visible = true, guideBackdropRef }: AppModalProps) {
   const host = useContext(AppModalHostContext);
 
   const callbacks = useRef({ onDismiss, onRequestClose, onShow });
@@ -31,5 +32,5 @@ export function AppModal({ children, onDismiss, onRequestClose, onShow, visible 
   }, [visible]);
 
   if (!visible || !host) return null;
-  return createPortal(<GuideModalScope visible={visible}>{children}</GuideModalScope>, host);
+  return createPortal(<GuideModalScope visible={visible} backdrop={guideBackdropRef}>{children}</GuideModalScope>, host);
 }

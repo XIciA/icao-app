@@ -9,7 +9,7 @@ export const GUIDE_ENTRIES = [
   { id: 'mock-exam', title: '模拟练习', description: '选择板块，体验模拟作答', route: '/content/mock-exam' },
   { id: 'records', title: '回顾学习记录', description: '回看学过的题目和作答', route: '/learning-records' },
   { id: 'recap', title: '回顾我的标注', description: '找回高亮、标签和笔记', route: '/annotations' },
-  { id: 'export', title: '900句导出', description: '把学习积累整理成 PDF', route: '/info/guide?export=1' },
+  { id: 'export', title: '900句导出', description: '把学习积累整理成 PDF', route: '/question-bank/sentences900' },
 ] as const;
 export type GuideId = typeof GUIDE_ENTRIES[number]['id'];
 export type GuideStep = { id: string; text: string; title?: string; target?: string; read?: boolean };
@@ -50,6 +50,7 @@ export const GUIDE_FLOWS: Partial<Record<GuideId, GuideStep[]>> = {
     { id: 'recap-question', text: '点题目，可以带着原标注继续学习。' },
   ],
   export: [
+    { id: 'export-open', text: '点击右上角的导出，整理你的900句学习资料。' },
     { id: 'export-levels', text: '选择导出等级，也可以保留当前范围。', read: true },
     { id: 'export-scope', text: '选择全部、已学习或有标注句子，也可保留当前选择。', read: true },
     { id: 'export-translation', text: '按需要决定是否包含中文翻译。', read: true },

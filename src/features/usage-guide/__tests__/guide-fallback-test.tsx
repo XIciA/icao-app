@@ -49,3 +49,18 @@ it('keeps one full-height backdrop through step changes, keyboard events, scorin
     await screen.unmount();
   } finally { subscription.mockRestore(); }
 });
+
+
+it('retains the page backdrop behind a native modal without a second set of actions', async () => {
+  const prompt={target:'export-levels',text:'选择范围',index:0,total:2,skip:jest.fn(),exit:jest.fn()};
+  const tree=(topLayer:string)=><GuideOverlay layer="root" topLayer={topLayer} nodes={new Map()} prompt={prompt}/>;
+  const screen=await render(tree('root'));
+  expect(screen.getByRole('button',{name:'跳过教学'})).toBeTruthy();
+  await screen.rerender(tree('sheet'));
+  expect(screen.getByTestId('guide-backdrop')).toBeTruthy();
+  expect(screen.queryByRole('button',{name:'跳过教学'})).toBeNull();
+  await screen.rerender(tree('root'));
+  expect(screen.getByTestId('guide-backdrop')).toBeTruthy();
+  expect(screen.getByRole('button',{name:'跳过教学'})).toBeTruthy();
+  await screen.unmount();
+});

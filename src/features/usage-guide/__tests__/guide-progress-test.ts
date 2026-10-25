@@ -41,3 +41,12 @@ it('persists a boolean test new-user marker without treating malformed values as
   expect(parsed.testNewUser).toBe(value===true?true:undefined);
  }
 });
+
+
+it('preserves existing export progress when the catalog entrance is added', () => {
+  const old = {version:3,completed:['export-levels','export-scope'],skipped:[]};
+  const migrated = parseGuideProgress(JSON.stringify(old));
+  expect(migrated.completed).toEqual(['export-levels','export-scope','export-open']);
+  expect(parseGuideProgress(JSON.stringify(migrated)).completed).toEqual(migrated.completed);
+  expect(parseGuideProgress(JSON.stringify({version:3,completed:[],skipped:[]})).completed).toEqual([]);
+});

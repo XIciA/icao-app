@@ -1,9 +1,5 @@
+import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import {
-  BookOpenText,
-  Headphones,
-  MessageSquareQuote,
-  Mic2,
-  RadioTower,
   UserRound,
 } from '@/components/ui/icons';
 import { useRouter } from 'expo-router';
@@ -12,16 +8,9 @@ import { Pressable, StyleSheet } from 'react-native';
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
 import { WebAppDownloadLink } from '@/components/platform/WebAppDownloadLink';
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
-import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { colors, radii } from '@/theme';
 
-const bankIcons: Record<QuestionBankDataset['icon'], typeof Headphones> = {
-  headphones: Headphones,
-  sentences: MessageSquareQuote,
-  radioTower: RadioTower,
-  mic: Mic2,
-  story: BookOpenText,
-};
+
 
 const entries = getEmbeddedQuestionBanks().map((bank) => ({
   slug: bank.id,

@@ -44,7 +44,7 @@ it('clears member A content synchronously on logout and keeps it cleared when B 
   account(); await view.rerender(tree());
   expect(mockValue.catalogs).toEqual(mockPublic); expect(mockPlayer.pause).toHaveBeenCalled(); expect(mockPlayer.replace).toHaveBeenCalledWith(null);
   mockLoad.mockRejectedValue(new Error('offline')); account('B'); await view.rerender(tree()); await flush(); await act(() => mockValue.activateSession()); await flush();
-  expect(mockValue.catalogs).toEqual(mockPublic); expect(mockValue.error).toContain('播放列表加载失败');
+  expect(mockValue.catalogs).toEqual(mockPublic); expect(mockValue.catalogError).toContain('播放列表加载失败'); expect(mockValue.error).toBeUndefined();
   await view.unmount();
 });
 

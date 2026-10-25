@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { AppState, Keyboard, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, Defs, Line, Mask, Rect } from 'react-native-svg';
@@ -10,7 +10,7 @@ import type { GuidePrompt } from './GuideBindings';
 export type GuideNode = { id: string; layer: string; node: View };
 const same = (a?: Box, b?: Box) => !!a && !!b && (['x', 'y', 'width', 'height'] as const).every(key => Math.abs(a[key] - b[key]) < 1);
 /** Session visibility owns the backdrop; target readiness only owns the hole and callout. */
-export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
+export function GuideOverlay({ prompt, nodes, layer, topLayer, backdrop }: { backdrop?: RefObject<View | null>; prompt: GuidePrompt | null; nodes: Map<string, GuideNode>; layer: string; topLayer: string }) {
   const insets = useSafeAreaInsets(), maskId = useId().replace(/:/g, '');
   const root = useRef<View>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -22,7 +22,12 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   const [waiting, setWaiting] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const skipPosition = useRef<Box | undefined>(undefined);
-  const active = !!prompt && layer === topLayer && foreground;
+  // A transparent native sheet never owns the underlying page's backdrop.
+  // Keep that backdrop mounted through presentation/dismissal; the modal draws
+  // only over its opaque sheet, avoiding both white gaps and double dimming.
+  const foregroundSurface = layer === topLayer;
+  const active = !!prompt && foreground && (layer === 'root' || foregroundSurface);
+  const [backdropBox, setBackdropBox] = useState<Box>();
   const targetId = prompt?.target;
   const key = `${layer}:${prompt?.identity ?? targetId}:${targetId}`;
   const hasFocus = focus?.key === key;
@@ -30,10 +35,10 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
   const transitioning = !!prompt?.transitioning;
   useEffect(() => {
     setWaiting(false);
-    if (!active || hasFocus || transitioning) return;
+    if (!active || !foregroundSurface || hasFocus || transitioning) return;
     const timer = setTimeout(() => setWaiting(true), 8000);
     return () => clearTimeout(timer);
-  }, [key, active, hasFocus, attempt, transitioning]);
+  }, [key, active, foregroundSurface, hasFocus, attempt, transitioning]);
   useEffect(() => {
     const shown = Keyboard.addListener('keyboardDidShow', e => setKeyboardTop(e.endCoordinates.screenY));
     const moved = Keyboard.addListener('keyboardWillChangeFrame', e => setKeyboardTop(e.endCoordinates.screenY));
@@ -45,7 +50,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     return () => { shown.remove(); moved.remove(); hidden.remove(); app.remove(); };
   }, []);
   useEffect(() => {
-    if (!active || transitioning || !targetId) { setFocus(undefined); return; }
+    if (!active || !foregroundSurface || transitioning || !targetId) { setFocus(undefined); return; }
     let alive = true, frame = 0, busy = false, started = 0, serial = 0;
     let previous: Box | undefined, stable = 0;
     const tick = () => {
@@ -57,6 +62,11 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
       root.current.measureInWindow((rx, ry) => {
         if (!alive || sample !== serial) return;
         setRootY(ry);
+        backdrop?.current?.measureInWindow((x, y, width, height) => {
+          if (!alive) return;
+          const box = { x: x - rx, y: y - ry, width, height };
+          setBackdropBox(old => same(old, box) ? old : box);
+        });
         const candidates = [...nodes.values()].filter(value => value.id === targetId && value.layer === layer);
         const check = (index: number) => {
           if (!alive || sample !== serial) return;
@@ -78,10 +88,10 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     };
     tick();
     return () => { alive = false; cancelAnimationFrame(frame); };
-  }, [active, transitioning, key, layer, nodes, targetId, size.height, size.width, attempt]);
+  }, [active, foregroundSurface, transitioning, key, layer, nodes, targetId, size.height, size.width, attempt, backdrop]);
   // Keyboard bounds affect callout placement, never the full-screen backdrop.
   const availableHeight = Math.max(0, Math.min(size.height, keyboardTop === undefined ? size.height : keyboardTop - rootY));
-  const target = !transitioning && hasFocus ? focus.box : undefined;
+  const target = foregroundSurface && !transitioning && hasFocus ? focus.box : undefined;
   // All surfaces use physical safe-area coordinates, including native full-screen modals.
   const skipTop = Math.max(0, insets.top - rootY);
   if (target || !skipPosition.current || skipPosition.current.width !== Math.min(112, Math.max(0, size.width - 32))) skipPosition.current = guideSkipPlacement(target, size.width, skipTop);
@@ -91,7 +101,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
 
   // A measured target may temporarily leave the viewport. That never ends teaching.
   const constrained = !!target && position.compact;
-  const status = !show && !transitioning && (interrupted || waiting || constrained);
+  const status = foregroundSurface && !show && !transitioning && (interrupted || waiting || constrained);
   const statusPosition = guidePlacement(target, size.width, availableHeight, textHeight, { top: skipBox.y + skipBox.height + 8, bottom: insets.bottom + 160 });
   const hintPosition = show ? position : statusPosition;
   const showHint = show || status;
@@ -106,12 +116,12 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
     { left: target.x + target.width, top: target.y, width: Math.max(0, size.width - target.x - target.width), height: target.height },
   ] : [{ left: 0, top: skipTop + 44, width: size.width, height: Math.max(0, size.height - skipTop - 44) }];
   return <View ref={root} collapsable={false} pointerEvents="box-none" onLayout={e => setSize(e.nativeEvent.layout)} style={styles.root} testID="guide-overlay">
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, !size.height && { backgroundColor: colors.foreground, opacity: 0.68 }]} testID="guide-backdrop"><Svg testID="guide-mask" pointerEvents="none" width={size.width} height={size.height} style={StyleSheet.absoluteFill}>
-      <Defs><Mask id={maskId}><Rect width={size.width} height={size.height} fill="white" />{show ? <Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /> : null}</Mask></Defs>
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, layer === 'root' && !size.height && { backgroundColor: colors.foreground, opacity: 0.68 }]} testID="guide-backdrop"><Svg testID="guide-mask" pointerEvents="none" width={size.width} height={size.height} style={StyleSheet.absoluteFill}>
+      <Defs><Mask id={maskId}><Rect width={size.width} height={size.height} fill={backdrop ? "black" : "white"} />{backdrop && backdropBox ? <Rect x={backdropBox.x} y={backdropBox.y} width={backdropBox.width} height={backdropBox.height} fill="white" /> : null}{show ? <Rect x={target.x} y={target.y} width={target.width} height={target.height} rx={radii.md} fill="black" /> : null}</Mask></Defs>
       <Rect width={size.width} height={size.height} fill={colors.foreground} fillOpacity={0.68} mask={`url(#${maskId})`} />
       {show ? <><Line x1={lineX} y1={lineStart} x2={lineX} y2={lineEnd} stroke={colors.card} strokeWidth={1} /><Circle cx={lineX} cy={lineStart} r={2} fill={colors.card} /></> : null}
     </Svg></View>
-    {blocks.map((block, index) => <View key={index} accessible={false} pointerEvents={layer !== 'root' || target && (prompt.reading || prompt.interactive) ? 'none' : 'auto'} style={[styles.block, block]} />)}
+    {foregroundSurface && blocks.map((block, index) => <View key={index} accessible={false} pointerEvents={layer !== 'root' || target && (prompt.reading || prompt.interactive) ? 'none' : 'auto'} style={[styles.block, block]} />)}
     {showHint ? <View onLayout={e => setTextHeight(e.nativeEvent.layout.height)} style={[styles.hint, { left: hintPosition.x, top: hintPosition.y, width: hintPosition.width }]} testID="guide-hint" accessibilityState={{ busy: prompt.activity === 'waiting' }}>
       <AppText color={colors.card} variant="button" style={styles.center}>{prompt.title}</AppText>
       <AppText accessibilityLiveRegion="polite" color={colors.card} variant="body" style={styles.center}>{status && !interrupted && !constrained ? '当前目标尚未就绪，可返回重试或跳过教学。' : prompt.text}</AppText>
@@ -119,7 +129,7 @@ export function GuideOverlay({ prompt, nodes, layer, topLayer }: { prompt: Guide
       {waiting && !interrupted ? <Pressable accessibilityRole="button" onPress={() => setAttempt(value => value + 1)} style={styles.action}><AppText color={colors.card}>重新定位</AppText></Pressable> : null}
       {prompt.next && (!status || interrupted || constrained) ? <Pressable accessibilityRole="button" onPress={prompt.next} style={styles.action}><AppText color={colors.card} variant="button">{prompt.nextLabel ?? '继续'}</AppText></Pressable> : null}
     </View> : null}
-    <Pressable accessibilityRole="button" accessibilityLabel="跳过教学" onPress={prompt.skip} style={[styles.skip, { left: skipBox.x, top: skipBox.y, width: skipBox.width }]}><AppText color={colors.card} variant="caption">跳过教学</AppText></Pressable>
+    {foregroundSurface ? <Pressable accessibilityRole="button" accessibilityLabel="跳过教学" onPress={prompt.skip} style={[styles.skip, { left: skipBox.x, top: skipBox.y, width: skipBox.width }]}><AppText color={colors.card} variant="caption">跳过教学</AppText></Pressable> : null}
   </View>;
 }
 const styles = StyleSheet.create({

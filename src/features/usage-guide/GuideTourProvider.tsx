@@ -2,7 +2,7 @@ import { isGuideTestingAvailable } from './guide-testing';
 import { studyGuideEntry } from './study-guide-entry';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { usePathname, type Href } from 'expo-router';
-import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren, type RefObject } from 'react';
 import { Platform, View } from 'react-native';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { GuideBindingContext, type GuideCheckpoint, type GuidePrompt } from './GuideBindings';
@@ -120,6 +120,8 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     // offers drive teaching; route-driven modules still suppress immediate reopening.
     const pausedRouteEntry = pausedPath.current === currentPath.current && id !== 'study' && id !== 'export';
     if (!current && (!automatic || !remaining.length || pausedRouteEntry)) return;
+    // Opening the catalog must not interrupt previously taught export settings.
+    if (!current && id === 'export' && ids.includes('export-open') && !remaining.includes('export-open')) return;
     if (current && !remaining.length && ids.includes('study-recap')) { active.current = undefined; setTour(undefined); return; }
     if (current && JSON.stringify(current.remaining) === JSON.stringify(remaining)) return;
     const next: Tour = { id, mode: current?.mode ?? 'automatic', remaining, done: current?.done ?? [] };
@@ -148,7 +150,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     const remaining = (entry.id === 'export' || entry.id === 'mock-exam' || entry.id === 'recap' ? undefined : saved?.remaining) ?? (GUIDE_FLOWS[entry.id] ?? []).map(step => step.id);
     const next: Tour = { id: entry.id, mode: 'manual', remaining, done: saved?.done ?? [] };
     active.current = next; setTour(next); checkpoint(saved?.checkpoint); suspend(false);
-    if (entry.id !== 'export') router.push(entry.route as Href);
+    router.push(entry.route as Href);
   }, [account, checkpoint, loaded, router]);
   useEffect(() => {
     if (!tour || !account || loaded !== account) return;
@@ -167,7 +169,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     if (!tour) return;
     const home = pathname === '/' || pathname === '/question-bank';
     const allowed = tour.id === 'study' ? home || pathname.startsWith('/question-bank/') || pathname.includes('/study')
-      : tour.id === 'export' ? pathname === '/info/guide' || pathname.includes('/export')
+      : tour.id === 'export' ? pathname === '/question-bank/sentences900' || pathname.includes('/export')
       : (tour.id === 'recap' || tour.id === 'records') ? pathname === '/annotations' || pathname === '/learning-records' || pathname.startsWith('/question-bank/')
       : pathname.startsWith(GUIDE_ENTRIES.find(entry => entry.id === tour.id)?.route ?? '/content/');
     // Route push commits after start; allow that first navigation before policing exits.
@@ -211,7 +213,7 @@ export function GuideTourProvider({ children }: PropsWithChildren) {
     next: canContinue ? continueStep : undefined,
   } : null, [account, loaded, activity, error, exit, step, suspended, tour, currentFocus, pathname, optionalLabel, canContinue, continueStep]);
   const topLayer = layers.at(-1) ?? 'root';
-  const surface = useCallback((layer: string) => <GuideOverlay layer={layer} nodes={nodes} prompt={layer !== 'root' && prompt && tour?.id !== 'study' ? { ...prompt, next: undefined, interactive: true } : prompt} topLayer={topLayer} />, [nodes, prompt, topLayer, tour?.id]);
+  const surface = useCallback((layer: string, backdrop?: RefObject<View | null>) => <GuideOverlay backdrop={backdrop} layer={layer} nodes={nodes} prompt={layer !== 'root' && prompt && tour?.id !== 'study' ? { ...prompt, next: undefined, interactive: true } : prompt} topLayer={topLayer} />, [nodes, prompt, topLayer, tour?.id]);
   const binding = useMemo(() => ({ event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, suspend, resetForTesting, testingResetAvailable: testingAvailable && !!account, retry, ready: !!account && loaded === account, error, target: currentFocus?.target ?? step?.target ?? step?.id, checkpoint, checkpointData, current: tour?.id, step: tour?.remaining[0] }), [account, loaded, error, event, rewind, confirm, focus, availability, register, modal, surface, start, pause, exit, offer, checkpoint, checkpointData, retry, step, tour, currentFocus, resetForTesting, testingAvailable]);
   return <GuideBindingContext.Provider value={binding}><View style={{ flex: 1 }}>{children}<GuideRootSurface layer="root" nodes={nodes} prompt={prompt} topLayer={topLayer} /></View></GuideBindingContext.Provider>;
 }

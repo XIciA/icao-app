@@ -139,14 +139,14 @@ export function CodeField({ value, onChangeText }: { value: string; onChangeText
   );
 }
 
-export function Checkbox({ checked, label, linkLabel, onLinkPress, onPress }: { checked: boolean; label: string; linkLabel?: string; onLinkPress?: () => void; onPress: () => void; }) {
+export function Checkbox({ checked, label, accessibilityLabel, linkLabel, onLinkPress, onPress }: { checked: boolean; accessibilityLabel?: string; label: string; linkLabel?: string; onLinkPress?: () => void; onPress: () => void; }) {
   return (
     <View style={styles.checkControl}>
-      <Pressable accessibilityRole="checkbox" accessibilityState={{ checked }} onPress={onPress} style={styles.checkInner}>
+      <Pressable accessibilityLabel={accessibilityLabel ?? label} hitSlop={8} accessibilityRole="checkbox" accessibilityState={{ checked }} onPress={onPress} style={styles.checkInner}>
         <View style={[styles.checkbox, checked && styles.checkboxChecked]}>
           {checked ? <Check color={colors.primaryForeground} size={12} /> : null}
         </View>
-        <AppText variant="caption">{label}</AppText>
+        {label ? <AppText variant="caption">{label}</AppText> : null}
       </Pressable>
       {linkLabel && onLinkPress ? (
         <TextLink label={linkLabel} onPress={onLinkPress} />

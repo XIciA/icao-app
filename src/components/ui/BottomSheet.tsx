@@ -27,6 +27,7 @@ export function BottomSheet({ visible, onClose, onClosed, children, footer, scro
 
   const [mounted, setMounted] = useState(visible);
   const [presented, setPresented] = useState(false);
+  const sheet = useRef<View>(null);
   const progress = useRef(new Animated.Value(0)).current;
   const requested = useRef(visible); requested.current = visible;
   const onShow = useCallback(() => { if (requested.current) setPresented(true); }, []);
@@ -46,11 +47,11 @@ export function BottomSheet({ visible, onClose, onClosed, children, footer, scro
   }, [mounted, presented, progress, visible]);
 
   return (
-    <AppModal animationType="none" onShow={onShow} onRequestClose={onClose} transparent visible={mounted}>
+    <AppModal guideBackdropRef={sheet} animationType="none" onShow={onShow} onRequestClose={onClose} transparent visible={mounted}>
       <View accessibilityLabel={content.accessibilityLabel} pointerEvents={visible ? 'auto' : 'none'} accessibilityElementsHidden={!visible} importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'} style={styles.root}>
         <Animated.View style={[StyleSheet.absoluteFill, styles.overlay, { opacity: teaching ? 0 : progress }]} />
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
-        <Animated.View style={[styles.sheet, { transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [height, 0] }) }], maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
+        <Animated.View ref={sheet} style={[styles.sheet, { transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [height, 0] }) }], maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
           <View style={styles.handle} />
           {content.scrollable ? (
             <ScrollView style={styles.scrollContent} contentContainerStyle={styles.scrollInner}>{content.children}</ScrollView>

@@ -29,7 +29,7 @@ describe('<DiscoverTab />', () => {
     expect(mockPush).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByLabelText('打开单词学习'));
     expect(mockRememberPendingPath).toHaveBeenCalledWith('/content/vocab');
-    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/vocab', returnTo: '/discover', reason: '登录后查看会员功能' } });
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/auth/[slug]', params: { slug: 'login', next: '/content/vocab', returnTo: '/discover' } });
   });
   it('exposes launch learning entries without the course catalog', async () => {
     const screen = await render(<DiscoverTab />);

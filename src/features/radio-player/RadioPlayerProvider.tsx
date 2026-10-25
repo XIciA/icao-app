@@ -627,7 +627,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
           const queued = queuedNextTrackId.current;
           const upcoming = (queued && catalog.tracks.find((item) => item.id === queued))
             || await chooseUpcoming(catalog, track, current.mode, current.shuffle);
-          if (!valid() || !upcoming) return;
+          if (!valid()) return;
+          if (!upcoming) { pendingPlay.current = false; setSourceState({ loading: false }); return; }
           track = upcoming;
           catalog = stateRef.current.catalogs.find((item) => item.bankId === track.bankId) ?? catalog;
         }
@@ -926,9 +927,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     waitingForNext,
     speedOptions,
     playing,
-    loading: sourceState.loading || catalogLoading,
+    loading: sourceState.loading,
+    catalogLoading,
+    catalogError,
+    retryCatalog: () => setCatalogRetry(value => value + 1),
     buffering,
-    error: catalogError ?? sourceState.error,
+    error: sourceState.error,
     position,
     duration,
     sessionVisible,
@@ -967,7 +971,6 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     setRate,
     setIntervalSeconds,
     retry: () => {
-      if (catalogError) { setCatalogRetry((value) => value + 1); return; }
       recoveryAttempts.current.clear();
       if (currentCatalog && currentTrack) void prepareTrack(currentCatalog, currentTrack, { autoPlay: true, forceRefresh: true, position });
     },

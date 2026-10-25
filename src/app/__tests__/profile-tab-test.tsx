@@ -154,9 +154,9 @@ describe('<ProfileTab />', () => {
     expect(mockPush).toHaveBeenCalledWith('/word-favorites');
   });
 
-  it('removes the manual guide entry while retaining the normal account menu', async () => {
+  it('restores the usage guide in the requested account menu order', async () => {
     const screen = await render(<ProfileTab />);
-    expect(screen.queryByText('使用指南')).toBeNull();
+    expect(screen.getByText('使用指南')).toBeTruthy();
     expect(screen.getByText('设置')).toBeTruthy();
   });
 

@@ -67,3 +67,14 @@ describe('commerce entitlement external-store contract', () => {
     unsubscribeObserved();
   });
 });
+
+
+it('does not let a pre-purchase response overwrite a newer verified VIP snapshot', () => {
+  resetCommerceEntitlementEventsForTests();
+  const owner=beginCommerceEntitlementGeneration('account');
+  const base={accountId:'account',generation:owner.generation,environment:'production' as const};
+  const verified=publishCommerceEntitlementChange({...base,reason:'purchase',snapshot:{serverTime:'2026-10-25T06:00:01Z',membership:{active:true,expiresAt:'2026-11-25T00:00:00Z'}} as never});
+  const late=publishCommerceEntitlementChange({...base,reason:'manual-refresh',snapshot:{serverTime:'2026-10-25T06:00:00Z',membership:{active:false,expiresAt:null}} as never});
+  expect(late).toBe(verified);
+  expect(getCommerceEntitlementSnapshot()?.snapshot?.membership.active).toBe(true);
+});

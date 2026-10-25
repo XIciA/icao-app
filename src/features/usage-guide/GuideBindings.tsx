@@ -1,7 +1,7 @@
 import { NavigationContext } from '@react-navigation/native';
 import type { GuideId } from './guide-flows';
 import { GuideScrollContext } from './guide-scroll-context';
-import { createContext, useContext, useEffect, useLayoutEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode, type RefObject } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export type GuidePrompt = { identity?: string; target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string; reading?: boolean; interactive?: boolean; activity?: 'waiting' | 'unavailable'; transitioning?: boolean };
@@ -14,7 +14,7 @@ export type GuideBinding = {
   availability: (key: string, module: GuideId, message?: string, kind?: 'waiting' | 'unavailable') => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
-  surface: (layer: string) => ReactNode;
+  surface: (layer: string, backdrop?: RefObject<View | null>) => ReactNode;
   offer: (id: GuideId, steps: string[]) => void;
   exit: () => void;
   start: (id: string, restart?: boolean) => Promise<void>;
@@ -61,10 +61,10 @@ export function GuideAnchor({ id }: { id: string }) {
   if (!guide) return null;
   return <View accessible={false} collapsable={false} pointerEvents="none" testID={`guide-anchor-${id}`} ref={node} onLayout={revealTarget} style={StyleSheet.absoluteFillObject} />;
 }
-export function GuideModalScope({ children, visible }: PropsWithChildren<{ visible: boolean }>) {
+export function GuideModalScope({ children, visible, backdrop }: PropsWithChildren<{ visible: boolean; backdrop?: RefObject<View | null> }>) {
   const guide = useGuide(); const id = useId(); const modal = guide?.modal;
   useLayoutEffect(() => { if (visible) modal?.(id, true); return () => modal?.(id, false); }, [id, modal, visible]);
-  return <LayerContext.Provider value={id}>{children}{visible ? guide?.surface(id) : null}</LayerContext.Provider>;
+  return <LayerContext.Provider value={id}>{children}{visible ? (backdrop ? guide?.surface(id, backdrop) : guide?.surface(id)) : null}</LayerContext.Provider>;
 }
 
 /** An unavailable real feature must remain operable without recording a fake completion. */
