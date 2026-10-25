@@ -134,7 +134,7 @@ export function AccountProfilePage() {
           <DetailRow label="昵称" last disabled={saving || picking} onPress={() => { setNameInput(draft.displayName); setEditing('name'); }}>{draft.displayName}</DetailRow>
         </DetailGroup>
         <DetailGroup title="会员与账号">
-          <DetailRow label="会员"><MembershipStatus /></DetailRow>
+          <DetailRow label="会员"><MembershipStatus align="end" /></DetailRow>
           <DetailRow label="到期时间"><AppText variant="caption">{membershipPresentation(commerce.entitlement).expires}</AppText></DetailRow>
           <AiAllowanceCard compact />
           <DetailRow label="账号 ID" last><AppText selectable variant="caption" style={styles.accountId}>{auth.account?.accountId ?? '正在读取…'}</AppText></DetailRow>
