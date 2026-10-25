@@ -32,6 +32,26 @@ beforeEach(() => {
 afterEach(async () => { await act(async () => root.unmount()); element.remove(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 describe('minimal ops feedback experience', () => {
+  it('identifies study feedback in the list and shows the full historical question name in detail', async () => {
+    const name = '陆空通话 / QFA / QFA160 [导航问题，燃油短缺] / 9-QFA160 [导航问题，燃油短缺]-2';
+    mocks.api.mockImplementation(async path => path.includes('FB-')
+      ? { ...item, description: '高度层疑问', attachments: [], question: { bankId: 'radiotelephony', categoryId: 'qfa', topicId: 'topic', cardId: 'card', displayName: name, displayNameSource: 'submitted_release', bankVersion: 26, verified: true } }
+      : { items: [item], nextCursor: null });
+    await act(async () => root.render(createElement(App)));
+    expect(element.querySelector('.feedback-row').textContent).toContain('题目反馈');
+    await click(element.querySelector('.feedback-row'));
+    expect(element.textContent).toContain(name);
+    expect(element.textContent).toContain('反馈时题目名称');
+  });
+  it('keeps an unavailable historical title explicit instead of presenting IDs as a question name', async () => {
+    mocks.api.mockImplementation(async path => path.includes('FB-')
+      ? { ...item, description: '题目已调整', attachments: [], question: { bankId: 'opi', categoryId: 'main', topicId: 'topic1', cardId: 'removed-card', verified: false } }
+      : { items: [item], nextCursor: null });
+    await act(async () => root.render(createElement(App)));
+    await click(element.querySelector('.feedback-row'));
+    expect(element.textContent).toContain('题名暂无法核实');
+    expect(element.textContent).toContain('removed-card');
+  });
   it('allows authenticated attachment object URLs only for images and releases them on leaving detail', async () => {
     const directives = new Map(csp.split(';').map((value) => { const [name, ...sources] = value.trim().split(/\s+/); return [name, sources]; }));
     expect(directives.get('img-src')).toEqual(["'self'", 'data:', 'blob:']);
