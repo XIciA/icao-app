@@ -89,11 +89,10 @@ export function VocabularyStudyView({
       <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
-          <View style={[styles.wordHeading, vocabularyFrequencyBadge(word.frequency) ? styles.wordHeadingWithBadge : null]}>
-            <View style={styles.wordAnchor}>
-              <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-              <View pointerEvents="none" style={styles.frequencyBadge}><VocabularyFrequency compact key={word.id} word={word} /></View>
-            </View>
+          <View style={styles.wordHeading}>
+            {vocabularyFrequencyBadge(word.frequency) ? <View style={styles.frequencyReserve} /> : null}
+            <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
+            {vocabularyFrequencyBadge(word.frequency) ? <View pointerEvents="none" style={styles.frequencyReserve}><VocabularyFrequency compact key={word.id} word={word} /></View> : null}
           </View>
           <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
@@ -181,12 +180,11 @@ const styles = StyleSheet.create({
   progressWrap: { paddingHorizontal: spacing[5], paddingTop: spacing[3] },
   studyContent: { flexGrow: 1, padding: spacing[5] },
   wordCenter: { alignItems: 'center', flex: 1, gap: spacing[4], justifyContent: 'center', minHeight: 430 },
-  studyWord: { fontSize: 36, lineHeight: 46, textAlign: 'center' },
-  wordHeading: { alignItems: 'center', width: '100%' },
-  // Equal side reserves keep the word itself centered; the badge never joins its flex row.
-  wordHeadingWithBadge: { paddingHorizontal: spacing[16] },
-  wordAnchor: { alignSelf: 'center', maxWidth: '100%' },
-  frequencyBadge: { position: 'absolute', left: '100%', marginLeft: spacing[1], top: 0, width: 60 },
+  studyWord: { flexShrink: 1, fontSize: 36, lineHeight: 46, textAlign: 'center' },
+  // Equal non-shrinking slots center the word independently of the badge.
+  // Native Yoga percentage absolute offsets do not match CSS shrink-wrap sizing.
+  wordHeading: { alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'center', width: '100%' },
+  frequencyReserve: { width: 76, flexShrink: 0, paddingLeft: spacing[1] },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   reveal: { alignItems: 'center', gap: spacing[5], width: '100%' },
   meaning: { fontSize: 20, lineHeight: 30, textAlign: 'center' },

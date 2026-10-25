@@ -265,3 +265,25 @@ describe('complete authorized radio directory', () => {
     expect(topics.every(item => item.cards.length === 0)).toBe(true);
   });
 });
+
+
+it('publishes immutable progress and marks counts incomplete until every authorized topic arrives', async () => {
+  mockGetTopic.mockReset();
+  const pending = new Map<string, (value: QuestionBankTopic) => void>();
+  const topics = ['first', 'second'].map(id => ({ ...publicTopic, id }));
+  const input = [{ ...dataset, categories: [{ ...dataset.categories[0], topics }] }];
+  mockGetTopic.mockImplementation((_bank, _category, id) => new Promise(resolve => pending.set(id, resolve)));
+  const updates: QuestionBankDataset[][] = [];
+  const loading = hydrateRadioCatalogDatasets(input, undefined, value => updates.push(value));
+  const finish = (id: string) => pending.get(id)!({ ...publicTopic, id, cards: [publicTopic.cards[0], { ...publicTopic.cards[0], id: `${id}-member` }] });
+  expect(deriveRadioCatalogs(input)[0].complete).toBe(false);
+  finish('first');
+  await Promise.resolve(); await Promise.resolve();
+  expect(updates).toHaveLength(1);
+  expect(deriveRadioCatalogs(updates[0])[0].complete).toBe(false);
+  finish('second');
+  const result = await loading;
+  expect(deriveRadioCatalogs(result)[0].complete).toBe(true);
+  expect(updates[0][0].categories[0].topics[1].cards).toHaveLength(1);
+  expect(deriveRadioCatalogs([{ ...dataset, access: { ...dataset.access, membershipActive: false } }])[0].complete).toBe(true);
+});

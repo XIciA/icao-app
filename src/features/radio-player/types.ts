@@ -29,6 +29,8 @@ export type RadioCatalog = {
   title: string;
   nameEn: string;
   tracks: RadioTrack[];
+  /** False until all authorized topic text has arrived; tracks.length is not a total yet. */
+  complete?: boolean;
 };
 
 export type RadioPlayerContextValue = {

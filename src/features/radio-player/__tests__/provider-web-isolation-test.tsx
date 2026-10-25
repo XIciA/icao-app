@@ -128,3 +128,17 @@ it('waits for the replacement in repeat-one mode instead of replaying the old en
   expect(mockValue.position).toBe(0);
   await view.unmount();
 });
+
+
+it('does not restart directory loading when a heartbeat refresh leaves content access unchanged', async () => {
+  const event = beginCommerceEntitlementGeneration('A');
+  const snapshot = { membership: { active: true, expiresAt: '2027-01-01T00:00:00Z' }, serverTime: '2026-10-25T00:00:00Z' } as any;
+  publishCommerceEntitlementChange({ ...event, snapshot });
+  const view = await render(tree()); await flush();
+  await act(() => mockValue.activateSession()); await flush();
+  const calls = mockLoad.mock.calls.length;
+  await act(() => { publishCommerceEntitlementChange({ ...event, snapshot: { ...snapshot, serverTime: '2026-10-25T00:00:01Z' } }); });
+  await flush();
+  expect(mockLoad).toHaveBeenCalledTimes(calls);
+  await view.unmount();
+});

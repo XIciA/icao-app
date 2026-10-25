@@ -21,6 +21,9 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
     .map((bank) => {
       let stableIndex = 0;
       return {
+        complete: !bank.categories.some(category => category.topics.some(topic =>
+          bank.access?.membershipActive === true && topic.access?.level === 'member'
+          && topic.cards.length < topic.access.declaredCardCount)),
         bankId: bank.id,
         title: bank.title,
         nameEn: bank.nameEn,
@@ -53,11 +56,11 @@ export function deriveRadioCatalogs(datasets: QuestionBankDataset[], selection?:
     .filter((catalog) => catalog.tracks.length > 0 || datasets.find(bank => bank.id === catalog.bankId)?.access?.membershipActive === true);
 }
 
-export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection) {
-  return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection);
+export function getEmbeddedRadioCatalogs(selection?: RadioStudySelection): RadioCatalog[] {
+  return deriveRadioCatalogs(getEmbeddedQuestionBanks(), selection).map(catalog => ({ ...catalog, complete: false }));
 }
 
-export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; isCurrent?: () => boolean } = {}) {
+export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, options: { complete?: boolean; bankId?: RadioCatalog['bankId']; isCurrent?: () => boolean; onProgress?: (datasets: QuestionBankDataset[]) => void } = {}) {
   const owner = getNativeCommerceEnvironmentState();
   const assertOwner = () => {
     if (options.isCurrent && !options.isCurrent()) throw new Error('content_request_cancelled');
@@ -92,9 +95,12 @@ export async function loadRadioCatalogDatasets(selection?: RadioStudySelection, 
   const scoped = selection ? loaded.map((bank) => scopeDataset(bank, selection.scope, selection.target)).filter((bank) => bank.declaredCardCount > 0) : loaded;
   // App startup uses metadata only. Expand authorized text when the radio session opens.
   if (!options.complete) return scoped;
-  const hydrationScope = options.bankId ? scoped.filter(bank => bank.id === options.bankId) : scoped;
-  const expanded = await hydrateRadioCatalogDatasets(hydrationScope, assertOwner);
-  const hydrated = scoped.map(bank => expanded.find(candidate => candidate.id === bank.id) ?? bank);
+  const publish = (datasets: QuestionBankDataset[]) => {
+    assertOwner();
+    options.onProgress?.(selection ? datasets.map(bank => scopeDataset(bank, selection.scope, selection.target)) : datasets);
+  };
+  publish(scoped);
+  const hydrated = await hydrateRadioCatalogDatasets(scoped, assertOwner, publish, options.bankId);
   return selection ? hydrated.map((bank) => scopeDataset(bank, selection.scope, selection.target)) : hydrated;
 }
 

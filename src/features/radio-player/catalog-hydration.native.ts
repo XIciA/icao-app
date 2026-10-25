@@ -65,12 +65,13 @@ export async function hydrateRadioCatalogTopic(
 
 /** Build one complete authorized directory before exposing queue counts. Audio
  * files stay lazy; only the existing topic repository supplies protected text. */
-export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[], assertCurrent: () => void = () => undefined) {
+export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[], assertCurrent: () => void = () => undefined, onProgress?: (datasets: QuestionBankDataset[]) => void, priorityBankId?: QuestionBankDataset['id']) {
   const hydrated = datasets.map(dataset => ({ ...dataset, categories: dataset.categories.map(category => ({ ...category, topics: [...category.topics] })) }));
   const work = hydrated.flatMap(dataset => dataset.access?.membershipActive === true
     ? dataset.categories.flatMap(category => category.topics.flatMap((topic, index) =>
       topic.access?.level === 'member' && topic.cards.length < topic.access.declaredCardCount
         ? [{ dataset, category, topic, index }] : [])) : []);
+  work.sort((a, b) => Number(b.dataset.id === priorityBankId) - Number(a.dataset.id === priorityBankId));
   let next = 0;
   const worker = async () => {
     while (next < work.length) {
@@ -80,9 +81,13 @@ export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[
       assertCurrent();
       if (!topic || topic.id !== item.topic.id || topic.cards.length < item.topic.access!.declaredCardCount) throw new Error('radio_topic_unavailable');
       item.category.topics[item.index] = topic;
+      // Publish immutable snapshots so completed topics survive later failures.
+      onProgress?.(hydrated.map(bank => ({ ...bank, categories: bank.categories.map(category => ({ ...category, topics: [...category.topics] })) })));
     }
   };
-  await Promise.all(Array.from({ length: Math.min(3, work.length) }, worker));
+  const results = await Promise.allSettled(Array.from({ length: Math.min(3, work.length) }, worker));
+  const failure = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
+  if (failure) throw failure.reason;
   assertCurrent();
   return hydrated;
 }

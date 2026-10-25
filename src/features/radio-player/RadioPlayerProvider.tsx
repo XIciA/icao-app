@@ -500,7 +500,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     topicHydrations.current.clear();
     setCatalogLoading(true);
     setCatalogError(undefined);
-    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration }).then((datasets) => {
+    const publish = (datasets: QuestionBankDataset[]) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
       catalogDatasets.current = datasets;
       const next = deriveRadioCatalogs(datasets, selectionRef.current);
@@ -508,7 +508,8 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
         stateRef.current.catalogs = next;
         setCatalogs(next);
       }
-    }).catch(() => {
+    };
+    void loadRadioCatalogDatasets(selectionRef.current, { complete: sessionVisible, bankId: stateRef.current.bankId, isCurrent: () => active && catalogHydrationGeneration.current === requestGeneration, onProgress: publish }).then(publish).catch(() => {
       if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogError('播放目录加载失败，请重试');
     }).finally(() => {
       if (active && catalogHydrationGeneration.current === requestGeneration) setCatalogLoading(false);
@@ -517,7 +518,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, bankId, catalogRetry, commerceEnvironmentSnapshot, contentAccessSnapshot, selection, sessionVisible]);
+  }, [auth.restoring, auth.session, catalogRetry, commerceEnvironmentSnapshot, contentAccessSnapshot, selection, sessionVisible]);
 
   useEffect(() => {
     if (auth.restoring) return;
