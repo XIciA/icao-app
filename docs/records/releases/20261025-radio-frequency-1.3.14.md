@@ -13,5 +13,22 @@
 - 实际原生 Yoga 引擎验证320、375、390、430点屏宽与80、150、240、420点词宽，共16组；新布局中心偏差不超过1点，角标与词边间距4点（像素舍入不超过1点），无越界。证据保存在本轮构建目录 .generated/radio-frequency-fix/。
 - 使用指南沿用现有步骤，仅补充加载中与失败恢复说明；目录加载不作为播放/设置教学的完成事件。
 - 完整 pnpm check 通过：前端234套/1626项，API68套/688项；类型检查通过，lint 0错误（35条既有警告），EdgeOne Web导出182文件/37.9MiB通过。PR #261 的GitHub检查未启动，注释确认为账号付款/额度问题，未将其记为远程CI通过。
-- 代码检查、渠道交付与用户验收分别记录。当前为发布准备，候选1.3.14 / 3584951；用户真机验收尚未完成。
+- 代码检查、渠道交付与用户验收分别记录。iOS TestFlight与Web已交付，候选1.3.14 / 3584951；用户真机验收尚未完成。
 - 上一iOS候选1.3.13 / 3584950来自1ee659158bcb76edec0563ad16cea69bb3541726，Apple VALID且内部“测试”组IN_BETA_TESTING（2026-10-25T14:14:06.287Z复核）。这次修复源于该候选的用户验收反馈。
+
+
+## 交付证据
+
+- 源码：`4e462045e6974fc145f2347bee4fb1f24746c571`（PR [#261](https://github.com/XIciA/icao-app/pull/261)）。继承此前[#259](https://github.com/XIciA/icao-app/pull/259)、[#260](https://github.com/XIciA/icao-app/pull/260)的反馈列表、权益刷新、协议安全区返回、PDF取消、指南遮罩、听力答题卡与使用指南修复。
+- iOS：`com.readyoufife.ios`，1.3.14 / 3584951；Archive、Export、Apple校验及上传均成功。2026-10-25 22:56:18（北京时间）独立API核对`VALID`、未过期、内部“测试”组可访问且`IN_BETA_TESTING`，Apple build ID `e77bfc22-9f2f-4de1-80d2-2f0f90778bcb`。
+- iOS tag：`release/ios-testflight/v1.3.14-b3584951`；IPA SHA-256：`8e3fb9664bd9265a6961bf655f457cdb619b522effc0e2e8f017361e509b4b73`。iOS测试更新清单已切到该候选，独立公网核对通过。
+- AI live沿用2026-10-25T06:59:02.055Z的真实证据；发布门禁核对其仍在24小时内、验证器指纹一致且生产API仍为`vocabulary-20261025-83f6fb8f`。发布前录音15套/191项、StoreKit19套/188项通过。没有填写真机通过记录。
+- Web：`https://readyoufife.com`，deployment `dpvzkuuok4wq`，tag `release/web-edgeone/20261025-4e462045`；2026-10-25T14:42:48.857Z公网入口脚本SHA-256 `a849eb52cf4e49521bb1b35735e802a734a4f4900796d1cd755b3822dddfa300`与本地主干构建一致。
+- Web浏览器观察：实际登录会员会话进入随身听时显示加载状态，未完整目录不再显示18/23等免费暂存数为总数；加载中可切换OPI，并观察到更多会员话题出现在播放队列。完整加载耗时、各题库最终数量及真机交互仍待用户验收，不把局部观察记为全流程验收。
+- 更新清单备份：存储主机本轮发布目录`radio-frequency-20261025-3584951/backups/`。iOS测试清单更新后独立核对另外三渠道与更新前完全一致；正式App Store/Android渠道仍为1.2.1。
+- 回滚目标：iOS保留1.3.13 / 3584950历史可安装候选，测试更新指针切换前为1.3.12 / 3584843；Web上一部署`dp1sgmyz4fy7`、tag `release/web-edgeone/20261025-1ee65915`。回滚使用已留存产物，不重写发布提交。
+
+
+## Android待续
+
+独立测试包1.3.14 / 3584951在本机Gradle构建中因`No space left on device`失败，没有生成或发布新APK；`android-test`清单仍为1.3.12 / 3584843。已清理本轮独立构建目录中的失败Android生成工程，保留源代码、完整检查日志、iOS Archive/IPA和线上发布证据；Android需在足够空间下重新构建并校验、上传后再更新测试渠道。本次iOS TestFlight交付已完成，Android不记为已交付。
