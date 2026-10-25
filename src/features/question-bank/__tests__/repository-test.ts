@@ -278,7 +278,19 @@ describe('embeddedQuestionBankRepository', () => {
     const result = await loadQuestionBank('listening');
     expect(result).toMatchObject({ source: 'remote', dataset: { id: 'listening' } });
     expect(mockStorageValues.has('icao.content.v1.bank.listening')).toBe(false);
-    expect(mockStorageValues.has(`icao.content.v4.catalog.${accountId}.production.listening`)).toBe(true);
+    expect(mockStorageValues.has(`icao.content.v5.catalog.${accountId}.production.listening`)).toBe(true);
+  });
+
+  it('refetches catalogs cached from an older API rather than advertising the new directory ETag', async () => {
+    const original = (await embeddedQuestionBankRepository.getDataset('listening'))!;
+    const dataset = { ...original, categories: original.categories.map(category => ({ ...category, topics: category.topics.map(({ radioEntries: _entries, ...topic }) => topic) })) };
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://127.0.0.1:3101';
+    const request = jest.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: true, status: 200,
+      json: async () => ({ data: { bankId: 'listening', version: 1, checksum: 'ab'.repeat(32), dataset } }),
+    } as Response);
+    await remoteQuestionBankRepository.getDataset('listening');
+    await remoteQuestionBankRepository.getDataset('listening');
+    expect(request.mock.calls.at(-1)?.[1]?.headers).not.toHaveProperty('if-none-match');
   });
 
   it('falls back to the embedded release when the remote API fails without cache', async () => {
@@ -608,7 +620,7 @@ describe('embeddedQuestionBankRepository', () => {
       serverTime: '2026-10-25T01:00:00Z', membership: { active: true },
     } as never });
     const member = await remoteQuestionBankRepository.getDataset('opi');
-    const key = `icao.content.v4.catalog.${accountId}.production.opi`;
+    const key = `icao.content.v5.catalog.${accountId}.production.opi`;
     const cached = mockStorageValues.get(key);
     expect(member?.access?.membershipActive).toBe(true);
     release({ ok: true, status: 200, json: async () => ({ data: {

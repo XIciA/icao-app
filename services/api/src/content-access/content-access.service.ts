@@ -3,6 +3,7 @@ import {
   CONTENT_ACCESS_POLICY_VERSION,
   freeQuestionBankCardIds,
   studyScopeCardIds,
+  questionBankRadioEntries,
   type ContentAccessCredential,
   type ContentAccessScope,
   type CommerceEnvironment,
@@ -86,6 +87,7 @@ function filterTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic, 
   return {
     ...topic,
     scopeCardIds: studyScopeCardIds(bankId, topic),
+    radioEntries: questionBankRadioEntries(topic),
     cards,
     access: topicAccess(topic, cards.length, freeCards),
   };
@@ -97,6 +99,7 @@ function catalogTopic(bankId: string, freeIds: Set<string>, topic: ContentTopic)
   return {
     ...topic,
     scopeCardIds: studyScopeCardIds(bankId, topic),
+    radioEntries: questionBankRadioEntries(topic),
     cards: freeCards,
     access: topicAccess(topic, freeCards.length, freeCards),
   };

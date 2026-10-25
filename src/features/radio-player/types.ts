@@ -19,6 +19,8 @@ export type RadioTrack = {
   referenceTextZh?: string;
   referenceLabel?: string;
   materials?: { image: string; imageAlt: string }[];
+  /** Directory entries are selectable before protected text/media is loaded. */
+  contentLoaded?: boolean;
   audioPath: string;
   durationSeconds: number;
   stableIndex: number;
@@ -29,7 +31,7 @@ export type RadioCatalog = {
   title: string;
   nameEn: string;
   tracks: RadioTrack[];
-  /** False until all authorized topic text has arrived; tracks.length is not a total yet. */
+  /** False only when the server has not supplied a complete navigation index. */
   complete?: boolean;
 };
 

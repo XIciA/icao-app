@@ -131,6 +131,7 @@ describe('versioned content access policy', () => {
       membershipExpiresAt: '2026-09-25T00:00:00.000Z',
     });
     expect(topic.cards.map((card) => card.id)).toEqual(['listening-main-001', ...Array.from({length: 9}, (_, i) => `middle-${i}`)]);
+    expect(topic.radioEntries).toEqual([{ id: 'listening-main-001', title: '', durationSeconds: 0 }, { id: 'listening-main-999', title: '', durationSeconds: 0 }]);
     expect(topic.scopeCardIds?.all).toHaveLength(11);
     expect(topic.scopeCardIds?.crash).toEqual(['listening-main-001']);
     expect(topic.access).toMatchObject({ level: 'member', availableCardCount: 10, declaredCardCount: 11 });

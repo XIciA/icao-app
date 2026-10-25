@@ -30,7 +30,7 @@ jest.mock('@/features/native-commercial-testflight/commerce-environment', () => 
 jest.mock('@/features/question-bank/data/repository.native', () => ({ getEmbeddedQuestionBanks: () => [] }));
 jest.mock('@/features/question-bank/platform/resource-service', () => ({ resolveQuestionBankAsset: () => undefined, resolveRemoteQuestionBankAsset: (path: string) => mockResolve(path) }));
 jest.mock('../catalog.native', () => ({ getEmbeddedRadioCatalogs: (selection: { scope: string }) => mockSelectionCatalogs(selection), loadRadioCatalogDatasets: (...args: Parameters<typeof mockLoadCatalogs>) => mockLoadCatalogs(...args), deriveRadioCatalogs: (_datasets: unknown, selection: { scope: string }) => [...mockSelectionCatalogs(selection)] }));
-jest.mock('../catalog-hydration.native', () => ({ hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
+jest.mock('../catalog-hydration.native', () => ({ mergeRadioCatalogProgress: (incoming: unknown) => incoming, hydrateRadioCatalogTopic: async (value: unknown) => value, nextRadioCatalogTopic: () => undefined }));
 jest.mock('@/platform/audio', () => ({ audioSessionOrchestrator: { acquire: () => mockAcquire(), release: async () => undefined, register: (_owner: string, client: { deactivate: () => Promise<void> }) => { mockDeactivate = client.deactivate; return () => undefined; } } }));
 jest.mock('../radio-player-storage', () => ({ activateRadioPlayerSession: async () => true, clearRadioPlayerAccountData: async () => undefined, readRadioPlayerSnapshot: async () => undefined, registerRadioPlayerRuntimeReset: () => () => undefined, saveRadioPlayerSnapshot: async () => undefined }));
 jest.mock('../track-player-runtime', () => ({

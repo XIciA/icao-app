@@ -1,4 +1,4 @@
-import { contentReleaseOf } from '@/features/question-bank/data/content-version.native';
+import { contentReleaseOf, sameContentRelease } from '@/features/question-bank/data/content-version.native';
 import { questionBankRepository } from '@/features/question-bank/data/repository.native';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
 
@@ -126,4 +126,24 @@ export async function hydrateRadioCatalogDatasets(datasets: QuestionBankDataset[
   assertCurrent();
   if (failures.length) throw failures[0];
   return hydrated;
+}
+
+/** Merge only within an already validated owner/session. A background snapshot
+ * must never replace a foreground topic with its older metadata-only form. */
+export function mergeRadioCatalogProgress(incoming: QuestionBankDataset[], current: QuestionBankDataset[]) {
+  return incoming.map(bank => {
+    const previous = current.find(item => item.id === bank.id);
+    const release = contentReleaseOf(bank);
+    if (!previous || !release || !sameContentRelease(previous, release)
+      || bank.access?.membershipActive !== true || previous.access?.membershipActive !== true) return bank;
+    return { ...bank, categories: bank.categories.map(category => {
+      const old = previous.categories.find(item => item.id === category.id);
+      return { ...category, topics: category.topics.map(topic => {
+        const loaded = old?.topics.find(item => item.id === topic.id);
+        return loaded && loaded.cards.length > topic.cards.length
+          ? { ...topic, cards: loaded.cards, access: topic.access ? { ...topic.access, availableCardCount: loaded.cards.length } : undefined }
+          : topic;
+      }) };
+    }) };
+  });
 }

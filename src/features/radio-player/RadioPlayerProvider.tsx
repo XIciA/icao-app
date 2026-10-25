@@ -23,7 +23,7 @@ import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
 import { deriveRadioCatalogs, getEmbeddedRadioCatalogs, loadRadioCatalogDatasets } from './catalog.native';
-import { hydrateRadioCatalogTopic, nextRadioCatalogTopic } from './catalog-hydration.native';
+import { mergeRadioCatalogProgress, hydrateRadioCatalogTopic, nextRadioCatalogTopic } from './catalog-hydration.native';
 import { reportRadioFailure, radioCanRetry, radioErrorMessage, withRadioTimeout } from './operation-coordinator';
 import { clampRadioInterval } from './radio-interval';
 import {
@@ -324,6 +324,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
 
   const resolveTrack = useCallback(async (track: RadioTrack, forceRefresh = false, isCurrent: () => boolean = () => true): Promise<NativeRadioContentTrack> => {
     const request = generation.current;
+    if (track.contentLoaded === false) {
+      const hydrated = await hydrateTrackTopic(track);
+      if (request !== generation.current || !isCurrent()) throw new Error('content_request_cancelled');
+      if (hydrated.track?.id !== track.id || !hydrated.track.audioPath) throw new Error('radio_topic_unavailable');
+      track = hydrated.track;
+    }
     const local = resolveQuestionBankAsset(track.audioPath);
     const remote = await withRadioTimeout(resolveRemoteQuestionBankAsset(track.audioPath, { forceRefresh, preferDownloaded: true, isCurrent: () => request === generation.current && isCurrent() }));
     const uri = remote ?? local;
@@ -341,7 +347,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       radioTrackKind: 'content',
       radioGeneration: request,
     };
-  }, []);
+  }, [hydrateTrackTopic]);
 
   const chooseUpcoming = useCallback(async (catalog: RadioCatalog, track: RadioTrack, currentMode: RadioPlaybackMode, currentShuffle: ShuffleState) => {
     if (currentMode === 'repeatOne') return track;
@@ -505,6 +511,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     setCatalogError(undefined);
     const publish = (datasets: QuestionBankDataset[]) => {
       if (!active || catalogHydrationGeneration.current !== requestGeneration) return;
+      datasets = mergeRadioCatalogProgress(datasets, catalogDatasetOwner.current === owner ? catalogDatasets.current : []);
       catalogDatasetOwner.current = owner;
       catalogDatasets.current = datasets;
       const next = deriveRadioCatalogs(datasets, selectionRef.current);

@@ -52,7 +52,7 @@ assert.match(nativeRadioCatalog, /loadRadioCatalogDatasets/u);
 // Directory text expands through the existing authorized repository only after
 // the radio session opens; app startup still retrieves public metadata only.
 assert.match(nativeRadioCatalog, /if \(!options\.complete\) return scoped/u);
-assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner, publish, options\.bankId\)/u);
+assert.match(nativeRadioCatalog, /hydrateRadioCatalogDatasets\(scoped, assertOwner, publish, options\.getPriorityBankId \?\? options\.bankId\)/u);
 assert.match(nativeRadioProvider, /complete: sessionVisible/u);
 assert.match(nativeRadioHydration, /membershipActive === true/u);
 assert.match(nativeRadioHydration, /Math\.min\(3, work\.length\)/u);
@@ -73,6 +73,16 @@ const expectedFreeCounts = sourceBanks.map(bank => {
 });
 assert.deepEqual(publicBanks.map(bank => countCards([bank])), expectedFreeCounts);
 assert.equal(countCards(sourceBanks), 10_900);
-assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 1_000_000);
+// Full navigation metadata adds labels/durations for all playable positions,
+// while protected text and media remain absent. Keep the expanded bundle bounded.
+for (const bank of publicBanks) {
+  const source = sourceBanks.find(item => item.id === bank.id);
+  for (const category of bank.categories) for (const topic of category.topics) {
+    const original = source.categories.find(item => item.id === category.id).topics.find(item => item.id === topic.id);
+    assert.deepEqual(topic.radioEntries, original.cards.filter(card => !card.retired && card.kind !== 'image' && card.audio).map(card => ({ id: card.id, title: card.taskTitle ?? '', durationSeconds: card.audioDurationSeconds ?? 0 })));
+    for (const entry of topic.radioEntries) assert.deepEqual(Object.keys(entry).sort(), ['durationSeconds', 'id', 'title']);
+  }
+}
+assert.ok(readFileSync(resolve(root, 'src/features/question-bank/data/question-bank-public.json')).byteLength < 2_000_000);
 
 console.log('native_content_access_boundary_ok');
