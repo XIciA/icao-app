@@ -1,3 +1,4 @@
+import { commerceContentAccessSnapshot, subscribeCommerceEntitlementChanges } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { normalizeStudyScope } from '@icao/contracts';
 import { useProfile } from '@/features/account/profile-store.native';
 import { scopeDataset } from '@/features/question-bank/lib/study-scope';
@@ -121,6 +122,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const selection = useMemo(() => ({ scope: normalizeStudyScope(profile.studyScope), target: profile.target }), [profile.studyScope, profile.target]);
   const selectionRef = useRef(selection); selectionRef.current = selection;
   const embeddedCatalogs = useMemo(() => getEmbeddedRadioCatalogs(selection), [selection]);
+  const contentAccessSnapshot = useSyncExternalStore(subscribeCommerceEntitlementChanges, commerceContentAccessSnapshot, commerceContentAccessSnapshot);
   const [catalogs, setCatalogs] = useState(embeddedCatalogs);
   const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState<string>();
@@ -515,7 +517,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       active = false;
       if (catalogHydrationGeneration.current === requestGeneration) catalogHydrationGeneration.current += 1;
     };
-  }, [auth.restoring, auth.session, bankId, catalogRetry, commerceEnvironmentSnapshot, selection, sessionVisible]);
+  }, [auth.restoring, auth.session, bankId, catalogRetry, commerceEnvironmentSnapshot, contentAccessSnapshot, selection, sessionVisible]);
 
   useEffect(() => {
     if (auth.restoring) return;

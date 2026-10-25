@@ -1,8 +1,9 @@
 import { NavigationContext } from '@react-navigation/native';
+import { radii } from '@/theme';
 import type { GuideId } from './guide-flows';
 import { GuideScrollContext } from './guide-scroll-context';
 import { createContext, useContext, useEffect, useLayoutEffect, useId, useRef, useCallback, useState, type PropsWithChildren, type ReactNode, type RefObject } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 export type GuidePrompt = { identity?: string; target: string; title?: string; text: string; index: number; total: number; next?: () => void; nextLabel?: string; skip: () => void; exit: () => void; error?: string; reading?: boolean; interactive?: boolean; activity?: 'waiting' | 'unavailable'; transitioning?: boolean };
 export type GuideCheckpoint = { vocabBooks?: string[]; vocabWord?: string; recapEmpty?: boolean; recordsEmpty?: boolean };
@@ -14,7 +15,7 @@ export type GuideBinding = {
   availability: (key: string, module: GuideId, message?: string, kind?: 'waiting' | 'unavailable') => void;
   register: (key: string, id: string, layer: string, node: View | null) => void;
   modal: (id: string, open: boolean) => void;
-  surface: (layer: string, backdrop?: RefObject<View | null>) => ReactNode;
+  surface: (layer: string, backdrop?: RefObject<View | null>, backdropOnly?: boolean) => ReactNode;
   offer: (id: GuideId, steps: string[]) => void;
   exit: () => void;
   start: (id: string, restart?: boolean) => Promise<void>;
@@ -65,6 +66,17 @@ export function GuideModalScope({ children, visible, backdrop }: PropsWithChildr
   const guide = useGuide(); const id = useId(); const modal = guide?.modal;
   useLayoutEffect(() => { if (visible) modal?.(id, true); return () => modal?.(id, false); }, [id, modal, visible]);
   return <LayerContext.Provider value={id}>{children}{visible ? (backdrop ? guide?.surface(id, backdrop) : guide?.surface(id)) : null}</LayerContext.Provider>;
+}
+
+/** The sheet's mask shares its native transform and clipping, so it cannot lag
+ * behind the panel or darken an already dimmed portion of the underlying page. */
+export function GuideSheetBackdrop() {
+  const guide = useGuide();
+  const layer = useContext(LayerContext);
+  if (Platform.OS === 'web') return null;
+  return <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { overflow: 'hidden', borderTopLeftRadius: radii.xxxl, borderTopRightRadius: radii.xxxl }]}>
+    {guide?.surface(layer, undefined, true)}
+  </View>;
 }
 
 /** An unavailable real feature must remain operable without recording a fake completion. */

@@ -52,13 +52,46 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
   useGuideConfirmation('export-scope', !!data && count > 0);
   useGuideAvailability('export', error ? '导出暂未成功，请在页面重试，也可以跳过教学。已有学习记录会保留。' : data && !count ? '当前条件没有可导出的句子，请调整范围或筛选，也可以跳过教学。' : undefined);
   function toggleLevel(level:string){setOptions(current=>({...current,levels:current.levels.includes(level)?current.levels.filter(l=>l!==level):[...current.levels,level]}));}
-  async function generate(){if(!data||busy||generating.current)return;generating.current=true;const controller=new AbortController();generationAbort.current=controller;setBusy(true);setError('');try{assertLearningWriteContext(context);
-    const result=await generateSentencesPdf(data.rows,options,data.annotations,await exportFontBytes(),new Date(),{signal:controller.signal});assertLearningWriteContext(context);
-    if(controller.signal.aborted || !active.current)return;
-    const uri=await storePdf(result.bytes);if(!active.current){releasePdf(uri);return;}outputUri.current=uri;setOutput({uri,pages:result.pageCount,count:result.sentenceCount});guide?.event('export-generate');
-  }catch{if(active.current)setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');}finally{generating.current=false;if(active.current)setBusy(false);}}
+  function cancelGeneration() {
+    const controller = generationAbort.current;
+    if (!controller || !generating.current) return;
+    controller.abort();
+    generationAbort.current = undefined;
+    generating.current = false;
+    setBusy(false);
+    setError('');
+  }
+  async function generate() {
+    if (!data || busy || generating.current) return;
+    const controller = new AbortController();
+    generationAbort.current = controller;
+    generating.current = true;
+    setBusy(true); setError('');
+    const current = () => active.current && !controller.signal.aborted && generationAbort.current === controller;
+    try {
+      assertLearningWriteContext(context);
+      const font = await exportFontBytes();
+      if (!current()) return;
+      const result = await generateSentencesPdf(data.rows, options, data.annotations, font, new Date(), { signal: controller.signal });
+      if (!current()) return;
+      assertLearningWriteContext(context);
+      const uri = await storePdf(result.bytes);
+      if (!current()) { releasePdf(uri); return; }
+      try { assertLearningWriteContext(context); } catch (cause) { releasePdf(uri); throw cause; }
+      outputUri.current = uri;
+      setOutput({ uri, pages: result.pageCount, count: result.sentenceCount });
+      guide?.event('export-generate');
+    } catch {
+      if (current()) setError('PDF 生成失败，请重试。学习笔记和进度不会受到影响。');
+    } finally {
+      if (generationAbort.current === controller) {
+        generating.current = false;
+        if (active.current) setBusy(false);
+      }
+    }
+  }
   async function open(action:()=>Promise<void>,message:string){if(busy)return;setBusy(true);setError('');try{assertLearningWriteContext(context);await action();}catch{if(active.current)setError(message);}finally{if(active.current)setBusy(false);}}
-  const back = useLocalBack(true, ()=>{if(busy)return;if(output){setError('');releasePdf(output.uri);outputUri.current=undefined;setOutput(undefined);}else onBack();});
+  const back = useLocalBack(true, ()=>{if(generating.current)cancelGeneration();else if(busy)return;if(output){setError('');releasePdf(output.uri);outputUri.current=undefined;setOutput(undefined);}else onBack();});
   const filters = {all:'全部句子',learned:'已学习句子',annotated:'有标注句子'};
   const tagLabels = data?.annotations.tagDefinitions.filter(tag => options.tagIds.includes(tag.id)).map(tag => tag.label).join('、') || '不限标签';
   return <Screen contentStyle={styles.screen} header={<TopBar title={output?'我的900句 PDF':'导出900句'} onBack={back}/>}>
@@ -75,7 +108,7 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
         <AppText variant="caption">所选等级合并导出。英文原文始终保留，高亮、标签和笔记可独立选择。</AppText>
       </>}
     </GuideScrollView>
-    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><Button guideId="export-generate" accessibilityLabel={busy ? '正在生成 PDF…' : '生成 PDF'} accessibilityState={{ busy }} loading={busy} disabled={!data||!count||busy} onPress={()=>void generate()}>{busy?'正在生成 PDF…':'生成 PDF'}</Button></View>:null}
+    {!output?<View style={[styles.dock,{paddingBottom:Math.max(insets.bottom,spacing[4])}]}><View style={styles.row}><AppText variant="caption">{data?`将导出 ${count} 句`:'正在读取可导出的句子…'}</AppText><AppText variant="micro">PDF · A4</AppText></View><View><GuideAnchor id="export-generate" />{busy ? <View style={styles.exportProgress}><AppText accessibilityLiveRegion="polite" variant="caption">正在导出，请稍等…</AppText><Button variant="ghost" onPress={cancelGeneration}>取消导出</Button></View> : <Button disabled={!data||!count} onPress={()=>void generate()}>生成 PDF</Button>}</View></View>:null}
     <BottomSheet visible={!!picker} onClose={()=>setPicker(undefined)} accessibilityLabel={picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}>
       <View style={styles.section}><GuideAnchor id={picker==='levels'?'export-levels':picker==='language'?'export-translation':'export-scope'} /><AppText variant="sectionTitle">{picker==='levels'?'导出范围':picker==='filter'?'选择句子':picker==='language'?'导出语言':'匹配标签'}</AppText>
         {picker==='levels'?<><Button variant="ghost" onPress={()=>{setOptions(current=>({...current,levels:dataset.categories.map(c=>c.name)}));}}>全选</Button>{dataset.categories.map(c=><Option key={c.id} label={c.name} selected={options.levels.includes(c.name)} onPress={()=>toggleLevel(c.name)}/>)}</>:null}
@@ -91,6 +124,7 @@ export function SentenceExportScreen({dataset,onBack}:{dataset:QuestionBankDatas
 function Option({label,selected,onPress,guideId}:{label:string;selected:boolean;onPress:()=>void;guideId?:string}){return <Pressable accessibilityRole="checkbox" accessibilityState={{checked:selected}} onPress={onPress} style={styles.row}>{guideId ? <GuideAnchor id={guideId} /> : null}<AppText>{label}</AppText>{selected?<Check size={20} color={colors.primary}/>:<View style={{width:20}}/>}</Pressable>;}
 const styles=StyleSheet.create({
   screen:{paddingHorizontal:0},content:{padding:spacing[5],gap:spacing[5]},section:{gap:spacing[3]},
+  exportProgress:{flexDirection:'row',alignItems:'center',justifyContent:'space-between',minHeight:44,gap:spacing[2]},
   dock:{borderTopWidth:1,borderTopColor:colors.border,paddingHorizontal:spacing[5],paddingTop:spacing[3],gap:spacing[2]},
   row:{flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:spacing[3],paddingVertical:spacing[2],minHeight:44},
   chips:{flexDirection:'row',gap:spacing[2],paddingVertical:spacing[4]},chip:{flex:1,minHeight:44,borderWidth:1,borderColor:colors.border,borderRadius:radii.md,flexDirection:'row',alignItems:'center',justifyContent:'center',gap:spacing[2]},selected:{backgroundColor:colors.primary08,borderColor:colors.primary20},

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type PropsWithChildren, type 
 import { Animated, Easing, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useGuide } from '@/features/usage-guide/GuideBindings';
+import { GuideSheetBackdrop, useGuide } from '@/features/usage-guide/GuideBindings';
 import { AppModal } from '@/components/platform/AppModal';
 import { useLastVisibleValue } from '@/components/platform/useLastVisibleValue';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
@@ -59,6 +59,7 @@ export function BottomSheet({ visible, onClose, onClosed, children, footer, scro
             <View style={[styles.scrollContent, styles.scrollInner]}>{content.children}</View>
           )}
           {content.footer ? <View style={styles.footer}>{content.footer}</View> : null}
+          <GuideSheetBackdrop />
         </Animated.View>
       </View>
     </AppModal>

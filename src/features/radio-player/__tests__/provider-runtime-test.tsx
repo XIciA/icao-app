@@ -336,3 +336,16 @@ it('keeps playing, pause and timeline available while directory hydration is sti
   expect(mockContext.catalogLoading).toBe(false);
   await view.unmount();
 });
+
+it('refreshes radio content on same-account membership activation without waiting for relogin',async()=>{
+ const {beginCommerceEntitlementGeneration,publishCommerceEntitlementChange,resetCommerceEntitlementEventsForTests}=jest.requireActual('@/features/native-commercial-testflight/commerce-entitlement-events') as typeof import('@/features/native-commercial-testflight/commerce-entitlement-events');
+ resetCommerceEntitlementEventsForTests();mockLoadCatalogs.mockClear();
+ const owner=beginCommerceEntitlementGeneration('user-a');
+ const view=await render(<RadioPlayerProvider><Observer/></RadioPlayerProvider>);await flush();
+ const before=mockLoadCatalogs.mock.calls.length;
+ await act(()=>{publishCommerceEntitlementChange({...owner,reason:'purchase',snapshot:{serverTime:'2026-10-25T01:00:00Z',membership:{active:true,expiresAt:'2027-01-01T00:00:00Z'}} as never});});await flush();
+ expect(mockLoadCatalogs.mock.calls.length).toBe(before+1);
+ await act(()=>{publishCommerceEntitlementChange({...owner,reason:'manual-refresh',snapshot:{serverTime:'2026-10-25T01:01:00Z',membership:{active:true,expiresAt:'2027-01-01T00:00:00Z'}} as never});});await flush();
+ expect(mockLoadCatalogs.mock.calls.length).toBe(before+1);
+ await view.unmount();resetCommerceEntitlementEventsForTests();
+});

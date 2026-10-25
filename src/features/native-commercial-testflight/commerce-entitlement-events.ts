@@ -58,6 +58,17 @@ export function commerceEntitlementSnapshotVersion() {
     : `none:${activeGeneration}:${revision}`;
 }
 
+/** Reload protected content only when its access changes, not on every balance
+ * or heartbeat refresh. Ownership remains part of the identity. */
+export function commerceContentAccessSnapshot() {
+  const current = snapshot;
+  return current ? JSON.stringify([
+    current.accountId, current.environment, current.generation,
+    current.snapshot?.membership.active ?? null,
+    current.snapshot?.membership.expiresAt ?? null,
+  ]) : 'none';
+}
+
 export function subscribeCommerceEntitlementChanges(
   listener: CommerceEntitlementChangeListener,
 ) {

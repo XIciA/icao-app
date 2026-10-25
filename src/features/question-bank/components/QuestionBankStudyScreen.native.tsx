@@ -1,3 +1,4 @@
+import { listeningAnswerResults } from '../lib/listening-answer-results';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { useRouter as useExitRouter } from 'expo-router';
 import { answerCardMarkers } from '../annotations/answer-card-markers.native';
@@ -538,6 +539,9 @@ function StudyContent(props: Props) {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
     return definition ? [annotationToneColors[definition.color]] : [];
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
+  const answerCardResults = useMemo(() => examMode ? undefined : listeningAnswerResults(
+    session.items, item => session.states[item.id],
+  ), [examMode, session.items, session.states]);
   const cardMarkers = useMemo(() => answerCardMarkers(session.items, annotations.store), [session.items, annotations.store]);
   const answerCardTagColors = cardMarkers.map(value => value.tags);
   const answerCardHighlightColors = cardMarkers.map(value => value.highlights);
@@ -849,7 +853,7 @@ function StudyContent(props: Props) {
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet highlightColors={answerCardHighlightColors} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={session.learnedIndexes} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} visible={!examMode && answerCardVisible} />
+      <AnswerCardSheet results={answerCardResults} highlightColors={answerCardHighlightColors} tagColors={answerCardTagColors} current={navigationCurrentIndex} marked={session.learnedIndexes} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(navigationStartIndex + index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={navigationItemCount} visible={!examMode && answerCardVisible} />
       <BottomSheet accessibilityLabel="查词结果" onClosed={() => { if (pendingFavoriteTeaching.current) { pendingFavoriteTeaching.current = false; if (guide?.current === 'study' && guide.step === 'study-favorite') guide.event('study-favorite'); } else if (guide?.current === 'study' && guide.step === 'study-favorite') guide.rewind?.('study-lookup'); }} onClose={() => setLookup(undefined)} scrollable={false} visible={lookupAllowed && Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>
