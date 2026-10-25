@@ -1,3 +1,4 @@
+import { migrateVocabularyDocument } from '@icao/contracts';
 import Storage from '@/platform/storage';
 
 import type { VocabularyState, VocabularyTestResult, VocabularyWordProgress, VocabularyWordStatus } from './types';
@@ -34,7 +35,7 @@ function normalizeTestResult(value: unknown): VocabularyTestResult | undefined {
   return { ...result, completedAt: validDate(result.completedAt) };
 }
 
-export function normalizeVocabularyState(value: unknown): VocabularyState {
+export function normalizeVocabularyState(value: unknown, migrate = true): VocabularyState {
   if (!value || typeof value !== 'object') return createEmptyVocabularyState();
   const candidate = value as Partial<VocabularyState>;
   const words: Record<string, VocabularyWordProgress> = {};
@@ -45,18 +46,19 @@ export function normalizeVocabularyState(value: unknown): VocabularyState {
     }
   }
   const lastTest = normalizeTestResult(candidate.lastTest);
-  return {
+  const state: VocabularyState = {
     schemaVersion: 1,
     words,
     ...(lastTest ? { lastTest } : {}),
     updatedAt: validDate(candidate.updatedAt),
   };
+  return migrate ? migrateVocabularyDocument(state) : state;
 }
 
-export async function readVocabularyState() {
+export async function readVocabularyState({ migrate = true }: { migrate?: boolean } = {}) {
   const raw = await Storage.getItem(VOCABULARY_STORAGE_KEY);
   if (!raw) return createEmptyVocabularyState();
-  try { return normalizeVocabularyState(JSON.parse(raw)); } catch { return createEmptyVocabularyState(); }
+  try { return normalizeVocabularyState(JSON.parse(raw), migrate); } catch { return createEmptyVocabularyState(); }
 }
 
 export async function replaceVocabularyStateFromSync(value: unknown) {

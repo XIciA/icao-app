@@ -15,6 +15,10 @@ def collect():
     for book in json.loads((ROOT/'content/vocabulary/dataset.json').read_text())['books']:
         for word in book['words']:
             texts.update(normalize(word[k]) for k in ('word', 'example') if word.get(k))
+    unified = ROOT/'content/vocabulary/three-books/source.json'
+    if unified.exists():
+        for word in json.loads(unified.read_text())['entries']:
+            texts.update(normalize(text) for text in (word['word'], word.get('pronunciationText', word['word']), word['example']))
     core = ROOT/'content/vocabulary/question-bank-core/source.json'
     if core.exists():
         for word in json.loads(core.read_text())['entries']:

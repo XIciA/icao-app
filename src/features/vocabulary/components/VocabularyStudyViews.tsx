@@ -9,7 +9,6 @@ import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 
 import { isWordFavorite } from '../favorites';
-import { vocabularyFrequencyBadge } from '../frequency';
 import { progressFor } from '../progress-store';
 import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
 import type { VocabularyState, VocabularyWord, VocabularyWordStatus } from '../types';
@@ -87,13 +86,10 @@ export function VocabularyStudyView({
         </Pressable>
       </View>
       <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>
+      <View style={styles.frequencyRow}><VocabularyFrequency compact key={word.id} word={word} /></View>
       <ScrollView contentContainerStyle={styles.studyContent} showsVerticalScrollIndicator={false}>
         <View style={styles.wordCenter}>
-          <View style={styles.wordHeading}>
-            {vocabularyFrequencyBadge(word.frequency) ? <View style={styles.frequencyReserve} /> : null}
-            <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
-            {vocabularyFrequencyBadge(word.frequency) ? <View pointerEvents="none" style={styles.frequencyReserve}><VocabularyFrequency compact key={word.id} word={word} /></View> : null}
-          </View>
+          <AppText accessibilityRole="header" style={styles.studyWord} variant="pageTitle">{word.word}</AppText>
           <Pressable accessibilityLabel={`播放${word.word}发音`} accessibilityState={{ busy: speechLoading }} disabled={speechLoading} onPress={playWord} style={styles.sound}><GuideAnchor id="vocab-speech" />{speechLoading ? <AppText variant="micro">加载中</AppText> : <Volume2 color={colors.primary} size={20} />}</Pressable>
           {revealed ? (
             <View style={styles.reveal}><GuideAnchor id="vocab-meaning" />
@@ -181,10 +177,7 @@ const styles = StyleSheet.create({
   studyContent: { flexGrow: 1, padding: spacing[5] },
   wordCenter: { alignItems: 'center', flex: 1, gap: spacing[4], justifyContent: 'center', minHeight: 430 },
   studyWord: { flexShrink: 1, fontSize: 36, lineHeight: 46, textAlign: 'center' },
-  // Equal non-shrinking slots center the word independently of the badge.
-  // Native Yoga percentage absolute offsets do not match CSS shrink-wrap sizing.
-  wordHeading: { alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'center', width: '100%' },
-  frequencyReserve: { width: 76, flexShrink: 0, paddingLeft: spacing[1] },
+  frequencyRow: { alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: spacing[5], paddingTop: spacing[3], minHeight: 40 },
   sound: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
   reveal: { alignItems: 'center', gap: spacing[5], width: '100%' },
   meaning: { fontSize: 20, lineHeight: 30, textAlign: 'center' },

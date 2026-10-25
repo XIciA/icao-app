@@ -1,3 +1,4 @@
+import { migrateVocabularyDocument } from '@icao/contracts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { enqueueVocabularyDocument } from '@/features/sync/learning-sync';
@@ -27,9 +28,10 @@ let mutationQueue = Promise.resolve();
 async function mutateVocabularyState(updater: (state: VocabularyState) => VocabularyState) {
   let result = createEmptyVocabularyState();
   const next = mutationQueue.catch(() => undefined).then(async () => {
-    const current = await readVocabularyState();
+    const original = await readVocabularyState({ migrate: false });
+    const current = migrateVocabularyDocument(original);
     const updated = updater(current);
-    if (updated === current) {
+    if (updated === current && current === original) {
       result = current;
       return;
     }

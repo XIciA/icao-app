@@ -851,7 +851,7 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           const batch = nextSyncBatch(outbox);
           const response = await apiRequest<SyncPushResponse>('/v1/sync/push', {
             method: 'POST',
-            headers: { 'content-type': 'application/json' },
+            headers: { 'content-type': 'application/json', 'x-icao-vocabulary-catalog': 'three-books-v3' },
             body: JSON.stringify({
               ownerUserId: expectedUserId,
               cursor: meta.cursor,
@@ -900,7 +900,7 @@ export async function runLearningSync(userId?: string): Promise<LearningSyncStat
           await writeQueue.catch(() => undefined);
           assertSyncIdentity(expectedUserId, epoch);
           mergeSyncProgress(meta, await readMeta());
-          const response = await apiRequest<SyncPullResponse>(`/v1/sync/pull?cursor=${meta.cursor}&ownerUserId=${encodeURIComponent(expectedUserId)}`);
+          const response = await apiRequest<SyncPullResponse>(`/v1/sync/pull?cursor=${meta.cursor}&ownerUserId=${encodeURIComponent(expectedUserId)}`, { headers: { 'x-icao-vocabulary-catalog': 'three-books-v3' } });
           assertSyncIdentity(expectedUserId, epoch);
           await writeQueue.catch(() => undefined);
           assertSyncIdentity(expectedUserId, epoch);

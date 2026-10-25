@@ -37,7 +37,7 @@ export function apiCorsOptions(origins: string[]) {
     origin: origins,
     credentials: false,
     methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match', COMMERCE_ENVIRONMENT_HEADER, 'x-ai-operation-id'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match', COMMERCE_ENVIRONMENT_HEADER, 'x-ai-operation-id', 'x-icao-vocabulary-catalog'],
     maxAge: 86_400,
   };
 }

@@ -949,6 +949,15 @@ describe('API foundation', () => {
     expect(expanded.headers.etag).not.toBe(etag);
     const coreCached = await app.inject({ method: 'GET', url: '/v1/vocabulary?catalog=question-bank-core', headers: { ...headers, 'if-none-match': expanded.headers.etag! } });
     expect(coreCached.statusCode).toBe(304);
+    const unified = await app.inject({ method:'GET',url:'/v1/vocabulary?catalog=three-books-v3',headers:{...headers,'if-none-match':etag!} });
+    expect(unified.statusCode).toBe(200);
+    const modern=unified.json().data.dataset;
+    expect(modern.catalogId).toBe('three-books-v3');
+    expect(modern.books.map((book:{id:string})=>book.id)).toEqual(['preview','icao4','icao5']);
+    expect(modern.books.every((book:{words:{frequency:{scope:string};example:string;pronunciationText:string}[]})=>book.words.length>0&&book.words.every(word=>word.frequency.scope==='question-bank-english-content'&&word.example&&word.pronunciationText))).toBe(true);
+    expect(unified.headers.etag).not.toBe(etag);
+    const modernCached=await app.inject({method:'GET',url:'/v1/vocabulary?catalog=three-books-v3',headers:{...headers,'if-none-match':unified.headers.etag!}});
+    expect(modernCached.statusCode).toBe(304);
     await app.close();
   });
 

@@ -3,7 +3,7 @@ import { accountRouteIdentity, infoRouteIdentity } from '@/components/navigation
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
 import { useGuide } from '@/features/usage-guide/GuideBindings';
 import { GuideTourProvider } from '@/features/usage-guide/GuideTourProvider';
-import { Stack, SplashScreen, usePathname, useGlobalSearchParams, type ErrorBoundaryProps } from 'expo-router';
+import { Stack, SplashScreen, usePathname, useGlobalSearchParams, type ErrorBoundaryProps, type Href } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
@@ -111,7 +111,7 @@ export function AppStack() {
       authRedirectInFlightRef.current = true;
       auth.consumePendingPath();
       // Recovery retains its credential-reset flow; ordinary login opens the banks.
-      router.replace(auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : postLoginDestination(searchParams));
+      router.replace((auth.passwordChangePurpose === 'recovery' ? '/account/password?mode=recovery' : postLoginDestination(searchParams)) as Href);
       return;
     }
     authRedirectInFlightRef.current = false;

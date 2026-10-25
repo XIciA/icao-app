@@ -1,3 +1,4 @@
+import { migrateVocabularyDocument, vocabularyRetiredIds } from '@icao/contracts';
 import { z } from 'zod';
 
 const progressSchema = z.object({
@@ -19,7 +20,7 @@ export const vocabularyDocumentSchema = z.object({
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
   updatedAt: z.string().datetime(),
-});
+}).transform(value => migrateVocabularyDocument(value));
 
 export type VocabularyDocument = z.infer<typeof vocabularyDocumentSchema>;
 
@@ -33,8 +34,19 @@ export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: u
   const current = vocabularyDocumentSchema.parse(currentValue);
   const incoming = vocabularyDocumentSchema.parse(incomingValue);
   const words = { ...current.words };
+  const rawWords = incomingValue && typeof incomingValue === 'object' && 'words' in incomingValue
+    ? incomingValue.words as Record<string, {status?:string}> : {};
+  const unlearnedAliasTargets = new Set(Object.entries(rawWords).flatMap(([id,p]) => {
+    const target=vocabularyRetiredIds[id];
+    return target && p?.status==='new' && !rawWords[target] ? [target] : [];
+  }));
   for (const [wordId, incomingProgress] of Object.entries(incoming.words)) {
-    words[wordId] = newer(words[wordId], incomingProgress)!;
+    const previous=words[wordId];
+    // A newly favorited but unlearned alias must not erase an existing learning fact.
+    // An explicit newer reset on the canonical ID retains the normal LWW behavior.
+    const progress = previous && previous.status!=='new' && incomingProgress.status==='new' && unlearnedAliasTargets.has(wordId)
+      ? {...incomingProgress,status:previous.status} : incomingProgress;
+    words[wordId] = newer(previous, progress)!;
   }
   const currentTest = current.lastTest;
   const incomingTest = incoming.lastTest;

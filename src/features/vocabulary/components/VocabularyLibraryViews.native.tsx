@@ -1,3 +1,5 @@
+import { VocabularyOrderSelector } from './VocabularyOrderSelector';
+import type { VocabularyStudyOrder } from '../study-order';
 import { GuideScrollView } from '@/features/usage-guide/GuideScrollView';
 import { GuideAnchor, useGuide } from '@/features/usage-guide/GuideBindings';
 import {
@@ -53,6 +55,8 @@ const statusTones: Record<VocabularyWordStatus, 'muted' | 'primary' | 'accent' |
 };
 
 export function VocabularyBooksView({
+  order,
+  onOrderChange,
   books,
   selected,
   statsByBook,
@@ -63,6 +67,8 @@ export function VocabularyBooksView({
   onStart,
   onTest,
 }: {
+  order?: VocabularyStudyOrder;
+  onOrderChange?: (order: VocabularyStudyOrder) => void;
   books: VocabularyBook[];
   selected: Set<string>;
   state: VocabularyState;
@@ -116,6 +122,7 @@ export function VocabularyBooksView({
         </View>
       </GuideScrollView>
       <View style={[styles.sticky, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
+        {onOrderChange ? <VocabularyOrderSelector value={order ?? 'frequency'} onChange={onOrderChange} /> : null}
         <Button disabled={!selected.size} leading={<Play color={colors.primaryForeground} size={16} />} guideId="vocab-start" onPress={() => { onStart(); guide?.event('vocab-start'); }} size="lg">开始学习</Button>
       </View>
     </Screen>
@@ -123,6 +130,8 @@ export function VocabularyBooksView({
 }
 
 export function VocabularyBookDetailView({
+  order,
+  onOrderChange,
   book,
   stats,
   onBack,
@@ -130,6 +139,8 @@ export function VocabularyBookDetailView({
   onReset,
   onList,
 }: {
+  order?: VocabularyStudyOrder;
+  onOrderChange?: (order: VocabularyStudyOrder) => void;
   book: VocabularyBook;
   stats: VocabularyBookStats;
   onBack: () => void;
@@ -161,6 +172,7 @@ export function VocabularyBookDetailView({
         <View style={styles.stats}>
           {items.map(([label, value, color]) => <Card key={label} style={styles.stat}><AppText variant="caption">{label}</AppText><AppText color={color} style={styles.statValue} variant="pageTitle">{value}</AppText></Card>)}
         </View>
+        {onOrderChange ? <VocabularyOrderSelector value={order ?? 'frequency'} onChange={onOrderChange} /> : null}
         <Button leading={<Play color={colors.primaryForeground} size={16} />} onPress={onStudy} size="lg">{stats.learned ? '继续学习' : '开始学习'}</Button>
         <Button leading={<List color={colors.foreground} size={16} />} onPress={onList} size="lg" variant="outline">查看单词列表</Button>
         <Button leading={<RotateCcw color={colors.destructive} size={16} />} onPress={confirmReset} size="lg" variant="ghost">重新学习</Button>
