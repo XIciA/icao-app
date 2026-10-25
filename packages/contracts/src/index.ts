@@ -1060,4 +1060,5 @@ export function questionBankRadioEntries(topic: { cards: readonly { id: string; 
     ? [] : [{ id: card.id, title: typeof card.taskTitle === 'string' ? card.taskTitle : '', durationSeconds: typeof card.audioDurationSeconds === 'number' ? card.audioDurationSeconds : 0 }]);
 }
 
-export { migrateVocabularyDocument } from './vocabulary-migration';
+export { migrateVocabularyDocument, vocabularyDocumentForLegacyClient } from './vocabulary-migration';
+export { vocabularyRetiredIds, vocabularyRetiredFavoriteKeys } from './vocabulary-migration-data';

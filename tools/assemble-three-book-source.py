@@ -8,6 +8,7 @@ import json
 import pathlib
 import re
 import unicodedata
+import fcntl
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = ROOT/'content/vocabulary/three-books'
@@ -24,6 +25,9 @@ def chinese(text):
     text = re.sub(r'(?<=[\u4e00-\u9fff]),\s*', '，', text)
     text = re.sub(r'\s*,(?=[\u4e00-\u9fff])', '，', text)
     text = text.replace('(', '（').replace(')', '）')
+    text = re.sub(r'(?<=[\u4e00-\u9fff])/(?=[\u4e00-\u9fff])','、',text)
+    text = re.sub(r'(?<![0-9]):','：',text)
+    text = text.replace('?', '？').replace('!', '！')
     # Unmatched delimiters are dealt with by explicit entry edits, not blindly paired.
     return text.strip()
 
@@ -37,9 +41,8 @@ def main():
     core = json.loads((ROOT/'content/vocabulary/question-bank-core/source.json').read_text())
     inventory = json.loads((BASE/'inventory.json').read_text())
     pool = {e['term']: e for e in inventory['entries']}
+    attested_forms = {f for e in inventory['entries'] for f in e['forms']}
     docs = json.loads((OUT/'documents.json').read_text())
-    old_audit = json.loads((OUT/'all-entries.json').read_text())
-    historical = {(e['kind'], e['term']): e for e in old_audit}
     edits = {row[0]: row[1:] for row in table('legacy-edits.tsv')}
     coverage = {a.lower(): b for a,b,_ in table('coverage.tsv') if a.lower() != b.lower()}
     abbreviations = table('abbreviations.tsv')
@@ -59,7 +62,7 @@ def main():
         return resolve(term).lower()
     entries = {}
     legacy = []
-    suppressed = {'undefined', 'preview-0668', 'preview-0935'}
+    suppressed = set()
     split_terms = set('extend /retract the gear|flight crew/cabin crew|cold (warm) front|radar separation /non-radar separation|throttle up/down|asphyxia/suffocate|electric /air-driven booster pump|LP/HP compressor|main wheel /gear|control stand(surface)|appear down /up|engine runs smoothly /rough|threaten /compel /force'.split('|'))
     advanced = set()
     advanced.update('aerodynamic airframe analog avionics combustible configuration contaminate converge discharge ditch drift exhaust extension fatality flammable fumes hydroplaning hypoxia incapacitation ingestion interference lithium magnetic meteorological occupant parameter phraseology pneumatic pressurization pressurize proximity radial reclear recurrent retraction sensor slat stabilizer static symptom turbine valve variable yaw'.split())
@@ -111,12 +114,13 @@ def main():
     for w in core['entries']:
         term = resolve(w['word'])
         book = 'icao5' if term.lower() in advanced else 'preview' if term.lower() in beginner else 'icao4'
-        e = add(w['word'], book, w['meaning'], w['example'], w['exampleTranslation'], w['frequencyRules']['forms'], w['pronunciationText'], {'type':'core','id':w['id']}, rules=w['frequencyRules'])
+        e = add(w['word'], book, w['meaning'], w['example'], w['exampleTranslation'], w['frequencyRules']['forms'], w['pronunciationText'], {'type':'core','id':w['id']}, old_id=w['id'], rules=w['frequencyRules'])
         legacy.append({'id':w['id'],'word':w['word'],'targetKey':key(w['word']),'action':'merge'})
     for term, book, meaning in table('supplement.tsv'):
         matches = pool.get(term, {})
-        hist = historical.get(('单词', term), {})
-        forms = [term]+list(matches.get('forms', {}))+list(hist.get('forms', {}))
+        forms = [term]+list(matches.get('forms', {}))
+        if term=='midair collision': forms += ['mid-air collision','midair collisions','mid-air collisions']
+        if term=='datalink': forms += ['data link','data-link']
         e = add(term, book, meaning, forms=forms, origin={'type':'supplement','term':term})
         if term.lower() in entries:
             # Explicitly edited technical definition is authoritative for this canonical term.
@@ -126,7 +130,7 @@ def main():
         e = add(abbr, book, meaning+('；英文全称：'+full if full else ''), forms=[abbr]+aka, speech=speech, origin={'type':'abbreviation','term':abbr}, alias=aka)
         e['meaning'] = chinese(meaning+('；英文全称：'+full if full else ''))
         e['pronunciationText'] = speech
-        e['frequencyRules']['caseSensitive'] = True
+        e['frequencyRules']['caseSensitive'] = len(abbr)<3 or abbr in {'CAT','STAR','RAT'}
         e['frequencyRules']['forms'] = sorted(set(e['frequencyRules']['forms']+[abbr+'s']))
     # The legacy source deliberately kept capitalized rows; normalize ordinary lexical heads only.
     known_acronyms = {row[0] for row in abbreviations}|set('APU ACAS BPCU EHSI EGPWS FCU FOD GCU GPU HSI IDG MSA MVA POB RA RPM RVR SSR TA TCAS VFR VNAV VOLMET WXR'.split())
@@ -141,15 +145,36 @@ def main():
         forms = set(e['frequencyRules']['forms'])|{e['word']}|set(e['aliases'])
         if ' ' not in e['word'] and e['word'].upper() not in known_acronyms and len(e['word'])>2:
             forms.update(pool.get(e['word'].lower(), {}).get('forms', {}))
+            stem=e['word'].lower()
+            inflections={stem+'s',stem+'es',stem+'ed',stem+'d',stem+'ing',stem+stem[-1]+'ed',stem+stem[-1]+'ing'}
+            if stem.endswith('e'): inflections.add(stem[:-1]+'ing')
+            if stem.endswith('y'): inflections.update({stem[:-1]+'ies',stem[:-1]+'ied'})
+            forms.update(inflections & attested_forms)
         e['frequencyRules']['forms'] = sorted(forms)
+    # Statistical POS mistakes must not turn a profession/derivative into a verb inflection.
+    for e in entries.values():
+        if e['word']=='dispatch': e['frequencyRules']['forms']=[f for f in e['frequencyRules']['forms'] if f.lower() not in {'dispatcher','dispatchers'}]
+        if e['word']=='bird ingestion': e['meaning']='鸟吸入；发动机吸入鸟类；ingest 为动词，表示吸入，ingestion 为名词，表示吸入过程'
     # Keep new material tied to the current pool; absent optional extras are not invented into the books.
     corpus='\n'.join(d['text'] for d in docs)
+    lower_corpus=corpus.lower()
+    for e in entries.values():
+        # Attested whole-expression plurals, never sums of constituent-word frequencies.
+        if ' ' in e['word'] and not e['word'].isupper():
+            plural=e['word']+'s'
+            if plural.lower() in lower_corpus and re.search(r'(?<![A-Za-z])'+re.escape(plural)+r'(?![A-Za-z])',corpus,re.I):
+                e['frequencyRules']['forms']=sorted(set(e['frequencyRules']['forms']+[plural]))
     skipped=[]
     for k,e in list(entries.items()):
-        split_targets = {key(edits[t][0]) for t in split_terms if t in edits}|set('warm front|non-radar separation|air-driven booster pump|high-pressure compressor|decrease thrust|bird and animal hazard|engine runs smoothly|gear appears up'.split('|'))
+        split_targets = {key(edits[t][0]) for t in split_terms if t in edits}|set('warm front|non-radar separation|air-driven booster pump|high-pressure compressor|decrease thrust|bird and animal hazard|engine runs smoothly|gear appears up|compel'.split('|'))
         if any(o['type'] in {'manual','core'} for o in e['origins']) or k in split_targets: continue
+        covered_roots=[a for a in coverage if resolve(a).lower()==k and a in attested_forms]
+        if covered_roots:
+            e['coveredPoolForms']=covered_roots
+            continue
         pattern=re.compile(r'(?<![A-Za-z])(?:'+'|'.join(re.escape(f) for f in e['frequencyRules']['forms'])+r')(?![A-Za-z])',0 if e['frequencyRules'].get('caseSensitive') else re.I)
-        if not pattern.search(corpus):
+        attested = not e['frequencyRules'].get('caseSensitive') and any(f.lower() in attested_forms for f in e['frequencyRules']['forms'] if ' ' not in f)
+        if not attested and not pattern.search(corpus):
             skipped.append(e['word']);del entries[k]
     for item in legacy:
         if 'targetKey' in item:
@@ -167,6 +192,9 @@ def main():
         if len(ens)==len(zhs) and len(ens)>1:
             pairs.extend((x,y,d) for x,y in zip(ens,zhs) if 12<=len(x)<=220)
     example_edits = {row[0]:row[1:] for row in table('examples.tsv')} if (BASE/'examples.tsv').exists() else {}
+    pair_index={}
+    for index,(en,_,_) in enumerate(pairs):
+        for token in set(re.findall('[a-z0-9]+',en.lower())): pair_index.setdefault(token,set()).add(index)
     unresolved=[]
     for k,e in entries.items():
         override = example_edits.get(e['word'], example_edits.get(k))
@@ -175,22 +203,42 @@ def main():
             if len(override)>2 and override[2]: e['pronunciationText']=override[2]
         pattern = re.compile(r'(?<![A-Za-z])(?:'+ '|'.join(re.escape(f) for f in sorted(e['frequencyRules']['forms'],key=len,reverse=True))+r')(?![A-Za-z])',0 if e['frequencyRules'].get('caseSensitive') else re.I)
         if not e['example'] or not pattern.search(e['example']):
-            choices=[(en,zh,d) for en,zh,d in pairs if pattern.search(en)]
+            candidate_ids=set()
+            for form in e['frequencyRules']['forms']:
+                sets=[pair_index.get(token,set()) for token in re.findall('[a-z0-9]+',form.lower())]
+                if sets: candidate_ids.update(min(sets,key=len))
+            choices=[pairs[i] for i in sorted(candidate_ids) if pattern.search(pairs[i][0])]
             # Prefer concise statements, no callsign fragments or numbered test questions.
             choices.sort(key=lambda x: (bool(re.search(r'^(?:[CPQ]:|Question:)|\b[A-Z]{2,}\d',x[0])),x[0].endswith('?'),abs(len(x[0])-85)))
             if choices:
                 en,zh,d=choices[0];e['example'],e['exampleTranslation']=en,chinese(zh)
                 e['exampleSource']={'bankId':d['bankId'],'cardId':d['cardId'],'field':d['field']}
             else: unresolved.append(e['word'])
-        e['meaning']=e['meaning'].rstrip('。； ')
-        e['exampleTranslation']=e['exampleTranslation'].rstrip('。')+'。' if e['exampleTranslation'] else ''
+        # Match the original three books' direct-definition style; do not mix POS-prefix layouts.
+        e['meaning']=re.sub(r'(?<![A-Za-z])(?:n|v|vt|vi|adj|adv|prep|pron|conj|interj|abbr|num|aux)\.\s*','',e['meaning'])
+        e['meaning']=re.sub(r'^(?:通话用语、状态|动词短语、指令|应答机功能、指令|指令、动词短语|通话用语|动词短语|指令)\s+','',e['meaning'])
+        e['meaning']=e['meaning'].strip('/、 ').rstrip('。； ')
+        if re.match(r'^cat (?:ii|iii)\b',e['word'],re.I): e['word']=re.sub(r'^cat (ii|iii)\b',lambda m:m.group().upper(),e['word'],flags=re.I)
+        e['exampleTranslation']=e['exampleTranslation'].rstrip('。.')+'。' if e['exampleTranslation'] and not e['exampleTranslation'].endswith(('？','！')) else e['exampleTranslation']
     # Last alias deduplication, including acronym expansions introduced after earlier rows.
     for e in entries.values(): e.pop('exactLegacyId',None)
     source={'schemaVersion':1,'version':3,'baseVocabularyChecksum':hashlib.sha256((ROOT/'content/vocabulary/dataset.json').read_bytes()).hexdigest(),'coreSourceChecksum':hashlib.sha256((ROOT/'content/vocabulary/question-bank-core/source.json').read_bytes()).hexdigest(),'corpusVersion':inventory['corpusVersion'],'books':[{k:v for k,v in b.items() if k!='words'} for b in old['books']], 'entries':sorted(entries.values(),key=lambda e:(e['bookId'],e['word'].lower())), 'legacy':legacy}
-    (BASE/'source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2)+'\n')
+    source['editorialChecksums']={name:hashlib.sha256((BASE/name).read_bytes()).hexdigest() for name in ['inventory.json','legacy-edits.tsv','coverage.tsv','supplement.tsv','abbreviations.tsv','examples.tsv']}
+    if unresolved:
+        (OUT/'draft-source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2)+'\n')
+        (OUT/'missing-examples.json').write_text(json.dumps(unresolved,ensure_ascii=False,indent=2)+'\n')
+        print(json.dumps({'missingExamples':unresolved,'publishedSourceUnchanged':True},ensure_ascii=False),flush=True)
+        raise SystemExit(1)
+    temporary=BASE/'source.json.tmp'
+    temporary.write_text(json.dumps(source,ensure_ascii=False,indent=2)+'\n')
+    temporary.replace(BASE/'source.json')
     (OUT/'missing-examples.json').write_text(json.dumps(unresolved,ensure_ascii=False,indent=2)+'\n')
     (OUT/'skipped-absent.json').write_text(json.dumps(skipped,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'entries':len(entries),'books':dict(__import__('collections').Counter(e['bookId'] for e in entries.values())),'missingExamples':unresolved,'skippedAbsent':skipped},ensure_ascii=False),flush=True)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    OUT.mkdir(parents=True,exist_ok=True)
+    with (OUT/'authoring.lock').open('a+') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        main()

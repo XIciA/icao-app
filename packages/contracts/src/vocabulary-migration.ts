@@ -1,8 +1,8 @@
-import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds } from './vocabulary-migration-data';
+import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWordUpdates, vocabularyLegacyIds, vocabularyLegacyFavorites } from './vocabulary-migration-data';
 
 type Progress = { status: 'new' | 'known' | 'vague' | 'forgot' | 'wrong'; favorite: boolean; updatedAt: string };
 type Document = { words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
-const rank: Record<Progress['status'], number> = { known: 0, new: 1, vague: 2, forgot: 3, wrong: 4 };
+const rank: Record<Progress['status'], number> = { new: -1, known: 0, vague: 2, forgot: 3, wrong: 4 };
 
 /** Only explicitly retired resource IDs/keys are touched. Unrelated lookup favorites survive. */
 export function migrateVocabularyDocument<T extends Document>(document: T): T {
@@ -27,14 +27,51 @@ export function migrateVocabularyDocument<T extends Document>(document: T): T {
     }
   }
   let lastTest = document.lastTest;
-  // A test is an internally consistent snapshot: discard it if it references any changed/retired card.
-  // Keep untouched historical tests, scores and dates verbatim.
-  if (lastTest?.answers.some(answer => answer && typeof answer === 'object' && 'wordId' in answer && Object.hasOwn(vocabularyRetiredIds, String(answer.wordId)))) {
+  // Deleted/split cards invalidate the snapshot. Merged cards retain their historical score and dates.
+  if (lastTest?.answers.some(answer => answer && typeof answer === 'object' && 'wordId' in answer && vocabularyRetiredIds[String(answer.wordId)] === null)) {
     lastTest = undefined; changed = true;
+  } else if (lastTest) {
+    const answers = lastTest.answers.map(answer => {
+      if (!answer || typeof answer !== 'object' || !('wordId' in answer)) return answer;
+      const target = vocabularyRetiredIds[String(answer.wordId)];
+      const text = vocabularyTestWordUpdates[String(answer.wordId)];
+      if (!target && (!text || ('word' in answer && answer.word === text.word && 'meaning' in answer && answer.meaning === text.meaning))) return answer;
+      changed = true;
+      return { ...answer, ...(target ? {wordId:target} : {}), ...text };
+    });
+    if (changed) lastTest = { ...lastTest, answers };
   }
   if (!changed) return document;
   const result = { ...document, words };
   if (lastTest) result.lastTest = lastTest;
+  else delete result.lastTest;
+  return result;
+}
+
+/** Response adapter only: storage and merges always use the canonical document. */
+export function vocabularyDocumentForLegacyClient<T extends Document>(value: T): T {
+  const canonical = migrateVocabularyDocument(value);
+  const words: Record<string, Progress> = {};
+  for (const [key, progress] of Object.entries(canonical.words)) {
+    const aliases = key.startsWith('__word_favorite__:v1:') ? vocabularyLegacyFavorites[key] : vocabularyLegacyIds[key];
+    if (aliases) {
+      for (const alias of aliases) words[alias] = progress;
+    } else if (!key.startsWith('v3-')) {
+      // Unknown independent lookup favorites and unrelated historical data are not deleted.
+      words[key] = progress;
+    }
+  }
+  const legacyTestSupported = !canonical.lastTest?.answers.some(answer => answer && typeof answer === 'object' && 'wordId' in answer && String(answer.wordId).startsWith('v3-') && !vocabularyLegacyIds[String(answer.wordId)]);
+  const lastTest = legacyTestSupported && canonical.lastTest ? {
+    ...canonical.lastTest,
+    answers: canonical.lastTest.answers.map(answer => {
+      if (!answer || typeof answer !== 'object' || !('wordId' in answer)) return answer;
+      const id=String(answer.wordId), aliases=vocabularyLegacyIds[id];
+      return aliases ? { ...answer, wordId:aliases.includes(id) ? id : aliases[0] } : answer;
+    }),
+  } : undefined;
+  const result={ ...canonical, words };
+  if (lastTest) result.lastTest=lastTest;
   else delete result.lastTest;
   return result;
 }

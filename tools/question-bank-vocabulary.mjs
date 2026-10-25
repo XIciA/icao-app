@@ -17,7 +17,7 @@ export function compileRule(rule) {
   assert(rule.forms?.length && rule.forms.every(f => typeof f === 'string' && f.trim()), 'frequency_forms_missing');
   const forms = [...new Set(rule.forms.map(f => rule.caseSensitive ? normalizeText(f) : normalizeText(f).toLowerCase()))].sort((a,b) => b.length-a.length || a.localeCompare(b));
   // A hyphenated prefix is part of a word: e.g. non-precision is not precision.
-  const pattern = new RegExp(`(?<![a-z0-9-])(?:${forms.map(f => escape(f).replace(/ /g, '[ -]+')).join('|')})(?![a-z0-9-])`, rule.caseSensitive ? 'g' : 'gi');
+  const pattern = new RegExp(`(?<![A-Za-z0-9-])(?:${forms.map(f => escape(f).replace(/ /g, '[ -]+')).join('|')})(?![A-Za-z0-9-])`, rule.caseSensitive ? 'g' : 'gi');
   const expressions = Object.fromEntries(['includeContext','excludeContext','excludeBefore','excludeAfter'].map(k => [k,(rule[k]??[]).map(p => new RegExp(p,'i'))]));
   return { pattern, expressions };
 }

@@ -1,4 +1,5 @@
 import type { StaticWordLookupEntry } from '@/features/question-bank/static-word-lookup/repository';
+import { vocabularyRetiredFavoriteKeys } from '@icao/contracts';
 
 import type { VocabularyBook, VocabularyState, VocabularyWord, VocabularyWordProgress } from './types';
 
@@ -38,7 +39,10 @@ export function normalizeFavoriteWord(value: string) {
 
 export function favoriteKeyForWord(value: string) {
   const normalized = normalizeFavoriteWord(value);
-  return normalized ? `${WORD_FAVORITE_KEY_PREFIX}${encodeURIComponent(normalized)}` : undefined;
+  if (!normalized) return undefined;
+  const key = `${WORD_FAVORITE_KEY_PREFIX}${encodeURIComponent(normalized)}`;
+  // Lookup aliases and the surviving learning card share a single favorite owner.
+  return vocabularyRetiredFavoriteKeys[key] ?? key;
 }
 
 export function favoriteWordFromKey(key: string) {

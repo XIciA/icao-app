@@ -86,3 +86,35 @@ PPE|icao5|personal protective equipment|个人防护装备|P P E
 IRS|icao5|inertial reference system|惯性基准系统|I R S
 HUD|icao5|head-up display|平视显示器|H U D
 SSR|icao4|secondary surveillance radar|二次监视雷达|S S R
+APU|icao4|auxiliary power unit|辅助动力装置|A P U
+ACAS|icao4|airborne collision avoidance system|机载防撞系统|A C A S
+EGPWS|icao4|enhanced ground proximity warning system|增强型近地警告系统|E G P W S
+FCU|icao4|flight control unit|飞行控制组件|F C U
+GCU|icao4|generator control unit|发电机控制组件|G C U
+GPU|icao4|ground power unit|地面电源装置|G P U
+MSA|icao4|minimum sector altitude|最低扇区高度；具体缩写含义须结合航图及语境|M S A
+MVA|icao4|minimum vectoring altitude|最低引导高度|M V A
+POB|icao4|persons on board|机上人数；机上人员总数|P O B
+RA|icao4|resolution advisory|决断咨询；防撞系统提供的避撞机动指引|R A
+RPM|icao4|revolutions per minute|每分钟转数|R P M
+RVR|icao4|runway visual range|跑道视程|R V R
+TA|preview|traffic advisory|交通咨询；提示附近可能构成威胁的交通|T A
+TCAS|icao4|traffic alert and collision avoidance system|空中交通警戒与防撞系统|T CAS
+VFR|icao4|visual flight rules|目视飞行规则|V F R
+BPCU|icao5|bus power control unit|汇流条电源控制组件|B P C U
+EHSI|icao5|electronic horizontal situation indicator|电子水平状态指示器|E H S I
+FOD|icao5|foreign object debris|外来物碎片；同一缩写也可表示外来物损伤|F O D
+HSI|icao5|horizontal situation indicator|水平状态指示器|H S I
+IDG|icao5|integrated drive generator|整体驱动发电机|I D G
+VNAV|icao4|vertical navigation|垂直导航|V NAV
+VOLMET|preview||向飞行中的航空器提供气象信息的广播|VOLMET
+WXR|preview|weather radar|气象雷达|W X R
+ADS-B|icao5|automatic dependent surveillance-broadcast|广播式自动相关监视|A D S B
+V1|icao4|takeoff decision speed|起飞决断速度|V one
+VR|icao4|rotation speed|抬轮速度|V R
+V2|icao4|takeoff safety speed|起飞安全速度|V two
+VAPP|icao5|approach speed|进近速度|V APP
+VLS|icao5|lowest selectable speed|最小可选速度|V L S
+MTOW|icao5|maximum takeoff weight|最大起飞重量|M T O W
+CCAR|icao5|China Civil Aviation Regulations|中国民用航空规章|C C A R
+FPM|icao4|feet per minute|英尺每分钟；常用于表示升降率|feet per minute

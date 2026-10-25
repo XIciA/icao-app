@@ -22,7 +22,7 @@ left /right/front window heat|window heat|风挡加温|
 main wheel /gear|main landing gear|主起落架|main gear
 meter(dial)|dial|仪表表盘；刻度盘|
 negative contact / not identified|NEGATIVE CONTACT|未建立目视接触；未目视发现目标|
-pull off（|pull over|靠边停车|
+pull off（|pull off|驶离；驶向路边；在道路语境中可表示靠边停车|
 rubbish/garbage/trash|rubbish|垃圾|garbage;trash
 solve out|resolve|解决；消除|
 special flight /state flight|state flight|国家航空器飞行；专机飞行|
@@ -101,7 +101,7 @@ BPCU(bus power control unit)|BPCU (bus power control unit)|汇流条电源控制
 EHSI (electronic horizontal status indicator)|EHSI (electronic horizontal situation indicator)|电子水平状态指示器|
 electric /air-driven booster pump|electric booster pump|电动增压泵|
 FOD (foreign object debris)|FOD (foreign object debris)|外来物碎片；注意同一缩写也可表示外来物损伤|
-gasoline /gas/petrol|gasoline|汽油|petrol;gas
+gasoline /gas/petrol|gasoline|汽油|petrol
 HIS horizontal situation indicator|HSI (horizontal situation indicator)|水平状态指示器|
 IDG(integrated drive generator)|IDG (integrated drive generator)|整体驱动发电机|
 LP/HP compressor|low-pressure compressor|低压压气机|LP compressor
@@ -133,3 +133,9 @@ resume position report|resume position reports|恢复位置报告|
 status of runway|runway condition|跑道状况|
 transmitter blocked|blocked transmission|被阻塞的无线电发话|
 engine feathered|feathered propeller|已顺桨的螺旋桨|
+delays|delay|延误；延迟|
+leading edges|leading edge|前缘|
+airbrakes|airbrake|减速板；空气制动器，具体所指依机型和语境|airbrakes
+autothrottle system|autothrottle system|自动油门系统；autothrust指自动推力控制，具体实现随机型不同|autothrottle;autothrust
+downdraft|downdraft|下沉气流|downdraught
+updraft|updraft|上升气流|updraught

@@ -1,6 +1,6 @@
 import Storage from '@/platform/storage';
 import { apiFetch } from '@/platform/api-client';
-import dataset from '../../../../content/vocabulary/dataset.json';
+import dataset from '../../../../content/vocabulary/three-books/dataset.json';
 import { loadVocabulary } from '../repository.native';
 import { loadResourceEditorial } from '@/features/editorial/repository.native';
 jest.mock('@/platform/api-client', () => ({ getApiBaseUrl: () => 'https://test.invalid', apiFetch: jest.fn() }));

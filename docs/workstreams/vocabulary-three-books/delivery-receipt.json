@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "baseRef": "59c8359976cf7f362fe06096bad58843e4e68b0e",
+  "baseCommit": "59c8359976cf7f362fe06096bad58843e4e68b0e",
+  "preservedFiles": 9773,
+  "newFiles": 1320,
+  "newBytes": 38022432,
+  "manifestChecksum": "0b360ee35f8143ed9d0e513314b9b356fc0a63f325b5405bb1675c17a0ebd295",
+  "catalogChecksum": "5dcbb7b33f1e40d34a0be891dec3c9ad4264e4e2a64be716f8949afb8a704d12",
+  "sourceChecksum": "bc852a125b8a737d90942034fd6302a3c53c71e079b7c24639a18e6c7bfc3e08",
+  "catalog": {
+    "books": {
+      "preview": 379,
+      "icao4": 744,
+      "icao5": 710
+    },
+    "total": 1833,
+    "retainedLegacyIds": 1022,
+    "mergedLegacyIds": 212,
+    "retiredSplitIds": 13
+  },
+  "validation": {
+    "frontendFullSuites": 242,
+    "frontendFullTests": 1692,
+    "apiFullFiles": 71,
+    "apiFullTests": 710,
+    "finalFocusedSuites": 19,
+    "finalFocusedTests": 95,
+    "wholeRootCheck": "frontend passed; initial API type error fixed, independent API check passed; coordinated final run pending",
+    "nativeDevice": "pending coordinated build",
+    "audioUpload": "not performed",
+    "productionDeploy": "not performed"
+  }
+}

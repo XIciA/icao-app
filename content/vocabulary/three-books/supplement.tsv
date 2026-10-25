@@ -205,7 +205,7 @@ chevron|icao5|人字形标志
 occupancy|icao5|占用；使用状态
 practicable|icao4|切实可行的
 prioritize|icao4|优先处理；确定优先顺序
-statute|icao5|成文法；法令
+statute mile|icao5|法定英里；区别于海里
 thermostat|icao5|恒温器
 tubing|icao5|管材；管路
 enforce|icao5|实施；强制执行
@@ -779,3 +779,49 @@ ground control|icao4|地面管制
 emergency services|preview|应急救援服务
 firefighter|preview|消防员
 aircraft fire|preview|航空器火情
+airstream|icao5|气流；流经航空器或部件的空气流
+armrest|preview|扶手
+bandaging|icao5|包扎
+breathalyzer|icao5|呼气酒精检测仪
+datalink|icao5|数据链；以数字数据交换信息的通信链路
+disposition|icao5|处置；性情；倾向，须结合语境区分
+flypast|icao5|低空通场；飞越观察点
+handover|icao4|移交；岗位或责任交接
+hydration|icao5|补水；水合状态
+hygienic|icao5|卫生的；清洁的
+impulsivity|icao5|冲动性；未经充分考虑便采取行动的倾向
+inadvertent|icao5|无意的；非故意的
+jemmy|icao5|撬棍；用撬棍撬开
+lockup|icao5|锁死；卡死
+magenta|icao5|品红色；航电显示中使用的一种颜色
+metering|icao5|计量；流量控制
+midair collision|icao4|空中相撞
+mishandle|icao5|处理不当；操纵不当
+mishear|icao4|听错
+niner|preview|无线电通话中数字9的标准读法
+nosebleed|icao4|鼻出血；流鼻血
+obnoxious|icao5|令人反感的；行为讨厌的
+oxidizer|icao5|氧化剂
+peroxide|icao5|过氧化物
+life raft|icao4|救生筏
+rostering|icao5|排班；编排值勤表
+selector|icao5|选择器；选择开关
+separator|icao5|分离器
+sloppiness|icao5|马虎；疏忽
+spoofing|icao5|欺骗；在导航语境中指发送虚假信号使接收机产生错误定位或授时结果
+teardown|icao5|拆解；拆解检查
+trajectory|icao5|轨迹；运动路径
+tremble|icao4|发抖；颤动
+tricycle landing gear|icao5|前三点式起落架
+underside|icao5|下侧；底面
+underlie|icao5|构成潜在原因；位于下方
+wiring|icao5|电气线路；布线
+throttle lever|icao4|推力杆；油门杆
+seatbelt|preview|安全带
+seat belt|preview|安全带
+liferaft|icao4|救生筏
+compel|icao4|迫使；强迫；force在表示迫使的动词用法中可表达相近含义
+aeromedicine|icao5|航空医学
+multirotor|icao5|多旋翼航空器；多旋翼的
+powerback|icao5|推力倒滑；使用航空器自身反推力向后移动
+misoperation|icao4|误操作；错误操作
