@@ -1,3 +1,4 @@
+import { useSentenceBrowseMode } from '../lib/use-sentence-browse-mode';
 import { contentReleaseOf } from '../data/content-version.native';
 import { sqliteLearningStore } from '../platform/learning-store';
 import { SENTENCE_SCENARIOS, sentenceScenario, sentenceScenarioCount, sentenceScenarioPackage } from '../lib/sentence-scenarios';
@@ -15,6 +16,7 @@ import { SentenceExportScreen } from '../export/SentenceExportScreen';
 
 import {
   Download,
+  SlidersHorizontal,
   Check,
   ChevronDown,
   ChevronRight,
@@ -27,7 +29,7 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } fro
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AppText, Button, Card, Screen } from '@/components/ui';
+import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
@@ -47,7 +49,9 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   const account = useAuth().account?.accountId;
   const owner = useRef(account); owner.current = account;
   const [sceneProgress, setSceneProgress] = useState<Record<string, number>>({});
-  const [sceneMode, setSceneMode] = useState(false);
+  const [sceneMode, setSceneMode] = useSentenceBrowseMode();
+  const [browseMenuVisible, setBrowseMenuVisible] = useState(false);
+  function selectBrowseMode(scene: boolean) { setSceneMode(scene); setBrowseMenuVisible(false); }
   const [scenePackage, setScenePackage] = useState<QuestionBankStudyPackage>();
   const [sceneBusy, setSceneBusy] = useState(false);
   const [sceneError, setSceneError] = useState('');
@@ -136,25 +140,34 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
-        right={dataset.id === 'sentences900' ? <Pressable style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }} accessibilityRole="button" accessibilityLabel="导出900句 PDF" onPress={() => { guide?.event('export-open'); setExporting(true); }}><GuideAnchor id="export-open" /><Download size={21} color={colors.primary}/></Pressable> : undefined}
+        rightWidth={dataset.id === 'sentences900' ? 88 : 44}
+        right={dataset.id === 'sentences900' ? <View style={styles.headerActions}>
+          <Pressable style={styles.headerAction} accessibilityRole="button" accessibilityLabel="900句浏览方式" accessibilityHint={`当前按${sceneMode ? '场景' : '等级'}浏览`} accessibilityState={{ expanded: browseMenuVisible }} onPress={() => setBrowseMenuVisible(true)}><SlidersHorizontal size={21} color={colors.primary} /></Pressable>
+          <Pressable style={styles.headerAction} accessibilityRole="button" accessibilityLabel="导出900句 PDF" onPress={() => { guide?.event('export-open'); setExporting(true); }}><GuideAnchor id="export-open" /><Download size={21} color={colors.primary}/></Pressable>
+        </View> : undefined}
         items={switcherItems}
         onBack={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}
         onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}
         value={dataset.id}
       />
+      <BottomSheet visible={browseMenuVisible} onClose={() => setBrowseMenuVisible(false)} accessibilityLabel="900句浏览方式">
+        {([{ scene: false, title: '按等级' }, { scene: true, title: '按场景' }] as const).map(option => <Pressable key={option.title} accessibilityRole="radio" accessibilityState={{ checked: sceneMode === option.scene }} onPress={() => selectBrowseMode(option.scene)} style={styles.browseOption}>
+          <AppText variant="button" style={{ flex: 1 }} color={sceneMode === option.scene ? colors.primary : colors.foreground}>{option.title}</AppText>
+          {sceneMode === option.scene ? <Check size={18} color={colors.primary} /> : null}
+        </Pressable>)}
+      </BottomSheet>
       <View style={styles.scrollFrame}>
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
           {warning ? <View><AppText>暂时无法更新题库，正在显示本机已有目录，最新内容可能尚未包含。</AppText><Button variant="outline" onPress={onRetry}>重新加载题库</Button></View> : null}
           {progressError ? <View><AppText>学习进度暂时无法读取，记录未被清除。题目仍可学习。</AppText><Button variant="outline" onPress={() => setProgressAttempt(n => n + 1)}>重试读取进度</Button></View> : null}
-          {dataset.id === 'sentences900' ? <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: spacing[2] }}>
-            <Button size="sm" variant={!sceneMode ? 'primary' : 'outline'} onPress={() => setSceneMode(false)}>按等级</Button>
-            <Button size="sm" variant={sceneMode ? 'primary' : 'outline'} onPress={() => setSceneMode(true)}>按场景</Button>
-          </View> : null}
           {sceneError ? <AppText color={colors.destructive}>{sceneError}</AppText> : null}
           {sceneMode && dataset.id === 'sentences900' ? SENTENCE_SCENARIOS.map(scene => {
             const count = sentenceScenarioCount(dataset, scene.id);
             return <Card key={scene.id}><Pressable accessibilityRole="button" disabled={sceneBusy || !count} onPress={() => void openScene(scene.id)} style={styles.categoryHeader}>
-              <View style={styles.categoryCopy}><AppText variant="cardTitle">{scene.name}</AppText><AppText variant="caption">{count} 句 · 已学 {sceneProgress[scene.id] ?? 0}{dataset.access?.membershipActive !== true ? ' · 按当前学习权限开放' : ''}</AppText></View><ChevronRight color={colors.mutedForeground} size={20} />
+              <View style={styles.categoryIcon}><QuestionBankCategoryIcon bankId="sentences900" categoryId={`scenario-${scene.id}`} categoryName={scene.name} /></View>
+              <View style={styles.categoryCopy}><AppText variant="cardTitle">{scene.name}</AppText><AppText variant="caption">{count} 句</AppText></View>
+              <View style={styles.categoryStatus}><View style={styles.countPill}><AppText variant="micro" style={styles.countText} color={sceneProgress[scene.id] ? colors.primary : colors.mutedForeground}>{progressReady ? `${sceneProgress[scene.id] ?? 0}/${count}` : '进度待读取'}</AppText></View></View>
+              <ChevronRight color={colors.mutedForeground} size={20} />
             </Pressable></Card>;
           }) : dataset.categories.map((category) => {
             const singleTopic = category.topics.length === 1 ? category.topics[0] : undefined;
@@ -248,6 +261,9 @@ function CatalogBottomNav({ onNavigate }: { onNavigate: (route: '/(tabs)' | '/(t
 }
 
 const styles = StyleSheet.create({
+  headerActions: { flexDirection: 'row', alignItems: 'center' },
+  headerAction: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+  browseOption: { flexDirection: 'row', alignItems: 'center', minHeight: 56, paddingVertical: spacing[3], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.border },
   screen: { paddingHorizontal: 0 },
   glow: { left: 8, top: -230 },
   scrollFrame: { flex: 1 },

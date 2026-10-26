@@ -13,6 +13,7 @@ jest.mock('expo-router', () => ({
   useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]),
 }));
 jest.mock('react-native-safe-area-context', () => ({
+  SafeAreaProvider: ({ children }: { children: React.ReactNode }) => children,
   SafeAreaView: ({ children }: { children: React.ReactNode }) => children,
   useSafeAreaInsets: () => ({ bottom: 0, left: 0, right: 0, top: 0 }),
 }));
@@ -123,4 +124,21 @@ it('pauses automatic export teaching when returning to the catalog without a rou
  await fireEvent.press(screen.getByLabelText('导出900句 PDF'));
  await fireEvent.press(screen.getByText('关闭测试导出'));expect(pause).toHaveBeenCalledTimes(1);
  expect(screen.getByLabelText('导出900句 PDF')).toBeTruthy();
+});
+
+it('switches sentence browsing from the icon menu while retaining the export action', async () => {
+  const screen = await render(<QuestionBankCatalog dataset={{ ...dataset, id: 'sentences900' }} />);
+  expect(screen.queryByText('按场景')).toBeNull();
+  expect(screen.getByLabelText('导出900句 PDF')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText('900句浏览方式'));
+  await fireEvent.press(screen.getByText('按场景'));
+  expect(screen.getByText('基本通话术语')).toBeTruthy();
+  expect(screen.getByText('其它情况通话术语')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText('900句浏览方式'));
+  expect(screen.getByRole('radio', { name: '按场景' }).props.accessibilityState.checked).toBe(true);
+  await fireEvent.press(screen.getByText('按等级'));
+  expect(screen.queryByText('基本通话术语')).toBeNull();
+  expect(screen.getByText('会员话题')).toBeTruthy();
+  await fireEvent.press(screen.getByLabelText('导出900句 PDF'));
+  expect(screen.getByText('关闭测试导出')).toBeTruthy();
 });
