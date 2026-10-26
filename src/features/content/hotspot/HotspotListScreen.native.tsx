@@ -35,6 +35,7 @@ function HotspotListContent() {
   return (
     <Screen contentStyle={styles.screen} scroll header={<TopBar title="OPI 热点" />}>
       <View style={styles.list}>
+        <Button variant="outline" onPress={() => router.push({ pathname: '/info/[slug]', params: { slug: 'feedback', source: 'opi_hotspot' } })}>提交热点 / 我的记录</Button>
         {warning ? <View><AppText>暂时无法更新热点，正在显示本机已有内容，可能缺少最新考点。请联网后重试。</AppText><Button variant="outline" onPress={() => setAttempt(n => n + 1)}>重新加载热点</Button></View> : null}
         {briefs.length === 0 ? <AppText style={{ padding: spacing[4] }}>暂无热点内容</AppText> : null}
         {briefs.map((brief) => {

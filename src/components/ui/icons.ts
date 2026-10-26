@@ -107,3 +107,6 @@ export { default as Copy } from 'lucide-react-native/icons/copy';
 export { default as Download } from 'lucide-react-native/icons/download';
 
 export { default as SlidersHorizontal } from 'lucide-react-native/icons/sliders-horizontal';
+
+export { default as Radar } from 'lucide-react-native/icons/radar';
+export { default as PlaneLanding } from 'lucide-react-native/icons/plane-landing';

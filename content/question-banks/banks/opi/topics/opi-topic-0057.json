@@ -1,12 +1,12 @@
 {
   "id": "opi-topic-0057",
-  "name": "FCTM",
+  "name": "飞行机组训练手册",
   "cards": [
     {
       "id": "opi-core-630",
       "audio": "/question-bank-assets/revisions/opi/4bfcd4e1eaf17006b5c8399df48a60e17aabd7178487aeb9d5b12ecc2b6fd446/audio/opi/opi-core-630.mp3",
       "audioText": "What information can pilots find in FCTM?",
-      "taskTitle": "缩略词-FCTM-2",
+      "taskTitle": "缩略词-飞行机组训练手册-2",
       "audioTextZh": "飞行员可以在FCTM中找到哪些信息？",
       "referenceText": "Pilots can find general aircraft information, aircraft-system information, ground-operation guidance, and normal and non-normal procedures in the FCTM. It also provides guidance on maneuvers and operating techniques for different phases of flight.",
       "referenceTextZh": "飞行员可以在 FCTM 中找到飞机概述、飞机系统信息、地面运行指导，以及正常和非正常程序。它还为不同飞行阶段的机动和操作技术提供指导。",
@@ -16,7 +16,7 @@
       "id": "opi-core-631",
       "audio": "/question-bank-assets/revisions/opi/7dc053ce2ee485efcc948ec4aafa051b177ff6b598c889fe5c65abe7a070396d/audio/opi/opi-core-631.mp3",
       "audioText": "When do you use FCTM, and can you give an example?",
-      "taskTitle": "缩略词-FCTM-3",
+      "taskTitle": "缩略词-飞行机组训练手册-3",
       "audioTextZh": "你什么时候使用FCTM？能否举例说明？",
       "referenceText": "I use the FCTM during initial and recurrent training, especially in ground school and the simulator. For example, I can study its maneuver guidance to improve an aircraft-handling technique before practising it in the simulator.",
       "referenceTextZh": "我在初始和复训期间使用 FCTM，尤其是在地面课程和模拟机训练中。例如，在模拟机练习前，我可以学习其中的机动指导来改进飞机操纵技术。",
@@ -26,7 +26,7 @@
       "id": "opi-core-629",
       "audio": "/question-bank-assets/revisions/opi/a782fde89ce3dbc945a954b221019d267231bbf1b35043afc65a8b54d04ea5ab/audio/opi/opi-core-629.mp3",
       "audioText": "What is FCTM?",
-      "taskTitle": "缩略词-FCTM-1",
+      "taskTitle": "缩略词-飞行机组训练手册-1",
       "audioTextZh": "什么是FCTM？",
       "referenceText": "The Flight Crew Training Manual is a manufacturer document that explains recommended operating techniques and the reasons behind them. It supports flight and simulator training and helps pilots understand how to apply normal and abnormal procedures. It complements the FCOM, QRH, and company SOPs but does not replace them.",
       "referenceTextZh": "飞行机组训练手册是制造商文件，说明推荐的操作技术及其原理。它支持飞行和模拟机训练，帮助飞行员理解如何应用正常和非正常程序。它是 FCOM、QRH 和公司标准操作程序的补充，但不能取代这些文件。",

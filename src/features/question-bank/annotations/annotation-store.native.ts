@@ -29,7 +29,7 @@ function isObject(value: unknown): value is Record<string, unknown> {
 
 function normalizeHighlight(value: unknown): AnnotationHighlight | undefined {
   if (!isObject(value)) return undefined;
-  if (value.blockId !== 'question' && value.blockId !== 'reference') return undefined;
+  if (value.blockId !== 'question' && value.blockId !== 'reference' && !(typeof value.blockId === 'string' && /^choice-\d+$/.test(value.blockId))) return undefined;
   if (typeof value.wordIndex !== 'number' || !Number.isFinite(value.wordIndex)) return undefined;
   if (typeof value.colorId !== 'string' || !value.colorId) return undefined;
   return {
@@ -66,7 +66,7 @@ function normalizeEntry(value: unknown): QuestionAnnotationEntry | undefined {
 
 export function createEmptyAnnotationStore(): QuestionBankAnnotationStore {
   return {
-    version: 2,
+    version: 2, choiceHighlights: true,
     legacyImported: true,
     tagDefinitions: DEFAULT_ANNOTATION_TAGS,
     highlightDefinitions: DEFAULT_ANNOTATION_HIGHLIGHTS,
@@ -93,7 +93,7 @@ export function normalizeAnnotationStore(value: unknown): QuestionBankAnnotation
     entry.highlights = entry.highlights.filter((h) => highlightDefinitions.some((d) => d.id === h.colorId));
   }
   return {
-    version: 2, deletedDefinitions,
+    version: 2, choiceHighlights: true, deletedDefinitions,
     legacyImported: value.legacyImported === true,
     tagDefinitions,
     highlightDefinitions,

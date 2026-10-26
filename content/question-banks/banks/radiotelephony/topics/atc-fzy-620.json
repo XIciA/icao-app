@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-620",
-  "name": "UAL162 volcanic ash, etc.",
+  "name": "UAL162 · 火山灰",
   "declaredCardCount": 18,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111355",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-1",
+      "taskTitle": "37. UAL162 · 火山灰-1",
       "audioText": "You are at the holding point of runway 04. Call Wuhan Tower, you are ready for takeoff.",
       "audioTextZh": "你在跑道04的等待点。呼叫武汉塔台，你已准备好起飞。",
       "referenceText": "Wuhan Tower, UAL162, ready for departure.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111356",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-2",
+      "taskTitle": "37. UAL162 · 火山灰-2",
       "audioText": "UAL162, Wuhan Tower, behind China Southern B777 on short final, then line up runway 04.[Read Back]",
       "audioTextZh": "美联航162，武汉塔台，跟在短五边南航波音777落地后进跑道04等待。【复诵】",
       "referenceText": "Behind China Southern B777 on short final, then line up runway 04, UAL162.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111357",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-3",
+      "taskTitle": "37. UAL162 · 火山灰-3",
       "audioText": "UAL162, when airborne turn right heading 070 climb and maintain 3000m. Cleared for immediate take-off runway 04.[Read Back]",
       "audioTextZh": "美联航162，离地后右转航向070，上升保持3000米。可以立刻起飞，跑道04。【复诵】",
       "referenceText": "When airborne turn right heading 070 climb and maintain 3000m. Cleared for immediate take-off runway 04, UAL162.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111358",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-4",
+      "taskTitle": "37. UAL162 · 火山灰-4",
       "audioText": "Now you are airborne, and passing 1200m, call Wuhan Departure.",
       "audioTextZh": "飞机已经离地，飞过1200米，呼叫武汉离场。",
       "referenceText": "Wuhan Departure, UAL162, airborne runway 04, passing 1200m.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111359",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-5",
+      "taskTitle": "37. UAL162 · 火山灰-5",
       "audioText": "UAL162, after passing 1200m, turn left direct to ZF.[Read Back]",
       "audioTextZh": "美联航162，通过1200米后左转直飞ZF。【复诵】",
       "referenceText": "After passing 1200m, turn left direct to ZF, UAL162.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111360",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-6",
+      "taskTitle": "37. UAL162 · 火山灰-6",
       "audioText": "After 9 hours flight. Now you are in London control area, maintaining FL350. You have encountered volcanic ash. Tell controller the situation and request descent. Call London Control.",
       "audioTextZh": "飞行9个小时后，你到了伦敦管制区，高度层350保持。你遇到了火山灰，告诉管制员该情况并请求下降。呼叫伦敦区调。",
       "referenceText": "London Control, UAL162, maintaining FL350, we have encountered volcanic ash, request descent.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111361",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-7",
+      "taskTitle": "37. UAL162 · 火山灰-7",
       "audioText": "UAL162, turn right heading 300, descend and maintain FL290.[Read Back]",
       "audioTextZh": "美联航162，右转航向300，下降保持高度层290。【复诵】",
       "referenceText": "Right heading 300, descend and maintain FL290, UAL162.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111362",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-8",
+      "taskTitle": "37. UAL162 · 火山灰-8",
       "audioText": "Tell ATC, you are still in volcanic ash area, both engines are vibrating highly but aircraft can still be controlled.",
       "audioTextZh": "告诉ATC，你仍在火山灰区域，发动机震动剧烈，但飞机仍能控制。",
       "referenceText": "London Control, UAL162, we are still in volcanic ash area, both engines are vibrating highly but aircraft can be still controlled.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111363",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-9",
+      "taskTitle": "37. UAL162 · 火山灰-9",
       "audioText": "During descent, both engines flamed out. Make a distress call and request land at the nearest airport.",
       "audioTextZh": "下降时，发动机全部熄火。做一个遇险呼叫并请求在最近的机场降落。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY. London Control, UAL162. Both engines flame out. Request land at the nearest airport.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111364",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-10",
+      "taskTitle": "37. UAL162 · 火山灰-10",
       "audioText": "UAL162, London Control, roger MAYDAY. Turn right heading 340.[Read Back]",
       "audioTextZh": "美联航162，伦敦区调，收到MAYDAY。右转航向340。【复诵】",
       "referenceText": "Right heading 340, UAL162.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111365",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-11",
+      "taskTitle": "37. UAL162 · 火山灰-11",
       "audioText": "One engine was successfully restarted during descent. Tell ATC the situation.",
       "audioTextZh": "下降时，一侧发动机成功重新起动。告诉ATC这一情况。",
       "referenceText": "London Control, UAL162, one engine was successfully restarted.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111366",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-12",
+      "taskTitle": "37. UAL162 · 火山灰-12",
       "audioText": "UAL162, report intention.[Tell ATC you still need to land at the nearest airport because the running engine is not stable.]",
       "audioTextZh": "美联航162，报告意图。【告诉ATC你仍需要降落在最近的机场，因为重启的发动机运行不稳定。】",
       "referenceText": "We still need to land at the nearest airport due the running engine is not stable, UAL162.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111367",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-13",
+      "taskTitle": "37. UAL162 · 火山灰-13",
       "audioText": "UAL162, continue descend and maintain 9000 feet on QNH 1021, expect to land at Beatle airport.[Tell controller you are not familiar with Beatle airport. Request airport information.]",
       "audioTextZh": "美联航162，继续下降保持修正海压9000英尺，修正海压1021，预计降落在Beatle机场。【告诉管制员你不熟悉该机场。请求提供机场信息。】",
       "referenceText": "Continue descend and maintain 9000 feet QNH 1021, request airport information, UAL162.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111368",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-14",
+      "taskTitle": "37. UAL162 · 火山灰-14",
       "audioText": "UAL162, Beatle airport landing runway 02, elevation 2000ft, runway 3000m long, 45m wide, ILS CAT I and II available.[Tell ATC you are able to land at this airport.]",
       "audioTextZh": "美联航162，Beatle机场使用着陆跑道02，标高2000英尺，跑道长3000米，宽45米，支持一类、二类盲降。【告诉ATC你能降落在这个机场。】",
       "referenceText": "Roger, we can land at this airport, UAL162.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111369",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-15",
+      "taskTitle": "37. UAL162 · 火山灰-15",
       "audioText": "UAL162, continue descend and maintain 5000 feet and contact Beatle Approach 121.3.[Read Back]",
       "audioTextZh": "美联航162，继续下降保持5000英尺，联系Beatle机场进近121.3。【复诵】",
       "referenceText": "Continue descend and maintain 5000 feet and contact Beatle Approach 121.3, UAL162.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111370",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-16",
+      "taskTitle": "37. UAL162 · 火山灰-16",
       "audioText": "Contact Beatle Approach, tell them your emergency situation.",
       "audioTextZh": "联系该机场进近，告诉他们你的紧急状况。",
       "referenceText": "Beatle Approach, UAL162, we have one engine failure, request emergency land.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111371",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-17",
+      "taskTitle": "37. UAL162 · 火山灰-17",
       "audioText": "UAL162, Beatle Approach, roger, runway is at your 2 o'clock, 10 miles, report airfield in sight.[Tell ATC you can see the runway.]",
       "audioTextZh": "美联航162，Beatle进近，收到，跑道在你2点钟方向，距离10海里，能见跑道报告。【告诉ATC你能看到跑道。】",
       "referenceText": "Runway in sight, UAL162.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111372",
-      "taskTitle": "37. UAL162 volcanic ash, etc.-18",
+      "taskTitle": "37. UAL162 · 火山灰-18",
       "audioText": "Tell Approach, you need emergency services to be ready near the runway.",
       "audioTextZh": "告诉进近，跑道附近需要准备好紧急服务。",
       "referenceText": "Beatle Approach, UAL162, we need emergency services to be ready near the runway.",

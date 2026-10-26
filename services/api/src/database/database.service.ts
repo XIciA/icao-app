@@ -5,12 +5,12 @@ import postgres, { type Sql } from 'postgres';
 import { API_CONFIG, type ApiConfig } from '../config';
 import * as schema from './schema';
 
-// This API requires the account, content, AI allowance and payment tables through
-// 0054_bouncy_xavin. Bind startup to the exact migration, not a table-count guess.
-export const MINIMUM_DATABASE_SCHEMA_VERSION = 54;
+// This API requires the feedback source/category expansion in migration 0055.
+// Bind startup to the exact migration, not a table-count guess.
+export const MINIMUM_DATABASE_SCHEMA_VERSION = 55;
 export const MINIMUM_DATABASE_MIGRATION = {
-  createdAt: 1792341387647,
-  hash: 'a2110679084bcffdb7f0396034eb41e45c16848c55547e8f688c41f59d65a2ea',
+  createdAt: 1793020000000,
+  hash: 'b45e81f5b64e6b2cb262cd80c1cb52b3de0f602c1956128217740192460a7913',
 } as const;
 
 @Injectable()

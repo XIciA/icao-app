@@ -364,9 +364,9 @@ function artifactsFromSources(sources, { requireResourceFiles = true } = {}) {
   return { files, stats };
 }
 
-function build() {
+function build({ sourceOnly = false } = {}) {
   const sources = loadSources();
-  const generated = artifactsFromSources(sources);
+  const generated = artifactsFromSources(sources, { requireResourceFiles: !sourceOnly });
   const temporary = `${outputRoot}.tmp`;
   rmSync(temporary, { recursive: true, force: true });
   for (const [path, bytes] of generated.files) {
@@ -430,7 +430,7 @@ function checkSource() {
 
 const [command, ...args] = process.argv.slice(2);
 if (command === 'extract') extract({ force: args.includes('--force') });
-else if (command === 'build') build();
+else if (command === 'build') build({ sourceOnly: args.includes('--source-only') });
 else if (command === 'check') check({ full: args.includes('--full') });
 else if (command === 'check-source') checkSource();
 else if (command === 'sync-durations') syncDurations();

@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-603",
-  "name": "AFR123 passenger stroke, etc.",
+  "name": "AFR123 · 乘客中风",
   "declaredCardCount": 20,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111043",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-1",
+      "taskTitle": "20. AFR123 · 乘客中风-1",
       "audioText": "Your call sign is AFR123, you are holding at holding point A9 runway 36L, you are fully ready. Call Wuhan Tower.",
       "audioTextZh": "你的呼号是法航123，你在跑道36左A9等待点等待，已经准备好。呼叫武汉塔台。",
       "referenceText": "Wuhan Tower, AFR123, holding point A9 runway 36L, request departure.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111044",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-2",
+      "taskTitle": "20. AFR123 · 乘客中风-2",
       "audioText": "AFR123, Wuhan Tower, hold at present position.",
       "audioTextZh": "法航123，武汉塔台，原地等待。",
       "referenceText": "Holding at present position, AFR123.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111045",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-3",
+      "taskTitle": "20. AFR123 · 乘客中风-3",
       "audioText": "AFR123, confirm the traffic in sight on short final?[Tell the controller yes.]",
       "audioTextZh": "法航123，你看到短五边上的波音737了么？【告诉管制员看到了。】",
       "referenceText": "Affirm, traffic in sight, AFR123",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111046",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-4",
+      "taskTitle": "20. AFR123 · 乘客中风-4",
       "audioText": "AFR123, line up behind the B737 on short final.",
       "audioTextZh": "法航123，跟五边波音737后进跑道。",
       "referenceText": "Line up behind the traffic, AFR123.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111047",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-5",
+      "taskTitle": "20. AFR123 · 乘客中风-5",
       "audioText": "AFR123, cleared for takeoff, when airborne, contact Departure 120.2.",
       "audioTextZh": "法航123，可以起飞，起飞后，联系离场120.2。",
       "referenceText": "Cleared for takeoff, airborne 120.2, AFR123.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111048",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-6",
+      "taskTitle": "20. AFR123 · 乘客中风-6",
       "audioText": "You are passing 900m, contact Wuhan Departure, ask whether you can cancel the SID, and proceed direct to LKO.",
       "audioTextZh": "你正在通过900米，联系武汉离场，询问是否可以取消SID，直飞LKO。",
       "referenceText": "Wuhan Departure, AFR123, passing 900m, confirm can cancel SID and direct to LKO.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111049",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-7",
+      "taskTitle": "20. AFR123 · 乘客中风-7",
       "audioText": "AFR123, Wuhan Departure, radar identified, continue climb and maintain 2400m, turn right direct to LKO.",
       "audioTextZh": "法航123，武汉离场，雷达已识别，继续上升保持2400米，右转直飞LKO。",
       "referenceText": "Continue climb and maintain 2400m, turn right direct to LKO. AFR123.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111050",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-8",
+      "taskTitle": "20. AFR123 · 乘客中风-8",
       "audioText": "AFR123, climb and maintain 4500m on standard, contact Wuhan Control 119.7.",
       "audioTextZh": "法航123，上升保持标压4500米，联系武汉区调119.7。",
       "referenceText": "Climbing and maintain 4500m on standard, 119.7, AFR123.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111051",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-9",
+      "taskTitle": "20. AFR123 · 乘客中风-9",
       "audioText": "Your maintain 4500m position is just over LKO time 23, the next way-point is DAPRO, ETA is 34, make the standard position report, and request climb.",
       "audioTextZh": "你保持在4500米，过LKO时间23分，下一个点DAPRO，预计到达时间34分，做标准位置报告，并请求爬升。",
       "referenceText": "Wuhan Control, AFR123, over LKO 23, maintaining 4500m, next DARPO 34, request climb.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111052",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-10",
+      "taskTitle": "20. AFR123 · 乘客中风-10",
       "audioText": "AFR123, Wuhan Control, climb and maintain 5100m, no speed restriction.",
       "audioTextZh": "法航123，武汉区调，上升保持5100米，没有速度限制。",
       "referenceText": "Climb and maintain 5100m, no speed restriction, AFR123.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111053",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-11",
+      "taskTitle": "20. AFR123 · 乘客中风-11",
       "audioText": "During the climb, your port engine separated, tell the controller this situation and you would like to return to land.",
       "audioTextZh": "爬升过程中，左侧发动机分离，告诉管制员这一情况，以及你想返回着陆。",
       "referenceText": "Mayday, Mayday, Mayday, Wuhan Control, AFR123, our left engine falls, request to return to the airport.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111054",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-12",
+      "taskTitle": "20. AFR123 · 乘客中风-12",
       "audioText": "AFR123, Wuhan Control, roger Mayday, descend and maintain 1800m on QNH1012, turn right heading 360.",
       "audioTextZh": "法航123，武汉区调，收到Mayday，下降保持修正海压1800米，修正海压1012，右转航向360。",
       "referenceText": "Descend and maintain 1800m, QNH1012, turn right heading 360. AFR123.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111055",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-13",
+      "taskTitle": "20. AFR123 · 乘客中风-13",
       "audioText": "AFR123, contact Approach 119.85.",
       "audioTextZh": "法航123，联系进近119.85。",
       "referenceText": "119.85, AFR123.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111056",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-14",
+      "taskTitle": "20. AFR123 · 乘客中风-14",
       "audioText": "Your altitude is 1800m, you have information S, contact Approach.",
       "audioTextZh": "飞行高度是1800米，你收到通播S，联系进近。",
       "referenceText": "Wuhan Approach, AFR123, maintaining 1800m, information S.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111057",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-15",
+      "taskTitle": "20. AFR123 · 乘客中风-15",
       "audioText": "AFR123, Wuhan Approach, information Tango valid, descend and maintain 900m, expect radar vectors ILS runway 36L.[Read back and ask to use runway 36R to land due to performance limitations.]",
       "audioTextZh": "法航123，武汉进近，通播T有效，下降保持900米，雷达引导盲降跑道36左。【复诵，由于性能限度，请求降落在跑道36右。】",
       "referenceText": "Descend and maintain 900m, expect radar vectors ILS runway 36L, information Tango. Request runway 36R due performance, AFR123.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111058",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-16",
+      "taskTitle": "20. AFR123 · 乘客中风-16",
       "audioText": "AFR123, approved runway 36R.",
       "audioTextZh": "法航123，同意跑道36右。",
       "referenceText": "Landing runway 36R, AFR123.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111059",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-17",
+      "taskTitle": "20. AFR123 · 乘客中风-17",
       "audioText": "You have just got the information from the cabin that one of your passengers suffered stroke during the incident. Inform the controller and ask for ambulance after landing.",
       "audioTextZh": "你刚收到消息，降落过程中，一名乘客中风。通知管制员并要求到达时提供救护车。",
       "referenceText": "Approach, AFR123, request ambulance after landing, one passenger has suffered stroke.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111060",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-18",
+      "taskTitle": "20. AFR123 · 乘客中风-18",
       "audioText": "AFR123, roger, we will notify airport medical assistance, now turn left heading 330, descend and maintain 600m, cleared ILS approach runway 36R.",
       "audioTextZh": "法航123，收到，我们会通知机场医疗援救，现在左转航向330，下降保持600米，可以盲降进近跑道36右。",
       "referenceText": "Left heading 330, descend and maintain 600m, cleared ILS approach runway 36R. AFR123.",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111061",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-19",
+      "taskTitle": "20. AFR123 · 乘客中风-19",
       "audioText": "Report that you have intercepted the localizer for runway 36R.",
       "audioTextZh": "【报告进近你已切入航道，跑道36右。】",
       "referenceText": "Wuhan Approach, AFR123, we have intercepted the localizer runway 36R.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "radiotelephony-fzy-111062",
-      "taskTitle": "20. AFR123 passenger stroke, etc.-20",
+      "taskTitle": "20. AFR123 · 乘客中风-20",
       "audioText": "AFR123, contact Tower 124.35.",
       "audioTextZh": "法航123，联系塔台124.35。",
       "referenceText": "124.35, AFR123.",

@@ -1,0 +1,847 @@
+[
+  {
+    "id": "opi-fzy-588",
+    "before": "Figure 32",
+    "after": "飞机倒扣事故"
+  },
+  {
+    "id": "opi-topic-0067",
+    "before": "空中相撞与TCAS",
+    "after": "空中相撞与空中防撞系统"
+  },
+  {
+    "id": "opi-fzy-571",
+    "before": "Figure 15",
+    "after": "机坪车辆碰撞"
+  },
+  {
+    "id": "opi-fzy-1677",
+    "before": "1.飞行环境：气象",
+    "after": "飞行环境：气象"
+  },
+  {
+    "id": "opi-fzy-584",
+    "before": "Figure 28",
+    "after": "客舱失压"
+  },
+  {
+    "id": "opi-fzy-838",
+    "before": "Modern cockpit",
+    "after": "现代驾驶舱"
+  },
+  {
+    "id": "opi-fzy-592",
+    "before": "Figure 36",
+    "after": "临海机场进近"
+  },
+  {
+    "id": "opi-fzy-654",
+    "before": "Habits",
+    "after": "生活习惯"
+  },
+  {
+    "id": "opi-fzy-551",
+    "before": "Supplement",
+    "after": "补充话题"
+  },
+  {
+    "id": "opi-fzy-855",
+    "before": "Near miss",
+    "after": "空中接近风险"
+  },
+  {
+    "id": "opi-topic-0006",
+    "before": "CVR与FDR",
+    "after": "驾驶舱话音与飞行数据记录器"
+  },
+  {
+    "id": "opi-fzy-843",
+    "before": "Micro-burst",
+    "after": "微下击暴流"
+  },
+  {
+    "id": "opi-fzy-1682",
+    "before": "6.运行相关",
+    "after": "运行相关"
+  },
+  {
+    "id": "opi-fzy-547",
+    "before": "Topic on Flight Safety",
+    "after": "飞行安全"
+  },
+  {
+    "id": "opi-fzy-546",
+    "before": "Emergency Situations",
+    "after": "紧急情况"
+  },
+  {
+    "id": "opi-fzy-1683",
+    "before": "7.理论学习与飞行训练",
+    "after": "理论学习与飞行训练"
+  },
+  {
+    "id": "opi-fzy-842",
+    "before": "Low visibility operation",
+    "after": "低能见度运行"
+  },
+  {
+    "id": "opi-fzy-854",
+    "before": "Engine fire",
+    "after": "发动机起火"
+  },
+  {
+    "id": "opi-topic-0007",
+    "before": "CRM与机组协作",
+    "after": "机组资源管理与协作"
+  },
+  {
+    "id": "opi-fzy-550",
+    "before": "English Learning",
+    "after": "英语学习"
+  },
+  {
+    "id": "opi-fzy-655",
+    "before": "Season",
+    "after": "季节"
+  },
+  {
+    "id": "opi-fzy-593",
+    "before": "Figure 37",
+    "after": "爆炸物威胁"
+  },
+  {
+    "id": "opi-fzy-585",
+    "before": "Figure 29",
+    "after": "前起落架异常着陆"
+  },
+  {
+    "id": "opi-fzy-839",
+    "before": "Engine problems",
+    "after": "发动机损伤"
+  },
+  {
+    "id": "opi-fzy-858",
+    "before": "Emergency evacuation",
+    "after": "紧急撤离"
+  },
+  {
+    "id": "opi-topic-0135",
+    "before": "EBT",
+    "after": "循证训练"
+  },
+  {
+    "id": "opi-fzy-570",
+    "before": "Figure 14",
+    "after": "机翼地面碰撞"
+  },
+  {
+    "id": "opi-fzy-589",
+    "before": "Figure 33",
+    "after": "发动机故障与驾驶舱烟雾"
+  },
+  {
+    "id": "opi-fzy-566",
+    "before": "Figure 10",
+    "after": "机上氧气设备"
+  },
+  {
+    "id": "opi-fzy-582",
+    "before": "Figure 26",
+    "after": "飞机偏出跑道"
+  },
+  {
+    "id": "opi-topic-0082",
+    "before": "NOTAM",
+    "after": "航行通告"
+  },
+  {
+    "id": "opi-fzy-594",
+    "before": "Figure 38",
+    "after": "紧急撤离与消防救援"
+  },
+  {
+    "id": "opi-fzy-652",
+    "before": "Place",
+    "after": "居住与工作地点"
+  },
+  {
+    "id": "opi-topic-0057",
+    "before": "FCTM",
+    "after": "飞行机组训练手册"
+  },
+  {
+    "id": "opi-fzy-557",
+    "before": "Figure 1",
+    "after": "雷暴形成与气流"
+  },
+  {
+    "id": "opi-fzy-853",
+    "before": "Refuel",
+    "after": "飞机加油"
+  },
+  {
+    "id": "opi-topic-0145",
+    "before": "CI",
+    "after": "成本指数"
+  },
+  {
+    "id": "opi-fzy-845",
+    "before": "Plateau airport",
+    "after": "高高原机场"
+  },
+  {
+    "id": "opi-fzy-1684",
+    "before": "8.飞行中人的因素",
+    "after": "飞行中人的因素"
+  },
+  {
+    "id": "opi-fzy-541",
+    "before": "Topic on Aircraft and Systems",
+    "after": "飞机与系统"
+  },
+  {
+    "id": "opi-topic-0041",
+    "before": "GPWS与EGPWS",
+    "after": "近地警告与增强型近地警告系统"
+  },
+  {
+    "id": "opi-fzy-561",
+    "before": "Figure 4",
+    "after": "飞机地面除冰"
+  },
+  {
+    "id": "opi-fzy-577",
+    "before": "Figure 21",
+    "after": "鸟群与飞行安全"
+  },
+  {
+    "id": "opi-topic-0020",
+    "before": "QAR",
+    "after": "快速存取记录器"
+  },
+  {
+    "id": "opi-fzy-849",
+    "before": "Ground collision",
+    "after": "机翼地面碰撞"
+  },
+  {
+    "id": "opi-fzy-848",
+    "before": "Tail strike",
+    "after": "起飞擦尾"
+  },
+  {
+    "id": "opi-topic-0021",
+    "before": "低能见度与RVR",
+    "after": "低能见度与跑道视程"
+  },
+  {
+    "id": "opi-fzy-576",
+    "before": "Figure 20",
+    "after": "山地迫降与地面碰撞"
+  },
+  {
+    "id": "opi-fzy-560",
+    "before": "Figure 3",
+    "after": "雷雨中飞行"
+  },
+  {
+    "id": "opi-fzy-540",
+    "before": "Topic on Flight Experience",
+    "after": "飞行经历"
+  },
+  {
+    "id": "opi-topic-0040",
+    "before": "GPS",
+    "after": "全球定位系统"
+  },
+  {
+    "id": "opi-fzy-1685",
+    "before": "9.非正常情况",
+    "after": "非正常情况"
+  },
+  {
+    "id": "opi-fzy-844",
+    "before": "Cross wind",
+    "after": "侧风着陆"
+  },
+  {
+    "id": "opi-fzy-852",
+    "before": "FOI",
+    "after": "发动机外来物吸入"
+  },
+  {
+    "id": "opi-topic-0056",
+    "before": "CFIT",
+    "after": "可控飞行撞地"
+  },
+  {
+    "id": "opi-topic-0113",
+    "before": "EFIS",
+    "after": "电子飞行仪表系统"
+  },
+  {
+    "id": "opi-fzy-1715",
+    "before": "Drone activity",
+    "after": "无人机活动"
+  },
+  {
+    "id": "opi-fzy-653",
+    "before": "Health",
+    "after": "健康"
+  },
+  {
+    "id": "opi-fzy-595",
+    "before": "Figure 39",
+    "after": "飞机地面除冰检查"
+  },
+  {
+    "id": "opi-fzy-583",
+    "before": "Figure 27",
+    "after": "侧风着陆"
+  },
+  {
+    "id": "opi-fzy-543",
+    "before": "Topic on Training",
+    "after": "飞行训练"
+  },
+  {
+    "id": "opi-fzy-1686",
+    "before": "10.缩略词",
+    "after": "缩略词"
+  },
+  {
+    "id": "opi-fzy-847",
+    "before": "Complicated airport",
+    "after": "复杂机场进近"
+  },
+  {
+    "id": "opi-topic-0147",
+    "before": "VASI",
+    "after": "目视进近坡度指示系统"
+  },
+  {
+    "id": "opi-fzy-851",
+    "before": "Bird strike",
+    "after": "鸟击风险"
+  },
+  {
+    "id": "opi-topic-0055",
+    "before": "CPDLC",
+    "after": "管制员与驾驶员数据链通信"
+  },
+  {
+    "id": "opi-fzy-1716",
+    "before": "Sandstorm",
+    "after": "机场沙尘暴"
+  },
+  {
+    "id": "opi-fzy-579",
+    "before": "Figure 23",
+    "after": "发动机外来物损伤"
+  },
+  {
+    "id": "opi-fzy-596",
+    "before": "Figure 40",
+    "after": "客舱撤离训练"
+  },
+  {
+    "id": "opi-fzy-580",
+    "before": "Figure 24",
+    "after": "起飞时发动机起火"
+  },
+  {
+    "id": "opi-fzy-559",
+    "before": "Figure 2",
+    "after": "微下击暴流"
+  },
+  {
+    "id": "opi-fzy-575",
+    "before": "Figure 19",
+    "after": "山地波与颠簸"
+  },
+  {
+    "id": "opi-fzy-563",
+    "before": "Figure 7",
+    "after": "大型客机对比"
+  },
+  {
+    "id": "opi-fzy-562",
+    "before": "Figure 6",
+    "after": "机上应急设备"
+  },
+  {
+    "id": "opi-fzy-574",
+    "before": "Figure 18",
+    "after": "跑道间隔与尾流"
+  },
+  {
+    "id": "opi-topic-0058",
+    "before": "CDFA",
+    "after": "连续下降最后进近"
+  },
+  {
+    "id": "opi-topic-0039",
+    "before": "GNSS",
+    "after": "全球导航卫星系统"
+  },
+  {
+    "id": "opi-fzy-581",
+    "before": "Figure 25",
+    "after": "飞机冲出跑道"
+  },
+  {
+    "id": "opi-fzy-578",
+    "before": "Figure 22",
+    "after": "事故现场救援"
+  },
+  {
+    "id": "opi-fzy-597",
+    "before": "Figure 41",
+    "after": "锂电池运输安全"
+  },
+  {
+    "id": "opi-fzy-651",
+    "before": "Greetings and Introductions",
+    "after": "问候与自我介绍"
+  },
+  {
+    "id": "opi-topic-0054",
+    "before": "EFB",
+    "after": "电子飞行包"
+  },
+  {
+    "id": "opi-fzy-850",
+    "before": "Runway incursion",
+    "after": "跑道侵入"
+  },
+  {
+    "id": "opi-topic-0015",
+    "before": "SOP",
+    "after": "标准操作程序"
+  },
+  {
+    "id": "opi-fzy-846",
+    "before": "Big international airport",
+    "after": "大型国际机场"
+  },
+  {
+    "id": "opi-fzy-1687",
+    "before": "11.补充话题",
+    "after": "补充话题"
+  },
+  {
+    "id": "opi-topic-0042",
+    "before": "ATIS",
+    "after": "自动终端情报服务"
+  },
+  {
+    "id": "opi-fzy-542",
+    "before": "Topic on Operations",
+    "after": "飞行运行"
+  },
+  {
+    "id": "opi-fzy-549",
+    "before": "Examination",
+    "after": "考试"
+  },
+  {
+    "id": "opi-topic-0024",
+    "before": "飞行员-ATC通信",
+    "after": "飞行员与管制员通信"
+  },
+  {
+    "id": "opi-fzy-573",
+    "before": "Figure 17",
+    "after": "航班延误"
+  },
+  {
+    "id": "opi-fzy-565",
+    "before": "Figure 9",
+    "after": "襟翼与缝翼系统"
+  },
+  {
+    "id": "opi-topic-0032",
+    "before": "RVSM",
+    "after": "缩小垂直间隔"
+  },
+  {
+    "id": "opi-fzy-545",
+    "before": "Topic on CRM",
+    "after": "机组资源管理"
+  },
+  {
+    "id": "opi-fzy-1680",
+    "before": "4.驾驶舱内设备",
+    "after": "驾驶舱内设备"
+  },
+  {
+    "id": "opi-fzy-841",
+    "before": "Lightning strike",
+    "after": "机场雷暴"
+  },
+  {
+    "id": "opi-fzy-1679",
+    "before": "3.飞机与飞机系统",
+    "after": "飞机与飞机系统"
+  },
+  {
+    "id": "opi-fzy-857",
+    "before": "Ditching",
+    "after": "水上迫降"
+  },
+  {
+    "id": "opi-topic-0053",
+    "before": "HUD",
+    "after": "平视显示器"
+  },
+  {
+    "id": "opi-fzy-656",
+    "before": "Traffic",
+    "after": "交通"
+  },
+  {
+    "id": "opi-fzy-590",
+    "before": "Figure 34",
+    "after": "传统与玻璃驾驶舱"
+  },
+  {
+    "id": "opi-topic-0069",
+    "before": "QRH",
+    "after": "快速检查单"
+  },
+  {
+    "id": "opi-fzy-569",
+    "before": "Figure 13",
+    "after": "飞行前准备"
+  },
+  {
+    "id": "opi-fzy-586",
+    "before": "Figure 30",
+    "after": "轻型飞机迫降"
+  },
+  {
+    "id": "opi-fzy-1706",
+    "before": "Pushback procedure",
+    "after": "飞机推出程序"
+  },
+  {
+    "id": "opi-topic-0068",
+    "before": "MEL",
+    "after": "最低设备清单"
+  },
+  {
+    "id": "opi-fzy-568",
+    "before": "Figure 12",
+    "after": "机场安检"
+  },
+  {
+    "id": "opi-fzy-587",
+    "before": "Figure 31",
+    "after": "侧风起飞"
+  },
+  {
+    "id": "opi-fzy-591",
+    "before": "Figure 35",
+    "after": "飞机冲出跑道坠沟"
+  },
+  {
+    "id": "opi-fzy-657",
+    "before": "Modern technology",
+    "after": "现代技术"
+  },
+  {
+    "id": "opi-fzy-856",
+    "before": "Belly landing",
+    "after": "机腹着陆"
+  },
+  {
+    "id": "opi-fzy-1678",
+    "before": "2.飞行环境：机场",
+    "after": "飞行环境：机场"
+  },
+  {
+    "id": "opi-fzy-840",
+    "before": "De-icing",
+    "after": "飞机除冰"
+  },
+  {
+    "id": "opi-fzy-1681",
+    "before": "5.飞行程序",
+    "after": "飞行程序"
+  },
+  {
+    "id": "opi-fzy-544",
+    "before": "Topic on Weather",
+    "after": "气象"
+  },
+  {
+    "id": "opi-topic-0033",
+    "before": "PBN/RNAV/RNP进近",
+    "after": "基于性能的导航与进近"
+  },
+  {
+    "id": "opi-fzy-564",
+    "before": "Figure 8",
+    "after": "液压系统"
+  },
+  {
+    "id": "opi-fzy-837",
+    "before": "Flight manuals",
+    "after": "飞行手册"
+  },
+  {
+    "id": "opi-fzy-572",
+    "before": "Figure 16",
+    "after": "航空餐食"
+  },
+  {
+    "id": "opi-fzy-548",
+    "before": "Supplement",
+    "after": "补充话题"
+  },
+  {
+    "id": "atc-fzy-609",
+    "before": "CES586 drunk&cumuliform, etc.",
+    "after": "CES586 · 醉酒乘客与积状云"
+  },
+  {
+    "id": "atc-fzy-865",
+    "before": "AFR332 smoke in the cockpit",
+    "after": "AFR332 · 驾驶舱烟雾"
+  },
+  {
+    "id": "atc-fzy-633",
+    "before": "CES5102 loud noise&injury, etc.",
+    "after": "CES5102 · 巨响与人员受伤"
+  },
+  {
+    "id": "atc-fzy-625",
+    "before": "CCA451 nose gear problem, etc.",
+    "after": "CCA451 · 前起落架故障"
+  },
+  {
+    "id": "atc-fzy-605",
+    "before": "AFR971 fluctuating EGT, etc.",
+    "after": "AFR971 · 排气温度波动"
+  },
+  {
+    "id": "atc-fzy-1446",
+    "before": "Panpan与Mayday",
+    "after": "紧急与遇险呼叫"
+  },
+  {
+    "id": "atc-fzy-869",
+    "before": "CSN6682 radio check&hydraulic failure",
+    "after": "CSN6682 · 无线电检查与液压失效"
+  },
+  {
+    "id": "atc-fzy-629",
+    "before": "AFR126 flap&fuel problem, etc.",
+    "after": "AFR126 · 襟翼与燃油问题"
+  },
+  {
+    "id": "atc-fzy-1714",
+    "before": "CSN6682 hydraulic failure",
+    "after": "CSN6682 · 液压失效"
+  },
+  {
+    "id": "atc-fzy-628",
+    "before": "SIA786 gear problem, etc.",
+    "after": "SIA786 · 起落架故障"
+  },
+  {
+    "id": "atc-fzy-612",
+    "before": "CSN351 pages missing, etc.",
+    "after": "CSN351 · 手册缺页"
+  },
+  {
+    "id": "atc-fzy-604",
+    "before": "AFR986 abnormal indication, etc.",
+    "after": "AFR986 · 异常指示"
+  },
+  {
+    "id": "atc-fzy-624",
+    "before": "AFR872 lavatory&make a PA, ect.",
+    "after": "AFR872 · 厕所异常与客舱广播"
+  },
+  {
+    "id": "atc-fzy-632",
+    "before": "AFR101 explosives, etc.",
+    "after": "AFR101 · 爆炸物"
+  },
+  {
+    "id": "atc-fzy-599",
+    "before": "SIA635 engine starter failure, etc.",
+    "after": "SIA635 · 发动机起动机故障"
+  },
+  {
+    "id": "atc-fzy-608",
+    "before": "CCA987 baggage problem, etc.",
+    "after": "CCA987 · 行李问题"
+  },
+  {
+    "id": "atc-fzy-603",
+    "before": "AFR123 passenger stroke, etc.",
+    "after": "AFR123 · 乘客中风"
+  },
+  {
+    "id": "atc-fzy-642",
+    "before": "CCA991 weather&engine fire, etc.",
+    "after": "CCA991 · 天气与发动机起火"
+  },
+  {
+    "id": "atc-fzy-615",
+    "before": "QFA378 CBs&downdraft, etc.",
+    "after": "QFA378 · 积雨云与下沉气流"
+  },
+  {
+    "id": "atc-fzy-639",
+    "before": "CES220 warning&spoiler, etc.",
+    "after": "CES220 · 警告与扰流板故障"
+  },
+  {
+    "id": "atc-fzy-619",
+    "before": "SIA854 tyre burst, etc.",
+    "after": "SIA854 · 轮胎爆裂"
+  },
+  {
+    "id": "atc-fzy-635",
+    "before": "BAW038 ingestion, etc.",
+    "after": "BAW038 · 外来物吸入"
+  },
+  {
+    "id": "atc-fzy-623",
+    "before": "ACA989 chop&heart attack, etc.",
+    "after": "ACA989 · 颠簸与乘客心脏病"
+  },
+  {
+    "id": "atc-fzy-622",
+    "before": "UAL865 deviate&minimum fuel, etc.",
+    "after": "UAL865 · 偏航与最低燃油"
+  },
+  {
+    "id": "atc-fzy-634",
+    "before": "CCA983 weather&injury, etc.",
+    "after": "CCA983 · 天气与人员受伤"
+  },
+  {
+    "id": "atc-fzy-618",
+    "before": "SIA233 tailwind exceeds limit, etc.",
+    "after": "SIA233 · 顺风超限"
+  },
+  {
+    "id": "atc-fzy-638",
+    "before": "UAL887 pregnant woman, etc.",
+    "after": "UAL887 · 怀孕乘客"
+  },
+  {
+    "id": "atc-fzy-614",
+    "before": "CES615 towbar&wind limit, etc.",
+    "after": "CES615 · 拖把故障与风速限制"
+  },
+  {
+    "id": "atc-fzy-643",
+    "before": "UAL895 autothrottle problem, etc.",
+    "after": "UAL895 · 自动油门故障"
+  },
+  {
+    "id": "atc-fzy-602",
+    "before": "AFR151 icing&engine failure, etc.",
+    "after": "AFR151 · 积冰与发动机失效"
+  },
+  {
+    "id": "atc-fzy-617",
+    "before": "SIA151 flammable liquid, etc.",
+    "after": "SIA151 · 易燃液体"
+  },
+  {
+    "id": "atc-fzy-640",
+    "before": "CSN6306 weather&dump fuel, etc.",
+    "after": "CSN6306 · 天气与放油"
+  },
+  {
+    "id": "atc-fzy-601",
+    "before": "ACA587 missed approach, etc.",
+    "after": "ACA587 · 复飞"
+  },
+  {
+    "id": "atc-fzy-621",
+    "before": "UAL239 CAT&runway closed, etc.",
+    "after": "UAL239 · 晴空颠簸与跑道关闭"
+  },
+  {
+    "id": "atc-fzy-637",
+    "before": "JAL220 information relay, bird strike, APU failure",
+    "after": "JAL220 · 信息转达、鸟击与辅助动力装置故障"
+  },
+  {
+    "id": "atc-fzy-636",
+    "before": "QFA029 towbar problem, etc.",
+    "after": "QFA029 · 拖把故障"
+  },
+  {
+    "id": "atc-fzy-620",
+    "before": "UAL162 volcanic ash, etc.",
+    "after": "UAL162 · 火山灰"
+  },
+  {
+    "id": "atc-fzy-600",
+    "before": "UAL921 depressurization, etc.",
+    "after": "UAL921 · 客舱失压"
+  },
+  {
+    "id": "atc-fzy-641",
+    "before": "NWA89 GPWS&PAPI problem, etc.",
+    "after": "NWA89 · 近地警告与精密进近航道指示器故障"
+  },
+  {
+    "id": "atc-fzy-616",
+    "before": "QFA953 offload baggage, etc.",
+    "after": "QFA953 · 卸载行李"
+  },
+  {
+    "id": "atc-fzy-627",
+    "before": "CSN421 CAT&bomb, etc.",
+    "after": "CSN421 · 晴空颠簸与炸弹威胁"
+  },
+  {
+    "id": "atc-fzy-631",
+    "before": "CSN6202 flight control problem, etc",
+    "after": "CSN6202 · 飞行操纵故障"
+  },
+  {
+    "id": "atc-fzy-611",
+    "before": "CSN339 thunderstorm, etc.",
+    "after": "CSN339 · 雷暴"
+  },
+  {
+    "id": "atc-fzy-607",
+    "before": "CCA532 icing&engine failure, etc.",
+    "after": "CCA532 · 积冰与发动机失效"
+  },
+  {
+    "id": "atc-fzy-606",
+    "before": "BAW951 ill&engine fire, etc.",
+    "after": "BAW951 · 乘客患病与发动机起火"
+  },
+  {
+    "id": "atc-fzy-610",
+    "before": "CES582 delay&tug not ready, etc.",
+    "after": "CES582 · 延误与拖车未就位"
+  },
+  {
+    "id": "atc-fzy-866",
+    "before": "KLM88 delay pushback&laning gear problem",
+    "after": "KLM88 · 推出延误与起落架故障"
+  },
+  {
+    "id": "atc-fzy-630",
+    "before": "BAW141 weather&traffic, etc.",
+    "after": "BAW141 · 天气与空中交通"
+  },
+  {
+    "id": "atc-fzy-626",
+    "before": "CES543 TCAS RA&bang, etc.",
+    "after": "CES543 · 空中防撞决断指令与巨响"
+  }
+]

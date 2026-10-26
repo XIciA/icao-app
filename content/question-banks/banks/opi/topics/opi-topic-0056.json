@@ -1,12 +1,12 @@
 {
   "id": "opi-topic-0056",
-  "name": "CFIT",
+  "name": "可控飞行撞地",
   "cards": [
     {
       "id": "opi-core-628-part-2",
       "audio": "/question-bank-assets/revisions/opi/c99c3bfe9710ed1d26cbb80d57a9df15e0503bd8f44c80ee0b865ed27e2c38e1/audio/opi/opi-core-628-part-2.mp3",
       "audioText": "How can pilots prevent CFIT accidents?",
-      "taskTitle": "缩略词-CFIT-3",
+      "taskTitle": "缩略词-可控飞行撞地-3",
       "audioTextZh": "飞行员如何预防CFIT事故？",
       "referenceText": "Pilots can help prevent CFIT by following SOPs and conducting careful cross-checks during flight.",
       "referenceTextZh": "飞行员可以通过遵守标准操作程序并在飞行中认真交叉检查，帮助预防可控飞行撞地。",
@@ -16,7 +16,7 @@
       "id": "opi-core-627",
       "audio": "/question-bank-assets/revisions/opi/e1b2493105c4938c1be8144486a426c715eb72dddfb6930e352ebb8c647a9615/audio/opi/opi-core-627.mp3",
       "audioText": "What is CFIT?",
-      "taskTitle": "缩略词-CFIT-1",
+      "taskTitle": "缩略词-可控飞行撞地-1",
       "audioTextZh": "什么是CFIT？",
       "referenceText": "Controlled Flight into Terrain is an accident in which an airworthy aircraft under the pilot's control unintentionally flies into the ground, water, or an obstacle. The crew usually has inadequate awareness of the approaching collision until it is too late. It is different from an accident caused by loss of control.",
       "referenceTextZh": "可控飞行撞地是指一架适航且仍在飞行员控制下的飞机，无意中撞上地面、水面或障碍物。机组通常未能充分意识到即将发生的碰撞，直至为时已晚。它不同于失去控制造成的事故。",
@@ -26,7 +26,7 @@
       "id": "opi-core-628",
       "audio": "/question-bank-assets/revisions/opi/7cf58cc9a9f94562f1441995ae4aa43784cb2a4363cb27e1d6f9f27f6d68ed5d/audio/opi/opi-core-628.mp3",
       "audioText": "What are the main causes of CFIT accidents?",
-      "taskTitle": "缩略词-CFIT-2",
+      "taskTitle": "缩略词-可控飞行撞地-2",
       "audioTextZh": "导致CFIT事故的主要原因有哪些？",
       "referenceText": "The main causes include loss of situational awareness, incorrect navigation settings, failure to follow SOPs, and pilot fatigue.",
       "referenceTextZh": "主要原因包括情景意识丧失、导航设置错误、未遵守标准操作程序和飞行员疲劳。",

@@ -1,3 +1,4 @@
+import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
 import Storage from '@/platform/storage';
 
 import { enqueueAnnotationStore } from '@/features/sync/learning-sync';
@@ -55,7 +56,7 @@ function normalizeDefinitions(value: unknown, defaults: AnnotationDefinition[]) 
 
 function normalizeHighlight(value: unknown): AnnotationHighlight | undefined {
   if (!isObject(value)) return undefined;
-  if (value.blockId !== 'question' && value.blockId !== 'reference') return undefined;
+  if (value.blockId !== 'question' && value.blockId !== 'reference' && !(typeof value.blockId === 'string' && /^choice-\d+$/.test(value.blockId))) return undefined;
   if (typeof value.wordIndex !== 'number' || !Number.isFinite(value.wordIndex)) return undefined;
   if (typeof value.colorId !== 'string' || !value.colorId) return undefined;
   return {
@@ -134,7 +135,7 @@ async function readStoredValue() {
 
 function legacyHighlight(target: QuestionBankCardTarget, value: NonNullable<CardLearningState['highlights']>[number]): AnnotationHighlight {
   const reference = getQuestionBankCardReference(target);
-  const sourceText = value.blockId === 'question' ? reference?.card.audioText ?? '' : reference?.card.referenceText ?? '';
+  const sourceText = annotationBlockText(reference?.card, value.blockId);
   const context = wordContextAt(sourceText, value.wordIndex);
   return {
     blockId: value.blockId,

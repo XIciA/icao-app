@@ -175,7 +175,7 @@ export const webCoursePromoCatalog = {
   hero: {
     eyebrow: 'CURRICULUM SYSTEM',
     title: '飞猪 ICAO 体系课程',
-    description: '团队全员由icao5在职飞行员组成，打造完整 ICAO 备考体系——以超高通过率、个性化定制与全程一对一教学，陪你稳稳拿下目标等级。',
+    description: '团队全员由ICAO 5在职飞行员组成，打造完整 ICAO 备考体系——以超高通过率、个性化定制与全程一对一教学，陪你稳稳拿下目标等级。',
     destinations: [
       { id: 'icao4', title: 'ICAO 4 课程', description: '初考、复考、预习与专项培训', viewId: 'icao4-initial' },
       { id: 'icao5', title: 'ICAO 5 课程', description: '冲刺、基础与包过班', viewId: 'icao5' },
@@ -189,7 +189,7 @@ export const webCoursePromoCatalog = {
     items: [
       { id: 'pass-rate', title: '超高通过率', description: 'ICAO 4 初考通过率 95%+，复考通过率 92%+，ICAO 5 通过率 90%+。', icon: 'trend' },
       { id: 'customization', title: '超个性化定制', description: '课上讲什么听你安排。根据模拟测试量身定制方案，上课周期与时间完全按照学生安排。', icon: 'target' },
-      { id: 'experience', title: '超多经验分享', description: '团队全员由icao5在职飞行员组成，对痛点感同身受。掌握各考点一手参考资料及 OPI 热点话题。', icon: 'users' },
+      { id: 'experience', title: '超多经验分享', description: '团队全员由ICAO 5在职飞行员组成，对痛点感同身受。掌握各考点一手参考资料及 OPI 热点话题。', icon: 'users' },
       { id: 'value', title: '超高性价比', description: '亲历市面各大机构培训，承诺打造全平台最低价。花钱买时间，用节约的时间赚回更多。', icon: 'shield' },
     ],
   },
@@ -350,7 +350,7 @@ export const webCoursePromoCatalog = {
             name: 'ICAO 5 冲刺班',
             price: '4500',
             unit: '元 / 12 节课 + 1 次模拟测试',
-            description: '适合自身英语能力过硬，已经处在icao5复习的阶段之中，或有过icao5考试经验的同学。',
+            description: '适合自身英语能力过硬，已经处在ICAO 5复习的阶段之中，或有过ICAO 5考试经验的同学。',
             outline: icao5IntensiveOutline,
           },
         ],
