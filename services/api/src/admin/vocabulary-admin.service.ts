@@ -49,7 +49,12 @@ export class VocabularyAdminService {
   private async plan(previous: VocabularyLiveContent, edits: VocabularyEdit[], tx: DatabaseService['db']) {
     if (!edits.length || edits.length > 100) throw new BadRequestException('vocabulary_edits_limit');
     let next: VocabularyLiveContent;
-    try { next=applyVocabularyEdits(previous,edits); } catch (error) { throw new BadRequestException(error instanceof Error ? error.message : 'invalid_vocabulary_edits'); }
+    try {
+      const prior=new Map(previous.dataset.books.flatMap(book=>book.words.map(word=>[word.id,word] as const)));
+      const corpus=previous.dataset.books[0]!.words[0]!.frequency!;
+      const complete=(word:VocabularyWord)=>({...word,frequency:prior.get(word.id)?.frequency??{...corpus,occurrences:0,cardCount:0,byBank:{}}});
+      next=applyVocabularyEdits(previous,edits.map(edit=>edit.type==='upsert'?{...edit,word:complete(edit.word)}:edit.type==='split'?{...edit,words:edit.words.map(complete)}:edit));
+    } catch (error) { throw new BadRequestException(error instanceof Error ? error.message : 'invalid_vocabulary_edits'); }
     const old = new Map(previous.dataset.books.flatMap(book=>book.words.map(word=>[word.id,word] as const)));
     const changed = next.dataset.books.flatMap(book=>book.words).filter(word=> !old.has(word.id) || old.get(word.id)!.word !== word.word || JSON.stringify(old.get(word.id)!.relatedExpressions) !== JSON.stringify(word.relatedExpressions));
     if (changed.length) {

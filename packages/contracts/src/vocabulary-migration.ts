@@ -2,7 +2,8 @@ import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWord
 import type { VocabularyMigrationPolicy } from './vocabulary-live.ts';
 
 type Progress = { status: 'new' | 'known' | 'vague' | 'forgot' | 'wrong'; favorite: boolean; updatedAt: string };
-type Document = { words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
+type StudySession = {wordIds:string[];nextWordId:string|null;order:'frequency'|'random';startedAt:string;updatedAt:string};
+type Document = { studySession?:StudySession; words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
 const rank: Record<Progress['status'], number> = { new: -1, known: 0, vague: 2, forgot: 3, wrong: 4 };
 
 /** Only explicitly retired resource IDs/keys are touched. Unrelated lookup favorites survive. */
@@ -45,8 +46,17 @@ export function migrateVocabularyDocument<T extends Document>(document: T, polic
     });
     if (changed) lastTest = { ...lastTest, answers };
   }
+  let studySession = document.studySession;
+  if (studySession && policy) {
+    const resolve = (id: string) => Object.hasOwn(retiredIds,id) ? retiredIds[id] : Object.hasOwn(policy.testWords,id) ? id : null;
+    const wordIds = [...new Set(studySession.wordIds.map(resolve).filter((id):id is string=>typeof id==='string'))];
+    const nextWordId = studySession.nextWordId === null ? null : resolve(studySession.nextWordId) ?? wordIds.find(id=>(words[id]?.status??'new')==='new') ?? null;
+    if (JSON.stringify(wordIds)!==JSON.stringify(studySession.wordIds) || nextWordId!==studySession.nextWordId) {
+      studySession={...studySession,wordIds,nextWordId}; changed=true;
+    }
+  }
   if (!changed) return document;
-  const result = { ...document, words };
+  const result = { ...document, words, ...(studySession ? {studySession} : {}) };
   if (lastTest) result.lastTest = lastTest;
   else delete result.lastTest;
   return result;

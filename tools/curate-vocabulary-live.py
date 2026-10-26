@@ -42,11 +42,12 @@ def clean(text):
 
 def meaning(text):
     text = clean(text)
-    text = re.sub(r'^(?:短语|通话指令|通话用语|动词短语)\s*', '', text)
+    text = re.sub(r'^(?:短语|通话指令|通话用语|通话提示|通话信号|动词短语)\s*', '', text)
     text = re.sub(r'(?<![A-Za-z])(?:n|v|vt|vi|adj|adv|prep|pron|conj|interj|abbr|num|aux)\.\s*', '', text)
     text = text.replace(';', '；').replace('(', '（').replace(')', '）')
     text = re.sub(r'\s*；\s*', '；', text)
     text = re.sub(r'；+', '；', text)
+    text = re.sub(r'\.{3,}', '……', text)
     text = re.sub(r'(?<=[\u4e00-\u9fff]),\s*', '，', text)
     text = text.replace(',', '，')
     text = re.sub(r'(?<=[\u4e00-\u9fff])(?=[A-Za-z0-9])|(?<=[A-Za-z0-9])(?=[\u4e00-\u9fff])', ' ', text)
@@ -98,7 +99,7 @@ synonyms = {
     'passenger boarding bridge': ['air bridge', 'airbridge', 'jetway', 'loading bridge'],
     'rapid decompression': ['rapid depressurization', 'quick depressurization'],
     'fire extinguisher': ['extinguisher'], 'engine cowling': ['cowl', 'cowling', 'engine cowl'],
-    'fuel truck': ['refueler', 'refueller'], 'flight attendant': ['steward', 'stewardess'],
+    'fuel truck': ['refueler', 'refueller'], 'flight attendant': ['steward', 'stewardess'], 'cockpit': ["pilot's cabin"],
 }
 abbreviations = {}
 for row in old_entries:
@@ -262,13 +263,29 @@ if existing('pneumatic') and existing('air-driven'):
     retired[alias['id']] = target['id']; del entries[alias['id']]
     decisions.append({'id': alias['id'], 'word': alias['word'], 'action': 'merge-exact-synonym', 'target': target['id']})
 
+# Collapse explicitly equivalent existing heads, retaining all prior identities.
+for primary, aliases in synonyms.items():
+    target = existing(primary)
+    if not target: continue
+    for alias in list(entries.values()):
+        if alias['id'] != target['id'] and alias['word'].lower() in aliases:
+            target['frequencyRules']['forms'] = sorted(set(target['frequencyRules']['forms'] + alias['frequencyRules']['forms']))
+            retired[alias['id']] = target['id']; del entries[alias['id']]
+            decisions.append({'id': alias['id'], 'word': alias['word'], 'action': 'merge-exact-synonym', 'target': target['id']})
+# Explicit user example: radar vector supplies the learning card for radar.
+if existing('radar') and existing('radar vector'):
+    alias, target = existing('radar'), existing('radar vector')
+    retired[alias['id']] = target['id']; del entries[alias['id']]
+    decisions.append({'id': alias['id'], 'word': alias['word'], 'action': 'covered-by-user-selected-phrase', 'target': target['id']})
+
 # A transparent combination adds no extra card when each component is already a headword.
 # Explicitly approved equivalent expressions are retained as one grouped card.
 for row in list(entries.values()):
     if ' ' not in row['word'] or ' / ' in row['word'] or row.get('abbreviationExpansion') or row['word'] in {'in progress', 'clear up', 'come down', 'shut down', 'no longer', 'survival kit', 'first-aid kit', 'polar survival kit'}:
         continue
     tokens = [lemma(token) for token in re.findall(r'[A-Za-z]+(?:-[A-Za-z]+)*', row['word'].lower()) if token not in simple]
-    if tokens and all(existing(token) and existing(token)['id'] != row['id'] for token in tokens):
+    covered = lambda token: existing(token) or (existing('radar vector') if token == 'radar' else None)
+    if tokens and all(covered(token) and covered(token)['id'] != row['id'] for token in tokens):
         retired[row['id']] = None; del entries[row['id']]
         decisions.append({'id': row['id'], 'word': row['word'], 'action': 'remove-covered-combination', 'components': tokens})
 

@@ -6747,6 +6747,25 @@
       }
     },
     {
+      "text": "cockpit. pilot's cabin",
+      "objectKey": "pronunciations/1b483b086c39835c16ce933e7777c289665849caca2641cfa4ee1a0dfb4f531d.mp3",
+      "publicPath": "/pronunciation-assets/07de17042a3ded019c27c66dd2c9b0c39a3e433ef091c7a341887b4914ad7320.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7d82622dbe0fb4b19114658c0c572f0f4b4b0a7fa07337da86bd9bbe2d7f2e79",
+      "sizeBytes": 11948,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.464,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "jiutian",
       "objectKey": "pronunciations/c69d4761ed888c0849ce236cacd6aab73d663948c00b1b7171a506cafdaa7006.mp3",
       "publicPath": "/pronunciation-assets/07f1e37417cacfcb1c6d90894dfe33af17906c162b622ba356fdcb700afad544.mp3",
@@ -151175,6 +151194,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.648,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "cockpit or pilot's cabin",
+      "objectKey": "pronunciations/548148af551174f576a362a98bb2e40518db187f5f8ceb89e44650ff9ab02310.mp3",
+      "publicPath": "/pronunciation-assets/b6ac15fb547efcb137d1f3dc87bbef10540036a7b1b2b63c27b0deb96992126b.mp3",
+      "bankId": "vocabulary",
+      "checksum": "492b2f831fc5ca5560d408ca5721be2a53b7fc63786941f50c903dca7d08db9d",
+      "sizeBytes": 12908,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.584,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",

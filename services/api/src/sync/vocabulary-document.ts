@@ -20,6 +20,7 @@ const rawVocabularyDocumentSchema = z.object({
   schemaVersion: z.literal(1),
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
+  studySession: z.object({wordIds:z.array(z.string().max(160)).max(10000),nextWordId:z.string().max(160).nullable(),order:z.enum(['frequency','random']),startedAt:z.string().datetime(),updatedAt:z.string().datetime()}).optional(),
   updatedAt: z.string().datetime(),
 });
 export const vocabularyDocumentSchema = rawVocabularyDocumentSchema.transform(value => migrateVocabularyDocument(value));
@@ -63,5 +64,6 @@ export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: u
         ? incomingTest
         : currentTest;
   const updatedAt = Date.parse(incoming.updatedAt) > Date.parse(current.updatedAt) ? incoming.updatedAt : current.updatedAt;
-  return { schemaVersion: 1, words, ...(lastTest ? { lastTest } : {}), updatedAt };
+  const studySession=newer(current.studySession,incoming.studySession);
+  return { schemaVersion: 1, words, ...(lastTest ? { lastTest } : {}), ...(studySession ? {studySession} : {}), updatedAt };
 }

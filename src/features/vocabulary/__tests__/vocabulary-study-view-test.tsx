@@ -86,3 +86,10 @@ it('advances on manual playback start, deduplicates loading taps and ignores cal
     await act(async()=>{started?.();finish(false);});expect(event).toHaveBeenCalledTimes(1);
   } finally {spy.mockRestore();}
 });
+
+it('shows saved cumulative learning rather than restarting the progress bar at the first card',async()=>{
+  const queue=Array.from({length:100},(_,index)=>({...word,id:`word-${index}`}));
+  const saved={...state,words:Object.fromEntries(queue.slice(0,40).map(item=>[item.id,{status:'known' as const,favorite:false,updatedAt:'2026-10-27T00:00:00.000Z'}]))};
+  const screen=await render(<SafeAreaProvider initialMetrics={{frame:{height:812,width:390,x:0,y:0},insets:{top:47,bottom:34,left:0,right:0}}}><VocabularyStudyView words={queue} state={saved} index={40} revealed={false} onExit={jest.fn()} onChoose={jest.fn()} onWrong={jest.fn()} onNext={jest.fn()} onToggleFavorite={jest.fn()}/></SafeAreaProvider>);
+  expect(screen.getByText('已学 40 / 100')).toBeTruthy();expect(screen.getByLabelText('进度 40%')).toBeTruthy();
+});

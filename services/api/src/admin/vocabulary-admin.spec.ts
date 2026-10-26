@@ -23,7 +23,7 @@ describe('vocabulary publication boundaries',()=>{
   });
   it('loads the full packaged live baseline with the matching policy',()=>{
     const live=new VocabularyLiveService({} as never).baseline();
-    expect(live.dataset.books.flatMap(book=>book.words)).toHaveLength(1659);
+    expect(live.dataset.books.flatMap(book=>book.words)).toHaveLength(1657);
     expect(live.policy.version).toBe(live.version);expect(live.checksum).toMatch(/^[a-f0-9]{64}$/);
   });
 });

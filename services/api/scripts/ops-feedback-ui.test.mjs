@@ -55,7 +55,8 @@ describe('minimal ops feedback experience', () => {
   it('allows authenticated attachment object URLs only for images and releases them on leaving detail', async () => {
     const directives = new Map(csp.split(';').map((value) => { const [name, ...sources] = value.trim().split(/\s+/); return [name, sources]; }));
     expect(directives.get('img-src')).toEqual(["'self'", 'data:', 'blob:']);
-    for (const [name, sources] of directives) if (name !== 'img-src') expect(sources).not.toContain('blob:');
+    for (const [name, sources] of directives) if (!['img-src','media-src'].includes(name)) expect(sources).not.toContain('blob:');
+    expect(directives.get('media-src')).toEqual(["'self'", 'blob:']);
     expect(directives.get('script-src')).toEqual(["'self'"]);
     const imageUrl = 'blob:https://ops.example.test/feedback-image';
     const createObjectURL = vi.fn(() => imageUrl), revokeObjectURL = vi.fn();
@@ -73,7 +74,7 @@ describe('minimal ops feedback experience', () => {
   });
   it('shows focused business entries including content publishing and opens full feedback without exposing contact on the list', async () => {
     await act(async () => { root.render(createElement(App)); });
-    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['稳定性看板', '用户反馈', '内容发布', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
+    expect(Array.from(element.querySelectorAll('nav button')).map((value) => value.textContent)).toEqual(['稳定性看板', '用户反馈', '词库管理', '内容发布', '点击统计', 'AI 用量与费用', 'AI 规则设置', '用户权益']);
     expect(element.textContent).toContain('反馈摘要'); expect(element.textContent).not.toContain('contact@example.test');
     await click(element.querySelector('.feedback-row'));
     expect(element.textContent).toContain('反馈全文与所有说明'); expect(element.textContent).toContain('contact@example.test');

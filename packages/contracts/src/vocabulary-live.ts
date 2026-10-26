@@ -34,6 +34,13 @@ export function vocabularyTerms(word: VocabularyWord) {
 const object = (value: unknown): value is Record<string, unknown> => Boolean(value && typeof value === 'object' && !Array.isArray(value));
 function check(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
 
+function balancedVocabularyText(text: string) {
+  const pairs:Record<string,string>={')':'(',']':'[','}':'{','）':'（','】':'【','》':'《'};
+  const opening=new Set(Object.values(pairs)),stack:string[]=[];
+  for(const character of text){if(opening.has(character))stack.push(character);else if(pairs[character]&&stack.pop()!==pairs[character])return false;}
+  return stack.length===0;
+}
+
 /** Validate the whole release before installing either its data or migration rules. */
 export function validateVocabularyLiveContent(value: unknown): VocabularyLiveContent {
   check(object(value), 'invalid_live_vocabulary');
@@ -50,7 +57,9 @@ export function validateVocabularyLiveContent(value: unknown): VocabularyLiveCon
     check(word.id.length <= 160 && /^[A-Za-z0-9_-]+$/u.test(word.id), 'invalid_vocabulary_id');
     for (const field of [word.word, word.meaning, word.example, word.exampleTranslation, word.pronunciationText]) {
       check(typeof field === 'string' && field.length <= 3000 && field === field.trim() && !/[\r\n\t\u200b-\u200f\ufeff<>]/u.test(field), `invalid_vocabulary_text:${word.id}`);
+      check(balancedVocabularyText(field), `unbalanced_vocabulary_punctuation:${word.id}`);
     }
+    check(/[\u4e00-\u9fff]/u.test(word.meaning) && /[\u4e00-\u9fff]/u.test(word.exampleTranslation) && !/[\u4e00-\u9fff]/u.test(word.word+word.example), `invalid_vocabulary_language:${word.id}`);
     check(!/^[；;，,、：:]/u.test(word.meaning) && !/^短语\s/u.test(word.meaning), `invalid_vocabulary_meaning:${word.id}`);
     check(!word.relatedExpressions || Array.isArray(word.relatedExpressions) && word.relatedExpressions.length <= 30 && word.relatedExpressions.every(expression => typeof expression === 'string' && expression.trim() === expression && expression.length > 0 && expression.length < 300 && !/[\r\n\t<>]/u.test(expression)), `invalid_vocabulary_related:${word.id}`);
     for (const term of vocabularyTerms(word)) {

@@ -11,7 +11,7 @@ import type { DatabaseService } from '../src/database/database.service';
 import * as schema from '../src/database/schema';
 import { VocabularyLiveService } from '../src/vocabulary/vocabulary-live.service';
 import { VocabularyAdminService, vocabularyAudioPaths } from '../src/admin/vocabulary-admin.service';
-import { AdminAuditService } from '../src/admin/admin-audit.service';
+import type { AdminAuditService } from '../src/admin/admin-audit.service';
 import { SyncService } from '../src/sync/sync.service';
 import type { OpsAuthenticatedRequest } from '../src/admin/admin.types';
 import { vocabularyDocumentForPolicy } from '../src/sync/vocabulary-document';
@@ -90,6 +90,17 @@ it('retired words cannot be resurrected by stale devices and pull sanitizes old 
   const [stored]=await database.select().from(schema.userDocuments).where(eq(schema.userDocuments.userId,account!.id));
   expect(stored?.payload).toMatchObject({words:{}});
   const pulled=await sync.pull(account!.id,'0');expect(JSON.stringify(pulled)).not.toContain(word.id);
+});
+it('adds a complete new card from the backend and derives frequency from all five published banks',async()=>{
+  const f=fixture(),previous=await f.live.get(),original=previous.dataset.books[0]!.words[0]!;
+  for(const bankId of ['listening','sentences900','radiotelephony','storytelling','opi'])await database.insert(schema.questionBankReleases).values({bankId,version:27,checksum:bankId.padEnd(64,'a'),active:true,payload:{cards:[{id:bankId,kind:'text',audioText:'Testvocabulary is a test fixture.',referenceText:bankId==='listening'?'Testvocabulary is a duplicate listening reference.':''}]}});
+  const word={...original,id:'admin-new-fixture',word:'testvocabulary',meaning:'测试词条',pronunciationText:'testvocabulary',example:'Testvocabulary is a test fixture.',exampleTranslation:'这是一个测试词条例句。',relatedExpressions:[],frequency:undefined};
+  const edits=[{type:'upsert' as const,word}];const plan=await f.service.preview(previous.version,edits);
+  const newWord=plan.content.dataset.books[0]!.words.find(item=>item.id===word.id)!;
+  expect(newWord.frequency?.occurrences).toBe(5);expect(newWord.frequency?.cardCount).toBe(5);expect(plan.missingAudio).toHaveLength(2);
+  for(const path of plan.missingAudio)await database.insert(schema.resourceObjects).values({objectKey:path.slice(1),module:'vocabulary',sourcePath:path,checksum:'b'.repeat(64),sizeBytes:1200,mimeType:'audio/mpeg'});
+  const ready=await f.service.preview(previous.version,edits);expect(ready.missingAudio).toEqual([]);
+  const published=await f.service.publish(previous.version,edits,ready.checksum,request);expect(published.policy.testWords[word.id]?.meaning).toBe('测试词条');
 });
 it('a history with no active row fails closed instead of reverting to the bundled content',async()=>{
   const f=fixture();await database.update(schema.vocabularyReleases).set({active:false});

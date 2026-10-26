@@ -1,6 +1,6 @@
 # 人工复审后的动态词库
 
-固定输入为`../reviewed-20261026/decisions.json`（1826个原始决定）及`../three-books/source.json`（1833词旧版基线）。旧v3目录不改写，供已安装的旧App兼容。当前动态候选1659词：预习390、四级811、五级458。
+固定输入为`../reviewed-20261026/decisions.json`（1826个原始决定）及`../three-books/source.json`（1833词旧版基线）。旧v3目录不改写，供已安装的旧App兼容。当前动态候选1657词：预习388、四级811、五级458。
 
 `editorial.tsv`保存新增词和例句/译文修订，`meanings.tsv`保存中文精简/纠错，`decompositions.tsv`保存明确拆解的低价值组合。`source.json`是这些输入的汇总产物；`release.json`是语料统计后可整体校验的发布候选；`curation-report.json`留存拆词、删除、合并、空选补齐及等级一致性判断。不手改生成JSON。
 
@@ -27,4 +27,4 @@ python3 tools/generate-pronunciations.py --check
 
 这些是词义及语境参考，不向用户新增具体机型的操作程序。
 
-配套录音仍由现有Mac Samantha流程生成并通过同一不可变资源登记机制交付。当前总清单11207项，原11093项不变，新增114项（2122776字节）；可恢复交接包在`/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-live-20261027`。尚未上传/登记新增音频，候选未正式发布。
+配套录音仍由现有Mac Samantha流程生成并通过同一不可变资源登记机制交付。当前总清单11209项，原11093项不变，新增116项（2147632字节）；可恢复交接包在`/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-live-20261027`。尚未上传/登记新增音频，候选未正式发布。

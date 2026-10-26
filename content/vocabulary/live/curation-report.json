@@ -1,8 +1,8 @@
 {
-  "words": 1659,
+  "words": 1657,
   "books": {
     "icao4": 811,
-    "preview": 390,
+    "preview": 388,
     "icao5": 458
   },
   "decisions": [
@@ -1737,6 +1737,18 @@
       "word": "air-driven",
       "action": "merge-exact-synonym",
       "target": "v4-014ecc040a2cfd44"
+    },
+    {
+      "id": "preview-0632",
+      "word": "pilot's cabin",
+      "action": "merge-exact-synonym",
+      "target": "preview-0148"
+    },
+    {
+      "id": "v4-ff2e963ff6d0c33a",
+      "word": "radar",
+      "action": "covered-by-user-selected-phrase",
+      "target": "preview-0889"
     },
     {
       "id": "qbcore-acac13b5ccc0",

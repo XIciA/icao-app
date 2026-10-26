@@ -1,5 +1,5 @@
 import { BookOpen, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
@@ -10,23 +10,12 @@ import { colors, radii, spacing } from '@/theme';
 
 import { buildWordFavoriteItems, type WordFavoriteItem } from './favorites';
 import { migrateLegacyVocabularyFavorites, useWordFavorites } from './progress-store';
-import { loadVocabulary, type VocabularyLoadResult } from './repository';
+import { useVocabularyCatalog } from './use-vocabulary-catalog';
 
 export function WordFavoritesScreen() {
   const favorites = useWordFavorites();
-  const [loadAttempt, setLoadAttempt] = useState(0);
-  const [loadResult, setLoadResult] = useState<VocabularyLoadResult>();
-  const [loadError, setLoadError] = useState(false);
+  const { loadResult, loadError, retry } = useVocabularyCatalog();
   const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
-
-  useEffect(() => {
-    let active = true;
-    setLoadError(false);
-    void loadVocabulary()
-      .then((result) => { if (active) setLoadResult(result); })
-      .catch(() => { if (active) setLoadError(true); });
-    return () => { active = false; };
-  }, [loadAttempt]);
 
   useEffect(() => {
     if (favorites.ready && books.length) void migrateLegacyVocabularyFavorites(books);
@@ -61,7 +50,7 @@ export function WordFavoritesScreen() {
                     <AppText variant="button">词书资源暂时不可用</AppText>
                     <AppText variant="caption">查词收藏仍可查看；联网后重试可恢复词书收藏释义。</AppText>
                   </View>
-                  <Pressable accessibilityLabel="重新加载词书收藏" onPress={() => setLoadAttempt((value) => value + 1)} style={({ pressed }) => [styles.retry, pressed ? styles.pressed : null]}>
+                  <Pressable accessibilityLabel="重新加载词书收藏" onPress={retry} style={({ pressed }) => [styles.retry, pressed ? styles.pressed : null]}>
                     <RefreshCw color={colors.accent} size={18} />
                   </Pressable>
                 </View>

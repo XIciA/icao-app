@@ -4,7 +4,7 @@
   "reviewChecksum": "95b1ec5d839c7b97053a446c4a64a13fcd1b406683152fe9eeae155aa34d162a",
   "editorialChecksums": {
     "editorial.tsv": "2173d6260da1a45567899ad3d975f026df799f0d384c9cfe2c465998131c3159",
-    "meanings.tsv": "d45147f02319f0b167817aca57c4029f31a4cf1f4cc852f437f0b9864fcc20b5",
+    "meanings.tsv": "3b38b50e996150dad3a5fafebdfba821fc6c043bdf1484c7e5fda26ab224b83e",
     "decompositions.tsv": "14cd516bc1b2739a2930dafb61c73d9def09340f7f8e07664774d8f71093aa46"
   },
   "books": [
@@ -1221,7 +1221,7 @@
     {
       "word": "below",
       "bookId": "preview",
-      "meaning": "在......下方；低于",
+      "meaning": "在……下方；低于",
       "example": "The helicopter remained below cloud during the visual approach.",
       "exampleTranslation": "直升机在目视进近期间保持在云下飞行。",
       "id": "v4-8ada24bf6bf31392",
@@ -1297,7 +1297,7 @@
       "id": "preview-0085",
       "bookId": "preview",
       "word": "bird ingestion",
-      "meaning": "鸟吸入；发动机吸入鸟类；ingest 为动词，表示吸入，ingestion 为名词，表示吸入过程",
+      "meaning": "鸟吸入；发动机吸入鸟类",
       "example": "Bird ingestion caused engine vibration during the initial climb.",
       "exampleTranslation": "起始爬升期间，吸鸟导致发动机振动。",
       "pronunciationText": "bird ingestion",
@@ -1740,7 +1740,7 @@
       "id": "preview-0132",
       "bookId": "preview",
       "word": "caution",
-      "meaning": "通话提示 注意；警戒提示",
+      "meaning": "注意；警戒提示",
       "example": "The controller said, \"Caution, vehicles near the taxiway.\"",
       "exampleTranslation": "管制员说:“注意，滑行道附近有车辆。”。",
       "pronunciationText": "caution",
@@ -1980,16 +1980,17 @@
     {
       "id": "preview-0148",
       "bookId": "preview",
-      "word": "cockpit",
+      "word": "cockpit / pilot's cabin",
       "meaning": "驾驶舱",
       "example": "The crew noticed an unusual smell in the cockpit.",
       "exampleTranslation": "机组注意到驾驶舱内有异常气味。",
-      "pronunciationText": "cockpit",
+      "pronunciationText": "cockpit. pilot's cabin",
       "aliases": [],
       "frequencyRules": {
         "forms": [
           "cockpit",
-          "cockpits"
+          "cockpits",
+          "pilot's cabin"
         ]
       },
       "origins": [
@@ -6851,7 +6852,7 @@
       "id": "qbcore-13506e0712c5",
       "bookId": "preview",
       "word": "mayday",
-      "meaning": "通话信号 遇险信号",
+      "meaning": "遇险信号",
       "example": "The pilot began the distress call with \"Mayday.\"",
       "exampleTranslation": "飞行员以“Mayday”开始遇险呼叫。",
       "pronunciationText": "mayday",
@@ -7484,7 +7485,7 @@
       "id": "qbcore-00e37ffae056",
       "bookId": "preview",
       "word": "pan-pan",
-      "meaning": "通话信号 紧急信号",
+      "meaning": "紧急信号",
       "example": "The pilot began the urgency call with \"Pan-Pan.\"",
       "exampleTranslation": "飞行员以“Pan-Pan”开始紧急呼叫。",
       "pronunciationText": "pan pan",
@@ -7618,32 +7619,6 @@
         }
       ],
       "legacyIds": [],
-      "level": 1
-    },
-    {
-      "id": "preview-0632",
-      "bookId": "preview",
-      "word": "pilot's cabin",
-      "meaning": "驾驶舱",
-      "example": "Smoke entered the pilot's cabin after engine start.",
-      "exampleTranslation": "发动机启动后，烟雾进入驾驶舱。",
-      "pronunciationText": "pilot's cabin",
-      "aliases": [],
-      "frequencyRules": {
-        "forms": [
-          "pilot's cabin"
-        ]
-      },
-      "origins": [
-        {
-          "type": "manual",
-          "id": "preview-0632"
-        }
-      ],
-      "legacyIds": [
-        "preview-0632"
-      ],
-      "relatedExpressions": [],
       "level": 1
     },
     {
@@ -8111,31 +8086,6 @@
         "field": "audioText"
       },
       "relatedExpressions": [],
-      "level": 1
-    },
-    {
-      "word": "radar",
-      "bookId": "preview",
-      "meaning": "雷达",
-      "example": "Airport surveillance radar detected the aircraft turning onto final.",
-      "exampleTranslation": "场面监视雷达探测到飞机转入五边。",
-      "id": "v4-ff2e963ff6d0c33a",
-      "pronunciationText": "radar",
-      "aliases": [],
-      "relatedExpressions": [],
-      "frequencyRules": {
-        "forms": [
-          "radar",
-          "radars"
-        ]
-      },
-      "origins": [
-        {
-          "type": "review-split",
-          "term": "radar"
-        }
-      ],
-      "legacyIds": [],
       "level": 1
     },
     {
@@ -10555,7 +10505,7 @@
     {
       "word": "unable",
       "bookId": "preview",
-      "meaning": "不能......的",
+      "meaning": "不能……的",
       "example": "The crew was unable to deploy flaps on approach.",
       "exampleTranslation": "进近时，机组无法放下襟翼。",
       "id": "v4-913f2664aecf816a",
@@ -13992,7 +13942,7 @@
       "id": "qbcore-f08dd851c430",
       "bookId": "icao4",
       "word": "bound",
-      "meaning": "驶往......的；朝某方向运行的",
+      "meaning": "驶往……的；朝某方向运行的",
       "example": "The aircraft was bound for Shanghai.",
       "exampleTranslation": "这架航空器正飞往上海。",
       "pronunciationText": "bound",
@@ -26531,7 +26481,7 @@
       "id": "preview-0594",
       "bookId": "icao4",
       "word": "offload",
-      "meaning": "使......下飞机，卸货",
+      "meaning": "使……下飞机，卸货",
       "example": "The airline decided to offload cargo before departure.",
       "exampleTranslation": "航空公司决定起飞前卸下货物。",
       "pronunciationText": "offload",
@@ -47999,6 +47949,8 @@
     "preview-0920": null,
     "qbcore-bc9612473e80": "icao4-0576",
     "v4-0288efc148fb5820": "v4-014ecc040a2cfd44",
+    "preview-0632": "preview-0148",
+    "v4-ff2e963ff6d0c33a": "preview-0889",
     "qbcore-acac13b5ccc0": null,
     "qbcore-302b9de5c0d5": null,
     "qbcore-7d5233383472": null,
@@ -48618,7 +48570,7 @@
     "__word_favorite__:v1:passenger%20gate": null,
     "__word_favorite__:v1:patient": "preview-0628",
     "__word_favorite__:v1:permission": "preview-0630",
-    "__word_favorite__:v1:pilot's%20cabin": "preview-0632",
+    "__word_favorite__:v1:pilot's%20cabin": "preview-0148",
     "__word_favorite__:v1:pilot-in-command": "preview-0633",
     "__word_favorite__:v1:pitot%20de-icer": "preview-0635",
     "__word_favorite__:v1:pound": "preview-0646",
@@ -50442,6 +50394,7 @@
     "__word_favorite__:v1:ferry%20bus": "preview-0027",
     "__word_favorite__:v1:apron%20%2F%20ramp": "icao4-0050",
     "__word_favorite__:v1:buildup%20%2F%20build-up": "qbcore-05240902edf8",
+    "__word_favorite__:v1:cockpit%20%2F%20pilot's%20cabin": "preview-0148",
     "__word_favorite__:v1:deicing%20%2F%20de-icing": "preview-0191",
     "__word_favorite__:v1:disembark%20%2F%20deplane": "icao4-0219",
     "__word_favorite__:v1:fire%20engine%20%2F%20fire%20truck": "preview-0320",
@@ -50471,7 +50424,6 @@
     "__word_favorite__:v1:weather": "v4-e5e72beb4e3c6926",
     "__word_favorite__:v1:aircraft": "v4-d10149eecff30f56",
     "__word_favorite__:v1:airport": "v4-ccc9ff052aee8da1",
-    "__word_favorite__:v1:radar": "v4-ff2e963ff6d0c33a",
     "__word_favorite__:v1:anti-icing": "v4-a9cf514d4a610d5e",
     "__word_favorite__:v1:system": "v4-bbc5e661e106c6dc",
     "__word_favorite__:v1:failure": "v4-16d34b5e7bcb341e",

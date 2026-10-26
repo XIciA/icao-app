@@ -22,6 +22,8 @@ test('dictated splits retain useful standalone words instead of redundant combin
  for(const term of ['a badly sick passenger','adverse weather','aircraft proximity','moderate turbulence','minor bruise','port engine','starboard engine','AC generator','fog is coming down','fog is clearing up'])assert.equal(find(term),undefined,term);
  for(const term of ['aircraft','passenger','sick','proximity','minor','bruise','moderate','turbulence','port','starboard','engine','in progress','clear up','come down'])assert.ok(find(term),term);
  assert.equal(find('aircraft').bookId,'preview');
+ assert.equal(find('radar'),undefined);assert.ok(find('radar vector'));
+ assert.equal(find('cockpit').word,"cockpit / pilot's cabin");
 });
 
 test('abbreviations, synonyms and related forms use the approved presentation',()=>{
