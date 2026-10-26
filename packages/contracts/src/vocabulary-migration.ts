@@ -2,7 +2,7 @@ import { vocabularyRetiredFavoriteKeys, vocabularyRetiredIds, vocabularyTestWord
 import type { VocabularyMigrationPolicy } from './vocabulary-live.ts';
 
 type Progress = { status: 'new' | 'known' | 'vague' | 'forgot' | 'wrong'; favorite: boolean; updatedAt: string };
-type StudySession = {wordIds:string[];nextWordId:string|null;order:'frequency'|'random';startedAt:string;updatedAt:string};
+type StudySession = {answers?:Record<string,Exclude<Progress['status'],'new'>>;wordIds:string[];nextWordId:string|null;order:'frequency'|'random';startedAt:string;updatedAt:string};
 type Document = { studySession?:StudySession; words: Record<string, Progress>; lastTest?: { answers: unknown[] }; updatedAt: string };
 const rank: Record<Progress['status'], number> = { new: -1, known: 0, vague: 2, forgot: 3, wrong: 4 };
 
@@ -48,11 +48,21 @@ export function migrateVocabularyDocument<T extends Document>(document: T, polic
   }
   let studySession = document.studySession;
   if (studySession && policy) {
-    const resolve = (id: string) => Object.hasOwn(retiredIds,id) ? retiredIds[id] : Object.hasOwn(policy.testWords,id) ? id : null;
+    const resolve = (id: string):string|null => Object.hasOwn(retiredIds,id) ? retiredIds[id] ?? null : Object.hasOwn(policy.testWords,id) ? id : null;
     const wordIds = [...new Set(studySession.wordIds.map(resolve).filter((id):id is string=>typeof id==='string'))];
-    const nextWordId = studySession.nextWordId === null ? null : resolve(studySession.nextWordId) ?? wordIds.find(id=>(words[id]?.status??'new')==='new') ?? null;
-    if (JSON.stringify(wordIds)!==JSON.stringify(studySession.wordIds) || nextWordId!==studySession.nextWordId) {
-      studySession={...studySession,wordIds,nextWordId}; changed=true;
+    const answers: NonNullable<StudySession['answers']> = {};
+    for (const [id,status] of Object.entries(studySession.answers ?? {})) {
+      const target=resolve(id); if(!target)continue;
+      if(!answers[target] || rank[status]>rank[answers[target]!])answers[target]=status;
+    }
+    const originalNext=studySession.nextWordId;
+    const resolvedNext=originalNext===null?null:resolve(originalNext);
+    const retiredNext=originalNext!==null&&Object.hasOwn(retiredIds,originalNext);
+    const nextWordId=originalNext===null?null:retiredNext
+      ? resolvedNext && !answers[resolvedNext] ? resolvedNext : wordIds.find(id=>!answers[id]) ?? null
+      : resolvedNext;
+    if (JSON.stringify(wordIds)!==JSON.stringify(studySession.wordIds) || nextWordId!==studySession.nextWordId || JSON.stringify(answers)!==JSON.stringify(studySession.answers??{})) {
+      studySession={...studySession,wordIds,nextWordId,...(studySession.answers?{answers}:{})}; changed=true;
     }
   }
   if (!changed) return document;

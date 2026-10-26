@@ -1,5 +1,5 @@
 import { CryptoDigestAlgorithm, digestStringAsync } from 'expo-crypto';
-import { canonicalVocabularyJson, validateVocabularyLiveContent, validateVocabularyPolicyTransition, vocabularyFavoriteKey, vocabularyTerms, type VocabularyLiveContent, type VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
+import { canonicalVocabularyJson, vocabularyLivePayload, validateVocabularyLiveContent, validateVocabularyPolicyTransition, vocabularyFavoriteKey, vocabularyTerms, type VocabularyLiveContent, type VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
 import { migrateVocabularyDocument } from '@icao/contracts';
 import { getApiBaseUrl } from '@/platform/api-client';
 import Storage from '@/platform/storage';
@@ -25,7 +25,7 @@ export function migrateCurrentVocabulary<T extends Parameters<typeof migrateVoca
 export async function validateLiveVocabularyRelease(value:unknown):Promise<VocabularyLiveRelease> {
   const content=validateVocabularyLiveContent(value);
   const checksum=(value as VocabularyLiveRelease).checksum;
-  const payload:VocabularyLiveContent={schemaVersion:content.schemaVersion,catalogId:content.catalogId,version:content.version,dataset:content.dataset,policy:content.policy};
+  const payload:VocabularyLiveContent=vocabularyLivePayload(content);
   if(typeof checksum!=='string'||!/^[a-f0-9]{64}$/.test(checksum)||await digestStringAsync(CryptoDigestAlgorithm.SHA256,canonicalVocabularyJson(payload))!==checksum)throw new Error('vocabulary_live_checksum_mismatch');
   return {...payload,checksum};
 }

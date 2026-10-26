@@ -83,6 +83,11 @@ export function validateVocabularyLiveContent(value: unknown): VocabularyLiveCon
   return content;
 }
 
+/** Transport metadata (notably checksum itself) is never part of content. */
+export function vocabularyLivePayload(content:VocabularyLiveContent):VocabularyLiveContent {
+  return {schemaVersion:content.schemaVersion,catalogId:content.catalogId,version:content.version,dataset:content.dataset,policy:content.policy};
+}
+
 /** Deterministic JSON for release hashes; independent of object insertion order. */
 export function canonicalVocabularyJson(value: unknown): string {
   if (value === undefined) return 'null';

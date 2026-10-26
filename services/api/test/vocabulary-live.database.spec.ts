@@ -9,6 +9,8 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import type { DatabaseService } from '../src/database/database.service';
 import * as schema from '../src/database/schema';
+import { canonicalVocabularyJson, vocabularyLivePayload } from '@icao/contracts/vocabulary-live';
+import { createHash } from 'node:crypto';
 import { VocabularyLiveService } from '../src/vocabulary/vocabulary-live.service';
 import { VocabularyAdminService, vocabularyAudioPaths } from '../src/admin/vocabulary-admin.service';
 import type { AdminAuditService } from '../src/admin/admin-audit.service';
@@ -73,6 +75,8 @@ it('publishes atomically with version fencing, immutable history and audio readi
   for(let i=0;i<paths.length;i+=200)await database.insert(schema.resourceObjects).values(paths.slice(i,i+200).map(path=>({objectKey:path.slice(1),module:'vocabulary',sourcePath:path,checksum:'a'.repeat(64),sizeBytes:1200,mimeType:'audio/mpeg'})));
   const planned=await f.service.preview(baseline.version,edits);expect(planned.missingAudio).toEqual([]);
   const published=await f.service.publish(baseline.version,edits,planned.checksum,request);
+  expect(published.checksum).toBe(createHash('sha256').update(canonicalVocabularyJson(vocabularyLivePayload(published))).digest('hex'));
+  const [activePayload]=await database.select().from(schema.vocabularyReleases).where(eq(schema.vocabularyReleases.active,true));expect(activePayload!.payload).not.toHaveProperty('checksum');
   expect(published.version).toBe(5);expect(published.dataset.books[2]!.words.find(word=>word.id===first.id)?.frequency).toEqual(first.frequency);
   expect((await f.live.get()).checksum).toBe(published.checksum);
   expect(await database.select().from(schema.vocabularyReleases)).toHaveLength(2);

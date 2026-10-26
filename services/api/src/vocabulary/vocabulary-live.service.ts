@@ -1,5 +1,5 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
-import { canonicalVocabularyJson, validateVocabularyLiveContent, type VocabularyLiveContent, type VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
+import { canonicalVocabularyJson, vocabularyLivePayload, validateVocabularyLiveContent, type VocabularyLiveContent, type VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -8,7 +8,7 @@ import { DatabaseService } from '../database/database.service';
 import { vocabularyReleases } from '../database/schema';
 
 export const VOCABULARY_PUBLICATION_LOCK = 1863401;
-export const vocabularyContentChecksum = (content: VocabularyLiveContent) => createHash('sha256').update(canonicalVocabularyJson(content)).digest('hex');
+export const vocabularyContentChecksum = (content: VocabularyLiveContent) => createHash('sha256').update(canonicalVocabularyJson(vocabularyLivePayload(content))).digest('hex');
 type Reader = Pick<DatabaseService['db'], 'select'>;
 
 @Injectable()

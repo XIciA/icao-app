@@ -1,4 +1,5 @@
-import { prepareVocabularySession } from './study-session';
+import { prepareVocabularySession, reconcileVocabularySession } from './study-session';
+import { currentVocabularyPolicy } from './live-catalog';
 import { useStudyOrder } from './use-study-order';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { useGuide, useGuideConfirmation, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
@@ -45,7 +46,8 @@ export function VocabularyScreen() {
   const guide = useGuide();
   const [view, setView] = useState<ViewName>('books');
   const { loadResult, loadError, retry } = useVocabularyCatalog(view === 'books');
-  const books = useMemo(() => loadResult?.dataset.books ?? [], [loadResult]);
+  const policy=currentVocabularyPolicy();
+  const books = useMemo(() => (loadResult?.dataset.books ?? []).map(book=>({...book,words:book.words.filter(word=>!Object.hasOwn(policy?.retiredIds??{},word.id))})), [loadResult,policy]);
   const progress = useVocabularyProgress(books);
   const { order, chooseOrder } = useStudyOrder();
   const save = useSaveAction();
@@ -63,6 +65,24 @@ export function VocabularyScreen() {
   const [sessionSummary, setSessionSummary] = useState<VocabularySessionSummary>(emptySummary);
   const [testRunKey, setTestRunKey] = useState(0);
   const [currentTestResult, setCurrentTestResult] = useState<VocabularyTestResult>();
+  const liveWords = useRef(studyWords), liveIndex = useRef(studyIndex), liveAnswers = useRef(sessionStatuses);
+  liveWords.current=studyWords; liveIndex.current=studyIndex; liveAnswers.current=sessionStatuses;
+  const sessionStartedAt=useRef<string | undefined>(undefined);
+  useEffect(()=>{
+    if(view!=='study'||!policy)return;
+    const persisted=progress.state.studySession?.startedAt===sessionStartedAt.current?progress.state.studySession?.answers:{};
+    const next=reconcileVocabularySession(studyWords,studyIndex,{...sessionStatuses,...persisted},policy);
+    const changed=next.words.length!==studyWords.length;
+    if(changed)setStudyWords(next.words);
+    if(next.index!==studyIndex)setStudyIndex(next.index);
+    if(JSON.stringify(next.statuses)!==JSON.stringify(sessionStatuses))setSessionStatuses(next.statuses);
+    const nextId=next.words[next.index]?.id;
+    if(nextId!==studyWords[studyIndex]?.id || nextId&&next.statuses[nextId]&&!sessionStatuses[nextId])setRevealed(Boolean(nextId&&next.statuses[nextId]));
+    if(changed&&next.complete){
+      if(!next.words.length)setView('books');
+      else {setSessionSummary(Object.values(next.statuses).reduce((result,status)=>({...result,[status]:result[status]+1}),{...emptySummary}));setView('complete');}
+    }
+  },[policy,progress.state.studySession,sessionStatuses,studyIndex,studyWords,view]);
 
   useGuideAvailability('vocab', progress.error ? '学习进度读取失败，请重试读取。' : loadError ? '词汇资源暂时不可用，请重新加载。' : undefined);
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
@@ -71,6 +91,7 @@ export function VocabularyScreen() {
     const ordered = prepared.queue;
     if (!ordered.length) return;
     void save.run(() => progress.saveStudySession(prepared.session), () => {
+      sessionStartedAt.current=prepared.session.startedAt;
       setStudyWords(ordered);
       setStudyIndex(prepared.index);
       setRevealed(prepared.revealed || Boolean(guide?.current === 'vocab' && guide.step && ['vocab-meaning', 'vocab-favorite', 'vocab-next'].includes(guide.step)));
@@ -141,6 +162,7 @@ export function VocabularyScreen() {
     const currentWord = studyWords[studyIndex]!;
     const recordStatus = (status: SessionStatus) => {
       return save.run(() => progress.setStatus(currentWord.id, status), () => {
+        if(liveWords.current[liveIndex.current]?.id!==currentWord.id || Object.hasOwn(currentVocabularyPolicy()?.retiredIds??{},currentWord.id))return;
         setSessionStatuses((current) => ({ ...current, [currentWord.id]: status }));
         setRevealed(true);
         guide?.event('vocab-rating');
@@ -149,15 +171,18 @@ export function VocabularyScreen() {
     const next = () => {
       if (save.isPending() || save.failed || advancingIndex.current !== studyIndex) return;
       advancingIndex.current = studyIndex + 1;
-      void save.run(() => progress.saveStudySession({wordIds:studyWords.map(word=>word.id),order,startedAt:progress.state.studySession?.startedAt ?? new Date().toISOString(),updatedAt:new Date().toISOString(),nextWordId:studyWords[studyIndex+1]?.id ?? null}), () => {
-        if (studyIndex < studyWords.length - 1) {
-          setStudyIndex((value) => value + 1);
-          setRevealed(false);
-          return;
-        }
-        const summary = Object.values(sessionStatuses).reduce((result, status) => ({ ...result, [status]: result[status] + 1 }), { ...emptySummary });
-        setSessionSummary(summary);
-        setView('complete');
+      const snapshot=reconcileVocabularySession(liveWords.current,liveIndex.current,liveAnswers.current,currentVocabularyPolicy());
+      const currentPosition=snapshot.words.findIndex(word=>word.id===currentWord.id);
+      const nextPosition=currentPosition<0?snapshot.complete?-1:snapshot.index:snapshot.words.findIndex((word,index)=>index>currentPosition&&!snapshot.statuses[word.id]);
+      void save.run(() => progress.saveStudySession({wordIds:snapshot.words.map(word=>word.id),answers:snapshot.statuses,order,startedAt:sessionStartedAt.current ?? new Date().toISOString(),updatedAt:new Date().toISOString(),nextWordId:snapshot.words[nextPosition]?.id ?? null}), () => {
+        const fresh=reconcileVocabularySession(liveWords.current,liveIndex.current,liveAnswers.current,currentVocabularyPolicy());
+        if(liveWords.current[liveIndex.current]?.id!==currentWord.id)return;
+        const position=fresh.words.findIndex(word=>word.id===currentWord.id);
+        const following=position<0?fresh.complete?-1:fresh.index:fresh.words.findIndex((word,index)=>index>position&&!fresh.statuses[word.id]);
+        setStudyWords(fresh.words);setSessionStatuses(fresh.statuses);
+        if(following>=0){setStudyIndex(following);setRevealed(false);return;}
+        const summary=Object.values(fresh.statuses).reduce((result,status)=>({...result,[status]:result[status]+1}),{...emptySummary});
+        setSessionSummary(summary);setView(fresh.words.length?'complete':'books');
       });
     };
     return <VocabularyStudyView savedStatus={sessionStatuses[currentWord.id]} busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
@@ -165,7 +190,7 @@ export function VocabularyScreen() {
 
   if (view === 'complete') {
     const weakWords = studyWords.filter((word) => ['vague', 'forgot', 'wrong'].includes(sessionStatuses[word.id] ?? ''));
-    return <VocabularyCompletionView returnLabel={sessionOrigin.current === 'list' ? '返回单词列表' : sessionOrigin.current === 'detail' ? '返回词书详情' : '返回词书'} onBack={back} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={studyWords.length} />;
+    return <VocabularyCompletionView returnLabel={sessionOrigin.current === 'list' ? '返回单词列表' : sessionOrigin.current === 'detail' ? '返回词书详情' : '返回词书'} onBack={back} onRestart={() => startStudy(studyWords, returnView)} onReview={() => startStudy(weakWords, returnView)} onViewWords={() => setView('sessionList')} summary={sessionSummary} total={Math.max(studyWords.length,Object.keys(sessionStatuses).length)} />;
   }
 
   if (view === 'sessionList' && studyWords.length) {

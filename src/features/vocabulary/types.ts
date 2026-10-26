@@ -48,6 +48,7 @@ export type VocabularyTestResult = {
 };
 
 export type VocabularyStudySession = {
+  answers?: Record<string, Exclude<VocabularyWordStatus, 'new'>>;
   wordIds: string[];
   nextWordId: string | null;
   order: 'frequency' | 'random';

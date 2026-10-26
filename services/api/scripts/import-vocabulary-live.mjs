@@ -5,10 +5,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import postgres from 'postgres';
-import { canonicalVocabularyJson, validateVocabularyLiveContent, validateVocabularyPolicyTransition } from '@icao/contracts/vocabulary-live';
+import { canonicalVocabularyJson, vocabularyLivePayload, validateVocabularyLiveContent, validateVocabularyPolicyTransition } from '@icao/contracts/vocabulary-live';
 
 export function readVocabularyImport(path) {
-  const content=validateVocabularyLiveContent(JSON.parse(readFileSync(path,'utf8')));
+  const content=vocabularyLivePayload(validateVocabularyLiveContent(JSON.parse(readFileSync(path,'utf8'))));
   const checksum=createHash('sha256').update(canonicalVocabularyJson(content)).digest('hex');
   const audioPaths=[...new Set(content.dataset.books.flatMap(book=>book.words.flatMap(word=>[word.pronunciationText,word.example].map(text=>{
     const normalized=text.replace(/\//g,' or ').replace(/[()（）]/g,' ').replace(/\s+/g,' ').trim();
@@ -21,7 +21,8 @@ export async function vocabularyImportPlan(tx,candidate) {
   if(!active){const [history]=await tx`select version from vocabulary_releases limit 1`;if(history)throw new Error('vocabulary_active_release_missing');}
   if(active){
     const previous=validateVocabularyLiveContent(active.payload);
-    if(createHash('sha256').update(canonicalVocabularyJson(previous)).digest('hex')!==active.checksum)throw new Error('vocabulary_existing_checksum_invalid');
+    if(previous.version!==active.version)throw new Error('vocabulary_existing_version_invalid');
+    if(createHash('sha256').update(canonicalVocabularyJson(vocabularyLivePayload(previous))).digest('hex')!==active.checksum)throw new Error('vocabulary_existing_checksum_invalid');
     if(active.version===candidate.content.version&&active.checksum===candidate.checksum){/* exact retry */}
     else validateVocabularyPolicyTransition(previous,candidate.content);
   }
