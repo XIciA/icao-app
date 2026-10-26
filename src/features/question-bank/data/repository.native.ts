@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { orderQuestionBanks } from '../lib/bank-order';
 import { commerceContentAccessSnapshot } from '@/features/native-commercial-testflight/commerce-entitlement-events';
 import { naturalDatasetTitles, naturalTopicTitles } from '../lib/question-titles';
@@ -103,10 +104,22 @@ export const embeddedQuestionBankRepository: QuestionBankRepository = {
   },
 };
 
-export const remoteQuestionBankRepository = {
-  async getDataset(id: QuestionBankId, signal?: AbortSignal) {
+// Clearing revoked offline material increments the same generation used by
+// account switches. Admit only this synchronous, request-owned increment; any
+// later account/permission change is still rejected after the cleanup awaits.
+async function clearExpiredMemberContent(context: ReturnType<typeof contentContext>) {
+  assertContentContextCurrent(context);
+  const cleanup = clearQuestionBankMemberContent(context.accountId!);
+  context.accountGeneration = questionBankContentAccountGeneration();
+  await cleanup.catch(() => undefined);
+  assertContentContextCurrent(context);
+}
+
+type SharedContent<T> = { value: T; context: ReturnType<typeof contentContext> };
+
+const remoteQuestionBankSource = {
+  async getDataset(id: QuestionBankId, signal: AbortSignal | undefined, context: ReturnType<typeof contentContext>) {
     await ensureLegacyFullCacheRemoved();
-    const context = contentContext();
     const { accountId, environment } = context;
     const cached = await readCachedCatalog(accountId, environment, id);
     const accessState = (cached?.dataset as QuestionBankDataset | undefined)?.access?.membershipActive === true ? 'member' : 'free';
@@ -125,7 +138,7 @@ export const remoteQuestionBankRepository = {
     if (!body.data?.dataset || body.data.dataset.id !== id || !Number.isSafeInteger(body.data.version) || body.data.version < 1 || !/^[a-f0-9]{64}$/.test(body.data.checksum)) throw new Error('invalid_question_bank_response');
     body.data.dataset = withContentRelease(body.data.dataset, { bankId: id, version: body.data.version, checksum: body.data.checksum });
     if (accountId && body.data.dataset.access?.membershipActive === false) {
-      await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+      await clearExpiredMemberContent(context);
     }
     if (accountId) {
       await Storage.setItem(
@@ -135,8 +148,7 @@ export const remoteQuestionBankRepository = {
     }
     return body.data.dataset;
   },
-  async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference) {
-    const context = contentContext();
+  async getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected: ContentReleaseReference | undefined, context: ReturnType<typeof contentContext>) {
     const { accountId, environment } = context;
     const scope = { bankId, categoryId, topicId, ...(expected ? { version: expected.version } : {}) } satisfies ContentAccessScope & { version?: number };
     try {
@@ -150,9 +162,9 @@ export const remoteQuestionBankRepository = {
         throw new Error('invalid_question_bank_topic_response');
       }
       if (accountId && release.access.membershipActive === false) {
-        await clearQuestionBankMemberContent(accountId).catch(() => undefined);
+        await clearExpiredMemberContent(context);
       }
-      if (accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
+      if (Platform.OS !== 'web' && accountId && release.access.membershipActive && release.topic.access?.level === 'member') {
         try {
           const credential = await apiRequest<ContentAccessCredential>('/v1/content-access/credentials', {
             method: 'POST',
@@ -199,20 +211,79 @@ export const remoteQuestionBankRepository = {
       throw error;
     }
   },
+};
+
+// Only in-flight work is shared. Completed content still belongs to the existing
+// repository/cache, and each caller receives its own JSON payload to project.
+const pendingCatalogs = new Map<string, Promise<SharedContent<QuestionBankDataset | undefined>>>();
+const pendingTopics = new Map<string, Promise<SharedContent<QuestionBankTopic | undefined>>>();
+
+async function sharedContentRequest<T>(
+  pending: Map<string, Promise<SharedContent<T>>>,
+  identity: readonly unknown[],
+  load: (context: ReturnType<typeof contentContext>) => Promise<T>,
+  isolated = false,
+): Promise<T> {
+  const context = contentContext();
+  const base = getApiBaseUrl();
+  const assertCurrent = (owner = context) => {
+    assertContentContextCurrent(owner);
+    if (getApiBaseUrl() !== base) throw new ApiClientError('content_account_changed', 409);
+  };
+  const key = JSON.stringify([base, context, ...identity]);
+  let request = isolated ? undefined : pending.get(key);
+  if (!request) {
+    request = Promise.resolve().then(async () => {
+      assertCurrent();
+      const value = await load(context);
+      assertCurrent();
+      return { value, context };
+    });
+    if (!isolated) {
+      request = request.finally(() => { if (pending.get(key) === request) pending.delete(key); });
+      // Store the settled-cleanup promise so a retry never joins failed work.
+      pending.set(key, request);
+    }
+  }
+  const { value, context: owner } = await request;
+  assertCurrent(owner);
+  return value === undefined ? value : JSON.parse(JSON.stringify(value)) as T;
+}
+
+export const remoteQuestionBankRepository = {
+  getDataset(id: QuestionBankId, signal?: AbortSignal) {
+    // A caller-owned abort must not cancel requests used by another screen.
+    return sharedContentRequest(pendingCatalogs, [id], (context) => remoteQuestionBankSource.getDataset(id, signal, context), Boolean(signal));
+  },
+  getTopic(bankId: QuestionBankId, categoryId: string, topicId: string, expected?: ContentReleaseReference) {
+    const release = expected ? { ...expected } : undefined;
+    return sharedContentRequest(pendingTopics,
+      [bankId, categoryId, topicId, release?.bankId, release?.version, release?.checksum],
+      (context) => remoteQuestionBankSource.getTopic(bankId, categoryId, topicId, release, context));
+  },
 } satisfies QuestionBankRepository;
 
 export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
+  const context = contentContext();
+  const base = getApiBaseUrl();
+  const assertCurrent = () => {
+    assertContentContextCurrent(context);
+    if (getApiBaseUrl() !== base) throw new ApiClientError('content_account_changed', 409);
+  };
   await ensureLegacyFullCacheRemoved();
-  if (getApiBaseUrl()) {
+  assertCurrent();
+  if (base) {
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);
       if (remote) return { dataset: naturalDatasetTitles(remote), source: 'remote' };
     } catch {
+      assertCurrent();
       const cached = await readCachedCatalog(
-        currentQuestionBankContentAccountId(),
-        getNativeCommerceEnvironment(),
+        context.accountId,
+        context.environment,
         id,
       );
+      assertCurrent();
       if (cached) return { dataset: naturalDatasetTitles(cached.dataset), source: 'cache', warning: 'question_bank_remote_unavailable' };
       const embedded = await embeddedQuestionBankRepository.getDataset(id);
       return embedded ? { dataset: embedded, source: 'embedded', warning: 'question_bank_remote_unavailable' } : undefined;
