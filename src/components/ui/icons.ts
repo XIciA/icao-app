@@ -105,3 +105,5 @@ export { default as Phone } from 'lucide-react-native/icons/phone';
 export { default as Copy } from 'lucide-react-native/icons/copy';
 
 export { default as Download } from 'lucide-react-native/icons/download';
+
+export { default as SlidersHorizontal } from 'lucide-react-native/icons/sliders-horizontal';

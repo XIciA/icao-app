@@ -24,6 +24,9 @@ const mockAcquire = jest.fn(async () => ({ token: 'lease' }));
 const mockCoordinator = new RadioOperationCoordinator();
 const mockLoadCatalogs = jest.fn(async (_selection?: unknown, _options?: { complete?: boolean; onProgress?: (datasets: never[]) => void }) => []);
 
+const mockAnnotationStore = { version: 2, legacyImported: true, tagDefinitions: [{ id: 'good', label: '好题', color: 'green' }], highlightDefinitions: [], entries: Object.fromEntries(['t0', 't2', 't4'].map(cardId => [cardId, { bankId: 'listening', categoryId: 'c', topicId: 'topic', cardId, tagIds: ['good'], highlights: [], note: '', updatedAt: '' }])) };
+jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ store: mockAnnotationStore }) }));
+
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ restoring: false, session: mockSession }) }));
 jest.mock('@/features/account/profile-store.native', () => ({ useProfile: () => mockProfile }));
 jest.mock('@/features/native-commercial-testflight/commerce-environment', () => ({ nativeCommerceEnvironmentSnapshot: () => 'production', subscribeNativeCommerceEnvironment: () => () => undefined }));
@@ -66,6 +69,46 @@ function deferred<T>() { let resolve!: (value: T) => void; const promise = new P
 describe('radio native queue integration', () => {
   beforeEach(() => { mockPlayback = 'paused'; mockProfile = { studyScope: 'all', target: 'icao4-first' }; mockQueue = []; mockActive = 0; jest.clearAllMocks(); mockLoadCatalogs.mockReset().mockResolvedValue([]); mockResolve.mockImplementation(async (path) => `file://${path}`); });
   afterEach(() => jest.restoreAllMocks());
+
+  it('applies filtering to buffered audio, next/previous and shuffle while retaining the current track', async () => {
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.activateSession()); await flush();
+    await act(() => mockContext.play()); await flush();
+    const playCalls = mockPlay.mock.calls.length;
+    await act(() => mockContext.setQueueFilter!({ tags: true, tagIds: ['good'], highlights: false, highlightIds: [], notes: false })); await flush();
+    expect(mockContext.currentTrack?.id).toBe('t0');
+    expect(mockContext.currentCatalog?.tracks.map(item => item.id)).toEqual(['t0', 't2', 't4']);
+    expect(mockContext.catalogs[0].tracks).toHaveLength(6);
+    expect(mockPlay).toHaveBeenCalledTimes(playCalls);
+    expect(mockQueue.filter(item => item.radioTrackKind === 'content').every(item => ['t0', 't2', 't4'].includes(item.radioTrackId))).toBe(true);
+    await act(() => mockContext.next(false)); await flush();
+    expect(mockContext.currentTrack?.id).toBe('t2');
+    await act(() => mockContext.previous()); await flush();
+    expect(mockContext.currentTrack?.id).toBe('t0');
+    await act(() => mockContext.setMode('shuffle')); await flush();
+    await act(() => mockContext.next(false)); await flush();
+    expect(['t0', 't2', 't4']).toContain(mockContext.currentTrack?.id);
+    await view.unmount();
+  });
+
+  it('pauses an excluded current track, handles no matches, and restores the full queue', async () => {
+    const view = await render(<RadioPlayerProvider><Observer /></RadioPlayerProvider>); await flush();
+    await act(() => mockContext.selectTrack('t1', true)); await flush();
+    const playCalls = mockPlay.mock.calls.length;
+    await act(() => mockContext.setQueueFilter!({ tags: true, tagIds: [], highlights: false, highlightIds: [], notes: false })); await flush();
+    expect(mockContext.currentTrack?.id).toBe('t0');
+    expect(mockPlay).toHaveBeenCalledTimes(playCalls);
+    await act(() => mockContext.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: true })); await flush();
+    expect(mockContext.currentTrack).toBeUndefined();
+    expect(mockQueue).toEqual([]);
+    await act(() => mockContext.next()); await flush();
+    expect(mockPlay).toHaveBeenCalledTimes(playCalls);
+    await act(() => mockContext.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: false })); await flush();
+    expect(mockContext.currentCatalog?.tracks).toHaveLength(6);
+    expect(mockContext.currentTrack?.id).toBe('t0');
+    expect(mockPlay).toHaveBeenCalledTimes(playCalls);
+    await view.unmount();
+  });
 
   it('can select an authorized bank whose protected questions are not loaded yet', async () => {
     mockCatalogs.push({ bankId: 'radiotelephony', title: '陆空通话', nameEn: 'Radiotelephony', tracks: [] });
