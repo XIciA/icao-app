@@ -31,7 +31,7 @@ describe('discovery free access', () => {
   });
   it('serves vocabulary without an authenticated account or membership', async () => {
     const release = { checksum: 'a'.repeat(64), dataset: { books: [] } };
-    const controller = new VocabularyController({ get: () => release } as never);
+    const controller = new VocabularyController({ get: () => release } as never, {} as never);
     expect((await controller.get(undefined, { id: 'guest' } as never, reply() as never))?.data).toBe(release);
   });
   it('serves resource lists and details without an authenticated account or membership', async () => {

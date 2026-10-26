@@ -261,3 +261,16 @@ RESOURCE_MANIFEST=/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-three-book
 - 完整原始决定备份：`/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-review-20261026/backups/completed-review-20261026-235639.json`；SHA-256为 `95b1ec5d839c7b97053a446c4a64a13fcd1b406683152fe9eeae155aa34d162a`。另生成completed-review-export.json、completed-review-summary.json，关联全部1833个稳定ID及原文，不将截图计数代替实际保存文件。
 - 未选择7条：configuration、CVR、fuselage、refuel、rejected takeoff、tail strike、vertical；待定1条：pound。保留其原始空选/待定状态，不冒充用户已选等级。
 - 已读取用户指定同组词的等级，结果存requested-groups-initial-check.json；这是初步核对，不代表已完成全词库逻辑、拆词及格式审查。后续以本轮口述和最终决定进行整理，尚未修改正式词库或用户学习记录。
+
+### 23 · 本轮联动改造执行检查点（2026-10-27）
+
+用户已明确要求全面实施并持续至完成，当前以单词任务优先；此前“仅记录”阶段已结束。现分支 `codex/vocabulary-server-lifecycle`，起点及整合基线为 `2bb5df48`。用户审核原始决定与口述意见已在 `70272e40` 保存，任务范围在 `8a4632fc`，通用合同在 `93ee35fc`，新词库候选与音频清单在 `e10ac07b`，均已推送；旧 #271 不代表本轮完成。
+
+- 新候选为1659词：预习390、四级811、五级458。显式编辑表、拆解表、生成器与 curation-report 为可重跑来源；保留旧协议词书作为兼容基线。
+- 新词与例句全部双语齐备。原11093个录音不变，新增114个MP3（2122776字节）；11196个当前必需文本检查通过。新增录音与不可变资源登记清单位于 `/Users/zhouyide/Desktop/icao-app/outputs/vocabulary-live-20261027`，未上传生产。
+- 后台实现三本词书列表、编辑/调级/增删/合并/拆分、MP3上传试听、检查预览与确认发布。发布锁定版本、词库及累计迁移规则一并提交、录音缺失拦截，记录审计。新增上传凭据 `OPS_VOCABULARY_STORAGE_WRITE_TOKEN` 为可选且只属于Ops进程；未配置时明确拒绝上传，不降级使用只读凭据。
+- API使用 vocabulary-live-v1，旧v1/v2/v3目录及同步投影保持。同步入口按当前服务端policy清理，旧离线设备不能复活退役词。移除活跃版本时失败关闭，不偷偷回退内嵌基线。
+- 迁移0055精确继承 #277 的 SQL/journal/snapshot，哈希不改；词库新表为0056，RLS及anon/authenticated撤权齐备。当前仅生成并在隔离临时PostgreSQL中运行，未迁移生产。
+- 已通过API类型检查/lint、Ops类型检查/构建、迁移及表权限16项检查、聚焦API31项测试；另在新建临时PostgreSQL集群实际跑全量迁移并通过3项词库发布/学习同步测试，覆盖缺音频拒绝、原子切换、并发版本栅栏、旧设备退役词及活跃版本丢失。临时集群运行后清除，不触碰现有DB。
+- **尚未完成**：App动态目录/policy缓存、稳定ID收藏适配、累计进度/续学显示、界面验证、全项目必要检查、PR及统一测试交付。不能宣称联动已交付。
+- 与“协调功能开发并发布 TestFlight”协调，由其唯一集成构建；生产API部署/迁移/批量内容发布仍待具体候选准备完成后核对授权。#275缓存性能接口最终版本bf0e296f需保留，#277不覆盖本轮1659词库内容。

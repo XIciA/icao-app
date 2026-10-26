@@ -1,0 +1,50 @@
+import { useEffect, useRef, useState } from 'react';
+import type { VocabularyWord } from '@icao/contracts';
+import type { VocabularyEdit } from '@icao/contracts/vocabulary-edit';
+import type { VocabularyLiveContent, VocabularyLiveRelease } from '@icao/contracts/vocabulary-live';
+import { opsApi, opsResponse } from './api';
+
+type Plan={content:VocabularyLiveContent;checksum:string;missingAudio:string[]};
+const message=(error:unknown)=>error instanceof Error?error.message:'操作未完成';
+const errors:Record<string,string>={vocabulary_version_changed_reload:'词库已被其他管理员更新，请重新载入后再修改。',vocabulary_preview_changed:'内容或题库已变化，请重新预览。',vocabulary_audio_incomplete:'请先补齐单词和例句录音。',vocabulary_audio_upload_unconfigured:'服务器尚未配置词库录音上传权限。',vocabulary_frequency_corpus_incomplete:'题库语料不完整，暂时不能发布。'};
+export function VocabularyPage({onDirtyChange}:{onDirtyChange:(dirty:boolean)=>void}) {
+  const [release,setRelease]=useState<VocabularyLiveRelease>();
+  const [book,setBook]=useState('preview'); const [query,setQuery]=useState('');
+  const [draft,setDraft]=useState<VocabularyWord>(); const [split,setSplit]=useState<VocabularyWord[]>();
+  const [mergeId,setMergeId]=useState('');const [operation,setOperation]=useState<'upsert'|'delete'|'merge'|'split'>('upsert');
+  const [plan,setPlan]=useState<Plan>();const [busy,setBusy]=useState(false);const [error,setError]=useState('');const [notice,setNotice]=useState('');
+  const [dirty,setDirty]=useState(false); const audio=useRef<HTMLAudioElement | undefined>(undefined);const audioUrl=useRef<string | undefined>(undefined);
+  useEffect(()=>{onDirtyChange(dirty);},[dirty,onDirtyChange]);
+  useEffect(()=>{void load();return()=>{audio.current?.pause();if(audioUrl.current)URL.revokeObjectURL(audioUrl.current);};},[]);
+  async function load(){setBusy(true);try{setRelease(await opsApi('/v1/admin/vocabulary'));setDraft(undefined);setPlan(undefined);setDirty(false);setError('');}catch(e){setError(message(e));}finally{setBusy(false);}}
+  const words=release?.dataset.books.flatMap(b=>b.words)??[];
+  const makeWord=():VocabularyWord=>({id:`v-${crypto.randomUUID()}`,bookId:book as VocabularyWord['bookId'],level:release?.dataset.books.find(b=>b.id===book)?.level??1,word:'',meaning:'',pronunciationText:'',example:'',exampleTranslation:'',relatedExpressions:[],source:{name:'后台编辑',rowIndex:0,sourceNo:'admin'}});
+  function select(word:VocabularyWord){if(dirty&&!window.confirm('放弃当前尚未发布的修改？'))return;setDraft(structuredClone(word));setSplit(undefined);setOperation('upsert');setMergeId('');setPlan(undefined);setDirty(false);setError('');setNotice('');}
+  function change(word:VocabularyWord){setDraft(word);setDirty(true);setPlan(undefined);}
+  function setMode(mode:typeof operation){setOperation(mode);setPlan(undefined);setDirty(true);if(mode==='split'&&!split)setSplit([makeWord(),makeWord()]);}
+  function edits():VocabularyEdit[]{if(!draft)return[];if(operation==='delete')return[{type:'delete',id:draft.id}];if(operation==='merge')return[{type:'merge',sourceIds:[draft.id],targetId:mergeId}];if(operation==='split')return[{type:'split',id:draft.id,words:(split??[]).map(word=>({...word,relatedExpressions:word.relatedExpressions?.map(value=>value.trim()).filter(Boolean)}))}];return[{type:'upsert',word:{...draft,relatedExpressions:draft.relatedExpressions?.map(value=>value.trim()).filter(Boolean)}}];}
+  async function preview(){if(!release)return;setBusy(true);setError('');try{setPlan(await opsApi('/v1/admin/vocabulary/preview',{method:'POST',body:JSON.stringify({baseVersion:release.version,edits:edits()})}));}catch(e){setError(message(e));}finally{setBusy(false);}}
+  async function publish(){if(!release||!plan)return;setBusy(true);setError('');try{const next=await opsApi<VocabularyLiveRelease>('/v1/admin/vocabulary/publish',{method:'POST',body:JSON.stringify({baseVersion:release.version,edits:edits(),checksum:plan.checksum})});setRelease(next);setDirty(false);setPlan(undefined);setDraft(undefined);setSplit(undefined);setNotice('已保存发布，App 下次刷新词库时生效。');}catch(e){setError(message(e));}finally{setBusy(false);}}
+  async function upload(text:string,file?:File){if(!file||!text.trim())return;setBusy(true);setError('');try{const data=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]!);reader.onerror=reject;reader.readAsDataURL(file);});await opsApi('/v1/admin/vocabulary/audio',{method:'POST',body:JSON.stringify({text,data})});setPlan(undefined);setNotice('录音已上传，请试听后重新预览。');}catch(e){setError(message(e));}finally{setBusy(false);}}
+  async function play(text:string){try{const response=await opsResponse(`/v1/admin/vocabulary/audio?text=${encodeURIComponent(text)}`);audio.current?.pause();if(audioUrl.current)URL.revokeObjectURL(audioUrl.current);audioUrl.current=URL.createObjectURL(await response.blob());audio.current=new Audio(audioUrl.current);await audio.current.play();}catch(e){setError(message(e));}}
+  const field=(label:string,key:'word'|'meaning'|'pronunciationText'|'example'|'exampleTranslation',word:VocabularyWord,update:(word:VocabularyWord)=>void)=><label key={key}>{label}<input required value={word[key]??''} onChange={event=>update({...word,[key]:event.target.value})}/></label>;
+  function form(word:VocabularyWord,update:(word:VocabularyWord)=>void){return <div className="form-stack vocab-form">
+    <label>所属词书<select value={word.bookId} onChange={event=>update({...word,bookId:event.target.value as VocabularyWord['bookId'],level:release!.dataset.books.find(b=>b.id===event.target.value)!.level})}>{release?.dataset.books.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
+    {field('英文词条','word',word,update)}{field('中文释义','meaning',word,update)}
+    <label>相关表达（每行一个）<textarea rows={3} value={(word.relatedExpressions??[]).join('\n')} onChange={event=>update({...word,relatedExpressions:event.target.value.split('\n')})}/></label>
+    {field('单词朗读文本','pronunciationText',word,update)}
+    <div className="vocab-audio"><button disabled={busy||!word.pronunciationText} onClick={()=>void play(word.pronunciationText!)}>试听单词</button><label>上传单词 MP3<input type="file" accept="audio/mpeg,.mp3" disabled={busy||!word.pronunciationText} onChange={event=>{void upload(word.pronunciationText!,event.target.files?.[0]);event.target.value='';}}/></label></div>
+    {field('英文例句','example',word,update)}{field('例句中文翻译','exampleTranslation',word,update)}
+    <div className="vocab-audio"><button disabled={busy||!word.example} onClick={()=>void play(word.example)}>试听例句</button><label>上传例句 MP3<input type="file" accept="audio/mpeg,.mp3" disabled={busy||!word.example} onChange={event=>{void upload(word.example,event.target.files?.[0]);event.target.value='';}}/></label></div>
+  </div>;}
+  return <section className="vocabulary-admin"><div className="page-heading"><h1>词库管理</h1><span className="muted">{release?`版本 ${release.version} · ${words.length} 词`: '正在读取词库…'}</span></div>
+    {error&&<p className="notice error" role="alert">{errors[error]??error}</p>}{notice&&<p className="notice success" role="status">{notice}</p>}
+    <div className="vocab-toolbar"><input aria-label="搜索词条" placeholder="搜索英文或中文" value={query} onChange={event=>setQuery(event.target.value)}/><button disabled={busy} onClick={()=>{if(dirty&&!window.confirm('放弃当前修改并重新载入？'))return;void load();}}>重新载入</button><button className="primary" disabled={!release||busy} onClick={()=>{if(dirty&&!window.confirm('放弃当前修改？'))return;setDraft(makeWord());setOperation('upsert');setPlan(undefined);setDirty(true);setSplit(undefined);}}>新增词条</button></div>
+    <nav className="ops-tabs" aria-label="词书">{release?.dataset.books.map(b=><button key={b.id} className={book===b.id?'active':''} onClick={()=>setBook(b.id)}>{b.name} · {b.words.length}</button>)}</nav>
+    <div className="vocab-layout"><div className="vocab-list">{words.filter(w=>w.bookId===book&&`${w.word} ${w.meaning}`.toLowerCase().includes(query.toLowerCase())).map(word=><button key={word.id} className={`result-card ${draft?.id===word.id?'selected':''}`} disabled={busy} onClick={()=>select(word)}><span><strong>{word.word}</strong><small>{word.meaning}</small></span><span className="pill">{word.frequency?.occurrences??0} 次</span></button>)}</div>
+    <article className="vocab-editor">{draft?<><h2>{words.some(w=>w.id===draft.id)?draft.word:'新增词条'}</h2>{words.some(w=>w.id===draft.id)&&<label>操作<select value={operation} onChange={event=>setMode(event.target.value as typeof operation)}><option value="upsert">编辑 / 调整等级</option><option value="delete">删除词条</option><option value="merge">合并到另一词条</option><option value="split">拆分成多个词条</option></select></label>}
+      {operation==='upsert'?form(draft,change):operation==='delete'?<p className="notice">删除后，相关学习记录、收藏和失效测试记录会随同步清理。</p>:operation==='merge'?<label>合并到<select value={mergeId} onChange={event=>{setMergeId(event.target.value);setPlan(undefined);}}><option value="">请选择保留的词条</option>{words.filter(w=>w.id!==draft.id).map(w=><option key={w.id} value={w.id}>{w.word} · {w.meaning}</option>)}</select></label>:<><p className="muted">旧词条退役，新词条从未学习开始；已有的单词请使用合并，避免重复创建。</p>{split?.map((word,index)=><div className="vocab-split" key={word.id}><h3>新词条 {index+1}</h3>{form(word,next=>{setSplit(split.map((w,i)=>i===index?next:w));setPlan(undefined);setDirty(true);})}{split.length>2&&<button onClick={()=>{setSplit(split.filter((_,i)=>i!==index));setPlan(undefined);}}>移除此项</button>}</div>)}<button onClick={()=>{setSplit([...(split??[]),makeWord()]);setPlan(undefined);}}>增加拆分词条</button></>}
+      <div className="vocab-actions"><button disabled={busy} onClick={()=>void preview()}>检查并预览</button>{plan&&<><span>{plan.missingAudio.length?`缺少 ${plan.missingAudio.length} 个录音`:`检查通过 · ${plan.content.dataset.books.reduce((n,b)=>n+b.words.length,0)} 词`}</span><button className="primary" disabled={busy||Boolean(plan.missingAudio.length)} onClick={()=>void publish()}>确认保存并发布</button></>}</div>
+    </>:<p className="muted">选择词条后，可编辑内容、调整等级、删除、合并或拆分。</p>}</article></div>
+  </section>;
+}

@@ -23,7 +23,7 @@ export function applyVocabularyEdits(previous: VocabularyLiveContent, edits: Voc
     if (Object.hasOwn(next.policy.retiredIds, word.id)) throw new Error('vocabulary_retired_id_cannot_be_reused');
     if (!next.dataset.books.some(book => book.id === word.bookId)) throw new Error('invalid_vocabulary_book');
     const old = words.get(word.id); if (old) alias(old, word.id);
-    words.set(word.id, { ...word, level: next.dataset.books.find(book => book.id === word.bookId)!.level });
+    words.set(word.id, { ...word, ...(word.frequency ? {} : old?.frequency ? {frequency:old.frequency} : {}), level: next.dataset.books.find(book => book.id === word.bookId)!.level });
     alias(word, word.id);
   };
   const remove = (id: string, target: string | null) => {
@@ -45,7 +45,7 @@ export function applyVocabularyEdits(previous: VocabularyLiveContent, edits: Voc
     const visited = new Set<string>();
     while (target !== null && !words.has(target)) {
       if (visited.has(target) || !Object.hasOwn(next.policy.retiredIds, target)) throw new Error('invalid_vocabulary_retirement_chain');
-      visited.add(target); target = next.policy.retiredIds[target];
+      visited.add(target); target = next.policy.retiredIds[target]!;
     }
     return target;
   };

@@ -1,5 +1,6 @@
 import { migrateVocabularyDocument, vocabularyRetiredIds } from '@icao/contracts';
 import { z } from 'zod';
+import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 
 const progressSchema = z.object({
   status: z.enum(['new', 'known', 'vague', 'forgot', 'wrong']),
@@ -15,12 +16,16 @@ const testResultSchema = z.object({
   answers: z.array(z.unknown()),
 }).passthrough();
 
-export const vocabularyDocumentSchema = z.object({
+const rawVocabularyDocumentSchema = z.object({
   schemaVersion: z.literal(1),
   words: z.record(z.string(), progressSchema),
   lastTest: testResultSchema.optional(),
   updatedAt: z.string().datetime(),
-}).transform(value => migrateVocabularyDocument(value));
+});
+export const vocabularyDocumentSchema = rawVocabularyDocumentSchema.transform(value => migrateVocabularyDocument(value));
+export function vocabularyDocumentForPolicy(value: unknown, policy?: VocabularyMigrationPolicy) {
+  return migrateVocabularyDocument(rawVocabularyDocumentSchema.parse(value), policy);
+}
 
 export type VocabularyDocument = z.infer<typeof vocabularyDocumentSchema>;
 
@@ -30,14 +35,14 @@ function newer<T extends { updatedAt: string }>(left: T | undefined, right: T | 
   return Date.parse(right.updatedAt) > Date.parse(left.updatedAt) ? right : left;
 }
 
-export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: unknown): VocabularyDocument {
-  const current = vocabularyDocumentSchema.parse(currentValue);
-  const incoming = vocabularyDocumentSchema.parse(incomingValue);
+export function mergeVocabularyDocuments(currentValue: unknown, incomingValue: unknown, policy?: VocabularyMigrationPolicy): VocabularyDocument {
+  const current = vocabularyDocumentForPolicy(currentValue, policy);
+  const incoming = vocabularyDocumentForPolicy(incomingValue, policy);
   const words = { ...current.words };
   const rawWords = incomingValue && typeof incomingValue === 'object' && 'words' in incomingValue
     ? incomingValue.words as Record<string, {status?:string}> : {};
   const unlearnedAliasTargets = new Set(Object.entries(rawWords).flatMap(([id,p]) => {
-    const target=vocabularyRetiredIds[id];
+    const target=policy ? policy.retiredIds[id] ?? policy.retiredFavoriteKeys[id] : vocabularyRetiredIds[id];
     return target && p?.status==='new' && !rawWords[target] ? [target] : [];
   }));
   for (const [wordId, incomingProgress] of Object.entries(incoming.words)) {

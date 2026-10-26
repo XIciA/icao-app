@@ -84,6 +84,7 @@ const opsRuntimeSchema = z.object({
   OPS_TRUSTED_PROXY_SHARED_SECRET: z.string().min(32),
   OPS_FEEDBACK_STORAGE_URL: z.string().url().optional(),
   OPS_FEEDBACK_STORAGE_READ_TOKEN: z.string().min(20).optional(),
+  OPS_VOCABULARY_STORAGE_WRITE_TOKEN: z.string().min(20).optional(),
 });
 
 const PRODUCTION_AI_ENVIRONMENT_KEYS = [
@@ -191,6 +192,7 @@ export type OpsApiConfig = {
   opsTrustedProxySharedSecret: string;
   opsFeedbackStorageUrl?: string;
   opsFeedbackStorageReadToken?: string;
+  opsVocabularyStorageWriteToken?: string;
 };
 
 export const API_CONFIG = Symbol('API_CONFIG');
@@ -600,5 +602,6 @@ export function loadOpsConfig(
     opsTrustedProxySharedSecret: parsed.data.OPS_TRUSTED_PROXY_SHARED_SECRET,
     opsFeedbackStorageUrl: parsed.data.OPS_FEEDBACK_STORAGE_URL,
     opsFeedbackStorageReadToken: parsed.data.OPS_FEEDBACK_STORAGE_READ_TOKEN,
+    opsVocabularyStorageWriteToken: parsed.data.OPS_VOCABULARY_STORAGE_WRITE_TOKEN,
   };
 }

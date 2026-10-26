@@ -310,7 +310,7 @@ describe('operation recovery and privacy with the real persistent ledger', () =>
     await benefits.reserveAiPoints(tx, { accountId: owner, environment: 'production', operationId: expiredId, requestDigest: 'expired-fixture', capability: 'transcription_grammar', reservedAt: new Date() });
     await tx.update(schema.aiPointReservations).set({ leaseUntil: new Date(0), resultPayload: row!.resultPayload }).where(eq(schema.aiPointReservations.operationId, expiredId));
     expect(await ai.operationResult(owner, 'production', expiredId)).toMatchObject({ state: 'released', partialTranscription: { input } });
-    await new SyncService({ db: tx } as never).deleteAllAiResults(owner, { confirmation: '删除全部AI结果', idempotencyKey: randomUUID() });
+    await new SyncService({ db: tx } as never, {} as never).deleteAllAiResults(owner, { confirmation: '删除全部AI结果', idempotencyKey: randomUUID() });
     expect(await ai.operationResult(owner, 'production', failedId)).toEqual({ state: 'missing' });
     expect(await ai.operationResult(owner, 'production', resumedId)).toEqual({ state: 'missing' });
   }));
@@ -333,7 +333,7 @@ describe('operation recovery and privacy with the real persistent ledger', () =>
     const { input } = await consume(tx, owner, NOW);
     const pending = { ...input, operationId: randomUUID() };
     await benefits.reserveAiPoints(tx, pending);
-    const sync = new SyncService({ db: tx } as never);
+    const sync = new SyncService({ db: tx } as never, {} as never);
     const ai = new AiService({ db: tx } as never, {} as never, {} as never, benefits);
     if (kind === 'ai') await sync.deleteAllAiResults(owner, { confirmation: '删除全部AI结果', idempotencyKey: randomUUID() });
     else await sync.clearLearningData(owner, { confirmation: '清除学习数据', idempotencyKey: randomUUID() });
@@ -355,7 +355,7 @@ describe('operation recovery and privacy with the real persistent ledger', () =>
     const second = await consume(tx, owner, NOW);
     const pending = { ...first.input, operationId: randomUUID() };
     await benefits.reserveAiPoints(tx, pending);
-    const sync = new SyncService({ db: tx } as never);
+    const sync = new SyncService({ db: tx } as never, {} as never);
     const ai = new AiService({ db: tx } as never, {} as never, {} as never, benefits);
     for (const id of [first.input.operationId, pending.operationId]) {
       await tx.insert(schema.learningRecords).values({ userId: owner, clientRecordId: id, occurredAt: NOW,

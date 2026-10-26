@@ -1,4 +1,5 @@
-import { vocabularyDocumentSchema } from './vocabulary-document';
+import { vocabularyDocumentSchema, vocabularyDocumentForPolicy } from './vocabulary-document';
+import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 import { retiredQuestionCards } from './retired-question-cards';
 import { rebaseFormattedAnnotations } from './question-bank-format-compat';
 
@@ -47,9 +48,10 @@ export function sanitizeRetiredLearningRecord(value: Value): Value {
   }
   return result;
 }
-export function sanitizeRetiredSyncPayload(kind: string, value: Value): Value {
+export function sanitizeRetiredSyncPayload(kind: string, value: Value, policy?: VocabularyMigrationPolicy): Value {
   if (kind === 'card_state' && isRetiredCard(value.bankId, value.cardId)) return { ...value, state: emptyRetiredState(String(value.updatedAt ?? new Date(0).toISOString())) };
   if (kind === 'document' && value.documentKey === 'vocabulary') {
+    if (policy) return { ...value, document: vocabularyDocumentForPolicy(value.document, policy) };
     const parsed = vocabularyDocumentSchema.safeParse(value.document);
     return parsed.success ? { ...value, document: parsed.data } : value;
   }
