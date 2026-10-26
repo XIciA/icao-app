@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-626",
-  "name": "CES543 TCAS RA&bang, etc.",
+  "name": "CES543 · 空中防撞决断指令与巨响",
   "declaredCardCount": 23,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111471",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-1",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-1",
       "audioText": "You are the pilot of CES543 which is bound for Wuhan. You have just been handed over from Hefei Control, you are over IKUBA at 23, and your level is 8400m, call Wuhan Control.",
       "audioTextZh": "你是东方543的飞行员，飞机飞往武汉。你刚从合肥区调转出，IKUBA时间23分，高度8400米，呼叫武汉区调。",
       "referenceText": "Wuhan Control, CES543, IKUBA 23, maintaining 8400m, destination Wuhan.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111472",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-2",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-2",
       "audioText": "CES543, Wuhan Control, radar identified, descend and maintain 6000m, report reaching.[Read Back]",
       "audioTextZh": "东方543，武汉区调，雷达已识别，下降保持6000米，到达报。【复诵】",
       "referenceText": "Descend and maintain 6000m, report reaching. CES543.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111473",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-3",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-3",
       "audioText": "You have just followed your TCAS RA instruction. You have stopped your descent at nearly 6800m and track out 9km right of the course. Report to ATC.",
       "audioTextZh": "你刚刚执行了机上TCAS RA的指令。你在6800米停止下降并向右偏9千米，向ATC报告。",
       "referenceText": "Wuhan Control, CES543, our TCAS instructed us to stop descent and turn right to avoid traffic, maintaining 6800m, 9 km right of the course.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111474",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-4",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-4",
       "audioText": "Roger, CES543, you have just passed the traffic, descend and maintain 6000m and turn left heading 170 immediately. There is military activity in the area right now.[You are required to read back the clearance and show your gratitude.]",
       "audioTextZh": "收到，东方543，你刚躲避过活动，立即下降保持6000米，左转航向170。飞机位于军事活动区域内。【你需要复诵指令并表示感谢。】",
       "referenceText": "Descend and maintain 6000m, turn left heading 170 immediately, thanks, CES543.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111475",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-5",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-5",
       "audioText": "You hear a loud bang, it seems that the left wing has been hit by something, and you feel the airplane has a banking tendency. Declare urgency to ATC.",
       "audioTextZh": "你听到一声巨响，好像是左侧机翼撞到东西了，你觉得飞机有倾斜的趋势。向ATC报告该紧急情况。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, CES543, the left wing was hit by some foreign object, and the plane has a banking tendency, request priority landing and emergency services.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111476",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-6",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-6",
       "audioText": "CES543, Wuhan Control, roger PANPAN, descend and maintain 4800m, report passing XSH.[Read Back]",
       "audioTextZh": "东方543，武汉区调，收到PANPAN，下降保持4800米，过XSH报告。【复诵】",
       "referenceText": "Descend and maintain 4800m, report passing XSH, CES543.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111477",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-7",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-7",
       "audioText": "CES543, Wuhan Control, we have notified the other relevant parties. Please give us more detail about your present situation.[Report to ATC that No.3 engine has flamed out and it is even harder to overcome the banking tendency. You guess that there might be some more damages to the left wing.]",
       "audioTextZh": "东方543，武汉区调，已经通知了有关部门。请详细告诉我们你当前的情况。【告诉ATC 3号发动机熄火，飞机很难克服倾斜趋势。你猜测左侧机翼可能还有更多的损伤。】",
       "referenceText": "No.3 engine flameout and it became harder to overcome the bank tendency. Suspect the left wing damaged. CES543.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111478",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-8",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-8",
       "audioText": "CES543, keep us advised.[Read Back]",
       "audioTextZh": "东方543，随时报告。【复诵】",
       "referenceText": "Wilco, CES543.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111479",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-9",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-9",
       "audioText": "Now you are over XSH at 4800m, call Wuhan Control.",
       "audioTextZh": "你已飞过XSH，高度4800米，呼叫武汉区调。",
       "referenceText": "Wuhan Control, CES543, maintaining 4800m, over XSH.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111480",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-10",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-10",
       "audioText": "CES543, maintain present level, contact Wuhan Approach on 118.9, good day.[Read Back]",
       "audioTextZh": "东方543，保持当前高度，联系武汉进近118.9，再见。【复诵】",
       "referenceText": "Maintain present level, 118.9, good day. CES543.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111481",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-11",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-11",
       "audioText": "Now you are over XSH at 4800m, call Wuhan Approach and inform them that you are in distress now.",
       "audioTextZh": "你已过XSH，高度4800米，呼叫武汉进近，通知他们你遇到危险。",
       "referenceText": "MAYDAY, MAYDAY, MAYDAY, Wuhan Approach, CES543, left wing hit something, No.3 engine flameout and the airplane has banking tendency, we are now passing XSH, maintaining 4800m.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111482",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-12",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-12",
       "audioText": "Roger, the center controller has told us your situation, you will have the top priority. Descend and maintain 1200 m on QNH1008, expect ILS Approach runway 36R, you are number 1.[You are required to read back the clearance and show your gratitude.]",
       "audioTextZh": "收到，中央管制告诉我们你的情况，你将优先着陆。下降保持修正海压1200米，修正海压1008，盲降进近跑道36右，你第一个。【你需要复诵并表示感谢。】",
       "referenceText": "Descend and maintain 1200m on QNH1008, ILS runway 36R, thank you very much, CES543.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111483",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-13",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-13",
       "audioText": "Now you want to verify the wind data, Ask ATC to give detailed wind information.",
       "audioTextZh": "你想要核对风的信息，让ATC提供详细的风的信息。",
       "referenceText": "Wuhan Approach, CES543, request detailed wind information.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111484",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-14",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-14",
       "audioText": "CES543, the latest ATIS shows, wind 310 degrees, 11 m/s, but variable.[Read Back]",
       "audioTextZh": "东方543，最新通播显示，风310，11米/秒，但变化不定。",
       "referenceText": "Roger, CES543.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111485",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-15",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-15",
       "audioText": "You consider there might be some problem with your landing, so you ask ATC to provide emergency assistance upon your landing.",
       "audioTextZh": "你觉得飞机着陆有问题，所以要求ATC在降落时提供紧急援助。",
       "referenceText": "Wuhan Approach, CES543, request emergency assistance upon landing.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111486",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-16",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-16",
       "audioText": "CES543, Roger, fire services and ambulance will be ready upon your landing.[Read Back]",
       "audioTextZh": "东方543，收到，着陆时消防车及救护车都将准备好。【复诵】",
       "referenceText": "Roger, thanks, CES543.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111487",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-17",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-17",
       "audioText": "You have fully established on the ILS runway 36R, call Wuhan Approach.",
       "audioTextZh": "你已完全建立盲降进近跑道36右，呼叫武汉进近。",
       "referenceText": "Wuhan Approach, CES543, ILS fully established. Runway 36R.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111488",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-18",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-18",
       "audioText": "CES543, continue approach and contact tower 118.6, good day.[Read Back]",
       "audioTextZh": "东方543，继续进近，联系塔台118.6，再见。【复诵】",
       "referenceText": "118.6, good day, CES543.",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111489",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-19",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-19",
       "audioText": "Contact Wuhan Tower, report to Air Traffic Control that you are a landing aircraft at emergency.",
       "audioTextZh": "联系武汉塔台，向管制员报告你需要紧急降落。",
       "referenceText": "Wuhan Tower, CES543, we are emergency landing aircraft.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "radiotelephony-fzy-111490",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-20",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-20",
       "audioText": "CES543, radar identified, continue ILS approach runway 36R, you are no. 1, report the outer marker.[Read Back]",
       "audioTextZh": "东方543，雷达已识别，继续盲降进近跑道36右，你第一个，过远台报告。【复诵】",
       "referenceText": "ILS Approach runway 36R, report outer marker, CES543.",
@@ -187,7 +187,7 @@
     },
     {
       "id": "radiotelephony-fzy-111491",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-21",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-21",
       "audioText": "Now you are over the outer marker, call Wuhan Tower.",
       "audioTextZh": "【你已过远台，呼叫武汉塔台。】",
       "referenceText": "Wuhan Tower, CES543, outer marker.",
@@ -196,7 +196,7 @@
     },
     {
       "id": "radiotelephony-fzy-111492",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-22",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-22",
       "audioText": "CES543, cleared to land runway 36R, wind 300 degrees at 12 m/s, QNH1008.[You are required to read back the clearance.]",
       "audioTextZh": "东方543，可以降落跑道36右，风300，12米/秒，修正海压1008。【你需要复诵指令。】",
       "referenceText": "Cleared to land, runway 36R QNH1008 CES543.",
@@ -205,7 +205,7 @@
     },
     {
       "id": "radiotelephony-fzy-111493",
-      "taskTitle": "43. CES543 TCAS RA&bang, etc.-23",
+      "taskTitle": "43. CES543 · 空中防撞决断指令与巨响-23",
       "audioText": "You have just skidded off the runway but managed to stop the airplane on the grass strip, report to ATC.",
       "audioTextZh": "你冲出了跑道，但成功地把飞机停在了草坪上，报告ATC。",
       "referenceText": "Wuhan Tower, CES543, we have just skidded off the runway but managed to stop the airplane on the grass strip.",

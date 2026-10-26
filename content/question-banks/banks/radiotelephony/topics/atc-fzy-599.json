@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-599",
-  "name": "SIA635 engine starter failure, etc.",
+  "name": "SIA635 · 发动机起动机故障",
   "declaredCardCount": 17,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-110974",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-1",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-1",
       "audioText": "You are SIA635, from Wuhan to Singapore, parking at Gate 232, you are fully ready for pushback and start-up, call Ground.",
       "audioTextZh": "你是新航635，从武汉飞往新加坡，停在232号停机位，已充分准备好推出开车，呼叫地面。",
       "referenceText": "Wuhan Ground, SIA635, Gate 232, request pushback and start-up.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-110975",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-2",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-2",
       "audioText": "SIA635, Wuhan Ground, pushback and start-up approved, pushback onto Z4, abeam Gate 234.",
       "audioTextZh": "新航635，武汉地面，同意推出开车，推出到滑行道Z4，正切234号机位。",
       "referenceText": "Pushback and start-up onto Z4, abeam 234, SIA635.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-110976",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-3",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-3",
       "audioText": "You have one engine starter fails, you wish to have more time to start the engine manually on Z4.",
       "audioTextZh": "飞机一发动机起动机失效，你希望可以在Z4上多停留一段时间，以手动启动发动机。",
       "referenceText": "Wuhan Ground, SIA635, we need more time to start engine on Z4 due engine starter failure.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-110977",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-4",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-4",
       "audioText": "SIA635, how long is the delay?[Tell the controller you need approximately 5min.]",
       "audioTextZh": "新航635，要延误多久？【告诉管制员你需要大概5分钟。】",
       "referenceText": "Approximate 5min, SIA635.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-110978",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-5",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-5",
       "audioText": "After 5min, call Ground.",
       "audioTextZh": "【5分钟后，呼叫地面。】",
       "referenceText": "Wuhan Ground, SIA635, request taxi.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-110979",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-6",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-6",
       "audioText": "SIA635, taxi to the holding point of runway 36R, via Z4, A3 and A.",
       "audioTextZh": "新航635，沿滑行道Z4，A3，A滑至跑道36右等待点。",
       "referenceText": "Taxi to the holding point of runway 36R, via Z4, A3 and A, SIA635.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-110980",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-7",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-7",
       "audioText": "There's a B737 approaching you on E3, ask controller who has the right of the way.",
       "audioTextZh": "滑行道E3上有一架波音737正在接近你，询问管制员谁有优先权。",
       "referenceText": "Wuhan Ground, SIA635, confirm the right sequence?",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-110981",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-8",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-8",
       "audioText": "SIA635, hold present position, give way to B737.",
       "audioTextZh": "新航635，原地等待，给波音737让路。",
       "referenceText": "Holding present position, give way to B737, SIA635.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-110982",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-9",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-9",
       "audioText": "SIA635, caution work in progress in the vicinity of main taxiway.",
       "audioTextZh": "新航635，小心，主滑行道附近正在施工。",
       "referenceText": "Roger, thanks, SIA635.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-110983",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-10",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-10",
       "audioText": "SIA635, Tower, cleared for takeoff 36R, caution birds in the vicinity of the airport.",
       "audioTextZh": "新航635，塔台，可以起飞，跑道36右，注意，机场附近有鸟。",
       "referenceText": "Cleared for takeoff 36R, SIA635.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-110984",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-11",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-11",
       "audioText": "Tell tower you have taken off.",
       "audioTextZh": "【告诉塔台你已经起飞。】",
       "referenceText": "Wuhan Tower, SIA635, airborne runway 36R.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-110985",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-12",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-12",
       "audioText": "SIA635, climb and maintain 3000m.",
       "audioTextZh": "新航635，上升保持3000米。",
       "referenceText": "Climb and maintain 3000m, SIA635.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-110986",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-13",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-13",
       "audioText": "The cabin crew reported that there's smoke coming from the air condition system in the cabin, make an urgency call and advise approach you want to level off at present level.",
       "audioTextZh": "机组报告客舱内的空调系统冒烟了，做紧急呼叫，告诉进近你想在当前高度平飞。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Approach, SIA635, smoke in cabin, request maintain present level.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-110987",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-14",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-14",
       "audioText": "Smoke is removed, you have turned off the air condition system, you want radar vectors to Wuhan airport.",
       "audioTextZh": "烟清除了，你关闭了空调系统，需要雷达引导至武汉机场。",
       "referenceText": "Wuhan Approach, SIA635, cancel PANPAN, request radar vector to Wuhan airport.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-110988",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-15",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-15",
       "audioText": "To avoid high cabin altitude, ask to descent below 3000m.",
       "audioTextZh": "为了避免座舱压力过高，请求下降至3000米以下。",
       "referenceText": "Wuhan Approach, SIA635, request descent below 3000m.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-110989",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-16",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-16",
       "audioText": "SIA635, descend and maintain 2700m on QNH 1016.",
       "audioTextZh": "新航635，下降保持修正海压2700米，修正海压1016。",
       "referenceText": "Descend and maintain 2700m on QNH 1016, SIA635.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-110990",
-      "taskTitle": "16. SIA635 engine starter failure, etc.-17",
+      "taskTitle": "16. SIA635 · 发动机起动机故障-17",
       "audioText": "SIA635, Approach, do you need any emergency services?[Tell the controller that because there's no passenger injury and the aircraft had no damage, you needn't emergency services.]",
       "audioTextZh": "新航635，进近，你需要紧急服务么？【告诉管制员飞机上没有乘客受伤，机身也未损坏，因而不需要紧急服务。】",
       "referenceText": "Negative, no passengers injury and no aircraft damage, SIA635.",

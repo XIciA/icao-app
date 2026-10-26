@@ -1,3 +1,8 @@
+import { contentReleaseOf } from '../data/content-version.native';
+import { sqliteLearningStore } from '../platform/learning-store';
+import { SENTENCE_SCENARIOS, sentenceScenario, sentenceScenarioCount, sentenceScenarioPackage } from '../lib/sentence-scenarios';
+import { questionBankRepository } from '../data/repository.native';
+import { useAuth } from '@/features/auth/AuthProvider';
 import { GUIDE_FLOWS } from '@/features/usage-guide/guide-flows';
 import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useLoginEntry } from '@/features/auth/use-login-entry';
@@ -18,7 +23,7 @@ import {
   Shield,
   UserRound,
 } from '@/components/ui/icons';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -27,7 +32,7 @@ import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-progress';
-import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
+import type { QuestionBankCategory, QuestionBankDataset, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 import { useStudyCatalog } from '../hooks/useStudyCatalog.native';
 import { useProfile } from '@/features/account/profile-store.native';
@@ -35,8 +40,35 @@ import { normalizeStudyScope } from '@icao/contracts';
 
 
 
+const ScenarioStudyScreen = lazy(() => import('./QuestionBankStudyScreen.native').then(module => ({ default: module.QuestionBankStudyScreen })));
+
 export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }: { dataset: QuestionBankDataset; exportDataset?: QuestionBankDataset; warning?: string; onRetry?: () => void }) {
   const router = useRouter();
+  const account = useAuth().account?.accountId;
+  const owner = useRef(account); owner.current = account;
+  const [sceneProgress, setSceneProgress] = useState<Record<string, number>>({});
+  const [sceneMode, setSceneMode] = useState(false);
+  const [scenePackage, setScenePackage] = useState<QuestionBankStudyPackage>();
+  const [sceneBusy, setSceneBusy] = useState(false);
+  const [sceneError, setSceneError] = useState('');
+  const sceneGeneration = useRef(0);
+  useEffect(() => { sceneGeneration.current += 1; setScenePackage(undefined); setSceneBusy(false); setSceneError(''); return () => { sceneGeneration.current += 1; }; }, [account, dataset]);
+  async function openScene(id: string) {
+    if (sceneBusy) return;
+    const generation = ++sceneGeneration.current;
+    const accountAtStart = account;
+    setSceneBusy(true); setSceneError('');
+    try {
+      const categories = await Promise.all(dataset.categories.map(async category => ({ ...category,
+        topics: await Promise.all(category.topics.map(async topic => await questionBankRepository.getTopic(dataset.id, category.id, topic.id, contentReleaseOf(dataset)) ?? topic)),
+      })));
+      if (generation !== sceneGeneration.current || owner.current !== accountAtStart) return;
+      const next = sentenceScenarioPackage({ ...dataset, categories }, id);
+      if (!next.items.length) { login('/account/membership', '登录后查看会员题库'); return; }
+      setScenePackage(next);
+    } catch { if (generation === sceneGeneration.current) setSceneError('场景题目加载失败，请重新点击场景重试。'); }
+    finally { if (generation === sceneGeneration.current) setSceneBusy(false); }
+  }
   const guide = useGuide();
   const offer = guide?.offer;
   useEffect(() => { if (dataset.id === 'sentences900') offer?.('export', (GUIDE_FLOWS.export ?? []).map(step => step.id)); }, [dataset.id, offer]);
@@ -58,13 +90,17 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
   useFocusEffect(useCallback(() => {
     let active = true;
     setProgressReady(false); setProgressError(false);
+    if (dataset.id === 'sentences900') void Promise.all(dataset.categories.flatMap(category => category.topics).map(async topic => {
+      const states = await sqliteLearningStore.getTopicStates(topic);
+      return (topic.scopeCardIds?.all ?? topic.cards.map(card => card.id)).filter(id => states[id]?.completed);
+    })).then(groups => { if (!active) return; const counts: Record<string, number> = {}; for (const id of groups.flat()) { const scene = sentenceScenario(id); if (scene) counts[scene.id] = (counts[scene.id] ?? 0) + 1; } setSceneProgress(counts); }).catch(() => { if (active) setProgressError(true); });
     void loadCatalogProgress(dataset.categories.flatMap((category) => category.topics), scope).then((next) => {
       if (active) { setProgress(next); setProgressReady(true); }
     }).catch(() => { if (active) setProgressError(true); });
     return () => { active = false; };
   // Manual retry reloads progress while the catalog remains focused.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataset, scope, progressAttempt]));
+  }, [dataset, scope, progressAttempt, account, scenePackage?.id]));
 
   function isLocked(topic: QuestionBankTopic) {
     return dataset.access?.membershipActive !== true
@@ -95,6 +131,7 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
     return undefined;
   }
 
+  if (scenePackage) return <Suspense fallback={<Screen><AppText>正在打开场景…</AppText></Screen>}><ScenarioStudyScreen studyPackage={scenePackage} onReturn={() => setScenePackage(undefined)} returnLabel="返回场景目录" returnHref="/question-bank/sentences900" /></Suspense>;
   if (exporting) return <SentenceExportScreen dataset={exportDataset ?? dataset} onBack={() => { if (guide?.current === 'export') guide.pause(); setExporting(false); }} />;
   return (
     <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
@@ -109,7 +146,17 @@ export function QuestionBankCatalog({ dataset, exportDataset, warning, onRetry }
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
           {warning ? <View><AppText>暂时无法更新题库，正在显示本机已有目录，最新内容可能尚未包含。</AppText><Button variant="outline" onPress={onRetry}>重新加载题库</Button></View> : null}
           {progressError ? <View><AppText>学习进度暂时无法读取，记录未被清除。题目仍可学习。</AppText><Button variant="outline" onPress={() => setProgressAttempt(n => n + 1)}>重试读取进度</Button></View> : null}
-          {dataset.categories.map((category) => {
+          {dataset.id === 'sentences900' ? <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: spacing[2] }}>
+            <Button size="sm" variant={!sceneMode ? 'primary' : 'outline'} onPress={() => setSceneMode(false)}>按等级</Button>
+            <Button size="sm" variant={sceneMode ? 'primary' : 'outline'} onPress={() => setSceneMode(true)}>按场景</Button>
+          </View> : null}
+          {sceneError ? <AppText color={colors.destructive}>{sceneError}</AppText> : null}
+          {sceneMode && dataset.id === 'sentences900' ? SENTENCE_SCENARIOS.map(scene => {
+            const count = sentenceScenarioCount(dataset, scene.id);
+            return <Card key={scene.id}><Pressable accessibilityRole="button" disabled={sceneBusy || !count} onPress={() => void openScene(scene.id)} style={styles.categoryHeader}>
+              <View style={styles.categoryCopy}><AppText variant="cardTitle">{scene.name}</AppText><AppText variant="caption">{count} 句 · 已学 {sceneProgress[scene.id] ?? 0}{dataset.access?.membershipActive !== true ? ' · 按当前学习权限开放' : ''}</AppText></View><ChevronRight color={colors.mutedForeground} size={20} />
+            </Pressable></Card>;
+          }) : dataset.categories.map((category) => {
             const singleTopic = category.topics.length === 1 ? category.topics[0] : undefined;
             const isExpanded = !singleTopic && expanded === category.id;
             const categoryLearned = category.topics.reduce((sum, topic) => sum + (progress[topic.id]?.learned ?? 0), 0);

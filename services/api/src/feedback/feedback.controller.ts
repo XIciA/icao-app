@@ -22,16 +22,16 @@ export class FeedbackController {
   constructor(private readonly feedback: FeedbackService) {}
 
   @Get()
-  async list(@Req() request: AuthenticatedRequest, @Query('cursor') cursor: string | undefined, @Res({ passthrough: true }) reply: FastifyReply) {
+  async list(@Req() request: AuthenticatedRequest, @Query('cursor') cursor: string | undefined, @Query('kind') kind: string | undefined, @Res({ passthrough: true }) reply: FastifyReply) {
     if (cursor && cursor.length > 300) throw new BadRequestException('invalid_feedback_cursor');
     reply.header('cache-control', 'private, no-store');
-    return { requestId: request.id, data: await this.feedback.list(request.user!.id, cursor) };
+    return { requestId: request.id, data: await this.feedback.list(request.user!.id, cursor, kind) };
   }
 
   @Get('unread')
-  async unread(@Req() request: AuthenticatedRequest, @Res({ passthrough: true }) reply: FastifyReply) {
+  async unread(@Req() request: AuthenticatedRequest, @Query('kind') kind: string | undefined, @Res({ passthrough: true }) reply: FastifyReply) {
     reply.header('cache-control', 'private, no-store');
-    return { requestId: request.id, data: await this.feedback.unread(request.user!.id) };
+    return { requestId: request.id, data: await this.feedback.unread(request.user!.id, kind) };
   }
 
   @Get(':number')

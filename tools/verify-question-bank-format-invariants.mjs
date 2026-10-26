@@ -8,6 +8,7 @@ import { prepareNativeContentRelease } from '../services/api/scripts/native-cont
 const root = new URL('../', import.meta.url);
 const read = path => JSON.parse(readFileSync(new URL(path, root), 'utf8'));
 const proofPath = 'docs/records/workstreams/question-bank-standardization-20261022/identity-proofs.json';
+const displayChanges = read('docs/workstreams/next-round-2026-10/display-field-changes.json');
 const resources = read('content/question-banks/resources/manifest.source.json');
 const sourceBanks = read('src/features/question-bank/data/question-bank.json');
 const release = prepareNativeContentRelease(
@@ -29,6 +30,12 @@ function proof(bank) {
   const tuples = bank.categories.flatMap(category => category.topics.flatMap(topic => topic.cards.map(card => {
     const content = { ...card };
     delete content.audioDurationSeconds;
+    // Compare approved display-only changes against the original lexical proof.
+    // Any unrecorded edit still fails the exact checksum.
+    for (const field of ['taskTitle', 'imageAlt']) {
+      const change = displayChanges[`${card.id}#${field}`];
+      if (change && content[field] === change.after) content[field] = change.before;
+    }
     for (const field of textFields) {
       if (typeof content[field] === 'string') content[field] = lexicalSignature(content[field], { bankId: bank.id, field });
       else if (Array.isArray(content[field])) content[field] = content[field].map(text => lexicalSignature(text, { bankId: bank.id, field }));

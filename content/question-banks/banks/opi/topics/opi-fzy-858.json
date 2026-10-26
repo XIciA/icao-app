@@ -1,21 +1,21 @@
 {
   "id": "opi-fzy-858",
-  "name": "Emergency evacuation",
+  "name": "紧急撤离",
   "cards": [
     {
       "id": "opi-fzy-858-image-1",
       "kind": "image",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-858.png",
-      "imageAlt": "Emergency evacuation，用于本话题的看图描述和问答",
+      "imageAlt": "紧急撤离，用于本话题的看图描述和问答",
       "studyTier": 2,
-      "taskTitle": "Emergency evacuation · 看图材料"
+      "taskTitle": "紧急撤离 · 看图材料"
     },
     {
       "id": "opi-fzy-152440",
       "audio": "/question-bank-assets/revisions/opi/c85d695d99a97b9c837732338b4cf93d927034c2a47e07bce2d9c74d0400ab81/audio/opi/opi-fzy-152440.mp3",
       "audioText": "What can you see from this picture?",
       "studyTier": 2,
-      "taskTitle": "Emergency evacuation-1",
+      "taskTitle": "紧急撤离-1",
       "audioTextZh": "你从图中可以看到什么？",
       "referenceText": "From the picture I can see an airplane from Asiana Airlines made a forced landing.\nSome passengers were evacuating with their luggage.\nTwo emergency slides were deployed.\nThe dense smoke was coming from the aircraft.",
       "referenceTextZh": "图中可以看到一架韩亚航空的飞机紧急迫降了。\n部分乘客提着行李从飞机撤离。\n两个紧急滑梯被放下。\n飞机正冒着浓烟。",
@@ -26,7 +26,7 @@
       "audio": "/question-bank-assets/revisions/opi/a48dbf9867f7cd5ad5d7a81778b36e9d9900c40ec909eeacc23527d4b064ef26/audio/opi/opi-fzy-152441.mp3",
       "audioText": "Did you review emergency procedures in simulator training?",
       "studyTier": 1,
-      "taskTitle": "Emergency evacuation-2",
+      "taskTitle": "紧急撤离-2",
       "audioTextZh": "你在飞模拟机时候接受过紧急程序吗？",
       "referenceText": "Yes. We learned and practiced how to evacuate in emergency situations.",
       "referenceTextZh": "是的。我们学习和练习如何进行紧急撤离。",
@@ -37,7 +37,7 @@
       "audio": "/question-bank-assets/revisions/opi/b88ad1309d8ddbe42b2f23735ffcac457523431c176bd9a7eca14388a6eb82e1/audio/opi/opi-fzy-152442.mp3",
       "audioText": "What do you think are the principles of evacuation?",
       "studyTier": 1,
-      "taskTitle": "Emergency evacuation-3",
+      "taskTitle": "紧急撤离-3",
       "audioTextZh": "你认为紧急撤离的重要原则有哪些？",
       "referenceText": "I think order is the most important principle in an emergency evacuation.\nBecause passengers will be panic in an emergency, which may affect the efficiency of emergency evacuation.",
       "referenceTextZh": "我认为秩序是紧急撤离中最重要的原则。\n因为在紧急情况下，乘客会很慌乱，这会影响紧急撤离的效率。",
@@ -48,7 +48,7 @@
       "audio": "/question-bank-assets/revisions/opi/4e76d2f6e4596061350876b847d2aeb3679181ee9c8dfd3ac69a24e8750f993c/audio/opi/opi-fzy-152443.mp3",
       "audioText": "What are the duties of cabin crew during emergency evacuation?",
       "studyTier": 1,
-      "taskTitle": "Emergency evacuation-4",
+      "taskTitle": "紧急撤离-4",
       "audioTextZh": "紧急撤离时机组的职责有哪些？",
       "referenceText": "For example, teach passengers how to use emergency equipment,\nshow the positions of evacuating exits and organize emergency evacuation orderly.",
       "referenceTextZh": "例如：告知乘客紧急设备的用法，指明安全出口的位置以及组织乘客有序紧急撤离。",

@@ -3,6 +3,7 @@ import { fireEvent, render, within } from '@testing-library/react-native';
 import type { QuestionBankDataset } from '../types';
 import { QuestionBankCatalog } from '../components/QuestionBankCatalog.native';
 
+jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => ({ account: { accountId: 'catalog-test' } }) }));
 const mockPush = jest.fn();
 jest.mock('@/features/auth/use-login-entry', () => ({ useLoginEntry: () => mockPush }));
 jest.mock('../export/SentenceExportScreen',()=>({SentenceExportScreen:({onBack}:{onBack:()=>void})=>{const {Button}=jest.requireActual('react-native');return <Button title="关闭测试导出" onPress={onBack}/>;}}));

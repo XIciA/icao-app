@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-621",
-  "name": "UAL239 CAT&runway closed, etc.",
+  "name": "UAL239 · 晴空颠簸与跑道关闭",
   "declaredCardCount": 16,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111373",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-1",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-1",
       "audioText": "Your call sign is UAL239, from New York to Wuhan. You are maintaining 11000m ETA OBLIK at 55, squawk 3566. Call Wuhan Control.",
       "audioTextZh": "你的呼号是美联航239，从纽约飞往武汉，11000米保持，预计到达OBLIK时间55分，应答机3566，呼叫武汉区调。",
       "referenceText": "Wuhan Control, UAL239, maintaining 11000m ETA OBLIK 55, squawk 3566.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111374",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-2",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-2",
       "audioText": "UAL239, Wuhan Control, radar contact, descend and maintain 9200m, expedite descend until passing 9800m due crossing traffic.[Read Back]",
       "audioTextZh": "美联航239，武汉区调，雷达已识别，下降保持9200米，由于交叉活动，快速下降通过9800米。【复诵】",
       "referenceText": "Descend and maintain 9200m, expedite descent until passing 9800m, UAL239.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111375",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-3",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-3",
       "audioText": "You are now maintaining 9200m. You are experiencing moderate clear air turbulence (CAT). Inform ATC of this situation and request further descend and maintain 8400m.",
       "audioTextZh": "飞行高度9200米保持。你正在经历中度晴空乱流。通知ATC该情况并请求进一步下降8400米保持。",
       "referenceText": "Wuhan Control, UAL239, maintaining 9200m. Request further descent to 8400m due moderate clear air turbulence.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111376",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-4",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-4",
       "audioText": "UAL239, continue descend and maintain 8400m, report reaching.[Read Back]",
       "audioTextZh": "美联航239，继续下降保持8400米保持，到达报告。【复诵】",
       "referenceText": "Continue descend and maintain 8400m, report reaching. UAL239.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111377",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-5",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-5",
       "audioText": "TCAS shows a fast moving aircraft at 9 o'clock. Check with Wuhan Control if it is a conflicting traffic.",
       "audioTextZh": "TCAS显示9点钟方向有一架快速移动的飞机，和武汉区调核实是否有冲突活动。",
       "referenceText": "Wuhan Control, UAL239, TCAS shows a traffic at 9 o'clock. Is it a conflicting aircraft?",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111378",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-6",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-6",
       "audioText": "UAL239, negative, that aircraft is military aircraft flying parallel to your current track and will overtake you shortly. Report traffic in sight.[Read Back]",
       "audioTextZh": "美联航239，不是，那是一架军用飞机，正沿你当前航迹平行飞行，不久就会超过你。能见飞机报告。【复诵】",
       "referenceText": "Roger, wilco, UAL239.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111379",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-7",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-7",
       "audioText": "Now that aircraft has passed you. Report to ATC.",
       "audioTextZh": "【那架飞机超过你了。向ATC报告。】",
       "referenceText": "Wuhan Control, UAL239, the traffic is cleared.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111380",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-8",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-8",
       "audioText": "UAL239, reduce to minimum speed. Fly direct to ZF, expect ZF-3 arrival runway 36R.[Read Back]",
       "audioTextZh": "美联航239，速度减至最小。直飞ZF，预计ZF-3进场，跑道36右。【复诵】",
       "referenceText": "Minimum speed. Direct to ZF, ZF-3 arrival runway 36R, UAL239.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111381",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-9",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-9",
       "audioText": "UAL239, continue descend and maintain 4200m.[Read Back]",
       "audioTextZh": "美联航239，继续下降保持4200米。【复诵】",
       "referenceText": "Descend and maintain 4200m, UAL239.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111382",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-10",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-10",
       "audioText": "You are now leveling off at 4200m and approaching ZF, information A received, make an initial contact with Wuhan Approach.",
       "audioTextZh": "你正在4200米平飞，接近ZF，收到通播A，和武汉进近进行初次联系。",
       "referenceText": "Wuhan Approach, UAL239, approaching ZF, maintaining 4200m, information A.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111383",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-11",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-11",
       "audioText": "UAL239, Wuhan Approach, radar contact.[Now you have established ILS approach runway 36R, contact Wuhan Tower.]",
       "audioTextZh": "美联航239，武汉进近，雷达已识别。【你已建立盲降进近跑道36右，联系武汉塔台。】",
       "referenceText": "Wuhan Tower, UAL239, established ILS runway 36R.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111384",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-12",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-12",
       "audioText": "UAL239, continue approach runway 36R.[Read Back]",
       "audioTextZh": "美联航239，继续进近跑道36右。【复诵】",
       "referenceText": "Continue approach runway 36R, UAL239.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111385",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-13",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-13",
       "audioText": "All stations! All stations! Be advised runway 36R is closed due an unserviceable aircraft occupying the runway. Break, UAL239, fly heading 360, climb and maintain 1500m.[Read Back]",
       "audioTextZh": "全体注意！全体注意！由于停放一架故障飞机，跑道36右关闭。还有，美联航239，航向360，上升保持1500米。【复诵】",
       "referenceText": "Roger, heading 360, climb and maintain 1500m, UAL239.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111386",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-14",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-14",
       "audioText": "UAL239, turn right heading 170, expect radar vectors for VOR/DME approach runway 04.[Read Back]",
       "audioTextZh": "美联航239，右转航向170，雷达引导VOR/DME进近跑道04。【复诵】",
       "referenceText": "Right heading 170, radar vectors for VOR/DME approach runway 04, UAL239",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111387",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-15",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-15",
       "audioText": "UAL239, turn right heading 310, cleared for the VOR/DME approach runway 04, report inbound.[Read Back]",
       "audioTextZh": "美联航239，右转航向310，可以VOR/DME进近跑道04，向台报告。【复诵】",
       "referenceText": "Right heading 310, cleared for VOR/DME approach runway 04, report inbound, UAL239.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111388",
-      "taskTitle": "38. UAL239 CAT&runway closed, etc.-16",
+      "taskTitle": "38. UAL239 · 晴空颠簸与跑道关闭-16",
       "audioText": "You are now inbound course for runway 04, contact Wuhan Tower.",
       "audioTextZh": "【你在跑道04入台航道，联系武汉塔台。】",
       "referenceText": "Wuhan Tower, UAL239, VOR/DME approach runway 04.",

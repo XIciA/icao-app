@@ -16,7 +16,7 @@ export function naturalTopicTitles(bankId: QuestionBankId, topic: QuestionBankTo
 }
 export function naturalDatasetTitles(dataset: QuestionBankDataset): QuestionBankDataset {
   if (dataset.id !== 'listening' && dataset.id !== 'storytelling' && dataset.id !== 'radiotelephony') return dataset;
-  const categories = dataset.id === 'listening' ? [...dataset.categories].sort((a, b) => listeningRank(a.id) - listeningRank(b.id)) : dataset.categories;
+  const categories = dataset.id === 'listening' ? [...dataset.categories].sort((a, b) => listeningRank(a.id) - listeningRank(b.id)) : dataset.id === 'radiotelephony' ? [...dataset.categories].sort((a, b) => Number(a.topics.every(topic => topic.practiceKind === 'scoring-points')) - Number(b.topics.every(topic => topic.practiceKind === 'scoring-points'))) : dataset.categories;
   return { ...dataset, categories: categories.map(category => ({ ...category,
     name: dataset.id === 'listening' ? category.name.replace(/(\d+)s/g, '$1秒')
       : dataset.id === 'radiotelephony' && category.id === 'atc-scoring-points' ? '专项训练' : category.name,

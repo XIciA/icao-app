@@ -170,3 +170,13 @@ describe('feedback user agent context', () => {
     expect(parseUserAgent(undefined)).toEqual({});
   });
 });
+
+it('accepts exam reports for each bank and keeps hotspot clues separate',()=>{
+ for(const category of ['listening','sentences900','radiotelephony','storytelling','opi']) {
+  expect(feedbackSubmissionSchema.safeParse({...payload,source:'exam_report',category}).success).toBe(true);
+  expect(feedbackSubmissionSchema.safeParse({...payload,category}).success).toBe(false);
+ }
+ expect(feedbackSubmissionSchema.safeParse({...payload,source:'opi_hotspot',category:'opi'}).success).toBe(true);
+ expect(feedbackSubmissionSchema.safeParse({...payload,source:'opi_hotspot',category:'listening'}).success).toBe(false);
+ expect(feedbackSubmissionSchema.safeParse({...payload,source:'exam_report'}).success).toBe(false);
+});

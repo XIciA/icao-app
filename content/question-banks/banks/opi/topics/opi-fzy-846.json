@@ -1,21 +1,21 @@
 {
   "id": "opi-fzy-846",
-  "name": "Big international airport",
+  "name": "大型国际机场",
   "cards": [
     {
       "id": "opi-fzy-846-image-1",
       "kind": "image",
       "image": "/question-bank-assets/images/opi/fzy-redrawn/figure-846.png",
-      "imageAlt": "Big international airport，用于本话题的看图描述和问答",
+      "imageAlt": "大型国际机场，用于本话题的看图描述和问答",
       "studyTier": 1,
-      "taskTitle": "Big international airport · 看图材料"
+      "taskTitle": "大型国际机场 · 看图材料"
     },
     {
       "id": "opi-fzy-152416",
       "audio": "/question-bank-assets/revisions/opi/7751525244249ebfd66bda8e8e12912db1dfe5005add2a02c1c73c15601d4b04/audio/opi/opi-fzy-152416.mp3",
       "audioText": "Can you describe this picture?",
       "studyTier": 1,
-      "taskTitle": "Big international airport-1",
+      "taskTitle": "大型国际机场-1",
       "audioTextZh": "你可以描述一下这张图吗？",
       "referenceText": "Yes. I can. The picture shows the outside view of an airport terminal.\nI guess it is Beijing Daxing International Airport.\nThis is a complicated airport with many stands and runways.",
       "referenceTextZh": "好的。这是一张机场航站楼的外观图。\n我猜它是北京大兴国际机场。\n这是一个复杂机场，有很多的停机位和跑道。",
@@ -26,7 +26,7 @@
       "audio": "/question-bank-assets/revisions/opi/ba352a803578715038124a3a99892a2f0c25d64f1afbb7e263cc59f990fdef90/audio/opi/opi-fzy-152417.mp3",
       "audioText": "Compared with small airports, what are the advantages and disadvantages of big international airports?",
       "studyTier": 1,
-      "taskTitle": "Big international airport-2",
+      "taskTitle": "大型国际机场-2",
       "audioTextZh": "与小机场相比，大型国际机场的优缺点是什么？",
       "referenceText": "Advantages: there are more advanced facilities and gates.\nThey will meet take-off and landing requirements for large aircraft.\nDisadvantages: traffic congestion and air traffic control are easier to occur.\nThe complicated airport layout make it easier for pilots to get confused.",
       "referenceTextZh": "优点：有更先进的设施和更多的停机位。\n它们能够满足大型飞机的起降要求。\n缺点：容易发生交通拥堵和流控。\n复杂的机场布局容易使飞行员困惑。",
@@ -37,7 +37,7 @@
       "audio": "/question-bank-assets/revisions/opi/93990a08e6e94e8c2422ebb4b5e8af0be1162a9de60e1f81b3d4a0db7e00783e/audio/opi/opi-fzy-152418.mp3",
       "audioText": "Can you name some special equipment in an airport?",
       "studyTier": 1,
-      "taskTitle": "Big international airport-3",
+      "taskTitle": "大型国际机场-3",
       "audioTextZh": "你能说出机场里的专业设备吗？",
       "referenceText": "There are some special equipment used in an airport.\nFor example, runway lighting equipment, bird-scaring equipment, tug, navigation equipment, like NDB and VOR.",
       "referenceTextZh": "机场配备了很多专业设备。如：跑道灯光设备、驱鸟设备、拖车、导航设备，比如：NDB和VOR。",

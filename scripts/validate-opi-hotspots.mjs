@@ -27,7 +27,8 @@ function assert(condition, message) {
 assert(typeof index.generatedAt === 'string' && !Number.isNaN(Date.parse(index.generatedAt)), 'invalid_generated_at');
 assert(Array.isArray(index.briefs) && index.briefs.length > 0, 'empty_briefs');
 
-function validateIndex(index) {
+const titleChanges = JSON.parse(fs.readFileSync(path.resolve(scriptDir, '../docs/workstreams/next-round-2026-10/topic-name-changes.json'), 'utf8'));
+function validateIndex(index, allowHistoricalTitles = false) {
 const briefIds = new Set();
 const briefDates = [];
 const dateCenters = new Set();
@@ -49,7 +50,7 @@ for (const brief of index.briefs) {
   for (const hotspotTopic of brief.topics) {
     const sourceTopic = topics.get(hotspotTopic.topicId);
     assert(sourceTopic && !topicIds.has(hotspotTopic.topicId), `missing_or_duplicate_topic:${brief.id}:${hotspotTopic.topicId}`);
-    assert(sourceTopic.name === hotspotTopic.topicTitle, `topic_title_mismatch:${brief.id}:${hotspotTopic.topicId}`);
+    assert(sourceTopic.name === hotspotTopic.topicTitle || (allowHistoricalTitles && titleChanges.some(change => change.id === sourceTopic.id && change.before === hotspotTopic.topicTitle && change.after === sourceTopic.name)), `topic_title_mismatch:${brief.id}:${hotspotTopic.topicId}`);
     assert(Array.isArray(hotspotTopic.cardIds) && hotspotTopic.cardIds.length > 0, `empty_topic:${brief.id}:${hotspotTopic.topicId}`);
     topicIds.add(hotspotTopic.topicId);
 
@@ -69,5 +70,5 @@ assert(index.briefs.every((brief, indexPosition) => brief.date === sortedDates[i
 
 }
 validateIndex(index);
-validateIndex(JSON.parse(fs.readFileSync(runtimePath, 'utf8')));
+validateIndex(JSON.parse(fs.readFileSync(runtimePath, 'utf8')), true);
 console.log(`OPI hotspot data verified: ${index.briefs.length} briefs; legacy snapshot preserved`);

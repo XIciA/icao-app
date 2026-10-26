@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-641",
-  "name": "NWA89 GPWS&PAPI problem, etc.",
+  "name": "NWA89 · 近地警告与精密进近航道指示器故障",
   "declaredCardCount": 17,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111764",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-1",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-1",
       "audioText": "Your call sign is NWA89, destination Beijing, 5100m maintaining, approaching KM, expect KM01 arrival, runway 36L, information J, now contact Beijing Approach.",
       "audioTextZh": "你的呼号是NWA（美西北）89，目的地北京，5100米保持，正在接近KM，预计KM01进场，跑道36左，通播J，现在联系北京进近。",
       "referenceText": "Beijing Approach, NWA89, 5100m maintaining, approaching KM, expect KM01 arrival, runway 36L, information J.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111765",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-2",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-2",
       "audioText": "NWA89, Beijing Approach, cleared for KM01 arrival, expect ILS approach runway 36L, descend to and maintain 2700m on QNH 1010.",
       "audioTextZh": "美西北89，北京进近，可以KM01进场，预计跑道36左盲降进近，下降保持修正海压2700米，修正海压1010。",
       "referenceText": "Cleared for KM01 arrival, expect ILS approach, runway 36L, descend to and maintain 2700m on QNH 1010, NWA89.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111766",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-3",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-3",
       "audioText": "Tell the Approach that your GPWS is out of service.",
       "audioTextZh": "告诉北京进近飞机的近地警告系统不工作了。",
       "referenceText": "Beijing Approach, NWA89, GPWS failure.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111767",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-4",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-4",
       "audioText": "NWA89, Beijing roger, can you land normally, say intention. [Tell the approach that it is not serious, you can land normally.]",
       "audioTextZh": "美西北89，收到，能否正常着陆，说明意图。【告诉北京进近问题不严重，可以正常着陆。】",
       "referenceText": "Affirm, able to land normally, GPWS failure not serious, NWA89.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111768",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-5",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-5",
       "audioText": "NWA89, Beijing roger, descend to and maintain 900m.",
       "audioTextZh": "美西北89，北京收到，下降保持900米。",
       "referenceText": "Descend to and maintain 900m, NWA89.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111769",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-6",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-6",
       "audioText": "NWA89, turn right heading 330 intercept localizer for runway 36L, report established.",
       "audioTextZh": "美西北89，右转航向330切入跑道36左航道，建立报告。",
       "referenceText": "Turn right heading 330 intercept localizer for runway 36L, report established, NWA89.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111770",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-7",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-7",
       "audioText": "Report established on localizer 5 miles final runway 36L.",
       "audioTextZh": "【报告五边5海里建立航道36左。】",
       "referenceText": "Beijing Approach, NWA89, established on localizer 5 miles final runway 36L.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111771",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-8",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-8",
       "audioText": "NWA89, continue approach and contact Beijing Tower 118.1.",
       "audioTextZh": "美西北89，继续进近，联系北京塔台118.1。",
       "referenceText": "Continue approach and contact Beijing Tower 118.1, NWA89.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111772",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-9",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-9",
       "audioText": "Report to Tower that you have established ILS.",
       "audioTextZh": "【报告塔台你已建立盲降。】",
       "referenceText": "Beijing Tower, NWA89, established ILS.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111773",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-10",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-10",
       "audioText": "NWA89, cleared to land runway 36L, report vacated.",
       "audioTextZh": "美西北89，可以着陆36左，脱离报告。",
       "referenceText": "Cleared to land runway 36L, report vacated, NWA89.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111774",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-11",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-11",
       "audioText": "NWA89, confirm altitude, mode C shows you're too low.[The PAPI shows three red lights, but according to your PFD, your aircraft is high on the glide path. Report to the Tower.]",
       "audioTextZh": "美西北89，证实C模式应答机高度模式打开，你高度显示太低。【PAPI显示三个红灯，但根据主飞行显示器，飞机高于下滑道，将情况报告给塔台。】",
       "referenceText": "The PAPI indicates we are a little bit low but PFD shows we are high on the glide path, NWA89.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111775",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-12",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-12",
       "audioText": "NWA89, say intention.[Tell the Tower you're going around.]",
       "audioTextZh": "美西北89，说明意图。【告诉塔台你准备复飞。】",
       "referenceText": "Beijing Tower, NWA89, going around.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111776",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-13",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-13",
       "audioText": "NWA89, climb to 2100m, contact Departure 119.9.",
       "audioTextZh": "美西北89，上升2100米，联系离场119.9。",
       "referenceText": "Climb to 2100m, contact Departure 119.9, NWA89.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111777",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-14",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-14",
       "audioText": "You are climbing to 2100m, call Beijing Departure.",
       "audioTextZh": "【你已上升到2100米，联系北京离场。】",
       "referenceText": "Beijing Departure, NWA89, climbing to 2100m.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111778",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-15",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-15",
       "audioText": "NWA89, roger, say intention.[Tell the Departure you want to circle back for another landing on runway 36R.]",
       "audioTextZh": "美西北89，收到，说明意图。【告诉离场你想机动飞行一圈后转回跑道36右着陆。】",
       "referenceText": "Request circle back for another landing on runway 36R, NWA89.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111779",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-16",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-16",
       "audioText": "NWA89, roger, turn right heading 090 for crosswind.",
       "audioTextZh": "美西北89，收到，右转航向090加入二边。",
       "referenceText": "Turn right heading 090 for crosswind, NWA89.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111780",
-      "taskTitle": "13. NWA89 GPWS&PAPI problem, etc.-17",
+      "taskTitle": "13. NWA89 · 近地警告与精密进近航道指示器故障-17",
       "audioText": "NWA89, what is the status of your aircraft?[Tell the controller your aircraft is in good condition, but now you don't have enough fuel for another missed approach. You want a successful landing this time.]",
       "audioTextZh": "美西北89，飞机现在什么情况？【告诉管制员飞机情况良好，但是你没有足够燃料再次复飞，你希望这次能成功着陆。】",
       "referenceText": "The aircraft is in good condition, but I don't have enough fuel for another missed approach. I need to make a good landing this time, NWA89.",

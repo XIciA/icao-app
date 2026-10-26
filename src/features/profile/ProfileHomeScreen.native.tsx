@@ -20,6 +20,7 @@ import { ProfileIdentityCard } from './ProfileIdentityCard.native';
 const menu = [
   { slug: 'membership', label: '会员购买', icon: Star },
   { slug: 'guide', label: '使用指南', icon: HelpCircle },
+  { slug: 'exam-feedback', label: '考情反馈', icon: MessageCircle },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
   { slug: 'settings', label: '设置', icon: Settings },
 ];
@@ -33,7 +34,8 @@ export function ProfileHomeScreen() {
   const profile = useProfile();
   const cloudWeb = Platform.OS === 'web' && isEdgeOneProductionWeb();
   const visibleMenu = menu.filter((item) => Platform.OS !== 'web' || cloudWeb
-    || (item.slug !== 'membership' && item.slug !== 'feedback'));
+    || (item.slug !== 'membership' && item.slug !== 'feedback' && item.slug !== 'exam-feedback'));
+  const [examUnread, setExamUnread] = useState<{accountId:string;value:boolean}>();
   const [feedbackUnread, setFeedbackUnread] = useState<{accountId:string;value:boolean}>();
   const resetOwner = auth.account?.accountId ?? 'ui-acceptance';
   const resetState = reset?.owner === resetOwner ? reset.phase : 'idle';
@@ -43,6 +45,7 @@ export function ProfileHomeScreen() {
       let active = true;
       const refresh = () => {
         if (!accountId) return;
+        void unreadFeedback('exam_report').then(result => { if(active)setExamUnread({accountId,value:result.unread}); }).catch(() => undefined);
         void unreadFeedback().then(result => { if(active)setFeedbackUnread({accountId,value:result.unread}); }).catch(() => undefined);
       };
       refresh();
@@ -63,6 +66,7 @@ export function ProfileHomeScreen() {
     if (slug === 'membership') { trackProductClick('membership_open','profile'); router.push('/account/membership'); }
     else if (slug === 'guide') router.push({ pathname: '/info/[slug]', params: { slug: 'guide' } });
     else if (slug === 'settings') router.push('/account/settings');
+    else if (slug === 'exam-feedback') router.push({ pathname: '/info/[slug]', params: { slug: 'feedback', source: 'exam_report' } });
     else if (slug === 'feedback')
       router.push({
         pathname: '/info/[slug]',
@@ -87,7 +91,7 @@ export function ProfileHomeScreen() {
               isLast={index === visibleMenu.length - 1}
               label={cloudWeb && item.slug === 'membership' ? '会员权益' : item.label}
               onPress={() => open(item.slug)}
-            />{item.slug === 'feedback' && feedbackUnread?.accountId === accountId && feedbackUnread?.value ? <View accessibilityLabel="反馈有新回复" style={styles.unreadDot}/> : null}</View>
+            />{((item.slug === 'feedback' && feedbackUnread?.accountId === accountId && feedbackUnread?.value) || (item.slug === 'exam-feedback' && examUnread?.accountId === accountId && examUnread?.value)) ? <View accessibilityLabel="反馈有新回复" style={styles.unreadDot}/> : null}</View>
           ))}
         </RowGroup>
       </View>

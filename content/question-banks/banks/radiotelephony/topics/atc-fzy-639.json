@@ -1,13 +1,13 @@
 {
   "id": "atc-fzy-639",
-  "name": "CES220 warning&spoiler, etc.",
+  "name": "CES220 · 警告与扰流板故障",
   "declaredCardCount": 21,
   "studyTier": 0,
   "practiceKind": "scenario",
   "cards": [
     {
       "id": "radiotelephony-fzy-111724",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-1",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-1",
       "audioText": "You call sign is CES220, destination Pudong, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM contact Beijing Control.",
       "audioTextZh": "你的呼号是CES220，目的地浦东。NIXAL上方0025，高度12500米，预计DOTOS 0035，下个报告点TODOM。联系北京区调。",
       "referenceText": "Beijing Control, CES220, over NIXAL 0025, level 12500m, estimate DOTOS 0035, next TODOM.",
@@ -16,7 +16,7 @@
     },
     {
       "id": "radiotelephony-fzy-111725",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-2",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-2",
       "audioText": "CES220, Beijing Control, squawk 0077 radar contact, descend to and maintain 11900m.[Request 12500m to Beijing Control.]",
       "audioTextZh": "东方220，北京区调，应答机0077雷达识别，下降保持11900米。【向北京区调请求高度12500米。】",
       "referenceText": "Beijing Control, CES220, request to maintain 12500m.",
@@ -25,7 +25,7 @@
     },
     {
       "id": "radiotelephony-fzy-111726",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-3",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-3",
       "audioText": "CES220, cleared to maintain 12500m.",
       "audioTextZh": "东方220，可以保持12500米。",
       "referenceText": "Cleared to maintain 12500m. CES220.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "radiotelephony-fzy-111727",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-4",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-4",
       "audioText": "The plane encounters a strong head wind, and fuel is running out, the warning light is on, request alternate to Beijing airport.",
       "audioTextZh": "飞机遭遇强烈顶风，燃料正在耗尽，燃料示警灯亮了，请求备降北京机场。",
       "referenceText": "PANPAN PANPAN PANPAN, Beijing Control, CES220, request alternate to Beijing airport, we are running out of fuel due to head winds en route, our fuel light is on.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "radiotelephony-fzy-111728",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-5",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-5",
       "audioText": "CES220, roger, report endurance.[Report that your endurance is about 1 hour and 30 minutes.]",
       "audioTextZh": "东方220，收到，报告续航时间。【报告你的续航时间约为1小时30分钟。】",
       "referenceText": "Endurance 0130, CES220.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "radiotelephony-fzy-111729",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-6",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-6",
       "audioText": "CES220, roger.[You cannot divert or hold in case of any emergency, so request direct to Beijing airport and priority landing.]",
       "audioTextZh": "东方220，收到。【如果发生紧急情况你将无法备降或等待，所以请求直飞北京机场并优先着陆。】",
       "referenceText": "Beijing Control, CES220, request direct to Beijing airport and priority landing.",
@@ -61,7 +61,7 @@
     },
     {
       "id": "radiotelephony-fzy-111730",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-7",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-7",
       "audioText": "CES220, Beijing roger, turn left heading 160, radar vector for landing.",
       "audioTextZh": "东方220，北京收到，左转航向160，雷达引导着陆。",
       "referenceText": "Turn left heading 160, radar vector for landing, CES220.",
@@ -70,7 +70,7 @@
     },
     {
       "id": "radiotelephony-fzy-111731",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-8",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-8",
       "audioText": "CES220, descend to 8900m.[To save fuel, request maintain 12500m.]",
       "audioTextZh": "东方220，下降8900米。【为节省燃油，请求保持12500米。】",
       "referenceText": "Negative, request maintain 12500m to save fuel, CES220.",
@@ -79,7 +79,7 @@
     },
     {
       "id": "radiotelephony-fzy-111732",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-9",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-9",
       "audioText": "CES220, maintain 12500m approved.[You are now approaching KM, 4500m maintaining, expect KM01 arrival, runway 36L, information I, now contact Beijing Approach.]",
       "audioTextZh": "东方220，同意12500米保持。【你正在接近KM，4500米保持，KM01进场，跑道36左，通播I，现在联系北京进近。】",
       "referenceText": "Beijing Approach, CES220, 4500m maintaining, expect KM01 arrival, runway 36L, information I.",
@@ -88,7 +88,7 @@
     },
     {
       "id": "radiotelephony-fzy-111733",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-10",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-10",
       "audioText": "CES220, Beijing Approach, descend to 2100m on QNH 1011, turn right heading 110 join downwind. Reduce speed to 250kts.[Readback]",
       "audioTextZh": "东方220，北京进近，下降到修正海压2100米，修正海压1011，右转航向110加入三边，减速250节。【复诵】",
       "referenceText": "Descend to 2100m on QNH 1011, turn right heading 110 join downwind. Reduce speed to 250kts, CES220.",
@@ -97,7 +97,7 @@
     },
     {
       "id": "radiotelephony-fzy-111734",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-11",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-11",
       "audioText": "CES220, reduce speed to 190kts.[There is something wrong with the spoilers. They are locked in position, request maintain 210kts.]",
       "audioTextZh": "东方220，减速到190节。【飞机扰流板出现问题，被锁在原位，请求保持210节。】",
       "referenceText": "Beijing Approach, CES220, request maintain 210kts. Something is wrong with the spoilers. They are locked in position.",
@@ -106,7 +106,7 @@
     },
     {
       "id": "radiotelephony-fzy-111735",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-12",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-12",
       "audioText": "CES220, Beijing roger, maintain 210kts. Report intention.[You intend to maintain 210kts, the minimum clean speed, and you are trying to extend the spoiler again.]",
       "audioTextZh": "东方220，北京收到，保持210节，报告意图。【你想保持最小光洁速度210节，并尝试再次打开扰流板。】",
       "referenceText": "Request to minimum clean speed 210kts, and we are trying to extend the spoilers again, CES220.",
@@ -115,7 +115,7 @@
     },
     {
       "id": "radiotelephony-fzy-111736",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-13",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-13",
       "audioText": "CES220, can you describe the problem further?[Tell the controller that you are sorting it out, probably hydraulic problem, or maybe steering system fault.]",
       "audioTextZh": "东方220，你能进一步描述问题吗？【告诉管制员你正在检查，可能是液压问题，或是转向系统故障。】",
       "referenceText": "We are sorting it out, suspect hydraulic problem, or steering system malfunctioned, CES220.",
@@ -124,7 +124,7 @@
     },
     {
       "id": "radiotelephony-fzy-111737",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-14",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-14",
       "audioText": "CES220, Beijing roger, turn right heading 180, I will extend your downwind. Call me when you ready to turn in.",
       "audioTextZh": "东方220，北京收到，右转航向180，我会延长你的三边，准备好转向五边通知。",
       "referenceText": "Turn right heading 180, extended downwind, call you back, CES220.",
@@ -133,7 +133,7 @@
     },
     {
       "id": "radiotelephony-fzy-111738",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-15",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-15",
       "audioText": "[2 minutes later.][You have solved the problem and can continue again.]",
       "audioTextZh": "【2分钟后】【你已经解决问题，现在可以继续进近。】",
       "referenceText": "Beijing Approach, CES220, problem solved, request continue approach.",
@@ -142,7 +142,7 @@
     },
     {
       "id": "radiotelephony-fzy-111739",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-16",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-16",
       "audioText": "CES220, Beijing roger, turn right heading 300 for base.",
       "audioTextZh": "东方220，北京收到，右转航向300加入四边。",
       "referenceText": "Turn right heading 300 for base, CES220.",
@@ -151,7 +151,7 @@
     },
     {
       "id": "radiotelephony-fzy-111740",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-17",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-17",
       "audioText": "Report to Beijing Tower that you have established ILS.",
       "audioTextZh": "【向北京塔台报告你已经建立盲降。】",
       "referenceText": "Beijing Tower, CES220, established on ILS.",
@@ -160,7 +160,7 @@
     },
     {
       "id": "radiotelephony-fzy-111741",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-18",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-18",
       "audioText": "CES220, Beijing Tower, continue approach, report outer marker. [Over outer marker.]",
       "audioTextZh": "东方220，北京塔台，继续进近，到外信标台报告。【到达外信标台上方。】",
       "referenceText": "Beijing Tower, CES220, outer marker、",
@@ -169,7 +169,7 @@
     },
     {
       "id": "radiotelephony-fzy-111742",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-19",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-19",
       "audioText": "CES220, cleared to land, wind 330, 8m/s, report vacated.",
       "audioTextZh": "东方220，可以着陆，地面风330, 8m/s，脱离后报告。",
       "referenceText": "Cleared to land, report vacated, CES220.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "radiotelephony-fzy-111743",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-20",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-20",
       "audioText": "Request Beijing Tower to turn down the approach lights to grade 3, they look too bright from your aircraft.",
       "audioTextZh": "向北京塔台请求将进场灯的亮度调为3级，从机内看进场灯太过明亮。",
       "referenceText": "Beijing Tower, CES220, request turn down the approach light to grade 3, they look too bright from here.",
@@ -187,7 +187,7 @@
     },
     {
       "id": "radiotelephony-fzy-111744",
-      "taskTitle": "11. CES220 warning&spoiler, etc.-21",
+      "taskTitle": "11. CES220 · 警告与扰流板故障-21",
       "audioText": "CES220, Beijing roger, I will inform the ramp.",
       "audioTextZh": "东方220，北京收到，我会通知机坪。",
       "referenceText": "Roger, thanks, CES220.",

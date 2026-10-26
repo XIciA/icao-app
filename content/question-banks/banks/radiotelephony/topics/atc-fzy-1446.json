@@ -1,6 +1,6 @@
 {
   "id": "atc-fzy-1446",
-  "name": "Panpan与Mayday",
+  "name": "紧急与遇险呼叫",
   "declaredCardCount": 54,
   "practiceKind": "scoring-points",
   "cards": [
@@ -46,7 +46,7 @@
     },
     {
       "id": "radiotelephony-fzy-209556",
-      "taskTitle": "采分点练习-Panpan与Mayday-23",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-23",
       "audioText": "During the descend, a flock of birds struck your aircraft and your windshield was broken. The cabin crew reported that the oxygen masks in the cabin dropped automatically. You asked for radar vectors to Wuhan airport for priority landing.",
       "audioTextZh": "在下降过程中，一群鸟撞到你的飞机，你的风挡玻璃破裂了。乘务员报告称，客舱的氧气面罩自动脱落。你请求雷达引导至武汉机场，进行优先着陆。",
       "studyTier": 2,
@@ -306,7 +306,7 @@
     },
     {
       "id": "radiotelephony-fzy-224916",
-      "taskTitle": "采分点练习-Panpan与Mayday-1",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-1",
       "audioText": "B: [Later.]\nB: [You are now in Wuhan Control area. The purser reports that a 73-year-old woman in 35H suffers from stroke and is having a terrible headache. Report this situation to Wuhan Control and ask for landing priority. This is an emergency call.]",
       "audioTextZh": "【一会后。】\n【你现在在武汉区调。乘务长报告说，35H座位上一名73岁的妇女中风，头痛得厉害。将此情况报告武汉区调，请求优先降落。这是紧急通话。】",
       "studyTier": 2,
@@ -316,7 +316,7 @@
     },
     {
       "id": "radiotelephony-fzy-224917",
-      "taskTitle": "采分点练习-Panpan与Mayday-2",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-2",
       "audioText": "C: UAL887, Beijing Control, roger, report joining.\n[Later...]\n[A flight attendant reports that a pregnant woman is about to deliver a baby, and she is in severe pain. Inform Beijing Control the situation. This is an emergency call.]",
       "audioTextZh": "C:美联航887，北京区调，收到，加入后报。\n【后来。..】\n【一名乘务员报告说一名怀孕乘客要生孩子，她现在疼得厉害。告知北京区调，这是一个紧急呼叫。】",
       "studyTier": 2,
@@ -326,7 +326,7 @@
     },
     {
       "id": "radiotelephony-fzy-224918",
-      "taskTitle": "采分点练习-Panpan与Mayday-3",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-3",
       "audioText": "You are now 8900m maintaining, about 10 miles from P344, you had electrical arcing on the windshield and your windshield seemed to be cracked on the outside. You want to divert to Hefei airport immediately. Report this situation to Shanghai control, this is an urgency call.",
       "audioTextZh": "你正保持在8900米，距离P344大概10海里，你的风挡玻璃上有电弧，风挡玻璃似乎从外面裂开了。你要立即备降合肥机场。将此情况报告上海区调，这是紧急呼叫。",
       "studyTier": 2,
@@ -336,7 +336,7 @@
     },
     {
       "id": "radiotelephony-fzy-224919",
-      "taskTitle": "采分点练习-Panpan与Mayday-4",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-4",
       "audioText": "N: [You are established contact, initiated descend for runway 36R. During descending, airspeed and altitude readings are abnormal, possibly due to ice blockage. advice Wuhan Control this situation. this is an urgent call.]",
       "audioTextZh": "你已经建立联系，初始下降到跑道36右，在下降过程中，你的空速和高度读数异常，大概是由于积冰堵塞。告知武汉区调，这是一个紧急通话。",
       "studyTier": 2,
@@ -346,7 +346,7 @@
     },
     {
       "id": "radiotelephony-fzy-224920",
-      "taskTitle": "采分点练习-Panpan与Mayday-5",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-5",
       "audioText": "You have departed from runway 18L, shortly after liftoff, you encountered a bird strike, your right engine has failed, make an urgency call, request maintain runway heading.",
       "audioTextZh": "你已在跑道18左起飞，起飞后不久，飞机遭到了鸟击，右侧发动机失效，做紧急呼叫，请求保持跑道航向。",
       "studyTier": 2,
@@ -356,7 +356,7 @@
     },
     {
       "id": "radiotelephony-fzy-224921",
-      "taskTitle": "采分点练习-Panpan与Mayday-6",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-6",
       "audioText": "During climb, your port engine failed, tell the controller this situation and you would like to return to land. This is an urgency call.",
       "audioTextZh": "在爬升过程中，你的左发失效了，告诉管制员这一情形，你想返场着陆，这是一个紧急呼叫。",
       "studyTier": 2,
@@ -366,7 +366,7 @@
     },
     {
       "id": "radiotelephony-fzy-224922",
-      "taskTitle": "采分点练习-Panpan与Mayday-7",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-7",
       "audioText": "After airborne, you fly into a flock of birds, the left windshield was cracked, request fuel dump and return for landing. This is an urgency call.",
       "audioTextZh": "离地后，你飞入鸟群，你左侧风挡破裂，请求放油并返场着陆。这是一个紧急呼叫。",
       "studyTier": 2,
@@ -376,7 +376,7 @@
     },
     {
       "id": "radiotelephony-fzy-224923",
-      "taskTitle": "采分点练习-Panpan与Mayday-8",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-8",
       "audioText": "You found one of your hydraulic systems failed, make an urgency call and tell ATC this situation and ask to level off at 3900m and then return to Wuhan airport.",
       "audioTextZh": "你发现你的一个液压系统失效了，做紧急呼叫，并将此情况告诉管制员，请求在3900米改平，然后返回武汉机场。",
       "studyTier": 2,
@@ -386,7 +386,7 @@
     },
     {
       "id": "radiotelephony-fzy-224924",
-      "taskTitle": "采分点练习-Panpan与Mayday-9",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-9",
       "audioText": "When you are at 10,700m, your left engine failed, make an urgency call and request turn right and descend to 6300m.",
       "audioTextZh": "当你在10700米时，你的左发失效了，做紧急呼叫，请求右转下降至6300米。",
       "studyTier": 2,
@@ -396,7 +396,7 @@
     },
     {
       "id": "radiotelephony-fzy-224925",
-      "taskTitle": "采分点练习-Panpan与Mayday-10",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-10",
       "audioText": "After airborne, you encountered bird strike and one of your engines failed, make an urgency call and ask to return to Wuhan airport.",
       "audioTextZh": "离地后，你遭遇了鸟击，你的一个发动机失效，做紧急通话，并请求返回武汉机场。",
       "studyTier": 2,
@@ -406,7 +406,7 @@
     },
     {
       "id": "radiotelephony-fzy-224927",
-      "taskTitle": "采分点练习-Panpan与Mayday-12",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-12",
       "audioText": "A flight attendant told you that there is a male passenger suffering a heart attack. Inform the controller about that, and tell him you want to go back to Wuhan. This is an urgent call.",
       "audioTextZh": "一名乘务员告诉你，一名男性乘客遭遇心脏病。告知管制员情况，告诉他你想返回武汉，这是一个紧急呼叫",
       "studyTier": 2,
@@ -416,7 +416,7 @@
     },
     {
       "id": "radiotelephony-fzy-224928",
-      "taskTitle": "采分点练习-Panpan与Mayday-13",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-13",
       "audioText": "Before ATC replies you suddenly hit another balloon you did not see. The aircraft becomes difficult to control and you want to return to land at Chengdu. Tell ATC this. This is an Urgency call.",
       "audioTextZh": "在管制员回复之前，你撞上了一个你没有注意到的气球，飞机变得很难控制，你想返场降落成都，告知管制员此事，这是一个紧急呼叫。",
       "studyTier": 2,
@@ -426,7 +426,7 @@
     },
     {
       "id": "radiotelephony-fzy-224929",
-      "taskTitle": "采分点练习-Panpan与Mayday-14",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-14",
       "audioText": "The bleed air no longer supplies, high cabin altitude warning is triggered. Make an urgency call and tell the controller you want to make an emergency descent to 3000m and request radar vector.",
       "audioTextZh": "引气停止供应，高客舱高度警告触发，宣布紧急情况，并告诉管制员你想紧急下降到3000米，并请求雷达引导",
       "studyTier": 2,
@@ -436,7 +436,7 @@
     },
     {
       "id": "radiotelephony-fzy-224930",
-      "taskTitle": "采分点练习-Panpan与Mayday-15",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-15",
       "audioText": "B: [You hear a loud bang, it seems that the left wing has been hit by something, and you feel the airplane has banking tendency. Declare Urgency to ATC and request priority landing and emergency services.]",
       "audioTextZh": "B：【你听到一声巨响，左侧机翼似乎被异物击中，且飞机出现倾斜趋势。立即向空管通报紧急情况，请求优先着陆及地面应急服务待命。】",
       "studyTier": 2,
@@ -446,7 +446,7 @@
     },
     {
       "id": "radiotelephony-fzy-224931",
-      "taskTitle": "采分点练习-Panpan与Mayday-16",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-16",
       "audioText": "B: [Now you have smoke in the cockpit, make a distress call to Rhein Radar and request emergency descent to remove the smoke.]",
       "audioTextZh": "B：【你的驾驶舱出现烟雾，向莱茵雷达管制区做遇险呼叫，请求紧急下降来移除烟雾。】",
       "studyTier": 2,
@@ -456,7 +456,7 @@
     },
     {
       "id": "radiotelephony-fzy-224932",
-      "taskTitle": "采分点练习-Panpan与Mayday-17",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-17",
       "audioText": "N: [During cruise, the captain suddenly suffered from heart attack, make a distress call to Wuhan Control and request immediate return for priority landing.]",
       "audioTextZh": "在巡航时，机长突然遇到心脏病，与武汉区调进行遇险通话，请求立刻返航进行优先着陆。",
       "studyTier": 2,
@@ -466,7 +466,7 @@
     },
     {
       "id": "radiotelephony-fzy-224933",
-      "taskTitle": "采分点练习-Panpan与Mayday-18",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-18",
       "audioText": "C: CCA321, Guangzhou Control, radar identified.\nB: [Your captain is suddenly incapacitated with a suspected food poisoning, you have called the purser from the intercom and asked the flight attendants to get him out of the cockpit and give him first aid in time. Inform Guangzhou Control the situation and request return to land as soon as possible. This is a distress call.]",
       "audioTextZh": "国航三两幺，武汉区调，雷达识别了。\n【机长疑似食物中毒突然失能，你已经通过内话联系了乘务长，让乘务员把他抬出驾驶舱，并及时进行急救。告知广州区调此情况并请求尽快着陆。这是一个遇险通话。】",
       "studyTier": 2,
@@ -476,7 +476,7 @@
     },
     {
       "id": "radiotelephony-fzy-224934",
-      "taskTitle": "采分点练习-Panpan与Mayday-19",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-19",
       "audioText": "B: [Suddenly, your cabin crew reports there are toxic fume in the rear cabin. You decide to expedite descend for smoke removal. Make a distress call to Zhengzhou Control and request to level off at 3000m.]",
       "audioTextZh": "突然，乘务员报告后客舱有有毒气体。你决定加速下降进行除烟程序。向郑州区调做遇险呼叫，请求在3000米平飞。",
       "studyTier": 2,
@@ -486,7 +486,7 @@
     },
     {
       "id": "radiotelephony-fzy-224935",
-      "taskTitle": "采分点练习-Panpan与Mayday-20",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-20",
       "audioText": "B: [You are now 15 miles southwest of LKO. Suddenly, you encountered heavy hail. The windshield was smashed and multiple cracks obscured your view. The airspeed indications in the cockpit have also become unreliable. You want to divert to Wuhan Airport. Make a distress call to Guangzhou Control.]",
       "audioTextZh": "你现在在LKO西南15海里，突然，你遇到了强冰雹，你的风挡破裂了，裂纹阻挡了你的视野，驾驶舱里的空速指示也变得不可靠。你想改航至武汉机场，向广州区调做一个遇险通话。",
       "studyTier": 2,
@@ -496,7 +496,7 @@
     },
     {
       "id": "radiotelephony-fzy-224936",
-      "taskTitle": "采分点练习-Panpan与Mayday-21",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-21",
       "audioText": "You have departed from RWY 36L, shortly after liftoff, your starboard engine was on fire, and the EGT is very high, so you have to shut down this engine, make a distress call.",
       "audioTextZh": "你已经从跑道36左起飞，起飞不久后，你右侧发动机起火，排气温度非常高，因此你关闭了该发动机，做遇险通话。",
       "studyTier": 2,
@@ -506,7 +506,7 @@
     },
     {
       "id": "radiotelephony-fzy-224937",
-      "taskTitle": "采分点练习-Panpan与Mayday-22",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-22",
       "audioText": "During the descent, you encountered a strong hail and experienced heavy turbulence. The outer windshield of your aircraft cracked due to hail strike, tell your situation to Beijing Approach, and request emergency landing, this is a distress call.",
       "audioTextZh": "在下降过程中，你遇到了冰雹和颠簸。飞机外侧风挡玻璃由于冰雹撞击而出现裂纹，将情况告知北京区调，请求紧急着陆，这是一个遇险呼叫。",
       "studyTier": 2,
@@ -516,7 +516,7 @@
     },
     {
       "id": "radiotelephony-fzy-224939",
-      "taskTitle": "采分点练习-Panpan与Mayday-24",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-24",
       "audioText": "Your callsign is CES243, an A320 is on T22 A arrival for runway 18L. You have been told to contact Wuhan Approach. You are 5 miles south of T VOR. You have a fire warning in the cockpit. You notice that the left engine is on fire.",
       "audioTextZh": "你的呼号是东方243，一架A320以T22-A进场，跑道18左。你被告知联系武汉进近。你在TVOR以南5海里。你的驾驶舱内部出现火警告警。你注意到你的左侧发动机失火了。",
       "studyTier": 2,
@@ -526,7 +526,7 @@
     },
     {
       "id": "radiotelephony-fzy-224940",
-      "taskTitle": "采分点练习-Panpan与Mayday-25",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-25",
       "audioText": "Suddenly, your cabin crew reports there are toxic fume in the rear cabin. You decide to expedite descent for smoke removal. Make a distress call to Zhengzhou Control and request to level off at 3000m.",
       "audioTextZh": "突然，你的乘务员报告客舱后部出现有毒烟雾，你决定加速下降，进行除烟，向郑州区调宣布遇险，并请求在3000米改平",
       "studyTier": 2,
@@ -536,7 +536,7 @@
     },
     {
       "id": "radiotelephony-fzy-224941",
-      "taskTitle": "采分点练习-Panpan与Mayday-26",
+      "taskTitle": "采分点练习-紧急与遇险呼叫-26",
       "audioText": "N: Suddenly, your No.1 and No.2 engines have flamed out due to the dust storm, If the weather is clear at Beijing, request radar vectors to Beijing airport for priority landing. This is a distress call.",
       "audioTextZh": "突然，由于沙尘暴，你的一、二发熄火了，如果北京的天气晴朗，申请雷达引导到北京机场优先降落。这是遇险通话。",
       "studyTier": 2,

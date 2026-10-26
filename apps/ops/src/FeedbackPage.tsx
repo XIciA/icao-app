@@ -3,7 +3,8 @@ import type { OpsFeedbackDetail, OpsFeedbackListResponse, OpsFeedbackAttachment 
 import { useEffect, useRef, useState } from 'react';
 import { opsApi, opsResponse } from './api';
 
-const categoryLabel: Record<string, string> = { feature_suggestion: '功能建议', content_correction: '内容纠错', other: '其他' };
+const categoryLabel: Record<string, string> = { feature_suggestion: '功能建议', content_correction: '内容纠错', other: '其他', listening: '听力', sentences900: '900句', radiotelephony: '陆空通话', storytelling: '故事复述', opi: 'OPI' };
+const sources: Record<string, string> = { profile: '意见反馈', study: '题目反馈', exam_report: '考情反馈', opi_hotspot: 'OPI 热点线索' };
 const statuses: Record<string,string> = {received:'待处理',processing:'处理中',resolved:'已处理'};
 const date = (value: string) => new Date(value).toLocaleString('zh-CN', { hour12: false });
 const failure = (cause: unknown) => cause instanceof Error && cause.message === 'feedback_not_found'
@@ -39,6 +40,7 @@ export function FeedbackPage() {
   const [detail, setDetail] = useState<OpsFeedbackDetail>();
   const [detailError, setDetailError] = useState<string>();
   const [attempt, setAttempt] = useState(0);
+  const [sourceFilter, setSourceFilter] = useState('');
   const [statusFilter,setStatusFilter] = useState('');
   const [replyText,setReplyText] = useState('');
   const [replyStatus,setReplyStatus] = useState('received');
@@ -51,7 +53,7 @@ export function FeedbackPage() {
     if (loading.current) return;
     loading.current = true; setBusy(true); setError(undefined);
     try {
-      const data = await opsApi<OpsFeedbackListResponse>(`/v1/admin/feedback?${new URLSearchParams({...(cursor?{cursor}:{}),...(statusFilter?{status:statusFilter}:{})})}`);
+      const data = await opsApi<OpsFeedbackListResponse>(`/v1/admin/feedback?${new URLSearchParams({...(cursor?{cursor}:{}),...(statusFilter?{status:statusFilter}:{}),...(sourceFilter?{source:sourceFilter}:{})})}`);
       if (!mounted.current) return;
       setItems((current) => cursor ? [...current, ...data.items.filter((next) => !current.some((row) => row.ticketNumber === next.ticketNumber))] : data.items);
       setNextCursor(data.nextCursor); setLoaded(true);
@@ -61,7 +63,7 @@ export function FeedbackPage() {
   useEffect(() => {
     mounted.current = true; void load();
     return () => { mounted.current = false; };
-  }, [statusFilter]);
+  }, [statusFilter, sourceFilter]);
   useEffect(() => {
     setReplyText('');setSaveError('');replyKey.current=undefined;
     setDetail(undefined); setDetailError(undefined);
@@ -95,7 +97,7 @@ export function FeedbackPage() {
       {!detail && !detailError && <p aria-live="polite">正在载入…</p>}
       {detail && <article className="feedback-detail">
         <div className="feedback-meta"><b>{detail.ticketNumber}</b><span>{categoryLabel[detail.category] ?? detail.category}</span><time>{date(detail.createdAt)}</time></div>
-        <p className="feedback-description"><strong>{detail.source === 'study' ? '题目反馈' : '意见反馈'}</strong>
+        <p className="feedback-description"><strong>{sources[detail.source] ?? '意见反馈'}</strong>
           {detail.source === 'study' && (detail.question?.displayName ? <> · {detail.question.displayName}</> : ' · 题名暂无法核实，原始题目编号见下方')}
         </p>
         <p className="feedback-description">{detail.description}</p>
@@ -107,7 +109,7 @@ export function FeedbackPage() {
         {saveError&&<p role="alert">{saveError}</p>}
         <button className="primary" disabled={saving} onClick={()=>void saveReply()}>{saving?'正在保存…':replyText.trim()?'保存并发送回复':'保存状态'}</button>
         <dl><dt>联系方式</dt><dd>{detail.contact || '未填写'}</dd>
-          <dt>来源</dt><dd>{detail.source === 'study' ? '题目纠错' : '意见反馈'} · {detail.sourceRoute}</dd>
+          <dt>来源</dt><dd>{sources[detail.source] ?? '意见反馈'} · {detail.sourceRoute}</dd>
           <dt>版本与设备</dt><dd>{detail.appDisplayVersion} · {detail.platform} · {[detail.osName, detail.osVersion].filter(Boolean).join(' ')}</dd>
           {detail.question && <><dt>关联题目</dt><dd>{detail.question.displayName && <>{detail.question.displayName}<br />
             <small>{detail.question.displayNameSource === 'submitted_release' ? '反馈时题目名称' : '按当前题库定位的名称'}</small><br /></>}
@@ -118,10 +120,11 @@ export function FeedbackPage() {
       </article>}
     </> : <>
       <h1>用户反馈</h1>
+      <label>反馈来源<select disabled={busy} value={sourceFilter} onChange={event => { setSourceFilter(event.target.value); setItems([]); setNextCursor(null); setLoaded(false); }}><option value="">全部来源</option>{Object.entries(sources).map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       <div className="feedback-filters">{[['','全部'],...Object.entries(statuses)].map(([value,label])=><button key={value} disabled={busy} aria-pressed={statusFilter===value} onClick={()=>{setStatusFilter(value ?? '');setItems([]);setNextCursor(null);setLoaded(false);}}>{label}</button>)}</div>
       {error && <p className="notice error" role="alert">{error} <button disabled={busy} onClick={() => void load(loaded ? nextCursor ?? undefined : undefined)}>重试</button></p>}
       <div className="result-list">{items.map((item) => <button className="result-card feedback-row" key={item.ticketNumber} onClick={() => setSelected(item.ticketNumber)}>
-        <span><strong>{categoryLabel[item.category] ?? item.category} · {item.source === 'study' ? '题目反馈' : '意见反馈'}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
+        <span><strong>{categoryLabel[item.category] ?? item.category} · {sources[item.source] ?? '意见反馈'}</strong><span>{item.summary}</span><small>{item.ticketNumber} · {date(item.createdAt)}</small></span><span>{statuses[item.status]??'待处理'} ›</span>
       </button>)}</div>
       {!busy && loaded && items.length === 0 && <p className="muted">暂无反馈。</p>}
       {busy && <p aria-live="polite">正在载入…</p>}

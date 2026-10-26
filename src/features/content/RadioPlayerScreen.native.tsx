@@ -179,7 +179,6 @@ export function RadioPlayerScreen() {
   return (
     <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
       <AppContentFrame style={styles.contentFrame}>
-      {radio.catalogLoading ? <AppText variant="caption">正在后台准备题目…</AppText> : null}
       {radio.catalogError ? <Pressable accessibilityRole="button" onPress={radio.retryCatalog}><AppText variant="caption" color={colors.primary}>目录更新失败，点击重试；当前音频仍可播放。</AppText></Pressable> : null}
       <QuestionBankSwitcherHeader
         guideId="radio-bank"

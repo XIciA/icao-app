@@ -1,3 +1,4 @@
+import { annotationBlockText } from '@/features/question-bank/annotations/text-block';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { studyDatasetIcons as bankIcons } from '@/features/profile/StudyBankIcon';
 import { useAppRouter as useRouter } from '@/components/navigation/useAppRouter';
@@ -201,7 +202,7 @@ function HighlightRow({ colorFilter, definitions, entry, onPress, resolution }: 
     return definition ? [[definition.id, definition] as const] : [];
   })).values());
   const reference = resolution?.location;
-  const sourceText = first.blockId === 'question' ? reference?.card?.audioText ?? '' : reference?.card?.referenceText ?? '';
+  const sourceText = annotationBlockText(reference?.card, first.blockId);
   const sentenceRange = sentenceWordRangeAt(sourceText, first.wordIndex);
   const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
   const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
