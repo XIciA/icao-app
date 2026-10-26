@@ -20,7 +20,9 @@ import { z } from 'zod';
 
 import { DatabaseService } from '../database/database.service';
 import { accounts, aiPointReservations, learningRecords, privacyActionReceipts, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
-import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
+import { mergeVocabularyDocuments, vocabularyDocumentSchema, vocabularyDocumentForPolicy } from './vocabulary-document';
+import { VocabularyLiveService, VOCABULARY_PUBLICATION_LOCK } from '../vocabulary/vocabulary-live.service';
+import type { VocabularyMigrationPolicy } from '@icao/contracts/vocabulary-live';
 
 import { emptyRetiredState, isRetiredCard, sanitizeRetiredAnnotations, sanitizeRetiredLearningRecord, sanitizeRetiredSyncPayload } from './retired-learning';
 
@@ -125,7 +127,7 @@ function entityKey(mutation: CardStateMutation) {
 
 @Injectable()
 export class SyncService {
-  constructor(private readonly database: DatabaseService) {}
+  constructor(private readonly database: DatabaseService, private readonly liveVocabulary: VocabularyLiveService) {}
 
   async push(userId: string, raw: SyncPushRequest): Promise<SyncPushResponse> {
     const parsed = pushSchema.safeParse(raw);
@@ -133,6 +135,9 @@ export class SyncService {
     if (parsed.data.ownerUserId && parsed.data.ownerUserId !== userId) throw new ConflictException('sync_user_mismatch');
 
     const response = await this.database.db.transaction(async (tx) => {
+      const hasVocabulary = parsed.data.mutations.some(mutation => mutation.kind === 'document' && mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY);
+      if (hasVocabulary) await tx.execute(sql`select pg_advisory_xact_lock(${VOCABULARY_PUBLICATION_LOCK})`);
+      const policy = hasVocabulary ? (await this.liveVocabulary.get(tx)).policy : undefined;
       await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`learning:${userId}`}, 0))`);
       const [account] = await tx.select({
         aiResultGeneration: accounts.aiResultGeneration,
@@ -169,7 +174,7 @@ export class SyncService {
         if (existingMutation) {
           if (existingMutation.payloadHash !== payloadHash) throw new ConflictException('mutation_id_reused');
           const previous = existingMutation.result as SyncPushResult | null;
-          output.push({ ...(previous ?? { mutationId: mutation.mutationId, status: 'duplicate' }), ...(previous?.authoritative ? { authoritative: sanitizeRetiredSyncPayload(mutation.kind, previous.authoritative as Record<string, unknown>) as SyncPushResult['authoritative'] } : {}), status: 'duplicate' });
+          output.push({ ...(previous ?? { mutationId: mutation.mutationId, status: 'duplicate' }), ...(previous?.authoritative ? { authoritative: sanitizeRetiredSyncPayload(mutation.kind, previous.authoritative as Record<string, unknown>, policy) as SyncPushResult['authoritative'] } : {}), status: 'duplicate' });
           continue;
         }
 
@@ -177,7 +182,7 @@ export class SyncService {
           ? await this.applyCardState(tx, userId, mutation)
           : mutation.kind === 'learning_record'
             ? await this.applyLearningRecord(tx, userId, mutation, account.aiResultGeneration)
-            : await this.applyDocument(tx, userId, mutation);
+            : await this.applyDocument(tx, userId, mutation, policy);
         await tx.insert(syncMutations).values({
           userId,
           mutationId: mutation.mutationId,
@@ -438,6 +443,7 @@ export class SyncService {
     tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
     userId: string,
     mutation: DocumentMutation,
+    policy?: VocabularyMigrationPolicy,
   ): Promise<SyncPushResult> {
     if (mutation.payload.documentKey === 'legal-consent') throw new BadRequestException('reserved_document_key');
     if (mutation.payload.documentKey === ACCOUNT_PROFILE_KEY) {
@@ -446,7 +452,7 @@ export class SyncService {
       mutation = { ...mutation, payload: { ...mutation.payload, document: profile.data } };
     }
     if (mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
-      return this.applyVocabularyDocument(tx, userId, mutation);
+      return this.applyVocabularyDocument(tx, userId, mutation, policy);
     }
     const target = and(
       eq(userDocuments.userId, userId),
@@ -514,6 +520,7 @@ export class SyncService {
     tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
     userId: string,
     mutation: DocumentMutation,
+    policy?: VocabularyMigrationPolicy,
   ): Promise<SyncPushResult> {
     const incoming = vocabularyDocumentSchema.safeParse(mutation.payload.document);
     if (!incoming.success) throw new BadRequestException('invalid_vocabulary_document');
@@ -523,8 +530,8 @@ export class SyncService {
     );
     const [current] = await tx.select().from(userDocuments).where(target).limit(1);
     const document = current
-      ? mergeVocabularyDocuments(current.payload, mutation.payload.document)
-      : incoming.data;
+      ? mergeVocabularyDocuments(current.payload, mutation.payload.document, policy)
+      : vocabularyDocumentForPolicy(mutation.payload.document, policy);
     const version = current ? Math.max(current.version + 1, mutation.payload.version) : mutation.payload.version;
     const updatedAt = new Date(document.updatedAt);
     const values = {
@@ -573,11 +580,13 @@ export class SyncService {
         .orderBy(asc(syncChanges.sequence))
         .limit(limit + 1);
       const page = rows.slice(0, limit);
+      const hasVocabulary = page.some(row => row.kind === 'document' && (row.payload as Record<string, unknown>).documentKey === VOCABULARY_DOCUMENT_KEY);
+      const policy = hasVocabulary ? (await this.liveVocabulary.get(tx)).policy : undefined;
       const changes: SyncChange[] = page.map((row) => ({
         cursor: row.sequence,
         kind: row.kind as SyncChange['kind'],
         entityKey: row.entityKey,
-        payload: sanitizeRetiredSyncPayload(row.kind, row.payload as Record<string, unknown>),
+        payload: sanitizeRetiredSyncPayload(row.kind, row.payload as Record<string, unknown>, policy),
         version: row.version,
         changedAt: row.createdAt.toISOString(),
       }));

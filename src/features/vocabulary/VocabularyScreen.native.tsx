@@ -1,4 +1,4 @@
-import { orderVocabularySession } from './study-order';
+import { prepareVocabularySession } from './study-session';
 import { useStudyOrder } from './use-study-order';
 import { useLocalBack } from '@/components/navigation/useLocalBack';
 import { useGuide, useGuideConfirmation, useGuideAvailability } from '@/features/usage-guide/GuideBindings';
@@ -67,17 +67,20 @@ export function VocabularyScreen() {
   useGuideAvailability('vocab', progress.error ? '学习进度读取失败，请重试读取。' : loadError ? '词汇资源暂时不可用，请重新加载。' : undefined);
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView, resumeWord?: string) => {
-    const ordered = orderVocabularySession(words, progress.state, order);
+    const prepared = prepareVocabularySession(words, progress.state, order, resumeWord);
+    const ordered = prepared.queue;
     if (!ordered.length) return;
-    setStudyWords(ordered);
-    setStudyIndex(Math.max(0, ordered.findIndex(word => word.id === resumeWord)));
-    setRevealed(false);
-    setSessionStatuses({});
-    setSessionSummary(emptySummary);
-    if (from !== 'sessionList') sessionOrigin.current = from;
-    setReturnView(from);
-    setView('study');
-  }, [progress.state, order]);
+    void save.run(() => progress.saveStudySession(prepared.session), () => {
+      setStudyWords(ordered);
+      setStudyIndex(prepared.index);
+      setRevealed(prepared.revealed || Boolean(guide?.current === 'vocab' && guide.step && ['vocab-meaning', 'vocab-favorite', 'vocab-next'].includes(guide.step)));
+      setSessionStatuses(prepared.statuses);
+      setSessionSummary(emptySummary);
+      if (from !== 'sessionList') sessionOrigin.current = from;
+      setReturnView(from);
+      setView('study');
+    });
+  }, [progress, save, order, guide]);
 
   const restoredGuide = useRef(false);
   useEffect(() => {
@@ -146,14 +149,16 @@ export function VocabularyScreen() {
     const next = () => {
       if (save.isPending() || save.failed || advancingIndex.current !== studyIndex) return;
       advancingIndex.current = studyIndex + 1;
-      if (studyIndex < studyWords.length - 1) {
-        setStudyIndex((value) => value + 1);
-        setRevealed(false);
-        return;
-      }
-      const summary = Object.values(sessionStatuses).reduce((result, status) => ({ ...result, [status]: result[status] + 1 }), { ...emptySummary });
-      setSessionSummary(summary);
-      setView('complete');
+      void save.run(() => progress.saveStudySession({wordIds:studyWords.map(word=>word.id),order,startedAt:progress.state.studySession?.startedAt ?? new Date().toISOString(),updatedAt:new Date().toISOString(),nextWordId:studyWords[studyIndex+1]?.id ?? null}), () => {
+        if (studyIndex < studyWords.length - 1) {
+          setStudyIndex((value) => value + 1);
+          setRevealed(false);
+          return;
+        }
+        const summary = Object.values(sessionStatuses).reduce((result, status) => ({ ...result, [status]: result[status] + 1 }), { ...emptySummary });
+        setSessionSummary(summary);
+        setView('complete');
+      });
     };
     return <VocabularyStudyView savedStatus={sessionStatuses[currentWord.id]} busy={save.saving || save.failed} index={studyIndex} onChoose={recordStatus} onExit={back} onNext={next} onToggleFavorite={() => save.run(() => progress.toggleFavorite(currentWord), () => guide?.event('vocab-favorite'))} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }

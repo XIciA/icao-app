@@ -393,6 +393,13 @@
       "when": 1793020000000,
       "tag": "0055_feedback_submission_sources",
       "breakpoints": true
+    },
+    {
+      "idx": 56,
+      "version": "7",
+      "when": 1793033035448,
+      "tag": "0056_vocabulary_live_releases",
+      "breakpoints": true
     }
   ]
 }

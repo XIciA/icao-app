@@ -67,6 +67,7 @@ export const PUBLIC_TABLE_ACCESS_CLASSIFICATION = Object.freeze({
   sync_mutations: 'server_only',
   user_card_states: 'server_only',
   user_documents: 'server_only',
+  vocabulary_releases: 'server_only',
   wechat_auth_challenges: 'server_only',
   wechat_auth_principals: 'server_only',
   wechat_payment_attempts: 'server_only',

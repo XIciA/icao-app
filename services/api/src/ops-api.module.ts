@@ -1,3 +1,7 @@
+import { VocabularyAdminController } from './admin/vocabulary-admin.controller';
+import { VocabularyAdminService } from './admin/vocabulary-admin.service';
+import { VocabularyAudioService } from './admin/vocabulary-audio.service';
+import { VocabularyLiveService } from './vocabulary/vocabulary-live.service';
 import { ContentPreviewStorageService } from './admin/content-preview-storage.service';
 import { ContentWorkflowController } from './admin/content-workflow.controller';
 import { ContentWorkflowService } from './admin/content-workflow.service';
@@ -39,8 +43,8 @@ export class OpsApiModule {
   static forRoot(config: OpsApiConfig = loadOpsConfig()): DynamicModule {
     return {
       module: OpsApiModule,
-      controllers: [ContentWorkflowController, AdminUsersController, AdminReportsController, AdminStabilityController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
-      providers: [ContentWorkflowService, ContentPreviewStorageService,
+      controllers: [VocabularyAdminController, ContentWorkflowController, AdminUsersController, AdminReportsController, AdminStabilityController, AdminAiRulesController, OpsHealthController, AdminAuthController, AdminController],
+      providers: [VocabularyAdminService, VocabularyAudioService, VocabularyLiveService, ContentWorkflowService, ContentPreviewStorageService,
         { provide: OPS_API_CONFIG, useValue: config },
         {
           provide: DatabaseService,

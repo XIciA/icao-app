@@ -1,5 +1,7 @@
-import vocabularyDataset from '../../../../content/vocabulary/three-books/dataset.json';
+import { releaseFixture } from '@/features/vocabulary/test-support/live-fixture';
 import { apiFetch } from '@/platform/api-client';
+jest.mock('expo-crypto',()=>({CryptoDigestAlgorithm:{SHA256:'sha256'},digestStringAsync:async(_type:string,text:string)=>jest.requireActual('node:crypto').createHash('sha256').update(text).digest('hex')}));
+const vocabularyRelease=releaseFixture(),vocabularyDataset=vocabularyRelease.dataset;
 
 jest.mock('@/platform/api-client', () => ({ getApiBaseUrl: () => 'https://test.invalid', apiFetch: jest.fn() }));
 
@@ -84,10 +86,10 @@ describe('current API vocabulary and historical editorial Web caches', () => {
 
   it('loads the current Web vocabulary catalog and retains it when its API is unavailable', async () => {
     jest.mocked(apiFetch).mockResolvedValueOnce(new Response(JSON.stringify({
-      data: { version: 3, checksum: 'c'.repeat(64), dataset: vocabularyDataset },
+      data: vocabularyRelease,
     }), { status: 200 }));
     await expect(loadVocabulary()).resolves.toMatchObject({ source: 'remote', dataset: vocabularyDataset });
-    expect(apiFetch).toHaveBeenCalledWith('/v1/vocabulary?catalog=three-books-v3', expect.anything());
+    expect(apiFetch).toHaveBeenCalledWith('/v1/vocabulary?catalog=vocabulary-live-v1', expect.anything());
 
     jest.mocked(apiFetch).mockRejectedValueOnce(new Error('offline'));
     await expect(loadVocabulary()).resolves.toMatchObject({

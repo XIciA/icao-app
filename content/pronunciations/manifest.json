@@ -3555,6 +3555,25 @@
       }
     },
     {
+      "text": "The controller advised the pilot, \"Radar service terminated.\".",
+      "objectKey": "pronunciations/bfda5800a15e5a1f8df2a08573c9dcdef763f95795aa8eded87b0cd270960166.mp3",
+      "publicPath": "/pronunciation-assets/040477d29690b09ae0f3d5e3bebcbe17556699a844853cd61346bf4b30e11fe8.mp3",
+      "bankId": "vocabulary",
+      "checksum": "6b355153f6ed6eb4dfc8dd65e3f80cf81374c533a5c638d5f31d4642b5f3d851",
+      "sizeBytes": 28844,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.576,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "intelligent",
       "objectKey": "pronunciations/d60ef068aa0737a8a3e2be14df90133b2d012390399d537f396a1961ea2633a5.mp3",
       "publicPath": "/pronunciation-assets/040eb379271f55d0ddbc0abca1ab71b5307b7bd898592b4be8b3e60dc6d844e2.mp3",
@@ -3963,6 +3982,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.816,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "seatbelt. seat belt",
+      "objectKey": "pronunciations/53f9b75905bf3eec8f6f650620c9bc09dfa1db8e3e85bda482377f69fe279967.mp3",
+      "publicPath": "/pronunciation-assets/04a4d6aee24761d994e8abb0ce49becde924ce820c15ce52233ffeeee72c9a05.mp3",
+      "bankId": "vocabulary",
+      "checksum": "31297d6fcd647a2cb2d4b1bdf17930a246a907507afed4e2b9094ca397d81823",
+      "sizeBytes": 10220,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.248,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -6709,6 +6747,25 @@
       }
     },
     {
+      "text": "cockpit. pilot's cabin",
+      "objectKey": "pronunciations/1b483b086c39835c16ce933e7777c289665849caca2641cfa4ee1a0dfb4f531d.mp3",
+      "publicPath": "/pronunciation-assets/07de17042a3ded019c27c66dd2c9b0c39a3e433ef091c7a341887b4914ad7320.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7d82622dbe0fb4b19114658c0c572f0f4b4b0a7fa07337da86bd9bbe2d7f2e79",
+      "sizeBytes": 11948,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.464,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "jiutian",
       "objectKey": "pronunciations/c69d4761ed888c0849ce236cacd6aab73d663948c00b1b7171a506cafdaa7006.mp3",
       "publicPath": "/pronunciation-assets/07f1e37417cacfcb1c6d90894dfe33af17906c162b622ba356fdcb700afad544.mp3",
@@ -7535,6 +7592,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.856,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The runway is no longer closed.",
+      "objectKey": "pronunciations/d4f35fbd258085d58ee412df5288c51d5e36e8d66c29ff66bf5c92d3bceb0a2a.mp3",
+      "publicPath": "/pronunciation-assets/08f12a3c7ad787adda511bc72d3c88bc6b1765634281475b4091adaeb91e59d3.mp3",
+      "bankId": "vocabulary",
+      "checksum": "0ab8d0435ec46aa83cab2a877cebbe073a185aed6d99e961966d64193a5021a6",
+      "sizeBytes": 15020,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.848,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -9730,6 +9806,25 @@
       }
     },
     {
+      "text": "airport shuttle bus. airport passenger bus. ferry bus",
+      "objectKey": "pronunciations/b9fd773bdf7ebbd0fc44802464206c16d4afc3c080651ece50e8bdb2af740373.mp3",
+      "publicPath": "/pronunciation-assets/0bdbf5440fa19fd7161857f74dc414525aa9a719e5ec4fe02ab034af36ccd8e1.mp3",
+      "bankId": "vocabulary",
+      "checksum": "5d7495b7299e92badffa813c6717820710e01bb9787a8a7e201f4f580ba8e197",
+      "sizeBytes": 26156,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.24,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The NOTAM says this part of the taxiway is closed during this period, please verify.",
       "objectKey": "pronunciations/e6ca2916af3d1ad9e15cb57577e7ae9d180349e3417a5e4a860f2ab846a20e27.mp3",
       "publicPath": "/pronunciation-assets/0be5f604c6cd1dfd2e747d6b4c0696d4f77fc675dc3ce9faef0460d0e6c0f3b2.mp3",
@@ -10400,6 +10495,25 @@
       "publicPath": "/pronunciation-assets/0c9fbbfe0546f48aae6012cc35e3dae7caf5e8faf691ab5a08ddf14276cc1ccc.mp3",
       "bankId": "vocabulary",
       "checksum": "b66293a09f50c9abe80bb5ef70317589bd884ae39d54a71b60448105351d181a",
+      "sizeBytes": 9068,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.104,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "microphone. mic",
+      "objectKey": "pronunciations/a5e2c8471f315f4f7976a0b19b7352be06d48c14905f3a7afe0feff74c0a4b2d.mp3",
+      "publicPath": "/pronunciation-assets/0caad5151d547e0d5f594ab9b8703cf7b3dcc6adc691d818802e52d3c44beced.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c091362e89be8716281c6eede4b23d86ddef13853abf7dfaa820aece22f2c182",
       "sizeBytes": 9068,
       "mimeType": "audio/mpeg",
       "status": "ready",
@@ -11098,6 +11212,25 @@
       }
     },
     {
+      "text": "The controller reported, \"Identification lost.\".",
+      "objectKey": "pronunciations/2f93be417ef5591cb6386632eb6945c5140aa7c1c059f9847f657ed7251dd2f6.mp3",
+      "publicPath": "/pronunciation-assets/0dcef115d106687547040be110e0e2e9f1c4b6eca319dde7237e82150efe0461.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c5482e4aff3df037e57d72f673cce9b111a023ec0db63b78303bbd6d5e99ea04",
+      "sizeBytes": 28652,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.552,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "permanent",
       "objectKey": "pronunciations/e013daec7622d116974713aa8daa7c6d9b42a5d2578b3d57a5449151492341ea.mp3",
       "publicPath": "/pronunciation-assets/0dd1b6d5c52eec73e28b235214478c1da599a278f8d7a3216b3ce36db39f29d4.mp3",
@@ -11297,6 +11430,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.408,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "PANPAN PANPAN PANPAN, Beijing Control, CES2503, request priority landing on your field, the battery is down, endurance 0030.",
+      "objectKey": "pronunciations/30042381cc3f073327f4a3eeec3e7ca44ae434479269b1e2fb8b42121c3a28ba.mp3",
+      "publicPath": "/pronunciation-assets/0e0bd703a39fae6ffb2685a2befa5aebda8ec9e0b000a841138523247ada8d4c.mp3",
+      "bankId": "vocabulary",
+      "checksum": "87415b4f26b325b2cb84af0fc175477bc76e0063f0e5111150725caa870263d7",
+      "sizeBytes": 86252,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 10.752,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -13140,6 +13292,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.672,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The fog began to clear up after sunrise.",
+      "objectKey": "pronunciations/881934fc13cc3329de81d7d531d35873bf1879d72a5aeaec6d695411fa199a1b.mp3",
+      "publicPath": "/pronunciation-assets/106896f931824875dea094986f7bc8767373c6c81f2c9026103d52852fdc3157.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e7a397786571b3b6b8ef1c9e5c8714b909475b1941f8d316bd922354177b5329",
+      "sizeBytes": 20588,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.544,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -15392,6 +15563,25 @@
       }
     },
     {
+      "text": "disembark or deplane",
+      "objectKey": "pronunciations/7301da505db9a3ba1366902a5aef6d7724c7b624ae524e9e98c911b20198a124.mp3",
+      "publicPath": "/pronunciation-assets/12e5ada8adebc9a4fe7be6f44b847a8d0ed93151d46cdbfcbc6d14922c9b910d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "593398c8967de575ca0a71039f49f9ca3dbf243c68feee9bfc26ab13d5e73fb2",
+      "sizeBytes": 11372,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.392,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "lives",
       "objectKey": "pronunciations/c3ba6585663721abb2188494d154f3f2676b178cbb9fbdc3952ecfa0df3e26cd.mp3",
       "publicPath": "/pronunciation-assets/12e5cd979ea8c28245158c34a97b04acba64ac008e780742b507420464a1b966.mp3",
@@ -16057,6 +16247,25 @@
       }
     },
     {
+      "text": "flight attendant or steward or stewardess",
+      "objectKey": "pronunciations/a6eab4c29db2315af27cc650936312392e99a04c1cf56ab250e0bf7f00b73f6d.mp3",
+      "publicPath": "/pronunciation-assets/1390447cf03d7e347181a4027d75a9521acdfcf057eda4651fc3f2a1751cf93e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "1fde092d1d94b2655f8bdf93fb27bf7681e12ce88049b80603eafd1e20e67599",
+      "sizeBytes": 18476,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.28,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "weather-related",
       "objectKey": "pronunciations/b6e8f92c58b0794c835090b1126475bf81b4fd2d01dcca2c6ab9f62f54cbc9b7.mp3",
       "publicPath": "/pronunciation-assets/1391f2daa1a10f4bf3eb5656561a9b93b10e0fea0d75978ff13541913b91d7f4.mp3",
@@ -16161,6 +16370,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.984,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The crew checked the survival kit before the flight.",
+      "objectKey": "pronunciations/c69ded6268fe5d9f89c77196a1e3c0b7aa4c0e358d0dd917e313ca2bc2bb1f4e.mp3",
+      "publicPath": "/pronunciation-assets/13af86e2c901d1c354ff5c17605d3b85f11e3f6ccb1442d9f3158a53ad370af3.mp3",
+      "bankId": "vocabulary",
+      "checksum": "cbeb1c5db836fe5ab982a2e0833c27cf994e3562b8d0cf09c235fee9f45f9d47",
+      "sizeBytes": 21164,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.616,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -17244,6 +17472,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.832,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "passenger boarding bridge. air bridge. airbridge. jetway. loading bridge",
+      "objectKey": "pronunciations/cd0a6d144e66de3f86844bf63ecf17590d130f2ef9a347c11e4ffa85874ed0b1.mp3",
+      "publicPath": "/pronunciation-assets/1506980714e7998876ab41c09757996cabd73746edb51da0e97783f4ab30f4da.mp3",
+      "bankId": "vocabulary",
+      "checksum": "00b77034d97b0c4d169c64e07b1ac2b4a03b25dc2dafc4fa8fc3c6b8f5ec0a0b",
+      "sizeBytes": 27884,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.456,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -19629,6 +19876,25 @@
       }
     },
     {
+      "text": "The crew checked the available navigation aids.",
+      "objectKey": "pronunciations/1f8c4d1aeca8ed2c71ba90fa65f537584fbf3242a1e5f3f07c2eef77cc908ef3.mp3",
+      "publicPath": "/pronunciation-assets/17ba7ba5dc8cecd2d418d814da500d0bbb2d8375b50a7fefd952d07c562f23b3.mp3",
+      "bankId": "vocabulary",
+      "checksum": "97ebb3808e9b2d0dae07ffbdb775671ec2777135323e9581f23f6d8d7f0f988c",
+      "sizeBytes": 20780,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.568,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The aircraft made a belly landing after the gear failed to extend.",
       "objectKey": "pronunciations/d02d5e068641547751e969166f4b3a1f761f607e8b9de6a00fc99563449313c5.mp3",
       "publicPath": "/pronunciation-assets/17bc89f2716d464f87410ec28401ad2a3bcbd6317f85d5bcd24590b3cb9066e9.mp3",
@@ -21139,6 +21405,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.552,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "Beijing Control, CSN3627, apologies for the radio unserviceability.",
+      "objectKey": "pronunciations/c1a7d212e1f6e54a752c803a3a685beb208858e95c274b10b2b46f618d5479f9.mp3",
+      "publicPath": "/pronunciation-assets/19b8ee29e8880538fe2276784c1425b463fe14e63996bebef087238c519ea9d0.mp3",
+      "bankId": "vocabulary",
+      "checksum": "3d1258b5abd17f83c7849da74b0f7e053f661ab1c736f847bcf3157a9f6197bf",
+      "sizeBytes": 53804,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 6.696,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -22802,6 +23087,44 @@
       }
     },
     {
+      "text": "polar survival kit",
+      "objectKey": "pronunciations/f12203c02e1e649a0ebe0db107824ff82aaff1f7dbbfcdd16ba93e140c77423a.mp3",
+      "publicPath": "/pronunciation-assets/1bc0f4e2db79ea33473f7c44c234413c0f1485694be70a989ab35a5df8649461.mp3",
+      "bankId": "vocabulary",
+      "checksum": "6f8e49f2014ccc41a0658c95f86dabbe5b896abde5b72c257c163591021b9673",
+      "sizeBytes": 10796,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.32,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "Strong winds continued to blow across the airfield.",
+      "objectKey": "pronunciations/87f734c6e1f8ec41bf2ea9b5ecef58f4a8fd442611c4482e82ac2f1a1a544d74.mp3",
+      "publicPath": "/pronunciation-assets/1bc3cc7a38e1168a131d2255c2bca39876c08cbadf9dea001352d69d6c148c42.mp3",
+      "bankId": "vocabulary",
+      "checksum": "705d220365d2a875daabf17b9febfb321915d0ba6d404189d7b71742c023ce29",
+      "sizeBytes": 23660,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.928,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "Runway illumination was reduced during the power failure.",
       "objectKey": "pronunciations/dcba734c1f8253dad4586a8e3b153c3341e0fda24fa822158b97c8d391026cf7.mp3",
       "publicPath": "/pronunciation-assets/1bc3e7ae395ddda1d5b84eddc6eae7fa4e468e9cb4f60bbba71ebdd9f84d935b.mp3",
@@ -23286,6 +23609,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.576,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The aircraft was stuck in mud near the taxiway.",
+      "objectKey": "pronunciations/57e191b612cdbfce2ced8151e043d6d67878d6ecfaec79f5d1f2c8af575d092d.mp3",
+      "publicPath": "/pronunciation-assets/1c579abb991e2a1b29a7c66d5ddfb0f4d7e31fd5720cbaac7acacc0f4ecbe904.mp3",
+      "bankId": "vocabulary",
+      "checksum": "2d7474c2eac9541358bce206dfaf0d7a9f9c7989308bd668dfd37824c5046c0a",
+      "sizeBytes": 21548,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.664,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -24018,6 +24360,25 @@
       }
     },
     {
+      "text": "glide path. glidepath",
+      "objectKey": "pronunciations/3349455827979bd2bd41555e0026d7b7295040775a090e01d26df0f404d71d81.mp3",
+      "publicPath": "/pronunciation-assets/1d340a75f74d303c10708c79c142929c764abbd57bc67b0e325c665ef5921353.mp3",
+      "bankId": "vocabulary",
+      "checksum": "b4235d5d4797850a29d870557ef489ddb92aa41d55cd30a40906cb144edd1dd2",
+      "sizeBytes": 11756,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.44,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "various",
       "objectKey": "pronunciations/2e4ff2bdcfef0726a0738658b22bace0394eab0c9e7b900d6c88469afcd3a036.mp3",
       "publicPath": "/pronunciation-assets/1d35a94841cbfca1795472e9050f2270c882844226ae842f267e2edc7a114899.mp3",
@@ -24464,6 +24825,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.84,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "Roger, request to alter the route because we have some problem with the yaw damper.",
+      "objectKey": "pronunciations/840ae678bef3d13c1c49f3d415d704312c651dc65cb38933a6f548bde4e7b7ec.mp3",
+      "publicPath": "/pronunciation-assets/1de824dd119ca3e7b6f3b2da38b9e4adb85a0296834ca50d3ebb469c40c9e055.mp3",
+      "bankId": "vocabulary",
+      "checksum": "274d8644059f9b8260d3b474338c0b2eeddfd05e7cd0656555751c0117c80438",
+      "sizeBytes": 36140,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 4.488,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -27077,6 +27457,25 @@
       }
     },
     {
+      "text": "The mechanic replaced a loose bolt.",
+      "objectKey": "pronunciations/9f0361b41a8049a3cd524bf505c4bcc165f00693cf3512b8530ddba153417535.mp3",
+      "publicPath": "/pronunciation-assets/21025b04062adf008ee6ed0f283f22e9fd8c494ca0e643d857b0965a8a4ad150.mp3",
+      "bankId": "vocabulary",
+      "checksum": "8848926b03b572357c6486ee1c6c657b823d74cd1ea32b3786a96f9efee69f0c",
+      "sizeBytes": 15980,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.968,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "bureau",
       "objectKey": "pronunciations/c59e62debe9f1efc75133432ba8169904bfcc053488e68626c100548d1b1f05c.mp3",
       "publicPath": "/pronunciation-assets/210760fba8185013b53530a17160a0cb03788b5c9e1c1426154eae50b6b562b4.mp3",
@@ -29471,6 +29870,25 @@
       }
     },
     {
+      "text": "first-aid kit",
+      "objectKey": "pronunciations/a726fea8a3684b24a8d4e514cee449e77265a980d04bb5d8d66d45f0829a63f7.mp3",
+      "publicPath": "/pronunciation-assets/24110ca712ae3433ab4da123ed663d2ad527772be232c2742033dc74a4676719.mp3",
+      "bankId": "vocabulary",
+      "checksum": "ec8f3d920414fbfef72445e661c79832afcbfc4ff6923392e47549dccd40b7f3",
+      "sizeBytes": 7532,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.912,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "sigmet",
       "objectKey": "pronunciations/3044b8bac26534ea995d82ee47a72ec4063c3d651da00e0d41b1a8c655e2e9a2.mp3",
       "publicPath": "/pronunciation-assets/2414a2eb9221fa5ec8cfd3dad3c3b42f5dcb21632083abd82fe9d85f3ec8a5e5.mp3",
@@ -31238,6 +31656,25 @@
       }
     },
     {
+      "text": "pneumatic or air-driven",
+      "objectKey": "pronunciations/6ccf19753186150baac411d6dcb965b200406883068cc5ca9f7d0b3716262a5c.mp3",
+      "publicPath": "/pronunciation-assets/2638da3ff313a662fc30d71099445a436e0d9b2bcd597b525218ba82bbfeec24.mp3",
+      "bankId": "vocabulary",
+      "checksum": "dc4ddc416bae68dbf9e3b1dfeccf49a057af700b03a7992c5730207d1f4716fc",
+      "sizeBytes": 10988,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.344,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "device",
       "objectKey": "pronunciations/df460d40343ec3e5b9c62397c4bb450acfadbbfb7e8fdb00182705978d73df22.mp3",
       "publicPath": "/pronunciation-assets/263a4dbe41488fb87214b0032339dbb9f0c8da14c16dfcf13084bf3c2552eca5.mp3",
@@ -31646,6 +32083,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.432,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The passenger had a bruise on his arm.",
+      "objectKey": "pronunciations/1fe733917fcc5d6a985abe3203b918abec1d42262fd4087129e6f64a868ee03a.mp3",
+      "publicPath": "/pronunciation-assets/26b17473219713617f007ecfe079ae8ca547cd26647ca44727aaa5ba0bac45b5.mp3",
+      "bankId": "vocabulary",
+      "checksum": "3ee84050863a2383f35c3b11c82f91c7cfe8408a2237d5d484c560e39d4399b5",
+      "sizeBytes": 16748,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.064,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -32188,6 +32644,25 @@
       }
     },
     {
+      "text": "The controller advised, \"Traffic no longer a factor.\".",
+      "objectKey": "pronunciations/a04c374cddbe429833858ef150090a2d4eb931acb2e78a2c8abab4192da13fa9.mp3",
+      "publicPath": "/pronunciation-assets/27376be7f9636454a749fb389200eeffc75e1295eaf73986ff2b0964f0cd490a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "de74085afad18372c09b0940eb1cca44e1d7afbdac0d0e924a9a0636cde05f3b",
+      "sizeBytes": 32108,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.984,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "mishear",
       "objectKey": "pronunciations/13db8cef2da27a0a1d475ab2ffdb533fb794c896db0c794f08be8de468a9745b.mp3",
       "publicPath": "/pronunciation-assets/273ec5dfeac4293c6c7ee864aab7d74331e72610be771a0cad3d3f392122c555.mp3",
@@ -32634,6 +33109,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 10.584,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "pool",
+      "objectKey": "pronunciations/783fa2962a223cfbd04378f28547f40969e0529e6a3156f53b60b7efedcbacb1.mp3",
+      "publicPath": "/pronunciation-assets/27cac5503836765cd10751d27ab4a6e17d7a80d4c948430a5a81513973f9b51e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "4cff5f0c823a121ba9643fc0c15d1fa56a2c5f6bb22fcf46b6c7ee0e7726c3fd",
+      "sizeBytes": 3692,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.432,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -33746,6 +34240,25 @@
       }
     },
     {
+      "text": "The pilot said, \"Say again your last instruction.\".",
+      "objectKey": "pronunciations/b98796b8c57b6e3638cd0d3be530eef6518b2bf36491a8476f59ca6eda146dd9.mp3",
+      "publicPath": "/pronunciation-assets/291499eda21af321724fb8103a622d5cec3682ab2f823b850886d82a6a25f8de.mp3",
+      "bankId": "vocabulary",
+      "checksum": "12464a9924c40852f54a20fb0febeb22e31162c4d35935d0399bb69f60fe1944",
+      "sizeBytes": 28076,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.48,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "consolidate",
       "objectKey": "pronunciations/fb75825f0ca4947b3b090635deacebeff2670e0ea86682250715bde3f3990f1d.mp3",
       "publicPath": "/pronunciation-assets/291cf1ed742e8a354179069c9f31bff1d23de7bfe328d86cbc4f81a2c8d067e8.mp3",
@@ -34696,6 +35209,25 @@
       }
     },
     {
+      "text": "turbulent or bumpy",
+      "objectKey": "pronunciations/9202dea16eee47ae7eabdd1c1bbddb983cbef140c0bdcd05f506051d07ba448b.mp3",
+      "publicPath": "/pronunciation-assets/2a61595ff2d761ab7d350316398559bf2ee300f1a655b3c9dc85ce8546de8025.mp3",
+      "bankId": "vocabulary",
+      "checksum": "cb3d2e92923370fc14909ebb87ce1c6c4de0e3ba035085c88ebc0df45ae99c5f",
+      "sizeBytes": 10412,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.272,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "converging",
       "objectKey": "pronunciations/8895478a57e8b39c53924d5297f90c2b256aca564d3e21808109055bdfb15ff5.mp3",
       "publicPath": "/pronunciation-assets/2a6f5821d96de561385dbd71c11ee2694b2e9a225ecd998b93bf1084d8fa573e.mp3",
@@ -35361,6 +35893,25 @@
       }
     },
     {
+      "text": "The pilot replied, \"Affirm, we have the traffic in sight.\".",
+      "objectKey": "pronunciations/7858471af98c9d597f453920db74b3a689b40a4e5da931dac087151df3f5495a.mp3",
+      "publicPath": "/pronunciation-assets/2b33b1fd9cd66bf0c48016f44e458afe3e87cb0b22e75aaa9e496f163ea9f403.mp3",
+      "bankId": "vocabulary",
+      "checksum": "bc7b4255cd75c7b1c4c2f755c2af77cb754abe122ea78a144815baf5c961e5a1",
+      "sizeBytes": 33452,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 4.152,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "improve",
       "objectKey": "pronunciations/626f0024823b9dc18321c59ccc5cb66654a24f986339abb2c531557c9c22b62e.mp3",
       "publicPath": "/pronunciation-assets/2b35ed6944dd2e8f7462b14096e8969711280dffe1457a680c885a95127e426c.mp3",
@@ -35541,6 +36092,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.48,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "in progress",
+      "objectKey": "pronunciations/f0cf93a6a4ade934765956fcf83959e8c977be4933237f078055acc994633489.mp3",
+      "publicPath": "/pronunciation-assets/2b6b853c9e59dbf44fdd9dd5919557d3ca4bf448807949acaea7697e6cd1d92d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "6324bf5edc43d2d973272cb3813e24e4724f64a088c2352ba98696f6dfeb90af",
+      "sizeBytes": 7724,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.936,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -36491,6 +37061,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.864,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "breaking up. cut in and out",
+      "objectKey": "pronunciations/7246c4bbf9f1731e023a72909f59d118f890a963c638e9d4ca7c790d074cb1fe.mp3",
+      "publicPath": "/pronunciation-assets/2c5d5d748f42adc5ff4646af782fe65b4c9ec143903b071ed68dd9fae5bd7519.mp3",
+      "bankId": "vocabulary",
+      "checksum": "32f3d532c0bc0add44e33127596573159a746c2faba4d12e108e71418d686cf0",
+      "sizeBytes": 11564,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.416,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -39332,6 +39921,25 @@
       }
     },
     {
+      "text": "buildup. build-up",
+      "objectKey": "pronunciations/dfcfaf57d12c0227095f1605b30aca6723f93f795efe3c0e349d88590aa53e68.mp3",
+      "publicPath": "/pronunciation-assets/2f95723c8f886bc624c5f1d14dd0763a94681e6f7160b9c263f457884b200a53.mp3",
+      "bankId": "vocabulary",
+      "checksum": "3d6e82409b7b58adc8b500b1bbae6f2fea7e8f93b5bf1b4e6f9a37a63d014620",
+      "sizeBytes": 7916,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.96,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The tire pressure indication showed low pressure on the left main gear.",
       "objectKey": "pronunciations/e4001737956767c3b679669cb753ad29eead163aeec33516baeb5236f0ba1537.mp3",
       "publicPath": "/pronunciation-assets/2f95dc3e8543c3342597eae6433a4fd3c8ba179c84a522806a4d4727c5135f0f.mp3",
@@ -41241,6 +41849,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.864,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "windshield or windscreen",
+      "objectKey": "pronunciations/b862c3ccd61b211975adf442eae0594b2c52893d7bed77e1483a15f7f4b4eeb3.mp3",
+      "publicPath": "/pronunciation-assets/31b9895019ef83ffaf6d35a54b35ade48853e0e356dae9438b2e11cd7a50a0b9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "42711374e7331d86aabf49b3d1e349ec5745062b0f1e3903f3b97b255d53e4c6",
+      "sizeBytes": 12332,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.512,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -45317,6 +45944,25 @@
       }
     },
     {
+      "text": "air inlet or air intake",
+      "objectKey": "pronunciations/f693e6dbbafb8c87cd7737814c40d598d32fca8c539d9c7600dcaea973ba4601.mp3",
+      "publicPath": "/pronunciation-assets/35f4a044f2c59eddf235844cba4136470ed352df4e16e96322fa763b7a0784dd.mp3",
+      "bankId": "vocabulary",
+      "checksum": "6252bd4562224a01e59787d37e7b9ea873c8c50423a056f46c88b464231272cf",
+      "sizeBytes": 11948,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.464,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "flaps-up",
       "objectKey": "pronunciations/ba4a014ea503175ba81d1d30963d2ab1159fe3c03fb22e8a97f8b6ffdccbb76a.mp3",
       "publicPath": "/pronunciation-assets/35f4a67cbf2eccd6d9dff62209ed0e24dbe9209da5321659769b9c1865517026.mp3",
@@ -47445,6 +48091,25 @@
       }
     },
     {
+      "text": "airport shuttle bus or airport passenger bus or ferry bus",
+      "objectKey": "pronunciations/5ab1b57a04566fabd5e896866f7ebbe3ad28407bb3ffa9a1bbd71f47412e0a9d.mp3",
+      "publicPath": "/pronunciation-assets/38ce78ba7178c4f5d4ad006711e4ffd70646f342951f89808e9d73f7eb054f7d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "51ab280c0b937e5701c0e7652f9b142d1daea34cec24a3cc1c5310ff487e0f41",
+      "sizeBytes": 28268,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.504,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "An inspection car checked the runway after the bird strike.",
       "objectKey": "pronunciations/46ff409ea6534562ba7aef19021d0417c20e9f5ccc88f6e388bb42c314bdce8f.mp3",
       "publicPath": "/pronunciation-assets/38d144955adbdf32af54f9dd222728d8fac873dc9ed47b8ae3323258e5268c03.mp3",
@@ -47739,6 +48404,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.784,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The pilot began the distress call with \"Mayday.\".",
+      "objectKey": "pronunciations/a84a6db8af6e52a50e0d1fba3913b0292f3e7d9fefaea255c3763a74dd3d8a6f.mp3",
+      "publicPath": "/pronunciation-assets/39363b526d0062e5d2dfee4ec31a06623c009da6d296e1f5786b00dd3ff76ca1.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f564fd69ed8f33531d382e20f7623f2a75bb6fa2e5e36fad3d18452bc0cd72fa",
+      "sizeBytes": 20012,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.472,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -48138,6 +48822,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.696,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The landing was smooth.",
+      "objectKey": "pronunciations/75d83dac4015fa4a78b7ec6c6cd1a6f3888756129ab331441ee6b3d4535855c9.mp3",
+      "publicPath": "/pronunciation-assets/39cec56306bff271bfcb01cba595e741b516a781962969b17247a8db8c4de7e7.mp3",
+      "bankId": "vocabulary",
+      "checksum": "91d66c4ccbc94c800a464fd171c6b4ac70d5d030305499d16e61ffe08916337f",
+      "sizeBytes": 9452,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.152,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -48917,6 +49620,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.792,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The DME indicated a distance of twenty nautical miles.",
+      "objectKey": "pronunciations/cbf6156fc561323833c42bfe099817f15fc7e79c607b0af16bf490e5fed0d17d.mp3",
+      "publicPath": "/pronunciation-assets/3a757c37c9ffa23ab161bffcec6548541d105b968a3b969e708a49e729f3dabd.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e572847877536a257535f44ca7a31baf83aa5cb45ebb00ac5f507e2fec6e7b76",
+      "sizeBytes": 26156,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.24,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -51444,6 +52166,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 4.224,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "downdraft. downdraught",
+      "objectKey": "pronunciations/27431b1768928b3a6079bcf0f615875b952c174c1f3dfac7fec6f1b96ac31be1.mp3",
+      "publicPath": "/pronunciation-assets/3dfd65799ff5509ba4795d30629e18e54163231eb42e51cd8a4da5844a7c394a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "4a3866146b3697e1f47b669b5c76875d3a6719262a24a5467d94ec13029b4741",
+      "sizeBytes": 9836,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.2,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -54988,6 +55729,25 @@
       }
     },
     {
+      "text": "clear up",
+      "objectKey": "pronunciations/8c9b686befd5401344e06e31d6215d778a204d148372964ea5d3b5f86891466b.mp3",
+      "publicPath": "/pronunciation-assets/41a54d177c4e14edf507b5f42e8ded9acd8fede53ee0fba7fd6fafaa993a6f68.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7433f63937ea2c7d24e15effa41e4d4f98aac981084c126599d91cdbd76cadd0",
+      "sizeBytes": 5036,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.6,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "complain",
       "objectKey": "pronunciations/f4996ba51117a0ca76856302df7a0a3c8947fa6e8dc2ec2f8357c41dd2526fc7.mp3",
       "publicPath": "/pronunciation-assets/41aa311d555b8ad087f89bb0ae60088e661f361ac88f093d819d235683f80d50.mp3",
@@ -57059,6 +57819,25 @@
       }
     },
     {
+      "text": "This material is electrically conductive.",
+      "objectKey": "pronunciations/79b55c2a8bf70f8e171b744e154547bf27a0e8f6413558f40a14c2b29e624566.mp3",
+      "publicPath": "/pronunciation-assets/44439674a9e7f954d753227d84b3f1f380e816eac5014a1a5828a67ab3dac55c.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e2cd7db6f86efcd18af1958a2a7fd05b23d619f9e57e37f5223fca92ccc9888b",
+      "sizeBytes": 18860,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.328,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "suggests",
       "objectKey": "pronunciations/94e20b2efb4945587e5dad08a6a1e7a48e47efc3f83348bf808c4e504a056384.mp3",
       "publicPath": "/pronunciation-assets/4446d5cc70147c28d62dd9e5b6b3e34645e5e34df3590c767ae8b10167a0ac3b.mp3",
@@ -57676,6 +58455,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.888,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "A polar survival kit was loaded for the planned operation.",
+      "objectKey": "pronunciations/891d5f7205c4960b94f7bc2ae14104ad0cd8777b9c4c99f5b9f1cff4f47c5bd6.mp3",
+      "publicPath": "/pronunciation-assets/452c020c32c1395512f43185b422f2da9074a415920ce86cd52d339f328d5c1b.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f9a6e148bec1bbbbbf4640be1755241a1dceb112c1ae17f08b5608604789eceb",
+      "sizeBytes": 25580,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.168,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -59358,6 +60156,25 @@
       }
     },
     {
+      "text": "Shanghai ground, CCA1308, would you conform that there is a security van waiting for us? We are carrying a valuable shipment, and the company won't answer us on company frequency. Q: Why does the pilot ask for a security van?",
+      "objectKey": "pronunciations/35f5208a1b5c5cab20ffccf2666bc89f45373b4cc0682c9c0232a9a7a1644a0d.mp3",
+      "publicPath": "/pronunciation-assets/46edcf7d277be7368558338bb55fb996c52f8dac93554eb7363a1022462875d5.mp3",
+      "bankId": "vocabulary",
+      "checksum": "d61e8200be051b19e4737954bb1dd39d9ae59da429155dfecae183953ff1b046",
+      "sizeBytes": 122156,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 15.24,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The crew checked the barometric setting.",
       "objectKey": "pronunciations/8722d5762abddb45148fc49989a6df4953759aae6f283860d8cd911148ddfc88.mp3",
       "publicPath": "/pronunciation-assets/46f166ea22990cbc34df8ad63728c4748339334ba7ec0d5c96d76c50b213e812.mp3",
@@ -59785,6 +60602,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.056,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "fire extinguisher or extinguisher",
+      "objectKey": "pronunciations/ad2dce3474307627460bf59296f83ef4b272fee5af8847765311edb4106b39e8.mp3",
+      "publicPath": "/pronunciation-assets/476ffc02b02e8f8988c152d8faeab82a312a6d7e6a780f9d2eb4bd5d04bac17d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "24fdac7b05cfa4bd59029269281538aa982425490ecb56a43004ce4d9f0308d1",
+      "sizeBytes": 17516,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.16,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -64811,6 +65647,25 @@
       }
     },
     {
+      "text": "fire extinguisher. extinguisher",
+      "objectKey": "pronunciations/e92f6494f4492ac487b443b7bee20d78225661caf635c2d95364d778adb8e930.mp3",
+      "publicPath": "/pronunciation-assets/4d4878480d5cf3d9087b95a40ed27def6b5456b628ed0f90b85181aa280ca72a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "ea3b235305356586956001acbda1c7d190660f3e8eff81e8a70a7fefed5695bb",
+      "sizeBytes": 16748,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.064,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "present",
       "objectKey": "pronunciations/9c356d1745506f956ebb525272b53ad899dd90ddeda7c1f9de9589993b9de3d3.mp3",
       "publicPath": "/pronunciation-assets/4d4c7eee2e28d03cb2dbf3df639c3290ade66e18755e83caade2d8f37bd8c044.mp3",
@@ -67471,6 +68326,25 @@
       }
     },
     {
+      "text": "apron. ramp",
+      "objectKey": "pronunciations/9f9985cfa8c9b440ff25cf32b7aa80e64cefbd290f99a82dddb295c800b2be99.mp3",
+      "publicPath": "/pronunciation-assets/50d4fb0b86f694788ddb4fca006b57824c873bf17cba0736cd5eff899f21ede3.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c6f2c6a551509cb1c42589dd77abd02e4caa79b685faf7a4ad363a9a7fae1fd8",
+      "sizeBytes": 7148,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.864,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "example",
       "objectKey": "pronunciations/79e08033bd4496b95425725918158226099e3de52345676133baa5ebd8717308.mp3",
       "publicPath": "/pronunciation-assets/50d858e0985ecc7f60418aaf0cc5ab587f42c2570a884095a9e8ccacd0f6545c.mp3",
@@ -67917,6 +68791,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.936,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The pilot identified the symbol on the navigation display.",
+      "objectKey": "pronunciations/35c46cefa8d2bfbe7afdc52b67cd3805ca8dc92ceb2412aa7a2c9a46a272a04d.mp3",
+      "publicPath": "/pronunciation-assets/5132b883cee12e89398f044bc34ecfa0a35e8d88a6bf36e280aa79eb22d200a2.mp3",
+      "bankId": "vocabulary",
+      "checksum": "22014ebbc2079b0a06096790d3442e91bae75138510aa1177cc9b4f99c394adf",
+      "sizeBytes": 27692,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.432,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -75394,6 +76287,25 @@
       }
     },
     {
+      "text": "gasoline or petrol",
+      "objectKey": "pronunciations/1228d2bb29faa83ba92b1ce7ac4adb54589805ca3441c64a0da717b0ff9d33af.mp3",
+      "publicPath": "/pronunciation-assets/5a2fd600672defa0e601da931f903273565a7ecd6aab026d226457241ceda854.mp3",
+      "bankId": "vocabulary",
+      "checksum": "86b2aef75c9be327a3e445905eddaef71ccbb6ab2c647e04393fe60c68f28b6b",
+      "sizeBytes": 10412,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.272,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "radioactive",
       "objectKey": "pronunciations/e9ee61c7669bc6f8e04cdbb659634994efedb66abd119c5c07b875b5f4348fee.mp3",
       "publicPath": "/pronunciation-assets/5a301e035663a51f3aca34bd8d7527070949b1f13cd8f3d3f38f5c18a4d23259.mp3",
@@ -76781,6 +77693,25 @@
       }
     },
     {
+      "text": "first officer. co-pilot. copilot",
+      "objectKey": "pronunciations/30a1388aeb605469ea66b0b301473203e18e154023eb79c935603e15edcb31e2.mp3",
+      "publicPath": "/pronunciation-assets/5bb6a84836b051f694c2924d7f172826ac603a4e3dcbf23f038d7744beeb8817.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f297dfedb438ad4a0f7432c5d9cfe34057537669a9210d972a6b126efb1a0ffb",
+      "sizeBytes": 18092,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.232,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The crew requested an offset to the right of track.",
       "objectKey": "pronunciations/fb759529cc68e05cc077b84fb54bfe37ced0344123b1183293df052411b4323e.mp3",
       "publicPath": "/pronunciation-assets/5bc0c18d8bb2c8c5ce14627f492a1582f5d952f8a17b3dc5fb463fafb3512522.mp3",
@@ -77056,6 +77987,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.032,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "medical personnel. medical staff",
+      "objectKey": "pronunciations/5bb0796b3a0cf4d4225f332dadd70d98e9cca9ef2a0063cf98d3ab64f5d10c87.mp3",
+      "publicPath": "/pronunciation-assets/5c2149bb8c91b178a59bbece3d6b8fbb59d7f8a31e59af5d4345553db0925611.mp3",
+      "bankId": "vocabulary",
+      "checksum": "aebe65b9a5f67c0ce38ece4c5d04eeaa919baf27738bded2cce31cc9823d8063",
+      "sizeBytes": 15980,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.968,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -81759,6 +82709,25 @@
       }
     },
     {
+      "text": "baggage compartment or baggage hold",
+      "objectKey": "pronunciations/4993dd0324d88ea27a112d89fca480ceabfa7bcad63958f67d68cff88987d0bb.mp3",
+      "publicPath": "/pronunciation-assets/6239fcb634fa17a00ca1a4ca83a92cc392a77905ab3601211d62c96e0c2b4405.mp3",
+      "bankId": "vocabulary",
+      "checksum": "145ab9fb83154fd2cba6063ca001f38dee1dc5a763b04e060d1cc0af5d2020be",
+      "sizeBytes": 16364,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.016,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "hold short of",
       "objectKey": "pronunciations/fa64af7f586fd4d310cfd71488b7c2696bce6f7ba8198f88ecf9338db4d3e3c7.mp3",
       "publicPath": "/pronunciation-assets/623ba1e95be6773e43dffae37b680f16d86038b9c1c49e95d166cd77be038958.mp3",
@@ -83963,6 +84932,25 @@
       }
     },
     {
+      "text": "rapid decompression or rapid depressurization or quick depressurization",
+      "objectKey": "pronunciations/27548d1c118dda728f2c01e787ac25fa6eb0beaff8affa0b9ab02584e8b06c8a.mp3",
+      "publicPath": "/pronunciation-assets/65216afcd99198e9a15a126985a2aa700c7994262f673eba077514df216cf8a8.mp3",
+      "bankId": "vocabulary",
+      "checksum": "3d5a33b63d73f751e14158630085ac195b8f75ea2fef56f61d9d22e11a4e7cd0",
+      "sizeBytes": 34220,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 4.248,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "hazard",
       "objectKey": "pronunciations/84e1c799ae5b08ae4efcfc2bed74f3ea761cfed075e931157073323f8aa116e0.mp3",
       "publicPath": "/pronunciation-assets/652607e181622fd24a788d3128a697e40530dc11af62d36fcd89214388bb5898.mp3",
@@ -84932,6 +85920,25 @@
       }
     },
     {
+      "text": "A large pool of water remained on the taxiway.",
+      "objectKey": "pronunciations/9d30b3d6bb479895c3c44045af1bab57b992c08c2822182621413337d52e3dc6.mp3",
+      "publicPath": "/pronunciation-assets/6651fec849c941c841187b1deacd72814b478090cb24bdd1578f5f36bd2317e4.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e8c46d782e1153844e6938ae3460b96c0faeb15b7c32aa1aeff17148adec911c",
+      "sizeBytes": 20780,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.568,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "An aircraft can get struck by lightning in a storm.",
       "objectKey": "pronunciations/6a246f4fb3de26200027cc2b7ff7bec424431da303ba0af934d0a6fd160fa18c.mp3",
       "publicPath": "/pronunciation-assets/665b8690a8b649f4526b58ed37df5d767449f643db1b70eedd0ea3298b7bd17c.mp3",
@@ -85074,6 +86081,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.72,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "Smoke can obscure the runway lights.",
+      "objectKey": "pronunciations/726088e4e1891399c5c9c02095d8cf28b96a84c8c61a0a6a72712425038a3fc1.mp3",
+      "publicPath": "/pronunciation-assets/668dc585b796e2c8492ba1ce5b15ad7a6bd5a6915741a8affaaf51e9873bb779.mp3",
+      "bankId": "vocabulary",
+      "checksum": "eca91a32e26db7418cfa50631b90bef54d410d26bb11f689e855f13f3130303b",
+      "sizeBytes": 17324,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.136,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -87839,6 +88865,25 @@
       }
     },
     {
+      "text": "flight attendant. steward. stewardess",
+      "objectKey": "pronunciations/e968cf05e49d66985d067992d27a49712dde1f220827b4a64a0d6f05537b7db1.mp3",
+      "publicPath": "/pronunciation-assets/69fc99e1f1d95e9e6105ddbcd4c296b567a67ab9ad686549471df7f12735073e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "24f9cd7a1cf5e9c54ba8c40974e3d71f2aa3c94fbc3bf2fbd03955645b18ba89",
+      "sizeBytes": 16364,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.016,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "A temporary procedure was issued after the runway closure.",
       "objectKey": "pronunciations/639b9ddbf1ab9ed70b257d66dfaf8bf87e02502449ecd88b96b010f9bd0fac59.mp3",
       "publicPath": "/pronunciation-assets/69ffff214776d0c137f05add4372cd0c588536f9df45ef3a70c5d3060e109847.mp3",
@@ -90442,6 +91487,25 @@
       }
     },
     {
+      "text": "windshield. windscreen",
+      "objectKey": "pronunciations/9b42de6472ea51e5b4dd4d37b6a14a69ff6924d411808aa5607a12e7e0eadaa2.mp3",
+      "publicPath": "/pronunciation-assets/6d778b8344d8ba03e29a9e6684326306546850ec414f179ed62cbf165511ee64.mp3",
+      "bankId": "vocabulary",
+      "checksum": "077678af5cd3ec61e87d627bfcb3c8ddaebc4fea4587ab4c11d2287b66daffbf",
+      "sizeBytes": 11372,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.392,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "denver's",
       "objectKey": "pronunciations/5978c5000e12b58af7ee63d50452c7053da5720d3fd663514e170750567709ee.mp3",
       "publicPath": "/pronunciation-assets/6d8bb045eed3e011d19da6a9d16efa8299f402bef4d85545334c71b64ffdcaaf.mp3",
@@ -90774,6 +91838,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.576,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "disembark. deplane",
+      "objectKey": "pronunciations/23a9c184581ccf4f9dea960fbfa5fe3f9719ea678daacaf11b0a28d06423dbfc.mp3",
+      "publicPath": "/pronunciation-assets/6df336a22828753ae42387fe756e7296ab4d7c5ba1872195eadb0927e0a3971d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "a18fb85484335db75a5d37859c3a564d2cff153a98ff1ddd499ff2d59543f459",
+      "sizeBytes": 10412,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.272,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -93862,6 +94945,25 @@
       }
     },
     {
+      "text": "fuel truck. refueler. refueller",
+      "objectKey": "pronunciations/96fda4305e8117e2c4d5ec45b0fc3ff0795d6ea7bd8109fadaf39f9583340d13.mp3",
+      "publicPath": "/pronunciation-assets/719158b536f91031a6b3b258a1ad7050a2bc95e1c4c02eb0a595bd911fcd38e7.mp3",
+      "bankId": "vocabulary",
+      "checksum": "6fbb8ab089644820e65e799c25b4e8c25e2614abe4362361c2e2ebf616a7a9fd",
+      "sizeBytes": 15212,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.872,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "re-seating",
       "objectKey": "pronunciations/0eb7746bb99dece5e446a41d54fec5cd2bc45302493977f6499718b8c3ed3b79.mp3",
       "publicPath": "/pronunciation-assets/719c736abe74312f14cab66f711fcf927d3ce481312dc85b9d1acc5f1cf04542.mp3",
@@ -96940,6 +98042,25 @@
       }
     },
     {
+      "text": "supplemental. supplementary",
+      "objectKey": "pronunciations/730b6a74bccaaf693d958bf28d15e5e1a9f5a2abb36499146e45e8974d7e7791.mp3",
+      "publicPath": "/pronunciation-assets/757a7d1bf8e250f22ee13a41a814a69813a399b068ea9e2c4b6573c28d5e6b10.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f0236ecaa5d867d8ef515fecba3e410a5b50f8c9fe8428e76f75ca1dc9efbacc",
+      "sizeBytes": 14252,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.752,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "promotional",
       "objectKey": "pronunciations/f8d513a458fcb228f8c3667942805baf08d9fe4967fcd598cc2bcc5f428d2a5b.mp3",
       "publicPath": "/pronunciation-assets/7583c8caa81355ff8888740b4f0ebc247cdf481109ecaf355510d554f590eac9.mp3",
@@ -97918,6 +99039,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.504,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "fuel truck or refueler or refueller",
+      "objectKey": "pronunciations/06692ff085b178dd6249b512f443289ceb24e87382c5c3e3f833586c315ba044.mp3",
+      "publicPath": "/pronunciation-assets/76596ac6270d57d6b2293e1a0f392aae56913d55b48b1a9b1812c451d6807b66.mp3",
+      "bankId": "vocabulary",
+      "checksum": "ef82bb554655e7dcc918dc7c6f5be9fe5d5e4ae5f617045e8d7ba8dd4236ae08",
+      "sizeBytes": 17324,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.136,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -100835,6 +101975,25 @@
       }
     },
     {
+      "text": "apron or ramp",
+      "objectKey": "pronunciations/82437a27f78242ed3bc9e2bd7eb611b6c88a98d3372458731faf66f0ddb5d58e.mp3",
+      "publicPath": "/pronunciation-assets/79e141c2e562cb57b0dccbaf63d7489e2f1c7d52207ebae88732c28c03166f1a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "9dd9cb1360fd44f212e64ec9371a536d65a1af48c895c3034275cd5ab8e89930",
+      "sizeBytes": 8108,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.984,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "estimate",
       "objectKey": "pronunciations/06f9e06eb12f8e53e7d1b706f5098d794f08568533715b8fa9fb513479bba0af.mp3",
       "publicPath": "/pronunciation-assets/79e1d925e79c904a9cf8ef433d2eb255d5e3f1a881e45d7e3ea1121a86da1749.mp3",
@@ -103229,6 +104388,25 @@
       }
     },
     {
+      "text": "blow",
+      "objectKey": "pronunciations/dfa9c3488882d54ec4d0bb1f5e8b1f7aed118e083050dd9d401e72c0758d0483.mp3",
+      "publicPath": "/pronunciation-assets/7cf6b0597fe4e3cb355932640c14cb6819d5359ac113af58d0b365c7a112fd31.mp3",
+      "bankId": "vocabulary",
+      "checksum": "167b2f10da70a6055ba47e24848d157998cfdec631703ad54170f7346300da66",
+      "sizeBytes": 4268,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.504,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "raising",
       "objectKey": "pronunciations/e89f9f6256f621407d6b287fcacd6f036f9bbf325cd256922cc2574c009b5d57.mp3",
       "publicPath": "/pronunciation-assets/7d0df4916ad725be0c518b4dd9e0826e87ac0041c852aff3cdf2afc223a03b02.mp3",
@@ -104340,6 +105518,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.52,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "pneumatic. air-driven",
+      "objectKey": "pronunciations/f98b55c422a8837b5a8c2bada99ff3d27b0bfdfc07bf3c3ae062b63338edd774.mp3",
+      "publicPath": "/pronunciation-assets/7eaa7afbd89ae29475c5ecb3b166dde2a0becd29a6ded34230ca3c8eb43cdb67.mp3",
+      "bankId": "vocabulary",
+      "checksum": "20620c6464fa6a76147b3b9fd69800d325b2c222449f7b040ef3296b536dd687",
+      "sizeBytes": 10028,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.224,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -110012,6 +111209,25 @@
       }
     },
     {
+      "text": "ssr response",
+      "objectKey": "pronunciations/4d45c5b64024f65d3fc4e816320373a169d5a28f63b0fa203c014cafb718870c.mp3",
+      "publicPath": "/pronunciation-assets/85db673ec6985ceca5f69a00645b8d8e30ef59024952f0ec12982c539d4f03f8.mp3",
+      "bankId": "vocabulary",
+      "checksum": "688b682c4e30ea22be61b1830eed3faa8e070795feefc9a8d99403126b3db8d7",
+      "sizeBytes": 11372,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.392,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The crew compared the magnetic heading indications.",
       "objectKey": "pronunciations/609e03eada33dd7d25ed357b2faf0003a1374aca53fa8713224151d562065fb8.mp3",
       "publicPath": "/pronunciation-assets/85e75c677f928ebb139e6cefad198ddc62651e393e9d6a2ee8bc4624293a8f66.mp3",
@@ -110629,6 +111845,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.936,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "supplemental or supplementary",
+      "objectKey": "pronunciations/ad79b85dca16e9084aea344a526bc0c0f007aee52c460464e82257e326f42f6c.mp3",
+      "publicPath": "/pronunciation-assets/86a20fa9c72fe125e0c888503bdf269b0c2a4a3255d4b672c014ab9e09f2a8f7.mp3",
+      "bankId": "vocabulary",
+      "checksum": "168529fdcf69d96ded2f47d2f38d8e506c31f62fc07a2b27729face926bd2826",
+      "sizeBytes": 15404,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.896,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -114933,6 +116168,25 @@
       }
     },
     {
+      "text": "seatbelt or seat belt",
+      "objectKey": "pronunciations/7c0fcf626791468ec6f0b17d6721d1d738fc5b34bc83c4d300f75810393b9dfc.mp3",
+      "publicPath": "/pronunciation-assets/8bf7158d591478c6d7ea80d0152b96d4cbf74cbc65287020352335d809a9cb90.mp3",
+      "bankId": "vocabulary",
+      "checksum": "4708289d55e1f3c81e446e454f1433dd9689cdea5a8eddaea582af4537f0b9ac",
+      "sizeBytes": 11564,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.416,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "aware",
       "objectKey": "pronunciations/24b77cf3d693ec8cffa263694227b4e7b9fc3ea54c6faebf2aac117e3b51e045.mp3",
       "publicPath": "/pronunciation-assets/8bf9fd4be091a1baa7d3947484c1b90a1ce69f0df2facb671c8658ea9f4704d8.mp3",
@@ -118581,6 +119835,25 @@
       }
     },
     {
+      "text": "The disagreement began to escalate.",
+      "objectKey": "pronunciations/094998026adaadbe2ecd9e3937b8c3fbd366edd6f1bceaf83b27e9a97708d234.mp3",
+      "publicPath": "/pronunciation-assets/9023833985eef285904a07ec26b7420ed9b0eb99d5dc9c4b8bcbc628150a0a9a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "75c78da7a051cba1f7c99d009831f3e2b424249a010fce54739d6bb91b468c9b",
+      "sizeBytes": 16556,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.04,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "costly",
       "objectKey": "pronunciations/65a77f6f2fe18a34c6c5f3aa0919d5188a375c9afaaef6d4982b6a0077212942.mp3",
       "publicPath": "/pronunciation-assets/9025b50887457ff41d5fd69083ebbd72895fa3a5868ac41d1e35c7be5ac38b0e.mp3",
@@ -120804,6 +122077,25 @@
       }
     },
     {
+      "text": "updraft or updraught",
+      "objectKey": "pronunciations/02dd31831678f7b1d65777142bb09b1c168ae33202b551b0ce95c804d5b948f0.mp3",
+      "publicPath": "/pronunciation-assets/92e7a54d942226cf1a00d44548a0ed6c3dc2f78ab1571c927c22727bc433ef93.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f03b924a440f657f3b066631a3c8fe0e18f642790df93f965bced4876df1cba0",
+      "sizeBytes": 11372,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.392,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "spark",
       "objectKey": "pronunciations/4988717d00e54e9b54eec2a7ffec8963d7fd9716a43fc7c7a74d2bd1797c13c6.mp3",
       "publicPath": "/pronunciation-assets/92f473809e5979a7da2b7f52771b3a9e3d7105dcb0f24ae333c5bf279b863d73.mp3",
@@ -123008,6 +124300,25 @@
       }
     },
     {
+      "text": "fire engine or fire truck",
+      "objectKey": "pronunciations/1da845f2d4aa5e709a01424797794949b9b1b643076b70064e6bebbf995bd4be.mp3",
+      "publicPath": "/pronunciation-assets/956645e1281e1ea3070e6a8a159e0fbed321e0cb795c293bb15daee73ee680a9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "64075e6fbf54b5fa41e229fa8d7bfb23e7be3f430876373dba65572e927cac8b",
+      "sizeBytes": 14444,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.776,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "replacement",
       "objectKey": "pronunciations/d02d2adbb2eca6ede3766384d995eb32ecf16ac4f6a1ed69dadc85bfa63331c1.mp3",
       "publicPath": "/pronunciation-assets/95713e9cbdd1dfcb2d4080c2537f418d43ca0da25f0d7d6631f4f7c97b89dc47.mp3",
@@ -124414,6 +125725,25 @@
       }
     },
     {
+      "text": "stand. bay",
+      "objectKey": "pronunciations/5b33a602f62ab53d2248b422dea00d4c3c51a0cf76bb164d6e852264e1915e7d.mp3",
+      "publicPath": "/pronunciation-assets/97659406aaf8beb29c9317e991302e117757f49a472a8fcd188d2f92bf60b2f9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "1527251e3fc9e04d664bab0b6ae3f7a03dff7c15e23f0b4e40885be349971cb4",
+      "sizeBytes": 7148,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.864,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "rotor",
       "objectKey": "pronunciations/3da2d28762e73df3e26970011b1ee22f88be46d3bec7c2e41eb27023ce5e6b9f.mp3",
       "publicPath": "/pronunciation-assets/977c168f01a5385167407b46bae68d0e413cd81d259d371d5936cc9426d0a0c2.mp3",
@@ -125772,6 +127102,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.76,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "adverse or unfavorable",
+      "objectKey": "pronunciations/0cbdb6cf4a67897af415f2f48c3180615eca1499325778d4e54159366f043ada.mp3",
+      "publicPath": "/pronunciation-assets/99846830ab7c9464810f24534ae602bd2ed52baf63c9ad4a96d5751f3f2b933a.mp3",
+      "bankId": "vocabulary",
+      "checksum": "fcbeab5d9c21f3714fcf525591e31f235bc3c8ab526f0a668a0035e4b53d5e8d",
+      "sizeBytes": 11948,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.464,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -127197,6 +128546,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.768,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "baggage compartment. baggage hold",
+      "objectKey": "pronunciations/143eb9526998bb4599f4cb57b9672feea69dd0965d6506c9565888d945223051.mp3",
+      "publicPath": "/pronunciation-assets/9b2ef2869df45f737d2c8c58773e0c47a214e53e7935eaa9967c28828d84b2bf.mp3",
+      "bankId": "vocabulary",
+      "checksum": "28bc9ee6ada23a9cfc7f6091bbaaa6455db04106c33f4cd9cbab1d082942e8f4",
+      "sizeBytes": 15020,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.848,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -129715,6 +131083,25 @@
       }
     },
     {
+      "text": "The crew checked the aircraft's centre of gravity.",
+      "objectKey": "pronunciations/cedcff5ad8be67bcd42c4f5f5ce9b5ae7ddefaee6b88de721d8ecdcc4ed3d9fd.mp3",
+      "publicPath": "/pronunciation-assets/9e83eb93a095d511e905957ecfbbb8c3247aae721ab9b5401cf6b5ea09ca00c9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "8d1bf9229aa9bfa4cadb75f1df6af8170203c381c07253f06aa0c17dd4e64fa4",
+      "sizeBytes": 20780,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.568,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "cholera",
       "objectKey": "pronunciations/a347eafe68d8dc0c7dc893871e2eb4936c9983108c3fde0aba895a56ad95e947.mp3",
       "publicPath": "/pronunciation-assets/9e844c4d229a04ff889578a51e350439eef40201c403c2571cbfc504720a1af5.mp3",
@@ -130988,6 +132375,25 @@
       }
     },
     {
+      "text": "The heat exchanger was inspected after the flight.",
+      "objectKey": "pronunciations/ac9d3b94ff49951a36583c04b27009456196669a7f73bb6c01f738f7a6b36df5.mp3",
+      "publicPath": "/pronunciation-assets/9ff355451a330652e82c447b08a330f1516be04751a9f1421477b157e5682a2e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e17368c71d030031a345b9d66a2429012c3c90fd53aba224fc6314c7d8930383",
+      "sizeBytes": 22124,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.736,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "radar position indication",
       "objectKey": "pronunciations/e490321ed539776c4c3f5732d018bddd23361fb3e9cae3f575cadff8f8ef7ce0.mp3",
       "publicPath": "/pronunciation-assets/9ffbef9743d003290e494fd316f05be9ed4356b5d19cacf201354c764e08ce68.mp3",
@@ -131757,6 +133163,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.528,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "updraft. updraught",
+      "objectKey": "pronunciations/7df89dfeb84428be2efe2fd7f4cb281fe75cd97ca6a2a979c5603663566552aa.mp3",
+      "publicPath": "/pronunciation-assets/a0c741c1b2b7d2a3be12ca71dfcb63a14e5b8e05c008f7f34b276edd11a4c08e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "9976a2703678f7b7a27e85e7d69df9b18a05a37d54d15295b73c76c3a5223b09",
+      "sizeBytes": 10028,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.224,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -133030,6 +134455,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.768,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The crew tuned the VOR before departure.",
+      "objectKey": "pronunciations/9d20beed18491c2e3a1f171dc2b92db735d5a533aa63976612cc20921e98feac.mp3",
+      "publicPath": "/pronunciation-assets/a235aacb1f627df7bd67bb50f4caf6e870259e3a962aa0c789ffe81e61132362.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e6689b4538d63df5d71dff7aee33b3094574c9bb66eb0e293c2d3a94e2be6c63",
+      "sizeBytes": 19052,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.352,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -136194,6 +137638,25 @@
       }
     },
     {
+      "text": "rubbish. garbage. trash",
+      "objectKey": "pronunciations/3df867fbac2a2432ce3ea071f205628984e03d6fe009a9adc45c92f83216bd40.mp3",
+      "publicPath": "/pronunciation-assets/a604f042087bb045236dbf594d410e7bfe947152482f01f22100d3892bb463a4.mp3",
+      "bankId": "vocabulary",
+      "checksum": "0fd3a0257749608b592329cac0a00e6010fee1f6320472068625dce06352e7e8",
+      "sizeBytes": 11564,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.416,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "spelling",
       "objectKey": "pronunciations/9662d1434fa7befb5c54fac891b41225e5c07d182cc054567f3b0280336d0bd2.mp3",
       "publicPath": "/pronunciation-assets/a6105b32383e5e20e5406c0c9287982566716707e587936641395037ee13eff3.mp3",
@@ -136507,6 +137970,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.624,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "A cabin crew member brought the first-aid kit.",
+      "objectKey": "pronunciations/81ccef49f9e3fdc447317d9312e42b3909c3cdcbf28013b3c13859a10bbd219c.mp3",
+      "publicPath": "/pronunciation-assets/a6781f045dc237b520fa44b8346204a6d316e97171b70f1fe0c79b06ce23216b.mp3",
+      "bankId": "vocabulary",
+      "checksum": "9b5f85c49c9c62576e312e57cec4c44062bd333d2c4e6bfa5f3e2607422e39e4",
+      "sizeBytes": 19244,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.376,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -137030,6 +138512,25 @@
       }
     },
     {
+      "text": "engine cowling. cowl. cowling. engine cowl",
+      "objectKey": "pronunciations/10e5ffd22ee523f86acb733a8b8f6a9784ccef75bef2d582b49e87d1e69703f1.mp3",
+      "publicPath": "/pronunciation-assets/a7134c500994f1b51b2590242458325e5897b309d1784c54398d55cbd8d90ea4.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f6d66e564d87b7aa7930f3bf7d0ab80ddcfcb08036bd8c7787d0a2021c82209c",
+      "sizeBytes": 19244,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.376,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "drivers",
       "objectKey": "pronunciations/eda806d3a099f72fd98375c46237c3cc49eddd8d89949e2f4d29de8adbab18ce.mp3",
       "publicPath": "/pronunciation-assets/a71518107f3a70bc9b544c75c80bdffa8e8e0def85f68c3277f763d3dd82da32.mp3",
@@ -137096,6 +138597,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.048,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "engine cowling or cowl or cowling or engine cowl",
+      "objectKey": "pronunciations/74c7820d9ff28e5a2173185a136fa1bfc0614b2934b759408969609b1132edef.mp3",
+      "publicPath": "/pronunciation-assets/a740dc59bcaeb2522435cdffb9db8ab362eff1772b4fac59cf5f6497bc87bcfc.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c6974ce02c616add3e06c2a7386ba136a3ad54bd251acdf76bba381c20372f9c",
+      "sizeBytes": 22316,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.76,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -137866,6 +139386,25 @@
       }
     },
     {
+      "text": "prohibit",
+      "objectKey": "pronunciations/3d053793e4420c0a52b975307553b9917cf76551f9633bf26f5461e1ebef0e02.mp3",
+      "publicPath": "/pronunciation-assets/a8817071845b3943bf6dbe0ddbad8938956b31e4a56babfced347e4ccc4869c6.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7f64205fc2fdadd5fbfe829d93d1ebe564da90261da5898c9b47df18e699385b",
+      "sizeBytes": 5612,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.672,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "Taxi should not resume until the aircraft's airworthiness has been confirmed.",
       "objectKey": "pronunciations/9f5762e7ccc48e655a566d08865ea2afcf817aa497c2c91773d9dc7216d8a5c3.mp3",
       "publicPath": "/pronunciation-assets/a882a74a5b3bc18ff1af8d382cd9209788d62de32c09a2d1af87d0d9fee5376c.mp3",
@@ -138559,6 +140098,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.144,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "stand or bay",
+      "objectKey": "pronunciations/fe1b7feca45ae471d003e79b606b4e86c008a2b5c5f496fdaf1ea3ee6c0c1d10.mp3",
+      "publicPath": "/pronunciation-assets/a9a3bc29217a7a6fc05c840c235f7c0ac7e7cbf0d0e15da3f4cdfb5b0ebdda40.mp3",
+      "bankId": "vocabulary",
+      "checksum": "210804cb8f71609774a0afc0670b996089b1c8d3c8b4ba508b70ea47cec30cff",
+      "sizeBytes": 8108,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.984,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -140782,6 +142340,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.272,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The crew reported an outbreak of fire in the cabin.",
+      "objectKey": "pronunciations/292874c1e5dae316f2f566c7bf6295795ca95b92ab50ccdb2342d21e0b04d44a.mp3",
+      "publicPath": "/pronunciation-assets/ac33bdc790b9beff678bd84a9e04864a4f5a3bbd2cf2ca6ef5894660fed79933.mp3",
+      "bankId": "vocabulary",
+      "checksum": "451cf06ebdfe0b9d433ebae46a6356e54e259707491778713b2f495ca6db3977",
+      "sizeBytes": 20972,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.592,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -144269,6 +145846,25 @@
       }
     },
     {
+      "text": "And in AC circuits, the power can be categorized into real, reactive, and apparent power.",
+      "objectKey": "pronunciations/e1970e4b197e520bba7e7f1674f3c736b862b6efdcbd21bc2b8895e49d35a16b.mp3",
+      "publicPath": "/pronunciation-assets/afdcad828bb6a26ffa877d3ff6c98803007030475a5ec3e4df9ff0228f61174e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "64fc2ad4f299f65bbd7ba114fb22a75708d5529a05835da8b40e65fd03577817",
+      "sizeBytes": 46316,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 5.76,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "tokyo",
       "objectKey": "pronunciations/9041cb651d7194d08363c3446ad020e369a866f8e10bdd7e57fc84e71c28064f.mp3",
       "publicPath": "/pronunciation-assets/afe04579004049ccce1843a40bdf9eb85f3a4839390375e35d0018a7f9aa70c8.mp3",
@@ -145371,6 +146967,25 @@
       }
     },
     {
+      "text": "downdraft or downdraught",
+      "objectKey": "pronunciations/53c45a8088de3e00a7d2bf164254feabe83bb8d7dcf74176160ca0669ffb8d06.mp3",
+      "publicPath": "/pronunciation-assets/b145be60f108ffe0162b17e73a96f3fc4c8c033ce2d8f50886abda2e07e032b6.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c01a185a6136f03858153b676469fba5dd87752c50b3bf26061ec308f2340302",
+      "sizeBytes": 10988,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.344,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "clear-air turbulence",
       "objectKey": "pronunciations/9342a53456188bb3d934c8f4f47f4f4fe253b0262c31cb13372154a303f0529a.mp3",
       "publicPath": "/pronunciation-assets/b151106ce4db0858d5ae35574873f6f2cf8583445464fa096ab913a97109442d.mp3",
@@ -145722,6 +147337,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.928,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "flat tire or flat tyre or deflated tire or deflated tyre",
+      "objectKey": "pronunciations/a9f74c91550489c6742d2356bbfc1c871f4cc9d683e7b4933a4400628d94ec38.mp3",
+      "publicPath": "/pronunciation-assets/b1c79df6eb73596a810c330c6a87429ea7bded666b2de9c495eddf34719143ba.mp3",
+      "bankId": "vocabulary",
+      "checksum": "95320ef96951d19fa4871287fe56756aeefd5ab062b1eb025d8ba76ad33166e6",
+      "sizeBytes": 29036,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.6,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -146492,6 +148126,25 @@
       }
     },
     {
+      "text": "The life raft began to inflate.",
+      "objectKey": "pronunciations/aac513cb71aff3cc8454916a1a66d949589510f397168b0d618b977ca298abaf.mp3",
+      "publicPath": "/pronunciation-assets/b28af534ebee7d3d303d2670c94873c6cbbf421f9d59dc5e5c16744c117efe86.mp3",
+      "bankId": "vocabulary",
+      "checksum": "27919ab7ed8fa201a0639ee64474a0ae746fa7fb3d300a79172c1dc99eaabae3",
+      "sizeBytes": 15212,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.872,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "endured",
       "objectKey": "pronunciations/55f27b072d1dcc52cd4334387fcfbafc509c943b9f122b808b5866cda47a859e.mp3",
       "publicPath": "/pronunciation-assets/b2932d891bd29e551603b2c61ffb6784b9de900a780324a747f2168f7c02953a.mp3",
@@ -146520,6 +148173,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.816,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The crew reported rough running of the engine.",
+      "objectKey": "pronunciations/ff98cc54dcd28933e41fe488843b256a5d5ba502282a6393b7da9f9bd174a5e0.mp3",
+      "publicPath": "/pronunciation-assets/b296b1bd63af666156bd69fd952c22e850d86646fcba626209db20ca6cd35a0c.mp3",
+      "bankId": "vocabulary",
+      "checksum": "47421b1ed3640893ce59686fc3d3fa8e0521049b6d0393ee64351e038e943880",
+      "sizeBytes": 17516,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.16,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -149266,6 +150938,25 @@
       }
     },
     {
+      "text": "life raft or liferaft",
+      "objectKey": "pronunciations/8ee928f47a24af9b1a3ed639594a022fa16bd78038f10cc152becddc5c94dcae.mp3",
+      "publicPath": "/pronunciation-assets/b61be754b271c73efe937752d78122c8d56cb4fbd55f9a94dcfb831dd9b89563.mp3",
+      "bankId": "vocabulary",
+      "checksum": "fa18aa5e5024028895fe350bcf0f253ed5dee1c5916168c6cfc9b48bfda52e11",
+      "sizeBytes": 12524,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.536,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "english",
       "objectKey": "pronunciations/6bfd074746b54a9ac2df28daa51b741e4a5a0e1223a4b77e0526a78bc41a956b.mp3",
       "publicPath": "/pronunciation-assets/b6234d2ea0d6022be63db80d7b80e221097fe4a469dc44febcd2a9241effdeba.mp3",
@@ -149655,6 +151346,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.648,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "cockpit or pilot's cabin",
+      "objectKey": "pronunciations/548148af551174f576a362a98bb2e40518db187f5f8ceb89e44650ff9ab02310.mp3",
+      "publicPath": "/pronunciation-assets/b6ac15fb547efcb137d1f3dc87bbef10540036a7b1b2b63c27b0deb96992126b.mp3",
+      "bankId": "vocabulary",
+      "checksum": "492b2f831fc5ca5560d408ca5721be2a53b7fc63786941f50c903dca7d08db9d",
+      "sizeBytes": 12908,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.584,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -150320,6 +152030,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.696,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "symbol",
+      "objectKey": "pronunciations/673385b2cf85f7d155d3025d5ac000ee886c9fac218ebcc065eb93d06d544628.mp3",
+      "publicPath": "/pronunciation-assets/b76a7ca153c24671658335bbd08946350ffc621fa1c516e7123095d4ffd5c581.mp3",
+      "bankId": "vocabulary",
+      "checksum": "3ae6101064d9e09593f04176e220c91031ac6ba53a6347b91a2723f7b761aca8",
+      "sizeBytes": 4652,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.552,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -151935,6 +153664,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.008,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "lavatory. restroom. toilet",
+      "objectKey": "pronunciations/89578a6bc7417da06d083a0ecf1b7c1c44bddad35efd928e3badc479d3960d4f.mp3",
+      "publicPath": "/pronunciation-assets/b961e1ae5ff40e15d59257524991abb0f23bb909b30a51c10f177c082d32019e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "089ef02649053d8c7a6c861d94672fa8c73f1d3919e8f4cb9cae32613f9c35f4",
+      "sizeBytes": 14060,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.728,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -153598,6 +155346,25 @@
       }
     },
     {
+      "text": "The booster pump maintains a steady fuel supply.",
+      "objectKey": "pronunciations/b77a0459d731bf572c8f9a7c56f27088da7378f745fba9eeae70e3c359cb72f8.mp3",
+      "publicPath": "/pronunciation-assets/bba55d2f7a3f6b9e69d02c8a91415e67aa8e911649afea47c491bc4dcde06d8d.mp3",
+      "bankId": "vocabulary",
+      "checksum": "bee505c2621b5daf6916d1fe240c64b59ed2b0014f84c269e62315a4f17472f5",
+      "sizeBytes": 22892,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.832,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "crease",
       "objectKey": "pronunciations/143fe331664f1fb5103de1d5bd157a11cb7ff6f0356a6f7ea4a3b34f4d87169b.mp3",
       "publicPath": "/pronunciation-assets/bbadeb417ec4a982a121b4fc4993038e5f6f6d6e1611235183922e7520a16402.mp3",
@@ -153740,6 +155507,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.456,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "first officer or co-pilot or copilot",
+      "objectKey": "pronunciations/1c10a62ffb6c44783096834cdf013ad19ff1e6e233d25ed872fa8ee8d4336360.mp3",
+      "publicPath": "/pronunciation-assets/bbc5ac50e5c53986209474afb8add71445b5b20590b5c1313a115a57d8e89f70.mp3",
+      "bankId": "vocabulary",
+      "checksum": "80a27aab749e46347fb5cb609db2f9fb314b1a9deb25f6af4703b28e38443d3c",
+      "sizeBytes": 20396,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.52,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -163953,6 +165739,25 @@
       }
     },
     {
+      "text": "survival kit",
+      "objectKey": "pronunciations/304930958ca96db506cfa3d40a37b9a5f3f0778c98b217e365274152deb2bba3.mp3",
+      "publicPath": "/pronunciation-assets/c7b648944558cb199b05fe9ae3251ae7f76889b26b5443c839aa272621fe61d8.mp3",
+      "bankId": "vocabulary",
+      "checksum": "187a513181b8b9d402d23ac5e37ee9d9f9c8026ea74a6c4418a4d37e4e02d9aa",
+      "sizeBytes": 8492,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.032,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "alcohol",
       "objectKey": "pronunciations/60f5c1f2fb9984dd7ae09c7c37a0b1b6a48d2696d714b5655c8772a071d1cde9.mp3",
       "publicPath": "/pronunciation-assets/c7c7eb1087c4e24d4c121b65abe24f4e54b06a997aa9eac86f3215271f635672.mp3",
@@ -164513,6 +166318,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.936,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "flat tire. flat tyre. deflated tire. deflated tyre",
+      "objectKey": "pronunciations/ae18d8bb38248f0df10b45f8bc58fa0ef3f4766374467fc500df1259f4192c13.mp3",
+      "publicPath": "/pronunciation-assets/c85bbf60d15965f6641baee8acb527a97eeb0b4d85174efe9c551f38808a02f6.mp3",
+      "bankId": "vocabulary",
+      "checksum": "1316bbb43bcfb6bb31f8ff599e6f335227a85d3ae670b6db3dbaec5eab6a8991",
+      "sizeBytes": 26540,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.288,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -166157,6 +167981,25 @@
       }
     },
     {
+      "text": "The pilot began the urgency call with \"Pan-Pan.\".",
+      "objectKey": "pronunciations/df2323a6aff7a8c602f9c6b860a90e942a6b19da3ee21215ce9dccae55546af9.mp3",
+      "publicPath": "/pronunciation-assets/ca365b5bf1850b8d2d52929eadff0f1b30c1c7bc1fb147052ca61de89ab76c5e.mp3",
+      "bankId": "vocabulary",
+      "checksum": "14bdbfc33dfe86c3926509313bb54fe70035cf6a3ac2038eec031903a6172c1f",
+      "sizeBytes": 27500,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.408,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "ecam",
       "objectKey": "pronunciations/7f3038b0774d2513286f8009a70105e1e2e3a0cf4073658c3fb4b5806dde22b7.mp3",
       "publicPath": "/pronunciation-assets/ca3995a335ffe10bf19a65fac1b299a5266d4b17b657838f256c6d5de12b766d.mp3",
@@ -167525,6 +169368,25 @@
       }
     },
     {
+      "text": "gasoline. petrol",
+      "objectKey": "pronunciations/c5e16ccddf1a866ac8284d9d85426eb9e698fcccf058419e77e1d0a04fccec6f.mp3",
+      "publicPath": "/pronunciation-assets/cbf3f9a1e4c8579981f44c6f52d87600fb2163283623a2fd9753cb95f8edc91b.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f5bd1b44e9e16a979c9a2c58f024cf6a742dc1177020f26b3367bccc4fbc98ef",
+      "sizeBytes": 9452,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.152,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "irregularities",
       "objectKey": "pronunciations/b08ceccddc03d29e4737f71944b75500da9a8525f02105ee246ebf3e86ee7441.mp3",
       "publicPath": "/pronunciation-assets/cbf3fde18879f579fdb5bd3b359e505843cb689f8c320bcd028307dad0ff254d.mp3",
@@ -167534,6 +169396,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.152,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "air inlet. air intake",
+      "objectKey": "pronunciations/110b5772124cc8cacaa040b65dbe2de20a6f168bdcde0f95541269717bc918c3.mp3",
+      "publicPath": "/pronunciation-assets/cc01d307703b20dbeca7cd26c4f3f0e7460bec4b86a06622ab08cf43944e1663.mp3",
+      "bankId": "vocabulary",
+      "checksum": "578e80118257cd898b2e8456e64391c9e42fc48b50dd4566a111ebbdd178ebec",
+      "sizeBytes": 11180,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.368,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -168494,6 +170375,25 @@
       }
     },
     {
+      "text": "fire engine. fire truck",
+      "objectKey": "pronunciations/118c7555b3aca426b2461bfd948963b2836cfe35913d9cbe6c228440d7021191.mp3",
+      "publicPath": "/pronunciation-assets/cd0e71276534f911f35256e0110adc18395f2ed017f6e691eb47b1f09480bb00.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e2aed97e513ed31d47e7d43bf59dba9363e813fa61c6f3bce82c86270edf1db1",
+      "sizeBytes": 13868,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.704,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "five-month",
       "objectKey": "pronunciations/d2dfd1039079a9ec35ef87fac7f435f533107f5607e3e2b78281093ad521744a.mp3",
       "publicPath": "/pronunciation-assets/cd0fa068f1a49fd38aea8bd7eef8d1562fb336aa2a11ff4da941e66918247544.mp3",
@@ -169377,6 +171277,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.288,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The birds began to disperse after the noise.",
+      "objectKey": "pronunciations/6c4f2ed1f566cc0e8a0f34e6f81cd8f6ffdb64bef51657831b6174a13f0045b4.mp3",
+      "publicPath": "/pronunciation-assets/ce493cfb87fdff2c02937b857e8dcca986addf14411790758dc6eda7748393c1.mp3",
+      "bankId": "vocabulary",
+      "checksum": "d12ce2b3a035af36a27f85463e0c2e3d615bcf2f5da3224a536347401a2b09e8",
+      "sizeBytes": 19052,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.352,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -170489,6 +172408,25 @@
       }
     },
     {
+      "text": "Low cloud may come down over the valley.",
+      "objectKey": "pronunciations/44b95535ab84c50196a94c81cef2a7e30b932ef6fb941df15cbf929c44cdc990.mp3",
+      "publicPath": "/pronunciation-assets/cf8ebcd609b0b50be3ece414f8942fd17fc1d5a0f2ed4bbfb959f231a27b5975.mp3",
+      "bankId": "vocabulary",
+      "checksum": "2f83ab0001922d53c4641687d3bb81dc8da98f8207b709c58d7751082835925e",
+      "sizeBytes": 17324,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.136,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "uncompleted",
       "objectKey": "pronunciations/8b8078c2d1c9079b45a30da3f3c6c22efda7567d21fe30a889bf26a5fd5cdcc5.mp3",
       "publicPath": "/pronunciation-assets/cf90ea52526827c5ee3867805a264ab6ee33c80fd1608c4cee7911807524d2ff.mp3",
@@ -170612,6 +172550,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 1.176,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "life raft. liferaft",
+      "objectKey": "pronunciations/8a835fd584618a437456db7dd319e5cf4143e1eb2a35de720f7cb6d4948a00a4.mp3",
+      "publicPath": "/pronunciation-assets/cfb6948c7578954f0601576c6f52258cb5b73f4249498f16bcdbe23b94b91cfd.mp3",
+      "bankId": "vocabulary",
+      "checksum": "22761a429f8088b2a5536b9247618aa5125922e092aa3ab6a663dc18661c2054",
+      "sizeBytes": 11372,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.392,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -171163,6 +173120,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.792,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "bolt",
+      "objectKey": "pronunciations/b1d8c623e25d06b6866630fc94b4413c49b2427b1af3a857fbfca08200ecdd70.mp3",
+      "publicPath": "/pronunciation-assets/d0b3cba71f725563d316ea3516099328042095d10f4571be25c07f9ce31985a5.mp3",
+      "bankId": "vocabulary",
+      "checksum": "8d79b2fe1ef39f2fb6feffbf146b96a7c644621642c2c2207bf676d5004e66c9",
+      "sizeBytes": 3692,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.432,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -174479,6 +176455,25 @@
       }
     },
     {
+      "text": "Cadmium is used in some aircraft batteries.",
+      "objectKey": "pronunciations/3a5949c2c8bd0ff8f12aca83aa0669206d2a95cbc5c7f8a7d3f805573370a107.mp3",
+      "publicPath": "/pronunciation-assets/d4b8af42d2b40190c892d481bbcf6e07508418ebc04248ec9ef7c39a8060bc3f.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e27b2e79f5d6af3a5e8971d2d8626deba65327b2920517aa957b101daf77243b",
+      "sizeBytes": 20396,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.52,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "stanfield",
       "objectKey": "pronunciations/36ac82eeabe2850f5a95745e1857cc695ca4ed0f8bc0c68b7d39b41836468a94.mp3",
       "publicPath": "/pronunciation-assets/d4c1e577c52a2377f892bd0ca0610d2d86509f936fc49b2c58775e6c27ca3719.mp3",
@@ -174526,6 +176521,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.712,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The pilot replied, \"Negative, the runway is not in sight.\".",
+      "objectKey": "pronunciations/62bb83ec7fcc2164601f41dcf5d9c6d8085209c365efbeebf9fbc9ab3aea857d.mp3",
+      "publicPath": "/pronunciation-assets/d4d1bc48d05d9b00b8c7152c3ac15910ae6ba0f801fdb8586c48167c0b90b42c.mp3",
+      "bankId": "vocabulary",
+      "checksum": "e4bcaf00af56bc2308683012298e482826370986988f17bd4f8f1cdfcb845928",
+      "sizeBytes": 33068,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 4.104,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -175001,6 +177015,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.576,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The notice says that smoking is prohibited.",
+      "objectKey": "pronunciations/ee8850f7d13e7a1945070ab7d9bbc75c03d61211a5175ca9fcefdff003a78221.mp3",
+      "publicPath": "/pronunciation-assets/d576b9a1b2dbc7ae88bfad82f780dbf55363a2b63c0dd40a4d10b6b848d6c64f.mp3",
+      "bankId": "vocabulary",
+      "checksum": "5b24ea79fe52aee62318181f171184477d069b0563af681aa80be8d084693ac7",
+      "sizeBytes": 18284,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.256,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -177196,6 +179229,25 @@
       }
     },
     {
+      "text": "passenger boarding bridge or air bridge or airbridge or jetway or loading bridge",
+      "objectKey": "pronunciations/2ed1b7d523745363f4df3987958c5a5de0ea58ea86c2f7308b056e9701ba4c1e.mp3",
+      "publicPath": "/pronunciation-assets/d8171b0f4ca36e0e10ce40204b8f026e1c7209f420f93955de53d560eec33e92.mp3",
+      "bankId": "vocabulary",
+      "checksum": "f8badc99657586ba85376dd4a3e341a75eb28ebdbbd521ee308812b6b7275b63",
+      "sizeBytes": 32300,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 4.008,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "clock",
       "objectKey": "pronunciations/acb0d36de4161c23aced9d0eb45f4edd14958817abd019ab2fbbcf3754012621.mp3",
       "publicPath": "/pronunciation-assets/d8198efa3604d164853468608c55efa148bc56e3564d5a30232bf98b8ab43aeb.mp3",
@@ -178868,6 +180920,25 @@
       }
     },
     {
+      "text": "lavatory or restroom or toilet",
+      "objectKey": "pronunciations/89f840d746e00b21b941c4a9116b640d6b54c264929fdd4b2f68ae4d034502e1.mp3",
+      "publicPath": "/pronunciation-assets/da4be1d9cc5b935e6689167750523b36a79a3808e01f46350d788bbc12ac42aa.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7d54fdab2cfe540e4a01b4680ce6a20e7f578025c926b0445ac42bff018523ad",
+      "sizeBytes": 15980,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.968,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The engine was producing less thrust than expected.",
       "objectKey": "pronunciations/fadc78a9de5810390061ffc5f1393503ad4ac934531f7020fbf99b21428e4cc5.mp3",
       "publicPath": "/pronunciation-assets/da545eedebff5c824d3b43178f1ce493c1d8a213d5b8ce92de086a0862065597.mp3",
@@ -179238,6 +181309,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.696,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "adverse. unfavorable",
+      "objectKey": "pronunciations/4769bd67fe1742302305ab258d0b23ec1e26848721becbc37816c5d95866259f.mp3",
+      "publicPath": "/pronunciation-assets/dad5e66dd72e6d658093cba09b55300f64597300d336ade0e3e2d546d786e2b0.mp3",
+      "bankId": "vocabulary",
+      "checksum": "2c928e5ee68eb7722365c77288b419bf3f04971b8beb913968bf43141fdca951",
+      "sizeBytes": 10796,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.32,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -180568,6 +182658,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.744,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "breaking up or cut in and out",
+      "objectKey": "pronunciations/9f53e6e665138cc7185a9428c4a946733b4820d46e10a864843215ce86468db3.mp3",
+      "publicPath": "/pronunciation-assets/dc483b8726add87483f9bb060459bf4973b1a30615c947306969275dbb06e171.mp3",
+      "bankId": "vocabulary",
+      "checksum": "07e4132a3078ec3c66969670b308ba6f6ef472e416a40b361fca9a5b3eecfab9",
+      "sizeBytes": 12716,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.56,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -182981,6 +185090,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.672,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "deicing or de-icing",
+      "objectKey": "pronunciations/a6da1ff0216547bf3ca53fd13d2eba529ffd8cb3d6ec8f4d947e3e08fc710263.mp3",
+      "publicPath": "/pronunciation-assets/df679369d3cdfe4c31fc5c437a6dc92eb64ec9beaa92042fba8a1e6c01c51c66.mp3",
+      "bankId": "vocabulary",
+      "checksum": "93c15830a046296d86540740d86f8ee7d3419b3d8281662f9c05ef4f8270b842",
+      "sizeBytes": 10796,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.32,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -188406,6 +190534,25 @@
       }
     },
     {
+      "text": "glide path or glidepath",
+      "objectKey": "pronunciations/b915493b1cb350f2faf9a7201533ea5cceb0764a2816d4a2b3988d0fae061b7f.mp3",
+      "publicPath": "/pronunciation-assets/e580ba4a75562d14a53d9f38b73b2a948ac972fffe69620a787d0aeb0beb67c5.mp3",
+      "bankId": "vocabulary",
+      "checksum": "25ec6afe2eb601360a781b377780414cc02838f095dbd7d2809a1fd40d915592",
+      "sizeBytes": 12908,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.584,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "The holdover time expired before the aircraft reached the runway.",
       "objectKey": "pronunciations/a4f63afc6940cca7cb66501d4efac74766e2fcc3085ed16e440f0bdd23f16fb6.mp3",
       "publicPath": "/pronunciation-assets/e5868c43c86c5544cc54be82d5413dea10eb302ce70ba6fde0af90e514d34f57.mp3",
@@ -189793,6 +191940,25 @@
       }
     },
     {
+      "text": "deicing. de-icing",
+      "objectKey": "pronunciations/62e5e0024db293d16372f73508f0e051b4626d8038c91a66e3e0a9c61c36bc84.mp3",
+      "publicPath": "/pronunciation-assets/e717015dc0757de65789b15746219351def10c51471307151fb4ae06f46e73e0.mp3",
+      "bankId": "vocabulary",
+      "checksum": "4d468ee4a52b9d121182bb508c1aa6cc048e83a0b75b1dae1905fb2d390857db",
+      "sizeBytes": 9836,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.2,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "asphyxia",
       "objectKey": "pronunciations/5783011ed777a84485ae1ec11c2841fa11c92e6eca1605c35faac78daac327fe.mp3",
       "publicPath": "/pronunciation-assets/e72f713f29ec9b6ca6578aa3421729e6264485cf41cfffbca14bcb23b4134e67.mp3",
@@ -190201,6 +192367,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 2.688,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "buildup or build-up",
+      "objectKey": "pronunciations/908846484b139b97141074247afc5f26ab34ea75daa5ab3bb70185ace8d9ae29.mp3",
+      "publicPath": "/pronunciation-assets/e78d208c931b401e810c77eb395df2217a480c8f5f29728087df66784b22bad9.mp3",
+      "bankId": "vocabulary",
+      "checksum": "64d37c10c9c9a4c0bb87270a9ec94407a3307f699f4f995e5a01944e81b06a05",
+      "sizeBytes": 9260,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.128,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -194353,6 +196538,25 @@
       }
     },
     {
+      "text": "The certificate will expire next month.",
+      "objectKey": "pronunciations/b646b2047d1e16d95544e15dafcc658a04da27499996e5dd9582e1b3649e51ee.mp3",
+      "publicPath": "/pronunciation-assets/ec64642dc8ab9b3c30496867b1b388fe22f79006caf44de271d604b6d0493694.mp3",
+      "bankId": "vocabulary",
+      "checksum": "a0517074689f77fe6d1b93c4894ce6bbf66cfb2c3c8a1593577198c4fe297c1f",
+      "sizeBytes": 19436,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.4,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "valid",
       "objectKey": "pronunciations/078122172fe4d99f74ec53b604d854a338b38cf8df4a662b59628ae8ae80f143.mp3",
       "publicPath": "/pronunciation-assets/ec654fac9599f62e79e2706abef23dfb7c07c08185aa86db4d8695f0b718d1b3.mp3",
@@ -194571,6 +196775,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.888,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "booster",
+      "objectKey": "pronunciations/d972244146dd7fca8f4e654a54aa09f81f70d881a8ce9c51e8119dfc41f0b94b.mp3",
+      "publicPath": "/pronunciation-assets/ec8ce1a8be0e259a75805a0a6397489d6413413e2c322bacbf3e3a2b874fd5de.mp3",
+      "bankId": "vocabulary",
+      "checksum": "cb01545964701265abfec77945927785e377bc407f3254510fec95db3ffed2a9",
+      "sizeBytes": 4460,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.528,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -195037,6 +197260,25 @@
       }
     },
     {
+      "text": "rapid decompression. rapid depressurization. quick depressurization",
+      "objectKey": "pronunciations/19c785551e8e79fe87db7d11c8e8121738e432fb1dd1abf3bd3440029a3de217.mp3",
+      "publicPath": "/pronunciation-assets/ed24c3932fc45376d948c76fddcb4d3eabc3285578277c0cbc82c5038676db6c.mp3",
+      "bankId": "vocabulary",
+      "checksum": "5609f1da4ef0336163418bf545b029f6f89a1447ff452e916019a5844bc90680",
+      "sizeBytes": 32108,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.984,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "figured",
       "objectKey": "pronunciations/a6b5ce317a23e855f33e7946fa88f14a7a539ec00f72d9abc8c94854c826eca4.mp3",
       "publicPath": "/pronunciation-assets/ed38a0a8583b3443330f58500c29685f56cd0b1537f23e595c5147b8f841df81.mp3",
@@ -195398,6 +197640,25 @@
       }
     },
     {
+      "text": "Runway maintenance is in progress.",
+      "objectKey": "pronunciations/e747a35161d6830ba1955d6d61f561c87ba7812293145ba9fa61fcf7dbff3c6d.mp3",
+      "publicPath": "/pronunciation-assets/edadf44bf1ff065f816f0eb8543196849a39aef79a5ef7c4b2ef949b257a21c0.mp3",
+      "bankId": "vocabulary",
+      "checksum": "24e8876ca35f291af42f3ed0c008d4bcbbe28e8ff1dcaa875273ba2fb52dd077",
+      "sizeBytes": 16556,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.04,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "gupad",
       "objectKey": "pronunciations/4a7773df4d61119d94402dc9a676bcfb0feed7c3f4fd3c9677a6fa6fa4c19fb8.mp3",
       "publicPath": "/pronunciation-assets/edb05ad78123397c1abe4080454f9796ad036ff9ddfde421e473de08c3cd1342.mp3",
@@ -195597,6 +197858,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.696,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "turbulent. bumpy",
+      "objectKey": "pronunciations/117dab84ca881034f757f7ffaf4a1d17e043abfd4096e85a5f94dd12467371f2.mp3",
+      "publicPath": "/pronunciation-assets/edd55ef4bd60dbefe78e5b9882dbe33a7d787b9d2fd6c775e8bff7d387ce2bec.mp3",
+      "bankId": "vocabulary",
+      "checksum": "0e1f6f5fff5458fc30bf3c53b1b384b4d16d02087d423b9cc063a0f19ad18789",
+      "sizeBytes": 9068,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.104,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -196994,6 +199274,25 @@
       }
     },
     {
+      "text": "come down",
+      "objectKey": "pronunciations/19f1f40ea055612cb3460e0a6ed73c6d27b5fbb9749090c7c527a3faf60c4642.mp3",
+      "publicPath": "/pronunciation-assets/efb5353e773f5f6028c3735897d1b1b34463c0eeaf2511174054913f6b55a5ad.mp3",
+      "bankId": "vocabulary",
+      "checksum": "a23e2030860f118ec5894d2323ee45b4e06587ac3c6f67ee1fb051a0feb41829",
+      "sizeBytes": 5804,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.696,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "ted",
       "objectKey": "pronunciations/9d2b5b7ca0e48e3548cc0ee09622a11cec42e2ea26aa3655db4f24a29aca3268.mp3",
       "publicPath": "/pronunciation-assets/efb5a5ad7522096cd339dd8290cd39d346b8afcd0bee8b3f73d086e791dc907d.mp3",
@@ -197611,6 +199910,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 3.048,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "outbreak",
+      "objectKey": "pronunciations/70e3ca97ddbd8b96bf5f56ad6d3ce2aec7ac33611a812c65d9813510c9006f0d.mp3",
+      "publicPath": "/pronunciation-assets/f07b1ea81964e88ad493f5470e40817b166ce77f17bc9def09f06b92ae88b1c8.mp3",
+      "bankId": "vocabulary",
+      "checksum": "43e5fb47af36683293f10f0ec6f8bcff008fdd6d7ccfa03c61ff452abe9784fb",
+      "sizeBytes": 5804,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.696,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -199416,6 +201734,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.912,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "microphone or mic",
+      "objectKey": "pronunciations/374c0eb0e80ebfe0719a6b3c20d8be554142963ee88ec3be4667fd1f6fcc432a.mp3",
+      "publicPath": "/pronunciation-assets/f311f6bb105951d92e15f84da333ed7c36b4a4cfa85a3aeab1b9e7f2bf3bb7bf.mp3",
+      "bankId": "vocabulary",
+      "checksum": "10e6f1c14bdadd294078c9f46967d7a182435cf040859b52d1c77511099fc897",
+      "sizeBytes": 10028,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 1.224,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -203416,6 +205753,25 @@
       }
     },
     {
+      "text": "medical personnel or medical staff",
+      "objectKey": "pronunciations/6ecd195bdedb92691d7f0dde81660778b1065268b13a6a593165afa7d80ba965.mp3",
+      "publicPath": "/pronunciation-assets/f8294411dc1576bf8a1246655e14421f13fe9c85df7b5d519a12b4d85f0e70f2.mp3",
+      "bankId": "vocabulary",
+      "checksum": "7f6fb331dc9e369ecc171d1105800ff5a6cc7f083197e1ad945c24bb0811aae8",
+      "sizeBytes": 16940,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 2.088,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
       "text": "declared",
       "objectKey": "pronunciations/349c4f3e75cd9f3962668bee3ffee141ef05a534178c20ba740b031c2c232d66.mp3",
       "publicPath": "/pronunciation-assets/f833228cb8681bbf3e38af9de7a212dfc542b3e3ba1312ec8a45bb2b67605dc7.mp3",
@@ -205401,6 +207757,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.648,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "The controller said, \"Caution, vehicles near the taxiway.\".",
+      "objectKey": "pronunciations/6feb1ffc1760149dc84e7482d3aa91afecce673cde15d8720da0c58421c38ce0.mp3",
+      "publicPath": "/pronunciation-assets/fa4fa485bd1f0e5b25e8bd05c79c5bf2530d111619faab863dbe716707057e63.mp3",
+      "bankId": "vocabulary",
+      "checksum": "840f54cdc943546bf9d177ea2cdc17439eeeb1a372f9b9f3875e91c1bffa8710",
+      "sizeBytes": 29804,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 3.696,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",
@@ -208612,6 +210987,25 @@
       "mimeType": "audio/mpeg",
       "status": "ready",
       "durationSeconds": 0.816,
+      "recipe": {
+        "provider": "macOS-say",
+        "voice": "Samantha",
+        "rate": 165,
+        "sampleRate": 24000,
+        "bitrate": "64k",
+        "macOS": "15.7.4"
+      }
+    },
+    {
+      "text": "no longer",
+      "objectKey": "pronunciations/8b60f56678e01e086a604e4c830c5ee750f2c80370f388563226f43f7919e46e.mp3",
+      "publicPath": "/pronunciation-assets/fd9305af828d9dec9922c6e0078b979717e557505e1b0e0d610c5d132046d5a7.mp3",
+      "bankId": "vocabulary",
+      "checksum": "c3cf52926aa5cdcd29337eceecd08ec208293f46067d85a2e3be73d60eacc8ee",
+      "sizeBytes": 6188,
+      "mimeType": "audio/mpeg",
+      "status": "ready",
+      "durationSeconds": 0.744,
       "recipe": {
         "provider": "macOS-say",
         "voice": "Samantha",

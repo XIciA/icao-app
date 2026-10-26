@@ -1,4 +1,4 @@
-import { orderVocabularySession } from './study-order';
+import { prepareVocabularySession } from './study-session';
 import { useStudyOrder } from './use-study-order';
 import { BookOpen, TriangleAlert } from '@/components/ui/icons';
 import { useCallback, useMemo, useState } from 'react';
@@ -57,16 +57,19 @@ export function VocabularyScreen() {
 
   const activeBook = useMemo(() => books.find((book) => book.id === activeBookId) ?? books[0], [activeBookId, books]);
   const startStudy = useCallback((words: VocabularyWord[], from: ReturnView) => {
-    const ordered = orderVocabularySession(words, progress.state, order);
+    const prepared = prepareVocabularySession(words, progress.state, order, undefined);
+    const ordered = prepared.queue;
     if (!ordered.length) return;
+void progress.saveStudySession(prepared.session).then(() => {
     setStudyWords(ordered);
-    setStudyIndex(0);
-    setRevealed(false);
-    setSessionStatuses({});
+    setStudyIndex(prepared.index);
+    setRevealed(prepared.revealed);
+    setSessionStatuses(prepared.statuses);
     setSessionSummary(emptySummary);
     setReturnView(from);
     setView('study');
-  }, [progress.state, order]);
+    });
+  }, [progress, order]);
 
   if (!loadResult || !progress.ready) {
     return (
@@ -96,6 +99,7 @@ export function VocabularyScreen() {
       return progress.setStatus(currentWord.id, status);
     };
     const next = () => {
+void progress.saveStudySession({wordIds:studyWords.map(word=>word.id),order,startedAt:progress.state.studySession?.startedAt ?? new Date().toISOString(),updatedAt:new Date().toISOString(),nextWordId:studyWords[studyIndex+1]?.id ?? null}).then(() => {
       if (studyIndex < studyWords.length - 1) {
         setStudyIndex((value) => value + 1);
         setRevealed(false);
@@ -104,6 +108,7 @@ export function VocabularyScreen() {
       const summary = Object.values(sessionStatuses).reduce((result, status) => ({ ...result, [status]: result[status] + 1 }), { ...emptySummary });
       setSessionSummary(summary);
       setView('complete');
+      });
     };
     return <VocabularyStudyView index={studyIndex} onChoose={(status) => { setRevealed(true); return recordStatus(status); }} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => progress.toggleFavorite(currentWord)} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }

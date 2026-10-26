@@ -1,4 +1,4 @@
-import { migrateVocabularyDocument } from '@icao/contracts';
+import { migrateCurrentVocabulary, subscribeVocabularyCatalog } from './live-catalog';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { assertLearningWriteContext, captureLearningWriteContext, mutateVocabularyInCurrentWorkspace } from '@/features/sync/learning-sync.native';
@@ -18,6 +18,7 @@ import type {
   VocabularyBook,
   VocabularyBookStats,
   VocabularyState,
+  VocabularyStudySession,
   VocabularyTestResult,
   VocabularyWordProgress,
   VocabularyWordStatus,
@@ -31,7 +32,7 @@ async function mutateVocabularyState(updater: (state: VocabularyState) => Vocabu
   let result = createEmptyVocabularyState();
   const next = mutationQueue.catch(() => undefined).then(() => mutateVocabularyInCurrentWorkspace(context, async () => {
     const original = await readVocabularyState({ migrate: false });
-    const current = migrateVocabularyDocument(original);
+    const current = migrateCurrentVocabulary(original);
     const updated = updater(current);
     if (updated === current && current === original) {
       result = current;
@@ -71,6 +72,8 @@ export function useVocabularyState() {
   const [attempt, setAttempt] = useState(0);
   const retry = useCallback(() => setAttempt(n => n + 1), []);
 
+  useEffect(() => subscribeVocabularyCatalog(() => { void mutateVocabularyState(current => current).catch(() => undefined); }), []);
+
   useEffect(() => {
     let active = true;
     setError(false);
@@ -93,7 +96,7 @@ export async function setWordFavorite(reference: WordFavoriteReference, favorite
     if (!key) return current;
     const words = {
       ...current.words,
-      [key]: { status: 'new' as const, favorite, updatedAt },
+      [key]: { ...progressFor(key, current), favorite, updatedAt },
     };
     if (reference.wordId) {
       words[reference.wordId] = {
@@ -115,7 +118,7 @@ export async function toggleWordFavorite(reference: WordFavoriteReference) {
     if (!key) return current;
     const words = {
       ...current.words,
-      [key]: { status: 'new' as const, favorite, updatedAt },
+      [key]: { ...progressFor(key, current), favorite, updatedAt },
     };
     if (reference.wordId) {
       words[reference.wordId] = {
@@ -137,12 +140,12 @@ export async function migrateLegacyVocabularyFavorites(books: VocabularyBook[]) 
       for (const word of book.words) {
         const legacy = current.words[word.id];
         const key = favoriteKeyForWord(word.word);
-        if (!legacy || !key) continue;
+        if (!legacy || !key || key === word.id) continue;
         const canonical = words[key];
         if (!legacy.favorite && !canonical) continue;
         if (canonical && Date.parse(canonical.updatedAt) >= Date.parse(legacy.updatedAt)) continue;
         if (!changed) words = { ...current.words };
-        words[key] = { status: 'new', favorite: legacy.favorite, updatedAt: legacy.updatedAt };
+        words[key] = { ...progressFor(key, current), favorite: legacy.favorite, updatedAt: legacy.updatedAt };
         changed = true;
       }
     }
@@ -180,7 +183,7 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     return mutateVocabularyState((current) => {
       const words = { ...current.words };
       for (const word of book.words) words[word.id] = { ...progressFor(word.id, current), status: 'new', updatedAt };
-      return { ...current, words, updatedAt };
+      return { ...current, words, updatedAt, ...(current.studySession ? {studySession:{...current.studySession,nextWordId:null,updatedAt}} : {}) };
     });
   }, []);
 
@@ -190,9 +193,11 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     updatedAt: lastTest.completedAt,
   })), []);
 
+  const saveStudySession = useCallback(async (studySession:VocabularyStudySession) => mutateVocabularyState(current=>({...current,studySession,updatedAt:studySession.updatedAt})), []);
+
   const statsByBook = useMemo(() => Object.fromEntries(books.map((book) => [book.id, statsForBook(book, state)])), [books, state]);
 
-  return { ready, state, error, retry, statsByBook, setStatus, toggleFavorite, resetBook, saveTestResult };
+  return { ready, state, error, retry, statsByBook, setStatus, toggleFavorite, resetBook, saveTestResult, saveStudySession };
 }
 
 export function resetVocabularyMutationQueueForTests() {

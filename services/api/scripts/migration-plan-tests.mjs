@@ -66,7 +66,7 @@ const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.equal(migrations.length, 56);
+  assert.equal(migrations.length, 57);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -91,7 +91,7 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.deepEqual(migrations.slice(42).map(migration => migration.tag), [
     '0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods',
     '0045_ai_operation_privacy', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0050_wechat_day_pass',
-    '0051_ops_reason_three_characters', '0052_content_work_orders', '0053_polite_peter_parker', '0054_bouncy_xavin', '0055_feedback_submission_sources',
+    '0051_ops_reason_three_characters', '0052_content_work_orders', '0053_polite_peter_parker', '0054_bouncy_xavin', '0055_feedback_submission_sources', '0056_vocabulary_live_releases',
   ]);
   assert.match(migrations.at(-1)?.hash ?? '', /^[a-f0-9]{64}$/);
 });
@@ -113,13 +113,13 @@ test('cumulative migrations revoke every client table grant without changing ser
   const migrationSql = (await Promise.all([
     readFile(clientTableGrantRevocationMigrationPath, 'utf8'),
     readFile(authTableGrantRevocationMigrationPath, 'utf8'),
-    ...['0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0052_content_work_orders', '0054_bouncy_xavin'].map(tag => readFile(join(migrationsFolder, `${tag}.sql`), 'utf8')),
+    ...['0042_weekly_ai_allowance', '0043_app_content_releases', '0044_account_login_methods', '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0052_content_work_orders', '0054_bouncy_xavin', '0056_vocabulary_live_releases'].map(tag => readFile(join(migrationsFolder, `${tag}.sql`), 'utf8')),
   ])).join('\n');
   const revokedTables = [...new Set([...migrationSql.matchAll(
     /^REVOKE ALL(?: PRIVILEGES)? ON (?:TABLE )?([^;]+?) FROM anon, authenticated;/gmu,
   )].flatMap((match) => match[1].split(',').map(table => table.trim().replace(/^"?public"?\./u, '').replaceAll('"', ''))))].sort();
 
-  assert.equal(SERVER_ONLY_PUBLIC_TABLES.length, 67);
+  assert.equal(SERVER_ONLY_PUBLIC_TABLES.length, 68);
   assert.equal(revokedTables.length, SERVER_ONLY_PUBLIC_TABLES.length);
   assert.deepEqual(revokedTables, SERVER_ONLY_PUBLIC_TABLES);
   assert.match(
@@ -319,7 +319,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0044_account_login_methods',
       '0045_ai_operation_privacy',
       '0046_wechat_payment_attempts', '0047_local_admin_statistics', '0048_ai_trial_eligibility_reason', '0049_admin_global_allowances', '0050_wechat_day_pass',
-    '0051_ops_reason_three_characters', '0052_content_work_orders', '0053_polite_peter_parker', '0054_bouncy_xavin', '0055_feedback_submission_sources',
+    '0051_ops_reason_three_characters', '0052_content_work_orders', '0053_polite_peter_parker', '0054_bouncy_xavin', '0055_feedback_submission_sources', '0056_vocabulary_live_releases',
     ],
   );
   assert.ok(

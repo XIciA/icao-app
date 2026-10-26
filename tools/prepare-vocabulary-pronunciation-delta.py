@@ -13,6 +13,8 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--base-ref',default='origin/main')
     parser.add_argument('--output-root',required=True)
+    parser.add_argument('--catalog', default='content/vocabulary/three-books/dataset.json')
+    parser.add_argument('--source', default='content/vocabulary/three-books/source.json')
     args=parser.parse_args()
     destination=pathlib.Path(args.output_root).resolve()
     baseline=json.loads(subprocess.check_output(['git','show',args.base_ref+':content/pronunciations/manifest.json'],cwd=ROOT,text=True))
@@ -33,7 +35,7 @@ def main():
         if not target.exists() or digest(target.read_bytes())!=row['checksum']:
             temp=target.with_suffix('.tmp');shutil.copyfile(source,temp);temp.replace(target)
         assert target.stat().st_size==row['sizeBytes'] and digest(target.read_bytes())==row['checksum'],'copied_audio_invalid'
-    metadata={'schemaVersion':1,'baseRef':args.base_ref,'baseCommit':subprocess.check_output(['git','rev-parse',args.base_ref],cwd=ROOT,text=True).strip(),'preservedFiles':len(old),'newFiles':len(new),'newBytes':sum(r['sizeBytes'] for r in new),'manifestChecksum':digest((ROOT/'content/pronunciations/manifest.json').read_bytes()),'catalogChecksum':digest((ROOT/'content/vocabulary/three-books/dataset.json').read_bytes()),'sourceChecksum':digest((ROOT/'content/vocabulary/three-books/source.json').read_bytes())}
+    metadata={'schemaVersion':1,'baseRef':args.base_ref,'baseCommit':subprocess.check_output(['git','rev-parse',args.base_ref],cwd=ROOT,text=True).strip(),'preservedFiles':len(old),'newFiles':len(new),'newBytes':sum(r['sizeBytes'] for r in new),'manifestChecksum':digest((ROOT/'content/pronunciations/manifest.json').read_bytes()),'catalogChecksum':digest((ROOT/args.catalog).read_bytes()),'sourceChecksum':digest((ROOT/args.source).read_bytes())}
     for name,value in [('manifest.delta.json',{'schemaVersion':1,'files':new}),('receipt.json',metadata)]:
         target=destination/name;temp=target.with_suffix('.tmp')
         temp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n');temp.replace(target)

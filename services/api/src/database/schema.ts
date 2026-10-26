@@ -1345,3 +1345,17 @@ export const contentWorkOrders = pgTable('content_work_orders', {
   check('content_work_orders_status', sql`${table.status} IN ('pending','processing','ready','published')`),
   check('content_work_orders_revision', sql`${table.revision} > 0`),
 ]).enableRLS();
+
+// One immutable snapshot includes both vocabulary text and its cumulative migration policy.
+export const vocabularyReleases = pgTable('vocabulary_releases', {
+  version: integer('version').primaryKey(),
+  checksum: text('checksum').notNull(),
+  payload: jsonb('payload').notNull(),
+  active: boolean('active').default(false).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, table => [
+  uniqueIndex('vocabulary_releases_one_active').on(table.active).where(sql`${table.active} = true`),
+  uniqueIndex('vocabulary_releases_checksum').on(table.checksum),
+  check('vocabulary_releases_version_positive', sql`${table.version} > 0`),
+  check('vocabulary_releases_checksum_sha256', sql`${table.checksum} ~ '^[a-f0-9]{64}$'`),
+]).enableRLS();
