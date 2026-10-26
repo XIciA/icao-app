@@ -51,8 +51,19 @@
     "existingChecksumDifferences": []
   },
   "validation": {
-    "status": "integrated-check-running",
-    "note": "Original check evidence applies to PR278 d37da262; combined 274/275/277/278 requires new check."
+    "sourceCommit": "fa17a786b1ed8cfe35d99ae35df70838ddbaa163",
+    "fullCommand": "pnpm check (full media root configured)",
+    "fullPassed": true,
+    "frontendSuites": 257,
+    "frontendTests": 1768,
+    "apiSuites": 74,
+    "apiTests": 726,
+    "opsBuild": true,
+    "opsApiBuild": true,
+    "opsUiTests": 5,
+    "isolatedVocabularyDatabaseTests": 5,
+    "liveStudySessionAndHookTests": 16,
+    "liveContractAndContentTests": 13
   },
   "productionWrites": false,
   "requiresUnifiedIntegrationAndAuthorization": true,
