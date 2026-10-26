@@ -38,6 +38,8 @@ export type RadioCatalog = {
 
 export type RadioPlayerContextValue = {
   catalogs: RadioCatalog[];
+  queueFilter?: import('./queue-filter').RadioQueueFilter;
+  setQueueFilter?: (filter: import('./queue-filter').RadioQueueFilter) => void;
   currentCatalog?: RadioCatalog;
   currentTrack?: RadioTrack;
   currentIndex: number;

@@ -1,3 +1,4 @@
+import { useRadioQueueFilter } from './use-radio-queue-filter';
 import { useAppRouter } from '@/components/navigation/useAppRouter';
 import { canPlayRadioTrack, hasRadioMembership, visibleRadioCatalogs } from './access';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
@@ -66,7 +67,9 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   // Fail closed during render; an effect alone would expose the old owner's
   // protected transcript for one frame while a new account is loading/offline.
   const memberAccess = hasRadioMembership();
-  const catalogs = useMemo(() => visibleRadioCatalogs(loadedCatalogs.owner === contentOwner ? loadedCatalogs.catalogs : embeddedCatalogs, memberAccess), [loadedCatalogs, contentOwner, embeddedCatalogs, memberAccess]);
+  const sourceCatalogs = useMemo(() => visibleRadioCatalogs(loadedCatalogs.owner === contentOwner ? loadedCatalogs.catalogs : embeddedCatalogs, memberAccess), [loadedCatalogs, contentOwner, embeddedCatalogs, memberAccess]);
+  const queueFilter = useRadioQueueFilter(sourceCatalogs, contentOwner);
+  const catalogs = queueFilter.catalogs;
   const [bankId, setBankId] = useState<RadioBankId>(embeddedCatalogs[0]?.bankId ?? 'listening');
   const [trackId, setTrackId] = useState(embeddedCatalogs[0]?.tracks[0]?.id ?? '');
   const [bankTrackIds, setBankTrackIds] = useState<Partial<Record<RadioBankId, string>>>({});
@@ -443,8 +446,25 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
     setSourceState({ loading: false });
   }, [clearIntervalTimer, player, releaseLease]);
 
+  const previousFilterSignature = useRef(queueFilter.signature);
+  useLayoutEffect(() => {
+    if (previousFilterSignature.current === queueFilter.signature) return;
+    previousFilterSignature.current = queueFilter.signature;
+    const catalog = catalogs.find(item => item.bankId === bankId);
+    const retained = catalog?.tracks.find(item => item.id === trackId);
+    const first = retained ?? catalog?.tracks[0];
+    setShuffle({ history: first ? [first.id] : [], cursor: first ? 0 : -1 });
+    if (!retained) {
+      pause();
+      if (first) chooseTrack(first.id, false);
+      else { stopAndClear(); setTrackId(''); setSessionVisible(true); }
+    }
+  }, [queueFilter.signature, catalogs, bankId, trackId, chooseTrack, pause, stopAndClear]);
+
   const value = useMemo<RadioPlayerContextValue>(() => ({
-    catalogs,
+    catalogs: sourceCatalogs,
+    queueFilter: queueFilter.filter,
+    setQueueFilter: queueFilter.setFilter,
     currentCatalog,
     currentTrack,
     currentIndex,
@@ -503,7 +523,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
       if (currentTrack) void prepareTrack(currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,
-  }), [bankTrackIds, buffering, catalogError, catalogLoading, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
+  }), [sourceCatalogs, queueFilter.filter, queueFilter.setFilter, bankTrackIds, buffering, catalogError, catalogLoading, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
 
   return <RadioContext.Provider value={value}>{children}</RadioContext.Provider>;
 }
