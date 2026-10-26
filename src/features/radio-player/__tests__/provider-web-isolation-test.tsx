@@ -17,6 +17,8 @@ const mockPlayer = {
   get currentStatus() { return mockCurrentStatus; },
   get isLoaded() { return mockCurrentStatus.isLoaded; },
 };
+const mockAnnotations = { version: 2, legacyImported: true, tagDefinitions: [{ id: 'good', label: '好题', color: 'green' }], highlightDefinitions: [], entries: { public: { bankId: 'listening', categoryId: 'c', topicId: 'topic', cardId: 'public', tagIds: ['good'], highlights: [], note: '', updatedAt: '' } } };
+jest.mock('@/features/question-bank/annotations/use-question-annotations', () => ({ useQuestionAnnotations: () => ({ store: mockAnnotations }) }));
 jest.mock('@/platform/audio/browser-audio-player', () => ({ useBrowserAudioPlayer: () => mockPlayer }));
 jest.mock('@/features/auth/AuthProvider', () => ({ useAuth: () => mockAuth }));
 jest.mock('@/config/web-runtime', () => ({ isEdgeOneProductionWeb: () => true }));
@@ -141,5 +143,19 @@ it('does not restart directory loading when a heartbeat refresh leaves content a
   await act(() => { publishCommerceEntitlementChange({ ...event, snapshot: { ...snapshot, serverTime: '2026-10-25T00:00:01Z' } }); });
   await flush();
   expect(mockLoad).toHaveBeenCalledTimes(calls);
+  await view.unmount();
+});
+
+it('filters the browser queue and clears empty results without autoplay', async () => {
+  const view = await render(tree()); await flush();
+  await act(() => mockValue.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: true })); await flush();
+  expect(mockValue.currentTrack).toBeUndefined();
+  expect(mockPlayer.pause).toHaveBeenCalled();
+  expect(mockPlayer.replace).toHaveBeenCalledWith(null);
+  await act(() => mockValue.next()); await flush();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  await act(() => mockValue.setQueueFilter!({ tags: false, tagIds: [], highlights: false, highlightIds: [], notes: false })); await flush();
+  expect(mockValue.currentTrack).toBeDefined();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
   await view.unmount();
 });
