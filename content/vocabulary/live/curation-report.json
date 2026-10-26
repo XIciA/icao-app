@@ -1,0 +1,3180 @@
+{
+  "words": 1659,
+  "books": {
+    "icao4": 811,
+    "preview": 390,
+    "icao5": 458
+  },
+  "decisions": [
+    {
+      "id": "icao4-0002",
+      "word": "a bolt of",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0005",
+      "word": "AC generator",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "qbcore-9473b161cae4",
+      "word": "adverse weather",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0025",
+      "word": "aircraft proximity",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0028",
+      "word": "airport surveillance radar",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0043",
+      "word": "anti-icing system inoperative",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0060",
+      "word": "automation system failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0061",
+      "word": "autopilot control",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0075",
+      "word": "battery bus",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0093",
+      "word": "blow pipe",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0107",
+      "word": "brake hydraulic system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0108",
+      "word": "brakes are unreliable",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0129",
+      "word": "CAT II ILS procedure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0136",
+      "word": "centralized warning system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0141",
+      "word": "chop the engines",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-83f73c3f84c123a9",
+      "word": "climbout",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-690cb7a61f81b806",
+      "word": "control stand",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0166",
+      "word": "control system inoperative",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-f513df9dfa526e13",
+      "word": "CVR",
+      "action": "resolve-unselected",
+      "bookId": "preview"
+    },
+    {
+      "id": "icao4-0190",
+      "word": "DC generator",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-9857608c597a465f",
+      "word": "decrease thrust",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0222",
+      "word": "dispersing traffic",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0243",
+      "word": "electric failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "qbcore-05761b5dec27",
+      "word": "electrical failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0248",
+      "word": "elevator control",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "qbcore-96a3ec4e03d7",
+      "word": "emergency procedures",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0263",
+      "word": "engine bleed air system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0271",
+      "word": "engine is low on power",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0274",
+      "word": "engine overheating",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-2e43189324c210f5",
+      "word": "engine runs roughly",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0278",
+      "word": "engine shut down",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0285",
+      "word": "environmental control system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0256",
+      "word": "evacuation slide",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0296",
+      "word": "expired passport",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0307",
+      "word": "fake passport",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0341",
+      "word": "flapless landing",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0345",
+      "word": "flight data interface unit",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0357",
+      "word": "fog dispersal in progress",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0358",
+      "word": "fog is clearing up",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0390",
+      "word": "fuselage",
+      "action": "resolve-unselected",
+      "bookId": "preview"
+    },
+    {
+      "id": "v3-d4de4dc703be3b55",
+      "word": "gear appears down",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "v3-7aeaec4eb81d0e2b",
+      "word": "gear appears up",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0454",
+      "word": "hydraulic pump failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0456",
+      "word": "hydraulic tank",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-5f327ec20bb175a1",
+      "word": "increase thrust",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0502",
+      "word": "jar the wheel down",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0531",
+      "word": "low fuel pressure warning light",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0538",
+      "word": "main switch",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0559",
+      "word": "met department",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0567",
+      "word": "minor bruise",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0583",
+      "word": "navigation equipment failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0272",
+      "word": "number one engine failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0597",
+      "word": "on top",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0167",
+      "word": "operational staff",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0602",
+      "word": "opposite direction traffic",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0645",
+      "word": "port engine",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0660",
+      "word": "primary display system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0665",
+      "word": "prohibited dangerous item",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0678",
+      "word": "radar position indication",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-a142e9f1ff83f65b",
+      "word": "radar separation",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0681",
+      "word": "radar service terminated",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0684",
+      "word": "radio communication failure procedure",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "qbcore-26c66d3fadea",
+      "word": "rate of descent",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0691",
+      "word": "rear cabin",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "qbcore-573eb51169cc",
+      "word": "refuel",
+      "action": "resolve-unselected",
+      "bookId": "preview"
+    },
+    {
+      "id": "qbcore-fe41df78b212",
+      "word": "rejected takeoff",
+      "action": "resolve-unselected",
+      "bookId": "icao4"
+    },
+    {
+      "id": "icao4-0696",
+      "word": "reliability of radio aids",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0705",
+      "word": "resume position reports",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0706",
+      "word": "retract the flaps",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0793",
+      "word": "runway condition",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0722",
+      "word": "runway is slippery",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0710",
+      "word": "runway stop end",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0726",
+      "word": "same direction traffic",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0792",
+      "word": "starboard engine",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0804",
+      "word": "stuck in mud",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0813",
+      "word": "system monitoring instruments",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0815",
+      "word": "tail strike",
+      "action": "resolve-unselected",
+      "bookId": "icao4"
+    },
+    {
+      "id": "icao4-0849",
+      "word": "traffic no longer a factor",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0854",
+      "word": "transmitter failure",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0872",
+      "word": "unable to deploy flaps",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0873",
+      "word": "unable to lower flaps",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0874",
+      "word": "unable to retract flaps",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0883",
+      "word": "unsafe gear indication",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0884",
+      "word": "unserviceable equipment",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao4-0914",
+      "word": "water service truck",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao4-0933",
+      "word": "windshield iced over",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "v3-c3287bb866bab89d",
+      "word": "wiper",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0010",
+      "word": "aeronautical communication",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-9872d39c2e6faf6c",
+      "word": "air-driven booster pump",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0044",
+      "word": "anti-icing valve",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-d881718b8dc4e17e",
+      "word": "bleed air system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "qbcore-b7d64a922100",
+      "word": "configuration",
+      "action": "resolve-unselected",
+      "bookId": "icao4"
+    },
+    {
+      "id": "icao5-0177",
+      "word": "crank the gear down",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0211",
+      "word": "digital flight data recording system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0275",
+      "word": "engine partially disintegrated",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0471",
+      "word": "ILS calibration",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0529",
+      "word": "loud thump",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0555",
+      "word": "medical specialist",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "qbcore-014ecc040a2c",
+      "word": "pneumatic system",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0642",
+      "word": "police rescue team assistance",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0644",
+      "word": "pools of water",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao5-0679",
+      "word": "radar position symbol",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "icao5-0787",
+      "word": "SSR response",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "icao5-0898",
+      "word": "violent behavior",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0001",
+      "word": "a badly sick passenger",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0003",
+      "word": "a bunch of",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0074",
+      "word": "bat",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0078",
+      "word": "behavior of birds",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0080",
+      "word": "below cloud",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0103",
+      "word": "both engines out",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0122",
+      "word": "cabin altitude rising",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0164",
+      "word": "continuous rain",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0181",
+      "word": "crosswind shear",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0188",
+      "word": "damage to aircraft",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0189",
+      "word": "danger area",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0199",
+      "word": "dense smoke",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0239",
+      "word": "effects on traffic",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0276",
+      "word": "engine performance",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-af68bd65e5fd9c97",
+      "word": "engine runs smoothly",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0289",
+      "word": "establish communication",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-992f82d2345087a7",
+      "word": "extend the landing gear",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0300",
+      "word": "external part of aircraft",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0334",
+      "word": "first half of runway",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0359",
+      "word": "fog is coming down",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0376",
+      "word": "fuel flow indicators",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0384",
+      "word": "full flaps position",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0387",
+      "word": "fully loaded",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0400",
+      "word": "gear locked",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0404",
+      "word": "get struck",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0426",
+      "word": "headwind shear",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0465",
+      "word": "identification lost",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0550",
+      "word": "medical advice",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0573",
+      "word": "moderate turbulence",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0586",
+      "word": "NEGATIVE CONTACT",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-bf70cec700cdd083",
+      "word": "niner",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0598",
+      "word": "onboard camera",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0609",
+      "word": "outbreak of fire",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0646",
+      "word": "pound",
+      "action": "resolve-unselected",
+      "bookId": "preview"
+    },
+    {
+      "id": "preview-0685",
+      "word": "radio contact lost",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0702",
+      "word": "response to control",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0741",
+      "word": "service at night",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0744",
+      "word": "severe weather",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0751",
+      "word": "sick passenger",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0757",
+      "word": "sky clear",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0758",
+      "word": "sky obscured",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0763",
+      "word": "smoke in cockpit",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0766",
+      "word": "snow clearing",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0798",
+      "word": "STOP CLIMB",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "v3-7a09cd4c912049ae",
+      "word": "STOP DESCENT",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0807",
+      "word": "survival, first-aid and polar kits",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0812",
+      "word": "system jammed",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0816",
+      "word": "tailwind shear",
+      "action": "split-or-delete",
+      "reason": "human-delete"
+    },
+    {
+      "id": "preview-0828",
+      "word": "threatening behavior",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0893",
+      "word": "vertical",
+      "action": "resolve-unselected",
+      "bookId": "preview"
+    },
+    {
+      "id": "preview-0918",
+      "word": "weather station",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "preview-0920",
+      "word": "wheel door",
+      "action": "split-or-delete",
+      "reason": "dictated-example"
+    },
+    {
+      "id": "qbcore-bc9612473e80",
+      "word": "minimum safe altitude",
+      "action": "merge-requested-msa",
+      "target": "icao4-0576"
+    },
+    {
+      "id": "v4-d0b3cba71f725563",
+      "word": "bolt",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-e5e72beb4e3c6926",
+      "word": "weather",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-d10149eecff30f56",
+      "word": "aircraft",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ccc9ff052aee8da1",
+      "word": "airport",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ff2e963ff6d0c33a",
+      "word": "radar",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-a9cf514d4a610d5e",
+      "word": "anti-icing",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-bbc5e661e106c6dc",
+      "word": "system",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-16d34b5e7bcb341e",
+      "word": "failure",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-0fcd568a5cb9bdb4",
+      "word": "control",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-f3d1701e1d575e12",
+      "word": "battery",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-7cf6b0597fe4e3cb",
+      "word": "blow",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-4008294739162e8f",
+      "word": "pipe",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-2b0d221ea282a3ba",
+      "word": "hydraulic",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-0487c249731a7d90",
+      "word": "procedure",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-c5a5a7ee0518bd7a",
+      "word": "centralized",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-4bd9354bb6522334",
+      "word": "warning",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ed9f6f25068608ef",
+      "word": "engine",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-b2dc971f4895ca1f",
+      "word": "decrease",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-44b3c5003d93c5f1",
+      "word": "electric",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ed157486b875d92c",
+      "word": "electrical",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-b955e6cd0808744c",
+      "word": "emergency",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-9fe430e5274621be",
+      "word": "air",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-07d715edb696fb5f",
+      "word": "power",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-acba25512100f80b",
+      "word": "run",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-f811eb5c56eeb90a",
+      "word": "rough",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-4cb948126bc7cece",
+      "word": "environmental",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-b8a7e24e95497806",
+      "word": "slide",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-b2dae5aed5b773b6",
+      "word": "expire",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-cbc471ca60092bbe",
+      "word": "passport",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-b5d54c39e66671c9",
+      "word": "fake",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-d6709cd49ed87966",
+      "word": "landing",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-03b6b3e9163de296",
+      "word": "flight",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-3a6eb0790f39ac87",
+      "word": "data",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-c796d37c6d491e8f",
+      "word": "interface",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-385cfdbc00ec3203",
+      "word": "unit",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-b04216546057e865",
+      "word": "fog",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-b5f90a96e680140d",
+      "word": "progress",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-70ad3de50a55e77d",
+      "word": "gear",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-0b203c464bb32a27",
+      "word": "pump",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-281a37477f772e78",
+      "word": "tank",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-e20a548f23fa36bc",
+      "word": "increase",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-0163f1eea7894350",
+      "word": "jar",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-ba59926159d2aa25",
+      "word": "wheel",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-acbe4bfc77e55c07",
+      "word": "fuel",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-b667446e6eb2552f",
+      "word": "pressure",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-99a7026172d42714",
+      "word": "light",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-2ad29f65743a0524",
+      "word": "department",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-cabd786ac52d8cfc",
+      "word": "minor",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-1c09f5a7f47df2ee",
+      "word": "equipment",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-1562206543da7641",
+      "word": "staff",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-d9f62c2ad0ad79d0",
+      "word": "opposite",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-93c4abe27cf16961",
+      "word": "direction",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-986a1b7135f49861",
+      "word": "primary",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-dfbb889cf19bda82",
+      "word": "display",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-a8817071845b3943",
+      "word": "prohibit",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-7eaa968417c5dbde",
+      "word": "dangerous",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-5a452459503be70d",
+      "word": "position",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-9df6b026a8c6c26e",
+      "word": "service",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-52f788122dc18f4b",
+      "word": "terminate",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-aa3a05d9d57c08d6",
+      "word": "radio",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-d4e16994df9002e5",
+      "word": "communication",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-c549779d79e5c8e9",
+      "word": "rate",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-32b36ae43a5ea489",
+      "word": "rear",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-819bb986f4199f14",
+      "word": "reliability",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-109d79437bb9079b",
+      "word": "aid",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-845e91831319e89c",
+      "word": "report",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-596d40a4ed24c02a",
+      "word": "condition",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-971fa55cfccf2558",
+      "word": "slippery",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-6c45cb72a36e63d5",
+      "word": "stop",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-9c05ce79d0bfe037",
+      "word": "stuck",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-af07ff91ab7ce2a7",
+      "word": "mud",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-41a093100bbbb59e",
+      "word": "factor",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-913f2664aecf816a",
+      "word": "unable",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-629e3fc948fb5ca5",
+      "word": "unsafe",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-4cb0b250c6250d52",
+      "word": "ice",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-53eecc993a8a8d8e",
+      "word": "aeronautical",
+      "action": "add-split-component",
+      "bookId": "icao5"
+    },
+    {
+      "id": "v4-0288efc148fb5820",
+      "word": "air-driven",
+      "action": "add-split-component",
+      "bookId": "icao5"
+    },
+    {
+      "id": "v4-ec8ce1a8be0e259a",
+      "word": "booster",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-cda3c373f19f1c51",
+      "word": "digital",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-70ce871f8a3d3fb4",
+      "word": "record",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ace72b3572c18de8",
+      "word": "specialist",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-014ecc040a2cfd44",
+      "word": "pneumatic",
+      "action": "add-split-component",
+      "bookId": "icao5"
+    },
+    {
+      "id": "v4-1366fac71146793a",
+      "word": "police",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-824ef7874151e9c8",
+      "word": "rescue",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-27cac5503836765c",
+      "word": "pool",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-b76a7ca153c24671",
+      "word": "symbol",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-a9f4b3d22a523fda",
+      "word": "response",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-86fb8a2cd1f9cedc",
+      "word": "violent",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-08bf2418cca97fef",
+      "word": "behavior",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-3b04837881bb07b6",
+      "word": "sick",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-bf816809a4d8aa98",
+      "word": "passenger",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-7a5179eecc0fe187",
+      "word": "bird",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-8ada24bf6bf31392",
+      "word": "below",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-56681010b753e1ab",
+      "word": "cloud",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-dbfbe1cd2ee1f49a",
+      "word": "rise",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-319b44c570a417ff",
+      "word": "rain",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-7a79a693dec7b88b",
+      "word": "shear",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-6f5a5c61ccdbd8ff",
+      "word": "damage",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-123fd666aa39d376",
+      "word": "danger",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-4a91ee5f0106c2b3",
+      "word": "area",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-d6a98598212ed729",
+      "word": "dense",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-04d588cb41b8022d",
+      "word": "smoke",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-dcb576426a17b7df",
+      "word": "effect",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-4a1898716ef67796",
+      "word": "performance",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-3a19589098bc0e3a",
+      "word": "establish",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-3c4623849a49a539",
+      "word": "external",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-3b21278178ed3463",
+      "word": "flow",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-a18b869b2e81c0c5",
+      "word": "full",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-0c030586945fe504",
+      "word": "lock",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-7cd58cdd64a3dcfc",
+      "word": "strike",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-fd3dfa76050e048e",
+      "word": "identification",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-a57cf9eaf908c5ce",
+      "word": "lose",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-093e7d5fdbaacfa9",
+      "word": "contact",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-059d49674f2e2802",
+      "word": "onboard",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-f07b1ea81964e88a",
+      "word": "outbreak",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-dc9f28b12dd1818e",
+      "word": "fire",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-771ddab9b936047a",
+      "word": "obscure",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-a746222f09d85605",
+      "word": "snow",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-9b4ef3e5b7b4d175",
+      "word": "station",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-2b6b853c9e59dbf4",
+      "word": "in progress",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-41a54d177c4e14ed",
+      "word": "clear up",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-efb5353e773f5f60",
+      "word": "come down",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-fd9305af828d9dec",
+      "word": "no longer",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-c7b648944558cb19",
+      "word": "survival kit",
+      "action": "add-split-component",
+      "bookId": "icao4"
+    },
+    {
+      "id": "v4-24110ca712ae3433",
+      "word": "first-aid kit",
+      "action": "add-split-component",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-1bc0f4e2db79ea33",
+      "word": "polar survival kit",
+      "action": "add-split-component",
+      "bookId": "icao5"
+    },
+    {
+      "id": "v4-b04216546057e865",
+      "word": "fog",
+      "action": "foundational-split-component",
+      "before": "icao4",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-56681010b753e1ab",
+      "word": "cloud",
+      "action": "foundational-split-component",
+      "before": "icao4",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-ff2e963ff6d0c33a",
+      "word": "radar",
+      "action": "foundational-split-component",
+      "before": "icao4",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-bf816809a4d8aa98",
+      "word": "passenger",
+      "action": "foundational-split-component",
+      "before": "icao4",
+      "bookId": "preview"
+    },
+    {
+      "id": "v4-0288efc148fb5820",
+      "word": "air-driven",
+      "action": "merge-exact-synonym",
+      "target": "v4-014ecc040a2cfd44"
+    },
+    {
+      "id": "qbcore-acac13b5ccc0",
+      "word": "cabin altitude",
+      "action": "remove-covered-combination",
+      "components": [
+        "cabin",
+        "altitude"
+      ]
+    },
+    {
+      "id": "qbcore-302b9de5c0d5",
+      "word": "cabin pressure",
+      "action": "remove-covered-combination",
+      "components": [
+        "cabin",
+        "pressure"
+      ]
+    },
+    {
+      "id": "qbcore-7d5233383472",
+      "word": "conflicting traffic",
+      "action": "remove-covered-combination",
+      "components": [
+        "conflict",
+        "traffic"
+      ]
+    },
+    {
+      "id": "icao4-0168",
+      "word": "convective weather",
+      "action": "remove-covered-combination",
+      "components": [
+        "convective",
+        "weather"
+      ]
+    },
+    {
+      "id": "icao4-0169",
+      "word": "converging traffic",
+      "action": "remove-covered-combination",
+      "components": [
+        "converge",
+        "traffic"
+      ]
+    },
+    {
+      "id": "qbcore-08765edecbb3",
+      "word": "cruising level",
+      "action": "remove-covered-combination",
+      "components": [
+        "cruise",
+        "level"
+      ]
+    },
+    {
+      "id": "icao4-0220",
+      "word": "disembarking passenger",
+      "action": "remove-covered-combination",
+      "components": [
+        "disembark",
+        "passenger"
+      ]
+    },
+    {
+      "id": "icao4-0250",
+      "word": "emergency descent",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "descent"
+      ]
+    },
+    {
+      "id": "icao4-0251",
+      "word": "emergency equipment",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "equipment"
+      ]
+    },
+    {
+      "id": "icao4-0252",
+      "word": "emergency evacuation",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "evacuation"
+      ]
+    },
+    {
+      "id": "icao4-0254",
+      "word": "emergency extension system",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "extension",
+        "system"
+      ]
+    },
+    {
+      "id": "icao4-0255",
+      "word": "emergency fuel",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "fuel"
+      ]
+    },
+    {
+      "id": "qbcore-2ff975109714",
+      "word": "emergency landing",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "landing"
+      ]
+    },
+    {
+      "id": "qbcore-58468c3dedd0",
+      "word": "emergency services",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "service"
+      ]
+    },
+    {
+      "id": "icao4-0259",
+      "word": "emergency vehicle",
+      "action": "remove-covered-combination",
+      "components": [
+        "emergency",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "qbcore-36adc2e3af1e",
+      "word": "engine fire",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "fire"
+      ]
+    },
+    {
+      "id": "icao4-0267",
+      "word": "engine fire handle",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "fire",
+        "handle"
+      ]
+    },
+    {
+      "id": "icao4-0270",
+      "word": "engine indicator",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "indicator"
+      ]
+    },
+    {
+      "id": "icao4-0280",
+      "word": "engine malfunction",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "malfunction"
+      ]
+    },
+    {
+      "id": "icao4-0279",
+      "word": "engine surge",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "surge"
+      ]
+    },
+    {
+      "id": "icao4-0048",
+      "word": "establish visual contact",
+      "action": "remove-covered-combination",
+      "components": [
+        "establish",
+        "visual",
+        "contact"
+      ]
+    },
+    {
+      "id": "qbcore-4935662929f6",
+      "word": "fire services",
+      "action": "remove-covered-combination",
+      "components": [
+        "fire",
+        "service"
+      ]
+    },
+    {
+      "id": "qbcore-194c9970dfa3",
+      "word": "flight controls",
+      "action": "remove-covered-combination",
+      "components": [
+        "flight",
+        "control"
+      ]
+    },
+    {
+      "id": "icao4-0347",
+      "word": "flight dispatcher",
+      "action": "remove-covered-combination",
+      "components": [
+        "flight",
+        "dispatcher"
+      ]
+    },
+    {
+      "id": "qbcore-ce863df15d8b",
+      "word": "flight level",
+      "action": "remove-covered-combination",
+      "components": [
+        "flight",
+        "level"
+      ]
+    },
+    {
+      "id": "icao4-0349",
+      "word": "flight navigation control panel",
+      "action": "remove-covered-combination",
+      "components": [
+        "flight",
+        "navigation",
+        "control",
+        "panel"
+      ]
+    },
+    {
+      "id": "icao4-0350",
+      "word": "flock of birds",
+      "action": "remove-covered-combination",
+      "components": [
+        "flock",
+        "bird"
+      ]
+    },
+    {
+      "id": "icao4-0351",
+      "word": "flow control valve",
+      "action": "remove-covered-combination",
+      "components": [
+        "flow",
+        "control",
+        "valve"
+      ]
+    },
+    {
+      "id": "icao4-0369",
+      "word": "frequency interference",
+      "action": "remove-covered-combination",
+      "components": [
+        "frequency",
+        "interference"
+      ]
+    },
+    {
+      "id": "v3-57b1c76a20145fd1",
+      "word": "fuel exhaustion",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "exhaustion"
+      ]
+    },
+    {
+      "id": "icao4-0381",
+      "word": "fuel spill",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "spill"
+      ]
+    },
+    {
+      "id": "qbcore-80bc443f6ace",
+      "word": "fuel tank",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "tank"
+      ]
+    },
+    {
+      "id": "qbcore-77fea4de964d",
+      "word": "ground control",
+      "action": "remove-covered-combination",
+      "components": [
+        "ground",
+        "control"
+      ]
+    },
+    {
+      "id": "icao4-0410",
+      "word": "ground handling",
+      "action": "remove-covered-combination",
+      "components": [
+        "ground",
+        "handle"
+      ]
+    },
+    {
+      "id": "qbcore-bdaf464b350a",
+      "word": "hold position",
+      "action": "remove-covered-combination",
+      "components": [
+        "hold",
+        "position"
+      ]
+    },
+    {
+      "id": "qbcore-142dd1637242",
+      "word": "hydraulic failure",
+      "action": "remove-covered-combination",
+      "components": [
+        "hydraulic",
+        "failure"
+      ]
+    },
+    {
+      "id": "icao4-0449",
+      "word": "hydraulic fluid",
+      "action": "remove-covered-combination",
+      "components": [
+        "hydraulic",
+        "fluid"
+      ]
+    },
+    {
+      "id": "icao4-0450",
+      "word": "hydraulic leak",
+      "action": "remove-covered-combination",
+      "components": [
+        "hydraulic",
+        "leak"
+      ]
+    },
+    {
+      "id": "qbcore-d5cd9fc99fbc",
+      "word": "hydraulic system",
+      "action": "remove-covered-combination",
+      "components": [
+        "hydraulic",
+        "system"
+      ]
+    },
+    {
+      "id": "icao4-0474",
+      "word": "inbound flight",
+      "action": "remove-covered-combination",
+      "components": [
+        "inbound",
+        "flight"
+      ]
+    },
+    {
+      "id": "qbcore-2c2da20c1cb0",
+      "word": "initial climb",
+      "action": "remove-covered-combination",
+      "components": [
+        "initial",
+        "climb"
+      ]
+    },
+    {
+      "id": "v3-065f30de342fbe97",
+      "word": "landing gear collapse",
+      "action": "remove-covered-combination",
+      "components": [
+        "landing",
+        "gear",
+        "collapse"
+      ]
+    },
+    {
+      "id": "qbcore-3ea630b8c12f",
+      "word": "lightning strike",
+      "action": "remove-covered-combination",
+      "components": [
+        "lightning",
+        "strike"
+      ]
+    },
+    {
+      "id": "icao4-0527",
+      "word": "loud and clear",
+      "action": "remove-covered-combination",
+      "components": [
+        "clear"
+      ]
+    },
+    {
+      "id": "qbcore-d5fdbae3359e",
+      "word": "low approach",
+      "action": "remove-covered-combination",
+      "components": [
+        "approach"
+      ]
+    },
+    {
+      "id": "qbcore-d2632de130af",
+      "word": "low visibility",
+      "action": "remove-covered-combination",
+      "components": [
+        "visibility"
+      ]
+    },
+    {
+      "id": "v3-d4a429d13b8ccf2d",
+      "word": "main wheel",
+      "action": "remove-covered-combination",
+      "components": [
+        "wheel"
+      ]
+    },
+    {
+      "id": "icao4-0551",
+      "word": "medical assistance",
+      "action": "remove-covered-combination",
+      "components": [
+        "medical",
+        "assistance"
+      ]
+    },
+    {
+      "id": "icao4-0553",
+      "word": "medical equipment",
+      "action": "remove-covered-combination",
+      "components": [
+        "medical",
+        "equipment"
+      ]
+    },
+    {
+      "id": "icao4-0554",
+      "word": "medical service",
+      "action": "remove-covered-combination",
+      "components": [
+        "medical",
+        "service"
+      ]
+    },
+    {
+      "id": "icao4-0578",
+      "word": "multiple engines",
+      "action": "remove-covered-combination",
+      "components": [
+        "multiple",
+        "engine"
+      ]
+    },
+    {
+      "id": "icao4-0593",
+      "word": "off course",
+      "action": "remove-covered-combination",
+      "components": [
+        "course"
+      ]
+    },
+    {
+      "id": "icao4-0260",
+      "word": "out of fuel",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel"
+      ]
+    },
+    {
+      "id": "icao4-0607",
+      "word": "outboard engine",
+      "action": "remove-covered-combination",
+      "components": [
+        "outboard",
+        "engine"
+      ]
+    },
+    {
+      "id": "icao4-0608",
+      "word": "outbound flight",
+      "action": "remove-covered-combination",
+      "components": [
+        "outbound",
+        "flight"
+      ]
+    },
+    {
+      "id": "icao4-0634",
+      "word": "pitch trim",
+      "action": "remove-covered-combination",
+      "components": [
+        "pitch",
+        "trim"
+      ]
+    },
+    {
+      "id": "icao4-0656",
+      "word": "pressure control valve",
+      "action": "remove-covered-combination",
+      "components": [
+        "pressure",
+        "control",
+        "valve"
+      ]
+    },
+    {
+      "id": "icao4-0657",
+      "word": "pressure sensor",
+      "action": "remove-covered-combination",
+      "components": [
+        "pressure",
+        "sensor"
+      ]
+    },
+    {
+      "id": "icao4-0662",
+      "word": "primary surveillance radar",
+      "action": "remove-covered-combination",
+      "components": [
+        "primary",
+        "surveillance",
+        "radar"
+      ]
+    },
+    {
+      "id": "icao4-0362",
+      "word": "prohibited area",
+      "action": "remove-covered-combination",
+      "components": [
+        "prohibit",
+        "area"
+      ]
+    },
+    {
+      "id": "icao4-0677",
+      "word": "radar contact",
+      "action": "remove-covered-combination",
+      "components": [
+        "radar",
+        "contact"
+      ]
+    },
+    {
+      "id": "icao4-0682",
+      "word": "radio altimeter",
+      "action": "remove-covered-combination",
+      "components": [
+        "radio",
+        "altimeter"
+      ]
+    },
+    {
+      "id": "icao4-0688",
+      "word": "ramp vehicle",
+      "action": "remove-covered-combination",
+      "components": [
+        "ramp",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "icao4-0692",
+      "word": "receiver failure",
+      "action": "remove-covered-combination",
+      "components": [
+        "receiver",
+        "failure"
+      ]
+    },
+    {
+      "id": "icao4-0719",
+      "word": "runway excursion",
+      "action": "remove-covered-combination",
+      "components": [
+        "runway",
+        "excursion"
+      ]
+    },
+    {
+      "id": "icao4-0355",
+      "word": "runway foaming",
+      "action": "remove-covered-combination",
+      "components": [
+        "runway",
+        "foam"
+      ]
+    },
+    {
+      "id": "icao4-0720",
+      "word": "runway friction",
+      "action": "remove-covered-combination",
+      "components": [
+        "runway",
+        "friction"
+      ]
+    },
+    {
+      "id": "icao4-0721",
+      "word": "runway incursion",
+      "action": "remove-covered-combination",
+      "components": [
+        "runway",
+        "incursion"
+      ]
+    },
+    {
+      "id": "qbcore-db8892ce0e58",
+      "word": "runway threshold",
+      "action": "remove-covered-combination",
+      "components": [
+        "runway",
+        "threshold"
+      ]
+    },
+    {
+      "id": "v3-48aa9f0ee30b6c33",
+      "word": "stall warning",
+      "action": "remove-covered-combination",
+      "components": [
+        "stall",
+        "warning"
+      ]
+    },
+    {
+      "id": "qbcore-8995c11c8207",
+      "word": "stand by",
+      "action": "remove-covered-combination",
+      "components": [
+        "stand"
+      ]
+    },
+    {
+      "id": "icao4-0790",
+      "word": "standby compass",
+      "action": "remove-covered-combination",
+      "components": [
+        "standby",
+        "compass"
+      ]
+    },
+    {
+      "id": "icao4-0065",
+      "word": "standby hydraulic system",
+      "action": "remove-covered-combination",
+      "components": [
+        "standby",
+        "hydraulic",
+        "system"
+      ]
+    },
+    {
+      "id": "icao4-0791",
+      "word": "standby instrument",
+      "action": "remove-covered-combination",
+      "components": [
+        "standby",
+        "instrument"
+      ]
+    },
+    {
+      "id": "icao4-0794",
+      "word": "steering wheel",
+      "action": "remove-covered-combination",
+      "components": [
+        "steering",
+        "wheel"
+      ]
+    },
+    {
+      "id": "icao4-0803",
+      "word": "structural damage",
+      "action": "remove-covered-combination",
+      "components": [
+        "structural",
+        "damage"
+      ]
+    },
+    {
+      "id": "icao4-0830",
+      "word": "thrust reverser",
+      "action": "remove-covered-combination",
+      "components": [
+        "thrust",
+        "reverser"
+      ]
+    },
+    {
+      "id": "icao4-0092",
+      "word": "tire blowout",
+      "action": "remove-covered-combination",
+      "components": [
+        "tire",
+        "blowout"
+      ]
+    },
+    {
+      "id": "icao4-0834",
+      "word": "tire pressure indication",
+      "action": "remove-covered-combination",
+      "components": [
+        "tire",
+        "pressure",
+        "indication"
+      ]
+    },
+    {
+      "id": "icao4-0835",
+      "word": "tire pressure low",
+      "action": "remove-covered-combination",
+      "components": [
+        "tire",
+        "pressure"
+      ]
+    },
+    {
+      "id": "icao4-0844",
+      "word": "towing equipment",
+      "action": "remove-covered-combination",
+      "components": [
+        "tow",
+        "equipment"
+      ]
+    },
+    {
+      "id": "qbcore-aa4d8ba513aa",
+      "word": "traffic congestion",
+      "action": "remove-covered-combination",
+      "components": [
+        "traffic",
+        "congestion"
+      ]
+    },
+    {
+      "id": "icao4-0848",
+      "word": "traffic interference",
+      "action": "remove-covered-combination",
+      "components": [
+        "traffic",
+        "interference"
+      ]
+    },
+    {
+      "id": "icao4-0857",
+      "word": "trim indicator",
+      "action": "remove-covered-combination",
+      "components": [
+        "trim",
+        "indicator"
+      ]
+    },
+    {
+      "id": "qbcore-55b2d7b8ded6",
+      "word": "vertical separation",
+      "action": "remove-covered-combination",
+      "components": [
+        "vertical",
+        "separation"
+      ]
+    },
+    {
+      "id": "qbcore-2e6cbe299ed2",
+      "word": "visual approach",
+      "action": "remove-covered-combination",
+      "components": [
+        "visual",
+        "approach"
+      ]
+    },
+    {
+      "id": "icao4-0907",
+      "word": "wake turbulence",
+      "action": "remove-covered-combination",
+      "components": [
+        "wake",
+        "turbulence"
+      ]
+    },
+    {
+      "id": "icao4-0909",
+      "word": "warning light",
+      "action": "remove-covered-combination",
+      "components": [
+        "warning",
+        "light"
+      ]
+    },
+    {
+      "id": "icao5-0040",
+      "word": "anti-icing air regulator",
+      "action": "remove-covered-combination",
+      "components": [
+        "anti-icing",
+        "air",
+        "regulator"
+      ]
+    },
+    {
+      "id": "icao5-0041",
+      "word": "anti-icing duct",
+      "action": "remove-covered-combination",
+      "components": [
+        "anti-icing",
+        "duct"
+      ]
+    },
+    {
+      "id": "icao5-0042",
+      "word": "anti-icing fluid",
+      "action": "remove-covered-combination",
+      "components": [
+        "anti-icing",
+        "fluid"
+      ]
+    },
+    {
+      "id": "qbcore-d441b3b75497",
+      "word": "bleed air",
+      "action": "remove-covered-combination",
+      "components": [
+        "bleed",
+        "air"
+      ]
+    },
+    {
+      "id": "icao5-0094",
+      "word": "blown out fuse",
+      "action": "remove-covered-combination",
+      "components": [
+        "blow",
+        "fuse"
+      ]
+    },
+    {
+      "id": "icao5-0105",
+      "word": "brace position",
+      "action": "remove-covered-combination",
+      "components": [
+        "brace",
+        "position"
+      ]
+    },
+    {
+      "id": "icao5-0155",
+      "word": "compressor blade",
+      "action": "remove-covered-combination",
+      "components": [
+        "compressor",
+        "blade"
+      ]
+    },
+    {
+      "id": "v3-27e9fc41921ad3ad",
+      "word": "compressor stall",
+      "action": "remove-covered-combination",
+      "components": [
+        "compressor",
+        "stall"
+      ]
+    },
+    {
+      "id": "v3-5873bcc136e4b9b7",
+      "word": "electric booster pump",
+      "action": "remove-covered-combination",
+      "components": [
+        "electric",
+        "booster",
+        "pump"
+      ]
+    },
+    {
+      "id": "qbcore-2bacbc916662",
+      "word": "electrical system",
+      "action": "remove-covered-combination",
+      "components": [
+        "electrical",
+        "system"
+      ]
+    },
+    {
+      "id": "icao5-0281",
+      "word": "engine vibration",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "vibration"
+      ]
+    },
+    {
+      "id": "icao5-0282",
+      "word": "engine vibration monitoring unit",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "vibration",
+        "monitor",
+        "unit"
+      ]
+    },
+    {
+      "id": "icao5-0266",
+      "word": "feathered propeller",
+      "action": "remove-covered-combination",
+      "components": [
+        "feather",
+        "propeller"
+      ]
+    },
+    {
+      "id": "v3-ea09efcb5f2eadf5",
+      "word": "fuel starvation",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "starvation"
+      ]
+    },
+    {
+      "id": "icao5-0393",
+      "word": "galley service truck",
+      "action": "remove-covered-combination",
+      "components": [
+        "galley",
+        "service"
+      ]
+    },
+    {
+      "id": "icao5-0495",
+      "word": "intermittent rain",
+      "action": "remove-covered-combination",
+      "components": [
+        "intermittent",
+        "rain"
+      ]
+    },
+    {
+      "id": "icao5-0596",
+      "word": "on strike",
+      "action": "remove-covered-combination",
+      "components": [
+        "strike"
+      ]
+    },
+    {
+      "id": "icao5-0637",
+      "word": "pneumatic brake",
+      "action": "remove-covered-combination",
+      "components": [
+        "pneumatic",
+        "brake"
+      ]
+    },
+    {
+      "id": "v3-ab93dfc3e760624d",
+      "word": "pressure altitude",
+      "action": "remove-covered-combination",
+      "components": [
+        "pressure",
+        "altitude"
+      ]
+    },
+    {
+      "id": "icao5-0676",
+      "word": "radar clutter",
+      "action": "remove-covered-combination",
+      "components": [
+        "radar",
+        "clutter"
+      ]
+    },
+    {
+      "id": "v3-2d6ce0d193c95f5e",
+      "word": "spatial disorientation",
+      "action": "remove-covered-combination",
+      "components": [
+        "spatial",
+        "disorientation"
+      ]
+    },
+    {
+      "id": "v3-563d0f4f9914cae0",
+      "word": "static pressure",
+      "action": "remove-covered-combination",
+      "components": [
+        "static",
+        "pressure"
+      ]
+    },
+    {
+      "id": "v3-48429068f595e483",
+      "word": "wake vortex",
+      "action": "remove-covered-combination",
+      "components": [
+        "wake",
+        "vortex"
+      ]
+    },
+    {
+      "id": "preview-0323",
+      "word": "aircraft fire",
+      "action": "remove-covered-combination",
+      "components": [
+        "aircraft",
+        "fire"
+      ]
+    },
+    {
+      "id": "preview-0031",
+      "word": "airspeed indicator",
+      "action": "remove-covered-combination",
+      "components": [
+        "airspeed",
+        "indicator"
+      ]
+    },
+    {
+      "id": "preview-0089",
+      "word": "bird hazard",
+      "action": "remove-covered-combination",
+      "components": [
+        "bird",
+        "hazard"
+      ]
+    },
+    {
+      "id": "preview-0088",
+      "word": "bird strike",
+      "action": "remove-covered-combination",
+      "components": [
+        "bird",
+        "strike"
+      ]
+    },
+    {
+      "id": "preview-0125",
+      "word": "cargo compartment",
+      "action": "remove-covered-combination",
+      "components": [
+        "cargo",
+        "compartment"
+      ]
+    },
+    {
+      "id": "preview-0126",
+      "word": "cargo flight",
+      "action": "remove-covered-combination",
+      "components": [
+        "cargo",
+        "flight"
+      ]
+    },
+    {
+      "id": "preview-0127",
+      "word": "cargo hold",
+      "action": "remove-covered-combination",
+      "components": [
+        "cargo",
+        "hold"
+      ]
+    },
+    {
+      "id": "preview-0131",
+      "word": "catering truck",
+      "action": "remove-covered-combination",
+      "components": [
+        "catering"
+      ]
+    },
+    {
+      "id": "preview-0144",
+      "word": "clear of conflict",
+      "action": "remove-covered-combination",
+      "components": [
+        "clear",
+        "conflict"
+      ]
+    },
+    {
+      "id": "preview-0192",
+      "word": "de-icing truck",
+      "action": "remove-covered-combination",
+      "components": [
+        "de-icing"
+      ]
+    },
+    {
+      "id": "preview-0265",
+      "word": "engine failure",
+      "action": "remove-covered-combination",
+      "components": [
+        "engine",
+        "failure"
+      ]
+    },
+    {
+      "id": "preview-0327",
+      "word": "fire warning",
+      "action": "remove-covered-combination",
+      "components": [
+        "fire",
+        "warning"
+      ]
+    },
+    {
+      "id": "preview-0333",
+      "word": "first aid",
+      "action": "remove-covered-combination",
+      "components": [
+        "aid"
+      ]
+    },
+    {
+      "id": "preview-0339",
+      "word": "flap control",
+      "action": "remove-covered-combination",
+      "components": [
+        "flap",
+        "control"
+      ]
+    },
+    {
+      "id": "preview-0343",
+      "word": "flight control system",
+      "action": "remove-covered-combination",
+      "components": [
+        "flight",
+        "control",
+        "system"
+      ]
+    },
+    {
+      "id": "preview-0375",
+      "word": "fuel endurance",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "endurance"
+      ]
+    },
+    {
+      "id": "preview-0377",
+      "word": "fuel leak",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "leak"
+      ]
+    },
+    {
+      "id": "preview-0378",
+      "word": "fuel pressure indicator",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "pressure",
+        "indicator"
+      ]
+    },
+    {
+      "id": "preview-0379",
+      "word": "fuel remaining",
+      "action": "remove-covered-combination",
+      "components": [
+        "fuel",
+        "remain"
+      ]
+    },
+    {
+      "id": "preview-0385",
+      "word": "full runway landing",
+      "action": "remove-covered-combination",
+      "components": [
+        "full",
+        "runway",
+        "landing"
+      ]
+    },
+    {
+      "id": "preview-0386",
+      "word": "full stop",
+      "action": "remove-covered-combination",
+      "components": [
+        "full",
+        "stop"
+      ]
+    },
+    {
+      "id": "preview-0399",
+      "word": "gear jammed",
+      "action": "remove-covered-combination",
+      "components": [
+        "gear",
+        "jam"
+      ]
+    },
+    {
+      "id": "preview-0401",
+      "word": "gear up landing",
+      "action": "remove-covered-combination",
+      "components": [
+        "gear",
+        "landing"
+      ]
+    },
+    {
+      "id": "preview-0412",
+      "word": "ground staff",
+      "action": "remove-covered-combination",
+      "components": [
+        "ground",
+        "staff"
+      ]
+    },
+    {
+      "id": "qbcore-ae3ad7f8249c",
+      "word": "icing conditions",
+      "action": "remove-covered-combination",
+      "components": [
+        "icing",
+        "condition"
+      ]
+    },
+    {
+      "id": "preview-0463",
+      "word": "icing indicator",
+      "action": "remove-covered-combination",
+      "components": [
+        "icing",
+        "indicator"
+      ]
+    },
+    {
+      "id": "preview-0492",
+      "word": "instrument failure",
+      "action": "remove-covered-combination",
+      "components": [
+        "instrument",
+        "failure"
+      ]
+    },
+    {
+      "id": "preview-0510",
+      "word": "landing gear",
+      "action": "remove-covered-combination",
+      "components": [
+        "landing",
+        "gear"
+      ]
+    },
+    {
+      "id": "v3-6170145e046cef95",
+      "word": "main landing gear",
+      "action": "remove-covered-combination",
+      "components": [
+        "landing",
+        "gear"
+      ]
+    },
+    {
+      "id": "preview-0545",
+      "word": "manual control",
+      "action": "remove-covered-combination",
+      "components": [
+        "manual",
+        "control"
+      ]
+    },
+    {
+      "id": "preview-0617",
+      "word": "overweight landing",
+      "action": "remove-covered-combination",
+      "components": [
+        "overweight",
+        "landing"
+      ]
+    },
+    {
+      "id": "preview-0623",
+      "word": "passenger cabin",
+      "action": "remove-covered-combination",
+      "components": [
+        "passenger",
+        "cabin"
+      ]
+    },
+    {
+      "id": "preview-0625",
+      "word": "passenger gate",
+      "action": "remove-covered-combination",
+      "components": [
+        "passenger",
+        "gate"
+      ]
+    },
+    {
+      "id": "preview-0655",
+      "word": "pressure control",
+      "action": "remove-covered-combination",
+      "components": [
+        "pressure",
+        "control"
+      ]
+    },
+    {
+      "id": "preview-0716",
+      "word": "run out of fuel",
+      "action": "remove-covered-combination",
+      "components": [
+        "run",
+        "fuel"
+      ]
+    },
+    {
+      "id": "preview-0743",
+      "word": "severe turbulence",
+      "action": "remove-covered-combination",
+      "components": [
+        "severe",
+        "turbulence"
+      ]
+    },
+    {
+      "id": "preview-0767",
+      "word": "snow drift",
+      "action": "remove-covered-combination",
+      "components": [
+        "snow",
+        "drift"
+      ]
+    },
+    {
+      "id": "preview-0786",
+      "word": "squawk ident",
+      "action": "remove-covered-combination",
+      "components": [
+        "squawk",
+        "ident"
+      ]
+    },
+    {
+      "id": "preview-0846",
+      "word": "traffic clear",
+      "action": "remove-covered-combination",
+      "components": [
+        "traffic",
+        "clear"
+      ]
+    }
+  ],
+  "consistency": [
+    {
+      "group": [
+        "V1",
+        "V2",
+        "VR",
+        "VREF",
+        "VAPP"
+      ],
+      "before": {
+        "V1": "preview",
+        "V2": "preview",
+        "VR": "preview",
+        "VREF": "icao4",
+        "VAPP": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "CVR",
+        "FDR"
+      ],
+      "before": {
+        "CVR": "preview",
+        "FDR": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "updraft",
+        "downdraft"
+      ],
+      "before": {
+        "downdraft / downdraught": "preview",
+        "updraft / updraught": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "increase",
+        "decrease"
+      ],
+      "before": {
+        "decrease": "icao4",
+        "increase": "preview"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "extend",
+        "retract"
+      ],
+      "before": {
+        "extend": "preview",
+        "retract": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    },
+    {
+      "group": [
+        "extension",
+        "retraction"
+      ],
+      "before": {
+        "extension": "preview",
+        "retraction": "icao4"
+      },
+      "target": "preview",
+      "reason": "same-level-paired-family; majority, tie to foundational grade"
+    }
+  ],
+  "missing": []
+}
